@@ -11,6 +11,13 @@
 #import "StartScript.h"
 #import "Brick.h"
 #import "SetCostumeBrick.h"
+#import "TestParser.h"
+
+//debug
+#import "Costume.h"
+
+//defines
+#define FRAMES_PER_SECOND 30
 
 
 @interface CattyViewController ()
@@ -24,12 +31,17 @@
 
 @implementation CattyViewController
 
+
 @synthesize context = _context;
 @synthesize effect = _effect;
 @synthesize startScriptsArray = _startScriptsArray;
 @synthesize whenScriptsArray = _whenScriptsArray;
 @synthesize level = _level;
 
+
+//debug
+@synthesize player = _player;
+@synthesize sprite = _sprite;
 
 #pragma mark - getter
 - (NSMutableArray*)startScriptsArray
@@ -67,7 +79,7 @@
     
     //custom catty code
     self.delegate = self;
-    self.preferredFramesPerSecond = 30; // find appropriate value (30 is default)...a constant would be nice ;)
+    self.preferredFramesPerSecond = FRAMES_PER_SECOND;
     
     self.effect = [[GLKBaseEffect alloc] init];
     
@@ -76,6 +88,23 @@
     
     UITapGestureRecognizer *tapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleTapFrom:)];                                                               
     [self.view addGestureRecognizer:tapRecognizer];
+    
+    
+    //load level before starting (this should happen BEFORE this controller is invoked
+    TestParser *parser = [[TestParser alloc] init];
+    self.level = [parser generateObjectForLevel:@"dup di dup"];
+
+    NSLog(@"%@", self.level);
+    //self.player = [[SGGSprite alloc] initWithFile:@"normalcat.png" effect:self.effect];   
+    
+    
+    Costume *newCostume1 = [[Costume alloc]init];
+    newCostume1.filePath = @"normalcat.png";
+    newCostume1.name = @"cat1";
+
+    
+    //self.sprite = [[Sprite alloc] initWithCostume:newCostume1 effect:self.effect];
+
     
     [self startLevel];
 }
@@ -117,7 +146,8 @@
 
 - (void)runScript:(Script*)script
 {
-    for (Brick *brick in script.bricksArray) {
+    for (Brick *brick in script.bricksArray) 
+    {
         if ([brick isMemberOfClass:[SetCostumeBrick class]]) 
         {
             
@@ -134,18 +164,29 @@
 
 #pragma mark - GLKViewDelegate
 - (void)glkView:(GLKView *)view drawInRect:(CGRect)rect {    
-    
-    glClearColor(1, 1, 1, 1);
+    glClearColor(0, 104.0/255.0, 55.0/255.0, 1.0);
+
+    //glClearColor(1, 1, 1, 1);
     glClear(GL_COLOR_BUFFER_BIT);    
     glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
     glEnable(GL_BLEND);
     
+    //NSLog(@"draw in rect...");
+    
+    //[self.sprite render];
+    
     for (Sprite *sprite in self.level.spritesArray)
     {
-        //NSLog(@"render sprite <%@> at position %g / %g", sprite.name, sprite.position.x, sprite.position.y);
+        NSLog(@"render sprite <%@> at position %g / %g", sprite.name, sprite.position.x, sprite.position.y);
         [sprite render];
     }
 }
+
+- (void)glkViewControllerUpdate:(GLKViewController *)controller
+{
+    //NSLog(@"Update...");
+}
+
 
 
 #pragma mark - touch delegate

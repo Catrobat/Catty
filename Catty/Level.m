@@ -14,7 +14,17 @@
 @synthesize version = _version;
 @synthesize resolution = _resolution;
 @synthesize spritesArray = _spritesArray;
+@synthesize startScriptsArray = _startScriptsArray;
+@synthesize whenScriptsArray = _whenScriptsArray;
 
-
+- (NSString*)description 
+{
+    NSMutableString *ret = [[NSMutableString alloc] init];
+    [ret appendString:@"Level description\n"];
+    [ret appendFormat:@"Name: %@\n", self.name];
+    [ret appendFormat:@"Version: %f\n", self.version];
+    
+    return [[NSString alloc] initWithString:ret];
+}
 
 @end

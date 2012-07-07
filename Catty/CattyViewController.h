@@ -9,10 +9,19 @@
 #import <UIKit/UIKit.h>
 #import <GLKit/GLKit.h>
 
+//debug
+#import "SGGSprite.h"
+#import "Sprite.h"
+
+
 @class Level;
 
-@interface CattyViewController : GLKViewController
+@interface CattyViewController : GLKViewController <GLKViewControllerDelegate>
 
 @property (strong, nonatomic) Level *level; //TODO: Array => data from xml-parser
+
+//debug
+@property (nonatomic, strong) SGGSprite *player;
+@property (nonatomic, strong) Sprite *sprite;
 
 @end

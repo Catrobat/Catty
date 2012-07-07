@@ -8,6 +8,8 @@
 
 #import <GLKit/GLKit.h>
 
+@class Costume;
+
 @interface Sprite : NSObject
 
 @property (strong, nonatomic) NSString *name;
@@ -22,6 +24,8 @@
 @property (nonatomic) int indexOfCurrentCostumeInArray;
 
 - (id)initWithEffect:(GLKBaseEffect*)effect;
+- (id)initWithFile:(NSString*)fileName effect:(GLKBaseEffect *)effect;
+- (id)initWithCostume:(Costume*)costume effect:(GLKBaseEffect *)effect;
 
 - (void)render;
 

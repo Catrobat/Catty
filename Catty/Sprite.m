@@ -56,7 +56,86 @@ typedef struct {
     return self;
 }
 
--(void)setIndexOfCurrentCostumeInArray:(int)indexOfCurrentCostumeInArray
+
+
+#pragma mark - just temp (for debug purposes)
+
+- (id)initWithFile:(NSString *)fileName effect:(GLKBaseEffect *)effect {
+    if ((self = [super init])) {
+        self.effect = effect;
+        
+        NSDictionary * options = [NSDictionary dictionaryWithObjectsAndKeys:
+                                  [NSNumber numberWithBool:YES],
+                                  GLKTextureLoaderOriginBottomLeft, 
+                                  nil];
+        
+        NSError * error;    
+        NSString *path = [[NSBundle mainBundle] pathForResource:fileName ofType:nil];
+        self.textureInfo = [GLKTextureLoader textureWithContentsOfFile:path options:options error:&error];
+        if (self.textureInfo == nil) {
+            NSLog(@"Error loading file: %@", [error localizedDescription]);
+            return nil;
+        }
+        
+        self.contentSize = CGSizeMake(self.textureInfo.width, self.textureInfo.height);
+        
+        TexturedQuad newQuad;
+        newQuad.bottomLeftCorner.geometryVertex = CGPointMake(0, 0);
+        newQuad.bottomRightCorner.geometryVertex = CGPointMake(self.textureInfo.width, 0);
+        newQuad.topLeftCorner.geometryVertex = CGPointMake(0, self.textureInfo.height);
+        newQuad.topRightCorner.geometryVertex = CGPointMake(self.textureInfo.width, self.textureInfo.height);
+        
+        newQuad.bottomLeftCorner.textureVertex = CGPointMake(0, 0);
+        newQuad.bottomRightCorner.textureVertex = CGPointMake(1, 0);
+        newQuad.topLeftCorner.textureVertex = CGPointMake(0, 1);
+        newQuad.topRightCorner.textureVertex = CGPointMake(1, 1);
+        self.quad = newQuad;
+        
+    }
+    return self;
+}
+
+- (id)initWithCostume:(Costume*)costume effect:(GLKBaseEffect *)effect
+{
+    if ((self = [super init])) {
+        self.effect = effect;
+        
+        NSDictionary * options = [NSDictionary dictionaryWithObjectsAndKeys:
+                                  [NSNumber numberWithBool:YES],
+                                  GLKTextureLoaderOriginBottomLeft, 
+                                  nil];
+        
+        NSError * error;    
+        NSString *path = [[NSBundle mainBundle] pathForResource:costume.filePath ofType:nil];
+        self.textureInfo = [GLKTextureLoader textureWithContentsOfFile:path options:options error:&error];
+        if (self.textureInfo == nil) {
+            NSLog(@"Error loading file: %@", [error localizedDescription]);
+            return nil;
+        }
+        
+        self.contentSize = CGSizeMake(self.textureInfo.width, self.textureInfo.height);
+        
+        TexturedQuad newQuad;
+        newQuad.bottomLeftCorner.geometryVertex = CGPointMake(0, 0);
+        newQuad.bottomRightCorner.geometryVertex = CGPointMake(self.textureInfo.width, 0);
+        newQuad.topLeftCorner.geometryVertex = CGPointMake(0, self.textureInfo.height);
+        newQuad.topRightCorner.geometryVertex = CGPointMake(self.textureInfo.width, self.textureInfo.height);
+        
+        newQuad.bottomLeftCorner.textureVertex = CGPointMake(0, 0);
+        newQuad.bottomRightCorner.textureVertex = CGPointMake(1, 0);
+        newQuad.topLeftCorner.textureVertex = CGPointMake(0, 1);
+        newQuad.topRightCorner.textureVertex = CGPointMake(1, 1);
+        self.quad = newQuad;
+        
+    }
+    return self;
+}
+
+
+
+
+#pragma mark - costume index
+- (void)setIndexOfCurrentCostumeInArray:(int)indexOfCurrentCostumeInArray
 {
     _indexOfCurrentCostumeInArray = indexOfCurrentCostumeInArray;
     
@@ -101,6 +180,7 @@ typedef struct {
     return modelMatrix;
 }
 
+#pragma mark - render
 - (void)render { 
     
     if (!self.effect)

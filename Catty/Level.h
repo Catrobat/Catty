@@ -14,5 +14,8 @@
 @property (nonatomic) float version;
 @property (nonatomic) CGSize resolution;
 @property (nonatomic, strong) NSArray *spritesArray;
+@property (nonatomic, strong) NSArray *startScriptsArray;
+@property (nonatomic, strong) NSArray *whenScriptsArray;
 
+- (NSString*)description;
 @end

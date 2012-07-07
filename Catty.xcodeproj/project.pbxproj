@@ -38,6 +38,7 @@
 		B4FDF39215A82FD100CBCF03 /* ceshirecat.png in Resources */ = {isa = PBXBuildFile; fileRef = B4FDF38F15A82FD100CBCF03 /* ceshirecat.png */; };
 		B4FDF39315A82FD100CBCF03 /* normalcat.png in Resources */ = {isa = PBXBuildFile; fileRef = B4FDF39015A82FD100CBCF03 /* normalcat.png */; };
 		B4FDF39615A833DA00CBCF03 /* catty_icon_retina.png in Resources */ = {isa = PBXBuildFile; fileRef = B4FDF39515A833DA00CBCF03 /* catty_icon_retina.png */; };
+		B4FDF39D15A840E800CBCF03 /* SGGSprite.m in Sources */ = {isa = PBXBuildFile; fileRef = B4FDF39B15A840E800CBCF03 /* SGGSprite.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -99,6 +100,8 @@
 		B4FDF38F15A82FD100CBCF03 /* ceshirecat.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ceshirecat.png; sourceTree = "<group>"; };
 		B4FDF39015A82FD100CBCF03 /* normalcat.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = normalcat.png; sourceTree = "<group>"; };
 		B4FDF39515A833DA00CBCF03 /* catty_icon_retina.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = catty_icon_retina.png; path = ../catty_icon_retina.png; sourceTree = "<group>"; };
+		B4FDF39B15A840E800CBCF03 /* SGGSprite.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SGGSprite.m; sourceTree = "<group>"; };
+		B4FDF39C15A840E800CBCF03 /* SGGSprite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SGGSprite.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -162,6 +165,8 @@
 		B4FDF32815A82C1000CBCF03 /* Catty */ = {
 			isa = PBXGroup;
 			children = (
+				B4FDF39B15A840E800CBCF03 /* SGGSprite.m */,
+				B4FDF39C15A840E800CBCF03 /* SGGSprite.h */,
 				B4FDF39915A8349900CBCF03 /* ViewController */,
 				B4FDF35F15A82CBF00CBCF03 /* XMLParser */,
 				B4FDF38C15A82FB200CBCF03 /* TEMP */,
@@ -475,6 +480,7 @@
 				B4FDF38815A82F4D00CBCF03 /* Brick.m in Sources */,
 				B4FDF38915A82F4D00CBCF03 /* WaitBrick.m in Sources */,
 				B4FDF38A15A82F4D00CBCF03 /* SetCostumeBrick.m in Sources */,
+				B4FDF39D15A840E800CBCF03 /* SGGSprite.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
