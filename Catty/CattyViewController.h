@@ -9,6 +9,10 @@
 #import <UIKit/UIKit.h>
 #import <GLKit/GLKit.h>
 
+@class Level;
+
 @interface CattyViewController : GLKViewController
+
+@property (strong, nonatomic) Level *level; //TODO: Array => data from xml-parser
 
 @end

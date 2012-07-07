@@ -24,6 +24,22 @@
 		B4FDF34715A82C1000CBCF03 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B4FDF32015A82C1000CBCF03 /* Foundation.framework */; };
 		B4FDF34F15A82C1000CBCF03 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = B4FDF34D15A82C1000CBCF03 /* InfoPlist.strings */; };
 		B4FDF35215A82C1000CBCF03 /* CattyTests.m in Sources */ = {isa = PBXBuildFile; fileRef = B4FDF35115A82C1000CBCF03 /* CattyTests.m */; };
+		B4FDF36315A82E9800CBCF03 /* TestParser.m in Sources */ = {isa = PBXBuildFile; fileRef = B4FDF36215A82E9800CBCF03 /* TestParser.m */; };
+		B4FDF36415A82E9800CBCF03 /* TestParser.m in Sources */ = {isa = PBXBuildFile; fileRef = B4FDF36215A82E9800CBCF03 /* TestParser.m */; };
+		B4FDF36E15A82EC300CBCF03 /* Script.m in Sources */ = {isa = PBXBuildFile; fileRef = B4FDF36915A82EC300CBCF03 /* Script.m */; };
+		B4FDF36F15A82EC300CBCF03 /* StartScript.m in Sources */ = {isa = PBXBuildFile; fileRef = B4FDF36B15A82EC300CBCF03 /* StartScript.m */; };
+		B4FDF37015A82EC300CBCF03 /* WhenScript.m in Sources */ = {isa = PBXBuildFile; fileRef = B4FDF36D15A82EC300CBCF03 /* WhenScript.m */; };
+		B4FDF37415A82EF100CBCF03 /* Sound.m in Sources */ = {isa = PBXBuildFile; fileRef = B4FDF37315A82EF100CBCF03 /* Sound.m */; };
+		B4FDF37815A82F0700CBCF03 /* Costume.m in Sources */ = {isa = PBXBuildFile; fileRef = B4FDF37715A82F0700CBCF03 /* Costume.m */; };
+		B4FDF37C15A82F1E00CBCF03 /* Sprite.m in Sources */ = {isa = PBXBuildFile; fileRef = B4FDF37B15A82F1E00CBCF03 /* Sprite.m */; };
+		B4FDF38015A82F3100CBCF03 /* Level.m in Sources */ = {isa = PBXBuildFile; fileRef = B4FDF37F15A82F3100CBCF03 /* Level.m */; };
+		B4FDF38815A82F4D00CBCF03 /* Brick.m in Sources */ = {isa = PBXBuildFile; fileRef = B4FDF38315A82F4D00CBCF03 /* Brick.m */; };
+		B4FDF38915A82F4D00CBCF03 /* WaitBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = B4FDF38515A82F4D00CBCF03 /* WaitBrick.m */; };
+		B4FDF38A15A82F4D00CBCF03 /* SetCostumeBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = B4FDF38715A82F4D00CBCF03 /* SetCostumeBrick.m */; };
+		B4FDF39115A82FD100CBCF03 /* background.png in Resources */ = {isa = PBXBuildFile; fileRef = B4FDF38E15A82FD100CBCF03 /* background.png */; };
+		B4FDF39215A82FD100CBCF03 /* ceshirecat.png in Resources */ = {isa = PBXBuildFile; fileRef = B4FDF38F15A82FD100CBCF03 /* ceshirecat.png */; };
+		B4FDF39315A82FD100CBCF03 /* normalcat.png in Resources */ = {isa = PBXBuildFile; fileRef = B4FDF39015A82FD100CBCF03 /* normalcat.png */; };
+		B4FDF39615A833DA00CBCF03 /* catty_icon_retina.png in Resources */ = {isa = PBXBuildFile; fileRef = B4FDF39515A833DA00CBCF03 /* catty_icon_retina.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -60,6 +76,33 @@
 		B4FDF34E15A82C1000CBCF03 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		B4FDF35015A82C1000CBCF03 /* CattyTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CattyTests.h; sourceTree = "<group>"; };
 		B4FDF35115A82C1000CBCF03 /* CattyTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CattyTests.m; sourceTree = "<group>"; };
+		B4FDF36015A82E9800CBCF03 /* XMLParserProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XMLParserProtocol.h; sourceTree = "<group>"; };
+		B4FDF36115A82E9800CBCF03 /* TestParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestParser.h; sourceTree = "<group>"; };
+		B4FDF36215A82E9800CBCF03 /* TestParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestParser.m; sourceTree = "<group>"; };
+		B4FDF36815A82EC300CBCF03 /* Script.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Script.h; sourceTree = "<group>"; };
+		B4FDF36915A82EC300CBCF03 /* Script.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Script.m; sourceTree = "<group>"; };
+		B4FDF36A15A82EC300CBCF03 /* StartScript.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StartScript.h; sourceTree = "<group>"; };
+		B4FDF36B15A82EC300CBCF03 /* StartScript.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StartScript.m; sourceTree = "<group>"; };
+		B4FDF36C15A82EC300CBCF03 /* WhenScript.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WhenScript.h; sourceTree = "<group>"; };
+		B4FDF36D15A82EC300CBCF03 /* WhenScript.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WhenScript.m; sourceTree = "<group>"; };
+		B4FDF37215A82EF100CBCF03 /* Sound.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Sound.h; sourceTree = "<group>"; };
+		B4FDF37315A82EF100CBCF03 /* Sound.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Sound.m; sourceTree = "<group>"; };
+		B4FDF37615A82F0700CBCF03 /* Costume.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Costume.h; sourceTree = "<group>"; };
+		B4FDF37715A82F0700CBCF03 /* Costume.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Costume.m; sourceTree = "<group>"; };
+		B4FDF37A15A82F1E00CBCF03 /* Sprite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Sprite.h; sourceTree = "<group>"; };
+		B4FDF37B15A82F1E00CBCF03 /* Sprite.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Sprite.m; sourceTree = "<group>"; };
+		B4FDF37E15A82F3100CBCF03 /* Level.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Level.h; sourceTree = "<group>"; };
+		B4FDF37F15A82F3100CBCF03 /* Level.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Level.m; sourceTree = "<group>"; };
+		B4FDF38215A82F4D00CBCF03 /* Brick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Brick.h; sourceTree = "<group>"; };
+		B4FDF38315A82F4D00CBCF03 /* Brick.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Brick.m; sourceTree = "<group>"; };
+		B4FDF38415A82F4D00CBCF03 /* WaitBrick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WaitBrick.h; sourceTree = "<group>"; };
+		B4FDF38515A82F4D00CBCF03 /* WaitBrick.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WaitBrick.m; sourceTree = "<group>"; };
+		B4FDF38615A82F4D00CBCF03 /* SetCostumeBrick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SetCostumeBrick.h; sourceTree = "<group>"; };
+		B4FDF38715A82F4D00CBCF03 /* SetCostumeBrick.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SetCostumeBrick.m; sourceTree = "<group>"; };
+		B4FDF38E15A82FD100CBCF03 /* background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = background.png; sourceTree = "<group>"; };
+		B4FDF38F15A82FD100CBCF03 /* ceshirecat.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ceshirecat.png; sourceTree = "<group>"; };
+		B4FDF39015A82FD100CBCF03 /* normalcat.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = normalcat.png; sourceTree = "<group>"; };
+		B4FDF39515A833DA00CBCF03 /* catty_icon_retina.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = catty_icon_retina.png; path = ../catty_icon_retina.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -123,6 +166,11 @@
 		B4FDF32815A82C1000CBCF03 /* Catty */ = {
 			isa = PBXGroup;
 			children = (
+				B4FDF39715A833EA00CBCF03 /* Images */,
+				B4FDF38C15A82FB200CBCF03 /* TEMP */,
+				B4FDF36615A82EB100CBCF03 /* DataModel */,
+				B4FDF36515A82EA000CBCF03 /* EventHandler */,
+				B4FDF35F15A82CBF00CBCF03 /* XMLParser */,
 				B4FDF33115A82C1000CBCF03 /* CattyAppDelegate.h */,
 				B4FDF33215A82C1000CBCF03 /* CattyAppDelegate.m */,
 				B4FDF33415A82C1000CBCF03 /* MainStoryboard.storyboard */,
@@ -163,6 +211,132 @@
 				B4FDF34D15A82C1000CBCF03 /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		B4FDF35F15A82CBF00CBCF03 /* XMLParser */ = {
+			isa = PBXGroup;
+			children = (
+				B4FDF36015A82E9800CBCF03 /* XMLParserProtocol.h */,
+				B4FDF36115A82E9800CBCF03 /* TestParser.h */,
+				B4FDF36215A82E9800CBCF03 /* TestParser.m */,
+			);
+			name = XMLParser;
+			sourceTree = "<group>";
+		};
+		B4FDF36515A82EA000CBCF03 /* EventHandler */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = EventHandler;
+			sourceTree = "<group>";
+		};
+		B4FDF36615A82EB100CBCF03 /* DataModel */ = {
+			isa = PBXGroup;
+			children = (
+				B4FDF38115A82F3F00CBCF03 /* Bricks */,
+				B4FDF37D15A82F2200CBCF03 /* Level */,
+				B4FDF37915A82F0C00CBCF03 /* Sprite */,
+				B4FDF37515A82EF500CBCF03 /* Costume */,
+				B4FDF37115A82EC700CBCF03 /* Sound */,
+				B4FDF36715A82EB800CBCF03 /* Scripts */,
+			);
+			name = DataModel;
+			sourceTree = "<group>";
+		};
+		B4FDF36715A82EB800CBCF03 /* Scripts */ = {
+			isa = PBXGroup;
+			children = (
+				B4FDF36815A82EC300CBCF03 /* Script.h */,
+				B4FDF36915A82EC300CBCF03 /* Script.m */,
+				B4FDF36A15A82EC300CBCF03 /* StartScript.h */,
+				B4FDF36B15A82EC300CBCF03 /* StartScript.m */,
+				B4FDF36C15A82EC300CBCF03 /* WhenScript.h */,
+				B4FDF36D15A82EC300CBCF03 /* WhenScript.m */,
+			);
+			name = Scripts;
+			sourceTree = "<group>";
+		};
+		B4FDF37115A82EC700CBCF03 /* Sound */ = {
+			isa = PBXGroup;
+			children = (
+				B4FDF37215A82EF100CBCF03 /* Sound.h */,
+				B4FDF37315A82EF100CBCF03 /* Sound.m */,
+			);
+			name = Sound;
+			sourceTree = "<group>";
+		};
+		B4FDF37515A82EF500CBCF03 /* Costume */ = {
+			isa = PBXGroup;
+			children = (
+				B4FDF37615A82F0700CBCF03 /* Costume.h */,
+				B4FDF37715A82F0700CBCF03 /* Costume.m */,
+			);
+			name = Costume;
+			sourceTree = "<group>";
+		};
+		B4FDF37915A82F0C00CBCF03 /* Sprite */ = {
+			isa = PBXGroup;
+			children = (
+				B4FDF37A15A82F1E00CBCF03 /* Sprite.h */,
+				B4FDF37B15A82F1E00CBCF03 /* Sprite.m */,
+			);
+			name = Sprite;
+			sourceTree = "<group>";
+		};
+		B4FDF37D15A82F2200CBCF03 /* Level */ = {
+			isa = PBXGroup;
+			children = (
+				B4FDF37E15A82F3100CBCF03 /* Level.h */,
+				B4FDF37F15A82F3100CBCF03 /* Level.m */,
+			);
+			name = Level;
+			sourceTree = "<group>";
+		};
+		B4FDF38115A82F3F00CBCF03 /* Bricks */ = {
+			isa = PBXGroup;
+			children = (
+				B4FDF38215A82F4D00CBCF03 /* Brick.h */,
+				B4FDF38315A82F4D00CBCF03 /* Brick.m */,
+				B4FDF38415A82F4D00CBCF03 /* WaitBrick.h */,
+				B4FDF38515A82F4D00CBCF03 /* WaitBrick.m */,
+				B4FDF38615A82F4D00CBCF03 /* SetCostumeBrick.h */,
+				B4FDF38715A82F4D00CBCF03 /* SetCostumeBrick.m */,
+			);
+			name = Bricks;
+			sourceTree = "<group>";
+		};
+		B4FDF38C15A82FB200CBCF03 /* TEMP */ = {
+			isa = PBXGroup;
+			children = (
+				B4FDF38D15A82FB800CBCF03 /* Costumes */,
+			);
+			name = TEMP;
+			sourceTree = "<group>";
+		};
+		B4FDF38D15A82FB800CBCF03 /* Costumes */ = {
+			isa = PBXGroup;
+			children = (
+				B4FDF38E15A82FD100CBCF03 /* background.png */,
+				B4FDF38F15A82FD100CBCF03 /* ceshirecat.png */,
+				B4FDF39015A82FD100CBCF03 /* normalcat.png */,
+			);
+			name = Costumes;
+			sourceTree = "<group>";
+		};
+		B4FDF39715A833EA00CBCF03 /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				B4FDF39815A833EF00CBCF03 /* Icons */,
+			);
+			name = Images;
+			sourceTree = "<group>";
+		};
+		B4FDF39815A833EF00CBCF03 /* Icons */ = {
+			isa = PBXGroup;
+			children = (
+				B4FDF39515A833DA00CBCF03 /* catty_icon_retina.png */,
+			);
+			name = Icons;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -241,6 +415,10 @@
 				B4FDF33615A82C1000CBCF03 /* MainStoryboard.storyboard in Resources */,
 				B4FDF33815A82C1000CBCF03 /* Shader.fsh in Resources */,
 				B4FDF33A15A82C1000CBCF03 /* Shader.vsh in Resources */,
+				B4FDF39115A82FD100CBCF03 /* background.png in Resources */,
+				B4FDF39215A82FD100CBCF03 /* ceshirecat.png in Resources */,
+				B4FDF39315A82FD100CBCF03 /* normalcat.png in Resources */,
+				B4FDF39615A833DA00CBCF03 /* catty_icon_retina.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -278,6 +456,17 @@
 				B4FDF32F15A82C1000CBCF03 /* main.m in Sources */,
 				B4FDF33315A82C1000CBCF03 /* CattyAppDelegate.m in Sources */,
 				B4FDF33D15A82C1000CBCF03 /* CattyViewController.m in Sources */,
+				B4FDF36315A82E9800CBCF03 /* TestParser.m in Sources */,
+				B4FDF36E15A82EC300CBCF03 /* Script.m in Sources */,
+				B4FDF36F15A82EC300CBCF03 /* StartScript.m in Sources */,
+				B4FDF37015A82EC300CBCF03 /* WhenScript.m in Sources */,
+				B4FDF37415A82EF100CBCF03 /* Sound.m in Sources */,
+				B4FDF37815A82F0700CBCF03 /* Costume.m in Sources */,
+				B4FDF37C15A82F1E00CBCF03 /* Sprite.m in Sources */,
+				B4FDF38015A82F3100CBCF03 /* Level.m in Sources */,
+				B4FDF38815A82F4D00CBCF03 /* Brick.m in Sources */,
+				B4FDF38915A82F4D00CBCF03 /* WaitBrick.m in Sources */,
+				B4FDF38A15A82F4D00CBCF03 /* SetCostumeBrick.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -286,6 +475,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B4FDF35215A82C1000CBCF03 /* CattyTests.m in Sources */,
+				B4FDF36415A82E9800CBCF03 /* TestParser.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
