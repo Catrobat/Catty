@@ -8,11 +8,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Catty/CattyViewController.m"
-         timestampString = "363352422.132081"
+         timestampString = "363362074.626315"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "96"
-         endingLineNumber = "96"
+         startingLineNumber = "97"
+         endingLineNumber = "97"
          landmarkName = "-viewDidLoad"
          landmarkType = "5">
       </FileBreakpoint>

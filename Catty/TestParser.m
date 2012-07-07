@@ -16,7 +16,13 @@
 #import "SetCostumeBrick.h"
 #import "WhenScript.h"
 
+//debug
+#import "SGGSprite.h"
+
 @implementation TestParser
+
+@synthesize effect = _effect;
+
 
 - (Level*)generateObjectForLevel:(NSString*)path
 {
@@ -24,9 +30,7 @@
     
     NSMutableArray *startScriptsMutable = [[NSMutableArray alloc] init];
     NSMutableArray *whenScriptsMutable = [[NSMutableArray alloc] init];
-    
-    GLKBaseEffect *effect = [[GLKBaseEffect alloc] init];
-    
+        
     // Level
     Level *level = [[Level alloc]init];
     level.name = @"Catty1";
@@ -38,9 +42,16 @@
     newCostume.filePath = @"background.png";
     newCostume.name = @"background";
     
-    Sprite *newSprite1 = [[Sprite alloc] initWithEffect:effect];//[[Sprite alloc] initWithCostume:newCostume effect:effect];
+    
+    ///teeeest
+    //SGGSprite *sprite1 = [[SGGSprite alloc] initWithFile:@"normalcat.png" effect:self.effect];   
+    
+    
+    
+    Sprite *newSprite1 = [[Sprite alloc] initWithEffect:self.effect];//[[Sprite alloc] initWithCostume:newCostume effect:effect];
     newSprite1.name = @"Background";
-    newSprite1.position = GLKVector2Make(10, 0);
+    //newSprite1.position = GLKVector2Make(0, 0);
+    newSprite1.position = GLKVector2Make(0, 0);
     //newSprite1.effect = self.effect;
      
     newSprite1.costumesArray = [[NSArray alloc]initWithObjects:newCostume, nil];
@@ -66,10 +77,11 @@
     newCostume2.filePath = @"ceshirecat.png";
     newCostume2.name = @"cat2"; 
     
-    Sprite *newSprite2 = [[Sprite alloc]  initWithCostume:newCostume1 effect:effect];
+    Sprite *newSprite2 = [[Sprite alloc]  initWithEffect:self.effect];
     newSprite2.name = @"Catroid";
     newSprite2.position = GLKVector2Make(100, 100);
     newSprite2.costumesArray = [[NSArray alloc]initWithObjects:newCostume1, newCostume2, nil];
+    [newSprite2 setIndexOfCurrentCostumeInArray:0];
 
     //newSprite2.effect = self.effect;
     
@@ -91,7 +103,8 @@
     [whenScriptsMutable addObject:newWhenScript];
     
     level.spritesArray = [[NSArray alloc] initWithObjects: newSprite1, newSprite2, nil];
-    
+    //level.spritesArray = [[NSArray alloc] initWithObjects: sprite1, nil];
+
     level.startScriptsArray = [[NSArray alloc] initWithArray:startScriptsMutable];
     level.whenScriptsArray = [[NSArray alloc] initWithArray:whenScriptsMutable];
     

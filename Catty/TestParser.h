@@ -8,7 +8,10 @@
 
 #import <Foundation/Foundation.h>
 #import "XMLParserProtocol.h"
+#import <GLKit/GLKit.h>
 
 @interface TestParser : NSObject <XMLParserProtocol>
+
+@property (strong, nonatomic) GLKBaseEffect *effect;
 
 @end

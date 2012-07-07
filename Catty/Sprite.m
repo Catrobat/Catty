@@ -164,25 +164,27 @@ typedef struct {
     newQuad.bottomRightCorner.geometryVertex = CGPointMake(self.textureInfo.width, 0);
     newQuad.topLeftCorner.geometryVertex = CGPointMake(0, self.textureInfo.height);
     newQuad.topRightCorner.geometryVertex = CGPointMake(self.textureInfo.width, self.textureInfo.height);
-    
+
     newQuad.bottomLeftCorner.textureVertex = CGPointMake(0, 0);
     newQuad.bottomRightCorner.textureVertex = CGPointMake(1, 0);
     newQuad.topLeftCorner.textureVertex = CGPointMake(0, 1);
     newQuad.topRightCorner.textureVertex = CGPointMake(1, 1);
     self.quad = newQuad;
-
 }
 
-- (GLKMatrix4) modelMatrix {
+- (GLKMatrix4) modelMatrix 
+{
     
     GLKMatrix4 modelMatrix = GLKMatrix4Identity;    
     modelMatrix = GLKMatrix4Translate(modelMatrix, self.position.x, self.position.y, 0);
     //modelMatrix = GLKMatrix4Translate(modelMatrix, -self.contentSize.width/2, -self.contentSize.height/2, 0);
+    
     return modelMatrix;
 }
 
 #pragma mark - render
-- (void)render { 
+- (void)render 
+{ 
     
     if (!self.effect)
         NSLog(@"Sprite.m => render => NO effect set!!!");

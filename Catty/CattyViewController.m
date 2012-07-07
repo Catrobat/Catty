@@ -92,6 +92,7 @@
     
     //load level before starting (this should happen BEFORE this controller is invoked
     TestParser *parser = [[TestParser alloc] init];
+    parser.effect = self.effect;
     self.level = [parser generateObjectForLevel:@"dup di dup"];
 
     NSLog(@"%@", self.level);
@@ -164,9 +165,9 @@
 
 #pragma mark - GLKViewDelegate
 - (void)glkView:(GLKView *)view drawInRect:(CGRect)rect {    
-    glClearColor(0, 104.0/255.0, 55.0/255.0, 1.0);
+    //glClearColor(0, 104.0/255.0, 55.0/255.0, 1.0);
 
-    //glClearColor(1, 1, 1, 1);
+    glClearColor(1, 1, 1, 1);
     glClear(GL_COLOR_BUFFER_BIT);    
     glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
     glEnable(GL_BLEND);
@@ -175,11 +176,17 @@
     
     //[self.sprite render];
     
-    for (Sprite *sprite in self.level.spritesArray)
+//    for (Sprite *sprite in self.level.spritesArray)
+//    {
+//        //NSLog(@"render sprite <%@> at position %g / %g", sprite.name, sprite.position.x, sprite.position.y);
+//        [sprite render];
+//    }
+    for (SGGSprite *sprite in self.level.spritesArray)
     {
         //NSLog(@"render sprite <%@> at position %g / %g", sprite.name, sprite.position.x, sprite.position.y);
         [sprite render];
     }
+
 }
 
 - (void)glkViewControllerUpdate:(GLKViewController *)controller
