@@ -35,15 +35,16 @@
     
     // 1st Sprite (Background)
     Costume *newCostume = [[Costume alloc]init];
-    newCostume.filePath = @"normalcat.png";
+    newCostume.filePath = @"background.png";
     newCostume.name = @"background";
     
-    Sprite *newSprite1 = [[Sprite alloc] initWithCostume:newCostume effect:effect];
+    Sprite *newSprite1 = [[Sprite alloc] initWithEffect:effect];//[[Sprite alloc] initWithCostume:newCostume effect:effect];
     newSprite1.name = @"Background";
-    newSprite1.position = GLKVector2Make(0, 0);
+    newSprite1.position = GLKVector2Make(10, 0);
     //newSprite1.effect = self.effect;
      
     newSprite1.costumesArray = [[NSArray alloc]initWithObjects:newCostume, nil];
+    [newSprite1 setIndexOfCurrentCostumeInArray:0];
     
     Script *newScript = [[StartScript alloc]init];
     

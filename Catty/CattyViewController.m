@@ -177,7 +177,7 @@
     
     for (Sprite *sprite in self.level.spritesArray)
     {
-        NSLog(@"render sprite <%@> at position %g / %g", sprite.name, sprite.position.x, sprite.position.y);
+        //NSLog(@"render sprite <%@> at position %g / %g", sprite.name, sprite.position.x, sprite.position.y);
         [sprite render];
     }
 }
