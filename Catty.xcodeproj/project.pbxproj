@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B40C723215A88072005A8EC7 /* ModelTests.m in Sources */ = {isa = PBXBuildFile; fileRef = B40C723115A88072005A8EC7 /* ModelTests.m */; };
 		B4FDF31F15A82C1000CBCF03 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B4FDF31E15A82C1000CBCF03 /* UIKit.framework */; };
 		B4FDF32115A82C1000CBCF03 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B4FDF32015A82C1000CBCF03 /* Foundation.framework */; };
 		B4FDF32315A82C1000CBCF03 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B4FDF32215A82C1000CBCF03 /* CoreGraphics.framework */; };
@@ -52,6 +53,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		B40C723015A88072005A8EC7 /* ModelTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ModelTests.h; sourceTree = "<group>"; };
+		B40C723115A88072005A8EC7 /* ModelTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ModelTests.m; sourceTree = "<group>"; };
 		B4FDF31A15A82C1000CBCF03 /* Catty.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Catty.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B4FDF31E15A82C1000CBCF03 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		B4FDF32015A82C1000CBCF03 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -130,6 +133,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		B40C723415A88076005A8EC7 /* ModelTests */ = {
+			isa = PBXGroup;
+			children = (
+				B40C723015A88072005A8EC7 /* ModelTests.h */,
+				B40C723115A88072005A8EC7 /* ModelTests.m */,
+			);
+			name = ModelTests;
+			sourceTree = "<group>";
+		};
 		B4FDF30F15A82C0F00CBCF03 = {
 			isa = PBXGroup;
 			children = (
@@ -195,6 +207,7 @@
 		B4FDF34A15A82C1000CBCF03 /* CattyTests */ = {
 			isa = PBXGroup;
 			children = (
+				B40C723415A88076005A8EC7 /* ModelTests */,
 				B4FDF35015A82C1000CBCF03 /* CattyTests.h */,
 				B4FDF35115A82C1000CBCF03 /* CattyTests.m */,
 				B4FDF34B15A82C1000CBCF03 /* Supporting Files */,
@@ -490,6 +503,7 @@
 			files = (
 				B4FDF35215A82C1000CBCF03 /* CattyTests.m in Sources */,
 				B4FDF36415A82E9800CBCF03 /* TestParser.m in Sources */,
+				B40C723215A88072005A8EC7 /* ModelTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -653,6 +667,7 @@
 				B4FDF35715A82C1000CBCF03 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		B4FDF35815A82C1000CBCF03 /* Build configuration list for PBXNativeTarget "CattyTests" */ = {
 			isa = XCConfigurationList;
@@ -661,6 +676,7 @@
 				B4FDF35A15A82C1000CBCF03 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

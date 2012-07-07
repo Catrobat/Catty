@@ -13,6 +13,10 @@
 @property (strong, nonatomic) NSString *filePath;
 @property (strong, nonatomic) NSString *name;
 
+- (id)initWithPath:(NSString*)filePath;
+- (id)initWithName:(NSString*)name andPath:(NSString*)filePath;
+
+
 - (NSString*)description;
 
 @end
