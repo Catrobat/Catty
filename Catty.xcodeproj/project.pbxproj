@@ -1,0 +1,464 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		B4FDF31F15A82C1000CBCF03 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B4FDF31E15A82C1000CBCF03 /* UIKit.framework */; };
+		B4FDF32115A82C1000CBCF03 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B4FDF32015A82C1000CBCF03 /* Foundation.framework */; };
+		B4FDF32315A82C1000CBCF03 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B4FDF32215A82C1000CBCF03 /* CoreGraphics.framework */; };
+		B4FDF32515A82C1000CBCF03 /* GLKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B4FDF32415A82C1000CBCF03 /* GLKit.framework */; };
+		B4FDF32715A82C1000CBCF03 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B4FDF32615A82C1000CBCF03 /* OpenGLES.framework */; };
+		B4FDF32D15A82C1000CBCF03 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = B4FDF32B15A82C1000CBCF03 /* InfoPlist.strings */; };
+		B4FDF32F15A82C1000CBCF03 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = B4FDF32E15A82C1000CBCF03 /* main.m */; };
+		B4FDF33315A82C1000CBCF03 /* CattyAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B4FDF33215A82C1000CBCF03 /* CattyAppDelegate.m */; };
+		B4FDF33615A82C1000CBCF03 /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B4FDF33415A82C1000CBCF03 /* MainStoryboard.storyboard */; };
+		B4FDF33815A82C1000CBCF03 /* Shader.fsh in Resources */ = {isa = PBXBuildFile; fileRef = B4FDF33715A82C1000CBCF03 /* Shader.fsh */; };
+		B4FDF33A15A82C1000CBCF03 /* Shader.vsh in Resources */ = {isa = PBXBuildFile; fileRef = B4FDF33915A82C1000CBCF03 /* Shader.vsh */; };
+		B4FDF33D15A82C1000CBCF03 /* CattyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B4FDF33C15A82C1000CBCF03 /* CattyViewController.m */; };
+		B4FDF34515A82C1000CBCF03 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B4FDF34415A82C1000CBCF03 /* SenTestingKit.framework */; };
+		B4FDF34615A82C1000CBCF03 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B4FDF31E15A82C1000CBCF03 /* UIKit.framework */; };
+		B4FDF34715A82C1000CBCF03 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B4FDF32015A82C1000CBCF03 /* Foundation.framework */; };
+		B4FDF34F15A82C1000CBCF03 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = B4FDF34D15A82C1000CBCF03 /* InfoPlist.strings */; };
+		B4FDF35215A82C1000CBCF03 /* CattyTests.m in Sources */ = {isa = PBXBuildFile; fileRef = B4FDF35115A82C1000CBCF03 /* CattyTests.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		B4FDF34815A82C1000CBCF03 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B4FDF31115A82C0F00CBCF03 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = B4FDF31915A82C0F00CBCF03;
+			remoteInfo = Catty;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		B4FDF31A15A82C1000CBCF03 /* Catty.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Catty.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		B4FDF31E15A82C1000CBCF03 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		B4FDF32015A82C1000CBCF03 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		B4FDF32215A82C1000CBCF03 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		B4FDF32415A82C1000CBCF03 /* GLKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLKit.framework; path = System/Library/Frameworks/GLKit.framework; sourceTree = SDKROOT; };
+		B4FDF32615A82C1000CBCF03 /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
+		B4FDF32A15A82C1000CBCF03 /* Catty-Info.plist */ = {isa = PBXFileReference; path = "Catty-Info.plist"; sourceTree = "<group>"; };
+		B4FDF32C15A82C1000CBCF03 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		B4FDF32E15A82C1000CBCF03 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		B4FDF33015A82C1000CBCF03 /* Catty-Prefix.pch */ = {isa = PBXFileReference; path = "Catty-Prefix.pch"; sourceTree = "<group>"; };
+		B4FDF33115A82C1000CBCF03 /* CattyAppDelegate.h */ = {isa = PBXFileReference; path = CattyAppDelegate.h; sourceTree = "<group>"; };
+		B4FDF33215A82C1000CBCF03 /* CattyAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CattyAppDelegate.m; sourceTree = "<group>"; };
+		B4FDF33515A82C1000CBCF03 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard.storyboard; sourceTree = "<group>"; };
+		B4FDF33715A82C1000CBCF03 /* Shader.fsh */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; name = Shader.fsh; path = Shaders/Shader.fsh; sourceTree = "<group>"; };
+		B4FDF33915A82C1000CBCF03 /* Shader.vsh */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; name = Shader.vsh; path = Shaders/Shader.vsh; sourceTree = "<group>"; };
+		B4FDF33B15A82C1000CBCF03 /* CattyViewController.h */ = {isa = PBXFileReference; path = CattyViewController.h; sourceTree = "<group>"; };
+		B4FDF33C15A82C1000CBCF03 /* CattyViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CattyViewController.m; sourceTree = "<group>"; };
+		B4FDF34315A82C1000CBCF03 /* CattyTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CattyTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
+		B4FDF34415A82C1000CBCF03 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
+		B4FDF34C15A82C1000CBCF03 /* CattyTests-Info.plist */ = {isa = PBXFileReference; path = "CattyTests-Info.plist"; sourceTree = "<group>"; };
+		B4FDF34E15A82C1000CBCF03 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		B4FDF35015A82C1000CBCF03 /* CattyTests.h */ = {isa = PBXFileReference; path = CattyTests.h; sourceTree = "<group>"; };
+		B4FDF35115A82C1000CBCF03 /* CattyTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CattyTests.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		B4FDF31715A82C0F00CBCF03 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B4FDF31F15A82C1000CBCF03 /* UIKit.framework in Frameworks */,
+				B4FDF32115A82C1000CBCF03 /* Foundation.framework in Frameworks */,
+				B4FDF32315A82C1000CBCF03 /* CoreGraphics.framework in Frameworks */,
+				B4FDF32515A82C1000CBCF03 /* GLKit.framework in Frameworks */,
+				B4FDF32715A82C1000CBCF03 /* OpenGLES.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B4FDF33F15A82C1000CBCF03 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B4FDF34515A82C1000CBCF03 /* SenTestingKit.framework in Frameworks */,
+				B4FDF34615A82C1000CBCF03 /* UIKit.framework in Frameworks */,
+				B4FDF34715A82C1000CBCF03 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		B4FDF30F15A82C0F00CBCF03 = {
+			isa = PBXGroup;
+			children = (
+				B4FDF32815A82C1000CBCF03 /* Catty */,
+				B4FDF34A15A82C1000CBCF03 /* CattyTests */,
+				B4FDF31D15A82C1000CBCF03 /* Frameworks */,
+				B4FDF31B15A82C1000CBCF03 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		B4FDF31B15A82C1000CBCF03 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				B4FDF31A15A82C1000CBCF03 /* Catty.app */,
+				B4FDF34315A82C1000CBCF03 /* CattyTests.octest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		B4FDF31D15A82C1000CBCF03 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				B4FDF31E15A82C1000CBCF03 /* UIKit.framework */,
+				B4FDF32015A82C1000CBCF03 /* Foundation.framework */,
+				B4FDF32215A82C1000CBCF03 /* CoreGraphics.framework */,
+				B4FDF32415A82C1000CBCF03 /* GLKit.framework */,
+				B4FDF32615A82C1000CBCF03 /* OpenGLES.framework */,
+				B4FDF34415A82C1000CBCF03 /* SenTestingKit.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		B4FDF32815A82C1000CBCF03 /* Catty */ = {
+			isa = PBXGroup;
+			children = (
+				B4FDF33115A82C1000CBCF03 /* CattyAppDelegate.h */,
+				B4FDF33215A82C1000CBCF03 /* CattyAppDelegate.m */,
+				B4FDF33415A82C1000CBCF03 /* MainStoryboard.storyboard */,
+				B4FDF33715A82C1000CBCF03 /* Shader.fsh */,
+				B4FDF33915A82C1000CBCF03 /* Shader.vsh */,
+				B4FDF33B15A82C1000CBCF03 /* CattyViewController.h */,
+				B4FDF33C15A82C1000CBCF03 /* CattyViewController.m */,
+				B4FDF32915A82C1000CBCF03 /* Supporting Files */,
+			);
+			path = Catty;
+			sourceTree = "<group>";
+		};
+		B4FDF32915A82C1000CBCF03 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				B4FDF32A15A82C1000CBCF03 /* Catty-Info.plist */,
+				B4FDF32B15A82C1000CBCF03 /* InfoPlist.strings */,
+				B4FDF32E15A82C1000CBCF03 /* main.m */,
+				B4FDF33015A82C1000CBCF03 /* Catty-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		B4FDF34A15A82C1000CBCF03 /* CattyTests */ = {
+			isa = PBXGroup;
+			children = (
+				B4FDF35015A82C1000CBCF03 /* CattyTests.h */,
+				B4FDF35115A82C1000CBCF03 /* CattyTests.m */,
+				B4FDF34B15A82C1000CBCF03 /* Supporting Files */,
+			);
+			path = CattyTests;
+			sourceTree = "<group>";
+		};
+		B4FDF34B15A82C1000CBCF03 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				B4FDF34C15A82C1000CBCF03 /* CattyTests-Info.plist */,
+				B4FDF34D15A82C1000CBCF03 /* InfoPlist.strings */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		B4FDF31915A82C0F00CBCF03 /* Catty */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B4FDF35515A82C1000CBCF03 /* Build configuration list for PBXNativeTarget "Catty" */;
+			buildPhases = (
+				B4FDF31615A82C0F00CBCF03 /* Sources */,
+				B4FDF31715A82C0F00CBCF03 /* Frameworks */,
+				B4FDF31815A82C0F00CBCF03 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Catty;
+			productName = Catty;
+			productReference = B4FDF31A15A82C1000CBCF03 /* Catty.app */;
+			productType = "com.apple.product-type.application";
+		};
+		B4FDF34215A82C1000CBCF03 /* CattyTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B4FDF35815A82C1000CBCF03 /* Build configuration list for PBXNativeTarget "CattyTests" */;
+			buildPhases = (
+				B4FDF33E15A82C1000CBCF03 /* Sources */,
+				B4FDF33F15A82C1000CBCF03 /* Frameworks */,
+				B4FDF34015A82C1000CBCF03 /* Resources */,
+				B4FDF34115A82C1000CBCF03 /* ShellScript */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				B4FDF34915A82C1000CBCF03 /* PBXTargetDependency */,
+			);
+			name = CattyTests;
+			productName = CattyTests;
+			productReference = B4FDF34315A82C1000CBCF03 /* CattyTests.octest */;
+			productType = "com.apple.product-type.bundle";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		B4FDF31115A82C0F00CBCF03 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				CLASSPREFIX = Catty;
+				LastUpgradeCheck = 0430;
+				ORGANIZATIONNAME = "Graz University of Technology";
+			};
+			buildConfigurationList = B4FDF31415A82C0F00CBCF03 /* Build configuration list for PBXProject "Catty" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = B4FDF30F15A82C0F00CBCF03;
+			productRefGroup = B4FDF31B15A82C1000CBCF03 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				B4FDF31915A82C0F00CBCF03 /* Catty */,
+				B4FDF34215A82C1000CBCF03 /* CattyTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		B4FDF31815A82C0F00CBCF03 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B4FDF32D15A82C1000CBCF03 /* InfoPlist.strings in Resources */,
+				B4FDF33615A82C1000CBCF03 /* MainStoryboard.storyboard in Resources */,
+				B4FDF33815A82C1000CBCF03 /* Shader.fsh in Resources */,
+				B4FDF33A15A82C1000CBCF03 /* Shader.vsh in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B4FDF34015A82C1000CBCF03 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B4FDF34F15A82C1000CBCF03 /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		B4FDF34115A82C1000CBCF03 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		B4FDF31615A82C0F00CBCF03 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B4FDF32F15A82C1000CBCF03 /* main.m in Sources */,
+				B4FDF33315A82C1000CBCF03 /* CattyAppDelegate.m in Sources */,
+				B4FDF33D15A82C1000CBCF03 /* CattyViewController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B4FDF33E15A82C1000CBCF03 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B4FDF35215A82C1000CBCF03 /* CattyTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		B4FDF34915A82C1000CBCF03 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = B4FDF31915A82C0F00CBCF03 /* Catty */;
+			targetProxy = B4FDF34815A82C1000CBCF03 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		B4FDF32B15A82C1000CBCF03 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				B4FDF32C15A82C1000CBCF03 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		B4FDF33415A82C1000CBCF03 /* MainStoryboard.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				B4FDF33515A82C1000CBCF03 /* en */,
+			);
+			name = MainStoryboard.storyboard;
+			sourceTree = "<group>";
+		};
+		B4FDF34D15A82C1000CBCF03 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				B4FDF34E15A82C1000CBCF03 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		B4FDF35315A82C1000CBCF03 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		B4FDF35415A82C1000CBCF03 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		B4FDF35615A82C1000CBCF03 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Catty/Catty-Prefix.pch";
+				"GCC_THUMB_SUPPORT[arch=armv6]" = "";
+				INFOPLIST_FILE = "Catty/Catty-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		B4FDF35715A82C1000CBCF03 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Catty/Catty-Prefix.pch";
+				"GCC_THUMB_SUPPORT[arch=armv6]" = "";
+				INFOPLIST_FILE = "Catty/Catty-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+		B4FDF35915A82C1000CBCF03 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Catty.app/Catty";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(DEVELOPER_LIBRARY_DIR)/Frameworks",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Catty/Catty-Prefix.pch";
+				INFOPLIST_FILE = "CattyTests/CattyTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Debug;
+		};
+		B4FDF35A15A82C1000CBCF03 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Catty.app/Catty";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(DEVELOPER_LIBRARY_DIR)/Frameworks",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Catty/Catty-Prefix.pch";
+				INFOPLIST_FILE = "CattyTests/CattyTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		B4FDF31415A82C0F00CBCF03 /* Build configuration list for PBXProject "Catty" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B4FDF35315A82C1000CBCF03 /* Debug */,
+				B4FDF35415A82C1000CBCF03 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		B4FDF35515A82C1000CBCF03 /* Build configuration list for PBXNativeTarget "Catty" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B4FDF35615A82C1000CBCF03 /* Debug */,
+				B4FDF35715A82C1000CBCF03 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		B4FDF35815A82C1000CBCF03 /* Build configuration list for PBXNativeTarget "CattyTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B4FDF35915A82C1000CBCF03 /* Debug */,
+				B4FDF35A15A82C1000CBCF03 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = B4FDF31115A82C0F00CBCF03 /* Project object */;
+}
