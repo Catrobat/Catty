@@ -9,7 +9,8 @@
 #import "Costume.h"
 
 @interface Costume ()
-- (id)init;
+
+
 @end
 
 @implementation Costume
@@ -18,13 +19,6 @@
 @synthesize name = _name;
 
 #pragma mark - init methods
-- (id)init {
-    @throw [NSException exceptionWithName:NSInternalInconsistencyException
-                                   reason:@"init is not a valid initializer for the class Costume"
-                                 userInfo:nil];
-    return nil;
-}
-
 - (id)initWithPath:(NSString*)filePath
 {
     self = [super init];

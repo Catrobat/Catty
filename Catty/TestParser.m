@@ -109,9 +109,7 @@
 #pragma mark - private methods
 - (Costume*)createCostumeFromPath:(NSString*)path withName:(NSString*)name
 {
-    Costume *retCostume = [[Costume alloc]init];
-    retCostume.filePath = path;
-    retCostume.name = name;
+    Costume *retCostume = [[Costume alloc] initWithName:name andPath:path];
     
     return retCostume;
 }

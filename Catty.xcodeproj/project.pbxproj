@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		B40C723215A88072005A8EC7 /* ModelTests.m in Sources */ = {isa = PBXBuildFile; fileRef = B40C723115A88072005A8EC7 /* ModelTests.m */; };
+		B40C723515A88687005A8EC7 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B4FDF32215A82C1000CBCF03 /* CoreGraphics.framework */; };
 		B4FDF31F15A82C1000CBCF03 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B4FDF31E15A82C1000CBCF03 /* UIKit.framework */; };
 		B4FDF32115A82C1000CBCF03 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B4FDF32015A82C1000CBCF03 /* Foundation.framework */; };
 		B4FDF32315A82C1000CBCF03 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B4FDF32215A82C1000CBCF03 /* CoreGraphics.framework */; };
@@ -124,6 +125,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B40C723515A88687005A8EC7 /* CoreGraphics.framework in Frameworks */,
 				B4FDF34515A82C1000CBCF03 /* SenTestingKit.framework in Frameworks */,
 				B4FDF34615A82C1000CBCF03 /* UIKit.framework in Frameworks */,
 				B4FDF34715A82C1000CBCF03 /* Foundation.framework in Frameworks */,
