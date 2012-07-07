@@ -203,5 +203,21 @@ typedef struct {
     glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
 }
 
+#pragma mark - description
+- (NSString*)description
+{
+    NSMutableString *ret = [[NSMutableString alloc] init];
+    
+    [ret appendFormat:@"Sprite (0x%x): ", self];
+    [ret appendFormat:@"Name: %@ ", self.name];
+    [ret appendFormat:@"Position: [%f, %f] (x, y) ", self.position.x, self.position.y];
+    [ret appendFormat:@"Content size: [%f, %f] (x, y) ", self.contentSize.width, self.contentSize.height];
+    [ret appendFormat:@"Costume index: %d ", self.indexOfCurrentCostumeInArray];
+    [ret appendFormat:@"Costumes: %@ ", self.costumesArray];
+    [ret appendFormat:@"Sounds: %@ ", self.soundsArray];    
+    
+    return [[NSString alloc] initWithString:ret];
+}
+
 
 @end

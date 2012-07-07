@@ -13,4 +13,6 @@
 @property (strong, nonatomic) NSString *filePath;
 @property (strong, nonatomic) NSString *name;
 
+- (NSString*)description;
+
 @end

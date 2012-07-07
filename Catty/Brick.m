@@ -12,4 +12,9 @@
 
 @synthesize sprite = _sprite;
 
+- (NSString*)description
+{
+    return [[NSString alloc] initWithString:self.sprite.description];
+}
+
 @end

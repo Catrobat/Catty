@@ -13,4 +13,6 @@
 
 @property (strong, nonatomic) Sprite *sprite;
 
+- (NSString*)description;
+
 @end

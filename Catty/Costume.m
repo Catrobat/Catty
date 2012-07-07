@@ -13,4 +13,9 @@
 @synthesize filePath = _filePath;
 @synthesize name = _name;
 
+- (NSString*)description
+{
+    return [NSString stringWithFormat:@"Path: %@ Name: %@", self.filePath, self.name];
+}
+
 @end

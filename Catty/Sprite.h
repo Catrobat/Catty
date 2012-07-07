@@ -29,4 +29,6 @@
 
 - (void)render;
 
+- (NSString*)description;
+
 @end
