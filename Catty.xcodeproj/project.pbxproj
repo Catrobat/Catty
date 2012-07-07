@@ -16,8 +16,6 @@
 		B4FDF32F15A82C1000CBCF03 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = B4FDF32E15A82C1000CBCF03 /* main.m */; };
 		B4FDF33315A82C1000CBCF03 /* CattyAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B4FDF33215A82C1000CBCF03 /* CattyAppDelegate.m */; };
 		B4FDF33615A82C1000CBCF03 /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B4FDF33415A82C1000CBCF03 /* MainStoryboard.storyboard */; };
-		B4FDF33815A82C1000CBCF03 /* Shader.fsh in Resources */ = {isa = PBXBuildFile; fileRef = B4FDF33715A82C1000CBCF03 /* Shader.fsh */; };
-		B4FDF33A15A82C1000CBCF03 /* Shader.vsh in Resources */ = {isa = PBXBuildFile; fileRef = B4FDF33915A82C1000CBCF03 /* Shader.vsh */; };
 		B4FDF33D15A82C1000CBCF03 /* CattyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B4FDF33C15A82C1000CBCF03 /* CattyViewController.m */; };
 		B4FDF34515A82C1000CBCF03 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B4FDF34415A82C1000CBCF03 /* SenTestingKit.framework */; };
 		B4FDF34615A82C1000CBCF03 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B4FDF31E15A82C1000CBCF03 /* UIKit.framework */; };
@@ -66,8 +64,6 @@
 		B4FDF33115A82C1000CBCF03 /* CattyAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CattyAppDelegate.h; sourceTree = "<group>"; };
 		B4FDF33215A82C1000CBCF03 /* CattyAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CattyAppDelegate.m; sourceTree = "<group>"; };
 		B4FDF33515A82C1000CBCF03 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard.storyboard; sourceTree = "<group>"; };
-		B4FDF33715A82C1000CBCF03 /* Shader.fsh */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; name = Shader.fsh; path = Shaders/Shader.fsh; sourceTree = "<group>"; };
-		B4FDF33915A82C1000CBCF03 /* Shader.vsh */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; name = Shader.vsh; path = Shaders/Shader.vsh; sourceTree = "<group>"; };
 		B4FDF33B15A82C1000CBCF03 /* CattyViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CattyViewController.h; sourceTree = "<group>"; };
 		B4FDF33C15A82C1000CBCF03 /* CattyViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CattyViewController.m; sourceTree = "<group>"; };
 		B4FDF34315A82C1000CBCF03 /* CattyTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CattyTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -166,18 +162,15 @@
 		B4FDF32815A82C1000CBCF03 /* Catty */ = {
 			isa = PBXGroup;
 			children = (
-				B4FDF39715A833EA00CBCF03 /* Images */,
+				B4FDF39915A8349900CBCF03 /* ViewController */,
+				B4FDF35F15A82CBF00CBCF03 /* XMLParser */,
 				B4FDF38C15A82FB200CBCF03 /* TEMP */,
 				B4FDF36615A82EB100CBCF03 /* DataModel */,
 				B4FDF36515A82EA000CBCF03 /* EventHandler */,
-				B4FDF35F15A82CBF00CBCF03 /* XMLParser */,
 				B4FDF33115A82C1000CBCF03 /* CattyAppDelegate.h */,
 				B4FDF33215A82C1000CBCF03 /* CattyAppDelegate.m */,
 				B4FDF33415A82C1000CBCF03 /* MainStoryboard.storyboard */,
-				B4FDF33715A82C1000CBCF03 /* Shader.fsh */,
-				B4FDF33915A82C1000CBCF03 /* Shader.vsh */,
-				B4FDF33B15A82C1000CBCF03 /* CattyViewController.h */,
-				B4FDF33C15A82C1000CBCF03 /* CattyViewController.m */,
+				B4FDF39715A833EA00CBCF03 /* Images */,
 				B4FDF32915A82C1000CBCF03 /* Supporting Files */,
 			);
 			path = Catty;
@@ -339,6 +332,23 @@
 			name = Icons;
 			sourceTree = "<group>";
 		};
+		B4FDF39915A8349900CBCF03 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				B4FDF39A15A8349F00CBCF03 /* CattyViewController */,
+			);
+			name = ViewController;
+			sourceTree = "<group>";
+		};
+		B4FDF39A15A8349F00CBCF03 /* CattyViewController */ = {
+			isa = PBXGroup;
+			children = (
+				B4FDF33B15A82C1000CBCF03 /* CattyViewController.h */,
+				B4FDF33C15A82C1000CBCF03 /* CattyViewController.m */,
+			);
+			name = CattyViewController;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -413,8 +423,6 @@
 			files = (
 				B4FDF32D15A82C1000CBCF03 /* InfoPlist.strings in Resources */,
 				B4FDF33615A82C1000CBCF03 /* MainStoryboard.storyboard in Resources */,
-				B4FDF33815A82C1000CBCF03 /* Shader.fsh in Resources */,
-				B4FDF33A15A82C1000CBCF03 /* Shader.vsh in Resources */,
 				B4FDF39115A82FD100CBCF03 /* background.png in Resources */,
 				B4FDF39215A82FD100CBCF03 /* ceshirecat.png in Resources */,
 				B4FDF39315A82FD100CBCF03 /* normalcat.png in Resources */,
