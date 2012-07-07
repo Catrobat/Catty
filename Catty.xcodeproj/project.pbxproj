@@ -43,22 +43,22 @@
 		B4FDF32215A82C1000CBCF03 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		B4FDF32415A82C1000CBCF03 /* GLKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLKit.framework; path = System/Library/Frameworks/GLKit.framework; sourceTree = SDKROOT; };
 		B4FDF32615A82C1000CBCF03 /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
-		B4FDF32A15A82C1000CBCF03 /* Catty-Info.plist */ = {isa = PBXFileReference; path = "Catty-Info.plist"; sourceTree = "<group>"; };
+		B4FDF32A15A82C1000CBCF03 /* Catty-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Catty-Info.plist"; sourceTree = "<group>"; };
 		B4FDF32C15A82C1000CBCF03 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		B4FDF32E15A82C1000CBCF03 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		B4FDF33015A82C1000CBCF03 /* Catty-Prefix.pch */ = {isa = PBXFileReference; path = "Catty-Prefix.pch"; sourceTree = "<group>"; };
-		B4FDF33115A82C1000CBCF03 /* CattyAppDelegate.h */ = {isa = PBXFileReference; path = CattyAppDelegate.h; sourceTree = "<group>"; };
+		B4FDF33015A82C1000CBCF03 /* Catty-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Catty-Prefix.pch"; sourceTree = "<group>"; };
+		B4FDF33115A82C1000CBCF03 /* CattyAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CattyAppDelegate.h; sourceTree = "<group>"; };
 		B4FDF33215A82C1000CBCF03 /* CattyAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CattyAppDelegate.m; sourceTree = "<group>"; };
 		B4FDF33515A82C1000CBCF03 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard.storyboard; sourceTree = "<group>"; };
 		B4FDF33715A82C1000CBCF03 /* Shader.fsh */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; name = Shader.fsh; path = Shaders/Shader.fsh; sourceTree = "<group>"; };
 		B4FDF33915A82C1000CBCF03 /* Shader.vsh */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; name = Shader.vsh; path = Shaders/Shader.vsh; sourceTree = "<group>"; };
-		B4FDF33B15A82C1000CBCF03 /* CattyViewController.h */ = {isa = PBXFileReference; path = CattyViewController.h; sourceTree = "<group>"; };
+		B4FDF33B15A82C1000CBCF03 /* CattyViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CattyViewController.h; sourceTree = "<group>"; };
 		B4FDF33C15A82C1000CBCF03 /* CattyViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CattyViewController.m; sourceTree = "<group>"; };
 		B4FDF34315A82C1000CBCF03 /* CattyTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CattyTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B4FDF34415A82C1000CBCF03 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
-		B4FDF34C15A82C1000CBCF03 /* CattyTests-Info.plist */ = {isa = PBXFileReference; path = "CattyTests-Info.plist"; sourceTree = "<group>"; };
+		B4FDF34C15A82C1000CBCF03 /* CattyTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "CattyTests-Info.plist"; sourceTree = "<group>"; };
 		B4FDF34E15A82C1000CBCF03 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		B4FDF35015A82C1000CBCF03 /* CattyTests.h */ = {isa = PBXFileReference; path = CattyTests.h; sourceTree = "<group>"; };
+		B4FDF35015A82C1000CBCF03 /* CattyTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CattyTests.h; sourceTree = "<group>"; };
 		B4FDF35115A82C1000CBCF03 /* CattyTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CattyTests.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
