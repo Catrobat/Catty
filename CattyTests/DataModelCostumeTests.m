@@ -1,19 +1,19 @@
 //
-//  ModelTests.m
+//  DataModelCostumeTests.m
 //  Catty
 //
 //  Created by Christof Stromberger on 07.07.12.
 //  Copyright (c) 2012 Graz University of Technology. All rights reserved.
 //
 #import <UIKit/UIKit.h>
-#import "ModelTests.h"
+#import "DataModelCostumeTests.h"
 #import "Costume.h"
 
 #define SAMPLE_NAME @"KittyCat"
 #define SAMPLE_PATH @"kittycat.png"
 
 
-@implementation ModelTests
+@implementation DataModelCostumeTests
 
 #pragma mark - tear up & down
 - (void)setUp

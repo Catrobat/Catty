@@ -1,5 +1,5 @@
 //
-//  ModelTests.h
+//  DataModelCostumeTests.h
 //  Catty
 //
 //  Created by Christof Stromberger on 07.07.12.
@@ -8,6 +8,6 @@
 
 #import <SenTestingKit/SenTestingKit.h>
 
-@interface ModelTests : SenTestCase
+@interface DataModelCostumeTests : SenTestCase
 
 @end
