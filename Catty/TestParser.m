@@ -43,7 +43,7 @@
     newSprite1.position = GLKVector2Make(0, 0);
     //newSprite1.effect = self.effect;
      
-    //newSprite1.costumesArray = [[NSArray alloc]initWithObjects:newCostume, nil];
+    newSprite1.costumesArray = [[NSArray alloc]initWithObjects:newCostume, nil];
     
     Script *newScript = [[StartScript alloc]init];
     
@@ -61,14 +61,15 @@
     Costume *newCostume1 = [[Costume alloc]init];
     newCostume1.filePath = @"normalcat.png";
     newCostume1.name = @"cat1";
-    /*Costume *newCostume2 = [[Costume alloc]init];
+    Costume *newCostume2 = [[Costume alloc]init];
     newCostume2.filePath = @"ceshirecat.png";
-    newCostume2.name = @"cat2"; */
-    //newSprite2.costumesArray = [[NSArray alloc]initWithObjects:newCostume1, newCostume2, nil];
+    newCostume2.name = @"cat2"; 
     
     Sprite *newSprite2 = [[Sprite alloc]  initWithCostume:newCostume1 effect:effect];
     newSprite2.name = @"Catroid";
     newSprite2.position = GLKVector2Make(100, 100);
+    newSprite2.costumesArray = [[NSArray alloc]initWithObjects:newCostume1, newCostume2, nil];
+
     //newSprite2.effect = self.effect;
     
     Script *newStartScript = [[StartScript alloc]init];

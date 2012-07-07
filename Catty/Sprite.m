@@ -1,13 +1,14 @@
 //
-//  Sprite.m
+//  CattyAppDelegate.m
 //  Catty
 //
-//  Created by Mattias Rauter on 17.04.12.
-//  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
+//  Created by Christof Stromberger on 07.07.12.
+//  Copyright (c) 2012 Graz University of Technology. All rights reserved.
 //
 
 #import "Sprite.h"
 #import "Costume.h"
+#import "Sound.h"
 
 typedef struct {
     CGPoint geometryVertex;
@@ -208,13 +209,41 @@ typedef struct {
 {
     NSMutableString *ret = [[NSMutableString alloc] init];
     
-    [ret appendFormat:@"Sprite (0x%x): ", self];
-    [ret appendFormat:@"Name: %@ ", self.name];
-    [ret appendFormat:@"Position: [%f, %f] (x, y) ", self.position.x, self.position.y];
-    [ret appendFormat:@"Content size: [%f, %f] (x, y) ", self.contentSize.width, self.contentSize.height];
-    [ret appendFormat:@"Costume index: %d ", self.indexOfCurrentCostumeInArray];
-    [ret appendFormat:@"Costumes: %@ ", self.costumesArray];
-    [ret appendFormat:@"Sounds: %@ ", self.soundsArray];    
+    [ret appendFormat:@"Sprite (0x%x):\n", self];
+    [ret appendFormat:@"\t\t\tName: %@\n", self.name];
+    [ret appendFormat:@"\t\t\tPosition: [%f, %f] (x, y)\n", self.position.x, self.position.y];
+    [ret appendFormat:@"\t\t\tContent size: [%f, %f] (x, y)\n", self.contentSize.width, self.contentSize.height];
+    [ret appendFormat:@"\t\t\tCostume index: %d\n", self.indexOfCurrentCostumeInArray];
+    
+    if ([self.costumesArray count] > 0)
+    {
+        [ret appendString:@"\t\t\tCostumes:\n"];
+        for (Costume *costume in self.costumesArray)
+        {
+            [ret appendFormat:@"\t\t\t\t - %@\n", costume];
+        }
+    }
+    else 
+    {
+        [ret appendString:@"\t\t\tCostumes: None\n"];
+    }
+
+    if ([self.soundsArray count] > 0)
+    {
+        [ret appendString:@"\t\t\tSounds\n"];
+        for (Sound *sound in self.soundsArray)
+        {
+            [ret appendFormat:@"\t\t\t\t - %@\n", sound];
+        }
+    }
+    else 
+    {
+        [ret appendString:@"\t\t\tSounds: None\n"];
+    }
+
+    
+    //[ret appendFormat:@"\t\t\tCostumes: %@\n", self.costumesArray];
+    //[ret appendFormat:@"\t\t\tSounds: %@\n", self.soundsArray];    
     
     return [[NSString alloc] initWithString:ret];
 }
