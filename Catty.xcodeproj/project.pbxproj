@@ -9,6 +9,9 @@
 /* Begin PBXBuildFile section */
 		B40C723215A88072005A8EC7 /* DataModelCostumeTests.m in Sources */ = {isa = PBXBuildFile; fileRef = B40C723115A88072005A8EC7 /* DataModelCostumeTests.m */; };
 		B40C723515A88687005A8EC7 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B4FDF32215A82C1000CBCF03 /* CoreGraphics.framework */; };
+		B40C723A15A88AF6005A8EC7 /* DataModelSpriteTests.m in Sources */ = {isa = PBXBuildFile; fileRef = B40C723915A88AF6005A8EC7 /* DataModelSpriteTests.m */; };
+		B40C723B15A88DFD005A8EC7 /* GLKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B4FDF32415A82C1000CBCF03 /* GLKit.framework */; };
+		B40C723F15A88E9E005A8EC7 /* kittycat.png in Resources */ = {isa = PBXBuildFile; fileRef = B40C723E15A88E9E005A8EC7 /* kittycat.png */; };
 		B4FDF31F15A82C1000CBCF03 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B4FDF31E15A82C1000CBCF03 /* UIKit.framework */; };
 		B4FDF32115A82C1000CBCF03 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B4FDF32015A82C1000CBCF03 /* Foundation.framework */; };
 		B4FDF32315A82C1000CBCF03 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B4FDF32215A82C1000CBCF03 /* CoreGraphics.framework */; };
@@ -56,6 +59,9 @@
 /* Begin PBXFileReference section */
 		B40C723015A88072005A8EC7 /* DataModelCostumeTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataModelCostumeTests.h; sourceTree = "<group>"; };
 		B40C723115A88072005A8EC7 /* DataModelCostumeTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataModelCostumeTests.m; sourceTree = "<group>"; };
+		B40C723815A88AF6005A8EC7 /* DataModelSpriteTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataModelSpriteTests.h; sourceTree = "<group>"; };
+		B40C723915A88AF6005A8EC7 /* DataModelSpriteTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataModelSpriteTests.m; sourceTree = "<group>"; };
+		B40C723E15A88E9E005A8EC7 /* kittycat.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = kittycat.png; sourceTree = "<group>"; };
 		B4FDF31A15A82C1000CBCF03 /* Catty.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Catty.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B4FDF31E15A82C1000CBCF03 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		B4FDF32015A82C1000CBCF03 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -125,6 +131,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B40C723B15A88DFD005A8EC7 /* GLKit.framework in Frameworks */,
 				B40C723515A88687005A8EC7 /* CoreGraphics.framework in Frameworks */,
 				B4FDF34515A82C1000CBCF03 /* SenTestingKit.framework in Frameworks */,
 				B4FDF34615A82C1000CBCF03 /* UIKit.framework in Frameworks */,
@@ -138,6 +145,7 @@
 		B40C723415A88076005A8EC7 /* DataModelTests */ = {
 			isa = PBXGroup;
 			children = (
+				B40C723715A88AD8005A8EC7 /* DataModelSpriteTests */,
 				B40C723615A88949005A8EC7 /* DataModelCostumeTests */,
 			);
 			name = DataModelTests;
@@ -150,6 +158,31 @@
 				B40C723115A88072005A8EC7 /* DataModelCostumeTests.m */,
 			);
 			name = DataModelCostumeTests;
+			sourceTree = "<group>";
+		};
+		B40C723715A88AD8005A8EC7 /* DataModelSpriteTests */ = {
+			isa = PBXGroup;
+			children = (
+				B40C723815A88AF6005A8EC7 /* DataModelSpriteTests.h */,
+				B40C723915A88AF6005A8EC7 /* DataModelSpriteTests.m */,
+			);
+			name = DataModelSpriteTests;
+			sourceTree = "<group>";
+		};
+		B40C723C15A88E72005A8EC7 /* TestResources */ = {
+			isa = PBXGroup;
+			children = (
+				B40C723D15A88E7B005A8EC7 /* Images */,
+			);
+			name = TestResources;
+			sourceTree = "<group>";
+		};
+		B40C723D15A88E7B005A8EC7 /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				B40C723E15A88E9E005A8EC7 /* kittycat.png */,
+			);
+			name = Images;
 			sourceTree = "<group>";
 		};
 		B4FDF30F15A82C0F00CBCF03 = {
@@ -217,6 +250,7 @@
 		B4FDF34A15A82C1000CBCF03 /* CattyTests */ = {
 			isa = PBXGroup;
 			children = (
+				B40C723C15A88E72005A8EC7 /* TestResources */,
 				B40C723415A88076005A8EC7 /* DataModelTests */,
 				B4FDF35015A82C1000CBCF03 /* CattyTests.h */,
 				B4FDF35115A82C1000CBCF03 /* CattyTests.m */,
@@ -337,9 +371,9 @@
 		B4FDF38D15A82FB800CBCF03 /* Costumes */ = {
 			isa = PBXGroup;
 			children = (
+				B4FDF39015A82FD100CBCF03 /* normalcat.png */,
 				B4FDF38E15A82FD100CBCF03 /* background.png */,
 				B4FDF38F15A82FD100CBCF03 /* ceshirecat.png */,
-				B4FDF39015A82FD100CBCF03 /* normalcat.png */,
 			);
 			name = Costumes;
 			sourceTree = "<group>";
@@ -463,6 +497,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B4FDF34F15A82C1000CBCF03 /* InfoPlist.strings in Resources */,
+				B40C723F15A88E9E005A8EC7 /* kittycat.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -514,6 +549,7 @@
 				B4FDF35215A82C1000CBCF03 /* CattyTests.m in Sources */,
 				B4FDF36415A82E9800CBCF03 /* TestParser.m in Sources */,
 				B40C723215A88072005A8EC7 /* DataModelCostumeTests.m in Sources */,
+				B40C723A15A88AF6005A8EC7 /* DataModelSpriteTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

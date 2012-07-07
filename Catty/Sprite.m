@@ -46,7 +46,7 @@ typedef struct {
 @synthesize textureInfo = _textureInfo;
 
 
-// Methods
+#pragma mark - init methods
 - (id)initWithEffect:(GLKBaseEffect*)effect
 {
     self = [super init];
@@ -56,83 +56,6 @@ typedef struct {
     }
     return self;
 }
-
-
-
-#pragma mark - just temp (for debug purposes)
-
-- (id)initWithFile:(NSString *)fileName effect:(GLKBaseEffect *)effect {
-    if ((self = [super init])) {
-        self.effect = effect;
-        
-        NSDictionary * options = [NSDictionary dictionaryWithObjectsAndKeys:
-                                  [NSNumber numberWithBool:YES],
-                                  GLKTextureLoaderOriginBottomLeft, 
-                                  nil];
-        
-        NSError * error;    
-        NSString *path = [[NSBundle mainBundle] pathForResource:fileName ofType:nil];
-        self.textureInfo = [GLKTextureLoader textureWithContentsOfFile:path options:options error:&error];
-        if (self.textureInfo == nil) {
-            NSLog(@"Error loading file: %@", [error localizedDescription]);
-            return nil;
-        }
-        
-        self.contentSize = CGSizeMake(self.textureInfo.width, self.textureInfo.height);
-        
-        TexturedQuad newQuad;
-        newQuad.bottomLeftCorner.geometryVertex = CGPointMake(0, 0);
-        newQuad.bottomRightCorner.geometryVertex = CGPointMake(self.textureInfo.width, 0);
-        newQuad.topLeftCorner.geometryVertex = CGPointMake(0, self.textureInfo.height);
-        newQuad.topRightCorner.geometryVertex = CGPointMake(self.textureInfo.width, self.textureInfo.height);
-        
-        newQuad.bottomLeftCorner.textureVertex = CGPointMake(0, 0);
-        newQuad.bottomRightCorner.textureVertex = CGPointMake(1, 0);
-        newQuad.topLeftCorner.textureVertex = CGPointMake(0, 1);
-        newQuad.topRightCorner.textureVertex = CGPointMake(1, 1);
-        self.quad = newQuad;
-        
-    }
-    return self;
-}
-
-- (id)initWithCostume:(Costume*)costume effect:(GLKBaseEffect *)effect
-{
-    if ((self = [super init])) {
-        self.effect = effect;
-        
-        NSDictionary * options = [NSDictionary dictionaryWithObjectsAndKeys:
-                                  [NSNumber numberWithBool:YES],
-                                  GLKTextureLoaderOriginBottomLeft, 
-                                  nil];
-        
-        NSError * error;    
-        NSString *path = [[NSBundle mainBundle] pathForResource:costume.filePath ofType:nil];
-        self.textureInfo = [GLKTextureLoader textureWithContentsOfFile:path options:options error:&error];
-        if (self.textureInfo == nil) {
-            NSLog(@"Error loading file: %@", [error localizedDescription]);
-            return nil;
-        }
-        
-        self.contentSize = CGSizeMake(self.textureInfo.width, self.textureInfo.height);
-        
-        TexturedQuad newQuad;
-        newQuad.bottomLeftCorner.geometryVertex = CGPointMake(0, 0);
-        newQuad.bottomRightCorner.geometryVertex = CGPointMake(self.textureInfo.width, 0);
-        newQuad.topLeftCorner.geometryVertex = CGPointMake(0, self.textureInfo.height);
-        newQuad.topRightCorner.geometryVertex = CGPointMake(self.textureInfo.width, self.textureInfo.height);
-        
-        newQuad.bottomLeftCorner.textureVertex = CGPointMake(0, 0);
-        newQuad.bottomRightCorner.textureVertex = CGPointMake(1, 0);
-        newQuad.topLeftCorner.textureVertex = CGPointMake(0, 1);
-        newQuad.topRightCorner.textureVertex = CGPointMake(1, 1);
-        self.quad = newQuad;
-        
-    }
-    return self;
-}
-
-
 
 
 #pragma mark - costume index
@@ -148,7 +71,23 @@ typedef struct {
                               nil];
     
     NSError *error;    
-    NSString *path = [[NSBundle mainBundle] pathForResource:fileName ofType:nil];
+    //NSString *path = [[NSBundle mainBundle] pathForResource:fileName ofType:nil];
+    NSBundle *bundle = [NSBundle bundleForClass:[self class]];
+    NSString *path = [bundle pathForResource:fileName ofType:nil];
+    
+//    
+//    
+//    NSString *mainBundlePath = [[NSBundle mainBundle] resourcePath];
+//    NSString *directBundlePath = [[NSBundle bundleForClass:[self class]] resourcePath];
+//    NSLog(@"Main Bundle Path: %@", mainBundlePath);
+//    NSLog(@"Direct Path: %@", directBundlePath);
+//    NSString *mainBundleResourcePath = [[NSBundle mainBundle] pathForResource:fileName ofType:nil];
+//    NSString *directBundleResourcePath = [[NSBundle bundleForClass:[self class]] pathForResource:fileName ofType:nil];
+//    NSLog(@"Main Bundle Path: %@", mainBundleResourcePath);
+//    NSLog(@"Direct Path: %@", directBundleResourcePath);
+    
+    
+    
     
     self.textureInfo = [GLKTextureLoader textureWithContentsOfFile:path options:options error:&error];
     if (self.textureInfo == nil) {

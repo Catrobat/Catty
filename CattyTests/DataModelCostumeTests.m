@@ -10,22 +10,10 @@
 #import "Costume.h"
 
 #define SAMPLE_NAME @"KittyCat"
-#define SAMPLE_PATH @"kittycat.png"
+#define SAMPLE_PATH @"normalcat.png"
 
 
 @implementation DataModelCostumeTests
-
-#pragma mark - tear up & down
-- (void)setUp
-{
-    [super setUp];
-}
-
-
-- (void)tearDown
-{    
-    [super tearDown];
-}
 
 #pragma mark - test cases
 //just a basic test
