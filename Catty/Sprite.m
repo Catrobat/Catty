@@ -190,4 +190,10 @@ typedef struct {
 }
 
 
+- (CGRect)boundingBox {
+    CGRect rect = CGRectMake(self.position.x, self.position.y, self.contentSize.width, self.contentSize.height);
+    return rect;
+}
+
+
 @end

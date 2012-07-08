@@ -219,6 +219,29 @@
     
     NSLog(@"tapped at %g / %g", touchLocation.x, touchLocation.y);
     
+    float width = 5; //todo: adjust this later
+    float height = 5; //todo adjust this later
+    CGRect tapRect = CGRectMake(touchLocation.x, touchLocation.y, width, height);
+    
+    //check if a collision (tap) occured
+    for (Sprite *sprite in self.level.spritesArray)
+    {
+        NSLog(@"Bounding box: x=%f, y=%f, width=%f, height=%f", sprite.boundingBox.origin.x, 
+              sprite.boundingBox.origin.y, 
+              sprite.boundingBox.size.width, 
+              sprite.boundingBox.size.height);
+        NSLog(@"Tap rect: x=%f, y=%f, width=%f, height=%f", tapRect.origin.x, 
+              tapRect.origin.y, 
+              tapRect.size.width, 
+              tapRect.size.height);
+        
+        if(CGRectIntersectsRect(sprite.boundingBox, tapRect))
+        {
+            NSLog(@"hiiiiiiitttt!");
+        }
+    }
+    
+    
 }
 
 

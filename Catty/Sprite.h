@@ -24,4 +24,7 @@
 - (void)render;
 - (NSString*)description;
 
+- (CGRect)boundingBox;
+
+
 @end
