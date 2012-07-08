@@ -19,7 +19,7 @@
 		</dict>
 	</dict>
 	<key>CFBundleIdentifier</key>
-	<string>org.catrobat.${PRODUCT_NAME:rfc1034identifier}</string>
+	<string>at.tugraz.DEVist.catroid-demo-app-1</string>
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleName</key>

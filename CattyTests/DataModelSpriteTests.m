@@ -14,6 +14,7 @@
 #define SAMPLE_PATH @"normalcat.png"
 #define SAMPLE_POS_X 100
 #define SAMPLE_POS_Y 100
+#define SAMPLE_POS_Z 0
 #define SAMPLE_INDEX 0
 
 @implementation DataModelSpriteTests
@@ -50,12 +51,12 @@
 {
     Sprite *sprite = [[Sprite alloc] initWithEffect:self.effect];
     sprite.name = SAMPLE_NAME;
-    sprite.position = GLKVector2Make(SAMPLE_POS_X, SAMPLE_POS_Y);
+    sprite.position = GLKVector3Make(SAMPLE_POS_X, SAMPLE_POS_Y, SAMPLE_POS_Z);
     [sprite setCostumesArray:self.costumeArray];
     [sprite setIndexOfCurrentCostumeInArray:SAMPLE_INDEX];
     
     STAssertEquals(sprite.name, SAMPLE_NAME, @"check name");
-    STAssertEquals(sprite.position, GLKVector2Make(SAMPLE_POS_X, SAMPLE_POS_Y), @"position check");
+    STAssertEquals(sprite.position, GLKVector3Make(SAMPLE_POS_X, SAMPLE_POS_Y, SAMPLE_POS_Z), @"position check");
     STAssertEquals(sprite.indexOfCurrentCostumeInArray, SAMPLE_INDEX, @"check costume index");
     Costume *tmpCostume = [sprite.costumesArray objectAtIndex:0];
     STAssertEquals(tmpCostume.name, SAMPLE_NAME, @"check costume name");
@@ -68,7 +69,7 @@
     
     Sprite *sprite = [[Sprite alloc] initWithEffect:self.effect];
     sprite.name = SAMPLE_NAME;
-    sprite.position = GLKVector2Make(SAMPLE_POS_X, SAMPLE_POS_Y);
+    sprite.position = GLKVector3Make(SAMPLE_POS_X, SAMPLE_POS_Y, SAMPLE_POS_Z);
     [sprite setCostumesArray:self.costumeArray];
 
     BOOL exception = NO;
