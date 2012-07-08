@@ -208,38 +208,46 @@
     CGPoint touchLocation = [recognizer locationInView:recognizer.view];
     touchLocation = CGPointMake(touchLocation.x, 480 - touchLocation.y);    // TODO: DO NOT USE CONSTANTS!!
     
-    //    int sizeOfSpritesArray = self.level.spritesArray.count;
-    //    for (int i=sizeOfSpritesArray-1; i>=0; i--)
-    //    {
-    //        Sprite *sprite = [self.level.spritesArray objectAtIndex:i];
-    //        
-    //        if (touchLocation.x >= sprite.position.x
-    //        
-    //    }
-    
     NSLog(@"tapped at %g / %g", touchLocation.x, touchLocation.y);
     
     float width = 5; //todo: adjust this later
     float height = 5; //todo adjust this later
     CGRect tapRect = CGRectMake(touchLocation.x, touchLocation.y, width, height);
     
+    //depth check
+    float zIndex = 0;
+    Sprite *foregroundSprite = nil;
+    
     //check if a collision (tap) occured
     for (Sprite *sprite in self.level.spritesArray)
     {
-        NSLog(@"Bounding box: x=%f, y=%f, width=%f, height=%f", sprite.boundingBox.origin.x, 
-              sprite.boundingBox.origin.y, 
-              sprite.boundingBox.size.width, 
-              sprite.boundingBox.size.height);
-        NSLog(@"Tap rect: x=%f, y=%f, width=%f, height=%f", tapRect.origin.x, 
-              tapRect.origin.y, 
-              tapRect.size.width, 
-              tapRect.size.height);
+        //just debug output
+//        NSLog(@"Bounding box: x=%f, y=%f, width=%f, height=%f", sprite.boundingBox.origin.x, 
+//              sprite.boundingBox.origin.y, 
+//              sprite.boundingBox.size.width, 
+//              sprite.boundingBox.size.height);
+//        NSLog(@"Tap rect: x=%f, y=%f, width=%f, height=%f", tapRect.origin.x, 
+//              tapRect.origin.y, 
+//              tapRect.size.width, 
+//              tapRect.size.height);
         
-        if(CGRectIntersectsRect(sprite.boundingBox, tapRect))
+        if(CGRectIntersectsRect(sprite.boundingBox, tapRect) && sprite.position.z >= zIndex)
         {
-            NSLog(@"User tapped sprite: %@", sprite);
+            zIndex = sprite.position.z;
+            foregroundSprite = sprite;
         }
     }
+    
+    NSLog(@"User tapped sprite: %@", foregroundSprite.name);
+    NSString *message = [NSString stringWithFormat:@"User tapped: %@", foregroundSprite.name];
+    
+    //just for debug purposes
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:message 
+                                                    message:nil 
+                                                   delegate:nil 
+                                          cancelButtonTitle:@"OK"
+                                          otherButtonTitles:nil];
+    [alert show];
     
     
 }

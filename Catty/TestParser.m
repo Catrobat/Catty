@@ -28,10 +28,12 @@
 @implementation TestParser
 
 @synthesize effect = _effect;
+@synthesize zIndex = _zIndex;
 
 
 - (Level*)generateObjectForLevel:(NSString*)path
 {
+    self.zIndex = 0;
     /// TODO: call xml-parser instead of following lines... I know, wrong place...doesn't matter...
     
     NSMutableArray *startScriptsMutable = [[NSMutableArray alloc] init];
@@ -133,7 +135,7 @@
 {
     Sprite *ret = [[Sprite alloc] initWithEffect:self.effect];
     ret.name = name;
-    ret.position = GLKVector2Make(x, y);
+    ret.position = GLKVector3Make(x, y, self.zIndex++);
     ret.costumesArray = costumesArray;
     [ret setIndexOfCurrentCostumeInArray:index]; 
     

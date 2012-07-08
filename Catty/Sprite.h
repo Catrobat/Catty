@@ -15,7 +15,7 @@
 @property (strong, nonatomic) NSString *name;
 @property (strong, nonatomic) NSArray *costumesArray;
 @property (strong, nonatomic) NSArray *soundsArray;
-@property (assign) GLKVector2 position;
+@property (assign) GLKVector3 position;
 @property (assign) CGSize contentSize;
 @property (nonatomic, strong) GLKBaseEffect *effect;
 @property (nonatomic) int indexOfCurrentCostumeInArray;

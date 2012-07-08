@@ -13,5 +13,6 @@
 @interface TestParser : NSObject <XMLParserProtocol>
 
 @property (strong, nonatomic) GLKBaseEffect *effect;
+@property (nonatomic, assign) float zIndex;
 
 @end

@@ -10,6 +10,10 @@
 #import "Costume.h"
 #import "Sound.h"
 
+//test
+#import "CattyAppDelegate.h"
+
+
 typedef struct {
     CGPoint geometryVertex;
     CGPoint textureVertex;
@@ -72,7 +76,7 @@ typedef struct {
     
     NSError *error;    
     //NSString *path = [[NSBundle mainBundle] pathForResource:fileName ofType:nil];
-    NSBundle *bundle = [NSBundle bundleForClass:[self class]];
+    NSBundle *bundle = [NSBundle bundleForClass:[CattyAppDelegate class]];
     NSString *path = [bundle pathForResource:fileName ofType:nil];
     
 //    
@@ -115,7 +119,7 @@ typedef struct {
 {
     
     GLKMatrix4 modelMatrix = GLKMatrix4Identity;    
-    modelMatrix = GLKMatrix4Translate(modelMatrix, self.position.x, self.position.y, 0);
+    modelMatrix = GLKMatrix4Translate(modelMatrix, self.position.x, self.position.y, self.position.z);
     //modelMatrix = GLKMatrix4Translate(modelMatrix, -self.contentSize.width/2, -self.contentSize.height/2, 0);
     
     return modelMatrix;
@@ -152,7 +156,7 @@ typedef struct {
     
     [ret appendFormat:@"Sprite (0x%x):\n", self];
     [ret appendFormat:@"\t\t\tName: %@\n", self.name];
-    [ret appendFormat:@"\t\t\tPosition: [%f, %f] (x, y)\n", self.position.x, self.position.y];
+    [ret appendFormat:@"\t\t\tPosition: [%f, %f, %f] (x, y, z)\n", self.position.x, self.position.y, self.position.z];
     [ret appendFormat:@"\t\t\tContent size: [%f, %f] (x, y)\n", self.contentSize.width, self.contentSize.height];
     [ret appendFormat:@"\t\t\tCostume index: %d\n", self.indexOfCurrentCostumeInArray];
     
