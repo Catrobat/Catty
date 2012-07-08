@@ -237,7 +237,7 @@
         
         if(CGRectIntersectsRect(sprite.boundingBox, tapRect))
         {
-            NSLog(@"hiiiiiiitttt!");
+            NSLog(@"User tapped sprite: %@", sprite);
         }
     }
     
