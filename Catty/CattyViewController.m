@@ -12,6 +12,8 @@
 #import "Brick.h"
 #import "SetCostumeBrick.h"
 #import "TestParser.h"
+#import "WhenScript.h"
+#import "WaitBrick.h"
 
 //debug
 #import "Costume.h"
@@ -240,13 +242,36 @@
     NSLog(@"User tapped sprite: %@", foregroundSprite.name);
     NSString *message = [NSString stringWithFormat:@"User tapped: %@", foregroundSprite.name];
     
+    //diiiirty...
+    for (WhenScript *whenScript in self.level.whenScriptsArray)
+    {
+        for (Brick *brick in whenScript.bricksArray)
+        {
+            if (brick.sprite == foregroundSprite)
+            {
+               /* if ([brick isMemberOfClass:[WaitBrick class]])
+                {
+                    
+                }
+                else if ([brick isMemberOfClass:[SetCostumeBrick class]])
+                {
+                    NSLog(@"dup");
+                }*/
+                
+                [brick perform];
+
+            }
+        }
+    }
+    
+    
     //just for debug purposes
     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:message 
                                                     message:nil 
                                                    delegate:nil 
                                           cancelButtonTitle:@"OK"
                                           otherButtonTitles:nil];
-    [alert show];
+    //[alert show];
     
     
 }

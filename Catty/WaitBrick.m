@@ -10,4 +10,9 @@
 
 @implementation WaitBrick
 
+- (void)perform
+{
+    
+}
+
 @end

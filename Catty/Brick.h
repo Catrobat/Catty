@@ -14,5 +14,6 @@
 @property (strong, nonatomic) Sprite *sprite;
 
 - (NSString*)description;
+- (void)perform;
 
 @end

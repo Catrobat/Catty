@@ -17,4 +17,12 @@
     return [[NSString alloc] initWithString:self.sprite.description];
 }
 
+//abstract method (!!!)
+- (void)perform
+{
+    @throw [NSException exceptionWithName:NSInternalInconsistencyException
+                                   reason:[NSString stringWithFormat:@"You must override %@ in a subclass", NSStringFromSelector(_cmd)]
+                                 userInfo:nil];
+}
+
 @end

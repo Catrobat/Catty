@@ -12,4 +12,10 @@
 
 @synthesize indexOfCostumeInArray = _indexOfCostumeInArray;
 
+
+- (void)perform
+{
+    [self.sprite setIndexOfCurrentCostumeInArray:self.indexOfCostumeInArray];
+}
+
 @end
