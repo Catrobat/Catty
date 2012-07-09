@@ -13,5 +13,6 @@
 @property (strong, nonatomic) NSArray *bricksArray;
 
 - (NSString*)description;
+- (void)execute;
 
 @end

@@ -10,6 +10,6 @@
 
 @interface SetCostumeBrick : Brick
 
-@property (nonatomic) int indexOfCostumeInArray;
+@property (nonatomic, strong) NSNumber *indexOfCostumeInArray;
 
 @end

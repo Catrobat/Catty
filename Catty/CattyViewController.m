@@ -243,26 +243,20 @@
     NSString *message = [NSString stringWithFormat:@"User tapped: %@", foregroundSprite.name];
     
     //diiiirty...
-    for (WhenScript *whenScript in self.level.whenScriptsArray)
+    /*for (WhenScript *whenScript in self.level.whenScriptsArray)
     {
         for (Brick *brick in whenScript.bricksArray)
         {
             if (brick.sprite == foregroundSprite)
             {
-               /* if ([brick isMemberOfClass:[WaitBrick class]])
-                {
-                    
-                }
-                else if ([brick isMemberOfClass:[SetCostumeBrick class]])
-                {
-                    NSLog(@"dup");
-                }*/
                 
                 [brick perform];
 
             }
         }
-    }
+    }*/
+    
+    [foregroundSprite touch:tapped];
     
     
     //just for debug purposes

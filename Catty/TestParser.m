@@ -15,6 +15,7 @@
 #import "StartScript.h"
 #import "SetCostumeBrick.h"
 #import "WhenScript.h"
+#import "Types.h"
 
 @interface TestParser ()
 
@@ -63,9 +64,12 @@
     
     //check if its a startup script or a when script
     if ([newScript isMemberOfClass:[StartScript class]])
-        [startScriptsMutable addObject:newScript];
+        [sprite1 addStartScript:newScript];
+        //[startScriptsMutable addObject:newScript];
     else if ([newScript isMemberOfClass:[WhenScript class]])
-        [whenScriptsMutable addObject:newScript];
+        [sprite1 addWhenScript:newScript];
+                
+        //[whenScriptsMutable addObject:newScript];
     
     
     //creating cat costumes (normal and ceshire cat)
@@ -89,21 +93,23 @@
     WhenScript *newWhenScript = [[WhenScript alloc]init];
     newWhenScript.action = 0;
     newBrick = [[SetCostumeBrick alloc]init];
-    newBrick.indexOfCostumeInArray = 1;
+    newBrick.indexOfCostumeInArray = [NSNumber numberWithInt:1];
     newBrick.sprite = sprite2;
     newWhenScript.bricksArray = [[NSArray alloc]initWithObjects:newBrick, nil];
     
     //adding scripts to script arrays
-    [startScriptsMutable addObject:newStartScript];
-    [whenScriptsMutable addObject:newWhenScript];
+    //[startScriptsMutable addObject:newStartScript];
+    //[whenScriptsMutable addObject:newWhenScript];
 
+    [sprite2 addStartScript:newStartScript];
+    [sprite2 addWhenScript:newWhenScript];
+    
     //adding sprites to level
     level.spritesArray = [[NSArray alloc] initWithObjects: sprite1, sprite2, nil];
 
     //assuming start and when scripts
-    level.startScriptsArray = [[NSArray alloc] initWithArray:startScriptsMutable];
-    level.whenScriptsArray = [[NSArray alloc] initWithArray:whenScriptsMutable];
-        
+//    level.startScriptsArray = [[NSArray alloc] initWithArray:startScriptsMutable];
+//    level.whenScriptsArray = [[NSArray alloc] initWithArray:whenScriptsMutable];
     
     return level;
 }
@@ -137,7 +143,7 @@
     ret.name = name;
     ret.position = GLKVector3Make(x, y, self.zIndex++);
     ret.costumesArray = costumesArray;
-    [ret setIndexOfCurrentCostumeInArray:index]; 
+    [ret setIndexOfCurrentCostumeInArray:[NSNumber numberWithInt:index]]; 
     
     return ret;
 }

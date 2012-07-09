@@ -7,9 +7,18 @@
 //
 
 #import "WhenScript.h"
+#import "Brick.h"
 
 @implementation WhenScript
 
 @synthesize action = _action;
+
+- (void)execute
+{
+    for (Brick *brick in self.bricksArray)
+    {
+        [brick perform];
+    }
+}
 
 @end

@@ -15,7 +15,8 @@
 
 - (void)perform
 {
-    [self.sprite setIndexOfCurrentCostumeInArray:self.indexOfCostumeInArray];
+    [self.sprite performSelectorOnMainThread:@selector(setIndexOfCurrentCostumeInArray:) withObject:self.indexOfCostumeInArray waitUntilDone:YES];
+    //[self.sprite setIndexOfCurrentCostumeInArray:self.indexOfCostumeInArray];
 }
 
 @end

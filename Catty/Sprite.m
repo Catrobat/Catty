@@ -9,6 +9,8 @@
 #import "Sprite.h"
 #import "Costume.h"
 #import "Sound.h"
+#import "Script.h"
+#import "WhenScript.h"
 
 //test
 #import "CattyAppDelegate.h"
@@ -40,6 +42,8 @@ typedef struct {
 @synthesize name = _name;
 @synthesize costumesArray = _costumesArray;
 @synthesize soundsArray = _soundsArray;
+@synthesize startScriptsArray = _startScriptsArray;
+@synthesize whenScriptsArray = _whenScriptsArray;
 @synthesize position = _position;
 @synthesize contentSize = _contentSize;
 @synthesize indexOfCurrentCostumeInArray = _indexOfCurrentCostumeInArray;
@@ -63,11 +67,11 @@ typedef struct {
 
 
 #pragma mark - costume index
-- (void)setIndexOfCurrentCostumeInArray:(int)indexOfCurrentCostumeInArray
+- (void)setIndexOfCurrentCostumeInArray:(NSNumber*)indexOfCurrentCostumeInArray
 {
     _indexOfCurrentCostumeInArray = indexOfCurrentCostumeInArray;
     
-    NSString *fileName = ((Costume*)[self.costumesArray objectAtIndex:self.indexOfCurrentCostumeInArray]).filePath;
+    NSString *fileName = ((Costume*)[self.costumesArray objectAtIndex:[self.indexOfCurrentCostumeInArray intValue]]).filePath;
     
     NSDictionary * options = [NSDictionary dictionaryWithObjectsAndKeys:
                               [NSNumber numberWithBool:YES],
@@ -98,7 +102,6 @@ typedef struct {
     }
     
     self.contentSize = CGSizeMake(self.textureInfo.width, self.textureInfo.height);
-    
     
     TexturedQuad newQuad;
     newQuad.bottomLeftCorner.geometryVertex = CGPointMake(0, 0);
@@ -196,6 +199,52 @@ typedef struct {
     CGRect rect = CGRectMake(self.position.x, self.position.y, self.contentSize.width, self.contentSize.height);
     return rect;
 }
+
+- (void)addStartScript:(Script*)script
+{
+    NSMutableArray *startScripts = [NSMutableArray arrayWithArray:self.startScriptsArray];
+    [startScripts addObject:script];
+    self.startScriptsArray = [NSArray arrayWithArray:startScripts];    
+}
+
+- (void)addWhenScript:(Script*)script
+{
+    NSMutableArray *whenScripts = [NSMutableArray arrayWithArray:self.whenScriptsArray];
+    [whenScripts addObject:script];
+    self.whenScriptsArray = [NSArray arrayWithArray:whenScripts];    
+}
+
+#pragma mark - script methods
+- (void)start
+{
+    for (Script *script in self.startScriptsArray)
+    {
+        // ------------------------------------------ THREAD --------------------------------------
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+            [script execute];
+        });
+        // ------------------------------------------ END -----------------------------------------
+    }
+}
+
+
+- (void)touch:(InputType)type
+{
+    //todo: throw exception if its not a when script
+    for (WhenScript *script in self.whenScriptsArray)
+    {
+        if (type == script.action)
+        {
+            // ------------------------------------------ THREAD --------------------------------------
+            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+                [script execute];
+            });
+            // ------------------------------------------ END -----------------------------------------
+        }
+    }
+}
+
+
 
 
 @end

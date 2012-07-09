@@ -56,6 +56,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		B4014C2915AB5BE600D5EFB7 /* Types.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Types.h; sourceTree = "<group>"; };
 		B40C723015A88072005A8EC7 /* DataModelCostumeTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataModelCostumeTests.h; sourceTree = "<group>"; };
 		B40C723115A88072005A8EC7 /* DataModelCostumeTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataModelCostumeTests.m; sourceTree = "<group>"; };
 		B40C723815A88AF6005A8EC7 /* DataModelSpriteTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataModelSpriteTests.h; sourceTree = "<group>"; };
@@ -289,6 +290,7 @@
 				B4FDF37515A82EF500CBCF03 /* Costume */,
 				B4FDF37115A82EC700CBCF03 /* Sound */,
 				B4FDF36715A82EB800CBCF03 /* Scripts */,
+				B4014C2915AB5BE600D5EFB7 /* Types.h */,
 			);
 			name = DataModel;
 			sourceTree = "<group>";
