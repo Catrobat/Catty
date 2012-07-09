@@ -88,9 +88,7 @@ typedef struct {
 //    NSString *mainBundleResourcePath = [[NSBundle mainBundle] pathForResource:fileName ofType:nil];
 //    NSString *directBundleResourcePath = [[NSBundle bundleForClass:[self class]] pathForResource:fileName ofType:nil];
 //    NSLog(@"Main Bundle Path: %@", mainBundleResourcePath);
-//    NSLog(@"Direct Path: %@", directBundleResourcePath);
-    
-    
+//    NSLog(@"Direct Path: %@", directBundleResourcePath);    
     
     
     self.textureInfo = [GLKTextureLoader textureWithContentsOfFile:path options:options error:&error];
