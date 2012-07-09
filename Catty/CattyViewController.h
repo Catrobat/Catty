@@ -10,7 +10,6 @@
 #import <GLKit/GLKit.h>
 
 //debug
-#import "SGGSprite.h"
 #import "Sprite.h"
 
 
@@ -21,7 +20,6 @@
 @property (strong, nonatomic) Level *level; //TODO: Array => data from xml-parser
 
 //debug
-@property (nonatomic, strong) SGGSprite *player;
 @property (nonatomic, strong) Sprite *sprite;
 
 @end

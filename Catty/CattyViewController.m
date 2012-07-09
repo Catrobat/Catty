@@ -40,7 +40,6 @@
 
 
 //debug
-@synthesize player = _player;
 @synthesize sprite = _sprite;
 
 #pragma mark - getter
@@ -181,7 +180,7 @@
 //        //NSLog(@"render sprite <%@> at position %g / %g", sprite.name, sprite.position.x, sprite.position.y);
 //        [sprite render];
 //    }
-    for (SGGSprite *sprite in self.level.spritesArray)
+    for (Sprite *sprite in self.level.spritesArray)
     {
         //NSLog(@"render sprite <%@> at position %g / %g", sprite.name, sprite.position.x, sprite.position.y);
         [sprite render];

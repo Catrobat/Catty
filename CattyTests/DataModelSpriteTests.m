@@ -45,7 +45,6 @@
     self.costumeArray = nil;
 }
 
-
 #pragma mark - unit tests
 - (void)test001_createBasicSprite
 {
