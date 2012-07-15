@@ -17,6 +17,8 @@
 @synthesize spritesArray = _spritesArray;
 @synthesize startScriptsArray = _startScriptsArray;
 @synthesize whenScriptsArray = _whenScriptsArray;
+@synthesize screenResolution = _screenResolution;
+@synthesize versionName = _versionName;
 
 - (NSString*)description 
 {

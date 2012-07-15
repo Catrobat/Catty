@@ -71,7 +71,7 @@ typedef struct {
 {
     _indexOfCurrentCostumeInArray = indexOfCurrentCostumeInArray;
     
-    NSString *fileName = ((Costume*)[self.costumesArray objectAtIndex:[self.indexOfCurrentCostumeInArray intValue]]).filePath;
+    NSString *fileName = ((Costume*)[self.costumesArray objectAtIndex:[self.indexOfCurrentCostumeInArray intValue]]).costumeFileName;
     
     NSDictionary * options = [NSDictionary dictionaryWithObjectsAndKeys:
                               [NSNumber numberWithBool:YES],

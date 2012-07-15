@@ -15,7 +15,7 @@
 @interface Sprite : NSObject
 
 @property (strong, nonatomic) NSString *name;
-@property (strong, nonatomic) NSArray *costumesArray;
+@property (strong, nonatomic) NSMutableArray *costumesArray;
 @property (strong, nonatomic) NSArray *soundsArray;
 @property (strong, nonatomic) NSArray *startScriptsArray;
 @property (strong, nonatomic) NSArray *whenScriptsArray;

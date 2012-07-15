@@ -52,11 +52,11 @@
     sprite.name = SAMPLE_NAME;
     sprite.position = GLKVector3Make(SAMPLE_POS_X, SAMPLE_POS_Y, SAMPLE_POS_Z);
     [sprite setCostumesArray:self.costumeArray];
-    [sprite setIndexOfCurrentCostumeInArray:SAMPLE_INDEX];
+    [sprite setIndexOfCurrentCostumeInArray:[NSNumber numberWithInt:SAMPLE_INDEX]];
     
     STAssertEquals(sprite.name, SAMPLE_NAME, @"check name");
     STAssertEquals(sprite.position, GLKVector3Make(SAMPLE_POS_X, SAMPLE_POS_Y, SAMPLE_POS_Z), @"position check");
-    STAssertEquals(sprite.indexOfCurrentCostumeInArray, SAMPLE_INDEX, @"check costume index");
+    STAssertEquals(sprite.indexOfCurrentCostumeInArray, [NSNumber numberWithInt:SAMPLE_INDEX], @"check costume index");
     Costume *tmpCostume = [sprite.costumesArray objectAtIndex:0];
     STAssertEquals(tmpCostume.name, SAMPLE_NAME, @"check costume name");
     STAssertEquals(tmpCostume.filePath, SAMPLE_PATH, @"check costume path");
@@ -74,7 +74,7 @@
     BOOL exception = NO;
     @try
     {
-        [sprite setIndexOfCurrentCostumeInArray:SAMPLE_INDEX+1]; //error: wrong index! (index > size of array)
+        [sprite setIndexOfCurrentCostumeInArray:[NSNumber numberWithInt:SAMPLE_INDEX+1]]; //error: wrong index! (index > size of array)
     }
     @catch(NSException *ex)
     {

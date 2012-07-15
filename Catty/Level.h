@@ -8,12 +8,19 @@
 
 #import <UIKit/UIKit.h>
 
-@interface Level : NSObject
+@interface Level : NSObject {
+    NSString *versionName;
+    NSString *name;
+    NSString *screenResolution;
+    float version;
+}
 
+@property (nonatomic, strong) NSString *versionName;
 @property (nonatomic, strong) NSString *name;
 @property (nonatomic) float version;
+@property (nonatomic, strong) NSString *screenResolution;
 @property (nonatomic) CGSize resolution;
-@property (nonatomic, strong) NSArray *spritesArray;
+@property (nonatomic, strong) NSMutableArray *spritesArray;
 @property (nonatomic, strong) NSArray *startScriptsArray;
 @property (nonatomic, strong) NSArray *whenScriptsArray;
 

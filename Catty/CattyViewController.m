@@ -101,8 +101,8 @@
     
     
     Costume *newCostume1 = [[Costume alloc]init];
-    newCostume1.filePath = @"normalcat.png";
-    newCostume1.name = @"cat1";
+    newCostume1.costumeFileName = @"normalcat.png";
+    newCostume1.costumeName = @"cat1";
 
     
     //self.sprite = [[Sprite alloc] initWithCostume:newCostume1 effect:self.effect];

@@ -15,8 +15,8 @@
 
 @implementation Costume
 
-@synthesize filePath = _filePath;
-@synthesize name = _name;
+@synthesize costumeFileName = _costumeFileName;
+@synthesize costumeName = _costumeName;
 
 #pragma mark - init methods
 - (id)initWithPath:(NSString*)filePath
@@ -24,7 +24,7 @@
     self = [super init];
     if (self) 
     {
-        self.name = nil;
+        self.costumeName = nil;
         if (filePath == nil || [filePath length] == 0)
         {
             @throw [NSException exceptionWithName:NSInternalInconsistencyException
@@ -34,7 +34,7 @@
         }
         else 
         {
-            self.filePath = filePath;
+            self.costumeFileName = filePath;
         }
     }
     return self;
@@ -46,7 +46,7 @@
     self = [super init];
     if (self) 
     {
-        self.name = name;
+        self.costumeName = name;
         if (filePath == nil || [filePath length] == 0)
         {
             @throw [NSException exceptionWithName:NSInternalInconsistencyException
@@ -56,7 +56,7 @@
         }
         else 
         {
-            self.filePath = filePath;
+            self.costumeFileName = filePath;
         }
     }
     return self;
@@ -66,7 +66,7 @@
 #pragma mark - description
 - (NSString*)description
 {
-    return [NSString stringWithFormat:@"Path: %@ Name: %@", self.filePath, self.name];
+    return [NSString stringWithFormat:@"Path: %@ Name: %@", self.costumeFileName, self.costumeName];
 }
 
 @end
