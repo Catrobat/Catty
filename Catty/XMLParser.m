@@ -48,6 +48,8 @@
     {
         self.currentCostume = [[Costume alloc] init];
     }
+    
+    //todo: add rest...
 }
 
 - (void)parser:(NSXMLParser *)parser foundCharacters:(NSString *)string 
@@ -91,9 +93,7 @@
     else
     {
         [self.level setValue:self.currentElementValue forKey:elementName];
-    }
-    //NSLog(@"email: %@", self.certRequest.emailAddress);
-    
+    }    
     
     self.currentElementValue = nil;
 }

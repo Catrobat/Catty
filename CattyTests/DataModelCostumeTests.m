@@ -21,8 +21,8 @@
 {
     Costume *testCostume = [[Costume alloc] initWithName:SAMPLE_NAME andPath:SAMPLE_PATH];
     
-    STAssertEquals(testCostume.name, SAMPLE_NAME, @"check name");
-    STAssertEquals(testCostume.filePath, SAMPLE_PATH, @"check path");
+    STAssertEquals(testCostume.costumeName, SAMPLE_NAME, @"check name");
+    STAssertEquals(testCostume.costumeFileName, SAMPLE_PATH, @"check path");
 
 }
 
