@@ -16,6 +16,7 @@
 #import "SetCostumeBrick.h"
 #import "WhenScript.h"
 #import "Types.h"
+#import "PlaceAtBrick.h"
 
 @interface TestParser ()
 
@@ -89,13 +90,20 @@
     newBrick.sprite = sprite2;
     newStartScript.bricksArray = [[NSArray alloc]initWithObjects:newBrick, nil];
     
-    //creating new when script for cat (change costume on click)
+    //creating new when script for cat (change costume on click and change position)
     WhenScript *newWhenScript = [[WhenScript alloc]init];
     newWhenScript.action = 0;
     newBrick = [[SetCostumeBrick alloc]init];
     newBrick.indexOfCostumeInArray = [NSNumber numberWithInt:1];
     newBrick.sprite = sprite2;
-    newWhenScript.bricksArray = [[NSArray alloc]initWithObjects:newBrick, nil];
+    Brick *placeAtBrick = [[PlaceAtBrick alloc]initWithPosition:GLKVector3Make(50, 50, self.zIndex)];
+    placeAtBrick.sprite = sprite2;
+    NSMutableArray *tmpMutableArray = [[NSMutableArray alloc]init];
+    [tmpMutableArray addObject:newBrick];
+    [tmpMutableArray addObject:placeAtBrick];
+    newWhenScript.bricksArray = [NSArray arrayWithArray:tmpMutableArray];    
+
+    
     
     //adding scripts to script arrays
     //[startScriptsMutable addObject:newStartScript];
