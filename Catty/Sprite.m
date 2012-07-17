@@ -185,8 +185,6 @@ typedef struct {
         float xStep = round((position.x - lastPosition.x) / (float)(number_of_frames+1-i));
         float yStep = round((position.y - lastPosition.y) / (float)(number_of_frames+1-i));
         
-        NSLog(@"steps [x/y]: %f/%f    x/y: %f/%f", xStep, yStep, lastPosition.x, lastPosition.y);
-        
         GLKVector3 newPosition = GLKVector3Make(lastPosition.x + xStep, lastPosition.y + yStep, lastPosition.z);
         NSData *data = [NSValue valueWithBytes:&newPosition objCType:@encode(GLKVector3)];
         [self.nextPositions addObject:data];
