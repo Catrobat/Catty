@@ -18,8 +18,7 @@
 //debug
 #import "Costume.h"
 
-//defines
-#define FRAMES_PER_SECOND 30
+
 
 
 @interface CattyViewController ()

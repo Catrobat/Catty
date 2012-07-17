@@ -43,6 +43,8 @@
 		B4FDF39215A82FD100CBCF03 /* ceshirecat.png in Resources */ = {isa = PBXBuildFile; fileRef = B4FDF38F15A82FD100CBCF03 /* ceshirecat.png */; };
 		B4FDF39315A82FD100CBCF03 /* normalcat.png in Resources */ = {isa = PBXBuildFile; fileRef = B4FDF39015A82FD100CBCF03 /* normalcat.png */; };
 		B4FDF39615A833DA00CBCF03 /* catty_icon_retina.png in Resources */ = {isa = PBXBuildFile; fileRef = B4FDF39515A833DA00CBCF03 /* catty_icon_retina.png */; };
+		CD25FE1615B0642400719D12 /* PlaceAtBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = CD25FE1515B0642400719D12 /* PlaceAtBrick.m */; };
+		CDE35DED15B4892D009A3524 /* GlideToBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = CDE35DEC15B4892D009A3524 /* GlideToBrick.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -110,6 +112,10 @@
 		B4FDF38F15A82FD100CBCF03 /* ceshirecat.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ceshirecat.png; sourceTree = "<group>"; };
 		B4FDF39015A82FD100CBCF03 /* normalcat.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = normalcat.png; sourceTree = "<group>"; };
 		B4FDF39515A833DA00CBCF03 /* catty_icon_retina.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = catty_icon_retina.png; path = ../catty_icon_retina.png; sourceTree = "<group>"; };
+		CD25FE1415B0642400719D12 /* PlaceAtBrick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlaceAtBrick.h; sourceTree = "<group>"; };
+		CD25FE1515B0642400719D12 /* PlaceAtBrick.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlaceAtBrick.m; sourceTree = "<group>"; };
+		CDE35DEB15B4892C009A3524 /* GlideToBrick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GlideToBrick.h; sourceTree = "<group>"; };
+		CDE35DEC15B4892D009A3524 /* GlideToBrick.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GlideToBrick.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -353,6 +359,10 @@
 				B4FDF38515A82F4D00CBCF03 /* WaitBrick.m */,
 				B4FDF38615A82F4D00CBCF03 /* SetCostumeBrick.h */,
 				B4FDF38715A82F4D00CBCF03 /* SetCostumeBrick.m */,
+				CD25FE1415B0642400719D12 /* PlaceAtBrick.h */,
+				CD25FE1515B0642400719D12 /* PlaceAtBrick.m */,
+				CDE35DEB15B4892C009A3524 /* GlideToBrick.h */,
+				CDE35DEC15B4892D009A3524 /* GlideToBrick.m */,
 			);
 			name = Bricks;
 			sourceTree = "<group>";
@@ -535,6 +545,8 @@
 				B4FDF38815A82F4D00CBCF03 /* Brick.m in Sources */,
 				B4FDF38915A82F4D00CBCF03 /* WaitBrick.m in Sources */,
 				B4FDF38A15A82F4D00CBCF03 /* SetCostumeBrick.m in Sources */,
+				CD25FE1615B0642400719D12 /* PlaceAtBrick.m in Sources */,
+				CDE35DED15B4892D009A3524 /* GlideToBrick.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

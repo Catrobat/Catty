@@ -12,6 +12,9 @@
 #import "Script.h"
 #import "WhenScript.h"
 
+// need CattyViewController to access FRAMES_PER_SECOND    TODO: change
+#import "CattyViewController.h"
+
 //test
 #import "CattyAppDelegate.h"
 
@@ -34,6 +37,8 @@ typedef struct {
 @property (assign) TexturedQuad quad;
 @property (nonatomic, strong) GLKTextureInfo *textureInfo;
 
+@property (atomic, strong) NSMutableArray *nextPositions;
+
 @end
 
 @implementation Sprite
@@ -52,6 +57,7 @@ typedef struct {
 // private synthesizes
 @synthesize quad = _quad;
 @synthesize textureInfo = _textureInfo;
+@synthesize nextPositions = _nextPositions;
 
 
 #pragma mark - init methods
@@ -129,6 +135,15 @@ typedef struct {
 #pragma mark - render
 - (void)render 
 { 
+    if ([self.nextPositions count] > 0)
+    {
+        NSValue *data = [self.nextPositions objectAtIndex:0];
+        GLKVector3 newPosition;
+        [data getValue:&newPosition];
+        self.position = newPosition;
+        
+        [self.nextPositions removeObjectAtIndex:0];
+    }
     
     if (!self.effect)
         NSLog(@"Sprite.m => render => NO effect set!!!");
@@ -148,6 +163,32 @@ typedef struct {
     glVertexAttribPointer(GLKVertexAttribTexCoord0, 2, GL_FLOAT, GL_FALSE, sizeof(TexturedVertex), (void *) (offset + offsetof(TexturedVertex, textureVertex)));
     
     glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
+}
+
+#pragma mark - glideToPosition
+- (void)glideToPosition:(GLKVector3)position withinDurationInMilliSecs:(int)durationInMilliSecs
+{
+    // yes, it's an integer-cast
+    int number_of_frames = FRAMES_PER_SECOND / 1000.0f * durationInMilliSecs;
+    
+    
+    if (self.nextPositions == nil)
+        self.nextPositions = [[NSMutableArray alloc]initWithCapacity:number_of_frames];
+    
+    ////////////////////////////////////////////////////////////////////
+    // TODO: dirty...change asap !!!
+    int xStep = (position.x - self.position.x) / number_of_frames;
+    int yStep = (position.y - self.position.y) / number_of_frames;
+    
+    for (int i=0; i<number_of_frames-1; i++)
+    {
+        GLKVector3 positionVector = GLKVector3Make(self.position.x + i*xStep, self.position.y + i*yStep, self.position.z);
+        NSData *data = [NSValue valueWithBytes:&positionVector objCType:@encode(GLKVector3)];
+        [self.nextPositions addObject:data];
+    }
+    [self.nextPositions addObject:[NSValue valueWithBytes:&position objCType:@encode(GLKVector3)]];   // ensure, that final position is defined position
+    // TODO: really...CHANGE IT!!!!!
+    ////////////////////////////////////////////////////////////////////
 }
 
 #pragma mark - description

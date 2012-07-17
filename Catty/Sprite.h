@@ -33,5 +33,7 @@
 - (void)start;
 - (void)touch:(InputType)type;
 
+- (void)glideToPosition:(GLKVector3)position withinDurationInMilliSecs:(int)durationInMilliSecs;
+
 
 @end

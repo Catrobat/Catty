@@ -17,6 +17,7 @@
 #import "WhenScript.h"
 #import "Types.h"
 #import "PlaceAtBrick.h"
+#import "GlideToBrick.h"
 
 @interface TestParser ()
 
@@ -98,9 +99,12 @@
     newBrick.sprite = sprite2;
     Brick *placeAtBrick = [[PlaceAtBrick alloc]initWithPosition:GLKVector3Make(50, 50, self.zIndex)];
     placeAtBrick.sprite = sprite2;
+    Brick *glideToBrick = [[GlideToBrick alloc]initWithPosition:GLKVector3Make(100, 100, self.zIndex) andDurationInMilliSecs:1000];
+    glideToBrick.sprite = sprite2;
     NSMutableArray *tmpMutableArray = [[NSMutableArray alloc]init];
     [tmpMutableArray addObject:newBrick];
     [tmpMutableArray addObject:placeAtBrick];
+    [tmpMutableArray addObject:glideToBrick];
     newWhenScript.bricksArray = [NSArray arrayWithArray:tmpMutableArray];    
 
     
