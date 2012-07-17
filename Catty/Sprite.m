@@ -177,14 +177,21 @@ typedef struct {
     
     ////////////////////////////////////////////////////////////////////
     // TODO: dirty...change asap !!!
-    int xStep = (position.x - self.position.x) / number_of_frames;
-    int yStep = (position.y - self.position.y) / number_of_frames;
     
-    for (int i=0; i<number_of_frames-1; i++)
+    GLKVector3 lastPosition = self.position;
+    
+    for (int i=1; i<number_of_frames; i++)
     {
-        GLKVector3 positionVector = GLKVector3Make(self.position.x + i*xStep, self.position.y + i*yStep, self.position.z);
-        NSData *data = [NSValue valueWithBytes:&positionVector objCType:@encode(GLKVector3)];
+        float xStep = round((position.x - lastPosition.x) / (float)(number_of_frames+1-i));
+        float yStep = round((position.y - lastPosition.y) / (float)(number_of_frames+1-i));
+        
+        NSLog(@"steps [x/y]: %f/%f    x/y: %f/%f", xStep, yStep, lastPosition.x, lastPosition.y);
+        
+        GLKVector3 newPosition = GLKVector3Make(lastPosition.x + xStep, lastPosition.y + yStep, lastPosition.z);
+        NSData *data = [NSValue valueWithBytes:&newPosition objCType:@encode(GLKVector3)];
         [self.nextPositions addObject:data];
+        
+        lastPosition = newPosition;
     }
     [self.nextPositions addObject:[NSValue valueWithBytes:&position objCType:@encode(GLKVector3)]];   // ensure, that final position is defined position
     // TODO: really...CHANGE IT!!!!!
