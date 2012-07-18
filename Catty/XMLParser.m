@@ -37,6 +37,8 @@
 @synthesize currentCostume = _currentCostume;
 @synthesize currentLevel = _currentLevel;
 @synthesize currentScript = _currentScript;
+@synthesize currentBrick = _currentBrick;
+@synthesize currentAttributeValue = _currentAttributeValue;
 
 - (XMLParser *) initXMLParser 
 {
@@ -51,21 +53,33 @@
     
     [self setCurrentLevelTo:elementName];
     
+    if ([attributeDict count] > 0 )
+    {
+        self.currentAttributeValue = attributeDict;
+    }
+    
     //start tag found - now allocate objects...
+    if (![self setValueAllowed:elementName])
     switch (self.currentLevel)
     {
         case kContentProject:
-            self.level = [[Level alloc] init];
+            //if (self.level == nil)
+            //{
+                self.level = [[Level alloc] init];
+                self.level.spritesArray = [[NSMutableArray alloc] init];
+
+            //}
             break;
         case kSpriteList:
-            self.level.spritesArray = [[NSMutableArray alloc] init];
             break;
         case kContentSprite:
             self.currentSprite = [[Sprite alloc] init];
+            self.currentSprite.startScriptsArray = [[NSMutableArray alloc] init];
+            self.currentSprite.whenScriptsArray = [[NSMutableArray alloc] init];
+            self.currentSprite.costumesArray = [[NSMutableArray alloc] init];
             [self.level.spritesArray addObject:self.currentSprite]; //dunno
             break;
         case kCostumeDataList:
-            self.currentSprite.costumesArray = [[NSMutableArray alloc] init];
             break;
         case kCommonCostumeData:
             self.currentCostume = [[Costume alloc] init];
@@ -75,15 +89,13 @@
             //todo...
             break;
         case kScriptList:
-            self.currentSprite.startScriptsArray = [[NSMutableArray alloc] init];
-            self.currentSprite.whenScriptsArray = [[NSMutableArray alloc] init];
             break;
         case kContentStartScript:
             self.currentScript = [[StartScript alloc] init];
+            self.currentScript.bricksArray = [[NSMutableArray alloc] init];
             [self.currentSprite.startScriptsArray addObject:self.currentScript]; //dunno
             break;
         case kBrickList:
-            self.currentScript.bricksArray = [[NSMutableArray alloc] init];
             break;
         case kBricksSetCostumeBrick:
             self.currentBrick = [[SetCostumeBrick alloc] init];
@@ -95,6 +107,7 @@
             break;
         case kContentWhenScript:
             self.currentScript = [[WhenScript alloc] init];
+            self.currentScript.bricksArray = [[NSMutableArray alloc] init];
             [self.currentSprite.whenScriptsArray addObject:self.currentScript]; //dunno
             break;
     }
@@ -116,7 +129,6 @@
     {
         return;
     }
-    
     
     if ([self setValueAllowed:elementName])
     switch (self.currentLevel)
@@ -149,10 +161,26 @@
             //do nothing
             break;
         case kBricksSetCostumeBrick:
-            [self.currentBrick setValue:self.currentElementValue forKey:elementName];
+            if ([elementName isEqualToString:@"costumeData"])
+            {
+                //todo: add reference property to setcostumebrick and set value
+            }
+            else if ([elementName isEqualToString:@"sprite"])
+            {
+                //todo: add reference property to setcostumebrick and set value
+
+            }
             break;
         case kBricksWaitBrick:
-            [self.currentBrick setValue:self.currentElementValue forKey:elementName];
+            if ([elementName isEqualToString:@"costumeData"])
+            {
+                //todo: add reference property to setcostumebrick and set value
+            }
+            else if ([elementName isEqualToString:@"timeToWaitInMilliSeconds"])
+            {
+                //todo: add reference property to setcostumebrick and set value
+                
+            }
             break;
         case kContentWhenScript:
             //todo: add name of script (and add property to script)
@@ -166,7 +194,12 @@
 //check if it is allowed to set a value (attribute or property of a class)
 - (BOOL)setValueAllowed:(NSString*)elementName
 {    
-    if ((self.currentLevel == kContentProject && [elementName isEqualToString:@"Content.Project"])
+    if (   //add unused xml levels here
+           ([elementName isEqualToString:@"costumeDataList"])
+        || ([elementName isEqualToString:@"scriptList"])
+        || ([elementName isEqualToString:@"soundList"])
+        || ([elementName isEqualToString:@"spriteList"])
+        || (self.currentLevel == kContentProject && [elementName isEqualToString:@"Content.Project"])
         || (self.currentLevel == kSpriteList && [elementName isEqualToString:@"spriteList"])
         || (self.currentLevel == kContentSprite && [elementName isEqualToString:@"Content.Sprite"])
         || (self.currentLevel == kCostumeDataList && [elementName isEqualToString:@"costumeDataList"])

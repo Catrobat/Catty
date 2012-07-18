@@ -29,6 +29,7 @@
 @property (nonatomic, strong) Script *currentScript;
 @property (nonatomic, assign) XMLLevels currentLevel;
 @property (nonatomic, strong) Brick *currentBrick;
+@property (nonatomic, strong) NSDictionary *currentAttributeValue;
 
 - (XMLParser *) initXMLParser;
 
