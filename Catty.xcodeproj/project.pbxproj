@@ -77,6 +77,7 @@
 		B4B4094415B2E8A100DCFAE5 /* defaultProject.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = defaultProject.xml; sourceTree = "<group>"; };
 		B4B4094715B2E8BF00DCFAE5 /* ParserTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ParserTests.h; sourceTree = "<group>"; };
 		B4B4094815B2E8BF00DCFAE5 /* ParserTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ParserTests.m; sourceTree = "<group>"; };
+		B4B487B815B73107004AC99E /* XMLLevels.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XMLLevels.h; sourceTree = "<group>"; };
 		B4FDF31A15A82C1000CBCF03 /* Catty.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Catty.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B4FDF31E15A82C1000CBCF03 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		B4FDF32015A82C1000CBCF03 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -208,6 +209,42 @@
 			name = ParserTests;
 			sourceTree = "<group>";
 		};
+		B4B487B315B730C2004AC99E /* XMLParser */ = {
+			isa = PBXGroup;
+			children = (
+				B4B4092F15B2E07900DCFAE5 /* XMLParser.h */,
+				B4B4093015B2E07900DCFAE5 /* XMLParser.m */,
+			);
+			name = XMLParser;
+			sourceTree = "<group>";
+		};
+		B4B487B515B730CA004AC99E /* TestParser */ = {
+			isa = PBXGroup;
+			children = (
+				B4FDF36115A82E9800CBCF03 /* TestParser.h */,
+				B4FDF36215A82E9800CBCF03 /* TestParser.m */,
+			);
+			name = TestParser;
+			sourceTree = "<group>";
+		};
+		B4B487B615B730D2004AC99E /* XMLAppDelegate */ = {
+			isa = PBXGroup;
+			children = (
+				B4B4093315B2E0FD00DCFAE5 /* XMLAppDelegate.h */,
+				B4B4093415B2E0FD00DCFAE5 /* XMLAppDelegate.m */,
+			);
+			name = XMLAppDelegate;
+			sourceTree = "<group>";
+		};
+		B4B487B715B730E0004AC99E /* RetailParser */ = {
+			isa = PBXGroup;
+			children = (
+				B4B4093615B2E20700DCFAE5 /* RetailParser.h */,
+				B4B4093715B2E20700DCFAE5 /* RetailParser.m */,
+			);
+			name = RetailParser;
+			sourceTree = "<group>";
+		};
 		B4FDF30F15A82C0F00CBCF03 = {
 			isa = PBXGroup;
 			children = (
@@ -294,14 +331,11 @@
 			isa = PBXGroup;
 			children = (
 				B4FDF36015A82E9800CBCF03 /* XMLParserProtocol.h */,
-				B4FDF36115A82E9800CBCF03 /* TestParser.h */,
-				B4FDF36215A82E9800CBCF03 /* TestParser.m */,
-				B4B4092F15B2E07900DCFAE5 /* XMLParser.h */,
-				B4B4093015B2E07900DCFAE5 /* XMLParser.m */,
-				B4B4093315B2E0FD00DCFAE5 /* XMLAppDelegate.h */,
-				B4B4093415B2E0FD00DCFAE5 /* XMLAppDelegate.m */,
-				B4B4093615B2E20700DCFAE5 /* RetailParser.h */,
-				B4B4093715B2E20700DCFAE5 /* RetailParser.m */,
+				B4B487B515B730CA004AC99E /* TestParser */,
+				B4B487B315B730C2004AC99E /* XMLParser */,
+				B4B487B615B730D2004AC99E /* XMLAppDelegate */,
+				B4B487B715B730E0004AC99E /* RetailParser */,
+				B4B487B815B73107004AC99E /* XMLLevels.h */,
 			);
 			name = XMLParser;
 			sourceTree = "<group>";

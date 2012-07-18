@@ -16,9 +16,9 @@
 
 @property (strong, nonatomic) NSString *name;
 @property (strong, nonatomic) NSMutableArray *costumesArray;
-@property (strong, nonatomic) NSArray *soundsArray;
-@property (strong, nonatomic) NSArray *startScriptsArray;
-@property (strong, nonatomic) NSArray *whenScriptsArray;
+@property (strong, nonatomic) NSMutableArray *soundsArray;
+@property (strong, nonatomic) NSMutableArray *startScriptsArray;
+@property (strong, nonatomic) NSMutableArray *whenScriptsArray;
 @property (assign) GLKVector3 position;
 @property (assign) CGSize contentSize;
 @property (nonatomic, strong) GLKBaseEffect *effect;

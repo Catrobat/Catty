@@ -11,11 +11,23 @@
 #import "Level.h"
 #import "Sprite.h"
 #import "Costume.h"
+#import "Script.h"
+#import "StartScript.h"
+#import "WhenScript.h"
+#import "Brick.h"
+#import "SetCostumeBrick.h"
+#import "WaitBrick.h"
 
-#define LEVEL @"Content.Project"
-#define SPRITES @"Content.Sprite"
-#define COSTUMES @"Common.CostumeData"
+//private declaration
+@interface XMLParser()
 
+- (void)setCurrentLevelTo:(NSString*)currentFoundElement;
+- (BOOL)abort:(NSString*)elementName;
+- (BOOL)setValueAllowed:(NSString*)elementName;
+
+@end
+
+//implementation of XMLParser
 @implementation XMLParser
 
 @synthesize currentElementValue = _currentElementValue;
@@ -23,6 +35,8 @@
 @synthesize level = _level;
 @synthesize currentSprite = _currentSprite;
 @synthesize currentCostume = _currentCostume;
+@synthesize currentLevel = _currentLevel;
+@synthesize currentScript = _currentScript;
 
 - (XMLParser *) initXMLParser 
 {
@@ -35,21 +49,55 @@
   namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qualifiedName
     attributes:(NSDictionary *)attributeDict {
     
-    if([elementName isEqualToString:LEVEL]) 
-    {
-        self.level = [[Level alloc] init];
-    }
-    else if ([elementName isEqualToString:SPRITES])
-    {
-        self.currentSprite = [[Sprite alloc] init];
-        
-    }
-    else if ([elementName isEqualToString:COSTUMES])
-    {
-        self.currentCostume = [[Costume alloc] init];
-    }
+    [self setCurrentLevelTo:elementName];
     
-    //todo: add rest...
+    //start tag found - now allocate objects...
+    switch (self.currentLevel)
+    {
+        case kContentProject:
+            self.level = [[Level alloc] init];
+            break;
+        case kSpriteList:
+            self.level.spritesArray = [[NSMutableArray alloc] init];
+            break;
+        case kContentSprite:
+            self.currentSprite = [[Sprite alloc] init];
+            [self.level.spritesArray addObject:self.currentSprite]; //dunno
+            break;
+        case kCostumeDataList:
+            self.currentSprite.costumesArray = [[NSMutableArray alloc] init];
+            break;
+        case kCommonCostumeData:
+            self.currentCostume = [[Costume alloc] init];
+            [self.currentSprite.costumesArray addObject:self.currentCostume]; //dunno
+            break;
+        case kSoundList:
+            //todo...
+            break;
+        case kScriptList:
+            self.currentSprite.startScriptsArray = [[NSMutableArray alloc] init];
+            self.currentSprite.whenScriptsArray = [[NSMutableArray alloc] init];
+            break;
+        case kContentStartScript:
+            self.currentScript = [[StartScript alloc] init];
+            [self.currentSprite.startScriptsArray addObject:self.currentScript]; //dunno
+            break;
+        case kBrickList:
+            self.currentScript.bricksArray = [[NSMutableArray alloc] init];
+            break;
+        case kBricksSetCostumeBrick:
+            self.currentBrick = [[SetCostumeBrick alloc] init];
+            [self.currentScript.bricksArray addObject:self.currentBrick]; //dunno
+            break;
+        case kBricksWaitBrick:
+            self.currentBrick = [[WaitBrick alloc] init];
+            [self.currentScript.bricksArray addObject:self.currentBrick]; //dunno
+            break;
+        case kContentWhenScript:
+            self.currentScript = [[WhenScript alloc] init];
+            [self.currentSprite.whenScriptsArray addObject:self.currentScript]; //dunno
+            break;
+    }
 }
 
 - (void)parser:(NSXMLParser *)parser foundCharacters:(NSString *)string 
@@ -64,38 +112,143 @@
 - (void)parser:(NSXMLParser *)parser didEndElement:(NSString *)elementName
   namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qName 
 {
-    
-    
-    if([elementName isEqualToString:LEVEL]) 
+    if ([self abort:elementName])
     {
         return;
     }
-    else if ([elementName isEqualToString:SPRITES])
-    {
-        if (self.level.spritesArray == nil)
-            self.level.spritesArray = [[NSMutableArray alloc] init];
-        
-        [self.level.spritesArray addObject:self.currentSprite];
-        self.currentSprite = nil;
-    }
-    else if ([elementName isEqualToString:COSTUMES])
-    {
-        if (self.currentSprite.costumesArray == nil)
-            self.currentSprite.costumesArray = [[NSMutableArray alloc] init];
-        
-        [self.currentSprite.costumesArray addObject:self.currentCostume];
-        self.currentCostume = nil;
-    }
-    else if (self.currentCostume != nil)
-    {
-        [self.currentCostume setValue:self.currentElementValue forKey:elementName];
-    }
-    else
-    {
-        [self.level setValue:self.currentElementValue forKey:elementName];
-    }    
     
+    
+    if ([self setValueAllowed:elementName])
+    switch (self.currentLevel)
+    {
+        case kContentProject:
+            [self.level setValue:self.currentElementValue forKey:elementName];
+            break;
+        case kSpriteList:
+            //do nothing
+            break;
+        case kContentSprite:
+            [self.currentSprite setValue:self.currentElementValue forKey:elementName]; //should set the name (e.g. to 'background')
+            break;
+        case kCostumeDataList:
+            //do nothing
+            break;
+        case kCommonCostumeData:
+            [self.currentCostume setValue:self.currentElementValue forKey:elementName];
+            break;
+        case kSoundList:
+            //todo...
+            break;
+        case kScriptList:
+            //todo: add sprite ref property in script and add value here
+            break;
+        case kContentStartScript:
+            self.currentScript = [[StartScript alloc] init];
+            break;
+        case kBrickList:
+            self.currentScript.bricksArray = [[NSMutableArray alloc] init];
+            break;
+        case kBricksSetCostumeBrick:
+            self.currentBrick = [[SetCostumeBrick alloc] init];
+            break;
+        case kBricksWaitBrick:
+            self.currentBrick = [[WaitBrick alloc] init];
+            break;
+        case kContentWhenScript:
+            self.currentScript = [[WhenScript alloc] init];
+            break;
+    }
+
+ 
     self.currentElementValue = nil;
+}
+
+//check if it is allowed to set a value (attribute or property of a class)
+- (BOOL)setValueAllowed:(NSString*)elementName
+{    
+    if ((self.currentLevel == kContentProject && [elementName isEqualToString:@"Content.Project"])
+        || (self.currentLevel == kSpriteList && [elementName isEqualToString:@"spriteList"])
+        || (self.currentLevel == kContentSprite && [elementName isEqualToString:@"Content.Sprite"])
+        || (self.currentLevel == kCostumeDataList && [elementName isEqualToString:@"costumeDataList"])
+        || (self.currentLevel == kCommonCostumeData && [elementName isEqualToString:@"Common.CostumeData"])
+        || (self.currentLevel == kSoundList && [elementName isEqualToString:@"soundList"])
+        || (self.currentLevel == kScriptList && [elementName isEqualToString:@"scriptList"])
+        || (self.currentLevel == kContentStartScript && [elementName isEqualToString:@"Content.StartScript"])
+        || (self.currentLevel == kBrickList && [elementName isEqualToString:@"brickList"])
+        || (self.currentLevel == kBricksSetCostumeBrick && [elementName isEqualToString:@"Bricks.SetCostumeBrick"])
+        || (self.currentLevel == kBricksWaitBrick && [elementName isEqualToString:@"Bricks.WaitBrick"])
+        || (self.currentLevel == kContentWhenScript && [elementName isEqualToString:@"Content.WhenScript"]))
+    {
+        return NO;
+    }
+    
+    return YES;
+}
+
+//check if it is necessery to abort
+- (BOOL)abort:(NSString*)elementName
+{
+    if (self.currentLevel == kContentProject 
+        && [elementName isEqualToString:@"Content.Project"])
+    {
+        return YES;
+    }
+    return NO;
+}
+
+//check the currentElement and set the corresponding level depth
+- (void)setCurrentLevelTo:(NSString*)currentFoundElement
+{
+    if ([currentFoundElement isEqualToString:@"Content.Project"])
+    {
+        self.currentLevel = kContentProject;
+    }
+    else if ([currentFoundElement isEqualToString:@"spriteList"])
+    {
+        self.currentLevel = kSpriteList;
+    }
+    else if ([currentFoundElement isEqualToString:@"Content.Sprite"])
+    {
+        self.currentLevel = kContentSprite;
+    }
+    else if ([currentFoundElement isEqualToString:@"costumeDataList"])
+    {
+        self.currentLevel = kCostumeDataList;
+    }
+    else if ([currentFoundElement isEqualToString:@"Common.CostumeData"])
+    {
+        self.currentLevel = kCommonCostumeData;
+    }
+    else if ([currentFoundElement isEqualToString:@"soundList"])
+    {
+        self.currentLevel = kSoundList;
+    }
+    //todo: add sound specification
+    else if ([currentFoundElement isEqualToString:@"scriptList"])
+    {
+        self.currentLevel = kScriptList;
+    }
+    else if ([currentFoundElement isEqualToString:@"Content.StartScript"])
+    {
+        self.currentLevel = kContentStartScript;
+    }
+    else if ([currentFoundElement isEqualToString:@"brickList"])
+    {
+        self.currentLevel = kBrickList;
+    }
+    else if ([currentFoundElement isEqualToString:@"Bricks.SetCostumeBrick"])
+    {
+        self.currentLevel = kBricksSetCostumeBrick;
+    }
+    else if ([currentFoundElement isEqualToString:@"Bricks.WaitBrick"])
+    {
+        self.currentLevel = kBricksWaitBrick;
+    }
+    //todo: add further bricks
+    else if ([currentFoundElement isEqualToString:@"Content.WhenScript"])
+    {
+        self.currentLevel = kContentWhenScript;
+    }
 }
 
 

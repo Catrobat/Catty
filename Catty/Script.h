@@ -10,7 +10,7 @@
 
 @interface Script : NSObject
 
-@property (strong, nonatomic) NSArray *bricksArray;
+@property (strong, nonatomic) NSMutableArray *bricksArray;
 
 - (NSString*)description;
 - (void)execute;
