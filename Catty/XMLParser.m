@@ -143,19 +143,19 @@
             //todo: add sprite ref property in script and add value here
             break;
         case kContentStartScript:
-            self.currentScript = [[StartScript alloc] init];
+            //todo: add name of script (and add property to script)
             break;
         case kBrickList:
-            self.currentScript.bricksArray = [[NSMutableArray alloc] init];
+            //do nothing
             break;
         case kBricksSetCostumeBrick:
-            self.currentBrick = [[SetCostumeBrick alloc] init];
+            [self.currentBrick setValue:self.currentElementValue forKey:elementName];
             break;
         case kBricksWaitBrick:
-            self.currentBrick = [[WaitBrick alloc] init];
+            [self.currentBrick setValue:self.currentElementValue forKey:elementName];
             break;
         case kContentWhenScript:
-            self.currentScript = [[WhenScript alloc] init];
+            //todo: add name of script (and add property to script)
             break;
     }
 
