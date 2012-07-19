@@ -8,16 +8,11 @@
 
 #import <UIKit/UIKit.h>
 
-@interface Level : NSObject {
-    NSString *versionName;
-    NSString *name;
-    NSString *screenResolution;
-    float version;
-}
+@interface Level : NSObject
 
 @property (nonatomic, strong) NSString *versionName;
 @property (nonatomic, strong) NSString *name;
-@property (nonatomic) float version;
+@property (nonatomic, strong) NSString *versionCode;
 @property (nonatomic, strong) NSString *screenResolution;
 @property (nonatomic) CGSize resolution;
 @property (nonatomic, strong) NSMutableArray *spritesArray;

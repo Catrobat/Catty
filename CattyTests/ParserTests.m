@@ -36,7 +36,8 @@
     NSString *path = [bundle pathForResource:fileName ofType:@"xml"];
     
     Level *level = [self.parser generateObjectForLevel:path];
-    STAssertEquals(level.name, @"defaultProject", @"checking if the name of the level is correct");
+    NSLog(@"Level: %@", level);
+    STAssertTrue([level.name isEqualToString:@"defaultProject"], @"checking if the name of the level is correct");
 }
 
 @end

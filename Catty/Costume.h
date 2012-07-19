@@ -8,10 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface Costume : NSObject {
-    NSString *costumeFileName;
-    NSString *costumeName;
-}
+@interface Costume : NSObject
 
 @property (strong, nonatomic) NSString *costumeFileName;
 @property (strong, nonatomic) NSString *costumeName;

@@ -126,7 +126,7 @@
 {
     Level *level = [[Level alloc]init];
     level.name = @"Catty1";
-    level.version = 1.1;
+    //level.version = 1.1;
     level.resolution = CGSizeZero;
     
     return level;

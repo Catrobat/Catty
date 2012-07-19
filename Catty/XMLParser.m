@@ -51,6 +51,7 @@
   namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qualifiedName
     attributes:(NSDictionary *)attributeDict {
     
+    
     [self setCurrentLevelTo:elementName];
     
     if ([attributeDict count] > 0 )
@@ -111,20 +112,29 @@
             [self.currentSprite.whenScriptsArray addObject:self.currentScript]; //dunno
             break;
     }
+    
+    self.currentElementValue = nil;
+
 }
 
 - (void)parser:(NSXMLParser *)parser foundCharacters:(NSString *)string 
-{    
-    if(self.currentElementValue == nil)
-        self.currentElementValue = [[NSMutableString alloc] initWithString:string];
-    else
-        [self.currentElementValue appendString:string];
+{   
+    if (![string isEqualToString:@"\n"])
+    {
+        if(self.currentElementValue == nil)
+            self.currentElementValue = [[NSMutableString alloc] initWithString:string];
+        else
+            [self.currentElementValue appendString:string];
+    }
     
 }
 
 - (void)parser:(NSXMLParser *)parser didEndElement:(NSString *)elementName
   namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qName 
 {
+    NSLog(@"Element: %@ Value: %@", elementName, self.currentElementValue);
+
+    
     if ([self abort:elementName])
     {
         return;
@@ -188,7 +198,7 @@
     }
 
  
-    self.currentElementValue = nil;
+    //self.currentElementValue = nil;
 }
 
 //check if it is allowed to set a value (attribute or property of a class)

@@ -10,6 +10,8 @@
 
 @implementation WaitBrick
 
+@synthesize timeToWaitInMilliseconds = _timeToWaitInMilliseconds;
+
 - (void)perform
 {
     

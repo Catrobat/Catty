@@ -36,9 +36,15 @@
 //abstract method (!!!)
 - (void)execute
 {
-    @throw [NSException exceptionWithName:NSInternalInconsistencyException
-                                   reason:[NSString stringWithFormat:@"You must override %@ in a subclass", NSStringFromSelector(_cmd)]
-                                 userInfo:nil];
+//    @throw [NSException exceptionWithName:NSInternalInconsistencyException
+//                                   reason:[NSString stringWithFormat:@"You must override %@ in a subclass", NSStringFromSelector(_cmd)]
+//                                 userInfo:nil];
+    
+    //chris: I think startscript and whenscript classes are not really necessary?! why did we create them?!
+    for (Brick *brick in self.bricksArray)
+    {
+        [brick perform];
+    }
 }
 
 

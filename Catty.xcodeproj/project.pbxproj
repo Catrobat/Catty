@@ -18,6 +18,8 @@
 		B4B4094515B2E8A100DCFAE5 /* defaultProject.xml in Resources */ = {isa = PBXBuildFile; fileRef = B4B4094415B2E8A100DCFAE5 /* defaultProject.xml */; };
 		B4B4094615B2E8A100DCFAE5 /* defaultProject.xml in Resources */ = {isa = PBXBuildFile; fileRef = B4B4094415B2E8A100DCFAE5 /* defaultProject.xml */; };
 		B4B4094915B2E8BF00DCFAE5 /* ParserTests.m in Sources */ = {isa = PBXBuildFile; fileRef = B4B4094815B2E8BF00DCFAE5 /* ParserTests.m */; };
+		B4F05A9B15B888EE00C90ED0 /* GDataXMLNode.m in Sources */ = {isa = PBXBuildFile; fileRef = B4F05A9A15B888EE00C90ED0 /* GDataXMLNode.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		B4F05A9E15B8898100C90ED0 /* LevelParser.m in Sources */ = {isa = PBXBuildFile; fileRef = B4F05A9D15B8898100C90ED0 /* LevelParser.m */; };
 		B4FDF31F15A82C1000CBCF03 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B4FDF31E15A82C1000CBCF03 /* UIKit.framework */; };
 		B4FDF32115A82C1000CBCF03 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B4FDF32015A82C1000CBCF03 /* Foundation.framework */; };
 		B4FDF32315A82C1000CBCF03 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B4FDF32215A82C1000CBCF03 /* CoreGraphics.framework */; };
@@ -78,6 +80,10 @@
 		B4B4094715B2E8BF00DCFAE5 /* ParserTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ParserTests.h; sourceTree = "<group>"; };
 		B4B4094815B2E8BF00DCFAE5 /* ParserTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ParserTests.m; sourceTree = "<group>"; };
 		B4B487B815B73107004AC99E /* XMLLevels.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XMLLevels.h; sourceTree = "<group>"; };
+		B4F05A9915B888EE00C90ED0 /* GDataXMLNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GDataXMLNode.h; sourceTree = "<group>"; };
+		B4F05A9A15B888EE00C90ED0 /* GDataXMLNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GDataXMLNode.m; sourceTree = "<group>"; };
+		B4F05A9C15B8898100C90ED0 /* LevelParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LevelParser.h; sourceTree = "<group>"; };
+		B4F05A9D15B8898100C90ED0 /* LevelParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LevelParser.m; sourceTree = "<group>"; };
 		B4FDF31A15A82C1000CBCF03 /* Catty.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Catty.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B4FDF31E15A82C1000CBCF03 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		B4FDF32015A82C1000CBCF03 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -245,6 +251,15 @@
 			name = RetailParser;
 			sourceTree = "<group>";
 		};
+		B4F05A9715B888E400C90ED0 /* gdata */ = {
+			isa = PBXGroup;
+			children = (
+				B4F05A9915B888EE00C90ED0 /* GDataXMLNode.h */,
+				B4F05A9A15B888EE00C90ED0 /* GDataXMLNode.m */,
+			);
+			name = gdata;
+			sourceTree = "<group>";
+		};
 		B4FDF30F15A82C0F00CBCF03 = {
 			isa = PBXGroup;
 			children = (
@@ -330,12 +345,15 @@
 		B4FDF35F15A82CBF00CBCF03 /* XMLParser */ = {
 			isa = PBXGroup;
 			children = (
+				B4F05A9715B888E400C90ED0 /* gdata */,
 				B4FDF36015A82E9800CBCF03 /* XMLParserProtocol.h */,
 				B4B487B515B730CA004AC99E /* TestParser */,
 				B4B487B315B730C2004AC99E /* XMLParser */,
 				B4B487B615B730D2004AC99E /* XMLAppDelegate */,
 				B4B487B715B730E0004AC99E /* RetailParser */,
 				B4B487B815B73107004AC99E /* XMLLevels.h */,
+				B4F05A9C15B8898100C90ED0 /* LevelParser.h */,
+				B4F05A9D15B8898100C90ED0 /* LevelParser.m */,
 			);
 			name = XMLParser;
 			sourceTree = "<group>";
@@ -606,6 +624,8 @@
 				B4B4093115B2E07900DCFAE5 /* XMLParser.m in Sources */,
 				B4B4093515B2E0FD00DCFAE5 /* XMLAppDelegate.m in Sources */,
 				B4B4093815B2E20700DCFAE5 /* RetailParser.m in Sources */,
+				B4F05A9B15B888EE00C90ED0 /* GDataXMLNode.m in Sources */,
+				B4F05A9E15B8898100C90ED0 /* LevelParser.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -710,7 +730,9 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Catty/Catty-Prefix.pch";
 				"GCC_THUMB_SUPPORT[arch=armv6]" = "";
+				HEADER_SEARCH_PATHS = /usr/include/libxml2;
 				INFOPLIST_FILE = "Catty/Catty-Info.plist";
+				OTHER_LDFLAGS = "-lxml2";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -722,7 +744,9 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Catty/Catty-Prefix.pch";
 				"GCC_THUMB_SUPPORT[arch=armv6]" = "";
+				HEADER_SEARCH_PATHS = /usr/include/libxml2;
 				INFOPLIST_FILE = "Catty/Catty-Info.plist";
+				OTHER_LDFLAGS = "-lxml2";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -738,7 +762,9 @@
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Catty/Catty-Prefix.pch";
+				HEADER_SEARCH_PATHS = /usr/include/libxml2;
 				INFOPLIST_FILE = "CattyTests/CattyTests-Info.plist";
+				OTHER_LDFLAGS = "";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = octest;
@@ -755,7 +781,9 @@
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Catty/Catty-Prefix.pch";
+				HEADER_SEARCH_PATHS = /usr/include/libxml2;
 				INFOPLIST_FILE = "CattyTests/CattyTests-Info.plist";
+				OTHER_LDFLAGS = "";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = octest;
