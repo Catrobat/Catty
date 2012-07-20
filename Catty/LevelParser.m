@@ -18,12 +18,16 @@
 
 @interface LevelParser()
 
+@property (nonatomic, strong, getter=theNewSprite) Sprite *newSprite;
+
 - (Costume*)loadCostume:(GDataXMLElement*)gDataCostume;
 - (Script*)loadScript:(GDataXMLElement*)gDataScript;
 
 @end
 
 @implementation LevelParser
+
+@synthesize newSprite = _newSprite;
 
 - (Level*)loadLevel:(NSData*)xmlData
 {
@@ -38,7 +42,7 @@
     NSArray *sprites = [[spriteList objectAtIndex:0] elementsForName:@"Content.Sprite"];
     for (GDataXMLElement *gDataSprite in sprites) 
     {
-        Sprite *newSprite = [[Sprite alloc] init];
+        self.newSprite = [[Sprite alloc] init];
         
         //retrieving all costumes
         NSArray *costumeDataList = [gDataSprite elementsForName:@"costumeDataList"];
@@ -46,7 +50,7 @@
         for (GDataXMLElement *gDataCostume in costumes)
         {
             Costume *costume = [self loadCostume:gDataCostume];
-            [newSprite.costumesArray addObject:costume];
+            [self.newSprite.costumesArray addObject:costume];
         }
         
         //retrieving all sounds
@@ -63,7 +67,7 @@
         for (GDataXMLElement *gDataScript in scripts)
         {
             Script *newScript = [self loadScript:gDataScript];
-            [newSprite addStartScript:newScript];
+            [self.newSprite addStartScript:newScript];
         }
         
         //getting all when scripts
@@ -71,14 +75,14 @@
         for (GDataXMLElement *gDataScript in scripts)
         {
             Script *newScript = [self loadScript:gDataScript];
-            [newSprite addWhenScript:newScript];
+            [self.newSprite addWhenScript:newScript];
         }
         
         NSArray *spriteNames = [gDataSprite elementsForName:@"name"];
         GDataXMLElement *temp = (GDataXMLElement*)[spriteNames objectAtIndex:0];
-        newSprite.name = temp.stringValue;
+        self.newSprite.name = temp.stringValue;
         
-        [level.spritesArray addObject:newSprite];
+        [level.spritesArray addObject:self.newSprite];
 
     }
 
@@ -132,6 +136,7 @@
     for (GDataXMLElement *gDataSetCostumeBrick in setCostumeBricks)
     {
         SetCostumeBrick *brick = [self loadSetCostumeBrick:gDataSetCostumeBrick];
+        brick.sprite = self.newSprite;
         [ret.bricksArray addObject:brick];
     }
     
@@ -140,6 +145,7 @@
     for (GDataXMLElement *gDataWaitBrick in waitBricks)
     {
         WaitBrick *brick = [self loadWaitBrick:gDataWaitBrick];
+        brick.sprite = self.newSprite;
         [ret.bricksArray addObject:brick];
     }
     
