@@ -11,6 +11,7 @@
 #import "Sound.h"
 #import "Script.h"
 #import "WhenScript.h"
+#import "Util.h"
 
 // need CattyViewController to access FRAMES_PER_SECOND    TODO: change
 #import "CattyViewController.h"
@@ -103,8 +104,8 @@ typedef struct {
     
     NSError *error;    
     //NSString *path = [[NSBundle mainBundle] pathForResource:fileName ofType:nil];
-    NSBundle *bundle = [NSBundle bundleForClass:[CattyAppDelegate class]];
-    NSString *path = [bundle pathForResource:fileName ofType:nil];
+//    NSBundle *bundle = [NSBundle bundleForClass:[CattyAppDelegate class]];
+//    NSString *path = [bundle pathForResource:fileName ofType:nil];
     
 //    
 //    
@@ -118,11 +119,22 @@ typedef struct {
 //    NSLog(@"Direct Path: %@", directBundleResourcePath);    
     
     
-    self.textureInfo = [GLKTextureLoader textureWithContentsOfFile:path options:options error:&error];
-    if (self.textureInfo == nil) {
+//    NSString *newPath = [NSString stringWithFormat:@"%@/imageToLoadNow.png", [path stringByDeletingLastPathComponent]];
+//    [[NSFileManager defaultManager] moveItemAtPath:path toPath:newPath error:&error];
+//    NSLog(@"Error filemanager: %@", [error localizedDescription]);
+//    
+//    
+    
+    
+    NSString *pathToImage = [NSString stringWithFormat:@"%@/defaultProject/images/%@", [Util applicationDocumentsDirectory], fileName];
+    NSLog(@"path: %@", pathToImage);
+    self.textureInfo = [GLKTextureLoader textureWithContentsOfFile:pathToImage options:options error:&error];
+    if (self.textureInfo == nil) 
+    {
         NSLog(@"Error loading file: %@", [error localizedDescription]);
         return;
     }
+
     
     self.contentSize = CGSizeMake(self.textureInfo.width, self.textureInfo.height);
     
