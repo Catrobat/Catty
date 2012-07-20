@@ -631,13 +631,16 @@
 				B4FDF38815A82F4D00CBCF03 /* Brick.m in Sources */,
 				B4FDF38915A82F4D00CBCF03 /* WaitBrick.m in Sources */,
 				B4FDF38A15A82F4D00CBCF03 /* SetCostumeBrick.m in Sources */,
+<<<<<<< HEAD
 				B4B4093115B2E07900DCFAE5 /* XMLParser.m in Sources */,
 				B4B4093515B2E0FD00DCFAE5 /* XMLAppDelegate.m in Sources */,
-				CD25FE1615B0642400719D12 /* PlaceAtBrick.m in Sources */,
-				CDE35DED15B4892D009A3524 /* GlideToBrick.m in Sources */,
 				B4B4093815B2E20700DCFAE5 /* RetailParser.m in Sources */,
 				B4F05A9B15B888EE00C90ED0 /* GDataXMLNode.m in Sources */,
 				B4F05A9E15B8898100C90ED0 /* LevelParser.m in Sources */,
+=======
+				CD25FE1615B0642400719D12 /* PlaceAtBrick.m in Sources */,
+				CDE35DED15B4892D009A3524 /* GlideToBrick.m in Sources */,
+>>>>>>> origin/dev_moveSprites
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

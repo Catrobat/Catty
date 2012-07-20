@@ -12,6 +12,8 @@
 //debug
 #import "Sprite.h"
 
+//defines
+#define FRAMES_PER_SECOND 30
 
 @class Level;
 

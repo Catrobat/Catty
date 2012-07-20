@@ -97,6 +97,9 @@
     newBrick = [[SetCostumeBrick alloc]init];
     newBrick.indexOfCostumeInArray = [NSNumber numberWithInt:1];
     newBrick.sprite = sprite2;
+<<<<<<< HEAD
+    newWhenScript.bricksArray = [[NSMutableArray alloc]initWithObjects:newBrick, nil];
+=======
     Brick *placeAtBrick = [[PlaceAtBrick alloc]initWithPosition:GLKVector3Make(50, 50, self.zIndex)];
     placeAtBrick.sprite = sprite2;
     Brick *glideToBrick = [[GlideToBrick alloc]initWithPosition:GLKVector3Make(100, 100, self.zIndex) andDurationInMilliSecs:1000];
@@ -108,6 +111,7 @@
     newWhenScript.bricksArray = [NSArray arrayWithArray:tmpMutableArray];    
 
     
+>>>>>>> origin/dev_moveSprites
     
     //adding scripts to script arrays
     //[startScriptsMutable addObject:newStartScript];
