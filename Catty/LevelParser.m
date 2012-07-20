@@ -34,6 +34,7 @@
         return nil;
     
     Level *level = [[Level alloc] init];
+    level.spritesArray = [[NSMutableArray alloc] init];
     NSArray *spriteList = [doc.rootElement elementsForName:@"spriteList"];
     NSArray *sprites = [[spriteList objectAtIndex:0] elementsForName:@"Content.Sprite"];
     for (GDataXMLElement *gDataSprite in sprites) 
@@ -73,6 +74,10 @@
             Script *newScript = [self loadScript:gDataScript];
             [newSprite addWhenScript:newScript];
         }
+        
+        NSArray *spriteNames = [gDataSprite elementsForName:@"name"];
+        GDataXMLElement *temp = (GDataXMLElement*)[spriteNames objectAtIndex:0];
+        newSprite.name = temp.stringValue;
         
         [level.spritesArray addObject:newSprite];
 

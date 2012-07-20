@@ -87,7 +87,7 @@
     newBrick = [[SetCostumeBrick alloc]init];
     newBrick.indexOfCostumeInArray = 0;
     newBrick.sprite = sprite2;
-    newStartScript.bricksArray = [[NSArray alloc]initWithObjects:newBrick, nil];
+    newStartScript.bricksArray = [[NSMutableArray alloc]initWithObjects:newBrick, nil];
     
     //creating new when script for cat (change costume on click)
     WhenScript *newWhenScript = [[WhenScript alloc]init];
@@ -95,7 +95,7 @@
     newBrick = [[SetCostumeBrick alloc]init];
     newBrick.indexOfCostumeInArray = [NSNumber numberWithInt:1];
     newBrick.sprite = sprite2;
-    newWhenScript.bricksArray = [[NSArray alloc]initWithObjects:newBrick, nil];
+    newWhenScript.bricksArray = [[NSMutableArray alloc]initWithObjects:newBrick, nil];
     
     //adding scripts to script arrays
     //[startScriptsMutable addObject:newStartScript];
@@ -105,7 +105,7 @@
     [sprite2 addWhenScript:newWhenScript];
     
     //adding sprites to level
-    level.spritesArray = [[NSArray alloc] initWithObjects: sprite1, sprite2, nil];
+    level.spritesArray = [[NSMutableArray alloc] initWithObjects: sprite1, sprite2, nil];
 
     //assuming start and when scripts
 //    level.startScriptsArray = [[NSArray alloc] initWithArray:startScriptsMutable];

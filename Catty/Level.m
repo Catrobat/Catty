@@ -14,8 +14,6 @@
 @synthesize name = _name;
 @synthesize resolution = _resolution;
 @synthesize spritesArray = _spritesArray;
-@synthesize startScriptsArray = _startScriptsArray;
-@synthesize whenScriptsArray = _whenScriptsArray;
 @synthesize screenResolution = _screenResolution;
 @synthesize versionName = _versionName;
 @synthesize versionCode = _versionCode;
@@ -29,34 +27,7 @@
     [ret appendFormat:@"VersionCode: %@\n", self.versionCode];
     [ret appendFormat:@"Resolution: TODO [%f, %f] (x, y)\n", self.resolution.width, self.resolution.height];
     
-    NSInteger index = 1;
-    if ([self.startScriptsArray count] > 0)
-    {
-        [ret appendString:@"Start scripts: \n"];
-        for (Script *script in self.startScriptsArray)
-        {
-            [ret appendFormat:@"\t (%d) %@", index++, script];
-        }
-    }
-    else 
-    {
-        [ret appendString:@"Start scipts: None\n"];
-    }
-    
-    
-    index = 1;
-    if ([self.whenScriptsArray count] > 0)
-    {
-        [ret appendString:@"When scripts: \n"];
-        for (Script *script in self.whenScriptsArray)
-        {
-            [ret appendFormat:@"\t (%d) %@", index++, script];
-        }
-    }
-    else 
-    {
-        [ret appendString:@"When scipts: None\n"];
-    }
+    //[ret appendString:self.spritesArray.description];
     
     return [[NSString alloc] initWithString:ret];
 }

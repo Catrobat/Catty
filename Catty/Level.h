@@ -16,8 +16,6 @@
 @property (nonatomic, strong) NSString *screenResolution;
 @property (nonatomic) CGSize resolution;
 @property (nonatomic, strong) NSMutableArray *spritesArray;
-@property (nonatomic, strong) NSArray *startScriptsArray;
-@property (nonatomic, strong) NSArray *whenScriptsArray;
 
 - (NSString*)description;
 @end
