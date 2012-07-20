@@ -14,6 +14,7 @@
 #import "TestParser.h"
 #import "WhenScript.h"
 #import "WaitBrick.h"
+#import "RetailParser.h"
 
 //debug
 #import "Costume.h"
@@ -95,17 +96,25 @@
     parser.effect = self.effect;
     self.level = [parser generateObjectForLevel:@"dup di dup"];
 
-    NSLog(@"%@", self.level);
-    //self.player = [[SGGSprite alloc] initWithFile:@"normalcat.png" effect:self.effect];   
-    
-    
-    Costume *newCostume1 = [[Costume alloc]init];
-    newCostume1.costumeFileName = @"normalcat.png";
-    newCostume1.costumeName = @"cat1";
+//    NSLog(@"%@", self.level);
+//    //self.player = [[SGGSprite alloc] initWithFile:@"normalcat.png" effect:self.effect];   
+//    
+//    
+//    Costume *newCostume1 = [[Costume alloc]init];
+//    newCostume1.costumeFileName = @"normalcat.png";
+//    newCostume1.costumeName = @"cat1";
 
     
     //self.sprite = [[Sprite alloc] initWithCostume:newCostume1 effect:self.effect];
 
+//    //loading real project
+//    NSString *fileName = @"defaultProject";
+//    NSBundle *bundle = [NSBundle bundleForClass:[self class]];
+//    NSString *path = [bundle pathForResource:fileName ofType:@"xml"];
+//    
+//    RetailParser *parser = [[RetailParser alloc] init];
+//    self.level = [parser generateObjectForLevel:path];
+//    
     
     [self startLevel];
 }
