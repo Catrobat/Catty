@@ -53,6 +53,14 @@ typedef struct {
 @synthesize quad = _quad;
 @synthesize textureInfo = _textureInfo;
 
+#pragma mark Custom getter and setter
+- (NSMutableArray*)costumesArray
+{
+    if (_costumesArray == nil)
+        _costumesArray = [[NSMutableArray alloc] init];
+
+    return _costumesArray;
+}
 
 #pragma mark - init methods
 - (id)initWithEffect:(GLKBaseEffect*)effect

@@ -34,7 +34,6 @@
         return nil;
     
     Level *level = [[Level alloc] init];
-    level.spritesArray = [[NSMutableArray alloc] init];
     NSArray *spriteList = [doc.rootElement elementsForName:@"spriteList"];
     NSArray *sprites = [[spriteList objectAtIndex:0] elementsForName:@"Content.Sprite"];
     for (GDataXMLElement *gDataSprite in sprites) 

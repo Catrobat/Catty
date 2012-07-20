@@ -10,6 +10,7 @@
 #import "RetailParser.h"
 #import "Level.h"
 #import "Sprite.h"
+#import "Costume.h"
 
 @implementation ParserTests
 
@@ -39,9 +40,11 @@
     Level *level = [self.parser generateObjectForLevel:path];
     NSLog(@"Level: %@", level);
     STAssertTrue([level.name isEqualToString:@"defaultProject"], @"checking if the name of the level is correct");
-    Sprite *temp = [level.spritesArray objectAtIndex:0];
-    STAssertTrue([temp.name isEqualToString:@"Background"], @"checking if the name of the first sprite is correct");
-
+    Sprite *sprite = [level.spritesArray objectAtIndex:0];
+    STAssertTrue([sprite.name isEqualToString:@"Background"], @"checking if the name of the first sprite is correct");
+    Costume *costume = [sprite.costumesArray objectAtIndex:0];
+    STAssertTrue([costume.costumeName isEqualToString:@"background"], @"checking if the name of the first costume in the sprite is correct");
+    
 }
 
 @end

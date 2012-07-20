@@ -18,6 +18,17 @@
 @synthesize versionName = _versionName;
 @synthesize versionCode = _versionCode;
 
+#pragma mark - Custom getter and setter
+- (NSMutableArray*)spritesArray
+{
+    if (_spritesArray == nil)
+        _spritesArray = [[NSMutableArray alloc] init];
+    
+    return _spritesArray;
+}
+
+
+#pragma mark - Description
 - (NSString*)description 
 {
     NSMutableString *ret = [[NSMutableString alloc] init];
