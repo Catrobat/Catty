@@ -13,6 +13,16 @@
 
 @synthesize bricksArray = _bricksArray;
 
+#pragma mark - Custom getter and setter
+- (NSMutableArray*)bricksArray
+{
+    if (_bricksArray == nil)
+        _bricksArray = [[NSMutableArray alloc] init];
+    
+    return _bricksArray;
+}
+
+#pragma mark - Description
 - (NSString*)description
 {
     NSMutableString *ret = [[NSMutableString alloc] init];

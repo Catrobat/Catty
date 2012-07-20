@@ -11,6 +11,10 @@
 #import "Level.h"
 #import "Sprite.h"
 #import "Costume.h"
+#import "Brick.h"
+#import "Script.h"
+#import "StartScript.h"
+#import "SetCostumeBrick.h"
 
 @implementation ParserTests
 
@@ -44,7 +48,11 @@
     STAssertTrue([sprite.name isEqualToString:@"Background"], @"checking if the name of the first sprite is correct");
     Costume *costume = [sprite.costumesArray objectAtIndex:0];
     STAssertTrue([costume.costumeName isEqualToString:@"background"], @"checking if the name of the first costume in the sprite is correct");
-    
+    Script *script = [sprite.startScriptsArray objectAtIndex:0];
+    STAssertTrue(script != nil, @"checking if script is valid");
+    Brick *brick = [script.bricksArray objectAtIndex:0];
+    STAssertTrue([brick isKindOfClass:[SetCostumeBrick class]], @"checking if brick is valid");
+
 }
 
 @end

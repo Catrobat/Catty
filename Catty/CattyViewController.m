@@ -92,9 +92,9 @@
     
     
     //load level before starting (this should happen BEFORE this controller is invoked
-    TestParser *parser = [[TestParser alloc] init];
-    parser.effect = self.effect;
-    self.level = [parser generateObjectForLevel:@"dup di dup"];
+//    TestParser *parser = [[TestParser alloc] init];
+//    parser.effect = self.effect;
+//    self.level = [parser generateObjectForLevel:@"dup di dup"];
 
 //    NSLog(@"%@", self.level);
 //    //self.player = [[SGGSprite alloc] initWithFile:@"normalcat.png" effect:self.effect];   
@@ -108,13 +108,18 @@
     //self.sprite = [[Sprite alloc] initWithCostume:newCostume1 effect:self.effect];
 
 //    //loading real project
-//    NSString *fileName = @"defaultProject";
-//    NSBundle *bundle = [NSBundle bundleForClass:[self class]];
-//    NSString *path = [bundle pathForResource:fileName ofType:@"xml"];
-//    
-//    RetailParser *parser = [[RetailParser alloc] init];
-//    self.level = [parser generateObjectForLevel:path];
-//    
+    NSString *fileName = @"defaultProject";
+    NSBundle *bundle = [NSBundle bundleForClass:[self class]];
+    NSString *path = [bundle pathForResource:fileName ofType:@"xml"];
+    
+    RetailParser *parser = [[RetailParser alloc] init];
+    self.level = [parser generateObjectForLevel:path];
+    
+    //setting effect
+    for (Sprite *sprite in self.level.spritesArray)
+    {
+        sprite.effect = self.effect;
+    }
     
     [self startLevel];
 }
@@ -147,11 +152,15 @@
 #pragma mark - instance methods
 - (void)startLevel
 {
-    for (StartScript *script in self.startScriptsArray)
+    for (Sprite *sprite in self.level.spritesArray)
     {
-        NSLog(@"run start script");
-        [self runScript:script];
+        for (StartScript *script in sprite.startScriptsArray)
+        {
+            NSLog(@"run start script");
+            [self runScript:script];
+        }
     }
+ 
 }
 
 - (void)runScript:(Script*)script

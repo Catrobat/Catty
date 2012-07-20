@@ -69,6 +69,15 @@ typedef struct {
 }
 
 #pragma mark - init methods
+- (id)init
+{
+    if (self = [super init]) 
+    {
+        _position = GLKVector3Make(0, 0, 0); //todo: change z index
+    }
+    return self;
+}
+
 - (id)initWithEffect:(GLKBaseEffect*)effect
 {
     self = [super init];
