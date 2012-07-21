@@ -19,8 +19,6 @@
     float sleepTime = ((float)self.timeToWaitInMilliseconds.intValue)/1000;
     NSLog(@"wating for %f seconds", sleepTime);
     //NSLog(@"---- BEFORE SLEEP -----");
-    //usleep(self.timeToWaitInMilliseconds.intValue);
-    //usleep(5000);
     [NSThread sleepForTimeInterval:sleepTime];
     //NSLog(@"---- AFTER SLEEP ------");
 
