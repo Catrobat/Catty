@@ -67,7 +67,8 @@
         for (GDataXMLElement *gDataScript in scripts)
         {
             Script *newScript = [self loadScript:gDataScript];
-            [self.newSprite addStartScript:newScript];
+            [self.newSprite.startScriptsArray addObject:newScript];
+            //[self.newSprite addStartScript:newScript];
         }
         
         //getting all when scripts
@@ -75,7 +76,8 @@
         for (GDataXMLElement *gDataScript in scripts)
         {
             Script *newScript = [self loadScript:gDataScript];
-            [self.newSprite addWhenScript:newScript];
+            [self.newSprite.whenScriptsArray addObject:newScript];
+            //[self.newSprite addWhenScript:newScript];
         }
         
         NSArray *spriteNames = [gDataSprite elementsForName:@"name"];

@@ -17,8 +17,10 @@
 {
     if (self = [super init])
     {
-        self.action = 
+        self.action = kTouchActionTap;
     }
+    
+    return self;
 }
 
 - (void)execute

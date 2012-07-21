@@ -15,7 +15,6 @@
 #import "StartScript.h"
 #import "SetCostumeBrick.h"
 #import "WhenScript.h"
-#import "Types.h"
 #import "PlaceAtBrick.h"
 #import "GlideToBrick.h"
 
@@ -66,10 +65,10 @@
     
     //check if its a startup script or a when script
     if ([newScript isMemberOfClass:[StartScript class]])
-        [sprite1 addStartScript:newScript];
+        [sprite1.startScriptsArray addObject:newScript];
         //[startScriptsMutable addObject:newScript];
     else if ([newScript isMemberOfClass:[WhenScript class]])
-        [sprite1 addWhenScript:newScript];
+        [sprite1.whenScriptsArray addObject:newScript];
                 
         //[whenScriptsMutable addObject:newScript];
     
@@ -113,8 +112,8 @@
     //[startScriptsMutable addObject:newStartScript];
     //[whenScriptsMutable addObject:newWhenScript];
 
-    [sprite2 addStartScript:newStartScript];
-    [sprite2 addWhenScript:newWhenScript];
+    [sprite2.startScriptsArray addObject:newStartScript];
+    [sprite2.whenScriptsArray addObject:newWhenScript];
     
     //adding sprites to level
     level.spritesArray = [[NSMutableArray alloc] initWithObjects: sprite1, sprite2, nil];

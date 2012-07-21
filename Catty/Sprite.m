@@ -12,6 +12,7 @@
 #import "Script.h"
 #import "WhenScript.h"
 #import "Util.h"
+#import "enums.h"
 
 // need CattyViewController to access FRAMES_PER_SECOND    TODO: change
 #import "CattyViewController.h"
@@ -67,6 +68,22 @@ typedef struct {
         _costumesArray = [[NSMutableArray alloc] init];
 
     return _costumesArray;
+}
+
+- (NSMutableArray*)startScriptsArray
+{
+    if (_startScriptsArray == nil)
+        _startScriptsArray = [[NSMutableArray alloc] init];
+    
+    return _startScriptsArray;
+}
+
+- (NSMutableArray*)whenScriptsArray
+{
+    if (_whenScriptsArray == nil)
+        _whenScriptsArray = [[NSMutableArray alloc] init];
+    
+    return _whenScriptsArray;
 }
 
 #pragma mark - init methods
@@ -274,20 +291,6 @@ typedef struct {
     return rect;
 }
 
-- (void)addStartScript:(Script*)script
-{
-    NSMutableArray *startScripts = [NSMutableArray arrayWithArray:self.startScriptsArray];
-    [startScripts addObject:script];
-    self.startScriptsArray = [NSArray arrayWithArray:startScripts];    
-}
-
-- (void)addWhenScript:(Script*)script
-{
-    NSMutableArray *whenScripts = [NSMutableArray arrayWithArray:self.whenScriptsArray];
-    [whenScripts addObject:script];
-    self.whenScriptsArray = [NSArray arrayWithArray:whenScripts];    
-}
-
 #pragma mark - script methods
 - (void)start
 {
@@ -302,11 +305,12 @@ typedef struct {
 }
 
 
-- (void)touch:(InputType)type
+- (void)touch:(TouchAction)type
 {
     //todo: throw exception if its not a when script
     for (WhenScript *script in self.whenScriptsArray)
     {
+        NSLog(@"action: %d", script.action);
         if (type == script.action)
         {
             // ------------------------------------------ THREAD --------------------------------------

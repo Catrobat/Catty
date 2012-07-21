@@ -60,11 +60,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Catty/Sprite.m"
-         timestampString = "364557171.656441"
+         timestampString = "364559935.323889"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "129"
-         endingLineNumber = "129"
+         startingLineNumber = "146"
+         endingLineNumber = "146"
          landmarkName = "-setIndexOfCurrentCostumeInArray:"
          landmarkType = "5">
       </FileBreakpoint>

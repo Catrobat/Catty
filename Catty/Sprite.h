@@ -7,7 +7,7 @@
 //
 
 #import <GLKit/GLKit.h>
-#import "Types.h"
+#import "enums.h"
 
 @class Costume;
 @class Script;
@@ -27,11 +27,9 @@
 - (id)initWithEffect:(GLKBaseEffect*)effect;
 - (void)render;
 - (NSString*)description;
-- (void)addStartScript:(Script*)script;
-- (void)addWhenScript:(Script*)script;
 - (CGRect)boundingBox;
 - (void)start;
-- (void)touch:(InputType)type;
+- (void)touch:(TouchAction)type;
 
 - (void)glideToPosition:(GLKVector3)position withinDurationInMilliSecs:(int)durationInMilliSecs;
 

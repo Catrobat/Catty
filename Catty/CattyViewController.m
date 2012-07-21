@@ -273,7 +273,7 @@
         }
     }*/
     
-    [foregroundSprite touch:tapped];
+    [foregroundSprite touch:kTouchActionTap];
     
     
     //just for debug purposes
