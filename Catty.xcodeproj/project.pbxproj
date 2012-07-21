@@ -13,11 +13,11 @@
 		B40C723B15A88DFD005A8EC7 /* GLKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B4FDF32415A82C1000CBCF03 /* GLKit.framework */; };
 		B40C723F15A88E9E005A8EC7 /* kittycat.png in Resources */ = {isa = PBXBuildFile; fileRef = B40C723E15A88E9E005A8EC7 /* kittycat.png */; };
 		B415DC3915B9F8540076275E /* Util.m in Sources */ = {isa = PBXBuildFile; fileRef = B415DC3815B9F8540076275E /* Util.m */; };
+		B415DC3B15BAB86B0076275E /* defaultProject.xml in Resources */ = {isa = PBXBuildFile; fileRef = B415DC3A15BAB86B0076275E /* defaultProject.xml */; };
+		B415DC3C15BAB86B0076275E /* defaultProject.xml in Resources */ = {isa = PBXBuildFile; fileRef = B415DC3A15BAB86B0076275E /* defaultProject.xml */; };
 		B4B4093115B2E07900DCFAE5 /* XMLParser.m in Sources */ = {isa = PBXBuildFile; fileRef = B4B4093015B2E07900DCFAE5 /* XMLParser.m */; };
 		B4B4093515B2E0FD00DCFAE5 /* XMLAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B4B4093415B2E0FD00DCFAE5 /* XMLAppDelegate.m */; };
 		B4B4093815B2E20700DCFAE5 /* RetailParser.m in Sources */ = {isa = PBXBuildFile; fileRef = B4B4093715B2E20700DCFAE5 /* RetailParser.m */; };
-		B4B4094515B2E8A100DCFAE5 /* defaultProject.xml in Resources */ = {isa = PBXBuildFile; fileRef = B4B4094415B2E8A100DCFAE5 /* defaultProject.xml */; };
-		B4B4094615B2E8A100DCFAE5 /* defaultProject.xml in Resources */ = {isa = PBXBuildFile; fileRef = B4B4094415B2E8A100DCFAE5 /* defaultProject.xml */; };
 		B4B4094915B2E8BF00DCFAE5 /* ParserTests.m in Sources */ = {isa = PBXBuildFile; fileRef = B4B4094815B2E8BF00DCFAE5 /* ParserTests.m */; };
 		B4F05A9B15B888EE00C90ED0 /* GDataXMLNode.m in Sources */ = {isa = PBXBuildFile; fileRef = B4F05A9A15B888EE00C90ED0 /* GDataXMLNode.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		B4F05A9E15B8898100C90ED0 /* LevelParser.m in Sources */ = {isa = PBXBuildFile; fileRef = B4F05A9D15B8898100C90ED0 /* LevelParser.m */; };
@@ -75,13 +75,13 @@
 		B40C723E15A88E9E005A8EC7 /* kittycat.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = kittycat.png; sourceTree = "<group>"; };
 		B415DC3715B9F8540076275E /* Util.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Util.h; sourceTree = "<group>"; };
 		B415DC3815B9F8540076275E /* Util.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Util.m; sourceTree = "<group>"; };
+		B415DC3A15BAB86B0076275E /* defaultProject.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = defaultProject.xml; sourceTree = "<group>"; };
 		B4B4092F15B2E07900DCFAE5 /* XMLParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XMLParser.h; sourceTree = "<group>"; };
 		B4B4093015B2E07900DCFAE5 /* XMLParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMLParser.m; sourceTree = "<group>"; };
 		B4B4093315B2E0FD00DCFAE5 /* XMLAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XMLAppDelegate.h; sourceTree = "<group>"; };
 		B4B4093415B2E0FD00DCFAE5 /* XMLAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMLAppDelegate.m; sourceTree = "<group>"; };
 		B4B4093615B2E20700DCFAE5 /* RetailParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RetailParser.h; sourceTree = "<group>"; };
 		B4B4093715B2E20700DCFAE5 /* RetailParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RetailParser.m; sourceTree = "<group>"; };
-		B4B4094415B2E8A100DCFAE5 /* defaultProject.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = defaultProject.xml; sourceTree = "<group>"; };
 		B4B4094715B2E8BF00DCFAE5 /* ParserTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ParserTests.h; sourceTree = "<group>"; };
 		B4B4094815B2E8BF00DCFAE5 /* ParserTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ParserTests.m; sourceTree = "<group>"; };
 		B4B487B815B73107004AC99E /* XMLLevels.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XMLLevels.h; sourceTree = "<group>"; };
@@ -201,7 +201,7 @@
 		B40C723C15A88E72005A8EC7 /* TestResources */ = {
 			isa = PBXGroup;
 			children = (
-				B4B4094415B2E8A100DCFAE5 /* defaultProject.xml */,
+				B415DC3A15BAB86B0076275E /* defaultProject.xml */,
 				B40C723D15A88E7B005A8EC7 /* Images */,
 			);
 			name = TestResources;
@@ -213,13 +213,6 @@
 				B40C723E15A88E9E005A8EC7 /* kittycat.png */,
 			);
 			name = Images;
-			sourceTree = "<group>";
-		};
-		B415DC0A15B9ECE10076275E /* SAMPLE-PROJECTS */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = "SAMPLE-PROJECTS";
 			sourceTree = "<group>";
 		};
 		B415DC3615B9F8450076275E /* Util */ = {
@@ -474,7 +467,6 @@
 		B4FDF38C15A82FB200CBCF03 /* TEMP */ = {
 			isa = PBXGroup;
 			children = (
-				B415DC0A15B9ECE10076275E /* SAMPLE-PROJECTS */,
 				B4FDF38D15A82FB800CBCF03 /* Costumes */,
 			);
 			name = TEMP;
@@ -601,7 +593,7 @@
 				B4FDF39215A82FD100CBCF03 /* ceshirecat.png in Resources */,
 				B4FDF39315A82FD100CBCF03 /* normalcat.png in Resources */,
 				B4FDF39615A833DA00CBCF03 /* catty_icon_retina.png in Resources */,
-				B4B4094515B2E8A100DCFAE5 /* defaultProject.xml in Resources */,
+				B415DC3B15BAB86B0076275E /* defaultProject.xml in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -611,7 +603,7 @@
 			files = (
 				B4FDF34F15A82C1000CBCF03 /* InfoPlist.strings in Resources */,
 				B40C723F15A88E9E005A8EC7 /* kittycat.png in Resources */,
-				B4B4094615B2E8A100DCFAE5 /* defaultProject.xml in Resources */,
+				B415DC3C15BAB86B0076275E /* defaultProject.xml in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

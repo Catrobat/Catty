@@ -5,7 +5,7 @@
     <Content.Sprite>
       <costumeDataList>
         <Common.CostumeData>
-          <costumeFileName>CCE87ECA859D4448BC47A837CF024464_background</costumeFileName>
+          <costumeFileName>background.png</costumeFileName>
           <costumeName>background</costumeName>
         </Common.CostumeData>
       </costumeDataList>

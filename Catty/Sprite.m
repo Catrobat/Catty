@@ -153,7 +153,6 @@ typedef struct {
 
 - (GLKMatrix4) modelMatrix 
 {
-    
     GLKMatrix4 modelMatrix = GLKMatrix4Identity;    
     modelMatrix = GLKMatrix4Translate(modelMatrix, self.position.x, self.position.y, self.position.z);
     //modelMatrix = GLKMatrix4Translate(modelMatrix, -self.contentSize.width/2, -self.contentSize.height/2, 0);
