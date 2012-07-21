@@ -310,6 +310,7 @@ typedef struct {
     //todo: throw exception if its not a when script
     for (WhenScript *script in self.whenScriptsArray)
     {
+        NSLog(@"script: %@", script.description);
         NSLog(@"action: %d", script.action);
         if (type == script.action)
         {

@@ -15,6 +15,8 @@
 #import "Brick.h"
 #import "SetCostumeBrick.h"
 #import "WaitBrick.h"
+#import "StartScript.h"
+#import "WhenScript.h"
 
 @interface LevelParser()
 
@@ -66,7 +68,7 @@
         NSArray *scripts = [[scriptList objectAtIndex:0] elementsForName:@"Content.StartScript"];
         for (GDataXMLElement *gDataScript in scripts)
         {
-            Script *newScript = [self loadScript:gDataScript];
+            Script *newScript = [self loadStartScript:gDataScript];
             [self.newSprite.startScriptsArray addObject:newScript];
             //[self.newSprite addStartScript:newScript];
         }
@@ -75,7 +77,7 @@
         scripts = [[scriptList objectAtIndex:0] elementsForName:@"Content.WhenScript"];
         for (GDataXMLElement *gDataScript in scripts)
         {
-            Script *newScript = [self loadScript:gDataScript];
+            Script *newScript = [self loadWhenScript:gDataScript];
             [self.newSprite.whenScriptsArray addObject:newScript];
             //[self.newSprite addWhenScript:newScript];
         }
@@ -127,9 +129,36 @@
     return ret;
 }
 
-- (Script*)loadScript:(GDataXMLElement*)gDataScript
+- (Script*)loadStartScript:(GDataXMLElement*)gDataScript
 {
-    Script *ret = [[Script alloc] init];
+    StartScript *ret = [[StartScript alloc] init];
+    
+    NSArray *brickList = [gDataScript elementsForName:@"brickList"];
+    
+    //retrieving setCostumeBricks
+    NSArray *setCostumeBricks = [[brickList objectAtIndex:0] elementsForName:@"Bricks.SetCostumeBrick"];
+    for (GDataXMLElement *gDataSetCostumeBrick in setCostumeBricks)
+    {
+        SetCostumeBrick *brick = [self loadSetCostumeBrick:gDataSetCostumeBrick];
+        brick.sprite = self.newSprite;
+        [ret.bricksArray addObject:brick];
+    }
+    
+    //retrieving waitBricks
+    NSArray *waitBricks = [[brickList objectAtIndex:0] elementsForName:@"Bricks.WaitBrick"];
+    for (GDataXMLElement *gDataWaitBrick in waitBricks)
+    {
+        WaitBrick *brick = [self loadWaitBrick:gDataWaitBrick];
+        brick.sprite = self.newSprite;
+        [ret.bricksArray addObject:brick];
+    }
+    
+    return ret;
+}
+
+- (Script*)loadWhenScript:(GDataXMLElement*)gDataScript
+{
+    WhenScript *ret = [[WhenScript alloc] init];
     
     NSArray *brickList = [gDataScript elementsForName:@"brickList"];
     

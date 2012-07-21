@@ -31,4 +31,10 @@
     }
 }
 
+#pragma mark - Description
+- (NSString*)description
+{
+    return [NSString stringWithFormat:@"WhenScript => action: %d", self.action];
+}
+
 @end
