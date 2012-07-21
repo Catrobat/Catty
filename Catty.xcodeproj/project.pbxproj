@@ -76,6 +76,7 @@
 		B415DC3715B9F8540076275E /* Util.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Util.h; sourceTree = "<group>"; };
 		B415DC3815B9F8540076275E /* Util.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Util.m; sourceTree = "<group>"; };
 		B415DC3A15BAB86B0076275E /* defaultProject.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = defaultProject.xml; sourceTree = "<group>"; };
+		B415DC3E15BABB4F0076275E /* enums.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = enums.h; sourceTree = "<group>"; };
 		B4B4092F15B2E07900DCFAE5 /* XMLParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XMLParser.h; sourceTree = "<group>"; };
 		B4B4093015B2E07900DCFAE5 /* XMLParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMLParser.m; sourceTree = "<group>"; };
 		B4B4093315B2E0FD00DCFAE5 /* XMLAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XMLAppDelegate.h; sourceTree = "<group>"; };
@@ -224,6 +225,14 @@
 			name = Util;
 			sourceTree = "<group>";
 		};
+		B415DC3D15BABB420076275E /* Enums */ = {
+			isa = PBXGroup;
+			children = (
+				B415DC3E15BABB4F0076275E /* enums.h */,
+			);
+			name = Enums;
+			sourceTree = "<group>";
+		};
 		B4B4094315B2E87700DCFAE5 /* ParserTests */ = {
 			isa = PBXGroup;
 			children = (
@@ -313,6 +322,7 @@
 		B4FDF32815A82C1000CBCF03 /* Catty */ = {
 			isa = PBXGroup;
 			children = (
+				B415DC3D15BABB420076275E /* Enums */,
 				B415DC3615B9F8450076275E /* Util */,
 				B4FDF39915A8349900CBCF03 /* ViewController */,
 				B4FDF35F15A82CBF00CBCF03 /* XMLParser */,

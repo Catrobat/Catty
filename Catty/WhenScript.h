@@ -7,9 +7,10 @@
 //
 
 #import "Script.h"
+#import "enums.h"
 
 @interface WhenScript : Script
 
-@property (nonatomic) int action;   // TODO: change int to anything else...e.g. enum
+@property (nonatomic, assign) TouchAction action;
 
 @end

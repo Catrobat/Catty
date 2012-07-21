@@ -14,7 +14,7 @@
 
 - (NSString*)description
 {
-    return [[NSString alloc] initWithString:self.sprite.description];
+    return self.sprite.name;
 }
 
 //abstract method (!!!)

@@ -13,6 +13,14 @@
 
 @synthesize action = _action;
 
+- (id)init
+{
+    if (self = [super init])
+    {
+        self.action = 
+    }
+}
+
 - (void)execute
 {
     for (Brick *brick in self.bricksArray)
