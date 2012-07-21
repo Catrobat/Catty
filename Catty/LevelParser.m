@@ -199,7 +199,7 @@
         if([referencePath hasSuffix:@"]"]) //index found
         {
             NSString *indexString = [referencePath substringWithRange:NSMakeRange([referencePath length]-2, 1)];
-            ret.indexOfCostumeInArray = [NSNumber numberWithInt:indexString.intValue];
+            ret.indexOfCostumeInArray = [NSNumber numberWithInt:indexString.intValue-1];
         }
         else 
         {
