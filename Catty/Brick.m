@@ -14,7 +14,7 @@
 
 - (NSString*)description
 {
-    return self.sprite.name;
+    return @"Brick (NO SPECIFIC DESCRIPTION GIVEN! OVERRIDE THE DESCRIPTION METHOD!";
 }
 
 //abstract method (!!!)

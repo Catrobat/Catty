@@ -232,6 +232,51 @@
 			name = Enums;
 			sourceTree = "<group>";
 		};
+		B415DC3F15BAC5A20076275E /* Brick */ = {
+			isa = PBXGroup;
+			children = (
+				B4FDF38215A82F4D00CBCF03 /* Brick.h */,
+				B4FDF38315A82F4D00CBCF03 /* Brick.m */,
+			);
+			name = Brick;
+			sourceTree = "<group>";
+		};
+		B415DC4015BAC5AE0076275E /* WaitBrick */ = {
+			isa = PBXGroup;
+			children = (
+				B4FDF38415A82F4D00CBCF03 /* WaitBrick.h */,
+				B4FDF38515A82F4D00CBCF03 /* WaitBrick.m */,
+			);
+			name = WaitBrick;
+			sourceTree = "<group>";
+		};
+		B415DC4115BAC5B70076275E /* SetCostumeBrick */ = {
+			isa = PBXGroup;
+			children = (
+				B4FDF38615A82F4D00CBCF03 /* SetCostumeBrick.h */,
+				B4FDF38715A82F4D00CBCF03 /* SetCostumeBrick.m */,
+			);
+			name = SetCostumeBrick;
+			sourceTree = "<group>";
+		};
+		B415DC4215BAC5C00076275E /* PlaceAtBrick */ = {
+			isa = PBXGroup;
+			children = (
+				CD25FE1415B0642400719D12 /* PlaceAtBrick.h */,
+				CD25FE1515B0642400719D12 /* PlaceAtBrick.m */,
+			);
+			name = PlaceAtBrick;
+			sourceTree = "<group>";
+		};
+		B415DC4315BAC5C80076275E /* GlideToBrick */ = {
+			isa = PBXGroup;
+			children = (
+				CDE35DEB15B4892C009A3524 /* GlideToBrick.h */,
+				CDE35DEC15B4892D009A3524 /* GlideToBrick.m */,
+			);
+			name = GlideToBrick;
+			sourceTree = "<group>";
+		};
 		B4B4094315B2E87700DCFAE5 /* ParserTests */ = {
 			isa = PBXGroup;
 			children = (
@@ -458,16 +503,11 @@
 		B4FDF38115A82F3F00CBCF03 /* Bricks */ = {
 			isa = PBXGroup;
 			children = (
-				B4FDF38215A82F4D00CBCF03 /* Brick.h */,
-				B4FDF38315A82F4D00CBCF03 /* Brick.m */,
-				B4FDF38415A82F4D00CBCF03 /* WaitBrick.h */,
-				B4FDF38515A82F4D00CBCF03 /* WaitBrick.m */,
-				B4FDF38615A82F4D00CBCF03 /* SetCostumeBrick.h */,
-				B4FDF38715A82F4D00CBCF03 /* SetCostumeBrick.m */,
-				CD25FE1415B0642400719D12 /* PlaceAtBrick.h */,
-				CD25FE1515B0642400719D12 /* PlaceAtBrick.m */,
-				CDE35DEB15B4892C009A3524 /* GlideToBrick.h */,
-				CDE35DEC15B4892D009A3524 /* GlideToBrick.m */,
+				B415DC3F15BAC5A20076275E /* Brick */,
+				B415DC4015BAC5AE0076275E /* WaitBrick */,
+				B415DC4115BAC5B70076275E /* SetCostumeBrick */,
+				B415DC4215BAC5C00076275E /* PlaceAtBrick */,
+				B415DC4315BAC5C80076275E /* GlideToBrick */,
 			);
 			name = Bricks;
 			sourceTree = "<group>";

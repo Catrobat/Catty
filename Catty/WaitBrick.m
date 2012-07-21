@@ -14,7 +14,22 @@
 
 - (void)perform
 {
+    NSLog(@"Performing: %@", self.description);
     
+    float sleepTime = ((float)self.timeToWaitInMilliseconds.intValue)/1000;
+    NSLog(@"wating for %f seconds", sleepTime);
+    //NSLog(@"---- BEFORE SLEEP -----");
+    //usleep(self.timeToWaitInMilliseconds.intValue);
+    //usleep(5000);
+    [NSThread sleepForTimeInterval:sleepTime];
+    //NSLog(@"---- AFTER SLEEP ------");
+
+}
+
+#pragma mark - Description
+- (NSString*)description
+{
+    return [NSString stringWithFormat:@"WaitBrick (%d Milliseconds)", self.timeToWaitInMilliseconds.intValue];
 }
 
 @end

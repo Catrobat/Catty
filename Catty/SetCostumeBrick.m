@@ -15,8 +15,16 @@
 
 - (void)perform
 {
+    NSLog(@"Performing: %@", self.description);
+    
     [self.sprite performSelectorOnMainThread:@selector(setIndexOfCurrentCostumeInArray:) withObject:self.indexOfCostumeInArray waitUntilDone:YES];
-    //[self.sprite setIndexOfCurrentCostumeInArray:self.indexOfCostumeInArray];
+}
+
+
+#pragma mark - Description
+- (NSString*)description
+{
+    return [NSString stringWithFormat:@"SetCostumeBrick (CostumeIndex: %d)", self.indexOfCostumeInArray.intValue];
 }
 
 @end

@@ -10,6 +10,6 @@
 
 @interface WaitBrick : Brick
 
-@property (nonatomic, assign) NSNumber *timeToWaitInMilliseconds;
+@property (nonatomic, strong) NSNumber *timeToWaitInMilliseconds;
 
 @end

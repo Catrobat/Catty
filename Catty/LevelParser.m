@@ -161,24 +161,43 @@
     WhenScript *ret = [[WhenScript alloc] init];
     
     NSArray *brickList = [gDataScript elementsForName:@"brickList"];
+
+    
+    NSArray *childs = [[brickList objectAtIndex:0] children];
+    
+    for (GDataXMLElement *element in childs)
+    {
+        if ([element.name isEqualToString:@"Bricks.SetCostumeBrick"])
+        {
+            SetCostumeBrick *brick = [self loadSetCostumeBrick:element];
+            brick.sprite = self.newSprite;
+            [ret.bricksArray addObject:brick];
+        }
+        else if ([element.name isEqualToString:@"Bricks.WaitBrick"])
+        {
+            WaitBrick *brick = [self loadWaitBrick:element];
+            brick.sprite = self.newSprite;
+            [ret.bricksArray addObject:brick]; 
+        }
+    }
     
     //retrieving setCostumeBricks
-    NSArray *setCostumeBricks = [[brickList objectAtIndex:0] elementsForName:@"Bricks.SetCostumeBrick"];
-    for (GDataXMLElement *gDataSetCostumeBrick in setCostumeBricks)
-    {
-        SetCostumeBrick *brick = [self loadSetCostumeBrick:gDataSetCostumeBrick];
-        brick.sprite = self.newSprite;
-        [ret.bricksArray addObject:brick];
-    }
-    
-    //retrieving waitBricks
-    NSArray *waitBricks = [[brickList objectAtIndex:0] elementsForName:@"Bricks.WaitBrick"];
-    for (GDataXMLElement *gDataWaitBrick in waitBricks)
-    {
-        WaitBrick *brick = [self loadWaitBrick:gDataWaitBrick];
-        brick.sprite = self.newSprite;
-        [ret.bricksArray addObject:brick];
-    }
+//    NSArray *setCostumeBricks = [[brickList objectAtIndex:0] elementsForName:@"Bricks.SetCostumeBrick"];
+//    for (GDataXMLElement *gDataSetCostumeBrick in setCostumeBricks)
+//    {
+//        SetCostumeBrick *brick = [self loadSetCostumeBrick:gDataSetCostumeBrick];
+//        brick.sprite = self.newSprite;
+//        [ret.bricksArray addObject:brick];
+//    }
+//    
+//    //retrieving waitBricks
+//    NSArray *waitBricks = [[brickList objectAtIndex:0] elementsForName:@"Bricks.WaitBrick"];
+//    for (GDataXMLElement *gDataWaitBrick in waitBricks)
+//    {
+//        WaitBrick *brick = [self loadWaitBrick:gDataWaitBrick];
+//        brick.sprite = self.newSprite;
+//        [ret.bricksArray addObject:brick];
+//    }
     
     return ret;
 }
@@ -227,6 +246,7 @@
     NSArray *waitTimes = [gDataWaitBrick elementsForName:@"timeToWaitInMilliSeconds"];
     GDataXMLElement *temp = (GDataXMLElement*)[waitTimes objectAtIndex:0];
 
+    NSLog(@"timeToWait: %@, int: %d", temp.stringValue, temp.stringValue.intValue);
     ret.timeToWaitInMilliseconds = [NSNumber numberWithInt:temp.stringValue.intValue];
     
     return ret;
