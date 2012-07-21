@@ -70,6 +70,14 @@ typedef struct {
     return _costumesArray;
 }
 
+- (NSMutableArray*)soundsArray
+{
+    if (_soundsArray == nil)
+        _soundsArray = [[NSMutableArray alloc] init];
+    
+    return _soundsArray;
+}
+
 - (NSMutableArray*)startScriptsArray
 {
     if (_startScriptsArray == nil)

@@ -17,6 +17,7 @@
 #import "WaitBrick.h"
 #import "StartScript.h"
 #import "WhenScript.h"
+#import "Sound.h"
 
 @interface LevelParser()
 
@@ -57,6 +58,12 @@
         
         //retrieving all sounds
         NSArray *soundList = [gDataSprite elementsForName:@"soundList"];
+        NSArray *sounds = [[soundList objectAtIndex:0] elementsForName:@"Common.SoundInfo"];
+        for (GDataXMLElement *gDataSound in sounds)
+        {
+            Sound *sound = [self loadSound:gDataSound];
+            [self.newSprite.soundsArray addObject:sound];
+        }
         //todo... use sound...
         //for each..
         //add sound to sprite
@@ -131,6 +138,18 @@
     ret.costumeName = temp.stringValue;
     
     return ret;
+}
+
+- (Sound*)loadSound:(GDataXMLElement*)gDataSound //todo
+{
+//    Sound *ret = [[Sound alloc] init];
+//    
+//    NSArray *soundInfo = [gDataSound elementsForName:@"Common.SoundInfo"];
+//    GDataXMLNode *temp = [(GDataXMLElement*)[soundInfo objectAtIndex:0]attributeForName:@"reference"];
+//    NSString *referencePath = temp.stringValue; 
+//    ret.
+//    
+//    return ret;
 }
 
 - (Script*)loadStartScript:(GDataXMLElement*)gDataScript
