@@ -143,7 +143,7 @@ typedef struct {
 //    
     
     
-    NSString *pathToImage = [NSString stringWithFormat:@"%@/defaultProject/images/%@", [Util applicationDocumentsDirectory], fileName];
+    NSString *pathToImage = [NSString stringWithFormat:@"%@/Nyan_Cat/images/%@", [Util applicationDocumentsDirectory], fileName];
    // NSLog(@"path: %@", pathToImage);
     self.textureInfo = [GLKTextureLoader textureWithContentsOfFile:pathToImage options:options error:&error];
     if (self.textureInfo == nil) 

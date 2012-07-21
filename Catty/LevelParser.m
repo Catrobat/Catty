@@ -118,11 +118,15 @@
 {
     Costume *ret = [[Costume alloc] init];
     
-    NSArray *costumeFileNames = [gDataCostume elementsForName:@"costumeFileName"];
+    //NSArray *costumeFileNames = [gDataCostume elementsForName:@"costumeFileName"]; //old xml version
+    NSArray *costumeFileNames = [gDataCostume elementsForName:@"fileName"];
+
     GDataXMLElement *temp = (GDataXMLElement*)[costumeFileNames objectAtIndex:0];
     ret.costumeFileName = temp.stringValue;
     
-    NSArray *costumeNames = [gDataCostume elementsForName:@"costumeName"];
+    //NSArray *costumeNames = [gDataCostume elementsForName:@"costumeName"];
+    NSArray *costumeNames = [gDataCostume elementsForName:@"name"];
+
     temp = (GDataXMLElement*)[costumeNames objectAtIndex:0];
     ret.costumeName = temp.stringValue;
     
