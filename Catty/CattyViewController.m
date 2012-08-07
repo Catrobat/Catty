@@ -108,8 +108,8 @@
     //self.sprite = [[Sprite alloc] initWithCostume:newCostume1 effect:self.effect];
 
     //loading real project
-//    NSString *fileName = @"defaultProject";
-    NSString *fileName = @"projectcode";
+    NSString *fileName = @"defaultProject";
+    //NSString *fileName = @"projectcode";
 
     NSBundle *bundle = [NSBundle bundleForClass:[self class]];
     NSString *path = [bundle pathForResource:fileName ofType:@"xml"];

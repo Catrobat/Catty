@@ -54,6 +54,7 @@
 		B4FDF39215A82FD100CBCF03 /* ceshirecat.png in Resources */ = {isa = PBXBuildFile; fileRef = B4FDF38F15A82FD100CBCF03 /* ceshirecat.png */; };
 		B4FDF39315A82FD100CBCF03 /* normalcat.png in Resources */ = {isa = PBXBuildFile; fileRef = B4FDF39015A82FD100CBCF03 /* normalcat.png */; };
 		B4FDF39615A833DA00CBCF03 /* catty_icon_retina.png in Resources */ = {isa = PBXBuildFile; fileRef = B4FDF39515A833DA00CBCF03 /* catty_icon_retina.png */; };
+		B4FF5A7A15BD2B4200ED10A8 /* defaultProject in Resources */ = {isa = PBXBuildFile; fileRef = B4FF5A7915BD2B4200ED10A8 /* defaultProject */; };
 		CD25FE1615B0642400719D12 /* PlaceAtBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = CD25FE1515B0642400719D12 /* PlaceAtBrick.m */; };
 		CDE35DED15B4892D009A3524 /* GlideToBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = CDE35DEC15B4892D009A3524 /* GlideToBrick.m */; };
 /* End PBXBuildFile section */
@@ -140,6 +141,7 @@
 		B4FDF38F15A82FD100CBCF03 /* ceshirecat.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ceshirecat.png; sourceTree = "<group>"; };
 		B4FDF39015A82FD100CBCF03 /* normalcat.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = normalcat.png; sourceTree = "<group>"; };
 		B4FDF39515A833DA00CBCF03 /* catty_icon_retina.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = catty_icon_retina.png; path = ../catty_icon_retina.png; sourceTree = "<group>"; };
+		B4FF5A7915BD2B4200ED10A8 /* defaultProject */ = {isa = PBXFileReference; lastKnownFileType = folder; name = defaultProject; path = "../../../University/MasterProject/Catroid Projects/defaultProject"; sourceTree = "<group>"; };
 		CD25FE1415B0642400719D12 /* PlaceAtBrick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlaceAtBrick.h; sourceTree = "<group>"; };
 		CD25FE1515B0642400719D12 /* PlaceAtBrick.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlaceAtBrick.m; sourceTree = "<group>"; };
 		CDE35DEB15B4892C009A3524 /* GlideToBrick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GlideToBrick.h; sourceTree = "<group>"; };
@@ -519,6 +521,7 @@
 		B4FDF38C15A82FB200CBCF03 /* TEMP */ = {
 			isa = PBXGroup;
 			children = (
+				B4FF5A7915BD2B4200ED10A8 /* defaultProject */,
 				B4FDF38D15A82FB800CBCF03 /* Costumes */,
 			);
 			name = TEMP;
@@ -647,6 +650,7 @@
 				B4FDF39615A833DA00CBCF03 /* catty_icon_retina.png in Resources */,
 				B415DC3B15BAB86B0076275E /* defaultProject.xml in Resources */,
 				B415DC4515BAE3CF0076275E /* projectcode.xml in Resources */,
+				B4FF5A7A15BD2B4200ED10A8 /* defaultProject in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -46,19 +46,6 @@
          shouldBeEnabled = "No"
          ignoreCount = "0"
          continueAfterRunningActions = "No"
-         filePath = "Catty/Sprite.m"
-         timestampString = "364565375.398585"
-         startingColumnNumber = "9223372036854775807"
-         endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "146"
-         endingLineNumber = "146"
-         landmarkName = "-setIndexOfCurrentCostumeInArray:"
-         landmarkType = "5">
-      </FileBreakpoint>
-      <FileBreakpoint
-         shouldBeEnabled = "No"
-         ignoreCount = "0"
-         continueAfterRunningActions = "No"
          filePath = "Catty/WhenScript.m"
          timestampString = "364562808.504234"
          startingColumnNumber = "9223372036854775807"
@@ -79,6 +66,19 @@
          startingLineNumber = "50"
          endingLineNumber = "50"
          landmarkName = "-loadLevel:"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "Catty/Sprite.m"
+         timestampString = "364719138.847526"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "154"
+         endingLineNumber = "154"
+         landmarkName = "-setIndexOfCurrentCostumeInArray:"
          landmarkType = "5">
       </FileBreakpoint>
    </FileBreakpoints>

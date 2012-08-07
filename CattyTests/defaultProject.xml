@@ -27,15 +27,15 @@
     <Content.Sprite>
       <costumeDataList>
         <Common.CostumeData>
-          <costumeFileName>AA9BAFA3EBC639EE18DF463A213A4306_normalCat</costumeFileName>
+          <costumeFileName>normalcat.png</costumeFileName>
           <costumeName>normalCat</costumeName>
         </Common.CostumeData>
         <Common.CostumeData>
-          <costumeFileName>7E6DACE75DE88FAB254AE3C943957760_banzaiCat</costumeFileName>
+          <costumeFileName>banzaicat.png</costumeFileName>
           <costumeName>banzaiCat</costumeName>
         </Common.CostumeData>
         <Common.CostumeData>
-          <costumeFileName>E8BDA23E6BE8B7A2DC73572A38745E22_cheshireCat</costumeFileName>
+          <costumeFileName>cheshirecat.png</costumeFileName>
           <costumeName>cheshireCat</costumeName>
         </Common.CostumeData>
       </costumeDataList>
