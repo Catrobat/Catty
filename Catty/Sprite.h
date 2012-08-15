@@ -22,7 +22,7 @@
 @property (assign) GLKVector3 position;
 @property (assign) CGSize contentSize;
 @property (nonatomic, strong) GLKBaseEffect *effect;
-@property (nonatomic) NSNumber *indexOfCurrentCostumeInArray;
+@property (strong, nonatomic) NSNumber *indexOfCurrentCostumeInArray;
 
 - (id)initWithEffect:(GLKBaseEffect*)effect;
 - (void)render;
@@ -32,6 +32,7 @@
 - (void)touch:(TouchAction)type;
 
 - (void)glideToPosition:(GLKVector3)position withinDurationInMilliSecs:(int)durationInMilliSecs;
+
 
 
 @end

@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<Content.Project>
+  <versionName>0.5.241</versionName>
+  <spriteList>
+    <Content.Sprite>
+      <costumeDataList>
+        <Common.CostumeData>
+          <costumeFileName>CCE87ECA859D4448BC47A837CF024464_background</costumeFileName>
+          <costumeName>background</costumeName>
+        </Common.CostumeData>
+      </costumeDataList>
+      <soundList/>
+      <scriptList>
+        <Content.StartScript>
+          <brickList>
+            <Bricks.SetCostumeBrick>
+              <costumeData reference="../../../../../costumeDataList/Common.CostumeData"/>
+              <sprite reference="../../../../.."/>
+            </Bricks.SetCostumeBrick>
+          </brickList>
+          <sprite reference="../../.."/>
+          <name>stageStartScript</name>
+        </Content.StartScript>
+      </scriptList>
+      <name>Background</name>
+    </Content.Sprite>
+    <Content.Sprite>
+      <costumeDataList>
+        <Common.CostumeData>
+          <costumeFileName>AA9BAFA3EBC639EE18DF463A213A4306_normalCat</costumeFileName>
+          <costumeName>normalCat</costumeName>
+        </Common.CostumeData>
+        <Common.CostumeData>
+          <costumeFileName>7E6DACE75DE88FAB254AE3C943957760_banzaiCat</costumeFileName>
+          <costumeName>banzaiCat</costumeName>
+        </Common.CostumeData>
+        <Common.CostumeData>
+          <costumeFileName>E8BDA23E6BE8B7A2DC73572A38745E22_cheshireCat</costumeFileName>
+          <costumeName>cheshireCat</costumeName>
+        </Common.CostumeData>
+      </costumeDataList>
+      <soundList/>
+      <scriptList>
+        <Content.StartScript>
+          <brickList>
+            <Bricks.SetCostumeBrick>
+              <costumeData reference="../../../../../costumeDataList/Common.CostumeData"/>
+              <sprite reference="../../../../.."/>
+            </Bricks.SetCostumeBrick>
+          </brickList>
+          <sprite reference="../../.."/>
+          <name>startScript</name>
+        </Content.StartScript>
+        <Content.WhenScript>
+          <brickList>
+            <Bricks.SetCostumeBrick>
+              <costumeData reference="../../../../../costumeDataList/Common.CostumeData[2]"/>
+              <sprite reference="../../../../.."/>
+            </Bricks.SetCostumeBrick>
+            <Bricks.WaitBrick>
+              <sprite reference="../../../../.."/>
+              <timeToWaitInMilliSeconds>500</timeToWaitInMilliSeconds>
+            </Bricks.WaitBrick>
+            <Bricks.SetCostumeBrick>
+              <costumeData reference="../../../../../costumeDataList/Common.CostumeData[3]"/>
+              <sprite reference="../../../../.."/>
+            </Bricks.SetCostumeBrick>
+            <Bricks.WaitBrick>
+              <sprite reference="../../../../.."/>
+              <timeToWaitInMilliSeconds>500</timeToWaitInMilliSeconds>
+            </Bricks.WaitBrick>
+            <Bricks.SetCostumeBrick>
+              <costumeData reference="../../../../../costumeDataList/Common.CostumeData"/>
+              <sprite reference="../../../../.."/>
+            </Bricks.SetCostumeBrick>
+          </brickList>
+          <sprite reference="../../.."/>
+          <name>whenScript</name>
+          <action>Tapped</action>
+          <position>0</position>
+        </Content.WhenScript>
+      </scriptList>
+      <name>Catroid</name>
+    </Content.Sprite>
+  </spriteList>
+  <deviceName>HTC Desire S</deviceName>
+  <name>defaultProject</name>
+  <screenResolution>480/800</screenResolution>
+  <versionCode>241</versionCode>
+</Content.Project>
