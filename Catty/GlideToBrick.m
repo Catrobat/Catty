@@ -29,9 +29,9 @@
 }
 
 #pragma mark - override
--(void)perform
+-(void)performOnSprite:(Sprite *)sprite
 {
-    [self.sprite glideToPosition:self.position withinDurationInMilliSecs:_durationInMilliSecs];
+    [sprite glideToPosition:self.position withinDurationInMilliSecs:_durationInMilliSecs];
 }
 
 @end

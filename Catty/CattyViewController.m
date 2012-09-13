@@ -159,29 +159,30 @@
         for (StartScript *script in sprite.startScriptsArray)
         {
             NSLog(@"run start script");
-            [self runScript:script];
+            //[self runScript:script];
+            [script executeForSprite:sprite];
         }
     }
  
 }
 
-- (void)runScript:(Script*)script
-{
-    for (Brick *brick in script.bricksArray) 
-    {
-        if ([brick isMemberOfClass:[SetCostumeBrick class]]) 
-        {
-            
-            NSLog(@"run SetCostumeBrick of sprite <%@>", brick.sprite.name);
-            
-            
-            SetCostumeBrick *setCostumeBrick = (SetCostumeBrick*)brick;
-            
-            brick.sprite.indexOfCurrentCostumeInArray = setCostumeBrick.indexOfCostumeInArray;
-            
-        }// else if (brick == anotherBrickClass)... and so on...
-    }
-}
+//- (void)runScript:(Script*)script
+//{
+//    for (Brick *brick in script.bricksArray) 
+//    {
+//        if ([brick isMemberOfClass:[SetCostumeBrick class]]) 
+//        {
+//            
+////            NSLog(@"run SetCostumeBrick of sprite <%@>", brick.sprite.name);
+//            
+//            
+//            SetCostumeBrick *setCostumeBrick = (SetCostumeBrick*)brick;
+//            
+////            brick.sprite.indexOfCurrentCostumeInArray = setCostumeBrick.indexOfCostumeInArray;
+//            
+//        }// else if (brick == anotherBrickClass)... and so on...
+//    }
+//}
 
 #pragma mark - GLKViewDelegate
 - (void)glkView:(GLKView *)view drawInRect:(CGRect)rect {    

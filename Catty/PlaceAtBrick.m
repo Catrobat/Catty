@@ -24,10 +24,10 @@
 }
 
 #pragma mark - override
--(void)perform
+-(void)performOnSprite:(Sprite *)sprite
 {
-    NSLog(@"Set positino of sprite %@ to %f / % f / %f", self.sprite.name, self.position.x, self.position.y, self.position.z);
-    self.sprite.position = self.position;
+    NSLog(@"Set positino of sprite %@ to %f / % f / %f", sprite.name, self.position.x, self.position.y, self.position.z);
+    sprite.position = self.position;
 }
 
 @end

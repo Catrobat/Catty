@@ -60,7 +60,7 @@
     //setcostume brick for background at startup
     SetCostumeBrick *newBrick = [[SetCostumeBrick alloc]init];
     newBrick.indexOfCostumeInArray = 0;
-    newBrick.sprite = sprite1;
+//    newBrick.sprite = sprite1;
     newScript.bricksArray = [[NSArray alloc]initWithObjects:newBrick, nil];
     
     //check if its a startup script or a when script
@@ -87,7 +87,7 @@
     //creating cat brick
     newBrick = [[SetCostumeBrick alloc]init];
     newBrick.indexOfCostumeInArray = 0;
-    newBrick.sprite = sprite2;
+//    newBrick.sprite = sprite2;
     newStartScript.bricksArray = [[NSMutableArray alloc]initWithObjects:newBrick, nil];
     
     //creating new when script for cat (change costume on click and change position)
@@ -95,11 +95,11 @@
     newWhenScript.action = 0;
     newBrick = [[SetCostumeBrick alloc]init];
     newBrick.indexOfCostumeInArray = [NSNumber numberWithInt:1];
-    newBrick.sprite = sprite2;
+//    newBrick.sprite = sprite2;
     Brick *placeAtBrick = [[PlaceAtBrick alloc]initWithPosition:GLKVector3Make(50, 50, self.zIndex)];
-    placeAtBrick.sprite = sprite2;
+//    placeAtBrick.sprite = sprite2;
     Brick *glideToBrick = [[GlideToBrick alloc]initWithPosition:GLKVector3Make(100, 100, self.zIndex) andDurationInMilliSecs:1000];
-    glideToBrick.sprite = sprite2;
+//    glideToBrick.sprite = sprite2;
     NSMutableArray *tmpMutableArray = [[NSMutableArray alloc]init];
     [tmpMutableArray addObject:newBrick];
     [tmpMutableArray addObject:placeAtBrick];

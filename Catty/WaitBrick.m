@@ -12,7 +12,7 @@
 
 @synthesize timeToWaitInMilliseconds = _timeToWaitInMilliseconds;
 
-- (void)perform
+- (void)performOnSprite:(Sprite *)sprite
 {
     NSLog(@"Performing: %@", self.description);
     

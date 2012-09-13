@@ -23,11 +23,11 @@
     return self;
 }
 
-- (void)execute
+- (void)executeForSprite:(Sprite*)sprite
 {
     for (Brick *brick in self.bricksArray)
     {
-        [brick perform];
+        [brick performOnSprite:sprite];
     }
 }
 

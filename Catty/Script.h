@@ -7,12 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Sprite.h"
 
 @interface Script : NSObject
 
 @property (strong, nonatomic) NSMutableArray *bricksArray;
 
 - (NSString*)description;
-- (void)execute;
+- (void)executeForSprite:(Sprite*)sprite;
 
 @end

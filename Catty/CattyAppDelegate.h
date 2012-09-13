@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "GDataXMLNode.h"
+#import <GLKit/GLKit.h>
 
 @interface CattyAppDelegate : UIResponder <UIApplicationDelegate>
 

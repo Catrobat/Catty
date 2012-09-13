@@ -11,9 +11,9 @@
 
 @interface Brick : NSObject
 
-@property (strong, nonatomic) Sprite *sprite;
+//@property (strong, nonatomic) Sprite *sprite;
 
 - (NSString*)description;
-- (void)perform;
+- (void)performOnSprite:(Sprite*)sprite;
 
 @end
