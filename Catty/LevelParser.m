@@ -53,7 +53,8 @@
         for (GDataXMLElement *gDataCostume in costumes)
         {
             Costume *costume = [self loadCostume:gDataCostume];
-            [self.newSprite.costumesArray addObject:costume];
+//            [self.newSprite.costumesArray addObject:costume];
+            [self.newSprite addCostume:costume];
         }
         
         //retrieving all sounds
@@ -62,7 +63,8 @@
         for (GDataXMLElement *gDataSound in sounds)
         {
             Sound *sound = [self loadSound:gDataSound];
-            [self.newSprite.soundsArray addObject:sound];
+//            [self.newSprite.soundsArray addObject:sound];
+            [self.newSprite addSound:sound];
         }
         //todo... use sound...
         //for each..
@@ -76,7 +78,8 @@
         for (GDataXMLElement *gDataScript in scripts)
         {
             Script *newScript = [self loadStartScript:gDataScript];
-            [self.newSprite.startScriptsArray addObject:newScript];
+//            [self.newSprite.startScriptsArray addObject:newScript];
+            [self.newSprite addStartScript:newScript];
             //[self.newSprite addStartScript:newScript];
         }
         
@@ -85,7 +88,8 @@
         for (GDataXMLElement *gDataScript in scripts)
         {
             Script *newScript = [self loadWhenScript:gDataScript];
-            [self.newSprite.whenScriptsArray addObject:newScript];
+//            [self.newSprite.whenScriptsArray addObject:newScript];
+            [self.newSprite addWhenScript:newScript];
             //[self.newSprite addWhenScript:newScript];
         }
         

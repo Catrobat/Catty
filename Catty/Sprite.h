@@ -11,25 +11,41 @@
 
 @class Costume;
 @class Script;
+@class Sound;
+@class StartScript;
+@class WhenScript;
 
 @interface Sprite : NSObject
 
 @property (strong, nonatomic) NSString *name;
-@property (strong, nonatomic) NSMutableArray *costumesArray;
-@property (strong, nonatomic) NSMutableArray *soundsArray;
-@property (strong, nonatomic) NSMutableArray *startScriptsArray;
-@property (strong, nonatomic) NSMutableArray *whenScriptsArray;
+@property (readonly, strong, nonatomic) NSArray *costumesArray;
+@property (readonly, strong, nonatomic) NSArray *soundsArray;
+@property (readonly, strong, nonatomic) NSArray *startScriptsArray;
+@property (readonly, strong, nonatomic) NSArray *whenScriptsArray;
 @property (assign) GLKVector3 position;
 @property (assign) CGSize contentSize;
 @property (nonatomic, strong) GLKBaseEffect *effect;
 
+// init, add
 - (id)initWithEffect:(GLKBaseEffect*)effect;
+- (void)addCostume:(Costume*)costume;
+- (void)addCostumes:(NSArray*)costumesArray;
+- (void)addSound:(Sound*)sound;
+- (void)addStartScript:(StartScript*)script;
+- (void)addWhenScript:(WhenScript*)script;
+
+// graphics
 - (void)render;
+
+// other stuff
 - (NSString*)description;
+
+// events
 - (CGRect)boundingBox;
 - (void)start;
 - (void)touch:(TouchAction)type;
 
+// actions
 - (void)changeCostume:(NSNumber*)indexOfCostumeInArray;
 - (void)glideToPosition:(GLKVector3)position withinDurationInMilliSecs:(int)durationInMilliSecs;
 

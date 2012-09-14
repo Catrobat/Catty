@@ -65,11 +65,12 @@
     
     //check if its a startup script or a when script
     if ([newScript isMemberOfClass:[StartScript class]])
-        [sprite1.startScriptsArray addObject:newScript];
+//        [sprite1.startScriptsArray addObject:newScript];
+        [sprite1 addStartScript:newScript];
         //[startScriptsMutable addObject:newScript];
     else if ([newScript isMemberOfClass:[WhenScript class]])
-        [sprite1.whenScriptsArray addObject:newScript];
-                
+//        [sprite1.whenScriptsArray addObject:newScript];
+        [sprite1 addWhenScript:newScript];
         //[whenScriptsMutable addObject:newScript];
     
     
@@ -112,8 +113,10 @@
     //[startScriptsMutable addObject:newStartScript];
     //[whenScriptsMutable addObject:newWhenScript];
 
-    [sprite2.startScriptsArray addObject:newStartScript];
-    [sprite2.whenScriptsArray addObject:newWhenScript];
+//    [sprite2.startScriptsArray addObject:newStartScript];
+//    [sprite2.whenScriptsArray addObject:newWhenScript];
+    [sprite2 addStartScript:newStartScript];
+    [sprite2 addWhenScript:newWhenScript];
     
     //adding sprites to level
     level.spritesArray = [[NSMutableArray alloc] initWithObjects: sprite1, sprite2, nil];
@@ -153,7 +156,8 @@
     Sprite *ret = [[Sprite alloc] initWithEffect:self.effect];
     ret.name = name;
     ret.position = GLKVector3Make(x, y, self.zIndex++);
-    ret.costumesArray = costumesArray;
+//    ret.costumesArray = costumesArray;
+    [ret addCostumes:costumesArray];
     [ret changeCostume:[NSNumber numberWithInt:index]];
     
     return ret;

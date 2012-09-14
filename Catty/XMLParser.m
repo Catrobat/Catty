@@ -75,16 +75,17 @@
             break;
         case kContentSprite:
             self.currentSprite = [[Sprite alloc] init];
-            self.currentSprite.startScriptsArray = [[NSMutableArray alloc] init];
-            self.currentSprite.whenScriptsArray = [[NSMutableArray alloc] init];
-            self.currentSprite.costumesArray = [[NSMutableArray alloc] init];
+//            self.currentSprite.startScriptsArray = [[NSMutableArray alloc] init];
+//            self.currentSprite.whenScriptsArray = [[NSMutableArray alloc] init];
+//            self.currentSprite.costumesArray = [[NSMutableArray alloc] init];
             [self.level.spritesArray addObject:self.currentSprite]; //dunno
             break;
         case kCostumeDataList:
             break;
         case kCommonCostumeData:
             self.currentCostume = [[Costume alloc] init];
-            [self.currentSprite.costumesArray addObject:self.currentCostume]; //dunno
+//            [self.currentSprite.costumesArray addObject:self.currentCostume]; //dunno
+            [self.currentSprite addCostume:self.currentCostume];
             break;
         case kSoundList:
             //todo...
@@ -94,7 +95,8 @@
         case kContentStartScript:
             self.currentScript = [[StartScript alloc] init];
             self.currentScript.bricksArray = [[NSMutableArray alloc] init];
-            [self.currentSprite.startScriptsArray addObject:self.currentScript]; //dunno
+//            [self.currentSprite.startScriptsArray addObject:self.currentScript]; //dunno
+            [self.currentSprite addStartScript:self.currentScript];
             break;
         case kBrickList:
             break;
@@ -109,7 +111,8 @@
         case kContentWhenScript:
             self.currentScript = [[WhenScript alloc] init];
             self.currentScript.bricksArray = [[NSMutableArray alloc] init];
-            [self.currentSprite.whenScriptsArray addObject:self.currentScript]; //dunno
+//            [self.currentSprite.whenScriptsArray addObject:self.currentScript]; //dunno
+            [self.currentSprite addWhenScript:self.currentScript];
             break;
     }
     

@@ -42,6 +42,12 @@ typedef struct {
 @property (atomic, strong) NSMutableArray *nextPositions;
 @property (strong, nonatomic) NSNumber *indexOfCurrentCostumeInArray;
 
+@property (strong, nonatomic) NSArray *costumesArray;    // tell the compiler: "I want a private setter"
+@property (strong, nonatomic) NSArray *soundsArray;
+@property (strong, nonatomic) NSArray *startScriptsArray;
+@property (strong, nonatomic) NSArray *whenScriptsArray;
+
+
 
 @end
 
@@ -65,34 +71,34 @@ typedef struct {
 
 
 #pragma mark Custom getter and setter
-- (NSMutableArray*)costumesArray
+- (NSArray*)costumesArray
 {
     if (_costumesArray == nil)
-        _costumesArray = [[NSMutableArray alloc] init];
+        _costumesArray = [[NSArray alloc] init];
 
     return _costumesArray;
 }
 
-- (NSMutableArray*)soundsArray
+- (NSArray*)soundsArray
 {
     if (_soundsArray == nil)
-        _soundsArray = [[NSMutableArray alloc] init];
+        _soundsArray = [[NSArray alloc] init];
     
     return _soundsArray;
 }
 
-- (NSMutableArray*)startScriptsArray
+- (NSArray*)startScriptsArray
 {
     if (_startScriptsArray == nil)
-        _startScriptsArray = [[NSMutableArray alloc] init];
+        _startScriptsArray = [[NSArray alloc] init];
     
     return _startScriptsArray;
 }
 
-- (NSMutableArray*)whenScriptsArray
+- (NSArray*)whenScriptsArray
 {
     if (_whenScriptsArray == nil)
-        _whenScriptsArray = [[NSMutableArray alloc] init];
+        _whenScriptsArray = [[NSArray alloc] init];
     
     return _whenScriptsArray;
 }
@@ -117,8 +123,33 @@ typedef struct {
     return self;
 }
 
+- (void)addCostume:(Costume *)costume
+{
+    self.costumesArray = [self.costumesArray arrayByAddingObject:costume];
+}
 
-#pragma mark - costume index
+- (void)addCostumes:(NSArray *)costumesArray
+{
+    self.costumesArray = [self.costumesArray arrayByAddingObjectsFromArray:costumesArray];
+}
+
+- (void)addSound:(Sound *)sound
+{
+    self.soundsArray = [self.soundsArray arrayByAddingObject:sound];
+}
+
+- (void)addStartScript:(StartScript *)script
+{
+    self.startScriptsArray = [self.startScriptsArray arrayByAddingObject:script];
+}
+
+- (void)addWhenScript:(WhenScript *)script
+{
+    self.whenScriptsArray = [self.whenScriptsArray arrayByAddingObject:script];
+}
+
+
+#pragma mark - costume index SETTER
 - (void)setIndexOfCurrentCostumeInArray:(NSNumber*)indexOfCurrentCostumeInArray
 {
     _indexOfCurrentCostumeInArray = indexOfCurrentCostumeInArray;
