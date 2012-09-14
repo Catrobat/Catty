@@ -154,7 +154,7 @@
     ret.name = name;
     ret.position = GLKVector3Make(x, y, self.zIndex++);
     ret.costumesArray = costumesArray;
-    [ret setIndexOfCurrentCostumeInArray:[NSNumber numberWithInt:index]]; 
+    [ret changeCostume:[NSNumber numberWithInt:index]];
     
     return ret;
 }

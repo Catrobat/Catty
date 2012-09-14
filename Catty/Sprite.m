@@ -40,6 +40,8 @@ typedef struct {
 @property (nonatomic, strong) GLKTextureInfo *textureInfo;
 
 @property (atomic, strong) NSMutableArray *nextPositions;
+@property (strong, nonatomic) NSNumber *indexOfCurrentCostumeInArray;
+
 
 @end
 
@@ -53,13 +55,14 @@ typedef struct {
 @synthesize whenScriptsArray = _whenScriptsArray;
 @synthesize position = _position;
 @synthesize contentSize = _contentSize;
-@synthesize indexOfCurrentCostumeInArray = _indexOfCurrentCostumeInArray;
 @synthesize effect = _effect;
 
 // private synthesizes
 @synthesize quad = _quad;
 @synthesize textureInfo = _textureInfo;
 @synthesize nextPositions = _nextPositions;
+@synthesize indexOfCurrentCostumeInArray = _indexOfCurrentCostumeInArray;
+
 
 #pragma mark Custom getter and setter
 - (NSMutableArray*)costumesArray
@@ -229,6 +232,11 @@ typedef struct {
     glVertexAttribPointer(GLKVertexAttribTexCoord0, 2, GL_FLOAT, GL_FALSE, sizeof(TexturedVertex), (void *) (offset + offsetof(TexturedVertex, textureVertex)));
     
     glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
+}
+
+- (void)changeCostume:(NSNumber *)indexOfCostumeInArray
+{
+    self.indexOfCurrentCostumeInArray = indexOfCostumeInArray;
 }
 
 #pragma mark - glideToPosition
