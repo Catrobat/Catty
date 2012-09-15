@@ -22,7 +22,6 @@
 @property (readonly, strong, nonatomic) NSArray *soundsArray;
 @property (readonly, strong, nonatomic) NSArray *startScriptsArray;
 @property (readonly, strong, nonatomic) NSArray *whenScriptsArray;
-@property (assign) GLKVector3 position;
 @property (assign) CGSize contentSize;
 @property (nonatomic, strong) GLKBaseEffect *effect;
 
@@ -33,6 +32,8 @@
 - (void)addSound:(Sound*)sound;
 - (void)addStartScript:(StartScript*)script;
 - (void)addWhenScript:(WhenScript*)script;
+
+- (float)getZIndex;
 
 // graphics
 - (void)render;
@@ -46,6 +47,7 @@
 - (void)touch:(TouchAction)type;
 
 // actions
+- (void)placeAt:(GLKVector3)newPosition;    //origin is in the middle of the sprite
 - (void)changeCostume:(NSNumber*)indexOfCostumeInArray;
 - (void)glideToPosition:(GLKVector3)position withinDurationInMilliSecs:(int)durationInMilliSecs;
 

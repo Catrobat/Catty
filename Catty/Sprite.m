@@ -39,6 +39,9 @@ typedef struct {
 @property (assign) TexturedQuad quad;
 @property (nonatomic, strong) GLKTextureInfo *textureInfo;
 
+@property (assign) GLKVector3 position;        // "Real" position - origin is bottom-left
+
+
 @property (atomic, strong) NSMutableArray *nextPositions;
 @property (strong, nonatomic) NSNumber *indexOfCurrentCostumeInArray;
 
@@ -148,6 +151,10 @@ typedef struct {
     self.whenScriptsArray = [self.whenScriptsArray arrayByAddingObject:script];
 }
 
+- (float)getZIndex
+{
+    return self.position.z;
+}
 
 #pragma mark - costume index SETTER
 - (void)setIndexOfCurrentCostumeInArray:(NSNumber*)indexOfCurrentCostumeInArray
@@ -265,17 +272,24 @@ typedef struct {
     glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
 }
 
-- (void)changeCostume:(NSNumber *)indexOfCostumeInArray
+
+
+#pragma mark - actions
+-(void)placeAt:(GLKVector3)newPosition
 {
-    self.indexOfCurrentCostumeInArray = indexOfCostumeInArray;
+    NSLog(@"=====> %f %f", newPosition.x, newPosition.y);
+    self.position = GLKVector3Add(newPosition, GLKVector3Make(320/2, 460/2, 0));    // TODO: change constant values
+    self.position = GLKVector3Subtract(self.position, GLKVector3Make(self.textureInfo.width/2, self.textureInfo.height/2, 0));
 }
 
-#pragma mark - glideToPosition
 - (void)glideToPosition:(GLKVector3)position withinDurationInMilliSecs:(int)durationInMilliSecs
 {
     // yes, it's an integer-cast
     int number_of_frames = FRAMES_PER_SECOND / 1000.0f * durationInMilliSecs;
     
+    position = GLKVector3Add(position, GLKVector3Make(320/2, 460/2, 0));    // TODO: change constant values
+    position = GLKVector3Subtract(position, GLKVector3Make(self.textureInfo.width/2, self.textureInfo.height/2, 0));
+
     
     if (self.nextPositions == nil)
         self.nextPositions = [[NSMutableArray alloc]initWithCapacity:number_of_frames];
@@ -299,6 +313,11 @@ typedef struct {
     [self.nextPositions addObject:[NSValue valueWithBytes:&position objCType:@encode(GLKVector3)]];   // ensure, that final position is defined position
     // TODO: really...CHANGE IT!!!!!
     ////////////////////////////////////////////////////////////////////
+}
+
+- (void)changeCostume:(NSNumber *)indexOfCostumeInArray
+{
+    self.indexOfCurrentCostumeInArray = indexOfCostumeInArray;
 }
 
 #pragma mark - description

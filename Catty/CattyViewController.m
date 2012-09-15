@@ -18,7 +18,7 @@
 
 //debug
 #import "Costume.h"
-
+#import "TestParser.h"
 
 
 
@@ -116,6 +116,13 @@
     
     RetailParser *parser = [[RetailParser alloc] init];
     self.level = [parser generateObjectForLevel:path];
+    
+    
+    // DEBUG
+    
+    TestParser *testparser = [[TestParser alloc]init];
+    self.level = [testparser generateDebugLevel_GlideTo];
+    // DEBUG END
     
     //setting effect
     for (Sprite *sprite in self.level.spritesArray)
@@ -252,9 +259,9 @@
 //              tapRect.size.width, 
 //              tapRect.size.height);
         
-        if(CGRectIntersectsRect(sprite.boundingBox, tapRect) && sprite.position.z >= zIndex)
+        if(CGRectIntersectsRect(sprite.boundingBox, tapRect) && [sprite getZIndex] >= zIndex)
         {
-            zIndex = sprite.position.z;
+            zIndex = [sprite getZIndex];
             foregroundSprite = sprite;
         }
     }

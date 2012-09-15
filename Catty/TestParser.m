@@ -17,6 +17,7 @@
 #import "WhenScript.h"
 #import "PlaceAtBrick.h"
 #import "GlideToBrick.h"
+#import "WaitBrick.h"
 
 @interface TestParser ()
 
@@ -155,7 +156,7 @@
 {
     Sprite *ret = [[Sprite alloc] initWithEffect:self.effect];
     ret.name = name;
-    ret.position = GLKVector3Make(x, y, self.zIndex++);
+    [ret placeAt:GLKVector3Make(x, y, self.zIndex++)];
 //    ret.costumesArray = costumesArray;
     [ret addCostumes:costumesArray];
     [ret changeCostume:[NSNumber numberWithInt:index]];
@@ -163,6 +164,36 @@
     return ret;
 }
 
+
+
+// just4debugging
+-(Level*)generateDebugLevel_GlideTo
+{
+    Level *level = [[Level alloc]init];
+    level.name = @"debug";
+    level.resolution = CGSizeMake(320, 460);
+    
+    
+    Costume *costume = [self createCostumeFromPath:@"normalcat.png" withName:@"cat1"];
+    
+    GlideToBrick *glideBrick = [[GlideToBrick alloc]initWithPosition:GLKVector3Make(100, 100, 0) andDurationInMilliSecs:1000];
+    WaitBrick *waitBrick = [[WaitBrick alloc]init];
+    waitBrick.timeToWaitInMilliseconds = [NSNumber numberWithInt:2000];
+    PlaceAtBrick *placeAtBrick = [[PlaceAtBrick alloc]initWithPosition:GLKVector3Make(0, 0, 0)];
+    
+    
+    WhenScript *whenScript = [[WhenScript alloc]init];
+    whenScript.bricksArray = [NSMutableArray arrayWithObjects:glideBrick, waitBrick, placeAtBrick, nil];
+    
+    NSArray *costumes = [NSArray arrayWithObject:costume];
+    
+    Sprite *sprite = [self createSprite:@"cat" withPositionX:(NSInteger)0 withPositionY:(NSInteger)0 withCostumes:costumes setCostumeIndex:(NSInteger)0];
+    [sprite addWhenScript:whenScript];
+    
+    level.spritesArray = [NSMutableArray arrayWithObject:sprite];
+    
+    return level;
+}
 
 
 

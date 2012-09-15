@@ -27,7 +27,7 @@
 -(void)performOnSprite:(Sprite *)sprite
 {
     NSLog(@"Set positino of sprite %@ to %f / % f / %f", sprite.name, self.position.x, self.position.y, self.position.z);
-    sprite.position = self.position;
+    [sprite placeAt:self.position];
 }
 
 @end
