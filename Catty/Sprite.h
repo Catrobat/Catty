@@ -64,7 +64,8 @@
 - (void)changeCostume:(NSNumber*)indexOfCostumeInArray;
 - (void)nextCostume;
 - (void)glideToPosition:(GLKVector3)position withinDurationInMilliSecs:(int)durationInMilliSecs;
-
+- (void)hide;
+- (void)show;
 
 
 @end

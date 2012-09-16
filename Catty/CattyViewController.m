@@ -124,6 +124,8 @@
     self.level = [testparser generateDebugLevel_GlideTo];
     
     self.level = [testparser generateDebugLevel_nextCostume];
+    
+    self.level = [testparser generateDebugLevel_HideShow];
     // DEBUG END
     
     //setting effect

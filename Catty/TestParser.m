@@ -19,6 +19,8 @@
 #import "GlideToBrick.h"
 #import "WaitBrick.h"
 #import "NextCostumeBrick.h"
+#import "HideBrick.h"
+#import "ShowBrick.h"
 
 @interface TestParser ()
 
@@ -232,6 +234,35 @@
 
 }
 
+-(Level*)generateDebugLevel_HideShow
+{
+    Level *level = [[Level alloc]init];
+    level.name = @"nextCostumeTest";
+    level.resolution = CGSizeMake(320, 460);
+    
+    HideBrick *hideBrick = [[HideBrick alloc]init];
+    ShowBrick *showBrick = [[ShowBrick alloc]init];
+    
+    Costume *costume = [self createCostumeFromPath:@"normalcat.png" withName:@"cat1"];
+    
+    WaitBrick *waitBrick = [[WaitBrick alloc]init];
+    waitBrick.timeToWaitInMilliseconds = [NSNumber numberWithInt:1000];
+    
+    
+    WhenScript *whenScript = [[WhenScript alloc]init];
+    [whenScript addBricks:[NSMutableArray arrayWithObjects: hideBrick, waitBrick, showBrick, nil]];
+    
+    
+    NSArray *costumes = [NSArray arrayWithObjects:costume, nil];
+    
+    Sprite *sprite = [self createSprite:@"cat" withPositionX:(NSInteger)0 withPositionY:(NSInteger)0 withCostumes:costumes setCostumeIndex:(NSInteger)0];
+    [sprite addWhenScript:whenScript];
+    
+    level.spritesArray = [NSMutableArray arrayWithObject:sprite];
+    
+    return level;
+    
+}
 
 
 @end

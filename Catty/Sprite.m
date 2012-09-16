@@ -71,7 +71,7 @@ typedef struct {
 @property (strong, nonatomic) NSArray *startScriptsArray;
 @property (strong, nonatomic) NSArray *whenScriptsArray;
 
-
+@property (assign, nonatomic) BOOL showSprite;
 
 @end
 
@@ -93,6 +93,7 @@ typedef struct {
 @synthesize brickQueue = _brickQueue;
 @synthesize nextPosition = _nextPosition;
 @synthesize indexOfCurrentCostumeInArray = _indexOfCurrentCostumeInArray;
+@synthesize showSprite = _showSprite;
 
 
 #pragma mark Custom getter and setter
@@ -141,6 +142,7 @@ typedef struct {
     if (self = [super init]) 
     {
         _position = GLKVector3Make(0, 0, 0); //todo: change z index
+        self.showSprite = YES;
     }
     return self;
 }
@@ -151,6 +153,7 @@ typedef struct {
     if (self)
     {
         self.effect = effect;
+        self.showSprite = YES;
     }
     return self;
 }
@@ -319,25 +322,28 @@ typedef struct {
 //        
 //        [self.nextPositions removeObjectAtIndex:0];
 //    }
+    if (self.showSprite)
+    {
     
-    if (!self.effect)
-        NSLog(@"Sprite.m => render => NO effect set!!!");
+        if (!self.effect)
+            NSLog(@"Sprite.m => render => NO effect set!!!");
     
-    self.effect.texture2d0.name = self.textureInfo.name;
-    self.effect.texture2d0.enabled = YES;
+        self.effect.texture2d0.name = self.textureInfo.name;
+        self.effect.texture2d0.enabled = YES;
     
-    self.effect.transform.modelviewMatrix = self.modelMatrix;
+        self.effect.transform.modelviewMatrix = self.modelMatrix;
     
-    [self.effect prepareToDraw];
+        [self.effect prepareToDraw];
     
-    glEnableVertexAttribArray(GLKVertexAttribPosition);
-    glEnableVertexAttribArray(GLKVertexAttribTexCoord0);
+        glEnableVertexAttribArray(GLKVertexAttribPosition);
+        glEnableVertexAttribArray(GLKVertexAttribTexCoord0);
     
-    long offset = (long)&_quad;        
-    glVertexAttribPointer(GLKVertexAttribPosition, 2, GL_FLOAT, GL_FALSE, sizeof(TexturedVertex), (void *) (offset + offsetof(TexturedVertex, geometryVertex)));
-    glVertexAttribPointer(GLKVertexAttribTexCoord0, 2, GL_FLOAT, GL_FALSE, sizeof(TexturedVertex), (void *) (offset + offsetof(TexturedVertex, textureVertex)));
+        long offset = (long)&_quad;
+        glVertexAttribPointer(GLKVertexAttribPosition, 2, GL_FLOAT, GL_FALSE, sizeof(TexturedVertex), (void *) (offset + offsetof(TexturedVertex, geometryVertex)));
+        glVertexAttribPointer(GLKVertexAttribTexCoord0, 2, GL_FLOAT, GL_FALSE, sizeof(TexturedVertex), (void *) (offset + offsetof(TexturedVertex, textureVertex)));
     
-    glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
+        glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
+    }
 }
 
 
@@ -449,6 +455,16 @@ typedef struct {
         self.indexOfCurrentCostumeInArray = [NSNumber numberWithInt:0];
     else
         self.indexOfCurrentCostumeInArray = [NSNumber numberWithInt:self.indexOfCurrentCostumeInArray.intValue + 1];
+}
+
+- (void)hide
+{
+    self.showSprite = NO;
+}
+
+- (void)show
+{
+    self.showSprite = YES;
 }
 
 #pragma mark - description

@@ -19,5 +19,5 @@
 // just4debugging (and testing!!!!!)
 -(Level*)generateDebugLevel_GlideTo;
 -(Level*)generateDebugLevel_nextCostume;
-
+-(Level*)generateDebugLevel_HideShow;
 @end
