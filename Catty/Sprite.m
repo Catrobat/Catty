@@ -388,7 +388,7 @@ typedef struct {
     }
     else
     {
-        timeStamp = [[NSDate date] timeIntervalSince1970] + (durationInMilliSecs/1000);
+        timeStamp = [[NSDate date] timeIntervalSince1970] + (durationInMilliSecs/1000.0f);
     }
     
     PositionAtTime *newPosition = [PositionAtTime positionAtTimeWithPosition:position andTimestamp:timeStamp];
