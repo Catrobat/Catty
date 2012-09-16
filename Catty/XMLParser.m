@@ -94,7 +94,7 @@
             break;
         case kContentStartScript:
             self.currentScript = [[StartScript alloc] init];
-            self.currentScript.bricksArray = [[NSMutableArray alloc] init];
+//            self.currentScript.bricksArray = [[NSMutableArray alloc] init];
 //            [self.currentSprite.startScriptsArray addObject:self.currentScript]; //dunno
             [self.currentSprite addStartScript:self.currentScript];
             break;
@@ -102,15 +102,17 @@
             break;
         case kBricksSetCostumeBrick:
             self.currentBrick = [[SetCostumeBrick alloc] init];
-            [self.currentScript.bricksArray addObject:self.currentBrick]; //dunno
+//            [self.currentScript.bricksArray addObject:self.currentBrick]; //dunno
+            [self.currentScript addBrick:self.currentBrick];
             break;
         case kBricksWaitBrick:
             self.currentBrick = [[WaitBrick alloc] init];
-            [self.currentScript.bricksArray addObject:self.currentBrick]; //dunno
+//            [self.currentScript.bricksArray addObject:self.currentBrick]; //dunno
+            [self.currentScript addBrick:self.currentBrick];
             break;
         case kContentWhenScript:
             self.currentScript = [[WhenScript alloc] init];
-            self.currentScript.bricksArray = [[NSMutableArray alloc] init];
+//            self.currentScript.bricksArray = [[NSMutableArray alloc] init];
 //            [self.currentSprite.whenScriptsArray addObject:self.currentScript]; //dunno
             [self.currentSprite addWhenScript:self.currentScript];
             break;

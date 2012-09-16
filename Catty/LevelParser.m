@@ -168,7 +168,8 @@
     {
         SetCostumeBrick *brick = [self loadSetCostumeBrick:gDataSetCostumeBrick];
 //        brick.sprite = self.newSprite;
-        [ret.bricksArray addObject:brick];
+//        [ret.bricksArray addObject:brick];
+        [ret addBrick:brick];
     }
     
     //retrieving waitBricks
@@ -177,7 +178,8 @@
     {
         WaitBrick *brick = [self loadWaitBrick:gDataWaitBrick];
 //        brick.sprite = self.newSprite;
-        [ret.bricksArray addObject:brick];
+//        [ret.bricksArray addObject:brick];
+        [ret addBrick:brick];
     }
     
     return ret;
@@ -198,13 +200,15 @@
         {
             SetCostumeBrick *brick = [self loadSetCostumeBrick:element];
 //            brick.sprite = self.newSprite;
-            [ret.bricksArray addObject:brick];
+//            [ret.bricksArray addObject:brick];
+            [ret addBrick:brick];
         }
         else if ([element.name isEqualToString:@"Bricks.WaitBrick"])
         {
             WaitBrick *brick = [self loadWaitBrick:element];
 //            brick.sprite = self.newSprite;
-            [ret.bricksArray addObject:brick];
+//            [ret.bricksArray addObject:brick];
+            [ret addBrick:brick];
         }
     }
     

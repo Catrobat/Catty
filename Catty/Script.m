@@ -9,12 +9,19 @@
 #import "Script.h"
 #import "Brick.h"
 
+@interface Script()
+@property (strong, nonatomic) NSMutableArray *bricksArray;
+
+@end
+
+
+
 @implementation Script
 
 @synthesize bricksArray = _bricksArray;
 
 #pragma mark - Custom getter and setter
-- (NSMutableArray*)bricksArray
+-(NSMutableArray*)bricksArray
 {
     if (_bricksArray == nil)
         _bricksArray = [[NSMutableArray alloc] init];
@@ -22,8 +29,23 @@
     return _bricksArray;
 }
 
+-(void)addBrick:(Brick *)brick
+{
+    [self.bricksArray addObject:brick];
+}
+
+-(void)addBricks:(NSArray *)bricks
+{
+    [self.bricksArray addObjectsFromArray:bricks];
+}
+
+-(NSArray *)getAllBricks
+{
+    return [NSArray arrayWithArray:self.bricksArray];
+}
+
 #pragma mark - Description
-- (NSString*)description
+-(NSString*)description
 {
     NSMutableString *ret = [[NSMutableString alloc] init];
     
@@ -44,13 +66,15 @@
 }
 
 //abstract method (!!!)
-- (void)executeForSprite:(Sprite*)sprite
+-(void)executeForSprite:(Sprite*)sprite
 {
 //    @throw [NSException exceptionWithName:NSInternalInconsistencyException
 //                                   reason:[NSString stringWithFormat:@"You must override %@ in a subclass", NSStringFromSelector(_cmd)]
 //                                 userInfo:nil];
     
     //chris: I think startscript and whenscript classes are not really necessary?! why did we create them?!
+    //mattias: we created them to separate scripts, cuz we did not have two membervariables in sprite-class (just ONE "script"-array)
+    //         now we have two arrays and we don't need them anymore...I'll change this later ;)
     for (Brick *brick in self.bricksArray)
     {
         [brick performOnSprite:sprite];

@@ -63,7 +63,8 @@
     SetCostumeBrick *newBrick = [[SetCostumeBrick alloc]init];
     newBrick.indexOfCostumeInArray = 0;
 //    newBrick.sprite = sprite1;
-    newScript.bricksArray = [[NSArray alloc]initWithObjects:newBrick, nil];
+//    newScript.bricksArray = [[NSArray alloc]initWithObjects:newBrick, nil];
+    [newScript addBrick:newBrick];
     
     //check if its a startup script or a when script
     if ([newScript isMemberOfClass:[StartScript class]])
@@ -91,7 +92,8 @@
     newBrick = [[SetCostumeBrick alloc]init];
     newBrick.indexOfCostumeInArray = 0;
 //    newBrick.sprite = sprite2;
-    newStartScript.bricksArray = [[NSMutableArray alloc]initWithObjects:newBrick, nil];
+//    newStartScript.bricksArray = [[NSMutableArray alloc]initWithObjects:newBrick, nil];
+    [newStartScript addBrick:newBrick];
     
     //creating new when script for cat (change costume on click and change position)
     WhenScript *newWhenScript = [[WhenScript alloc]init];
@@ -107,8 +109,8 @@
     [tmpMutableArray addObject:newBrick];
     [tmpMutableArray addObject:placeAtBrick];
     [tmpMutableArray addObject:glideToBrick];
-    newWhenScript.bricksArray = [NSArray arrayWithArray:tmpMutableArray];    
-
+//    newWhenScript.bricksArray = [NSArray arrayWithArray:tmpMutableArray];    
+    [newWhenScript addBricks:[NSArray arrayWithArray:tmpMutableArray]];
     
     
     //adding scripts to script arrays
@@ -185,7 +187,8 @@
     
     
     WhenScript *whenScript = [[WhenScript alloc]init];
-    whenScript.bricksArray = [NSMutableArray arrayWithObjects:glideBrick1, glideBrick2, waitBrick, placeAtBrick, nil];
+    [whenScript addBricks:[NSMutableArray arrayWithObjects:glideBrick1, glideBrick2, waitBrick, placeAtBrick, nil]];
+
     
     NSArray *costumes = [NSArray arrayWithObject:costume];
     
@@ -215,7 +218,8 @@
     
     
     WhenScript *whenScript = [[WhenScript alloc]init];
-    whenScript.bricksArray = [NSMutableArray arrayWithObjects:nextCostumeBrick1, waitBrick, nextCostumeBrick2, nil];
+    [whenScript addBricks:[NSMutableArray arrayWithObjects:nextCostumeBrick1, waitBrick, nextCostumeBrick2, nil]];
+    
     
     NSArray *costumes = [NSArray arrayWithObjects:costume1, costume2, nil];
     

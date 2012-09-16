@@ -11,12 +11,12 @@
 
 @implementation StartScript
 
-- (void)executeForSprite:(Sprite*)sprite
-{
-    for (Brick *brick in self.bricksArray)
-    {
-        [brick performOnSprite:sprite];
-    }
-}
+//- (void)executeForSprite:(Sprite*)sprite
+//{
+//    for (Brick *brick in self.bricksArray)
+//    {
+//        [brick performOnSprite:sprite];
+//    }
+//}
 
 @end
