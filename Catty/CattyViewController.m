@@ -122,6 +122,8 @@
     
     TestParser *testparser = [[TestParser alloc]init];
     self.level = [testparser generateDebugLevel_GlideTo];
+    
+    self.level = [testparser generateDebugLevel_nextCostume];
     // DEBUG END
     
     //setting effect

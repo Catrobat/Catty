@@ -383,8 +383,6 @@ typedef struct {
     {
         PositionAtTime *lastPositionAtTime = [self.nextPositions objectAtIndex:[self.nextPositions count]-1];
         timeStamp = lastPositionAtTime.timestamp + (durationInMilliSecs/1000.0f);
-        NSLog(@"last: %f     new: %f", lastPositionAtTime.timestamp, timeStamp);
-
     }
     else
     {
@@ -428,6 +426,14 @@ typedef struct {
 - (void)changeCostume:(NSNumber *)indexOfCostumeInArray
 {
     self.indexOfCurrentCostumeInArray = indexOfCostumeInArray;
+}
+
+- (void)nextCostume
+{
+    if (self.indexOfCurrentCostumeInArray.intValue == [self.costumesArray count]-1)
+        self.indexOfCurrentCostumeInArray = [NSNumber numberWithInt:0];
+    else
+        self.indexOfCurrentCostumeInArray = [NSNumber numberWithInt:self.indexOfCurrentCostumeInArray.intValue + 1];
 }
 
 #pragma mark - description

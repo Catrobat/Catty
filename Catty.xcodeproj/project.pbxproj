@@ -55,6 +55,7 @@
 		B4FDF39315A82FD100CBCF03 /* normalcat.png in Resources */ = {isa = PBXBuildFile; fileRef = B4FDF39015A82FD100CBCF03 /* normalcat.png */; };
 		B4FDF39615A833DA00CBCF03 /* catty_icon_retina.png in Resources */ = {isa = PBXBuildFile; fileRef = B4FDF39515A833DA00CBCF03 /* catty_icon_retina.png */; };
 		CD25FE1615B0642400719D12 /* PlaceAtBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = CD25FE1515B0642400719D12 /* PlaceAtBrick.m */; };
+		CD8FA5AC1605D91300FC282F /* NextCostumeBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = CD8FA5AB1605D91300FC282F /* NextCostumeBrick.m */; };
 		CD9438AB15DBAFC7002E6375 /* defaultProject in Resources */ = {isa = PBXBuildFile; fileRef = CD9438AA15DBAFC7002E6375 /* defaultProject */; };
 		CDE35DED15B4892D009A3524 /* GlideToBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = CDE35DEC15B4892D009A3524 /* GlideToBrick.m */; };
 /* End PBXBuildFile section */
@@ -143,6 +144,8 @@
 		B4FDF39515A833DA00CBCF03 /* catty_icon_retina.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = catty_icon_retina.png; path = ../catty_icon_retina.png; sourceTree = "<group>"; };
 		CD25FE1415B0642400719D12 /* PlaceAtBrick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlaceAtBrick.h; sourceTree = "<group>"; };
 		CD25FE1515B0642400719D12 /* PlaceAtBrick.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlaceAtBrick.m; sourceTree = "<group>"; };
+		CD8FA5AA1605D91300FC282F /* NextCostumeBrick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NextCostumeBrick.h; sourceTree = "<group>"; };
+		CD8FA5AB1605D91300FC282F /* NextCostumeBrick.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NextCostumeBrick.m; sourceTree = "<group>"; };
 		CD9438AA15DBAFC7002E6375 /* defaultProject */ = {isa = PBXFileReference; lastKnownFileType = folder; name = defaultProject; path = Projects/defaultProject; sourceTree = SOURCE_ROOT; };
 		CDE35DEB15B4892C009A3524 /* GlideToBrick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GlideToBrick.h; sourceTree = "<group>"; };
 		CDE35DEC15B4892D009A3524 /* GlideToBrick.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GlideToBrick.m; sourceTree = "<group>"; };
@@ -512,6 +515,7 @@
 				B415DC3F15BAC5A20076275E /* Brick */,
 				B415DC4015BAC5AE0076275E /* WaitBrick */,
 				B415DC4115BAC5B70076275E /* SetCostumeBrick */,
+				CD8FA5A81605D8B700FC282F /* NextCostumeBrick */,
 				B415DC4215BAC5C00076275E /* PlaceAtBrick */,
 				B415DC4315BAC5C80076275E /* GlideToBrick */,
 			);
@@ -568,6 +572,15 @@
 				B4FDF33C15A82C1000CBCF03 /* CattyViewController.m */,
 			);
 			name = CattyViewController;
+			sourceTree = "<group>";
+		};
+		CD8FA5A81605D8B700FC282F /* NextCostumeBrick */ = {
+			isa = PBXGroup;
+			children = (
+				CD8FA5AA1605D91300FC282F /* NextCostumeBrick.h */,
+				CD8FA5AB1605D91300FC282F /* NextCostumeBrick.m */,
+			);
+			name = NextCostumeBrick;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -710,6 +723,7 @@
 				B4F05A9B15B888EE00C90ED0 /* GDataXMLNode.m in Sources */,
 				B4F05A9E15B8898100C90ED0 /* LevelParser.m in Sources */,
 				B415DC3915B9F8540076275E /* Util.m in Sources */,
+				CD8FA5AC1605D91300FC282F /* NextCostumeBrick.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

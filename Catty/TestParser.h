@@ -15,6 +15,9 @@
 @property (strong, nonatomic) GLKBaseEffect *effect;
 @property (nonatomic, assign) float zIndex;
 
--(Level*)generateDebugLevel_GlideTo;    // just4debugging
+
+// just4debugging (and testing!!!!!)
+-(Level*)generateDebugLevel_GlideTo;
+-(Level*)generateDebugLevel_nextCostume;
 
 @end

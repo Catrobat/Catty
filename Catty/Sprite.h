@@ -62,6 +62,7 @@
 - (void)placeAt:(GLKVector3)newPosition;    //origin is in the middle of the sprite
 - (void)wait:(int)durationInMilliSecs;
 - (void)changeCostume:(NSNumber*)indexOfCostumeInArray;
+- (void)nextCostume;
 - (void)glideToPosition:(GLKVector3)position withinDurationInMilliSecs:(int)durationInMilliSecs;
 
 

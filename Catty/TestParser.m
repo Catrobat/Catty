@@ -18,6 +18,7 @@
 #import "PlaceAtBrick.h"
 #import "GlideToBrick.h"
 #import "WaitBrick.h"
+#import "NextCostumeBrick.h"
 
 @interface TestParser ()
 
@@ -194,6 +195,37 @@
     level.spritesArray = [NSMutableArray arrayWithObject:sprite];
     
     return level;
+}
+
+-(Level*)generateDebugLevel_nextCostume
+{
+    Level *level = [[Level alloc]init];
+    level.name = @"nextCostumeTest";
+    level.resolution = CGSizeMake(320, 460);
+    
+    
+    Costume *costume1 = [self createCostumeFromPath:@"normalcat.png" withName:@"cat1"];
+    Costume *costume2 = [self createCostumeFromPath:@"cheshirecat.png" withName:@"cat2"];
+
+    NextCostumeBrick *nextCostumeBrick1 = [[NextCostumeBrick alloc]init];
+    NextCostumeBrick *nextCostumeBrick2 = [[NextCostumeBrick alloc]init];
+
+    WaitBrick *waitBrick = [[WaitBrick alloc]init];
+    waitBrick.timeToWaitInMilliseconds = [NSNumber numberWithInt:1000];
+    
+    
+    WhenScript *whenScript = [[WhenScript alloc]init];
+    whenScript.bricksArray = [NSMutableArray arrayWithObjects:nextCostumeBrick1, waitBrick, nextCostumeBrick2, nil];
+    
+    NSArray *costumes = [NSArray arrayWithObjects:costume1, costume2, nil];
+    
+    Sprite *sprite = [self createSprite:@"cat" withPositionX:(NSInteger)0 withPositionY:(NSInteger)0 withCostumes:costumes setCostumeIndex:(NSInteger)0];
+    [sprite addWhenScript:whenScript];
+    
+    level.spritesArray = [NSMutableArray arrayWithObject:sprite];
+    
+    return level;
+
 }
 
 
