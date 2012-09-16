@@ -16,11 +16,13 @@
 {
     NSLog(@"Performing: %@", self.description);
     
-    float sleepTime = ((float)self.timeToWaitInMilliseconds.intValue)/1000;
-    NSLog(@"wating for %f seconds", sleepTime);
-    NSLog(@"---- BEFORE SLEEP -----");
-    [NSThread sleepForTimeInterval:sleepTime];
-    NSLog(@"---- AFTER SLEEP ------");
+    [sprite wait:[self.timeToWaitInMilliseconds intValue]];
+    
+//    float sleepTime = ((float)self.timeToWaitInMilliseconds.intValue)/1000;
+//    NSLog(@"wating for %f seconds", sleepTime);
+//    NSLog(@"---- BEFORE SLEEP -----");
+//    [NSThread sleepForTimeInterval:sleepTime];
+//    NSLog(@"---- AFTER SLEEP ------");
 
 }
 

@@ -176,14 +176,15 @@
     
     Costume *costume = [self createCostumeFromPath:@"normalcat.png" withName:@"cat1"];
     
-    GlideToBrick *glideBrick = [[GlideToBrick alloc]initWithPosition:GLKVector3Make(100, 100, 0) andDurationInMilliSecs:1000];
+    GlideToBrick *glideBrick1 = [[GlideToBrick alloc]initWithPosition:GLKVector3Make(100, 100, 0) andDurationInMilliSecs:1000];
+    GlideToBrick *glideBrick2 = [[GlideToBrick alloc]initWithPosition:GLKVector3Make(100, -50, 0) andDurationInMilliSecs:500];
     WaitBrick *waitBrick = [[WaitBrick alloc]init];
-    waitBrick.timeToWaitInMilliseconds = [NSNumber numberWithInt:2000];
+    waitBrick.timeToWaitInMilliseconds = [NSNumber numberWithInt:1000];
     PlaceAtBrick *placeAtBrick = [[PlaceAtBrick alloc]initWithPosition:GLKVector3Make(0, 0, 0)];
     
     
     WhenScript *whenScript = [[WhenScript alloc]init];
-    whenScript.bricksArray = [NSMutableArray arrayWithObjects:glideBrick, waitBrick, placeAtBrick, nil];
+    whenScript.bricksArray = [NSMutableArray arrayWithObjects:glideBrick1, glideBrick2, waitBrick, placeAtBrick, nil];
     
     NSArray *costumes = [NSArray arrayWithObject:costume];
     

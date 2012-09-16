@@ -15,6 +15,17 @@
 @class StartScript;
 @class WhenScript;
 
+//////////////////////////////////////////////////////////////////////////////////////////
+
+@interface PositionAtTime : NSObject
+@property (assign, nonatomic) GLKVector3 position;
+@property (assign, nonatomic) double timestamp;
++(PositionAtTime*)positionAtTimeWithPosition:(GLKVector3)position andTimestamp:(double)timestamp;
+@end
+
+//////////////////////////////////////////////////////////////////////////////////////////
+
+
 @interface Sprite : NSObject
 
 @property (strong, nonatomic) NSString *name;
@@ -36,6 +47,7 @@
 - (float)getZIndex;
 
 // graphics
+- (void)update:(float)dt;
 - (void)render;
 
 // other stuff
@@ -48,6 +60,7 @@
 
 // actions
 - (void)placeAt:(GLKVector3)newPosition;    //origin is in the middle of the sprite
+- (void)wait:(int)durationInMilliSecs;
 - (void)changeCostume:(NSNumber*)indexOfCostumeInArray;
 - (void)glideToPosition:(GLKVector3)position withinDurationInMilliSecs:(int)durationInMilliSecs;
 

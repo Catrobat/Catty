@@ -220,6 +220,10 @@
 - (void)glkViewControllerUpdate:(GLKViewController *)controller
 {
     //NSLog(@"Update...");
+    for (Sprite *sprite in self.level.spritesArray)
+    {
+        [sprite update:self.timeSinceLastUpdate];
+    }
 }
 
 

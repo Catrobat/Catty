@@ -34,6 +34,25 @@ typedef struct {
 } TexturedQuad;
 
 
+
+//////////////////////////////////////////////////////////////////////////////////////////
+
+@implementation PositionAtTime
+@synthesize position = _position;
+@synthesize timestamp = _timestamp;
++(PositionAtTime*)positionAtTimeWithPosition:(GLKVector3)position andTimestamp:(double)timestamp
+{
+    PositionAtTime *obj = [[PositionAtTime alloc]init];
+    obj.position = position;
+    obj.timestamp = timestamp;
+    return obj;
+}
+@end
+
+//////////////////////////////////////////////////////////////////////////////////////////
+
+
+
 @interface Sprite()
 
 @property (assign) TexturedQuad quad;
@@ -104,6 +123,13 @@ typedef struct {
         _whenScriptsArray = [[NSArray alloc] init];
     
     return _whenScriptsArray;
+}
+
+- (NSMutableArray*)nextPositions
+{
+    if (!_nextPositions)
+        _nextPositions = [[NSMutableArray alloc]init];
+    return _nextPositions;
 }
 
 #pragma mark - init methods
@@ -239,18 +265,53 @@ typedef struct {
     return modelMatrix;
 }
 
-#pragma mark - render
-- (void)render 
-{ 
+#pragma mark - graphics
+- (void)update:(float)dt
+{
     if ([self.nextPositions count] > 0)
     {
-        NSValue *data = [self.nextPositions objectAtIndex:0];
-        GLKVector3 newPosition;
-        [data getValue:&newPosition];
-        self.position = newPosition;
+        NSTimeInterval now = [[NSDate date]timeIntervalSince1970];
+        PositionAtTime *endPosition = [self.nextPositions objectAtIndex:0];
         
-        [self.nextPositions removeObjectAtIndex:0];
+        NSLog(@"timediff: %f               %d", endPosition.timestamp - now, [self.nextPositions count]);
+        
+        if (now >= endPosition.timestamp)
+        {
+            // "checkpoint" reached
+            self.position = endPosition.position;
+            NSLog(@"remove object: %@", [self.nextPositions objectAtIndex:0]);
+            [self.nextPositions removeObjectAtIndex:0];
+        }
+        else
+        {
+            // calculate position
+            double timeLeft = (endPosition.timestamp - now);    // in sec
+            int numberOfSteps = round(timeLeft * (float)FRAMES_PER_SECOND);               // TODO: find better way to determine FPS (e.g. GLK-variable??)
+            
+            GLKVector3 direction = GLKVector3Subtract(endPosition.position, self.position);
+            
+            GLKVector3 step = direction;
+            if (numberOfSteps > 0)
+                step = GLKVector3DivideScalar(direction, numberOfSteps);
+          
+            self.position = GLKVector3Add(self.position, step);
+            
+            NSLog(@"newPosition: %f/%f", self.position.x, self.position.y);
+        }
     }
+}
+
+- (void)render
+{ 
+//    if ([self.nextPositions count] > 0)
+//    {
+//        NSValue *data = [self.nextPositions objectAtIndex:0];
+//        GLKVector3 newPosition;
+//        [data getValue:&newPosition];
+//        self.position = newPosition;
+//        
+//        [self.nextPositions removeObjectAtIndex:0];
+//    }
     
     if (!self.effect)
         NSLog(@"Sprite.m => render => NO effect set!!!");
@@ -277,42 +338,91 @@ typedef struct {
 #pragma mark - actions
 -(void)placeAt:(GLKVector3)newPosition
 {
-    NSLog(@"=====> %f %f", newPosition.x, newPosition.y);
-    self.position = GLKVector3Add(newPosition, GLKVector3Make(320/2, 460/2, 0));    // TODO: change constant values
-    self.position = GLKVector3Subtract(self.position, GLKVector3Make(self.textureInfo.width/2, self.textureInfo.height/2, 0));
+//    NSLog(@"=====> %f %f", newPosition.x, newPosition.y);
+
+    GLKVector3 position = GLKVector3Add(newPosition, GLKVector3Make(320/2, 460/2, 0));                        // TODO: change constant values
+    position = GLKVector3Subtract(position, GLKVector3Make(self.textureInfo.width/2, self.textureInfo.height/2, 0));
+
+    
+    if ([self.nextPositions count] > 0)
+    {
+        [self.nextPositions addObject:[PositionAtTime positionAtTimeWithPosition:position andTimestamp:0]];
+    }
+    else
+    {
+        self.position = position;
+    }
+}
+
+- (void)wait:(int)durationInMilliSecs
+{
+    GLKVector3 position;
+    NSTimeInterval timeStamp;
+    if ([self.nextPositions count] > 0)
+    {
+        PositionAtTime *lastPositionAtTime = [self.nextPositions objectAtIndex:[self.nextPositions count]-1];
+        position = lastPositionAtTime.position;
+        timeStamp = lastPositionAtTime.timestamp + (durationInMilliSecs/1000.0f);
+    }
+    else
+    {
+        position = self.position;
+        timeStamp = [[NSDate date] timeIntervalSince1970] + (durationInMilliSecs/1000.0f);
+    }
+    [self.nextPositions addObject:[PositionAtTime positionAtTimeWithPosition:position andTimestamp:timeStamp]];
 }
 
 - (void)glideToPosition:(GLKVector3)position withinDurationInMilliSecs:(int)durationInMilliSecs
 {
-    // yes, it's an integer-cast
-    int number_of_frames = FRAMES_PER_SECOND / 1000.0f * durationInMilliSecs;
-    
-    position = GLKVector3Add(position, GLKVector3Make(320/2, 460/2, 0));    // TODO: change constant values
+    // transfer to "origin is in the middle of the screen"-coordinates...
+    position = GLKVector3Add(position, GLKVector3Make(320/2, 460/2, 0));                                // TODO: change constant values
     position = GLKVector3Subtract(position, GLKVector3Make(self.textureInfo.width/2, self.textureInfo.height/2, 0));
 
-    
-    if (self.nextPositions == nil)
-        self.nextPositions = [[NSMutableArray alloc]initWithCapacity:number_of_frames];
-    
-    ////////////////////////////////////////////////////////////////////
-    // TODO: dirty...change asap !!!
-    
-    GLKVector3 lastPosition = self.position;
-    
-    for (int i=1; i<number_of_frames; i++)
+    NSTimeInterval timeStamp;
+    if ([self.nextPositions count] > 0)
     {
-        float xStep = round((position.x - lastPosition.x) / (float)(number_of_frames+1-i));
-        float yStep = round((position.y - lastPosition.y) / (float)(number_of_frames+1-i));
-        
-        GLKVector3 newPosition = GLKVector3Make(lastPosition.x + xStep, lastPosition.y + yStep, lastPosition.z);
-        NSData *data = [NSValue valueWithBytes:&newPosition objCType:@encode(GLKVector3)];
-        [self.nextPositions addObject:data];
-        
-        lastPosition = newPosition;
+        PositionAtTime *lastPositionAtTime = [self.nextPositions objectAtIndex:[self.nextPositions count]-1];
+        timeStamp = lastPositionAtTime.timestamp + (durationInMilliSecs/1000.0f);
+        NSLog(@"last: %f     new: %f", lastPositionAtTime.timestamp, timeStamp);
+
     }
-    [self.nextPositions addObject:[NSValue valueWithBytes:&position objCType:@encode(GLKVector3)]];   // ensure, that final position is defined position
-    // TODO: really...CHANGE IT!!!!!
-    ////////////////////////////////////////////////////////////////////
+    else
+    {
+        timeStamp = [[NSDate date] timeIntervalSince1970] + (durationInMilliSecs/1000);
+    }
+    
+    PositionAtTime *newPosition = [PositionAtTime positionAtTimeWithPosition:position andTimestamp:timeStamp];
+    [self.nextPositions addObject:newPosition];
+    
+//    // yes, it's an integer-cast
+//    int number_of_frames = FRAMES_PER_SECOND / 1000.0f * durationInMilliSecs;
+//    
+//    position = GLKVector3Add(position, GLKVector3Make(320/2, 460/2, 0));    // TODO: change constant values
+//    position = GLKVector3Subtract(position, GLKVector3Make(self.textureInfo.width/2, self.textureInfo.height/2, 0));
+//
+//    
+//    if (self.nextPositions == nil)
+//        self.nextPositions = [[NSMutableArray alloc]initWithCapacity:number_of_frames];
+//    
+//    ////////////////////////////////////////////////////////////////////
+//    // TODO: dirty...change asap !!!
+//    
+//    GLKVector3 lastPosition = self.position;
+//    
+//    for (int i=1; i<number_of_frames; i++)
+//    {
+//        float xStep = round((position.x - lastPosition.x) / (float)(number_of_frames+1-i));
+//        float yStep = round((position.y - lastPosition.y) / (float)(number_of_frames+1-i));
+//        
+//        GLKVector3 newPosition = GLKVector3Make(lastPosition.x + xStep, lastPosition.y + yStep, lastPosition.z);
+//        NSData *data = [NSValue valueWithBytes:&newPosition objCType:@encode(GLKVector3)];
+//        [self.nextPositions addObject:data];
+//        
+//        lastPosition = newPosition;
+//    }
+//    [self.nextPositions addObject:[NSValue valueWithBytes:&position objCType:@encode(GLKVector3)]];   // ensure, that final position is defined position
+//    // TODO: really...CHANGE IT!!!!!
+//    ////////////////////////////////////////////////////////////////////
 }
 
 - (void)changeCostume:(NSNumber *)indexOfCostumeInArray
