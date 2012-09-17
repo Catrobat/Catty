@@ -55,6 +55,8 @@
 		B4FDF39315A82FD100CBCF03 /* normalcat.png in Resources */ = {isa = PBXBuildFile; fileRef = B4FDF39015A82FD100CBCF03 /* normalcat.png */; };
 		B4FDF39615A833DA00CBCF03 /* catty_icon_retina.png in Resources */ = {isa = PBXBuildFile; fileRef = B4FDF39515A833DA00CBCF03 /* catty_icon_retina.png */; };
 		CD25FE1615B0642400719D12 /* PlaceAtBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = CD25FE1515B0642400719D12 /* PlaceAtBrick.m */; };
+		CD85F51416077C67007C38D1 /* SetXBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = CD85F51316077C67007C38D1 /* SetXBrick.m */; };
+		CD85F51716077C75007C38D1 /* SetYBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = CD85F51616077C75007C38D1 /* SetYBrick.m */; };
 		CD8FA5AC1605D91300FC282F /* NextCostumeBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = CD8FA5AB1605D91300FC282F /* NextCostumeBrick.m */; };
 		CD8FA5B116063EA700FC282F /* HideBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = CD8FA5B016063EA700FC282F /* HideBrick.m */; };
 		CD8FA5B416063EBA00FC282F /* ShowBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = CD8FA5B316063EBA00FC282F /* ShowBrick.m */; };
@@ -146,6 +148,10 @@
 		B4FDF39515A833DA00CBCF03 /* catty_icon_retina.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = catty_icon_retina.png; path = ../catty_icon_retina.png; sourceTree = "<group>"; };
 		CD25FE1415B0642400719D12 /* PlaceAtBrick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlaceAtBrick.h; sourceTree = "<group>"; };
 		CD25FE1515B0642400719D12 /* PlaceAtBrick.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlaceAtBrick.m; sourceTree = "<group>"; };
+		CD85F51216077C67007C38D1 /* SetXBrick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SetXBrick.h; sourceTree = "<group>"; };
+		CD85F51316077C67007C38D1 /* SetXBrick.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SetXBrick.m; sourceTree = "<group>"; };
+		CD85F51516077C75007C38D1 /* SetYBrick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SetYBrick.h; sourceTree = "<group>"; };
+		CD85F51616077C75007C38D1 /* SetYBrick.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SetYBrick.m; sourceTree = "<group>"; };
 		CD8FA5AA1605D91300FC282F /* NextCostumeBrick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NextCostumeBrick.h; sourceTree = "<group>"; };
 		CD8FA5AB1605D91300FC282F /* NextCostumeBrick.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NextCostumeBrick.m; sourceTree = "<group>"; };
 		CD8FA5AF16063EA700FC282F /* HideBrick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HideBrick.h; sourceTree = "<group>"; };
@@ -518,6 +524,8 @@
 		B4FDF38115A82F3F00CBCF03 /* Bricks */ = {
 			isa = PBXGroup;
 			children = (
+				CD85F50F16077C42007C38D1 /* SetX */,
+				CD85F51116077C4E007C38D1 /* SetY */,
 				CD8FA5AE16063E9800FC282F /* Show */,
 				CD8FA5AD16063E8C00FC282F /* Hide */,
 				B415DC3F15BAC5A20076275E /* Brick */,
@@ -580,6 +588,24 @@
 				B4FDF33C15A82C1000CBCF03 /* CattyViewController.m */,
 			);
 			name = CattyViewController;
+			sourceTree = "<group>";
+		};
+		CD85F50F16077C42007C38D1 /* SetX */ = {
+			isa = PBXGroup;
+			children = (
+				CD85F51216077C67007C38D1 /* SetXBrick.h */,
+				CD85F51316077C67007C38D1 /* SetXBrick.m */,
+			);
+			name = SetX;
+			sourceTree = "<group>";
+		};
+		CD85F51116077C4E007C38D1 /* SetY */ = {
+			isa = PBXGroup;
+			children = (
+				CD85F51516077C75007C38D1 /* SetYBrick.h */,
+				CD85F51616077C75007C38D1 /* SetYBrick.m */,
+			);
+			name = SetY;
 			sourceTree = "<group>";
 		};
 		CD8FA5A81605D8B700FC282F /* NextCostumeBrick */ = {
@@ -752,6 +778,8 @@
 				CD8FA5AC1605D91300FC282F /* NextCostumeBrick.m in Sources */,
 				CD8FA5B116063EA700FC282F /* HideBrick.m in Sources */,
 				CD8FA5B416063EBA00FC282F /* ShowBrick.m in Sources */,
+				CD85F51416077C67007C38D1 /* SetXBrick.m in Sources */,
+				CD85F51716077C75007C38D1 /* SetYBrick.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

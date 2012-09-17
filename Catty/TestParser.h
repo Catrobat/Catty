@@ -20,4 +20,5 @@
 -(Level*)generateDebugLevel_GlideTo;
 -(Level*)generateDebugLevel_nextCostume;
 -(Level*)generateDebugLevel_HideShow;
+-(Level*)generateDebugLevel_SetXY;
 @end

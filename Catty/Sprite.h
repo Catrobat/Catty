@@ -66,6 +66,8 @@
 - (void)glideToPosition:(GLKVector3)position withinDurationInMilliSecs:(int)durationInMilliSecs;
 - (void)hide;
 - (void)show;
+- (void)setXPosition:(float)xPosition;
+- (void)setYPosition:(float)yPosition;
 
 
 @end

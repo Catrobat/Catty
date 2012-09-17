@@ -467,6 +467,18 @@ typedef struct {
     self.showSprite = YES;
 }
 
+- (void)setXPosition:(float)xPosition
+{
+    xPosition = xPosition + 320/2 - self.textureInfo.width/2;           // TODO: change constant values
+    self.position = GLKVector3Make(xPosition, self.position.y, self.position.z);
+}
+
+-(void)setYPosition:(float)yPosition
+{
+    yPosition = yPosition + 460/2 - self.textureInfo.height/2;           // TODO: change constant values
+    self.position = GLKVector3Make(self.position.x, yPosition, self.position.z);
+}
+
 #pragma mark - description
 - (NSString*)description
 {

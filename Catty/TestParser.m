@@ -21,6 +21,8 @@
 #import "NextCostumeBrick.h"
 #import "HideBrick.h"
 #import "ShowBrick.h"
+#import "SetXBrick.h"
+#import "SetYBrick.h"
 
 @interface TestParser ()
 
@@ -262,6 +264,40 @@
     
     return level;
     
+}
+
+-(Level *)generateDebugLevel_SetXY
+{
+    Level *level = [[Level alloc]init];
+    level.name = @"setX setY";
+    level.resolution = CGSizeMake(320, 460);
+    
+        
+    Costume *costume = [self createCostumeFromPath:@"normalcat.png" withName:@"cat1"];
+    
+    SetXBrick *setXBrick1 = [[SetXBrick alloc]initWithXPosition:-50];
+    SetYBrick *setYBrick1 = [[SetYBrick alloc]initWithYPosition:-100];
+    
+    SetXBrick *setXBrick2 = [[SetXBrick alloc]initWithXPosition:0];
+    SetYBrick *setYBrick2 = [[SetYBrick alloc]initWithYPosition:0];
+    
+    WaitBrick *waitBrick = [[WaitBrick alloc]init];
+    waitBrick.timeToWaitInMilliseconds = [NSNumber numberWithInt:1000];
+    
+    
+    WhenScript *whenScript = [[WhenScript alloc]init];
+    [whenScript addBricks:[NSMutableArray arrayWithObjects: setXBrick1, waitBrick, setYBrick1, waitBrick, setXBrick2, setYBrick2, nil]];
+    
+    
+    NSArray *costumes = [NSArray arrayWithObjects:costume, nil];
+    
+    Sprite *sprite = [self createSprite:@"cat" withPositionX:(NSInteger)0 withPositionY:(NSInteger)0 withCostumes:costumes setCostumeIndex:(NSInteger)0];
+    [sprite addWhenScript:whenScript];
+    
+    level.spritesArray = [NSMutableArray arrayWithObject:sprite];
+    
+    return level;
+
 }
 
 
