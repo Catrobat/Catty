@@ -319,7 +319,7 @@
     
     NSArray *costumes = [NSArray arrayWithObjects:costume, nil];
     
-    Sprite *sprite1 = [self createSprite:@"cat1" withPositionX:(NSInteger)-50 withPositionY:(NSInteger)50 withCostumes:costumes setCostumeIndex:(NSInteger)0];
+    Sprite *sprite1 = [self createSprite:@"cat1" withPositionX:(NSInteger)-70 withPositionY:(NSInteger)0 withCostumes:costumes setCostumeIndex:(NSInteger)0];
     [sprite1 addWhenScript:whenScript];
     
     
@@ -333,12 +333,19 @@
     Script *broadcastScript = [[Script alloc]init];
     [broadcastScript addBricks:[NSArray arrayWithObjects:hideBrick, waitBrick, showBrick, nil]];
     
-    Sprite *sprite2 = [self createSprite:@"cat2" withPositionX:(NSInteger)50 withPositionY:(NSInteger)-50 withCostumes:costumes setCostumeIndex:(NSInteger)0];
+    Sprite *sprite2 = [self createSprite:@"cat2" withPositionX:(NSInteger)70 withPositionY:(NSInteger)-100 withCostumes:costumes setCostumeIndex:(NSInteger)0];
     [sprite2 addBroadcastScript:broadcastScript forMessage:broadcastMessage];
+    
+    
+    //sprite3
+    
+    Sprite *sprite3 = [self createSprite:@"cat3" withPositionX:(NSInteger)70 withPositionY:(NSInteger)100 withCostumes:costumes setCostumeIndex:(NSInteger)0];
+    [sprite3 addBroadcastScript:broadcastScript forMessage:broadcastMessage];
+
 
     ///
     
-    level.spritesArray = [NSMutableArray arrayWithObjects:sprite1, sprite2, nil];
+    level.spritesArray = [NSMutableArray arrayWithObjects:sprite1, sprite2, sprite3, nil];
     
     return level;
     
