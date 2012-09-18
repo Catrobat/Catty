@@ -61,7 +61,7 @@ typedef struct {
 @property (assign) TexturedQuad quad;
 @property (nonatomic, strong) GLKTextureInfo *textureInfo;
 
-@property (assign) GLKVector3 position;        // "Real" position - origin is bottom-left
+@property (assign) GLKVector3 position;        // position - origin is in the middle of the sprite
 
 
 @property (atomic, strong) NSMutableArray *brickQueue;
@@ -267,11 +267,11 @@ typedef struct {
     self.contentSize = CGSizeMake(self.textureInfo.width, self.textureInfo.height);
     
     //test
-    CGFloat width = [UIScreen mainScreen].bounds.size.width;
-    CGFloat height = [UIScreen mainScreen].bounds.size.height;
-    NSLog(@"self width: %f", self.contentSize.width/2);
-    NSLog(@"width: %f, newWidth: %f", width/2, (width/2 - self.contentSize.width/2));
-    self.position = GLKVector3Make((width/2 - self.contentSize.width/2), (height/2 - self.contentSize.height/2), 0);
+//    CGFloat width = [UIScreen mainScreen].bounds.size.width;
+//    CGFloat height = [UIScreen mainScreen].bounds.size.height;
+//    NSLog(@"self width: %f", self.contentSize.width/2);
+//    NSLog(@"width: %f, newWidth: %f", width/2, (width/2 - self.contentSize.width/2));
+//    self.position = GLKVector3Make((width/2 - self.contentSize.width/2), (height/2 - self.contentSize.height/2), 0);
     //end of test
     
     
@@ -290,9 +290,20 @@ typedef struct {
 
 - (GLKMatrix4) modelMatrix 
 {
-    GLKMatrix4 modelMatrix = GLKMatrix4Identity;    
-    modelMatrix = GLKMatrix4Translate(modelMatrix, self.position.x, self.position.y, self.position.z);
-    //modelMatrix = GLKMatrix4Translate(modelMatrix, -self.contentSize.width/2, -self.contentSize.height/2, 0);
+    GLKMatrix4 modelMatrix = GLKMatrix4Identity;
+    //    CGFloat width = [UIScreen mainScreen].bounds.size.width;
+    //    CGFloat height = [UIScreen mainScreen].bounds.size.height;
+    //    NSLog(@"self width: %f", self.contentSize.width/2);
+    //    NSLog(@"width: %f, newWidth: %f", width/2, (width/2 - self.contentSize.width/2));
+    //    self.position = GLKVector3Make((width/2 - self.contentSize.width/2), (height/2 - self.contentSize.height/2), 0);
+
+    float x = self.position.x + [UIScreen mainScreen].bounds.size.width/2;
+    float y = self.position.y + [UIScreen mainScreen].bounds.size.height/2;
+    
+//    NSLog(@"x/y: %f/%f", x, y);
+    
+    modelMatrix = GLKMatrix4Translate(modelMatrix, x, y, self.position.z);
+    modelMatrix = GLKMatrix4Translate(modelMatrix, -self.contentSize.width/2, -self.contentSize.height/2, 0);
     
     return modelMatrix;
 }
@@ -388,86 +399,31 @@ typedef struct {
 {
 //    NSLog(@"=====> %f %f", newPosition.x, newPosition.y);
 
-    GLKVector3 position = GLKVector3Add(newPosition, GLKVector3Make(320/2, 460/2, 0));                        // TODO: change constant values
-    position = GLKVector3Subtract(position, GLKVector3Make(self.textureInfo.width/2, self.textureInfo.height/2, 0));
+//    GLKVector3 position = GLKVector3Add(newPosition, GLKVector3Make(320/2, 460/2, 0));                        // TODO: change constant values
+//    position = GLKVector3Subtract(position, GLKVector3Make(self.textureInfo.width/2, self.textureInfo.height/2, 0));
 
-    
-//    if ([self.nextPositions count] > 0)
-//    {
-//        [self.nextPositions addObject:[PositionAtTime positionAtTimeWithPosition:position andTimestamp:0]];
-//    }
-//    else
-//    {
-        self.position = position;
-//    }
+    self.position = newPosition;
 }
 
 - (void)wait:(int)durationInMilliSecs
 {
     GLKVector3 position;
     NSTimeInterval timeStamp;
-//    if ([self.nextPositions count] > 0)
-//    {
-//        PositionAtTime *lastPositionAtTime = [self.nextPositions objectAtIndex:[self.nextPositions count]-1];
-//        position = lastPositionAtTime.position;
-//        timeStamp = lastPositionAtTime.timestamp + (durationInMilliSecs/1000.0f);
-//    }
-//    else
-//    {
-        position = self.position;
-        timeStamp = [[NSDate date] timeIntervalSince1970] + (durationInMilliSecs/1000.0f);
-//    }
-    self.nextPosition = [PositionAtTime positionAtTimeWithPosition:position andTimestamp:timeStamp];
+
+    timeStamp = [[NSDate date] timeIntervalSince1970] + (durationInMilliSecs/1000.0f);
+
+    self.nextPosition = [PositionAtTime positionAtTimeWithPosition:self.position andTimestamp:timeStamp];
 }
 
 - (void)glideToPosition:(GLKVector3)position withinDurationInMilliSecs:(int)durationInMilliSecs
 {
     // transfer to "origin is in the middle of the screen"-coordinates...
-    position = GLKVector3Add(position, GLKVector3Make(320/2, 460/2, 0));                                // TODO: change constant values
-    position = GLKVector3Subtract(position, GLKVector3Make(self.textureInfo.width/2, self.textureInfo.height/2, 0));
+//    position = GLKVector3Add(position, GLKVector3Make(320/2, 460/2, 0));                                // TODO: change constant values
+//    position = GLKVector3Subtract(position, GLKVector3Make(self.textureInfo.width/2, self.textureInfo.height/2, 0));
 
-    NSTimeInterval timeStamp;
-//    if ([self.nextPositions count] > 0)
-//    {
-//        PositionAtTime *lastPositionAtTime = [self.nextPositions objectAtIndex:[self.nextPositions count]-1];
-//        timeStamp = lastPositionAtTime.timestamp + (durationInMilliSecs/1000.0f);
-//    }
-//    else
-//    {
-        timeStamp = [[NSDate date] timeIntervalSince1970] + (durationInMilliSecs/1000.0f);
-//    }
+    NSTimeInterval timeStamp = [[NSDate date] timeIntervalSince1970] + (durationInMilliSecs/1000.0f);
     
     self.nextPosition = [PositionAtTime positionAtTimeWithPosition:position andTimestamp:timeStamp];
-    
-//    // yes, it's an integer-cast
-//    int number_of_frames = FRAMES_PER_SECOND / 1000.0f * durationInMilliSecs;
-//    
-//    position = GLKVector3Add(position, GLKVector3Make(320/2, 460/2, 0));    // TODO: change constant values
-//    position = GLKVector3Subtract(position, GLKVector3Make(self.textureInfo.width/2, self.textureInfo.height/2, 0));
-//
-//    
-//    if (self.nextPositions == nil)
-//        self.nextPositions = [[NSMutableArray alloc]initWithCapacity:number_of_frames];
-//    
-//    ////////////////////////////////////////////////////////////////////
-//    // TODO: dirty...change asap !!!
-//    
-//    GLKVector3 lastPosition = self.position;
-//    
-//    for (int i=1; i<number_of_frames; i++)
-//    {
-//        float xStep = round((position.x - lastPosition.x) / (float)(number_of_frames+1-i));
-//        float yStep = round((position.y - lastPosition.y) / (float)(number_of_frames+1-i));
-//        
-//        GLKVector3 newPosition = GLKVector3Make(lastPosition.x + xStep, lastPosition.y + yStep, lastPosition.z);
-//        NSData *data = [NSValue valueWithBytes:&newPosition objCType:@encode(GLKVector3)];
-//        [self.nextPositions addObject:data];
-//        
-//        lastPosition = newPosition;
-//    }
-//    [self.nextPositions addObject:[NSValue valueWithBytes:&position objCType:@encode(GLKVector3)]];   // ensure, that final position is defined position
-//    // TODO: really...CHANGE IT!!!!!
-//    ////////////////////////////////////////////////////////////////////
 }
 
 - (void)changeCostume:(NSNumber *)indexOfCostumeInArray
@@ -495,13 +451,13 @@ typedef struct {
 
 - (void)setXPosition:(float)xPosition
 {
-    xPosition = xPosition + 320/2 - self.textureInfo.width/2;           // TODO: change constant values
+//    xPosition = xPosition + 320/2 - self.textureInfo.width/2;           // TODO: change constant values
     self.position = GLKVector3Make(xPosition, self.position.y, self.position.z);
 }
 
 -(void)setYPosition:(float)yPosition
 {
-    yPosition = yPosition + 460/2 - self.textureInfo.height/2;           // TODO: change constant values
+//    yPosition = yPosition + 460/2 - self.textureInfo.height/2;           // TODO: change constant values
     self.position = GLKVector3Make(self.position.x, yPosition, self.position.z);
 }
 
@@ -556,7 +512,10 @@ typedef struct {
 
 
 - (CGRect)boundingBox {
-    CGRect rect = CGRectMake(self.position.x, self.position.y, self.contentSize.width, self.contentSize.height);
+    float x = self.position.x + [UIScreen mainScreen].bounds.size.width/2 - self.contentSize.width/2;
+    float y = self.position.y + [UIScreen mainScreen].bounds.size.height/2 - self.contentSize.height/2;
+    
+    CGRect rect = CGRectMake(x, y, self.contentSize.width, self.contentSize.height);
     return rect;
 }
 

@@ -312,20 +312,15 @@
     
     Costume *costume = [self createCostumeFromPath:@"normalcat.png" withName:@"cat1"];
     
-    PlaceAtBrick *placeAtBrick = [[PlaceAtBrick alloc]initWithPosition:GLKVector3Make(-50, -50, 0)];
     BroadcastBrick *broadcastBrick = [[BroadcastBrick alloc]initWithMessage:broadcastMessage];
-    
-    StartScript *startScript = [[StartScript alloc]init];
-    [startScript addBrick:placeAtBrick];
     
     WhenScript *whenScript = [[WhenScript alloc]init];
     [whenScript addBricks:[NSMutableArray arrayWithObjects: broadcastBrick, nil]];
     
     NSArray *costumes = [NSArray arrayWithObjects:costume, nil];
     
-    Sprite *sprite1 = [self createSprite:@"cat1" withPositionX:(NSInteger)100 withPositionY:(NSInteger)100 withCostumes:costumes setCostumeIndex:(NSInteger)0];
+    Sprite *sprite1 = [self createSprite:@"cat1" withPositionX:(NSInteger)-50 withPositionY:(NSInteger)50 withCostumes:costumes setCostumeIndex:(NSInteger)0];
     [sprite1 addWhenScript:whenScript];
-    [sprite1 addStartScript:startScript];
     
     
     //sprite2
