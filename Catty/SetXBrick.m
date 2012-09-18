@@ -10,6 +10,7 @@
 
 @implementation SetXBrick
 
+@synthesize xPosition = _xPosition;
 
 -(id)initWithXPosition:(float)xPosition
 {
