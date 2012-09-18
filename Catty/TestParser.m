@@ -23,6 +23,7 @@
 #import "ShowBrick.h"
 #import "SetXBrick.h"
 #import "SetYBrick.h"
+#import "BroadcastBrick.h"
 
 @interface TestParser ()
 
@@ -164,7 +165,6 @@
     Sprite *ret = [[Sprite alloc] initWithEffect:self.effect];
     ret.name = name;
     [ret placeAt:GLKVector3Make(x, y, self.zIndex++)];
-//    ret.costumesArray = costumesArray;
     [ret addCostumes:costumesArray];
     [ret changeCostume:[NSNumber numberWithInt:index]];
     
@@ -300,5 +300,52 @@
 
 }
 
+-(Level *)generateDebugLevel_broadcast
+{
+    Level *level = [[Level alloc]init];
+    level.name = @"broadcast";
+    level.resolution = CGSizeMake(320, 460);
+    
+    NSString *broadcastMessage = @"BROADCAST";
+    
+    //sprite1
+    
+    Costume *costume = [self createCostumeFromPath:@"normalcat.png" withName:@"cat1"];
+    
+    PlaceAtBrick *placeAtBrick = [[PlaceAtBrick alloc]initWithPosition:GLKVector3Make(-50, -50, 0)];
+    BroadcastBrick *broadcastBrick = [[BroadcastBrick alloc]initWithMessage:broadcastMessage];
+    
+    StartScript *startScript = [[StartScript alloc]init];
+    [startScript addBrick:placeAtBrick];
+    
+    WhenScript *whenScript = [[WhenScript alloc]init];
+    [whenScript addBricks:[NSMutableArray arrayWithObjects: broadcastBrick, nil]];
+    
+    NSArray *costumes = [NSArray arrayWithObjects:costume, nil];
+    
+    Sprite *sprite1 = [self createSprite:@"cat1" withPositionX:(NSInteger)100 withPositionY:(NSInteger)100 withCostumes:costumes setCostumeIndex:(NSInteger)0];
+    [sprite1 addWhenScript:whenScript];
+    [sprite1 addStartScript:startScript];
+    
+    
+    //sprite2
+    
+    HideBrick *hideBrick = [[HideBrick alloc]init];
+    WaitBrick *waitBrick = [[WaitBrick alloc]init];
+    waitBrick.timeToWaitInMilliseconds = [NSNumber numberWithInt:500];
+    ShowBrick *showBrick = [[ShowBrick alloc]init];
+    
+    Script *broadcastScript = [[Script alloc]init];
+    [broadcastScript addBricks:[NSArray arrayWithObjects:hideBrick, waitBrick, showBrick, nil]];
+    
+    Sprite *sprite2 = [self createSprite:@"cat2" withPositionX:(NSInteger)50 withPositionY:(NSInteger)-50 withCostumes:costumes setCostumeIndex:(NSInteger)0];
+    [sprite2 addBroadcastScript:broadcastScript forMessage:broadcastMessage];
 
+    ///
+    
+    level.spritesArray = [NSMutableArray arrayWithObjects:sprite1, sprite2, nil];
+    
+    return level;
+    
+}
 @end

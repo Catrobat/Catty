@@ -122,12 +122,10 @@
     
     TestParser *testparser = [[TestParser alloc]init];
     self.level = [testparser generateDebugLevel_GlideTo];
-    
     self.level = [testparser generateDebugLevel_nextCostume];
-    
     self.level = [testparser generateDebugLevel_HideShow];
-    
     self.level = [testparser generateDebugLevel_SetXY];
+    self.level = [testparser generateDebugLevel_broadcast];
     // DEBUG END
     
     //setting effect
@@ -169,12 +167,13 @@
 {
     for (Sprite *sprite in self.level.spritesArray)
     {
-        for (StartScript *script in sprite.startScriptsArray)
-        {
-            NSLog(@"run start script");
-            //[self runScript:script];
-            [script executeForSprite:sprite];
-        }
+        [sprite start];
+//        for (StartScript *script in sprite.startScriptsArray)
+//        {
+//            NSLog(@"run start script");
+//            //[self runScript:script];
+//            [script executeForSprite:sprite];
+//        }
     }
  
 }

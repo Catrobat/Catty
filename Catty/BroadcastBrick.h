@@ -10,4 +10,8 @@
 
 @interface BroadcastBrick : Brick
 
+@property (nonatomic, strong) NSString *message;
+
+-(id)initWithMessage:(NSString*)message;
+
 @end

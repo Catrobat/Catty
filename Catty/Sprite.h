@@ -33,6 +33,7 @@
 @property (readonly, strong, nonatomic) NSArray *soundsArray;
 @property (readonly, strong, nonatomic) NSArray *startScriptsArray;
 @property (readonly, strong, nonatomic) NSArray *whenScriptsArray;
+@property (readonly, strong, nonatomic) NSDictionary *broadcastScripts; //TODO: ONE broadcast-script for ONE message?? Hopefully, yes - otherwise: change this :(
 @property (assign) CGSize contentSize;
 @property (nonatomic, strong) GLKBaseEffect *effect;
 
@@ -43,6 +44,7 @@
 - (void)addSound:(Sound*)sound;
 - (void)addStartScript:(StartScript*)script;
 - (void)addWhenScript:(WhenScript*)script;
+- (void)addBroadcastScript:(Script*)script forMessage:(NSString*)message;
 
 - (float)getZIndex;
 
@@ -68,6 +70,6 @@
 - (void)show;
 - (void)setXPosition:(float)xPosition;
 - (void)setYPosition:(float)yPosition;
-
+- (void)broadcast:(NSString*)message;
 
 @end

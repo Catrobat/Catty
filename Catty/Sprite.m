@@ -38,6 +38,8 @@ typedef struct {
 
 //////////////////////////////////////////////////////////////////////////////////////////
 
+// TODO: change this to struct????? Maybe??!?!?!?
+
 @implementation PositionAtTime
 @synthesize position = _position;
 @synthesize timestamp = _timestamp;
@@ -70,6 +72,7 @@ typedef struct {
 @property (strong, nonatomic) NSArray *soundsArray;
 @property (strong, nonatomic) NSArray *startScriptsArray;
 @property (strong, nonatomic) NSArray *whenScriptsArray;
+@property (strong, nonatomic) NSDictionary *broadcastScripts;
 
 @property (assign, nonatomic) BOOL showSprite;
 
@@ -83,6 +86,7 @@ typedef struct {
 @synthesize soundsArray = _soundsArray;
 @synthesize startScriptsArray = _startScriptsArray;
 @synthesize whenScriptsArray = _whenScriptsArray;
+@synthesize broadcastScripts = _broadcastScripts;
 @synthesize position = _position;
 @synthesize contentSize = _contentSize;
 @synthesize effect = _effect;
@@ -129,10 +133,19 @@ typedef struct {
     return _whenScriptsArray;
 }
 
+-(NSDictionary *)broadcastScripts
+{
+    if (_broadcastScripts == nil)
+        _broadcastScripts = [[NSDictionary alloc] init];
+    
+    return _broadcastScripts;
+}
+
 - (NSMutableArray*)brickQueue
 {
     if (!_brickQueue)
         _brickQueue = [[NSMutableArray alloc]init];
+    
     return _brickQueue;
 }
 
@@ -158,6 +171,11 @@ typedef struct {
     return self;
 }
 
+-(void)dealloc
+{
+    [[NSNotificationCenter defaultCenter]removeObserver:self];
+}
+
 - (void)addCostume:(Costume *)costume
 {
     self.costumesArray = [self.costumesArray arrayByAddingObject:costume];
@@ -181,6 +199,14 @@ typedef struct {
 - (void)addWhenScript:(WhenScript *)script
 {
     self.whenScriptsArray = [self.whenScriptsArray arrayByAddingObject:script];
+}
+
+- (void)addBroadcastScript:(Script *)script forMessage:(NSString *)message
+{
+    NSMutableDictionary *mutableDictionary = [self.broadcastScripts mutableCopy];
+    [mutableDictionary setObject:script forKey:message];
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(performBroadcastScript:) name:message object:nil];
+    self.broadcastScripts = [NSDictionary dictionaryWithDictionary:mutableDictionary];
 }
 
 - (float)getZIndex
@@ -479,6 +505,11 @@ typedef struct {
     self.position = GLKVector3Make(self.position.x, yPosition, self.position.z);
 }
 
+-(void)broadcast:(NSString *)message
+{
+    [[NSNotificationCenter defaultCenter] postNotificationName:message object:self];
+}
+
 #pragma mark - description
 - (NSString*)description
 {
@@ -559,6 +590,14 @@ typedef struct {
 //            });
 //            // ------------------------------------------ END -----------------------------------------
         }
+    }
+}
+
+- (void)performBroadcastScript:(NSNotification*)notification
+{
+    Script *script = [self.broadcastScripts objectForKey:notification.name];
+    if (script) {
+        [self.brickQueue addObjectsFromArray:[script getAllBricks]];
     }
 }
 

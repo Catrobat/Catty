@@ -21,4 +21,5 @@
 -(Level*)generateDebugLevel_nextCostume;
 -(Level*)generateDebugLevel_HideShow;
 -(Level*)generateDebugLevel_SetXY;
+-(Level*)generateDebugLevel_broadcast;
 @end
