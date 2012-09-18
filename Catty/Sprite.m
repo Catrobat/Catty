@@ -6,6 +6,7 @@
 //  Copyright (c) 2012 Graz University of Technology. All rights reserved.
 //
 
+#import "SpriteManagerDelegate.h"
 #import "Brick.h"
 #import "Sprite.h"
 #import "Costume.h"
@@ -81,6 +82,7 @@ typedef struct {
 @implementation Sprite
 
 // public synthesizes
+@synthesize spriteManagerDelegate = _spriteManagerDelegate;
 @synthesize name = _name;
 @synthesize costumesArray = _costumesArray;
 @synthesize soundsArray = _soundsArray;
@@ -212,6 +214,16 @@ typedef struct {
 - (float)getZIndex
 {
     return self.position.z;
+}
+
+-(void)setZIndex:(float)newZIndex
+{
+    self.position = GLKVector3Make(self.position.x, self.position.y, newZIndex);
+}
+
+-(void)decrementZIndexByOne
+{
+    [self setZIndex:self.position.z-1];
 }
 
 #pragma mark - costume index SETTER
@@ -380,6 +392,8 @@ typedef struct {
         glVertexAttribPointer(GLKVertexAttribTexCoord0, 2, GL_FLOAT, GL_FALSE, sizeof(TexturedVertex), (void *) (offset + offsetof(TexturedVertex, textureVertex)));
     
         glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
+        
+//        NSLog(@"render: %@   %f", self.name, self.position.z);
     }
 }
 
@@ -407,11 +421,7 @@ typedef struct {
 
 - (void)wait:(int)durationInMilliSecs
 {
-    GLKVector3 position;
-    NSTimeInterval timeStamp;
-
-    timeStamp = [[NSDate date] timeIntervalSince1970] + (durationInMilliSecs/1000.0f);
-
+    NSTimeInterval timeStamp = [[NSDate date] timeIntervalSince1970] + (durationInMilliSecs/1000.0f);
     self.nextPosition = [PositionAtTime positionAtTimeWithPosition:self.position andTimestamp:timeStamp];
 }
 
@@ -464,6 +474,11 @@ typedef struct {
 -(void)broadcast:(NSString *)message
 {
     [[NSNotificationCenter defaultCenter] postNotificationName:message object:self];
+}
+
+-(void)comeToFront
+{
+    [self.spriteManagerDelegate bringToFrontSprite:self];
 }
 
 #pragma mark - description

@@ -22,4 +22,5 @@
 -(Level*)generateDebugLevel_HideShow;
 -(Level*)generateDebugLevel_SetXY;
 -(Level*)generateDebugLevel_broadcast;
+-(Level*)generateDebugLevel_comeToFront;
 @end

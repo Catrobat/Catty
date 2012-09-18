@@ -24,6 +24,7 @@
 #import "SetXBrick.h"
 #import "SetYBrick.h"
 #import "BroadcastBrick.h"
+#import "ComeToFrontBrick.h"
 
 @interface TestParser ()
 
@@ -349,5 +350,40 @@
     
     return level;
     
+}
+
+-(Level *)generateDebugLevel_comeToFront
+{
+    Level *level = [[Level alloc]init];
+    level.name = @"broadcast";
+    level.resolution = CGSizeMake(320, 460);
+        
+    //sprite1
+    Costume *costume = [self createCostumeFromPath:@"normalcat.png" withName:@"cat1"];
+    ComeToFrontBrick *comeToFrontBrick = [[ComeToFrontBrick alloc]init];
+    
+    WhenScript *whenScript = [[WhenScript alloc]init];
+    [whenScript addBricks:[NSMutableArray arrayWithObjects: comeToFrontBrick, nil]];
+    
+    NSArray *costumes = [NSArray arrayWithObjects:costume, nil];
+    
+    Sprite *sprite1 = [self createSprite:@"cat1" withPositionX:(NSInteger)0 withPositionY:(NSInteger)0 withCostumes:costumes setCostumeIndex:(NSInteger)0];
+    [sprite1 addWhenScript:whenScript];
+    
+    //sprite2
+    Sprite *sprite2 = [self createSprite:@"cat2" withPositionX:(NSInteger)50 withPositionY:(NSInteger)50 withCostumes:costumes setCostumeIndex:(NSInteger)0];
+    [sprite2 addWhenScript:whenScript];
+    
+    //sprite3
+    Sprite *sprite3 = [self createSprite:@"cat3" withPositionX:(NSInteger)-50 withPositionY:(NSInteger)-50 withCostumes:costumes setCostumeIndex:(NSInteger)0];
+    [sprite3 addWhenScript:whenScript];
+        
+    
+    ///
+    
+    level.spritesArray = [NSMutableArray arrayWithObjects:sprite3, sprite2, sprite1, nil];
+    
+    return level;
+
 }
 @end

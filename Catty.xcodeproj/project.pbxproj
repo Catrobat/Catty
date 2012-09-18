@@ -58,6 +58,7 @@
 		CD85F51416077C67007C38D1 /* SetXBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = CD85F51316077C67007C38D1 /* SetXBrick.m */; };
 		CD85F51716077C75007C38D1 /* SetYBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = CD85F51616077C75007C38D1 /* SetYBrick.m */; };
 		CD85F52C16083315007C38D1 /* BroadcastBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = CD85F52B16083315007C38D1 /* BroadcastBrick.m */; };
+		CD85F53F160864F3007C38D1 /* ComeToFrontBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = CD85F53E160864F3007C38D1 /* ComeToFrontBrick.m */; };
 		CD8FA5AC1605D91300FC282F /* NextCostumeBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = CD8FA5AB1605D91300FC282F /* NextCostumeBrick.m */; };
 		CD8FA5B116063EA700FC282F /* HideBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = CD8FA5B016063EA700FC282F /* HideBrick.m */; };
 		CD8FA5B416063EBA00FC282F /* ShowBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = CD8FA5B316063EBA00FC282F /* ShowBrick.m */; };
@@ -155,6 +156,9 @@
 		CD85F51616077C75007C38D1 /* SetYBrick.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SetYBrick.m; sourceTree = "<group>"; };
 		CD85F52A16083315007C38D1 /* BroadcastBrick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BroadcastBrick.h; sourceTree = "<group>"; };
 		CD85F52B16083315007C38D1 /* BroadcastBrick.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BroadcastBrick.m; sourceTree = "<group>"; };
+		CD85F53B16085DD5007C38D1 /* SpriteManagerDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SpriteManagerDelegate.h; sourceTree = "<group>"; };
+		CD85F53D160864F3007C38D1 /* ComeToFrontBrick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ComeToFrontBrick.h; sourceTree = "<group>"; };
+		CD85F53E160864F3007C38D1 /* ComeToFrontBrick.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ComeToFrontBrick.m; sourceTree = "<group>"; };
 		CD8FA5AA1605D91300FC282F /* NextCostumeBrick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NextCostumeBrick.h; sourceTree = "<group>"; };
 		CD8FA5AB1605D91300FC282F /* NextCostumeBrick.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NextCostumeBrick.m; sourceTree = "<group>"; };
 		CD8FA5AF16063EA700FC282F /* HideBrick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HideBrick.h; sourceTree = "<group>"; };
@@ -390,6 +394,7 @@
 		B4FDF32815A82C1000CBCF03 /* Catty */ = {
 			isa = PBXGroup;
 			children = (
+				CD85F53516085D07007C38D1 /* Delegates */,
 				B415DC3D15BABB420076275E /* Enums */,
 				B415DC3615B9F8450076275E /* Util */,
 				B4FDF39915A8349900CBCF03 /* ViewController */,
@@ -527,6 +532,7 @@
 		B4FDF38115A82F3F00CBCF03 /* Bricks */ = {
 			isa = PBXGroup;
 			children = (
+				CD85F53C160864DF007C38D1 /* ComeToFront */,
 				CD85F528160832FC007C38D1 /* BroadcastBrick */,
 				CD85F50F16077C42007C38D1 /* SetX */,
 				CD85F51116077C4E007C38D1 /* SetY */,
@@ -619,6 +625,23 @@
 				CD85F52B16083315007C38D1 /* BroadcastBrick.m */,
 			);
 			name = BroadcastBrick;
+			sourceTree = "<group>";
+		};
+		CD85F53516085D07007C38D1 /* Delegates */ = {
+			isa = PBXGroup;
+			children = (
+				CD85F53B16085DD5007C38D1 /* SpriteManagerDelegate.h */,
+			);
+			name = Delegates;
+			sourceTree = "<group>";
+		};
+		CD85F53C160864DF007C38D1 /* ComeToFront */ = {
+			isa = PBXGroup;
+			children = (
+				CD85F53D160864F3007C38D1 /* ComeToFrontBrick.h */,
+				CD85F53E160864F3007C38D1 /* ComeToFrontBrick.m */,
+			);
+			name = ComeToFront;
 			sourceTree = "<group>";
 		};
 		CD8FA5A81605D8B700FC282F /* NextCostumeBrick */ = {
@@ -794,6 +817,7 @@
 				CD85F51416077C67007C38D1 /* SetXBrick.m in Sources */,
 				CD85F51716077C75007C38D1 /* SetYBrick.m in Sources */,
 				CD85F52C16083315007C38D1 /* BroadcastBrick.m in Sources */,
+				CD85F53F160864F3007C38D1 /* ComeToFrontBrick.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

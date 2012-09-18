@@ -126,12 +126,14 @@
     self.level = [testparser generateDebugLevel_HideShow];
     self.level = [testparser generateDebugLevel_SetXY];
     self.level = [testparser generateDebugLevel_broadcast];
+    self.level = [testparser generateDebugLevel_comeToFront];
     // DEBUG END
     
     //setting effect
     for (Sprite *sprite in self.level.spritesArray)
     {
         sprite.effect = self.effect;
+        sprite.spriteManagerDelegate = self;
     }
     
     [self startLevel];
@@ -306,5 +308,14 @@
     
 }
 
+#pragma mark - SpriteManagerDelegate
+-(void)bringToFrontSprite:(Sprite *)sprite
+{
+    // TODO: CHANGE THIS ASAP!!!
+    NSMutableArray *sprites = [self.level.spritesArray mutableCopy];
+    [sprites removeObject:sprite];
+    [sprites addObject:sprite];
+    self.level.spritesArray = [NSArray arrayWithArray:sprites];
+}
 
 @end

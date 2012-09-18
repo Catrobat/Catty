@@ -8,7 +8,9 @@
 
 #import <GLKit/GLKit.h>
 #import "enums.h"
+#import "SpriteManagerDelegate.h"
 
+//@class SpriteManagerDelegate;
 @class Costume;
 @class Script;
 @class Sound;
@@ -27,6 +29,10 @@
 
 
 @interface Sprite : NSObject
+
+
+
+@property (weak, nonatomic) id<SpriteManagerDelegate> spriteManagerDelegate;
 
 @property (strong, nonatomic) NSString *name;
 @property (readonly, strong, nonatomic) NSArray *costumesArray;
@@ -47,6 +53,8 @@
 - (void)addBroadcastScript:(Script*)script forMessage:(NSString*)message;
 
 - (float)getZIndex;
+- (void)setZIndex:(float)newZIndex;
+- (void)decrementZIndexByOne;
 
 // graphics
 - (void)update:(float)dt;
@@ -71,5 +79,6 @@
 - (void)setXPosition:(float)xPosition;
 - (void)setYPosition:(float)yPosition;
 - (void)broadcast:(NSString*)message;
+- (void)comeToFront;
 
 @end
