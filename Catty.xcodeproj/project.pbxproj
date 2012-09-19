@@ -27,6 +27,10 @@
 		B43CF29B1609B5FC00E19CF3 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = B43CF29A1609B5FC00E19CF3 /* libz.dylib */; };
 		B43CF2A21609BD1400E19CF3 /* MyProjectsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B43CF2A11609BD1400E19CF3 /* MyProjectsViewController.m */; };
 		B43CF2A71609BE4D00E19CF3 /* LevelLoadingInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = B43CF2A61609BE4D00E19CF3 /* LevelLoadingInfo.m */; };
+		B43CF2AB1609C41300E19CF3 /* background.png in Resources */ = {isa = PBXBuildFile; fileRef = B43CF2A91609C41300E19CF3 /* background.png */; };
+		B43CF2AC1609C41300E19CF3 /* background@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B43CF2AA1609C41300E19CF3 /* background@2x.png */; };
+		B43CF2AF1609C6BC00E19CF3 /* container.png in Resources */ = {isa = PBXBuildFile; fileRef = B43CF2AD1609C6BC00E19CF3 /* container.png */; };
+		B43CF2B01609C6BC00E19CF3 /* container@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B43CF2AE1609C6BC00E19CF3 /* container@2x.png */; };
 		B468CDBE16078B59007300A0 /* ListProjectsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B468CDBD16078B59007300A0 /* ListProjectsViewController.m */; };
 		B468CDC3160790CF007300A0 /* CatrobatInformation.m in Sources */ = {isa = PBXBuildFile; fileRef = B468CDC2160790CF007300A0 /* CatrobatInformation.m */; };
 		B468CDC816079438007300A0 /* CatrobatProject.m in Sources */ = {isa = PBXBuildFile; fileRef = B468CDC716079438007300A0 /* CatrobatProject.m */; };
@@ -63,9 +67,6 @@
 		B4FDF38815A82F4D00CBCF03 /* Brick.m in Sources */ = {isa = PBXBuildFile; fileRef = B4FDF38315A82F4D00CBCF03 /* Brick.m */; };
 		B4FDF38915A82F4D00CBCF03 /* WaitBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = B4FDF38515A82F4D00CBCF03 /* WaitBrick.m */; };
 		B4FDF38A15A82F4D00CBCF03 /* SetCostumeBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = B4FDF38715A82F4D00CBCF03 /* SetCostumeBrick.m */; };
-		B4FDF39115A82FD100CBCF03 /* background.png in Resources */ = {isa = PBXBuildFile; fileRef = B4FDF38E15A82FD100CBCF03 /* background.png */; };
-		B4FDF39215A82FD100CBCF03 /* ceshirecat.png in Resources */ = {isa = PBXBuildFile; fileRef = B4FDF38F15A82FD100CBCF03 /* ceshirecat.png */; };
-		B4FDF39315A82FD100CBCF03 /* normalcat.png in Resources */ = {isa = PBXBuildFile; fileRef = B4FDF39015A82FD100CBCF03 /* normalcat.png */; };
 		B4FDF39615A833DA00CBCF03 /* catty_icon_retina.png in Resources */ = {isa = PBXBuildFile; fileRef = B4FDF39515A833DA00CBCF03 /* catty_icon_retina.png */; };
 		CD25FE1615B0642400719D12 /* PlaceAtBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = CD25FE1515B0642400719D12 /* PlaceAtBrick.m */; };
 		CD85F51416077C67007C38D1 /* SetXBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = CD85F51316077C67007C38D1 /* SetXBrick.m */; };
@@ -118,6 +119,10 @@
 		B43CF2A11609BD1400E19CF3 /* MyProjectsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyProjectsViewController.m; sourceTree = "<group>"; };
 		B43CF2A51609BE4D00E19CF3 /* LevelLoadingInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LevelLoadingInfo.h; sourceTree = "<group>"; };
 		B43CF2A61609BE4D00E19CF3 /* LevelLoadingInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LevelLoadingInfo.m; sourceTree = "<group>"; };
+		B43CF2A91609C41300E19CF3 /* background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = background.png; sourceTree = "<group>"; };
+		B43CF2AA1609C41300E19CF3 /* background@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "background@2x.png"; sourceTree = "<group>"; };
+		B43CF2AD1609C6BC00E19CF3 /* container.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = container.png; sourceTree = "<group>"; };
+		B43CF2AE1609C6BC00E19CF3 /* container@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "container@2x.png"; sourceTree = "<group>"; };
 		B468CDBC16078B59007300A0 /* ListProjectsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ListProjectsViewController.h; sourceTree = "<group>"; };
 		B468CDBD16078B59007300A0 /* ListProjectsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ListProjectsViewController.m; sourceTree = "<group>"; };
 		B468CDC1160790CF007300A0 /* CatrobatInformation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CatrobatInformation.h; sourceTree = "<group>"; };
@@ -181,9 +186,6 @@
 		B4FDF38515A82F4D00CBCF03 /* WaitBrick.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WaitBrick.m; sourceTree = "<group>"; };
 		B4FDF38615A82F4D00CBCF03 /* SetCostumeBrick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SetCostumeBrick.h; sourceTree = "<group>"; };
 		B4FDF38715A82F4D00CBCF03 /* SetCostumeBrick.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SetCostumeBrick.m; sourceTree = "<group>"; };
-		B4FDF38E15A82FD100CBCF03 /* background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = background.png; sourceTree = "<group>"; };
-		B4FDF38F15A82FD100CBCF03 /* ceshirecat.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ceshirecat.png; sourceTree = "<group>"; };
-		B4FDF39015A82FD100CBCF03 /* normalcat.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = normalcat.png; sourceTree = "<group>"; };
 		B4FDF39515A833DA00CBCF03 /* catty_icon_retina.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = catty_icon_retina.png; path = ../catty_icon_retina.png; sourceTree = "<group>"; };
 		CD25FE1415B0642400719D12 /* PlaceAtBrick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlaceAtBrick.h; sourceTree = "<group>"; };
 		CD25FE1515B0642400719D12 /* PlaceAtBrick.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlaceAtBrick.m; sourceTree = "<group>"; };
@@ -398,6 +400,17 @@
 				B43CF2A61609BE4D00E19CF3 /* LevelLoadingInfo.m */,
 			);
 			name = LevelLoadingInfo;
+			sourceTree = "<group>";
+		};
+		B43CF2A81609C3D900E19CF3 /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				B43CF2AD1609C6BC00E19CF3 /* container.png */,
+				B43CF2AE1609C6BC00E19CF3 /* container@2x.png */,
+				B43CF2A91609C41300E19CF3 /* background.png */,
+				B43CF2AA1609C41300E19CF3 /* background@2x.png */,
+			);
+			name = UI;
 			sourceTree = "<group>";
 		};
 		B468CDBA16078AFB007300A0 /* ListProjectsViewController */ = {
@@ -684,24 +697,14 @@
 			isa = PBXGroup;
 			children = (
 				CD9438AA15DBAFC7002E6375 /* defaultProject */,
-				B4FDF38D15A82FB800CBCF03 /* Costumes */,
 			);
 			name = TEMP;
-			sourceTree = "<group>";
-		};
-		B4FDF38D15A82FB800CBCF03 /* Costumes */ = {
-			isa = PBXGroup;
-			children = (
-				B4FDF39015A82FD100CBCF03 /* normalcat.png */,
-				B4FDF38E15A82FD100CBCF03 /* background.png */,
-				B4FDF38F15A82FD100CBCF03 /* ceshirecat.png */,
-			);
-			name = Costumes;
 			sourceTree = "<group>";
 		};
 		B4FDF39715A833EA00CBCF03 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				B43CF2A81609C3D900E19CF3 /* UI */,
 				B4FDF39815A833EF00CBCF03 /* Icons */,
 			);
 			name = Images;
@@ -855,13 +858,14 @@
 			files = (
 				B4FDF32D15A82C1000CBCF03 /* InfoPlist.strings in Resources */,
 				B4FDF33615A82C1000CBCF03 /* MainStoryboard.storyboard in Resources */,
-				B4FDF39115A82FD100CBCF03 /* background.png in Resources */,
-				B4FDF39215A82FD100CBCF03 /* ceshirecat.png in Resources */,
-				B4FDF39315A82FD100CBCF03 /* normalcat.png in Resources */,
 				B4FDF39615A833DA00CBCF03 /* catty_icon_retina.png in Resources */,
 				B415DC3B15BAB86B0076275E /* defaultProject.xml in Resources */,
 				B415DC4515BAE3CF0076275E /* projectcode.xml in Resources */,
 				CD9438AB15DBAFC7002E6375 /* defaultProject in Resources */,
+				B43CF2AB1609C41300E19CF3 /* background.png in Resources */,
+				B43CF2AC1609C41300E19CF3 /* background@2x.png in Resources */,
+				B43CF2AF1609C6BC00E19CF3 /* container.png in Resources */,
+				B43CF2B01609C6BC00E19CF3 /* container@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

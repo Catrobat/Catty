@@ -29,6 +29,11 @@
 {
     [super viewDidLoad];
     
+    //background image
+    UIColor *background = [[UIColor alloc] initWithPatternImage:[UIImage imageNamed:@"background"]];
+    self.view.backgroundColor = background;
+    
+    
     //delegates
     self.scrollView.delegate = self;
     
@@ -37,26 +42,26 @@
 
     //creating new view for page
     UIView *view = [[UIView alloc] init];
-    view.backgroundColor = [UIColor redColor];
+    view.backgroundColor = [[UIColor alloc] initWithPatternImage:[UIImage imageNamed:@"container"]];
     
     //add item
     [self.pages addObject:view];
     
     
     view = [[UIView alloc] init];
-    view.backgroundColor = [UIColor greenColor];
+    view.backgroundColor = [[UIColor alloc] initWithPatternImage:[UIImage imageNamed:@"container"]];
     [self.pages addObject:view];
 
     view = [[UIView alloc] init];
-    view.backgroundColor = [UIColor blueColor];
+    view.backgroundColor = [[UIColor alloc] initWithPatternImage:[UIImage imageNamed:@"container"]];
     [self.pages addObject:view];
     
     view = [[UIView alloc] init];
-    view.backgroundColor = [UIColor yellowColor];
+    view.backgroundColor = [[UIColor alloc] initWithPatternImage:[UIImage imageNamed:@"container"]];
     [self.pages addObject:view];
     
     view = [[UIView alloc] init];
-    view.backgroundColor = [UIColor orangeColor];
+    view.backgroundColor = [[UIColor alloc] initWithPatternImage:[UIImage imageNamed:@"container"]];
     [self.pages addObject:view];
     
     
@@ -82,10 +87,10 @@
     NSInteger counter = 0;
     for (UIView *view in self.pages ) {
         CGRect frame;
-        frame.origin.x = 25 + self.scrollView.frame.size.width * counter++;
+        frame.origin.x = 35 + self.scrollView.frame.size.width * counter++;
         frame.origin.y = 15;
-        frame.size.height = 350.0;
-        frame.size.width = 270.0;
+        frame.size.height = 300.0;
+        frame.size.width = 250.0;
         
 //        UIImageView *imageview = [[UIImageView alloc] initWithFrame:frame];
 //        imageview.image = image;
