@@ -25,6 +25,7 @@
 #import "ShowBrick.h"
 #import "SetXBrick.h"
 #import "SetYBrick.h"
+#import "ChangeSizeByNBrick.h"
 
 @interface LevelParser()
 
@@ -248,6 +249,11 @@
             SetYBrick *brick = [self loadSetYBrick:element];
             [ret addBrick:brick];
         }
+        else if ([element.name isEqualToString:@"Bricks.ChangeSizeByNBrick"])
+        {
+            ChangeSizeByNBrick *brick = [self loadChangeSizeByNBrick:element];
+            [ret addBrick:brick];
+        }
     }
     
     //retrieving setCostumeBricks
@@ -380,6 +386,19 @@
     
     NSLog(@"setY: %@", yPosition.stringValue);
     brick.yPosition = yPosition.stringValue.floatValue;
+    
+    return brick;
+}
+
+-(ChangeSizeByNBrick*)loadChangeSizeByNBrick:(GDataXMLElement*)gDataXMLElement
+{
+    ChangeSizeByNBrick *brick = [[ChangeSizeByNBrick alloc]init];
+    
+    NSArray *sizeChangeRates = [gDataXMLElement elementsForName:@"yPosition"];
+    GDataXMLElement *sizeChangeRate = (GDataXMLElement*)[sizeChangeRates objectAtIndex:0];
+    
+    NSLog(@"change: %@", sizeChangeRate.stringValue);
+    brick.sizeInPercentage = sizeChangeRate.stringValue.floatValue;
     
     return brick;
 }
