@@ -26,6 +26,7 @@
 #import "SetXBrick.h"
 #import "SetYBrick.h"
 #import "ChangeSizeByNBrick.h"
+#import "BroadcastBrick.h"
 
 @interface LevelParser()
 
@@ -131,6 +132,18 @@
         {
             WhenScript *newScript = [self loadScript:gDataScript];
             [self.newSprite addWhenScript:newScript];
+        }
+        
+        //getting all broadcast scripts
+        NSArray *scripts3 = [[scriptList objectAtIndex:0] elementsForName:@"Content.BroadcastScript"];
+        for (GDataXMLElement *gDataScript in scripts3)
+        {
+            NSArray *receivedMessages = [gDataScript elementsForName:@"receivedMessage"];
+            temp = (GDataXMLElement*)[receivedMessages objectAtIndex:0];
+            NSString *broadcastMessage = temp.stringValue;
+            
+            Script *newScript = [self loadScript:gDataScript];
+            [self.newSprite addBroadcastScript:newScript forMessage:broadcastMessage];
         }
         
         NSArray *spriteNames = [gDataSprite elementsForName:@"name"];
@@ -266,6 +279,11 @@
         else if ([element.name isEqualToString:@"Bricks.ChangeSizeByNBrick"])
         {
             ChangeSizeByNBrick *brick = [self loadChangeSizeByNBrick:element];
+            [ret addBrick:brick];
+        }
+        else if ([element.name isEqualToString:@"Bricks.BroadcastBrick"])
+        {
+            BroadcastBrick *brick = [self loadBroadcastBrick:element];
             [ret addBrick:brick];
         }
         else
@@ -417,6 +435,19 @@
     
     NSLog(@"changeSizeByN: %@", sizeChangeRate.stringValue);
     brick.sizeInPercentage = sizeChangeRate.stringValue.floatValue;
+    
+    return brick;
+}
+
+-(BroadcastBrick*)loadBroadcastBrick:(GDataXMLElement*)gDataXMLElement
+{
+    BroadcastBrick *brick = [[BroadcastBrick alloc]init];
+    
+    NSArray *messages = [gDataXMLElement elementsForName:@"broadcastMessage"];
+    GDataXMLElement *message = (GDataXMLElement*)[messages objectAtIndex:0];
+    
+    NSLog(@"broadcastBrick: %@", message.stringValue);
+    brick.message = message.stringValue;
     
     return brick;
 }
