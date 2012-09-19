@@ -18,6 +18,12 @@
     NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     NSString *basePath = ([paths count] > 0) ? [paths objectAtIndex:0] : nil;
     return basePath;
+    
+//    //documents directory URL
+//    NSURL *documentsDirectoryURL = [[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] lastObject];
+//    
+//    //returns the URL to the application's Documents directory
+//    return [documentsDirectoryURL absoluteString];
 }
 
 //logging possible errors and abort

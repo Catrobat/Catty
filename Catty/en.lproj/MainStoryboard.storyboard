@@ -17,10 +17,10 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4" sceneMemberID="firstResponder"/>
             </objects>
         </scene>
-        <!--View Controller - Catty-->
+        <!--Root View Controller - Catty-->
         <scene sceneID="WWc-YD-9sW">
             <objects>
-                <viewController id="FNH-tE-2bY" sceneMemberID="viewController">
+                <viewController id="FNH-tE-2bY" customClass="RootViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="xxL-X6-DOn">
                         <rect key="frame" x="0.0" y="64" width="320" height="416"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -205,21 +205,6 @@
             <point key="canvasLocation" x="2002" y="743"/>
         </scene>
     </scenes>
-    <classes>
-        <class className="CattyViewController" superclassName="GLKViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/CattyViewController.h"/>
-        </class>
-        <class className="ListProjectsViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/ListProjectsViewController.h"/>
-        </class>
-        <class className="RecentProjectsViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/RecentProjectsViewController.h"/>
-            <relationships>
-                <relationship kind="outlet" name="pageControl" candidateClass="UIPageControl"/>
-                <relationship kind="outlet" name="scrollView" candidateClass="UIScrollView"/>
-            </relationships>
-        </class>
-    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <nil key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>
