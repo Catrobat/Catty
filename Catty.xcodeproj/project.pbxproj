@@ -17,6 +17,7 @@
 		B415DC3C15BAB86B0076275E /* defaultProject.xml in Resources */ = {isa = PBXBuildFile; fileRef = B415DC3A15BAB86B0076275E /* defaultProject.xml */; };
 		B415DC4515BAE3CF0076275E /* projectcode.xml in Resources */ = {isa = PBXBuildFile; fileRef = B415DC4415BAE3CF0076275E /* projectcode.xml */; };
 		B415DC4615BAE3CF0076275E /* projectcode.xml in Resources */ = {isa = PBXBuildFile; fileRef = B415DC4415BAE3CF0076275E /* projectcode.xml */; };
+		B43CF2381608E0A000E19CF3 /* RecentProjectsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B43CF2371608E0A000E19CF3 /* RecentProjectsViewController.m */; };
 		B468CDBE16078B59007300A0 /* ListProjectsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B468CDBD16078B59007300A0 /* ListProjectsViewController.m */; };
 		B468CDC3160790CF007300A0 /* CatrobatInformation.m in Sources */ = {isa = PBXBuildFile; fileRef = B468CDC2160790CF007300A0 /* CatrobatInformation.m */; };
 		B468CDC816079438007300A0 /* CatrobatProject.m in Sources */ = {isa = PBXBuildFile; fileRef = B468CDC716079438007300A0 /* CatrobatProject.m */; };
@@ -88,6 +89,8 @@
 		B415DC3A15BAB86B0076275E /* defaultProject.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = defaultProject.xml; sourceTree = "<group>"; };
 		B415DC3E15BABB4F0076275E /* enums.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = enums.h; sourceTree = "<group>"; };
 		B415DC4415BAE3CF0076275E /* projectcode.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = projectcode.xml; sourceTree = "<group>"; };
+		B43CF2361608E0A000E19CF3 /* RecentProjectsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecentProjectsViewController.h; sourceTree = "<group>"; };
+		B43CF2371608E0A000E19CF3 /* RecentProjectsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecentProjectsViewController.m; sourceTree = "<group>"; };
 		B468CDBC16078B59007300A0 /* ListProjectsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ListProjectsViewController.h; sourceTree = "<group>"; };
 		B468CDBD16078B59007300A0 /* ListProjectsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ListProjectsViewController.m; sourceTree = "<group>"; };
 		B468CDC1160790CF007300A0 /* CatrobatInformation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CatrobatInformation.h; sourceTree = "<group>"; };
@@ -305,6 +308,15 @@
 				CDE35DEC15B4892D009A3524 /* GlideToBrick.m */,
 			);
 			name = GlideToBrick;
+			sourceTree = "<group>";
+		};
+		B43CF2341608E08500E19CF3 /* RecentProjectsViewController */ = {
+			isa = PBXGroup;
+			children = (
+				B43CF2361608E0A000E19CF3 /* RecentProjectsViewController.h */,
+				B43CF2371608E0A000E19CF3 /* RecentProjectsViewController.m */,
+			);
+			name = RecentProjectsViewController;
 			sourceTree = "<group>";
 		};
 		B468CDBA16078AFB007300A0 /* ListProjectsViewController */ = {
@@ -622,6 +634,7 @@
 		B4FDF39915A8349900CBCF03 /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
+				B43CF2341608E08500E19CF3 /* RecentProjectsViewController */,
 				B468CDBA16078AFB007300A0 /* ListProjectsViewController */,
 				B4FDF39A15A8349F00CBCF03 /* CattyViewController */,
 			);
@@ -830,6 +843,7 @@
 				B468CDBE16078B59007300A0 /* ListProjectsViewController.m in Sources */,
 				B468CDC3160790CF007300A0 /* CatrobatInformation.m in Sources */,
 				B468CDC816079438007300A0 /* CatrobatProject.m in Sources */,
+				B43CF2381608E0A000E19CF3 /* RecentProjectsViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

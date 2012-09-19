@@ -49,7 +49,7 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <segue destination="fwA-8m-Isg" kind="push" id="Yzp-qH-cBF"/>
+                                    <segue destination="sNS-WO-dHS" kind="push" id="erf-8A-Pge"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="PoM-zv-B3y">
@@ -78,7 +78,7 @@
             <objects>
                 <tableViewController id="fwA-8m-Isg" customClass="ListProjectsViewController" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="c5N-8O-uAS">
-                        <rect key="frame" x="0.0" y="64" width="320" height="416"/>
+                        <rect key="frame" x="0.0" y="64" width="320" height="367"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
@@ -97,11 +97,43 @@
                             <outlet property="delegate" destination="fwA-8m-Isg" id="cif-7Y-evk"/>
                         </connections>
                     </tableView>
+                    <tabBarItem key="tabBarItem" title="Temp" id="VTY-l9-mTg"/>
                     <navigationItem key="navigationItem" title="Download" id="O6O-G4-Po4"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="27U-LL-vTd" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1368" y="743"/>
+            <point key="canvasLocation" x="2002" y="1413"/>
+        </scene>
+        <!--Recent Projects View Controller - Recent-->
+        <scene sceneID="5Am-aQ-Vgw">
+            <objects>
+                <viewController id="9qn-6l-qzV" customClass="RecentProjectsViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="GFN-eC-ONS">
+                        <rect key="frame" x="0.0" y="64" width="320" height="367"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" alwaysBounceHorizontal="YES" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" id="pcN-pn-Ocw">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="367"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <subviews>
+                                    <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" id="pwD-e8-gAh">
+                                        <rect key="frame" x="141" y="331" width="38" height="36"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMinY="YES"/>
+                                    </pageControl>
+                                </subviews>
+                            </scrollView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Recent" id="XUu-3e-21g"/>
+                    <connections>
+                        <outlet property="pageControl" destination="pwD-e8-gAh" id="UT6-Sg-YyQ"/>
+                        <outlet property="scrollView" destination="pcN-pn-Ocw" id="Zgh-Gq-ltb"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="0eA-Yd-ORo" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2002" y="2088"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="clG-Ib-Sl6">
@@ -121,6 +153,57 @@
             </objects>
             <point key="canvasLocation" x="272" y="743"/>
         </scene>
+        <!--Tab Bar Controller-->
+        <scene sceneID="4Xm-Kk-aKo">
+            <objects>
+                <tabBarController id="sNS-WO-dHS" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationItem key="navigationItem" id="7FZ-lB-Kvn"/>
+                    <nil key="simulatedBottomBarMetrics"/>
+                    <tabBar key="tabBar" contentMode="scaleToFill" id="6Og-c1-vha">
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="UrI-xN-fEj" kind="relationship" relationship="viewControllers" id="sS9-R7-7EW"/>
+                        <segue destination="fwA-8m-Isg" kind="relationship" relationship="viewControllers" id="HkQ-zN-szY"/>
+                        <segue destination="9qn-6l-qzV" kind="relationship" relationship="viewControllers" id="ew3-r2-rdd"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="5qy-WE-sVO" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1368" y="743"/>
+        </scene>
+        <!--Table View Controller - Highlights-->
+        <scene sceneID="RZD-88-JvV">
+            <objects>
+                <tableViewController id="UrI-xN-fEj" sceneMemberID="viewController">
+                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="oeV-MD-8A1">
+                        <rect key="frame" x="0.0" y="64" width="320" height="367"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="yMx-M5-iTa">
+                                <rect key="frame" x="0.0" y="22" width="320" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                </view>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="UrI-xN-fEj" id="46c-Rw-ng3"/>
+                            <outlet property="delegate" destination="UrI-xN-fEj" id="Xag-1b-SNi"/>
+                        </connections>
+                    </tableView>
+                    <tabBarItem key="tabBarItem" title="Highlights" id="BMg-bW-TDo"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="cjY-Yr-Jqg" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2002" y="743"/>
+        </scene>
     </scenes>
     <classes>
         <class className="CattyViewController" superclassName="GLKViewController">
@@ -128,6 +211,13 @@
         </class>
         <class className="ListProjectsViewController" superclassName="UITableViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/ListProjectsViewController.h"/>
+        </class>
+        <class className="RecentProjectsViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/RecentProjectsViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="pageControl" candidateClass="UIPageControl"/>
+                <relationship kind="outlet" name="scrollView" candidateClass="UIScrollView"/>
+            </relationships>
         </class>
     </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
