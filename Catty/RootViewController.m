@@ -62,19 +62,20 @@
     }
 }
 
-- (void)downloadSampleProjects {
+- (void)loadRocketProject {
     NSString *linkToRocketProject = @"http://catroid.org/catroid/download/291.catrobat";
-    
-    
+
+    //rocket project
     NSURL *rocketProjectURL = [NSURL URLWithString:linkToRocketProject];
     NSError *error;
     NSData *rocketProject = [NSData dataWithContentsOfURL:rocketProjectURL options:NSDataReadingMapped error:&error];
     [Util log:error];
+
     
     //path for temp file
     NSString *documentsDirectory = [Util applicationDocumentsDirectory];
     NSString *tempPath = [NSString stringWithFormat:@"%@/temp.zip", documentsDirectory];
-    
+
     //writing to file
     [rocketProject writeToFile:tempPath atomically:YES];
     
@@ -85,7 +86,7 @@
     
     //unzip file
     [SSZipArchive unzipFileAtPath:tempPath toDestination:storePath];
-
+    
     NSLog(@"Unzip finished");
     
     NSLog(@"Removing temp zip file");
@@ -95,7 +96,49 @@
     NSArray *contents = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:documentsDirectory error:&error];
     [Util log:error];
     NSLog(@"Contents: %@", contents);
+}
 
+- (void)loadCounterProject {
+    NSString *linkToSecondProject = @"http://catroid.org/catroid/download/247.catrobat";
+    
+    
+    //second project
+    NSURL *counterProjectURL = [NSURL URLWithString:linkToSecondProject];
+    NSError *error;
+    NSData *counterProject = [NSData dataWithContentsOfURL:counterProjectURL options:NSDataReadingMapped error:&error];
+    [Util log:error];
+    
+    
+    //path for temp file
+    NSString *documentsDirectory = [Util applicationDocumentsDirectory];
+    NSString *tempPath = [NSString stringWithFormat:@"%@/temp.zip", documentsDirectory];
+    
+    //writing to file
+    [counterProject writeToFile:tempPath atomically:YES];
+    
+    //path for storing file
+    NSString *storePath = [NSString stringWithFormat:@"%@/levels/HandTallyCounter", documentsDirectory];
+    
+    NSLog(@"Starting unzip");
+    
+    //unzip file
+    [SSZipArchive unzipFileAtPath:tempPath toDestination:storePath];
+    
+    NSLog(@"Unzip finished");
+    
+    NSLog(@"Removing temp zip file");
+    [[NSFileManager defaultManager] removeItemAtPath:tempPath error:&error];
+    [Util log:error];
+    
+    NSArray *contents = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:documentsDirectory error:&error];
+    [Util log:error];
+    NSLog(@"Contents: %@", contents);
+}
+
+- (void)downloadSampleProjects {
+   
+    [self loadRocketProject];
+    [self loadCounterProject];
     
 }
 
