@@ -27,6 +27,7 @@
 #import "SetYBrick.h"
 #import "ChangeSizeByNBrick.h"
 #import "BroadcastBrick.h"
+#import "ChangeXByBrick.h"
 
 @interface LevelParser()
 
@@ -286,6 +287,11 @@
             BroadcastBrick *brick = [self loadBroadcastBrick:element];
             [ret addBrick:brick];
         }
+        else if ([element.name isEqualToString:@"Bricks.ChangeXByBrick"])
+        {
+            ChangeXByBrick *brick = [self loadChangeXByBrick:element];
+            [ret addBrick:brick];
+        }
         else
         {
             NSLog(@"PARSER: Unknown XML-tag . '%@'", element.name);
@@ -452,4 +458,16 @@
     return brick;
 }
 
+-(ChangeXByBrick*)loadChangeXByBrick:(GDataXMLElement*)gDataXMLElement
+{
+    ChangeXByBrick *brick = [[ChangeXByBrick alloc]init];
+    
+    NSArray *xes = [gDataXMLElement elementsForName:@"xMovement"];
+    GDataXMLElement *x = (GDataXMLElement*)[xes objectAtIndex:0];
+    
+    NSLog(@"broadcastBrick: %@", x.stringValue);
+    brick.x = x.stringValue.intValue;
+    
+    return brick;
+}
 @end

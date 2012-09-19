@@ -88,5 +88,6 @@
 - (void)broadcast:(NSString*)message;
 - (void)comeToFront;
 - (void)changeSizeByN:(float)sizePercentageRate;
+- (void)changeXBy:(float)x;
 
 @end

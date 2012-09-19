@@ -536,6 +536,11 @@ typedef struct {
     [self setSpriteSizeWithWidth:width andHeight:height];
 }
 
+-(void)changeXBy:(float)x
+{
+    self.position = GLKVector3Make(self.position.x + x, self.position.y, self.position.z);
+}
+
 #pragma mark - description
 - (NSString*)description
 {

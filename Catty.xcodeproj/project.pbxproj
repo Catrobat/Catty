@@ -69,6 +69,7 @@
 		B4FDF38A15A82F4D00CBCF03 /* SetCostumeBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = B4FDF38715A82F4D00CBCF03 /* SetCostumeBrick.m */; };
 		B4FDF39615A833DA00CBCF03 /* catty_icon_retina.png in Resources */ = {isa = PBXBuildFile; fileRef = B4FDF39515A833DA00CBCF03 /* catty_icon_retina.png */; };
 		CD25FE1615B0642400719D12 /* PlaceAtBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = CD25FE1515B0642400719D12 /* PlaceAtBrick.m */; };
+		CD46F91B160A433200207178 /* ChangeXByBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = CD46F91A160A433200207178 /* ChangeXByBrick.m */; };
 		CD85F51416077C67007C38D1 /* SetXBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = CD85F51316077C67007C38D1 /* SetXBrick.m */; };
 		CD85F51716077C75007C38D1 /* SetYBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = CD85F51616077C75007C38D1 /* SetYBrick.m */; };
 		CD85F52C16083315007C38D1 /* BroadcastBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = CD85F52B16083315007C38D1 /* BroadcastBrick.m */; };
@@ -194,6 +195,8 @@
 		B4FDF39515A833DA00CBCF03 /* catty_icon_retina.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = catty_icon_retina.png; path = ../catty_icon_retina.png; sourceTree = "<group>"; };
 		CD25FE1415B0642400719D12 /* PlaceAtBrick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlaceAtBrick.h; sourceTree = "<group>"; };
 		CD25FE1515B0642400719D12 /* PlaceAtBrick.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlaceAtBrick.m; sourceTree = "<group>"; };
+		CD46F919160A433200207178 /* ChangeXByBrick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChangeXByBrick.h; sourceTree = "<group>"; };
+		CD46F91A160A433200207178 /* ChangeXByBrick.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChangeXByBrick.m; sourceTree = "<group>"; };
 		CD85F51216077C67007C38D1 /* SetXBrick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SetXBrick.h; sourceTree = "<group>"; };
 		CD85F51316077C67007C38D1 /* SetXBrick.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SetXBrick.m; sourceTree = "<group>"; };
 		CD85F51516077C75007C38D1 /* SetYBrick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SetYBrick.h; sourceTree = "<group>"; };
@@ -703,6 +706,7 @@
 		B4FDF38115A82F3F00CBCF03 /* Bricks */ = {
 			isa = PBXGroup;
 			children = (
+				CD46F918160A431000207178 /* ChangeXBy */,
 				CD85F54816099C3D007C38D1 /* ChangeSizeByN */,
 				CD85F53C160864DF007C38D1 /* ComeToFront */,
 				CD85F528160832FC007C38D1 /* BroadcastBrick */,
@@ -766,6 +770,15 @@
 				B4FDF33C15A82C1000CBCF03 /* CattyViewController.m */,
 			);
 			name = CattyViewController;
+			sourceTree = "<group>";
+		};
+		CD46F918160A431000207178 /* ChangeXBy */ = {
+			isa = PBXGroup;
+			children = (
+				CD46F919160A433200207178 /* ChangeXByBrick.h */,
+				CD46F91A160A433200207178 /* ChangeXByBrick.m */,
+			);
+			name = ChangeXBy;
 			sourceTree = "<group>";
 		};
 		CD85F50F16077C42007C38D1 /* SetX */ = {
@@ -1020,6 +1033,7 @@
 				B43CF2A21609BD1400E19CF3 /* MyProjectsViewController.m in Sources */,
 				B43CF2A71609BE4D00E19CF3 /* LevelLoadingInfo.m in Sources */,
 				CD8B838A1609FC42003A3C9E /* StageViewController.m in Sources */,
+				CD46F91B160A433200207178 /* ChangeXByBrick.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
