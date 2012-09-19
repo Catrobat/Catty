@@ -275,24 +275,42 @@ typedef struct {
         return;
     }
 
+    [self setSpriteSizeWithWidth:self.textureInfo.width andHeight:self.textureInfo.height];
     
-    self.contentSize = CGSizeMake(self.textureInfo.width, self.textureInfo.height);
-    
-    //test
-//    CGFloat width = [UIScreen mainScreen].bounds.size.width;
-//    CGFloat height = [UIScreen mainScreen].bounds.size.height;
-//    NSLog(@"self width: %f", self.contentSize.width/2);
-//    NSLog(@"width: %f, newWidth: %f", width/2, (width/2 - self.contentSize.width/2));
-//    self.position = GLKVector3Make((width/2 - self.contentSize.width/2), (height/2 - self.contentSize.height/2), 0);
-    //end of test
-    
+//    self.contentSize = CGSizeMake(self.textureInfo.width, self.textureInfo.height);
+//    
+//    //test
+////    CGFloat width = [UIScreen mainScreen].bounds.size.width;
+////    CGFloat height = [UIScreen mainScreen].bounds.size.height;
+////    NSLog(@"self width: %f", self.contentSize.width/2);
+////    NSLog(@"width: %f, newWidth: %f", width/2, (width/2 - self.contentSize.width/2));
+////    self.position = GLKVector3Make((width/2 - self.contentSize.width/2), (height/2 - self.contentSize.height/2), 0);
+//    //end of test
+//    
+//    
+//    TexturedQuad newQuad;
+//    newQuad.bottomLeftCorner.geometryVertex = CGPointMake(0, 0);
+//    newQuad.bottomRightCorner.geometryVertex = CGPointMake(self.textureInfo.width, 0);
+//    newQuad.topLeftCorner.geometryVertex = CGPointMake(0, self.textureInfo.height);
+//    newQuad.topRightCorner.geometryVertex = CGPointMake(self.textureInfo.width, self.textureInfo.height);
+//
+//    newQuad.bottomLeftCorner.textureVertex = CGPointMake(0, 0);
+//    newQuad.bottomRightCorner.textureVertex = CGPointMake(1, 0);
+//    newQuad.topLeftCorner.textureVertex = CGPointMake(0, 1);
+//    newQuad.topRightCorner.textureVertex = CGPointMake(1, 1);
+//    self.quad = newQuad;
+}
+
+-(void)setSpriteSizeWithWidth:(float)width andHeight:(float)height
+{
+    self.contentSize = CGSizeMake(width, height);
     
     TexturedQuad newQuad;
     newQuad.bottomLeftCorner.geometryVertex = CGPointMake(0, 0);
-    newQuad.bottomRightCorner.geometryVertex = CGPointMake(self.textureInfo.width, 0);
-    newQuad.topLeftCorner.geometryVertex = CGPointMake(0, self.textureInfo.height);
-    newQuad.topRightCorner.geometryVertex = CGPointMake(self.textureInfo.width, self.textureInfo.height);
-
+    newQuad.bottomRightCorner.geometryVertex = CGPointMake(width, 0);
+    newQuad.topLeftCorner.geometryVertex = CGPointMake(0, height);
+    newQuad.topRightCorner.geometryVertex = CGPointMake(width, height);
+    
     newQuad.bottomLeftCorner.textureVertex = CGPointMake(0, 0);
     newQuad.bottomRightCorner.textureVertex = CGPointMake(1, 0);
     newQuad.topLeftCorner.textureVertex = CGPointMake(0, 1);
@@ -479,6 +497,13 @@ typedef struct {
 -(void)comeToFront
 {
     [self.spriteManagerDelegate bringToFrontSprite:self];
+}
+
+-(void)changeSizeByN:(float)sizePercentageRate
+{
+    float width = self.textureInfo.width * sizePercentageRate / 100.0f;
+    float height = self.textureInfo.height * sizePercentageRate / 100.0f;
+    [self setSpriteSizeWithWidth:width andHeight:height];
 }
 
 #pragma mark - description

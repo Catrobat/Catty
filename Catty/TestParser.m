@@ -25,6 +25,7 @@
 #import "SetYBrick.h"
 #import "BroadcastBrick.h"
 #import "ComeToFrontBrick.h"
+#import "ChangeSizeByNBrick.h"
 
 @interface TestParser ()
 
@@ -384,6 +385,36 @@
     level.spritesArray = [NSMutableArray arrayWithObjects:sprite3, sprite2, sprite1, nil];
     
     return level;
-
 }
+
+-(Level*)generateDebugLevel_changeSizeByN
+{
+    Level *level = [[Level alloc]init];
+    level.name = @"changeSizeByN";
+    level.resolution = CGSizeMake(320, 460);
+    
+    Costume *costume = [self createCostumeFromPath:@"normalcat.png" withName:@"cat1"];
+    
+    ChangeSizeByNBrick *changeSizeByNBrick1 = [[ChangeSizeByNBrick alloc]initWithSizeChangeRate:50];
+    ChangeSizeByNBrick *changeSizeByNBrick2 = [[ChangeSizeByNBrick alloc]initWithSizeChangeRate:150];
+    ChangeSizeByNBrick *changeSizeByNBrick3 = [[ChangeSizeByNBrick alloc]initWithSizeChangeRate:100];
+    
+    WaitBrick *waitBrick = [[WaitBrick alloc]init];
+    waitBrick.timeToWaitInMilliseconds = [NSNumber numberWithInt:500];
+    
+    WhenScript *whenScript = [[WhenScript alloc]init];
+    [whenScript addBricks:[NSMutableArray arrayWithObjects: changeSizeByNBrick1, waitBrick, changeSizeByNBrick2, waitBrick, changeSizeByNBrick3, nil]];
+    
+    
+    NSArray *costumes = [NSArray arrayWithObjects:costume, nil];
+    
+    Sprite *sprite = [self createSprite:@"cat" withPositionX:(NSInteger)0 withPositionY:(NSInteger)0 withCostumes:costumes setCostumeIndex:(NSInteger)0];
+    [sprite addWhenScript:whenScript];
+    
+    level.spritesArray = [NSMutableArray arrayWithObject:sprite];
+    
+    return level;
+    
+}
+
 @end

@@ -59,6 +59,7 @@
 		CD85F51716077C75007C38D1 /* SetYBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = CD85F51616077C75007C38D1 /* SetYBrick.m */; };
 		CD85F52C16083315007C38D1 /* BroadcastBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = CD85F52B16083315007C38D1 /* BroadcastBrick.m */; };
 		CD85F53F160864F3007C38D1 /* ComeToFrontBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = CD85F53E160864F3007C38D1 /* ComeToFrontBrick.m */; };
+		CD85F54C16099CBE007C38D1 /* ChangeSizeByNBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = CD85F54B16099CBE007C38D1 /* ChangeSizeByNBrick.m */; };
 		CD8FA5AC1605D91300FC282F /* NextCostumeBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = CD8FA5AB1605D91300FC282F /* NextCostumeBrick.m */; };
 		CD8FA5B116063EA700FC282F /* HideBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = CD8FA5B016063EA700FC282F /* HideBrick.m */; };
 		CD8FA5B416063EBA00FC282F /* ShowBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = CD8FA5B316063EBA00FC282F /* ShowBrick.m */; };
@@ -159,6 +160,8 @@
 		CD85F53B16085DD5007C38D1 /* SpriteManagerDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SpriteManagerDelegate.h; sourceTree = "<group>"; };
 		CD85F53D160864F3007C38D1 /* ComeToFrontBrick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ComeToFrontBrick.h; sourceTree = "<group>"; };
 		CD85F53E160864F3007C38D1 /* ComeToFrontBrick.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ComeToFrontBrick.m; sourceTree = "<group>"; };
+		CD85F54A16099CBE007C38D1 /* ChangeSizeByNBrick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChangeSizeByNBrick.h; sourceTree = "<group>"; };
+		CD85F54B16099CBE007C38D1 /* ChangeSizeByNBrick.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChangeSizeByNBrick.m; sourceTree = "<group>"; };
 		CD8FA5AA1605D91300FC282F /* NextCostumeBrick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NextCostumeBrick.h; sourceTree = "<group>"; };
 		CD8FA5AB1605D91300FC282F /* NextCostumeBrick.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NextCostumeBrick.m; sourceTree = "<group>"; };
 		CD8FA5AF16063EA700FC282F /* HideBrick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HideBrick.h; sourceTree = "<group>"; };
@@ -532,6 +535,7 @@
 		B4FDF38115A82F3F00CBCF03 /* Bricks */ = {
 			isa = PBXGroup;
 			children = (
+				CD85F54816099C3D007C38D1 /* ChangeSizeByN */,
 				CD85F53C160864DF007C38D1 /* ComeToFront */,
 				CD85F528160832FC007C38D1 /* BroadcastBrick */,
 				CD85F50F16077C42007C38D1 /* SetX */,
@@ -642,6 +646,15 @@
 				CD85F53E160864F3007C38D1 /* ComeToFrontBrick.m */,
 			);
 			name = ComeToFront;
+			sourceTree = "<group>";
+		};
+		CD85F54816099C3D007C38D1 /* ChangeSizeByN */ = {
+			isa = PBXGroup;
+			children = (
+				CD85F54A16099CBE007C38D1 /* ChangeSizeByNBrick.h */,
+				CD85F54B16099CBE007C38D1 /* ChangeSizeByNBrick.m */,
+			);
+			name = ChangeSizeByN;
 			sourceTree = "<group>";
 		};
 		CD8FA5A81605D8B700FC282F /* NextCostumeBrick */ = {
@@ -818,6 +831,7 @@
 				CD85F51716077C75007C38D1 /* SetYBrick.m in Sources */,
 				CD85F52C16083315007C38D1 /* BroadcastBrick.m in Sources */,
 				CD85F53F160864F3007C38D1 /* ComeToFrontBrick.m in Sources */,
+				CD85F54C16099CBE007C38D1 /* ChangeSizeByNBrick.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -127,6 +127,7 @@
     self.level = [testparser generateDebugLevel_SetXY];
     self.level = [testparser generateDebugLevel_broadcast];
     self.level = [testparser generateDebugLevel_comeToFront];
+    self.level = [testparser generateDebugLevel_changeSizeByN];
     // DEBUG END
     
     //setting effect

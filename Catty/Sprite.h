@@ -80,5 +80,6 @@
 - (void)setYPosition:(float)yPosition;
 - (void)broadcast:(NSString*)message;
 - (void)comeToFront;
+- (void)changeSizeByN:(float)sizePercentageRate;
 
 @end
