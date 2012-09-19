@@ -10,6 +10,8 @@
 
 @interface Util : NSObject
 
-+ (NSString *)applicationDocumentsDirectory;
++ (NSString*)applicationDocumentsDirectory;
+
++ (void)log:(NSError*)error;
 
 @end

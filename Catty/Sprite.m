@@ -85,7 +85,7 @@ typedef struct {
 // public synthesizes
 @synthesize spriteManagerDelegate = _spriteManagerDelegate;
 @synthesize name = _name;
-@synthesize projectName = _projectName;
+@synthesize projectPath = _projectPath;
 @synthesize costumesArray = _costumesArray;
 @synthesize soundsArray = _soundsArray;
 @synthesize startScriptsArray = _startScriptsArray;
@@ -285,8 +285,10 @@ typedef struct {
     NSLog(@"Filename: %@", fileName);
     
     //NSString *pathToImage = [NSString stringWithFormat:@"%@/defaultProject/images/%@", [Util applicationDocumentsDirectory], fileName];
-    NSString *path = [NSString stringWithFormat:@"/%@/%@/%@", self.projectName, SPRITE_IMAGE_FOLDER, fileName];
-    NSString *pathToImage = [[NSBundle mainBundle] pathForResource:path ofType:nil];
+//    NSString *path = [NSString stringWithFormat:@"/%@/%@/%@", self.projectName, SPRITE_IMAGE_FOLDER, fileName];
+//    NSString *pathToImage = [[NSBundle mainBundle] pathForResource:path ofType:nil];
+
+    NSString *pathToImage = [NSString stringWithFormat:@"%@images/%@", self.projectPath, fileName]; // TODO: change const string
     
     NSLog(@"Try to load image: %@", pathToImage);
     

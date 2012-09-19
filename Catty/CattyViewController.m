@@ -139,7 +139,7 @@
     {
         sprite.effect = self.effect;
         sprite.spriteManagerDelegate = self;
-        sprite.projectName = projectName;
+//        sprite.projectName = projectName;
         
         // debug:
         NSLog(@"----------------------");
