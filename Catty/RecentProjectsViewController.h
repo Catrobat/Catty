@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
+#define TIMEOUT 30.0f
+
 @interface RecentProjectsViewController : UIViewController <UIScrollViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;

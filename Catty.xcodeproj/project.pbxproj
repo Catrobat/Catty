@@ -361,9 +361,7 @@
 		B43CF2411609A5C300E19CF3 /* Helper */ = {
 			isa = PBXGroup;
 			children = (
-				B43CF2881609B4E700E19CF3 /* minizip */,
-				B43CF2921609B4E700E19CF3 /* SSZipArchive.h */,
-				B43CF2931609B4E700E19CF3 /* SSZipArchive.m */,
+				B43CF2B21609C8FC00E19CF3 /* Zip */,
 			);
 			name = Helper;
 			sourceTree = "<group>";
@@ -411,6 +409,16 @@
 				B43CF2AA1609C41300E19CF3 /* background@2x.png */,
 			);
 			name = UI;
+			sourceTree = "<group>";
+		};
+		B43CF2B21609C8FC00E19CF3 /* Zip */ = {
+			isa = PBXGroup;
+			children = (
+				B43CF2881609B4E700E19CF3 /* minizip */,
+				B43CF2921609B4E700E19CF3 /* SSZipArchive.h */,
+				B43CF2931609B4E700E19CF3 /* SSZipArchive.m */,
+			);
+			name = Zip;
 			sourceTree = "<group>";
 		};
 		B468CDBA16078AFB007300A0 /* ListProjectsViewController */ = {
