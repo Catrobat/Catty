@@ -49,6 +49,42 @@
         return nil;
     
     Level *level = [[Level alloc] init];
+    
+    
+    //loading level related stuff
+    //version name
+    NSArray *versionNames = [doc.rootElement elementsForName:@"versionName"];
+    GDataXMLElement *temp = (GDataXMLElement*)[versionNames objectAtIndex:0];
+    level.versionName = temp.stringValue;
+    
+    //name
+    NSArray *names = [doc.rootElement elementsForName:@"name"];
+    temp = (GDataXMLElement*)[names objectAtIndex:0];
+    level.name = temp.stringValue;
+    
+    //screen resolution
+    NSArray *screenResolutions = [doc.rootElement elementsForName:@"screenResolution"];
+    temp = (GDataXMLElement*)[screenResolutions objectAtIndex:0];
+    level.screenResolution = temp.stringValue;
+    
+    NSArray *screenHeights = [doc.rootElement elementsForName:@"screenHeight"];
+    GDataXMLElement *height = (GDataXMLElement*)[screenHeights objectAtIndex:0];
+    
+    NSArray *screenWidth = [doc.rootElement elementsForName:@"screenWidth"];
+    GDataXMLElement *width = (GDataXMLElement*)[screenWidth objectAtIndex:0];
+    
+    NSLog(@"Parser: project-resolution: %@/%@", width.stringValue, height.stringValue);
+    level.resolution = CGSizeMake(width.stringValue.floatValue, height.stringValue.floatValue);
+    
+
+    
+    //version code
+    NSArray *versionCodes = [doc.rootElement elementsForName:@"versionCode"];
+    temp = (GDataXMLElement*)[versionCodes objectAtIndex:0];
+    level.versionCode = temp.stringValue;
+
+    
+    
     NSArray *spriteList = [doc.rootElement elementsForName:@"spriteList"];
     NSArray *sprites = [[spriteList objectAtIndex:0] elementsForName:@"Content.Sprite"];
     for (GDataXMLElement *gDataSprite in sprites) 
@@ -101,31 +137,11 @@
         GDataXMLElement *temp = (GDataXMLElement*)[spriteNames objectAtIndex:0];
         self.newSprite.name = temp.stringValue;
         
+        [self.newSprite setProjectResolution:level.resolution];
         [level.spritesArray addObject:self.newSprite];
 
     }
 
-    //loading level related stuff
-    //version name
-    NSArray *versionNames = [doc.rootElement elementsForName:@"versionName"];
-    GDataXMLElement *temp = (GDataXMLElement*)[versionNames objectAtIndex:0];
-    level.versionName = temp.stringValue;
-    
-    //name
-    NSArray *names = [doc.rootElement elementsForName:@"name"];
-    temp = (GDataXMLElement*)[names objectAtIndex:0];
-    level.name = temp.stringValue;
-    
-    //screen resolution
-    NSArray *screenResolutions = [doc.rootElement elementsForName:@"screenResolution"];
-    temp = (GDataXMLElement*)[screenResolutions objectAtIndex:0];
-    level.screenResolution = temp.stringValue;
-    
-    //version code
-    NSArray *versionCodes = [doc.rootElement elementsForName:@"versionCode"];
-    temp = (GDataXMLElement*)[versionCodes objectAtIndex:0];
-    level.versionCode = temp.stringValue;
-    
     return level;
 }
 

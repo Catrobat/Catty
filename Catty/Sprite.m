@@ -62,7 +62,8 @@ typedef struct {
 @property (assign) TexturedQuad quad;
 @property (nonatomic, strong) GLKTextureInfo *textureInfo;
 
-@property (assign) GLKVector3 position;        // position - origin is in the middle of the sprite
+@property (assign, nonatomic) GLKVector3 position;        // position - origin is in the middle of the sprite
+@property (assign, nonatomic) float scaleFactor;
 
 
 @property (atomic, strong) NSMutableArray *brickQueue;
@@ -95,12 +96,15 @@ typedef struct {
 @synthesize effect = _effect;
 
 // private synthesizes
+@synthesize scaleFactor = _scaleFactor;
 @synthesize quad = _quad;
 @synthesize textureInfo = _textureInfo;
 @synthesize brickQueue = _brickQueue;
 @synthesize nextPosition = _nextPosition;
 @synthesize indexOfCurrentCostumeInArray = _indexOfCurrentCostumeInArray;
 @synthesize showSprite = _showSprite;
+
+
 
 
 #pragma mark Custom getter and setter
@@ -159,6 +163,7 @@ typedef struct {
     {
         _position = GLKVector3Make(0, 0, 0); //todo: change z index
         self.showSprite = YES;
+        self.scaleFactor = 1.0f;
     }
     return self;
 }
@@ -170,6 +175,7 @@ typedef struct {
     {
         self.effect = effect;
         self.showSprite = YES;
+        self.scaleFactor = 1.0f;
     }
     return self;
 }
@@ -177,6 +183,18 @@ typedef struct {
 -(void)dealloc
 {
     [[NSNotificationCenter defaultCenter]removeObserver:self];
+}
+
+-(void)setProjectResolution:(CGSize)projectResolution
+{    
+    float scaleX = [UIScreen mainScreen].bounds.size.width  / projectResolution.width;
+    float scaleY = [UIScreen mainScreen].bounds.size.height / projectResolution.height;
+    if (scaleY < scaleX)
+        self.scaleFactor = scaleY;
+    NSLog(@"Scale screen size:");
+    NSLog(@"  Device:    %f / %f", [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height);
+    NSLog(@"  Project:   %f / %f", projectResolution.width, projectResolution.height);
+    NSLog(@"  Scale-Factor: %f", self.scaleFactor);
 }
 
 - (void)addCostume:(Costume *)costume
@@ -309,6 +327,10 @@ typedef struct {
 {
     self.contentSize = CGSizeMake(width, height);
     
+    width *= self.scaleFactor;
+    height *= self.scaleFactor;
+    
+    
     TexturedQuad newQuad;
     newQuad.bottomLeftCorner.geometryVertex = CGPointMake(0, 0);
     newQuad.bottomRightCorner.geometryVertex = CGPointMake(width, 0);
@@ -331,13 +353,15 @@ typedef struct {
     //    NSLog(@"width: %f, newWidth: %f", width/2, (width/2 - self.contentSize.width/2));
     //    self.position = GLKVector3Make((width/2 - self.contentSize.width/2), (height/2 - self.contentSize.height/2), 0);
 
-    float x = self.position.x + [UIScreen mainScreen].bounds.size.width/2;
-    float y = self.position.y + [UIScreen mainScreen].bounds.size.height/2;
-    
+    float x = (self.position.x * self.scaleFactor) + [UIScreen mainScreen].bounds.size.width/2;
+    float y = (self.position.y * self.scaleFactor) + [UIScreen mainScreen].bounds.size.height/2;
+        
 //    NSLog(@"x/y: %f/%f", x, y);
     
+    CGSize scaledContentSize = CGSizeMake(self.contentSize.width * self.scaleFactor, self.contentSize.height * self.scaleFactor);
+    
     modelMatrix = GLKMatrix4Translate(modelMatrix, x, y, self.position.z);
-    modelMatrix = GLKMatrix4Translate(modelMatrix, -self.contentSize.width/2, -self.contentSize.height/2, 0);
+    modelMatrix = GLKMatrix4Translate(modelMatrix, -scaledContentSize.width/2, -scaledContentSize.height/2, 0);
     
     return modelMatrix;
 }
@@ -556,10 +580,12 @@ typedef struct {
 
 
 - (CGRect)boundingBox {
-    float x = self.position.x + [UIScreen mainScreen].bounds.size.width/2 - self.contentSize.width/2;
-    float y = self.position.y + [UIScreen mainScreen].bounds.size.height/2 - self.contentSize.height/2;
+    CGSize scaledContentSize = CGSizeMake(self.contentSize.width * self.scaleFactor, self.contentSize.height * self.scaleFactor);
     
-    CGRect rect = CGRectMake(x, y, self.contentSize.width, self.contentSize.height);
+    float x = self.position.x + [UIScreen mainScreen].bounds.size.width/2 - scaledContentSize.width/2;
+    float y = self.position.y + [UIScreen mainScreen].bounds.size.height/2 - scaledContentSize.height/2;
+    
+    CGRect rect = CGRectMake(x, y, scaledContentSize.width, scaledContentSize.height);
     return rect;
 }
 

@@ -49,6 +49,9 @@
 
 // init, add
 - (id)initWithEffect:(GLKBaseEffect*)effect;
+
+- (void)setProjectResolution:(CGSize)projectResolution;
+
 - (void)addCostume:(Costume*)costume;
 - (void)addCostumes:(NSArray*)costumesArray;
 - (void)addSound:(Sound*)sound;

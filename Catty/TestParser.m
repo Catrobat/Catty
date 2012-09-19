@@ -180,7 +180,7 @@
 {
     Level *level = [[Level alloc]init];
     level.name = @"debug";
-    level.resolution = CGSizeMake(320, 460);
+    level.resolution = CGSizeMake(320, 480);
     
     
     Costume *costume = [self createCostumeFromPath:@"normalcat.png" withName:@"cat1"];
@@ -210,7 +210,7 @@
 {
     Level *level = [[Level alloc]init];
     level.name = @"nextCostumeTest";
-    level.resolution = CGSizeMake(320, 460);
+    level.resolution = CGSizeMake(320, 480);
     
     
     Costume *costume1 = [self createCostumeFromPath:@"normalcat.png" withName:@"cat1"];
@@ -242,7 +242,7 @@
 {
     Level *level = [[Level alloc]init];
     level.name = @"nextCostumeTest";
-    level.resolution = CGSizeMake(320, 460);
+    level.resolution = CGSizeMake(320, 480);
     
     HideBrick *hideBrick = [[HideBrick alloc]init];
     ShowBrick *showBrick = [[ShowBrick alloc]init];
@@ -272,7 +272,7 @@
 {
     Level *level = [[Level alloc]init];
     level.name = @"setX setY";
-    level.resolution = CGSizeMake(320, 460);
+    level.resolution = CGSizeMake(320, 480);
     
         
     Costume *costume = [self createCostumeFromPath:@"normalcat.png" withName:@"cat1"];
@@ -306,7 +306,7 @@
 {
     Level *level = [[Level alloc]init];
     level.name = @"broadcast";
-    level.resolution = CGSizeMake(320, 460);
+    level.resolution = CGSizeMake(320, 480);
     
     NSString *broadcastMessage = @"BROADCAST";
     
@@ -357,7 +357,7 @@
 {
     Level *level = [[Level alloc]init];
     level.name = @"broadcast";
-    level.resolution = CGSizeMake(320, 460);
+    level.resolution = CGSizeMake(320, 480);
         
     //sprite1
     Costume *costume = [self createCostumeFromPath:@"normalcat.png" withName:@"cat1"];
@@ -391,7 +391,7 @@
 {
     Level *level = [[Level alloc]init];
     level.name = @"changeSizeByN";
-    level.resolution = CGSizeMake(320, 460);
+    level.resolution = CGSizeMake(320, 480);
     
     Costume *costume = [self createCostumeFromPath:@"normalcat.png" withName:@"cat1"];
     

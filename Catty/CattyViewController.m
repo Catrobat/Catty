@@ -60,8 +60,6 @@
 }
 
 
-
-
 #pragma mark - view loading and unloading
 - (void)viewDidLoad
 {
@@ -84,7 +82,7 @@
     
     self.effect = [[GLKBaseEffect alloc] init];
     
-    GLKMatrix4 projectionMatrix = GLKMatrix4MakeOrtho(0, 320, 0, 480, -1024, 1024);
+    GLKMatrix4 projectionMatrix = GLKMatrix4MakeOrtho(0, 320, 0, 480, -1024, 1024); // TODO: do not use constants
     self.effect.transform.projectionMatrix = projectionMatrix;
     
     UITapGestureRecognizer *tapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleTapFrom:)];                                                               
