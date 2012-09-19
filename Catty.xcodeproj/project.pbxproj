@@ -25,6 +25,8 @@
 		B43CF2971609B4E700E19CF3 /* zip.c in Sources */ = {isa = PBXBuildFile; fileRef = B43CF2901609B4E700E19CF3 /* zip.c */; };
 		B43CF2981609B4E700E19CF3 /* SSZipArchive.m in Sources */ = {isa = PBXBuildFile; fileRef = B43CF2931609B4E700E19CF3 /* SSZipArchive.m */; };
 		B43CF29B1609B5FC00E19CF3 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = B43CF29A1609B5FC00E19CF3 /* libz.dylib */; };
+		B43CF2A21609BD1400E19CF3 /* MyProjectsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B43CF2A11609BD1400E19CF3 /* MyProjectsViewController.m */; };
+		B43CF2A71609BE4D00E19CF3 /* LevelLoadingInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = B43CF2A61609BE4D00E19CF3 /* LevelLoadingInfo.m */; };
 		B468CDBE16078B59007300A0 /* ListProjectsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B468CDBD16078B59007300A0 /* ListProjectsViewController.m */; };
 		B468CDC3160790CF007300A0 /* CatrobatInformation.m in Sources */ = {isa = PBXBuildFile; fileRef = B468CDC2160790CF007300A0 /* CatrobatInformation.m */; };
 		B468CDC816079438007300A0 /* CatrobatProject.m in Sources */ = {isa = PBXBuildFile; fileRef = B468CDC716079438007300A0 /* CatrobatProject.m */; };
@@ -112,6 +114,10 @@
 		B43CF2921609B4E700E19CF3 /* SSZipArchive.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SSZipArchive.h; sourceTree = "<group>"; };
 		B43CF2931609B4E700E19CF3 /* SSZipArchive.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SSZipArchive.m; sourceTree = "<group>"; };
 		B43CF29A1609B5FC00E19CF3 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
+		B43CF2A01609BD1400E19CF3 /* MyProjectsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyProjectsViewController.h; sourceTree = "<group>"; };
+		B43CF2A11609BD1400E19CF3 /* MyProjectsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyProjectsViewController.m; sourceTree = "<group>"; };
+		B43CF2A51609BE4D00E19CF3 /* LevelLoadingInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LevelLoadingInfo.h; sourceTree = "<group>"; };
+		B43CF2A61609BE4D00E19CF3 /* LevelLoadingInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LevelLoadingInfo.m; sourceTree = "<group>"; };
 		B468CDBC16078B59007300A0 /* ListProjectsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ListProjectsViewController.h; sourceTree = "<group>"; };
 		B468CDBD16078B59007300A0 /* ListProjectsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ListProjectsViewController.m; sourceTree = "<group>"; };
 		B468CDC1160790CF007300A0 /* CatrobatInformation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CatrobatInformation.h; sourceTree = "<group>"; };
@@ -376,6 +382,24 @@
 			path = minizip;
 			sourceTree = "<group>";
 		};
+		B43CF29C1609BCE600E19CF3 /* MyProjectsViewController */ = {
+			isa = PBXGroup;
+			children = (
+				B43CF2A01609BD1400E19CF3 /* MyProjectsViewController.h */,
+				B43CF2A11609BD1400E19CF3 /* MyProjectsViewController.m */,
+			);
+			name = MyProjectsViewController;
+			sourceTree = "<group>";
+		};
+		B43CF2A31609BE2800E19CF3 /* LevelLoadingInfo */ = {
+			isa = PBXGroup;
+			children = (
+				B43CF2A51609BE4D00E19CF3 /* LevelLoadingInfo.h */,
+				B43CF2A61609BE4D00E19CF3 /* LevelLoadingInfo.m */,
+			);
+			name = LevelLoadingInfo;
+			sourceTree = "<group>";
+		};
 		B468CDBA16078AFB007300A0 /* ListProjectsViewController */ = {
 			isa = PBXGroup;
 			children = (
@@ -578,6 +602,7 @@
 		B4FDF36615A82EB100CBCF03 /* DataModel */ = {
 			isa = PBXGroup;
 			children = (
+				B43CF2A31609BE2800E19CF3 /* LevelLoadingInfo */,
 				B468CDBF160790AD007300A0 /* JSON */,
 				B4FDF38115A82F3F00CBCF03 /* Bricks */,
 				B4FDF37D15A82F2200CBCF03 /* Level */,
@@ -693,6 +718,7 @@
 		B4FDF39915A8349900CBCF03 /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
+				B43CF29C1609BCE600E19CF3 /* MyProjectsViewController */,
 				B43CF2391609925500E19CF3 /* RootViewController */,
 				B43CF2341608E08500E19CF3 /* RecentProjectsViewController */,
 				B468CDBA16078AFB007300A0 /* ListProjectsViewController */,
@@ -910,6 +936,8 @@
 				B43CF2961609B4E700E19CF3 /* unzip.c in Sources */,
 				B43CF2971609B4E700E19CF3 /* zip.c in Sources */,
 				B43CF2981609B4E700E19CF3 /* SSZipArchive.m in Sources */,
+				B43CF2A21609BD1400E19CF3 /* MyProjectsViewController.m in Sources */,
+				B43CF2A71609BE4D00E19CF3 /* LevelLoadingInfo.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

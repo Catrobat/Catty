@@ -36,6 +36,9 @@
                                 <state key="highlighted">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <segue destination="A1g-o5-GHB" kind="push" id="bov-M8-akh"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="eZ2-UH-7N4">
                                 <rect key="frame" x="85" y="146" width="150" height="100"/>
@@ -153,6 +156,36 @@
             </objects>
             <point key="canvasLocation" x="272" y="743"/>
         </scene>
+        <!--My Projects View Controller - My Projects-->
+        <scene sceneID="gk2-gH-PsZ">
+            <objects>
+                <tableViewController id="A1g-o5-GHB" customClass="MyProjectsViewController" sceneMemberID="viewController">
+                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="8nS-iL-hNU">
+                        <rect key="frame" x="0.0" y="64" width="320" height="416"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" restorationIdentifier="Cell" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Cell" id="asI-0u-zHc">
+                                <rect key="frame" x="0.0" y="22" width="320" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                </view>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="A1g-o5-GHB" id="K2z-zB-hdv"/>
+                            <outlet property="delegate" destination="A1g-o5-GHB" id="zVL-dR-4Hg"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="My Projects" id="tEf-Xd-sOa"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="o9W-uf-Cx9" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1371" y="91"/>
+        </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="4Xm-Kk-aKo">
             <objects>
@@ -205,6 +238,27 @@
             <point key="canvasLocation" x="2002" y="743"/>
         </scene>
     </scenes>
+    <classes>
+        <class className="CattyViewController" superclassName="GLKViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/CattyViewController.h"/>
+        </class>
+        <class className="ListProjectsViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/ListProjectsViewController.h"/>
+        </class>
+        <class className="MyProjectsViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/MyProjectsViewController.h"/>
+        </class>
+        <class className="RecentProjectsViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/RecentProjectsViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="pageControl" candidateClass="UIPageControl"/>
+                <relationship kind="outlet" name="scrollView" candidateClass="UIScrollView"/>
+            </relationships>
+        </class>
+        <class className="RootViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/RootViewController.h"/>
+        </class>
+    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <nil key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>
