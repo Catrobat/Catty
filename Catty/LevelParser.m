@@ -18,6 +18,13 @@
 #import "StartScript.h"
 #import "WhenScript.h"
 #import "Sound.h"
+#import "PlaceAtBrick.h"
+#import "GlideToBrick.h"
+#import "NextCostumeBrick.h"
+#import "HideBrick.h"
+#import "ShowBrick.h"
+#import "SetXBrick.h"
+#import "SetYBrick.h"
 
 @interface LevelParser()
 
@@ -199,15 +206,46 @@
         if ([element.name isEqualToString:@"Bricks.SetCostumeBrick"])
         {
             SetCostumeBrick *brick = [self loadSetCostumeBrick:element];
-//            brick.sprite = self.newSprite;
-//            [ret.bricksArray addObject:brick];
             [ret addBrick:brick];
         }
         else if ([element.name isEqualToString:@"Bricks.WaitBrick"])
         {
             WaitBrick *brick = [self loadWaitBrick:element];
-//            brick.sprite = self.newSprite;
-//            [ret.bricksArray addObject:brick];
+            [ret addBrick:brick];
+        }
+        else if ([element.name isEqualToString:@"Bricks.PlaceAtBrick"])
+        {
+            PlaceAtBrick *brick = [self loadPlaceAtBrick:element];
+            [ret addBrick:brick];
+        }
+        else if ([element.name isEqualToString:@"Bricks.GlideToBrick"])
+        {
+            GlideToBrick *brick = [self loadGlideToBrick:element];
+            [ret addBrick:brick];
+        }
+        else if ([element.name isEqualToString:@"Bricks.ShowBrick"])
+        {
+            ShowBrick *brick = [[ShowBrick alloc]init];
+            [ret addBrick:brick];
+        }
+        else if ([element.name isEqualToString:@"Bricks.HideBrick"])
+        {
+            HideBrick *brick = [[HideBrick alloc]init];
+            [ret addBrick:brick];
+        }
+        else if ([element.name isEqualToString:@"Bricks.NextCostumeBrick"])
+        {
+            NextCostumeBrick *brick = [[NextCostumeBrick alloc]init];
+            [ret addBrick:brick];
+        }
+        else if ([element.name isEqualToString:@"Bricks.SetXBrick"])
+        {
+            SetXBrick *brick = [self loadSetXBrick:element];
+            [ret addBrick:brick];
+        }
+        else if ([element.name isEqualToString:@"Bricks.SetYBrick"])
+        {
+            SetYBrick *brick = [self loadSetYBrick:element];
             [ret addBrick:brick];
         }
     }
@@ -281,6 +319,69 @@
     ret.timeToWaitInMilliseconds = [NSNumber numberWithInt:temp.stringValue.intValue];
     
     return ret;
+}
+
+-(PlaceAtBrick*)loadPlaceAtBrick:(GDataXMLElement*)gDataXMLElement
+{
+    PlaceAtBrick *brick = [[PlaceAtBrick alloc]init];
+    
+    NSArray *xPositions = [gDataXMLElement elementsForName:@"xPosition"];
+    GDataXMLElement *xPosition = (GDataXMLElement*)[xPositions objectAtIndex:0];
+    
+    NSArray *yPositions = [gDataXMLElement elementsForName:@"yPosition"];
+    GDataXMLElement *yPosition = (GDataXMLElement*)[yPositions objectAtIndex:0];
+    
+    NSLog(@"placeAt: %@/%@", xPosition.stringValue, yPosition.stringValue);
+    brick.position = GLKVector3Make(xPosition.stringValue.floatValue, yPosition.stringValue.floatValue, 0);
+    
+    return brick;
+}
+
+-(GlideToBrick*)loadGlideToBrick:(GDataXMLElement*)gDataXMLElement
+{    
+    GlideToBrick *brick = [[GlideToBrick alloc]init];
+    
+    NSArray *times = [gDataXMLElement elementsForName:@"durationInMilliSeconds"];
+    GDataXMLElement *time = (GDataXMLElement*)[times objectAtIndex:0];
+    
+    NSArray *xPositions = [gDataXMLElement elementsForName:@"xDestination"];
+    GDataXMLElement *xPosition = (GDataXMLElement*)[xPositions objectAtIndex:0];
+    
+    NSArray *yPositions = [gDataXMLElement elementsForName:@"yDestination"];
+    GDataXMLElement *yPosition = (GDataXMLElement*)[yPositions objectAtIndex:0];
+    
+    NSLog(@"glideTo: %@/%@ in %@ millisecs", xPosition.stringValue, yPosition.stringValue, time.stringValue);
+    brick.durationInMilliSecs = time.stringValue.intValue;
+    brick.position = GLKVector3Make(xPosition.stringValue.floatValue, yPosition.stringValue.floatValue, 0);
+    
+    return brick;
+}
+
+
+-(SetXBrick*)loadSetXBrick:(GDataXMLElement*)gDataXMLElement
+{
+    SetXBrick *brick = [[SetXBrick alloc]init];
+    
+    NSArray *xPositions = [gDataXMLElement elementsForName:@"xPosition"];
+    GDataXMLElement *xPosition = (GDataXMLElement*)[xPositions objectAtIndex:0];
+    
+    NSLog(@"setX: %@", xPosition.stringValue);
+    brick.xPosition = xPosition.stringValue.floatValue;
+    
+    return brick;
+}
+
+-(SetYBrick*)loadSetYBrick:(GDataXMLElement*)gDataXMLElement
+{
+    SetYBrick *brick = [[SetYBrick alloc]init];
+    
+    NSArray *yPositions = [gDataXMLElement elementsForName:@"yPosition"];
+    GDataXMLElement *yPosition = (GDataXMLElement*)[yPositions objectAtIndex:0];
+    
+    NSLog(@"setY: %@", yPosition.stringValue);
+    brick.yPosition = yPosition.stringValue.floatValue;
+    
+    return brick;
 }
 
 @end
