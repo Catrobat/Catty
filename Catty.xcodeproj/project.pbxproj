@@ -60,6 +60,7 @@
 		CD85F52C16083315007C38D1 /* BroadcastBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = CD85F52B16083315007C38D1 /* BroadcastBrick.m */; };
 		CD85F53F160864F3007C38D1 /* ComeToFrontBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = CD85F53E160864F3007C38D1 /* ComeToFrontBrick.m */; };
 		CD85F54C16099CBE007C38D1 /* ChangeSizeByNBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = CD85F54B16099CBE007C38D1 /* ChangeSizeByNBrick.m */; };
+		CD85F55E1609AED0007C38D1 /* rocket in Resources */ = {isa = PBXBuildFile; fileRef = CD85F55D1609AED0007C38D1 /* rocket */; };
 		CD8FA5AC1605D91300FC282F /* NextCostumeBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = CD8FA5AB1605D91300FC282F /* NextCostumeBrick.m */; };
 		CD8FA5B116063EA700FC282F /* HideBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = CD8FA5B016063EA700FC282F /* HideBrick.m */; };
 		CD8FA5B416063EBA00FC282F /* ShowBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = CD8FA5B316063EBA00FC282F /* ShowBrick.m */; };
@@ -162,6 +163,7 @@
 		CD85F53E160864F3007C38D1 /* ComeToFrontBrick.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ComeToFrontBrick.m; sourceTree = "<group>"; };
 		CD85F54A16099CBE007C38D1 /* ChangeSizeByNBrick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChangeSizeByNBrick.h; sourceTree = "<group>"; };
 		CD85F54B16099CBE007C38D1 /* ChangeSizeByNBrick.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChangeSizeByNBrick.m; sourceTree = "<group>"; };
+		CD85F55D1609AED0007C38D1 /* rocket */ = {isa = PBXFileReference; lastKnownFileType = folder; path = rocket; sourceTree = "<group>"; };
 		CD8FA5AA1605D91300FC282F /* NextCostumeBrick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NextCostumeBrick.h; sourceTree = "<group>"; };
 		CD8FA5AB1605D91300FC282F /* NextCostumeBrick.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NextCostumeBrick.m; sourceTree = "<group>"; };
 		CD8FA5AF16063EA700FC282F /* HideBrick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HideBrick.h; sourceTree = "<group>"; };
@@ -555,6 +557,7 @@
 		B4FDF38C15A82FB200CBCF03 /* TEMP */ = {
 			isa = PBXGroup;
 			children = (
+				CD85F55D1609AED0007C38D1 /* rocket */,
 				CD9438AA15DBAFC7002E6375 /* defaultProject */,
 				B4FDF38D15A82FB800CBCF03 /* Costumes */,
 			);
@@ -765,6 +768,7 @@
 				B415DC3B15BAB86B0076275E /* defaultProject.xml in Resources */,
 				B415DC4515BAE3CF0076275E /* projectcode.xml in Resources */,
 				CD9438AB15DBAFC7002E6375 /* defaultProject in Resources */,
+				CD85F55E1609AED0007C38D1 /* rocket in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

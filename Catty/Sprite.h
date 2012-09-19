@@ -10,6 +10,9 @@
 #import "enums.h"
 #import "SpriteManagerDelegate.h"
 
+
+#define SPRITE_IMAGE_FOLDER @"images"
+
 //@class SpriteManagerDelegate;
 @class Costume;
 @class Script;
@@ -35,6 +38,7 @@
 @property (weak, nonatomic) id<SpriteManagerDelegate> spriteManagerDelegate;
 
 @property (strong, nonatomic) NSString *name;
+@property (strong, nonatomic) NSString *projectName; //for image-path!!!
 @property (readonly, strong, nonatomic) NSArray *costumesArray;
 @property (readonly, strong, nonatomic) NSArray *soundsArray;
 @property (readonly, strong, nonatomic) NSArray *startScriptsArray;

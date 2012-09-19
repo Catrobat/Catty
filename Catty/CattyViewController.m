@@ -108,11 +108,15 @@
     //self.sprite = [[Sprite alloc] initWithCostume:newCostume1 effect:self.effect];
 
     //loading real project
-    NSString *fileName = @"defaultProject";
-    //NSString *fileName = @"projectcode";
-
+//    NSString *fileName = @"defaultProject";
+//    NSString *projectName = @"defaultProject";
+    NSString *fileName = @"rocket/rocket";
+    NSString *projectName = @"rocket";
+    
     NSBundle *bundle = [NSBundle bundleForClass:[self class]];
     NSString *path = [bundle pathForResource:fileName ofType:@"xml"];
+    
+    NSLog(@"XML-Path: %@", path);
     
     RetailParser *parser = [[RetailParser alloc] init];
     self.level = [parser generateObjectForLevel:path];
@@ -120,14 +124,16 @@
     
     // DEBUG
     
-    TestParser *testparser = [[TestParser alloc]init];
-    self.level = [testparser generateDebugLevel_GlideTo];
-    self.level = [testparser generateDebugLevel_nextCostume];
-    self.level = [testparser generateDebugLevel_HideShow];
-    self.level = [testparser generateDebugLevel_SetXY];
-    self.level = [testparser generateDebugLevel_broadcast];
-    self.level = [testparser generateDebugLevel_comeToFront];
-    self.level = [testparser generateDebugLevel_changeSizeByN];
+//    TestParser *testparser = [[TestParser alloc]init];
+//    projectName = @"defaultProject";
+//    self.level = [testparser generateDebugLevel_GlideTo];
+//    self.level = [testparser generateDebugLevel_nextCostume];
+//    self.level = [testparser generateDebugLevel_HideShow];
+//    self.level = [testparser generateDebugLevel_SetXY];
+//    self.level = [testparser generateDebugLevel_broadcast];
+//    self.level = [testparser generateDebugLevel_comeToFront];
+//    self.level = [testparser generateDebugLevel_changeSizeByN];
+    
     // DEBUG END
     
     //setting effect
@@ -135,6 +141,7 @@
     {
         sprite.effect = self.effect;
         sprite.spriteManagerDelegate = self;
+        sprite.projectName = projectName;
     }
     
     [self startLevel];

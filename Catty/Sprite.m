@@ -84,6 +84,7 @@ typedef struct {
 // public synthesizes
 @synthesize spriteManagerDelegate = _spriteManagerDelegate;
 @synthesize name = _name;
+@synthesize projectName = _projectName;
 @synthesize costumesArray = _costumesArray;
 @synthesize soundsArray = _soundsArray;
 @synthesize startScriptsArray = _startScriptsArray;
@@ -231,6 +232,8 @@ typedef struct {
 {
     _indexOfCurrentCostumeInArray = indexOfCurrentCostumeInArray;
     
+    NSLog(@"Try to load costume %d / %d", indexOfCurrentCostumeInArray.intValue, [self.costumesArray count]);
+    
     NSString *fileName = ((Costume*)[self.costumesArray objectAtIndex:[self.indexOfCurrentCostumeInArray intValue]]).costumeFileName;
     
     NSDictionary * options = [NSDictionary dictionaryWithObjectsAndKeys:
@@ -264,7 +267,8 @@ typedef struct {
     NSLog(@"Filename: %@", fileName);
     
     //NSString *pathToImage = [NSString stringWithFormat:@"%@/defaultProject/images/%@", [Util applicationDocumentsDirectory], fileName];
-    NSString *pathToImage = [[NSBundle mainBundle] pathForResource:[NSString stringWithFormat:@"/defaultProject/images/%@", fileName] ofType:nil];
+    NSString *path = [NSString stringWithFormat:@"/%@/%@/%@", self.projectName, SPRITE_IMAGE_FOLDER, fileName];
+    NSString *pathToImage = [[NSBundle mainBundle] pathForResource:path ofType:nil];
     
     NSLog(@"Try to load image: %@", pathToImage);
     

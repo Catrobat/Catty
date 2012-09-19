@@ -66,14 +66,14 @@
         }
         
         //retrieving all sounds
-        NSArray *soundList = [gDataSprite elementsForName:@"soundList"];
-        NSArray *sounds = [[soundList objectAtIndex:0] elementsForName:@"Common.SoundInfo"];
-        for (GDataXMLElement *gDataSound in sounds)
-        {
-            Sound *sound = [self loadSound:gDataSound];
-//            [self.newSprite.soundsArray addObject:sound];
-            [self.newSprite addSound:sound];
-        }
+//        NSArray *soundList = [gDataSprite elementsForName:@"soundList"];
+//        NSArray *sounds = [[soundList objectAtIndex:0] elementsForName:@"Common.SoundInfo"];
+//        for (GDataXMLElement *gDataSound in sounds)
+//        {
+//            Sound *sound = [self loadSound:gDataSound];
+////            [self.newSprite.soundsArray addObject:sound];
+//            [self.newSprite addSound:sound];
+//        }
         //todo... use sound...
         //for each..
         //add sound to sprite
@@ -138,13 +138,15 @@
     Costume *ret = [[Costume alloc] init];
     
     NSArray *costumeFileNames = [gDataCostume elementsForName:@"costumeFileName"]; //old xml version
-    //NSArray *costumeFileNames = [gDataCostume elementsForName:@"fileName"];
+    if ([costumeFileNames count] <= 0)
+        costumeFileNames = [gDataCostume elementsForName:@"fileName"];
 
     GDataXMLElement *temp = (GDataXMLElement*)[costumeFileNames objectAtIndex:0];
     ret.costumeFileName = temp.stringValue;
     
     NSArray *costumeNames = [gDataCostume elementsForName:@"costumeName"];
-    //NSArray *costumeNames = [gDataCostume elementsForName:@"name"];
+    if ([costumeNames count] <= 0)
+        costumeNames = [gDataCostume elementsForName:@"name"];
 
     temp = (GDataXMLElement*)[costumeNames objectAtIndex:0];
     ret.costumeName = temp.stringValue;
