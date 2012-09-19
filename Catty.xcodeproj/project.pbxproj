@@ -71,6 +71,11 @@
 		CD25FE1615B0642400719D12 /* PlaceAtBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = CD25FE1515B0642400719D12 /* PlaceAtBrick.m */; };
 		CD85F51416077C67007C38D1 /* SetXBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = CD85F51316077C67007C38D1 /* SetXBrick.m */; };
 		CD85F51716077C75007C38D1 /* SetYBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = CD85F51616077C75007C38D1 /* SetYBrick.m */; };
+		CD85F52C16083315007C38D1 /* BroadcastBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = CD85F52B16083315007C38D1 /* BroadcastBrick.m */; };
+		CD85F53F160864F3007C38D1 /* ComeToFrontBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = CD85F53E160864F3007C38D1 /* ComeToFrontBrick.m */; };
+		CD85F54C16099CBE007C38D1 /* ChangeSizeByNBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = CD85F54B16099CBE007C38D1 /* ChangeSizeByNBrick.m */; };
+		CD85F55E1609AED0007C38D1 /* rocket in Resources */ = {isa = PBXBuildFile; fileRef = CD85F55D1609AED0007C38D1 /* rocket */; };
+		CD8B838A1609FC42003A3C9E /* StageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CD8B83891609FC42003A3C9E /* StageViewController.m */; };
 		CD8FA5AC1605D91300FC282F /* NextCostumeBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = CD8FA5AB1605D91300FC282F /* NextCostumeBrick.m */; };
 		CD8FA5B116063EA700FC282F /* HideBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = CD8FA5B016063EA700FC282F /* HideBrick.m */; };
 		CD8FA5B416063EBA00FC282F /* ShowBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = CD8FA5B316063EBA00FC282F /* ShowBrick.m */; };
@@ -193,6 +198,16 @@
 		CD85F51316077C67007C38D1 /* SetXBrick.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SetXBrick.m; sourceTree = "<group>"; };
 		CD85F51516077C75007C38D1 /* SetYBrick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SetYBrick.h; sourceTree = "<group>"; };
 		CD85F51616077C75007C38D1 /* SetYBrick.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SetYBrick.m; sourceTree = "<group>"; };
+		CD85F52A16083315007C38D1 /* BroadcastBrick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BroadcastBrick.h; sourceTree = "<group>"; };
+		CD85F52B16083315007C38D1 /* BroadcastBrick.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BroadcastBrick.m; sourceTree = "<group>"; };
+		CD85F53B16085DD5007C38D1 /* SpriteManagerDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SpriteManagerDelegate.h; sourceTree = "<group>"; };
+		CD85F53D160864F3007C38D1 /* ComeToFrontBrick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ComeToFrontBrick.h; sourceTree = "<group>"; };
+		CD85F53E160864F3007C38D1 /* ComeToFrontBrick.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ComeToFrontBrick.m; sourceTree = "<group>"; };
+		CD85F54A16099CBE007C38D1 /* ChangeSizeByNBrick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChangeSizeByNBrick.h; sourceTree = "<group>"; };
+		CD85F54B16099CBE007C38D1 /* ChangeSizeByNBrick.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChangeSizeByNBrick.m; sourceTree = "<group>"; };
+		CD85F55D1609AED0007C38D1 /* rocket */ = {isa = PBXFileReference; lastKnownFileType = folder; path = rocket; sourceTree = "<group>"; };
+		CD8B83881609FC42003A3C9E /* StageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StageViewController.h; sourceTree = "<group>"; };
+		CD8B83891609FC42003A3C9E /* StageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StageViewController.m; sourceTree = "<group>"; };
 		CD8FA5AA1605D91300FC282F /* NextCostumeBrick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NextCostumeBrick.h; sourceTree = "<group>"; };
 		CD8FA5AB1605D91300FC282F /* NextCostumeBrick.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NextCostumeBrick.m; sourceTree = "<group>"; };
 		CD8FA5AF16063EA700FC282F /* HideBrick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HideBrick.h; sourceTree = "<group>"; };
@@ -547,6 +562,7 @@
 		B4FDF32815A82C1000CBCF03 /* Catty */ = {
 			isa = PBXGroup;
 			children = (
+				CD85F53516085D07007C38D1 /* Delegates */,
 				B43CF2411609A5C300E19CF3 /* Helper */,
 				B415DC3D15BABB420076275E /* Enums */,
 				B415DC3615B9F8450076275E /* Util */,
@@ -687,6 +703,9 @@
 		B4FDF38115A82F3F00CBCF03 /* Bricks */ = {
 			isa = PBXGroup;
 			children = (
+				CD85F54816099C3D007C38D1 /* ChangeSizeByN */,
+				CD85F53C160864DF007C38D1 /* ComeToFront */,
+				CD85F528160832FC007C38D1 /* BroadcastBrick */,
 				CD85F50F16077C42007C38D1 /* SetX */,
 				CD85F51116077C4E007C38D1 /* SetY */,
 				CD8FA5AE16063E9800FC282F /* Show */,
@@ -704,6 +723,7 @@
 		B4FDF38C15A82FB200CBCF03 /* TEMP */ = {
 			isa = PBXGroup;
 			children = (
+				CD85F55D1609AED0007C38D1 /* rocket */,
 				CD9438AA15DBAFC7002E6375 /* defaultProject */,
 			);
 			name = TEMP;
@@ -729,6 +749,7 @@
 		B4FDF39915A8349900CBCF03 /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
+				CD8B83861609FC06003A3C9E /* StageViewController */,
 				B43CF29C1609BCE600E19CF3 /* MyProjectsViewController */,
 				B43CF2391609925500E19CF3 /* RootViewController */,
 				B43CF2341608E08500E19CF3 /* RecentProjectsViewController */,
@@ -763,6 +784,50 @@
 				CD85F51616077C75007C38D1 /* SetYBrick.m */,
 			);
 			name = SetY;
+			sourceTree = "<group>";
+		};
+		CD85F528160832FC007C38D1 /* BroadcastBrick */ = {
+			isa = PBXGroup;
+			children = (
+				CD85F52A16083315007C38D1 /* BroadcastBrick.h */,
+				CD85F52B16083315007C38D1 /* BroadcastBrick.m */,
+			);
+			name = BroadcastBrick;
+			sourceTree = "<group>";
+		};
+		CD85F53516085D07007C38D1 /* Delegates */ = {
+			isa = PBXGroup;
+			children = (
+				CD85F53B16085DD5007C38D1 /* SpriteManagerDelegate.h */,
+			);
+			name = Delegates;
+			sourceTree = "<group>";
+		};
+		CD85F53C160864DF007C38D1 /* ComeToFront */ = {
+			isa = PBXGroup;
+			children = (
+				CD85F53D160864F3007C38D1 /* ComeToFrontBrick.h */,
+				CD85F53E160864F3007C38D1 /* ComeToFrontBrick.m */,
+			);
+			name = ComeToFront;
+			sourceTree = "<group>";
+		};
+		CD85F54816099C3D007C38D1 /* ChangeSizeByN */ = {
+			isa = PBXGroup;
+			children = (
+				CD85F54A16099CBE007C38D1 /* ChangeSizeByNBrick.h */,
+				CD85F54B16099CBE007C38D1 /* ChangeSizeByNBrick.m */,
+			);
+			name = ChangeSizeByN;
+			sourceTree = "<group>";
+		};
+		CD8B83861609FC06003A3C9E /* StageViewController */ = {
+			isa = PBXGroup;
+			children = (
+				CD8B83881609FC42003A3C9E /* StageViewController.h */,
+				CD8B83891609FC42003A3C9E /* StageViewController.m */,
+			);
+			name = StageViewController;
 			sourceTree = "<group>";
 		};
 		CD8FA5A81605D8B700FC282F /* NextCostumeBrick */ = {
@@ -870,6 +935,7 @@
 				B415DC3B15BAB86B0076275E /* defaultProject.xml in Resources */,
 				B415DC4515BAE3CF0076275E /* projectcode.xml in Resources */,
 				CD9438AB15DBAFC7002E6375 /* defaultProject in Resources */,
+				CD85F55E1609AED0007C38D1 /* rocket in Resources */,
 				B43CF2AB1609C41300E19CF3 /* background.png in Resources */,
 				B43CF2AC1609C41300E19CF3 /* background@2x.png in Resources */,
 				B43CF2AF1609C6BC00E19CF3 /* container.png in Resources */,
@@ -938,6 +1004,9 @@
 				CD8FA5B416063EBA00FC282F /* ShowBrick.m in Sources */,
 				CD85F51416077C67007C38D1 /* SetXBrick.m in Sources */,
 				CD85F51716077C75007C38D1 /* SetYBrick.m in Sources */,
+				CD85F52C16083315007C38D1 /* BroadcastBrick.m in Sources */,
+				CD85F53F160864F3007C38D1 /* ComeToFrontBrick.m in Sources */,
+				CD85F54C16099CBE007C38D1 /* ChangeSizeByNBrick.m in Sources */,
 				B468CDBE16078B59007300A0 /* ListProjectsViewController.m in Sources */,
 				B468CDC3160790CF007300A0 /* CatrobatInformation.m in Sources */,
 				B468CDC816079438007300A0 /* CatrobatProject.m in Sources */,
@@ -950,6 +1019,7 @@
 				B43CF2981609B4E700E19CF3 /* SSZipArchive.m in Sources */,
 				B43CF2A21609BD1400E19CF3 /* MyProjectsViewController.m in Sources */,
 				B43CF2A71609BE4D00E19CF3 /* LevelLoadingInfo.m in Sources */,
+				CD8B838A1609FC42003A3C9E /* StageViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

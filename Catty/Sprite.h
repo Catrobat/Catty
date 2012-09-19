@@ -8,7 +8,12 @@
 
 #import <GLKit/GLKit.h>
 #import "enums.h"
+#import "SpriteManagerDelegate.h"
 
+
+#define SPRITE_IMAGE_FOLDER @"images"
+
+//@class SpriteManagerDelegate;
 @class Costume;
 @class Script;
 @class Sound;
@@ -28,23 +33,35 @@
 
 @interface Sprite : NSObject
 
+
+
+@property (weak, nonatomic) id<SpriteManagerDelegate> spriteManagerDelegate;
+
 @property (strong, nonatomic) NSString *name;
+@property (strong, nonatomic) NSString *projectPath; //for image-path!!!
 @property (readonly, strong, nonatomic) NSArray *costumesArray;
 @property (readonly, strong, nonatomic) NSArray *soundsArray;
 @property (readonly, strong, nonatomic) NSArray *startScriptsArray;
 @property (readonly, strong, nonatomic) NSArray *whenScriptsArray;
+@property (readonly, strong, nonatomic) NSDictionary *broadcastScripts; //TODO: ONE broadcast-script for ONE message?? Hopefully, yes - otherwise: change this :(
 @property (assign) CGSize contentSize;
 @property (nonatomic, strong) GLKBaseEffect *effect;
 
 // init, add
 - (id)initWithEffect:(GLKBaseEffect*)effect;
+
+- (void)setProjectResolution:(CGSize)projectResolution;
+
 - (void)addCostume:(Costume*)costume;
 - (void)addCostumes:(NSArray*)costumesArray;
 - (void)addSound:(Sound*)sound;
 - (void)addStartScript:(StartScript*)script;
 - (void)addWhenScript:(WhenScript*)script;
+- (void)addBroadcastScript:(Script*)script forMessage:(NSString*)message;
 
 - (float)getZIndex;
+- (void)setZIndex:(float)newZIndex;
+- (void)decrementZIndexByOne;
 
 // graphics
 - (void)update:(float)dt;
@@ -68,6 +85,8 @@
 - (void)show;
 - (void)setXPosition:(float)xPosition;
 - (void)setYPosition:(float)yPosition;
-
+- (void)broadcast:(NSString*)message;
+- (void)comeToFront;
+- (void)changeSizeByN:(float)sizePercentageRate;
 
 @end

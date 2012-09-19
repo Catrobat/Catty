@@ -9,6 +9,7 @@
 #import "MyProjectsViewController.h"
 #import "Util.h"
 #import "LevelLoadingInfo.h"
+#import "StageViewController.h"
 
 @interface MyProjectsViewController ()
 
@@ -78,7 +79,7 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *CellIdentifier = @"Cell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];// forIndexPath:indexPath];
     
     LevelLoadingInfo *info = [self.levelLoadingInfos objectAtIndex:indexPath.row];
     
@@ -137,6 +138,26 @@
      // Pass the selected object to the new view controller.
      [self.navigationController pushViewController:detailViewController animated:YES];
      */
+}
+
+#pragma mark - Segue
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{    
+    if ([segue.identifier isEqualToString:@"SEGUE_TO_STAGE"])
+    {
+        //get selected row index
+        NSIndexPath *selectedRowIndexPath = self.tableView.indexPathForSelectedRow;
+                
+        //check if it's the same class
+        if ([segue.destinationViewController isKindOfClass:[StageViewController class]])
+        {            
+            StageViewController *destination = segue.destinationViewController;
+            destination.levelLoadingInfo = [self.levelLoadingInfos objectAtIndex:0];    // TODO: change 0 to variable!!!!
+        }
+        
+    }
+    
 }
 
 @end

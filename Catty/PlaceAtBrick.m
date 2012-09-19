@@ -30,4 +30,10 @@
     [sprite placeAt:self.position];
 }
 
+#pragma mark - Description
+- (NSString*)description
+{
+    return [NSString stringWithFormat:@"PlaceAt (Position: %f/%f)", self.position.x, self.position.y];
+}
+
 @end

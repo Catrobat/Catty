@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<Content.Project>
+  <androidVersion>13</androidVersion>
+  <catroidVersionCode>10</catroidVersionCode>
+  <catroidVersionName>0.5a</catroidVersionName>
+  <deviceName>GT-P7510</deviceName>
+  <projectName>Georg,Michi</projectName>
+  <screenHeight>1232</screenHeight>
+  <screenWidth>800</screenWidth>
+  <spriteList>
+    <Content.Sprite>
+      <costumeDataList>
+        <Common.CostumeData>
+          <fileName>91A32276098C44041B5CDFBBBABE3079_wueste.gif</fileName>
+          <name>wueste</name>
+        </Common.CostumeData>
+        <Common.CostumeData>
+          <fileName>32DFB48AD487FA901FDD27FAE4FEE629_Sterne2.jpg</fileName>
+          <name>Sterne2</name>
+        </Common.CostumeData>
+      </costumeDataList>
+      <name>Hintergrund</name>
+      <scriptList>
+        <Content.StartScript>
+          <brickList>
+            <Bricks.SetCostumeBrick>
+              <costumeData reference="../../../../../costumeDataList/Common.CostumeData"/>
+              <sprite reference="../../../../.."/>
+            </Bricks.SetCostumeBrick>
+            <Bricks.WaitBrick>
+              <sprite reference="../../../../.."/>
+              <timeToWaitInMilliSeconds>4000</timeToWaitInMilliSeconds>
+            </Bricks.WaitBrick>
+            <Bricks.SetCostumeBrick>
+              <costumeData reference="../../../../../costumeDataList/Common.CostumeData[2]"/>
+              <sprite reference="../../../../.."/>
+            </Bricks.SetCostumeBrick>
+            <Bricks.ChangeSizeByNBrick>
+              <size>50.0</size>
+              <sprite reference="../../../../.."/>
+            </Bricks.ChangeSizeByNBrick>
+          </brickList>
+          <sprite reference="../../.."/>
+        </Content.StartScript>
+      </scriptList>
+      <soundList/>
+    </Content.Sprite>
+    <Content.Sprite>
+      <costumeDataList>
+        <Common.CostumeData>
+          <fileName>427D124EC06D16221B3D68B12485BD4D_rakete3.png</fileName>
+          <name>rakete3</name>
+        </Common.CostumeData>
+      </costumeDataList>
+      <name>Rakete</name>
+      <scriptList>
+        <Content.StartScript>
+          <brickList>
+            <Bricks.SetCostumeBrick>
+              <costumeData reference="../../../../../costumeDataList/Common.CostumeData"/>
+              <sprite reference="../../../../.."/>
+            </Bricks.SetCostumeBrick>
+          </brickList>
+          <sprite reference="../../.."/>
+        </Content.StartScript>
+        <Content.WhenScript>
+          <brickList>
+            <Bricks.PlaySoundBrick>
+              <soundInfo>
+                <fileName>3A7D93BC56E7B4CED4D4FC3A64FFF217_RaketenStart1.mp3</fileName>
+                <name>RaketenStart1</name>
+              </soundInfo>
+              <sprite reference="../../../../.."/>
+            </Bricks.PlaySoundBrick>
+            <Bricks.SetCostumeBrick>
+              <costumeData reference="../../../../../costumeDataList/Common.CostumeData"/>
+              <sprite reference="../../../../.."/>
+            </Bricks.SetCostumeBrick>
+            <Bricks.GlideToBrick>
+              <durationInMilliSeconds>5000</durationInMilliSeconds>
+              <sprite reference="../../../../.."/>
+              <xDestination>0</xDestination>
+              <yDestination>800</yDestination>
+            </Bricks.GlideToBrick>
+          </brickList>
+          <sprite reference="../../.."/>
+          <action>Tapped</action>
+        </Content.WhenScript>
+      </scriptList>
+      <soundList>
+        <Common.SoundInfo reference="../../scriptList/Content.WhenScript/brickList/Bricks.PlaySoundBrick/soundInfo"/>
+      </soundList>
+    </Content.Sprite>
+  </spriteList>
+</Content.Project>

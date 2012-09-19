@@ -18,6 +18,14 @@
 #import "StartScript.h"
 #import "WhenScript.h"
 #import "Sound.h"
+#import "PlaceAtBrick.h"
+#import "GlideToBrick.h"
+#import "NextCostumeBrick.h"
+#import "HideBrick.h"
+#import "ShowBrick.h"
+#import "SetXBrick.h"
+#import "SetYBrick.h"
+#import "ChangeSizeByNBrick.h"
 
 @interface LevelParser()
 
@@ -41,6 +49,42 @@
         return nil;
     
     Level *level = [[Level alloc] init];
+    
+    
+    //loading level related stuff
+    //version name
+    NSArray *versionNames = [doc.rootElement elementsForName:@"versionName"];
+    GDataXMLElement *temp = (GDataXMLElement*)[versionNames objectAtIndex:0];
+    level.versionName = temp.stringValue;
+    
+    //name
+    NSArray *names = [doc.rootElement elementsForName:@"name"];
+    temp = (GDataXMLElement*)[names objectAtIndex:0];
+    level.name = temp.stringValue;
+    
+    //screen resolution
+    NSArray *screenResolutions = [doc.rootElement elementsForName:@"screenResolution"];
+    temp = (GDataXMLElement*)[screenResolutions objectAtIndex:0];
+    level.screenResolution = temp.stringValue;
+    
+    NSArray *screenHeights = [doc.rootElement elementsForName:@"screenHeight"];
+    GDataXMLElement *height = (GDataXMLElement*)[screenHeights objectAtIndex:0];
+    
+    NSArray *screenWidth = [doc.rootElement elementsForName:@"screenWidth"];
+    GDataXMLElement *width = (GDataXMLElement*)[screenWidth objectAtIndex:0];
+    
+    NSLog(@"Parser: project-resolution: %@/%@", width.stringValue, height.stringValue);
+    level.resolution = CGSizeMake(width.stringValue.floatValue, height.stringValue.floatValue);
+    
+
+    
+    //version code
+    NSArray *versionCodes = [doc.rootElement elementsForName:@"versionCode"];
+    temp = (GDataXMLElement*)[versionCodes objectAtIndex:0];
+    level.versionCode = temp.stringValue;
+
+    
+    
     NSArray *spriteList = [doc.rootElement elementsForName:@"spriteList"];
     NSArray *sprites = [[spriteList objectAtIndex:0] elementsForName:@"Content.Sprite"];
     for (GDataXMLElement *gDataSprite in sprites) 
@@ -58,14 +102,14 @@
         }
         
         //retrieving all sounds
-        NSArray *soundList = [gDataSprite elementsForName:@"soundList"];
-        NSArray *sounds = [[soundList objectAtIndex:0] elementsForName:@"Common.SoundInfo"];
-        for (GDataXMLElement *gDataSound in sounds)
-        {
-            Sound *sound = [self loadSound:gDataSound];
-//            [self.newSprite.soundsArray addObject:sound];
-            [self.newSprite addSound:sound];
-        }
+//        NSArray *soundList = [gDataSprite elementsForName:@"soundList"];
+//        NSArray *sounds = [[soundList objectAtIndex:0] elementsForName:@"Common.SoundInfo"];
+//        for (GDataXMLElement *gDataSound in sounds)
+//        {
+//            Sound *sound = [self loadSound:gDataSound];
+////            [self.newSprite.soundsArray addObject:sound];
+//            [self.newSprite addSound:sound];
+//        }
         //todo... use sound...
         //for each..
         //add sound to sprite
@@ -74,54 +118,30 @@
         NSArray *scriptList = [gDataSprite elementsForName:@"scriptList"];
         
         //getting all start scripts
-        NSArray *scripts = [[scriptList objectAtIndex:0] elementsForName:@"Content.StartScript"];
-        for (GDataXMLElement *gDataScript in scripts)
+        NSArray *scripts1 = [[scriptList objectAtIndex:0] elementsForName:@"Content.StartScript"];
+        for (GDataXMLElement *gDataScript in scripts1)
         {
-            Script *newScript = [self loadStartScript:gDataScript];
-//            [self.newSprite.startScriptsArray addObject:newScript];
+            StartScript *newScript = [self loadScript:gDataScript];
             [self.newSprite addStartScript:newScript];
-            //[self.newSprite addStartScript:newScript];
         }
         
         //getting all when scripts
-        scripts = [[scriptList objectAtIndex:0] elementsForName:@"Content.WhenScript"];
-        for (GDataXMLElement *gDataScript in scripts)
+        NSArray *scripts2 = [[scriptList objectAtIndex:0] elementsForName:@"Content.WhenScript"];
+        for (GDataXMLElement *gDataScript in scripts2)
         {
-            Script *newScript = [self loadWhenScript:gDataScript];
-//            [self.newSprite.whenScriptsArray addObject:newScript];
+            WhenScript *newScript = [self loadScript:gDataScript];
             [self.newSprite addWhenScript:newScript];
-            //[self.newSprite addWhenScript:newScript];
         }
         
         NSArray *spriteNames = [gDataSprite elementsForName:@"name"];
         GDataXMLElement *temp = (GDataXMLElement*)[spriteNames objectAtIndex:0];
         self.newSprite.name = temp.stringValue;
         
+        [self.newSprite setProjectResolution:level.resolution];
         [level.spritesArray addObject:self.newSprite];
 
     }
 
-    //loading level related stuff
-    //version name
-    NSArray *versionNames = [doc.rootElement elementsForName:@"versionName"];
-    GDataXMLElement *temp = (GDataXMLElement*)[versionNames objectAtIndex:0];
-    level.versionName = temp.stringValue;
-    
-    //name
-    NSArray *names = [doc.rootElement elementsForName:@"name"];
-    temp = (GDataXMLElement*)[names objectAtIndex:0];
-    level.name = temp.stringValue;
-    
-    //screen resolution
-    NSArray *screenResolutions = [doc.rootElement elementsForName:@"screenResolution"];
-    temp = (GDataXMLElement*)[screenResolutions objectAtIndex:0];
-    level.screenResolution = temp.stringValue;
-    
-    //version code
-    NSArray *versionCodes = [doc.rootElement elementsForName:@"versionCode"];
-    temp = (GDataXMLElement*)[versionCodes objectAtIndex:0];
-    level.versionCode = temp.stringValue;
-    
     return level;
 }
 
@@ -130,13 +150,15 @@
     Costume *ret = [[Costume alloc] init];
     
     NSArray *costumeFileNames = [gDataCostume elementsForName:@"costumeFileName"]; //old xml version
-    //NSArray *costumeFileNames = [gDataCostume elementsForName:@"fileName"];
+    if ([costumeFileNames count] <= 0)
+        costumeFileNames = [gDataCostume elementsForName:@"fileName"];
 
     GDataXMLElement *temp = (GDataXMLElement*)[costumeFileNames objectAtIndex:0];
     ret.costumeFileName = temp.stringValue;
     
     NSArray *costumeNames = [gDataCostume elementsForName:@"costumeName"];
-    //NSArray *costumeNames = [gDataCostume elementsForName:@"name"];
+    if ([costumeNames count] <= 0)
+        costumeNames = [gDataCostume elementsForName:@"name"];
 
     temp = (GDataXMLElement*)[costumeNames objectAtIndex:0];
     ret.costumeName = temp.stringValue;
@@ -156,38 +178,38 @@
 //    return ret;
 }
 
-- (Script*)loadStartScript:(GDataXMLElement*)gDataScript
-{
-    StartScript *ret = [[StartScript alloc] init];
-    
-    NSArray *brickList = [gDataScript elementsForName:@"brickList"];
-    
-    //retrieving setCostumeBricks
-    NSArray *setCostumeBricks = [[brickList objectAtIndex:0] elementsForName:@"Bricks.SetCostumeBrick"];
-    for (GDataXMLElement *gDataSetCostumeBrick in setCostumeBricks)
-    {
-        SetCostumeBrick *brick = [self loadSetCostumeBrick:gDataSetCostumeBrick];
-//        brick.sprite = self.newSprite;
-//        [ret.bricksArray addObject:brick];
-        [ret addBrick:brick];
-    }
-    
-    //retrieving waitBricks
-    NSArray *waitBricks = [[brickList objectAtIndex:0] elementsForName:@"Bricks.WaitBrick"];
-    for (GDataXMLElement *gDataWaitBrick in waitBricks)
-    {
-        WaitBrick *brick = [self loadWaitBrick:gDataWaitBrick];
-//        brick.sprite = self.newSprite;
-//        [ret.bricksArray addObject:brick];
-        [ret addBrick:brick];
-    }
-    
-    return ret;
-}
+//- (Script*)loadStartScript:(GDataXMLElement*)gDataScript
+//{
+//    StartScript *ret = [[StartScript alloc] init];
+//    
+//    NSArray *brickList = [gDataScript elementsForName:@"brickList"];
+//    
+//    //retrieving setCostumeBricks
+//    NSArray *setCostumeBricks = [[brickList objectAtIndex:0] elementsForName:@"Bricks.SetCostumeBrick"];
+//    for (GDataXMLElement *gDataSetCostumeBrick in setCostumeBricks)
+//    {
+//        SetCostumeBrick *brick = [self loadSetCostumeBrick:gDataSetCostumeBrick];
+////        brick.sprite = self.newSprite;
+////        [ret.bricksArray addObject:brick];
+//        [ret addBrick:brick];
+//    }
+//    
+//    //retrieving waitBricks
+//    NSArray *waitBricks = [[brickList objectAtIndex:0] elementsForName:@"Bricks.WaitBrick"];
+//    for (GDataXMLElement *gDataWaitBrick in waitBricks)
+//    {
+//        WaitBrick *brick = [self loadWaitBrick:gDataWaitBrick];
+////        brick.sprite = self.newSprite;
+////        [ret.bricksArray addObject:brick];
+//        [ret addBrick:brick];
+//    }
+//    
+//    return ret;
+//}
 
-- (Script*)loadWhenScript:(GDataXMLElement*)gDataScript
+- (Script*)loadScript:(GDataXMLElement*)gDataScript
 {
-    WhenScript *ret = [[WhenScript alloc] init];
+    Script *ret = [[Script alloc] init];
     
     NSArray *brickList = [gDataScript elementsForName:@"brickList"];
 
@@ -199,16 +221,56 @@
         if ([element.name isEqualToString:@"Bricks.SetCostumeBrick"])
         {
             SetCostumeBrick *brick = [self loadSetCostumeBrick:element];
-//            brick.sprite = self.newSprite;
-//            [ret.bricksArray addObject:brick];
             [ret addBrick:brick];
         }
         else if ([element.name isEqualToString:@"Bricks.WaitBrick"])
         {
             WaitBrick *brick = [self loadWaitBrick:element];
-//            brick.sprite = self.newSprite;
-//            [ret.bricksArray addObject:brick];
             [ret addBrick:brick];
+        }
+        else if ([element.name isEqualToString:@"Bricks.PlaceAtBrick"])
+        {
+            PlaceAtBrick *brick = [self loadPlaceAtBrick:element];
+            [ret addBrick:brick];
+        }
+        else if ([element.name isEqualToString:@"Bricks.GlideToBrick"])
+        {
+            GlideToBrick *brick = [self loadGlideToBrick:element];
+            [ret addBrick:brick];
+        }
+        else if ([element.name isEqualToString:@"Bricks.ShowBrick"])
+        {
+            ShowBrick *brick = [[ShowBrick alloc]init];
+            [ret addBrick:brick];
+        }
+        else if ([element.name isEqualToString:@"Bricks.HideBrick"])
+        {
+            HideBrick *brick = [[HideBrick alloc]init];
+            [ret addBrick:brick];
+        }
+        else if ([element.name isEqualToString:@"Bricks.NextCostumeBrick"])
+        {
+            NextCostumeBrick *brick = [[NextCostumeBrick alloc]init];
+            [ret addBrick:brick];
+        }
+        else if ([element.name isEqualToString:@"Bricks.SetXBrick"])
+        {
+            SetXBrick *brick = [self loadSetXBrick:element];
+            [ret addBrick:brick];
+        }
+        else if ([element.name isEqualToString:@"Bricks.SetYBrick"])
+        {
+            SetYBrick *brick = [self loadSetYBrick:element];
+            [ret addBrick:brick];
+        }
+        else if ([element.name isEqualToString:@"Bricks.ChangeSizeByNBrick"])
+        {
+            ChangeSizeByNBrick *brick = [self loadChangeSizeByNBrick:element];
+            [ret addBrick:brick];
+        }
+        else
+        {
+            NSLog(@"PARSER: Unknown XML-tag . '%@'", element.name);
         }
     }
     
@@ -281,6 +343,82 @@
     ret.timeToWaitInMilliseconds = [NSNumber numberWithInt:temp.stringValue.intValue];
     
     return ret;
+}
+
+-(PlaceAtBrick*)loadPlaceAtBrick:(GDataXMLElement*)gDataXMLElement
+{
+    PlaceAtBrick *brick = [[PlaceAtBrick alloc]init];
+    
+    NSArray *xPositions = [gDataXMLElement elementsForName:@"xPosition"];
+    GDataXMLElement *xPosition = (GDataXMLElement*)[xPositions objectAtIndex:0];
+    
+    NSArray *yPositions = [gDataXMLElement elementsForName:@"yPosition"];
+    GDataXMLElement *yPosition = (GDataXMLElement*)[yPositions objectAtIndex:0];
+    
+    NSLog(@"placeAt: %@/%@", xPosition.stringValue, yPosition.stringValue);
+    brick.position = GLKVector3Make(xPosition.stringValue.floatValue, yPosition.stringValue.floatValue, 0);
+    
+    return brick;
+}
+
+-(GlideToBrick*)loadGlideToBrick:(GDataXMLElement*)gDataXMLElement
+{    
+    GlideToBrick *brick = [[GlideToBrick alloc]init];
+    
+    NSArray *times = [gDataXMLElement elementsForName:@"durationInMilliSeconds"];
+    GDataXMLElement *time = (GDataXMLElement*)[times objectAtIndex:0];
+    
+    NSArray *xPositions = [gDataXMLElement elementsForName:@"xDestination"];
+    GDataXMLElement *xPosition = (GDataXMLElement*)[xPositions objectAtIndex:0];
+    
+    NSArray *yPositions = [gDataXMLElement elementsForName:@"yDestination"];
+    GDataXMLElement *yPosition = (GDataXMLElement*)[yPositions objectAtIndex:0];
+    
+    NSLog(@"glideTo: %@/%@ in %@ millisecs", xPosition.stringValue, yPosition.stringValue, time.stringValue);
+    brick.durationInMilliSecs = time.stringValue.intValue;
+    brick.position = GLKVector3Make(xPosition.stringValue.floatValue, yPosition.stringValue.floatValue, 0);
+    
+    return brick;
+}
+
+
+-(SetXBrick*)loadSetXBrick:(GDataXMLElement*)gDataXMLElement
+{
+    SetXBrick *brick = [[SetXBrick alloc]init];
+    
+    NSArray *xPositions = [gDataXMLElement elementsForName:@"xPosition"];
+    GDataXMLElement *xPosition = (GDataXMLElement*)[xPositions objectAtIndex:0];
+    
+    NSLog(@"setX: %@", xPosition.stringValue);
+    brick.xPosition = xPosition.stringValue.floatValue;
+    
+    return brick;
+}
+
+-(SetYBrick*)loadSetYBrick:(GDataXMLElement*)gDataXMLElement
+{
+    SetYBrick *brick = [[SetYBrick alloc]init];
+    
+    NSArray *yPositions = [gDataXMLElement elementsForName:@"yPosition"];
+    GDataXMLElement *yPosition = (GDataXMLElement*)[yPositions objectAtIndex:0];
+    
+    NSLog(@"setY: %@", yPosition.stringValue);
+    brick.yPosition = yPosition.stringValue.floatValue;
+    
+    return brick;
+}
+
+-(ChangeSizeByNBrick*)loadChangeSizeByNBrick:(GDataXMLElement*)gDataXMLElement
+{
+    ChangeSizeByNBrick *brick = [[ChangeSizeByNBrick alloc]init];
+    
+    NSArray *sizeChangeRates = [gDataXMLElement elementsForName:@"size"];
+    GDataXMLElement *sizeChangeRate = (GDataXMLElement*)[sizeChangeRates objectAtIndex:0];
+    
+    NSLog(@"changeSizeByN: %@", sizeChangeRate.stringValue);
+    brick.sizeInPercentage = sizeChangeRate.stringValue.floatValue;
+    
+    return brick;
 }
 
 @end

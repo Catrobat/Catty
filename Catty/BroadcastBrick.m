@@ -1,23 +1,23 @@
 //
-//  SetXBrick.m
+//  BroadcastBrick.m
 //  Catty
 //
-//  Created by Mattias Rauter on 17.09.12.
+//  Created by Mattias Rauter on 18.09.12.
 //  Copyright (c) 2012 Graz University of Technology. All rights reserved.
 //
 
-#import "SetXBrick.h"
+#import "BroadcastBrick.h"
 
-@implementation SetXBrick
+@implementation BroadcastBrick
 
-@synthesize xPosition = _xPosition;
+@synthesize message = _message;
 
--(id)initWithXPosition:(float)xPosition
+-(id)initWithMessage:(NSString *)message
 {
     self = [super init];
     if (self)
     {
-        self.xPosition = xPosition;
+        self.message = message;
     }
     return self;
 }
@@ -26,7 +26,7 @@
 {
     NSLog(@"Performing: %@", self.description);
     
-    [sprite setXPosition:self.xPosition];
+    [sprite broadcast:self.message];
     
     //    float sleepTime = ((float)self.timeToWaitInMilliseconds.intValue)/1000;
     //    NSLog(@"wating for %f seconds", sleepTime);
@@ -39,7 +39,7 @@
 #pragma mark - Description
 - (NSString*)description
 {
-    return [NSString stringWithFormat:@"SetXBrick (x-Pos:%f)", self.xPosition];
+    return [NSString stringWithFormat:@"Broadcast (Msg: %@)", self.message];
 }
 
 @end

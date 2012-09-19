@@ -1,32 +1,20 @@
 //
-//  SetXBrick.m
+//  ComeToFrontBrick.m
 //  Catty
 //
-//  Created by Mattias Rauter on 17.09.12.
+//  Created by Mattias Rauter on 18.09.12.
 //  Copyright (c) 2012 Graz University of Technology. All rights reserved.
 //
 
-#import "SetXBrick.h"
+#import "ComeToFrontBrick.h"
 
-@implementation SetXBrick
-
-@synthesize xPosition = _xPosition;
-
--(id)initWithXPosition:(float)xPosition
-{
-    self = [super init];
-    if (self)
-    {
-        self.xPosition = xPosition;
-    }
-    return self;
-}
+@implementation ComeToFrontBrick
 
 - (void)performOnSprite:(Sprite *)sprite
 {
     NSLog(@"Performing: %@", self.description);
     
-    [sprite setXPosition:self.xPosition];
+    [sprite comeToFront];
     
     //    float sleepTime = ((float)self.timeToWaitInMilliseconds.intValue)/1000;
     //    NSLog(@"wating for %f seconds", sleepTime);
@@ -39,7 +27,7 @@
 #pragma mark - Description
 - (NSString*)description
 {
-    return [NSString stringWithFormat:@"SetXBrick (x-Pos:%f)", self.xPosition];
+    return [NSString stringWithFormat:@"ComeToFront"];
 }
 
 @end

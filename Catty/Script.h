@@ -7,11 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "enums.h"
 
 @class Brick;
 @class Sprite;
 
 @interface Script : NSObject
+
+@property (nonatomic, assign) TouchAction action;
 
 
 -(void)addBrick:(Brick*)brick;

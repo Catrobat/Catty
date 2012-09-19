@@ -1,23 +1,23 @@
 //
-//  SetXBrick.m
+//  ChangeSizeByNBrick.m
 //  Catty
 //
-//  Created by Mattias Rauter on 17.09.12.
+//  Created by Mattias Rauter on 19.09.12.
 //  Copyright (c) 2012 Graz University of Technology. All rights reserved.
 //
 
-#import "SetXBrick.h"
+#import "ChangeSizeByNBrick.h"
 
-@implementation SetXBrick
+@implementation ChangeSizeByNBrick
 
-@synthesize xPosition = _xPosition;
+@synthesize sizeInPercentage = _sizeInPercentage;
 
--(id)initWithXPosition:(float)xPosition
+-(id)initWithSizeChangeRate:(float)sizeInPercentage
 {
     self = [super init];
     if (self)
     {
-        self.xPosition = xPosition;
+        self.sizeInPercentage = sizeInPercentage;
     }
     return self;
 }
@@ -26,7 +26,7 @@
 {
     NSLog(@"Performing: %@", self.description);
     
-    [sprite setXPosition:self.xPosition];
+    [sprite changeSizeByN:self.sizeInPercentage];
     
     //    float sleepTime = ((float)self.timeToWaitInMilliseconds.intValue)/1000;
     //    NSLog(@"wating for %f seconds", sleepTime);
@@ -39,7 +39,7 @@
 #pragma mark - Description
 - (NSString*)description
 {
-    return [NSString stringWithFormat:@"SetXBrick (x-Pos:%f)", self.xPosition];
+    return [NSString stringWithFormat:@"ChangeSizeByN (%f%%)", self.sizeInPercentage];
 }
 
 @end

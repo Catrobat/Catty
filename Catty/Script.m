@@ -19,6 +19,17 @@
 @implementation Script
 
 @synthesize bricksArray = _bricksArray;
+@synthesize action = _action;
+
+
+- (id)init
+{
+    if (self = [super init])
+    {
+        self.action = kTouchActionTap;
+    }
+    return self;
+}
 
 #pragma mark - Custom getter and setter
 -(NSMutableArray*)bricksArray

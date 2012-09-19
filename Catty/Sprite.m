@@ -6,6 +6,7 @@
 //  Copyright (c) 2012 Graz University of Technology. All rights reserved.
 //
 
+#import "SpriteManagerDelegate.h"
 #import "Brick.h"
 #import "Sprite.h"
 #import "Costume.h"
@@ -38,6 +39,8 @@ typedef struct {
 
 //////////////////////////////////////////////////////////////////////////////////////////
 
+// TODO: change this to struct????? Maybe??!?!?!?
+
 @implementation PositionAtTime
 @synthesize position = _position;
 @synthesize timestamp = _timestamp;
@@ -59,7 +62,8 @@ typedef struct {
 @property (assign) TexturedQuad quad;
 @property (nonatomic, strong) GLKTextureInfo *textureInfo;
 
-@property (assign) GLKVector3 position;        // "Real" position - origin is bottom-left
+@property (assign, nonatomic) GLKVector3 position;        // position - origin is in the middle of the sprite
+@property (assign, nonatomic) float scaleFactor;
 
 
 @property (atomic, strong) NSMutableArray *brickQueue;
@@ -70,6 +74,7 @@ typedef struct {
 @property (strong, nonatomic) NSArray *soundsArray;
 @property (strong, nonatomic) NSArray *startScriptsArray;
 @property (strong, nonatomic) NSArray *whenScriptsArray;
+@property (strong, nonatomic) NSDictionary *broadcastScripts;
 
 @property (assign, nonatomic) BOOL showSprite;
 
@@ -78,22 +83,28 @@ typedef struct {
 @implementation Sprite
 
 // public synthesizes
+@synthesize spriteManagerDelegate = _spriteManagerDelegate;
 @synthesize name = _name;
+@synthesize projectPath = _projectPath;
 @synthesize costumesArray = _costumesArray;
 @synthesize soundsArray = _soundsArray;
 @synthesize startScriptsArray = _startScriptsArray;
 @synthesize whenScriptsArray = _whenScriptsArray;
+@synthesize broadcastScripts = _broadcastScripts;
 @synthesize position = _position;
 @synthesize contentSize = _contentSize;
 @synthesize effect = _effect;
 
 // private synthesizes
+@synthesize scaleFactor = _scaleFactor;
 @synthesize quad = _quad;
 @synthesize textureInfo = _textureInfo;
 @synthesize brickQueue = _brickQueue;
 @synthesize nextPosition = _nextPosition;
 @synthesize indexOfCurrentCostumeInArray = _indexOfCurrentCostumeInArray;
 @synthesize showSprite = _showSprite;
+
+
 
 
 #pragma mark Custom getter and setter
@@ -129,10 +140,19 @@ typedef struct {
     return _whenScriptsArray;
 }
 
+-(NSDictionary *)broadcastScripts
+{
+    if (_broadcastScripts == nil)
+        _broadcastScripts = [[NSDictionary alloc] init];
+    
+    return _broadcastScripts;
+}
+
 - (NSMutableArray*)brickQueue
 {
     if (!_brickQueue)
         _brickQueue = [[NSMutableArray alloc]init];
+    
     return _brickQueue;
 }
 
@@ -143,6 +163,7 @@ typedef struct {
     {
         _position = GLKVector3Make(0, 0, 0); //todo: change z index
         self.showSprite = YES;
+        self.scaleFactor = 1.0f;
     }
     return self;
 }
@@ -154,8 +175,26 @@ typedef struct {
     {
         self.effect = effect;
         self.showSprite = YES;
+        self.scaleFactor = 1.0f;
     }
     return self;
+}
+
+-(void)dealloc
+{
+    [[NSNotificationCenter defaultCenter]removeObserver:self];
+}
+
+-(void)setProjectResolution:(CGSize)projectResolution
+{    
+    float scaleX = [UIScreen mainScreen].bounds.size.width  / projectResolution.width;
+    float scaleY = [UIScreen mainScreen].bounds.size.height / projectResolution.height;
+    if (scaleY < scaleX)
+        self.scaleFactor = scaleY;
+    NSLog(@"Scale screen size:");
+    NSLog(@"  Device:    %f / %f", [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height);
+    NSLog(@"  Project:   %f / %f", projectResolution.width, projectResolution.height);
+    NSLog(@"  Scale-Factor: %f", self.scaleFactor);
 }
 
 - (void)addCostume:(Costume *)costume
@@ -183,15 +222,35 @@ typedef struct {
     self.whenScriptsArray = [self.whenScriptsArray arrayByAddingObject:script];
 }
 
+- (void)addBroadcastScript:(Script *)script forMessage:(NSString *)message
+{
+    NSMutableDictionary *mutableDictionary = [self.broadcastScripts mutableCopy];
+    [mutableDictionary setObject:script forKey:message];
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(performBroadcastScript:) name:message object:nil];
+    self.broadcastScripts = [NSDictionary dictionaryWithDictionary:mutableDictionary];
+}
+
 - (float)getZIndex
 {
     return self.position.z;
+}
+
+-(void)setZIndex:(float)newZIndex
+{
+    self.position = GLKVector3Make(self.position.x, self.position.y, newZIndex);
+}
+
+-(void)decrementZIndexByOne
+{
+    [self setZIndex:self.position.z-1];
 }
 
 #pragma mark - costume index SETTER
 - (void)setIndexOfCurrentCostumeInArray:(NSNumber*)indexOfCurrentCostumeInArray
 {
     _indexOfCurrentCostumeInArray = indexOfCurrentCostumeInArray;
+    
+    NSLog(@"Try to load costume %d / %d", indexOfCurrentCostumeInArray.intValue, [self.costumesArray count]);
     
     NSString *fileName = ((Costume*)[self.costumesArray objectAtIndex:[self.indexOfCurrentCostumeInArray intValue]]).costumeFileName;
     
@@ -226,7 +285,10 @@ typedef struct {
     NSLog(@"Filename: %@", fileName);
     
     //NSString *pathToImage = [NSString stringWithFormat:@"%@/defaultProject/images/%@", [Util applicationDocumentsDirectory], fileName];
-    NSString *pathToImage = [[NSBundle mainBundle] pathForResource:[NSString stringWithFormat:@"/defaultProject/images/%@", fileName] ofType:nil];
+//    NSString *path = [NSString stringWithFormat:@"/%@/%@/%@", self.projectName, SPRITE_IMAGE_FOLDER, fileName];
+//    NSString *pathToImage = [[NSBundle mainBundle] pathForResource:path ofType:nil];
+
+    NSString *pathToImage = [NSString stringWithFormat:@"%@images/%@", self.projectPath, fileName]; // TODO: change const string
     
     NSLog(@"Try to load image: %@", pathToImage);
     
@@ -237,24 +299,46 @@ typedef struct {
         return;
     }
 
+    [self setSpriteSizeWithWidth:self.textureInfo.width andHeight:self.textureInfo.height];
     
-    self.contentSize = CGSizeMake(self.textureInfo.width, self.textureInfo.height);
+//    self.contentSize = CGSizeMake(self.textureInfo.width, self.textureInfo.height);
+//    
+//    //test
+////    CGFloat width = [UIScreen mainScreen].bounds.size.width;
+////    CGFloat height = [UIScreen mainScreen].bounds.size.height;
+////    NSLog(@"self width: %f", self.contentSize.width/2);
+////    NSLog(@"width: %f, newWidth: %f", width/2, (width/2 - self.contentSize.width/2));
+////    self.position = GLKVector3Make((width/2 - self.contentSize.width/2), (height/2 - self.contentSize.height/2), 0);
+//    //end of test
+//    
+//    
+//    TexturedQuad newQuad;
+//    newQuad.bottomLeftCorner.geometryVertex = CGPointMake(0, 0);
+//    newQuad.bottomRightCorner.geometryVertex = CGPointMake(self.textureInfo.width, 0);
+//    newQuad.topLeftCorner.geometryVertex = CGPointMake(0, self.textureInfo.height);
+//    newQuad.topRightCorner.geometryVertex = CGPointMake(self.textureInfo.width, self.textureInfo.height);
+//
+//    newQuad.bottomLeftCorner.textureVertex = CGPointMake(0, 0);
+//    newQuad.bottomRightCorner.textureVertex = CGPointMake(1, 0);
+//    newQuad.topLeftCorner.textureVertex = CGPointMake(0, 1);
+//    newQuad.topRightCorner.textureVertex = CGPointMake(1, 1);
+//    self.quad = newQuad;
+}
+
+-(void)setSpriteSizeWithWidth:(float)width andHeight:(float)height
+{
+    self.contentSize = CGSizeMake(width, height);
     
-    //test
-    CGFloat width = [UIScreen mainScreen].bounds.size.width;
-    CGFloat height = [UIScreen mainScreen].bounds.size.height;
-    NSLog(@"self width: %f", self.contentSize.width/2);
-    NSLog(@"width: %f, newWidth: %f", width/2, (width/2 - self.contentSize.width/2));
-    self.position = GLKVector3Make((width/2 - self.contentSize.width/2), (height/2 - self.contentSize.height/2), 0);
-    //end of test
+    width *= self.scaleFactor;
+    height *= self.scaleFactor;
     
     
     TexturedQuad newQuad;
     newQuad.bottomLeftCorner.geometryVertex = CGPointMake(0, 0);
-    newQuad.bottomRightCorner.geometryVertex = CGPointMake(self.textureInfo.width, 0);
-    newQuad.topLeftCorner.geometryVertex = CGPointMake(0, self.textureInfo.height);
-    newQuad.topRightCorner.geometryVertex = CGPointMake(self.textureInfo.width, self.textureInfo.height);
-
+    newQuad.bottomRightCorner.geometryVertex = CGPointMake(width, 0);
+    newQuad.topLeftCorner.geometryVertex = CGPointMake(0, height);
+    newQuad.topRightCorner.geometryVertex = CGPointMake(width, height);
+    
     newQuad.bottomLeftCorner.textureVertex = CGPointMake(0, 0);
     newQuad.bottomRightCorner.textureVertex = CGPointMake(1, 0);
     newQuad.topLeftCorner.textureVertex = CGPointMake(0, 1);
@@ -264,9 +348,22 @@ typedef struct {
 
 - (GLKMatrix4) modelMatrix 
 {
-    GLKMatrix4 modelMatrix = GLKMatrix4Identity;    
-    modelMatrix = GLKMatrix4Translate(modelMatrix, self.position.x, self.position.y, self.position.z);
-    //modelMatrix = GLKMatrix4Translate(modelMatrix, -self.contentSize.width/2, -self.contentSize.height/2, 0);
+    GLKMatrix4 modelMatrix = GLKMatrix4Identity;
+    //    CGFloat width = [UIScreen mainScreen].bounds.size.width;
+    //    CGFloat height = [UIScreen mainScreen].bounds.size.height;
+    //    NSLog(@"self width: %f", self.contentSize.width/2);
+    //    NSLog(@"width: %f, newWidth: %f", width/2, (width/2 - self.contentSize.width/2));
+    //    self.position = GLKVector3Make((width/2 - self.contentSize.width/2), (height/2 - self.contentSize.height/2), 0);
+
+    float x = (self.position.x * self.scaleFactor) + [UIScreen mainScreen].bounds.size.width/2;
+    float y = (self.position.y * self.scaleFactor) + [UIScreen mainScreen].bounds.size.height/2;
+        
+//    NSLog(@"x/y: %f/%f", x, y);
+    
+    CGSize scaledContentSize = CGSizeMake(self.contentSize.width * self.scaleFactor, self.contentSize.height * self.scaleFactor);
+    
+    modelMatrix = GLKMatrix4Translate(modelMatrix, x, y, self.position.z);
+    modelMatrix = GLKMatrix4Translate(modelMatrix, -scaledContentSize.width/2, -scaledContentSize.height/2, 0);
     
     return modelMatrix;
 }
@@ -343,6 +440,8 @@ typedef struct {
         glVertexAttribPointer(GLKVertexAttribTexCoord0, 2, GL_FLOAT, GL_FALSE, sizeof(TexturedVertex), (void *) (offset + offsetof(TexturedVertex, textureVertex)));
     
         glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
+        
+//        NSLog(@"render: %@   %f", self.name, self.position.z);
     }
 }
 
@@ -362,86 +461,27 @@ typedef struct {
 {
 //    NSLog(@"=====> %f %f", newPosition.x, newPosition.y);
 
-    GLKVector3 position = GLKVector3Add(newPosition, GLKVector3Make(320/2, 460/2, 0));                        // TODO: change constant values
-    position = GLKVector3Subtract(position, GLKVector3Make(self.textureInfo.width/2, self.textureInfo.height/2, 0));
+//    GLKVector3 position = GLKVector3Add(newPosition, GLKVector3Make(320/2, 460/2, 0));                        // TODO: change constant values
+//    position = GLKVector3Subtract(position, GLKVector3Make(self.textureInfo.width/2, self.textureInfo.height/2, 0));
 
-    
-//    if ([self.nextPositions count] > 0)
-//    {
-//        [self.nextPositions addObject:[PositionAtTime positionAtTimeWithPosition:position andTimestamp:0]];
-//    }
-//    else
-//    {
-        self.position = position;
-//    }
+    self.position = newPosition;
 }
 
 - (void)wait:(int)durationInMilliSecs
 {
-    GLKVector3 position;
-    NSTimeInterval timeStamp;
-//    if ([self.nextPositions count] > 0)
-//    {
-//        PositionAtTime *lastPositionAtTime = [self.nextPositions objectAtIndex:[self.nextPositions count]-1];
-//        position = lastPositionAtTime.position;
-//        timeStamp = lastPositionAtTime.timestamp + (durationInMilliSecs/1000.0f);
-//    }
-//    else
-//    {
-        position = self.position;
-        timeStamp = [[NSDate date] timeIntervalSince1970] + (durationInMilliSecs/1000.0f);
-//    }
-    self.nextPosition = [PositionAtTime positionAtTimeWithPosition:position andTimestamp:timeStamp];
+    NSTimeInterval timeStamp = [[NSDate date] timeIntervalSince1970] + (durationInMilliSecs/1000.0f);
+    self.nextPosition = [PositionAtTime positionAtTimeWithPosition:self.position andTimestamp:timeStamp];
 }
 
 - (void)glideToPosition:(GLKVector3)position withinDurationInMilliSecs:(int)durationInMilliSecs
 {
     // transfer to "origin is in the middle of the screen"-coordinates...
-    position = GLKVector3Add(position, GLKVector3Make(320/2, 460/2, 0));                                // TODO: change constant values
-    position = GLKVector3Subtract(position, GLKVector3Make(self.textureInfo.width/2, self.textureInfo.height/2, 0));
+//    position = GLKVector3Add(position, GLKVector3Make(320/2, 460/2, 0));                                // TODO: change constant values
+//    position = GLKVector3Subtract(position, GLKVector3Make(self.textureInfo.width/2, self.textureInfo.height/2, 0));
 
-    NSTimeInterval timeStamp;
-//    if ([self.nextPositions count] > 0)
-//    {
-//        PositionAtTime *lastPositionAtTime = [self.nextPositions objectAtIndex:[self.nextPositions count]-1];
-//        timeStamp = lastPositionAtTime.timestamp + (durationInMilliSecs/1000.0f);
-//    }
-//    else
-//    {
-        timeStamp = [[NSDate date] timeIntervalSince1970] + (durationInMilliSecs/1000.0f);
-//    }
+    NSTimeInterval timeStamp = [[NSDate date] timeIntervalSince1970] + (durationInMilliSecs/1000.0f);
     
     self.nextPosition = [PositionAtTime positionAtTimeWithPosition:position andTimestamp:timeStamp];
-    
-//    // yes, it's an integer-cast
-//    int number_of_frames = FRAMES_PER_SECOND / 1000.0f * durationInMilliSecs;
-//    
-//    position = GLKVector3Add(position, GLKVector3Make(320/2, 460/2, 0));    // TODO: change constant values
-//    position = GLKVector3Subtract(position, GLKVector3Make(self.textureInfo.width/2, self.textureInfo.height/2, 0));
-//
-//    
-//    if (self.nextPositions == nil)
-//        self.nextPositions = [[NSMutableArray alloc]initWithCapacity:number_of_frames];
-//    
-//    ////////////////////////////////////////////////////////////////////
-//    // TODO: dirty...change asap !!!
-//    
-//    GLKVector3 lastPosition = self.position;
-//    
-//    for (int i=1; i<number_of_frames; i++)
-//    {
-//        float xStep = round((position.x - lastPosition.x) / (float)(number_of_frames+1-i));
-//        float yStep = round((position.y - lastPosition.y) / (float)(number_of_frames+1-i));
-//        
-//        GLKVector3 newPosition = GLKVector3Make(lastPosition.x + xStep, lastPosition.y + yStep, lastPosition.z);
-//        NSData *data = [NSValue valueWithBytes:&newPosition objCType:@encode(GLKVector3)];
-//        [self.nextPositions addObject:data];
-//        
-//        lastPosition = newPosition;
-//    }
-//    [self.nextPositions addObject:[NSValue valueWithBytes:&position objCType:@encode(GLKVector3)]];   // ensure, that final position is defined position
-//    // TODO: really...CHANGE IT!!!!!
-//    ////////////////////////////////////////////////////////////////////
 }
 
 - (void)changeCostume:(NSNumber *)indexOfCostumeInArray
@@ -469,14 +509,31 @@ typedef struct {
 
 - (void)setXPosition:(float)xPosition
 {
-    xPosition = xPosition + 320/2 - self.textureInfo.width/2;           // TODO: change constant values
+//    xPosition = xPosition + 320/2 - self.textureInfo.width/2;           // TODO: change constant values
     self.position = GLKVector3Make(xPosition, self.position.y, self.position.z);
 }
 
 -(void)setYPosition:(float)yPosition
 {
-    yPosition = yPosition + 460/2 - self.textureInfo.height/2;           // TODO: change constant values
+//    yPosition = yPosition + 460/2 - self.textureInfo.height/2;           // TODO: change constant values
     self.position = GLKVector3Make(self.position.x, yPosition, self.position.z);
+}
+
+-(void)broadcast:(NSString *)message
+{
+    [[NSNotificationCenter defaultCenter] postNotificationName:message object:self];
+}
+
+-(void)comeToFront
+{
+    [self.spriteManagerDelegate bringToFrontSprite:self];
+}
+
+-(void)changeSizeByN:(float)sizePercentageRate
+{
+    float width  = self.contentSize.width  + self.textureInfo.width  * sizePercentageRate / 100.0f;
+    float height = self.contentSize.height + self.textureInfo.height * sizePercentageRate / 100.0f;
+    [self setSpriteSizeWithWidth:width andHeight:height];
 }
 
 #pragma mark - description
@@ -525,7 +582,12 @@ typedef struct {
 
 
 - (CGRect)boundingBox {
-    CGRect rect = CGRectMake(self.position.x, self.position.y, self.contentSize.width, self.contentSize.height);
+    CGSize scaledContentSize = CGSizeMake(self.contentSize.width * self.scaleFactor, self.contentSize.height * self.scaleFactor);
+    
+    float x = self.position.x + [UIScreen mainScreen].bounds.size.width/2 - scaledContentSize.width/2;
+    float y = self.position.y + [UIScreen mainScreen].bounds.size.height/2 - scaledContentSize.height/2;
+    
+    CGRect rect = CGRectMake(x, y, scaledContentSize.width, scaledContentSize.height);
     return rect;
 }
 
@@ -559,6 +621,14 @@ typedef struct {
 //            });
 //            // ------------------------------------------ END -----------------------------------------
         }
+    }
+}
+
+- (void)performBroadcastScript:(NSNotification*)notification
+{
+    Script *script = [self.broadcastScripts objectForKey:notification.name];
+    if (script) {
+        [self.brickQueue addObjectsFromArray:[script getAllBricks]];
     }
 }
 

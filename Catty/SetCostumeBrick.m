@@ -7,6 +7,7 @@
 //
 
 #import "SetCostumeBrick.h"
+#import "Sprite.h"
 
 @implementation SetCostumeBrick
 
@@ -17,7 +18,8 @@
 {
     NSLog(@"Performing: %@", self.description);
     
-    [sprite performSelectorOnMainThread:@selector(setIndexOfCurrentCostumeInArray:) withObject:self.indexOfCostumeInArray waitUntilDone:YES];
+    [sprite changeCostume:self.indexOfCostumeInArray];
+//    [sprite performSelectorOnMainThread:@selector(setIndexOfCurrentCostumeInArray:) withObject:self.indexOfCostumeInArray waitUntilDone:YES];
 }
 
 

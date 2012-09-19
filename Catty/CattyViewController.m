@@ -60,8 +60,6 @@
 }
 
 
-
-
 #pragma mark - view loading and unloading
 - (void)viewDidLoad
 {
@@ -84,7 +82,7 @@
     
     self.effect = [[GLKBaseEffect alloc] init];
     
-    GLKMatrix4 projectionMatrix = GLKMatrix4MakeOrtho(0, 320, 0, 480, -1024, 1024);
+    GLKMatrix4 projectionMatrix = GLKMatrix4MakeOrtho(0, 320, 0, 480, -1024, 1024); // TODO: do not use constants
     self.effect.transform.projectionMatrix = projectionMatrix;
     
     UITapGestureRecognizer *tapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleTapFrom:)];                                                               
@@ -108,11 +106,15 @@
     //self.sprite = [[Sprite alloc] initWithCostume:newCostume1 effect:self.effect];
 
     //loading real project
-    NSString *fileName = @"defaultProject";
-    //NSString *fileName = @"projectcode";
-
+//    NSString *fileName = @"defaultProject";
+//    NSString *projectName = @"defaultProject";
+    NSString *fileName = @"rocket/rocket";
+    NSString *projectName = @"rocket";
+    
     NSBundle *bundle = [NSBundle bundleForClass:[self class]];
     NSString *path = [bundle pathForResource:fileName ofType:@"xml"];
+    
+    NSLog(@"XML-Path: %@", path);
     
     RetailParser *parser = [[RetailParser alloc] init];
     self.level = [parser generateObjectForLevel:path];
@@ -120,20 +122,43 @@
     
     // DEBUG
     
-    TestParser *testparser = [[TestParser alloc]init];
-    self.level = [testparser generateDebugLevel_GlideTo];
+//    TestParser *testparser = [[TestParser alloc]init];
+//    projectName = @"defaultProject";
+//    self.level = [testparser generateDebugLevel_GlideTo];
+//    self.level = [testparser generateDebugLevel_nextCostume];
+//    self.level = [testparser generateDebugLevel_HideShow];
+//    self.level = [testparser generateDebugLevel_SetXY];
+//    self.level = [testparser generateDebugLevel_broadcast];
+//    self.level = [testparser generateDebugLevel_comeToFront];
+//    self.level = [testparser generateDebugLevel_changeSizeByN];
     
-    self.level = [testparser generateDebugLevel_nextCostume];
-    
-    self.level = [testparser generateDebugLevel_HideShow];
-    
-    self.level = [testparser generateDebugLevel_SetXY];
     // DEBUG END
     
     //setting effect
     for (Sprite *sprite in self.level.spritesArray)
     {
         sprite.effect = self.effect;
+        sprite.spriteManagerDelegate = self;
+//        sprite.projectName = projectName;
+        
+        // debug:
+        NSLog(@"----------------------");
+        NSLog(@"Sprite: %@", sprite.name);
+        NSLog(@" ");
+        NSLog(@"StartScript:");
+        for (Script *script in sprite.startScriptsArray) {
+            for (Brick *brick in [script getAllBricks]) {
+                NSLog(@"  %@", [brick description]);
+            }
+        }
+        for (Script *script in sprite.whenScriptsArray) {
+            NSLog(@" ");
+            NSLog(@"WhenScript:");
+            for (Brick *brick in [script getAllBricks]) {
+                NSLog(@"  %@", [brick description]);
+            }
+        }
+        // end debug
     }
     
     [self startLevel];
@@ -169,12 +194,13 @@
 {
     for (Sprite *sprite in self.level.spritesArray)
     {
-        for (StartScript *script in sprite.startScriptsArray)
-        {
-            NSLog(@"run start script");
-            //[self runScript:script];
-            [script executeForSprite:sprite];
-        }
+        [sprite start];
+//        for (StartScript *script in sprite.startScriptsArray)
+//        {
+//            NSLog(@"run start script");
+//            //[self runScript:script];
+//            [script executeForSprite:sprite];
+//        }
     }
  
 }
@@ -307,5 +333,14 @@
     
 }
 
+#pragma mark - SpriteManagerDelegate
+-(void)bringToFrontSprite:(Sprite *)sprite
+{
+    // TODO: CHANGE THIS ASAP!!!
+    NSMutableArray *sprites = [self.level.spritesArray mutableCopy];
+    [sprites removeObject:sprite];
+    [sprites addObject:sprite];
+    self.level.spritesArray = [NSArray arrayWithArray:sprites];
+}
 
 @end

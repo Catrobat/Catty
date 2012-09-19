@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import <GLKit/GLKit.h>
+#import "SpriteManagerDelegate.h"
 
 //debug
 #import "Sprite.h"
@@ -17,7 +18,7 @@
 
 @class Level;
 
-@interface CattyViewController : GLKViewController <GLKViewControllerDelegate>
+@interface CattyViewController : GLKViewController <GLKViewControllerDelegate, SpriteManagerDelegate>
 
 @property (strong, nonatomic) Level *level; //TODO: Array => data from xml-parser
 

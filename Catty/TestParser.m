@@ -23,6 +23,9 @@
 #import "ShowBrick.h"
 #import "SetXBrick.h"
 #import "SetYBrick.h"
+#import "BroadcastBrick.h"
+#import "ComeToFrontBrick.h"
+#import "ChangeSizeByNBrick.h"
 
 @interface TestParser ()
 
@@ -164,7 +167,6 @@
     Sprite *ret = [[Sprite alloc] initWithEffect:self.effect];
     ret.name = name;
     [ret placeAt:GLKVector3Make(x, y, self.zIndex++)];
-//    ret.costumesArray = costumesArray;
     [ret addCostumes:costumesArray];
     [ret changeCostume:[NSNumber numberWithInt:index]];
     
@@ -178,7 +180,7 @@
 {
     Level *level = [[Level alloc]init];
     level.name = @"debug";
-    level.resolution = CGSizeMake(320, 460);
+    level.resolution = CGSizeMake(320, 480);
     
     
     Costume *costume = [self createCostumeFromPath:@"normalcat.png" withName:@"cat1"];
@@ -208,7 +210,7 @@
 {
     Level *level = [[Level alloc]init];
     level.name = @"nextCostumeTest";
-    level.resolution = CGSizeMake(320, 460);
+    level.resolution = CGSizeMake(320, 480);
     
     
     Costume *costume1 = [self createCostumeFromPath:@"normalcat.png" withName:@"cat1"];
@@ -240,7 +242,7 @@
 {
     Level *level = [[Level alloc]init];
     level.name = @"nextCostumeTest";
-    level.resolution = CGSizeMake(320, 460);
+    level.resolution = CGSizeMake(320, 480);
     
     HideBrick *hideBrick = [[HideBrick alloc]init];
     ShowBrick *showBrick = [[ShowBrick alloc]init];
@@ -270,7 +272,7 @@
 {
     Level *level = [[Level alloc]init];
     level.name = @"setX setY";
-    level.resolution = CGSizeMake(320, 460);
+    level.resolution = CGSizeMake(320, 480);
     
         
     Costume *costume = [self createCostumeFromPath:@"normalcat.png" withName:@"cat1"];
@@ -300,5 +302,119 @@
 
 }
 
+-(Level *)generateDebugLevel_broadcast
+{
+    Level *level = [[Level alloc]init];
+    level.name = @"broadcast";
+    level.resolution = CGSizeMake(320, 480);
+    
+    NSString *broadcastMessage = @"BROADCAST";
+    
+    //sprite1
+    
+    Costume *costume = [self createCostumeFromPath:@"normalcat.png" withName:@"cat1"];
+    
+    BroadcastBrick *broadcastBrick = [[BroadcastBrick alloc]initWithMessage:broadcastMessage];
+    
+    WhenScript *whenScript = [[WhenScript alloc]init];
+    [whenScript addBricks:[NSMutableArray arrayWithObjects: broadcastBrick, nil]];
+    
+    NSArray *costumes = [NSArray arrayWithObjects:costume, nil];
+    
+    Sprite *sprite1 = [self createSprite:@"cat1" withPositionX:(NSInteger)-70 withPositionY:(NSInteger)0 withCostumes:costumes setCostumeIndex:(NSInteger)0];
+    [sprite1 addWhenScript:whenScript];
+    
+    
+    //sprite2
+    
+    HideBrick *hideBrick = [[HideBrick alloc]init];
+    WaitBrick *waitBrick = [[WaitBrick alloc]init];
+    waitBrick.timeToWaitInMilliseconds = [NSNumber numberWithInt:500];
+    ShowBrick *showBrick = [[ShowBrick alloc]init];
+    
+    Script *broadcastScript = [[Script alloc]init];
+    [broadcastScript addBricks:[NSArray arrayWithObjects:hideBrick, waitBrick, showBrick, nil]];
+    
+    Sprite *sprite2 = [self createSprite:@"cat2" withPositionX:(NSInteger)70 withPositionY:(NSInteger)-100 withCostumes:costumes setCostumeIndex:(NSInteger)0];
+    [sprite2 addBroadcastScript:broadcastScript forMessage:broadcastMessage];
+    
+    
+    //sprite3
+    
+    Sprite *sprite3 = [self createSprite:@"cat3" withPositionX:(NSInteger)70 withPositionY:(NSInteger)100 withCostumes:costumes setCostumeIndex:(NSInteger)0];
+    [sprite3 addBroadcastScript:broadcastScript forMessage:broadcastMessage];
+
+
+    ///
+    
+    level.spritesArray = [NSMutableArray arrayWithObjects:sprite1, sprite2, sprite3, nil];
+    
+    return level;
+    
+}
+
+-(Level *)generateDebugLevel_comeToFront
+{
+    Level *level = [[Level alloc]init];
+    level.name = @"broadcast";
+    level.resolution = CGSizeMake(320, 480);
+        
+    //sprite1
+    Costume *costume = [self createCostumeFromPath:@"normalcat.png" withName:@"cat1"];
+    ComeToFrontBrick *comeToFrontBrick = [[ComeToFrontBrick alloc]init];
+    
+    WhenScript *whenScript = [[WhenScript alloc]init];
+    [whenScript addBricks:[NSMutableArray arrayWithObjects: comeToFrontBrick, nil]];
+    
+    NSArray *costumes = [NSArray arrayWithObjects:costume, nil];
+    
+    Sprite *sprite1 = [self createSprite:@"cat1" withPositionX:(NSInteger)0 withPositionY:(NSInteger)0 withCostumes:costumes setCostumeIndex:(NSInteger)0];
+    [sprite1 addWhenScript:whenScript];
+    
+    //sprite2
+    Sprite *sprite2 = [self createSprite:@"cat2" withPositionX:(NSInteger)50 withPositionY:(NSInteger)50 withCostumes:costumes setCostumeIndex:(NSInteger)0];
+    [sprite2 addWhenScript:whenScript];
+    
+    //sprite3
+    Sprite *sprite3 = [self createSprite:@"cat3" withPositionX:(NSInteger)-50 withPositionY:(NSInteger)-50 withCostumes:costumes setCostumeIndex:(NSInteger)0];
+    [sprite3 addWhenScript:whenScript];
+        
+    
+    ///
+    
+    level.spritesArray = [NSMutableArray arrayWithObjects:sprite3, sprite2, sprite1, nil];
+    
+    return level;
+}
+
+-(Level*)generateDebugLevel_changeSizeByN
+{
+    Level *level = [[Level alloc]init];
+    level.name = @"changeSizeByN";
+    level.resolution = CGSizeMake(320, 480);
+    
+    Costume *costume = [self createCostumeFromPath:@"normalcat.png" withName:@"cat1"];
+    
+    ChangeSizeByNBrick *changeSizeByNBrick1 = [[ChangeSizeByNBrick alloc]initWithSizeChangeRate:50];
+    ChangeSizeByNBrick *changeSizeByNBrick2 = [[ChangeSizeByNBrick alloc]initWithSizeChangeRate:150];
+    ChangeSizeByNBrick *changeSizeByNBrick3 = [[ChangeSizeByNBrick alloc]initWithSizeChangeRate:100];
+    
+    WaitBrick *waitBrick = [[WaitBrick alloc]init];
+    waitBrick.timeToWaitInMilliseconds = [NSNumber numberWithInt:500];
+    
+    WhenScript *whenScript = [[WhenScript alloc]init];
+    [whenScript addBricks:[NSMutableArray arrayWithObjects: changeSizeByNBrick1, waitBrick, changeSizeByNBrick2, waitBrick, changeSizeByNBrick3, nil]];
+    
+    
+    NSArray *costumes = [NSArray arrayWithObjects:costume, nil];
+    
+    Sprite *sprite = [self createSprite:@"cat" withPositionX:(NSInteger)0 withPositionY:(NSInteger)0 withCostumes:costumes setCostumeIndex:(NSInteger)0];
+    [sprite addWhenScript:whenScript];
+    
+    level.spritesArray = [NSMutableArray arrayWithObject:sprite];
+    
+    return level;
+    
+}
 
 @end

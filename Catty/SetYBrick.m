@@ -10,6 +10,8 @@
 
 @implementation SetYBrick
 
+@synthesize yPosition = _yPosition;
+
 -(id)initWithYPosition:(float)yPosition
 {
     self = [super init];

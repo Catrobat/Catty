@@ -14,7 +14,8 @@
 {
     NSLog(@"Performing: %@", self.description);
     
-    [sprite performSelectorOnMainThread:@selector(nextCostume) withObject:nil waitUntilDone:YES];
+    [sprite nextCostume];
+//    [sprite performSelectorOnMainThread:@selector(nextCostume) withObject:nil waitUntilDone:YES];
 }
 
 
