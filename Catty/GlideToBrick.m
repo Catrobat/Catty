@@ -34,4 +34,10 @@
     [sprite glideToPosition:self.position withinDurationInMilliSecs:_durationInMilliSecs];
 }
 
+#pragma mark - Description
+- (NSString*)description
+{
+    return [NSString stringWithFormat:@"GlideTo (Position: %f/%f; duration: %d ms)", self.position.x, self.position.y, self.durationInMilliSecs];
+}
+
 @end

@@ -82,23 +82,19 @@
         NSArray *scriptList = [gDataSprite elementsForName:@"scriptList"];
         
         //getting all start scripts
-        NSArray *scripts = [[scriptList objectAtIndex:0] elementsForName:@"Content.StartScript"];
-        for (GDataXMLElement *gDataScript in scripts)
+        NSArray *scripts1 = [[scriptList objectAtIndex:0] elementsForName:@"Content.StartScript"];
+        for (GDataXMLElement *gDataScript in scripts1)
         {
-            Script *newScript = [self loadStartScript:gDataScript];
-//            [self.newSprite.startScriptsArray addObject:newScript];
+            StartScript *newScript = [self loadScript:gDataScript];
             [self.newSprite addStartScript:newScript];
-            //[self.newSprite addStartScript:newScript];
         }
         
         //getting all when scripts
-        scripts = [[scriptList objectAtIndex:0] elementsForName:@"Content.WhenScript"];
-        for (GDataXMLElement *gDataScript in scripts)
+        NSArray *scripts2 = [[scriptList objectAtIndex:0] elementsForName:@"Content.WhenScript"];
+        for (GDataXMLElement *gDataScript in scripts2)
         {
-            Script *newScript = [self loadWhenScript:gDataScript];
-//            [self.newSprite.whenScriptsArray addObject:newScript];
+            WhenScript *newScript = [self loadScript:gDataScript];
             [self.newSprite addWhenScript:newScript];
-            //[self.newSprite addWhenScript:newScript];
         }
         
         NSArray *spriteNames = [gDataSprite elementsForName:@"name"];
@@ -166,38 +162,38 @@
 //    return ret;
 }
 
-- (Script*)loadStartScript:(GDataXMLElement*)gDataScript
-{
-    StartScript *ret = [[StartScript alloc] init];
-    
-    NSArray *brickList = [gDataScript elementsForName:@"brickList"];
-    
-    //retrieving setCostumeBricks
-    NSArray *setCostumeBricks = [[brickList objectAtIndex:0] elementsForName:@"Bricks.SetCostumeBrick"];
-    for (GDataXMLElement *gDataSetCostumeBrick in setCostumeBricks)
-    {
-        SetCostumeBrick *brick = [self loadSetCostumeBrick:gDataSetCostumeBrick];
-//        brick.sprite = self.newSprite;
-//        [ret.bricksArray addObject:brick];
-        [ret addBrick:brick];
-    }
-    
-    //retrieving waitBricks
-    NSArray *waitBricks = [[brickList objectAtIndex:0] elementsForName:@"Bricks.WaitBrick"];
-    for (GDataXMLElement *gDataWaitBrick in waitBricks)
-    {
-        WaitBrick *brick = [self loadWaitBrick:gDataWaitBrick];
-//        brick.sprite = self.newSprite;
-//        [ret.bricksArray addObject:brick];
-        [ret addBrick:brick];
-    }
-    
-    return ret;
-}
+//- (Script*)loadStartScript:(GDataXMLElement*)gDataScript
+//{
+//    StartScript *ret = [[StartScript alloc] init];
+//    
+//    NSArray *brickList = [gDataScript elementsForName:@"brickList"];
+//    
+//    //retrieving setCostumeBricks
+//    NSArray *setCostumeBricks = [[brickList objectAtIndex:0] elementsForName:@"Bricks.SetCostumeBrick"];
+//    for (GDataXMLElement *gDataSetCostumeBrick in setCostumeBricks)
+//    {
+//        SetCostumeBrick *brick = [self loadSetCostumeBrick:gDataSetCostumeBrick];
+////        brick.sprite = self.newSprite;
+////        [ret.bricksArray addObject:brick];
+//        [ret addBrick:brick];
+//    }
+//    
+//    //retrieving waitBricks
+//    NSArray *waitBricks = [[brickList objectAtIndex:0] elementsForName:@"Bricks.WaitBrick"];
+//    for (GDataXMLElement *gDataWaitBrick in waitBricks)
+//    {
+//        WaitBrick *brick = [self loadWaitBrick:gDataWaitBrick];
+////        brick.sprite = self.newSprite;
+////        [ret.bricksArray addObject:brick];
+//        [ret addBrick:brick];
+//    }
+//    
+//    return ret;
+//}
 
-- (Script*)loadWhenScript:(GDataXMLElement*)gDataScript
+- (Script*)loadScript:(GDataXMLElement*)gDataScript
 {
-    WhenScript *ret = [[WhenScript alloc] init];
+    Script *ret = [[Script alloc] init];
     
     NSArray *brickList = [gDataScript elementsForName:@"brickList"];
 
@@ -255,6 +251,10 @@
         {
             ChangeSizeByNBrick *brick = [self loadChangeSizeByNBrick:element];
             [ret addBrick:brick];
+        }
+        else
+        {
+            NSLog(@"PARSER: Unknown XML-tag . '%@'", element.name);
         }
     }
     
@@ -396,10 +396,10 @@
 {
     ChangeSizeByNBrick *brick = [[ChangeSizeByNBrick alloc]init];
     
-    NSArray *sizeChangeRates = [gDataXMLElement elementsForName:@"yPosition"];
+    NSArray *sizeChangeRates = [gDataXMLElement elementsForName:@"size"];
     GDataXMLElement *sizeChangeRate = (GDataXMLElement*)[sizeChangeRates objectAtIndex:0];
     
-    NSLog(@"change: %@", sizeChangeRate.stringValue);
+    NSLog(@"changeSizeByN: %@", sizeChangeRate.stringValue);
     brick.sizeInPercentage = sizeChangeRate.stringValue.floatValue;
     
     return brick;

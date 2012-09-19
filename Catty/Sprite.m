@@ -505,8 +505,8 @@ typedef struct {
 
 -(void)changeSizeByN:(float)sizePercentageRate
 {
-    float width = self.textureInfo.width * sizePercentageRate / 100.0f;
-    float height = self.textureInfo.height * sizePercentageRate / 100.0f;
+    float width  = self.contentSize.width  + self.textureInfo.width  * sizePercentageRate / 100.0f;
+    float height = self.contentSize.height + self.textureInfo.height * sizePercentageRate / 100.0f;
     [self setSpriteSizeWithWidth:width andHeight:height];
 }
 

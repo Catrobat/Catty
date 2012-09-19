@@ -142,6 +142,25 @@
         sprite.effect = self.effect;
         sprite.spriteManagerDelegate = self;
         sprite.projectName = projectName;
+        
+        // debug:
+        NSLog(@"----------------------");
+        NSLog(@"Sprite: %@", sprite.name);
+        NSLog(@" ");
+        NSLog(@"StartScript:");
+        for (Script *script in sprite.startScriptsArray) {
+            for (Brick *brick in [script getAllBricks]) {
+                NSLog(@"  %@", [brick description]);
+            }
+        }
+        for (Script *script in sprite.whenScriptsArray) {
+            NSLog(@" ");
+            NSLog(@"WhenScript:");
+            for (Brick *brick in [script getAllBricks]) {
+                NSLog(@"  %@", [brick description]);
+            }
+        }
+        // end debug
     }
     
     [self startLevel];
