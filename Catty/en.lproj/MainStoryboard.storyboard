@@ -274,7 +274,7 @@
                     <navigationItem key="navigationItem" id="7FZ-lB-Kvn"/>
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
-                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
+                    <nil key="simulatedBottomBarMetrics"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" id="6Og-c1-vha">
                         <rect key="frame" x="0.0" y="0.0" width="0.0" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -306,6 +306,44 @@
             <point key="canvasLocation" x="2007" y="749"/>
         </scene>
     </scenes>
+    <classes>
+        <class className="CattyViewController" superclassName="GLKViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/CattyViewController.h"/>
+        </class>
+        <class className="ListProjectsViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/ListProjectsViewController.h"/>
+        </class>
+        <class className="MyProjectsViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/MyProjectsViewController.h"/>
+        </class>
+        <class className="ProjectBrowserBaseClassViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/ProjectBrowserBaseClassViewController.h"/>
+        </class>
+        <class className="RecentProjectsViewController" superclassName="ProjectBrowserBaseClassViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/RecentProjectsViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="labelOutel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="pageControlOutlet" candidateClass="UIPageControl"/>
+                <relationship kind="outlet" name="scrollViewOutlet" candidateClass="UIScrollView"/>
+            </relationships>
+        </class>
+        <class className="RootViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/RootViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="forumButtonClicked:" candidateClass="UIButton"/>
+                <relationship kind="action" name="infoButtonClicked:" candidateClass="UIButton"/>
+            </relationships>
+        </class>
+        <class className="StageViewController" superclassName="GLKViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/StageViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="backButtonPressed:" candidateClass="UIButton"/>
+            </relationships>
+        </class>
+        <class className="StartScreenViewController" superclassName="GLKViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/StartScreenViewController.h"/>
+        </class>
+    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <nil key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>
