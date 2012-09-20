@@ -9,5 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @interface RootViewController : UIViewController
+- (IBAction)forumButtonClicked:(UIButton*)sender;
+- (IBAction)infoButtonClicked:(UIButton*)sender;
 
 @end

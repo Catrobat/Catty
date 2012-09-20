@@ -220,4 +220,11 @@
     }
 }
 
+- (IBAction)forumButtonClicked:(UIButton *)sender {
+    [Util showComingSoonAlertView];
+}
+
+- (IBAction)infoButtonClicked:(UIButton*)sender {
+    [Util showComingSoonAlertView];
+}
 @end

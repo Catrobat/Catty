@@ -12,7 +12,7 @@
 
 @implementation CreateView
 
-+ (UIView*)createLevelStoreView:(CatrobatProject*)project {
++ (UIView*)createLevelStoreView:(CatrobatProject*)project target:(id)target {
     //creating new view for page
     UIView *view = [[UIView alloc] init];
     view.backgroundColor = [[UIColor alloc] initWithPatternImage:[UIImage imageNamed:@"container"]];
@@ -93,6 +93,7 @@
     button.titleLabel.text = @"Play";
     [button setTitle:@"Play" forState:UIControlStateNormal];
     button.backgroundColor = [UIColor clearColor];
+    [button addTarget:target action:@selector(buttonClicked:) forControlEvents:UIControlEventTouchUpInside];
     
     
     CAGradientLayer *gradientLayer = [CAGradientLayer layer];

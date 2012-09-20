@@ -11,7 +11,7 @@
 @interface Util : NSObject
 
 + (NSString*)applicationDocumentsDirectory;
-
 + (void)log:(NSError*)error;
++ (void)showComingSoonAlertView;
 
 @end

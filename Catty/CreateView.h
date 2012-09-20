@@ -13,6 +13,5 @@
 
 @interface CreateView : NSObject
 
-+ (UIView*)createLevelStoreView:(CatrobatProject*)project;
-
++ (UIView*)createLevelStoreView:(CatrobatProject*)project target:(id)target;
 @end

@@ -161,7 +161,11 @@
 
 - (UIView*)createView:(CatrobatProject*)project {
 
-    return [CreateView createLevelStoreView:project];
+    return [CreateView createLevelStoreView:project target:self];
+}
+
+- (void)buttonClicked:(UIButton*)button {
+    [Util showComingSoonAlertView];
 }
 
 

@@ -39,4 +39,15 @@
 }
 
 
++ (void)showComingSoonAlertView {
+    UIAlertView *alert = [[UIAlertView alloc]
+                          initWithTitle: @"Catty"
+                          message: @"This feature is coming soon!"
+                          delegate: nil
+                          cancelButtonTitle:@"OK"
+                          otherButtonTitles:nil];
+    [alert show];
+}
+
+
 @end
