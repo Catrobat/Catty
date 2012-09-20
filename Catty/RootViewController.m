@@ -29,11 +29,25 @@
 {
     [super viewDidLoad];
 
+    //background image
+    UIColor *background = [[UIColor alloc] initWithPatternImage:[UIImage imageNamed:@"startBackground"]];
+    self.view.backgroundColor = background;    
+    
+    
     //load/init sample projects
     [self loadSampleProjects];
     
 }
 
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    [self.navigationController setNavigationBarHidden:YES animated:YES];
+}
+
+- (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+    [self.navigationController setNavigationBarHidden:NO animated:YES];
+}
 
 
 - (void)didReceiveMemoryWarning

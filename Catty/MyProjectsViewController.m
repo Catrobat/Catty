@@ -34,6 +34,13 @@
 {
     [super viewDidLoad];
 
+    //background image
+    UIColor *background = [[UIColor alloc] initWithPatternImage:[UIImage imageNamed:@"startBackground"]];
+    self.view.backgroundColor = background;
+    [self.tableView setBackgroundView:nil];
+   
+    
+    //loading levels
     NSString *documentsDirectoy = [Util applicationDocumentsDirectory];
     NSString *levelFolder = @"levels";
     NSString *levelsPath = [NSString stringWithFormat:@"%@/%@", documentsDirectoy, levelFolder];

@@ -7,12 +7,15 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ProjectBrowserBaseClassViewController.h"
 
 #define TIMEOUT 30.0f
 
-@interface RecentProjectsViewController : UIViewController <UIScrollViewDelegate>
+@interface RecentProjectsViewController : ProjectBrowserBaseClassViewController <UIScrollViewDelegate>
 
-@property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
-@property (weak, nonatomic) IBOutlet UIPageControl *pageControl;
+@property (weak, nonatomic) IBOutlet UILabel *labelOutel;
+@property (weak, nonatomic) IBOutlet UIScrollView *scrollViewOutlet;
+@property (weak, nonatomic) IBOutlet UIPageControl *pageControlOutlet;
+
 
 @end

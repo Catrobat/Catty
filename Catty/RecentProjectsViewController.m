@@ -11,6 +11,7 @@
 #import "Util.h"
 #import "CatrobatInformation.h"
 #import "CatrobatProject.h"
+#import "CreateView.h"
 
 
 @interface RecentProjectsViewController ()
@@ -44,11 +45,9 @@
 {
     [super viewDidLoad];
     
-    //background image
-    UIColor *background = [[UIColor alloc] initWithPatternImage:[UIImage imageNamed:@"background"]];
-    self.view.backgroundColor = background;
-    
-    
+    self.scrollView = self.scrollViewOutlet;
+    self.pageNavigationOutlet = self.labelOutel;
+    self.pageControl = self.pageControlOutlet;
     
     //allocating data
     self.data = [[NSMutableData alloc] init];
@@ -66,6 +65,8 @@
     self.connection = connection;
     
     
+    //hiding page control
+    self.pageControl.hidden = YES;
     
     
     //delegates
@@ -117,46 +118,28 @@
 }
 
 - (void)viewDidUnload {
-    [self setScrollView:nil];
-    [self setPageControl:nil];
+    [self setLabelOutel:nil];
+    [self setScrollViewOutlet:nil];
+    [self setPageControlOutlet:nil];
     [super viewDidUnload];
 }
 
+- (void)dealloc {
+    [self setLabelOutel:nil];
+    [self setScrollViewOutlet:nil];
+    [self setPageControlOutlet:nil];
 
-#pragma mark - PageControl methods
-- (void)initialized {
-    NSInteger counter = 0;
-    for (UIView *view in self.pages ) {
-        CGRect frame;
-        frame.origin.x = 35 + self.scrollView.frame.size.width * counter++;
-        frame.origin.y = 15;
-        frame.size.height = 330.0;
-        frame.size.width = 250.0;
-        
-//        UIImageView *imageview = [[UIImageView alloc] initWithFrame:frame];
-//        imageview.image = image;
-        
-        view.frame = frame;
-        
-        [self.scrollView addSubview:view];
-    }
-    
-//    self.scrollView.contentSize = CGSizeMake(self.scrollView.frame.size.width * self.pages.count, self.scrollView.frame.size.height);
-
-    self.scrollView.contentSize = CGSizeMake(self.scrollView.frame.size.width * self.pages.count, 380);
-
-    
-    self.pageControl.numberOfPages = self.pages.count;
-
+    self.connection = nil;
+    self.data = nil;
+    self.projects = nil;
+    self.activity = nil;
 }
 
-#pragma mark - scroll view delegate
-- (void)scrollViewDidScroll:(UIScrollView *)sender {
-    // Update the page when more than 50% of the previous/next page is visible
-    CGFloat pageWidth = self.scrollView.frame.size.width;
-    int page = floor((self.scrollView.contentOffset.x - pageWidth / 2) / pageWidth) + 1;
-    self.pageControl.currentPage = page;
+- (void)viewWillDisappear:(BOOL)animated {
+    self.connection = nil;
+    self.pages = nil;
 }
+
 
 #pragma mark - Visualization methods
 - (void)update {
@@ -177,27 +160,8 @@
 }
 
 - (UIView*)createView:(CatrobatProject*)project {
-    //creating new view for page
-    UIView *view = [[UIView alloc] init];
-    view.backgroundColor = [[UIColor alloc] initWithPatternImage:[UIImage imageNamed:@"container"]];
-    
-    
-    //adding project name
-    UILabel *nameLabel = [[UILabel alloc] initWithFrame:CGRectMake(90, 10, 150, 30)];
-    nameLabel.text = project.projectName;
-    nameLabel.backgroundColor = [UIColor clearColor];
-    nameLabel.font = [UIFont boldSystemFontOfSize:16];
-    nameLabel.textColor = [UIColor colorWithRed:61.0/255.0 green:61.0/255.0 blue:61.0/255.0 alpha:1.0];
-    nameLabel.layer.shadowColor = [[UIColor whiteColor] CGColor];
-    nameLabel.layer.shadowOffset = CGSizeMake(0.0, 0.0);
 
-    //just 4 debug
-    nameLabel.layer.borderColor = [UIColor greenColor].CGColor;
-    nameLabel.layer.borderWidth = 1.0;
-    
-    [view addSubview:nameLabel];
-    
-    return view;
+    return [CreateView createLevelStoreView:project];
 }
 
 

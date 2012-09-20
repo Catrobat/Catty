@@ -31,9 +31,17 @@
 		B43CF2AC1609C41300E19CF3 /* background@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B43CF2AA1609C41300E19CF3 /* background@2x.png */; };
 		B43CF2AF1609C6BC00E19CF3 /* container.png in Resources */ = {isa = PBXBuildFile; fileRef = B43CF2AD1609C6BC00E19CF3 /* container.png */; };
 		B43CF2B01609C6BC00E19CF3 /* container@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B43CF2AE1609C6BC00E19CF3 /* container@2x.png */; };
+		B43CF2D6160ADCE800E19CF3 /* StartScreenViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B43CF2D5160ADCE800E19CF3 /* StartScreenViewController.m */; };
+		B43CF2DA160ADE5E00E19CF3 /* ImageSprite.m in Sources */ = {isa = PBXBuildFile; fileRef = B43CF2D9160ADE5E00E19CF3 /* ImageSprite.m */; };
+		B43CF2DC160AE17B00E19CF3 /* cloud.png in Resources */ = {isa = PBXBuildFile; fileRef = B43CF2DB160AE17B00E19CF3 /* cloud.png */; };
+		B43CF2DF160AE72600E19CF3 /* startBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = B43CF2DD160AE72600E19CF3 /* startBackground.png */; };
+		B43CF2E0160AE72600E19CF3 /* startBackground@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B43CF2DE160AE72600E19CF3 /* startBackground@2x.png */; };
 		B468CDBE16078B59007300A0 /* ListProjectsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B468CDBD16078B59007300A0 /* ListProjectsViewController.m */; };
 		B468CDC3160790CF007300A0 /* CatrobatInformation.m in Sources */ = {isa = PBXBuildFile; fileRef = B468CDC2160790CF007300A0 /* CatrobatInformation.m */; };
 		B468CDC816079438007300A0 /* CatrobatProject.m in Sources */ = {isa = PBXBuildFile; fileRef = B468CDC716079438007300A0 /* CatrobatProject.m */; };
+		B4A9ADC7160AF29300DFA55B /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B4A9ADC6160AF29300DFA55B /* QuartzCore.framework */; };
+		B4A9ADCC160B02A200DFA55B /* CreateView.m in Sources */ = {isa = PBXBuildFile; fileRef = B4A9ADCB160B02A200DFA55B /* CreateView.m */; };
+		B4A9ADD1160B05B800DFA55B /* ProjectBrowserBaseClassViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B4A9ADD0160B05B800DFA55B /* ProjectBrowserBaseClassViewController.m */; };
 		B4B4093115B2E07900DCFAE5 /* XMLParser.m in Sources */ = {isa = PBXBuildFile; fileRef = B4B4093015B2E07900DCFAE5 /* XMLParser.m */; };
 		B4B4093515B2E0FD00DCFAE5 /* XMLAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B4B4093415B2E0FD00DCFAE5 /* XMLAppDelegate.m */; };
 		B4B4093815B2E20700DCFAE5 /* RetailParser.m in Sources */ = {isa = PBXBuildFile; fileRef = B4B4093715B2E20700DCFAE5 /* RetailParser.m */; };
@@ -129,12 +137,24 @@
 		B43CF2AA1609C41300E19CF3 /* background@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "background@2x.png"; sourceTree = "<group>"; };
 		B43CF2AD1609C6BC00E19CF3 /* container.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = container.png; sourceTree = "<group>"; };
 		B43CF2AE1609C6BC00E19CF3 /* container@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "container@2x.png"; sourceTree = "<group>"; };
+		B43CF2D4160ADCE800E19CF3 /* StartScreenViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StartScreenViewController.h; sourceTree = "<group>"; };
+		B43CF2D5160ADCE800E19CF3 /* StartScreenViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StartScreenViewController.m; sourceTree = "<group>"; };
+		B43CF2D8160ADE5E00E19CF3 /* ImageSprite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageSprite.h; sourceTree = "<group>"; };
+		B43CF2D9160ADE5E00E19CF3 /* ImageSprite.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageSprite.m; sourceTree = "<group>"; };
+		B43CF2DB160AE17B00E19CF3 /* cloud.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cloud.png; sourceTree = "<group>"; };
+		B43CF2DD160AE72600E19CF3 /* startBackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = startBackground.png; sourceTree = "<group>"; };
+		B43CF2DE160AE72600E19CF3 /* startBackground@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "startBackground@2x.png"; sourceTree = "<group>"; };
 		B468CDBC16078B59007300A0 /* ListProjectsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ListProjectsViewController.h; sourceTree = "<group>"; };
 		B468CDBD16078B59007300A0 /* ListProjectsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ListProjectsViewController.m; sourceTree = "<group>"; };
 		B468CDC1160790CF007300A0 /* CatrobatInformation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CatrobatInformation.h; sourceTree = "<group>"; };
 		B468CDC2160790CF007300A0 /* CatrobatInformation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CatrobatInformation.m; sourceTree = "<group>"; };
 		B468CDC616079438007300A0 /* CatrobatProject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CatrobatProject.h; sourceTree = "<group>"; };
 		B468CDC716079438007300A0 /* CatrobatProject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CatrobatProject.m; sourceTree = "<group>"; };
+		B4A9ADC6160AF29300DFA55B /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		B4A9ADCA160B02A200DFA55B /* CreateView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreateView.h; sourceTree = "<group>"; };
+		B4A9ADCB160B02A200DFA55B /* CreateView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreateView.m; sourceTree = "<group>"; };
+		B4A9ADCF160B05B800DFA55B /* ProjectBrowserBaseClassViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProjectBrowserBaseClassViewController.h; sourceTree = "<group>"; };
+		B4A9ADD0160B05B800DFA55B /* ProjectBrowserBaseClassViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProjectBrowserBaseClassViewController.m; sourceTree = "<group>"; };
 		B4B4092F15B2E07900DCFAE5 /* XMLParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XMLParser.h; sourceTree = "<group>"; };
 		B4B4093015B2E07900DCFAE5 /* XMLParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMLParser.m; sourceTree = "<group>"; };
 		B4B4093315B2E0FD00DCFAE5 /* XMLAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XMLAppDelegate.h; sourceTree = "<group>"; };
@@ -227,6 +247,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B4A9ADC7160AF29300DFA55B /* QuartzCore.framework in Frameworks */,
 				B43CF29B1609B5FC00E19CF3 /* libz.dylib in Frameworks */,
 				B4FDF31F15A82C1000CBCF03 /* UIKit.framework in Frameworks */,
 				B4FDF32115A82C1000CBCF03 /* Foundation.framework in Frameworks */,
@@ -379,6 +400,8 @@
 		B43CF2411609A5C300E19CF3 /* Helper */ = {
 			isa = PBXGroup;
 			children = (
+				B4A9ADC9160B018100DFA55B /* CustomViews */,
+				B43CF2D7160ADE4B00E19CF3 /* ImageSprite (not in use) */,
 				B43CF2B21609C8FC00E19CF3 /* Zip */,
 			);
 			name = Helper;
@@ -421,6 +444,8 @@
 		B43CF2A81609C3D900E19CF3 /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				B43CF2DD160AE72600E19CF3 /* startBackground.png */,
+				B43CF2DE160AE72600E19CF3 /* startBackground@2x.png */,
 				B43CF2AD1609C6BC00E19CF3 /* container.png */,
 				B43CF2AE1609C6BC00E19CF3 /* container@2x.png */,
 				B43CF2A91609C41300E19CF3 /* background.png */,
@@ -437,6 +462,24 @@
 				B43CF2931609B4E700E19CF3 /* SSZipArchive.m */,
 			);
 			name = Zip;
+			sourceTree = "<group>";
+		};
+		B43CF2D2160ADCC200E19CF3 /* StartScreenViewController */ = {
+			isa = PBXGroup;
+			children = (
+				B43CF2D4160ADCE800E19CF3 /* StartScreenViewController.h */,
+				B43CF2D5160ADCE800E19CF3 /* StartScreenViewController.m */,
+			);
+			name = StartScreenViewController;
+			sourceTree = "<group>";
+		};
+		B43CF2D7160ADE4B00E19CF3 /* ImageSprite (not in use) */ = {
+			isa = PBXGroup;
+			children = (
+				B43CF2D8160ADE5E00E19CF3 /* ImageSprite.h */,
+				B43CF2D9160ADE5E00E19CF3 /* ImageSprite.m */,
+			);
+			name = "ImageSprite (not in use)";
 			sourceTree = "<group>";
 		};
 		B468CDBA16078AFB007300A0 /* ListProjectsViewController */ = {
@@ -473,6 +516,32 @@
 				B468CDC716079438007300A0 /* CatrobatProject.m */,
 			);
 			name = CatrobatProject;
+			sourceTree = "<group>";
+		};
+		B4A9ADC9160B018100DFA55B /* CustomViews */ = {
+			isa = PBXGroup;
+			children = (
+				B4A9ADCA160B02A200DFA55B /* CreateView.h */,
+				B4A9ADCB160B02A200DFA55B /* CreateView.m */,
+			);
+			name = CustomViews;
+			sourceTree = "<group>";
+		};
+		B4A9ADCD160B059700DFA55B /* BaseClasses */ = {
+			isa = PBXGroup;
+			children = (
+				B4A9ADCE160B05A100DFA55B /* ProjectBrowserBaseClass */,
+			);
+			name = BaseClasses;
+			sourceTree = "<group>";
+		};
+		B4A9ADCE160B05A100DFA55B /* ProjectBrowserBaseClass */ = {
+			isa = PBXGroup;
+			children = (
+				B4A9ADCF160B05B800DFA55B /* ProjectBrowserBaseClassViewController.h */,
+				B4A9ADD0160B05B800DFA55B /* ProjectBrowserBaseClassViewController.m */,
+			);
+			name = ProjectBrowserBaseClass;
 			sourceTree = "<group>";
 		};
 		B4B4094315B2E87700DCFAE5 /* ParserTests */ = {
@@ -532,7 +601,6 @@
 		B4FDF30F15A82C0F00CBCF03 = {
 			isa = PBXGroup;
 			children = (
-				B43CF29A1609B5FC00E19CF3 /* libz.dylib */,
 				B4FDF32815A82C1000CBCF03 /* Catty */,
 				B4FDF34A15A82C1000CBCF03 /* CattyTests */,
 				B4FDF31D15A82C1000CBCF03 /* Frameworks */,
@@ -552,6 +620,8 @@
 		B4FDF31D15A82C1000CBCF03 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				B4A9ADC6160AF29300DFA55B /* QuartzCore.framework */,
+				B43CF29A1609B5FC00E19CF3 /* libz.dylib */,
 				B4FDF31E15A82C1000CBCF03 /* UIKit.framework */,
 				B4FDF32015A82C1000CBCF03 /* Foundation.framework */,
 				B4FDF32215A82C1000CBCF03 /* CoreGraphics.framework */,
@@ -565,6 +635,7 @@
 		B4FDF32815A82C1000CBCF03 /* Catty */ = {
 			isa = PBXGroup;
 			children = (
+				B4A9ADCD160B059700DFA55B /* BaseClasses */,
 				CD85F53516085D07007C38D1 /* Delegates */,
 				B43CF2411609A5C300E19CF3 /* Helper */,
 				B415DC3D15BABB420076275E /* Enums */,
@@ -736,6 +807,7 @@
 		B4FDF39715A833EA00CBCF03 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				B43CF2DB160AE17B00E19CF3 /* cloud.png */,
 				B43CF2A81609C3D900E19CF3 /* UI */,
 				B4FDF39815A833EF00CBCF03 /* Icons */,
 			);
@@ -753,6 +825,7 @@
 		B4FDF39915A8349900CBCF03 /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
+				B43CF2D2160ADCC200E19CF3 /* StartScreenViewController */,
 				CD8B83861609FC06003A3C9E /* StageViewController */,
 				B43CF29C1609BCE600E19CF3 /* MyProjectsViewController */,
 				B43CF2391609925500E19CF3 /* RootViewController */,
@@ -953,6 +1026,9 @@
 				B43CF2AC1609C41300E19CF3 /* background@2x.png in Resources */,
 				B43CF2AF1609C6BC00E19CF3 /* container.png in Resources */,
 				B43CF2B01609C6BC00E19CF3 /* container@2x.png in Resources */,
+				B43CF2DC160AE17B00E19CF3 /* cloud.png in Resources */,
+				B43CF2DF160AE72600E19CF3 /* startBackground.png in Resources */,
+				B43CF2E0160AE72600E19CF3 /* startBackground@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1034,6 +1110,10 @@
 				B43CF2A71609BE4D00E19CF3 /* LevelLoadingInfo.m in Sources */,
 				CD8B838A1609FC42003A3C9E /* StageViewController.m in Sources */,
 				CD46F91B160A433200207178 /* ChangeXByBrick.m in Sources */,
+				B43CF2D6160ADCE800E19CF3 /* StartScreenViewController.m in Sources */,
+				B43CF2DA160ADE5E00E19CF3 /* ImageSprite.m in Sources */,
+				B4A9ADCC160B02A200DFA55B /* CreateView.m in Sources */,
+				B4A9ADD1160B05B800DFA55B /* ProjectBrowserBaseClassViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

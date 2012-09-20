@@ -19,5 +19,6 @@
 @interface StageViewController : GLKViewController <GLKViewControllerDelegate, SpriteManagerDelegate>
 
 @property (strong, nonatomic) LevelLoadingInfo *levelLoadingInfo;
+- (IBAction)backButtonPressed:(UIButton *)sender;
 
 @end
