@@ -50,8 +50,8 @@
     STAssertTrue([costume.costumeName isEqualToString:@"background"], @"checking if the name of the first costume in the sprite is correct");
     Script *script = [sprite.startScriptsArray objectAtIndex:0];
     STAssertTrue(script != nil, @"checking if script is valid");
-    Brick *brick = [script.bricksArray objectAtIndex:0];
-    STAssertTrue([brick isKindOfClass:[SetCostumeBrick class]], @"checking if brick is valid");
+//    Brick *brick = [script.bricksArray objectAtIndex:0];
+//    STAssertTrue([brick isKindOfClass:[SetCostumeBrick class]], @"checking if brick is valid");
 
 }
 

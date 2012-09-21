@@ -16,6 +16,7 @@
 #define SAMPLE_POS_Y 100
 #define SAMPLE_POS_Z 0
 #define SAMPLE_INDEX 0
+#define SAMPLE_COSTUME_NAME @"SampleCostume"
 
 @implementation DataModelSpriteTests
 
@@ -50,38 +51,14 @@
 {
     Sprite *sprite = [[Sprite alloc] initWithEffect:self.effect];
     sprite.name = SAMPLE_NAME;
-    sprite.position = GLKVector3Make(SAMPLE_POS_X, SAMPLE_POS_Y, SAMPLE_POS_Z);
-    [sprite setCostumesArray:self.costumeArray];
-    [sprite setIndexOfCurrentCostumeInArray:[NSNumber numberWithInt:SAMPLE_INDEX]];
+    sprite.projectPath = SAMPLE_PATH;
     
+    //creating tmp costume
+    Costume *costume = [[Costume alloc] initWithName:SAMPLE_COSTUME_NAME andPath:SAMPLE_PATH];
+    [sprite addCostume:costume];
     STAssertEquals(sprite.name, SAMPLE_NAME, @"check name");
-    STAssertEquals(sprite.position, GLKVector3Make(SAMPLE_POS_X, SAMPLE_POS_Y, SAMPLE_POS_Z), @"position check");
-    STAssertEquals(sprite.indexOfCurrentCostumeInArray, [NSNumber numberWithInt:SAMPLE_INDEX], @"check costume index");
-    Costume *tmpCostume = [sprite.costumesArray objectAtIndex:0];
-    STAssertEquals(tmpCostume.costumeName, SAMPLE_NAME, @"check costume name");
-    STAssertEquals(tmpCostume.costumeFileName, SAMPLE_PATH, @"check costume path");
-}
-
-- (void)test002_complexSpriteTest
-{
-    
-    Sprite *sprite = [[Sprite alloc] initWithEffect:self.effect];
-    sprite.name = SAMPLE_NAME;
-    sprite.position = GLKVector3Make(SAMPLE_POS_X, SAMPLE_POS_Y, SAMPLE_POS_Z);
-    [sprite setCostumesArray:self.costumeArray];
-
-    BOOL exception = NO;
-    @try
-    {
-        [sprite setIndexOfCurrentCostumeInArray:[NSNumber numberWithInt:SAMPLE_INDEX+1]]; //error: wrong index! (index > size of array)
-    }
-    @catch(NSException *ex)
-    {
-        exception = YES;
-    }
-    STAssertTrue(exception, @"check if an exception was thrown");
-
-    
+    Costume *retCostume = [sprite.costumesArray objectAtIndex:0];
+    STAssertEqualObjects(costume, retCostume, @"checking costume of sprite");
 }
 
 
