@@ -46,6 +46,8 @@
 		B4B4093515B2E0FD00DCFAE5 /* XMLAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B4B4093415B2E0FD00DCFAE5 /* XMLAppDelegate.m */; };
 		B4B4093815B2E20700DCFAE5 /* RetailParser.m in Sources */ = {isa = PBXBuildFile; fileRef = B4B4093715B2E20700DCFAE5 /* RetailParser.m */; };
 		B4B4094915B2E8BF00DCFAE5 /* ParserTests.m in Sources */ = {isa = PBXBuildFile; fileRef = B4B4094815B2E8BF00DCFAE5 /* ParserTests.m */; };
+		B4C4D9DC160C490500E4FD19 /* CreateViewTests.m in Sources */ = {isa = PBXBuildFile; fileRef = B4C4D9DB160C490500E4FD19 /* CreateViewTests.m */; };
+		B4C4D9E1160C4A0D00E4FD19 /* CatrobatProjectTests.m in Sources */ = {isa = PBXBuildFile; fileRef = B4C4D9E0160C4A0D00E4FD19 /* CatrobatProjectTests.m */; };
 		B4F05A9B15B888EE00C90ED0 /* GDataXMLNode.m in Sources */ = {isa = PBXBuildFile; fileRef = B4F05A9A15B888EE00C90ED0 /* GDataXMLNode.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		B4F05A9E15B8898100C90ED0 /* LevelParser.m in Sources */ = {isa = PBXBuildFile; fileRef = B4F05A9D15B8898100C90ED0 /* LevelParser.m */; };
 		B4FDF31F15A82C1000CBCF03 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B4FDF31E15A82C1000CBCF03 /* UIKit.framework */; };
@@ -164,6 +166,10 @@
 		B4B4094715B2E8BF00DCFAE5 /* ParserTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ParserTests.h; sourceTree = "<group>"; };
 		B4B4094815B2E8BF00DCFAE5 /* ParserTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ParserTests.m; sourceTree = "<group>"; };
 		B4B487B815B73107004AC99E /* XMLLevels.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XMLLevels.h; sourceTree = "<group>"; };
+		B4C4D9DA160C490500E4FD19 /* CreateViewTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreateViewTests.h; sourceTree = "<group>"; };
+		B4C4D9DB160C490500E4FD19 /* CreateViewTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreateViewTests.m; sourceTree = "<group>"; };
+		B4C4D9DF160C4A0D00E4FD19 /* CatrobatProjectTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CatrobatProjectTests.h; sourceTree = "<group>"; };
+		B4C4D9E0160C4A0D00E4FD19 /* CatrobatProjectTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CatrobatProjectTests.m; sourceTree = "<group>"; };
 		B4F05A9915B888EE00C90ED0 /* GDataXMLNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GDataXMLNode.h; sourceTree = "<group>"; };
 		B4F05A9A15B888EE00C90ED0 /* GDataXMLNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GDataXMLNode.m; sourceTree = "<group>"; };
 		B4F05A9C15B8898100C90ED0 /* LevelParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LevelParser.h; sourceTree = "<group>"; };
@@ -589,6 +595,40 @@
 			name = RetailParser;
 			sourceTree = "<group>";
 		};
+		B4C4D9D8160C48E700E4FD19 /* ViewTests */ = {
+			isa = PBXGroup;
+			children = (
+				B4C4D9D9160C48EE00E4FD19 /* CreateViewTests */,
+			);
+			name = ViewTests;
+			sourceTree = "<group>";
+		};
+		B4C4D9D9160C48EE00E4FD19 /* CreateViewTests */ = {
+			isa = PBXGroup;
+			children = (
+				B4C4D9DA160C490500E4FD19 /* CreateViewTests.h */,
+				B4C4D9DB160C490500E4FD19 /* CreateViewTests.m */,
+			);
+			name = CreateViewTests;
+			sourceTree = "<group>";
+		};
+		B4C4D9DD160C49EB00E4FD19 /* JSONTests */ = {
+			isa = PBXGroup;
+			children = (
+				B4C4D9DE160C49F400E4FD19 /* CatrobatProjectTests */,
+			);
+			name = JSONTests;
+			sourceTree = "<group>";
+		};
+		B4C4D9DE160C49F400E4FD19 /* CatrobatProjectTests */ = {
+			isa = PBXGroup;
+			children = (
+				B4C4D9DF160C4A0D00E4FD19 /* CatrobatProjectTests.h */,
+				B4C4D9E0160C4A0D00E4FD19 /* CatrobatProjectTests.m */,
+			);
+			name = CatrobatProjectTests;
+			sourceTree = "<group>";
+		};
 		B4F05A9715B888E400C90ED0 /* gdata */ = {
 			isa = PBXGroup;
 			children = (
@@ -668,6 +708,8 @@
 		B4FDF34A15A82C1000CBCF03 /* CattyTests */ = {
 			isa = PBXGroup;
 			children = (
+				B4C4D9DD160C49EB00E4FD19 /* JSONTests */,
+				B4C4D9D8160C48E700E4FD19 /* ViewTests */,
 				B4B4094315B2E87700DCFAE5 /* ParserTests */,
 				B40C723C15A88E72005A8EC7 /* TestResources */,
 				B40C723415A88076005A8EC7 /* DataModelTests */,
@@ -1126,6 +1168,8 @@
 				B40C723215A88072005A8EC7 /* DataModelCostumeTests.m in Sources */,
 				B40C723A15A88AF6005A8EC7 /* DataModelSpriteTests.m in Sources */,
 				B4B4094915B2E8BF00DCFAE5 /* ParserTests.m in Sources */,
+				B4C4D9DC160C490500E4FD19 /* CreateViewTests.m in Sources */,
+				B4C4D9E1160C4A0D00E4FD19 /* CatrobatProjectTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
