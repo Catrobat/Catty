@@ -11,6 +11,7 @@
 #import "CatrobatProject.h"
 #import "Util.h"
 #import "CreateView.h"
+#import "CattyAppDelegate.h"
 
 @interface FeaturedProjectsViewController ()
 
@@ -146,7 +147,14 @@
 }
 
 - (void)buttonClicked:(UIButton*)button {
-    [Util showComingSoonAlertView];
+ //   [Util showComingSoonAlertView];
+    
+    CatrobatProject *level = [self.projects objectAtIndex:0]; //just temp !!!
+    
+    CattyAppDelegate *appDelegate = (CattyAppDelegate*)[[UIApplication sharedApplication] delegate];
+    NSURL *url = [NSURL URLWithString:level.downloadUrl];
+    [appDelegate.fileManager downloadFileFromURL:url];
+    
 }
 
 

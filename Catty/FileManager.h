@@ -8,11 +8,11 @@
 
 #import <Foundation/Foundation.h>
 
-@interface FileManager : NSObject
+@interface FileManager : NSObject <NSURLConnectionDelegate>
 
 - (void)deleteAllFiles;
 - (void)deleteAllFillesOfDirectory:(NSString*)path;
 - (NSArray*)getContentsOfDirectory:(NSString*)directory;
 - (void)addDefaultProject;
-
+- (void)downloadFileFromURL:(NSURL*)url withName:(NSString*)name;
 @end

@@ -98,19 +98,6 @@
          shouldBeEnabled = "No"
          ignoreCount = "0"
          continueAfterRunningActions = "No"
-         filePath = "Catty/RootViewController.m"
-         timestampString = "370259268.89558"
-         startingColumnNumber = "9223372036854775807"
-         endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "199"
-         endingLineNumber = "199"
-         landmarkName = "-downloadSampleProjects"
-         landmarkType = "5">
-      </FileBreakpoint>
-      <FileBreakpoint
-         shouldBeEnabled = "No"
-         ignoreCount = "0"
-         continueAfterRunningActions = "No"
          filePath = "Catty/StageViewController.m"
          timestampString = "370262180.744798"
          startingColumnNumber = "9223372036854775807"
@@ -125,11 +112,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Catty/FeaturedProjectsViewController.m"
-         timestampString = "370188449.492104"
+         timestampString = "370263111.790537"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "168"
-         endingLineNumber = "168"
+         startingLineNumber = "176"
+         endingLineNumber = "176"
          landmarkName = "-connectionDidFinishLoading:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -151,12 +138,38 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Catty/FileManager.m"
-         timestampString = "370259619.966623"
+         timestampString = "370262974.210256"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "83"
-         endingLineNumber = "83"
+         startingLineNumber = "102"
+         endingLineNumber = "102"
          landmarkName = "-addDefaultProject"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "Yes"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "Catty/FileManager.m"
+         timestampString = "370263406.295856"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "153"
+         endingLineNumber = "153"
+         landmarkName = "-connectionDidFinishLoading:"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "Yes"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "Catty/FeaturedProjectsViewController.m"
+         timestampString = "370263102.302557"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "151"
+         endingLineNumber = "151"
+         landmarkName = "-buttonClicked:"
          landmarkType = "5">
       </FileBreakpoint>
    </FileBreakpoints>
