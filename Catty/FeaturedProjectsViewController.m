@@ -90,24 +90,6 @@
     //add item
     [self.pages addObject:view];
     
-    //
-    //    view = [[UIView alloc] init];
-    //    view.backgroundColor = [[UIColor alloc] initWithPatternImage:[UIImage imageNamed:@"container"]];
-    //    [self.pages addObject:view];
-    //
-    //    view = [[UIView alloc] init];
-    //    view.backgroundColor = [[UIColor alloc] initWithPatternImage:[UIImage imageNamed:@"container"]];
-    //    [self.pages addObject:view];
-    //
-    //    view = [[UIView alloc] init];
-    //    view.backgroundColor = [[UIColor alloc] initWithPatternImage:[UIImage imageNamed:@"container"]];
-    //    [self.pages addObject:view];
-    //
-    //    view = [[UIView alloc] init];
-    //    view.backgroundColor = [[UIColor alloc] initWithPatternImage:[UIImage imageNamed:@"container"]];
-    //    [self.pages addObject:view];
-    //    
-    
     //initiliaze page control
     [self initialized];
 
@@ -144,7 +126,6 @@
 }
 
 - (UIView*)createView:(CatrobatProject*)project {
-    
     return [CreateView createLevelStoreView:project target:self];
 }
 
@@ -156,10 +137,8 @@
     NSURL *url = [NSURL URLWithString:level.downloadUrl];
     [appDelegate.fileManager downloadFileFromURL:url withName:level.projectName];
     
+    [Util alertWithText:@"Catty is downloading your level. You can play it in the 'Play' section"];
 }
-
-
-
 
 
 #pragma mark - NSURLConnection Delegates

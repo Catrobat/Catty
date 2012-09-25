@@ -88,10 +88,12 @@
     
     
     //adding play button (below level name)
+    NSString *title = @"Download";
     UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
     button.frame = CGRectMake(85, 45, 115, 25);
-    button.titleLabel.text = @"Play";
-    [button setTitle:@"Play" forState:UIControlStateNormal];
+    button.titleLabel.text = title;
+    button.titleLabel.font = [UIFont boldSystemFontOfSize:14];
+    [button setTitle:title forState:UIControlStateNormal];
     button.backgroundColor = [UIColor clearColor];
     [button addTarget:target action:@selector(buttonClicked:) forControlEvents:UIControlEventTouchUpInside];
     

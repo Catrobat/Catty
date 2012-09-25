@@ -47,6 +47,10 @@
 		B479E9301611A7C5000B1DFA /* FileManagerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = B479E92F1611A7C5000B1DFA /* FileManagerTests.m */; };
 		B4A0C5461611B8B200A28F6A /* Testproject123.catrobat in Resources */ = {isa = PBXBuildFile; fileRef = B4A0C5451611B8B200A28F6A /* Testproject123.catrobat */; };
 		B4A0C5471611B8B200A28F6A /* Testproject123.catrobat in Resources */ = {isa = PBXBuildFile; fileRef = B4A0C5451611B8B200A28F6A /* Testproject123.catrobat */; };
+		B4A0C5531611CE4100A28F6A /* play.png in Resources */ = {isa = PBXBuildFile; fileRef = B4A0C5511611CE4100A28F6A /* play.png */; };
+		B4A0C5541611CE4100A28F6A /* play@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B4A0C5521611CE4100A28F6A /* play@2x.png */; };
+		B4A0C5581611CEE200A28F6A /* back.png in Resources */ = {isa = PBXBuildFile; fileRef = B4A0C5561611CEE200A28F6A /* back.png */; };
+		B4A0C5591611CEE200A28F6A /* back@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B4A0C5571611CEE200A28F6A /* back@2x.png */; };
 		B4A9ADC7160AF29300DFA55B /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B4A9ADC6160AF29300DFA55B /* QuartzCore.framework */; };
 		B4A9ADCC160B02A200DFA55B /* CreateView.m in Sources */ = {isa = PBXBuildFile; fileRef = B4A9ADCB160B02A200DFA55B /* CreateView.m */; };
 		B4A9ADD1160B05B800DFA55B /* ProjectBrowserBaseClassViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B4A9ADD0160B05B800DFA55B /* ProjectBrowserBaseClassViewController.m */; };
@@ -168,6 +172,10 @@
 		B479E92E1611A7C5000B1DFA /* FileManagerTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FileManagerTests.h; sourceTree = "<group>"; };
 		B479E92F1611A7C5000B1DFA /* FileManagerTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FileManagerTests.m; sourceTree = "<group>"; };
 		B4A0C5451611B8B200A28F6A /* Testproject123.catrobat */ = {isa = PBXFileReference; lastKnownFileType = file; path = Testproject123.catrobat; sourceTree = "<group>"; };
+		B4A0C5511611CE4100A28F6A /* play.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = play.png; sourceTree = "<group>"; };
+		B4A0C5521611CE4100A28F6A /* play@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "play@2x.png"; sourceTree = "<group>"; };
+		B4A0C5561611CEE200A28F6A /* back.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = back.png; sourceTree = "<group>"; };
+		B4A0C5571611CEE200A28F6A /* back@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "back@2x.png"; sourceTree = "<group>"; };
 		B4A9ADC6160AF29300DFA55B /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		B4A9ADCA160B02A200DFA55B /* CreateView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreateView.h; sourceTree = "<group>"; };
 		B4A9ADCB160B02A200DFA55B /* CreateView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreateView.m; sourceTree = "<group>"; };
@@ -476,6 +484,10 @@
 		B43CF2A81609C3D900E19CF3 /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				B4A0C5561611CEE200A28F6A /* back.png */,
+				B4A0C5571611CEE200A28F6A /* back@2x.png */,
+				B4A0C5511611CE4100A28F6A /* play.png */,
+				B4A0C5521611CE4100A28F6A /* play@2x.png */,
 				B43CF2DD160AE72600E19CF3 /* startBackground.png */,
 				B43CF2DE160AE72600E19CF3 /* startBackground@2x.png */,
 				B43CF2AD1609C6BC00E19CF3 /* container.png */,
@@ -1129,6 +1141,10 @@
 				B43CF2E0160AE72600E19CF3 /* startBackground@2x.png in Resources */,
 				B479E9211611A3CB000B1DFA /* DefaultProject.catrobat in Resources */,
 				B4A0C5461611B8B200A28F6A /* Testproject123.catrobat in Resources */,
+				B4A0C5531611CE4100A28F6A /* play.png in Resources */,
+				B4A0C5541611CE4100A28F6A /* play@2x.png in Resources */,
+				B4A0C5581611CEE200A28F6A /* back.png in Resources */,
+				B4A0C5591611CEE200A28F6A /* back@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

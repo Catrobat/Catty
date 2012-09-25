@@ -16,5 +16,6 @@
 + (NSString*)applicationDocumentsDirectory;
 + (void)log:(NSError*)error;
 + (void)showComingSoonAlertView;
++ (void)alertWithText:(NSString*)text;
 
 @end
