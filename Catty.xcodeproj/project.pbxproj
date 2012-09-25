@@ -44,6 +44,7 @@
 		B479E9221611A3CB000B1DFA /* DefaultProject.catrobat in Resources */ = {isa = PBXBuildFile; fileRef = B479E9201611A3CB000B1DFA /* DefaultProject.catrobat */; };
 		B479E9271611A3F1000B1DFA /* FileManager.m in Sources */ = {isa = PBXBuildFile; fileRef = B479E9261611A3F1000B1DFA /* FileManager.m */; };
 		B479E9281611A3F1000B1DFA /* FileManager.m in Sources */ = {isa = PBXBuildFile; fileRef = B479E9261611A3F1000B1DFA /* FileManager.m */; };
+		B479E9301611A7C5000B1DFA /* FileManagerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = B479E92F1611A7C5000B1DFA /* FileManagerTests.m */; };
 		B4A9ADC7160AF29300DFA55B /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B4A9ADC6160AF29300DFA55B /* QuartzCore.framework */; };
 		B4A9ADCC160B02A200DFA55B /* CreateView.m in Sources */ = {isa = PBXBuildFile; fileRef = B4A9ADCB160B02A200DFA55B /* CreateView.m */; };
 		B4A9ADD1160B05B800DFA55B /* ProjectBrowserBaseClassViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B4A9ADD0160B05B800DFA55B /* ProjectBrowserBaseClassViewController.m */; };
@@ -162,6 +163,8 @@
 		B479E9201611A3CB000B1DFA /* DefaultProject.catrobat */ = {isa = PBXFileReference; lastKnownFileType = file; path = DefaultProject.catrobat; sourceTree = "<group>"; };
 		B479E9251611A3F1000B1DFA /* FileManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FileManager.h; sourceTree = "<group>"; };
 		B479E9261611A3F1000B1DFA /* FileManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FileManager.m; sourceTree = "<group>"; };
+		B479E92E1611A7C5000B1DFA /* FileManagerTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FileManagerTests.h; sourceTree = "<group>"; };
+		B479E92F1611A7C5000B1DFA /* FileManagerTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FileManagerTests.m; sourceTree = "<group>"; };
 		B4A9ADC6160AF29300DFA55B /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		B4A9ADCA160B02A200DFA55B /* CreateView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreateView.h; sourceTree = "<group>"; };
 		B4A9ADCB160B02A200DFA55B /* CreateView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreateView.m; sourceTree = "<group>"; };
@@ -561,6 +564,15 @@
 			name = FileManager;
 			sourceTree = "<group>";
 		};
+		B479E9291611A6FD000B1DFA /* FileManagerTests */ = {
+			isa = PBXGroup;
+			children = (
+				B479E92E1611A7C5000B1DFA /* FileManagerTests.h */,
+				B479E92F1611A7C5000B1DFA /* FileManagerTests.m */,
+			);
+			name = FileManagerTests;
+			sourceTree = "<group>";
+		};
 		B4A9ADC9160B018100DFA55B /* CustomViews */ = {
 			isa = PBXGroup;
 			children = (
@@ -746,6 +758,7 @@
 		B4FDF34A15A82C1000CBCF03 /* CattyTests */ = {
 			isa = PBXGroup;
 			children = (
+				B479E9291611A6FD000B1DFA /* FileManagerTests */,
 				B4C4D9DD160C49EB00E4FD19 /* JSONTests */,
 				B4C4D9D8160C48E700E4FD19 /* ViewTests */,
 				B4B4094315B2E87700DCFAE5 /* ParserTests */,
@@ -1214,6 +1227,7 @@
 				B4C4D9DC160C490500E4FD19 /* CreateViewTests.m in Sources */,
 				B4C4D9E1160C4A0D00E4FD19 /* CatrobatProjectTests.m in Sources */,
 				B479E9281611A3F1000B1DFA /* FileManager.m in Sources */,
+				B479E9301611A7C5000B1DFA /* FileManagerTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

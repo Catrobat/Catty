@@ -13,6 +13,16 @@
 @synthesize window      = _window;
 @synthesize fileManager = _fileManager;
 
+//custom filemanager getter
+- (FileManager*)fileManager {
+    if (_fileManager == nil) {
+        _fileManager = [[FileManager alloc] init];
+    }
+    
+    return _fileManager;
+}
+
+
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     // Override point for customization after application launch.
