@@ -12,6 +12,7 @@
 
 - (void)deleteAllFiles;
 - (void)deleteAllFillesOfDirectory:(NSString*)path;
+- (void)deleteFolder:(NSString*)path;
 - (NSArray*)getContentsOfDirectory:(NSString*)directory;
 - (void)addDefaultProject;
 - (void)downloadFileFromURL:(NSURL*)url withName:(NSString*)name;

@@ -130,8 +130,10 @@
     
     [self.pages removeAllObjects];
     
+    NSInteger index = 0;
     for (CatrobatProject *project in self.projects) {
         UIView *view = [self createView:project];
+        view.tag = index++;
         [self.pages addObject:view];
     }
     
@@ -147,13 +149,12 @@
 }
 
 - (void)buttonClicked:(UIButton*)button {
- //   [Util showComingSoonAlertView];
-    
-    CatrobatProject *level = [self.projects objectAtIndex:0]; //just temp !!!
+    UIView *superView = button.superview;
+    CatrobatProject *level = [self.projects objectAtIndex:superView.tag]; //just temp !!!
     
     CattyAppDelegate *appDelegate = (CattyAppDelegate*)[[UIApplication sharedApplication] delegate];
     NSURL *url = [NSURL URLWithString:level.downloadUrl];
-    [appDelegate.fileManager downloadFileFromURL:url];
+    [appDelegate.fileManager downloadFileFromURL:url withName:level.projectName];
     
 }
 

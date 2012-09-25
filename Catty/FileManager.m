@@ -68,7 +68,6 @@
     [self deleteAllFillesOfDirectory:self.documentsDirectory];
 }
 
-
 //deleting all files of specified path
 - (void)deleteAllFillesOfDirectory:(NSString*)path {
     NSFileManager *fm = [NSFileManager defaultManager];
@@ -86,6 +85,13 @@
             NSLog(@"Error deleting file.");
         }
     }
+}
+
+//deleting entire folder with contents
+- (void)deleteFolder:(NSString*)path {
+    NSError *error = nil;
+    [[NSFileManager defaultManager] removeItemAtPath:path error:&error];
+    [Util log:error];
 }
 
 //retrieving contents of directory

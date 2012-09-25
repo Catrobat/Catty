@@ -112,11 +112,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Catty/FeaturedProjectsViewController.m"
-         timestampString = "370263111.790537"
+         timestampString = "370264409.726287"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "176"
-         endingLineNumber = "176"
+         startingLineNumber = "177"
+         endingLineNumber = "177"
          landmarkName = "-connectionDidFinishLoading:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -138,38 +138,12 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Catty/FileManager.m"
-         timestampString = "370262974.210256"
+         timestampString = "370264094.39699"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "102"
-         endingLineNumber = "102"
+         startingLineNumber = "110"
+         endingLineNumber = "110"
          landmarkName = "-addDefaultProject"
-         landmarkType = "5">
-      </FileBreakpoint>
-      <FileBreakpoint
-         shouldBeEnabled = "Yes"
-         ignoreCount = "0"
-         continueAfterRunningActions = "No"
-         filePath = "Catty/FileManager.m"
-         timestampString = "370263406.295856"
-         startingColumnNumber = "9223372036854775807"
-         endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "153"
-         endingLineNumber = "153"
-         landmarkName = "-connectionDidFinishLoading:"
-         landmarkType = "5">
-      </FileBreakpoint>
-      <FileBreakpoint
-         shouldBeEnabled = "Yes"
-         ignoreCount = "0"
-         continueAfterRunningActions = "No"
-         filePath = "Catty/FeaturedProjectsViewController.m"
-         timestampString = "370263102.302557"
-         startingColumnNumber = "9223372036854775807"
-         endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "151"
-         endingLineNumber = "151"
-         landmarkName = "-buttonClicked:"
          landmarkType = "5">
       </FileBreakpoint>
    </FileBreakpoints>
