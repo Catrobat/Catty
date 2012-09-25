@@ -10,6 +10,9 @@
 
 @interface FileManager : NSObject
 
+- (void)deleteAllFiles;
 - (void)deleteAllFillesOfDirectory:(NSString*)path;
+- (NSArray*)getContentsOfDirectory:(NSString*)directory;
+- (void)addDefaultProject;
 
 @end

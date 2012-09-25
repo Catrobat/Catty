@@ -35,9 +35,12 @@
     UIColor *background = [[UIColor alloc] initWithPatternImage:[UIImage imageNamed:@"startBackground"]];
     self.view.backgroundColor = background;    
     
-    
     //load/init sample projects
     [self loadSampleProjects];
+    
+    //adding default project to level if it does not exist
+    CattyAppDelegate *appDelegate = (CattyAppDelegate*)[[UIApplication sharedApplication] delegate];
+    [appDelegate.fileManager addDefaultProject];
     
 }
 
@@ -61,14 +64,12 @@
 #pragma mark - Load Sample Projects
 - (void)loadSampleProjects {
     NSString *documentsDirectory = [Util applicationDocumentsDirectory];
-    NSError *error;
-
     
     //temp
     [self deleteAllFilesFromDirectory:documentsDirectory];
     
-    NSArray *contents = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:documentsDirectory error:&error];
-    [Util log:error];
+    CattyAppDelegate *appDelegate = (CattyAppDelegate*)[[UIApplication sharedApplication] delegate];
+    NSArray *contents = [appDelegate.fileManager getContentsOfDirectory:documentsDirectory];
     
     NSLog(@"Contents: %@", contents);
     

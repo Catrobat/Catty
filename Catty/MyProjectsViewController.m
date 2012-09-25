@@ -160,7 +160,7 @@
         if ([segue.destinationViewController isKindOfClass:[StageViewController class]])
         {            
             StageViewController *destination = segue.destinationViewController;
-            destination.levelLoadingInfo = [self.levelLoadingInfos objectAtIndex:selectedRowIndexPath.row];    // TODO: change 0 to variable!!!!
+            destination.levelLoadingInfo = [self.levelLoadingInfos objectAtIndex:selectedRowIndexPath.row];
         }
         
     }
