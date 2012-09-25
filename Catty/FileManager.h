@@ -10,10 +10,14 @@
 
 @interface FileManager : NSObject <NSURLConnectionDelegate>
 
+@property (nonatomic, strong) id delegate;
+
 - (void)deleteAllFiles;
 - (void)deleteAllFillesOfDirectory:(NSString*)path;
 - (void)deleteFolder:(NSString*)path;
 - (NSArray*)getContentsOfDirectory:(NSString*)directory;
 - (void)addDefaultProject;
 - (void)downloadFileFromURL:(NSURL*)url withName:(NSString*)name;
+- (NSString*)getPathForLevel:(NSString*)levelName;
+
 @end

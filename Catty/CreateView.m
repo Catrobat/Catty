@@ -87,11 +87,11 @@
     [view addSubview:imageView2];
     
     
-    //adding play button (below level name)
+    //adding download button (below level name)
     NSString *title = @"Download";
     UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
+    button.tag = 501;
     button.frame = CGRectMake(85, 45, 115, 25);
-    button.titleLabel.text = title;
     button.titleLabel.font = [UIFont boldSystemFontOfSize:14];
     [button setTitle:title forState:UIControlStateNormal];
     button.backgroundColor = [UIColor clearColor];
@@ -133,6 +133,57 @@
     
     
     [view addSubview:button];
+    
+    
+    //adding play button (below level name)
+    UIButton *playButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    playButton.tag = 502;
+    playButton.hidden = YES;
+    playButton.frame = CGRectMake(85, 45, 115, 25);
+    playButton.titleLabel.font = [UIFont boldSystemFontOfSize:14];
+    [playButton setTitle:@"Play" forState:UIControlStateNormal];
+    playButton.backgroundColor = [UIColor clearColor];
+    [playButton addTarget:target action:@selector(buttonClicked:) forControlEvents:UIControlEventTouchUpInside];
+    
+    
+    CAGradientLayer *newGradientLayer = [CAGradientLayer layer];
+    newGradientLayer.frame = playButton.layer.bounds;
+    
+    newGradientLayer.colors = [NSArray arrayWithObjects:
+                            (id)[UIColor colorWithRed:103/255.0f green:174/255.0f blue:59/255.0f alpha:1.0f].CGColor,
+                            (id)[UIColor colorWithRed:61/255.0f green:118/255.0f blue:26/255.0f alpha:1.0f].CGColor,
+                            nil];
+    
+    newGradientLayer.locations = [NSArray arrayWithObjects:
+                               [NSNumber numberWithFloat:0.0f],
+                               [NSNumber numberWithFloat:1.0f],
+                               nil];
+    
+    playButton.layer.cornerRadius = 3.0f;
+    newGradientLayer.cornerRadius = playButton.layer.cornerRadius;
+    [playButton.layer insertSublayer:newGradientLayer atIndex:0];
+    
+    playButton.layer.masksToBounds = YES;
+    
+    //text shadow
+    playButton.titleLabel.layer.shadowColor = [UIColor blackColor].CGColor;
+    playButton.titleLabel.layer.shadowOpacity = 0.3f;
+    playButton.titleLabel.layer.shadowRadius = 1;
+    playButton.titleLabel.layer.shadowOffset = CGSizeMake(0.0f, 2.0f);
+    
+    //border
+    playButton.layer.borderColor = [UIColor colorWithRed:61/255.0f green:118/255.0f blue:26/255.0f alpha:0.5f].CGColor;
+    playButton.layer.borderWidth = 1.0f;
+
+    UIActivityIndicatorView *activity = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite];
+    activity.tag = 601;
+    activity.frame = CGRectMake(5, 0, 25, 25);
+    [playButton addSubview:activity];
+    
+    
+    [view addSubview:playButton];
+    
+
     
     
     return view;

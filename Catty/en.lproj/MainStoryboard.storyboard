@@ -239,7 +239,7 @@
             <objects>
                 <viewController id="ofa-DD-dmg" customClass="StageViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="jf4-Ud-qWl" customClass="GLKView">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                        <rect key="frame" x="0.0" y="44" width="320" height="387"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="uAy-t7-37P">
@@ -322,6 +322,7 @@
                         <outlet property="labelOutlet" destination="uXW-I6-Cb5" id="nzL-QC-VXX"/>
                         <outlet property="pageControlOutlet" destination="sgo-tL-gHQ" id="4Z7-Sf-C3s"/>
                         <outlet property="scrollViewOutlet" destination="ebp-xQ-fSC" id="bpD-ik-ywY"/>
+                        <segue destination="ofa-DD-dmg" kind="push" identifier="SEGUE_QUICK_TO_STAGE" id="ncB-Q3-lkv"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Wr1-kM-DlO" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -384,4 +385,7 @@
         <simulatedOrientationMetrics key="orientation"/>
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
+    <inferredMetricsTieBreakers>
+        <segue reference="ncB-Q3-lkv"/>
+    </inferredMetricsTieBreakers>
 </document>

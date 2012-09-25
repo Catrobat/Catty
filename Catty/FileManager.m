@@ -28,7 +28,7 @@
 @synthesize connection         = _connection;
 @synthesize data               = _data;
 @synthesize projectName        = _projectName;
-
+@synthesize delegate           = _delegate;
 
 //custom getter method for documents directory member property
 - (NSString*)documentsDirectory {
@@ -162,7 +162,14 @@
         
         //storing level
         [self storeDownloadedLevel];
-               
+        
+        //calling delegate (download finished)
+        if (self.delegate) {
+            if ([self.delegate respondsToSelector:@selector(downloadFinished)]) {
+                [self.delegate performSelector:@selector(downloadFinished)];
+            }
+        }
+        
         //freeing space
         self.data = nil;
         self.connection = nil;
@@ -183,6 +190,22 @@
         self.projectName = nil;
     }
 }
+
+
+- (NSString*)getPathForLevel:(NSString*)levelName {
+    NSString *path = [NSString stringWithFormat:@"%@/%@", self.levelsDirectory, levelName];
+    NSString *retPath = nil;
+    
+    //checking if path is valid
+    if ([[NSFileManager defaultManager] fileExistsAtPath:path]) {
+        retPath = path;
+    }
+    
+    return retPath;
+}
+
+
+
 
 
 
@@ -222,6 +245,7 @@
     [[NSFileManager defaultManager] removeItemAtPath:tempPath error:&error];
     [Util log:error];
 }
+
 
 
 

@@ -12,6 +12,10 @@
 #import "Util.h"
 #import "CreateView.h"
 #import "CattyAppDelegate.h"
+#import "StageViewController.h"
+#import "LevelLoadingInfo.h"
+
+#define SEGUE_TO_STAGE @"SEGUE_QUICK_TO_STAGE"
 
 @interface FeaturedProjectsViewController ()
 
@@ -110,6 +114,9 @@
     loadingView.hidden = YES;
     loadingView = nil;
     
+    [self.activity stopAnimating];
+    self.activity = nil;
+    
     [self.pages removeAllObjects];
     
     NSInteger index = 0;
@@ -126,26 +133,62 @@
 }
 
 - (UIView*)createView:(CatrobatProject*)project {
+    
+    
+    
+    
     return [CreateView createLevelStoreView:project target:self];
 }
 
+
+//download button has been clicked
 - (void)buttonClicked:(UIButton*)button {
+    
+    //abort if we are currently downloading an item
+    if (self.activity.isAnimating) {
+        [Util alertWithText:@"You are currently downloading a level! You cannot download two at the same time"];
+        return;
+    }
+    
+    //checking if its a play button or a download button
+    if (button.tag == 502) { //play button
+        [self performSegueWithIdentifier:SEGUE_TO_STAGE sender:[self.projects objectAtIndex:button.superview.tag]];
+        
+        //abort
+        return;
+    }
+    
+    //test
+    button.hidden = YES;
+    
     UIView *superView = button.superview;
-    CatrobatProject *level = [self.projects objectAtIndex:superView.tag]; //just temp !!!
+    UIButton *playButton = (UIButton*)[superView viewWithTag:502];
+    playButton.hidden = NO;
+    UIActivityIndicatorView *activity = (UIActivityIndicatorView*)[playButton viewWithTag:601];
+    [activity startAnimating];
+    self.activity = activity;
+    
+    
+    //downloading level from server (downloadURL)
+    CatrobatProject *level = [self.projects objectAtIndex:superView.tag];
     
     CattyAppDelegate *appDelegate = (CattyAppDelegate*)[[UIApplication sharedApplication] delegate];
     NSURL *url = [NSURL URLWithString:level.downloadUrl];
     [appDelegate.fileManager downloadFileFromURL:url withName:level.projectName];
+    appDelegate.fileManager.delegate = self;
     
-    [Util alertWithText:@"Catty is downloading your level. You can play it in the 'Play' section"];
+    //[Util alertWithText:@"Catty is downloading your level. You can play it in the 'Play' section"];
+}
+
+- (void)downloadFinished {
+    [self.activity stopAnimating];
 }
 
 
 #pragma mark - NSURLConnection Delegates
 - (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data
 {
-    if (self.connection == connection)
-    {
+    if (self.connection == connection) {
         NSLog(@"Received data from server");
         [self.data appendData:data];
     }
@@ -153,8 +196,7 @@
 
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection
 {
-    if (self.connection == connection)
-    {
+    if (self.connection == connection) {
         NSLog(@"Finished");
         
         //building up json string from data bytes
@@ -208,5 +250,34 @@
     [self setLabelOutlet:nil];
     [self setPageControlOutlet:nil];
     [super viewDidUnload];
+}
+
+#pragma mark - Segue
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    if ([segue.identifier isEqualToString:SEGUE_TO_STAGE]) {
+        if ([segue.destinationViewController isKindOfClass:[StageViewController class]]){
+            StageViewController *destination = (StageViewController*)segue.destinationViewController;
+            
+            CatrobatProject *level = nil;
+            //retrieving catrobat project info
+            if ([sender isKindOfClass:[CatrobatProject class]]) {
+                level = (CatrobatProject*)sender;
+            }
+            assert(level); //should not happen...
+            
+            
+            //creating new level loading info
+            LevelLoadingInfo *loadingInfo = [[LevelLoadingInfo alloc] init];
+            loadingInfo.visibleName = level.projectName;
+            
+            //retrieving app delegate
+            CattyAppDelegate *appDelegate = (CattyAppDelegate*)[[UIApplication sharedApplication] delegate];
+            loadingInfo.basePath = [NSString stringWithFormat:@"%@/", [appDelegate.fileManager getPathForLevel:level.projectName]];
+            assert(loadingInfo.basePath);
+            
+            destination.levelLoadingInfo = loadingInfo;
+            
+        }
+    }
 }
 @end
