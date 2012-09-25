@@ -1,19 +1,17 @@
 //
-//  RecentProjectsViewController.h
+//  FeaturedProjectsViewController.h
 //  Catty
 //
-//  Created by Christof Stromberger on 18.09.12.
+//  Created by Christof Stromberger on 24.09.12.
 //  Copyright (c) 2012 Graz University of Technology. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
 #import "ProjectBrowserBaseClassViewController.h"
 
-@interface RecentProjectsViewController : ProjectBrowserBaseClassViewController <UIScrollViewDelegate>
-
-@property (weak, nonatomic) IBOutlet UILabel *labelOutel;
+@interface FeaturedProjectsViewController : ProjectBrowserBaseClassViewController <UIScrollViewDelegate>
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollViewOutlet;
+@property (weak, nonatomic) IBOutlet UILabel *labelOutlet;
 @property (weak, nonatomic) IBOutlet UIPageControl *pageControlOutlet;
-
 
 @end

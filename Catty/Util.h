@@ -8,6 +8,9 @@
 
 #import <Foundation/Foundation.h>
 
+//timeout for nsurlrequests
+#define TIMEOUT 30.0f
+
 @interface Util : NSObject
 
 + (NSString*)applicationDocumentsDirectory;

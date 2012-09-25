@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="2840" systemVersion="12B19" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="Zc3-ID-QCk">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="2840" systemVersion="12C54" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="Zc3-ID-QCk">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="1926"/>
     </dependencies>
@@ -158,7 +158,7 @@
                                 <color key="textColor" red="0.20784313730000001" green="0.20784313730000001" blue="0.20784313730000001" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" alwaysBounceHorizontal="YES" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" id="pcN-pn-Ocw">
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" id="pcN-pn-Ocw">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="387"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             </scrollView>
@@ -290,16 +290,39 @@
             </objects>
             <point key="canvasLocation" x="1368" y="743"/>
         </scene>
-        <!--View Controller-->
+        <!--Featured Projects View Controller-->
         <scene sceneID="gJ5-C4-vAZ">
             <objects>
-                <viewController id="84W-1s-dY9" sceneMemberID="viewController">
+                <viewController id="84W-1s-dY9" customClass="FeaturedProjectsViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="ad8-AU-844">
-                        <rect key="frame" x="0.0" y="64" width="320" height="367"/>
+                        <rect key="frame" x="0.0" y="44" width="320" height="387"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" id="ebp-xQ-fSC">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="387"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                            </scrollView>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="1 of 20" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="uXW-I6-Cb5">
+                                <rect key="frame" x="110" y="353" width="100" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="12"/>
+                                <color key="textColor" red="0.20784313730000001" green="0.20784313730000001" blue="0.20784313730000001" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" id="sgo-tL-gHQ">
+                                <rect key="frame" x="141" y="327" width="38" height="36"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinY="YES"/>
+                            </pageControl>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <tabBarItem key="tabBarItem" systemItem="featured" id="0R8-YX-LxE"/>
+                    <nil key="simulatedStatusBarMetrics"/>
+                    <connections>
+                        <outlet property="labelOutlet" destination="uXW-I6-Cb5" id="nzL-QC-VXX"/>
+                        <outlet property="pageControlOutlet" destination="sgo-tL-gHQ" id="4Z7-Sf-C3s"/>
+                        <outlet property="scrollViewOutlet" destination="ebp-xQ-fSC" id="bpD-ik-ywY"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Wr1-kM-DlO" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -309,6 +332,14 @@
     <classes>
         <class className="CattyViewController" superclassName="GLKViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/CattyViewController.h"/>
+        </class>
+        <class className="FeaturedProjectsViewController" superclassName="ProjectBrowserBaseClassViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/FeaturedProjectsViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="labelOutlet" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="pageControlOutlet" candidateClass="UIPageControl"/>
+                <relationship kind="outlet" name="scrollViewOutlet" candidateClass="UIScrollView"/>
+            </relationships>
         </class>
         <class className="ListProjectsViewController" superclassName="UITableViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/ListProjectsViewController.h"/>

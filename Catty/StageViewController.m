@@ -47,6 +47,7 @@
 {
     [super viewDidLoad];
 
+    //graphics context
     self.context = [[EAGLContext alloc] initWithAPI:kEAGLRenderingAPIOpenGLES2];
     
     if (!self.context) {

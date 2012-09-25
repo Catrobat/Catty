@@ -9,9 +9,11 @@
 #import <UIKit/UIKit.h>
 #import "GDataXMLNode.h"
 #import <GLKit/GLKit.h>
+#import "FileManager.h"
 
 @interface CattyAppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
+@property (nonatomic, strong) FileManager *fileManager;
 
 @end

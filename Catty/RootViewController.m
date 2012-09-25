@@ -9,6 +9,8 @@
 #import "RootViewController.h"
 #import "Util.h"
 #import "SSZipArchive.h"
+#import "FileManager.h"
+#import "CattyAppDelegate.h"
 
 @interface RootViewController ()
 
@@ -77,7 +79,9 @@
 }
 
 - (void)loadRocketProject {
-    NSString *linkToRocketProject = @"http://catroid.org/catroid/download/291.catrobat";
+//    NSString *linkToRocketProject = @"http://catroid.org/catroid/download/291.catrobat";
+    NSString *linkToRocketProject = @"http://catroid.org/catroid/download/305.catrobat";
+
 
     //rocket project
     NSURL *rocketProjectURL = [NSURL URLWithString:linkToRocketProject];
@@ -94,7 +98,9 @@
     [rocketProject writeToFile:tempPath atomically:YES];
     
     //path for storing file
-    NSString *storePath = [NSString stringWithFormat:@"%@/levels/RocketProject", documentsDirectory];
+//    NSString *storePath = [NSString stringWithFormat:@"%@/levels/RocketProject", documentsDirectory];
+    NSString *storePath = [NSString stringWithFormat:@"%@/levels/Hunter", documentsDirectory];
+
     
     NSLog(@"Starting unzip");
     
@@ -197,18 +203,8 @@
 }
 
 - (void)deleteAllFilesFromDirectory:(NSString*)directoryPath {
-    NSFileManager *fm = [NSFileManager defaultManager];
-    
-    if (![directoryPath hasSuffix:@"/"]) {
-        directoryPath = [NSString stringWithFormat:@"%@/", directoryPath];
-    }
-    
-    NSString *directory = directoryPath;
-    NSError *error = nil;
-    for (NSString *file in [fm contentsOfDirectoryAtPath:directory error:&error]) {
-        BOOL success = [fm removeItemAtPath:[NSString stringWithFormat:@"%@%@", directory, file] error:&error];
-        [Util log:error];
-    }
+    CattyAppDelegate *appDelegate = (CattyAppDelegate *)[[UIApplication sharedApplication] delegate];
+    [appDelegate.fileManager deleteAllFillesOfDirectory:directoryPath];
 }
 
 - (BOOL)isEmpty:(NSArray*)arr {

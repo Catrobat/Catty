@@ -10,7 +10,8 @@
 
 @implementation CattyAppDelegate
 
-@synthesize window = _window;
+@synthesize window      = _window;
+@synthesize fileManager = _fileManager;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
