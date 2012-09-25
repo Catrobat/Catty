@@ -134,10 +134,15 @@
 
 - (UIView*)createView:(CatrobatProject*)project {
     
+    CattyAppDelegate *appDelegate = (CattyAppDelegate*)[[UIApplication sharedApplication] delegate];
+    UIView *view = [CreateView createLevelStoreView:project target:self];
+    if ([appDelegate.fileManager getPathForLevel:project.projectName]) {
+        [view viewWithTag:501].hidden = YES; //download button
+        [view viewWithTag:502].hidden = NO; //play button
+    }
     
     
-    
-    return [CreateView createLevelStoreView:project target:self];
+    return view;
 }
 
 
