@@ -398,7 +398,7 @@ typedef struct {
     {
         NSTimeInterval now = [[NSDate date]timeIntervalSince1970];
 
-        NSLog(@"timediff: %f", self.nextPosition.timestamp - now);
+//        NSLog(@"timediff: %f", self.nextPosition.timestamp - now);
         
         if (now >= self.nextPosition.timestamp)
         {
@@ -422,7 +422,7 @@ typedef struct {
           
             self.position = GLKVector3Add(self.position, step);
             
-            NSLog(@"newPosition: %f/%f", self.position.x, self.position.y);
+//            NSLog(@"newPosition: %f/%f", self.position.x, self.position.y);
         }
     }
     else
