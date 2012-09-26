@@ -89,5 +89,6 @@
 - (void)comeToFront;
 - (void)changeSizeByN:(float)sizePercentageRate;
 - (void)changeXBy:(float)x;
+- (void)setSizeToPercentage:(float)sizeInPercentage;
 
 @end

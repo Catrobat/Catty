@@ -63,7 +63,10 @@ typedef struct {
 @property (nonatomic, strong) GLKTextureInfo *textureInfo;
 
 @property (assign, nonatomic) GLKVector3 position;        // position - origin is in the middle of the sprite
-@property (assign, nonatomic) float scaleFactor;
+
+@property (assign, nonatomic) float scaleFactor;    // scale image to fit screen
+@property (assign, nonatomic) float scaleWidth;     // scale width  of image according to bricks (e.g. SetSizeTo-brick)
+@property (assign, nonatomic) float scaleHeight;    // scale height of image according to bricks (e.g. SetSizeTo-brick)
 
 
 @property (atomic, strong) NSMutableArray *brickQueue;
@@ -97,6 +100,8 @@ typedef struct {
 
 // private synthesizes
 @synthesize scaleFactor = _scaleFactor;
+@synthesize scaleWidth  = _scaleWidth;
+@synthesize scaleHeight = _scaleHeight;
 @synthesize quad = _quad;
 @synthesize textureInfo = _textureInfo;
 @synthesize brickQueue = _brickQueue;
@@ -164,6 +169,9 @@ typedef struct {
         _position = GLKVector3Make(0, 0, 0); //todo: change z index
         self.showSprite = YES;
         self.scaleFactor = 1.0f;
+        self.scaleWidth  = 1.0f;
+        self.scaleHeight = 1.0f;
+//        self.indexOfCurrentCostumeInArray = [NSNumber numberWithInt:-1];
     }
     return self;
 }
@@ -176,6 +184,9 @@ typedef struct {
         self.effect = effect;
         self.showSprite = YES;
         self.scaleFactor = 1.0f;
+        self.scaleWidth  = 1.0f;
+        self.scaleHeight = 1.0f;
+//        self.indexOfCurrentCostumeInArray = [NSNumber numberWithInt:-1];
     }
     return self;
 }
@@ -232,6 +243,7 @@ typedef struct {
 
 - (float)getZIndex
 {
+    // TODO: change this - z-coord is not valid
     return self.position.z;
 }
 
@@ -250,7 +262,14 @@ typedef struct {
 {
     _indexOfCurrentCostumeInArray = indexOfCurrentCostumeInArray;
     
+    if (_indexOfCurrentCostumeInArray.intValue < 0)
+        return;
+    
     NSLog(@"Try to load costume %d / %d", indexOfCurrentCostumeInArray.intValue, [self.costumesArray count]);
+    
+    if ([self.costumesArray count] - 1 < indexOfCurrentCostumeInArray.intValue) {
+        NSLog(@"Index %d is invalid! Array-size: %d", indexOfCurrentCostumeInArray.intValue, [self.costumesArray count]);
+    }
     
     NSString *fileName = ((Costume*)[self.costumesArray objectAtIndex:[self.indexOfCurrentCostumeInArray intValue]]).costumeFileName;
     
@@ -299,7 +318,8 @@ typedef struct {
         return;
     }
 
-    [self setSpriteSizeWithWidth:self.textureInfo.width andHeight:self.textureInfo.height];
+    [self setSpriteSize];
+//    [self setSpriteSizeWithWidth:self.textureInfo.width andHeight:self.textureInfo.height];
     
 //    self.contentSize = CGSizeMake(self.textureInfo.width, self.textureInfo.height);
 //    
@@ -325,11 +345,14 @@ typedef struct {
 //    self.quad = newQuad;
 }
 
--(void)setSpriteSizeWithWidth:(float)width andHeight:(float)height
+-(void)setSpriteSize//WithWidth:(float)width andHeight:(float)height
 {
+    float width  = self.textureInfo.width  * self.scaleWidth;
+    float height = self.textureInfo.height * self.scaleHeight;
+        
     self.contentSize = CGSizeMake(width, height);
     
-    width *= self.scaleFactor;
+    width  *= self.scaleFactor;
     height *= self.scaleFactor;
     
     
@@ -409,7 +432,7 @@ typedef struct {
 }
 
 - (void)render
-{ 
+{
 //    if ([self.nextPositions count] > 0)
 //    {
 //        NSValue *data = [self.nextPositions objectAtIndex:0];
@@ -447,7 +470,6 @@ typedef struct {
 
 
 
-#pragma mark - actions
 -(void)performNextBrickInQueue
 {
     if ([self.brickQueue count] > 0)
@@ -456,6 +478,9 @@ typedef struct {
         [self.brickQueue removeObjectAtIndex:0];
     }
 }
+
+
+#pragma mark - actions
 
 -(void)placeAt:(GLKVector3)newPosition
 {
@@ -509,13 +534,11 @@ typedef struct {
 
 - (void)setXPosition:(float)xPosition
 {
-//    xPosition = xPosition + 320/2 - self.textureInfo.width/2;           // TODO: change constant values
     self.position = GLKVector3Make(xPosition, self.position.y, self.position.z);
 }
 
 -(void)setYPosition:(float)yPosition
 {
-//    yPosition = yPosition + 460/2 - self.textureInfo.height/2;           // TODO: change constant values
     self.position = GLKVector3Make(self.position.x, yPosition, self.position.z);
 }
 
@@ -531,14 +554,22 @@ typedef struct {
 
 -(void)changeSizeByN:(float)sizePercentageRate
 {
-    float width  = self.contentSize.width  + self.textureInfo.width  * sizePercentageRate / 100.0f;
-    float height = self.contentSize.height + self.textureInfo.height * sizePercentageRate / 100.0f;
-    [self setSpriteSizeWithWidth:width andHeight:height];
+    self.scaleWidth  += sizePercentageRate / 100.0f;
+    self.scaleHeight += sizePercentageRate / 100.0f;
+    
+    [self setSpriteSize];
 }
 
 -(void)changeXBy:(float)x
 {
     self.position = GLKVector3Make(self.position.x + x, self.position.y, self.position.z);
+}
+
+-(void)setSizeToPercentage:(float)sizeInPercentage
+{
+    self.scaleWidth  = sizeInPercentage / 100.0f;
+    self.scaleHeight = sizeInPercentage / 100.0f;
+    [self setSpriteSize];
 }
 
 #pragma mark - description
@@ -550,7 +581,7 @@ typedef struct {
     [ret appendFormat:@"\t\t\tName: %@\n", self.name];
     [ret appendFormat:@"\t\t\tPosition: [%f, %f, %f] (x, y, z)\n", self.position.x, self.position.y, self.position.z];
     [ret appendFormat:@"\t\t\tContent size: [%f, %f] (x, y)\n", self.contentSize.width, self.contentSize.height];
-    [ret appendFormat:@"\t\t\tCostume index: %d\n", self.indexOfCurrentCostumeInArray];
+    [ret appendFormat:@"\t\t\tCostume index: %d\n", self.indexOfCurrentCostumeInArray.intValue];
     
     if ([self.costumesArray count] > 0)
     {
@@ -586,7 +617,8 @@ typedef struct {
 }
 
 
-- (CGRect)boundingBox {
+- (CGRect)boundingBox
+{
     CGSize scaledContentSize = CGSizeMake(self.contentSize.width * self.scaleFactor, self.contentSize.height * self.scaleFactor);
     
     float x = self.position.x + [UIScreen mainScreen].bounds.size.width/2 - scaledContentSize.width/2;
@@ -599,6 +631,8 @@ typedef struct {
 #pragma mark - script methods
 - (void)start
 {
+    self.indexOfCurrentCostumeInArray = [NSNumber numberWithInt:0];
+
     for (Script *script in self.startScriptsArray)
     {
         [self.brickQueue addObjectsFromArray:[script getAllBricks]];
