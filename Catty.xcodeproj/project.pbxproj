@@ -16,7 +16,8 @@
 		B412ACF516133D5C0056B146 /* PlaySoundBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = B412ACF216133D5C0056B146 /* PlaySoundBrick.m */; };
 		B412ACFA16133D7B0056B146 /* StopAllSoundsBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = B412ACF916133D7B0056B146 /* StopAllSoundsBrick.m */; };
 		B412ACFB16133D7B0056B146 /* StopAllSoundsBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = B412ACF916133D7B0056B146 /* StopAllSoundsBrick.m */; };
-		B412ACFE16133F2B0056B146 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B412ACFD16133F2B0056B146 /* AVFoundation.framework */; };
+		B412ACFE16133F2B0056B146 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B412ACFD16133F2B0056B146 /* AVFoundation.framework */; settings = {ATTRIBUTES = (Required, ); }; };
+		B412AD08161342240056B146 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B412ACFD16133F2B0056B146 /* AVFoundation.framework */; };
 		B415DC3915B9F8540076275E /* Util.m in Sources */ = {isa = PBXBuildFile; fileRef = B415DC3815B9F8540076275E /* Util.m */; };
 		B415DC3B15BAB86B0076275E /* defaultProject.xml in Resources */ = {isa = PBXBuildFile; fileRef = B415DC3A15BAB86B0076275E /* defaultProject.xml */; };
 		B415DC3C15BAB86B0076275E /* defaultProject.xml in Resources */ = {isa = PBXBuildFile; fileRef = B415DC3A15BAB86B0076275E /* defaultProject.xml */; };
@@ -302,6 +303,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B412AD08161342240056B146 /* AVFoundation.framework in Frameworks */,
 				B40C723B15A88DFD005A8EC7 /* GLKit.framework in Frameworks */,
 				B40C723515A88687005A8EC7 /* CoreGraphics.framework in Frameworks */,
 				B4FDF34515A82C1000CBCF03 /* SenTestingKit.framework in Frameworks */,
