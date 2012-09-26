@@ -28,6 +28,7 @@
 #import "ChangeSizeByNBrick.h"
 #import "BroadcastBrick.h"
 #import "ChangeXByBrick.h"
+#import "ComeToFrontBrick.h"
 
 @interface LevelParser()
 
@@ -290,6 +291,11 @@
         else if ([element.name isEqualToString:@"Bricks.ChangeXByBrick"])
         {
             ChangeXByBrick *brick = [self loadChangeXByBrick:element];
+            [ret addBrick:brick];
+        }
+        else if ([element.name isEqualToString:@"Bricks.ComeToFrontBrick"])
+        {
+            ComeToFrontBrick *brick = [[ComeToFrontBrick alloc]init];
             [ret addBrick:brick];
         }
         else
