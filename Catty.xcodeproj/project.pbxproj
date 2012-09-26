@@ -361,8 +361,8 @@
 		B412ACF716133D680056B146 /* PlaySoundBrick */ = {
 			isa = PBXGroup;
 			children = (
-				B412ACF216133D5C0056B146 /* PlaySoundBrick.m */,
 				B412ACF316133D5C0056B146 /* PlaySoundBrick.h */,
+				B412ACF216133D5C0056B146 /* PlaySoundBrick.m */,
 			);
 			name = PlaySoundBrick;
 			sourceTree = "<group>";

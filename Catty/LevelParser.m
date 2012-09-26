@@ -28,6 +28,8 @@
 #import "ChangeSizeByNBrick.h"
 #import "BroadcastBrick.h"
 #import "ChangeXByBrick.h"
+#import "PlaySoundBrick.h"
+#import "StopAllSoundsBrick.h"
 
 @interface LevelParser()
 
@@ -292,6 +294,16 @@
             ChangeXByBrick *brick = [self loadChangeXByBrick:element];
             [ret addBrick:brick];
         }
+        else if ([element.name isEqualToString:@"Bricks.PlaySoundBrick"])
+        {
+            PlaySoundBrick *brick = [self loadSoundBrick:element];
+            [ret addBrick:brick];
+        }
+        else if ([element.name isEqualToString:@"Bricks.StopAllSoundsBrick"])
+        {
+            StopAllSoundsBrick *brick = [[StopAllSoundsBrick alloc] init];
+            [ret addBrick:brick];
+        }
         else
         {
             NSLog(@"PARSER: Unknown XML-tag . '%@'", element.name);
@@ -470,4 +482,22 @@
     
     return brick;
 }
+-(PlaySoundBrick*)loadSoundBrick:(GDataXMLElement*)gDataXMLElement
+{
+    
+    PlaySoundBrick *brick = [[PlaySoundBrick alloc]init];
+    
+    NSArray* res = [gDataXMLElement elementsForName:@"soundInfo"];
+    GDataXMLElement *soundInfo = (GDataXMLElement*)[res objectAtIndex:0];
+    
+    NSArray* resSoundInfo = [soundInfo elementsForName:@"fileName"];
+    GDataXMLElement *fileName = (GDataXMLElement*)[resSoundInfo objectAtIndex:0];
+    
+    NSLog(@"Sound Info: %@", fileName.stringValue);
+    brick.fileName = fileName.stringValue;
+    
+    return brick;
+}
+
+
 @end
