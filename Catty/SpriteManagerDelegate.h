@@ -7,11 +7,17 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <AVFoundation/AVAudioPlayer.h>
+
 
 @class Sprite;
 
 @protocol SpriteManagerDelegate <NSObject>
 
 -(void)bringToFrontSprite:(Sprite*)sprite;
+
+-(void)addSound:(AVAudioPlayer*)sound;
+
+-(void)stopAllSounds;
 
 @end

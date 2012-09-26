@@ -9,6 +9,7 @@
 #import <GLKit/GLKit.h>
 #import "enums.h"
 #import "SpriteManagerDelegate.h"
+#import <AVFoundation/AVAudioPlayer.h>
 
 
 #define SPRITE_IMAGE_FOLDER @"images"
@@ -54,7 +55,7 @@
 
 - (void)addCostume:(Costume*)costume;
 - (void)addCostumes:(NSArray*)costumesArray;
-- (void)addSound:(Sound*)sound;
+- (void)addSound:(AVAudioPlayer*)sound;
 - (void)addStartScript:(StartScript*)script;
 - (void)addWhenScript:(WhenScript*)script;
 - (void)addBroadcastScript:(Script*)script forMessage:(NSString*)message;
@@ -89,5 +90,6 @@
 - (void)comeToFront;
 - (void)changeSizeByN:(float)sizePercentageRate;
 - (void)changeXBy:(float)x;
+- (void)stopAllSounds;
 
 @end

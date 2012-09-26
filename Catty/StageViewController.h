@@ -8,6 +8,7 @@
 
 #import <GLKit/GLKit.h>
 #import "SpriteManagerDelegate.h"
+#import "SpriteManagerDelegate.h"
 
 //defines
 #define FRAMES_PER_SECOND 30
@@ -16,7 +17,7 @@
 @class Level;
 @class LevelLoadingInfo;
 
-@interface StageViewController : GLKViewController <GLKViewControllerDelegate, SpriteManagerDelegate>
+@interface StageViewController : GLKViewController <GLKViewControllerDelegate, SpriteManagerDelegate, AVAudioPlayerDelegate>
 
 @property (strong, nonatomic) LevelLoadingInfo *levelLoadingInfo;
 - (IBAction)backButtonPressed:(UIButton *)sender;

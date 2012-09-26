@@ -16,6 +16,7 @@
 #import "Util.h"
 #import "enums.h"
 
+
 // need CattyViewController to access FRAMES_PER_SECOND    TODO: change
 #import "CattyViewController.h"
 
@@ -207,9 +208,13 @@ typedef struct {
     self.costumesArray = [self.costumesArray arrayByAddingObjectsFromArray:costumesArray];
 }
 
-- (void)addSound:(Sound *)sound
+- (void)addSound:(AVAudioPlayer *)player
 {
-    self.soundsArray = [self.soundsArray arrayByAddingObject:sound];
+    //[self.soundsArray addObject:player];
+    //player.delegate = self;
+    //[player play];
+    
+    [self.spriteManagerDelegate addSound:player];
 }
 
 - (void)addStartScript:(StartScript *)script
@@ -243,6 +248,11 @@ typedef struct {
 -(void)decrementZIndexByOne
 {
     [self setZIndex:self.position.z-1];
+}
+
+-(void)stopAllSounds
+{
+    [self.spriteManagerDelegate stopAllSounds];
 }
 
 #pragma mark - costume index SETTER

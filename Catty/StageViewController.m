@@ -20,6 +20,7 @@
 
 @property (strong, nonatomic) EAGLContext *context;
 @property (strong, nonatomic) GLKBaseEffect *effect;
+@property (strong, nonatomic) NSMutableArray *soundsArray;
 
 @end
 
@@ -99,6 +100,18 @@
 {
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
+
+
+#pragma custom Getter/Setter
+
+- (NSMutableArray*)soundsArray
+{
+    if (_soundsArray == nil)
+        _soundsArray = [[NSMutableArray alloc] init];
+    
+    return _soundsArray;
+}
+
 
 #pragma mark - instance methods
 - (void)startLevel
@@ -230,6 +243,37 @@
     [sprites addObject:sprite];
     self.level.spritesArray = [NSArray arrayWithArray:sprites];
 }
+
+
+-(void)addSound:(AVAudioPlayer *)sound
+{
+    [self.soundsArray addObject:sound];
+    sound.delegate = self;
+    [sound play];
+}
+
+-(void)stopAllSounds
+{
+    for(AVAudioPlayer* player in self.soundsArray)
+    {
+        [player stop];
+    }
+    
+    [self.soundsArray removeAllObjects];
+}
+
+#pragma mark AVAudioPlayerDelegate
+
+- (void)audioPlayerDidFinishPlaying:(AVAudioPlayer *)player successfully:(BOOL)flag
+{
+    NSLog(@"Size: %d", [self.soundsArray count]);
+    [_soundsArray removeObject:player];
+    NSLog(@"Size: %d", [self.soundsArray count]);
+    
+}
+
+
+
 
 // back button on view
 - (IBAction)backButtonPressed:(UIButton *)sender {

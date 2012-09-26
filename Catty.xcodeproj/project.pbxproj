@@ -12,6 +12,11 @@
 		B40C723A15A88AF6005A8EC7 /* DataModelSpriteTests.m in Sources */ = {isa = PBXBuildFile; fileRef = B40C723915A88AF6005A8EC7 /* DataModelSpriteTests.m */; };
 		B40C723B15A88DFD005A8EC7 /* GLKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B4FDF32415A82C1000CBCF03 /* GLKit.framework */; };
 		B40C723F15A88E9E005A8EC7 /* kittycat.png in Resources */ = {isa = PBXBuildFile; fileRef = B40C723E15A88E9E005A8EC7 /* kittycat.png */; };
+		B412ACF416133D5C0056B146 /* PlaySoundBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = B412ACF216133D5C0056B146 /* PlaySoundBrick.m */; };
+		B412ACF516133D5C0056B146 /* PlaySoundBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = B412ACF216133D5C0056B146 /* PlaySoundBrick.m */; };
+		B412ACFA16133D7B0056B146 /* StopAllSoundsBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = B412ACF916133D7B0056B146 /* StopAllSoundsBrick.m */; };
+		B412ACFB16133D7B0056B146 /* StopAllSoundsBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = B412ACF916133D7B0056B146 /* StopAllSoundsBrick.m */; };
+		B412ACFE16133F2B0056B146 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B412ACFD16133F2B0056B146 /* AVFoundation.framework */; };
 		B415DC3915B9F8540076275E /* Util.m in Sources */ = {isa = PBXBuildFile; fileRef = B415DC3815B9F8540076275E /* Util.m */; };
 		B415DC3B15BAB86B0076275E /* defaultProject.xml in Resources */ = {isa = PBXBuildFile; fileRef = B415DC3A15BAB86B0076275E /* defaultProject.xml */; };
 		B415DC3C15BAB86B0076275E /* defaultProject.xml in Resources */ = {isa = PBXBuildFile; fileRef = B415DC3A15BAB86B0076275E /* defaultProject.xml */; };
@@ -122,6 +127,11 @@
 		B40C723815A88AF6005A8EC7 /* DataModelSpriteTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataModelSpriteTests.h; sourceTree = "<group>"; };
 		B40C723915A88AF6005A8EC7 /* DataModelSpriteTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataModelSpriteTests.m; sourceTree = "<group>"; };
 		B40C723E15A88E9E005A8EC7 /* kittycat.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = kittycat.png; sourceTree = "<group>"; };
+		B412ACF216133D5C0056B146 /* PlaySoundBrick.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlaySoundBrick.m; sourceTree = "<group>"; };
+		B412ACF316133D5C0056B146 /* PlaySoundBrick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlaySoundBrick.h; sourceTree = "<group>"; };
+		B412ACF816133D7B0056B146 /* StopAllSoundsBrick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StopAllSoundsBrick.h; sourceTree = "<group>"; };
+		B412ACF916133D7B0056B146 /* StopAllSoundsBrick.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StopAllSoundsBrick.m; sourceTree = "<group>"; };
+		B412ACFD16133F2B0056B146 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		B415DC3715B9F8540076275E /* Util.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Util.h; sourceTree = "<group>"; };
 		B415DC3815B9F8540076275E /* Util.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Util.m; sourceTree = "<group>"; };
 		B415DC3A15BAB86B0076275E /* defaultProject.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = defaultProject.xml; sourceTree = "<group>"; };
@@ -277,6 +287,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B412ACFE16133F2B0056B146 /* AVFoundation.framework in Frameworks */,
 				B4A9ADC7160AF29300DFA55B /* QuartzCore.framework in Frameworks */,
 				B43CF29B1609B5FC00E19CF3 /* libz.dylib in Frameworks */,
 				B4FDF31F15A82C1000CBCF03 /* UIKit.framework in Frameworks */,
@@ -345,6 +356,24 @@
 				B40C723E15A88E9E005A8EC7 /* kittycat.png */,
 			);
 			name = Images;
+			sourceTree = "<group>";
+		};
+		B412ACF716133D680056B146 /* PlaySoundBrick */ = {
+			isa = PBXGroup;
+			children = (
+				B412ACF216133D5C0056B146 /* PlaySoundBrick.m */,
+				B412ACF316133D5C0056B146 /* PlaySoundBrick.h */,
+			);
+			name = PlaySoundBrick;
+			sourceTree = "<group>";
+		};
+		B412ACFC16133D840056B146 /* StopAllSoundsBrick */ = {
+			isa = PBXGroup;
+			children = (
+				B412ACF816133D7B0056B146 /* StopAllSoundsBrick.h */,
+				B412ACF916133D7B0056B146 /* StopAllSoundsBrick.m */,
+			);
+			name = StopAllSoundsBrick;
 			sourceTree = "<group>";
 		};
 		B415DC3615B9F8450076275E /* Util */ = {
@@ -725,6 +754,7 @@
 		B4FDF31D15A82C1000CBCF03 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				B412ACFD16133F2B0056B146 /* AVFoundation.framework */,
 				B4A9ADC6160AF29300DFA55B /* QuartzCore.framework */,
 				B43CF29A1609B5FC00E19CF3 /* libz.dylib */,
 				B4FDF31E15A82C1000CBCF03 /* UIKit.framework */,
@@ -886,20 +916,22 @@
 		B4FDF38115A82F3F00CBCF03 /* Bricks */ = {
 			isa = PBXGroup;
 			children = (
-				CD46F918160A431000207178 /* ChangeXBy */,
-				CD85F54816099C3D007C38D1 /* ChangeSizeByN */,
-				CD85F53C160864DF007C38D1 /* ComeToFront */,
+				B415DC3F15BAC5A20076275E /* Brick */,
 				CD85F528160832FC007C38D1 /* BroadcastBrick */,
+				CD85F54816099C3D007C38D1 /* ChangeSizeByN */,
+				CD46F918160A431000207178 /* ChangeXBy */,
+				CD85F53C160864DF007C38D1 /* ComeToFront */,
+				B415DC4315BAC5C80076275E /* GlideToBrick */,
+				CD8FA5AD16063E8C00FC282F /* Hide */,
+				CD8FA5A81605D8B700FC282F /* NextCostumeBrick */,
+				B415DC4215BAC5C00076275E /* PlaceAtBrick */,
+				B412ACF716133D680056B146 /* PlaySoundBrick */,
+				B415DC4115BAC5B70076275E /* SetCostumeBrick */,
 				CD85F50F16077C42007C38D1 /* SetX */,
 				CD85F51116077C4E007C38D1 /* SetY */,
 				CD8FA5AE16063E9800FC282F /* Show */,
-				CD8FA5AD16063E8C00FC282F /* Hide */,
-				B415DC3F15BAC5A20076275E /* Brick */,
+				B412ACFC16133D840056B146 /* StopAllSoundsBrick */,
 				B415DC4015BAC5AE0076275E /* WaitBrick */,
-				B415DC4115BAC5B70076275E /* SetCostumeBrick */,
-				CD8FA5A81605D8B700FC282F /* NextCostumeBrick */,
-				B415DC4215BAC5C00076275E /* PlaceAtBrick */,
-				B415DC4315BAC5C80076275E /* GlideToBrick */,
 			);
 			name = Bricks;
 			sourceTree = "<group>";
@@ -1234,6 +1266,8 @@
 				B4A9ADD1160B05B800DFA55B /* ProjectBrowserBaseClassViewController.m in Sources */,
 				B438FC8D16108E5200D6B911 /* FeaturedProjectsViewController.m in Sources */,
 				B479E9271611A3F1000B1DFA /* FileManager.m in Sources */,
+				B412ACF416133D5C0056B146 /* PlaySoundBrick.m in Sources */,
+				B412ACFA16133D7B0056B146 /* StopAllSoundsBrick.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1250,6 +1284,8 @@
 				B4C4D9E1160C4A0D00E4FD19 /* CatrobatProjectTests.m in Sources */,
 				B479E9281611A3F1000B1DFA /* FileManager.m in Sources */,
 				B479E9301611A7C5000B1DFA /* FileManagerTests.m in Sources */,
+				B412ACF516133D5C0056B146 /* PlaySoundBrick.m in Sources */,
+				B412ACFB16133D7B0056B146 /* StopAllSoundsBrick.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
