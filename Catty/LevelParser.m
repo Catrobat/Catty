@@ -33,6 +33,7 @@
 #import "ComeToFrontBrick.h"
 #import "SetSizeToBrick.h"
 #import "LoopBrick.h"
+#import "RepeatBrick.h"
 
 @interface LevelParser()
 
@@ -307,6 +308,15 @@
         else if ([element.name isEqualToString:@"Bricks.ForeverBrick"])
         {
             [loopBrickList addObject:[[LoopBrick alloc]init]];
+        }
+        else if ([element.name isEqualToString:@"Bricks.RepeatBrick"])
+        {            
+            NSArray* res = [element elementsForName:@"timesToRepeat"];
+            GDataXMLElement *numberOfLoops = (GDataXMLElement*)[res objectAtIndex:0];
+            
+            NSLog(@"numOfLoops: %d", numberOfLoops.stringValue.intValue);
+            
+            [loopBrickList addObject:[[RepeatBrick alloc]initWithNumberOfLoops:numberOfLoops.stringValue.intValue]];
         }
         else if ([element.name isEqualToString:@"Bricks.LoopEndBrick"])
         {
