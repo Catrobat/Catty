@@ -8,11 +8,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Catty/Sprite.m"
-         timestampString = "370441282.908608"
+         timestampString = "370462421.632845"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "206"
-         endingLineNumber = "206"
+         startingLineNumber = "214"
+         endingLineNumber = "214"
          landmarkName = "-setProjectResolution:"
          landmarkType = "5">
       </FileBreakpoint>

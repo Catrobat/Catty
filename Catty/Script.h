@@ -22,6 +22,8 @@
 -(NSArray*)getAllBricks;
 
 -(NSString*)description;
--(void)executeForSprite:(Sprite*)sprite;
+
+-(BOOL)performNextBrickOnSprite:(Sprite*)sprite;    // return true   => script finished
+                                                    // return false  => bricks left
 
 @end

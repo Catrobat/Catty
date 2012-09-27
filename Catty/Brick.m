@@ -7,6 +7,7 @@
 //
 
 #import "Brick.h"
+#import "Script.h"
 
 @implementation Brick
 
@@ -18,7 +19,7 @@
 }
 
 //abstract method (!!!)
-- (void)performOnSprite:(Sprite *)sprite
+- (void)performOnSprite:(Sprite *)sprite fromScript:(Script*)script
 {
     @throw [NSException exceptionWithName:NSInternalInconsistencyException
                                    reason:[NSString stringWithFormat:@"You must override %@ in a subclass", NSStringFromSelector(_cmd)]

@@ -35,6 +35,7 @@
 #import "SetSizeToBrick.h"
 #import "LoopBrick.h"
 #import "RepeatBrick.h"
+#import "EndLoopBrick.h"
 #import "GoNStepsBackBrick.h"
 
 @interface LevelParser()
@@ -233,10 +234,7 @@
 {
     Script *ret = [[Script alloc] init];
     
-    NSArray *brickList = [gDataScript elementsForName:@"brickList"];
-
-    NSMutableArray *loopBrickList = [[NSMutableArray alloc]init];
-    
+    NSArray *brickList = [gDataScript elementsForName:@"brickList"];    
     
     NSArray *childs = [[brickList objectAtIndex:0] children];
     
@@ -311,23 +309,18 @@
         {
             brick = [self loadSetSizeToBrick:element];
         }
-        else if ([element.name isEqualToString:@"Bricks.ForeverBrick"])
-        {
-            [loopBrickList addObject:[[LoopBrick alloc]init]];
-        }
-        else if ([element.name isEqualToString:@"Bricks.RepeatBrick"])
-        {            
-            RepeatBrick *repeatBrick = [self loadRepeatBrick:element];
-            [loopBrickList addObject:repeatBrick];
-        }
-        else if ([element.name isEqualToString:@"Bricks.LoopEndBrick"])
-        {
-            if ([loopBrickList count] > 0)
-            {
-                [ret addBrick:[loopBrickList objectAtIndex:[loopBrickList count]-1]];
-                [loopBrickList removeObjectAtIndex:[loopBrickList count]-1];
-            }
-        }
+//        else if ([element.name isEqualToString:@"Bricks.ForeverBrick"])
+//        {
+//            brick = [[LoopBrick alloc]init];
+//        }
+//        else if ([element.name isEqualToString:@"Bricks.RepeatBrick"])
+//        {            
+//            brick = [self loadRepeatBrick:element];
+//        }
+//        else if ([element.name isEqualToString:@"Bricks.LoopEndBrick"])
+//        {
+//            brick = [[EndLoopBrick alloc]init];
+//        }
         else if ([element.name isEqualToString:@"Bricks.GoNStepsBackBrick"])
         {
             brick = [self loadGoNStepsBackBrick:element];
@@ -339,12 +332,7 @@
         }
         
         if (brick != nil) {
-            if ([loopBrickList count] <= 0) {
-                [ret addBrick:brick];
-            } else {
-                LoopBrick *loopBrick = (LoopBrick*)[loopBrickList objectAtIndex:[loopBrickList count]-1];
-                [loopBrick addBrick:brick];
-            }
+            [ret addBrick:brick];
         }
     }
     

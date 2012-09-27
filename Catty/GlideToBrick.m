@@ -29,9 +29,9 @@
 }
 
 #pragma mark - override
--(void)performOnSprite:(Sprite *)sprite
+-(void)performOnSprite:(Sprite *)sprite fromScript:(Script*)script
 {
-    [sprite glideToPosition:self.position withinDurationInMilliSecs:_durationInMilliSecs];
+    [sprite glideToPosition:self.position withinDurationInMilliSecs:_durationInMilliSecs fromScript:script];
 }
 
 #pragma mark - Description

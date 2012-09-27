@@ -22,8 +22,9 @@
     return self;
 }
 
--(BOOL)checkCondition
+-(BOOL)checkConditionAndDecrementLoopCounter
 {
+    self.numberOfLoops -= 1;
     return (self.numberOfLoops > 0);
 }
 

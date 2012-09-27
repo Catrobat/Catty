@@ -12,11 +12,11 @@
 
 @synthesize timeToWaitInMilliseconds = _timeToWaitInMilliseconds;
 
-- (void)performOnSprite:(Sprite *)sprite
+- (void)performOnSprite:(Sprite *)sprite fromScript:(Script*)script
 {
     NSLog(@"Performing: %@", self.description);
     
-    [sprite wait:[self.timeToWaitInMilliseconds intValue]];
+    [sprite wait:[self.timeToWaitInMilliseconds intValue] fromScript:script];
     
 //    float sleepTime = ((float)self.timeToWaitInMilliseconds.intValue)/1000;
 //    NSLog(@"wating for %f seconds", sleepTime);

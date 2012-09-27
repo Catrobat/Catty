@@ -8,12 +8,13 @@
 
 #import <UIKit/UIKit.h>
 #import "Sprite.h"
+@class Script;
 
 @interface Brick : NSObject
 
 //@property (strong, nonatomic) Sprite *sprite;
 
 - (NSString*)description;
-- (void)performOnSprite:(Sprite*)sprite;
+- (void)performOnSprite:(Sprite*)sprite fromScript:(Script*)script;
 
 @end

@@ -23,7 +23,7 @@
     return self;
 }
 
-- (void)performOnSprite:(Sprite *)sprite
+- (void)performOnSprite:(Sprite *)sprite fromScript:(Script*)script
 {
     NSLog(@"Performing: %@", self.description);
     

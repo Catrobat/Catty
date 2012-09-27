@@ -24,15 +24,15 @@
     self.bricks = [self.bricks arrayByAddingObject:brick];
 }
 
-- (void)performOnSprite:(Sprite *)sprite
+- (void)performOnSprite:(Sprite *)sprite fromScript:(Script*)script
 {
     NSLog(@"Performing: %@", self.description);
-    
-    if ([self checkCondition])
-        [sprite addLoopBricks:[self.bricks arrayByAddingObject:self]];
+//    
+//    if ([self checkCondition])
+//        [sprite addLoopBricks:[self.bricks arrayByAddingObject:self]];
 }
 
--(BOOL)checkCondition
+-(BOOL)checkConditionAndDecrementLoopCounter
 {
     return YES;
 }

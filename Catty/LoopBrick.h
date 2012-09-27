@@ -13,5 +13,6 @@
 @property (nonatomic, strong) NSArray *bricks;
 
 -(void)addBrick:(Brick*)brick;
+-(BOOL)checkConditionAndDecrementLoopCounter;
 
 @end
