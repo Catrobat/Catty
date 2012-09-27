@@ -225,7 +225,7 @@ typedef struct {
     //player.delegate = self;
     //[player play];
     
-    [self.spriteManagerDelegate addSound:player];
+    [self.spriteManagerDelegate addSound:player forSprite:self];
 }
 
 - (void)addStartScript:(StartScript *)script
@@ -580,6 +580,17 @@ typedef struct {
     self.scaleWidth  = sizeInPercentage / 100.0f;
     self.scaleHeight = sizeInPercentage / 100.0f;
     [self setSpriteSize];
+}
+
+
+- (void)setVolumeTo:(float)volume
+{
+    [self.spriteManagerDelegate setVolumeTo:volume forSprite:self];
+}
+
+-(void)changeVolumeBy:(float)percent
+{
+    [self.spriteManagerDelegate changeVolumeBy:percent forSprite:self];
 }
 
 #pragma mark - description

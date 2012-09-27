@@ -23,6 +23,11 @@
 		B415DC3C15BAB86B0076275E /* defaultProject.xml in Resources */ = {isa = PBXBuildFile; fileRef = B415DC3A15BAB86B0076275E /* defaultProject.xml */; };
 		B415DC4515BAE3CF0076275E /* projectcode.xml in Resources */ = {isa = PBXBuildFile; fileRef = B415DC4415BAE3CF0076275E /* projectcode.xml */; };
 		B415DC4615BAE3CF0076275E /* projectcode.xml in Resources */ = {isa = PBXBuildFile; fileRef = B415DC4415BAE3CF0076275E /* projectcode.xml */; };
+		B419691A16144E8A00AFC8C8 /* DataModelBricksTest.m in Sources */ = {isa = PBXBuildFile; fileRef = B419691916144E8A00AFC8C8 /* DataModelBricksTest.m */; };
+		B419691E1614530200AFC8C8 /* SetVolumeToBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = B419691D1614530200AFC8C8 /* SetVolumeToBrick.m */; };
+		B419691F1614530200AFC8C8 /* SetVolumeToBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = B419691D1614530200AFC8C8 /* SetVolumeToBrick.m */; };
+		B419692216147CD100AFC8C8 /* ChangeVolumeByBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = B419692116147CD100AFC8C8 /* ChangeVolumeByBrick.m */; };
+		B419692316147CD100AFC8C8 /* ChangeVolumeByBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = B419692116147CD100AFC8C8 /* ChangeVolumeByBrick.m */; };
 		B438FC8D16108E5200D6B911 /* FeaturedProjectsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B438FC8C16108E5200D6B911 /* FeaturedProjectsViewController.m */; };
 		B43CF2381608E0A000E19CF3 /* RecentProjectsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B43CF2371608E0A000E19CF3 /* RecentProjectsViewController.m */; };
 		B43CF23C1609926D00E19CF3 /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B43CF23B1609926D00E19CF3 /* RootViewController.m */; };
@@ -139,6 +144,12 @@
 		B415DC3A15BAB86B0076275E /* defaultProject.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = defaultProject.xml; sourceTree = "<group>"; };
 		B415DC3E15BABB4F0076275E /* enums.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = enums.h; sourceTree = "<group>"; };
 		B415DC4415BAE3CF0076275E /* projectcode.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = projectcode.xml; sourceTree = "<group>"; };
+		B419691816144E8A00AFC8C8 /* DataModelBricksTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataModelBricksTest.h; sourceTree = "<group>"; };
+		B419691916144E8A00AFC8C8 /* DataModelBricksTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataModelBricksTest.m; sourceTree = "<group>"; };
+		B419691C1614530200AFC8C8 /* SetVolumeToBrick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SetVolumeToBrick.h; sourceTree = "<group>"; };
+		B419691D1614530200AFC8C8 /* SetVolumeToBrick.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SetVolumeToBrick.m; sourceTree = "<group>"; };
+		B419692016147CD100AFC8C8 /* ChangeVolumeByBrick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChangeVolumeByBrick.h; sourceTree = "<group>"; };
+		B419692116147CD100AFC8C8 /* ChangeVolumeByBrick.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChangeVolumeByBrick.m; sourceTree = "<group>"; };
 		B438FC8B16108E5200D6B911 /* FeaturedProjectsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FeaturedProjectsViewController.h; sourceTree = "<group>"; };
 		B438FC8C16108E5200D6B911 /* FeaturedProjectsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FeaturedProjectsViewController.m; sourceTree = "<group>"; };
 		B43CF2361608E0A000E19CF3 /* RecentProjectsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecentProjectsViewController.h; sourceTree = "<group>"; };
@@ -321,6 +332,7 @@
 		B40C723415A88076005A8EC7 /* DataModelTests */ = {
 			isa = PBXGroup;
 			children = (
+				B419691616144E0A00AFC8C8 /* DataModelBricksTests */,
 				B40C723715A88AD8005A8EC7 /* DataModelSpriteTests */,
 				B40C723615A88949005A8EC7 /* DataModelCostumeTests */,
 			);
@@ -441,6 +453,33 @@
 				CDE35DEC15B4892D009A3524 /* GlideToBrick.m */,
 			);
 			name = GlideToBrick;
+			sourceTree = "<group>";
+		};
+		B419691616144E0A00AFC8C8 /* DataModelBricksTests */ = {
+			isa = PBXGroup;
+			children = (
+				B419691816144E8A00AFC8C8 /* DataModelBricksTest.h */,
+				B419691916144E8A00AFC8C8 /* DataModelBricksTest.m */,
+			);
+			name = DataModelBricksTests;
+			sourceTree = "<group>";
+		};
+		B419691B161452D000AFC8C8 /* SetVolumeToBrick */ = {
+			isa = PBXGroup;
+			children = (
+				B419691C1614530200AFC8C8 /* SetVolumeToBrick.h */,
+				B419691D1614530200AFC8C8 /* SetVolumeToBrick.m */,
+			);
+			name = SetVolumeToBrick;
+			sourceTree = "<group>";
+		};
+		B419692416147CD700AFC8C8 /* ChangeVolumeByBrick */ = {
+			isa = PBXGroup;
+			children = (
+				B419692016147CD100AFC8C8 /* ChangeVolumeByBrick.h */,
+				B419692116147CD100AFC8C8 /* ChangeVolumeByBrick.m */,
+			);
+			name = ChangeVolumeByBrick;
 			sourceTree = "<group>";
 		};
 		B438FC8916108E2F00D6B911 /* FeaturedProjectsViewController */ = {
@@ -923,9 +962,8 @@
 			children = (
 				B415DC3F15BAC5A20076275E /* Brick */,
 				CD85F528160832FC007C38D1 /* BroadcastBrick */,
-				CDBF7B891612F94D00600B62 /* SetSizeTo */,
-				CD46F918160A431000207178 /* ChangeXBy */,
 				CD85F54816099C3D007C38D1 /* ChangeSizeByN */,
+				B419692416147CD700AFC8C8 /* ChangeVolumeByBrick */,
 				CD46F918160A431000207178 /* ChangeXBy */,
 				CD85F53C160864DF007C38D1 /* ComeToFront */,
 				B415DC4315BAC5C80076275E /* GlideToBrick */,
@@ -934,11 +972,14 @@
 				B415DC4215BAC5C00076275E /* PlaceAtBrick */,
 				B412ACF716133D680056B146 /* PlaySoundBrick */,
 				B415DC4115BAC5B70076275E /* SetCostumeBrick */,
+				CDBF7B891612F94D00600B62 /* SetSizeTo */,
+				B419691B161452D000AFC8C8 /* SetVolumeToBrick */,
 				CD85F50F16077C42007C38D1 /* SetX */,
 				CD85F51116077C4E007C38D1 /* SetY */,
 				CD8FA5AE16063E9800FC282F /* Show */,
 				B412ACFC16133D840056B146 /* StopAllSoundsBrick */,
 				B415DC4015BAC5AE0076275E /* WaitBrick */,
+				CD46F918160A431000207178 /* ChangeXBy */,
 			);
 			name = Bricks;
 			sourceTree = "<group>";
@@ -1285,6 +1326,8 @@
 				B412ACF416133D5C0056B146 /* PlaySoundBrick.m in Sources */,
 				B412ACFA16133D7B0056B146 /* StopAllSoundsBrick.m in Sources */,
 				CDBF7B8D1612F96900600B62 /* SetSizeToBrick.m in Sources */,
+				B419691E1614530200AFC8C8 /* SetVolumeToBrick.m in Sources */,
+				B419692216147CD100AFC8C8 /* ChangeVolumeByBrick.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1303,6 +1346,9 @@
 				B479E9301611A7C5000B1DFA /* FileManagerTests.m in Sources */,
 				B412ACF516133D5C0056B146 /* PlaySoundBrick.m in Sources */,
 				B412ACFB16133D7B0056B146 /* StopAllSoundsBrick.m in Sources */,
+				B419691A16144E8A00AFC8C8 /* DataModelBricksTest.m in Sources */,
+				B419691F1614530200AFC8C8 /* SetVolumeToBrick.m in Sources */,
+				B419692316147CD100AFC8C8 /* ChangeVolumeByBrick.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

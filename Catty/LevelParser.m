@@ -32,6 +32,8 @@
 #import "StopAllSoundsBrick.h"
 #import "ComeToFrontBrick.h"
 #import "SetSizeToBrick.h"
+#import "SetVolumeToBrick.h"
+#import "ChangeVolumeByBrick.h"
 
 @interface LevelParser()
 
@@ -316,6 +318,16 @@
             SetSizeToBrick *brick = [self loadSetSizeToBrick:element];
             [ret addBrick:brick];
         }
+        else if ([element.name isEqualToString:@"Bricks.SetVolumeToBrick"])
+        {
+            SetVolumeToBrick *brick = [self loadSetVolumeToBrick:element];
+            [ret addBrick:brick];
+        }
+        else if ([element.name isEqualToString:@"Bricks.ChangeVolumeByBrick"])
+        {
+            ChangeVolumeByBrick *brick = [self loadChangeVolumeByBrick:element];
+            [ret addBrick:brick];
+        }
         else
         {
             NSLog(@"PARSER: Unknown XML-tag . '%@'", element.name);
@@ -521,6 +533,28 @@
     
     NSLog(@"setSizeToBrick: %f", size.stringValue.floatValue);
     brick.sizeInPercentage = size.stringValue.floatValue;
+    
+    return brick;
+}
+
+-(SetVolumeToBrick*)loadSetVolumeToBrick:(GDataXMLElement*)gDataXMLElement
+{
+    NSArray *sizes = [gDataXMLElement elementsForName:@"volume"];
+    GDataXMLElement *volume = (GDataXMLElement*)[sizes objectAtIndex:0];
+    
+    NSLog(@"setVolumeTo: %f", volume.stringValue.floatValue);
+    SetVolumeToBrick *brick = [[SetVolumeToBrick alloc]initWithVolumeInPercent:volume.stringValue.floatValue];
+    
+    return brick;    
+}
+
+-(ChangeVolumeByBrick*)loadChangeVolumeByBrick:(GDataXMLElement*)gDataXMLElement
+{
+    NSArray *sizes = [gDataXMLElement elementsForName:@"volume"];
+    GDataXMLElement *volume = (GDataXMLElement*)[sizes objectAtIndex:0];
+    
+    NSLog(@"changeVolumeBy: %f", volume.stringValue.floatValue);
+    ChangeVolumeByBrick *brick = [[ChangeVolumeByBrick alloc]initWithValueInPercent:volume.stringValue.floatValue];
     
     return brick;
 }
