@@ -13,9 +13,7 @@
 
 @property (nonatomic, strong) AVAudioPlayer *audioPlayer;
 
-
 @end
-
 
 
 @implementation PlaySoundBrick
@@ -27,12 +25,15 @@
 {
     NSLog(@"Performing: %@", self.description);
     
-    
-    if([self isValidSound:_fileName])
+    @try
     {
         NSString *soundPath = [NSString stringWithFormat:@"%@sounds/%@", [sprite projectPath], _fileName];
         AVAudioPlayer* audioPlayer = [[AVAudioPlayer alloc] initWithContentsOfURL:[NSURL fileURLWithPath:soundPath] error:NULL];
         [sprite addSound:audioPlayer];
+    }
+    @catch(NSException *ex)
+    {
+        NSLog(@"Unsupported audio format!");
     }
 }
 
@@ -42,17 +43,6 @@
 {
     return [NSString stringWithFormat:@"PlaySound (File Name: %@)", _fileName];
 }
-
-
-
-// TODO: Check for other file formats?
-// is there an easy way to check if valid Core Audio file?
--(BOOL)isValidSound:(NSString*)file
-{
-    return ![file hasSuffix:@"3gpp"];
-    
-}
-
 
 
 @end

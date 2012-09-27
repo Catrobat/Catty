@@ -95,5 +95,7 @@
 - (void)setSizeToPercentage:(float)sizeInPercentage;
 - (void)addLoopBricks:(NSArray*)bricks;
 - (void)goNStepsBack:(int)n;
+- (void)setVolumeTo:(float)volume;
+- (void)changeVolumeBy:(float)percent;
 
 @end

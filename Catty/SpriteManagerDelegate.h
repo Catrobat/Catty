@@ -17,8 +17,12 @@
 -(void)bringToFrontSprite:(Sprite*)sprite;
 -(void)bringNStepsBackSprite:(Sprite*)sprite numberOfSteps:(int)n;
 
--(void)addSound:(AVAudioPlayer*)sound;
+-(void)addSound:(AVAudioPlayer*)sound forSprite:(Sprite*)sprite;
 
 -(void)stopAllSounds;
+
+-(void)setVolumeTo:(float)volume forSprite:(Sprite*)sprite;
+
+-(void)changeVolumeBy:(float)percent forSprite:(Sprite*)sprite;
 
 @end

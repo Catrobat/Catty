@@ -36,6 +36,8 @@
 #import "LoopBrick.h"
 #import "RepeatBrick.h"
 #import "GoNStepsBackBrick.h"
+#import "SetVolumeToBrick.h"
+#import "ChangeVolumeByBrick.h"
 
 @interface LevelParser()
 
@@ -332,6 +334,16 @@
         {
             brick = [self loadGoNStepsBackBrick:element];
         }
+        else if ([element.name isEqualToString:@"Bricks.SetVolumeToBrick"])
+        {
+            SetVolumeToBrick *brick = [self loadSetVolumeToBrick:element];
+            [ret addBrick:brick];
+        }
+        else if ([element.name isEqualToString:@"Bricks.ChangeVolumeByBrick"])
+        {
+            ChangeVolumeByBrick *brick = [self loadChangeVolumeByBrick:element];
+            [ret addBrick:brick];
+        }
         else
         {
             NSLog(@"PARSER: Unknown XML-tag . '%@'", element.name);
@@ -589,6 +601,28 @@
     NSLog(@"numOfLoops: %d", numberOfLoops.stringValue.intValue);
     
     brick.n = numberOfLoops.stringValue.intValue;
+    
+    return brick;
+}
+
+-(SetVolumeToBrick*)loadSetVolumeToBrick:(GDataXMLElement*)gDataXMLElement
+{
+    NSArray *sizes = [gDataXMLElement elementsForName:@"volume"];
+    GDataXMLElement *volume = (GDataXMLElement*)[sizes objectAtIndex:0];
+    
+    NSLog(@"setVolumeTo: %f", volume.stringValue.floatValue);
+    SetVolumeToBrick *brick = [[SetVolumeToBrick alloc]initWithVolumeInPercent:volume.stringValue.floatValue];
+    
+    return brick;    
+}
+
+-(ChangeVolumeByBrick*)loadChangeVolumeByBrick:(GDataXMLElement*)gDataXMLElement
+{
+    NSArray *sizes = [gDataXMLElement elementsForName:@"volume"];
+    GDataXMLElement *volume = (GDataXMLElement*)[sizes objectAtIndex:0];
+    
+    NSLog(@"changeVolumeBy: %f", volume.stringValue.floatValue);
+    ChangeVolumeByBrick *brick = [[ChangeVolumeByBrick alloc]initWithValueInPercent:volume.stringValue.floatValue];
     
     return brick;
 }
