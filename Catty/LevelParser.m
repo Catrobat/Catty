@@ -30,6 +30,8 @@
 #import "ChangeXByBrick.h"
 #import "PlaySoundBrick.h"
 #import "StopAllSoundsBrick.h"
+#import "ComeToFrontBrick.h"
+#import "SetSizeToBrick.h"
 
 @interface LevelParser()
 
@@ -304,6 +306,16 @@
             StopAllSoundsBrick *brick = [[StopAllSoundsBrick alloc] init];
             [ret addBrick:brick];
         }
+        else if ([element.name isEqualToString:@"Bricks.ComeToFrontBrick"])
+        {
+            ComeToFrontBrick *brick = [[ComeToFrontBrick alloc]init];
+            [ret addBrick:brick];
+        }
+        else if ([element.name isEqualToString:@"Bricks.SetSizeToBrick"])
+        {
+            SetSizeToBrick *brick = [self loadSetSizeToBrick:element];
+            [ret addBrick:brick];
+        }
         else
         {
             NSLog(@"PARSER: Unknown XML-tag . '%@'", element.name);
@@ -482,6 +494,7 @@
     
     return brick;
 }
+
 -(PlaySoundBrick*)loadSoundBrick:(GDataXMLElement*)gDataXMLElement
 {
     
@@ -496,8 +509,20 @@
     NSLog(@"Sound Info: %@", fileName.stringValue);
     brick.fileName = fileName.stringValue;
     
-    return brick;
+	return brick;
 }
 
+-(SetSizeToBrick*)loadSetSizeToBrick:(GDataXMLElement*)gDataXMLElement
+{
+    SetSizeToBrick *brick = [[SetSizeToBrick alloc]init];
+    
+    NSArray *sizes = [gDataXMLElement elementsForName:@"size"];
+    GDataXMLElement *size = (GDataXMLElement*)[sizes objectAtIndex:0];
+    
+    NSLog(@"setSizeToBrick: %f", size.stringValue.floatValue);
+    brick.sizeInPercentage = size.stringValue.floatValue;
+    
+    return brick;
+}
 
 @end

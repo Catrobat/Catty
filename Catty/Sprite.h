@@ -91,5 +91,6 @@
 - (void)changeSizeByN:(float)sizePercentageRate;
 - (void)changeXBy:(float)x;
 - (void)stopAllSounds;
+- (void)setSizeToPercentage:(float)sizeInPercentage;
 
 @end
