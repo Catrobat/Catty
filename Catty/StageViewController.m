@@ -244,6 +244,24 @@
     self.level.spritesArray = [NSArray arrayWithArray:sprites];
 }
 
+-(void)bringNStepsBackSprite:(Sprite *)sprite numberOfSteps:(int)n
+{
+    NSMutableArray *sprites = [self.level.spritesArray mutableCopy];
+    
+    int oldIndex = [sprites indexOfObject:sprite];
+    [sprites removeObject:sprite];
+    
+    int newIndex = oldIndex - n;
+    if (newIndex < 1)
+        newIndex = 1;
+    if (newIndex >= [sprites count])    // negative n-value
+        newIndex = [sprites count] - 1;
+    
+    [sprites insertObject:sprite atIndex:newIndex];
+    
+    self.level.spritesArray = [NSArray arrayWithArray:sprites];
+}
+
 
 -(void)addSound:(AVAudioPlayer *)sound
 {

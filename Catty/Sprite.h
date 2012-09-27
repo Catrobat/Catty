@@ -93,5 +93,6 @@
 - (void)stopAllSounds;
 - (void)setSizeToPercentage:(float)sizeInPercentage;
 - (void)addLoopBricks:(NSArray*)bricks;
+- (void)goNStepsBack:(int)n;
 
 @end

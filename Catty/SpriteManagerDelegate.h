@@ -15,6 +15,7 @@
 @protocol SpriteManagerDelegate <NSObject>
 
 -(void)bringToFrontSprite:(Sprite*)sprite;
+-(void)bringNStepsBackSprite:(Sprite*)sprite numberOfSteps:(int)n;
 
 -(void)addSound:(AVAudioPlayer*)sound;
 

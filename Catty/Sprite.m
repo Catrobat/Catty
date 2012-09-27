@@ -562,6 +562,11 @@ typedef struct {
     [self.spriteManagerDelegate bringToFrontSprite:self];
 }
 
+-(void)goNStepsBack:(int)n
+{
+    [self.spriteManagerDelegate bringNStepsBackSprite:self numberOfSteps:n];
+}
+
 -(void)changeSizeByN:(float)sizePercentageRate
 {
     self.scaleWidth  += sizePercentageRate / 100.0f;

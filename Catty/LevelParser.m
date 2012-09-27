@@ -34,6 +34,7 @@
 #import "SetSizeToBrick.h"
 #import "LoopBrick.h"
 #import "RepeatBrick.h"
+#import "GoNStepsBackBrick.h"
 
 @interface LevelParser()
 
@@ -311,12 +312,8 @@
         }
         else if ([element.name isEqualToString:@"Bricks.RepeatBrick"])
         {            
-            NSArray* res = [element elementsForName:@"timesToRepeat"];
-            GDataXMLElement *numberOfLoops = (GDataXMLElement*)[res objectAtIndex:0];
-            
-            NSLog(@"numOfLoops: %d", numberOfLoops.stringValue.intValue);
-            
-            [loopBrickList addObject:[[RepeatBrick alloc]initWithNumberOfLoops:numberOfLoops.stringValue.intValue]];
+            RepeatBrick *repeatBrick = [self loadRepeatBrick:element];
+            [loopBrickList addObject:repeatBrick];
         }
         else if ([element.name isEqualToString:@"Bricks.LoopEndBrick"])
         {
@@ -325,6 +322,10 @@
                 [ret addBrick:[loopBrickList objectAtIndex:[loopBrickList count]-1]];
                 [loopBrickList removeObjectAtIndex:[loopBrickList count]-1];
             }
+        }
+        else if ([element.name isEqualToString:@"Bricks.GoNStepsBackBrick"])
+        {
+            brick = [self loadGoNStepsBackBrick:element];
         }
         else
         {
@@ -541,6 +542,34 @@
     
     NSLog(@"setSizeToBrick: %f", size.stringValue.floatValue);
     brick.sizeInPercentage = size.stringValue.floatValue;
+    
+    return brick;
+}
+
+-(RepeatBrick*)loadRepeatBrick:(GDataXMLElement*)gDataXMLElement
+{
+    RepeatBrick *brick = [[RepeatBrick alloc]init];
+    
+    NSArray* res = [gDataXMLElement elementsForName:@"timesToRepeat"];
+    GDataXMLElement *numberOfLoops = (GDataXMLElement*)[res objectAtIndex:0];
+    
+    NSLog(@"numOfLoops: %d", numberOfLoops.stringValue.intValue);
+    
+    brick.numberOfLoops = numberOfLoops.stringValue.intValue;
+    
+    return brick;
+}
+
+-(GoNStepsBackBrick*)loadGoNStepsBackBrick:(GDataXMLElement*)gDataXMLElement
+{
+    GoNStepsBackBrick *brick = [[GoNStepsBackBrick alloc]init];
+    
+    NSArray* steps = [gDataXMLElement elementsForName:@"steps"];
+    GDataXMLElement *numberOfLoops = (GDataXMLElement*)[steps objectAtIndex:0];
+    
+    NSLog(@"numOfLoops: %d", numberOfLoops.stringValue.intValue);
+    
+    brick.n = numberOfLoops.stringValue.intValue;
     
     return brick;
 }
