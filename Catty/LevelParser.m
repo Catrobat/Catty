@@ -32,6 +32,8 @@
 #import "StopAllSoundsBrick.h"
 #import "ComeToFrontBrick.h"
 #import "SetSizeToBrick.h"
+#import "LoopBrick.h"
+#import "RepeatBrick.h"
 
 @interface LevelParser()
 
@@ -231,94 +233,112 @@
     
     NSArray *brickList = [gDataScript elementsForName:@"brickList"];
 
+    NSMutableArray *loopBrickList = [[NSMutableArray alloc]init];
+    
     
     NSArray *childs = [[brickList objectAtIndex:0] children];
     
     for (GDataXMLElement *element in childs)
     {
+        Brick *brick = nil;
         if ([element.name isEqualToString:@"Bricks.SetCostumeBrick"])
         {
-            SetCostumeBrick *brick = [self loadSetCostumeBrick:element];
-            [ret addBrick:brick];
+            brick = [self loadSetCostumeBrick:element];
         }
         else if ([element.name isEqualToString:@"Bricks.WaitBrick"])
         {
-            WaitBrick *brick = [self loadWaitBrick:element];
-            [ret addBrick:brick];
+            brick = [self loadWaitBrick:element];
         }
         else if ([element.name isEqualToString:@"Bricks.PlaceAtBrick"])
         {
-            PlaceAtBrick *brick = [self loadPlaceAtBrick:element];
-            [ret addBrick:brick];
+            brick = [self loadPlaceAtBrick:element];
         }
         else if ([element.name isEqualToString:@"Bricks.GlideToBrick"])
         {
-            GlideToBrick *brick = [self loadGlideToBrick:element];
-            [ret addBrick:brick];
+            brick = [self loadGlideToBrick:element];
         }
         else if ([element.name isEqualToString:@"Bricks.ShowBrick"])
         {
-            ShowBrick *brick = [[ShowBrick alloc]init];
-            [ret addBrick:brick];
+            brick = [[ShowBrick alloc]init];
         }
         else if ([element.name isEqualToString:@"Bricks.HideBrick"])
         {
-            HideBrick *brick = [[HideBrick alloc]init];
-            [ret addBrick:brick];
+            brick = [[HideBrick alloc]init];
         }
         else if ([element.name isEqualToString:@"Bricks.NextCostumeBrick"])
         {
-            NextCostumeBrick *brick = [[NextCostumeBrick alloc]init];
-            [ret addBrick:brick];
+            brick = [[NextCostumeBrick alloc]init];
         }
         else if ([element.name isEqualToString:@"Bricks.SetXBrick"])
         {
-            SetXBrick *brick = [self loadSetXBrick:element];
-            [ret addBrick:brick];
+            brick = [self loadSetXBrick:element];
         }
         else if ([element.name isEqualToString:@"Bricks.SetYBrick"])
         {
-            SetYBrick *brick = [self loadSetYBrick:element];
-            [ret addBrick:brick];
+            brick = [self loadSetYBrick:element];
         }
         else if ([element.name isEqualToString:@"Bricks.ChangeSizeByNBrick"])
         {
-            ChangeSizeByNBrick *brick = [self loadChangeSizeByNBrick:element];
-            [ret addBrick:brick];
+            brick = [self loadChangeSizeByNBrick:element];
         }
         else if ([element.name isEqualToString:@"Bricks.BroadcastBrick"])
         {
-            BroadcastBrick *brick = [self loadBroadcastBrick:element];
-            [ret addBrick:brick];
+            brick = [self loadBroadcastBrick:element];
         }
         else if ([element.name isEqualToString:@"Bricks.ChangeXByBrick"])
         {
-            ChangeXByBrick *brick = [self loadChangeXByBrick:element];
-            [ret addBrick:brick];
+            brick = [self loadChangeXByBrick:element];
         }
         else if ([element.name isEqualToString:@"Bricks.PlaySoundBrick"])
         {
-            PlaySoundBrick *brick = [self loadSoundBrick:element];
-            [ret addBrick:brick];
+            brick = [self loadSoundBrick:element];
         }
         else if ([element.name isEqualToString:@"Bricks.StopAllSoundsBrick"])
         {
-            StopAllSoundsBrick *brick = [[StopAllSoundsBrick alloc] init];
-            [ret addBrick:brick];
+            brick = [[StopAllSoundsBrick alloc] init];
         }
         else if ([element.name isEqualToString:@"Bricks.ComeToFrontBrick"])
         {
-            ComeToFrontBrick *brick = [[ComeToFrontBrick alloc]init];
-            [ret addBrick:brick];
+            brick = [[ComeToFrontBrick alloc]init];
         }
         else if ([element.name isEqualToString:@"Bricks.SetSizeToBrick"])
         {
-            SetSizeToBrick *brick = [self loadSetSizeToBrick:element];
-            [ret addBrick:brick];
+            brick = [self loadSetSizeToBrick:element];
+        }
+        else if ([element.name isEqualToString:@"Bricks.ForeverBrick"])
+        {
+            [loopBrickList addObject:[[LoopBrick alloc]init]];
+        }
+        else if ([element.name isEqualToString:@"Bricks.RepeatBrick"])
+        {            
+            NSArray* res = [element elementsForName:@"timesToRepeat"];
+            GDataXMLElement *numberOfLoops = (GDataXMLElement*)[res objectAtIndex:0];
+            
+            NSLog(@"numOfLoops: %d", numberOfLoops.stringValue.intValue);
+            
+            [loopBrickList addObject:[[RepeatBrick alloc]initWithNumberOfLoops:numberOfLoops.stringValue.intValue]];
+        }
+        else if ([element.name isEqualToString:@"Bricks.LoopEndBrick"])
+        {
+            if ([loopBrickList count] > 0)
+            {
+                [ret addBrick:[loopBrickList objectAtIndex:[loopBrickList count]-1]];
+                [loopBrickList removeObjectAtIndex:[loopBrickList count]-1];
+            }
         }
         else
         {
             NSLog(@"PARSER: Unknown XML-tag . '%@'", element.name);
+            brick = nil;
+        }
+        
+        if (brick != nil) {
+            if ([loopBrickList count] <= 0) {
+                [ret addBrick:brick];
+            } else {
+                LoopBrick *loopBrick = (LoopBrick*)[loopBrickList objectAtIndex:[loopBrickList count]-1];
+                [loopBrick addBrick:brick];
+            }
         }
     }
     

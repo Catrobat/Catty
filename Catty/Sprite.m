@@ -582,6 +582,11 @@ typedef struct {
     [self setSpriteSize];
 }
 
+-(void)addLoopBricks:(NSArray *)bricks
+{
+    self.brickQueue = [NSMutableArray arrayWithArray:[bricks arrayByAddingObjectsFromArray:self.brickQueue]];
+}
+
 #pragma mark - description
 - (NSString*)description
 {
