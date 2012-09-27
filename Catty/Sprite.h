@@ -90,6 +90,7 @@
 - (void)comeToFront;
 - (void)changeSizeByN:(float)sizePercentageRate;
 - (void)changeXBy:(float)x;
+- (void)changeYBy:(float)y;
 - (void)stopAllSounds;
 - (void)setSizeToPercentage:(float)sizeInPercentage;
 - (void)addLoopBricks:(NSArray*)bricks;

@@ -111,6 +111,7 @@
 		CD922D6F16143BF50039C53A /* LoopBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = CD922D6E16143BF50039C53A /* LoopBrick.m */; };
 		CD922D7216144C870039C53A /* RepeatBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = CD922D7116144C870039C53A /* RepeatBrick.m */; };
 		CD922D87161454AD0039C53A /* GoNStepsBackBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = CD922D86161454AD0039C53A /* GoNStepsBackBrick.m */; };
+		CD922D8B16145CED0039C53A /* ChangeYByBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = CD922D8A16145CED0039C53A /* ChangeYByBrick.m */; };
 		CD9438AB15DBAFC7002E6375 /* defaultProject in Resources */ = {isa = PBXBuildFile; fileRef = CD9438AA15DBAFC7002E6375 /* defaultProject */; };
 		CDBF7B8D1612F96900600B62 /* SetSizeToBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = CDBF7B8C1612F96900600B62 /* SetSizeToBrick.m */; };
 		CDE35DED15B4892D009A3524 /* GlideToBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = CDE35DEC15B4892D009A3524 /* GlideToBrick.m */; };
@@ -288,6 +289,8 @@
 		CD922D7116144C870039C53A /* RepeatBrick.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RepeatBrick.m; sourceTree = "<group>"; };
 		CD922D85161454AD0039C53A /* GoNStepsBackBrick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GoNStepsBackBrick.h; sourceTree = "<group>"; };
 		CD922D86161454AD0039C53A /* GoNStepsBackBrick.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GoNStepsBackBrick.m; sourceTree = "<group>"; };
+		CD922D8916145CED0039C53A /* ChangeYByBrick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChangeYByBrick.h; sourceTree = "<group>"; };
+		CD922D8A16145CED0039C53A /* ChangeYByBrick.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChangeYByBrick.m; sourceTree = "<group>"; };
 		CD9438AA15DBAFC7002E6375 /* defaultProject */ = {isa = PBXFileReference; lastKnownFileType = folder; name = defaultProject; path = Projects/defaultProject; sourceTree = SOURCE_ROOT; };
 		CDBF7B8B1612F96900600B62 /* SetSizeToBrick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SetSizeToBrick.h; sourceTree = "<group>"; };
 		CDBF7B8C1612F96900600B62 /* SetSizeToBrick.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SetSizeToBrick.m; sourceTree = "<group>"; };
@@ -934,6 +937,7 @@
 				CD85F528160832FC007C38D1 /* BroadcastBrick */,
 				CD85F54816099C3D007C38D1 /* ChangeSizeByN */,
 				CD46F918160A431000207178 /* ChangeXBy */,
+				CD922D8816145CCC0039C53A /* ChangeYBy */,
 				CD85F53C160864DF007C38D1 /* ComeToFront */,
 				B415DC4315BAC5C80076275E /* GlideToBrick */,
 				CD922D83161454970039C53A /* GoNStepsBack */,
@@ -1121,6 +1125,15 @@
 				CD922D86161454AD0039C53A /* GoNStepsBackBrick.m */,
 			);
 			name = GoNStepsBack;
+			sourceTree = "<group>";
+		};
+		CD922D8816145CCC0039C53A /* ChangeYBy */ = {
+			isa = PBXGroup;
+			children = (
+				CD922D8916145CED0039C53A /* ChangeYByBrick.h */,
+				CD922D8A16145CED0039C53A /* ChangeYByBrick.m */,
+			);
+			name = ChangeYBy;
 			sourceTree = "<group>";
 		};
 		CDBF7B891612F94D00600B62 /* SetSizeTo */ = {
@@ -1319,6 +1332,7 @@
 				CD922D6F16143BF50039C53A /* LoopBrick.m in Sources */,
 				CD922D7216144C870039C53A /* RepeatBrick.m in Sources */,
 				CD922D87161454AD0039C53A /* GoNStepsBackBrick.m in Sources */,
+				CD922D8B16145CED0039C53A /* ChangeYByBrick.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

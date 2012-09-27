@@ -28,6 +28,7 @@
 #import "ChangeSizeByNBrick.h"
 #import "BroadcastBrick.h"
 #import "ChangeXByBrick.h"
+#import "ChangeYByBrick.h"
 #import "PlaySoundBrick.h"
 #import "StopAllSoundsBrick.h"
 #import "ComeToFrontBrick.h"
@@ -290,6 +291,10 @@
         {
             brick = [self loadChangeXByBrick:element];
         }
+        else if ([element.name isEqualToString:@"Bricks.ChangeYByBrick"])
+        {
+            brick = [self loadChangeYByBrick:element];
+        }
         else if ([element.name isEqualToString:@"Bricks.PlaySoundBrick"])
         {
             brick = [self loadSoundBrick:element];
@@ -515,6 +520,20 @@
     
     return brick;
 }
+
+-(ChangeYByBrick*)loadChangeYByBrick:(GDataXMLElement*)gDataXMLElement
+{
+    ChangeYByBrick *brick = [[ChangeYByBrick alloc]init];
+    
+    NSArray *ys = [gDataXMLElement elementsForName:@"yMovement"];
+    GDataXMLElement *y = (GDataXMLElement*)[ys objectAtIndex:0];
+    
+    NSLog(@"broadcastBrick: %d", y.stringValue.intValue);
+    brick.y = y.stringValue.intValue;
+    
+    return brick;
+}
+
 
 -(PlaySoundBrick*)loadSoundBrick:(GDataXMLElement*)gDataXMLElement
 {

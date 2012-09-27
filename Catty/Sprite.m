@@ -580,6 +580,12 @@ typedef struct {
     self.position = GLKVector3Make(self.position.x + x, self.position.y, self.position.z);
 }
 
+-(void)changeYBy:(float)y
+{
+    self.position = GLKVector3Make(self.position.x, self.position.y + y, self.position.z);
+}
+
+
 -(void)setSizeToPercentage:(float)sizeInPercentage
 {
     self.scaleWidth  = sizeInPercentage / 100.0f;
