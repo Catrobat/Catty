@@ -168,6 +168,14 @@
                 NSLog(@"  %@", [brick description]);
             }
         }
+        for (Script *script in [sprite.broadcastScripts allValues]) {
+            NSLog(@" ");
+            NSLog(@"BroadcastScript:");
+            for (Brick *brick in [script getAllBricks]) {
+                NSLog(@"  %@", [brick description]);
+            }
+        }
+
         // end debug
     }
 }
