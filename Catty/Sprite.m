@@ -69,6 +69,9 @@ typedef struct {
 @property (assign, nonatomic) float scaleWidth;     // scale width  of image according to bricks (e.g. SetSizeTo-brick)
 @property (assign, nonatomic) float scaleHeight;    // scale height of image according to bricks (e.g. SetSizeTo-brick)
 
+@property (assign, nonatomic) float xOffset;        // black border, if proportions are different (project-xml-resolution vs. screen-resolution)
+@property (assign, nonatomic) float yOffset;
+
 
 @property (atomic, strong) NSMutableArray *brickQueue;
 @property (strong, nonatomic) PositionAtTime *nextPosition;
@@ -103,6 +106,8 @@ typedef struct {
 @synthesize scaleFactor = _scaleFactor;
 @synthesize scaleWidth  = _scaleWidth;
 @synthesize scaleHeight = _scaleHeight;
+@synthesize xOffset = _xOffset;
+@synthesize yOffset = _yOffset;
 @synthesize quad = _quad;
 @synthesize textureInfo = _textureInfo;
 @synthesize brickQueue = _brickQueue;
@@ -203,6 +208,10 @@ typedef struct {
     float scaleY = [UIScreen mainScreen].bounds.size.height / projectResolution.height;
     if (scaleY < scaleX)
         self.scaleFactor = scaleY;
+    
+    self.xOffset = ([UIScreen mainScreen].bounds.size.width  - projectResolution.width ) / 2.0f;
+    self.yOffset = ([UIScreen mainScreen].bounds.size.height - projectResolution.height) / 2.0f;
+    
     NSLog(@"Scale screen size:");
     NSLog(@"  Device:    %f / %f", [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height);
     NSLog(@"  Project:   %f / %f", projectResolution.width, projectResolution.height);
@@ -647,8 +656,12 @@ typedef struct {
 {
     CGSize scaledContentSize = CGSizeMake(self.contentSize.width * self.scaleFactor, self.contentSize.height * self.scaleFactor);
     
-    float x = self.position.x + [UIScreen mainScreen].bounds.size.width/2 - scaledContentSize.width/2;
-    float y = self.position.y + [UIScreen mainScreen].bounds.size.height/2 - scaledContentSize.height/2;
+//    float x = self.position.x + [UIScreen mainScreen].bounds.size.width/2 - scaledContentSize.width/2;
+//    float y = self.position.y + [UIScreen mainScreen].bounds.size.height/2 - scaledContentSize.height/2;
+    
+    float x = self.position.x * self.scaleFactor + [UIScreen mainScreen].bounds.size.width /2.0f - scaledContentSize.width /2.0f;
+    float y = self.position.y * self.scaleFactor + [UIScreen mainScreen].bounds.size.height/2.0f - scaledContentSize.height/2.0f;
+
     
     CGRect rect = CGRectMake(x, y, scaledContentSize.width, scaledContentSize.height);
     return rect;

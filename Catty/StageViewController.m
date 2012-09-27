@@ -215,7 +215,7 @@
     CGRect tapRect = CGRectMake(touchLocation.x, touchLocation.y, width, height);
     
     //depth check
-    float zIndex = 0;
+//    float zIndex = 0;
     Sprite *foregroundSprite = nil;
     
     //check if a collision (tap) occured
@@ -223,9 +223,9 @@
     {
 
         
-        if(CGRectIntersectsRect(sprite.boundingBox, tapRect) && [sprite getZIndex] >= zIndex)
+        if(CGRectIntersectsRect(sprite.boundingBox, tapRect))// && [sprite getZIndex] >= zIndex)    // order in array is sprite-z-index
         {
-            zIndex = [sprite getZIndex];
+//            zIndex = [sprite getZIndex];
             foregroundSprite = sprite;
         }
     }
