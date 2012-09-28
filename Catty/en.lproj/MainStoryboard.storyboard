@@ -331,8 +331,8 @@
         </scene>
     </scenes>
     <resources>
-        <image name="back@2x.png" width="16" height="16"/>
-        <image name="play@2x.png" width="16" height="16"/>
+        <image name="back@2x.png" width="86" height="112"/>
+        <image name="play@2x.png" width="136" height="181"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <nil key="statusBar"/>
