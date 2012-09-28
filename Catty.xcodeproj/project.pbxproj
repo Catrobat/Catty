@@ -117,6 +117,8 @@
 		CD922D7216144C870039C53A /* RepeatBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = CD922D7116144C870039C53A /* RepeatBrick.m */; };
 		CD922D87161454AD0039C53A /* GoNStepsBackBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = CD922D86161454AD0039C53A /* GoNStepsBackBrick.m */; };
 		CD922D8B16145CED0039C53A /* ChangeYByBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = CD922D8A16145CED0039C53A /* ChangeYByBrick.m */; };
+		CD922D951614AC960039C53A /* tmp.png in Resources */ = {isa = PBXBuildFile; fileRef = CD922D941614AC960039C53A /* tmp.png */; };
+		CD922D991614C5260039C53A /* EndLoopBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = CD922D981614C5260039C53A /* EndLoopBrick.m */; };
 		CD9438AB15DBAFC7002E6375 /* defaultProject in Resources */ = {isa = PBXBuildFile; fileRef = CD9438AA15DBAFC7002E6375 /* defaultProject */; };
 		CDBF7B8D1612F96900600B62 /* SetSizeToBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = CDBF7B8C1612F96900600B62 /* SetSizeToBrick.m */; };
 		CDE35DED15B4892D009A3524 /* GlideToBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = CDE35DEC15B4892D009A3524 /* GlideToBrick.m */; };
@@ -302,6 +304,9 @@
 		CD922D86161454AD0039C53A /* GoNStepsBackBrick.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GoNStepsBackBrick.m; sourceTree = "<group>"; };
 		CD922D8916145CED0039C53A /* ChangeYByBrick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChangeYByBrick.h; sourceTree = "<group>"; };
 		CD922D8A16145CED0039C53A /* ChangeYByBrick.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChangeYByBrick.m; sourceTree = "<group>"; };
+		CD922D941614AC960039C53A /* tmp.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tmp.png; sourceTree = "<group>"; };
+		CD922D971614C5260039C53A /* EndLoopBrick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EndLoopBrick.h; sourceTree = "<group>"; };
+		CD922D981614C5260039C53A /* EndLoopBrick.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EndLoopBrick.m; sourceTree = "<group>"; };
 		CD9438AA15DBAFC7002E6375 /* defaultProject */ = {isa = PBXFileReference; lastKnownFileType = folder; name = defaultProject; path = Projects/defaultProject; sourceTree = SOURCE_ROOT; };
 		CDBF7B8B1612F96900600B62 /* SetSizeToBrick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SetSizeToBrick.h; sourceTree = "<group>"; };
 		CDBF7B8C1612F96900600B62 /* SetSizeToBrick.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SetSizeToBrick.m; sourceTree = "<group>"; };
@@ -1002,6 +1007,7 @@
 		B4FDF38C15A82FB200CBCF03 /* TEMP */ = {
 			isa = PBXGroup;
 			children = (
+				CD922D941614AC960039C53A /* tmp.png */,
 				CD85F55D1609AED0007C38D1 /* rocket */,
 				CD9438AA15DBAFC7002E6375 /* defaultProject */,
 			);
@@ -1155,6 +1161,8 @@
 				CD922D6E16143BF50039C53A /* LoopBrick.m */,
 				CD922D7016144C870039C53A /* RepeatBrick.h */,
 				CD922D7116144C870039C53A /* RepeatBrick.m */,
+				CD922D971614C5260039C53A /* EndLoopBrick.h */,
+				CD922D981614C5260039C53A /* EndLoopBrick.m */,
 			);
 			name = LoopBricks;
 			sourceTree = "<group>";
@@ -1278,6 +1286,7 @@
 				B4A0C5541611CE4100A28F6A /* play@2x.png in Resources */,
 				B4A0C5581611CEE200A28F6A /* back.png in Resources */,
 				B4A0C5591611CEE200A28F6A /* back@2x.png in Resources */,
+				CD922D951614AC960039C53A /* tmp.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1376,6 +1385,7 @@
 				CD922D8B16145CED0039C53A /* ChangeYByBrick.m in Sources */,
 				B419691E1614530200AFC8C8 /* SetVolumeToBrick.m in Sources */,
 				B419692216147CD100AFC8C8 /* ChangeVolumeByBrick.m in Sources */,
+				CD922D991614C5260039C53A /* EndLoopBrick.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -15,6 +15,7 @@
 #import "WhenScript.h"
 #import "WaitBrick.h"
 #import "RetailParser.h"
+#import "Util.h"
 
 //debug
 #import "Costume.h"
@@ -122,24 +123,32 @@
     
     // DEBUG
     
-//    TestParser *testparser = [[TestParser alloc]init];
-//    projectName = @"defaultProject";
-//    self.level = [testparser generateDebugLevel_GlideTo];
+    TestParser *testparser = [[TestParser alloc]init];
+    projectName = @"defaultProject";
+    self.level = [testparser generateDebugLevel_GlideTo];
 //    self.level = [testparser generateDebugLevel_nextCostume];
 //    self.level = [testparser generateDebugLevel_HideShow];
 //    self.level = [testparser generateDebugLevel_SetXY];
 //    self.level = [testparser generateDebugLevel_broadcast];
 //    self.level = [testparser generateDebugLevel_comeToFront];
 //    self.level = [testparser generateDebugLevel_changeSizeByN];
-    
+//    self.level = [testparser generateDebugLevel_parallelScripts];
+//    self.level = [testparser generateDebugLevel_loops];
     // DEBUG END
+    
+//    NSString *pathToImage = [NSString stringWithFormat:@"%@/defaultProject/images/%@", [Util applicationDocumentsDirectory], projectName];
+//    NSString *path = [NSString stringWithFormat:@"/%@/%@/%@", self.projectName, SPRITE_IMAGE_FOLDER, fileName];
+//    NSString *pathToImage = [[NSBundle mainBundle] pathForResource:path ofType:nil];
+
+    path = @"/Users/Mattias/Library/Application Support/iPhone Simulator/6.0/Applications/C2462BB6-83A6-4E9E-AD18-703B198DF6B0/Catty.app/defaultProject/";
     
     //setting effect
     for (Sprite *sprite in self.level.spritesArray)
     {
         sprite.effect = self.effect;
         sprite.spriteManagerDelegate = self;
-//        sprite.projectName = projectName;
+        sprite.projectPath = path;
+        //        sprite.projectName = projectName;
         
         // debug:
         NSLog(@"----------------------");
@@ -158,6 +167,14 @@
                 NSLog(@"  %@", [brick description]);
             }
         }
+        for (Script *script in [sprite.broadcastScripts allValues]) {
+            NSLog(@" ");
+            NSLog(@"BroadcastScript:");
+            for (Brick *brick in [script getAllBricks]) {
+                NSLog(@"  %@", [brick description]);
+            }
+        }
+
         // end debug
     }
     

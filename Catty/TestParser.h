@@ -24,4 +24,6 @@
 -(Level*)generateDebugLevel_broadcast;
 -(Level*)generateDebugLevel_comeToFront;
 -(Level*)generateDebugLevel_changeSizeByN;
+-(Level*)generateDebugLevel_parallelScripts;
+-(Level*)generateDebugLevel_loops;
 @end

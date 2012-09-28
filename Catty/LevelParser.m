@@ -35,6 +35,7 @@
 #import "SetSizeToBrick.h"
 #import "LoopBrick.h"
 #import "RepeatBrick.h"
+#import "EndLoopBrick.h"
 #import "GoNStepsBackBrick.h"
 #import "SetVolumeToBrick.h"
 #import "ChangeVolumeByBrick.h"
@@ -235,10 +236,7 @@
 {
     Script *ret = [[Script alloc] init];
     
-    NSArray *brickList = [gDataScript elementsForName:@"brickList"];
-
-    NSMutableArray *loopBrickList = [[NSMutableArray alloc]init];
-    
+    NSArray *brickList = [gDataScript elementsForName:@"brickList"];    
     
     NSArray *childs = [[brickList objectAtIndex:0] children];
     
@@ -315,20 +313,15 @@
         }
         else if ([element.name isEqualToString:@"Bricks.ForeverBrick"])
         {
-            [loopBrickList addObject:[[LoopBrick alloc]init]];
+            brick = [[LoopBrick alloc]init];
         }
         else if ([element.name isEqualToString:@"Bricks.RepeatBrick"])
         {            
-            RepeatBrick *repeatBrick = [self loadRepeatBrick:element];
-            [loopBrickList addObject:repeatBrick];
+            brick = [self loadRepeatBrick:element];
         }
         else if ([element.name isEqualToString:@"Bricks.LoopEndBrick"])
         {
-            if ([loopBrickList count] > 0)
-            {
-                [ret addBrick:[loopBrickList objectAtIndex:[loopBrickList count]-1]];
-                [loopBrickList removeObjectAtIndex:[loopBrickList count]-1];
-            }
+            brick = [[EndLoopBrick alloc]init];
         }
         else if ([element.name isEqualToString:@"Bricks.GoNStepsBackBrick"])
         {
@@ -351,12 +344,7 @@
         }
         
         if (brick != nil) {
-            if ([loopBrickList count] <= 0) {
-                [ret addBrick:brick];
-            } else {
-                LoopBrick *loopBrick = (LoopBrick*)[loopBrickList objectAtIndex:[loopBrickList count]-1];
-                [loopBrick addBrick:brick];
-            }
+            [ret addBrick:brick];
         }
     }
     

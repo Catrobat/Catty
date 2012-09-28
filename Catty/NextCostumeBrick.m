@@ -10,12 +10,13 @@
 
 @implementation NextCostumeBrick
 
-- (void)performOnSprite:(Sprite *)sprite
+- (void)performOnSprite:(Sprite *)sprite fromScript:(Script*)script
 {
     NSLog(@"Performing: %@", self.description);
     
-    [sprite nextCostume];
-//    [sprite performSelectorOnMainThread:@selector(nextCostume) withObject:nil waitUntilDone:YES];
+    [sprite performSelectorOnMainThread:@selector(nextCostume) withObject:nil waitUntilDone:true];
+
+//    [sprite nextCostume];
 }
 
 

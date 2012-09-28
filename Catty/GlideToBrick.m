@@ -7,6 +7,7 @@
 //
 
 #import "GlideToBrick.h"
+#import "Script.h"
 
 // TODO: change! Need CattyViewController to get FRAMES_PER_SECOND... 
 #import "CattyViewController.h"
@@ -29,9 +30,12 @@
 }
 
 #pragma mark - override
--(void)performOnSprite:(Sprite *)sprite
+-(void)performOnSprite:(Sprite *)sprite fromScript:(Script*)script
 {
-    [sprite glideToPosition:self.position withinDurationInMilliSecs:_durationInMilliSecs];
+    NSLog(@"Performing: %@", self.description);
+
+    [script glideWithSprite:sprite toPosition:self.position withinMilliSecs:self.durationInMilliSecs];
+//    [sprite glideToPosition:self.position withinDurationInMilliSecs:self.durationInMilliSecs fromScript:script];
 }
 
 #pragma mark - Description

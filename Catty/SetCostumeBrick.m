@@ -14,12 +14,13 @@
 @synthesize indexOfCostumeInArray = _indexOfCostumeInArray;
 
 
-- (void)performOnSprite:(Sprite *)sprite
+- (void)performOnSprite:(Sprite *)sprite fromScript:(Script*)script
 {
     NSLog(@"Performing: %@", self.description);
     
-    [sprite changeCostume:self.indexOfCostumeInArray];
-//    [sprite performSelectorOnMainThread:@selector(setIndexOfCurrentCostumeInArray:) withObject:self.indexOfCostumeInArray waitUntilDone:YES];
+
+    [sprite performSelectorOnMainThread:@selector(changeCostume:) withObject:self.indexOfCostumeInArray waitUntilDone:true];
+//    [sprite changeCostume:self.indexOfCostumeInArray];
 }
 
 

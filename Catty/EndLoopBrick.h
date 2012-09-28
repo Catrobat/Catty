@@ -1,5 +1,5 @@
 //
-//  LoopBrick.h
+//  EndLoopBrick.h
 //  Catty
 //
 //  Created by Mattias Rauter on 27.09.12.
@@ -8,8 +8,6 @@
 
 #import "Brick.h"
 
-@interface LoopBrick : Brick
-
--(BOOL)checkConditionAndDecrementLoopCounter;
+@interface EndLoopBrick : Brick
 
 @end

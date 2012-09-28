@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <GLKit/GLKit.h>
 #import "enums.h"
 
 @class Brick;
@@ -22,6 +23,12 @@
 -(NSArray*)getAllBricks;
 
 -(NSString*)description;
--(void)executeForSprite:(Sprite*)sprite;
+
+-(void)resetScript;
+
+-(void)runScriptForSprite:(Sprite*)sprite;
+
+-(void)glideWithSprite:(Sprite*)sprite toPosition:(GLKVector3)position withinMilliSecs:(int)timeToGlideInMilliSecs;
+-(void)waitTimeInMilliSecs:(float)timeToWaitInMilliSecs;
 
 @end

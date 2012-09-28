@@ -73,8 +73,9 @@ typedef struct {
 @property (assign, nonatomic) float yOffset;
 
 
-@property (atomic, strong) NSMutableArray *brickQueue;
-@property (strong, nonatomic) PositionAtTime *nextPosition;
+@property (nonatomic, strong) NSMutableArray *activeScripts;
+@property (strong, nonatomic) NSMutableDictionary *nextPositions;       //key=script   value=positionAtTime
+
 @property (strong, nonatomic) NSNumber *indexOfCurrentCostumeInArray;
 
 @property (strong, nonatomic) NSArray *costumesArray;    // tell the compiler: "I want a private setter"
@@ -110,8 +111,8 @@ typedef struct {
 @synthesize yOffset = _yOffset;
 @synthesize quad = _quad;
 @synthesize textureInfo = _textureInfo;
-@synthesize brickQueue = _brickQueue;
-@synthesize nextPosition = _nextPosition;
+@synthesize activeScripts = _activeScripts;
+@synthesize nextPositions = _nextPositions;
 @synthesize indexOfCurrentCostumeInArray = _indexOfCurrentCostumeInArray;
 @synthesize showSprite = _showSprite;
 
@@ -159,13 +160,14 @@ typedef struct {
     return _broadcastScripts;
 }
 
-- (NSMutableArray*)brickQueue
+- (NSMutableDictionary*)nextPositions
 {
-    if (!_brickQueue)
-        _brickQueue = [[NSMutableArray alloc]init];
+    if (!_nextPositions)
+        _nextPositions = [[NSMutableDictionary alloc]init];
     
-    return _brickQueue;
+    return _nextPositions;
 }
+
 
 #pragma mark - init methods
 - (id)init
@@ -177,7 +179,7 @@ typedef struct {
         self.scaleFactor = 1.0f;
         self.scaleWidth  = 1.0f;
         self.scaleHeight = 1.0f;
-//        self.indexOfCurrentCostumeInArray = [NSNumber numberWithInt:-1];
+        self.activeScripts = [[NSMutableArray alloc]init];
     }
     return self;
 }
@@ -192,7 +194,7 @@ typedef struct {
         self.scaleFactor = 1.0f;
         self.scaleWidth  = 1.0f;
         self.scaleHeight = 1.0f;
-//        self.indexOfCurrentCostumeInArray = [NSNumber numberWithInt:-1];
+        self.activeScripts = [[NSMutableArray alloc]init];
     }
     return self;
 }
@@ -251,7 +253,7 @@ typedef struct {
 {
     NSMutableDictionary *mutableDictionary = [self.broadcastScripts mutableCopy];
     [mutableDictionary setObject:script forKey:message];
-    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(performBroadcastScript:) name:message object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(performBroadcastScript:) name:message object:nil];
     self.broadcastScripts = [NSDictionary dictionaryWithDictionary:mutableDictionary];
 }
 
@@ -413,54 +415,35 @@ typedef struct {
 #pragma mark - graphics
 - (void)update:(float)dt
 {
-    if (self.nextPosition)
-    {
-        NSTimeInterval now = [[NSDate date]timeIntervalSince1970];
-
-//        NSLog(@"timediff: %f", self.nextPosition.timestamp - now);
+    NSTimeInterval now = [[NSDate date]timeIntervalSince1970];
+    
+    for (PositionAtTime *nextPosition in [self.nextPositions allValues]) {
         
-        if (now >= self.nextPosition.timestamp)
-        {
-            // "checkpoint" reached
-            self.position = self.nextPosition.position;
-            NSLog(@"remove nextPosition");
-            self.nextPosition = nil;
-            [self performNextBrickInQueue]; // ????????? necessary??
-        }
-        else
-        {
+        if (now >= nextPosition.timestamp) {
+            Script *script = [[self.nextPositions allKeysForObject:nextPosition] lastObject];
+            NSLog(@"remove nextPosition");            
+            [self.nextPositions removeObjectForKey:script.description];
+        
+        } else {
+        
             // calculate position
-            double timeLeft = (self.nextPosition.timestamp - now);    // in sec
+            double timeLeft = (nextPosition.timestamp - now);    // in sec
             int numberOfSteps = round(timeLeft * (float)FRAMES_PER_SECOND);               // TODO: find better way to determine FPS (e.g. GLKit-variable??)
             
-            GLKVector3 direction = GLKVector3Subtract(self.nextPosition.position, self.position);
+            GLKVector3 direction = GLKVector3Subtract(nextPosition.position, self.position);
             
             GLKVector3 step = direction;
             if (numberOfSteps > 0)
                 step = GLKVector3DivideScalar(direction, numberOfSteps);
-          
-            self.position = GLKVector3Add(self.position, step);
             
-//            NSLog(@"newPosition: %f/%f", self.position.x, self.position.y);
+            self.position = GLKVector3Add(self.position, step);
         }
-    }
-    else
-    {
-        [self performNextBrickInQueue];
+
     }
 }
 
 - (void)render
 {
-//    if ([self.nextPositions count] > 0)
-//    {
-//        NSValue *data = [self.nextPositions objectAtIndex:0];
-//        GLKVector3 newPosition;
-//        [data getValue:&newPosition];
-//        self.position = newPosition;
-//        
-//        [self.nextPositions removeObjectAtIndex:0];
-//    }
     if (self.showSprite)
     {
     
@@ -489,43 +472,37 @@ typedef struct {
 
 
 
--(void)performNextBrickInQueue
-{
-    if ([self.brickQueue count] > 0)
-    {
-        [((Brick*)[self.brickQueue objectAtIndex:0]) performOnSprite:self];
-        [self.brickQueue removeObjectAtIndex:0];
-    }
-}
+//-(void)performNextBrickInQueue
+//{
+//    if ([self.brickQueue count] > 0)
+//    {
+//        [((Brick*)[self.brickQueue objectAtIndex:0]) performOnSprite:self];
+//        [self.brickQueue removeObjectAtIndex:0];
+//    }
+//}
 
 
 #pragma mark - actions
 
 -(void)placeAt:(GLKVector3)newPosition
 {
-//    NSLog(@"=====> %f %f", newPosition.x, newPosition.y);
-
-//    GLKVector3 position = GLKVector3Add(newPosition, GLKVector3Make(320/2, 460/2, 0));                        // TODO: change constant values
-//    position = GLKVector3Subtract(position, GLKVector3Make(self.textureInfo.width/2, self.textureInfo.height/2, 0));
-
     self.position = newPosition;
 }
 
-- (void)wait:(int)durationInMilliSecs
+//- (void)wait:(int)durationInMilliSecs fromScript:(Script*)script
+//{
+////    NSTimeInterval timeStamp = [[NSDate date] timeIntervalSince1970] + (durationInMilliSecs/1000.0f);
+////    
+////    NSLog(@"now: %f     timestamp :%f", [[NSDate date]timeIntervalSince1970], timeStamp);
+////    
+////    [self.waitUntilForScripts setValue:[NSNumber numberWithFloat:timeStamp] forKey:script.description];    // TODO: whole description as key??
+//}
+
+- (void)glideToPosition:(GLKVector3)position withinDurationInMilliSecs:(int)durationInMilliSecs fromScript:(Script*)script
 {
     NSTimeInterval timeStamp = [[NSDate date] timeIntervalSince1970] + (durationInMilliSecs/1000.0f);
-    self.nextPosition = [PositionAtTime positionAtTimeWithPosition:self.position andTimestamp:timeStamp];
-}
-
-- (void)glideToPosition:(GLKVector3)position withinDurationInMilliSecs:(int)durationInMilliSecs
-{
-    // transfer to "origin is in the middle of the screen"-coordinates...
-//    position = GLKVector3Add(position, GLKVector3Make(320/2, 460/2, 0));                                // TODO: change constant values
-//    position = GLKVector3Subtract(position, GLKVector3Make(self.textureInfo.width/2, self.textureInfo.height/2, 0));
-
-    NSTimeInterval timeStamp = [[NSDate date] timeIntervalSince1970] + (durationInMilliSecs/1000.0f);
-    
-    self.nextPosition = [PositionAtTime positionAtTimeWithPosition:position andTimestamp:timeStamp];
+    PositionAtTime *positionAtTime = [PositionAtTime positionAtTimeWithPosition:position andTimestamp:timeStamp];
+    [self.nextPositions setValue:positionAtTime forKey:script.description];                 // TODO: whole description as key??
 }
 
 - (void)changeCostume:(NSNumber *)indexOfCostumeInArray
@@ -602,10 +579,10 @@ typedef struct {
     [self setSpriteSize];
 }
 
--(void)addLoopBricks:(NSArray *)bricks
-{
-    self.brickQueue = [NSMutableArray arrayWithArray:[bricks arrayByAddingObjectsFromArray:self.brickQueue]];
-}
+//-(void)addLoopBricks:(NSArray *)bricks
+//{
+//    self.brickQueue = [NSMutableArray arrayWithArray:[bricks arrayByAddingObjectsFromArray:self.brickQueue]];
+//}
 
 
 - (void)setVolumeTo:(float)volume
@@ -681,16 +658,22 @@ typedef struct {
 #pragma mark - script methods
 - (void)start
 {
-    self.indexOfCurrentCostumeInArray = [NSNumber numberWithInt:0];
+    self.indexOfCurrentCostumeInArray = [NSNumber numberWithInt:0]; // TODO: maybe remove this line??
 
     for (Script *script in self.startScriptsArray)
     {
-        [self.brickQueue addObjectsFromArray:[script getAllBricks]];
-//        // ------------------------------------------ THREAD --------------------------------------
-//        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-//            [script executeForSprite:self];
-//        });
-//        // ------------------------------------------ END -----------------------------------------
+        [self.activeScripts addObject:script];
+        
+        // ------------------------------------------ THREAD --------------------------------------
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+            [script runScriptForSprite:self];
+            
+            // tell the main thread
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self scriptFinished:script];
+            });
+        });
+        // ------------------------------------------ END -----------------------------------------
     }
 }
 
@@ -698,17 +681,28 @@ typedef struct {
 - (void)touch:(TouchAction)type
 {
     //todo: throw exception if its not a when script
-    for (WhenScript *script in self.whenScriptsArray)
+    for (Script *script in self.whenScriptsArray)
     {
         NSLog(@"Performing script with action: %@", script.description);
         if (type == script.action)
         {
-            [self.brickQueue addObjectsFromArray:[script getAllBricks]];
-//            // ------------------------------------------ THREAD --------------------------------------
-//            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-//                [script executeForSprite:self];
-//            });
-//            // ------------------------------------------ END -----------------------------------------
+            if ([self.activeScripts containsObject:script]) {
+                [script resetScript];
+                [self.nextPositions removeObjectForKey:script.description];
+            } else {
+                [self.activeScripts addObject:script];
+                
+                // ------------------------------------------ THREAD --------------------------------------
+                dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+                    [script runScriptForSprite:self];
+                    
+                    // tell the main thread
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        [self scriptFinished:script];
+                    });
+                });
+                // ------------------------------------------ END -----------------------------------------
+            }
         }
     }
 }
@@ -717,9 +711,34 @@ typedef struct {
 {
     Script *script = [self.broadcastScripts objectForKey:notification.name];
     if (script) {
-        [self.brickQueue addObjectsFromArray:[script getAllBricks]];
+
+        if ([self.activeScripts containsObject:script]) {
+            [script resetScript];
+            [self.nextPositions removeObjectForKey:script.description];
+        } else {
+            [self.activeScripts addObject:script];
+            
+            // -------- ---------------------------------- THREAD --------------------------------------
+            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+                [script runScriptForSprite:self];
+                
+                // tell the main thread
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    [self scriptFinished:script];
+                });
+            });
+            // ------------------------------------------ END -----------------------------------------
+        }
+
     }
 }
+
+-(void)scriptFinished:(Script *)script
+{
+    [self.nextPositions removeObjectForKey:script.description];
+    [self.activeScripts removeObject:script];
+}
+
 
 
 @end

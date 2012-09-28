@@ -24,8 +24,9 @@
 }
 
 #pragma mark - override
--(void)performOnSprite:(Sprite *)sprite
+-(void)performOnSprite:(Sprite *)sprite fromScript:(Script*)script
 {
+    NSLog(@"SPRITE: %@     SCRIPT: %@", sprite.name, script);
     NSLog(@"Set positino of sprite %@ to %f / % f / %f", sprite.name, self.position.x, self.position.y, self.position.z);
     [sprite placeAt:self.position];
 }

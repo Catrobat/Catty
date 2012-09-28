@@ -171,6 +171,12 @@
         for (Script *script in [sprite.broadcastScripts allValues]) {
             NSLog(@" ");
             NSLog(@"BroadcastScript:");
+            NSArray *allKeys = [sprite.broadcastScripts allKeysForObject:script];
+            NSLog(@"Key(s):");
+            for (NSString *key in allKeys) {
+                NSLog(@"  %@", key);
+            }
+            NSLog(@"Brick(s):");
             for (Brick *brick in [script getAllBricks]) {
                 NSLog(@"  %@", [brick description]);
             }

@@ -75,13 +75,14 @@
 - (CGRect)boundingBox;
 - (void)start;
 - (void)touch:(TouchAction)type;
+- (void)scriptFinished:(Script*)script;
 
 // actions
 - (void)placeAt:(GLKVector3)newPosition;    //origin is in the middle of the sprite
-- (void)wait:(int)durationInMilliSecs;
+//- (void)wait:(int)durationInMilliSecs fromScript:(Script*)script;
 - (void)changeCostume:(NSNumber*)indexOfCostumeInArray;
 - (void)nextCostume;
-- (void)glideToPosition:(GLKVector3)position withinDurationInMilliSecs:(int)durationInMilliSecs;
+- (void)glideToPosition:(GLKVector3)position withinDurationInMilliSecs:(int)durationInMilliSecs fromScript:(Script*)script;
 - (void)hide;
 - (void)show;
 - (void)setXPosition:(float)xPosition;
@@ -93,7 +94,7 @@
 - (void)changeYBy:(float)y;
 - (void)stopAllSounds;
 - (void)setSizeToPercentage:(float)sizeInPercentage;
-- (void)addLoopBricks:(NSArray*)bricks;
+//- (void)addLoopBricks:(NSArray*)bricks;
 - (void)goNStepsBack:(int)n;
 - (void)setVolumeTo:(float)volume;
 - (void)changeVolumeBy:(float)percent;
