@@ -309,18 +309,18 @@
         {
             brick = [self loadSetSizeToBrick:element];
         }
-//        else if ([element.name isEqualToString:@"Bricks.ForeverBrick"])
-//        {
-//            brick = [[LoopBrick alloc]init];
-//        }
-//        else if ([element.name isEqualToString:@"Bricks.RepeatBrick"])
-//        {            
-//            brick = [self loadRepeatBrick:element];
-//        }
-//        else if ([element.name isEqualToString:@"Bricks.LoopEndBrick"])
-//        {
-//            brick = [[EndLoopBrick alloc]init];
-//        }
+        else if ([element.name isEqualToString:@"Bricks.ForeverBrick"])
+        {
+            brick = [[LoopBrick alloc]init];
+        }
+        else if ([element.name isEqualToString:@"Bricks.RepeatBrick"])
+        {            
+            brick = [self loadRepeatBrick:element];
+        }
+        else if ([element.name isEqualToString:@"Bricks.LoopEndBrick"])
+        {
+            brick = [[EndLoopBrick alloc]init];
+        }
         else if ([element.name isEqualToString:@"Bricks.GoNStepsBackBrick"])
         {
             brick = [self loadGoNStepsBackBrick:element];

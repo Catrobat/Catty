@@ -16,7 +16,7 @@
 @interface Script()
 @property (strong, nonatomic) NSMutableArray *bricksArray;
 @property (assign, nonatomic) int currentBrickIndex;
-@property (assign, nonatomic) NSMutableArray *startLoopIndexStack;
+@property (strong, nonatomic) NSMutableArray *startLoopIndexStack;
 @end
 
 
@@ -34,6 +34,7 @@
     if (self = [super init])
     {
         self.action = kTouchActionTap;
+        self.currentBrickIndex = 0;
     }
     return self;
 }
@@ -72,7 +73,7 @@
 -(BOOL)performNextBrickOnSprite:(Sprite*)sprite
 {
     if (self.currentBrickIndex >= [self.bricksArray count])
-        self.currentBrickIndex = 0;
+        return true;
     
     Brick *nextBrick = (Brick*)[self.bricksArray objectAtIndex:self.currentBrickIndex];
     
@@ -90,6 +91,12 @@
     self.currentBrickIndex += 1;
     
     return (self.currentBrickIndex >= [self.bricksArray count]);
+}
+
+-(void)resetScript
+{
+    self.currentBrickIndex = 0;
+    self.startLoopIndexStack = nil;
 }
 
 #pragma mark - Description

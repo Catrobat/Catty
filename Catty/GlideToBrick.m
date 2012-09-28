@@ -31,7 +31,9 @@
 #pragma mark - override
 -(void)performOnSprite:(Sprite *)sprite fromScript:(Script*)script
 {
-    [sprite glideToPosition:self.position withinDurationInMilliSecs:_durationInMilliSecs fromScript:script];
+    NSLog(@"Performing: %@", self.description);
+
+    [sprite glideToPosition:self.position withinDurationInMilliSecs:self.durationInMilliSecs fromScript:script];
 }
 
 #pragma mark - Description

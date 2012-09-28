@@ -73,8 +73,10 @@ typedef struct {
 @property (assign, nonatomic) float yOffset;
 
 
-@property (atomic, strong) NSMutableArray *activeScripts;
-@property (strong, nonatomic) NSMutableDictionary *nextPositions;   //key=script   value=positionAtTime
+@property (nonatomic, strong) NSMutableArray *activeScripts;
+@property (strong, nonatomic) NSMutableDictionary *nextPositions;       //key=script   value=positionAtTime
+@property (strong, nonatomic) NSMutableDictionary *waitUntilForScripts; //key=script   value=timestamp; when time reached, stop waiting (wait-brick)
+
 @property (strong, nonatomic) NSNumber *indexOfCurrentCostumeInArray;
 
 @property (strong, nonatomic) NSArray *costumesArray;    // tell the compiler: "I want a private setter"
@@ -112,6 +114,7 @@ typedef struct {
 @synthesize textureInfo = _textureInfo;
 @synthesize activeScripts = _activeScripts;
 @synthesize nextPositions = _nextPositions;
+@synthesize waitUntilForScripts = _waitUntilForScripts;
 @synthesize indexOfCurrentCostumeInArray = _indexOfCurrentCostumeInArray;
 @synthesize showSprite = _showSprite;
 
@@ -159,14 +162,6 @@ typedef struct {
     return _broadcastScripts;
 }
 
-- (NSMutableArray*)activeScripts
-{
-    if (!_activeScripts)
-        _activeScripts = [[NSMutableArray alloc]init];
-    
-    return _activeScripts;
-}
-
 - (NSMutableDictionary*)nextPositions
 {
     if (!_nextPositions)
@@ -174,6 +169,15 @@ typedef struct {
     
     return _nextPositions;
 }
+
+- (NSMutableDictionary*)waitUntilForScripts
+{
+    if (!_waitUntilForScripts)
+        _waitUntilForScripts = [[NSMutableDictionary alloc]init];
+    
+    return _waitUntilForScripts;
+}
+
 
 #pragma mark - init methods
 - (id)init
@@ -185,7 +189,7 @@ typedef struct {
         self.scaleFactor = 1.0f;
         self.scaleWidth  = 1.0f;
         self.scaleHeight = 1.0f;
-//        self.indexOfCurrentCostumeInArray = [NSNumber numberWithInt:-1];
+        self.activeScripts = [[NSMutableArray alloc]init];
     }
     return self;
 }
@@ -200,7 +204,7 @@ typedef struct {
         self.scaleFactor = 1.0f;
         self.scaleWidth  = 1.0f;
         self.scaleHeight = 1.0f;
-//        self.indexOfCurrentCostumeInArray = [NSNumber numberWithInt:-1];
+        self.activeScripts = [[NSMutableArray alloc]init];
     }
     return self;
 }
@@ -421,21 +425,19 @@ typedef struct {
 #pragma mark - graphics
 - (void)update:(float)dt
 {
-    if ([self.nextPositions count] > 0)
-    {
-        NSTimeInterval now = [[NSDate date]timeIntervalSince1970];
+    NSTimeInterval now = [[NSDate date]timeIntervalSince1970];
         
-        for (Script *script in self.activeScripts) {
-            
+    for (Script *script in self.activeScripts) {
+        
+        if ([[self.nextPositions allKeys] containsObject:script.description]) {
             PositionAtTime *nextPosition = [self.nextPositions objectForKey:script.description];
             
             if (now >= nextPosition.timestamp)
             {
-                self.position = nextPosition.position;
+//                self.position = nextPosition.position;
                 NSLog(@"remove nextPosition");
-                [self.nextPositions removeObjectForKey:script.description];
                 
-//              [self performNextBrickInQueue]; // ????????? necessary??
+                [self.nextPositions removeObjectForKey:script.description];
             }
             else
             {
@@ -453,24 +455,24 @@ typedef struct {
             }
         }
     }
-    else
-    {
-        NSMutableArray *scriptsToRemove = [[NSMutableArray alloc]init];
-        for (Script *script in self.activeScripts) {
-            if (![[self.nextPositions allKeys] containsObject:script]) {
+    
+    NSMutableArray *scriptsToRemove = [[NSMutableArray alloc]init];
+    for (int i=0; i < [self.activeScripts count]; i+=1) {
+        Script *script = [self.activeScripts objectAtIndex:i];
+        if (![[self.nextPositions allKeys] containsObject:script.description]) {
+            
+            NSNumber *timestamp = (NSNumber*)[self.waitUntilForScripts valueForKey:script.description];
+            if (!timestamp || now >= timestamp.floatValue) {
+                [self.waitUntilForScripts removeObjectForKey:script.description];
                 if ([script performNextBrickOnSprite:self]) {
-                    [scriptsToRemove addObject:script];
-//                    [self.activeScripts removeObject:script];
+                    [scriptsToRemove addObject:script.description];
                 }
             }
         }
-        
-        
-        // TODO: CHANGE (just for debug - find better way to delete scripts from array)
-        for (int i=[self.activeScripts count]; i>=0; i-=1) {
-            if ([scriptsToRemove containsObject:[self.activeScripts objectAtIndex:i]])
-                [self.activeScripts removeObjectAtIndex:i];
-        }
+    }
+    
+    for (NSString *script in scriptsToRemove) {
+        [self.activeScripts removeObject:script];
     }
 }
 
@@ -525,10 +527,10 @@ typedef struct {
 {
     NSTimeInterval timeStamp = [[NSDate date] timeIntervalSince1970] + (durationInMilliSecs/1000.0f);
     
-    // TODO CHANGE!!!!!!!
-    PositionAtTime *positionAtTime = [PositionAtTime positionAtTimeWithPosition:self.position andTimestamp:timeStamp];
-    [self.nextPositions setValue:positionAtTime forKey:script.description];                 // TODO: whole description as key??
-   }
+    NSLog(@"now: %f     timestamp :%f", [[NSDate date]timeIntervalSince1970], timeStamp);
+    
+    [self.waitUntilForScripts setValue:[NSNumber numberWithFloat:timeStamp] forKey:script.description];    // TODO: whole description as key??
+}
 
 - (void)glideToPosition:(GLKVector3)position withinDurationInMilliSecs:(int)durationInMilliSecs fromScript:(Script*)script
 {
@@ -685,6 +687,7 @@ typedef struct {
     {
         if ([self.activeScripts containsObject:script])
             [self.activeScripts removeObject:script];
+        [script resetScript];
         [self.activeScripts addObject:script];
         
 //        [self.brickQueue addObjectsFromArray:[script getAllBricks]];
@@ -707,6 +710,7 @@ typedef struct {
         {
             if ([self.activeScripts containsObject:script])
                 [self.activeScripts removeObject:script];
+            [script resetScript];
             [self.activeScripts addObject:script];
             
             

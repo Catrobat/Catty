@@ -23,6 +23,8 @@
 
 -(NSString*)description;
 
+-(void)resetScript;
+
 -(BOOL)performNextBrickOnSprite:(Sprite*)sprite;    // return true   => script finished
                                                     // return false  => bricks left
 

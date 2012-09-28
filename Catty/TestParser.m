@@ -26,6 +26,9 @@
 #import "BroadcastBrick.h"
 #import "ComeToFrontBrick.h"
 #import "ChangeSizeByNBrick.h"
+#import "LoopBrick.h"
+#import "RepeatBrick.h"
+#import "EndLoopBrick.h"
 
 @interface TestParser ()
 
@@ -415,6 +418,73 @@
     
     return level;
     
+}
+
+-(Level *)generateDebugLevel_parallelScripts
+{
+    Level *level = [[Level alloc]init];
+    level.name = @"parallelScripts";
+    level.resolution = CGSizeMake(320, 480);
+    
+    Costume *costume = [self createCostumeFromPath:@"normalcat.png" withName:@"cat1"];
+    
+    Script *startScript = [[Script alloc]init];
+    PlaceAtBrick *placeAtBrick = [[PlaceAtBrick alloc]initWithPosition:GLKVector3Make(-100, 100, 0)];
+    GlideToBrick *glideToBrick = [[GlideToBrick alloc]initWithPosition:GLKVector3Make(100, 100, 0) andDurationInMilliSecs:5000];
+    [startScript addBrick:placeAtBrick];
+    [startScript addBrick:glideToBrick];
+    
+    
+    WhenScript *whenScript = [[WhenScript alloc]init];
+    GlideToBrick *glideToBrick2 = [[GlideToBrick alloc]initWithPosition:GLKVector3Make(-100, -100, 0) andDurationInMilliSecs:5000];
+    [whenScript addBrick:glideToBrick2];
+    
+    NSArray *costumes = [NSArray arrayWithObjects:costume, nil];
+    
+    Sprite *sprite = [self createSprite:@"cat" withPositionX:(NSInteger)0 withPositionY:(NSInteger)0 withCostumes:costumes setCostumeIndex:(NSInteger)0];
+    [sprite addWhenScript:whenScript];
+    [sprite addStartScript:startScript];
+    
+    level.spritesArray = [NSMutableArray arrayWithObject:sprite];
+    
+    return level;
+}
+
+-(Level *)generateDebugLevel_loops
+{
+    Level *level = [[Level alloc]init];
+    level.name = @"loops";
+    level.resolution = CGSizeMake(320, 480);
+    
+    Costume *costume1 = [self createCostumeFromPath:@"normalcat.png" withName:@"cat1"];
+    Costume *costume2 = [self createCostumeFromPath:@"cheshirecat.png" withName:@"cat2"];
+    
+    Script *startScript = [[Script alloc]init];
+    RepeatBrick *loopStart = [[RepeatBrick alloc]initWithNumberOfLoops:2];
+    NextCostumeBrick *nextCostumeBrick = [[NextCostumeBrick alloc]init];
+    WaitBrick *waitBrick = [[WaitBrick alloc]init];
+    waitBrick.timeToWaitInMilliseconds = [NSNumber numberWithInt:500];
+    EndLoopBrick *loopEnd = [[EndLoopBrick alloc]init];
+    [startScript addBrick:loopStart];
+    [startScript addBrick:nextCostumeBrick];
+    [startScript addBrick:waitBrick];
+    [startScript addBrick:loopEnd];
+    
+    
+    
+    WhenScript *whenScript = [[WhenScript alloc]init];
+    GlideToBrick *glideToBrick2 = [[GlideToBrick alloc]initWithPosition:GLKVector3Make(-100, -100, 0) andDurationInMilliSecs:5000];
+    [whenScript addBrick:glideToBrick2];
+    
+    NSArray *costumes = [NSArray arrayWithObjects:costume1, costume2, nil];
+    
+    Sprite *sprite = [self createSprite:@"cat" withPositionX:(NSInteger)0 withPositionY:(NSInteger)0 withCostumes:costumes setCostumeIndex:(NSInteger)0];
+    [sprite addWhenScript:whenScript];
+    [sprite addStartScript:startScript];
+    
+    level.spritesArray = [NSMutableArray arrayWithObject:sprite];
+    
+    return level;
 }
 
 @end

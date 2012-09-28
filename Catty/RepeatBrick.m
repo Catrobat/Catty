@@ -31,7 +31,7 @@
 #pragma mark - Description
 - (NSString*)description
 {
-    return [NSString stringWithFormat:@"RepeatLoop with %d bricks and %d iterations", [self.bricks count], self.numberOfLoops];
+    return [NSString stringWithFormat:@"RepeatLoop with %d iterations", self.numberOfLoops];
 }
 
 @end
