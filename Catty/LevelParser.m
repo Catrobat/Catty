@@ -27,6 +27,7 @@
 #import "SetYBrick.h"
 #import "ChangeSizeByNBrick.h"
 #import "BroadcastBrick.h"
+#import "BroadcastWaitBrick.h"
 #import "ChangeXByBrick.h"
 #import "ChangeYByBrick.h"
 #import "PlaySoundBrick.h"
@@ -36,8 +37,10 @@
 #import "LoopBrick.h"
 #import "RepeatBrick.h"
 #import "GoNStepsBackBrick.h"
+#import "SetGhostEffectBrick.h"
 #import "SetVolumeToBrick.h"
 #import "ChangeVolumeByBrick.h"
+#import "ChangeGhostEffectBrick.h"
 
 @interface LevelParser()
 
@@ -289,6 +292,10 @@
         {
             brick = [self loadBroadcastBrick:element];
         }
+        else if ([element.name isEqualToString:@"Bricks.BroadcastWaitBrick"])
+        {
+            brick = [self loadBroadcastWaitBrick:element];
+        }
         else if ([element.name isEqualToString:@"Bricks.ChangeXByBrick"])
         {
             brick = [self loadChangeXByBrick:element];
@@ -333,6 +340,14 @@
         else if ([element.name isEqualToString:@"Bricks.GoNStepsBackBrick"])
         {
             brick = [self loadGoNStepsBackBrick:element];
+        }
+        else if ([element.name isEqualToString:@"Bricks.SetGhostEffectBrick"])
+        {
+            brick = [self loadGhostEffectBrick:element];
+        }
+        else if ([element.name isEqualToString:@"Bricks.ChangeGhostEffectBrick"])
+        {
+            brick = [self loadChangeGhostEffectBrick:element];
         }
         else if ([element.name isEqualToString:@"Bricks.SetVolumeToBrick"])
         {
@@ -520,6 +535,20 @@
     return brick;
 }
 
+
+-(BroadcastWaitBrick*)loadBroadcastWaitBrick:(GDataXMLElement*)gDataXMLElement
+{
+    
+    
+    NSArray *messages = [gDataXMLElement elementsForName:@"broadcastMessage"];
+    GDataXMLElement *message = (GDataXMLElement*)[messages objectAtIndex:0];
+    
+    NSLog(@"broadcastWaitBrick: %@", message.stringValue);
+    BroadcastWaitBrick* brick = [[BroadcastWaitBrick alloc]initWithMessage:message.stringValue];
+    
+    return brick;
+}
+
 -(ChangeXByBrick*)loadChangeXByBrick:(GDataXMLElement*)gDataXMLElement
 {
     ChangeXByBrick *brick = [[ChangeXByBrick alloc]init];
@@ -604,6 +633,32 @@
     
     return brick;
 }
+
+-(SetGhostEffectBrick*)loadGhostEffectBrick:(GDataXMLElement*)gDataXMLElement
+{
+    NSArray *sizes = [gDataXMLElement elementsForName:@"transparency"];
+    GDataXMLElement *transparency = (GDataXMLElement*)[sizes objectAtIndex:0];
+    
+    NSLog(@"SetTransparencyTo: %f", transparency.stringValue.floatValue);
+    SetGhostEffectBrick *brick = [[SetGhostEffectBrick alloc]initWithTransparencyInPercent:transparency.stringValue.floatValue];
+    
+    return brick;
+    
+}
+
+-(ChangeGhostEffectBrick*)loadChangeGhostEffectBrick:(GDataXMLElement*)gDataXMLElement
+{
+    NSArray *sizes = [gDataXMLElement elementsForName:@"changeGhostEffect"];
+    GDataXMLElement *increase = (GDataXMLElement*)[sizes objectAtIndex:0];
+    
+    NSLog(@"ChangeTransparencyBy: %f", increase.stringValue.floatValue);
+    ChangeGhostEffectBrick *brick = [[ChangeGhostEffectBrick alloc]initWithIncrease:increase.stringValue.floatValue];
+    
+    return brick;
+    
+}
+
+
 
 -(SetVolumeToBrick*)loadSetVolumeToBrick:(GDataXMLElement*)gDataXMLElement
 {
