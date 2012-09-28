@@ -72,6 +72,7 @@ typedef struct {
 @property (assign, nonatomic) float xOffset;        // black border, if proportions are different (project-xml-resolution vs. screen-resolution)
 @property (assign, nonatomic) float yOffset;
 
+@property (assign, nonatomic) float alphaValue;
 
 @property (nonatomic, strong) NSMutableArray *activeScripts;
 @property (strong, nonatomic) NSMutableDictionary *nextPositions;       //key=script   value=positionAtTime
@@ -115,6 +116,7 @@ typedef struct {
 @synthesize nextPositions = _nextPositions;
 @synthesize indexOfCurrentCostumeInArray = _indexOfCurrentCostumeInArray;
 @synthesize showSprite = _showSprite;
+@synthesize alphaValue = _alphaValue;
 
 
 
@@ -180,6 +182,8 @@ typedef struct {
         self.scaleWidth  = 1.0f;
         self.scaleHeight = 1.0f;
         self.activeScripts = [[NSMutableArray alloc]init];
+        self.alphaValue = 1.0f;
+//        self.indexOfCurrentCostumeInArray = [NSNumber numberWithInt:-1];
     }
     return self;
 }
@@ -195,6 +199,8 @@ typedef struct {
         self.scaleWidth  = 1.0f;
         self.scaleHeight = 1.0f;
         self.activeScripts = [[NSMutableArray alloc]init];
+        self.alphaValue = 1.0f;
+//        self.indexOfCurrentCostumeInArray = [NSNumber numberWithInt:-1];
     }
     return self;
 }
@@ -230,14 +236,6 @@ typedef struct {
     self.costumesArray = [self.costumesArray arrayByAddingObjectsFromArray:costumesArray];
 }
 
-- (void)addSound:(AVAudioPlayer *)player
-{
-    //[self.soundsArray addObject:player];
-    //player.delegate = self;
-    //[player play];
-    
-    [self.spriteManagerDelegate addSound:player forSprite:self];
-}
 
 - (void)addStartScript:(StartScript *)script
 {
@@ -454,6 +452,12 @@ typedef struct {
         self.effect.texture2d0.enabled = YES;
     
         self.effect.transform.modelviewMatrix = self.modelMatrix;
+        
+        
+        self.effect.useConstantColor = YES;
+        self.effect.constantColor = GLKVector4Make(255, 255, 255, self.alphaValue);
+        
+        
     
         [self.effect prepareToDraw];
     
@@ -463,7 +467,7 @@ typedef struct {
         long offset = (long)&_quad;
         glVertexAttribPointer(GLKVertexAttribPosition, 2, GL_FLOAT, GL_FALSE, sizeof(TexturedVertex), (void *) (offset + offsetof(TexturedVertex, geometryVertex)));
         glVertexAttribPointer(GLKVertexAttribTexCoord0, 2, GL_FLOAT, GL_FALSE, sizeof(TexturedVertex), (void *) (offset + offsetof(TexturedVertex, textureVertex)));
-    
+        
         glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
         
 //        NSLog(@"render: %@   %f", self.name, self.position.z);
@@ -543,6 +547,20 @@ typedef struct {
     [[NSNotificationCenter defaultCenter] postNotificationName:message object:self];
 }
 
+-(void)broadcastAndWait:(NSString *)message
+{
+    
+    // Does not work!
+    
+
+//    dispatch_sync(dispatch_get_current_queue(),^{
+//        [[NSNotificationCenter defaultCenter] postNotificationName:message object:self];
+//    });
+    
+    NSLog(@"Now");
+    
+}
+
 -(void)comeToFront
 {
     [self.spriteManagerDelegate bringToFrontSprite:self];
@@ -583,6 +601,25 @@ typedef struct {
 //{
 //    self.brickQueue = [NSMutableArray arrayWithArray:[bricks arrayByAddingObjectsFromArray:self.brickQueue]];
 //}
+
+-(void)setTransparency:(float)transparency
+{
+    self.alphaValue = (100.0f-transparency)/100.0f;
+}
+
+-(void)changeTransparencyBy:(float)increase
+{
+    self.alphaValue += increase;
+}
+
+- (void)addSound:(AVAudioPlayer *)player
+{
+    //[self.soundsArray addObject:player];
+    //player.delegate = self;
+    //[player play];
+    
+    [self.spriteManagerDelegate addSound:player forSprite:self];
+}
 
 
 - (void)setVolumeTo:(float)volume

@@ -48,9 +48,15 @@
 		B43CF2DC160AE17B00E19CF3 /* cloud.png in Resources */ = {isa = PBXBuildFile; fileRef = B43CF2DB160AE17B00E19CF3 /* cloud.png */; };
 		B43CF2DF160AE72600E19CF3 /* startBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = B43CF2DD160AE72600E19CF3 /* startBackground.png */; };
 		B43CF2E0160AE72600E19CF3 /* startBackground@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B43CF2DE160AE72600E19CF3 /* startBackground@2x.png */; };
+		B44403A91615CCA8000C0EC6 /* ChangeGhostEffectBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = B44403A81615CCA8000C0EC6 /* ChangeGhostEffectBrick.m */; };
+		B44403AA1615CCA8000C0EC6 /* ChangeGhostEffectBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = B44403A81615CCA8000C0EC6 /* ChangeGhostEffectBrick.m */; };
 		B468CDBE16078B59007300A0 /* ListProjectsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B468CDBD16078B59007300A0 /* ListProjectsViewController.m */; };
 		B468CDC3160790CF007300A0 /* CatrobatInformation.m in Sources */ = {isa = PBXBuildFile; fileRef = B468CDC2160790CF007300A0 /* CatrobatInformation.m */; };
 		B468CDC816079438007300A0 /* CatrobatProject.m in Sources */ = {isa = PBXBuildFile; fileRef = B468CDC716079438007300A0 /* CatrobatProject.m */; };
+		B46CD91816158E89000EA9D4 /* BroadcastWaitBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = B46CD91716158E89000EA9D4 /* BroadcastWaitBrick.m */; };
+		B46CD91916158E89000EA9D4 /* BroadcastWaitBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = B46CD91716158E89000EA9D4 /* BroadcastWaitBrick.m */; };
+		B46CD91E16159FF9000EA9D4 /* SetGhostEffectBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = B46CD91D16159FF9000EA9D4 /* SetGhostEffectBrick.m */; };
+		B46CD91F16159FF9000EA9D4 /* SetGhostEffectBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = B46CD91D16159FF9000EA9D4 /* SetGhostEffectBrick.m */; };
 		B479E9211611A3CB000B1DFA /* DefaultProject.catrobat in Resources */ = {isa = PBXBuildFile; fileRef = B479E9201611A3CB000B1DFA /* DefaultProject.catrobat */; };
 		B479E9221611A3CB000B1DFA /* DefaultProject.catrobat in Resources */ = {isa = PBXBuildFile; fileRef = B479E9201611A3CB000B1DFA /* DefaultProject.catrobat */; };
 		B479E9271611A3F1000B1DFA /* FileManager.m in Sources */ = {isa = PBXBuildFile; fileRef = B479E9261611A3F1000B1DFA /* FileManager.m */; };
@@ -197,12 +203,18 @@
 		B43CF2DB160AE17B00E19CF3 /* cloud.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cloud.png; sourceTree = "<group>"; };
 		B43CF2DD160AE72600E19CF3 /* startBackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = startBackground.png; sourceTree = "<group>"; };
 		B43CF2DE160AE72600E19CF3 /* startBackground@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "startBackground@2x.png"; sourceTree = "<group>"; };
+		B44403A71615CCA8000C0EC6 /* ChangeGhostEffectBrick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChangeGhostEffectBrick.h; sourceTree = "<group>"; };
+		B44403A81615CCA8000C0EC6 /* ChangeGhostEffectBrick.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChangeGhostEffectBrick.m; sourceTree = "<group>"; };
 		B468CDBC16078B59007300A0 /* ListProjectsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ListProjectsViewController.h; sourceTree = "<group>"; };
 		B468CDBD16078B59007300A0 /* ListProjectsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ListProjectsViewController.m; sourceTree = "<group>"; };
 		B468CDC1160790CF007300A0 /* CatrobatInformation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CatrobatInformation.h; sourceTree = "<group>"; };
 		B468CDC2160790CF007300A0 /* CatrobatInformation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CatrobatInformation.m; sourceTree = "<group>"; };
 		B468CDC616079438007300A0 /* CatrobatProject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CatrobatProject.h; sourceTree = "<group>"; };
 		B468CDC716079438007300A0 /* CatrobatProject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CatrobatProject.m; sourceTree = "<group>"; };
+		B46CD91616158E89000EA9D4 /* BroadcastWaitBrick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BroadcastWaitBrick.h; sourceTree = "<group>"; };
+		B46CD91716158E89000EA9D4 /* BroadcastWaitBrick.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BroadcastWaitBrick.m; sourceTree = "<group>"; };
+		B46CD91C16159FF9000EA9D4 /* SetGhostEffectBrick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SetGhostEffectBrick.h; sourceTree = "<group>"; };
+		B46CD91D16159FF9000EA9D4 /* SetGhostEffectBrick.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SetGhostEffectBrick.m; sourceTree = "<group>"; };
 		B479E9201611A3CB000B1DFA /* DefaultProject.catrobat */ = {isa = PBXFileReference; lastKnownFileType = file; path = DefaultProject.catrobat; sourceTree = "<group>"; };
 		B479E9251611A3F1000B1DFA /* FileManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FileManager.h; sourceTree = "<group>"; };
 		B479E9261611A3F1000B1DFA /* FileManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FileManager.m; sourceTree = "<group>"; };
@@ -640,6 +652,15 @@
 			name = "ImageSprite (not in use)";
 			sourceTree = "<group>";
 		};
+		B44403AC1615CEA1000C0EC6 /* ChangeGhostEffectBrick */ = {
+			isa = PBXGroup;
+			children = (
+				B44403A71615CCA8000C0EC6 /* ChangeGhostEffectBrick.h */,
+				B44403A81615CCA8000C0EC6 /* ChangeGhostEffectBrick.m */,
+			);
+			name = ChangeGhostEffectBrick;
+			sourceTree = "<group>";
+		};
 		B468CDBA16078AFB007300A0 /* ListProjectsViewController */ = {
 			isa = PBXGroup;
 			children = (
@@ -674,6 +695,24 @@
 				B468CDC716079438007300A0 /* CatrobatProject.m */,
 			);
 			name = CatrobatProject;
+			sourceTree = "<group>";
+		};
+		B46CD91B16158E8E000EA9D4 /* BroadcastWaitBrick */ = {
+			isa = PBXGroup;
+			children = (
+				B46CD91616158E89000EA9D4 /* BroadcastWaitBrick.h */,
+				B46CD91716158E89000EA9D4 /* BroadcastWaitBrick.m */,
+			);
+			name = BroadcastWaitBrick;
+			sourceTree = "<group>";
+		};
+		B46CD92016159FFE000EA9D4 /* SetGhostEffectBrick */ = {
+			isa = PBXGroup;
+			children = (
+				B46CD91C16159FF9000EA9D4 /* SetGhostEffectBrick.h */,
+				B46CD91D16159FF9000EA9D4 /* SetGhostEffectBrick.m */,
+			);
+			name = SetGhostEffectBrick;
 			sourceTree = "<group>";
 		};
 		B479E91E1611A3BF000B1DFA /* Resources */ = {
@@ -1003,6 +1042,8 @@
 			children = (
 				B415DC3F15BAC5A20076275E /* Brick */,
 				CD85F528160832FC007C38D1 /* BroadcastBrick */,
+				B46CD91B16158E8E000EA9D4 /* BroadcastWaitBrick */,
+				B44403AC1615CEA1000C0EC6 /* ChangeGhostEffectBrick */,
 				CD85F54816099C3D007C38D1 /* ChangeSizeByN */,
 				B419692416147CD700AFC8C8 /* ChangeVolumeByBrick */,
 				CD46F918160A431000207178 /* ChangeXBy */,
@@ -1016,6 +1057,7 @@
 				B415DC4215BAC5C00076275E /* PlaceAtBrick */,
 				B412ACF716133D680056B146 /* PlaySoundBrick */,
 				B415DC4115BAC5B70076275E /* SetCostumeBrick */,
+				B46CD92016159FFE000EA9D4 /* SetGhostEffectBrick */,
 				CDBF7B891612F94D00600B62 /* SetSizeTo */,
 				B419691B161452D000AFC8C8 /* SetVolumeToBrick */,
 				CD85F50F16077C42007C38D1 /* SetX */,
@@ -1310,9 +1352,7 @@
 				B4A0C5541611CE4100A28F6A /* play@2x.png in Resources */,
 				B4A0C5581611CEE200A28F6A /* back.png in Resources */,
 				B4A0C5591611CEE200A28F6A /* back@2x.png in Resources */,
-<<<<<<< HEAD
 				CD922D951614AC960039C53A /* tmp.png in Resources */,
-=======
 				B4EFE093161602730078BFDC /* home.png in Resources */,
 				B4EFE094161602730078BFDC /* home@2x.png in Resources */,
 				B4EFE0981616084F0078BFDC /* settings.png in Resources */,
@@ -1321,7 +1361,6 @@
 				B4EFE09D161609410078BFDC /* info@2x.png in Resources */,
 				B4EFE0A0161609C60078BFDC /* store.png in Resources */,
 				B4EFE0A1161609C60078BFDC /* store@2x.png in Resources */,
->>>>>>> dev_newHomeScreen
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1420,7 +1459,13 @@
 				CD922D8B16145CED0039C53A /* ChangeYByBrick.m in Sources */,
 				B419691E1614530200AFC8C8 /* SetVolumeToBrick.m in Sources */,
 				B419692216147CD100AFC8C8 /* ChangeVolumeByBrick.m in Sources */,
+<<<<<<< HEAD
 				CD922D991614C5260039C53A /* EndLoopBrick.m in Sources */,
+=======
+				B46CD91816158E89000EA9D4 /* BroadcastWaitBrick.m in Sources */,
+				B46CD91E16159FF9000EA9D4 /* SetGhostEffectBrick.m in Sources */,
+				B44403A91615CCA8000C0EC6 /* ChangeGhostEffectBrick.m in Sources */,
+>>>>>>> dev_new_bricks
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1442,6 +1487,9 @@
 				B419691A16144E8A00AFC8C8 /* DataModelBricksTest.m in Sources */,
 				B419691F1614530200AFC8C8 /* SetVolumeToBrick.m in Sources */,
 				B419692316147CD100AFC8C8 /* ChangeVolumeByBrick.m in Sources */,
+				B46CD91916158E89000EA9D4 /* BroadcastWaitBrick.m in Sources */,
+				B46CD91F16159FF9000EA9D4 /* SetGhostEffectBrick.m in Sources */,
+				B44403AA1615CCA8000C0EC6 /* ChangeGhostEffectBrick.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -55,7 +55,6 @@
 
 - (void)addCostume:(Costume*)costume;
 - (void)addCostumes:(NSArray*)costumesArray;
-- (void)addSound:(AVAudioPlayer*)sound;
 - (void)addStartScript:(StartScript*)script;
 - (void)addWhenScript:(WhenScript*)script;
 - (void)addBroadcastScript:(Script*)script forMessage:(NSString*)message;
@@ -88,6 +87,8 @@
 - (void)setXPosition:(float)xPosition;
 - (void)setYPosition:(float)yPosition;
 - (void)broadcast:(NSString*)message;
+- (void)broadcastAndWait:(NSString*)message;
+- (void)addSound:(AVAudioPlayer*)sound;
 - (void)comeToFront;
 - (void)changeSizeByN:(float)sizePercentageRate;
 - (void)changeXBy:(float)x;
@@ -96,6 +97,8 @@
 - (void)setSizeToPercentage:(float)sizeInPercentage;
 //- (void)addLoopBricks:(NSArray*)bricks;
 - (void)goNStepsBack:(int)n;
+- (void)setTransparency:(float)transparency;
+- (void)changeTransparencyBy:(float)increase;
 - (void)setVolumeTo:(float)volume;
 - (void)changeVolumeBy:(float)percent;
 
