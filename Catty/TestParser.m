@@ -188,12 +188,16 @@
     
     Costume *costume = [self createCostumeFromPath:@"normalcat.png" withName:@"cat1"];
     
+    SetCostumeBrick *setCostumeBrick = [[SetCostumeBrick alloc]init];
+    setCostumeBrick.indexOfCostumeInArray = 0;
     GlideToBrick *glideBrick1 = [[GlideToBrick alloc]initWithPosition:GLKVector3Make(100, 100, 0) andDurationInMilliSecs:1000];
     GlideToBrick *glideBrick2 = [[GlideToBrick alloc]initWithPosition:GLKVector3Make(100, -50, 0) andDurationInMilliSecs:500];
     WaitBrick *waitBrick = [[WaitBrick alloc]init];
     waitBrick.timeToWaitInMilliseconds = [NSNumber numberWithInt:1000];
     PlaceAtBrick *placeAtBrick = [[PlaceAtBrick alloc]initWithPosition:GLKVector3Make(0, 0, 0)];
     
+    Script *startScript = [[Script alloc]init];
+    [startScript addBrick:setCostumeBrick];
     
     WhenScript *whenScript = [[WhenScript alloc]init];
     [whenScript addBricks:[NSMutableArray arrayWithObjects:glideBrick1, glideBrick2, waitBrick, placeAtBrick, nil]];
@@ -203,6 +207,7 @@
     
     Sprite *sprite = [self createSprite:@"cat" withPositionX:(NSInteger)0 withPositionY:(NSInteger)0 withCostumes:costumes setCostumeIndex:(NSInteger)0];
     [sprite addWhenScript:whenScript];
+    [sprite addStartScript:startScript];
     
     level.spritesArray = [NSMutableArray arrayWithObject:sprite];
     
@@ -330,22 +335,29 @@
     
     //sprite2
     
-    HideBrick *hideBrick = [[HideBrick alloc]init];
-    WaitBrick *waitBrick = [[WaitBrick alloc]init];
-    waitBrick.timeToWaitInMilliseconds = [NSNumber numberWithInt:500];
-    ShowBrick *showBrick = [[ShowBrick alloc]init];
+    HideBrick *hideBrick1 = [[HideBrick alloc]init];
+    WaitBrick *waitBrick1 = [[WaitBrick alloc]init];
+    waitBrick1.timeToWaitInMilliseconds = [NSNumber numberWithInt:500];
+    ShowBrick *showBrick1 = [[ShowBrick alloc]init];
     
-    Script *broadcastScript = [[Script alloc]init];
-    [broadcastScript addBricks:[NSArray arrayWithObjects:hideBrick, waitBrick, showBrick, nil]];
+    Script *broadcastScript1 = [[Script alloc]init];
+    [broadcastScript1 addBricks:[NSArray arrayWithObjects:hideBrick1, waitBrick1, showBrick1, nil]];
     
     Sprite *sprite2 = [self createSprite:@"cat2" withPositionX:(NSInteger)70 withPositionY:(NSInteger)-100 withCostumes:costumes setCostumeIndex:(NSInteger)0];
-    [sprite2 addBroadcastScript:broadcastScript forMessage:broadcastMessage];
+    [sprite2 addBroadcastScript:broadcastScript1 forMessage:broadcastMessage];
     
     
     //sprite3
+    HideBrick *hideBrick2 = [[HideBrick alloc]init];
+    WaitBrick *waitBrick2 = [[WaitBrick alloc]init];
+    waitBrick2.timeToWaitInMilliseconds = [NSNumber numberWithInt:500];
+    ShowBrick *showBrick2 = [[ShowBrick alloc]init];
+
+    Script *broadcastScript2 = [[Script alloc]init];
+    [broadcastScript2 addBricks:[NSArray arrayWithObjects:hideBrick2, waitBrick2, showBrick2, nil]];
     
     Sprite *sprite3 = [self createSprite:@"cat3" withPositionX:(NSInteger)70 withPositionY:(NSInteger)100 withCostumes:costumes setCostumeIndex:(NSInteger)0];
-    [sprite3 addBroadcastScript:broadcastScript forMessage:broadcastMessage];
+    [sprite3 addBroadcastScript:broadcastScript2 forMessage:broadcastMessage];
 
 
     ///
@@ -399,8 +411,8 @@
     Costume *costume = [self createCostumeFromPath:@"normalcat.png" withName:@"cat1"];
     
     ChangeSizeByNBrick *changeSizeByNBrick1 = [[ChangeSizeByNBrick alloc]initWithSizeChangeRate:50];
-    ChangeSizeByNBrick *changeSizeByNBrick2 = [[ChangeSizeByNBrick alloc]initWithSizeChangeRate:150];
-    ChangeSizeByNBrick *changeSizeByNBrick3 = [[ChangeSizeByNBrick alloc]initWithSizeChangeRate:100];
+    ChangeSizeByNBrick *changeSizeByNBrick2 = [[ChangeSizeByNBrick alloc]initWithSizeChangeRate:-100];
+    ChangeSizeByNBrick *changeSizeByNBrick3 = [[ChangeSizeByNBrick alloc]initWithSizeChangeRate:50];
     
     WaitBrick *waitBrick = [[WaitBrick alloc]init];
     waitBrick.timeToWaitInMilliseconds = [NSNumber numberWithInt:500];
@@ -460,7 +472,7 @@
     Costume *costume2 = [self createCostumeFromPath:@"cheshirecat.png" withName:@"cat2"];
     
     Script *startScript = [[Script alloc]init];
-    RepeatBrick *loopStart = [[RepeatBrick alloc]initWithNumberOfLoops:2];
+    RepeatBrick *loopStart = [[RepeatBrick alloc]initWithNumberOfLoops:5];
     NextCostumeBrick *nextCostumeBrick = [[NextCostumeBrick alloc]init];
     WaitBrick *waitBrick = [[WaitBrick alloc]init];
     waitBrick.timeToWaitInMilliseconds = [NSNumber numberWithInt:500];

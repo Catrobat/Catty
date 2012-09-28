@@ -70,33 +70,65 @@
     return [NSArray arrayWithArray:self.bricksArray];
 }
 
--(BOOL)performNextBrickOnSprite:(Sprite*)sprite
-{
-    if (self.currentBrickIndex >= [self.bricksArray count])
-        return true;
-    
-    Brick *nextBrick = (Brick*)[self.bricksArray objectAtIndex:self.currentBrickIndex];
-    
-    if ([nextBrick isKindOfClass:[LoopBrick class]]) {
-        [self.startLoopIndexStack addObject:[NSNumber numberWithInt:self.currentBrickIndex]];
-    } else if ([nextBrick isMemberOfClass:[EndLoopBrick class]]) {
-        int indexOfLastStartLoop = ((NSNumber*)[self.startLoopIndexStack lastObject]).intValue;
-        LoopBrick *loopBrick = [self.bricksArray objectAtIndex:indexOfLastStartLoop];
-        if ([loopBrick checkConditionAndDecrementLoopCounter])
-            self.currentBrickIndex = indexOfLastStartLoop;
-    } else {
-        [nextBrick performOnSprite:sprite fromScript:self];
-    }
-    
-    self.currentBrickIndex += 1;
-    
-    return (self.currentBrickIndex >= [self.bricksArray count]);
-}
 
 -(void)resetScript
 {
     self.currentBrickIndex = 0;
     self.startLoopIndexStack = nil;
+}
+
+-(void)runScriptForSprite:(Sprite *)sprite
+{
+    //TODO: check loop-condition BEFORE first iteration
+    
+    NSLog(@"run script for sprite: %@", sprite.name);
+    [self resetScript];
+    while (self.currentBrickIndex < [self.bricksArray count]) {
+        Brick *brick = [self.bricksArray objectAtIndex:self.currentBrickIndex];
+        
+        if ([brick isKindOfClass:[LoopBrick class]]) {
+            [self.startLoopIndexStack addObject:[NSNumber numberWithInt:self.currentBrickIndex]];
+            
+            if (![(LoopBrick*)brick checkConditionAndDecrementLoopCounter]) {
+                // go to end of loop
+                int numOfLoops = 1;
+                int tmpCounter = self.currentBrickIndex;
+                while (numOfLoops > 0 && tmpCounter < [self.bricksArray count]) {
+                    brick = [self.bricksArray objectAtIndex:tmpCounter];
+                    if ([brick isKindOfClass:[LoopBrick class]])
+                        numOfLoops += 1;
+                    else if ([brick isMemberOfClass:[EndLoopBrick class]])
+                        numOfLoops -= 1;
+                    tmpCounter += 1;
+                }
+                self.currentBrickIndex = tmpCounter;
+            }
+            
+        } else if ([brick isMemberOfClass:[EndLoopBrick class]]) {
+            
+            self.currentBrickIndex = ((NSNumber*)[self.startLoopIndexStack lastObject]).intValue - 1;
+            [self.startLoopIndexStack removeLastObject];
+            
+        } else {
+            [brick performOnSprite:sprite fromScript:self];
+        }
+        
+        self.currentBrickIndex += 1;
+        NSLog(@"!!!!!!!!!!!!!!!!!!!!!!!!!! currentBrickIndex=%d", self.currentBrickIndex);
+    }
+}
+
+-(void)glideWithSprite:(Sprite*)sprite toPosition:(GLKVector3)position withinMilliSecs:(int)timeToGlideInMilliSecs
+{
+    [sprite glideToPosition:position withinDurationInMilliSecs:timeToGlideInMilliSecs fromScript:self];
+    [self waitTimeInMilliSecs:timeToGlideInMilliSecs];
+}
+
+-(void)waitTimeInMilliSecs:(float)timeToWaitInMilliSecs
+{
+    NSLog(@"BEFORE wait %f     wait: %f sec", [[NSDate date] timeIntervalSince1970], timeToWaitInMilliSecs/1000.0f);
+    [NSThread sleepForTimeInterval:timeToWaitInMilliSecs/1000.0f];
+    NSLog(@"AFTER wait  %f", [[NSDate date] timeIntervalSince1970]);
 }
 
 #pragma mark - Description

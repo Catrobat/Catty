@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <GLKit/GLKit.h>
 #import "enums.h"
 
 @class Brick;
@@ -25,7 +26,9 @@
 
 -(void)resetScript;
 
--(BOOL)performNextBrickOnSprite:(Sprite*)sprite;    // return true   => script finished
-                                                    // return false  => bricks left
+-(void)runScriptForSprite:(Sprite*)sprite;
+
+-(void)glideWithSprite:(Sprite*)sprite toPosition:(GLKVector3)position withinMilliSecs:(int)timeToGlideInMilliSecs;
+-(void)waitTimeInMilliSecs:(float)timeToWaitInMilliSecs;
 
 @end

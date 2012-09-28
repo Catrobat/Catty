@@ -18,7 +18,9 @@
 {
     NSLog(@"Performing: %@", self.description);
     
-    [sprite changeCostume:self.indexOfCostumeInArray];
+
+    [sprite performSelectorOnMainThread:@selector(changeCostume:) withObject:self.indexOfCostumeInArray waitUntilDone:true];
+//    [sprite changeCostume:self.indexOfCostumeInArray];
 }
 
 

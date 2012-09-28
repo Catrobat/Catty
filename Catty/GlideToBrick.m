@@ -7,6 +7,7 @@
 //
 
 #import "GlideToBrick.h"
+#import "Script.h"
 
 // TODO: change! Need CattyViewController to get FRAMES_PER_SECOND... 
 #import "CattyViewController.h"
@@ -33,7 +34,8 @@
 {
     NSLog(@"Performing: %@", self.description);
 
-    [sprite glideToPosition:self.position withinDurationInMilliSecs:self.durationInMilliSecs fromScript:script];
+    [script glideWithSprite:sprite toPosition:self.position withinMilliSecs:self.durationInMilliSecs];
+//    [sprite glideToPosition:self.position withinDurationInMilliSecs:self.durationInMilliSecs fromScript:script];
 }
 
 #pragma mark - Description

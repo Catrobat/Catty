@@ -7,6 +7,7 @@
 //
 
 #import "WaitBrick.h"
+#import "Script.h"
 
 @implementation WaitBrick
 
@@ -16,7 +17,9 @@
 {
     NSLog(@"Performing: %@", self.description);
     
-    [sprite wait:[self.timeToWaitInMilliseconds intValue] fromScript:script];
+    [script waitTimeInMilliSecs:self.timeToWaitInMilliseconds.floatValue];
+    
+//    [sprite wait:[self.timeToWaitInMilliseconds intValue] fromScript:script];
     
 //    float sleepTime = ((float)self.timeToWaitInMilliseconds.intValue)/1000;
 //    NSLog(@"wating for %f seconds", sleepTime);

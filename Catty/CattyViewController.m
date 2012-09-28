@@ -126,9 +126,9 @@
     TestParser *testparser = [[TestParser alloc]init];
     projectName = @"defaultProject";
     self.level = [testparser generateDebugLevel_GlideTo];
-//    self.level = [testparser generateDebugLevel_nextCostume];
-//    self.level = [testparser generateDebugLevel_HideShow];
-//    self.level = [testparser generateDebugLevel_SetXY];
+    self.level = [testparser generateDebugLevel_nextCostume];
+    self.level = [testparser generateDebugLevel_HideShow];
+    self.level = [testparser generateDebugLevel_SetXY];
     self.level = [testparser generateDebugLevel_broadcast];
 //    self.level = [testparser generateDebugLevel_comeToFront];
 //    self.level = [testparser generateDebugLevel_changeSizeByN];
