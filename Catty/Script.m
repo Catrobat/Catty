@@ -17,6 +17,7 @@
 @property (strong, nonatomic) NSMutableArray *bricksArray;
 @property (assign, nonatomic) int currentBrickIndex;
 @property (strong, nonatomic) NSMutableArray *startLoopIndexStack;
+@property (assign, nonatomic) BOOL stop;
 @end
 
 
@@ -27,7 +28,7 @@
 @synthesize action = _action;
 @synthesize currentBrickIndex = _currentBrickIndex;
 @synthesize startLoopIndexStack = _startLoopIndexStack;
-
+@synthesize stop = _stop;
 
 - (id)init
 {
@@ -35,6 +36,7 @@
     {
         self.action = kTouchActionTap;
         self.currentBrickIndex = 0;
+        self.stop = NO;
     }
     return self;
 }
@@ -77,6 +79,11 @@
     self.startLoopIndexStack = nil;
 }
 
+-(void)stopScript
+{
+    self.stop = YES;
+}
+
 -(void)runScriptForSprite:(Sprite *)sprite
 {
     //TODO: check loop-condition BEFORE first iteration
@@ -85,7 +92,7 @@
     [self resetScript];
     if (self.currentBrickIndex < 0)
         self.currentBrickIndex = 0;
-    while (self.currentBrickIndex < [self.bricksArray count]) {
+    while (!self.stop && self.currentBrickIndex < [self.bricksArray count]) {
         if (self.currentBrickIndex < 0)
             self.currentBrickIndex = 0;
         Brick *brick = [self.bricksArray objectAtIndex:self.currentBrickIndex];

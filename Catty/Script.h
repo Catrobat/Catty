@@ -25,6 +25,7 @@
 -(NSString*)description;
 
 -(void)resetScript;
+-(void)stopScript;
 
 -(void)runScriptForSprite:(Sprite*)sprite;
 

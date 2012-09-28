@@ -776,6 +776,13 @@ typedef struct {
     [self.activeScripts removeObject:script];
 }
 
-
+-(void)stopAllScripts
+{
+    for (Script *script in self.activeScripts) {
+        [script stopScript];
+    }
+    self.nextPositions = nil;
+    self.activeScripts = nil;
+}
 
 @end

@@ -88,6 +88,12 @@
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
+    
+    [self stopAllSounds];
+    for (Sprite *sprite in self.level.spritesArray) {
+        [sprite stopAllScripts];
+    }
+    
     [super viewWillDisappear:animated];
     [self.navigationController setNavigationBarHidden:NO animated:YES];
 }

@@ -75,6 +75,7 @@
 - (void)start;
 - (void)touch:(TouchAction)type;
 - (void)scriptFinished:(Script*)script;
+- (void)stopAllScripts;
 
 // actions
 - (void)placeAt:(GLKVector3)newPosition;    //origin is in the middle of the sprite
