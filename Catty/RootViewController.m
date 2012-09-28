@@ -32,7 +32,7 @@
     [super viewDidLoad];
 
     //background image
-    UIColor *background = [[UIColor alloc] initWithPatternImage:[UIImage imageNamed:@"startBackground"]];
+    UIColor *background = [[UIColor alloc] initWithPatternImage:[UIImage imageNamed:@"home"]];
     self.view.backgroundColor = background;    
     
     //load/init sample projects
