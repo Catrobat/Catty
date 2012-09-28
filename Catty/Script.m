@@ -73,7 +73,7 @@
 
 -(void)resetScript
 {
-    self.currentBrickIndex = 0;
+    self.currentBrickIndex = -1;
     self.startLoopIndexStack = nil;
 }
 
@@ -83,7 +83,11 @@
     
     NSLog(@"run script for sprite: %@", sprite.name);
     [self resetScript];
+    if (self.currentBrickIndex < 0)
+        self.currentBrickIndex = 0;
     while (self.currentBrickIndex < [self.bricksArray count]) {
+        if (self.currentBrickIndex < 0)
+            self.currentBrickIndex = 0;
         Brick *brick = [self.bricksArray objectAtIndex:self.currentBrickIndex];
         
         if ([brick isKindOfClass:[LoopBrick class]]) {

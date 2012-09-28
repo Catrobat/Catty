@@ -724,7 +724,8 @@ typedef struct {
 
 -(void)scriptFinished:(Script *)script
 {
-   [self.activeScripts removeObject:script];
+    [self.nextPositions removeObjectForKey:script.description];
+    [self.activeScripts removeObject:script];
 }
 
 
