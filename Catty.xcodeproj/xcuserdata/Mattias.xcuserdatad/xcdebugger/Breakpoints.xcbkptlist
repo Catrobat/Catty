@@ -33,19 +33,6 @@
          shouldBeEnabled = "No"
          ignoreCount = "0"
          continueAfterRunningActions = "No"
-         filePath = "Catty/Sprite.m"
-         timestampString = "370522965.184327"
-         startingColumnNumber = "9223372036854775807"
-         endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "673"
-         endingLineNumber = "673"
-         landmarkName = "-touch:"
-         landmarkType = "5">
-      </FileBreakpoint>
-      <FileBreakpoint
-         shouldBeEnabled = "No"
-         ignoreCount = "0"
-         continueAfterRunningActions = "No"
          filePath = "Catty/CattyViewController.m"
          timestampString = "370509463.603732"
          startingColumnNumber = "9223372036854775807"
@@ -112,12 +99,12 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Catty/Script.m"
-         timestampString = "370516853.099175"
+         timestampString = "370537455.968554"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "76"
-         endingLineNumber = "76"
-         landmarkName = "-resetScript"
+         startingLineNumber = "84"
+         endingLineNumber = "84"
+         landmarkName = "-runScriptForSprite:"
          landmarkType = "5">
       </FileBreakpoint>
       <FileBreakpoint
@@ -177,11 +164,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Catty/RepeatBrick.m"
-         timestampString = "370522294.072026"
+         timestampString = "370538107.0861"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "27"
-         endingLineNumber = "27"
+         startingLineNumber = "33"
+         endingLineNumber = "33"
          landmarkName = "-checkConditionAndDecrementLoopCounter"
          landmarkType = "5">
       </FileBreakpoint>
@@ -196,6 +183,19 @@
          startingLineNumber = "418"
          endingLineNumber = "418"
          landmarkName = "-update:"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "Catty/Sprite.m"
+         timestampString = "370538134.892551"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "673"
+         endingLineNumber = "673"
+         landmarkName = "-touch:"
          landmarkType = "5">
       </FileBreakpoint>
    </FileBreakpoints>

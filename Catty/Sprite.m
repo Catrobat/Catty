@@ -253,7 +253,7 @@ typedef struct {
 {
     NSMutableDictionary *mutableDictionary = [self.broadcastScripts mutableCopy];
     [mutableDictionary setObject:script forKey:message];
-    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(performBroadcastScript:) name:message object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(performBroadcastScript:) name:message object:nil];
     self.broadcastScripts = [NSDictionary dictionaryWithDictionary:mutableDictionary];
 }
 
@@ -707,7 +707,7 @@ typedef struct {
         } else {
             [self.activeScripts addObject:script];
             
-            // ------------------------------------------ THREAD --------------------------------------
+            // -------- ---------------------------------- THREAD --------------------------------------
             dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
                 [script runScriptForSprite:self];
                 
