@@ -131,10 +131,11 @@
 		CD922D7216144C870039C53A /* RepeatBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = CD922D7116144C870039C53A /* RepeatBrick.m */; };
 		CD922D87161454AD0039C53A /* GoNStepsBackBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = CD922D86161454AD0039C53A /* GoNStepsBackBrick.m */; };
 		CD922D8B16145CED0039C53A /* ChangeYByBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = CD922D8A16145CED0039C53A /* ChangeYByBrick.m */; };
-		CD922D951614AC960039C53A /* tmp.png in Resources */ = {isa = PBXBuildFile; fileRef = CD922D941614AC960039C53A /* tmp.png */; };
 		CD922D991614C5260039C53A /* EndLoopBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = CD922D981614C5260039C53A /* EndLoopBrick.m */; };
 		CD9438AB15DBAFC7002E6375 /* defaultProject in Resources */ = {isa = PBXBuildFile; fileRef = CD9438AA15DBAFC7002E6375 /* defaultProject */; };
 		CDBF7B8D1612F96900600B62 /* SetSizeToBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = CDBF7B8C1612F96900600B62 /* SetSizeToBrick.m */; };
+		CDC84F9E1616476F003D4864 /* HelperSprite.m in Sources */ = {isa = PBXBuildFile; fileRef = CDC84F9D1616476F003D4864 /* HelperSprite.m */; };
+		CDC84FA116165072003D4864 /* tmp.png in Resources */ = {isa = PBXBuildFile; fileRef = CDC84FA016165072003D4864 /* tmp.png */; };
 		CDE35DED15B4892D009A3524 /* GlideToBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = CDE35DEC15B4892D009A3524 /* GlideToBrick.m */; };
 /* End PBXBuildFile section */
 
@@ -332,12 +333,14 @@
 		CD922D86161454AD0039C53A /* GoNStepsBackBrick.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GoNStepsBackBrick.m; sourceTree = "<group>"; };
 		CD922D8916145CED0039C53A /* ChangeYByBrick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChangeYByBrick.h; sourceTree = "<group>"; };
 		CD922D8A16145CED0039C53A /* ChangeYByBrick.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChangeYByBrick.m; sourceTree = "<group>"; };
-		CD922D941614AC960039C53A /* tmp.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tmp.png; sourceTree = "<group>"; };
 		CD922D971614C5260039C53A /* EndLoopBrick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EndLoopBrick.h; sourceTree = "<group>"; };
 		CD922D981614C5260039C53A /* EndLoopBrick.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EndLoopBrick.m; sourceTree = "<group>"; };
 		CD9438AA15DBAFC7002E6375 /* defaultProject */ = {isa = PBXFileReference; lastKnownFileType = folder; name = defaultProject; path = Projects/defaultProject; sourceTree = SOURCE_ROOT; };
 		CDBF7B8B1612F96900600B62 /* SetSizeToBrick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SetSizeToBrick.h; sourceTree = "<group>"; };
 		CDBF7B8C1612F96900600B62 /* SetSizeToBrick.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SetSizeToBrick.m; sourceTree = "<group>"; };
+		CDC84F9C1616476F003D4864 /* HelperSprite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HelperSprite.h; sourceTree = "<group>"; };
+		CDC84F9D1616476F003D4864 /* HelperSprite.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HelperSprite.m; sourceTree = "<group>"; };
+		CDC84FA016165072003D4864 /* tmp.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tmp.png; sourceTree = "<group>"; };
 		CDE35DEB15B4892C009A3524 /* GlideToBrick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GlideToBrick.h; sourceTree = "<group>"; };
 		CDE35DEC15B4892D009A3524 /* GlideToBrick.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GlideToBrick.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -1024,6 +1027,8 @@
 			children = (
 				B4FDF37A15A82F1E00CBCF03 /* Sprite.h */,
 				B4FDF37B15A82F1E00CBCF03 /* Sprite.m */,
+				CDC84F9C1616476F003D4864 /* HelperSprite.h */,
+				CDC84F9D1616476F003D4864 /* HelperSprite.m */,
 			);
 			name = Sprite;
 			sourceTree = "<group>";
@@ -1073,7 +1078,7 @@
 		B4FDF38C15A82FB200CBCF03 /* TEMP */ = {
 			isa = PBXGroup;
 			children = (
-				CD922D941614AC960039C53A /* tmp.png */,
+				CDC84FA016165072003D4864 /* tmp.png */,
 				CD85F55D1609AED0007C38D1 /* rocket */,
 				CD9438AA15DBAFC7002E6375 /* defaultProject */,
 			);
@@ -1352,7 +1357,6 @@
 				B4A0C5541611CE4100A28F6A /* play@2x.png in Resources */,
 				B4A0C5581611CEE200A28F6A /* back.png in Resources */,
 				B4A0C5591611CEE200A28F6A /* back@2x.png in Resources */,
-				CD922D951614AC960039C53A /* tmp.png in Resources */,
 				B4EFE093161602730078BFDC /* home.png in Resources */,
 				B4EFE094161602730078BFDC /* home@2x.png in Resources */,
 				B4EFE0981616084F0078BFDC /* settings.png in Resources */,
@@ -1361,6 +1365,7 @@
 				B4EFE09D161609410078BFDC /* info@2x.png in Resources */,
 				B4EFE0A0161609C60078BFDC /* store.png in Resources */,
 				B4EFE0A1161609C60078BFDC /* store@2x.png in Resources */,
+				CDC84FA116165072003D4864 /* tmp.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1463,6 +1468,7 @@
 				B46CD91816158E89000EA9D4 /* BroadcastWaitBrick.m in Sources */,
 				B46CD91E16159FF9000EA9D4 /* SetGhostEffectBrick.m in Sources */,
 				B44403A91615CCA8000C0EC6 /* ChangeGhostEffectBrick.m in Sources */,
+				CDC84F9E1616476F003D4864 /* HelperSprite.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

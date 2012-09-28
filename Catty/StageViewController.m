@@ -13,6 +13,7 @@
 #import "RetailParser.h"
 #import "Brick.h"
 #import "Script.h"
+#import "HelperSprite.h"
 
 @interface StageViewController ()
 
@@ -22,6 +23,12 @@
 @property (strong, nonatomic) GLKBaseEffect *effect;
 @property (strong, nonatomic) NSMutableArray *soundsArray;
 @property (strong, nonatomic) NSMutableDictionary *soundsDict;
+
+@property (strong, nonatomic) HelperSprite *blackLeft;
+@property (strong, nonatomic) HelperSprite *blackRight;
+@property (strong, nonatomic) HelperSprite *blackTop;
+@property (strong, nonatomic) HelperSprite *blackBottom;
+
 
 @end
 
@@ -35,6 +42,11 @@
 
 @synthesize levelLoadingInfo = _levelLoadingInfo;
 @synthesize soundsDict = _soundsDict;
+
+@synthesize blackLeft = _blackLeft;
+@synthesize blackRight = _blackRight;
+@synthesize blackTop = _blackTop;
+@synthesize blackBottom = _blackBottom;
 
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -77,6 +89,41 @@
     
     // load level here!
     [self loadLevel];
+    
+    // set black frame for scaled projects
+    // TODO: dirty!!!
+    Sprite *sprite = [self.level.spritesArray lastObject];
+    
+    float screenWidth  = [UIScreen mainScreen].bounds.size.width;
+    float screenHeight = [UIScreen mainScreen].bounds.size.height;
+    
+    NSBundle *bundle = [NSBundle bundleForClass:[self class]];
+    NSString *imageFilePath = [bundle pathForResource:@"tmp.png" ofType:nil];
+
+    NSLog(@"Path to black image: %@", imageFilePath);
+    
+    if (sprite.xOffset > 0) {
+        self.blackLeft  = [[HelperSprite alloc] init];
+        self.blackRight = [[HelperSprite alloc] init];
+        self.blackLeft.effect  = self.effect;
+        self.blackRight.effect = self.effect;
+        self.blackLeft.position  = GLKVector3Make(0, 0, 1024);
+        self.blackRight.position = GLKVector3Make(screenWidth-sprite.xOffset, 0, 1024);
+        [self.blackLeft  loadImage:imageFilePath width:sprite.xOffset height:screenHeight];
+        [self.blackRight loadImage:imageFilePath width:sprite.xOffset height:screenHeight];
+    }
+    
+    if (sprite.yOffset > 0) {
+        self.blackTop    = [[HelperSprite alloc] init];
+        self.blackBottom = [[HelperSprite alloc] init];
+        self.blackTop.effect    = self.effect;
+        self.blackBottom.effect = self.effect;
+        self.blackTop.position    = GLKVector3Make(0, screenHeight-sprite.yOffset, 1024);
+        self.blackBottom.position = GLKVector3Make(0, 0, 1024);
+        [self.blackTop    loadImage:imageFilePath width:screenWidth height:sprite.yOffset];
+        [self.blackBottom loadImage:imageFilePath width:screenWidth height:sprite.yOffset];
+    }
+    
     [self startLevel];
     
 }
@@ -213,7 +260,10 @@
     {
         [sprite render];
     }
-    
+    [self.blackLeft   render];
+    [self.blackRight  render];
+    [self.blackTop    render];
+    [self.blackBottom render];
 }
 
 - (void)glkViewControllerUpdate:(GLKViewController *)controller

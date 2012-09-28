@@ -217,8 +217,13 @@ typedef struct {
     if (scaleY < scaleX)
         self.scaleFactor = scaleY;
     
-    self.xOffset = ([UIScreen mainScreen].bounds.size.width  - projectResolution.width ) / 2.0f;
-    self.yOffset = ([UIScreen mainScreen].bounds.size.height - projectResolution.height) / 2.0f;
+    self.xOffset = ([UIScreen mainScreen].bounds.size.width  - (projectResolution.width  * self.scaleFactor)) / 2.0f;
+    self.yOffset = ([UIScreen mainScreen].bounds.size.height - (projectResolution.height * self.scaleFactor)) / 2.0f;
+    
+    if (projectResolution.width == 0)
+        self.xOffset = -1;
+    if (projectResolution.height == 0)
+        self.yOffset = -1;
     
     NSLog(@"Scale screen size:");
     NSLog(@"  Device:    %f / %f", [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height);
@@ -487,6 +492,25 @@ typedef struct {
 
 
 #pragma mark - actions
+
+-(void)changeSizeTo:(CGSize)size
+{
+    //// TODO DIRTY!!!! Just for black frames.......!!!!
+        
+    self.contentSize = CGSizeMake(size.width, size.height);
+    
+    TexturedQuad newQuad;
+    newQuad.bottomLeftCorner.geometryVertex = CGPointMake(0, 0);
+    newQuad.bottomRightCorner.geometryVertex = CGPointMake(size.width, 0);
+    newQuad.topLeftCorner.geometryVertex = CGPointMake(0, size.height);
+    newQuad.topRightCorner.geometryVertex = CGPointMake(size.width, size.height);
+    
+    newQuad.bottomLeftCorner.textureVertex = CGPointMake(0, 0);
+    newQuad.bottomRightCorner.textureVertex = CGPointMake(1, 0);
+    newQuad.topLeftCorner.textureVertex = CGPointMake(0, 1);
+    newQuad.topRightCorner.textureVertex = CGPointMake(1, 1);
+    self.quad = newQuad;
+}
 
 -(void)placeAt:(GLKVector3)newPosition
 {

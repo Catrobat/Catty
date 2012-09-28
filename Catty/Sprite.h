@@ -48,6 +48,10 @@
 @property (assign) CGSize contentSize;
 @property (nonatomic, strong) GLKBaseEffect *effect;
 
+@property (readonly, assign, nonatomic) float scaleFactor;    // scale image to fit screen
+@property (readonly, assign, nonatomic) float xOffset;        // black border, if proportions are different (project-xml-resolution vs. screen-resolution)
+@property (readonly, assign, nonatomic) float yOffset;
+
 // init, add
 - (id)initWithEffect:(GLKBaseEffect*)effect;
 
@@ -78,6 +82,7 @@
 - (void)stopAllScripts;
 
 // actions
+- (void)changeSizeTo:(CGSize)size;
 - (void)placeAt:(GLKVector3)newPosition;    //origin is in the middle of the sprite
 //- (void)wait:(int)durationInMilliSecs fromScript:(Script*)script;
 - (void)changeCostume:(NSNumber*)indexOfCostumeInArray;
