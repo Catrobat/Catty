@@ -26,7 +26,7 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="5A3-mf-YQN">
-                                <rect key="frame" x="98" y="128" width="125" height="125"/>
+                                <rect key="frame" x="57" y="121" width="207" height="138"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                 <state key="normal" image="play@2x.png">
@@ -40,11 +40,11 @@
                                     <segue destination="A1g-o5-GHB" kind="push" id="bov-M8-akh"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="eZ2-UH-7N4">
-                                <rect key="frame" x="98" y="350" width="125" height="125"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="eZ2-UH-7N4">
+                                <rect key="frame" x="117" y="401" width="86" height="60"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                <state key="normal" title="Store" image="store@2x.png">
+                                <state key="normal" title="Store">
                                     <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -55,11 +55,11 @@
                                     <segue destination="sNS-WO-dHS" kind="push" id="erf-8A-Pge"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="PoM-zv-B3y">
-                                <rect key="frame" x="5" y="405" width="70" height="70"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="PoM-zv-B3y">
+                                <rect key="frame" x="20" y="421" width="60" height="40"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                <state key="normal" title="Forum" image="settings@2x.png">
+                                <state key="normal" title="Forum">
                                     <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -70,11 +70,11 @@
                                     <action selector="forumButtonClicked:" destination="FNH-tE-2bY" eventType="touchUpInside" id="A14-ev-PI7"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="m0t-yt-dcY">
-                                <rect key="frame" x="245" y="405" width="70" height="70"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="m0t-yt-dcY">
+                                <rect key="frame" x="240" y="421" width="60" height="40"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                <state key="normal" title="Info" image="info@2x.png">
+                                <state key="normal" title="Info">
                                     <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -332,57 +332,8 @@
     </scenes>
     <resources>
         <image name="back@2x.png" width="86" height="112"/>
-        <image name="info@2x.png" width="140" height="140"/>
-        <image name="play@2x.png" width="250" height="250"/>
-        <image name="settings@2x.png" width="140" height="140"/>
-        <image name="store@2x.png" width="250" height="250"/>
+        <image name="play@2x.png" width="136" height="181"/>
     </resources>
-    <classes>
-        <class className="CattyViewController" superclassName="GLKViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/CattyViewController.h"/>
-        </class>
-        <class className="FeaturedProjectsViewController" superclassName="ProjectBrowserBaseClassViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/FeaturedProjectsViewController.h"/>
-            <relationships>
-                <relationship kind="outlet" name="labelOutlet" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="pageControlOutlet" candidateClass="UIPageControl"/>
-                <relationship kind="outlet" name="scrollViewOutlet" candidateClass="UIScrollView"/>
-            </relationships>
-        </class>
-        <class className="ListProjectsViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/ListProjectsViewController.h"/>
-        </class>
-        <class className="MyProjectsViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/MyProjectsViewController.h"/>
-        </class>
-        <class className="ProjectBrowserBaseClassViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/ProjectBrowserBaseClassViewController.h"/>
-        </class>
-        <class className="RecentProjectsViewController" superclassName="ProjectBrowserBaseClassViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/RecentProjectsViewController.h"/>
-            <relationships>
-                <relationship kind="outlet" name="labelOutel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="pageControlOutlet" candidateClass="UIPageControl"/>
-                <relationship kind="outlet" name="scrollViewOutlet" candidateClass="UIScrollView"/>
-            </relationships>
-        </class>
-        <class className="RootViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/RootViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="forumButtonClicked:" candidateClass="UIButton"/>
-                <relationship kind="action" name="infoButtonClicked:" candidateClass="UIButton"/>
-            </relationships>
-        </class>
-        <class className="StageViewController" superclassName="GLKViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/StageViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="backButtonPressed:" candidateClass="UIButton"/>
-            </relationships>
-        </class>
-        <class className="StartScreenViewController" superclassName="GLKViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/StartScreenViewController.h"/>
-        </class>
-    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <nil key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>
