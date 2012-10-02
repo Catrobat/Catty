@@ -12,7 +12,7 @@
 
 @synthesize x = _x;
 
--(id)initWithChangeValueForX:(float)x
+-(id)initWithChangeValueForX:(int)x
 {
     self = [super init];
     if (self)
@@ -39,7 +39,7 @@
 #pragma mark - Description
 - (NSString*)description
 {
-    return [NSString stringWithFormat:@"ChangeXBy (%f)", self.x];
+    return [NSString stringWithFormat:@"ChangeXBy (%d)", self.x];
 }
 
 @end

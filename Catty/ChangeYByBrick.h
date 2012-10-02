@@ -10,7 +10,7 @@
 
 @interface ChangeYByBrick : Brick
 
-@property (assign, nonatomic) float y;
+@property (assign, nonatomic) int y;
 
--(id)initWithChangeValueForY:(float)y;
+-(id)initWithChangeValueForY:(int)y;
 @end

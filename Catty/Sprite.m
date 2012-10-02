@@ -603,12 +603,12 @@ typedef struct {
     [self setSpriteSize];
 }
 
--(void)changeXBy:(float)x
+-(void)changeXBy:(int)x
 {
     self.position = GLKVector3Make(self.position.x + x, self.position.y, self.position.z);
 }
 
--(void)changeYBy:(float)y
+-(void)changeYBy:(int)y
 {
     self.position = GLKVector3Make(self.position.x, self.position.y + y, self.position.z);
 }

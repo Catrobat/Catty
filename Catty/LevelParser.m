@@ -526,13 +526,13 @@
 
 -(BroadcastWaitBrick*)loadBroadcastWaitBrick:(GDataXMLElement*)gDataXMLElement
 {
-    
+    BroadcastWaitBrick* brick = [[BroadcastWaitBrick alloc]init];
     
     NSArray *messages = [gDataXMLElement elementsForName:@"broadcastMessage"];
     GDataXMLElement *message = (GDataXMLElement*)[messages objectAtIndex:0];
     
     NSLog(@"broadcastWaitBrick: %@", message.stringValue);
-    BroadcastWaitBrick* brick = [[BroadcastWaitBrick alloc]initWithMessage:message.stringValue];
+    brick.message = message.stringValue;
     
     return brick;
 }
@@ -628,8 +628,9 @@
     GDataXMLElement *transparency = (GDataXMLElement*)[sizes objectAtIndex:0];
     
     NSLog(@"SetTransparencyTo: %f", transparency.stringValue.floatValue);
-    SetGhostEffectBrick *brick = [[SetGhostEffectBrick alloc]initWithTransparencyInPercent:transparency.stringValue.floatValue];
-    
+    //SetGhostEffectBrick *brick = [[SetGhostEffectBrick alloc]initWithTransparencyInPercent:transparency.stringValue.floatValue];
+    SetGhostEffectBrick *brick = [[SetGhostEffectBrick alloc]init];
+    brick.transparency = transparency.stringValue.floatValue;
     return brick;
     
 }

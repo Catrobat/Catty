@@ -12,6 +12,6 @@
 
 @interface ParserTests : SenTestCase
 
-@property (nonatomic, strong) RetailParser *parser;
+//@property (nonatomic, strong) RetailParser *parser;
 
 @end

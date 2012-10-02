@@ -12,7 +12,7 @@
 
 @synthesize y = _y;
 
--(id)initWithChangeValueForY:(float)y
+-(id)initWithChangeValueForY:(int)y
 {
     self = [super init];
     if (self)
@@ -32,7 +32,7 @@
 #pragma mark - Description
 - (NSString*)description
 {
-    return [NSString stringWithFormat:@"ChangeYBy (%f)", self.y];
+    return [NSString stringWithFormat:@"ChangeYBy (%d)", self.y];
 }
 
 @end

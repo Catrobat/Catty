@@ -10,7 +10,7 @@
 
 @interface ChangeXByBrick : Brick
 
-@property (assign, nonatomic) float x;
+@property (assign, nonatomic) int x;
 
--(id)initWithChangeValueForX:(float)x;
+-(id)initWithChangeValueForX:(int)x;
 @end

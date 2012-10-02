@@ -13,9 +13,7 @@
 		B40C723B15A88DFD005A8EC7 /* GLKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B4FDF32415A82C1000CBCF03 /* GLKit.framework */; };
 		B40C723F15A88E9E005A8EC7 /* kittycat.png in Resources */ = {isa = PBXBuildFile; fileRef = B40C723E15A88E9E005A8EC7 /* kittycat.png */; };
 		B412ACF416133D5C0056B146 /* PlaySoundBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = B412ACF216133D5C0056B146 /* PlaySoundBrick.m */; };
-		B412ACF516133D5C0056B146 /* PlaySoundBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = B412ACF216133D5C0056B146 /* PlaySoundBrick.m */; };
 		B412ACFA16133D7B0056B146 /* StopAllSoundsBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = B412ACF916133D7B0056B146 /* StopAllSoundsBrick.m */; };
-		B412ACFB16133D7B0056B146 /* StopAllSoundsBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = B412ACF916133D7B0056B146 /* StopAllSoundsBrick.m */; };
 		B412ACFE16133F2B0056B146 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B412ACFD16133F2B0056B146 /* AVFoundation.framework */; settings = {ATTRIBUTES = (Required, ); }; };
 		B412AD08161342240056B146 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B412ACFD16133F2B0056B146 /* AVFoundation.framework */; };
 		B415DC3915B9F8540076275E /* Util.m in Sources */ = {isa = PBXBuildFile; fileRef = B415DC3815B9F8540076275E /* Util.m */; };
@@ -25,9 +23,7 @@
 		B415DC4615BAE3CF0076275E /* projectcode.xml in Resources */ = {isa = PBXBuildFile; fileRef = B415DC4415BAE3CF0076275E /* projectcode.xml */; };
 		B419691A16144E8A00AFC8C8 /* DataModelBricksTest.m in Sources */ = {isa = PBXBuildFile; fileRef = B419691916144E8A00AFC8C8 /* DataModelBricksTest.m */; };
 		B419691E1614530200AFC8C8 /* SetVolumeToBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = B419691D1614530200AFC8C8 /* SetVolumeToBrick.m */; };
-		B419691F1614530200AFC8C8 /* SetVolumeToBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = B419691D1614530200AFC8C8 /* SetVolumeToBrick.m */; };
 		B419692216147CD100AFC8C8 /* ChangeVolumeByBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = B419692116147CD100AFC8C8 /* ChangeVolumeByBrick.m */; };
-		B419692316147CD100AFC8C8 /* ChangeVolumeByBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = B419692116147CD100AFC8C8 /* ChangeVolumeByBrick.m */; };
 		B438FC8D16108E5200D6B911 /* FeaturedProjectsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B438FC8C16108E5200D6B911 /* FeaturedProjectsViewController.m */; };
 		B43CF2381608E0A000E19CF3 /* RecentProjectsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B43CF2371608E0A000E19CF3 /* RecentProjectsViewController.m */; };
 		B43CF23C1609926D00E19CF3 /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B43CF23B1609926D00E19CF3 /* RootViewController.m */; };
@@ -49,14 +45,11 @@
 		B43CF2DF160AE72600E19CF3 /* startBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = B43CF2DD160AE72600E19CF3 /* startBackground.png */; };
 		B43CF2E0160AE72600E19CF3 /* startBackground@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B43CF2DE160AE72600E19CF3 /* startBackground@2x.png */; };
 		B44403A91615CCA8000C0EC6 /* ChangeGhostEffectBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = B44403A81615CCA8000C0EC6 /* ChangeGhostEffectBrick.m */; };
-		B44403AA1615CCA8000C0EC6 /* ChangeGhostEffectBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = B44403A81615CCA8000C0EC6 /* ChangeGhostEffectBrick.m */; };
 		B468CDBE16078B59007300A0 /* ListProjectsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B468CDBD16078B59007300A0 /* ListProjectsViewController.m */; };
 		B468CDC3160790CF007300A0 /* CatrobatInformation.m in Sources */ = {isa = PBXBuildFile; fileRef = B468CDC2160790CF007300A0 /* CatrobatInformation.m */; };
 		B468CDC816079438007300A0 /* CatrobatProject.m in Sources */ = {isa = PBXBuildFile; fileRef = B468CDC716079438007300A0 /* CatrobatProject.m */; };
 		B46CD91816158E89000EA9D4 /* BroadcastWaitBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = B46CD91716158E89000EA9D4 /* BroadcastWaitBrick.m */; };
-		B46CD91916158E89000EA9D4 /* BroadcastWaitBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = B46CD91716158E89000EA9D4 /* BroadcastWaitBrick.m */; };
 		B46CD91E16159FF9000EA9D4 /* SetGhostEffectBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = B46CD91D16159FF9000EA9D4 /* SetGhostEffectBrick.m */; };
-		B46CD91F16159FF9000EA9D4 /* SetGhostEffectBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = B46CD91D16159FF9000EA9D4 /* SetGhostEffectBrick.m */; };
 		B479E9211611A3CB000B1DFA /* DefaultProject.catrobat in Resources */ = {isa = PBXBuildFile; fileRef = B479E9201611A3CB000B1DFA /* DefaultProject.catrobat */; };
 		B479E9221611A3CB000B1DFA /* DefaultProject.catrobat in Resources */ = {isa = PBXBuildFile; fileRef = B479E9201611A3CB000B1DFA /* DefaultProject.catrobat */; };
 		B479E9271611A3F1000B1DFA /* FileManager.m in Sources */ = {isa = PBXBuildFile; fileRef = B479E9261611A3F1000B1DFA /* FileManager.m */; };
@@ -1485,14 +1478,7 @@
 				B4C4D9E1160C4A0D00E4FD19 /* CatrobatProjectTests.m in Sources */,
 				B479E9281611A3F1000B1DFA /* FileManager.m in Sources */,
 				B479E9301611A7C5000B1DFA /* FileManagerTests.m in Sources */,
-				B412ACF516133D5C0056B146 /* PlaySoundBrick.m in Sources */,
-				B412ACFB16133D7B0056B146 /* StopAllSoundsBrick.m in Sources */,
 				B419691A16144E8A00AFC8C8 /* DataModelBricksTest.m in Sources */,
-				B419691F1614530200AFC8C8 /* SetVolumeToBrick.m in Sources */,
-				B419692316147CD100AFC8C8 /* ChangeVolumeByBrick.m in Sources */,
-				B46CD91916158E89000EA9D4 /* BroadcastWaitBrick.m in Sources */,
-				B46CD91F16159FF9000EA9D4 /* SetGhostEffectBrick.m in Sources */,
-				B44403AA1615CCA8000C0EC6 /* ChangeGhostEffectBrick.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
