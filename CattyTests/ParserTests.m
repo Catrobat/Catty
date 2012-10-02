@@ -352,9 +352,55 @@
     STAssertTrue(brick.increase == transparencyIncrease, @"Wrong transparency-value");
 }
 
-//-(ChangeGhostEffectBrick*)loadChangeGhostEffectBrick:(GDataXMLElement*)gDataXMLElement;
-//-(PlaySoundBrick*)loadSoundBrick:(GDataXMLElement*)gDataXMLElement;
-//-(SetVolumeToBrick*)loadSetVolumeToBrick:(GDataXMLElement*)gDataXMLElement;
+- (void)test018_playSound
+{
+    NSString *fileName = @"ThisIsTheFileName";
+    NSString *xmlString = [NSString stringWithFormat:@"<Bricks.PlaySoundBrick><soundInfo><fileName>%@</fileName><name>ABCD</name></soundInfo><sprite reference=\"../../../../..\"/></Bricks.PlaySoundBrick>", fileName];
+    NSError *error;
+    NSData *xmlData = [xmlString dataUsingEncoding:NSASCIIStringEncoding];
+    GDataXMLDocument *doc = [[GDataXMLDocument alloc] initWithData:xmlData
+                                                           options:0 error:&error];
+    Brick *newBrick = [self.parser loadSoundBrick:doc.rootElement];
+    if (![newBrick isMemberOfClass:[PlaySoundBrick class]])
+        STFail(@"Wrong class-member");
+    PlaySoundBrick *brick = (PlaySoundBrick*)newBrick;
+    STAssertTrue([brick.fileName isEqualToString:fileName], @"Wrong fileName");
+}
+
+- (void)test019_setVolumeTo
+{
+    float volume = 5.1f;
+    NSString *xmlString = [NSString stringWithFormat:@"<Bricks.SetVolumeToBrick><sprite reference=\"../../../../..\"/><volume>%f</volume></Bricks.SetVolumeToBrick>", volume];
+    NSError *error;
+    NSData *xmlData = [xmlString dataUsingEncoding:NSASCIIStringEncoding];
+    GDataXMLDocument *doc = [[GDataXMLDocument alloc] initWithData:xmlData
+                                                           options:0 error:&error];
+    Brick *newBrick = [self.parser loadSetVolumeToBrick:doc.rootElement];
+    if (![newBrick isMemberOfClass:[SetVolumeToBrick class]])
+        STFail(@"Wrong class-member");
+    SetVolumeToBrick *brick = (SetVolumeToBrick*)newBrick;
+    STAssertTrue(brick.volume == volume, @"Wrong volume-value");
+}
+
+- (void)test020_changeVolumeBy
+{
+    float percent = 1.2f;
+    NSString *xmlString = [NSString stringWithFormat:@"<Bricks.ChangeVolumeByBrick><sprite reference=\"../../../../..\"/><volume>%f</volume></Bricks.ChangeVolumeByBrick>", percent];
+    NSError *error;
+    NSData *xmlData = [xmlString dataUsingEncoding:NSASCIIStringEncoding];
+    GDataXMLDocument *doc = [[GDataXMLDocument alloc] initWithData:xmlData
+                                                           options:0 error:&error];
+    Brick *newBrick = [self.parser loadChangeVolumeByBrick:doc.rootElement];
+    if (![newBrick isMemberOfClass:[ChangeVolumeByBrick class]])
+        STFail(@"Wrong class-member");
+    ChangeVolumeByBrick *brick = (ChangeVolumeByBrick*)newBrick;
+    STAssertTrue(brick.percent == percent, @"Wrong volume-percent-value");
+}
+
+
+
+
+
 //-(ChangeVolumeByBrick*)loadChangeVolumeByBrick:(GDataXMLElement*)gDataXMLElement;
 
 @end

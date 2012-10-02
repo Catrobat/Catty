@@ -11,6 +11,5 @@
 @interface PlaySoundBrick : Brick
 
 @property (nonatomic, strong) NSString *fileName;
-@property (nonatomic, strong) NSString *filePath;
 
 @end
