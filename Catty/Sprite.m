@@ -177,7 +177,7 @@ typedef struct {
     if (self = [super init]) 
     {
         _position = GLKVector3Make(0, 0, 0); //todo: change z index
-        self.showSprite = YES;
+        self.showSprite = YESren;
         self.scaleFactor = 1.0f;
         self.scaleWidth  = 1.0f;
         self.scaleHeight = 1.0f;
@@ -576,12 +576,17 @@ typedef struct {
     
     // Does not work!
     
+        NSLog(@"Now");
+    
+    dispatch_sync(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        [[NSNotificationCenter defaultCenter] postNotificationName:message object:self];
+    });
 
 //    dispatch_sync(dispatch_get_current_queue(),^{
 //        [[NSNotificationCenter defaultCenter] postNotificationName:message object:self];
 //    });
     
-    NSLog(@"Now");
+
     
 }
 
@@ -719,7 +724,7 @@ typedef struct {
 #pragma mark - script methods
 - (void)start
 {
-    self.indexOfCurrentCostumeInArray = [NSNumber numberWithInt:0]; // TODO: maybe remove this line??
+    //self.indexOfCurrentCostumeInArray = [NSNumber numberWithInt:0]; // TODO: maybe remove this line??
 
     for (Script *script in self.startScriptsArray)
     {
