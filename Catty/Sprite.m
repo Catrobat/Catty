@@ -177,7 +177,7 @@ typedef struct {
     if (self = [super init]) 
     {
         _position = GLKVector3Make(0, 0, 0); //todo: change z index
-        self.showSprite = YESren;
+        self.showSprite = YES;
         self.scaleFactor = 1.0f;
         self.scaleWidth  = 1.0f;
         self.scaleHeight = 1.0f;
@@ -456,6 +456,9 @@ typedef struct {
         self.effect.texture2d0.name = self.textureInfo.name;
         self.effect.texture2d0.enabled = YES;
     
+        
+        //NSLog(@"Texture: %u", self.effect.texture2d0.name);
+        
         self.effect.transform.modelviewMatrix = self.modelMatrix;
         
         
@@ -578,16 +581,9 @@ typedef struct {
     
         NSLog(@"Now");
     
-    dispatch_sync(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        [[NSNotificationCenter defaultCenter] postNotificationName:message object:self];
-    });
-
-//    dispatch_sync(dispatch_get_current_queue(),^{
+//    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
 //        [[NSNotificationCenter defaultCenter] postNotificationName:message object:self];
 //    });
-    
-
-    
 }
 
 -(void)comeToFront

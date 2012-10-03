@@ -75,6 +75,7 @@
 		B4B4093515B2E0FD00DCFAE5 /* XMLAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B4B4093415B2E0FD00DCFAE5 /* XMLAppDelegate.m */; };
 		B4B4093815B2E20700DCFAE5 /* RetailParser.m in Sources */ = {isa = PBXBuildFile; fileRef = B4B4093715B2E20700DCFAE5 /* RetailParser.m */; };
 		B4B4094915B2E8BF00DCFAE5 /* ParserTests.m in Sources */ = {isa = PBXBuildFile; fileRef = B4B4094815B2E8BF00DCFAE5 /* ParserTests.m */; };
+		B4B90DF3161C685700B83000 /* SpeakBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = B4B90DF2161C685700B83000 /* SpeakBrick.m */; };
 		B4C4D9DC160C490500E4FD19 /* CreateViewTests.m in Sources */ = {isa = PBXBuildFile; fileRef = B4C4D9DB160C490500E4FD19 /* CreateViewTests.m */; };
 		B4C4D9E1160C4A0D00E4FD19 /* CatrobatProjectTests.m in Sources */ = {isa = PBXBuildFile; fileRef = B4C4D9E0160C4A0D00E4FD19 /* CatrobatProjectTests.m */; };
 		B4EFE093161602730078BFDC /* home.png in Resources */ = {isa = PBXBuildFile; fileRef = B4EFE091161602730078BFDC /* home.png */; };
@@ -240,6 +241,8 @@
 		B4B4094715B2E8BF00DCFAE5 /* ParserTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ParserTests.h; sourceTree = "<group>"; };
 		B4B4094815B2E8BF00DCFAE5 /* ParserTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ParserTests.m; sourceTree = "<group>"; };
 		B4B487B815B73107004AC99E /* XMLLevels.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XMLLevels.h; sourceTree = "<group>"; };
+		B4B90DF1161C685700B83000 /* SpeakBrick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpeakBrick.h; sourceTree = "<group>"; };
+		B4B90DF2161C685700B83000 /* SpeakBrick.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpeakBrick.m; sourceTree = "<group>"; };
 		B4C4D9DA160C490500E4FD19 /* CreateViewTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreateViewTests.h; sourceTree = "<group>"; };
 		B4C4D9DB160C490500E4FD19 /* CreateViewTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreateViewTests.m; sourceTree = "<group>"; };
 		B4C4D9DF160C4A0D00E4FD19 /* CatrobatProjectTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CatrobatProjectTests.h; sourceTree = "<group>"; };
@@ -816,6 +819,15 @@
 			name = RetailParser;
 			sourceTree = "<group>";
 		};
+		B4B90DF5161C685E00B83000 /* SpeakBrick */ = {
+			isa = PBXGroup;
+			children = (
+				B4B90DF1161C685700B83000 /* SpeakBrick.h */,
+				B4B90DF2161C685700B83000 /* SpeakBrick.m */,
+			);
+			name = SpeakBrick;
+			sourceTree = "<group>";
+		};
 		B4C4D9D8160C48E700E4FD19 /* ViewTests */ = {
 			isa = PBXGroup;
 			children = (
@@ -1068,6 +1080,7 @@
 				CD85F50F16077C42007C38D1 /* SetX */,
 				CD85F51116077C4E007C38D1 /* SetY */,
 				CD8FA5AE16063E9800FC282F /* Show */,
+				B4B90DF5161C685E00B83000 /* SpeakBrick */,
 				B412ACFC16133D840056B146 /* StopAllSoundsBrick */,
 				B415DC4015BAC5AE0076275E /* WaitBrick */,
 				CD46F918160A431000207178 /* ChangeXBy */,
@@ -1469,6 +1482,7 @@
 				B46CD91E16159FF9000EA9D4 /* SetGhostEffectBrick.m in Sources */,
 				B44403A91615CCA8000C0EC6 /* ChangeGhostEffectBrick.m in Sources */,
 				CDC84F9E1616476F003D4864 /* HelperSprite.m in Sources */,
+				B4B90DF3161C685700B83000 /* SpeakBrick.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
