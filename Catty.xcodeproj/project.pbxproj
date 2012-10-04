@@ -117,6 +117,9 @@
 		CD85F54C16099CBE007C38D1 /* ChangeSizeByNBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = CD85F54B16099CBE007C38D1 /* ChangeSizeByNBrick.m */; };
 		CD85F55E1609AED0007C38D1 /* rocket in Resources */ = {isa = PBXBuildFile; fileRef = CD85F55D1609AED0007C38D1 /* rocket */; };
 		CD8B838A1609FC42003A3C9E /* StageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CD8B83891609FC42003A3C9E /* StageViewController.m */; };
+		CD8C90C1161DA37B004D3E19 /* banzaicat.png in Resources */ = {isa = PBXBuildFile; fileRef = CD8C90BE161DA37B004D3E19 /* banzaicat.png */; };
+		CD8C90C2161DA37B004D3E19 /* ceshirecat.png in Resources */ = {isa = PBXBuildFile; fileRef = CD8C90BF161DA37B004D3E19 /* ceshirecat.png */; };
+		CD8C90C3161DA37C004D3E19 /* normalcat.png in Resources */ = {isa = PBXBuildFile; fileRef = CD8C90C0161DA37B004D3E19 /* normalcat.png */; };
 		CD8FA5AC1605D91300FC282F /* NextCostumeBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = CD8FA5AB1605D91300FC282F /* NextCostumeBrick.m */; };
 		CD8FA5B116063EA700FC282F /* HideBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = CD8FA5B016063EA700FC282F /* HideBrick.m */; };
 		CD8FA5B416063EBA00FC282F /* ShowBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = CD8FA5B316063EBA00FC282F /* ShowBrick.m */; };
@@ -312,6 +315,9 @@
 		CD85F55D1609AED0007C38D1 /* rocket */ = {isa = PBXFileReference; lastKnownFileType = folder; path = rocket; sourceTree = "<group>"; };
 		CD8B83881609FC42003A3C9E /* StageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StageViewController.h; sourceTree = "<group>"; };
 		CD8B83891609FC42003A3C9E /* StageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StageViewController.m; sourceTree = "<group>"; };
+		CD8C90BE161DA37B004D3E19 /* banzaicat.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = banzaicat.png; path = TestResources/banzaicat.png; sourceTree = "<group>"; };
+		CD8C90BF161DA37B004D3E19 /* ceshirecat.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = ceshirecat.png; path = TestResources/ceshirecat.png; sourceTree = "<group>"; };
+		CD8C90C0161DA37B004D3E19 /* normalcat.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = normalcat.png; path = TestResources/normalcat.png; sourceTree = "<group>"; };
 		CD8FA5AA1605D91300FC282F /* NextCostumeBrick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NextCostumeBrick.h; sourceTree = "<group>"; };
 		CD8FA5AB1605D91300FC282F /* NextCostumeBrick.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NextCostumeBrick.m; sourceTree = "<group>"; };
 		CD8FA5AF16063EA700FC282F /* HideBrick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HideBrick.h; sourceTree = "<group>"; };
@@ -401,6 +407,9 @@
 		B40C723C15A88E72005A8EC7 /* TestResources */ = {
 			isa = PBXGroup;
 			children = (
+				CD8C90BE161DA37B004D3E19 /* banzaicat.png */,
+				CD8C90BF161DA37B004D3E19 /* ceshirecat.png */,
+				CD8C90C0161DA37B004D3E19 /* normalcat.png */,
 				B415DC4415BAE3CF0076275E /* projectcode.xml */,
 				B415DC3A15BAB86B0076275E /* defaultProject.xml */,
 				B40C723D15A88E7B005A8EC7 /* Images */,
@@ -1372,6 +1381,9 @@
 				B415DC4615BAE3CF0076275E /* projectcode.xml in Resources */,
 				B479E9221611A3CB000B1DFA /* DefaultProject.catrobat in Resources */,
 				B4A0C5471611B8B200A28F6A /* Testproject123.catrobat in Resources */,
+				CD8C90C1161DA37B004D3E19 /* banzaicat.png in Resources */,
+				CD8C90C2161DA37B004D3E19 /* ceshirecat.png in Resources */,
+				CD8C90C3161DA37C004D3E19 /* normalcat.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

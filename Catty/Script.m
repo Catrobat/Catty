@@ -137,9 +137,9 @@
 
 -(void)waitTimeInMilliSecs:(float)timeToWaitInMilliSecs
 {
-    NSLog(@"BEFORE wait %f     wait: %f sec", [[NSDate date] timeIntervalSince1970], timeToWaitInMilliSecs/1000.0f);
+//    NSLog(@"BEFORE wait %f     wait: %f sec", [[NSDate date] timeIntervalSince1970], timeToWaitInMilliSecs/1000.0f);
     [NSThread sleepForTimeInterval:timeToWaitInMilliSecs/1000.0f];
-    NSLog(@"AFTER wait  %f", [[NSDate date] timeIntervalSince1970]);
+//    NSLog(@"AFTER wait  %f", [[NSDate date] timeIntervalSince1970]);
 }
 
 #pragma mark - Description
