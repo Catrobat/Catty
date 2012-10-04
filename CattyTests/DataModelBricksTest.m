@@ -84,18 +84,61 @@
     STAssertTrue(sprite.showSprite, @"Sprite is invisible - that's bad!");
 }
 
+-(void)test004_PlaceAt
+{
+    GLKVector3 position = GLKVector3Make(1.2f, 2.3f, 3.4f);
+
+    PlaceAtBrick *brick = [[PlaceAtBrick alloc]initWithPosition:position];
+    Sprite *sprite = [[Sprite alloc]initWithEffect:nil];
+
+    [brick performOnSprite:sprite fromScript:nil];
+    STAssertTrue(GLKVector3AllEqualToVector3(sprite.position, position), @"Position of sprite is wrong!");
+}
+
+-(void)test005_SetXY
+{
+    float xPosition = 123.4f;
+    float yPosition = -45.7f;
+    SetXBrick *xBrick = [[SetXBrick alloc]initWithXPosition:xPosition];
+    SetYBrick *yBrick = [[SetYBrick alloc]initWithYPosition:yPosition];
+
+    Sprite *sprite = [[Sprite alloc]initWithEffect:nil];
+    
+    GLKVector3 oldPosition = sprite.position;
+    
+    [xBrick performOnSprite:sprite fromScript:nil];
+    STAssertTrue(GLKVector3AllEqualToVector3(sprite.position, GLKVector3Make(oldPosition.x+xPosition, oldPosition.y, oldPosition.z)), @"x-position of sprite is wrong!");
+    
+    oldPosition = sprite.position;
+    [yBrick performOnSprite:sprite fromScript:nil];
+    STAssertTrue(GLKVector3AllEqualToVector3(sprite.position, GLKVector3Make(oldPosition.x, oldPosition.y+yPosition, oldPosition.z)), @"y-position of sprite is wrong!");
+}
+
+-(void)test006_changeXYBy
+{
+    int xPosition = -5;
+    int yPosition = 10;
+    ChangeXByBrick *xBrick = [[ChangeXByBrick alloc]initWithChangeValueForX:xPosition];
+    ChangeYByBrick *yBrick = [[ChangeYByBrick alloc]initWithChangeValueForY:yPosition];
+    
+    Sprite *sprite = [[Sprite alloc]initWithEffect:nil];
+    
+    GLKVector3 oldPosition = sprite.position;
+    
+    [xBrick performOnSprite:sprite fromScript:nil];
+    STAssertTrue(GLKVector3AllEqualToVector3(sprite.position, GLKVector3Make(oldPosition.x+xPosition, oldPosition.y, oldPosition.z)), @"x-position of sprite is wrong!");
+    
+    oldPosition = sprite.position;
+    [yBrick performOnSprite:sprite fromScript:nil];
+    STAssertTrue(GLKVector3AllEqualToVector3(sprite.position, GLKVector3Make(oldPosition.x, oldPosition.y+yPosition, oldPosition.z)), @"y-position of sprite is wrong!");
+}
 
 //"SetCostumeBrick.h"
 //"StartScript.h"
 //"WhenScript.h"
 //"Sound.h"
-//"PlaceAtBrick.h"
 //"GlideToBrick.h"
 //"NextCostumeBrick.h"
-//"HideBrick.h"
-//"ShowBrick.h"
-//"SetXBrick.h"
-//"SetYBrick.h"
 //"ChangeSizeByNBrick.h"
 //"BroadcastBrick.h"
 //"BroadcastWaitBrick.h"
@@ -109,6 +152,7 @@
 //"RepeatBrick.h"
 //"EndLoopBrick.h"
 //"GoNStepsBackBrick.h"
+
 //"SetGhostEffectBrick.h"
 //"SetVolumeToBrick.h"
 //"ChangeVolumeByBrick.h"

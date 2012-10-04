@@ -52,6 +52,8 @@
 @property (readonly, assign, nonatomic) float xOffset;        // black border, if proportions are different (project-xml-resolution vs. screen-resolution)
 @property (readonly, assign, nonatomic) float yOffset;
 @property (readonly, assign, nonatomic) BOOL showSprite;
+@property (readonly, assign, nonatomic) GLKVector3 position;        // position - origin is in the middle of the sprite
+
 
 // init, add
 - (id)initWithEffect:(GLKBaseEffect*)effect;
