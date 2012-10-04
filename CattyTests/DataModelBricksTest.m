@@ -72,8 +72,20 @@
     STAssertFalse((after-before) > timeToWaitInMilliSecs/1000.0f + 0.01f, @"Wait-time was too long - note: tolerance-value big enough?!");// NOTE: tolerance-value?!
 }
 
+-(void)test003_HideAndShow
+{
+    HideBrick *hideBrick = [[HideBrick alloc]init];
+    ShowBrick *showBrick = [[ShowBrick alloc]init];
+    Sprite *sprite = [[Sprite alloc]initWithEffect:nil];
+    
+    [hideBrick performOnSprite:sprite fromScript:nil];
+    STAssertFalse(sprite.showSprite, @"Sprite is visible - that's bad!");
+    [showBrick performOnSprite:sprite fromScript:nil];
+    STAssertTrue(sprite.showSprite, @"Sprite is invisible - that's bad!");
+}
+
+
 //"SetCostumeBrick.h"
-//"WaitBrick.h"
 //"StartScript.h"
 //"WhenScript.h"
 //"Sound.h"
