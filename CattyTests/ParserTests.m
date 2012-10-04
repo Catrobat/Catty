@@ -397,10 +397,4 @@
     STAssertTrue(brick.percent == percent, @"Wrong volume-percent-value");
 }
 
-
-
-
-
-//-(ChangeVolumeByBrick*)loadChangeVolumeByBrick:(GDataXMLElement*)gDataXMLElement;
-
 @end
