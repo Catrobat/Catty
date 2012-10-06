@@ -381,10 +381,10 @@ typedef struct {
     
     
     TexturedQuad newQuad;
-    newQuad.bottomLeftCorner.geometryVertex = CGPointMake(0, 0);
-    newQuad.bottomRightCorner.geometryVertex = CGPointMake(width, 0);
-    newQuad.topLeftCorner.geometryVertex = CGPointMake(0, height);
-    newQuad.topRightCorner.geometryVertex = CGPointMake(width, height);
+    newQuad.bottomLeftCorner.geometryVertex = CGPointMake(-width/2.0f, -height/2.0f);
+    newQuad.bottomRightCorner.geometryVertex = CGPointMake(width/2.0f, -height/2.0f);
+    newQuad.topLeftCorner.geometryVertex = CGPointMake(-width/2.0f, height/2.0f);
+    newQuad.topRightCorner.geometryVertex = CGPointMake(width/2.0f, height/2.0f);
     
     newQuad.bottomLeftCorner.textureVertex = CGPointMake(0, 0);
     newQuad.bottomRightCorner.textureVertex = CGPointMake(1, 0);
@@ -410,7 +410,7 @@ typedef struct {
     CGSize scaledContentSize = CGSizeMake(self.contentSize.width * self.scaleFactor, self.contentSize.height * self.scaleFactor);
     
     modelMatrix = GLKMatrix4Translate(modelMatrix, x, y, self.position.z);
-    modelMatrix = GLKMatrix4Translate(modelMatrix, -scaledContentSize.width/2, -scaledContentSize.height/2, 0);
+//    modelMatrix = GLKMatrix4Translate(modelMatrix, -scaledContentSize.width/2, -scaledContentSize.height/2, 0);
     
     return modelMatrix;
 }
@@ -492,25 +492,6 @@ typedef struct {
 
 
 #pragma mark - actions
-
--(void)changeSizeTo:(CGSize)size
-{
-    //// TODO DIRTY!!!! Just for black frames.......!!!!
-        
-    self.contentSize = CGSizeMake(size.width, size.height);
-    
-    TexturedQuad newQuad;
-    newQuad.bottomLeftCorner.geometryVertex = CGPointMake(0, 0);
-    newQuad.bottomRightCorner.geometryVertex = CGPointMake(size.width, 0);
-    newQuad.topLeftCorner.geometryVertex = CGPointMake(0, size.height);
-    newQuad.topRightCorner.geometryVertex = CGPointMake(size.width, size.height);
-    
-    newQuad.bottomLeftCorner.textureVertex = CGPointMake(0, 0);
-    newQuad.bottomRightCorner.textureVertex = CGPointMake(1, 0);
-    newQuad.topLeftCorner.textureVertex = CGPointMake(0, 1);
-    newQuad.topRightCorner.textureVertex = CGPointMake(1, 1);
-    self.quad = newQuad;
-}
 
 -(void)placeAt:(GLKVector3)newPosition
 {

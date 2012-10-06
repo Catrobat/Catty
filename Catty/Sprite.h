@@ -85,7 +85,6 @@
 - (void)stopAllScripts;
 
 // actions
-- (void)changeSizeTo:(CGSize)size;
 - (void)placeAt:(GLKVector3)newPosition;    //origin is in the middle of the sprite
 //- (void)wait:(int)durationInMilliSecs fromScript:(Script*)script;
 - (void)changeCostume:(NSNumber*)indexOfCostumeInArray;
