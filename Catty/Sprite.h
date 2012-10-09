@@ -53,6 +53,7 @@
 @property (readonly, assign, nonatomic) float yOffset;
 @property (readonly, assign, nonatomic) BOOL showSprite;
 @property (readonly, assign, nonatomic) GLKVector3 position;        // position - origin is in the middle of the sprite
+@property (readonly, assign, nonatomic) float rotationInDegrees;
 
 
 // init, add
@@ -109,5 +110,7 @@
 - (void)changeTransparencyBy:(float)increase;
 - (void)setVolumeTo:(float)volume;
 - (void)changeVolumeBy:(float)percent;
+- (void)turnLeft:(float)degrees;
+- (void)turnRight:(float)degrees;
 
 @end

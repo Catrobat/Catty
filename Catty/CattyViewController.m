@@ -134,13 +134,14 @@
 //    self.level = [testparser generateDebugLevel_changeSizeByN];
 //    self.level = [testparser generateDebugLevel_parallelScripts];
 //    self.level = [testparser generateDebugLevel_loops];
+    self.level = [testparser generateDebugLevel_rotate];
     // DEBUG END
     
 //    NSString *pathToImage = [NSString stringWithFormat:@"%@/defaultProject/images/%@", [Util applicationDocumentsDirectory], projectName];
 //    NSString *path = [NSString stringWithFormat:@"/%@/%@/%@", self.projectName, SPRITE_IMAGE_FOLDER, fileName];
 //    NSString *pathToImage = [[NSBundle mainBundle] pathForResource:path ofType:nil];
 
-    path = @"/Users/Mattias/Library/Application Support/iPhone Simulator/6.0/Applications/C2462BB6-83A6-4E9E-AD18-703B198DF6B0/Catty.app/defaultProject/";
+    path = @"/Users/Mattias/Library/Application Support/iPhone Simulator/6.0/Applications/742C0D4A-0BD7-4037-AADF-DD7C4C17A383/Catty.app/defaultProject/";
     
     //setting effect
     for (Sprite *sprite in self.level.spritesArray)

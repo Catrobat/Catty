@@ -64,6 +64,7 @@ typedef struct {
 @property (nonatomic, strong) GLKTextureInfo *textureInfo;
 
 @property (assign, nonatomic) GLKVector3 position;        // position - origin is in the middle of the sprite
+@property (assign, nonatomic) float rotationInDegrees;
 
 @property (assign, nonatomic) float scaleFactor;    // scale image to fit screen
 @property (assign, nonatomic) float scaleWidth;     // scale width  of image according to bricks (e.g. SetSizeTo-brick)
@@ -117,8 +118,7 @@ typedef struct {
 @synthesize indexOfCurrentCostumeInArray = _indexOfCurrentCostumeInArray;
 @synthesize showSprite = _showSprite;
 @synthesize alphaValue = _alphaValue;
-
-
+@synthesize rotationInDegrees = _rotationInDegrees;
 
 
 #pragma mark Custom getter and setter
@@ -409,7 +409,12 @@ typedef struct {
     
     CGSize scaledContentSize = CGSizeMake(self.contentSize.width * self.scaleFactor, self.contentSize.height * self.scaleFactor);
     
-    modelMatrix = GLKMatrix4Translate(modelMatrix, x, y, self.position.z);
+    modelMatrix = GLKMatrix4Translate(modelMatrix, 0.0f, 0.0f, 0.0f);
+    modelMatrix = GLKMatrix4RotateZ(modelMatrix, GLKMathDegreesToRadians(self.rotationInDegrees));
+
+    modelMatrix = GLKMatrix4Translate(modelMatrix, 100.0f, 100.0f, 0.0f);
+    
+//    modelMatrix = GLKMatrix4Translate(modelMatrix, x, y, self.position.z);
 //    modelMatrix = GLKMatrix4Translate(modelMatrix, -scaledContentSize.width/2, -scaledContentSize.height/2, 0);
     
     return modelMatrix;
@@ -636,6 +641,17 @@ typedef struct {
 {
     [self.spriteManagerDelegate changeVolumeBy:percent forSprite:self];
 }
+
+-(void)turnLeft:(float)degrees
+{
+    self.rotationInDegrees -= degrees;
+}
+
+-(void)turnRight:(float)degrees
+{
+    self.rotationInDegrees += degrees;
+}
+
 
 #pragma mark - description
 - (NSString*)description
