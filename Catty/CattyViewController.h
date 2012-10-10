@@ -17,12 +17,13 @@
 #define FRAMES_PER_SECOND 30
 
 @class Level;
+@class BaseSprite;
 
 @interface CattyViewController : GLKViewController <GLKViewControllerDelegate, SpriteManagerDelegate>
 
 @property (strong, nonatomic) Level *level; //TODO: Array => data from xml-parser
 
 //debug
-@property (nonatomic, strong) Sprite *sprite;
+@property (nonatomic, strong) BaseSprite *sprite;
 
 @end

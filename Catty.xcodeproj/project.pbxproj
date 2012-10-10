@@ -132,6 +132,7 @@
 		CDB3E9561620925E00DDABCF /* TurnLeftBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = CDB3E9551620925E00DDABCF /* TurnLeftBrick.m */; };
 		CDB3E9591620926E00DDABCF /* TurnRightBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = CDB3E9581620926E00DDABCF /* TurnRightBrick.m */; };
 		CDBF7B8D1612F96900600B62 /* SetSizeToBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = CDBF7B8C1612F96900600B62 /* SetSizeToBrick.m */; };
+		CDC7B189162401EF00B59926 /* BaseSprite.m in Sources */ = {isa = PBXBuildFile; fileRef = CDC7B188162401EF00B59926 /* BaseSprite.m */; };
 		CDC84F9E1616476F003D4864 /* HelperSprite.m in Sources */ = {isa = PBXBuildFile; fileRef = CDC84F9D1616476F003D4864 /* HelperSprite.m */; };
 		CDC84FA116165072003D4864 /* tmp.png in Resources */ = {isa = PBXBuildFile; fileRef = CDC84FA016165072003D4864 /* tmp.png */; };
 		CDE35DED15B4892D009A3524 /* GlideToBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = CDE35DEC15B4892D009A3524 /* GlideToBrick.m */; };
@@ -343,6 +344,8 @@
 		CDB3E9581620926E00DDABCF /* TurnRightBrick.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TurnRightBrick.m; sourceTree = "<group>"; };
 		CDBF7B8B1612F96900600B62 /* SetSizeToBrick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SetSizeToBrick.h; sourceTree = "<group>"; };
 		CDBF7B8C1612F96900600B62 /* SetSizeToBrick.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SetSizeToBrick.m; sourceTree = "<group>"; };
+		CDC7B187162401EF00B59926 /* BaseSprite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseSprite.h; sourceTree = "<group>"; };
+		CDC7B188162401EF00B59926 /* BaseSprite.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseSprite.m; sourceTree = "<group>"; };
 		CDC84F9C1616476F003D4864 /* HelperSprite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HelperSprite.h; sourceTree = "<group>"; };
 		CDC84F9D1616476F003D4864 /* HelperSprite.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HelperSprite.m; sourceTree = "<group>"; };
 		CDC84FA016165072003D4864 /* tmp.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tmp.png; sourceTree = "<group>"; };
@@ -1037,6 +1040,8 @@
 				B4FDF37B15A82F1E00CBCF03 /* Sprite.m */,
 				CDC84F9C1616476F003D4864 /* HelperSprite.h */,
 				CDC84F9D1616476F003D4864 /* HelperSprite.m */,
+				CDC7B187162401EF00B59926 /* BaseSprite.h */,
+				CDC7B188162401EF00B59926 /* BaseSprite.m */,
 			);
 			name = Sprite;
 			sourceTree = "<group>";
@@ -1494,6 +1499,7 @@
 				CDC84F9E1616476F003D4864 /* HelperSprite.m in Sources */,
 				CDB3E9561620925E00DDABCF /* TurnLeftBrick.m in Sources */,
 				CDB3E9591620926E00DDABCF /* TurnRightBrick.m in Sources */,
+				CDC7B189162401EF00B59926 /* BaseSprite.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

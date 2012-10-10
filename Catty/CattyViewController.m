@@ -16,6 +16,7 @@
 #import "WaitBrick.h"
 #import "RetailParser.h"
 #import "Util.h"
+#import "BaseSprite.h"
 
 //debug
 #import "Costume.h"
@@ -118,14 +119,14 @@
     NSLog(@"XML-Path: %@", path);
     
     RetailParser *parser = [[RetailParser alloc] init];
-    self.level = [parser generateObjectForLevel:path];
+//    self.level = [parser generateObjectForLevel:path];
     
     
     // DEBUG
     
     TestParser *testparser = [[TestParser alloc]init];
     projectName = @"defaultProject";
-    self.level = [testparser generateDebugLevel_GlideTo];
+//    self.level = [testparser generateDebugLevel_GlideTo];
 //    self.level = [testparser generateDebugLevel_nextCostume];
 //    self.level = [testparser generateDebugLevel_HideShow];
 //    self.level = [testparser generateDebugLevel_SetXY];
@@ -134,7 +135,7 @@
 //    self.level = [testparser generateDebugLevel_changeSizeByN];
 //    self.level = [testparser generateDebugLevel_parallelScripts];
 //    self.level = [testparser generateDebugLevel_loops];
-    self.level = [testparser generateDebugLevel_rotate];
+//    self.level = [testparser generateDebugLevel_rotate];
     // DEBUG END
     
 //    NSString *pathToImage = [NSString stringWithFormat:@"%@/defaultProject/images/%@", [Util applicationDocumentsDirectory], projectName];
@@ -177,9 +178,23 @@
         }
 
         // end debug
+        
     }
     
+    GLKBaseEffect *newEffect = [[GLKBaseEffect alloc]init];
+    self.sprite = [[BaseSprite alloc]initWithEffect:newEffect];
+    [self.sprite loadImageWithPath:[NSString stringWithFormat:@"%@/images/normalcat.png", path]];
+    self.sprite.rotationInDegrees = -45.0f;
+
+    [self performSelectorOnMainThread:@selector(tmp) withObject:nil waitUntilDone:NO];
+    
     [self startLevel];
+}
+
+-(void)tmp
+{
+    [NSThread sleepForTimeInterval:3];
+    self.sprite.position = GLKVector3Make(100.0f, 100.0f, 0.0f);
 }
 
 - (void)viewDidUnload
@@ -252,7 +267,7 @@
     
     //NSLog(@"draw in rect...");
     
-    //[self.sprite render];
+    [self.sprite render];
     
 //    for (Sprite *sprite in self.level.spritesArray)
 //    {
