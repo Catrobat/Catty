@@ -34,12 +34,12 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Catty/Sprite.m"
-         timestampString = "370560705.004396"
+         timestampString = "371572256.227664"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "228"
-         endingLineNumber = "228"
-         landmarkName = "-setProjectResolution:"
+         startingLineNumber = "233"
+         endingLineNumber = "233"
+         landmarkName = "-getZIndex"
          landmarkType = "5">
       </FileBreakpoint>
       <FileBreakpoint

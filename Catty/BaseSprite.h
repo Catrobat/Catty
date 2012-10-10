@@ -6,25 +6,29 @@
 //  Copyright (c) 2012 Graz University of Technology. All rights reserved.
 //
 
-#import "Brick.h"
+#import <GLKit/GLKit.h>
 
-@interface BaseSprite : Brick
+@interface BaseSprite : NSObject
 
 @property (strong, nonatomic) NSString *name;
 @property (nonatomic, strong) GLKBaseEffect *effect;
 
 @property (assign) CGSize contentSize;
 @property (assign, nonatomic) BOOL showSprite;
-@property (assign, nonatomic) GLKVector3 position;        // position - origin is bottom-left
+@property (assign, nonatomic) GLKVector3 realPosition;        // position - origin is bottom-left
 @property (assign, nonatomic) float rotationInDegrees;
 @property (assign, nonatomic) float alphaValue;
 
-
 @property (readonly, strong, nonatomic) NSString *path;
+@property (assign, nonatomic) float scaleFactor;    // scale image to fit screen
 
 
-
+-(id)init;
 -(id)initWithEffect:(GLKBaseEffect*)effect;
+
+
+// getter
+-(CGSize)originalImageSize;
 
 // graphics
 -(void)update:(float)dt;

@@ -126,15 +126,15 @@
     
     TestParser *testparser = [[TestParser alloc]init];
     projectName = @"defaultProject";
-//    self.level = [testparser generateDebugLevel_GlideTo];
-//    self.level = [testparser generateDebugLevel_nextCostume];
-//    self.level = [testparser generateDebugLevel_HideShow];
-//    self.level = [testparser generateDebugLevel_SetXY];
-//    self.level = [testparser generateDebugLevel_broadcast];
-//    self.level = [testparser generateDebugLevel_comeToFront];
-//    self.level = [testparser generateDebugLevel_changeSizeByN];
-//    self.level = [testparser generateDebugLevel_parallelScripts];
-//    self.level = [testparser generateDebugLevel_loops];
+    self.level = [testparser generateDebugLevel_GlideTo];
+    self.level = [testparser generateDebugLevel_nextCostume];
+    self.level = [testparser generateDebugLevel_HideShow];
+    self.level = [testparser generateDebugLevel_SetXY];
+    self.level = [testparser generateDebugLevel_broadcast];
+    self.level = [testparser generateDebugLevel_comeToFront];
+    self.level = [testparser generateDebugLevel_changeSizeByN];
+    self.level = [testparser generateDebugLevel_parallelScripts];
+    self.level = [testparser generateDebugLevel_loops];
 //    self.level = [testparser generateDebugLevel_rotate];
     // DEBUG END
     
@@ -181,12 +181,11 @@
         
     }
     
-    GLKBaseEffect *newEffect = [[GLKBaseEffect alloc]init];
-    self.sprite = [[BaseSprite alloc]initWithEffect:newEffect];
-    [self.sprite loadImageWithPath:[NSString stringWithFormat:@"%@/images/normalcat.png", path]];
-    self.sprite.rotationInDegrees = -45.0f;
-
-    [self performSelectorOnMainThread:@selector(tmp) withObject:nil waitUntilDone:NO];
+//    self.sprite = [[BaseSprite alloc]initWithEffect:self.effect];
+//    [self.sprite loadImageWithPath:[NSString stringWithFormat:@"%@/images/normalcat.png", path]];
+//    self.sprite.rotationInDegrees = -45.0f;
+//
+//    [self performSelectorOnMainThread:@selector(tmp) withObject:nil waitUntilDone:NO];
     
     [self startLevel];
 }
@@ -194,7 +193,7 @@
 -(void)tmp
 {
     [NSThread sleepForTimeInterval:3];
-    self.sprite.position = GLKVector3Make(100.0f, 100.0f, 0.0f);
+    self.sprite.realPosition = GLKVector3Make(100.0f, 100.0f, 0.0f);
 }
 
 - (void)viewDidUnload

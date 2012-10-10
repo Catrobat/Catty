@@ -25,7 +25,6 @@ typedef struct {
 @interface BaseSprite()
 @property (nonatomic, strong) GLKTextureInfo *textureInfo;
 @property (assign) TexturedQuad quad;
-
 @property (strong, nonatomic) NSString *path;
 @end
 
@@ -38,17 +37,16 @@ typedef struct {
 @synthesize effect = _effect;
 @synthesize contentSize = _contentSize;
 @synthesize showSprite = _showSprite;
-@synthesize position = _position;
+@synthesize realPosition = _realPosition;
 @synthesize rotationInDegrees = _rotationInDegrees;
 @synthesize alphaValue = _alphaValue;
-
 
 -(id)init
 {
     self = [super init];
     if (self)
     {
-        [self setInitValues];
+        [self setInitValuesForBaseSprite];
     }
     return self;
 }
@@ -59,15 +57,22 @@ typedef struct {
     if (self)
     {
         self.effect = effect;
-        [self setInitValues];
+        [self setInitValuesForBaseSprite];
     }
     return self;
 }
 
--(void)setInitValues
+-(void)setInitValuesForBaseSprite
 {
     self.showSprite = YES;
     self.alphaValue = 1.0f;
+    self.realPosition = GLKVector3Make(0.0f, 0.0f, 0.0f);
+    self.scaleFactor = 1.0f;
+}
+
+-(CGSize)originalImageSize
+{
+    return CGSizeMake(self.textureInfo.width, self.textureInfo.height);
 }
 
 
@@ -126,8 +131,9 @@ typedef struct {
 //    modelMatrix = GLKMatrix4RotateZ(modelMatrix, GLKMathDegreesToRadians(self.rotationInDegrees));
 //    modelMatrix = GLKMatrix4Rotate(modelMatrix, GLKMathDegreesToRadians(self.rotationInDegrees), 0.0f, 0.0f, 1.0f);
     
-    modelMatrix = GLKMatrix4Translate(modelMatrix, self.position.x, self.position.y, self.position.z);
-
+    modelMatrix = GLKMatrix4Translate(modelMatrix, self.realPosition.x, self.realPosition.y, self.realPosition.z);
+    modelMatrix = GLKMatrix4Scale(modelMatrix, self.scaleFactor, self.scaleFactor, 1.0f);
+    
     return modelMatrix;
 }
 

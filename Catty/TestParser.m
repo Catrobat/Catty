@@ -173,7 +173,7 @@
     ret.name = name;
     [ret placeAt:GLKVector3Make(x, y, self.zIndex++)];
     [ret addCostumes:costumesArray];
-    [ret changeCostume:[NSNumber numberWithInt:index]];
+    //[ret changeCostume:[NSNumber numberWithInt:index]];
     
     return ret;
 }

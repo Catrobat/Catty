@@ -24,18 +24,6 @@
 #import "CattyAppDelegate.h"
 
 
-typedef struct {
-    CGPoint geometryVertex;
-    CGPoint textureVertex;
-} TexturedVertex;
-
-typedef struct {
-    TexturedVertex bottomLeftCorner;
-    TexturedVertex bottomRightCorner;
-    TexturedVertex topLeftCorner;
-    TexturedVertex topRightCorner;
-} TexturedQuad;
-
 
 
 //////////////////////////////////////////////////////////////////////////////////////////
@@ -60,20 +48,13 @@ typedef struct {
 
 @interface Sprite()
 
-@property (assign) TexturedQuad quad;
-@property (nonatomic, strong) GLKTextureInfo *textureInfo;
+@property (assign, nonatomic) GLKVector3 position;        // position - origin is bottom-left
 
-@property (assign, nonatomic) GLKVector3 position;        // position - origin is in the middle of the sprite
-@property (assign, nonatomic) float rotationInDegrees;
-
-@property (assign, nonatomic) float scaleFactor;    // scale image to fit screen
 @property (assign, nonatomic) float scaleWidth;     // scale width  of image according to bricks (e.g. SetSizeTo-brick)
 @property (assign, nonatomic) float scaleHeight;    // scale height of image according to bricks (e.g. SetSizeTo-brick)
 
 @property (assign, nonatomic) float xOffset;        // black border, if proportions are different (project-xml-resolution vs. screen-resolution)
 @property (assign, nonatomic) float yOffset;
-
-@property (assign, nonatomic) float alphaValue;
 
 @property (nonatomic, strong) NSMutableArray *activeScripts;
 @property (strong, nonatomic) NSMutableDictionary *nextPositions;       //key=script   value=positionAtTime
@@ -86,39 +67,28 @@ typedef struct {
 @property (strong, nonatomic) NSArray *whenScriptsArray;
 @property (strong, nonatomic) NSDictionary *broadcastScripts;
 
-@property (assign, nonatomic) BOOL showSprite;
-
 @end
 
 @implementation Sprite
 
 // public synthesizes
 @synthesize spriteManagerDelegate = _spriteManagerDelegate;
-@synthesize name = _name;
 @synthesize projectPath = _projectPath;
 @synthesize costumesArray = _costumesArray;
 @synthesize soundsArray = _soundsArray;
 @synthesize startScriptsArray = _startScriptsArray;
 @synthesize whenScriptsArray = _whenScriptsArray;
 @synthesize broadcastScripts = _broadcastScripts;
-@synthesize position = _position;
-@synthesize contentSize = _contentSize;
-@synthesize effect = _effect;
 
 // private synthesizes
-@synthesize scaleFactor = _scaleFactor;
+@synthesize position = _position;
 @synthesize scaleWidth  = _scaleWidth;
 @synthesize scaleHeight = _scaleHeight;
 @synthesize xOffset = _xOffset;
 @synthesize yOffset = _yOffset;
-@synthesize quad = _quad;
-@synthesize textureInfo = _textureInfo;
 @synthesize activeScripts = _activeScripts;
 @synthesize nextPositions = _nextPositions;
 @synthesize indexOfCurrentCostumeInArray = _indexOfCurrentCostumeInArray;
-@synthesize showSprite = _showSprite;
-@synthesize alphaValue = _alphaValue;
-@synthesize rotationInDegrees = _rotationInDegrees;
 
 
 #pragma mark Custom getter and setter
@@ -176,14 +146,7 @@ typedef struct {
 {
     if (self = [super init]) 
     {
-        _position = GLKVector3Make(0, 0, 0); //todo: change z index
-        self.showSprite = YES;
-        self.scaleFactor = 1.0f;
-        self.scaleWidth  = 1.0f;
-        self.scaleHeight = 1.0f;
-        self.activeScripts = [[NSMutableArray alloc]init];
-        self.alphaValue = 1.0f;
-//        self.indexOfCurrentCostumeInArray = [NSNumber numberWithInt:-1];
+        [self setInitValues];
     }
     return self;
 }
@@ -194,15 +157,17 @@ typedef struct {
     if (self)
     {
         self.effect = effect;
-        self.showSprite = YES;
-        self.scaleFactor = 1.0f;
-        self.scaleWidth  = 1.0f;
-        self.scaleHeight = 1.0f;
-        self.activeScripts = [[NSMutableArray alloc]init];
-        self.alphaValue = 1.0f;
-//        self.indexOfCurrentCostumeInArray = [NSNumber numberWithInt:-1];
+        [self setInitValues];
     }
     return self;
+}
+
+-(void)setInitValues
+{
+    self.position = GLKVector3Make(0.0f, 0.0f, 0.0f);
+    self.scaleWidth  = 1.0f;
+    self.scaleHeight = 1.0f;
+    self.activeScripts = [[NSMutableArray alloc]init];
 }
 
 -(void)dealloc
@@ -211,11 +176,15 @@ typedef struct {
 }
 
 -(void)setProjectResolution:(CGSize)projectResolution
-{    
-    float scaleX = [UIScreen mainScreen].bounds.size.width  / projectResolution.width;
-    float scaleY = [UIScreen mainScreen].bounds.size.height / projectResolution.height;
-    if (scaleY < scaleX)
-        self.scaleFactor = scaleY;
+{
+    if (projectResolution.width > 0 && projectResolution.height > 0) {
+        float scaleX = [UIScreen mainScreen].bounds.size.width  / projectResolution.width;
+        float scaleY = [UIScreen mainScreen].bounds.size.height / projectResolution.height;
+        if (scaleY < scaleX)
+            self.scaleFactor = scaleY;
+        else
+            self.scaleFactor = scaleX;
+    }
     
     self.xOffset = ([UIScreen mainScreen].bounds.size.width  - (projectResolution.width  * self.scaleFactor)) / 2.0f;
     self.yOffset = ([UIScreen mainScreen].bounds.size.height - (projectResolution.height * self.scaleFactor)) / 2.0f;
@@ -297,128 +266,14 @@ typedef struct {
     
     NSString *fileName = ((Costume*)[self.costumesArray objectAtIndex:[self.indexOfCurrentCostumeInArray intValue]]).costumeFileName;
     
-    NSDictionary * options = [NSDictionary dictionaryWithObjectsAndKeys:
-                              [NSNumber numberWithBool:YES],
-                              GLKTextureLoaderOriginBottomLeft, 
-                              nil];
-    
-    NSError *error;    
-    //NSString *path = [[NSBundle mainBundle] pathForResource:fileName ofType:nil];
-//    NSBundle *bundle = [NSBundle bundleForClass:[CattyAppDelegate class]];
-//    NSString *path = [bundle pathForResource:fileName ofType:nil];
-    
-//    
-//    
-//    NSString *mainBundlePath = [[NSBundle mainBundle] resourcePath];
-//    NSString *directBundlePath = [[NSBundle bundleForClass:[self class]] resourcePath];
-//    NSLog(@"Main Bundle Path: %@", mainBundlePath);
-//    NSLog(@"Direct Path: %@", directBundlePath);
-//    NSString *mainBundleResourcePath = [[NSBundle mainBundle] pathForResource:fileName ofType:nil];
-//    NSString *directBundleResourcePath = [[NSBundle bundleForClass:[self class]] pathForResource:fileName ofType:nil];
-//    NSLog(@"Main Bundle Path: %@", mainBundleResourcePath);
-//    NSLog(@"Direct Path: %@", directBundleResourcePath);    
-    
-    
-//    NSString *newPath = [NSString stringWithFormat:@"%@/imageToLoadNow.png", [path stringByDeletingLastPathComponent]];
-//    [[NSFileManager defaultManager] moveItemAtPath:path toPath:newPath error:&error];
-//    NSLog(@"Error filemanager: %@", [error localizedDescription]);
-//    
-//    
-    
     NSLog(@"Filename: %@", fileName);
     
-    //NSString *pathToImage = [NSString stringWithFormat:@"%@/defaultProject/images/%@", [Util applicationDocumentsDirectory], fileName];
-//    NSString *path = [NSString stringWithFormat:@"/%@/%@/%@", self.projectName, SPRITE_IMAGE_FOLDER, fileName];
-//    NSString *pathToImage = [[NSBundle mainBundle] pathForResource:path ofType:nil];
-
     NSString *pathToImage = [NSString stringWithFormat:@"%@images/%@", self.projectPath, fileName]; // TODO: change const string
     
-    NSLog(@"Try to load image: %@", pathToImage);
-    
-    self.textureInfo = [GLKTextureLoader textureWithContentsOfFile:pathToImage options:options error:&error];
-    if (self.textureInfo == nil) 
-    {
-        NSLog(@"Error loading file: %@", [error localizedDescription]);
-        return;
-    }
-
-    [self setSpriteSize];
-//    [self setSpriteSizeWithWidth:self.textureInfo.width andHeight:self.textureInfo.height];
-    
-//    self.contentSize = CGSizeMake(self.textureInfo.width, self.textureInfo.height);
-//    
-//    //test
-////    CGFloat width = [UIScreen mainScreen].bounds.size.width;
-////    CGFloat height = [UIScreen mainScreen].bounds.size.height;
-////    NSLog(@"self width: %f", self.contentSize.width/2);
-////    NSLog(@"width: %f, newWidth: %f", width/2, (width/2 - self.contentSize.width/2));
-////    self.position = GLKVector3Make((width/2 - self.contentSize.width/2), (height/2 - self.contentSize.height/2), 0);
-//    //end of test
-//    
-//    
-//    TexturedQuad newQuad;
-//    newQuad.bottomLeftCorner.geometryVertex = CGPointMake(0, 0);
-//    newQuad.bottomRightCorner.geometryVertex = CGPointMake(self.textureInfo.width, 0);
-//    newQuad.topLeftCorner.geometryVertex = CGPointMake(0, self.textureInfo.height);
-//    newQuad.topRightCorner.geometryVertex = CGPointMake(self.textureInfo.width, self.textureInfo.height);
-//
-//    newQuad.bottomLeftCorner.textureVertex = CGPointMake(0, 0);
-//    newQuad.bottomRightCorner.textureVertex = CGPointMake(1, 0);
-//    newQuad.topLeftCorner.textureVertex = CGPointMake(0, 1);
-//    newQuad.topRightCorner.textureVertex = CGPointMake(1, 1);
-//    self.quad = newQuad;
+    [self loadImageWithPath:pathToImage]; //call method implemented in super-class
+    [self setSpriteSizeWithWidth:self.scaleWidth*self.originalImageSize.width andHeight:self.scaleHeight*self.originalImageSize.height];
 }
 
--(void)setSpriteSize//WithWidth:(float)width andHeight:(float)height
-{
-    float width  = self.textureInfo.width  * self.scaleWidth;
-    float height = self.textureInfo.height * self.scaleHeight;
-        
-    self.contentSize = CGSizeMake(width, height);
-    
-    width  *= self.scaleFactor;
-    height *= self.scaleFactor;
-    
-    
-    TexturedQuad newQuad;
-    newQuad.bottomLeftCorner.geometryVertex = CGPointMake(-width/2.0f, -height/2.0f);
-    newQuad.bottomRightCorner.geometryVertex = CGPointMake(width/2.0f, -height/2.0f);
-    newQuad.topLeftCorner.geometryVertex = CGPointMake(-width/2.0f, height/2.0f);
-    newQuad.topRightCorner.geometryVertex = CGPointMake(width/2.0f, height/2.0f);
-    
-    newQuad.bottomLeftCorner.textureVertex = CGPointMake(0, 0);
-    newQuad.bottomRightCorner.textureVertex = CGPointMake(1, 0);
-    newQuad.topLeftCorner.textureVertex = CGPointMake(0, 1);
-    newQuad.topRightCorner.textureVertex = CGPointMake(1, 1);
-    self.quad = newQuad;
-}
-
-- (GLKMatrix4) modelMatrix 
-{
-    GLKMatrix4 modelMatrix = GLKMatrix4Identity;
-    //    CGFloat width = [UIScreen mainScreen].bounds.size.width;
-    //    CGFloat height = [UIScreen mainScreen].bounds.size.height;
-    //    NSLog(@"self width: %f", self.contentSize.width/2);
-    //    NSLog(@"width: %f, newWidth: %f", width/2, (width/2 - self.contentSize.width/2));
-    //    self.position = GLKVector3Make((width/2 - self.contentSize.width/2), (height/2 - self.contentSize.height/2), 0);
-
-    float x = (self.position.x * self.scaleFactor) + [UIScreen mainScreen].bounds.size.width/2;
-    float y = (self.position.y * self.scaleFactor) + [UIScreen mainScreen].bounds.size.height/2;
-        
-//    NSLog(@"x/y: %f/%f", x, y);
-    
-    CGSize scaledContentSize = CGSizeMake(self.contentSize.width * self.scaleFactor, self.contentSize.height * self.scaleFactor);
-    
-    modelMatrix = GLKMatrix4Translate(modelMatrix, 0.0f, 0.0f, 0.0f);
-    modelMatrix = GLKMatrix4RotateZ(modelMatrix, GLKMathDegreesToRadians(self.rotationInDegrees));
-
-    modelMatrix = GLKMatrix4Translate(modelMatrix, 100.0f, 100.0f, 0.0f);
-    
-//    modelMatrix = GLKMatrix4Translate(modelMatrix, x, y, self.position.z);
-//    modelMatrix = GLKMatrix4Translate(modelMatrix, -scaledContentSize.width/2, -scaledContentSize.height/2, 0);
-    
-    return modelMatrix;
-}
 
 #pragma mark - graphics
 - (void)update:(float)dt
@@ -448,52 +303,14 @@ typedef struct {
         }
 
     }
+    
+    float x = (self.position.x * self.scaleFactor) + [UIScreen mainScreen].bounds.size.width/2;
+    float y = (self.position.y * self.scaleFactor) + [UIScreen mainScreen].bounds.size.height/2;
+    self.realPosition = GLKVector3Make(x, y, self.position.z);
+    
+    [super update:dt];
 }
 
-- (void)render
-{
-    if (self.showSprite)
-    {
-    
-        if (!self.effect)
-            NSLog(@"Sprite.m => render => NO effect set!!!");
-    
-        self.effect.texture2d0.name = self.textureInfo.name;
-        self.effect.texture2d0.enabled = YES;
-    
-        self.effect.transform.modelviewMatrix = self.modelMatrix;
-        
-        
-        self.effect.useConstantColor = YES;
-        self.effect.constantColor = GLKVector4Make(255, 255, 255, self.alphaValue);
-        
-        
-    
-        [self.effect prepareToDraw];
-    
-        glEnableVertexAttribArray(GLKVertexAttribPosition);
-        glEnableVertexAttribArray(GLKVertexAttribTexCoord0);
-    
-        long offset = (long)&_quad;
-        glVertexAttribPointer(GLKVertexAttribPosition, 2, GL_FLOAT, GL_FALSE, sizeof(TexturedVertex), (void *) (offset + offsetof(TexturedVertex, geometryVertex)));
-        glVertexAttribPointer(GLKVertexAttribTexCoord0, 2, GL_FLOAT, GL_FALSE, sizeof(TexturedVertex), (void *) (offset + offsetof(TexturedVertex, textureVertex)));
-        
-        glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
-        
-//        NSLog(@"render: %@   %f", self.name, self.position.z);
-    }
-}
-
-
-
-//-(void)performNextBrickInQueue
-//{
-//    if ([self.brickQueue count] > 0)
-//    {
-//        [((Brick*)[self.brickQueue objectAtIndex:0]) performOnSprite:self];
-//        [self.brickQueue removeObjectAtIndex:0];
-//    }
-//}
 
 
 #pragma mark - actions
@@ -502,15 +319,6 @@ typedef struct {
 {
     self.position = newPosition;
 }
-
-//- (void)wait:(int)durationInMilliSecs fromScript:(Script*)script
-//{
-////    NSTimeInterval timeStamp = [[NSDate date] timeIntervalSince1970] + (durationInMilliSecs/1000.0f);
-////    
-////    NSLog(@"now: %f     timestamp :%f", [[NSDate date]timeIntervalSince1970], timeStamp);
-////    
-////    [self.waitUntilForScripts setValue:[NSNumber numberWithFloat:timeStamp] forKey:script.description];    // TODO: whole description as key??
-//}
 
 - (void)glideToPosition:(GLKVector3)position withinDurationInMilliSecs:(int)durationInMilliSecs fromScript:(Script*)script
 {
@@ -586,7 +394,7 @@ typedef struct {
     self.scaleWidth  += sizePercentageRate / 100.0f;
     self.scaleHeight += sizePercentageRate / 100.0f;
     
-    [self setSpriteSize];
+    [self setSpriteSizeWithWidth:self.scaleWidth*self.originalImageSize.width andHeight:self.scaleHeight*self.originalImageSize.height];
 }
 
 -(void)changeXBy:(int)x
@@ -604,13 +412,8 @@ typedef struct {
 {
     self.scaleWidth  = sizeInPercentage / 100.0f;
     self.scaleHeight = sizeInPercentage / 100.0f;
-    [self setSpriteSize];
+    [self setSpriteSizeWithWidth:self.scaleWidth*self.originalImageSize.width andHeight:self.scaleHeight*self.originalImageSize.height];
 }
-
-//-(void)addLoopBricks:(NSArray *)bricks
-//{
-//    self.brickQueue = [NSMutableArray arrayWithArray:[bricks arrayByAddingObjectsFromArray:self.brickQueue]];
-//}
 
 -(void)setTransparency:(float)transparency
 {
@@ -702,12 +505,8 @@ typedef struct {
 {
     CGSize scaledContentSize = CGSizeMake(self.contentSize.width * self.scaleFactor, self.contentSize.height * self.scaleFactor);
     
-//    float x = self.position.x + [UIScreen mainScreen].bounds.size.width/2 - scaledContentSize.width/2;
-//    float y = self.position.y + [UIScreen mainScreen].bounds.size.height/2 - scaledContentSize.height/2;
-    
     float x = self.position.x * self.scaleFactor + [UIScreen mainScreen].bounds.size.width /2.0f - scaledContentSize.width /2.0f;
     float y = self.position.y * self.scaleFactor + [UIScreen mainScreen].bounds.size.height/2.0f - scaledContentSize.height/2.0f;
-
     
     CGRect rect = CGRectMake(x, y, scaledContentSize.width, scaledContentSize.height);
     return rect;
