@@ -35,6 +35,7 @@
 -(void)render;
 
 -(BOOL)loadImageWithPath:(NSString*)path;
+-(BOOL)loadImageWithPath:(NSString*)path width:(float)width height:(float)height;
 -(void)setOriginalSpriteSize;
 -(void)setSpriteSizeWithWidth:(float)width andHeight:(float)height;
 

@@ -76,6 +76,12 @@ typedef struct {
 }
 
 
+-(BOOL)loadImageWithPath:(NSString*)path width:(float)width height:(float)height
+{
+    [self loadImageWithPath:path];
+    [self setSpriteSizeWithWidth:width andHeight:height];
+}
+
 -(BOOL)loadImageWithPath:(NSString *)path
 {
     NSLog(@"Try to load image '%@'", path);
