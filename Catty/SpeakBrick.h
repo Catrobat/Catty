@@ -8,6 +8,7 @@
 
 #import "Brick.h"
 
+
 @interface SpeakBrick : Brick
 
 @property (nonatomic, strong) NSString *text;

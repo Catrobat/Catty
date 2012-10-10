@@ -71,6 +71,7 @@
 		B4A9ADC7160AF29300DFA55B /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B4A9ADC6160AF29300DFA55B /* QuartzCore.framework */; };
 		B4A9ADCC160B02A200DFA55B /* CreateView.m in Sources */ = {isa = PBXBuildFile; fileRef = B4A9ADCB160B02A200DFA55B /* CreateView.m */; };
 		B4A9ADD1160B05B800DFA55B /* ProjectBrowserBaseClassViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B4A9ADD0160B05B800DFA55B /* ProjectBrowserBaseClassViewController.m */; };
+		B4AAC0311625A49A0071ECC7 /* CustomExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = B4AAC0301625A49A0071ECC7 /* CustomExtensions.m */; };
 		B4B4093115B2E07900DCFAE5 /* XMLParser.m in Sources */ = {isa = PBXBuildFile; fileRef = B4B4093015B2E07900DCFAE5 /* XMLParser.m */; };
 		B4B4093515B2E0FD00DCFAE5 /* XMLAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B4B4093415B2E0FD00DCFAE5 /* XMLAppDelegate.m */; };
 		B4B4093815B2E20700DCFAE5 /* RetailParser.m in Sources */ = {isa = PBXBuildFile; fileRef = B4B4093715B2E20700DCFAE5 /* RetailParser.m */; };
@@ -232,6 +233,8 @@
 		B4A9ADCB160B02A200DFA55B /* CreateView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreateView.m; sourceTree = "<group>"; };
 		B4A9ADCF160B05B800DFA55B /* ProjectBrowserBaseClassViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProjectBrowserBaseClassViewController.h; sourceTree = "<group>"; };
 		B4A9ADD0160B05B800DFA55B /* ProjectBrowserBaseClassViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProjectBrowserBaseClassViewController.m; sourceTree = "<group>"; };
+		B4AAC02F1625A49A0071ECC7 /* CustomExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomExtensions.h; sourceTree = "<group>"; };
+		B4AAC0301625A49A0071ECC7 /* CustomExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomExtensions.m; sourceTree = "<group>"; };
 		B4B4092F15B2E07900DCFAE5 /* XMLParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XMLParser.h; sourceTree = "<group>"; };
 		B4B4093015B2E07900DCFAE5 /* XMLParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMLParser.m; sourceTree = "<group>"; };
 		B4B4093315B2E0FD00DCFAE5 /* XMLAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XMLAppDelegate.h; sourceTree = "<group>"; };
@@ -567,6 +570,7 @@
 				B4A9ADC9160B018100DFA55B /* CustomViews */,
 				B43CF2D7160ADE4B00E19CF3 /* ImageSprite (not in use) */,
 				B43CF2B21609C8FC00E19CF3 /* Zip */,
+				B4AAC0321625A49F0071ECC7 /* CustomExtensions */,
 			);
 			name = Helper;
 			sourceTree = "<group>";
@@ -772,6 +776,15 @@
 				B4A9ADD0160B05B800DFA55B /* ProjectBrowserBaseClassViewController.m */,
 			);
 			name = ProjectBrowserBaseClass;
+			sourceTree = "<group>";
+		};
+		B4AAC0321625A49F0071ECC7 /* CustomExtensions */ = {
+			isa = PBXGroup;
+			children = (
+				B4AAC02F1625A49A0071ECC7 /* CustomExtensions.h */,
+				B4AAC0301625A49A0071ECC7 /* CustomExtensions.m */,
+			);
+			name = CustomExtensions;
 			sourceTree = "<group>";
 		};
 		B4B4094315B2E87700DCFAE5 /* ParserTests */ = {
@@ -1483,6 +1496,7 @@
 				B44403A91615CCA8000C0EC6 /* ChangeGhostEffectBrick.m in Sources */,
 				CDC84F9E1616476F003D4864 /* HelperSprite.m in Sources */,
 				B4B90DF3161C685700B83000 /* SpeakBrick.m in Sources */,
+				B4AAC0311625A49A0071ECC7 /* CustomExtensions.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1599,6 +1613,10 @@
 				ALWAYS_SEARCH_USER_PATHS = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/Framework\"",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Catty/Catty-Prefix.pch";
 				"GCC_THUMB_SUPPORT[arch=armv6]" = "";
@@ -1619,6 +1637,10 @@
 				ALWAYS_SEARCH_USER_PATHS = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/Framework\"",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Catty/Catty-Prefix.pch";
 				"GCC_THUMB_SUPPORT[arch=armv6]" = "";
