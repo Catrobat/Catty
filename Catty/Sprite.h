@@ -53,6 +53,7 @@
 @property (readonly, assign, nonatomic) float yOffset;
 @property (readonly, assign, nonatomic) BOOL showSprite;
 @property (readonly, assign, nonatomic) GLKVector3 position;        // position - origin is in the middle of the sprite
+@property (readonly, assign, nonatomic) float alphaValue;
 
 
 // init, add

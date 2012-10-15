@@ -183,9 +183,33 @@
     Sprite *sprite = [[Sprite alloc]initWithEffect:nil];
     sprite.spriteManagerDelegate = self;
     
+    self.stop = NO;
     [stopSoundBrick performOnSprite:sprite fromScript:nil];
     
     STAssertTrue(self.stop, @"Stop Delegate Method was not called!");
+    self.stop = NO;
+}
+
+-(void)test010_setGhostEffect
+{
+    float transparency = 40.0f;
+    SetGhostEffectBrick* ghostEffectBrick = [[SetGhostEffectBrick alloc] initWithTransparencyInPercent:transparency];
+    Sprite *sprite = [[Sprite alloc]initWithEffect:nil];
+    
+    [ghostEffectBrick performOnSprite:sprite fromScript:nil];
+    
+    STAssertTrue(sprite.alphaValue != transparency/100.0f, @"Alpha Value not correct");
+}
+
+-(void)test011_changeGhostEffect
+{
+    float increase = 0.10f;
+    Sprite *sprite = [[Sprite alloc]initWithEffect:nil];
+    float alpha = [sprite alphaValue];
+    ChangeGhostEffectBrick* changeGhostEffectBrick = [[ChangeGhostEffectBrick alloc] initWithIncrease:increase];
+    [changeGhostEffectBrick performOnSprite:sprite fromScript:nil];
+    
+    STAssertTrue((alpha+increase) == [sprite alphaValue], @"Alpha Value not the same");
 }
 
 
