@@ -456,6 +456,9 @@ typedef struct {
         self.effect.texture2d0.name = self.textureInfo.name;
         self.effect.texture2d0.enabled = YES;
     
+        
+        //NSLog(@"Texture: %u", self.effect.texture2d0.name);
+        
         self.effect.transform.modelviewMatrix = self.modelMatrix;
         
         
@@ -576,13 +579,11 @@ typedef struct {
     
     // Does not work!
     
-
-//    dispatch_sync(dispatch_get_current_queue(),^{
+        NSLog(@"Now");
+    
+//    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
 //        [[NSNotificationCenter defaultCenter] postNotificationName:message object:self];
 //    });
-    
-    NSLog(@"Now");
-    
 }
 
 -(void)comeToFront
@@ -719,7 +720,7 @@ typedef struct {
 #pragma mark - script methods
 - (void)start
 {
-    self.indexOfCurrentCostumeInArray = [NSNumber numberWithInt:0]; // TODO: maybe remove this line??
+    //self.indexOfCurrentCostumeInArray = [NSNumber numberWithInt:0]; // TODO: maybe remove this line??
 
     for (Script *script in self.startScriptsArray)
     {

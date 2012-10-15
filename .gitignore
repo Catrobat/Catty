@@ -10,3 +10,4 @@
 *.xcbkptlist
 
 *.xcuserstate
+.DS_Store
