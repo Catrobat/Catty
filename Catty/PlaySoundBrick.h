@@ -12,4 +12,6 @@
 
 @property (nonatomic, strong) NSString *fileName;
 
+-(id)initWithFileName:(NSString *)fileName;
+
 @end

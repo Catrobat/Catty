@@ -7,7 +7,8 @@
 //
 
 #import <SenTestingKit/SenTestingKit.h>
+#import "SpriteManagerDelegate.h"
 
-@interface DataModelBricksTest : SenTestCase
+@interface DataModelBricksTest : SenTestCase <SpriteManagerDelegate>
 
 @end

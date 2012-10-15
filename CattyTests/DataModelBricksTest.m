@@ -40,6 +40,7 @@
 #import "SetVolumeToBrick.h"
 #import "ChangeVolumeByBrick.h"
 #import "ChangeGhostEffectBrick.h"
+#import "SpeakBrick.h"
 
 @implementation DataModelBricksTest
 
@@ -132,6 +133,88 @@
     [yBrick performOnSprite:sprite fromScript:nil];
     STAssertTrue(GLKVector3AllEqualToVector3(sprite.position, GLKVector3Make(oldPosition.x, oldPosition.y+yPosition, oldPosition.z)), @"y-position of sprite is wrong!");
 }
+
+-(void)test007_speak
+{
+    SpeakBrick* speakBrick = [[SpeakBrick alloc] initWithText:@"This is a test!"];
+    Sprite *sprite = [[Sprite alloc]initWithEffect:nil];
+    
+    sprite.spriteManagerDelegate = self;
+    
+    [speakBrick performOnSprite:sprite fromScript:nil];
+}
+
+-(void)test008_playSound
+{
+    
+    NSString* locale = [[NSLocale preferredLanguages] objectAtIndex:0];
+    NSString* fileName;
+    
+    if([locale isEqualToString:@"en"])
+    {
+        fileName = @"1ebbaf4b682faba548ac1bb2d69ab0281d556853.mp3";
+    }
+    
+    if([locale isEqualToString:@"de"])
+    {
+        fileName = @"1834508dbef875bfaf1d8543eba8fc6c1d1bd300.mp3";
+    }
+    
+    PlaySoundBrick* playSoundBrick = [[PlaySoundBrick alloc] initWithFileName:fileName];
+    
+    Sprite *sprite = [[Sprite alloc]initWithEffect:nil];
+    sprite.spriteManagerDelegate = self;
+    sprite.projectPath = [[NSString alloc] initWithFormat:@"%@CattyTests.octest/", NSTemporaryDirectory()];
+    
+    [playSoundBrick performOnSprite:sprite fromScript:nil];
+}
+
+-(void)stopAllSounds
+{
+    // DO sth...
+}
+
+
+
+#pragma mark - Delegates
+-(void)addSound:(AVAudioPlayer*)sound forSprite:(Sprite*)sprite
+{
+    
+    STAssertNotNil(sound, @"Sound should not be nil");
+    
+    NSString* locale = [[NSLocale preferredLanguages] objectAtIndex:0];
+    
+    NSString* fileName;
+    
+    if([locale isEqualToString:@"en"])
+    {
+        fileName = @"1ebbaf4b682faba548ac1bb2d69ab0281d556853.mp3";
+    }
+    
+    if([locale isEqualToString:@"de"])
+    {
+        fileName = @"1834508dbef875bfaf1d8543eba8fc6c1d1bd300.mp3";
+    }
+
+    NSString* soundPath;
+    if (TARGET_IPHONE_SIMULATOR)
+        soundPath = @"";
+    else
+        soundPath = [[NSString alloc] initWithFormat:@"%@CattyTests.octest/sounds/%@", NSTemporaryDirectory(), fileName];
+    AVAudioPlayer* test = [[AVAudioPlayer alloc] initWithContentsOfURL:[NSURL fileURLWithPath:soundPath] error:NULL];
+    
+
+    STAssertTrue(test.duration == sound.duration, @"Files do not have the same length!");
+    
+    NSLog(@"Test: %f", test.duration);
+    NSLog(@"Sound: %f", sound.duration);
+    
+    [sound play];
+    
+    STAssertTrue(sound.playing, @"Sound not playing!");
+}
+
+
 
 //"SetCostumeBrick.h"
 //"StartScript.h"

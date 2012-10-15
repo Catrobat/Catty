@@ -21,6 +21,18 @@
 @synthesize fileName = _fileName;
 
 
+-(id)initWithFileName:(NSString *)fileName
+{
+    self = [super init];
+    if (self)
+    {
+        self.fileName = fileName;
+    }
+    
+    return self;
+}
+
+
 - (void)performOnSprite:(Sprite *)sprite fromScript:(Script*)script
 {
     NSLog(@"Performing: %@", self.description);
@@ -35,6 +47,8 @@
     {
         NSLog(@"Unsupported audio format!");
     }
+    
+    NSLog(@"%@",[sprite projectPath]);
 }
 
 

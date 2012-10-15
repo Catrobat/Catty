@@ -49,6 +49,7 @@
 #import "SetVolumeToBrick.h"
 #import "ChangeVolumeByBrick.h"
 #import "ChangeGhostEffectBrick.h"
+#import "SpeakBrick.h"
 
 @interface ParserTests()
 @property (nonatomic, strong) LevelParser *parser;
@@ -396,5 +397,21 @@
     ChangeVolumeByBrick *brick = (ChangeVolumeByBrick*)newBrick;
     STAssertTrue(brick.percent == percent, @"Wrong volume-percent-value");
 }
+
+- (void)test021_speak
+{
+    NSString* text = @"This is a test";
+    NSString *xmlString = [NSString stringWithFormat:@"<Bricks.SpeakBrick><sprite reference=\"../../../../..\"/><text>%@</text></Bricks.SpeakBrick>", text];
+    NSError *error;
+    NSData *xmlData = [xmlString dataUsingEncoding:NSASCIIStringEncoding];
+    GDataXMLDocument *doc = [[GDataXMLDocument alloc] initWithData:xmlData
+                                                           options:0 error:&error];
+    Brick *newBrick = [self.parser loadSpeakBrick:doc.rootElement];
+    if (![newBrick isMemberOfClass:[SpeakBrick class]])
+        STFail(@"Wrong class-member");
+    SpeakBrick *brick = (SpeakBrick*)newBrick;
+    STAssertEqualObjects(brick.text, text, @"Wrong text");
+}
+
 
 @end
