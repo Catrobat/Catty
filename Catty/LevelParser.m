@@ -39,6 +39,7 @@
 #import "EndLoopBrick.h"
 #import "GoNStepsBackBrick.h"
 #import "SetGhostEffectBrick.h"
+#import "SpeakBrick.h"
 #import "SetVolumeToBrick.h"
 #import "ChangeVolumeByBrick.h"
 #import "ChangeGhostEffectBrick.h"
@@ -341,6 +342,10 @@
         else if ([element.name isEqualToString:@"Bricks.ChangeGhostEffectBrick"])
         {
             brick = [self loadChangeGhostEffectBrick:element];
+        }
+        else if ([element.name isEqualToString:@"Bricks.SpeakBrick"])
+        {
+            brick = [self loadSpeakBrick:element];
         }
         else if ([element.name isEqualToString:@"Bricks.SetVolumeToBrick"])
         {
@@ -647,6 +652,16 @@
     
 }
 
+-(SpeakBrick*)loadSpeakBrick:(GDataXMLElement*)gDataXMLElement
+{
+    NSArray *messages = [gDataXMLElement elementsForName:@"text"];
+    GDataXMLElement *text = (GDataXMLElement*)[messages objectAtIndex:0];
+    
+    NSLog(@"speak brick: %@", text.stringValue);
+    SpeakBrick* brick = [[SpeakBrick alloc]initWithText:text.stringValue];
+    
+    return brick;
+}
 
 
 -(SetVolumeToBrick*)loadSetVolumeToBrick:(GDataXMLElement*)gDataXMLElement
