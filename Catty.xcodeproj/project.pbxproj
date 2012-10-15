@@ -24,6 +24,7 @@
 		B419691A16144E8A00AFC8C8 /* DataModelBricksTest.m in Sources */ = {isa = PBXBuildFile; fileRef = B419691916144E8A00AFC8C8 /* DataModelBricksTest.m */; };
 		B419691E1614530200AFC8C8 /* SetVolumeToBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = B419691D1614530200AFC8C8 /* SetVolumeToBrick.m */; };
 		B419692216147CD100AFC8C8 /* ChangeVolumeByBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = B419692116147CD100AFC8C8 /* ChangeVolumeByBrick.m */; };
+		B42A37FD162C62550024C793 /* sounds in Resources */ = {isa = PBXBuildFile; fileRef = B42A37FC162C62550024C793 /* sounds */; };
 		B438FC8D16108E5200D6B911 /* FeaturedProjectsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B438FC8C16108E5200D6B911 /* FeaturedProjectsViewController.m */; };
 		B43CF2381608E0A000E19CF3 /* RecentProjectsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B43CF2371608E0A000E19CF3 /* RecentProjectsViewController.m */; };
 		B43CF23C1609926D00E19CF3 /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B43CF23B1609926D00E19CF3 /* RootViewController.m */; };
@@ -72,6 +73,7 @@
 		B4B90DF3161C685700B83000 /* SpeakBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = B4B90DF2161C685700B83000 /* SpeakBrick.m */; };
 		B4C4D9DC160C490500E4FD19 /* CreateViewTests.m in Sources */ = {isa = PBXBuildFile; fileRef = B4C4D9DB160C490500E4FD19 /* CreateViewTests.m */; };
 		B4C4D9E1160C4A0D00E4FD19 /* CatrobatProjectTests.m in Sources */ = {isa = PBXBuildFile; fileRef = B4C4D9E0160C4A0D00E4FD19 /* CatrobatProjectTests.m */; };
+		B4CCFB97162C12170090671E /* HelperTests.m in Sources */ = {isa = PBXBuildFile; fileRef = B4CCFB96162C12170090671E /* HelperTests.m */; };
 		B4EFE093161602730078BFDC /* home.png in Resources */ = {isa = PBXBuildFile; fileRef = B4EFE091161602730078BFDC /* home.png */; };
 		B4EFE094161602730078BFDC /* home@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B4EFE092161602730078BFDC /* home@2x.png */; };
 		B4EFE0981616084F0078BFDC /* settings.png in Resources */ = {isa = PBXBuildFile; fileRef = B4EFE0961616084F0078BFDC /* settings.png */; };
@@ -169,6 +171,7 @@
 		B419691D1614530200AFC8C8 /* SetVolumeToBrick.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SetVolumeToBrick.m; sourceTree = "<group>"; };
 		B419692016147CD100AFC8C8 /* ChangeVolumeByBrick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChangeVolumeByBrick.h; sourceTree = "<group>"; };
 		B419692116147CD100AFC8C8 /* ChangeVolumeByBrick.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChangeVolumeByBrick.m; sourceTree = "<group>"; };
+		B42A37FC162C62550024C793 /* sounds */ = {isa = PBXFileReference; lastKnownFileType = folder; path = sounds; sourceTree = "<group>"; };
 		B438FC8B16108E5200D6B911 /* FeaturedProjectsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FeaturedProjectsViewController.h; sourceTree = "<group>"; };
 		B438FC8C16108E5200D6B911 /* FeaturedProjectsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FeaturedProjectsViewController.m; sourceTree = "<group>"; };
 		B43CF2361608E0A000E19CF3 /* RecentProjectsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecentProjectsViewController.h; sourceTree = "<group>"; };
@@ -246,6 +249,8 @@
 		B4C4D9DB160C490500E4FD19 /* CreateViewTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreateViewTests.m; sourceTree = "<group>"; };
 		B4C4D9DF160C4A0D00E4FD19 /* CatrobatProjectTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CatrobatProjectTests.h; sourceTree = "<group>"; };
 		B4C4D9E0160C4A0D00E4FD19 /* CatrobatProjectTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CatrobatProjectTests.m; sourceTree = "<group>"; };
+		B4CCFB95162C12170090671E /* HelperTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HelperTests.h; sourceTree = "<group>"; };
+		B4CCFB96162C12170090671E /* HelperTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HelperTests.m; sourceTree = "<group>"; };
 		B4EFE091161602730078BFDC /* home.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = home.png; sourceTree = "<group>"; };
 		B4EFE092161602730078BFDC /* home@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "home@2x.png"; sourceTree = "<group>"; };
 		B4EFE0961616084F0078BFDC /* settings.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = settings.png; sourceTree = "<group>"; };
@@ -418,6 +423,7 @@
 				CD8C90C0161DA37B004D3E19 /* normalcat.png */,
 				B415DC4415BAE3CF0076275E /* projectcode.xml */,
 				B415DC3A15BAB86B0076275E /* defaultProject.xml */,
+				B42A37FC162C62550024C793 /* sounds */,
 				B40C723D15A88E7B005A8EC7 /* Images */,
 			);
 			name = TestResources;
@@ -877,6 +883,15 @@
 			name = CatrobatProjectTests;
 			sourceTree = "<group>";
 		};
+		B4CCFB99162C121B0090671E /* HelperTests */ = {
+			isa = PBXGroup;
+			children = (
+				B4CCFB95162C12170090671E /* HelperTests.h */,
+				B4CCFB96162C12170090671E /* HelperTests.m */,
+			);
+			name = HelperTests;
+			sourceTree = "<group>";
+		};
 		B4F05A9715B888E400C90ED0 /* gdata */ = {
 			isa = PBXGroup;
 			children = (
@@ -967,6 +982,7 @@
 				B4FDF35015A82C1000CBCF03 /* CattyTests.h */,
 				B4FDF35115A82C1000CBCF03 /* CattyTests.m */,
 				B4FDF34B15A82C1000CBCF03 /* Supporting Files */,
+				B4CCFB99162C121B0090671E /* HelperTests */,
 			);
 			path = CattyTests;
 			sourceTree = "<group>";
@@ -1410,6 +1426,7 @@
 				CD8C90C1161DA37B004D3E19 /* banzaicat.png in Resources */,
 				CD8C90C2161DA37B004D3E19 /* ceshirecat.png in Resources */,
 				CD8C90C3161DA37C004D3E19 /* normalcat.png in Resources */,
+				B42A37FD162C62550024C793 /* sounds in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1519,6 +1536,7 @@
 				B479E9281611A3F1000B1DFA /* FileManager.m in Sources */,
 				B479E9301611A7C5000B1DFA /* FileManagerTests.m in Sources */,
 				B419691A16144E8A00AFC8C8 /* DataModelBricksTest.m in Sources */,
+				B4CCFB97162C12170090671E /* HelperTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

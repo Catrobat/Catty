@@ -27,7 +27,7 @@
 {
     NSLog(@"Performing: %@", self.description);
     
-    [sprite setTransparency:self.increase];
+    [sprite changeTransparencyBy:self.increase];
     
 }
 

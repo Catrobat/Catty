@@ -153,9 +153,7 @@
                                              returningResponse:&response
                                                          error:&error];
         
-        
         [data writeToFile:self.path atomically:YES];
-        
     }
     
 }

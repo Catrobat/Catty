@@ -31,6 +31,7 @@
 @class SetVolumeToBrick;
 @class ChangeVolumeByBrick;
 @class GDataXMLElement;
+@class SpeakBrick;
 
 
 @interface LevelParser : NSObject
@@ -59,5 +60,6 @@
 -(ChangeGhostEffectBrick*)loadChangeGhostEffectBrick:(GDataXMLElement*)gDataXMLElement;
 -(SetVolumeToBrick*)loadSetVolumeToBrick:(GDataXMLElement*)gDataXMLElement;
 -(ChangeVolumeByBrick*)loadChangeVolumeByBrick:(GDataXMLElement*)gDataXMLElement;
+-(SpeakBrick*)loadSpeakBrick:(GDataXMLElement*)gDataXMLElement;
 
 @end

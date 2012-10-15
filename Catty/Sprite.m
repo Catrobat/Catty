@@ -72,7 +72,7 @@ typedef struct {
 @property (assign, nonatomic) float xOffset;        // black border, if proportions are different (project-xml-resolution vs. screen-resolution)
 @property (assign, nonatomic) float yOffset;
 
-@property (assign, nonatomic) float alphaValue;
+
 
 @property (nonatomic, strong) NSMutableArray *activeScripts;
 @property (strong, nonatomic) NSMutableDictionary *nextPositions;       //key=script   value=positionAtTime
@@ -84,6 +84,8 @@ typedef struct {
 @property (strong, nonatomic) NSArray *startScriptsArray;
 @property (strong, nonatomic) NSArray *whenScriptsArray;
 @property (strong, nonatomic) NSDictionary *broadcastScripts;
+
+@property (assign, nonatomic) float alphaValue;
 
 @property (assign, nonatomic) BOOL showSprite;
 
