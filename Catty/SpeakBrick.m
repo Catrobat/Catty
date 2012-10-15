@@ -78,9 +78,10 @@
 -(void)setup
 {
     self.language = [[NSLocale preferredLanguages] objectAtIndex:0];
-    NSString* name = [[NSString alloc] initWithFormat:@"%@%@", self.text, self.language];
+    NSString* name = [[NSString alloc] initWithFormat:@"%@(%@)", self.text, self.language];
     
-    NSString* fileName = [[NSString alloc] initWithFormat:@"%@%@", [name md5], @".mp3"];
+
+    NSString* fileName = [[NSString alloc] initWithFormat:@"%@%@", [name sha1], @".mp3"];
     self.path = [NSTemporaryDirectory() stringByAppendingPathComponent:fileName];
     
     NSLog(@"File Name:%@", self.path);

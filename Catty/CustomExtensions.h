@@ -7,9 +7,5 @@
 //
 
 @interface NSString (CustomExtensions)
-- (NSString *) md5;
-@end
-
-@interface NSData (CustomExtensions)
-- (NSString*)md5;
+- (NSString*) sha1;
 @end
