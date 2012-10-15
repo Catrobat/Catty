@@ -172,8 +172,9 @@
     
     Sprite *sprite = [[Sprite alloc]initWithEffect:nil];
     sprite.spriteManagerDelegate = self;
-    sprite.projectPath = [[NSString alloc] initWithFormat:@"%@CattyTests.octest/", NSTemporaryDirectory()];
-    
+    NSBundle *thisBundle = [NSBundle bundleForClass:[self class]];
+    sprite.projectPath = [[NSString alloc] initWithFormat:@"%@/", [thisBundle bundlePath]];
+        
     [playSoundBrick performOnSprite:sprite fromScript:nil];
 }
 
@@ -234,18 +235,15 @@
     {
         fileName = @"1834508dbef875bfaf1d8543eba8fc6c1d1bd300.mp3";
     }
+    
+    NSBundle *thisBundle = [NSBundle bundleForClass:[self class]];
 
-    NSString* soundPath;
-    if (TARGET_IPHONE_SIMULATOR)
-        soundPath = @"";
-    else
-        soundPath = [[NSString alloc] initWithFormat:@"%@CattyTests.octest/sounds/%@", NSTemporaryDirectory(), fileName];
+    NSString* soundPath = [[NSString alloc] initWithFormat:@"%@/sounds/%@", [thisBundle bundlePath], fileName];
     AVAudioPlayer* test = [[AVAudioPlayer alloc] initWithContentsOfURL:[NSURL fileURLWithPath:soundPath] error:NULL];
     
-
     STAssertTrue(test.duration == sound.duration, @"Files do not have the same length!");
         
-    [sound play];
+    [sound play]; // You will not hear anything because of scope!
     
     STAssertTrue(sound.playing, @"Sound not playing!");
 }
