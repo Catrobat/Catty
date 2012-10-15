@@ -42,6 +42,14 @@
 #import "ChangeGhostEffectBrick.h"
 #import "SpeakBrick.h"
 
+
+@interface DataModelBricksTest()
+
+@property (nonatomic, assign) BOOL stop;
+
+@end
+
+
 @implementation DataModelBricksTest
 
 
@@ -70,7 +78,7 @@
     NSTimeInterval after = [[NSDate date]timeIntervalSince1970];
     NSLog(@"Needed Time: %f", after-before);
     STAssertFalse((after-before) < timeToWaitInMilliSecs/1000.0f,         @"Wait-time was too short");
-    STAssertFalse((after-before) > timeToWaitInMilliSecs/1000.0f + 0.01f, @"Wait-time was too long - note: tolerance-value big enough?!");// NOTE: tolerance-value?!
+    STAssertFalse((after-before) > timeToWaitInMilliSecs/1000.0f + 0.05f, @"Wait-time was too long - note: tolerance-value big enough?!");// NOTE: tolerance-value?!
 }
 
 -(void)test003_HideAndShow
@@ -169,10 +177,17 @@
     [playSoundBrick performOnSprite:sprite fromScript:nil];
 }
 
--(void)stopAllSounds
+-(void)test009_stopAllSounds
 {
-    // DO sth...
+    StopAllSoundsBrick* stopSoundBrick = [[StopAllSoundsBrick alloc] init];    
+    Sprite *sprite = [[Sprite alloc]initWithEffect:nil];
+    sprite.spriteManagerDelegate = self;
+    
+    [stopSoundBrick performOnSprite:sprite fromScript:nil];
+    
+    STAssertTrue(self.stop, @"Stop Delegate Method was not called!");
 }
+
 
 
 
@@ -205,14 +220,32 @@
     
 
     STAssertTrue(test.duration == sound.duration, @"Files do not have the same length!");
-    
-    NSLog(@"Test: %f", test.duration);
-    NSLog(@"Sound: %f", sound.duration);
-    
+        
     [sound play];
     
     STAssertTrue(sound.playing, @"Sound not playing!");
 }
+
+
+
+-(void)bringToFrontSprite:(Sprite*)sprite
+{}
+
+-(void)bringNStepsBackSprite:(Sprite*)sprite numberOfSteps:(int)n
+{}
+
+-(void)stopAllSounds
+{
+    self.stop = YES;
+}
+
+-(void)setVolumeTo:(float)volume forSprite:(Sprite*)sprite
+{}
+
+-(void)changeVolumeBy:(float)percent forSprite:(Sprite*)sprite
+{}
+
+
 
 
 
