@@ -637,7 +637,7 @@ typedef struct {
 
 -(void)changeTransparencyBy:(float)increase
 {
-    self.alphaValue += increase;
+    self.alphaValue -= increase/100;
 }
 
 - (void)addSound:(AVAudioPlayer *)player
