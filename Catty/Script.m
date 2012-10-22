@@ -17,6 +17,7 @@
 @property (strong, nonatomic) NSMutableArray *bricksArray;
 @property (assign, nonatomic) int currentBrickIndex;
 @property (strong, nonatomic) NSMutableArray *startLoopIndexStack;
+@property (strong, nonatomic) NSMutableArray *startLoopTimestampStack;
 @property (assign, nonatomic) BOOL stop;
 @end
 
@@ -28,6 +29,7 @@
 @synthesize action = _action;
 @synthesize currentBrickIndex = _currentBrickIndex;
 @synthesize startLoopIndexStack = _startLoopIndexStack;
+@synthesize startLoopTimestampStack = _startLoopTimestampStack;
 @synthesize stop = _stop;
 
 - (id)init
@@ -56,6 +58,13 @@
     
     return _startLoopIndexStack;
 }
+-(NSMutableArray*)startLoopTimestampStack
+{
+    if (_startLoopTimestampStack == nil)
+        _startLoopTimestampStack = [[NSMutableArray alloc]init];
+
+    return _startLoopTimestampStack;
+}
 
 -(void)addBrick:(Brick *)brick
 {
@@ -77,6 +86,7 @@
 {
     self.currentBrickIndex = -1;
     self.startLoopIndexStack = nil;
+    self.startLoopTimestampStack = nil;
 }
 
 -(void)stopScript
@@ -98,13 +108,12 @@
             self.currentBrickIndex = 0;
         Brick *brick = [self.bricksArray objectAtIndex:self.currentBrickIndex];
         
-        if([sprite.name isEqualToString:@"Spawning"])
-        {          
-            NSLog(@"Brick: %@", [brick description]);
-        }
+//        if([sprite.name isEqualToString:@"Spawning"])
+//        {          
+//            NSLog(@"Brick: %@", [brick description]);
+//        }
         
         if ([brick isKindOfClass:[LoopBrick class]]) {
-            [self.startLoopIndexStack addObject:[NSNumber numberWithInt:self.currentBrickIndex]];
             
             if (![(LoopBrick*)brick checkConditionAndDecrementLoopCounter]) {
                 // go to end of loop
@@ -119,12 +128,22 @@
                     tmpCounter += 1;
                 }
                 self.currentBrickIndex = tmpCounter-1;
+            } else {
+                [self.startLoopIndexStack addObject:[NSNumber numberWithInt:self.currentBrickIndex]];
+                [self.startLoopTimestampStack addObject:[NSNumber numberWithDouble:[[NSDate date]timeIntervalSince1970]]];
             }
             
         } else if ([brick isMemberOfClass:[EndLoopBrick class]]) {
             
             self.currentBrickIndex = ((NSNumber*)[self.startLoopIndexStack lastObject]).intValue-1;
             [self.startLoopIndexStack removeLastObject];
+            
+            double startTimeOfLoop = ((NSNumber*)[self.startLoopTimestampStack lastObject]).doubleValue;
+            [self.startLoopTimestampStack removeLastObject];
+            double timeToWait = 0.02f - ([[NSDate date]timeIntervalSince1970] - startTimeOfLoop); // 20 milliseconds
+            NSLog(@"timeToWait (loop): %f", timeToWait);
+            if (timeToWait > 0)
+                [NSThread sleepForTimeInterval:timeToWait];
             
         } else {
             [brick performOnSprite:sprite fromScript:self];
