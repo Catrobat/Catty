@@ -88,7 +88,8 @@
 {
     //TODO: check loop-condition BEFORE first iteration
     
-    NSLog(@"run script for sprite: %@", sprite.name);
+    NSLog(@"run script for sprite: %@", sprite.name);        
+        
     [self resetScript];
     if (self.currentBrickIndex < 0)
         self.currentBrickIndex = 0;
@@ -97,13 +98,18 @@
             self.currentBrickIndex = 0;
         Brick *brick = [self.bricksArray objectAtIndex:self.currentBrickIndex];
         
+        if([sprite.name isEqualToString:@"Spawning"])
+        {          
+            NSLog(@"Brick: %@", [brick description]);
+        }
+        
         if ([brick isKindOfClass:[LoopBrick class]]) {
             [self.startLoopIndexStack addObject:[NSNumber numberWithInt:self.currentBrickIndex]];
             
             if (![(LoopBrick*)brick checkConditionAndDecrementLoopCounter]) {
                 // go to end of loop
                 int numOfLoops = 1;
-                int tmpCounter = self.currentBrickIndex;
+                int tmpCounter = self.currentBrickIndex+1;
                 while (numOfLoops > 0 && tmpCounter < [self.bricksArray count]) {
                     brick = [self.bricksArray objectAtIndex:tmpCounter];
                     if ([brick isKindOfClass:[LoopBrick class]])
@@ -112,12 +118,12 @@
                         numOfLoops -= 1;
                     tmpCounter += 1;
                 }
-                self.currentBrickIndex = tmpCounter;
+                self.currentBrickIndex = tmpCounter-1;
             }
             
         } else if ([brick isMemberOfClass:[EndLoopBrick class]]) {
             
-            self.currentBrickIndex = ((NSNumber*)[self.startLoopIndexStack lastObject]).intValue - 1;
+            self.currentBrickIndex = ((NSNumber*)[self.startLoopIndexStack lastObject]).intValue-1;
             [self.startLoopIndexStack removeLastObject];
             
         } else {
@@ -125,6 +131,8 @@
         }
         
         self.currentBrickIndex += 1;
+        
+
         NSLog(@"!!!!!!!!!!!!!!!!!!!!!!!!!! currentBrickIndex=%d", self.currentBrickIndex);
     }
 }

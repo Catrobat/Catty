@@ -259,6 +259,7 @@ typedef struct {
     NSMutableDictionary *mutableDictionary = [self.broadcastScripts mutableCopy];
     [mutableDictionary setObject:script forKey:message];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(performBroadcastScript:) name:message object:nil];
+    NSLog(@"MSG: %@", message);
     self.broadcastScripts = [NSDictionary dictionaryWithDictionary:mutableDictionary];
 }
 
@@ -773,6 +774,7 @@ typedef struct {
 
 - (void)performBroadcastScript:(NSNotification*)notification
 {
+    NSLog(@"Notification: %@", notification.name);
     Script *script = [self.broadcastScripts objectForKey:notification.name];
     if (script) {
 

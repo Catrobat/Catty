@@ -601,14 +601,15 @@
 
 -(RepeatBrick*)loadRepeatBrick:(GDataXMLElement*)gDataXMLElement
 {
-    RepeatBrick *brick = [[RepeatBrick alloc]init];
+
     
     NSArray* res = [gDataXMLElement elementsForName:@"timesToRepeat"];
     GDataXMLElement *numberOfLoops = (GDataXMLElement*)[res objectAtIndex:0];
     
     NSLog(@"numOfLoops: %d", numberOfLoops.stringValue.intValue);
     
-    brick.numberOfLoops = numberOfLoops.stringValue.intValue;
+    RepeatBrick *brick = [[RepeatBrick alloc]initWithNumberOfLoops:numberOfLoops.stringValue.intValue];
+    //brick.numberOfLoops = numberOfLoops.stringValue.intValue;
     
     return brick;
 }

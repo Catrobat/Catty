@@ -31,7 +31,7 @@
 -(BOOL)checkConditionAndDecrementLoopCounter
 {
     self.loopsLeft -= 1;
-    BOOL returnValue = (self.loopsLeft > 0);
+    BOOL returnValue = (self.loopsLeft >= 0);
     if (!returnValue) {
         self.loopsLeft = self.numberOfLoops;
     }
