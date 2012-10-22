@@ -301,9 +301,7 @@
     //check if a collision (tap) occured
     for (Sprite *sprite in self.level.spritesArray)
     {
-
-        
-        if(CGRectIntersectsRect(sprite.boundingBox, tapRect))// && [sprite getZIndex] >= zIndex)    // order in array is sprite-z-index
+        if(CGRectIntersectsRect(sprite.boundingBox, tapRect) && sprite.showSprite)// && [sprite getZIndex] >= zIndex)    // order in array is sprite-z-index
         {
 //            zIndex = [sprite getZIndex];
             foregroundSprite = sprite;
