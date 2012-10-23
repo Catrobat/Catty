@@ -96,7 +96,7 @@ typedef struct {
         
         
         self.effect.useConstantColor = YES;
-//        self.effect.constantColor = GLKVector4Make(255, 255, 255, self.alphaValue);
+        self.effect.constantColor = GLKVector4Make(255, 255, 255, 1.0f);
     
                 
         [self.effect prepareToDraw];
