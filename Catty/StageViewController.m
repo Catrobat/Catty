@@ -256,8 +256,7 @@
     glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
     glEnable(GL_BLEND);
     
-    for (Sprite *sprite in self.level.spritesArray)
-    {
+    for (Sprite *sprite in self.level.spritesArray) {
         [sprite render];
     }
     [self.blackLeft   render];
@@ -269,8 +268,7 @@
 - (void)glkViewControllerUpdate:(GLKViewController *)controller
 {
     //NSLog(@"Update...");
-    for (Sprite *sprite in self.level.spritesArray)
-    {
+    for (Sprite *sprite in self.level.spritesArray) {
         [sprite update:self.timeSinceLastUpdate];
     }
 }
