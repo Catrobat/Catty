@@ -29,6 +29,8 @@
 #import "LoopBrick.h"
 #import "RepeatBrick.h"
 #import "EndLoopBrick.h"
+#import "TurnLeftBrick.h"
+#import "TurnRightBrick.h"
 
 @interface TestParser ()
 
@@ -171,7 +173,7 @@
     ret.name = name;
     [ret placeAt:GLKVector3Make(x, y, self.zIndex++)];
     [ret addCostumes:costumesArray];
-    [ret changeCostume:[NSNumber numberWithInt:index]];
+    //[ret changeCostume:[NSNumber numberWithInt:index]];
     
     return ret;
 }
@@ -273,7 +275,6 @@
     level.spritesArray = [NSMutableArray arrayWithObject:sprite];
     
     return level;
-    
 }
 
 -(Level *)generateDebugLevel_SetXY
@@ -497,6 +498,44 @@
     level.spritesArray = [NSMutableArray arrayWithObject:sprite];
     
     return level;
+}
+
+-(Level*)generateDebugLevel_rotate
+{
+    Level *level = [[Level alloc]init];
+    level.name = @"rotate";
+    level.resolution = CGSizeMake(320, 480);
+    
+    SetCostumeBrick *setCostume = [[SetCostumeBrick alloc]init];
+    setCostume.indexOfCostumeInArray = 0;
+    TurnLeftBrick  *turnLeft1 = [[TurnLeftBrick  alloc]initWithDegrees:45];
+    TurnRightBrick *turnRight = [[TurnRightBrick alloc]initWithDegrees:90];
+    TurnLeftBrick  *turnLeft2 = [[TurnLeftBrick  alloc]initWithDegrees:45];
+
+    
+    Costume *costume = [self createCostumeFromPath:@"normalcat.png" withName:@"cat1"];
+    
+    WaitBrick *waitBrick1 = [[WaitBrick alloc]init];
+    waitBrick1.timeToWaitInMilliseconds = [NSNumber numberWithInt:500];
+    WaitBrick *waitBrick2 = [[WaitBrick alloc]init];
+    waitBrick2.timeToWaitInMilliseconds = [NSNumber numberWithInt:500];
+    
+    WhenScript *whenScript = [[WhenScript alloc]init];
+    [whenScript addBricks:[NSMutableArray arrayWithObjects: turnLeft1, waitBrick1, turnRight, waitBrick2, turnLeft2, nil]];
+    
+    Script *startScript = [[Script alloc]init];
+    [startScript addBrick:setCostume];
+    
+    NSArray *costumes = [NSArray arrayWithObjects:costume, nil];
+    
+    Sprite *sprite = [self createSprite:@"cat" withPositionX:(NSInteger)0 withPositionY:(NSInteger)0 withCostumes:costumes setCostumeIndex:(NSInteger)0];
+    [sprite addWhenScript:whenScript];
+    [sprite addStartScript:startScript];
+    
+    level.spritesArray = [NSMutableArray arrayWithObject:sprite];
+    
+    return level;
+    
 }
 
 @end

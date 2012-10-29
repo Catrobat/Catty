@@ -10,6 +10,7 @@
 #import "enums.h"
 #import "SpriteManagerDelegate.h"
 #import <AVFoundation/AVAudioPlayer.h>
+#import "BaseSprite.h"
 
 
 #define SPRITE_IMAGE_FOLDER @"images"
@@ -32,28 +33,28 @@
 //////////////////////////////////////////////////////////////////////////////////////////
 
 
-@interface Sprite : NSObject
+@interface Sprite : BaseSprite
 
 
 
 @property (weak, nonatomic) id<SpriteManagerDelegate> spriteManagerDelegate;
 
-@property (strong, nonatomic) NSString *name;
 @property (strong, nonatomic) NSString *projectPath; //for image-path!!!
 @property (readonly, strong, nonatomic) NSArray *costumesArray;
 @property (readonly, strong, nonatomic) NSArray *soundsArray;
 @property (readonly, strong, nonatomic) NSArray *startScriptsArray;
 @property (readonly, strong, nonatomic) NSArray *whenScriptsArray;
 @property (readonly, strong, nonatomic) NSDictionary *broadcastScripts; //TODO: ONE broadcast-script for ONE message?? Hopefully, yes - otherwise: change this :(
-@property (assign) CGSize contentSize;
-@property (nonatomic, strong) GLKBaseEffect *effect;
 
-@property (readonly, assign, nonatomic) float scaleFactor;    // scale image to fit screen
+@property (readonly, assign, nonatomic) GLKVector3 position;        // position - origin is bottom-left
 @property (readonly, assign, nonatomic) float xOffset;        // black border, if proportions are different (project-xml-resolution vs. screen-resolution)
 @property (readonly, assign, nonatomic) float yOffset;
+<<<<<<< HEAD
 @property (readonly, assign, nonatomic) BOOL showSprite;
 @property (readonly, assign, nonatomic) GLKVector3 position;        // position - origin is in the middle of the sprite
 @property (readonly, assign, nonatomic) float alphaValue;
+=======
+>>>>>>> dev_changeSprite
 
 
 // init, add
@@ -86,7 +87,6 @@
 - (void)stopAllScripts;
 
 // actions
-- (void)changeSizeTo:(CGSize)size;
 - (void)placeAt:(GLKVector3)newPosition;    //origin is in the middle of the sprite
 //- (void)wait:(int)durationInMilliSecs fromScript:(Script*)script;
 - (void)changeCostume:(NSNumber*)indexOfCostumeInArray;
@@ -111,5 +111,7 @@
 - (void)changeTransparencyBy:(float)increase;
 - (void)setVolumeTo:(float)volume;
 - (void)changeVolumeBy:(float)percent;
+- (void)turnLeft:(float)degrees;
+- (void)turnRight:(float)degrees;
 
 @end

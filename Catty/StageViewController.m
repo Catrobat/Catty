@@ -13,7 +13,7 @@
 #import "RetailParser.h"
 #import "Brick.h"
 #import "Script.h"
-#import "HelperSprite.h"
+#import "BaseSprite.h"
 
 @interface StageViewController ()
 
@@ -24,10 +24,10 @@
 @property (strong, nonatomic) NSMutableArray *soundsArray;
 @property (strong, nonatomic) NSMutableDictionary *soundsDict;
 
-@property (strong, nonatomic) HelperSprite *blackLeft;
-@property (strong, nonatomic) HelperSprite *blackRight;
-@property (strong, nonatomic) HelperSprite *blackTop;
-@property (strong, nonatomic) HelperSprite *blackBottom;
+@property (strong, nonatomic) BaseSprite *blackLeft;
+@property (strong, nonatomic) BaseSprite *blackRight;
+@property (strong, nonatomic) BaseSprite *blackTop;
+@property (strong, nonatomic) BaseSprite *blackBottom;
 
 
 @end
@@ -103,25 +103,25 @@
     NSLog(@"Path to black image: %@", imageFilePath);
     
     if (sprite.xOffset > 0) {
-        self.blackLeft  = [[HelperSprite alloc] init];
-        self.blackRight = [[HelperSprite alloc] init];
+        self.blackLeft  = [[BaseSprite alloc] init];
+        self.blackRight = [[BaseSprite alloc] init];
         self.blackLeft.effect  = self.effect;
         self.blackRight.effect = self.effect;
-        self.blackLeft.position  = GLKVector3Make(0, 0, 1024);
-        self.blackRight.position = GLKVector3Make(screenWidth-sprite.xOffset, 0, 1024);
-        [self.blackLeft  loadImage:imageFilePath width:sprite.xOffset height:screenHeight];
-        [self.blackRight loadImage:imageFilePath width:sprite.xOffset height:screenHeight];
+        self.blackLeft.realPosition  = GLKVector3Make(sprite.xOffset/2.0f, screenHeight/2.0f, 1024);
+        self.blackRight.realPosition = GLKVector3Make(screenWidth-(sprite.xOffset/2.0f), screenHeight/2.0f, 1024);
+        [self.blackLeft  loadImageWithPath:imageFilePath width:sprite.xOffset height:screenHeight];
+        [self.blackRight loadImageWithPath:imageFilePath width:sprite.xOffset height:screenHeight];
     }
     
     if (sprite.yOffset > 0) {
-        self.blackTop    = [[HelperSprite alloc] init];
-        self.blackBottom = [[HelperSprite alloc] init];
+        self.blackTop    = [[BaseSprite alloc] init];
+        self.blackBottom = [[BaseSprite alloc] init];
         self.blackTop.effect    = self.effect;
         self.blackBottom.effect = self.effect;
-        self.blackTop.position    = GLKVector3Make(0, screenHeight-sprite.yOffset, 1024);
-        self.blackBottom.position = GLKVector3Make(0, 0, 1024);
-        [self.blackTop    loadImage:imageFilePath width:screenWidth height:sprite.yOffset];
-        [self.blackBottom loadImage:imageFilePath width:screenWidth height:sprite.yOffset];
+        self.blackTop.realPosition    = GLKVector3Make(screenWidth/2.0f, screenHeight-(sprite.yOffset/2.0f), 1024);
+        self.blackBottom.realPosition = GLKVector3Make(screenWidth/2.0f, sprite.yOffset/2.0f, 1024);
+        [self.blackTop    loadImageWithPath:imageFilePath width:screenWidth height:sprite.yOffset];
+        [self.blackBottom loadImageWithPath:imageFilePath width:screenWidth height:sprite.yOffset];
     }
     
     [self startLevel];

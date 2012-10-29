@@ -1,4 +1,5 @@
 
+<<<<<<< HEAD
 *.xcbkptlist
 
 *.xcuserstate
@@ -26,4 +27,6 @@ Catty.xcodeproj/xcuserdata/Mattias.xcuserdatad/xcdebugger/Breakpoints.xcbkptlist
 
 *.xcbkptlist
 
+=======
+>>>>>>> dev_changeSprite
 *.xcuserstate

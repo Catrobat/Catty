@@ -26,4 +26,5 @@
 -(Level*)generateDebugLevel_changeSizeByN;
 -(Level*)generateDebugLevel_parallelScripts;
 -(Level*)generateDebugLevel_loops;
+-(Level*)generateDebugLevel_rotate;
 @end
