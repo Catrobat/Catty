@@ -1534,15 +1534,11 @@
 				B46CD91816158E89000EA9D4 /* BroadcastWaitBrick.m in Sources */,
 				B46CD91E16159FF9000EA9D4 /* SetGhostEffectBrick.m in Sources */,
 				B44403A91615CCA8000C0EC6 /* ChangeGhostEffectBrick.m in Sources */,
-<<<<<<< HEAD
-				CDC84F9E1616476F003D4864 /* HelperSprite.m in Sources */,
 				B4B90DF3161C685700B83000 /* SpeakBrick.m in Sources */,
 				B4AAC0311625A49A0071ECC7 /* CustomExtensions.m in Sources */,
-=======
 				CDB3E9561620925E00DDABCF /* TurnLeftBrick.m in Sources */,
 				CDB3E9591620926E00DDABCF /* TurnRightBrick.m in Sources */,
 				CDC7B189162401EF00B59926 /* BaseSprite.m in Sources */,
->>>>>>> dev_changeSprite
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
