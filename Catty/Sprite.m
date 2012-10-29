@@ -56,11 +56,7 @@
 @property (assign, nonatomic) float xOffset;        // black border, if proportions are different (project-xml-resolution vs. screen-resolution)
 @property (assign, nonatomic) float yOffset;
 
-<<<<<<< HEAD
 
-
-=======
->>>>>>> dev_changeSprite
 @property (nonatomic, strong) NSMutableArray *activeScripts;
 @property (strong, nonatomic) NSMutableDictionary *nextPositions;       //key=script   value=positionAtTime
 
@@ -72,13 +68,6 @@
 @property (strong, nonatomic) NSArray *whenScriptsArray;
 @property (strong, nonatomic) NSDictionary *broadcastScripts;
 
-<<<<<<< HEAD
-@property (assign, nonatomic) float alphaValue;
-
-@property (assign, nonatomic) BOOL showSprite;
-
-=======
->>>>>>> dev_changeSprite
 @end
 
 @implementation Sprite
@@ -317,27 +306,9 @@
 
     }
     
-<<<<<<< HEAD
-        
-        //NSLog(@"Texture: %u", self.effect.texture2d0.name);
-        
-        self.effect.transform.modelviewMatrix = self.modelMatrix;
-        
-        
-        self.effect.useConstantColor = YES;
-        self.effect.constantColor = GLKVector4Make(255, 255, 255, self.alphaValue);
-        
-        
-    
-        [self.effect prepareToDraw];
-    
-        glEnableVertexAttribArray(GLKVertexAttribPosition);
-        glEnableVertexAttribArray(GLKVertexAttribTexCoord0);
-=======
     float x = (self.position.x * self.scaleFactor) + [UIScreen mainScreen].bounds.size.width/2;
     float y = (self.position.y * self.scaleFactor) + [UIScreen mainScreen].bounds.size.height/2;
     self.realPosition = GLKVector3Make(x, y, self.position.z);
->>>>>>> dev_changeSprite
     
     [super update:dt];
 }

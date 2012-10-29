@@ -46,15 +46,11 @@
 @property (readonly, strong, nonatomic) NSArray *whenScriptsArray;
 @property (readonly, strong, nonatomic) NSDictionary *broadcastScripts; //TODO: ONE broadcast-script for ONE message?? Hopefully, yes - otherwise: change this :(
 
-@property (readonly, assign, nonatomic) GLKVector3 position;        // position - origin is bottom-left
 @property (readonly, assign, nonatomic) float xOffset;        // black border, if proportions are different (project-xml-resolution vs. screen-resolution)
 @property (readonly, assign, nonatomic) float yOffset;
-<<<<<<< HEAD
-@property (readonly, assign, nonatomic) BOOL showSprite;
+//@property (readonly, assign, nonatomic) BOOL showSprite;
 @property (readonly, assign, nonatomic) GLKVector3 position;        // position - origin is in the middle of the sprite
-@property (readonly, assign, nonatomic) float alphaValue;
-=======
->>>>>>> dev_changeSprite
+//@property (readonly, assign, nonatomic) float alphaValue;
 
 
 // init, add
