@@ -13,8 +13,6 @@
 #import "Brick.h"
 #import "SetCostumeBrick.h"
 #import "WaitBrick.h"
-#import "StartScript.h"
-#import "WhenScript.h"
 #import "Sound.h"
 #import "PlaceAtBrick.h"
 #import "GlideToBrick.h"

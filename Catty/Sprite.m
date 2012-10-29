@@ -12,7 +12,6 @@
 #import "Costume.h"
 #import "Sound.h"
 #import "Script.h"
-#import "WhenScript.h"
 #import "Util.h"
 #import "enums.h"
 
@@ -212,12 +211,12 @@
 }
 
 
-- (void)addStartScript:(StartScript *)script
+- (void)addStartScript:(Script *)script
 {
     self.startScriptsArray = [self.startScriptsArray arrayByAddingObject:script];
 }
 
-- (void)addWhenScript:(WhenScript *)script
+- (void)addWhenScript:(Script *)script
 {
     self.whenScriptsArray = [self.whenScriptsArray arrayByAddingObject:script];
 }

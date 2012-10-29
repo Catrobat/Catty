@@ -15,8 +15,6 @@
 #import "Brick.h"
 #import "SetCostumeBrick.h"
 #import "WaitBrick.h"
-#import "StartScript.h"
-#import "WhenScript.h"
 #import "Sound.h"
 #import "PlaceAtBrick.h"
 #import "GlideToBrick.h"
@@ -138,7 +136,7 @@
         NSArray *scripts1 = [[scriptList objectAtIndex:0] elementsForName:@"Content.StartScript"];
         for (GDataXMLElement *gDataScript in scripts1)
         {
-            StartScript *newScript = [self loadScript:gDataScript];
+            Script *newScript = [self loadScript:gDataScript];
             [self.newSprite addStartScript:newScript];
         }
         
@@ -146,7 +144,7 @@
         NSArray *scripts2 = [[scriptList objectAtIndex:0] elementsForName:@"Content.WhenScript"];
         for (GDataXMLElement *gDataScript in scripts2)
         {
-            WhenScript *newScript = [self loadScript:gDataScript];
+            Script *newScript = [self loadScript:gDataScript];
             [self.newSprite addWhenScript:newScript];
         }
         

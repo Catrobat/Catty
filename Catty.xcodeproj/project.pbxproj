@@ -102,8 +102,6 @@
 		B4FDF36315A82E9800CBCF03 /* TestParser.m in Sources */ = {isa = PBXBuildFile; fileRef = B4FDF36215A82E9800CBCF03 /* TestParser.m */; };
 		B4FDF36415A82E9800CBCF03 /* TestParser.m in Sources */ = {isa = PBXBuildFile; fileRef = B4FDF36215A82E9800CBCF03 /* TestParser.m */; };
 		B4FDF36E15A82EC300CBCF03 /* Script.m in Sources */ = {isa = PBXBuildFile; fileRef = B4FDF36915A82EC300CBCF03 /* Script.m */; };
-		B4FDF36F15A82EC300CBCF03 /* StartScript.m in Sources */ = {isa = PBXBuildFile; fileRef = B4FDF36B15A82EC300CBCF03 /* StartScript.m */; };
-		B4FDF37015A82EC300CBCF03 /* WhenScript.m in Sources */ = {isa = PBXBuildFile; fileRef = B4FDF36D15A82EC300CBCF03 /* WhenScript.m */; };
 		B4FDF37415A82EF100CBCF03 /* Sound.m in Sources */ = {isa = PBXBuildFile; fileRef = B4FDF37315A82EF100CBCF03 /* Sound.m */; };
 		B4FDF37815A82F0700CBCF03 /* Costume.m in Sources */ = {isa = PBXBuildFile; fileRef = B4FDF37715A82F0700CBCF03 /* Costume.m */; };
 		B4FDF37C15A82F1E00CBCF03 /* Sprite.m in Sources */ = {isa = PBXBuildFile; fileRef = B4FDF37B15A82F1E00CBCF03 /* Sprite.m */; };
@@ -291,10 +289,6 @@
 		B4FDF36215A82E9800CBCF03 /* TestParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestParser.m; sourceTree = "<group>"; };
 		B4FDF36815A82EC300CBCF03 /* Script.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Script.h; sourceTree = "<group>"; };
 		B4FDF36915A82EC300CBCF03 /* Script.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Script.m; sourceTree = "<group>"; };
-		B4FDF36A15A82EC300CBCF03 /* StartScript.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StartScript.h; sourceTree = "<group>"; };
-		B4FDF36B15A82EC300CBCF03 /* StartScript.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StartScript.m; sourceTree = "<group>"; };
-		B4FDF36C15A82EC300CBCF03 /* WhenScript.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WhenScript.h; sourceTree = "<group>"; };
-		B4FDF36D15A82EC300CBCF03 /* WhenScript.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WhenScript.m; sourceTree = "<group>"; };
 		B4FDF37215A82EF100CBCF03 /* Sound.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Sound.h; sourceTree = "<group>"; };
 		B4FDF37315A82EF100CBCF03 /* Sound.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Sound.m; sourceTree = "<group>"; };
 		B4FDF37615A82F0700CBCF03 /* Costume.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Costume.h; sourceTree = "<group>"; };
@@ -1045,10 +1039,6 @@
 			children = (
 				B4FDF36815A82EC300CBCF03 /* Script.h */,
 				B4FDF36915A82EC300CBCF03 /* Script.m */,
-				B4FDF36A15A82EC300CBCF03 /* StartScript.h */,
-				B4FDF36B15A82EC300CBCF03 /* StartScript.m */,
-				B4FDF36C15A82EC300CBCF03 /* WhenScript.h */,
-				B4FDF36D15A82EC300CBCF03 /* WhenScript.m */,
 			);
 			name = Scripts;
 			sourceTree = "<group>";
@@ -1476,8 +1466,6 @@
 				B4FDF33D15A82C1000CBCF03 /* CattyViewController.m in Sources */,
 				B4FDF36315A82E9800CBCF03 /* TestParser.m in Sources */,
 				B4FDF36E15A82EC300CBCF03 /* Script.m in Sources */,
-				B4FDF36F15A82EC300CBCF03 /* StartScript.m in Sources */,
-				B4FDF37015A82EC300CBCF03 /* WhenScript.m in Sources */,
 				B4FDF37415A82EF100CBCF03 /* Sound.m in Sources */,
 				B4FDF37815A82F0700CBCF03 /* Costume.m in Sources */,
 				B4FDF37C15A82F1E00CBCF03 /* Sprite.m in Sources */,

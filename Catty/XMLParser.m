@@ -12,8 +12,6 @@
 #import "Sprite.h"
 #import "Costume.h"
 #import "Script.h"
-#import "StartScript.h"
-#import "WhenScript.h"
 #import "Brick.h"
 #import "SetCostumeBrick.h"
 #import "WaitBrick.h"
@@ -93,7 +91,7 @@
         case kScriptList:
             break;
         case kContentStartScript:
-            self.currentScript = [[StartScript alloc] init];
+            self.currentScript = [[Script alloc] init];
 //            self.currentScript.bricksArray = [[NSMutableArray alloc] init];
 //            [self.currentSprite.startScriptsArray addObject:self.currentScript]; //dunno
             [self.currentSprite addStartScript:self.currentScript];
@@ -111,7 +109,7 @@
             [self.currentScript addBrick:self.currentBrick];
             break;
         case kContentWhenScript:
-            self.currentScript = [[WhenScript alloc] init];
+            self.currentScript = [[Script alloc] init];
 //            self.currentScript.bricksArray = [[NSMutableArray alloc] init];
 //            [self.currentSprite.whenScriptsArray addObject:self.currentScript]; //dunno
             [self.currentSprite addWhenScript:self.currentScript];

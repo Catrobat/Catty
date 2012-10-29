@@ -19,8 +19,7 @@
 @class Costume;
 @class Script;
 @class Sound;
-@class StartScript;
-@class WhenScript;
+@class Script;
 
 //////////////////////////////////////////////////////////////////////////////////////////
 
@@ -60,8 +59,8 @@
 
 - (void)addCostume:(Costume*)costume;
 - (void)addCostumes:(NSArray*)costumesArray;
-- (void)addStartScript:(StartScript*)script;
-- (void)addWhenScript:(WhenScript*)script;
+- (void)addStartScript:(Script*)script;
+- (void)addWhenScript:(Script*)script;
 - (void)addBroadcastScript:(Script*)script forMessage:(NSString*)message;
 
 - (float)getZIndex;

@@ -12,9 +12,7 @@
 #import "Costume.h"
 #import "Script.h"
 #import "Brick.h"
-#import "StartScript.h"
 #import "SetCostumeBrick.h"
-#import "WhenScript.h"
 #import "PlaceAtBrick.h"
 #import "GlideToBrick.h"
 #import "WaitBrick.h"
@@ -69,7 +67,7 @@
                          setCostumeIndex:0];
     
     //creating background script
-    Script *newScript = [[StartScript alloc]init];
+    Script *newScript = [[Script alloc]init];
     
     //setcostume brick for background at startup
     SetCostumeBrick *newBrick = [[SetCostumeBrick alloc]init];
@@ -79,12 +77,12 @@
     [newScript addBrick:newBrick];
     
     //check if its a startup script or a when script
-    if ([newScript isMemberOfClass:[StartScript class]])
-//        [sprite1.startScriptsArray addObject:newScript];
-        [sprite1 addStartScript:newScript];
-        //[startScriptsMutable addObject:newScript];
-    else if ([newScript isMemberOfClass:[WhenScript class]])
-//        [sprite1.whenScriptsArray addObject:newScript];
+//    if ([newScript isMemberOfClass:[StartScript class]])
+////        [sprite1.startScriptsArray addObject:newScript];
+//        [sprite1 addStartScript:newScript];
+//        //[startScriptsMutable addObject:newScript];
+//    else if ([newScript isMemberOfClass:[WhenScript class]])
+////        [sprite1.whenScriptsArray addObject:newScript];
         [sprite1 addWhenScript:newScript];
         //[whenScriptsMutable addObject:newScript];
     
@@ -98,7 +96,7 @@
                             withCostumes:[[NSArray alloc]initWithObjects:costume2, costume3, nil] setCostumeIndex:0];
     
     //creating cat script
-    Script *newStartScript = [[StartScript alloc]init];
+    Script *newStartScript = [[Script alloc]init];
     
     //creating cat brick
     newBrick = [[SetCostumeBrick alloc]init];
@@ -108,7 +106,7 @@
     [newStartScript addBrick:newBrick];
     
     //creating new when script for cat (change costume on click and change position)
-    WhenScript *newWhenScript = [[WhenScript alloc]init];
+    Script *newWhenScript = [[Script alloc]init];
     newWhenScript.action = 0;
     newBrick = [[SetCostumeBrick alloc]init];
     newBrick.indexOfCostumeInArray = [NSNumber numberWithInt:1];
@@ -201,7 +199,7 @@
     Script *startScript = [[Script alloc]init];
     [startScript addBrick:setCostumeBrick];
     
-    WhenScript *whenScript = [[WhenScript alloc]init];
+    Script *whenScript = [[Script alloc]init];
     [whenScript addBricks:[NSMutableArray arrayWithObjects:glideBrick1, glideBrick2, waitBrick, placeAtBrick, nil]];
 
     
@@ -233,7 +231,7 @@
     waitBrick.timeToWaitInMilliseconds = [NSNumber numberWithInt:1000];
     
     
-    WhenScript *whenScript = [[WhenScript alloc]init];
+    Script *whenScript = [[Script alloc]init];
     [whenScript addBricks:[NSMutableArray arrayWithObjects:nextCostumeBrick1, waitBrick, nextCostumeBrick2, nil]];
     
     
@@ -263,7 +261,7 @@
     waitBrick.timeToWaitInMilliseconds = [NSNumber numberWithInt:1000];
     
     
-    WhenScript *whenScript = [[WhenScript alloc]init];
+    Script *whenScript = [[Script alloc]init];
     [whenScript addBricks:[NSMutableArray arrayWithObjects: hideBrick, waitBrick, showBrick, nil]];
     
     
@@ -296,7 +294,7 @@
     waitBrick.timeToWaitInMilliseconds = [NSNumber numberWithInt:1000];
     
     
-    WhenScript *whenScript = [[WhenScript alloc]init];
+    Script *whenScript = [[Script alloc]init];
     [whenScript addBricks:[NSMutableArray arrayWithObjects: setXBrick1, waitBrick, setYBrick1, waitBrick, setXBrick2, setYBrick2, nil]];
     
     
@@ -325,7 +323,7 @@
     
     BroadcastBrick *broadcastBrick = [[BroadcastBrick alloc]initWithMessage:broadcastMessage];
     
-    WhenScript *whenScript = [[WhenScript alloc]init];
+    Script *whenScript = [[Script alloc]init];
     [whenScript addBricks:[NSMutableArray arrayWithObjects: broadcastBrick, nil]];
     
     NSArray *costumes = [NSArray arrayWithObjects:costume, nil];
@@ -379,7 +377,7 @@
     Costume *costume = [self createCostumeFromPath:@"normalcat.png" withName:@"cat1"];
     ComeToFrontBrick *comeToFrontBrick = [[ComeToFrontBrick alloc]init];
     
-    WhenScript *whenScript = [[WhenScript alloc]init];
+    Script *whenScript = [[Script alloc]init];
     [whenScript addBricks:[NSMutableArray arrayWithObjects: comeToFrontBrick, nil]];
     
     NSArray *costumes = [NSArray arrayWithObjects:costume, nil];
@@ -418,7 +416,7 @@
     WaitBrick *waitBrick = [[WaitBrick alloc]init];
     waitBrick.timeToWaitInMilliseconds = [NSNumber numberWithInt:500];
     
-    WhenScript *whenScript = [[WhenScript alloc]init];
+    Script *whenScript = [[Script alloc]init];
     [whenScript addBricks:[NSMutableArray arrayWithObjects: changeSizeByNBrick1, waitBrick, changeSizeByNBrick2, waitBrick, changeSizeByNBrick3, nil]];
     
     
@@ -448,7 +446,7 @@
     [startScript addBrick:glideToBrick];
     
     
-    WhenScript *whenScript = [[WhenScript alloc]init];
+    Script *whenScript = [[Script alloc]init];
     GlideToBrick *glideToBrick2 = [[GlideToBrick alloc]initWithPosition:GLKVector3Make(-100, -100, 0) andDurationInMilliSecs:5000];
     [whenScript addBrick:glideToBrick2];
     
@@ -485,7 +483,7 @@
     
     
     
-    WhenScript *whenScript = [[WhenScript alloc]init];
+    Script *whenScript = [[Script alloc]init];
     GlideToBrick *glideToBrick2 = [[GlideToBrick alloc]initWithPosition:GLKVector3Make(-100, -100, 0) andDurationInMilliSecs:5000];
     [whenScript addBrick:glideToBrick2];
     
@@ -520,7 +518,7 @@
     WaitBrick *waitBrick2 = [[WaitBrick alloc]init];
     waitBrick2.timeToWaitInMilliseconds = [NSNumber numberWithInt:500];
     
-    WhenScript *whenScript = [[WhenScript alloc]init];
+    Script *whenScript = [[Script alloc]init];
     [whenScript addBricks:[NSMutableArray arrayWithObjects: turnLeft1, waitBrick1, turnRight, waitBrick2, turnLeft2, nil]];
     
     Script *startScript = [[Script alloc]init];

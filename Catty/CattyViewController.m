@@ -8,14 +8,13 @@
 
 #import "CattyViewController.h"
 #import "Level.h"
-#import "StartScript.h"
 #import "Brick.h"
 #import "SetCostumeBrick.h"
 #import "TestParser.h"
-#import "WhenScript.h"
 #import "WaitBrick.h"
 #import "RetailParser.h"
 #import "Util.h"
+#import "Script.h"
 #import "BaseSprite.h"
 
 //debug
