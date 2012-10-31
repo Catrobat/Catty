@@ -208,7 +208,7 @@
     ChangeGhostEffectBrick* changeGhostEffectBrick = [[ChangeGhostEffectBrick alloc] initWithIncrease:increase];
     [changeGhostEffectBrick performOnSprite:sprite fromScript:nil];
     
-    STAssertTrue((alpha+increase) == [sprite alphaValue], @"Alpha Value not the same");
+    STAssertTrue((alpha-(increase/100.0f)) == [sprite alphaValue], @"Alpha Value not the same");
 }
 
 
