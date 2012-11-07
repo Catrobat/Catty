@@ -21,8 +21,6 @@
 
 @property (strong, nonatomic) EAGLContext *context;
 @property (strong, nonatomic) GLKBaseEffect *effect;
-@property (strong, nonatomic) NSMutableArray *soundsArray;
-@property (strong, nonatomic) NSMutableDictionary *soundsDict;
 
 @property (strong, nonatomic) BaseSprite *blackLeft;
 @property (strong, nonatomic) BaseSprite *blackRight;
@@ -41,7 +39,6 @@
 @synthesize level = _level;
 
 @synthesize levelLoadingInfo = _levelLoadingInfo;
-@synthesize soundsDict = _soundsDict;
 
 @synthesize blackLeft = _blackLeft;
 @synthesize blackRight = _blackRight;
@@ -157,23 +154,6 @@
 }
 
 
-#pragma custom Getter/Setter
-
-- (NSMutableArray*)soundsArray
-{
-    if (_soundsArray == nil)
-        _soundsArray = [[NSMutableArray alloc] init];
-    
-    return _soundsArray;
-}
-
-- (NSMutableDictionary*)soundsDict;
-{
-    if (_soundsDict == nil)
-        _soundsDict = [[NSMutableDictionary alloc] init];
-    
-    return _soundsDict;
-}
 
 
 #pragma mark - instance methods
@@ -339,71 +319,13 @@
 }
 
 
--(void)addSound:(AVAudioPlayer *)sound forSprite:(Sprite*)sprite
-{
-    
-    NSMutableArray* array = [self.soundsDict objectForKey:sprite.name];
-    if(array == nil)
-        array = [[NSMutableArray alloc] init];
-    [array addObject:sound];
-    
-    [self.soundsDict setObject:array forKey:sprite.name];
-    //[self.soundsArray addObject:sound];
-    sound.delegate = self;
-    [sound play];
-}
-
 -(void)stopAllSounds
 {
-//    for(AVAudioPlayer* player in self.soundsArray)
-//    {
-//        [player stop];
-//    }
-    
-    for(NSString* key in self.soundsDict)
+    for(Sprite* sprite in self.level.spritesArray)
     {
-        NSMutableArray* array = [self.soundsDict objectForKey:key];
-        for(AVAudioPlayer* player in array)
-        {
-            [player stop];
-        }
-
-    }
-    
-    [self.soundsDict removeAllObjects];
-}
-
--(void)setVolumeTo:(float)volume forSprite:(Sprite *)sprite
-{
-    NSMutableArray* array = [self.soundsDict objectForKey:sprite.name];
-    for(AVAudioPlayer* player in array)
-    {
-        player.volume = volume;
+        [sprite stopAllSounds];
     }
 }
-
--(void)changeVolumeBy:(float)percent forSprite:(Sprite *)sprite
-{
-    
-    NSMutableArray* array = [self.soundsDict objectForKey:sprite.name];
-    for(AVAudioPlayer* player in array)
-    {
-        player.volume += percent;
-    }
-    
-}
-
-#pragma mark AVAudioPlayerDelegate
-
-- (void)audioPlayerDidFinishPlaying:(AVAudioPlayer *)player successfully:(BOOL)flag
-{
-    NSLog(@"Size: %d", [self.soundsArray count]);
-    [_soundsArray removeObject:player];
-    NSLog(@"Size: %d", [self.soundsArray count]);
-    
-}
-
-
 
 
 // back button on view

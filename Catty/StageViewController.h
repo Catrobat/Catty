@@ -17,7 +17,7 @@
 @class Level;
 @class LevelLoadingInfo;
 
-@interface StageViewController : GLKViewController <GLKViewControllerDelegate, SpriteManagerDelegate, AVAudioPlayerDelegate>
+@interface StageViewController : GLKViewController <GLKViewControllerDelegate, SpriteManagerDelegate>
 
 @property (strong, nonatomic) LevelLoadingInfo *levelLoadingInfo;
 - (IBAction)backButtonPressed:(UIButton *)sender;

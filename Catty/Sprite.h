@@ -32,7 +32,7 @@
 //////////////////////////////////////////////////////////////////////////////////////////
 
 
-@interface Sprite : BaseSprite
+@interface Sprite : BaseSprite <AVAudioPlayerDelegate>
 
 
 
@@ -40,7 +40,7 @@
 
 @property (strong, nonatomic) NSString *projectPath; //for image-path!!!
 @property (readonly, strong, nonatomic) NSArray *costumesArray;
-@property (readonly, strong, nonatomic) NSArray *soundsArray;
+@property (readonly, strong, nonatomic) NSMutableArray *soundsArray;
 @property (readonly, strong, nonatomic) NSArray *startScriptsArray;
 @property (readonly, strong, nonatomic) NSArray *whenScriptsArray;
 @property (readonly, strong, nonatomic) NSDictionary *broadcastScripts; //TODO: ONE broadcast-script for ONE message?? Hopefully, yes - otherwise: change this :(
@@ -69,7 +69,6 @@
 
 // graphics
 - (void)update:(float)dt;
-- (void)render;
 
 // other stuff
 - (NSString*)description;

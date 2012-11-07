@@ -14,7 +14,7 @@
 {
     NSLog(@"Performing: %@", self.description);
     
-    [sprite stopAllSounds];
+    [sprite.spriteManagerDelegate stopAllSounds];
     
 }
 

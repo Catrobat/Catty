@@ -62,7 +62,7 @@
 @property (strong, nonatomic) NSNumber *indexOfCurrentCostumeInArray;
 
 @property (strong, nonatomic) NSArray *costumesArray;    // tell the compiler: "I want a private setter"
-@property (strong, nonatomic) NSArray *soundsArray;
+@property (strong, nonatomic) NSMutableArray *soundsArray;
 @property (strong, nonatomic) NSArray *startScriptsArray;
 @property (strong, nonatomic) NSArray *whenScriptsArray;
 @property (strong, nonatomic) NSDictionary *broadcastScripts;
@@ -100,10 +100,10 @@
     return _costumesArray;
 }
 
-- (NSArray*)soundsArray
+- (NSMutableArray*)soundsArray
 {
     if (_soundsArray == nil)
-        _soundsArray = [[NSArray alloc] init];
+        _soundsArray = [[NSMutableArray alloc] init];
     
     return _soundsArray;
 }
@@ -246,10 +246,6 @@
     [self setZIndex:self.position.z-1];
 }
 
--(void)stopAllSounds
-{
-    [self.spriteManagerDelegate stopAllSounds];
-}
 
 #pragma mark - costume index SETTER
 - (void)setIndexOfCurrentCostumeInArray:(NSNumber*)indexOfCurrentCostumeInArray
@@ -426,22 +422,35 @@
 
 - (void)addSound:(AVAudioPlayer *)player
 {
-    //[self.soundsArray addObject:player];
-    //player.delegate = self;
-    //[player play];
-    
-    [self.spriteManagerDelegate addSound:player forSprite:self];
+    [self.soundsArray addObject:player];
+    player.delegate = self;
+    [player play];
+}
+
+-(void)stopAllSounds
+{    
+    for(AVAudioPlayer* player in self.soundsArray)
+    {
+        [player stop];
+    }
+    [self.soundsArray removeAllObjects];
 }
 
 
 - (void)setVolumeTo:(float)volume
 {
-    [self.spriteManagerDelegate setVolumeTo:volume forSprite:self];
+    for(AVAudioPlayer* player in self.soundsArray)
+    {
+        player.volume = volume;
+    }
 }
 
 -(void)changeVolumeBy:(float)percent
 {
-    [self.spriteManagerDelegate changeVolumeBy:percent forSprite:self];
+    for(AVAudioPlayer* player in self.soundsArray)
+    {
+        player.volume += percent;
+    }
 }
 
 -(void)turnLeft:(float)degrees
@@ -460,7 +469,7 @@
 {
     NSMutableString *ret = [[NSMutableString alloc] init];
     
-    [ret appendFormat:@"Sprite (0x%x):\n", self];
+    [ret appendFormat:@"Sprite (0x%@):\n", self];
     [ret appendFormat:@"\t\t\tName: %@\n", self.name];
     [ret appendFormat:@"\t\t\tPosition: [%f, %f, %f] (x, y, z)\n", self.position.x, self.position.y, self.position.z];
     [ret appendFormat:@"\t\t\tContent size: [%f, %f] (x, y)\n", self.contentSize.width, self.contentSize.height];
@@ -603,6 +612,13 @@
     }
     self.nextPositions = nil;
     self.activeScripts = nil;
+}
+
+#pragma mark AVAudioPlayerDelegate
+
+- (void)audioPlayerDidFinishPlaying:(AVAudioPlayer *)player successfully:(BOOL)flag
+{
+    [_soundsArray removeObject:player];
 }
 
 @end
