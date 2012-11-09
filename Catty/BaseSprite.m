@@ -132,12 +132,12 @@ typedef struct {
 - (GLKMatrix4) modelMatrix
 {
     GLKMatrix4 modelMatrix = GLKMatrix4Identity;
-        
-//    modelMatrix = GLKMatrix4Translate(modelMatrix, 0.0f, 0.0f, 0.0f);
-//    modelMatrix = GLKMatrix4RotateZ(modelMatrix, GLKMathDegreesToRadians(self.rotationInDegrees));
-//    modelMatrix = GLKMatrix4Rotate(modelMatrix, GLKMathDegreesToRadians(self.rotationInDegrees), 0.0f, 0.0f, 1.0f);
     
-    modelMatrix = GLKMatrix4Translate(modelMatrix, self.realPosition.x, self.realPosition.y, self.realPosition.z);
+    modelMatrix = GLKMatrix4MakeRotation(self.rotationInDegrees, 0, 0, 1);
+    
+    modelMatrix = GLKMatrix4Multiply(GLKMatrix4MakeTranslation(self.realPosition.x, self.realPosition.y, self.realPosition.z),
+                                     modelMatrix);
+    
     modelMatrix = GLKMatrix4Scale(modelMatrix, self.scaleFactor, self.scaleFactor, 1.0f);
     
     return modelMatrix;

@@ -506,12 +506,13 @@
     
     SetCostumeBrick *setCostume = [[SetCostumeBrick alloc]init];
     setCostume.indexOfCostumeInArray = 0;
+    PlaceAtBrick   *placeAt   = [[PlaceAtBrick   alloc]initWithPosition:GLKVector3Make(-80.0f, -120.0f, 0.0f)];
     TurnLeftBrick  *turnLeft1 = [[TurnLeftBrick  alloc]initWithDegrees:45];
     TurnRightBrick *turnRight = [[TurnRightBrick alloc]initWithDegrees:90];
     TurnLeftBrick  *turnLeft2 = [[TurnLeftBrick  alloc]initWithDegrees:45];
 
     
-    Costume *costume = [self createCostumeFromPath:@"normalcat.png" withName:@"cat1"];
+    Costume *costume = [self createCostumeFromPath:@"cheshirecat.png" withName:@"cat1"];
     
     WaitBrick *waitBrick1 = [[WaitBrick alloc]init];
     waitBrick1.timeToWaitInMilliseconds = [NSNumber numberWithInt:500];
@@ -523,6 +524,7 @@
     
     Script *startScript = [[Script alloc]init];
     [startScript addBrick:setCostume];
+    [startScript addBrick:placeAt];
     
     NSArray *costumes = [NSArray arrayWithObjects:costume, nil];
     
@@ -530,7 +532,23 @@
     [sprite addWhenScript:whenScript];
     [sprite addStartScript:startScript];
     
-    level.spritesArray = [NSMutableArray arrayWithObject:sprite];
+    
+    // sprite2
+    Costume *costume2 = [self createCostumeFromPath:@"normal.png" withName:@"cat2"];
+
+    SetCostumeBrick *setCostume2 = [[SetCostumeBrick alloc]init];
+    setCostume2.indexOfCostumeInArray = 0;
+
+    Script *startScript2 = [[Script alloc]init];
+    [startScript2 addBrick:setCostume2];
+    
+    NSArray *costumes2 = [NSArray arrayWithObjects:costume2, nil];
+    
+    Sprite *sprite2 = [self createSprite:@"cat2" withPositionX:(NSInteger)0 withPositionY:(NSInteger)0 withCostumes:costumes setCostumeIndex:(NSInteger)0];
+    [sprite2 addStartScript:startScript2];
+    
+    ///
+    level.spritesArray = [NSMutableArray arrayWithObjects:sprite, sprite2, nil];
     
     return level;
     
