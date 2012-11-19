@@ -22,6 +22,7 @@
 -(Level*)generateDebugLevel_HideShow;
 -(Level*)generateDebugLevel_SetXY;
 -(Level*)generateDebugLevel_broadcast;
+-(Level*)generateDebugLevel_broadcastWait;
 -(Level*)generateDebugLevel_comeToFront;
 -(Level*)generateDebugLevel_changeSizeByN;
 -(Level*)generateDebugLevel_parallelScripts;

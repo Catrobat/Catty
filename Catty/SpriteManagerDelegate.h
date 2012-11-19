@@ -19,4 +19,9 @@
 
 -(void)stopAllSounds;
 
+-(void)increaseNumberOfObserversForNotificationMessage:(NSString*)notificationMessage;
+-(void)object:(id)object isWaitingForAllObserversOfMessage:(NSString*)notificationMessage withResponseID:(NSString*)responseID;
+
+-(BOOL)polling4testing__didAllObserversFinishForResponseID:(NSString*)responseID;
+
 @end

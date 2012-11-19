@@ -226,6 +226,7 @@
     NSMutableDictionary *mutableDictionary = [self.broadcastScripts mutableCopy];
     [mutableDictionary setObject:script forKey:message];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(performBroadcastScript:) name:message object:nil];
+    [self.spriteManagerDelegate increaseNumberOfObserversForNotificationMessage:message];
     NSLog(@"MSG: %@", message);
     self.broadcastScripts = [NSDictionary dictionaryWithDictionary:mutableDictionary];
 }
@@ -364,10 +365,18 @@
 
 -(void)broadcastAndWait:(NSString *)message
 {
+    NSString *responseID = [NSString stringWithFormat:@"%@-%d", message, arc4random()%1000000];
+    [self.spriteManagerDelegate object:self isWaitingForAllObserversOfMessage:message withResponseID:responseID];
+    [[NSNotificationCenter defaultCenter]postNotificationName:message object:self userInfo:[NSDictionary dictionaryWithObject:responseID forKey:@"responseID"]];
     
-    // Does not work!
     
-        NSLog(@"Now");
+    ///// JUST 4 TESTING!!!!!
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        do {
+            // do whatever...
+        } while (![self.spriteManagerDelegate polling4testing__didAllObserversFinishForResponseID:responseID]);
+    });
+    //////// CHANGE ASAP
     
 //    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
 //        [[NSNotificationCenter defaultCenter] postNotificationName:message object:self];
@@ -590,6 +599,12 @@
                 
                 // tell the main thread
                 dispatch_async(dispatch_get_main_queue(), ^{
+                    
+                    NSString *responseID = (NSString*)[notification.userInfo valueForKey:@"responseID"];
+                    if (responseID != nil) {
+                        [[NSNotificationCenter defaultCenter]postNotificationName:responseID object:self];
+                    }
+                    
                     [self scriptFinished:script];
                 });
             });

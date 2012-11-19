@@ -22,6 +22,7 @@
 #import "SetXBrick.h"
 #import "SetYBrick.h"
 #import "BroadcastBrick.h"
+#import "BroadcastWaitBrick.h"
 #import "ComeToFrontBrick.h"
 #import "ChangeSizeByNBrick.h"
 #import "LoopBrick.h"
@@ -366,6 +367,68 @@
     return level;
     
 }
+
+-(Level *)generateDebugLevel_broadcastWait
+{
+    Level *level = [[Level alloc]init];
+    level.name = @"broadcastWait";
+    level.resolution = CGSizeMake(320, 480);
+    
+    NSString *broadcastMessage = @"BROADCAST";
+    
+    //sprite1
+    
+    Costume *costume1 = [self createCostumeFromPath:@"normalcat.png" withName:@"cat1"];
+    Costume *costume2 = [self createCostumeFromPath:@"cheshirecat.png" withName:@"cat2"];
+
+    
+    BroadcastWaitBrick *broadcastWaitBrick = [[BroadcastWaitBrick alloc]initWithMessage:broadcastMessage];
+    NextCostumeBrick   *nextCostumeBrick   = [[NextCostumeBrick   alloc]init];
+    
+    Script *whenScript = [[Script alloc]init];
+    [whenScript addBricks:[NSMutableArray arrayWithObjects: broadcastWaitBrick, nextCostumeBrick, nil]];
+    
+    NSArray *costumes = [NSArray arrayWithObjects:costume1, costume2, nil];
+    
+    Sprite *sprite1 = [self createSprite:@"cat1" withPositionX:(NSInteger)-70 withPositionY:(NSInteger)0 withCostumes:costumes setCostumeIndex:(NSInteger)0];
+    [sprite1 addWhenScript:whenScript];
+    
+    
+    //sprite2
+    
+    HideBrick *hideBrick1 = [[HideBrick alloc]init];
+    WaitBrick *waitBrick1 = [[WaitBrick alloc]init];
+    waitBrick1.timeToWaitInMilliseconds = [NSNumber numberWithInt:500];
+    ShowBrick *showBrick1 = [[ShowBrick alloc]init];
+    
+    Script *broadcastScript1 = [[Script alloc]init];
+    [broadcastScript1 addBricks:[NSArray arrayWithObjects:hideBrick1, waitBrick1, showBrick1, nil]];
+    
+    Sprite *sprite2 = [self createSprite:@"cat2" withPositionX:(NSInteger)70 withPositionY:(NSInteger)-100 withCostumes:costumes setCostumeIndex:(NSInteger)0];
+    [sprite2 addBroadcastScript:broadcastScript1 forMessage:broadcastMessage];
+    
+    
+    //sprite3
+//    HideBrick *hideBrick2 = [[HideBrick alloc]init];
+//    WaitBrick *waitBrick2 = [[WaitBrick alloc]init];
+//    waitBrick2.timeToWaitInMilliseconds = [NSNumber numberWithInt:500];
+//    ShowBrick *showBrick2 = [[ShowBrick alloc]init];
+//    
+//    Script *broadcastScript2 = [[Script alloc]init];
+//    [broadcastScript2 addBricks:[NSArray arrayWithObjects:hideBrick2, waitBrick2, showBrick2, nil]];
+//    
+//    Sprite *sprite3 = [self createSprite:@"cat3" withPositionX:(NSInteger)70 withPositionY:(NSInteger)100 withCostumes:costumes setCostumeIndex:(NSInteger)0];
+//    [sprite3 addBroadcastScript:broadcastScript2 forMessage:broadcastMessage];
+    
+    
+    ///
+    
+    level.spritesArray = [NSMutableArray arrayWithObjects:sprite1, sprite2, nil];
+    
+    return level;
+    
+}
+
 
 -(Level *)generateDebugLevel_comeToFront
 {
