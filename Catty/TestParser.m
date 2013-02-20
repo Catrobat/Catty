@@ -556,7 +556,9 @@
     
     PlaceAtBrick   *placeAt   = [[PlaceAtBrick   alloc]initWithPosition:GLKVector3Make(-80.0f, -120.0f, 0.0f)];
     
-    TurnLeftBrick  *turnLeft = [[TurnLeftBrick  alloc]initWithDegrees:45];
+    TurnLeftBrick  *turnLeft = [[TurnLeftBrick  alloc]initWithDegrees:180];
+    TurnLeftBrick  *turnLeftMinus = [[TurnLeftBrick  alloc]initWithDegrees:-90];
+
     WaitBrick *waitBrick = [[WaitBrick alloc]init];
     waitBrick.timeToWaitInMilliseconds = [NSNumber numberWithInt:500];
 
@@ -567,6 +569,12 @@
         [bricks addObject:turnLeft];
         [bricks addObject:waitBrick];
     }
+    
+//    for (int i=0; i<3; i++) {
+//        [bricks addObject:turnLeftMinus];
+//        [bricks addObject:waitBrick];
+//    }
+    
     
     Costume *costume = [self createCostumeFromPath:@"cheshirecat.png" withName:@"cat1"];
     

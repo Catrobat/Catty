@@ -135,8 +135,8 @@ typedef struct {
 - (GLKMatrix4) modelMatrix
 {
     GLKMatrix4 modelMatrix = GLKMatrix4Identity;
-    
-    modelMatrix = GLKMatrix4MakeRotation(self.rotationInDegrees, 0, 0, 1);
+        
+    modelMatrix = GLKMatrix4MakeRotation(self.rotationInDegrees * M_PI / 180.0f, 0, 0, 1);
     
     modelMatrix = GLKMatrix4Multiply(GLKMatrix4MakeTranslation(self.realPosition.x, self.realPosition.y, self.realPosition.z),
                                      modelMatrix);
