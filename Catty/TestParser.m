@@ -539,22 +539,52 @@
     [sprite addStartScript:startScript];
     
     
-    // sprite2
-    Costume *costume2 = [self createCostumeFromPath:@"normal.png" withName:@"cat2"];
+    level.spritesArray = [NSMutableArray arrayWithObject:sprite];
+    
+    return level;
+    
+}
 
-    SetCostumeBrick *setCostume2 = [[SetCostumeBrick alloc]init];
-    setCostume2.indexOfCostumeInArray = 0;
+-(Level*)generateDebugLevel_rotateFullCircle
+{
+    Level *level = [[Level alloc]init];
+    level.name = @"rotate";
+    level.resolution = CGSizeMake(320, 480);
+    
+    SetCostumeBrick *setCostume = [[SetCostumeBrick alloc]init];
+    setCostume.indexOfCostumeInArray = 0;
+    
+    PlaceAtBrick   *placeAt   = [[PlaceAtBrick   alloc]initWithPosition:GLKVector3Make(-80.0f, -120.0f, 0.0f)];
+    
+    TurnLeftBrick  *turnLeft = [[TurnLeftBrick  alloc]initWithDegrees:45];
+    WaitBrick *waitBrick = [[WaitBrick alloc]init];
+    waitBrick.timeToWaitInMilliseconds = [NSNumber numberWithInt:500];
 
-    Script *startScript2 = [[Script alloc]init];
-    [startScript2 addBrick:setCostume2];
+    NSMutableArray *bricks = [NSMutableArray arrayWithCapacity:74];
+    [bricks addObject:setCostume];
+    [bricks addObject:placeAt];
+    for (int i=0; i<1; i++) {
+        [bricks addObject:turnLeft];
+        [bricks addObject:waitBrick];
+    }
     
-    NSArray *costumes2 = [NSArray arrayWithObjects:costume2, nil];
+    Costume *costume = [self createCostumeFromPath:@"cheshirecat.png" withName:@"cat1"];
     
-    Sprite *sprite2 = [self createSprite:@"cat2" withPositionX:(NSInteger)0 withPositionY:(NSInteger)0 withCostumes:costumes setCostumeIndex:(NSInteger)0];
-    [sprite2 addStartScript:startScript2];
+    Script *whenScript = [[Script alloc]init];
+    [whenScript addBricks:[NSArray arrayWithArray:bricks]];
     
-    ///
-    level.spritesArray = [NSMutableArray arrayWithObjects:sprite, sprite2, nil];
+    Script *startScript = [[Script alloc]init];
+    [startScript addBrick:setCostume];
+    [startScript addBrick:placeAt];
+    
+    NSArray *costumes = [NSArray arrayWithObjects:costume, nil];
+    
+    Sprite *sprite = [self createSprite:@"cat" withPositionX:(NSInteger)0 withPositionY:(NSInteger)0 withCostumes:costumes setCostumeIndex:(NSInteger)0];
+    [sprite addWhenScript:whenScript];
+    [sprite addStartScript:startScript];
+    
+    
+    level.spritesArray = [NSMutableArray arrayWithObject:sprite];
     
     return level;
     

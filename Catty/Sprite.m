@@ -455,12 +455,12 @@
 
 -(void)turnLeft:(float)degrees
 {
-    self.rotationInDegrees -= degrees;
+    self.rotationInDegrees += degrees;
 }
 
 -(void)turnRight:(float)degrees
 {
-    self.rotationInDegrees += degrees;
+    self.rotationInDegrees -= degrees;
 }
 
 

@@ -134,7 +134,8 @@
 //    self.level = [testparser generateDebugLevel_changeSizeByN];
 //    self.level = [testparser generateDebugLevel_parallelScripts];
 //    self.level = [testparser generateDebugLevel_loops];
-//    self.level = [testparser generateDebugLevel_rotate];
+    self.level = [testparser generateDebugLevel_rotate];
+//    self.level = [testparser generateDebugLevel_rotateFullCircle];
     // DEBUG END
     
 //    NSString *pathToImage = [NSString stringWithFormat:@"%@/defaultProject/images/%@", [Util applicationDocumentsDirectory], projectName];

@@ -27,4 +27,5 @@
 -(Level*)generateDebugLevel_parallelScripts;
 -(Level*)generateDebugLevel_loops;
 -(Level*)generateDebugLevel_rotate;
+-(Level*)generateDebugLevel_rotateFullCircle;
 @end
