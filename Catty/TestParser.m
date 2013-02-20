@@ -554,45 +554,63 @@
     SetCostumeBrick *setCostume = [[SetCostumeBrick alloc]init];
     setCostume.indexOfCostumeInArray = 0;
     
-    PlaceAtBrick   *placeAt   = [[PlaceAtBrick   alloc]initWithPosition:GLKVector3Make(-80.0f, -120.0f, 0.0f)];
-    
-    TurnLeftBrick  *turnLeft = [[TurnLeftBrick  alloc]initWithDegrees:180];
-    TurnLeftBrick  *turnLeftMinus = [[TurnLeftBrick  alloc]initWithDegrees:-90];
-
-    WaitBrick *waitBrick = [[WaitBrick alloc]init];
-    waitBrick.timeToWaitInMilliseconds = [NSNumber numberWithInt:500];
-
-    NSMutableArray *bricks = [NSMutableArray arrayWithCapacity:74];
-    [bricks addObject:setCostume];
-    [bricks addObject:placeAt];
-    for (int i=0; i<1; i++) {
-        [bricks addObject:turnLeft];
-        [bricks addObject:waitBrick];
-    }
-    
-//    for (int i=0; i<3; i++) {
-//        [bricks addObject:turnLeftMinus];
-//        [bricks addObject:waitBrick];
-//    }
-    
-    
     Costume *costume = [self createCostumeFromPath:@"cheshirecat.png" withName:@"cat1"];
-    
-    Script *whenScript = [[Script alloc]init];
-    [whenScript addBricks:[NSArray arrayWithArray:bricks]];
-    
-    Script *startScript = [[Script alloc]init];
-    [startScript addBrick:setCostume];
-    [startScript addBrick:placeAt];
-    
     NSArray *costumes = [NSArray arrayWithObjects:costume, nil];
     
-    Sprite *sprite = [self createSprite:@"cat" withPositionX:(NSInteger)0 withPositionY:(NSInteger)0 withCostumes:costumes setCostumeIndex:(NSInteger)0];
-    [sprite addWhenScript:whenScript];
-    [sprite addStartScript:startScript];
+    WaitBrick *waitBrick = [[WaitBrick alloc]init];
+    waitBrick.timeToWaitInMilliseconds = [NSNumber numberWithInt:100];
     
     
-    level.spritesArray = [NSMutableArray arrayWithObject:sprite];
+    // sprite 1
+    PlaceAtBrick   *placeAt1 = [[PlaceAtBrick   alloc]initWithPosition:GLKVector3Make(-80.0f, -120.0f, 0.0f)];
+    TurnLeftBrick  *turnLeft = [[TurnLeftBrick  alloc]initWithDegrees:10];
+
+    NSMutableArray *bricks1 = [NSMutableArray arrayWithCapacity:73];
+    [bricks1 addObject:setCostume];
+    for (int i=0; i<36; i++) {
+        [bricks1 addObject:turnLeft];
+        [bricks1 addObject:waitBrick];
+    }
+    
+    Script *whenScript1 = [[Script alloc]init];
+    [whenScript1 addBricks:[NSArray arrayWithArray:bricks1]];
+    
+    Script *startScript1 = [[Script alloc]init];
+    [startScript1 addBrick:setCostume];
+    [startScript1 addBrick:placeAt1];
+    
+    Sprite *sprite1 = [self createSprite:@"cat1" withPositionX:(NSInteger)0 withPositionY:(NSInteger)0 withCostumes:costumes setCostumeIndex:(NSInteger)0];
+    [sprite1 addWhenScript:whenScript1];
+    [sprite1 addStartScript:startScript1];
+    
+    
+    
+    // sprite 2
+    PlaceAtBrick   *placeAt2 = [[PlaceAtBrick   alloc]initWithPosition:GLKVector3Make(80.0f, 120.0f, 0.0f)];
+    TurnRightBrick  *turnRight = [[TurnRightBrick  alloc]initWithDegrees:10];
+    
+    NSMutableArray *bricks2 = [NSMutableArray arrayWithCapacity:73];
+    [bricks2 addObject:setCostume];
+    for (int i=0; i<36; i++) {
+        [bricks2 addObject:turnRight];
+        [bricks2 addObject:waitBrick];
+    }
+    
+    Script *whenScript2 = [[Script alloc]init];
+    [whenScript2 addBricks:[NSArray arrayWithArray:bricks2]];
+    
+    Script *startScript2 = [[Script alloc]init];
+    [startScript2 addBrick:setCostume];
+    [startScript2 addBrick:placeAt2];
+    
+    Sprite *sprite2 = [self createSprite:@"cat2" withPositionX:(NSInteger)0 withPositionY:(NSInteger)0 withCostumes:costumes setCostumeIndex:(NSInteger)0];
+    [sprite2 addWhenScript:whenScript2];
+    [sprite2 addStartScript:startScript2];
+
+    
+    
+    ////
+    level.spritesArray = [NSMutableArray arrayWithObjects:sprite1, sprite2, nil];
     
     return level;
     
