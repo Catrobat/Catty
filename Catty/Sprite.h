@@ -8,14 +8,14 @@
 
 #import <GLKit/GLKit.h>
 #import "enums.h"
-#import "SpriteManagerDelegate.h"
 #import <AVFoundation/AVAudioPlayer.h>
 #import "BaseSprite.h"
 
 
 #define SPRITE_IMAGE_FOLDER @"images"
 
-//@class SpriteManagerDelegate;
+@protocol SpriteManagerDelegate;
+@protocol BroadcastWaitDelegate;
 @class Costume;
 @class Script;
 @class Sound;
@@ -37,6 +37,7 @@
 
 
 @property (weak, nonatomic) id<SpriteManagerDelegate> spriteManagerDelegate;
+@property (weak, nonatomic) id<BroadcastWaitDelegate> broadcastWaitDelegate;
 
 @property (strong, nonatomic) NSString *projectPath; //for image-path!!!
 @property (readonly, strong, nonatomic) NSArray *costumesArray;

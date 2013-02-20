@@ -122,6 +122,7 @@
 		CD8C90C1161DA37B004D3E19 /* banzaicat.png in Resources */ = {isa = PBXBuildFile; fileRef = CD8C90BE161DA37B004D3E19 /* banzaicat.png */; };
 		CD8C90C2161DA37B004D3E19 /* ceshirecat.png in Resources */ = {isa = PBXBuildFile; fileRef = CD8C90BF161DA37B004D3E19 /* ceshirecat.png */; };
 		CD8C90C3161DA37C004D3E19 /* normalcat.png in Resources */ = {isa = PBXBuildFile; fileRef = CD8C90C0161DA37B004D3E19 /* normalcat.png */; };
+		CD8D9A2016D53334005AD1AB /* BroadcastWaitHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = CD8D9A1F16D53334005AD1AB /* BroadcastWaitHandler.m */; };
 		CD8FA5AC1605D91300FC282F /* NextCostumeBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = CD8FA5AB1605D91300FC282F /* NextCostumeBrick.m */; };
 		CD8FA5B116063EA700FC282F /* HideBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = CD8FA5B016063EA700FC282F /* HideBrick.m */; };
 		CD8FA5B416063EBA00FC282F /* ShowBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = CD8FA5B316063EBA00FC282F /* ShowBrick.m */; };
@@ -325,6 +326,9 @@
 		CD8C90BE161DA37B004D3E19 /* banzaicat.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = banzaicat.png; path = TestResources/banzaicat.png; sourceTree = "<group>"; };
 		CD8C90BF161DA37B004D3E19 /* ceshirecat.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = ceshirecat.png; path = TestResources/ceshirecat.png; sourceTree = "<group>"; };
 		CD8C90C0161DA37B004D3E19 /* normalcat.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = normalcat.png; path = TestResources/normalcat.png; sourceTree = "<group>"; };
+		CD8D9A1E16D53334005AD1AB /* BroadcastWaitHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BroadcastWaitHandler.h; sourceTree = "<group>"; };
+		CD8D9A1F16D53334005AD1AB /* BroadcastWaitHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BroadcastWaitHandler.m; sourceTree = "<group>"; };
+		CD8D9A2116D533F9005AD1AB /* BroadcastWaitDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BroadcastWaitDelegate.h; sourceTree = "<group>"; };
 		CD8FA5AA1605D91300FC282F /* NextCostumeBrick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NextCostumeBrick.h; sourceTree = "<group>"; };
 		CD8FA5AB1605D91300FC282F /* NextCostumeBrick.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NextCostumeBrick.m; sourceTree = "<group>"; };
 		CD8FA5AF16063EA700FC282F /* HideBrick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HideBrick.h; sourceTree = "<group>"; };
@@ -939,6 +943,7 @@
 		B4FDF32815A82C1000CBCF03 /* Catty */ = {
 			isa = PBXGroup;
 			children = (
+				CD8D9A1D16D53312005AD1AB /* BroadcastWaitHandler */,
 				B479E91E1611A3BF000B1DFA /* Resources */,
 				B4A9ADCD160B059700DFA55B /* BaseClasses */,
 				CD85F53516085D07007C38D1 /* Delegates */,
@@ -1208,6 +1213,7 @@
 			isa = PBXGroup;
 			children = (
 				CD85F53B16085DD5007C38D1 /* SpriteManagerDelegate.h */,
+				CD8D9A2116D533F9005AD1AB /* BroadcastWaitDelegate.h */,
 			);
 			name = Delegates;
 			sourceTree = "<group>";
@@ -1237,6 +1243,15 @@
 				CD8B83891609FC42003A3C9E /* StageViewController.m */,
 			);
 			name = StageViewController;
+			sourceTree = "<group>";
+		};
+		CD8D9A1D16D53312005AD1AB /* BroadcastWaitHandler */ = {
+			isa = PBXGroup;
+			children = (
+				CD8D9A1E16D53334005AD1AB /* BroadcastWaitHandler.h */,
+				CD8D9A1F16D53334005AD1AB /* BroadcastWaitHandler.m */,
+			);
+			name = BroadcastWaitHandler;
 			sourceTree = "<group>";
 		};
 		CD8FA5A81605D8B700FC282F /* NextCostumeBrick */ = {
@@ -1527,6 +1542,7 @@
 				CDB3E9561620925E00DDABCF /* TurnLeftBrick.m in Sources */,
 				CDB3E9591620926E00DDABCF /* TurnRightBrick.m in Sources */,
 				CDC7B189162401EF00B59926 /* BaseSprite.m in Sources */,
+				CD8D9A2016D53334005AD1AB /* BroadcastWaitHandler.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -29,7 +29,7 @@
 
 -(void)runScriptForSprite:(Sprite*)sprite;
 
--(void)glideWithSprite:(Sprite*)sprite toPosition:(GLKVector3)position withinMilliSecs:(int)timeToGlideInMilliSecs;
--(void)waitTimeInMilliSecs:(float)timeToWaitInMilliSecs;
+//-(void)glideWithSprite:(Sprite*)sprite toPosition:(GLKVector3)position withinMilliSecs:(int)timeToGlideInMilliSecs;
+//-(void)waitTimeInMilliSecs:(float)timeToWaitInMilliSecs;
 
 @end

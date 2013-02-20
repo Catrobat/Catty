@@ -14,6 +14,7 @@
 #import "Script.h"
 #import "Util.h"
 #import "enums.h"
+#import "BroadcastWaitDelegate.h"
 
 
 // need CattyViewController to access FRAMES_PER_SECOND    TODO: change
@@ -73,6 +74,7 @@
 
 // public synthesizes
 @synthesize spriteManagerDelegate = _spriteManagerDelegate;
+@synthesize broadcastWaitDelegate = _broadcastWaitDelegate;
 @synthesize projectPath = _projectPath;
 @synthesize costumesArray = _costumesArray;
 @synthesize soundsArray = _soundsArray;
@@ -226,9 +228,8 @@
     NSMutableDictionary *mutableDictionary = [self.broadcastScripts mutableCopy];
     [mutableDictionary setObject:script forKey:message];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(performBroadcastScript:) name:message object:nil];
-    [self.spriteManagerDelegate increaseNumberOfObserversForNotificationMessage:message];
-    NSLog(@"MSG: %@", message);
-    self.broadcastScripts = [NSDictionary dictionaryWithDictionary:mutableDictionary];
+    
+    self.broadcastScripts = [NSDictionary dictionaryWithDictionary:[NSDictionary dictionaryWithDictionary:mutableDictionary]];
 }
 
 - (float)getZIndex
@@ -365,22 +366,35 @@
 
 -(void)broadcastAndWait:(NSString *)message
 {
+    if ([[NSThread currentThread] isMainThread]) {
+        
+        //TODO
+        
+        NSLog(@" ");
+        NSLog(@"!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+        NSLog(@"!!                                                                                       !!");
+        NSLog(@"!!  ATTENTION: THIS METHOD SHOULD NEVER EVER BE CALLED FROM MAIN-THREAD!!! BUSY WAITING  !!");
+        NSLog(@"!!                                                                                       !!");
+        NSLog(@"!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+        NSLog(@" ");
+        abort();
+    }
+    
     NSString *responseID = [NSString stringWithFormat:@"%@-%d", message, arc4random()%1000000];
-    [self.spriteManagerDelegate object:self isWaitingForAllObserversOfMessage:message withResponseID:responseID];
+    
+    if ([self.broadcastWaitDelegate respondsToSelector:@selector(object:isWaitingForAllObserversOfMessage:withResponseID:)]) {
+        [self.broadcastWaitDelegate object:self isWaitingForAllObserversOfMessage:message withResponseID:responseID];
+    } else {
+        NSLog(@"ERROR: BroadcastWaitDelegate not set! abort()");
+        abort();
+    }
+    
     [[NSNotificationCenter defaultCenter]postNotificationName:message object:self userInfo:[NSDictionary dictionaryWithObject:responseID forKey:@"responseID"]];
     
+    // TODO: busy waiting...
+    while ([self.broadcastWaitDelegate polling4testing__didAllObserversFinishForResponseID:responseID] == NO);
     
-    ///// JUST 4 TESTING!!!!!
-    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        do {
-            // do whatever...
-        } while (![self.spriteManagerDelegate polling4testing__didAllObserversFinishForResponseID:responseID]);
-    });
-    //////// CHANGE ASAP
     
-//    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-//        [[NSNotificationCenter defaultCenter] postNotificationName:message object:self];
-//    });
 }
 
 -(void)comeToFront
@@ -464,12 +478,12 @@
 
 -(void)turnLeft:(float)degrees
 {
-    self.rotationInDegrees -= degrees;
+    self.rotationInDegrees += degrees;
 }
 
 -(void)turnRight:(float)degrees
 {
-    self.rotationInDegrees += degrees;
+    self.rotationInDegrees -= degrees;
 }
 
 
@@ -533,6 +547,18 @@
 - (void)start
 {
     //self.indexOfCurrentCostumeInArray = [NSNumber numberWithInt:0]; // TODO: maybe remove this line??
+    
+    
+    // init BroadcastWait-stuff
+    for (NSString *message in [self.broadcastScripts allKeys]) {
+        if ([self.broadcastWaitDelegate respondsToSelector:@selector(increaseNumberOfObserversForNotificationMessage:)]) {
+            [self.broadcastWaitDelegate increaseNumberOfObserversForNotificationMessage:message];
+        } else {
+            NSLog(@"ERROR: BroadcastWaitDelegate not set! abort()");
+            abort();
+        }
+    }
+
 
     for (Script *script in self.startScriptsArray)
     {
@@ -586,7 +612,7 @@
     NSLog(@"Notification: %@", notification.name);
     Script *script = [self.broadcastScripts objectForKey:notification.name];
     if (script) {
-
+    
         if ([self.activeScripts containsObject:script]) {
             [script resetScript];
             [self.nextPositions removeObjectForKey:script.description];

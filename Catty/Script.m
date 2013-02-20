@@ -156,18 +156,18 @@
     }
 }
 
--(void)glideWithSprite:(Sprite*)sprite toPosition:(GLKVector3)position withinMilliSecs:(int)timeToGlideInMilliSecs
-{
-    [sprite glideToPosition:position withinDurationInMilliSecs:timeToGlideInMilliSecs fromScript:self];
-    [self waitTimeInMilliSecs:timeToGlideInMilliSecs];
-}
-
--(void)waitTimeInMilliSecs:(float)timeToWaitInMilliSecs
-{
-//    NSLog(@"BEFORE wait %f     wait: %f sec", [[NSDate date] timeIntervalSince1970], timeToWaitInMilliSecs/1000.0f);
-    [NSThread sleepForTimeInterval:timeToWaitInMilliSecs/1000.0f];
-//    NSLog(@"AFTER wait  %f", [[NSDate date] timeIntervalSince1970]);
-}
+//-(void)glideWithSprite:(Sprite*)sprite toPosition:(GLKVector3)position withinMilliSecs:(int)timeToGlideInMilliSecs
+//{
+//    [sprite glideToPosition:position withinDurationInMilliSecs:timeToGlideInMilliSecs fromScript:self];
+////    [self waitTimeInMilliSecs:timeToGlideInMilliSecs];
+//}
+//
+//-(void)waitTimeInMilliSecs:(float)timeToWaitInMilliSecs
+//{
+////    NSLog(@"BEFORE wait %f     wait: %f sec", [[NSDate date] timeIntervalSince1970], timeToWaitInMilliSecs/1000.0f);
+//    [NSThread sleepForTimeInterval:timeToWaitInMilliSecs/1000.0f];
+////    NSLog(@"AFTER wait  %f", [[NSDate date] timeIntervalSince1970]);
+//}
 
 #pragma mark - Description
 -(NSString*)description

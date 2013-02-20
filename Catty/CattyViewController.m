@@ -16,6 +16,7 @@
 #import "Util.h"
 #import "Script.h"
 #import "BaseSprite.h"
+#import "BroadcastWaitHandler.h"
 
 //debug
 #import "Costume.h"
@@ -29,6 +30,8 @@
 @property (strong, nonatomic) GLKBaseEffect *effect;
 @property (strong, nonatomic) NSMutableArray *startScriptsArray;
 @property (strong, nonatomic) NSMutableArray *whenScriptsArray;
+
+@property (strong, nonatomic) BroadcastWaitHandler *broadcastWaitHandler;
 
 @end
 
@@ -120,6 +123,7 @@
     RetailParser *parser = [[RetailParser alloc] init];
 //    self.level = [parser generateObjectForLevel:path];
     
+    self.broadcastWaitHandler = [[BroadcastWaitHandler alloc]init];
     
     // DEBUG
     
@@ -129,26 +133,30 @@
 //    self.level = [testparser generateDebugLevel_nextCostume];
 //    self.level = [testparser generateDebugLevel_HideShow];
 //    self.level = [testparser generateDebugLevel_SetXY];
-    self.level = [testparser generateDebugLevel_broadcast];
-//    self.level = [testparser generateDebugLevel_broadcastWait];
+//    self.level = [testparser generateDebugLevel_broadcast];
+    self.level = [testparser generateDebugLevel_broadcastWait];
 //    self.level = [testparser generateDebugLevel_comeToFront];
 //    self.level = [testparser generateDebugLevel_changeSizeByN];
 //    self.level = [testparser generateDebugLevel_parallelScripts];
 //    self.level = [testparser generateDebugLevel_loops];
 //    self.level = [testparser generateDebugLevel_rotate];
+//    self.level = [testparser generateDebugLevel_rotateFullCircle];
+//    self.level = [testparser generateDebugLevel_rotateAndMove];
     // DEBUG END
     
 //    NSString *pathToImage = [NSString stringWithFormat:@"%@/defaultProject/images/%@", [Util applicationDocumentsDirectory], projectName];
 //    NSString *path = [NSString stringWithFormat:@"/%@/%@/%@", self.projectName, SPRITE_IMAGE_FOLDER, fileName];
 //    NSString *pathToImage = [[NSBundle mainBundle] pathForResource:path ofType:nil];
 
-    path = @"/Users/Mattias/Library/Application Support/iPhone Simulator/6.0/Applications/0939F7A9-8907-4143-9E3F-D51E249C4A5D/Catty.app/defaultProject/";
+    path = @"/Users/Mattias/Library/Application Support/iPhone Simulator/6.1/Applications/0910C350-3962-4B66-B83A-25216751A163/Catty.app/defaultProject/";
+    
     
     //setting effect
     for (Sprite *sprite in self.level.spritesArray)
     {
         sprite.effect = self.effect;
         sprite.spriteManagerDelegate = self;
+        sprite.broadcastWaitDelegate = self.broadcastWaitHandler;
         sprite.projectPath = path;
         //        sprite.projectName = projectName;
         

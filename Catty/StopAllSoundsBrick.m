@@ -7,6 +7,7 @@
 //
 
 #import "StopAllSoundsBrick.h"
+#import "SpriteManagerDelegate.h"
 
 @implementation StopAllSoundsBrick
 
@@ -14,7 +15,7 @@
 {
     NSLog(@"Performing: %@", self.description);
     
-    [sprite.spriteManagerDelegate stopAllSounds];
+    [sprite.spriteManagerDelegate stopAllSounds]; // move this to sprite??
     
 }
 

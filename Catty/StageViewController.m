@@ -14,6 +14,8 @@
 #import "Brick.h"
 #import "Script.h"
 #import "BaseSprite.h"
+#import "SpriteManagerDelegate.h"
+#import "BroadcastWaitHandler.h"
 
 @interface StageViewController ()
 
@@ -27,8 +29,7 @@
 @property (strong, nonatomic) BaseSprite *blackTop;
 @property (strong, nonatomic) BaseSprite *blackBottom;
 
-@property (strong, nonatomic) NSMutableDictionary *numOfObserversForNotificationMessage;
-@property (strong, nonatomic) NSMutableDictionary *numOfObserversForNotificationMessageList;
+@property (strong, nonatomic) BroadcastWaitHandler *broadcastWaitHandler;
 
 @end
 
@@ -47,22 +48,8 @@
 @synthesize blackTop = _blackTop;
 @synthesize blackBottom = _blackBottom;
 
-@synthesize numOfObserversForNotificationMessage = _numOfObserversForNotificationMessage;
-@synthesize numOfObserversForNotificationMessageList = _numOfObserversForNotificationMessageList;
+@synthesize broadcastWaitHandler = _broadcastWaitHandler;
 
-
--(NSDictionary *)numOfObserversForNotificationMessage
-{
-    if (!_numOfObserversForNotificationMessage)
-        _numOfObserversForNotificationMessage = [[NSMutableDictionary alloc]init];
-    return _numOfObserversForNotificationMessage;
-}
--(NSDictionary *)numOfObserversForNotificationMessageList
-{
-    if (!_numOfObserversForNotificationMessageList)
-        _numOfObserversForNotificationMessageList = [[NSMutableDictionary alloc]init];
-    return _numOfObserversForNotificationMessageList;
-}
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -101,6 +88,8 @@
     UITapGestureRecognizer *tapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleTapFrom:)];
     [self.view addGestureRecognizer:tapRecognizer];
 
+    
+    self.broadcastWaitHandler = [[BroadcastWaitHandler alloc]init];
     
     // load level here!
     [self loadLevel];
@@ -200,6 +189,7 @@
     {
         sprite.effect = self.effect;
         sprite.spriteManagerDelegate = self;
+        sprite.broadcastWaitDelegate = self.broadcastWaitHandler;
         sprite.projectPath = self.levelLoadingInfo.basePath;
         
         // debug:
@@ -345,47 +335,6 @@
     }
 }
 
--(void)increaseNumberOfObserversForNotificationMessage:(NSString*)notificationMessage;
-{
-    NSObject *object = [self.numOfObserversForNotificationMessage objectForKey:notificationMessage];
-    int newNumber = 1;
-    if (object != nil) {
-        newNumber += ((NSNumber*)object).intValue;
-        [self.numOfObserversForNotificationMessage removeObjectForKey:notificationMessage];
-    }
-    [self.numOfObserversForNotificationMessage setValue:[NSNumber numberWithInt:1] forKey:notificationMessage];
-}
-
--(void)object:(id)object isWaitingForAllObserversOfMessage:(NSString *)notificationMessage withResponseID:(NSString*)responseID
-{
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleBroadcastWaitResponse:) name:responseID object:nil];
-    NSNumber *numberOfObservers = [NSNumber numberWithInt:((NSNumber*)[self.numOfObserversForNotificationMessage valueForKey:notificationMessage]).intValue];
-    [self.numOfObserversForNotificationMessageList setValue:numberOfObservers forKey:responseID];
-}
-
--(void)handleBroadcastWaitResponse:(NSNotification*)notification
-{
-    NSString *responseID = [notification.userInfo valueForKey:@"responseID"];
-    NSObject *object = [self.numOfObserversForNotificationMessageList objectForKey:responseID];
-    if (object != nil) {
-        int intValue = ((NSNumber*)object).intValue;
-        [self.numOfObserversForNotificationMessageList removeObjectForKey:responseID];
-        if (intValue > 0) {
-            intValue -= 1;
-            [self.numOfObserversForNotificationMessageList setValue:[NSNumber numberWithInt:intValue] forKey:responseID];
-        } else {
-            // TODO inform waiting object
-        }
-    }
-}
-
--(BOOL)polling4testing__didAllObserversFinishForResponseID:(NSString *)responseID
-{
-    if ([self.numOfObserversForNotificationMessageList objectForKey:responseID] != nil)
-        return NO;
-    else
-        return YES;
-}
 
 
 // back button on view
