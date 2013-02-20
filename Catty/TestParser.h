@@ -28,4 +28,5 @@
 -(Level*)generateDebugLevel_loops;
 -(Level*)generateDebugLevel_rotate;
 -(Level*)generateDebugLevel_rotateFullCircle;
+-(Level*)generateDebugLevel_rotateAndMove;
 @end

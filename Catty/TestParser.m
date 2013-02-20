@@ -616,4 +616,63 @@
     
 }
 
+-(Level*)generateDebugLevel_rotateAndMove
+{
+    Level *level = [[Level alloc]init];
+    level.name = @"rotate";
+    level.resolution = CGSizeMake(320, 480);
+    
+    SetCostumeBrick *setCostume = [[SetCostumeBrick alloc]init];
+    setCostume.indexOfCostumeInArray = 0;
+    
+    Costume *costume = [self createCostumeFromPath:@"cheshirecat.png" withName:@"cat1"];
+    NSArray *costumes = [NSArray arrayWithObjects:costume, nil];
+    
+    WaitBrick *waitBrick = [[WaitBrick alloc]init];
+    waitBrick.timeToWaitInMilliseconds = [NSNumber numberWithInt:50];
+    
+    
+    LoopBrick *loopBrick = [[LoopBrick alloc]init];
+    EndLoopBrick *endLoopBrick = [[EndLoopBrick alloc]init];
+    
+    
+    
+    TurnLeftBrick  *turnLeft = [[TurnLeftBrick  alloc]initWithDegrees:10];
+    
+    NSMutableArray *bricks = [NSMutableArray arrayWithCapacity:75];
+    [bricks addObject:setCostume];
+    [bricks addObject:loopBrick];
+    for (int i=0; i<36; i++) {
+        [bricks addObject:turnLeft];
+        [bricks addObject:waitBrick];
+    }
+    [bricks addObject:endLoopBrick];
+    
+    
+    Script *whenScript = [[Script alloc]init];
+    [whenScript addBrick:[[GlideToBrick alloc]initWithPosition:GLKVector3Make( 100.0f,    0.0f, 0.0f) andDurationInMilliSecs:500/2]];
+    [whenScript addBrick:[[GlideToBrick alloc]initWithPosition:GLKVector3Make( 100.0f, -100.0f, 0.0f) andDurationInMilliSecs:500/2]];
+    [whenScript addBrick:[[GlideToBrick alloc]initWithPosition:GLKVector3Make(-100.0f, -100.0f, 0.0f) andDurationInMilliSecs:500]];
+    [whenScript addBrick:[[GlideToBrick alloc]initWithPosition:GLKVector3Make(-100.0f,  100.0f, 0.0f) andDurationInMilliSecs:500]];
+    [whenScript addBrick:[[GlideToBrick alloc]initWithPosition:GLKVector3Make( 100.0f,  100.0f, 0.0f) andDurationInMilliSecs:500]];
+    [whenScript addBrick:[[GlideToBrick alloc]initWithPosition:GLKVector3Make( 100.0f,    0.0f, 0.0f) andDurationInMilliSecs:500/2]];
+    [whenScript addBrick:[[GlideToBrick alloc]initWithPosition:GLKVector3Make(   0.0f,    0.0f, 0.0f) andDurationInMilliSecs:500/2]];
+    
+    Script *startScript = [[Script alloc]init];
+    [startScript addBricks:[NSArray arrayWithArray:bricks]];
+    
+    Sprite *sprite = [self createSprite:@"cat" withPositionX:(NSInteger)0 withPositionY:(NSInteger)0 withCostumes:costumes setCostumeIndex:(NSInteger)0];
+    [sprite addWhenScript:whenScript];
+    [sprite addStartScript:startScript];
+    
+    
+    
+    ////
+    level.spritesArray = [NSMutableArray arrayWithObjects:sprite, nil];
+    
+    return level;
+    
+}
+
+
 @end
