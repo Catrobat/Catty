@@ -126,14 +126,14 @@
     TestParser *testparser = [[TestParser alloc]init];
     projectName = @"defaultProject";
     self.level = [testparser generateDebugLevel_GlideTo];
-    self.level = [testparser generateDebugLevel_nextCostume];
+//    self.level = [testparser generateDebugLevel_nextCostume];
     self.level = [testparser generateDebugLevel_HideShow];
-    self.level = [testparser generateDebugLevel_SetXY];
-    self.level = [testparser generateDebugLevel_broadcast];
-    self.level = [testparser generateDebugLevel_comeToFront];
-    self.level = [testparser generateDebugLevel_changeSizeByN];
-    self.level = [testparser generateDebugLevel_parallelScripts];
-    self.level = [testparser generateDebugLevel_loops];
+//    self.level = [testparser generateDebugLevel_SetXY];
+//    self.level = [testparser generateDebugLevel_broadcast];
+//    self.level = [testparser generateDebugLevel_comeToFront];
+//    self.level = [testparser generateDebugLevel_changeSizeByN];
+//    self.level = [testparser generateDebugLevel_parallelScripts];
+//    self.level = [testparser generateDebugLevel_loops];
 //    self.level = [testparser generateDebugLevel_rotate];
     // DEBUG END
     
@@ -141,7 +141,7 @@
 //    NSString *path = [NSString stringWithFormat:@"/%@/%@/%@", self.projectName, SPRITE_IMAGE_FOLDER, fileName];
 //    NSString *pathToImage = [[NSBundle mainBundle] pathForResource:path ofType:nil];
 
-    path = @"/Users/Mattias/Library/Application Support/iPhone Simulator/6.0/Applications/742C0D4A-0BD7-4037-AADF-DD7C4C17A383/Catty.app/defaultProject/";
+    path = @"/Users/Mattias/Library/Application Support/iPhone Simulator/6.1/Applications/0910C350-3962-4B66-B83A-25216751A163/Catty.app/defaultProject/";
     
     //setting effect
     for (Sprite *sprite in self.level.spritesArray)

@@ -34,8 +34,11 @@
 {
     NSLog(@"Performing: %@", self.description);
 
-    [script glideWithSprite:sprite toPosition:self.position withinMilliSecs:self.durationInMilliSecs];
-//    [sprite glideToPosition:self.position withinDurationInMilliSecs:self.durationInMilliSecs fromScript:script];
+    
+//    [script glideWithSprite:sprite toPosition:self.position withinMilliSecs:self.durationInMilliSecs];
+    
+    [sprite glideToPosition:self.position withinDurationInMilliSecs:self.durationInMilliSecs fromScript:script];
+    [NSThread sleepForTimeInterval:self.durationInMilliSecs/1000.0f];
 }
 
 #pragma mark - Description

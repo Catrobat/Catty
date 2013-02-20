@@ -96,6 +96,9 @@ typedef struct {
     if (self.textureInfo == nil)
     {
         NSLog(@"Error loading file: %@", [error localizedDescription]);
+        
+        abort();
+        
         return NO;
     }
     // else

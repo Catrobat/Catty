@@ -17,16 +17,7 @@
 {
     NSLog(@"Performing: %@", self.description);
     
-    [script waitTimeInMilliSecs:self.timeToWaitInMilliseconds.floatValue];
-    
-//    [sprite wait:[self.timeToWaitInMilliseconds intValue] fromScript:script];
-    
-//    float sleepTime = ((float)self.timeToWaitInMilliseconds.intValue)/1000;
-//    NSLog(@"wating for %f seconds", sleepTime);
-//    NSLog(@"---- BEFORE SLEEP -----");
-//    [NSThread sleepForTimeInterval:sleepTime];
-//    NSLog(@"---- AFTER SLEEP ------");
-
+    [NSThread sleepForTimeInterval:self.timeToWaitInMilliseconds.floatValue/1000.0f];
 }
 
 #pragma mark - Description

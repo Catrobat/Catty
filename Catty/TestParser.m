@@ -252,6 +252,11 @@
     level.name = @"nextCostumeTest";
     level.resolution = CGSizeMake(320, 480);
     
+    SetCostumeBrick *setCostumeBrick = [[SetCostumeBrick alloc]init];
+    setCostumeBrick.indexOfCostumeInArray = 0;
+    Script *startScript = [[Script alloc]init];
+    [startScript addBrick:setCostumeBrick];
+    
     HideBrick *hideBrick = [[HideBrick alloc]init];
     ShowBrick *showBrick = [[ShowBrick alloc]init];
     
@@ -268,6 +273,7 @@
     NSArray *costumes = [NSArray arrayWithObjects:costume, nil];
     
     Sprite *sprite = [self createSprite:@"cat" withPositionX:(NSInteger)0 withPositionY:(NSInteger)0 withCostumes:costumes setCostumeIndex:(NSInteger)0];
+    [sprite addStartScript:startScript];
     [sprite addWhenScript:whenScript];
     
     level.spritesArray = [NSMutableArray arrayWithObject:sprite];
