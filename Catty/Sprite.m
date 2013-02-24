@@ -229,7 +229,7 @@
     [mutableDictionary setObject:script forKey:message];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(performBroadcastScript:) name:message object:nil];
     
-    self.broadcastScripts = [NSDictionary dictionaryWithDictionary:[NSDictionary dictionaryWithDictionary:mutableDictionary]];
+    self.broadcastScripts = [NSDictionary dictionaryWithDictionary:mutableDictionary];
 }
 
 - (float)getZIndex

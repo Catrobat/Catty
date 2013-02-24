@@ -39,7 +39,8 @@
 #import "ChangeVolumeByBrick.h"
 #import "ChangeGhostEffectBrick.h"
 #import "SpeakBrick.h"
-
+#import "BroadcastWaitDelegate.h"
+#import "BroadcastWaitHandler.h"
 
 @interface DataModelBricksTest()
 
@@ -211,6 +212,81 @@
     STAssertTrue((alpha-(increase/100.0f)) == [sprite alphaValue], @"Alpha Value not the same");
 }
 
+-(void)test012_broadcast
+{
+    NSString *broadcastMessage = @"BROADCAST";
+    
+    //sprite1
+    BroadcastBrick *broadcastBrick = [[BroadcastBrick alloc]initWithMessage:broadcastMessage];
+    
+    Script *whenScript = [[Script alloc]init];
+    [whenScript addBricks:[NSMutableArray arrayWithObjects: broadcastBrick, nil]];
+    
+    
+    Sprite *sprite1 = [[Sprite alloc] initWithEffect:nil];
+    [sprite1 addWhenScript:whenScript];
+    
+    
+    //sprite2
+    GLKVector3 position = GLKVector3Make(1.3f, 2.2f, 3.1f);
+    PlaceAtBrick *brick = [[PlaceAtBrick alloc]initWithPosition:position];
+    
+    Script *broadcastScript = [[Script alloc]init];
+    [broadcastScript addBricks:[NSArray arrayWithObject:brick]];
+    
+    Sprite *sprite2 = [[Sprite alloc] initWithEffect:nil];
+    [sprite2 addBroadcastScript:broadcastScript forMessage:broadcastMessage];
+
+    STAssertFalse(GLKVector3AllEqualToVector3(sprite2.position, position), @"Init-position should not be the same as target-position");
+
+    [broadcastBrick performOnSprite:sprite1 fromScript:nil];
+    [NSThread sleepForTimeInterval:0.1]; // wait for async-blocks...
+    
+    STAssertTrue(GLKVector3AllEqualToVector3(sprite2.position, position), @"Broadcast-script was not performed correct");
+}
+
+-(void)test013_broadcastWait
+{
+    // TODO: TIMING-PROBLEM!!!
+    // Maybe this helps?!
+    // http://stackoverflow.com/questions/6205491/unit-tests-for-designs-that-use-notifications
+    
+//    BroadcastWaitHandler *handler = [[BroadcastWaitHandler alloc] init];
+//    NSString *broadcastMessage = @"BROADCAST_WAIT";
+//    
+//    //sprite1
+//    BroadcastWaitBrick *broadcastWaitBrick = [[BroadcastWaitBrick alloc]initWithMessage:broadcastMessage];
+//    GLKVector3 position = GLKVector3Make(4.3f, 1.2f, 2.1f);
+//    PlaceAtBrick *placeAtBrick = [[PlaceAtBrick alloc]initWithPosition:position];
+//    
+//    Script *startScript = [[Script alloc]init];
+//    [startScript addBricks:[NSArray arrayWithObjects: broadcastWaitBrick, placeAtBrick, nil]];
+//    
+//    Sprite *sprite1 = [[Sprite alloc] initWithEffect:nil];
+//    sprite1.broadcastWaitDelegate = handler;
+//    [sprite1 addStartScript:startScript];
+//    
+//    
+//    //sprite2
+//    int timeToWaitInMilliSecs = 300;
+//    WaitBrick *waitBrick = [[WaitBrick alloc]init];
+//    waitBrick.timeToWaitInMilliseconds = [NSNumber numberWithInt:timeToWaitInMilliSecs];
+//
+//    Script *broadcastScript = [[Script alloc]init];
+//    [broadcastScript addBricks:[NSArray arrayWithObject:waitBrick]];
+//    
+//    Sprite *sprite2 = [[Sprite alloc] initWithEffect:nil];
+//    sprite2.broadcastWaitDelegate = handler;
+//    [sprite2 addBroadcastScript:broadcastScript forMessage:broadcastMessage];
+//    
+//    
+//    // start
+//    [sprite1 start];
+//    [NSThread sleepForTimeInterval:0.15]; // wait for async-blocks...
+//    STAssertFalse(GLKVector3AllEqualToVector3(sprite1.position, position), @"Maybe the BroadcastWait-brick doesn't wait?!");
+//    [NSThread sleepForTimeInterval:0.2]; // wait for async-blocks...
+//    STAssertTrue(GLKVector3AllEqualToVector3(sprite1.position, position), @"Next brick after BroadcastWait-brick was not performed");
+}
 
 
 
