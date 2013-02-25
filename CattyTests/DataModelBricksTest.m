@@ -247,45 +247,70 @@
 
 -(void)test013_broadcastWait
 {
-    // TODO: TIMING-PROBLEM!!!
-    // Maybe this helps?!
-    // http://stackoverflow.com/questions/6205491/unit-tests-for-designs-that-use-notifications
+    BroadcastWaitHandler *handler = [[BroadcastWaitHandler alloc] init];
+    NSString *broadcastMessage = @"BROADCAST_WAIT";
     
-//    BroadcastWaitHandler *handler = [[BroadcastWaitHandler alloc] init];
-//    NSString *broadcastMessage = @"BROADCAST_WAIT";
-//    
-//    //sprite1
-//    BroadcastWaitBrick *broadcastWaitBrick = [[BroadcastWaitBrick alloc]initWithMessage:broadcastMessage];
-//    GLKVector3 position = GLKVector3Make(4.3f, 1.2f, 2.1f);
-//    PlaceAtBrick *placeAtBrick = [[PlaceAtBrick alloc]initWithPosition:position];
-//    
-//    Script *startScript = [[Script alloc]init];
-//    [startScript addBricks:[NSArray arrayWithObjects: broadcastWaitBrick, placeAtBrick, nil]];
-//    
-//    Sprite *sprite1 = [[Sprite alloc] initWithEffect:nil];
-//    sprite1.broadcastWaitDelegate = handler;
-//    [sprite1 addStartScript:startScript];
-//    
-//    
-//    //sprite2
-//    int timeToWaitInMilliSecs = 300;
-//    WaitBrick *waitBrick = [[WaitBrick alloc]init];
-//    waitBrick.timeToWaitInMilliseconds = [NSNumber numberWithInt:timeToWaitInMilliSecs];
-//
-//    Script *broadcastScript = [[Script alloc]init];
-//    [broadcastScript addBricks:[NSArray arrayWithObject:waitBrick]];
-//    
-//    Sprite *sprite2 = [[Sprite alloc] initWithEffect:nil];
-//    sprite2.broadcastWaitDelegate = handler;
-//    [sprite2 addBroadcastScript:broadcastScript forMessage:broadcastMessage];
-//    
-//    
-//    // start
-//    [sprite1 start];
-//    [NSThread sleepForTimeInterval:0.15]; // wait for async-blocks...
-//    STAssertFalse(GLKVector3AllEqualToVector3(sprite1.position, position), @"Maybe the BroadcastWait-brick doesn't wait?!");
-//    [NSThread sleepForTimeInterval:0.2]; // wait for async-blocks...
-//    STAssertTrue(GLKVector3AllEqualToVector3(sprite1.position, position), @"Next brick after BroadcastWait-brick was not performed");
+    //sprite1
+    BroadcastWaitBrick *broadcastWaitBrick = [[BroadcastWaitBrick alloc]initWithMessage:broadcastMessage];
+    GLKVector3 position = GLKVector3Make(4.3f, 1.2f, 2.1f);
+    PlaceAtBrick *placeAtBrick = [[PlaceAtBrick alloc]initWithPosition:position];
+    
+    Script *startScript = [[Script alloc]init];
+    [startScript addBricks:[NSArray arrayWithObjects: broadcastWaitBrick, placeAtBrick, nil]];
+    
+    Sprite *sprite1 = [[Sprite alloc] initWithEffect:nil];
+    sprite1.broadcastWaitDelegate = handler;
+    [sprite1 addStartScript:startScript];
+    
+    
+    //sprite2
+    int timeToWaitInMilliSecs = 300;
+    WaitBrick *waitBrick = [[WaitBrick alloc]init];
+    waitBrick.timeToWaitInMilliseconds = [NSNumber numberWithInt:timeToWaitInMilliSecs];
+
+    Script *broadcastScript = [[Script alloc]init];
+    [broadcastScript addBricks:[NSArray arrayWithObject:waitBrick]];
+    
+    Sprite *sprite2 = [[Sprite alloc] initWithEffect:nil];
+    sprite2.broadcastWaitDelegate = handler;
+    [sprite2 addBroadcastScript:broadcastScript forMessage:broadcastMessage];
+    
+    
+    // start
+    [sprite1 start];
+    NSDate *startTime       = [NSDate date];
+    NSDate *expectedEndTime = [startTime dateByAddingTimeInterval:((float)timeToWaitInMilliSecs/1000.0f)];
+    NSDate *realEndTime     = nil;
+    
+    
+    NSTimeInterval timeout = 1.1;   // Number of seconds before giving up
+    NSTimeInterval idle = 0.01;   // Number of seconds to pause within loop
+    BOOL timedOut = NO;
+    BOOL operationCompleted = NO;
+    
+    NSDate *timeoutDate = [[NSDate alloc] initWithTimeIntervalSinceNow:timeout];
+    while (!timedOut && !operationCompleted)
+    {
+        if (GLKVector3AllEqualToVector3(sprite1.position, position)) {
+            realEndTime = [NSDate date];
+            operationCompleted = YES;
+        } else {
+            NSDate *tick = [[NSDate alloc] initWithTimeIntervalSinceNow:idle];
+            [[NSRunLoop currentRunLoop] runUntilDate:tick];
+            timedOut = ([tick compare:timeoutDate] == NSOrderedDescending);
+        }
+    }
+    
+    if (timeout == YES) {
+        STAssertTrue(NO, @"Timeout!");
+    } else if (realEndTime == nil || expectedEndTime == nil) {
+        STAssertTrue(NO, @"ERROR - this should not happen...");
+    } else if ([realEndTime compare:expectedEndTime] == NSOrderedAscending) {
+        STAssertTrue(NO, @"Sender-sprite didn't wait after broadcast!");
+    } else {
+        STAssertTrue(GLKVector3AllEqualToVector3(sprite1.position, position), @"Next brick after BroadcastWait-brick was not performed");
+    }
+    
 }
 
 
