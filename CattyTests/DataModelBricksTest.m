@@ -301,7 +301,7 @@
         }
     }
     
-    if (timeout == YES) {
+    if (timedOut == YES) {
         STAssertTrue(NO, @"Timeout!");
     } else if (realEndTime == nil || expectedEndTime == nil) {
         STAssertTrue(NO, @"ERROR - this should not happen...");
@@ -313,6 +313,77 @@
     
 }
 
+
+-(void)test014_glideToBrick
+{
+//    EAGLContext *context = [[EAGLContext alloc] initWithAPI:kEAGLRenderingAPIOpenGLES2];
+//    STAssertNotNil(context, @"Failed to create ES context");
+//    
+//    GLKView *view = [[GLKView alloc]init];
+//    view.context = context;
+//    view.delegate = self;
+//    [EAGLContext setCurrentContext:self.context];
+//
+//    GLKBaseEffect *effect = [[GLKBaseEffect alloc]init];
+//    GLKMatrix4 projectionMatrix = GLKMatrix4MakeOrtho(0, 320, 0, 480, -1024, 1024); // TODO: do not use constants
+//    effect.transform.projectionMatrix = projectionMatrix;
+//
+//    Sprite *sprite = [[Sprite alloc] initWithEffect:effect];
+//
+//    GLKVector3 finalPosition = GLKVector3Make(10.0, 0.0, 0.0);
+//    int        duration      = 300;
+//    GlideToBrick *brick = [[GlideToBrick alloc]initWithPosition:finalPosition andDurationInMilliSecs:duration];
+//    
+//    GLKVector3 startPosition = GLKVector3Make(0.0, 0.0, 0.0);
+//    PlaceAtBrick *placeAtBrick = [[PlaceAtBrick alloc] initWithPosition:startPosition];    
+// 
+//    Script *startScript = [[Script alloc]init];
+//    [startScript addBricks:[NSArray arrayWithObjects:placeAtBrick, brick, nil]];
+//    [sprite addStartScript:startScript];
+//    
+//    [sprite start];
+//    NSDate *startTime       = [NSDate date];
+//    NSDate *expectedEndTime = [startTime dateByAddingTimeInterval:((float)duration/1000.0f)];
+//    NSDate *realEndTime     = nil;
+//        
+//    NSTimeInterval timeout = 5;   // Number of seconds before giving up
+//    NSTimeInterval idle = 0.01;   // Number of seconds to pause within loop
+//    BOOL timedOut = NO;
+//    BOOL operationCompleted = NO;
+//    
+//    NSDate *timeoutDate = [[NSDate alloc] initWithTimeIntervalSinceNow:timeout];
+//    while (!timedOut && !operationCompleted)
+//    {
+//        NSLog(@">>>>>>>>>>>>>>>>>>>>>> %f", sprite.position.x);
+//        STAssertTrue((sprite.position.x >= startPosition.x) &&
+//                      sprite.position.x <= finalPosition.x, @"Position is not correct");
+//        
+//        if (GLKVector3AllEqualToVector3(sprite.position, finalPosition)) {
+//            realEndTime = [NSDate date];
+//            operationCompleted = YES;
+//        } else {
+//            NSDate *tick = [[NSDate alloc] initWithTimeIntervalSinceNow:idle];
+//            [[NSRunLoop currentRunLoop] runUntilDate:tick];
+//            timedOut = ([tick compare:timeoutDate] == NSOrderedDescending);
+//        }
+//    }
+//    
+//    if (timedOut == YES) {
+//        STAssertTrue(NO, @"Timeout!");
+//    } else if (realEndTime == nil || expectedEndTime == nil) {
+//        STAssertTrue(NO, @"ERROR - this should not happen...");
+//    } else if ([realEndTime compare:expectedEndTime] == NSOrderedAscending) {
+//        STAssertTrue(NO, @"Animation was too fast");
+//    } else {
+//        STAssertTrue(GLKVector3AllEqualToVector3(sprite.position, finalPosition), @"Endposition is not correct");
+//    }
+
+}
+
+
+
+
+////////////////////////////////////////////////////////////////////////////////
 
 
 #pragma mark - Delegates
@@ -348,7 +419,6 @@
 }
 
 
-
 -(void)bringToFrontSprite:(Sprite*)sprite
 {}
 
@@ -369,18 +439,12 @@
 
 
 
-
 //"SetCostumeBrick.h"
 //"StartScript.h"
 //"WhenScript.h"
 //"Sound.h"
-//"GlideToBrick.h"
 //"NextCostumeBrick.h"
 //"ChangeSizeByNBrick.h"
-//"BroadcastBrick.h"
-//"BroadcastWaitBrick.h"
-//"ChangeXByBrick.h"
-//"ChangeYByBrick.h"
 //"PlaySoundBrick.h"
 //"StopAllSoundsBrick.h"
 //"ComeToFrontBrick.h"
