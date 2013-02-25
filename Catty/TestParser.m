@@ -322,6 +322,11 @@
     level.name = @"broadcast";
     level.resolution = CGSizeMake(320, 480);
     
+    SetCostumeBrick *setCostumeBrick = [[SetCostumeBrick alloc]init];
+    setCostumeBrick.indexOfCostumeInArray = 0;
+    Script *startScript = [[Script alloc]init];
+    [startScript addBrick:setCostumeBrick];
+    
     NSString *broadcastMessage = @"BROADCAST";
     
     //sprite1
@@ -336,6 +341,7 @@
     NSArray *costumes = [NSArray arrayWithObjects:costume, nil];
     
     Sprite *sprite1 = [self createSprite:@"cat1" withPositionX:(NSInteger)-70 withPositionY:(NSInteger)0 withCostumes:costumes setCostumeIndex:(NSInteger)0];
+    [sprite1 addStartScript:startScript];
     [sprite1 addWhenScript:whenScript];
     
     
@@ -350,6 +356,7 @@
     [broadcastScript1 addBricks:[NSArray arrayWithObjects:hideBrick1, waitBrick1, showBrick1, nil]];
     
     Sprite *sprite2 = [self createSprite:@"cat2" withPositionX:(NSInteger)70 withPositionY:(NSInteger)-100 withCostumes:costumes setCostumeIndex:(NSInteger)0];
+    [sprite2 addStartScript:startScript];
     [sprite2 addBroadcastScript:broadcastScript1 forMessage:broadcastMessage];
     
     
@@ -363,6 +370,7 @@
     [broadcastScript2 addBricks:[NSArray arrayWithObjects:hideBrick2, waitBrick2, showBrick2, nil]];
     
     Sprite *sprite3 = [self createSprite:@"cat3" withPositionX:(NSInteger)70 withPositionY:(NSInteger)100 withCostumes:costumes setCostumeIndex:(NSInteger)0];
+    [sprite3 addStartScript:startScript];
     [sprite3 addBroadcastScript:broadcastScript2 forMessage:broadcastMessage];
 
 
