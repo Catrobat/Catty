@@ -82,6 +82,8 @@
     
     self.effect = [[GLKBaseEffect alloc] init];
     
+    NSLog(@"screen (width/height): %f / %f", [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height);
+    
     GLKMatrix4 projectionMatrix = GLKMatrix4MakeOrtho(0, [UIScreen mainScreen].bounds.size.width, 0, [UIScreen mainScreen].bounds.size.height, -1024, 1024);
     self.effect.transform.projectionMatrix = projectionMatrix;
     
@@ -300,7 +302,7 @@
 - (void)handleTapFrom:(UITapGestureRecognizer *)recognizer {
     
     CGPoint touchLocation = [recognizer locationInView:recognizer.view];
-    touchLocation = CGPointMake(touchLocation.x, 480 - touchLocation.y);    // TODO: DO NOT USE CONSTANTS!!
+    touchLocation = CGPointMake(touchLocation.x, [UIScreen mainScreen].bounds.size.height - touchLocation.y);
     
     NSLog(@"tapped at %g / %g", touchLocation.x, touchLocation.y);
     
