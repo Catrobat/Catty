@@ -52,7 +52,7 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <segue destination="sNS-WO-dHS" kind="push" id="erf-8A-Pge"/>
+                                    <segue destination="CVj-fy-CQ1" kind="push" id="R5j-w8-YpD"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="PoM-zv-B3y">
@@ -111,6 +111,57 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nU9-0S-V2X" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="827" y="1439"/>
+        </scene>
+        <!--Level Store View Controller-->
+        <scene sceneID="ckz-eh-eby">
+            <objects>
+                <tableViewController id="CVj-fy-CQ1" customClass="LevelStoreViewController" sceneMemberID="viewController">
+                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="De1-g4-oX4">
+                        <rect key="frame" x="0.0" y="44" width="320" height="436"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <searchBar key="tableHeaderView" contentMode="redraw" placeholder="Search for levels" id="iwT-wh-e29">
+                            <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                            <textInputTraits key="textInputTraits"/>
+                            <connections>
+                                <outlet property="delegate" destination="CVj-fy-CQ1" id="cI6-jJ-4Ja"/>
+                            </connections>
+                        </searchBar>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Cell" id="Xky-tY-hsh">
+                                <rect key="frame" x="0.0" y="66" width="320" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                </view>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="CVj-fy-CQ1" id="q1j-qf-e7K"/>
+                            <outlet property="delegate" destination="CVj-fy-CQ1" id="xWk-vu-jOV"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" id="E6c-gL-kje"/>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
+                    <connections>
+                        <outlet property="searchDisplayController" destination="ZPl-3X-Vpf" id="j3o-4z-6XD"/>
+                    </connections>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="g1J-tQ-PMc" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <searchDisplayController id="ZPl-3X-Vpf">
+                    <connections>
+                        <outlet property="delegate" destination="CVj-fy-CQ1" id="kTO-4R-BS9"/>
+                        <outlet property="searchBar" destination="iwT-wh-e29" id="Ekg-TQ-8l0"/>
+                        <outlet property="searchContentsController" destination="CVj-fy-CQ1" id="LJ6-m8-tbY"/>
+                        <outlet property="searchResultsDataSource" destination="CVj-fy-CQ1" id="m1M-lz-wRH"/>
+                        <outlet property="searchResultsDelegate" destination="CVj-fy-CQ1" id="uZf-Pd-fhL"/>
+                    </connections>
+                </searchDisplayController>
+            </objects>
+            <point key="canvasLocation" x="1400" y="1533"/>
         </scene>
         <!--List Projects View Controller - Download-->
         <scene sceneID="ffq-jr-9wP">
@@ -348,6 +399,9 @@
                 <relationship kind="outlet" name="pageControlOutlet" candidateClass="UIPageControl"/>
                 <relationship kind="outlet" name="scrollViewOutlet" candidateClass="UIScrollView"/>
             </relationships>
+        </class>
+        <class className="LevelStoreViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/LevelStoreViewController.h"/>
         </class>
         <class className="ListProjectsViewController" superclassName="UITableViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/ListProjectsViewController.h"/>

@@ -419,6 +419,23 @@
 }
 
 
+-(void)test015_changeSizeByN
+{
+    Sprite *sprite = [[Sprite alloc]initWithEffect:nil];
+    
+    float size = 0.5f;
+    
+    ChangeSizeByNBrick *brick = [[ChangeSizeByNBrick alloc]initWithSizeChangeRate:size];
+    
+    STAssertTrue(sprite.scaleWidth  == 1.0f, @"Wrong inital value for scale-width");
+    STAssertTrue(sprite.scaleHeight == 1.0f, @"Wrong inital value for scale-height");
+
+    [brick performOnSprite:sprite fromScript:nil];
+    
+    STAssertTrue(sprite.scaleWidth  == 1.0f + size/100.0f, @"Wrong value for scale-width");
+    STAssertTrue(sprite.scaleHeight == 1.0f + size/100.0f, @"Wrong value for scale-height");
+}
+
 
 
 ////////////////////////////////////////////////////////////////////////////////

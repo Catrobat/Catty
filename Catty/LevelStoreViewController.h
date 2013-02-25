@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface LevelStoreViewController : UITableViewController
+@interface LevelStoreViewController : UITableViewController <NSURLConnectionDataDelegate, UISearchDisplayDelegate, UISearchBarDelegate>
 
 @end
