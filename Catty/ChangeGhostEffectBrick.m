@@ -16,8 +16,7 @@
 -(id)initWithIncrease:(float)increase;
 {
     self = [super init];
-    if (self)
-    {
+    if (self){
         self.increase = increase;
     }
     return self;

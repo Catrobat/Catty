@@ -435,12 +435,24 @@
 
 -(void)setTransparency:(float)transparency
 {
+    if(transparency > 100.0f) {
+        transparency = 100.0f;
+    }
+    if(transparency < 0.0f) {
+        transparency = 0.0f;
+    }
     self.alphaValue = (100.0f-transparency)/100.0f;
 }
 
 -(void)changeTransparencyBy:(float)increase
 {
-    self.alphaValue -= increase/100;
+    self.alphaValue -= increase;
+    if(self.alphaValue > 1.0f) {
+        self.alphaValue = 1.0f;
+    }
+    if(self.alphaValue < 0.0f) {
+        self.alphaValue = 0.0f;
+    }
 }
 
 - (void)addSound:(AVAudioPlayer *)player

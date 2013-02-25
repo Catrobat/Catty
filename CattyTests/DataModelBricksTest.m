@@ -198,19 +198,20 @@
     
     [ghostEffectBrick performOnSprite:sprite fromScript:nil];
     
-    STAssertTrue(sprite.alphaValue != transparency/100.0f, @"Alpha Value not correct");
+    STAssertTrue(sprite.alphaValue == (100-transparency)/100.0f, @"Alpha Value not correct");
 }
 
 -(void)test011_changeGhostEffect
 {
-    float increase = 0.10f;
+    float increase = -0.10f;
     Sprite *sprite = [[Sprite alloc]initWithEffect:nil];
-    float alpha = [sprite alphaValue];
+    float alpha = sprite.alphaValue;
     ChangeGhostEffectBrick* changeGhostEffectBrick = [[ChangeGhostEffectBrick alloc] initWithIncrease:increase];
     [changeGhostEffectBrick performOnSprite:sprite fromScript:nil];
     
-    STAssertTrue((alpha-(increase/100.0f)) == [sprite alphaValue], @"Alpha Value not the same");
+    STAssertTrue(1.0f == sprite.alphaValue, @"Alpha Value not the same");
 }
+
 
 -(void)test012_broadcast
 {
@@ -378,6 +379,43 @@
 //        STAssertTrue(GLKVector3AllEqualToVector3(sprite.position, finalPosition), @"Endposition is not correct");
 //    }
 
+}
+
+-(void)test015_changeGhostEffect
+{
+    float increase = 0.1f;
+    Sprite *sprite = [[Sprite alloc]initWithEffect:nil];
+    ChangeGhostEffectBrick* changeGhostEffectBrick = [[ChangeGhostEffectBrick alloc] initWithIncrease:increase];
+    [changeGhostEffectBrick performOnSprite:sprite fromScript:nil];
+    STAssertTrue(0.9f== sprite.alphaValue, @"Alpha Value not the same");
+}
+
+-(void)test016_setGhostEffect
+{
+    float transparency = 200.0f;
+    SetGhostEffectBrick* ghostEffectBrick = [[SetGhostEffectBrick alloc] initWithTransparencyInPercent:transparency];
+    Sprite *sprite = [[Sprite alloc]initWithEffect:nil];
+    
+    [ghostEffectBrick performOnSprite:sprite fromScript:nil];
+    
+    STAssertTrue(sprite.alphaValue == 0.0f, @"Alpha Value not correct");
+}
+
+-(void)test017_changeGhostEffect
+{
+    float transparency = 100.0f;
+    SetGhostEffectBrick* ghostEffectBrick = [[SetGhostEffectBrick alloc] initWithTransparencyInPercent:transparency];
+    Sprite *sprite = [[Sprite alloc]initWithEffect:nil];
+    
+    [ghostEffectBrick performOnSprite:sprite fromScript:nil];
+    
+    STAssertTrue(sprite.alphaValue == 0.0f, @"Alpha Value not correct");
+    
+    ChangeGhostEffectBrick* changeGhostEffectBrick = [[ChangeGhostEffectBrick alloc] initWithIncrease:-0.1f];
+    [changeGhostEffectBrick performOnSprite:sprite fromScript:nil];
+    
+    
+    STAssertTrue(sprite.alphaValue == 0.1f, @"Alpha Value not correct");
 }
 
 

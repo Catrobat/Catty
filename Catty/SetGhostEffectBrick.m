@@ -16,8 +16,7 @@
 -(id)initWithTransparencyInPercent:(float)transparency;
 {
     self = [super init];
-    if (self)
-    {
+    if (self) {
         self.transparency = transparency;
     }
     return self;

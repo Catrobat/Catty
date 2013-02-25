@@ -13,6 +13,10 @@
 #import "RepeatBrick.h"
 #import "EndLoopBrick.h"
 
+
+#import "SetCostumeBrick.h"
+#import "NextCostumeBrick.h"
+
 @interface Script()
 @property (strong, nonatomic) NSMutableArray *bricksArray;
 @property (assign, nonatomic) int currentBrickIndex;
@@ -146,6 +150,9 @@
                 [NSThread sleepForTimeInterval:timeToWait];
             
         } else {
+            if([brick isKindOfClass:[SetCostumeBrick class]] || [brick isKindOfClass:[NextCostumeBrick class]]) {
+                NSLog(@"Brick: %@", [brick description]);
+            }
             [brick performOnSprite:sprite fromScript:self];
         }
         
