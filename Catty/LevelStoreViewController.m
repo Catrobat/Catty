@@ -47,7 +47,7 @@
     [super viewDidLoad];
 
     self.data = [[NSMutableData alloc] init];
-    NSURL *url = [NSURL URLWithString:@"http://catroidtest.ist.tugraz.at/api/projects/recent.json"];
+    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@/recent.json", kConnectionHost]];
     NSURLRequest *request = [NSURLRequest requestWithURL:url cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:kConnectionTimeout];
     
     NSURLConnection *connection = [[NSURLConnection alloc] initWithRequest:request delegate:self];
