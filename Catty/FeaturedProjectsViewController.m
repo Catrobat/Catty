@@ -57,7 +57,9 @@
     self.data = [[NSMutableData alloc] init];
     
     //setting up request url
-    NSURL *url = [NSURL URLWithString:@"http://catroidtest.ist.tugraz.at/api/projects/search.json?offset=0&query=piano%20aquarium3%20hear%20tally%20georg"];
+//    NSURL *url = [NSURL URLWithString:@"http://catroidtest.ist.tugraz.at/api/projects/search.json?offset=0&query=piano%20aquarium3%20hear%20tally%20georg"];
+    
+    NSURL *url = [NSURL URLWithString:@"https://github.com/Catrobat/Catty/raw/master/api/json"];
     
     //creating url request
     NSURLRequest *request = [NSURLRequest requestWithURL:url
