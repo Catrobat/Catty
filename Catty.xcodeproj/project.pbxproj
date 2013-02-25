@@ -47,7 +47,6 @@
 		B43CF2E0160AE72600E19CF3 /* startBackground@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B43CF2DE160AE72600E19CF3 /* startBackground@2x.png */; };
 		B44403A91615CCA8000C0EC6 /* ChangeGhostEffectBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = B44403A81615CCA8000C0EC6 /* ChangeGhostEffectBrick.m */; };
 		B468CDBE16078B59007300A0 /* ListProjectsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B468CDBD16078B59007300A0 /* ListProjectsViewController.m */; };
-		B468CDC3160790CF007300A0 /* CatrobatInformation.m in Sources */ = {isa = PBXBuildFile; fileRef = B468CDC2160790CF007300A0 /* CatrobatInformation.m */; };
 		B468CDC816079438007300A0 /* CatrobatProject.m in Sources */ = {isa = PBXBuildFile; fileRef = B468CDC716079438007300A0 /* CatrobatProject.m */; };
 		B46CD91816158E89000EA9D4 /* BroadcastWaitBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = B46CD91716158E89000EA9D4 /* BroadcastWaitBrick.m */; };
 		B46CD91E16159FF9000EA9D4 /* SetGhostEffectBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = B46CD91D16159FF9000EA9D4 /* SetGhostEffectBrick.m */; };
@@ -72,6 +71,7 @@
 		B4B4093815B2E20700DCFAE5 /* RetailParser.m in Sources */ = {isa = PBXBuildFile; fileRef = B4B4093715B2E20700DCFAE5 /* RetailParser.m */; };
 		B4B4094915B2E8BF00DCFAE5 /* ParserTests.m in Sources */ = {isa = PBXBuildFile; fileRef = B4B4094815B2E8BF00DCFAE5 /* ParserTests.m */; };
 		B4B90DF3161C685700B83000 /* SpeakBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = B4B90DF2161C685700B83000 /* SpeakBrick.m */; };
+		B4BCC83416DBC46400247E55 /* CatrobatInformation.m in Sources */ = {isa = PBXBuildFile; fileRef = B4BCC83316DBC46400247E55 /* CatrobatInformation.m */; };
 		B4C4D9DC160C490500E4FD19 /* CreateViewTests.m in Sources */ = {isa = PBXBuildFile; fileRef = B4C4D9DB160C490500E4FD19 /* CreateViewTests.m */; };
 		B4C4D9E1160C4A0D00E4FD19 /* CatrobatProjectTests.m in Sources */ = {isa = PBXBuildFile; fileRef = B4C4D9E0160C4A0D00E4FD19 /* CatrobatProjectTests.m */; };
 		B4CCFB97162C12170090671E /* HelperTests.m in Sources */ = {isa = PBXBuildFile; fileRef = B4CCFB96162C12170090671E /* HelperTests.m */; };
@@ -212,8 +212,6 @@
 		B44403A81615CCA8000C0EC6 /* ChangeGhostEffectBrick.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChangeGhostEffectBrick.m; sourceTree = "<group>"; };
 		B468CDBC16078B59007300A0 /* ListProjectsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ListProjectsViewController.h; sourceTree = "<group>"; };
 		B468CDBD16078B59007300A0 /* ListProjectsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ListProjectsViewController.m; sourceTree = "<group>"; };
-		B468CDC1160790CF007300A0 /* CatrobatInformation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CatrobatInformation.h; sourceTree = "<group>"; };
-		B468CDC2160790CF007300A0 /* CatrobatInformation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CatrobatInformation.m; sourceTree = "<group>"; };
 		B468CDC616079438007300A0 /* CatrobatProject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CatrobatProject.h; sourceTree = "<group>"; };
 		B468CDC716079438007300A0 /* CatrobatProject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CatrobatProject.m; sourceTree = "<group>"; };
 		B46CD91616158E89000EA9D4 /* BroadcastWaitBrick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BroadcastWaitBrick.h; sourceTree = "<group>"; };
@@ -250,6 +248,8 @@
 		B4B487B815B73107004AC99E /* XMLLevels.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XMLLevels.h; sourceTree = "<group>"; };
 		B4B90DF1161C685700B83000 /* SpeakBrick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpeakBrick.h; sourceTree = "<group>"; };
 		B4B90DF2161C685700B83000 /* SpeakBrick.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpeakBrick.m; sourceTree = "<group>"; };
+		B4BCC83216DBC46400247E55 /* CatrobatInformation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CatrobatInformation.h; sourceTree = "<group>"; };
+		B4BCC83316DBC46400247E55 /* CatrobatInformation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CatrobatInformation.m; sourceTree = "<group>"; };
 		B4C4D9DA160C490500E4FD19 /* CreateViewTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreateViewTests.h; sourceTree = "<group>"; };
 		B4C4D9DB160C490500E4FD19 /* CreateViewTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreateViewTests.m; sourceTree = "<group>"; };
 		B4C4D9DF160C4A0D00E4FD19 /* CatrobatProjectTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CatrobatProjectTests.h; sourceTree = "<group>"; };
@@ -700,19 +700,10 @@
 		B468CDBF160790AD007300A0 /* JSON */ = {
 			isa = PBXGroup;
 			children = (
+				B46F66DD16DBC411004C5F68 /* CatrobatInformation */,
 				B468CDC416079423007300A0 /* CatrobatProject */,
-				B468CDC0160790B4007300A0 /* CatrobatInformation */,
 			);
 			name = JSON;
-			sourceTree = "<group>";
-		};
-		B468CDC0160790B4007300A0 /* CatrobatInformation */ = {
-			isa = PBXGroup;
-			children = (
-				B468CDC1160790CF007300A0 /* CatrobatInformation.h */,
-				B468CDC2160790CF007300A0 /* CatrobatInformation.m */,
-			);
-			name = CatrobatInformation;
 			sourceTree = "<group>";
 		};
 		B468CDC416079423007300A0 /* CatrobatProject */ = {
@@ -749,6 +740,15 @@
 				B46F66D116DBB5C5004C5F68 /* LevelStoreViewController.m */,
 			);
 			name = LevelStoreViewController;
+			sourceTree = "<group>";
+		};
+		B46F66DD16DBC411004C5F68 /* CatrobatInformation */ = {
+			isa = PBXGroup;
+			children = (
+				B4BCC83216DBC46400247E55 /* CatrobatInformation.h */,
+				B4BCC83316DBC46400247E55 /* CatrobatInformation.m */,
+			);
+			name = CatrobatInformation;
 			sourceTree = "<group>";
 		};
 		B479E91E1611A3BF000B1DFA /* Resources */ = {
@@ -1522,7 +1522,6 @@
 				CD85F53F160864F3007C38D1 /* ComeToFrontBrick.m in Sources */,
 				CD85F54C16099CBE007C38D1 /* ChangeSizeByNBrick.m in Sources */,
 				B468CDBE16078B59007300A0 /* ListProjectsViewController.m in Sources */,
-				B468CDC3160790CF007300A0 /* CatrobatInformation.m in Sources */,
 				B468CDC816079438007300A0 /* CatrobatProject.m in Sources */,
 				B43CF2381608E0A000E19CF3 /* RecentProjectsViewController.m in Sources */,
 				B43CF23C1609926D00E19CF3 /* RootViewController.m in Sources */,
@@ -1561,6 +1560,7 @@
 				CDC7B189162401EF00B59926 /* BaseSprite.m in Sources */,
 				CD8D9A2016D53334005AD1AB /* BroadcastWaitHandler.m in Sources */,
 				B46F66D316DBB5C5004C5F68 /* LevelStoreViewController.m in Sources */,
+				B4BCC83416DBC46400247E55 /* CatrobatInformation.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
