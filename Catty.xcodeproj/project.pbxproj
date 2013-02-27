@@ -75,6 +75,9 @@
 		B4C4D9DC160C490500E4FD19 /* CreateViewTests.m in Sources */ = {isa = PBXBuildFile; fileRef = B4C4D9DB160C490500E4FD19 /* CreateViewTests.m */; };
 		B4C4D9E1160C4A0D00E4FD19 /* CatrobatProjectTests.m in Sources */ = {isa = PBXBuildFile; fileRef = B4C4D9E0160C4A0D00E4FD19 /* CatrobatProjectTests.m */; };
 		B4CCFB97162C12170090671E /* HelperTests.m in Sources */ = {isa = PBXBuildFile; fileRef = B4CCFB96162C12170090671E /* HelperTests.m */; };
+		B4DE939016DE543B00A48C2F /* continue.png in Resources */ = {isa = PBXBuildFile; fileRef = B4DE938F16DE543A00A48C2F /* continue.png */; };
+		B4E95BB616DE363F00E94E22 /* iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B4E95BB516DE363F00E94E22 /* iPhone.storyboard */; };
+		B4E95BBD16DE372D00E94E22 /* CatrobatTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B4E95BBC16DE372D00E94E22 /* CatrobatTableViewController.m */; };
 		B4EFE093161602730078BFDC /* home.png in Resources */ = {isa = PBXBuildFile; fileRef = B4EFE091161602730078BFDC /* home.png */; };
 		B4EFE094161602730078BFDC /* home@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B4EFE092161602730078BFDC /* home@2x.png */; };
 		B4EFE0981616084F0078BFDC /* settings.png in Resources */ = {isa = PBXBuildFile; fileRef = B4EFE0961616084F0078BFDC /* settings.png */; };
@@ -256,6 +259,11 @@
 		B4C4D9E0160C4A0D00E4FD19 /* CatrobatProjectTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CatrobatProjectTests.m; sourceTree = "<group>"; };
 		B4CCFB95162C12170090671E /* HelperTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HelperTests.h; sourceTree = "<group>"; };
 		B4CCFB96162C12170090671E /* HelperTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HelperTests.m; sourceTree = "<group>"; };
+		B4DE938E16DE494400A48C2F /* CellTags.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CellTags.h; sourceTree = "<group>"; };
+		B4DE938F16DE543A00A48C2F /* continue.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = continue.png; path = images/continue.png; sourceTree = "<group>"; };
+		B4E95BB516DE363F00E94E22 /* iPhone.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = iPhone.storyboard; sourceTree = "<group>"; };
+		B4E95BBB16DE372D00E94E22 /* CatrobatTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CatrobatTableViewController.h; sourceTree = "<group>"; };
+		B4E95BBC16DE372D00E94E22 /* CatrobatTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CatrobatTableViewController.m; sourceTree = "<group>"; };
 		B4EFE091161602730078BFDC /* home.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = home.png; sourceTree = "<group>"; };
 		B4EFE092161602730078BFDC /* home@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "home@2x.png"; sourceTree = "<group>"; };
 		B4EFE0961616084F0078BFDC /* settings.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = settings.png; sourceTree = "<group>"; };
@@ -629,6 +637,7 @@
 		B43CF2A81609C3D900E19CF3 /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				B4DE938F16DE543A00A48C2F /* continue.png */,
 				B4EFE09E161609C60078BFDC /* store.png */,
 				B4EFE09F161609C60078BFDC /* store@2x.png */,
 				B4EFE0961616084F0078BFDC /* settings.png */,
@@ -910,6 +919,23 @@
 			name = HelperTests;
 			sourceTree = "<group>";
 		};
+		B4E95BB416DE362400E94E22 /* Storyboards */ = {
+			isa = PBXGroup;
+			children = (
+				B4E95BB516DE363F00E94E22 /* iPhone.storyboard */,
+			);
+			name = Storyboards;
+			sourceTree = "<group>";
+		};
+		B4E95BB716DE36D100E94E22 /* CatrobatTableViewController */ = {
+			isa = PBXGroup;
+			children = (
+				B4E95BBB16DE372D00E94E22 /* CatrobatTableViewController.h */,
+				B4E95BBC16DE372D00E94E22 /* CatrobatTableViewController.m */,
+			);
+			name = CatrobatTableViewController;
+			sourceTree = "<group>";
+		};
 		B4F05A9715B888E400C90ED0 /* gdata */ = {
 			isa = PBXGroup;
 			children = (
@@ -974,6 +1000,7 @@
 				B4FDF33215A82C1000CBCF03 /* CattyAppDelegate.m */,
 				B4FDF33415A82C1000CBCF03 /* MainStoryboard.storyboard */,
 				B4FDF39715A833EA00CBCF03 /* Images */,
+				B4E95BB416DE362400E94E22 /* Storyboards */,
 				B4FDF32915A82C1000CBCF03 /* Supporting Files */,
 			);
 			path = Catty;
@@ -986,6 +1013,7 @@
 				B4FDF32B15A82C1000CBCF03 /* InfoPlist.strings */,
 				B4FDF32E15A82C1000CBCF03 /* main.m */,
 				B4FDF33015A82C1000CBCF03 /* Catty-Prefix.pch */,
+				B4DE938E16DE494400A48C2F /* CellTags.h */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -1167,6 +1195,7 @@
 		B4FDF39915A8349900CBCF03 /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
+				B4E95BB716DE36D100E94E22 /* CatrobatTableViewController */,
 				B46F66CF16DBB5B6004C5F68 /* LevelStoreViewController */,
 				B438FC8916108E2F00D6B911 /* FeaturedProjectsViewController */,
 				B43CF2D2160ADCC200E19CF3 /* StartScreenViewController */,
@@ -1450,6 +1479,8 @@
 				B4EFE0A1161609C60078BFDC /* store@2x.png in Resources */,
 				CDC84FA116165072003D4864 /* tmp.png in Resources */,
 				CD9C69D616DBC14F00845BF0 /* Default-568h@2x.png in Resources */,
+				B4E95BB616DE363F00E94E22 /* iPhone.storyboard in Resources */,
+				B4DE939016DE543B00A48C2F /* continue.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1561,6 +1592,7 @@
 				CD8D9A2016D53334005AD1AB /* BroadcastWaitHandler.m in Sources */,
 				B46F66D316DBB5C5004C5F68 /* LevelStoreViewController.m in Sources */,
 				B4BCC83416DBC46400247E55 /* CatrobatInformation.m in Sources */,
+				B4E95BBD16DE372D00E94E22 /* CatrobatTableViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
