@@ -7,10 +7,13 @@ iOS implementation of the Catrobat language
 Please ask on our Google Plus community: http://goo.gl/fOjQi
 
 # First Steps
-## Step by Step Guide
+## Learn iOS development?
+We recommend [iPad and iPhone App Development](https://itunes.apple.com/us/course/ipad-iphone-app-development/id495052415) from the Stanford University.
+
+## Setting Up Your First Project - Step by Step
 For a step-by-step guide how to deploy your first project, see: http://goo.gl/R0tmG
 
-## Short Version
+## ... Short Version
 * First of all you need an Apple ID if you haven't got it by now create it. [Create Apple ID](https://appleid.apple.com/cgi-bin/WebObjects/MyAppleId.woa/135/wa/createAppleId?wosid=4buecjiwQGa14dIxx55bYM&localang=de_DE)
 * Now write a mail to your administrator of your Apple Developer Program. The Mail should look like this:
 
