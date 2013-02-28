@@ -8,7 +8,7 @@
 
 #import <SenTestingKit/SenTestingKit.h>
 
-@class RetailParser;
+@class Parser;
 
 @interface ParserTests : SenTestCase
 

@@ -9,6 +9,6 @@
 #import <Foundation/Foundation.h>
 #import "XMLParserProtocol.h"
 
-@interface RetailParser : NSObject <XMLParserProtocol>
+@interface Parser : NSObject <XMLParserProtocol>
 
 @end

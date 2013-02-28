@@ -10,7 +10,7 @@
 #import "Project.h"
 #import "Sprite.h"
 #import "LevelLoadingInfo.h"
-#import "RetailParser.h"
+#import "Parser.h"
 #import "Brick.h"
 #import "Script.h"
 #import "BaseSprite.h"
@@ -211,7 +211,7 @@
 
     NSLog(@"XML-Path: %@", xmlPath);
     
-    RetailParser *parser = [[RetailParser alloc]init];
+    Parser *parser = [[Parser alloc]init];
     self.level = [parser generateObjectForLevel:xmlPath];
     
     //setting effect

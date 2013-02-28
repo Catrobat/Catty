@@ -6,41 +6,9 @@
 //  Copyright (c) 2012 Graz University of Technology. All rights reserved.
 //
 
-#import "LevelParser.h"
+#import "ProjectParser.h"
 #import "GDataXMLNode.h"
 #import "Project.h"
-#import "Sprite.h"
-#import "LookData.h"
-#import "Script.h"
-#import "Brick.h"
-#import "SetLookBrick.h"
-#import "WaitBrick.h"
-#import "Sound.h"
-#import "PlaceAtBrick.h"
-#import "GlideToBrick.h"
-#import "NextLookBrick.h"
-#import "HideBrick.h"
-#import "ShowBrick.h"
-#import "SetXBrick.h"
-#import "SetYBrick.h"
-#import "ChangeSizeByNBrick.h"
-#import "BroadcastBrick.h"
-#import "BroadcastWaitBrick.h"
-#import "ChangeXByNBrick.h"
-#import "ChangeYByNBrick.h"
-#import "PlaySoundBrick.h"
-#import "StopAllSoundsBrick.h"
-#import "ComeToFrontBrick.h"
-#import "SetSizeToBrick.h"
-#import "ForeverBrick.h"
-#import "RepeatBrick.h"
-#import "LoopEndBrick.h"
-#import "GoNStepsBackBrick.h"
-#import "SetGhostEffectBrick.h"
-#import "SpeakBrick.h"
-#import "SetVolumeToBrick.h"
-#import "ChangeVolumeByBrick.h"
-#import "ChangeGhostEffectByNBrick.h"
 
 // introspection
 #import <objc/runtime.h>
@@ -61,21 +29,27 @@
 #define kParserObjectTypeSound          @"T@\"Sound\""
 
 
-@interface LevelParser()
+@interface ProjectParser()
+
+- (id)parseNode:(GDataXMLElement*)node;
+- (id)getSingleValue:(GDataXMLElement*)element ofType:(NSString*)propertyType;
 
 @end
 
-@implementation LevelParser
+@implementation ProjectParser
 
-- (Level*)loadLevel:(NSData*)xmlData
+
+
+// -----------------------------------------------------------------------------
+- (Project*)loadLevel:(NSData*)xmlData
 {
     NSError *error;
     GDataXMLDocument *doc = [[GDataXMLDocument alloc] initWithData:xmlData 
                                                            options:0
                                                             error:&error];
+    // sanity checks
     if (error) { return nil; }
-    if (doc == nil) 
-        return nil;
+    if (!doc)  { return nil; }
     Project *temp = [self parseNode:doc.rootElement];
     
     NSLog(@"%@", [temp debug]);
@@ -83,6 +57,9 @@
     return temp;
 }
 
+
+
+// -----------------------------------------------------------------------------
 - (id)parseNode:(GDataXMLElement*)node {
     // sanity check
     if (!node) { return nil; }
@@ -146,24 +123,6 @@
 
 
 
-
-// temp
-const char * property_getTypeString(objc_property_t property) {
-	const char * attrs = property_getAttributes(property);
-	if (attrs == NULL) { return NULL; }
-	
-	static char buffer[256];
-	const char *e = strchr(attrs, ',');
-	if (e == NULL) { return NULL; }
-	
-	int len = (int)(e - attrs);
-	memcpy(buffer, attrs, len);
-	buffer[len] = '\0';
-	
-	return buffer;
-}
-
-
 // -----------------------------------------------------------------------------
 - (id)getSingleValue:(GDataXMLElement*)element ofType:(NSString*)propertyType {
     // check type
@@ -194,5 +153,26 @@ const char * property_getTypeString(objc_property_t property) {
     
     return nil;
 }
+
+
+
+// -----------------------------------------------------------------------------
+//                                   HELPER
+// -----------------------------------------------------------------------------
+const char* property_getTypeString(objc_property_t property) {
+	const char * attrs = property_getAttributes(property);
+	if (attrs == NULL) { return NULL; }
+	
+	static char buffer[256];
+	const char *e = strchr(attrs, ',');
+	if (e == NULL) { return NULL; }
+	
+	int len = (int)(e - attrs);
+	memcpy(buffer, attrs, len);
+	buffer[len] = '\0';
+	
+	return buffer;
+}
+
 
 @end

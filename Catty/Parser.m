@@ -6,11 +6,11 @@
 //  Copyright (c) 2012 Graz University of Technology. All rights reserved.
 //
 
-#import "RetailParser.h"
+#import "Parser.h"
 #import "GDataXMLNode.h"
-#import "LevelParser.h"
+#import "ProjectParser.h"
 
-@implementation RetailParser
+@implementation Parser
 
 - (Level*)generateObjectForLevel:(NSString*)path
 {
@@ -21,7 +21,7 @@
     
     //using dom parser (gdata)
     
-    LevelParser *parser = [[LevelParser alloc] init];
+    ProjectParser *parser = [[ProjectParser alloc] init];
     Level *ret = [parser loadLevel:xmlData];
     
     

@@ -11,7 +11,7 @@
 #import "Brick.h"
 #import "SetLookBrick.h"
 #import "WaitBrick.h"
-#import "RetailParser.h"
+#import "Parser.h"
 #import "Util.h"
 #import "Script.h"
 #import "BaseSprite.h"
@@ -118,7 +118,7 @@
     
     NSLog(@"XML-Path: %@", path);
     
-    RetailParser *parser = [[RetailParser alloc] init];
+    Parser *parser = [[Parser alloc] init];
 //    self.level = [parser generateObjectForLevel:path];
     
     self.broadcastWaitHandler = [[BroadcastWaitHandler alloc]init];

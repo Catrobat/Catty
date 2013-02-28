@@ -7,14 +7,14 @@
 //
 
 #import "ParserTests.h"
-#import "RetailParser.h"
+#import "Parser.h"
 #import "Level.h"
 #import "Sprite.h"
 #import "Costume.h"
 #import "Brick.h"
 #import "Script.h"
 #import "GDataXMLNode.h"
-#import "LevelParser.h"
+#import "ProjectParser.h"
 #import "Sprite.h"
 #import "Costume.h"
 #import "Brick.h"
@@ -48,7 +48,7 @@
 #import "SpeakBrick.h"
 
 @interface ParserTests()
-@property (nonatomic, strong) LevelParser *parser;
+@property (nonatomic, strong) ProjectParser *parser;
 @end
 
 @implementation ParserTests
@@ -61,7 +61,7 @@
     [super setUp];
 
 //    self.parser = [[RetailParser alloc] init];
-    self.parser = [[LevelParser alloc]init];
+    self.parser = [[ProjectParser alloc]init];
 }
 
 
