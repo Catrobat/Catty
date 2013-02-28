@@ -8,10 +8,11 @@
 
 #import <Foundation/Foundation.h>
 
+
 @class Level;
 
 /// just for unit-tests:
-@class SetCostumeBrick;
+@class SetLookBrick;
 @class WaitBrick;
 @class PlaceAtBrick;
 @class GlideToBrick;
@@ -41,7 +42,7 @@
 ////////// public for unit-test
 
 
--(SetCostumeBrick*)loadSetCostumeBrick:(GDataXMLElement*)gDataSetCostumeBrick;
+-(SetLookBrick*)loadSetCostumeBrick:(GDataXMLElement*)gDataSetCostumeBrick;
 -(WaitBrick*)loadWaitBrick:(GDataXMLElement*)gDataWaitBrick;
 -(PlaceAtBrick*)loadPlaceAtBrick:(GDataXMLElement*)gDataXMLElement;
 -(GlideToBrick*)loadGlideToBrick:(GDataXMLElement*)gDataXMLElement;

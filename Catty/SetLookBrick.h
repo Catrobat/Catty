@@ -8,7 +8,7 @@
 
 #import "Brick.h"
 
-@interface SetCostumeBrick : Brick
+@interface SetLookBrick : Brick
 
 @property (nonatomic, strong) NSNumber *indexOfCostumeInArray;
 

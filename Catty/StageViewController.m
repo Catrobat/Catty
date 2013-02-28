@@ -7,7 +7,7 @@
 //
 
 #import "StageViewController.h"
-#import "Level.h"
+#import "Project.h"
 #import "Sprite.h"
 #import "LevelLoadingInfo.h"
 #import "RetailParser.h"
@@ -19,7 +19,7 @@
 
 @interface StageViewController ()
 
-@property (strong, nonatomic) Level *level;
+@property (strong, nonatomic) Project *level;
 
 @property (strong, nonatomic) EAGLContext *context;
 @property (strong, nonatomic) GLKBaseEffect *effect;
@@ -98,7 +98,7 @@
     
     // set black frame for scaled projects
     // TODO: dirty!!!
-    Sprite *sprite = [self.level.spritesArray lastObject];
+    Sprite *sprite = [self.level.spriteList lastObject];
     
     float screenWidth  = [UIScreen mainScreen].bounds.size.width;
     float screenHeight = [UIScreen mainScreen].bounds.size.height;
@@ -143,7 +143,7 @@
 - (void)viewWillDisappear:(BOOL)animated {
     
     [self stopAllSounds];
-    for (Sprite *sprite in self.level.spritesArray) {
+    for (Sprite *sprite in self.level.spriteList) {
         [sprite stopAllScripts];
     }
     
@@ -169,7 +169,7 @@
 - (void)startLevel
 {
     
-    for (Sprite *sprite in self.level.spritesArray)
+    for (Sprite *sprite in self.level.spriteList)
     {
         // debug:
         NSLog(@"----------------------");
@@ -207,7 +207,7 @@
     NSLog(@"Try to load project '%@'", self.levelLoadingInfo.visibleName);
     NSLog(@"Path: %@", self.levelLoadingInfo.basePath);
     
-    NSString *xmlPath = [NSString stringWithFormat:@"%@projectcode.xml", self.levelLoadingInfo.basePath];       // TODO: change const string!!!
+    NSString *xmlPath = [NSString stringWithFormat:@"%@code.xml", self.levelLoadingInfo.basePath];       // TODO: change const string!!!
 
     NSLog(@"XML-Path: %@", xmlPath);
     
@@ -215,7 +215,7 @@
     self.level = [parser generateObjectForLevel:xmlPath];
     
     //setting effect
-    for (Sprite *sprite in self.level.spritesArray)
+    for (Sprite *sprite in self.level.spriteList)
     {
         sprite.effect = self.effect;
         sprite.spriteManagerDelegate = self;
@@ -274,7 +274,7 @@
     glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
     glEnable(GL_BLEND);
     
-    for (Sprite *sprite in self.level.spritesArray) {
+    for (Sprite *sprite in self.level.spriteList) {
         [sprite render];
     }
     [self.blackLeft   render];
@@ -286,7 +286,7 @@
 - (void)glkViewControllerUpdate:(GLKViewController *)controller
 {
     //NSLog(@"Update...");
-    for (Sprite *sprite in self.level.spritesArray) {
+    for (Sprite *sprite in self.level.spriteList) {
         [sprite update:self.timeSinceLastUpdate];
     }
 }
@@ -315,7 +315,7 @@
     Sprite *foregroundSprite = nil;
     
     //check if a collision (tap) occured
-    for (Sprite *sprite in self.level.spritesArray)
+    for (Sprite *sprite in self.level.spriteList)
     {
         if(CGRectIntersectsRect(sprite.boundingBox, tapRect) && sprite.showSprite)// && [sprite getZIndex] >= zIndex)    // order in array is sprite-z-index
         {
@@ -332,15 +332,15 @@
 -(void)bringToFrontSprite:(Sprite *)sprite
 {
     // TODO: CHANGE THIS ASAP!!!
-    NSMutableArray *sprites = [self.level.spritesArray mutableCopy];
+    NSMutableArray *sprites = [self.level.spriteList mutableCopy];
     [sprites removeObject:sprite];
     [sprites addObject:sprite];
-    self.level.spritesArray = [NSArray arrayWithArray:sprites];
+    self.level.spriteList = [NSArray arrayWithArray:sprites];
 }
 
 -(void)bringNStepsBackSprite:(Sprite *)sprite numberOfSteps:(int)n
 {
-    NSMutableArray *sprites = [self.level.spritesArray mutableCopy];
+    NSMutableArray *sprites = [self.level.spriteList mutableCopy];
     
     int oldIndex = [sprites indexOfObject:sprite];
     [sprites removeObject:sprite];
@@ -353,13 +353,13 @@
     
     [sprites insertObject:sprite atIndex:newIndex];
     
-    self.level.spritesArray = [NSArray arrayWithArray:sprites];
+    self.level.spriteList = [NSArray arrayWithArray:sprites];
 }
 
 
 -(void)stopAllSounds
 {
-    for(Sprite* sprite in self.level.spritesArray)
+    for(Sprite* sprite in self.level.spriteList)
     {
         [sprite stopAllSounds];
     }

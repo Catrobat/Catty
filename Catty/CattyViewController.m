@@ -7,10 +7,9 @@
 //
 
 #import "CattyViewController.h"
-#import "Level.h"
+#import "Project.h"
 #import "Brick.h"
-#import "SetCostumeBrick.h"
-#import "TestParser.h"
+#import "SetLookBrick.h"
 #import "WaitBrick.h"
 #import "RetailParser.h"
 #import "Util.h"
@@ -19,8 +18,7 @@
 #import "BroadcastWaitHandler.h"
 
 //debug
-#import "Costume.h"
-#import "TestParser.h"
+#import "LookData.h"
 
 
 
@@ -127,13 +125,13 @@
     
     // DEBUG
     
-    TestParser *testparser = [[TestParser alloc]init];
-    projectName = @"defaultProject";
+//    TestParser *testparser = [[TestParser alloc]init];
+//    projectName = @"defaultProject";
 //    self.level = [testparser generateDebugLevel_GlideTo];
 //    self.level = [testparser generateDebugLevel_nextCostume];
 //    self.level = [testparser generateDebugLevel_HideShow];
 //    self.level = [testparser generateDebugLevel_SetXY];
-    self.level = [testparser generateDebugLevel_broadcast];
+//    self.level = [testparser generateDebugLevel_broadcast];
 //    self.level = [testparser generateDebugLevel_broadcastWait];
 //    self.level = [testparser generateDebugLevel_comeToFront];
 //    self.level = [testparser generateDebugLevel_changeSizeByN];
@@ -152,7 +150,7 @@
     
     
     //setting effect
-    for (Sprite *sprite in self.level.spritesArray)
+    for (Sprite *sprite in self.level.spriteList)
     {
         sprite.effect = self.effect;
         sprite.spriteManagerDelegate = self;
@@ -232,7 +230,7 @@
 #pragma mark - instance methods
 - (void)startLevel
 {
-    for (Sprite *sprite in self.level.spritesArray)
+    for (Sprite *sprite in self.level.spriteList)
     {
         [sprite start];
 //        for (StartScript *script in sprite.startScriptsArray)
@@ -281,7 +279,7 @@
 //        //NSLog(@"render sprite <%@> at position %g / %g", sprite.name, sprite.position.x, sprite.position.y);
 //        [sprite render];
 //    }
-    for (Sprite *sprite in self.level.spritesArray)
+    for (Sprite *sprite in self.level.spriteList)
     {
         //NSLog(@"render sprite <%@> at position %g / %g", sprite.name, sprite.position.x, sprite.position.y);
         [sprite render];
@@ -292,7 +290,7 @@
 - (void)glkViewControllerUpdate:(GLKViewController *)controller
 {
     //NSLog(@"Update...");
-    for (Sprite *sprite in self.level.spritesArray)
+    for (Sprite *sprite in self.level.spriteList)
     {
         [sprite update:self.timeSinceLastUpdate];
     }
@@ -323,7 +321,7 @@
     Sprite *foregroundSprite = nil;
     
     //check if a collision (tap) occured
-    for (Sprite *sprite in self.level.spritesArray)
+    for (Sprite *sprite in self.level.spriteList)
     {
         //just debug output
 //        NSLog(@"Bounding box: x=%f, y=%f, width=%f, height=%f", sprite.boundingBox.origin.x, 
@@ -377,10 +375,10 @@
 -(void)bringToFrontSprite:(Sprite *)sprite
 {
     // TODO: CHANGE THIS ASAP!!!
-    NSMutableArray *sprites = [self.level.spritesArray mutableCopy];
+    NSMutableArray *sprites = [self.level.spriteList mutableCopy];
     [sprites removeObject:sprite];
     [sprites addObject:sprite];
-    self.level.spritesArray = [NSArray arrayWithArray:sprites];
+    self.level.spriteList = [NSArray arrayWithArray:sprites];
 }
 
 @end

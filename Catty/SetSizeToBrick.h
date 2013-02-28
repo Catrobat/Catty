@@ -7,10 +7,15 @@
 //
 
 #import "Brick.h"
+#import "Sprite.h"
 
 @interface SetSizeToBrick : Brick
 
-@property (assign, nonatomic) float sizeInPercentage;
+@property (assign, nonatomic) float size;
+
+#warning @mattias: I've added this property (because we need it in the XML)
+#warning @mattias: Please add the implementation :-S
+@property (nonatomic, strong) Sprite *sprite;
 
 -(id)initWithSizeInPercentage:(float)sizeInPercentage;
 

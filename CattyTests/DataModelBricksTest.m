@@ -11,7 +11,7 @@
 #import "Costume.h"
 #import "Script.h"
 #import "Brick.h"
-#import "SetCostumeBrick.h"
+#import "SetLookBrick.h"
 #import "WaitBrick.h"
 #import "Sound.h"
 #import "PlaceAtBrick.h"

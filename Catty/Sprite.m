@@ -9,7 +9,7 @@
 #import "SpriteManagerDelegate.h"
 #import "Brick.h"
 #import "Sprite.h"
-#import "Costume.h"
+#import "LookData.h"
 #import "Sound.h"
 #import "Script.h"
 #import "Util.h"
@@ -33,6 +33,9 @@
 @implementation PositionAtTime
 @synthesize position = _position;
 @synthesize timestamp = _timestamp;
+
+// new
+
 +(PositionAtTime*)positionAtTimeWithPosition:(GLKVector3)position andTimestamp:(double)timestamp
 {
     PositionAtTime *obj = [[PositionAtTime alloc]init];
@@ -62,7 +65,7 @@
 
 @property (strong, nonatomic) NSNumber *indexOfCurrentCostumeInArray;
 
-@property (strong, nonatomic) NSArray *costumesArray;    // tell the compiler: "I want a private setter"
+@property (strong, nonatomic) NSArray *lookList;    // tell the compiler: "I want a private setter"
 @property (strong, nonatomic) NSMutableArray *soundsArray;
 @property (strong, nonatomic) NSArray *startScriptsArray;
 @property (strong, nonatomic) NSArray *whenScriptsArray;
@@ -76,11 +79,16 @@
 @synthesize spriteManagerDelegate = _spriteManagerDelegate;
 @synthesize broadcastWaitDelegate = _broadcastWaitDelegate;
 @synthesize projectPath = _projectPath;
-@synthesize costumesArray = _costumesArray;
+@synthesize lookList = _lookList;
 @synthesize soundsArray = _soundsArray;
 @synthesize startScriptsArray = _startScriptsArray;
 @synthesize whenScriptsArray = _whenScriptsArray;
 @synthesize broadcastScripts = _broadcastScripts;
+
+
+// new
+@synthesize scriptList = _scriptList;
+#warning added this line... (just a note for mattias)
 
 // private synthesizes
 @synthesize position = _position;
@@ -96,10 +104,10 @@
 #pragma mark Custom getter and setter
 - (NSArray*)costumesArray
 {
-    if (_costumesArray == nil)
-        _costumesArray = [[NSArray alloc] init];
+    if (_lookList == nil)
+        _lookList = [[NSArray alloc] init];
 
-    return _costumesArray;
+    return _lookList;
 }
 
 - (NSMutableArray*)soundsArray
@@ -204,12 +212,12 @@
 
 - (void)addCostume:(Costume *)costume
 {
-    self.costumesArray = [self.costumesArray arrayByAddingObject:costume];
+    self.lookList = [self.lookList arrayByAddingObject:costume];
 }
 
 - (void)addCostumes:(NSArray *)costumesArray
 {
-    self.costumesArray = [self.costumesArray arrayByAddingObjectsFromArray:costumesArray];
+    self.lookList = [self.lookList arrayByAddingObjectsFromArray:costumesArray];
 }
 
 
@@ -263,7 +271,7 @@
         NSLog(@"Index %d is invalid! Array-size: %d", indexOfCurrentCostumeInArray.intValue, [self.costumesArray count]);
     }
     
-    NSString *fileName = ((Costume*)[self.costumesArray objectAtIndex:[self.indexOfCurrentCostumeInArray intValue]]).costumeFileName;
+    NSString *fileName = ((LookData*)[self.costumesArray objectAtIndex:[self.indexOfCurrentCostumeInArray intValue]]).fileName;
     
     NSLog(@"Filename: %@", fileName);
     

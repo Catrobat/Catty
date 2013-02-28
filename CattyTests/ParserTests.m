@@ -18,7 +18,7 @@
 #import "Sprite.h"
 #import "Costume.h"
 #import "Brick.h"
-#import "SetCostumeBrick.h"
+#import "SetLookBrick.h"
 #import "WaitBrick.h"
 #import "Sound.h"
 #import "PlaceAtBrick.h"
@@ -102,9 +102,9 @@
     GDataXMLDocument *doc = [[GDataXMLDocument alloc] initWithData:xmlData
                                                            options:0 error:&error];
     Brick *newBrick = [self.parser loadSetCostumeBrick:doc.rootElement];
-    if (![newBrick isMemberOfClass:[SetCostumeBrick class]])
+    if (![newBrick isMemberOfClass:[SetLookBrick class]])
         STFail(@"Wrong class-member");
-    SetCostumeBrick *brick = (SetCostumeBrick*)newBrick;
+    SetLookBrick *brick = (SetLookBrick*)newBrick;
     STAssertTrue(brick.indexOfCostumeInArray==[NSNumber numberWithInt:0], @"Wrong indexOfCostumeInArray-value");
 }
 
@@ -116,9 +116,9 @@
     GDataXMLDocument *doc = [[GDataXMLDocument alloc] initWithData:xmlData
                                                            options:0 error:&error];
     Brick *newBrick = [self.parser loadSetCostumeBrick:doc.rootElement];
-    if (![newBrick isMemberOfClass:[SetCostumeBrick class]])
+    if (![newBrick isMemberOfClass:[SetLookBrick class]])
         STFail(@"Wrong class-member");
-    SetCostumeBrick *brick = (SetCostumeBrick*)newBrick;
+    SetLookBrick *brick = (SetLookBrick*)newBrick;
     STAssertTrue(brick.indexOfCostumeInArray==[NSNumber numberWithInt:1], @"Wrong indexOfCostumeInArray-value");
 }
 

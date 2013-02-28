@@ -6,10 +6,10 @@
 //  Copyright (c) 2012 Graz University of Technology. All rights reserved.
 //
 
-#import "SetCostumeBrick.h"
+#import "SetLookBrick.h"
 #import "Sprite.h"
 
-@implementation SetCostumeBrick
+@implementation SetLookBrick
 
 @synthesize indexOfCostumeInArray = _indexOfCostumeInArray;
 

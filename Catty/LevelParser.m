@@ -8,12 +8,12 @@
 
 #import "LevelParser.h"
 #import "GDataXMLNode.h"
-#import "Level.h"
+#import "Project.h"
 #import "Sprite.h"
-#import "Costume.h"
+#import "LookData.h"
 #import "Script.h"
 #import "Brick.h"
-#import "SetCostumeBrick.h"
+#import "SetLookBrick.h"
 #import "WaitBrick.h"
 #import "Sound.h"
 #import "PlaceAtBrick.h"
@@ -42,8 +42,22 @@
 #import "ChangeVolumeByBrick.h"
 #import "ChangeGhostEffectBrick.h"
 
+// introspection
+#import <objc/runtime.h>
+#import <Foundation/NSObjCRuntime.h>
+
+#define kCatroidXMLPrefix               @"org.catrobat.catroid.content."
+#define kCatroidXMLSpriteList           @"spriteList"
+#define kParserObjectTypeString         @"T@\"NSString\""
+#define kParserObjectTypeInteger        @"T@\"NSNumber\""
+#define kParserObjectTypeArray          @"T@\"NSArray\""
+#define kParserObjectTypeMutableArray   @"T@\"NSMutableArray\""
+
 @interface LevelParser()
 
+@property (nonatomic, strong) NSArray *classPool;
+
+// old
 @property (nonatomic, strong, getter=theNewSprite) Sprite *newSprite;
 
 - (Costume*)loadCostume:(GDataXMLElement*)gDataCostume;
@@ -53,636 +67,319 @@
 
 @implementation LevelParser
 
+@synthesize classPool = _classPool;
+
+// old
 @synthesize newSprite = _newSprite;
 
 - (Level*)loadLevel:(NSData*)xmlData
 {
     NSError *error;
     GDataXMLDocument *doc = [[GDataXMLDocument alloc] initWithData:xmlData 
-                                                           options:0 error:&error];
+                                                           options:0
+                                                             error:&error];
     if (doc == nil) 
         return nil;
     
-    Level *level = [[Level alloc] init];
+    // init class pool
+    NSMutableArray *pool = [[NSMutableArray alloc] init];
+    [pool addObject:@"Sprite"];
+    // todo: add more...
+    
+    // assign class pool
+    self.classPool = [NSArray arrayWithArray:pool];
     
     
-    //loading level related stuff
-    //version name
-    NSArray *versionNames = [doc.rootElement elementsForName:@"versionName"];
+    // init a new level
+//    Level *level = [[Level alloc] init];
+//    
+//    // iterate through all elements in the xml root path
+//    for (GDataXMLElement *element in doc.rootElement.children) {
+//        
+//        [self setValueForElement:element inClass:level];
+//        
+//        
+//        //NSLog(@"%d, %@", element.childCount, element.name);
+//    }
+    
+    
+    
+    // THEORETICAL APPROACH
+    
+    // arr[] = {
+    // get node (first one = root node)
+    // instantiate class of node name (org.catrobat.catroid.content.Project)
+    // foreach child of root node
+    //    if not an array:
+    //       set property value based on xml
+    //    else (is an array)
+    //       property[] = ... -> recursive self
+    // }
+
+    //Level *temp = [[Level alloc] init];
+    GDataXMLElement *rootNode = doc.rootElement;
+    //NSArray *project = [self parseNode:rootNode forObject:temp];
+    
+    Level *temp = [self parseNode:rootNode];
+    
+    
+    return temp;
+}
+
+- (id)parseNode:(GDataXMLElement*)node {
+    // instantiate object based on node name (= class name)
+    NSString *className = [[node.name componentsSeparatedByString:@"."] lastObject]; //this is just because of org.catrobat.catroid.bla...
+    id object = [[NSClassFromString(className) alloc] init];
+    
+    if (!object) {
+        NSLog(@"Implementation of <%@> NOT FOUND!", className);
+        abort(); // todo: just for debug
+    }
+    
+    for (GDataXMLElement *child in node.children) {
+        // maybe check node.childCount == 0?
+        
+        objc_property_t property = class_getProperty([object class], [child.name UTF8String]);
+        if (property) { // check if property exists
+            NSString *propertyType = [NSString stringWithUTF8String:property_getTypeString(property)];
+            NSLog(@"Property type: %@", propertyType);
+                        
+            // check if property is of type array
+            if ([propertyType isEqualToString:kParserObjectTypeArray]
+                || [propertyType isEqualToString:kParserObjectTypeMutableArray]) {
+                // = ARRAY
+                NSLog(@"%@: Array node found (count: %d)", child.name, child.childCount);
+
+                // create new array
+                NSMutableArray *arr = [[NSMutableArray alloc] init];
+                for (GDataXMLElement *arrElement in child.children) {
+                    [arr addObject:[self parseNode:arrElement]];
+                }
+                
+                // now set the array property (from *arr)
+                
+            }
+            else {
+                // NOT ARRAY
+                // now set the value
+                NSLog(@"%@: Single node found (count: %d)", child.name, child.childCount);
+
+                
+            }
+        }
+        else {
+            NSLog(@"property <%@> does NOT exist in our implementation of <%@>", child.name, className);
+            abort(); // PROPERTY IN IMPLEMENTATION NOT FOUND!!!
+            // THIS SHOULD _NOT_ HAPPEN!
+        }
+    }
+    
+
+    
+    
+    // return new object
+    return object;
+}
+
+
+// -----------------------------------------------------------------------
+//                                  NEW
+// -----------------------------------------------------------------------
+- (id)getSingleValue:(NSString*)node inContext:(GDataXMLDocument*)doc{
+    NSArray *versionNames = [doc.rootElement elementsForName:node];
     GDataXMLElement *temp = (GDataXMLElement*)[versionNames objectAtIndex:0];
-    level.versionName = temp.stringValue;
-    
-    //name
-    NSArray *names = [doc.rootElement elementsForName:@"name"];
-    temp = (GDataXMLElement*)[names objectAtIndex:0];
-    level.name = temp.stringValue;
-    
-    //screen resolution
-    NSArray *screenResolutions = [doc.rootElement elementsForName:@"screenResolution"];
-    temp = (GDataXMLElement*)[screenResolutions objectAtIndex:0];
-    level.screenResolution = temp.stringValue;
-    
-    NSArray *screenHeights = [doc.rootElement elementsForName:@"screenHeight"];
-    GDataXMLElement *height = (GDataXMLElement*)[screenHeights objectAtIndex:0];
-    
-    NSArray *screenWidth = [doc.rootElement elementsForName:@"screenWidth"];
-    GDataXMLElement *width = (GDataXMLElement*)[screenWidth objectAtIndex:0];
-    
-    NSLog(@"Parser: project-resolution: %@/%@", width.stringValue, height.stringValue);
-    level.resolution = CGSizeMake(width.stringValue.floatValue, height.stringValue.floatValue);
-    
+    return temp;
+}
 
-    
-    //version code
-    NSArray *versionCodes = [doc.rootElement elementsForName:@"versionCode"];
-    temp = (GDataXMLElement*)[versionCodes objectAtIndex:0];
-    level.versionCode = temp.stringValue;
+- (NSString*)getString:(id)element {
+    GDataXMLElement *temp = (GDataXMLElement*)element;
+    return temp.stringValue;
+}
 
+- (BOOL)checkIfPropertyExists:(NSString*)property inClass:(id)delegate {
+    SEL selector = NSSelectorFromString(property);
     
+    // check if this property exists
+    return ([delegate respondsToSelector:selector]) ? YES : NO;
+}
+
+// temp
+const char * property_getTypeString( objc_property_t property )
+{
+	const char * attrs = property_getAttributes( property );
+	if ( attrs == NULL )
+		return ( NULL );
+	
+	static char buffer[256];
+	const char * e = strchr( attrs, ',' );
+	if ( e == NULL )
+		return ( NULL );
+	
+	int len = (int)(e - attrs);
+	memcpy( buffer, attrs, len );
+	buffer[len] = '\0';
+	
+	return ( buffer );
+}
+
+
+// -----------------------------------------------------------------------------
+- (id)getSingleValue:(GDataXMLElement*)element ofType:(NSString*)propertyType {
+    // check type
+    if ([propertyType isEqualToString:kParserObjectTypeString]) {
+        return element.stringValue;
+    }
+    else if ([propertyType isEqualToString:kParserObjectTypeInteger]) {
+        NSString *temp = element.stringValue;
+        return [NSNumber numberWithInt:temp.intValue];
+    }
     
-    NSArray *spriteList = [doc.rootElement elementsForName:@"spriteList"];
-    NSArray *sprites = [[spriteList objectAtIndex:0] elementsForName:@"Content.Sprite"];
-    for (GDataXMLElement *gDataSprite in sprites) 
-    {
-        self.newSprite = [[Sprite alloc] init];
+    return nil;
+}
+
+
+// -----------------------------------------------------------------------------
+- (NSArray*)parseSpriteList:(GDataXMLElement*)node {
+    // check children count
+    if (node.childCount == 0) {
+        // something went terribly wrong?!
+        abort();
+    }
+    
+    // return array
+    NSMutableArray *spriteList = [[NSMutableArray alloc] init]; // array of all sprites (class: Sprite)
+    
+    // iterate through all children
+    for (GDataXMLElement *element in node.children) {
         
-        //retrieving all costumes
-        NSArray *costumeDataList = [gDataSprite elementsForName:@"costumeDataList"];
-        NSArray *costumes = [[costumeDataList objectAtIndex:0] elementsForName:@"Common.CostumeData"];
-        for (GDataXMLElement *gDataCostume in costumes)
-        {
-            Costume *costume = [self loadCostume:gDataCostume];
-//            [self.newSprite.costumesArray addObject:costume];
-            [self.newSprite addCostume:costume];
+        // check all classes in class pool
+        for (NSString *className in self.classPool) {
+            if ([element.name isEqualToString:[NSString stringWithFormat:@"%@%@", kCatroidXMLPrefix, className]]) {
+                NSLog(@"Found: %@ (should proceed...)", className);
+            }
         }
-        
-        //retrieving all sounds
-//        NSArray *soundList = [gDataSprite elementsForName:@"soundList"];
-//        NSArray *sounds = [[soundList objectAtIndex:0] elementsForName:@"Common.SoundInfo"];
-//        for (GDataXMLElement *gDataSound in sounds)
-//        {
-//            Sound *sound = [self loadSound:gDataSound];
-////            [self.newSprite.soundsArray addObject:sound];
-//            [self.newSprite addSound:sound];
-//        }
-        //todo... use sound...
-        //for each..
-        //add sound to sprite
-        
-        //retrieving all scripts
-        NSArray *scriptList = [gDataSprite elementsForName:@"scriptList"];
-        
-        //getting all start scripts
-        NSArray *scripts1 = [[scriptList objectAtIndex:0] elementsForName:@"Content.StartScript"];
-        for (GDataXMLElement *gDataScript in scripts1)
-        {
-            Script *newScript = [self loadScript:gDataScript];
-            [self.newSprite addStartScript:newScript];
+    }
+    
+    return [NSArray arrayWithArray:spriteList];
+}
+
+- (id)setValueForElement:(GDataXMLElement*)element inClass:(id)class {
+    // SINGLE VALUE OR EMPTY ARRAY - no value set
+    // i.e. <applicationBuildName></applicationBuildName>
+    if (element.childCount == 0) {
+        // check if this property exists in the level class
+        if ([self checkIfPropertyExists:element.name inClass:class]) {
+            [class setValue:nil forKey:element.name];
         }
-        
-        //getting all when scripts
-        NSArray *scripts2 = [[scriptList objectAtIndex:0] elementsForName:@"Content.WhenScript"];
-        for (GDataXMLElement *gDataScript in scripts2)
-        {
-            Script *newScript = [self loadScript:gDataScript];
-            [self.newSprite addWhenScript:newScript];
+        else {
+            abort(); // todo
         }
-        
-        //getting all broadcast scripts
-        NSArray *scripts3 = [[scriptList objectAtIndex:0] elementsForName:@"Content.BroadcastScript"];
-        for (GDataXMLElement *gDataScript in scripts3)
-        {
-            NSArray *receivedMessages = [gDataScript elementsForName:@"receivedMessage"];
-            temp = (GDataXMLElement*)[receivedMessages objectAtIndex:0];
-            NSString *broadcastMessage = temp.stringValue;
+    }
+    // SINGLE VALUE - value set
+    // i.e. <applicationName>Catroid</applicationName>
+    else if (element.childCount == 1) {
+        //check if this property exists in the level class
+        if ([self checkIfPropertyExists:element.name inClass:class]) {
             
-            Script *newScript = [self loadScript:gDataScript];
-            [self.newSprite addBroadcastScript:newScript forMessage:broadcastMessage];
+            // get property of level class
+            objc_property_t property = class_getProperty([class class], [element.name UTF8String]);
+            if (property) { //check if this property really exists ;-)
+                // check type of this property
+                NSString *propertyType = [NSString stringWithUTF8String:property_getTypeString(property)];
+                
+                id value = [self getSingleValue:element ofType:propertyType]; // get value for type
+                [class setValue:value forKey:element.name]; // assume new value
+                // TODO: What happens, if the setValue:forKey: method fails? i.e. when the
+                // type is not correct. Currently we assign (id)s to the properties but who
+                // checks if the type is the right one or not?!
+            }
         }
-        
-        NSArray *spriteNames = [gDataSprite elementsForName:@"name"];
-        GDataXMLElement *temp = (GDataXMLElement*)[spriteNames objectAtIndex:0];
-        self.newSprite.name = temp.stringValue;
-        
-        [self.newSprite setProjectResolution:level.resolution];
-        [level.spritesArray addObject:self.newSprite];
-
+        else {
+            abort(); // todo
+        }
     }
+    // MULTIPLE VALUES - values are set
+    // i.e.
+    // <spriteList>
+    //      <org.catrobat.catroid.content.Sprite>
+    //          ...
+    //      </org.catrobat.catroid.content.Sprite>
+    //      <org.catrobat.catroid.content.Sprite>
+    //          ...
+    //      </org.catrobat.catroid.content.Sprite>
+    //      ...
+    // </spriteList>
+    else if (element.childCount > 1) {
+        //check if this property exists in the level class
+        if ([self checkIfPropertyExists:element.name inClass:class]) {
 
-    return level;
-}
-
-- (Costume*)loadCostume:(GDataXMLElement*)gDataCostume
-{
-    Costume *ret = [[Costume alloc] init];
-    
-    NSArray *costumeFileNames = [gDataCostume elementsForName:@"costumeFileName"]; //old xml version
-    if ([costumeFileNames count] <= 0)
-        costumeFileNames = [gDataCostume elementsForName:@"fileName"];
-
-    GDataXMLElement *temp = (GDataXMLElement*)[costumeFileNames objectAtIndex:0];
-    ret.costumeFileName = temp.stringValue;
-    
-    NSArray *costumeNames = [gDataCostume elementsForName:@"costumeName"];
-    if ([costumeNames count] <= 0)
-        costumeNames = [gDataCostume elementsForName:@"name"];
-
-    temp = (GDataXMLElement*)[costumeNames objectAtIndex:0];
-    ret.costumeName = temp.stringValue;
-    
-    return ret;
-}
-
-- (Sound*)loadSound:(GDataXMLElement*)gDataSound //todo
-{
-//    Sound *ret = [[Sound alloc] init];
-//    
-//    NSArray *soundInfo = [gDataSound elementsForName:@"Common.SoundInfo"];
-//    GDataXMLNode *temp = [(GDataXMLElement*)[soundInfo objectAtIndex:0]attributeForName:@"reference"];
-//    NSString *referencePath = temp.stringValue; 
-//    ret.
-//    
-//    return ret;
-}
-
-//- (Script*)loadStartScript:(GDataXMLElement*)gDataScript
-//{
-//    StartScript *ret = [[StartScript alloc] init];
-//    
-//    NSArray *brickList = [gDataScript elementsForName:@"brickList"];
-//    
-//    //retrieving setCostumeBricks
-//    NSArray *setCostumeBricks = [[brickList objectAtIndex:0] elementsForName:@"Bricks.SetCostumeBrick"];
-//    for (GDataXMLElement *gDataSetCostumeBrick in setCostumeBricks)
-//    {
-//        SetCostumeBrick *brick = [self loadSetCostumeBrick:gDataSetCostumeBrick];
-////        brick.sprite = self.newSprite;
-////        [ret.bricksArray addObject:brick];
-//        [ret addBrick:brick];
-//    }
-//    
-//    //retrieving waitBricks
-//    NSArray *waitBricks = [[brickList objectAtIndex:0] elementsForName:@"Bricks.WaitBrick"];
-//    for (GDataXMLElement *gDataWaitBrick in waitBricks)
-//    {
-//        WaitBrick *brick = [self loadWaitBrick:gDataWaitBrick];
-////        brick.sprite = self.newSprite;
-////        [ret.bricksArray addObject:brick];
-//        [ret addBrick:brick];
-//    }
-//    
-//    return ret;
-//}
-
-- (Script*)loadScript:(GDataXMLElement*)gDataScript
-{
-    Script *ret = [[Script alloc] init];
-    
-    NSArray *brickList = [gDataScript elementsForName:@"brickList"];    
-    
-    NSArray *childs = [[brickList objectAtIndex:0] children];
-    
-    for (GDataXMLElement *element in childs)
-    {
-        Brick *brick = nil;
-        if ([element.name isEqualToString:@"Bricks.SetCostumeBrick"])
-        {
-            brick = [self loadSetCostumeBrick:element];
+            // get property of level class
+            objc_property_t property = class_getProperty([class class], [element.name UTF8String]);
+            if (property) { //check if this property really exists ;-)
+                // check type of this property
+                // should be an NSArray...
+                NSString *propertyType = [NSString stringWithUTF8String:property_getTypeString(property)];
+                
+                
+                if (![propertyType isEqualToString:kParserObjectTypeMutableArray]) {
+                    abort(); // just for debug...
+                }
+                
+                
+#warning todo: continue here... :-)
+                for (GDataXMLElement *child in element.children) {
+                    NSString *className = [[child.name componentsSeparatedByString:@"."] lastObject]; //this is just because of org.catrobat.catroid.bla...
+                    id object = [[NSClassFromString(className) alloc] init];
+                    //NSLog(@"instantiated %x", object);
+                    
+                    // now, start recursively...
+                    [self setValueForElement:child inClass:object];
+                }
+                
+                
+            }
+            
+            
+            
+//#warning todo...
+//            // check if it's the sprite list
+//            if ([element.name isEqualToString:kCatroidXMLSpriteList]) {
+//                // yep, sprite list found
+//                
+//                //((Level*)class).spriteList = [self parseSpriteList:element];
+//                for (GDataXMLElement *child in element.children) {
+//                    // one child == one sprite
+//                    // should be a sprite...
+//                    
+//                    Sprite *sprite = [[Sprite alloc] init];
+//                    
+//                    
+//                }
+//                
+//            }
+//            else {
+//                // nope... what should I do now???
+//            }
+            
+            //                // get property of level class
+            //                objc_property_t property = class_getProperty([level class], [element.name UTF8String]);
+            //                if (property) { //check if this property really exists ;-)
+            //                    // check type of this property
+            //                    NSString *propertyType = [NSString stringWithUTF8String:property_getTypeString(property)];
+            //
+            //                    id value = [self getSingleValue:element ofType:propertyType]; // get value for type
+            //                    [level setValue:value forKey:element.name]; // assume new value
+            //                    // TODO: What happens, if the setValue:forKey: method fails? i.e. when the
+            //                    // type is not correct. Currently we assign (id)s to the properties but who
+            //                    // checks if the type is the right one or not?!
+            //                }
         }
-        else if ([element.name isEqualToString:@"Bricks.WaitBrick"])
-        {
-            brick = [self loadWaitBrick:element];
-        }
-        else if ([element.name isEqualToString:@"Bricks.PlaceAtBrick"])
-        {
-            brick = [self loadPlaceAtBrick:element];
-        }
-        else if ([element.name isEqualToString:@"Bricks.GlideToBrick"])
-        {
-            brick = [self loadGlideToBrick:element];
-        }
-        else if ([element.name isEqualToString:@"Bricks.ShowBrick"])
-        {
-            brick = [[ShowBrick alloc]init];
-        }
-        else if ([element.name isEqualToString:@"Bricks.HideBrick"])
-        {
-            brick = [[HideBrick alloc]init];
-        }
-        else if ([element.name isEqualToString:@"Bricks.NextCostumeBrick"])
-        {
-            brick = [[NextCostumeBrick alloc]init];
-        }
-        else if ([element.name isEqualToString:@"Bricks.SetXBrick"])
-        {
-            brick = [self loadSetXBrick:element];
-        }
-        else if ([element.name isEqualToString:@"Bricks.SetYBrick"])
-        {
-            brick = [self loadSetYBrick:element];
-        }
-        else if ([element.name isEqualToString:@"Bricks.ChangeSizeByNBrick"])
-        {
-            brick = [self loadChangeSizeByNBrick:element];
-        }
-        else if ([element.name isEqualToString:@"Bricks.BroadcastBrick"])
-        {
-            brick = [self loadBroadcastBrick:element];
-        }
-        else if ([element.name isEqualToString:@"Bricks.BroadcastWaitBrick"])
-        {
-            brick = [self loadBroadcastWaitBrick:element];
-        }
-        else if ([element.name isEqualToString:@"Bricks.ChangeXByBrick"])
-        {
-            brick = [self loadChangeXByBrick:element];
-        }
-        else if ([element.name isEqualToString:@"Bricks.ChangeYByBrick"])
-        {
-            brick = [self loadChangeYByBrick:element];
-        }
-        else if ([element.name isEqualToString:@"Bricks.PlaySoundBrick"])
-        {
-            brick = [self loadSoundBrick:element];
-        }
-        else if ([element.name isEqualToString:@"Bricks.StopAllSoundsBrick"])
-        {
-            brick = [[StopAllSoundsBrick alloc] init];
-        }
-        else if ([element.name isEqualToString:@"Bricks.ComeToFrontBrick"])
-        {
-            brick = [[ComeToFrontBrick alloc]init];
-        }
-        else if ([element.name isEqualToString:@"Bricks.SetSizeToBrick"])
-        {
-            brick = [self loadSetSizeToBrick:element];
-        }
-        else if ([element.name isEqualToString:@"Bricks.ForeverBrick"])
-        {
-            brick = [[LoopBrick alloc]init];
-        }
-        else if ([element.name isEqualToString:@"Bricks.RepeatBrick"])
-        {            
-            brick = [self loadRepeatBrick:element];
-        }
-        else if ([element.name isEqualToString:@"Bricks.LoopEndBrick"])
-        {
-            brick = [[EndLoopBrick alloc]init];
-        }
-        else if ([element.name isEqualToString:@"Bricks.GoNStepsBackBrick"])
-        {
-            brick = [self loadGoNStepsBackBrick:element];
-        }
-        else if ([element.name isEqualToString:@"Bricks.SetGhostEffectBrick"])
-        {
-            brick = [self loadGhostEffectBrick:element];
-        }
-        else if ([element.name isEqualToString:@"Bricks.ChangeGhostEffectBrick"])
-        {
-            brick = [self loadChangeGhostEffectBrick:element];
-        }
-        else if ([element.name isEqualToString:@"Bricks.SpeakBrick"])
-        {
-            brick = [self loadSpeakBrick:element];
-        }
-        else if ([element.name isEqualToString:@"Bricks.SetVolumeToBrick"])
-        {
-            SetVolumeToBrick *brick = [self loadSetVolumeToBrick:element];
-            [ret addBrick:brick];
-        }
-        else if ([element.name isEqualToString:@"Bricks.ChangeVolumeByBrick"])
-        {
-            ChangeVolumeByBrick *brick = [self loadChangeVolumeByBrick:element];
-            [ret addBrick:brick];
-        }
-        else
-        {
-            NSLog(@"PARSER: Unknown XML-tag . '%@'", element.name);
-            brick = nil;
-        }
-        
-        if (brick != nil) {
-            [ret addBrick:brick];
+        else {
+            abort(); // todo
         }
     }
     
-    //retrieving setCostumeBricks
-//    NSArray *setCostumeBricks = [[brickList objectAtIndex:0] elementsForName:@"Bricks.SetCostumeBrick"];
-//    for (GDataXMLElement *gDataSetCostumeBrick in setCostumeBricks)
-//    {
-//        SetCostumeBrick *brick = [self loadSetCostumeBrick:gDataSetCostumeBrick];
-//        brick.sprite = self.newSprite;
-//        [ret.bricksArray addObject:brick];
-//    }
-//    
-//    //retrieving waitBricks
-//    NSArray *waitBricks = [[brickList objectAtIndex:0] elementsForName:@"Bricks.WaitBrick"];
-//    for (GDataXMLElement *gDataWaitBrick in waitBricks)
-//    {
-//        WaitBrick *brick = [self loadWaitBrick:gDataWaitBrick];
-//        brick.sprite = self.newSprite;
-//        [ret.bricksArray addObject:brick];
-//    }
-    
-    return ret;
-}
-
-
-//different bricks
-//set costume brick
-- (SetCostumeBrick*)loadSetCostumeBrick:(GDataXMLElement*)gDataSetCostumeBrick
-{
-    SetCostumeBrick *ret = [[SetCostumeBrick alloc] init];
-    
-    NSArray *references = [gDataSetCostumeBrick elementsForName:@"costumeData"];
-    GDataXMLNode *temp = [(GDataXMLElement*)[references objectAtIndex:0]attributeForName:@"reference"];
-    NSString *referencePath = temp.stringValue;
-    
-    if ([referencePath length] > 2)
-    {
-        if([referencePath hasSuffix:@"]"]) //index found
-        {
-            NSString *indexString = [referencePath substringWithRange:NSMakeRange([referencePath length]-2, 1)];
-            ret.indexOfCostumeInArray = [NSNumber numberWithInt:indexString.intValue-1];
-        }
-        else 
-        {
-            ret.indexOfCostumeInArray = [NSNumber numberWithInt:0];
-        }
-    }
-    else 
-    {
-        ret.indexOfCostumeInArray = nil;
-        @throw [NSException exceptionWithName:NSInternalInconsistencyException
-                                       reason:[NSString stringWithFormat:@"Parser error! (#1)"]
-                                     userInfo:nil];
-    }
-    
-    NSLog(@"Index: %@, Reference: %@", ret.indexOfCostumeInArray, [references objectAtIndex:0]);
-    
-    return ret;
-}
-
-//wait brick
-- (WaitBrick*)loadWaitBrick:(GDataXMLElement*)gDataWaitBrick
-{
-    WaitBrick *ret = [[WaitBrick alloc] init];
-    
-    NSArray *waitTimes = [gDataWaitBrick elementsForName:@"timeToWaitInMilliSeconds"];
-    GDataXMLElement *temp = (GDataXMLElement*)[waitTimes objectAtIndex:0];
-
-    NSLog(@"timeToWait: %@, int: %d", temp.stringValue, temp.stringValue.intValue);
-    ret.timeToWaitInMilliseconds = [NSNumber numberWithInt:temp.stringValue.intValue];
-    
-    return ret;
-}
-
--(PlaceAtBrick*)loadPlaceAtBrick:(GDataXMLElement*)gDataXMLElement
-{
-    PlaceAtBrick *brick = [[PlaceAtBrick alloc]init];
-    
-    NSArray *xPositions = [gDataXMLElement elementsForName:@"xPosition"];
-    GDataXMLElement *xPosition = (GDataXMLElement*)[xPositions objectAtIndex:0];
-    
-    NSArray *yPositions = [gDataXMLElement elementsForName:@"yPosition"];
-    GDataXMLElement *yPosition = (GDataXMLElement*)[yPositions objectAtIndex:0];
-    
-    NSLog(@"placeAt: %@/%@", xPosition.stringValue, yPosition.stringValue);
-    brick.position = GLKVector3Make(xPosition.stringValue.floatValue, yPosition.stringValue.floatValue, 0);
-    
-    return brick;
-}
-
--(GlideToBrick*)loadGlideToBrick:(GDataXMLElement*)gDataXMLElement
-{    
-    GlideToBrick *brick = [[GlideToBrick alloc]init];
-    
-    NSArray *times = [gDataXMLElement elementsForName:@"durationInMilliSeconds"];
-    GDataXMLElement *time = (GDataXMLElement*)[times objectAtIndex:0];
-    
-    NSArray *xPositions = [gDataXMLElement elementsForName:@"xDestination"];
-    GDataXMLElement *xPosition = (GDataXMLElement*)[xPositions objectAtIndex:0];
-    
-    NSArray *yPositions = [gDataXMLElement elementsForName:@"yDestination"];
-    GDataXMLElement *yPosition = (GDataXMLElement*)[yPositions objectAtIndex:0];
-    
-    NSLog(@"glideTo: %@/%@ in %@ millisecs", xPosition.stringValue, yPosition.stringValue, time.stringValue);
-    brick.durationInMilliSecs = time.stringValue.intValue;
-    brick.position = GLKVector3Make(xPosition.stringValue.floatValue, yPosition.stringValue.floatValue, 0);
-    
-    return brick;
-}
-
-
--(SetXBrick*)loadSetXBrick:(GDataXMLElement*)gDataXMLElement
-{
-    SetXBrick *brick = [[SetXBrick alloc]init];
-    
-    NSArray *xPositions = [gDataXMLElement elementsForName:@"xPosition"];
-    GDataXMLElement *xPosition = (GDataXMLElement*)[xPositions objectAtIndex:0];
-    
-    NSLog(@"setX: %@", xPosition.stringValue);
-    brick.xPosition = xPosition.stringValue.floatValue;
-    
-    return brick;
-}
-
--(SetYBrick*)loadSetYBrick:(GDataXMLElement*)gDataXMLElement
-{
-    SetYBrick *brick = [[SetYBrick alloc]init];
-    
-    NSArray *yPositions = [gDataXMLElement elementsForName:@"yPosition"];
-    GDataXMLElement *yPosition = (GDataXMLElement*)[yPositions objectAtIndex:0];
-    
-    NSLog(@"setY: %@", yPosition.stringValue);
-    brick.yPosition = yPosition.stringValue.floatValue;
-    
-    return brick;
-}
-
--(ChangeSizeByNBrick*)loadChangeSizeByNBrick:(GDataXMLElement*)gDataXMLElement
-{
-    ChangeSizeByNBrick *brick = [[ChangeSizeByNBrick alloc]init];
-    
-    NSArray *sizeChangeRates = [gDataXMLElement elementsForName:@"size"];
-    GDataXMLElement *sizeChangeRate = (GDataXMLElement*)[sizeChangeRates objectAtIndex:0];
-    
-    NSLog(@"changeSizeByN: %@", sizeChangeRate.stringValue);
-    brick.sizeInPercentage = sizeChangeRate.stringValue.floatValue;
-    
-    return brick;
-}
-
--(BroadcastBrick*)loadBroadcastBrick:(GDataXMLElement*)gDataXMLElement
-{
-    BroadcastBrick *brick = [[BroadcastBrick alloc]init];
-    
-    NSArray *messages = [gDataXMLElement elementsForName:@"broadcastMessage"];
-    GDataXMLElement *message = (GDataXMLElement*)[messages objectAtIndex:0];
-    
-    NSLog(@"broadcastBrick: %@", message.stringValue);
-    brick.message = message.stringValue;
-    
-    return brick;
-}
-
-
--(BroadcastWaitBrick*)loadBroadcastWaitBrick:(GDataXMLElement*)gDataXMLElement
-{
-    BroadcastWaitBrick* brick = [[BroadcastWaitBrick alloc]init];
-    
-    NSArray *messages = [gDataXMLElement elementsForName:@"broadcastMessage"];
-    GDataXMLElement *message = (GDataXMLElement*)[messages objectAtIndex:0];
-    
-    NSLog(@"broadcastWaitBrick: %@", message.stringValue);
-    brick.message = message.stringValue;
-    
-    return brick;
-}
-
--(ChangeXByBrick*)loadChangeXByBrick:(GDataXMLElement*)gDataXMLElement
-{
-    ChangeXByBrick *brick = [[ChangeXByBrick alloc]init];
-    
-    NSArray *xes = [gDataXMLElement elementsForName:@"xMovement"];
-    GDataXMLElement *x = (GDataXMLElement*)[xes objectAtIndex:0];
-    
-    NSLog(@"broadcastBrick: %@", x.stringValue);
-    brick.x = x.stringValue.intValue;
-    
-    return brick;
-}
-
--(ChangeYByBrick*)loadChangeYByBrick:(GDataXMLElement*)gDataXMLElement
-{
-    ChangeYByBrick *brick = [[ChangeYByBrick alloc]init];
-    
-    NSArray *ys = [gDataXMLElement elementsForName:@"yMovement"];
-    GDataXMLElement *y = (GDataXMLElement*)[ys objectAtIndex:0];
-    
-    NSLog(@"broadcastBrick: %d", y.stringValue.intValue);
-    brick.y = y.stringValue.intValue;
-    
-    return brick;
-}
-
-
--(PlaySoundBrick*)loadSoundBrick:(GDataXMLElement*)gDataXMLElement
-{
-    
-    PlaySoundBrick *brick = [[PlaySoundBrick alloc]init];
-    
-    NSArray* res = [gDataXMLElement elementsForName:@"soundInfo"];
-    GDataXMLElement *soundInfo = (GDataXMLElement*)[res objectAtIndex:0];
-    
-    NSArray* resSoundInfo = [soundInfo elementsForName:@"fileName"];
-    GDataXMLElement *fileName = (GDataXMLElement*)[resSoundInfo objectAtIndex:0];
-    
-    NSLog(@"Sound Info: %@", fileName.stringValue);
-    brick.fileName = fileName.stringValue;
-    
-	return brick;
-}
-
--(SetSizeToBrick*)loadSetSizeToBrick:(GDataXMLElement*)gDataXMLElement
-{
-    SetSizeToBrick *brick = [[SetSizeToBrick alloc]init];
-    
-    NSArray *sizes = [gDataXMLElement elementsForName:@"size"];
-    GDataXMLElement *size = (GDataXMLElement*)[sizes objectAtIndex:0];
-    
-    NSLog(@"setSizeToBrick: %f", size.stringValue.floatValue);
-    brick.sizeInPercentage = size.stringValue.floatValue;
-    
-    return brick;
-}
-
--(RepeatBrick*)loadRepeatBrick:(GDataXMLElement*)gDataXMLElement
-{
-
-    
-    NSArray* res = [gDataXMLElement elementsForName:@"timesToRepeat"];
-    GDataXMLElement *numberOfLoops = (GDataXMLElement*)[res objectAtIndex:0];
-    
-    NSLog(@"numOfLoops: %d", numberOfLoops.stringValue.intValue);
-    
-    RepeatBrick *brick = [[RepeatBrick alloc]initWithNumberOfLoops:numberOfLoops.stringValue.intValue];
-    //brick.numberOfLoops = numberOfLoops.stringValue.intValue;
-    
-    return brick;
-}
-
--(GoNStepsBackBrick*)loadGoNStepsBackBrick:(GDataXMLElement*)gDataXMLElement
-{
-    GoNStepsBackBrick *brick = [[GoNStepsBackBrick alloc]init];
-    
-    NSArray* steps = [gDataXMLElement elementsForName:@"steps"];
-    GDataXMLElement *numberOfLoops = (GDataXMLElement*)[steps objectAtIndex:0];
-    
-    NSLog(@"numOfLoops: %d", numberOfLoops.stringValue.intValue);
-    
-    brick.n = numberOfLoops.stringValue.intValue;
-    
-    return brick;
-}
-
--(SetGhostEffectBrick*)loadGhostEffectBrick:(GDataXMLElement*)gDataXMLElement
-{
-    NSArray *sizes = [gDataXMLElement elementsForName:@"transparency"];
-    GDataXMLElement *transparency = (GDataXMLElement*)[sizes objectAtIndex:0];
-    
-    NSLog(@"SetTransparencyTo: %f", transparency.stringValue.floatValue);
-    //SetGhostEffectBrick *brick = [[SetGhostEffectBrick alloc]initWithTransparencyInPercent:transparency.stringValue.floatValue];
-    SetGhostEffectBrick *brick = [[SetGhostEffectBrick alloc]init];
-    brick.transparency = transparency.stringValue.floatValue;
-    return brick;
-    
-}
-
--(ChangeGhostEffectBrick*)loadChangeGhostEffectBrick:(GDataXMLElement*)gDataXMLElement
-{
-    NSArray *sizes = [gDataXMLElement elementsForName:@"changeGhostEffect"];
-    GDataXMLElement *increase = (GDataXMLElement*)[sizes objectAtIndex:0];
-    
-    NSLog(@"ChangeTransparencyBy: %f", increase.stringValue.floatValue);
-    ChangeGhostEffectBrick *brick = [[ChangeGhostEffectBrick alloc]initWithIncrease:increase.stringValue.floatValue];
-    
-    return brick;
-    
-}
-
--(SpeakBrick*)loadSpeakBrick:(GDataXMLElement*)gDataXMLElement
-{
-    NSArray *messages = [gDataXMLElement elementsForName:@"text"];
-    GDataXMLElement *text = (GDataXMLElement*)[messages objectAtIndex:0];
-    
-    NSLog(@"speak brick: %@", text.stringValue);
-    SpeakBrick* brick = [[SpeakBrick alloc]initWithText:text.stringValue];
-    
-    return brick;
-}
-
-
--(SetVolumeToBrick*)loadSetVolumeToBrick:(GDataXMLElement*)gDataXMLElement
-{
-    NSArray *sizes = [gDataXMLElement elementsForName:@"volume"];
-    GDataXMLElement *volume = (GDataXMLElement*)[sizes objectAtIndex:0];
-    
-    NSLog(@"setVolumeTo: %f", volume.stringValue.floatValue);
-    SetVolumeToBrick *brick = [[SetVolumeToBrick alloc]initWithVolumeInPercent:volume.stringValue.floatValue];
-    
-    return brick;    
-}
-
--(ChangeVolumeByBrick*)loadChangeVolumeByBrick:(GDataXMLElement*)gDataXMLElement
-{
-    NSArray *sizes = [gDataXMLElement elementsForName:@"volume"];
-    GDataXMLElement *volume = (GDataXMLElement*)[sizes objectAtIndex:0];
-    
-    NSLog(@"changeVolumeBy: %f", volume.stringValue.floatValue);
-    ChangeVolumeByBrick *brick = [[ChangeVolumeByBrick alloc]initWithValueInPercent:volume.stringValue.floatValue];
-    
-    return brick;
+    return nil;
 }
 
 @end

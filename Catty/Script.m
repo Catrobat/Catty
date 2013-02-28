@@ -14,7 +14,7 @@
 #import "EndLoopBrick.h"
 
 @interface Script()
-@property (strong, nonatomic) NSMutableArray *bricksArray;
+@property (strong, nonatomic) NSMutableArray *brickList;
 @property (assign, nonatomic) int currentBrickIndex;
 @property (strong, nonatomic) NSMutableArray *startLoopIndexStack;
 @property (strong, nonatomic) NSMutableArray *startLoopTimestampStack;
@@ -25,7 +25,7 @@
 
 @implementation Script
 
-@synthesize bricksArray = _bricksArray;
+@synthesize brickList = _bricksArray;
 @synthesize action = _action;
 @synthesize currentBrickIndex = _currentBrickIndex;
 @synthesize startLoopIndexStack = _startLoopIndexStack;
@@ -68,17 +68,17 @@
 
 -(void)addBrick:(Brick *)brick
 {
-    [self.bricksArray addObject:brick];
+    [self.brickList addObject:brick];
 }
 
 -(void)addBricks:(NSArray *)bricks
 {
-    [self.bricksArray addObjectsFromArray:bricks];
+    [self.brickList addObjectsFromArray:bricks];
 }
 
 -(NSArray *)getAllBricks
 {
-    return [NSArray arrayWithArray:self.bricksArray];
+    return [NSArray arrayWithArray:self.brickList];
 }
 
 
@@ -103,10 +103,10 @@
     [self resetScript];
     if (self.currentBrickIndex < 0)
         self.currentBrickIndex = 0;
-    while (!self.stop && self.currentBrickIndex < [self.bricksArray count]) {
+    while (!self.stop && self.currentBrickIndex < [self.brickList count]) {
         if (self.currentBrickIndex < 0)
             self.currentBrickIndex = 0;
-        Brick *brick = [self.bricksArray objectAtIndex:self.currentBrickIndex];
+        Brick *brick = [self.brickList objectAtIndex:self.currentBrickIndex];
         
 //        if([sprite.name isEqualToString:@"Spawning"])
 //        {          
@@ -119,8 +119,8 @@
                 // go to end of loop
                 int numOfLoops = 1;
                 int tmpCounter = self.currentBrickIndex+1;
-                while (numOfLoops > 0 && tmpCounter < [self.bricksArray count]) {
-                    brick = [self.bricksArray objectAtIndex:tmpCounter];
+                while (numOfLoops > 0 && tmpCounter < [self.brickList count]) {
+                    brick = [self.brickList objectAtIndex:tmpCounter];
                     if ([brick isKindOfClass:[LoopBrick class]])
                         numOfLoops += 1;
                     else if ([brick isMemberOfClass:[EndLoopBrick class]])
@@ -174,10 +174,10 @@
 {
     NSMutableString *ret = [[NSMutableString alloc] init];
     
-    if ([self.bricksArray count] > 0)
+    if ([self.brickList count] > 0)
     {
         [ret appendString:@"Bricks: \n"];
-        for (Brick *brick in self.bricksArray)
+        for (Brick *brick in self.brickList)
         {
             [ret appendFormat:@"\t\t - %@", brick];
         }

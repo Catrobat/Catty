@@ -8,10 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
-@interface Costume : NSObject
+@interface LookData : NSObject
 
-@property (strong, nonatomic) NSString *costumeFileName;
-@property (strong, nonatomic) NSString *costumeName;
+@property (strong, nonatomic) NSString *fileName;
+@property (strong, nonatomic) NSString *name;
 
 - (id)initWithPath:(NSString*)filePath;
 - (id)initWithName:(NSString*)name andPath:(NSString*)filePath;

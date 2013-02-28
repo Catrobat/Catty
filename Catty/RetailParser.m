@@ -7,7 +7,6 @@
 //
 
 #import "RetailParser.h"
-#import "XMLParser.h" //remove later?!
 #import "GDataXMLNode.h"
 #import "LevelParser.h"
 
@@ -19,22 +18,6 @@
     //opening xml file
     NSString *xmlFile = [NSString stringWithContentsOfFile:path encoding:NSUTF8StringEncoding error:&error];
     NSData* xmlData = [xmlFile dataUsingEncoding:NSUTF8StringEncoding];
-//    
-//    //passing xml file as nsdata into the xml parser
-//    NSXMLParser *xmlParser = [[NSXMLParser alloc] initWithData:xmlData];
-//    
-//    XMLParser *parser = [[XMLParser alloc] initXMLParser];
-//    [xmlParser setDelegate:parser]; //parsing xml
-//    
-//    BOOL success = [xmlParser parse];
-//    
-//    if(success)
-//        NSLog(@"XML parser succeeded!");
-//    else
-//        NSLog(@"A XML parser ERROR occured!");
-//    
-//    Level *ret = parser.level;
-//    
     
     //using dom parser (gdata)
     
