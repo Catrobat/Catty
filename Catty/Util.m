@@ -59,4 +59,10 @@
                           otherButtonTitles:nil];
     [alert show];}
 
++(CGFloat)getScreenHeight {
+    
+    CGRect screenRect = [[UIScreen mainScreen] bounds];
+    return screenRect.size.height;
+}
+
 @end

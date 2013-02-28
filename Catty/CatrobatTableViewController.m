@@ -9,6 +9,7 @@
 #import "CatrobatTableViewController.h"
 #import "CellTags.h"
 #import "BackgroundLayer.h"
+#import "Util.h"
 
 
 #define IPHONE5_SCREEN_HEIGHT 568
@@ -88,19 +89,17 @@
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     
     if (!cell) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+        NSLog(@"Should Never happen - since iOS5 Storyboard *always* instantiates our cell!");
+        abort();
     }
     
-    [self configureCell:cell atIndexPath:indexPath];
     [self configureTitleLabelForCell:cell atIndexPath:indexPath];
     [self configureImageViewForCell:cell atIndexPath:indexPath];
-
+    [self configureCell:cell atIndexPath:indexPath];
 
     if(indexPath.row == 0) {
         [self configureSubtitleLabelForCell:cell];
     }
-    
-
     
     return cell;
 }
@@ -113,23 +112,7 @@
 #pragma mark Helper
 
 -(void)configureCell:(UITableViewCell*)cell atIndexPath:(NSIndexPath*) indexPath {
-    
-    [cell setBackgroundColor:[UIColor clearColor]];
-    [cell setBackgroundView:[[UIView alloc] init]];
-    CGRect frame = CGRectMake(0, 0, cell.bounds.size.width, [self getHeightForCellAtIndexPath:indexPath]);
-    
-    if(indexPath.row == 0) {
-        UIView *bg = [[UIView alloc] initWithFrame:frame];
-        bg.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"darkbluestripes"]];
-        cell.backgroundView = bg;        
-    }
-    else {
-        [cell.backgroundView.layer insertSublayer:[self getBackgroundLayerForCell:cell atIndexPath:indexPath withFrame:frame] atIndex:0];
-    }
-    
-    [cell setSelectedBackgroundView:[self getSelectedBackground]];
-    cell.accessoryView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"accessory"]];
-    
+        
     if(indexPath.row != ([self.cells count]-1)) {
         UIImageView *seperator = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"cellseperator"]];
         seperator.frame = CGRectMake(0.0f, [self getHeightForCellAtIndexPath:indexPath], cell.bounds.size.width, 4.0f);
@@ -162,33 +145,12 @@
 }
 
 
--(CAGradientLayer*)getBackgroundLayerForCell:(UITableViewCell*)cell atIndexPath:(NSIndexPath*) indexPath withFrame:(CGRect)frame{
-    
-    CAGradientLayer *grad = [BackgroundLayer darkBlueGradient];
-    grad.frame = frame;
-    
-    return grad;
-}
-
-
-
--(UIView*)getSelectedBackground{
-    UIView *bgColorView = [[UIView alloc] init];
-    [bgColorView setBackgroundColor:[UIColor colorWithRed:1.0f green:1.0f blue:1.0f alpha:0.15f]];
-    return bgColorView;
-}
-
-
+#warning this could be outsources (double implementation in Custom Cell classes..)
 -(CGFloat)getHeightForCellAtIndexPath:(NSIndexPath*) indexPath {
-    CGFloat screenHeight = [self getScreenHeight];
+    CGFloat screenHeight = [Util getScreenHeight];
     return (indexPath.row == 0) ? (CONTINUE_CELL_HEIGHT*screenHeight)/IPHONE5_SCREEN_HEIGHT : (IMAGE_CELL_HEIGHT*screenHeight)/IPHONE5_SCREEN_HEIGHT;
 }
 
--(CGFloat)getScreenHeight {
-    
-    CGRect screenRect = [[UIScreen mainScreen] bounds];
-    return screenRect.size.height;
-}
 
 
 #pragma mark - Table view delegate

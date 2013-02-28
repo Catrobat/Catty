@@ -93,6 +93,9 @@
 		B4BC0DBE16DFAE0900ED953C /* accessory.png in Resources */ = {isa = PBXBuildFile; fileRef = B4BC0DBC16DFAE0800ED953C /* accessory.png */; };
 		B4BC0DBF16DFAE0900ED953C /* accessory@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B4BC0DBD16DFAE0900ED953C /* accessory@2x.png */; };
 		B4BC0DC116DFE65700ED953C /* darkbluestripes.png in Resources */ = {isa = PBXBuildFile; fileRef = B4BC0DC016DFE65700ED953C /* darkbluestripes.png */; };
+		B4BC0DC516DFEDB600ED953C /* DarkBlueStripesCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B4BC0DC416DFEDB600ED953C /* DarkBlueStripesCell.m */; };
+		B4BC0DC916DFEF4000ED953C /* CatrobatBaseCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B4BC0DC816DFEF4000ED953C /* CatrobatBaseCell.m */; };
+		B4BC0DCD16DFF47D00ED953C /* DarkBlueGradientCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B4BC0DCC16DFF47C00ED953C /* DarkBlueGradientCell.m */; };
 		B4BCC83416DBC46400247E55 /* CatrobatInformation.m in Sources */ = {isa = PBXBuildFile; fileRef = B4BCC83316DBC46400247E55 /* CatrobatInformation.m */; };
 		B4C4D9DC160C490500E4FD19 /* CreateViewTests.m in Sources */ = {isa = PBXBuildFile; fileRef = B4C4D9DB160C490500E4FD19 /* CreateViewTests.m */; };
 		B4C4D9E1160C4A0D00E4FD19 /* CatrobatProjectTests.m in Sources */ = {isa = PBXBuildFile; fileRef = B4C4D9E0160C4A0D00E4FD19 /* CatrobatProjectTests.m */; };
@@ -295,6 +298,12 @@
 		B4BC0DBC16DFAE0800ED953C /* accessory.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = accessory.png; path = images/accessory.png; sourceTree = "<group>"; };
 		B4BC0DBD16DFAE0900ED953C /* accessory@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "accessory@2x.png"; path = "images/accessory@2x.png"; sourceTree = "<group>"; };
 		B4BC0DC016DFE65700ED953C /* darkbluestripes.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = darkbluestripes.png; path = images/darkbluestripes.png; sourceTree = "<group>"; };
+		B4BC0DC316DFEDB600ED953C /* DarkBlueStripesCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DarkBlueStripesCell.h; sourceTree = "<group>"; };
+		B4BC0DC416DFEDB600ED953C /* DarkBlueStripesCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DarkBlueStripesCell.m; sourceTree = "<group>"; };
+		B4BC0DC716DFEF4000ED953C /* CatrobatBaseCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CatrobatBaseCell.h; sourceTree = "<group>"; };
+		B4BC0DC816DFEF4000ED953C /* CatrobatBaseCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CatrobatBaseCell.m; sourceTree = "<group>"; };
+		B4BC0DCB16DFF47C00ED953C /* DarkBlueGradientCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DarkBlueGradientCell.h; sourceTree = "<group>"; };
+		B4BC0DCC16DFF47C00ED953C /* DarkBlueGradientCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DarkBlueGradientCell.m; sourceTree = "<group>"; };
 		B4BCC83216DBC46400247E55 /* CatrobatInformation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CatrobatInformation.h; sourceTree = "<group>"; };
 		B4BCC83316DBC46400247E55 /* CatrobatInformation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CatrobatInformation.m; sourceTree = "<group>"; };
 		B4C4D9DA160C490500E4FD19 /* CreateViewTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreateViewTests.h; sourceTree = "<group>"; };
@@ -640,7 +649,6 @@
 				B43CF2D7160ADE4B00E19CF3 /* ImageSprite (not in use) */,
 				B43CF2B21609C8FC00E19CF3 /* Zip */,
 				B4AAC0321625A49F0071ECC7 /* CustomExtensions */,
-				B4BC0DB116DF628900ED953C /* BackgroundLayer */,
 			);
 			name = Helper;
 			sourceTree = "<group>";
@@ -951,6 +959,44 @@
 			name = BackgroundLayer;
 			sourceTree = "<group>";
 		};
+		B4BC0DC216DFED8C00ED953C /* UserInterface */ = {
+			isa = PBXGroup;
+			children = (
+				B4BC0DB116DF628900ED953C /* BackgroundLayer */,
+				B4BC0DCA16DFEF6500ED953C /* CatrobatBaseCell */,
+				B4BC0DCE16DFF48000ED953C /* DarkBlueGradientCell */,
+				B4BC0DC616DFEDC100ED953C /* DarkBlueStripesCell */,
+			);
+			name = UserInterface;
+			sourceTree = "<group>";
+		};
+		B4BC0DC616DFEDC100ED953C /* DarkBlueStripesCell */ = {
+			isa = PBXGroup;
+			children = (
+				B4BC0DC316DFEDB600ED953C /* DarkBlueStripesCell.h */,
+				B4BC0DC416DFEDB600ED953C /* DarkBlueStripesCell.m */,
+			);
+			name = DarkBlueStripesCell;
+			sourceTree = "<group>";
+		};
+		B4BC0DCA16DFEF6500ED953C /* CatrobatBaseCell */ = {
+			isa = PBXGroup;
+			children = (
+				B4BC0DC716DFEF4000ED953C /* CatrobatBaseCell.h */,
+				B4BC0DC816DFEF4000ED953C /* CatrobatBaseCell.m */,
+			);
+			name = CatrobatBaseCell;
+			sourceTree = "<group>";
+		};
+		B4BC0DCE16DFF48000ED953C /* DarkBlueGradientCell */ = {
+			isa = PBXGroup;
+			children = (
+				B4BC0DCB16DFF47C00ED953C /* DarkBlueGradientCell.h */,
+				B4BC0DCC16DFF47C00ED953C /* DarkBlueGradientCell.m */,
+			);
+			name = DarkBlueGradientCell;
+			sourceTree = "<group>";
+		};
 		B4C4D9D8160C48E700E4FD19 /* ViewTests */ = {
 			isa = PBXGroup;
 			children = (
@@ -1069,6 +1115,7 @@
 				B4FDF39915A8349900CBCF03 /* ViewController */,
 				B4FDF35F15A82CBF00CBCF03 /* XMLParser */,
 				B4FDF38C15A82FB200CBCF03 /* TEMP */,
+				B4BC0DC216DFED8C00ED953C /* UserInterface */,
 				B4FDF36615A82EB100CBCF03 /* DataModel */,
 				B4FDF36515A82EA000CBCF03 /* EventHandler */,
 				B4FDF33115A82C1000CBCF03 /* CattyAppDelegate.h */,
@@ -1689,6 +1736,9 @@
 				B4BCC83416DBC46400247E55 /* CatrobatInformation.m in Sources */,
 				B4E95BBD16DE372D00E94E22 /* CatrobatTableViewController.m in Sources */,
 				B4BC0DB016DF628100ED953C /* BackgroundLayer.m in Sources */,
+				B4BC0DC516DFEDB600ED953C /* DarkBlueStripesCell.m in Sources */,
+				B4BC0DC916DFEF4000ED953C /* CatrobatBaseCell.m in Sources */,
+				B4BC0DCD16DFF47D00ED953C /* DarkBlueGradientCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -17,5 +17,6 @@
 + (void)log:(NSError*)error;
 + (void)showComingSoonAlertView;
 + (void)alertWithText:(NSString*)text;
++(CGFloat)getScreenHeight;
 
 @end
