@@ -18,6 +18,7 @@
 //@property (nonatomic, assign) TouchAction action;
 
 @property (nonatomic, strong) NSString *action;
+@property (strong, nonatomic) NSMutableArray *brickList;
 
 
 -(void)addBrick:(Brick*)brick;

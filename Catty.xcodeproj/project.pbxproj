@@ -72,7 +72,6 @@
 		B4A9ADD1160B05B800DFA55B /* ProjectBrowserBaseClassViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B4A9ADD0160B05B800DFA55B /* ProjectBrowserBaseClassViewController.m */; };
 		B4AAC0311625A49A0071ECC7 /* CustomExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = B4AAC0301625A49A0071ECC7 /* CustomExtensions.m */; };
 		B4B4093815B2E20700DCFAE5 /* Parser.m in Sources */ = {isa = PBXBuildFile; fileRef = B4B4093715B2E20700DCFAE5 /* Parser.m */; };
-		B4B4094915B2E8BF00DCFAE5 /* ParserTests.m in Sources */ = {isa = PBXBuildFile; fileRef = B4B4094815B2E8BF00DCFAE5 /* ParserTests.m */; };
 		B4B90DF3161C685700B83000 /* SpeakBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = B4B90DF2161C685700B83000 /* SpeakBrick.m */; };
 		B4BCC83416DBC46400247E55 /* CatrobatInformation.m in Sources */ = {isa = PBXBuildFile; fileRef = B4BCC83316DBC46400247E55 /* CatrobatInformation.m */; };
 		B4C4D9DC160C490500E4FD19 /* CreateViewTests.m in Sources */ = {isa = PBXBuildFile; fileRef = B4C4D9DB160C490500E4FD19 /* CreateViewTests.m */; };
@@ -88,6 +87,9 @@
 		B4EFE0A1161609C60078BFDC /* store@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B4EFE09F161609C60078BFDC /* store@2x.png */; };
 		B4F05A9B15B888EE00C90ED0 /* GDataXMLNode.m in Sources */ = {isa = PBXBuildFile; fileRef = B4F05A9A15B888EE00C90ED0 /* GDataXMLNode.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		B4F05A9E15B8898100C90ED0 /* ProjectParser.m in Sources */ = {isa = PBXBuildFile; fileRef = B4F05A9D15B8898100C90ED0 /* ProjectParser.m */; };
+		B4F1C59116DFBDB3006F4BE2 /* ParserTests.m in Sources */ = {isa = PBXBuildFile; fileRef = B4F1C59016DFBDB3006F4BE2 /* ParserTests.m */; };
+		B4F1C59316DFC321006F4BE2 /* defaultProjectTest.xml in Resources */ = {isa = PBXBuildFile; fileRef = B4F1C59216DFC321006F4BE2 /* defaultProjectTest.xml */; };
+		B4F1C59416DFC463006F4BE2 /* defaultProjectTest.xml in Resources */ = {isa = PBXBuildFile; fileRef = B4F1C59216DFC321006F4BE2 /* defaultProjectTest.xml */; };
 		B4FDF31F15A82C1000CBCF03 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B4FDF31E15A82C1000CBCF03 /* UIKit.framework */; };
 		B4FDF32115A82C1000CBCF03 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B4FDF32015A82C1000CBCF03 /* Foundation.framework */; };
 		B4FDF32315A82C1000CBCF03 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B4FDF32215A82C1000CBCF03 /* CoreGraphics.framework */; };
@@ -252,8 +254,6 @@
 		B4AAC0301625A49A0071ECC7 /* CustomExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomExtensions.m; sourceTree = "<group>"; };
 		B4B4093615B2E20700DCFAE5 /* Parser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Parser.h; sourceTree = "<group>"; };
 		B4B4093715B2E20700DCFAE5 /* Parser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Parser.m; sourceTree = "<group>"; };
-		B4B4094715B2E8BF00DCFAE5 /* ParserTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ParserTests.h; sourceTree = "<group>"; };
-		B4B4094815B2E8BF00DCFAE5 /* ParserTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ParserTests.m; sourceTree = "<group>"; };
 		B4B90DF1161C685700B83000 /* SpeakBrick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpeakBrick.h; sourceTree = "<group>"; };
 		B4B90DF2161C685700B83000 /* SpeakBrick.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpeakBrick.m; sourceTree = "<group>"; };
 		B4BCC83216DBC46400247E55 /* CatrobatInformation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CatrobatInformation.h; sourceTree = "<group>"; };
@@ -276,6 +276,9 @@
 		B4F05A9A15B888EE00C90ED0 /* GDataXMLNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GDataXMLNode.m; sourceTree = "<group>"; };
 		B4F05A9C15B8898100C90ED0 /* ProjectParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProjectParser.h; sourceTree = "<group>"; };
 		B4F05A9D15B8898100C90ED0 /* ProjectParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProjectParser.m; sourceTree = "<group>"; };
+		B4F1C58F16DFBDB3006F4BE2 /* ParserTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ParserTests.h; sourceTree = "<group>"; };
+		B4F1C59016DFBDB3006F4BE2 /* ParserTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ParserTests.m; sourceTree = "<group>"; };
+		B4F1C59216DFC321006F4BE2 /* defaultProjectTest.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = defaultProjectTest.xml; sourceTree = "<group>"; };
 		B4FDF31A15A82C1000CBCF03 /* Catty.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Catty.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B4FDF31E15A82C1000CBCF03 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		B4FDF32015A82C1000CBCF03 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -883,15 +886,6 @@
 			name = CustomExtensions;
 			sourceTree = "<group>";
 		};
-		B4B4094315B2E87700DCFAE5 /* ParserTests */ = {
-			isa = PBXGroup;
-			children = (
-				B4B4094715B2E8BF00DCFAE5 /* ParserTests.h */,
-				B4B4094815B2E8BF00DCFAE5 /* ParserTests.m */,
-			);
-			name = ParserTests;
-			sourceTree = "<group>";
-		};
 		B4B487B715B730E0004AC99E /* RetailParser */ = {
 			isa = PBXGroup;
 			children = (
@@ -960,6 +954,16 @@
 				B4F05A9A15B888EE00C90ED0 /* GDataXMLNode.m */,
 			);
 			name = GDataXMLNode;
+			sourceTree = "<group>";
+		};
+		B4F1C58E16DFBD9F006F4BE2 /* ParserTests */ = {
+			isa = PBXGroup;
+			children = (
+				B4F1C59216DFC321006F4BE2 /* defaultProjectTest.xml */,
+				B4F1C58F16DFBDB3006F4BE2 /* ParserTests.h */,
+				B4F1C59016DFBDB3006F4BE2 /* ParserTests.m */,
+			);
+			name = ParserTests;
 			sourceTree = "<group>";
 		};
 		B4FDF30F15A82C0F00CBCF03 = {
@@ -1036,10 +1040,10 @@
 		B4FDF34A15A82C1000CBCF03 /* CattyTests */ = {
 			isa = PBXGroup;
 			children = (
+				B4F1C58E16DFBD9F006F4BE2 /* ParserTests */,
 				B479E9291611A6FD000B1DFA /* FileManagerTests */,
 				B4C4D9DD160C49EB00E4FD19 /* JSONTests */,
 				B4C4D9D8160C48E700E4FD19 /* ViewTests */,
-				B4B4094315B2E87700DCFAE5 /* ParserTests */,
 				B40C723C15A88E72005A8EC7 /* TestResources */,
 				B40C723415A88076005A8EC7 /* DataModelTests */,
 				B4FDF35015A82C1000CBCF03 /* CattyTests.h */,
@@ -1463,6 +1467,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B4F1C59416DFC463006F4BE2 /* defaultProjectTest.xml in Resources */,
 				B4FDF32D15A82C1000CBCF03 /* InfoPlist.strings in Resources */,
 				B4FDF33615A82C1000CBCF03 /* MainStoryboard.storyboard in Resources */,
 				B4FDF39615A833DA00CBCF03 /* catty_icon_retina.png in Resources */,
@@ -1510,6 +1515,7 @@
 				CD8C90C2161DA37B004D3E19 /* ceshirecat.png in Resources */,
 				CD8C90C3161DA37C004D3E19 /* normalcat.png in Resources */,
 				B42A37FD162C62550024C793 /* sounds in Resources */,
+				B4F1C59316DFC321006F4BE2 /* defaultProjectTest.xml in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1616,13 +1622,13 @@
 				B4FDF35215A82C1000CBCF03 /* CattyTests.m in Sources */,
 				B40C723215A88072005A8EC7 /* DataModelCostumeTests.m in Sources */,
 				B40C723A15A88AF6005A8EC7 /* DataModelSpriteTests.m in Sources */,
-				B4B4094915B2E8BF00DCFAE5 /* ParserTests.m in Sources */,
 				B4C4D9DC160C490500E4FD19 /* CreateViewTests.m in Sources */,
 				B4C4D9E1160C4A0D00E4FD19 /* CatrobatProjectTests.m in Sources */,
 				B479E9281611A3F1000B1DFA /* FileManager.m in Sources */,
 				B479E9301611A7C5000B1DFA /* FileManagerTests.m in Sources */,
 				B419691A16144E8A00AFC8C8 /* DataModelBricksTest.m in Sources */,
 				B4CCFB97162C12170090671E /* HelperTests.m in Sources */,
+				B4F1C59116DFBDB3006F4BE2 /* ParserTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -60,7 +60,7 @@
 // the caller.
 // [in] xmlData: The XML file as NSData*
 // [out] This method returns the project 'tree' as Project object
-- (Project*)loadProject:(NSData*)xmlData {
+- (id)loadProject:(NSData*)xmlData {
     // sanity checks
     if (!xmlData) { return nil; }
     
@@ -83,23 +83,24 @@
 // children. First, the method instantiates a new object using introspection
 // with the name of the current node. IMPORTANT: This means, that each XML tag
 // must be present as class in this project. Otherwise the application aborts.
-// This procedure is done recursively for each child of this node and so on
+// This procedure is done recursively for each child of this node and so on.
+// Each attribute in the XML file is then used to assign a value to a
+// corresponding property in the introspected class/object.
 // [in] node: The current GDataXMLElement node of the XML file
 - (id)parseNode:(GDataXMLElement*)node {
     // sanity check
     if (!node) { return nil; }
     
     // instantiate object based on node name (= class name)
-    NSString *className = [[node.name componentsSeparatedByString:@"."] lastObject]; //this is just because of org.catrobat.catroid.bla...
-    if (!className) {
+    NSString *className = [[node.name componentsSeparatedByString:@"."] lastObject]; // this is just because of org.catrobat.catroid.bla...
+    if (!className) {                                                                // Maybe we can remove this when the XML is finished?
         className = node.name;
     }
     
     id object = [[NSClassFromString(className) alloc] init];
-    
     if (!object) {
         NSLog(@"Implementation of <%@> NOT FOUND!", className);
-        abort(); // todo: just for debug
+        abort(); // TODO: just for debug
     }
     
     for (GDataXMLElement *child in node.children) {
@@ -114,8 +115,6 @@
             if ([propertyType isEqualToString:kParserObjectTypeArray]
                 || [propertyType isEqualToString:kParserObjectTypeMutableArray]) {
                 // = ARRAY
-                NSLog(@"%@: Array node found (count: %d)", child.name, child.childCount);
-
                 // create new array
                 NSMutableArray *arr = [[NSMutableArray alloc] init];
                 for (GDataXMLElement *arrElement in child.children) {
@@ -128,7 +127,6 @@
             else {
                 // NOT ARRAY
                 // now set the value
-                NSLog(@"%@: Single node found (count: %d)", child.name, child.childCount);
                 id value = [self getSingleValue:child ofType:propertyType]; // get value for type
                 
                 // check for property type
@@ -139,6 +137,9 @@
             NSLog(@"property <%@> does NOT exist in our implementation of <%@>", child.name, className);
             abort(); // PROPERTY IN IMPLEMENTATION NOT FOUND!!!
             // THIS SHOULD _NOT_ HAPPEN!
+            // IF THIS HAPPENS, we have forgotten to implement a property in our classes
+            // Check the XML file and search for differences to our implementation
+            // You can see the property which we've to implement by typing 'po child.name' in gdb
         }
     }
     

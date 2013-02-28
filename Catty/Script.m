@@ -14,7 +14,6 @@
 #import "LoopEndBrick.h"
 
 @interface Script()
-@property (strong, nonatomic) NSMutableArray *brickList;
 @property (assign, nonatomic) int currentBrickIndex;
 @property (strong, nonatomic) NSMutableArray *startLoopIndexStack;
 @property (strong, nonatomic) NSMutableArray *startLoopTimestampStack;
