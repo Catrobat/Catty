@@ -215,7 +215,8 @@
     STAssertNotNil(temp,                                       @"Check for temp not nil");
     STAssertTrue([temp isKindOfClass:[WaitBrick class]],       @"Check class of brick");
     WaitBrick *wait1 = (WaitBrick*)temp;
-    STAssertEqualObjects(wait1.timeToWaitInMilliSeconds, [NSNumber numberWithInt:500], @"Check wait time of wait brick");
+    NSNumber *n = [NSNumber numberWithInt:500];
+    STAssertEqualObjects(wait1.timeToWaitInMilliSeconds, n,    @"Check wait time of wait brick");
     // TODO: Check sprite reference of this brick... but -> X-Stream...
     
     // third brick - SetLookBrick
@@ -227,7 +228,7 @@
     // fourth brick - WaitBrick
     temp = [bricks3 objectAtIndex:3];
     STAssertNotNil(temp,                                       @"Check for temp not nil");
-    STAssertTrue([temp isKindOfClass:[WaitBrick class]],    @"Check fourth brick in when script");
+    STAssertTrue([temp isKindOfClass:[WaitBrick class]],       @"Check fourth brick in when script");
     // ... This brick is a WaitBrick -> already checked above
     
     // fifth brick - SetLookBrick
@@ -237,12 +238,11 @@
     // ... This brick is a SetLookBrick -> already checked above
 
     
-    
     // check when script action
     STAssertTrue([when1.action isEqualToString:@"Tapped"],     @"Check action of when script");
     
-    
     // that's it!
+    // test finished! :-)
 }
 
 
