@@ -117,9 +117,18 @@
     [cell setBackgroundColor:[UIColor clearColor]];
     [cell setBackgroundView:[[UIView alloc] init]];
     CGRect frame = CGRectMake(0, 0, cell.bounds.size.width, [self getHeightForCellAtIndexPath:indexPath]);
-    [cell.backgroundView.layer insertSublayer:[self getBackgroundLayerForCell:cell atIndexPath:indexPath withFrame:frame] atIndex:0];
-        
+    
+    if(indexPath.row == 0) {
+        UIView *bg = [[UIView alloc] initWithFrame:frame];
+        bg.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"darkbluestripes"]];
+        cell.backgroundView = bg;        
+    }
+    else {
+        [cell.backgroundView.layer insertSublayer:[self getBackgroundLayerForCell:cell atIndexPath:indexPath withFrame:frame] atIndex:0];
+    }
+    
     [cell setSelectedBackgroundView:[self getSelectedBackground]];
+    cell.accessoryView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"accessory"]];
     
     if(indexPath.row != ([self.cells count]-1)) {
         UIImageView *seperator = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"cellseperator"]];
@@ -134,11 +143,6 @@
     UILabel* titleLabel = (UILabel*)[cell viewWithTag:START_TITLE_TAG];
     titleLabel.text = NSLocalizedString([[self.cells objectAtIndex:indexPath.row] capitalizedString], nil);
     titleLabel.textColor = [UIColor colorWithRed:168.0f/255.0f green:223.0f/255.0f blue:244/255.0f alpha:1.0f];
-    
-    if(indexPath.row == 0) {
-        CGFloat screenHeight = [self getScreenHeight];
-//        titleLabel.frame = CGRectMake(titleLabel.frame.origin.x, 80*screenHeight/IPHONE5_SCREEN_HEIGHT, titleLabel.frame.size.width, titleLabel.frame.size.height);
-    }
 }
 
 
