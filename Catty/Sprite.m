@@ -496,47 +496,60 @@
 
 
 #pragma mark - description
-- (NSString*)description
-{
+//- (NSString*)description
+//{
+//    NSMutableString *ret = [[NSMutableString alloc] init];
+//    
+//    [ret appendFormat:@"Sprite (0x%@):\n", self];
+//    [ret appendFormat:@"\t\t\tName: %@\n", self.name];
+//    [ret appendFormat:@"\t\t\tPosition: [%f, %f, %f] (x, y, z)\n", self.position.x, self.position.y, self.position.z];
+//    [ret appendFormat:@"\t\t\tContent size: [%f, %f] (x, y)\n", self.contentSize.width, self.contentSize.height];
+//    [ret appendFormat:@"\t\t\tCostume index: %d\n", self.indexOfCurrentCostumeInArray.intValue];
+//    
+//    if ([self.costumesArray count] > 0)
+//    {
+//        [ret appendString:@"\t\t\tCostumes:\n"];
+//        for (Costume *costume in self.costumesArray)
+//        {
+//            [ret appendFormat:@"\t\t\t\t - %@\n", costume];
+//        }
+//    }
+//    else 
+//    {
+//        [ret appendString:@"\t\t\tCostumes: None\n"];
+//    }
+//
+//    if ([self.soundList count] > 0)
+//    {
+//        [ret appendString:@"\t\t\tSounds\n"];
+//        for (Sound *sound in self.soundList)
+//        {
+//            [ret appendFormat:@"\t\t\t\t - %@\n", sound];
+//        }
+//    }
+//    else 
+//    {
+//        [ret appendString:@"\t\t\tSounds: None\n"];
+//    }
+//
+//    
+//    //[ret appendFormat:@"\t\t\tCostumes: %@\n", self.costumesArray];
+//    //[ret appendFormat:@"\t\t\tSounds: %@\n", self.soundsArray];    
+//    
+//    return [[NSString alloc] initWithString:ret];
+//}
+
+- (NSString*)description {
     NSMutableString *ret = [[NSMutableString alloc] init];
-    
-    [ret appendFormat:@"Sprite (0x%@):\n", self];
-    [ret appendFormat:@"\t\t\tName: %@\n", self.name];
-    [ret appendFormat:@"\t\t\tPosition: [%f, %f, %f] (x, y, z)\n", self.position.x, self.position.y, self.position.z];
-    [ret appendFormat:@"\t\t\tContent size: [%f, %f] (x, y)\n", self.contentSize.width, self.contentSize.height];
-    [ret appendFormat:@"\t\t\tCostume index: %d\n", self.indexOfCurrentCostumeInArray.intValue];
-    
-    if ([self.costumesArray count] > 0)
-    {
-        [ret appendString:@"\t\t\tCostumes:\n"];
-        for (Costume *costume in self.costumesArray)
-        {
-            [ret appendFormat:@"\t\t\t\t - %@\n", costume];
-        }
-    }
-    else 
-    {
-        [ret appendString:@"\t\t\tCostumes: None\n"];
-    }
-
-    if ([self.soundList count] > 0)
-    {
-        [ret appendString:@"\t\t\tSounds\n"];
-        for (Sound *sound in self.soundList)
-        {
-            [ret appendFormat:@"\t\t\t\t - %@\n", sound];
-        }
-    }
-    else 
-    {
-        [ret appendString:@"\t\t\tSounds: None\n"];
-    }
+    //[ret appendFormat:@"Sprite: (0x%@):\n", self];
+    [ret appendFormat:@"\r------------------- SPRITE --------------------\r"];
+    [ret appendFormat:@"Name: %@\r", self.name];
+    [ret appendFormat:@"Look List: \r%@\r\r", self.lookList];
+    [ret appendFormat:@"Script List: \r%@\r", self.scriptList];
+    [ret appendFormat:@"-------------------------------------------------\r"];
 
     
-    //[ret appendFormat:@"\t\t\tCostumes: %@\n", self.costumesArray];
-    //[ret appendFormat:@"\t\t\tSounds: %@\n", self.soundsArray];    
-    
-    return [[NSString alloc] initWithString:ret];
+    return [NSString stringWithString:ret];
 }
 
 

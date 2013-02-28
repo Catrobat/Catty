@@ -40,38 +40,33 @@
     return _spriteList;
 }
 
-// introspection !!!
-//- (NSString *)propertyName:(id)property {
-//    unsigned int numIvars = 0;
-//    NSString *key = nil;
-//    Ivar *ivars = class_copyIvarList([self class], &numIvars);
-//    for(int i = 0; i < numIvars; i++) {
-//        Ivar thisIvar = ivars[i];
-//        if ((object_getIvar(self, thisIvar) == property)) {
-//            key = [NSString stringWithUTF8String:ivar_getName(thisIvar)];
-//            break;
-//        }
-//    }
-//    free(ivars);
-//    return key;
-//}
+- (NSString*)debug {
+    NSMutableString *ret = [[NSMutableString alloc] init];
+    [ret appendFormat:@"\n----------------- PROJECT --------------------\n"];
+    [ret appendFormat:@"Application Build Name: %@\n", self.applicationBuildName];
+    [ret appendFormat:@"Application Build Number: %@\n", self.applicationBuildNumber];
+    [ret appendFormat:@"Application Name: %@\n", self.applicationName];
+    [ret appendFormat:@"Application Version: %@\n", self.applicationVersion];
+    [ret appendFormat:@"Catrobat Language Version: %@\n", self.catrobatLanguageVersion];
+    [ret appendFormat:@"Date Time Upload: %@\n", self.dateTimeUpload];
+    [ret appendFormat:@"Description: %@\n", self.description];
+    [ret appendFormat:@"Device Name: %@\n", self.deviceName];
+    [ret appendFormat:@"Media License: %@\n", self.mediaLicense];
+    [ret appendFormat:@"Platform: %@\n", self.platform];
+    [ret appendFormat:@"Platform Version: %@\n", self.platformVersion];
+    [ret appendFormat:@"Program License: %@\n", self.programLicense];
+    [ret appendFormat:@"Program Name: %@\n", self.programName];
+    [ret appendFormat:@"Remix of: %@\n", self.remixOf];
+    [ret appendFormat:@"Screen Height: %@\n", self.screenHeight];
+    [ret appendFormat:@"Screen Width: %@\n", self.screenWidth];
+    [ret appendFormat:@"Sprite List: %@\n", self.spriteList];
+    [ret appendFormat:@"URL: %@\n", self.uRL];
+    [ret appendFormat:@"User Handle: %@\n", self.userHandle];
+    [ret appendFormat:@"----------------------------------------------\n"];
+    
+    return [NSString stringWithString:ret];
+}
 
-//- (NSArray*)rootProperties {
-//    NSMutableArray *ret = [[NSMutableArray alloc] init];
-//    
-//    unsigned int numIvars = 0;
-//    Ivar *ivars = class_copyIvarList([self class], &numIvars);
-//    for(int i = 0; i < numIvars; i++) {
-//        Ivar thisIvar = ivars[i];
-//        
-//        NSString *propName = [NSString stringWithUTF8String:ivar_getName(thisIvar)];
-//        if (![propName isEqualToString:kXMLSkip]) { // skip 'spriteList' (i.e.)
-//            [ret addObject:(__bridge id)(thisIvar)];
-//        }
-//    }
-//    free(ivars);
-//    return [NSArray arrayWithArray:ret];
-//}
 
 
 @end

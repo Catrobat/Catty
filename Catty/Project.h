@@ -42,7 +42,6 @@
 
 // METHODS
 // ---------------------------------------------------
-//- (NSString *)propertyName:(id)property;
-//- (NSArray*)rootProperties;
+- (NSString*)debug;
 
 @end

@@ -49,9 +49,17 @@
 #define kCatroidXMLPrefix               @"org.catrobat.catroid.content."
 #define kCatroidXMLSpriteList           @"spriteList"
 #define kParserObjectTypeString         @"T@\"NSString\""
-#define kParserObjectTypeInteger        @"T@\"NSNumber\""
+#define kParserObjectTypeNumber         @"T@\"NSNumber\""
 #define kParserObjectTypeArray          @"T@\"NSArray\""
 #define kParserObjectTypeMutableArray   @"T@\"NSMutableArray\""
+#define kParserObjectTypeDate           @"T@\"NSDate\""
+
+// just temp
+#define kParserObjectTypeSprite         @"T@\"Sprite\""
+#define kParserObjectTypeLookData       @"T@\"LookData\""
+#define kParserObjectTypeLoopEndBrick   @"T@\"LoopEndBrick\""
+#define kParserObjectTypeSound          @"T@\"Sound\""
+
 
 @interface LevelParser()
 
@@ -120,8 +128,9 @@
     GDataXMLElement *rootNode = doc.rootElement;
     //NSArray *project = [self parseNode:rootNode forObject:temp];
     
-    Level *temp = [self parseNode:rootNode];
+    Project *temp = [self parseNode:rootNode];
     
+    NSLog(@"%@", [temp debug]);
     
     return temp;
 }
@@ -181,44 +190,22 @@
 }
 
 
-// -----------------------------------------------------------------------
-//                                  NEW
-// -----------------------------------------------------------------------
-- (id)getSingleValue:(NSString*)node inContext:(GDataXMLDocument*)doc{
-    NSArray *versionNames = [doc.rootElement elementsForName:node];
-    GDataXMLElement *temp = (GDataXMLElement*)[versionNames objectAtIndex:0];
-    return temp;
-}
 
-- (NSString*)getString:(id)element {
-    GDataXMLElement *temp = (GDataXMLElement*)element;
-    return temp.stringValue;
-}
-
-- (BOOL)checkIfPropertyExists:(NSString*)property inClass:(id)delegate {
-    SEL selector = NSSelectorFromString(property);
-    
-    // check if this property exists
-    return ([delegate respondsToSelector:selector]) ? YES : NO;
-}
 
 // temp
-const char * property_getTypeString( objc_property_t property )
-{
-	const char * attrs = property_getAttributes( property );
-	if ( attrs == NULL )
-		return ( NULL );
+const char * property_getTypeString(objc_property_t property) {
+	const char * attrs = property_getAttributes(property);
+	if (attrs == NULL) { return NULL; }
 	
 	static char buffer[256];
-	const char * e = strchr( attrs, ',' );
-	if ( e == NULL )
-		return ( NULL );
+	const char *e = strchr(attrs, ',');
+	if (e == NULL) { return NULL; }
 	
 	int len = (int)(e - attrs);
-	memcpy( buffer, attrs, len );
+	memcpy(buffer, attrs, len);
 	buffer[len] = '\0';
 	
-	return ( buffer );
+	return buffer;
 }
 
 
@@ -228,154 +215,26 @@ const char * property_getTypeString( objc_property_t property )
     if ([propertyType isEqualToString:kParserObjectTypeString]) {
         return element.stringValue;
     }
-    else if ([propertyType isEqualToString:kParserObjectTypeInteger]) {
+    else if ([propertyType isEqualToString:kParserObjectTypeNumber]) {
         NSString *temp = element.stringValue;
-        return [NSNumber numberWithInt:temp.intValue];
+        return [NSNumber numberWithFloat:temp.floatValue];
     }
-    
-    return nil;
-}
-
-
-// -----------------------------------------------------------------------------
-- (NSArray*)parseSpriteList:(GDataXMLElement*)node {
-    // check children count
-    if (node.childCount == 0) {
-        // something went terribly wrong?!
+    else if ([propertyType isEqualToString:kParserObjectTypeDate]) {
+        NSString *temp = element.stringValue;
+#warning todo: we should parse the date here
+        // but we only set nil... becaue it is easier actually... :-P
+        return nil;
+    }
+#warning JUST FOR DEBUG PURPOSES!
+    // todo: set the corresponding SPRITE!!! (and lookdata) => xstream notation
+    else if ([propertyType isEqualToString:kParserObjectTypeSprite]
+             || [propertyType isEqualToString:kParserObjectTypeLookData]
+             || [propertyType isEqualToString:kParserObjectTypeLoopEndBrick]
+             || [propertyType isEqualToString:kParserObjectTypeSound]) {
+        return nil; // TODO!
+    }
+    else {
         abort();
-    }
-    
-    // return array
-    NSMutableArray *spriteList = [[NSMutableArray alloc] init]; // array of all sprites (class: Sprite)
-    
-    // iterate through all children
-    for (GDataXMLElement *element in node.children) {
-        
-        // check all classes in class pool
-        for (NSString *className in self.classPool) {
-            if ([element.name isEqualToString:[NSString stringWithFormat:@"%@%@", kCatroidXMLPrefix, className]]) {
-                NSLog(@"Found: %@ (should proceed...)", className);
-            }
-        }
-    }
-    
-    return [NSArray arrayWithArray:spriteList];
-}
-
-- (id)setValueForElement:(GDataXMLElement*)element inClass:(id)class {
-    // SINGLE VALUE OR EMPTY ARRAY - no value set
-    // i.e. <applicationBuildName></applicationBuildName>
-    if (element.childCount == 0) {
-        // check if this property exists in the level class
-        if ([self checkIfPropertyExists:element.name inClass:class]) {
-            [class setValue:nil forKey:element.name];
-        }
-        else {
-            abort(); // todo
-        }
-    }
-    // SINGLE VALUE - value set
-    // i.e. <applicationName>Catroid</applicationName>
-    else if (element.childCount == 1) {
-        //check if this property exists in the level class
-        if ([self checkIfPropertyExists:element.name inClass:class]) {
-            
-            // get property of level class
-            objc_property_t property = class_getProperty([class class], [element.name UTF8String]);
-            if (property) { //check if this property really exists ;-)
-                // check type of this property
-                NSString *propertyType = [NSString stringWithUTF8String:property_getTypeString(property)];
-                
-                id value = [self getSingleValue:element ofType:propertyType]; // get value for type
-                [class setValue:value forKey:element.name]; // assume new value
-                // TODO: What happens, if the setValue:forKey: method fails? i.e. when the
-                // type is not correct. Currently we assign (id)s to the properties but who
-                // checks if the type is the right one or not?!
-            }
-        }
-        else {
-            abort(); // todo
-        }
-    }
-    // MULTIPLE VALUES - values are set
-    // i.e.
-    // <spriteList>
-    //      <org.catrobat.catroid.content.Sprite>
-    //          ...
-    //      </org.catrobat.catroid.content.Sprite>
-    //      <org.catrobat.catroid.content.Sprite>
-    //          ...
-    //      </org.catrobat.catroid.content.Sprite>
-    //      ...
-    // </spriteList>
-    else if (element.childCount > 1) {
-        //check if this property exists in the level class
-        if ([self checkIfPropertyExists:element.name inClass:class]) {
-
-            // get property of level class
-            objc_property_t property = class_getProperty([class class], [element.name UTF8String]);
-            if (property) { //check if this property really exists ;-)
-                // check type of this property
-                // should be an NSArray...
-                NSString *propertyType = [NSString stringWithUTF8String:property_getTypeString(property)];
-                
-                
-                if (![propertyType isEqualToString:kParserObjectTypeMutableArray]) {
-                    abort(); // just for debug...
-                }
-                
-                
-#warning todo: continue here... :-)
-                for (GDataXMLElement *child in element.children) {
-                    NSString *className = [[child.name componentsSeparatedByString:@"."] lastObject]; //this is just because of org.catrobat.catroid.bla...
-                    id object = [[NSClassFromString(className) alloc] init];
-                    //NSLog(@"instantiated %x", object);
-                    
-                    // now, start recursively...
-                    [self setValueForElement:child inClass:object];
-                }
-                
-                
-            }
-            
-            
-            
-//#warning todo...
-//            // check if it's the sprite list
-//            if ([element.name isEqualToString:kCatroidXMLSpriteList]) {
-//                // yep, sprite list found
-//                
-//                //((Level*)class).spriteList = [self parseSpriteList:element];
-//                for (GDataXMLElement *child in element.children) {
-//                    // one child == one sprite
-//                    // should be a sprite...
-//                    
-//                    Sprite *sprite = [[Sprite alloc] init];
-//                    
-//                    
-//                }
-//                
-//            }
-//            else {
-//                // nope... what should I do now???
-//            }
-            
-            //                // get property of level class
-            //                objc_property_t property = class_getProperty([level class], [element.name UTF8String]);
-            //                if (property) { //check if this property really exists ;-)
-            //                    // check type of this property
-            //                    NSString *propertyType = [NSString stringWithUTF8String:property_getTypeString(property)];
-            //
-            //                    id value = [self getSingleValue:element ofType:propertyType]; // get value for type
-            //                    [level setValue:value forKey:element.name]; // assume new value
-            //                    // TODO: What happens, if the setValue:forKey: method fails? i.e. when the
-            //                    // type is not correct. Currently we assign (id)s to the properties but who
-            //                    // checks if the type is the right one or not?!
-            //                }
-        }
-        else {
-            abort(); // todo
-        }
     }
     
     return nil;

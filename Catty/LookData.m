@@ -64,9 +64,8 @@
 
 
 #pragma mark - description
-- (NSString*)description
-{
-    return [NSString stringWithFormat:@"Path: %@ Name: %@", self.fileName, self.name];
+- (NSString*)description {
+    return [NSString stringWithFormat:@"Name: %@\rPath: %@\r", self.name, self.fileName];
 }
 
 @end
