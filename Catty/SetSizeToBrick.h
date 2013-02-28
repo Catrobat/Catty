@@ -11,8 +11,8 @@
 
 @interface SetSizeToBrick : Brick
 
-@property (assign, nonatomic) float size;
+@property (assign, nonatomic) NSNumber *size;
 
--(id)initWithSizeInPercentage:(float)sizeInPercentage;
+-(id)initWithSizeInPercentage:(NSNumber*)sizeInPercentage;
 
 @end

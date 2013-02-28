@@ -157,14 +157,16 @@
                 }
                 
                 // now set the array property (from *arr)
-                
+                [object setValue:arr forKey:child.name];
             }
             else {
                 // NOT ARRAY
                 // now set the value
                 NSLog(@"%@: Single node found (count: %d)", child.name, child.childCount);
-
+                id value = [self getSingleValue:child ofType:propertyType]; // get value for type
                 
+                // check for property type
+                [object setValue:value forKey:child.name]; // assume new value
             }
         }
         else {
@@ -173,9 +175,6 @@
             // THIS SHOULD _NOT_ HAPPEN!
         }
     }
-    
-
-    
     
     // return new object
     return object;

@@ -18,7 +18,7 @@
 @synthesize durationInMilliSeconds = _durationInMilliSecs;
 
 #pragma mark - init methods
--(id)initWithPosition:(GLKVector3)position andDurationInMilliSecs:(int)durationInMilliSecs
+-(id)initWithPosition:(GLKVector3)position andDurationInMilliSecs:(NSNumber*)durationInMilliSecs
 {
     self = [super init];
     if (self)
@@ -38,7 +38,7 @@
 //    [script glideWithSprite:sprite toPosition:self.position withinMilliSecs:self.durationInMilliSecs];
     
     [sprite glideToPosition:self.position withinDurationInMilliSecs:self.durationInMilliSeconds fromScript:script];
-    [NSThread sleepForTimeInterval:self.durationInMilliSeconds/1000.0f];
+    [NSThread sleepForTimeInterval:self.durationInMilliSeconds.floatValue/1000.0f];
 }
 
 #pragma mark - Description

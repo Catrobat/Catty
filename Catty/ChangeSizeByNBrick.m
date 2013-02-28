@@ -12,7 +12,7 @@
 
 @synthesize size = _sizeInPercentage;
 
--(id)initWithSizeChangeRate:(float)sizeInPercentage
+-(id)initWithSizeChangeRate:(NSNumber*)sizeInPercentage
 {
     self = [super init];
     if (self)
@@ -26,7 +26,7 @@
 {
     NSLog(@"Performing: %@", self.description);
     
-    [sprite changeSizeByN:self.size];
+    [sprite changeSizeByN:self.size.floatValue];
     
     //    float sleepTime = ((float)self.timeToWaitInMilliseconds.intValue)/1000;
     //    NSLog(@"wating for %f seconds", sleepTime);
@@ -39,7 +39,7 @@
 #pragma mark - Description
 - (NSString*)description
 {
-    return [NSString stringWithFormat:@"ChangeSizeByN (%f%%)", self.size];
+    return [NSString stringWithFormat:@"ChangeSizeByN (%f%%)", self.size.floatValue];
 }
 
 @end

@@ -13,7 +13,7 @@
 @synthesize transparency = _transparency;
 
 
--(id)initWithTransparencyInPercent:(float)transparency;
+-(id)initWithTransparencyInPercent:(NSNumber*)transparency;
 {
     self = [super init];
     if (self)
@@ -27,14 +27,14 @@
 {
     NSLog(@"Performing: %@", self.description);
     
-    [sprite setTransparency:self.transparency];
+    [sprite setTransparency:self.transparency.floatValue];
     
 }
 
 #pragma mark - Description
 - (NSString*)description
 {
-    return [NSString stringWithFormat:@"SetGhostEffect (%f%%)", self.transparency];
+    return [NSString stringWithFormat:@"SetGhostEffect (%f%%)", self.transparency.floatValue];
 }
 
 @end

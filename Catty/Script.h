@@ -15,7 +15,9 @@
 
 @interface Script : NSObject
 
-@property (nonatomic, assign) TouchAction action;
+//@property (nonatomic, assign) TouchAction action;
+
+@property (nonatomic, strong) NSString *action;
 
 
 -(void)addBrick:(Brick*)brick;

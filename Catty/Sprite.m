@@ -588,31 +588,34 @@
 
 - (void)touch:(TouchAction)type
 {
-    //todo: throw exception if its not a when script
-    for (Script *script in self.whenScriptsArray)
-    {
-        NSLog(@"Performing script with action: %@", script.description);
-        if (type == script.action)
-        {
-            if ([self.activeScripts containsObject:script]) {
-                [script resetScript];
-                [self.nextPositions removeObjectForKey:script.description];
-            } else {
-                [self.activeScripts addObject:script];
-                
-                // ------------------------------------------ THREAD --------------------------------------
-                dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-                    [script runScriptForSprite:self];
-                    
-                    // tell the main thread
-                    dispatch_async(dispatch_get_main_queue(), ^{
-                        [self scriptFinished:script];
-                    });
-                });
-                // ------------------------------------------ END -----------------------------------------
-            }
-        }
-    }
+#warning @Mattias: I've commented this because it doesn't work anymore. We had to change the "action" 
+#warning property of the Script class from int (was an enum) to NSString (because that's how it is in 
+#warning the XML...)
+//    //todo: throw exception if its not a when script
+//    for (Script *script in self.whenScriptsArray)
+//    {
+//        NSLog(@"Performing script with action: %@", script.description);
+//        if (type == script.action)
+//        {
+//            if ([self.activeScripts containsObject:script]) {
+//                [script resetScript];
+//                [self.nextPositions removeObjectForKey:script.description];
+//            } else {
+//                [self.activeScripts addObject:script];
+//                
+//                // ------------------------------------------ THREAD --------------------------------------
+//                dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+//                    [script runScriptForSprite:self];
+//                    
+//                    // tell the main thread
+//                    dispatch_async(dispatch_get_main_queue(), ^{
+//                        [self scriptFinished:script];
+//                    });
+//                });
+//                // ------------------------------------------ END -----------------------------------------
+//            }
+//        }
+//    }
 }
 
 - (void)performBroadcastScript:(NSNotification*)notification

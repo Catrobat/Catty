@@ -9,6 +9,8 @@
 #import "Brick.h"
 
 @interface TurnRightBrick : Brick
-@property (nonatomic, assign) float degrees;
--(id)initWithDegrees:(float)degees;
+
+#warning @Mattias: Changed from float to NSNumber*
+@property (nonatomic, strong) NSNumber *degrees;
+-(id)initWithDegrees:(NSNumber*)degees;
 @end
