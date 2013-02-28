@@ -23,7 +23,7 @@
 #import "Sound.h"
 #import "PlaceAtBrick.h"
 #import "GlideToBrick.h"
-#import "NextCostumeBrick.h"
+#import "NextLookBrick.h"
 #import "HideBrick.h"
 #import "ShowBrick.h"
 #import "SetXBrick.h"
@@ -31,20 +31,20 @@
 #import "ChangeSizeByNBrick.h"
 #import "BroadcastBrick.h"
 #import "BroadcastWaitBrick.h"
-#import "ChangeXByBrick.h"
-#import "ChangeYByBrick.h"
+#import "ChangeXByNBrick.h"
+#import "ChangeYByNBrick.h"
 #import "PlaySoundBrick.h"
 #import "StopAllSoundsBrick.h"
 #import "ComeToFrontBrick.h"
 #import "SetSizeToBrick.h"
-#import "LoopBrick.h"
+#import "ForeverBrick.h"
 #import "RepeatBrick.h"
-#import "EndLoopBrick.h"
+#import "LoopEndBrick.h"
 #import "GoNStepsBackBrick.h"
 #import "SetGhostEffectBrick.h"
 #import "SetVolumeToBrick.h"
 #import "ChangeVolumeByBrick.h"
-#import "ChangeGhostEffectBrick.h"
+#import "ChangeGhostEffectByNBrick.h"
 #import "SpeakBrick.h"
 
 @interface ParserTests()
@@ -253,9 +253,9 @@
     GDataXMLDocument *doc = [[GDataXMLDocument alloc] initWithData:xmlData
                                                            options:0 error:&error];
     Brick *newBrick = [self.parser loadChangeXByBrick:doc.rootElement];
-    if (![newBrick isMemberOfClass:[ChangeXByBrick class]])
+    if (![newBrick isMemberOfClass:[ChangeXByNBrick class]])
         STFail(@"Wrong class-member");
-    ChangeXByBrick *brick = (ChangeXByBrick*)newBrick;
+    ChangeXByNBrick *brick = (ChangeXByNBrick*)newBrick;
     STAssertTrue(brick.x == x, @"Wrong x-value");
 }
 
@@ -268,9 +268,9 @@
     GDataXMLDocument *doc = [[GDataXMLDocument alloc] initWithData:xmlData
                                                            options:0 error:&error];
     Brick *newBrick = [self.parser loadChangeYByBrick:doc.rootElement];
-    if (![newBrick isMemberOfClass:[ChangeYByBrick class]])
+    if (![newBrick isMemberOfClass:[ChangeYByNBrick class]])
         STFail(@"Wrong class-member");
-    ChangeYByBrick *brick = (ChangeYByBrick*)newBrick;
+    ChangeYByNBrick *brick = (ChangeYByNBrick*)newBrick;
     STAssertTrue(brick.y == y, @"Wrong y-value");
 }
 
@@ -343,9 +343,9 @@
     GDataXMLDocument *doc = [[GDataXMLDocument alloc] initWithData:xmlData
                                                            options:0 error:&error];
     Brick *newBrick = [self.parser loadChangeGhostEffectBrick:doc.rootElement];
-    if (![newBrick isMemberOfClass:[ChangeGhostEffectBrick class]])
+    if (![newBrick isMemberOfClass:[ChangeGhostEffectByNBrick class]])
         STFail(@"Wrong class-member");
-    ChangeGhostEffectBrick *brick = (ChangeGhostEffectBrick*)newBrick;
+    ChangeGhostEffectByNBrick *brick = (ChangeGhostEffectByNBrick*)newBrick;
     STAssertTrue(brick.increase == transparencyIncrease, @"Wrong transparency-value");
 }
 

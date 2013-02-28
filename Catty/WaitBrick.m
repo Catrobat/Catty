@@ -11,19 +11,19 @@
 
 @implementation WaitBrick
 
-@synthesize timeToWaitInMilliseconds = _timeToWaitInMilliseconds;
+@synthesize timeToWaitInMilliSeconds = _timeToWaitInMilliseconds;
 
 - (void)performOnSprite:(Sprite *)sprite fromScript:(Script*)script
 {
     NSLog(@"Performing: %@", self.description);
     
-    [NSThread sleepForTimeInterval:self.timeToWaitInMilliseconds.floatValue/1000.0f];
+    [NSThread sleepForTimeInterval:self.timeToWaitInMilliSeconds.floatValue/1000.0f];
 }
 
 #pragma mark - Description
 - (NSString*)description
 {
-    return [NSString stringWithFormat:@"WaitBrick (%d Milliseconds)", self.timeToWaitInMilliseconds.intValue];
+    return [NSString stringWithFormat:@"WaitBrick (%d Milliseconds)", self.timeToWaitInMilliSeconds.intValue];
 }
 
 @end

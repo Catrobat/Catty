@@ -16,7 +16,7 @@
 #import "Sound.h"
 #import "PlaceAtBrick.h"
 #import "GlideToBrick.h"
-#import "NextCostumeBrick.h"
+#import "NextLookBrick.h"
 #import "HideBrick.h"
 #import "ShowBrick.h"
 #import "SetXBrick.h"
@@ -24,20 +24,20 @@
 #import "ChangeSizeByNBrick.h"
 #import "BroadcastBrick.h"
 #import "BroadcastWaitBrick.h"
-#import "ChangeXByBrick.h"
-#import "ChangeYByBrick.h"
+#import "ChangeXByNBrick.h"
+#import "ChangeYByNBrick.h"
 #import "PlaySoundBrick.h"
 #import "StopAllSoundsBrick.h"
 #import "ComeToFrontBrick.h"
 #import "SetSizeToBrick.h"
-#import "LoopBrick.h"
+#import "ForeverBrick.h"
 #import "RepeatBrick.h"
-#import "EndLoopBrick.h"
+#import "LoopEndBrick.h"
 #import "GoNStepsBackBrick.h"
 #import "SetGhostEffectBrick.h"
 #import "SetVolumeToBrick.h"
 #import "ChangeVolumeByBrick.h"
-#import "ChangeGhostEffectBrick.h"
+#import "ChangeGhostEffectByNBrick.h"
 #import "SpeakBrick.h"
 #import "BroadcastWaitDelegate.h"
 #import "BroadcastWaitHandler.h"
@@ -71,7 +71,7 @@
     
     Script *script = [[Script alloc]init];
     
-    brick.timeToWaitInMilliseconds = [NSNumber numberWithInt:timeToWaitInMilliSecs];
+    brick.timeToWaitInMilliSeconds = [NSNumber numberWithInt:timeToWaitInMilliSecs];
     NSTimeInterval before = [[NSDate date]timeIntervalSince1970];
     [brick performOnSprite:nil fromScript:script];
     NSTimeInterval after = [[NSDate date]timeIntervalSince1970];
@@ -126,8 +126,8 @@
 {
     int xPosition = -5;
     int yPosition = 10;
-    ChangeXByBrick *xBrick = [[ChangeXByBrick alloc]initWithChangeValueForX:xPosition];
-    ChangeYByBrick *yBrick = [[ChangeYByBrick alloc]initWithChangeValueForY:yPosition];
+    ChangeXByNBrick *xBrick = [[ChangeXByNBrick alloc]initWithChangeValueForX:xPosition];
+    ChangeYByNBrick *yBrick = [[ChangeYByNBrick alloc]initWithChangeValueForY:yPosition];
     
     Sprite *sprite = [[Sprite alloc]initWithEffect:nil];
     
@@ -206,7 +206,7 @@
     float increase = 0.10f;
     Sprite *sprite = [[Sprite alloc]initWithEffect:nil];
     float alpha = [sprite alphaValue];
-    ChangeGhostEffectBrick* changeGhostEffectBrick = [[ChangeGhostEffectBrick alloc] initWithIncrease:increase];
+    ChangeGhostEffectByNBrick* changeGhostEffectBrick = [[ChangeGhostEffectByNBrick alloc] initWithIncrease:increase];
     [changeGhostEffectBrick performOnSprite:sprite fromScript:nil];
     
     STAssertTrue((alpha-(increase/100.0f)) == [sprite alphaValue], @"Alpha Value not the same");
@@ -266,7 +266,7 @@
     //sprite2
     int timeToWaitInMilliSecs = 300;
     WaitBrick *waitBrick = [[WaitBrick alloc]init];
-    waitBrick.timeToWaitInMilliseconds = [NSNumber numberWithInt:timeToWaitInMilliSecs];
+    waitBrick.timeToWaitInMilliSeconds = [NSNumber numberWithInt:timeToWaitInMilliSecs];
 
     Script *broadcastScript = [[Script alloc]init];
     [broadcastScript addBricks:[NSArray arrayWithObject:waitBrick]];

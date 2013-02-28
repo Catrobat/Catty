@@ -1,5 +1,5 @@
 //
-//  StartScript.h
+//  BroadcastScript.h
 //  Catty
 //
 //  Created by Christof Stromberger on 28.02.13.
@@ -8,9 +8,10 @@
 
 #import "Script.h"
 
-@interface StartScript : Script
+@interface BroadcastScript : Script
 
 #warning @mattias: I've added this property. Please implement it correctly... :-P
 @property (nonatomic, strong) Sprite *sprite;
+@property (nonatomic, strong) NSString *receivedMessage;
 
 @end

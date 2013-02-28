@@ -1,5 +1,5 @@
 //
-//  StartScript.h
+//  WhenScript.h
 //  Catty
 //
 //  Created by Christof Stromberger on 28.02.13.
@@ -8,7 +8,7 @@
 
 #import "Script.h"
 
-@interface StartScript : Script
+@interface WhenScript : Script
 
 #warning @mattias: I've added this property. Please implement it correctly... :-P
 @property (nonatomic, strong) Sprite *sprite;

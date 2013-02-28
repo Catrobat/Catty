@@ -6,9 +6,9 @@
 //  Copyright (c) 2012 Graz University of Technology. All rights reserved.
 //
 
-#import "ChangeGhostEffectBrick.h"
+#import "ChangeGhostEffectByNBrick.h"
 
-@implementation ChangeGhostEffectBrick
+@implementation ChangeGhostEffectByNBrick
 
 @synthesize increase= _increase;
 

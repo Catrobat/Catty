@@ -13,10 +13,6 @@
 
 @property (assign, nonatomic) float size;
 
-#warning @mattias: I've added this property (because we need it in the XML)
-#warning @mattias: Please add the implementation :-S
-@property (nonatomic, strong) Sprite *sprite;
-
 -(id)initWithSizeInPercentage:(float)sizeInPercentage;
 
 @end

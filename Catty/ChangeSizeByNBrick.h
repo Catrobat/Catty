@@ -10,7 +10,7 @@
 
 @interface ChangeSizeByNBrick : Brick
 
-@property (assign, nonatomic) float sizeInPercentage;
+@property (assign, nonatomic) float size;
 
 -(id)initWithSizeChangeRate:(float)sizeInPercentage;
 

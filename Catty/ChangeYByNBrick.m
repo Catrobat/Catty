@@ -6,9 +6,9 @@
 //  Copyright (c) 2012 Graz University of Technology. All rights reserved.
 //
 
-#import "ChangeYByBrick.h"
+#import "ChangeYByNBrick.h"
 
-@implementation ChangeYByBrick
+@implementation ChangeYByNBrick
 
 @synthesize y = _y;
 

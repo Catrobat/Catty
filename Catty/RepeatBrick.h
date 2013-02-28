@@ -6,12 +6,14 @@
 //  Copyright (c) 2012 Graz University of Technology. All rights reserved.
 //
 
-#import "LoopBrick.h"
+#import "ForeverBrick.h"
 
-@interface RepeatBrick : LoopBrick
+@interface RepeatBrick : ForeverBrick
 
-@property (nonatomic, assign) int numberOfLoops;
+#warning @mattias: I've changed the name of this property and the type from int to NSNumber*
+@property (nonatomic, assign) NSNumber *timesToRepeat;
 
--(id)initWithNumberOfLoops:(int)numberOfLoops;
+-(id)initWithNumberOfLoops:(NSNumber*)numberOfLoops;
+
 
 @end

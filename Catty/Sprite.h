@@ -41,7 +41,7 @@
 
 @property (strong, nonatomic) NSString *projectPath; //for image-path!!!
 @property (readonly, strong, nonatomic) NSArray *lookList;
-@property (readonly, strong, nonatomic) NSMutableArray *soundsArray;
+@property (readonly, strong, nonatomic) NSMutableArray *soundList;
 
 // new script array (contains StartScrupt and WhenScripts
 @property (nonatomic, strong) NSArray *scriptList;

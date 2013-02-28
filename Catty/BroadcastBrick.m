@@ -10,14 +10,14 @@
 
 @implementation BroadcastBrick
 
-@synthesize message = _message;
+@synthesize broadcastMessage = _message;
 
 -(id)initWithMessage:(NSString *)message
 {
     self = [super init];
     if (self)
     {
-        self.message = message;
+        self.broadcastMessage = message;
     }
     return self;
 }
@@ -26,7 +26,7 @@
 {
     NSLog(@"Performing: %@", self.description);
     
-    [sprite broadcast:self.message];
+    [sprite broadcast:self.broadcastMessage];
     
     //    float sleepTime = ((float)self.timeToWaitInMilliseconds.intValue)/1000;
     //    NSLog(@"wating for %f seconds", sleepTime);
@@ -39,7 +39,7 @@
 #pragma mark - Description
 - (NSString*)description
 {
-    return [NSString stringWithFormat:@"Broadcast (Msg: %@)", self.message];
+    return [NSString stringWithFormat:@"Broadcast (Msg: %@)", self.broadcastMessage];
 }
 
 @end

@@ -7,8 +7,12 @@
 //
 
 #import "Brick.h"
+#import "LoopEndBrick.h"
 
-@interface LoopBrick : Brick
+@interface ForeverBrick : Brick
+
+#warning @mattias: I've added this property...
+@property (nonatomic, strong) LoopEndBrick *loopEndBrick;
 
 -(BOOL)checkConditionAndDecrementLoopCounter;
 

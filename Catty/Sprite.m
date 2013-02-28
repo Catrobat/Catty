@@ -66,7 +66,7 @@
 @property (strong, nonatomic) NSNumber *indexOfCurrentCostumeInArray;
 
 @property (strong, nonatomic) NSArray *lookList;    // tell the compiler: "I want a private setter"
-@property (strong, nonatomic) NSMutableArray *soundsArray;
+@property (strong, nonatomic) NSMutableArray *soundList;
 @property (strong, nonatomic) NSArray *startScriptsArray;
 @property (strong, nonatomic) NSArray *whenScriptsArray;
 @property (strong, nonatomic) NSDictionary *broadcastScripts;
@@ -80,7 +80,7 @@
 @synthesize broadcastWaitDelegate = _broadcastWaitDelegate;
 @synthesize projectPath = _projectPath;
 @synthesize lookList = _lookList;
-@synthesize soundsArray = _soundsArray;
+@synthesize soundList = _soundsArray;
 @synthesize startScriptsArray = _startScriptsArray;
 @synthesize whenScriptsArray = _whenScriptsArray;
 @synthesize broadcastScripts = _broadcastScripts;
@@ -110,7 +110,7 @@
     return _lookList;
 }
 
-- (NSMutableArray*)soundsArray
+- (NSMutableArray*)soundList
 {
     if (_soundsArray == nil)
         _soundsArray = [[NSMutableArray alloc] init];
@@ -453,24 +453,24 @@
 
 - (void)addSound:(AVAudioPlayer *)player
 {
-    [self.soundsArray addObject:player];
+    [self.soundList addObject:player];
     player.delegate = self;
     [player play];
 }
 
 -(void)stopAllSounds
 {    
-    for(AVAudioPlayer* player in self.soundsArray)
+    for(AVAudioPlayer* player in self.soundList)
     {
         [player stop];
     }
-    [self.soundsArray removeAllObjects];
+    [self.soundList removeAllObjects];
 }
 
 
 - (void)setVolumeTo:(float)volume
 {
-    for(AVAudioPlayer* player in self.soundsArray)
+    for(AVAudioPlayer* player in self.soundList)
     {
         player.volume = volume;
     }
@@ -478,7 +478,7 @@
 
 -(void)changeVolumeBy:(float)percent
 {
-    for(AVAudioPlayer* player in self.soundsArray)
+    for(AVAudioPlayer* player in self.soundList)
     {
         player.volume += percent;
     }
@@ -519,10 +519,10 @@
         [ret appendString:@"\t\t\tCostumes: None\n"];
     }
 
-    if ([self.soundsArray count] > 0)
+    if ([self.soundList count] > 0)
     {
         [ret appendString:@"\t\t\tSounds\n"];
-        for (Sound *sound in self.soundsArray)
+        for (Sound *sound in self.soundList)
         {
             [ret appendFormat:@"\t\t\t\t - %@\n", sound];
         }

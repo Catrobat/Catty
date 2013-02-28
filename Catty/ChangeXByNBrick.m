@@ -6,9 +6,9 @@
 //  Copyright (c) 2012 Graz University of Technology. All rights reserved.
 //
 
-#import "ChangeXByBrick.h"
+#import "ChangeXByNBrick.h"
 
-@implementation ChangeXByBrick
+@implementation ChangeXByNBrick
 
 @synthesize x = _x;
 

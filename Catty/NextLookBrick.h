@@ -8,6 +8,6 @@
 
 #import "Brick.h"
 
-@interface NextCostumeBrick : Brick
+@interface NextLookBrick : Brick
 
 @end
