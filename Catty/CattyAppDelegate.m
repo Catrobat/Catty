@@ -61,7 +61,7 @@
 
 -(void) initNavigationBar {
     
-    UIImage *navbarimage = [[UIImage imageNamed:@"navbar"]
+    UIImage *navbarimage = [[UIImage imageNamed:@"darkblue"]
                             resizableImageWithCapInsets:UIEdgeInsetsMake(0, 0, 0, 0)];
     
     [[UINavigationBar appearance] setBackgroundImage:navbarimage

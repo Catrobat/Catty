@@ -62,10 +62,11 @@
 
 #pragma marks init
 -(void)initTableView {
+    self.cells = [[NSArray alloc] initWithObjects:@"continue", @"new", @"programs", @"forum", @"download", @"upload", nil];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
-    self.cells = [[NSArray alloc] initWithObjects:@"continue", @"new", @"programs", @"forum", @"download", @"upload", nil];
-    //self.images = [[NSArray alloc] initWithObjects:@"continue.png", nil];
+    [self.tableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
+    self.tableView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"darkblue"]];
 }
 
 #pragma mark - Table view data source
@@ -91,20 +92,12 @@
     }
     
     [self configureCell:cell atIndexPath:indexPath];
-    
+    [self configureTitleLabelForCell:cell atIndexPath:indexPath];
+    [self configureImageViewForCell:cell atIndexPath:indexPath];
 
-    UILabel* titleLabel = (UILabel*)[cell viewWithTag:START_TITLE_TAG];
-    titleLabel.text = NSLocalizedString([[self.cells objectAtIndex:indexPath.row] capitalizedString], nil);
-    titleLabel.textColor = [UIColor colorWithRed:168.0f/255.0f green:223.0f/255.0f blue:244/255.0f alpha:1.0f];
-    
-    UIImageView *imageView = (UIImageView*)[cell viewWithTag:START_IMAGE_TAG];
-    imageView.image = [UIImage imageNamed: [self.cells objectAtIndex:indexPath.row]];
 
-    
     if(indexPath.row == 0) {
-        UILabel* subtitleLabel = (UILabel*)[cell viewWithTag:START_SUBTITLE_TAG];
-        subtitleLabel.textColor = [UIColor colorWithRed:212.0f/255.0f green:219.0f/255.0f blue:222.0f/255.0f alpha:1.0f];
-        subtitleLabel.text = @"My Zoo";
+        [self configureSubtitleLabelForCell:cell];
     }
     
 
@@ -127,6 +120,41 @@
     [cell.backgroundView.layer insertSublayer:[self getBackgroundLayerForCell:cell atIndexPath:indexPath withFrame:frame] atIndex:0];
         
     [cell setSelectedBackgroundView:[self getSelectedBackground]];
+    
+    if(indexPath.row != ([self.cells count]-1)) {
+        UIImageView *seperator = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"cellseperator"]];
+        seperator.frame = CGRectMake(0.0f, [self getHeightForCellAtIndexPath:indexPath], cell.bounds.size.width, 4.0f);
+        [cell.contentView addSubview:seperator];
+    }
+    
+}
+
+-(void)configureTitleLabelForCell:(UITableViewCell*)cell atIndexPath:(NSIndexPath*)indexPath {
+    
+    UILabel* titleLabel = (UILabel*)[cell viewWithTag:START_TITLE_TAG];
+    titleLabel.text = NSLocalizedString([[self.cells objectAtIndex:indexPath.row] capitalizedString], nil);
+    titleLabel.textColor = [UIColor colorWithRed:168.0f/255.0f green:223.0f/255.0f blue:244/255.0f alpha:1.0f];
+    
+    if(indexPath.row == 0) {
+        CGFloat screenHeight = [self getScreenHeight];
+//        titleLabel.frame = CGRectMake(titleLabel.frame.origin.x, 80*screenHeight/IPHONE5_SCREEN_HEIGHT, titleLabel.frame.size.width, titleLabel.frame.size.height);
+    }
+}
+
+
+-(void)configureImageViewForCell:(UITableViewCell*)cell atIndexPath:(NSIndexPath*)indexPath {
+    
+    UIImageView *imageView = (UIImageView*)[cell viewWithTag:START_IMAGE_TAG];
+    imageView.image = [UIImage imageNamed: [self.cells objectAtIndex:indexPath.row]];
+}
+
+
+-(void)configureSubtitleLabelForCell:(UITableViewCell*)cell {
+    
+    UILabel* subtitleLabel = (UILabel*)[cell viewWithTag:START_SUBTITLE_TAG];
+    subtitleLabel.textColor = [UIColor colorWithRed:212.0f/255.0f green:219.0f/255.0f blue:222.0f/255.0f alpha:1.0f];
+#warning USE NSUSERDEFAULTS here..
+    subtitleLabel.text = @"My Zoo";
 }
 
 
@@ -148,53 +176,16 @@
 
 
 -(CGFloat)getHeightForCellAtIndexPath:(NSIndexPath*) indexPath {
-    CGRect screenRect = [[UIScreen mainScreen] bounds];
-    CGFloat screenHeight = screenRect.size.height;
+    CGFloat screenHeight = [self getScreenHeight];
     return (indexPath.row == 0) ? (CONTINUE_CELL_HEIGHT*screenHeight)/IPHONE5_SCREEN_HEIGHT : (IMAGE_CELL_HEIGHT*screenHeight)/IPHONE5_SCREEN_HEIGHT;
 }
 
-
-
-
-
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
+-(CGFloat)getScreenHeight {
+    
+    CGRect screenRect = [[UIScreen mainScreen] bounds];
+    return screenRect.size.height;
 }
-*/
 
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    }   
-    else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
-}
-*/
-
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath
-{
-}
-*/
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
 
 #pragma mark - Table view delegate
 
