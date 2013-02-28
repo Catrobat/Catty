@@ -953,13 +953,13 @@
 			name = HelperTests;
 			sourceTree = "<group>";
 		};
-		B4F05A9715B888E400C90ED0 /* gdata */ = {
+		B4F05A9715B888E400C90ED0 /* GDataXMLNode */ = {
 			isa = PBXGroup;
 			children = (
 				B4F05A9915B888EE00C90ED0 /* GDataXMLNode.h */,
 				B4F05A9A15B888EE00C90ED0 /* GDataXMLNode.m */,
 			);
-			name = gdata;
+			name = GDataXMLNode;
 			sourceTree = "<group>";
 		};
 		B4FDF30F15A82C0F00CBCF03 = {
@@ -1062,8 +1062,8 @@
 		B4FDF35F15A82CBF00CBCF03 /* XMLParser */ = {
 			isa = PBXGroup;
 			children = (
-				B4F05A9715B888E400C90ED0 /* gdata */,
 				B4FDF36015A82E9800CBCF03 /* XMLParserProtocol.h */,
+				B4F05A9715B888E400C90ED0 /* GDataXMLNode */,
 				B4B487B715B730E0004AC99E /* RetailParser */,
 				B416784716DFB57400812CB5 /* ProjectParser */,
 			);
