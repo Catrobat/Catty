@@ -34,7 +34,7 @@
 #define kParserObjectTypeMutableArray   @"T@\"NSMutableArray\""
 #define kParserObjectTypeDate           @"T@\"NSDate\""
 
-// just temp
+// TODO: fix the user defined warnings below and remove this in final version
 #define kParserObjectTypeSprite         @"T@\"Sprite\""
 #define kParserObjectTypeLookData       @"T@\"LookData\""
 #define kParserObjectTypeLoopEndBrick   @"T@\"LoopEndBrick\""
@@ -180,7 +180,7 @@
         return nil; // TODO!
     }
     else {
-        abort();
+        abort(); // TODO: just for debug purposes
     }
     
     return nil;
@@ -205,6 +205,5 @@ const char* property_getTypeString(objc_property_t property) {
 	
 	return buffer;
 }
-
 
 @end
