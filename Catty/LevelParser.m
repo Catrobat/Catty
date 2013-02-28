@@ -63,72 +63,20 @@
 
 @interface LevelParser()
 
-@property (nonatomic, strong) NSArray *classPool;
-
-// old
-@property (nonatomic, strong, getter=theNewSprite) Sprite *newSprite;
-
-- (Costume*)loadCostume:(GDataXMLElement*)gDataCostume;
-- (Script*)loadScript:(GDataXMLElement*)gDataScript;
-
 @end
 
 @implementation LevelParser
-
-@synthesize classPool = _classPool;
-
-// old
-@synthesize newSprite = _newSprite;
 
 - (Level*)loadLevel:(NSData*)xmlData
 {
     NSError *error;
     GDataXMLDocument *doc = [[GDataXMLDocument alloc] initWithData:xmlData 
                                                            options:0
-                                                             error:&error];
+                                                            error:&error];
+    if (error) { return nil; }
     if (doc == nil) 
         return nil;
-    
-    // init class pool
-    NSMutableArray *pool = [[NSMutableArray alloc] init];
-    [pool addObject:@"Sprite"];
-    // todo: add more...
-    
-    // assign class pool
-    self.classPool = [NSArray arrayWithArray:pool];
-    
-    
-    // init a new level
-//    Level *level = [[Level alloc] init];
-//    
-//    // iterate through all elements in the xml root path
-//    for (GDataXMLElement *element in doc.rootElement.children) {
-//        
-//        [self setValueForElement:element inClass:level];
-//        
-//        
-//        //NSLog(@"%d, %@", element.childCount, element.name);
-//    }
-    
-    
-    
-    // THEORETICAL APPROACH
-    
-    // arr[] = {
-    // get node (first one = root node)
-    // instantiate class of node name (org.catrobat.catroid.content.Project)
-    // foreach child of root node
-    //    if not an array:
-    //       set property value based on xml
-    //    else (is an array)
-    //       property[] = ... -> recursive self
-    // }
-
-    //Level *temp = [[Level alloc] init];
-    GDataXMLElement *rootNode = doc.rootElement;
-    //NSArray *project = [self parseNode:rootNode forObject:temp];
-    
-    Project *temp = [self parseNode:rootNode];
+    Project *temp = [self parseNode:doc.rootElement];
     
     NSLog(@"%@", [temp debug]);
     
@@ -136,8 +84,15 @@
 }
 
 - (id)parseNode:(GDataXMLElement*)node {
+    // sanity check
+    if (!node) { return nil; }
+    
     // instantiate object based on node name (= class name)
     NSString *className = [[node.name componentsSeparatedByString:@"."] lastObject]; //this is just because of org.catrobat.catroid.bla...
+    if (!className) {
+        className = node.name;
+    }
+    
     id object = [[NSClassFromString(className) alloc] init];
     
     if (!object) {

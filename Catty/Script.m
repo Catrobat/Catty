@@ -176,15 +176,15 @@
     
     if ([self.brickList count] > 0)
     {
-        [ret appendString:@"Bricks: \n"];
+        [ret appendString:@"Bricks: \r"];
         for (Brick *brick in self.brickList)
         {
-            [ret appendFormat:@"\t\t - %@", brick];
+            [ret appendFormat:@"%@\r", brick];
         }
     }
     else 
     {
-        [ret appendString:@"Bricks array empty!\n"];
+        [ret appendString:@"Bricks array empty!\r"];
     }
     
     return ret;

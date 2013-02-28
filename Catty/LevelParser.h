@@ -39,28 +39,4 @@
 
 - (Level*)loadLevel:(NSData*)xmlData;
 
-////////// public for unit-test
-
-
--(SetLookBrick*)loadSetCostumeBrick:(GDataXMLElement*)gDataSetCostumeBrick;
--(WaitBrick*)loadWaitBrick:(GDataXMLElement*)gDataWaitBrick;
--(PlaceAtBrick*)loadPlaceAtBrick:(GDataXMLElement*)gDataXMLElement;
--(GlideToBrick*)loadGlideToBrick:(GDataXMLElement*)gDataXMLElement;
--(SetXBrick*)loadSetXBrick:(GDataXMLElement*)gDataXMLElement;
--(SetYBrick*)loadSetYBrick:(GDataXMLElement*)gDataXMLElement;
--(ChangeSizeByNBrick*)loadChangeSizeByNBrick:(GDataXMLElement*)gDataXMLElement;
--(BroadcastBrick*)loadBroadcastBrick:(GDataXMLElement*)gDataXMLElement;
--(BroadcastWaitBrick*)loadBroadcastWaitBrick:(GDataXMLElement*)gDataXMLElement;
--(ChangeXByNBrick*)loadChangeXByBrick:(GDataXMLElement*)gDataXMLElement;
--(ChangeYByNBrick*)loadChangeYByBrick:(GDataXMLElement*)gDataXMLElement;
--(PlaySoundBrick*)loadSoundBrick:(GDataXMLElement*)gDataXMLElement;
--(SetSizeToBrick*)loadSetSizeToBrick:(GDataXMLElement*)gDataXMLElement;
--(RepeatBrick*)loadRepeatBrick:(GDataXMLElement*)gDataXMLElement;
--(GoNStepsBackBrick*)loadGoNStepsBackBrick:(GDataXMLElement*)gDataXMLElement;
--(SetGhostEffectBrick*)loadGhostEffectBrick:(GDataXMLElement*)gDataXMLElement;
--(ChangeGhostEffectByNBrick*)loadChangeGhostEffectBrick:(GDataXMLElement*)gDataXMLElement;
--(SetVolumeToBrick*)loadSetVolumeToBrick:(GDataXMLElement*)gDataXMLElement;
--(ChangeVolumeByBrick*)loadChangeVolumeByBrick:(GDataXMLElement*)gDataXMLElement;
--(SpeakBrick*)loadSpeakBrick:(GDataXMLElement*)gDataXMLElement;
-
 @end
