@@ -23,8 +23,6 @@
 #import "ProjectParser.h"
 #import "GDataXMLNode.h"
 #import "Project.h"
-
-// introspection
 #import <objc/runtime.h>
 #import <Foundation/NSObjCRuntime.h>
 
@@ -55,25 +53,38 @@
 
 
 // -----------------------------------------------------------------------------
-- (Project*)loadLevel:(NSData*)xmlData
-{
+// loadProject:
+// This method passes the root element of the XML document into the parseNode:
+// method, which in turn builds up the entire project 'tree' and returns it.
+// Then this method returns this 'tree' that is stored as a Project object to
+// the caller.
+// [in] xmlData: The XML file as NSData*
+// [out] This method returns the project 'tree' as Project object
+- (Project*)loadProject:(NSData*)xmlData {
+    // sanity checks
+    if (!xmlData) { return nil; }
+    
     NSError *error;
     GDataXMLDocument *doc = [[GDataXMLDocument alloc] initWithData:xmlData 
                                                            options:0
                                                             error:&error];
     // sanity checks
-    if (error) { return nil; }
-    if (!doc)  { return nil; }
-    Project *temp = [self parseNode:doc.rootElement];
-    
-    NSLog(@"%@", [temp debug]);
-    
-    return temp;
+    if (error || !doc) { return nil; }
+
+    // parse and return Project object
+    return [self parseNode:doc.rootElement];
 }
 
 
 
 // -----------------------------------------------------------------------------
+// parseNode:
+// This method is used to parse a generic GDataXMLElement (node) and their
+// children. First, the method instantiates a new object using introspection
+// with the name of the current node. IMPORTANT: This means, that each XML tag
+// must be present as class in this project. Otherwise the application aborts.
+// This procedure is done recursively for each child of this node and so on
+// [in] node: The current GDataXMLElement node of the XML file
 - (id)parseNode:(GDataXMLElement*)node {
     // sanity check
     if (!node) { return nil; }
@@ -138,7 +149,14 @@
 
 
 // -----------------------------------------------------------------------------
+// getSingleValue:ofType:
+// This method extracts a single value of a given GDataXMLElement for the
+// corresponding (given) type, such as NSString, NSArray and so on.
 - (id)getSingleValue:(GDataXMLElement*)element ofType:(NSString*)propertyType {
+    // sanity checks
+    if (!element || !propertyType) { return nil; }
+    
+    
     // check type
     if ([propertyType isEqualToString:kParserObjectTypeString]) {
         return element.stringValue;
@@ -174,7 +192,7 @@
 //                                   HELPER
 // -----------------------------------------------------------------------------
 const char* property_getTypeString(objc_property_t property) {
-	const char * attrs = property_getAttributes(property);
+	const char *attrs = property_getAttributes(property);
 	if (attrs == NULL) { return NULL; }
 	
 	static char buffer[256];

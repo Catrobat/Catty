@@ -46,7 +46,7 @@
     ProjectParser *parser = [[ProjectParser alloc] init];
     
     // return Project object
-    return [parser loadLevel:xmlData];
+    return [parser loadProject:xmlData];
 }
 
 @end
