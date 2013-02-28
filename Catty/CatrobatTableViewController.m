@@ -8,7 +8,12 @@
 
 #import "CatrobatTableViewController.h"
 #import "CellTags.h"
+#import "BackgroundLayer.h"
 
+
+#define IPHONE5_SCREEN_HEIGHT 568
+#define CONTINUE_CELL_HEIGHT  124.0f
+#define IMAGE_CELL_HEIGHT     79.0f
 
 @interface CatrobatTableViewController ()
 
@@ -34,7 +39,19 @@
     [super viewDidLoad];
     
     [self initTableView];
+//    self.title = @"Catrobat";
+    UIImageView *imageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"catrobat"]];
+
+    UILabel* title = [[UILabel alloc] init];
+    title.textColor = [UIColor colorWithRed:111.0f/255.0f green:142.0f/255.0f blue:155.0f/255.0f alpha:1.0f];
+    title.font = [UIFont boldSystemFontOfSize:18.0f];
+    title.text = @"Catrobat";
+    title.backgroundColor = [UIColor clearColor];
+    [title sizeToFit];
     
+    
+    self.navigationItem.leftBarButtonItems = [[NSArray alloc] initWithObjects:[[UIBarButtonItem alloc] initWithCustomView:imageView], [[UIBarButtonItem alloc] initWithCustomView:title], nil];
+
 }
 
 - (void)didReceiveMemoryWarning
@@ -47,8 +64,8 @@
 -(void)initTableView {
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
-    self.cells = [[NSArray alloc] initWithObjects:@"Continue", @"New", @"Programs", @"Forum", @"Community", @"Upload", nil];
-    self.images = [[NSArray alloc] initWithObjects:@"continue.png", nil];
+    self.cells = [[NSArray alloc] initWithObjects:@"continue", @"new", @"programs", @"forum", @"download", @"upload", nil];
+    //self.images = [[NSArray alloc] initWithObjects:@"continue.png", nil];
 }
 
 #pragma mark - Table view data source
@@ -61,7 +78,6 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {    
     return [self.cells count];
-    return 0;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -74,18 +90,21 @@
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
     
+    [self configureCell:cell atIndexPath:indexPath];
+    
 
     UILabel* titleLabel = (UILabel*)[cell viewWithTag:START_TITLE_TAG];
-    titleLabel.text = NSLocalizedString([self.cells objectAtIndex:indexPath.row], nil);
+    titleLabel.text = NSLocalizedString([[self.cells objectAtIndex:indexPath.row] capitalizedString], nil);
+    titleLabel.textColor = [UIColor colorWithRed:168.0f/255.0f green:223.0f/255.0f blue:244/255.0f alpha:1.0f];
     
     UIImageView *imageView = (UIImageView*)[cell viewWithTag:START_IMAGE_TAG];
+    imageView.image = [UIImage imageNamed: [self.cells objectAtIndex:indexPath.row]];
+
     
     if(indexPath.row == 0) {
         UILabel* subtitleLabel = (UILabel*)[cell viewWithTag:START_SUBTITLE_TAG];
+        subtitleLabel.textColor = [UIColor colorWithRed:212.0f/255.0f green:219.0f/255.0f blue:222.0f/255.0f alpha:1.0f];
         subtitleLabel.text = @"My Zoo";
-        
-        // TODO: Define other images and move outside of if..
-        imageView.image = [UIImage imageNamed: [self.images objectAtIndex:indexPath.row]];
     }
     
 
@@ -94,8 +113,49 @@
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return (indexPath.row == 0) ? 85.0f : 65.0f;
+    return [self getHeightForCellAtIndexPath:indexPath];
 }
+
+
+#pragma mark Helper
+
+-(void)configureCell:(UITableViewCell*)cell atIndexPath:(NSIndexPath*) indexPath {
+    
+    [cell setBackgroundColor:[UIColor clearColor]];
+    [cell setBackgroundView:[[UIView alloc] init]];
+    CGRect frame = CGRectMake(0, 0, cell.bounds.size.width, [self getHeightForCellAtIndexPath:indexPath]);
+    [cell.backgroundView.layer insertSublayer:[self getBackgroundLayerForCell:cell atIndexPath:indexPath withFrame:frame] atIndex:0];
+        
+    [cell setSelectedBackgroundView:[self getSelectedBackground]];
+}
+
+
+-(CAGradientLayer*)getBackgroundLayerForCell:(UITableViewCell*)cell atIndexPath:(NSIndexPath*) indexPath withFrame:(CGRect)frame{
+    
+    CAGradientLayer *grad = [BackgroundLayer darkBlueGradient];
+    grad.frame = frame;
+    
+    return grad;
+}
+
+
+
+-(UIView*)getSelectedBackground{
+    UIView *bgColorView = [[UIView alloc] init];
+    [bgColorView setBackgroundColor:[UIColor colorWithRed:1.0f green:1.0f blue:1.0f alpha:0.15f]];
+    return bgColorView;
+}
+
+
+-(CGFloat)getHeightForCellAtIndexPath:(NSIndexPath*) indexPath {
+    CGRect screenRect = [[UIScreen mainScreen] bounds];
+    CGFloat screenHeight = screenRect.size.height;
+    return (indexPath.row == 0) ? (CONTINUE_CELL_HEIGHT*screenHeight)/IPHONE5_SCREEN_HEIGHT : (IMAGE_CELL_HEIGHT*screenHeight)/IPHONE5_SCREEN_HEIGHT;
+}
+
+
+
+
 
 /*
 // Override to support conditional editing of the table view.

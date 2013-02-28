@@ -27,6 +27,8 @@
 {
     // Override point for customization after application launch.
     
+    [self initNavigationBar];
+    
     return YES;
 }
 							
@@ -55,6 +57,24 @@
 - (void)applicationWillTerminate:(UIApplication *)application
 {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+}
+
+-(void) initNavigationBar {
+    
+    UIImage *navbarimage = [[UIImage imageNamed:@"navbar"]
+                            resizableImageWithCapInsets:UIEdgeInsetsMake(0, 0, 0, 0)];
+    
+    [[UINavigationBar appearance] setBackgroundImage:navbarimage
+                                       forBarMetrics:UIBarMetricsDefault];
+    
+    [[UINavigationBar appearance] setTitleTextAttributes:
+     [NSDictionary dictionaryWithObjectsAndKeys:
+      [UIColor colorWithRed:111.0f/255.0f green:142.0f/255.0f blue:155.0f/255.0f alpha:1.0f], UITextAttributeTextColor,
+      [UIColor clearColor], UITextAttributeTextShadowColor,
+      [UIFont fontWithName:@"Arial-Bold" size:0.0], UITextAttributeFont,
+      nil]
+     ];
+    
 }
 
 @end
