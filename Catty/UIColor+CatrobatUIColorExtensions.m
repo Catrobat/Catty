@@ -10,14 +10,19 @@
 
 @implementation UIColor (CatrobatUIColorExtensions)
 
-+(UIColor *) brightBlueColor
++(UIColor *)brightBlueColor
 {    
     return [UIColor colorWithRed:168.0f/255.0f green:223.0f/255.0f blue:244/255.0f alpha:1.0f];
 }
 
-+(UIColor *) brightGrayColor
++(UIColor *)brightGrayColor
 {
     return [UIColor colorWithRed:212.0f/255.0f green:219.0f/255.0f blue:222.0f/255.0f alpha:1.0f];
+}
+
++(UIColor *)darkBlueColor
+{
+    return [UIColor colorWithRed:111.0f/255.0f green:142.0f/255.0f blue:155.0f/255.0f alpha:1.0f];
 }
 
 

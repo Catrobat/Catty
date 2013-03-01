@@ -10,7 +10,9 @@
 
 @interface UIColor (CatrobatUIColorExtensions)
 
-+(UIColor*)brightBlueColor;
++(UIColor*) brightBlueColor;
 
-+(UIColor *) brightGrayColor;
++(UIColor*) brightGrayColor;
+
++(UIColor*) darkBlueColor;
 @end

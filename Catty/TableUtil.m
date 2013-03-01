@@ -8,6 +8,7 @@
 
 #import "TableUtil.h"
 #import "Util.h"
+#import "UIColor+CatrobatUIColorExtensions.h"
 
 #define kIphone5ScreenHeight 568.0f
 #define kContinueCellHeight  124.0f
@@ -31,7 +32,7 @@
     
     UIImageView *imageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"catrobat"]];
     UILabel* titleLabel = [[UILabel alloc] init];
-    titleLabel.textColor = [UIColor colorWithRed:111.0f/255.0f green:142.0f/255.0f blue:155.0f/255.0f alpha:1.0f];
+    titleLabel.textColor = [UIColor darkBlueColor];
     titleLabel.font = [UIFont boldSystemFontOfSize:18.0f];
     titleLabel.text = title;
     titleLabel.backgroundColor = [UIColor clearColor];

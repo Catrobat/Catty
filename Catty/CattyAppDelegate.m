@@ -7,6 +7,7 @@
 //
 
 #import "CattyAppDelegate.h"
+#import "UIColor+CatrobatUIColorExtensions.h"
 
 @implementation CattyAppDelegate
 
@@ -69,22 +70,13 @@
     
     [[UINavigationBar appearance] setTitleTextAttributes:
      [NSDictionary dictionaryWithObjectsAndKeys:
-      [UIColor colorWithRed:111.0f/255.0f green:142.0f/255.0f blue:155.0f/255.0f alpha:1.0f], UITextAttributeTextColor,
+      [UIColor darkBlueColor], UITextAttributeTextColor,
       [UIColor clearColor], UITextAttributeTextShadowColor,
       [UIFont fontWithName:@"Arial-Bold" size:0.0], UITextAttributeFont,
       nil]
      ];
-    [self setBackButton];
     
 }
 
--(void)setBackButton {
-#warning correct size?
-    UIImage *backButton = [[UIImage imageNamed:@"backbutton"]
-                             resizableImageWithCapInsets:UIEdgeInsetsMake(0, 0, 0, 0)];
-    
-    [[UIBarButtonItem appearance] setBackButtonBackgroundImage:backButton
-     forState:UIControlStateNormal barMetrics:UIBarMetricsDefault];
-}
 
 @end
