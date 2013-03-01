@@ -74,7 +74,17 @@
       [UIFont fontWithName:@"Arial-Bold" size:0.0], UITextAttributeFont,
       nil]
      ];
+    [self setBackButton];
     
+}
+
+-(void)setBackButton {
+#warning correct size?
+    UIImage *backButton = [[UIImage imageNamed:@"backbutton"]
+                             resizableImageWithCapInsets:UIEdgeInsetsMake(0, 0, 0, 0)];
+    
+    [[UIBarButtonItem appearance] setBackButtonBackgroundImage:backButton
+     forState:UIControlStateNormal barMetrics:UIBarMetricsDefault];
 }
 
 @end

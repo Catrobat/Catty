@@ -9,10 +9,8 @@
 
 #import "DarkBlueStripesCell.h"
 #import "CatrobatBaseCell.h"
-#import "Util.h"
+#import "TableUtil.h"
 
-
-#define kDarkBlueStripesCellHeight  124.0f
 
 @implementation DarkBlueStripesCell
 
@@ -42,7 +40,8 @@
 }
 
 -(void)configure {
-    CGRect frame = CGRectMake(0, 0, self.bounds.size.width, [self getOptimalCellHeight]);
+    
+    CGRect frame = CGRectMake(0, 0, self.bounds.size.width, [TableUtil getHeightForContinueCell]);
 
     [self setBackgroundColor:[UIColor clearColor]];
 
@@ -50,11 +49,6 @@
     bg.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"darkbluestripes"]];
     [self setBackgroundView:bg];
 
-}
-
--(CGFloat)getOptimalCellHeight {
-    CGFloat screenHeight = [Util getScreenHeight];
-    return (kDarkBlueStripesCellHeight*screenHeight)/kIphone5ScreenHeight;
 }
 
 

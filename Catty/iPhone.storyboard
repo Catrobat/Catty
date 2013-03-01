@@ -67,10 +67,54 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" id="vGJ-82-iau"/>
+                    <connections>
+                        <segue destination="s37-PF-3iN" kind="push" identifier="segueToProjects" id="vew-Li-crD"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="d1W-id-jRf" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="372" y="-58"/>
+        </scene>
+        <!--My Projects View Controller-->
+        <scene sceneID="54w-ir-dKC">
+            <objects>
+                <tableViewController id="s37-PF-3iN" customClass="MyProjectsViewController" sceneMemberID="viewController">
+                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="e7Z-A0-JPr">
+                        <rect key="frame" x="0.0" y="64" width="320" height="504"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="ImageCell" rowHeight="79" id="bxY-xJ-Lob" customClass="DarkBlueGradientCell">
+                                <rect key="frame" x="0.0" y="22" width="320" height="79"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                    <rect key="frame" x="0.0" y="0.0" width="300" height="78"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" tag="12" contentMode="left" text="Title" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="7VV-Cs-K8i">
+                                            <rect key="frame" x="95" y="31" width="185" height="22"/>
+                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <color key="highlightedColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        </label>
+                                        <imageView userInteractionEnabled="NO" tag="11" contentMode="scaleToFill" id="642-Kc-jVe">
+                                            <rect key="frame" x="20" y="17" width="50" height="50"/>
+                                        </imageView>
+                                    </subviews>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                </view>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="s37-PF-3iN" id="F7s-yf-inb"/>
+                            <outlet property="delegate" destination="s37-PF-3iN" id="p1V-O8-1YO"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" id="WNU-lr-3un"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Ysn-tw-Bdd" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="844" y="-58"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="W8F-bp-hNi">
@@ -91,20 +135,6 @@
             <point key="canvasLocation" x="-130" y="-58"/>
         </scene>
     </scenes>
-    <classes>
-        <class className="CatrobatBaseCell" superclassName="UITableViewCell">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/CatrobatBaseCell.h"/>
-        </class>
-        <class className="CatrobatTableViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/CatrobatTableViewController.h"/>
-        </class>
-        <class className="DarkBlueGradientCell" superclassName="CatrobatBaseCell">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/DarkBlueGradientCell.h"/>
-        </class>
-        <class className="DarkBlueStripesCell" superclassName="CatrobatBaseCell">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/DarkBlueStripesCell.h"/>
-        </class>
-    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>

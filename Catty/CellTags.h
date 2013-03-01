@@ -9,12 +9,12 @@
 #ifndef Catty_CellTags_h
 #define Catty_CellTags_h
 
-#define START_CONTINUE_CELL @"ContinueCell"
-#define START_IMAGE_CELL    @"ImageCell"
+#define kContinueCell @"ContinueCell"
+#define kImageCell    @"ImageCell"
 
-#define START_IMAGE_TAG     11
-#define START_TITLE_TAG     12
-#define START_SUBTITLE_TAG  13
+#define kImageLabelTag     11
+#define kTitleLabelTag     12
+#define kSubtitleLabelTag  13
 
 
 

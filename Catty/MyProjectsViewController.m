@@ -11,6 +11,9 @@
 #import "LevelLoadingInfo.h"
 #import "StageViewController.h"
 #import "CattyAppDelegate.h"
+#import "TableUtil.h"
+#import "CellTags.h"
+#import "UIColor+CatrobatUIColorExtensions.h"
 
 @interface MyProjectsViewController ()
 
@@ -36,11 +39,10 @@
     [super viewDidLoad];
 
     //background image
-    UIColor *background = [[UIColor alloc] initWithPatternImage:[UIImage imageNamed:@"startBackground"]];
-    self.view.backgroundColor = background;
-    [self.tableView setBackgroundView:nil];
-   
+    [self initTableView];
+    [TableUtil initNavigationItem:self.navigationItem withTitle:@"Programs" enableBackButton:YES target:self];
     
+        
     //loading levels
     NSString *documentsDirectoy = [Util applicationDocumentsDirectory];
     NSString *levelFolder = @"levels";
@@ -72,28 +74,46 @@
     // Dispose of any resources that can be recreated.
 }
 
+
+#pragma marks init
+-(void)initTableView {
+    self.tableView.delegate = self;
+    self.tableView.dataSource = self;
+    [self.tableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
+    self.tableView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"darkblue"]];
+    
+}
+
+
+
 #pragma mark - Table view data source
 
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
-{
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
     return 1;
 }
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return [self.levelLoadingInfos count];
 }
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    static NSString *CellIdentifier = @"Cell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];// forIndexPath:indexPath];
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    static NSString *CellIdentifier = @"ImageCell";
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     
-    LevelLoadingInfo *info = [self.levelLoadingInfos objectAtIndex:indexPath.row];
+    if(!cell) {
+        NSLog(@"This should not happen - since ios5 - storyboards manages allocation of cells");
+        abort();
+    }
     
-    cell.textLabel.text = info.visibleName;
+    [self configureCell:cell atIndexPath:indexPath];
+    [self configureTitleLabelForCell:cell atIndexPath:indexPath];
+    [self configureImageViewForCell:cell atIndexPath:indexPath];
     
     return cell;
+}
+
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return [TableUtil getHeightForImageCell];
 }
 
 
@@ -126,21 +146,6 @@
 }
 
 
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath
-{
-}
-*/
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
 
 #pragma mark - Table view delegate
 
@@ -173,6 +178,37 @@
         
     }
     
+}
+
+#pragma mark - BackButton
+-(void)back {
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
+#pragma mark Cell Helper
+-(void)configureCell:(UITableViewCell*)cell atIndexPath:(NSIndexPath*) indexPath
+{
+    if(indexPath.row != ([self.levelLoadingInfos count]-1)) {
+        [TableUtil addSeperatorForCell:cell atYPosition:[TableUtil getHeightForImageCell]];
+    }
+    
+}
+
+-(void)configureTitleLabelForCell:(UITableViewCell*)cell atIndexPath:(NSIndexPath*)indexPath
+{
+    UILabel* titleLabel = (UILabel*)[cell viewWithTag:kTitleLabelTag];
+    LevelLoadingInfo *info = [self.levelLoadingInfos objectAtIndex:indexPath.row];
+    titleLabel.text = info.visibleName;
+    titleLabel.textColor = [UIColor brightBlueColor];
+}
+
+
+-(void)configureImageViewForCell:(UITableViewCell*)cell atIndexPath:(NSIndexPath*)indexPath
+{
+    UIImageView *imageView = (UIImageView*)[cell viewWithTag:kImageLabelTag];
+    LevelLoadingInfo *info = [self.levelLoadingInfos objectAtIndex:indexPath.row];
+#warning we need an image here.. LevelLoading does not provide one..
+    imageView.image = [UIImage imageNamed:@"programs"];
 }
 
 @end

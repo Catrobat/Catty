@@ -9,8 +9,8 @@
 #import "DarkBlueGradientCell.h"
 #import "BackgroundLayer.h"
 #import "Util.h"
+#import "TableUtil.h"
 
-#define kDarkBlueGradientCellHeight 79.0f
 
 @implementation DarkBlueGradientCell
 
@@ -40,23 +40,17 @@
 
 -(void)configure {
     
-    CGRect frame = CGRectMake(0, 0, self.bounds.size.width, [self getOptimalCellHeight]);
+    CGRect frame = CGRectMake(0, 0, self.bounds.size.width, [TableUtil getHeightForImageCell]);
     [self setBackgroundColor:[UIColor clearColor]];
     [self setBackgroundView:[[UIView alloc] init]];
     [self.backgroundView.layer insertSublayer:[self getBackgroundLayerForFrame:frame] atIndex:0];
     
 }
 
--(CGFloat)getOptimalCellHeight {
-    CGFloat screenHeight = [Util getScreenHeight];
-    return (kDarkBlueGradientCellHeight*screenHeight)/kIphone5ScreenHeight;
-}
-
 -(CAGradientLayer*)getBackgroundLayerForFrame:(CGRect)frame{
     
     CAGradientLayer *grad = [BackgroundLayer darkBlueGradient];
     grad.frame = frame;
-    
     return grad;
 }
 
