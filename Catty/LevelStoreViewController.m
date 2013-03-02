@@ -13,6 +13,7 @@
 #import "Util.h"
 #import "TableUtil.h"
 #import "CellTags.h"
+#import "CatrobatImageCell.h"
 
 #define kConnectionTimeout 30
 #define kConnectionHost @"http://catroidtest.ist.tugraz.at/api/projects"
@@ -129,11 +130,17 @@
         abort();
     }
     
+
+    if([cell conformsToProtocol:@protocol(CatrobatImageCell)]) {
+        CatrobatProject *project = [self.projects objectAtIndex:indexPath.row];
+        
+        UITableViewCell <CatrobatImageCell>* imageCell = (UITableViewCell <CatrobatImageCell>*)cell;
+        imageCell.titleLabel.text = project.projectName;
+        
+        [self loadImage:project.screenshotSmall forCell:imageCell atIndexPath:indexPath];
+    }
     
-    CatrobatProject *project = [self.projects objectAtIndex:indexPath.row];
-    
-    
-    
+  
     return cell;
 }
 
@@ -159,15 +166,34 @@
 }
 
 
+-(void)loadImage:(NSString*)imageURL forCell:(UITableViewCell <CatrobatImageCell>*) imageCell atIndexPath:(NSIndexPath*)indexPath
+{
+    imageCell.imageView.image = [UIImage imageNamed:@"programs"];
+#warning one should save the images so they do not have to be downloaded again! - This way the UI is very laggy!
+//    
+//    dispatch_queue_t concurrentQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+//    dispatch_async(concurrentQueue, ^{
+//        NSData *image = [[NSData alloc] initWithContentsOfURL:[NSURL URLWithString:imageURL]];
+//        dispatch_async(dispatch_get_main_queue(), ^{
+//            if(image) {
+//                imageCell.imageView.image = [UIImage imageWithData:image];
+//            } else {
+//                imageCell.imageView.image = [UIImage imageNamed:@"programs"];
+//            }
+//            [self.tableView beginUpdates];
+//            [self.tableView reloadRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationNone];
+//            [self.tableView endUpdates];
+//            
+//        });
+//    });
+}
+
+
 
 #pragma mark - Table view delegate
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    if([tableView isEqual:self.searchDisplayController.searchResultsTableView]) {
-        return 20; // TODO: Change..
-    } else {
-        return [TableUtil getHeightForImageCell];
-    }
+    return [TableUtil getHeightForImageCell];
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath

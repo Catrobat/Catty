@@ -14,6 +14,7 @@
 #import "TableUtil.h"
 #import "CellTags.h"
 #import "UIColor+CatrobatUIColorExtensions.h"
+#import "CatrobatImageCell.h"
 
 @interface MyProjectsViewController ()
 
@@ -106,9 +107,12 @@
     }
     
 
-    [self configureTitleLabelForCell:cell atIndexPath:indexPath];
-    [self configureImageViewForCell:cell atIndexPath:indexPath];
+    if([cell conformsToProtocol:@protocol(CatrobatImageCell)]) {
+        UITableViewCell <CatrobatImageCell>* imageCell = (UITableViewCell <CatrobatImageCell>*)cell;
+        [self configureImageCell:imageCell atIndexPath:indexPath];
+    }
     
+        
     return cell;
 }
 
@@ -188,21 +192,15 @@
 
 #pragma mark - Cell Helper
 
--(void)configureTitleLabelForCell:(UITableViewCell*)cell atIndexPath:(NSIndexPath*)indexPath
-{
-    UILabel* titleLabel = (UILabel*)[cell viewWithTag:kTitleLabelTag];
-    LevelLoadingInfo *info = [self.levelLoadingInfos objectAtIndex:indexPath.row];
-    titleLabel.text = info.visibleName;
-    titleLabel.textColor = [UIColor brightBlueColor];
-}
 
-
--(void)configureImageViewForCell:(UITableViewCell*)cell atIndexPath:(NSIndexPath*)indexPath
+-(void)configureImageCell:(UITableViewCell <CatrobatImageCell>*)cell atIndexPath:(NSIndexPath*)indexPath
 {
-    UIImageView *imageView = (UIImageView*)[cell viewWithTag:kImageLabelTag];
     LevelLoadingInfo *info = [self.levelLoadingInfos objectAtIndex:indexPath.row];
+    cell.titleLabel.text = info.visibleName;
+    
 #warning we need an image here.. LevelLoading does not provide one..
-    imageView.image = [UIImage imageNamed:@"programs"];
+    cell.imageView.image = [UIImage imageNamed:@"programs"];
 }
+
 
 @end
