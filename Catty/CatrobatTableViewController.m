@@ -13,6 +13,7 @@
 #import "UIColor+CatrobatUIColorExtensions.h"
 #import "CattyAppDelegate.h"
 #import "Util.h"
+#import "CatrobatImageCell.h"
 
 @interface CatrobatTableViewController ()
 
@@ -77,15 +78,17 @@
 {
     NSString *CellIdentifier = (indexPath.row == 0) ? kContinueCell : kImageCell;
     
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    UITableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     
     if (!cell) {
         NSLog(@"Should Never happen - since iOS5 Storyboard *always* instantiates our cell!");
         abort();
     }
-    
-    [self configureTitleLabelForCell:cell atIndexPath:indexPath];
-    [self configureImageViewForCell:cell atIndexPath:indexPath];
+        
+    if([cell conformsToProtocol:@protocol(CatrobatImageCell)]) {
+        UITableViewCell <CatrobatImageCell>* imageCell = (UITableViewCell <CatrobatImageCell>*)cell;
+        [self configureImageCell:imageCell atIndexPath:indexPath];
+    }
 
     if(indexPath.row == 0) {
         [self configureSubtitleLabelForCell:cell];
@@ -119,18 +122,11 @@
 #pragma mark Helper
 
 
--(void)configureTitleLabelForCell:(UITableViewCell*)cell atIndexPath:(NSIndexPath*)indexPath
-{
-    UILabel* titleLabel = (UILabel*)[cell viewWithTag:kTitleLabelTag];
-    titleLabel.text = NSLocalizedString([[self.cells objectAtIndex:indexPath.row] capitalizedString], nil);
-    titleLabel.textColor = [UIColor brightBlueColor];
-}
 
-
--(void)configureImageViewForCell:(UITableViewCell*)cell atIndexPath:(NSIndexPath*)indexPath
+-(void)configureImageCell:(UITableViewCell <CatrobatImageCell>*)cell atIndexPath:(NSIndexPath*)indexPath
 {
-    UIImageView *imageView = (UIImageView*)[cell viewWithTag:kImageLabelTag];
-    imageView.image = [UIImage imageNamed: [self.cells objectAtIndex:indexPath.row]];
+    cell.titleLabel.text = NSLocalizedString([[self.cells objectAtIndex:indexPath.row] capitalizedString], nil);
+    cell.imageView.image = [UIImage imageNamed: [self.cells objectAtIndex:indexPath.row]];
 }
 
 

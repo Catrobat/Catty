@@ -17,7 +17,6 @@
 {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
-        // Initialization code
     }
     return self;
 }
@@ -36,25 +35,29 @@
 {
     [super setSelected:selected animated:animated];
 
-    // Configure the view for the selected state
 }
 
 -(void)initialize {
-    self.selectedBackgroundView = [self getSelectedBackground];
+    self.selectedBackgroundView = [self createSelectedBackground];
     self.accessoryView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"accessory"]];
-    
-    UIImageView *seperator = [self getSeperator];
-    [self.contentView addSubview:seperator];
-    self.seperatorView = seperator;
+    [self addCellSeperator];
 }
 
--(UIView*)getSelectedBackground{
+
+-(UIView*)createSelectedBackground{
     UIView *bgColorView = [[UIView alloc] init];
     [bgColorView setBackgroundColor:[UIColor colorWithRed:1.0f green:1.0f blue:1.0f alpha:0.15f]];
     return bgColorView;
 }
 
--(UIImageView*)getSeperator {
+
+-(void)addCellSeperator {
+    UIImageView *seperator = [self createCellSeperator];
+    [self.contentView addSubview:seperator];
+    self.seperatorView = seperator;
+}
+
+-(UIImageView*)createCellSeperator {
     UIImageView *seperator = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"cellseperator"]];
     seperator.frame = CGRectMake(0.0f, 0.0f, self.bounds.size.width, 4.0f);
     return seperator;

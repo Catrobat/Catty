@@ -25,7 +25,7 @@
 
 -(id)initWithCoder:(NSCoder *)aDecoder {
     if(self = [super initWithCoder:aDecoder]) {
-        [self configure];
+        [self configureStripesCell];
     }
     
     return self;
@@ -39,7 +39,7 @@
     // Configure the view for the selected state
 }
 
--(void)configure {
+-(void)configureStripesCell {
     
     CGRect frame = CGRectMake(0, 0, self.bounds.size.width, [TableUtil getHeightForContinueCell]);
 

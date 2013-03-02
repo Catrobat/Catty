@@ -25,6 +25,8 @@
 		B419691E1614530200AFC8C8 /* SetVolumeToBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = B419691D1614530200AFC8C8 /* SetVolumeToBrick.m */; };
 		B419692216147CD100AFC8C8 /* ChangeVolumeByBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = B419692116147CD100AFC8C8 /* ChangeVolumeByBrick.m */; };
 		B42A37FD162C62550024C793 /* sounds in Resources */ = {isa = PBXBuildFile; fileRef = B42A37FC162C62550024C793 /* sounds */; };
+		B42E0CE016E215C100DFCFC8 /* DarkBlueGradientImageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B42E0CDF16E215C100DFCFC8 /* DarkBlueGradientImageCell.m */; };
+		B42E0CE416E2164C00DFCFC8 /* DarkBlueStripesImageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B42E0CE316E2164C00DFCFC8 /* DarkBlueStripesImageCell.m */; };
 		B438FC8D16108E5200D6B911 /* FeaturedProjectsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B438FC8C16108E5200D6B911 /* FeaturedProjectsViewController.m */; };
 		B43CF2381608E0A000E19CF3 /* RecentProjectsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B43CF2371608E0A000E19CF3 /* RecentProjectsViewController.m */; };
 		B43CF23C1609926D00E19CF3 /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B43CF23B1609926D00E19CF3 /* RootViewController.m */; };
@@ -207,6 +209,11 @@
 		B419692116147CD100AFC8C8 /* ChangeVolumeByBrick.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChangeVolumeByBrick.m; sourceTree = "<group>"; };
 		B42A37FC162C62550024C793 /* sounds */ = {isa = PBXFileReference; lastKnownFileType = folder; path = sounds; sourceTree = "<group>"; };
 		B42E0CD816E1E86D00DFCFC8 /* BackButtonDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BackButtonDelegate.h; sourceTree = "<group>"; };
+		B42E0CDE16E215C100DFCFC8 /* DarkBlueGradientImageCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DarkBlueGradientImageCell.h; sourceTree = "<group>"; };
+		B42E0CDF16E215C100DFCFC8 /* DarkBlueGradientImageCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DarkBlueGradientImageCell.m; sourceTree = "<group>"; };
+		B42E0CE216E2164C00DFCFC8 /* DarkBlueStripesImageCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DarkBlueStripesImageCell.h; sourceTree = "<group>"; };
+		B42E0CE316E2164C00DFCFC8 /* DarkBlueStripesImageCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DarkBlueStripesImageCell.m; sourceTree = "<group>"; };
+		B42E0CE616E2187D00DFCFC8 /* CatrobatImageCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CatrobatImageCell.h; sourceTree = "<group>"; };
 		B438FC8B16108E5200D6B911 /* FeaturedProjectsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FeaturedProjectsViewController.h; sourceTree = "<group>"; };
 		B438FC8C16108E5200D6B911 /* FeaturedProjectsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FeaturedProjectsViewController.m; sourceTree = "<group>"; };
 		B43CF2361608E0A000E19CF3 /* RecentProjectsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecentProjectsViewController.h; sourceTree = "<group>"; };
@@ -625,6 +632,24 @@
 			name = ChangeVolumeByBrick;
 			sourceTree = "<group>";
 		};
+		B42E0CE116E2162900DFCFC8 /* DarkBlueGradientImageCell */ = {
+			isa = PBXGroup;
+			children = (
+				B42E0CDE16E215C100DFCFC8 /* DarkBlueGradientImageCell.h */,
+				B42E0CDF16E215C100DFCFC8 /* DarkBlueGradientImageCell.m */,
+			);
+			name = DarkBlueGradientImageCell;
+			sourceTree = "<group>";
+		};
+		B42E0CE516E2165100DFCFC8 /* DarkBlueStripesImageCell */ = {
+			isa = PBXGroup;
+			children = (
+				B42E0CE216E2164C00DFCFC8 /* DarkBlueStripesImageCell.h */,
+				B42E0CE316E2164C00DFCFC8 /* DarkBlueStripesImageCell.m */,
+			);
+			name = DarkBlueStripesImageCell;
+			sourceTree = "<group>";
+		};
 		B438FC8916108E2F00D6B911 /* FeaturedProjectsViewController */ = {
 			isa = PBXGroup;
 			children = (
@@ -996,9 +1021,12 @@
 				B4BC0DB116DF628900ED953C /* BackgroundLayer */,
 				B4BC0DCA16DFEF6500ED953C /* CatrobatBaseCell */,
 				B4BC0DCE16DFF48000ED953C /* DarkBlueGradientCell */,
+				B42E0CE116E2162900DFCFC8 /* DarkBlueGradientImageCell */,
 				B4BC0DC616DFEDC100ED953C /* DarkBlueStripesCell */,
+				B42E0CE516E2165100DFCFC8 /* DarkBlueStripesImageCell */,
 				B4516B5616E0AB0F00BA00D4 /* TableUtil */,
 				B4516B5C16E0BA3800BA00D4 /* UIColor+CatrobatUIColorExtensions */,
+				B42E0CE616E2187D00DFCFC8 /* CatrobatImageCell.h */,
 			);
 			name = UserInterface;
 			sourceTree = "<group>";
@@ -1777,6 +1805,8 @@
 				B4BC0DCD16DFF47D00ED953C /* DarkBlueGradientCell.m in Sources */,
 				B4516B5516E0AB0A00BA00D4 /* TableUtil.m in Sources */,
 				B4516B5B16E0BA2F00BA00D4 /* UIColor+CatrobatUIColorExtensions.m in Sources */,
+				B42E0CE016E215C100DFCFC8 /* DarkBlueGradientImageCell.m in Sources */,
+				B42E0CE416E2164C00DFCFC8 /* DarkBlueStripesImageCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
