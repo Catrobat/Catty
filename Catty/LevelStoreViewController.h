@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "BackButtonDelegate.h"
 
-@interface LevelStoreViewController : UITableViewController <NSURLConnectionDataDelegate, UISearchDisplayDelegate, UISearchBarDelegate>
+@interface LevelStoreViewController : UITableViewController <NSURLConnectionDataDelegate, UISearchDisplayDelegate, UISearchBarDelegate, BackButtonDelegate>
 
 @end

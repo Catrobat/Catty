@@ -12,7 +12,7 @@
 #import "TableUtil.h"
 #import "UIColor+CatrobatUIColorExtensions.h"
 #import "CattyAppDelegate.h"
-
+#import "Util.h"
 
 @interface CatrobatTableViewController ()
 
@@ -28,7 +28,6 @@
 {
     self = [super initWithStyle:style];
     if (self) {
-        // Custom initialization
     }
     return self;
 }
@@ -42,16 +41,12 @@
     
     CattyAppDelegate *appDelegate = (CattyAppDelegate*)[[UIApplication sharedApplication] delegate];
     [appDelegate.fileManager addDefaultProject];
-    
-//    UIBarButtonItem *button = [[UIBarButtonItem alloc] initWithTitle:@" " style:UIBarButtonItemStyleBordered target:self action:@selector(back:)];
-//    self.navigationItem.backBarButtonItem = button;
 
 }
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 #pragma marks init
@@ -91,7 +86,6 @@
     
     [self configureTitleLabelForCell:cell atIndexPath:indexPath];
     [self configureImageViewForCell:cell atIndexPath:indexPath];
-    [self configureCell:cell atIndexPath:indexPath];
 
     if(indexPath.row == 0) {
         [self configureSubtitleLabelForCell:cell];
@@ -105,10 +99,12 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    
-#warning do not use constants! just for debugging
-    if(indexPath.row == 2) {
-        [self performSegueWithIdentifier:@"segueToProjects" sender:self];
+    NSString* segue = [self.cells objectAtIndex:indexPath.row];
+#warning the if statement should be removed once everything has been implemented..
+    if([segue isEqualToString:@"download" ] || [segue isEqualToString:@"programs"]) {
+        [self performSegueWithIdentifier:segue sender:self];
+    } else {
+        [Util showComingSoonAlertView];
     }
 
 }
@@ -122,13 +118,6 @@
 
 #pragma mark Helper
 
--(void)configureCell:(UITableViewCell*)cell atIndexPath:(NSIndexPath*) indexPath
-{
-    if(indexPath.row != ([self.cells count]-1)) {
-        [TableUtil addSeperatorForCell:cell atYPosition:[self getHeightForCellAtIndexPath:indexPath]];
-    }
-    
-}
 
 -(void)configureTitleLabelForCell:(UITableViewCell*)cell atIndexPath:(NSIndexPath*)indexPath
 {

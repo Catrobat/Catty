@@ -97,7 +97,7 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    static NSString *CellIdentifier = @"ImageCell";
+    static NSString *CellIdentifier = kImageCell;
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     
     if(!cell) {
@@ -105,14 +105,15 @@
         abort();
     }
     
-    [self configureCell:cell atIndexPath:indexPath];
+
     [self configureTitleLabelForCell:cell atIndexPath:indexPath];
     [self configureImageViewForCell:cell atIndexPath:indexPath];
     
     return cell;
 }
 
--(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
     return [TableUtil getHeightForImageCell];
 }
 
@@ -180,19 +181,12 @@
     
 }
 
-#pragma mark - BackButton
+#pragma mark - BackButtonDelegate
 -(void)back {
     [self.navigationController popViewControllerAnimated:YES];
 }
 
-#pragma mark Cell Helper
--(void)configureCell:(UITableViewCell*)cell atIndexPath:(NSIndexPath*) indexPath
-{
-    if(indexPath.row != ([self.levelLoadingInfos count]-1)) {
-        [TableUtil addSeperatorForCell:cell atYPosition:[TableUtil getHeightForImageCell]];
-    }
-    
-}
+#pragma mark - Cell Helper
 
 -(void)configureTitleLabelForCell:(UITableViewCell*)cell atIndexPath:(NSIndexPath*)indexPath
 {

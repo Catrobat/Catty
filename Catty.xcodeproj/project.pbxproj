@@ -206,6 +206,7 @@
 		B419692016147CD100AFC8C8 /* ChangeVolumeByBrick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChangeVolumeByBrick.h; sourceTree = "<group>"; };
 		B419692116147CD100AFC8C8 /* ChangeVolumeByBrick.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChangeVolumeByBrick.m; sourceTree = "<group>"; };
 		B42A37FC162C62550024C793 /* sounds */ = {isa = PBXFileReference; lastKnownFileType = folder; path = sounds; sourceTree = "<group>"; };
+		B42E0CD816E1E86D00DFCFC8 /* BackButtonDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BackButtonDelegate.h; sourceTree = "<group>"; };
 		B438FC8B16108E5200D6B911 /* FeaturedProjectsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FeaturedProjectsViewController.h; sourceTree = "<group>"; };
 		B438FC8C16108E5200D6B911 /* FeaturedProjectsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FeaturedProjectsViewController.m; sourceTree = "<group>"; };
 		B43CF2361608E0A000E19CF3 /* RecentProjectsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecentProjectsViewController.h; sourceTree = "<group>"; };
@@ -1411,6 +1412,7 @@
 		CD85F53516085D07007C38D1 /* Delegates */ = {
 			isa = PBXGroup;
 			children = (
+				B42E0CD816E1E86D00DFCFC8 /* BackButtonDelegate.h */,
 				CD85F53B16085DD5007C38D1 /* SpriteManagerDelegate.h */,
 				CD8D9A2116D533F9005AD1AB /* BroadcastWaitDelegate.h */,
 			);

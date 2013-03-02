@@ -7,8 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "BackButtonDelegate.h"
 
-@interface MyProjectsViewController : UITableViewController
+@interface MyProjectsViewController : UITableViewController <BackButtonDelegate>
 
 
 @end

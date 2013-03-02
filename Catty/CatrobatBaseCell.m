@@ -11,6 +11,8 @@
 
 @implementation CatrobatBaseCell
 
+@synthesize seperatorView = _topSeperatorView;
+
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
@@ -40,6 +42,10 @@
 -(void)initialize {
     self.selectedBackgroundView = [self getSelectedBackground];
     self.accessoryView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"accessory"]];
+    
+    UIImageView *seperator = [self getSeperator];
+    [self.contentView addSubview:seperator];
+    self.seperatorView = seperator;
 }
 
 -(UIView*)getSelectedBackground{
@@ -48,10 +54,13 @@
     return bgColorView;
 }
 
--(CGFloat)getScreenHeight {
-    CGRect screenRect = [[UIScreen mainScreen] bounds];
-    return screenRect.size.height;
+-(UIImageView*)getSeperator {
+    UIImageView *seperator = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"cellseperator"]];
+    seperator.frame = CGRectMake(0.0f, 0.0f, self.bounds.size.width, 4.0f);
+    return seperator;
+    
 }
+
 
 
 @end

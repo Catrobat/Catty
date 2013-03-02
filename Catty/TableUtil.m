@@ -9,6 +9,7 @@
 #import "TableUtil.h"
 #import "Util.h"
 #import "UIColor+CatrobatUIColorExtensions.h"
+#import "CatrobatBaseCell.h"
 
 #define kIphone5ScreenHeight 568.0f
 #define kContinueCellHeight  124.0f
@@ -44,8 +45,12 @@
     if(backButtonEnabled) {
         UIBarButtonItem* backButton =  [self createBackButtonWithTarget:target];
         [barButtonItems addObject:backButton];
-    }
-    
+    } //else { // This looks weird.. 
+//        UIBarButtonItem *fixed = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:nil action:nil];
+//        fixed.width = 30.0f;
+//        [barButtonItems addObject:fixed];
+//    }
+   
     [barButtonItems addObject:[[UIBarButtonItem alloc] initWithCustomView:imageView]];
     [barButtonItems addObject:[[UIBarButtonItem alloc] initWithCustomView:titleLabel]];
     
@@ -55,11 +60,16 @@
 
 }
 
-+(void)addSeperatorForCell:(UITableViewCell*)cell atYPosition:(CGFloat)y{
-    UIImageView *seperator = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"cellseperator"]];
-    seperator.frame = CGRectMake(0.0f, y, cell.bounds.size.width, 4.0f);
-    [cell.contentView addSubview:seperator];
++(void)addSeperatorForCell:(CatrobatBaseCell*)cell{
+    if(cell.seperatorView == nil) {
+        UIImageView *seperator = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"cellseperator"]];
+        seperator.frame = CGRectMake(0.0f, 0.0f, cell.bounds.size.width, 4.0f);
+        [cell.contentView addSubview:seperator];
+        cell.seperatorView = seperator;
+    }
 }
+
+
 
 #pragma mark Helper
 +(UIBarButtonItem*)createBackButtonWithTarget:(id)target{

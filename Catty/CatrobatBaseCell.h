@@ -12,6 +12,7 @@
 
 @interface CatrobatBaseCell : UITableViewCell
 
--(CGFloat)getScreenHeight;
+@property UIView* seperatorView;
+
 
 @end

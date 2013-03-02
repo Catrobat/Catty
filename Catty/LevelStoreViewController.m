@@ -11,6 +11,8 @@
 #import "CatrobatProject.h"
 #import "CattyAppDelegate.h"
 #import "Util.h"
+#import "TableUtil.h"
+#import "CellTags.h"
 
 #define kConnectionTimeout 30
 #define kConnectionHost @"http://catroidtest.ist.tugraz.at/api/projects"
@@ -58,6 +60,11 @@
     self.tableView.delegate = self;
     
     self.searchResults = [[NSMutableArray alloc] init];
+    
+    [TableUtil initNavigationItem:self.navigationItem withTitle:@"Downloads" enableBackButton:YES target:self];
+    
+    [self initTableView];
+    
 }
 
 - (void)didReceiveMemoryWarning
@@ -85,33 +92,83 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    
+    UITableViewCell* cell = nil;
+    if([tableView isEqual:self.searchDisplayController.searchResultsTableView]) {
+        cell = [self cellForSearchResultsTableView:tableView atIndexPath:indexPath];
+    } else {
+        cell = [self cellForProjectsTableView:tableView atIndexPath:indexPath];
+    }
+    
+    return cell;
+}
+
+
+#pragma marks init
+-(void)initTableView
+{
+    self.tableView.delegate = self;
+    self.tableView.dataSource = self;
+    [self.tableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
+    self.tableView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"darkblue"]];
+}
+
+
+
+
+#pragma mark - Helper
+
+-(UITableViewCell*)cellForProjectsTableView:(UITableView*)tableView atIndexPath:(NSIndexPath*)indexPath {
+    
+    
+    static NSString *CellIdentifier = kImageCell;
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    
+    if (!cell) {
+        NSLog(@"Should Never happen - since iOS5 Storyboard *always* instantiates our cell!");
+        abort();
+    }
+    
+    
+    CatrobatProject *project = [self.projects objectAtIndex:indexPath.row];
+    
+    
+    
+    return cell;
+}
+
+
+
+-(UITableViewCell*)cellForSearchResultsTableView:(UITableView*)tableView atIndexPath:(NSIndexPath*)indexPath {
+    CatrobatProject *project = nil;
     static NSString *CellIdentifier = @"Cell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
     
-    CatrobatProject *project = nil;
-    // check if it's the search display tableview
-    if (tableView == self.searchDisplayController.searchResultsTableView) { // SEARCH DISPLAY TABLE VIEW
-        // check if it's the last row
-        if (indexPath.row == self.searchResults.count) {
-            cell.textLabel.text = @"SEARCH ON SERVER...";
-            return cell; // todo...
-        }
-        else {
-            project = [self.searchResults objectAtIndex:indexPath.row];
-        }
+    if (indexPath.row == self.searchResults.count) {
+        cell.textLabel.text = @"SEARCH ON SERVER...";
+        return cell; // todo...
     }
-    else { // REGULARE TABLE VIEW
-        project = [self.projects objectAtIndex:indexPath.row];
+    else {
+        project = [self.searchResults objectAtIndex:indexPath.row];
     }
-    cell.textLabel.text = project.projectName;
-    
+
     return cell;
 }
 
+
+
 #pragma mark - Table view delegate
+
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    if([tableView isEqual:self.searchDisplayController.searchResultsTableView]) {
+        return 20; // TODO: Change..
+    } else {
+        return [TableUtil getHeightForImageCell];
+    }
+}
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -203,7 +260,6 @@
             
             NSArray *catrobatProjects = [jsonObject valueForKey:@"CatrobatProjects"];
             
-            //allocating projects array
             self.projects = [[NSMutableArray alloc] initWithCapacity:[catrobatProjects count]];
             
             for (NSDictionary *projectDict in catrobatProjects) {
@@ -216,8 +272,7 @@
         self.data = nil;
         self.connection = nil;
         
-        //reloading view
-//        [self downloadFinished];
+
         [self update];
     }
 }
@@ -242,34 +297,13 @@
                                                                range:NSMakeRange(0, [searchText length])];
             
             if (result == NSOrderedSame) {
-                [self.searchResults addObject:project]; // adding project to search result
+                [self.searchResults addObject:project];
             }
         }
     }
     
     NSLog(@"New results: %d", self.searchResults.count);
     
-    
-    
-//    //checking all newsgroups if the search text matches
-//	for (Newsgroup *item in [self.controller fetchedObjects])
-//	{
-//		if ([item.name isEqualToString:scope]
-//            || [scope isEqualToString:@"All"])
-//		{
-//            //checking if newsgroup name is equal to the search text
-//			NSComparisonResult result = [item.name compare:searchText
-//                                                   options:(NSCaseInsensitiveSearch|NSDiacriticInsensitiveSearch)
-//                                                     range:NSMakeRange(0, [searchText length])];
-//            
-//            //checking if path contains search text
-//            pathString = [item.path stringByReplacingOccurrencesOfString:@"." withString:@" "];
-//            if (result == NSOrderedSame || ([pathString rangeOfString:searchText].location != NSNotFound))
-//			{
-//				[self.searchResults addObject:item]; //adding ng to specific search result
-//            }
-//		}
-//	}
 }
 
 
@@ -296,6 +330,11 @@
     //CustomSearchbar *sBar = (CustomSearchbar *)searchBar;
     //[sBar setShowsCancelButton:YES];
     //[sBar setCloseButtonTitle:@"Done" forState:UIControlStateNormal];
+}
+
+#pragma mark - BackButtonDelegate
+-(void)back {
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 
