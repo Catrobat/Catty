@@ -67,6 +67,7 @@
 		B479E9271611A3F1000B1DFA /* FileManager.m in Sources */ = {isa = PBXBuildFile; fileRef = B479E9261611A3F1000B1DFA /* FileManager.m */; };
 		B479E9281611A3F1000B1DFA /* FileManager.m in Sources */ = {isa = PBXBuildFile; fileRef = B479E9261611A3F1000B1DFA /* FileManager.m */; };
 		B479E9301611A7C5000B1DFA /* FileManagerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = B479E92F1611A7C5000B1DFA /* FileManagerTests.m */; };
+		B4A026A616E53D1D00E5223B /* ImageCache.m in Sources */ = {isa = PBXBuildFile; fileRef = B4A026A516E53D1D00E5223B /* ImageCache.m */; };
 		B4A0C5461611B8B200A28F6A /* Testproject123.catrobat in Resources */ = {isa = PBXBuildFile; fileRef = B4A0C5451611B8B200A28F6A /* Testproject123.catrobat */; };
 		B4A0C5471611B8B200A28F6A /* Testproject123.catrobat in Resources */ = {isa = PBXBuildFile; fileRef = B4A0C5451611B8B200A28F6A /* Testproject123.catrobat */; };
 		B4A0C5531611CE4100A28F6A /* play.png in Resources */ = {isa = PBXBuildFile; fileRef = B4A0C5511611CE4100A28F6A /* play.png */; };
@@ -285,6 +286,8 @@
 		B479E9261611A3F1000B1DFA /* FileManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FileManager.m; sourceTree = "<group>"; };
 		B479E92E1611A7C5000B1DFA /* FileManagerTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FileManagerTests.h; sourceTree = "<group>"; };
 		B479E92F1611A7C5000B1DFA /* FileManagerTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FileManagerTests.m; sourceTree = "<group>"; };
+		B4A026A416E53D1D00E5223B /* ImageCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageCache.h; sourceTree = "<group>"; };
+		B4A026A516E53D1D00E5223B /* ImageCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageCache.m; sourceTree = "<group>"; };
 		B4A0C5451611B8B200A28F6A /* Testproject123.catrobat */ = {isa = PBXFileReference; lastKnownFileType = file; path = Testproject123.catrobat; sourceTree = "<group>"; };
 		B4A0C5511611CE4100A28F6A /* play.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = play.png; sourceTree = "<group>"; };
 		B4A0C5521611CE4100A28F6A /* play@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "play@2x.png"; sourceTree = "<group>"; };
@@ -758,6 +761,7 @@
 				B43CF2D7160ADE4B00E19CF3 /* ImageSprite (not in use) */,
 				B43CF2B21609C8FC00E19CF3 /* Zip */,
 				B4AAC0321625A49F0071ECC7 /* CustomExtensions */,
+				B4A026A316E53CE100E5223B /* ImageCache */,
 			);
 			name = Helper;
 			sourceTree = "<group>";
@@ -988,6 +992,15 @@
 				B479E92F1611A7C5000B1DFA /* FileManagerTests.m */,
 			);
 			name = FileManagerTests;
+			sourceTree = "<group>";
+		};
+		B4A026A316E53CE100E5223B /* ImageCache */ = {
+			isa = PBXGroup;
+			children = (
+				B4A026A416E53D1D00E5223B /* ImageCache.h */,
+				B4A026A516E53D1D00E5223B /* ImageCache.m */,
+			);
+			name = ImageCache;
 			sourceTree = "<group>";
 		};
 		B4A9ADC9160B018100DFA55B /* CustomViews */ = {
@@ -1858,6 +1871,7 @@
 				B4516B5B16E0BA2F00BA00D4 /* UIColor+CatrobatUIColorExtensions.m in Sources */,
 				B42E0CE016E215C100DFCFC8 /* DarkBlueGradientImageCell.m in Sources */,
 				B42E0CE416E2164C00DFCFC8 /* DarkBlueStripesImageCell.m in Sources */,
+				B4A026A616E53D1D00E5223B /* ImageCache.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

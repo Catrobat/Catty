@@ -43,7 +43,7 @@
     
     
     //setting up request url
-    NSURL *url = [NSURL URLWithString:@"http://catroidtest.ist.tugraz.at/api/projects/recent.json"];
+    NSURL *url = [NSURL URLWithString:@"http://catroid.org/api/projects/recent.json"];
     
     //creating url request
     NSURLRequest *request = [NSURLRequest requestWithURL:url
