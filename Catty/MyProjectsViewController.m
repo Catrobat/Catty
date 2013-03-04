@@ -176,7 +176,12 @@
                 
         //check if it's the same class
         if ([segue.destinationViewController isKindOfClass:[StageViewController class]])
-        {            
+        {
+#warning outsource this.. (This is used multiple times..)
+            LevelLoadingInfo* info = [self.levelLoadingInfos objectAtIndex:selectedRowIndexPath.row];
+            NSUserDefaults* userDefaults = [NSUserDefaults standardUserDefaults];
+            [userDefaults setObject:info.visibleName forKey:@"lastProject"];
+            [userDefaults synchronize];
             StageViewController *destination = segue.destinationViewController;
             destination.levelLoadingInfo = [self.levelLoadingInfos objectAtIndex:selectedRowIndexPath.row];
         }
