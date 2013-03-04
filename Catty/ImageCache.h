@@ -10,6 +10,11 @@
 
 @interface ImageCache : NSObject
 
-@property (nonatomic, strong) NSCache *imageCache;
+
++(ImageCache *)sharedImageCache;
+
+-(UIImage*) getImageWithName:(NSString*)imageName;
+
+-(void) addImage:(UIImage*)image withName:(NSString*) imageName;
 
 @end
