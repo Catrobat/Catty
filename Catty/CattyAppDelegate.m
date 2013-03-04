@@ -29,6 +29,7 @@
     // Override point for customization after application launch.
     
     [self initNavigationBar];
+    [self initLastProject];
     
     return YES;
 }
@@ -76,6 +77,14 @@
       nil]
      ];
     
+}
+
+-(void) initLastProject {
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    NSString* lastProject = [userDefaults objectForKey:@"lastProject"];
+    if(!lastProject) {
+        [userDefaults setObject:@"DefaultProject" forKey:@"lastProject"];
+    }
 }
 
 

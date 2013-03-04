@@ -52,11 +52,11 @@
 		B43CF2DC160AE17B00E19CF3 /* cloud.png in Resources */ = {isa = PBXBuildFile; fileRef = B43CF2DB160AE17B00E19CF3 /* cloud.png */; };
 		B43CF2DF160AE72600E19CF3 /* startBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = B43CF2DD160AE72600E19CF3 /* startBackground.png */; };
 		B43CF2E0160AE72600E19CF3 /* startBackground@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B43CF2DE160AE72600E19CF3 /* startBackground@2x.png */; };
+		B44403A91615CCA8000C0EC6 /* ChangeGhostEffectByNBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = B44403A81615CCA8000C0EC6 /* ChangeGhostEffectByNBrick.m */; };
 		B4516B5516E0AB0A00BA00D4 /* TableUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = B4516B5416E0AB0A00BA00D4 /* TableUtil.m */; };
 		B4516B5B16E0BA2F00BA00D4 /* UIColor+CatrobatUIColorExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = B4516B5A16E0BA2F00BA00D4 /* UIColor+CatrobatUIColorExtensions.m */; };
 		B4516B5F16E0BE0400BA00D4 /* backbutton.png in Resources */ = {isa = PBXBuildFile; fileRef = B4516B5D16E0BE0400BA00D4 /* backbutton.png */; };
 		B4516B6016E0BE0400BA00D4 /* backbutton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B4516B5E16E0BE0400BA00D4 /* backbutton@2x.png */; };
-		B44403A91615CCA8000C0EC6 /* ChangeGhostEffectByNBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = B44403A81615CCA8000C0EC6 /* ChangeGhostEffectByNBrick.m */; };
 		B468CDBE16078B59007300A0 /* ListProjectsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B468CDBD16078B59007300A0 /* ListProjectsViewController.m */; };
 		B468CDC816079438007300A0 /* CatrobatProject.m in Sources */ = {isa = PBXBuildFile; fileRef = B468CDC716079438007300A0 /* CatrobatProject.m */; };
 		B46CD91816158E89000EA9D4 /* BroadcastWaitBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = B46CD91716158E89000EA9D4 /* BroadcastWaitBrick.m */; };
@@ -262,14 +262,14 @@
 		B43CF2DB160AE17B00E19CF3 /* cloud.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cloud.png; sourceTree = "<group>"; };
 		B43CF2DD160AE72600E19CF3 /* startBackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = startBackground.png; sourceTree = "<group>"; };
 		B43CF2DE160AE72600E19CF3 /* startBackground@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "startBackground@2x.png"; sourceTree = "<group>"; };
+		B44403A71615CCA8000C0EC6 /* ChangeGhostEffectByNBrick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChangeGhostEffectByNBrick.h; sourceTree = "<group>"; };
+		B44403A81615CCA8000C0EC6 /* ChangeGhostEffectByNBrick.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChangeGhostEffectByNBrick.m; sourceTree = "<group>"; };
 		B4516B5316E0AB0A00BA00D4 /* TableUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TableUtil.h; sourceTree = "<group>"; };
 		B4516B5416E0AB0A00BA00D4 /* TableUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TableUtil.m; sourceTree = "<group>"; };
 		B4516B5916E0BA2F00BA00D4 /* UIColor+CatrobatUIColorExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+CatrobatUIColorExtensions.h"; sourceTree = "<group>"; };
 		B4516B5A16E0BA2F00BA00D4 /* UIColor+CatrobatUIColorExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+CatrobatUIColorExtensions.m"; sourceTree = "<group>"; };
 		B4516B5D16E0BE0400BA00D4 /* backbutton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = backbutton.png; path = images/backbutton.png; sourceTree = "<group>"; };
 		B4516B5E16E0BE0400BA00D4 /* backbutton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "backbutton@2x.png"; path = "images/backbutton@2x.png"; sourceTree = "<group>"; };
-		B44403A71615CCA8000C0EC6 /* ChangeGhostEffectByNBrick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChangeGhostEffectByNBrick.h; sourceTree = "<group>"; };
-		B44403A81615CCA8000C0EC6 /* ChangeGhostEffectByNBrick.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChangeGhostEffectByNBrick.m; sourceTree = "<group>"; };
 		B468CDBC16078B59007300A0 /* ListProjectsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ListProjectsViewController.h; sourceTree = "<group>"; };
 		B468CDBD16078B59007300A0 /* ListProjectsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ListProjectsViewController.m; sourceTree = "<group>"; };
 		B468CDC616079438007300A0 /* CatrobatProject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CatrobatProject.h; sourceTree = "<group>"; };
@@ -1138,15 +1138,6 @@
 			name = HelperTests;
 			sourceTree = "<group>";
 		};
-		B4F05A9715B888E400C90ED0 /* GDataXMLNode */ = {
-			isa = PBXGroup;
-			children = (
-				B4F05A9915B888EE00C90ED0 /* GDataXMLNode.h */,
-				B4F05A9A15B888EE00C90ED0 /* GDataXMLNode.m */,
-			);
-			name = GDataXMLNode;
-			sourceTree = "<group>";
-		};
 		B4E95BB416DE362400E94E22 /* Storyboards */ = {
 			isa = PBXGroup;
 			children = (
@@ -1162,6 +1153,15 @@
 				B4E95BBC16DE372D00E94E22 /* CatrobatTableViewController.m */,
 			);
 			name = CatrobatTableViewController;
+			sourceTree = "<group>";
+		};
+		B4F05A9715B888E400C90ED0 /* GDataXMLNode */ = {
+			isa = PBXGroup;
+			children = (
+				B4F05A9915B888EE00C90ED0 /* GDataXMLNode.h */,
+				B4F05A9A15B888EE00C90ED0 /* GDataXMLNode.m */,
+			);
+			name = GDataXMLNode;
 			sourceTree = "<group>";
 		};
 		B4F1C58E16DFBD9F006F4BE2 /* ParserTests */ = {

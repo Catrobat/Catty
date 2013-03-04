@@ -127,7 +127,7 @@
     
     if (!cell) {
         NSLog(@"Should Never happen - since iOS5 Storyboard *always* instantiates our cell!");
-        abort();
+//        abort();
     }
     
 
