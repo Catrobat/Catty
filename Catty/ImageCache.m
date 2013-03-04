@@ -8,19 +8,37 @@
 
 #import "ImageCache.h"
 
+@interface ImageCache()
+
+@property (nonatomic, strong) NSCache *imageCache;
+
+@end
+
 @implementation ImageCache
 
-static ImageCache *sharedInstance = nil;
 
 
-+ (ImageCache *) sharedInstance {
+static ImageCache *sharedImageCache = nil;
+
+
++ (ImageCache *) sharedImageCache {
     
     @synchronized(self) {
-        if (sharedInstance == nil) {
-            sharedInstance = [[ImageCache alloc] init];
+        if (sharedImageCache == nil) {
+            sharedImageCache = [[ImageCache alloc] init];
         }
     }
-    return sharedInstance;
+    return sharedImageCache;
+}
+
+-(id)init
+{
+    self = [super init];
+    if (self) {
+        self.imageCache = [[NSCache alloc] init];
+    }
+    
+    return self;
 }
 
 
@@ -28,5 +46,17 @@ static ImageCache *sharedInstance = nil;
     // Should never be called, but just here for clarity really.
     abort();
 }
+
+
+-(UIImage*) getImageWithName:(NSString*)imageName;
+{
+    return [self.imageCache objectForKey:imageName];
+}
+
+-(void)addImage:(UIImage *)image withName:(NSString *)imageName
+{
+    [self.imageCache setObject:image forKey:imageName];
+}
+
 
 @end

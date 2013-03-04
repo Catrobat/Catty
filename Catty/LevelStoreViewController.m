@@ -14,6 +14,7 @@
 #import "TableUtil.h"
 #import "CellTags.h"
 #import "CatrobatImageCell.h"
+#import "ImageCache.h"
 
 #define kConnectionTimeout 30
 #define kConnectionHost @"http://catroid.org/api/projects"
@@ -171,21 +172,37 @@
 //    imageCell.imageView.image = [UIImage imageNamed:@"programs"];
 #warning one should save the images so they do not have to be downloaded again! - This way the UI is very laggy!
     
-    dispatch_queue_t concurrentQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
-    dispatch_async(concurrentQueue, ^{
-        NSData *image = [[NSData alloc] initWithContentsOfURL:[NSURL URLWithString:imageURL]];
-        dispatch_async(dispatch_get_main_queue(), ^{
-            if(image) {
-                imageCell.imageView.image = [UIImage imageWithData:image];
-            } else {
-                imageCell.imageView.image = [UIImage imageNamed:@"programs"];
-            }
-//            [self.tableView beginUpdates];
-//            [self.tableView reloadRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationNone];
-//            [self.tableView endUpdates];
+    UIImage* image = [[ImageCache sharedImageCache] getImageWithName:imageURL];
+    
+    if(image == nil) {
+        dispatch_queue_t concurrentQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+        dispatch_async(concurrentQueue, ^{
             
+        
+            NSData* imageData = [[NSData alloc] initWithContentsOfURL:[[NSURL alloc] initWithString:imageURL]];
+        
+            dispatch_async(dispatch_get_main_queue(), ^{
+                
+                UIImage* image =[[UIImage alloc] initWithData:imageData];
+                if(!image) {
+                    image = [UIImage imageNamed:@"programs"];
+                }
+
+                imageCell.imageView.image = image;
+                [[ImageCache sharedImageCache] addImage:image withName:imageURL];
+                
+                [self.tableView beginUpdates];
+                [self.tableView reloadRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationNone];
+                [self.tableView endUpdates];
+                
+            });
         });
-    });
+        
+        
+    }
+    imageCell.imageView.image = image;
+    
+
 }
 
 
