@@ -230,6 +230,13 @@
         sprite.spriteManagerDelegate = self;
         sprite.broadcastWaitDelegate = self.broadcastWaitHandler;
         sprite.projectPath = self.levelLoadingInfo.basePath;
+        
+        // TODO: change!
+        for (Script *script in sprite.scriptList) {
+            for (Brick *brick in script.brickList) {
+                brick.sprite = sprite;
+            }
+        }
     }
 }
 

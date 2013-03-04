@@ -567,37 +567,46 @@
     }
 }
 
+-(BOOL)isType:(TouchAction)type equalToString:(NSString*)action
+{
+#warning add other possible action-types
+    if (type == kTouchActionTap && [action isEqualToString:@"Tapped"]) {
+        return YES;
+    } else {
+        return NO;
+    }
+}
 
 - (void)touch:(TouchAction)type
 {
-#warning @Mattias: I've commented this because it doesn't work anymore. We had to change the "action" 
-#warning property of the Script class from int (was an enum) to NSString (because that's how it is in 
-#warning the XML...)
-//    //todo: throw exception if its not a when script
-//    for (Script *script in self.whenScriptsArray)
-//    {
-//        NSLog(@"Performing script with action: %@", script.description);
-//        if (type == script.action)
-//        {
-//            if ([self.activeScripts containsObject:script]) {
-//                [script resetScript];
-//                [self.nextPositions removeObjectForKey:script.description];
-//            } else {
-//                [self.activeScripts addObject:script];
-//                
-//                // ------------------------------------------ THREAD --------------------------------------
-//                dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-//                    [script runScriptForSprite:self];
-//                    
-//                    // tell the main thread
-//                    dispatch_async(dispatch_get_main_queue(), ^{
-//                        [self scriptFinished:script];
-//                    });
-//                });
-//                // ------------------------------------------ END -----------------------------------------
-//            }
-//        }
-//    }
+    //todo: throw exception if its not a when script
+    for (Script *script in self.scriptList)
+    {
+        if ([script isKindOfClass:[WhenScript class]]) {
+            NSLog(@"Performing script with action: %@", script.description);
+            if ([self isType:type equalToString:script.action])
+            {
+                if ([self.activeScripts containsObject:script]) {
+                    [script resetScript];
+                    [self.nextPositions removeObjectForKey:script.description];
+                } else {
+                    [self.activeScripts addObject:script];
+                    
+                    // ------------------------------------------ THREAD --------------------------------------
+                    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+                        [script runScript];
+                        
+                        // tell the main thread
+                        dispatch_async(dispatch_get_main_queue(), ^{
+                            [self scriptFinished:script];
+                        });
+                    });
+                    // ------------------------------------------ END -----------------------------------------
+                }
+            }
+        
+        }
+    }
 }
 
 - (void)performFromScript:(Script*)scriptBroadcastScript:(NSNotification*)notification
