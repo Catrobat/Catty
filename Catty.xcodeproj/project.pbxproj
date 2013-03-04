@@ -873,13 +873,13 @@
 			name = "ImageSprite (not in use)";
 			sourceTree = "<group>";
 		};
-		B44403AC1615CEA1000C0EC6 /* ChangeGhostEffectBrick */ = {
+		B44403AC1615CEA1000C0EC6 /* ChangeGhostEffectByNBrick */ = {
 			isa = PBXGroup;
 			children = (
 				B44403A71615CCA8000C0EC6 /* ChangeGhostEffectByNBrick.h */,
 				B44403A81615CCA8000C0EC6 /* ChangeGhostEffectByNBrick.m */,
 			);
-			name = ChangeGhostEffectBrick;
+			name = ChangeGhostEffectByNBrick;
 			sourceTree = "<group>";
 		};
 		B4516B5616E0AB0F00BA00D4 /* TableUtil */ = {
@@ -1365,7 +1365,7 @@
 				B415DC3F15BAC5A20076275E /* Brick */,
 				CD85F528160832FC007C38D1 /* BroadcastBrick */,
 				B46CD91B16158E8E000EA9D4 /* BroadcastWaitBrick */,
-				B44403AC1615CEA1000C0EC6 /* ChangeGhostEffectBrick */,
+				B44403AC1615CEA1000C0EC6 /* ChangeGhostEffectByNBrick */,
 				CD85F54816099C3D007C38D1 /* ChangeSizeByN */,
 				B419692416147CD700AFC8C8 /* ChangeVolumeByBrick */,
 				CD46F918160A431000207178 /* ChangeXByNBrick */,
