@@ -16,6 +16,9 @@
 #import "BaseSprite.h"
 #import "SpriteManagerDelegate.h"
 #import "BroadcastWaitHandler.h"
+#import "WhenScript.h"
+#import "StartScript.h"
+#import "BroadcastScript.h"
 
 @interface StageViewController ()
 
@@ -176,23 +179,29 @@
         NSLog(@"Sprite: %@", sprite.name);
         NSLog(@" ");
         NSLog(@"StartScript:");
-        for (Script *script in sprite.startScriptsArray) {
-            for (Brick *brick in [script getAllBricks]) {
-                NSLog(@"  %@", [brick description]);
+        for (Script *script in sprite.scriptList) {
+            if ([script isKindOfClass:[StartScript class]]) {
+                for (Brick *brick in [script getAllBricks]) {
+                    NSLog(@"  %@", [brick description]);
+                }
             }
         }
-        for (Script *script in sprite.whenScriptsArray) {
-            NSLog(@" ");
-            NSLog(@"WhenScript:");
-            for (Brick *brick in [script getAllBricks]) {
-                NSLog(@"  %@", [brick description]);
+        for (Script *script in sprite.scriptList) {
+            if ([script isKindOfClass:[WhenScript class]]) {
+                NSLog(@" ");
+                NSLog(@"WhenScript:");
+                for (Brick *brick in [script getAllBricks]) {
+                    NSLog(@"  %@", [brick description]);
+                }
             }
         }
         for (Script *script in [sprite.broadcastScripts allValues]) {
-            NSLog(@" ");
-            NSLog(@"BroadcastScript:");
-            for (Brick *brick in [script getAllBricks]) {
-                NSLog(@"  %@", [brick description]);
+            if ([script isKindOfClass:[BroadcastScript class]]) {
+                NSLog(@" ");
+                NSLog(@"BroadcastScript:");
+                for (Brick *brick in [script getAllBricks]) {
+                    NSLog(@"  %@", [brick description]);
+                }
             }
         }
 
@@ -221,39 +230,6 @@
         sprite.spriteManagerDelegate = self;
         sprite.broadcastWaitDelegate = self.broadcastWaitHandler;
         sprite.projectPath = self.levelLoadingInfo.basePath;
-        
-        // debug:
-        NSLog(@"----------------------");
-        NSLog(@"Sprite: %@", sprite.name);
-        NSLog(@" ");
-        NSLog(@"StartScript:");
-        for (Script *script in sprite.startScriptsArray) {
-            for (Brick *brick in [script getAllBricks]) {
-                NSLog(@"  %@", [brick description]);
-            }
-        }
-        for (Script *script in sprite.whenScriptsArray) {
-            NSLog(@" ");
-            NSLog(@"WhenScript:");
-            for (Brick *brick in [script getAllBricks]) {
-                NSLog(@"  %@", [brick description]);
-            }
-        }
-        for (Script *script in [sprite.broadcastScripts allValues]) {
-            NSLog(@" ");
-            NSLog(@"BroadcastScript:");
-            NSArray *allKeys = [sprite.broadcastScripts allKeysForObject:script];
-            NSLog(@"Key(s):");
-            for (NSString *key in allKeys) {
-                NSLog(@"  %@", key);
-            }
-            NSLog(@"Brick(s):");
-            for (Brick *brick in [script getAllBricks]) {
-                NSLog(@"  %@", [brick description]);
-            }
-        }
-
-        // end debug
     }
 }
 

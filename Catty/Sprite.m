@@ -15,6 +15,9 @@
 #import "Util.h"
 #import "enums.h"
 #import "BroadcastWaitDelegate.h"
+#import "StartScript.h"
+#import "WhenScript.h"
+#import "BroadcastScript.h"
 
 
 // need CattyViewController to access FRAMES_PER_SECOND    TODO: change
@@ -67,9 +70,6 @@
 
 @property (strong, nonatomic) NSArray *lookList;    // tell the compiler: "I want a private setter"
 @property (strong, nonatomic) NSMutableArray *soundList;
-@property (strong, nonatomic) NSArray *startScriptsArray;
-@property (strong, nonatomic) NSArray *whenScriptsArray;
-@property (strong, nonatomic) NSDictionary *broadcastScripts;
 
 @end
 
@@ -81,8 +81,6 @@
 @synthesize projectPath = _projectPath;
 @synthesize lookList = _lookList;
 @synthesize soundList = _soundsArray;
-@synthesize startScriptsArray = _startScriptsArray;
-@synthesize whenScriptsArray = _whenScriptsArray;
 @synthesize broadcastScripts = _broadcastScripts;
 
 
@@ -116,30 +114,6 @@
         _soundsArray = [[NSMutableArray alloc] init];
     
     return _soundsArray;
-}
-
-- (NSArray*)startScriptsArray
-{
-    if (_startScriptsArray == nil)
-        _startScriptsArray = [[NSArray alloc] init];
-    
-    return _startScriptsArray;
-}
-
-- (NSArray*)whenScriptsArray
-{
-    if (_whenScriptsArray == nil)
-        _whenScriptsArray = [[NSArray alloc] init];
-    
-    return _whenScriptsArray;
-}
-
--(NSDictionary *)broadcastScripts
-{
-    if (_broadcastScripts == nil)
-        _broadcastScripts = [[NSDictionary alloc] init];
-    
-    return _broadcastScripts;
 }
 
 - (NSMutableDictionary*)nextPositions
@@ -220,25 +194,6 @@
     self.lookList = [self.lookList arrayByAddingObjectsFromArray:costumesArray];
 }
 
-
-- (void)addStartScript:(Script *)script
-{
-    self.startScriptsArray = [self.startScriptsArray arrayByAddingObject:script];
-}
-
-- (void)addWhenScript:(Script *)script
-{
-    self.whenScriptsArray = [self.whenScriptsArray arrayByAddingObject:script];
-}
-
-- (void)addBroadcastScript:(Script *)script forMessage:(NSString *)message
-{
-    NSMutableDictionary *mutableDictionary = [self.broadcastScripts mutableCopy];
-    [mutableDictionary setObject:script forKey:message];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(performBroadcastScript:) name:message object:nil];
-    
-    self.broadcastScripts = [NSDictionary dictionaryWithDictionary:mutableDictionary];
-}
 
 - (float)getZIndex
 {
@@ -593,20 +548,22 @@
     }
 
 
-    for (Script *script in self.startScriptsArray)
+    for (Script *script in self.scriptList)
     {
-        [self.activeScripts addObject:script];
-        
-        // ------------------------------------------ THREAD --------------------------------------
-        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-            [script runScriptForSprite:self];
+        if ([script isKindOfClass:[StartScript class]]) {
+            [self.activeScripts addObject:script];
             
-            // tell the main thread
-            dispatch_async(dispatch_get_main_queue(), ^{
-                [self scriptFinished:script];
+            // ------------------------------------------ THREAD --------------------------------------
+            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+                [script runScript];
+                
+                // tell the main thread
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    [self scriptFinished:script];
+                });
             });
-        });
-        // ------------------------------------------ END -----------------------------------------
+            // ------------------------------------------ END -----------------------------------------
+        }
     }
 }
 
@@ -657,7 +614,7 @@
             
             // -------- ---------------------------------- THREAD --------------------------------------
             dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-                [script runScriptForSprite:self];
+                [script runScript];
                 
                 // tell the main thread
                 dispatch_async(dispatch_get_main_queue(), ^{

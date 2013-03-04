@@ -47,11 +47,6 @@
 @property (nonatomic, strong) NSArray *scriptList;
 #warning todo for mattias: change implementation of stage (etc.) for handling scriptList instead of startScriptsArray and whenScriptsArray
 
-
-// old script arrays...
-#warning todo: for mattias :-)
-@property (readonly, strong, nonatomic) NSArray *startScriptsArray;
-@property (readonly, strong, nonatomic) NSArray *whenScriptsArray;
 @property (readonly, strong, nonatomic) NSDictionary *broadcastScripts; //TODO: ONE broadcast-script for ONE message?? Hopefully, yes - otherwise: change this :(
 
 @property (readonly, assign, nonatomic) float xOffset;        // black border, if proportions are different (project-xml-resolution vs. screen-resolution)

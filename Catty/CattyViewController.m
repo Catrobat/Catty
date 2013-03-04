@@ -149,43 +149,43 @@
     path = @"/Users/Mattias/Library/Application Support/iPhone Simulator/6.1/Applications/0910C350-3962-4B66-B83A-25216751A163/Catty.app/defaultProject/";
     
     
-    //setting effect
-    for (Sprite *sprite in self.level.spriteList)
-    {
-        sprite.effect = self.effect;
-        sprite.spriteManagerDelegate = self;
-        sprite.broadcastWaitDelegate = self.broadcastWaitHandler;
-        sprite.projectPath = path;
-        //        sprite.projectName = projectName;
-        
-        // debug:
-        NSLog(@"----------------------");
-        NSLog(@"Sprite: %@", sprite.name);
-        NSLog(@" ");
-        NSLog(@"StartScript:");
-        for (Script *script in sprite.startScriptsArray) {
-            for (Brick *brick in [script getAllBricks]) {
-                NSLog(@"  %@", [brick description]);
-            }
-        }
-        for (Script *script in sprite.whenScriptsArray) {
-            NSLog(@" ");
-            NSLog(@"WhenScript:");
-            for (Brick *brick in [script getAllBricks]) {
-                NSLog(@"  %@", [brick description]);
-            }
-        }
-        for (Script *script in [sprite.broadcastScripts allValues]) {
-            NSLog(@" ");
-            NSLog(@"BroadcastScript:");
-            for (Brick *brick in [script getAllBricks]) {
-                NSLog(@"  %@", [brick description]);
-            }
-        }
-
-        // end debug
-        
-    }
+//    //setting effect
+//    for (Sprite *sprite in self.level.spriteList)
+//    {
+//        sprite.effect = self.effect;
+//        sprite.spriteManagerDelegate = self;
+//        sprite.broadcastWaitDelegate = self.broadcastWaitHandler;
+//        sprite.projectPath = path;
+//        //        sprite.projectName = projectName;
+//        
+//        // debug:
+//        NSLog(@"----------------------");
+//        NSLog(@"Sprite: %@", sprite.name);
+//        NSLog(@" ");
+//        NSLog(@"StartScript:");
+//        for (Script *script in sprite.startScriptsArray) {
+//            for (Brick *brick in [script getAllBricks]) {
+//                NSLog(@"  %@", [brick description]);
+//            }
+//        }
+//        for (Script *script in sprite.whenScriptsArray) {
+//            NSLog(@" ");
+//            NSLog(@"WhenScript:");
+//            for (Brick *brick in [script getAllBricks]) {
+//                NSLog(@"  %@", [brick description]);
+//            }
+//        }
+//        for (Script *script in [sprite.broadcastScripts allValues]) {
+//            NSLog(@" ");
+//            NSLog(@"BroadcastScript:");
+//            for (Brick *brick in [script getAllBricks]) {
+//                NSLog(@"  %@", [brick description]);
+//            }
+//        }
+//
+//        // end debug
+//        
+//    }
     
 //    self.sprite = [[BaseSprite alloc]initWithEffect:self.effect];
 //    [self.sprite loadImageWithPath:[NSString stringWithFormat:@"%@/images/normalcat.png", path]];

@@ -94,12 +94,10 @@
     self.stop = YES;
 }
 
--(void)runScriptForSprite:(Sprite *)sprite
+-(void)runScript
 {
     //TODO: check loop-condition BEFORE first iteration
-    
-    NSLog(@"run script for sprite: %@", sprite.name);        
-        
+            
     [self resetScript];
     if (self.currentBrickIndex < 0)
         self.currentBrickIndex = 0;
