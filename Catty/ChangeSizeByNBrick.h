@@ -10,7 +10,6 @@
 
 @interface ChangeSizeByNBrick : Brick
 
-#warning @Mattias: Change from float to NSNumber*
 @property (nonatomic, strong) NSNumber *size;
 
 -(id)initWithSizeChangeRate:(NSNumber*)sizeInPercentage;

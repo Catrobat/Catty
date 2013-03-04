@@ -10,7 +10,6 @@
 
 @interface SetXBrick : Brick
 
-#warning @Mattias: Change from float to nsnumber*
 @property (nonatomic, strong) NSNumber *xPosition;
 
 -(id)initWithXPosition:(NSNumber*)xPosition;

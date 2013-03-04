@@ -10,7 +10,6 @@
 
 @interface SetYBrick : Brick
 
-#warning @Mattias: Changed from float to NSNumber
 @property (nonatomic, strong) NSNumber *yPosition;
 
 -(id)initWithYPosition:(NSNumber*)yPosition;

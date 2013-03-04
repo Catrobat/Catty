@@ -10,8 +10,7 @@
 
 @interface RepeatBrick : ForeverBrick
 
-#warning @mattias: I've changed the name of this property and the type from int to NSNumber*
-@property (nonatomic, assign) NSNumber *timesToRepeat;
+@property (nonatomic, strong) NSNumber *timesToRepeat;
 
 -(id)initWithNumberOfLoops:(NSNumber*)numberOfLoops;
 

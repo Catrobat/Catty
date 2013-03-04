@@ -10,15 +10,15 @@
 
 @implementation ChangeGhostEffectByNBrick
 
-@synthesize increase= _increase;
+@synthesize changeGhostEffect = _changeGhostEffect;
 
 
--(id)initWithIncrease:(float)increase;
+-(id)initWithValueForGhostEffectChange:(NSNumber*)value;
 {
     self = [super init];
     if (self)
     {
-        self.increase = increase;
+        self.changeGhostEffect = value;
     }
     return self;
 }
@@ -27,14 +27,14 @@
 {
     NSLog(@"Performing: %@", self.description);
     
-    [sprite changeTransparencyBy:self.increase];
+    [sprite changeTransparencyBy:self.changeGhostEffect];
     
 }
 
 #pragma mark - Description
 - (NSString*)description
 {
-    return [NSString stringWithFormat:@"ChangeGhostEffect by (%f)", self.increase];
+    return [NSString stringWithFormat:@"ChangeGhostEffect by (%f)", self.changeGhostEffect.floatValue];
 }
 
 @end

@@ -9,7 +9,7 @@
 #import "RepeatBrick.h"
 
 @interface RepeatBrick()
-@property (assign, nonatomic) int loopsLeft;
+@property (strong, nonatomic) NSNumber *loopsLeft;
 @end
 
 @implementation RepeatBrick
@@ -17,7 +17,6 @@
 @synthesize timesToRepeat = _numberOfLoops;
 @synthesize loopsLeft = _loopsLeft;
 
-#warning: changed this from int to nsnumber
 -(id)initWithNumberOfLoops:(NSNumber*)numberOfLoops
 {
     self = [super init];
@@ -31,8 +30,8 @@
 
 -(BOOL)checkConditionAndDecrementLoopCounter
 {
-    self.loopsLeft -= 1;
-    BOOL returnValue = (self.loopsLeft >= 0);
+    self.loopsLeft = [NSNumber numberWithInt:self.loopsLeft.intValue-1];
+    BOOL returnValue = (self.loopsLeft.intValue >= 0);
     if (!returnValue) {
         self.loopsLeft = self.timesToRepeat;
     }
@@ -42,7 +41,7 @@
 #pragma mark - Description
 - (NSString*)description
 {
-    return [NSString stringWithFormat:@"RepeatLoop with %d iterations (%d iterations left)", self.timesToRepeat, self.loopsLeft];
+    return [NSString stringWithFormat:@"RepeatLoop with %d iterations (%d iterations left)", self.timesToRepeat.intValue, self.loopsLeft.intValue];
 }
 
 @end

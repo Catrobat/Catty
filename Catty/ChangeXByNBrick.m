@@ -10,14 +10,14 @@
 
 @implementation ChangeXByNBrick
 
-@synthesize x = _x;
+@synthesize xMovement = _xMovement;
 
--(id)initWithChangeValueForX:(int)x
+-(id)initWithChangeValueForX:(NSNumber*)x
 {
     self = [super init];
     if (self)
     {
-        self.x = x;
+        self.xMovement = x;
     }
     return self;
 }
@@ -26,20 +26,13 @@
 {
     NSLog(@"Performing: %@", self.description);
     
-    [sprite changeXBy:self.x];
-    
-    //    float sleepTime = ((float)self.timeToWaitInMilliseconds.intValue)/1000;
-    //    NSLog(@"wating for %f seconds", sleepTime);
-    //    NSLog(@"---- BEFORE SLEEP -----");
-    //    [NSThread sleepForTimeInterval:sleepTime];
-    //    NSLog(@"---- AFTER SLEEP ------");
-    
+    [sprite changeXBy:self.xMovement.intValue];
 }
 
 #pragma mark - Description
 - (NSString*)description
 {
-    return [NSString stringWithFormat:@"ChangeXBy (%d)", self.x];
+    return [NSString stringWithFormat:@"ChangeXBy (%d)", self.xMovement.intValue];
 }
 
 @end

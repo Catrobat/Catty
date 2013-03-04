@@ -10,7 +10,7 @@
 
 @interface TurnRightBrick : Brick
 
-#warning @Mattias: Changed from float to NSNumber*
 @property (nonatomic, strong) NSNumber *degrees;
+
 -(id)initWithDegrees:(NSNumber*)degees;
 @end

@@ -10,9 +10,8 @@
 
 @interface GoNStepsBackBrick : Brick
 
-#warning @mattias: changed int to NSNumber and "n" to "steps"
 @property (assign, nonatomic) NSNumber *steps;
 
--(id)initWithN:(NSNumber*)steps;
+-(id)initWithNumberOfSteps:(NSNumber*)steps;
 
 @end

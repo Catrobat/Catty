@@ -12,7 +12,7 @@
 
 @synthesize steps = _steps;
 
--(id)initWithN:(NSNumber*)steps
+-(id)initWithNumberOfSteps:(NSNumber*)steps
 {
     self = [super init];
     if (self)
@@ -26,7 +26,7 @@
 {
     NSLog(@"Performing: %@", self.description);
     
-    [sprite goNStepsBack:self.steps];
+    [sprite goNStepsBack:self.steps.intValue];
 }
 
 #pragma mark - Description

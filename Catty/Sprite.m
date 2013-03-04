@@ -446,9 +446,9 @@
     self.alphaValue = (100.0f-transparency)/100.0f;
 }
 
--(void)changeTransparencyBy:(float)increase
+-(void)changeTransparencyBy:(NSNumber*)increase
 {
-    self.alphaValue -= increase/100;
+    self.alphaValue -= increase.floatValue/100;
 }
 
 - (void)addSound:(AVAudioPlayer *)player

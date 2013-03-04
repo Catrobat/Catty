@@ -10,7 +10,6 @@
 
 @interface SetGhostEffectBrick : Brick
 
-#warning @Mattias: Changed from float to NSNumber
 @property (nonatomic, strong) NSNumber *transparency;
 
 -(id)initWithTransparencyInPercent:(NSNumber*)transparency;

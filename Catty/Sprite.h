@@ -113,7 +113,7 @@
 //- (void)addLoopBricks:(NSArray*)bricks;
 - (void)goNStepsBack:(int)n;
 - (void)setTransparency:(float)transparency;
-- (void)changeTransparencyBy:(float)increase;
+- (void)changeTransparencyBy:(NSNumber*)increase;
 - (void)setVolumeTo:(float)volume;
 - (void)changeVolumeBy:(float)percent;
 - (void)turnLeft:(float)degrees;

@@ -10,15 +10,17 @@
 
 @implementation PlaceAtBrick
 
-@synthesize position = _position;
+@synthesize xPosition = _xPosition;
+@synthesize yPosition = _yPosition;
 
 #pragma mark - init methods
--(id)initWithPosition:(GLKVector3)position
+-(id)initWithXPosition:(NSNumber*)xPosition yPosition:(NSNumber*)yPosition
 {
     self = [super init];
     if (self)
     {
-        self.position = position;
+        self.xPosition = xPosition;
+        self.yPosition = yPosition;
     }
     return self;
 }
@@ -33,7 +35,7 @@
     
     */
     
-    [sprite placeAt:/*self.position*/GLKVector3Make(self.xPosition.floatValue, self.yPosition.floatValue, 0)];
+    [sprite placeAt:GLKVector3Make(self.xPosition.floatValue, self.yPosition.floatValue, 0.0f)];
 }
 
 #pragma mark - Description

@@ -10,7 +10,7 @@
 
 @implementation ChangeSizeByNBrick
 
-@synthesize size = _sizeInPercentage;
+@synthesize size = _size;
 
 -(id)initWithSizeChangeRate:(NSNumber*)sizeInPercentage
 {
