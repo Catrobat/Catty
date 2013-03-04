@@ -11,7 +11,7 @@
 
 @implementation Brick
 
-//@synthesize sprite = _sprite;
+@synthesize sprite = _sprite;
 
 - (NSString*)description
 {
@@ -19,7 +19,7 @@
 }
 
 //abstract method (!!!)
-- (void)performOnSprite:(Sprite *)sprite fromScript:(Script*)script
+- (void)performFromScript:(Script*)script
 {
     @throw [NSException exceptionWithName:NSInternalInconsistencyException
                                    reason:[NSString stringWithFormat:@"You must override %@ in a subclass", NSStringFromSelector(_cmd)]

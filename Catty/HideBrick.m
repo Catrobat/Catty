@@ -10,11 +10,11 @@
 
 @implementation HideBrick
 
-- (void)performOnSprite:(Sprite *)sprite fromScript:(Script*)script
+- (void)performFromScript:(Script*)script
 {
     NSLog(@"Performing: %@", self.description);
     
-    [sprite hide];
+    [self.sprite hide];
 }
 
 #pragma mark - Description

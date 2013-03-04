@@ -454,62 +454,62 @@
 //
 //
 
-
--(void)test015_changeGhostEffect
-{
-    float increase = 0.1f;
-    Sprite *sprite = [[Sprite alloc]initWithEffect:nil];
-    ChangeGhostEffectBrick* changeGhostEffectBrick = [[ChangeGhostEffectBrick alloc] initWithIncrease:increase];
-    [changeGhostEffectBrick performOnSprite:sprite fromScript:nil];
-    STAssertTrue(0.9f== sprite.alphaValue, @"Alpha Value not the same");
-}
-
--(void)test016_setGhostEffect
-{
-    float transparency = 200.0f;
-    SetGhostEffectBrick* ghostEffectBrick = [[SetGhostEffectBrick alloc] initWithTransparencyInPercent:transparency];
-    Sprite *sprite = [[Sprite alloc]initWithEffect:nil];
-    
-    [ghostEffectBrick performOnSprite:sprite fromScript:nil];
-    
-    STAssertTrue(sprite.alphaValue == 0.0f, @"Alpha Value not correct");
-}
-
--(void)test017_changeGhostEffect
-{
-    float transparency = 100.0f;
-    SetGhostEffectBrick* ghostEffectBrick = [[SetGhostEffectBrick alloc] initWithTransparencyInPercent:transparency];
-    Sprite *sprite = [[Sprite alloc]initWithEffect:nil];
-    
-    [ghostEffectBrick performOnSprite:sprite fromScript:nil];
-    
-    STAssertTrue(sprite.alphaValue == 0.0f, @"Alpha Value not correct");
-    
-    ChangeGhostEffectBrick* changeGhostEffectBrick = [[ChangeGhostEffectBrick alloc] initWithIncrease:-0.1f];
-    [changeGhostEffectBrick performOnSprite:sprite fromScript:nil];
-    
-    
-    STAssertTrue(sprite.alphaValue == 0.1f, @"Alpha Value not correct");
-}
-
-
--(void)test015_changeSizeByN
-{
-    Sprite *sprite = [[Sprite alloc]initWithEffect:nil];
-    
-    float size = 0.5f;
-    
-    ChangeSizeByNBrick *brick = [[ChangeSizeByNBrick alloc]initWithSizeChangeRate:size];
-    
-    STAssertTrue(sprite.scaleWidth  == 1.0f, @"Wrong inital value for scale-width");
-    STAssertTrue(sprite.scaleHeight == 1.0f, @"Wrong inital value for scale-height");
-
-    [brick performOnSprite:sprite fromScript:nil];
-    
-    STAssertTrue(sprite.scaleWidth  == 1.0f + size/100.0f, @"Wrong value for scale-width");
-    STAssertTrue(sprite.scaleHeight == 1.0f + size/100.0f, @"Wrong value for scale-height");
-}
-
+//
+//-(void)test015_changeGhostEffect
+//{
+//    float increase = 0.1f;
+//    Sprite *sprite = [[Sprite alloc]initWithEffect:nil];
+//    ChangeGhostEffectBrick* changeGhostEffectBrick = [[ChangeGhostEffectBrick alloc] initWithIncrease:increase];
+//    [changeGhostEffectBrick performOnSprite:sprite fromScript:nil];
+//    STAssertTrue(0.9f== sprite.alphaValue, @"Alpha Value not the same");
+//}
+//
+//-(void)test016_setGhostEffect
+//{
+//    float transparency = 200.0f;
+//    SetGhostEffectBrick* ghostEffectBrick = [[SetGhostEffectBrick alloc] initWithTransparencyInPercent:transparency];
+//    Sprite *sprite = [[Sprite alloc]initWithEffect:nil];
+//    
+//    [ghostEffectBrick performOnSprite:sprite fromScript:nil];
+//    
+//    STAssertTrue(sprite.alphaValue == 0.0f, @"Alpha Value not correct");
+//}
+//
+//-(void)test017_changeGhostEffect
+//{
+//    float transparency = 100.0f;
+//    SetGhostEffectBrick* ghostEffectBrick = [[SetGhostEffectBrick alloc] initWithTransparencyInPercent:transparency];
+//    Sprite *sprite = [[Sprite alloc]initWithEffect:nil];
+//    
+//    [ghostEffectBrick performOnSprite:sprite fromScript:nil];
+//    
+//    STAssertTrue(sprite.alphaValue == 0.0f, @"Alpha Value not correct");
+//    
+//    ChangeGhostEffectBrick* changeGhostEffectBrick = [[ChangeGhostEffectBrick alloc] initWithIncrease:-0.1f];
+//    [changeGhostEffectBrick performOnSprite:sprite fromScript:nil];
+//    
+//    
+//    STAssertTrue(sprite.alphaValue == 0.1f, @"Alpha Value not correct");
+//}
+//
+//
+//-(void)test015_changeSizeByN
+//{
+//    Sprite *sprite = [[Sprite alloc]initWithEffect:nil];
+//    
+//    float size = 0.5f;
+//    
+//    ChangeSizeByNBrick *brick = [[ChangeSizeByNBrick alloc]initWithSizeChangeRate:size];
+//    
+//    STAssertTrue(sprite.scaleWidth  == 1.0f, @"Wrong inital value for scale-width");
+//    STAssertTrue(sprite.scaleHeight == 1.0f, @"Wrong inital value for scale-height");
+//
+//    [brick performOnSprite:sprite fromScript:nil];
+//    
+//    STAssertTrue(sprite.scaleWidth  == 1.0f + size/100.0f, @"Wrong value for scale-width");
+//    STAssertTrue(sprite.scaleHeight == 1.0f + size/100.0f, @"Wrong value for scale-height");
+//}
+//
 
 
 ////////////////////////////////////////////////////////////////////////////////

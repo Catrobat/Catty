@@ -10,11 +10,11 @@
 
 @implementation ShowBrick
 
-- (void)performOnSprite:(Sprite *)sprite fromScript:(Script*)script
+- (void)performFromScript:(Script*)script
 {
     NSLog(@"Performing: %@", self.description);
     
-    [sprite show];
+    [self.sprite show];
     
     //    float sleepTime = ((float)self.timeToWaitInMilliseconds.intValue)/1000;
     //    NSLog(@"wating for %f seconds", sleepTime);

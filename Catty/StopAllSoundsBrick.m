@@ -11,11 +11,11 @@
 
 @implementation StopAllSoundsBrick
 
-- (void)performOnSprite:(Sprite *)sprite fromScript:(Script*)script
+- (void)performFromScript:(Script*)script
 {
     NSLog(@"Performing: %@", self.description);
     
-    [sprite.spriteManagerDelegate stopAllSounds]; // move this to sprite??
+    [self.sprite.spriteManagerDelegate stopAllSounds]; // move this to sprite??
     
 }
 

@@ -26,7 +26,7 @@
 }
 
 #pragma mark - override
--(void)performOnSprite:(Sprite *)sprite fromScript:(Script*)script
+-(void)performFromScript:(Script*)script
 {
   /*  NSLog(@"SPRITE: %@     SCRIPT: %@", sprite.name, script);
     NSLog(@"Set position of sprite %@ to %f / % f / %f", sprite.name, self.position.x, self.position.y, self.position.z);
@@ -35,7 +35,7 @@
     
     */
     
-    [sprite placeAt:GLKVector3Make(self.xPosition.floatValue, self.yPosition.floatValue, 0.0f)];
+    [self.sprite placeAt:GLKVector3Make(self.xPosition.floatValue, self.yPosition.floatValue, 0.0f)];
 }
 
 #pragma mark - Description

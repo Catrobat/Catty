@@ -10,11 +10,11 @@
 
 @implementation NextLookBrick
 
-- (void)performOnSprite:(Sprite *)sprite fromScript:(Script*)script
+- (void)performFromScript:(Script*)script
 {
     NSLog(@"Performing: %@", self.description);
     
-    [sprite performSelectorOnMainThread:@selector(nextCostume) withObject:nil waitUntilDone:true];
+    [self.sprite performSelectorOnMainThread:@selector(nextCostume) withObject:nil waitUntilDone:YES];
 
 //    [sprite nextCostume];
 }

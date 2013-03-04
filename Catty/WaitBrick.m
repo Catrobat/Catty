@@ -13,7 +13,7 @@
 
 @synthesize timeToWaitInMilliSeconds = _timeToWaitInMilliseconds;
 
-- (void)performOnSprite:(Sprite *)sprite fromScript:(Script*)script
+- (void)performFromScript:(Script*)script
 {
     NSLog(@"Performing: %@", self.description);
     

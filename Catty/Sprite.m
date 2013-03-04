@@ -643,7 +643,7 @@
 //    }
 }
 
-- (void)performBroadcastScript:(NSNotification*)notification
+- (void)performFromScript:(Script*)scriptBroadcastScript:(NSNotification*)notification
 {
     NSLog(@"Notification: %@", notification.name);
     Script *script = [self.broadcastScripts objectForKey:notification.name];

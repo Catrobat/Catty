@@ -22,11 +22,11 @@
     return self;
 }
 
-- (void)performOnSprite:(Sprite *)sprite fromScript:(Script*)script
+- (void)performFromScript:(Script*)script
 {
     NSLog(@"Performing: %@", self.description);
     
-    [sprite turnLeft:self.degrees.floatValue];
+    [self.sprite turnLeft:self.degrees.floatValue];
 }
 
 #pragma mark - Description

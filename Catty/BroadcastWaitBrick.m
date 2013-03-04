@@ -20,11 +20,11 @@
     return self;
 }
 
-- (void)performOnSprite:(Sprite *)sprite fromScript:(Script*)script;
+- (void)performFromScript:(Script*)script;
 {
     NSLog(@"Performing: %@", self.description);
     
-    [sprite broadcastAndWait:self.broadcastMessage];
+    [self.sprite broadcastAndWait:self.broadcastMessage];
     
     //    float sleepTime = ((float)self.timeToWaitInMilliseconds.intValue)/1000;
     //    NSLog(@"wating for %f seconds", sleepTime);

@@ -32,16 +32,14 @@
 }
 
 #pragma mark - override
--(void)performOnSprite:(Sprite *)sprite fromScript:(Script*)script
+-(void)performFromScript:(Script*)script
 {
     NSLog(@"Performing: %@", self.description);
 
-    
-//    [script glideWithSprite:sprite toPosition:self.position withinMilliSecs:self.durationInMilliSecs];
-    
+        
     GLKVector3 position = GLKVector3Make(self.xDestination.floatValue, self.yDestination.floatValue, 0.0f);
     
-    [sprite glideToPosition:position withinDurationInMilliSecs:self.durationInMilliSeconds fromScript:script];
+    [self.sprite glideToPosition:position withinDurationInMilliSecs:self.durationInMilliSeconds fromScript:script];
     [NSThread sleepForTimeInterval:self.durationInMilliSeconds.floatValue/1000.0f];
 }
 

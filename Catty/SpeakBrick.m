@@ -56,11 +56,11 @@
 }
 
 
-- (void)performOnSprite:(Sprite *)sprite fromScript:(Script*)script;
+- (void)performFromScript:(Script*)script;
 {
     NSLog(@"Performing: %@", self.description);
     
-    [self speakUsingTTSWebServiceOnSprite:sprite];
+    [self speakUsingTTSWebServiceOnSprite:self.sprite];
 }
 
 #pragma mark - Description

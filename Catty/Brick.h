@@ -19,6 +19,6 @@
 
 
 - (NSString*)description;
-- (void)performOnSprite:(Sprite*)sprite fromScript:(Script*)script;
+- (void)performFromScript:(Script*)script;
 
 @end

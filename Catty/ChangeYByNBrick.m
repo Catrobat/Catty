@@ -22,11 +22,11 @@
     return self;
 }
 
-- (void)performOnSprite:(Sprite *)sprite fromScript:(Script*)script
+- (void)performFromScript:(Script*)script
 {
     NSLog(@"Performing: %@", self.description);
     
-    [sprite changeYBy:self.yMovement.intValue];
+    [self.sprite changeYBy:self.yMovement.intValue];
 }
 
 #pragma mark - Description

@@ -33,22 +33,22 @@
 }
 
 
-- (void)performOnSprite:(Sprite *)sprite fromScript:(Script*)script
+- (void)performFromScript:(Script*)script
 {
     NSLog(@"Performing: %@", self.description);
     
     @try
     {
-        NSString *soundPath = [NSString stringWithFormat:@"%@sounds/%@", [sprite projectPath], _fileName];
+        NSString *soundPath = [NSString stringWithFormat:@"%@sounds/%@", [self.sprite projectPath], _fileName];
         AVAudioPlayer* audioPlayer = [[AVAudioPlayer alloc] initWithContentsOfURL:[NSURL fileURLWithPath:soundPath] error:NULL];
-        [sprite addSound:audioPlayer];
+        [self.sprite addSound:audioPlayer];
     }
     @catch(NSException *ex)
     {
         NSLog(@"Unsupported audio format!");
     }
     
-    NSLog(@"%@",[sprite projectPath]);
+    NSLog(@"%@",[self.sprite projectPath]);
 }
 
 

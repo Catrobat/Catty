@@ -146,7 +146,7 @@
                 [NSThread sleepForTimeInterval:timeToWait];
             
         } else {
-            [brick performOnSprite:sprite fromScript:self];
+            [brick performFromScript:self];
         }
         
         self.currentBrickIndex += 1;
