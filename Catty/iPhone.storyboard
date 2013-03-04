@@ -78,6 +78,7 @@
                     <connections>
                         <segue destination="s37-PF-3iN" kind="push" identifier="programs" id="vew-Li-crD"/>
                         <segue destination="yQD-vL-urH" kind="push" identifier="download" id="TUW-lg-tpP"/>
+                        <segue destination="Vaa-sF-tan" kind="push" identifier="continue" id="E8f-Km-7J7"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="d1W-id-jRf" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -178,7 +179,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5vX-Ly-Lt0" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1400" y="-738"/>
+            <point key="canvasLocation" x="1382" y="-828"/>
         </scene>
         <!--Level Store View Controller-->
         <scene sceneID="I6b-Zi-SPv">
@@ -295,4 +296,7 @@
         <simulatedOrientationMetrics key="orientation"/>
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
+    <inferredMetricsTieBreakers>
+        <segue reference="E8f-Km-7J7"/>
+    </inferredMetricsTieBreakers>
 </document>

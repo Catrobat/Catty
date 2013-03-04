@@ -14,6 +14,8 @@
 #import "CattyAppDelegate.h"
 #import "Util.h"
 #import "CatrobatImageCell.h"
+#import "StageViewController.h"
+#import "LevelLoadingInfo.h"
 
 @interface CatrobatTableViewController ()
 
@@ -43,6 +45,13 @@
     CattyAppDelegate *appDelegate = (CattyAppDelegate*)[[UIApplication sharedApplication] delegate];
     [appDelegate.fileManager addDefaultProject];
 
+}
+
+-(void) viewDidAppear:(BOOL)animated {
+    NSIndexPath* indexPath = [NSIndexPath indexPathForRow:0 inSection:0];
+    [self.tableView beginUpdates];
+    [self.tableView reloadRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationNone];
+    [self.tableView endUpdates];
 }
 
 - (void)didReceiveMemoryWarning
@@ -104,10 +113,11 @@
 {
     NSString* segue = [self.cells objectAtIndex:indexPath.row];
 #warning the if statement should be removed once everything has been implemented..
-    if([segue isEqualToString:@"download" ] || [segue isEqualToString:@"programs"]) {
+    if([segue isEqualToString:@"download" ] || [segue isEqualToString:@"programs"] ||[segue isEqualToString:@"continue"]) {
         [self performSegueWithIdentifier:segue sender:self];
     } else {
         [Util showComingSoonAlertView];
+        [tableView deselectRowAtIndexPath:indexPath animated:YES];
     }
 
 }
@@ -117,6 +127,7 @@
 {
   return [self getHeightForCellAtIndexPath:indexPath];
 }
+
 
 
 #pragma mark Helper
@@ -133,13 +144,36 @@
 {
     UILabel* subtitleLabel = (UILabel*)[cell viewWithTag:kSubtitleLabelTag];
     subtitleLabel.textColor = [UIColor brightGrayColor];
-#warning USE NSUSERDEFAULTS here..
-    subtitleLabel.text = @"My Zoo";
+#warning Hardcoded..
+    NSString* lastProject = [[NSUserDefaults standardUserDefaults] objectForKey:@"lastProject"];
+    subtitleLabel.text = lastProject;
 }
 
 
 -(CGFloat)getHeightForCellAtIndexPath:(NSIndexPath*) indexPath {
     return (indexPath.row == 0) ? [TableUtil getHeightForContinueCell] : [TableUtil getHeightForImageCell];
+}
+
+#pragma makrk - Segue delegate
+
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if([[segue identifier] isEqualToString:@"continue"]) {
+        StageViewController* stageViewController = [segue destinationViewController];
+#warning - Outsource creation of LevelLoading info (double implementation in MyProjectsViewController)
+        
+        NSString *documentsDirectoy = [Util applicationDocumentsDirectory];
+        NSString *levelFolder = @"levels";
+        NSString *levelsPath = [NSString stringWithFormat:@"%@/%@", documentsDirectoy, levelFolder];
+        NSString* level = [[NSUserDefaults standardUserDefaults] objectForKey:@"lastProject"];
+        LevelLoadingInfo *info = [[LevelLoadingInfo alloc] init];
+        info.basePath = [NSString stringWithFormat:@"%@/%@/", levelsPath, level];
+        info.visibleName = level;
+        stageViewController.levelLoadingInfo = info;
+        
+    }
+    
+    
 }
 
 
