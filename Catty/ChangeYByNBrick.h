@@ -1,5 +1,5 @@
 //
-//  LoopBrick.h
+//  ChangeYBy.h
 //  Catty
 //
 //  Created by Mattias Rauter on 27.09.12.
@@ -8,8 +8,10 @@
 
 #import "Brick.h"
 
-@interface LoopBrick : Brick
+@interface ChangeYByNBrick : Brick
 
--(BOOL)checkConditionAndDecrementLoopCounter;
+@property (nonatomic, strong) NSNumber *yMovement;
 
+
+-(id)initWithChangeValueForY:(NSNumber*)y;
 @end

@@ -12,7 +12,7 @@
 
 @synthesize xPosition = _xPosition;
 
--(id)initWithXPosition:(float)xPosition
+-(id)initWithXPosition:(NSNumber*)xPosition
 {
     self = [super init];
     if (self)
@@ -26,7 +26,7 @@
 {
     NSLog(@"Performing: %@", self.description);
     
-    [sprite setXPosition:self.xPosition];
+    [sprite setXPosition:self.xPosition.floatValue];
     
     //    float sleepTime = ((float)self.timeToWaitInMilliseconds.intValue)/1000;
     //    NSLog(@"wating for %f seconds", sleepTime);
@@ -39,7 +39,7 @@
 #pragma mark - Description
 - (NSString*)description
 {
-    return [NSString stringWithFormat:@"SetXBrick (x-Pos:%f)", self.xPosition];
+    return [NSString stringWithFormat:@"SetXBrick (x-Pos:%f)", self.xPosition.floatValue];
 }
 
 @end

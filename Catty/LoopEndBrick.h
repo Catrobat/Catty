@@ -8,6 +8,6 @@
 
 #import "Brick.h"
 
-@interface EndLoopBrick : Brick
+@interface LoopEndBrick : Brick
 
 @end

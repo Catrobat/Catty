@@ -6,9 +6,9 @@
 //  Copyright (c) 2012 Graz University of Technology. All rights reserved.
 //
 
-#import "NextCostumeBrick.h"
+#import "NextLookBrick.h"
 
-@implementation NextCostumeBrick
+@implementation NextLookBrick
 
 - (void)performOnSprite:(Sprite *)sprite fromScript:(Script*)script
 {
@@ -23,7 +23,7 @@
 #pragma mark - Description
 - (NSString*)description
 {
-    return [NSString stringWithFormat:@"NextCostumeBrick"];
+    return [NSString stringWithFormat:@"NextLookBrick"];
 }
 
 @end

@@ -7,11 +7,12 @@
 //
 
 #import "Brick.h"
+#import "Sprite.h"
 
 @interface SetSizeToBrick : Brick
 
-@property (assign, nonatomic) float sizeInPercentage;
+@property (assign, nonatomic) NSNumber *size;
 
--(id)initWithSizeInPercentage:(float)sizeInPercentage;
+-(id)initWithSizeInPercentage:(NSNumber*)sizeInPercentage;
 
 @end

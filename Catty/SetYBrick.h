@@ -10,8 +10,8 @@
 
 @interface SetYBrick : Brick
 
-@property (assign, nonatomic) float yPosition;
+@property (nonatomic, strong) NSNumber *yPosition;
 
--(id)initWithYPosition:(float)yPosition;
+-(id)initWithYPosition:(NSNumber*)yPosition;
 
 @end

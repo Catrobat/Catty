@@ -9,7 +9,7 @@
 #import "SpriteManagerDelegate.h"
 #import "Brick.h"
 #import "Sprite.h"
-#import "Costume.h"
+#import "LookData.h"
 #import "Sound.h"
 #import "Script.h"
 #import "Util.h"
@@ -33,6 +33,9 @@
 @implementation PositionAtTime
 @synthesize position = _position;
 @synthesize timestamp = _timestamp;
+
+// new
+
 +(PositionAtTime*)positionAtTimeWithPosition:(GLKVector3)position andTimestamp:(double)timestamp
 {
     PositionAtTime *obj = [[PositionAtTime alloc]init];
@@ -62,8 +65,8 @@
 
 @property (strong, nonatomic) NSNumber *indexOfCurrentCostumeInArray;
 
-@property (strong, nonatomic) NSArray *costumesArray;    // tell the compiler: "I want a private setter"
-@property (strong, nonatomic) NSMutableArray *soundsArray;
+@property (strong, nonatomic) NSArray *lookList;    // tell the compiler: "I want a private setter"
+@property (strong, nonatomic) NSMutableArray *soundList;
 @property (strong, nonatomic) NSArray *startScriptsArray;
 @property (strong, nonatomic) NSArray *whenScriptsArray;
 @property (strong, nonatomic) NSDictionary *broadcastScripts;
@@ -76,11 +79,16 @@
 @synthesize spriteManagerDelegate = _spriteManagerDelegate;
 @synthesize broadcastWaitDelegate = _broadcastWaitDelegate;
 @synthesize projectPath = _projectPath;
-@synthesize costumesArray = _costumesArray;
-@synthesize soundsArray = _soundsArray;
+@synthesize lookList = _lookList;
+@synthesize soundList = _soundsArray;
 @synthesize startScriptsArray = _startScriptsArray;
 @synthesize whenScriptsArray = _whenScriptsArray;
 @synthesize broadcastScripts = _broadcastScripts;
+
+
+// new
+@synthesize scriptList = _scriptList;
+#warning added this line... (just a note for mattias)
 
 // private synthesizes
 @synthesize position = _position;
@@ -96,13 +104,13 @@
 #pragma mark Custom getter and setter
 - (NSArray*)costumesArray
 {
-    if (_costumesArray == nil)
-        _costumesArray = [[NSArray alloc] init];
+    if (_lookList == nil)
+        _lookList = [[NSArray alloc] init];
 
-    return _costumesArray;
+    return _lookList;
 }
 
-- (NSMutableArray*)soundsArray
+- (NSMutableArray*)soundList
 {
     if (_soundsArray == nil)
         _soundsArray = [[NSMutableArray alloc] init];
@@ -204,12 +212,12 @@
 
 - (void)addCostume:(Costume *)costume
 {
-    self.costumesArray = [self.costumesArray arrayByAddingObject:costume];
+    self.lookList = [self.lookList arrayByAddingObject:costume];
 }
 
 - (void)addCostumes:(NSArray *)costumesArray
 {
-    self.costumesArray = [self.costumesArray arrayByAddingObjectsFromArray:costumesArray];
+    self.lookList = [self.lookList arrayByAddingObjectsFromArray:costumesArray];
 }
 
 
@@ -263,7 +271,7 @@
         NSLog(@"Index %d is invalid! Array-size: %d", indexOfCurrentCostumeInArray.intValue, [self.costumesArray count]);
     }
     
-    NSString *fileName = ((Costume*)[self.costumesArray objectAtIndex:[self.indexOfCurrentCostumeInArray intValue]]).costumeFileName;
+    NSString *fileName = ((LookData*)[self.costumesArray objectAtIndex:[self.indexOfCurrentCostumeInArray intValue]]).fileName;
     
     NSLog(@"Filename: %@", fileName);
     
@@ -444,9 +452,9 @@
     self.alphaValue = (100.0f-transparency)/100.0f;
 }
 
--(void)changeTransparencyBy:(float)increase
+-(void)changeTransparencyBy:(NSNumber*)increase
 {
-    self.alphaValue -= increase;
+    self.alphaValue -= increase.floatValue;
     if(self.alphaValue > 1.0f) {
         self.alphaValue = 1.0f;
     }
@@ -457,24 +465,24 @@
 
 - (void)addSound:(AVAudioPlayer *)player
 {
-    [self.soundsArray addObject:player];
+    [self.soundList addObject:player];
     player.delegate = self;
     [player play];
 }
 
 -(void)stopAllSounds
 {    
-    for(AVAudioPlayer* player in self.soundsArray)
+    for(AVAudioPlayer* player in self.soundList)
     {
         [player stop];
     }
-    [self.soundsArray removeAllObjects];
+    [self.soundList removeAllObjects];
 }
 
 
 - (void)setVolumeTo:(float)volume
 {
-    for(AVAudioPlayer* player in self.soundsArray)
+    for(AVAudioPlayer* player in self.soundList)
     {
         player.volume = volume;
     }
@@ -482,7 +490,7 @@
 
 -(void)changeVolumeBy:(float)percent
 {
-    for(AVAudioPlayer* player in self.soundsArray)
+    for(AVAudioPlayer* player in self.soundList)
     {
         player.volume += percent;
     }
@@ -500,47 +508,60 @@
 
 
 #pragma mark - description
-- (NSString*)description
-{
+//- (NSString*)description
+//{
+//    NSMutableString *ret = [[NSMutableString alloc] init];
+//    
+//    [ret appendFormat:@"Sprite (0x%@):\n", self];
+//    [ret appendFormat:@"\t\t\tName: %@\n", self.name];
+//    [ret appendFormat:@"\t\t\tPosition: [%f, %f, %f] (x, y, z)\n", self.position.x, self.position.y, self.position.z];
+//    [ret appendFormat:@"\t\t\tContent size: [%f, %f] (x, y)\n", self.contentSize.width, self.contentSize.height];
+//    [ret appendFormat:@"\t\t\tCostume index: %d\n", self.indexOfCurrentCostumeInArray.intValue];
+//    
+//    if ([self.costumesArray count] > 0)
+//    {
+//        [ret appendString:@"\t\t\tCostumes:\n"];
+//        for (Costume *costume in self.costumesArray)
+//        {
+//            [ret appendFormat:@"\t\t\t\t - %@\n", costume];
+//        }
+//    }
+//    else 
+//    {
+//        [ret appendString:@"\t\t\tCostumes: None\n"];
+//    }
+//
+//    if ([self.soundList count] > 0)
+//    {
+//        [ret appendString:@"\t\t\tSounds\n"];
+//        for (Sound *sound in self.soundList)
+//        {
+//            [ret appendFormat:@"\t\t\t\t - %@\n", sound];
+//        }
+//    }
+//    else 
+//    {
+//        [ret appendString:@"\t\t\tSounds: None\n"];
+//    }
+//
+//    
+//    //[ret appendFormat:@"\t\t\tCostumes: %@\n", self.costumesArray];
+//    //[ret appendFormat:@"\t\t\tSounds: %@\n", self.soundsArray];    
+//    
+//    return [[NSString alloc] initWithString:ret];
+//}
+
+- (NSString*)description {
     NSMutableString *ret = [[NSMutableString alloc] init];
-    
-    [ret appendFormat:@"Sprite (0x%@):\n", self];
-    [ret appendFormat:@"\t\t\tName: %@\n", self.name];
-    [ret appendFormat:@"\t\t\tPosition: [%f, %f, %f] (x, y, z)\n", self.position.x, self.position.y, self.position.z];
-    [ret appendFormat:@"\t\t\tContent size: [%f, %f] (x, y)\n", self.contentSize.width, self.contentSize.height];
-    [ret appendFormat:@"\t\t\tCostume index: %d\n", self.indexOfCurrentCostumeInArray.intValue];
-    
-    if ([self.costumesArray count] > 0)
-    {
-        [ret appendString:@"\t\t\tCostumes:\n"];
-        for (Costume *costume in self.costumesArray)
-        {
-            [ret appendFormat:@"\t\t\t\t - %@\n", costume];
-        }
-    }
-    else 
-    {
-        [ret appendString:@"\t\t\tCostumes: None\n"];
-    }
-
-    if ([self.soundsArray count] > 0)
-    {
-        [ret appendString:@"\t\t\tSounds\n"];
-        for (Sound *sound in self.soundsArray)
-        {
-            [ret appendFormat:@"\t\t\t\t - %@\n", sound];
-        }
-    }
-    else 
-    {
-        [ret appendString:@"\t\t\tSounds: None\n"];
-    }
+    //[ret appendFormat:@"Sprite: (0x%@):\n", self];
+    [ret appendFormat:@"\r------------------- SPRITE --------------------\r"];
+    [ret appendFormat:@"Name: %@\r", self.name];
+    [ret appendFormat:@"Look List: \r%@\r\r", self.lookList];
+    [ret appendFormat:@"Script List: \r%@\r", self.scriptList];
+    [ret appendFormat:@"-------------------------------------------------\r"];
 
     
-    //[ret appendFormat:@"\t\t\tCostumes: %@\n", self.costumesArray];
-    //[ret appendFormat:@"\t\t\tSounds: %@\n", self.soundsArray];    
-    
-    return [[NSString alloc] initWithString:ret];
+    return [NSString stringWithString:ret];
 }
 
 
@@ -592,31 +613,34 @@
 
 - (void)touch:(TouchAction)type
 {
-    //todo: throw exception if its not a when script
-    for (Script *script in self.whenScriptsArray)
-    {
-        NSLog(@"Performing script with action: %@", script.description);
-        if (type == script.action)
-        {
-            if ([self.activeScripts containsObject:script]) {
-                [script resetScript];
-                [self.nextPositions removeObjectForKey:script.description];
-            } else {
-                [self.activeScripts addObject:script];
-                
-                // ------------------------------------------ THREAD --------------------------------------
-                dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-                    [script runScriptForSprite:self];
-                    
-                    // tell the main thread
-                    dispatch_async(dispatch_get_main_queue(), ^{
-                        [self scriptFinished:script];
-                    });
-                });
-                // ------------------------------------------ END -----------------------------------------
-            }
-        }
-    }
+#warning @Mattias: I've commented this because it doesn't work anymore. We had to change the "action" 
+#warning property of the Script class from int (was an enum) to NSString (because that's how it is in 
+#warning the XML...)
+//    //todo: throw exception if its not a when script
+//    for (Script *script in self.whenScriptsArray)
+//    {
+//        NSLog(@"Performing script with action: %@", script.description);
+//        if (type == script.action)
+//        {
+//            if ([self.activeScripts containsObject:script]) {
+//                [script resetScript];
+//                [self.nextPositions removeObjectForKey:script.description];
+//            } else {
+//                [self.activeScripts addObject:script];
+//                
+//                // ------------------------------------------ THREAD --------------------------------------
+//                dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+//                    [script runScriptForSprite:self];
+//                    
+//                    // tell the main thread
+//                    dispatch_async(dispatch_get_main_queue(), ^{
+//                        [self scriptFinished:script];
+//                    });
+//                });
+//                // ------------------------------------------ END -----------------------------------------
+//            }
+//        }
+//    }
 }
 
 - (void)performBroadcastScript:(NSNotification*)notification

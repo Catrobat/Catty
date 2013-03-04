@@ -10,8 +10,9 @@
 
 @interface PlaceAtBrick : Brick
 
-@property (nonatomic, assign) GLKVector3 position;
+@property (nonatomic, strong) NSNumber *xPosition;
+@property (nonatomic, strong) NSNumber *yPosition;
 
--(id)initWithPosition:(GLKVector3)position;
+-(id)initWithXPosition:(NSNumber*)xPosition yPosition:(NSNumber*)yPosition;
 
 @end

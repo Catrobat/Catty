@@ -12,7 +12,7 @@
 
 @synthesize degrees = _degrees;
 
--(id)initWithDegrees:(float)degees
+-(id)initWithDegrees:(NSNumber*)degees
 {
     self = [super init];
     if (self)
@@ -26,13 +26,13 @@
 {
     NSLog(@"Performing: %@", self.description);
     
-    [sprite turnLeft:self.degrees];
+    [sprite turnLeft:self.degrees.floatValue];
 }
 
 #pragma mark - Description
 - (NSString*)description
 {
-    return [NSString stringWithFormat:@"TurnLeft (%f degrees)", self.degrees];
+    return [NSString stringWithFormat:@"TurnLeft (%f degrees)", self.degrees.floatValue];
 }
 
 @end

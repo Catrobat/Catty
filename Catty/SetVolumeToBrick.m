@@ -13,7 +13,7 @@
 @synthesize volume = _volume;
 
 
--(id)initWithVolumeInPercent:(float)volume
+-(id)initWithVolumeInPercent:(NSNumber*)volume
 {
     self = [super init];
     if (self)
@@ -29,14 +29,14 @@
 {
     NSLog(@"Performing: %@", self.description);
     
-    [sprite setVolumeTo:_volume/100.0f];
+    [sprite setVolumeTo:self.volume.floatValue/100.0f];
 }
 
 
 #pragma mark - Description
 - (NSString*)description
 {
-    return [NSString stringWithFormat:@"Set Volume to: %f%%)", _volume];
+    return [NSString stringWithFormat:@"Set Volume to: %f%%)", self.volume.floatValue];
 }
 
 

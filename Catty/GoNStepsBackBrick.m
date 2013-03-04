@@ -10,14 +10,14 @@
 
 @implementation GoNStepsBackBrick
 
-@synthesize n = _n;
+@synthesize steps = _steps;
 
--(id)initWithN:(int)n
+-(id)initWithNumberOfSteps:(NSNumber*)steps
 {
     self = [super init];
     if (self)
     {
-        self.n = n;
+        self.steps = steps;
     }
     return self;
 }
@@ -26,13 +26,13 @@
 {
     NSLog(@"Performing: %@", self.description);
     
-    [sprite goNStepsBack:self.n];
+    [sprite goNStepsBack:self.steps.intValue];
 }
 
 #pragma mark - Description
 - (NSString*)description
 {
-    return [NSString stringWithFormat:@"GoNStepsBack (%d)", self.n];
+    return [NSString stringWithFormat:@"GoNStepsBack (%@)", self.steps];
 }
 
 

@@ -10,15 +10,17 @@
 
 @implementation PlaceAtBrick
 
-@synthesize position = _position;
+@synthesize xPosition = _xPosition;
+@synthesize yPosition = _yPosition;
 
 #pragma mark - init methods
--(id)initWithPosition:(GLKVector3)position
+-(id)initWithXPosition:(NSNumber*)xPosition yPosition:(NSNumber*)yPosition
 {
     self = [super init];
     if (self)
     {
-        self.position = position;
+        self.xPosition = xPosition;
+        self.yPosition = yPosition;
     }
     return self;
 }
@@ -26,15 +28,20 @@
 #pragma mark - override
 -(void)performOnSprite:(Sprite *)sprite fromScript:(Script*)script
 {
-    NSLog(@"SPRITE: %@     SCRIPT: %@", sprite.name, script);
-    NSLog(@"Set positino of sprite %@ to %f / % f / %f", sprite.name, self.position.x, self.position.y, self.position.z);
-    [sprite placeAt:self.position];
+  /*  NSLog(@"SPRITE: %@     SCRIPT: %@", sprite.name, script);
+    NSLog(@"Set position of sprite %@ to %f / % f / %f", sprite.name, self.position.x, self.position.y, self.position.z);
+    self.position.x = self.xPosition.integerValue;
+    self.position.y = self.yPosition.floatValue;
+    
+    */
+    
+    [sprite placeAt:GLKVector3Make(self.xPosition.floatValue, self.yPosition.floatValue, 0.0f)];
 }
 
 #pragma mark - Description
 - (NSString*)description
 {
-    return [NSString stringWithFormat:@"PlaceAt (Position: %f/%f)", self.position.x, self.position.y];
+    return [NSString stringWithFormat:@"PlaceAt (Position: %f/%f)", self.xPosition.floatValue, self.yPosition.floatValue];
 }
 
 @end

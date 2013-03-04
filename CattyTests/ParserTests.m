@@ -1,413 +1,264 @@
-//
-//  ParserTests.m
-//  Catty
-//
-//  Created by Christof Stromberger on 15.07.12.
-//  Copyright (c) 2012 Graz University of Technology. All rights reserved.
-//
+/**
+ *  Copyright (C) 2010-2013 The Catrobat Team
+ *  (<http://developer.catrobat.org/credits>)
+ *
+ *  This program is free software: you can redistribute it and/or modify
+ *  it under the terms of the GNU Affero General Public License as
+ *  published by the Free Software Foundation, either version 3 of the
+ *  License, or (at your option) any later version.
+ *
+ *  An additional term exception under section 7 of the GNU Affero
+ *  General Public License, version 3, is available at
+ *  http://developer.catrobat.org/license_additional_term
+ *
+ *  This program is distributed in the hope that it will be useful,
+ *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ *  GNU Affero General Public License for more details.
+ *
+ *  You should have received a copy of the GNU Affero General Public License
+ *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
 
 #import "ParserTests.h"
-#import "RetailParser.h"
-#import "Level.h"
+#import "ProjectParser.h"
+#import "Parser.h"
+#import "Project.h"
 #import "Sprite.h"
-#import "Costume.h"
-#import "Brick.h"
+#import "LookData.h"
 #import "Script.h"
-#import "GDataXMLNode.h"
-#import "LevelParser.h"
-#import "Sprite.h"
-#import "Costume.h"
-#import "Brick.h"
-#import "SetCostumeBrick.h"
-#import "WaitBrick.h"
-#import "Sound.h"
-#import "PlaceAtBrick.h"
-#import "GlideToBrick.h"
-#import "NextCostumeBrick.h"
-#import "HideBrick.h"
-#import "ShowBrick.h"
-#import "SetXBrick.h"
-#import "SetYBrick.h"
-#import "ChangeSizeByNBrick.h"
-#import "BroadcastBrick.h"
-#import "BroadcastWaitBrick.h"
-#import "ChangeXByBrick.h"
-#import "ChangeYByBrick.h"
-#import "PlaySoundBrick.h"
-#import "StopAllSoundsBrick.h"
-#import "ComeToFrontBrick.h"
+#import "StartScript.h"
+#import "WhenScript.h"
+
+// Bricks
+#import "SetLookBrick.h"
 #import "SetSizeToBrick.h"
-#import "LoopBrick.h"
-#import "RepeatBrick.h"
-#import "EndLoopBrick.h"
-#import "GoNStepsBackBrick.h"
-#import "SetGhostEffectBrick.h"
-#import "SetVolumeToBrick.h"
-#import "ChangeVolumeByBrick.h"
-#import "ChangeGhostEffectBrick.h"
-#import "SpeakBrick.h"
+#import "WaitBrick.h"
 
 @interface ParserTests()
-@property (nonatomic, strong) LevelParser *parser;
+
+@property (nonatomic, strong) ProjectParser *parser;
+
 @end
 
 @implementation ParserTests
 
-@synthesize parser = _parser;
 
-#pragma mark - tear up & down
+// -----------------------------------------------------------------------------
 - (void)setUp
 {
     [super setUp];
-
-//    self.parser = [[RetailParser alloc] init];
-    self.parser = [[LevelParser alloc]init];
+    
+    // instantiate parser
+    self.parser = [[ProjectParser alloc] init];
 }
 
 
+// -----------------------------------------------------------------------------
 - (void)tearDown
-{    
+{
+    // Tear-down code here.
+    
     [super tearDown];
-
 }
 
-//- (void)test001_testBasicParser
-//{
-//    NSString *fileName = @"defaultProject";
-//    NSBundle *bundle = [NSBundle bundleForClass:[self class]];
-//    NSString *path = [bundle pathForResource:fileName ofType:@"xml"];
-//    
-//    Level *level = [self.parser generateObjectForLevel:path];
-//    NSLog(@"Level: %@", level);
-//    STAssertTrue([level.name isEqualToString:@"defaultProject"], @"checking if the name of the level is correct");
-//    Sprite *sprite = [level.spritesArray objectAtIndex:0];
-//    STAssertTrue([sprite.name isEqualToString:@"Background"], @"checking if the name of the first sprite is correct");
-//    Costume *costume = [sprite.costumesArray objectAtIndex:0];
-//    STAssertTrue([costume.costumeName isEqualToString:@"background"], @"checking if the name of the first costume in the sprite is correct");
-//    Script *script = [sprite.startScriptsArray objectAtIndex:0];
-//    STAssertTrue(script != nil, @"checking if script is valid");
-////    Brick *brick = [script.bricksArray objectAtIndex:0];
-////    STAssertTrue([brick isKindOfClass:[SetCostumeBrick class]], @"checking if brick is valid");
-//
-//}
 
 
-#pragma mark - test cases
-
-- (void)test001_setCostumeFirstCostume
-{
-    NSString *xmlString = @"<Bricks.SetCostumeBrick><costumeData reference=\"../../../../../costumeDataList/Common.CostumeData\"/><sprite reference=\"../../../../..\"/></Bricks.SetCostumeBrick>";
-    NSError *error;
-    NSData *xmlData = [xmlString dataUsingEncoding:NSASCIIStringEncoding];
-    GDataXMLDocument *doc = [[GDataXMLDocument alloc] initWithData:xmlData
-                                                           options:0 error:&error];
-    Brick *newBrick = [self.parser loadSetCostumeBrick:doc.rootElement];
-    if (![newBrick isMemberOfClass:[SetCostumeBrick class]])
-        STFail(@"Wrong class-member");
-    SetCostumeBrick *brick = (SetCostumeBrick*)newBrick;
-    STAssertTrue(brick.indexOfCostumeInArray==[NSNumber numberWithInt:0], @"Wrong indexOfCostumeInArray-value");
+// -----------------------------------------------------------------------------
+- (void)test001_basicParserTest {
+    STAssertNil([self.parser loadProject:nil], @"Check if parser handles invalid input");
 }
 
-- (void)test002_setCostumeSecondCostume
-{
-    NSString *xmlString = @"<Bricks.SetCostumeBrick><costumeData reference=\"../../../../../costumeDataList/Common.CostumeData[2]\"/><sprite reference=\"../../../../..\"/></Bricks.SetCostumeBrick>";
-    NSError *error;
-    NSData *xmlData = [xmlString dataUsingEncoding:NSASCIIStringEncoding];
-    GDataXMLDocument *doc = [[GDataXMLDocument alloc] initWithData:xmlData
-                                                           options:0 error:&error];
-    Brick *newBrick = [self.parser loadSetCostumeBrick:doc.rootElement];
-    if (![newBrick isMemberOfClass:[SetCostumeBrick class]])
-        STFail(@"Wrong class-member");
-    SetCostumeBrick *brick = (SetCostumeBrick*)newBrick;
-    STAssertTrue(brick.indexOfCostumeInArray==[NSNumber numberWithInt:1], @"Wrong indexOfCostumeInArray-value");
+
+// -----------------------------------------------------------------------------
+- (void)test002_parseSimpleBricks {
+    // parse SetSizeToBrick
+    NSString *xml = @"<org.catrobat.catroid.content.bricks.SetSizeToBrick><size>120.0</size><sprite reference=\"../../../../..\"/></org.catrobat.catroid.content.bricks.SetSizeToBrick>";
+    
+    id object = [self.parser loadProject:[xml dataUsingEncoding:NSUTF8StringEncoding]];
+    STAssertNotNil(object, @"Check object");
+    STAssertTrue([object isKindOfClass:[SetSizeToBrick class]], @"Check if introspection succeeded");
+    
+    SetSizeToBrick *brick = (SetSizeToBrick*)object;
+    STAssertEqualObjects(brick.size, [NSNumber numberWithFloat:120.0f], @"Check size of SetSizeToBrick");
+    STAssertFalse(brick.size.floatValue != 120.0f, @"Check size value");
 }
 
-- (void)test003_wait
-{
-    int timeToWaitInMilliSeconds = 500;
-    NSString *xmlString = [NSString stringWithFormat:@"<Bricks.WaitBrick><sprite reference=\"../../../../..\"/><timeToWaitInMilliSeconds>%d</timeToWaitInMilliSeconds></Bricks.WaitBrick>", timeToWaitInMilliSeconds];
-    NSError *error;
-    NSData *xmlData = [xmlString dataUsingEncoding:NSASCIIStringEncoding];
-    GDataXMLDocument *doc = [[GDataXMLDocument alloc] initWithData:xmlData
-                                                           options:0 error:&error];
-    Brick *newBrick = [self.parser loadWaitBrick:doc.rootElement];
-    if (![newBrick isMemberOfClass:[WaitBrick class]])
-        STFail(@"Wrong class-member");
-    WaitBrick *brick = (WaitBrick*)newBrick;
-    STAssertTrue(brick.timeToWaitInMilliseconds.intValue == timeToWaitInMilliSeconds, @"Wrong timeToWaitInMilliSeconds-value");
+
+// -----------------------------------------------------------------------------
+- (void)test003_testEntireParserWithDefaultProject {
+    // parse default project
+    Parser *parser = [[Parser alloc] init];
+    
+    NSBundle *bundle = [NSBundle mainBundle];
+    STAssertNotNil(bundle, @"Check bundle");
+    
+    NSString *xmlPath = [bundle pathForResource:@"defaultProjectTest" ofType:@"xml"];
+    STAssertNotNil(xmlPath, @"Check XML path");
+    
+    Project *project = [parser generateObjectForLevel:xmlPath];
+    STAssertNotNil(project, @"Check project");
+    
+    
+    // check basic project properties
+    // ---------------------------------------------------------------------
+    STAssertTrue([project.applicationBuildName isEqualToString:@""],         @"Check application build name");
+    STAssertTrue([project.applicationBuildNumber isEqualToString:@"0"],      @"Check application build number");
+    STAssertTrue([project.applicationName isEqualToString:@"Catroid"],       @"Check application name");
+    STAssertTrue([project.applicationVersion isEqualToString:@"0.7.0beta"],  @"Check application version");
+    STAssertTrue([project.catrobatLanguageVersion isEqualToString:@"0.3"],   @"Check catrobat language version");
+    STAssertNil(project.dateTimeUpload,                                      @"Check date time upload");
+    STAssertTrue([project.description isEqualToString:@"testdescription2"],  @"Check description");
+    STAssertTrue([project.deviceName isEqualToString:@"Nexus S"],            @"Check device name");
+    STAssertTrue([project.mediaLicense isEqualToString:@""],                 @"Check media license");
+    STAssertTrue([project.platform isEqualToString:@"Android"],              @"Check platform");
+    STAssertTrue([project.platformVersion isEqualToString:@"10"],            @"Check platform version");
+    STAssertTrue([project.programLicense isEqualToString:@""],               @"Check program license");
+    STAssertTrue([project.programName isEqualToString:@"testingproject1"],   @"Check program name");
+    STAssertTrue([project.remixOf isEqualToString:@""],                      @"Check remix of");
+    STAssertEqualObjects(project.screenHeight, [NSNumber numberWithInt:800], @"Check screen height");
+    STAssertEqualObjects(project.screenWidth, [NSNumber numberWithInt:480],  @"Check screen width");
+    STAssertNotNil(project.spriteList,                                       @"Check sprite list (just for not nil)");
+    STAssertTrue([project.uRL isEqualToString:@""],                          @"Check url");
+    STAssertTrue([project.userHandle isEqualToString:@""],                   @"Check user handle");
+    
+    
+    // not let's check the sprites
+    // ---------------------------------------------------------------------
+    NSArray *sprites = project.spriteList;
+    STAssertTrue(sprites.count == 2,                           @"Check sprites list count");
+    
+    // check the first sprite
+    Sprite *sprite1 = [sprites objectAtIndex:0];
+    STAssertNotNil(sprite1,                                    @"Check sprite1 for not nil");
+    STAssertTrue([sprite1 isKindOfClass:[Sprite class]],       @"Check class of sprite1");
+    STAssertTrue([sprite1.name isEqualToString:@"Background"], @"Check name of the sprite");
+    NSArray *lookList1 = sprite1.lookList;
+    STAssertNotNil(lookList1,                                  @"Check looklist1 for not nil");
+    STAssertTrue(lookList1.count == 1,                         @"Check look list count");
+    
+    // check look
+    LookData *look1 = [lookList1 objectAtIndex:0];
+    STAssertNotNil(look1,                                      @"Check if look1 is not nil");
+    STAssertTrue([look1 isKindOfClass:[LookData class]],       @"Check class of look1");
+    STAssertTrue([look1.name isEqualToString:@"background"],   @"Check name of look1");
+    NSString *fn1 = @"B978398F6E8D16B857AA81618F3EF879_background";
+    STAssertTrue([look1.fileName isEqualToString:fn1],         @"Check look1 file name");
+    
+    // check scripts
+    NSArray *scripts1 = sprite1.scriptList;
+    STAssertNotNil(scripts1,                                   @"Check if scripts1 is not nil");
+    STAssertTrue(scripts1.count == 1,                          @"Check count of scripts1 list");
+    id script1 = [scripts1 objectAtIndex:0];
+    STAssertNotNil(script1,                                    @"Check for script1 not nil");
+    STAssertTrue([script1 isKindOfClass:[StartScript class]],  @"Check first start script");
+    StartScript *start1 = (StartScript*)script1;
+    
+    // check bricks of first script
+    NSArray *bricks1 = start1.brickList;
+    STAssertNotNil(bricks1,                                    @"Check for the first brick list");
+    STAssertTrue(bricks1.count == 1,                           @"Check the count of the first brick list");
+    
+    id brick1 = [bricks1 objectAtIndex:0];
+    STAssertNotNil(brick1,                                     @"Check for brick1 not nil");
+    STAssertTrue([brick1 isKindOfClass:[SetLookBrick class]],  @"Check for class of brick");
+    SetLookBrick *lookBrick = (SetLookBrick*)brick1;
+    STAssertNotNil(lookBrick,                                  @"Check for look brick not nil");
+    // TODO: check for lookBrick.look AND lookBrick.sprite
+    // But this is currently not implemented by the parser because of X-Stream XML...
+    
+    
+    // check the second sprite
+    Sprite *sprite2 = [sprites objectAtIndex:1];
+    STAssertNotNil(sprite2,                                    @"Check sprite2 for not nil");
+    STAssertTrue([sprite2 isKindOfClass:[Sprite class]],       @"Check for class of sprite2");
+    STAssertTrue([sprite2.name isEqualToString:@"Catroid"],    @"Check for name of sprite2");
+    NSArray *lookList2 = sprite2.lookList;
+    STAssertNotNil(lookList2,                                  @"Check for look list2 not nil");
+    STAssertTrue(lookList2.count == 3,                         @"Check for count of the second look list");
+    
+    NSString *fn2 = @"7064E57016F4326F59F0B098D83EB259_normalCat";
+    NSString *fn3 = @"FE5DF421A5746EC7FC916AC1B94ECC17_banzaiCat";
+    NSString *fn4 = @"3673EC84679EE425A215B86B085EC292_cheshireCat";
+    LookData *look2 = [lookList2 objectAtIndex:0];
+    LookData *look3 = [lookList2 objectAtIndex:1];
+    LookData *look4 = [lookList2 objectAtIndex:2];
+    
+    // check looks
+    STAssertNotNil(look2,                                      @"Check for look2 not nil");
+    STAssertNotNil(look3,                                      @"Check for look3 not nil");
+    STAssertNotNil(look4,                                      @"Check for look4 not nil");
+    STAssertTrue([look2.fileName isEqualToString:fn2],         @"Check for filename of look2");
+    STAssertTrue([look3.fileName isEqualToString:fn3],         @"Check for filename of look3");
+    STAssertTrue([look4.fileName isEqualToString:fn4],         @"Check for filename of look4");
+    STAssertTrue([look2.name isEqualToString:@"normalCat"],    @"Check for name of look2");
+    STAssertTrue([look3.name isEqualToString:@"banzaiCat"],    @"Check for name of look3");
+    STAssertTrue([look4.name isEqualToString:@"cheshireCat"],  @"Check for name of look4");
+    
+    // check scripts
+    NSArray *scripts2 = sprite2.scriptList;
+    STAssertNotNil(scripts2,                                   @"Check if scripts2 is not nil");
+    STAssertTrue(scripts2.count == 2,                          @"Check count of scripts2 list");
+    id script2 = [scripts2 objectAtIndex:0];
+    STAssertNotNil(script2,                                    @"Check for script2 not nil");
+    STAssertTrue([script2 isKindOfClass:[StartScript class]],  @"Check second start script");
+    StartScript *start2 = (StartScript*)script2;
+    // check bricks of second script
+    NSArray *bricks2 = start2.brickList;
+    STAssertNotNil(bricks2,                                    @"Check for the second brick list");
+    STAssertTrue(bricks2.count == 1,                           @"Check the count of the second brick list");
+    // Brick is already checked above (SetLookBrick)
+    
+    id script3 = [scripts2 objectAtIndex:1];
+    STAssertNotNil(script3,                                    @"Check for script3 not nil");
+    STAssertTrue([script3 isKindOfClass:[WhenScript class]],  @"Check third start script");
+    WhenScript *when1 = (WhenScript*)script3;
+    // check bricks of third script
+    NSArray *bricks3 = when1.brickList;
+    STAssertNotNil(bricks3,                                    @"Check for the third brick list");
+    STAssertTrue(bricks3.count == 5,                           @"Check the count of the third brick list");
+    
+    // first brick - SetLookBrick
+    id temp = [bricks3 objectAtIndex:0];
+    STAssertNotNil(temp,                                       @"Check for temp not nil");
+    STAssertTrue([temp isKindOfClass:[SetLookBrick class]],    @"Check first brick in when script");
+    // ... This brick is a SetLookBrick -> already checked above
+    
+    // second brick - WaitBrick
+    temp = [bricks3 objectAtIndex:1];
+    STAssertNotNil(temp,                                       @"Check for temp not nil");
+    STAssertTrue([temp isKindOfClass:[WaitBrick class]],       @"Check class of brick");
+    WaitBrick *wait1 = (WaitBrick*)temp;
+    NSNumber *n = [NSNumber numberWithInt:500];
+    STAssertEqualObjects(wait1.timeToWaitInMilliSeconds, n,    @"Check wait time of wait brick");
+    // TODO: Check sprite reference of this brick... but -> X-Stream...
+    
+    // third brick - SetLookBrick
+    temp = [bricks3 objectAtIndex:2];
+    STAssertNotNil(temp,                                       @"Check for temp not nil");
+    STAssertTrue([temp isKindOfClass:[SetLookBrick class]],    @"Check third brick in when script");
+    // ... This brick is a SetLookBrick -> already checked above
+    
+    // fourth brick - WaitBrick
+    temp = [bricks3 objectAtIndex:3];
+    STAssertNotNil(temp,                                       @"Check for temp not nil");
+    STAssertTrue([temp isKindOfClass:[WaitBrick class]],       @"Check fourth brick in when script");
+    // ... This brick is a WaitBrick -> already checked above
+    
+    // fifth brick - SetLookBrick
+    temp = [bricks3 objectAtIndex:4];
+    STAssertNotNil(temp,                                       @"Check for temp not nil");
+    STAssertTrue([temp isKindOfClass:[SetLookBrick class]],    @"Check fifth brick in when script");
+    // ... This brick is a SetLookBrick -> already checked above
+
+    
+    // check when script action
+    STAssertTrue([when1.action isEqualToString:@"Tapped"],     @"Check action of when script");
+    
+    // that's it!
+    // test finished! :-)
 }
 
-- (void)test004_placeAt
-{
-    CGPoint position = CGPointMake(-123, 456);
-    NSString *xmlString = [NSString stringWithFormat:@"<Bricks.PlaceAtBrick><sprite reference=\"../../../../..\"/><xPosition>%f</xPosition><yPosition>%f</yPosition></Bricks.PlaceAtBrick>", position.x, position.y];
-    NSError *error;
-    NSData *xmlData = [xmlString dataUsingEncoding:NSASCIIStringEncoding];
-    GDataXMLDocument *doc = [[GDataXMLDocument alloc] initWithData:xmlData
-                                                           options:0 error:&error];
-    Brick *newBrick = [self.parser loadPlaceAtBrick:doc.rootElement];
-    if (![newBrick isMemberOfClass:[PlaceAtBrick class]])
-        STFail(@"Wrong class-member");
-    PlaceAtBrick *brick = (PlaceAtBrick*)newBrick;
-    STAssertTrue(brick.position.x == position.x && brick.position.y == position.y, @"Wrong position-value");
-}
-
-- (void)test005_glideTo
-{
-    CGPoint position = CGPointMake(-123, 456);
-    int duration = 1000;
-    NSString *xmlString = [NSString stringWithFormat:@"<Bricks.GlideToBrick><durationInMilliSeconds>%d</durationInMilliSeconds><sprite reference=\"../../../../..\"/><xDestination>%f</xDestination><yDestination>%f</yDestination></Bricks.GlideToBrick>", duration, position.x, position.y];
-    NSError *error;
-    NSData *xmlData = [xmlString dataUsingEncoding:NSASCIIStringEncoding];
-    GDataXMLDocument *doc = [[GDataXMLDocument alloc] initWithData:xmlData
-                                                           options:0 error:&error];
-    Brick *newBrick = [self.parser loadGlideToBrick:doc.rootElement];
-    if (![newBrick isMemberOfClass:[GlideToBrick class]])
-        STFail(@"Wrong class-member");
-    GlideToBrick *brick = (GlideToBrick*)newBrick;
-    STAssertTrue(brick.position.x == position.x && brick.position.y == position.y, @"Wrong position-value");
-    STAssertTrue(brick.durationInMilliSecs == duration, @"Wrong duration-value");
-}
-
-- (void)test006_setX
-{
-    float x = 3.3f;
-    NSString *xmlString = [NSString stringWithFormat:@"<Bricks.SetXBrick><sprite reference=\"../../../../..\"/><xPosition>%f</xPosition></Bricks.SetXBrick>", x];
-    NSError *error;
-    NSData *xmlData = [xmlString dataUsingEncoding:NSASCIIStringEncoding];
-    GDataXMLDocument *doc = [[GDataXMLDocument alloc] initWithData:xmlData
-                                                           options:0 error:&error];
-    Brick *newBrick = [self.parser loadSetXBrick:doc.rootElement];
-    if (![newBrick isMemberOfClass:[SetXBrick class]])
-        STFail(@"Wrong class-member");
-    SetXBrick *brick = (SetXBrick*)newBrick;
-    STAssertTrue(brick.xPosition == x, @"Wrong position-value");
-}
-
-- (void)test007_setY
-{
-    float y = 324.234f;
-    NSString *xmlString = [NSString stringWithFormat:@"<Bricks.SetYBrick><sprite reference=\"../../../../..\"/><yPosition>%f</yPosition></Bricks.SetYBrick>", y];
-    NSError *error;
-    NSData *xmlData = [xmlString dataUsingEncoding:NSASCIIStringEncoding];
-    GDataXMLDocument *doc = [[GDataXMLDocument alloc] initWithData:xmlData
-                                                           options:0 error:&error];
-    Brick *newBrick = [self.parser loadSetYBrick:doc.rootElement];
-    if (![newBrick isMemberOfClass:[SetYBrick class]])
-        STFail(@"Wrong class-member");
-    SetYBrick *brick = (SetYBrick*)newBrick;
-    STAssertTrue(brick.yPosition == y, @"Wrong position-value");
-}
-
-- (void)test008_changeSizeByN
-{
-    float sizeInPercentage = 1.05f;
-    NSString *xmlString = [NSString stringWithFormat:@"<Bricks.ChangeSizeByNBrick><size>%f</size><sprite reference=\"../../../../..\"/></Bricks.ChangeSizeByNBrick>", sizeInPercentage];
-    NSError *error;
-    NSData *xmlData = [xmlString dataUsingEncoding:NSASCIIStringEncoding];
-    GDataXMLDocument *doc = [[GDataXMLDocument alloc] initWithData:xmlData
-                                                           options:0 error:&error];
-    Brick *newBrick = [self.parser loadChangeSizeByNBrick:doc.rootElement];
-    if (![newBrick isMemberOfClass:[ChangeSizeByNBrick class]])
-        STFail(@"Wrong class-member");
-    ChangeSizeByNBrick *brick = (ChangeSizeByNBrick*)newBrick;
-    STAssertTrue(brick.sizeInPercentage == sizeInPercentage, @"Wrong size-value");
-}
-
-- (void)test009_broadcast
-{
-    NSString *broadcastMessage = @"BroadCastMessage!";
-    NSString *xmlString = [NSString stringWithFormat:@"<Bricks.BroadcastBrick><broadcastMessage>%@</broadcastMessage><sprite reference=\"../../../../..\"/></Bricks.BroadcastBrick>", broadcastMessage];
-    NSError *error;
-    NSData *xmlData = [xmlString dataUsingEncoding:NSASCIIStringEncoding];
-    GDataXMLDocument *doc = [[GDataXMLDocument alloc] initWithData:xmlData
-                                                           options:0 error:&error];
-    Brick *newBrick = [self.parser loadBroadcastBrick:doc.rootElement];
-    if (![newBrick isMemberOfClass:[BroadcastBrick class]])
-        STFail(@"Wrong class-member");
-    BroadcastBrick *brick = (BroadcastBrick*)newBrick;
-    STAssertTrue([brick.message isEqualToString:broadcastMessage], @"Wrong broadcastMessage-value");
-}
-
-- (void)test010_broadcastWait
-{
-    NSString *broadcastMessage = @"BroadCastMessage!";
-    NSString *xmlString = [NSString stringWithFormat:@"<Bricks.BroadcastWaitBrick><broadcastMessage>%@</broadcastMessage><sprite reference=\"../../../../..\"/></Bricks.BroadcastWaitBrick>", broadcastMessage];
-    NSError *error;
-    NSData *xmlData = [xmlString dataUsingEncoding:NSASCIIStringEncoding];
-    GDataXMLDocument *doc = [[GDataXMLDocument alloc] initWithData:xmlData
-                                                           options:0 error:&error];
-    Brick* newBrick = [self.parser loadBroadcastWaitBrick:doc.rootElement];
-    if (![newBrick isMemberOfClass:[BroadcastWaitBrick class]])
-        STFail(@"Wrong class-member");
-    BroadcastWaitBrick *brick = (BroadcastWaitBrick*)newBrick;
-    STAssertTrue([brick.message isEqualToString:broadcastMessage], @"Wrong broadcastWaitMessage-value");
-}
-
-- (void)test011_changeXBy
-{
-    int x = 5;
-    NSString *xmlString = [NSString stringWithFormat:@"<Bricks.ChangeXByBrick><sprite reference=\"../../../../..\"/><xMovement>%d</xMovement></Bricks.ChangeXByBrick>", x];
-    NSError *error;
-    NSData *xmlData = [xmlString dataUsingEncoding:NSASCIIStringEncoding];
-    GDataXMLDocument *doc = [[GDataXMLDocument alloc] initWithData:xmlData
-                                                           options:0 error:&error];
-    Brick *newBrick = [self.parser loadChangeXByBrick:doc.rootElement];
-    if (![newBrick isMemberOfClass:[ChangeXByBrick class]])
-        STFail(@"Wrong class-member");
-    ChangeXByBrick *brick = (ChangeXByBrick*)newBrick;
-    STAssertTrue(brick.x == x, @"Wrong x-value");
-}
-
-- (void)test012_changeYBy
-{
-    int y = 500;
-    NSString *xmlString = [NSString stringWithFormat:@"<Bricks.ChangeYByBrick><sprite reference=\"../../../../..\"/><yMovement>%d</yMovement></Bricks.ChangeYByBrick>", y];
-    NSError *error;
-    NSData *xmlData = [xmlString dataUsingEncoding:NSASCIIStringEncoding];
-    GDataXMLDocument *doc = [[GDataXMLDocument alloc] initWithData:xmlData
-                                                           options:0 error:&error];
-    Brick *newBrick = [self.parser loadChangeYByBrick:doc.rootElement];
-    if (![newBrick isMemberOfClass:[ChangeYByBrick class]])
-        STFail(@"Wrong class-member");
-    ChangeYByBrick *brick = (ChangeYByBrick*)newBrick;
-    STAssertTrue(brick.y == y, @"Wrong y-value");
-}
-
-- (void)test013_setSizeTo
-{
-    float sizeInPercentage = 120.5f;
-    NSString *xmlString = [NSString stringWithFormat:@"<Bricks.SetSizeToBrick><size>%f</size><sprite reference=\"../../../../..\"/></Bricks.SetSizeToBrick>", sizeInPercentage];
-    NSError *error;
-    NSData *xmlData = [xmlString dataUsingEncoding:NSASCIIStringEncoding];
-    GDataXMLDocument *doc = [[GDataXMLDocument alloc] initWithData:xmlData
-                                                           options:0 error:&error];
-    Brick *newBrick = [self.parser loadSetSizeToBrick:doc.rootElement];
-    if (![newBrick isMemberOfClass:[SetSizeToBrick class]])
-        STFail(@"Wrong class-member");
-    SetSizeToBrick *brick = (SetSizeToBrick*)newBrick;
-    STAssertTrue(brick.sizeInPercentage == sizeInPercentage, @"Wrong size-value");
-}
-
-- (void)test014_Repeat
-{
-    int numberOfLoops = 123;
-    NSString *xmlString = [NSString stringWithFormat:@"<Bricks.RepeatBrick><loopEndBrick><loopBeginBrick class=\"Bricks.RepeatBrick\" reference=\"../..\"/><sprite reference=\"../../../../../..\"/></loopEndBrick><sprite reference=\"../../../../..\"/><timesToRepeat>%d</timesToRepeat></Bricks.RepeatBrick>", numberOfLoops];
-    NSError *error;
-    NSData *xmlData = [xmlString dataUsingEncoding:NSASCIIStringEncoding];
-    GDataXMLDocument *doc = [[GDataXMLDocument alloc] initWithData:xmlData
-                                                           options:0 error:&error];
-    Brick *newBrick = [self.parser loadRepeatBrick:doc.rootElement];
-    if (![newBrick isMemberOfClass:[RepeatBrick class]])
-        STFail(@"Wrong class-member");
-    RepeatBrick *brick = (RepeatBrick*)newBrick;
-    STAssertTrue(brick.numberOfLoops == numberOfLoops, @"Wrong numberOfLoops-value");
-}
-
-- (void)test015_GoNStepsBack
-{
-    int steps = 987;
-    NSString *xmlString = [NSString stringWithFormat:@"<Bricks.GoNStepsBackBrick><sprite reference=\"../../../../..\"/><steps>%d</steps></Bricks.GoNStepsBackBrick>", steps];
-    NSError *error;
-    NSData *xmlData = [xmlString dataUsingEncoding:NSASCIIStringEncoding];
-    GDataXMLDocument *doc = [[GDataXMLDocument alloc] initWithData:xmlData
-                                                           options:0 error:&error];
-    Brick *newBrick = [self.parser loadGoNStepsBackBrick:doc.rootElement];
-    if (![newBrick isMemberOfClass:[GoNStepsBackBrick class]])
-        STFail(@"Wrong class-member");
-    GoNStepsBackBrick *brick = (GoNStepsBackBrick*)newBrick;
-    STAssertTrue(brick.n == steps, @"Wrong steps-value");
-}
-
-- (void)test016_setGhostEffect
-{
-    float transparency = 0.45f;
-    NSString *xmlString = [NSString stringWithFormat:@"<Bricks.SetGhostEffectBrick><sprite reference=\"../../../../..\"/><transparency>%f</transparency></Bricks.SetGhostEffectBrick>", transparency];
-    NSError *error;
-    NSData *xmlData = [xmlString dataUsingEncoding:NSASCIIStringEncoding];
-    GDataXMLDocument *doc = [[GDataXMLDocument alloc] initWithData:xmlData
-                                                           options:0 error:&error];
-    Brick *newBrick = [self.parser loadGhostEffectBrick:doc.rootElement];
-    if (![newBrick isMemberOfClass:[SetGhostEffectBrick class]])
-        STFail(@"Wrong class-member");
-    SetGhostEffectBrick *brick = (SetGhostEffectBrick*)newBrick;
-    STAssertTrue(brick.transparency == transparency, @"Wrong transparency-value");
-}
-
-- (void)test017_changeGhostEffect
-{
-    float transparencyIncrease = 0.45f;
-    NSString *xmlString = [NSString stringWithFormat:@"<Bricks.ChangeGhostEffectBrick><changeGhostEffect>%f</changeGhostEffect><sprite reference=\"../../../../..\"/></Bricks.ChangeGhostEffectBrick>", transparencyIncrease];
-    NSError *error;
-    NSData *xmlData = [xmlString dataUsingEncoding:NSASCIIStringEncoding];
-    GDataXMLDocument *doc = [[GDataXMLDocument alloc] initWithData:xmlData
-                                                           options:0 error:&error];
-    Brick *newBrick = [self.parser loadChangeGhostEffectBrick:doc.rootElement];
-    if (![newBrick isMemberOfClass:[ChangeGhostEffectBrick class]])
-        STFail(@"Wrong class-member");
-    ChangeGhostEffectBrick *brick = (ChangeGhostEffectBrick*)newBrick;
-    STAssertTrue(brick.increase == transparencyIncrease, @"Wrong transparency-value");
-}
-
-- (void)test018_playSound
-{
-    NSString *fileName = @"ThisIsTheFileName";
-    NSString *xmlString = [NSString stringWithFormat:@"<Bricks.PlaySoundBrick><soundInfo><fileName>%@</fileName><name>ABCD</name></soundInfo><sprite reference=\"../../../../..\"/></Bricks.PlaySoundBrick>", fileName];
-    NSError *error;
-    NSData *xmlData = [xmlString dataUsingEncoding:NSASCIIStringEncoding];
-    GDataXMLDocument *doc = [[GDataXMLDocument alloc] initWithData:xmlData
-                                                           options:0 error:&error];
-    Brick *newBrick = [self.parser loadSoundBrick:doc.rootElement];
-    if (![newBrick isMemberOfClass:[PlaySoundBrick class]])
-        STFail(@"Wrong class-member");
-    PlaySoundBrick *brick = (PlaySoundBrick*)newBrick;
-    STAssertTrue([brick.fileName isEqualToString:fileName], @"Wrong fileName");
-}
-
-- (void)test019_setVolumeTo
-{
-    float volume = 5.1f;
-    NSString *xmlString = [NSString stringWithFormat:@"<Bricks.SetVolumeToBrick><sprite reference=\"../../../../..\"/><volume>%f</volume></Bricks.SetVolumeToBrick>", volume];
-    NSError *error;
-    NSData *xmlData = [xmlString dataUsingEncoding:NSASCIIStringEncoding];
-    GDataXMLDocument *doc = [[GDataXMLDocument alloc] initWithData:xmlData
-                                                           options:0 error:&error];
-    Brick *newBrick = [self.parser loadSetVolumeToBrick:doc.rootElement];
-    if (![newBrick isMemberOfClass:[SetVolumeToBrick class]])
-        STFail(@"Wrong class-member");
-    SetVolumeToBrick *brick = (SetVolumeToBrick*)newBrick;
-    STAssertTrue(brick.volume == volume, @"Wrong volume-value");
-}
-
-- (void)test020_changeVolumeBy
-{
-    float percent = 1.2f;
-    NSString *xmlString = [NSString stringWithFormat:@"<Bricks.ChangeVolumeByBrick><sprite reference=\"../../../../..\"/><volume>%f</volume></Bricks.ChangeVolumeByBrick>", percent];
-    NSError *error;
-    NSData *xmlData = [xmlString dataUsingEncoding:NSASCIIStringEncoding];
-    GDataXMLDocument *doc = [[GDataXMLDocument alloc] initWithData:xmlData
-                                                           options:0 error:&error];
-    Brick *newBrick = [self.parser loadChangeVolumeByBrick:doc.rootElement];
-    if (![newBrick isMemberOfClass:[ChangeVolumeByBrick class]])
-        STFail(@"Wrong class-member");
-    ChangeVolumeByBrick *brick = (ChangeVolumeByBrick*)newBrick;
-    STAssertTrue(brick.percent == percent, @"Wrong volume-percent-value");
-}
-
-- (void)test021_speak
-{
-    NSString* text = @"This is a test";
-    NSString *xmlString = [NSString stringWithFormat:@"<Bricks.SpeakBrick><sprite reference=\"../../../../..\"/><text>%@</text></Bricks.SpeakBrick>", text];
-    NSError *error;
-    NSData *xmlData = [xmlString dataUsingEncoding:NSASCIIStringEncoding];
-    GDataXMLDocument *doc = [[GDataXMLDocument alloc] initWithData:xmlData
-                                                           options:0 error:&error];
-    Brick *newBrick = [self.parser loadSpeakBrick:doc.rootElement];
-    if (![newBrick isMemberOfClass:[SpeakBrick class]])
-        STFail(@"Wrong class-member");
-    SpeakBrick *brick = (SpeakBrick*)newBrick;
-    STAssertEqualObjects(brick.text, text, @"Wrong text");
-}
 
 
 @end

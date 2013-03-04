@@ -6,18 +6,18 @@
 //  Copyright (c) 2012 Graz University of Technology. All rights reserved.
 //
 
-#import "ChangeYByBrick.h"
+#import "ChangeYByNBrick.h"
 
-@implementation ChangeYByBrick
+@implementation ChangeYByNBrick
 
-@synthesize y = _y;
+@synthesize yMovement = _yMovement;
 
--(id)initWithChangeValueForY:(int)y
+-(id)initWithChangeValueForY:(NSNumber*)y
 {
     self = [super init];
     if (self)
     {
-        self.y = y;
+        self.yMovement = y;
     }
     return self;
 }
@@ -26,13 +26,13 @@
 {
     NSLog(@"Performing: %@", self.description);
     
-    [sprite changeYBy:self.y];
+    [sprite changeYBy:self.yMovement.intValue];
 }
 
 #pragma mark - Description
 - (NSString*)description
 {
-    return [NSString stringWithFormat:@"ChangeYBy (%d)", self.y];
+    return [NSString stringWithFormat:@"ChangeYBy (%d)", self.yMovement.intValue];
 }
 
 @end

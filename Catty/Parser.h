@@ -21,11 +21,8 @@
  */
 
 #import <Foundation/Foundation.h>
+#import "XMLParserProtocol.h"
 
-@class Project;
-
-@protocol XMLParserProtocol <NSObject>
-
-- (Project*)generateObjectForLevel:(NSString*)path;
+@interface Parser : NSObject <XMLParserProtocol>
 
 @end

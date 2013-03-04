@@ -6,20 +6,20 @@
 //  Copyright (c) 2012 Graz University of Technology. All rights reserved.
 //
 
-#import "SetCostumeBrick.h"
+#import "SetLookBrick.h"
 #import "Sprite.h"
 
-@implementation SetCostumeBrick
+@implementation SetLookBrick
 
 @synthesize indexOfCostumeInArray = _indexOfCostumeInArray;
-
+@synthesize look = _look;
 
 - (void)performOnSprite:(Sprite *)sprite fromScript:(Script*)script
 {
     NSLog(@"Performing: %@", self.description);
     
 
-    [sprite performSelectorOnMainThread:@selector(changeCostume:) withObject:self.indexOfCostumeInArray waitUntilDone:true];
+    [sprite performSelectorOnMainThread:@selector(changeCostume:) withObject:self.indexOfCostumeInArray waitUntilDone:YES];
 //    [sprite changeCostume:self.indexOfCostumeInArray];
 }
 

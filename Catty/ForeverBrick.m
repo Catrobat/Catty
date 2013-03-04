@@ -6,9 +6,9 @@
 //  Copyright (c) 2012 Graz University of Technology. All rights reserved.
 //
 
-#import "LoopBrick.h"
+#import "ForeverBrick.h"
 
-@implementation LoopBrick
+@implementation ForeverBrick
 
 
 - (void)performOnSprite:(Sprite *)sprite fromScript:(Script*)script

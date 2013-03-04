@@ -6,17 +6,17 @@
 //  Copyright (c) 2012 Graz University of Technology. All rights reserved.
 //
 
-#import "Costume.h"
+#import "LookData.h"
 
-@interface Costume ()
+@interface LookData ()
 
 
 @end
 
-@implementation Costume
+@implementation LookData
 
-@synthesize costumeFileName = _costumeFileName;
-@synthesize costumeName = _costumeName;
+@synthesize fileName = _costumeFileName;
+@synthesize name = _costumeName;
 
 #pragma mark - init methods
 - (id)initWithPath:(NSString*)filePath
@@ -24,7 +24,7 @@
     self = [super init];
     if (self) 
     {
-        self.costumeName = nil;
+        self.name = nil;
         if (filePath == nil || [filePath length] == 0)
         {
             @throw [NSException exceptionWithName:NSInternalInconsistencyException
@@ -34,7 +34,7 @@
         }
         else 
         {
-            self.costumeFileName = filePath;
+            self.fileName = filePath;
         }
     }
     return self;
@@ -46,7 +46,7 @@
     self = [super init];
     if (self) 
     {
-        self.costumeName = name;
+        self.name = name;
         if (filePath == nil || [filePath length] == 0)
         {
             @throw [NSException exceptionWithName:NSInternalInconsistencyException
@@ -56,7 +56,7 @@
         }
         else 
         {
-            self.costumeFileName = filePath;
+            self.fileName = filePath;
         }
     }
     return self;
@@ -64,9 +64,8 @@
 
 
 #pragma mark - description
-- (NSString*)description
-{
-    return [NSString stringWithFormat:@"Path: %@ Name: %@", self.costumeFileName, self.costumeName];
+- (NSString*)description {
+    return [NSString stringWithFormat:@"Name: %@\rPath: %@\r", self.name, self.fileName];
 }
 
 @end

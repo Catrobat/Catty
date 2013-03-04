@@ -14,17 +14,19 @@
 
 @implementation GlideToBrick
 
-@synthesize position = _position;
-@synthesize durationInMilliSecs = _durationInMilliSecs;
+@synthesize durationInMilliSeconds = _durationInMilliSecs;
+@synthesize xDestination = _xDestination;
+@synthesize yDestination = _yDestination;
 
 #pragma mark - init methods
--(id)initWithPosition:(GLKVector3)position andDurationInMilliSecs:(int)durationInMilliSecs
+-(id)initWithXPosition:(NSNumber*)xPosition yPosition:(NSNumber*)yPosition andDurationInMilliSecs:(NSNumber*)durationInMilliSecs
 {
     self = [super init];
     if (self)
     {
-        self.position = position;
-        self.durationInMilliSecs = durationInMilliSecs;
+        self.xDestination = xPosition;
+        self.yDestination = yPosition;
+        self.durationInMilliSeconds = durationInMilliSecs;
     }
     return self;
 }
@@ -37,14 +39,17 @@
     
 //    [script glideWithSprite:sprite toPosition:self.position withinMilliSecs:self.durationInMilliSecs];
     
-    [sprite glideToPosition:self.position withinDurationInMilliSecs:self.durationInMilliSecs fromScript:script];
-    [NSThread sleepForTimeInterval:self.durationInMilliSecs/1000.0f];
+    GLKVector3 position = GLKVector3Make(self.xDestination.floatValue, self.yDestination.floatValue, 0.0f);
+    
+    [sprite glideToPosition:position withinDurationInMilliSecs:self.durationInMilliSeconds fromScript:script];
+    [NSThread sleepForTimeInterval:self.durationInMilliSeconds.floatValue/1000.0f];
 }
 
 #pragma mark - Description
 - (NSString*)description
 {
-    return [NSString stringWithFormat:@"GlideTo (Position: %f/%f; duration: %d ms)", self.position.x, self.position.y, self.durationInMilliSecs];
+    return [NSString stringWithFormat:@"GlideTo (Position: %f/%f; duration: %f ms)", self.xDestination.floatValue, self.yDestination.floatValue, self.durationInMilliSeconds.floatValue
+            ];
 }
 
 @end

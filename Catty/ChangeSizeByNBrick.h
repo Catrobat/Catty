@@ -10,8 +10,8 @@
 
 @interface ChangeSizeByNBrick : Brick
 
-@property (assign, nonatomic) float sizeInPercentage;
+@property (nonatomic, strong) NSNumber *size;
 
--(id)initWithSizeChangeRate:(float)sizeInPercentage;
+-(id)initWithSizeChangeRate:(NSNumber*)sizeInPercentage;
 
 @end

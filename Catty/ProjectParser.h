@@ -24,8 +24,8 @@
 
 @class Project;
 
-@protocol XMLParserProtocol <NSObject>
+@interface ProjectParser : NSObject
 
-- (Project*)generateObjectForLevel:(NSString*)path;
+- (id)loadProject:(NSData*)xmlData;
 
 @end

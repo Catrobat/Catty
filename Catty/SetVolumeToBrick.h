@@ -10,8 +10,8 @@
 
 @interface SetVolumeToBrick : Brick
 
-@property (nonatomic, nonatomic) float volume;
+@property (nonatomic, strong) NSNumber *volume;
 
--(id)initWithVolumeInPercent:(float)volume;
+-(id)initWithVolumeInPercent:(NSNumber*)volume;
 
 @end

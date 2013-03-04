@@ -10,14 +10,14 @@
 
 @implementation ChangeSizeByNBrick
 
-@synthesize sizeInPercentage = _sizeInPercentage;
+@synthesize size = _size;
 
--(id)initWithSizeChangeRate:(float)sizeInPercentage
+-(id)initWithSizeChangeRate:(NSNumber*)sizeInPercentage
 {
     self = [super init];
     if (self)
     {
-        self.sizeInPercentage = sizeInPercentage;
+        self.size = sizeInPercentage;
     }
     return self;
 }
@@ -26,7 +26,7 @@
 {
     NSLog(@"Performing: %@", self.description);
     
-    [sprite changeSizeByN:self.sizeInPercentage];
+    [sprite changeSizeByN:self.size.floatValue];
     
     //    float sleepTime = ((float)self.timeToWaitInMilliseconds.intValue)/1000;
     //    NSLog(@"wating for %f seconds", sleepTime);
@@ -39,7 +39,7 @@
 #pragma mark - Description
 - (NSString*)description
 {
-    return [NSString stringWithFormat:@"ChangeSizeByN (%f%%)", self.sizeInPercentage];
+    return [NSString stringWithFormat:@"ChangeSizeByN (%f%%)", self.size.floatValue];
 }
 
 @end

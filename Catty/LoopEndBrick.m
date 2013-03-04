@@ -6,9 +6,9 @@
 //  Copyright (c) 2012 Graz University of Technology. All rights reserved.
 //
 
-#import "EndLoopBrick.h"
+#import "loopEndBrick.h"
 
-@implementation EndLoopBrick
+@implementation LoopEndBrick
 
 - (void)performOnSprite:(Sprite *)sprite fromScript:(Script*)script
 {

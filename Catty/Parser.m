@@ -20,12 +20,33 @@
  *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#import <Foundation/Foundation.h>
+#import "Parser.h"
+#import "GDataXMLNode.h"
+#import "ProjectParser.h"
 
-@class Project;
+@implementation Parser
 
-@protocol XMLParserProtocol <NSObject>
-
-- (Project*)generateObjectForLevel:(NSString*)path;
+- (Project*)generateObjectForLevel:(NSString*)path {
+    // sanity check
+    if (!path || [path isEqualToString:@""]) {
+        NSLog(@"Path (%@) is NOT valid!", path);
+        return nil;
+    }
+    
+    NSError *error;
+    //open xml file
+    NSString *xmlFile = [NSString stringWithContentsOfFile:path encoding:NSUTF8StringEncoding error:&error];
+    
+    // sanity check
+    if (error) { return nil; }
+    
+    NSData* xmlData = [xmlFile dataUsingEncoding:NSUTF8StringEncoding];
+    
+    //using dom parser (gdata)
+    ProjectParser *parser = [[ProjectParser alloc] init];
+    
+    // return Project object
+    return [parser loadProject:xmlData];
+}
 
 @end

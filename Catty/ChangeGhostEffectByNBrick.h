@@ -8,10 +8,10 @@
 
 #import "Brick.h"
 
-@interface ChangeGhostEffectBrick : Brick
+@interface ChangeGhostEffectByNBrick : Brick
 
-@property (assign, nonatomic) float increase;
+@property (nonatomic, strong) NSNumber *changeGhostEffect;
 
--(id)initWithIncrease:(float)increase;
+-(id)initWithValueForGhostEffectChange:(NSNumber*)value;
 
 @end

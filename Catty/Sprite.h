@@ -40,8 +40,16 @@
 @property (weak, nonatomic) id<BroadcastWaitDelegate> broadcastWaitDelegate;
 
 @property (strong, nonatomic) NSString *projectPath; //for image-path!!!
-@property (readonly, strong, nonatomic) NSArray *costumesArray;
-@property (readonly, strong, nonatomic) NSMutableArray *soundsArray;
+@property (readonly, strong, nonatomic) NSArray *lookList;
+@property (readonly, strong, nonatomic) NSMutableArray *soundList;
+
+// new script array (contains StartScrupt and WhenScripts
+@property (nonatomic, strong) NSArray *scriptList;
+#warning todo for mattias: change implementation of stage (etc.) for handling scriptList instead of startScriptsArray and whenScriptsArray
+
+
+// old script arrays...
+#warning todo: for mattias :-)
 @property (readonly, strong, nonatomic) NSArray *startScriptsArray;
 @property (readonly, strong, nonatomic) NSArray *whenScriptsArray;
 @property (readonly, strong, nonatomic) NSDictionary *broadcastScripts; //TODO: ONE broadcast-script for ONE message?? Hopefully, yes - otherwise: change this :(
@@ -105,7 +113,7 @@
 //- (void)addLoopBricks:(NSArray*)bricks;
 - (void)goNStepsBack:(int)n;
 - (void)setTransparency:(float)transparency;
-- (void)changeTransparencyBy:(float)increase;
+- (void)changeTransparencyBy:(NSNumber*)increase;
 - (void)setVolumeTo:(float)volume;
 - (void)changeVolumeBy:(float)percent;
 - (void)turnLeft:(float)degrees;

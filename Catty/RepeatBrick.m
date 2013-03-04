@@ -9,20 +9,20 @@
 #import "RepeatBrick.h"
 
 @interface RepeatBrick()
-@property (assign, nonatomic) int loopsLeft;
+@property (strong, nonatomic) NSNumber *loopsLeft;
 @end
 
 @implementation RepeatBrick
 
-@synthesize numberOfLoops = _numberOfLoops;
+@synthesize timesToRepeat = _numberOfLoops;
 @synthesize loopsLeft = _loopsLeft;
 
--(id)initWithNumberOfLoops:(int)numberOfLoops
+-(id)initWithNumberOfLoops:(NSNumber*)numberOfLoops
 {
     self = [super init];
     if (self)
     {
-        self.numberOfLoops = numberOfLoops;
+        self.timesToRepeat = numberOfLoops;
         self.loopsLeft = numberOfLoops;
     }
     return self;
@@ -30,10 +30,10 @@
 
 -(BOOL)checkConditionAndDecrementLoopCounter
 {
-    self.loopsLeft -= 1;
-    BOOL returnValue = (self.loopsLeft >= 0);
+    self.loopsLeft = [NSNumber numberWithInt:self.loopsLeft.intValue-1];
+    BOOL returnValue = (self.loopsLeft.intValue >= 0);
     if (!returnValue) {
-        self.loopsLeft = self.numberOfLoops;
+        self.loopsLeft = self.timesToRepeat;
     }
     return returnValue;
 }
@@ -41,7 +41,7 @@
 #pragma mark - Description
 - (NSString*)description
 {
-    return [NSString stringWithFormat:@"RepeatLoop with %d iterations (%d iterations left)", self.numberOfLoops, self.loopsLeft];
+    return [NSString stringWithFormat:@"RepeatLoop with %d iterations (%d iterations left)", self.timesToRepeat.intValue, self.loopsLeft.intValue];
 }
 
 @end

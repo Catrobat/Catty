@@ -10,9 +10,12 @@
 
 @interface GlideToBrick : Brick
 
-@property (nonatomic, assign) GLKVector3 position;
-@property (nonatomic, assign) int durationInMilliSecs;
 
--(id)initWithPosition:(GLKVector3)position andDurationInMilliSecs:(int)durationInMilliSecs;
+@property (nonatomic, strong) NSNumber *durationInMilliSeconds;
+
+@property (nonatomic, strong) NSNumber *xDestination;
+@property (nonatomic, strong) NSNumber *yDestination;
+
+-(id)initWithXPosition:(NSNumber*)xPosition yPosition:(NSNumber*)yPosition andDurationInMilliSecs:(NSNumber*)durationInMilliSecs;
 
 @end

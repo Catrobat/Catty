@@ -8,9 +8,10 @@
 
 #import "Brick.h"
 
-@interface ChangeXByBrick : Brick
+@interface ChangeXByNBrick : Brick
 
-@property (assign, nonatomic) int x;
+@property (nonatomic, strong) NSNumber *xMovement;
 
--(id)initWithChangeValueForX:(int)x;
+-(id)initWithChangeValueForX:(NSNumber*)x;
+
 @end

@@ -10,15 +10,15 @@
 
 @implementation SetSizeToBrick
 
-@synthesize sizeInPercentage = _sizeInPercentage;
+@synthesize size = _sizeInPercentage;
 
 
--(id)initWithSizeInPercentage:(float)sizeInPercentage
+-(id)initWithSizeInPercentage:(NSNumber*)sizeInPercentage
 {
     self = [super init];
     if (self)
     {
-        self.sizeInPercentage = sizeInPercentage;
+        self.size = sizeInPercentage;
     }
     return self;
 }
@@ -27,7 +27,7 @@
 {
     NSLog(@"Performing: %@", self.description);
     
-    [sprite setSizeToPercentage:self.sizeInPercentage];
+    [sprite setSizeToPercentage:[self.size floatValue]];
     
     //    float sleepTime = ((float)self.timeToWaitInMilliseconds.intValue)/1000;
     //    NSLog(@"wating for %f seconds", sleepTime);
@@ -40,7 +40,7 @@
 #pragma mark - Description
 - (NSString*)description
 {
-    return [NSString stringWithFormat:@"SetSizeTo (%f%%)", self.sizeInPercentage];
+    return [NSString stringWithFormat:@"SetSizeTo (%f%%)", self.size.floatValue];
 }
 
 @end
