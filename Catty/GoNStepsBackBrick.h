@@ -10,7 +10,7 @@
 
 @interface GoNStepsBackBrick : Brick
 
-@property (assign, nonatomic) NSNumber *steps;
+@property (nonatomic, strong) NSNumber *steps;
 
 -(id)initWithNumberOfSteps:(NSNumber*)steps;
 
