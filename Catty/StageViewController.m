@@ -223,6 +223,8 @@
     Parser *parser = [[Parser alloc]init];
     self.level = [parser generateObjectForLevel:xmlPath];
     
+    CGSize screenResolution = CGSizeMake(self.level.screenWidth.floatValue, self.level.screenHeight.floatValue);
+    
     //setting effect
     for (Sprite *sprite in self.level.spriteList)
     {
@@ -230,6 +232,7 @@
         sprite.spriteManagerDelegate = self;
         sprite.broadcastWaitDelegate = self.broadcastWaitHandler;
         sprite.projectPath = self.levelLoadingInfo.basePath;
+        [sprite setProjectResolution:screenResolution];
         
         // TODO: change!
         for (Script *script in sprite.scriptList) {
