@@ -26,6 +26,10 @@
 #import <objc/runtime.h>
 #import <Foundation/NSObjCRuntime.h>
 
+// test
+#import "Sprite.h"
+
+
 #define kCatroidXMLPrefix               @"org.catrobat.catroid.content."
 #define kCatroidXMLSpriteList           @"spriteList"
 #define kParserObjectTypeString         @"T@\"NSString\""
@@ -46,9 +50,15 @@
 - (id)parseNode:(GDataXMLElement*)node;
 - (id)getSingleValue:(GDataXMLElement*)element ofType:(NSString*)propertyType;
 
+// just temp
+//#error todo
+/*@property (nonatomic, strong) NSMutableDictionary *lookDict;
+@property (nonatomic, strong) NSString *path;*/
+@property (nonatomic, strong) id currentActiveSprite;
+
 @end
 
-@implementation ProjectParser
+@implementation ProjectParser   
 
 
 
@@ -101,6 +111,11 @@
     if (!object) {
         NSLog(@"Implementation of <%@> NOT FOUND!", className);
         abort(); // TODO: just for debug
+    }
+    
+    // just an educated gues...
+    if ([object isKindOfClass:[Sprite class]]) {
+        self.currentActiveSprite = object;
     }
     
     for (GDataXMLElement *child in node.children) {
@@ -174,10 +189,74 @@
     }
 #warning JUST FOR DEBUG PURPOSES!
     // todo: set the corresponding SPRITE!!! (and lookdata) => xstream notation
-    else if ([propertyType isEqualToString:kParserObjectTypeSprite]
-             || [propertyType isEqualToString:kParserObjectTypeLookData]
-             || [propertyType isEqualToString:kParserObjectTypeLoopEndBrick]
+    else if ([propertyType isEqualToString:kParserObjectTypeSprite]) {
+        NSString *ref = [element attributeForName:@"reference"].stringValue;
+        NSLog(@"NSOBJECT TYPE FOUND");
+        NSLog(@"   SET reference (%@) for %@", ref, element.name);
+        NSLog(@"   RETURNING SPRITE %@", self.currentActiveSprite);
+        return self.currentActiveSprite;
+    }
+    else if ([propertyType isEqualToString:kParserObjectTypeLookData]) {
+        // sanity check
+        if (self.currentActiveSprite && [self.currentActiveSprite isKindOfClass:[Sprite class]]) {
+            Sprite *sprite = (Sprite*)self.currentActiveSprite;
+            NSString *refString = [element attributeForName:@"reference"].stringValue;
+            if (!refString || [refString isEqualToString:@""]) {
+                // SHOULD NOT HAPPEN!
+                // IF YOU ARE HERE, this means, that in the XML there has no reference been set
+                // for this tag.
+                // SHOULD BE: (i.e.) <look reference="../../../../../lookList/org.catrobat.catroid.common.LookData"/>
+                // BUT WAS: <look reference=""/>
+                abort(); // todo
+            }
+            
+            
+            NSLog(@"NSOBJECT TYPE FOUND");
+            NSLog(@"   SET reference (%@) for %@", refString, element.name);
+            
+            // sanity check
+            if (!sprite.lookList || sprite.lookList.count == 0) {
+                // SHOULD NOT HAPPEN! NO LOOKS FOUND IN THIS SPRITE
+                abort(); // todo
+            }
+            
+            if (![refString hasSuffix:@"]"]) {
+                return [sprite.lookList objectAtIndex:0];
+            }
+            else {
+                NSRange rr2 = [refString rangeOfString:@"["];
+                NSRange rr3 = [refString rangeOfString:@"]"];
+                int lengt = rr3.location - rr2.location - rr2.length;
+                int location = rr2.location + rr2.length;
+                NSRange aa;
+                aa.location = location;
+                aa.length = lengt;
+                NSString *indexString = [refString substringWithRange:aa];
+                NSInteger index = indexString.integerValue;
+                
+                index--;
+                
+                // sanity check
+                if (index+1 > sprite.lookList.count) {
+                    // SHOULD NOT HAPPEN!
+                    abort();
+                }
+                
+                return [sprite.lookList objectAtIndex:index];
+                
+            }
+        }
+    }
+    else if ([propertyType isEqualToString:kParserObjectTypeLoopEndBrick]
              || [propertyType isEqualToString:kParserObjectTypeSound]) {
+        
+        NSString *ref = [element attributeForName:@"reference"].stringValue;
+        NSLog(@"NSOBJECT TYPE FOUND");
+        NSLog(@"   SET reference (%@) for %@", ref, element.name);
+        
+        
+        
+        
         return nil; // TODO!
     }
     else {
