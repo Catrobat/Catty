@@ -40,6 +40,7 @@
 #import "SpeakBrick.h"
 #import "BroadcastWaitDelegate.h"
 #import "BroadcastWaitHandler.h"
+#import "SetLookBrick.h"
 
 @interface DataModelBricksTest()
 
@@ -55,7 +56,7 @@
 //just a basic test
 //- (void)test001_setCostume
 //{
-//    SetCostumeBrick *brick = [[SetCostumeBrick alloc]init];
+//    SetLookBrick *brick = [[SetLookBrick alloc]init];
 //    brick.indexOfCostumeInArray = 0;
 //    
 //    Sprite *sprite = [[Sprite alloc]init];
@@ -63,83 +64,89 @@
 //    
 //}
 //
-//-(void)test002_Wait
-//{
-//    int timeToWaitInMilliSecs = 300;
-//    WaitBrick *brick = [[WaitBrick alloc]init];
-//    
-//    Script *script = [[Script alloc]init];
-//    
-//    brick.timeToWaitInMilliSeconds = [NSNumber numberWithInt:timeToWaitInMilliSecs];
-//    NSTimeInterval before = [[NSDate date]timeIntervalSince1970];
-//    [brick performOnSprite:nil fromScript:script];
-//    NSTimeInterval after = [[NSDate date]timeIntervalSince1970];
-//    NSLog(@"Needed Time: %f", after-before);
-//    STAssertFalse((after-before) < timeToWaitInMilliSecs/1000.0f,         @"Wait-time was too short");
-//    STAssertFalse((after-before) > timeToWaitInMilliSecs/1000.0f + 0.05f, @"Wait-time was too long - note: tolerance-value big enough?!");// NOTE: tolerance-value?!
-//}
-//
-//-(void)test003_HideAndShow
-//{
-//    HideBrick *hideBrick = [[HideBrick alloc]init];
-//    ShowBrick *showBrick = [[ShowBrick alloc]init];
-//    Sprite *sprite = [[Sprite alloc]initWithEffect:nil];
-//    
-//    [hideBrick performOnSprite:sprite fromScript:nil];
-//    STAssertFalse(sprite.showSprite, @"Sprite is visible - that's bad!");
-//    [showBrick performOnSprite:sprite fromScript:nil];
-//    STAssertTrue(sprite.showSprite, @"Sprite is invisible - that's bad!");
-//}
-//
-//-(void)test004_PlaceAt
-//{
-//    GLKVector3 position = GLKVector3Make(1.2f, 2.3f, 3.4f);
-//
-//    PlaceAtBrick *brick = [[PlaceAtBrick alloc]initWithPosition:position];
-//    Sprite *sprite = [[Sprite alloc]initWithEffect:nil];
-//
-//    [brick performOnSprite:sprite fromScript:nil];
-//    STAssertTrue(GLKVector3AllEqualToVector3(sprite.position, position), @"Position of sprite is wrong!");
-//}
-//
-//-(void)test005_SetXY
-//{
-//    float xPosition = 123.4f;
-//    float yPosition = -45.7f;
-//    SetXBrick *xBrick = [[SetXBrick alloc]initWithXPosition:xPosition];
-//    SetYBrick *yBrick = [[SetYBrick alloc]initWithYPosition:yPosition];
-//
-//    Sprite *sprite = [[Sprite alloc]initWithEffect:nil];
-//    
-//    GLKVector3 oldPosition = sprite.position;
-//    
-//    [xBrick performOnSprite:sprite fromScript:nil];
-//    STAssertTrue(GLKVector3AllEqualToVector3(sprite.position, GLKVector3Make(oldPosition.x+xPosition, oldPosition.y, oldPosition.z)), @"x-position of sprite is wrong!");
-//    
-//    oldPosition = sprite.position;
-//    [yBrick performOnSprite:sprite fromScript:nil];
-//    STAssertTrue(GLKVector3AllEqualToVector3(sprite.position, GLKVector3Make(oldPosition.x, oldPosition.y+yPosition, oldPosition.z)), @"y-position of sprite is wrong!");
-//}
-//
-//-(void)test006_changeXYBy
-//{
-//    int xPosition = -5;
-//    int yPosition = 10;
-//    ChangeXByNBrick *xBrick = [[ChangeXByNBrick alloc]initWithChangeValueForX:xPosition];
-//    ChangeYByNBrick *yBrick = [[ChangeYByNBrick alloc]initWithChangeValueForY:yPosition];
-//    
-//    Sprite *sprite = [[Sprite alloc]initWithEffect:nil];
-//    
-//    GLKVector3 oldPosition = sprite.position;
-//    
-//    [xBrick performOnSprite:sprite fromScript:nil];
-//    STAssertTrue(GLKVector3AllEqualToVector3(sprite.position, GLKVector3Make(oldPosition.x+xPosition, oldPosition.y, oldPosition.z)), @"x-position of sprite is wrong!");
-//    
-//    oldPosition = sprite.position;
-//    [yBrick performOnSprite:sprite fromScript:nil];
-//    STAssertTrue(GLKVector3AllEqualToVector3(sprite.position, GLKVector3Make(oldPosition.x, oldPosition.y+yPosition, oldPosition.z)), @"y-position of sprite is wrong!");
-//}
-//
+-(void)test002_Wait
+{
+    int timeToWaitInMilliSecs = 300;
+    WaitBrick *brick = [[WaitBrick alloc]init];
+    
+    Script *script = [[Script alloc]init];
+    
+    brick.timeToWaitInMilliSeconds = [NSNumber numberWithInt:timeToWaitInMilliSecs];
+    NSTimeInterval before = [[NSDate date]timeIntervalSince1970];
+    [brick performFromScript:script];
+    NSTimeInterval after = [[NSDate date]timeIntervalSince1970];
+    NSLog(@"Needed Time: %f", after-before);
+    STAssertFalse((after-before) < timeToWaitInMilliSecs/1000.0f,         @"Wait-time was too short");
+    STAssertFalse((after-before) > timeToWaitInMilliSecs/1000.0f + 0.05f, @"Wait-time was too long - note: tolerance-value big enough?!");// NOTE: tolerance-value?!
+}
+
+-(void)test003_HideAndShow
+{
+    Sprite *sprite = [[Sprite alloc]initWithEffect:nil];
+
+    HideBrick *hideBrick = [[HideBrick alloc]initWithSprite:sprite];
+    ShowBrick *showBrick = [[ShowBrick alloc]initWithSprite:sprite];
+    
+    [hideBrick performFromScript:nil];
+    STAssertFalse(sprite.showSprite, @"Sprite is visible - that's bad!");
+    [showBrick performFromScript:nil];
+    STAssertTrue(sprite.showSprite, @"Sprite is invisible - that's bad!");
+}
+
+-(void)test004_PlaceAt
+{
+    GLKVector3 position = GLKVector3Make(1.2f, 2.3f, 0.0f);
+
+    Sprite *sprite = [[Sprite alloc]initWithEffect:nil];
+    PlaceAtBrick *brick = [[PlaceAtBrick alloc]initWithXPosition:[NSNumber numberWithFloat:position.x] yPosition:[NSNumber numberWithFloat:position.y]];
+    brick.sprite = sprite;
+
+    [brick performFromScript:nil];
+    STAssertTrue(GLKVector3AllEqualToVector3(sprite.position, position), @"Position of sprite is wrong!");
+}
+
+-(void)test005_SetXY
+{
+    NSNumber *xPosition = [NSNumber numberWithFloat:123.4f];
+    NSNumber *yPosition = [NSNumber numberWithFloat:-45.7f];
+    SetXBrick *xBrick = [[SetXBrick alloc]initWithXPosition:xPosition];
+    SetYBrick *yBrick = [[SetYBrick alloc]initWithYPosition:yPosition];
+
+    Sprite *sprite = [[Sprite alloc]initWithEffect:nil];
+    xBrick.sprite = sprite;
+    yBrick.sprite = sprite;
+    
+    GLKVector3 oldPosition = sprite.position;
+    
+    [xBrick performFromScript:nil];
+    STAssertTrue(GLKVector3AllEqualToVector3(sprite.position, GLKVector3Make(oldPosition.x+xPosition.floatValue, oldPosition.y, oldPosition.z)), @"x-position of sprite is wrong!");
+    
+    oldPosition = sprite.position;
+    [yBrick performFromScript:nil];
+    STAssertTrue(GLKVector3AllEqualToVector3(sprite.position, GLKVector3Make(oldPosition.x, oldPosition.y+yPosition.floatValue, oldPosition.z)), @"y-position of sprite is wrong!");
+}
+
+-(void)test006_changeXYBy
+{
+    NSNumber *xPosition = [NSNumber numberWithInt:-5];
+    NSNumber *yPosition = [NSNumber numberWithInt:10];
+    ChangeXByNBrick *xBrick = [[ChangeXByNBrick alloc]initWithChangeValueForX:xPosition];
+    ChangeYByNBrick *yBrick = [[ChangeYByNBrick alloc]initWithChangeValueForY:yPosition];
+    
+    Sprite *sprite = [[Sprite alloc]initWithEffect:nil];
+    xBrick.sprite = sprite;
+    yBrick.sprite = sprite;
+    
+    GLKVector3 oldPosition = sprite.position;
+    
+    [xBrick performFromScript:nil];
+    STAssertTrue(GLKVector3AllEqualToVector3(sprite.position, GLKVector3Make(oldPosition.x+xPosition.floatValue, oldPosition.y, oldPosition.z)), @"x-position of sprite is wrong!");
+    
+    oldPosition = sprite.position;
+    [yBrick performFromScript:nil];
+    STAssertTrue(GLKVector3AllEqualToVector3(sprite.position, GLKVector3Make(oldPosition.x, oldPosition.y+yPosition.floatValue, oldPosition.z)), @"y-position of sprite is wrong!");
+}
+
 //-(void)test007_speak
 //{
 //    SpeakBrick* speakBrick = [[SpeakBrick alloc] initWithText:@"This is a test!"];

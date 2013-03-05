@@ -13,6 +13,18 @@
 
 @synthesize sprite = _sprite;
 
+
+
+-(id)initWithSprite:(Sprite *)sprite
+{
+    self = [super init];
+    if (self)
+    {
+        self.sprite = sprite;
+    }
+    return self;
+}
+
 - (NSString*)description
 {
     return @"Brick (NO SPECIFIC DESCRIPTION GIVEN! OVERRIDE THE DESCRIPTION METHOD!";

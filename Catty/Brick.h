@@ -12,11 +12,9 @@
 
 @interface Brick : NSObject
 
-//@property (strong, nonatomic) Sprite *sprite;
-
-#warning @mattias: I've added this property
 @property (nonatomic, strong) Sprite *sprite;
 
+- (id)initWithSprite:(Sprite*)sprite;
 
 - (NSString*)description;
 - (void)performFromScript:(Script*)script;
