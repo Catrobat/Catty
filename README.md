@@ -34,7 +34,7 @@ For a step-by-step guide how to deploy your first project, see: http://goo.gl/R0
 
 > I have uploaded my certificate and here is some additional data
 > 
-> Device ID: <PASTE IN YOUR DEVICE Identifiere>
+> Device ID: (PASTE IN YOUR DEVICE Identifiere)
 > App ID: at.tugraz.DEVist.catroid-demo-app-1
 > App Name: Catroid Player
 
