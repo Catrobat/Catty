@@ -190,6 +190,8 @@
     Parser *parser = [[Parser alloc]init];
     self.level = [parser generateObjectForLevel:xmlPath];
     
+    NSLog(@"ProjectResolution: width/height:  %f / %f", self.level.screenWidth.floatValue, self.level.screenHeight.floatValue);
+    
     CGSize screenResolution = CGSizeMake(self.level.screenWidth.floatValue, self.level.screenHeight.floatValue);
     
     //setting effect

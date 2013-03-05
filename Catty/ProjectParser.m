@@ -101,6 +101,11 @@
     // sanity check
     if (!node) { return nil; }
     
+    int i = 0;
+    if ([node.name isEqualToString:@"org.catrobat.catroid.content.Project"]) {
+        i = 1+1;
+    }
+    
     // instantiate object based on node name (= class name)
     NSString *className = [[node.name componentsSeparatedByString:@"."] lastObject]; // this is just because of org.catrobat.catroid.bla...
     if (!className) {                                                                // Maybe we can remove this when the XML is finished?
@@ -112,7 +117,7 @@
         NSLog(@"Implementation of <%@> NOT FOUND!", className);
         abort(); // TODO: just for debug
     }
-    
+        
     // just an educated gues...
     if ([object isKindOfClass:[Sprite class]]) {
         self.currentActiveSprite = object;

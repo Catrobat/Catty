@@ -120,7 +120,7 @@
 		B4EFE0A0161609C60078BFDC /* store.png in Resources */ = {isa = PBXBuildFile; fileRef = B4EFE09E161609C60078BFDC /* store.png */; };
 		B4EFE0A1161609C60078BFDC /* store@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B4EFE09F161609C60078BFDC /* store@2x.png */; };
 		B4F05A9B15B888EE00C90ED0 /* GDataXMLNode.m in Sources */ = {isa = PBXBuildFile; fileRef = B4F05A9A15B888EE00C90ED0 /* GDataXMLNode.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		B4F05A9E15B8898100C90ED0 /* ProjectParser.m in Sources */ = {isa = PBXBuildFile; fileRef = B4F05A9D15B8898100C90ED0 /* ProjectParser.m */; };
+		B4F05A9E15B8898100C90ED0 /* ProjectParser.m in Sources */ = {isa = PBXBuildFile; fileRef = B4F05A9D15B8898100C90ED0 /* ProjectParser.m */; settings = {COMPILER_FLAGS = "-O0"; }; };
 		B4F1C59116DFBDB3006F4BE2 /* ParserTests.m in Sources */ = {isa = PBXBuildFile; fileRef = B4F1C59016DFBDB3006F4BE2 /* ParserTests.m */; };
 		B4F1C59316DFC321006F4BE2 /* defaultProjectTest.xml in Resources */ = {isa = PBXBuildFile; fileRef = B4F1C59216DFC321006F4BE2 /* defaultProjectTest.xml */; };
 		B4F1C59416DFC463006F4BE2 /* defaultProjectTest.xml in Resources */ = {isa = PBXBuildFile; fileRef = B4F1C59216DFC321006F4BE2 /* defaultProjectTest.xml */; };
