@@ -81,7 +81,6 @@
 @synthesize projectPath = _projectPath;
 @synthesize lookList = _lookList;
 @synthesize soundList = _soundsArray;
-@synthesize broadcastScripts = _broadcastScripts;
 
 
 // new
@@ -540,12 +539,15 @@
     
     
     // init BroadcastWait-stuff
-    for (NSString *message in [self.broadcastScripts allKeys]) {
-        if ([self.broadcastWaitDelegate respondsToSelector:@selector(increaseNumberOfObserversForNotificationMessage:)]) {
-            [self.broadcastWaitDelegate increaseNumberOfObserversForNotificationMessage:message];
-        } else {
-            NSLog(@"ERROR: BroadcastWaitDelegate not set! abort()");
-            abort();
+    for (Script *script in self.scriptList) {
+        if ([script isKindOfClass:[BroadcastScript class]]) {
+            BroadcastScript *script = script;
+            if ([self.broadcastWaitDelegate respondsToSelector:@selector(increaseNumberOfObserversForNotificationMessage:)]) {
+                [self.broadcastWaitDelegate increaseNumberOfObserversForNotificationMessage:script.receivedMessage];
+            } else {
+                NSLog(@"ERROR: BroadcastWaitDelegate not set! abort()");
+                abort();
+            }
         }
     }
 

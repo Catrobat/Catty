@@ -10,4 +10,8 @@
 
 @implementation SetBrightnessBrick
 
+-(void)performFromScript:(Script *)script
+{
+    NSLog(@"NOT IMPLEMENTED!!!");
+}
 @end
