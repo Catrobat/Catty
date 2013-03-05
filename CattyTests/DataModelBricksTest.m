@@ -196,28 +196,30 @@
 //    self.stop = NO;
 //}
 //
-//-(void)test010_setGhostEffect
-//{
-//    float transparency = 40.0f;
-//    SetGhostEffectBrick* ghostEffectBrick = [[SetGhostEffectBrick alloc] initWithTransparencyInPercent:transparency];
-//    Sprite *sprite = [[Sprite alloc]initWithEffect:nil];
-//    
-//    [ghostEffectBrick performOnSprite:sprite fromScript:nil];
-//    
-//    STAssertTrue(sprite.alphaValue != transparency/100.0f, @"Alpha Value not correct");
-//}
-//
-//-(void)test011_changeGhostEffect
-//{
-//    float increase = 0.10f;
-//    Sprite *sprite = [[Sprite alloc]initWithEffect:nil];
-//    float alpha = [sprite alphaValue];
-//    ChangeGhostEffectByNBrick* changeGhostEffectBrick = [[ChangeGhostEffectByNBrick alloc] initWithIncrease:increase];
-//    [changeGhostEffectBrick performOnSprite:sprite fromScript:nil];
-//    
-//    STAssertTrue((alpha-(increase/100.0f)) == [sprite alphaValue], @"Alpha Value not the same");
-//}
-//
+-(void)test010_setGhostEffect
+{
+    NSNumber *transparency = [NSNumber numberWithFloat:40.0f];
+    SetGhostEffectBrick* ghostEffectBrick = [[SetGhostEffectBrick alloc] initWithTransparencyInPercent:transparency];
+    Sprite *sprite = [[Sprite alloc]initWithEffect:nil];
+    ghostEffectBrick.sprite = sprite;
+    
+    [ghostEffectBrick performFromScript:nil];
+    
+    STAssertTrue(sprite.alphaValue != transparency.floatValue/100.0f, @"Alpha Value not correct");
+}
+
+-(void)test011_changeGhostEffect
+{
+    NSNumber *increase = [NSNumber numberWithFloat:0.10f];
+    Sprite *sprite = [[Sprite alloc]initWithEffect:nil];
+    float alpha = [sprite alphaValue];
+    ChangeGhostEffectByNBrick* changeGhostEffectBrick = [[ChangeGhostEffectByNBrick alloc] initWithValueForGhostEffectChange:increase];
+    changeGhostEffectBrick.sprite = sprite;
+    [changeGhostEffectBrick performFromScript:nil];
+    
+    STAssertTrue((alpha-increase.floatValue) == [sprite alphaValue], @"Alpha Value not the same");
+}
+
 //-(void)test012_broadcast
 //{
 //    NSString *broadcastMessage = @"BROADCAST";

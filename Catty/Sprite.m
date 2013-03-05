@@ -399,6 +399,7 @@
 
 -(void)setTransparency:(float)transparency
 {
+#warning still valid?? maybe transparency has to be multiplied by 100???
     if(transparency > 100.0f) {
         transparency = 100.0f;
     }

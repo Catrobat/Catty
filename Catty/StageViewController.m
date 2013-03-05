@@ -174,39 +174,6 @@
     
     for (Sprite *sprite in self.level.spriteList)
     {
-        // debug:
-        NSLog(@"----------------------");
-        NSLog(@"Sprite: %@", sprite.name);
-        NSLog(@" ");
-        NSLog(@"StartScript:");
-        for (Script *script in sprite.scriptList) {
-            if ([script isKindOfClass:[StartScript class]]) {
-                for (Brick *brick in [script getAllBricks]) {
-                    NSLog(@"  %@", [brick description]);
-                }
-            }
-        }
-        for (Script *script in sprite.scriptList) {
-            if ([script isKindOfClass:[WhenScript class]]) {
-                NSLog(@" ");
-                NSLog(@"WhenScript:");
-                for (Brick *brick in [script getAllBricks]) {
-                    NSLog(@"  %@", [brick description]);
-                }
-            }
-        }
-        for (Script *script in [sprite.broadcastScripts allValues]) {
-            if ([script isKindOfClass:[BroadcastScript class]]) {
-                NSLog(@" ");
-                NSLog(@"BroadcastScript:");
-                for (Brick *brick in [script getAllBricks]) {
-                    NSLog(@"  %@", [brick description]);
-                }
-            }
-        }
-
-        
-        
         [sprite start];
     }
 }
@@ -238,6 +205,40 @@
         for (Script *script in sprite.scriptList) {
             for (Brick *brick in script.brickList) {
                 brick.sprite = sprite;
+            }
+        }
+        
+        
+        
+        
+        // debug:
+        NSLog(@"----------------------");
+        NSLog(@"Sprite: %@", sprite.name);
+        NSLog(@" ");
+        NSLog(@"StartScript:");
+        for (Script *script in sprite.scriptList) {
+            if ([script isKindOfClass:[StartScript class]]) {
+                for (Brick *brick in [script getAllBricks]) {
+                    NSLog(@"  %@", [brick description]);
+                }
+            }
+        }
+        for (Script *script in sprite.scriptList) {
+            if ([script isKindOfClass:[WhenScript class]]) {
+                NSLog(@" ");
+                NSLog(@"WhenScript:");
+                for (Brick *brick in [script getAllBricks]) {
+                    NSLog(@"  %@", [brick description]);
+                }
+            }
+        }
+        for (Script *script in [sprite.broadcastScripts allValues]) {
+            if ([script isKindOfClass:[BroadcastScript class]]) {
+                NSLog(@" ");
+                NSLog(@"BroadcastScript:");
+                for (Brick *brick in [script getAllBricks]) {
+                    NSLog(@"  %@", [brick description]);
+                }
             }
         }
     }
