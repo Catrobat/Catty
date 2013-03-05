@@ -20,6 +20,7 @@
 @class Script;
 @class Sound;
 @class Script;
+@class LookData;
 
 //////////////////////////////////////////////////////////////////////////////////////////
 
@@ -89,7 +90,7 @@
 // actions
 - (void)placeAt:(GLKVector3)newPosition;    //origin is in the middle of the sprite
 //- (void)wait:(int)durationInMilliSecs fromScript:(Script*)script;
-- (void)changeCostume:(NSNumber*)indexOfCostumeInArray;
+- (void)changeCostume:(LookData*)look;
 - (void)nextCostume;
 - (void)glideToPosition:(GLKVector3)position withinDurationInMilliSecs:(int)durationInMilliSecs fromScript:(Script*)script;
 - (void)hide;

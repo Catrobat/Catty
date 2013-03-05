@@ -289,9 +289,10 @@
     [self.nextPositions setValue:positionAtTime forKey:script.description];                 // TODO: whole description as key??
 }
 
-- (void)changeCostume:(NSNumber *)indexOfCostumeInArray
+- (void)changeCostume:(LookData*)look
 {
-    self.indexOfCurrentCostumeInArray = indexOfCostumeInArray;
+    NSNumber *index = [NSNumber numberWithUnsignedInteger:[self.lookList indexOfObject:look]];
+    self.indexOfCurrentCostumeInArray = index;
 }
 
 - (void)nextCostume

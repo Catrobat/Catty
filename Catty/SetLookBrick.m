@@ -11,21 +11,21 @@
 
 @implementation SetLookBrick
 
-@synthesize indexOfCostumeInArray = _indexOfCostumeInArray;
+//@synthesize indexOfCostumeInArray = _indexOfCostumeInArray;
 @synthesize look = _look;
 
 - (void)performFromScript:(Script*)script
 {
     NSLog(@"Performing: %@", self.description);
     
-    [self.sprite performSelectorOnMainThread:@selector(changeCostume:) withObject:self.indexOfCostumeInArray waitUntilDone:YES];
+    [self.sprite performSelectorOnMainThread:@selector(changeCostume:) withObject:self.look waitUntilDone:YES];
 }
 
 
 #pragma mark - Description
 - (NSString*)description
 {
-    return [NSString stringWithFormat:@"SetCostumeBrick (CostumeIndex: %d)", self.indexOfCostumeInArray.intValue];
+    return [NSString stringWithFormat:@"SetLookBrick (Look: %@)", self.look];
 }
 
 @end
