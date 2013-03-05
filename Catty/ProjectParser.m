@@ -25,6 +25,7 @@
 #import "Project.h"
 #import <objc/runtime.h>
 #import <Foundation/NSObjCRuntime.h>
+#import "Sound.h"
 
 // test
 #import "Sprite.h"
@@ -259,10 +260,10 @@
         NSLog(@"NSOBJECT TYPE FOUND");
         NSLog(@"   SET reference (%@) for %@", ref, element.name);
         
+        Sound *sound = [self parseNode:element];
         
         
-        
-        return nil; // TODO!
+        return sound; // TODO!
     }
     else {
         abort(); // TODO: just for debug purposes
