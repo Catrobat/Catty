@@ -541,13 +541,15 @@
     // init BroadcastWait-stuff
     for (Script *script in self.scriptList) {
         if ([script isKindOfClass:[BroadcastScript class]]) {
-            BroadcastScript *script = script;
+            BroadcastScript *broadcastScript = script;
             if ([self.broadcastWaitDelegate respondsToSelector:@selector(increaseNumberOfObserversForNotificationMessage:)]) {
-                [self.broadcastWaitDelegate increaseNumberOfObserversForNotificationMessage:script.receivedMessage];
+                [self.broadcastWaitDelegate increaseNumberOfObserversForNotificationMessage:broadcastScript.receivedMessage];
             } else {
                 NSLog(@"ERROR: BroadcastWaitDelegate not set! abort()");
                 abort();
             }
+            
+            [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(performBroadcastScript:) name:broadcastScript.receivedMessage object:nil];
         }
     }
 
@@ -613,10 +615,20 @@
     }
 }
 
-- (void)performFromScript:(Script*)scriptBroadcastScript:(NSNotification*)notification
+- (void)performBroadcastScript:(NSNotification*)notification
 {
     NSLog(@"Notification: %@", notification.name);
-    Script *script = [self.broadcastScripts objectForKey:notification.name];
+    BroadcastScript *script = nil;
+    
+    for (Script *s in self.scriptList) {
+        if ([s isKindOfClass:[BroadcastScript class]]) {
+            BroadcastScript *tmp = (BroadcastScript*)s;
+            if ([tmp.receivedMessage isEqualToString:notification.name]) {
+                script = tmp;
+            }
+        }
+    }
+    
     if (script) {
     
         if ([self.activeScripts containsObject:script]) {

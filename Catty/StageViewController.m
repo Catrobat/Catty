@@ -234,7 +234,7 @@
                 }
             }
         }
-        for (Script *script in [sprite.broadcastScripts allValues]) {
+        for (Script *script in sprite.scriptList) {
             if ([script isKindOfClass:[BroadcastScript class]]) {
                 NSLog(@" ");
                 NSLog(@"BroadcastScript:");

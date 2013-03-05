@@ -8,6 +8,7 @@
 
 #import "PlaySoundBrick.h"
 #import <AVFoundation/AVAudioPlayer.h>
+#import "Sound.h"
 
 @interface PlaySoundBrick()
 
@@ -18,19 +19,19 @@
 
 @implementation PlaySoundBrick
 
-@synthesize fileName = _fileName;
+@synthesize sound = _sound;
 
 
--(id)initWithFileName:(NSString *)fileName
-{
-    self = [super init];
-    if (self)
-    {
-        self.fileName = fileName;
-    }
-    
-    return self;
-}
+//-(id)initWithFileName:(NSString *)fileName
+//{
+//    self = [super init];
+//    if (self)
+//    {
+//        self.fileName = fileName;
+//    }
+//    
+//    return self;
+//}
 
 
 - (void)performFromScript:(Script*)script
@@ -39,7 +40,7 @@
     
     @try
     {
-        NSString *soundPath = [NSString stringWithFormat:@"%@sounds/%@", [self.sprite projectPath], _fileName];
+        NSString *soundPath = [NSString stringWithFormat:@"%@sounds/%@", [self.sprite projectPath], self.sound.fileName];
         AVAudioPlayer* audioPlayer = [[AVAudioPlayer alloc] initWithContentsOfURL:[NSURL fileURLWithPath:soundPath] error:NULL];
         [self.sprite addSound:audioPlayer];
     }
@@ -55,7 +56,7 @@
 #pragma mark - Description
 - (NSString*)description
 {
-    return [NSString stringWithFormat:@"PlaySound (File Name: %@)", _fileName];
+    return [NSString stringWithFormat:@"PlaySound (File Name: %@)", self.sound.fileName];
 }
 
 

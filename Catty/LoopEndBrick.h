@@ -9,5 +9,5 @@
 #import "Brick.h"
 
 @interface LoopEndBrick : Brick
-
+@property (strong, nonatomic) NSString* loopBeginBrick;
 @end

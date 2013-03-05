@@ -25,11 +25,11 @@
 
 
 
-- (void)performFromScript:(Script*)scriptOnSprite:(Sprite *)sprite fromScript:(Script *)script
+- (void)performFromScript:(Script *)script
 {
     NSLog(@"Performing: %@", self.description);
     
-    [sprite setVolumeTo:self.volume.floatValue/100.0f];
+    [self.sprite setVolumeTo:self.volume.floatValue/100.0f];
 }
 
 

@@ -43,7 +43,7 @@
 #define kParserObjectTypeSprite         @"T@\"Sprite\""
 #define kParserObjectTypeLookData       @"T@\"LookData\""
 #define kParserObjectTypeLoopEndBrick   @"T@\"LoopEndBrick\""
-#define kParserObjectTypeSound          @"T@\"Sound\""
+#define kParserObjectTypeSound          @"T@\"sound\""
 
 
 @interface ProjectParser()

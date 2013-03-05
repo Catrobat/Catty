@@ -8,6 +8,6 @@
 
 #import "Sound.h"
 
-@implementation Sound
+@implementation sound
 
 @end

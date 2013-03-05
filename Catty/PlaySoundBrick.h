@@ -7,16 +7,12 @@
 //
 
 #import "Brick.h"
-#import "Sound.h"
+@class sound;
 
 @interface PlaySoundBrick : Brick
 
+@property (nonatomic, strong) sound *sound;
 
-#warning @mattias: Added sound property, please implement it... dunno if it's the same as fileName?!
-@property (nonatomic, strong) Sound *sound;
-
-@property (nonatomic, strong) NSString *fileName;
-
--(id)initWithFileName:(NSString *)fileName;
+//-(id)initWithFileName:(NSString *)fileName;
 
 @end
