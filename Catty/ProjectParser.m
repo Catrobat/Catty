@@ -253,8 +253,7 @@
             }
         }
     }
-    else if ([propertyType isEqualToString:kParserObjectTypeLoopEndBrick]
-             || [propertyType isEqualToString:kParserObjectTypeSound]) {
+    else if ([propertyType isEqualToString:kParserObjectTypeSound]) {
         
         NSString *ref = [element attributeForName:@"reference"].stringValue;
         NSLog(@"NSOBJECT TYPE FOUND");
@@ -264,6 +263,10 @@
         
         
         return sound; // TODO!
+    }
+    else if ([propertyType isEqualToString:kParserObjectTypeLoopEndBrick]) {
+#warning todo
+        return nil;
     }
     else {
         abort(); // TODO: just for debug purposes
