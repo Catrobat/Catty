@@ -8,7 +8,7 @@
 
 #import "Brick.h"
 
-@interface TurnRightBrick : Brick
+@interface Turnrightbrick : Brick
 
 @property (nonatomic, strong) NSNumber *degrees;
 

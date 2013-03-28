@@ -11,7 +11,7 @@
 #import "enums.h"
 
 @class Brick;
-@class Sprite;
+@class SpriteObject;
 
 @interface Script : NSObject
 

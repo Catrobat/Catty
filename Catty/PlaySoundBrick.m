@@ -6,18 +6,18 @@
 //  Copyright (c) 2012 Graz University of Technology. All rights reserved.
 //
 
-#import "PlaySoundBrick.h"
+#import "Playsoundbrick.h"
 #import <AVFoundation/AVAudioPlayer.h>
 #import "Sound.h"
 
-@interface PlaySoundBrick()
+@interface Playsoundbrick()
 
 @property (nonatomic, strong) AVAudioPlayer *audioPlayer;
 
 @end
 
 
-@implementation PlaySoundBrick
+@implementation Playsoundbrick
 
 @synthesize sound = _sound;
 
@@ -40,16 +40,16 @@
     
     @try
     {
-        NSString *soundPath = [NSString stringWithFormat:@"%@sounds/%@", [self.sprite projectPath], self.sound.fileName];
+        NSString *soundPath = [NSString stringWithFormat:@"%@sounds/%@", [self.object projectPath], self.sound.fileName];
         AVAudioPlayer* audioPlayer = [[AVAudioPlayer alloc] initWithContentsOfURL:[NSURL fileURLWithPath:soundPath] error:NULL];
-        [self.sprite addSound:audioPlayer];
+        [self.object addSound:audioPlayer];
     }
     @catch(NSException *ex)
     {
         NSLog(@"Unsupported audio format!");
     }
     
-    NSLog(@"%@",[self.sprite projectPath]);
+    NSLog(@"%@",[self.object projectPath]);
 }
 
 

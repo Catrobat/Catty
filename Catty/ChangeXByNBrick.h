@@ -8,7 +8,7 @@
 
 #import "Brick.h"
 
-@interface ChangeXByNBrick : Brick
+@interface Changexbynbrick : Brick
 
 @property (nonatomic, strong) NSNumber *xMovement;
 

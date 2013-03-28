@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface LookData : NSObject
+@interface Look : NSObject
 
 @property (strong, nonatomic) NSString *fileName;
 @property (strong, nonatomic) NSString *name;

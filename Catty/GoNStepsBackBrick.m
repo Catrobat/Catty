@@ -6,9 +6,9 @@
 //  Copyright (c) 2012 Graz University of Technology. All rights reserved.
 //
 
-#import "GoNStepsBackBrick.h"
+#import "Gonstepsbackbrick.h"
 
-@implementation GoNStepsBackBrick
+@implementation Gonstepsbackbrick
 
 @synthesize steps = _steps;
 
@@ -26,7 +26,7 @@
 {
     NSLog(@"Performing: %@", self.description);
     
-    [self.sprite goNStepsBack:self.steps.intValue];
+    [self.object goNStepsBack:self.steps.intValue];
 }
 
 #pragma mark - Description

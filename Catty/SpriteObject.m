@@ -8,16 +8,16 @@
 
 #import "SpriteManagerDelegate.h"
 #import "Brick.h"
-#import "Sprite.h"
-#import "LookData.h"
+#import "SpriteObject.h"
+#import "Look.h"
 #import "Sound.h"
 #import "Script.h"
 #import "Util.h"
 #import "enums.h"
 #import "BroadcastWaitDelegate.h"
-#import "StartScript.h"
-#import "WhenScript.h"
-#import "BroadcastScript.h"
+#import "Startscript.h"
+#import "Whenscript.h"
+#import "Broadcastscript.h"
 
 
 // need CattyViewController to access FRAMES_PER_SECOND    TODO: change
@@ -26,6 +26,19 @@
 //test
 #import "CattyAppDelegate.h"
 
+
+
+typedef struct {
+    CGPoint geometryVertex;
+    CGPoint textureVertex;
+} TexturedVertex;
+
+typedef struct {
+    TexturedVertex bottomLeftCorner;
+    TexturedVertex bottomRightCorner;
+    TexturedVertex topLeftCorner;
+    TexturedVertex topRightCorner;
+} TexturedQuad;
 
 
 
@@ -52,7 +65,7 @@
 
 
 
-@interface Sprite()
+@interface SpriteObject()
 
 @property (assign, nonatomic) GLKVector3 position;        // position - origin is bottom-left
 
@@ -71,9 +84,15 @@
 @property (strong, nonatomic) NSArray *lookList;    // tell the compiler: "I want a private setter"
 @property (strong, nonatomic) NSMutableArray *soundList;
 
+// from base sprite
+@property (nonatomic, strong) GLKTextureInfo *textureInfo;
+@property (assign) TexturedQuad quad;
+@property (strong, nonatomic) NSString *path;
+
+
 @end
 
-@implementation Sprite
+@implementation SpriteObject
 
 // public synthesizes
 @synthesize spriteManagerDelegate = _spriteManagerDelegate;
@@ -96,6 +115,17 @@
 @synthesize activeScripts = _activeScripts;
 @synthesize nextPositions = _nextPositions;
 @synthesize indexOfCurrentCostumeInArray = _indexOfCurrentCostumeInArray;
+
+// from base sprite
+@synthesize name = _name;
+@synthesize path = _path;
+@synthesize effect = _effect;
+@synthesize contentSize = _contentSize;
+@synthesize showSprite = _showSprite;
+@synthesize realPosition = _realPosition;
+@synthesize rotationInDegrees = _rotationInDegrees;
+@synthesize alphaValue = _alphaValue;
+
 
 
 #pragma mark Custom getter and setter
@@ -225,7 +255,7 @@
         NSLog(@"Index %d is invalid! Array-size: %d", indexOfCurrentCostumeInArray.intValue, [self.costumesArray count]);
     }
     
-    NSString *fileName = ((LookData*)[self.costumesArray objectAtIndex:[self.indexOfCurrentCostumeInArray intValue]]).fileName;
+    NSString *fileName = ((Look*)[self.costumesArray objectAtIndex:[self.indexOfCurrentCostumeInArray intValue]]).fileName;
     
     NSLog(@"Filename: %@", fileName);
     
@@ -269,7 +299,7 @@
     float y = (self.position.y * self.scaleFactor) + [UIScreen mainScreen].bounds.size.height/2;
     self.realPosition = GLKVector3Make(x, y, self.position.z);
     
-    [super update:dt];
+    //[super update:dt];
 }
 
 
@@ -288,7 +318,7 @@
     [self.nextPositions setValue:positionAtTime forKey:script.description];                 // TODO: whole description as key??
 }
 
-- (void)changeCostume:(LookData*)look
+- (void)changeCostume:(Look*)look
 {
     NSNumber *index = [NSNumber numberWithUnsignedInteger:[self.lookList indexOfObject:look]];
     self.indexOfCurrentCostumeInArray = index;
@@ -540,8 +570,8 @@
     
     // init BroadcastWait-stuff
     for (Script *script in self.scriptList) {
-        if ([script isKindOfClass:[BroadcastScript class]]) {
-            BroadcastScript *broadcastScript = script;
+        if ([script isKindOfClass:[Broadcastscript class]]) {
+            Broadcastscript *broadcastScript = script;
             if ([self.broadcastWaitDelegate respondsToSelector:@selector(increaseNumberOfObserversForNotificationMessage:)]) {
                 [self.broadcastWaitDelegate increaseNumberOfObserversForNotificationMessage:broadcastScript.receivedMessage];
             } else {
@@ -556,7 +586,7 @@
 
     for (Script *script in self.scriptList)
     {
-        if ([script isKindOfClass:[StartScript class]]) {
+        if ([script isKindOfClass:[Startscript class]]) {
             [self.activeScripts addObject:script];
             
             // ------------------------------------------ THREAD --------------------------------------
@@ -588,7 +618,7 @@
     //todo: throw exception if its not a when script
     for (Script *script in self.scriptList)
     {
-        if ([script isKindOfClass:[WhenScript class]]) {
+        if ([script isKindOfClass:[Whenscript class]]) {
             NSLog(@"Performing script with action: %@", script.description);
             if ([self isType:type equalToString:script.action])
             {
@@ -618,11 +648,11 @@
 - (void)performBroadcastScript:(NSNotification*)notification
 {
     NSLog(@"Notification: %@", notification.name);
-    BroadcastScript *script = nil;
+    Broadcastscript *script = nil;
     
     for (Script *s in self.scriptList) {
-        if ([s isKindOfClass:[BroadcastScript class]]) {
-            BroadcastScript *tmp = (BroadcastScript*)s;
+        if ([s isKindOfClass:[Broadcastscript class]]) {
+            Broadcastscript *tmp = (Broadcastscript*)s;
             if ([tmp.receivedMessage isEqualToString:notification.name]) {
                 script = tmp;
             }
@@ -679,5 +709,113 @@
 {
     [_soundsArray removeObject:player];
 }
+
+// from base sprite
+-(CGSize)originalImageSize
+{
+    return CGSizeMake(self.textureInfo.width, self.textureInfo.height);
+}
+
+
+-(BOOL)loadImageWithPath:(NSString*)path width:(float)width height:(float)height
+{
+    [self loadImageWithPath:path];
+    [self setSpriteSizeWithWidth:width andHeight:height];
+}
+
+-(BOOL)loadImageWithPath:(NSString *)path
+{
+    NSLog(@"Try to load image '%@'", path);
+    
+    NSDictionary * options = [NSDictionary dictionaryWithObjectsAndKeys:
+                              [NSNumber numberWithBool:YES],
+                              GLKTextureLoaderOriginBottomLeft,
+                              nil];
+    NSError *error;
+    
+    self.textureInfo = [GLKTextureLoader textureWithContentsOfFile:path options:options error:&error];
+    if (self.textureInfo == nil)
+    {
+        NSLog(@"Error loading file: %@", [error localizedDescription]);
+        
+        abort();
+        
+        return NO;
+    }
+    // else
+    self.path = path;
+    
+    [self setOriginalSpriteSize];
+    return YES;
+}
+
+-(void)setOriginalSpriteSize
+{
+    [self setSpriteSizeWithWidth:self.textureInfo.width andHeight:self.textureInfo.height];
+}
+
+-(void)setSpriteSizeWithWidth:(float)width andHeight:(float)height
+{
+    self.contentSize = CGSizeMake(width, height);
+    
+    TexturedQuad newQuad;
+    newQuad.bottomLeftCorner.geometryVertex = CGPointMake(-width/2.0f, -height/2.0f);
+    newQuad.bottomRightCorner.geometryVertex = CGPointMake(width/2.0f, -height/2.0f);
+    newQuad.topLeftCorner.geometryVertex = CGPointMake(-width/2.0f, height/2.0f);
+    newQuad.topRightCorner.geometryVertex = CGPointMake(width/2.0f, height/2.0f);
+    
+    newQuad.bottomLeftCorner.textureVertex = CGPointMake(0, 0);
+    newQuad.bottomRightCorner.textureVertex = CGPointMake(1, 0);
+    newQuad.topLeftCorner.textureVertex = CGPointMake(0, 1);
+    newQuad.topRightCorner.textureVertex = CGPointMake(1, 1);
+    self.quad = newQuad;
+}
+
+
+
+- (GLKMatrix4) modelMatrix
+{
+    GLKMatrix4 modelMatrix = GLKMatrix4Identity;
+    
+    modelMatrix = GLKMatrix4MakeRotation(self.rotationInDegrees * M_PI / 180.0f, 0, 0, 1);
+    
+    modelMatrix = GLKMatrix4Multiply(GLKMatrix4MakeTranslation(self.realPosition.x, self.realPosition.y, self.realPosition.z),
+                                     modelMatrix);
+    
+    modelMatrix = GLKMatrix4Scale(modelMatrix, self.scaleFactor, self.scaleFactor, 1.0f);
+    
+    return modelMatrix;
+}
+
+- (void)render
+{
+    if (self.showSprite)
+    {
+        
+        if (!self.effect)
+            NSLog(@"BaseSprite.m => render => NO effect set!!!");
+        
+        self.effect.texture2d0.name = self.textureInfo.name;
+        self.effect.texture2d0.enabled = YES;
+        
+        self.effect.transform.modelviewMatrix = self.modelMatrix;
+        
+        self.effect.useConstantColor = YES;
+        self.effect.constantColor = GLKVector4Make(255, 255, 255, self.alphaValue);
+        
+        [self.effect prepareToDraw];
+        
+        glEnableVertexAttribArray(GLKVertexAttribPosition);
+        glEnableVertexAttribArray(GLKVertexAttribTexCoord0);
+        
+        long offset = (long)&_quad;
+        glVertexAttribPointer(GLKVertexAttribPosition, 2, GL_FLOAT, GL_FALSE, sizeof(TexturedVertex), (void *) (offset + offsetof(TexturedVertex, geometryVertex)));
+        glVertexAttribPointer(GLKVertexAttribTexCoord0, 2, GL_FLOAT, GL_FALSE, sizeof(TexturedVertex), (void *) (offset + offsetof(TexturedVertex, textureVertex)));
+        
+        glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
+    }
+}
+
+
 
 @end

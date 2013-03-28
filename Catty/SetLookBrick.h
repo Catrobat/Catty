@@ -7,15 +7,15 @@
 //
 
 #import "Brick.h"
-#import "LookData.h"
-#import "Sprite.h"
+#import "Look.h"
+#import "SpriteObject.h"
 
-@interface SetLookBrick : Brick
+@interface Setlookbrick : Brick
 
 //@property (nonatomic, strong) NSNumber *indexOfCostumeInArray;
 
 #warning @mattias: I've added these new properties (they are in the XML)
 #warning @mattias: Don't forget the implementation... :-P
-@property (nonatomic, strong) LookData *look;
+@property (nonatomic, strong) Look *look;
 
 @end

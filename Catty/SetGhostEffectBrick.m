@@ -6,9 +6,9 @@
 //  Copyright (c) 2012 Graz University of Technology. All rights reserved.
 //
 
-#import "SetGhostEffectBrick.h"
+#import "Setghosteffectbrick.h"
 
-@implementation SetGhostEffectBrick
+@implementation Setghosteffectbrick
 
 @synthesize transparency = _transparency;
 
@@ -26,7 +26,7 @@
 {
     NSLog(@"Performing: %@", self.description);
     
-    [self.sprite setTransparency:self.transparency.floatValue];
+    [self.object setTransparency:self.transparency.floatValue];
     
 }
 

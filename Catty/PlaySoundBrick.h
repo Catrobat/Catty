@@ -7,11 +7,11 @@
 //
 
 #import "Brick.h"
-@class sound;
+@class Sound;
 
-@interface PlaySoundBrick : Brick
+@interface Playsoundbrick : Brick
 
-@property (nonatomic, strong) sound *sound;
+@property (nonatomic, strong) Sound *sound;
 
 //-(id)initWithFileName:(NSString *)fileName;
 

@@ -6,9 +6,9 @@
 //  Copyright (c) 2012 Graz University of Technology. All rights reserved.
 //
 
-#import "ChangeXByNBrick.h"
+#import "Changexbynbrick.h"
 
-@implementation ChangeXByNBrick
+@implementation Changexbynbrick
 
 @synthesize xMovement = _xMovement;
 
@@ -26,7 +26,7 @@
 {
     NSLog(@"Performing: %@", self.description);
     
-    [self.sprite changeXBy:self.xMovement.intValue];
+    [self.object changeXBy:self.xMovement.intValue];
 }
 
 #pragma mark - Description

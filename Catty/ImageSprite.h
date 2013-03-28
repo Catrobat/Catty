@@ -8,7 +8,7 @@
 
 #import <GLKit/GLKit.h>
 #import <Foundation/Foundation.h>
-#import "Sprite.h"
+#import "SpriteObject.h"
 #import "StartScreenViewController.h"
 
 

@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface sound : NSObject
+@interface Sound : NSObject
 @property (strong, nonatomic) NSString* name;
 @property (strong, nonatomic) NSString* fileName;
 @end

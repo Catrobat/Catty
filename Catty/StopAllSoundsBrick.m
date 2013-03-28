@@ -6,16 +6,16 @@
 //  Copyright (c) 2012 Graz University of Technology. All rights reserved.
 //
 
-#import "StopAllSoundsBrick.h"
+#import "Stopallsoundsbrick.h"
 #import "SpriteManagerDelegate.h"
 
-@implementation StopAllSoundsBrick
+@implementation Stopallsoundsbrick
 
 - (void)performFromScript:(Script*)script
 {
     NSLog(@"Performing: %@", self.description);
     
-    [self.sprite.spriteManagerDelegate stopAllSounds]; // move this to sprite??
+    [self.object.spriteManagerDelegate stopAllSounds]; // move this to sprite??
     
 }
 

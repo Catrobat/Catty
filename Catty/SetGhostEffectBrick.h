@@ -8,7 +8,7 @@
 
 #import "Brick.h"
 
-@interface SetGhostEffectBrick : Brick
+@interface Setghosteffectbrick : Brick
 
 @property (nonatomic, strong) NSNumber *transparency;
 

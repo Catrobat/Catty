@@ -6,9 +6,9 @@
 //  Copyright (c) 2012 Graz University of Technology. All rights reserved.
 //
 
-#import "BroadcastBrick.h"
+#import "Broadcastbrick.h"
 
-@implementation BroadcastBrick
+@implementation Broadcastbrick
 
 @synthesize broadcastMessage = _message;
 
@@ -26,7 +26,7 @@
 {
     NSLog(@"Performing: %@", self.description);
     
-    [self.sprite broadcast:self.broadcastMessage];
+    [self.object broadcast:self.broadcastMessage];
     
     //    float sleepTime = ((float)self.timeToWaitInMilliseconds.intValue)/1000;
     //    NSLog(@"wating for %f seconds", sleepTime);

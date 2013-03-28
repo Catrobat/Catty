@@ -17,6 +17,7 @@
 - (void)deleteFolder:(NSString*)path;
 - (NSArray*)getContentsOfDirectory:(NSString*)directory;
 - (void)addDefaultProject;
+- (void)addAquariumProject;
 - (void)downloadFileFromURL:(NSURL*)url withName:(NSString*)name;
 - (NSString*)getPathForLevel:(NSString*)levelName;
 

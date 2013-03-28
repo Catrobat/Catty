@@ -26,7 +26,7 @@
 
 @implementation Parser
 
-- (Project*)generateObjectForLevel:(NSString*)path {
+- (Program*)generateObjectForLevel:(NSString*)path {
     // sanity check
     if (!path || [path isEqualToString:@""]) {
         NSLog(@"Path (%@) is NOT valid!", path);

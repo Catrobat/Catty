@@ -6,9 +6,9 @@
 //  Copyright (c) 2012 Graz University of Technology. All rights reserved.
 //
 
-#import "ChangeSizeByNBrick.h"
+#import "Changesizebynbrick.h"
 
-@implementation ChangeSizeByNBrick
+@implementation Changesizebynbrick
 
 @synthesize size = _size;
 
@@ -26,7 +26,7 @@
 {
     NSLog(@"Performing: %@", self.description);
     
-    [self.sprite changeSizeByN:self.size.floatValue];
+    [self.object changeSizeByN:self.size.floatValue];
     
     //    float sleepTime = ((float)self.timeToWaitInMilliseconds.intValue)/1000;
     //    NSLog(@"wating for %f seconds", sleepTime);

@@ -8,9 +8,9 @@
 
 #import "Script.h"
 #import "Brick.h"
-#import "Sprite.h"
-#import "ForeverBrick.h"
-#import "RepeatBrick.h"
+#import "SpriteObject.h"
+#import "Foreverbrick.h"
+#import "Repeatbrick.h"
 #import "LoopEndBrick.h"
 
 
@@ -111,17 +111,17 @@
 //            NSLog(@"Brick: %@", [brick description]);
 //        }
         
-        if ([brick isKindOfClass:[ForeverBrick class]]) {
+        if ([brick isKindOfClass:[Foreverbrick class]]) {
             
-            if (![(ForeverBrick*)brick checkConditionAndDecrementLoopCounter]) {
+            if (![(Foreverbrick*)brick checkConditionAndDecrementLoopCounter]) {
                 // go to end of loop
                 int numOfLoops = 1;
                 int tmpCounter = self.currentBrickIndex+1;
                 while (numOfLoops > 0 && tmpCounter < [self.brickList count]) {
                     brick = [self.brickList objectAtIndex:tmpCounter];
-                    if ([brick isKindOfClass:[ForeverBrick class]])
+                    if ([brick isKindOfClass:[Foreverbrick class]])
                         numOfLoops += 1;
-                    else if ([brick isMemberOfClass:[LoopEndBrick class]])
+                    else if ([brick isMemberOfClass:[Loopendbrick class]])
                         numOfLoops -= 1;
                     tmpCounter += 1;
                 }
@@ -131,7 +131,7 @@
                 [self.startLoopTimestampStack addObject:[NSNumber numberWithDouble:[[NSDate date]timeIntervalSince1970]]];
             }
             
-        } else if ([brick isMemberOfClass:[LoopEndBrick class]]) {
+        } else if ([brick isMemberOfClass:[Loopendbrick class]]) {
             
             self.currentBrickIndex = ((NSNumber*)[self.startLoopIndexStack lastObject]).intValue-1;
             [self.startLoopIndexStack removeLastObject];

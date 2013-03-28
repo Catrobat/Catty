@@ -44,6 +44,7 @@
     
     CattyAppDelegate *appDelegate = (CattyAppDelegate*)[[UIApplication sharedApplication] delegate];
     [appDelegate.fileManager addDefaultProject];
+    [appDelegate.fileManager addAquariumProject];
 
 }
 

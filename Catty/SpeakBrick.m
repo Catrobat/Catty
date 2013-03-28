@@ -6,14 +6,14 @@
 //  Copyright (c) 2012 Graz University of Technology. All rights reserved.
 //
 
-#import "SpeakBrick.h"
+#import "Speakbrick.h"
 #import "CustomExtensions.h"
 
 #define TTS_SERVICE @"http://www.translate.google.com/translate_tts?tl="
 #define TTS_APPENDIX @"&q="
 #define USER_AGENT @"Mozilla/5.0 (Macintosh; Intel Mac OS X 10.6; rv:2.0.1) Gecko/20100101 Firefox/4.0.1"
 
-@interface SpeakBrick()
+@interface Speakbrick()
 
 @property (nonatomic, strong) NSString *path;
 @property (nonatomic, strong) NSString *language;
@@ -23,7 +23,7 @@
 @end
 
 
-@implementation SpeakBrick
+@implementation Speakbrick
 
 
 @synthesize text = _text;
@@ -60,7 +60,7 @@
 {
     NSLog(@"Performing: %@", self.description);
     
-    [self speakUsingTTSWebServiceOnSprite:self.sprite];
+    [self speakUsingTTSWebServiceOnSprite:self.object];
 }
 
 #pragma mark - Description
@@ -93,7 +93,7 @@
 }
 
 
--(void)speakUsingTTSWebServiceOnSprite:(Sprite*)sprite
+-(void)speakUsingTTSWebServiceOnSprite:(SpriteObject*)sprite
 {
     [self downloadFileSynchronous];
     

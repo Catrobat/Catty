@@ -8,9 +8,9 @@
 
 #import "Script.h"
 
-@interface WhenScript : Script
+@interface Whenscript : Script
 
 #warning @mattias: I've added this property. Please implement it correctly... :-P
-@property (nonatomic, strong) Sprite *sprite;
+@property (nonatomic, strong) SpriteObject *object;
 
 @end

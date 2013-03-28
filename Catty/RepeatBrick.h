@@ -6,9 +6,9 @@
 //  Copyright (c) 2012 Graz University of Technology. All rights reserved.
 //
 
-#import "ForeverBrick.h"
+#import "Foreverbrick.h"
 
-@interface RepeatBrick : ForeverBrick
+@interface Repeatbrick : Foreverbrick
 
 @property (nonatomic, strong) NSNumber *timesToRepeat;
 

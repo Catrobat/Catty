@@ -7,8 +7,8 @@
 //
 
 #import "StageViewController.h"
-#import "Project.h"
-#import "Sprite.h"
+#import "Program.h"
+#import "SpriteObject.h"
 #import "LevelLoadingInfo.h"
 #import "Parser.h"
 #import "Brick.h"
@@ -16,13 +16,13 @@
 #import "BaseSprite.h"
 #import "SpriteManagerDelegate.h"
 #import "BroadcastWaitHandler.h"
-#import "WhenScript.h"
-#import "StartScript.h"
-#import "BroadcastScript.h"
+#import "Whenscript.h"
+#import "Startscript.h"
+#import "Broadcastscript.h"
 
 @interface StageViewController ()
 
-@property (strong, nonatomic) Project *level;
+@property (strong, nonatomic) Program *level;
 
 @property (strong, nonatomic) EAGLContext *context;
 @property (strong, nonatomic) GLKBaseEffect *effect;
@@ -101,7 +101,7 @@
     
     // set black frame for scaled projects
     // TODO: dirty!!!
-    Sprite *sprite = [self.level.spriteList lastObject];
+    SpriteObject *sprite = [self.level.objectList lastObject];
     
     float screenWidth  = [UIScreen mainScreen].bounds.size.width;
     float screenHeight = [UIScreen mainScreen].bounds.size.height;
@@ -146,7 +146,7 @@
 - (void)viewWillDisappear:(BOOL)animated {
     
     [self stopAllSounds];
-    for (Sprite *sprite in self.level.spriteList) {
+    for (SpriteObject *sprite in self.level.objectList) {
         [sprite stopAllScripts];
     }
     
@@ -172,7 +172,7 @@
 - (void)startLevel
 {
     
-    for (Sprite *sprite in self.level.spriteList)
+    for (SpriteObject *sprite in self.level.objectList)
     {
         [sprite start];
     }
@@ -190,12 +190,12 @@
     Parser *parser = [[Parser alloc]init];
     self.level = [parser generateObjectForLevel:xmlPath];
     
-    NSLog(@"ProjectResolution: width/height:  %f / %f", self.level.screenWidth.floatValue, self.level.screenHeight.floatValue);
+    NSLog(@"ProjectResolution: width/height:  %f / %f", self.level.header.screenWidth.floatValue, self.level.header.screenHeight.floatValue);
     
-    CGSize screenResolution = CGSizeMake(self.level.screenWidth.floatValue, self.level.screenHeight.floatValue);
+    CGSize screenResolution = CGSizeMake(self.level.header.screenWidth.floatValue, self.level.header.screenHeight.floatValue);
     
     //setting effect
-    for (Sprite *sprite in self.level.spriteList)
+    for (SpriteObject *sprite in self.level.objectList)
     {
         sprite.effect = self.effect;
         sprite.spriteManagerDelegate = self;
@@ -206,7 +206,7 @@
         // TODO: change!
         for (Script *script in sprite.scriptList) {
             for (Brick *brick in script.brickList) {
-                brick.sprite = sprite;
+                brick.object = sprite;
             }
         }
         
@@ -219,14 +219,14 @@
         NSLog(@" ");
         NSLog(@"StartScript:");
         for (Script *script in sprite.scriptList) {
-            if ([script isKindOfClass:[StartScript class]]) {
+            if ([script isKindOfClass:[Startscript class]]) {
                 for (Brick *brick in [script getAllBricks]) {
                     NSLog(@"  %@", [brick description]);
                 }
             }
         }
         for (Script *script in sprite.scriptList) {
-            if ([script isKindOfClass:[WhenScript class]]) {
+            if ([script isKindOfClass:[Whenscript class]]) {
                 NSLog(@" ");
                 NSLog(@"WhenScript:");
                 for (Brick *brick in [script getAllBricks]) {
@@ -235,7 +235,7 @@
             }
         }
         for (Script *script in sprite.scriptList) {
-            if ([script isKindOfClass:[BroadcastScript class]]) {
+            if ([script isKindOfClass:[Broadcastscript class]]) {
                 NSLog(@" ");
                 NSLog(@"BroadcastScript:");
                 for (Brick *brick in [script getAllBricks]) {
@@ -263,7 +263,7 @@
     glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
     glEnable(GL_BLEND);
     
-    for (Sprite *sprite in self.level.spriteList) {
+    for (SpriteObject *sprite in self.level.objectList) {
         [sprite render];
     }
     [self.blackLeft   render];
@@ -275,7 +275,7 @@
 - (void)glkViewControllerUpdate:(GLKViewController *)controller
 {
     //NSLog(@"Update...");
-    for (Sprite *sprite in self.level.spriteList) {
+    for (SpriteObject *sprite in self.level.objectList) {
         [sprite update:self.timeSinceLastUpdate];
     }
 }
@@ -301,10 +301,10 @@
     
     //depth check
 //    float zIndex = 0;
-    Sprite *foregroundSprite = nil;
+    SpriteObject *foregroundSprite = nil;
     
     //check if a collision (tap) occured
-    for (Sprite *sprite in self.level.spriteList)
+    for (SpriteObject *sprite in self.level.objectList)
     {
         if(CGRectIntersectsRect(sprite.boundingBox, tapRect) && sprite.showSprite)// && [sprite getZIndex] >= zIndex)    // order in array is sprite-z-index
         {
@@ -318,18 +318,18 @@
 }
 
 #pragma mark - SpriteManagerDelegate
--(void)bringToFrontSprite:(Sprite *)sprite
+-(void)bringToFrontSprite:(SpriteObject *)sprite
 {
     // TODO: CHANGE THIS ASAP!!!
-    NSMutableArray *sprites = [self.level.spriteList mutableCopy];
+    NSMutableArray *sprites = [self.level.objectList mutableCopy];
     [sprites removeObject:sprite];
     [sprites addObject:sprite];
-    self.level.spriteList = [NSArray arrayWithArray:sprites];
+    self.level.objectList = [NSArray arrayWithArray:sprites];
 }
 
--(void)bringNStepsBackSprite:(Sprite *)sprite numberOfSteps:(int)n
+-(void)bringNStepsBackSprite:(SpriteObject *)sprite numberOfSteps:(int)n
 {
-    NSMutableArray *sprites = [self.level.spriteList mutableCopy];
+    NSMutableArray *sprites = [self.level.objectList mutableCopy];
     
     int oldIndex = [sprites indexOfObject:sprite];
     [sprites removeObject:sprite];
@@ -342,13 +342,13 @@
     
     [sprites insertObject:sprite atIndex:newIndex];
     
-    self.level.spriteList = [NSArray arrayWithArray:sprites];
+    self.level.objectList = [NSArray arrayWithArray:sprites];
 }
 
 
 -(void)stopAllSounds
 {
-    for(Sprite* sprite in self.level.spriteList)
+    for(SpriteObject* sprite in self.level.objectList)
     {
         [sprite stopAllSounds];
     }

@@ -116,9 +116,9 @@
     NSArray *contents = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:self.levelsDirectory error:&error];
     [Util log:error];
     
-    if ([contents indexOfObject:@"DefaultProject"]) {
+    if ([contents indexOfObject:@"Mein erstes Projekt"]) {
         //default project does not exist
-        NSString *projectName = @"DefaultProject";
+        NSString *projectName = @"Mein erstes Projekt";
         
         NSString *filePath = [[NSBundle mainBundle] pathForResource:projectName ofType:@"catrobat"];
         NSData *defaultProject = [NSData dataWithContentsOfFile:filePath];
@@ -130,6 +130,32 @@
         NSLog(@"DefaultProject already exists...");
     }
     
+}
+
+- (void)addAquariumProject {
+    NSError *error;
+    
+    if (![[NSFileManager defaultManager] fileExistsAtPath:self.levelsDirectory]) {
+        [[NSFileManager defaultManager] createDirectoryAtPath:self.levelsDirectory withIntermediateDirectories:NO attributes:nil error:&error];
+        [Util log:error];
+    }
+    
+    NSArray *contents = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:self.levelsDirectory error:&error];
+    [Util log:error];
+    
+    if ([contents indexOfObject:@"Aquarium 3"]) {
+        //default project does not exist
+        NSString *projectName = @"Aquarium 3";
+        
+        NSString *filePath = [[NSBundle mainBundle] pathForResource:projectName ofType:@"catrobat"];
+        NSData *defaultProject = [NSData dataWithContentsOfFile:filePath];
+        
+        //storing level
+        [self unzipAndStore:defaultProject withName:projectName];
+    }
+    else { //default project already exists in levels folder
+        NSLog(@"Aquarium 3 already exists...");
+    }
 }
 
 - (void)downloadFileFromURL:(NSURL*)url withName:(NSString*)name {   

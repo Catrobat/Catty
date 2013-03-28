@@ -8,7 +8,7 @@
 
 #import "Brick.h"
 
-@interface ChangeGhostEffectByNBrick : Brick
+@interface Changeghosteffectbynbrick : Brick
 
 @property (nonatomic, strong) NSNumber *changeGhostEffect;
 

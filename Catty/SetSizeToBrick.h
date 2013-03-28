@@ -7,9 +7,9 @@
 //
 
 #import "Brick.h"
-#import "Sprite.h"
+#import "SpriteObject.h"
 
-@interface SetSizeToBrick : Brick
+@interface Setsizetobrick : Brick
 
 @property (nonatomic, strong) NSNumber *size;
 

@@ -6,14 +6,14 @@
 //  Copyright (c) 2012 Graz University of Technology. All rights reserved.
 //
 
-#import "LookData.h"
+#import "Look.h"
 
-@interface LookData ()
+@interface Look ()
 
 
 @end
 
-@implementation LookData
+@implementation Look
 
 @synthesize fileName = _costumeFileName;
 @synthesize name = _costumeName;

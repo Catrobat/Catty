@@ -10,12 +10,12 @@
 #import <AVFoundation/AVAudioPlayer.h>
 
 
-@class Sprite;
+@class SpriteObject;
 
 @protocol SpriteManagerDelegate <NSObject>
 
--(void)bringToFrontSprite:(Sprite*)sprite;
--(void)bringNStepsBackSprite:(Sprite*)sprite numberOfSteps:(int)n;
+-(void)bringToFrontSprite:(SpriteObject*)sprite;
+-(void)bringNStepsBackSprite:(SpriteObject*)sprite numberOfSteps:(int)n;
 
 -(void)stopAllSounds;
 

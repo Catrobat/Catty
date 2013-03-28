@@ -22,10 +22,10 @@
 
 #import <Foundation/Foundation.h>
 
-@class Project;
+@class Program;
 
 @protocol XMLParserProtocol <NSObject>
 
-- (Project*)generateObjectForLevel:(NSString*)path;
+- (Program*)generateObjectForLevel:(NSString*)path;
 
 @end

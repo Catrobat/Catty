@@ -6,9 +6,9 @@
 //  Copyright (c) 2012 Graz University of Technology. All rights reserved.
 //
 
-#import "BroadcastWaitBrick.h"
+#import "Broadcastwaitbrick.h"
 
-@implementation BroadcastWaitBrick
+@implementation Broadcastwaitbrick
 
 -(id)initWithMessage:(NSString *)message
 {
@@ -24,7 +24,7 @@
 {
     NSLog(@"Performing: %@", self.description);
     
-    [self.sprite broadcastAndWait:self.broadcastMessage];
+    [self.object broadcastAndWait:self.broadcastMessage];
     
     //    float sleepTime = ((float)self.timeToWaitInMilliseconds.intValue)/1000;
     //    NSLog(@"wating for %f seconds", sleepTime);

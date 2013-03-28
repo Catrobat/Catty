@@ -6,24 +6,24 @@
 //  Copyright (c) 2012 Graz University of Technology. All rights reserved.
 //
 
-#import "WaitBrick.h"
+#import "Waitbrick.h"
 #import "Script.h"
 
-@implementation WaitBrick
+@implementation Waitbrick
 
-@synthesize timeToWaitInMilliSeconds = _timeToWaitInMilliseconds;
+@synthesize timeToWaitInSeconds = _timeToWaitInSeconds;
 
 - (void)performFromScript:(Script*)script
 {
     NSLog(@"Performing: %@", self.description);
     
-    [NSThread sleepForTimeInterval:self.timeToWaitInMilliSeconds.floatValue/1000.0f];
+    [NSThread sleepForTimeInterval:self.timeToWaitInSeconds.floatValue/1000.0f];
 }
 
 #pragma mark - Description
 - (NSString*)description
 {
-    return [NSString stringWithFormat:@"WaitBrick (%d Milliseconds)", self.timeToWaitInMilliSeconds.intValue];
+    return [NSString stringWithFormat:@"WaitBrick (%d Milliseconds)", self.timeToWaitInSeconds.intValue];
 }
 
 @end

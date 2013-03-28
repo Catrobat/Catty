@@ -6,15 +6,15 @@
 //  Copyright (c) 2012 Graz University of Technology. All rights reserved.
 //
 
-#import "ComeToFrontBrick.h"
+#import "Cometofrontbrick.h"
 
-@implementation ComeToFrontBrick
+@implementation Cometofrontbrick
 
 - (void)performFromScript:(Script*)script
 {
     NSLog(@"Performing: %@", self.description);
     
-    [self.sprite comeToFront];
+    [self.object comeToFront];
     
     //    float sleepTime = ((float)self.timeToWaitInMilliseconds.intValue)/1000;
     //    NSLog(@"wating for %f seconds", sleepTime);

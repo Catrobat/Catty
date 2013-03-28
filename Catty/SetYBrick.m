@@ -6,9 +6,9 @@
 //  Copyright (c) 2012 Graz University of Technology. All rights reserved.
 //
 
-#import "SetYBrick.h"
+#import "Setybrick.h"
 
-@implementation SetYBrick
+@implementation Setybrick
 
 @synthesize yPosition = _yPosition;
 
@@ -26,7 +26,7 @@
 {
     NSLog(@"Performing: %@", self.description);
     
-    [self.sprite setYPosition:self.yPosition.floatValue];
+    [self.object setYPosition:self.yPosition.floatValue];
     
     //    float sleepTime = ((float)self.timeToWaitInMilliseconds.intValue)/1000;
     //    NSLog(@"wating for %f seconds", sleepTime);

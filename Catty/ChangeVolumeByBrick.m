@@ -6,9 +6,9 @@
 //  Copyright (c) 2012 Graz University of Technology. All rights reserved.
 //
 
-#import "ChangeVolumeByBrick.h"
+#import "Changevolumebybrick.h"
 
-@implementation ChangeVolumeByBrick
+@implementation Changevolumebybrick
 
 
 @synthesize percent = _percent;
@@ -27,7 +27,7 @@
 
 
 
-- (void)performFromScript:(Script*)scriptOnSprite:(Sprite *)sprite fromScript:(Script *)script
+- (void)performFromScript:(Script*)scriptOnSprite:(SpriteObject *)sprite fromScript:(Script *)script
 {
     NSLog(@"Performing: %@", self.description);
     

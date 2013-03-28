@@ -6,9 +6,9 @@
 //  Copyright (c) 2012 Graz University of Technology. All rights reserved.
 //
 
-#import "PlaceAtBrick.h"
+#import "Placeatbrick.h"
 
-@implementation PlaceAtBrick
+@implementation Placeatbrick
 
 @synthesize xPosition = _xPosition;
 @synthesize yPosition = _yPosition;
@@ -35,7 +35,7 @@
     
     */
     
-    [self.sprite placeAt:GLKVector3Make(self.xPosition.floatValue, self.yPosition.floatValue, 0.0f)];
+    [self.object placeAt:GLKVector3Make(self.xPosition.floatValue, self.yPosition.floatValue, 0.0f)];
 }
 
 #pragma mark - Description

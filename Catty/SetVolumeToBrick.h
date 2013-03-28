@@ -8,7 +8,7 @@
 
 #import "Brick.h"
 
-@interface SetVolumeToBrick : Brick
+@interface Setvolumetobrick : Brick
 
 @property (nonatomic, strong) NSNumber *volume;
 

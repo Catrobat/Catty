@@ -6,15 +6,15 @@
 //  Copyright (c) 2012 Graz University of Technology. All rights reserved.
 //
 
-#import "NextLookBrick.h"
+#import "Nextlookbrick.h"
 
-@implementation NextLookBrick
+@implementation Nextlookbrick
 
 - (void)performFromScript:(Script*)script
 {
     NSLog(@"Performing: %@", self.description);
     
-    [self.sprite performSelectorOnMainThread:@selector(nextCostume) withObject:nil waitUntilDone:YES];
+    [self.object performSelectorOnMainThread:@selector(nextCostume) withObject:nil waitUntilDone:YES];
 
 //    [sprite nextCostume];
 }
@@ -23,7 +23,7 @@
 #pragma mark - Description
 - (NSString*)description
 {
-    return [NSString stringWithFormat:@"NextLookBrick"];
+    return [NSString stringWithFormat:@"Nextlookbrick"];
 }
 
 @end

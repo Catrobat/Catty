@@ -8,7 +8,7 @@
 
 #import "Brick.h"
 
-@interface SetYBrick : Brick
+@interface Setybrick : Brick
 
 @property (nonatomic, strong) NSNumber *yPosition;
 

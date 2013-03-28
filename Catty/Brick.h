@@ -7,14 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "Sprite.h"
+#import "SpriteObject.h"
 @class Script;
 
 @interface Brick : NSObject
 
-@property (nonatomic, strong) Sprite *sprite;
+@property (nonatomic, strong) SpriteObject *object;
 
-- (id)initWithSprite:(Sprite*)sprite;
+- (id)initWithSprite:(SpriteObject*)sprite;
 
 - (NSString*)description;
 - (void)performFromScript:(Script*)script;

@@ -6,15 +6,15 @@
 //  Copyright (c) 2012 Graz University of Technology. All rights reserved.
 //
 
-#import "GlideToBrick.h"
+#import "Glidetobrick.h"
 #import "Script.h"
 
 // TODO: change! Need CattyViewController to get FRAMES_PER_SECOND... 
 #import "CattyViewController.h"
 
-@implementation GlideToBrick
+@implementation Glidetobrick
 
-@synthesize durationInMilliSeconds = _durationInMilliSecs;
+@synthesize durationInSeconds = _durationInSeconds;
 @synthesize xDestination = _xDestination;
 @synthesize yDestination = _yDestination;
 
@@ -26,7 +26,7 @@
     {
         self.xDestination = xPosition;
         self.yDestination = yPosition;
-        self.durationInMilliSeconds = durationInMilliSecs;
+        self.durationInSeconds = durationInMilliSecs;
     }
     return self;
 }
@@ -39,14 +39,14 @@
         
     GLKVector3 position = GLKVector3Make(self.xDestination.floatValue, self.yDestination.floatValue, 0.0f);
     
-    [self.sprite glideToPosition:position withinDurationInMilliSecs:self.durationInMilliSeconds.intValue fromScript:script];
-    [NSThread sleepForTimeInterval:self.durationInMilliSeconds.floatValue/1000.0f];
+    [self.object glideToPosition:position withinDurationInMilliSecs:self.durationInSeconds.intValue fromScript:script];
+    [NSThread sleepForTimeInterval:self.durationInSeconds.floatValue/1000.0f];
 }
 
 #pragma mark - Description
 - (NSString*)description
 {
-    return [NSString stringWithFormat:@"GlideTo (Position: %f/%f; duration: %f ms)", self.xDestination.floatValue, self.yDestination.floatValue, self.durationInMilliSeconds.floatValue
+    return [NSString stringWithFormat:@"GlideTo (Position: %f/%f; duration: %f ms)", self.xDestination.floatValue, self.yDestination.floatValue, self.durationInSeconds.floatValue
             ];
 }
 

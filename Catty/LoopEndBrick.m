@@ -6,9 +6,9 @@
 //  Copyright (c) 2012 Graz University of Technology. All rights reserved.
 //
 
-#import "LoopEndBrick.h"
+#import "Loopendbrick.h"
 
-@implementation LoopEndBrick
+@implementation Loopendbrick
 
 - (void)performFromScript:(Script*)script
 {

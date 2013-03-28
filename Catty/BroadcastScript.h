@@ -8,10 +8,10 @@
 
 #import "Script.h"
 
-@interface BroadcastScript : Script
+@interface Broadcastscript : Script
 
 #warning @mattias: I've added this property. Please implement it correctly... :-P
-@property (nonatomic, strong) Sprite *sprite;
+@property (nonatomic, strong) SpriteObject *object;
 @property (nonatomic, strong) NSString *receivedMessage;
 
 @end

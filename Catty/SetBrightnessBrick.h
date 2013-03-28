@@ -8,7 +8,7 @@
 
 #import "Brick.h"
 
-@interface SetBrightnessBrick : Brick
+@interface Setbrightnessbrick : Brick
 
 #warning @all: Just a temp implementation for the XML parser!!!
 @property (nonatomic, strong) NSNumber *brightness;

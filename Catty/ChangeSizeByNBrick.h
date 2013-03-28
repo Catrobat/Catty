@@ -8,7 +8,7 @@
 
 #import "Brick.h"
 
-@interface ChangeSizeByNBrick : Brick
+@interface Changesizebynbrick : Brick
 
 @property (nonatomic, strong) NSNumber *size;
 

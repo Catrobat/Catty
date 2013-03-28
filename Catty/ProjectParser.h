@@ -22,7 +22,7 @@
 
 #import <Foundation/Foundation.h>
 
-@class Project;
+@class Program;
 
 @interface ProjectParser : NSObject
 

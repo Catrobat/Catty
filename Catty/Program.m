@@ -6,44 +6,34 @@
 //  Copyright (c) 2012 Graz University of Technology. All rights reserved.
 //
 
-#import "Project.h"
+#import "Program.h"
 #import "Script.h"
 #import <objc/runtime.h>
 #import <Foundation/NSObjCRuntime.h>
 
-@implementation Project
+@implementation Program
 
-@synthesize applicationBuildName    = _applicationBuildName;
-@synthesize applicationBuildNumber  = _applicationBuildNumber;
-@synthesize applicationName         = _applicationName;
-@synthesize applicationVersion      = _applicationVersion;
-@synthesize catrobatLanguageVersion = _catrobatLanguageVersion;
-@synthesize dateTimeUpload          = _dateTimeUpload;
-@synthesize description             = _description;
-@synthesize deviceName              = _deviceName;
-@synthesize mediaLicense            = _mediaLicense;
-@synthesize platform                = _platform;
-@synthesize platformVersion         = _platformVersion;
-@synthesize programLicense          = _programLicense;
-@synthesize programName             = _programName;
-@synthesize remixOf                 = _remixOf;
-@synthesize screenHeight            = _screenHeight;
-@synthesize screenWidth             = _screenWidth;
-@synthesize spriteList              = _spriteList;
-@synthesize uRL                     = _uRL;
-@synthesize userHandle              = _userHandle;
+@synthesize objectList = _objectList;
+@synthesize variables = _variables;
 
 #pragma mark - Custom getter and setter
 - (NSMutableArray*)spritesList {
-    if (_spriteList == nil)
-        _spriteList = [[NSMutableArray alloc] init];
-    return _spriteList;
+    if (_objectList == nil)
+        _objectList = [[NSMutableArray alloc] init];
+    return _objectList;
+}
+
+- (NSMutableArray*)variables {
+    if (_variables == nil) {
+        _variables = [[NSMutableArray alloc] init];
+    }
+    return _variables;
 }
 
 - (NSString*)debug {
     NSMutableString *ret = [[NSMutableString alloc] init];
-    [ret appendFormat:@"\n----------------- PROJECT --------------------\n"];
-    [ret appendFormat:@"Application Build Name: %@\n", self.applicationBuildName];
+    [ret appendFormat:@"\n----------------- PROGRAM --------------------\n"];
+    /*[ret appendFormat:@"Application Build Name: %@\n", self.applicationBuildName];
     [ret appendFormat:@"Application Build Number: %@\n", self.applicationBuildNumber];
     [ret appendFormat:@"Application Name: %@\n", self.applicationName];
     [ret appendFormat:@"Application Version: %@\n", self.applicationVersion];
@@ -61,7 +51,7 @@
     [ret appendFormat:@"Screen Width: %@\n", self.screenWidth];
     [ret appendFormat:@"Sprite List: %@\n", self.spriteList];
     [ret appendFormat:@"URL: %@\n", self.uRL];
-    [ret appendFormat:@"User Handle: %@\n", self.userHandle];
+    [ret appendFormat:@"User Handle: %@\n", self.userHandle];*/
     [ret appendFormat:@"----------------------------------------------\n"];
     
     return [NSString stringWithString:ret];

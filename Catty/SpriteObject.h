@@ -20,7 +20,7 @@
 @class Script;
 @class Sound;
 @class Script;
-@class LookData;
+@class Look;
 
 //////////////////////////////////////////////////////////////////////////////////////////
 
@@ -33,7 +33,7 @@
 //////////////////////////////////////////////////////////////////////////////////////////
 
 
-@interface Sprite : BaseSprite <AVAudioPlayerDelegate>
+@interface SpriteObject : NSObject <AVAudioPlayerDelegate>
 
 
 
@@ -89,7 +89,7 @@
 // actions
 - (void)placeAt:(GLKVector3)newPosition;    //origin is in the middle of the sprite
 //- (void)wait:(int)durationInMilliSecs fromScript:(Script*)script;
-- (void)changeCostume:(LookData*)look;
+- (void)changeCostume:(Look*)look;
 - (void)nextCostume;
 - (void)glideToPosition:(GLKVector3)position withinDurationInMilliSecs:(int)durationInMilliSecs fromScript:(Script*)script;
 - (void)hide;
@@ -113,5 +113,36 @@
 - (void)changeVolumeBy:(float)percent;
 - (void)turnLeft:(float)degrees;
 - (void)turnRight:(float)degrees;
+
+
+// from base sprite
+@property (strong, nonatomic) NSString *name;
+@property (nonatomic, strong) GLKBaseEffect *effect;
+
+@property (assign) CGSize contentSize;
+@property (assign, nonatomic) BOOL showSprite;
+@property (assign, nonatomic) GLKVector3 realPosition;        // position - origin is bottom-left
+@property (assign, nonatomic) float rotationInDegrees;
+@property (assign, nonatomic) float alphaValue;
+
+@property (readonly, strong, nonatomic) NSString *path;
+@property (assign, nonatomic) float scaleFactor;    // scale image to fit screen
+
+
+-(id)init;
+-(id)initWithEffect:(GLKBaseEffect*)effect;
+
+
+// getter
+-(CGSize)originalImageSize;
+
+// graphics
+-(void)update:(float)dt;
+-(void)render;
+
+-(BOOL)loadImageWithPath:(NSString*)path;
+-(BOOL)loadImageWithPath:(NSString*)path width:(float)width height:(float)height;
+-(void)setOriginalSpriteSize;
+-(void)setSpriteSizeWithWidth:(float)width andHeight:(float)height;
 
 @end

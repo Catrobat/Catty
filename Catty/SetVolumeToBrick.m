@@ -6,9 +6,9 @@
 //  Copyright (c) 2012 Graz University of Technology. All rights reserved.
 //
 
-#import "SetVolumeToBrick.h"
+#import "Setvolumetobrick.h"
 
-@implementation SetVolumeToBrick
+@implementation Setvolumetobrick
 
 @synthesize volume = _volume;
 
@@ -29,7 +29,7 @@
 {
     NSLog(@"Performing: %@", self.description);
     
-    [self.sprite setVolumeTo:self.volume.floatValue/100.0f];
+    [self.object setVolumeTo:self.volume.floatValue/100.0f];
 }
 
 

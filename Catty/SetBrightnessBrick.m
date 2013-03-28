@@ -6,9 +6,9 @@
 //  Copyright (c) 2013 Graz University of Technology. All rights reserved.
 //
 
-#import "SetBrightnessBrick.h"
+#import "Setbrightnessbrick.h"
 
-@implementation SetBrightnessBrick
+@implementation Setbrightnessbrick
 
 -(void)performFromScript:(Script *)script
 {

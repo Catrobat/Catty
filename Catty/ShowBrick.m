@@ -6,15 +6,15 @@
 //  Copyright (c) 2012 Graz University of Technology. All rights reserved.
 //
 
-#import "ShowBrick.h"
+#import "Showbrick.h"
 
-@implementation ShowBrick
+@implementation Showbrick
 
 - (void)performFromScript:(Script*)script
 {
     NSLog(@"Performing: %@", self.description);
     
-    [self.sprite show];
+    [self.object show];
     
     //    float sleepTime = ((float)self.timeToWaitInMilliseconds.intValue)/1000;
     //    NSLog(@"wating for %f seconds", sleepTime);
@@ -27,7 +27,7 @@
 #pragma mark - Description
 - (NSString*)description
 {
-    return [NSString stringWithFormat:@"ShowBrick"];
+    return [NSString stringWithFormat:@"Showbrick"];
 }
 
 @end

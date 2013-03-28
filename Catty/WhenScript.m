@@ -6,8 +6,8 @@
 //  Copyright (c) 2013 Graz University of Technology. All rights reserved.
 //
 
-#import "WhenScript.h"
+#import "Whenscript.h"
 
-@implementation WhenScript
+@implementation Whenscript
 
 @end

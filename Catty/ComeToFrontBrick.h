@@ -8,6 +8,6 @@
 
 #import "Brick.h"
 
-@interface ComeToFrontBrick : Brick
+@interface Cometofrontbrick : Brick
 
 @end

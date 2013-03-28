@@ -6,8 +6,8 @@
 //  Copyright (c) 2013 Graz University of Technology. All rights reserved.
 //
 
-#import "StartScript.h"
+#import "Startscript.h"
 
-@implementation StartScript
+@implementation Startscript
 
 @end

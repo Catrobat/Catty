@@ -7,7 +7,7 @@
 //
 #import <UIKit/UIKit.h>
 #import "DataModelCostumeTests.h"
-#import "LookData.h"
+#import "Look.h"
 
 #define SAMPLE_NAME @"KittyCat"
 #define SAMPLE_PATH @"normalcat.png"

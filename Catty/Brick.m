@@ -11,16 +11,16 @@
 
 @implementation Brick
 
-@synthesize sprite = _sprite;
+@synthesize object = _sprite;
 
 
 
--(id)initWithSprite:(Sprite *)sprite
+-(id)initWithSprite:(SpriteObject *)sprite
 {
     self = [super init];
     if (self)
     {
-        self.sprite = sprite;
+        self.object = sprite;
     }
     return self;
 }

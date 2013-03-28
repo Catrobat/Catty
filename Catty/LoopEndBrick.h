@@ -8,6 +8,6 @@
 
 #import "Brick.h"
 
-@interface LoopEndBrick : Brick
+@interface Loopendbrick : Brick
 @property (strong, nonatomic) NSString* loopBeginBrick;
 @end

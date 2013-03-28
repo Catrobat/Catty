@@ -6,9 +6,9 @@
 //  Copyright (c) 2012 Graz University of Technology. All rights reserved.
 //
 
-#import "ChangeGhostEffectByNBrick.h"
+#import "Changeghosteffectbynbrick.h"
 
-@implementation ChangeGhostEffectByNBrick
+@implementation Changeghosteffectbynbrick
 
 @synthesize changeGhostEffect = _changeGhostEffect;
 
@@ -27,7 +27,7 @@
 {
     NSLog(@"Performing: %@", self.description);
     
-    [self.sprite changeTransparencyBy:self.changeGhostEffect];
+    [self.object changeTransparencyBy:self.changeGhostEffect];
     
 }
 

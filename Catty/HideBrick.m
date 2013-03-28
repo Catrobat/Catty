@@ -6,21 +6,21 @@
 //  Copyright (c) 2012 Graz University of Technology. All rights reserved.
 //
 
-#import "HideBrick.h"
+#import "Hidebrick.h"
 
-@implementation HideBrick
+@implementation Hidebrick
 
 - (void)performFromScript:(Script*)script
 {
     NSLog(@"Performing: %@", self.description);
     
-    [self.sprite hide];
+    [self.object hide];
 }
 
 #pragma mark - Description
 - (NSString*)description
 {
-    return [NSString stringWithFormat:@"HideBrick"];
+    return [NSString stringWithFormat:@"Hidebrick"];
 }
 
 @end

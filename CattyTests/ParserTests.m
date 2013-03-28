@@ -23,17 +23,17 @@
 #import "ParserTests.h"
 #import "ProjectParser.h"
 #import "Parser.h"
-#import "Project.h"
-#import "Sprite.h"
-#import "LookData.h"
+#import "Program.h"
+#import "SpriteObject.h"
+#import "Look.h"
 #import "Script.h"
-#import "StartScript.h"
-#import "WhenScript.h"
+#import "Startscript.h"
+#import "Whenscript.h"
 
 // Bricks
-#import "SetLookBrick.h"
-#import "SetSizeToBrick.h"
-#import "WaitBrick.h"
+#import "Setlookbrick.h"
+#import "Setsizetobrick.h"
+#import "Waitbrick.h"
 
 @interface ParserTests()
 
@@ -77,9 +77,9 @@
     
     id object = [self.parser loadProject:[xml dataUsingEncoding:NSUTF8StringEncoding]];
     STAssertNotNil(object, @"Check object");
-    STAssertTrue([object isKindOfClass:[SetSizeToBrick class]], @"Check if introspection succeeded");
+    STAssertTrue([object isKindOfClass:[Setsizetobrick class]], @"Check if introspection succeeded");
     
-    SetSizeToBrick *brick = (SetSizeToBrick*)object;
+    Setsizetobrick *brick = (Setsizetobrick*)object;
     STAssertEqualObjects(brick.size, [NSNumber numberWithFloat:120.0f], @"Check size of SetSizeToBrick");
     STAssertFalse(brick.size.floatValue != 120.0f, @"Check size value");
 }
@@ -96,7 +96,7 @@
     NSString *xmlPath = [bundle pathForResource:@"defaultProjectTest" ofType:@"xml"];
     STAssertNotNil(xmlPath, @"Check XML path");
     
-    Project *project = [parser generateObjectForLevel:xmlPath];
+    Program *project = [parser generateObjectForLevel:xmlPath];
     STAssertNotNil(project, @"Check project");
     
     
@@ -118,18 +118,18 @@
     STAssertTrue([project.remixOf isEqualToString:@""],                      @"Check remix of");
     STAssertEqualObjects(project.screenHeight, [NSNumber numberWithInt:800], @"Check screen height");
     STAssertEqualObjects(project.screenWidth, [NSNumber numberWithInt:480],  @"Check screen width");
-    STAssertNotNil(project.spriteList,                                       @"Check sprite list (just for not nil)");
+    STAssertNotNil(project.objectList,                                       @"Check sprite list (just for not nil)");
     STAssertTrue([project.uRL isEqualToString:@""],                          @"Check url");
     STAssertTrue([project.userHandle isEqualToString:@""],                   @"Check user handle");
     
     
     // not let's check the sprites
     // ---------------------------------------------------------------------
-    NSArray *sprites = project.spriteList;
+    NSArray *sprites = project.objectList;
     STAssertTrue(sprites.count == 2,                           @"Check sprites list count");
     
     // check the first sprite
-    Sprite *sprite1 = [sprites objectAtIndex:0];
+    SpriteObject *sprite1 = [sprites objectAtIndex:0];
     STAssertNotNil(sprite1,                                    @"Check sprite1 for not nil");
     STAssertTrue([sprite1 isKindOfClass:[Sprite class]],       @"Check class of sprite1");
     STAssertTrue([sprite1.name isEqualToString:@"Background"], @"Check name of the sprite");
@@ -138,7 +138,7 @@
     STAssertTrue(lookList1.count == 1,                         @"Check look list count");
     
     // check look
-    LookData *look1 = [lookList1 objectAtIndex:0];
+    Look *look1 = [lookList1 objectAtIndex:0];
     STAssertNotNil(look1,                                      @"Check if look1 is not nil");
     STAssertTrue([look1 isKindOfClass:[LookData class]],       @"Check class of look1");
     STAssertTrue([look1.name isEqualToString:@"background"],   @"Check name of look1");
@@ -151,8 +151,8 @@
     STAssertTrue(scripts1.count == 1,                          @"Check count of scripts1 list");
     id script1 = [scripts1 objectAtIndex:0];
     STAssertNotNil(script1,                                    @"Check for script1 not nil");
-    STAssertTrue([script1 isKindOfClass:[StartScript class]],  @"Check first start script");
-    StartScript *start1 = (StartScript*)script1;
+    STAssertTrue([script1 isKindOfClass:[Startscript class]],  @"Check first start script");
+    Startscript *start1 = (Startscript*)script1;
     
     // check bricks of first script
     NSArray *bricks1 = start1.brickList;
@@ -162,14 +162,14 @@
     id brick1 = [bricks1 objectAtIndex:0];
     STAssertNotNil(brick1,                                     @"Check for brick1 not nil");
     STAssertTrue([brick1 isKindOfClass:[SetLookBrick class]],  @"Check for class of brick");
-    SetLookBrick *lookBrick = (SetLookBrick*)brick1;
+    Setlookbrick *lookBrick = (Setlookbrick*)brick1;
     STAssertNotNil(lookBrick,                                  @"Check for look brick not nil");
     // TODO: check for lookBrick.look AND lookBrick.sprite
     // But this is currently not implemented by the parser because of X-Stream XML...
     
     
     // check the second sprite
-    Sprite *sprite2 = [sprites objectAtIndex:1];
+    SpriteObject *sprite2 = [sprites objectAtIndex:1];
     STAssertNotNil(sprite2,                                    @"Check sprite2 for not nil");
     STAssertTrue([sprite2 isKindOfClass:[Sprite class]],       @"Check for class of sprite2");
     STAssertTrue([sprite2.name isEqualToString:@"Catroid"],    @"Check for name of sprite2");
@@ -180,9 +180,9 @@
     NSString *fn2 = @"7064E57016F4326F59F0B098D83EB259_normalCat";
     NSString *fn3 = @"FE5DF421A5746EC7FC916AC1B94ECC17_banzaiCat";
     NSString *fn4 = @"3673EC84679EE425A215B86B085EC292_cheshireCat";
-    LookData *look2 = [lookList2 objectAtIndex:0];
-    LookData *look3 = [lookList2 objectAtIndex:1];
-    LookData *look4 = [lookList2 objectAtIndex:2];
+    Look *look2 = [lookList2 objectAtIndex:0];
+    Look *look3 = [lookList2 objectAtIndex:1];
+    Look *look4 = [lookList2 objectAtIndex:2];
     
     // check looks
     STAssertNotNil(look2,                                      @"Check for look2 not nil");
@@ -201,8 +201,8 @@
     STAssertTrue(scripts2.count == 2,                          @"Check count of scripts2 list");
     id script2 = [scripts2 objectAtIndex:0];
     STAssertNotNil(script2,                                    @"Check for script2 not nil");
-    STAssertTrue([script2 isKindOfClass:[StartScript class]],  @"Check second start script");
-    StartScript *start2 = (StartScript*)script2;
+    STAssertTrue([script2 isKindOfClass:[Startscript class]],  @"Check second start script");
+    Startscript *start2 = (Startscript*)script2;
     // check bricks of second script
     NSArray *bricks2 = start2.brickList;
     STAssertNotNil(bricks2,                                    @"Check for the second brick list");
@@ -211,8 +211,8 @@
     
     id script3 = [scripts2 objectAtIndex:1];
     STAssertNotNil(script3,                                    @"Check for script3 not nil");
-    STAssertTrue([script3 isKindOfClass:[WhenScript class]],  @"Check third start script");
-    WhenScript *when1 = (WhenScript*)script3;
+    STAssertTrue([script3 isKindOfClass:[Whenscript class]],  @"Check third start script");
+    Whenscript *when1 = (Whenscript*)script3;
     // check bricks of third script
     NSArray *bricks3 = when1.brickList;
     STAssertNotNil(bricks3,                                    @"Check for the third brick list");
@@ -228,7 +228,7 @@
     temp = [bricks3 objectAtIndex:1];
     STAssertNotNil(temp,                                       @"Check for temp not nil");
     STAssertTrue([temp isKindOfClass:[WaitBrick class]],       @"Check class of brick");
-    WaitBrick *wait1 = (WaitBrick*)temp;
+    Waitbrick *wait1 = (Waitbrick*)temp;
     NSNumber *n = [NSNumber numberWithInt:500];
     STAssertEqualObjects(wait1.timeToWaitInMilliSeconds, n,    @"Check wait time of wait brick");
     // TODO: Check sprite reference of this brick... but -> X-Stream...

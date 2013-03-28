@@ -6,8 +6,8 @@
 //  Copyright (c) 2013 Graz University of Technology. All rights reserved.
 //
 
-#import "BroadcastScript.h"
+#import "Broadcastscript.h"
 
-@implementation BroadcastScript
+@implementation Broadcastscript
 
 @end

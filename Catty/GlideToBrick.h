@@ -8,10 +8,11 @@
 
 #import "Brick.h"
 
-@interface GlideToBrick : Brick
+@interface Glidetobrick : Brick
 
 
-@property (nonatomic, strong) NSNumber *durationInMilliSeconds;
+#warning Changed this from durationInMilliSeconds to durationInSeconds... maybe we have to change the implementation as well ;-)
+@property (nonatomic, strong) NSNumber *durationInSeconds;
 
 @property (nonatomic, strong) NSNumber *xDestination;
 @property (nonatomic, strong) NSNumber *yDestination;

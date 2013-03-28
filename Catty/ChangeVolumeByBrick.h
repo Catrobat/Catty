@@ -8,7 +8,7 @@
 
 #import "Brick.h"
 
-@interface ChangeVolumeByBrick : Brick
+@interface Changevolumebybrick : Brick
 
 @property (nonatomic, nonatomic) float percent;
 

@@ -6,9 +6,9 @@
 //  Copyright (c) 2012 Graz University of Technology. All rights reserved.
 //
 
-#import "ChangeYByNBrick.h"
+#import "Changeybynbrick.h"
 
-@implementation ChangeYByNBrick
+@implementation Changeybynbrick
 
 @synthesize yMovement = _yMovement;
 
@@ -26,7 +26,7 @@
 {
     NSLog(@"Performing: %@", self.description);
     
-    [self.sprite changeYBy:self.yMovement.intValue];
+    [self.object changeYBy:self.yMovement.intValue];
 }
 
 #pragma mark - Description

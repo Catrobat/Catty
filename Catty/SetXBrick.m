@@ -6,9 +6,9 @@
 //  Copyright (c) 2012 Graz University of Technology. All rights reserved.
 //
 
-#import "SetXBrick.h"
+#import "Setxbrick.h"
 
-@implementation SetXBrick
+@implementation Setxbrick
 
 @synthesize xPosition = _xPosition;
 
@@ -26,7 +26,7 @@
 {
     NSLog(@"Performing: %@", self.description);
     
-    [self.sprite setXPosition:self.xPosition.floatValue];
+    [self.object setXPosition:self.xPosition.floatValue];
     
     //    float sleepTime = ((float)self.timeToWaitInMilliseconds.intValue)/1000;
     //    NSLog(@"wating for %f seconds", sleepTime);

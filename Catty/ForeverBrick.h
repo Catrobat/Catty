@@ -9,10 +9,10 @@
 #import "Brick.h"
 #import "LoopEndBrick.h"
 
-@interface ForeverBrick : Brick
+@interface Foreverbrick : Brick
 
 #warning @mattias: I've added this property...
-@property (nonatomic, strong) LoopEndBrick *loopEndBrick;
+@property (nonatomic, strong) Loopendbrick *loopEndBrick;
 
 -(BOOL)checkConditionAndDecrementLoopCounter;
 

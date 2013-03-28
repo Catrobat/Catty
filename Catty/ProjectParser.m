@@ -22,13 +22,13 @@
 
 #import "ProjectParser.h"
 #import "GDataXMLNode.h"
-#import "Project.h"
+#import "Program.h"
 #import <objc/runtime.h>
 #import <Foundation/NSObjCRuntime.h>
 #import "Sound.h"
 
 // test
-#import "Sprite.h"
+#import "SpriteObject.h"
 
 
 #define kCatroidXMLPrefix               @"org.catrobat.catroid.content."
@@ -40,10 +40,11 @@
 #define kParserObjectTypeDate           @"T@\"NSDate\""
 
 // TODO: fix the user defined warnings below and remove this in final version
-#define kParserObjectTypeSprite         @"T@\"Sprite\""
-#define kParserObjectTypeLookData       @"T@\"LookData\""
-#define kParserObjectTypeLoopEndBrick   @"T@\"LoopEndBrick\""
-#define kParserObjectTypeSound          @"T@\"sound\""
+#define kParserObjectTypeSprite         @"T@\"SpriteObject\""
+#define kParserObjectTypeLookData       @"T@\"Look\""
+#define kParserObjectTypeLoopEndBrick   @"T@\"Loopendbrick\""
+#define kParserObjectTypeSound          @"T@\"Sound\""
+#define kParserObjectTypeHeader         @"T@\"Header\""
 
 
 @interface ProjectParser()
@@ -103,7 +104,7 @@
     if (!node) { return nil; }
     
     int i = 0;
-    if ([node.name isEqualToString:@"org.catrobat.catroid.content.Project"]) {
+    if ([node.name isEqualToString:@"Program"]) {
         i = 1+1;
     }
     
@@ -113,6 +114,15 @@
         className = node.name;
     }
     
+    // check for first character uppercase
+    className = [className capitalizedString];
+    
+    if ([className isEqualToString:@"Object"]) {
+        // ... introspect from "Object"... glory idea...
+        // I'm so proud of you XML Team...
+        className = @"SpriteObject";
+    }
+    
     id object = [[NSClassFromString(className) alloc] init];
     if (!object) {
         NSLog(@"Implementation of <%@> NOT FOUND!", className);
@@ -120,7 +130,7 @@
     }
         
     // just an educated gues...
-    if ([object isKindOfClass:[Sprite class]]) {
+    if ([object isKindOfClass:[SpriteObject class]]) {
         self.currentActiveSprite = object;
     }
     
@@ -204,8 +214,8 @@
     }
     else if ([propertyType isEqualToString:kParserObjectTypeLookData]) {
         // sanity check
-        if (self.currentActiveSprite && [self.currentActiveSprite isKindOfClass:[Sprite class]]) {
-            Sprite *sprite = (Sprite*)self.currentActiveSprite;
+        if (self.currentActiveSprite && [self.currentActiveSprite isKindOfClass:[SpriteObject class]]) {
+            SpriteObject *sprite = (SpriteObject*)self.currentActiveSprite;
             NSString *refString = [element attributeForName:@"reference"].stringValue;
             if (!refString || [refString isEqualToString:@""]) {
                 // SHOULD NOT HAPPEN!
@@ -263,6 +273,9 @@
         
         
         return sound; // TODO!
+    }
+    else if ([propertyType isEqualToString:kParserObjectTypeHeader]) {
+        return [self parseNode:element];
     }
     else if ([propertyType isEqualToString:kParserObjectTypeLoopEndBrick]) {
 #warning todo

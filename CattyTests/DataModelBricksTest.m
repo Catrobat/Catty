@@ -7,40 +7,40 @@
 //
 
 #import "DataModelBricksTest.h"
-#import "Sprite.h"
+#import "SpriteObject.h"
 #import "Script.h"
 #import "Brick.h"
-#import "SetLookBrick.h"
-#import "WaitBrick.h"
+#import "Setlookbrick.h"
+#import "Waitbrick.h"
 #import "Sound.h"
-#import "PlaceAtBrick.h"
-#import "GlideToBrick.h"
-#import "NextLookBrick.h"
-#import "HideBrick.h"
-#import "ShowBrick.h"
-#import "SetXBrick.h"
-#import "SetYBrick.h"
-#import "ChangeSizeByNBrick.h"
-#import "BroadcastBrick.h"
-#import "BroadcastWaitBrick.h"
-#import "ChangeXByNBrick.h"
-#import "ChangeYByNBrick.h"
-#import "PlaySoundBrick.h"
-#import "StopAllSoundsBrick.h"
-#import "ComeToFrontBrick.h"
-#import "SetSizeToBrick.h"
-#import "ForeverBrick.h"
-#import "RepeatBrick.h"
+#import "Placeatbrick.h"
+#import "Glidetobrick.h"
+#import "Nextlookbrick.h"
+#import "Hidebrick.h"
+#import "Showbrick.h"
+#import "Setxbrick.h"
+#import "Setybrick.h"
+#import "Changesizebynbrick.h"
+#import "Broadcastbrick.h"
+#import "Broadcastwaitbrick.h"
+#import "Changexbynbrick.h"
+#import "Changeybynbrick.h"
+#import "Playsoundbrick.h"
+#import "Stopallsoundsbrick.h"
+#import "Cometofrontbrick.h"
+#import "Setsizetobrick.h"
+#import "Foreverbrick.h"
+#import "Repeatbrick.h"
 #import "LoopEndBrick.h"
-#import "GoNStepsBackBrick.h"
-#import "SetGhostEffectBrick.h"
-#import "SetVolumeToBrick.h"
-#import "ChangeVolumeByBrick.h"
-#import "ChangeGhostEffectByNBrick.h"
-#import "SpeakBrick.h"
+#import "Gonstepsbackbrick.h"
+#import "Setghosteffectbrick.h"
+#import "Setvolumetobrick.h"
+#import "Changevolumebybrick.h"
+#import "Changeghosteffectbynbrick.h"
+#import "Speakbrick.h"
 #import "BroadcastWaitDelegate.h"
 #import "BroadcastWaitHandler.h"
-#import "SetLookBrick.h"
+#import "Setlookbrick.h"
 
 @interface DataModelBricksTest()
 
@@ -67,7 +67,7 @@
 -(void)test002_Wait
 {
     int timeToWaitInMilliSecs = 300;
-    WaitBrick *brick = [[WaitBrick alloc]init];
+    Waitbrick *brick = [[Waitbrick alloc]init];
     
     Script *script = [[Script alloc]init];
     
@@ -82,10 +82,10 @@
 
 -(void)test003_HideAndShow
 {
-    Sprite *sprite = [[Sprite alloc]initWithEffect:nil];
+    SpriteObject *sprite = [[SpriteObject alloc]initWithEffect:nil];
 
-    HideBrick *hideBrick = [[HideBrick alloc]initWithSprite:sprite];
-    ShowBrick *showBrick = [[ShowBrick alloc]initWithSprite:sprite];
+    Hidebrick *hideBrick = [[Hidebrick alloc]initWithSprite:sprite];
+    Showbrick *showBrick = [[Showbrick alloc]initWithSprite:sprite];
     
     [hideBrick performFromScript:nil];
     STAssertFalse(sprite.showSprite, @"Sprite is visible - that's bad!");
@@ -97,9 +97,9 @@
 {
     GLKVector3 position = GLKVector3Make(1.2f, 2.3f, 0.0f);
 
-    Sprite *sprite = [[Sprite alloc]initWithEffect:nil];
-    PlaceAtBrick *brick = [[PlaceAtBrick alloc]initWithXPosition:[NSNumber numberWithFloat:position.x] yPosition:[NSNumber numberWithFloat:position.y]];
-    brick.sprite = sprite;
+    SpriteObject *sprite = [[SpriteObject alloc]initWithEffect:nil];
+    Placeatbrick *brick = [[PlaceAtBrick alloc]initWithXPosition:[NSNumber numberWithFloat:position.x] yPosition:[NSNumber numberWithFloat:position.y]];
+    brick.object = sprite;
 
     [brick performFromScript:nil];
     STAssertTrue(GLKVector3AllEqualToVector3(sprite.position, position), @"Position of sprite is wrong!");
@@ -109,12 +109,12 @@
 {
     NSNumber *xPosition = [NSNumber numberWithFloat:123.4f];
     NSNumber *yPosition = [NSNumber numberWithFloat:-45.7f];
-    SetXBrick *xBrick = [[SetXBrick alloc]initWithXPosition:xPosition];
-    SetYBrick *yBrick = [[SetYBrick alloc]initWithYPosition:yPosition];
+    Setxbrick *xBrick = [[Setxbrick alloc]initWithXPosition:xPosition];
+    Setybrick *yBrick = [[Setybrick alloc]initWithYPosition:yPosition];
 
-    Sprite *sprite = [[Sprite alloc]initWithEffect:nil];
-    xBrick.sprite = sprite;
-    yBrick.sprite = sprite;
+    SpriteObject *sprite = [[SpriteObject alloc]initWithEffect:nil];
+    xBrick.object = sprite;
+    yBrick.object = sprite;
     
     GLKVector3 oldPosition = sprite.position;
     
@@ -130,12 +130,12 @@
 {
     NSNumber *xPosition = [NSNumber numberWithInt:-5];
     NSNumber *yPosition = [NSNumber numberWithInt:10];
-    ChangeXByNBrick *xBrick = [[ChangeXByNBrick alloc]initWithChangeValueForX:xPosition];
-    ChangeYByNBrick *yBrick = [[ChangeYByNBrick alloc]initWithChangeValueForY:yPosition];
+    Changexbynbrick *xBrick = [[Changexbynbrick alloc]initWithChangeValueForX:xPosition];
+    Changeybynbrick *yBrick = [[Changeybynbrick alloc]initWithChangeValueForY:yPosition];
     
-    Sprite *sprite = [[Sprite alloc]initWithEffect:nil];
-    xBrick.sprite = sprite;
-    yBrick.sprite = sprite;
+    SpriteObject *sprite = [[SpriteObject alloc]initWithEffect:nil];
+    xBrick.object = sprite;
+    yBrick.object = sprite;
     
     GLKVector3 oldPosition = sprite.position;
     
@@ -199,9 +199,9 @@
 -(void)test010_setGhostEffect
 {
     NSNumber *transparency = [NSNumber numberWithFloat:40.0f];
-    SetGhostEffectBrick* ghostEffectBrick = [[SetGhostEffectBrick alloc] initWithTransparencyInPercent:transparency];
-    Sprite *sprite = [[Sprite alloc]initWithEffect:nil];
-    ghostEffectBrick.sprite = sprite;
+    Setghosteffectbrick* ghostEffectBrick = [[Setghosteffectbrick alloc] initWithTransparencyInPercent:transparency];
+    SpriteObject *sprite = [[SpriteObject alloc]initWithEffect:nil];
+    ghostEffectBrick.object = sprite;
     
     [ghostEffectBrick performFromScript:nil];
     
@@ -211,10 +211,10 @@
 -(void)test011_changeGhostEffect
 {
     NSNumber *increase = [NSNumber numberWithFloat:0.10f];
-    Sprite *sprite = [[Sprite alloc]initWithEffect:nil];
+    SpriteObject *sprite = [[SpriteObject alloc]initWithEffect:nil];
     float alpha = [sprite alphaValue];
-    ChangeGhostEffectByNBrick* changeGhostEffectBrick = [[ChangeGhostEffectByNBrick alloc] initWithValueForGhostEffectChange:increase];
-    changeGhostEffectBrick.sprite = sprite;
+    Changeghosteffectbynbrick* changeGhostEffectBrick = [[Changeghosteffectbynbrick alloc] initWithValueForGhostEffectChange:increase];
+    changeGhostEffectBrick.object = sprite;
     [changeGhostEffectBrick performFromScript:nil];
     
     STAssertTrue((alpha-increase.floatValue) == [sprite alphaValue], @"Alpha Value not the same");
@@ -525,7 +525,7 @@
 
 
 #pragma mark - Delegates
--(void)addSound:(AVAudioPlayer*)sound forSprite:(Sprite*)sprite
+-(void)addSound:(AVAudioPlayer*)sound forSprite:(SpriteObject*)sprite
 {
     
     STAssertNotNil(sound, @"Sound should not be nil");
@@ -557,10 +557,10 @@
 }
 
 
--(void)bringToFrontSprite:(Sprite*)sprite
+-(void)bringToFrontSprite:(SpriteObject*)sprite
 {}
 
--(void)bringNStepsBackSprite:(Sprite*)sprite numberOfSteps:(int)n
+-(void)bringNStepsBackSprite:(SpriteObject*)sprite numberOfSteps:(int)n
 {}
 
 -(void)stopAllSounds
@@ -568,10 +568,10 @@
     self.stop = YES;
 }
 
--(void)setVolumeTo:(float)volume forSprite:(Sprite*)sprite
+-(void)setVolumeTo:(float)volume forSprite:(SpriteObject*)sprite
 {}
 
--(void)changeVolumeBy:(float)percent forSprite:(Sprite*)sprite
+-(void)changeVolumeBy:(float)percent forSprite:(SpriteObject*)sprite
 {}
 
 

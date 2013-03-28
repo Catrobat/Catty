@@ -8,6 +8,6 @@
 
 #import "Brick.h"
 
-@interface StopAllSoundsBrick : Brick
+@interface Stopallsoundsbrick : Brick
 
 @end

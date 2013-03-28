@@ -8,7 +8,7 @@
 
 #import "Brick.h"
 
-@interface BroadcastWaitBrick : Brick
+@interface Broadcastwaitbrick : Brick
 
 @property (nonatomic, strong) NSString *broadcastMessage;
 

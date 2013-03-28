@@ -6,9 +6,9 @@
 //  Copyright (c) 2012 Graz University of Technology. All rights reserved.
 //
 
-#import "SetSizeToBrick.h"
+#import "Setsizetobrick.h"
 
-@implementation SetSizeToBrick
+@implementation Setsizetobrick
 
 @synthesize size = _sizeInPercentage;
 
@@ -27,7 +27,7 @@
 {
     NSLog(@"Performing: %@", self.description);
     
-    [self.sprite setSizeToPercentage:[self.size floatValue]];
+    [self.object setSizeToPercentage:[self.size floatValue]];
     
     //    float sleepTime = ((float)self.timeToWaitInMilliseconds.intValue)/1000;
     //    NSLog(@"wating for %f seconds", sleepTime);

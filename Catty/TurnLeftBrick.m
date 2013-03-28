@@ -6,9 +6,9 @@
 //  Copyright (c) 2012 Graz University of Technology. All rights reserved.
 //
 
-#import "TurnLeftBrick.h"
+#import "Turnleftbrick.h"
 
-@implementation TurnLeftBrick
+@implementation Turnleftbrick
 
 @synthesize degrees = _degrees;
 
@@ -26,7 +26,7 @@
 {
     NSLog(@"Performing: %@", self.description);
     
-    [self.sprite turnLeft:self.degrees.floatValue];
+    [self.object turnLeft:self.degrees.floatValue];
 }
 
 #pragma mark - Description

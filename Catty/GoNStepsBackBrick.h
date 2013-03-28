@@ -8,7 +8,7 @@
 
 #import "Brick.h"
 
-@interface GoNStepsBackBrick : Brick
+@interface Gonstepsbackbrick : Brick
 
 @property (nonatomic, strong) NSNumber *steps;
 

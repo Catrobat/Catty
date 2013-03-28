@@ -8,8 +8,8 @@
 
 #import "Brick.h"
 
-@interface WaitBrick : Brick
+@interface Waitbrick : Brick
 
-@property (nonatomic, strong) NSNumber *timeToWaitInMilliSeconds;
+@property (nonatomic, strong) NSNumber *timeToWaitInSeconds;
 
 @end

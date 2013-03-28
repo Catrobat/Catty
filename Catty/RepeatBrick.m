@@ -6,13 +6,13 @@
 //  Copyright (c) 2012 Graz University of Technology. All rights reserved.
 //
 
-#import "RepeatBrick.h"
+#import "Repeatbrick.h"
 
-@interface RepeatBrick()
+@interface Repeatbrick()
 @property (strong, nonatomic) NSNumber *loopsLeft;
 @end
 
-@implementation RepeatBrick
+@implementation Repeatbrick
 
 @synthesize timesToRepeat = _numberOfLoops;
 @synthesize loopsLeft = _loopsLeft;

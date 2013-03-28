@@ -7,10 +7,10 @@
 //
 
 #import "CattyViewController.h"
-#import "Project.h"
+#import "Program.h"
 #import "Brick.h"
-#import "SetLookBrick.h"
-#import "WaitBrick.h"
+#import "Setlookbrick.h"
+#import "Waitbrick.h"
 #import "Parser.h"
 #import "Util.h"
 #import "Script.h"
@@ -18,7 +18,7 @@
 #import "BroadcastWaitHandler.h"
 
 //debug
-#import "LookData.h"
+#import "Look.h"
 
 
 
@@ -230,7 +230,7 @@
 #pragma mark - instance methods
 - (void)startLevel
 {
-    for (Sprite *sprite in self.level.spriteList)
+    for (SpriteObject *sprite in self.level.objectList)
     {
         [sprite start];
 //        for (StartScript *script in sprite.startScriptsArray)
@@ -279,7 +279,7 @@
 //        //NSLog(@"render sprite <%@> at position %g / %g", sprite.name, sprite.position.x, sprite.position.y);
 //        [sprite render];
 //    }
-    for (Sprite *sprite in self.level.spriteList)
+    for (SpriteObject *sprite in self.level.objectList)
     {
         //NSLog(@"render sprite <%@> at position %g / %g", sprite.name, sprite.position.x, sprite.position.y);
         [sprite render];
@@ -290,7 +290,7 @@
 - (void)glkViewControllerUpdate:(GLKViewController *)controller
 {
     //NSLog(@"Update...");
-    for (Sprite *sprite in self.level.spriteList)
+    for (SpriteObject *sprite in self.level.objectList)
     {
         [sprite update:self.timeSinceLastUpdate];
     }
@@ -318,10 +318,10 @@
     
     //depth check
     float zIndex = 0;
-    Sprite *foregroundSprite = nil;
+    SpriteObject *foregroundSprite = nil;
     
     //check if a collision (tap) occured
-    for (Sprite *sprite in self.level.spriteList)
+    for (SpriteObject *sprite in self.level.objectList)
     {
         //just debug output
 //        NSLog(@"Bounding box: x=%f, y=%f, width=%f, height=%f", sprite.boundingBox.origin.x, 
@@ -372,13 +372,13 @@
 }
 
 #pragma mark - SpriteManagerDelegate
--(void)bringToFrontSprite:(Sprite *)sprite
+-(void)bringToFrontSprite:(SpriteObject *)sprite
 {
     // TODO: CHANGE THIS ASAP!!!
-    NSMutableArray *sprites = [self.level.spriteList mutableCopy];
+    NSMutableArray *sprites = [self.level.objectList mutableCopy];
     [sprites removeObject:sprite];
     [sprites addObject:sprite];
-    self.level.spriteList = [NSArray arrayWithArray:sprites];
+    self.level.objectList = [NSArray arrayWithArray:sprites];
 }
 
 @end

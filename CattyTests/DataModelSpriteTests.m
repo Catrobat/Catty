@@ -7,7 +7,7 @@
 //
 
 #import "DataModelSpriteTests.h"
-#import "Sprite.h"
+#import "SpriteObject.h"
 #import "BaseSprite.h"
 
 #define SAMPLE_NAME @"KittyCat"

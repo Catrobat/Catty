@@ -11,17 +11,17 @@
 #import "SpriteManagerDelegate.h"
 
 //debug
-#import "Sprite.h"
+#import "SpriteObject.h"
 
 //defines
 #define FRAMES_PER_SECOND 30
 
-@class Project;
+@class Program;
 @class BaseSprite;
 
 @interface CattyViewController : GLKViewController <GLKViewControllerDelegate, SpriteManagerDelegate>
 
-@property (strong, nonatomic) Project *level; //TODO: Array => data from xml-parser
+@property (strong, nonatomic) Program *level; //TODO: Array => data from xml-parser
 
 //debug
 @property (nonatomic, strong) BaseSprite *sprite;
