@@ -630,16 +630,6 @@
 			name = Glidetobrick;
 			sourceTree = "<group>";
 		};
-		B416782A16DF78A500812CB5 /* NEW */ = {
-			isa = PBXGroup;
-			children = (
-				B416783716DF813200812CB5 /* Whenscript */,
-				B416782B16DF78A800812CB5 /* Startscript */,
-				B416783E16DF8DF800812CB5 /* Broadcastscript */,
-			);
-			name = NEW;
-			sourceTree = "<group>";
-		};
 		B416782B16DF78A800812CB5 /* Startscript */ = {
 			isa = PBXGroup;
 			children = (
@@ -1361,7 +1351,6 @@
 			children = (
 				B451029717049163003D4621 /* Variables */,
 				B45102931704805A003D4621 /* Header */,
-				B416782A16DF78A500812CB5 /* NEW */,
 				B43CF2A31609BE2800E19CF3 /* LevelLoadingInfo */,
 				B468CDBF160790AD007300A0 /* JSON */,
 				B4FDF38115A82F3F00CBCF03 /* Bricks */,
@@ -1377,6 +1366,9 @@
 		B4FDF36715A82EB800CBCF03 /* Scripts */ = {
 			isa = PBXGroup;
 			children = (
+				B416783716DF813200812CB5 /* Whenscript */,
+				B416782B16DF78A800812CB5 /* Startscript */,
+				B416783E16DF8DF800812CB5 /* Broadcastscript */,
 				B4FDF36815A82EC300CBCF03 /* Script.h */,
 				B4FDF36915A82EC300CBCF03 /* Script.m */,
 			);

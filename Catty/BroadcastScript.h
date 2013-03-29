@@ -11,7 +11,6 @@
 @interface Broadcastscript : Script
 
 #warning @mattias: I've added this property. Please implement it correctly... :-P
-@property (nonatomic, strong) SpriteObject *object;
 @property (nonatomic, strong) NSString *receivedMessage;
 
 @end

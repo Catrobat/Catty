@@ -31,6 +31,7 @@
 @synthesize startLoopIndexStack = _startLoopIndexStack;
 @synthesize startLoopTimestampStack = _startLoopTimestampStack;
 @synthesize stop = _stop;
+@synthesize object = _object;
 
 - (id)init
 {
