@@ -17,13 +17,13 @@
 {
     NSLog(@"Performing: %@", self.description);
     
-    [NSThread sleepForTimeInterval:self.timeToWaitInSeconds.floatValue/1000.0f];
+    [NSThread sleepForTimeInterval:self.timeToWaitInSeconds.floatValue];
 }
 
 #pragma mark - Description
 - (NSString*)description
 {
-    return [NSString stringWithFormat:@"WaitBrick (%d Milliseconds)", self.timeToWaitInSeconds.intValue];
+    return [NSString stringWithFormat:@"WaitBrick (%f Seconds)", self.timeToWaitInSeconds.floatValue];
 }
 
 @end

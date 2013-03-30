@@ -160,6 +160,12 @@
                 // now set the value
                 id value = [self getSingleValue:child ofType:propertyType]; // get value for type
                 
+                
+                if([child.name isEqualToString:@"timeToWaitInSeconds"])
+                {
+                    NSLog(@"Now");
+                }
+                
                 // check for property type
                 [object setValue:value forKey:child.name]; // assume new value
             }
@@ -194,8 +200,19 @@
         return element.stringValue;
     }
     else if ([propertyType isEqualToString:kParserObjectTypeNumber]) {
-        NSString *temp = element.stringValue;
+#warning Workaround until Formula editor is fully supported!
+        NSString *temp = nil;
+        NSArray* formulaTrees = [element elementsForName:@"formulaTree"];
+        if(formulaTrees) {
+            GDataXMLElement* formulaTree = [formulaTrees objectAtIndex:0];
+            NSArray* values = [formulaTree elementsForName:@"value"];
+            temp = [[values objectAtIndex:0] stringValue];
+        }
+        else {
+            temp = element.stringValue;
+        }
         return [NSNumber numberWithFloat:temp.floatValue];
+
     }
     else if ([propertyType isEqualToString:kParserObjectTypeDate]) {
         NSString *temp = element.stringValue;
