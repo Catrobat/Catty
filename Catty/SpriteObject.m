@@ -83,6 +83,7 @@ typedef struct {
 
 @property (strong, nonatomic) NSArray *lookList;    // tell the compiler: "I want a private setter"
 @property (strong, nonatomic) NSMutableArray *soundList;
+@property (strong, nonatomic) NSMutableArray *audioPlayerList;
 
 // from base sprite
 @property (nonatomic, strong) GLKTextureInfo *textureInfo;
@@ -143,6 +144,14 @@ typedef struct {
         _soundsArray = [[NSMutableArray alloc] init];
     
     return _soundsArray;
+}
+
+- (NSMutableArray*)audioPlayerList
+{
+    if (_audioPlayerList == nil)
+        _audioPlayerList = [[NSMutableArray alloc] init];
+    
+    return _audioPlayerList;
 }
 
 - (NSMutableDictionary*)nextPositions
@@ -451,24 +460,24 @@ typedef struct {
 
 - (void)addSound:(AVAudioPlayer *)player
 {
-    [self.soundList addObject:player];
+    [self.audioPlayerList addObject:player];
     player.delegate = self;
     [player play];
 }
 
 -(void)stopAllSounds
 {    
-    for(AVAudioPlayer* player in self.soundList)
+    for(AVAudioPlayer* player in self.audioPlayerList)
     {
         [player stop];
     }
-    [self.soundList removeAllObjects];
+    [self.audioPlayerList removeAllObjects];
 }
 
 
 - (void)setVolumeTo:(float)volume
 {
-    for(AVAudioPlayer* player in self.soundList)
+    for(AVAudioPlayer* player in self.audioPlayerList)
     {
         player.volume = volume;
     }
@@ -476,7 +485,7 @@ typedef struct {
 
 -(void)changeVolumeBy:(float)percent
 {
-    for(AVAudioPlayer* player in self.soundList)
+    for(AVAudioPlayer* player in self.audioPlayerList)
     {
         player.volume += percent;
     }
@@ -707,7 +716,7 @@ typedef struct {
 
 - (void)audioPlayerDidFinishPlaying:(AVAudioPlayer *)player successfully:(BOOL)flag
 {
-    [_soundsArray removeObject:player];
+    [self.audioPlayerList removeObject:player];
 }
 
 // from base sprite
