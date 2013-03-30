@@ -302,9 +302,9 @@ typedef struct {
     self.position = newPosition;
 }
 
-- (void)glideToPosition:(GLKVector3)position withinDurationInMilliSecs:(int)durationInMilliSecs fromScript:(Script*)script
+- (void)glideToPosition:(GLKVector3)position withDurationInSeconds:(int)durationInSeconds fromScript:(Script*)script
 {
-    NSTimeInterval timeStamp = [[NSDate date] timeIntervalSince1970] + (durationInMilliSecs/1000.0f);
+    NSTimeInterval timeStamp = [[NSDate date] timeIntervalSince1970] + (durationInSeconds);
     PositionAtTime *positionAtTime = [PositionAtTime positionAtTimeWithPosition:position andTimestamp:timeStamp];
     [self.nextPositions setValue:positionAtTime forKey:script.description];                 // TODO: whole description as key??
 }

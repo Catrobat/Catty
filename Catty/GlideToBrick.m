@@ -39,7 +39,7 @@
         
     GLKVector3 position = GLKVector3Make(self.xDestination.floatValue, self.yDestination.floatValue, 0.0f);
     
-    [self.object glideToPosition:position withinDurationInMilliSecs:self.durationInSeconds.intValue fromScript:script];
+    [self.object glideToPosition:position withDurationInSeconds:self.durationInSeconds.floatValue fromScript:script];
     [NSThread sleepForTimeInterval:self.durationInSeconds.floatValue];
 }
 
