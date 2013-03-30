@@ -19,14 +19,14 @@
 @synthesize yDestination = _yDestination;
 
 #pragma mark - init methods
--(id)initWithXPosition:(NSNumber*)xPosition yPosition:(NSNumber*)yPosition andDurationInMilliSecs:(NSNumber*)durationInMilliSecs
+-(id)initWithXPosition:(NSNumber*)xPosition yPosition:(NSNumber*)yPosition andDurationInMilliSecs:(NSNumber*)durationInSeconds
 {
     self = [super init];
     if (self)
     {
         self.xDestination = xPosition;
         self.yDestination = yPosition;
-        self.durationInSeconds = durationInMilliSecs;
+        self.durationInSeconds = durationInSeconds;
     }
     return self;
 }
@@ -40,13 +40,13 @@
     GLKVector3 position = GLKVector3Make(self.xDestination.floatValue, self.yDestination.floatValue, 0.0f);
     
     [self.object glideToPosition:position withinDurationInMilliSecs:self.durationInSeconds.intValue fromScript:script];
-    [NSThread sleepForTimeInterval:self.durationInSeconds.floatValue/1000.0f];
+    [NSThread sleepForTimeInterval:self.durationInSeconds.floatValue];
 }
 
 #pragma mark - Description
 - (NSString*)description
 {
-    return [NSString stringWithFormat:@"GlideTo (Position: %f/%f; duration: %f ms)", self.xDestination.floatValue, self.yDestination.floatValue, self.durationInSeconds.floatValue
+    return [NSString stringWithFormat:@"GlideTo (Position: %f/%f; duration: %f s)", self.xDestination.floatValue, self.yDestination.floatValue, self.durationInSeconds.floatValue
             ];
 }
 
