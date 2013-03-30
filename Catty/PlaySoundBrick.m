@@ -41,7 +41,8 @@
     @try
     {
         NSString *soundPath = [NSString stringWithFormat:@"%@sounds/%@", [self.object projectPath], self.sound.fileName];
-        AVAudioPlayer* audioPlayer = [[AVAudioPlayer alloc] initWithContentsOfURL:[NSURL fileURLWithPath:soundPath] error:NULL];
+        NSError* error = nil;
+        AVAudioPlayer* audioPlayer = [[AVAudioPlayer alloc] initWithContentsOfURL:[NSURL fileURLWithPath:soundPath] error:&error];
         [self.object addSound:audioPlayer];
     }
     @catch(NSException *ex)
