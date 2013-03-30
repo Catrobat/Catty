@@ -53,7 +53,6 @@
 		B43CF2DF160AE72600E19CF3 /* startBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = B43CF2DD160AE72600E19CF3 /* startBackground.png */; };
 		B43CF2E0160AE72600E19CF3 /* startBackground@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B43CF2DE160AE72600E19CF3 /* startBackground@2x.png */; };
 		B44403A91615CCA8000C0EC6 /* Changeghosteffectbynbrick.m in Sources */ = {isa = PBXBuildFile; fileRef = B44403A81615CCA8000C0EC6 /* Changeghosteffectbynbrick.m */; };
-		B4510291170479B0003D4621 /* Mein erstes Projekt.catrobat in Resources */ = {isa = PBXBuildFile; fileRef = B451028F170479B0003D4621 /* Mein erstes Projekt.catrobat */; };
 		B4510292170479B0003D4621 /* Aquarium 3.catrobat in Resources */ = {isa = PBXBuildFile; fileRef = B4510290170479B0003D4621 /* Aquarium 3.catrobat */; };
 		B451029617048066003D4621 /* Header.m in Sources */ = {isa = PBXBuildFile; fileRef = B451029517048066003D4621 /* Header.m */; };
 		B451029B1704919E003D4621 /* Objectvariablelist.m in Sources */ = {isa = PBXBuildFile; fileRef = B451029A1704919E003D4621 /* Objectvariablelist.m */; };
@@ -84,6 +83,8 @@
 		B4A9ADD1160B05B800DFA55B /* ProjectBrowserBaseClassViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B4A9ADD0160B05B800DFA55B /* ProjectBrowserBaseClassViewController.m */; };
 		B4AAC0311625A49A0071ECC7 /* CustomExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = B4AAC0301625A49A0071ECC7 /* CustomExtensions.m */; };
 		B4B4093815B2E20700DCFAE5 /* Parser.m in Sources */ = {isa = PBXBuildFile; fileRef = B4B4093715B2E20700DCFAE5 /* Parser.m */; };
+		B4B7A6151706E77100F723B4 /* My first project.catrobat in Resources */ = {isa = PBXBuildFile; fileRef = B4B7A6141706E77100F723B4 /* My first project.catrobat */; };
+		B4B7A6161706E97400F723B4 /* My first project.catrobat in Resources */ = {isa = PBXBuildFile; fileRef = B4B7A6141706E77100F723B4 /* My first project.catrobat */; };
 		B4B90DF3161C685700B83000 /* Speakbrick.m in Sources */ = {isa = PBXBuildFile; fileRef = B4B90DF2161C685700B83000 /* Speakbrick.m */; };
 		B4BC0D9E16DF59D600ED953C /* community.png in Resources */ = {isa = PBXBuildFile; fileRef = B4BC0D9216DF59D600ED953C /* community.png */; };
 		B4BC0D9F16DF59D600ED953C /* community@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B4BC0D9316DF59D600ED953C /* community@2x.png */; };
@@ -270,7 +271,6 @@
 		B43CF2DE160AE72600E19CF3 /* startBackground@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "startBackground@2x.png"; sourceTree = "<group>"; };
 		B44403A71615CCA8000C0EC6 /* Changeghosteffectbynbrick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Changeghosteffectbynbrick.h; sourceTree = "<group>"; };
 		B44403A81615CCA8000C0EC6 /* Changeghosteffectbynbrick.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = Changeghosteffectbynbrick.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
-		B451028F170479B0003D4621 /* Mein erstes Projekt.catrobat */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Mein erstes Projekt.catrobat"; sourceTree = "<group>"; };
 		B4510290170479B0003D4621 /* Aquarium 3.catrobat */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Aquarium 3.catrobat"; sourceTree = "<group>"; };
 		B451029417048066003D4621 /* Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Header.h; sourceTree = "<group>"; };
 		B451029517048066003D4621 /* Header.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Header.m; sourceTree = "<group>"; };
@@ -315,6 +315,7 @@
 		B4AAC0301625A49A0071ECC7 /* CustomExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomExtensions.m; sourceTree = "<group>"; };
 		B4B4093615B2E20700DCFAE5 /* Parser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Parser.h; sourceTree = "<group>"; };
 		B4B4093715B2E20700DCFAE5 /* Parser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Parser.m; sourceTree = "<group>"; };
+		B4B7A6141706E77100F723B4 /* My first project.catrobat */ = {isa = PBXFileReference; lastKnownFileType = file; path = "My first project.catrobat"; sourceTree = "<group>"; };
 		B4B90DF1161C685700B83000 /* Speakbrick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Speakbrick.h; sourceTree = "<group>"; };
 		B4B90DF2161C685700B83000 /* Speakbrick.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = Speakbrick.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		B4BC0D9216DF59D600ED953C /* community.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = community.png; path = images/community.png; sourceTree = "<group>"; };
@@ -1009,7 +1010,7 @@
 		B479E91E1611A3BF000B1DFA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				B451028F170479B0003D4621 /* Mein erstes Projekt.catrobat */,
+				B4B7A6141706E77100F723B4 /* My first project.catrobat */,
 				B4510290170479B0003D4621 /* Aquarium 3.catrobat */,
 				B479E9201611A3CB000B1DFA /* DefaultProject.catrobat */,
 				B4A0C5451611B8B200A28F6A /* Testproject123.catrobat */,
@@ -1738,6 +1739,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B4B7A6161706E97400F723B4 /* My first project.catrobat in Resources */,
 				B4F1C59416DFC463006F4BE2 /* defaultProjectTest.xml in Resources */,
 				B4FDF32D15A82C1000CBCF03 /* InfoPlist.strings in Resources */,
 				B4FDF33615A82C1000CBCF03 /* MainStoryboard.storyboard in Resources */,
@@ -1793,7 +1795,6 @@
 				B4BC0DC116DFE65700ED953C /* darkbluestripes.png in Resources */,
 				B4516B5F16E0BE0400BA00D4 /* backbutton.png in Resources */,
 				B4516B6016E0BE0400BA00D4 /* backbutton@2x.png in Resources */,
-				B4510291170479B0003D4621 /* Mein erstes Projekt.catrobat in Resources */,
 				B4510292170479B0003D4621 /* Aquarium 3.catrobat in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1813,6 +1814,7 @@
 				CD8C90C3161DA37C004D3E19 /* normalcat.png in Resources */,
 				B42A37FD162C62550024C793 /* sounds in Resources */,
 				B4F1C59316DFC321006F4BE2 /* defaultProjectTest.xml in Resources */,
+				B4B7A6151706E77100F723B4 /* My first project.catrobat in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

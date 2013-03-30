@@ -116,9 +116,9 @@
     NSArray *contents = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:self.levelsDirectory error:&error];
     [Util log:error];
     
-    if ([contents indexOfObject:@"Mein erstes Projekt"]) {
+    if ([contents indexOfObject:@"My first project"]) {
         //default project does not exist
-        NSString *projectName = @"Mein erstes Projekt";
+        NSString *projectName = @"My first project";
         
         NSString *filePath = [[NSBundle mainBundle] pathForResource:projectName ofType:@"catrobat"];
         NSData *defaultProject = [NSData dataWithContentsOfFile:filePath];
