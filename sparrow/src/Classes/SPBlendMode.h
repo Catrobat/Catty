@@ -9,12 +9,12 @@
 #import <Foundation/Foundation.h>
 
 #define SP_BLEND_MODE_AUTO     0xffffffff
-#define SP_BLEND_MODE_NONE     0x01000100 // one, zero -- one, zero
-#define SP_BLEND_MODE_NORMAL   0x04050105 // src_alpha, one_minus_src_alpha -- one, one_minus_src_alpha
-#define SP_BLEND_MODE_ADD      0x04060101 // src_alpha, dst_alpha -- one, one
-#define SP_BLEND_MODE_MULTIPLY 0x08050805 // dst_color, one_minus_src_alpha -- dst_color, one_minus_src_alpha
-#define SP_BLEND_MODE_SCREEN   0x04010103 // src_alpha, one -- one, one_minus_src_color
-#define SP_BLEND_MODE_ERASE    0x00050005 // zero, one_minus_src_alpha -- zero, one_minus_src_alpha
+#define SP_BLEND_MODE_NONE     0x00001010 // one, zero -- one, zero
+#define SP_BLEND_MODE_NORMAL   0x00004515 // src_alpha, one_minus_src_alpha -- one, one_minus_src_alpha
+#define SP_BLEND_MODE_ADD      0x00004611 // src_alpha, dst_alpha -- one, one
+#define SP_BLEND_MODE_MULTIPLY 0x00008585 // dst_color, one_minus_src_alpha -- dst_color, one_minus_src_alpha
+#define SP_BLEND_MODE_SCREEN   0x00004113 // src_alpha, one -- one, one_minus_src_color
+#define SP_BLEND_MODE_ERASE    0x00000505 // zero, one_minus_src_alpha -- zero, one_minus_src_alpha
 
 /// A helper class for working with Sparrow's blend modes.
 @interface SPBlendMode : NSObject

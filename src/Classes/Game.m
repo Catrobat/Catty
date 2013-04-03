@@ -131,6 +131,7 @@
 
 - (void)onImageTouched:(SPTouchEvent *)event
 {
+    NSLog(@"TOUCH");
     // TEST for resize
 //    SPTween *tween = [SPTween tweenWithTarget:self.image time:1.0f];
 //    [tween animateProperty:@"scaleX" targetValue:self.image.scaleX * 1.5];
@@ -139,10 +140,10 @@
 //    [Sparrow.juggler addObject:tween];
 
     // TEST for rotation
-//    SPTween *tween = [SPTween tweenWithTarget:self.image time:1.0f];
-//    [tween animateProperty:@"rotation" targetValue:self.image.rotation + 3.6f];
-//    tween.repeatCount = 1;
-//    [Sparrow.juggler addObject:tween];
+    SPTween *tween = [SPTween tweenWithTarget:self.image time:1.0f];
+    [tween animateProperty:@"rotation" targetValue:self.image.rotation + 3.6f];
+    tween.repeatCount = 1;
+    [Sparrow.juggler addObject:tween];
     
     // TEST for move
 //    SPTween *tween = [SPTween tweenWithTarget:self.image time:1.0f];
@@ -165,23 +166,23 @@
 //    [Sparrow.juggler addObject:tween];
     
     // TEST for brightness (<100%)
-    SPImage *image = (SPImage*)self.image;
-    //image.color = SP_COLOR(100, 200, 255);
-
-    CGFloat scale = 0.5f; // MUST be <1.0 (=100%)
-
-    uint hexColor = image.color;
-    uint r = (hexColor >> 16);
-    uint g = ((hexColor << 16) >> 24);
-    uint b = ((hexColor << 24) >> 24);
-    NSLog(@"Color in hex: %x", hexColor);
-    NSLog(@"R: %d", r);
-    NSLog(@"G: %d", g);
-    NSLog(@"B: %d", b);
-
-    // set color
-    image.color = SP_COLOR(r*scale, g*scale, b*scale);
-    NSLog(@"COLOR SET");
+//    SPImage *image = (SPImage*)self.image;
+//    //image.color = SP_COLOR(100, 200, 255);
+//
+//    CGFloat scale = 0.5f; // MUST be <1.0 (=100%)
+//
+//    uint hexColor = image.color;
+//    uint r = (hexColor >> 16);
+//    uint g = ((hexColor << 16) >> 24);
+//    uint b = ((hexColor << 24) >> 24);
+//    NSLog(@"Color in hex: %x", hexColor);
+//    NSLog(@"R: %d", r);
+//    NSLog(@"G: %d", g);
+//    NSLog(@"B: %d", b);
+//
+//    // set color
+//    image.color = SP_COLOR(r*scale, g*scale, b*scale);
+//    NSLog(@"COLOR SET");
     
     
     

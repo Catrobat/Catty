@@ -14,7 +14,7 @@
 static inline uint encodeFactor(uint factor)
 {
     if (factor == GL_ZERO || factor == GL_ONE) return factor;
-    else return (factor & 0xff) + 2;
+    else return (factor & 0xf) + 2;
 }
 
 static inline uint decodeFactor(uint factor)
@@ -78,9 +78,9 @@ static NSString *getNameOfMode(uint mode)
 + (uint)encodeBlendModeWithSourceFactor:(uint)sFactor destFactor:(uint)dFactor
                         sourceFactorPMA:(uint)sFactorPMA destFactorPMA:(uint)dFactorPMA
 {
-    return ((encodeFactor(sFactor))    << 24) |
-           ((encodeFactor(dFactor))    << 16) |
-           ((encodeFactor(sFactorPMA)) <<  8) |
+    return ((encodeFactor(sFactor))    << 12) |
+           ((encodeFactor(dFactor))    <<  8) |
+           ((encodeFactor(sFactorPMA)) <<  4) |
            ( encodeFactor(dFactorPMA));
 }
 
@@ -89,13 +89,13 @@ static NSString *getNameOfMode(uint mode)
 {
     if (pma)
     {
-        *sFactor = decodeFactor((blendMode & 0x0000ff00) >> 8);
-        *dFactor = decodeFactor( blendMode & 0x000000ff);
+        *sFactor = decodeFactor((blendMode & 0x00f0) >> 4);
+        *dFactor = decodeFactor( blendMode & 0x000f);
     }
     else
     {
-        *sFactor = decodeFactor((blendMode & 0xff000000) >> 24);
-        *dFactor = decodeFactor((blendMode & 0x00ff0000) >> 16);
+        *sFactor = decodeFactor((blendMode & 0xf000) >> 12);
+        *dFactor = decodeFactor((blendMode & 0x0f00) >>  8);
     }
 }
 
