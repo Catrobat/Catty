@@ -394,7 +394,6 @@
 			buildSettings = {
 				INFOPLIST_FILE = "App-Info.plist";
 				PRODUCT_NAME = Catty;
-				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -403,7 +402,6 @@
 			buildSettings = {
 				INFOPLIST_FILE = "App-Info.plist";
 				PRODUCT_NAME = Catty;
-				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

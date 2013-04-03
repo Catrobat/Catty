@@ -4,15 +4,20 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
-		<key>Catty.xcscheme</key>
+		<key>Sparrow.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>0</integer>
+			<integer>1</integer>
 		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>1D6058900D05DD3D006BFB54</key>
+		<key>DEEA9334101E32A30071DD21</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>DEFE4BC1101B317600E22471</key>
 		<dict>
 			<key>primary</key>
 			<true/>

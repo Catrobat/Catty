@@ -1,0 +1,5 @@
+docset/
+html/
+publish/
+upload.sh
+docset-installed.txt
