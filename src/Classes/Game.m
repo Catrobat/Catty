@@ -68,13 +68,13 @@
     SPImage *background = [[SPImage alloc] initWithContentsOfFile:@"background.jpg"];
     [_contents addChild:background];
     
-    NSString *text = @"To find out how to create your own game out of this scaffold, "
-                     @"have a look at the 'First Steps' section of the Sparrow website!";
+    //NSString *text = @"To find out how to create your own game out of this scaffold, "
+    //                 @"have a look at the 'First Steps' section of the Sparrow website!";
     
-    SPTextField *textField = [[SPTextField alloc] initWithWidth:280 height:80 text:text];
-    textField.x = (background.width - textField.width) / 2;
-    textField.y = (background.height / 2) - 135;
-    [_contents addChild:textField];
+//    SPTextField *textField = [[SPTextField alloc] initWithWidth:280 height:80 text:text];
+//    textField.x = (background.width - textField.width) / 2;
+//    textField.y = (background.height / 2) - 135;
+//    [_contents addChild:textField];
 
     SPImage *image = [[SPImage alloc] initWithTexture:[Media atlasTexture:@"sparrow"]];
     image.pivotX = (int)image.width  / 2;
@@ -131,61 +131,61 @@
 
 - (void)onImageTouched:(SPTouchEvent *)event
 {
-    NSLog(@"TOUCH");
-    // TEST for resize
-//    SPTween *tween = [SPTween tweenWithTarget:self.image time:1.0f];
-//    [tween animateProperty:@"scaleX" targetValue:self.image.scaleX * 1.5];
-//    [tween animateProperty:@"scaleY" targetValue:self.image.scaleY * 1.5];
-//    tween.repeatCount = 1;
-//    [Sparrow.juggler addObject:tween];
-
-    // TEST for rotation
-    SPTween *tween = [SPTween tweenWithTarget:self.image time:1.0f];
-    [tween animateProperty:@"rotation" targetValue:self.image.rotation + 3.6f];
-    tween.repeatCount = 1;
-    [Sparrow.juggler addObject:tween];
-    
-    // TEST for move
-//    SPTween *tween = [SPTween tweenWithTarget:self.image time:1.0f];
-//    [tween animateProperty:@"x" targetValue:self.image.x + 20.0f];
-//    [tween animateProperty:@"y" targetValue:self.image.y - 50.0f];
-//    tween.repeatCount = 1;
-//    [Sparrow.juggler addObject:tween];
-    
-    // TEST for position
-//    SPTween *tween = [SPTween tweenWithTarget:self.image time:1.0f];
-//    [tween animateProperty:@"x" targetValue:10];
-//    [tween animateProperty:@"y" targetValue:10];
-//    tween.repeatCount = 1;
-//    [Sparrow.juggler addObject:tween];
-    
-    // TEST for alpha
-//    SPTween *tween = [SPTween tweenWithTarget:self.image time:1.0f];
-//    [tween animateProperty:@"alpha" targetValue:0.2f];
-//    tween.repeatCount = 1;
-//    [Sparrow.juggler addObject:tween];
-    
-    // TEST for brightness (<100%)
-//    SPImage *image = (SPImage*)self.image;
-//    //image.color = SP_COLOR(100, 200, 255);
-//
-//    CGFloat scale = 0.5f; // MUST be <1.0 (=100%)
-//
-//    uint hexColor = image.color;
-//    uint r = (hexColor >> 16);
-//    uint g = ((hexColor << 16) >> 24);
-//    uint b = ((hexColor << 24) >> 24);
-//    NSLog(@"Color in hex: %x", hexColor);
-//    NSLog(@"R: %d", r);
-//    NSLog(@"G: %d", g);
-//    NSLog(@"B: %d", b);
-//
-//    // set color
-//    image.color = SP_COLOR(r*scale, g*scale, b*scale);
-//    NSLog(@"COLOR SET");
-    
-    
-    
+    NSSet *touches = [event touchesWithTarget:self andPhase:SPTouchPhaseEnded];
+    if ([touches anyObject]) {
+        NSLog(@"TOUCHED");
+        // TEST for resize
+        //    SPTween *tween = [SPTween tweenWithTarget:self.image time:1.0f];
+        //    [tween animateProperty:@"scaleX" targetValue:self.image.scaleX * 1.5];
+        //    [tween animateProperty:@"scaleY" targetValue:self.image.scaleY * 1.5];
+        //    tween.repeatCount = 1;
+        //    [Sparrow.juggler addObject:tween];
+        
+        // TEST for rotation
+        SPTween *tween = [SPTween tweenWithTarget:self.image time:1.0f];
+        [tween animateProperty:@"rotation" targetValue:self.image.rotation + 3.6f];
+        tween.repeatCount = 1;
+        [Sparrow.juggler addObject:tween];
+        
+        // TEST for move
+        //    SPTween *tween = [SPTween tweenWithTarget:self.image time:1.0f];
+        //    [tween animateProperty:@"x" targetValue:self.image.x + 20.0f];
+        //    [tween animateProperty:@"y" targetValue:self.image.y - 50.0f];
+        //    tween.repeatCount = 1;
+        //    [Sparrow.juggler addObject:tween];
+        
+        // TEST for position
+        //    SPTween *tween = [SPTween tweenWithTarget:self.image time:1.0f];
+        //    [tween animateProperty:@"x" targetValue:10];
+        //    [tween animateProperty:@"y" targetValue:10];
+        //    tween.repeatCount = 1;
+        //    [Sparrow.juggler addObject:tween];
+        
+        // TEST for alpha
+        //    SPTween *tween = [SPTween tweenWithTarget:self.image time:1.0f];
+        //    [tween animateProperty:@"alpha" targetValue:0.2f];
+        //    tween.repeatCount = 1;
+        //    [Sparrow.juggler addObject:tween];
+        
+        // TEST for brightness (<100%)
+        //    SPImage *image = (SPImage*)self.image;
+        //    //image.color = SP_COLOR(100, 200, 255);
+        //
+        //    CGFloat scale = 0.5f; // MUST be <1.0 (=100%)
+        //
+        //    uint hexColor = image.color;
+        //    uint r = (hexColor >> 16);
+        //    uint g = ((hexColor << 16) >> 24);
+        //    uint b = ((hexColor << 24) >> 24);
+        //    NSLog(@"Color in hex: %x", hexColor);
+        //    NSLog(@"R: %d", r);
+        //    NSLog(@"G: %d", g);
+        //    NSLog(@"B: %d", b);
+        //
+        //    // set color
+        //    image.color = SP_COLOR(r*scale, g*scale, b*scale);
+        //    NSLog(@"COLOR SET");
+    }    
     
     /*NSSet *touches = [event touchesWithTarget:self andPhase:SPTouchPhaseEnded];
     if ([touches anyObject]) [Media playSound:@"sound.caf"];*/
