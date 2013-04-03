@@ -30,7 +30,7 @@
 		CD0CCF64170CB39700B70036 /* ComeToFrontBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = CD0CCE86170CB39600B70036 /* ComeToFrontBrick.m */; };
 		CD0CCF71170CB39700B70036 /* FileManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CD0CCE9E170CB39600B70036 /* FileManager.m */; };
 		CD0CCF72170CB39700B70036 /* ForeverBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = CD0CCEA0170CB39600B70036 /* ForeverBrick.m */; };
-		CD0CCF73170CB39700B70036 /* GDataXMLNode.m in Sources */ = {isa = PBXBuildFile; fileRef = CD0CCEA2170CB39600B70036 /* GDataXMLNode.m */; };
+		CD0CCF73170CB39700B70036 /* GDataXMLNode.m in Sources */ = {isa = PBXBuildFile; fileRef = CD0CCEA2170CB39600B70036 /* GDataXMLNode.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		CD0CCF74170CB39700B70036 /* GlideToBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = CD0CCEA4170CB39600B70036 /* GlideToBrick.m */; };
 		CD0CCF75170CB39700B70036 /* GoNStepsBackBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = CD0CCEA6170CB39600B70036 /* GoNStepsBackBrick.m */; };
 		CD0CCF76170CB39700B70036 /* Header.m in Sources */ = {isa = PBXBuildFile; fileRef = CD0CCEA8170CB39600B70036 /* Header.m */; };
@@ -69,6 +69,10 @@
 		CD0CCFDB170CB39700B70036 /* WaitBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = CD0CCF45170CB39700B70036 /* WaitBrick.m */; };
 		CD0CCFDC170CB39700B70036 /* WhenScript.m in Sources */ = {isa = PBXBuildFile; fileRef = CD0CCF47170CB39700B70036 /* WhenScript.m */; };
 		CD0CD003170CBD9100B70036 /* CustomExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = CD0CD002170CBD9100B70036 /* CustomExtensions.m */; };
+		CD0CD00E170CBFEE00B70036 /* ioapi.c in Sources */ = {isa = PBXBuildFile; fileRef = CD0CD006170CBFEE00B70036 /* ioapi.c */; };
+		CD0CD00F170CBFEE00B70036 /* mztools.c in Sources */ = {isa = PBXBuildFile; fileRef = CD0CD008170CBFEE00B70036 /* mztools.c */; };
+		CD0CD010170CBFEE00B70036 /* unzip.c in Sources */ = {isa = PBXBuildFile; fileRef = CD0CD00A170CBFEE00B70036 /* unzip.c */; };
+		CD0CD011170CBFEE00B70036 /* zip.c in Sources */ = {isa = PBXBuildFile; fileRef = CD0CD00C170CBFEE00B70036 /* zip.c */; };
 		DE0C71011624177000357F6E /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = DE0C71001624177000357F6E /* Default.png */; };
 		DE0C71031624177500357F6E /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DE0C71021624177500357F6E /* Default@2x.png */; };
 		DE0C71051624177800357F6E /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DE0C71041624177800357F6E /* Default-568h@2x.png */; };
@@ -248,6 +252,15 @@
 		CD0CCF48170CB39700B70036 /* XMLParserProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XMLParserProtocol.h; sourceTree = "<group>"; };
 		CD0CD001170CBD9100B70036 /* CustomExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomExtensions.h; sourceTree = "<group>"; };
 		CD0CD002170CBD9100B70036 /* CustomExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomExtensions.m; sourceTree = "<group>"; };
+		CD0CD005170CBFEE00B70036 /* crypt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = crypt.h; sourceTree = "<group>"; };
+		CD0CD006170CBFEE00B70036 /* ioapi.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = ioapi.c; sourceTree = "<group>"; };
+		CD0CD007170CBFEE00B70036 /* ioapi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ioapi.h; sourceTree = "<group>"; };
+		CD0CD008170CBFEE00B70036 /* mztools.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = mztools.c; sourceTree = "<group>"; };
+		CD0CD009170CBFEE00B70036 /* mztools.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mztools.h; sourceTree = "<group>"; };
+		CD0CD00A170CBFEE00B70036 /* unzip.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = unzip.c; sourceTree = "<group>"; };
+		CD0CD00B170CBFEE00B70036 /* unzip.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = unzip.h; sourceTree = "<group>"; };
+		CD0CD00C170CBFEE00B70036 /* zip.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = zip.c; sourceTree = "<group>"; };
+		CD0CD00D170CBFEE00B70036 /* zip.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = zip.h; sourceTree = "<group>"; };
 		DE0C71001624177000357F6E /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		DE0C71021624177500357F6E /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		DE0C71041624177800357F6E /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
@@ -325,6 +338,7 @@
 		29B97315FDCFA39411CA2CEA /* Other Sources */ = {
 			isa = PBXGroup;
 			children = (
+				CD0CD004170CBFEE00B70036 /* minizip */,
 				1D3623240D0F684500981E51 /* AppDelegate.h */,
 				1D3623250D0F684500981E51 /* AppDelegate.m */,
 				32CA4F630368D1EE00C91783 /* App-Prefix.pch */,
@@ -793,6 +807,22 @@
 			name = BroadcastWait;
 			sourceTree = "<group>";
 		};
+		CD0CD004170CBFEE00B70036 /* minizip */ = {
+			isa = PBXGroup;
+			children = (
+				CD0CD005170CBFEE00B70036 /* crypt.h */,
+				CD0CD006170CBFEE00B70036 /* ioapi.c */,
+				CD0CD007170CBFEE00B70036 /* ioapi.h */,
+				CD0CD008170CBFEE00B70036 /* mztools.c */,
+				CD0CD009170CBFEE00B70036 /* mztools.h */,
+				CD0CD00A170CBFEE00B70036 /* unzip.c */,
+				CD0CD00B170CBFEE00B70036 /* unzip.h */,
+				CD0CD00C170CBFEE00B70036 /* zip.c */,
+				CD0CD00D170CBFEE00B70036 /* zip.h */,
+			);
+			path = minizip;
+			sourceTree = "<group>";
+		};
 		DE0C71121624180300357F6E /* system */ = {
 			isa = PBXGroup;
 			children = (
@@ -1031,6 +1061,10 @@
 				CD0CCFDB170CB39700B70036 /* WaitBrick.m in Sources */,
 				CD0CCFDC170CB39700B70036 /* WhenScript.m in Sources */,
 				CD0CD003170CBD9100B70036 /* CustomExtensions.m in Sources */,
+				CD0CD00E170CBFEE00B70036 /* ioapi.c in Sources */,
+				CD0CD00F170CBFEE00B70036 /* mztools.c in Sources */,
+				CD0CD010170CBFEE00B70036 /* unzip.c in Sources */,
+				CD0CD011170CBFEE00B70036 /* zip.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1048,7 +1082,14 @@
 		1D6058940D05DD3E006BFB54 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = "";
+				HEADER_SEARCH_PATHS = /usr/include/libxml2;
 				INFOPLIST_FILE = "App-Info.plist";
+				OTHER_LDFLAGS = (
+					"-ObjC",
+					"-all_load",
+					"-lxml2",
+				);
 				PRODUCT_NAME = Catty;
 			};
 			name = Debug;
@@ -1056,7 +1097,14 @@
 		1D6058950D05DD3E006BFB54 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = "";
+				HEADER_SEARCH_PATHS = /usr/include/libxml2;
 				INFOPLIST_FILE = "App-Info.plist";
+				OTHER_LDFLAGS = (
+					"-ObjC",
+					"-all_load",
+					"-lxml2",
+				);
 				PRODUCT_NAME = Catty;
 			};
 			name = Release;

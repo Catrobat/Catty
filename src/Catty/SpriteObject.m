@@ -21,10 +21,10 @@
 
 
 // need CattyViewController to access FRAMES_PER_SECOND    TODO: change
-#import "CattyViewController.h"
+//#import "CattyViewController.h"
 
 //test
-#import "CattyAppDelegate.h"
+//#import "CattyAppDelegate.h"
 
 
 
@@ -273,7 +273,7 @@ typedef struct {
         
             // calculate position
             double timeLeft = (nextPosition.timestamp - now);    // in sec
-            int numberOfSteps = round(timeLeft * (float)FRAMES_PER_SECOND);               // TODO: find better way to determine FPS (e.g. GLKit-variable??)
+            int numberOfSteps = round(timeLeft * (float)60.0f);//FRAMES_PER_SECOND);               // TODO: find better way to determine FPS (e.g. GLKit-variable??)
             
             GLKVector3 direction = GLKVector3Subtract(nextPosition.position, self.position);
             

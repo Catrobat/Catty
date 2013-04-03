@@ -9,8 +9,6 @@
 #import "Glidetobrick.h"
 #import "Script.h"
 
-// TODO: change! Need CattyViewController to get FRAMES_PER_SECOND... 
-#import "CattyViewController.h"
 
 @implementation Glidetobrick
 

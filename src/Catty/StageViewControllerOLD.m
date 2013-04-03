@@ -9,7 +9,7 @@
 #import "StageViewControllerOLD.h"
 #import "Program.h"
 #import "SpriteObject.h"
-#import "LevelLoadingInfo.h"
+//#import "LevelLoadingInfo.h"
 #import "Parser.h"
 #import "Brick.h"
 #import "Script.h"
@@ -20,7 +20,7 @@
 #import "Startscript.h"
 #import "Broadcastscript.h"
 
-@interface StageViewController ()
+@interface StageViewControllerOLD ()
 
 @property (strong, nonatomic) Program *level;
 
@@ -180,70 +180,70 @@
 
 - (void)loadLevel
 {
-    NSLog(@"Try to load project '%@'", self.levelLoadingInfo.visibleName);
-    NSLog(@"Path: %@", self.levelLoadingInfo.basePath);
-    
-    NSString *xmlPath = [NSString stringWithFormat:@"%@code.xml", self.levelLoadingInfo.basePath];       // TODO: change const string!!!
-
-    NSLog(@"XML-Path: %@", xmlPath);
-    
-    Parser *parser = [[Parser alloc]init];
-    self.level = [parser generateObjectForLevel:xmlPath];
-    
-    NSLog(@"ProjectResolution: width/height:  %f / %f", self.level.header.screenWidth.floatValue, self.level.header.screenHeight.floatValue);
-    
-    CGSize screenResolution = CGSizeMake(self.level.header.screenWidth.floatValue, self.level.header.screenHeight.floatValue);
-    
-    //setting effect
-    for (SpriteObject *sprite in self.level.objectList)
-    {
-        sprite.effect = self.effect;
-        sprite.spriteManagerDelegate = self;
-        sprite.broadcastWaitDelegate = self.broadcastWaitHandler;
-        sprite.projectPath = self.levelLoadingInfo.basePath;
-        [sprite setProjectResolution:screenResolution];
-        
-        // TODO: change!
-        for (Script *script in sprite.scriptList) {
-            for (Brick *brick in script.brickList) {
-                brick.object = sprite;
-            }
-        }
-        
-        
-        
-        
-        // debug:
-        NSLog(@"----------------------");
-        NSLog(@"Sprite: %@", sprite.name);
-        NSLog(@" ");
-        NSLog(@"StartScript:");
-        for (Script *script in sprite.scriptList) {
-            if ([script isKindOfClass:[Startscript class]]) {
-                for (Brick *brick in [script getAllBricks]) {
-                    NSLog(@"  %@", [brick description]);
-                }
-            }
-        }
-        for (Script *script in sprite.scriptList) {
-            if ([script isKindOfClass:[Whenscript class]]) {
-                NSLog(@" ");
-                NSLog(@"WhenScript:");
-                for (Brick *brick in [script getAllBricks]) {
-                    NSLog(@"  %@", [brick description]);
-                }
-            }
-        }
-        for (Script *script in sprite.scriptList) {
-            if ([script isKindOfClass:[Broadcastscript class]]) {
-                NSLog(@" ");
-                NSLog(@"BroadcastScript:");
-                for (Brick *brick in [script getAllBricks]) {
-                    NSLog(@"  %@", [brick description]);
-                }
-            }
-        }
-    }
+//    NSLog(@"Try to load project '%@'", self.levelLoadingInfo.visibleName);
+//    NSLog(@"Path: %@", self.levelLoadingInfo.basePath);
+//    
+//    NSString *xmlPath = [NSString stringWithFormat:@"%@code.xml", self.levelLoadingInfo.basePath];       // TODO: change const string!!!
+//
+//    NSLog(@"XML-Path: %@", xmlPath);
+//    
+//    Parser *parser = [[Parser alloc]init];
+//    self.level = [parser generateObjectForLevel:xmlPath];
+//    
+//    NSLog(@"ProjectResolution: width/height:  %f / %f", self.level.header.screenWidth.floatValue, self.level.header.screenHeight.floatValue);
+//    
+//    CGSize screenResolution = CGSizeMake(self.level.header.screenWidth.floatValue, self.level.header.screenHeight.floatValue);
+//    
+//    //setting effect
+//    for (SpriteObject *sprite in self.level.objectList)
+//    {
+//        sprite.effect = self.effect;
+//        sprite.spriteManagerDelegate = self;
+//        sprite.broadcastWaitDelegate = self.broadcastWaitHandler;
+//        sprite.projectPath = self.levelLoadingInfo.basePath;
+//        [sprite setProjectResolution:screenResolution];
+//        
+//        // TODO: change!
+//        for (Script *script in sprite.scriptList) {
+//            for (Brick *brick in script.brickList) {
+//                brick.object = sprite;
+//            }
+//        }
+//        
+//        
+//        
+//        
+//        // debug:
+//        NSLog(@"----------------------");
+//        NSLog(@"Sprite: %@", sprite.name);
+//        NSLog(@" ");
+//        NSLog(@"StartScript:");
+//        for (Script *script in sprite.scriptList) {
+//            if ([script isKindOfClass:[Startscript class]]) {
+//                for (Brick *brick in [script getAllBricks]) {
+//                    NSLog(@"  %@", [brick description]);
+//                }
+//            }
+//        }
+//        for (Script *script in sprite.scriptList) {
+//            if ([script isKindOfClass:[Whenscript class]]) {
+//                NSLog(@" ");
+//                NSLog(@"WhenScript:");
+//                for (Brick *brick in [script getAllBricks]) {
+//                    NSLog(@"  %@", [brick description]);
+//                }
+//            }
+//        }
+//        for (Script *script in sprite.scriptList) {
+//            if ([script isKindOfClass:[Broadcastscript class]]) {
+//                NSLog(@" ");
+//                NSLog(@"BroadcastScript:");
+//                for (Brick *brick in [script getAllBricks]) {
+//                    NSLog(@"  %@", [brick description]);
+//                }
+//            }
+//        }
+//    }
 }
 
 

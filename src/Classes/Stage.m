@@ -4,6 +4,7 @@
 //
 
 #import "Stage.h" 
+#import "Program.h"
 
 // --- private interface ---------------------------------------------------------------------------
 
@@ -86,8 +87,6 @@
     image.y = Sparrow.stage.height / 2.0f + 40.0f;
     [_contents addChild:image];
     
-    self.image = image;
-    
 //    [self updateLocations];
     
     // play a sound when the image is touched
@@ -146,10 +145,10 @@
 //        [Sparrow.juggler addObject:tween];
         
         // TEST for rotation
-        SPTween *tween = [SPTween tweenWithTarget:self.image time:1.0f];
-        [tween animateProperty:@"rotation" targetValue:GLKMathDegreesToRadians(360.0f)];
-        tween.repeatCount = 1;
-        [Sparrow.juggler addObject:tween];
+//        SPTween *tween = [SPTween tweenWithTarget:self.image time:1.0f];
+//        [tween animateProperty:@"rotation" targetValue:GLKMathDegreesToRadians(360.0f)];
+//        tween.repeatCount = 1;
+//        [Sparrow.juggler addObject:tween];
         
         // TEST for move
 //        SPTween *tween = [SPTween tweenWithTarget:self.image time:1.0f];

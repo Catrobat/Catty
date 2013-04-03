@@ -6,8 +6,8 @@
 //  Copyright (c) 2012 Graz University of Technology. All rights reserved.
 //
 
-#import "CattyAppDelegate.h"
-#import "UIColor+CatrobatUIColorExtensions.h"
+#import "CattyAppDelegateOLD.h"
+//#import "UIColor+CatrobatUIColorExtensions.h"
 
 @implementation CattyAppDelegate
 
@@ -69,13 +69,13 @@
     [[UINavigationBar appearance] setBackgroundImage:navbarimage
                                        forBarMetrics:UIBarMetricsDefault];
     
-    [[UINavigationBar appearance] setTitleTextAttributes:
-     [NSDictionary dictionaryWithObjectsAndKeys:
-      [UIColor darkBlueColor], UITextAttributeTextColor,
-      [UIColor clearColor], UITextAttributeTextShadowColor,
-      [UIFont fontWithName:@"Arial-Bold" size:0.0], UITextAttributeFont,
-      nil]
-     ];
+//    [[UINavigationBar appearance] setTitleTextAttributes:
+//     [NSDictionary dictionaryWithObjectsAndKeys:
+//      [UIColor darkBlueColor], UITextAttributeTextColor,
+//      [UIColor clearColor], UITextAttributeTextShadowColor,
+//      [UIFont fontWithName:@"Arial-Bold" size:0.0], UITextAttributeFont,
+//      nil]
+//     ];
     
 }
 
