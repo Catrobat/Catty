@@ -143,7 +143,7 @@
         
         // TEST for rotation
         SPTween *tween = [SPTween tweenWithTarget:self.image time:1.0f];
-        [tween animateProperty:@"rotation" targetValue:self.image.rotation + 3.6f];
+        [tween animateProperty:@"rotation" targetValue:GLKMathDegreesToRadians(360.0f)];
         tween.repeatCount = 1;
         [Sparrow.juggler addObject:tween];
         
