@@ -6,6 +6,7 @@
 #import "Stage.h" 
 #import "Program.h"
 #import "SPStage.h"
+#import "SpriteObject.h"
 
 // --- private interface ---------------------------------------------------------------------------
 
@@ -32,7 +33,6 @@
 {
     if ((self = [super init]))
     {
-        [self setup];
     }
     return self;
 }
@@ -44,53 +44,66 @@
     [Media releaseSound];
 }
 
+
+
+-(void)start
+{
+    [self setup];
+}
+
+
 - (void)setup
 {
     
-    SPSprite *blub = [SPSprite sprite];
-    
-    SPImage *img = [[SPImage alloc] initWithTexture:[Media atlasTexture:@"sparrow"]];
-    int origWidth = img.width;
-    int origHeight = img.height;
-    
-    img.width = 300;
-    img.height = 300;
-    
-//    img.scaleX = img.scaleY = 1.0f;
-    img.x = img.width /2.0f + 400;
-    img.y = img.height/2.0f + 700;
-    img.pivotX = origWidth /2.0f;
-    img.pivotY = origHeight/2.0f;
-
-    img.rotation = SP_D2R(180);
 
     
-    [self addChild:img];
-    
-    [img addEventListener:@selector(onImageTouched:) atObject:self forType:SP_EVENT_TYPE_TOUCH];
-
-    self.tmpImage = img;
-    
-    // This is where the code of your game will start. 
-    // In this sample, we add just a few simple elements to get a feeling about how it's done.
-    
-    [SPAudioEngine start];  // starts up the sound engine
-    
-    
-    // The Application contains a very handy "Media" class which loads your texture atlas
-    // and all available sound files automatically. Extend this class as you need it --
-    // that way, you will be able to access your textures and sounds throughout your 
-    // application, without duplicating any resources.
-    
-    [Media initAtlas];      // loads your texture atlas -> see Media.h/Media.m
-    [Media initSound];      // loads all your sounds    -> see Media.h/Media.m
-    
-    
-    // Create some placeholder content: a background image, the Sparrow logo, and a text field.
-    // The positions are updated when the device is rotated. To make that easy, we put all objects
-    // in one sprite (_contents): it will simply be rotated to be upright when the device rotates.
-
-    _contents = [SPSprite sprite];
+//    SPSprite *blub = [SPSprite sprite];
+//    
+//    SPImage *img = [[SPImage alloc] initWithTexture:[Media atlasTexture:@"sparrow"]];
+//    int origWidth = img.width;
+//    int origHeight = img.height;
+//    
+//    img.width = 300;
+//    img.height = 300;
+//    
+////    img.scaleX = img.scaleY = 1.0f;
+//    img.x = img.width /2.0f + 400;
+//    img.y = img.height/2.0f + 700;
+//    img.pivotX = origWidth /2.0f;
+//    img.pivotY = origHeight/2.0f;
+//
+//    img.rotation = SP_D2R(180);
+//
+//    
+//    
+//    
+//    
+//    [self addChild:img];
+//    
+//    [img addEventListener:@selector(onImageTouched:) atObject:self forType:SP_EVENT_TYPE_TOUCH];
+//
+//    self.tmpImage = img;
+//    
+//    // This is where the code of your game will start. 
+//    // In this sample, we add just a few simple elements to get a feeling about how it's done.
+//    
+//    [SPAudioEngine start];  // starts up the sound engine
+//    
+//    
+//    // The Application contains a very handy "Media" class which loads your texture atlas
+//    // and all available sound files automatically. Extend this class as you need it --
+//    // that way, you will be able to access your textures and sounds throughout your 
+//    // application, without duplicating any resources.
+//    
+//    [Media initAtlas];      // loads your texture atlas -> see Media.h/Media.m
+//    [Media initSound];      // loads all your sounds    -> see Media.h/Media.m
+//    
+//    
+//    // Create some placeholder content: a background image, the Sparrow logo, and a text field.
+//    // The positions are updated when the device is rotated. To make that easy, we put all objects
+//    // in one sprite (_contents): it will simply be rotated to be upright when the device rotates.
+//
+//    _contents = [SPSprite sprite];
 //    [self addChild:_contents];
 //    
 //    SPImage *background = [[SPImage alloc] initWithContentsOfFile:@"background.jpg"];

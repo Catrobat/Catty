@@ -63,13 +63,16 @@
     if (self.firstDrawing) {
         
         // parse Program
+        Stage *stage = nil;
         Program *program = [self loadProgram];
         if ([self.root isKindOfClass:[Stage class]]) {
-            ((Stage*)self.root).program = program;
+            stage = (Stage*)self.root;
+            stage.program = program;
         } else {
             abort();
         }
         
+                
         
         float screenWidth  = [UIScreen mainScreen].bounds.size.width;
         float screenHeight = [UIScreen mainScreen].bounds.size.height;
@@ -104,6 +107,8 @@
         Sparrow.stage.color = 0xFF0000;
 
         self.firstDrawing = NO;
+        
+        [stage start];
     }
 }
 

@@ -12,4 +12,7 @@
 
 @property (nonatomic, strong) Program *program;
 
+
+-(void)start;
+
 @end

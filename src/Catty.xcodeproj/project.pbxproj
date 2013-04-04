@@ -58,7 +58,7 @@
 		CD0CCFC7170CB39700B70036 /* Sound.m in Sources */ = {isa = PBXBuildFile; fileRef = CD0CCF22170CB39700B70036 /* Sound.m */; };
 		CD0CCFC8170CB39700B70036 /* SoundInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = CD0CCF24170CB39700B70036 /* SoundInfo.m */; };
 		CD0CCFC9170CB39700B70036 /* SpeakBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = CD0CCF26170CB39700B70036 /* SpeakBrick.m */; };
-		CD0CCFCA170CB39700B70036 /* SpriteObject.m in Sources */ = {isa = PBXBuildFile; fileRef = CD0CCF29170CB39700B70036 /* SpriteObject.m */; };
+		CD0CCFCA170CB39700B70036 /* SpriteObjectOLD.m in Sources */ = {isa = PBXBuildFile; fileRef = CD0CCF29170CB39700B70036 /* SpriteObjectOLD.m */; };
 		CD0CCFCB170CB39700B70036 /* SSZipArchive.m in Sources */ = {isa = PBXBuildFile; fileRef = CD0CCF2B170CB39700B70036 /* SSZipArchive.m */; };
 		CD0CCFCC170CB39700B70036 /* StageViewControllerOLD.m in Sources */ = {isa = PBXBuildFile; fileRef = CD0CCF2D170CB39700B70036 /* StageViewControllerOLD.m */; };
 		CD0CCFD0170CB39700B70036 /* StartScript.m in Sources */ = {isa = PBXBuildFile; fileRef = CD0CCF33170CB39700B70036 /* StartScript.m */; };
@@ -73,6 +73,7 @@
 		CD0CD00F170CBFEE00B70036 /* mztools.c in Sources */ = {isa = PBXBuildFile; fileRef = CD0CD008170CBFEE00B70036 /* mztools.c */; };
 		CD0CD010170CBFEE00B70036 /* unzip.c in Sources */ = {isa = PBXBuildFile; fileRef = CD0CD00A170CBFEE00B70036 /* unzip.c */; };
 		CD0CD011170CBFEE00B70036 /* zip.c in Sources */ = {isa = PBXBuildFile; fileRef = CD0CD00C170CBFEE00B70036 /* zip.c */; };
+		CD639C7B170DF52600FA67DA /* SpriteObject.m in Sources */ = {isa = PBXBuildFile; fileRef = CD639C7A170DF52600FA67DA /* SpriteObject.m */; };
 		DE0C71011624177000357F6E /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = DE0C71001624177000357F6E /* Default.png */; };
 		DE0C71031624177500357F6E /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DE0C71021624177500357F6E /* Default@2x.png */; };
 		DE0C71051624177800357F6E /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DE0C71041624177800357F6E /* Default-568h@2x.png */; };
@@ -229,8 +230,8 @@
 		CD0CCF25170CB39700B70036 /* SpeakBrick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpeakBrick.h; sourceTree = "<group>"; };
 		CD0CCF26170CB39700B70036 /* SpeakBrick.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpeakBrick.m; sourceTree = "<group>"; };
 		CD0CCF27170CB39700B70036 /* SpriteManagerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpriteManagerDelegate.h; sourceTree = "<group>"; };
-		CD0CCF28170CB39700B70036 /* SpriteObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpriteObject.h; sourceTree = "<group>"; };
-		CD0CCF29170CB39700B70036 /* SpriteObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpriteObject.m; sourceTree = "<group>"; };
+		CD0CCF28170CB39700B70036 /* SpriteObjectOLD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpriteObjectOLD.h; sourceTree = "<group>"; };
+		CD0CCF29170CB39700B70036 /* SpriteObjectOLD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpriteObjectOLD.m; sourceTree = "<group>"; };
 		CD0CCF2A170CB39700B70036 /* SSZipArchive.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SSZipArchive.h; sourceTree = "<group>"; };
 		CD0CCF2B170CB39700B70036 /* SSZipArchive.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SSZipArchive.m; sourceTree = "<group>"; };
 		CD0CCF2C170CB39700B70036 /* StageViewControllerOLD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = StageViewControllerOLD.h; path = Catty/StageViewControllerOLD.h; sourceTree = "<group>"; };
@@ -261,6 +262,8 @@
 		CD0CD00B170CBFEE00B70036 /* unzip.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = unzip.h; sourceTree = "<group>"; };
 		CD0CD00C170CBFEE00B70036 /* zip.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = zip.c; sourceTree = "<group>"; };
 		CD0CD00D170CBFEE00B70036 /* zip.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = zip.h; sourceTree = "<group>"; };
+		CD639C79170DF52600FA67DA /* SpriteObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpriteObject.h; sourceTree = "<group>"; };
+		CD639C7A170DF52600FA67DA /* SpriteObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpriteObject.m; sourceTree = "<group>"; };
 		DE0C71001624177000357F6E /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		DE0C71021624177500357F6E /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		DE0C71041624177800357F6E /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
@@ -693,10 +696,12 @@
 		CD0CCFF6170CB89E00B70036 /* Sprite */ = {
 			isa = PBXGroup;
 			children = (
-				CD0CCF28170CB39700B70036 /* SpriteObject.h */,
-				CD0CCF29170CB39700B70036 /* SpriteObject.m */,
+				CD0CCF28170CB39700B70036 /* SpriteObjectOLD.h */,
+				CD0CCF29170CB39700B70036 /* SpriteObjectOLD.m */,
 				CD0CCE5D170CB39600B70036 /* BaseSprite.h */,
 				CD0CCE5E170CB39600B70036 /* BaseSprite.m */,
+				CD639C79170DF52600FA67DA /* SpriteObject.h */,
+				CD639C7A170DF52600FA67DA /* SpriteObject.m */,
 			);
 			name = Sprite;
 			sourceTree = "<group>";
@@ -1050,7 +1055,7 @@
 				CD0CCFC7170CB39700B70036 /* Sound.m in Sources */,
 				CD0CCFC8170CB39700B70036 /* SoundInfo.m in Sources */,
 				CD0CCFC9170CB39700B70036 /* SpeakBrick.m in Sources */,
-				CD0CCFCA170CB39700B70036 /* SpriteObject.m in Sources */,
+				CD0CCFCA170CB39700B70036 /* SpriteObjectOLD.m in Sources */,
 				CD0CCFCB170CB39700B70036 /* SSZipArchive.m in Sources */,
 				CD0CCFCC170CB39700B70036 /* StageViewControllerOLD.m in Sources */,
 				CD0CCFD0170CB39700B70036 /* StartScript.m in Sources */,
@@ -1065,6 +1070,7 @@
 				CD0CD00F170CBFEE00B70036 /* mztools.c in Sources */,
 				CD0CD010170CBFEE00B70036 /* unzip.c in Sources */,
 				CD0CD011170CBFEE00B70036 /* zip.c in Sources */,
+				CD639C7B170DF52600FA67DA /* SpriteObject.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
