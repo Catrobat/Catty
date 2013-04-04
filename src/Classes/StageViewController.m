@@ -10,6 +10,8 @@
 
 @interface StageViewController ()
 
+@property (nonatomic, assign) BOOL firstDrawing;
+
 @end
 
 @implementation StageViewController
@@ -19,6 +21,9 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
+        
+        self.firstDrawing = YES;
+
     }
     return self;
 }
@@ -27,6 +32,8 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
+
+    
 }
 
 - (void)didReceiveMemoryWarning
@@ -35,4 +42,18 @@
     // Dispose of any resources that can be recreated.
 }
 
+
+
+- (void)glkView:(GLKView *)view drawInRect:(CGRect)rect
+{
+    [super glkView:view drawInRect:rect];
+    if (self.firstDrawing) {
+        Sparrow.stage.width = 500;     // = XML-Project-width
+        Sparrow.stage.height = 800;     // = XML-Project-heigth
+        self.firstDrawing = NO;
+        
+        self.view.frame = CGRectMake(100,100,200,200);  // STAGE!!!
+
+    }
+}
 @end

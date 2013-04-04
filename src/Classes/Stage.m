@@ -47,12 +47,6 @@
 
 - (void)setup
 {
-    SPStage *stage = [[SPStage alloc]initWithWidth:200 height:300];
-    
-//    NSLog(@"stage width:")
-    
-    
-    
     
     SPSprite *blub = [SPSprite sprite];
     
@@ -60,18 +54,14 @@
     int origWidth = img.width;
     int origHeight = img.height;
     
-//    img.width = 70;
-//    img.height = 100;
+    img.width = 300;
+    img.height = 300;
     
-    img.scaleX = img.scaleY = 2.0f;
-
-//    [img readjustSize];
-    
-    img.x = img.width /2.0f;
-    img.y = img.height/2.0f;
+//    img.scaleX = img.scaleY = 1.0f;
+    img.x = img.width /2.0f + 400;
+    img.y = img.height/2.0f + 700;
     img.pivotX = origWidth /2.0f;
     img.pivotY = origHeight/2.0f;
-//    [img readjustSize];
 
     img.rotation = SP_D2R(180);
 
@@ -176,19 +166,26 @@
         NSLog(@"TOUCHED");
         
         
-        self.tmpImage.scaleX = self.tmpImage.scaleY = self.tmpImage.scaleX - 0.1f;
-//
-//        //    [img readjustSize];
+//        self.tmpImage.scaleX = self.tmpImage.scaleY = self.tmpImage.scaleX - 0.1f;
 //        
-        self.tmpImage.x = self.tmpImage.width /2.0f;
-        self.tmpImage.y = self.tmpImage.height/2.0f;
-//        self.tmpImage.pivotX = origWidth /2.0f;
-//        self.tmpImage.pivotY = origHeight/2.0f;
-        //    [img readjustSize];
+//        self.tmpImage.x = self.tmpImage.width /2.0f;
+//        self.tmpImage.y = self.tmpImage.height/2.0f;
+////        self.tmpImage.pivotX = origWidth /2.0f;
+////        self.tmpImage.pivotY = origHeight/2.0f;
+//        
+//        
+//        self.tmpImage.rotation += SP_D2R(180);
         
-        
-        self.tmpImage.rotation += SP_D2R(180);
+        SPTween *tween = [SPTween tweenWithTarget:self.tmpImage time:5.0f];
+        [tween animateProperty:@"x" targetValue:0];
+        [tween animateProperty:@"y" targetValue:self.tmpImage.height/4];
+        [tween animateProperty:@"rotation" targetValue:3*SP_D2R(360)];
+        tween.repeatCount = 1;
+        [Sparrow.juggler addObject:tween];
 
+
+
+        
         
         // TEST for resize
 //        SPTween *tween = [SPTween tweenWithTarget:self.image time:1.0f];

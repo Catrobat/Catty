@@ -32,6 +32,11 @@ void onUncaughtException(NSException *exception)
     _viewController = [[StageViewController alloc] init];
     [_viewController startWithRoot:[Stage class] supportHighResolutions:YES doubleOnPad:YES];
     
+//    _viewController.view.frame = CGRectMake(50, 50, 300, 300);
+//    
+//    _viewController.stage.width = 2000;
+//    _viewController.stage.height = 1000;
+    
     [_window setRootViewController:_viewController];
     [_window makeKeyAndVisible];
     
