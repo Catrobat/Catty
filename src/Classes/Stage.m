@@ -5,12 +5,15 @@
 
 #import "Stage.h" 
 #import "Program.h"
+#import "SPStage.h"
 
 // --- private interface ---------------------------------------------------------------------------
 
 @interface Stage ()
 
 @property (nonatomic, strong) Program *program;
+
+@property (nonatomic, strong) SPImage *tmpImage;
 
 - (void)setup;
 ////- (void)onImageTouched:(SPTouchEvent *)event;
@@ -44,6 +47,41 @@
 
 - (void)setup
 {
+    SPStage *stage = [[SPStage alloc]initWithWidth:200 height:300];
+    
+//    NSLog(@"stage width:")
+    
+    
+    
+    
+    SPSprite *blub = [SPSprite sprite];
+    
+    SPImage *img = [[SPImage alloc] initWithTexture:[Media atlasTexture:@"sparrow"]];
+    int origWidth = img.width;
+    int origHeight = img.height;
+    
+//    img.width = 70;
+//    img.height = 100;
+    
+    img.scaleX = img.scaleY = 2.0f;
+
+//    [img readjustSize];
+    
+    img.x = img.width /2.0f;
+    img.y = img.height/2.0f;
+    img.pivotX = origWidth /2.0f;
+    img.pivotY = origHeight/2.0f;
+//    [img readjustSize];
+
+    img.rotation = SP_D2R(180);
+
+    
+    [self addChild:img];
+    
+    [img addEventListener:@selector(onImageTouched:) atObject:self forType:SP_EVENT_TYPE_TOUCH];
+
+    self.tmpImage = img;
+    
     // This is where the code of your game will start. 
     // In this sample, we add just a few simple elements to get a feeling about how it's done.
     
@@ -64,14 +102,14 @@
     // in one sprite (_contents): it will simply be rotated to be upright when the device rotates.
 
     _contents = [SPSprite sprite];
-    [self addChild:_contents];
-    
-    SPImage *background = [[SPImage alloc] initWithContentsOfFile:@"background.jpg"];
-    background.pivotX = background.width /2.0f;
-    background.pivotY = background.height/2.0f;
-    background.x = Sparrow.stage.width /2.0f;
-    background.y = Sparrow.stage.height/2.0f;
-    [_contents addChild:background];
+//    [self addChild:_contents];
+//    
+//    SPImage *background = [[SPImage alloc] initWithContentsOfFile:@"background.jpg"];
+//    background.pivotX = background.width /2.0f;
+//    background.pivotY = background.height/2.0f;
+//    background.x = Sparrow.stage.width /2.0f;
+//    background.y = Sparrow.stage.height/2.0f;
+//    [_contents addChild:background];
     //NSString *text = @"To find out how to create your own game out of this scaffold, "
     //                 @"have a look at the 'First Steps' section of the Sparrow website!";
     
@@ -80,17 +118,17 @@
 //    textField.y = (background.height / 2) - 135;
 //    [_contents addChild:textField];
 
-    SPImage *image = [[SPImage alloc] initWithTexture:[Media atlasTexture:@"sparrow"]];
-    image.pivotX = (int)image.width  / 2.0f;
-    image.pivotY = (int)image.height / 2.0f;
-    image.x = Sparrow.stage.width  / 2.0f;
-    image.y = Sparrow.stage.height / 2.0f + 40.0f;
-    [_contents addChild:image];
+//    SPImage *image = [[SPImage alloc] initWithTexture:[Media atlasTexture:@"sparrow"]];
+//    image.pivotX = (int)image.width  / 2.0f;
+//    image.pivotY = (int)image.height / 2.0f;
+//    image.x = Sparrow.stage.width  / 2.0f;
+//    image.y = Sparrow.stage.height / 2.0f + 40.0f;
+//    [_contents addChild:image];
     
 //    [self updateLocations];
     
     // play a sound when the image is touched
-    [image addEventListener:@selector(onImageTouched:) atObject:self forType:SP_EVENT_TYPE_TOUCH];
+//    [image addEventListener:@selector(onImageTouched:) atObject:self forType:SP_EVENT_TYPE_TOUCH];
     
     // and animate it a little
     /*SPTween *tween = [SPTween tweenWithTarget:image time:1.5 transition:SP_TRANSITION_EASE_IN_OUT];
@@ -122,20 +160,35 @@
     // Sparrow's minimum deployment target is iOS 5.
 }
 
-- (void)updateLocations
-{
-    int gameWidth  = Sparrow.stage.width;
-    int gameHeight = Sparrow.stage.height;
-    
-    _contents.x = (int) (gameWidth  - _contents.width)  / 2;
-    _contents.y = (int) (gameHeight - _contents.height) / 2;
-}
+//- (void)updateLocations
+//{
+//    int gameWidth  = Sparrow.stage.width;
+//    int gameHeight = Sparrow.stage.height;
+//    
+//    _contents.x = (int) (gameWidth  - _contents.width)  / 2;
+//    _contents.y = (int) (gameHeight - _contents.height) / 2;
+//}
 
 - (void)onImageTouched:(SPTouchEvent *)event
 {
     NSSet *touches = [event touchesWithTarget:self andPhase:SPTouchPhaseEnded];
     if ([touches anyObject]) {
         NSLog(@"TOUCHED");
+        
+        
+        self.tmpImage.scaleX = self.tmpImage.scaleY = self.tmpImage.scaleX - 0.1f;
+//
+//        //    [img readjustSize];
+//        
+        self.tmpImage.x = self.tmpImage.width /2.0f;
+        self.tmpImage.y = self.tmpImage.height/2.0f;
+//        self.tmpImage.pivotX = origWidth /2.0f;
+//        self.tmpImage.pivotY = origHeight/2.0f;
+        //    [img readjustSize];
+        
+        
+        self.tmpImage.rotation += SP_D2R(180);
+
         
         // TEST for resize
 //        SPTween *tween = [SPTween tweenWithTarget:self.image time:1.0f];

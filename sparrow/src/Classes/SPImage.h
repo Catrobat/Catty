@@ -1,4 +1,4 @@
-//
+ //
 //  SPImage.h
 //  Sparrow
 //
