@@ -11,7 +11,6 @@
 
 @interface Stage ()
 
-@property (nonatomic, strong) Program *program;
 
 @property (nonatomic, strong) SPImage *tmpImage;
 
