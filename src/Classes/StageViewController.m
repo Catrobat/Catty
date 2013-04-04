@@ -108,6 +108,13 @@
 
         self.firstDrawing = NO;
         
+        
+//        stage.pivotX = Sparrow.stage.width  / 2.0f;
+//        stage.pivotY = Sparrow.stage.height / 2.0f;
+//        stage.x = Sparrow.stage.width  / 2.0f;
+//        stage.y = Sparrow.stage.height / 2.0f;
+        
+        
         [stage start];
     }
 }
@@ -120,12 +127,12 @@
     
 
 //    NSString *xmlPath = [NSString stringWithFormat:@"%@code.xml", self.levelLoadingInfo.basePath];       // TODO: change const string!!!
-    NSString *xmlPath = @"/Users/Mattias/Library/Application Support/iPhone Simulator/6.1/Applications/28446E58-9C81-4FFF-B4CB-AE6D11695142/Documents/levels/Mein erstes Projekt/code.xml";
+    NSString *xmlPath = @"/Users/Mattias/Library/Application Support/iPhone Simulator/6.1/Applications/28446E58-9C81-4FFF-B4CB-AE6D11695142/Documents/levels/Mein erstes Projekt/";
     
     NSLog(@"XML-Path: %@", xmlPath);
 
     Parser *parser = [[Parser alloc]init];
-    Program *program = [parser generateObjectForLevel:xmlPath];
+    Program *program = [parser generateObjectForLevel:[xmlPath stringByAppendingString:@"code.xml"]];
 
     NSLog(@"ProjectResolution: width/height:  %f / %f", program.header.screenWidth.floatValue, program.header.screenHeight.floatValue);
 
@@ -137,7 +144,6 @@
         sprite.spriteManagerDelegate = self;
         sprite.broadcastWaitDelegate = self.broadcastWaitHandler;
         sprite.projectPath = xmlPath;   //self.levelLoadingInfo.basePath;
-        [sprite setProjectResolution:self.projectSize];
 
         // TODO: change!
         for (Script *script in sprite.scriptList) {

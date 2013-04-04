@@ -95,17 +95,17 @@
 
 -(void)speakUsingTTSWebServiceOnSprite:(SpriteObject*)sprite
 {
-    [self downloadFileSynchronous];
-    
-    if ([[NSFileManager defaultManager] fileExistsAtPath:_path])
-    {
-        AVAudioPlayer  *player;
-        NSError        *err;
-        player = [[AVAudioPlayer alloc] initWithContentsOfURL:
-                  [NSURL fileURLWithPath:_path] error:&err];
-        
-        [sprite addSound:player];
-    }
+//    [self downloadFileSynchronous];
+//    
+//    if ([[NSFileManager defaultManager] fileExistsAtPath:_path])
+//    {
+//        AVAudioPlayer  *player;
+//        NSError        *err;
+//        player = [[AVAudioPlayer alloc] initWithContentsOfURL:
+//                  [NSURL fileURLWithPath:_path] error:&err];
+//        
+//        [sprite addSound:player];
+//    }
     
 }
 

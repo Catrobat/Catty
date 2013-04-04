@@ -49,6 +49,11 @@
 -(void)start
 {
     [self setup];
+    for (SpriteObject *obj in self.program.objectList) {
+        [obj start];
+        [obj addEventListener:@selector(onImageTouched:) atObject:obj forType:SP_EVENT_TYPE_TOUCH];
+        [self addChild:obj];
+    }
 }
 
 

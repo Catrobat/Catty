@@ -8,7 +8,7 @@
 
 #import "StageViewControllerOLD.h"
 #import "Program.h"
-#import "SpriteObject.h"
+#import "SpriteObjectOLD.h"
 //#import "LevelLoadingInfo.h"
 #import "Parser.h"
 #import "Brick.h"
@@ -101,7 +101,7 @@
     
     // set black frame for scaled projects
     // TODO: dirty!!!
-    SpriteObject *sprite = [self.level.objectList lastObject];
+    SpriteObjectOLD *sprite = [self.level.objectList lastObject];
     
     float screenWidth  = [UIScreen mainScreen].bounds.size.width;
     float screenHeight = [UIScreen mainScreen].bounds.size.height;
@@ -146,7 +146,7 @@
 - (void)viewWillDisappear:(BOOL)animated {
     
     [self stopAllSounds];
-    for (SpriteObject *sprite in self.level.objectList) {
+    for (SpriteObjectOLD *sprite in self.level.objectList) {
         [sprite stopAllScripts];
     }
     
@@ -172,7 +172,7 @@
 - (void)startLevel
 {
     
-    for (SpriteObject *sprite in self.level.objectList)
+    for (SpriteObjectOLD *sprite in self.level.objectList)
     {
         [sprite start];
     }
@@ -195,7 +195,7 @@
 //    CGSize screenResolution = CGSizeMake(self.level.header.screenWidth.floatValue, self.level.header.screenHeight.floatValue);
 //    
 //    //setting effect
-//    for (SpriteObject *sprite in self.level.objectList)
+//    for (SpriteObjectOLD *sprite in self.level.objectList)
 //    {
 //        sprite.effect = self.effect;
 //        sprite.spriteManagerDelegate = self;
@@ -263,7 +263,7 @@
     glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
     glEnable(GL_BLEND);
     
-    for (SpriteObject *sprite in self.level.objectList) {
+    for (SpriteObjectOLD *sprite in self.level.objectList) {
         [sprite render];
     }
     [self.blackLeft   render];
@@ -275,7 +275,7 @@
 - (void)glkViewControllerUpdate:(GLKViewController *)controller
 {
     //NSLog(@"Update...");
-    for (SpriteObject *sprite in self.level.objectList) {
+    for (SpriteObjectOLD *sprite in self.level.objectList) {
         [sprite update:self.timeSinceLastUpdate];
     }
 }
@@ -301,10 +301,10 @@
     
     //depth check
 //    float zIndex = 0;
-    SpriteObject *foregroundSprite = nil;
+    SpriteObjectOLD *foregroundSprite = nil;
     
     //check if a collision (tap) occured
-    for (SpriteObject *sprite in self.level.objectList)
+    for (SpriteObjectOLD *sprite in self.level.objectList)
     {
         if(CGRectIntersectsRect(sprite.boundingBox, tapRect) && sprite.showSprite)// && [sprite getZIndex] >= zIndex)    // order in array is sprite-z-index
         {
@@ -318,7 +318,7 @@
 }
 
 #pragma mark - SpriteManagerDelegate
--(void)bringToFrontSprite:(SpriteObject *)sprite
+-(void)bringToFrontSprite:(SpriteObjectOLD *)sprite
 {
     // TODO: CHANGE THIS ASAP!!!
     NSMutableArray *sprites = [self.level.objectList mutableCopy];
@@ -327,7 +327,7 @@
     self.level.objectList = [NSArray arrayWithArray:sprites];
 }
 
--(void)bringNStepsBackSprite:(SpriteObject *)sprite numberOfSteps:(int)n
+-(void)bringNStepsBackSprite:(SpriteObjectOLD *)sprite numberOfSteps:(int)n
 {
     NSMutableArray *sprites = [self.level.objectList mutableCopy];
     
@@ -348,7 +348,7 @@
 
 -(void)stopAllSounds
 {
-    for(SpriteObject* sprite in self.level.objectList)
+    for(SpriteObjectOLD* sprite in self.level.objectList)
     {
         [sprite stopAllSounds];
     }

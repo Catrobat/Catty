@@ -18,7 +18,7 @@
 {
     NSLog(@"Performing: %@", self.description);
     
-    [self.object performSelectorOnMainThread:@selector(changeCostume:) withObject:self.look waitUntilDone:YES];
+    [self.object performSelectorOnMainThread:@selector(changeLook:) withObject:self.look waitUntilDone:YES];
 }
 
 
