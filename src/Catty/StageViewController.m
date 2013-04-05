@@ -80,6 +80,7 @@
         // just for test parser
         TestParser *testparser = [[TestParser alloc] init];
         Program *program = [testparser generateDebugProject_GlideTo];
+        self.projectSize = CGSizeMake(program.header.screenWidth.floatValue, program.header.screenHeight.floatValue); // (normally set in loadProgram)
         
         //    TestParser *testparser = [[TestParser alloc]init];
         //    projectName = @"defaultProject";

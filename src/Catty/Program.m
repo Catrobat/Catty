@@ -30,6 +30,7 @@
     return _variables;
 }
 
+
 - (NSString*)debug {
     NSMutableString *ret = [[NSMutableString alloc] init];
     [ret appendFormat:@"\n----------------- PROGRAM --------------------\n"];

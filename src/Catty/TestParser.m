@@ -197,6 +197,7 @@
 -(Program*)generateDebugProject_GlideTo
 {
     Program *project = [[Program alloc]init];
+    project.header = [[Header alloc] init];
     project.header.programName  = @"TestParser";
     project.header.screenWidth  = [NSNumber numberWithInt:320];
     project.header.screenHeight = [NSNumber numberWithInt:480];
