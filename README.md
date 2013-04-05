@@ -5,7 +5,7 @@ iOS implementation of the Catrobat language
 
 # Questions?
 Please ask on our Google Plus community: http://goo.gl/fOjQi
-
+ 
 # First Steps
 ## Learn iOS development?
 We recommend [iPad and iPhone App Development](https://itunes.apple.com/us/course/ipad-iphone-app-development/id495052415) from the Stanford University.
