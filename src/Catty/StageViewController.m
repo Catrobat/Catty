@@ -127,7 +127,7 @@
     
 
 //    NSString *xmlPath = [NSString stringWithFormat:@"%@code.xml", self.levelLoadingInfo.basePath];       // TODO: change const string!!!
-    NSString *xmlPath = @"/Users/Mattias/Library/Application Support/iPhone Simulator/6.1/Applications/28446E58-9C81-4FFF-B4CB-AE6D11695142/Documents/levels/Mein erstes Projekt/";
+    NSString *xmlPath = @"/Users/dominik/Library/Application Support/iPhone Simulator/6.1/Applications/766CAD3C-D36E-46A9-B4CA-20AED25A85D8/Documents/levels/My first project/";
     
     NSLog(@"XML-Path: %@", xmlPath);
 
