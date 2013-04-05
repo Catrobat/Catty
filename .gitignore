@@ -14,3 +14,5 @@ Mockup/*
 sparrow/src/Sparrow.xcodeproj/xcuserdata/dominik.xcuserdatad/xcschemes/xcschememanagement.plist
 
 sparrow/src/Sparrow.xcodeproj/xcuserdata/dominik.xcuserdatad/xcschemes/Sparrow.xcscheme
+
+*.xcuserdatad*
