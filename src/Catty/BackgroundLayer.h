@@ -28,7 +28,4 @@
 
 +(CAGradientLayer*) darkBlueGradient;
 
-+(CAGradientLayer*) brightColorGradient;
-
-
 @end

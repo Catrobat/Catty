@@ -10,7 +10,7 @@
 #import "Util.h"
 #import "ProgramLoadingInfo.h"
 #import "StageViewController.h"
-#import "CattyAppDelegate.h"
+#import "AppDelegate.h"
 #import "TableUtil.h"
 #import "CellTagDefines.h"
 #import "UIColor+CatrobatUIColorExtensions.h"
@@ -134,7 +134,7 @@
 {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
         // Delete the row from the data source
-        CattyAppDelegate *appDelegate = (CattyAppDelegate*)[[UIApplication sharedApplication] delegate];
+        AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
         ProgramLoadingInfo *level = [self.levelLoadingInfos objectAtIndex:indexPath.row];
         [appDelegate.fileManager deleteFolder:level.basePath];
         [self.levelLoadingInfos removeObject:level];
@@ -154,6 +154,9 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    
+    StageViewController* viewController = [Util createStageViewControllerWithProgram:[[self.levelLoadingInfos objectAtIndex:indexPath.row] visibleName]];
+    [self.navigationController pushViewController:viewController animated:YES];
     // Navigation logic may go here. Create and push another view controller.
     /*
      <#DetailViewController#> *detailViewController = [[<#DetailViewController#> alloc] initWithNibName:@"<#Nib name#>" bundle:nil];
@@ -167,18 +170,6 @@
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {    
-    if ([segue.identifier isEqualToString:@"SEGUE_TO_STAGE"])
-    {
-        //get selected row index
-        NSIndexPath *selectedRowIndexPath = self.tableView.indexPathForSelectedRow;
-                
-        //check if it's the same class
-        if ([segue.destinationViewController isKindOfClass:[StageViewController class]]) {
-            StageViewController *destination = segue.destinationViewController;
-            destination.levelLoadingInfo = [self.levelLoadingInfos objectAtIndex:selectedRowIndexPath.row];
-        }
-        
-    }
     
 }
 

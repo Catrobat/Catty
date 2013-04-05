@@ -7,6 +7,10 @@
 //
 
 #import "Util.h"
+#import "StageViewController.h"
+#import "Stage.h"
+#import "ProgramDefines.h"
+#import "ProgramLoadingInfo.h"
 
 @implementation Util
 
@@ -65,5 +69,56 @@
     CGRect screenRect = [[UIScreen mainScreen] bounds];
     return screenRect.size.height;
 }
+
+
+
++ (CATransition*)getPushCATransition
+{
+    CATransition *transition = [CATransition animation];
+    transition.duration = 0.3;
+    transition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
+    transition.type = kCATransitionPush;
+    transition.subtype = kCATransitionFromRight;
+    return transition;
+}
+
+
++ (StageViewController*)createStageViewControllerWithProgram:(NSString*)program
+{
+    StageViewController* viewController = [[StageViewController alloc] init];
+    [viewController startWithRoot:[Stage class] supportHighResolutions:YES doubleOnPad:YES];
+    
+    NSString *documentsDirectoy = [Util applicationDocumentsDirectory];
+    NSString *levelsPath = [NSString stringWithFormat:@"%@/%@", documentsDirectoy, kProgramsFolder];
+    ProgramLoadingInfo *info = [[ProgramLoadingInfo alloc] init];
+    info.basePath = [NSString stringWithFormat:@"%@/%@/", levelsPath, program];
+    info.visibleName = program;
+    viewController.programLoadingInfo = info;
+
+
+    return viewController;
+}
+
++ (NSString*)lastProgram
+{
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    NSString* lastProgram = [userDefaults objectForKey:kLastProgram];
+    if(!lastProgram) {
+        [userDefaults setObject:kDefaultProject forKey:kLastProgram];
+        [userDefaults synchronize];
+        lastProgram = kDefaultProject;
+    }
+    return lastProgram;
+    
+}
+
++ (void)setLastProgram:(NSString*)visibleName
+{
+    NSUserDefaults* userDefaults = [NSUserDefaults standardUserDefaults];
+    [userDefaults setObject:visibleName forKey:kLastProgram];
+    [userDefaults synchronize];
+    
+}
+
 
 @end

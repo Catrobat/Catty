@@ -27,5 +27,12 @@
 #define kSegueToLevelDetail @"segueToLevelDetail"
 #define kSegueToStage @"SEGUE_TO_STAGE"
 
+#define kSegueContinue @"continue"
+#define kSegueNew @"new"
+#define kSeguePrograms @"programs"
+#define kSegueForum @"forum"
+#define kSegueDownload @"download"
+#define kSegueUpload @"upload"
+
 
 #endif

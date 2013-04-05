@@ -8,6 +8,12 @@
 
 #import "SPViewController.h"
 
+@class ProgramLoadingInfo;
+
 @interface StageViewController : SPViewController
+
+@property (nonatomic, strong) ProgramLoadingInfo* programLoadingInfo;
+
+- (void)backButtonPressed:(UIButton *)sender;
 
 @end

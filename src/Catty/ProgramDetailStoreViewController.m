@@ -23,13 +23,14 @@
 #import "ProgramDetailStoreViewController.h"
 #import "CatrobatProject.h"
 #import "CreateView.h"
-#import "CattyAppDelegate.h"
+#import "AppDelegate.h"
 #import "TableUtil.h"
 #import "ButtonTags.h"
 #import "UIColor+CatrobatUIColorExtensions.h"
 #import "SegueDefines.h"
 #import "StageViewController.h"
 #import "ProgramLoadingInfo.h"
+#import "Util.h"
 
 #define kUIBarHeight 49
 #define kNavBarHeight 44
@@ -93,7 +94,7 @@
 
 - (UIView*)createViewForProject:(CatrobatProject*)project {
     
-    CattyAppDelegate *appDelegate = (CattyAppDelegate*)[[UIApplication sharedApplication] delegate];
+    AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
     UIView *view = [CreateView createProgramDetailView:self.project target:self];
     if ([appDelegate.fileManager getPathForLevel:self.project.projectName]) {
         [view viewWithTag:kDownloadButtonTag].hidden = YES;
@@ -133,11 +134,11 @@
             loadingInfo.visibleName = level.projectName;
             
             //retrieving app delegate
-            CattyAppDelegate *appDelegate = (CattyAppDelegate*)[[UIApplication sharedApplication] delegate];
+            AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
             loadingInfo.basePath = [NSString stringWithFormat:@"%@/", [appDelegate.fileManager getPathForLevel:level.projectName]];
             assert(loadingInfo.basePath);
             
-            destination.levelLoadingInfo = loadingInfo;
+            destination.programLoadingInfo = loadingInfo;
             
         }
     }
@@ -148,7 +149,8 @@
 - (void) playButtonPressed
 {
     NSDebug(@"Play Button");
-    [self performSegueWithIdentifier:kSegueToStage sender:self.project];
+    StageViewController* viewController = [Util createStageViewControllerWithProgram:self.project.projectName];
+    [self.navigationController pushViewController:viewController animated:YES];
 }
 
 
@@ -162,7 +164,7 @@
     downloadButton.enabled = NO;
     downloadButton.backgroundColor = [UIColor grayColor];
 
-    CattyAppDelegate *appDelegate = (CattyAppDelegate*)[[UIApplication sharedApplication] delegate];
+    AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
     NSURL *url = [NSURL URLWithString:self.project.downloadUrl];
     
     UIActivityIndicatorView *activity = (UIActivityIndicatorView*)[downloadButton viewWithTag:kActivityIndicator];

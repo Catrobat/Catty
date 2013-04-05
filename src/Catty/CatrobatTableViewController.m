@@ -11,13 +11,18 @@
 #import "BackgroundLayer.h"
 #import "TableUtil.h"
 #import "UIColor+CatrobatUIColorExtensions.h"
-#import "CattyAppDelegate.h"
+#import "AppDelegate.h"
 #import "Util.h"
 #import "CatrobatImageCell.h"
 #import "StageViewController.h"
 #import "ProgramLoadingInfo.h"
+#import "SegueDefines.h"
+#import "Util.h"
 
 #import <QuartzCore/QuartzCore.h>
+
+
+
 
 @interface CatrobatTableViewController ()
 
@@ -44,7 +49,7 @@
     [self initTableView];
     [TableUtil initNavigationItem:self.navigationItem withTitle:@"Catrobat" enableBackButton:NO target:nil];
     
-    CattyAppDelegate *appDelegate = (CattyAppDelegate*)[[UIApplication sharedApplication] delegate];
+    AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
     [appDelegate.fileManager addDefaultProject];
     [appDelegate.fileManager addAquariumProject];
 
@@ -65,7 +70,7 @@
 #pragma marks init
 -(void)initTableView
 {
-    self.cells = [[NSArray alloc] initWithObjects:@"continue", @"new", @"programs", @"forum", @"download", @"upload", nil];
+    self.cells = [[NSArray alloc] initWithObjects:kSegueContinue, kSegueNew, kSeguePrograms, kSegueForum, kSegueDownload, kSegueUpload, nil];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     [self.tableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
@@ -114,10 +119,15 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSString* segue = [self.cells objectAtIndex:indexPath.row];
+
+    NSString* identifier = [self.cells objectAtIndex:indexPath.row];
+    if ([identifier isEqualToString:kSegueContinue]) {
+        StageViewController* viewController = [Util createStageViewControllerWithProgram:[Util lastProgram]];
+        [self.navigationController pushViewController:viewController animated:YES];
+    }
 #warning the if statement should be removed once everything has been implemented..
-    if([segue isEqualToString:@"download" ] || [segue isEqualToString:@"programs"] ||[segue isEqualToString:@"continue"]) {
-        [self performSegueWithIdentifier:segue sender:self];
+    else if([identifier isEqualToString:kSegueDownload ] || [identifier isEqualToString:kSeguePrograms]) {
+        [self performSegueWithIdentifier:identifier sender:self];
     } else {
         [Util showComingSoonAlertView];
         [tableView deselectRowAtIndexPath:indexPath animated:YES];
@@ -148,7 +158,7 @@
     UILabel* subtitleLabel = (UILabel*)[cell viewWithTag:kSubtitleLabelTag];
     subtitleLabel.textColor = [UIColor brightGrayColor];
 #warning Hardcoded..
-    NSString* lastProject = [[NSUserDefaults standardUserDefaults] objectForKey:@"lastProject"];
+    NSString* lastProject = [Util lastProgram];
     subtitleLabel.text = lastProject;
 }
 
@@ -161,23 +171,6 @@
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    
-
-    if([[segue identifier] isEqualToString:@"continue"]) {
-        StageViewController* stageViewController = [segue destinationViewController];
-#warning - Outsource creation of LevelLoading info (double implementation in MyProjectsViewController)
-        
-        NSString *documentsDirectoy = [Util applicationDocumentsDirectory];
-        NSString *levelFolder = @"levels";
-        NSString *levelsPath = [NSString stringWithFormat:@"%@/%@", documentsDirectoy, levelFolder];
-        NSString* level = [[NSUserDefaults standardUserDefaults] objectForKey:@"lastProject"];
-        ProgramLoadingInfo *info = [[ProgramLoadingInfo alloc] init];
-        info.basePath = [NSString stringWithFormat:@"%@/%@/", levelsPath, level];
-        info.visibleName = level;
-        stageViewController.levelLoadingInfo = info;
-        
-    }
-    
     if([[segue identifier] isEqualToString:@"download"]) {
         CATransition* transition = [Util getPushCATransition];
         [self.view.window.layer addAnimation:transition forKey:nil];

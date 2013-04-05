@@ -11,12 +11,27 @@
 //timeout for nsurlrequests
 #define TIMEOUT 30.0f
 
+@class StageViewController;
+
 @interface Util : NSObject
 
 + (NSString*)applicationDocumentsDirectory;
+
 + (void)log:(NSError*)error;
+
 + (void)showComingSoonAlertView;
+
 + (void)alertWithText:(NSString*)text;
-+(CGFloat)getScreenHeight;
+
++ (CGFloat)getScreenHeight;
+
++ (CATransition*)getPushCATransition;
+
++ (StageViewController*)createStageViewControllerWithProgram:(NSString*)program;
+
++ (NSString*) lastProgram;
+
++ (void) setLastProgram:(NSString*)visibleName;
+
 
 @end

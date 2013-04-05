@@ -23,7 +23,7 @@
 #import "RecentProgramsStoreViewController.h"
 #import "CatrobatInformation.h"
 #import "CatrobatProject.h"
-#import "CattyAppDelegate.h"
+#import "AppDelegate.h"
 #import "Util.h"
 #import "TableUtil.h"
 #import "CellTagDefines.h"

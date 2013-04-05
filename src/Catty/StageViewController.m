@@ -17,12 +17,16 @@
 #import "WhenScript.h"
 #import "BroadcastScript.h"
 #import "Stage.h"
+#import "ProgramLoadingInfo.h"
+#import "Util.h"
+#import "ProgramDefines.h"
 
 @interface StageViewController () <SpriteManagerDelegate>
 
 @property (nonatomic, assign) BOOL firstDrawing;
 @property (nonatomic, assign) CGSize projectSize;
 @property (nonatomic, strong) BroadcastWaitHandler *broadcastWaitHandler;
+
 @end
 
 @implementation StageViewController
@@ -43,9 +47,23 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    [self.navigationController setNavigationBarHidden:YES animated:YES];
+    [Util setLastProgram:self.programLoadingInfo.visibleName];
+    
+    UIButton* backButton = [[UIButton alloc] initWithFrame:CGRectMake(10.0f, 7.0f, 33.0f, 44.0f)];
+    [backButton addTarget:self action:@selector(backButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
+    UIImage* backImage = [UIImage imageNamed:@"back"];
+    [backButton setImage:backImage forState:UIControlStateNormal];
+    [self.navigationController.view.superview addSubview:backButton];
+        
 	// Do any additional setup after loading the view.
 
    
+}
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [self.navigationController setNavigationBarHidden:NO animated:YES];
 }
 
 - (void)didReceiveMemoryWarning
@@ -103,12 +121,13 @@
         Sparrow.stage.width  = self.projectSize.width;      // = XML-Project-width
         Sparrow.stage.height = self.projectSize.height;     // = XML-Project-heigth
         self.view.frame = CGRectMake(xOffset, yOffset, width, height);  // STAGE!!! TODO: calculat ratio and offset
+        self.navigationController.view.frame = CGRectMake(xOffset, yOffset, width, height);
         
         Sparrow.stage.color = 0xFF0000;
 
         self.firstDrawing = NO;
         
-        
+                
 //        stage.pivotX = Sparrow.stage.width  / 2.0f;
 //        stage.pivotY = Sparrow.stage.height / 2.0f;
 //        stage.x = Sparrow.stage.width  / 2.0f;
@@ -122,17 +141,21 @@
 
 - (Program*)loadProgram
 {
-//    NSLog(@"Try to load project '%@'", self.levelLoadingInfo.visibleName);
-//    NSLog(@"Path: %@", self.levelLoadingInfo.basePath);
+    NSDebug(@"Try to load project '%@'", self.programLoadingInfo.visibleName);
+    NSLog(@"Path: %@", self.programLoadingInfo.basePath);
     
 
-//    NSString *xmlPath = [NSString stringWithFormat:@"%@code.xml", self.levelLoadingInfo.basePath];       // TODO: change const string!!!
-    NSString *xmlPath = @"/Users/dominik/Library/Application Support/iPhone Simulator/6.1/Applications/766CAD3C-D36E-46A9-B4CA-20AED25A85D8/Documents/levels/My first project/";
+    NSString *xmlPath = [NSString stringWithFormat:@"%@", self.programLoadingInfo.basePath];
     
-    NSLog(@"XML-Path: %@", xmlPath);
+    NSDebug(@"XML-Path: %@", xmlPath);
 
     Parser *parser = [[Parser alloc]init];
-    Program *program = [parser generateObjectForLevel:[xmlPath stringByAppendingString:@"code.xml"]];
+    Program *program = [parser generateObjectForLevel:[xmlPath stringByAppendingFormat:@"%@", kProgramCodeFileName]];
+                        
+    if(!program) {
+        NSLog(@"Program could not be loaded!");
+        abort();
+    }
 
     NSLog(@"ProjectResolution: width/height:  %f / %f", program.header.screenWidth.floatValue, program.header.screenHeight.floatValue);
 
@@ -188,5 +211,16 @@
     }
     return program;
 }
+
+
+- (void)backButtonPressed:(UIButton *)sender
+{
+    self.navigationController.view.frame = [[UIScreen mainScreen] applicationFrame];
+    [sender removeFromSuperview];
+    [self.navigationController popViewControllerAnimated:YES];
+
+}
+
+
 
 @end

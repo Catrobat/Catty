@@ -83,7 +83,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="d1W-id-jRf" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-2900" y="-2098"/>
+            <point key="canvasLocation" x="-2900" y="-2116"/>
         </scene>
         <!--My Programs View Controller-->
         <scene sceneID="54w-ir-dKC">
@@ -116,7 +116,6 @@
                                 <connections>
                                     <outlet property="iconImageView" destination="642-Kc-jVe" id="SsN-uJ-caO"/>
                                     <outlet property="titleLabel" destination="7VV-Cs-K8i" id="dum-xb-EpA"/>
-                                    <segue destination="Vaa-sF-tan" kind="push" identifier="SEGUE_TO_STAGE" id="I9F-HE-lA3"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -126,6 +125,9 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" id="WNU-lr-3un"/>
+                    <connections>
+                        <segue destination="Vaa-sF-tan" kind="push" identifier="segueToStage" id="SyO-93-8h2"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ysn-tw-Bdd" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -147,7 +149,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="l2N-cX-jqZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-3402" y="-2098"/>
+            <point key="canvasLocation" x="-3406" y="-2116"/>
         </scene>
         <!--Stage View Controller-->
         <scene sceneID="CNc-dU-wQn">
@@ -179,7 +181,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5vX-Ly-Lt0" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1376" y="-2992"/>
+            <point key="canvasLocation" x="-1268" y="-2985"/>
         </scene>
         <!--Recent Programs Store View Controller-->
         <scene sceneID="I6b-Zi-SPv">
@@ -465,13 +467,65 @@
     <resources>
         <image name="back@2x.png" width="86" height="112"/>
     </resources>
+    <classes>
+        <class className="CatrobatBaseCell" superclassName="UITableViewCell">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/CatrobatBaseCell.h"/>
+        </class>
+        <class className="CatrobatTableViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/CatrobatTableViewController.h"/>
+        </class>
+        <class className="ContinueImageCell" superclassName="DarkBlueGradientCell">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/ContinueImageCell.h"/>
+            <relationships>
+                <relationship kind="outlet" name="iconImageView" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="titleLabel" candidateClass="UILabel"/>
+            </relationships>
+        </class>
+        <class className="DarkBlueGradientCell" superclassName="CatrobatBaseCell">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/DarkBlueGradientCell.h"/>
+        </class>
+        <class className="DarkBlueGradientImageCell" superclassName="DarkBlueGradientCell">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/DarkBlueGradientImageCell.h"/>
+            <relationships>
+                <relationship kind="outlet" name="iconImageView" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="titleLabel" candidateClass="UILabel"/>
+            </relationships>
+        </class>
+        <class className="DownloadTabBarController" superclassName="UITabBarController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/DownloadTabBarController.h"/>
+        </class>
+        <class className="MyProgramsViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/MyProgramsViewController.h"/>
+        </class>
+        <class className="ProgramDetailStoreViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/ProgramDetailStoreViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="scrollViewOutlet" candidateClass="UIScrollView"/>
+            </relationships>
+        </class>
+        <class className="RecentProgramsStoreViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/RecentProgramsStoreViewController.h"/>
+        </class>
+        <class className="SPViewController" superclassName="GLKViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/SPViewController.h"/>
+        </class>
+        <class className="SearchStoreViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/SearchStoreViewController.h"/>
+        </class>
+        <class className="StageViewController" superclassName="SPViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/StageViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="backButtonPressed:" candidateClass="UIButton"/>
+            </relationships>
+        </class>
+    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="E8f-Km-7J7"/>
+        <segue reference="SyO-93-8h2"/>
         <segue reference="4hG-Yx-F4j"/>
     </inferredMetricsTieBreakers>
 </document>

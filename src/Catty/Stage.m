@@ -31,8 +31,7 @@
 
 - (id)init
 {
-    if ((self = [super init]))
-    {
+    if ((self = [super init])) {
     }
     return self;
 }
@@ -59,11 +58,9 @@
 
 - (void)setup
 {
-    
 
-    
 //    SPSprite *blub = [SPSprite sprite];
-//    
+//
 //    SPImage *img = [[SPImage alloc] initWithTexture:[Media atlasTexture:@"sparrow"]];
 //    int origWidth = img.width;
 //    int origHeight = img.height;

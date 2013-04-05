@@ -12,17 +12,20 @@
 	<dict>
 		<key>CFBundlePrimaryIcon</key>
 		<dict>
+			<key>UIPrerenderedIcon</key>
+			<true/>
 			<key>CFBundleIconFiles</key>
 			<array>
 				<string>Icon.png</string>
 				<string>Icon@2x.png</string>
 				<string>Icon~ipad.png</string>
 				<string>Icon@2x~ipad.png</string>
+				<string>catty_icon_retina.png</string>
 			</array>
 		</dict>
 	</dict>
 	<key>CFBundleIdentifier</key>
-	<string>at.tugraz.${PRODUCT_NAME:rfc1034identifier}</string>
+	<string>at.tugraz.DEVist.catroid-demo-app-1</string>
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleName</key>

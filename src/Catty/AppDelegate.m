@@ -6,25 +6,32 @@
 #import "AppDelegate.h"
 #import "Stage.h"
 #import "StageViewController.h"
+#import "FileManager.h"
+#import "Util.h"
 
-// --- c functions ---
 
 void onUncaughtException(NSException *exception)
 {
     NSLog(@"uncaught exception: %@", exception.description);
 }
 
-// ---
 
 @implementation AppDelegate
-//{
-//    SPViewController *_viewController;
-//    UIWindow *_window;
-//}
+
+- (FileManager*)fileManager {
+    if (_fileManager == nil) {
+        _fileManager = [[FileManager alloc] init];
+    }
+    
+    return _fileManager;
+}
+
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-//    NSSetUncaughtExceptionHandler(&onUncaughtException);
+    NSSetUncaughtExceptionHandler(&onUncaughtException);
+    
+    [self initNavigationBar];    
 //    
 //    CGRect screenBounds = [UIScreen mainScreen].bounds;
 //    _window = [[UIWindow alloc] initWithFrame:screenBounds];
@@ -42,5 +49,17 @@ void onUncaughtException(NSException *exception)
     
     return YES;
 }
+
+
+
+-(void) initNavigationBar {
+    
+    UIImage *navbarimage = [[UIImage imageNamed:@"darkblue"]
+                            resizableImageWithCapInsets:UIEdgeInsetsMake(0, 0, 0, 0)];
+    
+    [[UINavigationBar appearance] setBackgroundImage:navbarimage
+                                       forBarMetrics:UIBarMetricsDefault];    
+}
+
 
 @end
