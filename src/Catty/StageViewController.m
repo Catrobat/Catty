@@ -20,6 +20,7 @@
 #import "ProgramLoadingInfo.h"
 #import "Util.h"
 #import "ProgramDefines.h"
+#import "TestParser.h"
 
 @interface StageViewController () <SpriteManagerDelegate>
 
@@ -55,10 +56,6 @@
     UIImage* backImage = [UIImage imageNamed:@"back"];
     [backButton setImage:backImage forState:UIControlStateNormal];
     [self.navigationController.view.superview addSubview:backButton];
-        
-	// Do any additional setup after loading the view.
-
-   
 }
 
 - (void)viewWillDisappear:(BOOL)animated
@@ -80,9 +77,30 @@
     [super glkView:view drawInRect:rect];
     if (self.firstDrawing) {
         
+        // just for test parser
+        TestParser *testparser = [[TestParser alloc] init];
+        Program *program = [testparser generateDebugProject_GlideTo];
+        
+        //    TestParser *testparser = [[TestParser alloc]init];
+        //    projectName = @"defaultProject";
+        //    self.level = [testparser generateDebugLevel_GlideTo];
+        //    self.level = [testparser generateDebugLevel_nextCostume];
+        //    self.level = [testparser generateDebugLevel_HideShow];
+        //    self.level = [testparser generateDebugLevel_SetXY];
+        //    self.level = [testparser generateDebugLevel_broadcast];
+        //    self.level = [testparser generateDebugLevel_broadcastWait];
+        //    self.level = [testparser generateDebugLevel_comeToFront];
+        //    self.level = [testparser generateDebugLevel_changeSizeByN];
+        //    self.level = [testparser generateDebugLevel_parallelScripts];
+        //    self.level = [testparser generateDebugLevel_loops];
+        //    self.level = [testparser generateDebugLevel_rotate];
+        //    self.level = [testparser generateDebugLevel_rotateFullCircle];
+        //    self.level = [testparser generateDebugLevel_rotateAndMove];
+        
+        
         // parse Program
         Stage *stage = nil;
-        Program *program = [self loadProgram];
+        //Program *program = [self loadProgram];
         if ([self.root isKindOfClass:[Stage class]]) {
             stage = (Stage*)self.root;
             stage.program = program;

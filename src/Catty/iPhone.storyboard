@@ -467,58 +467,6 @@
     <resources>
         <image name="back@2x.png" width="86" height="112"/>
     </resources>
-    <classes>
-        <class className="CatrobatBaseCell" superclassName="UITableViewCell">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/CatrobatBaseCell.h"/>
-        </class>
-        <class className="CatrobatTableViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/CatrobatTableViewController.h"/>
-        </class>
-        <class className="ContinueImageCell" superclassName="DarkBlueGradientCell">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/ContinueImageCell.h"/>
-            <relationships>
-                <relationship kind="outlet" name="iconImageView" candidateClass="UIImageView"/>
-                <relationship kind="outlet" name="titleLabel" candidateClass="UILabel"/>
-            </relationships>
-        </class>
-        <class className="DarkBlueGradientCell" superclassName="CatrobatBaseCell">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/DarkBlueGradientCell.h"/>
-        </class>
-        <class className="DarkBlueGradientImageCell" superclassName="DarkBlueGradientCell">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/DarkBlueGradientImageCell.h"/>
-            <relationships>
-                <relationship kind="outlet" name="iconImageView" candidateClass="UIImageView"/>
-                <relationship kind="outlet" name="titleLabel" candidateClass="UILabel"/>
-            </relationships>
-        </class>
-        <class className="DownloadTabBarController" superclassName="UITabBarController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/DownloadTabBarController.h"/>
-        </class>
-        <class className="MyProgramsViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/MyProgramsViewController.h"/>
-        </class>
-        <class className="ProgramDetailStoreViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/ProgramDetailStoreViewController.h"/>
-            <relationships>
-                <relationship kind="outlet" name="scrollViewOutlet" candidateClass="UIScrollView"/>
-            </relationships>
-        </class>
-        <class className="RecentProgramsStoreViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/RecentProgramsStoreViewController.h"/>
-        </class>
-        <class className="SPViewController" superclassName="GLKViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/SPViewController.h"/>
-        </class>
-        <class className="SearchStoreViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/SearchStoreViewController.h"/>
-        </class>
-        <class className="StageViewController" superclassName="SPViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/StageViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="backButtonPressed:" candidateClass="UIButton"/>
-            </relationships>
-        </class>
-    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>

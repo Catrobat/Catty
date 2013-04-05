@@ -73,6 +73,9 @@
 		B4D940D9170ECB31003DDBFA /* My first project.catrobat in Resources */ = {isa = PBXBuildFile; fileRef = B4D940D6170ECAFF003DDBFA /* My first project.catrobat */; };
 		B4D940DC170ECB65003DDBFA /* ContinueImageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B4D940DB170ECB65003DDBFA /* ContinueImageCell.m */; };
 		B4D940E0170ECB8B003DDBFA /* DarkBlueGradientCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B4D940DF170ECB8B003DDBFA /* DarkBlueGradientCell.m */; };
+		B4DEFC87170F44D900DD1939 /* CattyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B4DEFC86170F44D900DD1939 /* CattyViewController.m */; };
+		B4DEFC8D170F463800DD1939 /* TestParserResources in Resources */ = {isa = PBXBuildFile; fileRef = B4DEFC8C170F463700DD1939 /* TestParserResources */; };
+		B4DEFC90170F464200DD1939 /* TestParser.m in Sources */ = {isa = PBXBuildFile; fileRef = B4DEFC8F170F464200DD1939 /* TestParser.m */; };
 		B4E94483170F14B0007C5FE0 /* catty_icon_retina.png in Resources */ = {isa = PBXBuildFile; fileRef = B4E94482170F14B0007C5FE0 /* catty_icon_retina.png */; };
 		B4F243C8170EBD7B007A071D /* iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B4F243C7170EBD7B007A071D /* iPhone.storyboard */; };
 		B4F243CF170EBF8F007A071D /* back.png in Resources */ = {isa = PBXBuildFile; fileRef = B4F243CD170EBF8F007A071D /* back.png */; };
@@ -281,6 +284,11 @@
 		B4D940DB170ECB65003DDBFA /* ContinueImageCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContinueImageCell.m; sourceTree = "<group>"; };
 		B4D940DE170ECB8B003DDBFA /* DarkBlueGradientCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DarkBlueGradientCell.h; sourceTree = "<group>"; };
 		B4D940DF170ECB8B003DDBFA /* DarkBlueGradientCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DarkBlueGradientCell.m; sourceTree = "<group>"; };
+		B4DEFC85170F44D900DD1939 /* CattyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CattyViewController.h; sourceTree = "<group>"; };
+		B4DEFC86170F44D900DD1939 /* CattyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CattyViewController.m; sourceTree = "<group>"; };
+		B4DEFC8C170F463700DD1939 /* TestParserResources */ = {isa = PBXFileReference; lastKnownFileType = folder; path = TestParserResources; sourceTree = "<group>"; };
+		B4DEFC8E170F464200DD1939 /* TestParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestParser.h; sourceTree = "<group>"; };
+		B4DEFC8F170F464200DD1939 /* TestParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestParser.m; sourceTree = "<group>"; };
 		B4E94482170F14B0007C5FE0 /* catty_icon_retina.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = catty_icon_retina.png; sourceTree = "<group>"; };
 		B4F243C5170EBD63007A071D /* StageViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = StageViewController.h; sourceTree = "<group>"; };
 		B4F243C6170EBD63007A071D /* StageViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = StageViewController.m; sourceTree = "<group>"; };
@@ -925,6 +933,33 @@
 			name = DarkBlueGradientCell;
 			sourceTree = "<group>";
 		};
+		B4DEFC89170F456D00DD1939 /* GDataXMLNode */ = {
+			isa = PBXGroup;
+			children = (
+				CD0CCEA1170CB39600B70036 /* GDataXMLNode.h */,
+				CD0CCEA2170CB39600B70036 /* GDataXMLNode.m */,
+			);
+			name = GDataXMLNode;
+			sourceTree = "<group>";
+		};
+		B4DEFC8A170F457700DD1939 /* ProjectParser */ = {
+			isa = PBXGroup;
+			children = (
+				CD0CCEF8170CB39700B70036 /* ProjectParser.h */,
+				CD0CCEF9170CB39700B70036 /* ProjectParser.m */,
+			);
+			name = ProjectParser;
+			sourceTree = "<group>";
+		};
+		B4DEFC8B170F458000DD1939 /* Parser */ = {
+			isa = PBXGroup;
+			children = (
+				CD0CCEEA170CB39700B70036 /* Parser.h */,
+				CD0CCEEB170CB39700B70036 /* Parser.m */,
+			);
+			name = Parser;
+			sourceTree = "<group>";
+		};
 		CD0CCE37170C9F9300B70036 /* Storyboard */ = {
 			isa = PBXGroup;
 			children = (
@@ -953,6 +988,8 @@
 		CD0CCE3F170CAFAF00B70036 /* UNUSED */ = {
 			isa = PBXGroup;
 			children = (
+				B4DEFC85170F44D900DD1939 /* CattyViewController.h */,
+				B4DEFC86170F44D900DD1939 /* CattyViewController.m */,
 				B4D9409E170EC0BB003DDBFA /* Media.h */,
 				B4D9409F170EC0BB003DDBFA /* Media.m */,
 				CD0CCE73170CB39600B70036 /* CattyAppDelegateOLD.h */,
@@ -1279,13 +1316,13 @@
 		CD0CCFF9170CB91A00B70036 /* Parser */ = {
 			isa = PBXGroup;
 			children = (
-				CD0CCEA1170CB39600B70036 /* GDataXMLNode.h */,
-				CD0CCEA2170CB39600B70036 /* GDataXMLNode.m */,
-				CD0CCEF8170CB39700B70036 /* ProjectParser.h */,
-				CD0CCEF9170CB39700B70036 /* ProjectParser.m */,
+				B4DEFC8E170F464200DD1939 /* TestParser.h */,
+				B4DEFC8F170F464200DD1939 /* TestParser.m */,
+				B4DEFC8C170F463700DD1939 /* TestParserResources */,
+				B4DEFC89170F456D00DD1939 /* GDataXMLNode */,
+				B4DEFC8A170F457700DD1939 /* ProjectParser */,
 				CD0CCF48170CB39700B70036 /* XMLParserProtocol.h */,
-				CD0CCEEA170CB39700B70036 /* Parser.h */,
-				CD0CCEEB170CB39700B70036 /* Parser.m */,
+				B4DEFC8B170F458000DD1939 /* Parser */,
 			);
 			name = Parser;
 			sourceTree = "<group>";
@@ -1525,6 +1562,7 @@
 				B4BCF404170ECF6C008EDF3A /* Default-568h@2x.png in Resources */,
 				B4BCF442170EDB80008EDF3A /* ProgramDefines.h in Resources */,
 				B4E94483170F14B0007C5FE0 /* catty_icon_retina.png in Resources */,
+				B4DEFC8D170F463800DD1939 /* TestParserResources in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1647,6 +1685,8 @@
 				B4BCF437170ED5D4008EDF3A /* LoadingView.m in Sources */,
 				B4BCF43B170ED60D008EDF3A /* FeaturedProgramsStoreViewController.m in Sources */,
 				B4BCF43F170ED669008EDF3A /* SearchStoreViewController.m in Sources */,
+				B4DEFC87170F44D900DD1939 /* CattyViewController.m in Sources */,
+				B4DEFC90170F464200DD1939 /* TestParser.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1854,6 +1894,7 @@
 				B45030AF170F22EF009265D6 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		C01FCF4E08A954540054247B /* Build configuration list for PBXProject "Catty" */ = {
 			isa = XCConfigurationList;
