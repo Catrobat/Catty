@@ -260,7 +260,11 @@
     [tween animateProperty:@"y" targetValue:newPosition.y];
     tween.repeatCount = 1; // only perform once
     [Sparrow.juggler addObject:tween];
-    
+}
+
+-(void)broadcast:(NSString *)message
+{
+    [[NSNotificationCenter defaultCenter] postNotificationName:message object:self];
 }
 
 

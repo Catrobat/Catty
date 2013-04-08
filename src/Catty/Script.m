@@ -25,7 +25,7 @@
 
 @implementation Script
 
-@synthesize brickList = _bricksArray;
+@synthesize brickList = _brickList;
 @synthesize action = _action;
 @synthesize currentBrickIndex = _currentBrickIndex;
 @synthesize startLoopIndexStack = _startLoopIndexStack;
@@ -45,12 +45,12 @@
 }
 
 #pragma mark - Custom getter and setter
--(NSMutableArray*)bricksArray
+-(NSMutableArray*)brickList
 {
-    if (_bricksArray == nil)
-        _bricksArray = [[NSMutableArray alloc] init];
+    if (_brickList == nil)
+        _brickList = [[NSMutableArray alloc] init];
     
-    return _bricksArray;
+    return _brickList;
 }
 -(NSMutableArray*)startLoopIndexStack
 {

@@ -26,7 +26,12 @@
 {
     NSLog(@"Performing: %@", self.description);
     
-    [self.object setXPosition:self.xPosition.floatValue];
+    CGPoint position = CGPointMake(self.xPosition.floatValue, self.object.position.y);
+    
+    [self.object glideToPosition:position withDurationInSeconds:0 fromScript:script];
+
+    
+    //[self.object setXPosition:self.xPosition.floatValue];
     
     //    float sleepTime = ((float)self.timeToWaitInMilliseconds.intValue)/1000;
     //    NSLog(@"wating for %f seconds", sleepTime);

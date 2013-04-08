@@ -339,111 +339,148 @@
     [self linkSpriteToScripts:project];
     return project;
 }
-//
-//-(Project *)generateDebugProject_SetXY
-//{
-//    Project *project = [[Project alloc]init];
-//    project.programName = @"setX setY";
-//    project.screenWidth  = [NSNumber numberWithInt:320];
-//    project.screenHeight = [NSNumber numberWithInt:480];
-//    
-//        
-//    LookData *look = [self createCostumeFromPath:@"normalcat.png" withName:@"cat1"];
-//    
-//    SetXBrick *setXBrick1 = [[SetXBrick alloc]initWithXPosition:-50];
-//    SetYBrick *setYBrick1 = [[SetYBrick alloc]initWithYPosition:-100];
-//    
-//    SetXBrick *setXBrick2 = [[SetXBrick alloc]initWithXPosition:0];
-//    SetYBrick *setYBrick2 = [[SetYBrick alloc]initWithYPosition:0];
-//    
-//    WaitBrick *waitBrick = [[WaitBrick alloc]init];
-//    waitBrick.timeToWaitInMilliSeconds = [NSNumber numberWithInt:1000];
-//    
-//    
-//    WhenScript *whenScript = [[WhenScript alloc]init];
-//    [whenScript addBricks:[NSMutableArray arrayWithObjects: setXBrick1, waitBrick, setYBrick1, waitBrick, setXBrick2, setYBrick2, nil]];
-//    
-//    
-//    NSArray *looks = [NSArray arrayWithObjects:look, nil];
-//    
-//    Sprite *sprite = [self createSprite:@"cat" withPositionX:(NSInteger)0 withPositionY:(NSInteger)0 withCostumes:looks setCostumeIndex:(NSInteger)0];
-//    [sprite addWhenScript:whenScript];
-//    
-//    project.spritesArray = [NSMutableArray arrayWithObject:sprite];
-//    
-//        [self linkSpriteToScripts:project];
-    //    return project;
-//
-//}
-//
-//-(Project *)generateDebugProject_broadcast
-//{
-//    Project *project = [[Project alloc]init];
-//    project.programName = @"broadcast";
-//    project.screenWidth  = [NSNumber numberWithInt:320];
-//    project.screenHeight = [NSNumber numberWithInt:480];
-//    
-//    SetLookBrick *setLookBrick = [[SetLookBrick alloc]init];
-//    setLookBrick.indexOfCostumeInArray = 0;
-//    StartScript *startScript = [[StartScript alloc]init];
-//    [startScript addBrick:setLookBrick];
-//    
-//    NSString *broadcastMessage = @"BROADCAST";
-//    
-//    //sprite1
-//    
-//    LookData *look = [self createCostumeFromPath:@"normalcat.png" withName:@"cat1"];
-//    
-//    BroadcastBrick *broadcastBrick = [[BroadcastBrick alloc]initWithMessage:broadcastMessage];
-//    
-//    WhenScript *whenScript = [[WhenScript alloc]init];
-//    [whenScript addBricks:[NSMutableArray arrayWithObjects: broadcastBrick, nil]];
-//    
-//    NSArray *looks = [NSArray arrayWithObjects:look, nil];
-//    
-//    Sprite *sprite1 = [self createSprite:@"cat1" withPositionX:(NSInteger)-70 withPositionY:(NSInteger)0 withCostumes:looks setCostumeIndex:(NSInteger)0];
-//    [sprite1 addStartScript:startScript];
-//    [sprite1 addWhenScript:whenScript];
-//    
-//    
-//    //sprite2
-//    
-//    HideBrick *hideBrick1 = [[HideBrick alloc]init];
-//    WaitBrick *waitBrick1 = [[WaitBrick alloc]init];
-//    waitBrick1.timeToWaitInMilliSeconds = [NSNumber numberWithInt:500];
-//    ShowBrick *showBrick1 = [[ShowBrick alloc]init];
-//    
-//    Script *broadcastScript1 = [[Script alloc]init];
-//    [broadcastScript1 addBricks:[NSArray arrayWithObjects:hideBrick1, waitBrick1, showBrick1, nil]];
-//    
-//    Sprite *sprite2 = [self createSprite:@"cat2" withPositionX:(NSInteger)70 withPositionY:(NSInteger)-100 withCostumes:looks setCostumeIndex:(NSInteger)0];
-//    [sprite2 addStartScript:startScript];
-//    [sprite2 addBroadcastScript:broadcastScript1 forMessage:broadcastMessage];
-//    
-//    
-//    //sprite3
-//    HideBrick *hideBrick2 = [[HideBrick alloc]init];
-//    WaitBrick *waitBrick2 = [[WaitBrick alloc]init];
-//    waitBrick2.timeToWaitInMilliSeconds = [NSNumber numberWithInt:500];
-//    ShowBrick *showBrick2 = [[ShowBrick alloc]init];
-//
-//    Script *broadcastScript2 = [[Script alloc]init];
-//    [broadcastScript2 addBricks:[NSArray arrayWithObjects:hideBrick2, waitBrick2, showBrick2, nil]];
-//    
-//    Sprite *sprite3 = [self createSprite:@"cat3" withPositionX:(NSInteger)70 withPositionY:(NSInteger)100 withCostumes:looks setCostumeIndex:(NSInteger)0];
-//    [sprite3 addStartScript:startScript];
-//    [sprite3 addBroadcastScript:broadcastScript2 forMessage:broadcastMessage];
-//
-//
-//    ///
-//    
-//    project.spritesArray = [NSMutableArray arrayWithObjects:sprite1, sprite2, sprite3, nil];
-//    
-//        [self linkSpriteToScripts:project];
-    //    return project;
-//    
-//}
-//
+
+-(Program*)generateDebugProject_SetXY
+{
+    Program *project = [[Program alloc]init];
+    project.header = [[Header alloc] init];
+    project.header.programName = @"setX setY";
+    project.header.screenWidth  = [NSNumber numberWithInt:320];
+    project.header.screenHeight = [NSNumber numberWithInt:480];
+    
+        
+    Look *look = [self createCostumeFromPath:@"normalcat.png" withName:@"cat1"];
+    
+    Setlookbrick *setLookBrick = [[Setlookbrick alloc]init];
+    setLookBrick.look = look;
+    
+    Setxbrick *setXBrick1 = [[Setxbrick alloc]initWithXPosition:[NSNumber numberWithInt:-50]];
+    Setybrick *setYBrick1 = [[Setybrick alloc]initWithYPosition:[NSNumber numberWithInt:-100]];
+    
+    Setxbrick *setXBrick2 = [[Setxbrick alloc]initWithXPosition:[NSNumber numberWithInt:0]];
+    Setybrick *setYBrick2 = [[Setybrick alloc]initWithYPosition:[NSNumber numberWithInt:0]];
+    
+    Waitbrick *waitBrick = [[Waitbrick alloc]init];
+    waitBrick.timeToWaitInSeconds = [NSNumber numberWithInt:1];
+    
+    Startscript *startScript = [[Startscript alloc]init];
+    startScript.brickList = [NSArray arrayWithObject:setLookBrick];
+    
+    Whenscript *whenScript = [[Whenscript alloc]init];
+    whenScript.brickList = [NSMutableArray arrayWithObjects: setXBrick1, waitBrick, setYBrick1, waitBrick, setXBrick2, setYBrick2, nil];
+    //[whenScript addBricks:[NSMutableArray arrayWithObjects: setXBrick1, waitBrick, setYBrick1, waitBrick, setXBrick2, setYBrick2, nil]];
+    
+    
+    NSArray *looks = [NSArray arrayWithObjects:look, nil];
+    
+    SpriteObject *sprite = [self createSprite:@"cat" withPositionX:(NSInteger)0 withPositionY:(NSInteger)0 withCostumes:looks setCostumeIndex:(NSInteger)0];
+    sprite.scriptList = [NSArray arrayWithObjects: startScript, whenScript, nil];
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *documentsDirectory = [paths objectAtIndex:0];
+    sprite.projectPath = [documentsDirectory stringByAppendingString:@"/levels/TestParser/"];
+    //[sprite addWhenScript:whenScript];
+    
+    project.objectList = [NSMutableArray arrayWithObject:sprite];
+    
+    [self linkSpriteToScripts:project];
+    return project;
+
+}
+
+-(Program*)generateDebugProject_broadcast
+{
+    Program *project = [[Program alloc]init];
+    project.header = [[Header alloc] init];
+    project.header.programName = @"broadcast";
+    project.header.screenWidth  = [NSNumber numberWithInt:320];
+    project.header.screenHeight = [NSNumber numberWithInt:480];
+    
+    
+    Look *look = [self createCostumeFromPath:@"normalcat.png" withName:@"cat1"];
+
+    Setlookbrick *setLookBrick = [[Setlookbrick alloc]init];
+    setLookBrick.look = look;
+    //setLookBrick.indexOfCostumeInArray = 0;
+    Startscript *startScript = [[Startscript alloc]init];
+    
+    [startScript addBrick:setLookBrick];
+    
+    NSString *broadcastMessage = @"BROADCAST";
+    
+    
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *documentsDirectory = [paths objectAtIndex:0];
+    
+    //sprite1
+        
+    Broadcastbrick *broadcastBrick = [[Broadcastbrick alloc]initWithMessage:broadcastMessage];
+    
+    Whenscript *whenScript = [[Whenscript alloc]init];
+    [whenScript addBricks:[NSMutableArray arrayWithObjects: broadcastBrick, nil]];
+    
+    NSArray *looks = [NSArray arrayWithObjects:look, nil];
+    
+    SpriteObject *sprite1 = [self createSprite:@"cat1" withPositionX:(NSInteger)-70 withPositionY:(NSInteger)0 withCostumes:looks setCostumeIndex:(NSInteger)0];
+    NSMutableArray *temp = [[NSMutableArray alloc] init];
+    [temp addObject:startScript];
+    [temp addObject:whenScript];
+    sprite1.scriptList = temp;
+    sprite1.projectPath = [documentsDirectory stringByAppendingString:@"/levels/TestParser/"];
+
+    //[sprite1 addStartScript:startScript];
+    //[sprite1 addWhenScript:whenScript];
+    
+    
+    //sprite2
+    
+    Hidebrick *hideBrick1 = [[Hidebrick alloc]init];
+    Waitbrick *waitBrick1 = [[Waitbrick alloc]init];
+    waitBrick1.timeToWaitInSeconds = [NSNumber numberWithFloat:0.5f];
+    Showbrick *showBrick1 = [[Showbrick alloc]init];
+    
+    Script *broadcastScript1 = [[Script alloc]init];
+    [broadcastScript1 addBricks:[NSArray arrayWithObjects:hideBrick1, waitBrick1, showBrick1, nil]];
+    
+    SpriteObject *sprite2 = [self createSprite:@"cat2" withPositionX:(NSInteger)70 withPositionY:(NSInteger)-100 withCostumes:looks setCostumeIndex:(NSInteger)0];
+    NSMutableArray *temp2 = [[NSMutableArray alloc] init];
+    [temp2 addObject:startScript];
+    [temp2 addObject:whenScript];
+    sprite2.scriptList = temp2;
+    sprite2.projectPath = [documentsDirectory stringByAppendingString:@"/levels/TestParser/"];
+
+    //[sprite2 addStartScript:startScript];
+    //[sprite2 addBroadcastScript:broadcastScript1 forMessage:broadcastMessage];
+    
+    
+    //sprite3
+    Hidebrick *hideBrick2 = [[Hidebrick alloc]init];
+    Waitbrick *waitBrick2 = [[Waitbrick alloc]init];
+    waitBrick2.timeToWaitInSeconds = [NSNumber numberWithFloat:0.5f];
+    Showbrick *showBrick2 = [[Showbrick alloc]init];
+
+    Script *broadcastScript2 = [[Script alloc]init];
+    [broadcastScript2 addBricks:[NSArray arrayWithObjects:hideBrick2, waitBrick2, showBrick2, nil]];
+    
+    SpriteObject *sprite3 = [self createSprite:@"cat3" withPositionX:(NSInteger)70 withPositionY:(NSInteger)100 withCostumes:looks setCostumeIndex:(NSInteger)0];
+    NSMutableArray *temp3 = [[NSMutableArray alloc] init];
+    [temp3 addObject:startScript];
+    [temp3 addObject:whenScript];
+    sprite3.scriptList = temp3;
+    sprite3.projectPath = [documentsDirectory stringByAppendingString:@"/levels/TestParser/"];
+
+    //[sprite3 addStartScript:startScript];
+    //[sprite3 addBroadcastScript:broadcastScript2 forMessage:broadcastMessage];
+
+
+    ///
+    
+    project.objectList = [NSMutableArray arrayWithObjects:sprite1, sprite2, sprite3, nil];
+    
+    [self linkSpriteToScripts:project];
+    return project;
+    
+}
+
 //-(Project *)generateDebugProject_broadcastWait
 //{
 //    Project *project = [[Project alloc]init];
