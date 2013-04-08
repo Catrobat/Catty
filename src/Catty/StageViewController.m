@@ -79,7 +79,7 @@
         
         // just for test parser
         TestParser *testparser = [[TestParser alloc] init];
-        Program *program = [testparser generateDebugProject_broadcast];
+        Program *program = [testparser generateDebugProject_SetXY];
         self.projectSize = CGSizeMake(program.header.screenWidth.floatValue, program.header.screenHeight.floatValue); // (normally set in loadProgram)
         
         //    TestParser *testparser = [[TestParser alloc]init];
@@ -101,7 +101,7 @@
         
         // parse Program
         Stage *stage = nil;
-        //Program *program = [self loadProgram];
+//        Program* program = [self loadProgram];
         if ([self.root isKindOfClass:[Stage class]]) {
             stage = (Stage*)self.root;
             stage.program = program;

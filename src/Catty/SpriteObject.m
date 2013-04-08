@@ -219,7 +219,6 @@
     NSString *path = [self pathForLook:look];
     self.texture = [SPTexture textureWithContentsOfFile:path];
     [self readjustSize];
-    self.position = self.position;  // yes! we need this! :P
     self.lookIndex = [self.lookList indexOfObject:look];
 }
 
@@ -236,7 +235,6 @@
     NSString* path = [self pathForLook:look];
     self.texture = [SPTexture textureWithContentsOfFile:path];
     [self readjustSize];
-    self.position = self.position;  // yes! we need this! :P
     self.lookIndex = [self.lookList indexOfObject:look];
 }
 
@@ -270,11 +268,13 @@
     CGPoint newPosition;
     newPosition.x = (position.x + Sparrow.stage.width  / 2.0f);
     newPosition.y = (position.y + Sparrow.stage.height / 2.0f);
+
     
     SPTween *tween = [SPTween tweenWithTarget:self time:durationInSeconds];
     [tween animateProperty:@"x" targetValue:newPosition.x];
     [tween animateProperty:@"y" targetValue:newPosition.y];
-    tween.repeatCount = 1; // only perform once
+    [tween moveToX:newPosition.x y:newPosition.y];
+    tween.repeatCount = 1;
     [Sparrow.juggler addObject:tween];
 }
 
@@ -289,6 +289,13 @@
 {
     return [NSString stringWithFormat:@"%@images/%@", self.projectPath, look.fileName];
 }
+
+
+-(void)onTweenCompleted:(id)sender
+{
+    NSLog(@"Called!");
+}
+
 
 
 @end

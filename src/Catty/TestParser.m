@@ -749,7 +749,7 @@
     NSString *documentsDirectory = [paths objectAtIndex:0];
     
     Waitbrick *waitBrick = [[Waitbrick alloc]init];
-    waitBrick.timeToWaitInSeconds = [NSNumber numberWithInt:0.1];
+    waitBrick.timeToWaitInSeconds = [NSNumber numberWithFloat:0.1f];
     
     Turnrightbrick  *turnRight = [[Turnrightbrick  alloc]initWithDegrees:[NSNumber numberWithInt:10]];
 
