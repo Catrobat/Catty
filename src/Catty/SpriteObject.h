@@ -20,7 +20,6 @@
 @property (assign, nonatomic) CGSize originalSize;
 @property (assign, nonatomic) BOOL showSprite;
 @property (assign, nonatomic) CGPoint position;
-@property (assign, nonatomic) float rotationInDegrees;
 @property (assign, nonatomic) float alphaValue;
 
 
