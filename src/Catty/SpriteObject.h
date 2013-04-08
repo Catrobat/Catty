@@ -48,7 +48,7 @@
 - (void)placeAt:(GLKVector3)newPosition;
 - (void)changeLook:(Look*)look;
 - (void)nextLook;
-- (void)glideToPosition:(GLKVector3)position withDurationInSeconds:(int)durationInSeconds fromScript:(Script*)script;
+- (void)glideToPosition:(CGPoint)position withDurationInSeconds:(int)durationInSeconds fromScript:(Script*)script;
 - (void)hide;
 - (void)show;
 - (void)setXPosition:(float)xPosition;

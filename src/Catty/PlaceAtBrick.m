@@ -35,7 +35,13 @@
     
     */
     
-    [self.object placeAt:GLKVector3Make(self.xPosition.floatValue, self.yPosition.floatValue, 0.0f)];
+    CGPoint position = CGPointMake(self.xPosition.floatValue, self.yPosition.floatValue);
+    
+    [self.object glideToPosition:position withDurationInSeconds:0 fromScript:script];
+    //[NSThread sleepForTimeInterval:self.durationInSeconds.floatValue];
+
+    
+    //[self.object placeAt:GLKVector3Make(self.xPosition.floatValue, self.yPosition.floatValue, 0.0f)];
 }
 
 #pragma mark - Description
