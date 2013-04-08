@@ -228,6 +228,17 @@
     self.lookIndex = [self.lookList indexOfObject:look];
 }
 
+-(void)hide
+{
+    self.visible = NO;
+    
+}
+
+-(void)show
+{
+    self.visible = YES;
+}
+
 
 #pragma mark - Helper
 
