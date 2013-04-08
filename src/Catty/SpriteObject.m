@@ -33,8 +33,9 @@
 {
     _position = position;
     
-    self.x = (position.x + Sparrow.stage.width  / 2.0f) - (self.width  / 2.0f);
-    self.y = (position.y + Sparrow.stage.height / 2.0f) - (self.height / 2.0f);
+    self.x = (position.x + Sparrow.stage.width  / 2.0f);
+    self.y = (position.y + Sparrow.stage.height / 2.0f);
+    
 }
 
 
@@ -199,6 +200,17 @@
 }
 
 
+#pragma mark - Overwritten Methods
+-(void) readjustSize
+{
+    [super readjustSize];
+    self.pivotX = self.width / 2.0f;
+    self.pivotY = self.height / 2.0f;
+}
+
+
+ 
+
 
 // --- actions ---
 
@@ -239,21 +251,26 @@
     self.visible = YES;
 }
 
-
-#pragma mark - Helper
-
--(NSString*)pathForLook:(Look*)look
+-(void)turnLeft:(float)degrees
 {
-    return [NSString stringWithFormat:@"%@images/%@", self.projectPath, look.fileName];
+    self.rotation -= SP_D2R(degrees);
 }
+
+-(void)turnRight:(float)degrees
+{
+    self.rotation += SP_D2R(degrees);
+}
+
+
 
 - (void)glideToPosition:(CGPoint)position withDurationInSeconds:(int)durationInSeconds fromScript:(Script *)script {
 
     // recalculate position
 #warning todo: maybe change this ...
     CGPoint newPosition;
-    newPosition.x = (position.x + Sparrow.stage.width  / 2.0f) - (self.width  / 2.0f);
-    newPosition.y = (position.y + Sparrow.stage.height / 2.0f) - (self.height / 2.0f);
+    newPosition.x = (position.x + Sparrow.stage.width  / 2.0f);
+    newPosition.y = (position.y + Sparrow.stage.height / 2.0f);
+    
     
     SPTween *tween = [SPTween tweenWithTarget:self time:durationInSeconds];
     [tween animateProperty:@"x" targetValue:newPosition.x];
@@ -261,6 +278,13 @@
     tween.repeatCount = 1; // only perform once
     [Sparrow.juggler addObject:tween];
     
+}
+
+#pragma mark - Helper
+
+-(NSString*)pathForLook:(Look*)look
+{
+    return [NSString stringWithFormat:@"%@images/%@", self.projectPath, look.fileName];
 }
 
 

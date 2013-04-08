@@ -665,15 +665,15 @@
     Look *look= [self createCostumeFromPath:@"cheshirecat.png" withName:@"cat1"];
     Setlookbrick *setLook = [[Setlookbrick alloc]init];
     setLook.look = look;
-    Placeatbrick   *placeAt   = [[Placeatbrick   alloc]initWithXPosition:[NSNumber numberWithFloat:-80.0f] yPosition:[NSNumber numberWithFloat:-120.0f]];
+    Placeatbrick   *placeAt   = [[Placeatbrick   alloc]initWithXPosition:[NSNumber numberWithFloat:0.0f] yPosition:[NSNumber numberWithFloat: 0.0f]];
     Turnleftbrick  *turnLeft1 = [[Turnleftbrick  alloc]initWithDegrees:[NSNumber numberWithInt:45]];
-    Turnrightbrick *turnRight = [[Turnrightbrick alloc]initWithDegrees:[NSNumber numberWithInt:45]];
+    Turnrightbrick *turnRight = [[Turnrightbrick alloc]initWithDegrees:[NSNumber numberWithInt:90]];
     Turnleftbrick  *turnLeft2 = [[Turnleftbrick  alloc]initWithDegrees:[NSNumber numberWithInt:45]];
     
     Waitbrick *waitBrick1 = [[Waitbrick alloc]init];
-    waitBrick1.timeToWaitInSeconds = [NSNumber numberWithInt:5];
+    waitBrick1.timeToWaitInSeconds = [NSNumber numberWithInt:1];
     Waitbrick *waitBrick2 = [[Waitbrick alloc]init];
-    waitBrick2.timeToWaitInSeconds = [NSNumber numberWithInt:5];
+    waitBrick2.timeToWaitInSeconds = [NSNumber numberWithInt:1];
     
     Whenscript *whenScript = [[Whenscript alloc]init];
     whenScript.brickList = [NSArray arrayWithObjects:turnLeft1, waitBrick1, turnRight, waitBrick2, turnLeft2, nil];
