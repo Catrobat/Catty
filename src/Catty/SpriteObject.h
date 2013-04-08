@@ -47,7 +47,7 @@
 // actions
 - (void)placeAt:(GLKVector3)newPosition;
 - (void)changeLook:(Look*)look;
-- (void)nextCostume;
+- (void)nextLook;
 - (void)glideToPosition:(GLKVector3)position withDurationInSeconds:(int)durationInSeconds fromScript:(Script*)script;
 - (void)hide;
 - (void)show;

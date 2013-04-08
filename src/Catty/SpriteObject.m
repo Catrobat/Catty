@@ -15,6 +15,7 @@
 
 @interface SpriteObject()
 @property (nonatomic, strong) NSMutableArray *activeScripts;
+@property (assign) int lookIndex;
 @end
 
 @implementation SpriteObject
@@ -44,7 +45,7 @@
     self.showSprite = YES;
     self.alphaValue = 1.0f;
     self.position = CGPointMake(0.0f, 0.0f);
-    
+    self.lookIndex = 0;
 }
 
 
@@ -203,10 +204,36 @@
 
 -(void)changeLook:(Look*)look
 {
-    NSString *path = [NSString stringWithFormat:@"%@images/%@", self.projectPath, look.fileName];
+    NSString *path = [self pathForLook:look];
     self.texture = [SPTexture textureWithContentsOfFile:path];
     [self readjustSize];
     self.position = self.position;  // yes! we need this! :P
+    self.lookIndex = [self.lookList indexOfObject:look];
+}
+
+
+-(void)nextLook
+{
+    if (self.lookIndex == [self.lookList count]-1) {
+        self.lookIndex = 0;
+    }
+    else {
+        self.lookIndex++;
+    }
+    Look* look = [self.lookList objectAtIndex:self.lookIndex];
+    NSString* path = [self pathForLook:look];
+    self.texture = [SPTexture textureWithContentsOfFile:path];
+    [self readjustSize];
+    self.position = self.position;  // yes! we need this! :P
+    self.lookIndex = [self.lookList indexOfObject:look];
+}
+
+
+#pragma mark - Helper
+
+-(NSString*)pathForLook:(Look*)look
+{
+    return [NSString stringWithFormat:@"%@images/%@", self.projectPath, look.fileName];
 }
 
 
