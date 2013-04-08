@@ -271,7 +271,6 @@
     newPosition.x = (position.x + Sparrow.stage.width  / 2.0f);
     newPosition.y = (position.y + Sparrow.stage.height / 2.0f);
     
-    
     SPTween *tween = [SPTween tweenWithTarget:self time:durationInSeconds];
     [tween animateProperty:@"x" targetValue:newPosition.x];
     [tween animateProperty:@"y" targetValue:newPosition.y];

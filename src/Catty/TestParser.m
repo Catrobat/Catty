@@ -665,7 +665,7 @@
     Look *look= [self createCostumeFromPath:@"cheshirecat.png" withName:@"cat1"];
     Setlookbrick *setLook = [[Setlookbrick alloc]init];
     setLook.look = look;
-    Placeatbrick   *placeAt   = [[Placeatbrick   alloc]initWithXPosition:[NSNumber numberWithFloat:0.0f] yPosition:[NSNumber numberWithFloat: 0.0f]];
+    Placeatbrick   *placeAt   = [[Placeatbrick   alloc]initWithXPosition:[NSNumber numberWithFloat:-80.0f] yPosition:[NSNumber numberWithFloat: -120.0f]];
     Turnleftbrick  *turnLeft1 = [[Turnleftbrick  alloc]initWithDegrees:[NSNumber numberWithInt:45]];
     Turnrightbrick *turnRight = [[Turnrightbrick alloc]initWithDegrees:[NSNumber numberWithInt:90]];
     Turnleftbrick  *turnLeft2 = [[Turnleftbrick  alloc]initWithDegrees:[NSNumber numberWithInt:45]];
@@ -699,79 +699,89 @@
 
     
 }
+
+-(Program*)generateDebugProject_rotateFullCircle
+{
+    Program *project = [[Program alloc]init];
+    project.header = [[Header alloc] init];
+    project.header.programName = @"rotate";
+    project.header.screenWidth  = [NSNumber numberWithInt:320];
+    project.header.screenHeight = [NSNumber numberWithInt:480];
+    
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *documentsDirectory = [paths objectAtIndex:0];
+    
+    Waitbrick *waitBrick = [[Waitbrick alloc]init];
+    waitBrick.timeToWaitInSeconds = [NSNumber numberWithInt:0.1];
+    
+    Turnrightbrick  *turnRight = [[Turnrightbrick  alloc]initWithDegrees:[NSNumber numberWithInt:10]];
+
+
+    
+    Look *look= [self createCostumeFromPath:@"cheshirecat.png" withName:@"cat1"];
+    Setlookbrick *setLook = [[Setlookbrick alloc]init];
+    setLook.look = look;
+    
+    NSArray *looks = [NSArray arrayWithObjects:look, nil];
+    
+
+    
+    // sprite 1
+    Placeatbrick   *placeAt1 = [[Placeatbrick   alloc]initWithXPosition:[NSNumber numberWithFloat:80.0f] yPosition:[NSNumber numberWithFloat: 120.0f]];
+    Turnleftbrick  *turnLeft = [[Turnleftbrick  alloc]initWithDegrees:[NSNumber numberWithInt:10]];
+
+    NSMutableArray *bricks1 = [NSMutableArray arrayWithCapacity:73];
+    [bricks1 addObject:setLook];
+    for (int i=0; i<36; i++) {
+        [bricks1 addObject:turnLeft];
+        [bricks1 addObject:waitBrick];
+    }
+    
+    Whenscript *whenScript1 = [[Whenscript alloc]init];
+    whenScript1.brickList = bricks1;
+ 
+
+    Startscript *startScript1 = [[Startscript alloc]init];
+    startScript1.brickList = [NSArray arrayWithObjects:setLook, placeAt1, nil];
+    
+    SpriteObject *sprite1 = [self createSprite:@"cat1" withPositionX:(NSInteger)0 withPositionY:(NSInteger)0 withCostumes:looks setCostumeIndex:(NSInteger)0];
+    sprite1.projectPath = [documentsDirectory stringByAppendingString:@"/levels/TestParser/"];
+    sprite1.scriptList = [NSArray arrayWithObjects:startScript1, whenScript1, nil];
 //
-//-(Project*)generateDebugProject_rotateFullCircle
-//{
-//    Project *project = [[Project alloc]init];
-//    project.programName = @"rotate";
-//    project.screenWidth  = [NSNumber numberWithInt:320];
-//    project.screenHeight = [NSNumber numberWithInt:480];
-//    
-//    SetLookBrick *setLook = [[SetLookBrick alloc]init];
-//    setLook.indexOfCostumeInArray = 0;
-//    
-//    LookData *look= [self createCostumeFromPath:@"cheshirecat.png" withName:@"cat1"];
-//    NSArray *looks = [NSArray arrayWithObjects:look, nil];
-//    
-//    WaitBrick *waitBrick = [[WaitBrick alloc]init];
-//    waitBrick.timeToWaitInMilliSeconds = [NSNumber numberWithInt:100];
-//    
-//    
-//    // sprite 1
-//    PlaceAtBrick   *placeAt1 = [[PlaceAtBrick   alloc]initWithPosition:GLKVector3Make(-80.0f, -120.0f, 0.0f)];
-//    TurnLeftBrick  *turnLeft = [[TurnLeftBrick  alloc]initWithDegrees:10];
-//
-//    NSMutableArray *bricks1 = [NSMutableArray arrayWithCapacity:73];
-//    [bricks1 addObject:setLook];
-//    for (int i=0; i<36; i++) {
-//        [bricks1 addObject:turnLeft];
-//        [bricks1 addObject:waitBrick];
-//    }
-//    
-//    Script *whenScript1 = [[Script alloc]init];
-//    [whenScript1 addBricks:[NSArray arrayWithArray:bricks1]];
-//    
-//    Script *startScript1 = [[Script alloc]init];
-//    [startScript1 addBrick:setLook];
-//    [startScript1 addBrick:placeAt1];
-//    
-//    Sprite *sprite1 = [self createSprite:@"cat1" withPositionX:(NSInteger)0 withPositionY:(NSInteger)0 withCostumes:looks setCostumeIndex:(NSInteger)0];
-//    [sprite1 addWhenScript:whenScript1];
-//    [sprite1 addStartScript:startScript1];
-//    
-//    
-//    
-//    // sprite 2
-//    PlaceAtBrick   *placeAt2 = [[PlaceAtBrick   alloc]initWithPosition:GLKVector3Make(80.0f, 120.0f, 0.0f)];
-//    TurnRightBrick  *turnRight = [[TurnRightBrick  alloc]initWithDegrees:10];
-//    
-//    NSMutableArray *bricks2 = [NSMutableArray arrayWithCapacity:73];
-//    [bricks2 addObject:setLook];
-//    for (int i=0; i<36; i++) {
-//        [bricks2 addObject:turnRight];
-//        [bricks2 addObject:waitBrick];
-//    }
-//    
-//    Script *whenScript2 = [[Script alloc]init];
-//    [whenScript2 addBricks:[NSArray arrayWithArray:bricks2]];
-//    
-//    Script *startScript2 = [[Script alloc]init];
-//    [startScript2 addBrick:setLook];
-//    [startScript2 addBrick:placeAt2];
-//    
-//    Sprite *sprite2 = [self createSprite:@"cat2" withPositionX:(NSInteger)0 withPositionY:(NSInteger)0 withCostumes:looks setCostumeIndex:(NSInteger)0];
-//    [sprite2 addWhenScript:whenScript2];
-//    [sprite2 addStartScript:startScript2];
-//
-//    
-//    
-//    ////
-//    project.spritesArray = [NSMutableArray arrayWithObjects:sprite1, sprite2, nil];
-//    
-//        [self linkSpriteToScripts:project];
-    //    return project;
-//    
-//}
+    
+    
+    // sprite 2
+    
+    Look *look2= [self createCostumeFromPath:@"cheshirecat.png" withName:@"cat2"];
+    Setlookbrick *setLook2 = [[Setlookbrick alloc]init];
+    setLook2.look = look2;
+    NSArray *looks2 = [NSArray arrayWithObjects:look2, nil];
+    
+    Placeatbrick   *placeAt2 = [[Placeatbrick   alloc]initWithXPosition:[NSNumber numberWithFloat:-80.0f] yPosition:[NSNumber numberWithFloat: -120.0f]];
+    
+    NSMutableArray *bricks2 = [NSMutableArray arrayWithCapacity:73];
+    [bricks2 addObject:setLook2];
+    for (int i=0; i<36; i++) {
+        [bricks2 addObject:turnRight];
+        [bricks2 addObject:waitBrick];
+    }
+    
+    Whenscript *whenScript2 = [[Whenscript alloc]init];
+    whenScript2.brickList = bricks2;
+    
+    Startscript *startScript2 = [[Startscript alloc]init];
+    startScript2.brickList = [NSArray arrayWithObjects:setLook2, placeAt2, nil];
+    
+    SpriteObject *sprite2 = [self createSprite:@"cat2" withPositionX:(NSInteger)0 withPositionY:(NSInteger)0 withCostumes:looks2 setCostumeIndex:(NSInteger)0];
+    sprite2.projectPath = [documentsDirectory stringByAppendingString:@"/levels/TestParser/"];
+    sprite2.scriptList = [NSArray arrayWithObjects:startScript2, whenScript2, nil];
+
+    project.objectList = [NSMutableArray arrayWithObjects:sprite1, sprite2, nil];
+    
+    [self linkSpriteToScripts:project];
+    return project;
+    
+}
 //
 //-(Project*)generateDebugProject_rotateAndMove
 //{
