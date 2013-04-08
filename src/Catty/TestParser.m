@@ -654,48 +654,51 @@
     //    return project;
 //}
 //
-//-(Project*)generateDebugProject_rotate
-//{
-//    Project *project = [[Project alloc]init];
-//    project.programName = @"rotate";
-//    project.screenWidth  = [NSNumber numberWithInt:320];
-//    project.screenHeight = [NSNumber numberWithInt:480];
-//    
-//    SetLookBrick *setLook = [[SetLookBrick alloc]init];
-//    setLook.indexOfCostumeInArray = 0;
-//    PlaceAtBrick   *placeAt   = [[PlaceAtBrick   alloc]initWithPosition:GLKVector3Make(-80.0f, -120.0f, 0.0f)];
-//    TurnLeftBrick  *turnLeft1 = [[TurnLeftBrick  alloc]initWithDegrees:45];
-//    TurnRightBrick *turnRight = [[TurnRightBrick alloc]initWithDegrees:90];
-//    TurnLeftBrick  *turnLeft2 = [[TurnLeftBrick  alloc]initWithDegrees:45];
-//
-//    
-//    LookData *look= [self createCostumeFromPath:@"cheshirecat.png" withName:@"cat1"];
-//    
-//    WaitBrick *waitBrick1 = [[WaitBrick alloc]init];
-//    waitBrick1.timeToWaitInMilliSeconds = [NSNumber numberWithInt:500];
-//    WaitBrick *waitBrick2 = [[WaitBrick alloc]init];
-//    waitBrick2.timeToWaitInMilliSeconds = [NSNumber numberWithInt:500];
-//    
-//    WhenScript *whenScript = [[WhenScript alloc]init];
-//    [whenScript addBricks:[NSMutableArray arrayWithObjects: turnLeft1, waitBrick1, turnRight, waitBrick2, turnLeft2, nil]];
-//    
-//    StartScript *startScript = [[StartScript alloc]init];
-//    [startScript addBrick:setLook];
-//    [startScript addBrick:placeAt];
-//    
-//    NSArray *looks = [NSArray arrayWithObjects:look, nil];
-//    
-//    Sprite *sprite = [self createSprite:@"cat" withPositionX:(NSInteger)0 withPositionY:(NSInteger)0 withCostumes:looks setCostumeIndex:(NSInteger)0];
-//    [sprite addWhenScript:whenScript];
-//    [sprite addStartScript:startScript];
-//    
-//    
-//    project.spritesArray = [NSMutableArray arrayWithObject:sprite];
-//    
-//        [self linkSpriteToScripts:project];
-    //    return project;
-//    
-//}
+-(Program*)generateDebugProject_rotate
+{
+    Program *project = [[Program alloc]init];
+    project.header = [[Header alloc] init];
+    project.header.programName = @"rotate";
+    project.header.screenWidth  = [NSNumber numberWithInt:320];
+    project.header.screenHeight = [NSNumber numberWithInt:480];
+    
+    Look *look= [self createCostumeFromPath:@"cheshirecat.png" withName:@"cat1"];
+    Setlookbrick *setLook = [[Setlookbrick alloc]init];
+    setLook.look = look;
+    Placeatbrick   *placeAt   = [[Placeatbrick   alloc]initWithXPosition:[NSNumber numberWithFloat:-80.0f] yPosition:[NSNumber numberWithFloat:-120.0f]];
+    Turnleftbrick  *turnLeft1 = [[Turnleftbrick  alloc]initWithDegrees:[NSNumber numberWithInt:45]];
+    Turnrightbrick *turnRight = [[Turnrightbrick alloc]initWithDegrees:[NSNumber numberWithInt:45]];
+    Turnleftbrick  *turnLeft2 = [[Turnleftbrick  alloc]initWithDegrees:[NSNumber numberWithInt:45]];
+    
+    Waitbrick *waitBrick1 = [[Waitbrick alloc]init];
+    waitBrick1.timeToWaitInSeconds = [NSNumber numberWithInt:5];
+    Waitbrick *waitBrick2 = [[Waitbrick alloc]init];
+    waitBrick2.timeToWaitInSeconds = [NSNumber numberWithInt:5];
+    
+    Whenscript *whenScript = [[Whenscript alloc]init];
+    whenScript.brickList = [NSArray arrayWithObjects:turnLeft1, waitBrick1, turnRight, waitBrick2, turnLeft2, nil];
+    
+    Startscript *startScript = [[Startscript alloc]init];
+    startScript.brickList = [NSArray arrayWithObjects:setLook, placeAt, nil];
+    
+    NSArray *looks = [NSArray arrayWithObjects:look, nil];
+    
+    SpriteObject *sprite = [self createSprite:@"cat" withPositionX:(NSInteger)0 withPositionY:(NSInteger)0 withCostumes:looks setCostumeIndex:(NSInteger)0];
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *documentsDirectory = [paths objectAtIndex:0];
+    sprite.projectPath = [documentsDirectory stringByAppendingString:@"/levels/TestParser/"];
+    NSMutableArray *temp = [[NSMutableArray alloc] init];
+    [temp addObject:startScript];
+    [temp addObject:whenScript];
+    sprite.scriptList = temp;
+    
+    project.objectList = [NSMutableArray arrayWithObject:sprite];
+    
+    [self linkSpriteToScripts:project];
+    return project;
+
+    
+}
 //
 //-(Project*)generateDebugProject_rotateFullCircle
 //{
