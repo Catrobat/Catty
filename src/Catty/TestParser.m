@@ -209,14 +209,14 @@
     setLookBrick.look = look;
     Glidetobrick *glideBrick1 = [[Glidetobrick alloc]initWithXPosition:[NSNumber numberWithInt:100]
                                                              yPosition:[NSNumber numberWithInt:100]
-                                                andDurationInMilliSecs:[NSNumber numberWithInt:1000]];
+                                                andDurationInMilliSecs:[NSNumber numberWithInt:3]];
                                  
     Glidetobrick *glideBrick2 =[[Glidetobrick alloc]initWithXPosition:[NSNumber numberWithInt:100]
                                                             yPosition:[NSNumber numberWithInt:-50]
-                                               andDurationInMilliSecs:[NSNumber numberWithInt:500]];
+                                               andDurationInMilliSecs:[NSNumber numberWithInt:1]];
                                  
     Waitbrick *waitBrick = [[Waitbrick alloc]init];
-    waitBrick.timeToWaitInSeconds = [NSNumber numberWithInt:1000];
+    waitBrick.timeToWaitInSeconds = [NSNumber numberWithInt:3];
     Placeatbrick *placeAtBrick = [[Placeatbrick alloc]init];
     
     Startscript *startScript = [[Startscript alloc]init];

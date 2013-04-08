@@ -35,7 +35,9 @@
     NSLog(@"Performing: %@", self.description);
 
         
-    GLKVector3 position = GLKVector3Make(self.xDestination.floatValue, self.yDestination.floatValue, 0.0f);
+    //GLKVector3 position = GLKVector3Make(self.xDestination.floatValue, self.yDestination.floatValue, 0.0f);
+    
+    CGPoint position = CGPointMake(self.xDestination.floatValue, self.yDestination.floatValue);
     
     [self.object glideToPosition:position withDurationInSeconds:self.durationInSeconds.floatValue fromScript:script];
     [NSThread sleepForTimeInterval:self.durationInSeconds.floatValue];
