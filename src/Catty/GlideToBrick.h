@@ -17,6 +17,6 @@
 @property (nonatomic, strong) NSNumber *xDestination;
 @property (nonatomic, strong) NSNumber *yDestination;
 
--(id)initWithXPosition:(NSNumber*)xPosition yPosition:(NSNumber*)yPosition andDurationInMilliSecs:(NSNumber*)durationInMilliSecs;
+-(id)initWithXPosition:(NSNumber*)xPosition yPosition:(NSNumber*)yPosition andDurationInSeconds:(NSNumber*)durationInMilliSecs;
 
 @end
