@@ -80,24 +80,24 @@
         
         // just for test parser
         TestParser *testparser = [[TestParser alloc] init];
-        Program *program = [testparser generateDebugProject_rotateAndMove];
+        Program *program = [testparser generateDebugProject_broadcast];
         self.projectSize = CGSizeMake(program.header.screenWidth.floatValue, program.header.screenHeight.floatValue); // (normally set in loadProgram)
         
-        //    TestParser *testparser = [[TestParser alloc]init];
-        //    projectName = @"defaultProject";
-        //    self.level = [testparser generateDebugLevel_GlideTo];
-        //    self.level = [testparser generateDebugLevel_nextCostume];
-        //    self.level = [testparser generateDebugLevel_HideShow];
-        //    self.level = [testparser generateDebugLevel_SetXY];
-        //    self.level = [testparser generateDebugLevel_broadcast];
-        //    self.level = [testparser generateDebugLevel_broadcastWait];
-        //    self.level = [testparser generateDebugLevel_comeToFront];
-        //    self.level = [testparser generateDebugLevel_changeSizeByN];
-        //    self.level = [testparser generateDebugLevel_parallelScripts];
-        //    self.level = [testparser generateDebugLevel_loops];
-        //    self.level = [testparser generateDebugLevel_rotate];
-        //    self.level = [testparser generateDebugLevel_rotateFullCircle];
-        //    self.level = [testparser generateDebugLevel_rotateAndMove];
+//    TestParser *testparser = [[TestParser alloc]init];
+//    projectName = @"defaultProject";
+//    self.level = [testparser generateDebugLevel_GlideTo];
+//    self.level = [testparser generateDebugLevel_nextCostume];
+//    self.level = [testparser generateDebugLevel_HideShow];
+//    self.level = [testparser generateDebugLevel_SetXY];
+//    self.level = [testparser generateDebugLevel_broadcast];
+//    self.level = [testparser generateDebugLevel_broadcastWait];
+//    self.level = [testparser generateDebugLevel_comeToFront];
+//    self.level = [testparser generateDebugLevel_changeSizeByN];
+//    self.level = [testparser generateDebugLevel_parallelScripts];
+//    self.level = [testparser generateDebugLevel_loops];
+//    self.level = [testparser generateDebugLevel_rotate];
+//    self.level = [testparser generateDebugLevel_rotateFullCircle];
+//    self.level = [testparser generateDebugLevel_rotateAndMove];
         
         
         // parse Program
