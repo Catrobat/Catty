@@ -12,7 +12,4 @@
 
 @property (nonatomic, strong) NSNumber *timesToRepeat;
 
--(id)initWithNumberOfLoops:(NSNumber*)numberOfLoops;
-
-
 @end

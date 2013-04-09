@@ -17,7 +17,7 @@
 @synthesize yDestination = _yDestination;
 
 #pragma mark - init methods
--(id)initWithXPosition:(NSNumber*)xPosition yPosition:(NSNumber*)yPosition andDurationInMilliSecs:(NSNumber*)durationInSeconds
+-(id)initWithXPosition:(NSNumber*)xPosition yPosition:(NSNumber*)yPosition andDurationInSeconds:(NSNumber*)durationInSeconds
 {
     self = [super init];
     if (self)

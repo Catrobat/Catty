@@ -33,8 +33,10 @@
 {
     _position = position;
     
-    self.x = (position.x + Sparrow.stage.width  / 2.0f);
-    self.y = (position.y + Sparrow.stage.height / 2.0f);
+    position = [self stageCoordinatesForPoint:position];
+    
+    self.x = (position.x);
+    self.y = (position.y);
     
 }
 
@@ -204,8 +206,8 @@
 -(void) readjustSize
 {
     [super readjustSize];
-    self.pivotX = self.width / 2.0f;
-    self.pivotY = self.height / 2.0f;
+    self.pivotX = self.texture.width / 2.0f;
+    self.pivotY = self.texture.height / 2.0f;
 }
 
 
@@ -261,18 +263,12 @@
 
 
 
-- (void)glideToPosition:(CGPoint)position withDurationInSeconds:(int)durationInSeconds fromScript:(Script *)script {
+- (void)glideToPosition:(CGPoint)position withDurationInSeconds:(float)durationInSeconds fromScript:(Script *)script {
 
-    // recalculate position
-#warning todo: maybe change this ...
-    CGPoint newPosition;
-    newPosition.x = (position.x + Sparrow.stage.width  / 2.0f);
-    newPosition.y = (position.y + Sparrow.stage.height / 2.0f);
+    CGPoint newPosition = [self stageCoordinatesForPoint:position];
 
     
     SPTween *tween = [SPTween tweenWithTarget:self time:durationInSeconds];
-    [tween animateProperty:@"x" targetValue:newPosition.x];
-    [tween animateProperty:@"y" targetValue:newPosition.y];
     [tween moveToX:newPosition.x y:newPosition.y];
     tween.repeatCount = 1;
     [Sparrow.juggler addObject:tween];
@@ -290,10 +286,13 @@
     return [NSString stringWithFormat:@"%@images/%@", self.projectPath, look.fileName];
 }
 
-
--(void)onTweenCompleted:(id)sender
+-(CGPoint)stageCoordinatesForPoint:(CGPoint)point
 {
-    NSLog(@"Called!");
+    CGPoint coordinates;
+    coordinates.x = (point.x + Sparrow.stage.width  / 2.0f);
+    coordinates.y = (Sparrow.stage.height/2.0f - point.y);
+    
+    return coordinates;
 }
 
 

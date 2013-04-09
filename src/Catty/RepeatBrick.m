@@ -14,22 +14,17 @@
 
 @implementation Repeatbrick
 
-@synthesize timesToRepeat = _numberOfLoops;
+@synthesize timesToRepeat = _timesToRepeat;
 @synthesize loopsLeft = _loopsLeft;
 
--(id)initWithNumberOfLoops:(NSNumber*)numberOfLoops
-{
-    self = [super init];
-    if (self)
-    {
-        self.timesToRepeat = numberOfLoops;
-        self.loopsLeft = numberOfLoops;
-    }
-    return self;
-}
+
+
 
 -(BOOL)checkConditionAndDecrementLoopCounter
 {
+    if(!self.loopsLeft) {
+        self.loopsLeft = self.timesToRepeat;
+    }
     self.loopsLeft = [NSNumber numberWithInt:self.loopsLeft.intValue-1];
     BOOL returnValue = (self.loopsLeft.intValue >= 0);
     if (!returnValue) {
