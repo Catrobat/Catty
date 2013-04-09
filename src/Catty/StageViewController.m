@@ -79,24 +79,24 @@
         
         // just for test parser
         TestParser *testparser = [[TestParser alloc] init];
-        Program *program = [testparser generateDebugProject_broadcast];
-        self.projectSize = CGSizeMake(program.header.screenWidth.floatValue, program.header.screenHeight.floatValue); // (normally set in loadProgram)
+        Program *program = nil;
         
-//    TestParser *testparser = [[TestParser alloc]init];
-//    projectName = @"defaultProject";
-//    self.level = [testparser generateDebugLevel_GlideTo];
-//    self.level = [testparser generateDebugLevel_nextCostume];
-//    self.level = [testparser generateDebugLevel_HideShow];
-//    self.level = [testparser generateDebugLevel_SetXY];
-//    self.level = [testparser generateDebugLevel_broadcast];
-//    self.level = [testparser generateDebugLevel_broadcastWait];
-//    self.level = [testparser generateDebugLevel_comeToFront];
-//    self.level = [testparser generateDebugLevel_changeSizeByN];
-//    self.level = [testparser generateDebugLevel_parallelScripts];
-//    self.level = [testparser generateDebugLevel_loops];
-//    self.level = [testparser generateDebugLevel_rotate];
-//    self.level = [testparser generateDebugLevel_rotateFullCircle];
-//    self.level = [testparser generateDebugLevel_rotateAndMove];
+//        program = [testparser generateDebugProject_GlideTo];
+//        program = [testparser generateDebugProject_nextCostume];
+//        program = [testparser generateDebugProject_HideShow];
+//        program = [testparser generateDebugProject_SetXY];
+        program = [testparser generateDebugProject_broadcast];
+//        program = [testparser generateDebugProject_broadcastWait];
+//        program = [testparser generateDebugProject_comeToFront];
+//        program = [testparser generateDebugProject_changeSizeByN];
+//        program = [testparser generateDebugProject_parallelScripts];
+//        program = [testparser generateDebugProject_loops];
+//        program = [testparser generateDebugProject_rotate];
+//        program = [testparser generateDebugProject_rotateFullCircle];
+//        program = [testparser generateDebugProject_rotateAndMove];
+        
+        self.projectSize = CGSizeMake(program.header.screenWidth.floatValue, program.header.screenHeight.floatValue); // (normally set in loadProgram)
+
         
         
         // parse Program
