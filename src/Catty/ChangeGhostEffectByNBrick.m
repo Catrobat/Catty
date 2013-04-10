@@ -27,7 +27,7 @@
 {
     NSLog(@"Performing: %@", self.description);
     
-    [self.object changeTransparencyBy:self.changeGhostEffect];
+    [self.object changeTransparencyInPercent:self.changeGhostEffect.floatValue];
     
 }
 

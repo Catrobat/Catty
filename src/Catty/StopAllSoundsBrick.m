@@ -15,7 +15,7 @@
 {
     NSLog(@"Performing: %@", self.description);
     
-    [self.object.spriteManagerDelegate stopAllSounds]; // move this to sprite??
+    [self.object.spriteManagerDelegate stopAllSounds];
     
 }
 

@@ -27,6 +27,7 @@
 @property (nonatomic, assign) BOOL firstDrawing;
 @property (nonatomic, assign) CGSize projectSize;
 @property (nonatomic, strong) BroadcastWaitHandler *broadcastWaitHandler;
+@property (nonatomic, strong) Program* program;
 
 
 @end
@@ -103,10 +104,10 @@
         
         // parse Program
         Stage *stage = nil;
-        Program* program = [self loadProgram];
+        self.program = [self loadProgram];
         if ([self.root isKindOfClass:[Stage class]]) {
             stage = (Stage*)self.root;
-            stage.program = program;
+            stage.program = self.program;
         } else {
             abort();
         }
@@ -115,7 +116,7 @@
         
 //////////////////////////////////// START DEBUG
         //setting effect
-        for (SpriteObject *sprite in program.objectList)
+        for (SpriteObject *sprite in self.program.objectList)
         {
             sprite.spriteManagerDelegate = self;
             sprite.broadcastWaitDelegate = self.broadcastWaitHandler;
@@ -161,7 +162,7 @@
         
         
         
-        self.projectSize = CGSizeMake(program.header.screenWidth.floatValue, program.header.screenHeight.floatValue); // (normally set in loadProgram)
+//        self.projectSize = CGSizeMake(self.program.header.screenWidth.floatValue, program.header.screenHeight.floatValue); // (normally set in loadProgram)
         
                 
         
@@ -290,6 +291,14 @@
         }
     }
     return program;
+}
+
+-(void)stopAllSounds
+{
+    for(SpriteObject* sprite in self.program.objectList)
+    {
+        [sprite stopAllSounds];
+    }
 }
 
 

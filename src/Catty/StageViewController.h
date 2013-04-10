@@ -7,10 +7,11 @@
 //
 
 #import "SPViewController.h"
+#import "SpriteManagerDelegate.h"
 
 @class ProgramLoadingInfo;
 
-@interface StageViewController : SPViewController
+@interface StageViewController : SPViewController <SpriteManagerDelegate>
 
 @property (nonatomic, strong) ProgramLoadingInfo* programLoadingInfo;
 

@@ -26,7 +26,7 @@
 {
     NSLog(@"Performing: %@", self.description);
     
-    [self.object changeSizeByN:self.size.floatValue];
+    [self.object changeSizeByNInPercent:self.size.floatValue];
     
     //    float sleepTime = ((float)self.timeToWaitInMilliseconds.intValue)/1000;
     //    NSLog(@"wating for %f seconds", sleepTime);

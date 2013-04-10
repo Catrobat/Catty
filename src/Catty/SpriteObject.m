@@ -302,7 +302,6 @@
 }
 
 
-
 - (void)glideToPosition:(CGPoint)position withDurationInSeconds:(float)durationInSeconds fromScript:(Script *)script {
 
     CGPoint newPosition = [self stageCoordinatesForPoint:position];
@@ -314,6 +313,17 @@
     [Sparrow.juggler addObject:tween];
 }
 
+
+-(void)changeXBy:(float)x
+{
+    self.x += x;
+}
+
+-(void)changeYBy:(float)y
+{
+    self.y -= y;
+}
+
 -(void)broadcast:(NSString *)message
 {
     [[NSNotificationCenter defaultCenter] postNotificationName:message object:self];
@@ -322,9 +332,13 @@
 
 -(void)setSizeToPercentage:(float)sizeInPercentage
 {
-
     self.scaleX = self.scaleY = sizeInPercentage/100.0f;
-        
+}
+
+-(void)changeSizeByNInPercent:(float)sizePercentageRate
+{
+    self.scaleX += sizePercentageRate/100.0f;
+    self.scaleY += sizePercentageRate/100.0f;
 }
 
 -(void)playSound:(Sound*)sound
@@ -340,9 +354,33 @@
 
 }
 
+-(void)setVolumeToInPercent:(float)volumeInPercent
+{
+    NSEnumerator *enumerator = [self.sounds objectEnumerator];
+    SPSoundChannel* sound;
+    while ((sound = [enumerator nextObject])) {
+        sound.volume = volumeInPercent/100.0f;
+    }
+}
+
+-(void)stopAllSounds
+{
+    NSEnumerator *enumerator = [self.sounds objectEnumerator];
+    SPSoundChannel* sound;
+    while ((sound = [enumerator nextObject])) {
+        [sound stop];
+    }
+    
+}
+
 -(void)setTransparencyInPercent:(float)transparencyInPercent
 {
-    self.alpha = 1.0f - transparencyInPercent / 100.0f;
+  self.alpha = 1.0f - transparencyInPercent / 100.0f;
+}
+
+-(void)changeTransparencyInPercent:(float)increaseInPercent
+{
+    self.alpha += 1.0f - increaseInPercent /100.0f;
 }
 
 -(void)broadcastAndWait:(NSString *)message
@@ -394,10 +432,18 @@
 -(CGPoint)stageCoordinatesForPoint:(CGPoint)point
 {
     CGPoint coordinates;
-    coordinates.x = (point.x + Sparrow.stage.width  / 2.0f);
-    coordinates.y = (Sparrow.stage.height/2.0f - point.y);
+    coordinates.x = [self xStageCoordinateForCoordinate:point.x];
+    coordinates.y = [self yStageCoordinateForCoordinate:point.y];
     
     return coordinates;
+}
+
+-(float)yStageCoordinateForCoordinate:(float)y {
+    return (Sparrow.stage.height/2.0f - y);
+}
+
+-(float)xStageCoordinateForCoordinate:(float)x {
+    return (x + Sparrow.stage.width  / 2.0f);
 }
 
 - (void)comeToFront {
