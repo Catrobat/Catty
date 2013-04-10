@@ -175,13 +175,13 @@
                 // tell the main thread
                 dispatch_sync(dispatch_get_main_queue(), ^{
                     
-                    NSString *responseID = (NSString*)[notification.userInfo valueForKey:@"responseID"];
-                    if (responseID != nil) {
-                        [[NSNotificationCenter defaultCenter]postNotificationName:responseID object:self];
-                    } else {
-                        NSLog(@"Why is there no responseID? I don't want to live on this planet anymore...abort()");
-                        abort();
-                    }
+//                    NSString *responseID = (NSString*)[notification.userInfo valueForKey:@"responseID"];
+//                    if (responseID != nil) {
+//                        [[NSNotificationCenter defaultCenter]postNotificationName:responseID object:self];
+//                    } else {
+//                        NSLog(@"Why is there no responseID? I don't want to live on this planet anymore...abort()");
+//                        abort();
+//                    }
                     
                     [self scriptFinished:script];
                 });
@@ -363,12 +363,12 @@
 }
 
 - (void)comeToFront {
-//    NSLog(@"Sprite: %@ come to front", self.name);
+    NSLog(@"Sprite: %@ come to front", self.name);
     SPDisplayObjectContainer* myParent = self.parent;
     //[myParent setIndex:myParent.numChildren-1 ofChild:self];
     
     [myParent addChild:self];
-//    NSLog(@"Finished come to front");
+    NSLog(@"Finished come to front");
 }
 
 - (void)pointToDirection:(float)degrees {
