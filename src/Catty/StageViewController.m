@@ -92,13 +92,14 @@
 //        self.program = [testparser generateDebugProject_broadcastWait];
 //        self.program = [testparser generateDebugProject_comeToFront];
 //        self.program = [testparser generateDebugProject_pointToDirection];
-        self.program = [testparser generateDebugProject_setBrightness];
+//        self.program = [testparser generateDebugProject_setBrightness];
 //        self.program = [testparser generateDebugProject_changeSizeByN];
 //        self.program = [testparser generateDebugProject_parallelScripts];
 //        self.program = [testparser generateDebugProject_loops];
 //        self.program = [testparser generateDebugProject_rotate];
 //        self.program = [testparser generateDebugProject_rotateFullCircle];
 //        self.program = [testparser generateDebugProject_rotateAndMove];
+        self.program = [testparser generateDebugProject_transparency];
         
         
         

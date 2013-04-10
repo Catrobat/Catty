@@ -32,5 +32,6 @@
 -(Program*)generateDebugProject_rotate;
 -(Program*)generateDebugProject_rotateFullCircle;
 -(Program*)generateDebugProject_rotateAndMove;
+-(Program*)generateDebugProject_transparency;
 
 @end
