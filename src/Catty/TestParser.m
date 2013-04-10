@@ -36,6 +36,7 @@
 #import "TurnLeftBrick.h"
 #import "TurnRightBrick.h"
 #import "SetBrightnessBrick.h"
+#import "Pointtodirectionbrick.h"
 
 #define IMAGE_FILE_NAME @"tmp.png"
 
