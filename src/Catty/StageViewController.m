@@ -100,6 +100,7 @@
 //        self.program = [testparser generateDebugProject_rotate];
 //        self.program = [testparser generateDebugProject_rotateFullCircle];
 //        self.program = [testparser generateDebugProject_rotateAndMove];
+        self.program = [testparser generateDebugProject_transparency];
         
         
         
