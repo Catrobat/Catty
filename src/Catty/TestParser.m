@@ -35,6 +35,7 @@
 #import "LoopEndBrick.h"
 #import "TurnLeftBrick.h"
 #import "TurnRightBrick.h"
+#import "Pointtodirectionbrick.h"
 
 #define IMAGE_FILE_NAME @"tmp.png"
 
