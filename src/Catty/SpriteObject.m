@@ -296,12 +296,16 @@
 }
 
 - (void)comeToFront {
-    NSLog(@"Sprite: %@ come to front", self.name);
+//    NSLog(@"Sprite: %@ come to front", self.name);
     SPDisplayObjectContainer* myParent = self.parent;
     //[myParent setIndex:myParent.numChildren-1 ofChild:self];
     
     [myParent addChild:self];
-    NSLog(@"Finished come to front");
+//    NSLog(@"Finished come to front");
+}
+
+- (void)pointToDirection:(float)degrees {
+    self.rotation = SP_D2R(degrees);
 }
 
 @end

@@ -35,6 +35,7 @@
 #import "LoopEndBrick.h"
 #import "TurnLeftBrick.h"
 #import "TurnRightBrick.h"
+#import "Pointtodirectionbrick.h"
 
 #define IMAGE_FILE_NAME @"tmp.png"
 
@@ -776,7 +777,51 @@
 //        [self linkSpriteToScripts:project];
     //    return project;
 //}
-//
+
+-(Program*)generateDebugProject_pointToDirection
+{
+    Program *project = [[Program alloc]init];
+    project.header = [[Header alloc] init];
+    project.header.programName  = @"TestParser";
+    project.header.screenWidth  = [NSNumber numberWithInt:320];
+    project.header.screenHeight = [NSNumber numberWithInt:480];
+    
+    
+    Look *look= [self createCostumeFromPath:@"normalcat.png" withName:@"cat1"];
+    
+    Setlookbrick *setLookBrick = [[Setlookbrick alloc]init];
+    setLookBrick.look = look;
+    Pointtodirectionbrick *pointTo = [[Pointtodirectionbrick alloc] init];
+    pointTo.degree = [NSNumber numberWithFloat:90.0f];
+    
+    Startscript *startScript = [[Startscript alloc]init];
+    startScript.brickList = [NSArray arrayWithObject:setLookBrick];
+    //[startScript addBrick:setLookBrick];
+    
+    Whenscript *whenScript = [[Whenscript alloc]init];
+    whenScript.brickList = [NSArray arrayWithArray:[NSMutableArray arrayWithObjects:pointTo, nil]];
+    //[whenScript addBricks:[NSMutableArray arrayWithObjects:glideBrick1, glideBrick2, waitBrick, placeAtBrick, nil]];
+    
+    
+    NSArray *looks = [NSArray arrayWithObject:look];
+    
+    SpriteObject *sprite = [self createSprite:@"cat" withPositionX:(NSInteger)0 withPositionY:(NSInteger)0 withCostumes:looks setCostumeIndex:(NSInteger)0];
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *documentsDirectory = [paths objectAtIndex:0];
+    sprite.projectPath = [documentsDirectory stringByAppendingString:@"/levels/TestParser/"];
+    NSMutableArray *temp = [[NSMutableArray alloc] init];
+    [temp addObject:startScript];
+    [temp addObject:whenScript];
+    sprite.scriptList = temp;
+    
+    //[sprite addScript:whenScript];
+    //[sprite addScript:startScript];
+    project.objectList = [NSMutableArray arrayWithObject:sprite];
+    
+    [self linkSpriteToScripts:project];
+    return project;
+}
+
 -(Program*)generateDebugProject_rotate
 {
     Program *project = [[Program alloc]init];
