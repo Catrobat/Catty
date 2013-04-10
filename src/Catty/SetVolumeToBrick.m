@@ -29,7 +29,7 @@
 {
     NSLog(@"Performing: %@", self.description);
     
-    [self.object setVolumeTo:self.volume.floatValue/100.0f];
+    [self.object setVolumeToInPercent:self.volume.floatValue];
 }
 
 

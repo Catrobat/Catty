@@ -26,7 +26,7 @@
 {
     NSLog(@"Performing: %@", self.description);
     
-    [self.object setTransparency:self.transparency.floatValue];
+    [self.object setTransparencyInPercent:self.transparency.floatValue];
     
 }
 

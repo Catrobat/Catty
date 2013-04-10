@@ -8,8 +8,8 @@
 
 #import "Brick.h"
 
-@interface Pointtodirectionbrick : Brick
+@interface Pointindirectionbrick : Brick
 
-@property (nonatomic, strong) NSNumber *degree;
+@property (nonatomic, strong) NSNumber *degrees;
 
 @end

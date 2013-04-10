@@ -10,4 +10,13 @@
 
 @implementation SoundInfo
 
+-(id)init {
+    self = [super init];
+    if(self) {
+#warning just to test if soundInfo really is necessary!
+        [NSException raise:@"Apparently it is needed!" format:nil];
+    }
+    return self;
+}
+
 @end

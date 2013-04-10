@@ -26,13 +26,13 @@
 {
     NSLog(@"Performing: %@", self.description);
     
-    [self.object changeXBy:self.xMovement.intValue];
+    [self.object changeXBy:self.xMovement.floatValue];
 }
 
 #pragma mark - Description
 - (NSString*)description
 {
-    return [NSString stringWithFormat:@"ChangeXBy (%d)", self.xMovement.intValue];
+    return [NSString stringWithFormat:@"ChangeXBy (%f)", self.xMovement.floatValue];
 }
 
 @end

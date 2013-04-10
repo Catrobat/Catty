@@ -27,6 +27,7 @@
 @property (nonatomic, assign) BOOL firstDrawing;
 @property (nonatomic, assign) CGSize projectSize;
 @property (nonatomic, strong) BroadcastWaitHandler *broadcastWaitHandler;
+@property (nonatomic, strong) Program* program;
 
 
 @end
@@ -80,7 +81,7 @@
         
         // just for test parser
         TestParser *testparser = [[TestParser alloc] init];
-        Program *program = nil;
+//        Program *program = nil;
         
         program = [testparser generateDebugProject_GlideTo];
 //        program = [testparser generateDebugProject_nextCostume];
@@ -100,9 +101,22 @@
         
         
         
+        
+        // parse Program
+        Stage *stage = nil;
+        self.program = [self loadProgram];
+        if ([self.root isKindOfClass:[Stage class]]) {
+            stage = (Stage*)self.root;
+            stage.program = self.program;
+        } else {
+            abort();
+        }
+        
+        
+        
 //////////////////////////////////// START DEBUG
         //setting effect
-        for (SpriteObject *sprite in program.objectList)
+        for (SpriteObject *sprite in self.program.objectList)
         {
             sprite.spriteManagerDelegate = self;
             sprite.broadcastWaitDelegate = self.broadcastWaitHandler;
@@ -148,19 +162,7 @@
         
         
         
-        self.projectSize = CGSizeMake(program.header.screenWidth.floatValue, program.header.screenHeight.floatValue); // (normally set in loadProgram)
-
-        
-        
-        // parse Program
-        Stage *stage = nil;
-//        Program* program = [self loadProgram];
-        if ([self.root isKindOfClass:[Stage class]]) {
-            stage = (Stage*)self.root;
-            stage.program = program;
-        } else {
-            abort();
-        }
+//        self.projectSize = CGSizeMake(self.program.header.screenWidth.floatValue, program.header.screenHeight.floatValue); // (normally set in loadProgram)
         
                 
         
@@ -289,6 +291,14 @@
         }
     }
     return program;
+}
+
+-(void)stopAllSounds
+{
+    for(SpriteObject* sprite in self.program.objectList)
+    {
+        [sprite stopAllSounds];
+    }
 }
 
 

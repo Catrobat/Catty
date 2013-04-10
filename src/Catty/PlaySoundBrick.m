@@ -38,17 +38,19 @@
 {
     NSLog(@"Performing: %@", self.description);
     
-    @try
-    {
-        NSString *soundPath = [NSString stringWithFormat:@"%@sounds/%@", [self.object projectPath], self.sound.fileName];
-        NSError* error = nil;
-        AVAudioPlayer* audioPlayer = [[AVAudioPlayer alloc] initWithContentsOfURL:[NSURL fileURLWithPath:soundPath] error:&error];
-        [self.object addSound:audioPlayer];
-    }
-    @catch(NSException *ex)
-    {
-        NSLog(@"Unsupported audio format!");
-    }
+    [self.object playSound:self.sound];
+    
+//    @try
+//    {
+//        NSString *soundPath = [NSString stringWithFormat:@"%@sounds/%@", [self.object projectPath], self.sound.fileName];
+//        NSError* error = nil;
+//        AVAudioPlayer* audioPlayer = [[AVAudioPlayer alloc] initWithContentsOfURL:[NSURL fileURLWithPath:soundPath] error:&error];
+//        [self.object addSound:audioPlayer];
+//    }
+//    @catch(NSException *ex)
+//    {
+//        NSLog(@"Unsupported audio format!");
+//    }
     
     NSLog(@"%@",[self.object projectPath]);
 }

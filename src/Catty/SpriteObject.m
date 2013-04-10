@@ -12,11 +12,13 @@
 #import "WhenScript.h"
 #import "BroadcastScript.h"
 #import "Look.h"
+#import "Sound.h"
 #import "Sparrow.h"
 
 @interface SpriteObject()
 @property (nonatomic, strong) NSMutableArray *activeScripts;
 @property (assign) int lookIndex;
+@property (nonatomic, strong) NSMutableDictionary *sounds;
 @end
 
 @implementation SpriteObject
@@ -41,13 +43,19 @@
     
 }
 
+-(NSMutableDictionary*)sounds
+{
+    if(!_sounds) {
+        _sounds  = [[NSMutableDictionary alloc] init];
+    }
+    return _sounds;
+}
+
 
 // --- other stuff ---
 
 -(void)setInitValues
 {
-    self.showSprite = YES;
-    self.alphaValue = 1.0f;
     self.position = CGPointMake(0.0f, 0.0f);
     self.lookIndex = 0;
 }
@@ -295,7 +303,6 @@
 }
 
 
-
 - (void)glideToPosition:(CGPoint)position withDurationInSeconds:(float)durationInSeconds fromScript:(Script *)script {
 
     CGPoint newPosition = [self stageCoordinatesForPoint:position];
@@ -307,9 +314,74 @@
     [Sparrow.juggler addObject:tween];
 }
 
+
+-(void)changeXBy:(float)x
+{
+    self.x += x;
+}
+
+-(void)changeYBy:(float)y
+{
+    self.y -= y;
+}
+
 -(void)broadcast:(NSString *)message
 {
     [[NSNotificationCenter defaultCenter] postNotificationName:message object:self];
+}
+
+
+-(void)setSizeToPercentage:(float)sizeInPercentage
+{
+    self.scaleX = self.scaleY = sizeInPercentage/100.0f;
+}
+
+-(void)changeSizeByNInPercent:(float)sizePercentageRate
+{
+    self.scaleX += sizePercentageRate/100.0f;
+    self.scaleY += sizePercentageRate/100.0f;
+}
+
+-(void)playSound:(Sound*)sound
+{
+    SPSound *soundFile = [SPSound soundWithContentsOfFile:[self pathForSound:sound]];
+    SPSoundChannel* channel = [soundFile createChannel];
+                               
+    if(![self.sounds objectForKey:sound.fileName]) {
+        [self.sounds setObject:channel forKey:sound.fileName];
+    }
+              
+    [channel play];
+
+}
+
+-(void)setVolumeToInPercent:(float)volumeInPercent
+{
+    NSEnumerator *enumerator = [self.sounds objectEnumerator];
+    SPSoundChannel* sound;
+    while ((sound = [enumerator nextObject])) {
+        sound.volume = volumeInPercent/100.0f;
+    }
+}
+
+-(void)stopAllSounds
+{
+    NSEnumerator *enumerator = [self.sounds objectEnumerator];
+    SPSoundChannel* sound;
+    while ((sound = [enumerator nextObject])) {
+        [sound stop];
+    }
+    
+}
+
+-(void)setTransparencyInPercent:(float)transparencyInPercent
+{
+  self.alpha = 1.0f - transparencyInPercent / 100.0f;
+}
+
+-(void)changeTransparencyInPercent:(float)increaseInPercent
+{
+    self.alpha += 1.0f - increaseInPercent /100.0f;
 }
 
 -(void)broadcastAndWait:(NSString *)message
@@ -353,13 +425,26 @@
     return [NSString stringWithFormat:@"%@images/%@", self.projectPath, look.fileName];
 }
 
+-(NSString*)pathForSound:(Sound*)sound
+{
+    return [NSString stringWithFormat:@"%@sounds/%@", self.projectPath, sound.fileName];
+}
+
 -(CGPoint)stageCoordinatesForPoint:(CGPoint)point
 {
     CGPoint coordinates;
-    coordinates.x = (point.x + Sparrow.stage.width  / 2.0f);
-    coordinates.y = (Sparrow.stage.height/2.0f - point.y);
+    coordinates.x = [self xStageCoordinateForCoordinate:point.x];
+    coordinates.y = [self yStageCoordinateForCoordinate:point.y];
     
     return coordinates;
+}
+
+-(float)yStageCoordinateForCoordinate:(float)y {
+    return (Sparrow.stage.height/2.0f - y);
+}
+
+-(float)xStageCoordinateForCoordinate:(float)x {
+    return (x + Sparrow.stage.width  / 2.0f);
 }
 
 - (void)comeToFront {
@@ -371,7 +456,7 @@
     NSLog(@"Finished come to front");
 }
 
-- (void)pointToDirection:(float)degrees {
+- (void)pointInDirection:(float)degrees {
     self.rotation = SP_D2R(degrees);
 }
 

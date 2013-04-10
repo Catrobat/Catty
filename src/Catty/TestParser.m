@@ -36,7 +36,7 @@
 #import "TurnLeftBrick.h"
 #import "TurnRightBrick.h"
 #import "SetBrightnessBrick.h"
-#import "Pointtodirectionbrick.h"
+#import "Pointindirectionbrick.h"
 
 #define IMAGE_FILE_NAME @"tmp.png"
 
@@ -826,8 +826,8 @@
     
     Setlookbrick *setLookBrick = [[Setlookbrick alloc]init];
     setLookBrick.look = look;
-    Pointtodirectionbrick *pointTo = [[Pointtodirectionbrick alloc] init];
-    pointTo.degree = [NSNumber numberWithFloat:90.0f];
+    Pointindirectionbrick *pointTo = [[Pointindirectionbrick alloc] init];
+    pointTo.degrees = [NSNumber numberWithFloat:90.0f];
     
     Startscript *startScript = [[Startscript alloc]init];
     startScript.brickList = [NSArray arrayWithObject:setLookBrick];
