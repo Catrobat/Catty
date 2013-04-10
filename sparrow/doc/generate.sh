@@ -25,7 +25,7 @@ appledoc \
   --no-warn-undocumented-member \
   --no-warn-empty-description \
   --docset-bundle-id "org.sparrow-framework.docset" \
-  --docset-bundle-name "Sparrow Framework API Documentation" \
+  --docset-bundle-name "Sparrow Framework" \
   --docset-atom-filename "docset.atom" \
   --docset-feed-url "http://doc.sparrow-framework.org/core/feed/%DOCSETATOMFILENAME" \
   --docset-package-url "http://doc.sparrow-framework.org/core/feed/%DOCSETPACKAGEFILENAME" \

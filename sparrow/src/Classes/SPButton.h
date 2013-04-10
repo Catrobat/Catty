@@ -21,7 +21,7 @@
 
  An SPButton is a simple button composed of an image and, optionally, text.
  
- You can pass a texture for up- and downstate of the button. If you do not provide a down stage,
+ You can pass a texture for up- and downstate of the button. If you do not provide a down state,
  the button is simply scaled a little when it is touched.
  
  In addition, you can overlay a text on the button. To customize the text, almost the same options

@@ -36,6 +36,10 @@
 {
     if ((self = [super init]))
     {
+        if (width <= 0.0f)  [NSException raise:SP_EXC_INVALID_OPERATION format:@"invalid width"];
+        if (height <= 0.0f) [NSException raise:SP_EXC_INVALID_OPERATION format:@"invalid height"];
+        if (scale <= 0.0f)  [NSException raise:SP_EXC_INVALID_OPERATION format:@"invalid scale"];
+        
         _name = name;
         _width = width;
         _height = height;

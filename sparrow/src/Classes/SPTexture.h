@@ -42,8 +42,8 @@ typedef void (^SPTextureLoadingBlock)(SPTexture *texture, NSError *outError);
  **HD textures**
  
  Furthermore, Sparrow supports development in multiple resolutions, i.e. creating a game
- simultaneously for normal and retina displays. If HD texture support is activated (via
- `[SPViewController startWithRoot:supportHighResolutions:]`) and you load a texture like this:
+ simultaneously for normal and retina displays. If HD texture support is activated (it is by default
+ if you start Sparrow with `[SPViewController startWithRoot:]`) and you load a texture like this:
  
     [[SPTexture alloc] initWithContentsOfFile:@"image.png"];
   

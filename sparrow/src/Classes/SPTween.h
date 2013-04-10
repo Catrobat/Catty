@@ -25,29 +25,27 @@
  (`int`, `uint`, `float`, `double`), the tween can handle it. For a list of available Transition 
  types, see `SPTransitions`. 
  
- Here is an example of a tween that moves an object to the right, rotates it, and fades it out:
+ Here is an example of a tween that moves an object, rotates it, and fades it out:
  
 	SPTween *tween = [SPTween tweenWithTarget:object time:2.0 transition:SP_TRANSITION_EASE_IN_OUT];
-	[tween animateProperty:@"x" targetValue:object.x + 50];
+	[tween moveToX:50.0f y:20.0f];
  	[tween animateProperty:@"rotation" targetValue:object.rotation + SP_D2R(45)];
- 	[tween animateProperty:@"alpha" targetValue:0.0f];
- 	[self.stage.juggler addObject:tween];
+  	[tween fadeTo:0.0f];
+ 	[Sparrow.juggler addObject:tween];
  
  Note that the object is added to a juggler at the end. A tween will only be executed if its
  `advanceTime:` method is executed regularly - the juggler will do that for us, and will release
  the tween when it is finished.
  
- Tweens dispatch events in certain phases of their life time:
+ Tweens provide block-based callbacks that are executed in certain phases of their life time:
  
- - `SP_EVENT_TYPE_TWEEN_STARTED`:   Dispatched once when the tween starts
- - `SP_EVENT_TYPE_TWEEN_UPDATED`:   Dispatched every time it is advanced
- - `SP_EVENT_TYPE_TWEEN_COMPLETED`: Dispatched when it reaches its target value (repeatedly
-                                    dispatched when looping).
+ - `onStart`:    Invoked once when the tween starts.
+ - `onUpdate`:   Invoked every time it is advanced.
+ - `onComplete`: Invoked when it reaches its target value.
+ - `onRepeat`:   Invoked each time the tween finishes one repetition.
  
- Tweens can loop in two ways:
- 
- - `reverse = NO`: Starts the animation from the beginning when it's finished.
- - `reverse = YES`: Reverses the animation when it's finished, tweening back to the start value.
+ Use the `repeatCount` property to repeat the tween several times. The `reverse` property defines
+ the way in which the repetitions will be done (ping-pong 
  
 ------------------------------------------------------------------------------------------------- */
 

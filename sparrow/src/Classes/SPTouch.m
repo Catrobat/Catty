@@ -52,6 +52,14 @@
     return [transformationMatrix transformPointWithX:_previousGlobalX y:_previousGlobalY];
 }
 
+- (SPPoint *)movementInSpace:(SPDisplayObject *)space
+{
+    SPMatrix *transformationMatrix = [_target.root transformationMatrixToSpace:space];
+    SPPoint *curLoc = [transformationMatrix transformPointWithX:_globalX y:_globalY];
+    SPPoint *preLoc = [transformationMatrix transformPointWithX:_previousGlobalX y:_previousGlobalY];
+    return [curLoc subtractPoint:preLoc];
+}
+
 - (NSString *)description
 {
     return [NSString stringWithFormat:@"[SPTouch: globalX=%.1f, globalY=%.1f, phase=%d, tapCount=%d]",

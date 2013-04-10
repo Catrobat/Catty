@@ -187,7 +187,7 @@ float square(float value) { return value * value; }
 - (SPRectangle*)boundsInSpace:(SPDisplayObject*)targetSpace
 {
     [NSException raise:SP_EXC_ABSTRACT_METHOD 
-                format:@"Method needs to be implemented in subclass"];
+                format:@"Method 'boundsInSpace:' needs to be implemented in subclasses"];
     return nil;
 }
 
@@ -419,6 +419,9 @@ float square(float value) { return value * value; }
 {
     _orientationChanged = NO;
     [_transformationMatrix copyFromMatrix:matrix];
+    
+    _pivotX = 0.0f;
+    _pivotY = 0.0f;
     
     _x = matrix.tx;
     _y = matrix.ty;

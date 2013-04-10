@@ -202,42 +202,42 @@
 
 - (float)width
 {
-    [NSException raise:SP_EXC_ABSTRACT_METHOD format:@"Override this method in subclasses."];
+    [NSException raise:SP_EXC_ABSTRACT_METHOD format:@"Override 'width' in subclasses."];
     return 0;
 }
 
 - (float)height
 {
-    [NSException raise:SP_EXC_ABSTRACT_METHOD format:@"Override this method in subclasses."];
+    [NSException raise:SP_EXC_ABSTRACT_METHOD format:@"Override 'height' in subclasses."];
     return 0;
 }
 
 - (uint)name
 {
-    [NSException raise:SP_EXC_ABSTRACT_METHOD format:@"Override this method in subclasses."];
+    [NSException raise:SP_EXC_ABSTRACT_METHOD format:@"Override 'name' in subclasses."];
     return 0;    
 }
 
 - (void)setRepeat:(BOOL)value
 {
-    [NSException raise:SP_EXC_ABSTRACT_METHOD format:@"Override this method in subclasses."];    
+    [NSException raise:SP_EXC_ABSTRACT_METHOD format:@"Override 'setRepeat:' in subclasses."];    
 }
 
 - (BOOL)repeat
 {
-    [NSException raise:SP_EXC_ABSTRACT_METHOD format:@"Override this method in subclasses."];
+    [NSException raise:SP_EXC_ABSTRACT_METHOD format:@"Override 'repeat' in subclasses."];
     return NO;
 }
 
 - (SPTextureSmoothing)smoothing
 {
-    [NSException raise:SP_EXC_ABSTRACT_METHOD format:@"Override this method in subclasses."];
+    [NSException raise:SP_EXC_ABSTRACT_METHOD format:@"Override 'smoothing' in subclasses."];
     return SPTextureSmoothingBilinear;
 }
 
 - (void)setSmoothing:(SPTextureSmoothing)filter
 {
-    [NSException raise:SP_EXC_ABSTRACT_METHOD format:@"Override this method in subclasses."];
+    [NSException raise:SP_EXC_ABSTRACT_METHOD format:@"Override 'setSmoothing' in subclasses."];
 }
 
 - (BOOL)premultipliedAlpha

@@ -30,13 +30,9 @@
  A container is simply a display object that has child nodes - which can, again, be either leaf
  nodes or other containers. 
  
- At the root of the display tree, there is the SPStage, which is a container, too. To create a
- Sparrow application, you let your main class inherit from SPStage, and build up your display
- tree from there.
- 
  A display object has properties that define its position in relation to its parent
- (`x`, `y`), as well as its rotation and scaling factors (`scaleX`, `scaleY`). Use the `alpha` and
- `visible` properties to make an object translucent or invisible.
+ (`x`, `y`), as well as its rotation, skewing and scaling factors (`scaleX`, `scaleY`). Use the 
+ `alpha` and `visible` properties to make an object translucent or invisible.
  
  Every display object may be the target of touch events. If you don't want an object to be
  touchable, you can disable the `touchable` property. When it's disabled, neither the object
@@ -45,8 +41,8 @@
  **Points vs. Pixels**
  
  All sizes and distances are measured in points. What this means in pixels depends on the 
- contentScaleFactor of the stage. On a low resolution device (up to iPhone 3GS), one point is one
- pixel. On devices with a retina display, one point may be 2 pixels.
+ contentScaleFactor of the device. On a low resolution device (iPhone 3GS / iPad 1+2), one point
+ corresponds to one pixel. On devices with a retina display, one point may be 2 pixels.
  
  **Transforming coordinates**
  
@@ -63,7 +59,7 @@
  its subclasses instead. There are already a lot of them available, and most of the time they will
  suffice. 
  
- However, you can create custom subclasses as well. That's especially useful when you want to 
+ However, you can create custom display objects as well. That's especially useful when you want to
  create an object with a custom render function.
  
  You will need to implement the following methods when you subclass SPDisplayObject:

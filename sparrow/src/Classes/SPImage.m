@@ -69,6 +69,12 @@
     [self vertexDataDidChange];
 }
 
+- (void)setTexCoordsWithX:(float)x y:(float)y ofVertex:(int)vertexID
+{
+    [_vertexData setTexCoordsWithX:x y:y atIndex:vertexID];
+    [self vertexDataDidChange];
+}
+
 - (SPPoint*)texCoordsOfVertex:(int)vertexID
 {
     return [_vertexData texCoordsAtIndex:vertexID];

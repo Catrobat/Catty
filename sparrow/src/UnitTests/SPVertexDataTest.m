@@ -55,6 +55,40 @@
     [self compareVertex:defaultVertex withVertex:[vertexData vertexAtIndex:3]];
 }
 
+- (void)testSetAllColors
+{
+    uint color = 0xabcdef;
+    SPVertexData *vertexData = [[SPVertexData alloc] initWithSize:4];
+    vertexData.color = color;
+    
+    for (int i=0; i<vertexData.numVertices; ++i)
+        STAssertEquals(color, [vertexData colorAtIndex:i], @"wrong color");
+}
+
+- (void)testSetAllAlphas
+{
+    SPVertexData *vertexData = [[SPVertexData alloc] initWithSize:4];
+    vertexData.alpha = 0.5f;
+    
+    for (int i=0; i<vertexData.numVertices; ++i)
+        STAssertEqualsWithAccuracy(0.5f, [vertexData alphaAtIndex:i], 0.05f, @"wrong alpha");
+}
+
+- (void)testSetAllColorsAndAlphas
+{
+    uint color = 0xabcdef;
+    float alpha = 0.5f;
+    SPVertexData *vertexData = [[SPVertexData alloc] initWithSize:4];
+    vertexData.color = color;
+    vertexData.alpha = alpha;
+    
+    for (int i=0; i<vertexData.numVertices; ++i)
+    {
+        STAssertEquals(color, [vertexData colorAtIndex:i], @"wrong color");
+        STAssertEqualsWithAccuracy(alpha, [vertexData alphaAtIndex:i], 0.05f, @"wrong alpha");
+    }
+}
+
 - (void)testResize
 {
     SPVertex vertex = [self anyVertex];

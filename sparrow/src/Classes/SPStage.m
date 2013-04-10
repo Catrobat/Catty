@@ -95,6 +95,16 @@
     [NSException raise:SP_EXC_INVALID_OPERATION format:@"cannot scale stage"];
 }
 
+- (void)setSkewX:(float)skewX
+{
+    [NSException raise:SP_EXC_INVALID_OPERATION format:@"cannot skew stage"];
+}
+
+- (void)setSkewY:(float)skewY
+{
+    [NSException raise:SP_EXC_INVALID_OPERATION format:@"cannot skew stage"];
+}
+
 - (void)setRotation:(float)value
 {
     [NSException raise:SP_EXC_INVALID_OPERATION format:@"cannot rotate stage"];

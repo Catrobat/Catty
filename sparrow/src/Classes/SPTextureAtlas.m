@@ -113,7 +113,7 @@
                            path, parser.parserError.localizedDescription];
 }
 
-- (int)count
+- (int)numTextures
 {
     return [_textureRegions count];
 }
@@ -127,21 +127,42 @@
     else        return nil;
 }
 
-- (NSArray *)texturesStartingWith:(NSString *)name
+- (NSArray *)textures
 {
-    NSMutableArray *textureNames = [[NSMutableArray alloc] init];
+    return [self texturesStartingWith:nil];
+}
+
+- (NSArray *)texturesStartingWith:(NSString *)prefix
+{
+    NSArray *names = [self namesStartingWith:prefix];
     
-    for (NSString *textureName in _textureRegions)
-        if ([textureName rangeOfString:name].location == 0)
-            [textureNames addObject:textureName];
-    
-    [textureNames sortUsingSelector:@selector(localizedStandardCompare:)];
-    
-    NSMutableArray *textures = [NSMutableArray arrayWithCapacity:textureNames.count];
-    for (NSString *textureName in textureNames)
+    NSMutableArray *textures = [NSMutableArray arrayWithCapacity:names.count];
+    for (NSString *textureName in names)
         [textures addObject:[self textureByName:textureName]];
     
     return textures;
+}
+
+- (NSArray *)names
+{
+    return [self namesStartingWith:nil];
+}
+
+- (NSArray *)namesStartingWith:(NSString *)prefix
+{
+    NSMutableArray *names = [[NSMutableArray alloc] init];
+    
+    if (prefix)
+    {
+        for (NSString *name in _textureRegions)
+            if ([name rangeOfString:prefix].location == 0)
+                [names addObject:name];
+    }
+    else
+        [names addObjectsFromArray:[_textureRegions allKeys]];
+    
+    [names sortUsingSelector:@selector(localizedStandardCompare:)];
+    return names;
 }
 
 - (void)addRegion:(SPRectangle *)region withName:(NSString *)name
