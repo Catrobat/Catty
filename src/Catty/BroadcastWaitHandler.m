@@ -11,6 +11,7 @@
 @interface BroadcastWaitHandler()
 @property (strong, nonatomic) NSMutableDictionary *numOfObserversForNotificationMessage;
 @property (strong, nonatomic) NSMutableDictionary *numOfObserversForNotificationMessageList;
+@property (strong, nonatomic) NSLock *lock;
 @end
 
 
@@ -37,12 +38,14 @@
 -(void)increaseNumberOfObserversForNotificationMessage:(NSString*)notificationMessage;
 {
     NSObject *object = [self.numOfObserversForNotificationMessage objectForKey:notificationMessage];
+    [self.lock lock];
     int newNumber = 1;
     if (object != nil) {
         newNumber += ((NSNumber*)object).intValue;
         [self.numOfObserversForNotificationMessage removeObjectForKey:notificationMessage];
     }
-    [self.numOfObserversForNotificationMessage setValue:[NSNumber numberWithInt:1] forKey:notificationMessage];
+    [self.numOfObserversForNotificationMessage setValue:[NSNumber numberWithInt:newNumber] forKey:notificationMessage];
+    [self.lock unlock];
 }
 
 -(void)object:(id)object isWaitingForAllObserversOfMessage:(NSString *)notificationMessage withResponseID:(NSString*)responseID
@@ -57,6 +60,7 @@
     NSString *responseID = notification.name;
     NSObject *object = [self.numOfObserversForNotificationMessageList objectForKey:responseID];
     if (object != nil) {
+        [self.lock lock];
         int intValue = ((NSNumber*)object).intValue;
         [self.numOfObserversForNotificationMessageList removeObjectForKey:responseID];
         if (intValue > 0) {
@@ -65,6 +69,7 @@
         } else {
             // TODO inform waiting object
         }
+        [self.lock unlock];
     }
 }
 
