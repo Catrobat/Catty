@@ -40,7 +40,7 @@
 {
     // SPSound is a class factory! We'll return a subclass, not self.
     
-    NSString *fullPath = [SPUtils absolutePathToFile:path];
+    NSString *fullPath = [SPUtils absolutePathToFile:path withScaleFactor:1.0f];
     if (!fullPath) [NSException raise:SP_EXC_FILE_NOT_FOUND format:@"file %@ not found", path];
     
     NSString *error = nil;
@@ -176,13 +176,13 @@
 
 - (SPSoundChannel *)createChannel
 {
-    [NSException raise:SP_EXC_ABSTRACT_METHOD format:@"Override this method in subclasses."];
+    [NSException raise:SP_EXC_ABSTRACT_METHOD format:@"Override 'createChannel' in subclasses."];
     return nil;
 }
 
 - (double)duration
 {
-    [NSException raise:SP_EXC_ABSTRACT_METHOD format:@"Override this method in subclasses."];
+    [NSException raise:SP_EXC_ABSTRACT_METHOD format:@"Override 'duration' in subclasses."];
     return 0.0;
 }
 

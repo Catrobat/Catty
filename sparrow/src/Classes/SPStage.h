@@ -20,22 +20,13 @@
 
  An SPStage is the root of the display tree. It represents the rendering area of the application.
  
- To create a Sparrow application, you create a class that inherits from SPStage and populates
- the display tree.
+ Sparrow will create the stage for you. The root object of your game will be the first child of
+ the stage. You can access `root` and `stage` from any display object using the respective 
+ properties. 
  
- The stage allows you to access the native view object it is drawing its content to. (Currently,
- this is always an SPView). Furthermore, you can change the framerate in which the contents is 
- rendered.
+ The stage's `width` and `height` values define the coordinate system of your game. The color
+ of the stage defines the background color of your game.
  
- You can access the stage from anywhere in your code with the following static method:
-
-    [SPStage mainStage];
- 
- A stage also contains a default juggler which you can use for your animations. It is advanced 
- automatically once per frame. You can access this juggler from any display object by calling
- 
-	[SPStage mainStage].juggler
-  
 ------------------------------------------------------------------------------------------------- */
 
 @interface SPStage : SPDisplayObjectContainer
@@ -53,5 +44,11 @@
 
 /// The background color of the stage. Default: black.
 @property (nonatomic, assign) uint color;
+
+/// The height of the stage's coordinate system.
+@property (nonatomic, assign) float width;
+
+/// The width of the stage's coordinate system.
+@property (nonatomic, assign) float height;
 
 @end

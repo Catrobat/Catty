@@ -24,7 +24,7 @@
 {
     NSLog(@"Performing: %@", self.description);
     
-    //[self.object broadcastAndWait:self.broadcastMessage];
+    [self.object broadcastAndWait:self.broadcastMessage];
     
     //    float sleepTime = ((float)self.timeToWaitInMilliseconds.intValue)/1000;
     //    NSLog(@"wating for %f seconds", sleepTime);

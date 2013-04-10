@@ -54,6 +54,7 @@ typedef void (^SPCallbackBlock)();
 #define SP_EXC_FILE_NOT_FOUND       @"FileNotFound"
 #define SP_EXC_FILE_INVALID         @"FileInvalid"
 #define SP_EXC_DATA_INVALID         @"DataInvalid"
+#define SP_EXC_OPERATION_FAILED     @"OperationFailed"
 
 // macros
 

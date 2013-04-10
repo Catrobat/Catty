@@ -65,8 +65,8 @@
     //[ret appendFormat:@"Sprite: (0x%@):\n", self];
     [ret appendFormat:@"\r------------------- SPRITE --------------------\r"];
     [ret appendFormat:@"Name: %@\r", self.name];
-    [ret appendFormat:@"Look List: \r%@\r\r", self.lookList];
-    [ret appendFormat:@"Script List: \r%@\r", self.scriptList];
+    //[ret appendFormat:@"Look List: \r%@\r\r", self.lookList];
+    //[ret appendFormat:@"Script List: \r%@\r", self.scriptList];
     [ret appendFormat:@"-------------------------------------------------\r"];
     
     return [NSString stringWithString:ret];
@@ -81,12 +81,12 @@
     for (Script *script in self.scriptList) {
         if ([script isKindOfClass:[Broadcastscript class]]) {
             Broadcastscript *broadcastScript = (Broadcastscript*)script;
-//            if ([self.broadcastWaitDelegate respondsToSelector:@selector(increaseNumberOfObserversForNotificationMessage:)]) {
-//                [self.broadcastWaitDelegate increaseNumberOfObserversForNotificationMessage:broadcastScript.receivedMessage];
-//            } else {
-//                NSLog(@"ERROR: BroadcastWaitDelegate not set! abort()");
-//                abort();
-//            }
+            if ([self.broadcastWaitDelegate respondsToSelector:@selector(registerSprite:forMessage:)]) {
+                [self.broadcastWaitDelegate registerSprite:self forMessage:broadcastScript.receivedMessage];
+            } else {
+                NSLog(@"ERROR: BroadcastWaitDelegate not set! abort()");
+                abort();
+            }
             
             [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(performBroadcastScript:) name:broadcastScript.receivedMessage object:nil];
         }
@@ -143,7 +143,7 @@
                         [script runScript];
                         
                         // tell the main thread
-                        dispatch_async(dispatch_get_main_queue(), ^{
+                        dispatch_sync(dispatch_get_main_queue(), ^{
                             [self scriptFinished:script];
                         });
                     });
@@ -180,11 +180,14 @@
                 [script runScript];
                 
                 // tell the main thread
-                dispatch_async(dispatch_get_main_queue(), ^{
+                dispatch_sync(dispatch_get_main_queue(), ^{
                     
                     NSString *responseID = (NSString*)[notification.userInfo valueForKey:@"responseID"];
                     if (responseID != nil) {
                         [[NSNotificationCenter defaultCenter]postNotificationName:responseID object:self];
+                    } else {
+                        NSLog(@"Why is there no responseID? I don't want to live on this planet anymore...abort()");
+                        abort();
                     }
                     
                     [self scriptFinished:script];
@@ -195,6 +198,35 @@
         
     }
 }
+
+-(void)performBroadcastWaitScript_calledFromBroadcastWaitDelegate_withMessage:(NSString *)message
+{
+    Broadcastscript *script = nil;
+    
+    for (Script *s in self.scriptList) {
+        if ([s isKindOfClass:[Broadcastscript class]]) {
+            Broadcastscript *tmp = (Broadcastscript*)s;
+            if ([tmp.receivedMessage isEqualToString:message]) {
+                script = tmp;
+            }
+        }
+    }
+    
+    if (script) {
+        
+        if ([self.activeScripts containsObject:script]) {
+            [script resetScript];
+        } else {
+            [self.activeScripts addObject:script];
+            
+            [script runScript];
+            [self scriptFinished:script];
+        }
+        
+    }
+
+}
+
 
 -(void)scriptFinished:(Script *)script
 {
@@ -313,6 +345,40 @@
     self.alpha = 1.0f - transparencyInPercent / 100.0f;
 }
 
+-(void)broadcastAndWait:(NSString *)message
+{
+    if ([[NSThread currentThread] isMainThread]) {
+        
+        //TODO
+        
+        NSLog(@" ");
+        NSLog(@"!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+        NSLog(@"!!                                                                                       !!");
+        NSLog(@"!!  ATTENTION: THIS METHOD SHOULD NEVER EVER BE CALLED FROM MAIN-THREAD!!! BUSY WAITING  !!");
+        NSLog(@"!!                                                                                       !!");
+        NSLog(@"!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+        NSLog(@" ");
+        abort();
+    }
+    
+//    NSString *responseID = [NSString stringWithFormat:@"%@-%d", message, arc4random()%1000000];
+    
+    if ([self.broadcastWaitDelegate respondsToSelector:@selector(performBroadcastWaitForMessage:)]) {
+        [self.broadcastWaitDelegate performBroadcastWaitForMessage:message];
+    } else {
+        NSLog(@"ERROR: BroadcastWaitDelegate not set! abort()");
+        abort();
+    }
+    
+//    [[NSNotificationCenter defaultCenter]postNotificationName:message object:self userInfo:[NSDictionary dictionaryWithObject:responseID forKey:@"responseID"]];
+//    
+//    // TODO: busy waiting...
+//    while ([self.broadcastWaitDelegate polling4testing__didAllObserversFinishForResponseID:responseID] == NO);
+    
+    
+}
+
+
 #pragma mark - Helper
 
 -(NSString*)pathForLook:(Look*)look
@@ -334,6 +400,17 @@
     return coordinates;
 }
 
+- (void)comeToFront {
+//    NSLog(@"Sprite: %@ come to front", self.name);
+    SPDisplayObjectContainer* myParent = self.parent;
+    //[myParent setIndex:myParent.numChildren-1 ofChild:self];
+    
+    [myParent addChild:self];
+//    NSLog(@"Finished come to front");
+}
 
+- (void)pointToDirection:(float)degrees {
+    self.rotation = SP_D2R(degrees);
+}
 
 @end

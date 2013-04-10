@@ -15,7 +15,7 @@
 #warning "This project uses features only available in iOS SDK 5.0 and later."
 #endif
 
-#define SPARROW_VERSION @"2.0"
+#define SPARROW_VERSION @"2.0rc"
 
 #import "SPNSExtensions.h"
 #import "SPEventDispatcher.h"
@@ -55,4 +55,5 @@
 #import "SPVertexData.h"
 #import "SPQuadBatch.h"
 #import "SPBlendMode.h"
+#import "SPBaseEffect.h"
 #import "SparrowClass.h"

@@ -21,14 +21,14 @@
  Optimizes rendering of a number of quads with an identical state.
  
  The majority of all rendered objects in Sparrow are quads. In fact, all the default
- leaf nodes of Starling are quads (the `SPImage` and `SPQuad` classes). The rendering of those
+ leaf nodes of Sparrow are quads (the `SPImage` and `SPQuad` classes). The rendering of those
  quads can be accelerated by a big factor if all quads with an identical state are sent
  to the GPU in just one call. That's what the `SPQuadBatch` class can do.
  
  The `flatten` method of the `SPSprite` class uses this class internally to optimize its
  rendering performance. In most situations, it is recommended to stick with flattened
  sprites, because they are easier to use. Sometimes, however, it makes sense
- to use the QuadBatch class directly: e.g. you can add one quad multiple times to
+ to use the SPQuadBatch class directly: e.g. you can add one quad multiple times to
  a quad batch, whereas you can only add it once to a sprite. Furthermore, this class
  does not dispatch `ADDED` or `ADDED_TO_STAGE` events when a quad
  is added, which makes it more lightweight.

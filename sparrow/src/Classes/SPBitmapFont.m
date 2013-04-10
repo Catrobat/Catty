@@ -52,12 +52,7 @@
     return self;
 }
 
-+ (SPPoolInfo *)poolInfo
-{
-    static SPPoolInfo *poolInfo = nil;
-    if (!poolInfo) poolInfo = [[SPPoolInfo alloc] init];
-    return poolInfo;
-}
+SP_IMPLEMENT_MEMORY_POOL();
 
 @end
 

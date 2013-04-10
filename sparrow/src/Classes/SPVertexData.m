@@ -159,6 +159,14 @@ BOOL isOpaqueWhite(SPVertexColor color)
     _vertices[index].position = GLKVector2Make(position.x, position.y);
 }
 
+- (void)setPositionWithX:(float)x y:(float)y atIndex:(int)index
+{
+    if (index < 0 || index >= _numVertices)
+        [NSException raise:SP_EXC_INDEX_OUT_OF_BOUNDS format:@"Invalid vertex index"];
+    
+    _vertices[index].position = GLKVector2Make(x, y);
+}
+
 - (SPPoint *)texCoordsAtIndex:(int)index
 {
     if (index < 0 || index >= _numVertices)
@@ -176,6 +184,14 @@ BOOL isOpaqueWhite(SPVertexColor color)
     _vertices[index].texCoords = GLKVector2Make(texCoords.x, texCoords.y);
 }
 
+- (void)setTexCoordsWithX:(float)x y:(float)y atIndex:(int)index
+{
+    if (index < 0 || index >= _numVertices)
+        [NSException raise:SP_EXC_INDEX_OUT_OF_BOUNDS format:@"Invalid vertex index"];
+    
+    _vertices[index].texCoords = GLKVector2Make(x, y);
+}
+
 - (void)setColor:(uint)color alpha:(float)alpha atIndex:(int)index
 {
     if (index < 0 || index >= _numVertices)
@@ -185,6 +201,12 @@ BOOL isOpaqueWhite(SPVertexColor color)
     
     SPVertexColor vertexColor = SPVertexColorMakeWithColorAndAlpha(color, alpha);
     _vertices[index].color = _premultipliedAlpha ? premultiplyAlpha(vertexColor) : vertexColor;
+}
+
+- (void)setColor:(uint)color alpha:(float)alpha
+{
+    for (int i=0; i<_numVertices; ++i)
+        [self setColor:color alpha:alpha atIndex:i];
 }
 
 - (uint)colorAtIndex:(int)index
@@ -203,10 +225,22 @@ BOOL isOpaqueWhite(SPVertexColor color)
     [self setColor:color alpha:alpha atIndex:index];
 }
 
+- (void)setColor:(uint)color
+{
+    for (int i=0; i<_numVertices; ++i)
+        [self setColor:color atIndex:i];
+}
+
 - (void)setAlpha:(float)alpha atIndex:(int)index
 {
     uint color = [self colorAtIndex:index];
     [self setColor:color alpha:alpha atIndex:index];
+}
+
+- (void)setAlpha:(float)alpha
+{
+    for (int i=0; i<_numVertices; ++i)
+        [self setAlpha:alpha atIndex:i];
 }
 
 - (float)alphaAtIndex:(int)index

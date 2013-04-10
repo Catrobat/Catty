@@ -27,6 +27,7 @@
 -(Program*)generateDebugProject_changeSizeByN;
 -(Program*)generateDebugProject_parallelScripts;
 -(Program*)generateDebugProject_loops;
+-(Program*)generateDebugProject_pointToDirection;
 -(Program*)generateDebugProject_rotate;
 -(Program*)generateDebugProject_rotateFullCircle;
 -(Program*)generateDebugProject_rotateAndMove;

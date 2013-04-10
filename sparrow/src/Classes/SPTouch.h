@@ -38,7 +38,7 @@ typedef enum
  
  `Began -> Moved -> Ended`
  
- Furthermore, a touch can enter a <code>STATIONARY</code> phase. That phase does not
+ Furthermore, a touch can enter a `STATIONARY` phase. That phase does not
  trigger a touch event itself, and it can only occur when 'Multitouch' is activated. Picture a 
  situation where one finger is moving and the other is stationary. A touch event will
  be dispatched only to the object under the _moving_ finger. In the list of touches of
@@ -60,10 +60,13 @@ typedef enum
 /// -------------
 
 /// Converts the current location of a touch to the local coordinate system of a display object.
-- (SPPoint*)locationInSpace:(SPDisplayObject*)space;
+- (SPPoint *)locationInSpace:(SPDisplayObject *)space;
 
 /// Converts the previous location of a touch to the local coordinate system of a display object.
-- (SPPoint*)previousLocationInSpace:(SPDisplayObject*)space;
+- (SPPoint *)previousLocationInSpace:(SPDisplayObject *)space;
+
+/// Returns the movement of the touch between the current and previous location.
+- (SPPoint *)movementInSpace:(SPDisplayObject *)space;
 
 /// ----------------
 /// @name Properties

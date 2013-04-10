@@ -22,7 +22,10 @@
  A class that contains helper methods simplifying OpenGL rendering.
  
  An SPRenderSupport instance is passed to any render: method. It saves information about the
- currently bound texture, which allows it to avoid unecessary texture switches.
+ current render state, like the alpha value, modelview matrix, and blend mode.
+ 
+ It also keeps a list of quad batches, which can be used to render a high number of quads
+ very efficiently; only changes in the state of added quads trigger OpenGL draw calls.
  
  Furthermore, several static helper methods can be used for different needs whenever some
  OpenGL processing is required.

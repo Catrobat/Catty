@@ -14,6 +14,7 @@
 #import "SPBitmapFont.h"
 #import "SPTextField.h"
 #import "SPQuad.h"
+#import "SPBlendMode.h"
 
 @implementation SPStatsDisplay
 {
@@ -34,13 +35,13 @@
         
         _framesPerSecond = 0;
         _numDrawCalls = 0;
+
+        self.blendMode = SP_BLEND_MODE_NONE;
         
         [self addEventListener:@selector(onAddedToStage:) atObject:self
                        forType:SP_EVENT_TYPE_ADDED_TO_STAGE];
         [self addEventListener:@selector(onEnterFrame:) atObject:self
                        forType:SP_EVENT_TYPE_ENTER_FRAME];
-        
-        // TODO: when available, set blend mode to NONE
     }
     return self;
 }

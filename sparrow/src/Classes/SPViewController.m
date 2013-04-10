@@ -48,7 +48,7 @@
     float _contentScaleFactor;
     float _viewScaleFactor;
     BOOL _supportHighResolutions;
-    BOOL _doubleResolutionOnPad;
+    BOOL _doubleOnPad;
 }
 
 @synthesize stage = _stage;
@@ -56,7 +56,7 @@
 @synthesize root = _root;
 @synthesize context = _context;
 @synthesize supportHighResolutions = _supportHighResolutions;
-@synthesize doubleResolutionOnPad = _doubleResolutionOnPad;
+@synthesize doubleOnPad = _doubleOnPad;
 @synthesize contentScaleFactor = _contentScaleFactor;
 @synthesize onRootCreated = _onRootCreated;
 
@@ -123,9 +123,9 @@
     
     _rootClass = rootClass;
     _supportHighResolutions = hd;
-    _doubleResolutionOnPad = doubleOnPad;
+    _doubleOnPad = doubleOnPad;
     _viewScaleFactor = _supportHighResolutions ? [[UIScreen mainScreen] scale] : 1.0f;
-    _contentScaleFactor = (_doubleResolutionOnPad && isPad) ? _viewScaleFactor * 2.0f : _viewScaleFactor;
+    _contentScaleFactor = (_doubleOnPad && isPad) ? _viewScaleFactor * 2.0f : _viewScaleFactor;
 }
 
 - (void)createRoot
@@ -151,7 +151,7 @@
     }
 }
 
-- (void)updateStageSize
+- (void)readjustStageSize
 {
     CGSize viewSize = self.view.bounds.size;
     _stage.width  = viewSize.width  * _viewScaleFactor / _contentScaleFactor;
@@ -185,7 +185,7 @@
             // ideally, we'd do this in 'viewDidLoad', but when iOS starts up in landscape mode,
             // the view width and height are swapped. In this method, however, they are correct.
             
-            [self updateStageSize];
+            [self readjustStageSize];
             [self createRoot];
         }
         
