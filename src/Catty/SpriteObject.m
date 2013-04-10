@@ -13,10 +13,14 @@
 #import "BroadcastScript.h"
 #import "Look.h"
 #import "Sparrow.h"
+#import "SPImage.h"
 
 @interface SpriteObject()
+
 @property (nonatomic, strong) NSMutableArray *activeScripts;
 @property (assign) int lookIndex;
+//@property (nonatomic, strong)
+
 @end
 
 @implementation SpriteObject
@@ -377,7 +381,53 @@
 
 - (void)changeBrightness:(float)factor {
     //image.color = SP_COLOR(255, 0, 255);
-    //image.color
+    
+    // < 1.0f == dim
+    if (factor <= 1.0f) {
+        self.blendMode = SP_BLEND_MODE_NORMAL;
+        // READ THIS CAREFULLY
+        // Normally we would use the current
+        // color of the sprite object but since the
+        // scale factor is based on 100% we always calculate
+        // the brightness from 100%, which in turn is
+        // rgb(1.0, 1.0, 1.0) respectively 0xFFFFFF
+        //uint color = self.color;
+
+        uint color = 0xFFFFFF;
+        
+        uint rMask = 0xFF0000;
+        uint gMask = 0x00FF00;
+        uint bMask = 0x0000FF;
+        
+        uint red = (color & rMask) >> 16;
+        uint green = (color & gMask) >> 8;
+        uint blue = color & bMask;
+        
+        NSLog(@"r: %x, g: %x, b: %x", red, green, blue);
+        
+        // recalculate color
+        self.color = SP_COLOR(red * factor, green * factor, blue * factor);
+    }
+    /*else if (factor == 1.0f) {
+        // do nothing...
+    }*/
+    else if (factor > 1.0f) {
+        // lighten
+        self.blendMode = SP_BLEND_MODE_ADD;
+        
+        SPImage *image = [[SPImage alloc] initWithTexture:self.texture];
+        image.x = self.x;
+        image.y = self.y;
+        image.blendMode = SP_BLEND_MODE_ADD;
+        image.pivotX = self.pivotX;
+        image.pivotY = self.pivotY;
+        [self.parent addChild:image];
+        
+//        Look *look = [self.lookList objectAtIndex:self.lookIndex];
+//        self.texture = [[SPTexture alloc] initWithContentsOfFile:look.
+        
+    }
+
 }
 
 @end
