@@ -308,4 +308,9 @@
     self.rotation = SP_D2R(degrees);
 }
 
+- (void)changeBrightness:(float)factor {
+    //image.color = SP_COLOR(255, 0, 255);
+    image.color
+}
+
 @end
