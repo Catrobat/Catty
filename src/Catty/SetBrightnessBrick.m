@@ -12,6 +12,6 @@
 
 -(void)performFromScript:(Script *)script
 {
-    NSLog(@"NOT IMPLEMENTED!!!");
+    [self.object changeBrightness:self.brightness.floatValue];
 }
 @end

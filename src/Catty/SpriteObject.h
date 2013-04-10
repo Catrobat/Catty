@@ -70,7 +70,7 @@
 - (void)turnLeft:(float)degrees;
 - (void)turnRight:(float)degrees;
 - (void)pointToDirection:(float)degrees;
-
+- (void)changeBrightness:(float)factor;
 
 
 @end
