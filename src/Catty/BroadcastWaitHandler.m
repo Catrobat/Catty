@@ -7,73 +7,73 @@
 //
 
 #import "BroadcastWaitHandler.h"
+#import "SpriteObject.h"
 
 @interface BroadcastWaitHandler()
-@property (strong, nonatomic) NSMutableDictionary *numOfObserversForNotificationMessage;
-@property (strong, nonatomic) NSMutableDictionary *numOfObserversForNotificationMessageList;
+@property (strong, nonatomic) NSMutableDictionary *spritesForMessages; // key: (NSString*)msg   value: (NSArray*)sprites
+@property (strong, nonatomic) NSLock *lock;
 @end
 
 
 @implementation BroadcastWaitHandler
 
 
-@synthesize numOfObserversForNotificationMessage = _numOfObserversForNotificationMessage;
-@synthesize numOfObserversForNotificationMessageList = _numOfObserversForNotificationMessageList;
 
-
--(NSDictionary *)numOfObserversForNotificationMessage
+-(NSMutableDictionary *)spritesForMessages
 {
-    if (!_numOfObserversForNotificationMessage)
-        _numOfObserversForNotificationMessage = [[NSMutableDictionary alloc]init];
-    return _numOfObserversForNotificationMessage;
-}
--(NSDictionary *)numOfObserversForNotificationMessageList
-{
-    if (!_numOfObserversForNotificationMessageList)
-        _numOfObserversForNotificationMessageList = [[NSMutableDictionary alloc]init];
-    return _numOfObserversForNotificationMessageList;
+    if (!_spritesForMessages)
+        _spritesForMessages = [[NSMutableDictionary alloc]init];
+    return _spritesForMessages;
 }
 
--(void)increaseNumberOfObserversForNotificationMessage:(NSString*)notificationMessage;
+
+-(void)registerSprite:(SpriteObject *)sprite forMessage:(NSString *)message
 {
-    NSObject *object = [self.numOfObserversForNotificationMessage objectForKey:notificationMessage];
-    int newNumber = 1;
-    if (object != nil) {
-        newNumber += ((NSNumber*)object).intValue;
-        [self.numOfObserversForNotificationMessage removeObjectForKey:notificationMessage];
+    [self.lock lock];
+    NSArray *sprites = [self.spritesForMessages objectForKey:message];
+    [self.spritesForMessages removeObjectForKey:message];
+    if (sprites == nil) {
+        sprites = [NSArray arrayWithObject:sprite];
+    } else {
+        sprites = [sprites arrayByAddingObject:sprite];
     }
-    [self.numOfObserversForNotificationMessage setValue:[NSNumber numberWithInt:1] forKey:notificationMessage];
+    [self.spritesForMessages setObject:sprites forKey:message];
+    [self.lock unlock];
 }
 
--(void)object:(id)object isWaitingForAllObserversOfMessage:(NSString *)notificationMessage withResponseID:(NSString*)responseID
-{
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleBroadcastWaitResponse:) name:responseID object:nil];
-    NSNumber *numberOfObservers = [NSNumber numberWithInt:((NSNumber*)[self.numOfObserversForNotificationMessage valueForKey:notificationMessage]).intValue];
-    [self.numOfObserversForNotificationMessageList setValue:numberOfObservers forKey:responseID];
-}
 
--(void)handleBroadcastWaitResponse:(NSNotification*)notification
+-(void)performBroadcastWaitForMessage:(NSString*)message
 {
-    NSString *responseID = notification.name;
-    NSObject *object = [self.numOfObserversForNotificationMessageList objectForKey:responseID];
-    if (object != nil) {
-        int intValue = ((NSNumber*)object).intValue;
-        [self.numOfObserversForNotificationMessageList removeObjectForKey:responseID];
-        if (intValue > 0) {
-            intValue -= 1;
-            [self.numOfObserversForNotificationMessageList setValue:[NSNumber numberWithInt:intValue] forKey:responseID];
-        } else {
-            // TODO inform waiting object
+    NSLock *finishedLock = [[NSLock alloc]init];
+    __block NSNumber *numOfFinishedSprites = [NSNumber numberWithInt:0];
+    
+    NSArray *sprites = [self.spritesForMessages objectForKey:message];
+    int numOfAllSprites = [sprites count];
+
+    for (SpriteObject *sprite in sprites) {
+        
+        if ([sprite isKindOfClass:[SpriteObject class]] == NO) {
+            NSLog(@"sprite is not a SpriteObject...abort()");
+            abort();
         }
-    }
-}
 
--(BOOL)polling4testing__didAllObserversFinishForResponseID:(NSString *)responseID
-{
-    if ([self.numOfObserversForNotificationMessageList objectForKey:responseID] != nil)
-        return NO;
-    else
-        return YES;
+
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+            [sprite performBroadcastWaitScript_calledFromBroadcastWaitDelegate_withMessage:message];
+    
+            [finishedLock lock];
+            numOfFinishedSprites = [NSNumber numberWithInt:numOfFinishedSprites.intValue+1];
+            [finishedLock unlock];
+            
+        });
+    }
+    
+    // TODO: avoid busy waiting!!
+    while (numOfAllSprites != numOfFinishedSprites.intValue) {
+        // TODO: yield?!
+    }
+    
+    // finished!
 }
 
 @end

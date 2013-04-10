@@ -7,11 +7,11 @@
 //
 
 #import <Foundation/Foundation.h>
+@class SpriteObject;
 
 @protocol BroadcastWaitDelegate <NSObject>
 
--(void)increaseNumberOfObserversForNotificationMessage:(NSString*)notificationMessage;
--(void)object:(id)object isWaitingForAllObserversOfMessage:(NSString*)notificationMessage withResponseID:(NSString*)responseID;
--(BOOL)polling4testing__didAllObserversFinishForResponseID:(NSString*)responseID;
+-(void)registerSprite:(SpriteObject*)sprite forMessage:(NSString*)message;
+-(void)performBroadcastWaitForMessage:(NSString*)message;
 
 @end

@@ -98,6 +98,56 @@
 //        program = [testparser generateDebugProject_rotateFullCircle];
 //        program = [testparser generateDebugProject_rotateAndMove];
         
+        
+        
+//////////////////////////////////// START DEBUG
+        //setting effect
+        for (SpriteObject *sprite in program.objectList)
+        {
+            sprite.spriteManagerDelegate = self;
+            sprite.broadcastWaitDelegate = self.broadcastWaitHandler;
+            
+            // TODO: change!
+            for (Script *script in sprite.scriptList) {
+                for (Brick *brick in script.brickList) {
+                    brick.object = sprite;
+                }
+            }
+            // debug:
+            NSLog(@"----------------------");
+            NSLog(@"Sprite: %@", sprite.name);
+            NSLog(@" ");
+            NSLog(@"StartScript:");
+            for (Script *script in sprite.scriptList) {
+                if ([script isKindOfClass:[Startscript class]]) {
+                    for (Brick *brick in [script getAllBricks]) {
+                        NSLog(@"  %@", [brick description]);
+                    }
+                }
+            }
+            for (Script *script in sprite.scriptList) {
+                if ([script isKindOfClass:[Whenscript class]]) {
+                    NSLog(@" ");
+                    NSLog(@"WhenScript:");
+                    for (Brick *brick in [script getAllBricks]) {
+                        NSLog(@"  %@", [brick description]);
+                    }
+                }
+            }
+            for (Script *script in sprite.scriptList) {
+                if ([script isKindOfClass:[Broadcastscript class]]) {
+                    NSLog(@" ");
+                    NSLog(@"BroadcastScript:");
+                    for (Brick *brick in [script getAllBricks]) {
+                        NSLog(@"  %@", [brick description]);
+                    }
+                }
+            }
+        }
+//////////////////////////////////////////////// END DEBUG
+        
+        
+        
         self.projectSize = CGSizeMake(program.header.screenWidth.floatValue, program.header.screenHeight.floatValue); // (normally set in loadProgram)
 
         
