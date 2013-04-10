@@ -88,9 +88,9 @@
 //        program = [testparser generateDebugProject_SetXY];
 //        program = [testparser generateDebugProject_broadcast];
 //        program = [testparser generateDebugProject_broadcastWait];
-//        program = [testparser generateDebugProject_comeToFront];
+        program = [testparser generateDebugProject_comeToFront];
 //        program = [testparser generateDebugProject_pointToDirection];
-        program = [testparser generateDebugProject_setBrightness];
+//        program = [testparser generateDebugProject_setBrightness];
 //        program = [testparser generateDebugProject_changeSizeByN];
 //        program = [testparser generateDebugProject_parallelScripts];
 //        program = [testparser generateDebugProject_loops];
