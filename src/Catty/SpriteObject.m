@@ -20,7 +20,7 @@
 
 @property (nonatomic, strong) NSMutableArray *activeScripts;
 @property (assign) int lookIndex;
-//@property (nonatomic, strong)
+@property (nonatomic, strong) SPImage *brightnessWorkaround;
 @property (nonatomic, strong) NSMutableDictionary *sounds;
 
 @end
@@ -28,6 +28,7 @@
 @implementation SpriteObject
 
 @synthesize position = _position;
+@synthesize brightnessWorkaround = _brightnessWorkaround;
 
 // --- getter - setter ---
 
@@ -510,12 +511,16 @@
         
         // recalculate color
         self.color = SP_COLOR(red * factor, green * factor, blue * factor);
+        
+        self.brightnessWorkaround = nil;
     }
     /*else if (factor == 1.0f) {
         // do nothing...
     }*/
     else if (factor > 1.0f) {
         // lighten
+        
+        
         self.blendMode = SP_BLEND_MODE_ADD;
         
         SPImage *image = [[SPImage alloc] initWithTexture:self.texture];
@@ -524,13 +529,43 @@
         image.blendMode = SP_BLEND_MODE_ADD;
         image.pivotX = self.pivotX;
         image.pivotY = self.pivotY;
-        [self.parent addChild:image];
+
+        // manipulate image color
+        uint color = image.color;
+        
+        uint rMask = 0xFF0000;
+        uint gMask = 0x00FF00;
+        uint bMask = 0x0000FF;
+        
+        uint red = (color & rMask) >> 16;
+        uint green = (color & gMask) >> 8;
+        uint blue = color & bMask;
+        
+        
+        float scaleFactor = factor - 1.0f;
+        if (scaleFactor > 1.0f) {
+            scaleFactor = 1.0f;
+        }
+        // recalculate color
+        image.color = SP_COLOR(red * scaleFactor, green * scaleFactor, blue * scaleFactor);
+
+        
+        self.brightnessWorkaround = image;
+        
         
 //        Look *look = [self.lookList objectAtIndex:self.lookIndex];
 //        self.texture = [[SPTexture alloc] initWithContentsOfFile:look.
         
     }
+}
 
+- (void)render:(SPRenderSupport *)support {
+    
+    if (self.brightnessWorkaround) {
+        [self.brightnessWorkaround render:support];
+    }
+    
+    [super render:support];
 }
 
 @end
