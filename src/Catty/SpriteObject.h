@@ -43,6 +43,8 @@
 - (void)stopAllScripts;
 - (void)onImageTouched:(SPTouchEvent*)event;
 
+- (void)performBroadcastWaitScript_calledFromBroadcastWaitDelegate_withMessage:(NSString *)message;
+
 // actions
 - (void)placeAt:(GLKVector3)newPosition;
 - (void)changeLook:(Look*)look;

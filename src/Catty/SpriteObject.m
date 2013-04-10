@@ -73,8 +73,8 @@
     for (Script *script in self.scriptList) {
         if ([script isKindOfClass:[Broadcastscript class]]) {
             Broadcastscript *broadcastScript = (Broadcastscript*)script;
-            if ([self.broadcastWaitDelegate respondsToSelector:@selector(increaseNumberOfObserversForNotificationMessage:)]) {
-                [self.broadcastWaitDelegate increaseNumberOfObserversForNotificationMessage:broadcastScript.receivedMessage];
+            if ([self.broadcastWaitDelegate respondsToSelector:@selector(registerSprite:forMessage:)]) {
+                [self.broadcastWaitDelegate registerSprite:self forMessage:broadcastScript.receivedMessage];
             } else {
                 NSLog(@"ERROR: BroadcastWaitDelegate not set! abort()");
                 abort();
@@ -191,6 +191,35 @@
     }
 }
 
+-(void)performBroadcastWaitScript_calledFromBroadcastWaitDelegate_withMessage:(NSString *)message
+{
+    Broadcastscript *script = nil;
+    
+    for (Script *s in self.scriptList) {
+        if ([s isKindOfClass:[Broadcastscript class]]) {
+            Broadcastscript *tmp = (Broadcastscript*)s;
+            if ([tmp.receivedMessage isEqualToString:message]) {
+                script = tmp;
+            }
+        }
+    }
+    
+    if (script) {
+        
+        if ([self.activeScripts containsObject:script]) {
+            [script resetScript];
+        } else {
+            [self.activeScripts addObject:script];
+            
+            [script runScript];
+            [self scriptFinished:script];
+        }
+        
+    }
+
+}
+
+
 -(void)scriptFinished:(Script *)script
 {
     [self.activeScripts removeObject:script];
@@ -298,19 +327,19 @@
         abort();
     }
     
-    NSString *responseID = [NSString stringWithFormat:@"%@-%d", message, arc4random()%1000000];
+//    NSString *responseID = [NSString stringWithFormat:@"%@-%d", message, arc4random()%1000000];
     
-    if ([self.broadcastWaitDelegate respondsToSelector:@selector(object:isWaitingForAllObserversOfMessage:withResponseID:)]) {
-        [self.broadcastWaitDelegate object:self isWaitingForAllObserversOfMessage:message withResponseID:responseID];
+    if ([self.broadcastWaitDelegate respondsToSelector:@selector(performBroadcastWaitForMessage:)]) {
+        [self.broadcastWaitDelegate performBroadcastWaitForMessage:message];
     } else {
         NSLog(@"ERROR: BroadcastWaitDelegate not set! abort()");
         abort();
     }
     
-    [[NSNotificationCenter defaultCenter]postNotificationName:message object:self userInfo:[NSDictionary dictionaryWithObject:responseID forKey:@"responseID"]];
-    
-    // TODO: busy waiting...
-    while ([self.broadcastWaitDelegate polling4testing__didAllObserversFinishForResponseID:responseID] == NO);
+//    [[NSNotificationCenter defaultCenter]postNotificationName:message object:self userInfo:[NSDictionary dictionaryWithObject:responseID forKey:@"responseID"]];
+//    
+//    // TODO: busy waiting...
+//    while ([self.broadcastWaitDelegate polling4testing__didAllObserversFinishForResponseID:responseID] == NO);
     
     
 }
