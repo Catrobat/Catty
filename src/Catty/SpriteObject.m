@@ -12,6 +12,7 @@
 #import "WhenScript.h"
 #import "BroadcastScript.h"
 #import "Look.h"
+#import "Sparrow.h"
 
 @interface SpriteObject()
 @property (nonatomic, strong) NSMutableArray *activeScripts;
