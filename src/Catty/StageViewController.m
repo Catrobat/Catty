@@ -28,6 +28,7 @@
 @property (nonatomic, assign) CGSize projectSize;
 @property (nonatomic, strong) BroadcastWaitHandler *broadcastWaitHandler;
 
+
 @end
 
 @implementation StageViewController
@@ -141,7 +142,8 @@
         Sparrow.stage.height = self.projectSize.height;     // = XML-Project-heigth
         self.view.frame = CGRectMake(xOffset, yOffset, width, height);  // STAGE!!! TODO: calculat ratio and offset
         self.navigationController.view.frame = CGRectMake(xOffset, yOffset, width, height);
-        
+
+#warning remove!
         Sparrow.stage.color = 0xFF0000;
 
         self.firstDrawing = NO;
@@ -155,6 +157,12 @@
         
         [stage start];
     }
+}
+
+
+-(void)initView
+{
+    
 }
 
 
@@ -239,6 +247,7 @@
     [self.navigationController popViewControllerAnimated:YES];
 
 }
+
 
 
 
