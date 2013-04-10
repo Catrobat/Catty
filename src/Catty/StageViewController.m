@@ -21,6 +21,7 @@
 #import "Util.h"
 #import "ProgramDefines.h"
 #import "TestParser.h"
+#import "Sparrow.h"
 
 @interface StageViewController () <SpriteManagerDelegate>
 
@@ -92,7 +93,7 @@
 //        self.program = [testparser generateDebugProject_broadcastWait];
 //        self.program = [testparser generateDebugProject_comeToFront];
 //        self.program = [testparser generateDebugProject_pointToDirection];
-        self.program = [testparser generateDebugProject_setBrightness];
+//        self.program = [testparser generateDebugProject_setBrightness];
 //        self.program = [testparser generateDebugProject_changeSizeByN];
 //        self.program = [testparser generateDebugProject_parallelScripts];
 //        self.program = [testparser generateDebugProject_loops];
@@ -105,7 +106,7 @@
         
         // parse Program
         Stage *stage = nil;
-//        self.program = [self loadProgram];
+        self.program = [self loadProgram];
         if ([self.root isKindOfClass:[Stage class]]) {
             stage = (Stage*)self.root;
             stage.program = self.program;
@@ -163,7 +164,7 @@
         
         
         
-        self.projectSize = CGSizeMake(self.program.header.screenWidth.floatValue, self.program.header.screenHeight.floatValue); // (normally set in loadProgram)
+//        self.projectSize = CGSizeMake(self.program.header.screenWidth.floatValue, self.program.header.screenHeight.floatValue); // (normally set in loadProgram)
         
                 
         
@@ -305,10 +306,16 @@
 
 - (void)backButtonPressed:(UIButton *)sender
 {
+    // stop program
+    for (SpriteObject *sprite in self.program.objectList) {
+        [sprite stopAllScripts];
+        [sprite stopAllSounds];
+    }
+    
+    // dismiss view controller
     self.navigationController.view.frame = [[UIScreen mainScreen] applicationFrame];
     [sender removeFromSuperview];
     [self.navigationController popViewControllerAnimated:YES];
-
 }
 
 
