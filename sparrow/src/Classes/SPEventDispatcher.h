@@ -19,7 +19,7 @@ typedef void (^SPEventBlock)(id event);
  The SPEventDispatcher class is the base for all classes that dispatch events.
  
  The event mechanism is a key feature of Sparrow's architecture. Objects can communicate with 
- each other over events.
+ each other through events.
  
  An event dispatcher can dispatch events (objects of type SPEvent or one of its subclasses) 
  to objects that have registered themselves as listeners. A string (the event type) is used to 
@@ -39,7 +39,14 @@ typedef void (^SPEventBlock)(id event);
 	    // an event was triggered
 	}
  
- As SPDisplayObject, the base object of all rendered objects, inherits from SPEventDispatcher,
+ Alternatively, you can use blocks as event listeners:
+ 
+	[object addEventListenerForType:@"eventType" block:^(SPEvent *event)
+	 {
+ 	     // the event was triggered
+	 }];
+ 
+ Since SPDisplayObject (the base class of all rendered objects) inherits from SPEventDispatcher,
  the event mechanism is tightly bound to the display list. Events that have their `bubbles`-property
  enabled will rise up the display list until they reach its root (normally the stage). That means
  that a listener can register for the event type not only on the object that will dispatch it, but

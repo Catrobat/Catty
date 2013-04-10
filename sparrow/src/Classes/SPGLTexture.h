@@ -37,7 +37,7 @@
 /// Initializes a texture with the given properties. Width and height are expected pixel dimensions.
 /// _Designated Initializer_.
 - (id)initWithName:(uint)name width:(float)width height:(float)height
-        containsMipmaps:(BOOL)mipmaps scale:(float)scaleFactor premultipliedAlpha:(BOOL)pma;
+   containsMipmaps:(BOOL)mipmaps scale:(float)scaleFactor premultipliedAlpha:(BOOL)pma;
 
 /// Initializes an uncompressed texture with with raw pixel data and a set of properties.
 /// Width and height are expected pixel dimensions.

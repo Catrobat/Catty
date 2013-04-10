@@ -41,9 +41,14 @@ static SPViewController *controller = nil;
     return controller.stage;
 }
 
++ (SPDisplayObject *)root
+{
+    return controller.root;
+}
+
 + (float)contentScaleFactor
 {
-    return controller.contentScaleFactor;
+    return controller ? controller.contentScaleFactor : 1.0f;
 }
 
 @end

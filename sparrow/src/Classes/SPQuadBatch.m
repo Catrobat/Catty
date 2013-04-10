@@ -13,7 +13,7 @@
 #import "SPTexture.h"
 #import "SPImage.h"
 #import "SPRenderSupport.h"
-#import "SPQuadEffect.h"
+#import "SPBaseEffect.h"
 #import "SPDisplayObjectContainer.h"
 #import "SPMacros.h"
 #import "SPBlendMode.h"
@@ -29,7 +29,7 @@
     BOOL _premultipliedAlpha;
     BOOL _tinted;
     
-    SPQuadEffect *_quadEffect;
+    SPBaseEffect *_baseEffect;
     SPVertexData *_vertexData;
     uint _vertexBufferName;
     ushort *_indexData;
@@ -48,7 +48,7 @@
         _numQuads = 0;
         _syncRequired = NO;
         _vertexData = [[SPVertexData alloc] init];
-        _quadEffect = [[SPQuadEffect alloc] init];
+        _baseEffect = [[SPBaseEffect alloc] init];
 
         if (capacity > 0)
             self.capacity = capacity;
@@ -127,7 +127,7 @@
     glGenBuffers(1, &_indexBufferName);
     
     if (!_vertexBufferName || !_indexBufferName)
-        [NSException raise:SP_EXC_DATA_INVALID format:@"could not create vertex buffers"];
+        [NSException raise:SP_EXC_OPERATION_FAILED format:@"could not create vertex buffers"];
     
     glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, _indexBufferName);
     glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(ushort) * numIndices, _indexData, GL_STATIC_DRAW);
@@ -281,19 +281,19 @@
         [NSException raise:SP_EXC_INVALID_OPERATION
                     format:@"cannot render object with blend mode AUTO"];
     
-    _quadEffect.texture = _texture;
-    _quadEffect.premultipliedAlpha = _premultipliedAlpha;
-    _quadEffect.mvpMatrix = matrix;
-    _quadEffect.useTinting = _tinted || alpha != 1.0f;
-    _quadEffect.alpha = alpha;
+    _baseEffect.texture = _texture;
+    _baseEffect.premultipliedAlpha = _premultipliedAlpha;
+    _baseEffect.mvpMatrix = matrix;
+    _baseEffect.useTinting = _tinted || alpha != 1.0f;
+    _baseEffect.alpha = alpha;
     
-    [_quadEffect prepareToDraw];
+    [_baseEffect prepareToDraw];
 
     [SPBlendMode applyBlendFactorsForBlendMode:blendMode premultipliedAlpha:_premultipliedAlpha];
     
-    int attribPosition  = _quadEffect.attribPosition;
-    int attribColor     = _quadEffect.attribColor;
-    int attribTexCoords = _quadEffect.attribTexCoords;
+    int attribPosition  = _baseEffect.attribPosition;
+    int attribColor     = _baseEffect.attribColor;
+    int attribTexCoords = _baseEffect.attribTexCoords;
     
     glEnableVertexAttribArray(attribPosition);
     glEnableVertexAttribArray(attribColor);

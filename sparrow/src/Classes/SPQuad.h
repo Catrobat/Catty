@@ -52,7 +52,7 @@
  If you're not comfortable with that, there is also a utility macro available that takes the
  values for R, G and B separately:
  
-	uint red = SP_COLOR(255, 0, 0)
+	uint red = SP_COLOR(255, 0, 0);
  
 ------------------------------------------------------------------------------------------------- */
 

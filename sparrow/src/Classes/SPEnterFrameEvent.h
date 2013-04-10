@@ -20,7 +20,7 @@
  display tree.
  
  It contains information about the time that has passed since the last frame. That way, you 
- can easily make animations that are independet of the frame rate, but take the passed time
+ can easily make animations that are independent of the frame rate, but take the passed time
  into account.
  
 ------------------------------------------------------------------------------------------------- */

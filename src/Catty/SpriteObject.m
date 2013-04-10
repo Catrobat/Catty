@@ -57,8 +57,8 @@
     //[ret appendFormat:@"Sprite: (0x%@):\n", self];
     [ret appendFormat:@"\r------------------- SPRITE --------------------\r"];
     [ret appendFormat:@"Name: %@\r", self.name];
-    [ret appendFormat:@"Look List: \r%@\r\r", self.lookList];
-    [ret appendFormat:@"Script List: \r%@\r", self.scriptList];
+    //[ret appendFormat:@"Look List: \r%@\r\r", self.lookList];
+    //[ret appendFormat:@"Script List: \r%@\r", self.scriptList];
     [ret appendFormat:@"-------------------------------------------------\r"];
     
     return [NSString stringWithString:ret];
@@ -361,6 +361,17 @@
     return coordinates;
 }
 
+- (void)comeToFront {
+//    NSLog(@"Sprite: %@ come to front", self.name);
+    SPDisplayObjectContainer* myParent = self.parent;
+    //[myParent setIndex:myParent.numChildren-1 ofChild:self];
+    
+    [myParent addChild:self];
+//    NSLog(@"Finished come to front");
+}
 
+- (void)pointToDirection:(float)degrees {
+    self.rotation = SP_D2R(degrees);
+}
 
 @end

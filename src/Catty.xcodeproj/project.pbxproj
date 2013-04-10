@@ -54,6 +54,7 @@
 		B4BCF43B170ED60D008EDF3A /* FeaturedProgramsStoreViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B4BCF43A170ED60C008EDF3A /* FeaturedProgramsStoreViewController.m */; };
 		B4BCF43F170ED669008EDF3A /* SearchStoreViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B4BCF43E170ED669008EDF3A /* SearchStoreViewController.m */; };
 		B4BCF442170EDB80008EDF3A /* ProgramDefines.h in Resources */ = {isa = PBXBuildFile; fileRef = B4BCF441170EDB80008EDF3A /* ProgramDefines.h */; };
+		B4D4DD4317156A8500EEE3F8 /* Pointtodirectionbrick.m in Sources */ = {isa = PBXBuildFile; fileRef = B4D4DD4217156A8500EEE3F8 /* Pointtodirectionbrick.m */; };
 		B4D940A0170EC249003DDBFA /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B4F243CC170EBEF7007A071D /* AppDelegate.m */; };
 		B4D940A1170EC268003DDBFA /* Stage.m in Sources */ = {isa = PBXBuildFile; fileRef = B4F243CA170EBE23007A071D /* Stage.m */; };
 		B4D940A2170EC26D003DDBFA /* StageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B4F243C6170EBD63007A071D /* StageViewController.m */; };
@@ -249,6 +250,8 @@
 		B4BCF43D170ED669008EDF3A /* SearchStoreViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchStoreViewController.h; sourceTree = "<group>"; };
 		B4BCF43E170ED669008EDF3A /* SearchStoreViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchStoreViewController.m; sourceTree = "<group>"; };
 		B4BCF441170EDB80008EDF3A /* ProgramDefines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProgramDefines.h; sourceTree = "<group>"; };
+		B4D4DD4117156A8500EEE3F8 /* Pointtodirectionbrick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Pointtodirectionbrick.h; sourceTree = "<group>"; };
+		B4D4DD4217156A8500EEE3F8 /* Pointtodirectionbrick.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Pointtodirectionbrick.m; sourceTree = "<group>"; };
 		B4D9409E170EC0BB003DDBFA /* Media.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Media.h; path = Catty/Media.h; sourceTree = "<group>"; };
 		B4D9409F170EC0BB003DDBFA /* Media.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = Media.m; path = Catty/Media.m; sourceTree = "<group>"; };
 		B4D940A4170EC2B7003DDBFA /* crypt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = crypt.h; path = Catty/minizip/crypt.h; sourceTree = SOURCE_ROOT; };
@@ -805,6 +808,15 @@
 			name = SearchStoreViewController;
 			sourceTree = "<group>";
 		};
+		B4D4DD3F17156A7500EEE3F8 /* PointToDirectionBrick */ = {
+			isa = PBXGroup;
+			children = (
+				B4D4DD4117156A8500EEE3F8 /* Pointtodirectionbrick.h */,
+				B4D4DD4217156A8500EEE3F8 /* Pointtodirectionbrick.m */,
+			);
+			name = PointToDirectionBrick;
+			sourceTree = "<group>";
+		};
 		B4D940B2170EC5D5003DDBFA /* UserInterface */ = {
 			isa = PBXGroup;
 			children = (
@@ -1021,6 +1033,7 @@
 		CD0CCFDD170CB54100B70036 /* Bricks */ = {
 			isa = PBXGroup;
 			children = (
+				B4D4DD3F17156A7500EEE3F8 /* PointToDirectionBrick */,
 				CD0CCFF7170CB8BC00B70036 /* Bricks */,
 				CD0CCFDE170CB5E300B70036 /* BroadcastBrick */,
 				CD0CCFDF170CB5EC00B70036 /* BroadcastWaitBrick */,
@@ -1687,6 +1700,7 @@
 				B4BCF43F170ED669008EDF3A /* SearchStoreViewController.m in Sources */,
 				B4DEFC87170F44D900DD1939 /* CattyViewController.m in Sources */,
 				B4DEFC90170F464200DD1939 /* TestParser.m in Sources */,
+				B4D4DD4317156A8500EEE3F8 /* Pointtodirectionbrick.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
