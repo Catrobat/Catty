@@ -10,18 +10,17 @@
 
 @class Script;
 @class Look;
+@class Sound;
 @protocol SpriteManagerDelegate;
 @protocol BroadcastWaitDelegate;
+
 
 @interface SpriteObject : SPImage
 
 @property (strong, nonatomic) NSString *name;
 
 @property (assign, nonatomic) CGSize originalSize;
-@property (assign, nonatomic) BOOL showSprite;
 @property (assign, nonatomic) CGPoint position;
-@property (assign, nonatomic) float alphaValue;
-
 
 @property (weak, nonatomic) id<SpriteManagerDelegate> spriteManagerDelegate;
 @property (weak, nonatomic) id<BroadcastWaitDelegate> broadcastWaitDelegate;
@@ -54,7 +53,7 @@
 - (void)setYPosition:(float)yPosition;
 - (void)broadcast:(NSString*)message;
 - (void)broadcastAndWait:(NSString*)message;
-- (void)addSound:(id)sound;
+- (void)playSound:(Sound*)sound;
 - (void)comeToFront;
 - (void)changeSizeByN:(float)sizePercentageRate;
 - (void)changeXBy:(int)x;
@@ -62,7 +61,7 @@
 - (void)stopAllSounds;
 - (void)setSizeToPercentage:(float)sizeInPercentage;
 - (void)goNStepsBack:(int)n;
-- (void)setTransparency:(float)transparency;
+- (void)setTransparencyInPercent:(float)transparencyInPercent;
 - (void)changeTransparencyBy:(NSNumber*)increase;
 - (void)setVolumeTo:(float)volume;
 - (void)changeVolumeBy:(float)percent;

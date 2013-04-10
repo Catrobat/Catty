@@ -12,10 +12,12 @@
 #import "WhenScript.h"
 #import "BroadcastScript.h"
 #import "Look.h"
+#import "Sound.h"
 
 @interface SpriteObject()
 @property (nonatomic, strong) NSMutableArray *activeScripts;
 @property (assign) int lookIndex;
+@property (nonatomic, strong) NSMutableDictionary *sounds;
 @end
 
 @implementation SpriteObject
@@ -40,13 +42,19 @@
     
 }
 
+-(NSMutableDictionary*)sounds
+{
+    if(!_sounds) {
+        _sounds  = [[NSMutableDictionary alloc] init];
+    }
+    return _sounds;
+}
+
 
 // --- other stuff ---
 
 -(void)setInitValues
 {
-    self.showSprite = YES;
-    self.alphaValue = 1.0f;
     self.position = CGPointMake(0.0f, 0.0f);
     self.lookIndex = 0;
 }
@@ -279,11 +287,42 @@
     [[NSNotificationCenter defaultCenter] postNotificationName:message object:self];
 }
 
+
+-(void)setSizeToPercentage:(float)sizeInPercentage
+{
+
+    self.scaleX = self.scaleY = sizeInPercentage/100.0f;
+        
+}
+
+-(void)playSound:(Sound*)sound
+{
+    SPSound *soundFile = [SPSound soundWithContentsOfFile:[self pathForSound:sound]];
+    SPSoundChannel* channel = [soundFile createChannel];
+                               
+    if(![self.sounds objectForKey:sound.fileName]) {
+        [self.sounds setObject:channel forKey:sound.fileName];
+    }
+              
+    [channel play];
+
+}
+
+-(void)setTransparencyInPercent:(float)transparencyInPercent
+{
+    self.alpha = 1.0f - transparencyInPercent / 100.0f;
+}
+
 #pragma mark - Helper
 
 -(NSString*)pathForLook:(Look*)look
 {
     return [NSString stringWithFormat:@"%@images/%@", self.projectPath, look.fileName];
+}
+
+-(NSString*)pathForSound:(Sound*)sound
+{
+    return [NSString stringWithFormat:@"%@sounds/%@", self.projectPath, sound.fileName];
 }
 
 -(CGPoint)stageCoordinatesForPoint:(CGPoint)point

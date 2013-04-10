@@ -19,6 +19,7 @@
 		B45030A2170F22EF009265D6 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
 		B45030A8170F22EF009265D6 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = B45030A6170F22EF009265D6 /* InfoPlist.strings */; };
 		B45030AB170F22EF009265D6 /* CattyTests.m in Sources */ = {isa = PBXBuildFile; fileRef = B45030AA170F22EF009265D6 /* CattyTests.m */; };
+		B4B9FD3D171564C700123E53 /* LoopEndlessBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = B4B9FD3C171564C700123E53 /* LoopEndlessBrick.m */; };
 		B4BCF3DA170ECE05008EDF3A /* accessory.png in Resources */ = {isa = PBXBuildFile; fileRef = B4BCF3D8170ECE05008EDF3A /* accessory.png */; };
 		B4BCF3DB170ECE05008EDF3A /* accessory@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B4BCF3D9170ECE05008EDF3A /* accessory@2x.png */; };
 		B4BCF3E7170ECE19008EDF3A /* download.png in Resources */ = {isa = PBXBuildFile; fileRef = B4BCF3DD170ECE19008EDF3A /* download.png */; };
@@ -196,6 +197,8 @@
 		B45030A9170F22EF009265D6 /* CattyTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CattyTests.h; sourceTree = "<group>"; };
 		B45030AA170F22EF009265D6 /* CattyTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CattyTests.m; sourceTree = "<group>"; };
 		B45030AC170F22EF009265D6 /* CattyTests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "CattyTests-Prefix.pch"; sourceTree = "<group>"; };
+		B4B9FD3B171564C700123E53 /* LoopEndlessBrick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoopEndlessBrick.h; sourceTree = "<group>"; };
+		B4B9FD3C171564C700123E53 /* LoopEndlessBrick.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoopEndlessBrick.m; sourceTree = "<group>"; };
 		B4BCF3D8170ECE05008EDF3A /* accessory.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = accessory.png; sourceTree = "<group>"; };
 		B4BCF3D9170ECE05008EDF3A /* accessory@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "accessory@2x.png"; sourceTree = "<group>"; };
 		B4BCF3DD170ECE19008EDF3A /* download.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = download.png; sourceTree = "<group>"; };
@@ -1122,6 +1125,8 @@
 				CD0CCED6170CB39700B70036 /* LoopEndBrick.m */,
 				CD0CCEFC170CB39700B70036 /* RepeatBrick.h */,
 				CD0CCEFD170CB39700B70036 /* RepeatBrick.m */,
+				B4B9FD3B171564C700123E53 /* LoopEndlessBrick.h */,
+				B4B9FD3C171564C700123E53 /* LoopEndlessBrick.m */,
 			);
 			name = LoopBricks;
 			sourceTree = "<group>";
@@ -1687,6 +1692,7 @@
 				B4BCF43F170ED669008EDF3A /* SearchStoreViewController.m in Sources */,
 				B4DEFC87170F44D900DD1939 /* CattyViewController.m in Sources */,
 				B4DEFC90170F464200DD1939 /* TestParser.m in Sources */,
+				B4B9FD3D171564C700123E53 /* LoopEndlessBrick.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

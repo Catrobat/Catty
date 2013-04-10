@@ -205,8 +205,24 @@
         NSArray* formulaTrees = [element elementsForName:@"formulaTree"];
         if(formulaTrees) {
             GDataXMLElement* formulaTree = [formulaTrees objectAtIndex:0];
-            NSArray* values = [formulaTree elementsForName:@"value"];
-            temp = [[values objectAtIndex:0] stringValue];
+            NSArray* rightChildArray = [formulaTree elementsForName:@"rightChild"];
+            NSArray* values = nil;
+            if(rightChildArray) {
+                GDataXMLElement* rightChild = [rightChildArray objectAtIndex:0];
+                values = [rightChild elementsForName:@"value"];
+                temp = [[values objectAtIndex:0] stringValue];
+                NSArray* opCodeArray = [formulaTree elementsForName:@"value"];
+                if(opCodeArray) {
+                    NSString* opCode = [[opCodeArray objectAtIndex:0] stringValue];
+                    if([opCode isEqualToString:@"MINUS"]) {
+                        temp = [NSString stringWithFormat:@"-%@", temp];
+                    }
+                }
+                
+            } else {
+                NSArray* values = [formulaTree elementsForName:@"value"];
+                temp = [[values objectAtIndex:0] stringValue];
+            }
         }
         else {
             temp = element.stringValue;
