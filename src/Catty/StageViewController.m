@@ -87,7 +87,7 @@
 //        program = [testparser generateDebugProject_nextCostume];
 //        program = [testparser generateDebugProject_HideShow];
 //        program = [testparser generateDebugProject_SetXY];
-        program = [testparser generateDebugProject_broadcast];
+//        program = [testparser generateDebugProject_broadcast];
 //        program = [testparser generateDebugProject_broadcastWait];
 //        program = [testparser generateDebugProject_comeToFront];
 //        program = [testparser generateDebugProject_pointToDirection];

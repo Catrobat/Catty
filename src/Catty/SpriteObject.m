@@ -457,7 +457,7 @@
 }
 
 - (void)pointInDirection:(float)degrees {
-    self.rotation = SP_D2R(degrees);
+    self.rotation = SP_D2R(degrees-90);
 }
 
 - (void)changeBrightness:(float)factor {
