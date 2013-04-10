@@ -358,9 +358,11 @@
 -(void)playSound:(Sound*)sound
 {
     SPSound *soundFile = [SPSound soundWithContentsOfFile:[self pathForSound:sound]];
-    SPSoundChannel* channel = [soundFile createChannel];
-                               
-    if(![self.sounds objectForKey:sound.fileName]) {
+    SPSoundChannel* channel = nil;
+    
+    
+    if(!(channel = [self.sounds objectForKey:sound.fileName])) {
+        channel = [soundFile createChannel];
         [self.sounds setObject:channel forKey:sound.fileName];
     }
               
