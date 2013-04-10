@@ -868,17 +868,30 @@
     
     Look *look= [self createCostumeFromPath:@"normalcat.png" withName:@"cat1"];
     
+    Waitbrick *wait = [[Waitbrick alloc] init];
+    wait.timeToWaitInSeconds = [NSNumber numberWithFloat:0.75f];
+    
     Setlookbrick *setLookBrick = [[Setlookbrick alloc]init];
     setLookBrick.look = look;
+    
     Setbrightnessbrick *brightness = [[Setbrightnessbrick alloc] init];
     brightness.brightness = [NSNumber numberWithFloat:0.5];
+    
+    Setbrightnessbrick *brightness2 = [[Setbrightnessbrick alloc] init];
+    brightness2.brightness = [NSNumber numberWithFloat:1.0];
+    
+    Setbrightnessbrick *brightness3 = [[Setbrightnessbrick alloc] init];
+    brightness3.brightness = [NSNumber numberWithFloat:1.5];
+    
+    Setbrightnessbrick *brightness4 = [[Setbrightnessbrick alloc] init];
+    brightness4.brightness = [NSNumber numberWithFloat:1.0];
     
     Startscript *startScript = [[Startscript alloc]init];
     startScript.brickList = [NSArray arrayWithObject:setLookBrick];
     //[startScript addBrick:setLookBrick];
     
     Whenscript *whenScript = [[Whenscript alloc]init];
-    whenScript.brickList = [NSArray arrayWithArray:[NSMutableArray arrayWithObjects:brightness, nil]];
+    whenScript.brickList = [NSArray arrayWithArray:[NSMutableArray arrayWithObjects:brightness, wait, brightness2, wait, brightness3, wait, brightness4, nil]];
     //[whenScript addBricks:[NSMutableArray arrayWithObjects:glideBrick1, glideBrick2, waitBrick, placeAtBrick, nil]];
     
     
