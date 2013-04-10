@@ -365,7 +365,8 @@
         channel = [soundFile createChannel];
         [self.sounds setObject:channel forKey:sound.fileName];
     }
-              
+    
+    [channel stop];
     [channel play];
 
 }
