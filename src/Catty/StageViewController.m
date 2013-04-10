@@ -58,6 +58,7 @@
     UIImage* backImage = [UIImage imageNamed:@"back"];
     [backButton setImage:backImage forState:UIControlStateNormal];
     [self.navigationController.view.superview addSubview:backButton];
+    [self.navigationController.tabBarController.view.superview addSubview:backButton];
 }
 
 - (void)viewWillDisappear:(BOOL)animated
