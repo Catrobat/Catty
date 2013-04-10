@@ -90,13 +90,26 @@
 //        program = [testparser generateDebugProject_broadcastWait];
 //        program = [testparser generateDebugProject_comeToFront];
 //        program = [testparser generateDebugProject_pointToDirection];
-        program = [testparser generateDebugProject_setBrightness];
+//        program = [testparser generateDebugProject_setBrightness];
 //        program = [testparser generateDebugProject_changeSizeByN];
 //        program = [testparser generateDebugProject_parallelScripts];
 //        program = [testparser generateDebugProject_loops];
 //        program = [testparser generateDebugProject_rotate];
 //        program = [testparser generateDebugProject_rotateFullCircle];
 //        program = [testparser generateDebugProject_rotateAndMove];
+        
+        
+        
+        
+        // parse Program
+        Stage *stage = nil;
+        Program* program = [self loadProgram];
+        if ([self.root isKindOfClass:[Stage class]]) {
+            stage = (Stage*)self.root;
+            stage.program = program;
+        } else {
+            abort();
+        }
         
         
         
@@ -149,18 +162,6 @@
         
         
         self.projectSize = CGSizeMake(program.header.screenWidth.floatValue, program.header.screenHeight.floatValue); // (normally set in loadProgram)
-
-        
-        
-        // parse Program
-        Stage *stage = nil;
-        Program* program = [self loadProgram];
-        if ([self.root isKindOfClass:[Stage class]]) {
-            stage = (Stage*)self.root;
-            stage.program = program;
-        } else {
-            abort();
-        }
         
                 
         

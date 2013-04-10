@@ -409,7 +409,7 @@
 //    NSLog(@"Finished come to front");
 }
 
-- (void)pointToDirection:(float)degrees {
+- (void)pointInDirection:(float)degrees {
     self.rotation = SP_D2R(degrees);
 }
 
