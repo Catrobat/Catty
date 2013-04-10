@@ -25,10 +25,12 @@
 - (void)performFromScript:(Script*)script
 {
     NSLog(@"Performing: %@", self.description);
+
+    self.object.position = CGPointMake(self.xPosition.floatValue, self.object.position.y);
     
-    CGPoint position = CGPointMake(self.xPosition.floatValue, self.object.position.y);
-    
-    [self.object glideToPosition:position withDurationInSeconds:0 fromScript:script];
+//    CGPoint position = CGPointMake(self.xPosition.floatValue, self.object.position.y);
+//    
+//    [self.object glideToPosition:position withDurationInSeconds:0 fromScript:script];
 
     
     //[self.object setXPosition:self.xPosition.floatValue];

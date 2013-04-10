@@ -83,28 +83,28 @@
         TestParser *testparser = [[TestParser alloc] init];
 //        Program *program = nil;
         
-        program = [testparser generateDebugProject_GlideTo];
-//        program = [testparser generateDebugProject_nextCostume];
-//        program = [testparser generateDebugProject_HideShow];
-//        program = [testparser generateDebugProject_SetXY];
-//        program = [testparser generateDebugProject_broadcast];
-//        program = [testparser generateDebugProject_broadcastWait];
-//        program = [testparser generateDebugProject_comeToFront];
-//        program = [testparser generateDebugProject_pointToDirection];
-//        program = [testparser generateDebugProject_setBrightness];
-//        program = [testparser generateDebugProject_changeSizeByN];
-//        program = [testparser generateDebugProject_parallelScripts];
-//        program = [testparser generateDebugProject_loops];
-//        program = [testparser generateDebugProject_rotate];
-//        program = [testparser generateDebugProject_rotateFullCircle];
-//        program = [testparser generateDebugProject_rotateAndMove];
+//        self.program = [testparser generateDebugProject_GlideTo];
+//        self.program = [testparser generateDebugProject_nextCostume];
+//        self.program = [testparser generateDebugProject_HideShow];
+        self.program = [testparser generateDebugProject_SetXY];
+//        self.program = [testparser generateDebugProject_broadcast];
+//        self.program = [testparser generateDebugProject_broadcastWait];
+//        self.program = [testparser generateDebugProject_comeToFront];
+//        self.program = [testparser generateDebugProject_pointToDirection];
+//        self.program = [testparser generateDebugProject_setBrightness];
+//        self.program = [testparser generateDebugProject_changeSizeByN];
+//        self.program = [testparser generateDebugProject_parallelScripts];
+//        self.program = [testparser generateDebugProject_loops];
+//        self.program = [testparser generateDebugProject_rotate];
+//        self.program = [testparser generateDebugProject_rotateFullCircle];
+//        self.program = [testparser generateDebugProject_rotateAndMove];
         
         
         
         
         // parse Program
         Stage *stage = nil;
-        self.program = [self loadProgram];
+//        self.program = [self loadProgram];
         if ([self.root isKindOfClass:[Stage class]]) {
             stage = (Stage*)self.root;
             stage.program = self.program;
@@ -162,7 +162,7 @@
         
         
         
-//        self.projectSize = CGSizeMake(self.program.header.screenWidth.floatValue, program.header.screenHeight.floatValue); // (normally set in loadProgram)
+        self.projectSize = CGSizeMake(self.program.header.screenWidth.floatValue, self.program.header.screenHeight.floatValue); // (normally set in loadProgram)
         
                 
         

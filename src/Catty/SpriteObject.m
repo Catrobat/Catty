@@ -23,6 +23,8 @@
 
 @implementation SpriteObject
 
+@synthesize position = _position;
+
 // --- getter - setter ---
 
 -(NSMutableArray *)activeScripts
@@ -34,13 +36,19 @@
 
 -(void)setPosition:(CGPoint)position
 {
-    _position = position;
+    //_position = position;
     
-    position = [self stageCoordinatesForPoint:position];
+    CGPoint pos = [self stageCoordinatesForPoint:position];
     
-    self.x = (position.x);
-    self.y = (position.y);
+    self.x = (pos.x);
+    self.y = (pos.y);
     
+}
+
+-(CGPoint)position
+{
+    CGPoint pos = [self pointForStageCoordinates];
+    return pos;
 }
 
 -(NSMutableDictionary*)sounds
@@ -446,6 +454,16 @@
 -(float)xStageCoordinateForCoordinate:(float)x {
     return (x + Sparrow.stage.width  / 2.0f);
 }
+
+-(CGPoint)pointForStageCoordinates
+{
+    CGPoint point;
+    point.x =   self.x - (Sparrow.stage.width /2.0f);
+    point.y = -(self.y - (Sparrow.stage.height/2.0f));
+    
+    return point;
+}
+
 
 - (void)comeToFront {
     NSLog(@"Sprite: %@ come to front", self.name);
