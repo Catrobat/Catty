@@ -12,6 +12,7 @@
 #import "WhenScript.h"
 #import "BroadcastScript.h"
 #import "Look.h"
+#import "Sound.h"
 #import "Sparrow.h"
 #import "SPImage.h"
 
@@ -20,10 +21,13 @@
 @property (nonatomic, strong) NSMutableArray *activeScripts;
 @property (assign) int lookIndex;
 //@property (nonatomic, strong)
+@property (nonatomic, strong) NSMutableDictionary *sounds;
 
 @end
 
 @implementation SpriteObject
+
+@synthesize position = _position;
 
 // --- getter - setter ---
 
@@ -36,13 +40,27 @@
 
 -(void)setPosition:(CGPoint)position
 {
-    _position = position;
+    //_position = position;
     
-    position = [self stageCoordinatesForPoint:position];
+    CGPoint pos = [self stageCoordinatesForPoint:position];
     
-    self.x = (position.x);
-    self.y = (position.y);
+    self.x = (pos.x);
+    self.y = (pos.y);
     
+}
+
+-(CGPoint)position
+{
+    CGPoint pos = [self pointForStageCoordinates];
+    return pos;
+}
+
+-(NSMutableDictionary*)sounds
+{
+    if(!_sounds) {
+        _sounds  = [[NSMutableDictionary alloc] init];
+    }
+    return _sounds;
 }
 
 
@@ -50,8 +68,6 @@
 
 -(void)setInitValues
 {
-    self.showSprite = YES;
-    self.alphaValue = 1.0f;
     self.position = CGPointMake(0.0f, 0.0f);
     self.lookIndex = 0;
 }
@@ -179,13 +195,13 @@
                 // tell the main thread
                 dispatch_sync(dispatch_get_main_queue(), ^{
                     
-                    NSString *responseID = (NSString*)[notification.userInfo valueForKey:@"responseID"];
-                    if (responseID != nil) {
-                        [[NSNotificationCenter defaultCenter]postNotificationName:responseID object:self];
-                    } else {
-                        NSLog(@"Why is there no responseID? I don't want to live on this planet anymore...abort()");
-                        abort();
-                    }
+//                    NSString *responseID = (NSString*)[notification.userInfo valueForKey:@"responseID"];
+//                    if (responseID != nil) {
+//                        [[NSNotificationCenter defaultCenter]postNotificationName:responseID object:self];
+//                    } else {
+//                        NSLog(@"Why is there no responseID? I don't want to live on this planet anymore...abort()");
+//                        abort();
+//                    }
                     
                     [self scriptFinished:script];
                 });
@@ -299,7 +315,6 @@
 }
 
 
-
 - (void)glideToPosition:(CGPoint)position withDurationInSeconds:(float)durationInSeconds fromScript:(Script *)script {
 
     CGPoint newPosition = [self stageCoordinatesForPoint:position];
@@ -311,9 +326,74 @@
     [Sparrow.juggler addObject:tween];
 }
 
+
+-(void)changeXBy:(float)x
+{
+    self.x += x;
+}
+
+-(void)changeYBy:(float)y
+{
+    self.y -= y;
+}
+
 -(void)broadcast:(NSString *)message
 {
     [[NSNotificationCenter defaultCenter] postNotificationName:message object:self];
+}
+
+
+-(void)setSizeToPercentage:(float)sizeInPercentage
+{
+    self.scaleX = self.scaleY = sizeInPercentage/100.0f;
+}
+
+-(void)changeSizeByNInPercent:(float)sizePercentageRate
+{
+    self.scaleX += sizePercentageRate/100.0f;
+    self.scaleY += sizePercentageRate/100.0f;
+}
+
+-(void)playSound:(Sound*)sound
+{
+    SPSound *soundFile = [SPSound soundWithContentsOfFile:[self pathForSound:sound]];
+    SPSoundChannel* channel = [soundFile createChannel];
+                               
+    if(![self.sounds objectForKey:sound.fileName]) {
+        [self.sounds setObject:channel forKey:sound.fileName];
+    }
+              
+    [channel play];
+
+}
+
+-(void)setVolumeToInPercent:(float)volumeInPercent
+{
+    NSEnumerator *enumerator = [self.sounds objectEnumerator];
+    SPSoundChannel* sound;
+    while ((sound = [enumerator nextObject])) {
+        sound.volume = volumeInPercent/100.0f;
+    }
+}
+
+-(void)stopAllSounds
+{
+    NSEnumerator *enumerator = [self.sounds objectEnumerator];
+    SPSoundChannel* sound;
+    while ((sound = [enumerator nextObject])) {
+        [sound stop];
+    }
+    
+}
+
+-(void)setTransparencyInPercent:(float)transparencyInPercent
+{
+  self.alpha = 1.0f - transparencyInPercent / 100.0f;
+}
+
+-(void)changeTransparencyInPercent:(float)increaseInPercent
+{
+    self.alpha += 1.0f - increaseInPercent /100.0f;
 }
 
 -(void)broadcastAndWait:(NSString *)message
@@ -357,26 +437,49 @@
     return [NSString stringWithFormat:@"%@images/%@", self.projectPath, look.fileName];
 }
 
+-(NSString*)pathForSound:(Sound*)sound
+{
+    return [NSString stringWithFormat:@"%@sounds/%@", self.projectPath, sound.fileName];
+}
+
 -(CGPoint)stageCoordinatesForPoint:(CGPoint)point
 {
     CGPoint coordinates;
-    coordinates.x = (point.x + Sparrow.stage.width  / 2.0f);
-    coordinates.y = (Sparrow.stage.height/2.0f - point.y);
+    coordinates.x = [self xStageCoordinateForCoordinate:point.x];
+    coordinates.y = [self yStageCoordinateForCoordinate:point.y];
     
     return coordinates;
 }
 
+-(float)yStageCoordinateForCoordinate:(float)y {
+    return (Sparrow.stage.height/2.0f - y);
+}
+
+-(float)xStageCoordinateForCoordinate:(float)x {
+    return (x + Sparrow.stage.width  / 2.0f);
+}
+
+-(CGPoint)pointForStageCoordinates
+{
+    CGPoint point;
+    point.x =   self.x - (Sparrow.stage.width /2.0f);
+    point.y = -(self.y - (Sparrow.stage.height/2.0f));
+    
+    return point;
+}
+
+
 - (void)comeToFront {
-//    NSLog(@"Sprite: %@ come to front", self.name);
+    NSLog(@"Sprite: %@ come to front", self.name);
     SPDisplayObjectContainer* myParent = self.parent;
     //[myParent setIndex:myParent.numChildren-1 ofChild:self];
     
     [myParent addChild:self];
-//    NSLog(@"Finished come to front");
+    NSLog(@"Finished come to front");
 }
 
-- (void)pointToDirection:(float)degrees {
-    self.rotation = SP_D2R(degrees);
+- (void)pointInDirection:(float)degrees {
+    self.rotation = SP_D2R(degrees-90);
 }
 
 - (void)changeBrightness:(float)factor {

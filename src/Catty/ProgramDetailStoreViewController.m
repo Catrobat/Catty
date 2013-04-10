@@ -150,6 +150,7 @@
 {
     NSDebug(@"Play Button");
     StageViewController* viewController = [Util createStageViewControllerWithProgram:self.project.projectName];
+    viewController.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:viewController animated:YES];
 }
 

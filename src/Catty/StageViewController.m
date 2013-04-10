@@ -27,6 +27,7 @@
 @property (nonatomic, assign) BOOL firstDrawing;
 @property (nonatomic, assign) CGSize projectSize;
 @property (nonatomic, strong) BroadcastWaitHandler *broadcastWaitHandler;
+@property (nonatomic, strong) Program* program;
 
 
 @end
@@ -57,6 +58,7 @@
     UIImage* backImage = [UIImage imageNamed:@"back"];
     [backButton setImage:backImage forState:UIControlStateNormal];
     [self.navigationController.view.superview addSubview:backButton];
+    [self.navigationController.tabBarController.view.superview addSubview:backButton];
 }
 
 - (void)viewWillDisappear:(BOOL)animated
@@ -80,29 +82,42 @@
         
         // just for test parser
         TestParser *testparser = [[TestParser alloc] init];
-        Program *program = nil;
+//        Program *program = nil;
         
-//        program = [testparser generateDebugProject_GlideTo];
-//        program = [testparser generateDebugProject_nextCostume];
-//        program = [testparser generateDebugProject_HideShow];
-//        program = [testparser generateDebugProject_SetXY];
-//        program = [testparser generateDebugProject_broadcast];
-//        program = [testparser generateDebugProject_broadcastWait];
-//        program = [testparser generateDebugProject_comeToFront];
-//        program = [testparser generateDebugProject_pointToDirection];
-        program = [testparser generateDebugProject_setBrightness];
-//        program = [testparser generateDebugProject_changeSizeByN];
-//        program = [testparser generateDebugProject_parallelScripts];
-//        program = [testparser generateDebugProject_loops];
-//        program = [testparser generateDebugProject_rotate];
-//        program = [testparser generateDebugProject_rotateFullCircle];
-//        program = [testparser generateDebugProject_rotateAndMove];
+//        self.program = [testparser generateDebugProject_GlideTo];
+//        self.program = [testparser generateDebugProject_nextCostume];
+//        self.program = [testparser generateDebugProject_HideShow];
+        self.program = [testparser generateDebugProject_SetXY];
+//        self.program = [testparser generateDebugProject_broadcast];
+//        self.program = [testparser generateDebugProject_broadcastWait];
+//        self.program = [testparser generateDebugProject_comeToFront];
+//        self.program = [testparser generateDebugProject_pointToDirection];
+//        self.program = [testparser generateDebugProject_setBrightness];
+//        self.program = [testparser generateDebugProject_changeSizeByN];
+//        self.program = [testparser generateDebugProject_parallelScripts];
+//        self.program = [testparser generateDebugProject_loops];
+//        self.program = [testparser generateDebugProject_rotate];
+//        self.program = [testparser generateDebugProject_rotateFullCircle];
+//        self.program = [testparser generateDebugProject_rotateAndMove];
+        
+        
+        
+        
+        // parse Program
+        Stage *stage = nil;
+//        self.program = [self loadProgram];
+        if ([self.root isKindOfClass:[Stage class]]) {
+            stage = (Stage*)self.root;
+            stage.program = self.program;
+        } else {
+            abort();
+        }
         
         
         
 //////////////////////////////////// START DEBUG
         //setting effect
-        for (SpriteObject *sprite in program.objectList)
+        for (SpriteObject *sprite in self.program.objectList)
         {
             sprite.spriteManagerDelegate = self;
             sprite.broadcastWaitDelegate = self.broadcastWaitHandler;
@@ -148,19 +163,7 @@
         
         
         
-        self.projectSize = CGSizeMake(program.header.screenWidth.floatValue, program.header.screenHeight.floatValue); // (normally set in loadProgram)
-
-        
-        
-        // parse Program
-        Stage *stage = nil;
-//        Program* program = [self loadProgram];
-        if ([self.root isKindOfClass:[Stage class]]) {
-            stage = (Stage*)self.root;
-            stage.program = program;
-        } else {
-            abort();
-        }
+        self.projectSize = CGSizeMake(self.program.header.screenWidth.floatValue, self.program.header.screenHeight.floatValue); // (normally set in loadProgram)
         
                 
         
@@ -289,6 +292,14 @@
         }
     }
     return program;
+}
+
+-(void)stopAllSounds
+{
+    for(SpriteObject* sprite in self.program.objectList)
+    {
+        [sprite stopAllSounds];
+    }
 }
 
 

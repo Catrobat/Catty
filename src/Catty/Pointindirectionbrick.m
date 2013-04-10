@@ -6,15 +6,15 @@
 //
 //
 
-#import "Pointtodirectionbrick.h"
+#import "Pointindirectionbrick.h"
 
-@implementation Pointtodirectionbrick
+@implementation Pointindirectionbrick
 
 - (void)performFromScript:(Script*)script
 {
     NSLog(@"Performing: %@", self.description);
     
-    [self.object pointToDirection:self.degree.floatValue];
+    [self.object pointInDirection:self.degrees.floatValue];
 }
 
 #pragma mark - Description
