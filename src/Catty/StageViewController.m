@@ -87,12 +87,12 @@
 //        self.program = [testparser generateDebugProject_GlideTo];
 //        self.program = [testparser generateDebugProject_nextCostume];
 //        self.program = [testparser generateDebugProject_HideShow];
-        self.program = [testparser generateDebugProject_SetXY];
+//        self.program = [testparser generateDebugProject_SetXY];
 //        self.program = [testparser generateDebugProject_broadcast];
 //        self.program = [testparser generateDebugProject_broadcastWait];
 //        self.program = [testparser generateDebugProject_comeToFront];
 //        self.program = [testparser generateDebugProject_pointToDirection];
-//        self.program = [testparser generateDebugProject_setBrightness];
+        self.program = [testparser generateDebugProject_setBrightness];
 //        self.program = [testparser generateDebugProject_changeSizeByN];
 //        self.program = [testparser generateDebugProject_parallelScripts];
 //        self.program = [testparser generateDebugProject_loops];
