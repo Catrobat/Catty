@@ -68,10 +68,14 @@
         });
     }
     
-    // TODO: avoid busy waiting!!
-    while (numOfAllSprites != numOfFinishedSprites.intValue) {
-        // TODO: yield?!
-    }
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
+    
+        // TODO: avoid busy waiting!!
+        while (numOfAllSprites != numOfFinishedSprites.intValue) {
+            // TODO: yield?!
+        }
+        
+    });
     
     // finished!
 }
