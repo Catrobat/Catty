@@ -34,10 +34,13 @@
     self.position.y = self.yPosition.floatValue;
     
     */
+
+    self.object.position = CGPointMake(self.xPosition.floatValue, self.yPosition.floatValue);
+
     
-    CGPoint position = CGPointMake(self.xPosition.floatValue, self.yPosition.floatValue);
-    
-    [self.object glideToPosition:position withDurationInSeconds:0 fromScript:script];
+//    CGPoint position = CGPointMake(self.xPosition.floatValue, self.yPosition.floatValue);
+//    
+//    [self.object glideToPosition:position withDurationInSeconds:0 fromScript:script];
     //[NSThread sleepForTimeInterval:self.durationInSeconds.floatValue];
 
     

@@ -37,6 +37,7 @@
 #import "TurnRightBrick.h"
 #import "SetBrightnessBrick.h"
 #import "Pointindirectionbrick.h"
+#import "SetGhostEffectBrick.h"
 
 #define IMAGE_FILE_NAME @"tmp.png"
 
@@ -868,17 +869,30 @@
     
     Look *look= [self createCostumeFromPath:@"normalcat.png" withName:@"cat1"];
     
+    Waitbrick *wait = [[Waitbrick alloc] init];
+    wait.timeToWaitInSeconds = [NSNumber numberWithFloat:0.75f];
+    
     Setlookbrick *setLookBrick = [[Setlookbrick alloc]init];
     setLookBrick.look = look;
+    
     Setbrightnessbrick *brightness = [[Setbrightnessbrick alloc] init];
     brightness.brightness = [NSNumber numberWithFloat:0.5];
+    
+    Setbrightnessbrick *brightness2 = [[Setbrightnessbrick alloc] init];
+    brightness2.brightness = [NSNumber numberWithFloat:1.0];
+    
+    Setbrightnessbrick *brightness3 = [[Setbrightnessbrick alloc] init];
+    brightness3.brightness = [NSNumber numberWithFloat:1.5];
+    
+    Setbrightnessbrick *brightness4 = [[Setbrightnessbrick alloc] init];
+    brightness4.brightness = [NSNumber numberWithFloat:1.0];
     
     Startscript *startScript = [[Startscript alloc]init];
     startScript.brickList = [NSArray arrayWithObject:setLookBrick];
     //[startScript addBrick:setLookBrick];
     
     Whenscript *whenScript = [[Whenscript alloc]init];
-    whenScript.brickList = [NSArray arrayWithArray:[NSMutableArray arrayWithObjects:brightness, nil]];
+    whenScript.brickList = [NSArray arrayWithArray:[NSMutableArray arrayWithObjects:brightness, wait, brightness2, wait, brightness3, wait, brightness4, nil]];
     //[whenScript addBricks:[NSMutableArray arrayWithObjects:glideBrick1, glideBrick2, waitBrick, placeAtBrick, nil]];
     
     
@@ -1094,6 +1108,55 @@
     [self linkSpriteToScripts:project];
     return project;
     
+}
+
+-(Program *)generateDebugProject_transparency
+{
+    Program*project = [[Program alloc]init];
+    project.header = [[Header alloc] init];
+    project.header.programName = @"transparency";
+    project.header.screenWidth  = [NSNumber numberWithInt:320];
+    project.header.screenHeight = [NSNumber numberWithInt:900];
+    
+    
+    Look *look= [self createCostumeFromPath:@"normalcat.png" withName:@"cat1"];
+    
+    Setghosteffectbrick *setGhostEffect1 = [[Setghosteffectbrick alloc] initWithTransparencyInPercent:[NSNumber numberWithInt:50]];
+    Setghosteffectbrick *setGhostEffect2 = [[Setghosteffectbrick alloc] initWithTransparencyInPercent:[NSNumber numberWithInt:0]];
+    Setghosteffectbrick *setGhostEffect3 = [[Setghosteffectbrick alloc] initWithTransparencyInPercent:[NSNumber numberWithInt:150]];
+    Setghosteffectbrick *setGhostEffect4 = [[Setghosteffectbrick alloc] initWithTransparencyInPercent:[NSNumber numberWithInt:0]];
+    Setghosteffectbrick *setGhostEffect5 = [[Setghosteffectbrick alloc] initWithTransparencyInPercent:[NSNumber numberWithInt:-150]];
+    Setghosteffectbrick *setGhostEffect6 = [[Setghosteffectbrick alloc] initWithTransparencyInPercent:[NSNumber numberWithInt:0]];
+
+    
+    Waitbrick *waitBrick = [[Waitbrick alloc]init];
+    waitBrick.timeToWaitInSeconds = [NSNumber numberWithFloat:1.0f];
+    
+    Whenscript *whenScript = [[Whenscript alloc]init];
+    whenScript.brickList= [NSArray arrayWithObjects:setGhostEffect1, waitBrick, setGhostEffect2, waitBrick, setGhostEffect3, waitBrick, setGhostEffect4, waitBrick, setGhostEffect5, waitBrick, setGhostEffect6, nil];
+    
+    Startscript *startScript = [[Startscript alloc]init];
+    Setlookbrick *setLookBrick = [[Setlookbrick alloc]init];
+    setLookBrick.look = look;
+    startScript.brickList = [NSArray arrayWithObjects:setLookBrick, nil];
+    
+    
+    NSArray *looks = [NSArray arrayWithObjects:look, nil];
+    
+    
+    SpriteObject *sprite = [self createSprite:@"cat" withPositionX:(NSInteger)0 withPositionY:(NSInteger)0 withCostumes:looks setCostumeIndex:(NSInteger)0];
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *documentsDirectory = [paths objectAtIndex:0];
+    sprite.projectPath = [documentsDirectory stringByAppendingString:@"/levels/TestParser/"];
+    NSMutableArray *temp = [[NSMutableArray alloc] init];
+    [temp addObject:startScript];
+    [temp addObject:whenScript];
+    sprite.scriptList = temp;
+    
+    project.objectList = [NSMutableArray arrayWithObject:sprite];
+    
+    [self linkSpriteToScripts:project];
+    return project;
 }
 
 
