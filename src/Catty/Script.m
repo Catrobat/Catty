@@ -140,7 +140,7 @@
             double startTimeOfLoop = ((NSNumber*)[self.startLoopTimestampStack lastObject]).doubleValue;
             [self.startLoopTimestampStack removeLastObject];
             double timeToWait = 0.02f - ([[NSDate date]timeIntervalSince1970] - startTimeOfLoop); // 20 milliseconds
-            NSLog(@"timeToWait (loop): %f", timeToWait);
+//            NSLog(@"timeToWait (loop): %f", timeToWait);
             if (timeToWait > 0)
                 [NSThread sleepForTimeInterval:timeToWait];
             

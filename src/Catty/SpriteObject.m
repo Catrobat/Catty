@@ -330,12 +330,20 @@
 
 -(void)changeXBy:(float)x
 {
-    self.x += x;
+    
+    SPTween *tween = [SPTween tweenWithTarget:self time:0.0f];
+    [tween animateProperty:@"x" targetValue:self.x+x];
+    tween.repeatCount = 1;
+    [Sparrow.juggler addObject:tween];
+
 }
 
 -(void)changeYBy:(float)y
 {
-    self.y -= y;
+    SPTween *tween = [SPTween tweenWithTarget:self time:0.0f];
+    [tween animateProperty:@"y" targetValue:self.y-y];
+    tween.repeatCount = 1;
+    [Sparrow.juggler addObject:tween];
 }
 
 -(void)broadcast:(NSString *)message
