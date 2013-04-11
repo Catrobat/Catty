@@ -44,38 +44,74 @@
 
 -(void)performBroadcastWaitForMessage:(NSString*)message
 {
-    NSLock *finishedLock = [[NSLock alloc]init];
-    __block NSNumber *numOfFinishedSprites = [NSNumber numberWithInt:0];
     
-    NSArray *sprites = [self.spritesForMessages objectForKey:message];
-    int numOfAllSprites = [sprites count];
+    NSString* queueString = [NSString stringWithFormat:@"at.tugraz.ist.%@", message];
+    const char *queueName = [message cStringUsingEncoding:NSUTF8StringEncoding];
+    
+    dispatch_queue_t broadcastWaitQueue = dispatch_queue_create(queueName, NULL);
+    dispatch_group_t group = dispatch_group_create();
 
+    NSArray *sprites = [self.spritesForMessages objectForKey:message];
     for (SpriteObject *sprite in sprites) {
-        
+
         if ([sprite isKindOfClass:[SpriteObject class]] == NO) {
             NSLog(@"sprite is not a SpriteObject...abort()");
             abort();
         }
-
-
-        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        
+        dispatch_async(broadcastWaitQueue, ^{
             [sprite performBroadcastWaitScript_calledFromBroadcastWaitDelegate_withMessage:message];
-    
-            [finishedLock lock];
-            numOfFinishedSprites = [NSNumber numberWithInt:numOfFinishedSprites.intValue+1];
-            [finishedLock unlock];
-            
         });
     }
     
-    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
     
-        // TODO: avoid busy waiting!!
-        while (numOfAllSprites != numOfFinishedSprites.intValue) {
-            // TODO: yield?!
-        }
-        
+    
+    dispatch_group_async(group, broadcastWaitQueue, ^{
     });
+    
+    dispatch_group_wait(group, DISPATCH_TIME_FOREVER); // Block until we're ready
+    // Now we're good to call it:
+    
+    
+    
+//    NSLock *finishedLock = [[NSLock alloc]init];
+//
+//    __block NSInteger numOfFinishedSprites = 0;
+//    
+//    NSArray *sprites = [self.spritesForMessages objectForKey:message];
+//    int numOfAllSprites = [sprites count];
+//    
+//
+//    for (SpriteObject *sprite in sprites) {
+//        
+//        if ([sprite isKindOfClass:[SpriteObject class]] == NO) {
+//            NSLog(@"sprite is not a SpriteObject...abort()");
+//            abort();
+//        }
+//
+//
+//        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+//            [sprite performBroadcastWaitScript_calledFromBroadcastWaitDelegate_withMessage:message];
+//    
+//            [finishedLock lock];
+//            numOfFinishedSprites++;
+//            [conditionLock unlockWithCondition:numOfFinishedSprites];
+//            [finishedLock unlock];
+//            
+//        });
+//    }
+//    
+    
+//    dispatch_sync(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
+//        
+//        NSCo
+//
+//        // TODO: avoid busy waiting!!
+//        while (numOfAllSprites != numOfFinishedSprites.intValue) {
+//            // TODO: yield?!
+//        }
+//        
+//    });
     
     // finished!
 }
