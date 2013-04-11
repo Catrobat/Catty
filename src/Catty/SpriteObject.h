@@ -55,7 +55,6 @@
 - (void)setYPosition:(float)yPosition;
 - (void)broadcast:(NSString*)message;
 - (void)broadcastAndWait:(NSString*)message;
-- (void)playSound:(Sound*)sound;
 - (void)comeToFront;
 - (void)changeSizeByNInPercent:(float)sizePercentageRate;
 - (void)changeXBy:(float)x;
@@ -65,8 +64,10 @@
 - (void)goNStepsBack:(int)n;
 - (void)setTransparencyInPercent:(float)transparencyInPercent;
 - (void)changeTransparencyInPercent:(float)increaseInPercent;
+- (void)playSound:(Sound*)sound;
+- (void)speakSound:(Sound*)sound;
 - (void)setVolumeToInPercent:(float)volumeInPercent;
-- (void)changeVolumeBy:(float)percent;
+- (void)changeVolumeInPercent:(float)volumeInPercent;
 - (void)turnLeft:(float)degrees;
 - (void)turnRight:(float)degrees;
 - (void)pointInDirection:(float)degrees;

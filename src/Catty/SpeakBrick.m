@@ -7,7 +7,8 @@
 //
 
 #import "Speakbrick.h"
-#import "CustomExtensions.h"
+#import "NSString+CatrobatNSStringExtensions.h"
+#import "Sound.h"
 
 #define TTS_SERVICE @"http://www.translate.google.com/translate_tts?tl="
 #define TTS_APPENDIX @"&q="
@@ -17,8 +18,8 @@
 
 @property (nonatomic, strong) NSString *path;
 @property (nonatomic, strong) NSString *language;
+@property (nonatomic, strong) NSString *fileName;
 @property (nonatomic, strong) NSURL* url;
-
 
 @end
 
@@ -26,32 +27,19 @@
 @implementation Speakbrick
 
 
-@synthesize text = _text;
-@synthesize path = _path;
-@synthesize language = _language;
+-(void)setText:(NSString *)text
+{
+    _text = text;
+    [self setup];
+    [self downloadFileAsynchronous];
+}
+
 
 -(id)init
 {
     self = [super init];
-    if(self)
-    {
-        [self setup];
-        [self downloadFileAsynchronous];
+    if(self) {
     }
-    return self;
-}
-
-
--(id)initWithText:(NSString *)text
-{
-    self = [super init];
-    if (self)
-    {
-        self.text = text;
-        [self setup];
-        [self downloadFileAsynchronous];
-    }
-    
     return self;
 }
 
@@ -60,8 +48,10 @@
 {
     NSLog(@"Performing: %@", self.description);
     
-    [self speakUsingTTSWebServiceOnSprite:self.object];
+    [self speakUsingTTSWebService];
 }
+
+
 
 #pragma mark - Description
 
@@ -81,31 +71,29 @@
     NSString* name = [[NSString alloc] initWithFormat:@"%@(%@)", self.text, self.language];
     
 
-    NSString* fileName = [[NSString alloc] initWithFormat:@"%@%@", [name sha1], @".mp3"];
-    self.path = [NSTemporaryDirectory() stringByAppendingPathComponent:fileName];
+    self.fileName = [[NSString alloc] initWithFormat:@"%@%@", [name sha1], @".mp3"];
+    self.path = [NSTemporaryDirectory() stringByAppendingPathComponent:self.fileName];
     
-    NSLog(@"File Name:%@", self.path);
+    NSDebug(@"File Name:%@", self.path);
     
     NSString *urlString = [NSString stringWithFormat:@"%@%@%@%@", TTS_SERVICE, self.language, TTS_APPENDIX, self.text];
     self.url = [NSURL URLWithString:[urlString stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
     
-    NSLog(@"URL: %@", urlString);
+    NSDebug(@"URL: %@", urlString);
 }
 
 
--(void)speakUsingTTSWebServiceOnSprite:(SpriteObject*)sprite
+-(void)speakUsingTTSWebService
 {
-//    [self downloadFileSynchronous];
-//    
-//    if ([[NSFileManager defaultManager] fileExistsAtPath:_path])
-//    {
-//        AVAudioPlayer  *player;
-//        NSError        *err;
-//        player = [[AVAudioPlayer alloc] initWithContentsOfURL:
-//                  [NSURL fileURLWithPath:_path] error:&err];
-//        
-//        [sprite addSound:player];
-//    }
+    [self downloadFileSynchronous];
+    
+    if ([[NSFileManager defaultManager] fileExistsAtPath:self.path])
+    {
+        Sound* sound = [[Sound alloc] init];
+        sound.name = self.text;
+        sound.fileName = self.fileName;
+        [self.object speakSound:sound];
+    }
     
 }
 
@@ -113,7 +101,7 @@
 -(void)downloadFileAsynchronous
 {
     
-    if (![[NSFileManager defaultManager] fileExistsAtPath:_path])
+    if (![[NSFileManager defaultManager] fileExistsAtPath:self.path])
     {        
         NSMutableURLRequest* request = [[NSMutableURLRequest alloc] initWithURL:self.url];
         [request setValue:USER_AGENT forHTTPHeaderField:@"User-Agent"];
@@ -124,12 +112,12 @@
          {
              if ([data length] > 0 && error == nil)
              {
-                 NSLog(@"Download sucess");
-                 [data writeToFile:_path atomically:YES];
+                 NSDebug(@"Download sucess");
+                 [data writeToFile:self.path atomically:YES];
              }
              else if ([data length] == 0 && error == nil)
              {
-                 NSLog(@"No Reply");
+                 NSDebug(@"No Reply");
              }
              else if (error != nil)
              {

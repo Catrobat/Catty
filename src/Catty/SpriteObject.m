@@ -355,20 +355,34 @@
     self.scaleY += sizePercentageRate/100.0f;
 }
 
+
+- (void)speakSound:(Sound*)sound
+{
+    SPSound *soundFile = [SPSound soundWithContentsOfFile:[self pathForSpeakSound:sound]];
+    [self createSoundChannelAndAddToSounds:soundFile withKey:sound.fileName];
+}
+
+
 -(void)playSound:(Sound*)sound
 {
     SPSound *soundFile = [SPSound soundWithContentsOfFile:[self pathForSound:sound]];
+    [self createSoundChannelAndAddToSounds:soundFile withKey:sound.fileName];
+}
+
+
+-(void)createSoundChannelAndAddToSounds:(SPSound*)soundFile withKey:(NSString*)key
+{
     SPSoundChannel* channel = nil;
     
     
-    if(!(channel = [self.sounds objectForKey:sound.fileName])) {
+    if(!(channel = [self.sounds objectForKey:key])) {
         channel = [soundFile createChannel];
-        [self.sounds setObject:channel forKey:sound.fileName];
+        [self.sounds setObject:channel forKey:key];
     }
     
     [channel stop];
     [channel play];
-
+    
 }
 
 -(void)setVolumeToInPercent:(float)volumeInPercent
@@ -378,6 +392,16 @@
     while ((sound = [enumerator nextObject])) {
         sound.volume = volumeInPercent/100.0f;
     }
+}
+
+-(void)changeVolumeInPercent:(float)volumeInPercent
+{
+    NSEnumerator *enumerator = [self.sounds objectEnumerator];
+    SPSoundChannel* sound;
+    while ((sound = [enumerator nextObject])) {
+        sound.volume += volumeInPercent/100.0f;
+    }
+    
 }
 
 -(void)stopAllSounds
@@ -446,6 +470,11 @@
     return [NSString stringWithFormat:@"%@sounds/%@", self.projectPath, sound.fileName];
 }
 
+-(NSString*)pathForSpeakSound:(Sound*)sound
+{
+    return [NSTemporaryDirectory() stringByAppendingPathComponent:sound.fileName];
+}
+
 -(CGPoint)stageCoordinatesForPoint:(CGPoint)point
 {
     CGPoint coordinates;
@@ -474,12 +503,18 @@
 
 
 - (void)comeToFront {
-    NSLog(@"Sprite: %@ come to front", self.name);
-    SPDisplayObjectContainer* myParent = self.parent;
-    //[myParent setIndex:myParent.numChildren-1 ofChild:self];
-    
-    [myParent addChild:self];
-    NSLog(@"Finished come to front");
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self.parent addChild:self];
+    });
+}
+
+- (void)goNStepsBack:(int)n
+{
+    int index = MAX(0, [self.parent childIndex:self]-fabs(n));
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self.parent addChild:self atIndex:index];
+    });
+
 }
 
 - (void)pointInDirection:(float)degrees {

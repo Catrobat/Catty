@@ -8,10 +8,9 @@
 
 #import "Brick.h"
 
-@interface Changevolumebybrick : Brick
+@interface Changevolumebynbrick : Brick
 
-@property (nonatomic, nonatomic) float percent;
+@property (nonatomic, nonatomic) NSNumber* volume;
 
--(id)initWithValueInPercent:(float)percent;
 
 @end

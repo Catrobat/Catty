@@ -92,7 +92,7 @@
 		CD0CCF5B170CB39700B70036 /* CattyAppDelegateOLD.m in Sources */ = {isa = PBXBuildFile; fileRef = CD0CCE74170CB39600B70036 /* CattyAppDelegateOLD.m */; };
 		CD0CCF5E170CB39700B70036 /* ChangeGhostEffectByNBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = CD0CCE7B170CB39600B70036 /* ChangeGhostEffectByNBrick.m */; };
 		CD0CCF5F170CB39700B70036 /* ChangeSizeByNBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = CD0CCE7D170CB39600B70036 /* ChangeSizeByNBrick.m */; };
-		CD0CCF60170CB39700B70036 /* ChangeVolumeByBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = CD0CCE7F170CB39600B70036 /* ChangeVolumeByBrick.m */; };
+		CD0CCF60170CB39700B70036 /* ChangeVolumeByNBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = CD0CCE7F170CB39600B70036 /* ChangeVolumeByNBrick.m */; };
 		CD0CCF61170CB39700B70036 /* ChangeXByNBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = CD0CCE81170CB39600B70036 /* ChangeXByNBrick.m */; };
 		CD0CCF62170CB39700B70036 /* ChangeYByNBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = CD0CCE83170CB39600B70036 /* ChangeYByNBrick.m */; };
 		CD0CCF64170CB39700B70036 /* ComeToFrontBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = CD0CCE86170CB39600B70036 /* ComeToFrontBrick.m */; };
@@ -136,7 +136,6 @@
 		CD0CCFDA170CB39700B70036 /* Util.m in Sources */ = {isa = PBXBuildFile; fileRef = CD0CCF43170CB39700B70036 /* Util.m */; };
 		CD0CCFDB170CB39700B70036 /* WaitBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = CD0CCF45170CB39700B70036 /* WaitBrick.m */; };
 		CD0CCFDC170CB39700B70036 /* WhenScript.m in Sources */ = {isa = PBXBuildFile; fileRef = CD0CCF47170CB39700B70036 /* WhenScript.m */; };
-		CD0CD003170CBD9100B70036 /* CustomExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = CD0CD002170CBD9100B70036 /* CustomExtensions.m */; };
 		CD639C7B170DF52600FA67DA /* SpriteObject.m in Sources */ = {isa = PBXBuildFile; fileRef = CD639C7A170DF52600FA67DA /* SpriteObject.m */; };
 		DE3F093811B7B9DC009D4DB0 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DE3F093711B7B9DC009D4DB0 /* AVFoundation.framework */; };
 		DE3F093A11B7B9DC009D4DB0 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DE3F093911B7B9DC009D4DB0 /* AudioToolbox.framework */; };
@@ -326,8 +325,8 @@
 		CD0CCE7B170CB39600B70036 /* ChangeGhostEffectByNBrick.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChangeGhostEffectByNBrick.m; sourceTree = "<group>"; };
 		CD0CCE7C170CB39600B70036 /* ChangeSizeByNBrick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChangeSizeByNBrick.h; sourceTree = "<group>"; };
 		CD0CCE7D170CB39600B70036 /* ChangeSizeByNBrick.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChangeSizeByNBrick.m; sourceTree = "<group>"; };
-		CD0CCE7E170CB39600B70036 /* ChangeVolumeByBrick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChangeVolumeByBrick.h; sourceTree = "<group>"; };
-		CD0CCE7F170CB39600B70036 /* ChangeVolumeByBrick.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChangeVolumeByBrick.m; sourceTree = "<group>"; };
+		CD0CCE7E170CB39600B70036 /* ChangeVolumeByNBrick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChangeVolumeByNBrick.h; sourceTree = "<group>"; };
+		CD0CCE7F170CB39600B70036 /* ChangeVolumeByNBrick.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChangeVolumeByNBrick.m; sourceTree = "<group>"; };
 		CD0CCE80170CB39600B70036 /* ChangeXByNBrick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChangeXByNBrick.h; sourceTree = "<group>"; };
 		CD0CCE81170CB39600B70036 /* ChangeXByNBrick.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChangeXByNBrick.m; sourceTree = "<group>"; };
 		CD0CCE82170CB39600B70036 /* ChangeYByNBrick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChangeYByNBrick.h; sourceTree = "<group>"; };
@@ -417,8 +416,6 @@
 		CD0CCF46170CB39700B70036 /* WhenScript.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WhenScript.h; sourceTree = "<group>"; };
 		CD0CCF47170CB39700B70036 /* WhenScript.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WhenScript.m; sourceTree = "<group>"; };
 		CD0CCF48170CB39700B70036 /* XMLParserProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XMLParserProtocol.h; sourceTree = "<group>"; };
-		CD0CD001170CBD9100B70036 /* CustomExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomExtensions.h; sourceTree = "<group>"; };
-		CD0CD002170CBD9100B70036 /* CustomExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomExtensions.m; sourceTree = "<group>"; };
 		CD639C79170DF52600FA67DA /* SpriteObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpriteObject.h; sourceTree = "<group>"; };
 		CD639C7A170DF52600FA67DA /* SpriteObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpriteObject.m; sourceTree = "<group>"; };
 		DE3F093711B7B9DC009D4DB0 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
@@ -1042,7 +1039,7 @@
 				CD0CCFDF170CB5EC00B70036 /* BroadcastWaitBrick */,
 				CD0CCFE0170CB5FA00B70036 /* ChangeGhostEffectByNBrick */,
 				CD0CCFE1170CB63200B70036 /* ChangeSizeByNBrick */,
-				CD0CCFE2170CB63F00B70036 /* ChangeVolumeByBrick */,
+				CD0CCFE2170CB63F00B70036 /* ChangeVolumeByNBrick */,
 				CD0CCFE3170CB64A00B70036 /* ChangeXYByNBrick */,
 				CD0CCFE5170CB68100B70036 /* ComeToFrontBrick */,
 				CD0CCFE6170CB69800B70036 /* LoopBricks */,
@@ -1100,13 +1097,13 @@
 			name = ChangeSizeByNBrick;
 			sourceTree = "<group>";
 		};
-		CD0CCFE2170CB63F00B70036 /* ChangeVolumeByBrick */ = {
+		CD0CCFE2170CB63F00B70036 /* ChangeVolumeByNBrick */ = {
 			isa = PBXGroup;
 			children = (
-				CD0CCE7E170CB39600B70036 /* ChangeVolumeByBrick.h */,
-				CD0CCE7F170CB39600B70036 /* ChangeVolumeByBrick.m */,
+				CD0CCE7E170CB39600B70036 /* ChangeVolumeByNBrick.h */,
+				CD0CCE7F170CB39600B70036 /* ChangeVolumeByNBrick.m */,
 			);
-			name = ChangeVolumeByBrick;
+			name = ChangeVolumeByNBrick;
 			sourceTree = "<group>";
 		};
 		CD0CCFE3170CB64A00B70036 /* ChangeXYByNBrick */ = {
@@ -1363,8 +1360,6 @@
 		CD0CCFFB170CB97000B70036 /* Sound */ = {
 			isa = PBXGroup;
 			children = (
-				CD0CD001170CBD9100B70036 /* CustomExtensions.h */,
-				CD0CD002170CBD9100B70036 /* CustomExtensions.m */,
 				CD0CCF23170CB39700B70036 /* SoundInfo.h */,
 				CD0CCF24170CB39700B70036 /* SoundInfo.m */,
 				CD0CCF21170CB39700B70036 /* Sound.h */,
@@ -1638,7 +1633,7 @@
 				CD0CCF5B170CB39700B70036 /* CattyAppDelegateOLD.m in Sources */,
 				CD0CCF5E170CB39700B70036 /* ChangeGhostEffectByNBrick.m in Sources */,
 				CD0CCF5F170CB39700B70036 /* ChangeSizeByNBrick.m in Sources */,
-				CD0CCF60170CB39700B70036 /* ChangeVolumeByBrick.m in Sources */,
+				CD0CCF60170CB39700B70036 /* ChangeVolumeByNBrick.m in Sources */,
 				CD0CCF61170CB39700B70036 /* ChangeXByNBrick.m in Sources */,
 				CD0CCF62170CB39700B70036 /* ChangeYByNBrick.m in Sources */,
 				CD0CCF64170CB39700B70036 /* ComeToFrontBrick.m in Sources */,
@@ -1682,7 +1677,6 @@
 				CD0CCFDA170CB39700B70036 /* Util.m in Sources */,
 				CD0CCFDB170CB39700B70036 /* WaitBrick.m in Sources */,
 				CD0CCFDC170CB39700B70036 /* WhenScript.m in Sources */,
-				CD0CD003170CBD9100B70036 /* CustomExtensions.m in Sources */,
 				CD639C7B170DF52600FA67DA /* SpriteObject.m in Sources */,
 				B4D940AD170EC2B7003DDBFA /* ioapi.c in Sources */,
 				B4D940AE170EC2B7003DDBFA /* mztools.c in Sources */,
