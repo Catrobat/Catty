@@ -548,6 +548,8 @@
 - (void)changeBrightness:(float)factor {
     //image.color = SP_COLOR(255, 0, 255);
     
+    factor /= 100.0f;
+    
     // < 1.0f == dim
     if (factor <= 1.0f) {
         self.blendMode = SP_BLEND_MODE_NORMAL;

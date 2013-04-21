@@ -14,4 +14,11 @@
 {
     [self.object changeBrightness:self.brightness.floatValue];
 }
+
+#pragma mark - Description
+- (NSString*)description
+{
+    return [NSString stringWithFormat:@"Set Brightness to: %f%%)", self.brightness.floatValue];
+}
+
 @end
