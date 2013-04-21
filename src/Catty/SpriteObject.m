@@ -511,16 +511,32 @@
 
 
 - (void)comeToFront {
-    dispatch_async(dispatch_get_main_queue(), ^{
-        [self.parent addChild:self];
+    
+    if ([self.parent childIndex:self] == 0) {
+        // I'm the background - why should I come to font??
+        return;
+    }
+    
+    dispatch_sync(dispatch_get_main_queue(), ^{
+//        [self.parent addChild:self];
+        [self.parent setIndex:self.parent.numChildren-1 ofChild:self];
     });
 }
 
 - (void)goNStepsBack:(int)n
 {
-    int index = MAX(0, [self.parent childIndex:self]-fabs(n));
-    dispatch_async(dispatch_get_main_queue(), ^{
-        [self.parent addChild:self atIndex:index];
+    int oldIndex = [self.parent childIndex:self];
+    
+    if (oldIndex == 0) {
+        // I'm the background - why should I go anywhere??
+        return;
+    }
+    
+    int index = MAX(1, oldIndex-n);
+    index = MIN(index, self.parent.numChildren-1);
+    dispatch_sync(dispatch_get_main_queue(), ^{
+//        [self.parent addChild:self atIndex:index];
+        [self.parent setIndex:index ofChild:self];
     });
 
 }

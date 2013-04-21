@@ -92,6 +92,7 @@
 //        self.program = [testparser generateDebugProject_broadcast];
 //        self.program = [testparser generateDebugProject_broadcastWait];
 //        self.program = [testparser generateDebugProject_comeToFront];
+//        self.program = [testparser generateDebugProject_goNStepsBack];
 //        self.program = [testparser generateDebugProject_pointToDirection];
 //        self.program = [testparser generateDebugProject_setBrightness];
 //        self.program = [testparser generateDebugProject_changeSizeByN];
@@ -100,8 +101,10 @@
 //        self.program = [testparser generateDebugProject_rotate];
 //        self.program = [testparser generateDebugProject_rotateFullCircle];
 //        self.program = [testparser generateDebugProject_rotateAndMove];
-        self.program = [testparser generateDebugProject_transparency];
+//        self.program = [testparser generateDebugProject_transparency];
         
+        self.projectSize = CGSizeMake(self.program.header.screenWidth.floatValue, self.program.header.screenHeight.floatValue); // (normally set in loadProgram)
+
         
         
         
@@ -114,6 +117,7 @@
         } else {
             abort();
         }
+    
         
         
         
@@ -164,8 +168,6 @@
 //////////////////////////////////////////////// END DEBUG
         
         
-        
-//        self.projectSize = CGSizeMake(self.program.header.screenWidth.floatValue, self.program.header.screenHeight.floatValue); // (normally set in loadProgram)
         
                 
         

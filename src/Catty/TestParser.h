@@ -24,6 +24,7 @@
 -(Program*)generateDebugProject_broadcast;
 -(Program*)generateDebugProject_broadcastWait;
 -(Program*)generateDebugProject_comeToFront;
+-(Program*)generateDebugProject_goNStepsBack;
 -(Program*)generateDebugProject_changeSizeByN;
 -(Program*)generateDebugProject_parallelScripts;
 -(Program*)generateDebugProject_loops;
