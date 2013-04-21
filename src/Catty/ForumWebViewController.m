@@ -17,6 +17,7 @@
 
 @implementation ForumWebViewController
 
+
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -31,7 +32,7 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
     
-    ((UIWebView*)self.view).delegate = self;  
+    self.webView.delegate = self;
     
     //background image
 
@@ -41,7 +42,8 @@
     NSString *urlAddress = @"https://groups.google.com/forum/?fromgroups=#!forum/pocketcode";
     NSURL *url = [NSURL URLWithString:urlAddress];
     NSURLRequest *request = [NSURLRequest requestWithURL:url];
-    [(UIWebView*)self.view loadRequest:request];
+    [self.webView loadRequest:request];
+    
 }
 
 - (void)didReceiveMemoryWarning
@@ -50,6 +52,10 @@
     // Dispose of any resources that can be recreated.
 }
 
+-(void)viewDidUnload
+{
+    self.webView = nil;
+}
 -(void)dealloc
 {
     [self.loadingView removeFromSuperview];
@@ -107,5 +113,17 @@
 -(void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error
 {
     [self hideLoadingView];
+}
+
+#pragma mark - Toolbar
+
+- (IBAction)nextPage:(id)sender
+{
+    [self.webView goForward];
+}
+
+- (IBAction)previousPage:(id)sender
+{
+    [self.webView goBack];
 }
 @end

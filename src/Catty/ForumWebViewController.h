@@ -12,4 +12,8 @@
 
 @interface ForumWebViewController : UIViewController <BackButtonDelegate, UIWebViewDelegate>
 @property (strong, nonatomic) IBOutlet UIWebView *webView;
+
+- (IBAction)previousPage:(id)sender;
+- (IBAction)nextPage:(id)sender;
+
 @end
