@@ -8,7 +8,8 @@
 
 #import <UIKit/UIKit.h>
 #import "BackButtonDelegate.h"
+ 
 
-@interface ForumWebViewController : UIViewController <BackButtonDelegate>
-
+@interface ForumWebViewController : UIViewController <BackButtonDelegate, UIWebViewDelegate>
+@property (strong, nonatomic) IBOutlet UIWebView *webView;
 @end
