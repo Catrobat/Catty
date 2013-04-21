@@ -137,6 +137,7 @@
 		CD0CCFDB170CB39700B70036 /* WaitBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = CD0CCF45170CB39700B70036 /* WaitBrick.m */; };
 		CD0CCFDC170CB39700B70036 /* WhenScript.m in Sources */ = {isa = PBXBuildFile; fileRef = CD0CCF47170CB39700B70036 /* WhenScript.m */; };
 		CD639C7B170DF52600FA67DA /* SpriteObject.m in Sources */ = {isa = PBXBuildFile; fileRef = CD639C7A170DF52600FA67DA /* SpriteObject.m */; };
+		CD8CC8BC1724346200239EBF /* ForumWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CD8CC8BB1724346200239EBF /* ForumWebViewController.m */; };
 		DE3F093811B7B9DC009D4DB0 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DE3F093711B7B9DC009D4DB0 /* AVFoundation.framework */; };
 		DE3F093A11B7B9DC009D4DB0 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DE3F093911B7B9DC009D4DB0 /* AudioToolbox.framework */; };
 		DE3F097811B7BABD009D4DB0 /* OpenAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DE3F097711B7BABD009D4DB0 /* OpenAL.framework */; };
@@ -418,6 +419,8 @@
 		CD0CCF48170CB39700B70036 /* XMLParserProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XMLParserProtocol.h; sourceTree = "<group>"; };
 		CD639C79170DF52600FA67DA /* SpriteObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpriteObject.h; sourceTree = "<group>"; };
 		CD639C7A170DF52600FA67DA /* SpriteObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpriteObject.m; sourceTree = "<group>"; };
+		CD8CC8BA1724346200239EBF /* ForumWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ForumWebViewController.h; sourceTree = "<group>"; };
+		CD8CC8BB1724346200239EBF /* ForumWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ForumWebViewController.m; sourceTree = "<group>"; };
 		DE3F093711B7B9DC009D4DB0 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		DE3F093911B7B9DC009D4DB0 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		DE3F097711B7BABD009D4DB0 /* OpenAL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenAL.framework; path = System/Library/Frameworks/OpenAL.framework; sourceTree = SDKROOT; };
@@ -984,6 +987,7 @@
 		CD0CCE3B170CA00F00B70036 /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
+				CD8CC8B81724340E00239EBF /* ForumWebViewController */,
 				B4BCF440170ED66D008EDF3A /* SearchStoreViewController */,
 				B4003032170EB51000396DB7 /* CatrobatTableViewController */,
 				B4BCF430170ED589008EDF3A /* DownloadTabBarController */,
@@ -1431,6 +1435,15 @@
 			path = ../minizip;
 			sourceTree = "<group>";
 		};
+		CD8CC8B81724340E00239EBF /* ForumWebViewController */ = {
+			isa = PBXGroup;
+			children = (
+				CD8CC8BA1724346200239EBF /* ForumWebViewController.h */,
+				CD8CC8BB1724346200239EBF /* ForumWebViewController.m */,
+			);
+			name = ForumWebViewController;
+			sourceTree = "<group>";
+		};
 		DE4A3DAB10FFB0DB00FDA492 /* Products */ = {
 			isa = PBXGroup;
 			children = (
@@ -1701,6 +1714,7 @@
 				B4DEFC90170F464200DD1939 /* TestParser.m in Sources */,
 				B4B9FD3D171564C700123E53 /* LoopEndlessBrick.m in Sources */,
 				B4D4DD4317156A8500EEE3F8 /* Pointindirectionbrick.m in Sources */,
+				CD8CC8BC1724346200239EBF /* ForumWebViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

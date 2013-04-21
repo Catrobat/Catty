@@ -79,6 +79,7 @@
                         <segue destination="s37-PF-3iN" kind="push" identifier="programs" id="vew-Li-crD"/>
                         <segue destination="Vaa-sF-tan" kind="push" identifier="continue" id="E8f-Km-7J7"/>
                         <segue destination="vLF-8b-U7Z" kind="modal" identifier="download" animates="NO" id="SGA-Dg-eVq"/>
+                        <segue destination="5qf-P1-PqT" kind="modal" identifier="forum" animates="NO" id="TM0-uS-faC"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="d1W-id-jRf" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -240,6 +241,37 @@
                 </searchDisplayController>
             </objects>
             <point key="canvasLocation" x="-1332" y="-2023"/>
+        </scene>
+        <!--Forum Web View Controller-->
+        <scene sceneID="Hrd-Ic-xrA">
+            <objects>
+                <viewController id="1MF-f4-wBw" customClass="ForumWebViewController" sceneMemberID="viewController">
+                    <webView key="view" contentMode="scaleToFill" id="cnU-0k-aum">
+                        <rect key="frame" x="0.0" y="64" width="320" height="504"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                    </webView>
+                    <navigationItem key="navigationItem" id="Vep-h4-bVA"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="zAr-nB-7i2" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-2387" y="-229"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="WMA-OS-EV1">
+            <objects>
+                <navigationController definesPresentationContext="YES" id="5qf-P1-PqT" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="uee-Ap-MsS"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="6Lx-wC-Xic">
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="1MF-f4-wBw" kind="relationship" relationship="rootViewController" id="MMx-WA-Grd"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="KbI-TM-pcR" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-2848" y="-237"/>
         </scene>
         <!--Download Tab Bar Controller-->
         <scene sceneID="Rl9-gK-ktL">
@@ -467,13 +499,65 @@
     <resources>
         <image name="back@2x.png" width="86" height="112"/>
     </resources>
+    <classes>
+        <class className="CatrobatBaseCell" superclassName="UITableViewCell">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/CatrobatBaseCell.h"/>
+        </class>
+        <class className="CatrobatTableViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/CatrobatTableViewController.h"/>
+        </class>
+        <class className="ContinueImageCell" superclassName="DarkBlueGradientCell">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/ContinueImageCell.h"/>
+            <relationships>
+                <relationship kind="outlet" name="iconImageView" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="titleLabel" candidateClass="UILabel"/>
+            </relationships>
+        </class>
+        <class className="DarkBlueGradientCell" superclassName="CatrobatBaseCell">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/DarkBlueGradientCell.h"/>
+        </class>
+        <class className="DarkBlueGradientImageCell" superclassName="DarkBlueGradientCell">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/DarkBlueGradientImageCell.h"/>
+            <relationships>
+                <relationship kind="outlet" name="iconImageView" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="titleLabel" candidateClass="UILabel"/>
+            </relationships>
+        </class>
+        <class className="DownloadTabBarController" superclassName="UITabBarController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/DownloadTabBarController.h"/>
+        </class>
+        <class className="ForumWebViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/ForumWebViewController.h"/>
+        </class>
+        <class className="MyProgramsViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/MyProgramsViewController.h"/>
+        </class>
+        <class className="ProgramDetailStoreViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/ProgramDetailStoreViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="scrollViewOutlet" candidateClass="UIScrollView"/>
+            </relationships>
+        </class>
+        <class className="RecentProgramsStoreViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/RecentProgramsStoreViewController.h"/>
+        </class>
+        <class className="SPViewController" superclassName="GLKViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/SPViewController.h"/>
+        </class>
+        <class className="SearchStoreViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/SearchStoreViewController.h"/>
+        </class>
+        <class className="StageViewController" superclassName="SPViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/StageViewController.h"/>
+        </class>
+    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="SyO-93-8h2"/>
-        <segue reference="4hG-Yx-F4j"/>
+        <segue reference="E8f-Km-7J7"/>
+        <segue reference="ZYi-SP-eKt"/>
     </inferredMetricsTieBreakers>
 </document>

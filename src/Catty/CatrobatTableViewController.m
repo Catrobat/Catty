@@ -125,8 +125,11 @@
         StageViewController* viewController = [Util createStageViewControllerWithProgram:[Util lastProgram]];
         [self.navigationController pushViewController:viewController animated:YES];
     }
+    else if ([identifier isEqualToString:kSegueForum]) {
+        [self performSegueWithIdentifier:identifier sender:self];
+    }
 #warning the if statement should be removed once everything has been implemented..
-    else if([identifier isEqualToString:kSegueDownload ] || [identifier isEqualToString:kSeguePrograms]) {
+    else if ([identifier isEqualToString:kSegueDownload ] || [identifier isEqualToString:kSeguePrograms]) {
         [self performSegueWithIdentifier:identifier sender:self];
     } else {
         [Util showComingSoonAlertView];
@@ -171,7 +174,8 @@
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    if([[segue identifier] isEqualToString:@"download"]) {
+    if([[segue identifier] isEqualToString:kSegueDownload] ||
+       [[segue identifier] isEqualToString:kSegueForum]) {
         CATransition* transition = [Util getPushCATransition];
         [self.view.window.layer addAnimation:transition forKey:nil];
     }
