@@ -50,7 +50,10 @@
 #define kParserObjectTypeHeader         @"T@\"Header\""
 #define kParserObjectTypeUserVariable   @"T@\"Uservariable\""
 #define kParserObjectTypeFormula        @"T@\"Formula\""
-
+#define kParserObjectTypeIfElseBrick    @"T@\"Ifelsebrick\""
+#define kParserObjectTypeIfEndBrick     @"T@\"Ifendbrick\""
+#define kParserObjectTypeBeginBrick     @"T@\"Beginbrick\""
+#define kParserObjectTypeElseBrick      @"T@\"Elsebrick\""
 
 @interface ProjectParser()
 
@@ -325,6 +328,22 @@
     else if([propertyType isEqualToString:kParserObjectTypeFormula]) {
         NSDebug(@"Formula");
         [self parseFormula:element];
+    }
+    else if ([propertyType isEqualToString:kParserObjectTypeIfElseBrick]) {
+#warning todo
+        return nil;
+    }
+    else if ([propertyType isEqualToString:kParserObjectTypeIfEndBrick]) {
+#warning todo
+        return nil;
+    }
+    else if ([propertyType isEqualToString:kParserObjectTypeBeginBrick]) {
+#warning todo
+        return nil;
+    }
+    else if ([propertyType isEqualToString:kParserObjectTypeElseBrick]) {
+#warning todo
+        return nil;
     }
     else {
         abort(); // TODO: just for debug purposes

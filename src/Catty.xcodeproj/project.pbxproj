@@ -12,6 +12,20 @@
 		1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
 		288765FD0DF74451002DB57D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 288765FC0DF74451002DB57D /* CoreGraphics.framework */; };
 		B402288217329FEB004C4942 /* IfLogicBeginBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = B402288117329FEB004C4942 /* IfLogicBeginBrick.m */; };
+		B40228861732A1FB004C4942 /* IfElseBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = B40228851732A1FB004C4942 /* IfElseBrick.m */; };
+		B40228871732A1FB004C4942 /* IfElseBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = B40228851732A1FB004C4942 /* IfElseBrick.m */; };
+		B402288B1732A2C7004C4942 /* IfEndBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = B402288A1732A2C7004C4942 /* IfEndBrick.m */; };
+		B402288C1732A2C7004C4942 /* IfEndBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = B402288A1732A2C7004C4942 /* IfEndBrick.m */; };
+		B40228911732A541004C4942 /* IfLogicElseBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = B40228901732A540004C4942 /* IfLogicElseBrick.m */; };
+		B40228921732A541004C4942 /* IfLogicElseBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = B40228901732A540004C4942 /* IfLogicElseBrick.m */; };
+		B40228961732A58E004C4942 /* IfLogicEndBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = B40228951732A58E004C4942 /* IfLogicEndBrick.m */; };
+		B40228971732A58E004C4942 /* IfLogicEndBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = B40228951732A58E004C4942 /* IfLogicEndBrick.m */; };
+		B402289B1732A848004C4942 /* BeginBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = B402289A1732A848004C4942 /* BeginBrick.m */; };
+		B402289C1732A848004C4942 /* BeginBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = B402289A1732A848004C4942 /* BeginBrick.m */; };
+		B40228A01732AA8C004C4942 /* ElseBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = B402289F1732AA8C004C4942 /* ElseBrick.m */; };
+		B40228A11732AA8C004C4942 /* ElseBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = B402289F1732AA8C004C4942 /* ElseBrick.m */; };
+		B40228A51732ADF4004C4942 /* PointToBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = B40228A41732ADF3004C4942 /* PointToBrick.m */; };
+		B40228A61732ADF4004C4942 /* PointToBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = B40228A41732ADF3004C4942 /* PointToBrick.m */; };
 		B40C306D170ECC1B000B872F /* BackgroundLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = B4D940B6170EC631003DDBFA /* BackgroundLayer.m */; };
 		B40C306E170ECC30000B872F /* CatrobatBaseCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B4D940CD170EC903003DDBFA /* CatrobatBaseCell.m */; };
 		B40C3071170ECC49000B872F /* DarkBlueGradientImageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B40C3070170ECC49000B872F /* DarkBlueGradientImageCell.m */; };
@@ -200,6 +214,20 @@
 		B4003031170EB50A00396DB7 /* CatrobatTableViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CatrobatTableViewController.m; sourceTree = "<group>"; };
 		B402288017329FEB004C4942 /* IfLogicBeginBrick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IfLogicBeginBrick.h; sourceTree = "<group>"; };
 		B402288117329FEB004C4942 /* IfLogicBeginBrick.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IfLogicBeginBrick.m; sourceTree = "<group>"; };
+		B40228841732A1FB004C4942 /* IfElseBrick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IfElseBrick.h; sourceTree = "<group>"; };
+		B40228851732A1FB004C4942 /* IfElseBrick.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IfElseBrick.m; sourceTree = "<group>"; };
+		B40228891732A2C6004C4942 /* IfEndBrick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IfEndBrick.h; sourceTree = "<group>"; };
+		B402288A1732A2C7004C4942 /* IfEndBrick.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IfEndBrick.m; sourceTree = "<group>"; };
+		B402288F1732A540004C4942 /* IfLogicElseBrick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IfLogicElseBrick.h; sourceTree = "<group>"; };
+		B40228901732A540004C4942 /* IfLogicElseBrick.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IfLogicElseBrick.m; sourceTree = "<group>"; };
+		B40228941732A58E004C4942 /* IfLogicEndBrick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IfLogicEndBrick.h; sourceTree = "<group>"; };
+		B40228951732A58E004C4942 /* IfLogicEndBrick.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IfLogicEndBrick.m; sourceTree = "<group>"; };
+		B40228991732A848004C4942 /* BeginBrick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BeginBrick.h; sourceTree = "<group>"; };
+		B402289A1732A848004C4942 /* BeginBrick.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BeginBrick.m; sourceTree = "<group>"; };
+		B402289E1732AA8C004C4942 /* ElseBrick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ElseBrick.h; sourceTree = "<group>"; };
+		B402289F1732AA8C004C4942 /* ElseBrick.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ElseBrick.m; sourceTree = "<group>"; };
+		B40228A31732ADF2004C4942 /* PointToBrick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PointToBrick.h; sourceTree = "<group>"; };
+		B40228A41732ADF3004C4942 /* PointToBrick.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PointToBrick.m; sourceTree = "<group>"; };
 		B40C306F170ECC49000B872F /* DarkBlueGradientImageCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DarkBlueGradientImageCell.h; sourceTree = "<group>"; };
 		B40C3070170ECC49000B872F /* DarkBlueGradientImageCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DarkBlueGradientImageCell.m; sourceTree = "<group>"; };
 		B43313D817329514008B4EB3 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -677,6 +705,83 @@
 			name = IfLogicBeginBrick;
 			sourceTree = "<group>";
 		};
+		B40228881732A201004C4942 /* IfElseBrick */ = {
+			isa = PBXGroup;
+			children = (
+				B40228841732A1FB004C4942 /* IfElseBrick.h */,
+				B40228851732A1FB004C4942 /* IfElseBrick.m */,
+			);
+			name = IfElseBrick;
+			sourceTree = "<group>";
+		};
+		B402288D1732A2CB004C4942 /* IfEndBrick */ = {
+			isa = PBXGroup;
+			children = (
+				B40228891732A2C6004C4942 /* IfEndBrick.h */,
+				B402288A1732A2C7004C4942 /* IfEndBrick.m */,
+			);
+			name = IfEndBrick;
+			sourceTree = "<group>";
+		};
+		B402288E1732A334004C4942 /* IfBricks */ = {
+			isa = PBXGroup;
+			children = (
+				B402288317329FEE004C4942 /* IfLogicBeginBrick */,
+				B40228881732A201004C4942 /* IfElseBrick */,
+				B402288D1732A2CB004C4942 /* IfEndBrick */,
+				B40228931732A545004C4942 /* IfLocigElseBrick */,
+				B40228981732A592004C4942 /* IfLogicEndBrick */,
+				B402289D1732A84B004C4942 /* BeginBrick */,
+				B40228A21732AA8F004C4942 /* ElseBrick */,
+			);
+			name = IfBricks;
+			sourceTree = "<group>";
+		};
+		B40228931732A545004C4942 /* IfLocigElseBrick */ = {
+			isa = PBXGroup;
+			children = (
+				B402288F1732A540004C4942 /* IfLogicElseBrick.h */,
+				B40228901732A540004C4942 /* IfLogicElseBrick.m */,
+			);
+			name = IfLocigElseBrick;
+			sourceTree = "<group>";
+		};
+		B40228981732A592004C4942 /* IfLogicEndBrick */ = {
+			isa = PBXGroup;
+			children = (
+				B40228941732A58E004C4942 /* IfLogicEndBrick.h */,
+				B40228951732A58E004C4942 /* IfLogicEndBrick.m */,
+			);
+			name = IfLogicEndBrick;
+			sourceTree = "<group>";
+		};
+		B402289D1732A84B004C4942 /* BeginBrick */ = {
+			isa = PBXGroup;
+			children = (
+				B40228991732A848004C4942 /* BeginBrick.h */,
+				B402289A1732A848004C4942 /* BeginBrick.m */,
+			);
+			name = BeginBrick;
+			sourceTree = "<group>";
+		};
+		B40228A21732AA8F004C4942 /* ElseBrick */ = {
+			isa = PBXGroup;
+			children = (
+				B402289E1732AA8C004C4942 /* ElseBrick.h */,
+				B402289F1732AA8C004C4942 /* ElseBrick.m */,
+			);
+			name = ElseBrick;
+			sourceTree = "<group>";
+		};
+		B40228A71732ADF8004C4942 /* PointToBrick */ = {
+			isa = PBXGroup;
+			children = (
+				B40228A31732ADF2004C4942 /* PointToBrick.h */,
+				B40228A41732ADF3004C4942 /* PointToBrick.m */,
+			);
+			name = PointToBrick;
+			sourceTree = "<group>";
+		};
 		B40C3072170ECC53000B872F /* DarkBlueGradientImageCell */ = {
 			isa = PBXGroup;
 			children = (
@@ -1113,10 +1218,12 @@
 				CD0CCFE7170CB6AA00B70036 /* GlideToBrick */,
 				CD0CCFE8170CB6B400B70036 /* GoNStepsBackBrick */,
 				CD0CCFE9170CB6C100B70036 /* HideBrick */,
+				B402288E1732A334004C4942 /* IfBricks */,
 				CD0CCFE6170CB69800B70036 /* LoopBricks */,
 				CD0CCFEA170CB6C800B70036 /* NextLookBrick */,
 				CD0CCFEB170CB6D200B70036 /* PlaceAtBrick */,
 				B4D4DD3F17156A7500EEE3F8 /* PointInDirectionBrick */,
+				B40228A71732ADF8004C4942 /* PointToBrick */,
 				CD0CCFED170CB71F00B70036 /* SetBrightnessBrick */,
 				CD0CCFEE170CB72B00B70036 /* SetGhostEffectBrick */,
 				CD0CCFEF170CB73700B70036 /* SetLookBrick */,
@@ -1127,7 +1234,6 @@
 				CD0CCFEC170CB6DC00B70036 /* SoundBricks */,
 				CD0CCFF3170CB77800B70036 /* TurnBricks */,
 				CD0CCFF4170CB78000B70036 /* WaitBrick */,
-				B402288317329FEE004C4942 /* IfLogicBeginBrick */,
 			);
 			name = Bricks;
 			sourceTree = "<group>";
@@ -1791,6 +1897,13 @@
 				B45A583117327887000E038F /* Formula.m in Sources */,
 				B45A583617327BBE000E038F /* FormulaElement.m in Sources */,
 				B402288217329FEB004C4942 /* IfLogicBeginBrick.m in Sources */,
+				B40228861732A1FB004C4942 /* IfElseBrick.m in Sources */,
+				B402288B1732A2C7004C4942 /* IfEndBrick.m in Sources */,
+				B40228911732A541004C4942 /* IfLogicElseBrick.m in Sources */,
+				B40228961732A58E004C4942 /* IfLogicEndBrick.m in Sources */,
+				B402289B1732A848004C4942 /* BeginBrick.m in Sources */,
+				B40228A01732AA8C004C4942 /* ElseBrick.m in Sources */,
+				B40228A51732ADF4004C4942 /* PointToBrick.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1803,6 +1916,13 @@
 				B45A582D17325442000E038F /* UserVariable.m in Sources */,
 				B45A583217327887000E038F /* Formula.m in Sources */,
 				B45A583717327BBE000E038F /* FormulaElement.m in Sources */,
+				B40228871732A1FB004C4942 /* IfElseBrick.m in Sources */,
+				B402288C1732A2C7004C4942 /* IfEndBrick.m in Sources */,
+				B40228921732A541004C4942 /* IfLogicElseBrick.m in Sources */,
+				B40228971732A58E004C4942 /* IfLogicEndBrick.m in Sources */,
+				B402289C1732A848004C4942 /* BeginBrick.m in Sources */,
+				B40228A11732AA8C004C4942 /* ElseBrick.m in Sources */,
+				B40228A61732ADF4004C4942 /* PointToBrick.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
