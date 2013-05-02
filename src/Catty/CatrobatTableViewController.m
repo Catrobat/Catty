@@ -47,7 +47,7 @@
     [super viewDidLoad];
     
     [self initTableView];
-    [TableUtil initNavigationItem:self.navigationItem withTitle:@"Catrobat" enableBackButton:NO target:nil];
+    [TableUtil initNavigationItem:self.navigationItem withTitle:@"Pocket Code" enableBackButton:NO target:nil];
     
     AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
     [appDelegate.fileManager addDefaultProject];
@@ -151,6 +151,9 @@
 
 -(void)configureImageCell:(UITableViewCell <CatrobatImageCell>*)cell atIndexPath:(NSIndexPath*)indexPath
 {
+    NSString* test = [self.cells objectAtIndex:indexPath.row];
+    NSString* localization = NSLocalizedString(@"Programs", nil);
+    
     cell.titleLabel.text = NSLocalizedString([[self.cells objectAtIndex:indexPath.row] capitalizedString], nil);
     cell.iconImageView.image = [UIImage imageNamed: [self.cells objectAtIndex:indexPath.row]];
 }
@@ -160,7 +163,6 @@
 {
     UILabel* subtitleLabel = (UILabel*)[cell viewWithTag:kSubtitleLabelTag];
     subtitleLabel.textColor = [UIColor brightGrayColor];
-#warning Hardcoded..
     NSString* lastProject = [Util lastProgram];
     subtitleLabel.text = lastProject;
 }

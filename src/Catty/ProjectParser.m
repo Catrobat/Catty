@@ -26,6 +26,9 @@
 #import <objc/runtime.h>
 #import <Foundation/NSObjCRuntime.h>
 #import "Sound.h"
+#import "Formula.h"
+#import "FormulaElement.h"
+
 
 // test
 #import "SpriteObject.h"
@@ -45,6 +48,8 @@
 #define kParserObjectTypeLoopEndBrick   @"T@\"Loopendbrick\""
 #define kParserObjectTypeSound          @"T@\"Sound\""
 #define kParserObjectTypeHeader         @"T@\"Header\""
+#define kParserObjectTypeUserVariable   @"T@\"Uservariable\""
+#define kParserObjectTypeFormula        @"T@\"Formula\""
 
 
 @interface ProjectParser()
@@ -314,11 +319,74 @@
 #warning todo
         return nil;
     }
+    else if([propertyType isEqualToString:kParserObjectTypeUserVariable]) {
+        return [self parseNode:element];
+    }
+    else if([propertyType isEqualToString:kParserObjectTypeFormula]) {
+        NSDebug(@"Formula");
+        [self parseFormula:element];
+    }
     else {
         abort(); // TODO: just for debug purposes
     }
     
     return nil;
+}
+
+
+-(id) parseFormula:(GDataXMLElement*)element
+{
+    NSArray* formulaTrees = [element elementsForName:@"formulaTree"];
+    if(formulaTrees) {
+        GDataXMLElement* formulaTree = [formulaTrees objectAtIndex:0];
+        FormulaElement* formulaElement = [self parseFormulaElement:formulaTree];
+        
+        Formula* formula = [[Formula alloc] init];
+        formula.formulaTree = formulaElement;
+        
+        return formula;
+
+    }
+    else {
+        NSLog(@"Formula could not be found!");
+        abort();
+#warning debug! remove
+        return nil;
+    }
+}
+
+
+-(FormulaElement*)parseFormulaElement:(GDataXMLElement*)element
+{
+    NSArray* valueArray = [element elementsForName:@"value"];
+    NSArray* typeArray = [element elementsForName:@"type"];
+    NSArray* rightChildArray = [element elementsForName:@"rightChild"];
+    NSArray* leftChildArray = [element elementsForName:@"leftChild"];
+    
+    NSString* type = ((GDataXMLElement*)[typeArray objectAtIndex:0]).stringValue;
+    NSString* value = ((GDataXMLElement*)[valueArray objectAtIndex:0]).stringValue;
+    FormulaElement* leftChild = nil;
+    FormulaElement* rightChild = nil;
+    
+    if(leftChildArray) {
+        leftChild = [self parseFormulaElement:[leftChildArray objectAtIndex:0]];
+    }
+    if(rightChildArray) {
+        rightChild = [self parseFormulaElement:[leftChildArray objectAtIndex:0]];
+    }
+    
+    FormulaElement* parent = nil;
+#warning to we really need a parent?!
+    
+    FormulaElement* formulaElement = [[FormulaElement alloc] initWithType:type
+                                                                    value:value
+                                                                leftChild:leftChild
+                                                               rightChild:rightChild
+                                                                   parent:parent];
+    
+    return formulaElement;
+    
+    
 }
 
 

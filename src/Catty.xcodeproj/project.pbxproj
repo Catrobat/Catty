@@ -11,14 +11,23 @@
 		1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
 		1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
 		288765FD0DF74451002DB57D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 288765FC0DF74451002DB57D /* CoreGraphics.framework */; };
+		B402288217329FEB004C4942 /* IfLogicBeginBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = B402288117329FEB004C4942 /* IfLogicBeginBrick.m */; };
 		B40C306D170ECC1B000B872F /* BackgroundLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = B4D940B6170EC631003DDBFA /* BackgroundLayer.m */; };
 		B40C306E170ECC30000B872F /* CatrobatBaseCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B4D940CD170EC903003DDBFA /* CatrobatBaseCell.m */; };
 		B40C3071170ECC49000B872F /* DarkBlueGradientImageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B40C3070170ECC49000B872F /* DarkBlueGradientImageCell.m */; };
+		B43313D717329514008B4EB3 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = B43313D917329514008B4EB3 /* Localizable.strings */; };
 		B45030A0170F22EF009265D6 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B450309F170F22EF009265D6 /* SenTestingKit.framework */; };
 		B45030A1170F22EF009265D6 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
 		B45030A2170F22EF009265D6 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
-		B45030A8170F22EF009265D6 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = B45030A6170F22EF009265D6 /* InfoPlist.strings */; };
 		B45030AB170F22EF009265D6 /* CattyTests.m in Sources */ = {isa = PBXBuildFile; fileRef = B45030AA170F22EF009265D6 /* CattyTests.m */; };
+		B45A5827173253E5000E038F /* SetVariableBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = B45A5826173253E5000E038F /* SetVariableBrick.m */; };
+		B45A5828173253E5000E038F /* SetVariableBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = B45A5826173253E5000E038F /* SetVariableBrick.m */; };
+		B45A582C17325442000E038F /* UserVariable.m in Sources */ = {isa = PBXBuildFile; fileRef = B45A582B17325442000E038F /* UserVariable.m */; };
+		B45A582D17325442000E038F /* UserVariable.m in Sources */ = {isa = PBXBuildFile; fileRef = B45A582B17325442000E038F /* UserVariable.m */; };
+		B45A583117327887000E038F /* Formula.m in Sources */ = {isa = PBXBuildFile; fileRef = B45A583017327887000E038F /* Formula.m */; };
+		B45A583217327887000E038F /* Formula.m in Sources */ = {isa = PBXBuildFile; fileRef = B45A583017327887000E038F /* Formula.m */; };
+		B45A583617327BBE000E038F /* FormulaElement.m in Sources */ = {isa = PBXBuildFile; fileRef = B45A583517327BBE000E038F /* FormulaElement.m */; };
+		B45A583717327BBE000E038F /* FormulaElement.m in Sources */ = {isa = PBXBuildFile; fileRef = B45A583517327BBE000E038F /* FormulaElement.m */; };
 		B4B9FD3D171564C700123E53 /* LoopEndlessBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = B4B9FD3C171564C700123E53 /* LoopEndlessBrick.m */; };
 		B4BCF3DA170ECE05008EDF3A /* accessory.png in Resources */ = {isa = PBXBuildFile; fileRef = B4BCF3D8170ECE05008EDF3A /* accessory.png */; };
 		B4BCF3DB170ECE05008EDF3A /* accessory@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B4BCF3D9170ECE05008EDF3A /* accessory@2x.png */; };
@@ -189,15 +198,26 @@
 		8D1107310486CEB800E47090 /* App-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "App-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
 		B4003030170EB50A00396DB7 /* CatrobatTableViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CatrobatTableViewController.h; sourceTree = "<group>"; };
 		B4003031170EB50A00396DB7 /* CatrobatTableViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CatrobatTableViewController.m; sourceTree = "<group>"; };
+		B402288017329FEB004C4942 /* IfLogicBeginBrick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IfLogicBeginBrick.h; sourceTree = "<group>"; };
+		B402288117329FEB004C4942 /* IfLogicBeginBrick.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IfLogicBeginBrick.m; sourceTree = "<group>"; };
 		B40C306F170ECC49000B872F /* DarkBlueGradientImageCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DarkBlueGradientImageCell.h; sourceTree = "<group>"; };
 		B40C3070170ECC49000B872F /* DarkBlueGradientImageCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DarkBlueGradientImageCell.m; sourceTree = "<group>"; };
+		B43313D817329514008B4EB3 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		B43313DA17329546008B4EB3 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Localizable.strings; sourceTree = "<group>"; };
 		B450309E170F22EF009265D6 /* CattyTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CattyTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B450309F170F22EF009265D6 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
 		B45030A5170F22EF009265D6 /* CattyTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "CattyTests-Info.plist"; sourceTree = "<group>"; };
-		B45030A7170F22EF009265D6 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		B45030A9170F22EF009265D6 /* CattyTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CattyTests.h; sourceTree = "<group>"; };
 		B45030AA170F22EF009265D6 /* CattyTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CattyTests.m; sourceTree = "<group>"; };
 		B45030AC170F22EF009265D6 /* CattyTests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "CattyTests-Prefix.pch"; sourceTree = "<group>"; };
+		B45A5825173253E5000E038F /* SetVariableBrick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SetVariableBrick.h; sourceTree = "<group>"; };
+		B45A5826173253E5000E038F /* SetVariableBrick.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SetVariableBrick.m; sourceTree = "<group>"; };
+		B45A582A17325442000E038F /* UserVariable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserVariable.h; sourceTree = "<group>"; };
+		B45A582B17325442000E038F /* UserVariable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserVariable.m; sourceTree = "<group>"; };
+		B45A582F17327887000E038F /* Formula.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Formula.h; sourceTree = "<group>"; };
+		B45A583017327887000E038F /* Formula.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Formula.m; sourceTree = "<group>"; };
+		B45A583417327BBE000E038F /* FormulaElement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FormulaElement.h; sourceTree = "<group>"; };
+		B45A583517327BBE000E038F /* FormulaElement.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FormulaElement.m; sourceTree = "<group>"; };
 		B4B9FD3B171564C700123E53 /* LoopEndlessBrick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoopEndlessBrick.h; sourceTree = "<group>"; };
 		B4B9FD3C171564C700123E53 /* LoopEndlessBrick.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoopEndlessBrick.m; sourceTree = "<group>"; };
 		B4BCF3D8170ECE05008EDF3A /* accessory.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = accessory.png; sourceTree = "<group>"; };
@@ -482,7 +502,7 @@
 				DE4A3DA210FFB0D400FDA492 /* Sparrow.xcodeproj */,
 				CD0CCE54170CB39600B70036 /* Catty */,
 				CD0CCE37170C9F9300B70036 /* Storyboard */,
-				29B97315FDCFA39411CA2CEA /* Other Sources */,
+				29B97315FDCFA39411CA2CEA /* Supporting Files */,
 				29B97317FDCFA39411CA2CEA /* Resources */,
 				B45030A3170F22EF009265D6 /* CattyTests */,
 				29B97323FDCFA39411CA2CEA /* Frameworks */,
@@ -491,7 +511,7 @@
 			name = CustomTemplate;
 			sourceTree = "<group>";
 		};
-		29B97315FDCFA39411CA2CEA /* Other Sources */ = {
+		29B97315FDCFA39411CA2CEA /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
 				B4F243CB170EBEF7007A071D /* AppDelegate.h */,
@@ -499,8 +519,9 @@
 				32CA4F630368D1EE00C91783 /* App-Prefix.pch */,
 				8D1107310486CEB800E47090 /* App-Info.plist */,
 				29B97316FDCFA39411CA2CEA /* main.m */,
+				B43313D917329514008B4EB3 /* Localizable.strings */,
 			);
-			name = "Other Sources";
+			name = "Supporting Files";
 			path = Catty;
 			sourceTree = "<group>";
 		};
@@ -647,6 +668,15 @@
 			name = StageViewController;
 			sourceTree = "<group>";
 		};
+		B402288317329FEE004C4942 /* IfLogicBeginBrick */ = {
+			isa = PBXGroup;
+			children = (
+				B402288017329FEB004C4942 /* IfLogicBeginBrick.h */,
+				B402288117329FEB004C4942 /* IfLogicBeginBrick.m */,
+			);
+			name = IfLogicBeginBrick;
+			sourceTree = "<group>";
+		};
 		B40C3072170ECC53000B872F /* DarkBlueGradientImageCell */ = {
 			isa = PBXGroup;
 			children = (
@@ -670,10 +700,45 @@
 			isa = PBXGroup;
 			children = (
 				B45030A5170F22EF009265D6 /* CattyTests-Info.plist */,
-				B45030A6170F22EF009265D6 /* InfoPlist.strings */,
 				B45030AC170F22EF009265D6 /* CattyTests-Prefix.pch */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		B45A5829173253E9000E038F /* SetVariableBrick */ = {
+			isa = PBXGroup;
+			children = (
+				B45A5825173253E5000E038F /* SetVariableBrick.h */,
+				B45A5826173253E5000E038F /* SetVariableBrick.m */,
+			);
+			name = SetVariableBrick;
+			sourceTree = "<group>";
+		};
+		B45A582E17325446000E038F /* UserVariable */ = {
+			isa = PBXGroup;
+			children = (
+				B45A582A17325442000E038F /* UserVariable.h */,
+				B45A582B17325442000E038F /* UserVariable.m */,
+			);
+			name = UserVariable;
+			sourceTree = "<group>";
+		};
+		B45A58331732788C000E038F /* Formula */ = {
+			isa = PBXGroup;
+			children = (
+				B45A582F17327887000E038F /* Formula.h */,
+				B45A583017327887000E038F /* Formula.m */,
+			);
+			name = Formula;
+			sourceTree = "<group>";
+		};
+		B45A583817327BC2000E038F /* FormulaElement */ = {
+			isa = PBXGroup;
+			children = (
+				B45A583417327BBE000E038F /* FormulaElement.h */,
+				B45A583517327BBE000E038F /* FormulaElement.m */,
+			);
+			name = FormulaElement;
 			sourceTree = "<group>";
 		};
 		B4BCF408170ECFA8008EDF3A /* MyProgramsViewController */ = {
@@ -1037,7 +1102,6 @@
 		CD0CCFDD170CB54100B70036 /* Bricks */ = {
 			isa = PBXGroup;
 			children = (
-				B4D4DD3F17156A7500EEE3F8 /* PointInDirectionBrick */,
 				CD0CCFF7170CB8BC00B70036 /* Bricks */,
 				CD0CCFDE170CB5E300B70036 /* BroadcastBrick */,
 				CD0CCFDF170CB5EC00B70036 /* BroadcastWaitBrick */,
@@ -1046,21 +1110,24 @@
 				CD0CCFE2170CB63F00B70036 /* ChangeVolumeByNBrick */,
 				CD0CCFE3170CB64A00B70036 /* ChangeXYByNBrick */,
 				CD0CCFE5170CB68100B70036 /* ComeToFrontBrick */,
-				CD0CCFE6170CB69800B70036 /* LoopBricks */,
 				CD0CCFE7170CB6AA00B70036 /* GlideToBrick */,
 				CD0CCFE8170CB6B400B70036 /* GoNStepsBackBrick */,
 				CD0CCFE9170CB6C100B70036 /* HideBrick */,
+				CD0CCFE6170CB69800B70036 /* LoopBricks */,
 				CD0CCFEA170CB6C800B70036 /* NextLookBrick */,
 				CD0CCFEB170CB6D200B70036 /* PlaceAtBrick */,
-				CD0CCFEC170CB6DC00B70036 /* SoundBricks */,
+				B4D4DD3F17156A7500EEE3F8 /* PointInDirectionBrick */,
 				CD0CCFED170CB71F00B70036 /* SetBrightnessBrick */,
 				CD0CCFEE170CB72B00B70036 /* SetGhostEffectBrick */,
 				CD0CCFEF170CB73700B70036 /* SetLookBrick */,
 				CD0CCFF0170CB74300B70036 /* SetSizeToBrick */,
+				B45A5829173253E9000E038F /* SetVariableBrick */,
 				CD0CCFF1170CB74D00B70036 /* SetXYBricks */,
 				CD0CCFF2170CB77000B70036 /* ShowBrick */,
+				CD0CCFEC170CB6DC00B70036 /* SoundBricks */,
 				CD0CCFF3170CB77800B70036 /* TurnBricks */,
 				CD0CCFF4170CB78000B70036 /* WaitBrick */,
+				B402288317329FEE004C4942 /* IfLogicBeginBrick */,
 			);
 			name = Bricks;
 			sourceTree = "<group>";
@@ -1297,6 +1364,9 @@
 				CD0CCFFB170CB97000B70036 /* Sound */,
 				CD0CCFF6170CB89E00B70036 /* Sprite */,
 				CD0CCF27170CB39700B70036 /* SpriteManagerDelegate.h */,
+				B45A582E17325446000E038F /* UserVariable */,
+				B45A58331732788C000E038F /* Formula */,
+				B45A583817327BC2000E038F /* FormulaElement */,
 			);
 			name = DataModel;
 			sourceTree = "<group>";
@@ -1520,6 +1590,7 @@
 				French,
 				German,
 				en,
+				de,
 			);
 			mainGroup = 29B97314FDCFA39411CA2CEA /* CustomTemplate */;
 			projectDirPath = "";
@@ -1589,6 +1660,7 @@
 				B4BCF442170EDB80008EDF3A /* ProgramDefines.h in Resources */,
 				B4E94483170F14B0007C5FE0 /* catty_icon_retina.png in Resources */,
 				B4DEFC8D170F463800DD1939 /* TestParserResources in Resources */,
+				B43313D717329514008B4EB3 /* Localizable.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1596,7 +1668,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B45030A8170F22EF009265D6 /* InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1715,6 +1786,11 @@
 				B4B9FD3D171564C700123E53 /* LoopEndlessBrick.m in Sources */,
 				B4D4DD4317156A8500EEE3F8 /* Pointindirectionbrick.m in Sources */,
 				CD8CC8BC1724346200239EBF /* ForumWebViewController.m in Sources */,
+				B45A5827173253E5000E038F /* SetVariableBrick.m in Sources */,
+				B45A582C17325442000E038F /* UserVariable.m in Sources */,
+				B45A583117327887000E038F /* Formula.m in Sources */,
+				B45A583617327BBE000E038F /* FormulaElement.m in Sources */,
+				B402288217329FEB004C4942 /* IfLogicBeginBrick.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1723,6 +1799,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				B45030AB170F22EF009265D6 /* CattyTests.m in Sources */,
+				B45A5828173253E5000E038F /* SetVariableBrick.m in Sources */,
+				B45A582D17325442000E038F /* UserVariable.m in Sources */,
+				B45A583217327887000E038F /* Formula.m in Sources */,
+				B45A583717327BBE000E038F /* FormulaElement.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1742,12 +1822,13 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		B45030A6170F22EF009265D6 /* InfoPlist.strings */ = {
+		B43313D917329514008B4EB3 /* Localizable.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
-				B45030A7170F22EF009265D6 /* en */,
+				B43313D817329514008B4EB3 /* en */,
+				B43313DA17329546008B4EB3 /* de */,
 			);
-			name = InfoPlist.strings;
+			name = Localizable.strings;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
