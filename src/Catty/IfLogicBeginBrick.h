@@ -10,12 +10,14 @@
 
 @class Formula;
 @class Ifelsebrick;
-@class Ifendbrick;
+@class Iflogicendbrick;
+@class Iflogicelsebrick;
+
 
 @interface Iflogicbeginbrick : Brick
 
 @property (nonatomic, strong) Formula* ifCondition;
 
-@property (nonatomic, strong) Ifelsebrick* ifElseBrick;
-@property (nonatomic, strong) Ifendbrick* ifEndBrick;
+@property (nonatomic, strong) Iflogicelsebrick* ifElseBrick;
+@property (nonatomic, strong) Iflogicendbrick* ifEndBrick;
 @end

@@ -21,7 +21,26 @@
  */
 
 #import "Formula.h"
+#import "FormulaElement.h"
 
 @implementation Formula
+
+
+-(double) interpretDouble
+{
+    NSLog(@"Called");
+    
+    return [self.formulaTree interpretRecursive];
+            
+}
+
+-(BOOL) interpretBOOL
+{
+    
+    return false;
+}
+
+
+
 
 @end

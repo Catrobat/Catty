@@ -21,7 +21,25 @@
  */
 
 #import "SetVariableBrick.h"
+#import "Formula.h"
 
 @implementation Setvariablebrick
+
+
+- (void)performFromScript:(Script*)script
+{
+    NSDebug(@"Performing: %@ on: %@", self.description, self.object);
+    
+    double result = [self.variableFormula interpretDouble];
+    
+    
+}
+
+#pragma mark - Description
+- (NSString*)description
+{
+    return [NSString stringWithFormat:@"Set Variable Brick: Uservariable: %@, Formula: %@", self.userVariable, self.variableFormula];
+}
+
 
 @end

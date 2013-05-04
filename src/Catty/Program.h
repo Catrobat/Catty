@@ -12,6 +12,8 @@
 // skip properties with this name (i.e. spriteList needs a custom initialization)
 #define kXMLSkip @"spriteList"
 
+@class VariablesContainer;
+
 @interface Program : NSObject
 
 // PROPERTIES
@@ -23,7 +25,7 @@
 @property (nonatomic, strong) NSMutableArray *objectList;
 
 // variables
-@property (nonatomic, strong) NSMutableArray *variables;
+@property (nonatomic, strong) VariablesContainer *variables;
 
 // METHODS
 // ---------------------------------------------------

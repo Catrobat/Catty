@@ -28,4 +28,10 @@
 
 @property (nonatomic, strong) FormulaElement* formulaTree;
 
+
+-(double) interpretDouble;
+
+-(BOOL) interpretBOOL;
+
+
 @end

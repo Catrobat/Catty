@@ -32,6 +32,40 @@ typedef enum {
     BRACKET
 } ElementType;
 
+
+typedef enum {
+	SIN,
+    COS,
+    TAN,
+    LN,
+    LOG,
+    SQRT,
+    RAND,
+    ROUND,
+    ABS,
+    PI_F
+} Function;
+
+
+
+typedef enum {
+    LOGICAL_AND,
+    LOGICAL_OR,
+    EQUAL,
+    NOT_EQUAL,
+    SMALLER_OR_EQUAL,
+    GREATER_OR_EQUAL,
+    SMALLER_THAN,
+    GREATER_THAN,
+    PLUS,
+    MINUS,
+    MULT,
+    DIVIDE,
+    MOD,
+    POW,
+    LOGICAL_NOT
+} Operator;
+
 @interface FormulaElement : NSObject
 
 
@@ -49,6 +83,9 @@ typedef enum {
          leftChild:(FormulaElement*)leftChild
         rightChild:(FormulaElement*)rightChild
             parent:(FormulaElement*)parent;
+
+
+-(double) interpretRecursive;
 
 
 @end

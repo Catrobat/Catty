@@ -7,7 +7,8 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "Brick.h"
 
-@interface Loopendlessbrick : NSObject
+@interface Loopendlessbrick : Brick
 
 @end

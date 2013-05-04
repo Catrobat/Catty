@@ -23,12 +23,6 @@
     return _objectList;
 }
 
-- (NSMutableArray*)variables {
-    if (_variables == nil) {
-        _variables = [[NSMutableArray alloc] init];
-    }
-    return _variables;
-}
 
 
 - (NSString*)debug {

@@ -28,6 +28,7 @@
 #import "Sound.h"
 #import "Formula.h"
 #import "FormulaElement.h"
+#import "Script.h"
 
 
 // test
@@ -40,6 +41,7 @@
 #define kParserObjectTypeNumber         @"T@\"NSNumber\""
 #define kParserObjectTypeArray          @"T@\"NSArray\""
 #define kParserObjectTypeMutableArray   @"T@\"NSMutableArray\""
+#define kParserObjectTypeMutableDictionary @"T@\"NSMutableDictionary\""
 #define kParserObjectTypeDate           @"T@\"NSDate\""
 
 // TODO: fix the user defined warnings below and remove this in final version
@@ -50,10 +52,11 @@
 #define kParserObjectTypeHeader         @"T@\"Header\""
 #define kParserObjectTypeUserVariable   @"T@\"Uservariable\""
 #define kParserObjectTypeFormula        @"T@\"Formula\""
-#define kParserObjectTypeIfElseBrick    @"T@\"Ifelsebrick\""
-#define kParserObjectTypeIfEndBrick     @"T@\"Ifendbrick\""
-#define kParserObjectTypeBeginBrick     @"T@\"Beginbrick\""
+#define kParserObjectTypeIfElseBrick    @"T@\"Iflogicelsebrick\""
+#define kParserObjectTypeIfEndBrick     @"T@\"Iflogicendbrick\""
+#define kParserObjectTypeIfBeginBrick   @"T@\"Iflogicbeginbrick\""
 #define kParserObjectTypeElseBrick      @"T@\"Elsebrick\""
+#define kParserObjectTypeVariables      @"T@\"VariablesContainer\""
 
 @interface ProjectParser()
 
@@ -65,6 +68,7 @@
 /*@property (nonatomic, strong) NSMutableDictionary *lookDict;
 @property (nonatomic, strong) NSString *path;*/
 @property (nonatomic, strong) id currentActiveSprite;
+@property (nonatomic, strong) Program* program;
 
 @end
 
@@ -92,7 +96,8 @@
     if (error || !doc) { return nil; }
 
     // parse and return Project object
-    return [self parseNode:doc.rootElement];
+    Program* program = [self parseNode:doc.rootElement];
+    return program;
 }
 
 
@@ -122,6 +127,8 @@
         className = node.name;
     }
     
+
+    
     // check for first character uppercase
     className = [className capitalizedString];
     
@@ -131,12 +138,30 @@
         className = @"SpriteObject";
     }
     
+    if([className isEqualToString:@"Ifelsebrick"] || [className isEqualToString:@"Elsebrick"]) {
+        className = @"Iflogicelsebrick";
+    }
+    
+    if([className isEqualToString:@"Ifbeginbrick"] || [className isEqualToString:@"Beginbrick"]) {
+        className = @"Iflogicbeginbrick";
+    }
+    
+    if([className isEqualToString:@"Ifendbrick"]) {
+        className = @"Iflogicendbrick";
+    }
+    
+    
     id object = [[NSClassFromString(className) alloc] init];
     if (!object) {
         NSLog(@"Implementation of <%@> NOT FOUND!", className);
         abort(); // TODO: just for debug
     }
-        
+    
+    if([object isKindOfClass:[Program class]]) {
+        self.program = object;
+    }
+    
+    
     // just an educated gues...
     if ([object isKindOfClass:[SpriteObject class]]) {
         self.currentActiveSprite = object;
@@ -168,7 +193,7 @@
                 // now set the value
                 id value = [self getSingleValue:child ofType:propertyType]; // get value for type
                 
-                
+                                
                 if([child.name isEqualToString:@"timeToWaitInSeconds"])
                 {
                     NSLog(@"Now");
@@ -327,23 +352,19 @@
     }
     else if([propertyType isEqualToString:kParserObjectTypeFormula]) {
         NSDebug(@"Formula");
-        [self parseFormula:element];
+        return [self parseFormula:element];
     }
     else if ([propertyType isEqualToString:kParserObjectTypeIfElseBrick]) {
-#warning todo
-        return nil;
+        return [self parseNode:element];
     }
     else if ([propertyType isEqualToString:kParserObjectTypeIfEndBrick]) {
-#warning todo
-        return nil;
+        return [self parseNode:element];
     }
-    else if ([propertyType isEqualToString:kParserObjectTypeBeginBrick]) {
-#warning todo
-        return nil;
+    else if ([propertyType isEqualToString:kParserObjectTypeIfBeginBrick]) {
+        return [self parseNode:element];
     }
-    else if ([propertyType isEqualToString:kParserObjectTypeElseBrick]) {
-#warning todo
-        return nil;
+    else if ([propertyType isEqualToString:kParserObjectTypeVariables]) {
+        return [self parseVariables:element];
     }
     else {
         abort(); // TODO: just for debug purposes
@@ -374,6 +395,158 @@
     }
 }
 
+-(id) parseVariables:(GDataXMLElement*)element
+{
+    
+    if (self.program) {
+        
+        NSArray* objectVariableListArray = [element elementsForName:@"objectVariableList"];
+        if(objectVariableListArray) {
+            GDataXMLElement* objectVariableList = [objectVariableListArray objectAtIndex:0];
+            
+            for (GDataXMLElement *entry in objectVariableList.children) {
+                
+                NSLog(@"%@", entry);
+                GDataXMLElement* objectElement = [[entry elementsForName:@"object"] objectAtIndex:0];
+                SpriteObject* object = [self parseSpriteObjectReference:objectElement];
+                
+                NSArray* listArray = [entry elementsForName:@"list"];
+                GDataXMLElement* listElement = [listArray objectAtIndex:0];
+                
+                for(GDataXMLElement* var in listElement.children) {
+                    NSLog(@"%@", var);
+                }
+            
+            }
+        }
+
+    }
+    
+        
+    return nil;
+
+}
+
+-(SpriteObject*) parseSpriteObjectReference:(GDataXMLElement*)element
+{
+    NSString *refString = [element attributeForName:@"reference"].stringValue;
+    if (!refString || [refString isEqualToString:@""]) {
+        // SHOULD NOT HAPPEN!
+        // IF YOU ARE HERE, this means, that in the XML there has no reference been set
+        // for this tag.
+        // SHOULD BE: (i.e.) <look reference="../../../../../lookList/org.catrobat.catroid.common.LookData"/>
+        // BUT WAS: <look reference=""/>
+        abort(); // todo
+    }
+    
+    NSArray *components = [refString componentsSeparatedByString:@"/"];
+    
+    id lastComponent = self.program;
+    
+    for(NSString* pathComponent in components) {
+        if([pathComponent isEqualToString:@".."]) {
+            continue;
+        }
+        
+        
+        objc_property_t property = class_getProperty([lastComponent class], [pathComponent UTF8String]);
+        if (property) { // check if property exists
+
+            lastComponent = [lastComponent valueForKey:pathComponent];            
+        }
+        
+        else if([pathComponent isEqualToString:@"objectList"]) {
+            // lastComponent = ((Program*)lastComponent).objectList;
+        }
+        else if([pathComponent hasPrefix:@"object"] || [pathComponent hasPrefix:@"broadcastScript"]) {
+            
+            int index = [self indexForArrayObject:pathComponent];
+            
+            if (index+1 > [lastComponent count] || index < 0) {
+                // SHOULD NOT HAPPEN!
+                abort();
+            }
+            
+            lastComponent = [lastComponent objectAtIndex:index];
+        }
+        else if([pathComponent isEqualToString:@"scriptList"]) {
+            //lastComponent = ((SpriteObject*)lastComponent).scriptList;
+        }
+        else if([pathComponent isEqualToString:@"brickList"]) {
+            //lastComponent = ((Script*)lastComponent).brickList;
+        }
+        else if([self isBrick:pathComponent]) {
+            
+            NSArray* brickList = lastComponent;
+            
+            NSString* className = [[self stripArrayBrackets:pathComponent] capitalizedString];
+            NSMutableArray* bricks = [[NSMutableArray alloc] init];
+            for (id obj in brickList)
+            {
+                if ([obj isMemberOfClass:NSClassFromString(className)])
+                    [bricks addObject:obj];
+            }
+            
+            int index = [self indexForArrayObject:pathComponent];
+            
+            if (index+1 > [bricks count] || index < 0) {
+                // SHOULD NOT HAPPEN!
+                abort();
+            }
+            
+            lastComponent = [bricks objectAtIndex:index];
+                        
+        }
+#warning debug
+        else {
+            NSLog(@"UNKNOWN Path Component: %@", pathComponent);
+            abort();
+        }
+
+        
+    }
+    
+    
+//
+//
+//        NSLog(@"NSOBJECT TYPE FOUND");
+//        NSLog(@"   SET reference (%@) for %@", refString, element.name);
+//
+//        // sanity check
+//        if (!sprite.lookList || sprite.lookList.count == 0) {
+//            // SHOULD NOT HAPPEN! NO LOOKS FOUND IN THIS SPRITE
+//            abort(); // todo
+//        }
+//
+//        if (![refString hasSuffix:@"]"]) {
+//            return [sprite.lookList objectAtIndex:0];
+//        }
+//        else {
+//            NSRange rr2 = [refString rangeOfString:@"["];
+//            NSRange rr3 = [refString rangeOfString:@"]"];
+//            int lengt = rr3.location - rr2.location - rr2.length;
+//            int location = rr2.location + rr2.length;
+//            NSRange aa;
+//            aa.location = location;
+//            aa.length = lengt;
+//            NSString *indexString = [refString substringWithRange:aa];
+//            NSInteger index = indexString.integerValue;
+//
+//            index--;
+//
+//            // sanity check
+//            if (index+1 > sprite.lookList.count) {
+//                // SHOULD NOT HAPPEN!
+//                abort();
+//            }
+//            
+//            return [sprite.lookList objectAtIndex:index];
+//        
+//        }
+    
+    return nil;
+}
+
 
 -(FormulaElement*)parseFormulaElement:(GDataXMLElement*)element
 {
@@ -391,7 +564,7 @@
         leftChild = [self parseFormulaElement:[leftChildArray objectAtIndex:0]];
     }
     if(rightChildArray) {
-        rightChild = [self parseFormulaElement:[leftChildArray objectAtIndex:0]];
+        rightChild = [self parseFormulaElement:[rightChildArray objectAtIndex:0]];
     }
     
     FormulaElement* parent = nil;
@@ -410,9 +583,10 @@
 
 
 
-// -----------------------------------------------------------------------------
-//                                   HELPER
-// -----------------------------------------------------------------------------
+
+
+#pragma mark - Helper
+
 const char* property_getTypeString(objc_property_t property) {
 	const char *attrs = property_getAttributes(property);
 	if (attrs == NULL) { return NULL; }
@@ -427,5 +601,51 @@ const char* property_getTypeString(objc_property_t property) {
 	
 	return buffer;
 }
+
+
+-(BOOL) isBrick:(NSString*)component
+{
+    NSError* error = nil;
+    NSRegularExpression* regex = [NSRegularExpression regularExpressionWithPattern:@"[a-zA-Z]*Brick(\\[[0-9]+\\])*" options:0 error:&error];
+    int matches = [regex numberOfMatchesInString:component options:0 range:NSMakeRange(0, [component length])];
+    if(matches == 1) {
+        return YES;
+    }
+    return NO;
+}
+
+-(NSString*) stripArrayBrackets:(NSString*)stringToStrip
+{
+    NSError* error = nil;
+    NSRegularExpression* regex = [NSRegularExpression regularExpressionWithPattern:@"[a-zA-Z]*" options:0 error:&error];
+    NSArray* matches = [regex matchesInString:stringToStrip options:0 range:NSMakeRange(0, [stringToStrip length])];
+    if(matches) {
+        return [stringToStrip substringWithRange:[[matches objectAtIndex:0] range]];
+    }
+    return stringToStrip;
+}
+
+-(int) indexForArrayObject:(NSString*)arrayObject
+{
+    int index = -1;
+    if([arrayObject hasSuffix:@"]"]) {
+        NSRange begin = [arrayObject rangeOfString:@"["];
+        NSRange end = [arrayObject rangeOfString:@"]"];
+        int length= end.location - begin.location - begin.length;
+        int location = begin.location + begin.length;
+        NSRange indexRange = NSMakeRange(location, length);
+        NSString *indexString = [arrayObject substringWithRange:indexRange];
+        index = indexString.integerValue;
+        index--;
+    }
+    else {
+        index = 0;
+    }
+    
+    return index;
+}
+
+
+
 
 @end

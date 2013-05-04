@@ -202,9 +202,6 @@
         self.view.frame = CGRectMake(xOffset, yOffset, width, height);  // STAGE!!! TODO: calculat ratio and offset
         self.navigationController.view.frame = CGRectMake(xOffset, yOffset, width, height);
 
-#warning remove!
-        Sparrow.stage.color = 0xFF0000;
-
         self.firstDrawing = NO;
         
                 

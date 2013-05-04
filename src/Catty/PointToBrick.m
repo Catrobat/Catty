@@ -11,4 +11,16 @@
 @implementation Pointtobrick
 
 
+- (void)performFromScript:(Script*)script
+{
+    
+}
+
+#pragma mark - Description
+- (NSString*)description
+{
+    return [NSString stringWithFormat:@"Point To Brick: %@", self.pointedObject];
+}
+
+
 @end

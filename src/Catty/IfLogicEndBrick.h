@@ -8,12 +8,13 @@
 
 #import "Brick.h"
 
-@class Beginbrick;
-@class Elsebrick;
+@class Iflogicbeginbrick;
+@class Iflogicelsebrick;
+
 
 @interface Iflogicendbrick : Brick
 
-@property (nonatomic, strong) Beginbrick* beginBrick;
-@property (nonatomic, strong) Elsebrick* elseBrick;
+@property (nonatomic, strong) Iflogicbeginbrick* beginBrick;
+@property (nonatomic, strong) Iflogicelsebrick* elseBrick;
 
 @end

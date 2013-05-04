@@ -10,4 +10,15 @@
 
 @implementation Iflogicelsebrick
 
+- (void)performFromScript:(Script*)script
+{
+    
+}
+
+#pragma mark - Description
+- (NSString*)description
+{
+    return [NSString stringWithFormat:@"If Logic Else Brick"];
+}
+
 @end
