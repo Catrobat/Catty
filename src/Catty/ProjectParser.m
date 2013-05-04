@@ -422,7 +422,7 @@
 
     }
     
-        
+    
     return nil;
 
 }
@@ -455,10 +455,8 @@
             lastComponent = [lastComponent valueForKey:pathComponent];            
         }
         
-        else if([pathComponent isEqualToString:@"objectList"]) {
-            // lastComponent = ((Program*)lastComponent).objectList;
-        }
-        else if([pathComponent hasPrefix:@"object"] || [pathComponent hasPrefix:@"broadcastScript"]) {
+
+        else if([pathComponent hasPrefix:@"object"] || [self component:pathComponent containsString:@"Script"]) {
             
             int index = [self indexForArrayObject:pathComponent];
             
@@ -469,13 +467,7 @@
             
             lastComponent = [lastComponent objectAtIndex:index];
         }
-        else if([pathComponent isEqualToString:@"scriptList"]) {
-            //lastComponent = ((SpriteObject*)lastComponent).scriptList;
-        }
-        else if([pathComponent isEqualToString:@"brickList"]) {
-            //lastComponent = ((Script*)lastComponent).brickList;
-        }
-        else if([self isBrick:pathComponent]) {
+        else if([self component:pathComponent containsString:@"Brick"]) {
             
             NSArray* brickList = lastComponent;
             
@@ -507,44 +499,7 @@
     }
     
     
-//
-//
-//        NSLog(@"NSOBJECT TYPE FOUND");
-//        NSLog(@"   SET reference (%@) for %@", refString, element.name);
-//
-//        // sanity check
-//        if (!sprite.lookList || sprite.lookList.count == 0) {
-//            // SHOULD NOT HAPPEN! NO LOOKS FOUND IN THIS SPRITE
-//            abort(); // todo
-//        }
-//
-//        if (![refString hasSuffix:@"]"]) {
-//            return [sprite.lookList objectAtIndex:0];
-//        }
-//        else {
-//            NSRange rr2 = [refString rangeOfString:@"["];
-//            NSRange rr3 = [refString rangeOfString:@"]"];
-//            int lengt = rr3.location - rr2.location - rr2.length;
-//            int location = rr2.location + rr2.length;
-//            NSRange aa;
-//            aa.location = location;
-//            aa.length = lengt;
-//            NSString *indexString = [refString substringWithRange:aa];
-//            NSInteger index = indexString.integerValue;
-//
-//            index--;
-//
-//            // sanity check
-//            if (index+1 > sprite.lookList.count) {
-//                // SHOULD NOT HAPPEN!
-//                abort();
-//            }
-//            
-//            return [sprite.lookList objectAtIndex:index];
-//        
-//        }
-    
-    return nil;
+    return lastComponent;
 }
 
 
@@ -603,15 +558,17 @@ const char* property_getTypeString(objc_property_t property) {
 }
 
 
--(BOOL) isBrick:(NSString*)component
+-(BOOL) component:(NSString*)component containsString:(NSString*)stringToCheck
 {
+    NSString* pattern = [NSString stringWithFormat:@"[a-zA-Z]*%@(\\[[0-9]+\\])*", stringToCheck];
     NSError* error = nil;
-    NSRegularExpression* regex = [NSRegularExpression regularExpressionWithPattern:@"[a-zA-Z]*Brick(\\[[0-9]+\\])*" options:0 error:&error];
+    NSRegularExpression* regex = [NSRegularExpression regularExpressionWithPattern:pattern options:0 error:&error];
     int matches = [regex numberOfMatchesInString:component options:0 range:NSMakeRange(0, [component length])];
     if(matches == 1) {
         return YES;
     }
     return NO;
+    
 }
 
 -(NSString*) stripArrayBrackets:(NSString*)stringToStrip
