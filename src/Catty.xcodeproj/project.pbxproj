@@ -24,6 +24,10 @@
 		B43313D717329514008B4EB3 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = B43313D917329514008B4EB3 /* Localizable.strings */; };
 		B44F32A01737AC2E00BD97AC /* ProgramManager.m in Sources */ = {isa = PBXBuildFile; fileRef = B44F329F1737AC2E00BD97AC /* ProgramManager.m */; };
 		B44F32A11737AC2E00BD97AC /* ProgramManager.m in Sources */ = {isa = PBXBuildFile; fileRef = B44F329F1737AC2E00BD97AC /* ProgramManager.m */; };
+		B44F32A51737BBB100BD97AC /* SensorHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = B44F32A41737BBB100BD97AC /* SensorHandler.m */; };
+		B44F32A61737BBB100BD97AC /* SensorHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = B44F32A41737BBB100BD97AC /* SensorHandler.m */; };
+		B44F32AA1737BBDC00BD97AC /* SensorHandlerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = B44F32A91737BBDC00BD97AC /* SensorHandlerTests.m */; };
+		B44F32AD1737BCC000BD97AC /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B44F32AC1737BCBF00BD97AC /* CoreMotion.framework */; };
 		B45030A0170F22EF009265D6 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B450309F170F22EF009265D6 /* SenTestingKit.framework */; };
 		B45030A1170F22EF009265D6 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
 		B45030A2170F22EF009265D6 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
@@ -222,6 +226,11 @@
 		B43313DA17329546008B4EB3 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Localizable.strings; sourceTree = "<group>"; };
 		B44F329E1737AC2E00BD97AC /* ProgramManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProgramManager.h; sourceTree = "<group>"; };
 		B44F329F1737AC2E00BD97AC /* ProgramManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProgramManager.m; sourceTree = "<group>"; };
+		B44F32A31737BBB100BD97AC /* SensorHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SensorHandler.h; sourceTree = "<group>"; };
+		B44F32A41737BBB100BD97AC /* SensorHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SensorHandler.m; sourceTree = "<group>"; };
+		B44F32A81737BBDC00BD97AC /* SensorHandlerTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SensorHandlerTests.h; sourceTree = "<group>"; };
+		B44F32A91737BBDC00BD97AC /* SensorHandlerTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SensorHandlerTests.m; sourceTree = "<group>"; };
+		B44F32AC1737BCBF00BD97AC /* CoreMotion.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMotion.framework; path = System/Library/Frameworks/CoreMotion.framework; sourceTree = SDKROOT; };
 		B450309E170F22EF009265D6 /* CattyTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CattyTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B450309F170F22EF009265D6 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
 		B45030A5170F22EF009265D6 /* CattyTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "CattyTests-Info.plist"; sourceTree = "<group>"; };
@@ -474,6 +483,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B44F32AD1737BCC000BD97AC /* CoreMotion.framework in Frameworks */,
 				B4BCF42C170ED548008EDF3A /* CoreText.framework in Frameworks */,
 				DE4A3DB910FFB0FE00FDA492 /* libSparrow.a in Frameworks */,
 				DE5C4E6E138ED109004892CA /* libz.dylib in Frameworks */,
@@ -556,6 +566,7 @@
 		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				B44F32AC1737BCBF00BD97AC /* CoreMotion.framework */,
 				DE3F093911B7B9DC009D4DB0 /* AudioToolbox.framework */,
 				DE3F093711B7B9DC009D4DB0 /* AVFoundation.framework */,
 				288765FC0DF74451002DB57D /* CoreGraphics.framework */,
@@ -630,13 +641,14 @@
 		B400302C170EB45200396DB7 /* Helper */ = {
 			isa = PBXGroup;
 			children = (
-				B4D940D5170ECA19003DDBFA /* ImageCache */,
-				B4D940BB170EC664003DDBFA /* TableUtil */,
-				CD0CD004170CBFEE00B70036 /* minizip */,
-				B400302F170EB4DC00396DB7 /* Util */,
+				B44F32A71737BBB800BD97AC /* SensorHandler */,
 				B400302E170EB47600396DB7 /* FileManager */,
-				B400302D170EB46A00396DB7 /* SSZipArchive */,
+				B4D940D5170ECA19003DDBFA /* ImageCache */,
+				CD0CD004170CBFEE00B70036 /* minizip */,
 				B44F32A21737AC3100BD97AC /* ProgramManager */,
+				B400302D170EB46A00396DB7 /* SSZipArchive */,
+				B4D940BB170EC664003DDBFA /* TableUtil */,
+				B400302F170EB4DC00396DB7 /* Util */,
 			);
 			name = Helper;
 			sourceTree = "<group>";
@@ -750,9 +762,28 @@
 			name = ProgramManager;
 			sourceTree = "<group>";
 		};
+		B44F32A71737BBB800BD97AC /* SensorHandler */ = {
+			isa = PBXGroup;
+			children = (
+				B44F32A31737BBB100BD97AC /* SensorHandler.h */,
+				B44F32A41737BBB100BD97AC /* SensorHandler.m */,
+			);
+			name = SensorHandler;
+			sourceTree = "<group>";
+		};
+		B44F32AB1737BBE100BD97AC /* SensorTests */ = {
+			isa = PBXGroup;
+			children = (
+				B44F32A81737BBDC00BD97AC /* SensorHandlerTests.h */,
+				B44F32A91737BBDC00BD97AC /* SensorHandlerTests.m */,
+			);
+			name = SensorTests;
+			sourceTree = "<group>";
+		};
 		B45030A3170F22EF009265D6 /* CattyTests */ = {
 			isa = PBXGroup;
 			children = (
+				B44F32AB1737BBE100BD97AC /* SensorTests */,
 				B45030A9170F22EF009265D6 /* CattyTests.h */,
 				B45030AA170F22EF009265D6 /* CattyTests.m */,
 				B45030A4170F22EF009265D6 /* Supporting Files */,
@@ -1861,6 +1892,7 @@
 				B470688A1733BA9600EC880D /* VariablesContainer.m in Sources */,
 				B470688F1733D6CC00EC880D /* ChangeVariableBrick.m in Sources */,
 				B44F32A01737AC2E00BD97AC /* ProgramManager.m in Sources */,
+				B44F32A51737BBB100BD97AC /* SensorHandler.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1879,6 +1911,8 @@
 				B470688B1733BA9600EC880D /* VariablesContainer.m in Sources */,
 				B47068901733D6CC00EC880D /* ChangeVariableBrick.m in Sources */,
 				B44F32A11737AC2E00BD97AC /* ProgramManager.m in Sources */,
+				B44F32A61737BBB100BD97AC /* SensorHandler.m in Sources */,
+				B44F32AA1737BBDC00BD97AC /* SensorHandlerTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

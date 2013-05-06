@@ -67,6 +67,7 @@ typedef enum {
     LOGICAL_NOT
 } Operator;
 
+
 @interface FormulaElement : NSObject
 
 
