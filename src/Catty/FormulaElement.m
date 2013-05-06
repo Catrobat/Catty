@@ -21,7 +21,10 @@
  */
 
 #import "FormulaElement.h"
-
+#import "ProgramManager.h"
+#import "Program.h"
+#import "VariablesContainer.h"
+#import "UserVariable.h"
 
 @implementation FormulaElement
 
@@ -44,7 +47,7 @@
     return self;
 }
 
--(double) interpretRecursive
+-(double) interpretRecursiveForSprite:(SpriteObject*)sprite;
 {
     double result = -1;
     
@@ -58,22 +61,23 @@
         case OPERATOR: {
             NSDebug(@"OPERATOR");
             Operator operator = [self operatorForString:self.value];
-            result = [self interpretOperator:operator];
+            result = [self interpretOperator:operator forSprite:sprite];
             break;
         }
             
         case FUNCTION: {
             NSDebug(@"FUNCTION");
             Function function = [self functionForString:self.value];
-            return [self interpretFunction:function];
-            abort();
+            result = [self interpretFunction:function forSprite:sprite];
             break;
         }
             
         case USER_VARIABLE: {
             NSDebug(@"User Variable");
-            
-            abort();
+            ProgramManager* manager = [ProgramManager sharedProgramManager];
+            Program* program = [manager program];
+            Uservariable* var = [program.variables getUserVariableNamed:self.value forSpriteObject:sprite];
+            result = [var.value doubleValue];
             break;
         }
             
@@ -93,13 +97,15 @@
     
 }
 
--(double) interpretFunction:(Function) function
+-(double) interpretFunction:(Function)function forSprite:(SpriteObject*)sprite;
 {
     
     double left = 0;
     if(self.leftChild) {
-        left = [self.leftChild interpretRecursive];
+        left = [self.leftChild interpretRecursiveForSprite:sprite];
     }
+    
+    double result = 0;
     
     
     switch (function) {
@@ -132,7 +138,7 @@
             break;
         }
         case ROUND: {
-            abort();
+            result = round(left);
             break;
         }
         case ABS: {
@@ -147,11 +153,11 @@
             abort();
             break;
     }
-    return -1;
+    return result;
     
 }
 
-- (double) interpretOperator:(Operator)operator
+- (double) interpretOperator:(Operator)operator forSprite:(SpriteObject*)sprite
 {
 
     double result = 0;
@@ -159,8 +165,8 @@
     
     if(self.leftChild) { // binary operator
         
-        double left = [self.leftChild interpretRecursive];
-        double right = [self.rightChild interpretRecursive];
+        double left = [self.leftChild interpretRecursiveForSprite:sprite];
+        double right = [self.rightChild interpretRecursiveForSprite:sprite];
     
         switch (operator) {
             case LOGICAL_AND: {
@@ -201,7 +207,7 @@
             }
         
             case MULT: {
-                abort();
+                result = left * right;
                 break;
             }
             case DIVIDE: {
@@ -217,18 +223,19 @@
                 break;
             }
 
-     
             default:
                 abort();
                 break;
         }
     }
     else { // unary operator
+        
+        double right = [self.rightChild interpretRecursiveForSprite:sprite];
+
 
         switch (operator) {
             case MINUS: {
-                abort();
-                break;
+                result = -right;
             }
                 
             case LOGICAL_NOT: {

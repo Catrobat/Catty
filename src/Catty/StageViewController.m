@@ -22,6 +22,7 @@
 #import "ProgramDefines.h"
 #import "TestParser.h"
 #import "Sparrow.h"
+#import "ProgramManager.h"
 
 @interface StageViewController () <SpriteManagerDelegate>
 
@@ -74,6 +75,11 @@
     
 }
 
+-(void) dealloc
+{
+    self.program = nil;
+}
+
 
 
 - (void)glkView:(GLKView *)view drawInRect:(CGRect)rect
@@ -111,6 +117,8 @@
         // parse Program
         Stage *stage = nil;
         self.program = [self loadProgram];
+        [[ProgramManager sharedProgramManager] setProgram:self.program];
+        
         if ([self.root isKindOfClass:[Stage class]]) {
             stage = (Stage*)self.root;
             stage.program = self.program;

@@ -23,15 +23,16 @@
 #import <Foundation/Foundation.h>
 
 @class FormulaElement;
+@class SpriteObject;
 
 @interface Formula : NSObject
 
 @property (nonatomic, strong) FormulaElement* formulaTree;
 
 
--(double) interpretDouble;
+-(double) interpretDoubleForSprite:(SpriteObject*)sprite;
 
--(BOOL) interpretBOOL;
+-(BOOL) interpretBOOLForSprite:(SpriteObject*)sprite;
 
 
 @end

@@ -8,11 +8,23 @@
 
 #import <Foundation/Foundation.h>
 
-@interface Variables : NSObject
+
+@class SpriteObject;
+@class Uservariable;
+
+@interface VariablesContainer : NSObject
+
+
+
+
+// Map<Sprite, List<UserVariable>
+@property (nonatomic, strong) NSMapTable* objectVariableList;
 
 // List<UserVariable> projectVariables;
-@property (nonatomic, strong) NSMutableArray* programVariableList;
-// Map<Sprite, List<UserVariable>
-@property (nonatomic, strong) NSMutableDictionary* objectVariableList;
+@property (nonatomic, strong) NSArray* programVariableList;
+
+
+-(Uservariable*) getUserVariableNamed:(NSString*) name forSpriteObject:(SpriteObject*) sprite;
+
 
 @end

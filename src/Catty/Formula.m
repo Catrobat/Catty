@@ -26,17 +26,17 @@
 @implementation Formula
 
 
--(double) interpretDouble
+-(double) interpretDoubleForSprite:(SpriteObject*)sprite
 {
     NSLog(@"Called");
     
-    return [self.formulaTree interpretRecursive];
+    return [self.formulaTree interpretRecursiveForSprite:sprite];
             
 }
 
--(BOOL) interpretBOOL
+-(BOOL) interpretBOOLForSprite:(SpriteObject*)sprite
 {
-    
+    abort();
     return false;
 }
 

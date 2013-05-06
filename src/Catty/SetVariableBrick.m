@@ -30,7 +30,7 @@
 {
     NSDebug(@"Performing: %@ on: %@", self.description, self.object);
     
-    double result = [self.variableFormula interpretDouble];
+    double result = [self.variableFormula interpretDoubleForSprite:self.object];
     
     
 }

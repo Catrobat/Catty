@@ -22,6 +22,7 @@
 
 #import <Foundation/Foundation.h>
 
+@class SpriteObject;
 
 typedef enum {
     OPERATOR,
@@ -85,7 +86,7 @@ typedef enum {
             parent:(FormulaElement*)parent;
 
 
--(double) interpretRecursive;
+-(double) interpretRecursiveForSprite:(SpriteObject*)sprite;
 
 
 @end

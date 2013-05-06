@@ -23,12 +23,15 @@
 #import "ProjectParser.h"
 #import "GDataXMLNode.h"
 #import "Program.h"
+#import "VariablesContainer.h"
 #import <objc/runtime.h>
 #import <Foundation/NSObjCRuntime.h>
 #import "Sound.h"
 #import "Formula.h"
 #import "FormulaElement.h"
 #import "Script.h"
+#import "UserVariable.h"
+
 
 
 // test
@@ -364,7 +367,7 @@
         return [self parseNode:element];
     }
     else if ([propertyType isEqualToString:kParserObjectTypeVariables]) {
-        return [self parseVariables:element];
+        return [self parseVariablesContainer:element];
     }
     else {
         abort(); // TODO: just for debug purposes
@@ -395,48 +398,44 @@
     }
 }
 
--(id) parseVariables:(GDataXMLElement*)element
+-(id) parseVariablesContainer:(GDataXMLElement*)element
 {
+    
+    VariablesContainer* variables = nil;
     
     if (self.program) {
         
-        NSArray* objectVariableListArray = [element elementsForName:@"objectVariableList"];
+        variables = [[VariablesContainer alloc] init];
+        
+        NSArray* objectVariableListArray= [element elementsForName:@"objectVariableList"];
+        
+        
         if(objectVariableListArray) {
             GDataXMLElement* objectVariableList = [objectVariableListArray objectAtIndex:0];
-            
-            for (GDataXMLElement *entry in objectVariableList.children) {
-                
-                NSLog(@"%@", entry);
-                GDataXMLElement* objectElement = [[entry elementsForName:@"object"] objectAtIndex:0];
-                SpriteObject* object = [self parseSpriteObjectReference:objectElement];
-                
-                NSArray* listArray = [entry elementsForName:@"list"];
-                GDataXMLElement* listElement = [listArray objectAtIndex:0];
-                
-                for(GDataXMLElement* var in listElement.children) {
-                    NSLog(@"%@", var);
-                }
-            
-            }
+            variables.objectVariableList = [self parseObjectVariableMap:objectVariableList];
         }
+        
+        NSArray* programVariableListArray = [element elementsForName:@"programVariableList"];
 
+        if(programVariableListArray) {
+            GDataXMLElement* programVariableList  = [programVariableListArray objectAtIndex:0];
+            variables.programVariableList = [self parseProgramVariableList:programVariableList];
+
+            
+        }
     }
+
     
-    
-    return nil;
+    return variables;
 
 }
 
--(SpriteObject*) parseSpriteObjectReference:(GDataXMLElement*)element
+-(id) parseReferenceElement:(GDataXMLElement*)element
 {
     NSString *refString = [element attributeForName:@"reference"].stringValue;
     if (!refString || [refString isEqualToString:@""]) {
-        // SHOULD NOT HAPPEN!
-        // IF YOU ARE HERE, this means, that in the XML there has no reference been set
-        // for this tag.
-        // SHOULD BE: (i.e.) <look reference="../../../../../lookList/org.catrobat.catroid.common.LookData"/>
-        // BUT WAS: <look reference=""/>
-        abort(); // todo
+        abort();
+#warning just debug
     }
     
     NSArray *components = [refString componentsSeparatedByString:@"/"];
@@ -456,37 +455,37 @@
         }
         
 
-        else if([pathComponent hasPrefix:@"object"] || [self component:pathComponent containsString:@"Script"]) {
+        else if([pathComponent hasPrefix:@"object"]) {
             
             int index = [self indexForArrayObject:pathComponent];
             
             if (index+1 > [lastComponent count] || index < 0) {
-                // SHOULD NOT HAPPEN!
                 abort();
+#warning just debug
             }
             
             lastComponent = [lastComponent objectAtIndex:index];
         }
-        else if([self component:pathComponent containsString:@"Brick"]) {
+        else if([self component:pathComponent containsString:@"Brick"] || [self component:pathComponent containsString:@"Script"]) {
             
-            NSArray* brickList = lastComponent;
+            NSArray* lastComponentList = lastComponent;
             
             NSString* className = [[self stripArrayBrackets:pathComponent] capitalizedString];
-            NSMutableArray* bricks = [[NSMutableArray alloc] init];
-            for (id obj in brickList)
+            NSMutableArray* list = [[NSMutableArray alloc] init];
+            for (id obj in lastComponentList)
             {
                 if ([obj isMemberOfClass:NSClassFromString(className)])
-                    [bricks addObject:obj];
+                    [list addObject:obj];
             }
             
             int index = [self indexForArrayObject:pathComponent];
             
-            if (index+1 > [bricks count] || index < 0) {
-                // SHOULD NOT HAPPEN!
+            if (index+1 > [list count] || index < 0) {
                 abort();
+#warning just debug
             }
             
-            lastComponent = [bricks objectAtIndex:index];
+            lastComponent = [list objectAtIndex:index];
                         
         }
 #warning debug
@@ -498,8 +497,75 @@
         
     }
     
+    if(lastComponent == nil) {
+        NSLog(@"%@", refString);
+    }
     
     return lastComponent;
+}
+
+
+
+-(NSMapTable*)parseObjectVariableMap:(GDataXMLElement*)objectVariableList
+{
+    NSMapTable* objectVariableMap = [NSMapTable strongToStrongObjectsMapTable];
+    
+    for (GDataXMLElement *entry in objectVariableList.children) {
+        
+        
+        GDataXMLElement* objectElement = [[entry elementsForName:@"object"] objectAtIndex:0];
+        SpriteObject* object = nil;
+        if([self isReferenceElement:objectElement]) {
+            object = [self parseReferenceElement:objectElement];
+        }
+        else {
+            object = [self parseNode:objectElement];
+        }
+
+        
+        NSDebug(@"%@", object);
+        
+        NSArray* listArray = [entry elementsForName:@"list"];
+        GDataXMLElement* listElement = [listArray objectAtIndex:0];
+        
+        NSMutableArray* list = [[NSMutableArray alloc] initWithCapacity:listElement.childCount];
+        for(GDataXMLElement* var in listElement.children) {
+            
+            Uservariable* userVariable = nil;
+            if([self isReferenceElement:var]) {
+                userVariable = [self parseReferenceElement:var];
+            }
+            else {
+                userVariable = [self parseNode:var];
+            }
+            NSDebug(@"%@", var);
+            [list addObject:userVariable];
+        }
+        
+        [objectVariableMap setObject:object forKey:list];
+    }
+    
+    return objectVariableMap;
+    
+}
+
+-(NSArray*)parseProgramVariableList:(GDataXMLElement*)progList
+{
+    NSMutableArray* programVariableList = [[NSMutableArray alloc] initWithCapacity:progList.childCount];
+    for (GDataXMLElement *entry in progList.children) {
+        Uservariable* var = nil;
+        if([self isReferenceElement:entry]) {
+            var = [self parseReferenceElement:entry];
+        }
+        else {
+            var = [self parseNode:entry];
+        }
+        [programVariableList addObject:var];
+    
+    }
+
+    return programVariableList;
+    
 }
 
 
@@ -558,6 +624,16 @@ const char* property_getTypeString(objc_property_t property) {
 }
 
 
+-(BOOL) isReferenceElement:(GDataXMLElement*)element
+{
+    NSString *refString = [element attributeForName:@"reference"].stringValue;
+    if (!refString || [refString isEqualToString:@""]) {
+        return NO;
+    }
+    return YES;
+}
+
+
 -(BOOL) component:(NSString*)component containsString:(NSString*)stringToCheck
 {
     NSString* pattern = [NSString stringWithFormat:@"[a-zA-Z]*%@(\\[[0-9]+\\])*", stringToCheck];
@@ -568,8 +644,8 @@ const char* property_getTypeString(objc_property_t property) {
         return YES;
     }
     return NO;
-    
 }
+
 
 -(NSString*) stripArrayBrackets:(NSString*)stringToStrip
 {
