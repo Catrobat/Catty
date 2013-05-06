@@ -31,6 +31,7 @@
 #import "FormulaElement.h"
 #import "Script.h"
 #import "UserVariable.h"
+#import "ObjectTree.h"
 
 
 
@@ -72,6 +73,7 @@
 @property (nonatomic, strong) NSString *path;*/
 @property (nonatomic, strong) id currentActiveSprite;
 @property (nonatomic, strong) Program* program;
+@property (nonatomic, strong) ObjectTree* objectTree;
 
 @end
 
@@ -115,7 +117,9 @@
 // Each attribute in the XML file is then used to assign a value to a
 // corresponding property in the introspected class/object.
 // [in] node: The current GDataXMLElement node of the XML file
-- (id)parseNode:(GDataXMLElement*)node {
+- (id)parseNode:(GDataXMLElement*)node{
+    
+
     // sanity check
     if (!node) { return nil; }
     
@@ -171,6 +175,7 @@
     }
     
     for (GDataXMLElement *child in node.children) {
+
         // maybe check node.childCount == 0?
         
         objc_property_t property = class_getProperty([object class], [child.name UTF8String]);
@@ -205,6 +210,7 @@
                 // check for property type
                 [object setValue:value forKey:child.name]; // assume new value
             }
+            
         }
         else {
             NSLog(@"property <%@> does NOT exist in our implementation of <%@>", child.name, className);
@@ -231,6 +237,7 @@
     if (!element || !propertyType) { return nil; }
     
     
+
     // check type
     if ([propertyType isEqualToString:kParserObjectTypeString]) {
         return element.stringValue;
@@ -351,7 +358,12 @@
         return nil;
     }
     else if([propertyType isEqualToString:kParserObjectTypeUserVariable]) {
-        return [self parseNode:element];
+        if([self isReferenceElement:element]) {
+            return [self parseReferenceElement:element];
+        }
+        else {
+            return [self parseNode:element];
+        }
     }
     else if([propertyType isEqualToString:kParserObjectTypeFormula]) {
         NSDebug(@"Formula");
@@ -438,9 +450,10 @@
 #warning just debug
     }
     
+    
     NSArray *components = [refString componentsSeparatedByString:@"/"];
     
-    id lastComponent = self.program;
+    id lastComponent = [self parentObjectForReferenceElement:element];
     
     for(NSString* pathComponent in components) {
         if([pathComponent isEqualToString:@".."]) {
@@ -624,6 +637,7 @@ const char* property_getTypeString(objc_property_t property) {
 }
 
 
+
 -(BOOL) isReferenceElement:(GDataXMLElement*)element
 {
     NSString *refString = [element attributeForName:@"reference"].stringValue;
@@ -631,6 +645,53 @@ const char* property_getTypeString(objc_property_t property) {
         return NO;
     }
     return YES;
+}
+
+
+#warning this is just a workaround -- we need a clean solution here..
+-(id)parentObjectForReferenceElement:(GDataXMLElement*)element
+{
+    NSString* name = element.name;
+    NSString *refString = [element attributeForName:@"reference"].stringValue;
+    
+    int count = [self numberOfOccurencesOfSubstring:@"../" inString:refString];
+    NSString* cleanedString = [refString stringByReplacingOccurrencesOfString:@"../" withString:@""];
+
+    
+    if(![cleanedString isEqualToString:@""])
+    {
+        NSString* firstComponent = [[cleanedString componentsSeparatedByString:@"/"] objectAtIndex:0];
+        if(count == 2 && [self component:firstComponent containsString:@"Brick"]) {
+            return [[self.program.objectList lastObject] brickList];
+        }
+    }
+    
+
+    
+    
+    
+    return nil;
+    
+}
+
+
+
+-(int)numberOfOccurencesOfSubstring:(NSString*)substring inString:(NSString*)str
+{
+    int cnt = 0;
+    int length = [str length];
+    NSRange range = NSMakeRange(0, length);
+    while(range.location != NSNotFound)
+    {
+        range = [str rangeOfString:substring options:0 range:range];
+        if(range.location != NSNotFound)
+        {
+            range = NSMakeRange(range.location + range.length, length - (range.location + range.length));
+            cnt++; 
+        }
+    }
+    return cnt;
+    
 }
 
 

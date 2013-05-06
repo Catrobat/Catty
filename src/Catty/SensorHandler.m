@@ -83,12 +83,15 @@ static SensorHandler* sharedSensorHandler = nil;
         }
         case X_INCLINATION: {
             double x = [self magneticField].x;
-            abort();
+            result = x;
+            //abort();
             break;
         }
             
         case Y_INCLINATION: {
-            abort();
+            double y = [self magneticField].y;
+            //abort();
+            result = y;
             break;
         }
             

@@ -27,9 +27,7 @@
 
 
 -(double) interpretDoubleForSprite:(SpriteObject*)sprite
-{
-    NSLog(@"Called");
-    
+{    
     return [self.formulaTree interpretRecursiveForSprite:sprite];
             
 }

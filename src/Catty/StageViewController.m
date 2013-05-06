@@ -23,6 +23,7 @@
 #import "TestParser.h"
 #import "Sparrow.h"
 #import "ProgramManager.h"
+#import "SensorHandler.h"
 
 @interface StageViewController () <SpriteManagerDelegate>
 
@@ -66,6 +67,8 @@
 - (void)viewWillDisappear:(BOOL)animated
 {
     [self.navigationController setNavigationBarHidden:NO animated:YES];
+    [[SensorHandler sharedSensorHandler] stopSensors];
+    
 }
 
 - (void)didReceiveMemoryWarning

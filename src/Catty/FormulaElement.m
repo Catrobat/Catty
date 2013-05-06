@@ -90,7 +90,6 @@
             } else {
                 result = [[SensorHandler sharedSensorHandler] getValueForSensor:sensor];
             }
-            abort();
             break;
         }
             
@@ -149,7 +148,7 @@
             break;
         }
         case ABS: {
-            abort();
+            result = fabs(left);
             break;
         }
         case PI_F: {
@@ -212,7 +211,6 @@
                 abort();
                 break;
             }
-        
             case MULT: {
                 result = left * right;
                 break;
