@@ -196,7 +196,7 @@
                 break;
             }
             case GREATER_OR_EQUAL: {
-                abort();
+                return left >= right;
                 break;
             }
             case SMALLER_THAN: {
@@ -241,6 +241,7 @@
         switch (operator) {
             case MINUS: {
                 result = -right;
+                break;
             }
                 
             case LOGICAL_NOT: {

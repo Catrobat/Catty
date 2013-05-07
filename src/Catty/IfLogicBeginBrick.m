@@ -7,11 +7,15 @@
 //
 
 #import "IfLogicBeginBrick.h"
+#import "Formula.h"
 
 @implementation Iflogicbeginbrick
 
 - (void)performFromScript:(Script*)script
 {
+    
+    BOOL condition = [self.ifCondition interpretBOOLForSprite:self.object];
+    
     
 }
 

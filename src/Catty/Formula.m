@@ -32,10 +32,16 @@
             
 }
 
+-(int) interpretIntegerForSprite:(SpriteObject*)sprite
+{
+    return (int)[self.formulaTree interpretRecursiveForSprite:sprite];    
+}
+
 -(BOOL) interpretBOOLForSprite:(SpriteObject*)sprite
 {
-    abort();
-    return false;
+    int result = [self interpretIntegerForSprite:sprite];
+    
+    return result != 0 ? true : false;
 }
 
 

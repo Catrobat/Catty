@@ -7,32 +7,25 @@
 //
 
 #import "Changeybynbrick.h"
+#import "Formula.h"
 
 @implementation Changeybynbrick
 
 @synthesize yMovement = _yMovement;
 
--(id)initWithChangeValueForY:(NSNumber*)y
-{
-    self = [super init];
-    if (self)
-    {
-        self.yMovement = y;
-    }
-    return self;
-}
-
 - (void)performFromScript:(Script*)script
 {
     NSLog(@"Performing: %@", self.description);
     
-    [self.object changeYBy:self.yMovement.floatValue];
+    double yMov = [self.yMovement interpretDoubleForSprite:self.object];
+    [self.object changeYBy:yMov];
 }
 
 #pragma mark - Description
 - (NSString*)description
 {
-    return [NSString stringWithFormat:@"ChangeYBy (%f)", self.yMovement.floatValue];
+    double xMov = [self.yMovement interpretDoubleForSprite:self.object];
+    return [NSString stringWithFormat:@"ChangeYBy (%f)", xMov];
 }
 
 @end

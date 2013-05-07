@@ -8,10 +8,11 @@
 
 #import "Brick.h"
 
+@class Formula;
+
 @interface Changexbynbrick : Brick
 
-@property (nonatomic, strong) NSNumber *xMovement;
+@property (nonatomic, strong) Formula *xMovement;
 
--(id)initWithChangeValueForX:(NSNumber*)x;
 
 @end

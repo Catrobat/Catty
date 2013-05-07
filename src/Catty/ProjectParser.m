@@ -156,6 +156,10 @@
         className = @"Iflogicendbrick";
     }
     
+    if([className isEqualToString:@"Loopendlessbrick"]) {
+        className = @"Loopendbrick";
+    }
+    
     
     id object = [[NSClassFromString(className) alloc] init];
     if (!object) {

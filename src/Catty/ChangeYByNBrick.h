@@ -8,10 +8,11 @@
 
 #import "Brick.h"
 
+@class Formula;
+
 @interface Changeybynbrick : Brick
 
-@property (nonatomic, strong) NSNumber *yMovement;
+@property (nonatomic, strong) Formula *yMovement;
 
 
--(id)initWithChangeValueForY:(NSNumber*)y;
 @end
