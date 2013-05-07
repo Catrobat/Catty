@@ -8,14 +8,17 @@
 
 #import "Brick.h"
 
+@class Formula;
+
 @interface Glidetobrick : Brick
 
 
-#warning Changed this from durationInMilliSeconds to durationInSeconds... maybe we have to change the implementation as well ;-)
-@property (nonatomic, strong) NSNumber *durationInSeconds;
 
-@property (nonatomic, strong) NSNumber *xDestination;
-@property (nonatomic, strong) NSNumber *yDestination;
+#warning Changed this from durationInMilliSeconds to durationInSeconds... maybe we have to change the implementation as well ;-)
+@property (nonatomic, strong) Formula *durationInSeconds;
+
+@property (nonatomic, strong) Formula *xDestination;
+@property (nonatomic, strong) Formula *yDestination;
 
 -(id)initWithXPosition:(NSNumber*)xPosition yPosition:(NSNumber*)yPosition andDurationInSeconds:(NSNumber*)durationInMilliSecs;
 

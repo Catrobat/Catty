@@ -8,7 +8,7 @@
 
 #import "Glidetobrick.h"
 #import "Script.h"
-
+#import "Formula.h"
 
 @implementation Glidetobrick
 
@@ -16,18 +16,6 @@
 @synthesize xDestination = _xDestination;
 @synthesize yDestination = _yDestination;
 
-#pragma mark - init methods
--(id)initWithXPosition:(NSNumber*)xPosition yPosition:(NSNumber*)yPosition andDurationInSeconds:(NSNumber*)durationInSeconds
-{
-    self = [super init];
-    if (self)
-    {
-        self.xDestination = xPosition;
-        self.yDestination = yPosition;
-        self.durationInSeconds = durationInSeconds;
-    }
-    return self;
-}
 
 #pragma mark - override
 -(void)performFromScript:(Script*)script
@@ -37,17 +25,25 @@
         
     //GLKVector3 position = GLKVector3Make(self.xDestination.floatValue, self.yDestination.floatValue, 0.0f);
     
-    CGPoint position = CGPointMake(self.xDestination.floatValue, self.yDestination.floatValue);
+    double xDestination = [self.xDestination interpretDoubleForSprite:self.object];
+    double yDestination = [self.yDestination interpretDoubleForSprite:self.object];
+    double durationInSeconds = [self.durationInSeconds interpretDoubleForSprite:self.object];
     
-    [self.object glideToPosition:position withDurationInSeconds:self.durationInSeconds.floatValue fromScript:script];
-    [NSThread sleepForTimeInterval:self.durationInSeconds.floatValue];
+    CGPoint position = CGPointMake(xDestination, yDestination);
+    
+    [self.object glideToPosition:position withDurationInSeconds:durationInSeconds fromScript:script];
+    [NSThread sleepForTimeInterval:durationInSeconds];
 }
 
 #pragma mark - Description
 - (NSString*)description
 {
-    return [NSString stringWithFormat:@"GlideTo (Position: %f/%f; duration: %f s)", self.xDestination.floatValue, self.yDestination.floatValue, self.durationInSeconds.floatValue
-            ];
+    
+    double xDestination = [self.xDestination interpretDoubleForSprite:self.object];
+    double yDestination = [self.yDestination interpretDoubleForSprite:self.object];
+    double durationInSeconds = [self.durationInSeconds interpretDoubleForSprite:self.object];
+    
+    return [NSString stringWithFormat:@"GlideTo (Position: %f/%f; duration: %f s)", xDestination, yDestination, durationInSeconds];
 }
 
 @end

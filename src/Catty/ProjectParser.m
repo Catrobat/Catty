@@ -578,7 +578,7 @@
             [list addObject:userVariable];
         }
         
-        [objectVariableMap setObject:object forKey:list];
+        [objectVariableMap setObject:list forKey:object];
     }
     
     return objectVariableMap;
