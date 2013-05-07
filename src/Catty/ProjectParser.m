@@ -195,13 +195,16 @@
             else if([propertyType isEqualToString:kParserObjectTypeMutableArray]) {
 
                 NSMutableArray* arr = [object valueForKey:child.name];
+                
+                XMLObjectReference* arrayReference = [[XMLObjectReference alloc] initWithParent:ref andObject:arr];
+                
                 if(!arr) {
                     arr = [[NSMutableArray alloc] initWithCapacity:child.childCount];
                     [object setValue:arr forKey:child.name];
                 }
 //                NSMutableArray *arr = [[NSMutableArray alloc] init];
                 for (GDataXMLElement *arrElement in child.children) {
-                    [arr addObject:[self parseNode:arrElement withParent:ref]];
+                    [arr addObject:[self parseNode:arrElement withParent:arrayReference]];
                 }
                 
                 // now set the array property (from *arr)
@@ -560,16 +563,16 @@
         
         NSMutableArray* list = [[NSMutableArray alloc] initWithCapacity:listElement.childCount];
         
-        ref = [[XMLObjectReference alloc] initWithParent:parent andObject:list];
+        XMLObjectReference* listReference = [[XMLObjectReference alloc] initWithParent:parent andObject:list];
         
         for(GDataXMLElement* var in listElement.children) {
             
             Uservariable* userVariable = nil;
             if([self isReferenceElement:var]) {
-                userVariable = [self parseReferenceElement:var withParent:ref];
+                userVariable = [self parseReferenceElement:var withParent:listReference];
             }
             else {
-                userVariable = [self parseNode:var withParent:ref];
+                userVariable = [self parseNode:var withParent:listReference];
             }
             NSDebug(@"%@", var);
             [list addObject:userVariable];
@@ -585,13 +588,14 @@
 -(NSArray*)parseProgramVariableList:(GDataXMLElement*)progList andParent:(XMLObjectReference*)parent
 {
     NSMutableArray* programVariableList = [[NSMutableArray alloc] initWithCapacity:progList.childCount];
+    XMLObjectReference* programVariableRef = [[XMLObjectReference alloc] initWithParent:parent andObject:programVariableList];
     for (GDataXMLElement *entry in progList.children) {
         Uservariable* var = nil;
         if([self isReferenceElement:entry]) {
-            var = [self parseReferenceElement:entry withParent:parent];
+            var = [self parseReferenceElement:entry withParent:programVariableRef];
         }
         else {
-            var = [self parseNode:entry withParent:parent];
+            var = [self parseNode:entry withParent:programVariableRef];
         }
         [programVariableList addObject:var];
     
