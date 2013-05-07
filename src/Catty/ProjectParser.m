@@ -31,7 +31,7 @@
 #import "FormulaElement.h"
 #import "Script.h"
 #import "UserVariable.h"
-#import "ObjectTree.h"
+#import "XMLObjectReference.h"
 
 
 
@@ -64,7 +64,7 @@
 
 @interface ProjectParser()
 
-- (id)parseNode:(GDataXMLElement*)node;
+- (id)parseNode:(GDataXMLElement*)node withParent:(XMLObjectReference*)parent;
 - (id)getSingleValue:(GDataXMLElement*)element ofType:(NSString*)propertyType;
 
 // just temp
@@ -73,7 +73,6 @@
 @property (nonatomic, strong) NSString *path;*/
 @property (nonatomic, strong) id currentActiveSprite;
 @property (nonatomic, strong) Program* program;
-@property (nonatomic, strong) ObjectTree* objectTree;
 
 @end
 
@@ -101,7 +100,7 @@
     if (error || !doc) { return nil; }
 
     // parse and return Project object
-    Program* program = [self parseNode:doc.rootElement];
+    Program* program = [self parseNode:doc.rootElement withParent:nil];
     return program;
 }
 
@@ -117,7 +116,7 @@
 // Each attribute in the XML file is then used to assign a value to a
 // corresponding property in the introspected class/object.
 // [in] node: The current GDataXMLElement node of the XML file
-- (id)parseNode:(GDataXMLElement*)node{
+- (id)parseNode:(GDataXMLElement*)node withParent:(XMLObjectReference*)parent {
     
 
     // sanity check
@@ -174,6 +173,11 @@
         self.currentActiveSprite = object;
     }
     
+    
+    XMLObjectReference* ref = [[XMLObjectReference alloc] initWithParent:parent andObject:object];
+    
+    
+    
     for (GDataXMLElement *child in node.children) {
 
         // maybe check node.childCount == 0?
@@ -182,24 +186,31 @@
         if (property) { // check if property exists
             NSString *propertyType = [NSString stringWithUTF8String:property_getTypeString(property)];
             NSLog(@"Property type: %@", propertyType);
-                        
+            
             // check if property is of type array
-            if ([propertyType isEqualToString:kParserObjectTypeArray]
-                || [propertyType isEqualToString:kParserObjectTypeMutableArray]) {
-                // = ARRAY
-                // create new array
-                NSMutableArray *arr = [[NSMutableArray alloc] init];
+            if ([propertyType isEqualToString:kParserObjectTypeArray]) {
+                NSLog(@"we need to keep the references at all time, please use NSMutableArray for property: %@", child.name);
+                abort();
+            }
+            else if([propertyType isEqualToString:kParserObjectTypeMutableArray]) {
+
+                NSMutableArray* arr = [object valueForKey:child.name];
+                if(!arr) {
+                    arr = [[NSMutableArray alloc] initWithCapacity:child.childCount];
+                    [object setValue:arr forKey:child.name];
+                }
+//                NSMutableArray *arr = [[NSMutableArray alloc] init];
                 for (GDataXMLElement *arrElement in child.children) {
-                    [arr addObject:[self parseNode:arrElement]];
+                    [arr addObject:[self parseNode:arrElement withParent:ref]];
                 }
                 
                 // now set the array property (from *arr)
-                [object setValue:arr forKey:child.name];
+//                [object setValue:arr forKey:child.name];
             }
             else {
                 // NOT ARRAY
                 // now set the value
-                id value = [self getSingleValue:child ofType:propertyType]; // get value for type
+                id value = [self getSingleValue:child ofType:propertyType withParent:ref]; // get value for type
                 
                                 
                 if([child.name isEqualToString:@"timeToWaitInSeconds"])
@@ -232,7 +243,7 @@
 // getSingleValue:ofType:
 // This method extracts a single value of a given GDataXMLElement for the
 // corresponding (given) type, such as NSString, NSArray and so on.
-- (id)getSingleValue:(GDataXMLElement*)element ofType:(NSString*)propertyType {
+- (id)getSingleValue:(GDataXMLElement*)element ofType:(NSString*)propertyType withParent:(XMLObjectReference*)parent{
     // sanity checks
     if (!element || !propertyType) { return nil; }
     
@@ -345,13 +356,13 @@
         NSLog(@"NSOBJECT TYPE FOUND");
         NSLog(@"   SET reference (%@) for %@", ref, element.name);
         
-        Sound *sound = [self parseNode:element];
+        Sound *sound = [self parseNode:element withParent:parent];
         
         
         return sound; // TODO!
     }
     else if ([propertyType isEqualToString:kParserObjectTypeHeader]) {
-        return [self parseNode:element];
+        return [self parseNode:element withParent:parent];
     }
     else if ([propertyType isEqualToString:kParserObjectTypeLoopEndBrick]) {
 #warning todo
@@ -359,10 +370,10 @@
     }
     else if([propertyType isEqualToString:kParserObjectTypeUserVariable]) {
         if([self isReferenceElement:element]) {
-            return [self parseReferenceElement:element];
+            return [self parseReferenceElement:element withParent:parent];
         }
         else {
-            return [self parseNode:element];
+            return [self parseNode:element withParent:parent];
         }
     }
     else if([propertyType isEqualToString:kParserObjectTypeFormula]) {
@@ -370,16 +381,16 @@
         return [self parseFormula:element];
     }
     else if ([propertyType isEqualToString:kParserObjectTypeIfElseBrick]) {
-        return [self parseNode:element];
+        return [self parseNode:element withParent:parent];
     }
     else if ([propertyType isEqualToString:kParserObjectTypeIfEndBrick]) {
-        return [self parseNode:element];
+        return [self parseNode:element withParent:parent];
     }
     else if ([propertyType isEqualToString:kParserObjectTypeIfBeginBrick]) {
-        return [self parseNode:element];
+        return [self parseNode:element withParent:parent];
     }
     else if ([propertyType isEqualToString:kParserObjectTypeVariables]) {
-        return [self parseVariablesContainer:element];
+        return [self parseVariablesContainer:element withParent:parent];
     }
     else {
         abort(); // TODO: just for debug purposes
@@ -410,7 +421,7 @@
     }
 }
 
--(id) parseVariablesContainer:(GDataXMLElement*)element
+-(id) parseVariablesContainer:(GDataXMLElement*)element withParent:(XMLObjectReference*)parent
 {
     
     VariablesContainer* variables = nil;
@@ -421,17 +432,18 @@
         
         NSArray* objectVariableListArray= [element elementsForName:@"objectVariableList"];
         
+        XMLObjectReference* ref = [[XMLObjectReference alloc] initWithParent:parent andObject:variables];
         
         if(objectVariableListArray) {
             GDataXMLElement* objectVariableList = [objectVariableListArray objectAtIndex:0];
-            variables.objectVariableList = [self parseObjectVariableMap:objectVariableList];
+            variables.objectVariableList = [self parseObjectVariableMap:objectVariableList andParent:ref];
         }
         
         NSArray* programVariableListArray = [element elementsForName:@"programVariableList"];
 
         if(programVariableListArray) {
             GDataXMLElement* programVariableList  = [programVariableListArray objectAtIndex:0];
-            variables.programVariableList = [self parseProgramVariableList:programVariableList];
+            variables.programVariableList = [self parseProgramVariableList:programVariableList andParent:ref];
 
             
         }
@@ -442,7 +454,7 @@
 
 }
 
--(id) parseReferenceElement:(GDataXMLElement*)element
+-(id) parseReferenceElement:(GDataXMLElement*)element withParent:(XMLObjectReference*)parent
 {
     NSString *refString = [element attributeForName:@"reference"].stringValue;
     if (!refString || [refString isEqualToString:@""]) {
@@ -453,7 +465,7 @@
     
     NSArray *components = [refString componentsSeparatedByString:@"/"];
     
-    id lastComponent = [self parentObjectForReferenceElement:element];
+    id lastComponent = [self parentObjectForReferenceElement:element andParent:parent];
     
     for(NSString* pathComponent in components) {
         if([pathComponent isEqualToString:@".."]) {
@@ -481,7 +493,7 @@
         }
         else if([self component:pathComponent containsString:@"Brick"] || [self component:pathComponent containsString:@"Script"]) {
             
-            NSArray* lastComponentList = lastComponent;
+            NSMutableArray* lastComponentList = lastComponent;
             
             NSString* className = [[self stripArrayBrackets:pathComponent] capitalizedString];
             NSMutableArray* list = [[NSMutableArray alloc] init];
@@ -519,20 +531,25 @@
 
 
 
--(NSMapTable*)parseObjectVariableMap:(GDataXMLElement*)objectVariableList
+-(NSMapTable*)parseObjectVariableMap:(GDataXMLElement*)objectVariableList andParent:(XMLObjectReference*)parent
 {
+    
     NSMapTable* objectVariableMap = [NSMapTable strongToStrongObjectsMapTable];
+    XMLObjectReference* ref = [[XMLObjectReference alloc] initWithParent:parent andObject:objectVariableMap];
     
     for (GDataXMLElement *entry in objectVariableList.children) {
         
         
         GDataXMLElement* objectElement = [[entry elementsForName:@"object"] objectAtIndex:0];
         SpriteObject* object = nil;
+        
+        XMLObjectReference* entryRef = [[XMLObjectReference alloc] initWithParent:ref andObject:nil];
+        
         if([self isReferenceElement:objectElement]) {
-            object = [self parseReferenceElement:objectElement];
+            object = [self parseReferenceElement:objectElement withParent:entryRef];
         }
         else {
-            object = [self parseNode:objectElement];
+            object = [self parseNode:objectElement withParent:entryRef];
         }
 
         
@@ -542,14 +559,17 @@
         GDataXMLElement* listElement = [listArray objectAtIndex:0];
         
         NSMutableArray* list = [[NSMutableArray alloc] initWithCapacity:listElement.childCount];
+        
+        ref = [[XMLObjectReference alloc] initWithParent:parent andObject:list];
+        
         for(GDataXMLElement* var in listElement.children) {
             
             Uservariable* userVariable = nil;
             if([self isReferenceElement:var]) {
-                userVariable = [self parseReferenceElement:var];
+                userVariable = [self parseReferenceElement:var withParent:ref];
             }
             else {
-                userVariable = [self parseNode:var];
+                userVariable = [self parseNode:var withParent:ref];
             }
             NSDebug(@"%@", var);
             [list addObject:userVariable];
@@ -562,16 +582,16 @@
     
 }
 
--(NSArray*)parseProgramVariableList:(GDataXMLElement*)progList
+-(NSArray*)parseProgramVariableList:(GDataXMLElement*)progList andParent:(XMLObjectReference*)parent
 {
     NSMutableArray* programVariableList = [[NSMutableArray alloc] initWithCapacity:progList.childCount];
     for (GDataXMLElement *entry in progList.children) {
         Uservariable* var = nil;
         if([self isReferenceElement:entry]) {
-            var = [self parseReferenceElement:entry];
+            var = [self parseReferenceElement:entry withParent:parent];
         }
         else {
-            var = [self parseNode:entry];
+            var = [self parseNode:entry withParent:parent];
         }
         [programVariableList addObject:var];
     
@@ -649,7 +669,7 @@ const char* property_getTypeString(objc_property_t property) {
 
 
 #warning this is just a workaround -- we need a clean solution here..
--(id)parentObjectForReferenceElement:(GDataXMLElement*)element
+-(id)parentObjectForReferenceElement:(GDataXMLElement*)element andParent:(XMLObjectReference*)parent
 {
     NSString* name = element.name;
     NSString *refString = [element attributeForName:@"reference"].stringValue;
@@ -658,19 +678,17 @@ const char* property_getTypeString(objc_property_t property) {
     NSString* cleanedString = [refString stringByReplacingOccurrencesOfString:@"../" withString:@""];
 
     
-    if(![cleanedString isEqualToString:@""])
-    {
-        NSString* firstComponent = [[cleanedString componentsSeparatedByString:@"/"] objectAtIndex:0];
-        if(count == 2 && [self component:firstComponent containsString:@"Brick"]) {
-            return [[self.program.objectList lastObject] brickList];
-        }
+    XMLObjectReference* tmp = parent;
+    
+    for(int i=0; i<count-1; i++) {
+        tmp = tmp.parent;
     }
     
-
     
     
     
-    return nil;
+    
+    return tmp.object;
     
 }
 

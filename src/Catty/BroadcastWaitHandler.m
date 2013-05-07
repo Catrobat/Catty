@@ -48,7 +48,7 @@
     NSString* queueString = [NSString stringWithFormat:@"at.tugraz.ist.%@", message];
     const char *queueName = [message cStringUsingEncoding:NSUTF8StringEncoding];
     
-    dispatch_queue_t broadcastWaitQueue = dispatch_queue_create(queueName, DISPATCH_QUEUE_CONCURRENT);
+    dispatch_queue_t broadcastWaitQueue = dispatch_queue_create(queueName, NULL);
     dispatch_group_t group = dispatch_group_create();
 
     NSArray *sprites = [self.spritesForMessages objectForKey:message];

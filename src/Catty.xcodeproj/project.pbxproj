@@ -18,7 +18,6 @@
 		B40228971732A58E004C4942 /* IfLogicEndBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = B40228951732A58E004C4942 /* IfLogicEndBrick.m */; };
 		B40228A51732ADF4004C4942 /* PointToBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = B40228A41732ADF3004C4942 /* PointToBrick.m */; };
 		B40228A61732ADF4004C4942 /* PointToBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = B40228A41732ADF3004C4942 /* PointToBrick.m */; };
-		B40BA3B7173841A80077F53D /* ObjectTree.m in Sources */ = {isa = PBXBuildFile; fileRef = B40BA3B6173841A80077F53D /* ObjectTree.m */; };
 		B40C306D170ECC1B000B872F /* BackgroundLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = B4D940B6170EC631003DDBFA /* BackgroundLayer.m */; };
 		B40C306E170ECC30000B872F /* CatrobatBaseCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B4D940CD170EC903003DDBFA /* CatrobatBaseCell.m */; };
 		B40C3071170ECC49000B872F /* DarkBlueGradientImageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B40C3070170ECC49000B872F /* DarkBlueGradientImageCell.m */; };
@@ -45,6 +44,8 @@
 		B470688B1733BA9600EC880D /* VariablesContainer.m in Sources */ = {isa = PBXBuildFile; fileRef = B47068891733BA9600EC880D /* VariablesContainer.m */; };
 		B470688F1733D6CC00EC880D /* ChangeVariableBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = B470688E1733D6CA00EC880D /* ChangeVariableBrick.m */; };
 		B47068901733D6CC00EC880D /* ChangeVariableBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = B470688E1733D6CA00EC880D /* ChangeVariableBrick.m */; };
+		B4B7BAC31738E216000BDC94 /* XMLObjectReference.m in Sources */ = {isa = PBXBuildFile; fileRef = B4B7BAC21738E216000BDC94 /* XMLObjectReference.m */; };
+		B4B7BAC41738E216000BDC94 /* XMLObjectReference.m in Sources */ = {isa = PBXBuildFile; fileRef = B4B7BAC21738E216000BDC94 /* XMLObjectReference.m */; };
 		B4B9FD3D171564C700123E53 /* LoopEndlessBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = B4B9FD3C171564C700123E53 /* LoopEndlessBrick.m */; };
 		B4BCF3DA170ECE05008EDF3A /* accessory.png in Resources */ = {isa = PBXBuildFile; fileRef = B4BCF3D8170ECE05008EDF3A /* accessory.png */; };
 		B4BCF3DB170ECE05008EDF3A /* accessory@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B4BCF3D9170ECE05008EDF3A /* accessory@2x.png */; };
@@ -221,8 +222,6 @@
 		B40228951732A58E004C4942 /* IfLogicEndBrick.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IfLogicEndBrick.m; sourceTree = "<group>"; };
 		B40228A31732ADF2004C4942 /* PointToBrick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PointToBrick.h; sourceTree = "<group>"; };
 		B40228A41732ADF3004C4942 /* PointToBrick.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PointToBrick.m; sourceTree = "<group>"; };
-		B40BA3B5173841A80077F53D /* ObjectTree.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ObjectTree.h; sourceTree = "<group>"; };
-		B40BA3B6173841A80077F53D /* ObjectTree.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ObjectTree.m; sourceTree = "<group>"; };
 		B40C306F170ECC49000B872F /* DarkBlueGradientImageCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DarkBlueGradientImageCell.h; sourceTree = "<group>"; };
 		B40C3070170ECC49000B872F /* DarkBlueGradientImageCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DarkBlueGradientImageCell.m; sourceTree = "<group>"; };
 		B43313D817329514008B4EB3 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -252,6 +251,8 @@
 		B47068891733BA9600EC880D /* VariablesContainer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VariablesContainer.m; sourceTree = "<group>"; };
 		B470688D1733D6C800EC880D /* ChangeVariableBrick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChangeVariableBrick.h; sourceTree = "<group>"; };
 		B470688E1733D6CA00EC880D /* ChangeVariableBrick.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChangeVariableBrick.m; sourceTree = "<group>"; };
+		B4B7BAC11738E216000BDC94 /* XMLObjectReference.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XMLObjectReference.h; sourceTree = "<group>"; };
+		B4B7BAC21738E216000BDC94 /* XMLObjectReference.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMLObjectReference.m; sourceTree = "<group>"; };
 		B4B9FD3B171564C700123E53 /* LoopEndlessBrick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoopEndlessBrick.h; sourceTree = "<group>"; };
 		B4B9FD3C171564C700123E53 /* LoopEndlessBrick.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoopEndlessBrick.m; sourceTree = "<group>"; };
 		B4BCF3D8170ECE05008EDF3A /* accessory.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = accessory.png; sourceTree = "<group>"; };
@@ -747,15 +748,6 @@
 			name = PointToBrick;
 			sourceTree = "<group>";
 		};
-		B40BA3B9173841AC0077F53D /* ObjectTree */ = {
-			isa = PBXGroup;
-			children = (
-				B40BA3B5173841A80077F53D /* ObjectTree.h */,
-				B40BA3B6173841A80077F53D /* ObjectTree.m */,
-			);
-			name = ObjectTree;
-			sourceTree = "<group>";
-		};
 		B40C3072170ECC53000B872F /* DarkBlueGradientImageCell */ = {
 			isa = PBXGroup;
 			children = (
@@ -864,6 +856,15 @@
 				B470688E1733D6CA00EC880D /* ChangeVariableBrick.m */,
 			);
 			name = ChangeVariableBrick;
+			sourceTree = "<group>";
+		};
+		B4B7BAC51738E21B000BDC94 /* XMLObjectReference */ = {
+			isa = PBXGroup;
+			children = (
+				B4B7BAC11738E216000BDC94 /* XMLObjectReference.h */,
+				B4B7BAC21738E216000BDC94 /* XMLObjectReference.m */,
+			);
+			name = XMLObjectReference;
 			sourceTree = "<group>";
 		};
 		B4BCF408170ECFA8008EDF3A /* MyProgramsViewController */ = {
@@ -1539,7 +1540,7 @@
 				B4DEFC8A170F457700DD1939 /* ProjectParser */,
 				CD0CCF48170CB39700B70036 /* XMLParserProtocol.h */,
 				B4DEFC8B170F458000DD1939 /* Parser */,
-				B40BA3B9173841AC0077F53D /* ObjectTree */,
+				B4B7BAC51738E21B000BDC94 /* XMLObjectReference */,
 			);
 			name = Parser;
 			sourceTree = "<group>";
@@ -1906,7 +1907,7 @@
 				B470688F1733D6CC00EC880D /* ChangeVariableBrick.m in Sources */,
 				B44F32A01737AC2E00BD97AC /* ProgramManager.m in Sources */,
 				B44F32A51737BBB100BD97AC /* SensorHandler.m in Sources */,
-				B40BA3B7173841A80077F53D /* ObjectTree.m in Sources */,
+				B4B7BAC31738E216000BDC94 /* XMLObjectReference.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1927,6 +1928,7 @@
 				B44F32A11737AC2E00BD97AC /* ProgramManager.m in Sources */,
 				B44F32A61737BBB100BD97AC /* SensorHandler.m in Sources */,
 				B44F32AA1737BBDC00BD97AC /* SensorHandlerTests.m in Sources */,
+				B4B7BAC41738E216000BDC94 /* XMLObjectReference.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

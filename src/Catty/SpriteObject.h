@@ -41,10 +41,10 @@
 
 @property (strong, nonatomic) NSString *projectPath; //for image-path!!!
 
-@property (strong, nonatomic) NSArray *lookList;
+@property (strong, nonatomic) NSMutableArray *lookList;
 @property (strong, nonatomic) NSMutableArray *soundList;
 
-@property (nonatomic, strong) NSArray *scriptList;
+@property (nonatomic, strong) NSMutableArray *scriptList;
 
 
 

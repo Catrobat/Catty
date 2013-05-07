@@ -10,4 +10,19 @@
 
 @implementation XMLObjectReference
 
+-(id)initWithParent:(XMLObjectReference*)parent andObject:(id)object
+{
+    self = [super init];
+    if(self) {
+        self.parent = parent;
+        self.object = object;
+    }
+    return self;
+}
+
+-(NSString*)description
+{
+    return [NSString stringWithFormat:@"XMLObjectReference: Parent: %@, Object: %@", self.parent, self.object ];
+}
+
 @end
