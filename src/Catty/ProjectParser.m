@@ -563,7 +563,7 @@
         
         NSMutableArray* list = [[NSMutableArray alloc] initWithCapacity:listElement.childCount];
         
-        XMLObjectReference* listReference = [[XMLObjectReference alloc] initWithParent:parent andObject:list];
+        XMLObjectReference* listReference = [[XMLObjectReference alloc] initWithParent:entryRef andObject:list];
         
         for(GDataXMLElement* var in listElement.children) {
             
@@ -672,26 +672,17 @@ const char* property_getTypeString(objc_property_t property) {
 }
 
 
-#warning this is just a workaround -- we need a clean solution here..
 -(id)parentObjectForReferenceElement:(GDataXMLElement*)element andParent:(XMLObjectReference*)parent
 {
-    NSString* name = element.name;
-    NSString *refString = [element attributeForName:@"reference"].stringValue;
-    
+    NSString *refString = [element attributeForName:@"reference"].stringValue;    
     int count = [self numberOfOccurencesOfSubstring:@"../" inString:refString];
-    NSString* cleanedString = [refString stringByReplacingOccurrencesOfString:@"../" withString:@""];
-
     
     XMLObjectReference* tmp = parent;
     
     for(int i=0; i<count-1; i++) {
         tmp = tmp.parent;
     }
-    
-    
-    
-    
-    
+        
     return tmp.object;
     
 }
