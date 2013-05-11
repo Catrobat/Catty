@@ -24,7 +24,7 @@
 #define Catty_NetworkDefines_h
 
 #define kConnectionTimeout 30
-#define kConnectionHost @"http://catroid.org/api/projects"
+#define kConnectionHost @"https://pocketcode.org/api/projects"
 
 #define kConnectionSearch @"search.json"
 #define kConnectionRecent @"recent.json"
