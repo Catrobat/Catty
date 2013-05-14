@@ -26,6 +26,7 @@
 #import "VariablesContainer.h"
 #import "UserVariable.h"
 #import "SensorHandler.h"
+#import "SpriteObject.h"
 
 @implementation FormulaElement
 
@@ -93,6 +94,12 @@
             break;
         }
             
+        case BRACKET: {
+            NSDebug(@"BRACKET");
+            result = [self.rightChild interpretRecursiveForSprite:sprite];
+            break;
+        }
+            
         default:
             NSLog(@"Unknown Type: %d", self.type);
             abort();
@@ -136,7 +143,7 @@
             break;
         }
         case SQRT: {
-            abort();
+            result =  sqrt(left);
             break;
         }
         case RAND: {
@@ -152,7 +159,8 @@
             break;
         }
         case PI_F: {
-            return PI;
+            result = PI;
+            break;
         }
             
         default:
@@ -176,7 +184,7 @@
     
         switch (operator) {
             case LOGICAL_AND: {
-                abort();
+                result = (left * right) != 0.0 ? 1.0 : 0.0;
                 break;
             }
             case LOGICAL_OR: {
@@ -192,23 +200,23 @@
                 break;
             }
             case SMALLER_OR_EQUAL: {
-                abort();
+                result = left <= right ? 1.0 : 0.0;
                 break;
             }
             case GREATER_OR_EQUAL: {
-                return left >= right;
+                result = left >= right ? 1.0 : 0.0;
                 break;
             }
             case SMALLER_THAN: {
-                abort();
+                result = left < right ? 1.0 : 0.0;
                 break;
             }
             case GREATER_THAN: {
-                abort();
+                result = left > right ? 1.0 : 0.0;
                 break;
             }
             case PLUS: {
-                abort();
+                result =  left + right;
                 break;
             }
             case MULT: {
@@ -267,11 +275,11 @@
     switch (sensor) {
             
         case LOOK_X: {
-            abort();
+            result = [sprite position].x;
             break;
         }
         case LOOK_Y: {
-            abort();
+            result = [sprite position].y;
             break;
         }
         case LOOK_GHOSTEFFECT: {
