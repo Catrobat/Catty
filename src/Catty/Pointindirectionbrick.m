@@ -23,7 +23,7 @@
 #pragma mark - Description
 - (NSString*)description
 {
-    return [NSString stringWithFormat:@"PointInDirection"];
+    return [NSString stringWithFormat:@"PointInDirection: %f", [self.degrees interpretDoubleForSprite:self.object]];
 }
 
 @end

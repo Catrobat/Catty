@@ -23,12 +23,14 @@
 
 #import "SensorHandler.h"
 #import <CoreMotion/CoreMotion.h>
+#import <CoreLocation/CoreLocation.h>
 
 #define kSensorUpdateInterval 0.8
 
 @interface SensorHandler()
 
 @property (nonatomic, strong) CMMotionManager* motionManager;
+@property (nonatomic, strong) CLLocationManager* locationManager;
 
 @end
 
@@ -54,7 +56,8 @@ static SensorHandler* sharedSensorHandler = nil;
 {
     self = [super init];
     if (self) {
-        self.motionManager = [[CMMotionManager alloc] init];       
+        self.motionManager = [[CMMotionManager alloc] init];
+        self.locationManager = [[CLLocationManager alloc] init];
     }
     
     return self;
@@ -77,16 +80,17 @@ static SensorHandler* sharedSensorHandler = nil;
             abort();
             break;
         }
-        case COMPASS_DIRECTION: {            
-            CMMagneticField magneticField = [self magneticField];
-            double x = magneticField.x;
-            double y = magneticField.y;
-            double z = magneticField.z;
-            
-            if (y > 0) result = 90.0 - atan(x/y)*180.0/M_PI;
-            if (y < 0) result = 270.0 - atan(x/y)*180.0/M_PI;
-            if (y == 0 && x < 0) result = 180.0;
-            if (y == 0 && x > 0) result = 0.0;
+        case COMPASS_DIRECTION: {
+            result = [self direction];
+//            CMMagneticField magneticField = [self magneticField];
+//            double x = magneticField.x;
+//            double y = magneticField.y;
+//            double z = magneticField.z;
+//            
+//            if (y > 0) result = 90.0 - atan(x/y)*180.0/M_PI;
+//            if (y < 0) result = 270.0 - atan(x/y)*180.0/M_PI;
+//            if (y == 0 && x < 0) result = 180.0;
+//            if (y == 0 && x > 0) result = 0.0;
             
             break;
         }
@@ -129,6 +133,8 @@ static SensorHandler* sharedSensorHandler = nil;
     if([self.motionManager isMagnetometerActive]) {
         [self.motionManager stopMagnetometerUpdates];
     }
+    
+    [self.locationManager stopUpdatingHeading];
         
 }
 
@@ -161,6 +167,16 @@ static SensorHandler* sharedSensorHandler = nil;
         [NSThread sleepForTimeInterval:kSensorUpdateInterval];
     }
     return self.motionManager.magnetometerData.magneticField;
+}
+
+-(float) direction
+{
+    if(self.locationManager )
+    [self.locationManager startUpdatingHeading];
+    float direction = -self.locationManager.heading.trueHeading;
+    
+    return direction;
+
 }
 
 
