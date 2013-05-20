@@ -55,27 +55,27 @@
     
     switch (self.type) {
         case NUMBER: {
-            NSDebug(@"NUMBER");
+            //NSDebug(@"NUMBER");
             result = self.value.doubleValue;
             break;
         }
             
         case OPERATOR: {
-            NSDebug(@"OPERATOR");
+            //NSDebug(@"OPERATOR");
             Operator operator = [self operatorForString:self.value];
             result = [self interpretOperator:operator forSprite:sprite];
             break;
         }
             
         case FUNCTION: {
-            NSDebug(@"FUNCTION");
+            //NSDebug(@"FUNCTION");
             Function function = [self functionForString:self.value];
             result = [self interpretFunction:function forSprite:sprite];
             break;
         }
             
         case USER_VARIABLE: {
-            NSDebug(@"User Variable");
+            //NSDebug(@"User Variable");
             ProgramManager* manager = [ProgramManager sharedProgramManager];
             Program* program = [manager program];
             Uservariable* var = [program.variables getUserVariableNamed:self.value forSpriteObject:sprite];
@@ -84,7 +84,7 @@
         }
             
         case SENSOR: {
-            NSDebug(@"SENSOR");
+            //NSDebug(@"SENSOR");
             Sensor sensor = [self sensorForString:self.value];
             if([self isLookSensor:sensor]) {
                 result = [self interpretLookSensor:sensor forSprite:sprite];
@@ -95,7 +95,7 @@
         }
             
         case BRACKET: {
-            NSDebug(@"BRACKET");
+           // NSDebug(@"BRACKET");
             result = [self.rightChild interpretRecursiveForSprite:sprite];
             break;
         }
@@ -192,7 +192,7 @@
                 break;
             }
             case EQUAL: {
-                abort();
+                result = left == right ? 1.0 : 0.0; //TODO Double equality, may round first?
                 break;
             }
             case NOT_EQUAL: {

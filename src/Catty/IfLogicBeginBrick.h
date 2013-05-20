@@ -18,6 +18,10 @@
 
 @property (nonatomic, strong) Formula* ifCondition;
 
-@property (nonatomic, strong) Iflogicelsebrick* ifElseBrick;
-@property (nonatomic, strong) Iflogicendbrick* ifEndBrick;
+#warning weak?!
+@property (nonatomic, weak) Iflogicelsebrick* ifElseBrick;
+@property (nonatomic, weak) Iflogicendbrick* ifEndBrick;
+
+-(BOOL)checkCondition;
+
 @end

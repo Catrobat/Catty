@@ -12,7 +12,7 @@
 
 - (void)performFromScript:(Script*)script
 {
-    
+    NSDebug(@"Performing: %@", self.description);
 }
 
 #pragma mark - Description

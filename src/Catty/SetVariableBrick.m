@@ -23,6 +23,9 @@
 #import "SetVariableBrick.h"
 #import "Formula.h"
 #import "UserVariable.h"
+#import "ProgramManager.h"
+#import "Program.h"
+#import "VariablesContainer.h"
 
 @implementation Setvariablebrick
 
@@ -33,8 +36,10 @@
     
     double result = [self.variableFormula interpretDoubleForSprite:self.object];
     
+    Program* program = [ProgramManager sharedProgramManager].program;
+    VariablesContainer* variables = program.variables;
     
-    self.userVariable.value = [NSNumber numberWithDouble:result];
+    //[variables setUserVariable:self.userVariable toValue:result];
     
 }
 

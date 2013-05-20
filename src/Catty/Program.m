@@ -14,7 +14,6 @@
 @implementation Program
 
 @synthesize objectList = _objectList;
-@synthesize variables = _variables;
 
 #pragma mark - Custom getter and setter
 - (NSMutableArray*)spritesList {
