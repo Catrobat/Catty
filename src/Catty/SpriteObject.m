@@ -400,9 +400,10 @@
     if(!(channel = [self.sounds objectForKey:key])) {
         channel = [soundFile createChannel];
         [self.sounds setObject:channel forKey:key];
+    }else {
+        [channel stop];
     }
     
-    [channel stop];
     [channel play];
     
 }

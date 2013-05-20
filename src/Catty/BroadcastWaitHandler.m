@@ -48,7 +48,7 @@
     NSString* queueString = [NSString stringWithFormat:@"at.tugraz.ist.%@", message];
     const char *queueName = [message cStringUsingEncoding:NSUTF8StringEncoding];
     
-    dispatch_queue_t broadcastWaitQueue = dispatch_queue_create(queueName, NULL);
+    dispatch_queue_t broadcastWaitQueue = dispatch_queue_create(queueName, DISPATCH_QUEUE_CONCURRENT);
     dispatch_group_t group = dispatch_group_create();
 
     NSArray *sprites = [self.spritesForMessages objectForKey:message];
@@ -59,20 +59,14 @@
             abort();
         }
         
-        dispatch_async(broadcastWaitQueue, ^{
+        dispatch_group_async(group, broadcastWaitQueue, ^{
             [sprite performBroadcastWaitScript_calledFromBroadcastWaitDelegate_withMessage:message];
         });
+        
     }
-    
-    
-    
-    dispatch_group_async(group, broadcastWaitQueue, ^{
-    });
-    
+        
     dispatch_group_wait(group, DISPATCH_TIME_FOREVER); // Block until we're ready
-    // Now we're good to call it:
-    
-    
+        
     
 //    NSLock *finishedLock = [[NSLock alloc]init];
 //

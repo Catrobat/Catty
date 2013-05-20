@@ -171,13 +171,17 @@ static SensorHandler* sharedSensorHandler = nil;
 
 -(float) direction
 {
-    if(self.locationManager )
-    [self.locationManager startUpdatingHeading];
+    if([CLLocationManager headingAvailable]) {
+        [self.locationManager startUpdatingHeading];
+    }
+
     float direction = -self.locationManager.heading.trueHeading;
     
     return direction;
 
 }
+
+
 
 
 
