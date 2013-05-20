@@ -77,8 +77,17 @@ static SensorHandler* sharedSensorHandler = nil;
             abort();
             break;
         }
-        case COMPASS_DIRECTION: {
-            abort();
+        case COMPASS_DIRECTION: {            
+            CMMagneticField magneticField = [self magneticField];
+            double x = magneticField.x;
+            double y = magneticField.y;
+            double z = magneticField.z;
+            
+            if (y > 0) result = 90.0 - atan(x/y)*180.0/M_PI;
+            if (y < 0) result = 270.0 - atan(x/y)*180.0/M_PI;
+            if (y == 0 && x < 0) result = 180.0;
+            if (y == 0 && x > 0) result = 0.0;
+            
             break;
         }
         case X_INCLINATION: {
