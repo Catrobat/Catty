@@ -26,6 +26,7 @@
 #import "VariablesContainer.h"
 #import "UserVariable.h"
 #import "SensorHandler.h"
+#import "SpriteObject.h"
 
 @implementation FormulaElement
 
@@ -54,27 +55,27 @@
     
     switch (self.type) {
         case NUMBER: {
-            NSDebug(@"NUMBER");
+            //NSDebug(@"NUMBER");
             result = self.value.doubleValue;
             break;
         }
             
         case OPERATOR: {
-            NSDebug(@"OPERATOR");
+            //NSDebug(@"OPERATOR");
             Operator operator = [self operatorForString:self.value];
             result = [self interpretOperator:operator forSprite:sprite];
             break;
         }
             
         case FUNCTION: {
-            NSDebug(@"FUNCTION");
+            //NSDebug(@"FUNCTION");
             Function function = [self functionForString:self.value];
             result = [self interpretFunction:function forSprite:sprite];
             break;
         }
             
         case USER_VARIABLE: {
-            NSDebug(@"User Variable");
+            //NSDebug(@"User Variable");
             ProgramManager* manager = [ProgramManager sharedProgramManager];
             Program* program = [manager program];
             Uservariable* var = [program.variables getUserVariableNamed:self.value forSpriteObject:sprite];
@@ -83,13 +84,19 @@
         }
             
         case SENSOR: {
-            NSDebug(@"SENSOR");
+            //NSDebug(@"SENSOR");
             Sensor sensor = [self sensorForString:self.value];
             if([self isLookSensor:sensor]) {
                 result = [self interpretLookSensor:sensor forSprite:sprite];
             } else {
                 result = [[SensorHandler sharedSensorHandler] getValueForSensor:sensor];
             }
+            break;
+        }
+            
+        case BRACKET: {
+           // NSDebug(@"BRACKET");
+            result = [self.rightChild interpretRecursiveForSprite:sprite];
             break;
         }
             
@@ -136,7 +143,7 @@
             break;
         }
         case SQRT: {
-            abort();
+            result =  sqrt(left);
             break;
         }
         case RAND: {
@@ -152,7 +159,8 @@
             break;
         }
         case PI_F: {
-            return PI;
+            result = PI;
+            break;
         }
             
         default:
@@ -176,7 +184,7 @@
     
         switch (operator) {
             case LOGICAL_AND: {
-                abort();
+                result = (left * right) != 0.0 ? 1.0 : 0.0;
                 break;
             }
             case LOGICAL_OR: {
@@ -184,7 +192,7 @@
                 break;
             }
             case EQUAL: {
-                abort();
+                result = left == right ? 1.0 : 0.0; //TODO Double equality, may round first?
                 break;
             }
             case NOT_EQUAL: {
@@ -192,23 +200,23 @@
                 break;
             }
             case SMALLER_OR_EQUAL: {
-                abort();
+                result = left <= right ? 1.0 : 0.0;
                 break;
             }
             case GREATER_OR_EQUAL: {
-                return left >= right;
+                result = left >= right ? 1.0 : 0.0;
                 break;
             }
             case SMALLER_THAN: {
-                abort();
+                result = left < right ? 1.0 : 0.0;
                 break;
             }
             case GREATER_THAN: {
-                abort();
+                result = left > right ? 1.0 : 0.0;
                 break;
             }
             case PLUS: {
-                abort();
+                result =  left + right;
                 break;
             }
             case MULT: {
@@ -267,11 +275,11 @@
     switch (sensor) {
             
         case LOOK_X: {
-            abort();
+            result = [sprite position].x;
             break;
         }
         case LOOK_Y: {
-            abort();
+            result = [sprite position].y;
             break;
         }
         case LOOK_GHOSTEFFECT: {

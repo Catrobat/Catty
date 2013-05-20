@@ -15,16 +15,15 @@
 @interface VariablesContainer : NSObject
 
 
-
-
 // Map<Sprite, List<UserVariable>
 @property (nonatomic, strong) NSMapTable* objectVariableList;
 
 // List<UserVariable> projectVariables;
-@property (nonatomic, strong) NSArray* programVariableList;
+@property (nonatomic, strong) NSMutableArray* programVariableList;
 
 
 -(Uservariable*) getUserVariableNamed:(NSString*) name forSpriteObject:(SpriteObject*) sprite;
 
+-(void) setUserVariable:(Uservariable*)userVariable toValue:(double)value;
 
 @end

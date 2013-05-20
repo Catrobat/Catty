@@ -25,20 +25,10 @@
 @implementation Changevariablebrick
 
 
-
--(id)init
-{
-    self = [super init];
-    if(self) {
-        
-    }
-    return self;
-}
-
-
 - (void)performFromScript:(Script*)script
 {
-    
+    NSLog(@"Unimplemented!");
+    abort();
 }
 
 #pragma mark - Description

@@ -12,6 +12,9 @@
 #import "Foreverbrick.h"
 #import "Repeatbrick.h"
 #import "LoopEndBrick.h"
+#import "IfLogicBeginBrick.h"
+#import "IfLogicElseBrick.h"
+#import "IfLogicEndBrick.h"
 
 
 @interface Script()
@@ -144,7 +147,25 @@
             if (timeToWait > 0)
                 [NSThread sleepForTimeInterval:timeToWait];
             
-        } else {
+        } else if([brick isMemberOfClass:[Iflogicbeginbrick class]]) {
+            BOOL condition = [(Iflogicbeginbrick*)brick checkCondition];
+            if(!condition) {
+                Brick* elseBrick = nil;
+                while (self.currentBrickIndex < [self.brickList count] && ![elseBrick isMemberOfClass:[Iflogicelsebrick class]]) {
+                    self.currentBrickIndex++;
+                    elseBrick = [self.brickList objectAtIndex:self.currentBrickIndex];
+                }
+            }
+        } else if([brick isMemberOfClass:[Iflogicelsebrick class]]) {
+            Brick* endBrick = nil;
+            while (self.currentBrickIndex < [self.brickList count] && ![endBrick isMemberOfClass:[Iflogicendbrick class]]) {
+                self.currentBrickIndex++;
+                endBrick = [self.brickList objectAtIndex:self.currentBrickIndex];
+            }
+        } else if([brick isMemberOfClass:[Iflogicelsebrick class]]) {
+            // No action needed
+        }
+        else {
             [brick performFromScript:self];
         }
         

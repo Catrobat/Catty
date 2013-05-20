@@ -1231,6 +1231,7 @@
 				CD0CCFDF170CB5EC00B70036 /* BroadcastWaitBrick */,
 				CD0CCFE0170CB5FA00B70036 /* ChangeGhostEffectByNBrick */,
 				CD0CCFE1170CB63200B70036 /* ChangeSizeByNBrick */,
+				B47068911733D6EE00EC880D /* ChangeVariableBrick */,
 				CD0CCFE2170CB63F00B70036 /* ChangeVolumeByNBrick */,
 				CD0CCFE3170CB64A00B70036 /* ChangeXYByNBrick */,
 				CD0CCFE5170CB68100B70036 /* ComeToFrontBrick */,
@@ -1253,7 +1254,6 @@
 				CD0CCFEC170CB6DC00B70036 /* SoundBricks */,
 				CD0CCFF3170CB77800B70036 /* TurnBricks */,
 				CD0CCFF4170CB78000B70036 /* WaitBrick */,
-				B47068911733D6EE00EC880D /* ChangeVariableBrick */,
 			);
 			name = Bricks;
 			sourceTree = "<group>";

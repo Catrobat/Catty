@@ -7,6 +7,7 @@
 //
 
 #import "Pointindirectionbrick.h"
+#import "Formula.h"
 
 @implementation Pointindirectionbrick
 
@@ -14,13 +15,15 @@
 {
     NSLog(@"Performing: %@", self.description);
     
-    [self.object pointInDirection:self.degrees.floatValue];
+    float deg = [self.degrees interpretDoubleForSprite:self.object];
+    
+    [self.object pointInDirection:deg];
 }
 
 #pragma mark - Description
 - (NSString*)description
 {
-    return [NSString stringWithFormat:@"PointToDirection"];
+    return [NSString stringWithFormat:@"PointInDirection"];
 }
 
 @end

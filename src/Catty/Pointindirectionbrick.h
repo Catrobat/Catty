@@ -8,8 +8,10 @@
 
 #import "Brick.h"
 
+@class Formula;
+
 @interface Pointindirectionbrick : Brick
 
-@property (nonatomic, strong) NSNumber *degrees;
+@property (nonatomic, strong) Formula *degrees;
 
 @end
