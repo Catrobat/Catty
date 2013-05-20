@@ -82,16 +82,16 @@ static SensorHandler* sharedSensorHandler = nil;
             break;
         }
         case X_INCLINATION: {
-            double x = [self acceleration].x;
-            result = x;
-            //abort();
+            double x = [self acceleration].x;       // range -180° to +180°...TODO
+            result = -(90.0f*x);
+            NSLog(@"X-inclination: %f degrees", result);
             break;
         }
             
         case Y_INCLINATION: {
             double y = [self acceleration].y;
-            //abort();
-            result = y;
+            result = -(90.0f*y);
+            NSLog(@"Y-inclination: %f degrees", result);
             break;
         }
             
