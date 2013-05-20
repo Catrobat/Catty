@@ -40,7 +40,7 @@
     CGPoint position = CGPointMake(self.xDestination.floatValue, self.yDestination.floatValue);
     
     [self.object glideToPosition:position withDurationInSeconds:self.durationInSeconds.floatValue fromScript:script];
-    [NSThread sleepForTimeInterval:self.durationInSeconds.floatValue];
+    [NSThread sleepForTimeInterval:self.durationInSeconds.floatValue+0.03f];    // TODO: offset!? BAD BAD BAD
 }
 
 #pragma mark - Description
