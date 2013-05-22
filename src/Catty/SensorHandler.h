@@ -50,10 +50,8 @@ typedef enum {
 - (CMAcceleration) acceleration;
 - (CMMagneticField) magneticField;
 
--(double) getValueForSensor:(Sensor)sensor;
-
+- (double) getValueForSensor:(Sensor)sensor;
 
 - (void) stopSensors;
-
 
 @end

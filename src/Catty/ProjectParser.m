@@ -200,12 +200,17 @@
 
                 NSMutableArray* arr = [object valueForKey:child.name];
                 
-                XMLObjectReference* arrayReference = [[XMLObjectReference alloc] initWithParent:ref andObject:arr];
+                if([child.name isEqualToString:@"scriptList"]) {
+                    int a = 0;
+                }
                 
                 if(!arr) {
                     arr = [[NSMutableArray alloc] initWithCapacity:child.childCount];
                     [object setValue:arr forKey:child.name];
                 }
+                
+                XMLObjectReference* arrayReference = [[XMLObjectReference alloc] initWithParent:ref andObject:arr];
+                
 //                NSMutableArray *arr = [[NSMutableArray alloc] init];
                 for (GDataXMLElement *arrElement in child.children) {
                     [arr addObject:[self parseNode:arrElement withParent:arrayReference]];
@@ -467,6 +472,10 @@
     if (!refString || [refString isEqualToString:@""]) {
         abort();
 #warning just debug
+    }
+    
+    if([refString isEqualToString:@"../../../../whenScript/brickList/changeVariableBrick/userVariable"]) {
+        int a = 0;
     }
     
     
