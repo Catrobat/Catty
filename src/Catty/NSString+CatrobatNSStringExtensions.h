@@ -12,6 +12,8 @@
 
 - (NSString*) stringByEscapingHTMLEntities;
 
+- (BOOL)containsString:(NSString*)string;
+
 @end
 
 

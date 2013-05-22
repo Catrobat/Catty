@@ -26,4 +26,6 @@
 
 -(void) setUserVariable:(Uservariable*)userVariable toValue:(double)value;
 
+-(void) changeVariable:(Uservariable*)userVariable byValue:(double)value;
+
 @end

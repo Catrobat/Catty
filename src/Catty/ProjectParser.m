@@ -317,12 +317,7 @@
             SpriteObject *sprite = (SpriteObject*)self.currentActiveSprite;
             NSString *refString = [element attributeForName:@"reference"].stringValue;
             if (!refString || [refString isEqualToString:@""]) {
-                // SHOULD NOT HAPPEN!
-                // IF YOU ARE HERE, this means, that in the XML there has no reference been set
-                // for this tag.
-                // SHOULD BE: (i.e.) <look reference="../../../../../lookList/org.catrobat.catroid.common.LookData"/>
-                // BUT WAS: <look reference=""/>
-                abort(); // todo
+               return [self parseNode:element withParent:parent];
             }
             
             

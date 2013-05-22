@@ -21,14 +21,25 @@
  */
 
 #import "ChangeVariableBrick.h"
+#import "Formula.h"
+#import "Program.h"
+#import "ProgramManager.h"
+#import "VariablesContainer.h"
 
 @implementation Changevariablebrick
 
 
 - (void)performFromScript:(Script*)script
 {
-    NSLog(@"Unimplemented!");
-    abort();
+    NSDebug(@"Performing: %@ on: %@", self.description, self.object);
+    
+    double result = [self.variableFormula interpretDoubleForSprite:self.object];
+    
+    Program* program = [ProgramManager sharedProgramManager].program;
+    VariablesContainer* variables = program.variables;
+    
+    [variables changeVariable:self.userVariable byValue:result];
+    
 }
 
 #pragma mark - Description

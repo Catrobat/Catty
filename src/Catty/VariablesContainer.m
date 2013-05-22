@@ -70,7 +70,12 @@ static pthread_mutex_t variablesLock;
     pthread_mutex_unlock(&variablesLock);
 }
 
-
+-(void) changeVariable:(Uservariable*)userVariable byValue:(double)value
+{
+    pthread_mutex_lock(&variablesLock);
+    userVariable.value = [NSNumber numberWithFloat:([userVariable.value doubleValue] + value)];
+    pthread_mutex_unlock(&variablesLock);
+}
 
 
 @end

@@ -44,6 +44,8 @@
 		B470688B1733BA9600EC880D /* VariablesContainer.m in Sources */ = {isa = PBXBuildFile; fileRef = B47068891733BA9600EC880D /* VariablesContainer.m */; };
 		B470688F1733D6CC00EC880D /* ChangeVariableBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = B470688E1733D6CA00EC880D /* ChangeVariableBrick.m */; };
 		B47068901733D6CC00EC880D /* ChangeVariableBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = B470688E1733D6CA00EC880D /* ChangeVariableBrick.m */; };
+		B4826F78174D076800F57AE9 /* NoteBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = B4826F77174D076800F57AE9 /* NoteBrick.m */; };
+		B4826F79174D076800F57AE9 /* NoteBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = B4826F77174D076800F57AE9 /* NoteBrick.m */; };
 		B4AF798D174A9A340041555A /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B4AF798C174A9A330041555A /* CoreLocation.framework */; };
 		B4B7BAC31738E216000BDC94 /* XMLObjectReference.m in Sources */ = {isa = PBXBuildFile; fileRef = B4B7BAC21738E216000BDC94 /* XMLObjectReference.m */; };
 		B4B7BAC41738E216000BDC94 /* XMLObjectReference.m in Sources */ = {isa = PBXBuildFile; fileRef = B4B7BAC21738E216000BDC94 /* XMLObjectReference.m */; };
@@ -251,6 +253,8 @@
 		B47068891733BA9600EC880D /* VariablesContainer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VariablesContainer.m; sourceTree = "<group>"; };
 		B470688D1733D6C800EC880D /* ChangeVariableBrick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChangeVariableBrick.h; sourceTree = "<group>"; };
 		B470688E1733D6CA00EC880D /* ChangeVariableBrick.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChangeVariableBrick.m; sourceTree = "<group>"; };
+		B4826F76174D076800F57AE9 /* NoteBrick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NoteBrick.h; sourceTree = "<group>"; };
+		B4826F77174D076800F57AE9 /* NoteBrick.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NoteBrick.m; sourceTree = "<group>"; };
 		B4AF798C174A9A330041555A /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		B4B7BAC11738E216000BDC94 /* XMLObjectReference.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XMLObjectReference.h; sourceTree = "<group>"; };
 		B4B7BAC21738E216000BDC94 /* XMLObjectReference.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMLObjectReference.m; sourceTree = "<group>"; };
@@ -859,6 +863,15 @@
 			name = ChangeVariableBrick;
 			sourceTree = "<group>";
 		};
+		B4826F7B174D079E00F57AE9 /* NoteBrick */ = {
+			isa = PBXGroup;
+			children = (
+				B4826F76174D076800F57AE9 /* NoteBrick.h */,
+				B4826F77174D076800F57AE9 /* NoteBrick.m */,
+			);
+			name = NoteBrick;
+			sourceTree = "<group>";
+		};
 		B4B7BAC51738E21B000BDC94 /* XMLObjectReference */ = {
 			isa = PBXGroup;
 			children = (
@@ -1245,6 +1258,7 @@
 				B402288E1732A334004C4942 /* IfBricks */,
 				CD0CCFE6170CB69800B70036 /* LoopBricks */,
 				CD0CCFEA170CB6C800B70036 /* NextLookBrick */,
+				B4826F7B174D079E00F57AE9 /* NoteBrick */,
 				CD0CCFEB170CB6D200B70036 /* PlaceAtBrick */,
 				B4D4DD3F17156A7500EEE3F8 /* PointInDirectionBrick */,
 				B40228A71732ADF8004C4942 /* PointToBrick */,
@@ -1906,6 +1920,7 @@
 				B44F32A01737AC2E00BD97AC /* ProgramManager.m in Sources */,
 				B44F32A51737BBB100BD97AC /* SensorHandler.m in Sources */,
 				B4B7BAC31738E216000BDC94 /* XMLObjectReference.m in Sources */,
+				B4826F78174D076800F57AE9 /* NoteBrick.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1927,6 +1942,7 @@
 				B44F32A61737BBB100BD97AC /* SensorHandler.m in Sources */,
 				B44F32AA1737BBDC00BD97AC /* SensorHandlerTests.m in Sources */,
 				B4B7BAC41738E216000BDC94 /* XMLObjectReference.m in Sources */,
+				B4826F79174D076800F57AE9 /* NoteBrick.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

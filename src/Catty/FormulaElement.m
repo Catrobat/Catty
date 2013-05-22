@@ -27,6 +27,7 @@
 #import "UserVariable.h"
 #import "SensorHandler.h"
 #import "SpriteObject.h"
+#import "NSString+CatrobatNSStringExtensions.h"
 
 @implementation FormulaElement
 
@@ -147,7 +148,32 @@
             break;
         }
         case RAND: {
-            abort();
+            
+            double right = [self.rightChild interpretRecursiveForSprite:sprite];
+            double minimum;
+            double maximum;
+            
+            if (right > left) {
+                minimum = left;
+                maximum = right;
+            } else {
+                minimum = right;
+                maximum = left;
+            }
+            
+            result = minimum + (random() * (maximum - minimum));
+            
+
+            if ([self doubleIsInteger:minimum] && [self doubleIsInteger:maximum]
+                && !(self.rightChild.type == NUMBER && [self.rightChild.value containsString:@"."])
+                && !(self.rightChild.type == NUMBER && [self.rightChild.value containsString:@"."])) {
+                
+                result = (int)result;
+                if ((fabs(result) - (int) fabs(result)) >= 0.5) {
+                    result +=1;
+                }
+                
+            }
             break;
         }
         case ROUND: {
@@ -217,6 +243,10 @@
             }
             case PLUS: {
                 result =  left + right;
+                break;
+            }
+            case MINUS: {
+                result = left - right;
                 break;
             }
             case MULT: {
@@ -494,6 +524,15 @@
 -(NSString*)description
 {
     return [NSString stringWithFormat:@"Formula Element: Type: %d, Value: %@", self.type, self.value];
+}
+
+
+-(BOOL) doubleIsInteger:(double)number {
+    if(ceil(number) == number || floor(number) == number) {
+        return YES;
+    }
+    
+    return NO;
 }
 
 

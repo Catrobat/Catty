@@ -15,6 +15,7 @@
 #import "IfLogicBeginBrick.h"
 #import "IfLogicElseBrick.h"
 #import "IfLogicEndBrick.h"
+#import "NoteBrick.h"
 
 
 @interface Script()
@@ -165,7 +166,7 @@
         } else if([brick isMemberOfClass:[Iflogicelsebrick class]]) {
             // No action needed
         }
-        else {
+        else if(![brick isMemberOfClass:[Notebrick class] ]) {
             [brick performFromScript:self];
         }
         

@@ -46,4 +46,11 @@ NSMutableString* resultString;
     return result;
 }
 
+
+- (BOOL)containsString:(NSString*)string
+{
+    NSRange range = [self rangeOfString:string options:0];
+    return range.location != NSNotFound;
+}
+
 @end
