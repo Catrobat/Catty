@@ -46,6 +46,8 @@
 		B47068901733D6CC00EC880D /* ChangeVariableBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = B470688E1733D6CA00EC880D /* ChangeVariableBrick.m */; };
 		B4826F78174D076800F57AE9 /* NoteBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = B4826F77174D076800F57AE9 /* NoteBrick.m */; };
 		B4826F79174D076800F57AE9 /* NoteBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = B4826F77174D076800F57AE9 /* NoteBrick.m */; };
+		B4826F83174D5BB100F57AE9 /* OrderedMapTable.m in Sources */ = {isa = PBXBuildFile; fileRef = B4826F82174D5BB100F57AE9 /* OrderedMapTable.m */; };
+		B4826F84174D5BB100F57AE9 /* OrderedMapTable.m in Sources */ = {isa = PBXBuildFile; fileRef = B4826F82174D5BB100F57AE9 /* OrderedMapTable.m */; };
 		B4AF798D174A9A340041555A /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B4AF798C174A9A330041555A /* CoreLocation.framework */; };
 		B4B7BAC31738E216000BDC94 /* XMLObjectReference.m in Sources */ = {isa = PBXBuildFile; fileRef = B4B7BAC21738E216000BDC94 /* XMLObjectReference.m */; };
 		B4B7BAC41738E216000BDC94 /* XMLObjectReference.m in Sources */ = {isa = PBXBuildFile; fileRef = B4B7BAC21738E216000BDC94 /* XMLObjectReference.m */; };
@@ -255,6 +257,8 @@
 		B470688E1733D6CA00EC880D /* ChangeVariableBrick.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChangeVariableBrick.m; sourceTree = "<group>"; };
 		B4826F76174D076800F57AE9 /* NoteBrick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NoteBrick.h; sourceTree = "<group>"; };
 		B4826F77174D076800F57AE9 /* NoteBrick.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NoteBrick.m; sourceTree = "<group>"; };
+		B4826F81174D5BB100F57AE9 /* OrderedMapTable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrderedMapTable.h; sourceTree = "<group>"; };
+		B4826F82174D5BB100F57AE9 /* OrderedMapTable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrderedMapTable.m; sourceTree = "<group>"; };
 		B4AF798C174A9A330041555A /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		B4B7BAC11738E216000BDC94 /* XMLObjectReference.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XMLObjectReference.h; sourceTree = "<group>"; };
 		B4B7BAC21738E216000BDC94 /* XMLObjectReference.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMLObjectReference.m; sourceTree = "<group>"; };
@@ -872,6 +876,15 @@
 			name = NoteBrick;
 			sourceTree = "<group>";
 		};
+		B4826F80174D5B7000F57AE9 /* OrderedMapTable */ = {
+			isa = PBXGroup;
+			children = (
+				B4826F81174D5BB100F57AE9 /* OrderedMapTable.h */,
+				B4826F82174D5BB100F57AE9 /* OrderedMapTable.m */,
+			);
+			name = OrderedMapTable;
+			sourceTree = "<group>";
+		};
 		B4B7BAC51738E21B000BDC94 /* XMLObjectReference */ = {
 			isa = PBXGroup;
 			children = (
@@ -1236,6 +1249,7 @@
 				B4003024170EB3AC00396DB7 /* Media */,
 				B4D940B2170EC5D5003DDBFA /* UserInterface */,
 				CD0CCE3B170CA00F00B70036 /* ViewController */,
+				B4826F80174D5B7000F57AE9 /* OrderedMapTable */,
 			);
 			path = Catty;
 			sourceTree = "<group>";
@@ -1921,6 +1935,7 @@
 				B44F32A51737BBB100BD97AC /* SensorHandler.m in Sources */,
 				B4B7BAC31738E216000BDC94 /* XMLObjectReference.m in Sources */,
 				B4826F78174D076800F57AE9 /* NoteBrick.m in Sources */,
+				B4826F83174D5BB100F57AE9 /* OrderedMapTable.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1943,6 +1958,7 @@
 				B44F32AA1737BBDC00BD97AC /* SensorHandlerTests.m in Sources */,
 				B4B7BAC41738E216000BDC94 /* XMLObjectReference.m in Sources */,
 				B4826F79174D076800F57AE9 /* NoteBrick.m in Sources */,
+				B4826F84174D5BB100F57AE9 /* OrderedMapTable.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

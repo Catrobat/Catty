@@ -11,12 +11,13 @@
 
 @class SpriteObject;
 @class Uservariable;
+@class OrderedMapTable;
 
 @interface VariablesContainer : NSObject
 
 
 // Map<Sprite, List<UserVariable>
-@property (nonatomic, strong) NSMapTable* objectVariableList;
+@property (nonatomic, strong) OrderedMapTable* objectVariableList;
 
 // List<UserVariable> projectVariables;
 @property (nonatomic, strong) NSMutableArray* programVariableList;

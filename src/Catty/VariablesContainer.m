@@ -8,6 +8,7 @@
 
 #import "VariablesContainer.h"
 #import "UserVariable.h"
+#import "OrderedMapTable.h"
 #import <pthread.h>
 
 @implementation VariablesContainer

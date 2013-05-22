@@ -32,6 +32,7 @@
 #import "Script.h"
 #import "UserVariable.h"
 #import "XMLObjectReference.h"
+#import "OrderedMapTable.h"
 
 
 
@@ -199,10 +200,6 @@
             else if([propertyType isEqualToString:kParserObjectTypeMutableArray]) {
 
                 NSMutableArray* arr = [object valueForKey:child.name];
-                
-                if([child.name isEqualToString:@"scriptList"]) {
-                    int a = 0;
-                }
                 
                 if(!arr) {
                     arr = [[NSMutableArray alloc] initWithCapacity:child.childCount];
@@ -469,11 +466,6 @@
 #warning just debug
     }
     
-    if([refString isEqualToString:@"../../../../whenScript/brickList/changeVariableBrick/userVariable"]) {
-        int a = 0;
-    }
-    
-    
     NSArray *components = [refString componentsSeparatedByString:@"/"];
     
     id lastComponent = [self parentObjectForReferenceElement:element andParent:parent];
@@ -501,6 +493,19 @@
             }
             
             lastComponent = [lastComponent objectAtIndex:index];
+        }
+        else if([pathComponent hasPrefix:@"entry"]) {
+            int index = [self indexForArrayObject:pathComponent];
+            
+            if (index+1 > [lastComponent count] || index < 0) {
+                abort();
+                #warning just debug
+            }
+            
+#warning --> this probably does not work as a dictionary does not keep indexes :/
+            NSEnumerator* enumerator = [lastComponent objectEnumerator];
+            lastComponent = [[enumerator allObjects] objectAtIndex:index];
+            
         }
         else if([self component:pathComponent containsString:@"Brick"] || [self component:pathComponent containsString:@"Script"]) {
             
@@ -542,10 +547,10 @@
 
 
 
--(NSMapTable*)parseObjectVariableMap:(GDataXMLElement*)objectVariableList andParent:(XMLObjectReference*)parent
+-(OrderedMapTable*)parseObjectVariableMap:(GDataXMLElement*)objectVariableList andParent:(XMLObjectReference*)parent
 {
     
-    NSMapTable* objectVariableMap = [NSMapTable strongToStrongObjectsMapTable];
+    OrderedMapTable* objectVariableMap = [OrderedMapTable strongToStrongObjectsMapTable];
     XMLObjectReference* ref = [[XMLObjectReference alloc] initWithParent:parent andObject:objectVariableMap];
     
     for (GDataXMLElement *entry in objectVariableList.children) {
