@@ -36,6 +36,7 @@
 @property (assign) int lookIndex;
 @property (nonatomic, strong) SPImage *brightnessWorkaround;
 @property (nonatomic, strong) NSMutableDictionary *sounds;
+@property (nonatomic, strong) NSCondition* speakLock;
 
 @end
 
@@ -45,6 +46,16 @@
 @synthesize brightnessWorkaround = _brightnessWorkaround;
 
 // --- getter - setter ---
+
+-(NSCondition*)speakLock
+{
+    if(!_speakLock) {
+        _speakLock = [[NSCondition alloc] init];
+        [_speakLock setName:@"Speak Lock"];
+    }
+    return _speakLock;
+}
+
 
 -(NSMutableArray *)activeScripts
 {
@@ -381,21 +392,22 @@
 - (void)speakSound:(Sound*)sound
 {
     SPSound *soundFile = [SPSound soundWithContentsOfFile:[self pathForSpeakSound:sound]];
-    [self createSoundChannelAndAddToSounds:soundFile withKey:sound.fileName];
+    [self createSoundChannelAndAddToSounds:soundFile withKey:sound.fileName waitUntilDone:YES volume:2.0f]; // Google TTS is very quiet
 }
 
 
 -(void)playSound:(Sound*)sound
 {
     SPSound *soundFile = [SPSound soundWithContentsOfFile:[self pathForSound:sound]];
-    [self createSoundChannelAndAddToSounds:soundFile withKey:sound.fileName];
+    [self createSoundChannelAndAddToSounds:soundFile withKey:sound.fileName waitUntilDone:NO volume:1.0f];
 }
 
 
--(void)createSoundChannelAndAddToSounds:(SPSound*)soundFile withKey:(NSString*)key
+-(void)createSoundChannelAndAddToSounds:(SPSound*)soundFile withKey:(NSString*)key waitUntilDone:(BOOL)waitUntilDone volume:(float)volume
 {
     SPSoundChannel* channel = nil;
     
+    channel.volume = volume;
     
     if(!(channel = [self.sounds objectForKey:key])) {
         channel = [soundFile createChannel];
@@ -404,8 +416,23 @@
         [channel stop];
     }
     
+    if(waitUntilDone) {
+        [channel addEventListener:@selector(onSoundCompleted:) atObject:self forType:SP_EVENT_TYPE_COMPLETED];
+    }
+    
     [channel play];
     
+    if(waitUntilDone) {
+        [self.speakLock lock];
+        [self.speakLock wait];
+        [self.speakLock unlock];
+    }
+}
+
+
+-(void)onSoundCompleted:(id)sound
+{
+    [self.speakLock signal];
 }
 
 -(void)setVolumeToInPercent:(float)volumeInPercent

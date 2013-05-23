@@ -78,11 +78,6 @@
     
 }
 
--(void) dealloc
-{
-    self.program = nil;
-}
-
 
 
 - (void)glkView:(GLKView *)view drawInRect:(CGRect)rect
@@ -322,6 +317,9 @@
         [sprite stopAllScripts];
         [sprite stopAllSounds];
     }
+    
+    [self.program.objectList removeAllObjects];
+    self.program = nil;
     
     // dismiss view controller
     self.navigationController.view.frame = [[UIScreen mainScreen] applicationFrame];
