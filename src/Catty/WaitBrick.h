@@ -8,8 +8,10 @@
 
 #import "Brick.h"
 
+@class Formula;
+
 @interface Waitbrick : Brick
 
-@property (nonatomic, strong) NSNumber *timeToWaitInSeconds;
+@property (nonatomic, strong) Formula *timeToWaitInSeconds;
 
 @end

@@ -8,6 +8,7 @@
 
 #import "Waitbrick.h"
 #import "Script.h"
+#import "Formula.h"
 
 @implementation Waitbrick
 
@@ -17,13 +18,15 @@
 {
     NSLog(@"Performing: %@", self.description);
     
-    [NSThread sleepForTimeInterval:self.timeToWaitInSeconds.floatValue];
+    double time = [self.timeToWaitInSeconds interpretDoubleForSprite:self.object];
+    
+    [NSThread sleepForTimeInterval:time];
 }
 
 #pragma mark - Description
 - (NSString*)description
 {
-    return [NSString stringWithFormat:@"WaitBrick (%f Seconds)", self.timeToWaitInSeconds.floatValue];
+    return [NSString stringWithFormat:@"WaitBrick (%f Seconds)", [self.timeToWaitInSeconds interpretDoubleForSprite:self.object]];
 }
 
 @end

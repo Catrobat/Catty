@@ -161,7 +161,9 @@
                 maximum = left;
             }
             
-            result = minimum + (random() * (maximum - minimum));
+            
+            double random = (double)rand() / RAND_MAX;
+            result = minimum + random * (maximum - minimum);
             
 
             if ([self doubleIsInteger:minimum] && [self doubleIsInteger:maximum]

@@ -221,12 +221,6 @@
                 // now set the value
                 id value = [self getSingleValue:child ofType:propertyType withParent:ref]; // get value for type
                 
-                                
-                if([child.name isEqualToString:@"timeToWaitInSeconds"])
-                {
-                    NSLog(@"Now");
-                }
-                
                 // check for property type
                 [object setValue:value forKey:child.name]; // assume new value
             }
