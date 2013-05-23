@@ -7,6 +7,7 @@
 //
 
 #import "Placeatbrick.h"
+#import "Formula.h"
 
 @implementation Placeatbrick
 
@@ -16,13 +17,8 @@
 #pragma mark - init methods
 -(id)initWithXPosition:(NSNumber*)xPosition yPosition:(NSNumber*)yPosition
 {
-    self = [super init];
-    if (self)
-    {
-        self.xPosition = xPosition;
-        self.yPosition = yPosition;
-    }
-    return self;
+    abort();
+#warning do not use any more!!
 }
 
 #pragma mark - override
@@ -32,10 +28,13 @@
     NSLog(@"Set position of sprite %@ to %f / % f / %f", sprite.name, self.position.x, self.position.y, self.position.z);
     self.position.x = self.xPosition.integerValue;
     self.position.y = self.yPosition.floatValue;
-    
+   
     */
+    
+    double xPosition = [self.xPosition interpretDoubleForSprite:self.object];
+    double yPosition = [self.yPosition interpretDoubleForSprite:self.object];
 
-    self.object.position = CGPointMake(self.xPosition.floatValue, self.yPosition.floatValue);
+    self.object.position = CGPointMake(xPosition, yPosition);
 
     
 //    CGPoint position = CGPointMake(self.xPosition.floatValue, self.yPosition.floatValue);
@@ -50,7 +49,9 @@
 #pragma mark - Description
 - (NSString*)description
 {
-    return [NSString stringWithFormat:@"PlaceAt (Position: %f/%f)", self.xPosition.floatValue, self.yPosition.floatValue];
+    double xPosition = [self.xPosition interpretDoubleForSprite:self.object];
+    double yPosition = [self.yPosition interpretDoubleForSprite:self.object];
+    return [NSString stringWithFormat:@"PlaceAt (Position: %f/%f)", xPosition, yPosition];
 }
 
 @end

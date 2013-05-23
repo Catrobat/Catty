@@ -161,7 +161,6 @@
                 maximum = left;
             }
             
-            
             double random = (double)rand() / RAND_MAX;
             result = minimum + random * (maximum - minimum);
             
@@ -174,8 +173,8 @@
                 if ((fabs(result) - (int) fabs(result)) >= 0.5) {
                     result +=1;
                 }
-                
             }
+
             break;
         }
         case ROUND: {
