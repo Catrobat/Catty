@@ -23,11 +23,27 @@
 
 #import <Foundation/Foundation.h>
 
-@interface OrderedMapTable : NSMapTable
+@interface OrderedMapTable : NSObject
 
++(id)strongToStrongObjectsMapTable;
+
++(id)weakToStrongObjectsMapTable;
+
++(id)weakToWeakObjectsMapTable;
+
++(id)strongToWeakObjectsMapTable;
+
+-(void) setObject:(id)anObject forKey:(id)aKey;
+
+-(id) objectForKey:(id)aKey;
+
+-(void) removeAllObjects;
+
+-(NSUInteger) count;
 
 -(id) objectAtIndex:(NSUInteger)index;
 
 -(id) keyAtIndex:(NSUInteger)index;
+
 
 @end

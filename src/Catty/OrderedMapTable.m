@@ -23,9 +23,12 @@
 
 #import "OrderedMapTable.h"
 
+
+
 @interface OrderedMapTable()
 
 @property (nonatomic, strong) NSMutableArray* keyIndexArray;
+@property (nonatomic, strong) NSMapTable* mapTable;
 
 @end
 
@@ -35,29 +38,30 @@
 
 +(id)strongToStrongObjectsMapTable
 {
-    OrderedMapTable* orderedMapTable = (OrderedMapTable*)[super strongToStrongObjectsMapTable];
-    orderedMapTable.keyIndexArray = [[NSMutableArray alloc] init];
+    OrderedMapTable* orderedMapTable = [[OrderedMapTable alloc] init];
+    orderedMapTable.mapTable = [NSMapTable strongToStrongObjectsMapTable];
     return orderedMapTable;
 }
 
+
 +(id)weakToStrongObjectsMapTable
 {
-    OrderedMapTable* orderedMapTable = [super weakToStrongObjectsMapTable];
-    orderedMapTable.keyIndexArray = [[NSMutableArray alloc] init];
+    OrderedMapTable* orderedMapTable = [[OrderedMapTable alloc] init];
+    orderedMapTable.mapTable = [NSMapTable weakToStrongObjectsMapTable];
     return orderedMapTable;
 }
 
 +(id)weakToWeakObjectsMapTable
 {
-    OrderedMapTable* orderedMapTable = [super weakToWeakObjectsMapTable];
-    orderedMapTable.keyIndexArray = [[NSMutableArray alloc] init];
+    OrderedMapTable* orderedMapTable = [[OrderedMapTable alloc] init];
+    orderedMapTable.mapTable = [NSMapTable weakToWeakObjectsMapTable];
     return orderedMapTable;
 }
 
 +(id)strongToWeakObjectsMapTable
 {
-    OrderedMapTable* orderedMapTable = [super strongToWeakObjectsMapTable];
-    orderedMapTable.keyIndexArray = [[NSMutableArray alloc] init];
+    OrderedMapTable* orderedMapTable = [[OrderedMapTable alloc] init];
+    orderedMapTable.mapTable = [NSMapTable strongToWeakObjectsMapTable];
     return orderedMapTable;
 }
 
@@ -66,22 +70,21 @@
 {
     self = [super init];
     if(self) {
-        
+        self.keyIndexArray = [[NSMutableArray alloc] init];
     }
     return self;
 }
 
 
-
 -(void) setObject:(id)anObject forKey:(id)aKey
 {
-    [super removeAllObjects];
+    [self.mapTable setObject:anObject forKey:aKey];
     [self.keyIndexArray addObject:aKey];
 }
 
 -(void) removeAllObjects
 {
-    [super removeAllObjects];
+    [self.mapTable removeAllObjects];
     [self.keyIndexArray removeAllObjects];
 }
 
@@ -92,12 +95,22 @@
 
 -(id) objectAtIndex:(NSUInteger)index
 {
-    return [super objectForKey:[self.keyIndexArray objectAtIndex:index]];
+    return [self.mapTable objectForKey:[self.keyIndexArray objectAtIndex:index]];
+}
+
+-(id) objectForKey:(id)aKey
+{
+    return [self.mapTable objectForKey:aKey];
+}
+
+-(NSUInteger) count
+{
+    return [self.mapTable count];
 }
 
 -(NSString*)description
 {
-    return [NSString stringWithFormat:@"OrderedMapTable: %@", [super description]];
+    return [NSString stringWithFormat:@"OrderedMapTable: %@", self.mapTable];
 }
 
 

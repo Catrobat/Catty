@@ -470,7 +470,9 @@
     
     id lastComponent = [self parentObjectForReferenceElement:element andParent:parent];
     
-    for(NSString* pathComponent in components) {
+    for(int i=0; i<[components count]; i++) {
+        
+        NSString* pathComponent = [components objectAtIndex:i];
         if([pathComponent isEqualToString:@".."]) {
             continue;
         }
@@ -502,10 +504,15 @@
                 #warning just debug
             }
             
-#warning --> this probably does not work as a dictionary does not keep indexes :/
-            NSEnumerator* enumerator = [lastComponent objectEnumerator];
-            lastComponent = [[enumerator allObjects] objectAtIndex:index];
+            i++;
+            pathComponent = [components objectAtIndex:i];
             
+            if([pathComponent isEqualToString:@"object"]) {
+                lastComponent = [lastComponent keyAtIndex:index];
+            }
+            else {
+                lastComponent = [lastComponent objectAtIndex:index];
+            }
         }
         else if([self component:pathComponent containsString:@"Brick"] || [self component:pathComponent containsString:@"Script"]) {
             
