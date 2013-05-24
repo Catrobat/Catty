@@ -120,7 +120,6 @@
 - (id)parseNode:(GDataXMLElement*)node withParent:(XMLObjectReference*)parent {
     
 
-    // sanity check
     if (!node) { return nil; }
     
     int i = 0;
@@ -134,12 +133,10 @@
         className = node.name;
     }
     
-
-    
     // check for first character uppercase
     className = [className capitalizedString];
     
-    if ([className isEqualToString:@"Object"]) {
+    if ([className isEqualToString:@"Object"] || [className isEqualToString:@"Pointedobject"]) {
         // ... introspect from "Object"... glory idea...
         // I'm so proud of you XML Team...
         className = @"SpriteObject";
@@ -182,7 +179,6 @@
     XMLObjectReference* ref = [[XMLObjectReference alloc] initWithParent:parent andObject:object];
     
     
-    
     for (GDataXMLElement *child in node.children) {
 
         // maybe check node.childCount == 0?
@@ -192,7 +188,6 @@
             NSString *propertyType = [NSString stringWithUTF8String:property_getTypeString(property)];
             NSLog(@"Property type: %@", propertyType);
             
-            // check if property is of type array
             if ([propertyType isEqualToString:kParserObjectTypeArray]) {
                 NSLog(@"we need to keep the references at all time, please use NSMutableArray for property: %@", child.name);
                 abort();
@@ -208,21 +203,16 @@
                 
                 XMLObjectReference* arrayReference = [[XMLObjectReference alloc] initWithParent:ref andObject:arr];
                 
-//                NSMutableArray *arr = [[NSMutableArray alloc] init];
                 for (GDataXMLElement *arrElement in child.children) {
                     [arr addObject:[self parseNode:arrElement withParent:arrayReference]];
                 }
                 
-                // now set the array property (from *arr)
-//                [object setValue:arr forKey:child.name];
             }
             else {
                 // NOT ARRAY
-                // now set the value
-                id value = [self getSingleValue:child ofType:propertyType withParent:ref]; // get value for type
                 
-                // check for property type
-                [object setValue:value forKey:child.name]; // assume new value
+                id value = [self getSingleValue:child ofType:propertyType withParent:ref];
+                [object setValue:value forKey:child.name];
             }
             
         }
@@ -236,7 +226,6 @@
         }
     }
     
-    // return new object
     return object;
 }
 
@@ -257,29 +246,12 @@
         return element.stringValue;
     }
     else if ([propertyType isEqualToString:kParserObjectTypeNumber]) {
-#warning Workaround until Formula editor is fully supported!
+        
         NSString *temp = nil;
         NSArray* formulaTrees = [element elementsForName:@"formulaTree"];
         if(formulaTrees) {
-            GDataXMLElement* formulaTree = [formulaTrees objectAtIndex:0];
-            NSArray* rightChildArray = [formulaTree elementsForName:@"rightChild"];
-            NSArray* values = nil;
-            if(rightChildArray) {
-                GDataXMLElement* rightChild = [rightChildArray objectAtIndex:0];
-                values = [rightChild elementsForName:@"value"];
-                temp = [[values objectAtIndex:0] stringValue];
-                NSArray* opCodeArray = [formulaTree elementsForName:@"value"];
-                if(opCodeArray) {
-                    NSString* opCode = [[opCodeArray objectAtIndex:0] stringValue];
-                    if([opCode isEqualToString:@"MINUS"]) {
-                        temp = [NSString stringWithFormat:@"-%@", temp];
-                    }
-                }
-                
-            } else {
-                NSArray* values = [formulaTree elementsForName:@"value"];
-                temp = [[values objectAtIndex:0] stringValue];
-            }
+#warning this should not be necessary any more!
+            abort();
         }
         else {
             temp = element.stringValue;
@@ -296,11 +268,18 @@
 #warning JUST FOR DEBUG PURPOSES!
     // todo: set the corresponding SPRITE!!! (and lookdata) => xstream notation
     else if ([propertyType isEqualToString:kParserObjectTypeSprite]) {
-        NSString *ref = [element attributeForName:@"reference"].stringValue;
-        NSLog(@"NSOBJECT TYPE FOUND");
-        NSLog(@"   SET reference (%@) for %@", ref, element.name);
-        NSLog(@"   RETURNING SPRITE %@", self.currentActiveSprite);
-        return self.currentActiveSprite;
+        
+        if([self isReferenceElement:element]) {
+            NSString *ref = [element attributeForName:@"reference"].stringValue;
+            NSLog(@"NSOBJECT TYPE FOUND");
+            NSLog(@"   SET reference (%@) for %@", ref, element.name);
+            NSLog(@"   RETURNING SPRITE %@", self.currentActiveSprite);
+            return self.currentActiveSprite;
+        }
+        else {
+            return [self parseNode:element withParent:parent];
+        }
+
     }
     else if ([propertyType isEqualToString:kParserObjectTypeLookData]) {
         // sanity check
