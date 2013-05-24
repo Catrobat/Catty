@@ -48,6 +48,8 @@
 		B4826F79174D076800F57AE9 /* NoteBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = B4826F77174D076800F57AE9 /* NoteBrick.m */; };
 		B4826F83174D5BB100F57AE9 /* OrderedMapTable.m in Sources */ = {isa = PBXBuildFile; fileRef = B4826F82174D5BB100F57AE9 /* OrderedMapTable.m */; };
 		B4826F84174D5BB100F57AE9 /* OrderedMapTable.m in Sources */ = {isa = PBXBuildFile; fileRef = B4826F82174D5BB100F57AE9 /* OrderedMapTable.m */; };
+		B4840CA7174FAC3E002DEC53 /* MoveNStepsBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = B4840CA6174FAC3E002DEC53 /* MoveNStepsBrick.m */; };
+		B4840CA8174FAC3E002DEC53 /* MoveNStepsBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = B4840CA6174FAC3E002DEC53 /* MoveNStepsBrick.m */; };
 		B4AF798D174A9A340041555A /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B4AF798C174A9A330041555A /* CoreLocation.framework */; };
 		B4B7BAC31738E216000BDC94 /* XMLObjectReference.m in Sources */ = {isa = PBXBuildFile; fileRef = B4B7BAC21738E216000BDC94 /* XMLObjectReference.m */; };
 		B4B7BAC41738E216000BDC94 /* XMLObjectReference.m in Sources */ = {isa = PBXBuildFile; fileRef = B4B7BAC21738E216000BDC94 /* XMLObjectReference.m */; };
@@ -259,6 +261,8 @@
 		B4826F77174D076800F57AE9 /* NoteBrick.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NoteBrick.m; sourceTree = "<group>"; };
 		B4826F81174D5BB100F57AE9 /* OrderedMapTable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrderedMapTable.h; sourceTree = "<group>"; };
 		B4826F82174D5BB100F57AE9 /* OrderedMapTable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrderedMapTable.m; sourceTree = "<group>"; };
+		B4840CA5174FAC3E002DEC53 /* MoveNStepsBrick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MoveNStepsBrick.h; sourceTree = "<group>"; };
+		B4840CA6174FAC3E002DEC53 /* MoveNStepsBrick.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MoveNStepsBrick.m; sourceTree = "<group>"; };
 		B4AF798C174A9A330041555A /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		B4B7BAC11738E216000BDC94 /* XMLObjectReference.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XMLObjectReference.h; sourceTree = "<group>"; };
 		B4B7BAC21738E216000BDC94 /* XMLObjectReference.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMLObjectReference.m; sourceTree = "<group>"; };
@@ -885,6 +889,15 @@
 			name = OrderedMapTable;
 			sourceTree = "<group>";
 		};
+		B4840CAA174FAC42002DEC53 /* MoveNStepsBrick */ = {
+			isa = PBXGroup;
+			children = (
+				B4840CA5174FAC3E002DEC53 /* MoveNStepsBrick.h */,
+				B4840CA6174FAC3E002DEC53 /* MoveNStepsBrick.m */,
+			);
+			name = MoveNStepsBrick;
+			sourceTree = "<group>";
+		};
 		B4B7BAC51738E21B000BDC94 /* XMLObjectReference */ = {
 			isa = PBXGroup;
 			children = (
@@ -1286,6 +1299,7 @@
 				CD0CCFEC170CB6DC00B70036 /* SoundBricks */,
 				CD0CCFF3170CB77800B70036 /* TurnBricks */,
 				CD0CCFF4170CB78000B70036 /* WaitBrick */,
+				B4840CAA174FAC42002DEC53 /* MoveNStepsBrick */,
 			);
 			name = Bricks;
 			sourceTree = "<group>";
@@ -1936,6 +1950,7 @@
 				B4B7BAC31738E216000BDC94 /* XMLObjectReference.m in Sources */,
 				B4826F78174D076800F57AE9 /* NoteBrick.m in Sources */,
 				B4826F83174D5BB100F57AE9 /* OrderedMapTable.m in Sources */,
+				B4840CA7174FAC3E002DEC53 /* MoveNStepsBrick.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1959,6 +1974,7 @@
 				B4B7BAC41738E216000BDC94 /* XMLObjectReference.m in Sources */,
 				B4826F79174D076800F57AE9 /* NoteBrick.m in Sources */,
 				B4826F84174D5BB100F57AE9 /* OrderedMapTable.m in Sources */,
+				B4840CA8174FAC3E002DEC53 /* MoveNStepsBrick.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

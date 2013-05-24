@@ -665,6 +665,17 @@
     }
 }
 
+- (void)moveNSteps:(float)steps
+{
+    
+    int xPosition = (int) round(self.position.x) + steps*cos(self.rotation);
+    
+    int yPosition = (int) round(self.position.y) - steps*sin(self.rotation);
+    
+    self.position = CGPointMake(xPosition, yPosition);
+}
+
+
 - (void)render:(SPRenderSupport *)support {
     
     if (self.brightnessWorkaround) {

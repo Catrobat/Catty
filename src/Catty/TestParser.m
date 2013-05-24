@@ -1028,36 +1028,37 @@
     Setlookbrick *setLook = [[Setlookbrick alloc]init];
     setLook.look = look;
     Placeatbrick   *placeAt   = [[Placeatbrick   alloc]initWithXPosition:[NSNumber numberWithFloat:-80.0f] yPosition:[NSNumber numberWithFloat: -120.0f]];
-    Turnleftbrick  *turnLeft1 = [[Turnleftbrick  alloc]initWithDegrees:[NSNumber numberWithInt:45]];
-    Turnrightbrick *turnRight = [[Turnrightbrick alloc]initWithDegrees:[NSNumber numberWithInt:90]];
-    Turnleftbrick  *turnLeft2 = [[Turnleftbrick  alloc]initWithDegrees:[NSNumber numberWithInt:45]];
+#warning changed to use Formula! If necesarry please adapt
+//    Turnleftbrick  *turnLeft1 = [[Turnleftbrick  alloc]initWithDegrees:[NSNumber numberWithInt:45]];
+//    Turnrightbrick *turnRight = [[Turnrightbrick alloc]initWithDegrees:[NSNumber numberWithInt:90]];
+//    Turnleftbrick  *turnLeft2 = [[Turnleftbrick  alloc]initWithDegrees:[NSNumber numberWithInt:45]];
     
-    Waitbrick *waitBrick1 = [[Waitbrick alloc]init];
-    waitBrick1.timeToWaitInSeconds = [NSNumber numberWithInt:1];
-    Waitbrick *waitBrick2 = [[Waitbrick alloc]init];
-    waitBrick2.timeToWaitInSeconds = [NSNumber numberWithInt:1];
-    
-    Whenscript *whenScript = [[Whenscript alloc]init];
-    whenScript.brickList = [NSArray arrayWithObjects:turnLeft1, waitBrick1, turnRight, waitBrick2, turnLeft2, nil];
-    
-    Startscript *startScript = [[Startscript alloc]init];
-    startScript.brickList = [NSArray arrayWithObjects:setLook, placeAt, nil];
-    
-    NSArray *looks = [NSArray arrayWithObjects:look, nil];
-    
-    SpriteObject *sprite = [self createSprite:@"cat" withPositionX:(NSInteger)0 withPositionY:(NSInteger)0 withCostumes:looks setCostumeIndex:(NSInteger)0];
-    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-    NSString *documentsDirectory = [paths objectAtIndex:0];
-    sprite.projectPath = [documentsDirectory stringByAppendingString:@"/levels/TestParser/"];
-    NSMutableArray *temp = [[NSMutableArray alloc] init];
-    [temp addObject:startScript];
-    [temp addObject:whenScript];
-    sprite.scriptList = temp;
-    
-    project.objectList = [NSMutableArray arrayWithObject:sprite];
-    
-    [self linkSpriteToScripts:project];
-    return project;
+//    Waitbrick *waitBrick1 = [[Waitbrick alloc]init];
+//    waitBrick1.timeToWaitInSeconds = [NSNumber numberWithInt:1];
+//    Waitbrick *waitBrick2 = [[Waitbrick alloc]init];
+//    waitBrick2.timeToWaitInSeconds = [NSNumber numberWithInt:1];
+//    
+//    Whenscript *whenScript = [[Whenscript alloc]init];
+//    whenScript.brickList = [NSArray arrayWithObjects:turnLeft1, waitBrick1, turnRight, waitBrick2, turnLeft2, nil];
+//    
+//    Startscript *startScript = [[Startscript alloc]init];
+//    startScript.brickList = [NSArray arrayWithObjects:setLook, placeAt, nil];
+//    
+//    NSArray *looks = [NSArray arrayWithObjects:look, nil];
+//    
+//    SpriteObject *sprite = [self createSprite:@"cat" withPositionX:(NSInteger)0 withPositionY:(NSInteger)0 withCostumes:looks setCostumeIndex:(NSInteger)0];
+//    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+//    NSString *documentsDirectory = [paths objectAtIndex:0];
+//    sprite.projectPath = [documentsDirectory stringByAppendingString:@"/levels/TestParser/"];
+//    NSMutableArray *temp = [[NSMutableArray alloc] init];
+//    [temp addObject:startScript];
+//    [temp addObject:whenScript];
+//    sprite.scriptList = temp;
+//    
+//    project.objectList = [NSMutableArray arrayWithObject:sprite];
+//    
+//    [self linkSpriteToScripts:project];
+//    return project;
 
     
 }
@@ -1087,61 +1088,61 @@
     NSArray *looks = [NSArray arrayWithObjects:look, nil];
     
 
-    
+#warning changed to Use Formula. If necessary please adapt.
     // sprite 1
-    Placeatbrick   *placeAt1 = [[Placeatbrick   alloc]initWithXPosition:[NSNumber numberWithFloat:80.0f] yPosition:[NSNumber numberWithFloat: 120.0f]];
-    Turnleftbrick  *turnLeft = [[Turnleftbrick  alloc]initWithDegrees:[NSNumber numberWithInt:10]];
-
-    NSMutableArray *bricks1 = [NSMutableArray arrayWithCapacity:73];
-    [bricks1 addObject:setLook];
-    for (int i=0; i<36; i++) {
-        [bricks1 addObject:turnLeft];
-        [bricks1 addObject:waitBrick];
-    }
-    
-    Whenscript *whenScript1 = [[Whenscript alloc]init];
-    whenScript1.brickList = bricks1;
- 
-
-    Startscript *startScript1 = [[Startscript alloc]init];
-    startScript1.brickList = [NSArray arrayWithObjects:setLook, placeAt1, nil];
-    
-    SpriteObject *sprite1 = [self createSprite:@"cat1" withPositionX:(NSInteger)0 withPositionY:(NSInteger)0 withCostumes:looks setCostumeIndex:(NSInteger)0];
-    sprite1.projectPath = [documentsDirectory stringByAppendingString:@"/levels/TestParser/"];
-    sprite1.scriptList = [NSArray arrayWithObjects:startScript1, whenScript1, nil];
+//    Placeatbrick   *placeAt1 = [[Placeatbrick   alloc]initWithXPosition:[NSNumber numberWithFloat:80.0f] yPosition:[NSNumber numberWithFloat: 120.0f]];
+//    Turnleftbrick  *turnLeft = [[Turnleftbrick  alloc]initWithDegrees:[NSNumber numberWithInt:10]];
 //
-    
-    
-    // sprite 2
-    
-    Look *look2= [self createCostumeFromPath:@"cheshirecat.png" withName:@"cat2"];
-    Setlookbrick *setLook2 = [[Setlookbrick alloc]init];
-    setLook2.look = look2;
-    NSArray *looks2 = [NSArray arrayWithObjects:look2, nil];
-    
-    Placeatbrick   *placeAt2 = [[Placeatbrick   alloc]initWithXPosition:[NSNumber numberWithFloat:-80.0f] yPosition:[NSNumber numberWithFloat: -120.0f]];
-    
-    NSMutableArray *bricks2 = [NSMutableArray arrayWithCapacity:73];
-    [bricks2 addObject:setLook2];
-    for (int i=0; i<36; i++) {
-        [bricks2 addObject:turnRight];
-        [bricks2 addObject:waitBrick];
-    }
-    
-    Whenscript *whenScript2 = [[Whenscript alloc]init];
-    whenScript2.brickList = bricks2;
-    
-    Startscript *startScript2 = [[Startscript alloc]init];
-    startScript2.brickList = [NSArray arrayWithObjects:setLook2, placeAt2, nil];
-    
-    SpriteObject *sprite2 = [self createSprite:@"cat2" withPositionX:(NSInteger)0 withPositionY:(NSInteger)0 withCostumes:looks setCostumeIndex:(NSInteger)0];
-    sprite2.projectPath = [documentsDirectory stringByAppendingString:@"/levels/TestParser/"];
-    sprite2.scriptList = [NSArray arrayWithObjects:startScript2, whenScript2, nil];
-
-    project.objectList = [NSMutableArray arrayWithObjects:sprite1, sprite2, nil];
-    
-    [self linkSpriteToScripts:project];
-    return project;
+//    NSMutableArray *bricks1 = [NSMutableArray arrayWithCapacity:73];
+//    [bricks1 addObject:setLook];
+//    for (int i=0; i<36; i++) {
+//        [bricks1 addObject:turnLeft];
+//        [bricks1 addObject:waitBrick];
+//    }
+//    
+//    Whenscript *whenScript1 = [[Whenscript alloc]init];
+//    whenScript1.brickList = bricks1;
+// 
+//
+//    Startscript *startScript1 = [[Startscript alloc]init];
+//    startScript1.brickList = [NSArray arrayWithObjects:setLook, placeAt1, nil];
+//    
+//    SpriteObject *sprite1 = [self createSprite:@"cat1" withPositionX:(NSInteger)0 withPositionY:(NSInteger)0 withCostumes:looks setCostumeIndex:(NSInteger)0];
+//    sprite1.projectPath = [documentsDirectory stringByAppendingString:@"/levels/TestParser/"];
+//    sprite1.scriptList = [NSArray arrayWithObjects:startScript1, whenScript1, nil];
+////
+//    
+//    
+//    // sprite 2
+//    
+//    Look *look2= [self createCostumeFromPath:@"cheshirecat.png" withName:@"cat2"];
+//    Setlookbrick *setLook2 = [[Setlookbrick alloc]init];
+//    setLook2.look = look2;
+//    NSArray *looks2 = [NSArray arrayWithObjects:look2, nil];
+//    
+//    Placeatbrick   *placeAt2 = [[Placeatbrick   alloc]initWithXPosition:[NSNumber numberWithFloat:-80.0f] yPosition:[NSNumber numberWithFloat: -120.0f]];
+//    
+//    NSMutableArray *bricks2 = [NSMutableArray arrayWithCapacity:73];
+//    [bricks2 addObject:setLook2];
+//    for (int i=0; i<36; i++) {
+//        [bricks2 addObject:turnRight];
+//        [bricks2 addObject:waitBrick];
+//    }
+//    
+//    Whenscript *whenScript2 = [[Whenscript alloc]init];
+//    whenScript2.brickList = bricks2;
+//    
+//    Startscript *startScript2 = [[Startscript alloc]init];
+//    startScript2.brickList = [NSArray arrayWithObjects:setLook2, placeAt2, nil];
+//    
+//    SpriteObject *sprite2 = [self createSprite:@"cat2" withPositionX:(NSInteger)0 withPositionY:(NSInteger)0 withCostumes:looks setCostumeIndex:(NSInteger)0];
+//    sprite2.projectPath = [documentsDirectory stringByAppendingString:@"/levels/TestParser/"];
+//    sprite2.scriptList = [NSArray arrayWithObjects:startScript2, whenScript2, nil];
+//
+//    project.objectList = [NSMutableArray arrayWithObjects:sprite1, sprite2, nil];
+//    
+//    [self linkSpriteToScripts:project];
+//    return project;
     
 }
 
@@ -1173,40 +1174,40 @@
     Loopendbrick *endLoopBrick = [[Loopendbrick alloc]init];
     
     
-    
-    Turnleftbrick  *turnLeft = [[Turnleftbrick  alloc]initWithDegrees:[NSNumber numberWithInt:10]];
-    
-    NSMutableArray *bricks = [NSMutableArray arrayWithCapacity:75];
-    [bricks addObject:setLook];
-    [bricks addObject:loopBrick];
-    for (int i=0; i<36; i++) {
-        [bricks addObject:turnLeft];
-        [bricks addObject:waitBrick];
-    }
-    [bricks addObject:endLoopBrick];
-    
-    
-    Whenscript *whenScript = [[Whenscript alloc]init];
-    [whenScript addBrick:[[Glidetobrick alloc] initWithXPosition:[NSNumber numberWithFloat:100.0f] yPosition:[NSNumber numberWithFloat:0.0f] andDurationInSeconds:[NSNumber numberWithFloat:0.250f]]];
-    [whenScript addBrick:[[Glidetobrick alloc] initWithXPosition:[NSNumber numberWithFloat:100.0f] yPosition:[NSNumber numberWithFloat:-100.0f] andDurationInSeconds:[NSNumber numberWithFloat:0.250f]]];
-    [whenScript addBrick:[[Glidetobrick alloc] initWithXPosition:[NSNumber numberWithFloat:-100.0f] yPosition:[NSNumber numberWithFloat:-100.0f] andDurationInSeconds:[NSNumber numberWithFloat:0.250f]]];
-    [whenScript addBrick:[[Glidetobrick alloc] initWithXPosition:[NSNumber numberWithFloat:-100.0f] yPosition:[NSNumber numberWithFloat:100.0f] andDurationInSeconds:[NSNumber numberWithFloat:0.250f]]];
-    [whenScript addBrick:[[Glidetobrick alloc] initWithXPosition:[NSNumber numberWithFloat:100.0f] yPosition:[NSNumber numberWithFloat:100.0f] andDurationInSeconds:[NSNumber numberWithFloat:0.250f]]];
-    [whenScript addBrick:[[Glidetobrick alloc] initWithXPosition:[NSNumber numberWithFloat:100.0f] yPosition:[NSNumber numberWithFloat:0.0f] andDurationInSeconds:[NSNumber numberWithFloat:0.250f]]];
-    [whenScript addBrick:[[Glidetobrick alloc] initWithXPosition:[NSNumber numberWithFloat:0.0f] yPosition:[NSNumber numberWithFloat:0.0f] andDurationInSeconds:[NSNumber numberWithFloat:0.250f]]];
-         
-    Startscript *startScript = [[Startscript alloc]init];
-    startScript.brickList = bricks;
-    
-    SpriteObject *sprite = [self createSprite:@"cat" withPositionX:(NSInteger)0 withPositionY:(NSInteger)0 withCostumes:looks setCostumeIndex:(NSInteger)0];
-    sprite.scriptList = [NSArray arrayWithObjects:whenScript, startScript, nil];
-    sprite.projectPath = [documentsDirectory stringByAppendingString:@"/levels/TestParser/"];
-    
-    ////
-    project.objectList = [NSMutableArray arrayWithObjects:sprite, nil];
-    
-    [self linkSpriteToScripts:project];
-    return project;
+#warning changed to use Formula. If necessary please adapt.
+//    Turnleftbrick  *turnLeft = [[Turnleftbrick  alloc]initWithDegrees:[NSNumber numberWithInt:10]];
+//    
+//    NSMutableArray *bricks = [NSMutableArray arrayWithCapacity:75];
+//    [bricks addObject:setLook];
+//    [bricks addObject:loopBrick];
+//    for (int i=0; i<36; i++) {
+//        [bricks addObject:turnLeft];
+//        [bricks addObject:waitBrick];
+//    }
+//    [bricks addObject:endLoopBrick];
+//    
+//    
+//    Whenscript *whenScript = [[Whenscript alloc]init];
+//    [whenScript addBrick:[[Glidetobrick alloc] initWithXPosition:[NSNumber numberWithFloat:100.0f] yPosition:[NSNumber numberWithFloat:0.0f] andDurationInSeconds:[NSNumber numberWithFloat:0.250f]]];
+//    [whenScript addBrick:[[Glidetobrick alloc] initWithXPosition:[NSNumber numberWithFloat:100.0f] yPosition:[NSNumber numberWithFloat:-100.0f] andDurationInSeconds:[NSNumber numberWithFloat:0.250f]]];
+//    [whenScript addBrick:[[Glidetobrick alloc] initWithXPosition:[NSNumber numberWithFloat:-100.0f] yPosition:[NSNumber numberWithFloat:-100.0f] andDurationInSeconds:[NSNumber numberWithFloat:0.250f]]];
+//    [whenScript addBrick:[[Glidetobrick alloc] initWithXPosition:[NSNumber numberWithFloat:-100.0f] yPosition:[NSNumber numberWithFloat:100.0f] andDurationInSeconds:[NSNumber numberWithFloat:0.250f]]];
+//    [whenScript addBrick:[[Glidetobrick alloc] initWithXPosition:[NSNumber numberWithFloat:100.0f] yPosition:[NSNumber numberWithFloat:100.0f] andDurationInSeconds:[NSNumber numberWithFloat:0.250f]]];
+//    [whenScript addBrick:[[Glidetobrick alloc] initWithXPosition:[NSNumber numberWithFloat:100.0f] yPosition:[NSNumber numberWithFloat:0.0f] andDurationInSeconds:[NSNumber numberWithFloat:0.250f]]];
+//    [whenScript addBrick:[[Glidetobrick alloc] initWithXPosition:[NSNumber numberWithFloat:0.0f] yPosition:[NSNumber numberWithFloat:0.0f] andDurationInSeconds:[NSNumber numberWithFloat:0.250f]]];
+//         
+//    Startscript *startScript = [[Startscript alloc]init];
+//    startScript.brickList = bricks;
+//    
+//    SpriteObject *sprite = [self createSprite:@"cat" withPositionX:(NSInteger)0 withPositionY:(NSInteger)0 withCostumes:looks setCostumeIndex:(NSInteger)0];
+//    sprite.scriptList = [NSArray arrayWithObjects:whenScript, startScript, nil];
+//    sprite.projectPath = [documentsDirectory stringByAppendingString:@"/levels/TestParser/"];
+//    
+//    ////
+//    project.objectList = [NSMutableArray arrayWithObjects:sprite, nil];
+//    
+//    [self linkSpriteToScripts:project];
+//    return project;
     
 }
 

@@ -86,6 +86,7 @@
 - (void)turnRight:(float)degrees;
 - (void)pointInDirection:(float)degrees;
 - (void)changeBrightness:(float)factor;
+- (void)moveNSteps:(float)steps;
 
 
 @end

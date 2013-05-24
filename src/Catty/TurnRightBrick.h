@@ -8,9 +8,11 @@
 
 #import "Brick.h"
 
+@class Formula;
+
 @interface Turnrightbrick : Brick
 
-@property (nonatomic, strong) NSNumber *degrees;
+@property (nonatomic, strong) Formula *degrees;
 
 -(id)initWithDegrees:(NSNumber*)degees;
 @end

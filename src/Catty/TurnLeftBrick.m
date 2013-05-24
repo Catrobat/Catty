@@ -7,32 +7,25 @@
 //
 
 #import "Turnleftbrick.h"
+#import "Formula.h"
 
 @implementation Turnleftbrick
 
 @synthesize degrees = _degrees;
 
--(id)initWithDegrees:(NSNumber*)degees
-{
-    self = [super init];
-    if (self)
-    {
-        self.degrees = degees;
-    }
-    return self;
-}
-
 - (void)performFromScript:(Script*)script
 {
     NSLog(@"Performing: %@", self.description);
     
-    [self.object turnLeft:self.degrees.floatValue];
+    double degrees = [self.degrees interpretDoubleForSprite:self.object];
+    
+    [self.object turnLeft:degrees];
 }
 
 #pragma mark - Description
 - (NSString*)description
 {
-    return [NSString stringWithFormat:@"TurnLeft (%f degrees)", self.degrees.floatValue];
+    return [NSString stringWithFormat:@"TurnLeft (%f degrees)", [self.degrees interpretDoubleForSprite:self.object]];
 }
 
 @end

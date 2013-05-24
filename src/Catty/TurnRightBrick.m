@@ -7,32 +7,25 @@
 //
 
 #import "Turnrightbrick.h"
+#import "Formula.h"
 
 @implementation Turnrightbrick
 
 @synthesize degrees = _degrees;
 
--(id)initWithDegrees:(NSNumber*)degees
-{
-    self = [super init];
-    if (self)
-    {
-        self.degrees = degees;
-    }
-    return self;
-}
 
 - (void)performFromScript:(Script*)script
 {
     NSLog(@"Performing: %@", self.description);
+    double degrees = [self.degrees interpretDoubleForSprite:self.object];
     
-    [self.object turnRight:self.degrees.floatValue];
+    [self.object turnRight:degrees];
 }
 
 #pragma mark - Description
 - (NSString*)description
 {
-    return [NSString stringWithFormat:@"TurnRight (%f degrees)", self.degrees.floatValue];
+    return [NSString stringWithFormat:@"TurnRight (%f degrees)", [self.degrees interpretDoubleForSprite:self.object]];
 }
 
 @end
