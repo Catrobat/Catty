@@ -7,6 +7,7 @@
 //
 
 #import "Gonstepsbackbrick.h"
+#import "Formula.h"
 
 @implementation Gonstepsbackbrick
 
@@ -14,6 +15,8 @@
 
 -(id)initWithNumberOfSteps:(NSNumber*)steps
 {
+    abort();
+#warning do not use -- changed from NSNumber to Formula
     self = [super init];
     if (self)
     {
@@ -26,7 +29,9 @@
 {
     NSLog(@"Performing: %@", self.description);
     
-    [self.object goNStepsBack:self.steps.intValue];
+    int steps = [self.steps interpretIntegerForSprite:self.object];
+    
+    [self.object goNStepsBack:steps];
 }
 
 #pragma mark - Description

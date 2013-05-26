@@ -8,9 +8,11 @@
 
 #import "Brick.h"
 
+@class Formula;
+
 @interface Gonstepsbackbrick : Brick
 
-@property (nonatomic, strong) NSNumber *steps;
+@property (nonatomic, strong) Formula *steps;
 
 -(id)initWithNumberOfSteps:(NSNumber*)steps;
 
