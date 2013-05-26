@@ -8,9 +8,11 @@
 
 #import "Brick.h"
 
+@class Formula;
+
 @interface Setghosteffectbrick : Brick
 
-@property (nonatomic, strong) NSNumber *transparency;
+@property (nonatomic, strong) Formula *transparency;
 
 -(id)initWithTransparencyInPercent:(NSNumber*)transparency;
 

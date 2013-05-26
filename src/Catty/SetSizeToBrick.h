@@ -9,9 +9,11 @@
 #import "Brick.h"
 #import "SpriteObject.h"
 
+@class Formula;
+
 @interface Setsizetobrick : Brick
 
-@property (nonatomic, strong) NSNumber *size;
+@property (nonatomic, strong) Formula *size;
 
 -(id)initWithSizeInPercentage:(NSNumber*)sizeInPercentage;
 

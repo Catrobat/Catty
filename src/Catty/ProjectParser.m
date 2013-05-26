@@ -204,7 +204,16 @@
                 XMLObjectReference* arrayReference = [[XMLObjectReference alloc] initWithParent:ref andObject:arr];
                 
                 for (GDataXMLElement *arrElement in child.children) {
-                    [arr addObject:[self parseNode:arrElement withParent:arrayReference]];
+                    if([self isReferenceElement:arrElement]) {
+                        id object = [self parseReferenceElement:arrElement withParent:arrayReference];
+                        if(object) {
+                            [arr addObject:object];
+                        } else {
+#warning should not happen.. (check why this happens and fix it!)
+                        }
+                    } else {
+                        [arr addObject:[self parseNode:arrElement withParent:arrayReference]];
+                    }
                 }
                 
             }
@@ -277,7 +286,8 @@
             return self.currentActiveSprite;
         }
         else {
-            return [self parseNode:element withParent:parent];
+            id object =  [self parseNode:element withParent:parent];
+            return object;
         }
 
     }
@@ -668,7 +678,7 @@ const char* property_getTypeString(objc_property_t property) {
 -(id)parentObjectForReferenceElement:(GDataXMLElement*)element andParent:(XMLObjectReference*)parent
 {
     NSString *refString = [element attributeForName:@"reference"].stringValue;    
-    int count = [self numberOfOccurencesOfSubstring:@"../" inString:refString];
+    int count = [self numberOfOccurencesOfSubstring:@".." inString:refString];
     
     XMLObjectReference* tmp = parent;
     

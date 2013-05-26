@@ -13,6 +13,9 @@
 
 - (void)performFromScript:(Script*)script
 {
+    
+    
+    
     CGPoint objectPosition = [self.object position];
     CGPoint pointedObjectPosition = [self.pointedObject position];
     
@@ -52,7 +55,7 @@
                 rotationDegrees = 90.0f - value;
             }
         } else {
-            if (objectPosition.y > objectPosition.y) {
+            if (objectPosition.y > pointedObjectPosition.y) {
                 rotationDegrees = 270.0f - value;
             } else {
                 rotationDegrees = 270.0f + value;
@@ -62,6 +65,7 @@
     }
     
     
+    NSDebug(@"Performing: %@, Degreees: (%f), Pointed Object: Position: %@", self.description, rotationDegrees, NSStringFromCGPoint(self.pointedObject.position));
     
     [self.object pointInDirection:rotationDegrees];
     

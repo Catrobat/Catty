@@ -193,7 +193,7 @@
 #pragma mark - Description
 -(NSString*)description
 {
-    NSMutableString *ret = [[NSMutableString alloc] init];
+    NSMutableString *ret = [[NSMutableString alloc] initWithString:@"Script"];
     
     if ([self.brickList count] > 0)
     {
