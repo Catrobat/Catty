@@ -8,9 +8,11 @@
 
 #import "Brick.h"
 
+@class Formula;
+
 @interface Changevolumebynbrick : Brick
 
-@property (nonatomic, nonatomic) NSNumber* volume;
+@property (nonatomic, nonatomic) Formula* volume;
 
 
 @end

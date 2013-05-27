@@ -7,9 +7,10 @@
 //
 
 #import "Repeatbrick.h"
+#import "Formula.h"
 
 @interface Repeatbrick()
-@property (strong, nonatomic) NSNumber *loopsLeft;
+@property int loopsLeft;
 @end
 
 @implementation Repeatbrick
@@ -23,12 +24,12 @@
 -(BOOL)checkConditionAndDecrementLoopCounter
 {
     if(!self.loopsLeft) {
-        self.loopsLeft = self.timesToRepeat;
+        self.loopsLeft = [self.timesToRepeat interpretIntegerForSprite:self.object];
     }
-    self.loopsLeft = [NSNumber numberWithInt:self.loopsLeft.intValue-1];
-    BOOL returnValue = (self.loopsLeft.intValue >= 0);
+    self.loopsLeft -= 1;
+    BOOL returnValue = (self.loopsLeft >= 0);
     if (!returnValue) {
-        self.loopsLeft = self.timesToRepeat;
+        self.loopsLeft = [self.timesToRepeat interpretIntegerForSprite:self.object];
     }
     return returnValue;
 }
@@ -36,7 +37,7 @@
 #pragma mark - Description
 - (NSString*)description
 {
-    return [NSString stringWithFormat:@"RepeatLoop with %d iterations (%d iterations left)", self.timesToRepeat.intValue, self.loopsLeft.intValue];
+    return [NSString stringWithFormat:@"RepeatLoop with %d iterations (%d iterations left)", [self.timesToRepeat interpretIntegerForSprite:self.object], self.loopsLeft];
 }
 
 @end

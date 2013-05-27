@@ -7,6 +7,7 @@
 //
 
 #import "Changeghosteffectbynbrick.h"
+#import "Formula.h"
 
 @implementation Changeghosteffectbynbrick
 
@@ -15,6 +16,8 @@
 
 -(id)initWithValueForGhostEffectChange:(NSNumber*)value;
 {
+    abort();
+#warning do not use! NSNumber changed to Formula
     self = [super init];
     if (self)
     {
@@ -27,14 +30,16 @@
 {
     NSLog(@"Performing: %@", self.description);
     
-    [self.object changeTransparencyInPercent:self.changeGhostEffect.floatValue];
+    double transparency = [self.changeGhostEffect interpretDoubleForSprite:self.object];
+    
+    [self.object changeTransparencyInPercent:transparency];
     
 }
 
 #pragma mark - Description
 - (NSString*)description
 {
-    return [NSString stringWithFormat:@"ChangeGhostEffect by (%f)", self.changeGhostEffect.floatValue];
+    return [NSString stringWithFormat:@"ChangeGhostEffect by (%f)", [self.changeGhostEffect interpretDoubleForSprite:self.object]];
 }
 
 @end

@@ -7,6 +7,8 @@
 //
 
 #import "ChangeVolumeByNBrick.h"
+#import "Formula.h"
+
 
 @implementation Changevolumebynbrick
 
@@ -19,14 +21,16 @@
 {
     NSLog(@"Performing: %@", self.description);
     
-    [self.object changeVolumeInPercent:self.volume.floatValue];
+    double volume = [self.volume interpretDoubleForSprite:self.object];
+    
+    [self.object changeVolumeInPercent:volume];
 }
 
 
 #pragma mark - Description
 - (NSString*)description
 {
-    return [NSString stringWithFormat:@"Change Volume by: %f%%)", self.volume.floatValue/100.0f];
+    return [NSString stringWithFormat:@"Change Volume by: %f%%)", [self.volume interpretDoubleForSprite:self.object]/100.0f];
 }
 
 

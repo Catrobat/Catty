@@ -7,9 +7,10 @@
 //
 
 #import "Foreverbrick.h"
+@class Formula;
 
 @interface Repeatbrick : Foreverbrick
 
-@property (nonatomic, strong) NSNumber *timesToRepeat;
+@property (nonatomic, strong) Formula *timesToRepeat;
 
 @end

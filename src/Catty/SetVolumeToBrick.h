@@ -8,9 +8,11 @@
 
 #import "Brick.h"
 
+@class Formula;
+
 @interface Setvolumetobrick : Brick
 
-@property (nonatomic, strong) NSNumber *volume;
+@property (nonatomic, strong) Formula *volume;
 
 -(id)initWithVolumeInPercent:(NSNumber*)volume;
 

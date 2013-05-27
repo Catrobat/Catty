@@ -8,6 +8,8 @@
 
 #import "Setvolumetobrick.h"
 
+#import "Formula.h"
+
 @implementation Setvolumetobrick
 
 @synthesize volume = _volume;
@@ -15,6 +17,8 @@
 
 -(id)initWithVolumeInPercent:(NSNumber*)volume
 {
+    abort();
+#warning do not use! -- NSNumber changed to Formula
     self = [super init];
     if (self)
     {
@@ -29,14 +33,16 @@
 {
     NSLog(@"Performing: %@", self.description);
     
-    [self.object setVolumeToInPercent:self.volume.floatValue];
+    double volume = [self.volume interpretDoubleForSprite:self.object];
+    
+    [self.object setVolumeToInPercent:volume];
 }
 
 
 #pragma mark - Description
 - (NSString*)description
 {
-    return [NSString stringWithFormat:@"Set Volume to: %f%%)", self.volume.floatValue];
+    return [NSString stringWithFormat:@"Set Volume to: %f%%)", [self.volume interpretDoubleForSprite:self.object]];
 }
 
 

@@ -8,9 +8,12 @@
 
 #import "Brick.h"
 
+@class Formula;
+
+
 @interface Changeghosteffectbynbrick : Brick
 
-@property (nonatomic, strong) NSNumber *changeGhostEffect;
+@property (nonatomic, strong) Formula *changeGhostEffect;
 
 -(id)initWithValueForGhostEffectChange:(NSNumber*)value;
 

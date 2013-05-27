@@ -7,18 +7,20 @@
 //
 
 #import "Setbrightnessbrick.h"
+#import "Formula.h"
 
 @implementation Setbrightnessbrick
 
 -(void)performFromScript:(Script *)script
 {
-    [self.object changeBrightness:self.brightness.floatValue];
+    double brightness = [self.brightness interpretDoubleForSprite:self.object];
+    [self.object changeBrightness:brightness];
 }
 
 #pragma mark - Description
 - (NSString*)description
 {
-    return [NSString stringWithFormat:@"Set Brightness to: %f%%)", self.brightness.floatValue];
+    return [NSString stringWithFormat:@"Set Brightness to: %f%%)", [self.brightness interpretDoubleForSprite:self.object]];
 }
 
 @end

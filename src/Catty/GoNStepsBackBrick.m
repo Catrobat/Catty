@@ -37,7 +37,7 @@
 #pragma mark - Description
 - (NSString*)description
 {
-    return [NSString stringWithFormat:@"GoNStepsBack (%@)", self.steps];
+    return [NSString stringWithFormat:@"GoNStepsBack (%d)", [self.steps interpretIntegerForSprite:self.object]];
 }
 
 

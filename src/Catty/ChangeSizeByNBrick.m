@@ -7,6 +7,7 @@
 //
 
 #import "Changesizebynbrick.h"
+#import "Formula.h"
 
 @implementation Changesizebynbrick
 
@@ -14,6 +15,8 @@
 
 -(id)initWithSizeChangeRate:(NSNumber*)sizeInPercentage
 {
+    abort();
+#warning do not use -- NSNumber changed to Formula
     self = [super init];
     if (self)
     {
@@ -26,7 +29,9 @@
 {
     NSLog(@"Performing: %@", self.description);
     
-    [self.object changeSizeByNInPercent:self.size.floatValue];
+    double size = [self.size interpretDoubleForSprite:self.object];
+    
+    [self.object changeSizeByNInPercent:size];
     
     //    float sleepTime = ((float)self.timeToWaitInMilliseconds.intValue)/1000;
     //    NSLog(@"wating for %f seconds", sleepTime);
@@ -39,7 +44,7 @@
 #pragma mark - Description
 - (NSString*)description
 {
-    return [NSString stringWithFormat:@"ChangeSizeByN (%f%%)", self.size.floatValue];
+    return [NSString stringWithFormat:@"ChangeSizeByN (%f%%)", [self.size interpretDoubleForSprite:self.object]];
 }
 
 @end

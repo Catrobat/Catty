@@ -7,6 +7,7 @@
 //
 
 #import "Setxbrick.h"
+#import "Formula.h"
 
 @implementation Setxbrick
 
@@ -14,6 +15,8 @@
 
 -(id)initWithXPosition:(NSNumber*)xPosition
 {
+    abort();
+#warning do not use any more -- NSNumber changed to Formula
     self = [super init];
     if (self)
     {
@@ -25,8 +28,9 @@
 - (void)performFromScript:(Script*)script
 {
     NSLog(@"Performing: %@", self.description);
+    double xPosition = [self.xPosition interpretDoubleForSprite:self.object];
 
-    self.object.position = CGPointMake(self.xPosition.floatValue, self.object.position.y);
+    self.object.position = CGPointMake(xPosition, self.object.position.y);
     
 //    CGPoint position = CGPointMake(self.xPosition.floatValue, self.object.position.y);
 //    
@@ -46,7 +50,7 @@
 #pragma mark - Description
 - (NSString*)description
 {
-    return [NSString stringWithFormat:@"SetXBrick (x-Pos:%f)", self.xPosition.floatValue];
+    return [NSString stringWithFormat:@"SetXBrick (x-Pos:%f)", [self.xPosition interpretDoubleForSprite:self.object]];
 }
 
 @end

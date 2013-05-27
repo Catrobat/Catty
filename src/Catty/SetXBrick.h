@@ -8,9 +8,11 @@
 
 #import "Brick.h"
 
+@class Formula;
+
 @interface Setxbrick : Brick
 
-@property (nonatomic, strong) NSNumber *xPosition;
+@property (nonatomic, strong) Formula *xPosition;
 
 -(id)initWithXPosition:(NSNumber*)xPosition;
 

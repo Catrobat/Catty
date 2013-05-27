@@ -8,9 +8,11 @@
 
 #import "Brick.h"
 
+@class Formula;
+
 @interface Changesizebynbrick : Brick
 
-@property (nonatomic, strong) NSNumber *size;
+@property (nonatomic, strong) Formula *size;
 
 -(id)initWithSizeChangeRate:(NSNumber*)sizeInPercentage;
 
