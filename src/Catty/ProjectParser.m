@@ -352,8 +352,12 @@
         return [self parseNode:element withParent:parent];
     }
     else if ([propertyType isEqualToString:kParserObjectTypeLoopEndBrick]) {
-#warning todo
-        return nil;
+        if([self isReferenceElement:element]) {
+            return [self parseReferenceElement:element withParent:parent];
+        }
+        else {
+            return [self parseNode:element withParent:parent];
+        }
     }
     else if([propertyType isEqualToString:kParserObjectTypeUserVariable]) {
         if([self isReferenceElement:element]) {
