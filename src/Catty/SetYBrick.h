@@ -8,9 +8,12 @@
 
 #import "Brick.h"
 
+@class Formula;
+
 @interface Setybrick : Brick
 
-@property (nonatomic, strong) NSNumber *yPosition;
+
+@property (nonatomic, strong) Formula *yPosition;
 
 -(id)initWithYPosition:(NSNumber*)yPosition;
 

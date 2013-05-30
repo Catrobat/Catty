@@ -7,6 +7,7 @@
 //
 
 #import "Setybrick.h"
+#import "Formula.h"
 
 @implementation Setybrick
 
@@ -14,6 +15,8 @@
 
 -(id)initWithYPosition:(NSNumber*)yPosition
 {
+    abort();
+#warning do not use -- NSNumber changed to Formula
     self = [super init];
     if (self)
     {
@@ -26,8 +29,9 @@
 {
     NSLog(@"Performing: %@", self.description);
     
+    float yPosition = [self.yPosition interpretDoubleForSprite:self.object];
     
-    self.object.position = CGPointMake(self.object.position.x, self.yPosition.floatValue);
+    self.object.position = CGPointMake(self.object.position.x, yPosition);
     
 //    CGPoint position = CGPointMake(self.object.position.x, self.yPosition.floatValue);
 //    
@@ -47,7 +51,7 @@
 #pragma mark - Description
 - (NSString*)description
 {
-    return [NSString stringWithFormat:@"SetYBrick (y-Pos:%f)", self.yPosition.floatValue];
+    return [NSString stringWithFormat:@"SetYBrick (y-Pos:%f)", [self.yPosition interpretDoubleForSprite:self.object]];
 }
 
 
