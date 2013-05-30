@@ -235,7 +235,7 @@
             self.projects = [[NSMutableArray alloc] initWithCapacity:[catrobatProjects count]];
             
             for (NSDictionary *projectDict in catrobatProjects) {
-                CatrobatProject *project = [[CatrobatProject alloc] initWithDict:projectDict];
+                CatrobatProject *project = [[CatrobatProject alloc] initWithDict:projectDict andBaseUrl:information.baseURL];
                 [self.projects addObject:project];
             }
         }

@@ -22,18 +22,19 @@
 @synthesize version         = _version;
 @synthesize views           = _views;
 
-- (id)initWithDict:(NSDictionary*)dict {
+- (id)initWithDict:(NSDictionary*)dict andBaseUrl:(NSString*)baseUrl {
     self = [super init];
     if (self) {
         //assuming values
+        self.name            = [dict valueForKey:@"ProjectName"];
         self.author          = [dict valueForKey:@"Author"];
         self.description     = [dict valueForKey:@"Description"];
-        self.downloadUrl     = [dict valueForKey:@"DownloadUrl"];
+        self.downloadUrl     = [NSString stringWithFormat:@"%@%@", baseUrl,[dict valueForKey:@"DownloadUrl"]];
         self.downloads       = [dict valueForKey:@"Downloads"];
         self.projectName     = [dict valueForKey:@"ProjectName"];
         self.projectUrl      = [dict valueForKey:@"ProjectUrl"];
-        self.screenshotBig   = [dict valueForKey:@"ScreenshotBig"];
-        self.screenshotSmall = [dict valueForKey:@"ScreenshotSmall"];
+        self.screenshotBig   = [NSString stringWithFormat:@"%@%@", baseUrl,[dict valueForKey:@"ScreenshotBig"]];
+        self.screenshotSmall = [NSString stringWithFormat:@"%@%@", baseUrl,[dict valueForKey:@"ScreenshotSmall"]];
         self.uploaded        = [dict valueForKey:@"Uploaded"];
         self.version         = [dict valueForKey:@"Version"];
         self.views           = [dict valueForKey:@"Views"];

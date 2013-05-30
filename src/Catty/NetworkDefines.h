@@ -28,6 +28,7 @@
 
 #define kConnectionSearch @"search.json"
 #define kConnectionRecent @"recent.json"
+#define kConnectionFeatured @"featured.json"
 
 
 

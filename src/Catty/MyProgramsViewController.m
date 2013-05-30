@@ -187,7 +187,12 @@
     cell.titleLabel.text = info.visibleName;
     
     NSString* imagePath = [[NSString alloc] initWithFormat:@"%@/screenshot.png", info.basePath];
+
     UIImage* image = [UIImage imageWithContentsOfFile:imagePath];
+    if(!image) {
+        imagePath = [[NSString alloc] initWithFormat:@"%@/manual_screenshot.png", info.basePath];
+        image = [UIImage imageWithContentsOfFile:imagePath];
+    }
     if(!image) {
         image = [UIImage imageNamed:@"programs"];
     }

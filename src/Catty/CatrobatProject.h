@@ -28,6 +28,7 @@
 
 @interface CatrobatProject : NSObject
 
+@property (nonatomic, strong) NSString *name;
 @property (nonatomic, strong) NSString *author;
 @property (nonatomic, strong) NSString *description;
 @property (nonatomic, strong) NSString *downloadUrl;
@@ -40,7 +41,7 @@
 @property (nonatomic, strong) NSString *version;
 @property (nonatomic, strong) NSNumber *views;
 
-- (id)initWithDict:(NSDictionary*)dict;
+- (id)initWithDict:(NSDictionary*)dict andBaseUrl:(NSString*)baseUrl;
 
 
 @end
