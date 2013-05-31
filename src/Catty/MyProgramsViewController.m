@@ -15,6 +15,7 @@
 #import "CellTagDefines.h"
 #import "UIColor+CatrobatUIColorExtensions.h"
 #import "CatrobatImageCell.h"
+#import "ImageCache.h"
 
 @interface MyProgramsViewController ()
 
@@ -186,8 +187,10 @@
     ProgramLoadingInfo *info = [self.levelLoadingInfos objectAtIndex:indexPath.row];
     cell.titleLabel.text = info.visibleName;
     
+//    cell.iconImageView.image = [UIImage imageNamed:@"programs"];
+    
     NSString* imagePath = [[NSString alloc] initWithFormat:@"%@/screenshot.png", info.basePath];
-
+    
     UIImage* image = [UIImage imageWithContentsOfFile:imagePath];
     if(!image) {
         imagePath = [[NSString alloc] initWithFormat:@"%@/manual_screenshot.png", info.basePath];
@@ -196,7 +199,49 @@
     if(!image) {
         image = [UIImage imageNamed:@"programs"];
     }
+    
+//    CGSize imageSize = image.size;
+//    UIGraphicsBeginImageContext(imageSize);
+//    [image drawInRect:CGRectMake(0, 0, imageSize.width, imageSize.height)];
+//    image = UIGraphicsGetImageFromCurrentImageContext();
+//    UIGraphicsEndImageContext();
+    
     cell.iconImageView.image = image;
+    
+    
+//    dispatch_queue_t imageQueue = dispatch_queue_create("at.tugraz.ist.catrobat.ImageLoadingQueue", NULL);
+//    dispatch_async(imageQueue, ^{
+//        
+//        NSString* imagePath = [[NSString alloc] initWithFormat:@"%@/screenshot.png", info.basePath];
+//        
+//        UIImage* image = [UIImage imageWithContentsOfFile:imagePath];
+//        if(!image) {
+//            imagePath = [[NSString alloc] initWithFormat:@"%@/manual_screenshot.png", info.basePath];
+//            image = [UIImage imageWithContentsOfFile:imagePath];
+//        }
+//        if(!image) {
+//            image = [UIImage imageNamed:@"programs"];
+//        }
+//        
+//        
+//        CGSize imageSize = image.size;
+//        UIGraphicsBeginImageContext(imageSize);
+//        [image drawInRect:CGRectMake(0, 0, imageSize.width, imageSize.height)];
+//        image = UIGraphicsGetImageFromCurrentImageContext();
+//        UIGraphicsEndImageContext();
+//        
+//
+//        dispatch_async(dispatch_get_main_queue(), ^{
+//            [self.tableView beginUpdates];
+//            UITableViewCell <CatrobatImageCell>* cell = (UITableViewCell <CatrobatImageCell>*)[self.tableView cellForRowAtIndexPath:indexPath];
+//            if(cell) {
+//                cell.iconImageView.image = image;
+//            }
+//            [self.tableView endUpdates];
+//        });
+//        
+//    });
+
 }
 
 

@@ -81,7 +81,7 @@
         if(!image && errorImage) {
             image = errorImage;
         }
-        [[ImageCache sharedImageCache] addImage:image withName:[imageURL absoluteString] ];
+        [[ImageCache sharedImageCache] addImage:image withName:[imageURL absoluteString] persist:YES];
         
         completion(image);
         

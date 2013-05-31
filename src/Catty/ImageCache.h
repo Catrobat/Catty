@@ -29,6 +29,7 @@
 
 -(UIImage*) getImageWithName:(NSString*)imageName;
 
--(void) addImage:(UIImage*)image withName:(NSString*) imageName;
+-(void)addImage:(UIImage *)image withName:(NSString *)imageName persist:(BOOL)persist;
+
 
 @end

@@ -279,11 +279,7 @@
     else if ([propertyType isEqualToString:kParserObjectTypeSprite]) {
         
         if([self isReferenceElement:element]) {
-            NSString *ref = [element attributeForName:@"reference"].stringValue;
-            NSLog(@"NSOBJECT TYPE FOUND");
-            NSLog(@"   SET reference (%@) for %@", ref, element.name);
-            NSLog(@"   RETURNING SPRITE %@", self.currentActiveSprite);
-            return self.currentActiveSprite;
+            return [self parseReferenceElement:element withParent:parent];
         }
         else {
             id object =  [self parseNode:element withParent:parent];

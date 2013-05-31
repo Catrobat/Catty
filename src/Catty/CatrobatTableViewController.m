@@ -153,6 +153,7 @@
 {
     cell.titleLabel.text = NSLocalizedString([[self.cells objectAtIndex:indexPath.row] capitalizedString], nil);
     cell.iconImageView.image = [UIImage imageNamed: [self.cells objectAtIndex:indexPath.row]];
+    
 }
 
 

@@ -81,16 +81,18 @@ static ImageCache *sharedImageCache = nil;
     UIImage* image = [self.imageCache objectForKey:imageName];
     if(!image) {
         image = [self readImageFromDiskWithName:imageName];
-        [self addImage:image withName:imageName];
+        [self addImage:image withName:imageName persist:YES];
     }
     return image;
 }
 
--(void)addImage:(UIImage *)image withName:(NSString *)imageName
+-(void)addImage:(UIImage *)image withName:(NSString *)imageName persist:(BOOL)persist
 {
     if(![self.imageCache objectForKey:imageName] && image && imageName) {
         [self.imageCache setObject:image forKey:imageName];
-        [self storeImageToDisk:image withName:imageName];
+        if(persist) { 
+            [self storeImageToDisk:image withName:imageName];
+        }
     }
 }
 
