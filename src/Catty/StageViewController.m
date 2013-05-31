@@ -24,6 +24,7 @@
 #import "Sparrow.h"
 #import "ProgramManager.h"
 #import "SensorHandler.h"
+#import "Logger.h"
 
 @interface StageViewController () <SpriteManagerDelegate>
 
@@ -230,23 +231,25 @@
 
 - (Program*)loadProgram
 {
-    NSDebug(@"Try to load project '%@'", self.programLoadingInfo.visibleName);
-    NSLog(@"Path: %@", self.programLoadingInfo.basePath);
     
+    [Logger debug:@"Try to load project '%@'", self.programLoadingInfo.visibleName];
+    [Logger debug:@"Path: %@", self.programLoadingInfo.basePath];
+        
 
     NSString *xmlPath = [NSString stringWithFormat:@"%@", self.programLoadingInfo.basePath];
     
-    NSDebug(@"XML-Path: %@", xmlPath);
-
+    [Logger debug:@"XML-Path: %@", xmlPath];
+    
     Parser *parser = [[Parser alloc]init];
     Program *program = [parser generateObjectForLevel:[xmlPath stringByAppendingFormat:@"%@", kProgramCodeFileName]];
                         
     if(!program) {
-        NSLog(@"Program could not be loaded!");
-        abort();
+        [Logger error:@"Program could not be loaded!"];
+        [NSException raise:@"Invalid Program" format:@"Program %@ could not be loaded!",  self.programLoadingInfo.visibleName];
     }
+    
 
-    NSLog(@"ProjectResolution: width/height:  %f / %f", program.header.screenWidth.floatValue, program.header.screenHeight.floatValue);
+    [Logger debug:@"ProjectResolution: width/height:  %f / %f", program.header.screenWidth.floatValue, program.header.screenHeight.floatValue];
 
     self.projectSize = CGSizeMake(program.header.screenWidth.floatValue, program.header.screenHeight.floatValue);
 
@@ -268,7 +271,7 @@
 
 
         // debug:
-        NSLog(@"----------------------");
+        [Logger debug:@"----------------------"];
         NSLog(@"Sprite: %@", sprite.name);
         NSLog(@" ");
         NSLog(@"StartScript:");

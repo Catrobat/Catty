@@ -53,44 +53,45 @@ static Logger* instance;
     return self;
 }
 
--(void) debug:(NSString*)format, ...
+
++(void) debug:(NSString*)format, ...
 {
     va_list args;
     va_start(args, format);
-    [self logAtLevel:debug withFormat:format arguments:args];
+    [[Logger instance] logAtLevel:debug withFormat:format arguments:args];
     va_end(args);
 }
 
--(void) info:(NSString*)format, ...
++(void) info:(NSString*)format, ...
 {
     va_list args;
     va_start(args, format);
-    [self logAtLevel:info withFormat:format arguments:args];
+    [[Logger instance] logAtLevel:info withFormat:format arguments:args];
     va_end(args);
 }
 
--(void) warn:(NSString*)format, ...
++(void) warn:(NSString*)format, ...
 {
     va_list args;
     va_start(args, format);
-    [self logAtLevel:warn withFormat:format arguments:args];
+    [[Logger instance] logAtLevel:warn withFormat:format arguments:args];
     va_end(args);
 }
 
--(void) error:(NSString*)format, ...
++(void) error:(NSString*)format, ...
 {
     va_list args;
     va_start(args, format);
-    [self logAtLevel:error withFormat:format arguments:args];
+    [[Logger instance] logAtLevel:error withFormat:format arguments:args];
     va_end(args);
 }
 
--(void) logError:(NSError*)logError
++(void) logError:(NSError*)logError
 {
     if(logError) {
         NSString* description = [logError localizedDescription];
         if(description) {
-            [self logAtLevel:error withFormat:description arguments:nil];
+            [[Logger instance] logAtLevel:error withFormat:description arguments:nil];
         }
     }
 }

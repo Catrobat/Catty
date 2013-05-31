@@ -260,18 +260,18 @@
     //    NSString *storePath = [NSString stringWithFormat:@"%@/levels/RocketProject", documentsDirectory];
     NSString *storePath = [NSString stringWithFormat:@"%@/levels/%@", self.documentsDirectory, name];
     
-    [[Logger instance] debug:@"Starting unzip"];
+    [Logger debug:@"Starting unzip"];
     
     //unzip file
     [SSZipArchive unzipFileAtPath:tempPath toDestination:storePath];
     
-    [[Logger instance] debug:@"Unzip finished"];
+    [Logger debug:@"Unzip finished"];
     
-    [[Logger instance] debug:@"Removing temp zip file"];
+    [Logger debug:@"Removing temp zip file"];
     
     [[NSFileManager defaultManager] removeItemAtPath:tempPath error:&error];
     
-    [[Logger instance] logError:error];
+    [Logger logError:error];
 
 }
 

@@ -37,13 +37,11 @@ typedef enum  {
 
 @interface Logger : NSObject
 
-+(Logger*) instance;
++(void) debug:(NSString*)format, ...;
++(void) info:(NSString*)format, ...;
++(void) warn:(NSString*)format, ...;
++(void) error:(NSString*)format, ...;
 
--(void) debug:(NSString*)format, ...;
--(void) info:(NSString*)format, ...;
--(void) warn:(NSString*)format, ...;
--(void) error:(NSString*)format, ...;
-
--(void) logError:(NSError*)error;
++(void) logError:(NSError*)error;
 
 @end
