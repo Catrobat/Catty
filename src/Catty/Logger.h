@@ -23,12 +23,28 @@
 
 #import <Foundation/Foundation.h>
 
-@class Program;
 
-@interface ProgramManager : NSObject
+#define kLogLevel     debug
+#define kAbortAtError YES
 
-@property (nonatomic, weak) Program* program;
+typedef enum  {
+    debug,
+    info,
+    warn,
+    error
+} LogLevel;
 
-+(ProgramManager *)sharedProgramManager;
+
+@interface Logger : NSObject
+
++(Logger*) instance;
+
+-(void) logAtLevel:(LogLevel)level withFormat:(NSString*)format arguments:(va_list)args;
+
+-(void) debug:(NSString*)format arguments:(va_list)args;
+-(void) info:(NSString*)format arguments:(va_list)args;
+-(void) warn:(NSString*)format arguments:(va_list)args;
+-(void) error:(NSString*)format arguments:(va_list)args;
+
 
 @end

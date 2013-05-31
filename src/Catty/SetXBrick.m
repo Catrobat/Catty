@@ -8,6 +8,7 @@
 
 #import "Setxbrick.h"
 #import "Formula.h"
+#import "Logger.h"
 
 @implementation Setxbrick
 
@@ -27,6 +28,8 @@
 
 - (void)performFromScript:(Script*)script
 {
+
+    
     NSLog(@"Performing: %@", self.description);
     double xPosition = [self.xPosition interpretDoubleForSprite:self.object];
 

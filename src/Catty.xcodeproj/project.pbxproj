@@ -22,6 +22,12 @@
 		B40C306E170ECC30000B872F /* CatrobatBaseCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B4D940CD170EC903003DDBFA /* CatrobatBaseCell.m */; };
 		B40C3071170ECC49000B872F /* DarkBlueGradientImageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B40C3070170ECC49000B872F /* DarkBlueGradientImageCell.m */; };
 		B43313D717329514008B4EB3 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = B43313D917329514008B4EB3 /* Localizable.strings */; };
+		B4365CDB17589FB300B4D0A6 /* AnimationHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = B4365CDA17589FB300B4D0A6 /* AnimationHandler.m */; };
+		B4365CDC17589FB300B4D0A6 /* AnimationHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = B4365CDA17589FB300B4D0A6 /* AnimationHandler.m */; };
+		B4365CE51758AF8F00B4D0A6 /* Logger.m in Sources */ = {isa = PBXBuildFile; fileRef = B4365CE41758AF8F00B4D0A6 /* Logger.m */; };
+		B4365CE61758AF8F00B4D0A6 /* Logger.m in Sources */ = {isa = PBXBuildFile; fileRef = B4365CE41758AF8F00B4D0A6 /* Logger.m */; };
+		B4365CE91758EBA900B4D0A6 /* LoggerProperties.plist in Resources */ = {isa = PBXBuildFile; fileRef = B4365CE81758EBA900B4D0A6 /* LoggerProperties.plist */; };
+		B4365CEA1758EBA900B4D0A6 /* LoggerProperties.plist in Resources */ = {isa = PBXBuildFile; fileRef = B4365CE81758EBA900B4D0A6 /* LoggerProperties.plist */; };
 		B44F32A01737AC2E00BD97AC /* ProgramManager.m in Sources */ = {isa = PBXBuildFile; fileRef = B44F329F1737AC2E00BD97AC /* ProgramManager.m */; };
 		B44F32A11737AC2E00BD97AC /* ProgramManager.m in Sources */ = {isa = PBXBuildFile; fileRef = B44F329F1737AC2E00BD97AC /* ProgramManager.m */; };
 		B44F32A51737BBB100BD97AC /* SensorHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = B44F32A41737BBB100BD97AC /* SensorHandler.m */; };
@@ -232,6 +238,11 @@
 		B40C3070170ECC49000B872F /* DarkBlueGradientImageCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DarkBlueGradientImageCell.m; sourceTree = "<group>"; };
 		B43313D817329514008B4EB3 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		B43313DA17329546008B4EB3 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Localizable.strings; sourceTree = "<group>"; };
+		B4365CD917589FB300B4D0A6 /* AnimationHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AnimationHandler.h; sourceTree = "<group>"; };
+		B4365CDA17589FB300B4D0A6 /* AnimationHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AnimationHandler.m; sourceTree = "<group>"; };
+		B4365CE31758AF8F00B4D0A6 /* Logger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Logger.h; sourceTree = "<group>"; };
+		B4365CE41758AF8F00B4D0A6 /* Logger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Logger.m; sourceTree = "<group>"; };
+		B4365CE81758EBA900B4D0A6 /* LoggerProperties.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = LoggerProperties.plist; sourceTree = "<group>"; };
 		B44F329E1737AC2E00BD97AC /* ProgramManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProgramManager.h; sourceTree = "<group>"; };
 		B44F329F1737AC2E00BD97AC /* ProgramManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProgramManager.m; sourceTree = "<group>"; };
 		B44F32A31737BBB100BD97AC /* SensorHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SensorHandler.h; sourceTree = "<group>"; };
@@ -666,6 +677,8 @@
 				B400302D170EB46A00396DB7 /* SSZipArchive */,
 				B4D940BB170EC664003DDBFA /* TableUtil */,
 				B400302F170EB4DC00396DB7 /* Util */,
+				B4365CDE17589FB600B4D0A6 /* AnimationHandler */,
+				B4365CE71758AF9200B4D0A6 /* Logger */,
 			);
 			name = Helper;
 			sourceTree = "<group>";
@@ -768,6 +781,25 @@
 				B40C3070170ECC49000B872F /* DarkBlueGradientImageCell.m */,
 			);
 			name = DarkBlueGradientImageCell;
+			sourceTree = "<group>";
+		};
+		B4365CDE17589FB600B4D0A6 /* AnimationHandler */ = {
+			isa = PBXGroup;
+			children = (
+				B4365CD917589FB300B4D0A6 /* AnimationHandler.h */,
+				B4365CDA17589FB300B4D0A6 /* AnimationHandler.m */,
+			);
+			name = AnimationHandler;
+			sourceTree = "<group>";
+		};
+		B4365CE71758AF9200B4D0A6 /* Logger */ = {
+			isa = PBXGroup;
+			children = (
+				B4365CE31758AF8F00B4D0A6 /* Logger.h */,
+				B4365CE41758AF8F00B4D0A6 /* Logger.m */,
+				B4365CE81758EBA900B4D0A6 /* LoggerProperties.plist */,
+			);
+			name = Logger;
 			sourceTree = "<group>";
 		};
 		B44F32A21737AC3100BD97AC /* ProgramManager */ = {
@@ -1813,6 +1845,7 @@
 				B4E94483170F14B0007C5FE0 /* catty_icon_retina.png in Resources */,
 				B4DEFC8D170F463800DD1939 /* TestParserResources in Resources */,
 				B43313D717329514008B4EB3 /* Localizable.strings in Resources */,
+				B4365CE91758EBA900B4D0A6 /* LoggerProperties.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1820,6 +1853,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B4365CEA1758EBA900B4D0A6 /* LoggerProperties.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1951,6 +1985,8 @@
 				B4826F78174D076800F57AE9 /* NoteBrick.m in Sources */,
 				B4826F83174D5BB100F57AE9 /* OrderedMapTable.m in Sources */,
 				B4840CA7174FAC3E002DEC53 /* MoveNStepsBrick.m in Sources */,
+				B4365CDB17589FB300B4D0A6 /* AnimationHandler.m in Sources */,
+				B4365CE51758AF8F00B4D0A6 /* Logger.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1975,6 +2011,8 @@
 				B4826F79174D076800F57AE9 /* NoteBrick.m in Sources */,
 				B4826F84174D5BB100F57AE9 /* OrderedMapTable.m in Sources */,
 				B4840CA8174FAC3E002DEC53 /* MoveNStepsBrick.m in Sources */,
+				B4365CDC17589FB300B4D0A6 /* AnimationHandler.m in Sources */,
+				B4365CE61758AF8F00B4D0A6 /* Logger.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

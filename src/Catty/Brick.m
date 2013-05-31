@@ -9,6 +9,7 @@
 #import "Brick.h"
 #import "Script.h"
 
+
 @implementation Brick
 
 @synthesize object = _sprite;

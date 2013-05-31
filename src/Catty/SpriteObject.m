@@ -29,6 +29,7 @@
 #import "Sound.h"
 #import "Sparrow.h"
 #import "SPImage.h"
+#import "AnimationHandler.h"
 
 @interface SpriteObject()
 
@@ -344,31 +345,37 @@
 - (void)glideToPosition:(CGPoint)position withDurationInSeconds:(float)durationInSeconds fromScript:(Script *)script {
 
     CGPoint newPosition = [self stageCoordinatesForPoint:position];
+    [[AnimationHandler sharedAnimationHandler] glideToPosition:newPosition withDurationInSeconds:durationInSeconds withObject:self];
 
     
-    SPTween *tween = [SPTween tweenWithTarget:self time:durationInSeconds];
-    [tween moveToX:newPosition.x y:newPosition.y];
-    tween.repeatCount = 1;
-    [Sparrow.juggler addObject:tween];
+//    SPTween *tween = [SPTween tweenWithTarget:self time:durationInSeconds];
+//    [tween moveToX:newPosition.x y:newPosition.y];
+//    tween.repeatCount = 1;
+//    [Sparrow.juggler addObject:tween];
 }
 
 
 -(void)changeXBy:(float)x
 {
+    self.position = CGPointMake(self.position.x+x, self.position.y);
     
-    SPTween *tween = [SPTween tweenWithTarget:self time:0.0f];
-    [tween animateProperty:@"x" targetValue:self.x+x];
-    tween.repeatCount = 1;
-    [Sparrow.juggler addObject:tween];
+    //[[AnimationHandler sharedAnimationHandler] changeXBy:x withObject:self];
+    
+//    SPTween *tween = [SPTween tweenWithTarget:self time:0.0f];
+//    [tween animateProperty:@"x" targetValue:self.x+x];
+//    tween.repeatCount = 1;
+//    [Sparrow.juggler addObject:tween];
 
 }
 
 -(void)changeYBy:(float)y
 {
-    SPTween *tween = [SPTween tweenWithTarget:self time:0.0f];
-    [tween animateProperty:@"y" targetValue:self.y-y];
-    tween.repeatCount = 1;
-    [Sparrow.juggler addObject:tween];
+    self.position = CGPointMake(self.position.x, self.position.y+y);
+    //[[AnimationHandler sharedAnimationHandler] changeYBy:y withObject:self];
+//    SPTween *tween = [SPTween tweenWithTarget:self time:0.0f];
+//    [tween animateProperty:@"y" targetValue:self.y-y];
+//    tween.repeatCount = 1;
+//    [Sparrow.juggler addObject:tween];
 }
 
 -(void)broadcast:(NSString *)message

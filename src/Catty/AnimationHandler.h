@@ -23,12 +23,17 @@
 
 #import <Foundation/Foundation.h>
 
-@class Program;
+@class SpriteObject;
 
-@interface ProgramManager : NSObject
+@interface AnimationHandler : NSObject
 
-@property (nonatomic, weak) Program* program;
++(AnimationHandler *)sharedAnimationHandler;
 
-+(ProgramManager *)sharedProgramManager;
+- (void)glideToPosition:(CGPoint)position withDurationInSeconds:(float)durationInSeconds withObject:(SpriteObject*)object;
+
+-(void)changeXBy:(float)x withObject:(SpriteObject*)object;
+
+-(void)changeYBy:(float)y withObject:(SpriteObject*)object;
+
 
 @end

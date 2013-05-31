@@ -8,6 +8,7 @@
 
 #import "Changexbynbrick.h"
 #import "Formula.h"
+#import "Logger.h"
 
 @implementation Changexbynbrick
 
@@ -16,7 +17,9 @@
 
 - (void)performFromScript:(Script*)script
 {
-    NSLog(@"Performing: %@", self.description);
+    //NSLog(@"Performing: %@", self.description);
+    
+    [[Logger instance] logAtLevel:debug withFormat:@"test" arguments:@"hallo"];
     
     double xMov = [self.xMovement interpretDoubleForSprite:self.object];
     [self.object changeXBy:xMov];
