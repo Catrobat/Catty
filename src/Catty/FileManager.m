@@ -9,6 +9,7 @@
 #import "FileManager.h"
 #import "Util.h"
 #import "SSZipArchive.h"
+#import "Logger.h"
 
 @interface FileManager()
 
@@ -259,13 +260,12 @@
     //    NSString *storePath = [NSString stringWithFormat:@"%@/levels/RocketProject", documentsDirectory];
     NSString *storePath = [NSString stringWithFormat:@"%@/levels/%@", self.documentsDirectory, name];
     
-    
-    NSLog(@"Starting unzip");
+    [[Logger instance] debug:@"Starting unzip"];
     
     //unzip file
     [SSZipArchive unzipFileAtPath:tempPath toDestination:storePath];
     
-    NSLog(@"Unzip finished");
+    [[Logger instance] debug:@"Unzip finished %@, %d", @"Hallo", 1];
     
     NSLog(@"Removing temp zip file");
     [[NSFileManager defaultManager] removeItemAtPath:tempPath error:&error];

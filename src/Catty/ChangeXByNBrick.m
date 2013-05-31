@@ -19,7 +19,7 @@
 {
     //NSLog(@"Performing: %@", self.description);
     
-    [[Logger instance] logAtLevel:debug withFormat:@"test" arguments:@"hallo"];
+    //[[Logger instance] logAtLevel:debug withFormat:@"test %@", @"hallo"];
     
     double xMov = [self.xMovement interpretDoubleForSprite:self.object];
     [self.object changeXBy:xMov];

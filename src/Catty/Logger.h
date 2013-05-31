@@ -39,9 +39,7 @@ typedef enum  {
 
 +(Logger*) instance;
 
--(void) logAtLevel:(LogLevel)level withFormat:(NSString*)format arguments:(va_list)args;
-
--(void) debug:(NSString*)format arguments:(va_list)args;
+-(void) debug:(NSString*)format, ...;
 -(void) info:(NSString*)format arguments:(va_list)args;
 -(void) warn:(NSString*)format arguments:(va_list)args;
 -(void) error:(NSString*)format arguments:(va_list)args;

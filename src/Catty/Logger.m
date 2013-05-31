@@ -53,24 +53,36 @@ static Logger* instance;
     return self;
 }
 
--(void) debug:(NSString*)format arguments:(va_list)args
+-(void) debug:(NSString*)format, ...
 {
+    va_list args;
+    va_start(args, format);
     [self logAtLevel:debug withFormat:format arguments:args];
+    va_end(args);
 }
 
--(void) info:(NSString*)format arguments:(va_list)args
+-(void) info:(NSString*)format, ...
 {
+    va_list args;
+    va_start(args, format);
     [self logAtLevel:info withFormat:format arguments:args];
+    va_end(args);
 }
 
--(void) warn:(NSString*)format arguments:(va_list)args
+-(void) warn:(NSString*)format, ...
 {
+    va_list args;
+    va_start(args, format);
     [self logAtLevel:warn withFormat:format arguments:args];
+    va_end(args);
 }
 
--(void) error:(NSString*)format arguments:(va_list)args
+-(void) error:(NSString*)format, ...
 {
+    va_list args;
+    va_start(args, format);
     [self logAtLevel:error withFormat:format arguments:args];
+    va_end(args);
 }
 
 
