@@ -175,6 +175,7 @@
 		CD0CCFDC170CB39700B70036 /* WhenScript.m in Sources */ = {isa = PBXBuildFile; fileRef = CD0CCF47170CB39700B70036 /* WhenScript.m */; };
 		CD639C7B170DF52600FA67DA /* SpriteObject.m in Sources */ = {isa = PBXBuildFile; fileRef = CD639C7A170DF52600FA67DA /* SpriteObject.m */; };
 		CD8CC8BC1724346200239EBF /* ForumWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CD8CC8BB1724346200239EBF /* ForumWebViewController.m */; };
+		CDFEFCB41758CBC8002B5B0E /* IfOnEdgeBounceBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = CDFEFCB31758CBC8002B5B0E /* IfOnEdgeBounceBrick.m */; };
 		DE3F093811B7B9DC009D4DB0 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DE3F093711B7B9DC009D4DB0 /* AVFoundation.framework */; };
 		DE3F093A11B7B9DC009D4DB0 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DE3F093911B7B9DC009D4DB0 /* AudioToolbox.framework */; };
 		DE3F097811B7BABD009D4DB0 /* OpenAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DE3F097711B7BABD009D4DB0 /* OpenAL.framework */; };
@@ -494,6 +495,8 @@
 		CD639C7A170DF52600FA67DA /* SpriteObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpriteObject.m; sourceTree = "<group>"; };
 		CD8CC8BA1724346200239EBF /* ForumWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ForumWebViewController.h; sourceTree = "<group>"; };
 		CD8CC8BB1724346200239EBF /* ForumWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ForumWebViewController.m; sourceTree = "<group>"; };
+		CDFEFCB21758CBC8002B5B0E /* IfOnEdgeBounceBrick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IfOnEdgeBounceBrick.h; sourceTree = "<group>"; };
+		CDFEFCB31758CBC8002B5B0E /* IfOnEdgeBounceBrick.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IfOnEdgeBounceBrick.m; sourceTree = "<group>"; };
 		DE3F093711B7B9DC009D4DB0 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		DE3F093911B7B9DC009D4DB0 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		DE3F097711B7BABD009D4DB0 /* OpenAL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenAL.framework; path = System/Library/Frameworks/OpenAL.framework; sourceTree = SDKROOT; };
@@ -1302,6 +1305,7 @@
 		CD0CCFDD170CB54100B70036 /* Bricks */ = {
 			isa = PBXGroup;
 			children = (
+				CDFEFCB01758CB8E002B5B0E /* IfOnEdgeBounceBrick */,
 				CD0CCFF7170CB8BC00B70036 /* Bricks */,
 				CD0CCFDE170CB5E300B70036 /* BroadcastBrick */,
 				CD0CCFDF170CB5EC00B70036 /* BroadcastWaitBrick */,
@@ -1698,6 +1702,15 @@
 			name = ForumWebViewController;
 			sourceTree = "<group>";
 		};
+		CDFEFCB01758CB8E002B5B0E /* IfOnEdgeBounceBrick */ = {
+			isa = PBXGroup;
+			children = (
+				CDFEFCB21758CBC8002B5B0E /* IfOnEdgeBounceBrick.h */,
+				CDFEFCB31758CBC8002B5B0E /* IfOnEdgeBounceBrick.m */,
+			);
+			name = IfOnEdgeBounceBrick;
+			sourceTree = "<group>";
+		};
 		DE4A3DAB10FFB0DB00FDA492 /* Products */ = {
 			isa = PBXGroup;
 			children = (
@@ -1987,6 +2000,7 @@
 				B4840CA7174FAC3E002DEC53 /* MoveNStepsBrick.m in Sources */,
 				B4365CDB17589FB300B4D0A6 /* AnimationHandler.m in Sources */,
 				B4365CE51758AF8F00B4D0A6 /* Logger.m in Sources */,
+				CDFEFCB41758CBC8002B5B0E /* IfOnEdgeBounceBrick.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
