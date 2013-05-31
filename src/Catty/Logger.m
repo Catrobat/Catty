@@ -85,6 +85,13 @@ static Logger* instance;
     va_end(args);
 }
 
+-(void) logError:(NSError*)logError
+{
+    if(error) {
+        [self logAtLevel:error withFormat:[logError localizedDescription] arguments:nil];
+    }
+}
+
 
 -(void) logAtLevel:(LogLevel)level withFormat:(NSString*)format arguments:(va_list)args
 {
@@ -114,7 +121,7 @@ static Logger* instance;
 
 -(NSString*)classNameForCaller
 {
-    NSString *sourceString = [[NSThread callStackSymbols] objectAtIndex:2];
+    NSString *sourceString = [[NSThread callStackSymbols] objectAtIndex:3];
     NSCharacterSet *separatorSet = [NSCharacterSet characterSetWithCharactersInString:@" -[]+?.,"];
     NSMutableArray *array = [NSMutableArray arrayWithArray:[sourceString  componentsSeparatedByCharactersInSet:separatorSet]];
     [array removeObject:@""];

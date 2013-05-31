@@ -40,9 +40,10 @@ typedef enum  {
 +(Logger*) instance;
 
 -(void) debug:(NSString*)format, ...;
--(void) info:(NSString*)format arguments:(va_list)args;
--(void) warn:(NSString*)format arguments:(va_list)args;
--(void) error:(NSString*)format arguments:(va_list)args;
+-(void) info:(NSString*)format, ...;
+-(void) warn:(NSString*)format, ...;
+-(void) error:(NSString*)format, ...;
 
+-(void) logError:(NSError*)error;
 
 @end

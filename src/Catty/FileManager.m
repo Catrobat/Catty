@@ -265,11 +265,14 @@
     //unzip file
     [SSZipArchive unzipFileAtPath:tempPath toDestination:storePath];
     
-    [[Logger instance] debug:@"Unzip finished %@, %d", @"Hallo", 1];
+    [[Logger instance] debug:@"Unzip finished"];
     
-    NSLog(@"Removing temp zip file");
+    [[Logger instance] debug:@"Removing temp zip file"];
+    
     [[NSFileManager defaultManager] removeItemAtPath:tempPath error:&error];
-    [Util log:error];
+    
+    [[Logger instance] logError:error];
+
 }
 
 
