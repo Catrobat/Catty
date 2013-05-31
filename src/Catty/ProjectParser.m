@@ -33,8 +33,6 @@
 #import "UserVariable.h"
 #import "XMLObjectReference.h"
 #import "OrderedMapTable.h"
-#import "Logger.h"
-
 
 
 // test
@@ -105,13 +103,13 @@
     Program* program = nil;
     @try
     {
-        [Logger info:@"Loading Project..."];
+        NSInfo(@"Loading Project...");
         program = [self parseNode:doc.rootElement withParent:nil];
-        [Logger info:@"Loading done..."];
+        NSInfo(@"Loading done...");
     }
     @catch(NSException* ex)
     {
-        [Logger error:@"Program could not be loaded! %@", [ex description]];
+        NSError(@"Program could not be loaded! %@", [ex description]);
     }
     return program;
 }
@@ -196,7 +194,7 @@
         objc_property_t property = class_getProperty([object class], [child.name UTF8String]);
         if (property) { // check if property exists
             NSString *propertyType = [NSString stringWithUTF8String:property_getTypeString(property)];
-            [Logger debug:@"Property type: %@", propertyType ];
+            NSDebug(@"Property type: %@", propertyType);
             
             if ([propertyType isEqualToString:kParserObjectTypeArray]) {
                 [NSException raise:@"WrongPropertyException" format:@"We need to keep the references at all time, please use NSMutableArray for property: %@", child.name];
@@ -218,7 +216,7 @@
                         if(object) {
                             [arr addObject:object];
                         } else {
-                            [Logger warn:@"Reference Element, could not be parsed!"];
+                            NSWarn(@"Reference Element, could not be parsed!");
                         }
                     } else {
                         [arr addObject:[self parseNode:arrElement withParent:arrayReference]];
@@ -514,7 +512,7 @@
     }
     
     if(lastComponent == nil) {
-        [Logger warn:@"LastComponent is nil: %@", refString];
+        NSWarn(@"LastComponent is nil: %@", refString);
     }
     
     return lastComponent;

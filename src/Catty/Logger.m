@@ -113,13 +113,16 @@ static Logger* instance;
 
 -(BOOL)loggingEnabledForClass:(NSString*)className logLevel:(LogLevel)level
 {
-
+    if(level < self.logLevel) {
+        return NO;
+    }
+    
     id classLvl = [self.loggerProperties objectForKey:className];
     LogLevel classLogLevel = debug;
     if(classLvl) {
         classLogLevel = [self logLevelForString:classLvl];
     }
-    return level >= classLogLevel && level >= self.logLevel;
+    return level >= classLogLevel;
 }
 
 

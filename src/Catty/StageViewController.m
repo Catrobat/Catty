@@ -1,10 +1,25 @@
-//
-//  StageViewController.m
-//  Catty
-//
-//  Created by Mattias Rauter on 03.04.13.
-//
-//
+/**
+ *  Copyright (C) 2010-2013 The Catrobat Team
+ *  (http://developer.catrobat.org/credits)
+ *
+ *  This program is free software: you can redistribute it and/or modify
+ *  it under the terms of the GNU Affero General Public License as
+ *  published by the Free Software Foundation, either version 3 of the
+ *  License, or (at your option) any later version.
+ *
+ *  An additional term exception under section 7 of the GNU Affero
+ *  General Public License, version 3, is available at
+ *  (http://developer.catrobat.org/license_additional_term)
+ *
+ *  This program is distributed in the hope that it will be useful,
+ *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ *  GNU Affero General Public License for more details.
+ *
+ *  You should have received a copy of the GNU Affero General Public License
+ *  along with this program.  If not, see http://www.gnu.org/licenses/.
+ */
+
 
 #import "StageViewController.h"
 #import "Parser.h"
@@ -24,7 +39,7 @@
 #import "Sparrow.h"
 #import "ProgramManager.h"
 #import "SensorHandler.h"
-#import "Logger.h"
+
 
 @interface StageViewController () <SpriteManagerDelegate>
 
@@ -142,32 +157,32 @@
                 }
             }
             // debug:
-            NSLog(@"----------------------");
-            NSLog(@"Sprite: %@", sprite.name);
-            NSLog(@" ");
-            NSLog(@"StartScript:");
+            NSDebug(@"----------------------");
+            NSDebug(@"Sprite: %@", sprite.name);
+            NSDebug(@" ");
+            NSDebug(@"StartScript:");
             for (Script *script in sprite.scriptList) {
                 if ([script isKindOfClass:[Startscript class]]) {
                     for (Brick *brick in [script getAllBricks]) {
-                        NSLog(@"  %@", [brick description]);
+                        NSDebug(@"  %@", [brick description]);
                     }
                 }
             }
             for (Script *script in sprite.scriptList) {
                 if ([script isKindOfClass:[Whenscript class]]) {
-                    NSLog(@" ");
-                    NSLog(@"WhenScript:");
+                    NSDebug(@" ");
+                    NSDebug(@"WhenScript:");
                     for (Brick *brick in [script getAllBricks]) {
-                        NSLog(@"  %@", [brick description]);
+                        NSDebug(@"  %@", [brick description]);
                     }
                 }
             }
             for (Script *script in sprite.scriptList) {
                 if ([script isKindOfClass:[Broadcastscript class]]) {
-                    NSLog(@" ");
-                    NSLog(@"BroadcastScript:");
+                    NSDebug(@" ");
+                    NSDebug(@"BroadcastScript:");
                     for (Brick *brick in [script getAllBricks]) {
-                        NSLog(@"  %@", [brick description]);
+                        NSDebug(@"  %@", [brick description]);
                     }
                 }
             }
@@ -232,13 +247,13 @@
 - (Program*)loadProgram
 {
     
-    [Logger debug:@"Try to load project '%@'", self.programLoadingInfo.visibleName];
-    [Logger debug:@"Path: %@", self.programLoadingInfo.basePath];
+    NSDebug(@"Try to load project '%@'", self.programLoadingInfo.visibleName);
+    NSDebug(@"Path: %@", self.programLoadingInfo.basePath);
         
 
     NSString *xmlPath = [NSString stringWithFormat:@"%@", self.programLoadingInfo.basePath];
     
-    [Logger debug:@"XML-Path: %@", xmlPath];
+    NSDebug(@"XML-Path: %@", xmlPath);
     
     Parser *parser = [[Parser alloc]init];
     Program *program = [parser generateObjectForLevel:[xmlPath stringByAppendingFormat:@"%@", kProgramCodeFileName]];
@@ -249,7 +264,7 @@
     }
     
 
-    [Logger debug:@"ProjectResolution: width/height:  %f / %f", program.header.screenWidth.floatValue, program.header.screenHeight.floatValue];
+    NSDebug(@"ProjectResolution: width/height:  %f / %f", program.header.screenWidth.floatValue, program.header.screenHeight.floatValue);
 
     self.projectSize = CGSizeMake(program.header.screenWidth.floatValue, program.header.screenHeight.floatValue);
 
@@ -267,32 +282,32 @@
             }
         }
 
-        [Logger debug:@"----------------------"];
-        [Logger debug:@"Sprite: %@", sprite.name ];
-        [Logger debug:@" "];
-        [Logger debug:@"StartScript:"];
+        NSDebug(@"----------------------");
+        NSDebug(@"Sprite: %@", sprite.name);
+        NSDebug(@" ");
+        NSDebug(@"StartScript:");
         for (Script *script in sprite.scriptList) {
             if ([script isKindOfClass:[Startscript class]]) {
                 for (Brick *brick in [script getAllBricks]) {
-                    [Logger debug:@"  %@", [brick description]];
+                    NSDebug(@"  %@", [brick description]);
                 }
             }
         }
         for (Script *script in sprite.scriptList) {
             if ([script isKindOfClass:[Whenscript class]]) {
-                [Logger debug:@" "];
-                [Logger debug:@"WhenScript:"];
+                NSDebug(@" ");
+                NSDebug(@"WhenScript:");
                 for (Brick *brick in [script getAllBricks]) {
-                    [Logger debug:@"  %@", [brick description]];
+                    NSDebug(@"  %@", [brick description]);
                 }
             }
         }
         for (Script *script in sprite.scriptList) {
             if ([script isKindOfClass:[Broadcastscript class]]) {
-                [Logger debug:@" "];
-                [Logger debug:@"BroadcastScript:"];
+                NSDebug(@" ");
+                NSDebug(@"BroadcastScript:");
                 for (Brick *brick in [script getAllBricks]) {
-                    [Logger debug:@"  %@", [brick description]];
+                    NSDebug(@"  %@", [brick description]);
                 }
             }
         }

@@ -27,6 +27,10 @@
 #define kLogLevel     debug
 #define kAbortAtError YES
 
+
+// NSDebug(...), NSInfo(...), NSWarn(...), NSError(...) defined in Prefix header. Use these Macros!
+
+
 typedef enum  {
     debug,
     info,
@@ -36,6 +40,7 @@ typedef enum  {
 
 
 @interface Logger : NSObject
+
 
 +(void) debug:(NSString*)format, ...;
 +(void) info:(NSString*)format, ...;

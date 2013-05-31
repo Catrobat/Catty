@@ -16,6 +16,7 @@
 #import "UIColor+CatrobatUIColorExtensions.h"
 #import "CatrobatImageCell.h"
 #import "ImageCache.h"
+#import "Logger.h"
 
 @interface MyProgramsViewController ()
 
@@ -54,7 +55,7 @@
     NSArray *levels = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:levelsPath error:&error];
     [Util log:error];
     
-    NSLog(@"my levels: %@", levels);
+    [Logger debug:@"my levels: %@", levels ];
     
     
     self.levelLoadingInfos = [[NSMutableArray alloc] initWithCapacity:[levels count]];
