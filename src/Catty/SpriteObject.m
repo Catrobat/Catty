@@ -21,6 +21,7 @@
  */
 
 #import "SpriteObject.h"
+#import <tgmath.h>
 #import "BroadcastWaitDelegate.h"
 #import "StartScript.h"
 #import "WhenScript.h"
@@ -332,12 +333,20 @@
 
 -(void)turnLeft:(float)degrees
 {
-    self.rotation -= SP_D2R(degrees);
+    float rotationInDegrees = SP_R2D(self.rotation);
+    rotationInDegrees -= degrees;
+    if (rotationInDegrees < 0.0f) {
+        rotationInDegrees += 360.0f;
+    }
+    self.rotation = SP_D2R(rotationInDegrees);
 }
 
 -(void)turnRight:(float)degrees
 {
-    self.rotation += SP_D2R(degrees);
+    float rotationInDegrees = SP_R2D(self.rotation);
+    rotationInDegrees += degrees;
+    self.rotation = fmodf(self.rotation, 360.0f);
+    self.rotation = SP_D2R(rotationInDegrees);
 }
 
 
@@ -668,11 +677,58 @@
 - (void)moveNSteps:(float)steps
 {
     
-    int xPosition = (int) round(self.position.x) + steps*cos(self.rotation);
+    int xPosition = (int) round(self.position.x + steps*cos(self.rotation));
     
-    int yPosition = (int) round(self.position.y) - steps*sin(self.rotation);
+    int yPosition = (int) round(self.position.y - steps*sin(self.rotation));
     
     self.position = CGPointMake(xPosition, yPosition);
+}
+
+- (void)ifOnEdgeBounce
+{
+    float width = self.width;
+    float height = self.height;
+    int xPosition = self.position.x;
+    int yPosition = self.position.y;
+    
+    int virtualScreenWidth = Sparrow.stage.width/2.0f;
+    int virtualScreenHeight = Sparrow.stage.height/2.0f;
+    
+    float rotation = SP_R2D(self.rotation);
+    
+    if (xPosition < -virtualScreenWidth + width/2.0f) {
+        if (rotation <= 180.0f) {
+            rotation = (180.0f-rotation);
+        } else {
+            rotation = 270.0f + (270.0f - rotation);
+        }
+        xPosition = -virtualScreenWidth + (int) (width / 2.0f);
+        
+    } else if (xPosition > virtualScreenWidth - width / 2.0f) {
+        
+        if (rotation >= 0.0f && rotation < 90.0f) {
+            rotation = 180.0f - rotation;
+        } else {
+            rotation = 180.0f + (360.0f - rotation);
+        }
+        
+        xPosition = virtualScreenWidth - (int) (width / 2.0f);
+    }
+    
+    if (yPosition > virtualScreenHeight - height / 2.0f) {
+        
+        rotation = -rotation;
+        yPosition = virtualScreenHeight - (int) (height / 2.0f);
+        
+    } else if (yPosition < -virtualScreenHeight + height / 2.0f) {
+        
+        rotation = 360.0f - rotation;
+        yPosition = -virtualScreenHeight + (int) (height / 2);
+    }
+    
+    self.rotation = SP_D2R(rotation);
+    self.position = CGPointMake(xPosition, yPosition);
+
 }
 
 
