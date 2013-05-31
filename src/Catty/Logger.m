@@ -87,8 +87,11 @@ static Logger* instance;
 
 -(void) logError:(NSError*)logError
 {
-    if(error) {
-        [self logAtLevel:error withFormat:[logError localizedDescription] arguments:nil];
+    if(logError) {
+        NSString* description = [logError localizedDescription];
+        if(description) {
+            [self logAtLevel:error withFormat:description arguments:nil];
+        }
     }
 }
 
