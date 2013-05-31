@@ -33,6 +33,7 @@
 #import "UserVariable.h"
 #import "XMLObjectReference.h"
 #import "OrderedMapTable.h"
+#import "Logger.h"
 
 
 
@@ -101,7 +102,17 @@
     if (error || !doc) { return nil; }
 
     // parse and return Project object
-    Program* program = [self parseNode:doc.rootElement withParent:nil];
+    Program* program = nil;
+    @try
+    {
+        [Logger info:@"Loading Project..."];
+        program = [self parseNode:doc.rootElement withParent:nil];
+        [Logger info:@"Loading done..."];
+    }
+    @catch(NSException* ex)
+    {
+        [Logger error:@"Program could not be loaded! %@", [ex description]];
+    }
     return program;
 }
 
@@ -119,7 +130,7 @@
 // [in] node: The current GDataXMLElement node of the XML file
 - (id)parseNode:(GDataXMLElement*)node withParent:(XMLObjectReference*)parent {
     
-
+    
     if (!node) { return nil; }
     
     int i = 0;
@@ -161,8 +172,7 @@
     
     id object = [[NSClassFromString(className) alloc] init];
     if (!object) {
-        NSLog(@"Implementation of <%@> NOT FOUND!", className);
-        abort(); // TODO: just for debug
+        [NSException raise:@"ClassNotFoundException" format:@"Implementation of <%@> NOT FOUND!", className];
     }
     
     if([object isKindOfClass:[Program class]]) {
@@ -186,11 +196,10 @@
         objc_property_t property = class_getProperty([object class], [child.name UTF8String]);
         if (property) { // check if property exists
             NSString *propertyType = [NSString stringWithUTF8String:property_getTypeString(property)];
-            NSLog(@"Property type: %@", propertyType);
+            [Logger debug:@"Property type: %@", propertyType ];
             
             if ([propertyType isEqualToString:kParserObjectTypeArray]) {
-                NSLog(@"we need to keep the references at all time, please use NSMutableArray for property: %@", child.name);
-                abort();
+                [NSException raise:@"WrongPropertyException" format:@"We need to keep the references at all time, please use NSMutableArray for property: %@", child.name];
             }
             else if([propertyType isEqualToString:kParserObjectTypeMutableArray]) {
 
@@ -209,7 +218,7 @@
                         if(object) {
                             [arr addObject:object];
                         } else {
-#warning should not happen.. (check why this happens and fix it!)
+                            [Logger warn:@"Reference Element, could not be parsed!"];
                         }
                     } else {
                         [arr addObject:[self parseNode:arrElement withParent:arrayReference]];
@@ -226,12 +235,7 @@
             
         }
         else {
-            NSLog(@"property <%@> does NOT exist in our implementation of <%@>", child.name, className);
-            abort(); // PROPERTY IN IMPLEMENTATION NOT FOUND!!!
-            // THIS SHOULD _NOT_ HAPPEN!
-            // IF THIS HAPPENS, we have forgotten to implement a property in our classes
-            // Check the XML file and search for differences to our implementation
-            // You can see the property which we've to implement by typing 'po child.name' in gdb
+            [NSException raise:@"PropertyNotFoundException" format:@"property <%@> does NOT exist in our implementation of <%@>", child.name, className];
         }
     }
     
@@ -296,10 +300,6 @@
                return [self parseNode:element withParent:parent];
             }
             
-            
-            NSLog(@"NSOBJECT TYPE FOUND");
-            NSLog(@"   SET reference (%@) for %@", refString, element.name);
-            
             // sanity check
             if (!sprite.lookList || sprite.lookList.count == 0) {
                 // SHOULD NOT HAPPEN! NO LOOKS FOUND IN THIS SPRITE
@@ -335,10 +335,7 @@
     }
     else if ([propertyType isEqualToString:kParserObjectTypeSound]) {
         
-        NSString *ref = [element attributeForName:@"reference"].stringValue;
-        NSLog(@"NSOBJECT TYPE FOUND");
-        NSLog(@"   SET reference (%@) for %@", ref, element.name);
-        
+        NSString *ref = [element attributeForName:@"reference"].stringValue;        
         Sound *sound = [self parseNode:element withParent:parent];
         
         
@@ -364,7 +361,6 @@
         }
     }
     else if([propertyType isEqualToString:kParserObjectTypeFormula]) {
-        NSDebug(@"Formula");
         return [self parseFormula:element];
     }
     else if ([propertyType isEqualToString:kParserObjectTypeIfElseBrick]) {
@@ -380,7 +376,7 @@
         return [self parseVariablesContainer:element withParent:parent];
     }
     else {
-        abort(); // TODO: just for debug purposes
+        [NSException raise:@"UnknownPropertyException" format:@"Property Type: %@ not found", propertyType];
     }
     
     return nil;
@@ -401,9 +397,7 @@
 
     }
     else {
-        NSLog(@"Formula could not be found!");
-        abort();
-#warning debug! remove
+        [NSException raise:@"FormulaElementNotFoundException" format:@"Tried to parse Formula, but formula tag not found!"];
         return nil;
     }
 }
@@ -431,8 +425,6 @@
         if(programVariableListArray) {
             GDataXMLElement* programVariableList  = [programVariableListArray objectAtIndex:0];
             variables.programVariableList = [self parseProgramVariableList:programVariableList andParent:ref];
-
-            
         }
     }
 
@@ -445,8 +437,7 @@
 {
     NSString *refString = [element attributeForName:@"reference"].stringValue;
     if (!refString || [refString isEqualToString:@""]) {
-        abort();
-#warning just debug
+        [NSException raise:@"ReferenceException" format:@"Tried to parse Reference Element, but no refString was found!"];
     }
     
     NSArray *components = [refString componentsSeparatedByString:@"/"];
@@ -462,8 +453,7 @@
         
         
         objc_property_t property = class_getProperty([lastComponent class], [pathComponent UTF8String]);
-        if (property) { // check if property exists
-
+        if (property) {
             lastComponent = [lastComponent valueForKey:pathComponent];            
         }
         
@@ -473,8 +463,7 @@
             int index = [self indexForArrayObject:pathComponent];
             
             if (index+1 > [lastComponent count] || index < 0) {
-                abort();
-#warning just debug
+                [NSException raise:@"IndexOutOfBoundsException" format:@"IndexOutOfBounds for lastComponent!"];
             }
             
             lastComponent = [lastComponent objectAtIndex:index];
@@ -483,8 +472,7 @@
             int index = [self indexForArrayObject:pathComponent];
             
             if (index+1 > [lastComponent count] || index < 0) {
-                abort();
-                #warning just debug
+                [NSException raise:@"IndexOutOfBoundsException" format:@"IndexOutOfBounds for lastComponent!"];
             }
             
             i++;
@@ -512,24 +500,21 @@
             int index = [self indexForArrayObject:pathComponent];
             
             if (index+1 > [list count] || index < 0) {
-                abort();
-#warning just debug
+[NSException raise:@"IndexOutOfBoundsException" format:@"IndexOutOfBounds for lastComponent!"];
             }
             
             lastComponent = [list objectAtIndex:index];
                         
         }
-#warning debug
         else {
-            NSLog(@"UNKNOWN Path Component: %@", pathComponent);
-            abort();
+            [NSException raise:@"UnknownPathComponentException" format:@"UNKNOWN Path Component: %@", pathComponent];
         }
 
         
     }
     
     if(lastComponent == nil) {
-        NSLog(@"%@", refString);
+        [Logger warn:@"LastComponent is nil: %@", refString];
     }
     
     return lastComponent;
@@ -557,9 +542,6 @@
         else {
             object = [self parseNode:objectElement withParent:entryRef];
         }
-
-        
-        NSDebug(@"%@", object);
         
         NSArray* listArray = [entry elementsForName:@"list"];
         GDataXMLElement* listElement = [listArray objectAtIndex:0];
@@ -577,7 +559,6 @@
             else {
                 userVariable = [self parseNode:var withParent:listReference];
             }
-            NSDebug(@"%@", var);
             [list addObject:userVariable];
         }
         
@@ -588,7 +569,7 @@
     
 }
 
--(NSArray*)parseProgramVariableList:(GDataXMLElement*)progList andParent:(XMLObjectReference*)parent
+-(NSMutableArray*)parseProgramVariableList:(GDataXMLElement*)progList andParent:(XMLObjectReference*)parent
 {
     NSMutableArray* programVariableList = [[NSMutableArray alloc] initWithCapacity:progList.childCount];
     XMLObjectReference* programVariableRef = [[XMLObjectReference alloc] initWithParent:parent andObject:programVariableList];

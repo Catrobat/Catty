@@ -244,7 +244,7 @@
     Program *program = [parser generateObjectForLevel:[xmlPath stringByAppendingFormat:@"%@", kProgramCodeFileName]];
                         
     if(!program) {
-        [Logger error:@"Program could not be loaded!"];
+#warning Debug - Change to Popup!
         [NSException raise:@"Invalid Program" format:@"Program %@ could not be loaded!",  self.programLoadingInfo.visibleName];
     }
     
@@ -267,36 +267,32 @@
             }
         }
 
-
-
-
-        // debug:
         [Logger debug:@"----------------------"];
-        NSLog(@"Sprite: %@", sprite.name);
-        NSLog(@" ");
-        NSLog(@"StartScript:");
+        [Logger debug:@"Sprite: %@", sprite.name ];
+        [Logger debug:@" "];
+        [Logger debug:@"StartScript:"];
         for (Script *script in sprite.scriptList) {
             if ([script isKindOfClass:[Startscript class]]) {
                 for (Brick *brick in [script getAllBricks]) {
-                    NSLog(@"  %@", [brick description]);
+                    [Logger debug:@"  %@", [brick description]];
                 }
             }
         }
         for (Script *script in sprite.scriptList) {
             if ([script isKindOfClass:[Whenscript class]]) {
-                NSLog(@" ");
-                NSLog(@"WhenScript:");
+                [Logger debug:@" "];
+                [Logger debug:@"WhenScript:"];
                 for (Brick *brick in [script getAllBricks]) {
-                    NSLog(@"  %@", [brick description]);
+                    [Logger debug:@"  %@", [brick description]];
                 }
             }
         }
         for (Script *script in sprite.scriptList) {
             if ([script isKindOfClass:[Broadcastscript class]]) {
-                NSLog(@" ");
-                NSLog(@"BroadcastScript:");
+                [Logger debug:@" "];
+                [Logger debug:@"BroadcastScript:"];
                 for (Brick *brick in [script getAllBricks]) {
-                    NSLog(@"  %@", [brick description]);
+                    [Logger debug:@"  %@", [brick description]];
                 }
             }
         }
