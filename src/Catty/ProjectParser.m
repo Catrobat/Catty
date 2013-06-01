@@ -211,6 +211,7 @@
                 XMLObjectReference* arrayReference = [[XMLObjectReference alloc] initWithParent:ref andObject:arr];
                 
                 for (GDataXMLElement *arrElement in child.children) {
+                    
                     if([self isReferenceElement:arrElement]) {
                         id object = [self parseReferenceElement:arrElement withParent:arrayReference];
                         if(object) {
@@ -362,12 +363,21 @@
         return [self parseFormula:element];
     }
     else if ([propertyType isEqualToString:kParserObjectTypeIfElseBrick]) {
+        if([self isReferenceElement:element]) {
+            return [self parseReferenceElement:element withParent:parent];
+        }
         return [self parseNode:element withParent:parent];
     }
     else if ([propertyType isEqualToString:kParserObjectTypeIfEndBrick]) {
+        if([self isReferenceElement:element]) {
+            return [self parseReferenceElement:element withParent:parent];
+        }
         return [self parseNode:element withParent:parent];
     }
     else if ([propertyType isEqualToString:kParserObjectTypeIfBeginBrick]) {
+        if([self isReferenceElement:element]) {
+            return [self parseReferenceElement:element withParent:parent];
+        }
         return [self parseNode:element withParent:parent];
     }
     else if ([propertyType isEqualToString:kParserObjectTypeVariables]) {

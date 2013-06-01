@@ -151,17 +151,37 @@
         } else if([brick isMemberOfClass:[Iflogicbeginbrick class]]) {
             BOOL condition = [(Iflogicbeginbrick*)brick checkCondition];
             if(!condition) {
+                BOOL found = NO;
                 Brick* elseBrick = nil;
-                while (self.currentBrickIndex < [self.brickList count] && ![elseBrick isMemberOfClass:[Iflogicelsebrick class]]) {
+                int ifcount = 0;
+                while (self.currentBrickIndex < [self.brickList count] && !found) {
                     self.currentBrickIndex++;
                     elseBrick = [self.brickList objectAtIndex:self.currentBrickIndex];
+                    if([elseBrick isMemberOfClass:[Iflogicbeginbrick class]]) {
+                        ifcount++;
+                    }
+                    else if([elseBrick isMemberOfClass:[Iflogicendbrick class]]) {
+                        ifcount--;
+                    }
+                    else if([elseBrick isMemberOfClass:[Iflogicelsebrick class]] && ifcount == 0) {
+                        found = YES;
+                    }
                 }
+                int a = 0;
             }
         } else if([brick isMemberOfClass:[Iflogicelsebrick class]]) {
             Brick* endBrick = nil;
-            while (self.currentBrickIndex < [self.brickList count] && ![endBrick isMemberOfClass:[Iflogicendbrick class]]) {
+            int endcount = 1;
+            int count = self.currentBrickIndex;
+            while (self.currentBrickIndex < [self.brickList count] && ![endBrick isMemberOfClass:[Iflogicendbrick class]] && endcount != 0) {
                 self.currentBrickIndex++;
                 endBrick = [self.brickList objectAtIndex:self.currentBrickIndex];
+                if([endBrick isMemberOfClass:[Iflogicbeginbrick class]]) {
+                    endcount++;
+                }
+                else if([endBrick isMemberOfClass:[Iflogicendbrick class]]) {
+                    endcount--;
+                }
             }
         } else if([brick isMemberOfClass:[Iflogicelsebrick class]]) {
             // No action needed
