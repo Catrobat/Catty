@@ -78,13 +78,15 @@
     [backButton setImage:backImage forState:UIControlStateNormal];
     [self.navigationController.view.superview addSubview:backButton];
     [self.navigationController.tabBarController.view.superview addSubview:backButton];
+    
+    [[UIApplication sharedApplication] setIdleTimerDisabled:YES];
 }
 
 - (void)viewWillDisappear:(BOOL)animated
 {
     [self.navigationController setNavigationBarHidden:NO animated:YES];
     [[SensorHandler sharedSensorHandler] stopSensors];
-    
+    [[UIApplication sharedApplication] setIdleTimerDisabled:NO];
 }
 
 - (void)didReceiveMemoryWarning

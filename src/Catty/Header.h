@@ -25,8 +25,8 @@
 @property (nonatomic, strong) NSString *programLicense;
 @property (nonatomic, strong) NSString *programName;
 @property (nonatomic, strong) NSString *remixOf;
-@property (nonatomic, assign) NSNumber *screenHeight;
-@property (nonatomic, assign) NSNumber *screenWidth;
+@property (nonatomic, strong) NSNumber *screenHeight;
+@property (nonatomic, strong) NSNumber *screenWidth;
 
 @property (nonatomic, strong) NSString *url;
 @property (nonatomic, strong) NSString *userHandle;
