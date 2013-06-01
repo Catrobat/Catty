@@ -28,7 +28,7 @@
 
 - (void)performFromScript:(Script*)script;
 {
-    NSLog(@"Performing: %@", self.description);
+    NSDebug(@"Performing: %@", self.description);
     
     double transparency = [self.changeGhostEffect interpretDoubleForSprite:self.object];
     

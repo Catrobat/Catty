@@ -16,7 +16,7 @@
 
 - (void)performFromScript:(Script*)script
 {
-    NSLog(@"Performing: %@", self.description);
+    NSDebug(@"Performing: %@", self.description);
     
     [self.object performSelectorOnMainThread:@selector(changeLook:) withObject:self.look waitUntilDone:YES];
 }

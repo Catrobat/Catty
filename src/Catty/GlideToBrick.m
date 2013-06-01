@@ -20,7 +20,7 @@
 #pragma mark - override
 -(void)performFromScript:(Script*)script
 {
-    NSLog(@"Performing: %@", self.description);
+    NSDebug(@"Performing: %@", self.description);
 
         
     //GLKVector3 position = GLKVector3Make(self.xDestination.floatValue, self.yDestination.floatValue, 0.0f);

@@ -27,7 +27,7 @@
 
 - (void)performFromScript:(Script*)script
 {
-    NSLog(@"Performing: %@", self.description);
+    NSDebug(@"Performing: %@", self.description);
     
     float yPosition = [self.yPosition interpretDoubleForSprite:self.object];
     

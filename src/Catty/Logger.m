@@ -99,24 +99,22 @@ static Logger* instance;
 
 -(void) logAtLevel:(LogLevel)level withFormat:(NSString*)format arguments:(va_list)args
 {
-    NSString* callerClass = [self classNameForCaller];
-    if([self loggingEnabledForClass:callerClass logLevel:level]) {
-        NSString* log = [[NSString alloc] initWithFormat:format arguments:args];
-        NSLog(@"[%@] %@: %@" ,[self stringForLogLevel:level], callerClass, log);
-    }
-    
-    if(level == error && kAbortAtError) {
-        abort();
+    if(level >= self.logLevel) {
+        NSString* callerClass = [self classNameForCaller];
+        if([self loggingEnabledForClass:callerClass logLevel:level]) {
+            NSString* log = [[NSString alloc] initWithFormat:format arguments:args];
+            NSLog(@"[%@] %@: %@" ,[self stringForLogLevel:level], callerClass, log);
+        }
+        
+        if(level == error && kAbortAtError) {
+            abort();
+        }
     }
 }
 
 
 -(BOOL)loggingEnabledForClass:(NSString*)className logLevel:(LogLevel)level
-{
-    if(level < self.logLevel) {
-        return NO;
-    }
-    
+{    
     id classLvl = [self.loggerProperties objectForKey:className];
     LogLevel classLogLevel = debug;
     if(classLvl) {

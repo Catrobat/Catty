@@ -15,7 +15,7 @@
 
 - (void)performFromScript:(Script*)script
 {
-    //NSLog(@"Performing: %@", self.description);
+    NSDebug(@"Performing: %@", self.description);
     
     double yMov = [self.yMovement interpretDoubleForSprite:self.object];
     [self.object changeYBy:yMov];

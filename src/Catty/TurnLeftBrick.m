@@ -15,7 +15,7 @@
 
 - (void)performFromScript:(Script*)script
 {
-    NSLog(@"Performing: %@", self.description);
+    NSDebug(@"Performing: %@", self.description);
     
     double degrees = [self.degrees interpretDoubleForSprite:self.object];
     

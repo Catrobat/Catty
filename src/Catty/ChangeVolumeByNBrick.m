@@ -19,7 +19,7 @@
 
 -(void)performFromScript:(Script*)script
 {
-    NSLog(@"Performing: %@", self.description);
+    NSDebug(@"Performing: %@", self.description);
     
     double volume = [self.volume interpretDoubleForSprite:self.object];
     

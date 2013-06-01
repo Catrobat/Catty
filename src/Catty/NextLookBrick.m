@@ -12,7 +12,7 @@
 
 - (void)performFromScript:(Script*)script
 {
-    NSLog(@"Performing: %@", self.description);
+    NSDebug(@"Performing: %@", self.description);
     
     [self.object performSelectorOnMainThread:@selector(nextLook) withObject:nil waitUntilDone:YES];
 

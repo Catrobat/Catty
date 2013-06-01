@@ -172,7 +172,7 @@
         for (Script *script in self.scriptList)
         {
             if ([script isKindOfClass:[Whenscript class]]) {
-                NSLog(@"Performing script with action: %@", script.description);
+                NSDebug(@"Performing script with action: %@", script.description);
                 
                 if ([self.activeScripts containsObject:script]) {
                     [script resetScript];

@@ -2,6 +2,20 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>Pointindirectionbrick</key>
+	<string>info</string>
+	<key>Setxbrick</key>
+	<string>info</string>
+	<key>Setvariablebrick</key>
+	<string>info</string>
+	<key>Changevariablebrick</key>
+	<string>info</string>
+	<key>Setybrick</key>
+	<string>info</string>
+	<key>Changeybynbrick</key>
+	<string>info</string>
+	<key>Changexbynbrick</key>
+	<string>info</string>
 	<key>ProjectParser</key>
 	<string>info</string>
 	<key>FileManager</key>

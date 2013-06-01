@@ -30,7 +30,7 @@
 {
 
     
-    NSLog(@"Performing: %@", self.description);
+    NSDebug(@"Performing: %@", self.description);
     double xPosition = [self.xPosition interpretDoubleForSprite:self.object];
 
     self.object.position = CGPointMake(xPosition, self.object.position.y);

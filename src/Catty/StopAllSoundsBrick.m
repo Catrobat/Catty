@@ -13,7 +13,7 @@
 
 - (void)performFromScript:(Script*)script
 {
-    NSLog(@"Performing: %@", self.description);
+    NSDebug(@"Performing: %@", self.description);
     
     [self.object.spriteManagerDelegate stopAllSounds];
     
