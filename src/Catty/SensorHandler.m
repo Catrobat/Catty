@@ -69,50 +69,33 @@ static SensorHandler* sharedSensorHandler = nil;
     
     switch (sensor) {
         case X_ACCELERATION: {
-            abort();
+            result = [self acceleration].x;
+            NSDebug(@"X_ACCELERATION: %f m/s^2", result);
             break;
         }
         case Y_ACCELERATION: {
-            abort();
+            result = [self acceleration].y;
+            NSDebug(@"Y_ACCELERATION: %f m/s^2", result);
             break;
         }
         case Z_ACCELERATION: {
-            abort();
+            result = [self acceleration].z;
+            NSDebug(@"Z_ACCELERATION: %f m/s^2", result);
             break;
         }
         case COMPASS_DIRECTION: {
-            result = [self direction];
-//            CMMagneticField magneticField = [self magneticField];
-//            double x = magneticField.x;
-//            double y = magneticField.y;
-//            double z = magneticField.z;
-//            
-//            if (y > 0) result = 90.0 - atan(x/y)*180.0/M_PI;
-//            if (y < 0) result = 270.0 - atan(x/y)*180.0/M_PI;
-//            if (y == 0 && x < 0) result = 180.0;
-//            if (y == 0 && x > 0) result = 0.0;
-            
+            result = [self direction];            
             break;
         }
         case X_INCLINATION: {
             result = [self xInclination];
-//            double x = [self acceleration].x;       // range -180° to +180°...TODO
-//            result = -(90.0f*x);
             NSDebug(@"X-inclination: %f degrees", result);
-//            if(result >= 360.0 || result <= -360.0) {
-//                abort();
-//            }
             break;
         }
             
         case Y_INCLINATION: {
             result = [self yInclination];
-//            double y = [self acceleration].y;
-//            result = -(90.0f*y);
             NSDebug(@"Y-inclination: %f degrees", result);
-//            if(result >= 360.0 || result <= -360.0) {
-//                abort();
-//            }
             break;
         }
             
