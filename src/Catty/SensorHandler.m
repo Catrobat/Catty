@@ -95,16 +95,24 @@ static SensorHandler* sharedSensorHandler = nil;
             break;
         }
         case X_INCLINATION: {
-            double x = [self acceleration].x;       // range -180° to +180°...TODO
-            result = -(90.0f*x);
+            result = [self xInclination];
+//            double x = [self acceleration].x;       // range -180° to +180°...TODO
+//            result = -(90.0f*x);
             NSDebug(@"X-inclination: %f degrees", result);
+//            if(result >= 360.0 || result <= -360.0) {
+//                abort();
+//            }
             break;
         }
             
         case Y_INCLINATION: {
-            double y = [self acceleration].y;
-            result = -(90.0f*y);
+            result = [self yInclination];
+//            double y = [self acceleration].y;
+//            result = -(90.0f*y);
             NSDebug(@"Y-inclination: %f degrees", result);
+//            if(result >= 360.0 || result <= -360.0) {
+//                abort();
+//            }
             break;
         }
             
@@ -135,6 +143,10 @@ static SensorHandler* sharedSensorHandler = nil;
     }
     
     [self.locationManager stopUpdatingHeading];
+    
+    if([self.motionManager isDeviceMotionActive]) {
+        [self.motionManager stopDeviceMotionUpdates];
+    }
         
 }
 
@@ -169,17 +181,52 @@ static SensorHandler* sharedSensorHandler = nil;
     return self.motionManager.magnetometerData.magneticField;
 }
 
--(float) direction
+-(double) direction
 {
     if([CLLocationManager headingAvailable]) {
         [self.locationManager startUpdatingHeading];
+        [NSThread sleepForTimeInterval:kSensorUpdateInterval];
     }
 
-    float direction = -self.locationManager.heading.trueHeading;
+    double direction = -self.locationManager.heading.trueHeading;
     
     return direction;
 
 }
+
+-(double) xInclination
+{
+    if(![self.motionManager isDeviceMotionActive]) {
+        [self.motionManager startDeviceMotionUpdates];
+        [NSThread sleepForTimeInterval:kSensorUpdateInterval];
+    }
+    double xInclination = -self.motionManager.deviceMotion.attitude.roll;
+    
+    return [self radiansToDegree:xInclination];
+}
+
+-(double) yInclination
+{
+    if(![self.motionManager isDeviceMotionActive]) {
+        [self.motionManager startDeviceMotionUpdates];
+        [NSThread sleepForTimeInterval:kSensorUpdateInterval];
+    }
+    double yInclination = self.motionManager.deviceMotion.attitude.pitch;
+    
+    return [self radiansToDegree:yInclination];
+}
+
+
+-(double) radiansToDegree:(float)rad
+{
+    return rad * 180.0 / M_PI;
+}
+
+-(double) degreeToRadians:(float)deg
+{
+    return deg * M_PI / 180.0;
+}
+
 
 
 
