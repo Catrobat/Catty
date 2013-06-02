@@ -130,7 +130,8 @@ static SensorHandler* sharedSensorHandler = nil;
     if([self.motionManager isDeviceMotionActive]) {
         [self.motionManager stopDeviceMotionUpdates];
     }
-        
+
+    
 }
 
 - (CMRotationRate) rotationRate
@@ -173,6 +174,7 @@ static SensorHandler* sharedSensorHandler = nil;
 
     double direction = -self.locationManager.heading.trueHeading;
     
+
     return direction;
 
 }
@@ -194,9 +196,21 @@ static SensorHandler* sharedSensorHandler = nil;
         [self.motionManager startDeviceMotionUpdates];
         [NSThread sleepForTimeInterval:kSensorUpdateInterval];
     }
+        
     double yInclination = self.motionManager.deviceMotion.attitude.pitch;
     
-    return [self radiansToDegree:yInclination];
+    yInclination =  [self radiansToDegree:yInclination];
+    
+    if(self.acceleration.z > 0) { // Face Down
+        if(yInclination < 0.0) {
+            yInclination = -180.0f - yInclination;
+        }
+        else {
+            yInclination = 180.0f - yInclination;
+        }
+        
+    }
+    return yInclination;
 }
 
 
