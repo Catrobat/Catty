@@ -24,6 +24,7 @@
 #import "SensorHandler.h"
 #import <CoreMotion/CoreMotion.h>
 #import <CoreLocation/CoreLocation.h>
+#import "Util.h"
 
 #define kSensorUpdateInterval 0.8
 
@@ -187,7 +188,7 @@ static SensorHandler* sharedSensorHandler = nil;
     }
     double xInclination = -self.motionManager.deviceMotion.attitude.roll;
     
-    return [self radiansToDegree:xInclination];
+    return [Util radiansToDegree:xInclination];
 }
 
 -(double) yInclination
@@ -199,7 +200,7 @@ static SensorHandler* sharedSensorHandler = nil;
         
     double yInclination = self.motionManager.deviceMotion.attitude.pitch;
     
-    yInclination =  [self radiansToDegree:yInclination];
+    yInclination =  [Util radiansToDegree:yInclination];
     
     if(self.acceleration.z > 0) { // Face Down
         if(yInclination < 0.0) {
@@ -212,20 +213,6 @@ static SensorHandler* sharedSensorHandler = nil;
     }
     return yInclination;
 }
-
-
--(double) radiansToDegree:(float)rad
-{
-    return rad * 180.0 / M_PI;
-}
-
--(double) degreeToRadians:(float)deg
-{
-    return deg * M_PI / 180.0;
-}
-
-
-
 
 
 

@@ -91,6 +91,11 @@
     return _sounds;
 }
 
+-(CGFloat) zIndex
+{
+    return [self.parent childIndex:self];
+}
+
 
 // --- other stuff ---
 

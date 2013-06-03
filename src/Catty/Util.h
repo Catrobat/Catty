@@ -33,5 +33,9 @@
 
 + (void) setLastProgram:(NSString*)visibleName;
 
++(double) radiansToDegree:(float)rad;
+
++(double) degreeToRadians:(float)deg;
+
 
 @end

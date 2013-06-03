@@ -28,7 +28,7 @@
 #import "SensorHandler.h"
 #import "SpriteObject.h"
 #import "NSString+CatrobatNSStringExtensions.h"
-
+#import "Util.h"
 
 
 @implementation FormulaElement
@@ -104,7 +104,7 @@
         }
             
         default:
-            NSLog(@"Unknown Type: %d", self.type);
+            NSError(@"Unknown Type: %d", self.type);
             abort();
             break;
     }
@@ -126,23 +126,23 @@
     
     switch (function) {
         case SIN: {
-            abort();
+            result = sin([Util degreeToRadians:left]);
             break;
         }
         case COS: {
-            abort();
+            result = cos([Util degreeToRadians:left]);
             break;
         }
         case TAN: {
-            abort();
+            result = tan([Util degreeToRadians:left]);
             break;
         }
         case LN: {
-            abort();
+            result = log(left);
             break;
         }
         case LOG: {
-            abort();
+            result = log10(left);
             break;
         }
         case SQRT: {
@@ -188,7 +188,7 @@
             break;
         }
         case PI_F: {
-            result = PI;
+            result = M_PI;
             break;
         }
             
@@ -221,10 +221,11 @@
                 break;
             }
             case EQUAL: {
-                result = left == right ? 1.0 : 0.0; //TODO Double equality, may round first?
+                result = left == right ? 1.0 : 0.0; //TODO Double equality, maybe round first?
                 break;
             }
             case NOT_EQUAL: {
+                result = left == right ? 0.0 : 1.0; //TODO Double equality, maybe round first?
                 abort();
                 break;
             }
@@ -257,7 +258,11 @@
                 break;
             }
             case DIVIDE: {
-                result = left / right;
+                if(right > 0.0 || right < 0.0) {
+                    result = left / right;
+                } else {
+                    result = left;
+                }
                 break;
             }
             case MOD: {
@@ -265,7 +270,7 @@
                 break;
             }
             case POW: {
-                abort();
+                result = pow(left, right);
                 break;
             }
 
@@ -286,7 +291,7 @@
             }
                 
             case LOGICAL_NOT: {
-                abort();
+                result = right == 0.0 ? 1.0 : 0.0;
                 break;
             }
                 
@@ -316,7 +321,7 @@
             break;
         }
         case LOOK_GHOSTEFFECT: {
-            abort();
+            result = sprite.alpha;
             break;
         }
         case LOOK_BRIGHTNESS: {
@@ -324,15 +329,15 @@
             break;
         }
         case LOOK_SIZE: {
-            abort();
+            result = sprite.scaleX;
             break;
         }
         case LOOK_ROTATION: {
-            abort();
+            result = sprite.rotation;
             break;
         }
         case LOOK_LAYER: {
-            abort();
+            result = sprite.zIndex;
             break;
         }
             

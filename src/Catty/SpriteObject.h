@@ -46,6 +46,8 @@
 
 @property (nonatomic, strong) NSMutableArray *scriptList;
 
+@property (nonatomic, assign) CGFloat zIndex;
+
 
 
 - (NSString*)description;

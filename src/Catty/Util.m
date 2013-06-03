@@ -121,4 +121,15 @@
 }
 
 
++(double) radiansToDegree:(float)rad
+{
+    return rad * 180.0 / M_PI;
+}
+
++(double) degreeToRadians:(float)deg
+{
+    return deg * M_PI / 180.0;
+}
+
+
 @end
