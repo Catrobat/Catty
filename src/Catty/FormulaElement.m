@@ -217,7 +217,7 @@
                 break;
             }
             case LOGICAL_OR: {
-                abort();
+                result = left != 0.0 || right != 0.0 ? 1.0 : 0.0;
                 break;
             }
             case EQUAL: {
@@ -226,7 +226,6 @@
             }
             case NOT_EQUAL: {
                 result = left == right ? 0.0 : 1.0; //TODO Double equality, maybe round first?
-                abort();
                 break;
             }
             case SMALLER_OR_EQUAL: {
