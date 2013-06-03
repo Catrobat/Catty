@@ -12,7 +12,7 @@
 
 @interface Brick : NSObject
 
-@property (nonatomic, strong) SpriteObject *object;
+@property (nonatomic, weak) SpriteObject *object;
 
 - (id)initWithSprite:(SpriteObject*)sprite;
 
