@@ -56,7 +56,7 @@
 // events
 - (void)start;
 - (void)scriptFinished:(Script*)script;
-- (void)stopAllScripts;
+- (void)cleanup;
 - (void)onImageTouched:(SPTouchEvent*)event;
 
 - (void)performBroadcastWaitScript_calledFromBroadcastWaitDelegate_withMessage:(NSString *)message;

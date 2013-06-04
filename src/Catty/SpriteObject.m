@@ -133,7 +133,6 @@
                 NSLog(@"ERROR: BroadcastWaitDelegate not set! abort()");
                 abort();
             }
-            
             [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(performBroadcastScript:) name:broadcastScript.receivedMessage object:nil];
         }
     }
@@ -279,12 +278,14 @@
     [self.activeScripts removeObject:script];
 }
 
--(void)stopAllScripts
+-(void)cleanup
 {
+    [self stopAllSounds];
     for (Script *script in self.activeScripts) {
         [script stopScript];
     }
     self.activeScripts = nil;
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 

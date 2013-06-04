@@ -330,8 +330,7 @@
 {
     // stop program
     for (SpriteObject *sprite in self.program.objectList) {
-        [sprite stopAllScripts];
-        [sprite stopAllSounds];
+        [sprite cleanup];
     }
     
     [self.program.objectList removeAllObjects];
