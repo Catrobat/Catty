@@ -46,7 +46,7 @@
 
 +(void)initNavigationItem:(UINavigationItem*)navigationItem withTitle:(NSString*)title enableBackButton:(BOOL)backButtonEnabled target:(id)target{
     
-    UIImageView *imageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"catrobat"]];
+    UIImageView *imageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"menu_icon"]];
     UILabel* titleLabel = [[UILabel alloc] init];
     titleLabel.textColor = [UIColor blueGrayColor];
     titleLabel.font = [UIFont boldSystemFontOfSize:18.0f];
