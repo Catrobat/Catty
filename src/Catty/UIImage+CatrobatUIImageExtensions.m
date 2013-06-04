@@ -23,11 +23,12 @@
 #import "UIImage+CatrobatUIImageExtensions.h"
 #import "ImageCache.h"
 
+
 #define kImageDownloadQueue "at.tugraz.ist.catrobat.ImageDownloadQueue"
 
 @interface UIImage()
 
-@property (readwrite, strong, nonatomic) __attribute__((NSObject)) dispatch_queue_t imageCacheQueue;
+@property (readwrite, strong, nonatomic) dispatch_queue_t imageCacheQueue;
 
 @end
 

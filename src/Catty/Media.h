@@ -5,6 +5,9 @@
 
 #import <Foundation/Foundation.h>
 
+@class SPTexture;
+@class SPSoundChannel;
+
 @interface Media : NSObject 
 
 + (void)initAtlas;

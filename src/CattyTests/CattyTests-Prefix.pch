@@ -1,8 +1,28 @@
 //
-// Prefix header for all source files of the 'CattyTests' target in the 'CattyTests' project
+// Prefix header for all source files of the project
 //
 
 #ifdef __OBJC__
-    #import <UIKit/UIKit.h>
-    #import <Foundation/Foundation.h>
+
+#import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
+
+#import "Sparrow.h"
+#import "Media.h"
+#import "Logger.h"
+
+#ifdef DEBUG
+#define NSDebug(...) [Logger debug:__VA_ARGS__];
+//#define NSDebug(...) NSLog(@"[DEBUG]: %@", [NSString stringWithFormat:__VA_ARGS__]);
+//#define NSDebug(...) NSLog(__VA_ARGS__);
+//#define NSDebug(...)
+#else
+#define NSDebug(...)
+#endif
+
+#define NSInfo(...) [Logger info:__VA_ARGS__];
+#define NSWarn(...) [Logger warn:__VA_ARGS__];
+#define NSError(...) [Logger error:__VA_ARGS__];
+
+
 #endif

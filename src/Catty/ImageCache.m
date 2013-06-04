@@ -32,7 +32,7 @@
 
 @property (nonatomic, strong) NSCache *imageCache;
 @property (nonatomic, strong) NSString* imageCachePath;
-@property (readwrite, strong, nonatomic) __attribute__((NSObject)) dispatch_queue_t imageCacheQueue;
+@property (readwrite, strong, nonatomic) dispatch_queue_t imageCacheQueue;
 
 @end
 

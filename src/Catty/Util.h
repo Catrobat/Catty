@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <QuartzCore/QuartzCore.h>
 
 //timeout for nsurlrequests
 #define TIMEOUT 30.0f

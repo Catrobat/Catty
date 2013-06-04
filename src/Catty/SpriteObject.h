@@ -21,6 +21,7 @@
  */
 
 #import "SPImage.h"
+#import "SPTouchEvent.h"
 
 @class Script;
 @class Look;

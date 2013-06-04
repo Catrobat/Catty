@@ -7,6 +7,7 @@
 #import "Program.h"
 #import "SPStage.h"
 #import "SpriteObject.h"
+#import "Media.h"
 
 // --- private interface ---------------------------------------------------------------------------
 
