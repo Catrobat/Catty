@@ -171,8 +171,6 @@
 {
     NSSet *touches = [event touchesWithTarget:self andPhase:SPTouchPhaseBegan];
     if ([touches anyObject]) {
-        NSLog(@"TOUCHED");
-
         for (Script *script in self.scriptList)
         {
             if ([script isKindOfClass:[Whenscript class]]) {

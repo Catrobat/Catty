@@ -1445,7 +1445,6 @@
 		CD0CCFDD170CB54100B70036 /* Bricks */ = {
 			isa = PBXGroup;
 			children = (
-				CDFEFCB01758CB8E002B5B0E /* IfOnEdgeBounceBrick */,
 				CD0CCFF7170CB8BC00B70036 /* Bricks */,
 				CD0CCFDE170CB5E300B70036 /* BroadcastBrick */,
 				CD0CCFDF170CB5EC00B70036 /* BroadcastWaitBrick */,
@@ -1459,7 +1458,9 @@
 				CD0CCFE8170CB6B400B70036 /* GoNStepsBackBrick */,
 				CD0CCFE9170CB6C100B70036 /* HideBrick */,
 				B402288E1732A334004C4942 /* IfBricks */,
+				CDFEFCB01758CB8E002B5B0E /* IfOnEdgeBounceBrick */,
 				CD0CCFE6170CB69800B70036 /* LoopBricks */,
+				B4840CAA174FAC42002DEC53 /* MoveNStepsBrick */,
 				CD0CCFEA170CB6C800B70036 /* NextLookBrick */,
 				B4826F7B174D079E00F57AE9 /* NoteBrick */,
 				CD0CCFEB170CB6D200B70036 /* PlaceAtBrick */,
@@ -1475,7 +1476,6 @@
 				CD0CCFEC170CB6DC00B70036 /* SoundBricks */,
 				CD0CCFF3170CB77800B70036 /* TurnBricks */,
 				CD0CCFF4170CB78000B70036 /* WaitBrick */,
-				B4840CAA174FAC42002DEC53 /* MoveNStepsBrick */,
 			);
 			name = Bricks;
 			sourceTree = "<group>";
