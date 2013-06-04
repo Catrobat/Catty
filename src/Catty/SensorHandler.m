@@ -33,10 +33,11 @@
 @property (nonatomic, strong) CMMotionManager* motionManager;
 @property (nonatomic, strong) CLLocationManager* locationManager;
 
+
 @end
 
-
 @implementation SensorHandler
+
 
 static SensorHandler* sharedSensorHandler = nil;
 
@@ -65,7 +66,7 @@ static SensorHandler* sharedSensorHandler = nil;
 }
 
 
--(double) getValueForSensor:(Sensor)sensor {
+-(double) valueForSensor:(Sensor)sensor {
     double result = 0;
     
     switch (sensor) {
@@ -213,8 +214,6 @@ static SensorHandler* sharedSensorHandler = nil;
     }
     return yInclination;
 }
-
-
 
 
 

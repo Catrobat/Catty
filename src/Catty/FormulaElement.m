@@ -26,6 +26,7 @@
 #import "VariablesContainer.h"
 #import "UserVariable.h"
 #import "SensorHandler.h"
+#import "SensorManager.h"
 #import "SpriteObject.h"
 #import "NSString+CatrobatNSStringExtensions.h"
 #import "Util.h"
@@ -88,11 +89,11 @@
             
         case SENSOR: {
             //NSDebug(@"SENSOR");
-            Sensor sensor = [self sensorForString:self.value];
-            if([self isLookSensor:sensor]) {
+            Sensor sensor = [SensorManager sensorForString:self.value];
+            if([SensorManager isLookSensor:sensor]) {
                 result = [self interpretLookSensor:sensor forSprite:sprite];
             } else {
-                result = [[SensorHandler sharedSensorHandler] getValueForSensor:sensor];
+                result = [[SensorHandler sharedSensorHandler] valueForSensor:sensor];
             }
             break;
         }
@@ -438,66 +439,6 @@
     }
     
     return -1;
-}
-
-
--(Sensor) sensorForString:(NSString*)sensor
-{
-    if([sensor isEqualToString:@"X_ACCELERATION"]) {
-        return X_ACCELERATION;
-    }
-    if([sensor isEqualToString:@"Y_ACCELERATION"]) {
-        return Y_ACCELERATION;
-    }
-    if([sensor isEqualToString:@"Z_ACCELERATION"]) {
-        return Z_ACCELERATION;
-    }
-    if([sensor isEqualToString:@"COMPASS_DIRECTION"]) {
-        return COMPASS_DIRECTION;
-    }
-    if([sensor isEqualToString:@"X_INCLINATION"]) {
-        return X_INCLINATION;
-    }
-    if([sensor isEqualToString:@"Y_INCLINATION"]) {
-        return Y_INCLINATION;
-    }
-    if([sensor isEqualToString:@"LOOK_X"]) {
-        return LOOK_X;
-    }
-    if([sensor isEqualToString:@"LOOK_Y"]) {
-        return LOOK_Y;
-    }
-    if([sensor isEqualToString:@"LOOK_GHOSTEFFECT"]) {
-        return LOOK_GHOSTEFFECT;
-    }
-    if([sensor isEqualToString:@"LOOK_BRIGHTNESS"]) {
-        return LOOK_BRIGHTNESS;
-    }
-    if([sensor isEqualToString:@"LOOK_SIZE"]) {
-        return LOOK_SIZE;
-    }
-    if([sensor isEqualToString:@"LOOK_ROTATION"]) {
-        return LOOK_ROTATION;
-    }
-    if([sensor isEqualToString:@"LOOK_LAYER"]) {
-        return LOOK_LAYER;
-    }
-
-    return -1;
-}
-
--(BOOL) isLookSensor:(Sensor)sensor
-{
-    if(sensor == LOOK_BRIGHTNESS ||
-       sensor == LOOK_GHOSTEFFECT ||
-       sensor == LOOK_LAYER ||
-       sensor == LOOK_ROTATION ||
-       sensor == LOOK_SIZE ||
-       sensor == LOOK_X ||
-       sensor == LOOK_Y) {
-        return YES;
-    }
-    return NO;
 }
 
 

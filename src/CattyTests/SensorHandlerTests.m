@@ -118,6 +118,17 @@
     STAssertTrue(isNotZero, @"It's very unlikely that z is really zero!");
 }
 
+-(void)test_valueForSensor
+{
+    SensorHandler* sensorHandler = [SensorHandler sharedSensorHandler];
+    
+    for(int sensor=X_ACCELERATION; sensor < LOOK_LAYER; sensor++) {
+        BOOL isNotZero = [sensorHandler valueForSensor:sensor] != 0.0;
+        STAssertTrue(isNotZero, @"It's very unlikely that the sensor (%@) really returned zero!", [SensorManager stringForSensor:sensor]);
+    }
+    
+}
+
 
 
 -(void)test_stopSensors

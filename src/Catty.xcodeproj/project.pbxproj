@@ -218,6 +218,8 @@
 		B4D940D9170ECB31003DDBFA /* My first project.catrobat in Resources */ = {isa = PBXBuildFile; fileRef = B4D940D6170ECAFF003DDBFA /* My first project.catrobat */; };
 		B4D940DC170ECB65003DDBFA /* ContinueImageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B4D940DB170ECB65003DDBFA /* ContinueImageCell.m */; };
 		B4D940E0170ECB8B003DDBFA /* DarkBlueGradientCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B4D940DF170ECB8B003DDBFA /* DarkBlueGradientCell.m */; };
+		B4DA23D1175E26550079B381 /* SensorManager.m in Sources */ = {isa = PBXBuildFile; fileRef = B4DA23D0175E26550079B381 /* SensorManager.m */; };
+		B4DA23D2175E26550079B381 /* SensorManager.m in Sources */ = {isa = PBXBuildFile; fileRef = B4DA23D0175E26550079B381 /* SensorManager.m */; };
 		B4DEFC87170F44D900DD1939 /* CattyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B4DEFC86170F44D900DD1939 /* CattyViewController.m */; };
 		B4DEFC8D170F463800DD1939 /* TestParserResources in Resources */ = {isa = PBXBuildFile; fileRef = B4DEFC8C170F463700DD1939 /* TestParserResources */; };
 		B4DEFC90170F464200DD1939 /* TestParser.m in Sources */ = {isa = PBXBuildFile; fileRef = B4DEFC8F170F464200DD1939 /* TestParser.m */; };
@@ -480,6 +482,8 @@
 		B4D940DB170ECB65003DDBFA /* ContinueImageCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContinueImageCell.m; sourceTree = "<group>"; };
 		B4D940DE170ECB8B003DDBFA /* DarkBlueGradientCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DarkBlueGradientCell.h; sourceTree = "<group>"; };
 		B4D940DF170ECB8B003DDBFA /* DarkBlueGradientCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DarkBlueGradientCell.m; sourceTree = "<group>"; };
+		B4DA23CF175E26550079B381 /* SensorManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SensorManager.h; sourceTree = "<group>"; };
+		B4DA23D0175E26550079B381 /* SensorManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SensorManager.m; sourceTree = "<group>"; };
 		B4DEFC85170F44D900DD1939 /* CattyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CattyViewController.h; sourceTree = "<group>"; };
 		B4DEFC86170F44D900DD1939 /* CattyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CattyViewController.m; sourceTree = "<group>"; };
 		B4DEFC8C170F463700DD1939 /* TestParserResources */ = {isa = PBXFileReference; lastKnownFileType = folder; path = TestParserResources; sourceTree = "<group>"; };
@@ -945,6 +949,8 @@
 			children = (
 				B44F32A31737BBB100BD97AC /* SensorHandler.h */,
 				B44F32A41737BBB100BD97AC /* SensorHandler.m */,
+				B4DA23CF175E26550079B381 /* SensorManager.h */,
+				B4DA23D0175E26550079B381 /* SensorManager.m */,
 			);
 			name = SensorHandler;
 			sourceTree = "<group>";
@@ -962,6 +968,7 @@
 			isa = PBXGroup;
 			children = (
 				B44F32AB1737BBE100BD97AC /* SensorTests */,
+				B4DA23CD175E1F1E0079B381 /* FormulaTests */,
 				B45030A9170F22EF009265D6 /* CattyTests.h */,
 				B45030AA170F22EF009265D6 /* CattyTests.m */,
 				B45030A4170F22EF009265D6 /* Supporting Files */,
@@ -1339,6 +1346,13 @@
 				B4D940DF170ECB8B003DDBFA /* DarkBlueGradientCell.m */,
 			);
 			name = DarkBlueGradientCell;
+			sourceTree = "<group>";
+		};
+		B4DA23CD175E1F1E0079B381 /* FormulaTests */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = FormulaTests;
 			sourceTree = "<group>";
 		};
 		B4DEFC89170F456D00DD1939 /* GDataXMLNode */ = {
@@ -2128,6 +2142,7 @@
 				B4365CDB17589FB300B4D0A6 /* AnimationHandler.m in Sources */,
 				B4365CE51758AF8F00B4D0A6 /* Logger.m in Sources */,
 				CDFEFCB41758CBC8002B5B0E /* IfOnEdgeBounceBrick.m in Sources */,
+				B4DA23D1175E26550079B381 /* SensorManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2245,6 +2260,7 @@
 				B405BAC1175DCA2A00B1A0FC /* AnimationHandler.m in Sources */,
 				B405BAC2175DCA2A00B1A0FC /* Logger.m in Sources */,
 				B405BAC3175DCA2A00B1A0FC /* IfOnEdgeBounceBrick.m in Sources */,
+				B4DA23D2175E26550079B381 /* SensorManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -22,36 +22,22 @@
 
 #import <Foundation/Foundation.h>
 #import <CoreMotion/CoreMotion.h>
-
-typedef enum {
-    X_ACCELERATION,
-    Y_ACCELERATION,
-    Z_ACCELERATION,
-    COMPASS_DIRECTION,
-    X_INCLINATION,
-    Y_INCLINATION,
-    LOOK_X,
-    LOOK_Y,
-    LOOK_GHOSTEFFECT,
-    LOOK_BRIGHTNESS,
-    LOOK_SIZE,
-    LOOK_ROTATION,
-    LOOK_LAYER
-} Sensor;
+#import "SensorManager.h"
 
 
 @interface SensorHandler : NSObject
 
 
-+ (SensorHandler *) sharedSensorHandler;
-
++ (SensorHandler*) sharedSensorHandler;
 
 - (CMRotationRate) rotationRate;
 - (CMAcceleration) acceleration;
 - (CMMagneticField) magneticField;
 
-- (double) getValueForSensor:(Sensor)sensor;
+- (double) valueForSensor:(Sensor)sensor;
 
 - (void) stopSensors;
+
+
 
 @end
