@@ -230,6 +230,8 @@
 		B4F243C8170EBD7B007A071D /* iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B4F243C7170EBD7B007A071D /* iPhone.storyboard */; };
 		B4F243CF170EBF8F007A071D /* back.png in Resources */ = {isa = PBXBuildFile; fileRef = B4F243CD170EBF8F007A071D /* back.png */; };
 		B4F243D0170EBF8F007A071D /* back@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B4F243CE170EBF8F007A071D /* back@2x.png */; };
+		B4F499B0175E8387002E1BBD /* PullableView.m in Sources */ = {isa = PBXBuildFile; fileRef = B4F499AF175E8387002E1BBD /* PullableView.m */; };
+		B4F499B1175E8387002E1BBD /* PullableView.m in Sources */ = {isa = PBXBuildFile; fileRef = B4F499AF175E8387002E1BBD /* PullableView.m */; };
 		CD0CCF51170CB39700B70036 /* BaseSprite.m in Sources */ = {isa = PBXBuildFile; fileRef = CD0CCE5E170CB39600B70036 /* BaseSprite.m */; };
 		CD0CCF52170CB39700B70036 /* Brick.m in Sources */ = {isa = PBXBuildFile; fileRef = CD0CCE60170CB39600B70036 /* Brick.m */; };
 		CD0CCF53170CB39700B70036 /* BroadcastBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = CD0CCE62170CB39600B70036 /* BroadcastBrick.m */; };
@@ -503,6 +505,8 @@
 		B4F243CC170EBEF7007A071D /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		B4F243CD170EBF8F007A071D /* back.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = back.png; sourceTree = "<group>"; };
 		B4F243CE170EBF8F007A071D /* back@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "back@2x.png"; sourceTree = "<group>"; };
+		B4F499AE175E8387002E1BBD /* PullableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PullableView.h; sourceTree = "<group>"; };
+		B4F499AF175E8387002E1BBD /* PullableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PullableView.m; sourceTree = "<group>"; };
 		CD0CCE5D170CB39600B70036 /* BaseSprite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseSprite.h; sourceTree = "<group>"; };
 		CD0CCE5E170CB39600B70036 /* BaseSprite.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseSprite.m; sourceTree = "<group>"; };
 		CD0CCE5F170CB39600B70036 /* Brick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Brick.h; sourceTree = "<group>"; };
@@ -1236,6 +1240,7 @@
 				B40C3072170ECC53000B872F /* DarkBlueGradientImageCell */,
 				B4BCF438170ED5DB008EDF3A /* LoadingView */,
 				B4BCF41E170ED3B7008EDF3A /* TTTAttributedLabel */,
+				B4F499B3175E838B002E1BBD /* PullableView */,
 			);
 			name = UserInterface;
 			sourceTree = "<group>";
@@ -1385,6 +1390,15 @@
 				CD0CCEEB170CB39700B70036 /* Parser.m */,
 			);
 			name = Parser;
+			sourceTree = "<group>";
+		};
+		B4F499B3175E838B002E1BBD /* PullableView */ = {
+			isa = PBXGroup;
+			children = (
+				B4F499AE175E8387002E1BBD /* PullableView.h */,
+				B4F499AF175E8387002E1BBD /* PullableView.m */,
+			);
+			name = PullableView;
 			sourceTree = "<group>";
 		};
 		CD0CCE37170C9F9300B70036 /* Storyboard */ = {
@@ -2151,6 +2165,7 @@
 				B4365CE51758AF8F00B4D0A6 /* Logger.m in Sources */,
 				CDFEFCB41758CBC8002B5B0E /* IfOnEdgeBounceBrick.m in Sources */,
 				B4DA23D1175E26550079B381 /* SensorManager.m in Sources */,
+				B4F499B0175E8387002E1BBD /* PullableView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2269,6 +2284,7 @@
 				B405BAC2175DCA2A00B1A0FC /* Logger.m in Sources */,
 				B405BAC3175DCA2A00B1A0FC /* IfOnEdgeBounceBrick.m in Sources */,
 				B4DA23D2175E26550079B381 /* SensorManager.m in Sources */,
+				B4F499B1175E8387002E1BBD /* PullableView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

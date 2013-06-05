@@ -20,15 +20,8 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import <UIKit/UIKit.h>
+#import "PullableView.h"
 
-@interface LoadingView : UIView
-
-
-- (id)init;
-
-- (void)show;
-
-- (void)hide;
+@implementation PullableView
 
 @end
