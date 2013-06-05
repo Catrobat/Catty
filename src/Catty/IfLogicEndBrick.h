@@ -28,8 +28,14 @@
 
 @interface Iflogicendbrick : Brick
 
+#warning check which properties are correct!
+
 @property (nonatomic, weak) Iflogicbeginbrick* ifBeginBrick;
 @property (nonatomic, weak) Iflogicelsebrick* ifElseBrick;
+
+
+@property (nonatomic, weak) Iflogicbeginbrick* beginBrick;
+@property (nonatomic, weak) Iflogicelsebrick* elseBrick;
 
 
 @end

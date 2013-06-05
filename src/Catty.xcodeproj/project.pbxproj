@@ -56,7 +56,6 @@
 		B405BA72175DCA2A00B1A0FC /* ComeToFrontBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = CD0CCE86170CB39600B70036 /* ComeToFrontBrick.m */; };
 		B405BA73175DCA2A00B1A0FC /* FileManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CD0CCE9E170CB39600B70036 /* FileManager.m */; };
 		B405BA74175DCA2A00B1A0FC /* ForeverBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = CD0CCEA0170CB39600B70036 /* ForeverBrick.m */; };
-		B405BA75175DCA2A00B1A0FC /* GDataXMLNode.m in Sources */ = {isa = PBXBuildFile; fileRef = CD0CCEA2170CB39600B70036 /* GDataXMLNode.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		B405BA76175DCA2A00B1A0FC /* GlideToBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = CD0CCEA4170CB39600B70036 /* GlideToBrick.m */; };
 		B405BA77175DCA2A00B1A0FC /* GoNStepsBackBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = CD0CCEA6170CB39600B70036 /* GoNStepsBackBrick.m */; };
 		B405BA78175DCA2A00B1A0FC /* Header.m in Sources */ = {isa = PBXBuildFile; fileRef = CD0CCEA8170CB39600B70036 /* Header.m */; };
@@ -158,6 +157,9 @@
 		B4826F83174D5BB100F57AE9 /* OrderedMapTable.m in Sources */ = {isa = PBXBuildFile; fileRef = B4826F82174D5BB100F57AE9 /* OrderedMapTable.m */; };
 		B4840CA7174FAC3E002DEC53 /* MoveNStepsBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = B4840CA6174FAC3E002DEC53 /* MoveNStepsBrick.m */; };
 		B4A92DCD175F8DF700608667 /* SSZipArchive.m in Sources */ = {isa = PBXBuildFile; fileRef = B4A92DCC175F8DF700608667 /* SSZipArchive.m */; };
+		B4A92DD2175FD4B800608667 /* GDataXMLNode.m in Sources */ = {isa = PBXBuildFile; fileRef = B4A92DD1175FD4B700608667 /* GDataXMLNode.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		B4A92DD3175FD4B800608667 /* GDataXMLNode.m in Sources */ = {isa = PBXBuildFile; fileRef = B4A92DD1175FD4B700608667 /* GDataXMLNode.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		B4A92DD4175FD59000608667 /* SSZipArchive.m in Sources */ = {isa = PBXBuildFile; fileRef = B4A92DCC175F8DF700608667 /* SSZipArchive.m */; };
 		B4AF798D174A9A340041555A /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B4AF798C174A9A330041555A /* CoreLocation.framework */; };
 		B4B7BAC31738E216000BDC94 /* XMLObjectReference.m in Sources */ = {isa = PBXBuildFile; fileRef = B4B7BAC21738E216000BDC94 /* XMLObjectReference.m */; };
 		B4B906A9175DC8B5000ADB09 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B4AF798C174A9A330041555A /* CoreLocation.framework */; };
@@ -254,7 +256,6 @@
 		CD0CCF64170CB39700B70036 /* ComeToFrontBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = CD0CCE86170CB39600B70036 /* ComeToFrontBrick.m */; };
 		CD0CCF71170CB39700B70036 /* FileManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CD0CCE9E170CB39600B70036 /* FileManager.m */; };
 		CD0CCF72170CB39700B70036 /* ForeverBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = CD0CCEA0170CB39600B70036 /* ForeverBrick.m */; };
-		CD0CCF73170CB39700B70036 /* GDataXMLNode.m in Sources */ = {isa = PBXBuildFile; fileRef = CD0CCEA2170CB39600B70036 /* GDataXMLNode.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		CD0CCF74170CB39700B70036 /* GlideToBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = CD0CCEA4170CB39600B70036 /* GlideToBrick.m */; };
 		CD0CCF75170CB39700B70036 /* GoNStepsBackBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = CD0CCEA6170CB39600B70036 /* GoNStepsBackBrick.m */; };
 		CD0CCF76170CB39700B70036 /* Header.m in Sources */ = {isa = PBXBuildFile; fileRef = CD0CCEA8170CB39600B70036 /* Header.m */; };
@@ -406,6 +407,8 @@
 		B4840CA6174FAC3E002DEC53 /* MoveNStepsBrick.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MoveNStepsBrick.m; sourceTree = "<group>"; };
 		B4A92DCB175F8DF700608667 /* SSZipArchive.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SSZipArchive.h; path = SSZipArchive/SSZipArchive.h; sourceTree = "<group>"; };
 		B4A92DCC175F8DF700608667 /* SSZipArchive.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SSZipArchive.m; path = SSZipArchive/SSZipArchive.m; sourceTree = "<group>"; };
+		B4A92DD0175FD4B700608667 /* GDataXMLNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GDataXMLNode.h; path = GDataXMLNode/GDataXMLNode.h; sourceTree = "<group>"; };
+		B4A92DD1175FD4B700608667 /* GDataXMLNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GDataXMLNode.m; path = GDataXMLNode/GDataXMLNode.m; sourceTree = "<group>"; };
 		B4AF798C174A9A330041555A /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		B4B7BAC11738E216000BDC94 /* XMLObjectReference.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XMLObjectReference.h; sourceTree = "<group>"; };
 		B4B7BAC21738E216000BDC94 /* XMLObjectReference.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMLObjectReference.m; sourceTree = "<group>"; };
@@ -547,8 +550,6 @@
 		CD0CCE9E170CB39600B70036 /* FileManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FileManager.m; sourceTree = "<group>"; };
 		CD0CCE9F170CB39600B70036 /* ForeverBrick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ForeverBrick.h; sourceTree = "<group>"; };
 		CD0CCEA0170CB39600B70036 /* ForeverBrick.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ForeverBrick.m; sourceTree = "<group>"; };
-		CD0CCEA1170CB39600B70036 /* GDataXMLNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GDataXMLNode.h; sourceTree = "<group>"; };
-		CD0CCEA2170CB39600B70036 /* GDataXMLNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GDataXMLNode.m; sourceTree = "<group>"; };
 		CD0CCEA3170CB39600B70036 /* GlideToBrick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GlideToBrick.h; sourceTree = "<group>"; };
 		CD0CCEA4170CB39600B70036 /* GlideToBrick.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GlideToBrick.m; sourceTree = "<group>"; };
 		CD0CCEA5170CB39600B70036 /* GoNStepsBackBrick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GoNStepsBackBrick.h; sourceTree = "<group>"; };
@@ -1367,8 +1368,8 @@
 		B4DEFC89170F456D00DD1939 /* GDataXMLNode */ = {
 			isa = PBXGroup;
 			children = (
-				CD0CCEA1170CB39600B70036 /* GDataXMLNode.h */,
-				CD0CCEA2170CB39600B70036 /* GDataXMLNode.m */,
+				B4A92DD0175FD4B700608667 /* GDataXMLNode.h */,
+				B4A92DD1175FD4B700608667 /* GDataXMLNode.m */,
 			);
 			name = GDataXMLNode;
 			sourceTree = "<group>";
@@ -2080,7 +2081,6 @@
 				CD0CCF64170CB39700B70036 /* ComeToFrontBrick.m in Sources */,
 				CD0CCF71170CB39700B70036 /* FileManager.m in Sources */,
 				CD0CCF72170CB39700B70036 /* ForeverBrick.m in Sources */,
-				CD0CCF73170CB39700B70036 /* GDataXMLNode.m in Sources */,
 				CD0CCF74170CB39700B70036 /* GlideToBrick.m in Sources */,
 				CD0CCF75170CB39700B70036 /* GoNStepsBackBrick.m in Sources */,
 				CD0CCF76170CB39700B70036 /* Header.m in Sources */,
@@ -2158,6 +2158,7 @@
 				B4DA23D1175E26550079B381 /* SensorManager.m in Sources */,
 				B4F499B0175E8387002E1BBD /* PullableView.m in Sources */,
 				B4A92DCD175F8DF700608667 /* SSZipArchive.m in Sources */,
+				B4A92DD2175FD4B800608667 /* GDataXMLNode.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2165,6 +2166,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B4A92DD4175FD59000608667 /* SSZipArchive.m in Sources */,
 				B405BACA175DD4C300B1A0FC /* SensorHandlerTests.m in Sources */,
 				B405BAC9175DD46C00B1A0FC /* CattyTests.m in Sources */,
 				B405BA58175DCA2A00B1A0FC /* CatrobatBaseCell.m in Sources */,
@@ -2194,7 +2196,6 @@
 				B405BA72175DCA2A00B1A0FC /* ComeToFrontBrick.m in Sources */,
 				B405BA73175DCA2A00B1A0FC /* FileManager.m in Sources */,
 				B405BA74175DCA2A00B1A0FC /* ForeverBrick.m in Sources */,
-				B405BA75175DCA2A00B1A0FC /* GDataXMLNode.m in Sources */,
 				B405BA76175DCA2A00B1A0FC /* GlideToBrick.m in Sources */,
 				B405BA77175DCA2A00B1A0FC /* GoNStepsBackBrick.m in Sources */,
 				B405BA78175DCA2A00B1A0FC /* Header.m in Sources */,
@@ -2271,6 +2272,7 @@
 				B405BAC3175DCA2A00B1A0FC /* IfOnEdgeBounceBrick.m in Sources */,
 				B4DA23D2175E26550079B381 /* SensorManager.m in Sources */,
 				B4F499B1175E8387002E1BBD /* PullableView.m in Sources */,
+				B4A92DD3175FD4B800608667 /* GDataXMLNode.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
