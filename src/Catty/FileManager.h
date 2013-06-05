@@ -34,12 +34,11 @@
 
 @property (nonatomic, strong) id delegate;
 
-- (void)deleteAllFiles;
+- (void)deleteAllFilesInDocumentsDirectory;
 - (void)deleteAllFillesOfDirectory:(NSString*)path;
 - (void)deleteFolder:(NSString*)path;
 - (NSArray*)getContentsOfDirectory:(NSString*)directory;
-- (void)addDefaultProject;
-- (void)addAquariumProject;
+- (void)addDefaultProjectToLeveLDirectory;
 - (void)downloadFileFromURL:(NSURL*)url withName:(NSString*)name;
 - (NSString*)getPathForLevel:(NSString*)levelName;
 

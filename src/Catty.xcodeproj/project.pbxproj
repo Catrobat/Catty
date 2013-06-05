@@ -6,6 +6,20 @@
 	objectVersion = 46;
 	objects = {
 
+/* Begin PBXAggregateTarget section */
+		B4A92DC3175F535300608667 /* LicenseTest */ = {
+			isa = PBXAggregateTarget;
+			buildConfigurationList = B4A92DC7175F535300608667 /* Build configuration list for PBXAggregateTarget "LicenseTest" */;
+			buildPhases = (
+				B4A92DC8175F537500608667 /* ShellScript */,
+			);
+			dependencies = (
+			);
+			name = LicenseTest;
+			productName = LicenseTest;
+		};
+/* End PBXAggregateTarget section */
+
 /* Begin PBXBuildFile section */
 		1D60589B0D05DD56006BFB54 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; };
 		1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
@@ -23,7 +37,6 @@
 		B405BA5D175DCA2A00B1A0FC /* TableUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = B4D940BA170EC660003DDBFA /* TableUtil.m */; };
 		B405BA5E175DCA2A00B1A0FC /* ProgramLoadingInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = B4D940C8170EC742003DDBFA /* ProgramLoadingInfo.m */; };
 		B405BA5F175DCA2A00B1A0FC /* CatrobatTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B4003031170EB50A00396DB7 /* CatrobatTableViewController.m */; };
-		B405BA60175DCA2A00B1A0FC /* Media.m in Sources */ = {isa = PBXBuildFile; fileRef = B4D9409F170EC0BB003DDBFA /* Media.m */; };
 		B405BA61175DCA2A00B1A0FC /* StageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B4F243C6170EBD63007A071D /* StageViewController.m */; };
 		B405BA62175DCA2A00B1A0FC /* Stage.m in Sources */ = {isa = PBXBuildFile; fileRef = B4F243CA170EBE23007A071D /* Stage.m */; };
 		B405BA63175DCA2A00B1A0FC /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B4F243CC170EBEF7007A071D /* AppDelegate.m */; };
@@ -35,7 +48,6 @@
 		B405BA69175DCA2A00B1A0FC /* BroadcastWaitBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = CD0CCE66170CB39600B70036 /* BroadcastWaitBrick.m */; };
 		B405BA6A175DCA2A00B1A0FC /* BroadcastWaitHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = CD0CCE69170CB39600B70036 /* BroadcastWaitHandler.m */; };
 		B405BA6B175DCA2A00B1A0FC /* CatrobatProject.m in Sources */ = {isa = PBXBuildFile; fileRef = CD0CCE70170CB39600B70036 /* CatrobatProject.m */; };
-		B405BA6C175DCA2A00B1A0FC /* CattyAppDelegateOLD.m in Sources */ = {isa = PBXBuildFile; fileRef = CD0CCE74170CB39600B70036 /* CattyAppDelegateOLD.m */; };
 		B405BA6D175DCA2A00B1A0FC /* ChangeGhostEffectByNBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = CD0CCE7B170CB39600B70036 /* ChangeGhostEffectByNBrick.m */; };
 		B405BA6E175DCA2A00B1A0FC /* ChangeSizeByNBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = CD0CCE7D170CB39600B70036 /* ChangeSizeByNBrick.m */; };
 		B405BA6F175DCA2A00B1A0FC /* ChangeVolumeByNBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = CD0CCE7F170CB39600B70036 /* ChangeVolumeByNBrick.m */; };
@@ -70,9 +82,6 @@
 		B405BA8C175DCA2A00B1A0FC /* Sound.m in Sources */ = {isa = PBXBuildFile; fileRef = CD0CCF22170CB39700B70036 /* Sound.m */; };
 		B405BA8D175DCA2A00B1A0FC /* SoundInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = CD0CCF24170CB39700B70036 /* SoundInfo.m */; };
 		B405BA8E175DCA2A00B1A0FC /* SpeakBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = CD0CCF26170CB39700B70036 /* SpeakBrick.m */; };
-		B405BA8F175DCA2A00B1A0FC /* SpriteObjectOLD.m in Sources */ = {isa = PBXBuildFile; fileRef = CD0CCF29170CB39700B70036 /* SpriteObjectOLD.m */; };
-		B405BA90175DCA2A00B1A0FC /* SSZipArchive.m in Sources */ = {isa = PBXBuildFile; fileRef = CD0CCF2B170CB39700B70036 /* SSZipArchive.m */; };
-		B405BA91175DCA2A00B1A0FC /* StageViewControllerOLD.m in Sources */ = {isa = PBXBuildFile; fileRef = CD0CCF2D170CB39700B70036 /* StageViewControllerOLD.m */; };
 		B405BA92175DCA2A00B1A0FC /* StartScript.m in Sources */ = {isa = PBXBuildFile; fileRef = CD0CCF33170CB39700B70036 /* StartScript.m */; };
 		B405BA93175DCA2A00B1A0FC /* StopAllSoundsBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = CD0CCF35170CB39700B70036 /* StopAllSoundsBrick.m */; };
 		B405BA94175DCA2A00B1A0FC /* TurnLeftBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = CD0CCF3D170CB39700B70036 /* TurnLeftBrick.m */; };
@@ -100,7 +109,6 @@
 		B405BAAA175DCA2A00B1A0FC /* LoadingView.m in Sources */ = {isa = PBXBuildFile; fileRef = B4BCF436170ED5D4008EDF3A /* LoadingView.m */; };
 		B405BAAB175DCA2A00B1A0FC /* FeaturedProgramsStoreViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B4BCF43A170ED60C008EDF3A /* FeaturedProgramsStoreViewController.m */; };
 		B405BAAC175DCA2A00B1A0FC /* SearchStoreViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B4BCF43E170ED669008EDF3A /* SearchStoreViewController.m */; };
-		B405BAAD175DCA2A00B1A0FC /* CattyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B4DEFC86170F44D900DD1939 /* CattyViewController.m */; };
 		B405BAAE175DCA2A00B1A0FC /* TestParser.m in Sources */ = {isa = PBXBuildFile; fileRef = B4DEFC8F170F464200DD1939 /* TestParser.m */; };
 		B405BAAF175DCA2A00B1A0FC /* Pointindirectionbrick.m in Sources */ = {isa = PBXBuildFile; fileRef = B4D4DD4217156A8500EEE3F8 /* Pointindirectionbrick.m */; };
 		B405BAB0175DCA2A00B1A0FC /* ForumWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CD8CC8BB1724346200239EBF /* ForumWebViewController.m */; };
@@ -149,6 +157,7 @@
 		B4826F78174D076800F57AE9 /* NoteBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = B4826F77174D076800F57AE9 /* NoteBrick.m */; };
 		B4826F83174D5BB100F57AE9 /* OrderedMapTable.m in Sources */ = {isa = PBXBuildFile; fileRef = B4826F82174D5BB100F57AE9 /* OrderedMapTable.m */; };
 		B4840CA7174FAC3E002DEC53 /* MoveNStepsBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = B4840CA6174FAC3E002DEC53 /* MoveNStepsBrick.m */; };
+		B4A92DCD175F8DF700608667 /* SSZipArchive.m in Sources */ = {isa = PBXBuildFile; fileRef = B4A92DCC175F8DF700608667 /* SSZipArchive.m */; };
 		B4AF798D174A9A340041555A /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B4AF798C174A9A330041555A /* CoreLocation.framework */; };
 		B4B7BAC31738E216000BDC94 /* XMLObjectReference.m in Sources */ = {isa = PBXBuildFile; fileRef = B4B7BAC21738E216000BDC94 /* XMLObjectReference.m */; };
 		B4B906A9175DC8B5000ADB09 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B4AF798C174A9A330041555A /* CoreLocation.framework */; };
@@ -200,7 +209,6 @@
 		B4D940A0170EC249003DDBFA /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B4F243CC170EBEF7007A071D /* AppDelegate.m */; };
 		B4D940A1170EC268003DDBFA /* Stage.m in Sources */ = {isa = PBXBuildFile; fileRef = B4F243CA170EBE23007A071D /* Stage.m */; };
 		B4D940A2170EC26D003DDBFA /* StageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B4F243C6170EBD63007A071D /* StageViewController.m */; };
-		B4D940A3170EC279003DDBFA /* Media.m in Sources */ = {isa = PBXBuildFile; fileRef = B4D9409F170EC0BB003DDBFA /* Media.m */; };
 		B4D940AD170EC2B7003DDBFA /* ioapi.c in Sources */ = {isa = PBXBuildFile; fileRef = B4D940A5170EC2B7003DDBFA /* ioapi.c */; };
 		B4D940AE170EC2B7003DDBFA /* mztools.c in Sources */ = {isa = PBXBuildFile; fileRef = B4D940A7170EC2B7003DDBFA /* mztools.c */; };
 		B4D940AF170EC2B7003DDBFA /* unzip.c in Sources */ = {isa = PBXBuildFile; fileRef = B4D940A9170EC2B7003DDBFA /* unzip.c */; };
@@ -224,7 +232,6 @@
 		B4DA23DB175E78050079B381 /* menu_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = B4DA23D8175E78050079B381 /* menu_icon.png */; };
 		B4DA23DC175E78050079B381 /* menu_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B4DA23D9175E78050079B381 /* menu_icon@2x.png */; };
 		B4DA23DD175E78050079B381 /* menu_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B4DA23D9175E78050079B381 /* menu_icon@2x.png */; };
-		B4DEFC87170F44D900DD1939 /* CattyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B4DEFC86170F44D900DD1939 /* CattyViewController.m */; };
 		B4DEFC8D170F463800DD1939 /* TestParserResources in Resources */ = {isa = PBXBuildFile; fileRef = B4DEFC8C170F463700DD1939 /* TestParserResources */; };
 		B4DEFC90170F464200DD1939 /* TestParser.m in Sources */ = {isa = PBXBuildFile; fileRef = B4DEFC8F170F464200DD1939 /* TestParser.m */; };
 		B4F243C8170EBD7B007A071D /* iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B4F243C7170EBD7B007A071D /* iPhone.storyboard */; };
@@ -239,7 +246,6 @@
 		CD0CCF55170CB39700B70036 /* BroadcastWaitBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = CD0CCE66170CB39600B70036 /* BroadcastWaitBrick.m */; };
 		CD0CCF56170CB39700B70036 /* BroadcastWaitHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = CD0CCE69170CB39600B70036 /* BroadcastWaitHandler.m */; };
 		CD0CCF59170CB39700B70036 /* CatrobatProject.m in Sources */ = {isa = PBXBuildFile; fileRef = CD0CCE70170CB39600B70036 /* CatrobatProject.m */; };
-		CD0CCF5B170CB39700B70036 /* CattyAppDelegateOLD.m in Sources */ = {isa = PBXBuildFile; fileRef = CD0CCE74170CB39600B70036 /* CattyAppDelegateOLD.m */; };
 		CD0CCF5E170CB39700B70036 /* ChangeGhostEffectByNBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = CD0CCE7B170CB39600B70036 /* ChangeGhostEffectByNBrick.m */; };
 		CD0CCF5F170CB39700B70036 /* ChangeSizeByNBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = CD0CCE7D170CB39600B70036 /* ChangeSizeByNBrick.m */; };
 		CD0CCF60170CB39700B70036 /* ChangeVolumeByNBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = CD0CCE7F170CB39600B70036 /* ChangeVolumeByNBrick.m */; };
@@ -274,9 +280,6 @@
 		CD0CCFC7170CB39700B70036 /* Sound.m in Sources */ = {isa = PBXBuildFile; fileRef = CD0CCF22170CB39700B70036 /* Sound.m */; };
 		CD0CCFC8170CB39700B70036 /* SoundInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = CD0CCF24170CB39700B70036 /* SoundInfo.m */; };
 		CD0CCFC9170CB39700B70036 /* SpeakBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = CD0CCF26170CB39700B70036 /* SpeakBrick.m */; };
-		CD0CCFCA170CB39700B70036 /* SpriteObjectOLD.m in Sources */ = {isa = PBXBuildFile; fileRef = CD0CCF29170CB39700B70036 /* SpriteObjectOLD.m */; };
-		CD0CCFCB170CB39700B70036 /* SSZipArchive.m in Sources */ = {isa = PBXBuildFile; fileRef = CD0CCF2B170CB39700B70036 /* SSZipArchive.m */; };
-		CD0CCFCC170CB39700B70036 /* StageViewControllerOLD.m in Sources */ = {isa = PBXBuildFile; fileRef = CD0CCF2D170CB39700B70036 /* StageViewControllerOLD.m */; };
 		CD0CCFD0170CB39700B70036 /* StartScript.m in Sources */ = {isa = PBXBuildFile; fileRef = CD0CCF33170CB39700B70036 /* StartScript.m */; };
 		CD0CCFD1170CB39700B70036 /* StopAllSoundsBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = CD0CCF35170CB39700B70036 /* StopAllSoundsBrick.m */; };
 		CD0CCFD7170CB39700B70036 /* TurnLeftBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = CD0CCF3D170CB39700B70036 /* TurnLeftBrick.m */; };
@@ -311,6 +314,13 @@
 			proxyType = 1;
 			remoteGlobalIDString = 1D6058900D05DD3D006BFB54;
 			remoteInfo = Catty;
+		};
+		B4A92DCE175F8EE800608667 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = B4A92DC3175F535300608667;
+			remoteInfo = LicenseTest;
 		};
 		DE4A3DAF10FFB0DB00FDA492 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -394,6 +404,8 @@
 		B4826F82174D5BB100F57AE9 /* OrderedMapTable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrderedMapTable.m; sourceTree = "<group>"; };
 		B4840CA5174FAC3E002DEC53 /* MoveNStepsBrick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MoveNStepsBrick.h; sourceTree = "<group>"; };
 		B4840CA6174FAC3E002DEC53 /* MoveNStepsBrick.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MoveNStepsBrick.m; sourceTree = "<group>"; };
+		B4A92DCB175F8DF700608667 /* SSZipArchive.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SSZipArchive.h; path = SSZipArchive/SSZipArchive.h; sourceTree = "<group>"; };
+		B4A92DCC175F8DF700608667 /* SSZipArchive.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SSZipArchive.m; path = SSZipArchive/SSZipArchive.m; sourceTree = "<group>"; };
 		B4AF798C174A9A330041555A /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		B4B7BAC11738E216000BDC94 /* XMLObjectReference.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XMLObjectReference.h; sourceTree = "<group>"; };
 		B4B7BAC21738E216000BDC94 /* XMLObjectReference.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMLObjectReference.m; sourceTree = "<group>"; };
@@ -450,8 +462,6 @@
 		B4BCF441170EDB80008EDF3A /* ProgramDefines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProgramDefines.h; sourceTree = "<group>"; };
 		B4D4DD4117156A8500EEE3F8 /* Pointindirectionbrick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Pointindirectionbrick.h; sourceTree = "<group>"; };
 		B4D4DD4217156A8500EEE3F8 /* Pointindirectionbrick.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Pointindirectionbrick.m; sourceTree = "<group>"; };
-		B4D9409E170EC0BB003DDBFA /* Media.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Media.h; path = Catty/Media.h; sourceTree = "<group>"; };
-		B4D9409F170EC0BB003DDBFA /* Media.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = Media.m; path = Catty/Media.m; sourceTree = "<group>"; };
 		B4D940A4170EC2B7003DDBFA /* crypt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = crypt.h; path = Catty/minizip/crypt.h; sourceTree = SOURCE_ROOT; };
 		B4D940A5170EC2B7003DDBFA /* ioapi.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = ioapi.c; path = Catty/minizip/ioapi.c; sourceTree = SOURCE_ROOT; };
 		B4D940A6170EC2B7003DDBFA /* ioapi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ioapi.h; path = Catty/minizip/ioapi.h; sourceTree = SOURCE_ROOT; };
@@ -491,8 +501,6 @@
 		B4DA23D6175E76810079B381 /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon.png; sourceTree = "<group>"; };
 		B4DA23D8175E78050079B381 /* menu_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = menu_icon.png; sourceTree = "<group>"; };
 		B4DA23D9175E78050079B381 /* menu_icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "menu_icon@2x.png"; sourceTree = "<group>"; };
-		B4DEFC85170F44D900DD1939 /* CattyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CattyViewController.h; sourceTree = "<group>"; };
-		B4DEFC86170F44D900DD1939 /* CattyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CattyViewController.m; sourceTree = "<group>"; };
 		B4DEFC8C170F463700DD1939 /* TestParserResources */ = {isa = PBXFileReference; lastKnownFileType = folder; path = TestParserResources; sourceTree = "<group>"; };
 		B4DEFC8E170F464200DD1939 /* TestParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestParser.h; sourceTree = "<group>"; };
 		B4DEFC8F170F464200DD1939 /* TestParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestParser.m; sourceTree = "<group>"; };
@@ -522,8 +530,6 @@
 		CD0CCE69170CB39600B70036 /* BroadcastWaitHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BroadcastWaitHandler.m; sourceTree = "<group>"; };
 		CD0CCE6F170CB39600B70036 /* CatrobatProject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CatrobatProject.h; sourceTree = "<group>"; };
 		CD0CCE70170CB39600B70036 /* CatrobatProject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CatrobatProject.m; sourceTree = "<group>"; };
-		CD0CCE73170CB39600B70036 /* CattyAppDelegateOLD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CattyAppDelegateOLD.h; path = Catty/CattyAppDelegateOLD.h; sourceTree = "<group>"; };
-		CD0CCE74170CB39600B70036 /* CattyAppDelegateOLD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CattyAppDelegateOLD.m; path = Catty/CattyAppDelegateOLD.m; sourceTree = "<group>"; };
 		CD0CCE7A170CB39600B70036 /* ChangeGhostEffectByNBrick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChangeGhostEffectByNBrick.h; sourceTree = "<group>"; };
 		CD0CCE7B170CB39600B70036 /* ChangeGhostEffectByNBrick.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChangeGhostEffectByNBrick.m; sourceTree = "<group>"; };
 		CD0CCE7C170CB39600B70036 /* ChangeSizeByNBrick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChangeSizeByNBrick.h; sourceTree = "<group>"; };
@@ -594,12 +600,6 @@
 		CD0CCF25170CB39700B70036 /* SpeakBrick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpeakBrick.h; sourceTree = "<group>"; };
 		CD0CCF26170CB39700B70036 /* SpeakBrick.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpeakBrick.m; sourceTree = "<group>"; };
 		CD0CCF27170CB39700B70036 /* SpriteManagerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpriteManagerDelegate.h; sourceTree = "<group>"; };
-		CD0CCF28170CB39700B70036 /* SpriteObjectOLD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpriteObjectOLD.h; sourceTree = "<group>"; };
-		CD0CCF29170CB39700B70036 /* SpriteObjectOLD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpriteObjectOLD.m; sourceTree = "<group>"; };
-		CD0CCF2A170CB39700B70036 /* SSZipArchive.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SSZipArchive.h; sourceTree = "<group>"; };
-		CD0CCF2B170CB39700B70036 /* SSZipArchive.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SSZipArchive.m; sourceTree = "<group>"; };
-		CD0CCF2C170CB39700B70036 /* StageViewControllerOLD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = StageViewControllerOLD.h; path = Catty/StageViewControllerOLD.h; sourceTree = "<group>"; };
-		CD0CCF2D170CB39700B70036 /* StageViewControllerOLD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = StageViewControllerOLD.m; path = Catty/StageViewControllerOLD.m; sourceTree = "<group>"; };
 		CD0CCF32170CB39700B70036 /* StartScript.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StartScript.h; sourceTree = "<group>"; };
 		CD0CCF33170CB39700B70036 /* StartScript.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StartScript.m; sourceTree = "<group>"; };
 		CD0CCF34170CB39700B70036 /* StopAllSoundsBrick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StopAllSoundsBrick.h; sourceTree = "<group>"; };
@@ -694,7 +694,6 @@
 				B4DA23D6175E76810079B381 /* icon.png */,
 				B4DA23D4175E761C0079B381 /* icon_retina.png */,
 				B4BCF403170ECF6C008EDF3A /* Default-568h@2x.png */,
-				CD0CCE3F170CAFAF00B70036 /* UNUSED */,
 				DE4A3DA210FFB0D400FDA492 /* Sparrow.xcodeproj */,
 				CD0CCE54170CB39600B70036 /* Catty */,
 				CD0CCE37170C9F9300B70036 /* Storyboard */,
@@ -828,8 +827,8 @@
 		B400302D170EB46A00396DB7 /* SSZipArchive */ = {
 			isa = PBXGroup;
 			children = (
-				CD0CCF2A170CB39700B70036 /* SSZipArchive.h */,
-				CD0CCF2B170CB39700B70036 /* SSZipArchive.m */,
+				B4A92DCB175F8DF700608667 /* SSZipArchive.h */,
+				B4A92DCC175F8DF700608667 /* SSZipArchive.m */,
 			);
 			name = SSZipArchive;
 			sourceTree = "<group>";
@@ -1427,21 +1426,6 @@
 			name = ViewController;
 			sourceTree = "<group>";
 		};
-		CD0CCE3F170CAFAF00B70036 /* UNUSED */ = {
-			isa = PBXGroup;
-			children = (
-				B4DEFC85170F44D900DD1939 /* CattyViewController.h */,
-				B4DEFC86170F44D900DD1939 /* CattyViewController.m */,
-				B4D9409E170EC0BB003DDBFA /* Media.h */,
-				B4D9409F170EC0BB003DDBFA /* Media.m */,
-				CD0CCE73170CB39600B70036 /* CattyAppDelegateOLD.h */,
-				CD0CCE74170CB39600B70036 /* CattyAppDelegateOLD.m */,
-				CD0CCF2C170CB39700B70036 /* StageViewControllerOLD.h */,
-				CD0CCF2D170CB39700B70036 /* StageViewControllerOLD.m */,
-			);
-			name = UNUSED;
-			sourceTree = "<group>";
-		};
 		CD0CCE54170CB39600B70036 /* Catty */ = {
 			isa = PBXGroup;
 			children = (
@@ -1738,8 +1722,6 @@
 		CD0CCFF6170CB89E00B70036 /* Sprite */ = {
 			isa = PBXGroup;
 			children = (
-				CD0CCF28170CB39700B70036 /* SpriteObjectOLD.h */,
-				CD0CCF29170CB39700B70036 /* SpriteObjectOLD.m */,
 				CD0CCE5D170CB39600B70036 /* BaseSprite.h */,
 				CD0CCE5E170CB39600B70036 /* BaseSprite.m */,
 				CD639C79170DF52600FA67DA /* SpriteObject.h */,
@@ -1902,6 +1884,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				B4A92DCF175F8EE800608667 /* PBXTargetDependency */,
 				DE4A3DB810FFB0F500FDA492 /* PBXTargetDependency */,
 			);
 			name = Catty;
@@ -1961,6 +1944,7 @@
 			targets = (
 				1D6058900D05DD3D006BFB54 /* Catty */,
 				B450309D170F22EF009265D6 /* CattyTests */,
+				B4A92DC3175F535300608667 /* LicenseTest */,
 			);
 		};
 /* End PBXProject section */
@@ -2049,6 +2033,19 @@
 			shellPath = /bin/sh;
 			shellScript = "# Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\n";
 		};
+		B4A92DC8175F537500608667 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "./license-test.sh\n";
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -2064,7 +2061,6 @@
 				B4D940CB170EC8DA003DDBFA /* TableUtil.m in Sources */,
 				B4D940CA170EC8C4003DDBFA /* ProgramLoadingInfo.m in Sources */,
 				B4D940B1170EC5C2003DDBFA /* CatrobatTableViewController.m in Sources */,
-				B4D940A3170EC279003DDBFA /* Media.m in Sources */,
 				B4D940A2170EC26D003DDBFA /* StageViewController.m in Sources */,
 				B4D940A1170EC268003DDBFA /* Stage.m in Sources */,
 				B4D940A0170EC249003DDBFA /* AppDelegate.m in Sources */,
@@ -2076,7 +2072,6 @@
 				CD0CCF55170CB39700B70036 /* BroadcastWaitBrick.m in Sources */,
 				CD0CCF56170CB39700B70036 /* BroadcastWaitHandler.m in Sources */,
 				CD0CCF59170CB39700B70036 /* CatrobatProject.m in Sources */,
-				CD0CCF5B170CB39700B70036 /* CattyAppDelegateOLD.m in Sources */,
 				CD0CCF5E170CB39700B70036 /* ChangeGhostEffectByNBrick.m in Sources */,
 				CD0CCF5F170CB39700B70036 /* ChangeSizeByNBrick.m in Sources */,
 				CD0CCF60170CB39700B70036 /* ChangeVolumeByNBrick.m in Sources */,
@@ -2111,9 +2106,6 @@
 				CD0CCFC7170CB39700B70036 /* Sound.m in Sources */,
 				CD0CCFC8170CB39700B70036 /* SoundInfo.m in Sources */,
 				CD0CCFC9170CB39700B70036 /* SpeakBrick.m in Sources */,
-				CD0CCFCA170CB39700B70036 /* SpriteObjectOLD.m in Sources */,
-				CD0CCFCB170CB39700B70036 /* SSZipArchive.m in Sources */,
-				CD0CCFCC170CB39700B70036 /* StageViewControllerOLD.m in Sources */,
 				CD0CCFD0170CB39700B70036 /* StartScript.m in Sources */,
 				CD0CCFD1170CB39700B70036 /* StopAllSoundsBrick.m in Sources */,
 				CD0CCFD7170CB39700B70036 /* TurnLeftBrick.m in Sources */,
@@ -2141,7 +2133,6 @@
 				B4BCF437170ED5D4008EDF3A /* LoadingView.m in Sources */,
 				B4BCF43B170ED60D008EDF3A /* FeaturedProgramsStoreViewController.m in Sources */,
 				B4BCF43F170ED669008EDF3A /* SearchStoreViewController.m in Sources */,
-				B4DEFC87170F44D900DD1939 /* CattyViewController.m in Sources */,
 				B4DEFC90170F464200DD1939 /* TestParser.m in Sources */,
 				B4D4DD4317156A8500EEE3F8 /* Pointindirectionbrick.m in Sources */,
 				CD8CC8BC1724346200239EBF /* ForumWebViewController.m in Sources */,
@@ -2166,6 +2157,7 @@
 				CDFEFCB41758CBC8002B5B0E /* IfOnEdgeBounceBrick.m in Sources */,
 				B4DA23D1175E26550079B381 /* SensorManager.m in Sources */,
 				B4F499B0175E8387002E1BBD /* PullableView.m in Sources */,
+				B4A92DCD175F8DF700608667 /* SSZipArchive.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2183,7 +2175,6 @@
 				B405BA5D175DCA2A00B1A0FC /* TableUtil.m in Sources */,
 				B405BA5E175DCA2A00B1A0FC /* ProgramLoadingInfo.m in Sources */,
 				B405BA5F175DCA2A00B1A0FC /* CatrobatTableViewController.m in Sources */,
-				B405BA60175DCA2A00B1A0FC /* Media.m in Sources */,
 				B405BA61175DCA2A00B1A0FC /* StageViewController.m in Sources */,
 				B405BA62175DCA2A00B1A0FC /* Stage.m in Sources */,
 				B405BA63175DCA2A00B1A0FC /* AppDelegate.m in Sources */,
@@ -2195,7 +2186,6 @@
 				B405BA69175DCA2A00B1A0FC /* BroadcastWaitBrick.m in Sources */,
 				B405BA6A175DCA2A00B1A0FC /* BroadcastWaitHandler.m in Sources */,
 				B405BA6B175DCA2A00B1A0FC /* CatrobatProject.m in Sources */,
-				B405BA6C175DCA2A00B1A0FC /* CattyAppDelegateOLD.m in Sources */,
 				B405BA6D175DCA2A00B1A0FC /* ChangeGhostEffectByNBrick.m in Sources */,
 				B405BA6E175DCA2A00B1A0FC /* ChangeSizeByNBrick.m in Sources */,
 				B405BA6F175DCA2A00B1A0FC /* ChangeVolumeByNBrick.m in Sources */,
@@ -2230,9 +2220,6 @@
 				B405BA8C175DCA2A00B1A0FC /* Sound.m in Sources */,
 				B405BA8D175DCA2A00B1A0FC /* SoundInfo.m in Sources */,
 				B405BA8E175DCA2A00B1A0FC /* SpeakBrick.m in Sources */,
-				B405BA8F175DCA2A00B1A0FC /* SpriteObjectOLD.m in Sources */,
-				B405BA90175DCA2A00B1A0FC /* SSZipArchive.m in Sources */,
-				B405BA91175DCA2A00B1A0FC /* StageViewControllerOLD.m in Sources */,
 				B405BA92175DCA2A00B1A0FC /* StartScript.m in Sources */,
 				B405BA93175DCA2A00B1A0FC /* StopAllSoundsBrick.m in Sources */,
 				B405BA94175DCA2A00B1A0FC /* TurnLeftBrick.m in Sources */,
@@ -2260,7 +2247,6 @@
 				B405BAAA175DCA2A00B1A0FC /* LoadingView.m in Sources */,
 				B405BAAB175DCA2A00B1A0FC /* FeaturedProgramsStoreViewController.m in Sources */,
 				B405BAAC175DCA2A00B1A0FC /* SearchStoreViewController.m in Sources */,
-				B405BAAD175DCA2A00B1A0FC /* CattyViewController.m in Sources */,
 				B405BAAE175DCA2A00B1A0FC /* TestParser.m in Sources */,
 				B405BAAF175DCA2A00B1A0FC /* Pointindirectionbrick.m in Sources */,
 				B405BAB0175DCA2A00B1A0FC /* ForumWebViewController.m in Sources */,
@@ -2300,6 +2286,11 @@
 			isa = PBXTargetDependency;
 			target = 1D6058900D05DD3D006BFB54 /* Catty */;
 			targetProxy = B45030B0170F24AF009265D6 /* PBXContainerItemProxy */;
+		};
+		B4A92DCF175F8EE800608667 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = B4A92DC3175F535300608667 /* LicenseTest */;
+			targetProxy = B4A92DCE175F8EE800608667 /* PBXContainerItemProxy */;
 		};
 		DE4A3DB810FFB0F500FDA492 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -2408,6 +2399,20 @@
 			};
 			name = Release;
 		};
+		B4A92DC4175F535300608667 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		B4A92DC5175F535300608667 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
 		C01FCF4F08A954540054247B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -2497,6 +2502,14 @@
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
+		};
+		B4A92DC7175F535300608667 /* Build configuration list for PBXAggregateTarget "LicenseTest" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B4A92DC4175F535300608667 /* Debug */,
+				B4A92DC5175F535300608667 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
 		};
 		C01FCF4E08A954540054247B /* Build configuration list for PBXProject "Catty" */ = {
 			isa = XCConfigurationList;

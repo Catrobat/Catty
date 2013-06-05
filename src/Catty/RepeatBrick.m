@@ -34,7 +34,6 @@
 
 
 
-
 -(BOOL)checkConditionAndDecrementLoopCounter
 {
     if(!self.loopsLeft) {

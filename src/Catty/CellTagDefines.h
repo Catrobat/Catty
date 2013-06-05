@@ -20,7 +20,6 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-
 #ifndef CellTagDefines_h
 #define CellTagDefines_h
 

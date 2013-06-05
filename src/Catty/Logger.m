@@ -130,7 +130,7 @@ static Logger* instance;
     NSCharacterSet *separatorSet = [NSCharacterSet characterSetWithCharactersInString:@" -[]+?.,"];
     NSMutableArray *array = [NSMutableArray arrayWithArray:[sourceString  componentsSeparatedByCharactersInSet:separatorSet]];
     [array removeObject:@""];
-    return [array objectAtIndex:3];
+    return [array objectAtIndex:4];
     
 }
 

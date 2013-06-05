@@ -154,15 +154,7 @@ static ImageCache *sharedImageCache = nil;
         
         NSFileManager *fileManager = [NSFileManager defaultManager];
         if(![fileManager fileExistsAtPath:path]) {
-            
             [UIImagePNGRepresentation(image) writeToFile:path atomically:YES];
-            NSError* error = nil;
-            
-            //NSDebug(@"Cache directory (%@): %@", self.imageCachePath, [fileManager contentsOfDirectoryAtPath:self.imageCachePath error:&error]);
-            
-            if(error) {
-                NSLog(@"Error writing to image Cache Directory: %@", error);
-            }
         }
     });
     

@@ -1,7 +1,25 @@
-//
-//  AppDelegate.m
-//  AppScaffold
-//
+/**
+ *  Copyright (C) 2010-2013 The Catrobat Team
+ *  (http://developer.catrobat.org/credits)
+ *
+ *  This program is free software: you can redistribute it and/or modify
+ *  it under the terms of the GNU Affero General Public License as
+ *  published by the Free Software Foundation, either version 3 of the
+ *  License, or (at your option) any later version.
+ *
+ *  An additional term exception under section 7 of the GNU Affero
+ *  General Public License, version 3, is available at
+ *  (http://developer.catrobat.org/license_additional_term)
+ *
+ *  This program is distributed in the hope that it will be useful,
+ *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ *  GNU Affero General Public License for more details.
+ *
+ *  You should have received a copy of the GNU Affero General Public License
+ *  along with this program.  If not, see http://www.gnu.org/licenses/.
+ */
+
 
 #import "AppDelegate.h"
 #import "Stage.h"
@@ -32,20 +50,6 @@ void onUncaughtException(NSException *exception)
     NSSetUncaughtExceptionHandler(&onUncaughtException);
     
     [self initNavigationBar];    
-//    
-//    CGRect screenBounds = [UIScreen mainScreen].bounds;
-//    _window = [[UIWindow alloc] initWithFrame:screenBounds];
-//    
-//    _viewController = [[StageViewController alloc] init];
-//    [_viewController startWithRoot:[Stage class] supportHighResolutions:YES doubleOnPad:YES];
-    
-//    _viewController.view.frame = CGRectMake(50, 50, 300, 300);
-//    
-//    _viewController.stage.width = 2000;
-//    _viewController.stage.height = 1000;
-    
-//    [_window setRootViewController:_viewController];
-//    [_window makeKeyAndVisible];
     
     return YES;
 }

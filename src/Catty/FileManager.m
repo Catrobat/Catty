@@ -1,10 +1,24 @@
-//
-//  FileManager.m
-//  Catty
-//
-//  Created by Christof Stromberger on 25.09.12.
-//  Copyright (c) 2012 Graz University of Technology. All rights reserved.
-//
+/**
+ *  Copyright (C) 2010-2013 The Catrobat Team
+ *  (http://developer.catrobat.org/credits)
+ *
+ *  This program is free software: you can redistribute it and/or modify
+ *  it under the terms of the GNU Affero General Public License as
+ *  published by the Free Software Foundation, either version 3 of the
+ *  License, or (at your option) any later version.
+ *
+ *  An additional term exception under section 7 of the GNU Affero
+ *  General Public License, version 3, is available at
+ *  (http://developer.catrobat.org/license_additional_term)
+ *
+ *  This program is distributed in the hope that it will be useful,
+ *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ *  GNU Affero General Public License for more details.
+ *
+ *  You should have received a copy of the GNU Affero General Public License
+ *  along with this program.  If not, see http://www.gnu.org/licenses/.
+ */
 
 #import "FileManager.h"
 #import "Util.h"
@@ -31,7 +45,8 @@
 @synthesize projectName        = _projectName;
 @synthesize delegate           = _delegate;
 
-//custom getter method for documents directory member property
+
+#pragma mark - Getter
 - (NSString*)documentsDirectory {
     if (_documentsDirectory == nil) {
         _documentsDirectory = [[NSString alloc] initWithString:[Util applicationDocumentsDirectory]];
@@ -40,7 +55,6 @@
     return _documentsDirectory;
 }
 
-//custom getter for levels directory
 - (NSString*)levelsDirectory {
     if (_levelsDirectory == nil) {
         _levelsDirectory = [[NSString alloc] initWithFormat:@"%@/levels", self.documentsDirectory];
@@ -49,7 +63,6 @@
     return _levelsDirectory;
 }
 
-//custom getter for data
 - (NSMutableData*)data {
     if (_data == nil) {
         _data = [[NSMutableData alloc] init];
@@ -60,16 +73,11 @@
 
 
 
-/* ---------------------------- METHODS ----------------------------------- */
 
-
-
-//deleting all files of documents directory
-- (void)deleteAllFiles {
+- (void)deleteAllFilesInDocumentsDirectory {
     [self deleteAllFillesOfDirectory:self.documentsDirectory];
 }
 
-//deleting all files of specified path
 - (void)deleteAllFillesOfDirectory:(NSString*)path {
     NSFileManager *fm = [NSFileManager defaultManager];
     
@@ -80,94 +88,72 @@
     NSError *error = nil;
     for (NSString *file in [fm contentsOfDirectoryAtPath:path error:&error]) {
         BOOL success = [fm removeItemAtPath:[NSString stringWithFormat:@"%@%@", path, file] error:&error];
-        [Util log:error];
+        NSLogError(error);
         
         if (!success) {
-            NSLog(@"Error deleting file.");
+            NSError(@"Error deleting file.");
         }
     }
 }
 
-//deleting entire folder with contents
 - (void)deleteFolder:(NSString*)path {
     NSError *error = nil;
     [[NSFileManager defaultManager] removeItemAtPath:path error:&error];
-    [Util log:error];
+    NSLogError(error);
 }
 
-//retrieving contents of directory
+
 - (NSArray*)getContentsOfDirectory:(NSString*)directory {
     NSError *error = nil;
     NSArray *contents = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:directory error:&error];
-    [Util log:error];
+    NSLogError(error);
     
     return contents;
 }
 
 
-//this method adds the default project to the levels folder
-- (void)addDefaultProject {
-    NSError *error;
+- (void)addDefaultProjectToLeveLDirectory {
     
-    if (![[NSFileManager defaultManager] fileExistsAtPath:self.levelsDirectory]) {
-        [[NSFileManager defaultManager] createDirectoryAtPath:self.levelsDirectory withIntermediateDirectories:NO attributes:nil error:&error];
-        [Util log:error];
-    }
-    
-    NSArray *contents = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:self.levelsDirectory error:&error];
-    [Util log:error];
-    
-    if ([contents indexOfObject:@"My first project"]) {
-        //default project does not exist
-        NSString *projectName = @"My first project";
-        
-        NSString *filePath = [[NSBundle mainBundle] pathForResource:projectName ofType:@"catrobat"];
-        NSData *defaultProject = [NSData dataWithContentsOfFile:filePath];
-        
-        //storing level
-        [self unzipAndStore:defaultProject withName:projectName];
-    }
-    else { //default project already exists in levels folder
-        NSLog(@"DefaultProject already exists...");
-    }
-    
+    [self addBundleProjectWithName:@"My first project"];
+    [self addBundleProjectWithName:@"Aquarium 3"];
 }
 
-- (void)addAquariumProject {
+
+- (void)addBundleProjectWithName:(NSString*)projectName
+{
+
     NSError *error;
     
     if (![[NSFileManager defaultManager] fileExistsAtPath:self.levelsDirectory]) {
         [[NSFileManager defaultManager] createDirectoryAtPath:self.levelsDirectory withIntermediateDirectories:NO attributes:nil error:&error];
-        [Util log:error];
+        NSLogError(error);
     }
     
     NSArray *contents = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:self.levelsDirectory error:&error];
-    [Util log:error];
+    NSLogError(error);
     
-    if ([contents indexOfObject:@"Aquarium 3"]) {
-        //default project does not exist
-        NSString *projectName = @"Aquarium 3";
+    if ([contents indexOfObject:projectName]) {
         
         NSString *filePath = [[NSBundle mainBundle] pathForResource:projectName ofType:@"catrobat"];
         NSData *defaultProject = [NSData dataWithContentsOfFile:filePath];
         
-        //storing level
         [self unzipAndStore:defaultProject withName:projectName];
     }
-    else { //default project already exists in levels folder
-        NSLog(@"Aquarium 3 already exists...");
+    else {
+        NSInfo(@"%@ already exists...", projectName);
     }
+    
+    
 }
 
 - (void)downloadFileFromURL:(NSURL*)url withName:(NSString*)name {   
     self.projectName = name;
     
-    //creating url request
+
     NSURLRequest *request = [NSURLRequest requestWithURL:url
                                              cachePolicy:NSURLRequestUseProtocolCachePolicy
                                          timeoutInterval:TIMEOUT];
     
-    //creating connection
     NSURLConnection *connection = [[NSURLConnection alloc] initWithRequest:request delegate:self];
     self.connection = connection;
 }
@@ -177,7 +163,6 @@
 - (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data
 {
     if (self.connection == connection) {
-        //NSLog(@"Received data from server");
         [self.data appendData:data];
     }
 }
@@ -185,31 +170,24 @@
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection
 {
     if (self.connection == connection) {
-        NSLog(@"Finished");
+        NSDebug(@"Finished downloading");
         
-        //storing level
         [self storeDownloadedLevel];
         
-        //calling delegate (download finished)
-        if (self.delegate) {
-            if ([self.delegate respondsToSelector:@selector(downloadFinished)]) {
+        if ([self.delegate respondsToSelector:@selector(downloadFinished)]) {
                 [self.delegate performSelector:@selector(downloadFinished)];
-            }
         }
         
-        //freeing space
         self.data = nil;
         self.connection = nil;
         self.projectName = nil;
-        
-        //reloading view
-        //[self update];
     }
 }
 
-//connection error
+
 - (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error {
-    NSLog(@"An connection error occured!");
+    
+
     
     if (self.connection == connection) {
         self.data = nil;
@@ -221,23 +199,16 @@
 
 - (NSString*)getPathForLevel:(NSString*)levelName {
     NSString *path = [NSString stringWithFormat:@"%@/%@", self.levelsDirectory, levelName];
-    NSString *retPath = nil;
     
-    //checking if path is valid
     if ([[NSFileManager defaultManager] fileExistsAtPath:path]) {
-        retPath = path;
+        return path;
     }
     
-    return retPath;
+    return nil;
 }
 
 
-
-
-
-
-
-/* ------------------------------- HELPER ----------------------------------- */
+#pragma mark - Helper
 
 - (void)storeDownloadedLevel {
     NSData *levelZip = [NSData dataWithData:self.data];
@@ -246,23 +217,18 @@
     [self unzipAndStore:levelZip withName:self.projectName];
 }
 
-//unzip and store this level
+
+
 - (void)unzipAndStore:(NSData*)level withName:(NSString*)name {
     NSError *error;
     
-    //path for temp file
     NSString *tempPath = [NSString stringWithFormat:@"%@temp.zip", NSTemporaryDirectory()];
-    
-    //writing to file
     [level writeToFile:tempPath atomically:YES];
     
-    //path for storing file
-    //    NSString *storePath = [NSString stringWithFormat:@"%@/levels/RocketProject", documentsDirectory];
     NSString *storePath = [NSString stringWithFormat:@"%@/levels/%@", self.documentsDirectory, name];
     
     NSDebug(@"Starting unzip");
     
-    //unzip file
     [SSZipArchive unzipFileAtPath:tempPath toDestination:storePath];
     
     NSDebug(@"Unzip finished");

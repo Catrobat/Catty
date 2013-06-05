@@ -28,7 +28,7 @@
 #define kAbortAtError YES
 
 
-// NSDebug(...), NSInfo(...), NSWarn(...), NSError(...) defined in Prefix header. Use these Macros!
+// NSDebug(...), NSInfo(...), NSWarn(...), NSError(...), NSLogError(error) defined in Prefix header. Use these Macros!
 
 
 typedef enum  {

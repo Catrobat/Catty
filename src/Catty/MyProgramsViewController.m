@@ -53,7 +53,7 @@
     
     NSError *error;
     NSArray *levels = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:levelsPath error:&error];
-    [Util log:error];
+    NSLogError(error);
     
     [Logger debug:@"my levels: %@", levels ];
     

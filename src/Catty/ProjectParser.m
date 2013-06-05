@@ -131,11 +131,6 @@
     
     if (!node) { return nil; }
     
-    int i = 0;
-    if ([node.name isEqualToString:@"Program"]) {
-        i = 1+1;
-    }
-    
     // instantiate object based on node name (= class name)
     NSString *className = [[node.name componentsSeparatedByString:@"."] lastObject]; // this is just because of org.catrobat.catroid.bla...
     if (!className) {                                                                // Maybe we can remove this when the XML is finished?
@@ -333,12 +328,12 @@
         }
     }
     else if ([propertyType isEqualToString:kParserObjectTypeSound]) {
-        
-        NSString *ref = [element attributeForName:@"reference"].stringValue;        
-        Sound *sound = [self parseNode:element withParent:parent];
-        
-        
-        return sound; // TODO!
+        if([self isReferenceElement:element]) {
+            return [self parseReferenceElement:element withParent:parent];
+        }
+        else {
+            return [self parseNode:element withParent:parent];
+        }
     }
     else if ([propertyType isEqualToString:kParserObjectTypeHeader]) {
         return [self parseNode:element withParent:parent];

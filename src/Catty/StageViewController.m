@@ -104,7 +104,7 @@
     if (self.firstDrawing) {
         
         // just for test parser
-        TestParser *testparser = [[TestParser alloc] init];
+//        TestParser *testparser = [[TestParser alloc] init];
 //        Program *program = nil;
         
 //        self.program = [testparser generateDebugProject_GlideTo];
