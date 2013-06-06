@@ -34,6 +34,7 @@
     [self.object pointInDirection:deg];
 }
 
+
 #pragma mark - Description
 - (NSString*)description
 {

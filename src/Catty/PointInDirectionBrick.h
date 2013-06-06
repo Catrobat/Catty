@@ -26,7 +26,6 @@
 
 @interface PointInDirectionBrick : Brick
 
-@property (nonatomic, strong) Formula *degrees;
+@property (nonatomic, strong) Formula* degrees;
 
 @end
-
