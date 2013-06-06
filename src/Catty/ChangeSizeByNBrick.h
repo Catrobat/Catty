@@ -25,7 +25,7 @@
 
 @class Formula;
 
-@interface Changesizebynbrick : Brick
+@interface ChangeSizeByNBrick : Brick
 
 @property (nonatomic, strong) Formula *size;
 

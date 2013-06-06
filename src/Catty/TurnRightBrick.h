@@ -24,9 +24,8 @@
 
 @class Formula;
 
-@interface Turnrightbrick : Brick
+@interface TurnRightBrick : Brick
 
 @property (nonatomic, strong) Formula *degrees;
 
--(id)initWithDegrees:(NSNumber*)degees;
 @end

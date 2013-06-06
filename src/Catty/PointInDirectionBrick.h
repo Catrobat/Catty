@@ -20,24 +20,13 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import "Pointindirectionbrick.h"
-#import "Formula.h"
+#import "Brick.h"
 
-@implementation Pointindirectionbrick
+@class Formula;
 
-- (void)performFromScript:(Script*)script
-{
-    NSDebug(@"Performing: %@", self.description);
-    
-    float deg = [self.degrees interpretDoubleForSprite:self.object];
-    
-    [self.object pointInDirection:deg];
-}
+@interface PointInDirectionBrick : Brick
 
-#pragma mark - Description
-- (NSString*)description
-{
-    return [NSString stringWithFormat:@"PointInDirection: %f", [self.degrees interpretDoubleForSprite:self.object]];
-}
+@property (nonatomic, strong) Formula *degrees;
 
 @end
+

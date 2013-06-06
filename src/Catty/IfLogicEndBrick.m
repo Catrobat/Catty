@@ -23,7 +23,7 @@
 
 #import "IfLogicEndBrick.h"
 
-@implementation Iflogicendbrick
+@implementation IfLogicEndBrick
 
 - (void)performFromScript:(Script*)script
 {

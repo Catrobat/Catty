@@ -23,17 +23,17 @@
 
 @class Formula;
 @class Ifelsebrick;
-@class Iflogicendbrick;
-@class Iflogicelsebrick;
+@class IfLogicEndBrick;
+@class IfLogicElseBrick;
 
 
-@interface Iflogicbeginbrick : Brick
+@interface IfLogicBeginBrick : Brick
 
 @property (nonatomic, strong) Formula* ifCondition;
 
 #warning weak?!
-@property (nonatomic, weak) Iflogicelsebrick* ifElseBrick;
-@property (nonatomic, weak) Iflogicendbrick* ifEndBrick;
+@property (nonatomic, weak) IfLogicElseBrick* ifElseBrick;
+@property (nonatomic, weak) IfLogicEndBrick* ifEndBrick;
 
 
 -(BOOL)checkCondition;

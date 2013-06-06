@@ -24,7 +24,7 @@
 #import "Script.h"
 #import "Formula.h"
 
-@implementation Glidetobrick
+@implementation GlideToBrick
 
 @synthesize durationInSeconds = _durationInSeconds;
 @synthesize xDestination = _xDestination;

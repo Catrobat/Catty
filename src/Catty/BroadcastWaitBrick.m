@@ -23,7 +23,7 @@
 
 #import "Broadcastwaitbrick.h"
 
-@implementation Broadcastwaitbrick
+@implementation BroadcastWaitBrick
 
 -(id)initWithMessage:(NSString *)message
 {

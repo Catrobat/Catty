@@ -22,7 +22,7 @@
 
 #import "Brick.h"
 
-@interface Notebrick : Brick
+@interface NoteBrick : Brick
 
 @property (nonatomic, strong) NSString* note;
 

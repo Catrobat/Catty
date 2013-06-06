@@ -20,10 +20,10 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import "Turnleftbrick.h"
+#import "TurnLeftBrick.h"
 #import "Formula.h"
 
-@implementation Turnleftbrick
+@implementation TurnLeftBrick
 
 @synthesize degrees = _degrees;
 

@@ -22,6 +22,6 @@
 
 #import "Brick.h"
 
-@interface Showbrick : Brick
+@interface ShowBrick : Brick
 
 @end

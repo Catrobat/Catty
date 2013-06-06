@@ -25,7 +25,7 @@
 #import "Script.h"
 #import "Formula.h"
 
-@implementation Waitbrick
+@implementation WaitBrick
 
 @synthesize timeToWaitInSeconds = _timeToWaitInSeconds;
 

@@ -22,13 +22,13 @@
 
 #import "Brick.h"
 
-@class Iflogicbeginbrick;
-@class Iflogicendbrick;
+@class IfLogicBeginBrick;
+@class IfLogicEndBrick;
 
-@interface Iflogicelsebrick : Brick
+@interface IfLogicElseBrick : Brick
 
-@property (nonatomic, weak) Iflogicbeginbrick* ifBeginBrick;
-@property (nonatomic, weak) Iflogicendbrick* ifEndBrick;
+@property (nonatomic, weak) IfLogicBeginBrick* ifBeginBrick;
+@property (nonatomic, weak) IfLogicEndBrick* ifEndBrick;
 
 
 @end

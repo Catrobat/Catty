@@ -23,6 +23,6 @@
 
 #import "Script.h"
 
-@interface Whenscript : Script
+@interface WhenScript : Script
 
 @end

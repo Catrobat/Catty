@@ -23,7 +23,7 @@
 #import "Gonstepsbackbrick.h"
 #import "Formula.h"
 
-@implementation Gonstepsbackbrick
+@implementation GoNStepsBackBrick
 
 @synthesize steps = _steps;
 

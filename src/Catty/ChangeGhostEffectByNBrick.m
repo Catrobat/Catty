@@ -21,10 +21,10 @@
  */
 
 
-#import "Changeghosteffectbynbrick.h"
+#import "ChangeGhostEffectByNBrick.h"
 #import "Formula.h"
 
-@implementation Changeghosteffectbynbrick
+@implementation ChangeGhostEffectByNBrick
 
 @synthesize changeGhostEffect = _changeGhostEffect;
 

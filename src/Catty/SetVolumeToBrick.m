@@ -21,27 +21,11 @@
  */
 
 
-#import "Setvolumetobrick.h"
+#import "SetVolumeToBrick.h"
 
 #import "Formula.h"
 
-@implementation Setvolumetobrick
-
-@synthesize volume = _volume;
-
-
--(id)initWithVolumeInPercent:(NSNumber*)volume
-{
-    abort();
-#warning do not use! -- NSNumber changed to Formula
-    self = [super init];
-    if (self)
-    {
-        self.volume = volume;
-    }
-    return self;
-}
-
+@implementation SetVolumeToBrick
 
 
 - (void)performFromScript:(Script *)script

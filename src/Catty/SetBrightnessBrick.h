@@ -24,7 +24,7 @@
 
 @class Formula;
 
-@interface Setbrightnessbrick : Brick
+@interface SetBrightnessBrick : Brick
 
 @property (nonatomic, strong) Formula *brightness;
 

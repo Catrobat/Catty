@@ -24,7 +24,7 @@
 
 @class Formula;
 
-@interface Waitbrick : Brick
+@interface WaitBrick : Brick
 
 @property (nonatomic, strong) Formula *timeToWaitInSeconds;
 

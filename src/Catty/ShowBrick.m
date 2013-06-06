@@ -23,26 +23,19 @@
 
 #import "Showbrick.h"
 
-@implementation Showbrick
+@implementation ShowBrick
 
 - (void)performFromScript:(Script*)script
 {
     NSDebug(@"Performing: %@", self.description);
-    
+
     [self.object show];
-    
-    //    float sleepTime = ((float)self.timeToWaitInMilliseconds.intValue)/1000;
-    //    NSLog(@"wating for %f seconds", sleepTime);
-    //    NSLog(@"---- BEFORE SLEEP -----");
-    //    [NSThread sleepForTimeInterval:sleepTime];
-    //    NSLog(@"---- AFTER SLEEP ------");
-    
 }
 
 #pragma mark - Description
 - (NSString*)description
 {
-    return [NSString stringWithFormat:@"Showbrick"];
+    return [NSString stringWithFormat:@"ShowBrick"];
 }
 
 @end

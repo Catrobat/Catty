@@ -50,7 +50,7 @@
 #import "TurnLeftBrick.h"
 #import "TurnRightBrick.h"
 #import "SetBrightnessBrick.h"
-#import "Pointindirectionbrick.h"
+#import "PointInDirectionBrick.h"
 #import "SetGhostEffectBrick.h"
 #import "GoNStepsBackBrick.h"
 

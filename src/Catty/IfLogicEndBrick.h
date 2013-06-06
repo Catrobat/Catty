@@ -22,20 +22,20 @@
 
 #import "Brick.h"
 
-@class Iflogicbeginbrick;
-@class Iflogicelsebrick;
+@class IfLogicBeginBrick;
+@class IfLogicElseBrick;
 
 
-@interface Iflogicendbrick : Brick
+@interface IfLogicEndBrick : Brick
 
 #warning check which properties are correct!
 
-@property (nonatomic, weak) Iflogicbeginbrick* ifBeginBrick;
-@property (nonatomic, weak) Iflogicelsebrick* ifElseBrick;
+@property (nonatomic, weak) IfLogicBeginBrick* ifBeginBrick;
+@property (nonatomic, weak) IfLogicElseBrick* ifElseBrick;
 
 
-@property (nonatomic, weak) Iflogicbeginbrick* beginBrick;
-@property (nonatomic, weak) Iflogicelsebrick* elseBrick;
+@property (nonatomic, weak) IfLogicBeginBrick* beginBrick;
+@property (nonatomic, weak) IfLogicElseBrick* elseBrick;
 
 
 @end

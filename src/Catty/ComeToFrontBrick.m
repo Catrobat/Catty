@@ -22,7 +22,7 @@
 
 #import "Cometofrontbrick.h"
 
-@implementation Cometofrontbrick
+@implementation ComeToFrontBrick
 
 - (void)performFromScript:(Script*)script
 {

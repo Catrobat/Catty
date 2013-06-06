@@ -20,7 +20,7 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import "Speakbrick.h"
+#import "SpeakBrick.h"
 #import "NSString+CatrobatNSStringExtensions.h"
 #import "Sound.h"
 
@@ -28,7 +28,7 @@
 #define TTS_APPENDIX @"&q="
 #define USER_AGENT @"Mozilla/5.0 (Macintosh; Intel Mac OS X 10.6; rv:2.0.1) Gecko/20100101 Firefox/4.0.1"
 
-@interface Speakbrick()
+@interface SpeakBrick()
 
 @property (nonatomic, strong) NSString *path;
 @property (nonatomic, strong) NSString *language;
@@ -38,7 +38,7 @@
 @end
 
 
-@implementation Speakbrick
+@implementation SpeakBrick
 
 
 -(void)setText:(NSString *)text

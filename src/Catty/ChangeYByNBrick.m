@@ -20,10 +20,10 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import "Changeybynbrick.h"
+#import "ChangeYByNBrick.h"
 #import "Formula.h"
 
-@implementation Changeybynbrick
+@implementation ChangeYByNBrick
 
 @synthesize yMovement = _yMovement;
 

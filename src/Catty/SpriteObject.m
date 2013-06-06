@@ -125,8 +125,8 @@
     
     // init BroadcastWait-stuff
     for (Script *script in self.scriptList) {
-        if ([script isKindOfClass:[Broadcastscript class]]) {
-            Broadcastscript *broadcastScript = (Broadcastscript*)script;
+        if ([script isKindOfClass:[BroadcastScript class]]) {
+            BroadcastScript *broadcastScript = (BroadcastScript*)script;
             if ([self.broadcastWaitDelegate respondsToSelector:@selector(registerSprite:forMessage:)]) {
                 [self.broadcastWaitDelegate registerSprite:self forMessage:broadcastScript.receivedMessage];
             } else {
@@ -140,7 +140,7 @@
     
     for (Script *script in self.scriptList)
     {
-        if ([script isKindOfClass:[Startscript class]]) {
+        if ([script isKindOfClass:[StartScript class]]) {
             [self.activeScripts addObject:script];
             
             // ------------------------------------------ THREAD --------------------------------------
@@ -173,7 +173,7 @@
     if ([touches anyObject]) {
         for (Script *script in self.scriptList)
         {
-            if ([script isKindOfClass:[Whenscript class]]) {
+            if ([script isKindOfClass:[WhenScript class]]) {
                 NSDebug(@"Performing script with action: %@", script.description);
                 
                 if ([self.activeScripts containsObject:script]) {
@@ -200,11 +200,11 @@
 - (void)performBroadcastScript:(NSNotification*)notification
 {
     NSLog(@"Notification: %@", notification.name);
-    Broadcastscript *script = nil;
+    BroadcastScript *script = nil;
     
     for (Script *s in self.scriptList) {
-        if ([s isKindOfClass:[Broadcastscript class]]) {
-            Broadcastscript *tmp = (Broadcastscript*)s;
+        if ([s isKindOfClass:[BroadcastScript class]]) {
+            BroadcastScript *tmp = (BroadcastScript*)s;
             if ([tmp.receivedMessage isEqualToString:notification.name]) {
                 script = tmp;
             }
@@ -244,11 +244,11 @@
 
 -(void)performBroadcastWaitScript_calledFromBroadcastWaitDelegate_withMessage:(NSString *)message
 {
-    Broadcastscript *script = nil;
+    BroadcastScript *script = nil;
     
     for (Script *s in self.scriptList) {
-        if ([s isKindOfClass:[Broadcastscript class]]) {
-            Broadcastscript *tmp = (Broadcastscript*)s;
+        if ([s isKindOfClass:[BroadcastScript class]]) {
+            BroadcastScript *tmp = (BroadcastScript*)s;
             if ([tmp.receivedMessage isEqualToString:message]) {
                 script = tmp;
             }

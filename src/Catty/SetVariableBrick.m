@@ -27,7 +27,7 @@
 #import "Program.h"
 #import "VariablesContainer.h"
 
-@implementation Setvariablebrick
+@implementation SetVariableBrick
 
 
 - (void)performFromScript:(Script*)script

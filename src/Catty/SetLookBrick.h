@@ -24,7 +24,7 @@
 #import "Look.h"
 #import "SpriteObject.h"
 
-@interface Setlookbrick : Brick
+@interface SetLookBrick : Brick
 
 //@property (nonatomic, strong) NSNumber *indexOfCostumeInArray;
 

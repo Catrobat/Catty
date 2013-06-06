@@ -22,7 +22,7 @@
 #import "Setghosteffectbrick.h"
 #import "Formula.h"
 
-@implementation Setghosteffectbrick
+@implementation SetGhostEffectBrick
 
 @synthesize transparency = _transparency;
 

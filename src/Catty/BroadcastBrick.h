@@ -22,7 +22,7 @@
 
 #import "Brick.h"
 
-@interface Broadcastbrick : Brick
+@interface BroadcastBrick : Brick
 
 @property (nonatomic, strong) NSString *broadcastMessage;
 

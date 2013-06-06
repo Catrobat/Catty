@@ -22,6 +22,6 @@
 
 #import "Broadcastscript.h"
 
-@implementation Broadcastscript
+@implementation BroadcastScript
 
 @end

@@ -24,10 +24,8 @@
 
 @class Formula;
 
-@interface Setxbrick : Brick
+@interface SetXBrick : Brick
 
 @property (nonatomic, strong) Formula *xPosition;
-
--(id)initWithXPosition:(NSNumber*)xPosition;
 
 @end

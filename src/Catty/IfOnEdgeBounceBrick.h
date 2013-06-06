@@ -22,6 +22,6 @@
 
 #import "Brick.h"
 
-@interface Ifonedgebouncebrick : Brick
+@interface IfOnEdgeBounceBrick : Brick
 
 @end

@@ -23,9 +23,7 @@
 #import "Turnrightbrick.h"
 #import "Formula.h"
 
-@implementation Turnrightbrick
-
-@synthesize degrees = _degrees;
+@implementation TurnRightBrick
 
 
 - (void)performFromScript:(Script*)script

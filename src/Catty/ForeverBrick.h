@@ -23,9 +23,9 @@
 #import "Brick.h"
 #import "LoopEndBrick.h"
 
-@interface Foreverbrick : Brick
+@interface ForeverBrick : Brick
 
-@property (nonatomic, weak) Loopendbrick *loopEndBrick;
+@property (nonatomic, weak) LoopEndBrick *loopEndBrick;
 
 -(BOOL)checkConditionAndDecrementLoopCounter;
 

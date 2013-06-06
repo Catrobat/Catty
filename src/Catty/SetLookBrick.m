@@ -23,7 +23,7 @@
 #import "Setlookbrick.h"
 #import "SpriteObject.h"
 
-@implementation Setlookbrick
+@implementation SetLookBrick
 
 //@synthesize indexOfCostumeInArray = _indexOfCostumeInArray;
 @synthesize look = _look;

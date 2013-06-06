@@ -22,6 +22,6 @@
 
 #import "Whenscript.h"
 
-@implementation Whenscript
+@implementation WhenScript
 
 @end

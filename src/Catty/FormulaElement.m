@@ -82,7 +82,7 @@
             //NSDebug(@"User Variable");
             ProgramManager* manager = [ProgramManager sharedProgramManager];
             Program* program = [manager program];
-            Uservariable* var = [program.variables getUserVariableNamed:self.value forSpriteObject:sprite];
+            UserVariable* var = [program.variables getUserVariableNamed:self.value forSpriteObject:sprite];
             result = [var.value doubleValue];
             break;
         }

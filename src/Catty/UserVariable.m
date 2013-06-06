@@ -22,7 +22,7 @@
 
 #import "UserVariable.h"
 
-@implementation Uservariable
+@implementation UserVariable
 
 -(NSString*)description
 {

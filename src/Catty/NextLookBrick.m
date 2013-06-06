@@ -22,7 +22,7 @@
 
 #import "Nextlookbrick.h"
 
-@implementation Nextlookbrick
+@implementation NextLookBrick
 
 - (void)performFromScript:(Script*)script
 {

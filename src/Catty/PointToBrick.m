@@ -22,7 +22,7 @@
 
 #import "PointToBrick.h"
 
-@implementation Pointtobrick
+@implementation PointToBrick
 
 
 - (void)performFromScript:(Script*)script

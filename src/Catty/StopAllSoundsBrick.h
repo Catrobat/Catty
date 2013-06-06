@@ -23,6 +23,6 @@
 
 #import "Brick.h"
 
-@interface Stopallsoundsbrick : Brick
+@interface StopAllSoundsBrick : Brick
 
 @end

@@ -21,8 +21,8 @@
  */
 
 
-#import "Startscript.h"
+#import "StartScript.h"
 
-@implementation Startscript
+@implementation StartScript
 
 @end

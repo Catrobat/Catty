@@ -22,6 +22,6 @@
 
 #import "Script.h"
 
-@interface Startscript : Script
+@interface StartScript : Script
 
 @end

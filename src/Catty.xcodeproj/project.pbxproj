@@ -109,7 +109,7 @@
 		B405BAAB175DCA2A00B1A0FC /* FeaturedProgramsStoreViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B4BCF43A170ED60C008EDF3A /* FeaturedProgramsStoreViewController.m */; };
 		B405BAAC175DCA2A00B1A0FC /* SearchStoreViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B4BCF43E170ED669008EDF3A /* SearchStoreViewController.m */; };
 		B405BAAE175DCA2A00B1A0FC /* TestParser.m in Sources */ = {isa = PBXBuildFile; fileRef = B4DEFC8F170F464200DD1939 /* TestParser.m */; };
-		B405BAAF175DCA2A00B1A0FC /* Pointindirectionbrick.m in Sources */ = {isa = PBXBuildFile; fileRef = B4D4DD4217156A8500EEE3F8 /* Pointindirectionbrick.m */; };
+		B405BAAF175DCA2A00B1A0FC /* PointInDirectionBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = B4D4DD4217156A8500EEE3F8 /* PointInDirectionBrick.m */; };
 		B405BAB0175DCA2A00B1A0FC /* ForumWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CD8CC8BB1724346200239EBF /* ForumWebViewController.m */; };
 		B405BAB1175DCA2A00B1A0FC /* SetVariableBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = B45A5826173253E5000E038F /* SetVariableBrick.m */; };
 		B405BAB2175DCA2A00B1A0FC /* UserVariable.m in Sources */ = {isa = PBXBuildFile; fileRef = B45A582B17325442000E038F /* UserVariable.m */; };
@@ -207,7 +207,7 @@
 		B4BCF43B170ED60D008EDF3A /* FeaturedProgramsStoreViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B4BCF43A170ED60C008EDF3A /* FeaturedProgramsStoreViewController.m */; };
 		B4BCF43F170ED669008EDF3A /* SearchStoreViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B4BCF43E170ED669008EDF3A /* SearchStoreViewController.m */; };
 		B4BCF442170EDB80008EDF3A /* ProgramDefines.h in Resources */ = {isa = PBXBuildFile; fileRef = B4BCF441170EDB80008EDF3A /* ProgramDefines.h */; };
-		B4D4DD4317156A8500EEE3F8 /* Pointindirectionbrick.m in Sources */ = {isa = PBXBuildFile; fileRef = B4D4DD4217156A8500EEE3F8 /* Pointindirectionbrick.m */; };
+		B4D4DD4317156A8500EEE3F8 /* PointInDirectionBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = B4D4DD4217156A8500EEE3F8 /* PointInDirectionBrick.m */; };
 		B4D940A0170EC249003DDBFA /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B4F243CC170EBEF7007A071D /* AppDelegate.m */; };
 		B4D940A1170EC268003DDBFA /* Stage.m in Sources */ = {isa = PBXBuildFile; fileRef = B4F243CA170EBE23007A071D /* Stage.m */; };
 		B4D940A2170EC26D003DDBFA /* StageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B4F243C6170EBD63007A071D /* StageViewController.m */; };
@@ -463,8 +463,8 @@
 		B4BCF43D170ED669008EDF3A /* SearchStoreViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchStoreViewController.h; sourceTree = "<group>"; };
 		B4BCF43E170ED669008EDF3A /* SearchStoreViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchStoreViewController.m; sourceTree = "<group>"; };
 		B4BCF441170EDB80008EDF3A /* ProgramDefines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProgramDefines.h; sourceTree = "<group>"; };
-		B4D4DD4117156A8500EEE3F8 /* Pointindirectionbrick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Pointindirectionbrick.h; sourceTree = "<group>"; };
-		B4D4DD4217156A8500EEE3F8 /* Pointindirectionbrick.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Pointindirectionbrick.m; sourceTree = "<group>"; };
+		B4D4DD4117156A8500EEE3F8 /* PointInDirectionBrick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PointInDirectionBrick.h; sourceTree = "<group>"; };
+		B4D4DD4217156A8500EEE3F8 /* PointInDirectionBrick.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PointInDirectionBrick.m; sourceTree = "<group>"; };
 		B4D940A4170EC2B7003DDBFA /* crypt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = crypt.h; path = Catty/minizip/crypt.h; sourceTree = SOURCE_ROOT; };
 		B4D940A5170EC2B7003DDBFA /* ioapi.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = ioapi.c; path = Catty/minizip/ioapi.c; sourceTree = SOURCE_ROOT; };
 		B4D940A6170EC2B7003DDBFA /* ioapi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ioapi.h; path = Catty/minizip/ioapi.h; sourceTree = SOURCE_ROOT; };
@@ -1222,8 +1222,8 @@
 		B4D4DD3F17156A7500EEE3F8 /* PointInDirectionBrick */ = {
 			isa = PBXGroup;
 			children = (
-				B4D4DD4117156A8500EEE3F8 /* Pointindirectionbrick.h */,
-				B4D4DD4217156A8500EEE3F8 /* Pointindirectionbrick.m */,
+				B4D4DD4117156A8500EEE3F8 /* PointInDirectionBrick.h */,
+				B4D4DD4217156A8500EEE3F8 /* PointInDirectionBrick.m */,
 			);
 			name = PointInDirectionBrick;
 			sourceTree = "<group>";
@@ -2134,7 +2134,7 @@
 				B4BCF43B170ED60D008EDF3A /* FeaturedProgramsStoreViewController.m in Sources */,
 				B4BCF43F170ED669008EDF3A /* SearchStoreViewController.m in Sources */,
 				B4DEFC90170F464200DD1939 /* TestParser.m in Sources */,
-				B4D4DD4317156A8500EEE3F8 /* Pointindirectionbrick.m in Sources */,
+				B4D4DD4317156A8500EEE3F8 /* PointInDirectionBrick.m in Sources */,
 				CD8CC8BC1724346200239EBF /* ForumWebViewController.m in Sources */,
 				B45A5827173253E5000E038F /* SetVariableBrick.m in Sources */,
 				B45A582C17325442000E038F /* UserVariable.m in Sources */,
@@ -2249,7 +2249,7 @@
 				B405BAAB175DCA2A00B1A0FC /* FeaturedProgramsStoreViewController.m in Sources */,
 				B405BAAC175DCA2A00B1A0FC /* SearchStoreViewController.m in Sources */,
 				B405BAAE175DCA2A00B1A0FC /* TestParser.m in Sources */,
-				B405BAAF175DCA2A00B1A0FC /* Pointindirectionbrick.m in Sources */,
+				B405BAAF175DCA2A00B1A0FC /* PointInDirectionBrick.m in Sources */,
 				B405BAB0175DCA2A00B1A0FC /* ForumWebViewController.m in Sources */,
 				B405BAB1175DCA2A00B1A0FC /* SetVariableBrick.m in Sources */,
 				B405BAB2175DCA2A00B1A0FC /* UserVariable.m in Sources */,
@@ -2512,6 +2512,7 @@
 				B4A92DC5175F535300608667 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		C01FCF4E08A954540054247B /* Build configuration list for PBXProject "Catty" */ = {
 			isa = XCConfigurationList;

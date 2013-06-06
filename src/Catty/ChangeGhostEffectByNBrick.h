@@ -25,7 +25,7 @@
 
 @class Formula;
 
-@interface Changeghosteffectbynbrick : Brick
+@interface ChangeGhostEffectByNBrick : Brick
 
 @property (nonatomic, strong) Formula *changeGhostEffect;
 

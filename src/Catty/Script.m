@@ -131,17 +131,17 @@
 //            NSLog(@"Brick: %@", [brick description]);
 //        }
         
-        if ([brick isKindOfClass:[Foreverbrick class]]) {
+        if ([brick isKindOfClass:[ForeverBrick class]]) {
             
-            if (![(Foreverbrick*)brick checkConditionAndDecrementLoopCounter]) {
+            if (![(ForeverBrick*)brick checkConditionAndDecrementLoopCounter]) {
                 // go to end of loop
                 int numOfLoops = 1;
                 int tmpCounter = self.currentBrickIndex+1;
                 while (numOfLoops > 0 && tmpCounter < [self.brickList count]) {
                     brick = [self.brickList objectAtIndex:tmpCounter];
-                    if ([brick isKindOfClass:[Foreverbrick class]])
+                    if ([brick isKindOfClass:[ForeverBrick class]])
                         numOfLoops += 1;
-                    else if ([brick isMemberOfClass:[Loopendbrick class]])
+                    else if ([brick isMemberOfClass:[LoopEndBrick class]])
                         numOfLoops -= 1;
                     tmpCounter += 1;
                 }
@@ -151,7 +151,7 @@
                 [self.startLoopTimestampStack addObject:[NSNumber numberWithDouble:[[NSDate date]timeIntervalSince1970]]];
             }
             
-        } else if ([brick isMemberOfClass:[Loopendbrick class]]) {
+        } else if ([brick isMemberOfClass:[LoopEndBrick class]]) {
             
             self.currentBrickIndex = ((NSNumber*)[self.startLoopIndexStack lastObject]).intValue-1;
             [self.startLoopIndexStack removeLastObject];
@@ -163,8 +163,8 @@
             if (timeToWait > 0)
                 [NSThread sleepForTimeInterval:timeToWait];
             
-        } else if([brick isMemberOfClass:[Iflogicbeginbrick class]]) {
-            BOOL condition = [(Iflogicbeginbrick*)brick checkCondition];
+        } else if([brick isMemberOfClass:[IfLogicBeginBrick class]]) {
+            BOOL condition = [(IfLogicBeginBrick*)brick checkCondition];
             if(!condition) {
                 BOOL found = NO;
                 Brick* elseBrick = nil;
@@ -172,34 +172,34 @@
                 while (self.currentBrickIndex < [self.brickList count] && !found) {
                     self.currentBrickIndex++;
                     elseBrick = [self.brickList objectAtIndex:self.currentBrickIndex];
-                    if([elseBrick isMemberOfClass:[Iflogicbeginbrick class]]) {
+                    if([elseBrick isMemberOfClass:[IfLogicBeginBrick class]]) {
                         ifcount++;
                     }
-                    else if([elseBrick isMemberOfClass:[Iflogicendbrick class]]) {
+                    else if([elseBrick isMemberOfClass:[IfLogicEndBrick class]]) {
                         ifcount--;
                     }
-                    else if([elseBrick isMemberOfClass:[Iflogicelsebrick class]] && ifcount == 0) {
+                    else if([elseBrick isMemberOfClass:[IfLogicElseBrick class]] && ifcount == 0) {
                         found = YES;
                     }
                 }
             }
-        } else if([brick isMemberOfClass:[Iflogicelsebrick class]]) {
+        } else if([brick isMemberOfClass:[IfLogicElseBrick class]]) {
             Brick* endBrick = nil;
             int endcount = 1;
-            while (self.currentBrickIndex < [self.brickList count] && ![endBrick isMemberOfClass:[Iflogicendbrick class]] && endcount != 0) {
+            while (self.currentBrickIndex < [self.brickList count] && ![endBrick isMemberOfClass:[IfLogicEndBrick class]] && endcount != 0) {
                 self.currentBrickIndex++;
                 endBrick = [self.brickList objectAtIndex:self.currentBrickIndex];
-                if([endBrick isMemberOfClass:[Iflogicbeginbrick class]]) {
+                if([endBrick isMemberOfClass:[IfLogicBeginBrick class]]) {
                     endcount++;
                 }
-                else if([endBrick isMemberOfClass:[Iflogicendbrick class]]) {
+                else if([endBrick isMemberOfClass:[IfLogicEndBrick class]]) {
                     endcount--;
                 }
             }
-        } else if([brick isMemberOfClass:[Iflogicelsebrick class]]) {
+        } else if([brick isMemberOfClass:[IfLogicElseBrick class]]) {
             // No action needed
         }
-        else if(![brick isMemberOfClass:[Notebrick class] ]) {
+        else if(![brick isMemberOfClass:[NoteBrick class] ]) {
             [brick performFromScript:self];
         }
         

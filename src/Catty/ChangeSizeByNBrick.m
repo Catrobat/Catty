@@ -23,7 +23,7 @@
 #import "Changesizebynbrick.h"
 #import "Formula.h"
 
-@implementation Changesizebynbrick
+@implementation ChangeSizeByNBrick
 
 
 - (void)performFromScript:(Script*)script

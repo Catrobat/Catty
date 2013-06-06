@@ -20,18 +20,11 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import "Playsoundbrick.h"
-#import <AVFoundation/AVAudioPlayer.h>
+#import "PlaySoundBrick.h"
 #import "Sound.h"
 
-@interface Playsoundbrick()
 
-@property (nonatomic, strong) AVAudioPlayer *audioPlayer;
-
-@end
-
-
-@implementation Playsoundbrick
+@implementation PlaySoundBrick
 
 @synthesize sound = _sound;
 

@@ -24,7 +24,7 @@
 
 @class Formula;
 
-@interface Gonstepsbackbrick : Brick
+@interface GoNStepsBackBrick : Brick
 
 @property (nonatomic, strong) Formula *steps;
 

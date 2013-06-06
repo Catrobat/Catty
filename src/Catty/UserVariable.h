@@ -22,7 +22,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface Uservariable : NSObject
+@interface UserVariable : NSObject
 
 @property (nonatomic, strong) NSString* name;
 @property (nonatomic, strong) NSNumber* value;

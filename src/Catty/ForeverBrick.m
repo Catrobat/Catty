@@ -22,7 +22,7 @@
 
 #import "Foreverbrick.h"
 
-@implementation Foreverbrick
+@implementation ForeverBrick
 
 
 - (void)performFromScript:(Script*)script

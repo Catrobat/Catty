@@ -22,7 +22,7 @@
 
 #import "Loopendbrick.h"
 
-@implementation Loopendbrick
+@implementation LoopEndBrick
 
 - (void)performFromScript:(Script*)script
 {

@@ -24,7 +24,7 @@
 #import "Formula.h"
 
 
-@implementation Iflogicbeginbrick
+@implementation IfLogicBeginBrick
 
 - (void)performFromScript:(Script*)script
 {

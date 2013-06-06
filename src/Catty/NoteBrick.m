@@ -22,7 +22,7 @@
 
 #import "NoteBrick.h"
 
-@implementation Notebrick
+@implementation NoteBrick
 
 -(void)performFromScript:(Script *)script
 {

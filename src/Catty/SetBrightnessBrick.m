@@ -24,7 +24,7 @@
 #import "Setbrightnessbrick.h"
 #import "Formula.h"
 
-@implementation Setbrightnessbrick
+@implementation SetBrightnessBrick
 
 -(void)performFromScript:(Script *)script
 {

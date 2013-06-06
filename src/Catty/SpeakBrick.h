@@ -23,7 +23,7 @@
 #import "Brick.h"
 
 
-@interface Speakbrick : Brick
+@interface SpeakBrick : Brick
 
 @property (nonatomic, strong) NSString *text;
 

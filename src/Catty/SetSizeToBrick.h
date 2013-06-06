@@ -26,10 +26,8 @@
 
 @class Formula;
 
-@interface Setsizetobrick : Brick
+@interface SetSizeToBrick : Brick
 
 @property (nonatomic, strong) Formula *size;
-
--(id)initWithSizeInPercentage:(NSNumber*)sizeInPercentage;
 
 @end

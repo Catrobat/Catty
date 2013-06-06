@@ -24,7 +24,7 @@
 #import "Formula.h"
 
 
-@implementation Changevolumebynbrick
+@implementation ChangeVolumeByNBrick
 
 
 @synthesize volume  = _volume;

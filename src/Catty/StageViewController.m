@@ -164,14 +164,14 @@
             NSDebug(@" ");
             NSDebug(@"StartScript:");
             for (Script *script in sprite.scriptList) {
-                if ([script isKindOfClass:[Startscript class]]) {
+                if ([script isKindOfClass:[StartScript class]]) {
                     for (Brick *brick in [script getAllBricks]) {
                         NSDebug(@"  %@", [brick description]);
                     }
                 }
             }
             for (Script *script in sprite.scriptList) {
-                if ([script isKindOfClass:[Whenscript class]]) {
+                if ([script isKindOfClass:[WhenScript class]]) {
                     NSDebug(@" ");
                     NSDebug(@"WhenScript:");
                     for (Brick *brick in [script getAllBricks]) {
@@ -180,7 +180,7 @@
                 }
             }
             for (Script *script in sprite.scriptList) {
-                if ([script isKindOfClass:[Broadcastscript class]]) {
+                if ([script isKindOfClass:[BroadcastScript class]]) {
                     NSDebug(@" ");
                     NSDebug(@"BroadcastScript:");
                     for (Brick *brick in [script getAllBricks]) {
@@ -289,14 +289,14 @@
         NSDebug(@" ");
         NSDebug(@"StartScript:");
         for (Script *script in sprite.scriptList) {
-            if ([script isKindOfClass:[Startscript class]]) {
+            if ([script isKindOfClass:[StartScript class]]) {
                 for (Brick *brick in [script getAllBricks]) {
                     NSDebug(@"  %@", [brick description]);
                 }
             }
         }
         for (Script *script in sprite.scriptList) {
-            if ([script isKindOfClass:[Whenscript class]]) {
+            if ([script isKindOfClass:[WhenScript class]]) {
                 NSDebug(@" ");
                 NSDebug(@"WhenScript:");
                 for (Brick *brick in [script getAllBricks]) {
@@ -305,7 +305,7 @@
             }
         }
         for (Script *script in sprite.scriptList) {
-            if ([script isKindOfClass:[Broadcastscript class]]) {
+            if ([script isKindOfClass:[BroadcastScript class]]) {
                 NSDebug(@" ");
                 NSDebug(@"BroadcastScript:");
                 for (Brick *brick in [script getAllBricks]) {

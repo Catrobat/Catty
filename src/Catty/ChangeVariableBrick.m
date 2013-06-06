@@ -26,7 +26,7 @@
 #import "ProgramManager.h"
 #import "VariablesContainer.h"
 
-@implementation Changevariablebrick
+@implementation ChangeVariableBrick
 
 
 - (void)performFromScript:(Script*)script

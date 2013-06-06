@@ -25,10 +25,8 @@
 
 @class Formula;
 
-@interface Setvolumetobrick : Brick
+@interface SetVolumeToBrick : Brick
 
 @property (nonatomic, strong) Formula *volume;
-
--(id)initWithVolumeInPercent:(NSNumber*)volume;
 
 @end

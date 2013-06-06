@@ -24,10 +24,8 @@
 #import "Brick.h"
 @class Sound;
 
-@interface Playsoundbrick : Brick
+@interface PlaySoundBrick : Brick
 
 @property (nonatomic, strong) Sound *sound;
-
-//-(id)initWithFileName:(NSString *)fileName;
 
 @end

@@ -23,21 +23,10 @@
 #import "Setybrick.h"
 #import "Formula.h"
 
-@implementation Setybrick
+@implementation SetYBrick
 
 @synthesize yPosition = _yPosition;
 
--(id)initWithYPosition:(NSNumber*)yPosition
-{
-    abort();
-#warning do not use -- NSNumber changed to Formula
-    self = [super init];
-    if (self)
-    {
-        self.yPosition = yPosition;
-    }
-    return self;
-}
 
 - (void)performFromScript:(Script*)script
 {
@@ -53,13 +42,7 @@
     
     
     //[self.object setYPosition:self.yPosition.floatValue];
-    
-    //    float sleepTime = ((float)self.timeToWaitInMilliseconds.intValue)/1000;
-    //    NSLog(@"wating for %f seconds", sleepTime);
-    //    NSLog(@"---- BEFORE SLEEP -----");
-    //    [NSThread sleepForTimeInterval:sleepTime];
-    //    NSLog(@"---- AFTER SLEEP ------");
-    
+        
 }
 
 #pragma mark - Description

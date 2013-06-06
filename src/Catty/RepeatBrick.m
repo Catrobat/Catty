@@ -23,11 +23,11 @@
 #import "Repeatbrick.h"
 #import "Formula.h"
 
-@interface Repeatbrick()
+@interface RepeatBrick()
 @property (strong, nonatomic) NSNumber *loopsLeft;
 @end
 
-@implementation Repeatbrick
+@implementation RepeatBrick
 
 @synthesize timesToRepeat = _timesToRepeat;
 @synthesize loopsLeft = _loopsLeft;

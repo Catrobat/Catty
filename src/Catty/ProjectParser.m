@@ -33,6 +33,7 @@
 #import "UserVariable.h"
 #import "XMLObjectReference.h"
 #import "OrderedMapTable.h"
+#import "NSString+CatrobatNSStringExtensions.h"
 
 
 // test
@@ -51,15 +52,15 @@
 // TODO: fix the user defined warnings below and remove this in final version
 #define kParserObjectTypeSprite         @"T@\"SpriteObject\""
 #define kParserObjectTypeLookData       @"T@\"Look\""
-#define kParserObjectTypeLoopEndBrick   @"T@\"Loopendbrick\""
+#define kParserObjectTypeLoopEndBrick   @"T@\"LoopEndBrick\""
 #define kParserObjectTypeSound          @"T@\"Sound\""
 #define kParserObjectTypeHeader         @"T@\"Header\""
-#define kParserObjectTypeUserVariable   @"T@\"Uservariable\""
+#define kParserObjectTypeUserVariable   @"T@\"UserVariable\""
 #define kParserObjectTypeFormula        @"T@\"Formula\""
-#define kParserObjectTypeIfElseBrick    @"T@\"Iflogicelsebrick\""
-#define kParserObjectTypeIfEndBrick     @"T@\"Iflogicendbrick\""
-#define kParserObjectTypeIfBeginBrick   @"T@\"Iflogicbeginbrick\""
-#define kParserObjectTypeElseBrick      @"T@\"Elsebrick\""
+#define kParserObjectTypeIfElseBrick    @"T@\"IfLogicElseBrick\""
+#define kParserObjectTypeIfEndBrick     @"T@\"IfLogicEndBrick\""
+#define kParserObjectTypeIfBeginBrick   @"T@\"IfLogicBeginBrick\""
+#define kParserObjectTypeElseBrick      @"T@\"ElseBrick\""
 #define kParserObjectTypeVariables      @"T@\"VariablesContainer\""
 
 @interface ProjectParser()
@@ -137,31 +138,7 @@
         className = node.name;
     }
     
-    // check for first character uppercase
-    className = [className capitalizedString];
-    
-    if ([className isEqualToString:@"Object"] || [className isEqualToString:@"Pointedobject"]) {
-        // ... introspect from "Object"... glory idea...
-        // I'm so proud of you XML Team...
-        className = @"SpriteObject";
-    }
-    
-    if([className isEqualToString:@"Ifelsebrick"] || [className isEqualToString:@"Elsebrick"]) {
-        className = @"Iflogicelsebrick";
-    }
-    
-    if([className isEqualToString:@"Ifbeginbrick"] || [className isEqualToString:@"Beginbrick"]) {
-        className = @"Iflogicbeginbrick";
-    }
-    
-    if([className isEqualToString:@"Ifendbrick"]) {
-        className = @"Iflogicendbrick";
-    }
-    
-    if([className isEqualToString:@"Loopendlessbrick"]) {
-        className = @"Loopendbrick";
-    }
-    
+    className = [self classNameForString:className];
     
     id object = [[NSClassFromString(className) alloc] init];
     if (!object) {
@@ -171,7 +148,6 @@
     if([object isKindOfClass:[Program class]]) {
         self.program = object;
     }
-    
     
     // just an educated gues...
     if ([object isKindOfClass:[SpriteObject class]]) {
@@ -183,11 +159,10 @@
     
     
     for (GDataXMLElement *child in node.children) {
-
-        // maybe check node.childCount == 0?
         
         objc_property_t property = class_getProperty([object class], [child.name UTF8String]);
-        if (property) { // check if property exists
+        
+        if (property) {
             NSString *propertyType = [NSString stringWithUTF8String:property_getTypeString(property)];
             NSDebug(@"Property type: %@", propertyType);
             
@@ -220,8 +195,7 @@
                 }
                 
             }
-            else {
-                // NOT ARRAY
+            else { // NOT ARRAY
                 
                 id value = [self getSingleValue:child ofType:propertyType withParent:ref];
                 [object setValue:value forKey:child.name];
@@ -247,7 +221,6 @@
     if (!element || !propertyType) { return nil; }
     
     
-
     // check type
     if ([propertyType isEqualToString:kParserObjectTypeString]) {
         return element.stringValue;
@@ -492,7 +465,7 @@
             
             NSMutableArray* lastComponentList = lastComponent;
             
-            NSString* className = [[self stripArrayBrackets:pathComponent] capitalizedString];
+            NSString* className = [[self stripArrayBrackets:pathComponent] firstCharacterUppercaseString];
             NSMutableArray* list = [[NSMutableArray alloc] init];
             for (id obj in lastComponentList)
             {
@@ -503,7 +476,7 @@
             int index = [self indexForArrayObject:pathComponent];
             
             if (index+1 > [list count] || index < 0) {
-[NSException raise:@"IndexOutOfBoundsException" format:@"IndexOutOfBounds for lastComponent!"];
+                [NSException raise:@"IndexOutOfBoundsException" format:@"IndexOutOfBounds for lastComponent!"];
             }
             
             lastComponent = [list objectAtIndex:index];
@@ -555,7 +528,7 @@
         
         for(GDataXMLElement* var in listElement.children) {
             
-            Uservariable* userVariable = nil;
+            UserVariable* userVariable = nil;
             if([self isReferenceElement:var]) {
                 userVariable = [self parseReferenceElement:var withParent:listReference];
             }
@@ -577,7 +550,7 @@
     NSMutableArray* programVariableList = [[NSMutableArray alloc] initWithCapacity:progList.childCount];
     XMLObjectReference* programVariableRef = [[XMLObjectReference alloc] initWithParent:parent andObject:programVariableList];
     for (GDataXMLElement *entry in progList.children) {
-        Uservariable* var = nil;
+        UserVariable* var = nil;
         if([self isReferenceElement:entry]) {
             var = [self parseReferenceElement:entry withParent:programVariableRef];
         }
@@ -645,6 +618,35 @@ const char* property_getTypeString(objc_property_t property) {
 	buffer[len] = '\0';
 	
 	return buffer;
+}
+
+
+-(NSString*) classNameForString:(NSString*)classString
+{
+    NSString* className = [classString firstCharacterUppercaseString];
+    
+    if ([className isEqualToString:@"Object"] || [className isEqualToString:@"PointedObject"]) {
+        className = @"SpriteObject";
+    }
+    
+    else if([className isEqualToString:@"IfElseBrick"] || [className isEqualToString:@"ElseBrick"]) {
+        className = @"IfLogicElseBrick";
+    }
+    
+    else if([className isEqualToString:@"IfBeginBrick"] || [className isEqualToString:@"BeginBrick"]) {
+        className = @"IfLogicBeginBrick";
+    }
+    
+    else if([className isEqualToString:@"IfEndBrick"]) {
+        className = @"IfLogicEndBrick";
+    }
+    
+    else if([className isEqualToString:@"LoopEndlessBrick"]) {
+        className = @"LoopEndBrick";
+    }
+    
+    return className;
+    
 }
 
 

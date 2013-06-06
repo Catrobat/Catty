@@ -21,26 +21,11 @@
  */
 
 
-#import "Setsizetobrick.h"
+#import "SetSizeToBrick.h"
 #import "Formula.h"
 
-@implementation Setsizetobrick
+@implementation SetSizeToBrick
 
-@synthesize size = _sizeInPercentage;
-
-
--(id)initWithSizeInPercentage:(NSNumber*)sizeInPercentage
-{
-    abort();
-#warning do not use any more! (NSNumber changed to Formula!)
-    
-    self = [super init];
-    if (self)
-    {
-        self.size = sizeInPercentage;
-    }
-    return self;
-}
 
 - (void)performFromScript:(Script*)script
 {
@@ -49,13 +34,6 @@
     double size = [self.size interpretDoubleForSprite:self.object];
     
     [self.object setSizeToPercentage:size];
-    
-    //    float sleepTime = ((float)self.timeToWaitInMilliseconds.intValue)/1000;
-    //    NSLog(@"wating for %f seconds", sleepTime);
-    //    NSLog(@"---- BEFORE SLEEP -----");
-    //    [NSThread sleepForTimeInterval:sleepTime];
-    //    NSLog(@"---- AFTER SLEEP ------");
-    
 }
 
 #pragma mark - Description

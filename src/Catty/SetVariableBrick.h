@@ -23,12 +23,12 @@
 #import "Brick.h"
 
 
-@class Uservariable;
+@class UserVariable;
 @class Formula;
 
-@interface Setvariablebrick : Brick
+@interface SetVariableBrick : Brick
 
-@property (nonatomic, strong) Uservariable* userVariable;
+@property (nonatomic, strong) UserVariable* userVariable;
 @property (nonatomic, strong) Formula* variableFormula;
 
 

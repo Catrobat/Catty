@@ -24,7 +24,7 @@
 
 @class Formula;
 
-@interface Changexbynbrick : Brick
+@interface ChangeXByNBrick : Brick
 
 @property (nonatomic, strong) Formula *xMovement;
 

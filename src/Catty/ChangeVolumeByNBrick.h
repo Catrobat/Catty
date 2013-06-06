@@ -25,7 +25,7 @@
 
 @class Formula;
 
-@interface Changevolumebynbrick : Brick
+@interface ChangeVolumeByNBrick : Brick
 
 @property (nonatomic, nonatomic) Formula* volume;
 

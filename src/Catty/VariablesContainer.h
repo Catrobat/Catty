@@ -24,7 +24,7 @@
 
 
 @class SpriteObject;
-@class Uservariable;
+@class UserVariable;
 @class OrderedMapTable;
 
 @interface VariablesContainer : NSObject
@@ -37,10 +37,10 @@
 @property (nonatomic, strong) NSMutableArray* programVariableList;
 
 
--(Uservariable*) getUserVariableNamed:(NSString*) name forSpriteObject:(SpriteObject*) sprite;
+-(UserVariable*) getUserVariableNamed:(NSString*) name forSpriteObject:(SpriteObject*) sprite;
 
--(void) setUserVariable:(Uservariable*)userVariable toValue:(double)value;
+-(void) setUserVariable:(UserVariable*)userVariable toValue:(double)value;
 
--(void) changeVariable:(Uservariable*)userVariable byValue:(double)value;
+-(void) changeVariable:(UserVariable*)userVariable byValue:(double)value;
 
 @end

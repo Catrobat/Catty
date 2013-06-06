@@ -23,7 +23,7 @@
 
 #import "Broadcastbrick.h"
 
-@implementation Broadcastbrick
+@implementation BroadcastBrick
 
 @synthesize broadcastMessage = _message;
 

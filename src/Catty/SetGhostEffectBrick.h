@@ -24,7 +24,7 @@
 
 @class Formula;
 
-@interface Setghosteffectbrick : Brick
+@interface SetGhostEffectBrick : Brick
 
 @property (nonatomic, strong) Formula *transparency;
 

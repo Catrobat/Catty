@@ -23,7 +23,7 @@
 #import "MoveNStepsBrick.h"
 #import "Formula.h"
 
-@implementation Movenstepsbrick
+@implementation MoveNStepsBrick
 
 -(void)performFromScript:(Script *)script
 {

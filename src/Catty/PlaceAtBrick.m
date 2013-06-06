@@ -23,7 +23,7 @@
 #import "Placeatbrick.h"
 #import "Formula.h"
 
-@implementation Placeatbrick
+@implementation PlaceAtBrick
 
 
 

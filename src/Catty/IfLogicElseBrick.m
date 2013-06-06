@@ -22,7 +22,7 @@
 
 #import "IfLogicElseBrick.h"
 
-@implementation Iflogicelsebrick
+@implementation IfLogicElseBrick
 
 - (void)performFromScript:(Script*)script
 {

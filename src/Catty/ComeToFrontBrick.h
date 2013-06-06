@@ -22,6 +22,6 @@
 
 #import "Brick.h"
 
-@interface Cometofrontbrick : Brick
+@interface ComeToFrontBrick : Brick
 
 @end

@@ -24,11 +24,8 @@
 
 @class Formula;
 
-@interface Setybrick : Brick
-
+@interface SetYBrick : Brick
 
 @property (nonatomic, strong) Formula *yPosition;
-
--(id)initWithYPosition:(NSNumber*)yPosition;
 
 @end

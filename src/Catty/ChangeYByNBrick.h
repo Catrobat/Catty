@@ -25,7 +25,7 @@
 
 @class Formula;
 
-@interface Changeybynbrick : Brick
+@interface ChangeYByNBrick : Brick
 
 @property (nonatomic, strong) Formula *yMovement;
 

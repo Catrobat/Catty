@@ -23,7 +23,7 @@
 #import "Foreverbrick.h"
 @class Formula;
 
-@interface Repeatbrick : Foreverbrick
+@interface RepeatBrick : ForeverBrick
 
 @property (nonatomic, strong) Formula *timesToRepeat;
 

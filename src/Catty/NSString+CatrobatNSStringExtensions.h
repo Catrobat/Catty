@@ -27,7 +27,10 @@
 
 - (NSString*) stringByEscapingHTMLEntities;
 
+- (NSString*) firstCharacterUppercaseString;
+
 - (BOOL)containsString:(NSString*)string;
+
 
 @end
 

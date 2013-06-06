@@ -61,6 +61,12 @@ NSMutableString* resultString;
 }
 
 
+- (NSString*) firstCharacterUppercaseString
+{
+    return [[[self substringToIndex:1] uppercaseString] stringByAppendingString:[self substringFromIndex:1]];
+}
+
+
 - (BOOL)containsString:(NSString*)string
 {
     NSRange range = [self rangeOfString:string options:0];

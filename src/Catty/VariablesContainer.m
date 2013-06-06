@@ -48,11 +48,11 @@ static pthread_mutex_t variablesLock;
 }
 
 
--(Uservariable*) getUserVariableNamed:(NSString*) name forSpriteObject:(SpriteObject*) sprite
+-(UserVariable*) getUserVariableNamed:(NSString*) name forSpriteObject:(SpriteObject*) sprite
 {
     NSArray* objectUserVariables = [self.objectVariableList objectForKey:sprite];
     
-    Uservariable* variable = [self findUserVariableNamed:name inArray:objectUserVariables];
+    UserVariable* variable = [self findUserVariableNamed:name inArray:objectUserVariables];
     
     if(!variable) {
         variable = [self findUserVariableNamed:name inArray:self.programVariableList];
@@ -62,12 +62,12 @@ static pthread_mutex_t variablesLock;
 }
 
 
--(Uservariable*) findUserVariableNamed:(NSString*)name inArray:(NSArray*)userVariables
+-(UserVariable*) findUserVariableNamed:(NSString*)name inArray:(NSArray*)userVariables
 {
-    Uservariable* variable = nil;
+    UserVariable* variable = nil;
     pthread_mutex_lock(&variablesLock);
     for(int i=0; i<[userVariables count]; i++) {
-        Uservariable* var = [userVariables objectAtIndex:i];
+        UserVariable* var = [userVariables objectAtIndex:i];
         if([var.name isEqualToString:name]) {
             variable = var;
             break;
@@ -78,14 +78,14 @@ static pthread_mutex_t variablesLock;
     return variable;
 }
 
--(void) setUserVariable:(Uservariable*)userVariable toValue:(double)value
+-(void) setUserVariable:(UserVariable*)userVariable toValue:(double)value
 {
     pthread_mutex_lock(&variablesLock);
     userVariable.value = [NSNumber numberWithDouble:value];
     pthread_mutex_unlock(&variablesLock);
 }
 
--(void) changeVariable:(Uservariable*)userVariable byValue:(double)value
+-(void) changeVariable:(UserVariable*)userVariable byValue:(double)value
 {
     pthread_mutex_lock(&variablesLock);
     userVariable.value = [NSNumber numberWithFloat:([userVariable.value doubleValue] + value)];

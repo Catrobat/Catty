@@ -22,7 +22,7 @@
 
 #import "IfOnEdgeBounceBrick.h"
 
-@implementation Ifonedgebouncebrick
+@implementation IfOnEdgeBounceBrick
 
 - (void)performFromScript:(Script*)script;
 {

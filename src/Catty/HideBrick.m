@@ -22,7 +22,7 @@
 
 #import "Hidebrick.h"
 
-@implementation Hidebrick
+@implementation HideBrick
 
 - (void)performFromScript:(Script*)script
 {
