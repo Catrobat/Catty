@@ -38,7 +38,8 @@
 #pragma mark - Description
 - (NSString*)description
 {
-    return [NSString stringWithFormat:@"PointInDirection: %f", [self.degrees interpretDoubleForSprite:self.object]];
+    float deg = [self.degrees interpretDoubleForSprite:self.object];
+    return [NSString stringWithFormat:@"PointInDirection: %f", deg];
 }
 
 @end

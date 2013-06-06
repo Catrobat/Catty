@@ -169,14 +169,10 @@ static SensorHandler* sharedSensorHandler = nil;
 
 -(double) direction
 {
-    if([CLLocationManager headingAvailable]) {
-        [self.locationManager startUpdatingHeading];
-        [NSThread sleepForTimeInterval:kSensorUpdateInterval];
-    }
+    [self.locationManager startUpdatingHeading];
 
     double direction = -self.locationManager.heading.trueHeading;
     
-
     return direction;
 
 }
