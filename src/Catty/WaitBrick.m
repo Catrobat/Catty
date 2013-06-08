@@ -21,7 +21,7 @@
  */
 
 
-#import "Waitbrick.h"
+#import "WaitBrick.h"
 #import "Script.h"
 #import "Formula.h"
 

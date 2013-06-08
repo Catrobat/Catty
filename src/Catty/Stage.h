@@ -30,6 +30,7 @@
 @interface Stage : SPSprite
 
 @property (nonatomic, strong) Program *program;
+@property BOOL paused;
 
 
 -(void)start;

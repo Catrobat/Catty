@@ -90,7 +90,7 @@
         case SENSOR: {
             //NSDebug(@"SENSOR");
             Sensor sensor = [SensorManager sensorForString:self.value];
-            if([SensorManager isLookSensor:sensor]) {
+            if([SensorManager isObjectSensor:sensor]) {
                 result = [self interpretLookSensor:sensor forSprite:sprite];
             } else {
                 result = [[SensorHandler sharedSensorHandler] valueForSensor:sensor];
@@ -312,31 +312,31 @@
     
     switch (sensor) {
             
-        case LOOK_X: {
+        case OBJECT_X: {
             result = [sprite position].x;
             break;
         }
-        case LOOK_Y: {
+        case OBJECT_Y: {
             result = [sprite position].y;
             break;
         }
-        case LOOK_GHOSTEFFECT: {
+        case OBJECT_GHOSTEFFECT: {
             result = sprite.alpha;
             break;
         }
-        case LOOK_BRIGHTNESS: {
+        case OBJECT_BRIGHTNESS: {
             abort();
             break;
         }
-        case LOOK_SIZE: {
+        case OBJECT_SIZE: {
             result = sprite.scaleX;
             break;
         }
-        case LOOK_ROTATION: {
+        case OBJECT_ROTATION: {
             result = sprite.rotation;
             break;
         }
-        case LOOK_LAYER: {
+        case OBJECT_LAYER: {
             result = sprite.zIndex;
             break;
         }

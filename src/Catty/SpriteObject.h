@@ -61,15 +61,13 @@
 
 - (void)performBroadcastWaitScript_calledFromBroadcastWaitDelegate_withMessage:(NSString *)message;
 
+
 // actions
-- (void)placeAt:(GLKVector3)newPosition;
 - (void)changeLook:(Look*)look;
 - (void)nextLook;
 - (void)glideToPosition:(CGPoint)position withDurationInSeconds:(float)durationInSeconds fromScript:(Script*)script;
 - (void)hide;
 - (void)show;
-- (void)setXPosition:(float)xPosition;
-- (void)setYPosition:(float)yPosition;
 - (void)broadcast:(NSString*)message;
 - (void)broadcastAndWait:(NSString*)message;
 - (void)comeToFront;

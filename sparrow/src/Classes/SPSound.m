@@ -148,7 +148,6 @@
     }
     else
     {
-        NSLog(@"Sound '%@' will be played with AVAudioPlayer [Reason: %@]", path, error);
         self = [[SPAVSound alloc] initWithContentsOfFile:fullPath duration:soundDuration];
     }
     

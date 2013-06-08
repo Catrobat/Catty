@@ -31,13 +31,13 @@ NSString * const sensorStringArray[] = {
     @"COMPASS_DIRECTION",
     @"X_INCLINATION",
     @"Y_INCLINATION",
-    @"LOOK_X",
-    @"LOOK_Y",
-    @"LOOK_GHOSTEFFECT",
-    @"LOOK_BRIGHTNESS",
-    @"LOOK_SIZE",
-    @"LOOK_ROTATION",
-    @"LOOK_LAYER",
+    @"OBJECT_X",
+    @"OBJECT_Y",
+    @"OBJECT_GHOSTEFFECT",
+    @"OBJECT_BRIGHTNESS",
+    @"OBJECT_SIZE",
+    @"OBJECT_ROTATION",
+    @"OBJECT_LAYER",
 };
 
 
@@ -62,27 +62,29 @@ NSString * const sensorStringArray[] = {
     if([sensor isEqualToString:@"Y_INCLINATION"]) {
         return Y_INCLINATION;
     }
-    if([sensor isEqualToString:@"LOOK_X"]) {
-        return LOOK_X;
+    if([sensor isEqualToString:@"OBJECT_X"]) {
+        return OBJECT_X;
     }
-    if([sensor isEqualToString:@"LOOK_Y"]) {
-        return LOOK_Y;
+    if([sensor isEqualToString:@"OBJECT_Y"]) {
+        return OBJECT_Y;
     }
-    if([sensor isEqualToString:@"LOOK_GHOSTEFFECT"]) {
-        return LOOK_GHOSTEFFECT;
+    if([sensor isEqualToString:@"OBJECT_GHOSTEFFECT"]) {
+        return OBJECT_GHOSTEFFECT;
     }
-    if([sensor isEqualToString:@"LOOK_BRIGHTNESS"]) {
-        return LOOK_BRIGHTNESS;
+    if([sensor isEqualToString:@"OBJECT_BRIGHTNESS"]) {
+        return OBJECT_BRIGHTNESS;
     }
-    if([sensor isEqualToString:@"LOOK_SIZE"]) {
-        return LOOK_SIZE;
+    if([sensor isEqualToString:@"OBJECT_SIZE"]) {
+        return OBJECT_SIZE;
     }
-    if([sensor isEqualToString:@"LOOK_ROTATION"]) {
-        return LOOK_ROTATION;
+    if([sensor isEqualToString:@"OBJECT_ROTATION"]) {
+        return OBJECT_ROTATION;
     }
-    if([sensor isEqualToString:@"LOOK_LAYER"]) {
-        return LOOK_LAYER;
+    if([sensor isEqualToString:@"OBJECT_LAYER"]) {
+        return OBJECT_LAYER;
     }
+    
+    NSError(@"Unknown Sensor: %@", sensor);
     
     return -1;
 }
@@ -95,9 +97,9 @@ NSString * const sensorStringArray[] = {
     return @"Unknown Sensor";
 }
 
-+(BOOL) isLookSensor:(Sensor)sensor
++(BOOL) isObjectSensor:(Sensor)sensor
 {
-    if(sensor >= LOOK_X && sensor <= LOOK_Y) {
+    if(sensor >= OBJECT_X && sensor <= OBJECT_Y) {
         return YES;
     }
     return NO;

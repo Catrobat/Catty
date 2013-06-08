@@ -35,7 +35,7 @@
 #pragma mark - Description
 - (NSString*)description
 {
-    return [NSString stringWithFormat:@"ShowBrick"];
+    return [NSString stringWithFormat:@"ShowBrick on: %@", self.object.name];
 }
 
 @end

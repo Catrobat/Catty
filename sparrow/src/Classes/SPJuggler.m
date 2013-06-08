@@ -43,8 +43,8 @@
 
 - (void)addObject:(id<SPAnimatable>)object
 {
-    if (object && ! [[NSArray arrayWithArray:_objects] containsObject:object])
-    //if (object && ! [_objects containsObject:object])
+    //if (object && ! [[NSArray arrayWithArray:_objects] containsObject:object])
+    if (object && ! [_objects containsObject:object])
     {
         [_objects addObject:object];
         

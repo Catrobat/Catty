@@ -48,7 +48,6 @@
 @property (nonatomic, strong) BroadcastWaitHandler *broadcastWaitHandler;
 @property (nonatomic, strong) Program* program;
 
-
 @end
 
 @implementation StageViewController
@@ -328,10 +327,14 @@
 
 - (void)backButtonPressed:(UIButton *)sender
 {
+    ((Stage*)self.root).paused = YES;
+    
     // stop program
     for (SpriteObject *sprite in self.program.objectList) {
         [sprite cleanup];
     }
+    
+    [SPAudioEngine stop];
     
     [self.program.objectList removeAllObjects];
     self.program = nil;
@@ -341,6 +344,7 @@
     [sender removeFromSuperview];
     [self.navigationController popViewControllerAnimated:YES];
 }
+
 
 
 

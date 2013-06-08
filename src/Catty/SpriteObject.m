@@ -31,6 +31,7 @@
 #import "Sparrow.h"
 #import "SPImage.h"
 #import "AnimationHandler.h"
+#import "SPAVSound.h"
 
 @interface SpriteObject()
 
@@ -39,6 +40,8 @@
 @property (nonatomic, strong) SPImage *brightnessWorkaround;
 @property (nonatomic, strong) NSMutableDictionary *sounds;
 @property (nonatomic, strong) NSCondition* speakLock;
+//@property (nonatomic, strong) SPJuggler* juggler;
+@property (nonatomic, strong) dispatch_queue_t scriptQueue;
 
 @end
 
@@ -47,8 +50,8 @@
 @synthesize position = _position;
 @synthesize brightnessWorkaround = _brightnessWorkaround;
 
-// --- getter - setter ---
 
+#pragma mark -- Getter Setter
 -(NSCondition*)speakLock
 {
     if(!_speakLock) {
@@ -68,13 +71,10 @@
 
 -(void)setPosition:(CGPoint)position
 {
-    //_position = position;
-    
     CGPoint pos = [self stageCoordinatesForPoint:position];
     
     self.x = (pos.x);
     self.y = (pos.y);
-    
 }
 
 -(CGPoint)position
@@ -97,26 +97,16 @@
 }
 
 
-// --- other stuff ---
-
--(void)setInitValues
+- (id)init
 {
-    self.position = CGPointMake(0.0f, 0.0f);
-    self.lookIndex = 0;
+    if (self = [super init])
+    {
+//        self.juggler = [[SPJuggler alloc] init];
+    }
+    return self;
 }
 
 
-- (NSString*)description {
-    NSMutableString *ret = [[NSMutableString alloc] init];
-    //[ret appendFormat:@"Sprite: (0x%@):\n", self];
-    [ret appendFormat:@"\r------------------- SPRITE --------------------\r"];
-    [ret appendFormat:@"Name: %@\r", self.name];
-    //[ret appendFormat:@"Look List: \r%@\r\r", self.lookList];
-    //[ret appendFormat:@"Script List: \r%@\r", self.scriptList];
-    [ret appendFormat:@"-------------------------------------------------\r"];
-    
-    return [NSString stringWithString:ret];
-}
 
 #pragma mark - script methods
 - (void)start
@@ -143,6 +133,7 @@
         if ([script isKindOfClass:[StartScript class]]) {
             [self.activeScripts addObject:script];
             
+
             // ------------------------------------------ THREAD --------------------------------------
             dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
                 [script runScript];
@@ -156,6 +147,19 @@
         }
     }
 }
+
+-(void)pause
+{
+    dispatch_suspend(self.scriptQueue);
+}
+
+
+-(void)setInitValues
+{
+    self.position = CGPointMake(0.0f, 0.0f);
+    self.lookIndex = 0;
+}
+
 
 -(BOOL)isType:(TouchAction)type equalToString:(NSString*)action
 {
@@ -199,7 +203,7 @@
 
 - (void)performBroadcastScript:(NSNotification*)notification
 {
-    NSLog(@"Notification: %@", notification.name);
+    NSDebug(@"Notification: %@", notification.name);
     BroadcastScript *script = nil;
     
     for (Script *s in self.scriptList) {
@@ -282,6 +286,7 @@
     for (Script *script in self.activeScripts) {
         [script stopScript];
     }
+    
     self.activeScripts = nil;
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
@@ -358,13 +363,13 @@
 - (void)glideToPosition:(CGPoint)position withDurationInSeconds:(float)durationInSeconds fromScript:(Script *)script {
 
     CGPoint newPosition = [self stageCoordinatesForPoint:position];
-    [[AnimationHandler sharedAnimationHandler] glideToPosition:newPosition withDurationInSeconds:durationInSeconds withObject:self];
+//    [[AnimationHandler sharedAnimationHandler] glideToPosition:newPosition withDurationInSeconds:durationInSeconds withObject:self];
 
     
-//    SPTween *tween = [SPTween tweenWithTarget:self time:durationInSeconds];
-//    [tween moveToX:newPosition.x y:newPosition.y];
-//    tween.repeatCount = 1;
-//    [Sparrow.juggler addObject:tween];
+    SPTween *tween = [SPTween tweenWithTarget:self time:durationInSeconds];
+    [tween moveToX:newPosition.x y:newPosition.y];
+    tween.repeatCount = 1;
+    [Sparrow.juggler addObject:tween];
 }
 
 
@@ -751,5 +756,17 @@
     
     [super render:support];
 }
+
+
+
+- (NSString*)description {
+    NSMutableString *ret = [[NSMutableString alloc] init];
+    [ret appendFormat:@"\r------------------- SPRITE --------------------\r"];
+    [ret appendFormat:@"Name: %@\r", self.name];
+    [ret appendFormat:@"-------------------------------------------------\r"];
+    
+    return [NSString stringWithString:ret];
+}
+
 
 @end

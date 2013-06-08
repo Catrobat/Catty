@@ -66,12 +66,7 @@
 @interface ProjectParser()
 
 - (id)parseNode:(GDataXMLElement*)node withParent:(XMLObjectReference*)parent;
-- (id)getSingleValue:(GDataXMLElement*)element ofType:(NSString*)propertyType;
 
-// just temp
-//#error todo
-/*@property (nonatomic, strong) NSMutableDictionary *lookDict;
-@property (nonatomic, strong) NSString *path;*/
 @property (nonatomic, strong) id currentActiveSprite;
 @property (nonatomic, strong) Program* program;
 
@@ -261,43 +256,14 @@
     else if ([propertyType isEqualToString:kParserObjectTypeLookData]) {
         // sanity check
         if (self.currentActiveSprite && [self.currentActiveSprite isKindOfClass:[SpriteObject class]]) {
-            SpriteObject *sprite = (SpriteObject*)self.currentActiveSprite;
-            NSString *refString = [element attributeForName:@"reference"].stringValue;
-            if (!refString || [refString isEqualToString:@""]) {
-               return [self parseNode:element withParent:parent];
-            }
             
-            // sanity check
-            if (!sprite.lookList || sprite.lookList.count == 0) {
-                // SHOULD NOT HAPPEN! NO LOOKS FOUND IN THIS SPRITE
-                abort(); // todo
-            }
-            
-            if (![refString hasSuffix:@"]"]) {
-                return [sprite.lookList objectAtIndex:0];
+            if([self isReferenceElement:element]) {
+                return [self parseReferenceElement:element withParent:parent];
             }
             else {
-                NSRange rr2 = [refString rangeOfString:@"["];
-                NSRange rr3 = [refString rangeOfString:@"]"];
-                int lengt = rr3.location - rr2.location - rr2.length;
-                int location = rr2.location + rr2.length;
-                NSRange aa;
-                aa.location = location;
-                aa.length = lengt;
-                NSString *indexString = [refString substringWithRange:aa];
-                NSInteger index = indexString.integerValue;
-                
-                index--;
-                
-                // sanity check
-                if (index+1 > sprite.lookList.count) {
-                    // SHOULD NOT HAPPEN!
-                    abort();
-                }
-                
-                return [sprite.lookList objectAtIndex:index];
-                
+                return [self parseNode:element withParent:parent];
             }
+            
         }
     }
     else if ([propertyType isEqualToString:kParserObjectTypeSound]) {
@@ -434,7 +400,7 @@
         }
         
 
-        else if([pathComponent hasPrefix:@"object"]) {
+        else if([pathComponent hasPrefix:@"object"] || [pathComponent hasPrefix:@"look"]) {
             
             int index = [self indexForArrayObject:pathComponent];
             
@@ -444,7 +410,7 @@
             
             lastComponent = [lastComponent objectAtIndex:index];
         }
-        else if([pathComponent hasPrefix:@"entry"]) {
+        else if([pathComponent hasPrefix:@"entry"]) { // e.g. objectVariableList/entry[3]
             int index = [self indexForArrayObject:pathComponent];
             
             if (index+1 > [lastComponent count] || index < 0) {

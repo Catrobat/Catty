@@ -31,6 +31,7 @@
 
 
 @property (nonatomic, strong) SPImage *tmpImage;
+@property BOOL pausedFirstTime;
 
 
 @end
@@ -45,6 +46,8 @@
 - (id)init
 {
     if ((self = [super init])) {
+//        [self addEventListener:@selector(onEnterFrame:) atObject:self
+//                       forType:SP_EVENT_TYPE_ENTER_FRAME];
     }
     return self;
 }
@@ -57,6 +60,8 @@
 
 -(void)start
 {
+    self.paused = NO;
+    
     for (SpriteObject *obj in self.program.objectList) {
         [obj addEventListener:@selector(onImageTouched:) atObject:obj forType:SP_EVENT_TYPE_TOUCH];
         [self addChild:obj];
@@ -67,6 +72,24 @@
         [obj start];
     }
 }
+
+
+//- (void)onEnterFrame:(SPEnterFrameEvent *)event
+//{
+//    double passedTime = event.passedTime;
+//    
+//    if (!self.paused) {
+//        for (SpriteObject *obj in self.program.objectList) {
+//            [obj advanceTime:passedTime];
+//        }
+//    }
+//    else if(self.pausedFirstTime) {
+//        for (SpriteObject *obj in self.program.objectList) {
+//            [obj pause];
+//        }
+//        self.pausedFirstTime = NO;
+//    }
+//}
 
 
 

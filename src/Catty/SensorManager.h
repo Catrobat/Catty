@@ -29,13 +29,13 @@ typedef enum {
     COMPASS_DIRECTION,
     X_INCLINATION,
     Y_INCLINATION,
-    LOOK_X,
-    LOOK_Y,
-    LOOK_GHOSTEFFECT,
-    LOOK_BRIGHTNESS,
-    LOOK_SIZE,
-    LOOK_ROTATION,
-    LOOK_LAYER,
+    OBJECT_X,
+    OBJECT_Y,
+    OBJECT_GHOSTEFFECT,
+    OBJECT_BRIGHTNESS,
+    OBJECT_SIZE,
+    OBJECT_ROTATION,
+    OBJECT_LAYER,
 } Sensor;
 
 
@@ -45,7 +45,7 @@ typedef enum {
 
 + (NSString*) stringForSensor:(Sensor)sensor;
 
-+(BOOL) isLookSensor:(Sensor)sensor;
++(BOOL) isObjectSensor:(Sensor)sensor;
 
 
 @end

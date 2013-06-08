@@ -2,30 +2,6 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>StageViewController</key>
-	<string>info</string>
-	<key>Setvariablebrick</key>
-	<string>info</string>
-	<key>Broadcastwaitbrick</key>
-	<string>info</string>
-	<key>Pointtobrick</key>
-	<string>info</string>
-	<key>Pointindirectionbrick</key>
-	<string>info</string>
-	<key>Setxbrick</key>
-	<string>info</string>
-	<key>Changevariablebrick</key>
-	<string>info</string>
-	<key>Setybrick</key>
-	<string>info</string>
-	<key>Changeybynbrick</key>
-	<string>info</string>
-	<key>Changexbynbrick</key>
-	<string>info</string>
-	<key>ProjectParser</key>
-	<string>info</string>
-	<key>FileManager</key>
-	<string>info</string>
 	<key>ExampleClass</key>
 	<string>warn</string>
 </dict>
