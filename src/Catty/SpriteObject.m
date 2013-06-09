@@ -417,7 +417,7 @@
 - (void)speakSound:(Sound*)sound
 {
     SPSound *soundFile = [SPSound soundWithContentsOfFile:[self pathForSpeakSound:sound]];
-    [self createSoundChannelAndAddToSounds:soundFile withKey:sound.fileName waitUntilDone:YES volume:2.0f]; // Google TTS is very quiet
+    [self createSoundChannelAndAddToSounds:soundFile withKey:sound.fileName waitUntilDone:YES volume:3.0f]; // Google TTS is very quiet
 }
 
 

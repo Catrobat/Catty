@@ -166,9 +166,20 @@
         } else if([brick isMemberOfClass:[IfLogicBeginBrick class]]) {
             BOOL condition = [(IfLogicBeginBrick*)brick checkCondition];
             if(!condition) {
+                
+//                int index = [self.brickList indexOfObject:((IfLogicBeginBrick*)brick).ifElseBrick];
+//                if(index <= 0 ||index > [self.brickList count]-1) {
+//                    abort();
+//                }
+//                self.currentBrickIndex = index;
+                
+                
+#warning workaround until XML fixed    
+                
                 BOOL found = NO;
                 Brick* elseBrick = nil;
                 int ifcount = 0;
+
                 while (self.currentBrickIndex < [self.brickList count] && !found) {
                     self.currentBrickIndex++;
                     elseBrick = [self.brickList objectAtIndex:self.currentBrickIndex];
@@ -184,8 +195,18 @@
                 }
             }
         } else if([brick isMemberOfClass:[IfLogicElseBrick class]]) {
-            Brick* endBrick = nil;
+
+            
+//            int index = [self.brickList indexOfObject:((IfLogicElseBrick*)brick).ifEndBrick];
+//            if(index <= 0 ||index > [self.brickList count]-1) {
+//                abort();
+//            }
+//            self.currentBrickIndex = index;
+ 
+#warning workaround until XML fixed
             int endcount = 1;
+            Brick* endBrick = nil;
+            
             while (self.currentBrickIndex < [self.brickList count] && ![endBrick isMemberOfClass:[IfLogicEndBrick class]] && endcount != 0) {
                 self.currentBrickIndex++;
                 endBrick = [self.brickList objectAtIndex:self.currentBrickIndex];

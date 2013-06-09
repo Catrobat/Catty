@@ -79,6 +79,7 @@
     [self.navigationController.tabBarController.view.superview addSubview:backButton];
     
     [[UIApplication sharedApplication] setIdleTimerDisabled:YES];
+    
 }
 
 - (void)viewWillDisappear:(BOOL)animated
