@@ -84,10 +84,10 @@
     Program* program = [self loadProgram];
     CGSize programSize = CGSizeMake(program.header.screenWidth.floatValue, program.header.screenHeight.floatValue);
     
-    Scene * scene = [Scene sceneWithSize:programSize];
+    Scene * scene = [[Scene alloc] initWithSize:programSize andProgram:program];
     scene.scaleMode = SKSceneScaleModeAspectFit;
     [skView presentScene:scene];
-    scene.program = program;
+
     
 }
 

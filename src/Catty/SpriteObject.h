@@ -22,6 +22,7 @@
 
 #import "SPImage.h"
 #import "SPTouchEvent.h"
+#import <SpriteKit/SpriteKit.h>
 
 @class Script;
 @class Look;
@@ -42,9 +43,7 @@
 @end
 
 
-@interface SpriteObject : SPImage <SpriteFormulaProtocol>
-
-@property (strong, nonatomic) NSString *name;
+@interface SpriteObject : SKSpriteNode <SpriteFormulaProtocol>
 
 @property (assign, nonatomic) CGSize originalSize;
 @property (assign, nonatomic) CGPoint position;

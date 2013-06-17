@@ -26,6 +26,11 @@
 
 @interface Scene : SKScene
 
+
 @property(nonatomic, strong) Program* program;
+
+
+-(id) initWithSize:(CGSize)size andProgram:(Program*)program;
+
 
 @end

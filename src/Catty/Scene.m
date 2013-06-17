@@ -22,11 +22,15 @@
 
 #import "Scene.H"
 #import "Program.h"
+#import "SpriteObject.h"
+#import "Script.h"
+
 
 @implementation Scene
 
 
--(id)initWithSize:(CGSize)size {
+- (id) initWithSize:(CGSize)size andProgram:(Program *)program
+{
     if (self = [super initWithSize:size]) {
         /* Setup your scene here */
         
@@ -40,9 +44,27 @@
                                        CGRectGetMidY(self.frame));
         
         [self addChild:myLabel];
+        
+        self.program = program;
+        [self startProgram];
     }
     return self;
 }
+
+
+
+-(void) startProgram
+{
+    
+    for (SpriteObject *obj in self.program.objectList) {
+        [self addChild:obj];
+        for(Script* script in obj.scriptList) {
+            
+        }
+    }
+    
+}
+
 
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
     /* Called when a touch begins */

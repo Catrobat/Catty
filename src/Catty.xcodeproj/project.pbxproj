@@ -127,7 +127,6 @@
 		B405BABE175DCA2A00B1A0FC /* NoteBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = B4826F77174D076800F57AE9 /* NoteBrick.m */; };
 		B405BABF175DCA2A00B1A0FC /* OrderedMapTable.m in Sources */ = {isa = PBXBuildFile; fileRef = B4826F82174D5BB100F57AE9 /* OrderedMapTable.m */; };
 		B405BAC0175DCA2A00B1A0FC /* MoveNStepsBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = B4840CA6174FAC3E002DEC53 /* MoveNStepsBrick.m */; };
-		B405BAC1175DCA2A00B1A0FC /* AnimationHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = B4365CDA17589FB300B4D0A6 /* AnimationHandler.m */; };
 		B405BAC2175DCA2A00B1A0FC /* Logger.m in Sources */ = {isa = PBXBuildFile; fileRef = B4365CE41758AF8F00B4D0A6 /* Logger.m */; };
 		B405BAC3175DCA2A00B1A0FC /* IfOnEdgeBounceBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = CDFEFCB31758CBC8002B5B0E /* IfOnEdgeBounceBrick.m */; };
 		B405BAC8175DD3F600B1A0FC /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = B405BAC7175DD3F600B1A0FC /* libxml2.dylib */; };
@@ -137,7 +136,6 @@
 		B40C306E170ECC30000B872F /* CatrobatBaseCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B4D940CD170EC903003DDBFA /* CatrobatBaseCell.m */; };
 		B40C3071170ECC49000B872F /* DarkBlueGradientImageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B40C3070170ECC49000B872F /* DarkBlueGradientImageCell.m */; };
 		B43313D717329514008B4EB3 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = B43313D917329514008B4EB3 /* Localizable.strings */; };
-		B4365CDB17589FB300B4D0A6 /* AnimationHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = B4365CDA17589FB300B4D0A6 /* AnimationHandler.m */; };
 		B4365CE51758AF8F00B4D0A6 /* Logger.m in Sources */ = {isa = PBXBuildFile; fileRef = B4365CE41758AF8F00B4D0A6 /* Logger.m */; };
 		B4365CE91758EBA900B4D0A6 /* LoggerProperties.plist in Resources */ = {isa = PBXBuildFile; fileRef = B4365CE81758EBA900B4D0A6 /* LoggerProperties.plist */; };
 		B4365CEA1758EBA900B4D0A6 /* LoggerProperties.plist in Resources */ = {isa = PBXBuildFile; fileRef = B4365CE81758EBA900B4D0A6 /* LoggerProperties.plist */; };
@@ -372,8 +370,6 @@
 		B40C3070170ECC49000B872F /* DarkBlueGradientImageCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DarkBlueGradientImageCell.m; sourceTree = "<group>"; };
 		B43313D817329514008B4EB3 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		B43313DA17329546008B4EB3 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Localizable.strings; sourceTree = "<group>"; };
-		B4365CD917589FB300B4D0A6 /* AnimationHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AnimationHandler.h; sourceTree = "<group>"; };
-		B4365CDA17589FB300B4D0A6 /* AnimationHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AnimationHandler.m; sourceTree = "<group>"; };
 		B4365CE31758AF8F00B4D0A6 /* Logger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Logger.h; sourceTree = "<group>"; };
 		B4365CE41758AF8F00B4D0A6 /* Logger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Logger.m; sourceTree = "<group>"; };
 		B4365CE81758EBA900B4D0A6 /* LoggerProperties.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = LoggerProperties.plist; sourceTree = "<group>"; };
@@ -829,7 +825,6 @@
 				B400302D170EB46A00396DB7 /* SSZipArchive */,
 				B4D940BB170EC664003DDBFA /* TableUtil */,
 				B400302F170EB4DC00396DB7 /* Util */,
-				B4365CDE17589FB600B4D0A6 /* AnimationHandler */,
 				B4365CE71758AF9200B4D0A6 /* Logger */,
 			);
 			name = Helper;
@@ -933,15 +928,6 @@
 				B40C3070170ECC49000B872F /* DarkBlueGradientImageCell.m */,
 			);
 			name = DarkBlueGradientImageCell;
-			sourceTree = "<group>";
-		};
-		B4365CDE17589FB600B4D0A6 /* AnimationHandler */ = {
-			isa = PBXGroup;
-			children = (
-				B4365CD917589FB300B4D0A6 /* AnimationHandler.h */,
-				B4365CDA17589FB300B4D0A6 /* AnimationHandler.m */,
-			);
-			name = AnimationHandler;
 			sourceTree = "<group>";
 		};
 		B4365CE71758AF9200B4D0A6 /* Logger */ = {
@@ -2194,7 +2180,6 @@
 				B4826F78174D076800F57AE9 /* NoteBrick.m in Sources */,
 				B4826F83174D5BB100F57AE9 /* OrderedMapTable.m in Sources */,
 				B4840CA7174FAC3E002DEC53 /* MoveNStepsBrick.m in Sources */,
-				B4365CDB17589FB300B4D0A6 /* AnimationHandler.m in Sources */,
 				B4365CE51758AF8F00B4D0A6 /* Logger.m in Sources */,
 				CDFEFCB41758CBC8002B5B0E /* IfOnEdgeBounceBrick.m in Sources */,
 				B4DA23D1175E26550079B381 /* SensorManager.m in Sources */,
@@ -2309,7 +2294,6 @@
 				B405BABE175DCA2A00B1A0FC /* NoteBrick.m in Sources */,
 				B405BABF175DCA2A00B1A0FC /* OrderedMapTable.m in Sources */,
 				B405BAC0175DCA2A00B1A0FC /* MoveNStepsBrick.m in Sources */,
-				B405BAC1175DCA2A00B1A0FC /* AnimationHandler.m in Sources */,
 				B405BAC2175DCA2A00B1A0FC /* Logger.m in Sources */,
 				B405BAC3175DCA2A00B1A0FC /* IfOnEdgeBounceBrick.m in Sources */,
 				B4DA23D2175E26550079B381 /* SensorManager.m in Sources */,
