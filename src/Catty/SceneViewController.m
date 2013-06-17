@@ -76,7 +76,7 @@
 #endif
     
     Program* program = [self loadProgram];
-    CGSize programSize = CGSizeMake(program.header.screenWidth.floatValue, program.header.screenWidth.floatValue);
+    CGSize programSize = CGSizeMake(program.header.screenWidth.floatValue, program.header.screenHeight.floatValue);
     
     // Create and configure the scene.
     SKScene * scene = [Scene sceneWithSize:programSize];
