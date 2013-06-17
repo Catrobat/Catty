@@ -51,6 +51,13 @@
 
     [self configureScene];
     
+    
+    UIButton* backButton = [[UIButton alloc] initWithFrame:CGRectMake(10.0f, 7.0f, 33.0f, 44.0f)];
+    [backButton addTarget:self action:@selector(backButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
+    UIImage* backImage = [UIImage imageNamed:@"back"];
+    [backButton setImage:backImage forState:UIControlStateNormal];
+    [self.view addSubview:backButton];
+    
 }
 
 - (void) viewWillAppear:(BOOL)animated
@@ -68,7 +75,6 @@
 -(void) configureScene
 {
     
-
     SKView * skView = (SKView *)self.view;
 #ifdef DEBUG
     skView.showsFPS = YES;
@@ -78,13 +84,10 @@
     Program* program = [self loadProgram];
     CGSize programSize = CGSizeMake(program.header.screenWidth.floatValue, program.header.screenHeight.floatValue);
     
-    // Create and configure the scene.
-    SKScene * scene = [Scene sceneWithSize:programSize];
+    Scene * scene = [Scene sceneWithSize:programSize];
     scene.scaleMode = SKSceneScaleModeAspectFit;
-    
-    // Present the scene.
     [skView presentScene:scene];
-
+    scene.program = program;
     
 }
 
@@ -127,6 +130,12 @@
         }
     }
     return program;
+}
+
+
+- (void)backButtonPressed:(UIButton *)sender
+{
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 

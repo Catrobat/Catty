@@ -47,18 +47,21 @@
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
     /* Called when a touch begins */
     
-    for (UITouch *touch in touches) {
-        CGPoint location = [touch locationInNode:self];
-        
-        SKSpriteNode *sprite = [SKSpriteNode spriteNodeWithImageNamed:@"menu_icon"];
-        
-        sprite.position = location;
-        
-        SKAction *action = [SKAction rotateByAngle:M_PI duration:1];
-        
-        [sprite runAction:[SKAction repeatActionForever:action]];
-        
-        [self addChild:sprite];
+    if(!self.paused) {
+    
+        for (UITouch *touch in touches) {
+            CGPoint location = [touch locationInNode:self];
+            
+            SKSpriteNode *sprite = [SKSpriteNode spriteNodeWithImageNamed:@"menu_icon"];
+            
+            sprite.position = location;
+            
+            SKAction *action = [SKAction rotateByAngle:M_PI duration:1];
+            
+            [sprite runAction:[SKAction repeatActionForever:action]];
+            
+            [self addChild:sprite];
+        }
     }
 }
 
