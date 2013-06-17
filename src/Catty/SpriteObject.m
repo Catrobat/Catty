@@ -33,6 +33,7 @@
 #import "AnimationHandler.h"
 #import "SPAVSound.h"
 
+
 @interface SpriteObject()
 
 @property (nonatomic, strong) NSMutableArray *activeScripts;
@@ -766,6 +767,23 @@
     [ret appendFormat:@"-------------------------------------------------\r"];
     
     return [NSString stringWithString:ret];
+}
+
+#pragma mark - SpriteFormulaProtocol
+
+- (CGFloat) xPosition
+{
+    return self.position.x;
+}
+
+- (CGFloat) yPosition {
+    return self.position.y;
+}
+
+- (CGFloat) brightness {
+#warning implement me right once we moved to SpriteKit
+    abort();
+    return 1.0;
 }
 
 

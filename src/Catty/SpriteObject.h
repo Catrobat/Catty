@@ -29,8 +29,20 @@
 @protocol SpriteManagerDelegate;
 @protocol BroadcastWaitDelegate;
 
+@protocol SpriteFormulaProtocol
 
-@interface SpriteObject : SPImage
+- (CGFloat) xPosition;
+- (CGFloat) yPosition;
+- (CGFloat) zIndex;
+- (CGFloat) alpha;
+- (CGFloat) brightness;
+- (CGFloat) scaleX;
+- (CGFloat) rotation;
+
+@end
+
+
+@interface SpriteObject : SPImage <SpriteFormulaProtocol>
 
 @property (strong, nonatomic) NSString *name;
 
@@ -46,8 +58,6 @@
 @property (strong, nonatomic) NSMutableArray *soundList;
 
 @property (nonatomic, strong) NSMutableArray *scriptList;
-
-@property (nonatomic, assign) CGFloat zIndex;
 
 
 

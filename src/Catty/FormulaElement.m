@@ -276,7 +276,10 @@
                 break;
             }
             case MOD: {
-                abort();
+                // IEEERemainder: http://msdn.microsoft.com/de-AT/library/system.math.ieeeremainder.aspx
+                double dividend = left;
+                double divisor = right;
+                result =  dividend - (divisor * round(dividend / divisor));
                 break;
             }
             case POW: {
@@ -323,11 +326,11 @@
     switch (sensor) {
             
         case OBJECT_X: {
-            result = [sprite position].x;
+            result = sprite.xPosition;
             break;
         }
         case OBJECT_Y: {
-            result = [sprite position].y;
+            result = sprite.yPosition;
             break;
         }
         case OBJECT_GHOSTEFFECT: {
@@ -335,7 +338,7 @@
             break;
         }
         case OBJECT_BRIGHTNESS: {
-            abort();
+            result = sprite.brightness;
             break;
         }
         case OBJECT_SIZE: {
