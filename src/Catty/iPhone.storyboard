@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="3084" systemVersion="12D78" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="62e-MX-z1C">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4457.6" systemVersion="12E55" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="62e-MX-z1C">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="2083"/>
+        <deployment defaultVersion="1536" identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3682.6"/>
     </dependencies>
     <scenes>
         <!--Catrobat Table View Controller-->
@@ -17,7 +18,7 @@
                                 <rect key="frame" x="0.0" y="22" width="320" height="125"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                    <rect key="frame" x="0.0" y="0.0" width="300" height="124"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="287" height="124"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" tag="12" contentMode="left" text="Title" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Dv1-wv-zOc">
@@ -47,7 +48,7 @@
                                 <rect key="frame" x="0.0" y="147" width="320" height="79"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                    <rect key="frame" x="0.0" y="0.0" width="300" height="78"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="287" height="78"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" tag="12" contentMode="left" text="Title" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Oyd-DV-hcJ">
@@ -74,6 +75,7 @@
                             <outlet property="delegate" destination="oKj-cD-XDS" id="W7e-U1-6OE"/>
                         </connections>
                     </tableView>
+                    <extendedEdge key="edgesForExtendedLayout"/>
                     <navigationItem key="navigationItem" id="vGJ-82-iau"/>
                     <connections>
                         <segue destination="s37-PF-3iN" kind="push" identifier="programs" id="vew-Li-crD"/>
@@ -99,7 +101,7 @@
                                 <rect key="frame" x="0.0" y="22" width="320" height="79"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                    <rect key="frame" x="0.0" y="0.0" width="300" height="78"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="287" height="78"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" tag="12" contentMode="left" text="Title" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="7VV-Cs-K8i">
@@ -125,9 +127,10 @@
                             <outlet property="delegate" destination="s37-PF-3iN" id="p1V-O8-1YO"/>
                         </connections>
                     </tableView>
+                    <extendedEdge key="edgesForExtendedLayout"/>
                     <navigationItem key="navigationItem" id="WNU-lr-3un"/>
                     <connections>
-                        <segue destination="Vaa-sF-tan" kind="push" identifier="segueToStage" id="SyO-93-8h2"/>
+                        <segue destination="Vaa-sF-tan" kind="push" identifier="segueToScene" id="SyO-93-8h2"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ysn-tw-Bdd" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -138,6 +141,7 @@
         <scene sceneID="W8F-bp-hNi">
             <objects>
                 <navigationController id="62e-MX-z1C" sceneMemberID="viewController">
+                    <extendedEdge key="edgesForExtendedLayout"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="hEA-S3-ek7">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -152,32 +156,16 @@
             </objects>
             <point key="canvasLocation" x="-3406" y="-2116"/>
         </scene>
-        <!--Stage View Controller-->
+        <!--Scene View Controller-->
         <scene sceneID="CNc-dU-wQn">
             <objects>
-                <viewController id="Vaa-sF-tan" customClass="StageViewController" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="i7p-d3-03F" customClass="GLKView">
-                        <rect key="frame" x="0.0" y="64" width="320" height="504"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="8nB-a4-P6v">
-                                <rect key="frame" x="10" y="7" width="33" height="44"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                <state key="normal" image="back@2x.png">
-                                    <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <state key="highlighted">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="backButtonPressed:" destination="Vaa-sF-tan" eventType="touchUpInside" id="xWU-Ra-0Bi"/>
-                                </connections>
-                            </button>
-                        </subviews>
+                <viewController id="Vaa-sF-tan" customClass="SceneViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="GJg-x7-ITz" customClass="SKView">
+                        <rect key="frame" x="0.0" y="64" width="320" height="455"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
+                    <extendedEdge key="edgesForExtendedLayout"/>
                     <navigationItem key="navigationItem" id="pqi-3X-7AK"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5vX-Ly-Lt0" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -197,7 +185,7 @@
                                 <rect key="frame" x="0.0" y="22" width="320" height="79"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                    <rect key="frame" x="0.0" y="0.0" width="287" height="78"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="253" height="78"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" tag="12" contentMode="left" text="Title" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="t6A-i1-Zj0">
@@ -224,6 +212,7 @@
                             <outlet property="delegate" destination="yQD-vL-urH" id="30I-It-81R"/>
                         </connections>
                     </tableView>
+                    <extendedEdge key="edgesForExtendedLayout"/>
                     <navigationItem key="navigationItem" id="cLZ-vl-LVI"/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <connections>
@@ -275,6 +264,7 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
+                    <extendedEdge key="edgesForExtendedLayout"/>
                     <navigationItem key="navigationItem" id="FwJ-XT-rqC"/>
                     <connections>
                         <outlet property="webView" destination="YEh-ma-7Vk" id="Q7G-V6-pWl"/>
@@ -288,6 +278,7 @@
         <scene sceneID="WMA-OS-EV1">
             <objects>
                 <navigationController definesPresentationContext="YES" id="5qf-P1-PqT" sceneMemberID="viewController">
+                    <extendedEdge key="edgesForExtendedLayout"/>
                     <navigationItem key="navigationItem" id="uee-Ap-MsS"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="6Lx-wC-Xic">
                         <autoresizingMask key="autoresizingMask"/>
@@ -304,6 +295,7 @@
         <scene sceneID="Rl9-gK-ktL">
             <objects>
                 <tabBarController definesPresentationContext="YES" id="vLF-8b-U7Z" customClass="DownloadTabBarController" sceneMemberID="viewController">
+                    <extendedEdge key="edgesForExtendedLayout"/>
                     <navigationItem key="navigationItem" id="sgn-39-wIw"/>
                     <nil key="simulatedBottomBarMetrics"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" id="Zo1-59-4e5">
@@ -333,7 +325,7 @@
                                 <rect key="frame" x="0.0" y="22" width="320" height="79"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                    <rect key="frame" x="0.0" y="0.0" width="287" height="78"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="253" height="78"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" tag="12" contentMode="left" text="Title" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="RtB-pp-bbe">
@@ -360,6 +352,7 @@
                             <outlet property="delegate" destination="d7j-dK-UxW" id="0It-e5-pcH"/>
                         </connections>
                     </tableView>
+                    <extendedEdge key="edgesForExtendedLayout"/>
                     <navigationItem key="navigationItem" id="SWr-4D-2iK"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Qpj-ch-Y40" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -387,7 +380,7 @@
                                 <rect key="frame" x="0.0" y="66" width="320" height="79"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                    <rect key="frame" x="0.0" y="0.0" width="300" height="78"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="287" height="78"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" tag="12" contentMode="left" text="Title" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="NfT-1k-Kjh">
@@ -413,6 +406,7 @@
                             <outlet property="delegate" destination="X6w-eP-ToB" id="dgh-gj-Hez"/>
                         </connections>
                     </tableView>
+                    <extendedEdge key="edgesForExtendedLayout"/>
                     <navigationItem key="navigationItem" id="T4M-Lm-rym"/>
                     <connections>
                         <outlet property="searchDisplayController" destination="LxF-DO-feM" id="phv-JO-gTs"/>
@@ -455,10 +449,11 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
+                    <extendedEdge key="edgesForExtendedLayout"/>
                     <navigationItem key="navigationItem" id="eyi-rm-zZ0"/>
                     <connections>
                         <outlet property="scrollViewOutlet" destination="qwE-Ve-7jz" id="s6T-uY-bi7"/>
-                        <segue destination="Vaa-sF-tan" kind="push" identifier="SEGUE_TO_STAGE" id="Ou7-xR-5ta"/>
+                        <segue destination="Vaa-sF-tan" kind="push" identifier="segueToScene" id="Ou7-xR-5ta"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dmN-gD-N9f" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -469,6 +464,7 @@
         <scene sceneID="NP5-qO-tsU">
             <objects>
                 <navigationController id="Tk4-eE-HMu" sceneMemberID="viewController">
+                    <extendedEdge key="edgesForExtendedLayout"/>
                     <tabBarItem key="tabBarItem" systemItem="recents" id="Zep-LE-ckO"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="ZeK-uE-aDv">
@@ -488,6 +484,7 @@
         <scene sceneID="J5p-5t-aJm">
             <objects>
                 <navigationController id="32v-ba-PAF" sceneMemberID="viewController">
+                    <extendedEdge key="edgesForExtendedLayout"/>
                     <tabBarItem key="tabBarItem" systemItem="featured" id="qmY-24-fJB"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="cTl-7K-jeP">
@@ -507,6 +504,7 @@
         <scene sceneID="Q9F-5v-H6c">
             <objects>
                 <navigationController id="Wyc-D3-Vz0" sceneMemberID="viewController">
+                    <extendedEdge key="edgesForExtendedLayout"/>
                     <tabBarItem key="tabBarItem" systemItem="search" id="HG5-fN-clC"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="KFp-6t-vg4">
@@ -523,16 +521,13 @@
             <point key="canvasLocation" x="-1847" y="-657"/>
         </scene>
     </scenes>
-    <resources>
-        <image name="back@2x.png" width="86" height="112"/>
-    </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="E8f-Km-7J7"/>
         <segue reference="ZYi-SP-eKt"/>
+        <segue reference="Ou7-xR-5ta"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -236,6 +236,9 @@
 		B4DA23DD175E78050079B381 /* menu_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B4DA23D9175E78050079B381 /* menu_icon@2x.png */; };
 		B4DEFC8D170F463800DD1939 /* TestParserResources in Resources */ = {isa = PBXBuildFile; fileRef = B4DEFC8C170F463700DD1939 /* TestParserResources */; };
 		B4DEFC90170F464200DD1939 /* TestParser.m in Sources */ = {isa = PBXBuildFile; fileRef = B4DEFC8F170F464200DD1939 /* TestParser.m */; };
+		B4E7D253176EF1B300EC8AD8 /* SceneViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B4E7D252176EF1B300EC8AD8 /* SceneViewController.m */; };
+		B4E7D257176EF20F00EC8AD8 /* Scene.m in Sources */ = {isa = PBXBuildFile; fileRef = B4E7D256176EF20F00EC8AD8 /* Scene.m */; };
+		B4E7D25A176EF2CA00EC8AD8 /* SpriteKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B4E7D259176EF2CA00EC8AD8 /* SpriteKit.framework */; };
 		B4F243C8170EBD7B007A071D /* iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B4F243C7170EBD7B007A071D /* iPhone.storyboard */; };
 		B4F243CF170EBF8F007A071D /* back.png in Resources */ = {isa = PBXBuildFile; fileRef = B4F243CD170EBF8F007A071D /* back.png */; };
 		B4F243D0170EBF8F007A071D /* back@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B4F243CE170EBF8F007A071D /* back@2x.png */; };
@@ -507,6 +510,11 @@
 		B4DEFC8C170F463700DD1939 /* TestParserResources */ = {isa = PBXFileReference; lastKnownFileType = folder; path = TestParserResources; sourceTree = "<group>"; };
 		B4DEFC8E170F464200DD1939 /* TestParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestParser.h; sourceTree = "<group>"; };
 		B4DEFC8F170F464200DD1939 /* TestParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestParser.m; sourceTree = "<group>"; };
+		B4E7D251176EF1B300EC8AD8 /* SceneViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SceneViewController.h; sourceTree = "<group>"; };
+		B4E7D252176EF1B300EC8AD8 /* SceneViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SceneViewController.m; sourceTree = "<group>"; };
+		B4E7D255176EF20F00EC8AD8 /* Scene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Scene.h; sourceTree = "<group>"; };
+		B4E7D256176EF20F00EC8AD8 /* Scene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Scene.m; sourceTree = "<group>"; };
+		B4E7D259176EF2CA00EC8AD8 /* SpriteKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SpriteKit.framework; path = System/Library/Frameworks/SpriteKit.framework; sourceTree = SDKROOT; };
 		B4F243C5170EBD63007A071D /* StageViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = StageViewController.h; sourceTree = "<group>"; };
 		B4F243C6170EBD63007A071D /* StageViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = StageViewController.m; sourceTree = "<group>"; };
 		B4F243C7170EBD7B007A071D /* iPhone.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = iPhone.storyboard; sourceTree = "<group>"; };
@@ -637,6 +645,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B4E7D25A176EF2CA00EC8AD8 /* SpriteKit.framework in Frameworks */,
 				B4AF798D174A9A340041555A /* CoreLocation.framework in Frameworks */,
 				B44F32AD1737BCC000BD97AC /* CoreMotion.framework in Frameworks */,
 				B4BCF42C170ED548008EDF3A /* CoreText.framework in Frameworks */,
@@ -734,6 +743,7 @@
 		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				B4E7D259176EF2CA00EC8AD8 /* SpriteKit.framework */,
 				B405BAC7175DD3F600B1A0FC /* libxml2.dylib */,
 				B4AF798C174A9A330041555A /* CoreLocation.framework */,
 				B44F32AC1737BCBF00BD97AC /* CoreMotion.framework */,
@@ -1392,6 +1402,24 @@
 			name = Parser;
 			sourceTree = "<group>";
 		};
+		B4E7D254176EF1B900EC8AD8 /* SceneViewController */ = {
+			isa = PBXGroup;
+			children = (
+				B4E7D251176EF1B300EC8AD8 /* SceneViewController.h */,
+				B4E7D252176EF1B300EC8AD8 /* SceneViewController.m */,
+			);
+			name = SceneViewController;
+			sourceTree = "<group>";
+		};
+		B4E7D258176EF23200EC8AD8 /* Scene */ = {
+			isa = PBXGroup;
+			children = (
+				B4E7D255176EF20F00EC8AD8 /* Scene.h */,
+				B4E7D256176EF20F00EC8AD8 /* Scene.m */,
+			);
+			name = Scene;
+			sourceTree = "<group>";
+		};
 		B4F499B3175E838B002E1BBD /* PullableView */ = {
 			isa = PBXGroup;
 			children = (
@@ -1423,6 +1451,7 @@
 				B4BCF434170ED5B1008EDF3A /* RecentProgramsStoreViewController */,
 				B4BCF40E170ED17C008EDF3A /* SearchStoreViewController */,
 				B4003033170EB51900396DB7 /* StageViewController */,
+				B4E7D254176EF1B900EC8AD8 /* SceneViewController */,
 			);
 			name = ViewController;
 			sourceTree = "<group>";
@@ -1438,6 +1467,7 @@
 				CD0CCE9A170CB39600B70036 /* enums.h */,
 				CD0CCFF9170CB91A00B70036 /* Parser */,
 				DE4F80D714E153EA00655D44 /* Stage */,
+				B4E7D258176EF23200EC8AD8 /* Scene */,
 				B4003024170EB3AC00396DB7 /* Media */,
 				B4D940B2170EC5D5003DDBFA /* UserInterface */,
 				CD0CCE3B170CA00F00B70036 /* ViewController */,
@@ -1920,6 +1950,16 @@
 			isa = PBXProject;
 			attributes = {
 				LastUpgradeCheck = 0450;
+				TargetAttributes = {
+					1D6058900D05DD3D006BFB54 = {
+						DevelopmentTeam = 4V6T7BCGGR;
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 0;
+							};
+						};
+					};
+				};
 			};
 			buildConfigurationList = C01FCF4E08A954540054247B /* Build configuration list for PBXProject "Catty" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -2054,6 +2094,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B4E7D257176EF20F00EC8AD8 /* Scene.m in Sources */,
 				B40C306E170ECC30000B872F /* CatrobatBaseCell.m in Sources */,
 				B40C306D170ECC1B000B872F /* BackgroundLayer.m in Sources */,
 				B4D940D1170EC9ED003DDBFA /* NSString+CatrobatNSStringExtensions.m in Sources */,
@@ -2107,6 +2148,7 @@
 				CD0CCFC8170CB39700B70036 /* SoundInfo.m in Sources */,
 				CD0CCFC9170CB39700B70036 /* SpeakBrick.m in Sources */,
 				CD0CCFD0170CB39700B70036 /* StartScript.m in Sources */,
+				B4E7D253176EF1B300EC8AD8 /* SceneViewController.m in Sources */,
 				CD0CCFD1170CB39700B70036 /* StopAllSoundsBrick.m in Sources */,
 				CD0CCFD7170CB39700B70036 /* TurnLeftBrick.m in Sources */,
 				CD0CCFD8170CB39700B70036 /* TurnRightBrick.m in Sources */,

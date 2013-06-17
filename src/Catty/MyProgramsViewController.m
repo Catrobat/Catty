@@ -23,7 +23,7 @@
 #import "MyProgramsViewController.h"
 #import "Util.h"
 #import "ProgramLoadingInfo.h"
-#import "StageViewController.h"
+#import "SceneViewController.h"
 #import "AppDelegate.h"
 #import "TableUtil.h"
 #import "CellTagDefines.h"
@@ -31,6 +31,8 @@
 #import "CatrobatImageCell.h"
 #import "ImageCache.h"
 #import "Logger.h"
+#import "SegueDefines.h"
+
 
 @interface MyProgramsViewController ()
 
@@ -170,23 +172,19 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    
-    StageViewController* viewController = [Util createStageViewControllerWithProgram:[[self.levelLoadingInfos objectAtIndex:indexPath.row] visibleName]];
-    [self.navigationController pushViewController:viewController animated:YES];
-    // Navigation logic may go here. Create and push another view controller.
-    /*
-     <#DetailViewController#> *detailViewController = [[<#DetailViewController#> alloc] initWithNibName:@"<#Nib name#>" bundle:nil];
-     // ...
-     // Pass the selected object to the new view controller.
-     [self.navigationController pushViewController:detailViewController animated:YES];
-     */
+    [self performSegueWithIdentifier:kSegueToScene sender:self];
 }
 
 #pragma mark - Segue
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {    
-    
+    if([[segue identifier] isEqualToString:kSegueToScene]) {
+        NSIndexPath *path = [self.tableView indexPathForSelectedRow];
+        NSString* programName = [[self.levelLoadingInfos objectAtIndex:path.row] visibleName];
+        SceneViewController* sceneViewController = (SceneViewController*)segue.destinationViewController;
+        sceneViewController.programLoadingInfo = [Util programLoadingInfoForProgramWithName:programName];
+    }
 }
 
 #pragma mark - BackButtonDelegate

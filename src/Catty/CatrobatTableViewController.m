@@ -33,6 +33,7 @@
 #import "ProgramLoadingInfo.h"
 #import "SegueDefines.h"
 #import "Util.h"
+#import "SceneViewController.h"
 
 #import <QuartzCore/QuartzCore.h>
 
@@ -134,13 +135,9 @@
 {
 
     NSString* identifier = [self.cells objectAtIndex:indexPath.row];
-    if ([identifier isEqualToString:kSegueContinue]) {
-        StageViewController* viewController = [Util createStageViewControllerWithProgram:[Util lastProgram]];
-        [self.navigationController pushViewController:viewController animated:YES];
-    }
 #warning the if statement should be removed once everything has been implemented..
-    else if ([identifier isEqualToString:kSegueDownload ] || [identifier isEqualToString:kSeguePrograms] ||
-             [identifier isEqualToString:kSegueForum]) {
+    if ([identifier isEqualToString:kSegueDownload ] || [identifier isEqualToString:kSeguePrograms] ||
+             [identifier isEqualToString:kSegueForum] || [identifier isEqualToString:kSegueContinue]) {
         [self performSegueWithIdentifier:identifier sender:self];
     } else {
         [Util showComingSoonAlertView];
@@ -190,6 +187,12 @@
         CATransition* transition = [Util getPushCATransition];
         [self.view.window.layer addAnimation:transition forKey:nil];
     }
+    
+    if([[segue identifier] isEqualToString:kSegueContinue]) {
+        SceneViewController* sceneViewController = (SceneViewController*)segue.destinationViewController;
+        sceneViewController.programLoadingInfo = [Util programLoadingInfoForProgramWithName:[Util lastProgram]];
+    }
+    
     
 }
 

@@ -28,7 +28,7 @@
 #import "ButtonTags.h"
 #import "UIColor+CatrobatUIColorExtensions.h"
 #import "SegueDefines.h"
-#import "StageViewController.h"
+#import "SceneViewController.h"
 #import "ProgramLoadingInfo.h"
 #import "Util.h"
 
@@ -116,30 +116,11 @@
 
 #pragma mark - Segue
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    if ([segue.identifier isEqualToString:kSegueToStage]) {
-        if ([segue.destinationViewController isKindOfClass:[StageViewController class]]){
+    if ([segue.identifier isEqualToString:kSegueToScene]) {
+        if ([segue.destinationViewController isKindOfClass:[SceneViewController class]]){
             self.hidesBottomBarWhenPushed = YES;
-            StageViewController *destination = (StageViewController*)segue.destinationViewController;
-            
-            CatrobatProject *level = nil;
-            //retrieving catrobat project info
-            if ([sender isKindOfClass:[CatrobatProject class]]) {
-                level = (CatrobatProject*)sender;
-            }
-            assert(level); //should not happen...
-            
-            
-            //creating new level loading info
-            ProgramLoadingInfo *loadingInfo = [[ProgramLoadingInfo alloc] init];
-            loadingInfo.visibleName = level.projectName;
-            
-            //retrieving app delegate
-            AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
-            loadingInfo.basePath = [NSString stringWithFormat:@"%@/", [appDelegate.fileManager getPathForLevel:level.projectName]];
-            assert(loadingInfo.basePath);
-            
-            destination.programLoadingInfo = loadingInfo;
-            
+            SceneViewController *destination = (SceneViewController*)segue.destinationViewController;
+            destination.programLoadingInfo = [Util programLoadingInfoForProgramWithName:self.project.name];            
         }
     }
 }
@@ -149,9 +130,7 @@
 - (void) playButtonPressed
 {
     NSDebug(@"Play Button");
-    StageViewController* viewController = [Util createStageViewControllerWithProgram:self.project.projectName];
-    viewController.hidesBottomBarWhenPushed = YES;
-    [self.navigationController pushViewController:viewController animated:YES];
+    [self performSegueWithIdentifier:kSegueToScene sender:self];
 }
 
 

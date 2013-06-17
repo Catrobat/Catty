@@ -21,7 +21,7 @@
  */
 
 #import "Util.h"
-#import "StageViewController.h"
+#import "SceneViewController.h"
 #import "Stage.h"
 #import "ProgramDefines.h"
 #import "ProgramLoadingInfo.h"
@@ -78,21 +78,17 @@
 }
 
 
-+ (StageViewController*)createStageViewControllerWithProgram:(NSString*)program
++ (ProgramLoadingInfo*) programLoadingInfoForProgramWithName:(NSString*)program
 {
-    StageViewController* viewController = [[StageViewController alloc] init];
-    [viewController startWithRoot:[Stage class] supportHighResolutions:YES doubleOnPad:YES];
-    
     NSString *documentsDirectoy = [Util applicationDocumentsDirectory];
     NSString *levelsPath = [NSString stringWithFormat:@"%@/%@", documentsDirectoy, kProgramsFolder];
     ProgramLoadingInfo *info = [[ProgramLoadingInfo alloc] init];
     info.basePath = [NSString stringWithFormat:@"%@/%@/", levelsPath, program];
     info.visibleName = program;
-    viewController.programLoadingInfo = info;
-
-
-    return viewController;
+    
+    return info;
 }
+
 
 + (NSString*)lastProgram
 {

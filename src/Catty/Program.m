@@ -22,9 +22,6 @@
 
 
 #import "Program.h"
-#import "Script.h"
-#import <objc/runtime.h>
-#import <Foundation/NSObjCRuntime.h>
 
 @implementation Program
 
@@ -38,28 +35,28 @@
 }
 
 
-- (NSString*)debug {
+- (NSString*)description {
     NSMutableString *ret = [[NSMutableString alloc] init];
     [ret appendFormat:@"\n----------------- PROGRAM --------------------\n"];
-    /*[ret appendFormat:@"Application Build Name: %@\n", self.applicationBuildName];
-    [ret appendFormat:@"Application Build Number: %@\n", self.applicationBuildNumber];
-    [ret appendFormat:@"Application Name: %@\n", self.applicationName];
-    [ret appendFormat:@"Application Version: %@\n", self.applicationVersion];
-    [ret appendFormat:@"Catrobat Language Version: %@\n", self.catrobatLanguageVersion];
-    [ret appendFormat:@"Date Time Upload: %@\n", self.dateTimeUpload];
-    [ret appendFormat:@"Description: %@\n", self.description];
-    [ret appendFormat:@"Device Name: %@\n", self.deviceName];
-    [ret appendFormat:@"Media License: %@\n", self.mediaLicense];
-    [ret appendFormat:@"Platform: %@\n", self.platform];
-    [ret appendFormat:@"Platform Version: %@\n", self.platformVersion];
-    [ret appendFormat:@"Program License: %@\n", self.programLicense];
-    [ret appendFormat:@"Program Name: %@\n", self.programName];
-    [ret appendFormat:@"Remix of: %@\n", self.remixOf];
-    [ret appendFormat:@"Screen Height: %@\n", self.screenHeight];
-    [ret appendFormat:@"Screen Width: %@\n", self.screenWidth];
-    [ret appendFormat:@"Sprite List: %@\n", self.spriteList];
-    [ret appendFormat:@"URL: %@\n", self.uRL];
-    [ret appendFormat:@"User Handle: %@\n", self.userHandle];*/
+    [ret appendFormat:@"Application Build Name: %@\n", self.header.applicationBuildName];
+    [ret appendFormat:@"Application Build Number: %@\n", self.header.applicationBuildNumber];
+    [ret appendFormat:@"Application Name: %@\n", self.header.applicationName];
+    [ret appendFormat:@"Application Version: %@\n", self.header.applicationVersion];
+    [ret appendFormat:@"Catrobat Language Version: %@\n", self.header.catrobatLanguageVersion];
+    [ret appendFormat:@"Date Time Upload: %@\n", self.header.dateTimeUpload];
+    [ret appendFormat:@"Description: %@\n", self.header.description];
+    [ret appendFormat:@"Device Name: %@\n", self.header.deviceName];
+    [ret appendFormat:@"Media License: %@\n", self.header.mediaLicense];
+    [ret appendFormat:@"Platform: %@\n", self.header.platform];
+    [ret appendFormat:@"Platform Version: %@\n", self.header.platformVersion];
+    [ret appendFormat:@"Program License: %@\n", self.header.programLicense];
+    [ret appendFormat:@"Program Name: %@\n", self.header.programName];
+    [ret appendFormat:@"Remix of: %@\n", self.header.remixOf];
+    [ret appendFormat:@"Screen Height: %@\n", self.header.screenHeight];
+    [ret appendFormat:@"Screen Width: %@\n", self.header.screenWidth];
+    [ret appendFormat:@"Sprite List: %@\n", self.objectList];
+    [ret appendFormat:@"URL: %@\n", self.header.url];
+    [ret appendFormat:@"User Handle: %@\n", self.header.userHandle];
     [ret appendFormat:@"----------------------------------------------\n"];
     
     return [NSString stringWithString:ret];
