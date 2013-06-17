@@ -30,10 +30,14 @@
     NSDebug(@"Performing: %@", self.description);
 }
 
--(BOOL)checkConditionAndDecrementLoopCounter
+
+-(SKAction*)actionWithActions:(SKAction *)actions
 {
-    return YES;
+    return [SKAction runBlock:^{
+        [self.object runAction:[SKAction repeatActionForever:actions]];
+    }];
 }
+
 
 #pragma mark - Description
 - (NSString*)description

@@ -31,11 +31,21 @@
     NSDebug(@"Performing: %@", self.description);
 }
 
--(BOOL)checkCondition
+
+
+-(SKAction*) actionWithThenAction:(SKAction*)thenAction andElseAction:(SKAction*)elseAction
 {
-    BOOL condition = [self.ifCondition interpretBOOLForSprite:self.object];
-    return condition;
+    return [SKAction runBlock:^{
+        BOOL condition = [self.ifCondition interpretBOOLForSprite:self.object];
+        if(condition) {
+            [self.object runAction:thenAction];
+        }else {
+            [self.object runAction:elseAction];
+        }
+    }];
 }
+
+
 
 #pragma mark - Description
 - (NSString*)description

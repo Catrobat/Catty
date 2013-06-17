@@ -34,22 +34,20 @@
 @property (nonatomic, strong) NSMutableArray *activeScripts;
 @property (assign) int lookIndex;
 @property (nonatomic, strong) NSMutableDictionary *sounds;
-@property (nonatomic, strong) dispatch_queue_t scriptQueue;
-
 @end
 
 @implementation SpriteObject
 
 
 
-#pragma mark - Loop Update
-- (void)updateWithTimeSinceLastUpdate:(CFTimeInterval)interval
-{
-#warning TODO: iterate over active scripts!
-    for(Script* script in self.scriptList) {
-        [script updateWithTimeSinceLastUpdate:(CFTimeInterval)interval];
+
+-(void)start {
+    for (Script *script in self.scriptList)
+    {
+        if ([script isKindOfClass:[StartScript class]]) {
+            [self runAction:[script actionSequence]];
+        }
     }
-    
 }
 
 

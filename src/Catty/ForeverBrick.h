@@ -27,6 +27,5 @@
 
 @property (nonatomic, weak) LoopEndBrick *loopEndBrick;
 
--(BOOL)checkConditionAndDecrementLoopCounter;
 
 @end

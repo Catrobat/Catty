@@ -39,6 +39,19 @@
 }
 
 
+-(SKAction*)actionWithActions:(SKAction *)actions
+{
+    UIImage* image = [UIImage imageWithContentsOfFile:[self pathForLook]];
+    SKTexture* texture = [SKTexture textureWithImage:image];
+    return [SKAction setTexture:texture];
+}
+
+
+-(NSString*)pathForLook
+{
+    return [NSString stringWithFormat:@"%@images/%@", self.object.projectPath, self.look.fileName];
+}
+
 #pragma mark - Description
 - (NSString*)description
 {

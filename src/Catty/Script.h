@@ -28,24 +28,13 @@
 @class Brick;
 @class SpriteObject;
 
-@interface Script : SKSpriteNode
+@interface Script : NSObject
 
 @property (nonatomic, weak) SpriteObject *object;
 @property (nonatomic, strong) NSString *action;
 @property (strong, nonatomic) NSMutableArray *brickList;
-
-- (void)updateWithTimeSinceLastUpdate:(CFTimeInterval)timeSinceLast;
-
-
--(void)addBrick:(Brick*)brick;
--(void)addBricks:(NSArray*)bricks;
--(NSArray*)getAllBricks;
+@property (strong, readonly) SKAction* actionSequence;
 
 -(NSString*)description;
-
--(void)resetScript;
--(void)stopScript;
-
--(void)runScript;
 
 @end

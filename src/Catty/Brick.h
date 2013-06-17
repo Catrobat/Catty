@@ -32,6 +32,10 @@
 - (id)initWithSprite:(SpriteObject*)sprite;
 
 - (NSString*)description;
+
 - (void)performFromScript:(Script*)script;
+
+- (SKAction*) action;
+- (SKAction*) actionWithActions:(SKAction*)actions;
 
 @end

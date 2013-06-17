@@ -34,24 +34,20 @@
 
 
 @interface Script()
-@property (assign, nonatomic) int currentBrickIndex;
-@property (strong, nonatomic) NSMutableArray *startLoopIndexStack;
-@property (strong, nonatomic) NSMutableArray *startLoopTimestampStack;
-@property (assign, nonatomic) BOOL stop;
+
 @end
+
 
 
 
 @implementation Script
 
+@synthesize actionSequence = _actionSequence;
 
 - (id)init
 {
     if (self = [super init])
     {
-        self.action = kTouchActionTap;
-        self.currentBrickIndex = 0;
-        self.stop = NO;
     }
     return self;
 }
@@ -64,192 +60,264 @@
     
     return _brickList;
 }
--(NSMutableArray*)startLoopIndexStack
+
+
+-(SKAction*) actionSequence
 {
-    if (_startLoopIndexStack == nil)
-        _startLoopIndexStack = [[NSMutableArray alloc] init];
     
-    return _startLoopIndexStack;
-}
--(NSMutableArray*)startLoopTimestampStack
-{
-    if (_startLoopTimestampStack == nil)
-        _startLoopTimestampStack = [[NSMutableArray alloc]init];
-
-    return _startLoopTimestampStack;
-}
-
--(void)addBrick:(Brick *)brick
-{
-    [self.brickList addObject:brick];
-}
-
--(void)addBricks:(NSArray *)bricks
-{
-    [self.brickList addObjectsFromArray:bricks];
-}
-
--(NSArray *)getAllBricks
-{
-    return [NSArray arrayWithArray:self.brickList];
-}
-
-
--(void)resetScript
-{
-    self.currentBrickIndex = -1;
-    self.startLoopIndexStack = nil;
-    self.startLoopTimestampStack = nil;
-}
-
--(void)stopScript
-{
-    self.stop = YES;
-}
-
-
-- (void)updateWithTimeSinceLastUpdate:(CFTimeInterval)timeSinceLast
-{
-    if(self.currentBrickIndex < [self.brickList count]) {
-        Brick *brick = [self.brickList objectAtIndex:self.currentBrickIndex];
-        NSDebug(@"Brick: %@", brick);
+    if(!_actionSequence) {
+        NSMutableArray* actionsArray = [[NSMutableArray alloc] initWithCapacity:[self.brickList count]];
+        for(int i=0; i<[self.brickList count]; i++) {
+            
+            Brick* brick = [self.brickList objectAtIndex:i];
+            
+            SKAction* action = nil;
+            if([brick isMemberOfClass:[ForeverBrick class]] ||
+               [brick isMemberOfClass:[RepeatBrick class]]){
+                action = [brick actionWithActions:[self buildActionSequenceForForLoopAndIndex:&i]];
                 
-        
-        self.currentBrickIndex += 1;
-    }
-    
-}
-
-
--(void)runScript
-{
-    //TODO: check loop-condition BEFORE first iteration
-            
-    [self resetScript];
-    if (self.currentBrickIndex < 0)
-        self.currentBrickIndex = 0;
-    while (!self.stop && self.currentBrickIndex < [self.brickList count]) {
-        if (self.currentBrickIndex < 0)
-            self.currentBrickIndex = 0;
-        Brick *brick = [self.brickList objectAtIndex:self.currentBrickIndex];
-        
-//        if([sprite.name isEqualToString:@"Spawning"])
-//        {          
-//            NSLog(@"Brick: %@", [brick description]);
-//        }
-        
-        if ([brick isKindOfClass:[ForeverBrick class]]) {
-            
-            if (![(ForeverBrick*)brick checkConditionAndDecrementLoopCounter]) {
-                // go to end of loop
-                int numOfLoops = 1;
-                int tmpCounter = self.currentBrickIndex+1;
-                while (numOfLoops > 0 && tmpCounter < [self.brickList count]) {
-                    brick = [self.brickList objectAtIndex:tmpCounter];
-                    if ([brick isKindOfClass:[ForeverBrick class]])
-                        numOfLoops += 1;
-                    else if ([brick isMemberOfClass:[LoopEndBrick class]])
-                        numOfLoops -= 1;
-                    tmpCounter += 1;
-                }
-                self.currentBrickIndex = tmpCounter-1;
-            } else {
-                [self.startLoopIndexStack addObject:[NSNumber numberWithInt:self.currentBrickIndex]];
-                [self.startLoopTimestampStack addObject:[NSNumber numberWithDouble:[[NSDate date]timeIntervalSince1970]]];
+            } else if([brick isMemberOfClass:[IfLogicBeginBrick class]]) {
+                action = [self buildActionSequenceForIf:&i];
             }
             
-        } else if ([brick isMemberOfClass:[LoopEndBrick class]]) {
+            else {
+                action = [brick action];
+            }
             
-            self.currentBrickIndex = ((NSNumber*)[self.startLoopIndexStack lastObject]).intValue-1;
-            [self.startLoopIndexStack removeLastObject];
-            
-            double startTimeOfLoop = ((NSNumber*)[self.startLoopTimestampStack lastObject]).doubleValue;
-            [self.startLoopTimestampStack removeLastObject];
-            double timeToWait = 0.02f - ([[NSDate date]timeIntervalSince1970] - startTimeOfLoop); // 20 milliseconds
-//            NSLog(@"timeToWait (loop): %f", timeToWait);
-            if (timeToWait > 0)
-                [NSThread sleepForTimeInterval:timeToWait];
-            
-        } else if([brick isMemberOfClass:[IfLogicBeginBrick class]]) {
-            BOOL condition = [(IfLogicBeginBrick*)brick checkCondition];
-            if(!condition) {
-                
-//                int index = [self.brickList indexOfObject:((IfLogicBeginBrick*)brick).ifElseBrick];
-//                if(index <= 0 ||index > [self.brickList count]-1) {
-//                    abort();
+            [actionsArray addObject:action];
+        
+        }
+        _actionSequence = [SKAction sequence:actionsArray];
+    }
+    
+    return _actionSequence;
+}
+
+
+-(SKAction*)buildActionSequenceForForLoopAndIndex:(int*)index;
+{
+    NSMutableArray *sequence = [[NSMutableArray alloc]init];
+
+    Brick* brick = nil;
+
+    while(![brick isMemberOfClass:[LoopEndBrick class]] && (*index) < [self.brickList count]) {
+        
+        brick = [self.brickList objectAtIndex:(*index)++];
+        SKAction* action = nil;
+        
+        if([brick isMemberOfClass:[ForeverBrick class]] ||
+           [brick isMemberOfClass:[RepeatBrick class]]){
+            action = [brick actionWithActions:[self buildActionSequenceForForLoopAndIndex:index]];
+        }
+        if([brick isMemberOfClass:[IfLogicBeginBrick class]]){
+            action = [self buildActionSequenceForIf:index];
+        }
+        
+        else {
+            action = [brick action];
+        }
+        
+        [sequence addObject:action];
+    }
+
+    return [SKAction sequence:sequence];
+    
+}
+
+-(SKAction*)buildActionSequenceForIf:(int*)index
+{
+    IfLogicBeginBrick* ifBrick = [self.brickList objectAtIndex:(*index)];
+    (*index)++;
+    SKAction* thenSequence = [self buildActionSequenceForIf:index];
+    SKAction* elseSequence = [self buildActionSequenceForThen:index];
+    
+    return [ifBrick actionWithThenAction:thenSequence andElseAction:elseSequence];
+}
+
+-(SKAction*)buildActionSequenceForThen:(int*)index
+{
+    
+    (*index)++;
+    NSMutableArray* sequence = [[NSMutableArray alloc] init];
+    
+    Brick* brick = nil;
+    
+    while(![brick isMemberOfClass:[IfLogicElseBrick class]] && (*index) < [self.brickList count]) {
+        
+        brick = [self.brickList objectAtIndex:(*index)++];
+        SKAction* action = nil;
+        
+        if([brick isMemberOfClass:[IfLogicBeginBrick class]]){
+            action = [self buildActionSequenceForIf:index];
+        }
+        
+        else if([brick isMemberOfClass:[ForeverBrick class]] ||
+           [brick isMemberOfClass:[RepeatBrick class]]){
+            action = [brick actionWithActions:[self buildActionSequenceForForLoopAndIndex:index]];
+        }
+        
+        else {
+            action = [brick action];
+        }
+        
+        [sequence addObject:action];
+        
+    }
+    
+    return [SKAction sequence:sequence];
+    
+}
+
+-(SKAction*)buildActionSequenceForElse:(int*)index
+{
+    NSMutableArray* sequence = [[NSMutableArray alloc] init];
+    
+    Brick* brick = nil;
+    
+    while(![brick isMemberOfClass:[IfLogicEndBrick class]] && (*index) < [self.brickList count]) {
+        
+        brick = [self.brickList objectAtIndex:(*index)++];
+        SKAction* action = nil;
+        
+        if([brick isMemberOfClass:[IfLogicBeginBrick class]]){
+            action = [self buildActionSequenceForIf:index];
+        }
+        
+        else if([brick isMemberOfClass:[ForeverBrick class]] ||
+                [brick isMemberOfClass:[RepeatBrick class]]){
+            action = [brick actionWithActions:[self buildActionSequenceForForLoopAndIndex:index]];
+        }
+        
+        else {
+            action = [brick action];
+        }
+        
+        [sequence addObject:action];
+        
+    }
+    
+    return [SKAction sequence:sequence];
+    
+}
+
+
+
+//#warning remove!
+//-(void)runScript
+//{
+//    //TODO: check loop-condition BEFORE first iteration
+//    if (self.currentBrickIndex < 0)
+//        self.currentBrickIndex = 0;
+//    while (!self.stop && self.currentBrickIndex < [self.brickList count]) {
+//        if (self.currentBrickIndex < 0)
+//            self.currentBrickIndex = 0;
+//        Brick *brick = [self.brickList objectAtIndex:self.currentBrickIndex];
+//        
+////        if([sprite.name isEqualToString:@"Spawning"])
+////        {          
+////            NSLog(@"Brick: %@", [brick description]);
+////        }
+//        
+//        if ([brick isKindOfClass:[ForeverBrick class]]) {
+//            
+//            if (![(ForeverBrick*)brick checkConditionAndDecrementLoopCounter]) {
+//                // go to end of loop
+//                int numOfLoops = 1;
+//                int tmpCounter = self.currentBrickIndex+1;
+//                while (numOfLoops > 0 && tmpCounter < [self.brickList count]) {
+//                    brick = [self.brickList objectAtIndex:tmpCounter];
+//                    if ([brick isKindOfClass:[ForeverBrick class]])
+//                        numOfLoops += 1;
+//                    else if ([brick isMemberOfClass:[LoopEndBrick class]])
+//                        numOfLoops -= 1;
+//                    tmpCounter += 1;
 //                }
-//                self.currentBrickIndex = index;
-                
-                
-#warning workaround until XML fixed    
-                
-                BOOL found = NO;
-                Brick* elseBrick = nil;
-                int ifcount = 0;
-
-                while (self.currentBrickIndex < [self.brickList count] && !found) {
-                    self.currentBrickIndex++;
-                    elseBrick = [self.brickList objectAtIndex:self.currentBrickIndex];
-                    if([elseBrick isMemberOfClass:[IfLogicBeginBrick class]]) {
-                        ifcount++;
-                    }
-                    else if([elseBrick isMemberOfClass:[IfLogicEndBrick class]]) {
-                        ifcount--;
-                    }
-                    else if([elseBrick isMemberOfClass:[IfLogicElseBrick class]] && ifcount == 0) {
-                        found = YES;
-                    }
-                }
-            }
-        } else if([brick isMemberOfClass:[IfLogicElseBrick class]]) {
-
-            
-//            int index = [self.brickList indexOfObject:((IfLogicElseBrick*)brick).ifEndBrick];
-//            if(index <= 0 ||index > [self.brickList count]-1) {
-//                abort();
+//                self.currentBrickIndex = tmpCounter-1;
+//            } else {
+//                [self.startLoopIndexStack addObject:[NSNumber numberWithInt:self.currentBrickIndex]];
+//                [self.startLoopTimestampStack addObject:[NSNumber numberWithDouble:[[NSDate date]timeIntervalSince1970]]];
 //            }
-//            self.currentBrickIndex = index;
- 
-#warning workaround until XML fixed
-            int endcount = 1;
-            Brick* endBrick = nil;
-            
-            while (self.currentBrickIndex < [self.brickList count] && ![endBrick isMemberOfClass:[IfLogicEndBrick class]] && endcount != 0) {
-                self.currentBrickIndex++;
-                endBrick = [self.brickList objectAtIndex:self.currentBrickIndex];
-                if([endBrick isMemberOfClass:[IfLogicBeginBrick class]]) {
-                    endcount++;
-                }
-                else if([endBrick isMemberOfClass:[IfLogicEndBrick class]]) {
-                    endcount--;
-                }
-            }
-        } else if([brick isMemberOfClass:[IfLogicElseBrick class]]) {
-            // No action needed
-        }
-        else if(![brick isMemberOfClass:[NoteBrick class] ]) {
-            [brick performFromScript:self];
-        }
-        
-        self.currentBrickIndex += 1;
-        
-
-//        NSLog(@"!!!!!!!!!!!!!!!!!!!!!!!!!! currentBrickIndex=%d", self.currentBrickIndex);
-    }
-}
-
-//-(void)glideWithSprite:(Sprite*)sprite toPosition:(GLKVector3)position withinMilliSecs:(int)timeToGlideInMilliSecs
-//{
-//    [sprite glideToPosition:position withinDurationInMilliSecs:timeToGlideInMilliSecs fromScript:self];
-////    [self waitTimeInMilliSecs:timeToGlideInMilliSecs];
-//}
+//            
+//        } else if ([brick isMemberOfClass:[LoopEndBrick class]]) {
+//            
+//            self.currentBrickIndex = ((NSNumber*)[self.startLoopIndexStack lastObject]).intValue-1;
+//            [self.startLoopIndexStack removeLastObject];
+//            
+//            double startTimeOfLoop = ((NSNumber*)[self.startLoopTimestampStack lastObject]).doubleValue;
+//            [self.startLoopTimestampStack removeLastObject];
+//            double timeToWait = 0.02f - ([[NSDate date]timeIntervalSince1970] - startTimeOfLoop); // 20 milliseconds
+////            NSLog(@"timeToWait (loop): %f", timeToWait);
+//            if (timeToWait > 0)
+//                [NSThread sleepForTimeInterval:timeToWait];
+//            
+//        } else if([brick isMemberOfClass:[IfLogicBeginBrick class]]) {
+//            BOOL condition = [(IfLogicBeginBrick*)brick checkCondition];
+//            if(!condition) {
+//                
+////                int index = [self.brickList indexOfObject:((IfLogicBeginBrick*)brick).ifElseBrick];
+////                if(index <= 0 ||index > [self.brickList count]-1) {
+////                    abort();
+////                }
+////                self.currentBrickIndex = index;
+//                
+//                
+//#warning workaround until XML fixed    
+//                
+//                BOOL found = NO;
+//                Brick* elseBrick = nil;
+//                int ifcount = 0;
 //
-//-(void)waitTimeInMilliSecs:(float)timeToWaitInMilliSecs
-//{
-////    NSLog(@"BEFORE wait %f     wait: %f sec", [[NSDate date] timeIntervalSince1970], timeToWaitInMilliSecs/1000.0f);
-//    [NSThread sleepForTimeInterval:timeToWaitInMilliSecs/1000.0f];
-////    NSLog(@"AFTER wait  %f", [[NSDate date] timeIntervalSince1970]);
+//                while (self.currentBrickIndex < [self.brickList count] && !found) {
+//                    self.currentBrickIndex++;
+//                    elseBrick = [self.brickList objectAtIndex:self.currentBrickIndex];
+//                    if([elseBrick isMemberOfClass:[IfLogicBeginBrick class]]) {
+//                        ifcount++;
+//                    }
+//                    else if([elseBrick isMemberOfClass:[IfLogicEndBrick class]]) {
+//                        ifcount--;
+//                    }
+//                    else if([elseBrick isMemberOfClass:[IfLogicElseBrick class]] && ifcount == 0) {
+//                        found = YES;
+//                    }
+//                }
+//            }
+//        } else if([brick isMemberOfClass:[IfLogicElseBrick class]]) {
+//
+//            
+////            int index = [self.brickList indexOfObject:((IfLogicElseBrick*)brick).ifEndBrick];
+////            if(index <= 0 ||index > [self.brickList count]-1) {
+////                abort();
+////            }
+////            self.currentBrickIndex = index;
+// 
+//#warning workaround until XML fixed
+//            int endcount = 1;
+//            Brick* endBrick = nil;
+//            
+//            while (self.currentBrickIndex < [self.brickList count] && ![endBrick isMemberOfClass:[IfLogicEndBrick class]] && endcount != 0) {
+//                self.currentBrickIndex++;
+//                endBrick = [self.brickList objectAtIndex:self.currentBrickIndex];
+//                if([endBrick isMemberOfClass:[IfLogicBeginBrick class]]) {
+//                    endcount++;
+//                }
+//                else if([endBrick isMemberOfClass:[IfLogicEndBrick class]]) {
+//                    endcount--;
+//                }
+//            }
+//        } else if([brick isMemberOfClass:[IfLogicElseBrick class]]) {
+//            // No action needed
+//        }
+//        else if(![brick isMemberOfClass:[NoteBrick class] ]) {
+//            [brick performFromScript:self];
+//        }
+//        
+//        self.currentBrickIndex += 1;
+//        
+//
+////        NSLog(@"!!!!!!!!!!!!!!!!!!!!!!!!!! currentBrickIndex=%d", self.currentBrickIndex);
+//    }
 //}
+
 
 #pragma mark - Description
 -(NSString*)description
@@ -272,21 +340,7 @@
     return ret;
 }
 
-////abstract method (!!!)
-//-(void)executeForSprite:(Sprite*)sprite
-//{
-////    @throw [NSException exceptionWithName:NSInternalInconsistencyException
-////                                   reason:[NSString stringWithFormat:@"You must override %@ in a subclass", NSStringFromSelector(_cmd)]
-////                                 userInfo:nil];
-//    
-//    //chris: I think startscript and whenscript classes are not really necessary?! why did we create them?!
-//    //mattias: we created them to separate scripts, cuz we did not have two membervariables in sprite-class (just ONE "script"-array)
-//    //         now we have two arrays and we don't need them anymore...I'll change this later ;)
-//    for (Brick *brick in self.bricksArray)
-//    {
-//        [brick performOnSprite:sprite];
-//    }
-//}
+
 
 
 @end

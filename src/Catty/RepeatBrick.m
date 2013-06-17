@@ -24,33 +24,23 @@
 #import "Formula.h"
 
 @interface RepeatBrick()
-@property (strong, nonatomic) NSNumber *loopsLeft;
 @end
 
 @implementation RepeatBrick
 
-@synthesize timesToRepeat = _timesToRepeat;
-@synthesize loopsLeft = _loopsLeft;
 
-
-
--(BOOL)checkConditionAndDecrementLoopCounter
+-(SKAction*)actionWithActions:(SKAction *)actions
 {
-    if(!self.loopsLeft) {
-        self.loopsLeft = [NSNumber numberWithInt:[self.timesToRepeat interpretIntegerForSprite:self.object]];
-    }
-    self.loopsLeft = [NSNumber numberWithInt:self.loopsLeft.intValue-1];
-    BOOL returnValue = (self.loopsLeft.intValue >= 0);
-    if (!returnValue) {
-        self.loopsLeft = [NSNumber numberWithInt:[self.timesToRepeat interpretIntegerForSprite:self.object]];
-    }
-    return returnValue;
+    return [SKAction runBlock:^{
+        int count = [self.timesToRepeat interpretIntegerForSprite:self.object];
+        [self.object runAction:[SKAction repeatAction:actions count:count]];
+    }];
 }
 
 #pragma mark - Description
 - (NSString*)description
 {
-    return [NSString stringWithFormat:@"RepeatLoop with %d iterations (%d iterations left)", [self.timesToRepeat interpretIntegerForSprite:self.object], self.loopsLeft.intValue];
+    return [NSString stringWithFormat:@"RepeatLoop with %d iterations", [self.timesToRepeat interpretIntegerForSprite:self.object]];
 }
 
 @end
