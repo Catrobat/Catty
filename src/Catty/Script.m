@@ -44,13 +44,6 @@
 
 @implementation Script
 
-@synthesize brickList = _brickList;
-@synthesize action = _action;
-@synthesize currentBrickIndex = _currentBrickIndex;
-@synthesize startLoopIndexStack = _startLoopIndexStack;
-@synthesize startLoopTimestampStack = _startLoopTimestampStack;
-@synthesize stop = _stop;
-@synthesize object = _object;
 
 - (id)init
 {
@@ -113,6 +106,20 @@
 {
     self.stop = YES;
 }
+
+
+- (void)updateWithTimeSinceLastUpdate:(CFTimeInterval)timeSinceLast
+{
+    if(self.currentBrickIndex < [self.brickList count]) {
+        Brick *brick = [self.brickList objectAtIndex:self.currentBrickIndex];
+        NSDebug(@"Brick: %@", brick);
+                
+        
+        self.currentBrickIndex += 1;
+    }
+    
+}
+
 
 -(void)runScript
 {

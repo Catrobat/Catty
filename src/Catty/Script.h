@@ -22,17 +22,19 @@
 
 
 #import <UIKit/UIKit.h>
-#import <GLKit/GLKit.h>
 #import "enums.h"
+#import <SpriteKit/SpriteKit.h>
 
 @class Brick;
 @class SpriteObject;
 
-@interface Script : NSObject
+@interface Script : SKSpriteNode
 
 @property (nonatomic, weak) SpriteObject *object;
 @property (nonatomic, strong) NSString *action;
 @property (strong, nonatomic) NSMutableArray *brickList;
+
+- (void)updateWithTimeSinceLastUpdate:(CFTimeInterval)timeSinceLast;
 
 
 -(void)addBrick:(Brick*)brick;

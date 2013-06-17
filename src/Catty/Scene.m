@@ -26,6 +26,16 @@
 #import "Script.h"
 
 
+#define kMinTimeInterval (1.0f / 60.0f)
+
+
+@interface Scene()
+
+@property (nonatomic) NSTimeInterval lastUpdateTimeInterval;
+
+@end
+
+
 @implementation Scene
 
 
@@ -58,9 +68,6 @@
     
     for (SpriteObject *obj in self.program.objectList) {
         [self addChild:obj];
-        for(Script* script in obj.scriptList) {
-            
-        }
     }
     
 }
@@ -83,13 +90,34 @@
             [sprite runAction:[SKAction repeatActionForever:action]];
             
             [self addChild:sprite];
+            
+            self.paused = YES;
         }
     }
 }
 
 
 -(void)update:(CFTimeInterval)currentTime {
-    /* Called before each frame is rendered */
+    // Handle time delta.
+    // If we drop below 60fps, we still want everything to move the same distance.
+    CFTimeInterval timeSinceLast = currentTime - self.lastUpdateTimeInterval;
+    self.lastUpdateTimeInterval = currentTime;
+    if (timeSinceLast > 1) { // more than a second since last update
+        timeSinceLast = kMinTimeInterval;
+        self.lastUpdateTimeInterval = currentTime;
+    }
+    if(!self.paused) {
+        [self updateWithTimeSinceLastUpdate:timeSinceLast];
+    }
+}
+
+#pragma mark - Loop Update
+- (void)updateWithTimeSinceLastUpdate:(CFTimeInterval)timeSinceLast {
+    
+    for (SpriteObject *obj in self.program.objectList) {
+        [obj updateWithTimeSinceLastUpdate:timeSinceLast];
+    }
+    
 }
 
 

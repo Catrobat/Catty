@@ -22,15 +22,18 @@
 
 #import "Setlookbrick.h"
 #import "SpriteObject.h"
+#import <SpriteKit/SpriteKit.h>
 
 @implementation SetLookBrick
 
-//@synthesize indexOfCostumeInArray = _indexOfCostumeInArray;
-@synthesize look = _look;
 
 - (void)performFromScript:(Script*)script
 {
     NSDebug(@"Performing: %@", self.description);
+    
+#warning adapt path etc.
+    self.object.texture = [SKTexture textureWithImageNamed:self.look.fileName];
+    
     
     [self.object performSelectorOnMainThread:@selector(changeLook:) withObject:self.look waitUntilDone:YES];
 }

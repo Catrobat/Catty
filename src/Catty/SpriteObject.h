@@ -59,7 +59,8 @@
 
 
 
-- (NSString*)description;
+/* Loop Update - called once per frame. */
+- (void)updateWithTimeSinceLastUpdate:(CFTimeInterval)interval;
 
 // events
 - (void)start;

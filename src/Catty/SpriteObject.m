@@ -42,6 +42,18 @@
 
 
 
+#pragma mark - Loop Update
+- (void)updateWithTimeSinceLastUpdate:(CFTimeInterval)interval
+{
+#warning TODO: iterate over active scripts!
+    for(Script* script in self.scriptList) {
+        [script updateWithTimeSinceLastUpdate:(CFTimeInterval)interval];
+    }
+    
+}
+
+
+
 //#pragma mark -- Getter Setter
 //-(NSCondition*)speakLock
 //{
