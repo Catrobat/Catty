@@ -52,7 +52,7 @@
 
 - (SKAction*) actionWithActions:(SKAction *)actions
 {
-    NSError(@"Brick (NO SPECIFIC Action GIVEN! OVERRIDE THE action METHOD!");
+    NSError(@"%@ (NO SPECIFIC Action GIVEN! OVERRIDE THE action METHOD!", self.class);
     return nil;
 }
 

@@ -27,18 +27,11 @@
 @implementation SetLookBrick
 
 
-- (void)performFromScript:(Script*)script
-{
-    NSDebug(@"Performing: %@", self.description);
-    
-    [self.object performSelectorOnMainThread:@selector(changeLook:) withObject:self.look waitUntilDone:YES];
-}
-
-
 -(SKAction*)actionWithActions:(SKAction *)actions
 {
     
     return [SKAction runBlock:^{
+        NSDebug(@"Performing: %@", self.description);
         UIImage* image = [UIImage imageWithContentsOfFile:[self pathForLook]];
         SKTexture* texture = [SKTexture textureWithImage:image];
         self.object.texture = texture;

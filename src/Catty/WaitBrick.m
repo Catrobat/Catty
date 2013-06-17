@@ -38,6 +38,18 @@
     [NSThread sleepForTimeInterval:time];
 }
 
+-(SKAction*) actionWithActions:(SKAction *)actions
+{
+
+    return [SKAction runBlock:^{
+        NSDebug(@"Performing: %@", self.description);
+        double time = [self.timeToWaitInSeconds interpretDoubleForSprite:self.object];
+        [self.object runAction:[SKAction waitForDuration:time]];
+    }];
+    
+}
+
+
 #pragma mark - Description
 - (NSString*)description
 {

@@ -56,6 +56,45 @@
     }
 }
 
+-(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
+{
+    
+    NSDebug(@"Touched: %@", self.name);
+    
+    for (UITouch *touch in touches) {
+        
+        
+        for (Script *script in self.scriptList)
+        {
+            if ([script isKindOfClass:[WhenScript class]]) {
+                NSDebug(@"Performing script with action: %@", script.description);
+                
+                // TODO: RESET?! SCRIPT?!
+                [self runAction:[script actionSequence]];
+                break;
+            }
+        }
+        
+//        CGPoint location = [touch locationInNode:self];
+//        
+//        SKSpriteNode *sprite = [SKSpriteNode spriteNodeWithImageNamed:@"menu_icon"];
+//        
+//        sprite.position = location;
+//        
+//        
+//        NSLog(@"position x=%f, y=%f", location.x, location.y);
+//        SKAction *action = [SKAction rotateByAngle:M_PI duration:1];
+//        
+//        [sprite runAction:[SKAction repeatActionForever:action]];
+//        
+//        [self addChild:sprite];
+//        
+//        self.paused = YES;
+    }
+    
+
+}
+
 
 
 //#pragma mark -- Getter Setter
