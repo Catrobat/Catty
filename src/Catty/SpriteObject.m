@@ -27,6 +27,7 @@
 #import "BroadcastScript.h"
 #import "Look.h"
 #import "Sound.h"
+#import "Scene.h"
 
 
 @interface SpriteObject()
@@ -38,10 +39,15 @@
 
 @implementation SpriteObject
 
-
+-(id)init {
+    if(self = [super init]) {
+    }
+    return self;
+}
 
 
 -(void)start {
+    self.position = [((Scene*)self.scene) sceneCoordinatesForPoint:CGPointMake(0.0f, 0.0f)];
     for (Script *script in self.scriptList)
     {
         if ([script isKindOfClass:[StartScript class]]) {
@@ -551,22 +557,8 @@
 //    return [NSTemporaryDirectory() stringByAppendingPathComponent:sound.fileName];
 //}
 //
-//-(CGPoint)stageCoordinatesForPoint:(CGPoint)point
-//{
-//    CGPoint coordinates;
-//    coordinates.x = [self xStageCoordinateForCoordinate:point.x];
-//    coordinates.y = [self yStageCoordinateForCoordinate:point.y];
-//    
-//    return coordinates;
-//}
-//
-//-(float)yStageCoordinateForCoordinate:(float)y {
-//    return (Sparrow.stage.height/2.0f - y);
-//}
-//
-//-(float)xStageCoordinateForCoordinate:(float)x {
-//    return (x + Sparrow.stage.width  / 2.0f);
-//}
+
+
 //
 //-(CGPoint)pointForStageCoordinates
 //{

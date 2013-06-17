@@ -44,16 +44,16 @@
     if (self = [super initWithSize:size]) {
         /* Setup your scene here */
         
-        self.backgroundColor = [SKColor colorWithRed:0.15 green:0.15 blue:0.3 alpha:1.0];
-        
-        SKLabelNode *myLabel = [SKLabelNode labelNodeWithFontNamed:@"Chalkduster"];
-        
-        myLabel.text = @"Hello, World!";
-        myLabel.fontSize = 30;
-        myLabel.position = CGPointMake(CGRectGetMidX(self.frame),
-                                       CGRectGetMidY(self.frame));
-        
-        [self addChild:myLabel];
+//        self.backgroundColor = [SKColor colorWithRed:0.15 green:0.15 blue:0.3 alpha:1.0];
+//        
+//        SKLabelNode *myLabel = [SKLabelNode labelNodeWithFontNamed:@"Chalkduster"];
+//        
+//        myLabel.text = @"Hello, World!";
+//        myLabel.fontSize = 30;
+//        myLabel.position = CGPointMake(CGRectGetMidX(self.frame),
+//                                       CGRectGetMidY(self.frame));
+//        
+//        [self addChild:myLabel];
         
         self.program = program;
         [self startProgram];
@@ -67,8 +67,8 @@
 {
     
     for (SpriteObject *obj in self.program.objectList) {
-        [obj start];
         [self addChild:obj];
+        [obj start];
     }
     
 }
@@ -86,19 +86,39 @@
             
             sprite.position = location;
             
+
+            NSLog(@"position x=%f, y=%f", location.x, location.y);
             SKAction *action = [SKAction rotateByAngle:M_PI duration:1];
-            
+
             [sprite runAction:[SKAction repeatActionForever:action]];
             
             [self addChild:sprite];
             
-            self.paused = YES;
+            //self.paused = YES;
         }
     }
 }
 
 
 -(void)update:(CFTimeInterval)currentTime {
+}
+
+
+-(CGPoint)sceneCoordinatesForPoint:(CGPoint)point
+{
+    CGPoint scenePoint;
+    scenePoint.x = [self sceneCoordinateForXCoordinate:point.x];
+    scenePoint.y = [self sceneCoordinateForYCoordinate:point.y];
+    
+    return scenePoint;
+}
+
+-(float)sceneCoordinateForYCoordinate:(float)y {
+    return (self.size.height/2.0f - y);
+}
+
+-(float)sceneCoordinateForXCoordinate:(float)x {
+    return (self.scene.size.width  / 2.0f + x);
 }
 
 

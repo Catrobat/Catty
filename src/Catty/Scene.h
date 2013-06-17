@@ -32,5 +32,11 @@
 
 -(id) initWithSize:(CGSize)size andProgram:(Program*)program;
 
+-(CGPoint)sceneCoordinatesForPoint:(CGPoint)point;
+
+-(float)sceneCoordinateForYCoordinate:(float)y;
+
+-(float)sceneCoordinateForXCoordinate:(float)x;
+
 
 @end

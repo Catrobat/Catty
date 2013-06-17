@@ -31,19 +31,20 @@
 {
     NSDebug(@"Performing: %@", self.description);
     
-#warning adapt path etc.
-    self.object.texture = [SKTexture textureWithImageNamed:self.look.fileName];
-    
-    
     [self.object performSelectorOnMainThread:@selector(changeLook:) withObject:self.look waitUntilDone:YES];
 }
 
 
 -(SKAction*)actionWithActions:(SKAction *)actions
 {
-    UIImage* image = [UIImage imageWithContentsOfFile:[self pathForLook]];
-    SKTexture* texture = [SKTexture textureWithImage:image];
-    return [SKAction setTexture:texture];
+    
+    return [SKAction runBlock:^{
+        UIImage* image = [UIImage imageWithContentsOfFile:[self pathForLook]];
+        SKTexture* texture = [SKTexture textureWithImage:image];
+        self.object.texture = texture;
+        self.object.size = texture.size;
+    }];
+    
 }
 
 
