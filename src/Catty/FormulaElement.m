@@ -193,6 +193,16 @@
             break;
         }
             
+        case TRUE_F: {
+            result = 1.0;
+            break;
+        }
+        
+        case FALSE_F: {
+            result = 1.0;
+            break;
+        }
+            
         default:
             abort();
             break;
@@ -386,7 +396,15 @@
     if([function isEqualToString:@"PI"]) {
         return PI_F;
     }
+    if([function isEqualToString:@"TRUE"]) {
+        return TRUE_F;
+    }
     
+    if([function isEqualToString:@"FALSE"]) {
+        return FALSE_F;
+    }
+    
+    NSError(@"Unknown Function: %@", function);
     return -1;
 }
 
@@ -438,6 +456,8 @@
         return LOGICAL_NOT;
     }
     
+    NSError(@"Unknown Operator: %@", operator);
+    
     return -1;
 }
 
@@ -463,6 +483,10 @@
     if([type isEqualToString:@"BRACKET"]) {
         return BRACKET;
     }
+    
+    NSError(@"Unknown Type: %@", type);
+    
+    
     
     return -1;
     

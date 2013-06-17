@@ -44,7 +44,9 @@ typedef enum {
     RAND,
     ROUND,
     ABS,
-    PI_F
+    PI_F,
+    TRUE_F,
+    FALSE_F
 } Function;
 
 
