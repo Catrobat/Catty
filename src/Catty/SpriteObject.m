@@ -33,21 +33,12 @@
 
 @property (nonatomic, strong) NSMutableArray *activeScripts;
 @property (assign) int lookIndex;
-@property (nonatomic, strong) SPImage *brightnessWorkaround;
 @property (nonatomic, strong) NSMutableDictionary *sounds;
-@property (nonatomic, strong) NSCondition* speakLock;
-//@property (nonatomic, strong) SPJuggler* juggler;
 @property (nonatomic, strong) dispatch_queue_t scriptQueue;
 
 @end
 
 @implementation SpriteObject
-
-@synthesize position = _position;
-@synthesize brightnessWorkaround = _brightnessWorkaround;
-
-
-
 
 
 

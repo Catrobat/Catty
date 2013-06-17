@@ -46,7 +46,6 @@
 @interface SpriteObject : SKSpriteNode <SpriteFormulaProtocol>
 
 @property (assign, nonatomic) CGSize originalSize;
-@property (assign, nonatomic) CGPoint position;
 
 @property (weak, nonatomic) id<SpriteManagerDelegate> spriteManagerDelegate;
 @property (weak, nonatomic) id<BroadcastWaitDelegate> broadcastWaitDelegate;
