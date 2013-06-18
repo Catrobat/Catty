@@ -23,6 +23,6 @@
 
 #import <XCTest/XCTest.h>
 
-@interface SensorHandlerTests : SenTestCase
+@interface SensorHandlerTests : XCTestCase
 
 @end

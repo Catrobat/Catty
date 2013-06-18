@@ -1,10 +1,45 @@
-//
-//  Prefix header
-//
-//  The contents of this file are implicitly included at the beginning of every source file.
-//
+/**
+ *  Copyright (C) 2010-2013 The Catrobat Team
+ *  (http://developer.catrobat.org/credits)
+ *
+ *  This program is free software: you can redistribute it and/or modify
+ *  it under the terms of the GNU Affero General Public License as
+ *  published by the Free Software Foundation, either version 3 of the
+ *  License, or (at your option) any later version.
+ *
+ *  An additional term exception under section 7 of the GNU Affero
+ *  General Public License, version 3, is available at
+ *  (http://developer.catrobat.org/license_additional_term)
+ *
+ *  This program is distributed in the hope that it will be useful,
+ *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ *  GNU Affero General Public License for more details.
+ *
+ *  You should have received a copy of the GNU Affero General Public License
+ *  along with this program.  If not, see http://www.gnu.org/licenses/.
+ */
+
 
 #ifdef __OBJC__
-    #import <UIKit/UIKit.h>
-    #import <Foundation/Foundation.h>
+
+#import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
+
+#import "Logger.h"
+
+#ifdef DEBUG
+#define NSDebug(...) [Logger debug:__VA_ARGS__];
+//#define NSDebug(...) NSLog(@"[DEBUG]: %@", [NSString stringWithFormat:__VA_ARGS__]);
+//#define NSDebug(...) NSLog(__VA_ARGS__);
+//#define NSDebug(...)
+#else
+#define NSDebug(...)
+#endif
+
+#define NSInfo(...) [Logger info:__VA_ARGS__];
+#define NSWarn(...) [Logger warn:__VA_ARGS__];
+#define NSError(...) [Logger error:__VA_ARGS__];
+#define NSLogError(error) [Logger logError:error];
+
 #endif

@@ -47,6 +47,7 @@
 		B46B270217703F9400172837 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
 		B46B270817703F9400172837 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = B46B270617703F9400172837 /* InfoPlist.strings */; };
 		B46B270A17703F9400172837 /* CattyTests.m in Sources */ = {isa = PBXBuildFile; fileRef = B46B270917703F9400172837 /* CattyTests.m */; };
+		B46B271317703FB700172837 /* SensorHandlerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = B46B271217703FB700172837 /* SensorHandlerTests.m */; };
 		B470688A1733BA9600EC880D /* VariablesContainer.m in Sources */ = {isa = PBXBuildFile; fileRef = B47068891733BA9600EC880D /* VariablesContainer.m */; };
 		B470688F1733D6CC00EC880D /* ChangeVariableBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = B470688E1733D6CA00EC880D /* ChangeVariableBrick.m */; };
 		B4826F78174D076800F57AE9 /* NoteBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = B4826F77174D076800F57AE9 /* NoteBrick.m */; };
@@ -266,6 +267,8 @@
 		B46B270717703F9400172837 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		B46B270917703F9400172837 /* CattyTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CattyTests.m; sourceTree = "<group>"; };
 		B46B270B17703F9400172837 /* CattyTests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "CattyTests-Prefix.pch"; sourceTree = "<group>"; };
+		B46B271117703FB700172837 /* SensorHandlerTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SensorHandlerTests.h; sourceTree = "<group>"; };
+		B46B271217703FB700172837 /* SensorHandlerTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SensorHandlerTests.m; sourceTree = "<group>"; };
 		B47068881733BA9600EC880D /* VariablesContainer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VariablesContainer.h; sourceTree = "<group>"; };
 		B47068891733BA9600EC880D /* VariablesContainer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VariablesContainer.m; sourceTree = "<group>"; };
 		B470688D1733D6C800EC880D /* ChangeVariableBrick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChangeVariableBrick.h; sourceTree = "<group>"; };
@@ -859,6 +862,7 @@
 		B46B270317703F9400172837 /* CattyTests */ = {
 			isa = PBXGroup;
 			children = (
+				B46B271417703FBE00172837 /* SensorHandlerTests */,
 				B46B270917703F9400172837 /* CattyTests.m */,
 				B46B270417703F9400172837 /* Supporting Files */,
 			);
@@ -873,6 +877,15 @@
 				B46B270B17703F9400172837 /* CattyTests-Prefix.pch */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		B46B271417703FBE00172837 /* SensorHandlerTests */ = {
+			isa = PBXGroup;
+			children = (
+				B46B271117703FB700172837 /* SensorHandlerTests.h */,
+				B46B271217703FB700172837 /* SensorHandlerTests.m */,
+			);
+			name = SensorHandlerTests;
 			sourceTree = "<group>";
 		};
 		B470688C1733BA9A00EC880D /* VariablesContainer */ = {
@@ -2021,6 +2034,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B46B271317703FB700172837 /* SensorHandlerTests.m in Sources */,
 				B46B270A17703F9400172837 /* CattyTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -2072,6 +2086,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = "";
 				GCC_PREFIX_HEADER = "Catty/App-Prefix.pch";
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
 				HEADER_SEARCH_PATHS = /usr/include/libxml2;
 				INFOPLIST_FILE = "Catty/App-Info.plist";
 				OTHER_LDFLAGS = (
@@ -2090,6 +2105,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = "";
 				GCC_PREFIX_HEADER = "Catty/App-Prefix.pch";
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
 				HEADER_SEARCH_PATHS = /usr/include/libxml2;
 				INFOPLIST_FILE = "Catty/App-Info.plist";
 				OTHER_LDFLAGS = (

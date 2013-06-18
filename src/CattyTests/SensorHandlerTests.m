@@ -20,10 +20,10 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
+#import <CoreMotion/CoreMotion.h>
 #import "SensorHandlerTests.h"
 #import "SensorHandler.h"
-#import <CoreMotion/CoreMotion.h>
-#include "TargetConditionals.h"
+#import "SensorManager.h"
 
 @implementation SensorHandlerTests
 
@@ -46,7 +46,7 @@
 
     CMMotionManager* motionManager = [sensorHandler valueForKey:@"motionManager"];
     [sensorHandler rotationRate];
-    STAssertTrue([motionManager isGyroActive], @"Gyro should be active!");
+    XCTAssertTrue([motionManager isGyroActive], @"Gyro should be active!");
 }
 
 - (void)test_gyroX
@@ -54,7 +54,7 @@
     SensorHandler* sensorHandler = [SensorHandler sharedSensorHandler];
     
     BOOL isNotZero = [sensorHandler rotationRate].x != 0.0f;
-    STAssertTrue(isNotZero, @"It's very unlikely that x is really zero!");
+    XCTAssertTrue(isNotZero, @"It's very unlikely that x is really zero!");
 }
 
 
@@ -63,7 +63,7 @@
     SensorHandler* sensorHandler = [SensorHandler sharedSensorHandler];
     
     BOOL isNotZero = [sensorHandler rotationRate].y != 0.0f;
-    STAssertTrue(isNotZero, @"It's very unlikely that y is really zero!");
+    XCTAssertTrue(isNotZero, @"It's very unlikely that y is really zero!");
 }
 
 - (void)test_gyroZ
@@ -71,7 +71,7 @@
     SensorHandler* sensorHandler = [SensorHandler sharedSensorHandler];
     
     BOOL isNotZero = [sensorHandler rotationRate].y != 0.0f;
-    STAssertTrue(isNotZero, @"It's very unlikely that z is really zero!");
+    XCTAssertTrue(isNotZero, @"It's very unlikely that z is really zero!");
 }
 
 
@@ -81,7 +81,7 @@
     
     CMMotionManager* motionManager = [sensorHandler valueForKey:@"motionManager"];
     [sensorHandler acceleration];
-    STAssertTrue([motionManager isAccelerometerActive], @"Acceleration should be active!");
+    XCTAssertTrue([motionManager isAccelerometerActive], @"Acceleration should be active!");
 }
 
 - (void)test_MagnetometerActive
@@ -90,7 +90,7 @@
     
     CMMotionManager* motionManager = [sensorHandler valueForKey:@"motionManager"];
     [sensorHandler magneticField];
-    STAssertTrue([motionManager isMagnetometerActive], @"Magnetometer should be active!");
+    XCTAssertTrue([motionManager isMagnetometerActive], @"Magnetometer should be active!");
 }
 
 - (void)test_magX
@@ -98,7 +98,7 @@
     SensorHandler* sensorHandler = [SensorHandler sharedSensorHandler];
     
     BOOL isNotZero = [sensorHandler magneticField].x != 0.0f;
-    STAssertTrue(isNotZero, @"It's very unlikely that x is really zero!");
+    XCTAssertTrue(isNotZero, @"It's very unlikely that x is really zero!");
 }
 
 
@@ -107,7 +107,7 @@
     SensorHandler* sensorHandler = [SensorHandler sharedSensorHandler];
     
     BOOL isNotZero = [sensorHandler magneticField].y != 0.0f;
-    STAssertTrue(isNotZero, @"It's very unlikely that y is really zero!");
+    XCTAssertTrue(isNotZero, @"It's very unlikely that y is really zero!");
 }
 
 - (void)test_magZ
@@ -115,16 +115,16 @@
     SensorHandler* sensorHandler = [SensorHandler sharedSensorHandler];
     
     BOOL isNotZero = [sensorHandler magneticField].y != 0.0f;
-    STAssertTrue(isNotZero, @"It's very unlikely that z is really zero!");
+    XCTAssertTrue(isNotZero, @"It's very unlikely that z is really zero!");
 }
 
 -(void)test_valueForSensor
 {
     SensorHandler* sensorHandler = [SensorHandler sharedSensorHandler];
     
-    for(int sensor=X_ACCELERATION; sensor < LOOK_LAYER; sensor++) {
+    for(int sensor=X_ACCELERATION; sensor < OBJECT_X; sensor++) {
         BOOL isNotZero = [sensorHandler valueForSensor:sensor] != 0.0;
-        STAssertTrue(isNotZero, @"It's very unlikely that the sensor (%@) really returned zero!", [SensorManager stringForSensor:sensor]);
+        XCTAssertTrue(isNotZero, @"It's very unlikely that the sensor (%@) really returned zero!", [SensorManager stringForSensor:sensor]);
     }
     
 }
@@ -138,22 +138,20 @@
     CMMotionManager* motionManager = [sensorHandler valueForKey:@"motionManager"];
     
     [sensorHandler acceleration];
-    STAssertTrue([motionManager isAccelerometerActive], @"Acceleration should be active!");
+    XCTAssertTrue([motionManager isAccelerometerActive], @"Acceleration should be active!");
     
     [sensorHandler rotationRate];
-    STAssertTrue([motionManager isGyroActive], @"Gyro should be active!");
+    XCTAssertTrue([motionManager isGyroActive], @"Gyro should be active!");
     
     [sensorHandler magneticField];
-    STAssertTrue([motionManager isMagnetometerActive], @"Magnetometer should be active!");
+    XCTAssertTrue([motionManager isMagnetometerActive], @"Magnetometer should be active!");
     
     [sensorHandler stopSensors];
     
-    STAssertFalse([motionManager isAccelerometerActive], @"Magnetometer should not be active!");
-    STAssertFalse([motionManager isGyroActive], @"Magnetometer should not be active!");
-    STAssertFalse([motionManager isMagnetometerActive], @"Magnetometer should not be active!");
+    XCTAssertFalse([motionManager isAccelerometerActive], @"Magnetometer should not be active!");
+    XCTAssertFalse([motionManager isGyroActive], @"Magnetometer should not be active!");
+    XCTAssertFalse([motionManager isMagnetometerActive], @"Magnetometer should not be active!");
 }
-
-
 
 
 
