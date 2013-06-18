@@ -26,10 +26,11 @@
 - (NSString*) sha1;
 
 - (NSString*) stringByEscapingHTMLEntities;
-
 - (NSString*) firstCharacterUppercaseString;
 
 - (BOOL)containsString:(NSString*)string;
+
++ (NSString *)uuid;
 
 
 @end

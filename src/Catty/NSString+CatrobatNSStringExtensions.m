@@ -67,6 +67,14 @@ NSMutableString* resultString;
 }
 
 
++(NSString *)uuid
+{
+    CFUUIDRef uuid = CFUUIDCreate(kCFAllocatorDefault);
+    NSString *uuidStr = (__bridge_transfer NSString *)CFUUIDCreateString(kCFAllocatorDefault, uuid);
+    CFRelease(uuid);
+    return uuidStr;
+}
+
 - (BOOL)containsString:(NSString*)string
 {
     NSRange range = [self rangeOfString:string options:0];

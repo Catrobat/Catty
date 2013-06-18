@@ -70,7 +70,6 @@
         for (Script *script in self.scriptList)
         {
             if ([script isKindOfClass:[WhenScript class]]) {
-                NSDebug(@"Performing script with action: %@", script.description);
                 [script start];
                 [self.activeScripts removeObject:script];
                 [self.activeScripts addObject:script];

@@ -31,11 +31,13 @@
 #import "IfLogicElseBrick.h"
 #import "IfLogicEndBrick.h"
 #import "NoteBrick.h"
+#import "NSString+CatrobatNSStringExtensions.h"
 
 
 @interface Script()
 
 @property (nonatomic, assign) int currentBrickIndex;
+@property (nonatomic, strong) NSString* actionKey;
 
 @end
 
@@ -49,6 +51,7 @@
     if (self = [super init])
     {
         self.currentBrickIndex = 0;
+        self.actionKey = [NSString uuid];
     }
     return self;
 }
@@ -65,7 +68,7 @@
 -(void)reset
 {
     self.currentBrickIndex = 0;
-    [self.object removeActionForKey:@"test"];
+    [self.object removeActionForKey:self.actionKey];
 
 }
 
@@ -78,19 +81,19 @@
     SKAction* action = [brick action];
     
     
-    [self.object runAction:action withKey:@"test"];
+    [self.object runAction:action withKey:self.actionKey];
     
 }
 
 
 - (void)updateWithTimeSinceLastUpdate:(CFTimeInterval)interval
 {
-    if(self.currentBrickIndex < [self.brickList count] && ![self.object actionForKey:@"test"]) {
+    if(self.currentBrickIndex < [self.brickList count] && ![self.object actionForKey:self.actionKey]) {
         Brick* brick = [self.brickList objectAtIndex:self.currentBrickIndex++];
         
         SKAction* action = [brick action];
         
-        [self.object runAction:action withKey:@"test"];
+        [self.object runAction:action withKey:self.actionKey];
     }
 }
 
