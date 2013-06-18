@@ -10,10 +10,7 @@ Please ask on our Google Plus community: http://goo.gl/fOjQi
 ## Learn iOS development?
 We recommend [iPad and iPhone App Development](https://itunes.apple.com/us/course/ipad-iphone-app-development/id495052415) from the Stanford University.
 
-## Setting Up Your First Project - Step by Step
-For a step-by-step guide how to deploy your first project, see: http://goo.gl/R0tmG
-
-## ... Short Version
+## Setting Up Your First Project
 * First of all you need an Apple ID if you haven't got it by now create it. [Create Apple ID](https://appleid.apple.com/cgi-bin/WebObjects/MyAppleId.woa/135/wa/createAppleId?wosid=4buecjiwQGa14dIxx55bYM&localang=de_DE)
 * Now write a mail to your administrator of your Apple Developer Program. The Mail should look like this:
 
@@ -29,8 +26,8 @@ For a step-by-step guide how to deploy your first project, see: http://goo.gl/R0
 
 * Now you have to wait a bit until your administrator sends you an invitation through Apple.
 * When you get the mail there is a link in it. Just click it and login with your Apple ID.
-* Now continue with the following [guide](http://itunes.tugraz.at/media/items/ios_application_development_2011_pdf/1298971525-12_-_App_Deployment.pdf) from Josef Kolbitsch.
-* Then write a mail to your administrator:
+* Now create a certificate (using the Certificate Signing Request in the OSX Keychain) and upload it to http://developer.apple.com
+* Then write a email to your administrator:
 
 > I have uploaded my certificate and here is some additional data
 > 
@@ -40,10 +37,7 @@ For a step-by-step guide how to deploy your first project, see: http://goo.gl/R0
 
 * Finished
 
-# License
-todo...
-
-## License Header (for source and header files)
+# License Header (for source and header files)
 <pre lang="objective-c"><code>
 /**
  *  Copyright (C) 2010-2013 The Catrobat Team
