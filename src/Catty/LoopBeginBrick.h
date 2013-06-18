@@ -21,9 +21,10 @@
  */
 
 #import "Brick.h"
-#import "LoopBeginBrick.h"
+#import "LoopEndBrick.h"
 
-@interface ForeverBrick : LoopBeginBrick
+@interface LoopBeginBrick : Brick
 
+@property (nonatomic, weak) LoopEndBrick *loopEndBrick;
 
 @end

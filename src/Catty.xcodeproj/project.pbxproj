@@ -48,6 +48,7 @@
 		B46B270817703F9400172837 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = B46B270617703F9400172837 /* InfoPlist.strings */; };
 		B46B270A17703F9400172837 /* CattyTests.m in Sources */ = {isa = PBXBuildFile; fileRef = B46B270917703F9400172837 /* CattyTests.m */; };
 		B46B271317703FB700172837 /* SensorHandlerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = B46B271217703FB700172837 /* SensorHandlerTests.m */; };
+		B46B271B17708E6700172837 /* LoopBeginBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = B46B271A17708E6700172837 /* LoopBeginBrick.m */; };
 		B470688A1733BA9600EC880D /* VariablesContainer.m in Sources */ = {isa = PBXBuildFile; fileRef = B47068891733BA9600EC880D /* VariablesContainer.m */; };
 		B470688F1733D6CC00EC880D /* ChangeVariableBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = B470688E1733D6CA00EC880D /* ChangeVariableBrick.m */; };
 		B4826F78174D076800F57AE9 /* NoteBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = B4826F77174D076800F57AE9 /* NoteBrick.m */; };
@@ -269,6 +270,8 @@
 		B46B270B17703F9400172837 /* CattyTests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "CattyTests-Prefix.pch"; sourceTree = "<group>"; };
 		B46B271117703FB700172837 /* SensorHandlerTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SensorHandlerTests.h; sourceTree = "<group>"; };
 		B46B271217703FB700172837 /* SensorHandlerTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SensorHandlerTests.m; sourceTree = "<group>"; };
+		B46B271917708E6700172837 /* LoopBeginBrick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoopBeginBrick.h; sourceTree = "<group>"; };
+		B46B271A17708E6700172837 /* LoopBeginBrick.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoopBeginBrick.m; sourceTree = "<group>"; };
 		B47068881733BA9600EC880D /* VariablesContainer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VariablesContainer.h; sourceTree = "<group>"; };
 		B47068891733BA9600EC880D /* VariablesContainer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VariablesContainer.m; sourceTree = "<group>"; };
 		B470688D1733D6C800EC880D /* ChangeVariableBrick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChangeVariableBrick.h; sourceTree = "<group>"; };
@@ -1423,6 +1426,8 @@
 		CD0CCFE6170CB69800B70036 /* LoopBricks */ = {
 			isa = PBXGroup;
 			children = (
+				B46B271917708E6700172837 /* LoopBeginBrick.h */,
+				B46B271A17708E6700172837 /* LoopBeginBrick.m */,
 				CD0CCE9F170CB39600B70036 /* ForeverBrick.h */,
 				CD0CCEA0170CB39600B70036 /* ForeverBrick.m */,
 				CD0CCED5170CB39700B70036 /* LoopEndBrick.h */,
@@ -2026,6 +2031,7 @@
 				B4DA23D1175E26550079B381 /* SensorManager.m in Sources */,
 				B4F499B0175E8387002E1BBD /* PullableView.m in Sources */,
 				B4A92DCD175F8DF700608667 /* SSZipArchive.m in Sources */,
+				B46B271B17708E6700172837 /* LoopBeginBrick.m in Sources */,
 				B4A92DD2175FD4B800608667 /* GDataXMLNode.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

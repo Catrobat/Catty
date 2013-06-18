@@ -51,7 +51,7 @@
     for (Script *script in self.scriptList)
     {
         if ([script isKindOfClass:[StartScript class]]) {
-            [self runAction:[script actionSequence]];
+            [script start];
         }
     }
 }
@@ -70,7 +70,7 @@
                 NSDebug(@"Performing script with action: %@", script.description);
                 
                 // TODO: RESET?! SCRIPT?!
-                [self runAction:[script actionSequence]];
+                [script start];
                 break;
             }
         }

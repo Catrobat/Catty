@@ -21,9 +21,11 @@
  */
 
 #import "Foreverbrick.h"
+#import "LoopBeginBrick.h"
+
 @class Formula;
 
-@interface RepeatBrick : ForeverBrick
+@interface RepeatBrick : LoopBeginBrick
 
 @property (nonatomic, strong) Formula *timesToRepeat;
 

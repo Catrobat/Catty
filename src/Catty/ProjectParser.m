@@ -52,6 +52,7 @@
 // TODO: fix the user defined warnings below and remove this in final version
 #define kParserObjectTypeSprite         @"T@\"SpriteObject\""
 #define kParserObjectTypeLookData       @"T@\"Look\""
+#define kParserObjectTypeLoopBeginBrick @"T@\"LoopBeginBrick\""
 #define kParserObjectTypeLoopEndBrick   @"T@\"LoopEndBrick\""
 #define kParserObjectTypeSound          @"T@\"Sound\""
 #define kParserObjectTypeHeader         @"T@\"Header\""
@@ -62,6 +63,7 @@
 #define kParserObjectTypeIfBeginBrick   @"T@\"IfLogicBeginBrick\""
 #define kParserObjectTypeElseBrick      @"T@\"ElseBrick\""
 #define kParserObjectTypeVariables      @"T@\"VariablesContainer\""
+
 
 @interface ProjectParser()
 
@@ -316,6 +318,11 @@
     }
     else if ([propertyType isEqualToString:kParserObjectTypeVariables]) {
         return [self parseVariablesContainer:element withParent:parent];
+    } else if([propertyType isEqualToString:kParserObjectTypeLoopBeginBrick]) {
+        if([self isReferenceElement:element]) {
+            return [self parseReferenceElement:element withParent:parent];
+        }
+        return [self parseNode:element withParent:parent];
     }
     else {
         [NSException raise:@"UnknownPropertyException" format:@"Property Type: %@ not found", propertyType];

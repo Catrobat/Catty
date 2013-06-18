@@ -35,19 +35,20 @@
 
 @interface Script()
 
+@property (nonatomic, assign) int currentBrickIndex;
+
 @end
-
-
 
 
 @implementation Script
 
-@synthesize actionSequence = _actionSequence;
+
 
 - (id)init
 {
     if (self = [super init])
     {
+        self.currentBrickIndex = 0;
     }
     return self;
 }
@@ -62,143 +63,174 @@
 }
 
 
--(SKAction*) actionSequence
+-(void) start
 {
+    Brick* brick = [self.brickList objectAtIndex:self.currentBrickIndex];
     
-    if(!_actionSequence) {
-        NSMutableArray* actionsArray = [[NSMutableArray alloc] initWithCapacity:[self.brickList count]];
-        for(int i=0; i<[self.brickList count]; i++) {
-            
-            Brick* brick = [self.brickList objectAtIndex:i];
-            
-            SKAction* action = nil;
-            if([brick isMemberOfClass:[ForeverBrick class]] ||
-               [brick isMemberOfClass:[RepeatBrick class]]){
-                action = [brick actionWithActions:[self buildActionSequenceForForLoopAndIndex:&i]];
-                
-            } else if([brick isMemberOfClass:[IfLogicBeginBrick class]]) {
-                action = [self buildActionSequenceForIf:&i];
-            }
-            
-            else {
-                action = [brick action];
-            }
-            
-            [actionsArray addObject:action];
-        
-        }
-        _actionSequence = [SKAction sequence:actionsArray];
-    }
+    SKAction* action = [brick action];
     
-    return _actionSequence;
-}
-
-
--(SKAction*)buildActionSequenceForForLoopAndIndex:(int*)index;
-{
-    NSMutableArray *sequence = [[NSMutableArray alloc]init];
-
-    Brick* brick = nil;
-
-    while(![brick isMemberOfClass:[LoopEndBrick class]] && (*index) < [self.brickList count]) {
-        
-        brick = [self.brickList objectAtIndex:(*index)++];
-        SKAction* action = nil;
-        
-        if([brick isMemberOfClass:[ForeverBrick class]] ||
-           [brick isMemberOfClass:[RepeatBrick class]]){
-            action = [brick actionWithActions:[self buildActionSequenceForForLoopAndIndex:index]];
-        }
-        if([brick isMemberOfClass:[IfLogicBeginBrick class]]){
-            action = [self buildActionSequenceForIf:index];
-        }
-        
-        else {
-            action = [brick action];
-        }
-        
-        [sequence addObject:action];
-    }
-
-    return [SKAction sequence:sequence];
+    // TODO: IF/REPEAT/FOREVER
+    [self runWithAction:action];
     
 }
 
--(SKAction*)buildActionSequenceForIf:(int*)index
+-(void)runWithAction:(SKAction*)action
 {
-    IfLogicBeginBrick* ifBrick = [self.brickList objectAtIndex:(*index)];
-    (*index)++;
-    SKAction* thenSequence = [self buildActionSequenceForIf:index];
-    SKAction* elseSequence = [self buildActionSequenceForThen:index];
-    
-    return [ifBrick actionWithThenAction:thenSequence andElseAction:elseSequence];
+    [self.object runAction:action completion:^{
+        
+        if(self.currentBrickIndex < [self.brickList count]) {
+            Brick* brick = [self.brickList objectAtIndex:self.currentBrickIndex];
+        
+            // TODO: IF/REPEAT/FOREVER
+            SKAction* action = [brick action];
+            [self runWithAction:action];
+        }
+    }];
 }
 
--(SKAction*)buildActionSequenceForThen:(int*)index
-{
-    
-    (*index)++;
-    NSMutableArray* sequence = [[NSMutableArray alloc] init];
-    
-    Brick* brick = nil;
-    
-    while(![brick isMemberOfClass:[IfLogicElseBrick class]] && (*index) < [self.brickList count]) {
-        
-        brick = [self.brickList objectAtIndex:(*index)++];
-        SKAction* action = nil;
-        
-        if([brick isMemberOfClass:[IfLogicBeginBrick class]]){
-            action = [self buildActionSequenceForIf:index];
-        }
-        
-        else if([brick isMemberOfClass:[ForeverBrick class]] ||
-           [brick isMemberOfClass:[RepeatBrick class]]){
-            action = [brick actionWithActions:[self buildActionSequenceForForLoopAndIndex:index]];
-        }
-        
-        else {
-            action = [brick action];
-        }
-        
-        [sequence addObject:action];
-        
-    }
-    
-    return [SKAction sequence:sequence];
-    
-}
 
--(SKAction*)buildActionSequenceForElse:(int*)index
-{
-    NSMutableArray* sequence = [[NSMutableArray alloc] init];
-    
-    Brick* brick = nil;
-    
-    while(![brick isMemberOfClass:[IfLogicEndBrick class]] && (*index) < [self.brickList count]) {
-        
-        brick = [self.brickList objectAtIndex:(*index)++];
-        SKAction* action = nil;
-        
-        if([brick isMemberOfClass:[IfLogicBeginBrick class]]){
-            action = [self buildActionSequenceForIf:index];
-        }
-        
-        else if([brick isMemberOfClass:[ForeverBrick class]] ||
-                [brick isMemberOfClass:[RepeatBrick class]]){
-            action = [brick actionWithActions:[self buildActionSequenceForForLoopAndIndex:index]];
-        }
-        
-        else {
-            action = [brick action];
-        }
-        
-        [sequence addObject:action];
-        
-    }
-    
-    return [SKAction sequence:sequence];
-    
-}
+
+
+
+
+
+//-(SKAction*) actionSequence
+//{
+//    
+//    if(!_actionSequence) {
+//        NSMutableArray* actionsArray = [[NSMutableArray alloc] initWithCapacity:[self.brickList count]];
+//        for(int i=0; i<[self.brickList count]; i++) {
+//            
+//            Brick* brick = [self.brickList objectAtIndex:i];
+//            
+//            SKAction* action = nil;
+//            if([brick isMemberOfClass:[ForeverBrick class]] ||
+//               [brick isMemberOfClass:[RepeatBrick class]]){
+//                action = [brick actionWithActions:[self buildActionSequenceForForLoopAndIndex:&i]];
+//                
+//            } else if([brick isMemberOfClass:[IfLogicBeginBrick class]]) {
+//                action = [self buildActionSequenceForIf:&i];
+//            }
+//            
+//            else {
+//                action = [brick action];
+//            }
+//            
+//            [actionsArray addObject:action];
+//        
+//        }
+//        _actionSequence = [SKAction sequence:actionsArray];
+//    }
+//    
+//    return _actionSequence;
+//}
+//
+//
+//-(SKAction*)buildActionSequenceForForLoopAndIndex:(int*)index;
+//{
+//    NSMutableArray *sequence = [[NSMutableArray alloc]init];
+//
+//    Brick* brick = nil;
+//
+//    while(![brick isMemberOfClass:[LoopEndBrick class]] && (*index) < [self.brickList count]) {
+//        
+//        brick = [self.brickList objectAtIndex:(*index)++];
+//        SKAction* action = nil;
+//        
+//        if([brick isMemberOfClass:[ForeverBrick class]] ||
+//           [brick isMemberOfClass:[RepeatBrick class]]){
+//            action = [brick actionWithActions:[self buildActionSequenceForForLoopAndIndex:index]];
+//        }
+//        if([brick isMemberOfClass:[IfLogicBeginBrick class]]){
+//            action = [self buildActionSequenceForIf:index];
+//        }
+//        
+//        else {
+//            action = [brick action];
+//        }
+//        
+//        [sequence addObject:action];
+//    }
+//
+//    return [SKAction sequence:sequence];
+//    
+//}
+//
+//-(SKAction*)buildActionSequenceForIf:(int*)index
+//{
+//    IfLogicBeginBrick* ifBrick = [self.brickList objectAtIndex:(*index)];
+//    (*index)++;
+//    SKAction* thenSequence = [self buildActionSequenceForIf:index];
+//    SKAction* elseSequence = [self buildActionSequenceForThen:index];
+//    
+//    return [ifBrick actionWithThenAction:thenSequence andElseAction:elseSequence];
+//}
+//
+//-(SKAction*)buildActionSequenceForThen:(int*)index
+//{
+//    
+//    (*index)++;
+//    NSMutableArray* sequence = [[NSMutableArray alloc] init];
+//    
+//    Brick* brick = nil;
+//    
+//    while(![brick isMemberOfClass:[IfLogicElseBrick class]] && (*index) < [self.brickList count]) {
+//        
+//        brick = [self.brickList objectAtIndex:(*index)++];
+//        SKAction* action = nil;
+//        
+//        if([brick isMemberOfClass:[IfLogicBeginBrick class]]){
+//            action = [self buildActionSequenceForIf:index];
+//        }
+//        
+//        else if([brick isMemberOfClass:[ForeverBrick class]] ||
+//           [brick isMemberOfClass:[RepeatBrick class]]){
+//            action = [brick actionWithActions:[self buildActionSequenceForForLoopAndIndex:index]];
+//        }
+//        
+//        else {
+//            action = [brick action];
+//        }
+//        
+//        [sequence addObject:action];
+//        
+//    }
+//    
+//    return [SKAction sequence:sequence];
+//    
+//}
+//
+//-(SKAction*)buildActionSequenceForElse:(int*)index
+//{
+//    NSMutableArray* sequence = [[NSMutableArray alloc] init];
+//    
+//    Brick* brick = nil;
+//    
+//    while(![brick isMemberOfClass:[IfLogicEndBrick class]] && (*index) < [self.brickList count]) {
+//        
+//        brick = [self.brickList objectAtIndex:(*index)++];
+//        SKAction* action = nil;
+//        
+//        if([brick isMemberOfClass:[IfLogicBeginBrick class]]){
+//            action = [self buildActionSequenceForIf:index];
+//        }
+//        
+//        else if([brick isMemberOfClass:[ForeverBrick class]] ||
+//                [brick isMemberOfClass:[RepeatBrick class]]){
+//            action = [brick actionWithActions:[self buildActionSequenceForForLoopAndIndex:index]];
+//        }
+//        
+//        else {
+//            action = [brick action];
+//        }
+//        
+//        [sequence addObject:action];
+//        
+//    }
+//    
+//    return [SKAction sequence:sequence];
+//    
+//}
 
 
 

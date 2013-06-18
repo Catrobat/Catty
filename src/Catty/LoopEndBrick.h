@@ -22,6 +22,10 @@
 
 #import "Brick.h"
 
+@class LoopBeginBrick;
+
 @interface LoopEndBrick : Brick
-@property (strong, nonatomic) NSString* loopBeginBrick;
+
+@property (weak, nonatomic) LoopBeginBrick* loopBeginBrick;
+
 @end
