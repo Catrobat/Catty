@@ -58,20 +58,20 @@
 
 
 
--(void)start
-{
-    self.paused = NO;
-    
-    for (SpriteObject *obj in self.program.objectList) {
-        //[obj addEventListener:@selector(onImageTouched:) atObject:obj forType:SP_EVENT_TYPE_TOUCH];
-        [self addChild:obj];
-        NSDebug(@"####### %@", obj.name);
-    }
-    
-    for (SpriteObject *obj in self.program.objectList) {
-        [obj start];
-    }
-}
+//-(void)start
+//{
+//    self.paused = NO;
+//    
+//    for (SpriteObject *obj in self.program.objectList) {
+//        //[obj addEventListener:@selector(onImageTouched:) atObject:obj forType:SP_EVENT_TYPE_TOUCH];
+//        [self addChild:obj];
+//        NSDebug(@"####### %@", obj.name);
+//    }
+//    
+//    for (SpriteObject *obj in self.program.objectList) {
+//        [obj start];
+//    }
+//}
 
 
 //- (void)onEnterFrame:(SPEnterFrameEvent *)event

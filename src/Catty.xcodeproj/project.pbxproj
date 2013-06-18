@@ -29,126 +29,24 @@
 		B40228911732A541004C4942 /* IfLogicElseBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = B40228901732A540004C4942 /* IfLogicElseBrick.m */; };
 		B40228961732A58E004C4942 /* IfLogicEndBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = B40228951732A58E004C4942 /* IfLogicEndBrick.m */; };
 		B40228A51732ADF4004C4942 /* PointToBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = B40228A41732ADF3004C4942 /* PointToBrick.m */; };
-		B405BA58175DCA2A00B1A0FC /* CatrobatBaseCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B4D940CD170EC903003DDBFA /* CatrobatBaseCell.m */; };
-		B405BA59175DCA2A00B1A0FC /* BackgroundLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = B4D940B6170EC631003DDBFA /* BackgroundLayer.m */; };
-		B405BA5A175DCA2A00B1A0FC /* NSString+CatrobatNSStringExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = B4D940BE170EC681003DDBFA /* NSString+CatrobatNSStringExtensions.m */; };
-		B405BA5B175DCA2A00B1A0FC /* UIColor+CatrobatUIColorExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = B4D940C1170EC69B003DDBFA /* UIColor+CatrobatUIColorExtensions.m */; };
-		B405BA5C175DCA2A00B1A0FC /* UIImage+CatrobatUIImageExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = B4D940C4170EC6BD003DDBFA /* UIImage+CatrobatUIImageExtensions.m */; };
-		B405BA5D175DCA2A00B1A0FC /* TableUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = B4D940BA170EC660003DDBFA /* TableUtil.m */; };
-		B405BA5E175DCA2A00B1A0FC /* ProgramLoadingInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = B4D940C8170EC742003DDBFA /* ProgramLoadingInfo.m */; };
-		B405BA5F175DCA2A00B1A0FC /* CatrobatTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B4003031170EB50A00396DB7 /* CatrobatTableViewController.m */; };
-		B405BA61175DCA2A00B1A0FC /* StageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B4F243C6170EBD63007A071D /* StageViewController.m */; };
-		B405BA62175DCA2A00B1A0FC /* Stage.m in Sources */ = {isa = PBXBuildFile; fileRef = B4F243CA170EBE23007A071D /* Stage.m */; };
-		B405BA63175DCA2A00B1A0FC /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B4F243CC170EBEF7007A071D /* AppDelegate.m */; };
-		B405BA64175DCA2A00B1A0FC /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; };
-		B405BA65175DCA2A00B1A0FC /* BaseSprite.m in Sources */ = {isa = PBXBuildFile; fileRef = CD0CCE5E170CB39600B70036 /* BaseSprite.m */; };
-		B405BA66175DCA2A00B1A0FC /* Brick.m in Sources */ = {isa = PBXBuildFile; fileRef = CD0CCE60170CB39600B70036 /* Brick.m */; };
-		B405BA67175DCA2A00B1A0FC /* BroadcastBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = CD0CCE62170CB39600B70036 /* BroadcastBrick.m */; };
-		B405BA68175DCA2A00B1A0FC /* BroadcastScript.m in Sources */ = {isa = PBXBuildFile; fileRef = CD0CCE64170CB39600B70036 /* BroadcastScript.m */; };
-		B405BA69175DCA2A00B1A0FC /* BroadcastWaitBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = CD0CCE66170CB39600B70036 /* BroadcastWaitBrick.m */; };
-		B405BA6A175DCA2A00B1A0FC /* BroadcastWaitHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = CD0CCE69170CB39600B70036 /* BroadcastWaitHandler.m */; };
-		B405BA6B175DCA2A00B1A0FC /* CatrobatProject.m in Sources */ = {isa = PBXBuildFile; fileRef = CD0CCE70170CB39600B70036 /* CatrobatProject.m */; };
-		B405BA6D175DCA2A00B1A0FC /* ChangeGhostEffectByNBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = CD0CCE7B170CB39600B70036 /* ChangeGhostEffectByNBrick.m */; };
-		B405BA6E175DCA2A00B1A0FC /* ChangeSizeByNBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = CD0CCE7D170CB39600B70036 /* ChangeSizeByNBrick.m */; };
-		B405BA6F175DCA2A00B1A0FC /* ChangeVolumeByNBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = CD0CCE7F170CB39600B70036 /* ChangeVolumeByNBrick.m */; };
-		B405BA70175DCA2A00B1A0FC /* ChangeXByNBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = CD0CCE81170CB39600B70036 /* ChangeXByNBrick.m */; };
-		B405BA71175DCA2A00B1A0FC /* ChangeYByNBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = CD0CCE83170CB39600B70036 /* ChangeYByNBrick.m */; };
-		B405BA72175DCA2A00B1A0FC /* ComeToFrontBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = CD0CCE86170CB39600B70036 /* ComeToFrontBrick.m */; };
-		B405BA73175DCA2A00B1A0FC /* FileManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CD0CCE9E170CB39600B70036 /* FileManager.m */; };
-		B405BA74175DCA2A00B1A0FC /* ForeverBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = CD0CCEA0170CB39600B70036 /* ForeverBrick.m */; };
-		B405BA76175DCA2A00B1A0FC /* GlideToBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = CD0CCEA4170CB39600B70036 /* GlideToBrick.m */; };
-		B405BA77175DCA2A00B1A0FC /* GoNStepsBackBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = CD0CCEA6170CB39600B70036 /* GoNStepsBackBrick.m */; };
-		B405BA78175DCA2A00B1A0FC /* Header.m in Sources */ = {isa = PBXBuildFile; fileRef = CD0CCEA8170CB39600B70036 /* Header.m */; };
-		B405BA79175DCA2A00B1A0FC /* HideBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = CD0CCEAB170CB39600B70036 /* HideBrick.m */; };
-		B405BA7A175DCA2A00B1A0FC /* Look.m in Sources */ = {isa = PBXBuildFile; fileRef = CD0CCED4170CB39700B70036 /* Look.m */; };
-		B405BA7B175DCA2A00B1A0FC /* LoopEndBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = CD0CCED6170CB39700B70036 /* LoopEndBrick.m */; };
-		B405BA7C175DCA2A00B1A0FC /* NextLookBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = CD0CCEE7170CB39700B70036 /* NextLookBrick.m */; };
-		B405BA7D175DCA2A00B1A0FC /* Parser.m in Sources */ = {isa = PBXBuildFile; fileRef = CD0CCEEB170CB39700B70036 /* Parser.m */; };
-		B405BA7E175DCA2A00B1A0FC /* PlaceAtBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = CD0CCEED170CB39700B70036 /* PlaceAtBrick.m */; };
-		B405BA7F175DCA2A00B1A0FC /* PlaySoundBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = CD0CCEF1170CB39700B70036 /* PlaySoundBrick.m */; };
-		B405BA80175DCA2A00B1A0FC /* Program.m in Sources */ = {isa = PBXBuildFile; fileRef = CD0CCEF3170CB39700B70036 /* Program.m */; };
-		B405BA81175DCA2A00B1A0FC /* ProjectParser.m in Sources */ = {isa = PBXBuildFile; fileRef = CD0CCEF9170CB39700B70036 /* ProjectParser.m */; };
-		B405BA82175DCA2A00B1A0FC /* RepeatBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = CD0CCEFD170CB39700B70036 /* RepeatBrick.m */; };
-		B405BA83175DCA2A00B1A0FC /* Script.m in Sources */ = {isa = PBXBuildFile; fileRef = CD0CCF0E170CB39700B70036 /* Script.m */; };
-		B405BA84175DCA2A00B1A0FC /* SetBrightnessBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = CD0CCF10170CB39700B70036 /* SetBrightnessBrick.m */; };
-		B405BA85175DCA2A00B1A0FC /* SetGhostEffectBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = CD0CCF12170CB39700B70036 /* SetGhostEffectBrick.m */; };
-		B405BA86175DCA2A00B1A0FC /* SetLookBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = CD0CCF14170CB39700B70036 /* SetLookBrick.m */; };
-		B405BA87175DCA2A00B1A0FC /* SetSizeToBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = CD0CCF16170CB39700B70036 /* SetSizeToBrick.m */; };
-		B405BA88175DCA2A00B1A0FC /* SetVolumeToBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = CD0CCF1A170CB39700B70036 /* SetVolumeToBrick.m */; };
-		B405BA89175DCA2A00B1A0FC /* SetXBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = CD0CCF1C170CB39700B70036 /* SetXBrick.m */; };
-		B405BA8A175DCA2A00B1A0FC /* SetYBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = CD0CCF1E170CB39700B70036 /* SetYBrick.m */; };
-		B405BA8B175DCA2A00B1A0FC /* ShowBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = CD0CCF20170CB39700B70036 /* ShowBrick.m */; };
-		B405BA8C175DCA2A00B1A0FC /* Sound.m in Sources */ = {isa = PBXBuildFile; fileRef = CD0CCF22170CB39700B70036 /* Sound.m */; };
-		B405BA8D175DCA2A00B1A0FC /* SoundInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = CD0CCF24170CB39700B70036 /* SoundInfo.m */; };
-		B405BA8E175DCA2A00B1A0FC /* SpeakBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = CD0CCF26170CB39700B70036 /* SpeakBrick.m */; };
-		B405BA92175DCA2A00B1A0FC /* StartScript.m in Sources */ = {isa = PBXBuildFile; fileRef = CD0CCF33170CB39700B70036 /* StartScript.m */; };
-		B405BA93175DCA2A00B1A0FC /* StopAllSoundsBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = CD0CCF35170CB39700B70036 /* StopAllSoundsBrick.m */; };
-		B405BA94175DCA2A00B1A0FC /* TurnLeftBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = CD0CCF3D170CB39700B70036 /* TurnLeftBrick.m */; };
-		B405BA95175DCA2A00B1A0FC /* TurnRightBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = CD0CCF3F170CB39700B70036 /* TurnRightBrick.m */; };
-		B405BA96175DCA2A00B1A0FC /* Util.m in Sources */ = {isa = PBXBuildFile; fileRef = CD0CCF43170CB39700B70036 /* Util.m */; };
-		B405BA97175DCA2A00B1A0FC /* WaitBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = CD0CCF45170CB39700B70036 /* WaitBrick.m */; };
-		B405BA98175DCA2A00B1A0FC /* WhenScript.m in Sources */ = {isa = PBXBuildFile; fileRef = CD0CCF47170CB39700B70036 /* WhenScript.m */; };
-		B405BA99175DCA2A00B1A0FC /* SpriteObject.m in Sources */ = {isa = PBXBuildFile; fileRef = CD639C7A170DF52600FA67DA /* SpriteObject.m */; };
-		B405BA9A175DCA2A00B1A0FC /* ioapi.c in Sources */ = {isa = PBXBuildFile; fileRef = B4D940A5170EC2B7003DDBFA /* ioapi.c */; };
-		B405BA9B175DCA2A00B1A0FC /* mztools.c in Sources */ = {isa = PBXBuildFile; fileRef = B4D940A7170EC2B7003DDBFA /* mztools.c */; };
-		B405BA9C175DCA2A00B1A0FC /* unzip.c in Sources */ = {isa = PBXBuildFile; fileRef = B4D940A9170EC2B7003DDBFA /* unzip.c */; };
-		B405BA9D175DCA2A00B1A0FC /* zip.c in Sources */ = {isa = PBXBuildFile; fileRef = B4D940AB170EC2B7003DDBFA /* zip.c */; };
-		B405BA9E175DCA2A00B1A0FC /* ImageCache.m in Sources */ = {isa = PBXBuildFile; fileRef = B4D940D3170ECA15003DDBFA /* ImageCache.m */; };
-		B405BA9F175DCA2A00B1A0FC /* ContinueImageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B4D940DB170ECB65003DDBFA /* ContinueImageCell.m */; };
-		B405BAA0175DCA2A00B1A0FC /* DarkBlueGradientCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B4D940DF170ECB8B003DDBFA /* DarkBlueGradientCell.m */; };
-		B405BAA1175DCA2A00B1A0FC /* DarkBlueGradientImageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B40C3070170ECC49000B872F /* DarkBlueGradientImageCell.m */; };
-		B405BAA2175DCA2A00B1A0FC /* MyProgramsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B4BCF406170ECFA2008EDF3A /* MyProgramsViewController.m */; };
-		B405BAA3175DCA2A00B1A0FC /* CatrobatInformation.m in Sources */ = {isa = PBXBuildFile; fileRef = B4BCF413170ED1F2008EDF3A /* CatrobatInformation.m */; };
-		B405BAA4175DCA2A00B1A0FC /* ProgramDetailStoreViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B4BCF41A170ED300008EDF3A /* ProgramDetailStoreViewController.m */; };
-		B405BAA5175DCA2A00B1A0FC /* TTTAttributedLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = B4BCF420170ED3B7008EDF3A /* TTTAttributedLabel.m */; };
-		B405BAA6175DCA2A00B1A0FC /* CreateView.m in Sources */ = {isa = PBXBuildFile; fileRef = B4BCF423170ED418008EDF3A /* CreateView.m */; };
-		B405BAA7175DCA2A00B1A0FC /* CAGradientLayer+CatrobatCAGradientExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = B4BCF427170ED442008EDF3A /* CAGradientLayer+CatrobatCAGradientExtensions.m */; };
-		B405BAA8175DCA2A00B1A0FC /* DownloadTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = B4BCF42E170ED584008EDF3A /* DownloadTabBarController.m */; };
-		B405BAA9175DCA2A00B1A0FC /* RecentProgramsStoreViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B4BCF432170ED5AD008EDF3A /* RecentProgramsStoreViewController.m */; };
-		B405BAAA175DCA2A00B1A0FC /* LoadingView.m in Sources */ = {isa = PBXBuildFile; fileRef = B4BCF436170ED5D4008EDF3A /* LoadingView.m */; };
-		B405BAAB175DCA2A00B1A0FC /* FeaturedProgramsStoreViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B4BCF43A170ED60C008EDF3A /* FeaturedProgramsStoreViewController.m */; };
-		B405BAAC175DCA2A00B1A0FC /* SearchStoreViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B4BCF43E170ED669008EDF3A /* SearchStoreViewController.m */; };
-		B405BAAE175DCA2A00B1A0FC /* TestParser.m in Sources */ = {isa = PBXBuildFile; fileRef = B4DEFC8F170F464200DD1939 /* TestParser.m */; };
-		B405BAAF175DCA2A00B1A0FC /* PointInDirectionBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = B4D4DD4217156A8500EEE3F8 /* PointInDirectionBrick.m */; };
-		B405BAB0175DCA2A00B1A0FC /* ForumWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CD8CC8BB1724346200239EBF /* ForumWebViewController.m */; };
-		B405BAB1175DCA2A00B1A0FC /* SetVariableBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = B45A5826173253E5000E038F /* SetVariableBrick.m */; };
-		B405BAB2175DCA2A00B1A0FC /* UserVariable.m in Sources */ = {isa = PBXBuildFile; fileRef = B45A582B17325442000E038F /* UserVariable.m */; };
-		B405BAB3175DCA2A00B1A0FC /* Formula.m in Sources */ = {isa = PBXBuildFile; fileRef = B45A583017327887000E038F /* Formula.m */; };
-		B405BAB4175DCA2A00B1A0FC /* FormulaElement.m in Sources */ = {isa = PBXBuildFile; fileRef = B45A583517327BBE000E038F /* FormulaElement.m */; };
-		B405BAB5175DCA2A00B1A0FC /* IfLogicBeginBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = B402288117329FEB004C4942 /* IfLogicBeginBrick.m */; };
-		B405BAB6175DCA2A00B1A0FC /* IfLogicElseBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = B40228901732A540004C4942 /* IfLogicElseBrick.m */; };
-		B405BAB7175DCA2A00B1A0FC /* IfLogicEndBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = B40228951732A58E004C4942 /* IfLogicEndBrick.m */; };
-		B405BAB8175DCA2A00B1A0FC /* PointToBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = B40228A41732ADF3004C4942 /* PointToBrick.m */; };
-		B405BAB9175DCA2A00B1A0FC /* VariablesContainer.m in Sources */ = {isa = PBXBuildFile; fileRef = B47068891733BA9600EC880D /* VariablesContainer.m */; };
-		B405BABA175DCA2A00B1A0FC /* ChangeVariableBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = B470688E1733D6CA00EC880D /* ChangeVariableBrick.m */; };
-		B405BABB175DCA2A00B1A0FC /* ProgramManager.m in Sources */ = {isa = PBXBuildFile; fileRef = B44F329F1737AC2E00BD97AC /* ProgramManager.m */; };
-		B405BABC175DCA2A00B1A0FC /* SensorHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = B44F32A41737BBB100BD97AC /* SensorHandler.m */; };
-		B405BABD175DCA2A00B1A0FC /* XMLObjectReference.m in Sources */ = {isa = PBXBuildFile; fileRef = B4B7BAC21738E216000BDC94 /* XMLObjectReference.m */; };
-		B405BABE175DCA2A00B1A0FC /* NoteBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = B4826F77174D076800F57AE9 /* NoteBrick.m */; };
-		B405BABF175DCA2A00B1A0FC /* OrderedMapTable.m in Sources */ = {isa = PBXBuildFile; fileRef = B4826F82174D5BB100F57AE9 /* OrderedMapTable.m */; };
-		B405BAC0175DCA2A00B1A0FC /* MoveNStepsBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = B4840CA6174FAC3E002DEC53 /* MoveNStepsBrick.m */; };
-		B405BAC2175DCA2A00B1A0FC /* Logger.m in Sources */ = {isa = PBXBuildFile; fileRef = B4365CE41758AF8F00B4D0A6 /* Logger.m */; };
-		B405BAC3175DCA2A00B1A0FC /* IfOnEdgeBounceBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = CDFEFCB31758CBC8002B5B0E /* IfOnEdgeBounceBrick.m */; };
-		B405BAC8175DD3F600B1A0FC /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = B405BAC7175DD3F600B1A0FC /* libxml2.dylib */; };
-		B405BAC9175DD46C00B1A0FC /* CattyTests.m in Sources */ = {isa = PBXBuildFile; fileRef = B45030AA170F22EF009265D6 /* CattyTests.m */; };
-		B405BACA175DD4C300B1A0FC /* SensorHandlerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = B44F32A91737BBDC00BD97AC /* SensorHandlerTests.m */; };
 		B40C306D170ECC1B000B872F /* BackgroundLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = B4D940B6170EC631003DDBFA /* BackgroundLayer.m */; };
 		B40C306E170ECC30000B872F /* CatrobatBaseCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B4D940CD170EC903003DDBFA /* CatrobatBaseCell.m */; };
 		B40C3071170ECC49000B872F /* DarkBlueGradientImageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B40C3070170ECC49000B872F /* DarkBlueGradientImageCell.m */; };
 		B43313D717329514008B4EB3 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = B43313D917329514008B4EB3 /* Localizable.strings */; };
 		B4365CE51758AF8F00B4D0A6 /* Logger.m in Sources */ = {isa = PBXBuildFile; fileRef = B4365CE41758AF8F00B4D0A6 /* Logger.m */; };
 		B4365CE91758EBA900B4D0A6 /* LoggerProperties.plist in Resources */ = {isa = PBXBuildFile; fileRef = B4365CE81758EBA900B4D0A6 /* LoggerProperties.plist */; };
-		B4365CEA1758EBA900B4D0A6 /* LoggerProperties.plist in Resources */ = {isa = PBXBuildFile; fileRef = B4365CE81758EBA900B4D0A6 /* LoggerProperties.plist */; };
 		B44F32A01737AC2E00BD97AC /* ProgramManager.m in Sources */ = {isa = PBXBuildFile; fileRef = B44F329F1737AC2E00BD97AC /* ProgramManager.m */; };
 		B44F32A51737BBB100BD97AC /* SensorHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = B44F32A41737BBB100BD97AC /* SensorHandler.m */; };
 		B44F32AD1737BCC000BD97AC /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B44F32AC1737BCBF00BD97AC /* CoreMotion.framework */; };
-		B45030A0170F22EF009265D6 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B450309F170F22EF009265D6 /* SenTestingKit.framework */; };
-		B45030A1170F22EF009265D6 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
-		B45030A2170F22EF009265D6 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
 		B45A5827173253E5000E038F /* SetVariableBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = B45A5826173253E5000E038F /* SetVariableBrick.m */; };
 		B45A582C17325442000E038F /* UserVariable.m in Sources */ = {isa = PBXBuildFile; fileRef = B45A582B17325442000E038F /* UserVariable.m */; };
 		B45A583117327887000E038F /* Formula.m in Sources */ = {isa = PBXBuildFile; fileRef = B45A583017327887000E038F /* Formula.m */; };
 		B45A583617327BBE000E038F /* FormulaElement.m in Sources */ = {isa = PBXBuildFile; fileRef = B45A583517327BBE000E038F /* FormulaElement.m */; };
+		B46B270017703F9400172837 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B46B26E817703E4000172837 /* XCTest.framework */; };
+		B46B270117703F9400172837 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
+		B46B270217703F9400172837 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
+		B46B270817703F9400172837 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = B46B270617703F9400172837 /* InfoPlist.strings */; };
+		B46B270A17703F9400172837 /* CattyTests.m in Sources */ = {isa = PBXBuildFile; fileRef = B46B270917703F9400172837 /* CattyTests.m */; };
 		B470688A1733BA9600EC880D /* VariablesContainer.m in Sources */ = {isa = PBXBuildFile; fileRef = B47068891733BA9600EC880D /* VariablesContainer.m */; };
 		B470688F1733D6CC00EC880D /* ChangeVariableBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = B470688E1733D6CA00EC880D /* ChangeVariableBrick.m */; };
 		B4826F78174D076800F57AE9 /* NoteBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = B4826F77174D076800F57AE9 /* NoteBrick.m */; };
@@ -156,22 +54,8 @@
 		B4840CA7174FAC3E002DEC53 /* MoveNStepsBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = B4840CA6174FAC3E002DEC53 /* MoveNStepsBrick.m */; };
 		B4A92DCD175F8DF700608667 /* SSZipArchive.m in Sources */ = {isa = PBXBuildFile; fileRef = B4A92DCC175F8DF700608667 /* SSZipArchive.m */; };
 		B4A92DD2175FD4B800608667 /* GDataXMLNode.m in Sources */ = {isa = PBXBuildFile; fileRef = B4A92DD1175FD4B700608667 /* GDataXMLNode.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		B4A92DD3175FD4B800608667 /* GDataXMLNode.m in Sources */ = {isa = PBXBuildFile; fileRef = B4A92DD1175FD4B700608667 /* GDataXMLNode.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		B4A92DD4175FD59000608667 /* SSZipArchive.m in Sources */ = {isa = PBXBuildFile; fileRef = B4A92DCC175F8DF700608667 /* SSZipArchive.m */; };
 		B4AF798D174A9A340041555A /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B4AF798C174A9A330041555A /* CoreLocation.framework */; };
 		B4B7BAC31738E216000BDC94 /* XMLObjectReference.m in Sources */ = {isa = PBXBuildFile; fileRef = B4B7BAC21738E216000BDC94 /* XMLObjectReference.m */; };
-		B4B906A9175DC8B5000ADB09 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B4AF798C174A9A330041555A /* CoreLocation.framework */; };
-		B4B906AB175DC8CA000ADB09 /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B44F32AC1737BCBF00BD97AC /* CoreMotion.framework */; };
-		B4B906AC175DC8E0000ADB09 /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B4BCF42B170ED548008EDF3A /* CoreText.framework */; };
-		B4B906AD175DC8EE000ADB09 /* libSparrow.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DE4A3DB010FFB0DB00FDA492 /* libSparrow.a */; };
-		B4B906AE175DC901000ADB09 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = DE5C4E6D138ED109004892CA /* libz.dylib */; };
-		B4B906AF175DC914000ADB09 /* GLKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DEAAF3DE16BC114D004EB9D5 /* GLKit.framework */; };
-		B4B906B0175DC935000ADB09 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 288765FC0DF74451002DB57D /* CoreGraphics.framework */; };
-		B4B906B1175DC943000ADB09 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DE4A3D7910FFB08200FDA492 /* OpenGLES.framework */; };
-		B4B906B2175DC951000ADB09 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DE4A3D7E10FFB08B00FDA492 /* QuartzCore.framework */; };
-		B4B906B3175DC95E000ADB09 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DE3F093711B7B9DC009D4DB0 /* AVFoundation.framework */; };
-		B4B906B4175DC96A000ADB09 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DE3F093911B7B9DC009D4DB0 /* AudioToolbox.framework */; };
-		B4B906B5175DC976000ADB09 /* OpenAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DE3F097711B7BABD009D4DB0 /* OpenAL.framework */; };
 		B4BCF3DA170ECE05008EDF3A /* accessory.png in Resources */ = {isa = PBXBuildFile; fileRef = B4BCF3D8170ECE05008EDF3A /* accessory.png */; };
 		B4BCF3DB170ECE05008EDF3A /* accessory@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B4BCF3D9170ECE05008EDF3A /* accessory@2x.png */; };
 		B4BCF3E7170ECE19008EDF3A /* download.png in Resources */ = {isa = PBXBuildFile; fileRef = B4BCF3DD170ECE19008EDF3A /* download.png */; };
@@ -225,13 +109,10 @@
 		B4D940DC170ECB65003DDBFA /* ContinueImageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B4D940DB170ECB65003DDBFA /* ContinueImageCell.m */; };
 		B4D940E0170ECB8B003DDBFA /* DarkBlueGradientCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B4D940DF170ECB8B003DDBFA /* DarkBlueGradientCell.m */; };
 		B4DA23D1175E26550079B381 /* SensorManager.m in Sources */ = {isa = PBXBuildFile; fileRef = B4DA23D0175E26550079B381 /* SensorManager.m */; };
-		B4DA23D2175E26550079B381 /* SensorManager.m in Sources */ = {isa = PBXBuildFile; fileRef = B4DA23D0175E26550079B381 /* SensorManager.m */; };
 		B4DA23D5175E761D0079B381 /* icon_retina.png in Resources */ = {isa = PBXBuildFile; fileRef = B4DA23D4175E761C0079B381 /* icon_retina.png */; };
 		B4DA23D7175E76820079B381 /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = B4DA23D6175E76810079B381 /* icon.png */; };
 		B4DA23DA175E78050079B381 /* menu_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = B4DA23D8175E78050079B381 /* menu_icon.png */; };
-		B4DA23DB175E78050079B381 /* menu_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = B4DA23D8175E78050079B381 /* menu_icon.png */; };
 		B4DA23DC175E78050079B381 /* menu_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B4DA23D9175E78050079B381 /* menu_icon@2x.png */; };
-		B4DA23DD175E78050079B381 /* menu_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B4DA23D9175E78050079B381 /* menu_icon@2x.png */; };
 		B4DEFC8D170F463800DD1939 /* TestParserResources in Resources */ = {isa = PBXBuildFile; fileRef = B4DEFC8C170F463700DD1939 /* TestParserResources */; };
 		B4DEFC90170F464200DD1939 /* TestParser.m in Sources */ = {isa = PBXBuildFile; fileRef = B4DEFC8F170F464200DD1939 /* TestParser.m */; };
 		B4E7D253176EF1B300EC8AD8 /* SceneViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B4E7D252176EF1B300EC8AD8 /* SceneViewController.m */; };
@@ -241,7 +122,6 @@
 		B4F243CF170EBF8F007A071D /* back.png in Resources */ = {isa = PBXBuildFile; fileRef = B4F243CD170EBF8F007A071D /* back.png */; };
 		B4F243D0170EBF8F007A071D /* back@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B4F243CE170EBF8F007A071D /* back@2x.png */; };
 		B4F499B0175E8387002E1BBD /* PullableView.m in Sources */ = {isa = PBXBuildFile; fileRef = B4F499AF175E8387002E1BBD /* PullableView.m */; };
-		B4F499B1175E8387002E1BBD /* PullableView.m in Sources */ = {isa = PBXBuildFile; fileRef = B4F499AF175E8387002E1BBD /* PullableView.m */; };
 		CD0CCF51170CB39700B70036 /* BaseSprite.m in Sources */ = {isa = PBXBuildFile; fileRef = CD0CCE5E170CB39600B70036 /* BaseSprite.m */; };
 		CD0CCF52170CB39700B70036 /* Brick.m in Sources */ = {isa = PBXBuildFile; fileRef = CD0CCE60170CB39600B70036 /* Brick.m */; };
 		CD0CCF53170CB39700B70036 /* BroadcastBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = CD0CCE62170CB39600B70036 /* BroadcastBrick.m */; };
@@ -303,14 +183,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		B405BAC4175DCA6E00B1A0FC /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = DE4A3DA210FFB0D400FDA492 /* Sparrow.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = DEFE4BC1101B317600E22471;
-			remoteInfo = Sparrow;
-		};
-		B45030B0170F24AF009265D6 /* PBXContainerItemProxy */ = {
+		B46B270C17703F9400172837 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
 			proxyType = 1;
@@ -377,15 +250,8 @@
 		B44F329F1737AC2E00BD97AC /* ProgramManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProgramManager.m; sourceTree = "<group>"; };
 		B44F32A31737BBB100BD97AC /* SensorHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SensorHandler.h; sourceTree = "<group>"; };
 		B44F32A41737BBB100BD97AC /* SensorHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SensorHandler.m; sourceTree = "<group>"; };
-		B44F32A81737BBDC00BD97AC /* SensorHandlerTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SensorHandlerTests.h; sourceTree = "<group>"; };
-		B44F32A91737BBDC00BD97AC /* SensorHandlerTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SensorHandlerTests.m; sourceTree = "<group>"; };
 		B44F32AC1737BCBF00BD97AC /* CoreMotion.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMotion.framework; path = System/Library/Frameworks/CoreMotion.framework; sourceTree = SDKROOT; };
-		B450309E170F22EF009265D6 /* CattyTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CattyTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B450309F170F22EF009265D6 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
-		B45030A5170F22EF009265D6 /* CattyTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "CattyTests-Info.plist"; sourceTree = "<group>"; };
-		B45030A9170F22EF009265D6 /* CattyTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CattyTests.h; sourceTree = "<group>"; };
-		B45030AA170F22EF009265D6 /* CattyTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CattyTests.m; sourceTree = "<group>"; };
-		B45030AC170F22EF009265D6 /* CattyTests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "CattyTests-Prefix.pch"; sourceTree = "<group>"; };
 		B45A5825173253E5000E038F /* SetVariableBrick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SetVariableBrick.h; sourceTree = "<group>"; };
 		B45A5826173253E5000E038F /* SetVariableBrick.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SetVariableBrick.m; sourceTree = "<group>"; };
 		B45A582A17325442000E038F /* UserVariable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserVariable.h; sourceTree = "<group>"; };
@@ -394,6 +260,12 @@
 		B45A583017327887000E038F /* Formula.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Formula.m; sourceTree = "<group>"; };
 		B45A583417327BBE000E038F /* FormulaElement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FormulaElement.h; sourceTree = "<group>"; };
 		B45A583517327BBE000E038F /* FormulaElement.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FormulaElement.m; sourceTree = "<group>"; };
+		B46B26E817703E4000172837 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
+		B46B26FF17703F9400172837 /* CattyTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CattyTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		B46B270517703F9400172837 /* CattyTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "CattyTests-Info.plist"; sourceTree = "<group>"; };
+		B46B270717703F9400172837 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		B46B270917703F9400172837 /* CattyTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CattyTests.m; sourceTree = "<group>"; };
+		B46B270B17703F9400172837 /* CattyTests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "CattyTests-Prefix.pch"; sourceTree = "<group>"; };
 		B47068881733BA9600EC880D /* VariablesContainer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VariablesContainer.h; sourceTree = "<group>"; };
 		B47068891733BA9600EC880D /* VariablesContainer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VariablesContainer.m; sourceTree = "<group>"; };
 		B470688D1733D6C800EC880D /* ChangeVariableBrick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChangeVariableBrick.h; sourceTree = "<group>"; };
@@ -659,26 +531,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		B450309A170F22EF009265D6 /* Frameworks */ = {
+		B46B26FC17703F9400172837 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B405BAC8175DD3F600B1A0FC /* libxml2.dylib in Frameworks */,
-				B4B906B5175DC976000ADB09 /* OpenAL.framework in Frameworks */,
-				B4B906B4175DC96A000ADB09 /* AudioToolbox.framework in Frameworks */,
-				B4B906B3175DC95E000ADB09 /* AVFoundation.framework in Frameworks */,
-				B4B906B2175DC951000ADB09 /* QuartzCore.framework in Frameworks */,
-				B4B906B1175DC943000ADB09 /* OpenGLES.framework in Frameworks */,
-				B4B906B0175DC935000ADB09 /* CoreGraphics.framework in Frameworks */,
-				B45030A2170F22EF009265D6 /* Foundation.framework in Frameworks */,
-				B4B906AF175DC914000ADB09 /* GLKit.framework in Frameworks */,
-				B4B906AE175DC901000ADB09 /* libz.dylib in Frameworks */,
-				B4B906AD175DC8EE000ADB09 /* libSparrow.a in Frameworks */,
-				B4B906AC175DC8E0000ADB09 /* CoreText.framework in Frameworks */,
-				B4B906AB175DC8CA000ADB09 /* CoreMotion.framework in Frameworks */,
-				B4B906A9175DC8B5000ADB09 /* CoreLocation.framework in Frameworks */,
-				B45030A0170F22EF009265D6 /* SenTestingKit.framework in Frameworks */,
-				B45030A1170F22EF009265D6 /* UIKit.framework in Frameworks */,
+				B46B270017703F9400172837 /* XCTest.framework in Frameworks */,
+				B46B270217703F9400172837 /* UIKit.framework in Frameworks */,
+				B46B270117703F9400172837 /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -689,7 +548,7 @@
 			isa = PBXGroup;
 			children = (
 				1D6058910D05DD3D006BFB54 /* Pocket Code.app */,
-				B450309E170F22EF009265D6 /* CattyTests.octest */,
+				B46B26FF17703F9400172837 /* CattyTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -705,7 +564,7 @@
 				CD0CCE37170C9F9300B70036 /* Storyboard */,
 				29B97315FDCFA39411CA2CEA /* Supporting Files */,
 				29B97317FDCFA39411CA2CEA /* Resources */,
-				B45030A3170F22EF009265D6 /* CattyTests */,
+				B46B270317703F9400172837 /* CattyTests */,
 				29B97323FDCFA39411CA2CEA /* Frameworks */,
 				19C28FACFE9D520D11CA2CBB /* Products */,
 			);
@@ -755,6 +614,7 @@
 				DE4A3D7E10FFB08B00FDA492 /* QuartzCore.framework */,
 				1DF5F4DF0D08C38300B7A737 /* UIKit.framework */,
 				B450309F170F22EF009265D6 /* SenTestingKit.framework */,
+				B46B26E817703E4000172837 /* XCTest.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -960,36 +820,6 @@
 			name = SensorHandler;
 			sourceTree = "<group>";
 		};
-		B44F32AB1737BBE100BD97AC /* SensorTests */ = {
-			isa = PBXGroup;
-			children = (
-				B44F32A81737BBDC00BD97AC /* SensorHandlerTests.h */,
-				B44F32A91737BBDC00BD97AC /* SensorHandlerTests.m */,
-			);
-			name = SensorTests;
-			sourceTree = "<group>";
-		};
-		B45030A3170F22EF009265D6 /* CattyTests */ = {
-			isa = PBXGroup;
-			children = (
-				B44F32AB1737BBE100BD97AC /* SensorTests */,
-				B4DA23CD175E1F1E0079B381 /* FormulaTests */,
-				B45030A9170F22EF009265D6 /* CattyTests.h */,
-				B45030AA170F22EF009265D6 /* CattyTests.m */,
-				B45030A4170F22EF009265D6 /* Supporting Files */,
-			);
-			path = CattyTests;
-			sourceTree = "<group>";
-		};
-		B45030A4170F22EF009265D6 /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				B45030A5170F22EF009265D6 /* CattyTests-Info.plist */,
-				B45030AC170F22EF009265D6 /* CattyTests-Prefix.pch */,
-			);
-			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
 		B45A5829173253E9000E038F /* SetVariableBrick */ = {
 			isa = PBXGroup;
 			children = (
@@ -1024,6 +854,25 @@
 				B45A583517327BBE000E038F /* FormulaElement.m */,
 			);
 			name = FormulaElement;
+			sourceTree = "<group>";
+		};
+		B46B270317703F9400172837 /* CattyTests */ = {
+			isa = PBXGroup;
+			children = (
+				B46B270917703F9400172837 /* CattyTests.m */,
+				B46B270417703F9400172837 /* Supporting Files */,
+			);
+			path = CattyTests;
+			sourceTree = "<group>";
+		};
+		B46B270417703F9400172837 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				B46B270517703F9400172837 /* CattyTests-Info.plist */,
+				B46B270617703F9400172837 /* InfoPlist.strings */,
+				B46B270B17703F9400172837 /* CattyTests-Prefix.pch */,
+			);
+			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
 		B470688C1733BA9A00EC880D /* VariablesContainer */ = {
@@ -1352,13 +1201,6 @@
 				B4D940DF170ECB8B003DDBFA /* DarkBlueGradientCell.m */,
 			);
 			name = DarkBlueGradientCell;
-			sourceTree = "<group>";
-		};
-		B4DA23CD175E1F1E0079B381 /* FormulaTests */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = FormulaTests;
 			sourceTree = "<group>";
 		};
 		B4DEFC89170F456D00DD1939 /* GDataXMLNode */ = {
@@ -1909,25 +1751,23 @@
 			productReference = 1D6058910D05DD3D006BFB54 /* Pocket Code.app */;
 			productType = "com.apple.product-type.application";
 		};
-		B450309D170F22EF009265D6 /* CattyTests */ = {
+		B46B26FE17703F9400172837 /* CattyTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = B45030AD170F22EF009265D6 /* Build configuration list for PBXNativeTarget "CattyTests" */;
+			buildConfigurationList = B46B270E17703F9400172837 /* Build configuration list for PBXNativeTarget "CattyTests" */;
 			buildPhases = (
-				B4503099170F22EF009265D6 /* Sources */,
-				B450309A170F22EF009265D6 /* Frameworks */,
-				B450309B170F22EF009265D6 /* Resources */,
-				B450309C170F22EF009265D6 /* ShellScript */,
+				B46B26FB17703F9400172837 /* Sources */,
+				B46B26FC17703F9400172837 /* Frameworks */,
+				B46B26FD17703F9400172837 /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				B405BAC5175DCA6E00B1A0FC /* PBXTargetDependency */,
-				B45030B1170F24AF009265D6 /* PBXTargetDependency */,
+				B46B270D17703F9400172837 /* PBXTargetDependency */,
 			);
 			name = CattyTests;
 			productName = CattyTests;
-			productReference = B450309E170F22EF009265D6 /* CattyTests.octest */;
-			productType = "com.apple.product-type.bundle";
+			productReference = B46B26FF17703F9400172837 /* CattyTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
 
@@ -1944,6 +1784,9 @@
 								enabled = 0;
 							};
 						};
+					};
+					B46B26FE17703F9400172837 = {
+						TestTargetID = 1D6058900D05DD3D006BFB54;
 					};
 				};
 			};
@@ -1970,8 +1813,8 @@
 			projectRoot = "";
 			targets = (
 				1D6058900D05DD3D006BFB54 /* Catty */,
-				B450309D170F22EF009265D6 /* CattyTests */,
 				B4A92DC3175F535300608667 /* LicenseTest */,
+				B46B26FE17703F9400172837 /* CattyTests */,
 			);
 		};
 /* End PBXProject section */
@@ -2034,32 +1877,17 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		B450309B170F22EF009265D6 /* Resources */ = {
+		B46B26FD17703F9400172837 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B4365CEA1758EBA900B4D0A6 /* LoggerProperties.plist in Resources */,
-				B4DA23DB175E78050079B381 /* menu_icon.png in Resources */,
-				B4DA23DD175E78050079B381 /* menu_icon@2x.png in Resources */,
+				B46B270817703F9400172837 /* InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		B450309C170F22EF009265D6 /* ShellScript */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "# Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\n";
-		};
 		B4A92DC8175F537500608667 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -2189,131 +2017,21 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		B4503099170F22EF009265D6 /* Sources */ = {
+		B46B26FB17703F9400172837 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B4A92DD4175FD59000608667 /* SSZipArchive.m in Sources */,
-				B405BACA175DD4C300B1A0FC /* SensorHandlerTests.m in Sources */,
-				B405BAC9175DD46C00B1A0FC /* CattyTests.m in Sources */,
-				B405BA58175DCA2A00B1A0FC /* CatrobatBaseCell.m in Sources */,
-				B405BA59175DCA2A00B1A0FC /* BackgroundLayer.m in Sources */,
-				B405BA5A175DCA2A00B1A0FC /* NSString+CatrobatNSStringExtensions.m in Sources */,
-				B405BA5B175DCA2A00B1A0FC /* UIColor+CatrobatUIColorExtensions.m in Sources */,
-				B405BA5C175DCA2A00B1A0FC /* UIImage+CatrobatUIImageExtensions.m in Sources */,
-				B405BA5D175DCA2A00B1A0FC /* TableUtil.m in Sources */,
-				B405BA5E175DCA2A00B1A0FC /* ProgramLoadingInfo.m in Sources */,
-				B405BA5F175DCA2A00B1A0FC /* CatrobatTableViewController.m in Sources */,
-				B405BA61175DCA2A00B1A0FC /* StageViewController.m in Sources */,
-				B405BA62175DCA2A00B1A0FC /* Stage.m in Sources */,
-				B405BA63175DCA2A00B1A0FC /* AppDelegate.m in Sources */,
-				B405BA64175DCA2A00B1A0FC /* main.m in Sources */,
-				B405BA65175DCA2A00B1A0FC /* BaseSprite.m in Sources */,
-				B405BA66175DCA2A00B1A0FC /* Brick.m in Sources */,
-				B405BA67175DCA2A00B1A0FC /* BroadcastBrick.m in Sources */,
-				B405BA68175DCA2A00B1A0FC /* BroadcastScript.m in Sources */,
-				B405BA69175DCA2A00B1A0FC /* BroadcastWaitBrick.m in Sources */,
-				B405BA6A175DCA2A00B1A0FC /* BroadcastWaitHandler.m in Sources */,
-				B405BA6B175DCA2A00B1A0FC /* CatrobatProject.m in Sources */,
-				B405BA6D175DCA2A00B1A0FC /* ChangeGhostEffectByNBrick.m in Sources */,
-				B405BA6E175DCA2A00B1A0FC /* ChangeSizeByNBrick.m in Sources */,
-				B405BA6F175DCA2A00B1A0FC /* ChangeVolumeByNBrick.m in Sources */,
-				B405BA70175DCA2A00B1A0FC /* ChangeXByNBrick.m in Sources */,
-				B405BA71175DCA2A00B1A0FC /* ChangeYByNBrick.m in Sources */,
-				B405BA72175DCA2A00B1A0FC /* ComeToFrontBrick.m in Sources */,
-				B405BA73175DCA2A00B1A0FC /* FileManager.m in Sources */,
-				B405BA74175DCA2A00B1A0FC /* ForeverBrick.m in Sources */,
-				B405BA76175DCA2A00B1A0FC /* GlideToBrick.m in Sources */,
-				B405BA77175DCA2A00B1A0FC /* GoNStepsBackBrick.m in Sources */,
-				B405BA78175DCA2A00B1A0FC /* Header.m in Sources */,
-				B405BA79175DCA2A00B1A0FC /* HideBrick.m in Sources */,
-				B405BA7A175DCA2A00B1A0FC /* Look.m in Sources */,
-				B405BA7B175DCA2A00B1A0FC /* LoopEndBrick.m in Sources */,
-				B405BA7C175DCA2A00B1A0FC /* NextLookBrick.m in Sources */,
-				B405BA7D175DCA2A00B1A0FC /* Parser.m in Sources */,
-				B405BA7E175DCA2A00B1A0FC /* PlaceAtBrick.m in Sources */,
-				B405BA7F175DCA2A00B1A0FC /* PlaySoundBrick.m in Sources */,
-				B405BA80175DCA2A00B1A0FC /* Program.m in Sources */,
-				B405BA81175DCA2A00B1A0FC /* ProjectParser.m in Sources */,
-				B405BA82175DCA2A00B1A0FC /* RepeatBrick.m in Sources */,
-				B405BA83175DCA2A00B1A0FC /* Script.m in Sources */,
-				B405BA84175DCA2A00B1A0FC /* SetBrightnessBrick.m in Sources */,
-				B405BA85175DCA2A00B1A0FC /* SetGhostEffectBrick.m in Sources */,
-				B405BA86175DCA2A00B1A0FC /* SetLookBrick.m in Sources */,
-				B405BA87175DCA2A00B1A0FC /* SetSizeToBrick.m in Sources */,
-				B405BA88175DCA2A00B1A0FC /* SetVolumeToBrick.m in Sources */,
-				B405BA89175DCA2A00B1A0FC /* SetXBrick.m in Sources */,
-				B405BA8A175DCA2A00B1A0FC /* SetYBrick.m in Sources */,
-				B405BA8B175DCA2A00B1A0FC /* ShowBrick.m in Sources */,
-				B405BA8C175DCA2A00B1A0FC /* Sound.m in Sources */,
-				B405BA8D175DCA2A00B1A0FC /* SoundInfo.m in Sources */,
-				B405BA8E175DCA2A00B1A0FC /* SpeakBrick.m in Sources */,
-				B405BA92175DCA2A00B1A0FC /* StartScript.m in Sources */,
-				B405BA93175DCA2A00B1A0FC /* StopAllSoundsBrick.m in Sources */,
-				B405BA94175DCA2A00B1A0FC /* TurnLeftBrick.m in Sources */,
-				B405BA95175DCA2A00B1A0FC /* TurnRightBrick.m in Sources */,
-				B405BA96175DCA2A00B1A0FC /* Util.m in Sources */,
-				B405BA97175DCA2A00B1A0FC /* WaitBrick.m in Sources */,
-				B405BA98175DCA2A00B1A0FC /* WhenScript.m in Sources */,
-				B405BA99175DCA2A00B1A0FC /* SpriteObject.m in Sources */,
-				B405BA9A175DCA2A00B1A0FC /* ioapi.c in Sources */,
-				B405BA9B175DCA2A00B1A0FC /* mztools.c in Sources */,
-				B405BA9C175DCA2A00B1A0FC /* unzip.c in Sources */,
-				B405BA9D175DCA2A00B1A0FC /* zip.c in Sources */,
-				B405BA9E175DCA2A00B1A0FC /* ImageCache.m in Sources */,
-				B405BA9F175DCA2A00B1A0FC /* ContinueImageCell.m in Sources */,
-				B405BAA0175DCA2A00B1A0FC /* DarkBlueGradientCell.m in Sources */,
-				B405BAA1175DCA2A00B1A0FC /* DarkBlueGradientImageCell.m in Sources */,
-				B405BAA2175DCA2A00B1A0FC /* MyProgramsViewController.m in Sources */,
-				B405BAA3175DCA2A00B1A0FC /* CatrobatInformation.m in Sources */,
-				B405BAA4175DCA2A00B1A0FC /* ProgramDetailStoreViewController.m in Sources */,
-				B405BAA5175DCA2A00B1A0FC /* TTTAttributedLabel.m in Sources */,
-				B405BAA6175DCA2A00B1A0FC /* CreateView.m in Sources */,
-				B405BAA7175DCA2A00B1A0FC /* CAGradientLayer+CatrobatCAGradientExtensions.m in Sources */,
-				B405BAA8175DCA2A00B1A0FC /* DownloadTabBarController.m in Sources */,
-				B405BAA9175DCA2A00B1A0FC /* RecentProgramsStoreViewController.m in Sources */,
-				B405BAAA175DCA2A00B1A0FC /* LoadingView.m in Sources */,
-				B405BAAB175DCA2A00B1A0FC /* FeaturedProgramsStoreViewController.m in Sources */,
-				B405BAAC175DCA2A00B1A0FC /* SearchStoreViewController.m in Sources */,
-				B405BAAE175DCA2A00B1A0FC /* TestParser.m in Sources */,
-				B405BAAF175DCA2A00B1A0FC /* PointInDirectionBrick.m in Sources */,
-				B405BAB0175DCA2A00B1A0FC /* ForumWebViewController.m in Sources */,
-				B405BAB1175DCA2A00B1A0FC /* SetVariableBrick.m in Sources */,
-				B405BAB2175DCA2A00B1A0FC /* UserVariable.m in Sources */,
-				B405BAB3175DCA2A00B1A0FC /* Formula.m in Sources */,
-				B405BAB4175DCA2A00B1A0FC /* FormulaElement.m in Sources */,
-				B405BAB5175DCA2A00B1A0FC /* IfLogicBeginBrick.m in Sources */,
-				B405BAB6175DCA2A00B1A0FC /* IfLogicElseBrick.m in Sources */,
-				B405BAB7175DCA2A00B1A0FC /* IfLogicEndBrick.m in Sources */,
-				B405BAB8175DCA2A00B1A0FC /* PointToBrick.m in Sources */,
-				B405BAB9175DCA2A00B1A0FC /* VariablesContainer.m in Sources */,
-				B405BABA175DCA2A00B1A0FC /* ChangeVariableBrick.m in Sources */,
-				B405BABB175DCA2A00B1A0FC /* ProgramManager.m in Sources */,
-				B405BABC175DCA2A00B1A0FC /* SensorHandler.m in Sources */,
-				B405BABD175DCA2A00B1A0FC /* XMLObjectReference.m in Sources */,
-				B405BABE175DCA2A00B1A0FC /* NoteBrick.m in Sources */,
-				B405BABF175DCA2A00B1A0FC /* OrderedMapTable.m in Sources */,
-				B405BAC0175DCA2A00B1A0FC /* MoveNStepsBrick.m in Sources */,
-				B405BAC2175DCA2A00B1A0FC /* Logger.m in Sources */,
-				B405BAC3175DCA2A00B1A0FC /* IfOnEdgeBounceBrick.m in Sources */,
-				B4DA23D2175E26550079B381 /* SensorManager.m in Sources */,
-				B4F499B1175E8387002E1BBD /* PullableView.m in Sources */,
-				B4A92DD3175FD4B800608667 /* GDataXMLNode.m in Sources */,
+				B46B270A17703F9400172837 /* CattyTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		B405BAC5175DCA6E00B1A0FC /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = Sparrow;
-			targetProxy = B405BAC4175DCA6E00B1A0FC /* PBXContainerItemProxy */;
-		};
-		B45030B1170F24AF009265D6 /* PBXTargetDependency */ = {
+		B46B270D17703F9400172837 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 1D6058900D05DD3D006BFB54 /* Catty */;
-			targetProxy = B45030B0170F24AF009265D6 /* PBXContainerItemProxy */;
+			targetProxy = B46B270C17703F9400172837 /* PBXContainerItemProxy */;
 		};
 		B4A92DCF175F8EE800608667 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -2335,6 +2053,14 @@
 				B43313DA17329546008B4EB3 /* de */,
 			);
 			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+		B46B270617703F9400172837 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				B46B270717703F9400172837 /* en */,
+			);
+			name = InfoPlist.strings;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -2376,16 +2102,21 @@
 			};
 			name = Release;
 		};
-		B45030AE170F22EF009265D6 /* Debug */ = {
+		B46B270F17703F9400172837 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Catty.app/Catty";
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Pocket Code.app/Pocket Code";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				FRAMEWORK_SEARCH_PATHS = (
-					"\"$(SDKROOT)/Developer/Library/Frameworks\"",
-					"\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"",
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(SYSTEM_APPS_DIR)/Xcode5-DP.app/Contents/Developer/Library/Frameworks",
 				);
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -2395,35 +2126,45 @@
 					"$(inherited)",
 				);
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
-				HEADER_SEARCH_PATHS = /usr/include/libxml2;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
 				INFOPLIST_FILE = "CattyTests/CattyTests-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUNDLE_LOADER)";
-				WRAPPER_EXTENSION = octest;
+				WRAPPER_EXTENSION = xctest;
 			};
 			name = Debug;
 		};
-		B45030AF170F22EF009265D6 /* Release */ = {
+		B46B271017703F9400172837 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Catty.app/Catty";
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Pocket Code.app/Pocket Code";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
 				FRAMEWORK_SEARCH_PATHS = (
-					"\"$(SDKROOT)/Developer/Library/Frameworks\"",
-					"\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"",
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(SYSTEM_APPS_DIR)/Xcode5-DP.app/Contents/Developer/Library/Frameworks",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "CattyTests/CattyTests-Prefix.pch";
-				HEADER_SEARCH_PATHS = /usr/include/libxml2;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
 				INFOPLIST_FILE = "CattyTests/CattyTests-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUNDLE_LOADER)";
-				WRAPPER_EXTENSION = octest;
+				WRAPPER_EXTENSION = xctest;
 			};
 			name = Release;
 		};
@@ -2522,14 +2263,13 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		B45030AD170F22EF009265D6 /* Build configuration list for PBXNativeTarget "CattyTests" */ = {
+		B46B270E17703F9400172837 /* Build configuration list for PBXNativeTarget "CattyTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				B45030AE170F22EF009265D6 /* Debug */,
-				B45030AF170F22EF009265D6 /* Release */,
+				B46B270F17703F9400172837 /* Debug */,
+				B46B271017703F9400172837 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
 		};
 		B4A92DC7175F535300608667 /* Build configuration list for PBXAggregateTarget "LicenseTest" */ = {
 			isa = XCConfigurationList;

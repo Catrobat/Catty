@@ -26,7 +26,6 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
-#import "Sparrow.h"
 #import "Logger.h"
 
 #ifdef DEBUG
