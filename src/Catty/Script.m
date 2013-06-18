@@ -62,10 +62,16 @@
     return _brickList;
 }
 
+-(void)reset
+{
+    self.currentBrickIndex = 0;    
+}
+
 
 -(void) start
 {
-    Brick* brick = [self.brickList objectAtIndex:self.currentBrickIndex];
+    [self reset];
+    Brick* brick = [self.brickList objectAtIndex:self.currentBrickIndex++];
     
     SKAction* action = [brick action];
     
@@ -77,15 +83,18 @@
 -(void)runWithAction:(SKAction*)action
 {
     [self.object runAction:action completion:^{
-        
+
         if(self.currentBrickIndex < [self.brickList count]) {
-            Brick* brick = [self.brickList objectAtIndex:self.currentBrickIndex];
-        
+            Brick* brick = [self.brickList objectAtIndex:self.currentBrickIndex++];
+
             // TODO: IF/REPEAT/FOREVER
             SKAction* action = [brick action];
             [self runWithAction:action];
         }
     }];
+     
+     
+
 }
 
 

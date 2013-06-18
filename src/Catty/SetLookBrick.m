@@ -29,11 +29,11 @@
 
 -(SKAction*)actionWithActions:(SKAction *)actions
 {
-    
     UIImage* image = [UIImage imageWithContentsOfFile:[self pathForLook]];
     SKTexture* texture = [SKTexture textureWithImage:image];
-    
-    return [SKAction setTexture:texture];
+    self.object.size = texture.size;
+    return [SKAction sequence:@[[SKAction setTexture:texture]]];
+        
 }
 
 

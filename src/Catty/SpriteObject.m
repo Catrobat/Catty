@@ -68,8 +68,6 @@
         {
             if ([script isKindOfClass:[WhenScript class]]) {
                 NSDebug(@"Performing script with action: %@", script.description);
-                
-                // TODO: RESET?! SCRIPT?!
                 [script start];
                 break;
             }
