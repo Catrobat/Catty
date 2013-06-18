@@ -64,7 +64,9 @@
 
 -(void)reset
 {
-    self.currentBrickIndex = 0;    
+    self.currentBrickIndex = 0;
+    [self.object removeActionForKey:@"test"];
+
 }
 
 
@@ -75,26 +77,40 @@
     
     SKAction* action = [brick action];
     
-    // TODO: IF/REPEAT/FOREVER
-    [self runWithAction:action];
+    
+    [self.object runAction:action withKey:@"test"];
     
 }
 
+
+- (void)updateWithTimeSinceLastUpdate:(CFTimeInterval)interval
+{
+    if(self.currentBrickIndex < [self.brickList count] && ![self.object actionForKey:@"test"]) {
+        Brick* brick = [self.brickList objectAtIndex:self.currentBrickIndex++];
+        
+        SKAction* action = [brick action];
+        
+        [self.object runAction:action withKey:@"test"];
+    }
+}
+
+
+
 -(void)runWithAction:(SKAction*)action
 {
-    [self.object runAction:action completion:^{
-
-        if(self.currentBrickIndex < [self.brickList count]) {
-            Brick* brick = [self.brickList objectAtIndex:self.currentBrickIndex++];
-
-            // TODO: IF/REPEAT/FOREVER
-            SKAction* action = [brick action];
-            [self runWithAction:action];
-        }
-    }];
-     
-     
-
+    
+    
+//    [self.object runAction:action completion:^{
+//
+//        if(self.currentBrickIndex < [self.brickList count]) {
+//            Brick* brick = [self.brickList objectAtIndex:self.currentBrickIndex++];
+//
+//            // TODO: IF/REPEAT/FOREVER
+//            SKAction* action = [brick action];
+//            [self runWithAction:action];
+//        }
+//    }];
+    
 }
 
 

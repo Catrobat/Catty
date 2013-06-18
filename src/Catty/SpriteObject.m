@@ -41,6 +41,7 @@
 
 -(id)init {
     if(self = [super init]) {
+        self.activeScripts = [[NSMutableArray alloc] initWithCapacity:self.scriptList.count];
     }
     return self;
 }
@@ -52,6 +53,8 @@
     {
         if ([script isKindOfClass:[StartScript class]]) {
             [script start];
+            [self.activeScripts removeObject:script];
+            [self.activeScripts addObject:script];
         }
     }
 }
@@ -69,6 +72,8 @@
             if ([script isKindOfClass:[WhenScript class]]) {
                 NSDebug(@"Performing script with action: %@", script.description);
                 [script start];
+                [self.activeScripts removeObject:script];
+                [self.activeScripts addObject:script];
                 break;
             }
         }
@@ -91,6 +96,15 @@
     }
     
 
+}
+
+- (void)updateWithTimeSinceLastUpdate:(CFTimeInterval)interval
+{
+
+    for(Script* script in self.activeScripts) {
+        [script updateWithTimeSinceLastUpdate:interval];
+    }
+    
 }
 
 
