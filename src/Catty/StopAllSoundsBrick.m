@@ -21,16 +21,18 @@
  */
 
 #import "StopAllSoundsBrick.h"
-#import "SpriteManagerDelegate.h"
+#import "AudioManager.h"
 
 @implementation StopAllSoundsBrick
 
-- (void)performFromScript:(Script*)script
+
+-(SKAction*)action
 {
-    NSDebug(@"Performing: %@", self.description);
-    
-    [self.object.spriteManagerDelegate stopAllSounds];
-    
+    return [SKAction runBlock:^{
+        [[AudioManager sharedAudioManager]stopAllSounds];
+        
+        
+    }];
 }
 
 

@@ -22,18 +22,17 @@
 
 #import "TurnLeftBrick.h"
 #import "Formula.h"
+#import "Util.h"
 
 @implementation TurnLeftBrick
 
 @synthesize degrees = _degrees;
 
-- (void)performFromScript:(Script*)script
+
+-(SKAction*)action
 {
-    NSDebug(@"Performing: %@", self.description);
-    
     double degrees = [self.degrees interpretDoubleForSprite:self.object];
-    
-    [self.object turnLeft:degrees];
+    return [SKAction rotateByAngle:[Util degreeToRadians:degrees] duration:0.0f];
 }
 
 #pragma mark - Description

@@ -27,13 +27,13 @@
 @implementation SetSizeToBrick
 
 
-- (void)performFromScript:(Script*)script
+
+-(SKAction*)action
 {
     NSDebug(@"Performing: %@", self.description);
+    double sizeInPercent = [self.size interpretDoubleForSprite:self.object];
+    return [SKAction scaleTo:sizeInPercent/100.0 duration:0.0];
     
-    double size = [self.size interpretDoubleForSprite:self.object];
-    
-    [self.object setSizeToPercentage:size];
 }
 
 #pragma mark - Description

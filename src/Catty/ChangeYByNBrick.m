@@ -27,12 +27,11 @@
 
 @synthesize yMovement = _yMovement;
 
-- (void)performFromScript:(Script*)script
+
+-(SKAction*)action
 {
-    NSDebug(@"Performing: %@", self.description);
-    
     double yMov = [self.yMovement interpretDoubleForSprite:self.object];
-    [self.object changeYBy:yMov];
+    return [SKAction moveByX:0 y:yMov duration:0.0];
 }
 
 #pragma mark - Description

@@ -39,6 +39,8 @@
 
 @implementation SpriteObject
 
+
+
 -(id)init {
     if(self = [super init]) {
         self.activeScripts = [[NSMutableArray alloc] initWithCapacity:self.scriptList.count];
@@ -47,8 +49,14 @@
 }
 
 
+-(void) setPosition:(CGPoint)position
+{
+    super.position = [((Scene*)self.scene) convertPointToScene:position];
+}
+
+
 -(void)start {
-    self.position = [((Scene*)self.scene) sceneCoordinatesForPoint:CGPointMake(0.0f, 0.0f)];
+    self.position = CGPointMake(0, 0);
     for (Script *script in self.scriptList)
     {
         if ([script isKindOfClass:[StartScript class]]) {
@@ -76,22 +84,6 @@
                 break;
             }
         }
-        
-//        CGPoint location = [touch locationInNode:self];
-//        
-//        SKSpriteNode *sprite = [SKSpriteNode spriteNodeWithImageNamed:@"menu_icon"];
-//        
-//        sprite.position = location;
-//        
-//        
-//        NSLog(@"position x=%f, y=%f", location.x, location.y);
-//        SKAction *action = [SKAction rotateByAngle:M_PI duration:1];
-//        
-//        [sprite runAction:[SKAction repeatActionForever:action]];
-//        
-//        [self addChild:sprite];
-//        
-//        self.paused = YES;
     }
     
 
@@ -105,6 +97,8 @@
     }
     
 }
+
+
 
 
 
@@ -597,10 +591,6 @@
 //    return [NSString stringWithFormat:@"%@images/%@", self.projectPath, look.fileName];
 //}
 //
-//-(NSString*)pathForSound:(Sound*)sound
-//{
-//    return [NSString stringWithFormat:@"%@sounds/%@", self.projectPath, sound.fileName];
-//}
 //
 //-(NSString*)pathForSpeakSound:(Sound*)sound
 //{

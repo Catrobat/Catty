@@ -27,7 +27,7 @@
 @implementation SetLookBrick
 
 
--(SKAction*)actionWithActions:(SKAction *)actions
+-(SKAction*)action
 {
     UIImage* image = [UIImage imageWithContentsOfFile:[self pathForLook]];
     SKTexture* texture = [SKTexture textureWithImage:image];

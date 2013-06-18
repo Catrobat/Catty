@@ -26,13 +26,16 @@
 @implementation ChangeSizeByNBrick
 
 
-- (void)performFromScript:(Script*)script
+
+-(SKAction*)action
 {
-    NSDebug(@"Performing: %@", self.description);
+    //NSDebug(@"Performing: %@", self.description);
     
-    double size = [self.size interpretDoubleForSprite:self.object];
-    
-    [self.object changeSizeByNInPercent:size];
+    return [SKAction runBlock:^{
+        double sizeInPercent = [self.size interpretDoubleForSprite:self.object];
+        [self.object setXScale:self.object.xScale + sizeInPercent/100.0];
+        [self.object setYScale:self.object.yScale + sizeInPercent/100.0];
+    }];
     
 }
 

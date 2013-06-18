@@ -20,7 +20,7 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import "Scene.H"
+#import "Scene.h"
 #import "Program.h"
 #import "SpriteObject.h"
 #import "Script.h"
@@ -86,20 +86,20 @@
 }
 
 
--(CGPoint)sceneCoordinatesForPoint:(CGPoint)point
+-(CGPoint)convertPointToScene:(CGPoint)point
 {
     CGPoint scenePoint;
-    scenePoint.x = [self sceneCoordinateForXCoordinate:point.x];
-    scenePoint.y = [self sceneCoordinateForYCoordinate:point.y];
+    scenePoint.x = [self convertXCoordinateToScene:point.x];
+    scenePoint.y = [self convertYCoordinateToScene:point.y];
     
     return scenePoint;
 }
 
--(float)sceneCoordinateForYCoordinate:(float)y {
+-(float)convertYCoordinateToScene:(float)y {
     return (self.size.height/2.0f - y);
 }
 
--(float)sceneCoordinateForXCoordinate:(float)x {
+-(float)convertXCoordinateToScene:(float)x {
     return (self.scene.size.width  / 2.0f + x);
 }
 

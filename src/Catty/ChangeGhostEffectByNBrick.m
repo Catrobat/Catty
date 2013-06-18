@@ -29,13 +29,14 @@
 @synthesize changeGhostEffect = _changeGhostEffect;
 
 
-- (void)performFromScript:(Script*)script;
+-(SKAction*)action
 {
-    NSDebug(@"Performing: %@", self.description);
-    
-    double transparency = [self.changeGhostEffect interpretDoubleForSprite:self.object];
-    
-    [self.object changeTransparencyInPercent:transparency];
+
+    return [SKAction runBlock:^{
+        double transparency = [self.changeGhostEffect interpretDoubleForSprite:self.object];
+        self.object.alpha-=transparency/100;
+        
+    }];
     
 }
 

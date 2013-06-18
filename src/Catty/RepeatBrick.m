@@ -24,17 +24,24 @@
 #import "Formula.h"
 
 @interface RepeatBrick()
+
+@property (nonatomic, assign) int loopCount;
+
 @end
 
 @implementation RepeatBrick
 
 
--(SKAction*)actionWithActions:(SKAction *)actions
+-(BOOL) checkCondition
 {
-    return [SKAction runBlock:^{
-        int count = [self.timesToRepeat interpretIntegerForSprite:self.object];
-        [self.object runAction:[SKAction repeatAction:actions count:count]];
-    }];
+    int timesToRepeat = [self.timesToRepeat interpretIntegerForSprite:self.object];
+    return self.loopCount-- < timesToRepeat ? YES : NO;
+
+}
+
+-(void)reset
+{
+    self.loopCount = 0;
 }
 
 #pragma mark - Description

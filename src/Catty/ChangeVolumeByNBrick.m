@@ -22,6 +22,7 @@
 
 #import "ChangeVolumeByNBrick.h"
 #import "Formula.h"
+#import "AudioManager.h"
 
 
 @implementation ChangeVolumeByNBrick
@@ -29,15 +30,13 @@
 
 @synthesize volume  = _volume;
 
-
-
--(void)performFromScript:(Script*)script
+-(SKAction*) action
 {
-    NSDebug(@"Performing: %@", self.description);
-    
     double volume = [self.volume interpretDoubleForSprite:self.object];
+    return [SKAction runBlock:^{
+        [[AudioManager sharedAudioManager]changeVolumeByPercent:volume forKey:self.object.name];
+    }];
     
-    [self.object changeVolumeInPercent:volume];
 }
 
 

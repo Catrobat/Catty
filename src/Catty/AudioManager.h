@@ -20,21 +20,15 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
+#import <Foundation/Foundation.h>
 
-#import <UIKit/UIKit.h>
-#import "SpriteObject.h"
-@class Script;
+@interface AudioManager : NSObject
 
-@interface Brick : NSObject
++ (AudioManager*) sharedAudioManager;
 
-@property (nonatomic, weak) SpriteObject *object;
-
-- (id)initWithSprite:(SpriteObject*)sprite;
-
-- (NSString*)description;
-
-- (void)performFromScript:(Script*)script;
-
-- (SKAction*) action;
+-(void)playSoundWithFileName:(NSString*)fileName andKey:(NSString*)key atFilePath:(NSString*)filePath;
+-(void)setVolumeToPercent:(CGFloat)volume forKey:(NSString*)key;
+-(void)changeVolumeByPercent:(CGFloat)volume forKey:(NSString*)key;
+-(void)stopAllSounds;
 
 @end

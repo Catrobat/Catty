@@ -31,13 +31,10 @@
 }
 
 
--(SKAction*)actionWithActions:(SKAction *)actions
+-(BOOL)checkCondition
 {
-    return [SKAction runBlock:^{
-        [self.object runAction:[SKAction repeatActionForever:actions]];
-    }];
+    return YES;
 }
-
 
 #pragma mark - Description
 - (NSString*)description

@@ -42,6 +42,7 @@
 		B45A582C17325442000E038F /* UserVariable.m in Sources */ = {isa = PBXBuildFile; fileRef = B45A582B17325442000E038F /* UserVariable.m */; };
 		B45A583117327887000E038F /* Formula.m in Sources */ = {isa = PBXBuildFile; fileRef = B45A583017327887000E038F /* Formula.m */; };
 		B45A583617327BBE000E038F /* FormulaElement.m in Sources */ = {isa = PBXBuildFile; fileRef = B45A583517327BBE000E038F /* FormulaElement.m */; };
+		B46475301770F60500CD277F /* AudioManager.m in Sources */ = {isa = PBXBuildFile; fileRef = B464752F1770F60500CD277F /* AudioManager.m */; };
 		B46B270017703F9400172837 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B46B26E817703E4000172837 /* XCTest.framework */; };
 		B46B270117703F9400172837 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
 		B46B270217703F9400172837 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
@@ -262,6 +263,8 @@
 		B45A583017327887000E038F /* Formula.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Formula.m; sourceTree = "<group>"; };
 		B45A583417327BBE000E038F /* FormulaElement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FormulaElement.h; sourceTree = "<group>"; };
 		B45A583517327BBE000E038F /* FormulaElement.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FormulaElement.m; sourceTree = "<group>"; };
+		B464752E1770F60500CD277F /* AudioManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AudioManager.h; sourceTree = "<group>"; };
+		B464752F1770F60500CD277F /* AudioManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AudioManager.m; sourceTree = "<group>"; };
 		B46B26E817703E4000172837 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		B46B26FF17703F9400172837 /* CattyTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CattyTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B46B270517703F9400172837 /* CattyTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "CattyTests-Info.plist"; sourceTree = "<group>"; };
@@ -685,6 +688,7 @@
 			children = (
 				B44F32A71737BBB800BD97AC /* SensorHandler */,
 				B400302E170EB47600396DB7 /* FileManager */,
+				B46475321770F60E00CD277F /* AudioManager */,
 				B4D940D5170ECA19003DDBFA /* ImageCache */,
 				CD0CD004170CBFEE00B70036 /* minizip */,
 				B44F32A21737AC3100BD97AC /* ProgramManager */,
@@ -860,6 +864,15 @@
 				B45A583517327BBE000E038F /* FormulaElement.m */,
 			);
 			name = FormulaElement;
+			sourceTree = "<group>";
+		};
+		B46475321770F60E00CD277F /* AudioManager */ = {
+			isa = PBXGroup;
+			children = (
+				B464752E1770F60500CD277F /* AudioManager.h */,
+				B464752F1770F60500CD277F /* AudioManager.m */,
+			);
+			name = AudioManager;
 			sourceTree = "<group>";
 		};
 		B46B270317703F9400172837 /* CattyTests */ = {
@@ -1944,6 +1957,7 @@
 				CD0CCF53170CB39700B70036 /* BroadcastBrick.m in Sources */,
 				CD0CCF54170CB39700B70036 /* BroadcastScript.m in Sources */,
 				CD0CCF55170CB39700B70036 /* BroadcastWaitBrick.m in Sources */,
+				B46475301770F60500CD277F /* AudioManager.m in Sources */,
 				CD0CCF56170CB39700B70036 /* BroadcastWaitHandler.m in Sources */,
 				CD0CCF59170CB39700B70036 /* CatrobatProject.m in Sources */,
 				CD0CCF5E170CB39700B70036 /* ChangeGhostEffectByNBrick.m in Sources */,
@@ -2292,6 +2306,7 @@
 				B46B271017703F9400172837 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		B4A92DC7175F535300608667 /* Build configuration list for PBXAggregateTarget "LicenseTest" */ = {
 			isa = XCConfigurationList;

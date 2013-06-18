@@ -27,15 +27,17 @@
 @synthesize transparency = _transparency;
 
 
-- (void)performFromScript:(Script*)script;
+
+
+-(SKAction*)action
 {
-    NSDebug(@"Performing: %@", self.description);
-    
-    double transparency  = [self.transparency interpretDoubleForSprite:self.object];
-    
-    [self.object setTransparencyInPercent:transparency];
-    
+    return [SKAction runBlock:^{
+        NSDebug(@"Performing: %@", self.description);
+        double transparency  = [self.transparency interpretDoubleForSprite:self.object];
+        self.object.alpha = transparency/100.0f;
+    }];
 }
+
 
 #pragma mark - Description
 - (NSString*)description

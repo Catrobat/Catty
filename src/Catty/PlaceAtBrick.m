@@ -26,16 +26,17 @@
 @implementation PlaceAtBrick
 
 
-
-#pragma mark - override
--(void)performFromScript:(Script*)script
+-(SKAction*)action
 {
-    double xPosition = [self.xPosition interpretDoubleForSprite:self.object];
-    double yPosition = [self.yPosition interpretDoubleForSprite:self.object];
-
-    self.object.position = CGPointMake(xPosition, yPosition);
+    
+    return [SKAction runBlock:^{
+        double xPosition = [self.xPosition interpretDoubleForSprite:self.object];
+        double yPosition = [self.yPosition interpretDoubleForSprite:self.object];
+        self.object.position = CGPointMake(xPosition, yPosition);
+    }];
 
 }
+
 
 #pragma mark - Description
 - (NSString*)description

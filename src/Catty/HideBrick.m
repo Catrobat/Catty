@@ -24,11 +24,13 @@
 
 @implementation HideBrick
 
-- (void)performFromScript:(Script*)script
+
+-(SKAction*)action
 {
     NSDebug(@"Performing: %@", self.description);
-    
-    [self.object hide];
+    return [SKAction runBlock:^{
+        self.object.hidden = YES;
+    }];
 }
 
 #pragma mark - Description

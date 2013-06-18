@@ -31,6 +31,14 @@
     [self.object comeToFront];    
 }
 
+-(SKAction*)action
+{
+    return [SKAction runBlock:^{
+        [self.object.parent removeChildrenInArray:@[self.object]];
+        [self.object.parent  addChild:self.object];
+    }];
+}
+
 #pragma mark - Description
 - (NSString*)description
 {

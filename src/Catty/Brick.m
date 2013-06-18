@@ -47,11 +47,6 @@
 
 - (SKAction*) action
 {
-    return [self actionWithActions:nil];
-}
-
-- (SKAction*) actionWithActions:(SKAction *)actions
-{
     NSError(@"%@ (NO SPECIFIC Action GIVEN! OVERRIDE THE action METHOD!", self.class);
     return nil;
 }

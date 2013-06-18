@@ -22,24 +22,18 @@
 
 #import "PlaySoundBrick.h"
 #import "Sound.h"
-
+#import "AudioManager.h"
 
 @implementation PlaySoundBrick
 
 @synthesize sound = _sound;
 
-- (void)performFromScript:(Script*)script
+
+-(SKAction*)action
 {
-    NSDebug(@"Performing: %@", self.description);
-    
-    @try
-    {
-        [self.object playSound:self.sound];
-    }
-    @catch(NSException *ex)
-    {
-        NSError(@"Unsupported audio format!");
-    }    
+    return [SKAction runBlock:^{
+        [[AudioManager sharedAudioManager] playSoundWithFileName:self.sound.fileName andKey:self.object.name atFilePath:self.object.projectPath];
+    }];
 }
 
 

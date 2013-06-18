@@ -38,7 +38,7 @@
     [NSThread sleepForTimeInterval:time];
 }
 
--(SKAction*) actionWithActions:(SKAction *)actions
+-(SKAction*) action
 {
     
     NSDebug(@"Performing: %@", self.description);
