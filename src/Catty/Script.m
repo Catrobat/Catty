@@ -40,6 +40,8 @@
 @property (nonatomic, strong) NSString* actionKey;
 @property (nonatomic, strong) SKAction* startAction;
 
+@property (nonatomic, strong) NSPointerArray *forStack;
+
 @end
 
 
@@ -62,8 +64,14 @@
 {
     if (_brickList == nil)
         _brickList = [[NSMutableArray alloc] init];
-    
     return _brickList;
+}
+
+-(NSPointerArray *)forStack
+{
+    if (_forStack == nil)
+        _forStack = [NSPointerArray strongObjectsPointerArray];
+    return _forStack;
 }
 
 
@@ -75,7 +83,25 @@
     for (int i=[self.brickList count]-1; i>=0; i--) {
         Brick *brick = [self.brickList objectAtIndex:i];
         
-        action = [brick actionWithNextAction:action actionKey:self.actionKey];
+        if ([brick isKindOfClass:[LoopEndBrick class]]) {
+            __block SKAction *tmpForAction = nil;
+            __block SKAction *tmp = [action copy];
+            [self.forStack addPointer:(__bridge void *)(tmp)];
+            [self.forStack addPointer:(__bridge void *)(tmpForAction)];
+            action = tmpForAction;
+        }
+        else if ([brick isKindOfClass:[LoopBeginBrick class]]) {
+            SKAction *forAction = [self.forStack pointerAtIndex:self.forStack.count-1];
+            [self.forStack removePointerAtIndex:self.forStack.count-1];
+            
+            SKAction *afterForAction = [self.forStack pointerAtIndex:self.forStack.count-1];
+            [self.forStack removePointerAtIndex:self.forStack.count-1];
+            
+            action = [((LoopBeginBrick*)brick) actionWithNextAction:forAction followAction:afterForAction actionKey:self.actionKey];
+        }
+        else {
+            action = [brick actionWithNextAction:action actionKey:self.actionKey];
+        }
     }
     
     return action;

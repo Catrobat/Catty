@@ -31,10 +31,13 @@
 }
 
 
--(BOOL)checkCondition
+-(SKAction*)actionWithNextAction:(SKAction*)forAction followAction:(SKAction*)afterForAction actionKey:(NSString*)actionKey
 {
-    return YES;
+    return [SKAction runBlock:^{
+        [self.object runAction:forAction withKey:actionKey];
+    }];
 }
+
 
 #pragma mark - Description
 - (NSString*)description

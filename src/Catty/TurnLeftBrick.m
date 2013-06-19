@@ -29,10 +29,13 @@
 @synthesize degrees = _degrees;
 
 
--(SKAction*)action
+-(SKAction*)actionWithNextAction:(SKAction *)nextAction actionKey:(NSString*)actionKey
 {
-    double degrees = [self.degrees interpretDoubleForSprite:self.object];
-    return [SKAction rotateByAngle:[Util degreeToRadians:degrees] duration:0.0f];
+    return [SKAction runBlock:^{
+        double degrees = [self.degrees interpretDoubleForSprite:self.object];
+        NSArray *array = [NSArray arrayWithObjects:[SKAction rotateByAngle:[Util degreeToRadians:degrees] duration:0.0f], nextAction, nil];
+        [self.object runAction:[SKAction sequence:array] withKey:actionKey];
+    }];
 }
 
 #pragma mark - Description

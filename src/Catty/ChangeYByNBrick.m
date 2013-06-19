@@ -28,11 +28,16 @@
 @synthesize yMovement = _yMovement;
 
 
--(SKAction*)action
-{
-    double yMov = [self.yMovement interpretDoubleForSprite:self.object];
-    return [SKAction moveByX:0 y:yMov duration:0.0];
+-(SKAction*)actionWithNextAction:(SKAction *)nextAction actionKey:(NSString*)actionKey
+{    
+    return [SKAction runBlock:^{
+        double yMov = [self.yMovement interpretDoubleForSprite:self.object];
+        NSArray *array = [NSArray arrayWithObjects:[SKAction moveByX:0 y:yMov duration:0.0], nextAction, nil];
+        [self.object runAction:[SKAction sequence:array] withKey:actionKey];
+    }];
 }
+
+
 
 #pragma mark - Description
 - (NSString*)description

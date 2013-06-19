@@ -26,12 +26,12 @@
 @implementation StopAllSoundsBrick
 
 
--(SKAction*)action
+-(SKAction*)actionWithNextAction:(SKAction *)nextAction actionKey:(NSString*)actionKey
 {
     return [SKAction runBlock:^{
         [[AudioManager sharedAudioManager]stopAllSounds];
-        
-        
+        NSArray *array = [NSArray arrayWithObjects:nextAction, nil];
+        [self.object runAction:[SKAction sequence:array] withKey:actionKey];
     }];
 }
 

@@ -36,8 +36,24 @@
 {
     int timesToRepeat = [self.timesToRepeat interpretIntegerForSprite:self.object];
     return (self.loopCount++ < timesToRepeat) ? YES : NO;
-
 }
+
+
+-(SKAction*)actionWithNextAction:(SKAction*)forAction followAction:(SKAction*)afterForAction actionKey:(NSString*)actionKey
+{
+    return [SKAction runBlock:^{
+        int timesToRepeat = [self.timesToRepeat interpretIntegerForSprite:self.object];
+
+        if (self.loopCount++ < timesToRepeat) {
+            NSArray *array = [NSArray arrayWithObjects:forAction, nil];
+            [self.object runAction:[SKAction sequence:array] withKey:actionKey];
+        } else {
+            NSArray *array = [NSArray arrayWithObjects:afterForAction, nil];
+            [self.object runAction:[SKAction sequence:array] withKey:actionKey];
+        }
+    }];
+}
+
 
 -(void)reset
 {

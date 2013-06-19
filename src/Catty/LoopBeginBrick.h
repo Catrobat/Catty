@@ -27,8 +27,9 @@
 
 @property (nonatomic, weak) LoopEndBrick *loopEndBrick;
 
--(BOOL) checkCondition;
-
 -(void)reset;
+
+-(SKAction*)actionWithNextAction:(SKAction*)forAction followAction:(SKAction*)afterForAction actionKey:(NSString*)actionKey;
+
 
 @end
