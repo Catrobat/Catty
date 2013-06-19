@@ -22,6 +22,7 @@
 
 #import "PointInDirectionBrick.h"
 #import "Formula.h"
+#import "Util.h"
 
 @implementation PointInDirectionBrick
 
@@ -32,6 +33,22 @@
     float deg = [self.degrees interpretDoubleForSprite:self.object];
     
     [self.object pointInDirection:deg];
+}
+
+
+-(SKAction*)actionWithNextAction:(SKAction *)nextAction actionKey:(NSString*)actionKey
+{
+    
+    NSDebug(@"Performing: %@", self.description);
+    
+    [self setNextAction:nextAction];
+    
+    return [SKAction runBlock:^{
+        float rad = [Util degreeToRadians:[self.degrees interpretDoubleForSprite:self.object]];
+        self.object.zRotation = rad;
+        NSArray *array = [NSArray arrayWithObjects:self.nextAction, nil];
+        [self.object runAction:[SKAction sequence:array] withKey:actionKey];
+    }];
 }
 
 

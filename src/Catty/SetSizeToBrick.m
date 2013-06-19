@@ -27,13 +27,20 @@
 @implementation SetSizeToBrick
 
 
-
--(SKAction*)action
+-(SKAction*)actionWithNextAction:(SKAction *)nextAction actionKey:(NSString*)actionKey
 {
-    NSDebug(@"Performing: %@", self.description);
-    double sizeInPercent = [self.size interpretDoubleForSprite:self.object];
-    return [SKAction scaleTo:sizeInPercent/100.0 duration:0.0];
     
+    NSDebug(@"Performing: %@", self.description);
+    
+    [self setNextAction:nextAction];
+    
+    return [SKAction runBlock:^{
+        double sizeInPercent = [self.size interpretDoubleForSprite:self.object];
+        self.object.xScale = sizeInPercent/100.0;
+        self.object.yScale = sizeInPercent/100.0;
+        NSArray *array = [NSArray arrayWithObjects:self.nextAction, nil];
+        [self.object runAction:[SKAction sequence:array] withKey:actionKey];
+    }];
 }
 
 #pragma mark - Description

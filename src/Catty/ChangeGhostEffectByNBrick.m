@@ -29,15 +29,16 @@
 @synthesize changeGhostEffect = _changeGhostEffect;
 
 
--(SKAction*)action
-{
 
+-(SKAction*)actionWithNextAction:(SKAction *)nextAction actionKey:(NSString*)actionKey
+{
+    self.nextAction = nextAction;
     return [SKAction runBlock:^{
         double transparency = [self.changeGhostEffect interpretDoubleForSprite:self.object];
         self.object.alpha-=transparency/100;
-        
+        NSArray *array = [NSArray arrayWithObjects:self.nextAction, nil];
+        [self.object runAction:[SKAction sequence:array] withKey:actionKey];
     }];
-    
 }
 
 #pragma mark - Description

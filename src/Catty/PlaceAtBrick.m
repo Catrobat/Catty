@@ -26,16 +26,23 @@
 @implementation PlaceAtBrick
 
 
--(SKAction*)action
+-(SKAction*)actionWithNextAction:(SKAction *)nextAction actionKey:(NSString*)actionKey
 {
+    
+    NSDebug(@"Performing: %@", self.description);
+    
+    [self setNextAction:nextAction];
     
     return [SKAction runBlock:^{
         double xPosition = [self.xPosition interpretDoubleForSprite:self.object];
         double yPosition = [self.yPosition interpretDoubleForSprite:self.object];
         self.object.position = CGPointMake(xPosition, yPosition);
+        
+        NSArray *array = [NSArray arrayWithObjects:self.nextAction, nil];
+        [self.object runAction:[SKAction sequence:array] withKey:actionKey];
     }];
-
 }
+
 
 
 #pragma mark - Description

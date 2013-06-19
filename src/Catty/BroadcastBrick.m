@@ -44,6 +44,20 @@
     [self.object broadcast:self.broadcastMessage];    
 }
 
+-(SKAction*)actionWithNextAction:(SKAction *)nextAction actionKey:(NSString*)actionKey
+{
+    
+    NSDebug(@"Performing: %@", self.description);
+    
+    [self setNextAction:nextAction];
+    
+    return [SKAction runBlock:^{
+        [self.object broadcast:self.broadcastMessage];
+        NSArray *array = [NSArray arrayWithObjects:self.nextAction, nil];
+        [self.object runAction:[SKAction sequence:array] withKey:actionKey];
+    }];
+}
+
 #pragma mark - Description
 - (NSString*)description
 {

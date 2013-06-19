@@ -29,10 +29,14 @@
 @synthesize sound = _sound;
 
 
--(SKAction*)action
+-(SKAction*)actionWithNextAction:(SKAction *)nextAction actionKey:(NSString*)actionKey
 {
+    self.nextAction = nextAction;
     return [SKAction runBlock:^{
         [[AudioManager sharedAudioManager] playSoundWithFileName:self.sound.fileName andKey:self.object.name atFilePath:self.object.projectPath];
+ 
+        NSArray *array = [NSArray arrayWithObjects:self.nextAction, nil];
+        [self.object runAction:[SKAction sequence:array] withKey:actionKey];
     }];
 }
 
