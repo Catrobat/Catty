@@ -42,10 +42,12 @@
 {
     
     NSDebug(@"Performing: %@", self.description);
- 
+    
+    [self setNextAction:nextAction];
+    
     return [SKAction runBlock:^{
         double time = [self.timeToWaitInSeconds interpretDoubleForSprite:self.object];
-        NSArray *array = [NSArray arrayWithObjects:[SKAction waitForDuration:time], nextAction, nil];
+        NSArray *array = [NSArray arrayWithObjects:[SKAction waitForDuration:time], self.nextAction, nil];
         [self.object runAction:[SKAction sequence:array] withKey:actionKey];
     }];
 }

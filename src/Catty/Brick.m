@@ -25,6 +25,11 @@
 #import "Script.h"
 
 
+@interface Brick() {
+    __block SKAction *_nextAction;
+}
+
+@end
 
 @implementation Brick
 
@@ -57,6 +62,15 @@
     @throw [NSException exceptionWithName:NSInternalInconsistencyException
                                    reason:[NSString stringWithFormat:@"You must override %@ in a subclass", NSStringFromSelector(_cmd)]
                                  userInfo:nil];
+}
+
+-(void)setNextAction:(SKAction*)nextAction
+{
+    _nextAction = nextAction;
+}
+-(SKAction*)nextAction
+{
+    return _nextAction;
 }
 
 @end

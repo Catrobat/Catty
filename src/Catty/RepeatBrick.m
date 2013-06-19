@@ -41,11 +41,13 @@
 
 -(SKAction*)actionWithNextAction:(SKAction*)forAction followAction:(SKAction*)afterForAction actionKey:(NSString*)actionKey
 {
+    self.nextAction = forAction;
+    
     return [SKAction runBlock:^{
         int timesToRepeat = [self.timesToRepeat interpretIntegerForSprite:self.object];
 
         if (self.loopCount++ < timesToRepeat) {
-            NSArray *array = [NSArray arrayWithObjects:forAction, nil];
+            NSArray *array = [NSArray arrayWithObjects:self.nextAction, nil];
             [self.object runAction:[SKAction sequence:array] withKey:actionKey];
         } else {
             NSArray *array = [NSArray arrayWithObjects:afterForAction, nil];

@@ -28,9 +28,10 @@
 
 -(SKAction*)actionWithNextAction:(SKAction *)nextAction actionKey:(NSString*)actionKey
 {
+    self.nextAction = nextAction;
     return [SKAction runBlock:^{
         [[AudioManager sharedAudioManager]stopAllSounds];
-        NSArray *array = [NSArray arrayWithObjects:nextAction, nil];
+        NSArray *array = [NSArray arrayWithObjects:self.nextAction, nil];
         [self.object runAction:[SKAction sequence:array] withKey:actionKey];
     }];
 }

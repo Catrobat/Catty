@@ -82,26 +82,30 @@
     
     for (int i=[self.brickList count]-1; i>=0; i--) {
         Brick *brick = [self.brickList objectAtIndex:i];
-        
+                
         if ([brick isKindOfClass:[LoopEndBrick class]]) {
-            __block SKAction *tmpForAction = nil;
-            __block SKAction *tmp = [action copy];
-            [self.forStack addPointer:(__bridge void *)(tmp)];
-            [self.forStack addPointer:(__bridge void *)(tmpForAction)];
-            action = tmpForAction;
+            [self.forStack addPointer:(__bridge void *)(action)];
         }
         else if ([brick isKindOfClass:[LoopBeginBrick class]]) {
-            SKAction *forAction = [self.forStack pointerAtIndex:self.forStack.count-1];
+            Brick *lastBrickOfForLoop = [self.forStack pointerAtIndex:self.forStack.count-1];
             [self.forStack removePointerAtIndex:self.forStack.count-1];
             
             SKAction *afterForAction = [self.forStack pointerAtIndex:self.forStack.count-1];
             [self.forStack removePointerAtIndex:self.forStack.count-1];
             
-            action = [((LoopBeginBrick*)brick) actionWithNextAction:forAction followAction:afterForAction actionKey:self.actionKey];
+            action = [((LoopBeginBrick*)brick) actionWithNextAction:action followAction:afterForAction actionKey:self.actionKey];
+            lastBrickOfForLoop.nextAction = action;
         }
         else {
             action = [brick actionWithNextAction:action actionKey:self.actionKey];
+            
+            if (i < self.brickList.count-1 && [(Brick*)[self.brickList objectAtIndex:i+1] isKindOfClass:[LoopEndBrick class]]) {
+                // this brick is the last brick in for-loop
+                [self.forStack addPointer:(__bridge void *)(brick)];
+            }
         }
+        
+        
     }
     
     return action;

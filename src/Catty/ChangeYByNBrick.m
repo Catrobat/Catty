@@ -29,10 +29,12 @@
 
 
 -(SKAction*)actionWithNextAction:(SKAction *)nextAction actionKey:(NSString*)actionKey
-{    
+{
+    self.nextAction = nextAction;
+    
     return [SKAction runBlock:^{
         double yMov = [self.yMovement interpretDoubleForSprite:self.object];
-        NSArray *array = [NSArray arrayWithObjects:[SKAction moveByX:0 y:yMov duration:0.0], nextAction, nil];
+        NSArray *array = [NSArray arrayWithObjects:[SKAction moveByX:0 y:yMov duration:0.0], self.nextAction, nil];
         [self.object runAction:[SKAction sequence:array] withKey:actionKey];
     }];
 }

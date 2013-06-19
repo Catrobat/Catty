@@ -37,4 +37,7 @@
 
 -(SKAction*)actionWithNextAction:(SKAction *)nextAction actionKey:(NSString*)actionKey;
 
+-(void)setNextAction:(SKAction*)nextAction;
+-(SKAction*)nextAction;
+
 @end

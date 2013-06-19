@@ -31,9 +31,10 @@
 
 -(SKAction*)actionWithNextAction:(SKAction *)nextAction actionKey:(NSString*)actionKey
 {
+    self.nextAction = nextAction;
     return [SKAction runBlock:^{
         double degrees = [self.degrees interpretDoubleForSprite:self.object];
-        NSArray *array = [NSArray arrayWithObjects:[SKAction rotateByAngle:[Util degreeToRadians:degrees] duration:0.0f], nextAction, nil];
+        NSArray *array = [NSArray arrayWithObjects:[SKAction rotateByAngle:[Util degreeToRadians:degrees] duration:0.0f], self.nextAction, nil];
         [self.object runAction:[SKAction sequence:array] withKey:actionKey];
     }];
 }
