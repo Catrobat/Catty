@@ -35,6 +35,6 @@
 
 - (void)performFromScript:(Script*)script;
 
-- (SKAction*) action;
+-(SKAction*)actionWithNextAction:(SKAction *)nextAction actionKey:(NSString*)actionKey;
 
 @end

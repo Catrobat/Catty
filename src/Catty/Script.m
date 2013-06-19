@@ -38,6 +38,7 @@
 
 @property (nonatomic, assign) NSUInteger currentBrickIndex;
 @property (nonatomic, strong) NSString* actionKey;
+@property (nonatomic, strong) SKAction* startAction;
 
 @end
 
@@ -65,9 +66,23 @@
     return _brickList;
 }
 
+
+-(SKAction*)buildActions
+{   
+    
+    SKAction *action = nil;
+    
+    for (int i=[self.brickList count]-1; i>=0; i--) {
+        Brick *brick = [self.brickList objectAtIndex:i];
+        
+        action = [brick actionWithNextAction:action actionKey:self.actionKey];
+    }
+    
+    return action;
+}
+
 -(void)reset
 {
-    self.currentBrickIndex = 0;
     [self.object removeActionForKey:self.actionKey];
     for(Brick* brick in self.brickList) {
         if([brick isKindOfClass:[LoopBeginBrick class]]) {
@@ -78,11 +93,15 @@
 }
 
 
--(void) start
+-(void)start
 {
+    if (self.startAction == nil) {
+        self.startAction = [self buildActions];
+    }
+    
     NSDebug(@"Starting: %@", self.description);
     [self reset];
-    [self runNextAction];
+    [self.object runAction:self.startAction withKey:self.actionKey];
 }
 
 
@@ -91,42 +110,6 @@
     //[self runNextAction];
 }
 
-
--(void)runNextAction
-{
-    if(self.currentBrickIndex < [self.brickList count] && ![self.object actionForKey:self.actionKey]) {
-        Brick* brick = [self.brickList objectAtIndex:self.currentBrickIndex++];
-        
-        if([brick isKindOfClass:[LoopBeginBrick class]]) {
-            if(![((LoopBeginBrick*)brick) checkCondition]) {
-                self.currentBrickIndex = [self.brickList indexOfObject:((LoopBeginBrick*)brick).loopEndBrick];
-                if(self.currentBrickIndex == -1) {
-                    NSError(@"Loop End Brick not found!");
-                }
-                self.currentBrickIndex++;
-            }
-            [self runNextAction];
-            
-        }
-        else if([brick isKindOfClass:[LoopEndBrick class]]) {
-            self.currentBrickIndex = [self.brickList indexOfObject:((LoopEndBrick*)brick).loopBeginBrick];
-            if(self.currentBrickIndex == -1) {
-                NSError(@"Loop End Brick not found!");
-            }
-            [self runNextAction];
-        }
-        else {
-        
-            SKAction* action = [brick action];
-            [self.object runAction:[SKAction sequence:@[action]] completion:^{
-                [self runNextAction];
-            }];
-        }
-        
-
-    }
-
-}
                              
 
 -(void)runWithAction:(SKAction*)action
