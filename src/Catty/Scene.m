@@ -102,5 +102,12 @@
     return (self.scene.size.width  / 2.0f + x);
 }
 
+-(CGPoint)convertSceneCoordinateToPoint:(CGPoint)point
+{
+    float x = point.x - self.scene.size.width/2.0f;
+    float y = self.scene.size.height/2.0f - point.y;
+    return CGPointMake(x, y);
+}
+
 
 @end

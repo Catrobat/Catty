@@ -33,10 +33,9 @@
 -(id) initWithSize:(CGSize)size andProgram:(Program*)program;
 
 -(CGPoint)convertPointToScene:(CGPoint)point;
-
 -(float)convertYCoordinateToScene:(float)y;
-
 -(float)convertXCoordinateToScene:(float)x;
 
+-(CGPoint)convertSceneCoordinateToPoint:(CGPoint)point;
 
 @end

@@ -34,7 +34,8 @@
     
     return [SKAction runBlock:^{
         double yMov = [self.yMovement interpretDoubleForSprite:self.object];
-        NSArray *array = [NSArray arrayWithObjects:[SKAction moveByX:0 y:yMov duration:0.0], self.nextAction, nil];
+        self.object.position = CGPointMake(self.object.position.x, self.object.position.y-yMov);
+        NSArray *array = [NSArray arrayWithObjects:self.nextAction, nil];
         [self.object runAction:[SKAction sequence:array] withKey:actionKey];
     }];
 }

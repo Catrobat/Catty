@@ -48,6 +48,10 @@
     return self;
 }
 
+-(CGPoint)position
+{
+    return [((Scene*)self.scene) convertSceneCoordinateToPoint:super.position];
+}
 
 -(void) setPosition:(CGPoint)position
 {

@@ -33,8 +33,9 @@
 {
     self.nextAction = nextAction;
     return [SKAction runBlock:^{
-        double degrees = [self.degrees interpretDoubleForSprite:self.object];
-        NSArray *array = [NSArray arrayWithObjects:[SKAction rotateByAngle:[Util degreeToRadians:degrees] duration:0.0f], self.nextAction, nil];
+        double rad = [Util degreeToRadians:[self.degrees interpretDoubleForSprite:self.object]];
+        self.object.zRotation += rad;
+        NSArray *array = [NSArray arrayWithObjects:self.nextAction, nil];
         [self.object runAction:[SKAction sequence:array] withKey:actionKey];
     }];
 }
