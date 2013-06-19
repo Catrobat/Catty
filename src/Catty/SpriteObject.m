@@ -61,8 +61,7 @@
     {
         if ([script isKindOfClass:[StartScript class]]) {
             [script start];
-            [self.activeScripts removeObject:script];
-            [self.activeScripts addObject:script];
+            break;
         }
     }
 }
@@ -79,8 +78,6 @@
         {
             if ([script isKindOfClass:[WhenScript class]]) {
                 [script start];
-                [self.activeScripts removeObject:script];
-                [self.activeScripts addObject:script];
                 break;
             }
         }
@@ -89,14 +86,14 @@
 
 }
 
-- (void)updateWithTimeSinceLastUpdate:(CFTimeInterval)interval
-{
-
-    for(Script* script in self.activeScripts) {
-        [script updateWithTimeSinceLastUpdate:interval];
-    }
-    
-}
+//- (void)updateWithTimeSinceLastUpdate:(CFTimeInterval)interval
+//{
+//
+//    for(Script* script in self.activeScripts) {
+//        [script updateWithTimeSinceLastUpdate:interval];
+//    }
+//    
+//}
 
 
 

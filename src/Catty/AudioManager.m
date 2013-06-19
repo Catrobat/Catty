@@ -84,6 +84,7 @@ static AudioManager* sharedAudioManager = nil;
     }
     if([player isPlaying]) {
         [player stop];
+        [player setCurrentTime:0];
     }
     [player play];
 }

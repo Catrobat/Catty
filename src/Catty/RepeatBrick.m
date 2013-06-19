@@ -35,7 +35,7 @@
 -(BOOL) checkCondition
 {
     int timesToRepeat = [self.timesToRepeat interpretIntegerForSprite:self.object];
-    return self.loopCount-- < timesToRepeat ? YES : NO;
+    return (self.loopCount++ < timesToRepeat) ? YES : NO;
 
 }
 

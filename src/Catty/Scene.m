@@ -57,23 +57,22 @@
         [self addChild:obj];
         [obj start];
         [obj setUserInteractionEnabled:YES];
-    }
-    
+    }    
 }
 
 
 -(void)update:(CFTimeInterval)currentTime {
-    
-    // Handle time delta.
-    // If we drop below 60fps, we still want everything to move the same distance.
-    CFTimeInterval timeSinceLast = currentTime - self.lastUpdateTimeInterval;
-    self.lastUpdateTimeInterval = currentTime;
-    if (timeSinceLast > 1) { // more than a second since last update
-        timeSinceLast = kMinTimeInterval;
-        self.lastUpdateTimeInterval = currentTime;
-    }
-    
-    [self updateWithTimeSinceLastUpdate:timeSinceLast];
+        
+//    // Handle time delta.
+//    // If we drop below 60fps, we still want everything to move the same distance.
+//    CFTimeInterval timeSinceLast = currentTime - self.lastUpdateTimeInterval;
+//    self.lastUpdateTimeInterval = currentTime;
+//    if (timeSinceLast > 1) { // more than a second since last update
+//        timeSinceLast = kMinTimeInterval;
+//        self.lastUpdateTimeInterval = currentTime;
+//    }
+//    
+//    [self updateWithTimeSinceLastUpdate:timeSinceLast];
 }
 
 #pragma mark - Loop Update

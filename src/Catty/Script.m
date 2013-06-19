@@ -31,6 +31,7 @@
 #import "IfLogicEndBrick.h"
 #import "NoteBrick.h"
 #import "NSString+CatrobatNSStringExtensions.h"
+#import <objc/runtime.h>
 
 
 @interface Script()
@@ -87,7 +88,7 @@
 
 - (void)updateWithTimeSinceLastUpdate:(CFTimeInterval)interval
 {
-    [self runNextAction];
+    //[self runNextAction];
 }
 
 
@@ -104,6 +105,7 @@
                 }
                 self.currentBrickIndex++;
             }
+            [self runNextAction];
             
         }
         else if([brick isKindOfClass:[LoopEndBrick class]]) {
@@ -111,19 +113,21 @@
             if(self.currentBrickIndex == -1) {
                 NSError(@"Loop End Brick not found!");
             }
+            [self runNextAction];
         }
         else {
         
             SKAction* action = [brick action];
-            [self.object runAction:action withKey:self.actionKey];
+            [self.object runAction:[SKAction sequence:@[action]] completion:^{
+                [self runNextAction];
+            }];
         }
         
 
     }
-    
+
 }
-
-
+                             
 
 -(void)runWithAction:(SKAction*)action
 {
