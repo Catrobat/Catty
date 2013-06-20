@@ -63,7 +63,7 @@
     [super viewDidLoad];
     
     [self initTableView];
-    [TableUtil initNavigationItem:self.navigationItem withTitle:@"Pocket Code" enableBackButton:NO target:nil];
+    [self initNavigationBar];
     
     AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
     [appDelegate.fileManager addDefaultProjectToLeveLDirectory];
@@ -91,6 +91,21 @@
     self.tableView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"darkblue"]];
 }
 
+-(void)initNavigationBar
+{
+
+    self.navigationItem.title = @"Pocket Code";
+    
+    UIImageView *imageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"menu_icon"]];
+    [self.navigationItem setRightBarButtonItem:[[UIBarButtonItem alloc] initWithCustomView:imageView]];
+    
+    UIButton *button = [UIButton buttonWithType:UIButtonTypeInfoLight];
+    [button addTarget:self action:@selector(infoPressed:) forControlEvents:UIControlEventTouchUpInside];
+    UIBarButtonItem *infoItem = [[UIBarButtonItem alloc] initWithCustomView:button];
+    [self.navigationItem setLeftBarButtonItem:infoItem];
+    
+}
+
 
 
 #pragma mark - Table view data source
@@ -112,8 +127,7 @@
     UITableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     
     if (!cell) {
-        NSLog(@"Should Never happen - since iOS5 Storyboard *always* instantiates our cell!");
-        abort();
+        NSError(@"Should Never happen - since iOS5 Storyboard *always* instantiates our cell!");
     }
         
     if([cell conformsToProtocol:@protocol(CatrobatImageCell)]) {
@@ -127,6 +141,13 @@
     
     return cell;
 }
+
+-(void)infoPressed:(id)sender
+{
+    UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Pocket Code" message:@"Pocket Code for iOS" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+    [alert show];
+}
+
 
 
 #pragma mark - Table view delegate
@@ -182,11 +203,12 @@
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    if([[segue identifier] isEqualToString:kSegueDownload] ||
-       [[segue identifier] isEqualToString:kSegueForum]) {
-        CATransition* transition = [Util getPushCATransition];
-        [self.view.window.layer addAnimation:transition forKey:nil];
-    }
+
+//    if([[segue identifier] isEqualToString:kSegueDownload] ||
+//       [[segue identifier] isEqualToString:kSegueForum]) {
+//        CATransition* transition = [Util getPushCATransition];
+//        [self.view.window.layer addAnimation:transition forKey:nil];
+//    }
     
     if([[segue identifier] isEqualToString:kSegueContinue]) {
         SceneViewController* sceneViewController = (SceneViewController*)segue.destinationViewController;

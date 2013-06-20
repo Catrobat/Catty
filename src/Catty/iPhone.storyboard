@@ -5,7 +5,7 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3682.6"/>
     </dependencies>
     <scenes>
-        <!--Catrobat Table View Controller-->
+        <!--Catrobat Table View Controller - Pocket Code-->
         <scene sceneID="vPB-Cv-GHf">
             <objects>
                 <tableViewController id="oKj-cD-XDS" customClass="CatrobatTableViewController" sceneMemberID="viewController">
@@ -76,19 +76,19 @@
                         </connections>
                     </tableView>
                     <extendedEdge key="edgesForExtendedLayout"/>
-                    <navigationItem key="navigationItem" id="vGJ-82-iau"/>
+                    <navigationItem key="navigationItem" title="Pocket Code" id="vGJ-82-iau"/>
                     <connections>
-                        <segue destination="s37-PF-3iN" kind="push" identifier="programs" id="vew-Li-crD"/>
                         <segue destination="Vaa-sF-tan" kind="push" identifier="continue" id="E8f-Km-7J7"/>
-                        <segue destination="vLF-8b-U7Z" kind="modal" identifier="download" animates="NO" id="SGA-Dg-eVq"/>
+                        <segue destination="vLF-8b-U7Z" kind="push" identifier="download" id="SGA-Dg-eVq"/>
                         <segue destination="5qf-P1-PqT" kind="modal" identifier="forum" animates="NO" id="TM0-uS-faC"/>
+                        <segue destination="s37-PF-3iN" kind="push" identifier="programs" id="d1c-M4-4gJ"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="d1W-id-jRf" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-2900" y="-2116"/>
         </scene>
-        <!--My Programs View Controller-->
+        <!--My Programs View Controller - Programs-->
         <scene sceneID="54w-ir-dKC">
             <objects>
                 <tableViewController id="s37-PF-3iN" customClass="MyProgramsViewController" sceneMemberID="viewController">
@@ -128,7 +128,7 @@
                         </connections>
                     </tableView>
                     <extendedEdge key="edgesForExtendedLayout"/>
-                    <navigationItem key="navigationItem" id="WNU-lr-3un"/>
+                    <navigationItem key="navigationItem" title="Programs" id="WNU-lr-3un"/>
                     <connections>
                         <segue destination="Vaa-sF-tan" kind="push" identifier="segueToScene" id="SyO-93-8h2"/>
                     </connections>
@@ -161,7 +161,7 @@
             <objects>
                 <viewController id="Vaa-sF-tan" customClass="SceneViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="GJg-x7-ITz" customClass="SKView">
-                        <rect key="frame" x="0.0" y="64" width="320" height="455"/>
+                        <rect key="frame" x="0.0" y="64" width="320" height="504"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
@@ -527,7 +527,7 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="ZYi-SP-eKt"/>
-        <segue reference="Ou7-xR-5ta"/>
+        <segue reference="SyO-93-8h2"/>
+        <segue reference="v2V-DK-O7m"/>
     </inferredMetricsTieBreakers>
 </document>

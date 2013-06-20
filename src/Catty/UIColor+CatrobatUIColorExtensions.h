@@ -34,4 +34,6 @@
 
 + (UIColor*) brightGrayColor;
 
++ (UIColor*) lightOrangeColor;
+
 @end

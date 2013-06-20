@@ -59,31 +59,15 @@
 
     //background image
     [self initTableView];
-    [TableUtil initNavigationItem:self.navigationItem withTitle:@"Programs" enableBackButton:YES target:self];
     
-        
-    //loading levels
-    NSString *documentsDirectoy = [Util applicationDocumentsDirectory];
-    NSString *levelFolder = @"levels";
-    NSString *levelsPath = [NSString stringWithFormat:@"%@/%@", documentsDirectoy, levelFolder];
+    [self initNavigationBar];
     
-    NSError *error;
-    NSArray *levels = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:levelsPath error:&error];
-    NSLogError(error);
+    [self loadLevels];
     
-    [Logger debug:@"my levels: %@", levels ];
+
     
+    //[TableUtil initNavigationItem:self.navigationItem withTitle:@"Programs" enableBackButton:YES target:self];
     
-    self.levelLoadingInfos = [[NSMutableArray alloc] initWithCapacity:[levels count]];
-    for (NSString *level in levels) {
-        ProgramLoadingInfo *info = [[ProgramLoadingInfo alloc] init];
-        info.basePath = [NSString stringWithFormat:@"%@/%@/", levelsPath, level];
-        info.visibleName = level;
-        
-        NSLog(@"Adding level: %@", info.basePath);
-        
-        [self.levelLoadingInfos addObject:info];
-    }
     
 }
 
@@ -95,11 +79,46 @@
 
 
 #pragma marks init
--(void)initTableView {
+-(void)initTableView
+{
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     [self.tableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
     self.tableView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"darkblue"]];
+    
+}
+
+-(void)initNavigationBar
+{
+    
+    self.navigationItem.title = NSLocalizedString(@"Programs", nil);
+    
+    UIImageView *imageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"menu_icon"]];
+    [self.navigationItem setRightBarButtonItem:[[UIBarButtonItem alloc] initWithCustomView:imageView]];
+    
+}
+
+-(void)loadLevels
+{
+    NSString *documentsDirectoy = [Util applicationDocumentsDirectory];
+    NSString *levelFolder = @"levels";
+    NSString *levelsPath = [NSString stringWithFormat:@"%@/%@", documentsDirectoy, levelFolder];
+    
+    NSError *error;
+    NSArray *levels = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:levelsPath error:&error];
+    NSLogError(error);
+    
+
+    self.levelLoadingInfos = [[NSMutableArray alloc] initWithCapacity:[levels count]];
+    for (NSString *level in levels) {
+        ProgramLoadingInfo *info = [[ProgramLoadingInfo alloc] init];
+        info.basePath = [NSString stringWithFormat:@"%@/%@/", levelsPath, level];
+        info.visibleName = level;
+        
+        NSDebug(@"Adding level: %@", info.basePath);
+        
+        [self.levelLoadingInfos addObject:info];
+    }
     
 }
 

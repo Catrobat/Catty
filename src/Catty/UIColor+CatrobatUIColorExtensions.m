@@ -30,15 +30,15 @@
 }
 
 
-+ (UIColor *)brightGrayColor
-{
-    return [UIColor colorWithRed:212.0f/255.0f green:219.0f/255.0f blue:222.0f/255.0f alpha:1.0f];
-}
-
-
 + (UIColor *)blueGrayColor
 {
     return [UIColor colorWithRed:111.0f/255.0f green:142.0f/255.0f blue:155.0f/255.0f alpha:1.0f];
+}
+
+
++ (UIColor *)brightGrayColor
+{
+    return [UIColor colorWithRed:212.0f/255.0f green:219.0f/255.0f blue:222.0f/255.0f alpha:1.0f];
 }
 
 
@@ -51,6 +51,11 @@
 + (UIColor*)darkBlueColor
 {
     return [UIColor colorWithRed:0 green:37.0f/255.0f blue:52.0f/255.0f alpha:1.0f];
+}
+
++ (UIColor*) lightOrangeColor
+{
+    return [UIColor colorWithRed:232.0/255.0 green:146.0f/255.0f blue:6.0f/255.0f alpha:1.0f];
 }
 
 

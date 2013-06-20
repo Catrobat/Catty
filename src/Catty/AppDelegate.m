@@ -26,6 +26,7 @@
 #import "StageViewController.h"
 #import "FileManager.h"
 #import "Util.h"
+#import "UIColor+CatrobatUIColorExtensions.h"
 
 
 void onUncaughtException(NSException *exception)
@@ -49,20 +50,28 @@ void onUncaughtException(NSException *exception)
 {
     NSSetUncaughtExceptionHandler(&onUncaughtException);
     
-    [self initNavigationBar];    
+    [self initNavigationBar];
     
     return YES;
 }
 
 
 
--(void) initNavigationBar {
+-(void) initNavigationBar
+{
+    
     
     UIImage *navbarimage = [[UIImage imageNamed:@"darkblue"]
                             resizableImageWithCapInsets:UIEdgeInsetsMake(0, 0, 0, 0)];
     
     [[UINavigationBar appearance] setBackgroundImage:navbarimage
-                                       forBarMetrics:UIBarMetricsDefault];    
+                                       forBarMetrics:UIBarMetricsDefault];
+    [[UINavigationBar appearance] setTintColor:[UIColor lightOrangeColor]];
+    [[UINavigationBar appearance] setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:
+                                                          [UIColor skyBlueColor],
+                                                          UITextAttributeTextColor, nil]];
+    
+    
 }
 
 
