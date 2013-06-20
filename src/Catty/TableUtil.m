@@ -44,34 +44,12 @@
     return (kImageCellHeight*screenHeight)/kIphone5ScreenHeight;
 }
 
-+(void)initNavigationItem:(UINavigationItem*)navigationItem withTitle:(NSString*)title enableBackButton:(BOOL)backButtonEnabled target:(id)target{
++(void)initNavigationItem:(UINavigationItem*)navigationItem withTitle:(NSString*)title{
+    
+    navigationItem.title = title;
     
     UIImageView *imageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"menu_icon"]];
-    UILabel* titleLabel = [[UILabel alloc] init];
-    titleLabel.textColor = [UIColor blueGrayColor];
-    titleLabel.font = [UIFont boldSystemFontOfSize:18.0f];
-    titleLabel.text = title;
-    titleLabel.backgroundColor = [UIColor clearColor];
-    [titleLabel sizeToFit];
-    
-
-    NSMutableArray* barButtonItems = [[NSMutableArray alloc] init];
-    
-    if(backButtonEnabled) {
-        UIBarButtonItem* backButton =  [self createBackButtonWithTarget:target];
-        [barButtonItems addObject:backButton];
-    } //else { // This looks weird.. 
-//        UIBarButtonItem *fixed = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:nil action:nil];
-//        fixed.width = 30.0f;
-//        [barButtonItems addObject:fixed];
-//    }
-   
-    [barButtonItems addObject:[[UIBarButtonItem alloc] initWithCustomView:imageView]];
-    [barButtonItems addObject:[[UIBarButtonItem alloc] initWithCustomView:titleLabel]];
-    
-
-    [navigationItem setLeftBarButtonItems:barButtonItems animated:NO];
-    
+    [navigationItem setRightBarButtonItem:[[UIBarButtonItem alloc] initWithCustomView:imageView]];
 }
 
 +(void)addSeperatorForCell:(CatrobatBaseCell*)cell{

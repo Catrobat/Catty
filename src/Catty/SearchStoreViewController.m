@@ -53,11 +53,12 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
-    [TableUtil initNavigationItem:self.navigationItem withTitle:@"Downloads" enableBackButton:YES target:self.tabBarController];
-    
+        
     [self initTableView];
     [self initSearchView];
+    
+    self.searchDisplayController.displaysSearchBarInNavigationBar = YES;
+
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -80,7 +81,8 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return MAX(1, self.searchResults.count);
+    //return MAX(1, self.searchResults.count);
+    return self.searchResults.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -227,7 +229,6 @@
 -(void)initSearchView
 {
     self.searchResults = [[NSMutableArray alloc] init];
-    self.searchDisplayController.searchBar.backgroundImage  = [[UIImage imageNamed:@"darkblue"]resizableImageWithCapInsets:UIEdgeInsetsZero];
     self.searchDisplayController.searchBar.clipsToBounds = YES;
     self.searchDisplayController.searchBar.autocorrectionType = UITextAutocorrectionTypeNo;
     

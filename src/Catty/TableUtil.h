@@ -31,7 +31,7 @@
 
 +(CGFloat)getHeightForImageCell;
 
-+(void)initNavigationItem:(UINavigationItem*)navigationItem withTitle:(NSString*)title enableBackButton:(BOOL)backButtonEnabled target:(id)target;
++(void)initNavigationItem:(UINavigationItem*)navigationItem withTitle:(NSString*)title;
 
 +(void)addSeperatorForCell:(CatrobatBaseCell*)cell;
 

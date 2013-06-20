@@ -21,10 +21,9 @@
  */
 
 #import <UIKit/UIKit.h>
-#import "BackButtonDelegate.h"
  
 
-@interface ForumWebViewController : UIViewController <BackButtonDelegate, UIWebViewDelegate>
+@interface ForumWebViewController : UIViewController <UIWebViewDelegate>
 @property (strong, nonatomic) IBOutlet UIWebView *webView;
 
 - (IBAction)previousPage:(id)sender;

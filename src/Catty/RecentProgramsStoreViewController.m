@@ -70,6 +70,7 @@
     [self loadRecentProjects];
     [self initTableView];
     
+    [TableUtil initNavigationItem:self.navigationItem withTitle:@"Recent Programs"];        
 }
 
 - (void)dealloc
@@ -113,7 +114,6 @@
     self.tableView.dataSource = self;
     [self.tableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
     self.tableView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"darkblue"]];    
-    [TableUtil initNavigationItem:self.navigationItem withTitle:@"Downloads" enableBackButton:YES target:self.tabBarController];
 }
 
 
@@ -201,7 +201,6 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-
 }
 
 #pragma mark - NSURLConnection Delegates
@@ -252,7 +251,8 @@
 # pragma mark - Segue delegate
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
+{    
+    
     if([[segue identifier] isEqualToString:kSegueToLevelDetail]) {
         NSIndexPath *selectedRowIndexPath = self.tableView.indexPathForSelectedRow;
         CatrobatProject *level = [self.projects objectAtIndex:selectedRowIndexPath.row];

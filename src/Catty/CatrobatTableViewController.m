@@ -94,10 +94,7 @@
 -(void)initNavigationBar
 {
 
-    self.navigationItem.title = @"Pocket Code";
-    
-    UIImageView *imageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"menu_icon"]];
-    [self.navigationItem setRightBarButtonItem:[[UIBarButtonItem alloc] initWithCustomView:imageView]];
+    [TableUtil initNavigationItem:self.navigationItem withTitle:@"Pocket Code"];
     
     UIButton *button = [UIButton buttonWithType:UIButtonTypeInfoLight];
     [button addTarget:self action:@selector(infoPressed:) forControlEvents:UIControlEventTouchUpInside];
@@ -204,11 +201,10 @@
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
 
-//    if([[segue identifier] isEqualToString:kSegueDownload] ||
-//       [[segue identifier] isEqualToString:kSegueForum]) {
-//        CATransition* transition = [Util getPushCATransition];
-//        [self.view.window.layer addAnimation:transition forKey:nil];
-//    }
+    if([[segue identifier] isEqualToString:kSegueDownload]) {
+        CATransition* transition = [Util getPushCATransition];
+        [self.view.window.layer addAnimation:transition forKey:nil];
+    }
     
     if([[segue identifier] isEqualToString:kSegueContinue]) {
         SceneViewController* sceneViewController = (SceneViewController*)segue.destinationViewController;

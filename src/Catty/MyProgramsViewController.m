@@ -60,7 +60,7 @@
     //background image
     [self initTableView];
     
-    [self initNavigationBar];
+    [TableUtil initNavigationItem:self.navigationItem withTitle:NSLocalizedString(@"Programs", nil)];
     
     [self loadLevels];
     
@@ -88,15 +88,8 @@
     
 }
 
--(void)initNavigationBar
-{
-    
-    self.navigationItem.title = NSLocalizedString(@"Programs", nil);
-    
-    UIImageView *imageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"menu_icon"]];
-    [self.navigationItem setRightBarButtonItem:[[UIBarButtonItem alloc] initWithCustomView:imageView]];
-    
-}
+
+
 
 -(void)loadLevels
 {

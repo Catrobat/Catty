@@ -60,9 +60,11 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+
+    [self initNavigationBar];
     
     self.view.backgroundColor = [UIColor darkBlueColor];
-    [TableUtil initNavigationItem:self.navigationItem withTitle:@"Info" enableBackButton:YES target:self];
+    //[TableUtil initNavigationItem:self.navigationItem withTitle:@"Info" enableBackButton:YES target:self];
     
     self.projectView = [self createViewForProject:self.project];
     [self.scrollViewOutlet addSubview:self.projectView];
@@ -78,6 +80,16 @@
     self.scrollViewOutlet.userInteractionEnabled = YES;
     self.scrollViewOutlet.exclusiveTouch = YES;
 
+}
+
+-(void)initNavigationBar
+{
+    
+    self.navigationItem.title = NSLocalizedString(@"Info", nil);
+    
+    UIImageView *imageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"menu_icon"]];
+    [self.navigationItem setRightBarButtonItem:[[UIBarButtonItem alloc] initWithCustomView:imageView]];
+    
 }
 
 - (void) viewWillDisappear:(BOOL)animated

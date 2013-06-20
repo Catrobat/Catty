@@ -21,9 +21,8 @@
  */
 
 #import <UIKit/UIKit.h>
-#import "BackButtonDelegate.h"
 #import "LevelStoreDelegate.h"
 
-@interface RecentProgramsStoreViewController : UITableViewController <NSURLConnectionDataDelegate, BackButtonDelegate>
+@interface RecentProgramsStoreViewController : UITableViewController <NSURLConnectionDataDelegate>
 
 @end

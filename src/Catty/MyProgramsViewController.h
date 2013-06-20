@@ -22,9 +22,8 @@
 
 
 #import <UIKit/UIKit.h>
-#import "BackButtonDelegate.h"
 
-@interface MyProgramsViewController : UITableViewController <BackButtonDelegate>
+@interface MyProgramsViewController : UITableViewController
 
 
 @end

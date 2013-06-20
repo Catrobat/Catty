@@ -44,7 +44,9 @@
 {
     [super viewDidLoad];
     
-    //[TableUtil initNavigationItem:self.navigationItem withTitle:@"Download" enableBackButton:YES target:self];
+    
+    [TableUtil initNavigationItem:self.navigationItem withTitle:NSLocalizedString(@"Programs", nil)];
+    
     self.tabBar.backgroundImage =  [[UIImage imageNamed:@"darkblue"]
                                     resizableImageWithCapInsets:UIEdgeInsetsMake(0, 0, 0, 0)];
     
@@ -57,15 +59,5 @@
     [super didReceiveMemoryWarning];
 }
 
-#pragma mark - BackButtonDelegate
--(void)back {
-    CATransition *transition = [CATransition animation];
-    transition.duration = 0.3;
-    transition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
-    transition.type = kCATransitionPush;
-    transition.subtype = kCATransitionFromLeft;
-    [self.view.window.layer addAnimation:transition forKey:nil];
-    [self dismissModalViewControllerAnimated:NO];
-}
 
 @end

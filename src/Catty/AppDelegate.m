@@ -29,9 +29,8 @@
 #import "UIColor+CatrobatUIColorExtensions.h"
 
 
-void onUncaughtException(NSException *exception)
-{
-    NSLog(@"uncaught exception: %@", exception.description);
+void uncaughtExceptionHandler(NSException *exception) {
+    NSError(@"uncaught exception: %@", exception.description);
 }
 
 
@@ -47,8 +46,8 @@ void onUncaughtException(NSException *exception)
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
-{
-    NSSetUncaughtExceptionHandler(&onUncaughtException);
+{    
+    NSSetUncaughtExceptionHandler(&uncaughtExceptionHandler);
     
     [self initNavigationBar];
     
@@ -66,7 +65,9 @@ void onUncaughtException(NSException *exception)
     
     [[UINavigationBar appearance] setBackgroundImage:navbarimage
                                        forBarMetrics:UIBarMetricsDefault];
-    [[UINavigationBar appearance] setTintColor:[UIColor lightOrangeColor]];
+    
+    self.window.tintColor = [UIColor lightOrangeColor];
+    
     [[UINavigationBar appearance] setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:
                                                           [UIColor skyBlueColor],
                                                           UITextAttributeTextColor, nil]];

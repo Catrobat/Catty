@@ -314,7 +314,6 @@
 		B4BCF403170ECF6C008EDF3A /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		B4BCF405170ECFA2008EDF3A /* MyProgramsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyProgramsViewController.h; sourceTree = "<group>"; };
 		B4BCF406170ECFA2008EDF3A /* MyProgramsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyProgramsViewController.m; sourceTree = "<group>"; };
-		B4BCF40A170ECFD8008EDF3A /* BackButtonDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BackButtonDelegate.h; sourceTree = "<group>"; };
 		B4BCF40B170ED178008EDF3A /* SearchStoreViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchStoreViewController.h; sourceTree = "<group>"; };
 		B4BCF40C170ED178008EDF3A /* SearchStoreViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchStoreViewController.m; sourceTree = "<group>"; };
 		B4BCF412170ED1F2008EDF3A /* CatrobatInformation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CatrobatInformation.h; sourceTree = "<group>"; };
@@ -971,7 +970,6 @@
 			isa = PBXGroup;
 			children = (
 				B4BCF41D170ED34D008EDF3A /* LevelStoreDelegate.h */,
-				B4BCF40A170ECFD8008EDF3A /* BackButtonDelegate.h */,
 			);
 			name = Delegates;
 			sourceTree = "<group>";
