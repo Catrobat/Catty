@@ -29,17 +29,17 @@
 
 -(SKAction*)actionWithNextAction:(SKAction *)nextAction actionKey:(NSString*)actionKey
 {
-    
-    NSDebug(@"Performing: %@", self.description);
+    NSDebug(@"Adding: %@", self.description);
     
     [self setNextAction:nextAction];
     
     return [SKAction runBlock:^{
+        NSDebug(@"Performing: %@", self.description);
         double sizeInPercent = [self.size interpretDoubleForSprite:self.object];
         self.object.xScale = sizeInPercent/100.0;
         self.object.yScale = sizeInPercent/100.0;
-        NSArray *array = [NSArray arrayWithObjects:self.nextAction, nil];
-        [self.object runAction:[SKAction sequence:array] withKey:actionKey];
+        
+        [self.object runAction:self.nextAction withKey:actionKey];
     }];
 }
 

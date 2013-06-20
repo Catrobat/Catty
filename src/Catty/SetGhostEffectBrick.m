@@ -29,12 +29,15 @@
 
 -(SKAction*)actionWithNextAction:(SKAction *)nextAction actionKey:(NSString*)actionKey
 {
+    NSDebug(@"Adding: %@", self.description);
+    
     self.nextAction = nextAction;
     return [SKAction runBlock:^{
+        NSDebug(@"Performing: %@", self.description);
         double transparency = [self.transparency interpretDoubleForSprite:self.object];
         self.object.alpha = transparency/100.0f;
-        NSArray *array = [NSArray arrayWithObjects:self.nextAction, nil];
-        [self.object runAction:[SKAction sequence:array] withKey:actionKey];
+        
+        [self.object runAction:self.nextAction withKey:actionKey];
     }];
 }
 

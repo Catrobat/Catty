@@ -29,17 +29,18 @@
 -(SKAction*)actionWithNextAction:(SKAction *)nextAction actionKey:(NSString*)actionKey
 {
     
-    NSDebug(@"Performing: %@", self.description);
+    NSDebug(@"Adding: %@", self.description);
     
     [self setNextAction:nextAction];
     
     return [SKAction runBlock:^{
+        NSDebug(@"Performing: %@", self.description);
         double xPosition = [self.xPosition interpretDoubleForSprite:self.object];
         double yPosition = [self.yPosition interpretDoubleForSprite:self.object];
         self.object.position = CGPointMake(xPosition, yPosition);
         
-        NSArray *array = [NSArray arrayWithObjects:self.nextAction, nil];
-        [self.object runAction:[SKAction sequence:array] withKey:actionKey];
+        
+        [self.object runAction:self.nextAction withKey:actionKey];
     }];
 }
 

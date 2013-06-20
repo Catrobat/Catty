@@ -42,11 +42,12 @@
 -(SKAction*)actionWithNextAction:(SKAction *)nextAction actionKey:(NSString*)actionKey
 {
     
-    NSDebug(@"Performing: %@", self.description);
+    NSDebug(@"Adding: %@", self.description);
     
     [self setNextAction:nextAction];
     
     return [SKAction runBlock:^{
+        NSDebug(@"Performing: %@", self.description);
         double xDestination = [self.xDestination interpretDoubleForSprite:self.object];
         double yDestination = [self.yDestination interpretDoubleForSprite:self.object];
         double durationInSeconds = [self.durationInSeconds interpretDoubleForSprite:self.object];
