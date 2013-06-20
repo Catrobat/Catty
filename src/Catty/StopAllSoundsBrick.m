@@ -28,11 +28,14 @@
 
 -(SKAction*)actionWithNextAction:(SKAction *)nextAction actionKey:(NSString*)actionKey
 {
+    NSDebug(@"Adding: %@", self.description);
+    
     self.nextAction = nextAction;
     return [SKAction runBlock:^{
+        NSDebug(@"Performing: %@", self.description);
         [[AudioManager sharedAudioManager]stopAllSounds];
-        NSArray *array = [NSArray arrayWithObjects:self.nextAction, nil];
-        [self.object runAction:[SKAction sequence:array] withKey:actionKey];
+        
+        [self.object runAction:self.nextAction withKey:actionKey];
     }];
 }
 

@@ -29,12 +29,18 @@
 @implementation SetVolumeToBrick
 
 
-
--(SKAction*)action
+-(SKAction*)actionWithNextAction:(SKAction *)nextAction actionKey:(NSString*)actionKey
 {
-    double volume = [self.volume interpretDoubleForSprite:self.object];
+    NSDebug(@"Adding: %@", self.description);
+    
+    self.nextAction = nextAction;
     return [SKAction runBlock:^{
+        NSDebug(@"Performing: %@", self.description);
+        double volume = [self.volume interpretDoubleForSprite:self.object];
         [[AudioManager sharedAudioManager] setVolumeToPercent:volume forKey:self.object.name];
+        
+        
+        [self.object runAction:self.nextAction withKey:actionKey];
     }];
 }
 

@@ -22,6 +22,7 @@
 
 #import "Turnrightbrick.h"
 #import "Formula.h"
+#import "Util.h"
 
 @implementation TurnRightBrick
 
@@ -32,6 +33,20 @@
     double degrees = [self.degrees interpretDoubleForSprite:self.object];
     
     [self.object turnRight:degrees];
+}
+
+-(SKAction*)actionWithNextAction:(SKAction *)nextAction actionKey:(NSString*)actionKey
+{
+    NSDebug(@"Adding: %@", self.description);
+    
+    self.nextAction = nextAction;
+    return [SKAction runBlock:^{
+        NSDebug(@"Performing: %@", self.description);
+        double rad = [Util degreeToRadians:[self.degrees interpretDoubleForSprite:self.object]];
+        self.object.zRotation -= rad;
+        
+        [self.object runAction:self.nextAction withKey:actionKey];
+    }];
 }
 
 #pragma mark - Description

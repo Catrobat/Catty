@@ -34,16 +34,29 @@
 #pragma mark - override
 -(void)performFromScript:(Script*)script
 {
-    NSDebug(@"Performing: %@", self.description);
+    NSDebug(@" ERROR ERROR ERROR Performing: %@", self.description);
+
+}
+
+
+-(SKAction*)actionWithNextAction:(SKAction *)nextAction actionKey:(NSString*)actionKey
+{
     
-    double xDestination = [self.xDestination interpretDoubleForSprite:self.object];
-    double yDestination = [self.yDestination interpretDoubleForSprite:self.object];
-    double durationInSeconds = [self.durationInSeconds interpretDoubleForSprite:self.object];
+    NSDebug(@"Adding: %@", self.description);
     
-    CGPoint position = CGPointMake(xDestination, yDestination);
+    [self setNextAction:nextAction];
     
-    [self.object glideToPosition:position withDurationInSeconds:durationInSeconds fromScript:script];
-    [NSThread sleepForTimeInterval:durationInSeconds];
+    return [SKAction runBlock:^{
+        NSDebug(@"Performing: %@", self.description);
+        double xDestination = [self.xDestination interpretDoubleForSprite:self.object];
+        double yDestination = [self.yDestination interpretDoubleForSprite:self.object];
+        double durationInSeconds = [self.durationInSeconds interpretDoubleForSprite:self.object];
+        CGPoint position = CGPointMake(xDestination, yDestination);
+
+        SKAction *glideToAction = [SKAction moveTo:position duration:durationInSeconds];
+        NSArray *array = [NSArray arrayWithObjects:glideToAction, self.nextAction, nil];
+        [self.object runAction:[SKAction sequence:array] withKey:actionKey];
+    }];
 }
 
 #pragma mark - Description

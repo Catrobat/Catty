@@ -41,13 +41,20 @@
     return self;
 }
 
--(SKAction*)action
+
+-(SKAction*)actionWithNextAction:(SKAction *)nextAction actionKey:(NSString*)actionKey
 {
-    NSDebug(@"Performing: %@", self.description);
+    NSDebug(@"Adding: %@", self.description);
+    
+    self.nextAction = nextAction;
     return [SKAction runBlock:^{
+        NSDebug(@"Performing: %@", self.description);
         AVSpeechSynthesizer *synthesizer = [[AVSpeechSynthesizer alloc] init];
         AVSpeechUtterance *utterance = [[AVSpeechUtterance alloc] initWithString:self.text];
         [synthesizer speakUtterance:utterance];
+
+        
+        [self.object runAction:self.nextAction withKey:actionKey];
     }];
 }
 

@@ -30,13 +30,15 @@
 
 -(SKAction*)actionWithNextAction:(SKAction *)nextAction actionKey:(NSString*)actionKey
 {
+    NSDebug(@"Adding: %@", self.description);
     self.nextAction = nextAction;
     
     return [SKAction runBlock:^{
+        NSDebug(@"Performing: %@", self.description);
         double yMov = [self.yMovement interpretDoubleForSprite:self.object];
         self.object.position = CGPointMake(self.object.position.x, self.object.position.y-yMov);
-        NSArray *array = [NSArray arrayWithObjects:self.nextAction, nil];
-        [self.object runAction:[SKAction sequence:array] withKey:actionKey];
+        
+        [self.object runAction:self.nextAction withKey:actionKey];
     }];
 }
 
