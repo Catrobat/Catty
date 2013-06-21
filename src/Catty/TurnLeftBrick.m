@@ -38,7 +38,6 @@
         NSDebug(@"Performing: %@", self.description);
         double rad = [Util degreeToRadians:[self.degrees interpretDoubleForSprite:self.object]];
         self.object.zRotation += rad;
-
     }];
 }
 
