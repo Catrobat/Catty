@@ -27,11 +27,10 @@
 @implementation SetLookBrick
 
 
--(SKAction*)actionWithNextAction:(SKAction *)nextAction actionKey:(NSString*)actionKey
+-(SKAction*)action
 {
     NSDebug(@"Adding: %@", self.description);
     
-    self.nextAction = nextAction;
     
     UIImage* image = [UIImage imageWithContentsOfFile:[self pathForLook]];
     SKTexture* texture = [SKTexture textureWithImage:image];
@@ -39,8 +38,7 @@
     return [SKAction runBlock:^{
         NSDebug(@"Performing: %@", self.description);
         self.object.size = texture.size;
-        NSArray *array = [NSArray arrayWithObjects:[SKAction setTexture:texture], self.nextAction, nil];
-        [self.object runAction:[SKAction sequence:array] withKey:actionKey];
+        self.object.texture = texture;
     }];
 }
 

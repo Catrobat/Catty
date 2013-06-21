@@ -39,13 +39,12 @@
 {
     NSDebug(@"Adding: %@", self.description);
     
-    self.nextAction = nextAction;
+
     return [SKAction runBlock:^{
         NSDebug(@"Performing: %@", self.description);
         double rad = [Util degreeToRadians:[self.degrees interpretDoubleForSprite:self.object]];
         self.object.zRotation -= rad;
-        
-        [self.object runAction:self.nextAction withKey:actionKey];
+
     }];
 }
 

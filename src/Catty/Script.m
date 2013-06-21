@@ -37,10 +37,6 @@
 @interface Script()
 
 @property (nonatomic, assign) NSUInteger currentBrickIndex;
-@property (nonatomic, strong) NSString* actionKey;
-@property (nonatomic, strong) SKAction* startAction;
-
-@property (nonatomic, strong) NSPointerArray *forStack;
 
 @end
 
@@ -54,7 +50,6 @@
     if (self = [super init])
     {
         self.currentBrickIndex = 0;
-        self.actionKey = [NSString uuid];
     }
     return self;
 }
@@ -67,77 +62,70 @@
     return _brickList;
 }
 
--(NSPointerArray *)forStack
-{
-    if (_forStack == nil)
-        _forStack = [NSPointerArray strongObjectsPointerArray];
-    return _forStack;
-}
-
-
--(SKAction*)buildActions
-{   
-    
-    SKAction *action = nil;
-    
-    for (int i=[self.brickList count]-1; i>=0; i--) {
-        Brick *brick = [self.brickList objectAtIndex:i];
-                
-        if ([brick isKindOfClass:[LoopEndBrick class]]) {
-            [self.forStack addPointer:(__bridge void *)(action)];
-        }
-        else if ([brick isKindOfClass:[LoopBeginBrick class]]) {
-            Brick *lastBrickOfForLoop = [self.forStack pointerAtIndex:self.forStack.count-1];
-            [self.forStack removePointerAtIndex:self.forStack.count-1];
-            
-            SKAction *afterForAction = [self.forStack pointerAtIndex:self.forStack.count-1];
-            [self.forStack removePointerAtIndex:self.forStack.count-1];
-            
-            action = [((LoopBeginBrick*)brick) actionWithNextAction:action followAction:afterForAction actionKey:self.actionKey];
-            lastBrickOfForLoop.nextAction = action;
-        }
-        else {
-            action = [brick actionWithNextAction:action actionKey:self.actionKey];
-            
-            if (i < self.brickList.count-1 && [(Brick*)[self.brickList objectAtIndex:i+1] isKindOfClass:[LoopEndBrick class]]) {
-                // this brick is the last brick in for-loop
-                [self.forStack addPointer:(__bridge void *)(brick)];
-            }
-        }
-        
-        
-    }
-    
-    return action;
-}
 
 -(void)reset
 {
-    [self.object removeActionForKey:self.actionKey];
+    [self removeAllActions];
     for(Brick* brick in self.brickList) {
         if([brick isKindOfClass:[LoopBeginBrick class]]) {
             [((LoopBeginBrick*)brick) reset];
         }
     }
+    self.currentBrickIndex = 0;
 
 }
 
 
 -(void)start
 {
-    if (self.startAction == nil) {
-        self.startAction = [self buildActions];
-    }
-    
-    NSDebug(@"Starting: %@", self.description);
+
     [self reset];
-    [self.object runAction:self.startAction withKey:self.actionKey];
+    NSDebug(@"Starting: %@", self.description);
+    
+    
+    Brick* brick = [self.brickList objectAtIndex:0];
+    [self runAction:[brick action]];
+    
+    [self runNextAction];
+    
 }
 
-
-- (void)updateWithTimeSinceLastUpdate:(CFTimeInterval)interval
+int count = 1;
+-(void)runNextAction
 {
-    //[self runNextAction];
+    
+    
+    if(self.currentBrickIndex < [self.brickList count]) {
+        Brick* brick = [self.brickList objectAtIndex:self.currentBrickIndex++];
+        
+        if([brick isKindOfClass:[LoopBeginBrick class]]) {
+            
+            BOOL condition = [((LoopBeginBrick*)brick) checkCondition];
+            if(!condition) {
+                self.currentBrickIndex = [self.brickList indexOfObject:[((LoopBeginBrick*)brick) loopEndBrick]]+1;
+            }
+            
+            [self runNextAction];
+
+        }
+        
+        else if([brick isKindOfClass:[LoopEndBrick class]]) {
+                self.currentBrickIndex = [self.brickList indexOfObject:[((LoopEndBrick*)brick) loopBeginBrick]];
+                [self runNextAction];
+        }
+        else {
+            NSMutableArray* action = [[NSMutableArray alloc] init];
+            [action addObject:[brick action]];
+            [self runAction:[SKAction sequence:action] completion:^{
+                NSLog(@"Completion: %@", [brick class]);
+                [self runNextAction];
+            }];
+        }
+    } else {
+        NSLog(@"Done");
+    }
+    
+    
 }
 
                              

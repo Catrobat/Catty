@@ -64,6 +64,7 @@
     for (Script *script in self.scriptList)
     {
         if ([script isKindOfClass:[StartScript class]]) {
+            [self addChild:script];
             [script start];
             break;
         }
@@ -81,6 +82,10 @@
         for (Script *script in self.scriptList)
         {
             if ([script isKindOfClass:[WhenScript class]]) {
+                
+                if([[self children] indexOfObject:script] == INT_MAX) {
+                    [self addChild:script];
+                }
                 [script start];
                 break;
             }

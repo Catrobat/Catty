@@ -47,13 +47,10 @@
 -(SKAction*)actionWithNextAction:(SKAction *)nextAction actionKey:(NSString*)actionKey
 {
     NSDebug(@"Adding: %@", self.description);
-    
-    [self setNextAction:nextAction];
-    
+        
     return [SKAction runBlock:^{
         NSDebug(@"Performing: %@", self.description);
         [self.object broadcast:self.broadcastMessage];
-        [self.object runAction:self.nextAction withKey:actionKey];
     }];
 }
 

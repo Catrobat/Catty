@@ -25,12 +25,6 @@
 #import "Script.h"
 
 
-@interface Brick() {
-    __block SKAction *_nextAction;
-}
-
-@end
-
 @implementation Brick
 
 
@@ -50,7 +44,7 @@
     return @"Brick (NO SPECIFIC DESCRIPTION GIVEN! OVERRIDE THE DESCRIPTION METHOD!";
 }
 
--(SKAction*)actionWithNextAction:(SKAction *)nextAction actionKey:(NSString*)actionKey
+-(SKAction*)action
 {
     NSError(@"%@ (NO SPECIFIC Action GIVEN! OVERRIDE THE action METHOD!", self.class);
     return nil;
@@ -64,13 +58,5 @@
                                  userInfo:nil];
 }
 
--(void)setNextAction:(SKAction*)nextAction
-{
-    _nextAction = nextAction;
-}
--(SKAction*)nextAction
-{
-    return _nextAction;
-}
 
 @end

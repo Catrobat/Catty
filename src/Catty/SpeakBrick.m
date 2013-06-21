@@ -42,19 +42,16 @@
 }
 
 
--(SKAction*)actionWithNextAction:(SKAction *)nextAction actionKey:(NSString*)actionKey
+-(SKAction*)action
 {
     NSDebug(@"Adding: %@", self.description);
     
-    self.nextAction = nextAction;
-    return [SKAction runBlock:^{
+    return [SKAction customActionWithDuration:0.0 actionBlock:^(SKNode *node, CGFloat elapsedTime) {
         NSDebug(@"Performing: %@", self.description);
         AVSpeechSynthesizer *synthesizer = [[AVSpeechSynthesizer alloc] init];
         AVSpeechUtterance *utterance = [[AVSpeechUtterance alloc] initWithString:self.text];
         [synthesizer speakUtterance:utterance];
 
-        
-        [self.object runAction:self.nextAction withKey:actionKey];
     }];
 }
 

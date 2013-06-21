@@ -44,18 +44,19 @@
     
     NSDebug(@"Adding: %@", self.description);
     
-    [self setNextAction:nextAction];
+#warning needs to be implemented using customAction
+    abort();
     
-    return [SKAction runBlock:^{
+    double durationInSeconds = [self.durationInSeconds interpretDoubleForSprite:self.object];
+    double xDestination = [self.xDestination interpretDoubleForSprite:self.object];
+    double yDestination = [self.yDestination interpretDoubleForSprite:self.object];
+    
+    return [SKAction customActionWithDuration:durationInSeconds actionBlock:^(SKNode *node, CGFloat elapsedTime) {
         NSDebug(@"Performing: %@", self.description);
-        double xDestination = [self.xDestination interpretDoubleForSprite:self.object];
-        double yDestination = [self.yDestination interpretDoubleForSprite:self.object];
-        double durationInSeconds = [self.durationInSeconds interpretDoubleForSprite:self.object];
-        CGPoint position = CGPointMake(xDestination, yDestination);
 
-        SKAction *glideToAction = [SKAction moveTo:position duration:durationInSeconds];
-        NSArray *array = [NSArray arrayWithObjects:glideToAction, self.nextAction, nil];
-        [self.object runAction:[SKAction sequence:array] withKey:actionKey];
+
+        CGPoint position = CGPointMake(xDestination, yDestination);
+        
     }];
 }
 

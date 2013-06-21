@@ -29,10 +29,10 @@
 #import "Logger.h"
 
 #ifdef DEBUG
-#define NSDebug(...) [Logger debug:__VA_ARGS__];
+//#define NSDebug(...) [Logger debug:__VA_ARGS__];
 //#define NSDebug(...) NSLog(@"[DEBUG]: %@", [NSString stringWithFormat:__VA_ARGS__]);
 //#define NSDebug(...) NSLog(__VA_ARGS__);
-//#define NSDebug(...)
+#define NSDebug(...)
 #else
 #define NSDebug(...)
 #endif

@@ -29,15 +29,14 @@
 @synthesize sound = _sound;
 
 
--(SKAction*)actionWithNextAction:(SKAction *)nextAction actionKey:(NSString*)actionKey
+-(SKAction*)action
 {
     NSDebug(@"Adding: %@", self.description);
-    self.nextAction = nextAction;
+
     return [SKAction runBlock:^{
         NSDebug(@"Performing: %@", self.description);
         [[AudioManager sharedAudioManager] playSoundWithFileName:self.sound.fileName andKey:self.object.name atFilePath:self.object.projectPath];
- 
-        [self.object runAction:self.nextAction withKey:actionKey];
+
     }];
 }
 

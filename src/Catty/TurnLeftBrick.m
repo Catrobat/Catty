@@ -29,17 +29,16 @@
 @synthesize degrees = _degrees;
 
 
--(SKAction*)actionWithNextAction:(SKAction *)nextAction actionKey:(NSString*)actionKey
+-(SKAction*)action
 {
     NSDebug(@"Adding: %@", self.description);
     
-    self.nextAction = nextAction;
-    return [SKAction runBlock:^{
+    return [SKAction customActionWithDuration:0.0 actionBlock:^(SKNode *node, CGFloat elapsedTime) {
+        
         NSDebug(@"Performing: %@", self.description);
         double rad = [Util degreeToRadians:[self.degrees interpretDoubleForSprite:self.object]];
         self.object.zRotation += rad;
-        
-        [self.object runAction:self.nextAction withKey:actionKey];
+
     }];
 }
 

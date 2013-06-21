@@ -29,7 +29,7 @@
 
 -(void)reset;
 
--(SKAction*)actionWithNextAction:(SKAction*)forAction followAction:(SKAction*)afterForAction actionKey:(NSString*)actionKey;
+-(BOOL) checkCondition;
 
 
 @end

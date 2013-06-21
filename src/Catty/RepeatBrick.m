@@ -34,28 +34,9 @@
 
 -(BOOL) checkCondition
 {
+    NSLog(@"Loop Count: %d", self.loopCount);
     int timesToRepeat = [self.timesToRepeat interpretIntegerForSprite:self.object];
     return (self.loopCount++ < timesToRepeat) ? YES : NO;
-}
-
-
--(SKAction*)actionWithNextAction:(SKAction*)forAction followAction:(SKAction*)afterForAction actionKey:(NSString*)actionKey
-{
-    NSDebug(@"Adding: %@", self.description);
-    self.nextAction = forAction;
-    
-    return [SKAction runBlock:^{
-        NSDebug(@"Performing: %@", self.description);
-        int timesToRepeat = [self.timesToRepeat interpretIntegerForSprite:self.object];
-
-        if (self.loopCount++ < timesToRepeat) {
-            
-            [self.object runAction:self.nextAction withKey:actionKey];
-        } else {
-            NSArray *array = [NSArray arrayWithObjects:afterForAction, nil];
-            [self.object runAction:[SKAction sequence:array] withKey:actionKey];
-        }
-    }];
 }
 
 

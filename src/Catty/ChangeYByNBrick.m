@@ -28,17 +28,14 @@
 @synthesize yMovement = _yMovement;
 
 
--(SKAction*)actionWithNextAction:(SKAction *)nextAction actionKey:(NSString*)actionKey
+-(SKAction*)action
 {
     NSDebug(@"Adding: %@", self.description);
-    self.nextAction = nextAction;
     
-    return [SKAction runBlock:^{
+    return [SKAction customActionWithDuration:0.0 actionBlock:^(SKNode *node, CGFloat elapsedTime) {
         NSDebug(@"Performing: %@", self.description);
         double yMov = [self.yMovement interpretDoubleForSprite:self.object];
         self.object.position = CGPointMake(self.object.position.x, self.object.position.y-yMov);
-        
-        [self.object runAction:self.nextAction withKey:actionKey];
     }];
 }
 

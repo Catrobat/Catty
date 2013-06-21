@@ -36,19 +36,17 @@
 }
 
 
--(SKAction*)actionWithNextAction:(SKAction *)nextAction actionKey:(NSString*)actionKey
+-(SKAction*)action
 {
     
     NSDebug(@"Adding: %@", self.description);
     
-    [self setNextAction:nextAction];
     
     return [SKAction runBlock:^{
         NSDebug(@"Performing: %@", self.description);
         float rad = [Util degreeToRadians:[self.degrees interpretDoubleForSprite:self.object]];
         self.object.zRotation = rad;
-        
-        [self.object runAction:self.nextAction withKey:actionKey];
+
     }];
 }
 

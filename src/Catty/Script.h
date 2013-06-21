@@ -28,7 +28,7 @@
 @class Brick;
 @class SpriteObject;
 
-@interface Script : NSObject
+@interface Script : SKNode
 
 @property (nonatomic, weak) SpriteObject *object;
 @property (nonatomic, strong) NSString *action;

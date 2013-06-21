@@ -26,16 +26,14 @@
 @implementation StopAllSoundsBrick
 
 
--(SKAction*)actionWithNextAction:(SKAction *)nextAction actionKey:(NSString*)actionKey
+-(SKAction*)action
 {
     NSDebug(@"Adding: %@", self.description);
     
-    self.nextAction = nextAction;
     return [SKAction runBlock:^{
         NSDebug(@"Performing: %@", self.description);
         [[AudioManager sharedAudioManager]stopAllSounds];
-        
-        [self.object runAction:self.nextAction withKey:actionKey];
+
     }];
 }
 
