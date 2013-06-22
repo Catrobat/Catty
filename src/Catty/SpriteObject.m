@@ -44,6 +44,7 @@
 -(id)init {
     if(self = [super init]) {
         self.activeScripts = [[NSMutableArray alloc] initWithCapacity:self.scriptList.count];
+        self.lookIndex = 0;
     }
     return self;
 }
@@ -144,6 +145,18 @@
     if (script) {
         [self startAndAddScript:script];
     }
+}
+
+
+-(Look*)nextLook
+{
+    if (self.lookIndex == [self.lookList count]-1) {
+        self.lookIndex = 0;
+    }
+    else {
+        self.lookIndex++;
+    }
+    return [self.lookList objectAtIndex:self.lookIndex];
 }
 
 

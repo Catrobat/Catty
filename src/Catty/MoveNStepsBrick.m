@@ -28,7 +28,6 @@
 -(void)performFromScript:(Script *)script
 {
     double steps = [self.steps interpretDoubleForSprite:self.object];
-    [self.object moveNSteps:steps];
 }
 
 

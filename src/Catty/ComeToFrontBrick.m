@@ -24,12 +24,6 @@
 
 @implementation ComeToFrontBrick
 
-- (void)performFromScript:(Script*)script
-{
-    NSDebug(@"Performing: %@", self.description);
-    
-    [self.object comeToFront];    
-}
 
 -(SKAction*)action
 {

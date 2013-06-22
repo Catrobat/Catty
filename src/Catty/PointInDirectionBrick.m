@@ -27,15 +27,6 @@
 
 @implementation PointInDirectionBrick
 
-- (void)performFromScript:(Script*)script
-{
-    NSDebug(@"Performing: %@", self.description);
-    
-    float deg = [self.degrees interpretDoubleForSprite:self.object];
-    
-    [self.object pointInDirection:deg];
-}
-
 
 -(SKAction*)action
 {

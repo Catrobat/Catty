@@ -64,37 +64,40 @@
 // events
 - (void)start;
 - (void)scriptFinished:(Script*)script;
-- (void)cleanup;
+
+
+- (void)broadcast:(NSString*)message;
+- (void)broadcastAndWait:(NSString*)message;
 
 - (void)performBroadcastWaitScript_calledFromBroadcastWaitDelegate_withMessage:(NSString *)message;
+
+- (Look*)nextLook;
 
 
 // actions
 - (void)changeLook:(Look*)look;
-- (void)nextLook;
-- (void)glideToPosition:(CGPoint)position withDurationInSeconds:(float)durationInSeconds fromScript:(Script*)script;
-- (void)hide;
-- (void)show;
-- (void)broadcast:(NSString*)message;
-- (void)broadcastAndWait:(NSString*)message;
-- (void)comeToFront;
-- (void)changeSizeByNInPercent:(float)sizePercentageRate;
-- (void)changeXBy:(float)x;
-- (void)changeYBy:(float)y;
-- (void)stopAllSounds;
-- (void)setSizeToPercentage:(float)sizeInPercentage;
-- (void)goNStepsBack:(int)n;
-- (void)setTransparencyInPercent:(float)transparencyInPercent;
-- (void)changeTransparencyInPercent:(float)increaseInPercent;
-- (void)playSound:(Sound*)sound;
-- (void)speakSound:(Sound*)sound;
-- (void)setVolumeToInPercent:(float)volumeInPercent;
-- (void)changeVolumeInPercent:(float)volumeInPercent;
-- (void)turnLeft:(float)degrees;
-- (void)turnRight:(float)degrees;
-- (void)pointInDirection:(float)degrees;
-- (void)changeBrightness:(float)factor;
-- (void)moveNSteps:(float)steps;
-- (void)ifOnEdgeBounce;
+
+//- (void)glideToPosition:(CGPoint)position withDurationInSeconds:(float)durationInSeconds fromScript:(Script*)script;
+//- (void)hide;
+//- (void)show;
+//- (void)comeToFront;
+//- (void)changeSizeByNInPercent:(float)sizePercentageRate;
+//- (void)changeXBy:(float)x;
+//- (void)changeYBy:(float)y;
+//- (void)stopAllSounds;
+//- (void)setSizeToPercentage:(float)sizeInPercentage;
+//- (void)goNStepsBack:(int)n;
+//- (void)setTransparencyInPercent:(float)transparencyInPercent;
+//- (void)changeTransparencyInPercent:(float)increaseInPercent;
+//- (void)playSound:(Sound*)sound;
+//- (void)speakSound:(Sound*)sound;
+//- (void)setVolumeToInPercent:(float)volumeInPercent;
+//- (void)changeVolumeInPercent:(float)volumeInPercent;
+//- (void)turnLeft:(float)degrees;
+//- (void)turnRight:(float)degrees;
+//- (void)pointInDirection:(float)degrees;
+//- (void)changeBrightness:(float)factor;
+//- (void)moveNSteps:(float)steps;
+//- (void)ifOnEdgeBounce;
 
 @end

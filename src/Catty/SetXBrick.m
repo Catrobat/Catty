@@ -30,19 +30,17 @@
 @synthesize xPosition = _xPosition;
 
 
-- (void)performFromScript:(Script*)script
+-(SKAction*)action
 {
-
-    NSDebug(@"Performing: %@", self.description);
-    double xPosition = [self.xPosition interpretDoubleForSprite:self.object];
-
-    self.object.position = CGPointMake(xPosition, self.object.position.y);
-    
-//    CGPoint position = CGPointMake(self.xPosition.floatValue, self.object.position.y);
-//    
-//    [self.object glideToPosition:position withDurationInSeconds:0 fromScript:script];
-    
+    return [SKAction runBlock:^{
+        NSDebug(@"Performing: %@", self.description);
+        double xPosition = [self.xPosition interpretDoubleForSprite:self.object];
+        
+        self.object.position = CGPointMake(xPosition, self.object.position.y);
+    }];
 }
+
+
 
 #pragma mark - Description
 - (NSString*)description

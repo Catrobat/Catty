@@ -24,20 +24,9 @@
 
 @implementation ForeverBrick
 
-
-- (void)performFromScript:(Script*)script
+-(BOOL)checkCondition
 {
-    NSDebug(@"Performing: %@", self.description);
-}
-
-
--(SKAction*)actionWithNextAction:(SKAction*)forAction followAction:(SKAction*)afterForAction actionKey:(NSString*)actionKey
-{
-    NSDebug(@"Adding: %@", self.description);
-    return [SKAction runBlock:^{
-        NSDebug(@"Performing: %@", self.description);
-        [self.object runAction:forAction withKey:actionKey];
-    }];
+    return YES;
 }
 
 

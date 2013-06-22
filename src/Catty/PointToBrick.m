@@ -80,7 +80,7 @@
     
     NSDebug(@"Performing: %@, Degreees: (%f), Pointed Object: Position: %@", self.description, rotationDegrees, NSStringFromCGPoint(self.pointedObject.position));
     
-    [self.object pointInDirection:rotationDegrees];
+    //[self.object pointInDirection:rotationDegrees];
     
 }
 

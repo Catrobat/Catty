@@ -28,7 +28,7 @@
 {
     NSLog(@"Performing: %@", self.description);
     
-    [self.object ifOnEdgeBounce];
+    //[self.object ifOnEdgeBounce];
     
 }
 

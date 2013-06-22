@@ -35,6 +35,13 @@
     return self;
 }
 
+-(SKAction*)action
+{
+    return [SKAction runBlock:^{
+#warning implement me
+    }];
+}
+
 - (void)performFromScript:(Script*)script;
 {
     NSDebug(@"Performing: %@", self.description);

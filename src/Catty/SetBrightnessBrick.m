@@ -29,7 +29,6 @@
 -(void)performFromScript:(Script *)script
 {
     double brightness = [self.brightness interpretDoubleForSprite:self.object];
-    [self.object changeBrightness:brightness];
 }
 
 #pragma mark - Description

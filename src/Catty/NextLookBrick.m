@@ -21,16 +21,29 @@
  */
 
 #import "Nextlookbrick.h"
+#import "Look.h"
+
 
 @implementation NextLookBrick
 
-- (void)performFromScript:(Script*)script
-{
-    NSDebug(@"Performing: %@", self.description);
-    
-    [self.object performSelectorOnMainThread:@selector(nextLook) withObject:nil waitUntilDone:YES];
 
+-(SKAction*)action
+{
+    return [SKAction runBlock:^{
+        NSDebug(@"Performing: %@", self.description);
+        Look* look = [self.object nextLook];
+        UIImage* image = [UIImage imageWithContentsOfFile:[self pathForLook:look]];
+        SKTexture* texture = [SKTexture textureWithImage:image];
+        self.object.size = texture.size;
+        self.object.texture = texture;
+    }];
 }
+
+-(NSString*)pathForLook:(Look*)look
+{
+    return [NSString stringWithFormat:@"%@images/%@", self.object.projectPath, look];
+}
+
 
 
 #pragma mark - Description

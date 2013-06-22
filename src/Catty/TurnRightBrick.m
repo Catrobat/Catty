@@ -27,13 +27,6 @@
 @implementation TurnRightBrick
 
 
-- (void)performFromScript:(Script*)script
-{
-    NSDebug(@"Performing: %@", self.description);
-    double degrees = [self.degrees interpretDoubleForSprite:self.object];
-    
-    [self.object turnRight:degrees];
-}
 
 -(SKAction*)action
 {    

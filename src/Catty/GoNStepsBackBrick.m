@@ -28,13 +28,18 @@
 @synthesize steps = _steps;
 
 
-- (void)performFromScript:(Script*)script
+-(SKAction*)action
 {
-    NSDebug(@"Performing: %@", self.description);
-    
-    int steps = [self.steps interpretIntegerForSprite:self.object];
-    
-    [self.object goNStepsBack:steps];
+
+    return [SKAction runBlock:^{
+        NSDebug(@"Performing: %@", self.description);
+        
+        int steps = [self.steps interpretIntegerForSprite:self.object];
+        SKScene* scene = self.object.scene;
+        int currentIndex = [scene.children indexOfObject:self.object];
+        [scene insertChild:self.object atIndex:MAX(1, currentIndex - steps)];
+    }];
+
 }
 
 #pragma mark - Description
