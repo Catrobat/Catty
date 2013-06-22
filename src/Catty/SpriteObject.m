@@ -59,6 +59,7 @@
 }
 
 
+
 -(void)start {
     self.position = CGPointMake(0, 0);
     for (Script *script in self.scriptList)
@@ -76,7 +77,12 @@
     
     NSDebug(@"Touched: %@", self.name);
     
+
     for (UITouch *touch in touches) {
+        
+        CGPoint location = [touch locationInNode:self.scene];
+        
+        NSLog(@"Location x:%f, y:%f", location.x, location.y);
         
         
         for (Script *script in self.scriptList)

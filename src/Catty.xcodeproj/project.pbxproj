@@ -55,6 +55,7 @@
 		B4826F78174D076800F57AE9 /* NoteBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = B4826F77174D076800F57AE9 /* NoteBrick.m */; };
 		B4826F83174D5BB100F57AE9 /* OrderedMapTable.m in Sources */ = {isa = PBXBuildFile; fileRef = B4826F82174D5BB100F57AE9 /* OrderedMapTable.m */; };
 		B4840CA7174FAC3E002DEC53 /* MoveNStepsBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = B4840CA6174FAC3E002DEC53 /* MoveNStepsBrick.m */; };
+		B496F51117759969004BF78A /* SceneTests.m in Sources */ = {isa = PBXBuildFile; fileRef = B496F51017759968004BF78A /* SceneTests.m */; };
 		B4A92DCD175F8DF700608667 /* SSZipArchive.m in Sources */ = {isa = PBXBuildFile; fileRef = B4A92DCC175F8DF700608667 /* SSZipArchive.m */; };
 		B4A92DD2175FD4B800608667 /* GDataXMLNode.m in Sources */ = {isa = PBXBuildFile; fileRef = B4A92DD1175FD4B700608667 /* GDataXMLNode.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		B4AF798D174A9A340041555A /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B4AF798C174A9A330041555A /* CoreLocation.framework */; };
@@ -285,6 +286,8 @@
 		B4826F82174D5BB100F57AE9 /* OrderedMapTable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrderedMapTable.m; sourceTree = "<group>"; };
 		B4840CA5174FAC3E002DEC53 /* MoveNStepsBrick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MoveNStepsBrick.h; sourceTree = "<group>"; };
 		B4840CA6174FAC3E002DEC53 /* MoveNStepsBrick.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MoveNStepsBrick.m; sourceTree = "<group>"; };
+		B496F50F17759968004BF78A /* SceneTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SceneTests.h; sourceTree = "<group>"; };
+		B496F51017759968004BF78A /* SceneTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SceneTests.m; sourceTree = "<group>"; };
 		B4A92DCB175F8DF700608667 /* SSZipArchive.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SSZipArchive.h; path = SSZipArchive/SSZipArchive.h; sourceTree = "<group>"; };
 		B4A92DCC175F8DF700608667 /* SSZipArchive.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SSZipArchive.m; path = SSZipArchive/SSZipArchive.m; sourceTree = "<group>"; };
 		B4A92DD0175FD4B700608667 /* GDataXMLNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GDataXMLNode.h; path = GDataXMLNode/GDataXMLNode.h; sourceTree = "<group>"; };
@@ -880,6 +883,7 @@
 				B46B271417703FBE00172837 /* SensorHandlerTests */,
 				B46B270917703F9400172837 /* CattyTests.m */,
 				B46B270417703F9400172837 /* Supporting Files */,
+				B496F5131775996D004BF78A /* SceneTests */,
 			);
 			path = CattyTests;
 			sourceTree = "<group>";
@@ -946,6 +950,15 @@
 				B4840CA6174FAC3E002DEC53 /* MoveNStepsBrick.m */,
 			);
 			name = MoveNStepsBrick;
+			sourceTree = "<group>";
+		};
+		B496F5131775996D004BF78A /* SceneTests */ = {
+			isa = PBXGroup;
+			children = (
+				B496F50F17759968004BF78A /* SceneTests.h */,
+				B496F51017759968004BF78A /* SceneTests.m */,
+			);
+			name = SceneTests;
 			sourceTree = "<group>";
 		};
 		B4B7BAC51738E21B000BDC94 /* XMLObjectReference */ = {
@@ -2052,6 +2065,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B496F51117759969004BF78A /* SceneTests.m in Sources */,
 				B46B271317703FB700172837 /* SensorHandlerTests.m in Sources */,
 				B46B270A17703F9400172837 /* CattyTests.m in Sources */,
 			);

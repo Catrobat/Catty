@@ -20,32 +20,9 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import "ChangeYByNBrick.h"
-#import "Formula.h"
 
-@implementation ChangeYByNBrick
+#import <XCTest/XCTest.h>
 
-@synthesize yMovement = _yMovement;
-
-
--(SKAction*)action
-{
-    NSDebug(@"Adding: %@", self.description);
-    
-    return [SKAction customActionWithDuration:0.0 actionBlock:^(SKNode *node, CGFloat elapsedTime) {
-        NSDebug(@"Performing: %@", self.description);
-        double yMov = [self.yMovement interpretDoubleForSprite:self.object];
-        self.object.position = CGPointMake(self.object.position.x, self.object.position.y+yMov);
-    }];
-}
-
-
-
-#pragma mark - Description
-- (NSString*)description
-{
-    double xMov = [self.yMovement interpretDoubleForSprite:self.object];
-    return [NSString stringWithFormat:@"ChangeYBy (%f)", xMov];
-}
+@interface SceneTests : XCTestCase
 
 @end

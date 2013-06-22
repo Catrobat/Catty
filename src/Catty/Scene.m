@@ -95,17 +95,17 @@
 }
 
 -(float)convertYCoordinateToScene:(float)y {
-    return (self.size.height/2.0f - y);
+    return (self.size.height/2.0f + y);
 }
 
 -(float)convertXCoordinateToScene:(float)x {
-    return (self.scene.size.width  / 2.0f + x);
+    return (self.scene.size.width/2.0f + x);
 }
 
 -(CGPoint)convertSceneCoordinateToPoint:(CGPoint)point
 {
     float x = point.x - self.scene.size.width/2.0f;
-    float y = self.scene.size.height/2.0f - point.y;
+    float y = point.y - self.scene.size.height/2.0f;
     return CGPointMake(x, y);
 }
 

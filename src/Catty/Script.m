@@ -105,13 +105,20 @@ int count = 1;
                 self.currentBrickIndex = [self.brickList indexOfObject:[((LoopBeginBrick*)brick) loopEndBrick]]+1;
             }
             
-            [self runNextAction];
+            // Needs to be async because of recursion!
+            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+                [self runNextAction];
+            });
 
         }
         
         else if([brick isKindOfClass:[LoopEndBrick class]]) {
                 self.currentBrickIndex = [self.brickList indexOfObject:[((LoopEndBrick*)brick) loopBeginBrick]];
+            
+            // Needs to be async because of recursion!
+            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
                 [self runNextAction];
+            });
         }
         else {
             NSMutableArray* action = [[NSMutableArray alloc] init];
@@ -122,7 +129,7 @@ int count = 1;
             }];
         }
     } else {
-        NSLog(@"Done");
+        NSDebug(@"Script Execution done!. Call Delegate or similar!");
     }
     
     
