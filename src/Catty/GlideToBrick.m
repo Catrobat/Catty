@@ -24,6 +24,15 @@
 #import "Script.h"
 #import "Formula.h"
 
+@interface GlideToBrick()
+
+@property (nonatomic, assign) BOOL isInitialized;
+@property (nonatomic, assign) CGPoint currentPoint;
+@property (nonatomic, assign) CGPoint startingPoint;
+
+@end
+
+
 @implementation GlideToBrick
 
 @synthesize durationInSeconds = _durationInSeconds;
@@ -31,13 +40,17 @@
 @synthesize yDestination = _yDestination;
 
 
-#pragma mark - override
--(void)performFromScript:(Script*)script
+-(id)init
 {
-    NSDebug(@" ERROR ERROR ERROR Performing: %@", self.description);
-
+    if(self = [super init]) {
+        self.isInitialized = NO;
+    }
+    return self;
 }
 
+
+
+#pragma mark - override
 
 -(SKAction*)action
 {
@@ -46,9 +59,25 @@
     double xDestination = [self.xDestination interpretDoubleForSprite:self.object];
     double yDestination = [self.yDestination interpretDoubleForSprite:self.object];
     CGPoint position = CGPointMake(xDestination, yDestination);
-        
+    
     return [SKAction customActionWithDuration:durationInSeconds actionBlock:^(SKNode *node, CGFloat elapsedTime) {
         NSDebug(@"Performing: %@", self.description);
+        
+        if(!self.isInitialized) {
+            self.isInitialized = YES;
+            self.currentPoint = self.object.position;
+            self.startingPoint = self.currentPoint;
+        }
+        
+        // TODO: handle extreme movemenets and set currentPoint accordingly
+        CGFloat percent = elapsedTime / durationInSeconds;
+        
+        CGFloat xPoint = self.startingPoint.x + (xDestination - self.startingPoint.x) * percent;
+        CGFloat yPoint = self.startingPoint.y + (yDestination - self.startingPoint.y) * percent;
+        
+        self.object.position = self.currentPoint = CGPointMake(xPoint, yPoint);
+
+
     }];
 }
 
