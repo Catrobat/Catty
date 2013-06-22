@@ -34,8 +34,15 @@
     
     return [SKAction runBlock:^{
         NSDebug(@"Performing: %@", self.description);
+        double xScale = self.object.xScale;
+        double yScale = self.object.yScale;
+        self.object.xScale = 1.0;
+        self.object.yScale = 1.0;
         self.object.size = texture.size;
         self.object.texture = texture;
+        self.object.currentLook = self.look;
+        self.object.xScale = xScale;
+        self.object.yScale = yScale;
     }];
 }
 

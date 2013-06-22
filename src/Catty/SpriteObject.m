@@ -33,7 +33,6 @@
 @interface SpriteObject()
 
 @property (nonatomic, strong) NSMutableArray *activeScripts;
-@property (assign) int lookIndex;
 @property (nonatomic, strong) NSMutableDictionary *sounds;
 @end
 
@@ -44,7 +43,6 @@
 -(id)init {
     if(self = [super init]) {
         self.activeScripts = [[NSMutableArray alloc] initWithCapacity:self.scriptList.count];
-        self.lookIndex = 0;
     }
     return self;
 }
@@ -59,11 +57,11 @@
     super.position = [((Scene*)self.scene) convertPointToScene:position];
 }
 
+
 -(void)dealloc
 {
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
-
 
 
 -(void)start {
@@ -134,13 +132,10 @@
 
 -(Look*)nextLook
 {
-    if (self.lookIndex == [self.lookList count]-1) {
-        self.lookIndex = 0;
-    }
-    else {
-        self.lookIndex++;
-    }
-    return [self.lookList objectAtIndex:self.lookIndex];
+    int index = [self.lookList indexOfObject:self.currentLook];
+    index++;
+    index %= [self.lookList count];
+    return [self.lookList objectAtIndex:index];
 }
 
 

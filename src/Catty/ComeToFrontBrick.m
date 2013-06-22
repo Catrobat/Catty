@@ -28,8 +28,9 @@
 -(SKAction*)action
 {
     return [SKAction runBlock:^{
+        SKNode* parent = self.object.parent;
         [self.object.parent removeChildrenInArray:@[self.object]];
-        [self.object.parent  addChild:self.object];
+        [parent  addChild:self.object];
     }];
 }
 

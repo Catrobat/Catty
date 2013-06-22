@@ -32,6 +32,7 @@
 #import "SpriteManagerDelegate.h"
 #import "Brick.h"
 #import "BroadcastWaitHandler.h"
+#import "AudioManager.h"
 
 @interface SceneViewController ()
 
@@ -130,6 +131,11 @@
         }
     }
     return program;
+}
+
+-(void)dealloc
+{
+    [[AudioManager sharedAudioManager] stopAllSounds];
 }
 
 

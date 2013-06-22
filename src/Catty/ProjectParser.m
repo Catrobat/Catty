@@ -160,9 +160,7 @@
         objc_property_t property = class_getProperty([object class], [child.name UTF8String]);
         
         if (property) {
-            NSString *propertyType = [NSString stringWithUTF8String:property_getTypeString(property)];
-            NSDebug(@"Property type: %@", propertyType);
-            
+            NSString *propertyType = [NSString stringWithUTF8String:property_getTypeString(property)];            
             if ([propertyType isEqualToString:kParserObjectTypeArray]) {
                 [NSException raise:@"WrongPropertyException" format:@"We need to keep the references at all time, please use NSMutableArray for property: %@", child.name];
             }

@@ -60,7 +60,6 @@
     }    
 }
 
-
 -(CGPoint)convertPointToScene:(CGPoint)point
 {
     CGPoint scenePoint;
@@ -69,6 +68,7 @@
     
     return scenePoint;
 }
+
 
 -(float)convertYCoordinateToScene:(float)y {
     return (self.size.height/2.0f + y);

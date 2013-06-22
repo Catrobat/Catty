@@ -32,6 +32,7 @@
     return [SKAction runBlock:^{
         NSDebug(@"Performing: %@", self.description);
         Look* look = [self.object nextLook];
+        self.object.currentLook = look;
         UIImage* image = [UIImage imageWithContentsOfFile:[self pathForLook:look]];
         SKTexture* texture = [SKTexture textureWithImage:image];
         self.object.size = texture.size;

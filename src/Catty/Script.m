@@ -433,6 +433,7 @@
 -(NSString*)description
 {
     NSMutableString *ret = [[NSMutableString alloc] initWithString:@"Script"];
+    [ret appendFormat:@"(%@)", self.object.name ];
     
     if ([self.brickList count] > 0)
     {

@@ -56,6 +56,8 @@
 
 @property (nonatomic, strong) NSMutableArray *scriptList;
 
+@property (nonatomic, strong) Look* currentLook;
+
 
 
 /* Loop Update - called once per frame. */
