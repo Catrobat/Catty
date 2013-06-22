@@ -34,7 +34,6 @@
         double sizeInPercent = [self.size interpretDoubleForSprite:self.object];
         self.object.xScale = sizeInPercent/100.0;
         self.object.yScale = sizeInPercent/100.0;
-
     }];
 }
 
