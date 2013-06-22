@@ -83,9 +83,6 @@
     NSDebug(@"Starting: %@", self.description);
     
     
-    Brick* brick = [self.brickList objectAtIndex:0];
-    [self runAction:[brick action]];
-    
     [self runNextAction];
     
 }
@@ -128,7 +125,7 @@
             }];
         }
     } else {
-        NSDebug(@"Script Execution done!. Call Delegate or similar!");
+        [self.object scriptFinished:self];
     }
     
     

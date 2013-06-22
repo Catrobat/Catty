@@ -28,9 +28,7 @@
 
 -(SKAction*)action
 {
-    
-    NSDebug(@"Adding: %@", self.description);
-        
+
     return [SKAction runBlock:^{
         NSDebug(@"Performing: %@", self.description);
         double xPosition = [self.xPosition interpretDoubleForSprite:self.object];

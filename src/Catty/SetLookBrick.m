@@ -48,7 +48,7 @@
 #pragma mark - Description
 - (NSString*)description
 {
-    return [NSString stringWithFormat:@"SetLookBrick (Look: %@)", self.look];
+    return [NSString stringWithFormat:@"SetLookBrick (Look: %@)", self.look.name];
 }
 
 @end

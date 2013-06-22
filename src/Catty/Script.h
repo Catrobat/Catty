@@ -37,8 +37,6 @@
 -(void) start;
 -(void) reset;
 
-- (void)updateWithTimeSinceLastUpdate:(CFTimeInterval)interval;
-
 -(NSString*)description;
 
 @end

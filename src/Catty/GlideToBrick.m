@@ -58,7 +58,6 @@
     double durationInSeconds = [self.durationInSeconds interpretDoubleForSprite:self.object];
     double xDestination = [self.xDestination interpretDoubleForSprite:self.object];
     double yDestination = [self.yDestination interpretDoubleForSprite:self.object];
-    CGPoint position = CGPointMake(xDestination, yDestination);
     
     return [SKAction customActionWithDuration:durationInSeconds actionBlock:^(SKNode *node, CGFloat elapsedTime) {
         NSDebug(@"Performing: %@", self.description);

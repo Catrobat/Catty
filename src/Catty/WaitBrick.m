@@ -29,18 +29,9 @@
 
 @synthesize timeToWaitInSeconds = _timeToWaitInSeconds;
 
-- (void)performFromScript:(Script*)script
-{
-    NSDebug(@"Performing: %@", self.description);
-    
-    double time = [self.timeToWaitInSeconds interpretDoubleForSprite:self.object];
-    
-    [NSThread sleepForTimeInterval:time];
-}
-
 -(SKAction*)action
 {
-    NSDebug(@"Adding: %@", self.description);
+    NSDebug(@"Performing: %@", self.description);
 
     return [SKAction waitForDuration:[self.timeToWaitInSeconds interpretDoubleForSprite:self.object]];
 }

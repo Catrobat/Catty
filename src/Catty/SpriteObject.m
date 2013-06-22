@@ -55,7 +55,6 @@
 
 -(void) setPosition:(CGPoint)position
 {
-    CGPoint newPosition = [((Scene*)self.scene) convertPointToScene:position];
     super.position = [((Scene*)self.scene) convertPointToScene:position];
 }
 
@@ -71,12 +70,21 @@
     for (Script *script in self.scriptList)
     {
         if ([script isKindOfClass:[StartScript class]]) {
-            [self addChild:script];
-            [script start];
-            break;
+            [self startAndAddScript:script];
+        }
+        
+        if([script isKindOfClass:[BroadcastScript class]]) {
+            [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(performBroadcastScript:) name:((BroadcastScript*)script).receivedMessage object:nil];
         }
     }
 }
+
+
+- (void)scriptFinished:(Script*)script
+{
+    [self removeChildrenInArray:@[script]];
+}
+
 
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
 {
@@ -95,27 +103,50 @@
         {
             if ([script isKindOfClass:[WhenScript class]]) {
                 
-                if([[self children] indexOfObject:script] == INT_MAX) {
-                    [self addChild:script];
-                }
-                [script start];
+                [self startAndAddScript:script];
                 break;
-            }
-            
-            if([script isKindOfClass:[BroadcastScript class]]) {
-                [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(performBroadcastScript:) name:((BroadcastScript*)script).receivedMessage object:nil];
             }
         }
     }
     
-
 }
+
+
+-(void)startAndAddScript:(Script*)script
+{
+    if([[self children] indexOfObject:script] == INT_MAX) {
+        [self addChild:script];
+    }
+    [script start];
+}
+
 
 #pragma mark - Broadcast
 -(void)broadcast:(NSString *)message
 {
     [[NSNotificationCenter defaultCenter] postNotificationName:message object:self];
 }
+
+- (void)performBroadcastScript:(NSNotification*)notification
+{
+    NSDebug(@"Notification: %@", notification.name);
+    BroadcastScript *script = nil;
+
+    for (Script *s in self.scriptList) {
+        if ([s isKindOfClass:[BroadcastScript class]]) {
+            BroadcastScript *tmp = (BroadcastScript*)s;
+            if ([tmp.receivedMessage isEqualToString:notification.name]) {
+                script = tmp;
+            }
+        }
+    }
+
+    if (script) {
+        [self startAndAddScript:script];
+    }
+}
+
+
 
 
 //- (void)updateWithTimeSinceLastUpdate:(CFTimeInterval)interval

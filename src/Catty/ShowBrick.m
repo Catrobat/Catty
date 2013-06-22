@@ -25,12 +25,16 @@
 
 @implementation ShowBrick
 
-- (void)performFromScript:(Script*)script
-{
-    NSDebug(@"Performing: %@", self.description);
 
-    [self.object show];
+-(SKAction*)action
+{
+    return [SKAction runBlock:^{
+        NSDebug(@"Performing: %@", self.description);
+        self.object.hidden = NO;
+    }];
+
 }
+
 
 
 #pragma mark - Description

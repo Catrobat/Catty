@@ -24,7 +24,6 @@
 
 @interface BroadcastScript : Script
 
-#warning @mattias: I've added this property. Please implement it correctly... :-P
 @property (nonatomic, strong) NSString *receivedMessage;
 
 @end

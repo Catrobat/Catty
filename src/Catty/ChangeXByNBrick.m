@@ -28,12 +28,13 @@
 @synthesize xMovement = _xMovement;
 
 
-- (void)performFromScript:(Script*)script
+-(SKAction*)action
 {
-    NSDebug(@"Performing: %@", self.description);
-    
-    double xMov = [self.xMovement interpretDoubleForSprite:self.object];
-    [self.object changeXBy:xMov];
+    return [SKAction runBlock:^{
+        NSDebug(@"Performing: %@", self.description);
+        double xMov = [self.xMovement interpretDoubleForSprite:self.object];
+        self.object.position = CGPointMake(self.object.position.x+xMov, self.object.position.y);
+    }];
 }
 
 #pragma mark - Description
