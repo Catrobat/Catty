@@ -29,7 +29,6 @@
 #import "AppDelegate.h"
 #import "Util.h"
 #import "CatrobatImageCell.h"
-#import "StageViewController.h"
 #import "ProgramLoadingInfo.h"
 #import "SegueDefines.h"
 #import "Util.h"

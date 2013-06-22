@@ -27,11 +27,8 @@
 @implementation SetSizeToBrick
 
 
--(SKAction*)actionWithNextAction:(SKAction *)nextAction actionKey:(NSString*)actionKey
+-(SKAction*)action
 {
-    NSDebug(@"Adding: %@", self.description);
-    
-    
     return [SKAction runBlock:^{
         NSDebug(@"Performing: %@", self.description);
         double sizeInPercent = [self.size interpretDoubleForSprite:self.object];

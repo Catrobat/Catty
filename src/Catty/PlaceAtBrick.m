@@ -26,7 +26,7 @@
 @implementation PlaceAtBrick
 
 
--(SKAction*)actionWithNextAction:(SKAction *)nextAction actionKey:(NSString*)actionKey
+-(SKAction*)action
 {
     
     NSDebug(@"Adding: %@", self.description);
@@ -36,7 +36,6 @@
         double xPosition = [self.xPosition interpretDoubleForSprite:self.object];
         double yPosition = [self.yPosition interpretDoubleForSprite:self.object];
         self.object.position = CGPointMake(xPosition, yPosition);
-
     }];
 }
 

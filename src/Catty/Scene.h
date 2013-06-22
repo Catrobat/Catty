@@ -35,6 +35,7 @@
 -(CGPoint)convertPointToScene:(CGPoint)point;
 -(float)convertYCoordinateToScene:(float)y;
 -(float)convertXCoordinateToScene:(float)x;
+-(CGFloat) convertDegreesToScene:(CGFloat)degrees;
 
 -(CGPoint)convertSceneCoordinateToPoint:(CGPoint)point;
 

@@ -90,7 +90,7 @@
     
 }
 
-int count = 1;
+
 -(void)runNextAction
 {
     
@@ -124,7 +124,6 @@ int count = 1;
             NSMutableArray* action = [[NSMutableArray alloc] init];
             [action addObject:[brick action]];
             [self runAction:[SKAction sequence:action] completion:^{
-                NSLog(@"Completion: %@", [brick class]);
                 [self runNextAction];
             }];
         }

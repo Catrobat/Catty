@@ -130,6 +130,9 @@ static Logger* instance;
     NSCharacterSet *separatorSet = [NSCharacterSet characterSetWithCharactersInString:@" -[]+?.,"];
     NSMutableArray *array = [NSMutableArray arrayWithArray:[sourceString  componentsSeparatedByCharactersInSet:separatorSet]];
     [array removeObject:@""];
+    if([self isDispatchBlock:[array objectAtIndex:4]]) {
+        return [array objectAtIndex:5];
+    }
     return [array objectAtIndex:4];
     
 }
@@ -173,6 +176,11 @@ static Logger* instance;
         return error;
     }
     return -1;
+}
+
+-(BOOL) isDispatchBlock:(NSString*)block
+{
+    return [block hasPrefix:@"__"] ? YES : NO;
 }
 
 

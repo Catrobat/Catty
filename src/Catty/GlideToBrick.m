@@ -39,24 +39,16 @@
 }
 
 
--(SKAction*)actionWithNextAction:(SKAction *)nextAction actionKey:(NSString*)actionKey
+-(SKAction*)action
 {
-    
-    NSDebug(@"Adding: %@", self.description);
-    
-#warning needs to be implemented using customAction
-    abort();
     
     double durationInSeconds = [self.durationInSeconds interpretDoubleForSprite:self.object];
     double xDestination = [self.xDestination interpretDoubleForSprite:self.object];
     double yDestination = [self.yDestination interpretDoubleForSprite:self.object];
-    
+    CGPoint position = CGPointMake(xDestination, yDestination);
+        
     return [SKAction customActionWithDuration:durationInSeconds actionBlock:^(SKNode *node, CGFloat elapsedTime) {
         NSDebug(@"Performing: %@", self.description);
-
-
-        CGPoint position = CGPointMake(xDestination, yDestination);
-        
     }];
 }
 

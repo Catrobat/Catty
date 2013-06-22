@@ -20,8 +20,7 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import "SPImage.h"
-#import "SPTouchEvent.h"
+
 #import <SpriteKit/SpriteKit.h>
 
 @class Script;
@@ -66,7 +65,6 @@
 - (void)start;
 - (void)scriptFinished:(Script*)script;
 - (void)cleanup;
-- (void)onImageTouched:(SPTouchEvent*)event;
 
 - (void)performBroadcastWaitScript_calledFromBroadcastWaitDelegate_withMessage:(NSString *)message;
 

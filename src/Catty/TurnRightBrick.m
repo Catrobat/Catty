@@ -36,9 +36,7 @@
 }
 
 -(SKAction*)action
-{
-    NSDebug(@"Adding: %@", self.description);
-    
+{    
     return [SKAction customActionWithDuration:0.0 actionBlock:^(SKNode *node, CGFloat elapsedTime) {
         
         NSDebug(@"Performing: %@", self.description);

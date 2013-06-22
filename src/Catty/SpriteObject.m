@@ -56,8 +56,12 @@
 -(void) setPosition:(CGPoint)position
 {
     CGPoint newPosition = [((Scene*)self.scene) convertPointToScene:position];
-    NSLog(@"New Position: x:%f, y:%f", newPosition.x, newPosition.y);
     super.position = [((Scene*)self.scene) convertPointToScene:position];
+}
+
+-(void)dealloc
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 
@@ -97,11 +101,22 @@
                 [script start];
                 break;
             }
+            
+            if([script isKindOfClass:[BroadcastScript class]]) {
+                [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(performBroadcastScript:) name:((BroadcastScript*)script).receivedMessage object:nil];
+            }
         }
     }
     
 
 }
+
+#pragma mark - Broadcast
+-(void)broadcast:(NSString *)message
+{
+    [[NSNotificationCenter defaultCenter] postNotificationName:message object:self];
+}
+
 
 //- (void)updateWithTimeSinceLastUpdate:(CFTimeInterval)interval
 //{
@@ -353,7 +368,7 @@
 //    }
 //    
 //    self.activeScripts = nil;
-//    [[NSNotificationCenter defaultCenter] removeObserver:self];
+
 //}
 //
 //
@@ -461,10 +476,6 @@
 ////    [Sparrow.juggler addObject:tween];
 //}
 //
-//-(void)broadcast:(NSString *)message
-//{
-//    [[NSNotificationCenter defaultCenter] postNotificationName:message object:self];
-//}
 //
 //
 //-(void)setSizeToPercentage:(float)sizeInPercentage

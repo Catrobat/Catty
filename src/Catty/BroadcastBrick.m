@@ -44,7 +44,7 @@
     [self.object broadcast:self.broadcastMessage];    
 }
 
--(SKAction*)actionWithNextAction:(SKAction *)nextAction actionKey:(NSString*)actionKey
+-(SKAction*)action
 {
     NSDebug(@"Adding: %@", self.description);
         

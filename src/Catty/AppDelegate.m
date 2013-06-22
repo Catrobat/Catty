@@ -22,8 +22,6 @@
 
 
 #import "AppDelegate.h"
-#import "Stage.h"
-#import "StageViewController.h"
 #import "FileManager.h"
 #import "Util.h"
 #import "UIColor+CatrobatUIColorExtensions.h"

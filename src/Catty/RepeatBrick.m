@@ -34,7 +34,7 @@
 
 -(BOOL) checkCondition
 {
-    NSLog(@"Loop Count: %d", self.loopCount);
+    NSDebug(@"Loop Count: %d", self.loopCount);
     int timesToRepeat = [self.timesToRepeat interpretIntegerForSprite:self.object];
     return (self.loopCount++ < timesToRepeat) ? YES : NO;
 }
