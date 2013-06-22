@@ -55,6 +55,8 @@
 
 -(void) setPosition:(CGPoint)position
 {
+    CGPoint newPosition = [((Scene*)self.scene) convertPointToScene:position];
+    NSLog(@"New Position: x:%f, y:%f", newPosition.x, newPosition.y);
     super.position = [((Scene*)self.scene) convertPointToScene:position];
 }
 

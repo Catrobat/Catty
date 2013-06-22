@@ -29,12 +29,11 @@
 
 
 -(SKAction*)action
-{
-    NSDebug(@"Adding: %@", self.description);
-    
-    return [SKAction customActionWithDuration:0.0 actionBlock:^(SKNode *node, CGFloat elapsedTime) {
+{    
+    return [SKAction runBlock:^{
         NSDebug(@"Performing: %@", self.description);
         double yMov = [self.yMovement interpretDoubleForSprite:self.object];
+        CGPoint point = CGPointMake(self.object.position.x, self.object.position.y+yMov);
         self.object.position = CGPointMake(self.object.position.x, self.object.position.y+yMov);
     }];
 }

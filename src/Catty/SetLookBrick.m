@@ -29,9 +29,6 @@
 
 -(SKAction*)action
 {
-    NSDebug(@"Adding: %@", self.description);
-    
-    
     UIImage* image = [UIImage imageWithContentsOfFile:[self pathForLook]];
     SKTexture* texture = [SKTexture textureWithImage:image];
     

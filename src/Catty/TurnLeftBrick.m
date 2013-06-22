@@ -30,10 +30,8 @@
 
 
 -(SKAction*)action
-{
-    NSDebug(@"Adding: %@", self.description);
-    
-    return [SKAction customActionWithDuration:0.0 actionBlock:^(SKNode *node, CGFloat elapsedTime) {
+{    
+    return [SKAction runBlock:^{
         
         NSDebug(@"Performing: %@", self.description);
         double rad = [Util degreeToRadians:[self.degrees interpretDoubleForSprite:self.object]];
