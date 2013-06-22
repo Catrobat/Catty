@@ -55,7 +55,10 @@
     [self.lock unlock];
 }
 
-
+-(void)dealloc
+{
+    
+}
 -(void)performBroadcastWaitForMessage:(NSString*)message
 {
     
@@ -73,7 +76,7 @@
         }
         else {
             dispatch_group_async(group, broadcastWaitQueue, ^{
-                [sprite performBroadcastWaitScript_calledFromBroadcastWaitDelegate_withMessage:message];
+                [sprite performBroadcastWaitScriptWithMessage:message];
             });
         }
         

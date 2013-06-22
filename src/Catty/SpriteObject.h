@@ -69,7 +69,7 @@
 - (void)broadcast:(NSString*)message;
 - (void)broadcastAndWait:(NSString*)message;
 
-- (void)performBroadcastWaitScript_calledFromBroadcastWaitDelegate_withMessage:(NSString *)message;
+-(void)performBroadcastWaitScriptWithMessage:(NSString *)message;
 
 - (Look*)nextLook;
 

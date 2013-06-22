@@ -35,7 +35,7 @@
     return [SKAction runBlock:^{
         NSDebug(@"Performing: %@", self.description);
         double transparency = [self.transparency interpretDoubleForSprite:self.object];
-        self.object.alpha = transparency/100.0f;
+        self.object.alpha = 1.0-transparency/100.0f;
 
     }];
 }

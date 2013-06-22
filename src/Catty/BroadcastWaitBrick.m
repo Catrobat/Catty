@@ -35,20 +35,12 @@
     return self;
 }
 
--(SKAction*)action
-{
-    return [SKAction runBlock:^{
-#warning implement me
-    }];
-}
-
-- (void)performFromScript:(Script*)script;
+-(void)performBroadcastWait
 {
     NSDebug(@"Performing: %@", self.description);
-    
     [self.object broadcastAndWait:self.broadcastMessage];
-
 }
+
 
 #pragma mark - Description
 - (NSString*)description

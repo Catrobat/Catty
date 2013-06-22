@@ -71,10 +71,18 @@
     for (Script *script in self.scriptList)
     {
         if ([script isKindOfClass:[StartScript class]]) {
-            [self startAndAddScript:script];
+            [self startAndAddScript:script completion:^{
+                [self scriptFinished:script];
+            }];
         }
         
         if([script isKindOfClass:[BroadcastScript class]]) {
+            if ([self.broadcastWaitDelegate respondsToSelector:@selector(registerSprite:forMessage:)]) {
+                [self.broadcastWaitDelegate registerSprite:self forMessage:((BroadcastScript*)script).receivedMessage];
+            } else {
+                NSLog(@"ERROR: BroadcastWaitDelegate not set! abort()");
+                abort();
+            }
             [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(performBroadcastScript:) name:((BroadcastScript*)script).receivedMessage object:nil];
         }
     }
@@ -104,7 +112,9 @@
         {
             if ([script isKindOfClass:[WhenScript class]]) {
                 
-                [self startAndAddScript:script];
+                [self startAndAddScript:script completion:^{
+                    [self scriptFinished:script];
+                }];
                 break;
             }
         }
@@ -113,38 +123,12 @@
 }
 
 
--(void)startAndAddScript:(Script*)script
+-(void)startAndAddScript:(Script*)script completion:(dispatch_block_t)completion
 {
     if([[self children] indexOfObject:script] == INT_MAX) {
         [self addChild:script];
     }
-    [script start];
-}
-
-
-#pragma mark - Broadcast
--(void)broadcast:(NSString *)message
-{
-    [[NSNotificationCenter defaultCenter] postNotificationName:message object:self];
-}
-
-- (void)performBroadcastScript:(NSNotification*)notification
-{
-    NSDebug(@"Notification: %@", notification.name);
-    BroadcastScript *script = nil;
-
-    for (Script *s in self.scriptList) {
-        if ([s isKindOfClass:[BroadcastScript class]]) {
-            BroadcastScript *tmp = (BroadcastScript*)s;
-            if ([tmp.receivedMessage isEqualToString:notification.name]) {
-                script = tmp;
-            }
-        }
-    }
-
-    if (script) {
-        [self startAndAddScript:script];
-    }
+    [script startWithCompletion:completion];
 }
 
 
@@ -158,6 +142,89 @@
     }
     return [self.lookList objectAtIndex:self.lookIndex];
 }
+
+
+
+#pragma mark - Broadcast
+-(void)broadcast:(NSString *)message
+{
+    [[NSNotificationCenter defaultCenter] postNotificationName:message object:self];
+}
+
+- (void)performBroadcastScript:(NSNotification*)notification
+{
+    NSDebug(@"Notification: %@", notification.name);
+
+    for (Script *script in self.scriptList) {
+        if ([script isKindOfClass:[BroadcastScript class]]) {
+            BroadcastScript *broadcastScript = (BroadcastScript*)script;
+            if ([broadcastScript.receivedMessage isEqualToString:notification.name]) {
+                [self startAndAddScript:broadcastScript completion:^{
+                    [self scriptFinished:broadcastScript];
+                }];
+                break;
+                
+            }
+        }
+    }
+
+}
+
+
+-(void)broadcastAndWait:(NSString *)message
+{
+    if ([[NSThread currentThread] isMainThread]) {
+        NSLog(@" ");
+        NSLog(@"!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+        NSLog(@"!!                                                                                       !!");
+        NSLog(@"!!  ATTENTION: THIS METHOD SHOULD NEVER EVER BE CALLED FROM MAIN-THREAD!!! BUSY WAITING  !!");
+        NSLog(@"!!                                                                                       !!");
+        NSLog(@"!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+        NSLog(@" ");
+        abort();
+    }
+
+    if ([self.broadcastWaitDelegate respondsToSelector:@selector(performBroadcastWaitForMessage:)]) {
+        [self.broadcastWaitDelegate performBroadcastWaitForMessage:message];
+    } else {
+        NSLog(@"ERROR: BroadcastWaitDelegate not set! abort()");
+        abort();
+    }
+
+}
+
+-(void)performBroadcastWaitScriptWithMessage:(NSString *)message
+{
+
+    BroadcastScript* broadcastScript = nil;
+    dispatch_semaphore_t sema = dispatch_semaphore_create(0);
+    for (Script *script in self.scriptList) {
+        if ([script isKindOfClass:[BroadcastScript class]]) {
+            BroadcastScript* tmp = (BroadcastScript*)script;
+            if ([tmp.receivedMessage isEqualToString:message]) {
+                broadcastScript = tmp;
+                break;
+            }
+        }
+    }
+    
+    if(broadcastScript) {
+        
+        [self startAndAddScript:broadcastScript completion:^{
+            [self scriptFinished:broadcastScript];
+            dispatch_semaphore_signal(sema);
+        }];
+        dispatch_semaphore_wait(sema, DISPATCH_TIME_FOREVER);
+    }
+
+}
+
+
+- (NSString*)description
+{
+    return [NSString stringWithFormat:@"Object: %@\r", self.name];
+}
+
 
 
 
@@ -370,33 +437,6 @@
 //    }
 //}
 //
-//-(void)performBroadcastWaitScript_calledFromBroadcastWaitDelegate_withMessage:(NSString *)message
-//{
-//    BroadcastScript *script = nil;
-//    
-//    for (Script *s in self.scriptList) {
-//        if ([s isKindOfClass:[BroadcastScript class]]) {
-//            BroadcastScript *tmp = (BroadcastScript*)s;
-//            if ([tmp.receivedMessage isEqualToString:message]) {
-//                script = tmp;
-//            }
-//        }
-//    }
-//    
-//    if (script) {
-//        
-//        if ([self.activeScripts containsObject:script]) {
-//            [script resetScript];
-//        } else {
-//            [self.activeScripts addObject:script];
-//            
-//            [script runScript];
-//            [self scriptFinished:script];
-//        }
-//        
-//    }
-//
-//}
 //
 //
 //-(void)scriptFinished:(Script *)script
@@ -410,7 +450,7 @@
 //    for (Script *script in self.activeScripts) {
 //        [script stopScript];
 //    }
-//    
+//    O
 //    self.activeScripts = nil;
 
 //}
@@ -861,14 +901,7 @@
 //
 //
 //
-//- (NSString*)description {
-//    NSMutableString *ret = [[NSMutableString alloc] init];
-//    [ret appendFormat:@"\r------------------- SPRITE --------------------\r"];
-//    [ret appendFormat:@"Name: %@\r", self.name];
-//    [ret appendFormat:@"-------------------------------------------------\r"];
-//    
-//    return [NSString stringWithString:ret];
-//}
+
 //
 //#pragma mark - SpriteFormulaProtocol
 //

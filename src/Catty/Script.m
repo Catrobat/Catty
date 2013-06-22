@@ -32,11 +32,13 @@
 #import "NoteBrick.h"
 #import "NSString+CatrobatNSStringExtensions.h"
 #import <objc/runtime.h>
+#import "BroadcastWaitBrick.h"
 
 
 @interface Script()
 
 @property (nonatomic, assign) NSUInteger currentBrickIndex;
+@property (nonatomic, strong) dispatch_block_t completion;
 
 @end
 
@@ -72,17 +74,19 @@
         }
     }
     self.currentBrickIndex = 0;
+    self.completion = NULL;
+    
+
 
 }
 
 
--(void)start
+-(void)startWithCompletion:(dispatch_block_t)completion
 {
+    NSDebug(@"Starting: %@", self.description);
 
     [self reset];
-    NSDebug(@"Starting: %@", self.description);
-    
-    
+    self.completion = completion;
     [self runNextAction];
     
 }
@@ -90,7 +94,7 @@
 
 -(void)runNextAction
 {
-    
+
     
     if(self.currentBrickIndex < [self.brickList count]) {
         Brick* brick = [self.brickList objectAtIndex:self.currentBrickIndex++];
@@ -117,6 +121,15 @@
                 [self runNextAction];
             });
         }
+        else if([brick isKindOfClass:[BroadcastWaitBrick class]]) {
+            
+
+            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+                [((BroadcastWaitBrick*)brick) performBroadcastWait];
+                [self runNextAction];
+            });
+            
+        }
         else {
             NSMutableArray* action = [[NSMutableArray alloc] init];
             [action addObject:[brick action]];
@@ -125,7 +138,10 @@
             }];
         }
     } else {
-        [self.object scriptFinished:self];
+        NSDebug(@"Finished Script: %@", [self class]);
+        if(self.completion != NULL) {
+            self.completion();
+        }
     }
     
     

@@ -34,7 +34,7 @@
 @property (nonatomic, strong) NSString *action;
 @property (strong, nonatomic) NSMutableArray *brickList;
 
--(void) start;
+-(void)startWithCompletion:(dispatch_block_t)block;
 -(void) reset;
 
 -(NSString*)description;

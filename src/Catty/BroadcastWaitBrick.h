@@ -29,4 +29,6 @@
 
 -(id)initWithMessage:(NSString*)message;
 
+-(void)performBroadcastWait;
+
 @end

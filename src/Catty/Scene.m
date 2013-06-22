@@ -61,30 +61,6 @@
 }
 
 
--(void)update:(CFTimeInterval)currentTime {
-        
-//    // Handle time delta.
-//    // If we drop below 60fps, we still want everything to move the same distance.
-//    CFTimeInterval timeSinceLast = currentTime - self.lastUpdateTimeInterval;
-//    self.lastUpdateTimeInterval = currentTime;
-//    if (timeSinceLast > 1) { // more than a second since last update
-//        timeSinceLast = kMinTimeInterval;
-//        self.lastUpdateTimeInterval = currentTime;
-//    }
-//    
-//    [self updateWithTimeSinceLastUpdate:timeSinceLast];
-}
-
-#pragma mark - Loop Update
-- (void)updateWithTimeSinceLastUpdate:(CFTimeInterval)timeSinceLast {
-
-    // Update the caves (and in turn, their goblins).
-    for (SpriteObject *obj in self.program.objectList) {
-        [obj updateWithTimeSinceLastUpdate:timeSinceLast];
-    }
-}
-
-
 -(CGPoint)convertPointToScene:(CGPoint)point
 {
     CGPoint scenePoint;
