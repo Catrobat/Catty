@@ -26,8 +26,8 @@
 #import "WhenScript.h"
 #import "BroadcastScript.h"
 #import "Look.h"
-#import "Sound.h"
 #import "Scene.h"
+#import "Util.h"
 
 
 @interface SpriteObject()
@@ -218,6 +218,24 @@
 - (NSString*)description
 {
     return [NSString stringWithFormat:@"Object: %@\r", self.name];
+}
+
+
+#pragma mark - Formula Protocol
+
+-(CGFloat)xPosition
+{
+    return self.position.x;
+}
+
+-(CGFloat)yPosition
+{
+    return self.position.y;
+}
+
+-(CGFloat)rotation
+{
+    return [((Scene*)self.scene) convertDegreesToScene:[Util radiansToDegree:self.zRotation]];
 }
 
 

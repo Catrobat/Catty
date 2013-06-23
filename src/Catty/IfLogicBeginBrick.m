@@ -26,25 +26,12 @@
 
 @implementation IfLogicBeginBrick
 
-- (void)performFromScript:(Script*)script
+
+-(BOOL)checkCondition
 {
     NSDebug(@"Performing: %@", self.description);
+    return [self.ifCondition interpretBOOLForSprite:self.object];
 }
-
-
-
--(SKAction*) actionWithThenAction:(SKAction*)thenAction andElseAction:(SKAction*)elseAction
-{
-    return [SKAction runBlock:^{
-        BOOL condition = [self.ifCondition interpretBOOLForSprite:self.object];
-        if(condition) {
-            [self.object runAction:thenAction];
-        }else {
-            [self.object runAction:elseAction];
-        }
-    }];
-}
-
 
 
 #pragma mark - Description

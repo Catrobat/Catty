@@ -21,6 +21,7 @@
  */
 
 #import "IfOnEdgeBounceBrick.h"
+#import "Util.h"
 
 @implementation IfOnEdgeBounceBrick
 
@@ -29,6 +30,58 @@
     NSLog(@"Performing: %@", self.description);
     
     //[self.object ifOnEdgeBounce];
+    
+}
+
+-(SKAction*)action
+{
+    
+    return [SKAction runBlock:^{
+        
+        float width = self.object.size.width;
+        float height = self.object.size.height;
+        int xPosition = self.object.position.x;
+        int yPosition = self.object.position.y;
+
+        int virtualScreenWidth = self.object.scene.size.width/2.0f;
+        int virtualScreenHeight = self.object.scene.size.height/2.0f;
+
+        float rotation = [self.object rotation];
+
+        if (xPosition < -virtualScreenWidth + width/2.0f) {
+            if (rotation <= 180.0f) {
+                rotation = (180.0f-rotation);
+            } else {
+                rotation = 270.0f + (270.0f - rotation);
+            }
+            xPosition = -virtualScreenWidth + (int) (width / 2.0f);
+
+        } else if (xPosition > virtualScreenWidth - width / 2.0f) {
+
+            if (rotation >= 0.0f && rotation < 90.0f) {
+                rotation = 180.0f - rotation;
+            } else {
+                rotation = 180.0f + (360.0f - rotation);
+            }
+
+            xPosition = virtualScreenWidth - (int) (width / 2.0f);
+        }
+
+        if (yPosition > virtualScreenHeight - height / 2.0f) {
+
+            rotation = -rotation;
+            yPosition = virtualScreenHeight - (int) (height / 2.0f);
+
+        } else if (yPosition < -virtualScreenHeight + height / 2.0f) {
+            
+            rotation = 360.0f - rotation;
+            yPosition = -virtualScreenHeight + (int) (height / 2);
+        }
+        
+        self.object.zRotation = [Util degreeToRadians:rotation];
+        self.object.position = CGPointMake(xPosition, yPosition);
+
+    }];
     
 }
 

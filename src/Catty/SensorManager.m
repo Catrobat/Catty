@@ -99,10 +99,7 @@ NSString * const sensorStringArray[] = {
 
 +(BOOL) isObjectSensor:(Sensor)sensor
 {
-    if(sensor >= OBJECT_X && sensor <= OBJECT_Y) {
-        return YES;
-    }
-    return NO;
+    return (sensor >= OBJECT_X && sensor <= OBJECT_LAYER) ? YES : NO;
 }
 
 

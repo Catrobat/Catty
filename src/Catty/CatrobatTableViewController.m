@@ -34,9 +34,6 @@
 #import "Util.h"
 #import "SceneViewController.h"
 
-#import <QuartzCore/QuartzCore.h>
-
-
 
 
 @interface CatrobatTableViewController ()
@@ -198,13 +195,7 @@
 #pragma makrk - Segue delegate
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-
-    if([[segue identifier] isEqualToString:kSegueDownload]) {
-        CATransition* transition = [Util getPushCATransition];
-        [self.view.window.layer addAnimation:transition forKey:nil];
-    }
-    
+{    
     if([[segue identifier] isEqualToString:kSegueContinue]) {
         SceneViewController* sceneViewController = (SceneViewController*)segue.destinationViewController;
         sceneViewController.programLoadingInfo = [Util programLoadingInfoForProgramWithName:[Util lastProgram]];

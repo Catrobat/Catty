@@ -57,18 +57,11 @@
 {
     [super viewDidLoad];
 
-    //background image
     [self initTableView];
     
     [TableUtil initNavigationItem:self.navigationItem withTitle:NSLocalizedString(@"Programs", nil)];
     
     [self loadLevels];
-    
-
-    
-    //[TableUtil initNavigationItem:self.navigationItem withTitle:@"Programs" enableBackButton:YES target:self];
-    
-    
 }
 
 - (void)didReceiveMemoryWarning
@@ -85,6 +78,14 @@
     self.tableView.dataSource = self;
     [self.tableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
     self.tableView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"darkblue"]];
+    
+}
+
+-(void)dealloc
+{
+    self.tableView.dataSource = nil;
+    self.tableView.delegate = nil;
+    self.levelLoadingInfos = nil;
     
 }
 
@@ -199,10 +200,6 @@
     }
 }
 
-#pragma mark - BackButtonDelegate
--(void)back {
-    [self.navigationController popViewControllerAnimated:YES];
-}
 
 #pragma mark - Cell Helper
 

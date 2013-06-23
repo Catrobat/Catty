@@ -107,25 +107,55 @@
             }
             
             // Needs to be async because of recursion!
-            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
                 [self runNextAction];
             });
 
         }
         
         else if([brick isKindOfClass:[LoopEndBrick class]]) {
-                self.currentBrickIndex = [self.brickList indexOfObject:[((LoopEndBrick*)brick) loopBeginBrick]];
+            self.currentBrickIndex = [self.brickList indexOfObject:[((LoopEndBrick*)brick) loopBeginBrick]];
             
             // Needs to be async because of recursion!
-            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
                 [self runNextAction];
             });
         }
         else if([brick isKindOfClass:[BroadcastWaitBrick class]]) {
-            
-
-            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        
+            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
                 [((BroadcastWaitBrick*)brick) performBroadcastWait];
+                [self runNextAction];
+            });
+            
+        }
+        else if([brick isKindOfClass:[IfLogicBeginBrick class]]) {
+            
+            BOOL condition = [((IfLogicBeginBrick*)brick) checkCondition];
+            if(!condition) {
+                self.currentBrickIndex = [self.brickList indexOfObject:[((IfLogicBeginBrick*)brick) ifElseBrick]]+1;
+            }
+            
+            // Needs to be async because of recursion!
+            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
+                [self runNextAction];
+            });
+            
+        }
+        else if([brick isKindOfClass:[IfLogicElseBrick class]]) {
+            
+            self.currentBrickIndex = [self.brickList indexOfObject:[((IfLogicElseBrick*)brick) ifEndBrick]]+1;
+            
+            // Needs to be async because of recursion!
+            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
+                [self runNextAction];
+            });
+            
+        }
+        else if([brick isKindOfClass:[IfLogicEndBrick class]]) {
+
+            // Needs to be async because of recursion!
+            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
                 [self runNextAction];
             });
             

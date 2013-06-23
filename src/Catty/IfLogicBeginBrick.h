@@ -31,12 +31,11 @@
 
 @property (nonatomic, strong) Formula* ifCondition;
 
-
 #warning weak?!
 @property (nonatomic, weak) IfLogicElseBrick* ifElseBrick;
 @property (nonatomic, weak) IfLogicEndBrick* ifEndBrick;
 
 
--(SKAction*) actionWithThenAction:(SKAction*)thenAction andElseAction:(SKAction*)elseAction;
+-(BOOL)checkCondition;
 
 @end
