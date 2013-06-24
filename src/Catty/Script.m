@@ -107,7 +107,7 @@
             }
             
             // Needs to be async because of recursion!
-            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
                 [self runNextAction];
             });
 
@@ -185,7 +185,7 @@
         }
     } else {
         NSDebug(@"Finished Script: %@", [self class]);
-        if(self.completion != NULL) {
+        if(self.completion) {
             self.completion();
         }
     }

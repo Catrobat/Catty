@@ -32,7 +32,6 @@
 
 -(SKAction*)action
 {
-    NSDebug(@"Adding: %@", self.description);
     
     return [SKAction runBlock:^{
         NSDebug(@"Performing: %@", self.description);

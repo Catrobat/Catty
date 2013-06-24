@@ -185,26 +185,22 @@
 -(void)performBroadcastWaitScriptWithMessage:(NSString *)message
 {
 
-    BroadcastScript* broadcastScript = nil;
-    dispatch_semaphore_t sema = dispatch_semaphore_create(0);
     for (Script *script in self.scriptList) {
         if ([script isKindOfClass:[BroadcastScript class]]) {
-            BroadcastScript* tmp = (BroadcastScript*)script;
-            if ([tmp.receivedMessage isEqualToString:message]) {
-                broadcastScript = tmp;
-                break;
+            BroadcastScript* broadcastScript = (BroadcastScript*)script;
+            if ([broadcastScript.receivedMessage isEqualToString:message]) {
+                dispatch_semaphore_t sema = dispatch_semaphore_create(0);
+                
+                [self startAndAddScript:broadcastScript completion:^{
+                    [self scriptFinished:broadcastScript];
+                    dispatch_semaphore_signal(sema);
+                }];
+                dispatch_semaphore_wait(sema, DISPATCH_TIME_FOREVER);
             }
         }
     }
     
-    if(broadcastScript) {
-        
-        [self startAndAddScript:broadcastScript completion:^{
-            [self scriptFinished:broadcastScript];
-            dispatch_semaphore_signal(sema);
-        }];
-        dispatch_semaphore_wait(sema, DISPATCH_TIME_FOREVER);
-    }
+
 
 }
 
