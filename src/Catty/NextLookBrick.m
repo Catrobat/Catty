@@ -32,11 +32,23 @@
     return [SKAction runBlock:^{
         NSDebug(@"Performing: %@", self.description);
         Look* look = [self.object nextLook];
-        self.object.currentLook = look;
         UIImage* image = [UIImage imageWithContentsOfFile:[self pathForLook:look]];
         SKTexture* texture = [SKTexture textureWithImage:image];
+        
+        double xScale = self.object.xScale;
+        double yScale = self.object.yScale;
+        self.object.xScale = 1.0;
+        self.object.yScale = 1.0;
         self.object.size = texture.size;
         self.object.texture = texture;
+        self.object.currentLook = look;
+        if(xScale != 1.0) {
+            self.object.xScale = xScale;
+        }
+        if(yScale != 1.0) {
+            self.object.yScale = yScale;
+        }
+
     }];
 }
 

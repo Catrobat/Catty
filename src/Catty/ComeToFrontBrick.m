@@ -31,6 +31,7 @@
         SKNode* parent = self.object.parent;
         [self.object.parent removeChildrenInArray:@[self.object]];
         [parent  addChild:self.object];
+        self.object.zPosition = -1;
     }];
 }
 

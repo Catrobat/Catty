@@ -29,18 +29,22 @@
 @implementation ChangeVariableBrick
 
 
-- (void)performFromScript:(Script*)script
+-(SKAction*)action
 {
-    NSDebug(@"Performing: %@ on: %@", self.description, self.object);
     
-    double result = [self.variableFormula interpretDoubleForSprite:self.object];
-    
-    Program* program = [ProgramManager sharedProgramManager].program;
-    VariablesContainer* variables = program.variables;
-    
-    [variables changeVariable:self.userVariable byValue:result];
+    return [SKAction runBlock:^{
+        NSDebug(@"Performing: %@ on: %@", self.description, self.object);
+        
+        double result = [self.variableFormula interpretDoubleForSprite:self.object];
+        
+        Program* program = [ProgramManager sharedProgramManager].program;
+        VariablesContainer* variables = program.variables;
+        
+        [variables changeVariable:self.userVariable byValue:result];
+    }];
     
 }
+
 
 #pragma mark - Description
 - (NSString*)description

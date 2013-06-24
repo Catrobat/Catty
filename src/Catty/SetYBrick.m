@@ -28,21 +28,13 @@
 @synthesize yPosition = _yPosition;
 
 
-- (void)performFromScript:(Script*)script
+-(SKAction*)action
 {
-    NSDebug(@"Performing: %@", self.description);
+    return [SKAction runBlock:^{
+        float yPosition = [self.yPosition interpretDoubleForSprite:self.object];
+        self.object.position = CGPointMake(self.object.position.x, yPosition);
+    }];
     
-    float yPosition = [self.yPosition interpretDoubleForSprite:self.object];
-    
-    self.object.position = CGPointMake(self.object.position.x, yPosition);
-    
-//    CGPoint position = CGPointMake(self.object.position.x, self.yPosition.floatValue);
-//    
-//    [self.object glideToPosition:position withDurationInSeconds:0 fromScript:script];
-    
-    
-    //[self.object setYPosition:self.yPosition.floatValue];
-        
 }
 
 #pragma mark - Description

@@ -26,9 +26,14 @@
 
 @implementation SetBrightnessBrick
 
--(void)performFromScript:(Script *)script
+
+-(SKAction*)action
 {
-    double brightness = [self.brightness interpretDoubleForSprite:self.object];
+    return [SKAction runBlock:^{
+        NSDebug(@"Performing: %@", self.description);
+        double brightnessInPercent = [self.brightness interpretDoubleForSprite:self.object];
+        self.object.color = [UIColor whiteColor];
+    }];
 }
 
 #pragma mark - Description

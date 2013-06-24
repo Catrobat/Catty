@@ -107,7 +107,7 @@
             }
             
             // Needs to be async because of recursion!
-            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
+            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
                 [self runNextAction];
             });
 
@@ -115,6 +115,10 @@
         
         else if([brick isKindOfClass:[LoopEndBrick class]]) {
             self.currentBrickIndex = [self.brickList indexOfObject:[((LoopEndBrick*)brick) loopBeginBrick]];
+            
+            if(self.currentBrickIndex == INT_MAX) {
+                abort();
+            }
             
             // Needs to be async because of recursion!
             dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
@@ -135,6 +139,9 @@
             if(!condition) {
                 self.currentBrickIndex = [self.brickList indexOfObject:[((IfLogicBeginBrick*)brick) ifElseBrick]]+1;
             }
+            if(self.currentBrickIndex == INT_MIN) {
+                abort();
+            }
             
             // Needs to be async because of recursion!
             dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
@@ -145,6 +152,10 @@
         else if([brick isKindOfClass:[IfLogicElseBrick class]]) {
             
             self.currentBrickIndex = [self.brickList indexOfObject:[((IfLogicElseBrick*)brick) ifEndBrick]]+1;
+            
+            if(self.currentBrickIndex == INT_MIN) {
+                abort();
+            }
             
             // Needs to be async because of recursion!
             dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
@@ -159,6 +170,11 @@
                 [self runNextAction];
             });
             
+        }else if([brick isKindOfClass:[NoteBrick class]]) {
+            // Needs to be async because of recursion!
+            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
+                [self runNextAction];
+            });
         }
         else {
             NSMutableArray* action = [[NSMutableArray alloc] init];

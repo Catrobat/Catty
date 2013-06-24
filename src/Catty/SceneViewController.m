@@ -33,6 +33,7 @@
 #import "Brick.h"
 #import "BroadcastWaitHandler.h"
 #import "AudioManager.h"
+#import "ProgramManager.h"
 
 @interface SceneViewController ()
 
@@ -88,8 +89,7 @@
     Scene * scene = [[Scene alloc] initWithSize:programSize andProgram:program];
     scene.scaleMode = SKSceneScaleModeAspectFit;
     [skView presentScene:scene];
-
-    
+    [[ProgramManager sharedProgramManager] setProgram:program];
 }
 
 

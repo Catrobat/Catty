@@ -58,6 +58,7 @@
     double durationInSeconds = [self.durationInSeconds interpretDoubleForSprite:self.object];
     double xDestination = [self.xDestination interpretDoubleForSprite:self.object];
     double yDestination = [self.yDestination interpretDoubleForSprite:self.object];
+    self.isInitialized = NO;
     
     return [SKAction customActionWithDuration:durationInSeconds actionBlock:^(SKNode *node, CGFloat elapsedTime) {
         NSDebug(@"Performing: %@", self.description);
@@ -86,6 +87,7 @@
     
     double xDestination = [self.xDestination interpretDoubleForSprite:self.object];
     double yDestination = [self.yDestination interpretDoubleForSprite:self.object];
+    
     double durationInSeconds = [self.durationInSeconds interpretDoubleForSprite:self.object];
     
     return [NSString stringWithFormat:@"GlideTo (Position: %f/%f; duration: %f s)", xDestination, yDestination, durationInSeconds];

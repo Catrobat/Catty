@@ -52,7 +52,7 @@
 - (NSString*)description
 {
     double result = [self.variableFormula interpretDoubleForSprite:self.object];
-    return [NSString stringWithFormat:@"Set Variable Brick: Uservariable: %@, Formula: %f", self.userVariable, result];
+    return [NSString stringWithFormat:@"Set Variable Brick: Uservariable: %@, to: %f", self.userVariable, result];
 }
 
 

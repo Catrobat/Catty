@@ -66,6 +66,9 @@
 
 -(void)start {
     self.position = CGPointMake(0, 0);
+    if([self.name isEqualToString:@"Background"]) {
+        self.zPosition = INT_MAX;
+    }
     for (Script *script in self.scriptList)
     {
         if ([script isKindOfClass:[StartScript class]]) {
@@ -97,15 +100,9 @@
 {
     
     NSDebug(@"Touched: %@", self.name);
-    
 
     for (UITouch *touch in touches) {
-        
-        CGPoint location = [touch locationInNode:self.scene];
-        
-        NSLog(@"Location x:%f, y:%f", location.x, location.y);
-        
-        
+#warning 
         for (Script *script in self.scriptList)
         {
             if ([script isKindOfClass:[WhenScript class]]) {
@@ -113,7 +110,6 @@
                 [self startAndAddScript:script completion:^{
                     [self scriptFinished:script];
                 }];
-                break;
             }
         }
     }
@@ -157,8 +153,6 @@
                 [self startAndAddScript:broadcastScript completion:^{
                     [self scriptFinished:broadcastScript];
                 }];
-                break;
-                
             }
         }
     }

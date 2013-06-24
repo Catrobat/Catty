@@ -24,9 +24,10 @@
 
 @implementation NoteBrick
 
--(void)performFromScript:(Script *)script
+-(SKAction*)action
 {
     NSError(@"NoteBrick should not be executed!");
+    return nil;
 }
 
 -(NSString*)description
