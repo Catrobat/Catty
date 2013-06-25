@@ -98,8 +98,7 @@
     if(self.currentBrickIndex < [self.brickList count]) {
         Brick* brick = [self.brickList objectAtIndex:self.currentBrickIndex++];
         
-        NSLog(@"Current brick: %@", brick);
-        
+
         if([brick isKindOfClass:[LoopBeginBrick class]]) {            
             BOOL condition = [((LoopBeginBrick*)brick) checkCondition];
             if(!condition) {
@@ -141,7 +140,6 @@
         }
         else if([brick isKindOfClass:[IfLogicBeginBrick class]]) {
             
-            NSDebug(@"if");
             
             BOOL condition = [((IfLogicBeginBrick*)brick) checkCondition];
             if(!condition) {
@@ -185,7 +183,6 @@
             });
         }
         else {
-            NSLog(@"else");
             NSMutableArray* actionArray = [[NSMutableArray alloc] init];
             SKAction* action = [brick action];
             [actionArray addObject:action];

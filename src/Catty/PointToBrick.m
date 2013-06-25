@@ -22,6 +22,7 @@
 
 #import "PointToBrick.h"
 #import "Util.h"
+#import "Scene.h"
 
 @implementation PointToBrick
 
@@ -80,6 +81,8 @@
         }
         
         NSDebug(@"Performing: %@, Degreees: (%f), Pointed Object: Position: %@", self.description, rotationDegrees, NSStringFromCGPoint(self.pointedObject.position));
+        
+        rotationDegrees = [((Scene*)self.object.scene) convertDegreesToScene:rotationDegrees];
         
         self.object.zRotation = [Util degreeToRadians:rotationDegrees];
         
