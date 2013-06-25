@@ -25,6 +25,8 @@
 #import "Util.h"
 #import "Scene.h"
 
+#define kRotationDegreeOffset 90.0
+
 @implementation PointInDirectionBrick
 
 
@@ -33,9 +35,10 @@
     
     return [SKAction runBlock:^{
         NSDebug(@"Performing: %@", self.description);
-        float degrees = [self.degrees interpretDoubleForSprite:self.object];
+        float degrees = [self.degrees interpretDoubleForSprite:self.object] - kRotationDegreeOffset;
         degrees = [((Scene*)self.object.scene) convertDegreesToScene:degrees];
         float rad = [Util degreeToRadians:degrees];
+        NSLog(@"Rad: %f", rad);
         self.object.zRotation = rad;
     }];
 }

@@ -72,7 +72,6 @@
             NSError(@"sprite is not a SpriteObject...abort()");
         }
         else {
-
             [queue addOperationWithBlock:^{
                  [sprite performBroadcastWaitScriptWithMessage:message];
             }];

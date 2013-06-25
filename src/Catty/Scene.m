@@ -88,17 +88,7 @@
 
 -(CGFloat) convertDegreesToScene:(CGFloat)degrees
 {
-    
-    degrees = fmodf(degrees, 360.0);
-    if((degrees >= 0.0 && degrees < 90.0) || (degrees >= 180.0 && degrees < 270.0)) {
-        return degrees + 90.0;
-        
-    }
-    if((degrees >= 90.0 && degrees < 180.0) || (degrees >= 270.0 && degrees < 360.0)) {
-        return degrees - 90.0;
-    }
-    
-    return 0.0;
+    return 360.0 - degrees;
 }
 
 

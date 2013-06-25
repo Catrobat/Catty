@@ -94,13 +94,13 @@
 
 -(void)runNextAction
 {
-
     
     if(self.currentBrickIndex < [self.brickList count]) {
         Brick* brick = [self.brickList objectAtIndex:self.currentBrickIndex++];
         
-        if([brick isKindOfClass:[LoopBeginBrick class]]) {
-            
+        NSLog(@"Current brick: %@", brick);
+        
+        if([brick isKindOfClass:[LoopBeginBrick class]]) {            
             BOOL condition = [((LoopBeginBrick*)brick) checkCondition];
             if(!condition) {
                 self.currentBrickIndex = [self.brickList indexOfObject:[((LoopBeginBrick*)brick) loopEndBrick]]+1;
@@ -114,6 +114,7 @@
         }
         
         else if([brick isKindOfClass:[LoopEndBrick class]]) {
+            
             self.currentBrickIndex = [self.brickList indexOfObject:[((LoopEndBrick*)brick) loopBeginBrick]];
             
             if(self.currentBrickIndex == INT_MAX) {
@@ -122,10 +123,15 @@
             
             // Needs to be async because of recursion!
             dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
+                NSLog(@"loop end1");
                 [self runNextAction];
+                NSLog(@"loop end3");
             });
+            NSLog(@"loop end2");
         }
         else if([brick isKindOfClass:[BroadcastWaitBrick class]]) {
+            
+            NSDebug(@"broadcast wait");
         
             dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
                 [((BroadcastWaitBrick*)brick) performBroadcastWait];
@@ -134,6 +140,8 @@
             
         }
         else if([brick isKindOfClass:[IfLogicBeginBrick class]]) {
+            
+            NSDebug(@"if");
             
             BOOL condition = [((IfLogicBeginBrick*)brick) checkCondition];
             if(!condition) {
@@ -150,7 +158,7 @@
             
         }
         else if([brick isKindOfClass:[IfLogicElseBrick class]]) {
-            
+                        
             self.currentBrickIndex = [self.brickList indexOfObject:[((IfLogicElseBrick*)brick) ifEndBrick]]+1;
             
             if(self.currentBrickIndex == INT_MIN) {
@@ -164,7 +172,7 @@
             
         }
         else if([brick isKindOfClass:[IfLogicEndBrick class]]) {
-
+            
             // Needs to be async because of recursion!
             dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
                 [self runNextAction];
@@ -177,9 +185,15 @@
             });
         }
         else {
-            NSMutableArray* action = [[NSMutableArray alloc] init];
-            [action addObject:[brick action]];
-            [self runAction:[SKAction sequence:action] completion:^{
+            NSLog(@"else");
+            NSMutableArray* actionArray = [[NSMutableArray alloc] init];
+            SKAction* action = [brick action];
+            [actionArray addObject:action];
+            SKAction* sequence = [SKAction sequence:actionArray];
+            if(!action || ! actionArray || ! sequence) {
+                abort();
+            }
+            [self runAction:sequence completion:^{
                 [self runNextAction];
             }];
         }

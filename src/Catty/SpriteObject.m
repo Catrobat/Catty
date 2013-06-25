@@ -92,6 +92,7 @@
 
 - (void)scriptFinished:(Script*)script
 {
+    NSLog(@"remove script");
     [self removeChildrenInArray:@[script]];
 }
 

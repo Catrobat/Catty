@@ -171,7 +171,7 @@ static SensorHandler* sharedSensorHandler = nil;
 {
     [self.locationManager startUpdatingHeading];
 
-    double direction = -self.locationManager.heading.trueHeading;
+    double direction = self.locationManager.heading.trueHeading;
     
     return direction;
 
