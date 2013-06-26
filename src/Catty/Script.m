@@ -106,7 +106,7 @@
             }
             
             // Needs to be async because of recursion!
-            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
+            dispatch_async(dispatch_get_main_queue(), ^{
                 [self runNextAction];
             });
 
@@ -121,12 +121,9 @@
             }
             
             // Needs to be async because of recursion!
-            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
-                NSLog(@"loop end1");
+            dispatch_async(dispatch_get_main_queue(), ^{
                 [self runNextAction];
-                NSLog(@"loop end3");
             });
-            NSLog(@"loop end2");
         }
         else if([brick isKindOfClass:[BroadcastWaitBrick class]]) {
             
@@ -134,7 +131,9 @@
         
             dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
                 [((BroadcastWaitBrick*)brick) performBroadcastWait];
-                [self runNextAction];
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    [self runNextAction];
+                });
             });
             
         }
@@ -150,7 +149,7 @@
             }
             
             // Needs to be async because of recursion!
-            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
+            dispatch_async(dispatch_get_main_queue(), ^{
                 [self runNextAction];
             });
             
@@ -164,7 +163,7 @@
             }
             
             // Needs to be async because of recursion!
-            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
+            dispatch_async(dispatch_get_main_queue(), ^{
                 [self runNextAction];
             });
             
@@ -172,13 +171,13 @@
         else if([brick isKindOfClass:[IfLogicEndBrick class]]) {
             
             // Needs to be async because of recursion!
-            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
+            dispatch_async(dispatch_get_main_queue(), ^{
                 [self runNextAction];
             });
             
         }else if([brick isKindOfClass:[NoteBrick class]]) {
             // Needs to be async because of recursion!
-            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
+            dispatch_async(dispatch_get_main_queue(), ^{
                 [self runNextAction];
             });
         }

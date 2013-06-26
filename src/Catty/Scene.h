@@ -38,5 +38,6 @@
 -(CGFloat) convertDegreesToScene:(CGFloat)degrees;
 
 -(CGPoint)convertSceneCoordinateToPoint:(CGPoint)point;
+-(CGFloat)convertSceneToDegrees:(CGFloat)degrees;
 
 @end

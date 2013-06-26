@@ -92,7 +92,6 @@
 
 - (void)scriptFinished:(Script*)script
 {
-    NSLog(@"remove script");
     [self removeChildrenInArray:@[script]];
 }
 
@@ -226,9 +225,8 @@
 
 -(CGFloat)rotation
 {
-    return [((Scene*)self.scene) convertDegreesToScene:[Util radiansToDegree:self.zRotation]];
+    return [((Scene*)self.scene) convertSceneToDegrees:[Util radiansToDegree:self.zRotation]];
 }
-
 
 
 

@@ -91,5 +91,10 @@
     return 360.0 - degrees;
 }
 
+-(CGFloat) convertSceneToDegrees:(CGFloat)degrees
+{
+    return 360.0 + degrees;
+}
+
 
 @end
