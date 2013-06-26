@@ -58,10 +58,12 @@
 }
 
 
+
 -(void)dealloc
 {
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
+
 
 
 -(void)start {
@@ -102,7 +104,7 @@
     NSDebug(@"Touched: %@", self.name);
 
     for (UITouch *touch in touches) {
-#warning 
+
         for (Script *script in self.scriptList)
         {
             if ([script isKindOfClass:[WhenScript class]]) {

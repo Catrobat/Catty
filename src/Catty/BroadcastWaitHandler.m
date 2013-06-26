@@ -62,24 +62,29 @@
 -(void)performBroadcastWaitForMessage:(NSString*)message
 {
     
-    NSOperationQueue* queue = [[NSOperationQueue alloc] init];
-    queue.name = [NSString stringWithFormat:@"at.tugraz.ist.%@", message];
-
+    NSString* queueString = [NSString stringWithFormat:@"at.tugraz.ist.%@", message];
+    const char *queueName = [queueString cStringUsingEncoding:NSUTF8StringEncoding];
+    
+    //dispatch_queue_t broadcastWaitQueue = dispatch_queue_create(queueName, DISPATCH_QUEUE_CONCURRENT);
+    dispatch_queue_t broadcastWaitQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0);
+    dispatch_group_t group = dispatch_group_create();
+    
     NSArray *sprites = [self.spritesForMessages objectForKey:message];
     for (SpriteObject *sprite in sprites) {
-
+        
         if ([sprite isKindOfClass:[SpriteObject class]] == NO) {
             NSError(@"sprite is not a SpriteObject...abort()");
         }
         else {
-            [queue addOperationWithBlock:^{
-                 [sprite performBroadcastWaitScriptWithMessage:message];
-            }];
+            dispatch_group_async(group, broadcastWaitQueue, ^{
+                [sprite performBroadcastWaitScriptWithMessage:message];
+            });
         }
         
     }
     
-    [queue waitUntilAllOperationsAreFinished];
+    dispatch_group_wait(group, DISPATCH_TIME_FOREVER); // Block until we're ready
+    
 }
 
 @end

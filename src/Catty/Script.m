@@ -38,7 +38,7 @@
 @interface Script()
 
 @property (nonatomic, assign) NSUInteger currentBrickIndex;
-@property (nonatomic, strong) dispatch_block_t completion;
+@property (copy) dispatch_block_t completion;
 
 @end
 
@@ -80,6 +80,11 @@
 
 }
 
+
+-(void)dealloc
+{
+    
+}
 
 -(void)startWithCompletion:(dispatch_block_t)completion
 {

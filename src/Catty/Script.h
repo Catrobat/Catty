@@ -35,7 +35,6 @@
 @property (strong, nonatomic) NSMutableArray *brickList;
 
 -(void)startWithCompletion:(dispatch_block_t)block;
--(void) reset;
 
 -(NSString*)description;
 

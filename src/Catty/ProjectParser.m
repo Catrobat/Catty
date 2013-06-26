@@ -472,7 +472,7 @@
 -(OrderedMapTable*)parseObjectVariableMap:(GDataXMLElement*)objectVariableList andParent:(XMLObjectReference*)parent
 {
     
-    OrderedMapTable* objectVariableMap = [OrderedMapTable strongToStrongObjectsMapTable];
+    OrderedMapTable* objectVariableMap = [OrderedMapTable weakToStrongObjectsMapTable];
     XMLObjectReference* ref = [[XMLObjectReference alloc] initWithParent:parent andObject:objectVariableMap];
     
     for (GDataXMLElement *entry in objectVariableList.children) {

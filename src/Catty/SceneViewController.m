@@ -34,6 +34,7 @@
 #import "BroadcastWaitHandler.h"
 #import "AudioManager.h"
 #import "ProgramManager.h"
+#import "SensorHandler.h"
 
 @interface SceneViewController ()
 
@@ -136,6 +137,7 @@
 -(void)dealloc
 {
     [[AudioManager sharedAudioManager] stopAllSounds];
+    [[SensorHandler sharedSensorHandler] stopSensors];
 }
 
 

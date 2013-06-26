@@ -34,6 +34,11 @@
     return self;
 }
 
+-(void)dealloc
+{
+    
+}
+
 -(NSString*)description
 {
     return [NSString stringWithFormat:@"XMLObjectReference: Parent: %@, Object: %@", self.parent, self.object ];

@@ -62,6 +62,11 @@
     return [NSString stringWithString:ret];
 }
 
+-(void)dealloc
+{
+    
+}
+
 
 
 @end

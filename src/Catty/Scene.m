@@ -26,8 +26,6 @@
 #import "Script.h"
 
 
-#define kMinTimeInterval (1.0f / 60.0f)
-
 
 @interface Scene()
 
@@ -48,6 +46,9 @@
     return self;
 }
 
+-(void)dealloc
+{
+}
 
 
 -(void) startProgram
