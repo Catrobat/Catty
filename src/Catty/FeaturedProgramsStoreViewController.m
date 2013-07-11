@@ -21,18 +21,42 @@
  */
 
 #import "FeaturedProgramsStoreViewController.h"
+#import "CatrobatInformation.h"
+#import "CatrobatProject.h"
+#import "AppDelegate.h"
+#import "Util.h"
+#import "TableUtil.h"
+#import "CellTagDefines.h"
+#import "CatrobatImageCell.h"
+#import "ImageCache.h"
+#import "LoadingView.h"
+#import "NetworkDefines.h"
+#import "SegueDefines.h"
+#import "ProgramDetailStoreViewController.h"
+
+#import "UIImage+CatrobatUIImageExtensions.h"
+#import "UIColor+CatrobatUIColorExtensions.h"
+
 
 @interface FeaturedProgramsStoreViewController ()
+
+@property (nonatomic, strong) NSMutableData *data;
+@property (nonatomic, strong) NSURLConnection *connection;
+@property (nonatomic, strong) NSMutableArray *projects;
+@property (nonatomic, strong) LoadingView* loadingView;
 
 @end
 
 @implementation FeaturedProgramsStoreViewController
 
+@synthesize data          = _data;
+@synthesize connection    = _connection;
+@synthesize projects      = _projects;
+
 - (id)initWithStyle:(UITableViewStyle)style
 {
     self = [super initWithStyle:style];
     if (self) {
-
     }
     return self;
 }
@@ -41,12 +65,21 @@
 {
     [super viewDidLoad];
 
+    [self loadFeaturedProjects];
+    [self initTableView];
+    
+    [TableUtil initNavigationItem:self.navigationItem withTitle:@"Featured Programs"];
+}
+
+- (void)dealloc
+{
+    [self.loadingView removeFromSuperview];
+    self.loadingView = nil;
 }
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
-
 }
 
 #pragma mark - Table view data source
@@ -55,32 +88,187 @@
 {
 #warning Potentially incomplete method implementation.
     // Return the number of sections.
-    return 0;
+    return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-#warning Incomplete method implementation.
-    // Return the number of rows in the section.
-    return 0;
+    return self.projects.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *CellIdentifier = @"Cell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
     
-    // Configure the cell...
+    UITableViewCell* cell = nil;
+    cell = [self cellForProjectsTableView:tableView atIndexPath:indexPath];
     
     return cell;
 }
 
 
+#pragma mark - Init
+-(void)initTableView
+{
+    self.tableView.delegate = self;
+    self.tableView.dataSource = self;
+    [self.tableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
+    self.tableView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"darkblue"]];
+}
+
+
+#pragma mark - Helper
+
+-(UITableViewCell*)cellForProjectsTableView:(UITableView*)tableView atIndexPath:(NSIndexPath*)indexPath {
+    
+    static NSString *CellIdentifier = kImageCell;
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    
+    if (!cell) {
+        NSLog(@"Should Never happen - since iOS5 Storyboard *always* instantiates our cell!");
+        abort();
+    }
+    
+    if([cell conformsToProtocol:@protocol(CatrobatImageCell)]) {
+        CatrobatProject *project = [self.projects objectAtIndex:indexPath.row];
+        
+        UITableViewCell <CatrobatImageCell>* imageCell = (UITableViewCell <CatrobatImageCell>*)cell;
+        imageCell.titleLabel.text = project.projectName;
+        
+        [self loadImage:project.screenshotSmall forCell:imageCell atIndexPath:indexPath];
+    }
+    
+    return cell;
+}
+
+
+-(void)loadImage:(NSString*)imageURLString forCell:(UITableViewCell <CatrobatImageCell>*) imageCell atIndexPath:(NSIndexPath*)indexPath
+{
+    
+    imageCell.iconImageView.image =
+    [UIImage imageWithContentsOfURL:[NSURL URLWithString:imageURLString]
+                   placeholderImage:[UIImage imageNamed:@"programs"]
+                       onCompletion:^(UIImage *image) {
+                           dispatch_async(dispatch_get_main_queue(), ^{
+                               [self.tableView beginUpdates];
+                               UITableViewCell <CatrobatImageCell>* cell = (UITableViewCell <CatrobatImageCell>*)[self.tableView cellForRowAtIndexPath:indexPath];
+                               if(cell) {
+                                   cell.iconImageView.image = image;
+                               }
+                               [self.tableView endUpdates];
+                           });
+                       }];
+}
+
+
+- (void)loadFeaturedProjects
+{
+    self.data = [[NSMutableData alloc] init];
+    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@/%@", kConnectionHost, kConnectionFeatured]];
+    NSURLRequest *request = [NSURLRequest requestWithURL:url cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:kConnectionTimeout];
+    
+    NSURLConnection *connection = [[NSURLConnection alloc] initWithRequest:request delegate:self];
+    self.connection = connection;
+    
+    [self showLoadingView];
+}
+
+- (void)showLoadingView
+{
+    if(!self.loadingView) {
+        self.loadingView = [[LoadingView alloc] init];
+        [self.view addSubview:self.loadingView];
+    }
+    [self.loadingView show];
+}
+
+- (void) hideLoadingView
+{
+    [self.loadingView hide];
+}
+
+
 #pragma mark - Table view delegate
+
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return [TableUtil getHeightForImageCell];
+}
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-
 }
+
+
+#pragma mark - NSURLConnection Delegates
+- (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data {
+    if (self.connection == connection) {
+        NSLog(@"Received data from server");
+        [self.data appendData:data];
+    }
+}
+
+- (void)connectionDidFinishLoading:(NSURLConnection *)connection {
+    
+    if (self.connection == connection) {
+        
+        [self.loadingView hide];
+        
+        NSError *error = nil;
+        id jsonObject = [NSJSONSerialization JSONObjectWithData:self.data
+                                                        options:NSJSONReadingMutableContainers
+                                                          error:&error];
+        NSDebug(@"array: %@", jsonObject);
+        
+        
+        if ([jsonObject isKindOfClass:[NSDictionary class]]) {
+            NSDictionary *catrobatInformation = [jsonObject valueForKey:@"CatrobatInformation"];
+            
+            CatrobatInformation *information = [[CatrobatInformation alloc] initWithDict:catrobatInformation];
+            
+            NSArray *catrobatProjects = [jsonObject valueForKey:@"CatrobatProjects"];
+            
+            self.projects = [[NSMutableArray alloc] initWithCapacity:[catrobatProjects count]];
+            
+            for (NSDictionary *projectDict in catrobatProjects) {
+                CatrobatProject *project = [[CatrobatProject alloc] initWithDict:projectDict andBaseUrl:information.baseURL];
+                [self.projects addObject:project];
+            }
+        }
+        
+        self.data = nil;
+        self.connection = nil;
+        
+        
+        [self update];
+    }
+}
+
+
+# pragma mark - Segue delegate
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    
+    if([[segue identifier] isEqualToString:kSegueToLevelDetail]) {
+        NSIndexPath *selectedRowIndexPath = self.tableView.indexPathForSelectedRow;
+        CatrobatProject *level = [self.projects objectAtIndex:selectedRowIndexPath.row];
+        ProgramDetailStoreViewController* levelDetailViewController = (ProgramDetailStoreViewController*)[segue destinationViewController];
+        levelDetailViewController.project = level;
+    }
+}
+
+
+#pragma mark - update
+
+- (void)update {
+    [self.tableView reloadData];
+    [self.searchDisplayController setActive:NO animated:YES];
+}
+
+
+#pragma mark - BackButtonDelegate
+-(void)back {
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
 
 @end
