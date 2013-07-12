@@ -61,13 +61,14 @@
 
 -(void)dealloc
 {
+    NSDebug(@"Dealloc: %@", self);
     [[NSNotificationCenter defaultCenter] removeObserver:self];
-    [self removeAllChildren];
 }
 
 
 
--(void)start {
+-(void)start
+{
     self.position = CGPointMake(0, 0);
     if([self.name isEqualToString:@"Background"]) {
         self.zPosition = INT_MAX;
@@ -75,11 +76,12 @@
     for (Script *script in self.scriptList)
     {
         if ([script isKindOfClass:[StartScript class]]) {
+            __block __typeof__(self) _self = self;
             [self startAndAddScript:script completion:^{
-                [self scriptFinished:script];
+                [_self scriptFinished:script];
             }];
         }
-        
+
         if([script isKindOfClass:[BroadcastScript class]]) {
             if ([self.broadcastWaitDelegate respondsToSelector:@selector(registerSprite:forMessage:)]) {
                 [self.broadcastWaitDelegate registerSprite:self forMessage:((BroadcastScript*)script).receivedMessage];

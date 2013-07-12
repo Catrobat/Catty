@@ -40,6 +40,7 @@ static pthread_mutex_t variablesLock;
 
 -(void)dealloc
 {
+    NSDebug(@"Dealloc Variables");
     [self.objectVariableList removeAllObjects];
     [self.programVariableList removeAllObjects];
     self.programVariableList = nil;

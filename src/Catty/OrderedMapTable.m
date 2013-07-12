@@ -39,7 +39,7 @@
 +(id)strongToStrongObjectsMapTable
 {
     OrderedMapTable* orderedMapTable = [[OrderedMapTable alloc] init];
-    orderedMapTable.mapTable = [NSMapTable weakToStrongObjectsMapTable];
+    orderedMapTable.mapTable = [NSMapTable strongToStrongObjectsMapTable];
     return orderedMapTable;
 }
 

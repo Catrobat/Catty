@@ -36,6 +36,9 @@
 
 -(void)startWithCompletion:(dispatch_block_t)block;
 
+-(void)stop;
+
 -(NSString*)description;
+
 
 @end

@@ -64,7 +64,7 @@
 
 -(void)dealloc
 {
-    
+    NSDebug(@"Dealloc Program");
 }
 
 

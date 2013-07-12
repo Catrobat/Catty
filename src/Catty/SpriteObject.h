@@ -65,7 +65,6 @@
 
 // events
 - (void)start;
-- (void)stop;
 - (void)scriptFinished:(Script*)script;
 
 

@@ -32,7 +32,7 @@
 
 @interface FileManager : NSObject <NSURLConnectionDelegate>
 
-@property (nonatomic, strong) id delegate;
+@property (nonatomic, weak) id delegate;
 
 - (void)deleteAllFilesInDocumentsDirectory;
 - (void)deleteAllFillesOfDirectory:(NSString*)path;

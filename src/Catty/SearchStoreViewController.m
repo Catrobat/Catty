@@ -57,7 +57,7 @@
     [self initTableView];
     [self initSearchView];
     
-    self.searchDisplayController.displaysSearchBarInNavigationBar = YES;
+    self.searchDisplayController.displaysSearchBarInNavigationBar = NO;
 
 }
 

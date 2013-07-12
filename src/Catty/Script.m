@@ -80,9 +80,16 @@
 
 }
 
+-(void)stop
+{
+    [self removeAllActions];
+    self.currentBrickIndex = INT_MAX;
+}
+
 
 -(void)dealloc
 {
+    NSDebug(@"Dealloc %@ %@", [self class], self.parent);
     
 }
 
@@ -91,7 +98,7 @@
     NSDebug(@"Starting: %@", self.description);
 
     [self reset];
-    self.completion = completion;
+//    self.completion = completion;
     [self runNextAction];
     
 }
@@ -99,6 +106,9 @@
 
 -(void)runNextAction
 {
+    
+    NSDebug(@"Running Next Action");
+    NSDebug(@"Self Parent: %@", self.parent);
     
     if(self.currentBrickIndex < [self.brickList count]) {
         Brick* brick = [self.brickList objectAtIndex:self.currentBrickIndex++];

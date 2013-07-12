@@ -41,6 +41,7 @@
 {
     if (self = [super initWithSize:size]) {
         self.program = program;
+        self.backgroundColor = [UIColor blackColor];
         [self startProgram];
     }
     return self;
@@ -48,6 +49,7 @@
 
 -(void)dealloc
 {
+    NSDebug(@"Dealloc Scene");
 }
 
 

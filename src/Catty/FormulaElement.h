@@ -79,7 +79,7 @@ typedef enum {
 @property (nonatomic, strong) NSString* value;
 @property (nonatomic, strong) FormulaElement* leftChild;
 @property (nonatomic, strong) FormulaElement* rightChild;
-@property (nonatomic, assign) FormulaElement* parent;
+@property (nonatomic, weak) FormulaElement* parent;
 
 
 - (id)initWithType:(NSString*)type
