@@ -49,7 +49,8 @@
     CGPoint sceneCenter = CGPointMake(240, 400);
     CGPoint convertedCenter = [scene convertPointToScene:pocketCodeCenter];
     
-    XCTAssertEquals(convertedCenter, sceneCenter, @"The Scene Center is not correctly calculated");
+    
+    XCTAssertEqual(convertedCenter, sceneCenter, @"The Scene Center is not correctly calculated");
 }
 
 - (void)test_PointConversionBottomLeft
@@ -60,7 +61,7 @@
     CGPoint sceneBottomLeft = CGPointMake(0, 0);
     CGPoint convertedBottomLeft = [scene convertPointToScene:pocketCodeBottomLeft];
     
-    XCTAssertEquals(convertedBottomLeft, sceneBottomLeft, @"The Bottom Left is not correctly calculated");
+    XCTAssertEqual(convertedBottomLeft, sceneBottomLeft, @"The Bottom Left is not correctly calculated");
 }
 
 - (void)test_PointConversionBottomRight
@@ -70,7 +71,7 @@
     CGPoint sceneBottomRight = CGPointMake(480, 0);
     CGPoint convertedBottomRight = [scene convertPointToScene:pocketCodeBottomRight];
     
-    XCTAssertEquals(convertedBottomRight, sceneBottomRight, @"The Bottom Right is not correctly calculated");
+    XCTAssertEqual(convertedBottomRight, sceneBottomRight, @"The Bottom Right is not correctly calculated");
 }
 
 - (void)test_PointConversionTopLeft
@@ -80,7 +81,7 @@
     CGPoint sceneTopLeft = CGPointMake(0, 800);
     CGPoint convertedTopLeft = [scene convertPointToScene:pocketCodeTopLeft];
     
-    XCTAssertEquals(convertedTopLeft, sceneTopLeft, @"The Top Left is not correctly calculated");
+    XCTAssertEqual(convertedTopLeft, sceneTopLeft, @"The Top Left is not correctly calculated");
 }
 
 - (void)test_PointConversionTopRight
@@ -90,7 +91,7 @@
     CGPoint sceneTopRight = CGPointMake(480, 800);
     CGPoint convertedTopRight = [scene convertPointToScene:pocketCodeTopRight];
     
-    XCTAssertEquals(convertedTopRight, sceneTopRight, @"The Top Right is not correctly calculated");
+    XCTAssertEqual(convertedTopRight, sceneTopRight, @"The Top Right is not correctly calculated");
 }
 
 #pragma mark Scene to Pocked Code
@@ -102,7 +103,7 @@
     CGPoint sceneCenter = CGPointMake(240, 400);
     CGPoint convertedCenter = [scene convertPointToScene:pocketCodeCenter];
     
-    XCTAssertEquals(convertedCenter, sceneCenter, @"The Scene Center is not correctly calculated");
+    XCTAssertEqual(convertedCenter, sceneCenter, @"The Scene Center is not correctly calculated");
 }
 
 - (void)test_SceneConversionBottomLeft
@@ -113,7 +114,7 @@
     CGPoint sceneBottomLeft = CGPointMake(0, 0);
     CGPoint convertedBottomLeft = [scene convertSceneCoordinateToPoint:sceneBottomLeft];
     
-    XCTAssertEquals(convertedBottomLeft, pocketCodeBottomLeft, @"The Bottom Left is not correctly calculated");
+    XCTAssertEqual(convertedBottomLeft, pocketCodeBottomLeft, @"The Bottom Left is not correctly calculated");
 }
 
 - (void)test_SceneConversionBottomRight
@@ -123,7 +124,7 @@
     CGPoint sceneBottomRight = CGPointMake(480, 0);
     CGPoint convertedBottomRight = [scene convertSceneCoordinateToPoint:sceneBottomRight];
     
-    XCTAssertEquals(convertedBottomRight, pocketCodeBottomRight, @"The Bottom Right is not correctly calculated");
+    XCTAssertEqual(convertedBottomRight, pocketCodeBottomRight, @"The Bottom Right is not correctly calculated");
 }
 
 - (void)test_SceneConversionTopLeft
@@ -133,7 +134,7 @@
     CGPoint sceneTopLeft = CGPointMake(0, 800);
     CGPoint convertedTopLeft = [scene convertSceneCoordinateToPoint:sceneTopLeft];
     
-    XCTAssertEquals(convertedTopLeft, pocketCodeTopLeft, @"The Top Left is not correctly calculated");
+    XCTAssertEqual(convertedTopLeft, pocketCodeTopLeft, @"The Top Left is not correctly calculated");
 }
 
 - (void)test_SceneConversionTopRight
@@ -143,7 +144,7 @@
     CGPoint sceneTopRight = CGPointMake(480, 800);
     CGPoint convertedTopRight = [scene convertSceneCoordinateToPoint:sceneTopRight];
     
-    XCTAssertEquals(convertedTopRight, pocketCodeTopRight, @"The Top Right is not correctly calculated");
+    XCTAssertEqual(convertedTopRight, pocketCodeTopRight, @"The Top Right is not correctly calculated");
 }
 
 
