@@ -67,7 +67,7 @@ void uncaughtExceptionHandler(NSException *exception) {
     
     [[UINavigationBar appearance] setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:
                                                           [UIColor skyBlueColor],
-                                                          UITextAttributeTextColor, nil]];
+                                                          NSForegroundColorAttributeName, nil]];
     
     
 }

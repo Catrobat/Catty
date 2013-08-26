@@ -109,8 +109,15 @@
     Program *program = [parser generateObjectForLevel:[xmlPath stringByAppendingFormat:@"%@", kProgramCodeFileName]];
     
     if(!program) {
-#warning Debug - Change to Popup!
-        [NSException raise:@"Invalid Program" format:@"Program %@ could not be loaded!",  self.programLoadingInfo.visibleName];
+
+        NSString* popuperrormessage = [NSString stringWithFormat:@"Program %@ could not be loaded!",self.programLoadingInfo.visibleName];
+
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Invalid Program"
+                                                        message:popuperrormessage
+                                                       delegate:nil
+                                              cancelButtonTitle:@"OK"
+                                              otherButtonTitles:nil];
+        [alert show];
     }
     
     

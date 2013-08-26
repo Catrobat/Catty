@@ -144,6 +144,10 @@
     NSDebug(@"Play Button");
     [self performSegueWithIdentifier:kSegueToScene sender:self];
 }
+-(void)playButtonPressed:(id)sender
+{
+    [self playButtonPressed];
+}
 
 
 - (void) downloadButtonPressed
@@ -164,6 +168,11 @@
     
     [appDelegate.fileManager downloadFileFromURL:url withName:self.project.projectName];
     appDelegate.fileManager.delegate = self;
+}
+
+-(void)downloadButtonPressed:(id)sender
+{
+    [self downloadButtonPressed];
 }
 
 #pragma mark - File Manager Delegate

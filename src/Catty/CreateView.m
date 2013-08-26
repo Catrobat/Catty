@@ -299,7 +299,7 @@
 {
     UILabel* titleInformationLabel = [[UILabel alloc] initWithFrame:CGRectMake(20, yPosition, 80, 25)];
     titleInformationLabel.text = title;
-    titleInformationLabel.textAlignment = UITextAlignmentRight;
+    titleInformationLabel.textAlignment = NSTextAlignmentRight;
     titleInformationLabel.backgroundColor = [UIColor clearColor];
     titleInformationLabel.font = [UIFont boldSystemFontOfSize:14.0f];
     titleInformationLabel.textColor = [UIColor grayColor];
