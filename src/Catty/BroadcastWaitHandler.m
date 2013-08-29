@@ -60,11 +60,12 @@
 }
 -(void)performBroadcastWaitForMessage:(NSString*)message
 {
-    
-    NSString* queueString = [NSString stringWithFormat:@"at.tugraz.ist.%@", message];
-    const char *queueName = [queueString cStringUsingEncoding:NSUTF8StringEncoding];
+#warning look over again-> uncomment because of unused variable errors
+    //NSString* queueString = [NSString stringWithFormat:@"at.tugraz.ist.%@", message];
+    //const char *queueName = [queueString cStringUsingEncoding:NSUTF8StringEncoding];
     
     //dispatch_queue_t broadcastWaitQueue = dispatch_queue_create(queueName, DISPATCH_QUEUE_CONCURRENT);
+    
     dispatch_queue_t broadcastWaitQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0);
     dispatch_group_t group = dispatch_group_create();
     

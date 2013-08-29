@@ -110,7 +110,7 @@
     
     if(!program) {
 
-        NSString* popuperrormessage = [NSString stringWithFormat:@"Program %@ could not be loaded!",self.programLoadingInfo.visibleName];
+        NSString *popuperrormessage = [NSString stringWithFormat:@"Program %@ could not be loaded!",self.programLoadingInfo.visibleName];
 
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Invalid Program"
                                                         message:popuperrormessage

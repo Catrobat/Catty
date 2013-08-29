@@ -71,7 +71,7 @@
 {
     self.position = CGPointMake(0, 0);
     if([self.name isEqualToString:@"Background"]) {
-        self.zPosition = INT_MAX;
+        self.zPosition = 0;
     }
     for (Script *script in self.scriptList)
     {
