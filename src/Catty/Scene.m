@@ -55,10 +55,11 @@
 
 -(void) startProgram
 {
-    
+
     for (SpriteObject *obj in self.program.objectList) {
         [self addChild:obj];
         [obj start];
+        [obj setLook];
         [obj setUserInteractionEnabled:YES];
     }    
 }

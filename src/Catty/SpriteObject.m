@@ -28,7 +28,8 @@
 #import "Look.h"
 #import "Scene.h"
 #import "Util.h"
-
+#import "Brick.h"
+#import "SetLookBrick.h"
 
 @interface SpriteObject()
 
@@ -141,7 +142,68 @@
     index %= [self.lookList count];
     return [self.lookList objectAtIndex:index];
 }
+-(NSString*)pathForLook:(Look*)look
+{
+    return [NSString stringWithFormat:@"%@images/%@", self.projectPath, look.fileName];
+}
+-(void)changeLook:(Look *)look
+{
+    UIImage* image = [UIImage imageWithContentsOfFile: [self pathForLook:look] ];
+    SKTexture* texture = [SKTexture textureWithImage:image];
+    double xScale = self.xScale;
+    double yScale = self.yScale;
+    self.xScale = 1.0;
+    self.yScale = 1.0;
+    self.size = texture.size;
+    self.texture = texture;
+    self.currentLook = look;
+    
+    if(xScale != 1.0) {
+        self.xScale = xScale;
+    }
+    if(yScale != 1.0) {
+        self.yScale = yScale;
+    }
+    
+}
+-(void) setLook
+{
+    BOOL check = YES;
+#warning Fix for issue that you can set look without a brick at the start -> other idea??
+        for (Script *script in self.scriptList)
+        {
+            if ([script isKindOfClass:[StartScript class]]) {
+                for(Brick* brick in script.brickList){
+                    if([brick isKindOfClass:[SetLookBrick class]]) {
+                        check = NO;
+                    }
+                }
+            }
+            if ([script isKindOfClass:[WhenScript class]]) {
+                for(Brick* brick in script.brickList){
+                    if([brick isKindOfClass:[SetLookBrick class]]) {
+                        check = NO;
+                    }
+                }
+            }
+            if ([script isKindOfClass:[BroadcastScript class]]) {
+                for(Brick* brick in script.brickList){
+                    if([brick isKindOfClass:[SetLookBrick class]]) {
+                        check = NO;
+                    }
+                }
+            }
 
+            
+        }
+
+    
+    if(check == YES && [self.lookList count]>0){
+        [self changeLook:[self.lookList objectAtIndex:0]];
+    }
+        
+
+}
 
 
 #pragma mark - Broadcast

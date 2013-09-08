@@ -78,6 +78,7 @@
 
 // actions
 - (void)changeLook:(Look*)look;
+- (void)setLook;
 
 //- (void)glideToPosition:(CGPoint)position withDurationInSeconds:(float)durationInSeconds fromScript:(Script*)script;
 //- (void)hide;
