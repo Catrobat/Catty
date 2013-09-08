@@ -114,10 +114,11 @@
 
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Invalid Program"
                                                         message:popuperrormessage
-                                                       delegate:nil
+                                                       delegate:self
                                               cancelButtonTitle:@"OK"
                                               otherButtonTitles:nil];
         [alert show];
+        
     }
     
     
@@ -146,7 +147,13 @@
     [[AudioManager sharedAudioManager] stopAllSounds];
     [[SensorHandler sharedSensorHandler] stopSensors];
 }
-
+-(void) alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
+    
+    if (buttonIndex == 0) {
+        
+        [self.navigationController popViewControllerAnimated:YES];
+    }
+}
 
 - (void)backButtonPressed:(UIButton *)sender
 {

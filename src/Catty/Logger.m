@@ -107,6 +107,7 @@ static Logger* instance;
         }
         
         if(level == error && kAbortAtError) {
+            NSDebug(@"----------FAIILLL------------");
             abort();
         }
     }

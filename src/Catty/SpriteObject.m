@@ -73,6 +73,9 @@
     if([self.name isEqualToString:@"Background"]) {
         self.zPosition = 0;
     }
+    else {
+        self.zPosition = 1;
+    }
     for (Script *script in self.scriptList)
     {
         if ([script isKindOfClass:[StartScript class]]) {
