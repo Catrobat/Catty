@@ -20,40 +20,45 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-
-#import "Setbrightnessbrick.h"
+#import "ChangeBrightnessByNBrick.h"
 #import "Formula.h"
 
-@implementation SetBrightnessBrick
 
+@implementation ChangeBrightnessByNBrick
 
 -(SKAction*)action
 {
     NSDebug(@"Adding: %@", self.description);
-    return [SKAction runBlock:^{
-        NSDebug(@"Performing: %@", self.description);
-        CGFloat brightness = [self.brightness interpretDoubleForSprite:self.object];
-        if (brightness >= 0.0f){
-            if (brightness <= 1.0f) {
-                [[UIScreen mainScreen] setBrightness: brightness];
+        return [SKAction runBlock:^{
+            NSDebug(@"Performing: %@", self.description);
+            CGFloat brightness_old = (float)[[UIScreen mainScreen] brightness];
+            CGFloat brightness_add = (float)[self.brightness interpretDoubleForSprite:self.object];
+            if (brightness_add > 1 || brightness_add < 1) {
+                brightness_add = brightness_add/100;
             }
-            else if(brightness <= 100.0f){
-                [[UIScreen mainScreen] setBrightness: brightness/100];
+            CGFloat brightness_new = brightness_old + brightness_add;
+            if (brightness_new  >= 0.0f){
+                if (brightness_new <= 1.0f) {
+                    [[UIScreen mainScreen] setBrightness: brightness_new];
+                }
+                else{
+                    NSDebug(@"Wrong Brightness in/decrease input: Can't exceed 0 and 1 (or between 0 and 100%)");
+                }
             }
             else{
-                NSDebug(@"Wrong Brightness input: Should be between 0 and 1 or between 0 and 100");
+                NSDebug(@"Wrong Brightness in/decrease input: Brightness can only be greater than 0");
             }
-        }
-        else{
-            NSDebug(@"Wrong Brightness input: Should be greater than 0");
-        }
+            
+            
         }];
 }
-
 #pragma mark - Description
 - (NSString*)description
 {
-    return [NSString stringWithFormat:@"Set Brightness to: %f%%)", [self.brightness interpretDoubleForSprite:self.object]];
+    return [NSString stringWithFormat:@"ChangeBrightnessByN (%f%%)", [self.brightness interpretDoubleForSprite:self.object]];
 }
+
+
+
 
 @end
