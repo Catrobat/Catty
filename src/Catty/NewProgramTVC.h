@@ -20,24 +20,13 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#ifndef Catty_SegueDefines_h
-#define Catty_SegueDefines_h
+#import <UIKit/UIKit.h>
 
+@interface NewProgramTVC : UITableViewController
 
-#define kSegueToLevelDetail @"segueToLevelDetail"
-#define kSegueToStage @"SEGUE_TO_STAGE"
-#define kSegueToScene @"segueToScene"
+@property (nonatomic, strong)NSMutableArray *dataSourceArray; // first object in mutable array is background
 
-#define kSegueContinue @"continue"
-#define kSegueNew @"new"
-#define kSeguePrograms @"programs"
-#define kSegueForum @"forum"
-#define kSegueDownload @"download"
-#define kSegueUpload @"upload"
-#define KSegueAddNewProgram @"addProgram"
-#define kSegueObjectView @"objectView"
+- (NSMutableArray *)getObjectList;
+- (NSMutableArray *)getBackground;
 
-
-
-
-#endif
+@end

@@ -33,10 +33,12 @@
 #import "SegueDefines.h"
 #import "Util.h"
 #import "SceneViewController.h"
+#import "NewProgramTVC.h"
 
 
 
-@interface CatrobatTableViewController ()
+@interface CatrobatTableViewController () <UIAlertViewDelegate,
+                                    UIActionSheetDelegate, UITextFieldDelegate>
 
 @property (nonatomic, strong) NSArray* cells;
 @property (nonatomic, strong) NSArray* images;
@@ -63,6 +65,13 @@
     
     AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
     [appDelegate.fileManager addDefaultProjectToLeveLDirectory];
+}
+
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:YES];
+    [self.navigationController setToolbarHidden:YES];
 }
 
 -(void) viewDidAppear:(BOOL)animated {
@@ -153,11 +162,13 @@
     if ([identifier isEqualToString:kSegueDownload ] || [identifier isEqualToString:kSeguePrograms] ||
              [identifier isEqualToString:kSegueForum] || [identifier isEqualToString:kSegueContinue]) {
         [self performSegueWithIdentifier:identifier sender:self];
-    } else {
+    }
+     else if (indexPath.row == 1) [self performSegueWithIdentifier:kSegueNew sender:self];
+        
+    else {
         [Util showComingSoonAlertView];
         [tableView deselectRowAtIndexPath:indexPath animated:YES];
     }
-
 }
 
 
@@ -200,12 +211,7 @@
         SceneViewController* sceneViewController = (SceneViewController*)segue.destinationViewController;
         sceneViewController.programLoadingInfo = [Util programLoadingInfoForProgramWithName:[Util lastProgram]];
     }
-    
-    
 }
-
-
-
 
 
 @end
