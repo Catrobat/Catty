@@ -137,7 +137,8 @@
 
 -(void)infoPressed:(id)sender
 {
-    UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Pocket Code" message:@"Pocket Code for iOS" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+    NSString *message = [NSString localizedStringWithFormat:NSLocalizedString(@"Pocket Code for iOS",nil)];
+    UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Pocket Code" message: message delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
     [alert show];
 }
 

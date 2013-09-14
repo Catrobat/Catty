@@ -38,9 +38,11 @@
 }
 
 + (void)showComingSoonAlertView {
+    
+    NSString* alert_message = [NSString localizedStringWithFormat:NSLocalizedString(@"This feature is coming soon!", nil)];
     UIAlertView *alert = [[UIAlertView alloc]
                           initWithTitle:@"Catty"
-                          message:@"This feature is coming soon!"
+                          message:alert_message
                           delegate:nil
                           cancelButtonTitle:@"OK"
                           otherButtonTitles:nil];

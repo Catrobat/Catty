@@ -20,24 +20,29 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
+"New" = "nuevo";
+"Programs" = "programas";
+"Continue" = "continuar";
+"Download" = "download"
+"Upload" = "upload"
+"Forum" = "foro"
 
-"New" = "Neu";
-"Programs" = "Programme";
-"Continue" = "Weiter";
-"Download" = "Download"
-"Upload" = "Upload"
-"Forum" = "Forum"
 
-"This feature is coming soon!" = "Diese Funktion wird bald verfügbar sein!";
-"Pocket Code for iOS" = "Pocket Code für iOS";
+"This feature is coming soon!" = "Esta característica es muy pronto!";
+"Pocket Code for iOS" = "Pocket Code por iOS";
 
-"Description" = "Beschreibung";
-"Author" = "Autor";
-"Uploaded" = "Hochgeladen";
-"Views" = "Betrachteranzahl";
-"Play" = "Spielen";
 
-"Recents" = "Neu";
-"Featured" = "Ausgezeichnet";
-"Search" = "Suchen";
+
+"Description" = "descripción";
+"Author" = "escritor";
+"Uploaded" = "subido";
+"Views" = "vistas";
+"Play" = "juguetear";
+
+
+
+"Recents" = "reciente";
+"Featured" = "destacado";
+"Search" = "búsqueda";
+
 

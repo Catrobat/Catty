@@ -59,8 +59,7 @@
     [backButton addTarget:self action:@selector(backButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
     UIImage* backImage = [UIImage imageNamed:@"back"];
     [backButton setImage:backImage forState:UIControlStateNormal];
-    [self.view addSubview:backButton];
-    
+    [self.view addSubview:backButton];    
 }
 
 - (void) viewWillAppear:(BOOL)animated

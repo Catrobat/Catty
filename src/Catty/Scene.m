@@ -41,7 +41,7 @@
 {
     if (self = [super initWithSize:size]) {
         self.program = program;
-        self.backgroundColor = [UIColor blackColor];
+        self.backgroundColor = [UIColor whiteColor];
         [self startProgram];
     }
     return self;
