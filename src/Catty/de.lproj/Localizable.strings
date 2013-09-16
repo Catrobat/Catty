@@ -19,24 +19,20 @@
  *  You should have received a copy of the GNU Affero General Public License
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
-
-
+"ExampleEntry" = "ExampleTranslation";
 "New" = "Neu";
 "Programs" = "Programme";
 "Continue" = "Weiter";
-"Download" = "Download"
-"Upload" = "Upload"
-"Forum" = "Forum"
-
+"Download" = "Download";
+"Upload" = "Upload";
+"Forum" = "Forum";
 "This feature is coming soon!" = "Diese Funktion wird bald verfügbar sein!";
 "Pocket Code for iOS" = "Pocket Code für iOS";
-
 "Description" = "Beschreibung";
 "Author" = "Autor";
 "Uploaded" = "Hochgeladen";
 "Views" = "Betrachteranzahl";
 "Play" = "Spielen";
-
 "Recents" = "Neu";
 "Featured" = "Ausgezeichnet";
 "Search" = "Suchen";
