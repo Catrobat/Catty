@@ -20,24 +20,26 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#ifndef Catty_SegueDefines_h
-#define Catty_SegueDefines_h
+#import "ScriptsCollectionViewCell.h"
 
+@implementation ScriptsCollectionViewCell
 
-#define kSegueToLevelDetail @"segueToLevelDetail"
-#define kSegueToStage @"SEGUE_TO_STAGE"
-#define kSegueToScene @"segueToScene"
+- (id)initWithFrame:(CGRect)frame
+{
+    self = [super initWithFrame:frame];
+    if (self) {
+        // Initialization code
+    }
+    return self;
+}
 
-#define kSegueContinue @"continue"
-#define kSegueNew @"new"
-#define kSeguePrograms @"programs"
-#define kSegueForum @"forum"
-#define kSegueDownload @"download"
-#define kSegueUpload @"upload"
-#define KSegueAddNewProgram @"addProgram"
-#define kSegueObjectView @"objectView"
+/*
+// Only override drawRect: if you perform custom drawing.
+// An empty implementation adversely affects performance during animation.
+- (void)drawRect:(CGRect)rect
+{
+    // Drawing code
+}
+*/
 
-
-
-
-#endif
+@end

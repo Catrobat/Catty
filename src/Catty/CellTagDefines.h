@@ -26,6 +26,10 @@
 #define kContinueCell @"ContinueCell"
 #define kImageCell    @"ImageCell"
 #define kSearchCell   @"SearchCell"
+#define kBackgroundCell @"BackgroundCell"
+#define kObjectCell @"ObjectCell"
+#define kObjectProgramCell @"ObjectProgramCell"
+
 
 #define kImageLabelTag     11
 #define kTitleLabelTag     12

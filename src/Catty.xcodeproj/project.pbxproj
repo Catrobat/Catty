@@ -25,6 +25,16 @@
 		1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
 		1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
 		288765FD0DF74451002DB57D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 288765FC0DF74451002DB57D /* CoreGraphics.framework */; };
+		8154EAB017D8D17E0078BFED /* BackgroundObjectTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 8154EAAF17D8D17E0078BFED /* BackgroundObjectTVC.m */; };
+		816C788317D5F0420029A4E6 /* settings_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 816C788217D5F0420029A4E6 /* settings_bg@2x.png */; };
+		816C788617D62B7C0029A4E6 /* NewProgramTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 816C788517D62B7C0029A4E6 /* NewProgramTVC.m */; };
+		81FAEE2A17E76DDC0052BB2B /* ObjectObjectsTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 81FAEE2917E76DDC0052BB2B /* ObjectObjectsTVC.m */; };
+		81FAEE2F17E781AB0052BB2B /* BackgroundScriptsCVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 81FAEE2E17E781AB0052BB2B /* BackgroundScriptsCVC.m */; };
+		81FAEE3217E782140052BB2B /* BackgroundLooksTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 81FAEE3117E782140052BB2B /* BackgroundLooksTVC.m */; };
+		81FAEE3517E782360052BB2B /* BackgroundSoundsTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 81FAEE3417E782360052BB2B /* BackgroundSoundsTVC.m */; };
+		81FAEE3917E793240052BB2B /* ScriptsCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 81FAEE3817E793240052BB2B /* ScriptsCollectionViewCell.m */; };
+		81FAEE3C17E793F60052BB2B /* ScriptsViewCVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 81FAEE3B17E793F60052BB2B /* ScriptsViewCVC.m */; };
+		81FAEE3F17E7994B0052BB2B /* PrototypScriptCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 81FAEE3E17E7994B0052BB2B /* PrototypScriptCell.m */; };
 		B402288217329FEB004C4942 /* IfLogicBeginBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = B402288117329FEB004C4942 /* IfLogicBeginBrick.m */; };
 		B40228911732A541004C4942 /* IfLogicElseBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = B40228901732A540004C4942 /* IfLogicElseBrick.m */; };
 		B40228961732A58E004C4942 /* IfLogicEndBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = B40228951732A58E004C4942 /* IfLogicEndBrick.m */; };
@@ -205,8 +215,27 @@
 		1D6058910D05DD3D006BFB54 /* Pocket Code.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Pocket Code.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		1DF5F4DF0D08C38300B7A737 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		288765FC0DF74451002DB57D /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
-		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = ../main.m; sourceTree = "<group>"; };
 		32CA4F630368D1EE00C91783 /* App-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "App-Prefix.pch"; sourceTree = "<group>"; };
+		8154EAAE17D8D17E0078BFED /* BackgroundObjectTVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BackgroundObjectTVC.h; sourceTree = "<group>"; };
+		8154EAAF17D8D17E0078BFED /* BackgroundObjectTVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BackgroundObjectTVC.m; sourceTree = "<group>"; };
+		816C788217D5F0420029A4E6 /* settings_bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "settings_bg@2x.png"; sourceTree = "<group>"; };
+		816C788417D62B7C0029A4E6 /* NewProgramTVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewProgramTVC.h; sourceTree = "<group>"; };
+		816C788517D62B7C0029A4E6 /* NewProgramTVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewProgramTVC.m; sourceTree = "<group>"; };
+		81FAEE2817E76DDC0052BB2B /* ObjectObjectsTVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ObjectObjectsTVC.h; sourceTree = "<group>"; };
+		81FAEE2917E76DDC0052BB2B /* ObjectObjectsTVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ObjectObjectsTVC.m; sourceTree = "<group>"; };
+		81FAEE2D17E781AB0052BB2B /* BackgroundScriptsCVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BackgroundScriptsCVC.h; sourceTree = "<group>"; };
+		81FAEE2E17E781AB0052BB2B /* BackgroundScriptsCVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BackgroundScriptsCVC.m; sourceTree = "<group>"; };
+		81FAEE3017E782140052BB2B /* BackgroundLooksTVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BackgroundLooksTVC.h; sourceTree = "<group>"; };
+		81FAEE3117E782140052BB2B /* BackgroundLooksTVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BackgroundLooksTVC.m; sourceTree = "<group>"; };
+		81FAEE3317E782360052BB2B /* BackgroundSoundsTVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BackgroundSoundsTVC.h; sourceTree = "<group>"; };
+		81FAEE3417E782360052BB2B /* BackgroundSoundsTVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BackgroundSoundsTVC.m; sourceTree = "<group>"; };
+		81FAEE3717E793240052BB2B /* ScriptsCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScriptsCollectionViewCell.h; sourceTree = "<group>"; };
+		81FAEE3817E793240052BB2B /* ScriptsCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScriptsCollectionViewCell.m; sourceTree = "<group>"; };
+		81FAEE3A17E793F60052BB2B /* ScriptsViewCVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScriptsViewCVC.h; sourceTree = "<group>"; };
+		81FAEE3B17E793F60052BB2B /* ScriptsViewCVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScriptsViewCVC.m; sourceTree = "<group>"; };
+		81FAEE3D17E7994B0052BB2B /* PrototypScriptCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrototypScriptCell.h; sourceTree = "<group>"; };
+		81FAEE3E17E7994B0052BB2B /* PrototypScriptCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PrototypScriptCell.m; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* App-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "App-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
 		B4003030170EB50A00396DB7 /* CatrobatTableViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CatrobatTableViewController.h; sourceTree = "<group>"; };
 		B4003031170EB50A00396DB7 /* CatrobatTableViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CatrobatTableViewController.m; sourceTree = "<group>"; };
@@ -558,7 +587,6 @@
 				B4F243CC170EBEF7007A071D /* AppDelegate.m */,
 				32CA4F630368D1EE00C91783 /* App-Prefix.pch */,
 				8D1107310486CEB800E47090 /* App-Info.plist */,
-				29B97316FDCFA39411CA2CEA /* main.m */,
 				B43313D917329514008B4EB3 /* Localizable.strings */,
 			);
 			name = "Supporting Files";
@@ -568,6 +596,7 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				29B97316FDCFA39411CA2CEA /* main.m */,
 				B4D940D7170ECB0D003DDBFA /* Aquarium 3.catrobat */,
 				B4D940D6170ECAFF003DDBFA /* My first project.catrobat */,
 			);
@@ -597,6 +626,59 @@
 				B46B26E817703E4000172837 /* XCTest.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		8154EAAD17D8D15F0078BFED /* BackgroundObjectTVC */ = {
+			isa = PBXGroup;
+			children = (
+				8154EAAE17D8D17E0078BFED /* BackgroundObjectTVC.h */,
+				8154EAAF17D8D17E0078BFED /* BackgroundObjectTVC.m */,
+			);
+			name = BackgroundObjectTVC;
+			sourceTree = "<group>";
+		};
+		81F10ED317CCD1F8000E4522 /* NewProgramTVC */ = {
+			isa = PBXGroup;
+			children = (
+				816C788417D62B7C0029A4E6 /* NewProgramTVC.h */,
+				816C788517D62B7C0029A4E6 /* NewProgramTVC.m */,
+			);
+			name = NewProgramTVC;
+			sourceTree = "<group>";
+		};
+		81FAEE2B17E780AE0052BB2B /* ObjectObjectsTVC */ = {
+			isa = PBXGroup;
+			children = (
+				81FAEE2817E76DDC0052BB2B /* ObjectObjectsTVC.h */,
+				81FAEE2917E76DDC0052BB2B /* ObjectObjectsTVC.m */,
+			);
+			name = ObjectObjectsTVC;
+			sourceTree = "<group>";
+		};
+		81FAEE2C17E780EC0052BB2B /* BackGroundDetailViews */ = {
+			isa = PBXGroup;
+			children = (
+				81FAEE2D17E781AB0052BB2B /* BackgroundScriptsCVC.h */,
+				81FAEE2E17E781AB0052BB2B /* BackgroundScriptsCVC.m */,
+				81FAEE3017E782140052BB2B /* BackgroundLooksTVC.h */,
+				81FAEE3117E782140052BB2B /* BackgroundLooksTVC.m */,
+				81FAEE3317E782360052BB2B /* BackgroundSoundsTVC.h */,
+				81FAEE3417E782360052BB2B /* BackgroundSoundsTVC.m */,
+			);
+			name = BackGroundDetailViews;
+			sourceTree = "<group>";
+		};
+		81FAEE3617E792620052BB2B /* ScriptsView */ = {
+			isa = PBXGroup;
+			children = (
+				81FAEE3717E793240052BB2B /* ScriptsCollectionViewCell.h */,
+				81FAEE3817E793240052BB2B /* ScriptsCollectionViewCell.m */,
+				81FAEE3A17E793F60052BB2B /* ScriptsViewCVC.h */,
+				81FAEE3B17E793F60052BB2B /* ScriptsViewCVC.m */,
+				81FAEE3D17E7994B0052BB2B /* PrototypScriptCell.h */,
+				81FAEE3E17E7994B0052BB2B /* PrototypScriptCell.m */,
+			);
+			name = ScriptsView;
 			sourceTree = "<group>";
 		};
 		B4003024170EB3AC00396DB7 /* Media */ = {
@@ -634,6 +716,7 @@
 		B4003027170EB3DA00396DB7 /* graphics */ = {
 			isa = PBXGroup;
 			children = (
+				816C788217D5F0420029A4E6 /* settings_bg@2x.png */,
 				B4DA23D8175E78050079B381 /* menu_icon.png */,
 				B4DA23D9175E78050079B381 /* menu_icon@2x.png */,
 				B4BCF3FF170ECF06008EDF3A /* continue.png */,
@@ -1269,6 +1352,11 @@
 		CD0CCE3B170CA00F00B70036 /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
+				81FAEE3617E792620052BB2B /* ScriptsView */,
+				81FAEE2C17E780EC0052BB2B /* BackGroundDetailViews */,
+				81FAEE2B17E780AE0052BB2B /* ObjectObjectsTVC */,
+				8154EAAD17D8D15F0078BFED /* BackgroundObjectTVC */,
+				81F10ED317CCD1F8000E4522 /* NewProgramTVC */,
 				CD8CC8B81724340E00239EBF /* ForumWebViewController */,
 				B4BCF440170ED66D008EDF3A /* SearchStoreViewController */,
 				B4003032170EB51000396DB7 /* CatrobatTableViewController */,
@@ -1829,6 +1917,7 @@
 				B43313D717329514008B4EB3 /* Localizable.strings in Resources */,
 				B4365CE91758EBA900B4D0A6 /* LoggerProperties.plist in Resources */,
 				B4DA23D5175E761D0079B381 /* icon_retina.png in Resources */,
+				816C788317D5F0420029A4E6 /* settings_bg@2x.png in Resources */,
 				B4DA23D7175E76820079B381 /* icon.png in Resources */,
 				B4DA23DA175E78050079B381 /* menu_icon.png in Resources */,
 				B4DA23DC175E78050079B381 /* menu_icon@2x.png in Resources */,
@@ -1866,12 +1955,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8154EAB017D8D17E0078BFED /* BackgroundObjectTVC.m in Sources */,
+				81FAEE2A17E76DDC0052BB2B /* ObjectObjectsTVC.m in Sources */,
 				B4E7D257176EF20F00EC8AD8 /* Scene.m in Sources */,
 				B40C306E170ECC30000B872F /* CatrobatBaseCell.m in Sources */,
 				B40C306D170ECC1B000B872F /* BackgroundLayer.m in Sources */,
 				B4D940D1170EC9ED003DDBFA /* NSString+CatrobatNSStringExtensions.m in Sources */,
 				B4D940D0170EC9E9003DDBFA /* UIColor+CatrobatUIColorExtensions.m in Sources */,
 				B4D940CF170EC9E6003DDBFA /* UIImage+CatrobatUIImageExtensions.m in Sources */,
+				81FAEE3F17E7994B0052BB2B /* PrototypScriptCell.m in Sources */,
 				B4D940CB170EC8DA003DDBFA /* TableUtil.m in Sources */,
 				B4D940CA170EC8C4003DDBFA /* ProgramLoadingInfo.m in Sources */,
 				B4D940B1170EC5C2003DDBFA /* CatrobatTableViewController.m in Sources */,
@@ -1881,6 +1973,7 @@
 				CD0CCF52170CB39700B70036 /* Brick.m in Sources */,
 				CD0CCF53170CB39700B70036 /* BroadcastBrick.m in Sources */,
 				CD0CCF54170CB39700B70036 /* BroadcastScript.m in Sources */,
+				816C788617D62B7C0029A4E6 /* NewProgramTVC.m in Sources */,
 				CD0CCF55170CB39700B70036 /* BroadcastWaitBrick.m in Sources */,
 				B46475301770F60500CD277F /* AudioManager.m in Sources */,
 				CD0CCF56170CB39700B70036 /* BroadcastWaitHandler.m in Sources */,
@@ -1893,6 +1986,7 @@
 				CD0CCF64170CB39700B70036 /* ComeToFrontBrick.m in Sources */,
 				CD0CCF71170CB39700B70036 /* FileManager.m in Sources */,
 				CD0CCF72170CB39700B70036 /* ForeverBrick.m in Sources */,
+				81FAEE3917E793240052BB2B /* ScriptsCollectionViewCell.m in Sources */,
 				CD0CCF74170CB39700B70036 /* GlideToBrick.m in Sources */,
 				CD0CCF75170CB39700B70036 /* GoNStepsBackBrick.m in Sources */,
 				CD0CCF76170CB39700B70036 /* Header.m in Sources */,
@@ -1904,6 +1998,7 @@
 				CD0CCFA7170CB39700B70036 /* PlaceAtBrick.m in Sources */,
 				CD0CCFAA170CB39700B70036 /* PlaySoundBrick.m in Sources */,
 				CD0CCFAB170CB39700B70036 /* Program.m in Sources */,
+				81FAEE3517E782360052BB2B /* BackgroundSoundsTVC.m in Sources */,
 				CD0CCFAE170CB39700B70036 /* ProjectParser.m in Sources */,
 				CD0CCFB0170CB39700B70036 /* RepeatBrick.m in Sources */,
 				CD0CCFBC170CB39700B70036 /* Script.m in Sources */,
@@ -1933,6 +2028,8 @@
 				B4D940B0170EC2B7003DDBFA /* zip.c in Sources */,
 				B4D940D4170ECA15003DDBFA /* ImageCache.m in Sources */,
 				B4D940DC170ECB65003DDBFA /* ContinueImageCell.m in Sources */,
+				81FAEE2F17E781AB0052BB2B /* BackgroundScriptsCVC.m in Sources */,
+				81FAEE3217E782140052BB2B /* BackgroundLooksTVC.m in Sources */,
 				B4D940E0170ECB8B003DDBFA /* DarkBlueGradientCell.m in Sources */,
 				B40C3071170ECC49000B872F /* DarkBlueGradientImageCell.m in Sources */,
 				B4BCF407170ECFA2008EDF3A /* MyProgramsViewController.m in Sources */,
@@ -1957,6 +2054,7 @@
 				B40228911732A541004C4942 /* IfLogicElseBrick.m in Sources */,
 				B40228961732A58E004C4942 /* IfLogicEndBrick.m in Sources */,
 				B40228A51732ADF4004C4942 /* PointToBrick.m in Sources */,
+				81FAEE3C17E793F60052BB2B /* ScriptsViewCVC.m in Sources */,
 				B470688A1733BA9600EC880D /* VariablesContainer.m in Sources */,
 				B470688F1733D6CC00EC880D /* ChangeVariableBrick.m in Sources */,
 				B44F32A01737AC2E00BD97AC /* ProgramManager.m in Sources */,
@@ -2037,6 +2135,7 @@
 				);
 				PRODUCT_NAME = "Pocket Code";
 				PROVISIONING_PROFILE = "";
+				USER_HEADER_SEARCH_PATHS = "${SPARROW_SRC}";
 			};
 			name = Debug;
 		};
@@ -2056,6 +2155,7 @@
 				);
 				PRODUCT_NAME = "Pocket Code";
 				PROVISIONING_PROFILE = "";
+				USER_HEADER_SEARCH_PATHS = "${SPARROW_SRC}";
 			};
 			name = Release;
 		};
@@ -2171,7 +2271,7 @@
 				PROVISIONING_PROFILE = "";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				USER_HEADER_SEARCH_PATHS = "${SPARROW_SRC}/**";
+				USER_HEADER_SEARCH_PATHS = "${SPARROW_SRC}";
 			};
 			name = Debug;
 		};
@@ -2203,7 +2303,7 @@
 				PROVISIONING_PROFILE = "";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				USER_HEADER_SEARCH_PATHS = "${SPARROW_SRC}/**";
+				USER_HEADER_SEARCH_PATHS = "${SPARROW_SRC}";
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;

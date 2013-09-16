@@ -20,24 +20,14 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#ifndef Catty_SegueDefines_h
-#define Catty_SegueDefines_h
 
+#import <UIKit/UIKit.h>
 
-#define kSegueToLevelDetail @"segueToLevelDetail"
-#define kSegueToStage @"SEGUE_TO_STAGE"
-#define kSegueToScene @"segueToScene"
+@interface PrototypScriptCell : UICollectionViewCell
+@property (weak, nonatomic) IBOutlet UIImageView *cellBackground;
+@property (weak, nonatomic) IBOutlet UILabel *leftLabel;
+@property (weak, nonatomic) IBOutlet UITextField *leftTextField;
+@property (weak, nonatomic) IBOutlet UILabel *rightLabel;
+@property (weak, nonatomic) IBOutlet UITextField *rightTextField;
 
-#define kSegueContinue @"continue"
-#define kSegueNew @"new"
-#define kSeguePrograms @"programs"
-#define kSegueForum @"forum"
-#define kSegueDownload @"download"
-#define kSegueUpload @"upload"
-#define KSegueAddNewProgram @"addProgram"
-#define kSegueObjectView @"objectView"
-
-
-
-
-#endif
+@end

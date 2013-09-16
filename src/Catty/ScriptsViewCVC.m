@@ -20,24 +20,36 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#ifndef Catty_SegueDefines_h
-#define Catty_SegueDefines_h
+
+#import "ScriptsViewCVC.h"
+#import "PrototypScriptCell.h"
+
+@interface ScriptsViewCVC ()
+
+@end
+
+@implementation ScriptsViewCVC
+
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
+    
+}
+
+#pragma mark - collection view datasource
 
 
-#define kSegueToLevelDetail @"segueToLevelDetail"
-#define kSegueToStage @"SEGUE_TO_STAGE"
-#define kSegueToScene @"segueToScene"
-
-#define kSegueContinue @"continue"
-#define kSegueNew @"new"
-#define kSeguePrograms @"programs"
-#define kSegueForum @"forum"
-#define kSegueDownload @"download"
-#define kSegueUpload @"upload"
-#define KSegueAddNewProgram @"addProgram"
-#define kSegueObjectView @"objectView"
-
+//#pragma mark - collection view delegate
+//- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
+//{
+//  PrototypScriptCell *cell = (PrototypScriptCell *)[collectionView dequeueReusableCellWithReuseIdentifier:@"Brick" forIndexPath:indexPath];
+//  
+//  cell.leftLabel.text = @"x:";
+//  cell.rightLabel.text = @"y:";
+//  cell.backgroundColor = [UIColor blueColor];
+//  
+//  return cell;
+//}
 
 
-
-#endif
+@end

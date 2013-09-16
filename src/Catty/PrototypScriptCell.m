@@ -20,24 +20,33 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#ifndef Catty_SegueDefines_h
-#define Catty_SegueDefines_h
 
+#import "PrototypScriptCell.h"
 
-#define kSegueToLevelDetail @"segueToLevelDetail"
-#define kSegueToStage @"SEGUE_TO_STAGE"
-#define kSegueToScene @"segueToScene"
+@implementation PrototypScriptCell
 
-#define kSegueContinue @"continue"
-#define kSegueNew @"new"
-#define kSeguePrograms @"programs"
-#define kSegueForum @"forum"
-#define kSegueDownload @"download"
-#define kSegueUpload @"upload"
-#define KSegueAddNewProgram @"addProgram"
-#define kSegueObjectView @"objectView"
+- (id)initWithFrame:(CGRect)frame
+{
+    self = [super initWithFrame:frame];
+    if (self) {
+        
+    }
+    return self;
+}
 
+- (void)awakeFromNib
+{
+  [super awakeFromNib];
+  self.cellBackground.backgroundColor = [UIColor blueColor];
+}
 
+/*
+// Only override drawRect: if you perform custom drawing.
+// An empty implementation adversely affects performance during animation.
+- (void)drawRect:(CGRect)rect
+{
+    // Drawing code
+}
+*/
 
-
-#endif
+@end
