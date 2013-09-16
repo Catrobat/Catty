@@ -20,12 +20,10 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
+
 #import <UIKit/UIKit.h>
 
-@interface BackgroundObjectTVC : UITableViewController
-@property (strong, nonatomic)NSMutableArray *backgroundScripts;
-@property (strong,nonatomic) NSMutableArray  *backgroundBackgrounds;
-@property (strong, nonatomic) NSMutableArray *backgroundSounds;
+@interface ScriptsViewCVC : UICollectionViewController
 
 
 @end

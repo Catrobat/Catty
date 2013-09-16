@@ -27,6 +27,7 @@
 #import "Look.h"
 #import "Sound.h"
 #import "Brick.h"
+#import "BackgroundObjectTVC.h"
 
 enum NewProgramTVCSections
 {
@@ -146,7 +147,7 @@ enum NewProgramTVCSections
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"kCell" forIndexPath:indexPath];
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ProgramCell" forIndexPath:indexPath];
     
     if (indexPath.section == 0) {
         cell.textLabel.text = [[self.background objectAtIndex:indexPath.row] valueForKey:kBackgroundTitleKey];
@@ -171,28 +172,28 @@ enum NewProgramTVCSections
 }
 
 
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
-}
-*/
 
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    }   
-    else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
-}
-*/
+//// Override to support conditional editing of the table view.
+//- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
+//{
+//    // Return NO if you do not want the specified item to be editable.
+//    return YES;
+//}
+
+//// Override to support editing the table view.
+//- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
+//{
+//  if (indexPath.section == 1) {
+//    if (editingStyle == UITableViewCellEditingStyleDelete) {
+//        // Delete the row from the data source
+//        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+//    }   
+//    else if (editingStyle == UITableViewCellEditingStyleInsert) {
+//        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
+//    }
+//  }
+//}
+
 
 /*
 // Override to support rearranging the table view.
@@ -219,10 +220,29 @@ enum NewProgramTVCSections
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
     if ([sender isKindOfClass:[UITableViewCell class]]) {
-        
+      if ([segue.identifier isEqualToString:@"ProgramSegue"]) {
+        if ([segue.destinationViewController respondsToSelector:@selector(setBackgroundScripts:)]) {
+          [segue.destinationViewController performSelector:@selector(setBackgroundScripts:) withObject:[self.dataSourceArray   [kBackgroundIndex]valueForKey:kBackgroundScriptsKey]];
+          [segue.destinationViewController performSelector:@selector(setBackgroundBackgrounds:) withObject:[self.dataSourceArray   [kBackgroundIndex]valueForKey:kBackgroundLooksKey]];
+          [segue.destinationViewController performSelector:@selector(setBackgroundSounds:) withObject:[self.dataSourceArray   [kBackgroundIndex]valueForKey:kBackgroundSoundsKey]];
         }
+      }
+      
+      else if ([segue.identifier isEqualToString:@"ObjectSegue"]) {
+        
+      }
+      
+  }
 }
 
+               
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+  if (indexPath.section == 0) {
+    [self performSegueWithIdentifier:@"ProgramSegue" sender:self];
+  }
+  
+}
 
 #pragma mark - IBActions
 

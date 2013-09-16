@@ -20,12 +20,33 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import <UIKit/UIKit.h>
 
-@interface BackgroundObjectTVC : UITableViewController
-@property (strong, nonatomic)NSMutableArray *backgroundScripts;
-@property (strong,nonatomic) NSMutableArray  *backgroundBackgrounds;
-@property (strong, nonatomic) NSMutableArray *backgroundSounds;
+#import "PrototypScriptCell.h"
 
+@implementation PrototypScriptCell
+
+- (id)initWithFrame:(CGRect)frame
+{
+    self = [super initWithFrame:frame];
+    if (self) {
+        
+    }
+    return self;
+}
+
+- (void)awakeFromNib
+{
+  [super awakeFromNib];
+  self.cellBackground.backgroundColor = [UIColor blueColor];
+}
+
+/*
+// Only override drawRect: if you perform custom drawing.
+// An empty implementation adversely affects performance during animation.
+- (void)drawRect:(CGRect)rect
+{
+    // Drawing code
+}
+*/
 
 @end

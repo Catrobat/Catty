@@ -21,11 +21,9 @@
  */
 
 #import <UIKit/UIKit.h>
+#import "ScriptsViewCVC.h"
 
-@interface BackgroundObjectTVC : UITableViewController
-@property (strong, nonatomic)NSMutableArray *backgroundScripts;
-@property (strong,nonatomic) NSMutableArray  *backgroundBackgrounds;
-@property (strong, nonatomic) NSMutableArray *backgroundSounds;
-
+@interface BackgroundScriptsCVC : UICollectionViewController
+@property (strong, nonatomic)NSMutableArray *scripts;
 
 @end

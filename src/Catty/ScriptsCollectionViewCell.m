@@ -20,12 +20,26 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import <UIKit/UIKit.h>
+#import "ScriptsCollectionViewCell.h"
 
-@interface BackgroundObjectTVC : UITableViewController
-@property (strong, nonatomic)NSMutableArray *backgroundScripts;
-@property (strong,nonatomic) NSMutableArray  *backgroundBackgrounds;
-@property (strong, nonatomic) NSMutableArray *backgroundSounds;
+@implementation ScriptsCollectionViewCell
 
+- (id)initWithFrame:(CGRect)frame
+{
+    self = [super initWithFrame:frame];
+    if (self) {
+        // Initialization code
+    }
+    return self;
+}
+
+/*
+// Only override drawRect: if you perform custom drawing.
+// An empty implementation adversely affects performance during animation.
+- (void)drawRect:(CGRect)rect
+{
+    // Drawing code
+}
+*/
 
 @end
