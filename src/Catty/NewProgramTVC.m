@@ -37,6 +37,8 @@ enum NewProgramTVCSections
     kObjects_Section
 };
 
+#define kTableHeaderIdentifier @"Header"
+
 #define kBackgroundKey @"backgroundKey"
 #define kBackgroundTitleKey @"Background"
 #define kBackgroundScriptsKey @"backgroundScriptsKey"
@@ -44,8 +46,10 @@ enum NewProgramTVCSections
 #define kBackgroundSoundsKey @"backgroundSoundsKey"
 
 #define kObjectKey @"objectKey"
-#define kObjectTitleKey @"Object(s)"
+#define kObjectTitleSingularKey @"Object"
+#define kObjectTitlePluralKey @"Objects"
 #define kObjectScriptsKey @"objectScriptsKey"
+#define kObjectTitleKey @"object"
 #define kObjectsLooksKey @"objectLooksKey"
 #define kObjectSoundsKey @"objectSoundsKey"
 #define kObjectName @"objectName"
@@ -139,6 +143,9 @@ enum NewProgramTVCSections
   self.tableView.dataSource = self;
   [self.tableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
   self.tableView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"darkblue"]];
+  UITableViewHeaderFooterView *headerViewTemplate = [[UITableViewHeaderFooterView alloc] initWithReuseIdentifier:kTableHeaderIdentifier];
+  headerViewTemplate.contentView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"darkblue"]];
+  [self.tableView addSubview:headerViewTemplate];
 }
 
 #pragma mark - UITableView data source
@@ -190,33 +197,25 @@ enum NewProgramTVCSections
   return 40.0;
 }
 
-- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
-{
-  return ((section == 0) ? kBackgroundTitleKey : kObjectTitleKey);
-}
-
-/*
-
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
   // TODO: MID outsource to TableUtil
-  UITableViewHeaderFooterView *headerView = [tableView dequeueReusableHeaderFooterViewWithIdentifier:@"Header"];
-  UILabel *titleLabel = (UILabel *)[headerView.contentView viewWithTag:1];
-  if (titleLabel == nil) {
-    UIColor *backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"darkblue"]];
-    headerView.contentView.backgroundColor = backgroundColor;
-    titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(10.0f, 0.0f, 300.0f, 44.0f)];
-    titleLabel.textColor = [UIColor whiteColor];
-    titleLabel.backgroundColor = backgroundColor;
-    titleLabel.shadowOffset = CGSizeMake(0.0f, 0.0f);
-    titleLabel.tag = 1;
-    titleLabel.font = [UIFont systemFontOfSize:24.0f];
-    [headerView.contentView addSubview:titleLabel];
-  }
-  headerView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"darkblue"]];
+  NSLog(@"Test %d", section);
+  //UITableViewHeaderFooterView *headerView = [tableView dequeueReusableHeaderFooterViewWithIdentifier:kTableHeaderIdentifier];
+  // FIXME: HACK do not alloc init there. Use ReuseIdentifier instead!! But does lead to several issues...
+  UITableViewHeaderFooterView *headerView = [[UITableViewHeaderFooterView alloc] init];
+  headerView.contentView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"darkblue"]];
+
+  UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(10.0f, 0.0f, 300.0f, 44.0f)];
+  titleLabel.textColor = [UIColor whiteColor];
+  titleLabel.tag = 1;
+  titleLabel.font = [UIFont systemFontOfSize:18.0f];
+  titleLabel.text = ((section == 0) ? kBackgroundTitleKey
+                                    : (([self.objectsList count] > 1) ? kObjectTitlePluralKey
+                                                                      : kObjectTitleSingularKey));
+  [headerView.contentView addSubview:titleLabel];
   return headerView;
 }
- */
 
 // Override to support conditional editing of the table view.
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
