@@ -298,7 +298,21 @@
     return [((Scene*)self.scene) convertSceneToDegrees:[Util radiansToDegree:self.zRotation]];
 }
 
+-(CGFloat) zIndex
+{
+    return [self zIndex];
+}
 
+-(CGFloat) brightness
+{
+    return [self brightness];
+}
+
+
+-(CGFloat) scaleX
+{
+    return [self scaleX];
+}
 
 
 //- (void)updateWithTimeSinceLastUpdate:(CFTimeInterval)interval
@@ -354,10 +368,7 @@
 //    return _sounds;
 //}
 //
-//-(CGFloat) zIndex
-//{
-//    return [self.parent childIndex:self];
-//}
+
 //
 //
 //- (id)init
