@@ -21,6 +21,7 @@
  */
 
 #import "NewProgramTVC.h"
+#import "TableUtil.h"
 #import "BackgroundObjectTVC.h"
 #import "SegueDefines.h"
 #import "Program.h"
@@ -28,6 +29,7 @@
 #import "Sound.h"
 #import "Brick.h"
 #import "BackgroundObjectTVC.h"
+#import "CatrobatImageCell.h"
 
 enum NewProgramTVCSections
 {
@@ -51,6 +53,8 @@ enum NewProgramTVCSections
 #define kBackgroundIndex 0
 #define kObjectIndex 1
 
+#define kMinNumOfObjects 1
+
 
 @interface NewProgramTVC () <UIActionSheetDelegate, UIAlertViewDelegate, UITextFieldDelegate,
                                                                         UINavigationBarDelegate>
@@ -67,6 +71,15 @@ enum NewProgramTVCSections
 @end
 
 @implementation NewProgramTVC
+
+- (id)initWithStyle:(UITableViewStyle)style
+{
+  self = [super initWithStyle:style];
+  if (self) {
+    // Custom initialization
+  }
+  return self;
+}
 
 - (NSMutableArray *)getObjectList
 {
@@ -102,25 +115,31 @@ enum NewProgramTVCSections
 
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
-    
+
+    [self initTableView];
+    //[TableUtil initNavigationItem:self.navigationItem withTitle:NSLocalizedString(@"New Programs", nil)];
+
     [self.navigationController setToolbarHidden:NO];
     [self setupToolBar];
-    
+
     self.dataSourceArray = [[NSMutableArray alloc]initWithCapacity:2];
-    
     self.background = [[NSMutableArray alloc]initWithCapacity:1];
     self.objectsList = [[NSMutableArray alloc]initWithCapacity:5];
-   
-    self.objectName = @"Start Object";
+    self.objectName = @"First Object";
     self.background = [self createBackground];
-    
     [self addObjectToObjectList:[self createNewObject]];
-    
     [self.dataSourceArray addObject:self.background];
     [self.dataSourceArray addObject:self.objectsList];
 }
 
-
+#pragma marks init
+-(void)initTableView
+{
+  self.tableView.delegate = self;
+  self.tableView.dataSource = self;
+  [self.tableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
+  self.tableView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"darkblue"]];
+}
 
 #pragma mark - UITableView data source
 
@@ -148,52 +167,74 @@ enum NewProgramTVCSections
 {
     
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ProgramCell" forIndexPath:indexPath];
-    
-    if (indexPath.section == 0) {
-        cell.textLabel.text = [[self.background objectAtIndex:indexPath.row] valueForKey:kBackgroundTitleKey];
-        //cell.imageView.image = [UIImage imageNamed:@"programs"];
+    if ([cell conformsToProtocol:@protocol(CatrobatImageCell)]) {
+      UITableViewCell <CatrobatImageCell>* imageCell = (UITableViewCell <CatrobatImageCell>*)cell;
+      imageCell.iconImageView.image = [UIImage imageNamed:@"programs"];
+
+      if (indexPath.section == 0)
+        imageCell.titleLabel.text = [[self.background objectAtIndex:indexPath.row] valueForKey:kBackgroundTitleKey];
+      else if (indexPath.section == 1)
+        imageCell.titleLabel.text = [[self.objectsList objectAtIndex:indexPath.row] valueForKey:kObjectName];
     }
-    
-    else if (indexPath.section == 1) {
-        //        cell = [tableView dequeueReusableCellWithIdentifier:@"kObjectCell" forIndexPath:indexPath];
-        cell.textLabel.text = [[self.objectsList objectAtIndex:indexPath.row] valueForKey:kObjectName];
-        //cell.imageView.image = [UIImage imageNamed:@"forum"];
-    }
-    
     return cell;
 }
 
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+  return [TableUtil getHeightForImageCell];
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+{
+  // TODO: MID outsource to TableUtil
+  return 40.0;
+}
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 {
-    if (section == 0) return kBackgroundTitleKey;
-    
-    else return kObjectTitleKey;
+  return ((section == 0) ? kBackgroundTitleKey : kObjectTitleKey);
 }
 
+/*
 
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+{
+  // TODO: MID outsource to TableUtil
+  UITableViewHeaderFooterView *headerView = [tableView dequeueReusableHeaderFooterViewWithIdentifier:@"Header"];
+  UILabel *titleLabel = (UILabel *)[headerView.contentView viewWithTag:1];
+  if (titleLabel == nil) {
+    UIColor *backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"darkblue"]];
+    headerView.contentView.backgroundColor = backgroundColor;
+    titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(10.0f, 0.0f, 300.0f, 44.0f)];
+    titleLabel.textColor = [UIColor whiteColor];
+    titleLabel.backgroundColor = backgroundColor;
+    titleLabel.shadowOffset = CGSizeMake(0.0f, 0.0f);
+    titleLabel.tag = 1;
+    titleLabel.font = [UIFont systemFontOfSize:24.0f];
+    [headerView.contentView addSubview:titleLabel];
+  }
+  headerView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"darkblue"]];
+  return headerView;
+}
+ */
 
-//// Override to support conditional editing of the table view.
-//- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
-//{
-//    // Return NO if you do not want the specified item to be editable.
-//    return YES;
-//}
+// Override to support conditional editing of the table view.
+- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
+{
+  return ((([self.objectsList count] > kMinNumOfObjects) && (indexPath.section == 1)) ? YES : NO);
+}
 
-//// Override to support editing the table view.
-//- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
-//{
-//  if (indexPath.section == 1) {
-//    if (editingStyle == UITableViewCellEditingStyleDelete) {
-//        // Delete the row from the data source
-//        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-//    }   
-//    else if (editingStyle == UITableViewCellEditingStyleInsert) {
-//        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-//    }
-//  }
-//}
-
+// Override to support editing the table view.
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+  if (indexPath.section == 1) {
+    if (editingStyle == UITableViewCellEditingStyleDelete) {
+        // Delete the row from the data source
+      [self.objectsList removeObjectAtIndex:indexPath.row];
+      [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+    }
+  }
+}
 
 /*
 // Override to support rearranging the table view.
@@ -210,7 +251,6 @@ enum NewProgramTVCSections
     return YES;
 }
 */
-
 
 #pragma mark - Navigation
 
@@ -273,7 +313,7 @@ enum NewProgramTVCSections
                                                cancelButtonTitle:@"Cancel"
                                           destructiveButtonTitle:@"Delete Object(s)"
                                                otherButtonTitles:@"Add Object",
-                                                                 @"Save Program", nil];
+                                                                 @"Other Action", nil];
     [edit setTag:1];
     edit.actionSheetStyle = UIActionSheetStyleDefault;
     //edit.destructiveButtonIndex = 3;

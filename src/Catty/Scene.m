@@ -36,7 +36,6 @@
 
 @implementation Scene
 
-
 - (id) initWithSize:(CGSize)size andProgram:(Program *)program
 {
     if (self = [super initWithSize:size]) {
@@ -52,16 +51,14 @@
     NSDebug(@"Dealloc Scene");
 }
 
-
--(void) startProgram
+-(void)startProgram
 {
-
     for (SpriteObject *obj in self.program.objectList) {
         [self addChild:obj];
         [obj start];
         [obj setLook];
         [obj setUserInteractionEnabled:YES];
-    }    
+    }
 }
 
 -(CGPoint)convertPointToScene:(CGPoint)point
@@ -72,8 +69,6 @@
     
     return scenePoint;
 }
-
-
 
 -(float)convertYCoordinateToScene:(float)y {
     return (self.size.height/2.0f + y);

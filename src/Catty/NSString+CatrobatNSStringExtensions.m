@@ -44,7 +44,7 @@
 
 NSMutableString* resultString;
 
-#warning could probably be imroved :)
+#warning could probably be improved :)
 - (NSString*) stringByEscapingHTMLEntities
 {
     NSMutableString *result = [NSMutableString stringWithString:self];

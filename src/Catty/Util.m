@@ -37,8 +37,8 @@
 
 }
 
-+ (void)showComingSoonAlertView {
-    
++ (void)showComingSoonAlertView
+{
     NSString* alert_message = [NSString localizedStringWithFormat:NSLocalizedString(@"This feature is coming soon!", nil)];
     UIAlertView *alert = [[UIAlertView alloc]
                           initWithTitle:@"Catty"
@@ -50,18 +50,20 @@
 }
 
 
-+ (void)alertWithText:(NSString*)text {
++ (void)alertWithText:(NSString*)text
+{
     UIAlertView *alert = [[UIAlertView alloc]
                           initWithTitle:@"Catty"
                           message:text
                           delegate:nil
                           cancelButtonTitle:@"OK"
                           otherButtonTitles:nil];
-    [alert show];}
+    [alert show];
+}
 
 
-+(CGFloat)getScreenHeight {
-    
++(CGFloat)getScreenHeight
+{
     CGRect screenRect = [[UIScreen mainScreen] bounds];
     return screenRect.size.height;
 }
@@ -112,7 +114,6 @@
     
 }
 
-
 +(double) radiansToDegree:(float)rad
 {
     return rad * 180.0 / M_PI;
@@ -122,6 +123,5 @@
 {
     return deg * M_PI / 180.0;
 }
-
 
 @end
