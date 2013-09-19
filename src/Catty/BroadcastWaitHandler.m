@@ -82,9 +82,11 @@
         }
         
     }
-    
+    NSDebug(@"Wait");
     dispatch_group_wait(group, DISPATCH_TIME_FOREVER); // Block until we're ready
     
 }
+
+
 
 @end

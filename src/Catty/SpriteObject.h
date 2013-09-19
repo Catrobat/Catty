@@ -22,7 +22,7 @@
 
 
 #import <SpriteKit/SpriteKit.h>
-
+#import "Program.h"
 @class Script;
 @class Look;
 @class Sound;
@@ -58,13 +58,17 @@
 
 @property (nonatomic, strong) Look* currentLook;
 
+@property (nonatomic) NSInteger numberOfObjects;
+
+@property (nonatomic,strong) Program* program;
+
 
 
 /* Loop Update - called once per frame. */
 - (void)updateWithTimeSinceLastUpdate:(CFTimeInterval)interval;
 
 // events
-- (void)start;
+- (void)start:(CGFloat)zPosition;
 - (void)scriptFinished:(Script*)script;
 
 

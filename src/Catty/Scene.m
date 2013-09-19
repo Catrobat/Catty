@@ -56,12 +56,20 @@
 -(void) startProgram
 {
 
+    NSInteger numberOfObjects = (NSInteger)[self.program.objectList count];
+    CGFloat zPosition = 1;
     for (SpriteObject *obj in self.program.objectList) {
         [self addChild:obj];
-        [obj start];
+         //NSDebug(@"%f",zPosition);
+        [obj start:zPosition];
         [obj setLook];
+        [obj setProgram:self.program];
         [obj setUserInteractionEnabled:YES];
-    }    
+        [obj setNumberOfObjects:numberOfObjects];
+        zPosition++;
+    }
+
+
 }
 
 -(CGPoint)convertPointToScene:(CGPoint)point
@@ -99,6 +107,7 @@
 {
     return 360.0 + degrees;
 }
+
 
 
 @end

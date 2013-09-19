@@ -35,10 +35,13 @@
 
 @property (nonatomic, strong) NSMutableArray *activeScripts;
 @property (nonatomic, strong) NSMutableDictionary *sounds;
+
+
 @end
 
 @implementation SpriteObject
 
+@synthesize numberOfObjects;
 
 
 -(id)init {
@@ -68,14 +71,14 @@
 
 
 
--(void)start
+-(void)start:(CGFloat)zPosition
 {
     self.position = CGPointMake(0, 0);
     if([self.name isEqualToString:@"Background"]) {
         self.zPosition = 0;
     }
     else {
-        self.zPosition = 1;
+        self.zPosition = zPosition;
     }
     for (Script *script in self.scriptList)
     {
@@ -222,10 +225,13 @@
             if ([broadcastScript.receivedMessage isEqualToString:notification.name]) {
                 [self startAndAddScript:broadcastScript completion:^{
                     [self scriptFinished:broadcastScript];
+                    NSDebug(@"FINISHED");
                 }];
             }
         }
     }
+    
+    //dispatch_release(group);
 
 }
 
@@ -279,6 +285,7 @@
 {
     return [NSString stringWithFormat:@"Object: %@\r", self.name];
 }
+
 
 
 #pragma mark - Formula Protocol
