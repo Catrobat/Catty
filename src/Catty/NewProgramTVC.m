@@ -45,7 +45,7 @@ enum NewProgramTVCSections
 #define kNewObjectAlertViewTag 2
 
 // constraints and default values
-#define kDefaultProgramName @"New program"
+#define kDefaultProgramName @"New Program"
 #define kDefaultObjectName @"My Object"
 #define kProgramNamePlaceholder @"Enter your program name here..."
 #define kMinNumOfObjects 1
@@ -81,11 +81,6 @@ enum NewProgramTVCSections
 @property (strong, nonatomic)NSString *programName; // XXX: BTW: are there any restrictions or limits to the program name???
 @property (strong, nonatomic)Program *program;
 
-@property (weak, nonatomic) UIBarButtonItem *play;
-@property (weak, nonatomic) UIBarButtonItem *add;
-
-- (IBAction)editProgram:(id)sender;
-
 @end
 
 @implementation NewProgramTVC
@@ -99,6 +94,15 @@ enum NewProgramTVCSections
   return self;
 }
 
+#pragma getter & setters
+- (void)setProgramName:(NSString*)programName
+{
+  // automatically update title name
+  if (self.navigationItem)
+    self.navigationItem.title = programName;
+  _programName = programName;
+}
+
 - (NSMutableArray *)getObjectList
 {
     if (self.dataSourceArray)
@@ -108,9 +112,7 @@ enum NewProgramTVCSections
 
 - (NSMutableArray *)getBackground
 {
-    if (self.dataSourceArray)
-        return [self.dataSourceArray objectAtIndex:kBackgroundIndex];
-    else return  nil;
+  return (self.dataSourceArray ? [self.dataSourceArray objectAtIndex:kBackgroundIndex] : nil);
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -122,14 +124,6 @@ enum NewProgramTVCSections
 {
     [super viewDidAppear:YES];
     self.programName = kDefaultProgramName;
-}
-
-#pragma getter & setters
-- (void)programName:(NSString*) programName
-{
-  _programName = programName;
-  // automatically update title name
-  self.title = programName;
 }
 
 - (void)viewDidLoad
@@ -145,6 +139,7 @@ enum NewProgramTVCSections
     [self.navigationController setToolbarHidden:NO];
     [self setupToolBar];
 
+    // XXX: @Luca: What about lazy instantiation???
     self.dataSourceArray = [[NSMutableArray alloc]initWithCapacity:2];
     self.background = [[NSMutableArray alloc]initWithCapacity:1];
     self.objectsList = [[NSMutableArray alloc]initWithCapacity:5];
@@ -245,7 +240,7 @@ enum NewProgramTVCSections
 {
   if (indexPath.section == 1) {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
+      // Delete the row from the data source
       [self.objectsList removeObjectAtIndex:indexPath.row];
       [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
     }
@@ -301,6 +296,7 @@ enum NewProgramTVCSections
     {
       // TODO: implement this. Check if program already stored in filesystem otherwise skip that...
       NSLog(@"Delete button pressed");
+      [self.navigationController popViewControllerAnimated:YES];
     }
   }
 
@@ -384,10 +380,15 @@ enum NewProgramTVCSections
 #pragma mark - UIActionSheet Views
 - (void)showSceneActionSheet
 {
+  // TODO: determine whether to show delete button or not
+  BOOL showDeleteButton = false;
+  //if (self.objectsList && self.background && [self.objectsList count] && [self.background count])
+    showDeleteButton = true;
+
   UIActionSheet *edit = [[UIActionSheet alloc] initWithTitle:@"Edit Program"
                                                     delegate:self
                                            cancelButtonTitle:@"Cancel"
-                                      destructiveButtonTitle:@"Delete"
+                                      destructiveButtonTitle:(showDeleteButton ? @"Delete" : nil)
                                            otherButtonTitles:@"Rename", nil];
   [edit setTag:kSceneActionSheetTag];
   edit.actionSheetStyle = UIActionSheetStyleDefault;
@@ -446,35 +447,28 @@ enum NewProgramTVCSections
 
 - (void)addObjectAction:(id)sender
 {
-    
+  [self showNewObjectAlertView];
 }
 
 - (void)playScene:(id)sender
 {
-    
 }
 
 - (void)setupToolBar
 {
-    self.navigationController.toolbar.barStyle = UIBarStyleBlack;
-    self.navigationController.toolbar.tintColor = [UIColor orangeColor];
-    self.navigationController.toolbar.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleTopMargin;
-    
-    UIBarButtonItem *flexItem = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace
-                                                                             target:self
-                                                                             action:nil];
-    /*
-    UIBarButtonItem *add = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemAdd
-                                                              target:self
-                                                              action:@selector(addObjectAction:)];
-    
-    UIBarButtonItem *play = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemPlay
-                                                             target:self
-                                                             action:@selector(playScene:)];
-     */
-    NSMutableArray *items = [NSMutableArray arrayWithObjects:self.add, flexItem, self.play, nil];
-    self.navigationController.toolbarItems = items;
-    //[self.navigationController setToolbarItems:@[self.add, flexItem, self.play]animated:NO];
+  self.navigationController.toolbar.barStyle = UIBarStyleBlack;
+  self.navigationController.toolbar.tintColor = [UIColor orangeColor];
+  self.navigationController.toolbar.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleTopMargin;
+  UIBarButtonItem *flexItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace
+                                                                            target:nil
+                                                                            action:nil];
+  UIBarButtonItem *add = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd
+                                                                       target:self
+                                                                       action:@selector(addObjectAction:)];
+  UIBarButtonItem *play = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemPlay
+                                                                        target:self
+                                                                        action:@selector(playScene:)];
+  self.toolbarItems = [NSArray arrayWithObjects:add, flexItem, play, nil];
 }
 
 // TODO: solve this github-issue
