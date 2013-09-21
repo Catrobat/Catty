@@ -97,7 +97,16 @@
     }
         
     CGSize maximumLabelSize = CGSizeMake(296, FLT_MAX);
-    CGSize expectedSize = [description sizeWithFont:[UIFont systemFontOfSize:14] constrainedToSize:maximumLabelSize lineBreakMode:NSLineBreakByWordWrapping];
+
+    
+    NSDictionary *attributes = [NSDictionary dictionaryWithObject:[UIFont systemFontOfSize:14] forKey:NSFontAttributeName];
+    
+    CGRect labelBounds = [description boundingRectWithSize:maximumLabelSize
+                                                   options:NSStringDrawingUsesLineFragmentOrigin
+                                                attributes:attributes
+                                                   context:nil];
+    
+    CGSize expectedSize = CGSizeMake(ceilf(labelBounds.size.width), ceilf(labelBounds.size.height));
     TTTAttributedLabel* descriptionLabel = [[TTTAttributedLabel alloc] initWithFrame:CGRectMake(20, 120, 280, expectedSize.height)];
     [self configureDescriptionLabel:descriptionLabel];
     descriptionLabel.delegate = target;

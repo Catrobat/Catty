@@ -35,10 +35,13 @@
 
 @property (nonatomic, strong) NSMutableArray *activeScripts;
 @property (nonatomic, strong) NSMutableDictionary *sounds;
+
+
 @end
 
 @implementation SpriteObject
 
+@synthesize numberOfObjects;
 
 
 -(id)init {
@@ -68,14 +71,14 @@
 
 
 
--(void)start
+-(void)start:(CGFloat)zPosition
 {
     self.position = CGPointMake(0, 0);
     if([self.name isEqualToString:@"Background"]) {
         self.zPosition = 0;
     }
     else {
-        self.zPosition = 1;
+        self.zPosition = zPosition;
     }
     for (Script *script in self.scriptList)
     {
@@ -222,10 +225,13 @@
             if ([broadcastScript.receivedMessage isEqualToString:notification.name]) {
                 [self startAndAddScript:broadcastScript completion:^{
                     [self scriptFinished:broadcastScript];
+                    NSDebug(@"FINISHED");
                 }];
             }
         }
     }
+    
+    //dispatch_release(group);
 
 }
 
@@ -281,6 +287,7 @@
 }
 
 
+
 #pragma mark - Formula Protocol
 
 -(CGFloat)xPosition
@@ -298,7 +305,21 @@
     return [((Scene*)self.scene) convertSceneToDegrees:[Util radiansToDegree:self.zRotation]];
 }
 
+-(CGFloat) zIndex
+{
+    return [self zIndex];
+}
 
+-(CGFloat) brightness
+{
+    return [self brightness];
+}
+
+
+-(CGFloat) scaleX
+{
+    return [self scaleX];
+}
 
 
 //- (void)updateWithTimeSinceLastUpdate:(CFTimeInterval)interval
@@ -354,10 +375,7 @@
 //    return _sounds;
 //}
 //
-//-(CGFloat) zIndex
-//{
-//    return [self.parent childIndex:self];
-//}
+
 //
 //
 //- (id)init

@@ -31,13 +31,14 @@
 
 -(SKAction*)action
 {
-    dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
-    return [SKAction runBlock:^{
+
+    return [SKAction customActionWithDuration:0.0 actionBlock:^(SKNode *node, CGFloat elapsedTime) {
         
         NSDebug(@"Performing: %@", self.description);
         double rad = [Util degreeToRadians:[self.degrees interpretDoubleForSprite:self.object]];
         self.object.zRotation += rad;
     }];
+
 }
 
 #pragma mark - Description

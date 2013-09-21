@@ -58,13 +58,14 @@
     [self initSearchView];
     
     self.searchDisplayController.displaysSearchBarInNavigationBar = NO;
-
+    [self.searchDisplayController setActive:YES animated:YES];
+    [self.searchDisplayController.searchBar becomeFirstResponder];
 }
 
 - (void)viewDidAppear:(BOOL)animated
 {
-    [self.searchDisplayController setActive:YES animated:YES];
-    [self.searchDisplayController.searchBar becomeFirstResponder];
+    
+    
 }
 
 - (void)didReceiveMemoryWarning
@@ -244,6 +245,8 @@
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
+    [self.searchDisplayController setActive:NO animated:YES];
+    [self update];
     if([[segue identifier] isEqualToString:kSegueToLevelDetail]) {
         CatrobatProject *level = nil;
         if([sender isKindOfClass:[UITableView class]]) {
@@ -314,7 +317,8 @@
     UITableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:searchCellIdentifier];
     if (cell == nil) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:searchCellIdentifier];
-        cell.textLabel.textColor = [UIColor lightGrayColor];
+        cell.textLabel.textColor = [UIColor blueGrayColor];
+        cell.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"darkblue"]];
     }
     
     CatrobatProject *project = [self.searchResults objectAtIndex:indexPath.row];

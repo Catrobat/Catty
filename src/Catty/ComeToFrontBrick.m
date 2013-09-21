@@ -21,7 +21,8 @@
  */
 
 #import "Cometofrontbrick.h"
-int comeToFrontCounter = 1;
+#import "Scene.h"
+
 
 @implementation ComeToFrontBrick
 
@@ -29,11 +30,19 @@ int comeToFrontCounter = 1;
 -(SKAction*)action
 {
     return [SKAction runBlock:^{
-        SKNode* parent = self.object.parent;
-        [self.object.parent removeChildrenInArray:@[self.object]];
-        [parent  addChild:self.object];
-        self.object.zPosition = comeToFrontCounter;
-        comeToFrontCounter ++;
+        NSDebug(@"Performing: %@", self.description);
+        CGFloat zValue = self.object.zPosition;
+        NSInteger maxValue = self.object.numberOfObjects;
+        
+        for(SpriteObject *obj in self.object.program.objectList){
+            if (obj.zPosition > zValue && obj.zPosition > 1) {
+                obj.zPosition = obj.zPosition - 1;
+            }
+            
+        }
+        
+        self.object.zPosition = maxValue;
+        
     }];
 }
 

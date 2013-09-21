@@ -32,7 +32,7 @@
 {
     return [SKAction runBlock:^{
         float yPosition = [self.yPosition interpretDoubleForSprite:self.object];
-        self.object.position = CGPointMake(self.object.position.x, yPosition);
+        self.object.position = CGPointMake(0, yPosition);
     }];
     
 }

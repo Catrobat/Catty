@@ -21,6 +21,8 @@
  */
 
 #import "Brick.h"
+@class Scene;
+
 
 @interface ComeToFrontBrick : Brick
 
