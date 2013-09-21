@@ -23,7 +23,6 @@
 #ifndef Catty_SegueDefines_h
 #define Catty_SegueDefines_h
 
-
 #define kSegueToLevelDetail @"segueToLevelDetail"
 #define kSegueToStage @"SEGUE_TO_STAGE"
 #define kSegueToScene @"segueToScene"
@@ -34,10 +33,7 @@
 #define kSegueForum @"forum"
 #define kSegueDownload @"download"
 #define kSegueUpload @"upload"
-#define KSegueAddNewProgram @"addProgram"
+#define kSegueAddNewProgram @"addProgram"
 #define kSegueObjectView @"objectView"
-
-
-
 
 #endif

@@ -111,7 +111,6 @@
 
 
 #pragma mark - Table view data source
-
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     return 1;
@@ -154,19 +153,16 @@
 
 
 #pragma mark - Table view delegate
-
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
 
     NSString* identifier = [self.cells objectAtIndex:indexPath.row];
 #warning the if statement should be removed once everything has been implemented..
     if ([identifier isEqualToString:kSegueDownload ] || [identifier isEqualToString:kSeguePrograms] ||
-             [identifier isEqualToString:kSegueForum] || [identifier isEqualToString:kSegueContinue]) {
+        [identifier isEqualToString:kSegueForum] || [identifier isEqualToString:kSegueContinue] ||
+        [identifier isEqualToString:kSegueNew]) {
         [self performSegueWithIdentifier:identifier sender:self];
-    }
-     else if (indexPath.row == 1) [self performSegueWithIdentifier:kSegueNew sender:self];
-        
-    else {
+    } else {
         [Util showComingSoonAlertView];
         [tableView deselectRowAtIndexPath:indexPath animated:YES];
     }
@@ -181,8 +177,6 @@
 
 
 #pragma mark Helper
-
-
 -(void)configureImageCell:(UITableViewCell <CatrobatImageCell>*)cell atIndexPath:(NSIndexPath*)indexPath
 {
     cell.titleLabel.text = NSLocalizedString([[self.cells objectAtIndex:indexPath.row] capitalizedString], nil);

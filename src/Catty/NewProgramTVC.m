@@ -37,14 +37,30 @@ enum NewProgramTVCSections
     kObjects_Section
 };
 
-#define kTableHeaderIdentifier @"Header"
+// Action sheet & Alert view tags
+#define kSceneActionSheetTag 1
+#define kInvalidProgramNameWarningActionSheetTag 2
+#define kInvalidObjectNameWarningActionSheetTag 3
+#define kRenameAlertViewTag 1
+#define kNewObjectAlertViewTag 2
 
+// constraints and default values
+#define kDefaultProgramName @"New program"
+#define kDefaultObjectName @"My Object"
+#define kProgramNamePlaceholder @"Enter your program name here..."
+#define kMinNumOfObjects 1
+
+// identifiers
+#define kTableHeaderIdentifier @"Header"
+#define kSegueProgramBackground @"BackgroundSegue"
+#define kSegueProgramObject @"ObjectSegue"
+
+// keys
 #define kBackgroundKey @"backgroundKey"
 #define kBackgroundTitleKey @"Background"
 #define kBackgroundScriptsKey @"backgroundScriptsKey"
 #define kBackgroundLooksKey @"backgroundLooksKey"
 #define kBackgroundSoundsKey @"backgroundSoundsKey"
-
 #define kObjectKey @"objectKey"
 #define kObjectTitleSingularKey @"Object"
 #define kObjectTitlePluralKey @"Objects"
@@ -54,17 +70,15 @@ enum NewProgramTVCSections
 #define kObjectSoundsKey @"objectSoundsKey"
 #define kObjectName @"objectName"
 
+// indexes
 #define kBackgroundIndex 0
 #define kObjectIndex 1
-
-#define kMinNumOfObjects 1
-
 
 @interface NewProgramTVC () <UIActionSheetDelegate, UIAlertViewDelegate, UITextFieldDelegate,
                                                                         UINavigationBarDelegate>
 @property (strong, nonatomic)NSMutableArray *background;
 @property (strong, nonatomic)NSMutableArray *objectsList;
-@property (strong, nonatomic)NSString *objectName, *programName;
+@property (strong, nonatomic)NSString *programName; // XXX: BTW: are there any restrictions or limits to the program name???
 @property (strong, nonatomic)Program *program;
 
 @property (weak, nonatomic) UIBarButtonItem *play;
@@ -99,18 +113,23 @@ enum NewProgramTVCSections
     else return  nil;
 }
 
-
-/*
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:YES];
 }
-*/
 
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:YES];
-    if (![self.programName length])[self newProgramInputView];
+    self.programName = kDefaultProgramName;
+}
+
+#pragma getter & setters
+- (void)programName:(NSString*) programName
+{
+  _programName = programName;
+  // automatically update title name
+  self.title = programName;
 }
 
 - (void)viewDidLoad
@@ -129,9 +148,8 @@ enum NewProgramTVCSections
     self.dataSourceArray = [[NSMutableArray alloc]initWithCapacity:2];
     self.background = [[NSMutableArray alloc]initWithCapacity:1];
     self.objectsList = [[NSMutableArray alloc]initWithCapacity:5];
-    self.objectName = @"First Object";
     self.background = [self createBackground];
-    [self addObjectToObjectList:[self createNewObject]];
+    [self addObjectToObjectList:[self createNewObject:kDefaultObjectName]];
     [self.dataSourceArray addObject:self.background];
     [self.dataSourceArray addObject:self.objectsList];
 }
@@ -200,7 +218,6 @@ enum NewProgramTVCSections
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
   // TODO: MID outsource to TableUtil
-  NSLog(@"Test %d", section);
   //UITableViewHeaderFooterView *headerView = [tableView dequeueReusableHeaderFooterViewWithIdentifier:kTableHeaderIdentifier];
   // FIXME: HACK do not alloc init there. Use ReuseIdentifier instead!! But does lead to several issues...
   UITableViewHeaderFooterView *headerView = [[UITableViewHeaderFooterView alloc] init];
@@ -220,7 +237,7 @@ enum NewProgramTVCSections
 // Override to support conditional editing of the table view.
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
 {
-  return ((([self.objectsList count] > kMinNumOfObjects) && (indexPath.section == 1)) ? YES : NO);
+  return (([self.objectsList count] > kMinNumOfObjects) && (indexPath.section == 1));
 }
 
 // Override to support editing the table view.
@@ -235,178 +252,173 @@ enum NewProgramTVCSections
   }
 }
 
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath
-{
-}
-*/
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
-
 #pragma mark - Navigation
-
-// In a story board-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-    if ([sender isKindOfClass:[UITableViewCell class]]) {
-      if ([segue.identifier isEqualToString:@"ProgramSegue"]) {
-        if ([segue.destinationViewController respondsToSelector:@selector(setBackgroundScripts:)]) {
-          [segue.destinationViewController performSelector:@selector(setBackgroundScripts:) withObject:[self.dataSourceArray   [kBackgroundIndex]valueForKey:kBackgroundScriptsKey]];
-          [segue.destinationViewController performSelector:@selector(setBackgroundBackgrounds:) withObject:[self.dataSourceArray   [kBackgroundIndex]valueForKey:kBackgroundLooksKey]];
-          [segue.destinationViewController performSelector:@selector(setBackgroundSounds:) withObject:[self.dataSourceArray   [kBackgroundIndex]valueForKey:kBackgroundSoundsKey]];
-        }
+  // Pass the selected object to the new view controller.
+  static NSString* backgroundSegueIdentifier = kSegueProgramBackground;
+  static NSString* objectSegueIdentifier = kSegueProgramObject;
+
+  if ([sender isKindOfClass:[UITableViewCell class]]) {
+    if ([segue.identifier isEqualToString:backgroundSegueIdentifier]) {
+      // background segue
+      if ([segue.destinationViewController respondsToSelector:@selector(setBackgroundScripts:)]) {
+        [segue.destinationViewController performSelector:@selector(setBackgroundScripts:) withObject:[self.dataSourceArray   [kBackgroundIndex]valueForKey:kBackgroundScriptsKey]];
+        [segue.destinationViewController performSelector:@selector(setBackgroundBackgrounds:) withObject:[self.dataSourceArray   [kBackgroundIndex]valueForKey:kBackgroundLooksKey]];
+        [segue.destinationViewController performSelector:@selector(setBackgroundSounds:) withObject:[self.dataSourceArray   [kBackgroundIndex]valueForKey:kBackgroundSoundsKey]];
       }
-      
-      else if ([segue.identifier isEqualToString:@"ObjectSegue"]) {
-        
-      }
-      
+    } else if ([segue.identifier isEqualToString:objectSegueIdentifier]) {
+      // object segue
+      // TODO: implement this...
+    }
   }
 }
 
                
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-  if (indexPath.section == 0) {
+  if (indexPath.section == 0)
     [self performSegueWithIdentifier:@"ProgramSegue" sender:self];
-  }
-  
+  //else if (indexPath.section == 1)
+  // TODO: add program segue...
 }
 
 #pragma mark - IBActions
-
 - (IBAction)editProgram:(id)sender
 {
-    [self sceneActionSheet];
+  [self showSceneActionSheet];
 }
 
-
-
-#pragma mark - UIActionSheetDelegate
-
+#pragma mark - UIActionSheetDelegate Handlers
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
 {
-    if (buttonIndex == 1 && actionSheet.tag == 1)
-        [self newObjectView];
+  if (actionSheet.tag == kSceneActionSheetTag) {
+    // Rename button
+    if (buttonIndex == 1)
+      [self showRenameProgramAlertView];
+    // Delete button
+    if (buttonIndex == actionSheet.destructiveButtonIndex)
+    {
+      // TODO: implement this. Check if program already stored in filesystem otherwise skip that...
+      NSLog(@"Delete button pressed");
+    }
+  }
 
-    else if (buttonIndex == 3 && actionSheet.tag == 2)
-        [self newProgramInputView];
+  // XXX: this is really ugly... Why do we use ActionSheets to notify the user? -> Use UIAlertView instead
+  if (actionSheet.tag == kInvalidProgramNameWarningActionSheetTag) {
+    // OK button
+    NSLog(@"Button index was: %d", buttonIndex);
+    if (buttonIndex == 0)
+    {
+      NSLog(@"Show up object alert view again...");
+      [self showRenameProgramAlertView];
+    }
+  }
+
 }
 
-#pragma mark - UIActionSheet
-
-- (void)sceneActionSheet
-{
-    UIActionSheet *edit = [[UIActionSheet alloc]initWithTitle:@"Edit Program"
-                                                        delegate:self
-                                               cancelButtonTitle:@"Cancel"
-                                          destructiveButtonTitle:@"Delete Object(s)"
-                                               otherButtonTitles:@"Add Object",
-                                                                 @"Other Action", nil];
-    [edit setTag:1];
-    edit.actionSheetStyle = UIActionSheetStyleDefault;
-    //edit.destructiveButtonIndex = 3;
-    [edit showInView:self.view];
-}
-
-- (void)warningActionSheet
-{
-    UIActionSheet *warning = [[UIActionSheet alloc]initWithTitle:@"No program name entered, try again."
-                                                        delegate:self
-                                               cancelButtonTitle:nil
-                                          destructiveButtonTitle:nil
-                                               otherButtonTitles:@"Ok", nil];
-    [warning setTag:2];
-    warning.actionSheetStyle = UIActionSheetStyleDefault;
-    // [warning setTintColor:[UIColor orangeColor]];
-    [warning showInView:self.view];
-}
-
-- (void)warningObjectActionSheet
-{
-    UIActionSheet *warning = [[UIActionSheet alloc]initWithTitle:@"No Object name entered, aborted."
-                                                        delegate:self
-                                               cancelButtonTitle:nil
-                                          destructiveButtonTitle:nil
-                                               otherButtonTitles:@"Ok", nil];
-    [warning setTag:3];
-    warning.actionSheetStyle = UIActionSheetStyleDefault;
-    [warning showInView:self.view];
-}
-
-#pragma mark - UIAlertViewDelegate
-
+#pragma mark - UIAlertViewDelegate Handlers
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
-    if (buttonIndex == 1 && alertView.tag == 2) {
-        // create a new object
-        self.objectName = [[alertView textFieldAtIndex:0]text];
-        
-        if ([self.objectName length]) {
-            [self addObjectToObjectList:[self createNewObject]];
-        }
-        
-        else {
-            [self warningObjectActionSheet];
-        }
+  if (alertView.tag == kRenameAlertViewTag) {
+    // OK button
+    if (buttonIndex == 1) {
+      // FIXME: check if program name already exists
+      NSString* input = [[alertView textFieldAtIndex:0] text];
+      if ([input length])
+        self.programName = input;
+      else
+        [self showWarningInvalidProgramNameActionSheet];
     }
-    else if (buttonIndex == 1 && alertView.tag == 1) {
-        self.programName = [[alertView textFieldAtIndex:0] text];
-        if ([self.programName length]) {
-            self.title = self.programName;
-        }
-        else {
-            [self warningActionSheet];
-        }
+  } else if (alertView.tag == kNewObjectAlertViewTag) {
+    // OK button
+    if (buttonIndex == 1) {
+      NSString* input = [[alertView textFieldAtIndex:0] text];
+      if ([input length]) {
+        [self addObjectToObjectList:[self createNewObject:input]];
+      } else
+        [self showWarningInvalidObjectNameActionSheet];
     }
-
-    else if (buttonIndex == 0 && alertView.tag == 1){
-        [self.navigationController popViewControllerAnimated:YES];
-    }
+  }
 }
 
+//------------------------------------------------------------------------------------------------------------
+// TODO: refactor and outsource all this view stuff below to UserInterface group
+//       and create own helper classes for the helper stuff.
+//       This is not part of the controller logic and highly decreases readability!!
 
-#pragma mark - UIAlertView
-
-- (void)newObjectView
+#pragma mark - UIAlertView Views
+- (void)showRenameProgramAlertView
 {
-    UIAlertView *newObjectAlert = [[UIAlertView alloc]initWithTitle:@"Add Object"
-                                                   message:@"Object name:"
-                                                  delegate:self
-                                         cancelButtonTitle:@"Cancel"
-                                         otherButtonTitles:@"Ok", nil];
-    [newObjectAlert setTag:2];
-    newObjectAlert.alertViewStyle = UIAlertViewStylePlainTextInput;
-    [[newObjectAlert textFieldAtIndex:0] setClearButtonMode:UITextFieldViewModeWhileEditing];
-    [newObjectAlert show];
+  UIAlertView *renameProgramAlert = [[UIAlertView alloc] initWithTitle:@"Rename program"
+                                                               message:@"Program name:"
+                                                              delegate:self
+                                                     cancelButtonTitle:@"Cancel"
+                                                     otherButtonTitles:@"Ok", nil];
+  [renameProgramAlert setTag:kRenameAlertViewTag];
+  renameProgramAlert.alertViewStyle = UIAlertViewStylePlainTextInput;
+  UITextField *textField = [renameProgramAlert textFieldAtIndex:0];
+  textField.placeholder = kProgramNamePlaceholder;
+
+  // populate with current program name if not default name given
+  if (! [self.programName isEqualToString: kDefaultProgramName])
+    textField.text = self.programName;
+
+  [textField setClearButtonMode:UITextFieldViewModeWhileEditing];
+  [renameProgramAlert show];
 }
 
-- (void)newProgramInputView
+- (void)showNewObjectAlertView
 {
-    UIAlertView *newProgramAlert = [[UIAlertView alloc]initWithTitle:@"Create a new Program"
-                                                   message:@"Program name:"
-                                                  delegate:self
-                                         cancelButtonTitle:@"Cancel"
-                                         otherButtonTitles:@"Ok", nil];
-    [newProgramAlert setTag:1];
-    newProgramAlert.alertViewStyle = UIAlertViewStylePlainTextInput;
-    [[newProgramAlert textFieldAtIndex:0] setClearButtonMode:UITextFieldViewModeWhileEditing];
-    [newProgramAlert show];
+  UIAlertView *newObjectAlert = [[UIAlertView alloc]initWithTitle:@"Add Object"
+                                                          message:@"Object name:"
+                                                         delegate:self
+                                                cancelButtonTitle:@"Cancel"
+                                                otherButtonTitles:@"OK", nil];
+  [newObjectAlert setTag:kNewObjectAlertViewTag];
+  newObjectAlert.alertViewStyle = UIAlertViewStylePlainTextInput;
+  [[newObjectAlert textFieldAtIndex:0] setClearButtonMode:UITextFieldViewModeWhileEditing];
+  [newObjectAlert show];
 }
 
+#pragma mark - UIActionSheet Views
+- (void)showSceneActionSheet
+{
+  UIActionSheet *edit = [[UIActionSheet alloc] initWithTitle:@"Edit Program"
+                                                    delegate:self
+                                           cancelButtonTitle:@"Cancel"
+                                      destructiveButtonTitle:@"Delete"
+                                           otherButtonTitles:@"Rename", nil];
+  [edit setTag:kSceneActionSheetTag];
+  edit.actionSheetStyle = UIActionSheetStyleDefault;
+  [edit showInView:self.view];
+}
+
+- (void)showWarningInvalidProgramNameActionSheet
+{
+  UIActionSheet *warning = [[UIActionSheet alloc]initWithTitle:@"No or invalid program name entered, try again."
+                                                      delegate:self
+                                             cancelButtonTitle:nil
+                                        destructiveButtonTitle:nil
+                                             otherButtonTitles:@"OK", nil];
+  [warning setTag:kInvalidProgramNameWarningActionSheetTag];
+  warning.actionSheetStyle = UIActionSheetStyleDefault;
+  [warning showInView:self.view];
+}
+
+- (void)showWarningInvalidObjectNameActionSheet
+{
+  UIActionSheet *warning = [[UIActionSheet alloc]initWithTitle:@"No or invalid object name entered, aborted."
+                                                      delegate:self
+                                             cancelButtonTitle:nil
+                                        destructiveButtonTitle:nil
+                                             otherButtonTitles:@"OK", nil];
+  [warning setTag:kInvalidObjectNameWarningActionSheetTag];
+  warning.actionSheetStyle = UIActionSheetStyleDefault;
+  [warning showInView:self.view];
+}
 
 #pragma mark - Helper Methods
-
 - (void)addObjectToObjectList:(NSDictionary *)object
 {
     if (self.objectsList) {
@@ -461,32 +473,31 @@ enum NewProgramTVCSections
                                                              action:@selector(playScene:)];
      */
     NSMutableArray *items = [NSMutableArray arrayWithObjects:self.add, flexItem, self.play, nil];
-    
     self.navigationController.toolbarItems = items;
-
-    
     //[self.navigationController setToolbarItems:@[self.add, flexItem, self.play]animated:NO];
 }
 
-
-- (NSDictionary *) createNewObject
+// TODO: solve this github-issue
+- (NSDictionary *) createNewObject:(NSString*)objectName
 {
-    NSDictionary *object = @{ kObjectTitleKey: @"Objects",
-                                  kObjectName: self.objectName,
-                                  kObjectScriptsKey: [NSMutableArray array],
-                                  kObjectsLooksKey: [NSMutableArray array],
-                                  kObjectSoundsKey: [NSMutableArray array] };
+    NSDictionary *object = @{
+      kObjectTitleKey   : @"Objects",
+      kObjectName       : objectName,
+      kObjectScriptsKey : [NSMutableArray array],
+      kObjectsLooksKey  : [NSMutableArray array],
+      kObjectSoundsKey  : [NSMutableArray array]
+    };
     return object;
 }
 
 - (NSMutableArray *)createBackground
 {
-    NSArray *initArrayBG = @[
-                             @{ kBackgroundTitleKey: @"Background",
-                                kBackgroundScriptsKey: [NSMutableArray array],
-                                kBackgroundLooksKey: [NSMutableArray array],
-                                kBackgroundSoundsKey: [NSMutableArray array] }
-                             ];
+    NSArray *initArrayBG = @[@{
+      kBackgroundTitleKey   : @"Background",
+      kBackgroundScriptsKey : [NSMutableArray array],
+      kBackgroundLooksKey   : [NSMutableArray array],
+      kBackgroundSoundsKey  : [NSMutableArray array]
+    }];
     return [initArrayBG mutableCopy];
 }
 
