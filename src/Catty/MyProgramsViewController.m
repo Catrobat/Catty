@@ -35,9 +35,7 @@
 
 
 @interface MyProgramsViewController ()
-
 @property (nonatomic, strong) NSMutableArray *levelLoadingInfos;
-
 @end
 
 @implementation MyProgramsViewController
@@ -89,9 +87,6 @@
     
 }
 
-
-
-
 -(void)loadLevels
 {
     NSString *documentsDirectoy = [Util applicationDocumentsDirectory];
@@ -116,10 +111,7 @@
     
 }
 
-
-
 #pragma mark - Table view data source
-
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
     return 1;
 }
@@ -179,17 +171,13 @@
     }   
 }
 
-
-
 #pragma mark - Table view delegate
-
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [self performSegueWithIdentifier:kSegueToScene sender:self];
 }
 
 #pragma mark - Segue
-
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {    
     if([[segue identifier] isEqualToString:kSegueToScene]) {
@@ -200,10 +188,7 @@
     }
 }
 
-
 #pragma mark - Cell Helper
-
-
 -(void)configureImageCell:(UITableViewCell <CatrobatImageCell>*)cell atIndexPath:(NSIndexPath*)indexPath
 {
     ProgramLoadingInfo *info = [self.levelLoadingInfos objectAtIndex:indexPath.row];

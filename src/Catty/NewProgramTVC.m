@@ -78,7 +78,7 @@ enum NewProgramTVCSections
                                                                         UINavigationBarDelegate>
 @property (strong, nonatomic)NSMutableArray *background;
 @property (strong, nonatomic)NSMutableArray *objectsList;
-@property (strong, nonatomic)NSString *programName; // XXX: BTW: are there any restrictions or limits to the program name???
+@property (strong, nonatomic)NSString *programName; // XXX: BTW: are there any restrictions or limits for the program name???
 @property (strong, nonatomic)Program *program;
 
 @end
@@ -251,31 +251,38 @@ enum NewProgramTVCSections
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
   // Pass the selected object to the new view controller.
-  static NSString* backgroundSegueIdentifier = kSegueProgramBackground;
-  static NSString* objectSegueIdentifier = kSegueProgramObject;
+  static NSString* backgroundSegueID = kSegueProgramBackground;
+  static NSString* objectSegueID = kSegueProgramObject;
+  static NSString* toSceneSegueID = kSegueToScene;
 
   if ([sender isKindOfClass:[UITableViewCell class]]) {
-    if ([segue.identifier isEqualToString:backgroundSegueIdentifier]) {
+    UIViewController* destController = segue.destinationViewController;
+    if ([segue.identifier isEqualToString:backgroundSegueID]) {
       // background segue
-      if ([segue.destinationViewController respondsToSelector:@selector(setBackgroundScripts:)]) {
-        [segue.destinationViewController performSelector:@selector(setBackgroundScripts:) withObject:[self.dataSourceArray   [kBackgroundIndex]valueForKey:kBackgroundScriptsKey]];
-        [segue.destinationViewController performSelector:@selector(setBackgroundBackgrounds:) withObject:[self.dataSourceArray   [kBackgroundIndex]valueForKey:kBackgroundLooksKey]];
-        [segue.destinationViewController performSelector:@selector(setBackgroundSounds:) withObject:[self.dataSourceArray   [kBackgroundIndex]valueForKey:kBackgroundSoundsKey]];
+      if ([destController respondsToSelector:@selector(setBackgroundScripts:)]) {
+        NSDictionary* bgObject = self.dataSourceArray[kBackgroundIndex];
+        [destController performSelector:@selector(setBackgroundScripts:) withObject:[bgObject valueForKey:kBackgroundScriptsKey]];
+        /*
+        [destController performSelector:@selector(setBackgroundBackgrounds:) withObject:[bgObject valueForKey:kBackgroundLooksKey]];
+        [destController performSelector:@selector(setBackgroundSounds:) withObject:[bgObject valueForKey:kBackgroundSoundsKey]];
+         */
+        if(true);
       }
-    } else if ([segue.identifier isEqualToString:objectSegueIdentifier]) {
+    } else if ([segue.identifier isEqualToString:objectSegueID]) {
       // object segue
       // TODO: implement this...
+//      if ([destController respondsToSelector:INSERT_YOUR_SELECTOR_HERE]) {
+//          ...
+//      }
+    } else if ([segue.identifier isEqualToString:toSceneSegueID]) {
+      // TODO: implement this...
+      /*
+      if ([destController respondsToSelector:@selector(setProgramLoadingInfo:)]) {
+        [destController performSelector:@selector(setProgramLoadingInfo:) withObject:[Util programLoadingInfoForProgramWithName:self.programName]];
+      }
+      */
     }
   }
-}
-
-               
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
-  if (indexPath.section == 0)
-    [self performSegueWithIdentifier:@"ProgramSegue" sender:self];
-  //else if (indexPath.section == 1)
-  // TODO: add program segue...
 }
 
 #pragma mark - IBActions

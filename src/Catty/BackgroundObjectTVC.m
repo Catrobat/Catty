@@ -25,12 +25,51 @@
 #import "BackgroundLooksTVC.h"
 #import "BackgroundSoundsTVC.h"
 
+#define kBackgroundObjectTVCTitle @"Background Objects"
+
 @interface BackgroundObjectTVC ()
 
 @end
 
 @implementation BackgroundObjectTVC
+# pragma memory for our pointer-properties
+@synthesize backgroundBackgrounds = _backgroundBackgrounds;
+@synthesize backgroundScripts = _backgroundScripts;
+@synthesize backgroundSounds = _backgroundSounds;
 
+# pragma getters & setters
+- (NSMutableArray*)getBackgroundBackgrounds
+{
+  // lazy instantiation
+  if (! _backgroundBackgrounds)
+    _backgroundBackgrounds = [NSMutableArray array];
+  return _backgroundBackgrounds;
+}
+
+- (NSMutableArray*)getBackgroundScripts
+{
+  // lazy instantiation
+  if (! _backgroundScripts)
+    _backgroundScripts = [NSMutableArray array];
+  return _backgroundScripts;
+}
+
+- (NSMutableArray*)getBackgroundSounds
+{
+  // lazy instantiation
+  if (! _backgroundSounds)
+    _backgroundSounds = [NSMutableArray array];
+  return _backgroundSounds;
+}
+
+- (id)initWithStyle:(UITableViewStyle)style
+{
+    self = [super initWithStyle:style];
+    if (self) {
+        // Custom initialization
+    }
+    return self;
+}
 
 - (void)viewDidLoad
 {
@@ -41,10 +80,13 @@
  
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
-    self.title = @"Background Objects";
-    self.backgroundBackgrounds = [NSMutableArray array];
-    self.backgroundScripts = [NSMutableArray array];
-    self.backgroundSounds = [NSMutableArray array];
+    self.title = kBackgroundObjectTVCTitle;
+}
+
+- (void)didReceiveMemoryWarning
+{
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
 }
 
 #pragma mark - Table view data source
@@ -63,22 +105,21 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *CellIdentifier = @"BackgroundCell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
-    
-    switch (indexPath.row) {
-        case 0:
-        cell.textLabel.text = @"Scripts";
-    break;
-        case 1:
-        cell.textLabel.text = @"Backgrounds";
-    break;
-        case 2:
-        cell.textLabel.text = @"Sounds";
-    break;
-}
-
-    return cell;
+  static NSString *CellIdentifier = @"BackgroundCell";
+  UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
+  
+  switch (indexPath.row) {
+    case 0:
+      cell.textLabel.text = @"Scripts";
+      break;
+    case 1:
+      cell.textLabel.text = @"Backgrounds";
+      break;
+    case 2:
+      cell.textLabel.text = @"Sounds";
+      break;
+  }
+  return cell;
 }
 
 /*
@@ -120,7 +161,6 @@
 }
 */
 
-
 #pragma mark - Navigation
 
 // In a story board-based application, you will often want to do a little preparation before navigation
@@ -144,18 +184,16 @@
   }
 }
 
-
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
   if (indexPath.row == 0)
-      [self performSegueWithIdentifier:@"Scripts" sender:self];
-
+    [self performSegueWithIdentifier:@"Scripts" sender:self];
+  
   else if (indexPath.row == 1)
-      [self performSegueWithIdentifier:@"Looks" sender:self];
-      
+    [self performSegueWithIdentifier:@"Looks" sender:self];
+  
   else if (indexPath.row == 2)
-      [self performSegueWithIdentifier:@"Sounds" sender:self];
+    [self performSegueWithIdentifier:@"Sounds" sender:self];
 }
- 
 
 @end

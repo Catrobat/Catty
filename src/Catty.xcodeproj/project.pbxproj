@@ -25,7 +25,6 @@
 		1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
 		1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
 		288765FD0DF74451002DB57D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 288765FC0DF74451002DB57D /* CoreGraphics.framework */; };
-		8154EAB017D8D17E0078BFED /* BackgroundObjectTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 8154EAAF17D8D17E0078BFED /* BackgroundObjectTVC.m */; };
 		816C788317D5F0420029A4E6 /* settings_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 816C788217D5F0420029A4E6 /* settings_bg@2x.png */; };
 		816C788617D62B7C0029A4E6 /* NewProgramTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 816C788517D62B7C0029A4E6 /* NewProgramTVC.m */; };
 		81FAEE2A17E76DDC0052BB2B /* ObjectObjectsTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 81FAEE2917E76DDC0052BB2B /* ObjectObjectsTVC.m */; };
@@ -134,6 +133,7 @@
 		B4F243CF170EBF8F007A071D /* back.png in Resources */ = {isa = PBXBuildFile; fileRef = B4F243CD170EBF8F007A071D /* back.png */; };
 		B4F243D0170EBF8F007A071D /* back@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B4F243CE170EBF8F007A071D /* back@2x.png */; };
 		B4F499B0175E8387002E1BBD /* PullableView.m in Sources */ = {isa = PBXBuildFile; fileRef = B4F499AF175E8387002E1BBD /* PullableView.m */; };
+		CAEDFB8117EF759500FDED0E /* BackgroundObjectTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = CAEDFB8017EF759500FDED0E /* BackgroundObjectTVC.m */; };
 		CD0CCF51170CB39700B70036 /* BaseSprite.m in Sources */ = {isa = PBXBuildFile; fileRef = CD0CCE5E170CB39600B70036 /* BaseSprite.m */; };
 		CD0CCF52170CB39700B70036 /* Brick.m in Sources */ = {isa = PBXBuildFile; fileRef = CD0CCE60170CB39600B70036 /* Brick.m */; };
 		CD0CCF53170CB39700B70036 /* BroadcastBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = CD0CCE62170CB39600B70036 /* BroadcastBrick.m */; };
@@ -217,8 +217,6 @@
 		288765FC0DF74451002DB57D /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		32CA4F630368D1EE00C91783 /* App-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "App-Prefix.pch"; sourceTree = "<group>"; };
-		8154EAAE17D8D17E0078BFED /* BackgroundObjectTVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BackgroundObjectTVC.h; sourceTree = "<group>"; };
-		8154EAAF17D8D17E0078BFED /* BackgroundObjectTVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BackgroundObjectTVC.m; sourceTree = "<group>"; };
 		816C788217D5F0420029A4E6 /* settings_bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "settings_bg@2x.png"; sourceTree = "<group>"; };
 		816C788417D62B7C0029A4E6 /* NewProgramTVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewProgramTVC.h; sourceTree = "<group>"; };
 		816C788517D62B7C0029A4E6 /* NewProgramTVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewProgramTVC.m; sourceTree = "<group>"; };
@@ -406,6 +404,8 @@
 		B4F243CE170EBF8F007A071D /* back@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "back@2x.png"; sourceTree = "<group>"; };
 		B4F499AE175E8387002E1BBD /* PullableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PullableView.h; sourceTree = "<group>"; };
 		B4F499AF175E8387002E1BBD /* PullableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PullableView.m; sourceTree = "<group>"; };
+		CAEDFB7F17EF759500FDED0E /* BackgroundObjectTVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BackgroundObjectTVC.h; sourceTree = "<group>"; };
+		CAEDFB8017EF759500FDED0E /* BackgroundObjectTVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BackgroundObjectTVC.m; sourceTree = "<group>"; };
 		CD0CCE5D170CB39600B70036 /* BaseSprite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseSprite.h; sourceTree = "<group>"; };
 		CD0CCE5E170CB39600B70036 /* BaseSprite.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseSprite.m; sourceTree = "<group>"; };
 		CD0CCE5F170CB39600B70036 /* Brick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Brick.h; sourceTree = "<group>"; };
@@ -631,8 +631,8 @@
 		8154EAAD17D8D15F0078BFED /* BackgroundObjectTVC */ = {
 			isa = PBXGroup;
 			children = (
-				8154EAAE17D8D17E0078BFED /* BackgroundObjectTVC.h */,
-				8154EAAF17D8D17E0078BFED /* BackgroundObjectTVC.m */,
+				CAEDFB7F17EF759500FDED0E /* BackgroundObjectTVC.h */,
+				CAEDFB8017EF759500FDED0E /* BackgroundObjectTVC.m */,
 			);
 			name = BackgroundObjectTVC;
 			sourceTree = "<group>";
@@ -1963,7 +1963,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8154EAB017D8D17E0078BFED /* BackgroundObjectTVC.m in Sources */,
 				81FAEE2A17E76DDC0052BB2B /* ObjectObjectsTVC.m in Sources */,
 				B4E7D257176EF20F00EC8AD8 /* Scene.m in Sources */,
 				B40C306E170ECC30000B872F /* CatrobatBaseCell.m in Sources */,
@@ -2029,6 +2028,7 @@
 				CD0CCFDA170CB39700B70036 /* Util.m in Sources */,
 				CD0CCFDB170CB39700B70036 /* WaitBrick.m in Sources */,
 				CD0CCFDC170CB39700B70036 /* WhenScript.m in Sources */,
+				CAEDFB8117EF759500FDED0E /* BackgroundObjectTVC.m in Sources */,
 				CD639C7B170DF52600FA67DA /* SpriteObject.m in Sources */,
 				B4D940AD170EC2B7003DDBFA /* ioapi.c in Sources */,
 				B4D940AE170EC2B7003DDBFA /* mztools.c in Sources */,

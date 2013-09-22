@@ -23,9 +23,7 @@
 #import <UIKit/UIKit.h>
 
 @interface BackgroundObjectTVC : UITableViewController
-@property (strong, nonatomic)NSMutableArray *backgroundScripts;
-@property (strong,nonatomic) NSMutableArray  *backgroundBackgrounds;
+@property (strong, nonatomic) NSMutableArray *backgroundScripts;
+@property (strong, nonatomic) NSMutableArray *backgroundBackgrounds;
 @property (strong, nonatomic) NSMutableArray *backgroundSounds;
-
-
 @end
