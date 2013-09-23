@@ -22,8 +22,8 @@
 
 #import <UIKit/UIKit.h>
 
+@class Program;
+
 @interface NewProgramTVC : UITableViewController
-@property (nonatomic, strong) NSMutableArray *dataSourceArray; // first object in mutable array is background
-- (NSMutableArray *)getObjectList;
-- (NSMutableArray *)getBackground;
+@property (strong, nonatomic) Program *program;
 @end

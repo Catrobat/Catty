@@ -61,14 +61,44 @@
     [alert show];
 }
 
++ (NSString*)getProjectName
+{
+  NSDictionary *info = [[NSBundle mainBundle] infoDictionary];
+  return [NSString stringWithFormat:@"%@", [info objectForKey:@"CFBundleDisplayName"]];
+}
 
-+(CGFloat)getScreenHeight
++ (NSString*)getProjectVersion
+{
+  NSDictionary *info = [[NSBundle mainBundle] infoDictionary];
+  return [NSString stringWithFormat:@"%@", [info objectForKey:@"CFBundleVersion"]];
+}
+
++ (NSString*)getDeviceName
+{
+  return [[UIDevice currentDevice] model];
+}
+
++ (NSString*)getPlatformName
+{
+  return [[UIDevice currentDevice] systemName];
+}
+
++ (NSString*)getPlatformVersion
+{
+  return [[UIDevice currentDevice] systemVersion];
+}
+
++ (CGFloat)getScreenHeight
 {
     CGRect screenRect = [[UIScreen mainScreen] bounds];
     return screenRect.size.height;
 }
 
-
++ (CGFloat)getScreenWidth
+{
+  CGRect screenRect = [[UIScreen mainScreen] bounds];
+  return screenRect.size.width;
+}
 
 + (CATransition*)getPushCATransition
 {

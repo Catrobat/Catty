@@ -49,7 +49,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
+
     [Util setLastProgram:self.programLoadingInfo.visibleName];
     self.broadcastWaitHandler = [[BroadcastWaitHandler alloc]init];
 

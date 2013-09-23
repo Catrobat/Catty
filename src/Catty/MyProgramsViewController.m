@@ -179,11 +179,11 @@
 
 #pragma mark - Segue
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{    
+{
     if([[segue identifier] isEqualToString:kSegueToScene]) {
         NSIndexPath *path = [self.tableView indexPathForSelectedRow];
         NSString* programName = [[self.levelLoadingInfos objectAtIndex:path.row] visibleName];
-        SceneViewController* sceneViewController = (SceneViewController*)segue.destinationViewController;
+        SceneViewController* sceneViewController = (SceneViewController*) segue.destinationViewController;
         sceneViewController.programLoadingInfo = [Util programLoadingInfoForProgramWithName:programName];
     }
 }
