@@ -276,6 +276,8 @@
         }
     }
     
+    NSDebug(@"BroadcastWaitScriptDone");
+    
 
 
 }

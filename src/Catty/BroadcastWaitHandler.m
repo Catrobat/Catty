@@ -76,13 +76,15 @@
             NSError(@"sprite is not a SpriteObject...abort()");
         }
         else {
-            dispatch_group_async(group, broadcastWaitQueue, ^{
+            dispatch_async(broadcastWaitQueue, ^{
                 [sprite performBroadcastWaitScriptWithMessage:message];
             });
         }
-        
     }
-    NSDebug(@"Wait");
+    
+    dispatch_group_async(group, broadcastWaitQueue, ^{
+    });
+    
     dispatch_group_wait(group, DISPATCH_TIME_FOREVER); // Block until we're ready
     
 }

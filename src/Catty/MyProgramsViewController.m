@@ -203,6 +203,11 @@
         imagePath = [[NSString alloc] initWithFormat:@"%@/manual_screenshot.png", info.basePath];
         image = [UIImage imageWithContentsOfFile:imagePath];
     }
+    
+    if(!image) {
+        imagePath = [[NSString alloc] initWithFormat:@"%@/automatic_screenshot.png", info.basePath];
+        image = [UIImage imageWithContentsOfFile:imagePath];
+    }
     if(!image) {
         image = [UIImage imageNamed:@"programs"];
     }
