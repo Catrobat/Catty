@@ -123,7 +123,8 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    [self performSegueWithIdentifier:kSegueToLevelDetail sender:tableView];
+    CatrobatProject *level = [self.searchResults objectAtIndex:indexPath.row];
+    [self performSegueWithIdentifier:kSegueToLevelDetail sender:level];
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -248,13 +249,11 @@
     [self.searchDisplayController setActive:NO animated:YES];
     [self update];
     if([[segue identifier] isEqualToString:kSegueToLevelDetail]) {
-        CatrobatProject *level = nil;
-        if([sender isKindOfClass:[UITableView class]]) {
-            NSIndexPath *selectedRowIndexPath = ((UITableView*)sender).indexPathForSelectedRow;
-            level = [self.searchResults objectAtIndex:selectedRowIndexPath.row];
+        if([sender isKindOfClass:[CatrobatProject class]]) {
+            ProgramDetailStoreViewController* programDetailViewController = (ProgramDetailStoreViewController*)[segue destinationViewController];
+            programDetailViewController.project = sender;
         }
-        ProgramDetailStoreViewController* programDetailViewController = (ProgramDetailStoreViewController*)[segue destinationViewController];
-        programDetailViewController.project = level;
+
     }
 }
 
