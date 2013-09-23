@@ -309,7 +309,7 @@
 
 -(CGFloat) zIndex
 {
-    return [self zIndex];
+    return [self zPosition];
 }
 
 -(CGFloat) brightness
