@@ -20,17 +20,13 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import "BackgroundScriptsCVC.h"
+#import "ObjectScriptsCVC.h"
 #import "PrototypScriptCell.h"
 
-
-@interface BackgroundScriptsCVC () <UICollectionViewDelegate, UICollectionViewDelegateFlowLayout>
-
-
+@interface ObjectScriptsCVC () <UICollectionViewDelegate, UICollectionViewDelegateFlowLayout>
 @end
 
-@implementation BackgroundScriptsCVC
-
+@implementation ObjectScriptsCVC
 
 - (void)viewDidLoad
 {

@@ -22,7 +22,8 @@
 
 #import <UIKit/UIKit.h>
 
-@interface BackgroundSoundsTVC : UITableViewController
-@property (strong, nonatomic)NSMutableArray *sounds;
+@class SpriteObject;
 
+@interface ObjectTVC : UITableViewController
+@property (strong, nonatomic) SpriteObject *object;
 @end

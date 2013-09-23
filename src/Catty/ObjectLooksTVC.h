@@ -22,7 +22,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface BackgroundLooksTVC : UITableViewController
-@property (strong, nonatomic)NSMutableArray *looks;
-
+@interface ObjectLooksTVC : UITableViewController
+@property (strong, nonatomic) NSMutableArray *looks;
 @end

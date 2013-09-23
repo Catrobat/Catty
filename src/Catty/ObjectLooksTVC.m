@@ -20,47 +20,12 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import "BackgroundObjectTVC.h"
-#import "BackgroundScriptsCVC.h"
-#import "BackgroundLooksTVC.h"
-#import "BackgroundSoundsTVC.h"
+#import "ObjectLooksTVC.h"
 
-#define kBackgroundObjectTVCTitle @"Background Objects"
-
-@interface BackgroundObjectTVC ()
-
+@interface ObjectLooksTVC ()
 @end
 
-@implementation BackgroundObjectTVC
-# pragma memory for our pointer-properties
-@synthesize backgroundBackgrounds = _backgroundBackgrounds;
-@synthesize backgroundScripts = _backgroundScripts;
-@synthesize backgroundSounds = _backgroundSounds;
-
-# pragma getters & setters
-- (NSMutableArray*)getBackgroundBackgrounds
-{
-  // lazy instantiation
-  if (! _backgroundBackgrounds)
-    _backgroundBackgrounds = [NSMutableArray array];
-  return _backgroundBackgrounds;
-}
-
-- (NSMutableArray*)getBackgroundScripts
-{
-  // lazy instantiation
-  if (! _backgroundScripts)
-    _backgroundScripts = [NSMutableArray array];
-  return _backgroundScripts;
-}
-
-- (NSMutableArray*)getBackgroundSounds
-{
-  // lazy instantiation
-  if (! _backgroundSounds)
-    _backgroundSounds = [NSMutableArray array];
-  return _backgroundSounds;
-}
+@implementation ObjectLooksTVC
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -80,7 +45,6 @@
  
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
-    self.title = kBackgroundObjectTVCTitle;
 }
 
 - (void)didReceiveMemoryWarning
@@ -93,33 +57,26 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
+#warning Potentially incomplete method implementation.
     // Return the number of sections.
-    return 1;
+    return 0;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
+#warning Incomplete method implementation.
     // Return the number of rows in the section.
-    return 3;
+    return 0;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-  static NSString *CellIdentifier = @"BackgroundCell";
-  UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
-  
-  switch (indexPath.row) {
-    case 0:
-      cell.textLabel.text = @"Scripts";
-      break;
-    case 1:
-      cell.textLabel.text = @"Backgrounds";
-      break;
-    case 2:
-      cell.textLabel.text = @"Sounds";
-      break;
-  }
-  return cell;
+    static NSString *CellIdentifier = @"Cell";
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
+    
+    // Configure the cell...
+    
+    return cell;
 }
 
 /*
@@ -161,39 +118,16 @@
 }
 */
 
+/*
 #pragma mark - Navigation
 
 // In a story board-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-  if ([sender isKindOfClass:[UITableViewCell class]]) {
-    if ([segue.identifier isEqualToString:@"Scripts"]) {
-      if ([segue.destinationViewController respondsToSelector:@selector(setScripts:)]) {
-        [segue.destinationViewController performSelector:@selector(setScripts:) withObject:self.backgroundScripts];
-      }
-    }
-    
-    
-    else if ([segue.destinationViewController respondsToSelector:@selector(setSounds:)] && [segue.identifier isEqualToString:@"Sounds"]) {
-      [segue.destinationViewController performSelector:@selector(setSounds:) withObject:self.backgroundSounds];
-    }
-    
-    else if ([segue.destinationViewController respondsToSelector:@selector(setLooks:)] && [segue.identifier isEqualToString:@"Looks"]) {
-      [segue.destinationViewController performSelector:@selector(setLooks:) withObject:self.backgroundBackgrounds];
-    }
-  }
+    // Get the new view controller using [segue destinationViewController].
+    // Pass the selected object to the new view controller.
 }
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
-  if (indexPath.row == 0)
-    [self performSegueWithIdentifier:@"Scripts" sender:self];
-  
-  else if (indexPath.row == 1)
-    [self performSegueWithIdentifier:@"Looks" sender:self];
-  
-  else if (indexPath.row == 2)
-    [self performSegueWithIdentifier:@"Sounds" sender:self];
-}
+ */
 
 @end

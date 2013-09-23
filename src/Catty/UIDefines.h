@@ -20,10 +20,6 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import <UIKit/UIKit.h>
-
-@interface BackgroundObjectTVC : UITableViewController
-@property (strong, nonatomic) NSMutableArray *backgroundScripts;
-@property (strong, nonatomic) NSMutableArray *backgroundBackgrounds;
-@property (strong, nonatomic) NSMutableArray *backgroundSounds;
-@end
+#define kBtnCancelTitle NSLocalizedString(@"Cancel", @"Cancel button for views")
+#define kBtnOKTitle NSLocalizedString(@"OK", @"OK button for views")
+#define kBtnDeleteTitle NSLocalizedString(@"Delete", @"Delete button for views")
