@@ -26,6 +26,7 @@
 #import "Util.h"
 #import "OrderedMapTable.h"
 #import "AppDefines.h"
+#import "SpriteObject.h"
 
 @implementation Program
 
@@ -75,6 +76,14 @@
     return _objectList;
 }
 
+- (void)setObjectList:(NSMutableArray*)objectList
+{
+    for (id object in objectList) {
+        if ([object isKindOfClass:[SpriteObject class]])
+          ((SpriteObject*) object).program = self;
+    }
+    _objectList = objectList;
+}
 
 - (NSString*)description
 {

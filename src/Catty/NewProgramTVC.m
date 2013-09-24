@@ -32,12 +32,7 @@
 #import "CatrobatImageCell.h"
 #import "Util.h"
 #import "UIDefines.h"
-
-enum NewProgramTVCSections
-{
-    kBackground_Section = 0,
-    kObjects_Section
-};
+#import "ProgramDefines.h"
 
 // Action sheet & Alert view tags
 #define kSceneActionSheetTag 1
@@ -54,15 +49,9 @@ enum NewProgramTVCSections
 #define kBackgroundObjectName NSLocalizedString(@"Background",@"Title for Background-Object in program view")
 #define kDefaultObjectName NSLocalizedString(@"My Object",@"Title for first (default) object in program view")
 #define kProgramNamePlaceholder NSLocalizedString(@"Enter your program name here...",@"Placeholder for rename-program-name input field")
-#define kMinNumOfObjects 1
-#define kBackgroundObjects 1
 
 // identifiers
 #define kTableHeaderIdentifier @"Header"
-
-// indexes
-#define kBackgroundIndex 0
-#define kObjectIndex (kBackgroundIndex + kBackgroundObjects)
 
 @interface NewProgramTVC () <UIActionSheetDelegate, UIAlertViewDelegate, UITextFieldDelegate,
                                                                         UINavigationBarDelegate>
@@ -77,9 +66,9 @@ enum NewProgramTVCSections
 {
   // lazy instantiation
   if (! _program) {
+    _program = [Program createWithProgramName:kDefaultProgramName];
     SpriteObject* backgroundObject = [self createObjectWithName:kBackgroundObjectName];
     SpriteObject* firstObject = [self createObjectWithName:kDefaultObjectName];
-    _program = [Program createWithProgramName:kDefaultProgramName];
     // CAUTION: NEVER change order! BackgroundObject is always first object in list
     _program.objectList = [NSMutableArray arrayWithObjects:backgroundObject, firstObject, nil];
 
@@ -116,6 +105,7 @@ enum NewProgramTVCSections
   object.currentLook = nil;
   object.numberOfObjects = 0;
   object.name = objectName;
+  object.program = self.program;
   return object;
 }
 
@@ -148,8 +138,6 @@ enum NewProgramTVCSections
   [self initTableView];
   //[TableUtil initNavigationItem:self.navigationItem withTitle:NSLocalizedString(@"New Programs", nil)];
 
-  [self.navigationController setToolbarHidden:NO];
-
   // just to ensure
   if (self.navigationItem && self.program.header)
     self.navigationItem.title = self.program.header.programName;
@@ -159,7 +147,7 @@ enum NewProgramTVCSections
 }
 
 #pragma marks init
--(void)initTableView
+- (void)initTableView
 {
   self.tableView.delegate = self;
   self.tableView.dataSource = self;
@@ -171,7 +159,6 @@ enum NewProgramTVCSections
 }
 
 #pragma mark - UITableView data source
-
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     return 2;
@@ -194,7 +181,6 @@ enum NewProgramTVCSections
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ProgramCell" forIndexPath:indexPath];
     if ([cell conformsToProtocol:@protocol(CatrobatImageCell)]) {
       UITableViewCell <CatrobatImageCell>* imageCell = (UITableViewCell <CatrobatImageCell>*)cell;
@@ -206,7 +192,7 @@ enum NewProgramTVCSections
     return cell;
 }
 
--(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
   return [TableUtil getHeightForImageCell];
 }
@@ -267,12 +253,15 @@ enum NewProgramTVCSections
 
   if ([sender isKindOfClass:[UITableViewCell class]]) {
     UITableViewCell *cell = (UITableViewCell*) sender;
+    NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
     UIViewController *destController = segue.destinationViewController;
     if ([segue.identifier isEqualToString:toObjectSegueID]) {
-      if ([destController respondsToSelector:@selector(setObject:)]) {
-        NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
-        SpriteObject* object = [self.program.objectList objectAtIndex:(kBackgroundIndex + indexPath.section + indexPath.row)];
-        [destController performSelector:@selector(setObject:) withObject:object];
+      if ([destController isKindOfClass:[ObjectTVC class]]) {
+        ObjectTVC* tvc = (ObjectTVC*) destController;
+        if ([tvc respondsToSelector:@selector(setObject:)]) {
+          SpriteObject* object = [self.program.objectList objectAtIndex:(kBackgroundIndex + indexPath.section + indexPath.row)];
+          [destController performSelector:@selector(setObject:) withObject:object];
+        }
       }
     } else if ([segue.identifier isEqualToString:toSceneSegueID]) {
       // TODO: implement this...
@@ -317,7 +306,6 @@ enum NewProgramTVCSections
       [self showRenameProgramAlertView];
     }
   }
-
 }
 
 #pragma mark - UIAlertViewDelegate Handlers
@@ -349,7 +337,7 @@ enum NewProgramTVCSections
 }
 
 //------------------------------------------------------------------------------------------------------------
-// TODO: refactor and outsource all this view stuff below to UserInterface group
+// TODO: outsource all this view stuff below to UserInterface group
 //       and create own helper classes for the helper stuff.
 //       This is not part of the controller logic and highly decreases readability!!
 
@@ -407,11 +395,11 @@ enum NewProgramTVCSections
 
 - (void)showWarningInvalidProgramNameActionSheet
 {
-  UIActionSheet *warning = [[UIActionSheet alloc]initWithTitle:NSLocalizedString(@"No or invalid program name entered, try again.",nil)
-                                                      delegate:self
-                                             cancelButtonTitle:nil
-                                        destructiveButtonTitle:nil
-                                             otherButtonTitles:kBtnOKTitle, nil];
+  UIActionSheet *warning = [[UIActionSheet alloc] initWithTitle:NSLocalizedString(@"No or invalid program name entered, try again.",nil)
+                                                       delegate:self
+                                              cancelButtonTitle:nil
+                                         destructiveButtonTitle:nil
+                                              otherButtonTitles:kBtnOKTitle, nil];
   [warning setTag:kInvalidProgramNameWarningActionSheetTag];
   warning.actionSheetStyle = UIActionSheetStyleDefault;
   [warning showInView:self.view];
@@ -419,11 +407,11 @@ enum NewProgramTVCSections
 
 - (void)showWarningInvalidObjectNameActionSheet
 {
-  UIActionSheet *warning = [[UIActionSheet alloc]initWithTitle:NSLocalizedString(@"No or invalid object name entered, aborted.",nil)
-                                                      delegate:self
-                                             cancelButtonTitle:nil
-                                        destructiveButtonTitle:nil
-                                             otherButtonTitles:kBtnOKTitle, nil];
+  UIActionSheet *warning = [[UIActionSheet alloc] initWithTitle:NSLocalizedString(@"No or invalid object name entered, aborted.",nil)
+                                                       delegate:self
+                                              cancelButtonTitle:nil
+                                         destructiveButtonTitle:nil
+                                              otherButtonTitles:kBtnOKTitle, nil];
   [warning setTag:kInvalidObjectNameWarningActionSheetTag];
   warning.actionSheetStyle = UIActionSheetStyleDefault;
   [warning showInView:self.view];
@@ -435,12 +423,13 @@ enum NewProgramTVCSections
   [self showNewObjectAlertView];
 }
 
-- (void)playScene:(id)sender
+- (void)playSceneAction:(id)sender
 {
 }
 
 - (void)setupToolBar
 {
+  [self.navigationController setToolbarHidden:NO];
   self.navigationController.toolbar.barStyle = UIBarStyleBlack;
   self.navigationController.toolbar.tintColor = [UIColor orangeColor];
   self.navigationController.toolbar.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleTopMargin;
@@ -452,7 +441,7 @@ enum NewProgramTVCSections
                                                                        action:@selector(addObjectAction:)];
   UIBarButtonItem *play = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemPlay
                                                                         target:self
-                                                                        action:@selector(playScene:)];
+                                                                        action:@selector(playSceneAction:)];
   self.toolbarItems = [NSArray arrayWithObjects:add, flexItem, play, nil];
 }
 

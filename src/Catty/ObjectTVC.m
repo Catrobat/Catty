@@ -25,9 +25,20 @@
 #import "ObjectLooksTVC.h"
 #import "ObjectSoundsTVC.h"
 #import "SpriteObject.h"
+#import "UIDefines.h"
 #import "SegueDefines.h"
+#import "TableUtil.h"
+#import "CatrobatImageCell.h"
 
-@interface ObjectTVC ()
+#define kScriptsTitle NSLocalizedString(@"Scripts",nil)
+#define kLooksTitle NSLocalizedString(@"Looks",nil)
+#define kBackgroundsTitle NSLocalizedString(@"Backgrounds",nil)
+#define kSoundsTitle NSLocalizedString(@"Sounds",nil)
+
+// identifiers
+#define kTableHeaderIdentifier @"Header"
+
+@interface ObjectTVC () <UIActionSheetDelegate>
 
 @end
 
@@ -50,14 +61,26 @@
 
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
- 
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+
+    [self initTableView];
+    //[TableUtil initNavigationItem:self.navigationItem withTitle:NSLocalizedString(@"New Programs", nil)];
+
     if (self.object) {
       self.title = self.object.name;
       if (self.navigationItem)
         self.navigationItem.title = self.object.name;
     }
+    [self setupToolBar];
+}
+
+#pragma marks init
+- (void)initTableView
+{
+  [self.tableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
+  self.tableView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"darkblue"]];
+  UITableViewHeaderFooterView *headerViewTemplate = [[UITableViewHeaderFooterView alloc] initWithReuseIdentifier:kTableHeaderIdentifier];
+  headerViewTemplate.contentView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"darkblue"]];
+  [self.tableView addSubview:headerViewTemplate];
 }
 
 - (void)didReceiveMemoryWarning
@@ -81,21 +104,32 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-  static NSString *CellIdentifier = @"BackgroundCell";
+  static NSString *CellIdentifier = @"MenuCell";
   UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
-  
-  switch (indexPath.row) {
-    case 0:
-      cell.textLabel.text = @"Scripts";
-      break;
-    case 1:
-      cell.textLabel.text = @"Backgrounds";
-      break;
-    case 2:
-      cell.textLabel.text = @"Sounds";
-      break;
+
+  if ([cell conformsToProtocol:@protocol(CatrobatImageCell)]) {
+    UITableViewCell <CatrobatImageCell>* imageCell = (UITableViewCell <CatrobatImageCell>*)cell;
+    switch (indexPath.row) {
+      case 0:
+        imageCell.iconImageView.image = [UIImage imageNamed:@"ic_scripts"];
+        imageCell.titleLabel.text = kScriptsTitle;
+        break;
+      case 1:
+        imageCell.iconImageView.image = [UIImage imageNamed:@"ic_looks"];
+        imageCell.titleLabel.text = (self.object.isBackground ? kBackgroundsTitle : kLooksTitle);
+        break;
+      case 2:
+        imageCell.iconImageView.image = [UIImage imageNamed:@"ic_sounds"];
+        imageCell.titleLabel.text = kSoundsTitle;
+        break;
+    }
   }
   return cell;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+  return [TableUtil getHeightForImageCell];
 }
 
 #pragma mark - Navigation
@@ -133,6 +167,55 @@
     [self performSegueWithIdentifier:toLooksSegueID sender:self];
   else if (indexPath.row == 2)
     [self performSegueWithIdentifier:toSoundsSegueID sender:self];
+}
+
+#pragma mark - UIActionSheetDelegate Handlers
+- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+  // TODO: implement this
+}
+
+- (IBAction)editObject:(id)sender
+{
+  [self showSceneActionSheet];
+}
+
+#pragma mark - UIActionSheet Views
+- (void)showSceneActionSheet
+{
+  // TODO: determine whether to show delete button or not
+  BOOL showDeleteButton = false;
+  //if (self.objectsList && self.background && [self.objectsList count] && [self.background count])
+  showDeleteButton = true;
+  
+  UIActionSheet *edit = [[UIActionSheet alloc] initWithTitle:NSLocalizedString(@"Edit Object",nil)
+                                                    delegate:self
+                                           cancelButtonTitle:kBtnCancelTitle
+                                      destructiveButtonTitle:nil
+                                           otherButtonTitles:NSLocalizedString(@"Einstellungen",nil), nil];
+  //[edit setTag:kSceneActionSheetTag];
+  edit.actionSheetStyle = UIActionSheetStyleDefault;
+  [edit showInView:self.view];
+}
+
+#pragma mark - Helper Methods
+- (void)playSceneAction:(id)sender
+{
+}
+
+- (void)setupToolBar
+{
+  [self.navigationController setToolbarHidden:NO];
+  self.navigationController.toolbar.barStyle = UIBarStyleBlack;
+  self.navigationController.toolbar.tintColor = [UIColor orangeColor];
+  self.navigationController.toolbar.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleTopMargin;
+  UIBarButtonItem *flexItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace
+                                                                            target:nil
+                                                                            action:nil];
+  UIBarButtonItem *play = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemPlay
+                                                                        target:self
+                                                                        action:@selector(playSceneAction:)];
+  self.toolbarItems = [NSArray arrayWithObjects:flexItem, play, flexItem, nil];
 }
 
 @end

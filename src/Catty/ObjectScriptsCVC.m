@@ -30,9 +30,9 @@
 
 - (void)viewDidLoad
 {
-   [super viewDidLoad];
+  [super viewDidLoad];
   //[self.collectionView registerClass:[PrototypScriptCell class] forCellWithReuseIdentifier:@"Brick"];
-  
+  [self setupToolBar];
 }
 
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView
@@ -58,5 +58,31 @@
   return cell;
 }
 
+#pragma mark - Helper Methods
+- (void)addScriptAction:(id)sender
+{
+}
+
+- (void)playSceneAction:(id)sender
+{
+}
+
+- (void)setupToolBar
+{
+  [self.navigationController setToolbarHidden:NO];
+  self.navigationController.toolbar.barStyle = UIBarStyleBlack;
+  self.navigationController.toolbar.tintColor = [UIColor orangeColor];
+  self.navigationController.toolbar.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleTopMargin;
+  UIBarButtonItem *flexItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace
+                                                                            target:nil
+                                                                            action:nil];
+  UIBarButtonItem *add = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd
+                                                                       target:self
+                                                                       action:@selector(addScriptAction:)];
+  UIBarButtonItem *play = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemPlay
+                                                                        target:self
+                                                                        action:@selector(playSceneAction:)];
+  self.toolbarItems = [NSArray arrayWithObjects:add, flexItem, play, nil];
+}
 
 @end

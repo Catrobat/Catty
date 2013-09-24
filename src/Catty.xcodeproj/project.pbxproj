@@ -132,6 +132,9 @@
 		B4F243CF170EBF8F007A071D /* back.png in Resources */ = {isa = PBXBuildFile; fileRef = B4F243CD170EBF8F007A071D /* back.png */; };
 		B4F243D0170EBF8F007A071D /* back@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B4F243CE170EBF8F007A071D /* back@2x.png */; };
 		B4F499B0175E8387002E1BBD /* PullableView.m in Sources */ = {isa = PBXBuildFile; fileRef = B4F499AF175E8387002E1BBD /* PullableView.m */; };
+		CA8F8A0B17F241F700A04C03 /* ic_looks.png in Resources */ = {isa = PBXBuildFile; fileRef = CA8F8A0817F241F700A04C03 /* ic_looks.png */; };
+		CA8F8A0C17F241F700A04C03 /* ic_scripts.png in Resources */ = {isa = PBXBuildFile; fileRef = CA8F8A0917F241F700A04C03 /* ic_scripts.png */; };
+		CA8F8A0D17F241F700A04C03 /* ic_sounds.png in Resources */ = {isa = PBXBuildFile; fileRef = CA8F8A0A17F241F700A04C03 /* ic_sounds.png */; };
 		CAEDFB8117EF759500FDED0E /* ObjectTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = CAEDFB8017EF759500FDED0E /* ObjectTVC.m */; };
 		CD0CCF51170CB39700B70036 /* BaseSprite.m in Sources */ = {isa = PBXBuildFile; fileRef = CD0CCE5E170CB39600B70036 /* BaseSprite.m */; };
 		CD0CCF52170CB39700B70036 /* Brick.m in Sources */ = {isa = PBXBuildFile; fileRef = CD0CCE60170CB39600B70036 /* Brick.m */; };
@@ -401,6 +404,9 @@
 		B4F243CE170EBF8F007A071D /* back@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "back@2x.png"; sourceTree = "<group>"; };
 		B4F499AE175E8387002E1BBD /* PullableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PullableView.h; sourceTree = "<group>"; };
 		B4F499AF175E8387002E1BBD /* PullableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PullableView.m; sourceTree = "<group>"; };
+		CA8F8A0817F241F700A04C03 /* ic_looks.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ic_looks.png; sourceTree = "<group>"; };
+		CA8F8A0917F241F700A04C03 /* ic_scripts.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ic_scripts.png; sourceTree = "<group>"; };
+		CA8F8A0A17F241F700A04C03 /* ic_sounds.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ic_sounds.png; sourceTree = "<group>"; };
 		CAEDFB7F17EF759500FDED0E /* ObjectTVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ObjectTVC.h; sourceTree = "<group>"; };
 		CAEDFB8017EF759500FDED0E /* ObjectTVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ObjectTVC.m; sourceTree = "<group>"; };
 		CAEDFB8317EFC98E00FDED0E /* AppDefines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDefines.h; sourceTree = "<group>"; };
@@ -701,6 +707,7 @@
 		B4003027170EB3DA00396DB7 /* graphics */ = {
 			isa = PBXGroup;
 			children = (
+				CA8F8A0717F2417000A04C03 /* icons */,
 				816C788217D5F0420029A4E6 /* settings_bg@2x.png */,
 				B4DA23D8175E78050079B381 /* menu_icon.png */,
 				B4DA23D9175E78050079B381 /* menu_icon@2x.png */,
@@ -1335,6 +1342,16 @@
 			name = IDE;
 			sourceTree = "<group>";
 		};
+		CA8F8A0717F2417000A04C03 /* icons */ = {
+			isa = PBXGroup;
+			children = (
+				CA8F8A0817F241F700A04C03 /* ic_looks.png */,
+				CA8F8A0917F241F700A04C03 /* ic_scripts.png */,
+				CA8F8A0A17F241F700A04C03 /* ic_sounds.png */,
+			);
+			name = icons;
+			sourceTree = "<group>";
+		};
 		CD0CCE37170C9F9300B70036 /* Storyboard */ = {
 			isa = PBXGroup;
 			children = (
@@ -1879,14 +1896,17 @@
 			buildActionMask = 2147483647;
 			files = (
 				B4D940D8170ECB31003DDBFA /* Aquarium 3.catrobat in Resources */,
+				CA8F8A0B17F241F700A04C03 /* ic_looks.png in Resources */,
 				B4D940D9170ECB31003DDBFA /* My first project.catrobat in Resources */,
 				B4F243C8170EBD7B007A071D /* iPhone.storyboard in Resources */,
 				B4F243CF170EBF8F007A071D /* back.png in Resources */,
 				B4F243D0170EBF8F007A071D /* back@2x.png in Resources */,
 				B4BCF3DA170ECE05008EDF3A /* accessory.png in Resources */,
 				B4BCF3DB170ECE05008EDF3A /* accessory@2x.png in Resources */,
+				CA8F8A0C17F241F700A04C03 /* ic_scripts.png in Resources */,
 				B4BCF3E7170ECE19008EDF3A /* download.png in Resources */,
 				B4BCF3E8170ECE19008EDF3A /* download@2x.png in Resources */,
+				CA8F8A0D17F241F700A04C03 /* ic_sounds.png in Resources */,
 				B4BCF3E9170ECE19008EDF3A /* forum.png in Resources */,
 				B4BCF3EA170ECE19008EDF3A /* forum@2x.png in Resources */,
 				B4BCF3EB170ECE19008EDF3A /* new.png in Resources */,

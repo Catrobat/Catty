@@ -123,19 +123,17 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     static NSString *CellIdentifier = kImageCell;
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    
-    if(!cell) {
+
+    if (! cell) {
         NSLog(@"This should not happen - since ios5 - storyboards manages allocation of cells");
         abort();
     }
-    
 
-    if([cell conformsToProtocol:@protocol(CatrobatImageCell)]) {
+    if ([cell conformsToProtocol:@protocol(CatrobatImageCell)]) {
         UITableViewCell <CatrobatImageCell>* imageCell = (UITableViewCell <CatrobatImageCell>*)cell;
         [self configureImageCell:imageCell atIndexPath:indexPath];
     }
-    
-        
+
     return cell;
 }
 

@@ -62,7 +62,7 @@
 
 @property (nonatomic,strong) Program* program;
 
-
+- (BOOL)isBackground;
 
 /* Loop Update - called once per frame. */
 - (void)updateWithTimeSinceLastUpdate:(CFTimeInterval)interval;

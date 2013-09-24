@@ -34,9 +34,6 @@
 #import "XMLObjectReference.h"
 #import "OrderedMapTable.h"
 #import "NSString+CatrobatNSStringExtensions.h"
-
-
-// test
 #import "SpriteObject.h"
 
 
@@ -109,6 +106,7 @@
     {
         NSError(@"Program could not be loaded! %@", [ex description]);
     }
+
     return program;
 }
 
@@ -144,8 +142,11 @@
         self.program = object;
 
     // just an educated guess...
-    if ([object isKindOfClass:[SpriteObject class]])
-        self.currentActiveSprite = object;
+    if ([object isKindOfClass:[SpriteObject class]]) {
+        SpriteObject* spriteObject = (SpriteObject*) object;
+        spriteObject.program = self.program;
+        self.currentActiveSprite = spriteObject;
+    }
 
     XMLObjectReference* ref = [[XMLObjectReference alloc] initWithParent:parent andObject:object];
 

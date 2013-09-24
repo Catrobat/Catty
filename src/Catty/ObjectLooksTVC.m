@@ -21,8 +21,14 @@
  */
 
 #import "ObjectLooksTVC.h"
+#import "UIDefines.h"
+#import "TableUtil.h"
+#import "CatrobatImageCell.h"
+#import "Look.h"
 
-@interface ObjectLooksTVC ()
+#define kTableHeaderIdentifier @"Header"
+
+@interface ObjectLooksTVC () <UIActionSheetDelegate>
 @end
 
 @implementation ObjectLooksTVC
@@ -38,13 +44,29 @@
 
 - (void)viewDidLoad
 {
-    [super viewDidLoad];
+  [super viewDidLoad];
 
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
- 
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+  // Uncomment the following line to preserve selection between presentations.
+  // self.clearsSelectionOnViewWillAppear = NO;
+
+  [self initTableView];
+  //[TableUtil initNavigationItem:self.navigationItem withTitle:NSLocalizedString(@"New Programs", nil)];
+
+  // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
+  // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+  [self setupToolBar];
+}
+
+#pragma marks init
+- (void)initTableView
+{
+  self.tableView.delegate = self;
+  self.tableView.dataSource = self;
+  [self.tableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
+  self.tableView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"darkblue"]];
+  UITableViewHeaderFooterView *headerViewTemplate = [[UITableViewHeaderFooterView alloc] initWithReuseIdentifier:kTableHeaderIdentifier];
+  headerViewTemplate.contentView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"darkblue"]];
+  [self.tableView addSubview:headerViewTemplate];
 }
 
 - (void)didReceiveMemoryWarning
@@ -54,69 +76,52 @@
 }
 
 #pragma mark - Table view data source
-
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-#warning Potentially incomplete method implementation.
-    // Return the number of sections.
-    return 0;
+    return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-#warning Incomplete method implementation.
-    // Return the number of rows in the section.
-    return 0;
+    return [self.looks count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *CellIdentifier = @"Cell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
-    
-    // Configure the cell...
-    
-    return cell;
+  static NSString *CellIdentifier = @"LookCell";
+  UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
+
+  // Configure the cell...
+  if ([cell conformsToProtocol:@protocol(CatrobatImageCell)]) {
+    UITableViewCell <CatrobatImageCell>* imageCell = (UITableViewCell <CatrobatImageCell>*)cell;
+    imageCell.iconImageView.image = [UIImage imageNamed:@"programs"];
+    imageCell.titleLabel.text = ((Look*) [self.looks objectAtIndex:indexPath.row]).name;
+  }
+  return cell;
 }
 
-/*
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+  return [TableUtil getHeightForImageCell];
+}
+
 // Override to support conditional editing of the table view.
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    // Return NO if you do not want the specified item to be editable.
     return YES;
 }
-*/
 
-/*
 // Override to support editing the table view.
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
         // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+        //[tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
     }   
     else if (editingStyle == UITableViewCellEditingStyleInsert) {
         // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
     }   
 }
-*/
-
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath
-{
-}
-*/
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
 
 /*
 #pragma mark - Navigation
@@ -127,7 +132,51 @@
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
 }
+*/
 
- */
+#pragma mark - UIActionSheet Views
+- (void)showSceneActionSheet
+{
+  // TODO: determine whether to show delete button or not
+  BOOL showDeleteButton = false;
+  //if (self.objectsList && self.background && [self.objectsList count] && [self.background count])
+  showDeleteButton = true;
+  
+  UIActionSheet *edit = [[UIActionSheet alloc] initWithTitle:NSLocalizedString(@"Edit Looks",nil)
+                                                    delegate:self
+                                           cancelButtonTitle:kBtnCancelTitle
+                                      destructiveButtonTitle:(showDeleteButton ? kBtnDeleteTitle : nil)
+                                           otherButtonTitles:NSLocalizedString(@"Rename",nil), nil];
+  //[edit setTag:kSceneActionSheetTag];
+  edit.actionSheetStyle = UIActionSheetStyleDefault;
+  [edit showInView:self.view];
+}
+
+#pragma mark - Helper Methods
+- (void)addLookAction:(id)sender
+{
+}
+
+- (void)playSceneAction:(id)sender
+{
+}
+
+- (void)setupToolBar
+{
+  [self.navigationController setToolbarHidden:NO];
+  self.navigationController.toolbar.barStyle = UIBarStyleBlack;
+  self.navigationController.toolbar.tintColor = [UIColor orangeColor];
+  self.navigationController.toolbar.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleTopMargin;
+  UIBarButtonItem *flexItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace
+                                                                            target:nil
+                                                                            action:nil];
+  UIBarButtonItem *add = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd
+                                                                       target:self
+                                                                       action:@selector(addLookAction:)];
+  UIBarButtonItem *play = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemPlay
+                                                                        target:self
+                                                                        action:@selector(playSceneAction:)];
+  self.toolbarItems = [NSArray arrayWithObjects:add, flexItem, play, nil];
+}
 
 @end
