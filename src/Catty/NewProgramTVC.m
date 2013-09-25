@@ -33,6 +33,11 @@
 #import "Util.h"
 #import "UIDefines.h"
 #import "ProgramDefines.h"
+#import "ProgramLoadingInfo.h"
+#import "Parser.h"
+#import "Script.h"
+#import "Brick.h"
+#import "SceneViewController.h"
 
 // Action sheet & Alert view tags
 #define kSceneActionSheetTag 1
@@ -55,6 +60,7 @@
 
 @interface NewProgramTVC () <UIActionSheetDelegate, UIAlertViewDelegate, UITextFieldDelegate,
                                                                         UINavigationBarDelegate>
+@property (strong, nonatomic) Program *program;
 @end
 
 @implementation NewProgramTVC
@@ -72,11 +78,13 @@
     // CAUTION: NEVER change order! BackgroundObject is always first object in list
     _program.objectList = [NSMutableArray arrayWithObjects:backgroundObject, firstObject, nil];
 
-    // automatically update title name
+    // automatically update title
     if (self.navigationItem && _program.header)
       self.navigationItem.title = _program.header.programName;
 
     self.title = _program.header.programName;
+    // TODO: uncomment this if XML-Serialization works
+    //[Util setLastProgram:_program.header.programName];
   }
   return _program;
 }
@@ -97,7 +105,8 @@
   SpriteObject* object = [[SpriteObject alloc] init];
   //object.originalSize;
   //object.spriteManagerDelegate;
-  //object.broadcastWaitDelegate;
+  //object.broadcastWaitDelegate = self.broadcastWaitHandler;
+  // TODO: determine and assign xmlPath...
   //object.projectPath;
   object.lookList = [NSMutableArray array];
   object.soundList = [NSMutableArray array];
@@ -107,6 +116,38 @@
   object.name = objectName;
   object.program = self.program;
   return object;
+}
+
+- (BOOL)loadProgram:(ProgramLoadingInfo*)loadingInfo
+{
+  NSDebug(@"Try to load project '%@'", loadingInfo.visibleName);
+  NSDebug(@"Path: %@", loadingInfo.basePath);
+  NSString *xmlPath = [NSString stringWithFormat:@"%@", loadingInfo.basePath];
+  NSDebug(@"XML-Path: %@", xmlPath);
+  Program *program = [[[Parser alloc] init] generateObjectForLevel:[xmlPath stringByAppendingFormat:@"%@", kProgramCodeFileName]];
+
+  if (! program)
+    return NO;
+
+  NSDebug(@"ProjectResolution: width/height:  %f / %f", program.header.screenWidth.floatValue, program.header.screenHeight.floatValue);
+
+  // setting effect
+  for (SpriteObject *sprite in program.objectList)
+  {
+    //sprite.spriteManagerDelegate = self;
+    //sprite.broadcastWaitDelegate = self.broadcastWaitHandler;
+    sprite.projectPath = xmlPath;
+
+    // TODO: change!
+    for (Script *script in sprite.scriptList) {
+      for (Brick *brick in script.brickList) {
+        brick.object = sprite;
+      }
+    }
+  }
+  self.program = program;
+  [Util setLastProgram:self.program.header.programName];
+  return YES;
 }
 
 - (id)initWithStyle:(UITableViewStyle)style
@@ -251,10 +292,10 @@
   static NSString *toObjectSegueID = kSegueToObject;
   static NSString *toSceneSegueID = kSegueToScene;
 
+  UIViewController *destController = segue.destinationViewController;
   if ([sender isKindOfClass:[UITableViewCell class]]) {
     UITableViewCell *cell = (UITableViewCell*) sender;
     NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
-    UIViewController *destController = segue.destinationViewController;
     if ([segue.identifier isEqualToString:toObjectSegueID]) {
       if ([destController isKindOfClass:[ObjectTVC class]]) {
         ObjectTVC* tvc = (ObjectTVC*) destController;
@@ -263,13 +304,15 @@
           [destController performSelector:@selector(setObject:) withObject:object];
         }
       }
-    } else if ([segue.identifier isEqualToString:toSceneSegueID]) {
-      // TODO: implement this...
-      /*
-      if ([destController respondsToSelector:@selector(setProgramLoadingInfo:)]) {
-        [destController performSelector:@selector(setProgramLoadingInfo:) withObject:[Util programLoadingInfoForProgramWithName:self.programName]];
+    }
+  } else if ([sender isKindOfClass:[UIBarButtonItem class]]) {
+    if ([segue.identifier isEqualToString:toSceneSegueID]) {
+      if ([destController isKindOfClass:[SceneViewController class]]) {
+        SceneViewController* scvc = (SceneViewController*) destController;
+        if ([scvc respondsToSelector:@selector(setProgram:)]) {
+          [scvc performSelector:@selector(setProgram:) withObject:self.program];
+        }
       }
-      */
     }
   }
 }
@@ -425,6 +468,7 @@
 
 - (void)playSceneAction:(id)sender
 {
+  [self performSegueWithIdentifier:kSegueToScene sender:sender];
 }
 
 - (void)setupToolBar

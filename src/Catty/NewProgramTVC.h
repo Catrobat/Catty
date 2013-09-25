@@ -22,8 +22,8 @@
 
 #import <UIKit/UIKit.h>
 
-@class Program;
+@class ProgramLoadingInfo;
 
 @interface NewProgramTVC : UITableViewController
-@property (strong, nonatomic) Program *program;
+- (BOOL)loadProgram:(ProgramLoadingInfo*)loadingInfo;
 @end

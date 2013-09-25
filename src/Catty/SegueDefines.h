@@ -26,6 +26,7 @@
 #define kSegueToLevelDetail @"segueToLevelDetail"
 #define kSegueToStage @"SEGUE_TO_STAGE"
 #define kSegueToScene @"segueToScene"
+#define kSegueToNew @"segueToNew"
 #define kSegueToObject @"segueToObject"
 #define kSegueToScripts @"segueToScripts"
 #define kSegueToLooks @"segueToLooks"

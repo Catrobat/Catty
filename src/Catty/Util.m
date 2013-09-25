@@ -118,10 +118,8 @@
     ProgramLoadingInfo *info = [[ProgramLoadingInfo alloc] init];
     info.basePath = [NSString stringWithFormat:@"%@/%@/", levelsPath, program];
     info.visibleName = program;
-    
     return info;
 }
-
 
 + (NSString*)lastProgram
 {
@@ -141,7 +139,6 @@
     NSUserDefaults* userDefaults = [NSUserDefaults standardUserDefaults];
     [userDefaults setObject:visibleName forKey:kLastProgram];
     [userDefaults synchronize];
-    
 }
 
 +(double) radiansToDegree:(float)rad

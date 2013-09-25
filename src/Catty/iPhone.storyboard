@@ -309,11 +309,11 @@
                     <extendedEdge key="edgesForExtendedLayout"/>
                     <navigationItem key="navigationItem" title="Pocket Code" id="vGJ-82-iau"/>
                     <connections>
-                        <segue destination="Vaa-sF-tan" kind="push" identifier="continue" id="E8f-Km-7J7"/>
                         <segue destination="vLF-8b-U7Z" kind="push" identifier="download" id="SGA-Dg-eVq"/>
                         <segue destination="s37-PF-3iN" kind="push" identifier="programs" id="d1c-M4-4gJ"/>
                         <segue destination="IIx-6w-DVK" kind="push" identifier="forum" id="rdV-gZ-8F0"/>
                         <segue destination="BYa-g9-OiT" kind="push" identifier="new" id="aum-BR-x1G"/>
+                        <segue destination="BYa-g9-OiT" kind="push" identifier="continue" id="1kj-7D-Va7"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="d1W-id-jRf" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -394,6 +394,7 @@
                                 <connections>
                                     <outlet property="iconImageView" destination="642-Kc-jVe" id="SsN-uJ-caO"/>
                                     <outlet property="titleLabel" destination="7VV-Cs-K8i" id="dum-xb-EpA"/>
+                                    <segue destination="BYa-g9-OiT" kind="push" identifier="segueToNew" id="y1P-mf-Wvq"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -404,9 +405,6 @@
                     </tableView>
                     <extendedEdge key="edgesForExtendedLayout"/>
                     <navigationItem key="navigationItem" title="Programs" id="WNU-lr-3un"/>
-                    <connections>
-                        <segue destination="Vaa-sF-tan" kind="push" identifier="segueToScene" id="SyO-93-8h2"/>
-                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ysn-tw-Bdd" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -702,7 +700,7 @@
                     <navigationItem key="navigationItem" id="eyi-rm-zZ0"/>
                     <connections>
                         <outlet property="scrollViewOutlet" destination="qwE-Ve-7jz" id="s6T-uY-bi7"/>
-                        <segue destination="Vaa-sF-tan" kind="push" identifier="segueToScene" id="Ou7-xR-5ta"/>
+                        <segue destination="BYa-g9-OiT" kind="push" identifier="segueToNew" id="mUB-CR-2KD"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dmN-gD-N9f" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -775,7 +773,7 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="gOv-U2-QMM"/>
+        <segue reference="mUB-CR-2KD"/>
         <segue reference="v2V-DK-O7m"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -22,7 +22,7 @@
 
 #import "SceneViewController.h"
 #import "Scene.h"
-#import "ProgramLoadingInfo.h"
+//#import "ProgramLoadingInfo.h"
 #import "Parser.h"
 #import "ProgramDefines.h"
 #import "Program.h"
@@ -36,7 +36,6 @@
 #import "ProgramManager.h"
 #import "SensorHandler.h"
 
-
 @interface SceneViewController ()
 
 @property (nonatomic, strong) BroadcastWaitHandler *broadcastWaitHandler;
@@ -44,14 +43,40 @@
 @end
 
 @implementation SceneViewController
+@synthesize program = _program;
 
+# pragma getters and setters
+- (BroadcastWaitHandler*)broadcastWaitHandler
+{
+  // lazy instantiation
+  if (! _broadcastWaitHandler) {
+    _broadcastWaitHandler = [[BroadcastWaitHandler alloc] init];
+  }
+  return _broadcastWaitHandler;
+}
+
+- (void)setProgram:(Program *)program
+{
+  // setting effect
+  for (SpriteObject *sprite in program.objectList)
+  {
+    //sprite.spriteManagerDelegate = self;
+    sprite.broadcastWaitDelegate = self.broadcastWaitHandler;
+    //sprite.projectPath = xmlPath;
+
+    // TODO: change!
+    for (Script *script in sprite.scriptList) {
+      for (Brick *brick in script.brickList) {
+        brick.object = sprite;
+      }
+    }
+  }
+  _program = program;
+}
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-
-    [Util setLastProgram:self.programLoadingInfo.visibleName];
-    self.broadcastWaitHandler = [[BroadcastWaitHandler alloc]init];
 
     [self configureScene];
 
@@ -75,7 +100,7 @@
     [self.navigationController setNavigationBarHidden:NO animated:animated];
 }
 
--(void) configureScene
+- (void) configureScene
 {
     
     SKView * skView = (SKView *)self.view;
@@ -83,17 +108,17 @@
     skView.showsFPS = YES;
     skView.showsNodeCount = YES;
 #endif
-    
-    Program* program = [self loadProgram];
-    CGSize programSize = CGSizeMake(program.header.screenWidth.floatValue, program.header.screenHeight.floatValue);
-    
-    Scene * scene = [[Scene alloc] initWithSize:programSize andProgram:program];
+
+    //Program* program = [self loadProgram];
+    CGSize programSize = CGSizeMake(self.program.header.screenWidth.floatValue, self.program.header.screenHeight.floatValue);
+
+    Scene * scene = [[Scene alloc] initWithSize:programSize andProgram:self.program];
     scene.scaleMode = SKSceneScaleModeAspectFit;
     [skView presentScene:scene];
-    [[ProgramManager sharedProgramManager] setProgram:program];
+    [[ProgramManager sharedProgramManager] setProgram:self.program];
 }
 
-
+/*
 - (Program*)loadProgram
 {
     
@@ -141,6 +166,7 @@
     }
     return program;
 }
+*/
 
 -(void)dealloc
 {

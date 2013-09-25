@@ -23,7 +23,7 @@
 #import "MyProgramsViewController.h"
 #import "Util.h"
 #import "ProgramLoadingInfo.h"
-#import "SceneViewController.h"
+#import "NewProgramTVC.h"
 #import "AppDelegate.h"
 #import "TableUtil.h"
 #import "CellTagDefines.h"
@@ -92,23 +92,19 @@
     NSString *documentsDirectoy = [Util applicationDocumentsDirectory];
     NSString *levelFolder = @"levels";
     NSString *levelsPath = [NSString stringWithFormat:@"%@/%@", documentsDirectoy, levelFolder];
-    
+
     NSError *error;
     NSArray *levels = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:levelsPath error:&error];
     NSLogError(error);
-    
 
     self.levelLoadingInfos = [[NSMutableArray alloc] initWithCapacity:[levels count]];
     for (NSString *level in levels) {
         ProgramLoadingInfo *info = [[ProgramLoadingInfo alloc] init];
         info.basePath = [NSString stringWithFormat:@"%@/%@/", levelsPath, level];
         info.visibleName = level;
-        
         NSDebug(@"Adding level: %@", info.basePath);
-        
         [self.levelLoadingInfos addObject:info];
     }
-    
 }
 
 #pragma mark - Table view data source
@@ -170,19 +166,25 @@
 }
 
 #pragma mark - Table view delegate
+/*
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    [self performSegueWithIdentifier:kSegueToScene sender:self];
+    static NSString* segueToNew = kSegueToNew;
+    [self performSegueWithIdentifier:segueToNew sender:self];
 }
+*/
 
 #pragma mark - Segue
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    if([[segue identifier] isEqualToString:kSegueToScene]) {
+    static NSString* segueToNew = kSegueToNew;
+    if ([[segue identifier] isEqualToString:segueToNew]) {
         NSIndexPath *path = [self.tableView indexPathForSelectedRow];
         NSString* programName = [[self.levelLoadingInfos objectAtIndex:path.row] visibleName];
-        SceneViewController* sceneViewController = (SceneViewController*) segue.destinationViewController;
-        sceneViewController.programLoadingInfo = [Util programLoadingInfoForProgramWithName:programName];
+        if ([segue.destinationViewController isKindOfClass:[NewProgramTVC class]]) {
+          NewProgramTVC* newProgramTVC = (NewProgramTVC*) segue.destinationViewController;
+          [newProgramTVC loadProgram:[Util programLoadingInfoForProgramWithName:programName]];
+        }
     }
 }
 

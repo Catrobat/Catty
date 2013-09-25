@@ -141,15 +141,17 @@
   static NSString *toSoundsSegueID = kSegueToSounds;
 
   if ([sender isKindOfClass:[UITableViewCell class]]) {
+    UITableViewCell *cell = (UITableViewCell*) sender;
+    UIViewController* destController = segue.destinationViewController;
     if ([segue.identifier isEqualToString:toScriptsSegueID]) {
-      if ([segue.destinationViewController respondsToSelector:@selector(setScripts:)])
-        [segue.destinationViewController performSelector:@selector(setScripts:) withObject:self.object.scriptList];
+      if ([destController respondsToSelector:@selector(setScripts:)])
+        [destController performSelector:@selector(setScripts:) withObject:self.object.scriptList];
     } else if ([segue.identifier isEqualToString:toLooksSegueID]) {
-      if ([segue.destinationViewController respondsToSelector:@selector(setLooks:)])
-        [segue.destinationViewController performSelector:@selector(setLooks:) withObject:self.object.lookList];
+      if ([destController respondsToSelector:@selector(setLooks:)])
+        [destController performSelector:@selector(setLooks:) withObject:self.object.lookList];
     } else if ([segue.identifier isEqualToString:toSoundsSegueID]) {
-      if ([segue.destinationViewController respondsToSelector:@selector(setSounds:)])
-        [segue.destinationViewController performSelector:@selector(setSounds:) withObject:self.object.soundList];
+      if ([destController respondsToSelector:@selector(setSounds:)])
+        [destController performSelector:@selector(setSounds:) withObject:self.object.soundList];
     }
   }
 }
@@ -161,12 +163,13 @@
   static NSString *toLooksSegueID = kSegueToLooks;
   static NSString *toSoundsSegueID = kSegueToSounds;
 
+  UITableViewCell* sender = [tableView cellForRowAtIndexPath:indexPath];
   if (indexPath.row == 0)
-    [self performSegueWithIdentifier:toScriptsSegueID sender:self];
+    [self performSegueWithIdentifier:toScriptsSegueID sender:sender];
   else if (indexPath.row == 1)
-    [self performSegueWithIdentifier:toLooksSegueID sender:self];
+    [self performSegueWithIdentifier:toLooksSegueID sender:sender];
   else if (indexPath.row == 2)
-    [self performSegueWithIdentifier:toSoundsSegueID sender:self];
+    [self performSegueWithIdentifier:toSoundsSegueID sender:sender];
 }
 
 #pragma mark - UIActionSheetDelegate Handlers
