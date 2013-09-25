@@ -23,7 +23,7 @@
 #import "MyProgramsViewController.h"
 #import "Util.h"
 #import "ProgramLoadingInfo.h"
-#import "SceneViewController.h"
+#import "NewProgramTVC.h"
 #import "AppDelegate.h"
 #import "TableUtil.h"
 #import "CellTagDefines.h"
@@ -35,9 +35,7 @@
 
 
 @interface MyProgramsViewController ()
-
 @property (nonatomic, strong) NSMutableArray *levelLoadingInfos;
-
 @end
 
 @implementation MyProgramsViewController
@@ -89,37 +87,27 @@
     
 }
 
-
-
-
 -(void)loadLevels
 {
     NSString *documentsDirectoy = [Util applicationDocumentsDirectory];
     NSString *levelFolder = @"levels";
     NSString *levelsPath = [NSString stringWithFormat:@"%@/%@", documentsDirectoy, levelFolder];
-    
+
     NSError *error;
     NSArray *levels = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:levelsPath error:&error];
     NSLogError(error);
-    
 
     self.levelLoadingInfos = [[NSMutableArray alloc] initWithCapacity:[levels count]];
     for (NSString *level in levels) {
         ProgramLoadingInfo *info = [[ProgramLoadingInfo alloc] init];
         info.basePath = [NSString stringWithFormat:@"%@/%@/", levelsPath, level];
         info.visibleName = level;
-        
         NSDebug(@"Adding level: %@", info.basePath);
-        
         [self.levelLoadingInfos addObject:info];
     }
-    
 }
 
-
-
 #pragma mark - Table view data source
-
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
     return 1;
 }
@@ -131,19 +119,17 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     static NSString *CellIdentifier = kImageCell;
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    
-    if(!cell) {
+
+    if (! cell) {
         NSLog(@"This should not happen - since ios5 - storyboards manages allocation of cells");
         abort();
     }
-    
 
-    if([cell conformsToProtocol:@protocol(CatrobatImageCell)]) {
+    if ([cell conformsToProtocol:@protocol(CatrobatImageCell)]) {
         UITableViewCell <CatrobatImageCell>* imageCell = (UITableViewCell <CatrobatImageCell>*)cell;
         [self configureImageCell:imageCell atIndexPath:indexPath];
     }
-    
-        
+
     return cell;
 }
 
@@ -179,31 +165,30 @@
     }   
 }
 
-
-
 #pragma mark - Table view delegate
-
+/*
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    [self performSegueWithIdentifier:kSegueToScene sender:self];
+    static NSString* segueToNew = kSegueToNew;
+    [self performSegueWithIdentifier:segueToNew sender:self];
 }
+*/
 
 #pragma mark - Segue
-
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{    
-    if([[segue identifier] isEqualToString:kSegueToScene]) {
+{
+    static NSString* segueToNew = kSegueToNew;
+    if ([[segue identifier] isEqualToString:segueToNew]) {
         NSIndexPath *path = [self.tableView indexPathForSelectedRow];
         NSString* programName = [[self.levelLoadingInfos objectAtIndex:path.row] visibleName];
-        SceneViewController* sceneViewController = (SceneViewController*)segue.destinationViewController;
-        sceneViewController.programLoadingInfo = [Util programLoadingInfoForProgramWithName:programName];
+        if ([segue.destinationViewController isKindOfClass:[NewProgramTVC class]]) {
+          NewProgramTVC* newProgramTVC = (NewProgramTVC*) segue.destinationViewController;
+          [newProgramTVC loadProgram:[Util programLoadingInfoForProgramWithName:programName]];
+        }
     }
 }
 
-
 #pragma mark - Cell Helper
-
-
 -(void)configureImageCell:(UITableViewCell <CatrobatImageCell>*)cell atIndexPath:(NSIndexPath*)indexPath
 {
     ProgramLoadingInfo *info = [self.levelLoadingInfos objectAtIndex:indexPath.row];
@@ -216,6 +201,11 @@
     UIImage* image = [UIImage imageWithContentsOfFile:imagePath];
     if(!image) {
         imagePath = [[NSString alloc] initWithFormat:@"%@/manual_screenshot.png", info.basePath];
+        image = [UIImage imageWithContentsOfFile:imagePath];
+    }
+    
+    if(!image) {
+        imagePath = [[NSString alloc] initWithFormat:@"%@/automatic_screenshot.png", info.basePath];
         image = [UIImage imageWithContentsOfFile:imagePath];
     }
     if(!image) {

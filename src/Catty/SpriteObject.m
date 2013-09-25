@@ -43,8 +43,8 @@
 
 @synthesize numberOfObjects;
 
-
--(id)init {
+-(id)init
+{
     if(self = [super init]) {
         self.activeScripts = [[NSMutableArray alloc] initWithCapacity:self.scriptList.count];
     }
@@ -56,12 +56,10 @@
     return [((Scene*)self.scene) convertSceneCoordinateToPoint:super.position];
 }
 
--(void) setPosition:(CGPoint)position
+-(void)setPosition:(CGPoint)position
 {
     super.position = [((Scene*)self.scene) convertPointToScene:position];
 }
-
-
 
 -(void)dealloc
 {
@@ -69,17 +67,21 @@
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
-
+-(BOOL)isBackground
+{
+  if (self.program && [self.program.objectList count])
+    return ([self.program.objectList objectAtIndex:0] == self);
+  return NO;
+}
 
 -(void)start:(CGFloat)zPosition
 {
     self.position = CGPointMake(0, 0);
-    if([self.name isEqualToString:@"Background"]) {
+    if ([self.name isEqualToString:@"Background"])
         self.zPosition = 0;
-    }
-    else {
+    else
         self.zPosition = zPosition;
-    }
+
     for (Script *script in self.scriptList)
     {
         if ([script isKindOfClass:[StartScript class]]) {
@@ -277,6 +279,8 @@
             }
         }
     }
+    
+    NSDebug(@"BroadcastWaitScriptDone");
     
 
 

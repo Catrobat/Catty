@@ -20,25 +20,33 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import <Foundation/Foundation.h>
 
+#import "PrototypScriptCell.h"
 
-@class SpriteObject;
-@class UserVariable;
-@class OrderedMapTable;
+@implementation PrototypScriptCell
 
-@interface VariablesContainer : NSObject
+- (id)initWithFrame:(CGRect)frame
+{
+    self = [super initWithFrame:frame];
+    if (self) {
+        
+    }
+    return self;
+}
 
-// Map<Sprite, List<UserVariable>
-@property (nonatomic, strong) OrderedMapTable* objectVariableList;
+- (void)awakeFromNib
+{
+  [super awakeFromNib];
+  self.cellBackground.backgroundColor = [UIColor blueColor];
+}
 
-// List<UserVariable> projectVariables;
-@property (nonatomic, strong) NSMutableArray* programVariableList;
-
--(UserVariable*) getUserVariableNamed:(NSString*) name forSpriteObject:(SpriteObject*) sprite;
-
--(void) setUserVariable:(UserVariable*)userVariable toValue:(double)value;
-
--(void) changeVariable:(UserVariable*)userVariable byValue:(double)value;
+/*
+// Only override drawRect: if you perform custom drawing.
+// An empty implementation adversely affects performance during animation.
+- (void)drawRect:(CGRect)rect
+{
+    // Drawing code
+}
+*/
 
 @end

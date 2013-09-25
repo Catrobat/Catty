@@ -34,9 +34,6 @@
 #import "XMLObjectReference.h"
 #import "OrderedMapTable.h"
 #import "NSString+CatrobatNSStringExtensions.h"
-
-
-// test
 #import "SpriteObject.h"
 
 
@@ -109,6 +106,7 @@
     {
         NSError(@"Program could not be loaded! %@", [ex description]);
     }
+
     return program;
 }
 
@@ -125,65 +123,54 @@
 // corresponding property in the introspected class/object.
 // [in] node: The current GDataXMLElement node of the XML file
 - (id)parseNode:(GDataXMLElement*)node withParent:(XMLObjectReference*)parent {
-    
-    
-    if (!node) { return nil; }
-    
+
+    if (!node)
+      return nil;
+
     // instantiate object based on node name (= class name)
     NSString *className = [[node.name componentsSeparatedByString:@"."] lastObject]; // this is just because of org.catrobat.catroid.bla...
-    if (!className) {                                                                // Maybe we can remove this when the XML is finished?
+    if (!className)                                                                  // Maybe we can remove this when the XML is finished?
         className = node.name;
-    }
-    
+
     className = [self classNameForString:className];
-    
+
     id object = [[NSClassFromString(className) alloc] init];
-    if (!object) {
+    if (!object)
         [NSException raise:@"ClassNotFoundException" format:@"Implementation of <%@> NOT FOUND!", className];
-    }
-    
-    if([object isKindOfClass:[Program class]]) {
+
+    if([object isKindOfClass:[Program class]])
         self.program = object;
-    }
-    
-    // just an educated gues...
+
+    // just an educated guess...
     if ([object isKindOfClass:[SpriteObject class]]) {
-        self.currentActiveSprite = object;
+        SpriteObject* spriteObject = (SpriteObject*) object;
+        spriteObject.program = self.program;
+        self.currentActiveSprite = spriteObject;
     }
-    
-    
+
     XMLObjectReference* ref = [[XMLObjectReference alloc] initWithParent:parent andObject:object];
-    
-    
+
     for (GDataXMLElement *child in node.children) {
-        
         objc_property_t property = class_getProperty([object class], [child.name UTF8String]);
-        
         if (property) {
             NSString *propertyType = [NSString stringWithUTF8String:property_getTypeString(property)];            
             if ([propertyType isEqualToString:kParserObjectTypeArray]) {
                 [NSException raise:@"WrongPropertyException" format:@"We need to keep the references at all time, please use NSMutableArray for property: %@", child.name];
             }
-            else if([propertyType isEqualToString:kParserObjectTypeMutableArray]) {
-
+            else if ([propertyType isEqualToString:kParserObjectTypeMutableArray]) {
                 NSMutableArray* arr = [object valueForKey:child.name];
-                
-                if(!arr) {
+                if (!arr) {
                     arr = [[NSMutableArray alloc] initWithCapacity:child.childCount];
                     [object setValue:arr forKey:child.name];
                 }
-                
                 XMLObjectReference* arrayReference = [[XMLObjectReference alloc] initWithParent:ref andObject:arr];
-                
                 for (GDataXMLElement *arrElement in child.children) {
-                    
-                    if([self isReferenceElement:arrElement]) {
+                    if ([self isReferenceElement:arrElement]) {
                         id object = [self parseReferenceElement:arrElement withParent:arrayReference];
-                        if(object) {
+                        if (object)
                             [arr addObject:object];
-                        } else {
+                        else
                             NSWarn(@"Reference Element, could not be parsed!");
-                        }
                     } else {
                         [arr addObject:[self parseNode:arrElement withParent:arrayReference]];
                     }
@@ -191,17 +178,14 @@
                 
             }
             else { // NOT ARRAY
-                
                 id value = [self getSingleValue:child ofType:propertyType withParent:ref];
                 [object setValue:value forKey:child.name];
             }
-            
         }
         else {
             [NSException raise:@"PropertyNotFoundException" format:@"property <%@> does NOT exist in our implementation of <%@>", child.name, className];
         }
     }
-    
     return object;
 }
 

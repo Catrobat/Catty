@@ -20,25 +20,10 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 
+@class ProgramLoadingInfo;
 
-@class SpriteObject;
-@class UserVariable;
-@class OrderedMapTable;
-
-@interface VariablesContainer : NSObject
-
-// Map<Sprite, List<UserVariable>
-@property (nonatomic, strong) OrderedMapTable* objectVariableList;
-
-// List<UserVariable> projectVariables;
-@property (nonatomic, strong) NSMutableArray* programVariableList;
-
--(UserVariable*) getUserVariableNamed:(NSString*) name forSpriteObject:(SpriteObject*) sprite;
-
--(void) setUserVariable:(UserVariable*)userVariable toValue:(double)value;
-
--(void) changeVariable:(UserVariable*)userVariable byValue:(double)value;
-
+@interface NewProgramTVC : UITableViewController
+- (BOOL)loadProgram:(ProgramLoadingInfo*)loadingInfo;
 @end

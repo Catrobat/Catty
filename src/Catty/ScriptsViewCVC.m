@@ -20,25 +20,36 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import <Foundation/Foundation.h>
+
+#import "ScriptsViewCVC.h"
+#import "PrototypScriptCell.h"
+
+@interface ScriptsViewCVC ()
+
+@end
+
+@implementation ScriptsViewCVC
+
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
+    
+}
+
+#pragma mark - collection view datasource
 
 
-@class SpriteObject;
-@class UserVariable;
-@class OrderedMapTable;
+//#pragma mark - collection view delegate
+//- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
+//{
+//  PrototypScriptCell *cell = (PrototypScriptCell *)[collectionView dequeueReusableCellWithReuseIdentifier:@"Brick" forIndexPath:indexPath];
+//  
+//  cell.leftLabel.text = @"x:";
+//  cell.rightLabel.text = @"y:";
+//  cell.backgroundColor = [UIColor blueColor];
+//  
+//  return cell;
+//}
 
-@interface VariablesContainer : NSObject
-
-// Map<Sprite, List<UserVariable>
-@property (nonatomic, strong) OrderedMapTable* objectVariableList;
-
-// List<UserVariable> projectVariables;
-@property (nonatomic, strong) NSMutableArray* programVariableList;
-
--(UserVariable*) getUserVariableNamed:(NSString*) name forSpriteObject:(SpriteObject*) sprite;
-
--(void) setUserVariable:(UserVariable*)userVariable toValue:(double)value;
-
--(void) changeVariable:(UserVariable*)userVariable byValue:(double)value;
 
 @end

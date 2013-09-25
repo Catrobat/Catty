@@ -24,3 +24,10 @@
 #define kDefaultProject @"My first Project"
 #define kProgramCodeFileName @"code.xml"
 #define kProgramsFolder @"levels"
+
+#define kMinNumOfObjects 1
+#define kBackgroundObjects 1
+
+// indexes
+#define kBackgroundIndex 0
+#define kObjectIndex (kBackgroundIndex + kBackgroundObjects)

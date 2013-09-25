@@ -38,7 +38,19 @@
 
 + (void)alertWithText:(NSString*)text;
 
++ (NSString*)getProjectName;
+
++ (NSString*)getProjectVersion;
+
++ (NSString*)getDeviceName;
+
++ (NSString*)getPlatformName;
+
++ (NSString*)getPlatformVersion;
+
 + (CGFloat)getScreenHeight;
+
++ (CGFloat)getScreenWidth;
 
 + (CATransition*)getPushCATransition;
 

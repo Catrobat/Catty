@@ -20,25 +20,6 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import <Foundation/Foundation.h>
-
-
-@class SpriteObject;
-@class UserVariable;
-@class OrderedMapTable;
-
-@interface VariablesContainer : NSObject
-
-// Map<Sprite, List<UserVariable>
-@property (nonatomic, strong) OrderedMapTable* objectVariableList;
-
-// List<UserVariable> projectVariables;
-@property (nonatomic, strong) NSMutableArray* programVariableList;
-
--(UserVariable*) getUserVariableNamed:(NSString*) name forSpriteObject:(SpriteObject*) sprite;
-
--(void) setUserVariable:(UserVariable*)userVariable toValue:(double)value;
-
--(void) changeVariable:(UserVariable*)userVariable byValue:(double)value;
-
-@end
+#define kBtnCancelTitle NSLocalizedString(@"Cancel", @"Cancel button for views")
+#define kBtnOKTitle NSLocalizedString(@"OK", @"OK button for views")
+#define kBtnDeleteTitle NSLocalizedString(@"Delete", @"Delete button for views")

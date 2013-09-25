@@ -22,20 +22,71 @@
 
 
 #import "Program.h"
+#import "VariablesContainer.h"
+#import "Util.h"
+#import "OrderedMapTable.h"
+#import "AppDefines.h"
+#import "SpriteObject.h"
 
 @implementation Program
 
 @synthesize objectList = _objectList;
 
++ (Program*)createWithProgramName:(NSString*)programName
+{
+  Program* program = [[Program alloc] init];
+  program.header = [[Header alloc] init];
+
+  // FIXME: check all constants for this default header properties...
+  // maybe we wanna outsource that later to another factory method in Header class
+  {
+    program.header.applicationBuildName = nil;
+    program.header.applicationBuildNumber = @"0";
+    program.header.applicationName = [Util getProjectName];
+    program.header.applicationVersion = [Util getProjectVersion];
+    program.header.catrobatLanguageVersion = kCatrobatLanguageVersion;
+    program.header.dateTimeUpload = nil;
+    program.header.description = @"XStream kompatibel";
+    program.header.deviceName = [Util getDeviceName];
+    program.header.mediaLicense = nil;
+    program.header.platform = [Util getPlatformName];
+    program.header.platformVersion = [Util getPlatformVersion];
+    program.header.programLicense = nil;
+    program.header.programName = programName;
+    program.header.remixOf = nil;
+    program.header.screenHeight = @([Util getScreenHeight]);
+    program.header.screenWidth = @([Util getScreenWidth]);
+    program.header.url = nil;
+    program.header.userHandle = nil;
+    program.header.programScreenshotManuallyTaken = (YES ? @"true" : @"false");
+    program.header.tags = nil;
+  }
+  program.objectList = [NSMutableArray array];
+  program.variables = [[VariablesContainer alloc] init];
+  program.variables.objectVariableList = [OrderedMapTable weakToStrongObjectsMapTable];
+  program.variables.programVariableList = [NSMutableArray array];
+  return program;
+}
+
 #pragma mark - Custom getter and setter
-- (NSMutableArray*)spritesList {
+- (NSMutableArray*)spritesList
+{
     if (_objectList == nil)
         _objectList = [[NSMutableArray alloc] init];
     return _objectList;
 }
 
+- (void)setObjectList:(NSMutableArray*)objectList
+{
+    for (id object in objectList) {
+        if ([object isKindOfClass:[SpriteObject class]])
+          ((SpriteObject*) object).program = self;
+    }
+    _objectList = objectList;
+}
 
-- (NSString*)description {
+- (NSString*)description
+{
     NSMutableString *ret = [[NSMutableString alloc] init];
     [ret appendFormat:@"\n----------------- PROGRAM --------------------\n"];
     [ret appendFormat:@"Application Build Name: %@\n", self.header.applicationBuildName];
@@ -66,7 +117,6 @@
 {
     NSDebug(@"Dealloc Program");
 }
-
 
 
 @end

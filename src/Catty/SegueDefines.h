@@ -23,10 +23,14 @@
 #ifndef Catty_SegueDefines_h
 #define Catty_SegueDefines_h
 
-
 #define kSegueToLevelDetail @"segueToLevelDetail"
 #define kSegueToStage @"SEGUE_TO_STAGE"
 #define kSegueToScene @"segueToScene"
+#define kSegueToNew @"segueToNew"
+#define kSegueToObject @"segueToObject"
+#define kSegueToScripts @"segueToScripts"
+#define kSegueToLooks @"segueToLooks"
+#define kSegueToSounds @"segueToSounds"
 
 #define kSegueContinue @"continue"
 #define kSegueNew @"new"
@@ -34,7 +38,7 @@
 #define kSegueForum @"forum"
 #define kSegueDownload @"download"
 #define kSegueUpload @"upload"
-
-
+#define kSegueAddNewProgram @"addProgram"
+#define kSegueObjectView @"objectView"
 
 #endif

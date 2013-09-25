@@ -20,25 +20,26 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import <Foundation/Foundation.h>
+#import "ScriptsCollectionViewCell.h"
 
+@implementation ScriptsCollectionViewCell
 
-@class SpriteObject;
-@class UserVariable;
-@class OrderedMapTable;
+- (id)initWithFrame:(CGRect)frame
+{
+    self = [super initWithFrame:frame];
+    if (self) {
+        // Initialization code
+    }
+    return self;
+}
 
-@interface VariablesContainer : NSObject
-
-// Map<Sprite, List<UserVariable>
-@property (nonatomic, strong) OrderedMapTable* objectVariableList;
-
-// List<UserVariable> projectVariables;
-@property (nonatomic, strong) NSMutableArray* programVariableList;
-
--(UserVariable*) getUserVariableNamed:(NSString*) name forSpriteObject:(SpriteObject*) sprite;
-
--(void) setUserVariable:(UserVariable*)userVariable toValue:(double)value;
-
--(void) changeVariable:(UserVariable*)userVariable byValue:(double)value;
+/*
+// Only override drawRect: if you perform custom drawing.
+// An empty implementation adversely affects performance during animation.
+- (void)drawRect:(CGRect)rect
+{
+    // Drawing code
+}
+*/
 
 @end

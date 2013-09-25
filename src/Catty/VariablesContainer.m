@@ -32,7 +32,7 @@ static pthread_mutex_t variablesLock;
 -(id)init
 {
     self = [super init];
-    if(self) {
+    if (self) {
         pthread_mutex_init(&variablesLock,NULL);
     }
     return self;

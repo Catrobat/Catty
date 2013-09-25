@@ -37,8 +37,8 @@
 
 }
 
-+ (void)showComingSoonAlertView {
-    
++ (void)showComingSoonAlertView
+{
     NSString* alert_message = [NSString localizedStringWithFormat:NSLocalizedString(@"This feature is coming soon!", nil)];
     UIAlertView *alert = [[UIAlertView alloc]
                           initWithTitle:@"Catty"
@@ -50,23 +50,55 @@
 }
 
 
-+ (void)alertWithText:(NSString*)text {
++ (void)alertWithText:(NSString*)text
+{
     UIAlertView *alert = [[UIAlertView alloc]
                           initWithTitle:@"Catty"
                           message:text
                           delegate:nil
                           cancelButtonTitle:@"OK"
                           otherButtonTitles:nil];
-    [alert show];}
+    [alert show];
+}
 
++ (NSString*)getProjectName
+{
+  NSDictionary *info = [[NSBundle mainBundle] infoDictionary];
+  return [NSString stringWithFormat:@"%@", [info objectForKey:@"CFBundleDisplayName"]];
+}
 
-+(CGFloat)getScreenHeight {
-    
++ (NSString*)getProjectVersion
+{
+  NSDictionary *info = [[NSBundle mainBundle] infoDictionary];
+  return [NSString stringWithFormat:@"%@", [info objectForKey:@"CFBundleVersion"]];
+}
+
++ (NSString*)getDeviceName
+{
+  return [[UIDevice currentDevice] model];
+}
+
++ (NSString*)getPlatformName
+{
+  return [[UIDevice currentDevice] systemName];
+}
+
++ (NSString*)getPlatformVersion
+{
+  return [[UIDevice currentDevice] systemVersion];
+}
+
++ (CGFloat)getScreenHeight
+{
     CGRect screenRect = [[UIScreen mainScreen] bounds];
     return screenRect.size.height;
 }
 
-
++ (CGFloat)getScreenWidth
+{
+  CGRect screenRect = [[UIScreen mainScreen] bounds];
+  return screenRect.size.width;
+}
 
 + (CATransition*)getPushCATransition
 {
@@ -86,10 +118,8 @@
     ProgramLoadingInfo *info = [[ProgramLoadingInfo alloc] init];
     info.basePath = [NSString stringWithFormat:@"%@/%@/", levelsPath, program];
     info.visibleName = program;
-    
     return info;
 }
-
 
 + (NSString*)lastProgram
 {
@@ -109,9 +139,7 @@
     NSUserDefaults* userDefaults = [NSUserDefaults standardUserDefaults];
     [userDefaults setObject:visibleName forKey:kLastProgram];
     [userDefaults synchronize];
-    
 }
-
 
 +(double) radiansToDegree:(float)rad
 {
@@ -122,6 +150,5 @@
 {
     return deg * M_PI / 180.0;
 }
-
 
 @end

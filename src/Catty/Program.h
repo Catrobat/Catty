@@ -29,12 +29,8 @@
 @interface Program : NSObject
 
 @property (nonatomic, strong) Header *header;
-
 @property (nonatomic, strong) NSMutableArray *objectList;
-
 @property (nonatomic, strong) VariablesContainer *variables;
-
-
-
++ (Program*)createWithProgramName:(NSString*)programName;
 
 @end

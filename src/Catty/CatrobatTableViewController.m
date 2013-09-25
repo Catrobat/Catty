@@ -33,10 +33,10 @@
 #import "SegueDefines.h"
 #import "Util.h"
 #import "SceneViewController.h"
+#import "NewProgramTVC.h"
 
-
-
-@interface CatrobatTableViewController ()
+@interface CatrobatTableViewController () <UIAlertViewDelegate,
+                                    UIActionSheetDelegate, UITextFieldDelegate>
 
 @property (nonatomic, strong) NSArray* cells;
 @property (nonatomic, strong) NSArray* images;
@@ -63,6 +63,13 @@
     
     AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
     [appDelegate.fileManager addDefaultProjectToLeveLDirectory];
+}
+
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:YES];
+    [self.navigationController setToolbarHidden:YES];
 }
 
 -(void) viewDidAppear:(BOOL)animated {
@@ -102,7 +109,6 @@
 
 
 #pragma mark - Table view data source
-
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     return 1;
@@ -145,20 +151,19 @@
 
 
 #pragma mark - Table view delegate
-
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
 
     NSString* identifier = [self.cells objectAtIndex:indexPath.row];
 #warning the if statement should be removed once everything has been implemented..
     if ([identifier isEqualToString:kSegueDownload ] || [identifier isEqualToString:kSeguePrograms] ||
-             [identifier isEqualToString:kSegueForum] || [identifier isEqualToString:kSegueContinue]) {
+        [identifier isEqualToString:kSegueForum] || [identifier isEqualToString:kSegueContinue] ||
+        [identifier isEqualToString:kSegueNew]) {
         [self performSegueWithIdentifier:identifier sender:self];
     } else {
         [Util showComingSoonAlertView];
         [tableView deselectRowAtIndexPath:indexPath animated:YES];
     }
-
 }
 
 
@@ -170,15 +175,12 @@
 
 
 #pragma mark Helper
-
-
 -(void)configureImageCell:(UITableViewCell <CatrobatImageCell>*)cell atIndexPath:(NSIndexPath*)indexPath
 {
     cell.titleLabel.text = NSLocalizedString([[self.cells objectAtIndex:indexPath.row] capitalizedString], nil);
     cell.iconImageView.image = [UIImage imageNamed: [self.cells objectAtIndex:indexPath.row]];
     
 }
-
 
 -(void)configureSubtitleLabelForCell:(UITableViewCell*)cell
 {
@@ -188,25 +190,29 @@
     subtitleLabel.text = lastProject;
 }
 
-
 -(CGFloat)getHeightForCellAtIndexPath:(NSIndexPath*) indexPath {
     return (indexPath.row == 0) ? [TableUtil getHeightForContinueCell] : [TableUtil getHeightForImageCell];
 }
 
 #pragma makrk - Segue delegate
-
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {    
-    if([[segue identifier] isEqualToString:kSegueContinue]) {
-        SceneViewController* sceneViewController = (SceneViewController*)segue.destinationViewController;
-        sceneViewController.programLoadingInfo = [Util programLoadingInfoForProgramWithName:[Util lastProgram]];
+    if ([[segue identifier] isEqualToString:kSegueContinue]) {
+        NewProgramTVC* newProgramTVC = (NewProgramTVC*) segue.destinationViewController;
+        ProgramLoadingInfo* loadingInfo = [Util programLoadingInfoForProgramWithName:[Util lastProgram]];
+        BOOL success = [newProgramTVC loadProgram:loadingInfo];
+        if (! success) {
+          NSString *popuperrormessage = [NSString stringWithFormat:@"Program %@ could not be loaded!", loadingInfo.visibleName];
+          UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Invalid Program"
+                                                          message:popuperrormessage
+                                                         delegate:self
+                                                cancelButtonTitle:@"OK"
+                                                otherButtonTitles:nil];
+          [alert show];
+          // TODO: prevent performing segue here
+        }
     }
-    
-    
 }
-
-
-
 
 
 @end
