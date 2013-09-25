@@ -44,7 +44,10 @@
 
 NSMutableString* resultString;
 
-
+<<<<<<< HEAD
+=======
+#warning could probably be improved :)
+>>>>>>> 990189aa73927953940a496602e24f95709801d5
 - (NSString*) stringByEscapingHTMLEntities
 {
     NSMutableString *result = [NSMutableString stringWithString:self];
