@@ -22,6 +22,7 @@
 
 #import "ChangeBrightnessByNBrick.h"
 #import "Formula.h"
+#import "UIImage+CatrobatUIImageExtensions.h"
 
 
 @implementation ChangeBrightnessByNBrick
@@ -29,27 +30,19 @@
 -(SKAction*)action
 {
     NSDebug(@"Adding: %@", self.description);
-        return [SKAction runBlock:^{
-            NSDebug(@"Performing: %@", self.description);
-            CGFloat brightness_old = (float)[[UIScreen mainScreen] brightness];
-            CGFloat brightness_add = (float)[self.brightness interpretDoubleForSprite:self.object];
-            if (brightness_add > 1 || brightness_add < 1) {
-                brightness_add = brightness_add/100;
+    return [SKAction runBlock:^{
+        NSDebug(@"Performing: %@", self.description);
+        CGFloat brightness = [self.brightness interpretDoubleForSprite:self.object];
+        UIImage* currentUIImage = self.object.currentUIImageLook;
+        
+        if (brightness > -100.0f && brightness < 100.0f) {
+            [currentUIImage setImage:currentUIImage WithBrightness:brightness];
+            self.object.currentUIImageLook = currentUIImage;
+            self.object.texture = [SKTexture textureWithImage:currentUIImage];
+        }
+        else{
+                NSDebug(@"Wrong Brightness input: Should be greater than -100 and smaler than 100");
             }
-            CGFloat brightness_new = brightness_old + brightness_add;
-            if (brightness_new  >= 0.0f){
-                if (brightness_new <= 1.0f) {
-                    [[UIScreen mainScreen] setBrightness: brightness_new];
-                }
-                else{
-                    NSDebug(@"Wrong Brightness in/decrease input: Can't exceed 0 and 1 (or between 0 and 100%)");
-                }
-            }
-            else{
-                NSDebug(@"Wrong Brightness in/decrease input: Brightness can only be greater than 0");
-            }
-            
-            
         }];
 }
 #pragma mark - Description
@@ -57,8 +50,6 @@
 {
     return [NSString stringWithFormat:@"ChangeBrightnessByN (%f%%)", [self.brightness interpretDoubleForSprite:self.object]];
 }
-
-
 
 
 @end

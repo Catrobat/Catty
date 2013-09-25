@@ -98,7 +98,7 @@
     NSDebug(@"Starting: %@", self.description);
 
     [self reset];
-//    self.completion = completion;
+    self.completion = completion;
     [self runNextAction];
     
 }

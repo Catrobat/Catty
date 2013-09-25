@@ -23,6 +23,8 @@
 
 #import "Setbrightnessbrick.h"
 #import "Formula.h"
+#import "Look.h"
+#import "UIImage+CatrobatUIImageExtensions.h"
 
 @implementation SetBrightnessBrick
 
@@ -33,12 +35,20 @@
     return [SKAction runBlock:^{
         NSDebug(@"Performing: %@", self.description);
         CGFloat brightness = [self.brightness interpretDoubleForSprite:self.object];
+        Look* look = [self.object currentLook];
+        UIImage* lookImage = [UIImage imageWithContentsOfFile:[self pathForLook:look]];
+        
+        
         if (brightness >= 0.0f){
             if (brightness <= 1.0f) {
-                [[UIScreen mainScreen] setBrightness: brightness];
+                [lookImage setImage:lookImage WithBrightness:brightness];
+                self.object.currentUIImageLook = lookImage;
+                self.object.texture = [SKTexture textureWithImage:lookImage];
             }
             else if(brightness <= 100.0f){
-                [[UIScreen mainScreen] setBrightness: brightness/100];
+                [lookImage setImage:lookImage WithBrightness:(brightness/100)];
+                self.object.currentUIImageLook = lookImage;
+                self.object.texture = [SKTexture textureWithImage:lookImage];
             }
             else{
                 NSDebug(@"Wrong Brightness input: Should be between 0 and 1 or between 0 and 100");
@@ -48,6 +58,11 @@
             NSDebug(@"Wrong Brightness input: Should be greater than 0");
         }
         }];
+}
+
+-(NSString*)pathForLook:(Look*)look
+{
+    return [NSString stringWithFormat:@"%@images/%@", self.object.projectPath, look.fileName];
 }
 
 #pragma mark - Description

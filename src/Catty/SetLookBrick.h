@@ -26,10 +26,7 @@
 
 @interface SetLookBrick : Brick
 
-//@property (nonatomic, strong) NSNumber *indexOfCostumeInArray;
 
-#warning @mattias: I've added these new properties (they are in the XML)
-#warning @mattias: Don't forget the implementation... :-P
 @property (nonatomic, strong) Look *look;
 
 @end

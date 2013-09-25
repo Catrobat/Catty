@@ -49,13 +49,15 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+
+    
     
     [Util setLastProgram:self.programLoadingInfo.visibleName];
     self.broadcastWaitHandler = [[BroadcastWaitHandler alloc]init];
 
     [self configureScene];
     
-    
+
     UIButton* backButton = [[UIButton alloc] initWithFrame:CGRectMake(10.0f, 7.0f, 33.0f, 44.0f)];
     [backButton addTarget:self action:@selector(backButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
     UIImage* backImage = [UIImage imageNamed:@"back"];

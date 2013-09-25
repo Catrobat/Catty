@@ -153,6 +153,7 @@
 {
     UIImage* image = [UIImage imageWithContentsOfFile: [self pathForLook:look] ];
     SKTexture* texture = [SKTexture textureWithImage:image];
+    self.currentUIImageLook = image;
     double xScale = self.xScale;
     double yScale = self.yScale;
     self.xScale = 1.0;
@@ -172,7 +173,7 @@
 -(void) setLook
 {
     BOOL check = YES;
-#warning Fix for issue that you can set look without a brick at the start -> other idea??
+#warning Fix for issue that you can set look without a brick at the start -> change if there will be hide bricks for those objects which should not appear!
         for (Script *script in self.scriptList)
         {
             if ([script isKindOfClass:[StartScript class]]) {
@@ -203,6 +204,7 @@
     
     if(check == YES && [self.lookList count]>0){
         [self changeLook:[self.lookList objectAtIndex:0]];
+        
     }
         
 

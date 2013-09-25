@@ -35,7 +35,7 @@
         Look* look = [self.object nextLook];
         UIImage* image = [UIImage imageWithContentsOfFile:[self pathForLook:look]];
         SKTexture* texture = [SKTexture textureWithImage:image];
-        
+        self.object.currentUIImageLook = image;
         double xScale = self.object.xScale;
         double yScale = self.object.yScale;
         self.object.xScale = 1.0;

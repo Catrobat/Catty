@@ -20,28 +20,9 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import "Changesizebynbrick.h"
-#import "Formula.h"
+#import "Brick.h"
 
-@implementation ChangeSizeByNBrick
+@interface ClearGraphicEffectBrick : Brick
 
-
-
--(SKAction*)action
-{
-    //dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
-    return [SKAction runBlock:^{
-        NSDebug(@"Performing: %@", self.description);
-        double sizeInPercent = [self.size interpretDoubleForSprite:self.object];
-        [self.object setXScale:self.object.xScale + sizeInPercent/100.0];
-        [self.object setYScale:self.object.yScale + sizeInPercent/100.0];
-    }];
-}
-
-#pragma mark - Description
-- (NSString*)description
-{
-    return [NSString stringWithFormat:@"ChangeSizeByN (%f%%)", [self.size interpretDoubleForSprite:self.object]];
-}
 
 @end

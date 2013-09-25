@@ -58,6 +58,8 @@
 
 @property (nonatomic, strong) Look* currentLook;
 
+@property (strong, nonatomic) UIImage* currentUIImageLook;
+
 @property (nonatomic) NSInteger numberOfObjects;
 
 @property (nonatomic,strong) Program* program;
