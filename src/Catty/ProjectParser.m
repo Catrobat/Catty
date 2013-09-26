@@ -219,10 +219,15 @@
 
     }
     else if ([propertyType isEqualToString:kParserObjectTypeDate]) {
-        NSString *temp = element.stringValue;
-#warning todo: we should parse the date here
-        // but we only set nil... becaue it is easier actually... :-P
-        return nil;
+        NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+        
+        [dateFormatter setTimeZone:[NSTimeZone systemTimeZone]];
+        
+        [dateFormatter setDateFormat:@"yyyy-MM-ddHH:mm:ss"];
+        
+        NSDate *date = [dateFormatter dateFromString: element.stringValue];
+        
+        return date;
     }
 #warning JUST FOR DEBUG PURPOSES!
     // todo: set the corresponding SPRITE!!! (and lookdata) => xstream notation
