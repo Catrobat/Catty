@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4510" systemVersion="12F37" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="62e-MX-z1C">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4510" systemVersion="12F45" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="62e-MX-z1C">
     <dependencies>
         <deployment defaultVersion="1792" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3742"/>
@@ -109,11 +109,12 @@
                         <segue destination="NFs-db-lAP" kind="push" identifier="segueToScripts" id="gEq-0v-LOJ"/>
                         <segue destination="USc-jF-F6X" kind="push" identifier="segueToSounds" id="wAR-2e-3Tu"/>
                         <segue destination="7i9-vH-sab" kind="push" identifier="segueToLooks" id="W2r-zY-3gD"/>
+                        <segue destination="Vaa-sF-tan" kind="push" identifier="segueToScene" id="Ofq-1T-jJU"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="AWY-lV-YvE" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-3180" y="-3570"/>
+            <point key="canvasLocation" x="-3276" y="-3570"/>
         </scene>
         <!--Object ScriptsCVC - Scripts-->
         <scene sceneID="ocP-zZ-Aog">
@@ -189,10 +190,13 @@
                         </connections>
                     </collectionView>
                     <navigationItem key="navigationItem" title="Scripts" id="QrU-Gf-YVY"/>
+                    <connections>
+                        <segue destination="Vaa-sF-tan" kind="push" identifier="segueToScene" id="Piu-lg-ouK"/>
+                    </connections>
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="IHg-Xr-1zD" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-2639" y="-4034"/>
+            <point key="canvasLocation" x="-2639" y="-4126"/>
         </scene>
         <!--Object SoundsTVC - Sounds-->
         <scene sceneID="chZ-5K-kCV">
@@ -233,6 +237,9 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Sounds" id="VM5-pT-7YJ"/>
+                    <connections>
+                        <segue destination="Vaa-sF-tan" kind="push" identifier="segueToScene" id="qD8-hm-NXt"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ckh-xJ-TUv" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -359,6 +366,9 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Looks" id="UQZ-VB-82c"/>
+                    <connections>
+                        <segue destination="Vaa-sF-tan" kind="push" identifier="segueToScene" id="bAY-Bc-iil"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bi4-BT-YqP" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -775,5 +785,6 @@
     <inferredMetricsTieBreakers>
         <segue reference="mUB-CR-2KD"/>
         <segue reference="v2V-DK-O7m"/>
+        <segue reference="qD8-hm-NXt"/>
     </inferredMetricsTieBreakers>
 </document>

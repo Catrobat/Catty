@@ -22,6 +22,8 @@
 
 #import <UIKit/UIKit.h>
 
+@class SpriteObject;
+
 @interface ObjectLooksTVC : UITableViewController
-@property (strong, nonatomic) NSMutableArray *looks;
+@property (strong, nonatomic) SpriteObject *object;
 @end

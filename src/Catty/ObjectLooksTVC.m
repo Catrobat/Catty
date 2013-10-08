@@ -25,6 +25,9 @@
 #import "TableUtil.h"
 #import "CatrobatImageCell.h"
 #import "Look.h"
+#import "SpriteObject.h"
+#import "SegueDefines.h"
+#import "SceneViewController.h"
 
 #define kTableHeaderIdentifier @"Header"
 
@@ -83,7 +86,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return [self.looks count];
+    return [self.object.lookList count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -95,7 +98,7 @@
   if ([cell conformsToProtocol:@protocol(CatrobatImageCell)]) {
     UITableViewCell <CatrobatImageCell>* imageCell = (UITableViewCell <CatrobatImageCell>*)cell;
     imageCell.iconImageView.image = [UIImage imageNamed:@"programs"];
-    imageCell.titleLabel.text = ((Look*) [self.looks objectAtIndex:indexPath.row]).name;
+    imageCell.titleLabel.text = ((Look*) [self.object.lookList objectAtIndex:indexPath.row]).name;
   }
   return cell;
 }
@@ -123,16 +126,23 @@
     }   
 }
 
-/*
 #pragma mark - Navigation
-
 // In a story board-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+  static NSString* toSceneSegueID = kSegueToScene;
+  UIViewController* destController = segue.destinationViewController;
+  if ([sender isKindOfClass:[UIBarButtonItem class]]) {
+    if ([segue.identifier isEqualToString:toSceneSegueID]) {
+      if ([destController isKindOfClass:[SceneViewController class]]) {
+        SceneViewController* scvc = (SceneViewController*) destController;
+        if ([scvc respondsToSelector:@selector(setProgram:)]) {
+          [scvc performSelector:@selector(setProgram:) withObject:self.object.program];
+        }
+      }
+    }
+  }
 }
-*/
 
 #pragma mark - UIActionSheet Views
 - (void)showSceneActionSheet
@@ -159,6 +169,7 @@
 
 - (void)playSceneAction:(id)sender
 {
+  [self performSegueWithIdentifier:kSegueToScene sender:sender];
 }
 
 - (void)setupToolBar
