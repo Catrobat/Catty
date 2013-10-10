@@ -243,7 +243,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ckh-xJ-TUv" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-2639" y="-3186"/>
+            <point key="canvasLocation" x="-2673" y="-3190"/>
         </scene>
         <!--Catrobat Table View Controller - Pocket Code-->
         <scene sceneID="vPB-Cv-GHf">
@@ -783,8 +783,8 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="mUB-CR-2KD"/>
-        <segue reference="v2V-DK-O7m"/>
+        <segue reference="y1P-mf-Wvq"/>
         <segue reference="qD8-hm-NXt"/>
+        <segue reference="v2V-DK-O7m"/>
     </inferredMetricsTieBreakers>
 </document>

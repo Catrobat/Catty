@@ -45,7 +45,6 @@
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
-  //return [self.scripts count];
   return 3;
 }
 

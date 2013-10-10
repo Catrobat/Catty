@@ -28,6 +28,9 @@
 #import "SegueDefines.h"
 #import "SceneViewController.h"
 #import "SpriteObject.h"
+#import "AudioManager.h"
+#import "ProgramDefines.h"
+#import <AVFoundation/AVFoundation.h>
 
 #define kTableHeaderIdentifier @"Header"
 
@@ -95,10 +98,9 @@
     static NSString *CellIdentifier = @"SoundCell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
 
-    // Configure the cell...
     if ([cell conformsToProtocol:@protocol(CatrobatImageCell)]) {
       UITableViewCell <CatrobatImageCell>* imageCell = (UITableViewCell <CatrobatImageCell>*)cell;
-      imageCell.iconImageView.image = [UIImage imageNamed:@"programs"];
+      imageCell.iconImageView.image = [UIImage imageNamed:@"ic_media_play.png"];
       imageCell.titleLabel.text = ((Sound*) [self.object.soundList objectAtIndex:indexPath.row]).name;
     }
     return cell;
@@ -121,19 +123,52 @@
     if (editingStyle == UITableViewCellEditingStyleDelete) {
         // Delete the row from the data source
         //[tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    }
-    else if (editingStyle == UITableViewCellEditingStyleInsert) {
+    } else if (editingStyle == UITableViewCellEditingStyleInsert) {
         // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
+    }
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+  UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+  // TODO: get and play song: indexPath.row
+  if ([cell conformsToProtocol:@protocol(CatrobatImageCell)]) {
+    UITableViewCell <CatrobatImageCell>* imageCell = (UITableViewCell <CatrobatImageCell>*)cell;
+
+    if (indexPath.row < [self.object.soundList count]) {
+      Sound* sound = (Sound*) [self.object.soundList objectAtIndex:indexPath.row];
+
+      if (! sound.playing) {
+
+        // FIXME: get AudioManager to work with this...
+        //[[AudioManager sharedAudioManager] playSoundWithFileName:sound.fileName andKey:nil atFilePath:[self.object.projectPath stringByAppendingString:kProgramSoundsDirName]];
+
+        NSURL *url = [NSURL fileURLWithPath:[NSString stringWithFormat:@"%@/%@", [self.object.projectPath stringByAppendingString:kProgramSoundsDirName], sound.fileName]];
+        NSError *error;
+        AVAudioPlayer *audioPlayer = [[AVAudioPlayer alloc] initWithContentsOfURL:url error:&error];
+        NSLogError(error);
+
+        if (audioPlayer == nil) {
+          NSLog(@"%@", [error description]);
+        }
+        [audioPlayer play];
+        audioPlayer.volume = 100.0;
+        imageCell.iconImageView.image = [UIImage imageNamed:@"ic_media_pause.png"];
+        sound.playing = YES;
+      } else {
+        imageCell.iconImageView.image = [UIImage imageNamed:@"ic_media_play.png"];
+        sound.playing = NO;
+      }
+    }
+  }
+  [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
 #pragma mark - Navigation
-
-// In a story board-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-  static NSString* toSceneSegueID = kSegueToScene;
-  UIViewController* destController = segue.destinationViewController;
+  static NSString *toSceneSegueID = kSegueToScene;
+  UIViewController *destController = segue.destinationViewController;
   if ([sender isKindOfClass:[UIBarButtonItem class]]) {
     if ([segue.identifier isEqualToString:toSceneSegueID]) {
       if ([destController isKindOfClass:[SceneViewController class]]) {
@@ -165,7 +200,7 @@
 }
 
 #pragma mark - Helper Methods
-- (void)addObjectAction:(id)sender
+- (void)addSoundAction:(id)sender
 {
 }
 
@@ -185,7 +220,7 @@
                                                                             action:nil];
   UIBarButtonItem *add = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd
                                                                        target:self
-                                                                       action:@selector(addObjectAction:)];
+                                                                       action:@selector(addSoundAction:)];
   UIBarButtonItem *play = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemPlay
                                                                         target:self
                                                                         action:@selector(playSceneAction:)];

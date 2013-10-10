@@ -56,9 +56,10 @@
     [super viewDidLoad];
 
     [self initTableView];
-    
+
     [TableUtil initNavigationItem:self.navigationItem withTitle:NSLocalizedString(@"Programs", nil)];
-    
+
+    [self setupToolBar];
     [self loadLevels];
 }
 
@@ -179,12 +180,16 @@
 {
     static NSString* segueToNew = kSegueToNew;
     if ([[segue identifier] isEqualToString:segueToNew]) {
+      if ([sender isKindOfClass:[UITableViewCell class]]) {
         NSIndexPath *path = [self.tableView indexPathForSelectedRow];
         NSString* programName = [[self.levelLoadingInfos objectAtIndex:path.row] visibleName];
         if ([segue.destinationViewController isKindOfClass:[NewProgramTVC class]]) {
           NewProgramTVC* newProgramTVC = (NewProgramTVC*) segue.destinationViewController;
           [newProgramTVC loadProgram:[Util programLoadingInfoForProgramWithName:programName]];
         }
+      } else if ([sender isKindOfClass:[UIBarButtonItem class]]) {
+        // no preparation needed
+      }
     }
 }
 
@@ -256,5 +261,25 @@
 
 }
 
+#pragma mark - Helper Methods
+- (void)addProgramAction:(id)sender
+{
+  [self performSegueWithIdentifier:kSegueToNew sender:sender];
+}
+
+- (void)setupToolBar
+{
+  [self.navigationController setToolbarHidden:NO];
+  self.navigationController.toolbar.barStyle = UIBarStyleBlack;
+  self.navigationController.toolbar.tintColor = [UIColor orangeColor];
+  self.navigationController.toolbar.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleTopMargin;
+  UIBarButtonItem *flexItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace
+                                                                            target:nil
+                                                                            action:nil];
+  UIBarButtonItem *add = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd
+                                                                       target:self
+                                                                       action:@selector(addProgramAction:)];
+  self.toolbarItems = [NSArray arrayWithObjects:flexItem, add, flexItem, nil];
+}
 
 @end

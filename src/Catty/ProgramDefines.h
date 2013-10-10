@@ -23,6 +23,8 @@
 #define kLastProgram @"lastProgram"
 #define kDefaultProject @"My first Project"
 #define kProgramCodeFileName @"code.xml"
+#define kProgramSoundsDirName @"sounds"
+#define kProgramImagesDirName @"images"
 #define kProgramsFolder @"levels"
 
 #define kMinNumOfObjects 1
