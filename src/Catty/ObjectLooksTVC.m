@@ -27,7 +27,7 @@
 #import "Look.h"
 #import "SpriteObject.h"
 #import "SegueDefines.h"
-#import ""
+#import "ActionSheetAlertViewTags.h"
 #import "SceneViewController.h"
 #import "ProgramDefines.h"
 #import "UIColor+CatrobatUIColorExtensions.h"
@@ -156,42 +156,59 @@
 {
   if (actionSheet.tag == kAddLookActionSheetTag) {
     // Rename button
-    if (buttonIndex == 1)
-      [self showRenameProgramAlertView];
-    // Delete button
-    if (buttonIndex == actionSheet.destructiveButtonIndex)
-    {
-      // TODO: implement this. Check if program already stored in filesystem otherwise skip that...
-      NSLog(@"Delete button pressed");
-      [self.navigationController popViewControllerAnimated:YES];
+    NSLog(@"Button Index: %d", buttonIndex);
+    if (buttonIndex == 0) {
+      NSLog(@"Accessing camera");
+    } else if (buttonIndex == 1) {
+      NSLog(@"Choose image from camera roll");
+      [self startMediaBrowserFromViewController: self
+                                  usingDelegate: self];
+    } else if (buttonIndex == 2) {
+      NSLog(@"Draw new image");
     }
   }
+}
+
+- (BOOL) startMediaBrowserFromViewController: (UIViewController*) controller
+                               usingDelegate: (id <UIImagePickerControllerDelegate,
+                                               UINavigationControllerDelegate>) delegate {
   
-  // XXX: this is ugly... Why do we use ActionSheets to notify the user? -> Use UIAlertView instead
-  if (actionSheet.tag == kInvalidProgramNameWarningActionSheetTag) {
-    // OK button
-    NSLog(@"Button index was: %d", buttonIndex);
-    if (buttonIndex == 0)
-    {
-      NSLog(@"Show up object alert view again...");
-      [self showRenameProgramAlertView];
-    }
-  }
+  if (([UIImagePickerController isSourceTypeAvailable:
+        UIImagePickerControllerSourceTypeSavedPhotosAlbum] == NO)
+      || (delegate == nil)
+      || (controller == nil))
+    return NO;
+  
+  UIImagePickerController *mediaUI = [[UIImagePickerController alloc] init];
+  mediaUI.sourceType = UIImagePickerControllerSourceTypeSavedPhotosAlbum;
+  
+  // Displays saved pictures and movies, if both are available, from the
+  // Camera Roll album.
+  mediaUI.mediaTypes =
+  [UIImagePickerController availableMediaTypesForSourceType:
+   UIImagePickerControllerSourceTypeSavedPhotosAlbum];
+  
+  // Hides the controls for moving & scaling pictures, or for
+  // trimming movies. To instead show the controls, use YES.
+  mediaUI.allowsEditing = NO;
+  
+  mediaUI.delegate = delegate;
+  
+  [controller presentModalViewController: mediaUI animated: YES];
+  return YES;
 }
 
 #pragma mark - UIActionSheet Views
 - (void)showAddLookActionSheet
 {
-  // TODO: determine whether to show delete button or not
-  BOOL showDeleteButton = false;
-  //if (self.objectsList && self.background && [self.objectsList count] && [self.background count])
-  showDeleteButton = true;
-
   UIActionSheet *edit = [[UIActionSheet alloc] initWithTitle:NSLocalizedString(@"Add look",@"Action sheet menu title")
                                                     delegate:self
                                            cancelButtonTitle:kBtnCancelTitle
                                       destructiveButtonTitle:nil
-                                           otherButtonTitles:NSLocalizedString(@"From Camera",nil), NSLocalizedString(@"Choose image from camera roll",nil), NSLocalizedString(@"Draw new image",nil), nil];
+                                           otherButtonTitles:NSLocalizedString(@"From Camera",nil),
+                                                             NSLocalizedString(@"Choose image",nil),
+                                                             NSLocalizedString(@"Draw new image",nil), nil];
+  edit.tag = kAddLookActionSheetTag;
   edit.actionSheetStyle = UIActionSheetStyleDefault;
   [edit showInView:self.view];
 }

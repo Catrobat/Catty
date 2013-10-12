@@ -38,13 +38,7 @@
 #import "Script.h"
 #import "Brick.h"
 #import "SceneViewController.h"
-
-// Action sheet & Alert view tags
-#define kSceneActionSheetTag 1
-#define kInvalidProgramNameWarningActionSheetTag 2
-#define kInvalidObjectNameWarningActionSheetTag 3
-#define kRenameAlertViewTag 1
-#define kNewObjectAlertViewTag 2
+#import "ActionSheetAlertViewTags.h"
 
 // constraints and default values
 #define kDefaultProgramName NSLocalizedString(@"New Program",@"Default name for new programs") // XXX: BTW: are there any restrictions or limits for the program name???
@@ -416,7 +410,7 @@
                                                          delegate:self
                                                 cancelButtonTitle:kBtnCancelTitle
                                                 otherButtonTitles:kBtnOKTitle, nil];
-  [newObjectAlert setTag:kNewObjectAlertViewTag];
+  newObjectAlert.tag = kNewObjectAlertViewTag;
   newObjectAlert.alertViewStyle = UIAlertViewStylePlainTextInput;
   [[newObjectAlert textFieldAtIndex:0] setClearButtonMode:UITextFieldViewModeWhileEditing];
   [newObjectAlert show];
@@ -425,17 +419,12 @@
 #pragma mark - UIActionSheet Views
 - (void)showSceneActionSheet
 {
-  // TODO: determine whether to show delete button or not
-  BOOL showDeleteButton = false;
-  //if (self.objectsList && self.background && [self.objectsList count] && [self.background count])
-    showDeleteButton = true;
-
   UIActionSheet *edit = [[UIActionSheet alloc] initWithTitle:NSLocalizedString(@"Edit Program",nil)
                                                     delegate:self
                                            cancelButtonTitle:kBtnCancelTitle
-                                      destructiveButtonTitle:(showDeleteButton ? kBtnDeleteTitle : nil)
+                                      destructiveButtonTitle:kBtnDeleteTitle
                                            otherButtonTitles:NSLocalizedString(@"Rename",nil), nil];
-  [edit setTag:kSceneActionSheetTag];
+  edit.tag = kSceneActionSheetTag;
   edit.actionSheetStyle = UIActionSheetStyleDefault;
   [edit showInView:self.view];
 }
@@ -447,7 +436,7 @@
                                               cancelButtonTitle:nil
                                          destructiveButtonTitle:nil
                                               otherButtonTitles:kBtnOKTitle, nil];
-  [warning setTag:kInvalidProgramNameWarningActionSheetTag];
+  warning.tag = kInvalidProgramNameWarningActionSheetTag;
   warning.actionSheetStyle = UIActionSheetStyleDefault;
   [warning showInView:self.view];
 }
@@ -459,7 +448,7 @@
                                               cancelButtonTitle:nil
                                          destructiveButtonTitle:nil
                                               otherButtonTitles:kBtnOKTitle, nil];
-  [warning setTag:kInvalidObjectNameWarningActionSheetTag];
+  warning.tag = kInvalidObjectNameWarningActionSheetTag;
   warning.actionSheetStyle = UIActionSheetStyleDefault;
   [warning showInView:self.view];
 }

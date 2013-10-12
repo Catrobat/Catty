@@ -20,14 +20,17 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#ifndef Catty_ButtonTags_h
-#define Catty_ButtonTags_h
+#ifndef Catty_ActionSheetAlertViewTags_h
+#define Catty_ActionSheetAlertViewTags_h
 
-#define kDownloadButtonTag 501
-#define kPlayButtonTag 502
+// Action sheet
+#define kSceneActionSheetTag 1
+#define kInvalidProgramNameWarningActionSheetTag 2
+#define kInvalidObjectNameWarningActionSheetTag 3
+#define kAddLookActionSheetTag 4
 
-#define kActivityIndicator 228
-
-
+// Alert view tags
+#define kRenameAlertViewTag 1
+#define kNewObjectAlertViewTag 2
 
 #endif
