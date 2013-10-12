@@ -36,6 +36,6 @@
                        onCompletion:(void (^)(UIImage *image))completion;
 
 
--(UIImage*) setImage: (UIImage*)image WithBrightness:(CGFloat)brightnessFactor;
+- (UIImage*) setImage:(UIImage*)image WithBrightness:(CGFloat)brightnessFactor;
 
 @end

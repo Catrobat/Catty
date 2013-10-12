@@ -24,6 +24,6 @@
 
 @class ProgramLoadingInfo;
 
-@interface NewProgramTVC : UITableViewController
+@interface ProgramTVC : UITableViewController
 - (BOOL)loadProgram:(ProgramLoadingInfo*)loadingInfo;
 @end

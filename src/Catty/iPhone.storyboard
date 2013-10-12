@@ -5,16 +5,16 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3742"/>
     </dependencies>
     <scenes>
-        <!--New ProgramTVC - New Program-->
+        <!--ProgramTVC - New Program-->
         <scene sceneID="zhR-1R-Y6s">
             <objects>
-                <tableViewController id="BYa-g9-OiT" customClass="NewProgramTVC" sceneMemberID="viewController">
+                <tableViewController id="BYa-g9-OiT" customClass="ProgramTVC" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="Obr-NN-w03">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleAspectFit" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="ProgramCell" rowHeight="79" id="4dE-Mc-fH1" customClass="DarkBlueGradientImageCell">
+                            <tableViewCell contentMode="scaleAspectFit" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="ProgramCell" rowHeight="79" id="4dE-Mc-fH1" customClass="DarkBlueGradientBorderedImageCell">
                                 <rect key="frame" x="0.0" y="86" width="320" height="79"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="4dE-Mc-fH1" id="IxA-QY-Kgo">
@@ -336,7 +336,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleAspectFit" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="LookCell" rowHeight="79" id="XOB-VF-psW" customClass="DarkBlueGradientImageCell">
+                            <tableViewCell contentMode="scaleAspectFit" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="LookCell" rowHeight="79" id="XOB-VF-psW" customClass="DarkBlueGradientBorderedImageCell">
                                 <rect key="frame" x="0.0" y="86" width="320" height="79"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="XOB-VF-psW" id="Tp3-Ei-0FR">

@@ -52,12 +52,13 @@
     // Configure the view for the selected state
 }
 
--(void)configure {
+-(void)configure
+{
     self.backgroundView = [[UIImageView alloc] initWithImage:[[UIImage imageNamed:@"darkBlueGradient"]resizableImageWithCapInsets:UIEdgeInsetsZero]];
 }
 
--(CAGradientLayer*)getBackgroundLayerForFrame:(CGRect)frame{
-    
+-(CAGradientLayer*)getBackgroundLayerForFrame:(CGRect)frame
+{
     CAGradientLayer *grad = [BackgroundLayer darkBlueGradient];
     grad.frame = frame;
     return grad;

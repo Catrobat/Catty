@@ -21,26 +21,7 @@
  */
 
 #import "DarkBlueGradientImageCell.h"
-#import "UIColor+CatrobatUIColorExtensions.h"
 
-@implementation DarkBlueGradientImageCell
-
-- (id)initWithFrame:(CGRect)frame
-{
-    self = [super initWithFrame:frame];
-    if (self) {
-    }
-    return self;
-}
-
-- (void) awakeFromNib
-{
-    [self configureImageCell];
-}
-
-- (void) configureImageCell
-{
-    self.titleLabel.textColor = [UIColor skyBlueColor];
-}
+@interface DarkBlueGradientBorderedImageCell : DarkBlueGradientImageCell
 
 @end

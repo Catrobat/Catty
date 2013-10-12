@@ -20,27 +20,28 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import "DarkBlueGradientImageCell.h"
-#import "UIColor+CatrobatUIColorExtensions.h"
+#import "UIImageView+CatrobatUIImageViewExtensions.h"
 
-@implementation DarkBlueGradientImageCell
+@implementation UIImageView (CatrobatUIImageViewExtensions)
 
-- (id)initWithFrame:(CGRect)frame
+- (void) setBorder:(UIColor*)color Width:(CGFloat)width
 {
-    self = [super initWithFrame:frame];
-    if (self) {
-    }
-    return self;
+  [self setRoundedBorder:color Width:width CornerRadius:0.0f];
 }
 
-- (void) awakeFromNib
+- (void) setRoundedBorder:(UIColor*)color Width:(CGFloat)width CornerRadius:(CGFloat)radius
 {
-    [self configureImageCell];
-}
+  CALayer *borderLayer = [CALayer layer];
+  CGRect borderFrame = CGRectMake(0, 0, (self.frame.size.width), (self.frame.size.height));
+  [borderLayer setBackgroundColor:[[UIColor clearColor] CGColor]];
+  [borderLayer setFrame:borderFrame];
 
-- (void) configureImageCell
-{
-    self.titleLabel.textColor = [UIColor skyBlueColor];
+  if (radius > 0.0f)
+    [borderLayer setCornerRadius:radius];
+
+  [borderLayer setBorderWidth:width];
+  [borderLayer setBorderColor:[color CGColor]];
+  [self.layer addSublayer:borderLayer];
 }
 
 @end

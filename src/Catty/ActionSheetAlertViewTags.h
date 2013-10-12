@@ -20,27 +20,14 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import "DarkBlueGradientImageCell.h"
-#import "UIColor+CatrobatUIColorExtensions.h"
+#ifndef Catty_ButtonTags_h
+#define Catty_ButtonTags_h
 
-@implementation DarkBlueGradientImageCell
+#define kDownloadButtonTag 501
+#define kPlayButtonTag 502
 
-- (id)initWithFrame:(CGRect)frame
-{
-    self = [super initWithFrame:frame];
-    if (self) {
-    }
-    return self;
-}
+#define kActivityIndicator 228
 
-- (void) awakeFromNib
-{
-    [self configureImageCell];
-}
 
-- (void) configureImageCell
-{
-    self.titleLabel.textColor = [UIColor skyBlueColor];
-}
 
-@end
+#endif

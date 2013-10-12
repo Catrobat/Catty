@@ -20,7 +20,7 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import "NewProgramTVC.h"
+#import "ProgramTVC.h"
 #import "TableUtil.h"
 #import "ObjectTVC.h"
 #import "SegueDefines.h"
@@ -58,12 +58,12 @@
 // identifiers
 #define kTableHeaderIdentifier @"Header"
 
-@interface NewProgramTVC () <UIActionSheetDelegate, UIAlertViewDelegate, UITextFieldDelegate,
-                                                                        UINavigationBarDelegate>
+@interface ProgramTVC () <UIActionSheetDelegate, UIAlertViewDelegate, UITextFieldDelegate,
+                                                                      UINavigationBarDelegate>
 @property (strong, nonatomic) Program *program;
 @end
 
-@implementation NewProgramTVC
+@implementation ProgramTVC
 # pragma memory for our pointer-properties
 @synthesize program = _program;
 
@@ -225,9 +225,13 @@
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ProgramCell" forIndexPath:indexPath];
     if ([cell conformsToProtocol:@protocol(CatrobatImageCell)]) {
       UITableViewCell <CatrobatImageCell>* imageCell = (UITableViewCell <CatrobatImageCell>*)cell;
-      imageCell.iconImageView.image = [UIImage imageNamed:@"programs"];
-
       SpriteObject* object = [self.program.objectList objectAtIndex:(kBackgroundIndex + indexPath.section + indexPath.row)];
+      if ([object.lookList count] > 0) {
+        Look* look = [object.lookList objectAtIndex:0];
+        NSString *imagePath = [NSString stringWithFormat:@"%@/%@", [object.projectPath stringByAppendingString:kProgramImagesDirName], look.fileName];
+        imageCell.iconImageView.image = [[UIImage alloc] initWithContentsOfFile: imagePath];
+        imageCell.iconImageView.contentMode = UIViewContentModeScaleAspectFit;
+      }
       imageCell.titleLabel.text = object.name;
     }
     return cell;

@@ -20,27 +20,32 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import "DarkBlueGradientImageCell.h"
+#import "DarkBlueGradientBorderedImageCell.h"
 #import "UIColor+CatrobatUIColorExtensions.h"
+#import "UIImageView+CatrobatUIImageViewExtensions.h"
+#import "UIDefines.h"
 
-@implementation DarkBlueGradientImageCell
+@implementation DarkBlueGradientBorderedImageCell
 
 - (id)initWithFrame:(CGRect)frame
 {
     self = [super initWithFrame:frame];
     if (self) {
+        // Initialization code
     }
     return self;
 }
 
-- (void) awakeFromNib
+- (void)awakeFromNib
 {
-    [self configureImageCell];
+  [self configureImageCell];
 }
 
-- (void) configureImageCell
+- (void)configureImageCell
 {
-    self.titleLabel.textColor = [UIColor skyBlueColor];
+  [super configureImageCell];
+  // XXX: shall we outsource e.g. "skyBlueColor"
+  [self.iconImageView setBorder:[UIColor skyBlueColor] Width:kDefaultImageCellBorderWidth];
 }
 
 @end

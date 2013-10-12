@@ -29,7 +29,7 @@
 #import "UIColor+CatrobatUIColorExtensions.h"
 #import "SegueDefines.h"
 //#import "SceneViewController.h"
-#import "NewProgramTVC.h"
+#import "ProgramTVC.h"
 #import "ProgramLoadingInfo.h"
 #import "Util.h"
 
@@ -139,10 +139,10 @@
    */
   static NSString* segueToNew = kSegueToNew;
   if ([[segue identifier] isEqualToString:segueToNew]) {
-    if ([segue.destinationViewController isKindOfClass:[NewProgramTVC class]]) {
+    if ([segue.destinationViewController isKindOfClass:[ProgramTVC class]]) {
       self.hidesBottomBarWhenPushed = YES;
-      NewProgramTVC* newProgramTVC = (NewProgramTVC*) segue.destinationViewController;
-      [newProgramTVC loadProgram:[Util programLoadingInfoForProgramWithName:self.project.name]];
+      ProgramTVC* programTVC = (ProgramTVC*) segue.destinationViewController;
+      [programTVC loadProgram:[Util programLoadingInfoForProgramWithName:self.project.name]];
     }
   }
 }

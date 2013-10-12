@@ -49,10 +49,9 @@
     [self configureImageCell];
 }
 
--(void)configureImageCell {
+-(void)configureImageCell
+{
     self.titleLabel.textColor = [UIColor skyBlueColor];
 }
-
-
 
 @end

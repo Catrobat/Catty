@@ -27,7 +27,11 @@
 #import "Look.h"
 #import "SpriteObject.h"
 #import "SegueDefines.h"
+#import ""
 #import "SceneViewController.h"
+#import "ProgramDefines.h"
+#import "UIColor+CatrobatUIColorExtensions.h"
+#import "UIImageView+CatrobatUIImageViewExtensions.h"
 
 #define kTableHeaderIdentifier @"Header"
 
@@ -97,8 +101,11 @@
   // Configure the cell...
   if ([cell conformsToProtocol:@protocol(CatrobatImageCell)]) {
     UITableViewCell <CatrobatImageCell>* imageCell = (UITableViewCell <CatrobatImageCell>*)cell;
-    imageCell.iconImageView.image = [UIImage imageNamed:@"programs"];
-    imageCell.titleLabel.text = ((Look*) [self.object.lookList objectAtIndex:indexPath.row]).name;
+    Look *look = [self.object.lookList objectAtIndex:indexPath.row];
+    NSString *imagePath = [NSString stringWithFormat:@"%@/%@", [self.object.projectPath stringByAppendingString:kProgramImagesDirName], look.fileName];
+    imageCell.iconImageView.image = [[UIImage alloc] initWithContentsOfFile: imagePath];
+    imageCell.iconImageView.contentMode = UIViewContentModeScaleAspectFit;
+    imageCell.titleLabel.text = look.name;
   }
   return cell;
 }
@@ -144,20 +151,47 @@
   }
 }
 
+#pragma mark - UIActionSheetDelegate Handlers
+- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+  if (actionSheet.tag == kAddLookActionSheetTag) {
+    // Rename button
+    if (buttonIndex == 1)
+      [self showRenameProgramAlertView];
+    // Delete button
+    if (buttonIndex == actionSheet.destructiveButtonIndex)
+    {
+      // TODO: implement this. Check if program already stored in filesystem otherwise skip that...
+      NSLog(@"Delete button pressed");
+      [self.navigationController popViewControllerAnimated:YES];
+    }
+  }
+  
+  // XXX: this is ugly... Why do we use ActionSheets to notify the user? -> Use UIAlertView instead
+  if (actionSheet.tag == kInvalidProgramNameWarningActionSheetTag) {
+    // OK button
+    NSLog(@"Button index was: %d", buttonIndex);
+    if (buttonIndex == 0)
+    {
+      NSLog(@"Show up object alert view again...");
+      [self showRenameProgramAlertView];
+    }
+  }
+}
+
 #pragma mark - UIActionSheet Views
-- (void)showSceneActionSheet
+- (void)showAddLookActionSheet
 {
   // TODO: determine whether to show delete button or not
   BOOL showDeleteButton = false;
   //if (self.objectsList && self.background && [self.objectsList count] && [self.background count])
   showDeleteButton = true;
-  
-  UIActionSheet *edit = [[UIActionSheet alloc] initWithTitle:NSLocalizedString(@"Edit Looks",nil)
+
+  UIActionSheet *edit = [[UIActionSheet alloc] initWithTitle:NSLocalizedString(@"Add look",@"Action sheet menu title")
                                                     delegate:self
                                            cancelButtonTitle:kBtnCancelTitle
-                                      destructiveButtonTitle:(showDeleteButton ? kBtnDeleteTitle : nil)
-                                           otherButtonTitles:NSLocalizedString(@"Rename",nil), nil];
-  //[edit setTag:kSceneActionSheetTag];
+                                      destructiveButtonTitle:nil
+                                           otherButtonTitles:NSLocalizedString(@"From Camera",nil), NSLocalizedString(@"Choose image from camera roll",nil), NSLocalizedString(@"Draw new image",nil), nil];
   edit.actionSheetStyle = UIActionSheetStyleDefault;
   [edit showInView:self.view];
 }
@@ -165,6 +199,7 @@
 #pragma mark - Helper Methods
 - (void)addLookAction:(id)sender
 {
+  [self showAddLookActionSheet];
 }
 
 - (void)playSceneAction:(id)sender

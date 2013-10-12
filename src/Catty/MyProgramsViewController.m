@@ -23,7 +23,7 @@
 #import "MyProgramsViewController.h"
 #import "Util.h"
 #import "ProgramLoadingInfo.h"
-#import "NewProgramTVC.h"
+#import "ProgramTVC.h"
 #import "AppDelegate.h"
 #import "TableUtil.h"
 #import "CellTagDefines.h"
@@ -183,9 +183,9 @@
       if ([sender isKindOfClass:[UITableViewCell class]]) {
         NSIndexPath *path = [self.tableView indexPathForSelectedRow];
         NSString* programName = [[self.levelLoadingInfos objectAtIndex:path.row] visibleName];
-        if ([segue.destinationViewController isKindOfClass:[NewProgramTVC class]]) {
-          NewProgramTVC* newProgramTVC = (NewProgramTVC*) segue.destinationViewController;
-          [newProgramTVC loadProgram:[Util programLoadingInfoForProgramWithName:programName]];
+        if ([segue.destinationViewController isKindOfClass:[ProgramTVC class]]) {
+          ProgramTVC* programTVC = (ProgramTVC*) segue.destinationViewController;
+          [programTVC loadProgram:[Util programLoadingInfoForProgramWithName:programName]];
         }
       } else if ([sender isKindOfClass:[UIBarButtonItem class]]) {
         // no preparation needed
