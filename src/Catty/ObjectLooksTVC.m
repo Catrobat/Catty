@@ -232,7 +232,7 @@
     // update view
     Look* look = [[Look alloc] initWithName:imageName andPath:newImageFileName];
     [self.object.lookList addObject:look];
-    [super showPlaceHolder:(BOOL)[self.object.soundList count]];
+    [super showPlaceHolder:([self.object.soundList count] == 0)];
     [self.tableView reloadData];
   }
   [self dismissViewControllerAnimated:YES completion:nil];

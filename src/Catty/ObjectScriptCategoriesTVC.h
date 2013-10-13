@@ -21,25 +21,10 @@
  */
 
 #import <UIKit/UIKit.h>
+#import "BaseTableViewController.h"
 
-@interface UIColor (CatrobatUIColorExtensions)
+@class SpriteObject;
 
-+ (UIColor*) skyBlueColor;
-
-+ (UIColor*) blueGrayColor;
-
-+ (UIColor*) airForceBlueColor;
-
-+ (UIColor*) darkBlueColor;
-
-+ (UIColor*) brightGrayColor;
-
-+ (UIColor*) lightOrangeColor;
-
-+ (UIColor*) lightBlueColor;
-
-+ (UIColor*) lightRedColor;
-
-+ (UIColor*) violetColor;
-
+@interface ObjectScriptCategoriesTVC : BaseTableViewController
+@property (strong, nonatomic) SpriteObject *object;
 @end

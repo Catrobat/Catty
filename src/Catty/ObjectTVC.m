@@ -43,26 +43,27 @@
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
-    self = [super initWithStyle:style];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
+  self = [super initWithStyle:style];
+  if (self) {
+      // Custom initialization
+  }
+  return self;
 }
 
 - (void)viewDidLoad
 {
-    [super viewDidLoad];
+  [super viewDidLoad];
 
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
+  // Uncomment the following line to preserve selection between presentations.
+  // self.clearsSelectionOnViewWillAppear = NO;
 
-    [self initTableView];
-    //[TableUtil initNavigationItem:self.navigationItem withTitle:NSLocalizedString(@"New Programs", nil)];
+  [self initTableView];
+  //[TableUtil initNavigationItem:self.navigationItem withTitle:NSLocalizedString(@"New Programs", nil)];
 
-    self.title = self.object.name;
-    self.navigationItem.title = self.object.name;
-    [self setupToolBar];
+  self.title = self.object.name;
+  self.navigationItem.title = self.object.name;
+  [self setupToolBar];
+  self.tableView.alwaysBounceVertical = NO;
 }
 
 #pragma marks init

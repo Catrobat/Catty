@@ -141,6 +141,9 @@
 		CA688202180AEF00008A7C99 /* BaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA688201180AEF00008A7C99 /* BaseViewController.m */; };
 		CA688205180B0148008A7C99 /* BaseTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA688204180B0148008A7C99 /* BaseTableViewController.m */; };
 		CA688208180B2663008A7C99 /* BaseCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA688207180B2663008A7C99 /* BaseCollectionViewController.m */; };
+		CA68820B180B30E0008A7C99 /* ObjectScriptCategoriesTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = CA68820A180B30E0008A7C99 /* ObjectScriptCategoriesTVC.m */; };
+		CA68820E180B39D0008A7C99 /* ColoredCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CA68820D180B39D0008A7C99 /* ColoredCell.m */; };
+		CA688212180B467B008A7C99 /* OrderedDictionary.m in Sources */ = {isa = PBXBuildFile; fileRef = CA688211180B467B008A7C99 /* OrderedDictionary.m */; };
 		CA7AC43A18074B5200904143 /* ic_media_play.png in Resources */ = {isa = PBXBuildFile; fileRef = CA7AC43918074B5200904143 /* ic_media_play.png */; };
 		CA7AC43C18074FD300904143 /* ic_media_pause.png in Resources */ = {isa = PBXBuildFile; fileRef = CA7AC43B18074FD300904143 /* ic_media_pause.png */; };
 		CA8F8A0B17F241F700A04C03 /* ic_looks.png in Resources */ = {isa = PBXBuildFile; fileRef = CA8F8A0817F241F700A04C03 /* ic_looks.png */; };
@@ -432,6 +435,12 @@
 		CA688204180B0148008A7C99 /* BaseTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseTableViewController.m; sourceTree = "<group>"; };
 		CA688206180B2649008A7C99 /* BaseCollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseCollectionViewController.h; sourceTree = "<group>"; };
 		CA688207180B2663008A7C99 /* BaseCollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseCollectionViewController.m; sourceTree = "<group>"; };
+		CA688209180B30B5008A7C99 /* ObjectScriptCategoriesTVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ObjectScriptCategoriesTVC.h; sourceTree = "<group>"; };
+		CA68820A180B30E0008A7C99 /* ObjectScriptCategoriesTVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ObjectScriptCategoriesTVC.m; sourceTree = "<group>"; };
+		CA68820C180B39BB008A7C99 /* ColoredCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ColoredCell.h; sourceTree = "<group>"; };
+		CA68820D180B39D0008A7C99 /* ColoredCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ColoredCell.m; sourceTree = "<group>"; };
+		CA688210180B467B008A7C99 /* OrderedDictionary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrderedDictionary.h; sourceTree = "<group>"; };
+		CA688211180B467B008A7C99 /* OrderedDictionary.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrderedDictionary.m; sourceTree = "<group>"; };
 		CA7AC43918074B5200904143 /* ic_media_play.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ic_media_play.png; sourceTree = "<group>"; };
 		CA7AC43B18074FD300904143 /* ic_media_pause.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ic_media_pause.png; sourceTree = "<group>"; };
 		CA8F8A0817F241F700A04C03 /* ic_looks.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ic_looks.png; sourceTree = "<group>"; };
@@ -673,6 +682,8 @@
 				81FAEE3617E792620052BB2B /* ScriptsView */,
 				81FAEE2D17E781AB0052BB2B /* ObjectScriptsCVC.h */,
 				81FAEE2E17E781AB0052BB2B /* ObjectScriptsCVC.m */,
+				CA688209180B30B5008A7C99 /* ObjectScriptCategoriesTVC.h */,
+				CA68820A180B30E0008A7C99 /* ObjectScriptCategoriesTVC.m */,
 				81FAEE3017E782140052BB2B /* ObjectLooksTVC.h */,
 				81FAEE3117E782140052BB2B /* ObjectLooksTVC.m */,
 				81FAEE3317E782360052BB2B /* ObjectSoundsTVC.h */,
@@ -763,9 +774,10 @@
 			path = graphics;
 			sourceTree = "<group>";
 		};
-		B400302C170EB45200396DB7 /* Helper */ = {
+		B400302C170EB45200396DB7 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				CA688215180B46CB008A7C99 /* DataStructures */,
 				B44F32A71737BBB800BD97AC /* SensorHandler */,
 				B400302E170EB47600396DB7 /* FileManager */,
 				B46475321770F60E00CD277F /* AudioManager */,
@@ -777,7 +789,7 @@
 				B400302F170EB4DC00396DB7 /* Util */,
 				B4365CE71758AF9200B4D0A6 /* Logger */,
 			);
-			name = Helper;
+			name = Helpers;
 			sourceTree = "<group>";
 		};
 		B400302D170EB46A00396DB7 /* SSZipArchive */ = {
@@ -1439,6 +1451,7 @@
 		CA6881FF180AEBAD008A7C99 /* Cell */ = {
 			isa = PBXGroup;
 			children = (
+				CA68820F180B3CD4008A7C99 /* ColoredCell */,
 				B4D940CE170EC907003DDBFA /* CatrobatBaseCell */,
 				B4D940C6170EC708003DDBFA /* CatrobatImageCell.h */,
 				B4D940DD170ECB68003DDBFA /* ContinueImageCell */,
@@ -1447,6 +1460,33 @@
 				CA43DD3B18099AC000F95B88 /* DarkBlueGradientBorderedImageCell */,
 			);
 			name = Cell;
+			sourceTree = "<group>";
+		};
+		CA68820F180B3CD4008A7C99 /* ColoredCell */ = {
+			isa = PBXGroup;
+			children = (
+				CA68820C180B39BB008A7C99 /* ColoredCell.h */,
+				CA68820D180B39D0008A7C99 /* ColoredCell.m */,
+			);
+			name = ColoredCell;
+			sourceTree = "<group>";
+		};
+		CA688213180B4680008A7C99 /* OrderedDictionary */ = {
+			isa = PBXGroup;
+			children = (
+				CA688210180B467B008A7C99 /* OrderedDictionary.h */,
+				CA688211180B467B008A7C99 /* OrderedDictionary.m */,
+			);
+			name = OrderedDictionary;
+			sourceTree = "<group>";
+		};
+		CA688215180B46CB008A7C99 /* DataStructures */ = {
+			isa = PBXGroup;
+			children = (
+				B4826F80174D5B7000F57AE9 /* OrderedMapTable */,
+				CA688213180B4680008A7C99 /* OrderedDictionary */,
+			);
+			name = DataStructures;
 			sourceTree = "<group>";
 		};
 		CA8F8A0717F2417000A04C03 /* icons */ = {
@@ -1500,7 +1540,7 @@
 				B4D940BC170EC670003DDBFA /* CustomExtensions */,
 				B4BCF409170ECFC3008EDF3A /* Delegates */,
 				B4D940B3170EC5EE003DDBFA /* Defines */,
-				B400302C170EB45200396DB7 /* Helper */,
+				B400302C170EB45200396DB7 /* Helpers */,
 				CD0CCFF5170CB88F00B70036 /* DataModel */,
 				CD0CCE9A170CB39600B70036 /* enums.h */,
 				CD0CCFF9170CB91A00B70036 /* Parser */,
@@ -1508,7 +1548,6 @@
 				B4003024170EB3AC00396DB7 /* Media */,
 				B4D940B2170EC5D5003DDBFA /* UserInterface */,
 				CD0CCE3B170CA00F00B70036 /* ViewController */,
-				B4826F80174D5B7000F57AE9 /* OrderedMapTable */,
 			);
 			path = Catty;
 			sourceTree = "<group>";
@@ -2146,6 +2185,7 @@
 				CD0CCFC8170CB39700B70036 /* SoundInfo.m in Sources */,
 				CD0CCFC9170CB39700B70036 /* SpeakBrick.m in Sources */,
 				CD0CCFD0170CB39700B70036 /* StartScript.m in Sources */,
+				CA68820E180B39D0008A7C99 /* ColoredCell.m in Sources */,
 				B4E7D253176EF1B300EC8AD8 /* SceneViewController.m in Sources */,
 				CD0CCFD1170CB39700B70036 /* StopAllSoundsBrick.m in Sources */,
 				C34B44F417F1D2C700624730 /* ClearGraphicEffectBrick.m in Sources */,
@@ -2156,6 +2196,8 @@
 				CD0CCFDC170CB39700B70036 /* WhenScript.m in Sources */,
 				CAEDFB8117EF759500FDED0E /* ObjectTVC.m in Sources */,
 				CD639C7B170DF52600FA67DA /* SpriteObject.m in Sources */,
+				CA68820B180B30E0008A7C99 /* ObjectScriptCategoriesTVC.m in Sources */,
+				CA688212180B467B008A7C99 /* OrderedDictionary.m in Sources */,
 				B4D940AD170EC2B7003DDBFA /* ioapi.c in Sources */,
 				B4D940AE170EC2B7003DDBFA /* mztools.c in Sources */,
 				B4D940AF170EC2B7003DDBFA /* unzip.c in Sources */,

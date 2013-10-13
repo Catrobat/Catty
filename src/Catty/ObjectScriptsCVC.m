@@ -26,6 +26,7 @@
 #import "SpriteObject.h"
 #import "SegueDefines.h"
 #import "SceneViewController.h"
+#import "ObjectScriptCategoriesTVC.h"
 
 @interface ObjectScriptsCVC () <UICollectionViewDelegate, UICollectionViewDelegateFlowLayout>
 @end
@@ -72,6 +73,7 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
   static NSString* toSceneSegueID = kSegueToScene;
+  static NSString* toScriptCategoriesSegueID = kSegueToScriptCategories;
   UIViewController* destController = segue.destinationViewController;
   if ([sender isKindOfClass:[UIBarButtonItem class]]) {
     if ([segue.identifier isEqualToString:toSceneSegueID]) {
@@ -81,6 +83,13 @@
           [scvc performSelector:@selector(setProgram:) withObject:self.object.program];
         }
       }
+    } else if ([segue.identifier isEqualToString:toScriptCategoriesSegueID]) {
+      if ([destController isKindOfClass:[ObjectScriptCategoriesTVC class]]) {
+        ObjectScriptCategoriesTVC* scvc = (ObjectScriptCategoriesTVC*) destController;
+        if ([scvc respondsToSelector:@selector(setObject:)]) {
+          [scvc performSelector:@selector(setObject:) withObject:self.object];
+        }
+      }
     }
   }
 }
@@ -88,6 +97,7 @@
 #pragma mark - Helper Methods
 - (void)addScriptAction:(id)sender
 {
+  [self performSegueWithIdentifier:kSegueToScriptCategories sender:sender];
 }
 
 - (void)playSceneAction:(id)sender

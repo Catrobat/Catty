@@ -21,25 +21,8 @@
  */
 
 #import <UIKit/UIKit.h>
+#import "CatrobatBaseCell.h"
 
-@interface UIColor (CatrobatUIColorExtensions)
-
-+ (UIColor*) skyBlueColor;
-
-+ (UIColor*) blueGrayColor;
-
-+ (UIColor*) airForceBlueColor;
-
-+ (UIColor*) darkBlueColor;
-
-+ (UIColor*) brightGrayColor;
-
-+ (UIColor*) lightOrangeColor;
-
-+ (UIColor*) lightBlueColor;
-
-+ (UIColor*) lightRedColor;
-
-+ (UIColor*) violetColor;
+@interface ColoredCell : UITableViewCell
 
 @end

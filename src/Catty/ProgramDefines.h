@@ -30,10 +30,24 @@
 #define kMinNumOfObjects 1
 #define kBackgroundObjects 1
 
+// object components
 #define kScriptsTitle NSLocalizedString(@"Scripts",nil)
 #define kLooksTitle NSLocalizedString(@"Looks",nil)
 #define kBackgroundsTitle NSLocalizedString(@"Backgrounds",nil)
 #define kSoundsTitle NSLocalizedString(@"Sounds",nil)
+
+// script categories
+#define kScriptCategoryControlTitle NSLocalizedString(@"Control",nil)
+#define kScriptCategoryMotionTitle NSLocalizedString(@"Motion",nil)
+#define kScriptCategorySoundTitle NSLocalizedString(@"Sound",nil)
+#define kScriptCategoryLooksTitle NSLocalizedString(@"Looks",nil)
+#define kScriptCategoryVariablesTitle NSLocalizedString(@"Variables",nil)
+
+#define kScriptCategoryControlColor [UIColor orangeColor]
+#define kScriptCategoryMotionColor [UIColor lightBlueColor]
+#define kScriptCategorySoundColor [UIColor violetColor]
+#define kScriptCategoryLooksColor [UIColor greenColor]
+#define kScriptCategoryVariablesColor [UIColor lightRedColor]
 
 // indexes
 #define kBackgroundIndex 0

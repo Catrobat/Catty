@@ -31,64 +31,54 @@
 
 @implementation BroadcastWaitHandler
 
-
-
--(NSMutableDictionary *)spritesForMessages
+- (NSMutableDictionary *)spritesForMessages
 {
-    if (!_spritesForMessages)
-        _spritesForMessages = [[NSMutableDictionary alloc]init];
-    return _spritesForMessages;
+  if (!_spritesForMessages)
+      _spritesForMessages = [[NSMutableDictionary alloc]init];
+  return _spritesForMessages;
 }
 
-
--(void)registerSprite:(SpriteObject *)sprite forMessage:(NSString *)message
+- (void)registerSprite:(SpriteObject *)sprite forMessage:(NSString *)message
 {
-    [self.lock lock];
-    NSArray *sprites = [self.spritesForMessages objectForKey:message];
-    [self.spritesForMessages removeObjectForKey:message];
-    if (sprites == nil) {
-        sprites = [NSArray arrayWithObject:sprite];
-    } else {
-        sprites = [sprites arrayByAddingObject:sprite];
-    }
-    [self.spritesForMessages setObject:sprites forKey:message];
-    [self.lock unlock];
+  [self.lock lock];
+  NSArray *sprites = [self.spritesForMessages objectForKey:message];
+  [self.spritesForMessages removeObjectForKey:message];
+  if (sprites == nil) {
+      sprites = [NSArray arrayWithObject:sprite];
+  } else {
+      sprites = [sprites arrayByAddingObject:sprite];
+  }
+  [self.spritesForMessages setObject:sprites forKey:message];
+  [self.lock unlock];
 }
 
--(void)dealloc
+- (void)dealloc
 {
 }
--(void)performBroadcastWaitForMessage:(NSString*)message
+
+- (void)performBroadcastWaitForMessage:(NSString*)message
 {
 #warning look over again-> uncomment because of unused variable errors
-    //NSString* queueString = [NSString stringWithFormat:@"at.tugraz.ist.%@", message];
-    //const char *queueName = [queueString cStringUsingEncoding:NSUTF8StringEncoding];
-    
-    //dispatch_queue_t broadcastWaitQueue = dispatch_queue_create(queueName, DISPATCH_QUEUE_CONCURRENT);
-    
-    dispatch_queue_t broadcastWaitQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0);
-    dispatch_group_t group = dispatch_group_create();
-    
-    NSArray *sprites = [self.spritesForMessages objectForKey:message];
-    for (SpriteObject *sprite in sprites) {
-        
-        if ([sprite isKindOfClass:[SpriteObject class]] == NO) {
-            NSError(@"sprite is not a SpriteObject...abort()");
-        }
-        else {
-            dispatch_async(broadcastWaitQueue, ^{
-                [sprite performBroadcastWaitScriptWithMessage:message];
-            });
-        }
+  //NSString* queueString = [NSString stringWithFormat:@"at.tugraz.ist.%@", message];
+  //const char *queueName = [queueString cStringUsingEncoding:NSUTF8StringEncoding];
+
+  //dispatch_queue_t broadcastWaitQueue = dispatch_queue_create(queueName, DISPATCH_QUEUE_CONCURRENT);
+
+  dispatch_queue_t broadcastWaitQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0);
+  dispatch_group_t group = dispatch_group_create();
+
+  NSArray *sprites = [self.spritesForMessages objectForKey:message];
+  for (SpriteObject *sprite in sprites) {
+    if ([sprite isKindOfClass:[SpriteObject class]] == NO) {
+      NSError(@"sprite is not a SpriteObject...abort()");
+    } else {
+      dispatch_async(broadcastWaitQueue, ^{
+          [sprite performBroadcastWaitScriptWithMessage:message];
+      });
     }
-    
-    dispatch_group_async(group, broadcastWaitQueue, ^{
-    });
-    
-    dispatch_group_wait(group, DISPATCH_TIME_FOREVER); // Block until we're ready
-    
+  }
+  dispatch_group_async(group, broadcastWaitQueue, ^{});
+  dispatch_group_wait(group, DISPATCH_TIME_FOREVER); // Block until we're ready
 }
-
-
 
 @end

@@ -25,7 +25,6 @@
 #import "Util.h"
 #import "TableUtil.h"
 
-
 @implementation DarkBlueGradientCell
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier

@@ -20,26 +20,38 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import <UIKit/UIKit.h>
+#import "ColoredCell.h"
+#import "UIColor+CatrobatUIColorExtensions.h"
 
-@interface UIColor (CatrobatUIColorExtensions)
+@implementation ColoredCell
 
-+ (UIColor*) skyBlueColor;
+- (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
+{
+  self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
+  if (self) {
+      // Initialization code
+  }
+  return self;
+}
 
-+ (UIColor*) blueGrayColor;
+- (id)initWithCoder:(NSCoder *)aDecoder {
+  if (self = [super initWithCoder:aDecoder]) {
+      [self configure];
+  }
+  return self;
+}
 
-+ (UIColor*) airForceBlueColor;
+- (void)setSelected:(BOOL)selected animated:(BOOL)animated
+{
+  [super setSelected:selected animated:animated];
+  // Configure the view for the selected state
+}
 
-+ (UIColor*) darkBlueColor;
-
-+ (UIColor*) brightGrayColor;
-
-+ (UIColor*) lightOrangeColor;
-
-+ (UIColor*) lightBlueColor;
-
-+ (UIColor*) lightRedColor;
-
-+ (UIColor*) violetColor;
+- (void)configure
+{
+  self.contentView.backgroundColor = [UIColor clearColor];
+  self.textLabel.backgroundColor = [UIColor clearColor];
+  self.textLabel.textColor = [UIColor whiteColor];
+}
 
 @end
