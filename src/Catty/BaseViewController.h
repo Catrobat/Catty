@@ -21,10 +21,9 @@
  */
 
 #import <UIKit/UIKit.h>
-#import "BaseTableViewController.h"
 
-@class SpriteObject;
-
-@interface ObjectLooksTVC : BaseTableViewController
-@property (strong, nonatomic) SpriteObject *object;
+@interface BaseViewController : UIViewController
+- (void)setPlaceHolderTitle:(NSString*)title Description:(NSString*)description;
+- (void)showPlaceHolder:(BOOL)show;
+- (void)initPlaceHolder;
 @end

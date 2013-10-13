@@ -64,11 +64,8 @@
     [self initTableView];
     //[TableUtil initNavigationItem:self.navigationItem withTitle:NSLocalizedString(@"New Programs", nil)];
 
-    if (self.object) {
-      self.title = self.object.name;
-      if (self.navigationItem)
-        self.navigationItem.title = self.object.name;
-    }
+    self.title = self.object.name;
+    self.navigationItem.title = self.object.name;
     [self setupToolBar];
 }
 

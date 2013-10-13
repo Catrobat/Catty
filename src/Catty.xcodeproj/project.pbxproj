@@ -138,6 +138,8 @@
 		C34B44F817F1D8D200624730 /* ChangeBrightnessByNBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = C34B44F617F1D8D200624730 /* ChangeBrightnessByNBrick.m */; };
 		CA43DD361809976900F95B88 /* UIImageView+CatrobatUIImageViewExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = CA43DD351809976900F95B88 /* UIImageView+CatrobatUIImageViewExtensions.m */; };
 		CA43DD3A18099AA300F95B88 /* DarkBlueGradientBorderedImageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CA43DD3918099AA300F95B88 /* DarkBlueGradientBorderedImageCell.m */; };
+		CA688202180AEF00008A7C99 /* BaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA688201180AEF00008A7C99 /* BaseViewController.m */; };
+		CA688205180B0148008A7C99 /* BaseTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA688204180B0148008A7C99 /* BaseTableViewController.m */; };
 		CA7AC43A18074B5200904143 /* ic_media_play.png in Resources */ = {isa = PBXBuildFile; fileRef = CA7AC43918074B5200904143 /* ic_media_play.png */; };
 		CA7AC43C18074FD300904143 /* ic_media_pause.png in Resources */ = {isa = PBXBuildFile; fileRef = CA7AC43B18074FD300904143 /* ic_media_pause.png */; };
 		CA8F8A0B17F241F700A04C03 /* ic_looks.png in Resources */ = {isa = PBXBuildFile; fileRef = CA8F8A0817F241F700A04C03 /* ic_looks.png */; };
@@ -423,6 +425,10 @@
 		CA43DD351809976900F95B88 /* UIImageView+CatrobatUIImageViewExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+CatrobatUIImageViewExtensions.m"; sourceTree = "<group>"; };
 		CA43DD3818099AA300F95B88 /* DarkBlueGradientBorderedImageCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DarkBlueGradientBorderedImageCell.h; sourceTree = "<group>"; };
 		CA43DD3918099AA300F95B88 /* DarkBlueGradientBorderedImageCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DarkBlueGradientBorderedImageCell.m; sourceTree = "<group>"; };
+		CA688200180AEEC2008A7C99 /* BaseTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseTableViewController.h; sourceTree = "<group>"; };
+		CA688201180AEF00008A7C99 /* BaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseViewController.m; sourceTree = "<group>"; };
+		CA688203180B00C1008A7C99 /* BaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseViewController.h; sourceTree = "<group>"; };
+		CA688204180B0148008A7C99 /* BaseTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseTableViewController.m; sourceTree = "<group>"; };
 		CA7AC43918074B5200904143 /* ic_media_play.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ic_media_play.png; sourceTree = "<group>"; };
 		CA7AC43B18074FD300904143 /* ic_media_pause.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ic_media_pause.png; sourceTree = "<group>"; };
 		CA8F8A0817F241F700A04C03 /* ic_looks.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ic_looks.png; sourceTree = "<group>"; };
@@ -1178,14 +1184,9 @@
 		B4D940B2170EC5D5003DDBFA /* UserInterface */ = {
 			isa = PBXGroup;
 			children = (
+				CA6881FE180AEA85008A7C99 /* TableView */,
 				B4BCF425170ED41B008EDF3A /* CreateView */,
 				B4D940B8170EC643003DDBFA /* BackgroundLayer */,
-				B4D940CE170EC907003DDBFA /* CatrobatBaseCell */,
-				B4D940C6170EC708003DDBFA /* CatrobatImageCell.h */,
-				B4D940DD170ECB68003DDBFA /* ContinueImageCell */,
-				B4D940E1170ECB8F003DDBFA /* DarkBlueGradientCell */,
-				B40C3072170ECC53000B872F /* DarkBlueGradientImageCell */,
-				CA43DD3B18099AC000F95B88 /* DarkBlueGradientBorderedImageCell */,
 				B4BCF438170ED5DB008EDF3A /* LoadingView */,
 				B4BCF41E170ED3B7008EDF3A /* TTTAttributedLabel */,
 				B4F499B3175E838B002E1BBD /* PullableView */,
@@ -1424,6 +1425,27 @@
 			name = DarkBlueGradientBorderedImageCell;
 			sourceTree = "<group>";
 		};
+		CA6881FE180AEA85008A7C99 /* TableView */ = {
+			isa = PBXGroup;
+			children = (
+				CA6881FF180AEBAD008A7C99 /* Cell */,
+			);
+			name = TableView;
+			sourceTree = "<group>";
+		};
+		CA6881FF180AEBAD008A7C99 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				B4D940CE170EC907003DDBFA /* CatrobatBaseCell */,
+				B4D940C6170EC708003DDBFA /* CatrobatImageCell.h */,
+				B4D940DD170ECB68003DDBFA /* ContinueImageCell */,
+				B4D940E1170ECB8F003DDBFA /* DarkBlueGradientCell */,
+				B40C3072170ECC53000B872F /* DarkBlueGradientImageCell */,
+				CA43DD3B18099AC000F95B88 /* DarkBlueGradientBorderedImageCell */,
+			);
+			name = Cell;
+			sourceTree = "<group>";
+		};
 		CA8F8A0717F2417000A04C03 /* icons */ = {
 			isa = PBXGroup;
 			children = (
@@ -1448,6 +1470,10 @@
 		CD0CCE3B170CA00F00B70036 /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
+				CA688200180AEEC2008A7C99 /* BaseTableViewController.h */,
+				CA688204180B0148008A7C99 /* BaseTableViewController.m */,
+				CA688203180B00C1008A7C99 /* BaseViewController.h */,
+				CA688201180AEF00008A7C99 /* BaseViewController.m */,
 				CA04EDA317E7D1610063EB25 /* IDE */,
 				CD8CC8B81724340E00239EBF /* ForumWebViewController */,
 				B4BCF440170ED66D008EDF3A /* SearchStoreViewController */,
@@ -2055,6 +2081,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B4E7D257176EF20F00EC8AD8 /* Scene.m in Sources */,
+				CA688205180B0148008A7C99 /* BaseTableViewController.m in Sources */,
 				B40C306E170ECC30000B872F /* CatrobatBaseCell.m in Sources */,
 				B40C306D170ECC1B000B872F /* BackgroundLayer.m in Sources */,
 				B4D940D1170EC9ED003DDBFA /* NSString+CatrobatNSStringExtensions.m in Sources */,
@@ -2064,6 +2091,7 @@
 				B4D940CB170EC8DA003DDBFA /* TableUtil.m in Sources */,
 				B4D940CA170EC8C4003DDBFA /* ProgramLoadingInfo.m in Sources */,
 				C34B44F817F1D8D200624730 /* ChangeBrightnessByNBrick.m in Sources */,
+				CA688202180AEF00008A7C99 /* BaseViewController.m in Sources */,
 				B4D940B1170EC5C2003DDBFA /* CatrobatTableViewController.m in Sources */,
 				B4D940A0170EC249003DDBFA /* AppDelegate.m in Sources */,
 				1D60589B0D05DD56006BFB54 /* main.m in Sources */,

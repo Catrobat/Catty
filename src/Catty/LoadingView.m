@@ -90,7 +90,7 @@
     self.loadingLabel.textAlignment = NSTextAlignmentCenter;
     self.loadingLabel.font = [UIFont boldSystemFontOfSize:16];
     self.loadingLabel.adjustsFontSizeToFitWidth = YES;
-    
+
     [self addSubview:self.loadingLabel];
 }
 

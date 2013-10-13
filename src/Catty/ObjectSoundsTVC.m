@@ -62,10 +62,14 @@
     // self.clearsSelectionOnViewWillAppear = NO;
 
     [self initTableView];
+    [super initPlaceHolder];
+    [super setPlaceHolderTitle:NSLocalizedString(@"Sounds", @"Empty ObjectSoundsTVC placeholder title")
+                   Description:NSLocalizedString(@"Click \"+\" to add Sounds", @"Empty ObjectSoundsTVC placeholder description")];
+    [super showPlaceHolder:(! (BOOL)[self.object.soundList count])];
     //[TableUtil initNavigationItem:self.navigationItem withTitle:NSLocalizedString(@"New Programs", nil)];
 
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    self.title = self.object.name;
+    self.navigationItem.title = self.object.name;
     [self setupToolBar];
 }
 
@@ -80,6 +84,7 @@
 #pragma marks init
 - (void)initTableView
 {
+  [super initTableView];
   self.tableView.delegate = self;
   self.tableView.dataSource = self;
   [self.tableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];

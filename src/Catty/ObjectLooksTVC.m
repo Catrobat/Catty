@@ -30,9 +30,9 @@
 #import "ActionSheetAlertViewTags.h"
 #import "SceneViewController.h"
 #import "ProgramDefines.h"
-#import "UIColor+CatrobatUIColorExtensions.h"
 #import "UIImageView+CatrobatUIImageViewExtensions.h"
 #import "Util.h"
+#import "UIColor+CatrobatUIColorExtensions.h"
 #import "NSString+CatrobatNSStringExtensions.h"
 #import <MobileCoreServices/MobileCoreServices.h>
 
@@ -68,6 +68,7 @@
 
 - (void)initTableView
 {
+  [super initTableView];
   self.tableView.delegate = self;
   self.tableView.dataSource = self;
   [self.tableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
@@ -86,6 +87,10 @@
   // self.clearsSelectionOnViewWillAppear = NO;
 
   [self initTableView];
+  [super initPlaceHolder];
+  [super setPlaceHolderTitle:NSLocalizedString(@"Looks", @"Empty ObjectLooksTVC placeholder title")
+                 Description:NSLocalizedString(@"Click \"+\" to add Looks", @"Empty ObjectLooksTVC placeholder text")];
+  [super showPlaceHolder:(! (BOOL)[self.object.lookList count])];
   //[TableUtil initNavigationItem:self.navigationItem withTitle:NSLocalizedString(@"New Programs", nil)];
 
   // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
@@ -226,6 +231,7 @@
     // update view
     Look* look = [[Look alloc] initWithName:imageName andPath:newImageFileName];
     [self.object.lookList addObject:look];
+    [super showPlaceHolder:(BOOL)[self.object.soundList count]];
     [self.tableView reloadData];
   }
   [self dismissViewControllerAnimated:YES completion:nil];
