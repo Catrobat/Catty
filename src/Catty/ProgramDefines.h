@@ -30,6 +30,11 @@
 #define kMinNumOfObjects 1
 #define kBackgroundObjects 1
 
+#define kScriptsTitle NSLocalizedString(@"Scripts",nil)
+#define kLooksTitle NSLocalizedString(@"Looks",nil)
+#define kBackgroundsTitle NSLocalizedString(@"Backgrounds",nil)
+#define kSoundsTitle NSLocalizedString(@"Sounds",nil)
+
 // indexes
 #define kBackgroundIndex 0
 #define kObjectIndex (kBackgroundIndex + kBackgroundObjects)

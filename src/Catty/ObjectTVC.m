@@ -25,16 +25,12 @@
 #import "ObjectLooksTVC.h"
 #import "ObjectSoundsTVC.h"
 #import "SpriteObject.h"
+#import "ProgramDefines.h"
 #import "UIDefines.h"
 #import "SegueDefines.h"
 #import "TableUtil.h"
 #import "CatrobatImageCell.h"
 #import "SceneViewController.h"
-
-#define kScriptsTitle NSLocalizedString(@"Scripts",nil)
-#define kLooksTitle NSLocalizedString(@"Looks",nil)
-#define kBackgroundsTitle NSLocalizedString(@"Backgrounds",nil)
-#define kSoundsTitle NSLocalizedString(@"Sounds",nil)
 
 // identifiers
 #define kTableHeaderIdentifier @"Header"

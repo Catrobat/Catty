@@ -63,8 +63,8 @@
 
     [self initTableView];
     [super initPlaceHolder];
-    [super setPlaceHolderTitle:NSLocalizedString(@"Sounds", @"Empty ObjectSoundsTVC placeholder title")
-                   Description:NSLocalizedString(@"Click \"+\" to add Sounds", @"Empty ObjectSoundsTVC placeholder description")];
+    [super setPlaceHolderTitle:kSoundsTitle
+                   Description:[NSString stringWithFormat:NSLocalizedString(kEmptyTableViewPlaceHolder, nil), kSoundsTitle]];
     [super showPlaceHolder:(! (BOOL)[self.object.soundList count])];
     //[TableUtil initNavigationItem:self.navigationItem withTitle:NSLocalizedString(@"New Programs", nil)];
 

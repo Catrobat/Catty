@@ -88,13 +88,13 @@
 
   [self initTableView];
   [super initPlaceHolder];
-  [super setPlaceHolderTitle:NSLocalizedString(@"Looks", @"Empty ObjectLooksTVC placeholder title")
-                 Description:NSLocalizedString(@"Click \"+\" to add Looks", @"Empty ObjectLooksTVC placeholder text")];
+  [super setPlaceHolderTitle:kLooksTitle
+                 Description:[NSString stringWithFormat:NSLocalizedString(kEmptyTableViewPlaceHolder, nil), kLooksTitle]];
   [super showPlaceHolder:(! (BOOL)[self.object.lookList count])];
   //[TableUtil initNavigationItem:self.navigationItem withTitle:NSLocalizedString(@"New Programs", nil)];
 
-  // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-  // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+  self.title = self.object.name;
+  self.navigationItem.title = self.object.name;
   [self setupToolBar];
 }
 

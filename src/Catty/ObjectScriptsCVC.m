@@ -35,6 +35,9 @@
 {
   [super viewDidLoad];
   //[self.collectionView registerClass:[PrototypScriptCell class] forCellWithReuseIdentifier:@"Brick"];
+
+  self.title = self.object.name;
+  self.navigationItem.title = self.object.name;
   [self setupToolBar];
 }
 

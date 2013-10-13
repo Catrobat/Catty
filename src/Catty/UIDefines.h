@@ -25,3 +25,6 @@
 #define kBtnDeleteTitle NSLocalizedString(@"Delete", @"Delete button for views")
 
 #define kDefaultImageCellBorderWidth 1.0f
+
+// placeholder texts
+#define kEmptyTableViewPlaceHolder @"Click \"+\" to add %@"
