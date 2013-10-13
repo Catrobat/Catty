@@ -28,6 +28,7 @@
 #define kInvalidProgramNameWarningActionSheetTag 2
 #define kInvalidObjectNameWarningActionSheetTag 3
 #define kAddLookActionSheetTag 4
+#define kAddSoundActionSheetTag 5
 
 // Alert view tags
 #define kRenameAlertViewTag 1

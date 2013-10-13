@@ -20,32 +20,29 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import "BaseTableViewController.h"
+#import "BaseCollectionViewController.h"
 #import "UIColor+CatrobatUIColorExtensions.h"
-#import "TableUtil.h"
 
-#define kTableHeaderIdentifier @"Header"
-
-@interface BaseTableViewController ()
+@interface BaseCollectionViewController ()
 @property (nonatomic, strong) UIView *placeholder;
 @property (nonatomic, strong) UILabel *placeholderTitleLabel;
 @property (nonatomic, strong) UILabel *placeholderDescriptionLabel;
 @end
 
-@implementation BaseTableViewController
+@implementation BaseCollectionViewController
 
 #pragma marks init
 - (void)initPlaceHolder
 {
-  self.placeholder = [[UIView alloc] initWithFrame:self.tableView.bounds];
-  
+  self.placeholder = [[UIView alloc] initWithFrame:self.view.bounds];
+
   // setup title label
   self.placeholderTitleLabel = [[UILabel alloc] init];
   self.placeholderTitleLabel.textAlignment = NSTextAlignmentCenter;
   self.placeholderTitleLabel.backgroundColor = [UIColor clearColor];
   self.placeholderTitleLabel.textColor = [UIColor skyBlueColor];
   self.placeholderTitleLabel.font = [self.placeholderTitleLabel.font fontWithSize:45];
-  
+
   // setup description label
   self.placeholderDescriptionLabel = [[UILabel alloc] init];
   self.placeholderDescriptionLabel.textAlignment = NSTextAlignmentCenter;
@@ -53,19 +50,8 @@
   self.placeholderDescriptionLabel.textColor = [UIColor skyBlueColor];
   [self.placeholder addSubview:self.placeholderTitleLabel];
   [self.placeholder addSubview:self.placeholderDescriptionLabel];
-  [self.tableView addSubview:self.placeholder];
-  self.tableView.alwaysBounceVertical = self.placeholder.hidden = YES;
-}
-
-- (void)initTableView
-{
-  self.tableView.delegate = self;
-  self.tableView.dataSource = self;
-  [self.tableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
-  self.tableView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"darkblue"]];
-  UITableViewHeaderFooterView *headerViewTemplate = [[UITableViewHeaderFooterView alloc] initWithReuseIdentifier:kTableHeaderIdentifier];
-  headerViewTemplate.contentView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"darkblue"]];
-  [self.tableView addSubview:headerViewTemplate];
+  [self.view addSubview:self.placeholder];
+  self.placeholder.hidden = YES;
 }
 
 #pragma mark - getters and setters
@@ -74,7 +60,7 @@
   // title label
   self.placeholderTitleLabel.text = title;
   [self.placeholderTitleLabel sizeToFit];
-  CGRect frame = self.tableView.bounds;
+  CGRect frame = self.view.bounds;
   CGRect bounds = self.placeholderTitleLabel.bounds;
   #define placeholderTitlePaddingBottom 15.0f
   frame.origin.y = (frame.size.height/2.0f)-bounds.size.height-placeholderTitlePaddingBottom;
@@ -85,7 +71,7 @@
   self.placeholderDescriptionLabel.text = description;
   [self.placeholderDescriptionLabel sizeToFit];
   bounds = self.placeholderDescriptionLabel.bounds;
-  frame = self.tableView.bounds;
+  frame = self.view.bounds;
   frame.origin.y = (frame.size.height/2.0f);
   frame.size.height = bounds.size.height;
   self.placeholderDescriptionLabel.frame = frame;
@@ -93,13 +79,7 @@
 
 - (void)showPlaceHolder:(BOOL)show
 {
-  self.tableView.alwaysBounceVertical = self.placeholder.hidden = (! show);
-}
-
-#pragma mark - Table view data source
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-  return [TableUtil getHeightForImageCell];
+  self.placeholder.hidden = (! show);
 }
 
 @end

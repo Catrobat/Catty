@@ -88,8 +88,9 @@
 
   [self initTableView];
   [super initPlaceHolder];
-  [super setPlaceHolderTitle:kLooksTitle
-                 Description:[NSString stringWithFormat:NSLocalizedString(kEmptyTableViewPlaceHolder, nil), kLooksTitle]];
+  [super setPlaceHolderTitle:([self.object isBackground] ? kBackgroundsTitle : kLooksTitle)
+                 Description:[NSString stringWithFormat:NSLocalizedString(kEmptyViewPlaceHolder, nil),
+                              ([self.object isBackground] ? kBackgroundsTitle : kLooksTitle)]];
   [super showPlaceHolder:(! (BOOL)[self.object.lookList count])];
   //[TableUtil initNavigationItem:self.navigationItem withTitle:NSLocalizedString(@"New Programs", nil)];
 

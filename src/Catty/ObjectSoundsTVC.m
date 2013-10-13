@@ -26,22 +26,36 @@
 #import "CatrobatImageCell.h"
 #import "Sound.h"
 #import "SegueDefines.h"
+#import "ActionSheetAlertViewTags.h"
 #import "SceneViewController.h"
 #import "SpriteObject.h"
 #import "AudioManager.h"
 #import "ProgramDefines.h"
+#import "Util.h"
 #import <AVFoundation/AVFoundation.h>
 
 #define kTableHeaderIdentifier @"Header"
+#define kPocketCodeRecorderActionSheetButton @"pocketCodeRecorder"
+#define kSelectMusicTrackActionSheetButton @"selectMusicTrack"
 
 @interface ObjectSoundsTVC () <UIActionSheetDelegate, AVAudioPlayerDelegate>
 
+@property (nonatomic, strong) NSMutableDictionary* addSoundActionSheetBtnIndexes;
 @property (atomic, strong) Sound *currentPlayingSong;
 @property (atomic, weak) UITableViewCell<CatrobatImageCell> *currentPlayingSongCell;
 
 @end
 
 @implementation ObjectSoundsTVC
+
+#pragma getters and setters
+- (NSMutableDictionary*)addSoundActionSheetBtnIndexes
+{
+  // lazy instantiation
+  if (_addSoundActionSheetBtnIndexes == nil)
+    _addSoundActionSheetBtnIndexes = [NSMutableDictionary dictionaryWithCapacity:3];
+  return _addSoundActionSheetBtnIndexes;
+}
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -64,7 +78,7 @@
     [self initTableView];
     [super initPlaceHolder];
     [super setPlaceHolderTitle:kSoundsTitle
-                   Description:[NSString stringWithFormat:NSLocalizedString(kEmptyTableViewPlaceHolder, nil), kSoundsTitle]];
+                   Description:[NSString stringWithFormat:NSLocalizedString(kEmptyViewPlaceHolder, nil), kSoundsTitle]];
     [super showPlaceHolder:(! (BOOL)[self.object.soundList count])];
     //[TableUtil initNavigationItem:self.navigationItem withTitle:NSLocalizedString(@"New Programs", nil)];
 
@@ -221,27 +235,46 @@
   }
 }
 
-#pragma mark - UIActionSheet Views
-- (void)showSceneActionSheet
+#pragma mark - UIActionSheetDelegate Handlers
+- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
 {
-  // TODO: determine whether to show delete button or not
-  BOOL showDeleteButton = false;
-  //if (self.objectsList && self.background && [self.objectsList count] && [self.background count])
-  showDeleteButton = true;
+  if (actionSheet.tag == kAddSoundActionSheetTag) {
+    NSString *action = self.addSoundActionSheetBtnIndexes[@(buttonIndex)];
+    if ([action isEqualToString:kPocketCodeRecorderActionSheetButton]) {
+      // Pocket Code Recorder
+      NSLog(@"Pocket Code Recorder");
+      [Util showComingSoonAlertView];
+    } else if ([action isEqualToString:kSelectMusicTrackActionSheetButton]) {
+      // Select music track
+      NSLog(@"Select music track");
+    }
+  }
+}
 
-  UIActionSheet *edit = [[UIActionSheet alloc] initWithTitle:NSLocalizedString(@"Edit Sounds",nil)
-                                                    delegate:self
-                                           cancelButtonTitle:kBtnCancelTitle
-                                      destructiveButtonTitle:(showDeleteButton ? kBtnDeleteTitle : nil)
-                                           otherButtonTitles:NSLocalizedString(@"Rename",nil), nil];
-  //[edit setTag:kSceneActionSheetTag];
-  edit.actionSheetStyle = UIActionSheetStyleDefault;
-  [edit showInView:self.view];
+#pragma mark - UIActionSheet Views
+- (void)showAddSoundActionSheet
+{
+  UIActionSheet *sheet = [[UIActionSheet alloc] init];
+  sheet.title = NSLocalizedString(@"Add sound",@"Action sheet menu title");
+  sheet.delegate = self;
+  self.addSoundActionSheetBtnIndexes[@([sheet addButtonWithTitle:NSLocalizedString(@"Pocket Code Recorder",nil)])] = kPocketCodeRecorderActionSheetButton;
+
+//  if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeSavedPhotosAlbum]) {
+//    NSArray *availableMediaTypes = [UIImagePickerController availableMediaTypesForSourceType:UIImagePickerControllerSourceTypeSavedPhotosAlbum];
+//    if ([availableMediaTypes containsObject:(NSString *)kUTTypeImage])
+//      self.addSoundActionSheetBtnIndexes[@([sheet addButtonWithTitle:NSLocalizedString(@"Choose image",nil)])] = kSelectMusicTrackActionSheetButton;
+//  }
+
+  sheet.cancelButtonIndex = [sheet addButtonWithTitle:kBtnCancelTitle];
+  sheet.tag = kAddSoundActionSheetTag;
+  sheet.actionSheetStyle = UIActionSheetStyleDefault;
+  [sheet showInView:self.view];
 }
 
 #pragma mark - Helper Methods
 - (void)addSoundAction:(id)sender
 {
+  [self showAddSoundActionSheet];
 }
 
 - (void)playSceneAction:(id)sender

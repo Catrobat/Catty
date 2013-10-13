@@ -20,11 +20,10 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#define kBtnCancelTitle NSLocalizedString(@"Cancel", @"Cancel button for views")
-#define kBtnOKTitle NSLocalizedString(@"OK", @"OK button for views")
-#define kBtnDeleteTitle NSLocalizedString(@"Delete", @"Delete button for views")
+#import <UIKit/UIKit.h>
 
-#define kDefaultImageCellBorderWidth 1.0f
-
-// placeholder texts
-#define kEmptyViewPlaceHolder @"Click \"+\" to add %@"
+@interface BaseCollectionViewController : UICollectionViewController
+- (void)setPlaceHolderTitle:(NSString*)title Description:(NSString*)description;
+- (void)showPlaceHolder:(BOOL)show;
+- (void)initPlaceHolder;
+@end

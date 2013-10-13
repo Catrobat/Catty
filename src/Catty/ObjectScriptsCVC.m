@@ -22,6 +22,7 @@
 
 #import "ObjectScriptsCVC.h"
 #import "PrototypScriptCell.h"
+#import "UIDefines.h"
 #import "SpriteObject.h"
 #import "SegueDefines.h"
 #import "SceneViewController.h"
@@ -34,7 +35,11 @@
 - (void)viewDidLoad
 {
   [super viewDidLoad];
-  //[self.collectionView registerClass:[PrototypScriptCell class] forCellWithReuseIdentifier:@"Brick"];
+  [super initPlaceHolder];
+  [super setPlaceHolderTitle:kScriptsTitle
+                 Description:[NSString stringWithFormat:NSLocalizedString(kEmptyViewPlaceHolder, nil),
+                              kScriptsTitle]];
+  [super showPlaceHolder:(! (BOOL)[self.object.lookList count])];
 
   self.title = self.object.name;
   self.navigationItem.title = self.object.name;
