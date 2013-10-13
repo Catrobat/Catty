@@ -23,6 +23,7 @@
 #import "MyProgramsViewController.h"
 #import "Util.h"
 #import "ProgramLoadingInfo.h"
+#import "Program.h"
 #import "ProgramTVC.h"
 #import "AppDelegate.h"
 #import "TableUtil.h"
@@ -90,18 +91,19 @@
 
 -(void)loadLevels
 {
-    NSString *documentsDirectoy = [Util applicationDocumentsDirectory];
-    NSString *levelFolder = @"levels";
-    NSString *levelsPath = [NSString stringWithFormat:@"%@/%@", documentsDirectoy, levelFolder];
-
+    NSString *basePath = [Program basePath];
     NSError *error;
-    NSArray *levels = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:levelsPath error:&error];
+    NSArray *levels = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:basePath error:&error];
     NSLogError(error);
 
     self.levelLoadingInfos = [[NSMutableArray alloc] initWithCapacity:[levels count]];
     for (NSString *level in levels) {
+        // exclude .DS_Store folder on MACOSX simulator
+        if ([level isEqualToString:@".DS_Store"])
+          continue;
+
         ProgramLoadingInfo *info = [[ProgramLoadingInfo alloc] init];
-        info.basePath = [NSString stringWithFormat:@"%@/%@/", levelsPath, level];
+        info.basePath = [NSString stringWithFormat:@"%@%@/", basePath, level];
         info.visibleName = level;
         NSDebug(@"Adding level: %@", info.basePath);
         [self.levelLoadingInfos addObject:info];
@@ -152,15 +154,13 @@
 {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
         // Delete the row from the data source
-        AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
         ProgramLoadingInfo *level = [self.levelLoadingInfos objectAtIndex:indexPath.row];
+        AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
         [appDelegate.fileManager deleteFolder:level.basePath];
         [self.levelLoadingInfos removeObject:level];
-        
+        [Util setLastProgram:nil];
         [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-        
-        
-    }   
+    }
     else if (editingStyle == UITableViewCellEditingStyleInsert) {
         // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
     }   

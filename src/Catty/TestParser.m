@@ -251,7 +251,6 @@
 //    SpriteObject *sprite = [self createSprite:@"cat" withPositionX:(NSInteger)0 withPositionY:(NSInteger)0 withCostumes:looks setCostumeIndex:(NSInteger)0];
 //    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
 //    NSString *documentsDirectory = [paths objectAtIndex:0];
-//    sprite.projectPath = [documentsDirectory stringByAppendingString:@"/levels/TestParser/"];
 //    NSMutableArray *temp = [[NSMutableArray alloc] init];
 //    [temp addObject:startScript];
 //    [temp addObject:whenScript];

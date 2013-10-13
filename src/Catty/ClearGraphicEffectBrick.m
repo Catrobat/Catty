@@ -55,7 +55,7 @@
 
 -(NSString*)pathForLook:(Look*)look
 {
-    return [NSString stringWithFormat:@"%@images/%@", self.object.projectPath, look.fileName];
+    return [NSString stringWithFormat:@"%@images/%@", [self.object projectPath], look.fileName];
 }
 
 

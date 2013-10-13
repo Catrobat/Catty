@@ -34,7 +34,10 @@
 
 #define kTableHeaderIdentifier @"Header"
 
-@interface ObjectSoundsTVC () <UIActionSheetDelegate>
+@interface ObjectSoundsTVC () <UIActionSheetDelegate, AVAudioPlayerDelegate>
+
+@property (atomic, strong) Sound *currentPlayingSong;
+@property (atomic, weak) UITableViewCell<CatrobatImageCell> *currentPlayingSongCell;
 
 @end
 
@@ -52,6 +55,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.currentPlayingSong = nil;
+    self.currentPlayingSongCell = nil;
 
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
@@ -62,6 +67,14 @@
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
     [self setupToolBar];
+}
+
+-(void)dealloc
+{
+  [[AudioManager sharedAudioManager] stopAllSounds];
+  self.currentPlayingSong.playing = NO;
+  self.currentPlayingSong = nil;
+  self.currentPlayingSongCell = nil;
 }
 
 #pragma marks init
@@ -131,37 +144,59 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
   UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
-  // TODO: get and play song: indexPath.row
   if ([cell conformsToProtocol:@protocol(CatrobatImageCell)]) {
     UITableViewCell <CatrobatImageCell>* imageCell = (UITableViewCell <CatrobatImageCell>*)cell;
 
     if (indexPath.row < [self.object.soundList count]) {
-      Sound* sound = (Sound*) [self.object.soundList objectAtIndex:indexPath.row];
-
-      if (! sound.playing) {
-
-        // FIXME: get AudioManager to work with this...
-        //[[AudioManager sharedAudioManager] playSoundWithFileName:sound.fileName andKey:nil atFilePath:[self.object.projectPath stringByAppendingString:kProgramSoundsDirName]];
-
-        NSURL *url = [NSURL fileURLWithPath:[NSString stringWithFormat:@"%@/%@", [self.object.projectPath stringByAppendingString:kProgramSoundsDirName], sound.fileName]];
-        NSError *error;
-        AVAudioPlayer *audioPlayer = [[AVAudioPlayer alloc] initWithContentsOfURL:url error:&error];
-        NSLogError(error);
-
-        if (audioPlayer == nil) {
-          NSLog(@"%@", [error description]);
+      // synchronized to guarantee that the player never plays two (different) songs at the same time
+      // INFO: there are no operations that take much time, therefore synchronized will be no problem here
+      @synchronized(self) {
+        Sound* sound = (Sound*) [self.object.soundList objectAtIndex:indexPath.row];
+        BOOL isPlaying = sound.playing;
+        if (self.currentPlayingSong && self.currentPlayingSongCell) {
+          self.currentPlayingSong.playing = NO;
+          self.currentPlayingSongCell.iconImageView.image = [UIImage imageNamed:@"ic_media_play.png"];
         }
-        [audioPlayer play];
-        audioPlayer.volume = 100.0;
-        imageCell.iconImageView.image = [UIImage imageNamed:@"ic_media_pause.png"];
-        sound.playing = YES;
-      } else {
-        imageCell.iconImageView.image = [UIImage imageNamed:@"ic_media_play.png"];
-        sound.playing = NO;
+        self.currentPlayingSong = sound;
+        self.currentPlayingSongCell = imageCell;
+        self.currentPlayingSong.playing = (! isPlaying);
+        self.currentPlayingSongCell.iconImageView.image = [UIImage imageNamed:@"ic_media_play.png"];
+        if (! isPlaying)
+          imageCell.iconImageView.image = [UIImage imageNamed:@"ic_media_pause.png"];
+
+        // INFO: the synchronized-lock will be released immediatelly by the main-thread itself,
+        //       because the long-time operations are performed on another thread AFTER the lock is released
+        dispatch_queue_t audioPlayerQueue = dispatch_queue_create("audio player", NULL);
+        dispatch_async(audioPlayerQueue, ^{
+          [[AudioManager sharedAudioManager] stopAllSounds];
+          if (! isPlaying)
+            [[AudioManager sharedAudioManager] playSoundWithFileName:sound.fileName
+                                                              andKey:self.object.name
+                                                          atFilePath:[self.object projectPath]
+                                                            Delegate:self];
+        });
       }
     }
   }
   [tableView deselectRowAtIndexPath:indexPath animated:YES];
+}
+
+#pragma audio delegate methods
+- (void)audioPlayerDidFinishPlaying:(AVAudioPlayer *)player successfully:(BOOL)flag
+{
+  // mark all sounds as stopped
+  // switch back to main thread here, since UI-actions have to be performed on main thread!!
+  dispatch_async(dispatch_get_main_queue(), ^{
+    // FIXME: fix possible concurrency issue with didSelectRowAtIndexPath
+    @synchronized(self) {
+      if (self.currentPlayingSong && self.currentPlayingSongCell) {
+        self.currentPlayingSong.playing = NO;
+        self.currentPlayingSongCell.iconImageView.image = [UIImage imageNamed:@"ic_media_play.png"];
+      }
+      self.currentPlayingSong = nil;
+      self.currentPlayingSongCell = nil;
+    }
+  });
 }
 
 #pragma mark - Navigation

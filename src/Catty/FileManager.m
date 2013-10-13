@@ -96,6 +96,18 @@
     }
 }
 
+- (BOOL)fileExists:(NSString*)path
+{
+  BOOL isDir;
+  return ([[NSFileManager defaultManager] fileExistsAtPath:path isDirectory:&isDir] && (! isDir));
+}
+
+- (BOOL)directoryExists:(NSString*)path
+{
+  BOOL isDir;
+  return ([[NSFileManager defaultManager] fileExistsAtPath:path isDirectory:&isDir] && isDir);
+}
+
 - (void)deleteFolder:(NSString*)path {
     NSError *error = nil;
     [[NSFileManager defaultManager] removeItemAtPath:path error:&error];

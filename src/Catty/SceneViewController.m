@@ -62,7 +62,6 @@
   {
     //sprite.spriteManagerDelegate = self;
     sprite.broadcastWaitDelegate = self.broadcastWaitHandler;
-    //sprite.projectPath = xmlPath;
 
     // TODO: change!
     for (Script *script in sprite.scriptList) {
@@ -117,56 +116,6 @@
     [skView presentScene:scene];
     [[ProgramManager sharedProgramManager] setProgram:self.program];
 }
-
-/*
-- (Program*)loadProgram
-{
-    
-    NSDebug(@"Try to load project '%@'", self.programLoadingInfo.visibleName);
-    NSDebug(@"Path: %@", self.programLoadingInfo.basePath);
-    
-    
-    NSString *xmlPath = [NSString stringWithFormat:@"%@", self.programLoadingInfo.basePath];
-    
-    NSDebug(@"XML-Path: %@", xmlPath);
-    
-    Parser *parser = [[Parser alloc]init];
-    Program *program = [parser generateObjectForLevel:[xmlPath stringByAppendingFormat:@"%@", kProgramCodeFileName]];
-    
-    if(!program) {
-
-        NSString *popuperrormessage = [NSString stringWithFormat:@"Program %@ could not be loaded!",self.programLoadingInfo.visibleName];
-
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Invalid Program"
-                                                        message:popuperrormessage
-                                                       delegate:self
-                                              cancelButtonTitle:@"OK"
-                                              otherButtonTitles:nil];
-        [alert show];
-        
-    }
-    
-    
-    NSDebug(@"ProjectResolution: width/height:  %f / %f", program.header.screenWidth.floatValue, program.header.screenHeight.floatValue);
-    
-    
-    //setting effect
-    for (SpriteObject *sprite in program.objectList)
-    {
-        //sprite.spriteManagerDelegate = self;
-        sprite.broadcastWaitDelegate = self.broadcastWaitHandler;
-        sprite.projectPath = xmlPath;
-        
-        // TODO: change!
-        for (Script *script in sprite.scriptList) {
-            for (Brick *brick in script.brickList) {
-                brick.object = sprite;
-            }
-        }
-    }
-    return program;
-}
-*/
 
 -(void)dealloc
 {

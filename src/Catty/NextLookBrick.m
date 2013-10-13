@@ -22,7 +22,7 @@
 
 #import "Nextlookbrick.h"
 #import "Look.h"
-
+#import "ProgramDefines.h"
 
 @implementation NextLookBrick
 
@@ -55,10 +55,8 @@
 
 -(NSString*)pathForLook:(Look*)look
 {
-    return [NSString stringWithFormat:@"%@images/%@", self.object.projectPath, look.fileName];
+  return [NSString stringWithFormat:@"%@%@/%@", [self.object projectPath], kProgramImagesDirName, look.fileName];
 }
-
-
 
 #pragma mark - Description
 - (NSString*)description

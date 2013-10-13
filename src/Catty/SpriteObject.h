@@ -23,6 +23,8 @@
 
 #import <SpriteKit/SpriteKit.h>
 #import "Program.h"
+#import "ProgramDefines.h"
+
 @class Script;
 @class Look;
 @class Sound;
@@ -49,10 +51,9 @@
 @property (weak, nonatomic) id<SpriteManagerDelegate> spriteManagerDelegate;
 @property (weak, nonatomic) id<BroadcastWaitDelegate> broadcastWaitDelegate;
 
-@property (strong, nonatomic) NSString *projectPath; //for image-path!!!
+@property (nonatomic, strong) NSMutableArray *lookList;
 
-@property (strong, nonatomic) NSMutableArray *lookList;
-@property (strong, nonatomic) NSMutableArray *soundList;
+@property (nonatomic, strong) NSMutableArray *soundList;
 
 @property (nonatomic, strong) NSMutableArray *scriptList;
 
@@ -63,6 +64,8 @@
 @property (nonatomic) NSInteger numberOfObjects;
 
 @property (nonatomic,strong) Program* program;
+
+- (NSString*)projectPath; //for image-path!!!
 
 - (BOOL)isBackground;
 
@@ -81,6 +84,9 @@
 
 - (Look*)nextLook;
 
+// helpers
+- (NSString*)pathForLook:(Look*)look;
+- (NSString*)pathForSound:(Sound*)sound;
 
 // actions
 - (void)changeLook:(Look*)look;
