@@ -21,18 +21,12 @@
  */
 
 #import <UIKit/UIKit.h>
-#import <SpriteKit/SpriteKit.h>
-#import "SlidingViewController.h"
 
-@protocol SpriteManagerDelegate;
+@interface MenuButtonViewController : UIViewController
 
-//@class ProgramLoadingInfo;
-@class Program;
-
-@interface SceneViewController : SlidingViewController
-
-//@property (nonatomic, strong) ProgramLoadingInfo* programLoadingInfo;
-@property (nonatomic, strong) Program* program; // has to be set to get this view controller working
-@property (nonatomic, weak) IBOutlet UIView* skView;
+@property (strong,nonatomic) UIButton* backButton;
+@property (strong,nonatomic) UIButton* continueButton;
+@property (strong,nonatomic) UIButton* screenshotButton;
+@property (strong,nonatomic) IBOutlet UIView* menuView;
 
 @end

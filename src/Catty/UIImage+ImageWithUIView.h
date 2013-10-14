@@ -21,18 +21,8 @@
  */
 
 #import <UIKit/UIKit.h>
-#import <SpriteKit/SpriteKit.h>
-#import "SlidingViewController.h"
+#import <QuartzCore/QuartzCore.h>
 
-@protocol SpriteManagerDelegate;
-
-//@class ProgramLoadingInfo;
-@class Program;
-
-@interface SceneViewController : SlidingViewController
-
-//@property (nonatomic, strong) ProgramLoadingInfo* programLoadingInfo;
-@property (nonatomic, strong) Program* program; // has to be set to get this view controller working
-@property (nonatomic, weak) IBOutlet UIView* skView;
-
+@interface UIImage (ImageWithUIView)
++ (UIImage *)imageWithUIView:(UIView *)view;
 @end

@@ -17,6 +17,8 @@
 	<string>src/Catty.xcodeproj/project.xcworkspace</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
+		<key>2EA0ABA5-3273-47E8-8B88-19F915654BEE</key>
+		<string>../../../../../Downloads/SlideMenu-2</string>
 		<key>65110DC2-A33B-42ED-B810-293FB56035A5</key>
 		<string>../../..</string>
 	</dict>
@@ -35,6 +37,14 @@
 			<string>65110DC2-A33B-42ED-B810-293FB56035A5</string>
 			<key>IDESourceControlWCCName</key>
 			<string>Catty</string>
+		</dict>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>2EA0ABA5-3273-47E8-8B88-19F915654BEE</string>
+			<key>IDESourceControlWCCName</key>
+			<string>SlideMenu-2</string>
 		</dict>
 	</array>
 </dict>

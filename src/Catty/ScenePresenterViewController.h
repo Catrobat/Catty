@@ -22,17 +22,17 @@
 
 #import <UIKit/UIKit.h>
 #import <SpriteKit/SpriteKit.h>
-#import "SlidingViewController.h"
 
 @protocol SpriteManagerDelegate;
 
 //@class ProgramLoadingInfo;
 @class Program;
 
-@interface SceneViewController : SlidingViewController
+@interface ScenePresenterViewController : UIViewController
 
 //@property (nonatomic, strong) ProgramLoadingInfo* programLoadingInfo;
 @property (nonatomic, strong) Program* program; // has to be set to get this view controller working
 @property (nonatomic, weak) IBOutlet UIView* skView;
+@property (strong,nonatomic) UIButton* menuBtn;
 
 @end

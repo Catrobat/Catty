@@ -20,19 +20,22 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import <UIKit/UIKit.h>
-#import <SpriteKit/SpriteKit.h>
-#import "SlidingViewController.h"
+#import "UIImage+ImageWithUIView.h"
 
-@protocol SpriteManagerDelegate;
+@implementation UIImage (ImageWithUIView)
+#pragma mark -
+#pragma mark TakeScreenShot
 
-//@class ProgramLoadingInfo;
-@class Program;
-
-@interface SceneViewController : SlidingViewController
-
-//@property (nonatomic, strong) ProgramLoadingInfo* programLoadingInfo;
-@property (nonatomic, strong) Program* program; // has to be set to get this view controller working
-@property (nonatomic, weak) IBOutlet UIView* skView;
-
++ (UIImage *)imageWithUIView:(UIView *)view
+{
+  CGSize screenShotSize = view.bounds.size;
+  UIImage *img;  
+  UIGraphicsBeginImageContext(screenShotSize);
+  CGContextRef ctx = UIGraphicsGetCurrentContext();
+  [view drawLayer:view.layer inContext:ctx];
+  img = UIGraphicsGetImageFromCurrentImageContext();
+  UIGraphicsEndImageContext();
+  
+  return img;
+}
 @end

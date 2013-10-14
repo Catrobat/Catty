@@ -136,6 +136,14 @@
 		C34B44ED17F079F500624730 /* CustomExtensionsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C34B44EC17F079F500624730 /* CustomExtensionsTests.m */; };
 		C34B44F417F1D2C700624730 /* ClearGraphicEffectBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = C34B44F317F1D2C700624730 /* ClearGraphicEffectBrick.m */; };
 		C34B44F817F1D8D200624730 /* ChangeBrightnessByNBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = C34B44F617F1D8D200624730 /* ChangeBrightnessByNBrick.m */; };
+		C3E91973180BDBBC001F2232 /* MenuButtonViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C3E91972180BDBBC001F2232 /* MenuButtonViewController.m */; };
+		C3E9197B180BE0AE001F2232 /* menuButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C3E9197A180BE0AE001F2232 /* menuButton@2x.png */; };
+		C3E9197D180BE0BF001F2232 /* ic_media_play.png in Resources */ = {isa = PBXBuildFile; fileRef = C3E9197C180BE0BF001F2232 /* ic_media_play.png */; };
+		C3E9197F180BE179001F2232 /* screenshot.png in Resources */ = {isa = PBXBuildFile; fileRef = C3E9197E180BE179001F2232 /* screenshot.png */; };
+		C3E91988180BEDE5001F2232 /* SlidingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C3E91987180BEDE5001F2232 /* SlidingViewController.m */; };
+		C3E9198B180BEDFB001F2232 /* UIImage+ImageWithUIView.m in Sources */ = {isa = PBXBuildFile; fileRef = C3E9198A180BEDFB001F2232 /* UIImage+ImageWithUIView.m */; };
+		C3F1DD5C180AD1DC00E2FA45 /* ScenePresenterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C3F1DD5B180AD1DC00E2FA45 /* ScenePresenterViewController.m */; };
+		C3F1DD5F180AD8D300E2FA45 /* MenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C3F1DD5E180AD8D300E2FA45 /* MenuViewController.m */; };
 		CA8F8A0B17F241F700A04C03 /* ic_looks.png in Resources */ = {isa = PBXBuildFile; fileRef = CA8F8A0817F241F700A04C03 /* ic_looks.png */; };
 		CA8F8A0C17F241F700A04C03 /* ic_scripts.png in Resources */ = {isa = PBXBuildFile; fileRef = CA8F8A0917F241F700A04C03 /* ic_scripts.png */; };
 		CA8F8A0D17F241F700A04C03 /* ic_sounds.png in Resources */ = {isa = PBXBuildFile; fileRef = CA8F8A0A17F241F700A04C03 /* ic_sounds.png */; };
@@ -414,6 +422,19 @@
 		C34B44F317F1D2C700624730 /* ClearGraphicEffectBrick.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ClearGraphicEffectBrick.m; sourceTree = "<group>"; };
 		C34B44F617F1D8D200624730 /* ChangeBrightnessByNBrick.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChangeBrightnessByNBrick.m; sourceTree = "<group>"; };
 		C34B44F717F1D8D200624730 /* ChangeBrightnessByNBrick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChangeBrightnessByNBrick.h; sourceTree = "<group>"; };
+		C3E91971180BDBBC001F2232 /* MenuButtonViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuButtonViewController.h; sourceTree = "<group>"; };
+		C3E91972180BDBBC001F2232 /* MenuButtonViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MenuButtonViewController.m; sourceTree = "<group>"; };
+		C3E9197A180BE0AE001F2232 /* menuButton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "menuButton@2x.png"; path = "../menuButton@2x.png"; sourceTree = "<group>"; };
+		C3E9197C180BE0BF001F2232 /* ic_media_play.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ic_media_play.png; sourceTree = "<group>"; };
+		C3E9197E180BE179001F2232 /* screenshot.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = screenshot.png; sourceTree = "<group>"; };
+		C3E91986180BEDE5001F2232 /* SlidingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SlidingViewController.h; sourceTree = "<group>"; };
+		C3E91987180BEDE5001F2232 /* SlidingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SlidingViewController.m; sourceTree = "<group>"; };
+		C3E91989180BEDFB001F2232 /* UIImage+ImageWithUIView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+ImageWithUIView.h"; sourceTree = "<group>"; };
+		C3E9198A180BEDFB001F2232 /* UIImage+ImageWithUIView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+ImageWithUIView.m"; sourceTree = "<group>"; };
+		C3F1DD5A180AD1DC00E2FA45 /* ScenePresenterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScenePresenterViewController.h; sourceTree = "<group>"; };
+		C3F1DD5B180AD1DC00E2FA45 /* ScenePresenterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScenePresenterViewController.m; sourceTree = "<group>"; };
+		C3F1DD5D180AD8D300E2FA45 /* MenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuViewController.h; sourceTree = "<group>"; };
+		C3F1DD5E180AD8D300E2FA45 /* MenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MenuViewController.m; sourceTree = "<group>"; };
 		CA8F8A0817F241F700A04C03 /* ic_looks.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ic_looks.png; sourceTree = "<group>"; };
 		CA8F8A0917F241F700A04C03 /* ic_scripts.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ic_scripts.png; sourceTree = "<group>"; };
 		CA8F8A0A17F241F700A04C03 /* ic_sounds.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ic_sounds.png; sourceTree = "<group>"; };
@@ -731,10 +752,13 @@
 				B4BCF3E0170ECE19008EDF3A /* forum@2x.png */,
 				B4BCF3E1170ECE19008EDF3A /* new.png */,
 				B4BCF3E2170ECE19008EDF3A /* new@2x.png */,
+				C3E9197E180BE179001F2232 /* screenshot.png */,
 				B4BCF3E3170ECE19008EDF3A /* programs.png */,
 				B4BCF3E4170ECE19008EDF3A /* programs@2x.png */,
 				B4BCF3E5170ECE19008EDF3A /* upload.png */,
 				B4BCF3E6170ECE19008EDF3A /* upload@2x.png */,
+				C3E9197A180BE0AE001F2232 /* menuButton@2x.png */,
+				C3E9197C180BE0BF001F2232 /* ic_media_play.png */,
 			);
 			path = graphics;
 			sourceTree = "<group>";
@@ -1322,8 +1346,18 @@
 		B4E7D254176EF1B900EC8AD8 /* SceneViewController */ = {
 			isa = PBXGroup;
 			children = (
+				C3E91989180BEDFB001F2232 /* UIImage+ImageWithUIView.h */,
+				C3E9198A180BEDFB001F2232 /* UIImage+ImageWithUIView.m */,
+				C3E91986180BEDE5001F2232 /* SlidingViewController.h */,
+				C3E91987180BEDE5001F2232 /* SlidingViewController.m */,
 				B4E7D251176EF1B300EC8AD8 /* SceneViewController.h */,
 				B4E7D252176EF1B300EC8AD8 /* SceneViewController.m */,
+				C3F1DD5D180AD8D300E2FA45 /* MenuViewController.h */,
+				C3F1DD5E180AD8D300E2FA45 /* MenuViewController.m */,
+				C3F1DD5A180AD1DC00E2FA45 /* ScenePresenterViewController.h */,
+				C3F1DD5B180AD1DC00E2FA45 /* ScenePresenterViewController.m */,
+				C3E91971180BDBBC001F2232 /* MenuButtonViewController.h */,
+				C3E91972180BDBBC001F2232 /* MenuButtonViewController.m */,
 			);
 			name = SceneViewController;
 			sourceTree = "<group>";
@@ -1948,6 +1982,7 @@
 				B4D940D9170ECB31003DDBFA /* My first project.catrobat in Resources */,
 				B4F243C8170EBD7B007A071D /* iPhone.storyboard in Resources */,
 				B4F243CF170EBF8F007A071D /* back.png in Resources */,
+				C3E9197B180BE0AE001F2232 /* menuButton@2x.png in Resources */,
 				B4F243D0170EBF8F007A071D /* back@2x.png in Resources */,
 				B4BCF3DA170ECE05008EDF3A /* accessory.png in Resources */,
 				B4BCF3DB170ECE05008EDF3A /* accessory@2x.png in Resources */,
@@ -1976,10 +2011,12 @@
 				B43313D717329514008B4EB3 /* Localizable.strings in Resources */,
 				B4365CE91758EBA900B4D0A6 /* LoggerProperties.plist in Resources */,
 				B4DA23D5175E761D0079B381 /* icon_retina.png in Resources */,
+				C3E9197D180BE0BF001F2232 /* ic_media_play.png in Resources */,
 				816C788317D5F0420029A4E6 /* settings_bg@2x.png in Resources */,
 				B4DA23D7175E76820079B381 /* icon.png in Resources */,
 				B4DA23DA175E78050079B381 /* menu_icon.png in Resources */,
 				B4DA23DC175E78050079B381 /* menu_icon@2x.png in Resources */,
+				C3E9197F180BE179001F2232 /* screenshot.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2023,6 +2060,7 @@
 				81FAEE3F17E7994B0052BB2B /* PrototypScriptCell.m in Sources */,
 				B4D940CB170EC8DA003DDBFA /* TableUtil.m in Sources */,
 				B4D940CA170EC8C4003DDBFA /* ProgramLoadingInfo.m in Sources */,
+				C3E91973180BDBBC001F2232 /* MenuButtonViewController.m in Sources */,
 				C34B44F817F1D8D200624730 /* ChangeBrightnessByNBrick.m in Sources */,
 				B4D940B1170EC5C2003DDBFA /* CatrobatTableViewController.m in Sources */,
 				B4D940A0170EC249003DDBFA /* AppDelegate.m in Sources */,
@@ -2032,6 +2070,8 @@
 				CD0CCF53170CB39700B70036 /* BroadcastBrick.m in Sources */,
 				CD0CCF54170CB39700B70036 /* BroadcastScript.m in Sources */,
 				816C788617D62B7C0029A4E6 /* NewProgramTVC.m in Sources */,
+				C3E91988180BEDE5001F2232 /* SlidingViewController.m in Sources */,
+				C3F1DD5F180AD8D300E2FA45 /* MenuViewController.m in Sources */,
 				CD0CCF55170CB39700B70036 /* BroadcastWaitBrick.m in Sources */,
 				B46475301770F60500CD277F /* AudioManager.m in Sources */,
 				CD0CCF56170CB39700B70036 /* BroadcastWaitHandler.m in Sources */,
@@ -2043,6 +2083,7 @@
 				CD0CCF62170CB39700B70036 /* ChangeYByNBrick.m in Sources */,
 				CD0CCF64170CB39700B70036 /* ComeToFrontBrick.m in Sources */,
 				CD0CCF71170CB39700B70036 /* FileManager.m in Sources */,
+				C3E9198B180BEDFB001F2232 /* UIImage+ImageWithUIView.m in Sources */,
 				CD0CCF72170CB39700B70036 /* ForeverBrick.m in Sources */,
 				81FAEE3917E793240052BB2B /* ScriptsCollectionViewCell.m in Sources */,
 				CD0CCF74170CB39700B70036 /* GlideToBrick.m in Sources */,
@@ -2102,6 +2143,7 @@
 				B4BCF433170ED5AD008EDF3A /* RecentProgramsStoreViewController.m in Sources */,
 				B4BCF437170ED5D4008EDF3A /* LoadingView.m in Sources */,
 				B4BCF43B170ED60D008EDF3A /* FeaturedProgramsStoreViewController.m in Sources */,
+				C3F1DD5C180AD1DC00E2FA45 /* ScenePresenterViewController.m in Sources */,
 				B4BCF43F170ED669008EDF3A /* SearchStoreViewController.m in Sources */,
 				B4DEFC90170F464200DD1939 /* TestParser.m in Sources */,
 				B4D4DD4317156A8500EEE3F8 /* PointInDirectionBrick.m in Sources */,

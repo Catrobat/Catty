@@ -309,6 +309,7 @@
     if ([segue.identifier isEqualToString:toSceneSegueID]) {
       if ([destController isKindOfClass:[SceneViewController class]]) {
         SceneViewController* scvc = (SceneViewController*) destController;
+          scvc.hidesBottomBarWhenPushed = YES;
         if ([scvc respondsToSelector:@selector(setProgram:)]) {
           [scvc performSelector:@selector(setProgram:) withObject:self.program];
         }
