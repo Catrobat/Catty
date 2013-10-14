@@ -36,4 +36,10 @@
 
 + (UIColor*) lightOrangeColor;
 
++ (UIColor*) lightBlueColor;
+
++ (UIColor*) lightRedColor;
+
++ (UIColor*) violetColor;
+
 @end

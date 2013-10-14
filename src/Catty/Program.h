@@ -31,6 +31,13 @@
 @property (nonatomic, strong) Header *header;
 @property (nonatomic, strong) NSMutableArray *objectList;
 @property (nonatomic, strong) VariablesContainer *variables;
+- (NSString*)projectPath;
+- (void)removeFromDisk;
+
+// factories
 + (Program*)createWithProgramName:(NSString*)programName;
+
+// helpers
++ (NSString*)basePath;
 
 @end

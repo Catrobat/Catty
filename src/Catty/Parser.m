@@ -44,7 +44,7 @@
     
     //using dom parser (gdata)
     ProjectParser *parser = [[ProjectParser alloc] init];
-    
+
     // return Project object
     return [parser loadProject:xmlData];
 }

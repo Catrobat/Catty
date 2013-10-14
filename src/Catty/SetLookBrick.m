@@ -22,6 +22,7 @@
 
 #import "Setlookbrick.h"
 #import "SpriteObject.h"
+#import "ProgramDefines.h"
 #import <SpriteKit/SpriteKit.h>
 
 @implementation SetLookBrick
@@ -54,13 +55,13 @@
 
 -(NSString*)pathForLook
 {
-    return [NSString stringWithFormat:@"%@images/%@", self.object.projectPath, self.look.fileName];
+  return [NSString stringWithFormat:@"%@%@/%@", [self.object projectPath], kProgramImagesDirName, self.look.fileName];
 }
 
 #pragma mark - Description
 - (NSString*)description
 {
-    return [NSString stringWithFormat:@"SetLookBrick (Look: %@)", self.look.name];
+  return [NSString stringWithFormat:@"SetLookBrick (Look: %@)", self.look.name];
 }
 
 @end

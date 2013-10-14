@@ -25,4 +25,5 @@
 @interface Sound : NSObject
 @property (strong, nonatomic) NSString* name;
 @property (strong, nonatomic) NSString* fileName;
+@property (atomic, getter = isPlaying) BOOL playing; // atomic in case of multithreading
 @end

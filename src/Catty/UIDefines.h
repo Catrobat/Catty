@@ -23,3 +23,8 @@
 #define kBtnCancelTitle NSLocalizedString(@"Cancel", @"Cancel button for views")
 #define kBtnOKTitle NSLocalizedString(@"OK", @"OK button for views")
 #define kBtnDeleteTitle NSLocalizedString(@"Delete", @"Delete button for views")
+
+#define kDefaultImageCellBorderWidth 1.0f
+
+// placeholder texts
+#define kEmptyViewPlaceHolder @"Click \"+\" to add %@"

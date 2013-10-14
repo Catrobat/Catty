@@ -29,4 +29,6 @@
 
 @property (strong, nonatomic) IBOutlet UILabel *titleLabel;
 
+- (void) configureImageCell;
+
 @end

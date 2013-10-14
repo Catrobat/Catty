@@ -25,14 +25,37 @@
 #import "TableUtil.h"
 #import "CatrobatImageCell.h"
 #import "Sound.h"
+#import "SegueDefines.h"
+#import "ActionSheetAlertViewTags.h"
+#import "SceneViewController.h"
+#import "SpriteObject.h"
+#import "AudioManager.h"
+#import "ProgramDefines.h"
+#import "Util.h"
+#import <AVFoundation/AVFoundation.h>
 
 #define kTableHeaderIdentifier @"Header"
+#define kPocketCodeRecorderActionSheetButton @"pocketCodeRecorder"
+#define kSelectMusicTrackActionSheetButton @"selectMusicTrack"
 
-@interface ObjectSoundsTVC () <UIActionSheetDelegate>
+@interface ObjectSoundsTVC () <UIActionSheetDelegate, AVAudioPlayerDelegate>
+
+@property (nonatomic, strong) NSMutableDictionary* addSoundActionSheetBtnIndexes;
+@property (atomic, strong) Sound *currentPlayingSong;
+@property (atomic, weak) UITableViewCell<CatrobatImageCell> *currentPlayingSongCell;
 
 @end
 
 @implementation ObjectSoundsTVC
+
+#pragma getters and setters
+- (NSMutableDictionary*)addSoundActionSheetBtnIndexes
+{
+  // lazy instantiation
+  if (_addSoundActionSheetBtnIndexes == nil)
+    _addSoundActionSheetBtnIndexes = [NSMutableDictionary dictionaryWithCapacity:3];
+  return _addSoundActionSheetBtnIndexes;
+}
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -46,21 +69,36 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.currentPlayingSong = nil;
+    self.currentPlayingSongCell = nil;
 
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
 
     [self initTableView];
+    [super initPlaceHolder];
+    [super setPlaceHolderTitle:kSoundsTitle
+                   Description:[NSString stringWithFormat:NSLocalizedString(kEmptyViewPlaceHolder, nil), kSoundsTitle]];
+    [super showPlaceHolder:(! (BOOL)[self.object.soundList count])];
     //[TableUtil initNavigationItem:self.navigationItem withTitle:NSLocalizedString(@"New Programs", nil)];
 
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    self.title = self.object.name;
+    self.navigationItem.title = self.object.name;
     [self setupToolBar];
+}
+
+-(void)dealloc
+{
+  [[AudioManager sharedAudioManager] stopAllSounds];
+  self.currentPlayingSong.playing = NO;
+  self.currentPlayingSong = nil;
+  self.currentPlayingSongCell = nil;
 }
 
 #pragma marks init
 - (void)initTableView
 {
+  [super initTableView];
   self.tableView.delegate = self;
   self.tableView.dataSource = self;
   [self.tableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
@@ -84,7 +122,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return [self.sounds count];
+    return [self.object.soundList count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -92,11 +130,10 @@
     static NSString *CellIdentifier = @"SoundCell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
 
-    // Configure the cell...
     if ([cell conformsToProtocol:@protocol(CatrobatImageCell)]) {
       UITableViewCell <CatrobatImageCell>* imageCell = (UITableViewCell <CatrobatImageCell>*)cell;
-      imageCell.iconImageView.image = [UIImage imageNamed:@"programs"];
-      imageCell.titleLabel.text = ((Sound*) [self.sounds objectAtIndex:indexPath.row]).name;
+      imageCell.iconImageView.image = [UIImage imageNamed:@"ic_media_play.png"];
+      imageCell.titleLabel.text = ((Sound*) [self.object.soundList objectAtIndex:indexPath.row]).name;
     }
     return cell;
 }
@@ -118,48 +155,131 @@
     if (editingStyle == UITableViewCellEditingStyleDelete) {
         // Delete the row from the data source
         //[tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    }
-    else if (editingStyle == UITableViewCellEditingStyleInsert) {
+    } else if (editingStyle == UITableViewCellEditingStyleInsert) {
         // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
+    }
 }
 
-/*
-#pragma mark - Navigation
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+  UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+  if ([cell conformsToProtocol:@protocol(CatrobatImageCell)]) {
+    UITableViewCell <CatrobatImageCell>* imageCell = (UITableViewCell <CatrobatImageCell>*)cell;
 
-// In a story board-based application, you will often want to do a little preparation before navigation
+    if (indexPath.row < [self.object.soundList count]) {
+      // synchronized to guarantee that the player never plays two (different) songs at the same time
+      // INFO: there are no operations that take much time, therefore synchronized will be no problem here
+      @synchronized(self) {
+        Sound* sound = (Sound*) [self.object.soundList objectAtIndex:indexPath.row];
+        BOOL isPlaying = sound.playing;
+        if (self.currentPlayingSong && self.currentPlayingSongCell) {
+          self.currentPlayingSong.playing = NO;
+          self.currentPlayingSongCell.iconImageView.image = [UIImage imageNamed:@"ic_media_play.png"];
+        }
+        self.currentPlayingSong = sound;
+        self.currentPlayingSongCell = imageCell;
+        self.currentPlayingSong.playing = (! isPlaying);
+        self.currentPlayingSongCell.iconImageView.image = [UIImage imageNamed:@"ic_media_play.png"];
+        if (! isPlaying)
+          imageCell.iconImageView.image = [UIImage imageNamed:@"ic_media_pause.png"];
+
+        // INFO: the synchronized-lock will be released immediatelly by the main-thread itself,
+        //       because the long-time operations are performed on another thread AFTER the lock is released
+        dispatch_queue_t audioPlayerQueue = dispatch_queue_create("audio player", NULL);
+        dispatch_async(audioPlayerQueue, ^{
+          [[AudioManager sharedAudioManager] stopAllSounds];
+          if (! isPlaying)
+            [[AudioManager sharedAudioManager] playSoundWithFileName:sound.fileName
+                                                              andKey:self.object.name
+                                                          atFilePath:[self.object projectPath]
+                                                            Delegate:self];
+        });
+      }
+    }
+  }
+  [tableView deselectRowAtIndexPath:indexPath animated:YES];
+}
+
+#pragma audio delegate methods
+- (void)audioPlayerDidFinishPlaying:(AVAudioPlayer *)player successfully:(BOOL)flag
+{
+  // mark all sounds as stopped
+  // switch back to main thread here, since UI-actions have to be performed on main thread!!
+  dispatch_async(dispatch_get_main_queue(), ^{
+    // FIXME: fix possible concurrency issue with didSelectRowAtIndexPath
+    @synchronized(self) {
+      if (self.currentPlayingSong && self.currentPlayingSongCell) {
+        self.currentPlayingSong.playing = NO;
+        self.currentPlayingSongCell.iconImageView.image = [UIImage imageNamed:@"ic_media_play.png"];
+      }
+      self.currentPlayingSong = nil;
+      self.currentPlayingSongCell = nil;
+    }
+  });
+}
+
+#pragma mark - Navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+  static NSString *toSceneSegueID = kSegueToScene;
+  UIViewController *destController = segue.destinationViewController;
+  if ([sender isKindOfClass:[UIBarButtonItem class]]) {
+    if ([segue.identifier isEqualToString:toSceneSegueID]) {
+      if ([destController isKindOfClass:[SceneViewController class]]) {
+        SceneViewController* scvc = (SceneViewController*) destController;
+        if ([scvc respondsToSelector:@selector(setProgram:)]) {
+          [scvc performSelector:@selector(setProgram:) withObject:self.object.program];
+        }
+      }
+    }
+  }
 }
-*/
+
+#pragma mark - UIActionSheetDelegate Handlers
+- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+  if (actionSheet.tag == kAddSoundActionSheetTag) {
+    NSString *action = self.addSoundActionSheetBtnIndexes[@(buttonIndex)];
+    if ([action isEqualToString:kPocketCodeRecorderActionSheetButton]) {
+      // Pocket Code Recorder
+      NSLog(@"Pocket Code Recorder");
+      [Util showComingSoonAlertView];
+    } else if ([action isEqualToString:kSelectMusicTrackActionSheetButton]) {
+      // Select music track
+      NSLog(@"Select music track");
+    }
+  }
+}
 
 #pragma mark - UIActionSheet Views
-- (void)showSceneActionSheet
+- (void)showAddSoundActionSheet
 {
-  // TODO: determine whether to show delete button or not
-  BOOL showDeleteButton = false;
-  //if (self.objectsList && self.background && [self.objectsList count] && [self.background count])
-  showDeleteButton = true;
+  UIActionSheet *sheet = [[UIActionSheet alloc] init];
+  sheet.title = NSLocalizedString(@"Add sound",@"Action sheet menu title");
+  sheet.delegate = self;
+  self.addSoundActionSheetBtnIndexes[@([sheet addButtonWithTitle:NSLocalizedString(@"Pocket Code Recorder",nil)])] = kPocketCodeRecorderActionSheetButton;
 
-  UIActionSheet *edit = [[UIActionSheet alloc] initWithTitle:NSLocalizedString(@"Edit Sounds",nil)
-                                                    delegate:self
-                                           cancelButtonTitle:kBtnCancelTitle
-                                      destructiveButtonTitle:(showDeleteButton ? kBtnDeleteTitle : nil)
-                                           otherButtonTitles:NSLocalizedString(@"Rename",nil), nil];
-  //[edit setTag:kSceneActionSheetTag];
-  edit.actionSheetStyle = UIActionSheetStyleDefault;
-  [edit showInView:self.view];
+//  if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeSavedPhotosAlbum]) {
+//    NSArray *availableMediaTypes = [UIImagePickerController availableMediaTypesForSourceType:UIImagePickerControllerSourceTypeSavedPhotosAlbum];
+//    if ([availableMediaTypes containsObject:(NSString *)kUTTypeImage])
+//      self.addSoundActionSheetBtnIndexes[@([sheet addButtonWithTitle:NSLocalizedString(@"Choose image",nil)])] = kSelectMusicTrackActionSheetButton;
+//  }
+
+  sheet.cancelButtonIndex = [sheet addButtonWithTitle:kBtnCancelTitle];
+  sheet.tag = kAddSoundActionSheetTag;
+  sheet.actionSheetStyle = UIActionSheetStyleDefault;
+  [sheet showInView:self.view];
 }
 
 #pragma mark - Helper Methods
-- (void)addObjectAction:(id)sender
+- (void)addSoundAction:(id)sender
 {
+  [self showAddSoundActionSheet];
 }
 
 - (void)playSceneAction:(id)sender
 {
+  [self performSegueWithIdentifier:kSegueToScene sender:sender];
 }
 
 - (void)setupToolBar
@@ -173,7 +293,7 @@
                                                                             action:nil];
   UIBarButtonItem *add = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd
                                                                        target:self
-                                                                       action:@selector(addObjectAction:)];
+                                                                       action:@selector(addSoundAction:)];
   UIBarButtonItem *play = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemPlay
                                                                         target:self
                                                                         action:@selector(playSceneAction:)];

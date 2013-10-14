@@ -33,7 +33,7 @@
 #import "SegueDefines.h"
 #import "Util.h"
 #import "SceneViewController.h"
-#import "NewProgramTVC.h"
+#import "ProgramTVC.h"
 
 @interface CatrobatTableViewController () <UIAlertViewDelegate,
                                     UIActionSheetDelegate, UITextFieldDelegate>
@@ -73,10 +73,11 @@
 }
 
 -(void) viewDidAppear:(BOOL)animated {
-    NSIndexPath* indexPath = [NSIndexPath indexPathForRow:0 inSection:0];
-    [self.tableView beginUpdates];
-    [self.tableView reloadRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationNone];
-    [self.tableView endUpdates];
+  NSIndexPath* indexPath = [NSIndexPath indexPathForRow:0 inSection:0];
+  [self.tableView beginUpdates];
+  [self.tableView reloadRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationNone];
+  [self.tableView endUpdates];
+  self.tableView.alwaysBounceVertical = NO; // disable scrolling
 }
 
 - (void)didReceiveMemoryWarning
@@ -172,8 +173,6 @@
   return [self getHeightForCellAtIndexPath:indexPath];
 }
 
-
-
 #pragma mark Helper
 -(void)configureImageCell:(UITableViewCell <CatrobatImageCell>*)cell atIndexPath:(NSIndexPath*)indexPath
 {
@@ -198,9 +197,9 @@
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {    
     if ([[segue identifier] isEqualToString:kSegueContinue]) {
-        NewProgramTVC* newProgramTVC = (NewProgramTVC*) segue.destinationViewController;
+        ProgramTVC* programTVC = (ProgramTVC*) segue.destinationViewController;
         ProgramLoadingInfo* loadingInfo = [Util programLoadingInfoForProgramWithName:[Util lastProgram]];
-        BOOL success = [newProgramTVC loadProgram:loadingInfo];
+        BOOL success = [programTVC loadProgram:loadingInfo];
         if (! success) {
           NSString *popuperrormessage = [NSString stringWithFormat:@"Program %@ could not be loaded!", loadingInfo.visibleName];
           UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Invalid Program"

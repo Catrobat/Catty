@@ -5,7 +5,7 @@
 	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
 	<false/>
 	<key>IDESourceControlProjectIdentifier</key>
-	<string>CC3463E3-B61E-4317-B6C8-E7CF933E5684</string>
+	<string>96D4F6A9-65A9-4C57-85D3-C8E52D9BC684</string>
 	<key>IDESourceControlProjectName</key>
 	<string>Catty</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
@@ -17,8 +17,6 @@
 	<string>src/Catty.xcodeproj/project.xcworkspace</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
-		<key>2EA0ABA5-3273-47E8-8B88-19F915654BEE</key>
-		<string>../../../../../Downloads/SlideMenu-2</string>
 		<key>65110DC2-A33B-42ED-B810-293FB56035A5</key>
 		<string>../../..</string>
 	</dict>
@@ -37,14 +35,6 @@
 			<string>65110DC2-A33B-42ED-B810-293FB56035A5</string>
 			<key>IDESourceControlWCCName</key>
 			<string>Catty</string>
-		</dict>
-		<dict>
-			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
-			<string>public.vcs.git</string>
-			<key>IDESourceControlWCCIdentifierKey</key>
-			<string>2EA0ABA5-3273-47E8-8B88-19F915654BEE</string>
-			<key>IDESourceControlWCCName</key>
-			<string>SlideMenu-2</string>
 		</dict>
 	</array>
 </dict>

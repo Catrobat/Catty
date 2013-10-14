@@ -25,15 +25,12 @@
 #import "ObjectLooksTVC.h"
 #import "ObjectSoundsTVC.h"
 #import "SpriteObject.h"
+#import "ProgramDefines.h"
 #import "UIDefines.h"
 #import "SegueDefines.h"
 #import "TableUtil.h"
 #import "CatrobatImageCell.h"
-
-#define kScriptsTitle NSLocalizedString(@"Scripts",nil)
-#define kLooksTitle NSLocalizedString(@"Looks",nil)
-#define kBackgroundsTitle NSLocalizedString(@"Backgrounds",nil)
-#define kSoundsTitle NSLocalizedString(@"Sounds",nil)
+#import "SceneViewController.h"
 
 // identifiers
 #define kTableHeaderIdentifier @"Header"
@@ -43,34 +40,30 @@
 @end
 
 @implementation ObjectTVC
-# pragma memory for our pointer-properties
-@synthesize object = _object;
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
-    self = [super initWithStyle:style];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
+  self = [super initWithStyle:style];
+  if (self) {
+      // Custom initialization
+  }
+  return self;
 }
 
 - (void)viewDidLoad
 {
-    [super viewDidLoad];
+  [super viewDidLoad];
 
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
+  // Uncomment the following line to preserve selection between presentations.
+  // self.clearsSelectionOnViewWillAppear = NO;
 
-    [self initTableView];
-    //[TableUtil initNavigationItem:self.navigationItem withTitle:NSLocalizedString(@"New Programs", nil)];
+  [self initTableView];
+  //[TableUtil initNavigationItem:self.navigationItem withTitle:NSLocalizedString(@"New Programs", nil)];
 
-    if (self.object) {
-      self.title = self.object.name;
-      if (self.navigationItem)
-        self.navigationItem.title = self.object.name;
-    }
-    [self setupToolBar];
+  self.title = self.object.name;
+  self.navigationItem.title = self.object.name;
+  [self setupToolBar];
+  self.tableView.alwaysBounceVertical = NO;
 }
 
 #pragma marks init
@@ -139,19 +132,24 @@
   static NSString *toScriptsSegueID = kSegueToScripts;
   static NSString *toLooksSegueID = kSegueToLooks;
   static NSString *toSoundsSegueID = kSegueToSounds;
+  static NSString *toSceneSegueID = kSegueToScene;
 
+  UIViewController* destController = segue.destinationViewController;
   if ([sender isKindOfClass:[UITableViewCell class]]) {
-    UITableViewCell *cell = (UITableViewCell*) sender;
-    UIViewController* destController = segue.destinationViewController;
-    if ([segue.identifier isEqualToString:toScriptsSegueID]) {
-      if ([destController respondsToSelector:@selector(setScripts:)])
-        [destController performSelector:@selector(setScripts:) withObject:self.object.scriptList];
-    } else if ([segue.identifier isEqualToString:toLooksSegueID]) {
-      if ([destController respondsToSelector:@selector(setLooks:)])
-        [destController performSelector:@selector(setLooks:) withObject:self.object.lookList];
-    } else if ([segue.identifier isEqualToString:toSoundsSegueID]) {
-      if ([destController respondsToSelector:@selector(setSounds:)])
-        [destController performSelector:@selector(setSounds:) withObject:self.object.soundList];
+    if (([segue.identifier isEqualToString:toScriptsSegueID] ||
+        [segue.identifier isEqualToString:toLooksSegueID] ||
+        [segue.identifier isEqualToString:toSoundsSegueID]) &&
+        [destController respondsToSelector:@selector(setObject:)]) {
+      [destController performSelector:@selector(setObject:) withObject:self.object];
+    }
+  } else if ([sender isKindOfClass:[UIBarButtonItem class]]) {
+    if ([segue.identifier isEqualToString:toSceneSegueID]) {
+      if ([destController isKindOfClass:[SceneViewController class]]) {
+        SceneViewController* scvc = (SceneViewController*) destController;
+        if ([scvc respondsToSelector:@selector(setProgram:)]) {
+          [scvc performSelector:@selector(setProgram:) withObject:self.object.program];
+        }
+      }
     }
   }
 }
@@ -204,6 +202,7 @@
 #pragma mark - Helper Methods
 - (void)playSceneAction:(id)sender
 {
+  [self performSegueWithIdentifier:kSegueToScene sender:sender];
 }
 
 - (void)setupToolBar

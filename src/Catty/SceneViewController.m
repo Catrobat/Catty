@@ -66,7 +66,6 @@
   {
     //sprite.spriteManagerDelegate = self;
     sprite.broadcastWaitDelegate = self.broadcastWaitHandler;
-    //sprite.projectPath = xmlPath;
 
     // TODO: change!
     for (Script *script in sprite.scriptList) {

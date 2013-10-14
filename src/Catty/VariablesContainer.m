@@ -48,6 +48,22 @@ static pthread_mutex_t variablesLock;
     pthread_mutex_destroy(&variablesLock);
 }
 
+#pragma - custom getters and setters
+-(OrderedMapTable*) objectVariableList
+{
+  // lazy instantiation
+  if (! _objectVariableList)
+    _objectVariableList = [OrderedMapTable weakToStrongObjectsMapTable];
+  return _objectVariableList;
+}
+
+-(NSMutableArray*) programVariableList
+{
+  // lazy instantiation
+  if (! _programVariableList)
+    _programVariableList = [NSMutableArray array];
+  return _programVariableList;
+}
 
 -(UserVariable*) getUserVariableNamed:(NSString*) name forSpriteObject:(SpriteObject*) sprite
 {

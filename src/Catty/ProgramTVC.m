@@ -20,7 +20,7 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import "NewProgramTVC.h"
+#import "ProgramTVC.h"
 #import "TableUtil.h"
 #import "ObjectTVC.h"
 #import "SegueDefines.h"
@@ -38,13 +38,7 @@
 #import "Script.h"
 #import "Brick.h"
 #import "SceneViewController.h"
-
-// Action sheet & Alert view tags
-#define kSceneActionSheetTag 1
-#define kInvalidProgramNameWarningActionSheetTag 2
-#define kInvalidObjectNameWarningActionSheetTag 3
-#define kRenameAlertViewTag 1
-#define kNewObjectAlertViewTag 2
+#import "ActionSheetAlertViewTags.h"
 
 // constraints and default values
 #define kDefaultProgramName NSLocalizedString(@"New Program",@"Default name for new programs") // XXX: BTW: are there any restrictions or limits for the program name???
@@ -58,12 +52,12 @@
 // identifiers
 #define kTableHeaderIdentifier @"Header"
 
-@interface NewProgramTVC () <UIActionSheetDelegate, UIAlertViewDelegate, UITextFieldDelegate,
-                                                                        UINavigationBarDelegate>
+@interface ProgramTVC () <UIActionSheetDelegate, UIAlertViewDelegate, UITextFieldDelegate,
+                                                                      UINavigationBarDelegate>
 @property (strong, nonatomic) Program *program;
 @end
 
-@implementation NewProgramTVC
+@implementation ProgramTVC
 # pragma memory for our pointer-properties
 @synthesize program = _program;
 
@@ -106,11 +100,6 @@
   //object.originalSize;
   //object.spriteManagerDelegate;
   //object.broadcastWaitDelegate = self.broadcastWaitHandler;
-  // TODO: determine and assign xmlPath...
-  //object.projectPath;
-  object.lookList = [NSMutableArray array];
-  object.soundList = [NSMutableArray array];
-  object.scriptList = [NSMutableArray array];
   object.currentLook = nil;
   object.numberOfObjects = 0;
   object.name = objectName;
@@ -136,7 +125,6 @@
   {
     //sprite.spriteManagerDelegate = self;
     //sprite.broadcastWaitDelegate = self.broadcastWaitHandler;
-    sprite.projectPath = xmlPath;
 
     // TODO: change!
     for (Script *script in sprite.scriptList) {
@@ -161,12 +149,18 @@
 
 - (void)viewWillAppear:(BOOL)animated
 {
-    [super viewWillAppear:YES];
+  [super viewWillAppear:YES];
+
+// TODO: use data source for the ProgramTVC instead of reloading the whole data
+  [self.tableView reloadData];
+//  [self.tableView beginUpdates];
+//  [self.tableView reloadRowsAtIndexPaths:@[indexPathOfYourCell] withRowAnimation:UITableViewRowAnimationNone];
+//  [self.tableView endUpdates];
 }
 
 - (void)viewDidAppear:(BOOL)animated
 {
-    [super viewDidAppear:YES];
+  [super viewDidAppear:YES];
 }
 
 - (void)viewDidLoad
@@ -225,9 +219,13 @@
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ProgramCell" forIndexPath:indexPath];
     if ([cell conformsToProtocol:@protocol(CatrobatImageCell)]) {
       UITableViewCell <CatrobatImageCell>* imageCell = (UITableViewCell <CatrobatImageCell>*)cell;
-      imageCell.iconImageView.image = [UIImage imageNamed:@"programs"];
-
       SpriteObject* object = [self.program.objectList objectAtIndex:(kBackgroundIndex + indexPath.section + indexPath.row)];
+      if ([object.lookList count] > 0) {
+        Look* look = [object.lookList objectAtIndex:0];
+        NSString *imagePath = [NSString stringWithFormat:@"%@/%@", [[object projectPath] stringByAppendingString:kProgramImagesDirName], look.fileName];
+        imageCell.iconImageView.image = [[UIImage alloc] initWithContentsOfFile: imagePath];
+        imageCell.iconImageView.contentMode = UIViewContentModeScaleAspectFit;
+      }
       imageCell.titleLabel.text = object.name;
     }
     return cell;
@@ -334,8 +332,9 @@
     // Delete button
     if (buttonIndex == actionSheet.destructiveButtonIndex)
     {
-      // TODO: implement this. Check if program already stored in filesystem otherwise skip that...
       NSLog(@"Delete button pressed");
+      [self.program removeFromDisk];
+      self.program = nil;
       [self.navigationController popViewControllerAnimated:YES];
     }
   }
@@ -373,7 +372,11 @@
       NSString* input = [[alertView textFieldAtIndex:0] text];
       if ([input length]) {
         [self.program.objectList addObject:[self createObjectWithName:input]];
-        [self.tableView reloadData]; // TODO: only for certain index-path range or use datasource for this
+        // TODO: use data source for the ProgramTVC instead of reloading the whole data
+        [self.tableView reloadData];
+        //  [self.tableView beginUpdates];
+        //  [self.tableView reloadRowsAtIndexPaths:@[indexPathOfYourCell] withRowAnimation:UITableViewRowAnimationNone];
+        //  [self.tableView endUpdates];
       } else
         [self showWarningInvalidObjectNameActionSheet];
     }
@@ -413,7 +416,7 @@
                                                          delegate:self
                                                 cancelButtonTitle:kBtnCancelTitle
                                                 otherButtonTitles:kBtnOKTitle, nil];
-  [newObjectAlert setTag:kNewObjectAlertViewTag];
+  newObjectAlert.tag = kNewObjectAlertViewTag;
   newObjectAlert.alertViewStyle = UIAlertViewStylePlainTextInput;
   [[newObjectAlert textFieldAtIndex:0] setClearButtonMode:UITextFieldViewModeWhileEditing];
   [newObjectAlert show];
@@ -422,17 +425,12 @@
 #pragma mark - UIActionSheet Views
 - (void)showSceneActionSheet
 {
-  // TODO: determine whether to show delete button or not
-  BOOL showDeleteButton = false;
-  //if (self.objectsList && self.background && [self.objectsList count] && [self.background count])
-    showDeleteButton = true;
-
   UIActionSheet *edit = [[UIActionSheet alloc] initWithTitle:NSLocalizedString(@"Edit Program",nil)
                                                     delegate:self
                                            cancelButtonTitle:kBtnCancelTitle
-                                      destructiveButtonTitle:(showDeleteButton ? kBtnDeleteTitle : nil)
+                                      destructiveButtonTitle:kBtnDeleteTitle
                                            otherButtonTitles:NSLocalizedString(@"Rename",nil), nil];
-  [edit setTag:kSceneActionSheetTag];
+  edit.tag = kSceneActionSheetTag;
   edit.actionSheetStyle = UIActionSheetStyleDefault;
   [edit showInView:self.view];
 }
@@ -444,7 +442,7 @@
                                               cancelButtonTitle:nil
                                          destructiveButtonTitle:nil
                                               otherButtonTitles:kBtnOKTitle, nil];
-  [warning setTag:kInvalidProgramNameWarningActionSheetTag];
+  warning.tag = kInvalidProgramNameWarningActionSheetTag;
   warning.actionSheetStyle = UIActionSheetStyleDefault;
   [warning showInView:self.view];
 }
@@ -456,7 +454,7 @@
                                               cancelButtonTitle:nil
                                          destructiveButtonTitle:nil
                                               otherButtonTitles:kBtnOKTitle, nil];
-  [warning setTag:kInvalidObjectNameWarningActionSheetTag];
+  warning.tag = kInvalidObjectNameWarningActionSheetTag;
   warning.actionSheetStyle = UIActionSheetStyleDefault;
   [warning showInView:self.view];
 }

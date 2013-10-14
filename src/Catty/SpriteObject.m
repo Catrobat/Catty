@@ -26,6 +26,7 @@
 #import "WhenScript.h"
 #import "BroadcastScript.h"
 #import "Look.h"
+#import "Sound.h"
 #import "Scene.h"
 #import "Util.h"
 #import "Brick.h"
@@ -51,6 +52,30 @@
     return self;
 }
 
+-(NSMutableArray*)lookList
+{
+  // lazy instantiation
+  if (! _lookList)
+    _lookList = [NSMutableArray array];
+  return _lookList;
+}
+
+-(NSMutableArray*)soundList
+{
+  // lazy instantiation
+  if (! _soundList)
+    _soundList = [NSMutableArray array];
+  return _soundList;
+}
+
+-(NSMutableArray*)scriptList
+{
+  // lazy instantiation
+  if (! _scriptList)
+    _scriptList = [NSMutableArray array];
+  return _scriptList;
+}
+
 -(CGPoint)position
 {
     return [((Scene*)self.scene) convertSceneCoordinateToPoint:super.position];
@@ -65,6 +90,11 @@
 {
     NSDebug(@"Dealloc: %@", self);
     [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
+-(NSString *)projectPath
+{
+  return [self.program projectPath];
 }
 
 -(BOOL)isBackground
@@ -147,10 +177,17 @@
     index %= [self.lookList count];
     return [self.lookList objectAtIndex:index];
 }
+
 -(NSString*)pathForLook:(Look*)look
 {
-    return [NSString stringWithFormat:@"%@images/%@", self.projectPath, look.fileName];
+    return [NSString stringWithFormat:@"%@%@/%@", [self projectPath], kProgramImagesDirName, look.fileName];
 }
+
+-(NSString*)pathForSound:(Sound*)sound
+{
+  return [NSString stringWithFormat:@"%@%@/%@", [self projectPath], kProgramSoundsDirName, sound.fileName];
+}
+
 -(void)changeLook:(Look *)look
 {
     UIImage* image = [UIImage imageWithContentsOfFile: [self pathForLook:look] ];
@@ -793,7 +830,7 @@
 //
 //-(NSString*)pathForLook:(Look*)look
 //{
-//    return [NSString stringWithFormat:@"%@images/%@", self.projectPath, look.fileName];
+//    return [NSString stringWithFormat:@"%@images/%@", [self projectPath], look.fileName];
 //}
 //
 //

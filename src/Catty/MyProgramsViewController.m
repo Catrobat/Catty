@@ -23,7 +23,8 @@
 #import "MyProgramsViewController.h"
 #import "Util.h"
 #import "ProgramLoadingInfo.h"
-#import "NewProgramTVC.h"
+#import "Program.h"
+#import "ProgramTVC.h"
 #import "AppDelegate.h"
 #import "TableUtil.h"
 #import "CellTagDefines.h"
@@ -56,9 +57,10 @@
     [super viewDidLoad];
 
     [self initTableView];
-    
+
     [TableUtil initNavigationItem:self.navigationItem withTitle:NSLocalizedString(@"Programs", nil)];
-    
+
+    [self setupToolBar];
     [self loadLevels];
 }
 
@@ -89,18 +91,19 @@
 
 -(void)loadLevels
 {
-    NSString *documentsDirectoy = [Util applicationDocumentsDirectory];
-    NSString *levelFolder = @"levels";
-    NSString *levelsPath = [NSString stringWithFormat:@"%@/%@", documentsDirectoy, levelFolder];
-
+    NSString *basePath = [Program basePath];
     NSError *error;
-    NSArray *levels = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:levelsPath error:&error];
+    NSArray *levels = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:basePath error:&error];
     NSLogError(error);
 
     self.levelLoadingInfos = [[NSMutableArray alloc] initWithCapacity:[levels count]];
     for (NSString *level in levels) {
+        // exclude .DS_Store folder on MACOSX simulator
+        if ([level isEqualToString:@".DS_Store"])
+          continue;
+
         ProgramLoadingInfo *info = [[ProgramLoadingInfo alloc] init];
-        info.basePath = [NSString stringWithFormat:@"%@/%@/", levelsPath, level];
+        info.basePath = [NSString stringWithFormat:@"%@%@/", basePath, level];
         info.visibleName = level;
         NSDebug(@"Adding level: %@", info.basePath);
         [self.levelLoadingInfos addObject:info];
@@ -151,15 +154,13 @@
 {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
         // Delete the row from the data source
-        AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
         ProgramLoadingInfo *level = [self.levelLoadingInfos objectAtIndex:indexPath.row];
+        AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
         [appDelegate.fileManager deleteFolder:level.basePath];
         [self.levelLoadingInfos removeObject:level];
-        
+        [Util setLastProgram:nil];
         [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-        
-        
-    }   
+    }
     else if (editingStyle == UITableViewCellEditingStyleInsert) {
         // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
     }   
@@ -179,12 +180,16 @@
 {
     static NSString* segueToNew = kSegueToNew;
     if ([[segue identifier] isEqualToString:segueToNew]) {
+      if ([sender isKindOfClass:[UITableViewCell class]]) {
         NSIndexPath *path = [self.tableView indexPathForSelectedRow];
         NSString* programName = [[self.levelLoadingInfos objectAtIndex:path.row] visibleName];
-        if ([segue.destinationViewController isKindOfClass:[NewProgramTVC class]]) {
-          NewProgramTVC* newProgramTVC = (NewProgramTVC*) segue.destinationViewController;
-          [newProgramTVC loadProgram:[Util programLoadingInfoForProgramWithName:programName]];
+        if ([segue.destinationViewController isKindOfClass:[ProgramTVC class]]) {
+          ProgramTVC* programTVC = (ProgramTVC*) segue.destinationViewController;
+          [programTVC loadProgram:[Util programLoadingInfoForProgramWithName:programName]];
         }
+      } else if ([sender isKindOfClass:[UIBarButtonItem class]]) {
+        // no preparation needed
+      }
     }
 }
 
@@ -256,5 +261,25 @@
 
 }
 
+#pragma mark - Helper Methods
+- (void)addProgramAction:(id)sender
+{
+  [self performSegueWithIdentifier:kSegueToNew sender:sender];
+}
+
+- (void)setupToolBar
+{
+  [self.navigationController setToolbarHidden:NO];
+  self.navigationController.toolbar.barStyle = UIBarStyleBlack;
+  self.navigationController.toolbar.tintColor = [UIColor orangeColor];
+  self.navigationController.toolbar.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleTopMargin;
+  UIBarButtonItem *flexItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace
+                                                                            target:nil
+                                                                            action:nil];
+  UIBarButtonItem *add = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd
+                                                                       target:self
+                                                                       action:@selector(addProgramAction:)];
+  self.toolbarItems = [NSArray arrayWithObjects:flexItem, add, flexItem, nil];
+}
 
 @end

@@ -22,6 +22,11 @@
 
 #import "ObjectScriptsCVC.h"
 #import "PrototypScriptCell.h"
+#import "UIDefines.h"
+#import "SpriteObject.h"
+#import "SegueDefines.h"
+#import "SceneViewController.h"
+#import "ObjectScriptCategoriesTVC.h"
 
 @interface ObjectScriptsCVC () <UICollectionViewDelegate, UICollectionViewDelegateFlowLayout>
 @end
@@ -31,7 +36,14 @@
 - (void)viewDidLoad
 {
   [super viewDidLoad];
-  //[self.collectionView registerClass:[PrototypScriptCell class] forCellWithReuseIdentifier:@"Brick"];
+  [super initPlaceHolder];
+  [super setPlaceHolderTitle:kScriptsTitle
+                 Description:[NSString stringWithFormat:NSLocalizedString(kEmptyViewPlaceHolder, nil),
+                              kScriptsTitle]];
+  [super showPlaceHolder:(! (BOOL)[self.object.lookList count])];
+
+  self.title = self.object.name;
+  self.navigationItem.title = self.object.name;
   [self setupToolBar];
 }
 
@@ -42,7 +54,6 @@
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
-  //return [self.scripts count];
   return 3;
 }
 
@@ -58,13 +69,40 @@
   return cell;
 }
 
+#pragma mark - Navigation
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+  static NSString* toSceneSegueID = kSegueToScene;
+  static NSString* toScriptCategoriesSegueID = kSegueToScriptCategories;
+  UIViewController* destController = segue.destinationViewController;
+  if ([sender isKindOfClass:[UIBarButtonItem class]]) {
+    if ([segue.identifier isEqualToString:toSceneSegueID]) {
+      if ([destController isKindOfClass:[SceneViewController class]]) {
+        SceneViewController* scvc = (SceneViewController*) destController;
+        if ([scvc respondsToSelector:@selector(setProgram:)]) {
+          [scvc performSelector:@selector(setProgram:) withObject:self.object.program];
+        }
+      }
+    } else if ([segue.identifier isEqualToString:toScriptCategoriesSegueID]) {
+      if ([destController isKindOfClass:[ObjectScriptCategoriesTVC class]]) {
+        ObjectScriptCategoriesTVC* scvc = (ObjectScriptCategoriesTVC*) destController;
+        if ([scvc respondsToSelector:@selector(setObject:)]) {
+          [scvc performSelector:@selector(setObject:) withObject:self.object];
+        }
+      }
+    }
+  }
+}
+
 #pragma mark - Helper Methods
 - (void)addScriptAction:(id)sender
 {
+  [self performSegueWithIdentifier:kSegueToScriptCategories sender:sender];
 }
 
 - (void)playSceneAction:(id)sender
 {
+  [self performSegueWithIdentifier:kSegueToScene sender:sender];
 }
 
 - (void)setupToolBar
