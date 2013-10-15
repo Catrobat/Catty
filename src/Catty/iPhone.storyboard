@@ -278,13 +278,13 @@
         <!--Catrobat Table View Controller - Pocket Code-->
         <scene sceneID="vPB-Cv-GHf">
             <objects>
-                <tableViewController id="oKj-cD-XDS" customClass="CatrobatTableViewController" sceneMemberID="viewController">
+                <tableViewController wantsFullScreenLayout="YES" id="oKj-cD-XDS" customClass="CatrobatTableViewController" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="x0M-nl-oAg">
                         <rect key="frame" x="0.0" y="64" width="320" height="504"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="ContinueCell" rowHeight="125" id="Zaz-7q-Sx4" customClass="ContinueImageCell">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="ContinueCell" rowHeight="125" id="Zaz-7q-Sx4" customClass="ContinueImageCell">
                                 <rect key="frame" x="0.0" y="22" width="320" height="125"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Zaz-7q-Sx4" id="eOe-pC-YIh">
@@ -313,7 +313,7 @@
                                     <outlet property="titleLabel" destination="Dv1-wv-zOc" id="F2M-xo-6ba"/>
                                 </connections>
                             </tableViewCell>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="ImageCell" rowHeight="79" id="mZl-xg-hDI" customClass="DarkBlueGradientImageCell">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="ImageCell" rowHeight="79" id="mZl-xg-hDI" customClass="DarkBlueGradientImageCell">
                                 <rect key="frame" x="0.0" y="147" width="320" height="79"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="mZl-xg-hDI" id="2ii-X1-I6m">
@@ -481,10 +481,10 @@
                         <rect key="frame" x="0.0" y="64" width="320" height="504"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="rTp-Q8-IpK" customClass="SKView">
-                                <rect key="frame" x="0.0" y="-44" width="320" height="572"/>
+                            <view hidden="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="rTp-Q8-IpK" customClass="SKView">
+                                <rect key="frame" x="0.0" y="-63" width="320" height="572"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
@@ -567,7 +567,7 @@
         <!--Menu Button View Controller-->
         <scene sceneID="8uH-GJ-Mn1">
             <objects>
-                <viewController storyboardIdentifier="MenuButton" useStoryboardIdentifierAsRestorationIdentifier="YES" id="shq-Wd-tOt" customClass="MenuButtonViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="MenuButton" hidesBottomBarWhenPushed="YES" useStoryboardIdentifierAsRestorationIdentifier="YES" id="shq-Wd-tOt" customClass="MenuButtonViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="ZQf-pA-rr1"/>
                         <viewControllerLayoutGuide type="bottom" id="CgH-dP-ZQk"/>
@@ -577,14 +577,21 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="3iK-0t-8wg">
-                                <rect key="frame" x="0.0" y="0.0" width="200" height="568"/>
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <subviews>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Fpr-Nz-ofA">
+                                        <rect key="frame" x="115" y="234" width="91" height="100"/>
+                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                    </imageView>
+                                </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <connections>
+                        <outlet property="imageView" destination="Fpr-Nz-ofA" id="B5v-WM-mYa"/>
                         <outlet property="menuView" destination="3iK-0t-8wg" id="5qx-go-EHy"/>
                     </connections>
                 </viewController>
@@ -841,11 +848,11 @@
                         <viewControllerLayoutGuide type="bottom" id="y0m-wI-baX"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="mCh-1r-EFp">
-                        <rect key="frame" x="0.0" y="64" width="320" height="455"/>
+                        <rect key="frame" x="0.0" y="64" width="320" height="504"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qwE-Ve-7jz">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="455"/>
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="504"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             </scrollView>
                         </subviews>
@@ -928,7 +935,8 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="y1P-mf-Wvq"/>
+        <segue reference="mUB-CR-2KD"/>
+        <segue reference="v2V-DK-O7m"/>
         <segue reference="bAY-Bc-iil"/>
     </inferredMetricsTieBreakers>
 </document>

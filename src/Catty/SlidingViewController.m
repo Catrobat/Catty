@@ -607,7 +607,7 @@ NSString *const SlidingViewTopDidReset             = @"SlidingViewTopDidReset";
     frame.size.width = self.anchorRightRevealAmount;
     self.underLeftView.frame = frame;
   } else {
-    [NSException raise:@"Invalid Width Layout" format:@"underLeftWidthLayout must be a valid ECViewWidthLayout"];
+    [NSException raise:@"Invalid Width Layout" format:@"underLeftWidthLayout must be a valid ViewWidthLayout"];
   }
 }
 
@@ -631,7 +631,7 @@ NSString *const SlidingViewTopDidReset             = @"SlidingViewTopDidReset";
     if (self.topViewIsOffScreen) {
       newLeftEdge = 0;
     } else {
-      newLeftEdge = self.anchorLeftPeekAmount;
+        newLeftEdge = self.anchorLeftPeekAmount;
       newWidth   -= self.anchorLeftPeekAmount;
     }
     
@@ -650,7 +650,7 @@ NSString *const SlidingViewTopDidReset             = @"SlidingViewTopDidReset";
     
     self.underRightView.frame = frame;
   } else {
-    [NSException raise:@"Invalid Width Layout" format:@"underRightWidthLayout must be a valid ECViewWidthLayout"];
+    [NSException raise:@"Invalid Width Layout" format:@"underRightWidthLayout must be a valid ViewWidthLayout"];
   }
 }
 

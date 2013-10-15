@@ -86,26 +86,28 @@
     
     
 //Shadow
-    self.view.layer.shadowOpacity = 0.75f;
-    self.view.layer.shadowRadius = 10.0f;
-    self.view.layer.shadowColor = [UIColor blackColor].CGColor;
+//    self.view.layer.shadowOpacity = 0.95f;
+//    self.view.layer.shadowRadius = 10.0f;
+//    self.view.layer.shadowColor = self.view.backgroundColor.CGColor;
     
     
     [self.view addGestureRecognizer:self.slidingViewController.panGesture];
     [self configureScene];
     
     self.menuBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    menuBtn.frame = CGRectMake(50.0f, 7.0f, 33.0f, 44.0f);
+    menuBtn.frame = CGRectMake(8.0f, 10.0f, 34.0f, 24.0f);
     [menuBtn setBackgroundImage:[UIImage imageNamed:@"menuButton"] forState:UIControlStateNormal];
     [menuBtn addTarget:self action:@selector(revealMenu:) forControlEvents:UIControlEventTouchUpInside];
     
     [self.view addSubview:self.menuBtn];
     
-    UIButton* backButton = [[UIButton alloc] initWithFrame:CGRectMake(10.0f, 7.0f, 33.0f, 44.0f)];
-    [backButton addTarget:self action:@selector(backButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
-    UIImage* backImage = [UIImage imageNamed:@"back"];
-    [backButton setImage:backImage forState:UIControlStateNormal];
-    [self.view addSubview:backButton];
+//    UIButton* backButton = [[UIButton alloc] initWithFrame:CGRectMake(10.0f, 7.0f, 33.0f, 44.0f)];
+//    [backButton addTarget:self action:@selector(backButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
+//    UIImage* backImage = [UIImage imageNamed:@"back"];
+//    [backButton setImage:backImage forState:UIControlStateNormal];
+//    [self.view addSubview:backButton];
+    
+
     
 }
 
@@ -204,6 +206,7 @@
     if (buttonIndex == 0) {
         
         [self.navigationController popViewControllerAnimated:YES];
+        
     }
 }
 
@@ -215,7 +218,9 @@
 -(void)revealMenu:(UIButton*)sender
 {
     [self.slidingViewController anchorTopViewTo:Right];
-    self.slidingViewController.hidesBottomBarWhenPushed = YES;
+
+//    SKView * view= (SKView*)self.view;
+//    view.paused=YES;
 }
 
 
