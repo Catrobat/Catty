@@ -57,43 +57,55 @@ static AudioManager* sharedAudioManager = nil;
 }
 
 
--(NSMutableDictionary*)sounds
+- (NSMutableDictionary*)sounds
 {
     if(!_sounds) {
         _sounds = [[NSMutableDictionary alloc] init];
     }
     return _sounds;
 }
-#
--(void)playSoundWithFileName:(NSString*)fileName andKey:(NSString*)key atFilePath:(NSString*)filePath
+
+- (void)playSoundWithFileName:(NSString*)fileName
+                       andKey:(NSString*)key
+                   atFilePath:(NSString*)filePath
+                     Delegate:(id<AVAudioPlayerDelegate>) delegate
 {
-    
-    NSMutableDictionary* audioPlayers = [self.sounds objectForKey:key];
-    if(!audioPlayers) {
-        audioPlayers = [[NSMutableDictionary alloc] init];
-        [self.sounds setObject:audioPlayers forKey:key];
-    }
-    
-    AVAudioPlayer* player = [audioPlayers objectForKey:fileName];
-    if(!player) {
-        NSURL* path = [NSURL fileURLWithPath:[self pathForSound:fileName atFilePath:filePath]];
-        NSError* error = nil;
-        player = [[AVAudioPlayer alloc] initWithContentsOfURL:path error:&error];
-        NSLogError(error);
-        [audioPlayers setObject:player forKey:fileName];
-    }
-    if([player isPlaying]) {
-        [player stop];
-        [player setCurrentTime:0];
-    }
-    [player play];
+  NSMutableDictionary* audioPlayers = [self.sounds objectForKey:key];
+  if (! audioPlayers) {
+    audioPlayers = [[NSMutableDictionary alloc] init];
+    [self.sounds setObject:audioPlayers forKey:key];
+  }
+  
+  AVAudioPlayer* player = [audioPlayers objectForKey:fileName];
+  if (! player) {
+    NSURL* path = [NSURL fileURLWithPath:[self pathForSound:fileName atFilePath:filePath]];
+    NSError* error = nil;
+    player = [[AVAudioPlayer alloc] initWithContentsOfURL:path error:&error];
+    NSLogError(error);
+    [audioPlayers setObject:player forKey:fileName];
+  }
+  if ([player isPlaying]) {
+    [player stop];
+    [player setCurrentTime:0];
+  }
+  if (delegate)
+    player.delegate = delegate;
+
+  [player play];
 }
 
--(void)setVolumeToPercent:(CGFloat)volume forKey:(NSString*)key
+- (void)playSoundWithFileName:(NSString*)fileName
+                       andKey:(NSString*)key
+                   atFilePath:(NSString*)filePath
+{
+  [self playSoundWithFileName:fileName andKey:key atFilePath:filePath Delegate:nil];
+}
+
+- (void)setVolumeToPercent:(CGFloat)volume forKey:(NSString*)key
 {
     volume /=100;
     NSMutableDictionary* audioPlayers = [self.sounds objectForKey:key];
-    for(AVAudioPlayer* player in [audioPlayers allValues]) {
+    for (AVAudioPlayer* player in [audioPlayers allValues]) {
         player.volume = volume;
     }
     

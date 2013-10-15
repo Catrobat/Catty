@@ -34,9 +34,6 @@
 #import "XMLObjectReference.h"
 #import "OrderedMapTable.h"
 #import "NSString+CatrobatNSStringExtensions.h"
-
-
-// test
 #import "SpriteObject.h"
 
 
@@ -109,6 +106,7 @@
     {
         NSError(@"Program could not be loaded! %@", [ex description]);
     }
+
     return program;
 }
 
@@ -144,8 +142,11 @@
         self.program = object;
 
     // just an educated guess...
-    if ([object isKindOfClass:[SpriteObject class]])
-        self.currentActiveSprite = object;
+    if ([object isKindOfClass:[SpriteObject class]]) {
+        SpriteObject* spriteObject = (SpriteObject*) object;
+        spriteObject.program = self.program;
+        self.currentActiveSprite = spriteObject;
+    }
 
     XMLObjectReference* ref = [[XMLObjectReference alloc] initWithParent:parent andObject:object];
 
@@ -218,10 +219,15 @@
 
     }
     else if ([propertyType isEqualToString:kParserObjectTypeDate]) {
-        NSString *temp = element.stringValue;
-#warning todo: we should parse the date here
-        // but we only set nil... becaue it is easier actually... :-P
-        return nil;
+        NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+        
+        [dateFormatter setTimeZone:[NSTimeZone systemTimeZone]];
+        
+        [dateFormatter setDateFormat:@"yyyy-MM-ddHH:mm:ss"];
+        
+        NSDate *date = [dateFormatter dateFromString: element.stringValue];
+        
+        return date;
     }
 #warning JUST FOR DEBUG PURPOSES!
     // todo: set the corresponding SPRITE!!! (and lookdata) => xstream notation

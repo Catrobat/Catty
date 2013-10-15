@@ -44,19 +44,28 @@
 
 NSMutableString* resultString;
 
-#warning could probably be improved :)
+
 - (NSString*) stringByEscapingHTMLEntities
 {
     NSMutableString *result = [NSMutableString stringWithString:self];
     NSRange range = NSMakeRange(0, [result length]);
-    [result replaceOccurrencesOfString:@"&amp;"  withString:@"&"  options:NSLiteralSearch range:range];
-    [result replaceOccurrencesOfString:@"&quot;" withString:@"\"" options:NSLiteralSearch range:range];
-    [result replaceOccurrencesOfString:@"&#x27;" withString:@"'"  options:NSLiteralSearch range:range];
-    [result replaceOccurrencesOfString:@"&#x39;" withString:@"'"  options:NSLiteralSearch range:range];
-    [result replaceOccurrencesOfString:@"&#x92;" withString:@"'"  options:NSLiteralSearch range:range];
-    [result replaceOccurrencesOfString:@"&#x96;" withString:@"'"  options:NSLiteralSearch range:range];
-    [result replaceOccurrencesOfString:@"&gt;"   withString:@">"  options:NSLiteralSearch range:range];
-    [result replaceOccurrencesOfString:@"&lt;"   withString:@"<"  options:NSLiteralSearch range:range];
+
+    NSArray *stringsToReplace = [[NSArray alloc] initWithObjects:   @"&amp;"   ,@"&quot;"  ,@"&#x27;" ,@"&#x39;"
+                                 ,@"&#x92;"  ,@"&#x96;"  ,@"&gt;"   ,@"&lt;"    ,nil];
+    
+    NSArray *stringsReplaceBy = [[NSArray alloc] initWithObjects:   @"&"       ,@"\""      ,@"'"      ,@"'"
+                                 ,@"'"       ,@"'"       ,@">"      ,@"<"       ,nil];
+    
+    
+    for (int i =0; i< [stringsReplaceBy count]; i++)
+    {
+        [result replaceOccurrencesOfString:[stringsToReplace objectAtIndex:i]
+                                withString:[stringsReplaceBy objectAtIndex:i]
+                                   options:NSLiteralSearch
+                                     range:range];
+        range = NSMakeRange(0, result.length);
+    }
+    
     return result;
 }
 

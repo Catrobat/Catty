@@ -22,10 +22,16 @@
 
 #import <Foundation/Foundation.h>
 
+@protocol AVAudioPlayerDelegate;
+
 @interface AudioManager : NSObject
 
 + (AudioManager*) sharedAudioManager;
 
+- (void)playSoundWithFileName:(NSString*)fileName
+                       andKey:(NSString*)key
+                   atFilePath:(NSString*)filePath
+                     Delegate:(id<AVAudioPlayerDelegate>) delegate;
 -(void)playSoundWithFileName:(NSString*)fileName andKey:(NSString*)key atFilePath:(NSString*)filePath;
 -(void)setVolumeToPercent:(CGFloat)volume forKey:(NSString*)key;
 -(void)changeVolumeByPercent:(CGFloat)volume forKey:(NSString*)key;

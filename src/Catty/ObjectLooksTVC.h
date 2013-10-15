@@ -21,7 +21,10 @@
  */
 
 #import <UIKit/UIKit.h>
+#import "BaseTableViewController.h"
 
-@interface ObjectLooksTVC : UITableViewController
-@property (strong, nonatomic) NSMutableArray *looks;
+@class SpriteObject;
+
+@interface ObjectLooksTVC : BaseTableViewController
+@property (strong, nonatomic) SpriteObject *object;
 @end

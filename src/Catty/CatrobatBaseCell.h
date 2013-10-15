@@ -28,5 +28,4 @@
 
 @property UIView* seperatorView;
 
-
 @end

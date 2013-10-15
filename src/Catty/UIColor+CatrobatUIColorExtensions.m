@@ -24,6 +24,23 @@
 
 @implementation UIColor (CatrobatUIColorExtensions)
 
+// taken from https://github.com/anjerodesu/UIColor-ColorWithHex/blob/master/UIColor%2BColorWithHex.m
++ (UIColor *)colorWithHex:(UInt32)hexadecimal
+{
+	CGFloat red, green, blue;
+
+	// bitwise AND operation
+	// hexadecimal's first 2 values
+	red = ( hexadecimal >> 16 ) & 0xFF;
+	// hexadecimal's 2 middle values
+	green = ( hexadecimal >> 8 ) & 0xFF;
+	// hexadecimal's last 2 values
+	blue = hexadecimal & 0xFF;
+
+	UIColor *color = [UIColor colorWithRed: red / 255.0f green: green / 255.0f blue: blue / 255.0f alpha: 1.0f];
+	return color;
+}
+
 + (UIColor *)skyBlueColor
 {    
     return [UIColor colorWithRed:168.0f/255.0f green:223.0f/255.0f blue:244/255.0f alpha:1.0f];
@@ -58,5 +75,19 @@
     return [UIColor colorWithRed:232.0/255.0 green:146.0f/255.0f blue:6.0f/255.0f alpha:1.0f];
 }
 
++ (UIColor *)lightBlueColor;
+{
+  return [UIColor colorWithRed:132.0f / 255.0f green:207.0f / 255.0f blue:218.0f / 255.0f alpha:1.0f];
+}
+
++ (UIColor *)lightRedColor
+{
+	return [self colorWithHex: 0xF26C4F];
+}
+
++ (UIColor *)violetColor
+{
+	return [self colorWithHex: 0xEE82EE];
+}
 
 @end

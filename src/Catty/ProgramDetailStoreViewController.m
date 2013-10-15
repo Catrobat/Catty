@@ -28,7 +28,8 @@
 #import "ButtonTags.h"
 #import "UIColor+CatrobatUIColorExtensions.h"
 #import "SegueDefines.h"
-#import "SceneViewController.h"
+//#import "SceneViewController.h"
+#import "ProgramTVC.h"
 #import "ProgramLoadingInfo.h"
 #import "Util.h"
 
@@ -112,7 +113,6 @@
         [view viewWithTag:kDownloadButtonTag].hidden = YES;
         [view viewWithTag:kPlayButtonTag].hidden = NO;
     }
-    
     return view;
 }
 
@@ -128,6 +128,7 @@
 
 #pragma mark - Segue
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+  /*
     if ([segue.identifier isEqualToString:kSegueToScene]) {
         if ([segue.destinationViewController isKindOfClass:[SceneViewController class]]){
             self.hidesBottomBarWhenPushed = YES;
@@ -135,14 +136,24 @@
             destination.programLoadingInfo = [Util programLoadingInfoForProgramWithName:self.project.name];            
         }
     }
+   */
+  static NSString* segueToNew = kSegueToNew;
+  if ([[segue identifier] isEqualToString:segueToNew]) {
+    if ([segue.destinationViewController isKindOfClass:[ProgramTVC class]]) {
+      self.hidesBottomBarWhenPushed = YES;
+      ProgramTVC* programTVC = (ProgramTVC*) segue.destinationViewController;
+      [programTVC loadProgram:[Util programLoadingInfoForProgramWithName:self.project.name]];
+    }
+  }
 }
 
 
 # pragma mark - LevelStore Delegate
 - (void) playButtonPressed
 {
+    static NSString* segueToNew = kSegueToNew;
     NSDebug(@"Play Button");
-    [self performSegueWithIdentifier:kSegueToScene sender:self];
+    [self performSegueWithIdentifier:segueToNew sender:self];
 }
 -(void)playButtonPressed:(id)sender
 {

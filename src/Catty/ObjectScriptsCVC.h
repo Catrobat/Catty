@@ -21,8 +21,10 @@
  */
 
 #import <UIKit/UIKit.h>
-#import "ScriptsViewCVC.h"
+#import "BaseCollectionViewController.h"
 
-@interface ObjectScriptsCVC : UICollectionViewController
-@property (strong, nonatomic) NSMutableArray *scripts;
+@class SpriteObject;
+
+@interface ObjectScriptsCVC : BaseCollectionViewController
+@property (strong, nonatomic) SpriteObject *object;
 @end

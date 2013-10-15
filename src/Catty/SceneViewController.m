@@ -22,7 +22,7 @@
 
 #import "SceneViewController.h"
 #import "Scene.h"
-#import "ProgramLoadingInfo.h"
+//#import "ProgramLoadingInfo.h"
 #import "Parser.h"
 #import "ProgramDefines.h"
 #import "Program.h"
@@ -35,7 +35,9 @@
 #import "AudioManager.h"
 #import "ProgramManager.h"
 #import "SensorHandler.h"
-
+#import "SlidingViewController.h"
+#import "MenuViewController.h"
+#import "ScenePresenterViewController.h"
 
 @interface SceneViewController ()
 
@@ -44,24 +46,47 @@
 @end
 
 @implementation SceneViewController
+@synthesize program = _program;
+@synthesize skView = _skView;
 
+# pragma getters and setters
+- (BroadcastWaitHandler*)broadcastWaitHandler
+{
+  // lazy instantiation
+  if (! _broadcastWaitHandler) {
+    _broadcastWaitHandler = [[BroadcastWaitHandler alloc] init];
+  }
+  return _broadcastWaitHandler;
+}
+
+- (void)setProgram:(Program *)program
+{
+  // setting effect
+  for (SpriteObject *sprite in program.objectList)
+  {
+    //sprite.spriteManagerDelegate = self;
+    sprite.broadcastWaitDelegate = self.broadcastWaitHandler;
+
+    // TODO: change!
+    for (Script *script in sprite.scriptList) {
+      for (Brick *brick in script.brickList) {
+        brick.object = sprite;
+      }
+    }
+  }
+  _program = program;
+}
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
 
-    [Util setLastProgram:self.programLoadingInfo.visibleName];
-    self.broadcastWaitHandler = [[BroadcastWaitHandler alloc]init];
 
-    [self configureScene];
+    ScenePresenterViewController* presenter = [self.storyboard instantiateViewControllerWithIdentifier:@"Scene"];
+    presenter.hidesBottomBarWhenPushed = YES;
     
-    
-    UIButton* backButton = [[UIButton alloc] initWithFrame:CGRectMake(10.0f, 7.0f, 33.0f, 44.0f)];
-    [backButton addTarget:self action:@selector(backButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
-    UIImage* backImage = [UIImage imageNamed:@"back"];
-    [backButton setImage:backImage forState:UIControlStateNormal];
-    [self.view addSubview:backButton];
-
+    [presenter setProgram:_program];
+    self.topViewController = presenter;
 }
 
 - (void) viewWillAppear:(BOOL)animated
@@ -76,72 +101,7 @@
     [self.navigationController setNavigationBarHidden:NO animated:animated];
 }
 
--(void) configureScene
-{
-    
-    SKView * skView = (SKView *)self.view;
-#ifdef DEBUG
-    skView.showsFPS = YES;
-    skView.showsNodeCount = YES;
-#endif
-    
-    Program* program = [self loadProgram];
-    CGSize programSize = CGSizeMake(program.header.screenWidth.floatValue, program.header.screenHeight.floatValue);
-    
-    Scene * scene = [[Scene alloc] initWithSize:programSize andProgram:program];
-    scene.scaleMode = SKSceneScaleModeAspectFit;
-    [skView presentScene:scene];
-    [[ProgramManager sharedProgramManager] setProgram:program];
-}
 
-
-- (Program*)loadProgram
-{
-    
-    NSDebug(@"Try to load project '%@'", self.programLoadingInfo.visibleName);
-    NSDebug(@"Path: %@", self.programLoadingInfo.basePath);
-    
-    
-    NSString *xmlPath = [NSString stringWithFormat:@"%@", self.programLoadingInfo.basePath];
-    
-    NSDebug(@"XML-Path: %@", xmlPath);
-    
-    Parser *parser = [[Parser alloc]init];
-    Program *program = [parser generateObjectForLevel:[xmlPath stringByAppendingFormat:@"%@", kProgramCodeFileName]];
-    
-    if(!program) {
-
-        NSString *popuperrormessage = [NSString stringWithFormat:@"Program %@ could not be loaded!",self.programLoadingInfo.visibleName];
-
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Invalid Program"
-                                                        message:popuperrormessage
-                                                       delegate:self
-                                              cancelButtonTitle:@"OK"
-                                              otherButtonTitles:nil];
-        [alert show];
-        
-    }
-    
-    
-    NSDebug(@"ProjectResolution: width/height:  %f / %f", program.header.screenWidth.floatValue, program.header.screenHeight.floatValue);
-    
-    
-    //setting effect
-    for (SpriteObject *sprite in program.objectList)
-    {
-        //sprite.spriteManagerDelegate = self;
-        sprite.broadcastWaitDelegate = self.broadcastWaitHandler;
-        sprite.projectPath = xmlPath;
-        
-        // TODO: change!
-        for (Script *script in sprite.scriptList) {
-            for (Brick *brick in script.brickList) {
-                brick.object = sprite;
-            }
-        }
-    }
-    return program;
-}
 
 -(void)dealloc
 {

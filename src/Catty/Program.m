@@ -25,12 +25,21 @@
 #import "VariablesContainer.h"
 #import "Util.h"
 #import "OrderedMapTable.h"
+#import "ProgramDefines.h"
 #import "AppDefines.h"
+#import "SpriteObject.h"
+#import "AppDelegate.h"
 
 @implementation Program
 
 @synthesize objectList = _objectList;
 
+- (void)dealloc
+{
+  NSDebug(@"Dealloc Program");
+}
+
+# pragma mark - factories
 + (Program*)createWithProgramName:(NSString*)programName
 {
   Program* program = [[Program alloc] init];
@@ -60,22 +69,50 @@
     program.header.programScreenshotManuallyTaken = (YES ? @"true" : @"false");
     program.header.tags = nil;
   }
-  program.objectList = [NSMutableArray array];
-  program.variables = [[VariablesContainer alloc] init];
-  program.variables.objectVariableList = [OrderedMapTable weakToStrongObjectsMapTable];
-  program.variables.programVariableList = [NSMutableArray array];
   return program;
 }
 
 #pragma mark - Custom getter and setter
-- (NSMutableArray*)spritesList
+- (NSMutableArray*)objectList
 {
-    if (_objectList == nil)
-        _objectList = [[NSMutableArray alloc] init];
-    return _objectList;
+  // lazy instantiation
+  if (! _objectList)
+      _objectList = [[NSMutableArray alloc] init];
+  return _objectList;
 }
 
+- (void)setObjectList:(NSMutableArray*)objectList
+{
+    for (id object in objectList) {
+        if ([object isKindOfClass:[SpriteObject class]])
+          ((SpriteObject*) object).program = self;
+    }
+    _objectList = objectList;
+}
 
+- (VariablesContainer*)variables
+{
+  // lazy instantiation
+  if (! _variables)
+    _variables = [[VariablesContainer alloc] init];
+  return _variables;
+}
+
+- (NSString*)projectPath
+{
+  return [NSString stringWithFormat:@"%@%@/", [Program basePath], self.header.programName];
+}
+
+- (void)removeFromDisk
+{
+  FileManager *fileManager = ((AppDelegate*)[[UIApplication sharedApplication] delegate]).fileManager;
+  NSString *projectPath = [self projectPath];
+  if ([fileManager directoryExists:projectPath])
+    [fileManager deleteFolder:projectPath];
+  [Util setLastProgram:nil];
+}
+
+# pragma mark - helpers
 - (NSString*)description
 {
     NSMutableString *ret = [[NSMutableString alloc] init];
@@ -104,10 +141,9 @@
     return [NSString stringWithString:ret];
 }
 
--(void)dealloc
++ (NSString*)basePath
 {
-    NSDebug(@"Dealloc Program");
+  return [NSString stringWithFormat:@"%@/%@/", [Util applicationDocumentsDirectory], kProgramsFolder];
 }
-
 
 @end

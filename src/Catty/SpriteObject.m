@@ -26,6 +26,7 @@
 #import "WhenScript.h"
 #import "BroadcastScript.h"
 #import "Look.h"
+#import "Sound.h"
 #import "Scene.h"
 #import "Util.h"
 #import "Brick.h"
@@ -43,12 +44,36 @@
 
 @synthesize numberOfObjects;
 
-
--(id)init {
+-(id)init
+{
     if(self = [super init]) {
         self.activeScripts = [[NSMutableArray alloc] initWithCapacity:self.scriptList.count];
     }
     return self;
+}
+
+-(NSMutableArray*)lookList
+{
+  // lazy instantiation
+  if (! _lookList)
+    _lookList = [NSMutableArray array];
+  return _lookList;
+}
+
+-(NSMutableArray*)soundList
+{
+  // lazy instantiation
+  if (! _soundList)
+    _soundList = [NSMutableArray array];
+  return _soundList;
+}
+
+-(NSMutableArray*)scriptList
+{
+  // lazy instantiation
+  if (! _scriptList)
+    _scriptList = [NSMutableArray array];
+  return _scriptList;
 }
 
 -(CGPoint)position
@@ -56,12 +81,10 @@
     return [((Scene*)self.scene) convertSceneCoordinateToPoint:super.position];
 }
 
--(void) setPosition:(CGPoint)position
+-(void)setPosition:(CGPoint)position
 {
     super.position = [((Scene*)self.scene) convertPointToScene:position];
 }
-
-
 
 -(void)dealloc
 {
@@ -69,17 +92,26 @@
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
+-(NSString *)projectPath
+{
+  return [self.program projectPath];
+}
 
+-(BOOL)isBackground
+{
+  if (self.program && [self.program.objectList count])
+    return ([self.program.objectList objectAtIndex:0] == self);
+  return NO;
+}
 
 -(void)start:(CGFloat)zPosition
 {
     self.position = CGPointMake(0, 0);
-    if([self.name isEqualToString:@"Background"]) {
+    if ([self.name isEqualToString:@"Background"])
         self.zPosition = 0;
-    }
-    else {
+    else
         self.zPosition = zPosition;
-    }
+
     for (Script *script in self.scriptList)
     {
         if ([script isKindOfClass:[StartScript class]]) {
@@ -145,14 +177,22 @@
     index %= [self.lookList count];
     return [self.lookList objectAtIndex:index];
 }
+
 -(NSString*)pathForLook:(Look*)look
 {
-    return [NSString stringWithFormat:@"%@images/%@", self.projectPath, look.fileName];
+    return [NSString stringWithFormat:@"%@%@/%@", [self projectPath], kProgramImagesDirName, look.fileName];
 }
+
+-(NSString*)pathForSound:(Sound*)sound
+{
+  return [NSString stringWithFormat:@"%@%@/%@", [self projectPath], kProgramSoundsDirName, sound.fileName];
+}
+
 -(void)changeLook:(Look *)look
 {
     UIImage* image = [UIImage imageWithContentsOfFile: [self pathForLook:look] ];
     SKTexture* texture = [SKTexture textureWithImage:image];
+    self.currentUIImageLook = image;
     double xScale = self.xScale;
     double yScale = self.yScale;
     self.xScale = 1.0;
@@ -172,7 +212,7 @@
 -(void) setLook
 {
     BOOL check = YES;
-#warning Fix for issue that you can set look without a brick at the start -> other idea??
+#warning Fix for issue that you can set look without a brick at the start -> change if there will be hide bricks for those objects which should not appear!
         for (Script *script in self.scriptList)
         {
             if ([script isKindOfClass:[StartScript class]]) {
@@ -203,6 +243,7 @@
     
     if(check == YES && [self.lookList count]>0){
         [self changeLook:[self.lookList objectAtIndex:0]];
+        
     }
         
 
@@ -789,7 +830,7 @@
 //
 //-(NSString*)pathForLook:(Look*)look
 //{
-//    return [NSString stringWithFormat:@"%@images/%@", self.projectPath, look.fileName];
+//    return [NSString stringWithFormat:@"%@images/%@", [self projectPath], look.fileName];
 //}
 //
 //

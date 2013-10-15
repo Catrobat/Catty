@@ -93,4 +93,53 @@
 }
 
 
+
+- (UIImage*) setImage:(UIImage*) image WithBrightness:(CGFloat)brightnessFactor {
+    
+    if ( brightnessFactor == 0 ) {
+        return image;
+    }
+    
+    CGImageRef imgRef = image.CGImage;
+    
+    size_t width = CGImageGetWidth(imgRef);
+    size_t height = CGImageGetHeight(imgRef);
+    
+    CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceRGB();
+    size_t bitsPerComponent = 8;
+    size_t bytesPerPixel = 4;
+    size_t bytesPerRow = bytesPerPixel * width;
+    size_t totalBytes = bytesPerRow * height;
+    
+
+    uint8_t* rawData = malloc(totalBytes);
+    
+
+    CGContextRef context = CGBitmapContextCreate(rawData, width, height, bitsPerComponent, bytesPerRow, colorSpace, kCGImageAlphaPremultipliedLast | kCGBitmapByteOrder32Big);
+    
+    CGContextDrawImage(context, CGRectMake(0, 0, width, height), imgRef);
+
+    for ( int i = 0; i < totalBytes; i += 4 ) {
+        
+        uint8_t* red = rawData + i;
+        uint8_t* green = rawData + (i + 1);
+        uint8_t* blue = rawData + (i + 2);
+        
+        *red = MIN(255,MAX(0,roundf(*red + (*red * brightnessFactor))));
+        *green = MIN(255,MAX(0,roundf(*green + (*green * brightnessFactor))));
+        *blue = MIN(255,MAX(0,roundf(*blue + (*blue * brightnessFactor))));
+        
+    }
+
+    CGImageRef newImg = CGBitmapContextCreateImage(context);
+    
+    CGColorSpaceRelease(colorSpace);
+    CGContextRelease(context);
+    free(rawData);
+
+    image = [UIImage imageWithCGImage:newImg];
+    CGImageRelease(newImg);
+    return image;
+}
+
 @end
