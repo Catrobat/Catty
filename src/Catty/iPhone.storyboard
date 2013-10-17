@@ -279,7 +279,7 @@
         <scene sceneID="vPB-Cv-GHf">
             <objects>
                 <tableViewController wantsFullScreenLayout="YES" id="oKj-cD-XDS" customClass="CatrobatTableViewController" sceneMemberID="viewController">
-                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="x0M-nl-oAg">
+                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleAspectFit" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="x0M-nl-oAg">
                         <rect key="frame" x="0.0" y="64" width="320" height="504"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -326,7 +326,7 @@
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                             <color key="highlightedColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         </label>
-                                        <imageView userInteractionEnabled="NO" tag="11" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dd5-sU-Ffl">
+                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" tag="11" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dd5-sU-Ffl">
                                             <rect key="frame" x="20" y="17" width="50" height="50"/>
                                         </imageView>
                                     </subviews>
@@ -842,7 +842,7 @@
         <!--Program Detail Store View Controller-->
         <scene sceneID="9qo-sP-Szn">
             <objects>
-                <viewController id="5oV-85-Xov" customClass="ProgramDetailStoreViewController" sceneMemberID="viewController">
+                <viewController hidesBottomBarWhenPushed="YES" id="5oV-85-Xov" customClass="ProgramDetailStoreViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="MGE-zt-6U0"/>
                         <viewControllerLayoutGuide type="bottom" id="y0m-wI-baX"/>
@@ -852,7 +852,7 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qwE-Ve-7jz">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="504"/>
+                                <rect key="frame" x="0.0" y="-5" width="320" height="509"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             </scrollView>
                         </subviews>
@@ -937,6 +937,6 @@
     <inferredMetricsTieBreakers>
         <segue reference="mUB-CR-2KD"/>
         <segue reference="v2V-DK-O7m"/>
-        <segue reference="bAY-Bc-iil"/>
+        <segue reference="gOv-U2-QMM"/>
     </inferredMetricsTieBreakers>
 </document>

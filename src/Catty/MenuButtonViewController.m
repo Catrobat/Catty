@@ -24,6 +24,9 @@
 #import "SlidingViewController.h"
 #import "UIColor+CatrobatUIColorExtensions.h"
 #import "UIImage+ImageWithUIView.h"
+#import "ProgramLoadingInfo.h"
+#import "Util.h"
+#import "ProgramDefines.h"
 
 @interface MenuButtonViewController ()
 
@@ -120,7 +123,22 @@
 //    UIImage * screenshot = [[UIImage alloc]init];
 //    
 //    screenshot = [UIImage imageWithUIView:self.slidingViewController.topViewController.view];
-
+//
+//    NSString* path = [NSString stringWithFormat:@"%@/%@/", [Util applicationDocumentsDirectory],kProgramsFolder];
+//    [path stringByAppendingString:@"/screenshot.png"];
+//    
+//    NSString  *pngPath = [NSHomeDirectory() stringByAppendingPathComponent:path];
+//    
+//    [UIImagePNGRepresentation(screenshot) writeToFile:pngPath atomically:YES];
+//    
+//    //Check if saved correctly
+//    
+//    NSError *error;
+//    NSFileManager *fileMgr = [NSFileManager defaultManager];
+//    
+//    NSString *documentsDirectory = [NSHomeDirectory() stringByAppendingPathComponent:path];
+//
+//    NSLog(@"Documents directory: %@", [fileMgr contentsOfDirectoryAtPath:documentsDirectory error:&error]);
 }
 
 @end

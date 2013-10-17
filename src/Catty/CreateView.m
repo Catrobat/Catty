@@ -89,7 +89,11 @@
     [self configureTitleLabel:descriptionTitleLabel];
     descriptionTitleLabel.text = NSLocalizedString(@"Description", nil);
     [view addSubview:descriptionTitleLabel];
-    
+////////
+#warning remove if webteam resolved the issue
+    description = [description stringByReplacingOccurrencesOfString:@"<br>" withString:@""];
+    description = [description stringByReplacingOccurrencesOfString:@"<br />" withString:@""];
+/////////
     
     if(!description || [description isEqualToString:@""]) {
         description =  NSLocalizedString(@"No Description available", nil);

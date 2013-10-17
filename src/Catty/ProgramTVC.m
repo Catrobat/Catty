@@ -467,7 +467,8 @@
 
 - (void)playSceneAction:(id)sender
 {
-  [self performSegueWithIdentifier:kSegueToScene sender:sender];
+    [self.navigationController setToolbarHidden:YES];
+    [self performSegueWithIdentifier:kSegueToScene sender:sender];
 }
 
 - (void)setupToolBar
@@ -487,5 +488,6 @@
                                                                         action:@selector(playSceneAction:)];
   self.toolbarItems = [NSArray arrayWithObjects:add, flexItem, play, nil];
 }
+
 
 @end
