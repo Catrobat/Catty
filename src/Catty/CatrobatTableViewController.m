@@ -61,6 +61,7 @@
     [self initTableView];
     [self initNavigationBar];
     
+    
     AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
     [appDelegate.fileManager addDefaultProjectToLeveLDirectory];
 }
@@ -179,6 +180,14 @@
     cell.titleLabel.text = NSLocalizedString([[self.cells objectAtIndex:indexPath.row] capitalizedString], nil);
     cell.iconImageView.image = [UIImage imageNamed: [self.cells objectAtIndex:indexPath.row]];
     
+    
+//    CGFloat test = [self getHeightForCellAtIndexPath:indexPath];
+//    test = (test/2.0f)-25;
+//    
+//    cell.iconImageView.frame = CGRectMake(20, test , 50, 50);
+//    cell.titleLabel.frame = CGRectMake(95, test , 185, 22);
+
+    
 }
 
 -(void)configureSubtitleLabelForCell:(UITableViewCell*)cell
@@ -187,6 +196,11 @@
     subtitleLabel.textColor = [UIColor brightGrayColor];
     NSString* lastProject = [Util lastProgram];
     subtitleLabel.text = lastProject;
+//    CGFloat test = [self getHeightForCellAtIndexPath:indexPath];
+//    test = (test/2.0f)-25;
+//    
+//    subtitleLabel.frame = CGRectMake(20, test , 50, 50);
+    
 }
 
 -(CGFloat)getHeightForCellAtIndexPath:(NSIndexPath*) indexPath {

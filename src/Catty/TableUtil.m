@@ -27,6 +27,7 @@
 
 
 #define kIphone5ScreenHeight 568.0f
+#define kIphone4ScreenHeight 480.0f
 #define kContinueCellHeight  124.0f
 #define kImageCellHeight     79.0f
 
@@ -36,12 +37,23 @@
 
 +(CGFloat)getHeightForContinueCell {
     CGFloat screenHeight = [Util getScreenHeight];
-    return (kContinueCellHeight*screenHeight)/kIphone5ScreenHeight;
+    if (screenHeight == kIphone5ScreenHeight) {
+        return (kContinueCellHeight*screenHeight)/kIphone5ScreenHeight;
+    }
+    else{
+        return (kContinueCellHeight*screenHeight)/kIphone4ScreenHeight;
+    }
+
 }
 
 +(CGFloat)getHeightForImageCell {
     CGFloat screenHeight = [Util getScreenHeight];
-    return (kImageCellHeight*screenHeight)/kIphone5ScreenHeight;
+    if (screenHeight == kIphone5ScreenHeight) {
+        return (kImageCellHeight*screenHeight)/kIphone5ScreenHeight;
+    }
+    else{
+        return (kImageCellHeight*screenHeight)/kIphone4ScreenHeight;
+    }
 }
 
 +(void)initNavigationItem:(UINavigationItem*)navigationItem withTitle:(NSString*)title{

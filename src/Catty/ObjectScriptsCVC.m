@@ -102,7 +102,8 @@
 
 - (void)playSceneAction:(id)sender
 {
-  [self performSegueWithIdentifier:kSegueToScene sender:sender];
+    [self.navigationController setToolbarHidden:YES];
+    [self performSegueWithIdentifier:kSegueToScene sender:sender];
 }
 
 - (void)setupToolBar

@@ -28,5 +28,6 @@
 @property (strong,nonatomic) UIButton* continueButton;
 @property (strong,nonatomic) UIButton* screenshotButton;
 @property (strong,nonatomic) IBOutlet UIView* menuView;
+@property (strong,nonatomic) IBOutlet UIImageView* imageView;
 
 @end
