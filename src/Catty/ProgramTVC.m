@@ -37,8 +37,8 @@
 #import "Parser.h"
 #import "Script.h"
 #import "Brick.h"
-#import "SceneViewController.h"
 #import "ActionSheetAlertViewTags.h"
+#import "ScenePresenterViewController.h"
 
 // constraints and default values
 #define kDefaultProgramName NSLocalizedString(@"New Program",@"Default name for new programs") // XXX: BTW: are there any restrictions or limits for the program name???
@@ -153,6 +153,8 @@
 
 // TODO: use data source for the ProgramTVC instead of reloading the whole data
   [self.tableView reloadData];
+    [self.navigationController setNavigationBarHidden:NO];
+    [self.navigationController setToolbarHidden:NO];
 //  [self.tableView beginUpdates];
 //  [self.tableView reloadRowsAtIndexPaths:@[indexPathOfYourCell] withRowAnimation:UITableViewRowAnimationNone];
 //  [self.tableView endUpdates];
@@ -305,10 +307,10 @@
     }
   } else if ([sender isKindOfClass:[UIBarButtonItem class]]) {
     if ([segue.identifier isEqualToString:toSceneSegueID]) {
-      if ([destController isKindOfClass:[SceneViewController class]]) {
-        SceneViewController* scvc = (SceneViewController*) destController;
-          scvc.hidesBottomBarWhenPushed = YES;
+      if ([destController isKindOfClass:[ScenePresenterViewController class]]) {
+        ScenePresenterViewController* scvc = (ScenePresenterViewController*) destController;
         if ([scvc respondsToSelector:@selector(setProgram:)]) {
+            [scvc setController:(UITableViewController *)self];
           [scvc performSelector:@selector(setProgram:) withObject:self.program];
         }
       }

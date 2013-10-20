@@ -32,8 +32,11 @@
 #import "ProgramLoadingInfo.h"
 #import "SegueDefines.h"
 #import "Util.h"
-#import "SceneViewController.h"
+#import "ScenePresenterViewController.h"
 #import "ProgramTVC.h"
+
+#define kIphone5ScreenHeight 568.0f
+#define kIphone4ScreenHeight 480.0f
 
 @interface CatrobatTableViewController () <UIAlertViewDelegate,
                                     UIActionSheetDelegate, UITextFieldDelegate>
@@ -71,6 +74,12 @@
 {
     [super viewWillAppear:YES];
     [self.navigationController setToolbarHidden:YES];
+    [self.navigationController setNavigationBarHidden:NO];
+     NSIndexPath* indexPath = [NSIndexPath indexPathForRow:0 inSection:0];
+    [self.tableView beginUpdates];
+    [self.tableView reloadRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationNone];
+    [self.tableView endUpdates];
+    
 }
 
 -(void) viewDidAppear:(BOOL)animated {
@@ -78,7 +87,8 @@
   [self.tableView beginUpdates];
   [self.tableView reloadRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationNone];
   [self.tableView endUpdates];
-  self.tableView.alwaysBounceVertical = NO; // disable scrolling
+  self.tableView.alwaysBounceVertical = NO;
+    self.tableView.scrollEnabled = NO;// disable scrolling
 }
 
 - (void)didReceiveMemoryWarning
@@ -94,6 +104,7 @@
     self.tableView.dataSource = self;
     [self.tableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
     self.tableView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"darkblue"]];
+
 }
 
 -(void)initNavigationBar
@@ -177,17 +188,12 @@
 #pragma mark Helper
 -(void)configureImageCell:(UITableViewCell <CatrobatImageCell>*)cell atIndexPath:(NSIndexPath*)indexPath
 {
-    cell.titleLabel.text = NSLocalizedString([[self.cells objectAtIndex:indexPath.row] capitalizedString], nil);
-    cell.iconImageView.image = [UIImage imageNamed: [self.cells objectAtIndex:indexPath.row]];
-    
-    
-//    CGFloat test = [self getHeightForCellAtIndexPath:indexPath];
-//    test = (test/2.0f)-25;
-//    
-//    cell.iconImageView.frame = CGRectMake(20, test , 50, 50);
-//    cell.titleLabel.frame = CGRectMake(95, test , 185, 22);
 
     
+    cell.titleLabel.text = NSLocalizedString([[self.cells objectAtIndex:indexPath.row] capitalizedString], nil);
+    cell.iconImageView.image = [UIImage imageNamed: [self.cells objectAtIndex:indexPath.row]];
+
+
 }
 
 -(void)configureSubtitleLabelForCell:(UITableViewCell*)cell
@@ -196,15 +202,26 @@
     subtitleLabel.textColor = [UIColor brightGrayColor];
     NSString* lastProject = [Util lastProgram];
     subtitleLabel.text = lastProject;
-//    CGFloat test = [self getHeightForCellAtIndexPath:indexPath];
-//    test = (test/2.0f)-25;
-//    
-//    subtitleLabel.frame = CGRectMake(20, test , 50, 50);
+
     
 }
 
 -(CGFloat)getHeightForCellAtIndexPath:(NSIndexPath*) indexPath {
-    return (indexPath.row == 0) ? [TableUtil getHeightForContinueCell] : [TableUtil getHeightForImageCell];
+    CGFloat height;
+    if (indexPath.row == 0) {
+        height= [TableUtil getHeightForContinueCell];
+        if ([Util getScreenHeight]==kIphone4ScreenHeight) {
+            height = height*kIphone4ScreenHeight/kIphone5ScreenHeight;
+        }
+    }
+    else{
+        height= [TableUtil getHeightForImageCell];
+        if ([Util getScreenHeight]==kIphone4ScreenHeight) {
+            height = height*kIphone4ScreenHeight/kIphone5ScreenHeight;
+        }
+    }
+    return height;
+
 }
 
 #pragma makrk - Segue delegate

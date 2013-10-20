@@ -34,5 +34,16 @@
 @property (nonatomic, strong) Program* program; // has to be set to get this view controller working
 @property (nonatomic, weak) IBOutlet UIView* skView;
 @property (strong,nonatomic) UIButton* menuBtn;
+@property (nonatomic,weak) UITableViewController* controller;
+@property (nonatomic,strong) UIButton* backButton;
+
+
+@property (nonatomic,strong) IBOutlet UIView* menuView;
+@property (strong,nonatomic) UIButton* menuBackButton;
+@property (strong,nonatomic) UIButton* menuContinueButton;
+@property (strong,nonatomic) UIButton* menuScreenshotButton;
+@property (strong,nonatomic) UIButton* menuRestartButton;
+@property (strong, nonatomic) UIButton* menuAxisButton;
+
 
 @end

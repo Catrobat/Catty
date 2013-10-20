@@ -62,6 +62,7 @@
     
     UIImageView *imageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"menu_icon"]];
     [navigationItem setRightBarButtonItem:[[UIBarButtonItem alloc] initWithCustomView:imageView]];
+    
 }
 
 +(void)addSeperatorForCell:(CatrobatBaseCell*)cell{

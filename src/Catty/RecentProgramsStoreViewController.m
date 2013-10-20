@@ -45,7 +45,6 @@
 @property (nonatomic, strong) NSMutableArray *projects;
 @property (nonatomic, strong) LoadingView* loadingView;
 
-
 @end
 
 @implementation RecentProgramsStoreViewController
@@ -70,7 +69,12 @@
     [self loadRecentProjects];
     [self initTableView];
     
-    [TableUtil initNavigationItem:self.navigationItem withTitle:@"Recent Programs"];        
+    [TableUtil initNavigationItem:self.navigationItem withTitle:@"Recent Programs"];
+
+}
+-(void)viewWillAppear:(BOOL)animated
+{
+
 }
 
 - (void)dealloc

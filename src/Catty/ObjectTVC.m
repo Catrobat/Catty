@@ -30,7 +30,7 @@
 #import "SegueDefines.h"
 #import "TableUtil.h"
 #import "CatrobatImageCell.h"
-#import "SceneViewController.h"
+#import "ScenePresenterViewController.h"
 
 // identifiers
 #define kTableHeaderIdentifier @"Header"
@@ -144,10 +144,11 @@
     }
   } else if ([sender isKindOfClass:[UIBarButtonItem class]]) {
     if ([segue.identifier isEqualToString:toSceneSegueID]) {
-      if ([destController isKindOfClass:[SceneViewController class]]) {
-        SceneViewController* scvc = (SceneViewController*) destController;
-        if ([scvc respondsToSelector:@selector(setProgram:)]) {
-          [scvc performSelector:@selector(setProgram:) withObject:self.object.program];
+        if ([destController isKindOfClass:[ScenePresenterViewController class]]) {
+            ScenePresenterViewController* scvc = (ScenePresenterViewController*) destController;
+            if ([scvc respondsToSelector:@selector(setProgram:)]) {
+               [scvc setController:(UITableViewController *)self];
+            [scvc performSelector:@selector(setProgram:) withObject:self.object.program];
         }
       }
     }
@@ -202,7 +203,7 @@
 #pragma mark - Helper Methods
 - (void)playSceneAction:(id)sender
 {
-    [self.navigationController setToolbarHidden:YES];
+        [self.navigationController setToolbarHidden:YES];
     [self performSegueWithIdentifier:kSegueToScene sender:sender];
 }
 

@@ -21,13 +21,17 @@
  */
 
 #import <UIKit/UIKit.h>
+#import "ScenePresenterViewController.h"
 
 @interface MenuButtonViewController : UIViewController
 
 @property (strong,nonatomic) UIButton* backButton;
 @property (strong,nonatomic) UIButton* continueButton;
 @property (strong,nonatomic) UIButton* screenshotButton;
-@property (strong,nonatomic) IBOutlet UIView* menuView;
+@property (strong,nonatomic) UIButton* restartButton;
+@property (strong, nonatomic) UIButton* axisButton;
 @property (strong,nonatomic) IBOutlet UIImageView* imageView;
+@property(weak,nonatomic) UITableViewController* controller;
+@property(weak,nonatomic) ScenePresenterViewController* presenter;
 
 @end

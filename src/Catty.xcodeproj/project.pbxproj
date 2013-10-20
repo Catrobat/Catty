@@ -125,10 +125,8 @@
 		B4DA23DC175E78050079B381 /* menu_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B4DA23D9175E78050079B381 /* menu_icon@2x.png */; };
 		B4DEFC8D170F463800DD1939 /* TestParserResources in Resources */ = {isa = PBXBuildFile; fileRef = B4DEFC8C170F463700DD1939 /* TestParserResources */; };
 		B4DEFC90170F464200DD1939 /* TestParser.m in Sources */ = {isa = PBXBuildFile; fileRef = B4DEFC8F170F464200DD1939 /* TestParser.m */; };
-		B4E7D253176EF1B300EC8AD8 /* SceneViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B4E7D252176EF1B300EC8AD8 /* SceneViewController.m */; };
 		B4E7D257176EF20F00EC8AD8 /* Scene.m in Sources */ = {isa = PBXBuildFile; fileRef = B4E7D256176EF20F00EC8AD8 /* Scene.m */; };
 		B4E7D25A176EF2CA00EC8AD8 /* SpriteKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B4E7D259176EF2CA00EC8AD8 /* SpriteKit.framework */; };
-		B4F243C8170EBD7B007A071D /* iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B4F243C7170EBD7B007A071D /* iPhone.storyboard */; };
 		B4F243CF170EBF8F007A071D /* back.png in Resources */ = {isa = PBXBuildFile; fileRef = B4F243CD170EBF8F007A071D /* back.png */; };
 		B4F243D0170EBF8F007A071D /* back@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B4F243CE170EBF8F007A071D /* back@2x.png */; };
 		B4F499B0175E8387002E1BBD /* PullableView.m in Sources */ = {isa = PBXBuildFile; fileRef = B4F499AF175E8387002E1BBD /* PullableView.m */; };
@@ -136,14 +134,23 @@
 		C34B44ED17F079F500624730 /* CustomExtensionsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C34B44EC17F079F500624730 /* CustomExtensionsTests.m */; };
 		C34B44F417F1D2C700624730 /* ClearGraphicEffectBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = C34B44F317F1D2C700624730 /* ClearGraphicEffectBrick.m */; };
 		C34B44F817F1D8D200624730 /* ChangeBrightnessByNBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = C34B44F617F1D8D200624730 /* ChangeBrightnessByNBrick.m */; };
+		C3BF74DD1811452800134B77 /* stage_dialog_button_toggle_axis.png in Resources */ = {isa = PBXBuildFile; fileRef = C3BF74D11811452800134B77 /* stage_dialog_button_toggle_axis.png */; };
+		C3BF74DE1811452800134B77 /* stage_dialog_button_toggle_axis_pressed.png in Resources */ = {isa = PBXBuildFile; fileRef = C3BF74D21811452800134B77 /* stage_dialog_button_toggle_axis_pressed.png */; };
+		C3BF74DF1811452800134B77 /* stage_dialog_button_screenshot.png in Resources */ = {isa = PBXBuildFile; fileRef = C3BF74D31811452800134B77 /* stage_dialog_button_screenshot.png */; };
+		C3BF74E01811452800134B77 /* stage_dialog_button_screenshot_pressed.png in Resources */ = {isa = PBXBuildFile; fileRef = C3BF74D41811452800134B77 /* stage_dialog_button_screenshot_pressed.png */; };
+		C3BF74E11811452800134B77 /* stage_dialog_button_restart.png in Resources */ = {isa = PBXBuildFile; fileRef = C3BF74D51811452800134B77 /* stage_dialog_button_restart.png */; };
+		C3BF74E21811452800134B77 /* stage_dialog_button_restart_pressed.png in Resources */ = {isa = PBXBuildFile; fileRef = C3BF74D61811452800134B77 /* stage_dialog_button_restart_pressed.png */; };
+		C3BF74E31811452800134B77 /* stage_dialog_button_continue.png in Resources */ = {isa = PBXBuildFile; fileRef = C3BF74D71811452800134B77 /* stage_dialog_button_continue.png */; };
+		C3BF74E41811452800134B77 /* stage_dialog_button_continue_pressed.png in Resources */ = {isa = PBXBuildFile; fileRef = C3BF74D81811452800134B77 /* stage_dialog_button_continue_pressed.png */; };
+		C3BF74E51811452800134B77 /* stage_dialog_button_back.png in Resources */ = {isa = PBXBuildFile; fileRef = C3BF74D91811452800134B77 /* stage_dialog_button_back.png */; };
+		C3BF74E61811452800134B77 /* stage_dialog_button_back_pressed.png in Resources */ = {isa = PBXBuildFile; fileRef = C3BF74DA1811452800134B77 /* stage_dialog_button_back_pressed.png */; };
+		C3BF754C18117F6000134B77 /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C3BF754B18117F6000134B77 /* Accelerate.framework */; };
 		C3E91973180BDBBC001F2232 /* MenuButtonViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C3E91972180BDBBC001F2232 /* MenuButtonViewController.m */; };
 		C3E9197B180BE0AE001F2232 /* menuButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C3E9197A180BE0AE001F2232 /* menuButton@2x.png */; };
 		C3E9197D180BE0BF001F2232 /* ic_media_play.png in Resources */ = {isa = PBXBuildFile; fileRef = C3E9197C180BE0BF001F2232 /* ic_media_play.png */; };
 		C3E9197F180BE179001F2232 /* screenshot.png in Resources */ = {isa = PBXBuildFile; fileRef = C3E9197E180BE179001F2232 /* screenshot.png */; };
-		C3E91988180BEDE5001F2232 /* SlidingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C3E91987180BEDE5001F2232 /* SlidingViewController.m */; };
-		C3E9198B180BEDFB001F2232 /* UIImage+ImageWithUIView.m in Sources */ = {isa = PBXBuildFile; fileRef = C3E9198A180BEDFB001F2232 /* UIImage+ImageWithUIView.m */; };
 		C3F1DD5C180AD1DC00E2FA45 /* ScenePresenterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C3F1DD5B180AD1DC00E2FA45 /* ScenePresenterViewController.m */; };
-		C3F1DD5F180AD8D300E2FA45 /* MenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C3F1DD5E180AD8D300E2FA45 /* MenuViewController.m */; };
+		C3F2950C1813C63200E37D61 /* iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C3F2950B1813C63200E37D61 /* iPhone.storyboard */; };
 		CA43DD361809976900F95B88 /* UIImageView+CatrobatUIImageViewExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = CA43DD351809976900F95B88 /* UIImageView+CatrobatUIImageViewExtensions.m */; };
 		CA43DD3A18099AA300F95B88 /* DarkBlueGradientBorderedImageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CA43DD3918099AA300F95B88 /* DarkBlueGradientBorderedImageCell.m */; };
 		CA688202180AEF00008A7C99 /* BaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA688201180AEF00008A7C99 /* BaseViewController.m */; };
@@ -415,12 +422,9 @@
 		B4DEFC8C170F463700DD1939 /* TestParserResources */ = {isa = PBXFileReference; lastKnownFileType = folder; path = TestParserResources; sourceTree = "<group>"; };
 		B4DEFC8E170F464200DD1939 /* TestParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestParser.h; sourceTree = "<group>"; };
 		B4DEFC8F170F464200DD1939 /* TestParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestParser.m; sourceTree = "<group>"; };
-		B4E7D251176EF1B300EC8AD8 /* SceneViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SceneViewController.h; sourceTree = "<group>"; };
-		B4E7D252176EF1B300EC8AD8 /* SceneViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SceneViewController.m; sourceTree = "<group>"; };
 		B4E7D255176EF20F00EC8AD8 /* Scene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Scene.h; sourceTree = "<group>"; };
 		B4E7D256176EF20F00EC8AD8 /* Scene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Scene.m; sourceTree = "<group>"; };
 		B4E7D259176EF2CA00EC8AD8 /* SpriteKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SpriteKit.framework; path = System/Library/Frameworks/SpriteKit.framework; sourceTree = SDKROOT; };
-		B4F243C7170EBD7B007A071D /* iPhone.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = iPhone.storyboard; sourceTree = "<group>"; };
 		B4F243CB170EBEF7007A071D /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		B4F243CC170EBEF7007A071D /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		B4F243CD170EBF8F007A071D /* back.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = back.png; sourceTree = "<group>"; };
@@ -433,19 +437,25 @@
 		C34B44F317F1D2C700624730 /* ClearGraphicEffectBrick.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ClearGraphicEffectBrick.m; sourceTree = "<group>"; };
 		C34B44F617F1D8D200624730 /* ChangeBrightnessByNBrick.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChangeBrightnessByNBrick.m; sourceTree = "<group>"; };
 		C34B44F717F1D8D200624730 /* ChangeBrightnessByNBrick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChangeBrightnessByNBrick.h; sourceTree = "<group>"; };
+		C3BF74D11811452800134B77 /* stage_dialog_button_toggle_axis.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = stage_dialog_button_toggle_axis.png; path = ../../stage_dialog_button_toggle_axis.png; sourceTree = "<group>"; };
+		C3BF74D21811452800134B77 /* stage_dialog_button_toggle_axis_pressed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = stage_dialog_button_toggle_axis_pressed.png; path = ../../stage_dialog_button_toggle_axis_pressed.png; sourceTree = "<group>"; };
+		C3BF74D31811452800134B77 /* stage_dialog_button_screenshot.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = stage_dialog_button_screenshot.png; path = ../../stage_dialog_button_screenshot.png; sourceTree = "<group>"; };
+		C3BF74D41811452800134B77 /* stage_dialog_button_screenshot_pressed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = stage_dialog_button_screenshot_pressed.png; path = ../../stage_dialog_button_screenshot_pressed.png; sourceTree = "<group>"; };
+		C3BF74D51811452800134B77 /* stage_dialog_button_restart.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = stage_dialog_button_restart.png; path = ../../stage_dialog_button_restart.png; sourceTree = "<group>"; };
+		C3BF74D61811452800134B77 /* stage_dialog_button_restart_pressed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = stage_dialog_button_restart_pressed.png; path = ../../stage_dialog_button_restart_pressed.png; sourceTree = "<group>"; };
+		C3BF74D71811452800134B77 /* stage_dialog_button_continue.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = stage_dialog_button_continue.png; path = ../../stage_dialog_button_continue.png; sourceTree = "<group>"; };
+		C3BF74D81811452800134B77 /* stage_dialog_button_continue_pressed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = stage_dialog_button_continue_pressed.png; path = ../../stage_dialog_button_continue_pressed.png; sourceTree = "<group>"; };
+		C3BF74D91811452800134B77 /* stage_dialog_button_back.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = stage_dialog_button_back.png; path = ../../stage_dialog_button_back.png; sourceTree = "<group>"; };
+		C3BF74DA1811452800134B77 /* stage_dialog_button_back_pressed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = stage_dialog_button_back_pressed.png; path = ../../stage_dialog_button_back_pressed.png; sourceTree = "<group>"; };
+		C3BF754B18117F6000134B77 /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
 		C3E91971180BDBBC001F2232 /* MenuButtonViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuButtonViewController.h; sourceTree = "<group>"; };
 		C3E91972180BDBBC001F2232 /* MenuButtonViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MenuButtonViewController.m; sourceTree = "<group>"; };
 		C3E9197A180BE0AE001F2232 /* menuButton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "menuButton@2x.png"; path = "../menuButton@2x.png"; sourceTree = "<group>"; };
 		C3E9197C180BE0BF001F2232 /* ic_media_play.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ic_media_play.png; sourceTree = "<group>"; };
 		C3E9197E180BE179001F2232 /* screenshot.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = screenshot.png; sourceTree = "<group>"; };
-		C3E91986180BEDE5001F2232 /* SlidingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SlidingViewController.h; sourceTree = "<group>"; };
-		C3E91987180BEDE5001F2232 /* SlidingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SlidingViewController.m; sourceTree = "<group>"; };
-		C3E91989180BEDFB001F2232 /* UIImage+ImageWithUIView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+ImageWithUIView.h"; sourceTree = "<group>"; };
-		C3E9198A180BEDFB001F2232 /* UIImage+ImageWithUIView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+ImageWithUIView.m"; sourceTree = "<group>"; };
 		C3F1DD5A180AD1DC00E2FA45 /* ScenePresenterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScenePresenterViewController.h; sourceTree = "<group>"; };
 		C3F1DD5B180AD1DC00E2FA45 /* ScenePresenterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScenePresenterViewController.m; sourceTree = "<group>"; };
-		C3F1DD5D180AD8D300E2FA45 /* MenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuViewController.h; sourceTree = "<group>"; };
-		C3F1DD5E180AD8D300E2FA45 /* MenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MenuViewController.m; sourceTree = "<group>"; };
+		C3F2950B1813C63200E37D61 /* iPhone.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = iPhone.storyboard; sourceTree = "<group>"; };
 		CA43DD341809976900F95B88 /* UIImageView+CatrobatUIImageViewExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImageView+CatrobatUIImageViewExtensions.h"; sourceTree = "<group>"; };
 		CA43DD351809976900F95B88 /* UIImageView+CatrobatUIImageViewExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+CatrobatUIImageViewExtensions.m"; sourceTree = "<group>"; };
 		CA43DD3818099AA300F95B88 /* DarkBlueGradientBorderedImageCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DarkBlueGradientBorderedImageCell.h; sourceTree = "<group>"; };
@@ -591,6 +601,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C3BF754C18117F6000134B77 /* Accelerate.framework in Frameworks */,
 				CAC22DA41809D5730071CC5D /* MobileCoreServices.framework in Frameworks */,
 				B4E7D25A176EF2CA00EC8AD8 /* SpriteKit.framework in Frameworks */,
 				B4AF798D174A9A340041555A /* CoreLocation.framework in Frameworks */,
@@ -675,6 +686,7 @@
 		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				C3BF754B18117F6000134B77 /* Accelerate.framework */,
 				CAC22DA31809D5730071CC5D /* MobileCoreServices.framework */,
 				B4E7D259176EF2CA00EC8AD8 /* SpriteKit.framework */,
 				B405BAC7175DD3F600B1A0FC /* libxml2.dylib */,
@@ -773,6 +785,16 @@
 		B4003027170EB3DA00396DB7 /* graphics */ = {
 			isa = PBXGroup;
 			children = (
+				C3BF74D11811452800134B77 /* stage_dialog_button_toggle_axis.png */,
+				C3BF74D21811452800134B77 /* stage_dialog_button_toggle_axis_pressed.png */,
+				C3BF74D31811452800134B77 /* stage_dialog_button_screenshot.png */,
+				C3BF74D41811452800134B77 /* stage_dialog_button_screenshot_pressed.png */,
+				C3BF74D51811452800134B77 /* stage_dialog_button_restart.png */,
+				C3BF74D61811452800134B77 /* stage_dialog_button_restart_pressed.png */,
+				C3BF74D71811452800134B77 /* stage_dialog_button_continue.png */,
+				C3BF74D81811452800134B77 /* stage_dialog_button_continue_pressed.png */,
+				C3BF74D91811452800134B77 /* stage_dialog_button_back.png */,
+				C3BF74DA1811452800134B77 /* stage_dialog_button_back_pressed.png */,
 				CA8F8A0717F2417000A04C03 /* icons */,
 				816C788217D5F0420029A4E6 /* settings_bg@2x.png */,
 				B4DA23D8175E78050079B381 /* menu_icon.png */,
@@ -1380,14 +1402,6 @@
 		B4E7D254176EF1B900EC8AD8 /* SceneViewController */ = {
 			isa = PBXGroup;
 			children = (
-				C3E91989180BEDFB001F2232 /* UIImage+ImageWithUIView.h */,
-				C3E9198A180BEDFB001F2232 /* UIImage+ImageWithUIView.m */,
-				C3E91986180BEDE5001F2232 /* SlidingViewController.h */,
-				C3E91987180BEDE5001F2232 /* SlidingViewController.m */,
-				B4E7D251176EF1B300EC8AD8 /* SceneViewController.h */,
-				B4E7D252176EF1B300EC8AD8 /* SceneViewController.m */,
-				C3F1DD5D180AD8D300E2FA45 /* MenuViewController.h */,
-				C3F1DD5E180AD8D300E2FA45 /* MenuViewController.m */,
 				C3F1DD5A180AD1DC00E2FA45 /* ScenePresenterViewController.h */,
 				C3F1DD5B180AD1DC00E2FA45 /* ScenePresenterViewController.m */,
 				C3E91971180BDBBC001F2232 /* MenuButtonViewController.h */,
@@ -1538,7 +1552,7 @@
 		CD0CCE37170C9F9300B70036 /* Storyboard */ = {
 			isa = PBXGroup;
 			children = (
-				B4F243C7170EBD7B007A071D /* iPhone.storyboard */,
+				C3F2950B1813C63200E37D61 /* iPhone.storyboard */,
 			);
 			name = Storyboard;
 			path = Catty;
@@ -2086,26 +2100,32 @@
 			buildActionMask = 2147483647;
 			files = (
 				B4D940D8170ECB31003DDBFA /* Aquarium 3.catrobat in Resources */,
+				C3BF74E21811452800134B77 /* stage_dialog_button_restart_pressed.png in Resources */,
 				CA8F8A0B17F241F700A04C03 /* ic_looks.png in Resources */,
 				B4D940D9170ECB31003DDBFA /* My first project.catrobat in Resources */,
-				B4F243C8170EBD7B007A071D /* iPhone.storyboard in Resources */,
 				B4F243CF170EBF8F007A071D /* back.png in Resources */,
+				C3BF74E31811452800134B77 /* stage_dialog_button_continue.png in Resources */,
 				C3E9197B180BE0AE001F2232 /* menuButton@2x.png in Resources */,
 				B4F243D0170EBF8F007A071D /* back@2x.png in Resources */,
 				B4BCF3DA170ECE05008EDF3A /* accessory.png in Resources */,
+				C3BF74E61811452800134B77 /* stage_dialog_button_back_pressed.png in Resources */,
 				B4BCF3DB170ECE05008EDF3A /* accessory@2x.png in Resources */,
 				CA8F8A0C17F241F700A04C03 /* ic_scripts.png in Resources */,
 				B4BCF3E7170ECE19008EDF3A /* download.png in Resources */,
 				B4BCF3E8170ECE19008EDF3A /* download@2x.png in Resources */,
 				CA8F8A0D17F241F700A04C03 /* ic_sounds.png in Resources */,
+				C3F2950C1813C63200E37D61 /* iPhone.storyboard in Resources */,
 				CA7AC43A18074B5200904143 /* ic_media_play.png in Resources */,
 				B4BCF3E9170ECE19008EDF3A /* forum.png in Resources */,
 				B4BCF3EA170ECE19008EDF3A /* forum@2x.png in Resources */,
 				B4BCF3EB170ECE19008EDF3A /* new.png in Resources */,
 				B4BCF3EC170ECE19008EDF3A /* new@2x.png in Resources */,
+				C3BF74DE1811452800134B77 /* stage_dialog_button_toggle_axis_pressed.png in Resources */,
 				B4BCF3ED170ECE19008EDF3A /* programs.png in Resources */,
+				C3BF74E41811452800134B77 /* stage_dialog_button_continue_pressed.png in Resources */,
 				B4BCF3EE170ECE19008EDF3A /* programs@2x.png in Resources */,
 				B4BCF3EF170ECE19008EDF3A /* upload.png in Resources */,
+				C3BF74E11811452800134B77 /* stage_dialog_button_restart.png in Resources */,
 				B4BCF3F0170ECE19008EDF3A /* upload@2x.png in Resources */,
 				B4BCF3F2170ECE8F008EDF3A /* darkblue.png in Resources */,
 				B4BCF3F4170ECEA1008EDF3A /* darkBlueGradient.png in Resources */,
@@ -2125,8 +2145,12 @@
 				816C788317D5F0420029A4E6 /* settings_bg@2x.png in Resources */,
 				B4DA23D7175E76820079B381 /* icon.png in Resources */,
 				B4DA23DA175E78050079B381 /* menu_icon.png in Resources */,
+				C3BF74DD1811452800134B77 /* stage_dialog_button_toggle_axis.png in Resources */,
+				C3BF74E51811452800134B77 /* stage_dialog_button_back.png in Resources */,
 				B4DA23DC175E78050079B381 /* menu_icon@2x.png in Resources */,
 				C3E9197F180BE179001F2232 /* screenshot.png in Resources */,
+				C3BF74DF1811452800134B77 /* stage_dialog_button_screenshot.png in Resources */,
+				C3BF74E01811452800134B77 /* stage_dialog_button_screenshot_pressed.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2182,8 +2206,6 @@
 				CD0CCF53170CB39700B70036 /* BroadcastBrick.m in Sources */,
 				CD0CCF54170CB39700B70036 /* BroadcastScript.m in Sources */,
 				816C788617D62B7C0029A4E6 /* ProgramTVC.m in Sources */,
-				C3E91988180BEDE5001F2232 /* SlidingViewController.m in Sources */,
-				C3F1DD5F180AD8D300E2FA45 /* MenuViewController.m in Sources */,
 				CD0CCF55170CB39700B70036 /* BroadcastWaitBrick.m in Sources */,
 				B46475301770F60500CD277F /* AudioManager.m in Sources */,
 				CD0CCF56170CB39700B70036 /* BroadcastWaitHandler.m in Sources */,
@@ -2195,7 +2217,6 @@
 				CD0CCF62170CB39700B70036 /* ChangeYByNBrick.m in Sources */,
 				CD0CCF64170CB39700B70036 /* ComeToFrontBrick.m in Sources */,
 				CD0CCF71170CB39700B70036 /* FileManager.m in Sources */,
-				C3E9198B180BEDFB001F2232 /* UIImage+ImageWithUIView.m in Sources */,
 				CD0CCF72170CB39700B70036 /* ForeverBrick.m in Sources */,
 				81FAEE3917E793240052BB2B /* ScriptsCollectionViewCell.m in Sources */,
 				CD0CCF74170CB39700B70036 /* GlideToBrick.m in Sources */,
@@ -2227,7 +2248,6 @@
 				CD0CCFC9170CB39700B70036 /* SpeakBrick.m in Sources */,
 				CD0CCFD0170CB39700B70036 /* StartScript.m in Sources */,
 				CA68820E180B39D0008A7C99 /* ColoredCell.m in Sources */,
-				B4E7D253176EF1B300EC8AD8 /* SceneViewController.m in Sources */,
 				CD0CCFD1170CB39700B70036 /* StopAllSoundsBrick.m in Sources */,
 				C34B44F417F1D2C700624730 /* ClearGraphicEffectBrick.m in Sources */,
 				CD0CCFD7170CB39700B70036 /* TurnLeftBrick.m in Sources */,
