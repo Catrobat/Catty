@@ -24,7 +24,9 @@
 #import "AudioManager.h"
 #import <AVFoundation/AVFoundation.h>
 
-@interface AudioManager()
+@interface AudioManager(){
+    NSInteger soundCounter;
+}
 
 @property (nonatomic, strong) NSMutableDictionary* sounds;
 
@@ -52,7 +54,7 @@ static AudioManager* sharedAudioManager = nil;
     self = [super init];
     if (self) {
     }
-    
+    soundCounter=0;
     return self;
 }
 
@@ -83,11 +85,18 @@ static AudioManager* sharedAudioManager = nil;
     player = [[AVAudioPlayer alloc] initWithContentsOfURL:path error:&error];
     NSLogError(error);
     [audioPlayers setObject:player forKey:fileName];
+  }else{
+      soundCounter++;
+      NSURL* path = [NSURL fileURLWithPath:[self pathForSound:fileName atFilePath:filePath]];
+      NSError* error = nil;
+      player = [[AVAudioPlayer alloc] initWithContentsOfURL:path error:&error];
+      NSLogError(error);
+      [audioPlayers setObject:player forKey:[fileName stringByAppendingString:[NSString stringWithFormat:@"%d",soundCounter]]];
   }
-  if ([player isPlaying]) {
-    [player stop];
-    [player setCurrentTime:0];
-  }
+//  if ([player isPlaying]) {
+//    [player stop];
+//    [player setCurrentTime:0];
+//  }
   if (delegate)
     player.delegate = delegate;
 

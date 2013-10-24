@@ -65,10 +65,25 @@
 {
     [super viewDidLoad];
 
+
     [self loadFeaturedProjects];
     [self initTableView];
     
+
+
+    
     [TableUtil initNavigationItem:self.navigationItem withTitle:@"Featured Programs"];
+}
+
+-(void)viewWillDisappear:(BOOL)animated
+{
+    //self.navigationController.navigationBar.translucent = YES;
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    //self.navigationController.navigationBar.translucent = NO;
+    
 }
 
 - (void)dealloc

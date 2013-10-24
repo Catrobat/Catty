@@ -28,7 +28,7 @@
 #import "SpriteObject.h"
 #import "SegueDefines.h"
 #import "ActionSheetAlertViewTags.h"
-#import "SceneViewController.h"
+#import "ScenePresenterViewController.h"
 #import "ProgramDefines.h"
 #import "UIImageView+CatrobatUIImageViewExtensions.h"
 #import "Util.h"
@@ -164,9 +164,10 @@
   UIViewController* destController = segue.destinationViewController;
   if ([sender isKindOfClass:[UIBarButtonItem class]]) {
     if ([segue.identifier isEqualToString:toSceneSegueID]) {
-      if ([destController isKindOfClass:[SceneViewController class]]) {
-        SceneViewController* scvc = (SceneViewController*) destController;
+      if ([destController isKindOfClass:[ScenePresenterViewController class]]) {
+        ScenePresenterViewController* scvc = (ScenePresenterViewController*) destController;
         if ([scvc respondsToSelector:@selector(setProgram:)]) {
+            [scvc setController:(UITableViewController *)self];
           [scvc performSelector:@selector(setProgram:) withObject:self.object.program];
         }
       }

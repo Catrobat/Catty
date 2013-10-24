@@ -25,7 +25,7 @@
 #import "UIDefines.h"
 #import "SpriteObject.h"
 #import "SegueDefines.h"
-#import "SceneViewController.h"
+#import "ScenePresenterViewController.h"
 #import "ObjectScriptCategoriesTVC.h"
 
 @interface ObjectScriptsCVC () <UICollectionViewDelegate, UICollectionViewDelegateFlowLayout>
@@ -77,9 +77,10 @@
   UIViewController* destController = segue.destinationViewController;
   if ([sender isKindOfClass:[UIBarButtonItem class]]) {
     if ([segue.identifier isEqualToString:toSceneSegueID]) {
-      if ([destController isKindOfClass:[SceneViewController class]]) {
-        SceneViewController* scvc = (SceneViewController*) destController;
+      if ([destController isKindOfClass:[ScenePresenterViewController class]]) {
+        ScenePresenterViewController* scvc = (ScenePresenterViewController*) destController;
         if ([scvc respondsToSelector:@selector(setProgram:)]) {
+            [scvc setController:(UITableViewController *)self];
           [scvc performSelector:@selector(setProgram:) withObject:self.object.program];
         }
       }

@@ -21,12 +21,11 @@
  */
 
 #import "MenuButtonViewController.h"
-#import "SlidingViewController.h"
 #import "UIColor+CatrobatUIColorExtensions.h"
-#import "UIImage+ImageWithUIView.h"
-#import "ProgramLoadingInfo.h"
+//#import "ProgramLoadingInfo.h"
 #import "Util.h"
 #import "ProgramDefines.h"
+#import <AVFoundation/AVFoundation.h>
 
 @interface MenuButtonViewController ()
 
@@ -37,7 +36,11 @@
 @synthesize backButton = _backButton;
 @synthesize continueButton = _continueButton;
 @synthesize screenshotButton = _screenshotButton;
+@synthesize restartButton = _restartButton;
+@synthesize axisButton =_axisButton;
+
 @synthesize imageView = _imageView;
+@synthesize presenter = _presenter;
 
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -54,34 +57,53 @@
     [super viewDidLoad];
 
     
-    [self.slidingViewController setAnchorRightRevealAmount:100.0f];
-    self.slidingViewController.underLeftWidthLayout = FullWidth;
-    
-    [self.view addSubview:self.menuView];
-    self.menuView.backgroundColor = [UIColor darkBlueColor];
     
     self.backButton = [UIButton buttonWithType:UIButtonTypeCustom];
     _backButton.frame = CGRectMake(20.0f, 30.0f, 44.0f, 44.0f);
-    [_backButton setBackgroundImage:[UIImage imageNamed:@"back"] forState:UIControlStateNormal];
+    [_backButton setBackgroundImage:[UIImage imageNamed:@"stage_dialog_button_back"] forState:UIControlStateNormal];
+    [_backButton setBackgroundImage:[UIImage imageNamed:@"stage_dialog_button_back_pressed"] forState:UIControlStateHighlighted];
+    [_backButton setBackgroundImage:[UIImage imageNamed:@"stage_dialog_button_back_pressed"] forState:UIControlStateSelected];
     [_backButton addTarget:self action:@selector(stopLevel:) forControlEvents:UIControlEventTouchUpInside];
     
-    [self.menuView addSubview:self.backButton];
+    [self.view addSubview:self.backButton];
     
     self.continueButton = [UIButton buttonWithType:UIButtonTypeCustom];
     _continueButton.frame = CGRectMake(20.0f, 100.0f, 44.0f, 44.0f);
-    [_continueButton setBackgroundImage:[UIImage imageNamed:@"ic_media_play"] forState:UIControlStateNormal];
+    [_continueButton setBackgroundImage:[UIImage imageNamed:@"stage_dialog_button_continue"] forState:UIControlStateNormal];
+    [_continueButton setBackgroundImage:[UIImage imageNamed:@"stage_dialog_button_continue_pressed"] forState:UIControlStateHighlighted];
+    [_continueButton setBackgroundImage:[UIImage imageNamed:@"stage_dialog_button_continue_pressed"] forState:UIControlStateSelected];
     [_continueButton addTarget:self action:@selector(continueLevel:) forControlEvents:UIControlEventTouchUpInside];
     
-    [self.menuView addSubview:self.continueButton];
+    [self.view addSubview:self.continueButton];
     
-    [self.menuView addSubview:self.backButton];
+    [self.view addSubview:self.backButton];
     
     self.screenshotButton = [UIButton buttonWithType:UIButtonTypeCustom];
     _screenshotButton.frame = CGRectMake(20.0f, 170.0f, 44.0f, 44.0f);
-    [_screenshotButton setBackgroundImage:[UIImage imageNamed:@"screenshot"] forState:UIControlStateNormal];
+    [_screenshotButton setBackgroundImage:[UIImage imageNamed:@"stage_dialog_button_screenshot"] forState:UIControlStateNormal];
+    [_screenshotButton setBackgroundImage:[UIImage imageNamed:@"stage_dialog_button_screenshot_pressed"] forState:UIControlStateHighlighted];
+    [_screenshotButton setBackgroundImage:[UIImage imageNamed:@"stage_dialog_button_screenshot_pressed"] forState:UIControlStateSelected];
     [_screenshotButton addTarget:self action:@selector(takeScreenshot:) forControlEvents:UIControlEventTouchUpInside];
     
-    [self.menuView addSubview:self.screenshotButton];
+    [self.view addSubview:self.screenshotButton];
+    
+    self.restartButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    _restartButton.frame = CGRectMake(20.0f, 240.0f, 44.0f, 44.0f);
+    [_restartButton setBackgroundImage:[UIImage imageNamed:@"stage_dialog_button_restart"] forState:UIControlStateNormal];
+    [_restartButton setBackgroundImage:[UIImage imageNamed:@"stage_dialog_button_restart_pressed"] forState:UIControlStateHighlighted];
+    [_restartButton setBackgroundImage:[UIImage imageNamed:@"stage_dialog_button_restart_pressed"] forState:UIControlStateSelected];
+    [_restartButton addTarget:self action:@selector(restartLevel:) forControlEvents:UIControlEventTouchUpInside];
+    
+    [self.view addSubview:self.restartButton];
+    
+    self.axisButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    _axisButton.frame = CGRectMake(20.0f, 310.0f, 44.0f, 44.0f);
+    [_axisButton setBackgroundImage:[UIImage imageNamed:@"stage_dialog_button_toggle_axis"] forState:UIControlStateNormal];
+    [_axisButton setBackgroundImage:[UIImage imageNamed:@"stage_dialog_button_toggle_axis_pressed"] forState:UIControlStateHighlighted];
+    [_axisButton setBackgroundImage:[UIImage imageNamed:@"stage_dialog_button_toggle_axis_pressed"] forState:UIControlStateSelected];
+    [_axisButton addTarget:self action:@selector(showHideAxis:) forControlEvents:UIControlEventTouchUpInside];
+    
+    [self.view addSubview:self.axisButton];
     
     UIImage *image = [UIImage imageNamed: @"menu_icon"];
     [_imageView setImage:image];
@@ -99,46 +121,65 @@
 
 - (void)stopLevel:(UIButton *)sender
 {
+    [self.navigationController setToolbarHidden:NO];
+//    [self.navigationController popViewControllerAnimated:YES];
+//    [_presenter goback];
+    
     [self.navigationController popViewControllerAnimated:YES];
+    
+    [self.controller.navigationController setToolbarHidden:NO];
+    [self.controller.navigationController setNavigationBarHidden:NO];
+    
+    
 }
 
 - (void)continueLevel:(UIButton *)sender
 {
-    [self.slidingViewController resetTopView];
+    [[AVAudioSession sharedInstance] setActive:YES error:nil];
+    [self.navigationController popViewControllerAnimated:YES];
 }
-
-
-- (void)takeScreenshot:(UIButton *)sender
+-(void)restartLevel:(UIButton*) sender
 {
     NSString *popupmessage = [NSString stringWithFormat:@"Soon available"];
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Screenshot"
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Restart"
                                                     message:popupmessage
                                                    delegate:self
                                           cancelButtonTitle:@"OK"
                                           otherButtonTitles:nil];
     [alert show];
+}
+-(void)showHideAxis:(UIButton *)sender
+{
+    NSString *popupmessage = [NSString stringWithFormat:@"Soon available"];
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"ShowAxis"
+                                                    message:popupmessage
+                                                   delegate:self
+                                          cancelButtonTitle:@"OK"
+                                          otherButtonTitles:nil];
+    [alert show];
+}
+
+
+- (void)takeScreenshot:(UIButton *)sender
+{
+//    NSString *popupmessage = [NSString stringWithFormat:@"Soon available"];
+//    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Screenshot"
+//                                                    message:popupmessage
+//                                                   delegate:self
+//                                          cancelButtonTitle:@"OK"
+//                                          otherButtonTitles:nil];
+//    [alert show];
     
     //Screenshot function
     
-//    UIImage * screenshot = [[UIImage alloc]init];
-//    
-//    screenshot = [UIImage imageWithUIView:self.slidingViewController.topViewController.view];
-//
-//    NSString* path = [NSString stringWithFormat:@"%@/%@/", [Util applicationDocumentsDirectory],kProgramsFolder];
-//    [path stringByAppendingString:@"/screenshot.png"];
-//    
-//    NSString  *pngPath = [NSHomeDirectory() stringByAppendingPathComponent:path];
-//    
-//    [UIImagePNGRepresentation(screenshot) writeToFile:pngPath atomically:YES];
-//    
-//    //Check if saved correctly
-//    
-//    NSError *error;
-//    NSFileManager *fileMgr = [NSFileManager defaultManager];
-//    
-//    NSString *documentsDirectory = [NSHomeDirectory() stringByAppendingPathComponent:path];
-//
-//    NSLog(@"Documents directory: %@", [fileMgr contentsOfDirectoryAtPath:documentsDirectory error:&error]);
+    
+    UIGraphicsBeginImageContextWithOptions(self.presenter.skView.bounds.size, NO, [UIScreen mainScreen].scale);
+    [self.presenter.skView drawViewHierarchyInRect:self.presenter.skView.bounds afterScreenUpdates:YES];
+    UIImage *snapshotImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+
+    UIImageWriteToSavedPhotosAlbum(snapshotImage, nil, nil, nil);
+    
 }
 
 @end

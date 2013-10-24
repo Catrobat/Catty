@@ -60,12 +60,18 @@
     self.searchDisplayController.displaysSearchBarInNavigationBar = NO;
     [self.searchDisplayController setActive:YES animated:YES];
     [self.searchDisplayController.searchBar becomeFirstResponder];
+
+    
 }
 
-- (void)viewDidAppear:(BOOL)animated
+- (void)viewWillAppear:(BOOL)animated
 {
-    
-    
+    //self.navigationController.navigationBar.translucent = NO;
+}
+
+-(void)viewWillDisappear:(BOOL)animated
+{
+    //self.navigationController.navigationBar.translucent = YES;
 }
 
 - (void)didReceiveMemoryWarning
@@ -233,6 +239,7 @@
     self.searchResults = [[NSMutableArray alloc] init];
     self.searchDisplayController.searchBar.clipsToBounds = YES;
     self.searchDisplayController.searchBar.autocorrectionType = UITextAutocorrectionTypeNo;
+    //self.searchDisplayController.searchBar.translucent = YES;
     
     for(UIView *subView in self.searchDisplayController.searchBar.subviews) {
         if([subView isKindOfClass: [UITextField class]]) {
