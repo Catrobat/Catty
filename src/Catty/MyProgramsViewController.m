@@ -30,7 +30,6 @@
 #import "CellTagDefines.h"
 #import "UIColor+CatrobatUIColorExtensions.h"
 #import "CatrobatImageCell.h"
-#import "ImageCache.h"
 #import "Logger.h"
 #import "SegueDefines.h"
 

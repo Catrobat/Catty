@@ -60,18 +60,18 @@
     self.searchDisplayController.displaysSearchBarInNavigationBar = NO;
     [self.searchDisplayController setActive:YES animated:YES];
     [self.searchDisplayController.searchBar becomeFirstResponder];
-
-    
+    self.searchDisplayController.searchBar.delegate = self;
 }
 
 - (void)viewWillAppear:(BOOL)animated
 {
-    //self.navigationController.navigationBar.translucent = NO;
+  [super viewWillAppear:animated];
+  self.navigationController.navigationBar.translucent = NO;
 }
 
--(void)viewWillDisappear:(BOOL)animated
+- (void)viewWillDisappear:(BOOL)animated
 {
-    //self.navigationController.navigationBar.translucent = YES;
+  [super viewWillDisappear:animated];
 }
 
 - (void)didReceiveMemoryWarning
@@ -190,8 +190,6 @@
     }
 }
 
-
-
 #pragma mark - Init
 -(void)initTableView
 {
@@ -202,7 +200,6 @@
 }
 
 #pragma mark - Search display delegate
-
 -(void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText {
     [NSObject cancelPreviousPerformRequestsWithTarget:self];
     if(![searchText isEqualToString:@""]) {
@@ -222,9 +219,8 @@
     [self update];
 }
 
-
-- (void)searchDisplayControllerDidBeginSearch:(UISearchDisplayController *)controller {
-    
+- (void)searchDisplayControllerDidBeginSearch:(UISearchDisplayController *)controller
+{
     [controller.searchResultsTableView setDelegate:self];
     UIImageView *anImage = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"darkblue"]];
     controller.searchResultsTableView.backgroundView = anImage;
@@ -240,7 +236,7 @@
     self.searchDisplayController.searchBar.clipsToBounds = YES;
     self.searchDisplayController.searchBar.autocorrectionType = UITextAutocorrectionTypeNo;
     //self.searchDisplayController.searchBar.translucent = YES;
-    
+
     for(UIView *subView in self.searchDisplayController.searchBar.subviews) {
         if([subView isKindOfClass: [UITextField class]]) {
             [(UITextField *)subView setKeyboardAppearance: UIKeyboardAppearanceAlert];
@@ -293,8 +289,15 @@
     [self.tableView reloadData];
 }
 
+- (BOOL)searchBarText:(UISearchBar *)searchBar
+{
+  // XXX: dirty hack that works around the transparent problem
+  UIEdgeInsets inset = UIEdgeInsetsMake(44, 0, 0, 0);
+  self.tableView.contentInset = inset;
+  return YES;
+}
 
--(UITableViewCell*)cellForProjectsTableView:(UITableView*)tableView atIndexPath:(NSIndexPath*)indexPath {
+- (UITableViewCell*)cellForProjectsTableView:(UITableView*)tableView atIndexPath:(NSIndexPath*)indexPath {
     
     
     static NSString *CellIdentifier = kImageCell;

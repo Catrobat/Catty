@@ -67,10 +67,10 @@
 
     [self initNavigationBar];
     self.hidesBottomBarWhenPushed = YES;
-    
+
     self.view.backgroundColor = [UIColor darkBlueColor];
     //[TableUtil initNavigationItem:self.navigationItem withTitle:@"Info" enableBackButton:YES target:self];
-    
+
     self.projectView = [self createViewForProject:self.project];
     [self.scrollViewOutlet addSubview:self.projectView];
     self.scrollViewOutlet.delegate = self;
@@ -81,7 +81,7 @@
         contentSize.height = minHeight;
     }
     contentSize.height += kScrollViewOffset;
-    
+
     if(screenHeight == kIphone4ScreenHeight){
         contentSize.height = contentSize.height - kIphone4ScreenHeight +kIphone5ScreenHeight;
     }
@@ -89,11 +89,10 @@
 //     
 //        self.scrollViewOutlet.frame = CGRectMake(self.scrollViewOutlet.frame.origin.x, self.scrollViewOutlet.frame.origin.y, self.scrollViewOutlet.frame.size.width, self.scrollViewOutlet.frame.size.height+50);
 //    }
-   
+
     [self.scrollViewOutlet setContentSize:contentSize];
     self.scrollViewOutlet.userInteractionEnabled = YES;
     self.scrollViewOutlet.exclusiveTouch = YES;
-
 }
 
 -(void)initNavigationBar

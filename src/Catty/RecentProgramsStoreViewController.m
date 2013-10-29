@@ -28,7 +28,6 @@
 #import "TableUtil.h"
 #import "CellTagDefines.h"
 #import "CatrobatImageCell.h"
-#import "ImageCache.h"
 #import "LoadingView.h"
 #import "NetworkDefines.h"
 #import "SegueDefines.h"
@@ -72,10 +71,6 @@
     [TableUtil initNavigationItem:self.navigationItem withTitle:@"Recent Programs"];
 
 }
--(void)viewWillAppear:(BOOL)animated
-{
-
-}
 
 - (void)dealloc
 {
@@ -106,7 +101,6 @@
     
     UITableViewCell* cell = nil;
     cell = [self cellForProjectsTableView:tableView atIndexPath:indexPath];
-    
     return cell;
 }
 
@@ -117,13 +111,10 @@
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     [self.tableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
-    self.tableView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"darkblue"]];    
+    self.tableView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"darkblue"]];
 }
 
-
-
 #pragma mark - Helper
-
 -(UITableViewCell*)cellForProjectsTableView:(UITableView*)tableView atIndexPath:(NSIndexPath*)indexPath {
     
     

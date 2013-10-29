@@ -288,6 +288,12 @@
   [sheet showInView:self.view];
 }
 
+- (void)navigationController:(UINavigationController *)navigationController willShowViewController:(UIViewController *)viewController animated:(BOOL)animated
+{
+  // this line forces to hide the status bar when UIImagePickerController is shown
+  [[UIApplication sharedApplication] setStatusBarHidden:YES];
+}
+
 #pragma mark - Helper Methods
 - (void)addLookAction:(id)sender
 {

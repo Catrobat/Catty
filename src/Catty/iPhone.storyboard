@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4510" systemVersion="13A598" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="62e-MX-z1C">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4514" systemVersion="13A603" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="62e-MX-z1C">
     <dependencies>
         <deployment defaultVersion="1792" identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3742"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3746"/>
     </dependencies>
     <scenes>
         <!--ProgramTVC - New Program-->
@@ -51,6 +51,8 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <segue destination="lLN-Ii-gwh" kind="push" identifier="segueToScene" id="dSt-wf-R4M"/>
                     </connections>
@@ -105,6 +107,8 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <segue destination="NFs-db-lAP" kind="push" identifier="segueToScripts" id="gEq-0v-LOJ"/>
                         <segue destination="USc-jF-F6X" kind="push" identifier="segueToSounds" id="wAR-2e-3Tu"/>
@@ -190,6 +194,8 @@
                         </connections>
                     </collectionView>
                     <navigationItem key="navigationItem" title="Scripts" id="QrU-Gf-YVY"/>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <segue destination="eHE-Gx-X7X" kind="push" identifier="segueToScriptCategories" id="atV-4U-Inn"/>
                         <segue destination="lLN-Ii-gwh" kind="push" identifier="segueToScene" id="9nK-JY-fcb"/>
@@ -223,6 +229,8 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Categories" id="BSO-bs-TSM"/>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2fY-pN-uu3" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -267,6 +275,8 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Sounds" id="VM5-pT-7YJ"/>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <segue destination="lLN-Ii-gwh" kind="push" identifier="segueToScene" id="PV7-6r-ExX"/>
                     </connections>
@@ -278,14 +288,14 @@
         <!--Catrobat Table View Controller - Pocket Code-->
         <scene sceneID="vPB-Cv-GHf">
             <objects>
-                <tableViewController autoresizesArchivedViewToFullSize="NO" id="oKj-cD-XDS" customClass="CatrobatTableViewController" sceneMemberID="viewController">
+                <tableViewController autoresizesArchivedViewToFullSize="NO" hidesBottomBarWhenPushed="YES" id="oKj-cD-XDS" customClass="CatrobatTableViewController" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleAspectFit" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="x0M-nl-oAg">
-                        <rect key="frame" x="0.0" y="64" width="320" height="504"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="ContinueCell" rowHeight="125" id="Zaz-7q-Sx4" customClass="ContinueImageCell">
-                                <rect key="frame" x="0.0" y="22" width="320" height="125"/>
+                                <rect key="frame" x="0.0" y="86" width="320" height="125"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Zaz-7q-Sx4" id="eOe-pC-YIh">
                                     <rect key="frame" x="0.0" y="0.0" width="287" height="124"/>
@@ -314,7 +324,7 @@
                                 </connections>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="ImageCell" rowHeight="79" id="mZl-xg-hDI" customClass="DarkBlueGradientImageCell">
-                                <rect key="frame" x="0.0" y="147" width="320" height="79"/>
+                                <rect key="frame" x="0.0" y="211" width="320" height="79"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="mZl-xg-hDI" id="2ii-X1-I6m">
                                     <rect key="frame" x="0.0" y="0.0" width="287" height="78"/>
@@ -343,8 +353,9 @@
                             <outlet property="delegate" destination="oKj-cD-XDS" id="W7e-U1-6OE"/>
                         </connections>
                     </tableView>
-                    <extendedEdge key="edgesForExtendedLayout"/>
                     <navigationItem key="navigationItem" title="Pocket Code" id="vGJ-82-iau"/>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <refreshControl key="refreshControl" opaque="NO" multipleTouchEnabled="YES" contentMode="center" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" id="9TT-Zg-BVG">
                         <autoresizingMask key="autoresizingMask"/>
                     </refreshControl>
@@ -399,6 +410,8 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Looks" id="UQZ-VB-82c"/>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <segue destination="lLN-Ii-gwh" kind="push" identifier="segueToScene" id="OPb-jW-KHJ"/>
                     </connections>
@@ -412,12 +425,12 @@
             <objects>
                 <tableViewController id="s37-PF-3iN" customClass="MyProgramsViewController" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="e7Z-A0-JPr">
-                        <rect key="frame" x="0.0" y="64" width="320" height="504"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="ImageCell" rowHeight="79" id="bxY-xJ-Lob" customClass="DarkBlueGradientImageCell">
-                                <rect key="frame" x="0.0" y="22" width="320" height="79"/>
+                                <rect key="frame" x="0.0" y="86" width="320" height="79"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="bxY-xJ-Lob" id="3m2-II-Eqf">
                                     <rect key="frame" x="0.0" y="0.0" width="287" height="78"/>
@@ -446,7 +459,6 @@
                             <outlet property="delegate" destination="s37-PF-3iN" id="p1V-O8-1YO"/>
                         </connections>
                     </tableView>
-                    <extendedEdge key="edgesForExtendedLayout" bottom="YES"/>
                     <navigationItem key="navigationItem" title="Programs" id="WNU-lr-3un"/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
@@ -458,8 +470,7 @@
         <!--Navigation Controller-->
         <scene sceneID="W8F-bp-hNi">
             <objects>
-                <navigationController id="62e-MX-z1C" sceneMemberID="viewController">
-                    <extendedEdge key="edgesForExtendedLayout"/>
+                <navigationController navigationBarHidden="YES" id="62e-MX-z1C" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="hEA-S3-ek7">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -559,6 +570,7 @@
                     </view>
                     <navigationItem key="navigationItem" title="Forum" id="FwJ-XT-rqC"/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="webView" destination="YEh-ma-7Vk" id="Q7G-V6-pWl"/>
                     </connections>
@@ -571,9 +583,9 @@
         <scene sceneID="Rl9-gK-ktL">
             <objects>
                 <tabBarController definesPresentationContext="YES" id="vLF-8b-U7Z" customClass="DownloadTabBarController" sceneMemberID="viewController">
-                    <extendedEdge key="edgesForExtendedLayout"/>
                     <navigationItem key="navigationItem" title="Downloads" id="sgn-39-wIw"/>
-                    <nil key="simulatedBottomBarMetrics"/>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" id="Zo1-59-4e5">
                         <rect key="frame" x="129" y="330" width="163" height="49"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
@@ -591,49 +603,48 @@
         <!--Featured Programs Store View Controller-->
         <scene sceneID="lCH-B5-MNk">
             <objects>
-                <tableViewController automaticallyAdjustsScrollViewInsets="NO" id="d7j-dK-UxW" customClass="FeaturedProgramsStoreViewController" sceneMemberID="viewController">
-                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="qFk-Kx-ZBl">
-                        <rect key="frame" x="0.0" y="64" width="320" height="504"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Qpj-ch-Y40" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tableViewController id="d7j-dK-UxW" customClass="FeaturedProgramsStoreViewController" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="16s-BO-70Z">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <inset key="scrollIndicatorInsets" minX="0.0" minY="44" maxX="0.0" maxY="0.0"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="detailDisclosureButton" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="ImageCell" rowHeight="79" id="mbA-XN-2W1" customClass="DarkBlueGradientImageCell">
-                                <rect key="frame" x="0.0" y="22" width="320" height="79"/>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="detailDisclosureButton" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="ImageCell" rowHeight="79" id="EfC-3p-1xF" customClass="DarkBlueGradientImageCell">
+                                <rect key="frame" x="0.0" y="86" width="320" height="79"/>
                                 <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="mbA-XN-2W1" id="Emn-4S-BKy">
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="EfC-3p-1xF" id="Jm9-AW-RhL">
                                     <rect key="frame" x="0.0" y="0.0" width="253" height="78"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" tag="12" contentMode="left" text="Title" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="RtB-pp-bbe">
-                                            <rect key="frame" x="95" y="31" width="185" height="22"/>
+                                        <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" tag="12" contentMode="left" text="Title" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="QD1-Zc-X5A">
+                                            <rect key="frame" x="95" y="30" width="185" height="22"/>
                                             <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                             <color key="highlightedColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         </label>
-                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" tag="11" contentMode="scaleAspectFill" id="MPe-jr-WIq">
-                                            <rect key="frame" x="20" y="17" width="50" height="50"/>
+                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" tag="11" contentMode="scaleAspectFill" id="49q-B8-MBG">
+                                            <rect key="frame" x="20" y="16" width="50" height="50"/>
                                         </imageView>
                                     </subviews>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <outlet property="iconImageView" destination="MPe-jr-WIq" id="IVB-Vq-aJl"/>
-                                    <outlet property="titleLabel" destination="RtB-pp-bbe" id="fJV-cf-YH9"/>
-                                    <segue destination="5oV-85-Xov" kind="push" identifier="segueToLevelDetail" id="4hG-Yx-F4j"/>
+                                    <outlet property="iconImageView" destination="49q-B8-MBG" id="4pU-ee-LyV"/>
+                                    <outlet property="titleLabel" destination="QD1-Zc-X5A" id="WPM-Yw-Bpj"/>
+                                    <segue destination="5oV-85-Xov" kind="push" identifier="segueToLevelDetail" id="aCr-hO-8vs"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
-                            <outlet property="dataSource" destination="d7j-dK-UxW" id="tJI-ci-4hM"/>
-                            <outlet property="delegate" destination="d7j-dK-UxW" id="0It-e5-pcH"/>
+                            <outlet property="dataSource" destination="d7j-dK-UxW" id="fmU-KI-yTp"/>
+                            <outlet property="delegate" destination="d7j-dK-UxW" id="SZF-Wk-Ta2"/>
                         </connections>
                     </tableView>
-                    <extendedEdge key="edgesForExtendedLayout" bottom="YES"/>
                     <tabBarItem key="tabBarItem" systemItem="featured" id="pLa-Ca-Ly5"/>
                     <navigationItem key="navigationItem" id="SWr-4D-2iK"/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                 </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Qpj-ch-Y40" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-1822" y="-1428"/>
         </scene>
@@ -642,12 +653,14 @@
             <objects>
                 <tableViewController id="X6w-eP-ToB" customClass="SearchStoreViewController" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="pkr-bx-PA4">
-                        <rect key="frame" x="0.0" y="64" width="320" height="504"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <searchBar key="tableHeaderView" contentMode="redraw" id="lNL-p9-Vaf">
-                            <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <searchBar key="tableHeaderView" contentMode="redraw" placeholder="Search" id="lNL-p9-Vaf">
+                            <rect key="frame" x="0.0" y="64" width="320" height="44"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                            <rect key="contentStretch" x="0.0" y="0.0" width="0.0" height="0.0"/>
+                            <color key="barTintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             <textInputTraits key="textInputTraits"/>
                             <connections>
                                 <outlet property="delegate" destination="X6w-eP-ToB" id="9uN-2G-jEj"/>
@@ -655,7 +668,7 @@
                         </searchBar>
                         <prototypes>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="ImageCell" rowHeight="79" id="xKi-8c-8Pi" customClass="DarkBlueGradientImageCell">
-                                <rect key="frame" x="0.0" y="66" width="320" height="79"/>
+                                <rect key="frame" x="0.0" y="130" width="320" height="79"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="xKi-8c-8Pi" id="cTA-Q0-mpA">
                                     <rect key="frame" x="0.0" y="0.0" width="287" height="78"/>
@@ -683,10 +696,10 @@
                             <outlet property="delegate" destination="X6w-eP-ToB" id="dgh-gj-Hez"/>
                         </connections>
                     </tableView>
-                    <extendedEdge key="edgesForExtendedLayout" bottom="YES"/>
                     <tabBarItem key="tabBarItem" systemItem="search" id="dpb-LT-0SJ"/>
                     <navigationItem key="navigationItem" id="T4M-Lm-rym"/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="searchDisplayController" destination="bIn-x3-cSt" id="L0h-hm-2Le"/>
                         <segue destination="5oV-85-Xov" kind="push" identifier="segueToLevelDetail" id="ZYi-SP-eKt"/>
@@ -722,6 +735,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="eyi-rm-zZ0"/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="scrollViewOutlet" destination="qwE-Ve-7jz" id="s6T-uY-bi7"/>
                         <segue destination="BYa-g9-OiT" kind="push" identifier="segueToNew" id="mUB-CR-2KD"/>
@@ -736,12 +750,12 @@
             <objects>
                 <tableViewController id="7kO-X5-kpa" customClass="RecentProgramsStoreViewController" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="wvU-NI-Qi7">
-                        <rect key="frame" x="0.0" y="64" width="320" height="504"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="detailDisclosureButton" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="ImageCell" rowHeight="79" id="c4J-Fi-xAk" customClass="DarkBlueGradientImageCell">
-                                <rect key="frame" x="0.0" y="22" width="320" height="79"/>
+                                <rect key="frame" x="0.0" y="86" width="320" height="79"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="c4J-Fi-xAk" id="m5u-m4-SM4">
                                     <rect key="frame" x="0.0" y="0.0" width="253" height="78"/>
@@ -770,10 +784,10 @@
                             <outlet property="delegate" destination="7kO-X5-kpa" id="luj-ci-17E"/>
                         </connections>
                     </tableView>
-                    <extendedEdge key="edgesForExtendedLayout" bottom="YES"/>
                     <tabBarItem key="tabBarItem" systemItem="recents" id="LKv-4F-JKt"/>
                     <navigationItem key="navigationItem" id="uYZ-5N-mqR"/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="YII-Hk-zKT" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <searchDisplayController id="K1t-PS-V3t">
@@ -794,8 +808,8 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="dSt-wf-R4M"/>
         <segue reference="aum-BR-x1G"/>
-        <segue reference="KzM-S0-ouk"/>
+        <segue reference="PV7-6r-ExX"/>
+        <segue reference="ZYi-SP-eKt"/>
     </inferredMetricsTieBreakers>
 </document>
