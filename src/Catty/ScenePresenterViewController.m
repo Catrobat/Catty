@@ -77,8 +77,7 @@
     {
         //sprite.spriteManagerDelegate = self;
         sprite.broadcastWaitDelegate = self.broadcastWaitHandler;
-        //sprite.projectPath = xmlPath;
-        
+
         // TODO: change!
         for (Script *script in sprite.scriptList) {
             for (Brick *brick in script.brickList) {
@@ -196,7 +195,6 @@
 
 - (void) configureScene
 {
-    
     SKView * skView =(SKView*)_skView;
     [self.view addSubview:skView];
     //[self.view bringSubviewToFront:skView];
@@ -251,8 +249,7 @@
  {
  //sprite.spriteManagerDelegate = self;
  sprite.broadcastWaitDelegate = self.broadcastWaitHandler;
- sprite.projectPath = xmlPath;
- 
+
  // TODO: change!
  for (Script *script in sprite.scriptList) {
  for (Brick *brick in script.brickList) {
@@ -269,6 +266,7 @@
     [[AudioManager sharedAudioManager] stopAllSounds];
     [[SensorHandler sharedSensorHandler] stopSensors];
 }
+
 -(void) alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
     
     if (buttonIndex == 0) {
