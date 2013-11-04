@@ -66,19 +66,13 @@
   [self loadFeaturedProjects];
   [self initTableView];
   [TableUtil initNavigationItem:self.navigationItem withTitle:@"Featured Programs"];
-  // XXX: lill' hack that works around the translucency problem
-  self.tableView.contentInset = UIEdgeInsetsMake(44, 0, 0, 0);
-//  self.edgesForExtendedLayout = UIRectEdgeNone;
+  CGFloat navigationBarHeight = self.navigationController.navigationBar.frame.size.height;
+  self.tableView.contentInset = UIEdgeInsetsMake(navigationBarHeight, 0, 0, 0);
 }
 
 - (void)viewWillAppear:(BOOL)animated
 {
   [super viewWillAppear:animated];
-  if (! self.navigationController.navigationBar.translucent) {
-    self.navigationController.navigationBar.translucent = YES;
-    // XXX: lill' hack that works around the translucency problem
-    self.tableView.contentInset = UIEdgeInsetsMake(44, 0, 0, 0);
-  }
 }
 
 - (void)viewWillDisappear:(BOOL)animated

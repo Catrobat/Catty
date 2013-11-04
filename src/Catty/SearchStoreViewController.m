@@ -78,10 +78,10 @@
 - (void)viewDidAppear:(BOOL)animated
 {
   [super viewDidAppear:animated];
-  CGRect frame = self.view.frame;
-  frame.origin.y = 44;
-  frame.size.height = (frame.size.height - 44);
-  self.view.frame = frame;
+  CGRect frame = self.tableView.frame;
+  frame.origin.y = self.navigationController.navigationBar.frame.size.height;
+  frame.size.height = (frame.size.height - frame.origin.y);
+  self.tableView.frame = frame;
 }
 
 - (void)didReceiveMemoryWarning
@@ -90,7 +90,6 @@
 }
 
 #pragma mark - Table view data source
-
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
   return 1;
@@ -105,8 +104,7 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
   UITableViewCell *cell = nil;
-  
-  if(self.searchResults.count == 0) {
+  if (self.searchResults.count == 0) {
     static NSString *loadingCellIdentifier = @"loadingCell";
     cell = [tableView dequeueReusableCellWithIdentifier:loadingCellIdentifier];
     if (cell == nil) {
@@ -115,68 +113,57 @@
       cell.textLabel.text = @"";
     }
   }
-  
   else if([tableView isEqual:self.tableView]) {
     cell = [self cellForProjectsTableView:tableView atIndexPath:indexPath];
   }
   else if([tableView isEqual:self.searchDisplayController.searchResultsTableView]) {
     cell = [self cellForSearchResultsTableView:tableView atIndexPath:indexPath];
   }
-  
-  if(!cell) {
+  if (! cell) {
     NSLog(@"Why?! Should not happen!");
     abort();
   }
-  
-  
   return cell;
 }
 
-
-
-
 #pragma mark - Table view delegate
-
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
   CatrobatProject *level = [self.searchResults objectAtIndex:indexPath.row];
   [self performSegueWithIdentifier:kSegueToLevelDetail sender:level];
 }
 
--(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
   if([tableView isEqual:self.tableView]) {
     return [TableUtil getHeightForImageCell];
   }
   return self.tableView.rowHeight;
 }
 
-
-
 #pragma mark - NSURLConnection Delegates
-- (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data {
+- (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data
+{
   if (self.connection == connection) {
     [self.data appendData:data];
   }
 }
 
-
-- (void)connectionDidFinishLoading:(NSURLConnection *)connection {
+- (void)connectionDidFinishLoading:(NSURLConnection *)connection
+{
   if (self.connection == connection) {
-    
     NSDebug(@"Finished");
-    
+
     self.searchResults = nil;
     self.searchResults = [[NSMutableArray alloc] init];
-    
+
     NSError *error = nil;
     id jsonObject = [NSJSONSerialization JSONObjectWithData:self.data
                                                     options:NSJSONReadingMutableContainers
                                                       error:&error];
-    
-    
+
     NSDebug(@"array: %@", jsonObject);
-    
-    
+
     if ([jsonObject isKindOfClass:[NSDictionary class]]) {
       NSDictionary *catrobatInformation = [jsonObject valueForKey:@"CatrobatInformation"];
       
@@ -191,17 +178,14 @@
         [self.searchResults addObject:project];
       }
     }
-    
     self.data = nil;
     self.connection = nil;
-    
-    
     [self update];
   }
 }
 
 #pragma mark - Init
--(void)initTableView
+- (void)initTableView
 {
   self.tableView.delegate = self;
   self.tableView.dataSource = self;
@@ -210,21 +194,25 @@
 }
 
 #pragma mark - Search display delegate
--(void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText {
+- (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText {
   [NSObject cancelPreviousPerformRequestsWithTarget:self];
   if(![searchText isEqualToString:@""]) {
     [self performSelector:@selector(queryServerForSearchString:) withObject:searchText afterDelay:0.2];
   }
 }
 
--(void)searchBarSearchButtonClicked:(UISearchBar *)searchBar {
+- (void)searchBarTextDidBeginEditing:(UISearchBar *)searchBar
+{
+}
+
+- (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar {
   NSDebug(@"%@", searchBar.text);
   [self queryServerForSearchString:searchBar.text];
   [self.searchDisplayController setActive:NO animated:YES];
   [self update];
 }
 
--(void)searchBarCancelButtonClicked:(UISearchBar *)searchBar
+- (void)searchBarCancelButtonClicked:(UISearchBar *)searchBar
 {
   [self update];
 }
@@ -239,15 +227,14 @@
   
 }
 
-
 -(void)initSearchView
 {
   self.searchResults = [[NSMutableArray alloc] init];
   self.searchDisplayController.searchBar.clipsToBounds = YES;
   self.searchDisplayController.searchBar.autocorrectionType = UITextAutocorrectionTypeNo;
   //self.searchDisplayController.searchBar.translucent = YES;
-  
-  for(UIView *subView in self.searchDisplayController.searchBar.subviews) {
+
+  for (UIView *subView in self.searchDisplayController.searchBar.subviews) {
     if([subView isKindOfClass: [UITextField class]]) {
       [(UITextField *)subView setKeyboardAppearance: UIKeyboardAppearanceAlert];
     }
@@ -256,7 +243,6 @@
 }
 
 #pragma mark - Segue
-
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
   [self.searchDisplayController setActive:NO animated:YES];
@@ -269,9 +255,7 @@
   }
 }
 
-
 #pragma mark - Helper
-
 -(void)queryServerForSearchString:(NSString*)searchString
 {
   NSDebug(@"Begin custom query to server");
@@ -292,32 +276,23 @@
   NSDebug(@"Finished custom query to server");
 }
 
-- (void) update
+- (void)update
 {
   [self.searchDisplayController.searchResultsTableView reloadData];
   [self.tableView reloadData];
 }
 
-- (BOOL)searchBarText:(UISearchBar *)searchBar
+- (UITableViewCell*)cellForProjectsTableView:(UITableView*)tableView atIndexPath:(NSIndexPath*)indexPath
 {
-  // XXX: dirty hack that works around the transparent problem
-  UIEdgeInsets inset = UIEdgeInsetsMake(44, 0, 0, 0);
-  self.tableView.contentInset = inset;
-  return YES;
-}
-
-- (UITableViewCell*)cellForProjectsTableView:(UITableView*)tableView atIndexPath:(NSIndexPath*)indexPath {
-  
-  
   static NSString *CellIdentifier = kImageCell;
   UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-  
+
   if (!cell) {
     NSLog(@"Should Never happen - since iOS5 Storyboard *always* instantiates our cell!");
     abort();
   }
-  
-  if([cell conformsToProtocol:@protocol(CatrobatImageCell)]) {
+
+  if ([cell conformsToProtocol:@protocol(CatrobatImageCell)]) {
     CatrobatProject *project = [self.searchResults objectAtIndex:indexPath.row];
     
     UITableViewCell <CatrobatImageCell>* imageCell = (UITableViewCell <CatrobatImageCell>*)cell;
@@ -325,7 +300,6 @@
     
     [self loadImage:project.screenshotSmall forCell:imageCell atIndexPath:indexPath];
   }
-  
   return cell;
 }
 
@@ -338,17 +312,14 @@
     cell.textLabel.textColor = [UIColor blueGrayColor];
     cell.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"darkblue"]];
   }
-  
+
   CatrobatProject *project = [self.searchResults objectAtIndex:indexPath.row];
   cell.textLabel.text = project.projectName;
-  
   return cell;
-  
 }
 
 -(void)loadImage:(NSString*)imageURLString forCell:(UITableViewCell <CatrobatImageCell>*) imageCell atIndexPath:(NSIndexPath*)indexPath
 {
-  
   imageCell.iconImageView.image =
   [UIImage imageWithContentsOfURL:[NSURL URLWithString:imageURLString]
                  placeholderImage:[UIImage imageNamed:@"programs"]
