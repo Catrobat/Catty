@@ -71,7 +71,6 @@
 - (void)viewWillAppear:(BOOL)animated
 {
   [super viewWillAppear:animated];
-  self.edgesForExtendedLayout = UIRectEdgeNone;
 }
 
 - (void)viewWillDisappear:(BOOL)animated

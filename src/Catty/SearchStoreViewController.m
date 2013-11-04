@@ -77,7 +77,7 @@
 
 - (void)viewDidAppear:(BOOL)animated
 {
-  self.navigationController.navigationBar.translucent = YES;
+  [super viewDidAppear:animated];
   CGRect frame = self.view.frame;
   frame.origin.y = 44;
   frame.size.height = (frame.size.height - 44);
