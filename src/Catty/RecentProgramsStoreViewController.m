@@ -63,13 +63,20 @@
 
 - (void)viewDidLoad
 {
-    [super viewDidLoad];
-    
-    [self loadRecentProjects];
-    [self initTableView];
-    
-    [TableUtil initNavigationItem:self.navigationItem withTitle:@"Recent Programs"];
+  [super viewDidLoad];
+  [self loadRecentProjects];
+  [self initTableView];
+}
 
+- (void)viewWillAppear:(BOOL)animated
+{
+  [super viewWillAppear:animated];
+  self.edgesForExtendedLayout = UIRectEdgeNone;
+}
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+  [super viewWillDisappear:animated];
 }
 
 - (void)dealloc

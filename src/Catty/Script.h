@@ -22,7 +22,7 @@
 
 
 #import <UIKit/UIKit.h>
-#import "enums.h"
+//#import "enums.h"
 #import <SpriteKit/SpriteKit.h>
 
 @class Brick;
