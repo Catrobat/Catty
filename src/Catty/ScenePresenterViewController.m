@@ -41,8 +41,13 @@
 #import <Accelerate/Accelerate.h>
 #import "UIColor+CatrobatUIColorExtensions.h"
 
+
+#define kWidthSlideMenu 100
+#define kPlaceOfButtons 20
+
 @interface ScenePresenterViewController (){
     BOOL menuOpen;
+    Scene *scene;
 }
 
 
@@ -207,8 +212,15 @@
     
     //Program* program = [self loadProgram];
     CGSize programSize = CGSizeMake(self.program.header.screenWidth.floatValue, self.program.header.screenHeight.floatValue);
-    
-    Scene * scene = [[Scene alloc] initWithSize:programSize andProgram:self.program];
+    if (! scene) {
+        scene = [[Scene alloc] initWithSize:programSize andProgram:self.program];
+    }
+    else{
+        scene = nil;
+        scene = [scene initWithSize:programSize andProgram:self.program];
+    }
+
+    //Scene * scene = [[Scene alloc] initWithSize:programSize andProgram:self.program];
     scene.scaleMode = SKSceneScaleModeAspectFit;
     [skView presentScene:scene];
     [[ProgramManager sharedProgramManager] setProgram:self.program];
@@ -304,19 +316,19 @@
     SKView * view= (SKView*)_skView;
     view.paused=YES;
     [[AVAudioSession sharedInstance] setActive:NO error:nil];
-
+    [[AudioManager sharedAudioManager] stopAllSounds];
 
     [UIView animateWithDuration:0.7
                           delay:0.3
                         options: UIViewAnimationOptionTransitionFlipFromLeft
                      animations:^{
                          [self.view bringSubviewToFront:self.menuView];
-                         self.menuView.frame = CGRectMake(0, 0, 100, self.menuView.frame.size.height);
-                         self.menuBackButton.frame = CGRectMake(20,self.menuBackButton.frame.origin.y, self.menuBackButton.frame.size.width, self.menuBackButton.frame.size.height);
-                         self.menuContinueButton.frame = CGRectMake(20,self.menuContinueButton.frame.origin.y, self.menuContinueButton.frame.size.width, self.menuContinueButton.frame.size.height);
-                         self.menuScreenshotButton.frame = CGRectMake(20,self.menuScreenshotButton.frame.origin.y, self.menuScreenshotButton.frame.size.width, self.menuScreenshotButton.frame.size.height);
-                         self.menuRestartButton.frame = CGRectMake(20,self.menuRestartButton.frame.origin.y, self.menuRestartButton.frame.size.width, self.menuRestartButton.frame.size.height);
-                         self.menuAxisButton.frame = CGRectMake(20,self.menuAxisButton.frame.origin.y, self.menuAxisButton.frame.size.width, self.menuAxisButton.frame.size.height);
+                         self.menuView.frame = CGRectMake(0, 0, kWidthSlideMenu, self.menuView.frame.size.height);
+                         self.menuBackButton.frame = CGRectMake(kPlaceOfButtons,self.menuBackButton.frame.origin.y, self.menuBackButton.frame.size.width, self.menuBackButton.frame.size.height);
+                         self.menuContinueButton.frame = CGRectMake(kPlaceOfButtons,self.menuContinueButton.frame.origin.y, self.menuContinueButton.frame.size.width, self.menuContinueButton.frame.size.height);
+                         self.menuScreenshotButton.frame = CGRectMake(kPlaceOfButtons,self.menuScreenshotButton.frame.origin.y, self.menuScreenshotButton.frame.size.width, self.menuScreenshotButton.frame.size.height);
+                         self.menuRestartButton.frame = CGRectMake(kPlaceOfButtons,self.menuRestartButton.frame.origin.y, self.menuRestartButton.frame.size.width, self.menuRestartButton.frame.size.height);
+                         self.menuAxisButton.frame = CGRectMake(kPlaceOfButtons,self.menuAxisButton.frame.origin.y, self.menuAxisButton.frame.size.width, self.menuAxisButton.frame.size.height);
                          
                          self.menuBtn.hidden=YES;
                          
@@ -404,11 +416,11 @@
                      animations:^{
                          
                          self.menuView.frame = CGRectMake(0, 0, 0, self.menuView.frame.size.height);
-                         self.menuBackButton.frame = CGRectMake(-80,self.menuBackButton.frame.origin.y, self.menuBackButton.frame.size.width, self.menuBackButton.frame.size.height);
-                         self.menuContinueButton.frame = CGRectMake(-80,self.menuContinueButton.frame.origin.y, self.menuContinueButton.frame.size.width, self.menuContinueButton.frame.size.height);
-                         self.menuScreenshotButton.frame = CGRectMake(-80,self.menuScreenshotButton.frame.origin.y, self.menuScreenshotButton.frame.size.width, self.menuScreenshotButton.frame.size.height);
-                         self.menuRestartButton.frame = CGRectMake(-80,self.menuRestartButton.frame.origin.y, self.menuRestartButton.frame.size.width, self.menuRestartButton.frame.size.height);
-                         self.menuAxisButton.frame = CGRectMake(-80,self.menuAxisButton.frame.origin.y, self.menuAxisButton.frame.size.width, self.menuAxisButton.frame.size.height);
+                         self.menuBackButton.frame = CGRectMake(kPlaceOfButtons-kWidthSlideMenu,self.menuBackButton.frame.origin.y, self.menuBackButton.frame.size.width, self.menuBackButton.frame.size.height);
+                         self.menuContinueButton.frame = CGRectMake(kPlaceOfButtons-kWidthSlideMenu,self.menuContinueButton.frame.origin.y, self.menuContinueButton.frame.size.width, self.menuContinueButton.frame.size.height);
+                         self.menuScreenshotButton.frame = CGRectMake(kPlaceOfButtons-kWidthSlideMenu,self.menuScreenshotButton.frame.origin.y, self.menuScreenshotButton.frame.size.width, self.menuScreenshotButton.frame.size.height);
+                         self.menuRestartButton.frame = CGRectMake(kPlaceOfButtons-kWidthSlideMenu,self.menuRestartButton.frame.origin.y, self.menuRestartButton.frame.size.width, self.menuRestartButton.frame.size.height);
+                         self.menuAxisButton.frame = CGRectMake(kPlaceOfButtons-kWidthSlideMenu,self.menuAxisButton.frame.origin.y, self.menuAxisButton.frame.size.width, self.menuAxisButton.frame.size.height);
                          
                          self.backButton.hidden=NO;
                          self.menuBtn.hidden=NO;
@@ -425,13 +437,42 @@
 
 -(void)restartLevel:(UIButton*) sender
 {
-    NSString *popupmessage = [NSString stringWithFormat:@"Soon available"];
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Restart"
-                                                    message:popupmessage
-                                                   delegate:self.menuView
-                                          cancelButtonTitle:@"OK"
-                                          otherButtonTitles:nil];
-    [alert show];
+# warning -> don't know why i have to configure the sceen twice!
+    [self configureScene];
+    [[AVAudioSession sharedInstance] setActive:YES error:nil];
+    [UIView animateWithDuration:0.2
+                          delay:0.01
+                        options: UIViewAnimationOptionTransitionFlipFromRight
+                     animations:^{
+                         
+                         self.menuView.frame = CGRectMake(0, 0, 0, self.menuView.frame.size.height);
+                         self.menuBackButton.frame = CGRectMake(kPlaceOfButtons-kWidthSlideMenu,self.menuBackButton.frame.origin.y, self.menuBackButton.frame.size.width, self.menuBackButton.frame.size.height);
+                         self.menuContinueButton.frame = CGRectMake(kPlaceOfButtons-kWidthSlideMenu,self.menuContinueButton.frame.origin.y, self.menuContinueButton.frame.size.width, self.menuContinueButton.frame.size.height);
+                         self.menuScreenshotButton.frame = CGRectMake(kPlaceOfButtons-kWidthSlideMenu,self.menuScreenshotButton.frame.origin.y, self.menuScreenshotButton.frame.size.width, self.menuScreenshotButton.frame.size.height);
+                         self.menuRestartButton.frame = CGRectMake(kPlaceOfButtons-kWidthSlideMenu,self.menuRestartButton.frame.origin.y, self.menuRestartButton.frame.size.width, self.menuRestartButton.frame.size.height);
+                         self.menuAxisButton.frame = CGRectMake(kPlaceOfButtons-kWidthSlideMenu,self.menuAxisButton.frame.origin.y, self.menuAxisButton.frame.size.width, self.menuAxisButton.frame.size.height);
+                         
+                         self.backButton.hidden=NO;
+                         self.menuBtn.hidden=NO;
+                         
+                     }
+                     completion:^(BOOL finished){
+                         menuOpen = NO;
+                     }];
+    SKView * view= (SKView*)_skView;
+    view.paused=NO;
+    [[AVAudioSession sharedInstance] setActive:YES error:nil];
+    [self configureScene];
+    [self.view bringSubviewToFront:self.menuBtn];
+    [self.view bringSubviewToFront:self.menuView];
+    
+//    NSString *popupmessage = [NSString stringWithFormat:@"Soon available"];
+//    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Restart"
+//                                                    message:popupmessage
+//                                                   delegate:self.menuView
+//                                          cancelButtonTitle:@"OK"
+//                                          otherButtonTitles:nil];
+//    [alert show];
 }
 -(void)showHideAxis:(UIButton *)sender
 {
@@ -447,23 +488,24 @@
 
 - (void)takeScreenshot:(UIButton *)sender
 {
-    NSString *popupmessage = [NSString stringWithFormat:@"Saved in PhotoLibrary - should be changed to exact folder of the level!"];
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Screenshot"
-                                                    message:popupmessage
-                                                   delegate:self.menuView
-                                          cancelButtonTitle:@"OK"
-                                          otherButtonTitles:nil];
-    [alert show];
-    
-    //Screenshot function
-    
-    
+    /// Screenshot function
     UIGraphicsBeginImageContextWithOptions(self.skView.bounds.size, NO, [UIScreen mainScreen].scale);
     [self.skView drawViewHierarchyInRect:self.skView.bounds afterScreenUpdates:NO];
     UIImage *snapshotImage = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
-    
-    UIImageWriteToSavedPhotosAlbum(snapshotImage, nil, nil, nil);
+    /// Write to Camera Roll
+    //UIImageWriteToSavedPhotosAlbum(snapshotImage, nil, nil, nil);
+    NSString* path = [self.program projectPath];
+	NSString *pngFilePath = [NSString stringWithFormat:@"%@/manual_screenshot.png",path];
+	NSData *data = [NSData dataWithData:UIImagePNGRepresentation(snapshotImage)];
+	[data writeToFile:pngFilePath atomically:YES];
+        NSString *popupmessage = [NSString stringWithFormat:@"Screenshot saved!"];
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Screenshot"
+                                                        message:popupmessage
+                                                       delegate:self.menuView
+                                              cancelButtonTitle:@"OK"
+                                              otherButtonTitles:nil];
+        [alert show];
     
 }
 
@@ -471,18 +513,15 @@
 
 - (void)handlePan:(UIPanGestureRecognizer *)gesture
 {
-    // transform the three views by the amount of the x translation
     
     CGPoint translate = [gesture translationInView:gesture.view];
-    translate.y = 0.0; // I'm just doing horizontal scrolling
+    translate.y = 0.0;
 
     
     if (gesture.state == UIGestureRecognizerStateBegan||
         gesture.state == UIGestureRecognizerStateChanged) {
         if (translate.x > 0.0 && translate.x < 100 && menuOpen == NO)
         {
-            // moving right
-            
             [UIView animateWithDuration:0.25
                                   delay:0.0
                                 options:UIViewAnimationOptionCurveEaseOut
@@ -494,37 +533,36 @@
                                  //pause Scene
                                  SKView * view= (SKView*)_skView;
                                  view.paused=YES;
-                                 //[[AVAudioSession sharedInstance] setActive:NO error:nil];
+                                 
                                  
                                  
                                  self.menuView.frame = CGRectMake(0, 0, translate.x, self.menuView.frame.size.height);
-                                 self.menuBackButton.frame = CGRectMake(translate.x-80,self.menuBackButton.frame.origin.y, self.menuBackButton.frame.size.width, self.menuBackButton.frame.size.height);
-                                 self.menuContinueButton.frame = CGRectMake(translate.x-80,self.menuContinueButton.frame.origin.y, self.menuContinueButton.frame.size.width, self.menuContinueButton.frame.size.height);
-                                 self.menuScreenshotButton.frame = CGRectMake(translate.x-80,self.menuScreenshotButton.frame.origin.y, self.menuScreenshotButton.frame.size.width, self.menuScreenshotButton.frame.size.height);
-                                 self.menuRestartButton.frame = CGRectMake(translate.x-80,self.menuRestartButton.frame.origin.y, self.menuRestartButton.frame.size.width, self.menuRestartButton.frame.size.height);
-                                 self.menuAxisButton.frame = CGRectMake(translate.x-80,self.menuAxisButton.frame.origin.y, self.menuAxisButton.frame.size.width, self.menuAxisButton.frame.size.height);
+                                 self.menuBackButton.frame = CGRectMake(translate.x+kPlaceOfButtons-kWidthSlideMenu,self.menuBackButton.frame.origin.y, self.menuBackButton.frame.size.width, self.menuBackButton.frame.size.height);
+                                 self.menuContinueButton.frame = CGRectMake(translate.x+kPlaceOfButtons-kWidthSlideMenu,self.menuContinueButton.frame.origin.y, self.menuContinueButton.frame.size.width, self.menuContinueButton.frame.size.height);
+                                 self.menuScreenshotButton.frame = CGRectMake(translate.x+kPlaceOfButtons-kWidthSlideMenu,self.menuScreenshotButton.frame.origin.y, self.menuScreenshotButton.frame.size.width, self.menuScreenshotButton.frame.size.height);
+                                 self.menuRestartButton.frame = CGRectMake(translate.x+kPlaceOfButtons-kWidthSlideMenu,self.menuRestartButton.frame.origin.y, self.menuRestartButton.frame.size.width, self.menuRestartButton.frame.size.height);
+                                 self.menuAxisButton.frame = CGRectMake(translate.x+kPlaceOfButtons-kWidthSlideMenu,self.menuAxisButton.frame.origin.y, self.menuAxisButton.frame.size.width, self.menuAxisButton.frame.size.height);
                                  self.menuBtn.hidden=YES;
                                  
                              }
                              completion:^(BOOL finished) {
                                  //menuOpen = YES;
+                                 [[AudioManager sharedAudioManager] stopAllSounds];
                              }];
         }
     
         else if (translate.x < 0.0 && translate.x > -100 && menuOpen == YES)
         {
-            // moving left
-            
             [UIView animateWithDuration:0.25
                                   delay:0.0
                                 options:UIViewAnimationOptionCurveEaseOut
                              animations:^{
-                                 self.menuView.frame = CGRectMake(0, 0, 100+translate.x, self.menuView.frame.size.height);
-                                 self.menuBackButton.frame = CGRectMake(20+translate.x,self.menuBackButton.frame.origin.y, self.menuBackButton.frame.size.width, self.menuBackButton.frame.size.height);
-                                 self.menuContinueButton.frame = CGRectMake(20+translate.x,self.menuContinueButton.frame.origin.y, self.menuContinueButton.frame.size.width, self.menuContinueButton.frame.size.height);
-                                 self.menuScreenshotButton.frame = CGRectMake(20+translate.x,self.menuScreenshotButton.frame.origin.y, self.menuScreenshotButton.frame.size.width, self.menuScreenshotButton.frame.size.height);
-                                 self.menuRestartButton.frame = CGRectMake(20+translate.x,self.menuRestartButton.frame.origin.y, self.menuRestartButton.frame.size.width, self.menuRestartButton.frame.size.height);
-                                 self.menuAxisButton.frame = CGRectMake(20+translate.x,self.menuAxisButton.frame.origin.y, self.menuAxisButton.frame.size.width, self.menuAxisButton.frame.size.height);
+                                 self.menuView.frame = CGRectMake(0, 0, kWidthSlideMenu+translate.x, self.menuView.frame.size.height);
+                                 self.menuBackButton.frame = CGRectMake(kPlaceOfButtons+translate.x,self.menuBackButton.frame.origin.y, self.menuBackButton.frame.size.width, self.menuBackButton.frame.size.height);
+                                 self.menuContinueButton.frame = CGRectMake(kPlaceOfButtons+translate.x,self.menuContinueButton.frame.origin.y, self.menuContinueButton.frame.size.width, self.menuContinueButton.frame.size.height);
+                                 self.menuScreenshotButton.frame = CGRectMake(kPlaceOfButtons+translate.x,self.menuScreenshotButton.frame.origin.y, self.menuScreenshotButton.frame.size.width, self.menuScreenshotButton.frame.size.height);
+                                 self.menuRestartButton.frame = CGRectMake(kPlaceOfButtons+translate.x,self.menuRestartButton.frame.origin.y, self.menuRestartButton.frame.size.width, self.menuRestartButton.frame.size.height);
+                                 self.menuAxisButton.frame = CGRectMake(kPlaceOfButtons+translate.x,self.menuAxisButton.frame.origin.y, self.menuAxisButton.frame.size.width, self.menuAxisButton.frame.size.height);
                                  self.menuBtn.hidden=NO;
                              }
                              completion:^(BOOL finished) {
@@ -542,8 +580,6 @@
 
         if (translate.x > 0.0 && menuOpen == NO)
         {
-            // moving right
-            
             [UIView animateWithDuration:0.25
                                   delay:0.0
                                 options:UIViewAnimationOptionCurveEaseOut
@@ -558,32 +594,31 @@
                                  //[[AVAudioSession sharedInstance] setActive:NO error:nil];
                                  
                                  
-                                 self.menuView.frame = CGRectMake(0, 0, 100, self.menuView.frame.size.height);
-                                 self.menuBackButton.frame = CGRectMake(20,self.menuBackButton.frame.origin.y, self.menuBackButton.frame.size.width, self.menuBackButton.frame.size.height);
-                                 self.menuContinueButton.frame = CGRectMake(20,self.menuContinueButton.frame.origin.y, self.menuContinueButton.frame.size.width, self.menuContinueButton.frame.size.height);
-                                 self.menuScreenshotButton.frame = CGRectMake(20,self.menuScreenshotButton.frame.origin.y, self.menuScreenshotButton.frame.size.width, self.menuScreenshotButton.frame.size.height);
-                                 self.menuRestartButton.frame = CGRectMake(20,self.menuRestartButton.frame.origin.y, self.menuRestartButton.frame.size.width, self.menuRestartButton.frame.size.height);
-                                 self.menuAxisButton.frame = CGRectMake(20,self.menuAxisButton.frame.origin.y, self.menuAxisButton.frame.size.width, self.menuAxisButton.frame.size.height);
+                                 self.menuView.frame = CGRectMake(0, 0, kWidthSlideMenu, self.menuView.frame.size.height);
+                                 self.menuBackButton.frame = CGRectMake(kPlaceOfButtons,self.menuBackButton.frame.origin.y, self.menuBackButton.frame.size.width, self.menuBackButton.frame.size.height);
+                                 self.menuContinueButton.frame = CGRectMake(kPlaceOfButtons,self.menuContinueButton.frame.origin.y, self.menuContinueButton.frame.size.width, self.menuContinueButton.frame.size.height);
+                                 self.menuScreenshotButton.frame = CGRectMake(kPlaceOfButtons,self.menuScreenshotButton.frame.origin.y, self.menuScreenshotButton.frame.size.width, self.menuScreenshotButton.frame.size.height);
+                                 self.menuRestartButton.frame = CGRectMake(kPlaceOfButtons,self.menuRestartButton.frame.origin.y, self.menuRestartButton.frame.size.width, self.menuRestartButton.frame.size.height);
+                                 self.menuAxisButton.frame = CGRectMake(kPlaceOfButtons,self.menuAxisButton.frame.origin.y, self.menuAxisButton.frame.size.width, self.menuAxisButton.frame.size.height);
                                  self.menuBtn.hidden=YES;
                              }
                              completion:^(BOOL finished) {
                                  menuOpen = YES;
+                                 [[AudioManager sharedAudioManager] stopAllSounds];
                              }];
         }
         else if (translate.x < 0.0  && menuOpen == YES)
         {
-            // moving left
-            
             [UIView animateWithDuration:0.25
                                   delay:0.0
                                 options:UIViewAnimationOptionCurveEaseOut
                              animations:^{
                                  self.menuView.frame = CGRectMake(0, 0, 0, self.menuView.frame.size.height);
-                                 self.menuBackButton.frame = CGRectMake(-44,self.menuBackButton.frame.origin.y, self.menuBackButton.frame.size.width, self.menuBackButton.frame.size.height);
-                                 self.menuContinueButton.frame = CGRectMake(-44,self.menuContinueButton.frame.origin.y, self.menuContinueButton.frame.size.width, self.menuContinueButton.frame.size.height);
-                                 self.menuScreenshotButton.frame = CGRectMake(-44,self.menuScreenshotButton.frame.origin.y, self.menuScreenshotButton.frame.size.width, self.menuScreenshotButton.frame.size.height);
-                                 self.menuRestartButton.frame = CGRectMake(-44,self.menuRestartButton.frame.origin.y, self.menuRestartButton.frame.size.width, self.menuRestartButton.frame.size.height);
-                                 self.menuAxisButton.frame = CGRectMake(-44,self.menuAxisButton.frame.origin.y, self.menuAxisButton.frame.size.width, self.menuAxisButton.frame.size.height);
+                                 self.menuBackButton.frame = CGRectMake(kPlaceOfButtons-kWidthSlideMenu,self.menuBackButton.frame.origin.y, self.menuBackButton.frame.size.width, self.menuBackButton.frame.size.height);
+                                 self.menuContinueButton.frame = CGRectMake(kPlaceOfButtons-kWidthSlideMenu,self.menuContinueButton.frame.origin.y, self.menuContinueButton.frame.size.width, self.menuContinueButton.frame.size.height);
+                                 self.menuScreenshotButton.frame = CGRectMake(kPlaceOfButtons-kWidthSlideMenu,self.menuScreenshotButton.frame.origin.y, self.menuScreenshotButton.frame.size.width, self.menuScreenshotButton.frame.size.height);
+                                 self.menuRestartButton.frame = CGRectMake(kPlaceOfButtons-kWidthSlideMenu,self.menuRestartButton.frame.origin.y, self.menuRestartButton.frame.size.width, self.menuRestartButton.frame.size.height);
+                                 self.menuAxisButton.frame = CGRectMake(kPlaceOfButtons-kWidthSlideMenu,self.menuAxisButton.frame.origin.y, self.menuAxisButton.frame.size.width, self.menuAxisButton.frame.size.height);
                                  self.menuBtn.hidden=NO;
                              }
                              completion:^(BOOL finished) {
