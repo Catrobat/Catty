@@ -28,7 +28,6 @@
 #import "TableUtil.h"
 #import "CellTagDefines.h"
 #import "CatrobatImageCell.h"
-#import "ImageCache.h"
 #import "LoadingView.h"
 #import "NetworkDefines.h"
 #import "SegueDefines.h"
@@ -44,14 +43,18 @@
 @property (nonatomic, strong) NSURLConnection *connection;
 @property (nonatomic, strong) NSMutableArray *projects;
 @property (nonatomic, strong) LoadingView* loadingView;
+@property (assign)            int programListOffset;
+@property (assign)            int programListLimit;
 
 @end
 
 @implementation RecentProgramsStoreViewController
 
-@synthesize data          = _data;
-@synthesize connection    = _connection;
-@synthesize projects      = _projects;
+@synthesize data              = _data;
+@synthesize connection        = _connection;
+@synthesize projects          = _projects;
+@synthesize programListOffset = _programListOffset;
+@synthesize programListLimit  = _programListLimit;
 
 
 - (id)initWithStyle:(UITableViewStyle)style
@@ -64,17 +67,22 @@
 
 - (void)viewDidLoad
 {
-    [super viewDidLoad];
+  self.programListLimit = 20;
+  self.programListOffset = 0;
     
-    [self loadRecentProjects];
-    [self initTableView];
-    
-    [TableUtil initNavigationItem:self.navigationItem withTitle:@"Recent Programs"];
-
+  [super viewDidLoad];
+  [self loadRecentProjects];
+  [self initTableView];
 }
--(void)viewWillAppear:(BOOL)animated
-{
 
+- (void)viewWillAppear:(BOOL)animated
+{
+  [super viewWillAppear:animated];
+}
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+  [super viewWillDisappear:animated];
 }
 
 - (void)dealloc
@@ -106,7 +114,6 @@
     
     UITableViewCell* cell = nil;
     cell = [self cellForProjectsTableView:tableView atIndexPath:indexPath];
-    
     return cell;
 }
 
@@ -117,13 +124,10 @@
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     [self.tableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
-    self.tableView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"darkblue"]];    
+    self.tableView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"darkblue"]];
 }
 
-
-
 #pragma mark - Helper
-
 -(UITableViewCell*)cellForProjectsTableView:(UITableView*)tableView atIndexPath:(NSIndexPath*)indexPath {
     
     
@@ -170,15 +174,21 @@
 
 - (void)loadRecentProjects
 {
+    
+#warning program-info should be append, not overwritten
     self.data = [[NSMutableData alloc] init];
-    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@/%@", kConnectionHost, kConnectionRecent]];
+    
+    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@/%@?%@%i&%@%i", kConnectionHost, kConnectionRecent, kProgramsOffset, self.programListOffset, kProgramsLimit, self.programListLimit]];
     NSURLRequest *request = [NSURLRequest requestWithURL:url cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:kConnectionTimeout];
+    
+    NSDebug(@"url is: %@", url);
     
     NSURLConnection *connection = [[NSURLConnection alloc] initWithRequest:request delegate:self];
     self.connection = connection;
     
     [self showLoadingView];
     
+    self.programListOffset += self.programListLimit;
 }
 
 - (void)showLoadingView
@@ -277,6 +287,31 @@
 #pragma mark - BackButtonDelegate
 -(void)back {
     [self.navigationController popViewControllerAnimated:YES];
+}
+
+#pragma mark - viewDidScroll
+- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
+{
+    /*
+     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"alert" message:@"hello" delegate:nil cancelButtonTitle:@"back" otherButtonTitles:nil, nil];
+     
+     [alert show];
+     */
+    
+    float bottomEdge = scrollView.contentOffset.y + scrollView.frame.size.height;
+    float checkPoint = scrollView.contentOffset.y + scrollView.frame.size.height * 0.6;
+    
+    //NSDebug(@"bottom: %@, checkpoint: %@", bottomEdge, checkPoint);
+    if (bottomEdge >= scrollView.contentSize.height)
+    {
+        NSDebug(@"Reached bottom, bottom is %f, checkpoint is %f", bottomEdge, checkPoint);
+        
+        [self loadRecentProjects];
+    }
+    
+    //if (scrollView.contentOffset.y + scrollView.frame.size.height == scrollView.con frame.size.height)
+    
+    
 }
 
 
