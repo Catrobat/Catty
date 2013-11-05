@@ -43,14 +43,18 @@
 @property (nonatomic, strong) NSURLConnection *connection;
 @property (nonatomic, strong) NSMutableArray *projects;
 @property (nonatomic, strong) LoadingView* loadingView;
+@property (assign)            int programListOffset;
+@property (assign)            int programListLimit;
 
 @end
 
 @implementation RecentProgramsStoreViewController
 
-@synthesize data          = _data;
-@synthesize connection    = _connection;
-@synthesize projects      = _projects;
+@synthesize data              = _data;
+@synthesize connection        = _connection;
+@synthesize projects          = _projects;
+@synthesize programListOffset = _programListOffset;
+@synthesize programListLimit  = _programListLimit;
 
 
 - (id)initWithStyle:(UITableViewStyle)style
@@ -63,6 +67,9 @@
 
 - (void)viewDidLoad
 {
+  self.programListLimit = 20;
+  self.programListOffset = 0;
+    
   [super viewDidLoad];
   [self loadRecentProjects];
   [self initTableView];
@@ -167,15 +174,21 @@
 
 - (void)loadRecentProjects
 {
+    
+#warning program-info should be append, not overwritten
     self.data = [[NSMutableData alloc] init];
-    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@/%@", kConnectionHost, kConnectionRecent]];
+    
+    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@/%@?%@%i&%@%i", kConnectionHost, kConnectionRecent, kProgramsOffset, self.programListOffset, kProgramsLimit, self.programListLimit]];
     NSURLRequest *request = [NSURLRequest requestWithURL:url cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:kConnectionTimeout];
+    
+    NSDebug(@"url is: %@", url);
     
     NSURLConnection *connection = [[NSURLConnection alloc] initWithRequest:request delegate:self];
     self.connection = connection;
     
     [self showLoadingView];
     
+    self.programListOffset += self.programListLimit;
 }
 
 - (void)showLoadingView
@@ -274,6 +287,31 @@
 #pragma mark - BackButtonDelegate
 -(void)back {
     [self.navigationController popViewControllerAnimated:YES];
+}
+
+#pragma mark - viewDidScroll
+- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
+{
+    /*
+     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"alert" message:@"hello" delegate:nil cancelButtonTitle:@"back" otherButtonTitles:nil, nil];
+     
+     [alert show];
+     */
+    
+    float bottomEdge = scrollView.contentOffset.y + scrollView.frame.size.height;
+    float checkPoint = scrollView.contentOffset.y + scrollView.frame.size.height * 0.6;
+    
+    //NSDebug(@"bottom: %@, checkpoint: %@", bottomEdge, checkPoint);
+    if (bottomEdge >= scrollView.contentSize.height)
+    {
+        NSDebug(@"Reached bottom, bottom is %f, checkpoint is %f", bottomEdge, checkPoint);
+        
+        [self loadRecentProjects];
+    }
+    
+    //if (scrollView.contentOffset.y + scrollView.frame.size.height == scrollView.con frame.size.height)
+    
+    
 }
 
 
