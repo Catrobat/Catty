@@ -29,18 +29,83 @@
 #import "Script.h"
 #import "Formula.h"
 #import "FormulaElement.h"
-
+#import "ProgramLoadingInfo.h"
+#import "Program.h"
+#import "Parser.h"
+#import "LoopBeginBrick.h"
+#import "LoopEndBrick.h"
+#import "LoopBeginBrick.h"
+#import "LoopEndBrick.h"
+#import "BroadcastWaitBrick.h"
+#import "IfLogicBeginBrick.h"
+#import "IfLogicElseBrick.h"
+#import "IfLogicEndBrick.h"
+#import "NoteBrick.h"
+#import "ForeverBrick.h"
+#import "BroadcastWaitHandler.h"
 
 @interface BrickTests : XCTestCase
+
+@property (strong, nonatomic) NSMutableArray* programs;
 
 @end
 
 @implementation BrickTests
 
+- (NSMutableArray*) programs
+{
+  if (! _programs)
+    _programs = [NSMutableArray array];
+  return _programs;
+}
+
 - (void)setUp
 {
     [super setUp];
     // Put setup code here; it will be run once, before the first test case.
+    NSString *basePath = [Program basePath];
+    NSError *error;
+    NSArray *levels = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:basePath error:&error];
+    NSLogError(error);
+
+    NSMutableArray *levelLoadingInfos = [[NSMutableArray alloc] initWithCapacity:[levels count]];
+    for (NSString *level in levels) {
+      // exclude .DS_Store folder on MACOSX simulator
+      if ([level isEqualToString:@".DS_Store"])
+        continue;
+
+      ProgramLoadingInfo *info = [[ProgramLoadingInfo alloc] init];
+      info.basePath = [NSString stringWithFormat:@"%@%@/", basePath, level];
+      info.visibleName = level;
+      NSDebug(@"Adding level: %@", info.basePath);
+      [levelLoadingInfos addObject:info];
+
+      NSDebug(@"Try to load project '%@'", info.visibleName);
+      NSDebug(@"Path: %@", info.basePath);
+      NSString *xmlPath = [NSString stringWithFormat:@"%@", info.basePath];
+      NSDebug(@"XML-Path: %@", xmlPath);
+      Program *program = [[[Parser alloc] init] generateObjectForLevel:[xmlPath stringByAppendingFormat:@"%@", kProgramCodeFileName]];
+
+      if (! program)
+        continue;
+
+      NSDebug(@"ProjectResolution: width/height:  %f / %f", program.header.screenWidth.floatValue, program.header.screenHeight.floatValue);
+
+      // setting effect
+      for (SpriteObject *sprite in program.objectList)
+      {
+        //sprite.spriteManagerDelegate = self;
+        //sprite.broadcastWaitDelegate = self.broadcastWaitHandler;
+        
+        // TODO: change!
+        for (Script *script in sprite.scriptList) {
+          for (Brick *brick in script.brickList) {
+            brick.object = sprite;
+          }
+        }
+      }
+      [self.programs addObject:program];
+    }
 }
 
 - (void)tearDown
@@ -58,47 +123,49 @@
 
 -(void)test_ComeToFrontBrick
 {
-    SpriteObject *sprite1 =[[SpriteObject alloc] init];
-    SpriteObject *sprite2 =[[SpriteObject alloc] init];
-
-    
-    Program *program = [[Program alloc]init];
-    [program.objectList addObject:sprite2];
-    [program.objectList addObject:sprite1];
-    Script *script = [[Script alloc]init];
-
-    sprite2.zPosition=1;
-    sprite1.zPosition=2;
-    sprite2.program=program;
-    sprite1.program=program;
-    ComeToFrontBrick *comeToFrontBrick = [[ComeToFrontBrick alloc]init];
-    [script.brickList addObject:comeToFrontBrick];
-    sprite2.numberOfObjects = 2;
-    sprite1.numberOfObjects = 2;
-    
- 
-    script.object = sprite2;
-
-    CGFloat test = 2;
-//IMPLEMENTATION COMETOFRONT-BRICK//////////////////////////////////
-    CGFloat zValue = script.object.zPosition;
-    NSInteger maxValue = script.object.numberOfObjects;
-    
-    for(SpriteObject *obj in script.object.program.objectList){
-        
-        if (obj.zPosition > zValue && obj.zPosition > 1) {
-            obj.zPosition = obj.zPosition - 1;
-        }
-
-        
+    Program *program = self.programs[0];
+    NSLog(@"Program: %@", program.header.programName);
+    BroadcastWaitHandler *handler = [[BroadcastWaitHandler alloc] init];
+    for (SpriteObject *object in program.objectList) {
+      object.broadcastWaitDelegate = handler;
     }
-    
-    script.object.zPosition = maxValue;
-///////////////////////////////////////
 
-    XCTAssertEqual(test, sprite2.zPosition, @"ComeToFront is not correctly calculated");
-    
-    
+    CGSize programSize = CGSizeMake(program.header.screenWidth.floatValue, program.header.screenHeight.floatValue);
+    Scene *scene = [[Scene alloc] initWithSize:programSize andProgram:program];
+    scene.scaleMode = SKSceneScaleModeAspectFit;
+    //[skView presentScene:scene];
+
+    for (SpriteObject *object in program.objectList) {
+      for (Script *script in object.scriptList) {
+        for (Brick *brick in script.brickList) {
+          // exclude following bricks
+          NSDebug(@"Object name: %@, Brick: %@", object.name, [brick description]);
+          if ([brick isKindOfClass:[LoopBeginBrick class]] ||
+              [brick isKindOfClass:[LoopEndBrick class]] ||
+              [brick isKindOfClass:[BroadcastWaitBrick class]] ||
+              [brick isKindOfClass:[IfLogicBeginBrick class]] ||
+              [brick isKindOfClass:[IfLogicElseBrick class]] ||
+              [brick isKindOfClass:[IfLogicEndBrick class]] ||
+              [brick isKindOfClass:[NoteBrick class]] ||
+              [brick isKindOfClass:[ForeverBrick class]]) {
+            continue;
+          }
+
+          SKAction *action = [brick action];
+          if ([brick isKindOfClass:[ComeToFrontBrick class]]) {
+            ComeToFrontBrick *ctfBrick = (ComeToFrontBrick *)brick;
+            NSLog(@"ComeToFront");
+            action = [ctfBrick action];
+          }
+          [script runAction:action];
+
+          if ([brick isKindOfClass:[ComeToFrontBrick class]]) {
+            NSLog(@"ZPosition is: %f, should be: %d", object.zPosition, script.object.numberOfObjects);
+            XCTAssertEqual(script.object.numberOfObjects, object.zPosition, @"ComeToFront is not correctly calculated");
+          }
+        }
+      }
+    }
 }
 
 -(void)test_SetXBrick

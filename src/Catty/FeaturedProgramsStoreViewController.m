@@ -28,7 +28,6 @@
 #import "TableUtil.h"
 #import "CellTagDefines.h"
 #import "CatrobatImageCell.h"
-#import "ImageCache.h"
 #import "LoadingView.h"
 #import "NetworkDefines.h"
 #import "SegueDefines.h"
@@ -63,27 +62,22 @@
 
 - (void)viewDidLoad
 {
-    [super viewDidLoad];
-
-
-    [self loadFeaturedProjects];
-    [self initTableView];
-    
-
-
-    
-    [TableUtil initNavigationItem:self.navigationItem withTitle:@"Featured Programs"];
-}
-
--(void)viewWillDisappear:(BOOL)animated
-{
-    //self.navigationController.navigationBar.translucent = YES;
+  [super viewDidLoad];
+  [self loadFeaturedProjects];
+  [self initTableView];
+  [TableUtil initNavigationItem:self.navigationItem withTitle:@"Featured Programs"];
+  CGFloat navigationBarHeight = self.navigationController.navigationBar.frame.size.height;
+  self.tableView.contentInset = UIEdgeInsetsMake(navigationBarHeight, 0, 0, 0);
 }
 
 - (void)viewWillAppear:(BOOL)animated
 {
-    //self.navigationController.navigationBar.translucent = NO;
-    
+  [super viewWillAppear:animated];
+}
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+  [super viewWillDisappear:animated];
 }
 
 - (void)dealloc
@@ -129,9 +123,7 @@
     self.tableView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"darkblue"]];
 }
 
-
 #pragma mark - Helper
-
 -(UITableViewCell*)cellForProjectsTableView:(UITableView*)tableView atIndexPath:(NSIndexPath*)indexPath {
     
     static NSString *CellIdentifier = kImageCell;
@@ -256,12 +248,9 @@
     }
 }
 
-
 # pragma mark - Segue delegate
-
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    
     if([[segue identifier] isEqualToString:kSegueToLevelDetail]) {
         NSIndexPath *selectedRowIndexPath = self.tableView.indexPathForSelectedRow;
         CatrobatProject *level = [self.projects objectAtIndex:selectedRowIndexPath.row];
@@ -270,9 +259,7 @@
     }
 }
 
-
 #pragma mark - update
-
 - (void)update {
     [self.tableView reloadData];
     [self.searchDisplayController setActive:NO animated:YES];
