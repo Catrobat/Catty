@@ -30,6 +30,8 @@
 #define kConnectionRecent @"recent.json"
 #define kConnectionFeatured @"featured.json"
 
+#define kProgramsOffset @"offset="
+#define kProgramsLimit @"limit="
 
 
 #endif
