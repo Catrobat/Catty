@@ -35,6 +35,7 @@
 #import "UIColor+CatrobatUIColorExtensions.h"
 #import "NSString+CatrobatNSStringExtensions.h"
 #import <MobileCoreServices/MobileCoreServices.h>
+#import <AssetsLibrary/AssetsLibrary.h>
 
 #define kTableHeaderIdentifier @"Header"
 #define kFromCameraActionSheetButton @"camera"
@@ -203,38 +204,94 @@
   UIImage *image = info[UIImagePickerControllerEditedImage];
   if (! image)
     image = info[UIImagePickerControllerOriginalImage];
+
   if (image) {
     // add image to object now
-    NSURL *imagePath = info[@"UIImagePickerControllerReferenceURL"];
-    NSString *imageFileName = [imagePath lastPathComponent];
-    NSArray *fileNameParts = [imageFileName componentsSeparatedByString:@"."];
-    NSString *imageName = ([fileNameParts count] ? fileNameParts[0] : imageFileName);
+    NSURL *imageURL = [info objectForKey:UIImagePickerControllerReferenceURL];
+//    NSString *imageFileName = [imagePath lastPathComponent];
 
-    // save image to programs directory
-    // XXX: I do not know whether this fileNamePrefix should be a UUID or any hash string.
-    //      Actually the length already equals UUID's length.
-    //      But it could also be any hash string since e.g. MD5-strings have the same size too.
-    //      ATM I am using UUID.
-    // TODO: Fix this unless using UUID is not the right way here, otherwise please delete the comment above until read.
-    NSString *fileNamePrefix = [[[NSString uuid] stringByReplacingOccurrencesOfString:@"-" withString:@""] uppercaseString];
-    NSString *newImageFileName = [NSString stringWithFormat:@"%@_%@", fileNamePrefix, imageFileName];
+    ALAssetsLibraryAssetForURLResultBlock resultblock = ^(ALAsset *myasset)
+    {
+      ALAssetRepresentation *representation = [myasset defaultRepresentation];
+      NSString *imageFileName = [representation filename];
+      NSLog(@"fileName : %@",imageFileName);
 
-    // TODO: outsource this to FileManager
-    NSString *newImagePath = [NSString stringWithFormat:@"%@%@/%@", [self.object projectPath], kProgramImagesDirName, newImageFileName];
-    NSString *mediaType = info[UIImagePickerControllerMediaType];
-    if ([mediaType isEqualToString:@"public.image"]) {
-      NSData *webData = UIImagePNGRepresentation(image);
-      // FIXME: in case of large images this should not run on the main queue
-      [webData writeToFile:newImagePath atomically:YES];
-    }
+      imageFileName = [[imageFileName componentsSeparatedByString:@"."] firstObject];
+      if (! [imageFileName length])
+        imageFileName = @"default"; // TODO: outsource this constant...
+      
+      // save image to programs directory
+      // XXX: I do not know whether this fileNamePrefix should be a UUID or any hash string.
+      //      Actually the length already equals UUID's length.
+      //      But it could also be any hash string since e.g. MD5-strings have the same size too.
+      //      ATM I am using UUID.
+      // TODO: Fix this unless using UUID is not the right way here, otherwise please delete the comment above until read.
+      NSString *fileNamePrefix = [[[NSString uuid] stringByReplacingOccurrencesOfString:@"-" withString:@""] uppercaseString];
+      NSString *newImageFileName = [NSString stringWithFormat:@"%@_%@", fileNamePrefix, imageFileName];
+      NSString *newImageFileNameThumbHiDPIx2 = [NSString stringWithFormat:@"%@_%@_%@", fileNamePrefix, @"thumb@2x", imageFileName];
+      NSString *newImageFileNameThumbHiDPI = [NSString stringWithFormat:@"%@_%@_%@", fileNamePrefix, @"thumb", imageFileName];
 
-    // FIXME: write program to disc...
+      // TODO: outsource this to FileManager
+      NSString *newImagePath = [NSString stringWithFormat:@"%@%@/%@", [self.object projectPath], kProgramImagesDirName, newImageFileName];
+      NSString *newImagePathThumbnailHiDPIx2 = [NSString stringWithFormat:@"%@%@/%@", [self.object projectPath], kProgramImagesDirName, newImageFileNameThumbHiDPIx2];
+      NSString *newImagePathThumbnailHiDPI = [NSString stringWithFormat:@"%@%@/%@", [self.object projectPath], kProgramImagesDirName, newImageFileNameThumbHiDPI];
+      NSString *mediaType = info[UIImagePickerControllerMediaType];
 
-    // update view
-    Look* look = [[Look alloc] initWithName:imageName andPath:newImageFileName];
-    [self.object.lookList addObject:look];
-    [super showPlaceHolder:([self.object.soundList count] == 0)];
-    [self.tableView reloadData];
+      NSLog(@"Writing file to disk");
+      if ([mediaType isEqualToString:@"public.image"]) {
+        // TODO: update program on disc...
+        NSBlockOperation* saveOp = [NSBlockOperation blockOperationWithBlock: ^{
+          [UIImagePNGRepresentation(image) writeToFile:newImagePath atomically:YES];
+
+          // generate thumbnail image (retina)
+          CGSize thumbnailSizeHiDPIx2 = CGSizeMake(100, 100); // TODO: outsource hardcoded value...
+          // determine aspect ratio
+          if (image.size.height > image.size.width)
+            thumbnailSizeHiDPIx2.width = (image.size.width*thumbnailSizeHiDPIx2.width)/image.size.height;
+          else
+            thumbnailSizeHiDPIx2.height = (image.size.height*thumbnailSizeHiDPIx2.height)/image.size.width;
+
+          UIGraphicsBeginImageContext(thumbnailSizeHiDPIx2);
+          UIImage *thumbHiDPIx2 = [image copy];
+          [thumbHiDPIx2 drawInRect:CGRectMake(0,0,thumbnailSizeHiDPIx2.width,thumbnailSizeHiDPIx2.height)];
+          UIImage *thumbnailImageHiDPIx2 = UIGraphicsGetImageFromCurrentImageContext();
+          UIGraphicsEndImageContext();
+          [UIImagePNGRepresentation(thumbnailImageHiDPIx2) writeToFile:newImagePathThumbnailHiDPIx2 atomically:YES];
+
+          // generate thumbnail image (retina)
+          CGSize thumbnailSizeHiDPI = CGSizeMake(50, 50); // TODO: outsource hardcoded value...
+          // determine aspect ratio
+          if (image.size.height > image.size.width)
+            thumbnailSizeHiDPI.width = (image.size.width*thumbnailSizeHiDPI.width)/image.size.height;
+          else
+            thumbnailSizeHiDPI.height = (image.size.height*thumbnailSizeHiDPI.height)/image.size.width;
+          UIGraphicsBeginImageContext(thumbnailSizeHiDPI);
+          UIImage *thumbHiDPI = [image copy];
+          [thumbHiDPI drawInRect:CGRectMake(0,0,thumbnailSizeHiDPI.width,thumbnailSizeHiDPI.height)];
+          UIImage *thumbnailImageHiDPI = UIGraphicsGetImageFromCurrentImageContext();
+          UIGraphicsEndImageContext();
+          [UIImagePNGRepresentation(thumbnailImageHiDPI) writeToFile:newImagePathThumbnailHiDPI atomically:YES];
+        }];
+        
+        // Use the completion block to update our UI from the main queue
+        [saveOp setCompletionBlock:^{
+          [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+            // update view
+            Look* look = [[Look alloc] initWithName:imageFileName andPath:newImageFileNameThumbHiDPIx2];
+            [self.object.lookList addObject:look];
+            [super showPlaceHolder:([self.object.lookList count] == 0)];
+            [self.tableView reloadData];
+          }];
+        }];
+        NSOperationQueue *queue = [[NSOperationQueue alloc] init];
+        [queue addOperation:saveOp];
+      }
+    };
+
+    ALAssetsLibrary* assetslibrary = [[ALAssetsLibrary alloc] init];
+    [assetslibrary assetForURL:imageURL
+                   resultBlock:resultblock
+                  failureBlock:nil];
   }
   [self dismissViewControllerAnimated:YES completion:nil];
 }
