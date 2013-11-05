@@ -77,19 +77,14 @@
     CGFloat screenHeight =[Util getScreenHeight];
     CGSize contentSize = self.projectView.bounds.size;
     CGFloat minHeight = self.view.frame.size.height-kUIBarHeight-kNavBarHeight;
-    if(contentSize.height < minHeight) {
-        contentSize.height = minHeight;
+    if (contentSize.height < minHeight) {
+      contentSize.height = minHeight;
     }
     contentSize.height += kScrollViewOffset;
 
-    if(screenHeight == kIphone4ScreenHeight){
-        contentSize.height = contentSize.height - kIphone4ScreenHeight +kIphone5ScreenHeight;
+    if (screenHeight == kIphone4ScreenHeight){
+      contentSize.height = contentSize.height - kIphone4ScreenHeight +kIphone5ScreenHeight;
     }
-//    if(screenHeight == kIphone5ScreenHeight){
-//     
-//        self.scrollViewOutlet.frame = CGRectMake(self.scrollViewOutlet.frame.origin.x, self.scrollViewOutlet.frame.origin.y, self.scrollViewOutlet.frame.size.width, self.scrollViewOutlet.frame.size.height+50);
-//    }
-
     [self.scrollViewOutlet setContentSize:contentSize];
     self.scrollViewOutlet.userInteractionEnabled = YES;
     self.scrollViewOutlet.exclusiveTouch = YES;
@@ -97,17 +92,14 @@
 
 -(void)initNavigationBar
 {
-    
     self.navigationItem.title = NSLocalizedString(@"Info", nil);
-    
     UIImageView *imageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"menu_icon"]];
     [self.navigationItem setRightBarButtonItem:[[UIBarButtonItem alloc] initWithCustomView:imageView]];
-    
 }
 
 - (void) viewWillDisappear:(BOOL)animated
 {
-    self.hidesBottomBarWhenPushed = NO;
+  self.hidesBottomBarWhenPushed = NO;
 }
 
 - (void)didReceiveMemoryWarning

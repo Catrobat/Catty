@@ -272,8 +272,8 @@
           UIGraphicsEndImageContext();
           [UIImagePNGRepresentation(thumbnailImageHiDPI) writeToFile:newImagePathThumbnailHiDPI atomically:YES];
         }];
-        
-        // Use the completion block to update our UI from the main queue
+
+        // Use the completion block to update UI on the main queue
         [saveOp setCompletionBlock:^{
           [[NSOperationQueue mainQueue] addOperationWithBlock:^{
             // update view

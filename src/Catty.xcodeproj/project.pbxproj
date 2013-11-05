@@ -1475,7 +1475,6 @@
 				CA688207180B2663008A7C99 /* BaseCollectionViewController.m */,
 				CA688203180B00C1008A7C99 /* BaseViewController.h */,
 				CA688201180AEF00008A7C99 /* BaseViewController.m */,
-				B4003032170EB51000396DB7 /* CatrobatTableViewController */,
 			);
 			name = BaseClasses;
 			sourceTree = "<group>";
@@ -1604,6 +1603,7 @@
 			isa = PBXGroup;
 			children = (
 				CA05A194182826E40025421A /* BaseClasses */,
+				B4003032170EB51000396DB7 /* CatrobatTableViewController */,
 				CA04EDA317E7D1610063EB25 /* Continue & New */,
 				CA05A1961828275B0025421A /* Programs */,
 				CA05A195182826FE0025421A /* Forum */,
