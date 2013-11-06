@@ -204,7 +204,6 @@
 {
     SKView *skView = (SKView*) self.skView;
     [self.view addSubview:skView];
-    //[self.view bringSubviewToFront:skView];
 #ifdef DEBUG
     skView.showsFPS = YES;
     skView.showsNodeCount = YES;
@@ -212,16 +211,7 @@
 
     //Program* program = [self loadProgram];
     CGSize programSize = CGSizeMake(self.program.header.screenWidth.floatValue, self.program.header.screenHeight.floatValue);
-    if (! self.scene) {
-        self.scene = [[Scene alloc] initWithSize:programSize andProgram:self.program];
-    } else {
-//        scene = nil;
-//        scene = [scene initWithSize:programSize andProgram:self.program];
-      self.scene = nil;
-//      self.scene = [[Scene alloc] initWithSize:programSize andProgram:self.program];
-    }
-
-    //Scene * scene = [[Scene alloc] initWithSize:programSize andProgram:self.program];
+    self.scene = [[Scene alloc] initWithSize:programSize andProgram:self.program];
     self.scene.scaleMode = SKSceneScaleModeAspectFit;
     [skView presentScene:self.scene];
     [[ProgramManager sharedProgramManager] setProgram:self.program];
@@ -313,7 +303,6 @@
     UIColor *background = [UIColor darkBlueColor];//[[UIColor alloc] initWithPatternImage:snapshotImage];
     
     self.menuView.backgroundColor = background;
-    //// WORKING!!!!!!!!!
     SKView * view= (SKView*)_skView;
     view.paused=YES;
     [[AVAudioSession sharedInstance] setActive:NO error:nil];
@@ -431,8 +420,14 @@
 
 -(void)restartLevel:(UIButton*) sender
 {
-# warning -> don't know why i have to configure the sceen twice!
+    ///Reset Scene
+    self.scene = nil;
+    self.scene.scaleMode = SKSceneScaleModeAspectFit;
+    SKView * view= (SKView*)self.skView;
+    view.paused=NO;
+    [view presentScene:self.scene];
     [self configureScene];
+    ///
     [[AVAudioSession sharedInstance] setActive:YES error:nil];
     [UIView animateWithDuration:0.2
                           delay:0.01
@@ -453,20 +448,9 @@
                      completion:^(BOOL finished){
                          self.menuOpen = NO;
                      }];
-    SKView * view= (SKView*)_skView;
-    view.paused=NO;
-    [[AVAudioSession sharedInstance] setActive:YES error:nil];
-    [self configureScene];
+
     [self.view bringSubviewToFront:self.menuBtn];
     [self.view bringSubviewToFront:self.menuView];
-    
-//    NSString *popupmessage = [NSString stringWithFormat:@"Soon available"];
-//    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Restart"
-//                                                    message:popupmessage
-//                                                   delegate:self.menuView
-//                                          cancelButtonTitle:@"OK"
-//                                          otherButtonTitles:nil];
-//    [alert show];
 }
 -(void)showHideAxis:(UIButton *)sender
 {
