@@ -104,7 +104,6 @@
     self.tableView.dataSource = self;
     [self.tableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
     self.tableView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"darkblue"]];
-
 }
 
 -(void)initNavigationBar
@@ -147,10 +146,9 @@
         [self configureImageCell:imageCell atIndexPath:indexPath];
     }
 
-    if(indexPath.row == 0) {
+    if (indexPath.row == 0) {
         [self configureSubtitleLabelForCell:cell];
     }
-    
     return cell;
 }
 
@@ -202,8 +200,6 @@
     subtitleLabel.textColor = [UIColor brightGrayColor];
     NSString* lastProject = [Util lastProgram];
     subtitleLabel.text = lastProject;
-
-    
 }
 
 -(CGFloat)getHeightForCellAtIndexPath:(NSIndexPath*) indexPath {

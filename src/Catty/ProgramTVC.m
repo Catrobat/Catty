@@ -39,6 +39,7 @@
 #import "Brick.h"
 #import "ActionSheetAlertViewTags.h"
 #import "ScenePresenterViewController.h"
+#import "FileManager.h"
 
 // constraints and default values
 #define kDefaultProgramName NSLocalizedString(@"New Program",@"Default name for new programs") // XXX: BTW: are there any restrictions or limits for the program name???
@@ -359,12 +360,17 @@
   if (alertView.tag == kRenameAlertViewTag) {
     // OK button
     if (buttonIndex == 1) {
-      // FIXME: check if program name already exists
+      // FIXME: URGENT!! check, filter and validate new program name already exists
       NSString* input = [[alertView textFieldAtIndex:0] text];
       if ([input length] && self.program.header) {
+        NSString *oldPath = [self.program projectPath];
         if (self.navigationItem)
           self.navigationItem.title = input;
         self.program.header.programName = self.title = input;
+        NSString *newPath = [self.program projectPath];
+        [[[FileManager alloc] init] moveExistingFileOrFolderAtPath:oldPath ToPath:newPath];
+        [Util setLastProgram:input];
+        // TODO: update header in code.xml...
       } else
         [self showWarningInvalidProgramNameActionSheet];
     }
@@ -488,8 +494,12 @@
   UIBarButtonItem *play = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemPlay
                                                                         target:self
                                                                         action:@selector(playSceneAction:)];
-  self.toolbarItems = [NSArray arrayWithObjects:add, flexItem, play, nil];
+  // XXX: workaround for tap area problem:
+  // http://stackoverflow.com/questions/5113258/uitoolbar-unexpectedly-registers-taps-on-uibarbuttonitem-instances-even-when-tap
+  UIImageView *imageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"transparent1x1.png"]];
+  UIBarButtonItem *invisibleButton = [[UIBarButtonItem alloc] initWithCustomView:imageView];
+  self.toolbarItems = [NSArray arrayWithObjects:flexItem, invisibleButton, add, invisibleButton, flexItem, flexItem,
+                       flexItem, flexItem, flexItem, invisibleButton, play, invisibleButton, flexItem, nil];
 }
-
 
 @end

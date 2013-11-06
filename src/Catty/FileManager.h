@@ -38,6 +38,7 @@
 - (void)deleteAllFillesOfDirectory:(NSString*)path;
 - (BOOL)fileExists:(NSString*)path;
 - (BOOL)directoryExists:(NSString*)path;
+- (void)moveExistingFileOrFolderAtPath:(NSString*)oldPath ToPath:(NSString*)newPath;
 - (void)deleteFolder:(NSString*)path;
 - (NSArray*)getContentsOfDirectory:(NSString*)directory;
 - (void)addDefaultProjectToLeveLDirectory;
