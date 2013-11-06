@@ -35,9 +35,10 @@
 - (void)removeFromDisk;
 
 // factories
-+ (Program*)createWithProgramName:(NSString*)programName;
++ (Program*)createNewProgramWithName:(NSString*)programName;
 
 // helpers
 + (NSString*)basePath;
++ (BOOL)programExists:(NSString *)programName;
 
 @end

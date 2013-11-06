@@ -34,12 +34,13 @@
 
 @property (nonatomic, weak) id delegate;
 
+- (void)createDirectory:(NSString*)path;
 - (void)deleteAllFilesInDocumentsDirectory;
 - (void)deleteAllFillesOfDirectory:(NSString*)path;
 - (BOOL)fileExists:(NSString*)path;
 - (BOOL)directoryExists:(NSString*)path;
-- (void)moveExistingFileOrFolderAtPath:(NSString*)oldPath ToPath:(NSString*)newPath;
-- (void)deleteFolder:(NSString*)path;
+- (void)moveExistingFileOrDirectoryAtPath:(NSString*)oldPath ToPath:(NSString*)newPath;
+- (void)deleteDirectory:(NSString*)path;
 - (NSArray*)getContentsOfDirectory:(NSString*)directory;
 - (void)addDefaultProjectToLeveLDirectory;
 - (void)downloadFileFromURL:(NSURL*)url withName:(NSString*)name;

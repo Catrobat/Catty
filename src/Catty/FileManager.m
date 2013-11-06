@@ -71,8 +71,14 @@
     return _data;
 }
 
-
-
+- (void)createDirectory:(NSString *)path
+{
+  NSFileManager *fileManager= [NSFileManager defaultManager];
+  NSError *error = nil;
+  if(! [self directoryExists:path])
+    [fileManager createDirectoryAtPath:path withIntermediateDirectories:NO attributes:nil error:&error];
+  NSLogError(error);
+}
 
 - (void)deleteAllFilesInDocumentsDirectory {
     [self deleteAllFillesOfDirectory:self.documentsDirectory];
@@ -108,7 +114,7 @@
   return ([[NSFileManager defaultManager] fileExistsAtPath:path isDirectory:&isDir] && isDir);
 }
 
-- (void)moveExistingFileOrFolderAtPath:(NSString*)oldPath ToPath:(NSString*)newPath
+- (void)moveExistingFileOrDirectoryAtPath:(NSString*)oldPath ToPath:(NSString*)newPath
 {
   if (! [self directoryExists:oldPath])
     return;
@@ -122,13 +128,12 @@
   NSLogError(error);
 }
 
-- (void)deleteFolder:(NSString*)path
+- (void)deleteDirectory:(NSString *)path
 {
     NSError *error = nil;
     [[NSFileManager defaultManager] removeItemAtPath:path error:&error];
     NSLogError(error);
 }
-
 
 - (NSArray*)getContentsOfDirectory:(NSString*)directory {
     NSError *error = nil;

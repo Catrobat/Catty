@@ -159,7 +159,7 @@
         // Delete the row from the data source
         ProgramLoadingInfo *level = [self.levelLoadingInfos objectAtIndex:indexPath.row];
         AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
-        [appDelegate.fileManager deleteFolder:level.basePath];
+        [appDelegate.fileManager deleteDirectory:level.basePath];
         [self.levelLoadingInfos removeObject:level];
         [Util setLastProgram:nil];
         [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];

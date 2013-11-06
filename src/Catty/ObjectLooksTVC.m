@@ -21,6 +21,7 @@
  */
 
 #import "ObjectLooksTVC.h"
+#import "ProgramDefines.h"
 #import "UIDefines.h"
 #import "TableUtil.h"
 #import "CatrobatImageCell.h"
@@ -125,10 +126,13 @@
   // Configure the cell...
   if ([cell conformsToProtocol:@protocol(CatrobatImageCell)]) {
     UITableViewCell <CatrobatImageCell>* imageCell = (UITableViewCell <CatrobatImageCell>*)cell;
+    imageCell.iconImageView.image = nil;
+    NSString *previewImagePath = [self.object previewImagePathForLookAtIndex:indexPath.row];
+    if (previewImagePath) {
+      imageCell.iconImageView.image = [[UIImage alloc] initWithContentsOfFile:previewImagePath];
+      imageCell.iconImageView.contentMode = UIViewContentModeScaleAspectFit;
+    }
     Look *look = [self.object.lookList objectAtIndex:indexPath.row];
-    NSString *imagePath = [self.object pathForLook:look];
-    imageCell.iconImageView.image = [[UIImage alloc] initWithContentsOfFile: imagePath];
-    imageCell.iconImageView.contentMode = UIViewContentModeScaleAspectFit;
     imageCell.titleLabel.text = look.name;
   }
   return cell;
@@ -227,14 +231,16 @@
       //      ATM I am using UUID.
       // TODO: Fix this unless using UUID is not the right way here, otherwise please delete the comment above until read.
       NSString *fileNamePrefix = [[[NSString uuid] stringByReplacingOccurrencesOfString:@"-" withString:@""] uppercaseString];
-      NSString *newImageFileName = [NSString stringWithFormat:@"%@_%@", fileNamePrefix, imageFileName];
-      NSString *newImageFileNameThumbHiDPIx2 = [NSString stringWithFormat:@"%@_%@_%@", fileNamePrefix, @"thumb@2x", imageFileName];
-      NSString *newImageFileNameThumbHiDPI = [NSString stringWithFormat:@"%@_%@_%@", fileNamePrefix, @"thumb", imageFileName];
+      NSString *newImageFileName = [NSString stringWithFormat:@"%@%@%@", fileNamePrefix, kResourceFileNameSeparator, imageFileName];
+      Look* look = [[Look alloc] initWithName:imageFileName andPath:newImageFileName];
 
       // TODO: outsource this to FileManager
-      NSString *newImagePath = [NSString stringWithFormat:@"%@%@/%@", [self.object projectPath], kProgramImagesDirName, newImageFileName];
-      NSString *newImagePathThumbnailHiDPIx2 = [NSString stringWithFormat:@"%@%@/%@", [self.object projectPath], kProgramImagesDirName, newImageFileNameThumbHiDPIx2];
-      NSString *newImagePathThumbnailHiDPI = [NSString stringWithFormat:@"%@%@/%@", [self.object projectPath], kProgramImagesDirName, newImageFileNameThumbHiDPI];
+      NSString *newImagePath = [NSString stringWithFormat:@"%@%@/%@",
+                                 [self.object projectPath], kProgramImagesDirName,
+                                 newImageFileName];
+      NSString *newPreviewImagePath = [NSString stringWithFormat:@"%@%@/%@",
+                                        [self.object projectPath], kProgramImagesDirName,
+                                        [look previewImageFileName]];
       NSString *mediaType = info[UIImagePickerControllerMediaType];
 
       NSLog(@"Writing file to disk");
@@ -244,40 +250,25 @@
           [UIImagePNGRepresentation(image) writeToFile:newImagePath atomically:YES];
 
           // generate thumbnail image (retina)
-          CGSize thumbnailSizeHiDPIx2 = CGSizeMake(100, 100); // TODO: outsource hardcoded value...
+          CGSize previewImageSize = CGSizeMake(kPreviewImageWidth, kPreviewImageHeight);
           // determine aspect ratio
           if (image.size.height > image.size.width)
-            thumbnailSizeHiDPIx2.width = (image.size.width*thumbnailSizeHiDPIx2.width)/image.size.height;
+            previewImageSize.width = (image.size.width*previewImageSize.width)/image.size.height;
           else
-            thumbnailSizeHiDPIx2.height = (image.size.height*thumbnailSizeHiDPIx2.height)/image.size.width;
+            previewImageSize.height = (image.size.height*previewImageSize.height)/image.size.width;
 
-          UIGraphicsBeginImageContext(thumbnailSizeHiDPIx2);
-          UIImage *thumbHiDPIx2 = [image copy];
-          [thumbHiDPIx2 drawInRect:CGRectMake(0,0,thumbnailSizeHiDPIx2.width,thumbnailSizeHiDPIx2.height)];
-          UIImage *thumbnailImageHiDPIx2 = UIGraphicsGetImageFromCurrentImageContext();
+          UIGraphicsBeginImageContext(previewImageSize);
+          UIImage *previewImage = [image copy];
+          [previewImage drawInRect:CGRectMake(0, 0, previewImageSize.width, previewImageSize.height)];
+          previewImage = UIGraphicsGetImageFromCurrentImageContext();
           UIGraphicsEndImageContext();
-          [UIImagePNGRepresentation(thumbnailImageHiDPIx2) writeToFile:newImagePathThumbnailHiDPIx2 atomically:YES];
-
-          // generate thumbnail image (retina)
-          CGSize thumbnailSizeHiDPI = CGSizeMake(50, 50); // TODO: outsource hardcoded value...
-          // determine aspect ratio
-          if (image.size.height > image.size.width)
-            thumbnailSizeHiDPI.width = (image.size.width*thumbnailSizeHiDPI.width)/image.size.height;
-          else
-            thumbnailSizeHiDPI.height = (image.size.height*thumbnailSizeHiDPI.height)/image.size.width;
-          UIGraphicsBeginImageContext(thumbnailSizeHiDPI);
-          UIImage *thumbHiDPI = [image copy];
-          [thumbHiDPI drawInRect:CGRectMake(0,0,thumbnailSizeHiDPI.width,thumbnailSizeHiDPI.height)];
-          UIImage *thumbnailImageHiDPI = UIGraphicsGetImageFromCurrentImageContext();
-          UIGraphicsEndImageContext();
-          [UIImagePNGRepresentation(thumbnailImageHiDPI) writeToFile:newImagePathThumbnailHiDPI atomically:YES];
+          [UIImagePNGRepresentation(previewImage) writeToFile:newPreviewImagePath atomically:YES];
         }];
 
         // Use the completion block to update UI on the main queue
         [saveOp setCompletionBlock:^{
           [[NSOperationQueue mainQueue] addOperationWithBlock:^{
             // update view
-            Look* look = [[Look alloc] initWithName:imageFileName andPath:newImageFileNameThumbHiDPIx2];
             [self.object.lookList addObject:look];
             [super showPlaceHolder:([self.object.lookList count] == 0)];
             [self.tableView reloadData];

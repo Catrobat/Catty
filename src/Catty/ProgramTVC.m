@@ -67,7 +67,13 @@
 {
   // lazy instantiation
   if (! _program) {
-    _program = [Program createWithProgramName:kDefaultProgramName];
+    // determine non existing program name
+    NSString *programName = kDefaultProgramName;
+    NSUInteger counter = 1; // works unless the user has not more than 2^32 programs with default name. hehe^^
+    while ([Program programExists:programName])
+      programName = [NSString stringWithFormat:@"%@ (%d)", kDefaultProgramName, counter++];
+
+    _program = [Program createNewProgramWithName:programName];
     SpriteObject* backgroundObject = [self createObjectWithName:kBackgroundObjectName];
     SpriteObject* firstObject = [self createObjectWithName:kDefaultObjectName];
     // CAUTION: NEVER change order! BackgroundObject is always first object in list
@@ -78,8 +84,7 @@
       self.navigationItem.title = _program.header.programName;
 
     self.title = _program.header.programName;
-    // TODO: uncomment this if XML-Serialization works
-    //[Util setLastProgram:_program.header.programName];
+    [Util setLastProgram:_program.header.programName];
   }
   return _program;
 }
@@ -87,10 +92,7 @@
 - (void)setProgram:(Program*)program
 {
   // automatically update title name
-  if (self.navigationItem && program.header)
-    self.navigationItem.title = program.header.programName;
-
-  self.title = self.program.header.programName;
+  self.title = self.navigationItem.title = program.header.programName;
   _program = program;
 }
 
@@ -204,34 +206,32 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    // Return the number of rows in the section.
-    switch (section) {
-        case kBackgroundIndex:
-            return kBackgroundObjects;
-            break;
-        
-        case kObjectIndex:
-            return ([self.program.objectList count] - kBackgroundObjects);
-            break;
-    }
-    return 0;
+  // Return the number of rows in the section.
+  switch (section) {
+    case kBackgroundIndex:
+        return kBackgroundObjects;
+    case kObjectIndex:
+        return ([self.program.objectList count] - kBackgroundObjects);
+    default:
+      return 0;
+  }
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ProgramCell" forIndexPath:indexPath];
-    if ([cell conformsToProtocol:@protocol(CatrobatImageCell)]) {
-      UITableViewCell <CatrobatImageCell>* imageCell = (UITableViewCell <CatrobatImageCell>*)cell;
-      SpriteObject* object = [self.program.objectList objectAtIndex:(kBackgroundIndex + indexPath.section + indexPath.row)];
-      if ([object.lookList count] > 0) {
-        Look* look = [object.lookList objectAtIndex:0];
-        NSString *imagePath = [NSString stringWithFormat:@"%@/%@", [[object projectPath] stringByAppendingString:kProgramImagesDirName], look.fileName];
-        imageCell.iconImageView.image = [[UIImage alloc] initWithContentsOfFile: imagePath];
-        imageCell.iconImageView.contentMode = UIViewContentModeScaleAspectFit;
-      }
-      imageCell.titleLabel.text = object.name;
+  UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ProgramCell" forIndexPath:indexPath];
+  if ([cell conformsToProtocol:@protocol(CatrobatImageCell)]) {
+    UITableViewCell <CatrobatImageCell>* imageCell = (UITableViewCell <CatrobatImageCell>*)cell;
+    SpriteObject *object = [self.program.objectList objectAtIndex:(kBackgroundIndex + indexPath.section + indexPath.row)];
+    imageCell.iconImageView.image = nil;
+    NSString *previewImagePath = [object previewImagePath];
+    if (previewImagePath) {
+      imageCell.iconImageView.image = [[UIImage alloc] initWithContentsOfFile:previewImagePath];
+      imageCell.iconImageView.contentMode = UIViewContentModeScaleAspectFit;
     }
-    return cell;
+    imageCell.titleLabel.text = object.name;
+  }
+  return cell;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -360,19 +360,30 @@
   if (alertView.tag == kRenameAlertViewTag) {
     // OK button
     if (buttonIndex == 1) {
-      // FIXME: URGENT!! check, filter and validate new program name already exists
       NSString* input = [[alertView textFieldAtIndex:0] text];
-      if ([input length] && self.program.header) {
-        NSString *oldPath = [self.program projectPath];
-        if (self.navigationItem)
-          self.navigationItem.title = input;
-        self.program.header.programName = self.title = input;
-        NSString *newPath = [self.program projectPath];
-        [[[FileManager alloc] init] moveExistingFileOrFolderAtPath:oldPath ToPath:newPath];
-        [Util setLastProgram:input];
-        // TODO: update header in code.xml...
-      } else
+      if ([input isEqualToString:self.program.header.programName])
+        return;
+
+      // FIXME: URGENT!! check, filter and validate new program name already exists here
+
+      if ([Program programExists:input]) {
+        [self showWarningExistingProgramNameActionSheet];
+        return;
+      }
+
+      if ((! [input length]) || (! self.program.header)) {
         [self showWarningInvalidProgramNameActionSheet];
+        return;
+      }
+
+      NSString *oldPath = [self.program projectPath];
+      if (self.navigationItem)
+        self.navigationItem.title = input;
+      self.program.header.programName = self.title = input;
+      NSString *newPath = [self.program projectPath];
+      [[[FileManager alloc] init] moveExistingFileOrDirectoryAtPath:oldPath ToPath:newPath];
+      [Util setLastProgram:input];
+      // TODO: update header in code.xml...
     }
   } else if (alertView.tag == kNewObjectAlertViewTag) {
     // OK button
@@ -380,11 +391,10 @@
       NSString* input = [[alertView textFieldAtIndex:0] text];
       if ([input length]) {
         [self.program.objectList addObject:[self createObjectWithName:input]];
-        // TODO: use data source for the ProgramTVC instead of reloading the whole data
-        [self.tableView reloadData];
-        //  [self.tableView beginUpdates];
-        //  [self.tableView reloadRowsAtIndexPaths:@[indexPathOfYourCell] withRowAnimation:UITableViewRowAnimationNone];
-        //  [self.tableView endUpdates];
+        NSInteger numberOfRowsInLastSection = [self tableView:self.tableView numberOfRowsInSection:kObjectIndex];
+        NSIndexPath *indexPath = [NSIndexPath indexPathForRow:(numberOfRowsInLastSection - 1) inSection:kObjectIndex];
+        [self.tableView insertRowsAtIndexPaths:@[indexPath]
+                              withRowAnimation:UITableViewRowAnimationFade];
       } else
         [self showWarningInvalidObjectNameActionSheet];
     }
@@ -441,6 +451,18 @@
   edit.tag = kSceneActionSheetTag;
   edit.actionSheetStyle = UIActionSheetStyleDefault;
   [edit showInView:self.view];
+}
+
+- (void)showWarningExistingProgramNameActionSheet
+{
+  UIActionSheet *warning = [[UIActionSheet alloc] initWithTitle:NSLocalizedString(@"A program with the same name already exists, try again.",nil)
+                                                       delegate:self
+                                              cancelButtonTitle:nil
+                                         destructiveButtonTitle:nil
+                                              otherButtonTitles:kBtnOKTitle, nil];
+  warning.tag = kInvalidProgramNameWarningActionSheetTag;
+  warning.actionSheetStyle = UIActionSheetStyleDefault;
+  [warning showInView:self.view];
 }
 
 - (void)showWarningInvalidProgramNameActionSheet

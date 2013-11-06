@@ -29,6 +29,7 @@
 #import "AppDefines.h"
 #import "SpriteObject.h"
 #import "AppDelegate.h"
+#import "FileManager.h"
 
 @implementation Program
 
@@ -40,7 +41,7 @@
 }
 
 # pragma mark - factories
-+ (Program*)createWithProgramName:(NSString*)programName
++ (Program*)createNewProgramWithName:(NSString*)programName
 {
   Program* program = [[Program alloc] init];
   program.header = [[Header alloc] init];
@@ -69,6 +70,19 @@
     program.header.programScreenshotManuallyTaken = (YES ? @"true" : @"false");
     program.header.tags = nil;
   }
+
+  FileManager *fileManager = [[FileManager alloc] init];
+  if (! [self programExists:program.projectPath])
+    [fileManager createDirectory:program.projectPath];
+
+  NSString *imagesDirName = [NSString stringWithFormat:@"%@%@", program.projectPath, kProgramImagesDirName];
+  if (! [fileManager directoryExists:imagesDirName])
+    [fileManager createDirectory:imagesDirName];
+
+  NSString *soundsDirName = [NSString stringWithFormat:@"%@%@", program.projectPath, kProgramSoundsDirName];
+  if (! [fileManager directoryExists:soundsDirName])
+    [fileManager createDirectory:soundsDirName];
+
   return program;
 }
 
@@ -108,7 +122,7 @@
   FileManager *fileManager = ((AppDelegate*)[[UIApplication sharedApplication] delegate]).fileManager;
   NSString *projectPath = [self projectPath];
   if ([fileManager directoryExists:projectPath])
-    [fileManager deleteFolder:projectPath];
+    [fileManager deleteDirectory:projectPath];
   [Util setLastProgram:nil];
 }
 
@@ -144,6 +158,12 @@
 + (NSString*)basePath
 {
   return [NSString stringWithFormat:@"%@/%@/", [Util applicationDocumentsDirectory], kProgramsFolder];
+}
+
++ (BOOL)programExists:(NSString *)programName
+{
+  NSString *projectPath = [NSString stringWithFormat:@"%@%@/", [Program basePath], programName];
+  return [[[FileManager alloc] init] directoryExists:projectPath];
 }
 
 @end
