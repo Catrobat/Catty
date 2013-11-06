@@ -27,4 +27,6 @@
 #define kDefaultImageCellBorderWidth 1.0f
 
 // placeholder texts
+#define kPlaceHolderTag 99998
+#define kLoadingViewTag 99999
 #define kEmptyViewPlaceHolder @"Click \"+\" to add %@"

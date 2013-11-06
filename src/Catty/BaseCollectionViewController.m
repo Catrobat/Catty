@@ -21,6 +21,7 @@
  */
 
 #import "BaseCollectionViewController.h"
+#import "UIDefines.h"
 #import "UIColor+CatrobatUIColorExtensions.h"
 
 @interface BaseCollectionViewController ()
@@ -35,6 +36,7 @@
 - (void)initPlaceHolder
 {
   self.placeholder = [[UIView alloc] initWithFrame:self.view.bounds];
+  self.placeholder.tag = kPlaceHolderTag;
 
   // setup title label
   self.placeholderTitleLabel = [[UILabel alloc] init];

@@ -23,6 +23,7 @@
 #import "BaseTableViewController.h"
 #import "UIColor+CatrobatUIColorExtensions.h"
 #import "TableUtil.h"
+#import "UIDefines.h"
 
 #define kTableHeaderIdentifier @"Header"
 
@@ -38,14 +39,15 @@
 - (void)initPlaceHolder
 {
   self.placeholder = [[UIView alloc] initWithFrame:self.tableView.bounds];
-  
+  self.placeholder.tag = kPlaceHolderTag;
+
   // setup title label
   self.placeholderTitleLabel = [[UILabel alloc] init];
   self.placeholderTitleLabel.textAlignment = NSTextAlignmentCenter;
   self.placeholderTitleLabel.backgroundColor = [UIColor clearColor];
   self.placeholderTitleLabel.textColor = [UIColor skyBlueColor];
   self.placeholderTitleLabel.font = [self.placeholderTitleLabel.font fontWithSize:45];
-  
+
   // setup description label
   self.placeholderDescriptionLabel = [[UILabel alloc] init];
   self.placeholderDescriptionLabel.textAlignment = NSTextAlignmentCenter;

@@ -37,6 +37,7 @@
 #import "NSString+CatrobatNSStringExtensions.h"
 #import <MobileCoreServices/MobileCoreServices.h>
 #import <AssetsLibrary/AssetsLibrary.h>
+#import "LoadingView.h"
 
 #define kTableHeaderIdentifier @"Header"
 #define kFromCameraActionSheetButton @"camera"
@@ -44,6 +45,7 @@
 #define kDrawNewImageActionSheetButton @"drawNewImage"
 
 @interface ObjectLooksTVC () <UIActionSheetDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate>
+@property (nonatomic, strong) LoadingView* loadingView;
 @property (nonatomic, strong) NSMutableDictionary* addLookActionSheetBtnIndexes;
 @end
 
@@ -78,6 +80,12 @@
   UITableViewHeaderFooterView *headerViewTemplate = [[UITableViewHeaderFooterView alloc] initWithReuseIdentifier:kTableHeaderIdentifier];
   headerViewTemplate.contentView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"darkblue"]];
   [self.tableView addSubview:headerViewTemplate];
+}
+
+- (void)dealloc
+{
+  [self.loadingView removeFromSuperview];
+  self.loadingView = nil;
 }
 
 #pragma view events
@@ -213,6 +221,7 @@
     // add image to object now
     NSURL *imageURL = [info objectForKey:UIImagePickerControllerReferenceURL];
 //    NSString *imageFileName = [imagePath lastPathComponent];
+    [self showLoadingView];
 
     ALAssetsLibraryAssetForURLResultBlock resultblock = ^(ALAsset *myasset)
     {
@@ -269,9 +278,14 @@
         [saveOp setCompletionBlock:^{
           [[NSOperationQueue mainQueue] addOperationWithBlock:^{
             // update view
+            [super showPlaceHolder:NO];
             [self.object.lookList addObject:look];
-            [super showPlaceHolder:([self.object.lookList count] == 0)];
-            [self.tableView reloadData];
+//            [self.tableView reloadData];
+            [self hideLoadingView];
+            NSInteger numberOfRowsInLastSection = [self tableView:self.tableView numberOfRowsInSection:0];
+            NSIndexPath *indexPath = [NSIndexPath indexPathForRow:(numberOfRowsInLastSection - 1) inSection:0];
+            [self.tableView insertRowsAtIndexPaths:@[indexPath]
+                                  withRowAnimation:UITableViewRowAnimationFade];
           }];
         }];
         NSOperationQueue *queue = [[NSOperationQueue alloc] init];
@@ -375,6 +389,34 @@
   UIBarButtonItem *invisibleButton = [[UIBarButtonItem alloc] initWithCustomView:imageView];
   self.toolbarItems = [NSArray arrayWithObjects:flexItem, invisibleButton, add, invisibleButton, flexItem, flexItem,
                        flexItem, flexItem, flexItem, invisibleButton, play, invisibleButton, flexItem, nil];
+}
+
+- (void)showLoadingView
+{
+  if (! self.loadingView) {
+    self.loadingView = [[LoadingView alloc] init];
+    [self.view addSubview:self.loadingView];
+  }
+  self.loadingView.backgroundColor = [UIColor whiteColor];
+  self.loadingView.alpha = 1.0;
+  CGPoint top = CGPointMake(0, -self.navigationController.navigationBar.frame.size.height);
+  [self.tableView setContentOffset:top animated:NO];
+  self.tableView.scrollEnabled = NO;
+  self.tableView.userInteractionEnabled = NO;
+  [self.navigationController.navigationBar setUserInteractionEnabled:NO];
+  [self.navigationController.toolbar setUserInteractionEnabled:NO];
+  [self showPlaceHolder:NO];
+  [self.loadingView show];
+}
+
+- (void) hideLoadingView
+{
+  [self showPlaceHolder:([self.object.lookList count] == 0)];
+  self.tableView.scrollEnabled = YES;
+  self.tableView.userInteractionEnabled = YES;
+  [self.navigationController.navigationBar setUserInteractionEnabled:YES];
+  [self.navigationController.toolbar setUserInteractionEnabled:YES];
+  [self.loadingView hide];
 }
 
 @end
