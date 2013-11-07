@@ -46,4 +46,32 @@
 @synthesize programScreenshotManuallyTaken = _programScreenshotManuallyTaken;
 @synthesize tags                    = _tags;
 
+- (NSString*)persist
+{
+  // TODO: INFO: this is just an ugly hack. Maybe we are using a XML framework or write our own classes for XML-nodes, etc.
+  NSMutableString *header = [NSMutableString stringWithString:@"<header>"];
+  [header appendFormat:@"\n  <applicationBuildName>%@</applicationBuildName>", (self.applicationBuildName ? self.applicationBuildName : @"")];
+  [header appendFormat:@"\n  <applicationBuildNumber>%@</applicationBuildNumber>", self.applicationBuildNumber];
+  [header appendFormat:@"\n  <applicationName>%@</applicationName>", self.applicationName];
+  [header appendFormat:@"\n  <applicationVersion>%@</applicationVersion>", self.applicationVersion];
+  [header appendFormat:@"\n  <catrobatLanguageVersion>%@</catrobatLanguageVersion>", self.catrobatLanguageVersion];
+  [header appendFormat:@"\n  <dateTimeUpload>%@</dateTimeUpload>", @""]; // FIXME which date format??!!
+  [header appendFormat:@"\n  <description>%@</description>", self.description];
+  [header appendFormat:@"\n  <deviceName>%@</deviceName>", self.deviceName];
+  [header appendFormat:@"\n  <mediaLicense>%@</mediaLicense>", (self.mediaLicense ? self.mediaLicense : @"")];
+  [header appendFormat:@"\n  <platform>%@</platform>", self.platform];
+  [header appendFormat:@"\n  <platformVersion>%@</platformVersion>", self.platformVersion];
+  [header appendFormat:@"\n  <programLicense>%@</programLicense>", (self.programLicense ? self.programLicense : @"")];
+  [header appendFormat:@"\n  <programName>%@</programName>", self.programName];
+  [header appendFormat:@"\n  <programScreenshotManuallyTaken>%@</programScreenshotManuallyTaken>", (self.programScreenshotManuallyTaken ? @"true" : @"false")];
+  [header appendFormat:@"\n  <remixOf>%@</remixOf>", (self.remixOf ? self.remixOf : @"")];
+  [header appendFormat:@"\n  <screenHeight>%@</screenHeight>", self.screenHeight];
+  [header appendFormat:@"\n  <screenWidth>%@</screenWidth>", self.screenWidth];
+  [header appendFormat:@"\n  <tags>%@</tags>", (self.tags ? self.tags : @"")];
+  [header appendFormat:@"\n  <url>%@</url>", (self.url ? self.url : @"")];
+  [header appendFormat:@"\n  <userHandle>%@</userHandle>", (self.userHandle ? self.userHandle : @"")];
+  [header appendString:@"</header>"];
+  return header;
+}
+
 @end

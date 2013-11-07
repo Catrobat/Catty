@@ -384,6 +384,7 @@
       [[[FileManager alloc] init] moveExistingFileOrDirectoryAtPath:oldPath ToPath:newPath];
       [Util setLastProgram:input];
       // TODO: update header in code.xml...
+//      [self.program saveToDisk];
     }
   } else if (alertView.tag == kNewObjectAlertViewTag) {
     // OK button

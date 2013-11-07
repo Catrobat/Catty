@@ -126,6 +126,44 @@
   [Util setLastProgram:nil];
 }
 
+- (NSString*)persist
+{
+  // TODO: INFO: this is just an ugly hack. Maybe we are using a XML framework or write our own classes for XML-nodes, etc.
+  NSMutableString *program = [NSMutableString stringWithString:@"<program>"];
+  [program appendFormat:@"\n  %@", [self.header persist]];
+  [program appendString:@"\n  <objectList>"];
+  for (id object in self.objectList) {
+    if ([object isKindOfClass:[SpriteObject class]]) {
+//      SpriteObject *spriteObject = (SpriteObject*) object;
+//      [program appendString:[spriteObject persist]];
+    }
+  }
+  [program appendString:@"\n  </objectList>\n"];
+//  for (id variable in self.variables) {
+//    if ([variable isKindOfClass:[UserVariable class]]) {
+//      UserVariable *userVariable = (UserVariable*) object;
+//      [program appendString:[userVariable persist]];
+//    }
+//  }
+  [program appendString:@"</program>"];
+  return program;
+}
+
+- (void)saveToDisk
+{
+  dispatch_queue_t saveToDiskQ = dispatch_queue_create("save to disk", NULL);
+  dispatch_async(saveToDiskQ, ^{
+    //Background Thread
+    NSString *xmlString = [self persist];
+    // TODO: outsource this to file manager
+    NSString *filePath = [NSString stringWithFormat:@"%@%@", [self projectPath], kProgramCodeFileName];
+    NSError *error = nil;
+    [xmlString writeToFile:filePath atomically:YES encoding:NSUTF8StringEncoding error:&error];
+    NSLogError(error);
+//    dispatch_async(dispatch_get_main_queue(), ^{});
+  });
+}
+
 # pragma mark - helpers
 - (NSString*)description
 {
