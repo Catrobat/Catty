@@ -242,7 +242,14 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
   // TODO: MID outsource to TableUtil
-  return 40.0;
+  switch (section) {
+    case 0:
+      return 40.0;
+    case 1:
+      return 55.0;
+    default:
+      return 40.0;
+  }
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
@@ -253,16 +260,18 @@
   UITableViewHeaderFooterView *headerView = [[UITableViewHeaderFooterView alloc] init];
   headerView.contentView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"darkblue"]];
 
-  UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(10.0f, 0.0f, 300.0f, 44.0f)];
+  NSLog(@"Width: %f, %f",headerView.frame.size.width, headerView.frame.size.height);
+  CGFloat height = [self tableView:self.tableView heightForHeaderInSection:section];
+  UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(20.0f, 0.0f, 280.0f, height)];
   titleLabel.textColor = [UIColor whiteColor];
   titleLabel.tag = 1;
-  titleLabel.font = [UIFont systemFontOfSize:18.0f];
+  titleLabel.font = [UIFont systemFontOfSize:14.0f];
   if (section == 0)
-    titleLabel.text = kBackgroundTitle;
+    titleLabel.text = [kBackgroundTitle uppercaseString];
   else if ([self.program.objectList count] > (kBackgroundObjects + 1))
-    titleLabel.text = kObjectTitlePlural;
+    titleLabel.text = [kObjectTitlePlural uppercaseString];
   else
-    titleLabel.text = kObjectTitleSingular;
+    titleLabel.text = [kObjectTitleSingular uppercaseString];
 
   [headerView.contentView addSubview:titleLabel];
   return headerView;

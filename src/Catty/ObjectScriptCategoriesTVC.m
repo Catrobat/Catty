@@ -161,8 +161,8 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-  // TODO: change!!
-  return [TableUtil getHeightForImageCell];
+  CGFloat navBarHeight = self.navigationController.navigationBar.frame.size.height;
+  return (([Util getScreenHeight] - navBarHeight - kAddScriptCategoryTableViewBottomMargin) / [self.cells count]);
 }
 
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath

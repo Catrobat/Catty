@@ -232,7 +232,7 @@
       imageFileName = [[imageFileName componentsSeparatedByString:@"."] firstObject];
       if (! [imageFileName length])
         imageFileName = @"default"; // TODO: outsource this constant...
-      
+
       // save image to programs directory
       // XXX: I do not know whether this fileNamePrefix should be a UUID or any hash string.
       //      Actually the length already equals UUID's length.

@@ -30,3 +30,7 @@
 #define kPlaceHolderTag 99998
 #define kLoadingViewTag 99999
 #define kEmptyViewPlaceHolder @"Click \"+\" to add %@"
+
+#define kIphone5ScreenHeight 568.0f
+#define kIphone4ScreenHeight 480.0f
+#define kAddScriptCategoryTableViewBottomMargin 15.0f
