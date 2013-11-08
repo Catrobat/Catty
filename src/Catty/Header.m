@@ -22,6 +22,7 @@
 
 
 #import "Header.h"
+#import "GDataXMLNode.h"
 
 @implementation Header
 
@@ -46,32 +47,30 @@
 @synthesize programScreenshotManuallyTaken = _programScreenshotManuallyTaken;
 @synthesize tags                    = _tags;
 
-- (NSString*)persist
+- (GDataXMLElement*)toXML
 {
-  // TODO: INFO: this is just an ugly hack. Maybe we are using a XML framework or write our own classes for XML-nodes, etc.
-  NSMutableString *header = [NSMutableString stringWithString:@"<header>"];
-  [header appendFormat:@"\n  <applicationBuildName>%@</applicationBuildName>", (self.applicationBuildName ? self.applicationBuildName : @"")];
-  [header appendFormat:@"\n  <applicationBuildNumber>%@</applicationBuildNumber>", self.applicationBuildNumber];
-  [header appendFormat:@"\n  <applicationName>%@</applicationName>", self.applicationName];
-  [header appendFormat:@"\n  <applicationVersion>%@</applicationVersion>", self.applicationVersion];
-  [header appendFormat:@"\n  <catrobatLanguageVersion>%@</catrobatLanguageVersion>", self.catrobatLanguageVersion];
-  [header appendFormat:@"\n  <dateTimeUpload>%@</dateTimeUpload>", @""]; // FIXME which date format??!!
-  [header appendFormat:@"\n  <description>%@</description>", self.description];
-  [header appendFormat:@"\n  <deviceName>%@</deviceName>", self.deviceName];
-  [header appendFormat:@"\n  <mediaLicense>%@</mediaLicense>", (self.mediaLicense ? self.mediaLicense : @"")];
-  [header appendFormat:@"\n  <platform>%@</platform>", self.platform];
-  [header appendFormat:@"\n  <platformVersion>%@</platformVersion>", self.platformVersion];
-  [header appendFormat:@"\n  <programLicense>%@</programLicense>", (self.programLicense ? self.programLicense : @"")];
-  [header appendFormat:@"\n  <programName>%@</programName>", self.programName];
-  [header appendFormat:@"\n  <programScreenshotManuallyTaken>%@</programScreenshotManuallyTaken>", (self.programScreenshotManuallyTaken ? @"true" : @"false")];
-  [header appendFormat:@"\n  <remixOf>%@</remixOf>", (self.remixOf ? self.remixOf : @"")];
-  [header appendFormat:@"\n  <screenHeight>%@</screenHeight>", self.screenHeight];
-  [header appendFormat:@"\n  <screenWidth>%@</screenWidth>", self.screenWidth];
-  [header appendFormat:@"\n  <tags>%@</tags>", (self.tags ? self.tags : @"")];
-  [header appendFormat:@"\n  <url>%@</url>", (self.url ? self.url : @"")];
-  [header appendFormat:@"\n  <userHandle>%@</userHandle>", (self.userHandle ? self.userHandle : @"")];
-  [header appendString:@"</header>"];
-  return header;
+  GDataXMLElement *headerXMLElement = [GDataXMLNode elementWithName:@"header"];
+  [headerXMLElement addChild:[GDataXMLNode elementWithName:@"applicationBuildName" stringValue:(self.applicationBuildName ? self.applicationBuildName : @"")]];
+  [headerXMLElement addChild:[GDataXMLNode elementWithName:@"applicationBuildNumber" stringValue:self.applicationBuildNumber]];
+  [headerXMLElement addChild:[GDataXMLNode elementWithName:@"applicationName" stringValue:self.applicationName]];
+  [headerXMLElement addChild:[GDataXMLNode elementWithName:@"applicationVersion" stringValue:self.applicationVersion]];
+  [headerXMLElement addChild:[GDataXMLNode elementWithName:@"catrobatLanguageVersion" stringValue:self.catrobatLanguageVersion]];
+  [headerXMLElement addChild:[GDataXMLNode elementWithName:@"dateTimeUpload" stringValue:@""]]; // FIXME which date format??!!
+  [headerXMLElement addChild:[GDataXMLNode elementWithName:@"description" stringValue:self.description]];
+  [headerXMLElement addChild:[GDataXMLNode elementWithName:@"deviceName" stringValue:self.deviceName]];
+  [headerXMLElement addChild:[GDataXMLNode elementWithName:@"mediaLicense" stringValue:(self.mediaLicense ? self.mediaLicense : @"")]];
+  [headerXMLElement addChild:[GDataXMLNode elementWithName:@"platform" stringValue:self.platform]];
+  [headerXMLElement addChild:[GDataXMLNode elementWithName:@"platformVersion" stringValue:self.platformVersion]];
+  [headerXMLElement addChild:[GDataXMLNode elementWithName:@"programLicense" stringValue:(self.programLicense ? self.programLicense : @"")]];
+  [headerXMLElement addChild:[GDataXMLNode elementWithName:@"programName" stringValue:self.programName]];
+  [headerXMLElement addChild:[GDataXMLNode elementWithName:@"programScreenshotManuallyTaken" stringValue:(self.programScreenshotManuallyTaken ? @"true" : @"false")]];
+  [headerXMLElement addChild:[GDataXMLNode elementWithName:@"remixOf" stringValue:(self.remixOf ? self.remixOf : @"")]];
+  [headerXMLElement addChild:[GDataXMLNode elementWithName:@"screenHeight" stringValue:[self.screenHeight stringValue]]];
+  [headerXMLElement addChild:[GDataXMLNode elementWithName:@"screenWidth" stringValue:[self.screenWidth stringValue]]];
+  [headerXMLElement addChild:[GDataXMLNode elementWithName:@"tags" stringValue:(self.tags ? self.tags : @"")]];
+  [headerXMLElement addChild:[GDataXMLNode elementWithName:@"url" stringValue:(self.url ? self.url : @"")]];
+  [headerXMLElement addChild:[GDataXMLNode elementWithName:@"userHandle" stringValue:(self.userHandle ? self.userHandle : @"")]];
+  return headerXMLElement;
 }
 
 @end

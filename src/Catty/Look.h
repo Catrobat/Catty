@@ -22,6 +22,8 @@
 
 #import <UIKit/UIKit.h>
 
+@class GDataXMLElement;
+
 @interface Look : NSObject
 
 @property (strong, nonatomic) NSString *fileName;
@@ -30,6 +32,7 @@
 - (id)initWithPath:(NSString*)filePath;
 - (id)initWithName:(NSString*)name andPath:(NSString*)filePath;
 - (NSString*)previewImageFileName;
+- (GDataXMLElement*)toXML;
 - (NSString*)description;
 
 @end

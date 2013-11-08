@@ -23,10 +23,9 @@
 
 #import "Look.h"
 #import "ProgramDefines.h"
+#import "GDataXMLNode.h"
 
 @interface Look ()
-
-
 @end
 
 @implementation Look
@@ -90,6 +89,14 @@
     kPreviewImageNamePrefix,
     [self.fileName substringFromIndex:(result.location + 1)]
   ];
+}
+
+- (GDataXMLElement*)toXML
+{
+  GDataXMLElement *lookXMLElement = [GDataXMLNode elementWithName:@"look"];
+  [lookXMLElement addChild:[GDataXMLElement elementWithName:@"fileName" stringValue:self.fileName]];
+  [lookXMLElement addChild:[GDataXMLElement elementWithName:@"name" stringValue:self.name]];
+  return lookXMLElement;
 }
 
 #pragma mark - description

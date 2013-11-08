@@ -32,6 +32,7 @@
 #import "Brick.h"
 #import "SetLookBrick.h"
 #import "FileManager.h"
+#import "GDataXMLNode.h"
 
 @interface SpriteObject()
 
@@ -132,7 +133,36 @@
   return NO;
 }
 
--(void)start:(CGFloat)zPosition
+- (GDataXMLElement*)toXML
+{
+  GDataXMLElement *objectXMLElement = [GDataXMLNode elementWithName:@"object"];
+  GDataXMLElement *lookListXMLElement = [GDataXMLNode elementWithName:@"lookList"];
+  for (id look in self.lookList) {
+    if ([look isKindOfClass:[Look class]])
+      [lookListXMLElement addChild:[((Look*) look) toXML]];
+  }
+  [objectXMLElement addChild:lookListXMLElement];
+
+  [objectXMLElement addChild:[GDataXMLElement elementWithName:@"name" stringValue:self.name]];
+
+  GDataXMLElement *scriptListXMLElement = [GDataXMLNode elementWithName:@"scriptList"];
+  // TODO: uncomment this after toXML-method in all Script-subclasses have been completely implemented
+//  for (id script in self.scriptList) {
+//    if ([script isKindOfClass:[Script class]])
+//      [scriptListXMLElement addChild:[((Script*) script) toXML]];
+//  }
+  [objectXMLElement addChild:scriptListXMLElement];
+
+  GDataXMLElement *soundListXMLElement = [GDataXMLNode elementWithName:@"soundList"];
+  for (id sound in self.soundList) {
+    if ([sound isKindOfClass:[Sound class]])
+      [soundListXMLElement addChild:[((Sound*) sound) toXML]];
+  }
+  [objectXMLElement addChild:soundListXMLElement];
+  return objectXMLElement;
+}
+
+- (void)start:(CGFloat)zPosition
 {
     self.position = CGPointMake(0, 0);
     if ([self.name isEqualToString:@"Background"])

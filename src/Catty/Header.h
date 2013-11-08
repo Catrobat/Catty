@@ -23,6 +23,7 @@
 
 #import <Foundation/Foundation.h>
 
+@class GDataXMLElement;
 @interface Header : NSObject
 
 // meta infos
@@ -48,6 +49,6 @@
 @property (nonatomic, strong) NSString *programScreenshotManuallyTaken;
 @property (nonatomic, strong) NSString *tags;
 
-- (NSString*)persist;
+- (GDataXMLElement*)toXML;
 
 @end
