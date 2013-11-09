@@ -2398,7 +2398,7 @@
 		1D6058940D05DD3E006BFB54 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				FRAMEWORK_SEARCH_PATHS = "";
 				GCC_PREFIX_HEADER = "Catty/App-Prefix.pch";
@@ -2411,7 +2411,7 @@
 					"-lxml2",
 				);
 				PRODUCT_NAME = "Pocket Code";
-				PROVISIONING_PROFILE = "2F6E5C8F-69D2-4629-B32E-765186846EDF";
+				PROVISIONING_PROFILE = "57691069-1303-49C8-AB71-3604834C8B6B";
 				USER_HEADER_SEARCH_PATHS = "${SPARROW_SRC}";
 			};
 			name = Debug;
@@ -2419,7 +2419,7 @@
 		1D6058950D05DD3E006BFB54 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				FRAMEWORK_SEARCH_PATHS = "";
 				GCC_PREFIX_HEADER = "Catty/App-Prefix.pch";
@@ -2432,7 +2432,7 @@
 					"-lxml2",
 				);
 				PRODUCT_NAME = "Pocket Code";
-				PROVISIONING_PROFILE = "2F6E5C8F-69D2-4629-B32E-765186846EDF";
+				PROVISIONING_PROFILE = "57691069-1303-49C8-AB71-3604834C8B6B";
 				USER_HEADER_SEARCH_PATHS = "${SPARROW_SRC}";
 			};
 			name = Release;
@@ -2547,7 +2547,7 @@
 					"-all_load",
 				);
 				PRODUCT_NAME = Catty;
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "57691069-1303-49C8-AB71-3604834C8B6B";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				USER_HEADER_SEARCH_PATHS = "${SPARROW_SRC}";
@@ -2581,7 +2581,7 @@
 					"-all_load",
 				);
 				PRODUCT_NAME = "Pocket Code";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "57691069-1303-49C8-AB71-3604834C8B6B";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				USER_HEADER_SEARCH_PATHS = "${SPARROW_SRC}";
