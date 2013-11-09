@@ -33,6 +33,7 @@
 		81FAEE3917E793240052BB2B /* ScriptsCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 81FAEE3817E793240052BB2B /* ScriptsCollectionViewCell.m */; };
 		81FAEE3C17E793F60052BB2B /* ScriptsViewCVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 81FAEE3B17E793F60052BB2B /* ScriptsViewCVC.m */; };
 		81FAEE3F17E7994B0052BB2B /* PrototypScriptCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 81FAEE3E17E7994B0052BB2B /* PrototypScriptCell.m */; };
+		9200F006182E3CA0008BF678 /* CatrobatAudioPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 9200F005182E3CA0008BF678 /* CatrobatAudioPlayer.m */; };
 		B402288217329FEB004C4942 /* IfLogicBeginBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = B402288117329FEB004C4942 /* IfLogicBeginBrick.m */; };
 		B40228911732A541004C4942 /* IfLogicElseBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = B40228901732A540004C4942 /* IfLogicElseBrick.m */; };
 		B40228961732A58E004C4942 /* IfLogicEndBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = B40228951732A58E004C4942 /* IfLogicEndBrick.m */; };
@@ -267,6 +268,8 @@
 		81FAEE3D17E7994B0052BB2B /* PrototypScriptCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrototypScriptCell.h; sourceTree = "<group>"; };
 		81FAEE3E17E7994B0052BB2B /* PrototypScriptCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PrototypScriptCell.m; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* App-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "App-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
+		9200F004182E3CA0008BF678 /* CatrobatAudioPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CatrobatAudioPlayer.h; sourceTree = "<group>"; };
+		9200F005182E3CA0008BF678 /* CatrobatAudioPlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CatrobatAudioPlayer.m; sourceTree = "<group>"; };
 		B4003030170EB50A00396DB7 /* CatrobatTableViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CatrobatTableViewController.h; sourceTree = "<group>"; };
 		B4003031170EB50A00396DB7 /* CatrobatTableViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CatrobatTableViewController.m; sourceTree = "<group>"; };
 		B402288017329FEB004C4942 /* IfLogicBeginBrick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IfLogicBeginBrick.h; sourceTree = "<group>"; };
@@ -1004,6 +1007,8 @@
 			children = (
 				B464752E1770F60500CD277F /* AudioManager.h */,
 				B464752F1770F60500CD277F /* AudioManager.m */,
+				9200F004182E3CA0008BF678 /* CatrobatAudioPlayer.h */,
+				9200F005182E3CA0008BF678 /* CatrobatAudioPlayer.m */,
 			);
 			name = AudioManager;
 			sourceTree = "<group>";
@@ -2272,6 +2277,7 @@
 				CD0CCFBC170CB39700B70036 /* Script.m in Sources */,
 				CD0CCFBD170CB39700B70036 /* SetBrightnessBrick.m in Sources */,
 				CD0CCFBE170CB39700B70036 /* SetGhostEffectBrick.m in Sources */,
+				9200F006182E3CA0008BF678 /* CatrobatAudioPlayer.m in Sources */,
 				CD0CCFBF170CB39700B70036 /* SetLookBrick.m in Sources */,
 				CD0CCFC0170CB39700B70036 /* SetSizeToBrick.m in Sources */,
 				CD0CCFC3170CB39700B70036 /* SetVolumeToBrick.m in Sources */,
@@ -2398,8 +2404,8 @@
 		1D6058940D05DD3E006BFB54 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = "";
 				GCC_PREFIX_HEADER = "Catty/App-Prefix.pch";
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
@@ -2411,7 +2417,7 @@
 					"-lxml2",
 				);
 				PRODUCT_NAME = "Pocket Code";
-				PROVISIONING_PROFILE = "2F6E5C8F-69D2-4629-B32E-765186846EDF";
+				PROVISIONING_PROFILE = "";
 				USER_HEADER_SEARCH_PATHS = "${SPARROW_SRC}";
 			};
 			name = Debug;
@@ -2419,8 +2425,8 @@
 		1D6058950D05DD3E006BFB54 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = "";
 				GCC_PREFIX_HEADER = "Catty/App-Prefix.pch";
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
@@ -2432,7 +2438,7 @@
 					"-lxml2",
 				);
 				PRODUCT_NAME = "Pocket Code";
-				PROVISIONING_PROFILE = "2F6E5C8F-69D2-4629-B32E-765186846EDF";
+				PROVISIONING_PROFILE = "";
 				USER_HEADER_SEARCH_PATHS = "${SPARROW_SRC}";
 			};
 			name = Release;
@@ -2527,7 +2533,7 @@
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Ralph Samer (E59Z82DHQ9)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Marc Slavec (R44P7V8FWV)";
 				COPY_PHASE_STRIP = NO;
 				CURRENT_PROJECT_VERSION = 0.1;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -2565,7 +2571,7 @@
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Ralph Samer (E59Z82DHQ9)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Marc Slavec (R44P7V8FWV)";
 				CURRENT_PROJECT_VERSION = 0.1;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;

@@ -20,23 +20,12 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import <Foundation/Foundation.h>
+#import "GDataXMLNode.h"
 
-@protocol AVAudioPlayerDelegate;
+@interface GDataXMLNode (PrettyFormatterExtensions)
 
-@interface AudioManager : NSObject
-
-+ (AudioManager*) sharedAudioManager;
-
-- (void)playSoundWithFileName:(NSString*)fileName
-                       andKey:(NSString*)key
-                   atFilePath:(NSString*)filePath
-                     Delegate:(id<AVAudioPlayerDelegate>) delegate;
--(void)playSoundWithFileName:(NSString*)fileName andKey:(NSString*)key atFilePath:(NSString*)filePath;
--(void)setVolumeToPercent:(CGFloat)volume forKey:(NSString*)key;
--(void)changeVolumeByPercent:(CGFloat)volume forKey:(NSString*)key;
--(void)stopAllSounds;
--(void)pauseAllSounds;
--(void)resumeAllSounds;
+// little HACK to activate pretty printed XML, unfortunatelly GDataXMLNode does not support this by default
+// More details for this: http://stackoverflow.com/questions/6403083/ios-xml-pretty-print
+- (NSString *)XMLStringPrettyPrinted:(BOOL)isPrettyPrinted;
 
 @end

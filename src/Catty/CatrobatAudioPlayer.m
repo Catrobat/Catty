@@ -20,23 +20,9 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import <Foundation/Foundation.h>
+#import "CatrobatAudioPlayer.h"
 
-@protocol AVAudioPlayerDelegate;
-
-@interface AudioManager : NSObject
-
-+ (AudioManager*) sharedAudioManager;
-
-- (void)playSoundWithFileName:(NSString*)fileName
-                       andKey:(NSString*)key
-                   atFilePath:(NSString*)filePath
-                     Delegate:(id<AVAudioPlayerDelegate>) delegate;
--(void)playSoundWithFileName:(NSString*)fileName andKey:(NSString*)key atFilePath:(NSString*)filePath;
--(void)setVolumeToPercent:(CGFloat)volume forKey:(NSString*)key;
--(void)changeVolumeByPercent:(CGFloat)volume forKey:(NSString*)key;
--(void)stopAllSounds;
--(void)pauseAllSounds;
--(void)resumeAllSounds;
+@implementation CatrobatAudioPlayer
 
 @end
+
