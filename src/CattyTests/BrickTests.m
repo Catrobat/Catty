@@ -43,10 +43,13 @@
 #import "NoteBrick.h"
 #import "ForeverBrick.h"
 #import "BroadcastWaitHandler.h"
+#import <SpriteKit/SpriteKit.h>
 
 @interface BrickTests : XCTestCase
 
 @property (strong, nonatomic) NSMutableArray* programs;
+@property (strong, nonatomic) SKView *skView;
+@property (strong, nonatomic) SKScene *scene;
 
 @end
 
@@ -119,8 +122,6 @@
     XCTFail(@"No implementation for \"%s\"", __PRETTY_FUNCTION__);
 }
 
-
-
 -(void)test_ComeToFrontBrick
 {
     Program *program = self.programs[0];
@@ -131,9 +132,11 @@
     }
 
     CGSize programSize = CGSizeMake(program.header.screenWidth.floatValue, program.header.screenHeight.floatValue);
-    Scene *scene = [[Scene alloc] initWithSize:programSize andProgram:program];
-    scene.scaleMode = SKSceneScaleModeAspectFit;
-    //[skView presentScene:scene];
+    self.scene = [[Scene alloc] initWithSize:programSize andProgram:program];
+    self.scene.scaleMode = SKSceneScaleModeAspectFit;
+    self.skView = [[SKView alloc] init];
+    self.scene.scaleMode = SKSceneScaleModeAspectFit;
+    [self.skView presentScene:self.scene];
 
     for (SpriteObject *object in program.objectList) {
       for (Script *script in object.scriptList) {
@@ -154,10 +157,12 @@
           SKAction *action = [brick action];
           if ([brick isKindOfClass:[ComeToFrontBrick class]]) {
             ComeToFrontBrick *ctfBrick = (ComeToFrontBrick *)brick;
-            NSLog(@"ComeToFront");
+            NSLog(@"ComeToFront action");
             action = [ctfBrick action];
           }
-          [script runAction:action];
+          [script runAction:action completion:^{
+            NSLog(@"action completed");
+          }];
 
           if ([brick isKindOfClass:[ComeToFrontBrick class]]) {
             NSLog(@"ZPosition is: %f, should be: %d", object.zPosition, script.object.numberOfObjects);
@@ -170,32 +175,6 @@
 
 -(void)test_SetXBrick
 {
-//    CGPoint checkPoint = CGPointMake(200, 0);
-//    SpriteObject *sprite1 =[[SpriteObject alloc] init];
-//    Script *script = [[Script alloc]init];
-//    SetXBrick *setXBrick =[[SetXBrick alloc]init];
-//    Formula * formula = [[Formula alloc] init];
-//    FormulaElement * fElement = [[FormulaElement alloc]initWithType:@"NUMBER" value:@"200" leftChild:nil rightChild:nil parent:nil];
-//    
-//    formula.formulaTree = fElement;
-//    setXBrick.xPosition = formula;
-//    
-//    script.object = sprite1;
-//    
-//    
-//    
-////IMPLEMENTATION SETXBRICK//////////////////////////////////////
-//    double xPosition = [setXBrick.xPosition interpretDoubleForSprite:script.object];
-//    
-//    script.object.position = CGPointMake(xPosition, 0);
-//    
-//    
-////////////////////////////////////////////////
-//    
-//        XCTAssertEqual(checkPoint, script.object.position ,@"SetXBrick is not correctly calculated");
 }
-
-
-
 
 @end

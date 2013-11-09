@@ -5,19 +5,21 @@
 	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
 	<false/>
 	<key>IDESourceControlProjectIdentifier</key>
-	<string>2179266F-33AB-46D5-B09F-504CC61FA68D</string>
+	<string>3DFF6E2A-14EB-4672-894F-3B65809EA9BE</string>
 	<key>IDESourceControlProjectName</key>
 	<string>Catty</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
-		<key>28869088-4BCC-4AD6-A9A9-AEFC57278524</key>
+		<key>6B896B10-6547-49A2-969F-62A969BC1F1E</key>
 		<string>gh:Catrobat/Catty.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
 	<string>src/Catty.xcodeproj/project.xcworkspace</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
-		<key>28869088-4BCC-4AD6-A9A9-AEFC57278524</key>
+		<key>145B5991-EA5C-4EB4-90AF-71327EAD5ECA</key>
+		<string>../../Catty</string>
+		<key>6B896B10-6547-49A2-969F-62A969BC1F1E</key>
 		<string>../../..</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
@@ -25,14 +27,22 @@
 	<key>IDESourceControlProjectVersion</key>
 	<integer>110</integer>
 	<key>IDESourceControlProjectWCCIdentifier</key>
-	<string>28869088-4BCC-4AD6-A9A9-AEFC57278524</string>
+	<string>6B896B10-6547-49A2-969F-62A969BC1F1E</string>
 	<key>IDESourceControlProjectWCConfigurations</key>
 	<array>
 		<dict>
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
 			<string>public.vcs.git</string>
 			<key>IDESourceControlWCCIdentifierKey</key>
-			<string>28869088-4BCC-4AD6-A9A9-AEFC57278524</string>
+			<string>6B896B10-6547-49A2-969F-62A969BC1F1E</string>
+			<key>IDESourceControlWCCName</key>
+			<string>Catty</string>
+		</dict>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>145B5991-EA5C-4EB4-90AF-71327EAD5ECA</string>
 			<key>IDESourceControlWCCName</key>
 			<string>Catty</string>
 		</dict>

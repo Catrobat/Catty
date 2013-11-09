@@ -21,6 +21,7 @@
  */
 
 #import "ObjectLooksTVC.h"
+#import "ProgramDefines.h"
 #import "UIDefines.h"
 #import "TableUtil.h"
 #import "CatrobatImageCell.h"
@@ -36,6 +37,7 @@
 #import "NSString+CatrobatNSStringExtensions.h"
 #import <MobileCoreServices/MobileCoreServices.h>
 #import <AssetsLibrary/AssetsLibrary.h>
+#import "LoadingView.h"
 
 #define kTableHeaderIdentifier @"Header"
 #define kFromCameraActionSheetButton @"camera"
@@ -43,6 +45,7 @@
 #define kDrawNewImageActionSheetButton @"drawNewImage"
 
 @interface ObjectLooksTVC () <UIActionSheetDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate>
+@property (nonatomic, strong) LoadingView* loadingView;
 @property (nonatomic, strong) NSMutableDictionary* addLookActionSheetBtnIndexes;
 @end
 
@@ -77,6 +80,12 @@
   UITableViewHeaderFooterView *headerViewTemplate = [[UITableViewHeaderFooterView alloc] initWithReuseIdentifier:kTableHeaderIdentifier];
   headerViewTemplate.contentView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"darkblue"]];
   [self.tableView addSubview:headerViewTemplate];
+}
+
+- (void)dealloc
+{
+  [self.loadingView removeFromSuperview];
+  self.loadingView = nil;
 }
 
 #pragma view events
@@ -125,10 +134,13 @@
   // Configure the cell...
   if ([cell conformsToProtocol:@protocol(CatrobatImageCell)]) {
     UITableViewCell <CatrobatImageCell>* imageCell = (UITableViewCell <CatrobatImageCell>*)cell;
+    imageCell.iconImageView.image = nil;
+    NSString *previewImagePath = [self.object previewImagePathForLookAtIndex:indexPath.row];
+    if (previewImagePath) {
+      imageCell.iconImageView.image = [[UIImage alloc] initWithContentsOfFile:previewImagePath];
+      imageCell.iconImageView.contentMode = UIViewContentModeScaleAspectFit;
+    }
     Look *look = [self.object.lookList objectAtIndex:indexPath.row];
-    NSString *imagePath = [self.object pathForLook:look];
-    imageCell.iconImageView.image = [[UIImage alloc] initWithContentsOfFile: imagePath];
-    imageCell.iconImageView.contentMode = UIViewContentModeScaleAspectFit;
     imageCell.titleLabel.text = look.name;
   }
   return cell;
@@ -209,6 +221,7 @@
     // add image to object now
     NSURL *imageURL = [info objectForKey:UIImagePickerControllerReferenceURL];
 //    NSString *imageFileName = [imagePath lastPathComponent];
+    [self showLoadingView];
 
     ALAssetsLibraryAssetForURLResultBlock resultblock = ^(ALAsset *myasset)
     {
@@ -227,14 +240,16 @@
       //      ATM I am using UUID.
       // TODO: Fix this unless using UUID is not the right way here, otherwise please delete the comment above until read.
       NSString *fileNamePrefix = [[[NSString uuid] stringByReplacingOccurrencesOfString:@"-" withString:@""] uppercaseString];
-      NSString *newImageFileName = [NSString stringWithFormat:@"%@_%@", fileNamePrefix, imageFileName];
-      NSString *newImageFileNameThumbHiDPIx2 = [NSString stringWithFormat:@"%@_%@_%@", fileNamePrefix, @"thumb@2x", imageFileName];
-      NSString *newImageFileNameThumbHiDPI = [NSString stringWithFormat:@"%@_%@_%@", fileNamePrefix, @"thumb", imageFileName];
+      NSString *newImageFileName = [NSString stringWithFormat:@"%@%@%@", fileNamePrefix, kResourceFileNameSeparator, imageFileName];
+      Look* look = [[Look alloc] initWithName:imageFileName andPath:newImageFileName];
 
       // TODO: outsource this to FileManager
-      NSString *newImagePath = [NSString stringWithFormat:@"%@%@/%@", [self.object projectPath], kProgramImagesDirName, newImageFileName];
-      NSString *newImagePathThumbnailHiDPIx2 = [NSString stringWithFormat:@"%@%@/%@", [self.object projectPath], kProgramImagesDirName, newImageFileNameThumbHiDPIx2];
-      NSString *newImagePathThumbnailHiDPI = [NSString stringWithFormat:@"%@%@/%@", [self.object projectPath], kProgramImagesDirName, newImageFileNameThumbHiDPI];
+      NSString *newImagePath = [NSString stringWithFormat:@"%@%@/%@",
+                                 [self.object projectPath], kProgramImagesDirName,
+                                 newImageFileName];
+      NSString *newPreviewImagePath = [NSString stringWithFormat:@"%@%@/%@",
+                                        [self.object projectPath], kProgramImagesDirName,
+                                        [look previewImageFileName]];
       NSString *mediaType = info[UIImagePickerControllerMediaType];
 
       NSLog(@"Writing file to disk");
@@ -244,43 +259,33 @@
           [UIImagePNGRepresentation(image) writeToFile:newImagePath atomically:YES];
 
           // generate thumbnail image (retina)
-          CGSize thumbnailSizeHiDPIx2 = CGSizeMake(100, 100); // TODO: outsource hardcoded value...
+          CGSize previewImageSize = CGSizeMake(kPreviewImageWidth, kPreviewImageHeight);
           // determine aspect ratio
           if (image.size.height > image.size.width)
-            thumbnailSizeHiDPIx2.width = (image.size.width*thumbnailSizeHiDPIx2.width)/image.size.height;
+            previewImageSize.width = (image.size.width*previewImageSize.width)/image.size.height;
           else
-            thumbnailSizeHiDPIx2.height = (image.size.height*thumbnailSizeHiDPIx2.height)/image.size.width;
+            previewImageSize.height = (image.size.height*previewImageSize.height)/image.size.width;
 
-          UIGraphicsBeginImageContext(thumbnailSizeHiDPIx2);
-          UIImage *thumbHiDPIx2 = [image copy];
-          [thumbHiDPIx2 drawInRect:CGRectMake(0,0,thumbnailSizeHiDPIx2.width,thumbnailSizeHiDPIx2.height)];
-          UIImage *thumbnailImageHiDPIx2 = UIGraphicsGetImageFromCurrentImageContext();
+          UIGraphicsBeginImageContext(previewImageSize);
+          UIImage *previewImage = [image copy];
+          [previewImage drawInRect:CGRectMake(0, 0, previewImageSize.width, previewImageSize.height)];
+          previewImage = UIGraphicsGetImageFromCurrentImageContext();
           UIGraphicsEndImageContext();
-          [UIImagePNGRepresentation(thumbnailImageHiDPIx2) writeToFile:newImagePathThumbnailHiDPIx2 atomically:YES];
-
-          // generate thumbnail image (retina)
-          CGSize thumbnailSizeHiDPI = CGSizeMake(50, 50); // TODO: outsource hardcoded value...
-          // determine aspect ratio
-          if (image.size.height > image.size.width)
-            thumbnailSizeHiDPI.width = (image.size.width*thumbnailSizeHiDPI.width)/image.size.height;
-          else
-            thumbnailSizeHiDPI.height = (image.size.height*thumbnailSizeHiDPI.height)/image.size.width;
-          UIGraphicsBeginImageContext(thumbnailSizeHiDPI);
-          UIImage *thumbHiDPI = [image copy];
-          [thumbHiDPI drawInRect:CGRectMake(0,0,thumbnailSizeHiDPI.width,thumbnailSizeHiDPI.height)];
-          UIImage *thumbnailImageHiDPI = UIGraphicsGetImageFromCurrentImageContext();
-          UIGraphicsEndImageContext();
-          [UIImagePNGRepresentation(thumbnailImageHiDPI) writeToFile:newImagePathThumbnailHiDPI atomically:YES];
+          [UIImagePNGRepresentation(previewImage) writeToFile:newPreviewImagePath atomically:YES];
         }];
-        
-        // Use the completion block to update our UI from the main queue
+
+        // Use the completion block to update UI on the main queue
         [saveOp setCompletionBlock:^{
           [[NSOperationQueue mainQueue] addOperationWithBlock:^{
             // update view
-            Look* look = [[Look alloc] initWithName:imageFileName andPath:newImageFileNameThumbHiDPIx2];
+            [super showPlaceHolder:NO];
             [self.object.lookList addObject:look];
-            [super showPlaceHolder:([self.object.lookList count] == 0)];
-            [self.tableView reloadData];
+//            [self.tableView reloadData];
+            [self hideLoadingView];
+            NSInteger numberOfRowsInLastSection = [self tableView:self.tableView numberOfRowsInSection:0];
+            NSIndexPath *indexPath = [NSIndexPath indexPathForRow:(numberOfRowsInLastSection - 1) inSection:0];
+            [self.tableView insertRowsAtIndexPaths:@[indexPath]
+                                  withRowAnimation:UITableViewRowAnimationFade];
           }];
         }];
         NSOperationQueue *queue = [[NSOperationQueue alloc] init];
@@ -378,7 +383,40 @@
   UIBarButtonItem *play = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemPlay
                                                                         target:self
                                                                         action:@selector(playSceneAction:)];
-  self.toolbarItems = [NSArray arrayWithObjects:add, flexItem, play, nil];
+  // XXX: workaround for tap area problem:
+  // http://stackoverflow.com/questions/5113258/uitoolbar-unexpectedly-registers-taps-on-uibarbuttonitem-instances-even-when-tap
+  UIImageView *imageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"transparent1x1.png"]];
+  UIBarButtonItem *invisibleButton = [[UIBarButtonItem alloc] initWithCustomView:imageView];
+  self.toolbarItems = [NSArray arrayWithObjects:flexItem, invisibleButton, add, invisibleButton, flexItem, flexItem,
+                       flexItem, flexItem, flexItem, invisibleButton, play, invisibleButton, flexItem, nil];
+}
+
+- (void)showLoadingView
+{
+  if (! self.loadingView) {
+    self.loadingView = [[LoadingView alloc] init];
+    [self.view addSubview:self.loadingView];
+  }
+  self.loadingView.backgroundColor = [UIColor whiteColor];
+  self.loadingView.alpha = 1.0;
+  CGPoint top = CGPointMake(0, -self.navigationController.navigationBar.frame.size.height);
+  [self.tableView setContentOffset:top animated:NO];
+  self.tableView.scrollEnabled = NO;
+  self.tableView.userInteractionEnabled = NO;
+  [self.navigationController.navigationBar setUserInteractionEnabled:NO];
+  [self.navigationController.toolbar setUserInteractionEnabled:NO];
+  [self showPlaceHolder:NO];
+  [self.loadingView show];
+}
+
+- (void) hideLoadingView
+{
+  [self showPlaceHolder:([self.object.lookList count] == 0)];
+  self.tableView.scrollEnabled = YES;
+  self.tableView.userInteractionEnabled = YES;
+  [self.navigationController.navigationBar setUserInteractionEnabled:YES];
+  [self.navigationController.toolbar setUserInteractionEnabled:YES];
+  [self.loadingView hide];
 }
 
 @end

@@ -48,4 +48,6 @@
 @property (nonatomic, strong) NSString *programScreenshotManuallyTaken;
 @property (nonatomic, strong) NSString *tags;
 
+- (NSString*)persist;
+
 @end

@@ -33,11 +33,13 @@
 @property (nonatomic, strong) VariablesContainer *variables;
 - (NSString*)projectPath;
 - (void)removeFromDisk;
+- (void)saveToDisk;
 
 // factories
-+ (Program*)createWithProgramName:(NSString*)programName;
++ (Program*)createNewProgramWithName:(NSString*)programName;
 
 // helpers
 + (NSString*)basePath;
++ (BOOL)programExists:(NSString *)programName;
 
 @end

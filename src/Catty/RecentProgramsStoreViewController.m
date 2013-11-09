@@ -174,20 +174,16 @@
 
 - (void)loadRecentProjects
 {
-    
 #warning program-info should be append, not overwritten
     self.data = [[NSMutableData alloc] init];
-    
+
     NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@/%@?%@%i&%@%i", kConnectionHost, kConnectionRecent, kProgramsOffset, self.programListOffset, kProgramsLimit, self.programListLimit]];
     NSURLRequest *request = [NSURLRequest requestWithURL:url cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:kConnectionTimeout];
-    
+
     NSDebug(@"url is: %@", url);
-    
     NSURLConnection *connection = [[NSURLConnection alloc] initWithRequest:request delegate:self];
     self.connection = connection;
-    
     [self showLoadingView];
-    
     self.programListOffset += self.programListLimit;
 }
 

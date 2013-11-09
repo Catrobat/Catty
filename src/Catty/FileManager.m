@@ -71,8 +71,14 @@
     return _data;
 }
 
-
-
+- (void)createDirectory:(NSString *)path
+{
+  NSFileManager *fileManager= [NSFileManager defaultManager];
+  NSError *error = nil;
+  if(! [self directoryExists:path])
+    [fileManager createDirectoryAtPath:path withIntermediateDirectories:NO attributes:nil error:&error];
+  NSLogError(error);
+}
 
 - (void)deleteAllFilesInDocumentsDirectory {
     [self deleteAllFillesOfDirectory:self.documentsDirectory];
@@ -108,12 +114,26 @@
   return ([[NSFileManager defaultManager] fileExistsAtPath:path isDirectory:&isDir] && isDir);
 }
 
-- (void)deleteFolder:(NSString*)path {
+- (void)moveExistingFileOrDirectoryAtPath:(NSString*)oldPath ToPath:(NSString*)newPath
+{
+  if (! [self directoryExists:oldPath])
+    return;
+
+  // Attempt the move
+  NSURL *oldURL = [NSURL fileURLWithPath:oldPath];
+  NSURL *newURL = [NSURL fileURLWithPath:newPath];
+  NSError *error = nil;
+  if ([[NSFileManager defaultManager] moveItemAtURL:oldURL toURL:newURL error:&error] != YES)
+    NSLog(@"Unable to move file: %@", [error localizedDescription]);
+  NSLogError(error);
+}
+
+- (void)deleteDirectory:(NSString *)path
+{
     NSError *error = nil;
     [[NSFileManager defaultManager] removeItemAtPath:path error:&error];
     NSLogError(error);
 }
-
 
 - (NSArray*)getContentsOfDirectory:(NSString*)directory {
     NSError *error = nil;

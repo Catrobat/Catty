@@ -154,6 +154,7 @@
 		CA05A19E18286CDA0025421A /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA05A19D18286CDA0025421A /* AssetsLibrary.framework */; };
 		CA43DD361809976900F95B88 /* UIImageView+CatrobatUIImageViewExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = CA43DD351809976900F95B88 /* UIImageView+CatrobatUIImageViewExtensions.m */; };
 		CA43DD3A18099AA300F95B88 /* DarkBlueGradientBorderedImageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CA43DD3918099AA300F95B88 /* DarkBlueGradientBorderedImageCell.m */; };
+		CA640C27182A962500DBA899 /* transparent1x1.png in Resources */ = {isa = PBXBuildFile; fileRef = CA640C26182A962500DBA899 /* transparent1x1.png */; };
 		CA688202180AEF00008A7C99 /* BaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA688201180AEF00008A7C99 /* BaseViewController.m */; };
 		CA688205180B0148008A7C99 /* BaseTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA688204180B0148008A7C99 /* BaseTableViewController.m */; };
 		CA688208180B2663008A7C99 /* BaseCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA688207180B2663008A7C99 /* BaseCollectionViewController.m */; };
@@ -460,6 +461,7 @@
 		CA43DD351809976900F95B88 /* UIImageView+CatrobatUIImageViewExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+CatrobatUIImageViewExtensions.m"; sourceTree = "<group>"; };
 		CA43DD3818099AA300F95B88 /* DarkBlueGradientBorderedImageCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DarkBlueGradientBorderedImageCell.h; sourceTree = "<group>"; };
 		CA43DD3918099AA300F95B88 /* DarkBlueGradientBorderedImageCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DarkBlueGradientBorderedImageCell.m; sourceTree = "<group>"; };
+		CA640C26182A962500DBA899 /* transparent1x1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = transparent1x1.png; sourceTree = "<group>"; };
 		CA688200180AEEC2008A7C99 /* BaseTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseTableViewController.h; sourceTree = "<group>"; };
 		CA688201180AEF00008A7C99 /* BaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseViewController.m; sourceTree = "<group>"; };
 		CA688203180B00C1008A7C99 /* BaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseViewController.h; sourceTree = "<group>"; };
@@ -786,6 +788,7 @@
 		B4003027170EB3DA00396DB7 /* graphics */ = {
 			isa = PBXGroup;
 			children = (
+				CA640C26182A962500DBA899 /* transparent1x1.png */,
 				C3BF74D11811452800134B77 /* stage_dialog_button_toggle_axis.png */,
 				C3BF74D21811452800134B77 /* stage_dialog_button_toggle_axis_pressed.png */,
 				C3BF74D31811452800134B77 /* stage_dialog_button_screenshot.png */,
@@ -1475,7 +1478,6 @@
 				CA688207180B2663008A7C99 /* BaseCollectionViewController.m */,
 				CA688203180B00C1008A7C99 /* BaseViewController.h */,
 				CA688201180AEF00008A7C99 /* BaseViewController.m */,
-				B4003032170EB51000396DB7 /* CatrobatTableViewController */,
 			);
 			name = BaseClasses;
 			sourceTree = "<group>";
@@ -1604,6 +1606,7 @@
 			isa = PBXGroup;
 			children = (
 				CA05A194182826E40025421A /* BaseClasses */,
+				B4003032170EB51000396DB7 /* CatrobatTableViewController */,
 				CA04EDA317E7D1610063EB25 /* Continue & New */,
 				CA05A1961828275B0025421A /* Programs */,
 				CA05A195182826FE0025421A /* Forum */,
@@ -2169,6 +2172,7 @@
 				B4DEFC8D170F463800DD1939 /* TestParserResources in Resources */,
 				CA7AC43C18074FD300904143 /* ic_media_pause.png in Resources */,
 				B43313D717329514008B4EB3 /* Localizable.strings in Resources */,
+				CA640C27182A962500DBA899 /* transparent1x1.png in Resources */,
 				B4365CE91758EBA900B4D0A6 /* LoggerProperties.plist in Resources */,
 				B4DA23D5175E761D0079B381 /* icon_retina.png in Resources */,
 				C3E9197D180BE0BF001F2232 /* ic_media_play.png in Resources */,

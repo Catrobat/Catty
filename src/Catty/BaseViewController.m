@@ -22,6 +22,7 @@
 
 #import "BaseViewController.h"
 #import "UIColor+CatrobatUIColorExtensions.h"
+#import "UIDefines.h"
 #import "TableUtil.h"
 
 @interface BaseViewController () <UIActionSheetDelegate>
@@ -36,6 +37,7 @@
 - (void)initPlaceHolder
 {
   self.placeholder = [[UIView alloc] initWithFrame:self.view.bounds];
+  self.placeholder.tag = kPlaceHolderTag;
 
   // setup title label
   self.placeholderTitleLabel = [[UILabel alloc] init];

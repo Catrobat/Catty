@@ -29,6 +29,7 @@
 #import "AppDefines.h"
 #import "SpriteObject.h"
 #import "AppDelegate.h"
+#import "FileManager.h"
 
 @implementation Program
 
@@ -40,7 +41,7 @@
 }
 
 # pragma mark - factories
-+ (Program*)createWithProgramName:(NSString*)programName
++ (Program*)createNewProgramWithName:(NSString*)programName
 {
   Program* program = [[Program alloc] init];
   program.header = [[Header alloc] init];
@@ -69,6 +70,19 @@
     program.header.programScreenshotManuallyTaken = (YES ? @"true" : @"false");
     program.header.tags = nil;
   }
+
+  FileManager *fileManager = [[FileManager alloc] init];
+  if (! [self programExists:program.projectPath])
+    [fileManager createDirectory:program.projectPath];
+
+  NSString *imagesDirName = [NSString stringWithFormat:@"%@%@", program.projectPath, kProgramImagesDirName];
+  if (! [fileManager directoryExists:imagesDirName])
+    [fileManager createDirectory:imagesDirName];
+
+  NSString *soundsDirName = [NSString stringWithFormat:@"%@%@", program.projectPath, kProgramSoundsDirName];
+  if (! [fileManager directoryExists:soundsDirName])
+    [fileManager createDirectory:soundsDirName];
+
   return program;
 }
 
@@ -108,8 +122,46 @@
   FileManager *fileManager = ((AppDelegate*)[[UIApplication sharedApplication] delegate]).fileManager;
   NSString *projectPath = [self projectPath];
   if ([fileManager directoryExists:projectPath])
-    [fileManager deleteFolder:projectPath];
+    [fileManager deleteDirectory:projectPath];
   [Util setLastProgram:nil];
+}
+
+- (NSString*)persist
+{
+  // TODO: INFO: this is just an ugly hack. Maybe we are using a XML framework or write our own classes for XML-nodes, etc.
+  NSMutableString *program = [NSMutableString stringWithString:@"<program>"];
+  [program appendFormat:@"\n  %@", [self.header persist]];
+  [program appendString:@"\n  <objectList>"];
+  for (id object in self.objectList) {
+    if ([object isKindOfClass:[SpriteObject class]]) {
+//      SpriteObject *spriteObject = (SpriteObject*) object;
+//      [program appendString:[spriteObject persist]];
+    }
+  }
+  [program appendString:@"\n  </objectList>\n"];
+//  for (id variable in self.variables) {
+//    if ([variable isKindOfClass:[UserVariable class]]) {
+//      UserVariable *userVariable = (UserVariable*) object;
+//      [program appendString:[userVariable persist]];
+//    }
+//  }
+  [program appendString:@"</program>"];
+  return program;
+}
+
+- (void)saveToDisk
+{
+  dispatch_queue_t saveToDiskQ = dispatch_queue_create("save to disk", NULL);
+  dispatch_async(saveToDiskQ, ^{
+    //Background Thread
+    NSString *xmlString = [self persist];
+    // TODO: outsource this to file manager
+    NSString *filePath = [NSString stringWithFormat:@"%@%@", [self projectPath], kProgramCodeFileName];
+    NSError *error = nil;
+    [xmlString writeToFile:filePath atomically:YES encoding:NSUTF8StringEncoding error:&error];
+    NSLogError(error);
+//    dispatch_async(dispatch_get_main_queue(), ^{});
+  });
 }
 
 # pragma mark - helpers
@@ -144,6 +196,12 @@
 + (NSString*)basePath
 {
   return [NSString stringWithFormat:@"%@/%@/", [Util applicationDocumentsDirectory], kProgramsFolder];
+}
+
++ (BOOL)programExists:(NSString *)programName
+{
+  NSString *projectPath = [NSString stringWithFormat:@"%@%@/", [Program basePath], programName];
+  return [[[FileManager alloc] init] directoryExists:projectPath];
 }
 
 @end

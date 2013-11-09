@@ -45,12 +45,14 @@
 #define kWidthSlideMenu 100
 #define kPlaceOfButtons 20
 
-@interface ScenePresenterViewController (){
-    BOOL menuOpen;
-    Scene *scene;
-}
+@interface ScenePresenterViewController ()
+//{
+//    BOOL menuOpen;
+//    Scene *scene;
+//}
 
-
+@property (nonatomic) BOOL menuOpen;
+@property (nonatomic, strong) Scene *scene;
 @property (nonatomic, strong) BroadcastWaitHandler *broadcastWaitHandler;
 
 @end
@@ -189,7 +191,7 @@
 {
     [super viewWillAppear:animated];
     [self.navigationController setNavigationBarHidden:YES animated:animated];
-    menuOpen=NO;
+    self.menuOpen = NO;
 }
 
 - (void) viewWillDisappear:(BOOL)animated
@@ -200,27 +202,18 @@
 
 - (void) configureScene
 {
-    SKView * skView =(SKView*)_skView;
+    SKView *skView = (SKView*) self.skView;
     [self.view addSubview:skView];
-    //[self.view bringSubviewToFront:skView];
 #ifdef DEBUG
     skView.showsFPS = YES;
     skView.showsNodeCount = YES;
 #endif
-    
+
     //Program* program = [self loadProgram];
     CGSize programSize = CGSizeMake(self.program.header.screenWidth.floatValue, self.program.header.screenHeight.floatValue);
-    if (! scene) {
-        scene = [[Scene alloc] initWithSize:programSize andProgram:self.program];
-    }
-    else{
-        scene = nil;
-        scene = [scene initWithSize:programSize andProgram:self.program];
-    }
-
-    //Scene * scene = [[Scene alloc] initWithSize:programSize andProgram:self.program];
-    scene.scaleMode = SKSceneScaleModeAspectFit;
-    [skView presentScene:scene];
+    self.scene = [[Scene alloc] initWithSize:programSize andProgram:self.program];
+    self.scene.scaleMode = SKSceneScaleModeAspectFit;
+    [skView presentScene:self.scene];
     [[ProgramManager sharedProgramManager] setProgram:self.program];
 }
 
@@ -310,7 +303,6 @@
     UIColor *background = [UIColor darkBlueColor];//[[UIColor alloc] initWithPatternImage:snapshotImage];
     
     self.menuView.backgroundColor = background;
-    //// WORKING!!!!!!!!!
     SKView * view= (SKView*)_skView;
     view.paused=YES;
     [[AVAudioSession sharedInstance] setActive:NO error:nil];
@@ -329,15 +321,10 @@
                          self.menuAxisButton.frame = CGRectMake(kPlaceOfButtons,self.menuAxisButton.frame.origin.y, self.menuAxisButton.frame.size.width, self.menuAxisButton.frame.size.height);
                          
                          self.menuBtn.hidden=YES;
-                         
-                         
-                         
                      }
                      completion:^(BOOL finished){
-                         menuOpen = YES;
-                         
+                         self.menuOpen = YES;
                      }];
-    
 }
 
 //- (UIImage *)applyBlurOnImage: (UIImage *)imageToBlur withRadius:(CGFloat)blurRadius
@@ -401,8 +388,6 @@
     
     [self.controller.navigationController setToolbarHidden:NO];
     [self.controller.navigationController setNavigationBarHidden:NO];
-    
-    
 }
 
 - (void)continueLevel:(UIButton *)sender
@@ -425,7 +410,7 @@
                          
                      }
                      completion:^(BOOL finished){
-                         menuOpen = NO;
+                         self.menuOpen = NO;
                      }];
     SKView * view= (SKView*)_skView;
     view.paused=NO;
@@ -435,8 +420,14 @@
 
 -(void)restartLevel:(UIButton*) sender
 {
-# warning -> don't know why i have to configure the sceen twice!
+    ///Reset Scene
+    self.scene = nil;
+    self.scene.scaleMode = SKSceneScaleModeAspectFit;
+    SKView * view= (SKView*)self.skView;
+    view.paused=NO;
+    [view presentScene:self.scene];
     [self configureScene];
+    ///
     [[AVAudioSession sharedInstance] setActive:YES error:nil];
     [UIView animateWithDuration:0.2
                           delay:0.01
@@ -455,22 +446,11 @@
                          
                      }
                      completion:^(BOOL finished){
-                         menuOpen = NO;
+                         self.menuOpen = NO;
                      }];
-    SKView * view= (SKView*)_skView;
-    view.paused=NO;
-    [[AVAudioSession sharedInstance] setActive:YES error:nil];
-    [self configureScene];
+
     [self.view bringSubviewToFront:self.menuBtn];
     [self.view bringSubviewToFront:self.menuView];
-    
-//    NSString *popupmessage = [NSString stringWithFormat:@"Soon available"];
-//    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Restart"
-//                                                    message:popupmessage
-//                                                   delegate:self.menuView
-//                                          cancelButtonTitle:@"OK"
-//                                          otherButtonTitles:nil];
-//    [alert show];
 }
 -(void)showHideAxis:(UIButton *)sender
 {
@@ -494,21 +474,19 @@
     /// Write to Camera Roll
     //UIImageWriteToSavedPhotosAlbum(snapshotImage, nil, nil, nil);
     NSString* path = [self.program projectPath];
-	NSString *pngFilePath = [NSString stringWithFormat:@"%@/manual_screenshot.png",path];
-	NSData *data = [NSData dataWithData:UIImagePNGRepresentation(snapshotImage)];
-	[data writeToFile:pngFilePath atomically:YES];
-        NSString *popupmessage = [NSString stringWithFormat:@"Screenshot saved!"];
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Screenshot"
-                                                        message:popupmessage
-                                                       delegate:self.menuView
-                                              cancelButtonTitle:@"OK"
-                                              otherButtonTitles:nil];
-        [alert show];
-    
+    NSString *pngFilePath = [NSString stringWithFormat:@"%@/manual_screenshot.png",path];
+    NSData *data = [NSData dataWithData:UIImagePNGRepresentation(snapshotImage)];
+    [data writeToFile:pngFilePath atomically:YES];
+    NSString *popupmessage = [NSString stringWithFormat:@"Screenshot saved!"];
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Screenshot"
+                                                    message:popupmessage
+                                                   delegate:self.menuView
+                                          cancelButtonTitle:@"OK"
+                                          otherButtonTitles:nil];
+    [alert show];
 }
 
 #pragma PanGestureHandler
-
 - (void)handlePan:(UIPanGestureRecognizer *)gesture
 {
     
@@ -518,7 +496,7 @@
     
     if (gesture.state == UIGestureRecognizerStateBegan||
         gesture.state == UIGestureRecognizerStateChanged) {
-        if (translate.x > 0.0 && translate.x < 100 && menuOpen == NO)
+        if (translate.x > 0.0 && translate.x < 100 && self.menuOpen == NO)
         {
             [UIView animateWithDuration:0.25
                                   delay:0.0
@@ -549,7 +527,7 @@
                              }];
         }
     
-        else if (translate.x < 0.0 && translate.x > -100 && menuOpen == YES)
+        else if (translate.x < 0.0 && translate.x > -100 && self.menuOpen == YES)
         {
             [UIView animateWithDuration:0.25
                                   delay:0.0
@@ -576,7 +554,7 @@
         gesture.state == UIGestureRecognizerStateFailed)
     {
 
-        if (translate.x > 0.0 && menuOpen == NO)
+        if (translate.x > 0.0 && self.menuOpen == NO)
         {
             [UIView animateWithDuration:0.25
                                   delay:0.0
@@ -601,11 +579,11 @@
                                  self.menuBtn.hidden=YES;
                              }
                              completion:^(BOOL finished) {
-                                 menuOpen = YES;
+                                 self.menuOpen = YES;
                                  [[AudioManager sharedAudioManager] stopAllSounds];
                              }];
         }
-        else if (translate.x < 0.0  && menuOpen == YES)
+        else if (translate.x < 0.0  && self.menuOpen == YES)
         {
             [UIView animateWithDuration:0.25
                                   delay:0.0
@@ -622,7 +600,7 @@
                              completion:^(BOOL finished) {
                                  SKView * view= (SKView*)_skView;
                                  view.paused=NO;
-                                 menuOpen= NO;
+                                 self.menuOpen= NO;
                              }];
         }
 

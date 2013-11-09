@@ -31,6 +31,7 @@
 #import "Util.h"
 #import "Brick.h"
 #import "SetLookBrick.h"
+#import "FileManager.h"
 
 @interface SpriteObject()
 
@@ -60,7 +61,7 @@
   return _lookList;
 }
 
--(NSMutableArray*)soundList
+- (NSMutableArray*)soundList
 {
   // lazy instantiation
   if (! _soundList)
@@ -68,7 +69,7 @@
   return _soundList;
 }
 
--(NSMutableArray*)scriptList
+- (NSMutableArray*)scriptList
 {
   // lazy instantiation
   if (! _scriptList)
@@ -76,25 +77,52 @@
   return _scriptList;
 }
 
--(CGPoint)position
+- (CGPoint)position
 {
     return [((Scene*)self.scene) convertSceneCoordinateToPoint:super.position];
 }
 
--(void)setPosition:(CGPoint)position
+- (void)setPosition:(CGPoint)position
 {
     super.position = [((Scene*)self.scene) convertPointToScene:position];
 }
 
--(void)dealloc
+- (void)dealloc
 {
     NSDebug(@"Dealloc: %@", self);
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
--(NSString *)projectPath
+- (NSString *)projectPath
 {
   return [self.program projectPath];
+}
+
+- (NSString*)previewImagePathForLookAtIndex:(NSUInteger)index
+{
+  if (index >= [self.lookList count])
+    return nil;
+
+  Look* look = [self.lookList objectAtIndex:index];
+  if (! look)
+    return nil;
+
+  NSString *imageDirPath = [[self projectPath] stringByAppendingString:kProgramImagesDirName];
+  NSString *previewImageFilePath = [NSString stringWithFormat:@"%@/%@", imageDirPath, [look previewImageFileName]];
+  FileManager *fileManager = [[FileManager alloc] init];
+  if ([fileManager fileExists:previewImageFilePath])
+    return previewImageFilePath;
+
+  previewImageFilePath = [self pathForLook:look];
+  if ([fileManager fileExists:previewImageFilePath])
+    return previewImageFilePath;
+
+  return nil;
+}
+
+- (NSString*)previewImagePath
+{
+  return [self previewImagePathForLookAtIndex:0];
 }
 
 -(BOOL)isBackground
@@ -180,7 +208,7 @@
 
 -(NSString*)pathForLook:(Look*)look
 {
-    return [NSString stringWithFormat:@"%@%@/%@", [self projectPath], kProgramImagesDirName, look.fileName];
+  return [NSString stringWithFormat:@"%@%@/%@", [self projectPath], kProgramImagesDirName, look.fileName];
 }
 
 -(NSString*)pathForSound:(Sound*)sound

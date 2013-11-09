@@ -60,6 +60,7 @@
   self.edgesForExtendedLayout = UIRectEdgeNone;
 
   self.searchDisplayController.displaysSearchBarInNavigationBar = NO;
+  self.tableView.backgroundView = [[UIImageView alloc] initWithImage:[UIImage imageWithColor:[UIColor darkBlueColor]]];
   [self.searchDisplayController setActive:YES animated:YES];
   [self.searchDisplayController.searchBar becomeFirstResponder];
   self.searchDisplayController.searchBar.delegate = self;

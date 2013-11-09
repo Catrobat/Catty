@@ -65,8 +65,6 @@
 
 @property (nonatomic,strong) Program* program;
 
-- (NSString*)projectPath; //for image-path!!!
-
 - (BOOL)isBackground;
 
 /* Loop Update - called once per frame. */
@@ -85,6 +83,9 @@
 - (Look*)nextLook;
 
 // helpers
+- (NSString*)projectPath; //for image-path!!!
+- (NSString*)previewImagePathForLookAtIndex:(NSUInteger)index;
+- (NSString*)previewImagePath; // thumbnail/preview image-path of first (!) look shown in several TableViewCells!!!
 - (NSString*)pathForLook:(Look*)look;
 - (NSString*)pathForSound:(Sound*)sound;
 
