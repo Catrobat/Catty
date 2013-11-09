@@ -23,6 +23,7 @@
 
 #import "AudioManager.h"
 #import <AVFoundation/AVFoundation.h>
+#import "CatrobatAudioPlayer.h"
 
 @interface AudioManager(){
     NSInteger soundCounter;
@@ -78,19 +79,21 @@ static AudioManager* sharedAudioManager = nil;
     [self.sounds setObject:audioPlayers forKey:key];
   }
   
-  AVAudioPlayer* player = [audioPlayers objectForKey:fileName];
+  CatrobatAudioPlayer* player = [audioPlayers objectForKey:fileName];
   if (! player) {
     NSURL* path = [NSURL fileURLWithPath:[self pathForSound:fileName atFilePath:filePath]];
     NSError* error = nil;
-    player = [[AVAudioPlayer alloc] initWithContentsOfURL:path error:&error];
+    player = [[CatrobatAudioPlayer alloc] initWithContentsOfURL:path error:&error];
     NSLogError(error);
+    [player setKey:fileName];
     [audioPlayers setObject:player forKey:fileName];
   }else{
       soundCounter++;
       NSURL* path = [NSURL fileURLWithPath:[self pathForSound:fileName atFilePath:filePath]];
       NSError* error = nil;
-      player = [[AVAudioPlayer alloc] initWithContentsOfURL:path error:&error];
+      player = [[CatrobatAudioPlayer alloc] initWithContentsOfURL:path error:&error];
       NSLogError(error);
+      [player setKey:[fileName stringByAppendingString:[NSString stringWithFormat:@"%d",soundCounter]]];
       [audioPlayers setObject:player forKey:[fileName stringByAppendingString:[NSString stringWithFormat:@"%d",soundCounter]]];
   }
 //  if ([player isPlaying]) {
@@ -124,7 +127,7 @@ static AudioManager* sharedAudioManager = nil;
 {
     volume/=100;
     NSMutableDictionary* audioPlayers = [self.sounds objectForKey:key];
-    for(AVAudioPlayer* player in [audioPlayers allValues]) {
+    for(CatrobatAudioPlayer* player in [audioPlayers allValues]) {
         player.volume += volume;
     }
     
@@ -133,7 +136,7 @@ static AudioManager* sharedAudioManager = nil;
 -(void)stopAllSounds
 {
     for(NSMutableDictionary* audioPlayers in [self.sounds allValues]) {
-        for(AVAudioPlayer* player in [audioPlayers allValues]) {
+        for(CatrobatAudioPlayer* player in [audioPlayers allValues]) {
             [player stop];
         }
         [audioPlayers removeAllObjects];
@@ -141,6 +144,38 @@ static AudioManager* sharedAudioManager = nil;
     [self.sounds removeAllObjects];
     self.sounds = nil;
     sharedAudioManager = nil;
+}
+
+-(void)pauseAllSounds
+{
+  for(NSMutableDictionary* audioPlayers in [self.sounds allValues]) {
+    for(CatrobatAudioPlayer* player in [audioPlayers allValues]) {
+      if ([player isPlaying]) {
+        [player pause];
+      }
+      else{
+        [audioPlayers removeObjectForKey:player.key];
+      }
+    }
+  }
+
+}
+
+-(void)resumeAllSounds
+{
+  for(NSMutableDictionary* audioPlayers in [self.sounds allValues]) {
+    for(CatrobatAudioPlayer* player in [audioPlayers allValues]) {
+      [player play];
+    }
+  }
+
+}
+- (void) audioPlayerDidFinishPlaying:(AVAudioPlayer *)player successfully:(BOOL)flag
+{
+  CatrobatAudioPlayer *playerToDelete = (CatrobatAudioPlayer *)player;
+  for(NSMutableDictionary* audioPlayers in [self.sounds allValues]) {
+    [audioPlayers removeObjectForKey:playerToDelete.key];
+  }
 }
 
 

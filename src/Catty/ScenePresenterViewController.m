@@ -43,9 +43,16 @@
 
 
 #define kWidthSlideMenu 100
-#define kPlaceOfButtons 20
+#define kPlaceOfButtons 17
+#define kSlidingStartArea 20
+#define kIphone5ScreenHeight 568.0f
+#define kIphone4ScreenHeight 480.0f
+#define kContinueButtonSize 66
+#define kMenuButtonSize 44
+#define kMenuIPhone4GapSize 20
+#define KMenuIPhone5GapSize 25
 
-@interface ScenePresenterViewController ()
+@interface ScenePresenterViewController ()<UIActionSheetDelegate>
 //{
 //    BOOL menuOpen;
 //    Scene *scene;
@@ -54,6 +61,9 @@
 @property (nonatomic) BOOL menuOpen;
 @property (nonatomic, strong) Scene *scene;
 @property (nonatomic, strong) BroadcastWaitHandler *broadcastWaitHandler;
+@property (nonatomic) CGPoint firstGestureTouchPoint;
+@property (nonatomic) UIImage* snapshotImage;
+@property (nonatomic,strong)UIView* gridView;
 
 @end
 
@@ -76,6 +86,16 @@
     }
     return _broadcastWaitHandler;
 }
+- (UIView*)gridView
+{
+  // lazy instantiation
+  if (! _gridView) {
+  _gridView = [[UIView alloc]initWithFrame:CGRectMake(0,0,[Util getScreenWidth],[Util getScreenHeight])];
+    _gridView.hidden = YES;
+  }
+  return _gridView;
+}
+
 
 - (void)setProgram:(Program *)program
 {
@@ -98,33 +118,22 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
-    
-    [self configureScene];
-    
+
+//    ///MENU_BUTTON
 //    self.menuBtn = [UIButton buttonWithType:UIButtonTypeCustom];
 //    menuBtn.frame = CGRectMake(8.0f, 10.0f, 34.0f, 24.0f);
-//    [menuBtn setBackgroundImage:[UIImage imageNamed:@"back"] forState:UIControlStateNormal];
-//    [menuBtn addTarget:self action:@selector(goback:) forControlEvents:UIControlEventTouchUpInside];
-//    
+//    [menuBtn setBackgroundImage:[UIImage imageNamed:@"menuButton"] forState:UIControlStateNormal];
+//    [menuBtn addTarget:self action:@selector(revealMenu:) forControlEvents:UIControlEventTouchUpInside];
 //    [self.view addSubview:self.menuBtn];
-    
-    self.menuBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    menuBtn.frame = CGRectMake(8.0f, 10.0f, 34.0f, 24.0f);
-    [menuBtn setBackgroundImage:[UIImage imageNamed:@"menuButton"] forState:UIControlStateNormal];
-    [menuBtn addTarget:self action:@selector(revealMenu:) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:self.menuBtn];
-    
-    [self.view addGestureRecognizer:[[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(handlePan:)]];
-    
-    
-    [self setUpMenuButtons];
 
-    [self setUpMenuFrames];
-
-    //[self.view bringSubviewToFront:self.skView];
-
-    [self.view bringSubviewToFront:self.menuView];
+  [self.view addGestureRecognizer:[[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(handlePan:)]];
+  [self setUpMenuButtons];
+  [self setUpMenuFrames];
+  [self setUpGridView];
+  [self revealMenu:nil];
+  [self configureScene];
+  [self continueLevel:nil withDuration:1];
+  [self.view bringSubviewToFront:self.menuView];
     
     
 }
@@ -143,7 +152,7 @@
     [_menuContinueButton setBackgroundImage:[UIImage imageNamed:@"stage_dialog_button_continue"] forState:UIControlStateNormal];
     [_menuContinueButton setBackgroundImage:[UIImage imageNamed:@"stage_dialog_button_continue_pressed"] forState:UIControlStateHighlighted];
     [_menuContinueButton setBackgroundImage:[UIImage imageNamed:@"stage_dialog_button_continue_pressed"] forState:UIControlStateSelected];
-    [_menuContinueButton addTarget:self action:@selector(continueLevel:) forControlEvents:UIControlEventTouchUpInside];
+    [_menuContinueButton addTarget:self action:@selector(continueLevel:withDuration:) forControlEvents:UIControlEventTouchUpInside];
     
     [self.menuView addSubview:self.menuContinueButton];
     
@@ -156,6 +165,7 @@
     [_menuScreenshotButton addTarget:self action:@selector(takeScreenshot:) forControlEvents:UIControlEventTouchUpInside];
     
     [self.menuView addSubview:self.menuScreenshotButton];
+  
     
     self.menuRestartButton = [UIButton buttonWithType:UIButtonTypeCustom];
 
@@ -179,12 +189,62 @@
 
 -(void)setUpMenuFrames
 {
-    self.menuView.frame = CGRectMake(0, 0, 0, self.menuView.frame.size.height);
-    self.menuBackButton.frame = CGRectMake(-80,30, 44, 44);
-    self.menuContinueButton.frame = CGRectMake(-80,100,  44, 44);
-    self.menuScreenshotButton.frame = CGRectMake(-80,170,  44, 44);
-    self.menuRestartButton.frame = CGRectMake(-80,240,  44, 44);
-    self.menuAxisButton.frame = CGRectMake(-80,310,  44, 44);
+  ///StartPosition
+  if ([Util getScreenHeight]==kIphone4ScreenHeight) {
+    self.menuBackButton.frame = CGRectMake(-(kPlaceOfButtons-kWidthSlideMenu),(kIphone4ScreenHeight/2)-(kContinueButtonSize/2)-(2*kMenuIPhone4GapSize)-(kMenuButtonSize*(2)), kMenuButtonSize, kMenuButtonSize);
+    self.menuRestartButton.frame = CGRectMake(-(kPlaceOfButtons-kWidthSlideMenu),(kIphone4ScreenHeight/2)-(kContinueButtonSize/2)-kMenuIPhone4GapSize-(kMenuButtonSize),  kMenuButtonSize, kMenuButtonSize);
+    self.menuContinueButton.frame = CGRectMake(-(kPlaceOfButtons-kWidthSlideMenu),(kIphone4ScreenHeight/2)-(kContinueButtonSize/2),  kContinueButtonSize, kContinueButtonSize);
+    self.menuScreenshotButton.frame = CGRectMake(-(kPlaceOfButtons-kWidthSlideMenu),(kIphone4ScreenHeight/2)+(kContinueButtonSize/2)+kMenuIPhone4GapSize,  kMenuButtonSize, kMenuButtonSize);
+    self.menuAxisButton.frame = CGRectMake(-(kPlaceOfButtons-kWidthSlideMenu),(kIphone4ScreenHeight/2)+(kContinueButtonSize/2)+(2*kMenuIPhone4GapSize)+(kMenuButtonSize),  kMenuButtonSize, kMenuButtonSize);
+  }
+  if ([Util getScreenHeight]==kIphone5ScreenHeight) {
+    self.menuBackButton.frame = CGRectMake(-(kPlaceOfButtons-kWidthSlideMenu),(kIphone5ScreenHeight/2)-(kContinueButtonSize/2)-(2*KMenuIPhone5GapSize)-(kMenuButtonSize*(2)), kMenuButtonSize, kMenuButtonSize);
+    self.menuRestartButton.frame = CGRectMake(-(kPlaceOfButtons-kWidthSlideMenu),(kIphone5ScreenHeight/2)-(kContinueButtonSize/2)-KMenuIPhone5GapSize-(kMenuButtonSize),  kMenuButtonSize, kMenuButtonSize);
+    self.menuContinueButton.frame = CGRectMake(-(kPlaceOfButtons-kWidthSlideMenu),(kIphone5ScreenHeight/2)-(kContinueButtonSize/2),  kContinueButtonSize, kContinueButtonSize);
+    self.menuScreenshotButton.frame = CGRectMake(-(kPlaceOfButtons-kWidthSlideMenu),(kIphone5ScreenHeight/2)+(kContinueButtonSize/2)+KMenuIPhone5GapSize,  kMenuButtonSize, kMenuButtonSize);
+    self.menuAxisButton.frame = CGRectMake(-(kPlaceOfButtons-kWidthSlideMenu),(kIphone5ScreenHeight/2)+(kContinueButtonSize/2)+(2*KMenuIPhone5GapSize)+(kMenuButtonSize),  kMenuButtonSize, kMenuButtonSize);
+  }
+
+  self.menuView.frame = CGRectMake(0, 0, 0, self.menuView.frame.size.height);
+}
+
+-(void)setUpGridView
+{
+  self.gridView.backgroundColor = [UIColor clearColor];
+  UIView *xArrow = [[UIView alloc] initWithFrame:CGRectMake(0,[Util getScreenHeight]/2,[Util getScreenWidth],1)];
+  xArrow.backgroundColor = [UIColor redColor];
+  [self.gridView addSubview:xArrow];
+  UIView *yArrow = [[UIView alloc] initWithFrame:CGRectMake([Util getScreenWidth]/2,0,1,[Util getScreenHeight])];
+  yArrow.backgroundColor = [UIColor redColor];
+  [self.gridView addSubview:yArrow];
+  //nullLabel
+  UILabel *nullLabel = [[UILabel alloc] initWithFrame:CGRectMake([Util getScreenWidth]/2 + 5, [Util getScreenHeight]/2 + 5, 10, 15)];
+  nullLabel.text = @"0";
+  nullLabel.textColor = [UIColor redColor];
+  [self.gridView addSubview:nullLabel];
+  //positveWidth
+  UILabel *positiveWidth = [[UILabel alloc] initWithFrame:CGRectMake([Util getScreenWidth]- 40, [Util getScreenHeight]/2 + 5, 30, 15)];
+  positiveWidth.text = [NSString stringWithFormat:@"%d",(int)[Util getScreenWidth]/2];
+  positiveWidth.textColor = [UIColor redColor];
+  [self.gridView addSubview:positiveWidth];
+  //negativWidth
+  UILabel *negativeWidth = [[UILabel alloc] initWithFrame:CGRectMake(5, [Util getScreenHeight]/2 + 5, 40, 15)];
+  negativeWidth.text = [NSString stringWithFormat:@"-%d",(int)[Util getScreenWidth]/2];
+  negativeWidth.textColor = [UIColor redColor];
+  [self.gridView addSubview:negativeWidth];
+  //positveHeight
+  UILabel *positiveHeight = [[UILabel alloc] initWithFrame:CGRectMake([Util getScreenWidth]/2 + 5, [Util getScreenHeight] - 20, 40, 15)];
+  positiveHeight.text = [NSString stringWithFormat:@"%d",(int)[Util getScreenHeight]/2];
+  positiveHeight.textColor = [UIColor redColor];
+  [self.gridView addSubview:positiveHeight];
+  //negativHeight
+  UILabel *negativeHeight = [[UILabel alloc] initWithFrame:CGRectMake([Util getScreenWidth]/2 + 5,5, 40, 15)];
+  negativeHeight.text = [NSString stringWithFormat:@"-%d",(int)[Util getScreenHeight]/2];
+  negativeHeight.textColor = [UIColor redColor];
+  [self.gridView addSubview:negativeHeight];
+
+  [self.skView addSubview:self.gridView];
+  
 }
 
 - (void) viewWillAppear:(BOOL)animated
@@ -306,9 +366,9 @@
     SKView * view= (SKView*)_skView;
     view.paused=YES;
     [[AVAudioSession sharedInstance] setActive:NO error:nil];
-    [[AudioManager sharedAudioManager] stopAllSounds];
+    [[AudioManager sharedAudioManager] pauseAllSounds];
 
-    [UIView animateWithDuration:0.7
+    [UIView animateWithDuration:0.6
                           delay:0.3
                         options: UIViewAnimationOptionTransitionFlipFromLeft
                      animations:^{
@@ -390,23 +450,25 @@
     [self.controller.navigationController setNavigationBarHidden:NO];
 }
 
-- (void)continueLevel:(UIButton *)sender
+- (void)continueLevel:(UIButton *)sender withDuration:(float)duration
 {
-    [[AVAudioSession sharedInstance] setActive:YES error:nil];
-    [UIView animateWithDuration:0.5
+  [[AVAudioSession sharedInstance] setActive:YES error:nil];
+  if (duration != 1) {
+    duration = 0.4;
+  }
+  [UIView animateWithDuration:duration
                           delay:0.1
                         options: UIViewAnimationOptionTransitionFlipFromRight
                      animations:^{
                          
                          self.menuView.frame = CGRectMake(0, 0, 0, self.menuView.frame.size.height);
-                         self.menuBackButton.frame = CGRectMake(kPlaceOfButtons-kWidthSlideMenu,self.menuBackButton.frame.origin.y, self.menuBackButton.frame.size.width, self.menuBackButton.frame.size.height);
+                         self.menuBackButton.frame = CGRectMake(kPlaceOfButtons+((kContinueButtonSize-kMenuButtonSize)/2)-kWidthSlideMenu,self.menuBackButton.frame.origin.y, self.menuBackButton.frame.size.width, self.menuBackButton.frame.size.height);
                          self.menuContinueButton.frame = CGRectMake(kPlaceOfButtons-kWidthSlideMenu,self.menuContinueButton.frame.origin.y, self.menuContinueButton.frame.size.width, self.menuContinueButton.frame.size.height);
-                         self.menuScreenshotButton.frame = CGRectMake(kPlaceOfButtons-kWidthSlideMenu,self.menuScreenshotButton.frame.origin.y, self.menuScreenshotButton.frame.size.width, self.menuScreenshotButton.frame.size.height);
-                         self.menuRestartButton.frame = CGRectMake(kPlaceOfButtons-kWidthSlideMenu,self.menuRestartButton.frame.origin.y, self.menuRestartButton.frame.size.width, self.menuRestartButton.frame.size.height);
-                         self.menuAxisButton.frame = CGRectMake(kPlaceOfButtons-kWidthSlideMenu,self.menuAxisButton.frame.origin.y, self.menuAxisButton.frame.size.width, self.menuAxisButton.frame.size.height);
-                         
-                         self.backButton.hidden=NO;
-                         self.menuBtn.hidden=NO;
+                         self.menuScreenshotButton.frame = CGRectMake(kPlaceOfButtons+((kContinueButtonSize-kMenuButtonSize)/2)-kWidthSlideMenu,self.menuScreenshotButton.frame.origin.y, self.menuScreenshotButton.frame.size.width, self.menuScreenshotButton.frame.size.height);
+                         self.menuRestartButton.frame = CGRectMake(kPlaceOfButtons+((kContinueButtonSize-kMenuButtonSize)/2)-kWidthSlideMenu,self.menuRestartButton.frame.origin.y, self.menuRestartButton.frame.size.width, self.menuRestartButton.frame.size.height);
+                         self.menuAxisButton.frame = CGRectMake(kPlaceOfButtons+((kContinueButtonSize-kMenuButtonSize)/2)-kWidthSlideMenu,self.menuAxisButton.frame.origin.y, self.menuAxisButton.frame.size.width, self.menuAxisButton.frame.size.height);
+                       
+                         //self.menuBtn.hidden=NO;
                          
                      }
                      completion:^(BOOL finished){
@@ -414,7 +476,8 @@
                      }];
     SKView * view= (SKView*)_skView;
     view.paused=NO;
-    [[AVAudioSession sharedInstance] setActive:YES error:nil];
+    //[[AVAudioSession sharedInstance] setActive:YES error:nil];
+    [[AudioManager sharedAudioManager] resumeAllSounds];
     
 }
 
@@ -435,11 +498,11 @@
                      animations:^{
                          
                          self.menuView.frame = CGRectMake(0, 0, 0, self.menuView.frame.size.height);
-                         self.menuBackButton.frame = CGRectMake(kPlaceOfButtons-kWidthSlideMenu,self.menuBackButton.frame.origin.y, self.menuBackButton.frame.size.width, self.menuBackButton.frame.size.height);
+                         self.menuBackButton.frame = CGRectMake(kPlaceOfButtons+((kContinueButtonSize-kMenuButtonSize)/2)-kWidthSlideMenu,self.menuBackButton.frame.origin.y, self.menuBackButton.frame.size.width, self.menuBackButton.frame.size.height);
                          self.menuContinueButton.frame = CGRectMake(kPlaceOfButtons-kWidthSlideMenu,self.menuContinueButton.frame.origin.y, self.menuContinueButton.frame.size.width, self.menuContinueButton.frame.size.height);
-                         self.menuScreenshotButton.frame = CGRectMake(kPlaceOfButtons-kWidthSlideMenu,self.menuScreenshotButton.frame.origin.y, self.menuScreenshotButton.frame.size.width, self.menuScreenshotButton.frame.size.height);
-                         self.menuRestartButton.frame = CGRectMake(kPlaceOfButtons-kWidthSlideMenu,self.menuRestartButton.frame.origin.y, self.menuRestartButton.frame.size.width, self.menuRestartButton.frame.size.height);
-                         self.menuAxisButton.frame = CGRectMake(kPlaceOfButtons-kWidthSlideMenu,self.menuAxisButton.frame.origin.y, self.menuAxisButton.frame.size.width, self.menuAxisButton.frame.size.height);
+                         self.menuScreenshotButton.frame = CGRectMake(kPlaceOfButtons+((kContinueButtonSize-kMenuButtonSize)/2)-kWidthSlideMenu,self.menuScreenshotButton.frame.origin.y, self.menuScreenshotButton.frame.size.width, self.menuScreenshotButton.frame.size.height);
+                         self.menuRestartButton.frame = CGRectMake(kPlaceOfButtons+((kContinueButtonSize-kMenuButtonSize)/2)-kWidthSlideMenu,self.menuRestartButton.frame.origin.y, self.menuRestartButton.frame.size.width, self.menuRestartButton.frame.size.height);
+                         self.menuAxisButton.frame = CGRectMake(kPlaceOfButtons+((kContinueButtonSize-kMenuButtonSize)/2)-kWidthSlideMenu,self.menuAxisButton.frame.origin.y, self.menuAxisButton.frame.size.width, self.menuAxisButton.frame.size.height);
                          
                          self.backButton.hidden=NO;
                          self.menuBtn.hidden=NO;
@@ -454,157 +517,189 @@
 }
 -(void)showHideAxis:(UIButton *)sender
 {
-    NSString *popupmessage = [NSString stringWithFormat:@"Soon available"];
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"ShowAxis"
-                                                    message:popupmessage
-                                                   delegate:self.menuView
-                                          cancelButtonTitle:@"OK"
-                                          otherButtonTitles:nil];
-    [alert show];
+  if(self.gridView.hidden == NO)
+  {
+    self.gridView.hidden = YES;
+  }
+  else{
+    self.gridView.hidden = NO;
+  }
+
+
 }
 
 
 - (void)takeScreenshot:(UIButton *)sender
 {
-    /// Screenshot function
-    UIGraphicsBeginImageContextWithOptions(self.skView.bounds.size, NO, [UIScreen mainScreen].scale);
-    [self.skView drawViewHierarchyInRect:self.skView.bounds afterScreenUpdates:NO];
-    UIImage *snapshotImage = UIGraphicsGetImageFromCurrentImageContext();
-    UIGraphicsEndImageContext();
+  /// Screenshot function
+  UIGraphicsBeginImageContextWithOptions(self.skView.bounds.size, NO, [UIScreen mainScreen].scale);
+  [self.skView drawViewHierarchyInRect:self.skView.bounds afterScreenUpdates:NO];
+  self.snapshotImage = UIGraphicsGetImageFromCurrentImageContext();
+  UIGraphicsEndImageContext();
+  [self showSaveScreenshotActionSheet];
+
+}
+- (void)showSaveScreenshotActionSheet
+{
+  NSString *actionSheetTitle = NSLocalizedString(@"Save Screenshot to:",@"Action sheet menu title");
+  NSString *buttonSaveToCameraRoll = NSLocalizedString(@"Camera Roll",nil);
+  NSString *buttonSaveToProject = NSLocalizedString(@"Project",nil);
+  NSString *cancelTitle = @"Cancel";
+  UIActionSheet *actionSheet = [[UIActionSheet alloc]
+                                initWithTitle:actionSheetTitle
+                                delegate:self
+                                cancelButtonTitle:cancelTitle
+                                destructiveButtonTitle:nil
+                                otherButtonTitles:buttonSaveToCameraRoll, buttonSaveToProject,  nil];
+  [actionSheet showInView:self.menuView];
+}
+- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+  NSString *buttonTitle = [actionSheet buttonTitleAtIndex:buttonIndex];
+  if ([buttonTitle isEqualToString:NSLocalizedString(@"Camera Roll",nil)]) {
     /// Write to Camera Roll
-    //UIImageWriteToSavedPhotosAlbum(snapshotImage, nil, nil, nil);
-    NSString* path = [self.program projectPath];
-    NSString *pngFilePath = [NSString stringWithFormat:@"%@/manual_screenshot.png",path];
-    NSData *data = [NSData dataWithData:UIImagePNGRepresentation(snapshotImage)];
-    [data writeToFile:pngFilePath atomically:YES];
-    NSString *popupmessage = [NSString stringWithFormat:@"Screenshot saved!"];
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Screenshot"
-                                                    message:popupmessage
+    UIImageWriteToSavedPhotosAlbum(self.snapshotImage, nil, nil, nil);
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Screenshot saved to CameraRoll!"
+                                                    message:nil
                                                    delegate:self.menuView
                                           cancelButtonTitle:@"OK"
                                           otherButtonTitles:nil];
     [alert show];
+  }
+  if ([buttonTitle isEqualToString:NSLocalizedString(@"Project",nil)]) {
+    NSString* path = [self.program projectPath];
+    NSString *pngFilePath = [NSString stringWithFormat:@"%@/manual_screenshot.png",path];
+    NSData *data = [NSData dataWithData:UIImagePNGRepresentation(self.snapshotImage)];
+    [data writeToFile:pngFilePath atomically:YES];
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Screenshot saved to Project!"
+                                                    message:nil
+                                                   delegate:self.menuView
+                                          cancelButtonTitle:@"OK"
+                                          otherButtonTitles:nil];
+    [alert show];
+
+  }
+
 }
+
 
 #pragma PanGestureHandler
 - (void)handlePan:(UIPanGestureRecognizer *)gesture
 {
-    
-    CGPoint translate = [gesture translationInView:gesture.view];
-    translate.y = 0.0;
-
-    
-    if (gesture.state == UIGestureRecognizerStateBegan||
-        gesture.state == UIGestureRecognizerStateChanged) {
-        if (translate.x > 0.0 && translate.x < 100 && self.menuOpen == NO)
-        {
-            [UIView animateWithDuration:0.25
-                                  delay:0.0
-                                options:UIViewAnimationOptionCurveEaseOut
-                             animations:^{
-                                 [self.view bringSubviewToFront:self.menuView];
-                                 UIColor *background = [UIColor darkBlueColor];//[[UIColor alloc] initWithPatternImage:snapshotImage];
-                                 self.menuView.backgroundColor = background;
-                                 
-                                 //pause Scene
-                                 SKView * view= (SKView*)_skView;
-                                 view.paused=YES;
-                                 
-                                 
-                                 
-                                 self.menuView.frame = CGRectMake(0, 0, translate.x, self.menuView.frame.size.height);
-                                 self.menuBackButton.frame = CGRectMake(translate.x+kPlaceOfButtons-kWidthSlideMenu,self.menuBackButton.frame.origin.y, self.menuBackButton.frame.size.width, self.menuBackButton.frame.size.height);
-                                 self.menuContinueButton.frame = CGRectMake(translate.x+kPlaceOfButtons-kWidthSlideMenu,self.menuContinueButton.frame.origin.y, self.menuContinueButton.frame.size.width, self.menuContinueButton.frame.size.height);
-                                 self.menuScreenshotButton.frame = CGRectMake(translate.x+kPlaceOfButtons-kWidthSlideMenu,self.menuScreenshotButton.frame.origin.y, self.menuScreenshotButton.frame.size.width, self.menuScreenshotButton.frame.size.height);
-                                 self.menuRestartButton.frame = CGRectMake(translate.x+kPlaceOfButtons-kWidthSlideMenu,self.menuRestartButton.frame.origin.y, self.menuRestartButton.frame.size.width, self.menuRestartButton.frame.size.height);
-                                 self.menuAxisButton.frame = CGRectMake(translate.x+kPlaceOfButtons-kWidthSlideMenu,self.menuAxisButton.frame.origin.y, self.menuAxisButton.frame.size.width, self.menuAxisButton.frame.size.height);
-                                 self.menuBtn.hidden=YES;
-                                 
-                             }
-                             completion:^(BOOL finished) {
-                                 //menuOpen = YES;
-                                 [[AudioManager sharedAudioManager] stopAllSounds];
-                             }];
-        }
-    
-        else if (translate.x < 0.0 && translate.x > -100 && self.menuOpen == YES)
-        {
-            [UIView animateWithDuration:0.25
-                                  delay:0.0
-                                options:UIViewAnimationOptionCurveEaseOut
-                             animations:^{
-                                 self.menuView.frame = CGRectMake(0, 0, kWidthSlideMenu+translate.x, self.menuView.frame.size.height);
-                                 self.menuBackButton.frame = CGRectMake(kPlaceOfButtons+translate.x,self.menuBackButton.frame.origin.y, self.menuBackButton.frame.size.width, self.menuBackButton.frame.size.height);
-                                 self.menuContinueButton.frame = CGRectMake(kPlaceOfButtons+translate.x,self.menuContinueButton.frame.origin.y, self.menuContinueButton.frame.size.width, self.menuContinueButton.frame.size.height);
-                                 self.menuScreenshotButton.frame = CGRectMake(kPlaceOfButtons+translate.x,self.menuScreenshotButton.frame.origin.y, self.menuScreenshotButton.frame.size.width, self.menuScreenshotButton.frame.size.height);
-                                 self.menuRestartButton.frame = CGRectMake(kPlaceOfButtons+translate.x,self.menuRestartButton.frame.origin.y, self.menuRestartButton.frame.size.width, self.menuRestartButton.frame.size.height);
-                                 self.menuAxisButton.frame = CGRectMake(kPlaceOfButtons+translate.x,self.menuAxisButton.frame.origin.y, self.menuAxisButton.frame.size.width, self.menuAxisButton.frame.size.height);
-                                 self.menuBtn.hidden=NO;
-                             }
-                             completion:^(BOOL finished) {
-                                 SKView * view= (SKView*)_skView;
-                                 view.paused=NO;
-                                 //menuOpen = NO;
-                             }];
-        }
-    }
-    
-    if (gesture.state == UIGestureRecognizerStateCancelled ||
-        gesture.state == UIGestureRecognizerStateEnded ||
-        gesture.state == UIGestureRecognizerStateFailed)
+  CGPoint translate = [gesture translationInView:gesture.view];
+  translate.y = 0.0;
+  
+  if (gesture.state == UIGestureRecognizerStateBegan) {
+    self.firstGestureTouchPoint = [gesture locationInView:gesture.view];
+  }
+  
+  if (gesture.state == UIGestureRecognizerStateChanged) {
+    if (translate.x > 0.0 && translate.x < 100 && self.menuOpen == NO && self.firstGestureTouchPoint.x < kSlidingStartArea)
     {
-
-        if (translate.x > 0.0 && self.menuOpen == NO)
-        {
-            [UIView animateWithDuration:0.25
-                                  delay:0.0
-                                options:UIViewAnimationOptionCurveEaseOut
-                             animations:^{
-                                 [self.view bringSubviewToFront:self.menuView];
-                                 UIColor *background = [UIColor darkBlueColor];//[[UIColor alloc] initWithPatternImage:snapshotImage];
-                                 self.menuView.backgroundColor = background;
-                                 
-                                 //pause Scene
-                                 SKView * view= (SKView*)_skView;
-                                 view.paused=YES;
-                                 //[[AVAudioSession sharedInstance] setActive:NO error:nil];
-                                 
-                                 
-                                 self.menuView.frame = CGRectMake(0, 0, kWidthSlideMenu, self.menuView.frame.size.height);
-                                 self.menuBackButton.frame = CGRectMake(kPlaceOfButtons,self.menuBackButton.frame.origin.y, self.menuBackButton.frame.size.width, self.menuBackButton.frame.size.height);
-                                 self.menuContinueButton.frame = CGRectMake(kPlaceOfButtons,self.menuContinueButton.frame.origin.y, self.menuContinueButton.frame.size.width, self.menuContinueButton.frame.size.height);
-                                 self.menuScreenshotButton.frame = CGRectMake(kPlaceOfButtons,self.menuScreenshotButton.frame.origin.y, self.menuScreenshotButton.frame.size.width, self.menuScreenshotButton.frame.size.height);
-                                 self.menuRestartButton.frame = CGRectMake(kPlaceOfButtons,self.menuRestartButton.frame.origin.y, self.menuRestartButton.frame.size.width, self.menuRestartButton.frame.size.height);
-                                 self.menuAxisButton.frame = CGRectMake(kPlaceOfButtons,self.menuAxisButton.frame.origin.y, self.menuAxisButton.frame.size.width, self.menuAxisButton.frame.size.height);
-                                 self.menuBtn.hidden=YES;
-                             }
-                             completion:^(BOOL finished) {
-                                 self.menuOpen = YES;
-                                 [[AudioManager sharedAudioManager] stopAllSounds];
-                             }];
-        }
-        else if (translate.x < 0.0  && self.menuOpen == YES)
-        {
-            [UIView animateWithDuration:0.25
-                                  delay:0.0
-                                options:UIViewAnimationOptionCurveEaseOut
-                             animations:^{
-                                 self.menuView.frame = CGRectMake(0, 0, 0, self.menuView.frame.size.height);
-                                 self.menuBackButton.frame = CGRectMake(kPlaceOfButtons-kWidthSlideMenu,self.menuBackButton.frame.origin.y, self.menuBackButton.frame.size.width, self.menuBackButton.frame.size.height);
-                                 self.menuContinueButton.frame = CGRectMake(kPlaceOfButtons-kWidthSlideMenu,self.menuContinueButton.frame.origin.y, self.menuContinueButton.frame.size.width, self.menuContinueButton.frame.size.height);
-                                 self.menuScreenshotButton.frame = CGRectMake(kPlaceOfButtons-kWidthSlideMenu,self.menuScreenshotButton.frame.origin.y, self.menuScreenshotButton.frame.size.width, self.menuScreenshotButton.frame.size.height);
-                                 self.menuRestartButton.frame = CGRectMake(kPlaceOfButtons-kWidthSlideMenu,self.menuRestartButton.frame.origin.y, self.menuRestartButton.frame.size.width, self.menuRestartButton.frame.size.height);
-                                 self.menuAxisButton.frame = CGRectMake(kPlaceOfButtons-kWidthSlideMenu,self.menuAxisButton.frame.origin.y, self.menuAxisButton.frame.size.width, self.menuAxisButton.frame.size.height);
-                                 self.menuBtn.hidden=NO;
-                             }
-                             completion:^(BOOL finished) {
-                                 SKView * view= (SKView*)_skView;
-                                 view.paused=NO;
-                                 self.menuOpen= NO;
-                             }];
-        }
-
+      [UIView animateWithDuration:0.25
+                            delay:0.0
+                          options:UIViewAnimationOptionCurveEaseOut
+                       animations:^{
+                         [self.view bringSubviewToFront:self.menuView];
+                         UIColor *background = [UIColor darkBlueColor];//[[UIColor alloc] initWithPatternImage:snapshotImage];
+                         self.menuView.backgroundColor = background;
+                         
+//                         SKView * view= (SKView*)_skView;
+//                         view.paused=YES;
+                         
+                         self.menuView.frame = CGRectMake(0, 0, translate.x, self.menuView.frame.size.height);
+                         self.menuBackButton.frame = CGRectMake(translate.x+kPlaceOfButtons+((kContinueButtonSize-kMenuButtonSize)/2)-kWidthSlideMenu,self.menuBackButton.frame.origin.y, self.menuBackButton.frame.size.width, self.menuBackButton.frame.size.height);
+                         self.menuContinueButton.frame = CGRectMake(translate.x+kPlaceOfButtons-kWidthSlideMenu,self.menuContinueButton.frame.origin.y, self.menuContinueButton.frame.size.width, self.menuContinueButton.frame.size.height);
+                         self.menuScreenshotButton.frame = CGRectMake(translate.x+kPlaceOfButtons+((kContinueButtonSize-kMenuButtonSize)/2)-kWidthSlideMenu,self.menuScreenshotButton.frame.origin.y, self.menuScreenshotButton.frame.size.width, self.menuScreenshotButton.frame.size.height);
+                         self.menuRestartButton.frame = CGRectMake(translate.x+kPlaceOfButtons+((kContinueButtonSize-kMenuButtonSize)/2)-kWidthSlideMenu,self.menuRestartButton.frame.origin.y, self.menuRestartButton.frame.size.width, self.menuRestartButton.frame.size.height);
+                         self.menuAxisButton.frame = CGRectMake(translate.x+kPlaceOfButtons+((kContinueButtonSize-kMenuButtonSize)/2)-kWidthSlideMenu,self.menuAxisButton.frame.origin.y, self.menuAxisButton.frame.size.width, self.menuAxisButton.frame.size.height);
+                         self.menuBtn.hidden=YES;
+                         
+                       }
+                       completion:^(BOOL finished) {
+                         //self.menuOpen = YES;
+                         //[[AudioManager sharedAudioManager] pauseAllSounds];
+                       }];
     }
+    
+    else if (translate.x < 0.0 && translate.x > -100 && self.menuOpen == YES)
+    {
+      [UIView animateWithDuration:0.25
+                            delay:0.0
+                          options:UIViewAnimationOptionCurveEaseOut
+                       animations:^{
+                         self.menuView.frame = CGRectMake(0, 0, kWidthSlideMenu+translate.x, self.menuView.frame.size.height);
+                         self.menuBackButton.frame = CGRectMake(kPlaceOfButtons+((kContinueButtonSize-kMenuButtonSize)/2)+translate.x,self.menuBackButton.frame.origin.y, self.menuBackButton.frame.size.width, self.menuBackButton.frame.size.height);
+                         self.menuContinueButton.frame = CGRectMake(kPlaceOfButtons+translate.x,self.menuContinueButton.frame.origin.y, self.menuContinueButton.frame.size.width, self.menuContinueButton.frame.size.height);
+                         self.menuScreenshotButton.frame = CGRectMake(kPlaceOfButtons+((kContinueButtonSize-kMenuButtonSize)/2)+translate.x,self.menuScreenshotButton.frame.origin.y, self.menuScreenshotButton.frame.size.width, self.menuScreenshotButton.frame.size.height);
+                         self.menuRestartButton.frame = CGRectMake(kPlaceOfButtons+((kContinueButtonSize-kMenuButtonSize)/2)+translate.x,self.menuRestartButton.frame.origin.y, self.menuRestartButton.frame.size.width, self.menuRestartButton.frame.size.height);
+                         self.menuAxisButton.frame = CGRectMake(kPlaceOfButtons+((kContinueButtonSize-kMenuButtonSize)/2)+translate.x,self.menuAxisButton.frame.origin.y, self.menuAxisButton.frame.size.width, self.menuAxisButton.frame.size.height);
+                         self.menuBtn.hidden=NO;
+                       }
+                       completion:^(BOOL finished) {
+//                         SKView * view= (SKView*)_skView;
+//                         view.paused=NO;
+//                         [[AudioManager sharedAudioManager] resumeAllSounds];
+//                         self.menuOpen = NO;
+                       }];
+    }
+  }
+  
+  if (gesture.state == UIGestureRecognizerStateCancelled ||
+      gesture.state == UIGestureRecognizerStateEnded ||
+      gesture.state == UIGestureRecognizerStateFailed)
+  {
+    
+    if (translate.x > 0.0 && self.menuOpen == NO && self.firstGestureTouchPoint.x < kSlidingStartArea)
+    {
+      [UIView animateWithDuration:0.25
+                            delay:0.0
+                          options:UIViewAnimationOptionCurveEaseOut
+                       animations:^{
+                         [self.view bringSubviewToFront:self.menuView];
+                         UIColor *background = [UIColor darkBlueColor];//[[UIColor alloc] initWithPatternImage:snapshotImage];
+                         self.menuView.backgroundColor = background;
+                         
+                         self.menuView.frame = CGRectMake(0, 0, kWidthSlideMenu, self.menuView.frame.size.height);
+                         self.menuBackButton.frame = CGRectMake(kPlaceOfButtons+((kContinueButtonSize-kMenuButtonSize)/2),self.menuBackButton.frame.origin.y, self.menuBackButton.frame.size.width, self.menuBackButton.frame.size.height);
+                         self.menuContinueButton.frame = CGRectMake(kPlaceOfButtons,self.menuContinueButton.frame.origin.y, self.menuContinueButton.frame.size.width, self.menuContinueButton.frame.size.height);
+                         self.menuScreenshotButton.frame = CGRectMake(kPlaceOfButtons+((kContinueButtonSize-kMenuButtonSize)/2),self.menuScreenshotButton.frame.origin.y, self.menuScreenshotButton.frame.size.width, self.menuScreenshotButton.frame.size.height);
+                         self.menuRestartButton.frame = CGRectMake(kPlaceOfButtons+((kContinueButtonSize-kMenuButtonSize)/2),self.menuRestartButton.frame.origin.y, self.menuRestartButton.frame.size.width, self.menuRestartButton.frame.size.height);
+                         self.menuAxisButton.frame = CGRectMake(kPlaceOfButtons+((kContinueButtonSize-kMenuButtonSize)/2),self.menuAxisButton.frame.origin.y, self.menuAxisButton.frame.size.width, self.menuAxisButton.frame.size.height);
+                         self.menuBtn.hidden=YES;
+                       }
+                       completion:^(BOOL finished) {
+                         self.menuOpen = YES;
+                         //pause Scene
+                         SKView * view= (SKView*)_skView;
+                         view.paused=YES;
+                         [[AudioManager sharedAudioManager] pauseAllSounds];
+                       }];
+    }
+    else if (translate.x < 0.0  && self.menuOpen == YES)
+    {
+      [UIView animateWithDuration:0.25
+                            delay:0.0
+                          options:UIViewAnimationOptionCurveEaseOut
+                       animations:^{
+                         self.menuView.frame = CGRectMake(0, 0, 0, self.menuView.frame.size.height);
+                         self.menuBackButton.frame = CGRectMake(kPlaceOfButtons+((kContinueButtonSize-kMenuButtonSize)/2)-kWidthSlideMenu,self.menuBackButton.frame.origin.y, self.menuBackButton.frame.size.width, self.menuBackButton.frame.size.height);
+                         self.menuContinueButton.frame = CGRectMake(kPlaceOfButtons-kWidthSlideMenu,self.menuContinueButton.frame.origin.y, self.menuContinueButton.frame.size.width, self.menuContinueButton.frame.size.height);
+                         self.menuScreenshotButton.frame = CGRectMake(kPlaceOfButtons+((kContinueButtonSize-kMenuButtonSize)/2)-kWidthSlideMenu,self.menuScreenshotButton.frame.origin.y, self.menuScreenshotButton.frame.size.width, self.menuScreenshotButton.frame.size.height);
+                         self.menuRestartButton.frame = CGRectMake(kPlaceOfButtons+((kContinueButtonSize-kMenuButtonSize)/2)-kWidthSlideMenu,self.menuRestartButton.frame.origin.y, self.menuRestartButton.frame.size.width, self.menuRestartButton.frame.size.height);
+                         self.menuAxisButton.frame = CGRectMake(kPlaceOfButtons+((kContinueButtonSize-kMenuButtonSize)/2)-kWidthSlideMenu,self.menuAxisButton.frame.origin.y, self.menuAxisButton.frame.size.width, self.menuAxisButton.frame.size.height);
+                         self.menuBtn.hidden=NO;
+                       }
+                       completion:^(BOOL finished) {
+                         SKView * view= (SKView*)_skView;
+                         view.paused=NO;
+                         self.menuOpen= NO;
+                         //[[AVAudioSession sharedInstance] setActive:YES error:nil];
+                         [[AudioManager sharedAudioManager] resumeAllSounds];
+                       }];
+    }
+    
+  }
 }
 
 
