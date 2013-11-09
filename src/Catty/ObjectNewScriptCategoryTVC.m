@@ -40,11 +40,11 @@
     if (self.categoryType == kControlBrick) {
       _cells = kControlBrickTypeNames;
     } else if (self.categoryType == kMotionBrick) {
-//      _cells = kMotionBrickTypeNames;
+      _cells = kMotionBrickTypeNames;
     } else if (self.categoryType == kSoundBrick) {
       _cells = kSoundBrickTypeNames;
     } else if (self.categoryType == kLookBrick) {
-//      _cells = kLookBrickTypeNames;
+      _cells = kLookBrickTypeNames;
     } else if (self.categoryType == kVariableBrick) {
       _cells = kVariableBrickTypeNames;
     } else {
