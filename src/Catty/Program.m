@@ -30,6 +30,7 @@
 #import "SpriteObject.h"
 #import "AppDelegate.h"
 #import "FileManager.h"
+#import "GDataXMLNode+PrettyFormatterExtensions.h"
 
 @implementation Program
 
@@ -126,40 +127,37 @@
   [Util setLastProgram:nil];
 }
 
-- (NSString*)persist
+- (GDataXMLElement*)toXML
 {
-  // TODO: INFO: this is just an ugly hack. Maybe we are using a XML framework or write our own classes for XML-nodes, etc.
-  NSMutableString *program = [NSMutableString stringWithString:@"<program>"];
-  [program appendFormat:@"\n  %@", [self.header persist]];
-  [program appendString:@"\n  <objectList>"];
+  GDataXMLElement *rootXMLElement = [GDataXMLNode elementWithName:@"program"];
+  [rootXMLElement addChild:[self.header toXML]];
+
+  GDataXMLElement *objectListXMLElement = [GDataXMLNode elementWithName:@"objectList"];
   for (id object in self.objectList) {
-    if ([object isKindOfClass:[SpriteObject class]]) {
-//      SpriteObject *spriteObject = (SpriteObject*) object;
-//      [program appendString:[spriteObject persist]];
-    }
+    if ([object isKindOfClass:[SpriteObject class]])
+      [objectListXMLElement addChild:[((SpriteObject*) object) toXML]];
   }
-  [program appendString:@"\n  </objectList>\n"];
-//  for (id variable in self.variables) {
-//    if ([variable isKindOfClass:[UserVariable class]]) {
-//      UserVariable *userVariable = (UserVariable*) object;
-//      [program appendString:[userVariable persist]];
-//    }
-//  }
-  [program appendString:@"</program>"];
-  return program;
+  [rootXMLElement addChild:objectListXMLElement];
+  // TODO: uncomment this after VariablesContainer implements the toXML method
+//  [rootXMLElement addChild:[self.variables toXML]];
+  return rootXMLElement;
 }
 
 - (void)saveToDisk
 {
   dispatch_queue_t saveToDiskQ = dispatch_queue_create("save to disk", NULL);
   dispatch_async(saveToDiskQ, ^{
-    //Background Thread
-    NSString *xmlString = [self persist];
+    // background thread
+    GDataXMLDocument *document = [[GDataXMLDocument alloc] initWithRootElement:[self toXML]];
+//    NSData *xmlData = document.XMLData;
+    NSString *xmlString = [document.rootElement XMLStringPrettyPrinted:YES];
     // TODO: outsource this to file manager
     NSString *filePath = [NSString stringWithFormat:@"%@%@", [self projectPath], kProgramCodeFileName];
+//    [xmlData writeToFile:filePath atomically:YES];
     NSError *error = nil;
     [xmlString writeToFile:filePath atomically:YES encoding:NSUTF8StringEncoding error:&error];
     NSLogError(error);
+    // maybe later call some functions back here, that should update the UI on main thread...
 //    dispatch_async(dispatch_get_main_queue(), ^{});
   });
 }

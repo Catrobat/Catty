@@ -28,6 +28,7 @@
 @class Script;
 @class Look;
 @class Sound;
+@class GDataXMLElement;
 @protocol SpriteManagerDelegate;
 @protocol BroadcastWaitDelegate;
 
@@ -66,6 +67,8 @@
 @property (nonatomic,strong) Program* program;
 
 - (BOOL)isBackground;
+
+- (GDataXMLElement*)toXML;
 
 /* Loop Update - called once per frame. */
 - (void)updateWithTimeSinceLastUpdate:(CFTimeInterval)interval;

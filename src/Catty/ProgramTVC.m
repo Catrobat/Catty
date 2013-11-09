@@ -40,6 +40,7 @@
 #import "ActionSheetAlertViewTags.h"
 #import "ScenePresenterViewController.h"
 #import "FileManager.h"
+#import "UIColor+CatrobatUIColorExtensions.h"
 
 // constraints and default values
 #define kDefaultProgramName NSLocalizedString(@"New Program",@"Default name for new programs") // XXX: BTW: are there any restrictions or limits for the program name???
@@ -242,7 +243,14 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
   // TODO: MID outsource to TableUtil
-  return 40.0;
+  switch (section) {
+    case 0:
+      return 45.0;
+    case 1:
+      return 50.0;
+    default:
+      return 45.0;
+  }
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
@@ -253,17 +261,28 @@
   UITableViewHeaderFooterView *headerView = [[UITableViewHeaderFooterView alloc] init];
   headerView.contentView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"darkblue"]];
 
-  UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(10.0f, 0.0f, 300.0f, 44.0f)];
+  CGFloat height = [self tableView:self.tableView heightForHeaderInSection:section]-10.0;
+  UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(13.0f, 0.0f, 265.0f, height)];
+
+  CALayer *layer = titleLabel.layer;
+  CALayer *bottomBorder = [CALayer layer];
+  bottomBorder.borderColor = [UIColor airForceBlueColor].CGColor;
+  bottomBorder.borderWidth = 1;
+  bottomBorder.frame = CGRectMake(0, layer.frame.size.height-1, layer.frame.size.width, 1);
+  [bottomBorder setBorderColor:[UIColor airForceBlueColor].CGColor];
+  [layer addSublayer:bottomBorder];
+
   titleLabel.textColor = [UIColor whiteColor];
   titleLabel.tag = 1;
-  titleLabel.font = [UIFont systemFontOfSize:18.0f];
+  titleLabel.font = [UIFont systemFontOfSize:14.0f];
   if (section == 0)
-    titleLabel.text = kBackgroundTitle;
+    titleLabel.text = [kBackgroundTitle uppercaseString];
   else if ([self.program.objectList count] > (kBackgroundObjects + 1))
-    titleLabel.text = kObjectTitlePlural;
+    titleLabel.text = [kObjectTitlePlural uppercaseString];
   else
-    titleLabel.text = kObjectTitleSingular;
+    titleLabel.text = [kObjectTitleSingular uppercaseString];
 
+  titleLabel.text = [NSString stringWithFormat:@"  %@", titleLabel.text];
   [headerView.contentView addSubview:titleLabel];
   return headerView;
 }
@@ -521,8 +540,8 @@
   // http://stackoverflow.com/questions/5113258/uitoolbar-unexpectedly-registers-taps-on-uibarbuttonitem-instances-even-when-tap
   UIImageView *imageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"transparent1x1.png"]];
   UIBarButtonItem *invisibleButton = [[UIBarButtonItem alloc] initWithCustomView:imageView];
-  self.toolbarItems = [NSArray arrayWithObjects:flexItem, invisibleButton, add, invisibleButton, flexItem, flexItem,
-                       flexItem, flexItem, flexItem, invisibleButton, play, invisibleButton, flexItem, nil];
+  self.toolbarItems = [NSArray arrayWithObjects:flexItem, invisibleButton, add, invisibleButton, flexItem,
+                       flexItem, flexItem, invisibleButton, play, invisibleButton, flexItem, nil];
 }
 
 @end

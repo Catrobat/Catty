@@ -22,7 +22,18 @@
 
 
 #import "Sound.h"
+#import "GDataXMLNode.h"
 
 @implementation Sound
+
+- (GDataXMLElement*)toXML
+{
+  GDataXMLElement *soundXMLElement = [GDataXMLNode elementWithName:@"sound"];
+
+  // Example: <sound reference="../../scriptList/broadcastScript/brickList/playSoundBrick/sound"/>
+  NSString *reference = @""; // TODO: determine path for reference...
+  [soundXMLElement addAttribute:[GDataXMLNode attributeWithName:@"reference" stringValue:reference]];
+  return soundXMLElement;
+}
 
 @end

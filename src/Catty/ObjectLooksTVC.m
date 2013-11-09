@@ -232,7 +232,7 @@
       imageFileName = [[imageFileName componentsSeparatedByString:@"."] firstObject];
       if (! [imageFileName length])
         imageFileName = @"default"; // TODO: outsource this constant...
-      
+
       // save image to programs directory
       // XXX: I do not know whether this fileNamePrefix should be a UUID or any hash string.
       //      Actually the length already equals UUID's length.
@@ -387,8 +387,8 @@
   // http://stackoverflow.com/questions/5113258/uitoolbar-unexpectedly-registers-taps-on-uibarbuttonitem-instances-even-when-tap
   UIImageView *imageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"transparent1x1.png"]];
   UIBarButtonItem *invisibleButton = [[UIBarButtonItem alloc] initWithCustomView:imageView];
-  self.toolbarItems = [NSArray arrayWithObjects:flexItem, invisibleButton, add, invisibleButton, flexItem, flexItem,
-                       flexItem, flexItem, flexItem, invisibleButton, play, invisibleButton, flexItem, nil];
+  self.toolbarItems = [NSArray arrayWithObjects:flexItem, invisibleButton, add, invisibleButton, flexItem,
+                       flexItem, flexItem, invisibleButton, play, invisibleButton, flexItem, nil];
 }
 
 - (void)showLoadingView

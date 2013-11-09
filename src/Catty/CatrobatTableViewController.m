@@ -34,9 +34,7 @@
 #import "Util.h"
 #import "ScenePresenterViewController.h"
 #import "ProgramTVC.h"
-
-#define kIphone5ScreenHeight 568.0f
-#define kIphone4ScreenHeight 480.0f
+#import "UIDefines.h"
 
 @interface CatrobatTableViewController () <UIAlertViewDelegate,
                                     UIActionSheetDelegate, UITextFieldDelegate>
