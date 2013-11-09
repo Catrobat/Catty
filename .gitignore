@@ -1,18 +1,24 @@
-
-*.xcbkptlist
-
-*.xcuserstate
-
+# OS X
 .DS_Store
 
-Catty.xcodeproj/project.xcworkspace/xcuserdata/christofstromberger.xcuserdatad/UserInterfaceState.xcuserstate
+# Xcode
+build/
+*.pbxuser
+!default.pbxuser
+*.mode1v3
+!default.mode1v3
+*.mode2v3
+!default.mode2v3
+*.perspectivev3
+!default.perspectivev3
+xcuserdata
+*.xccheckout
+profile
+*.moved-aside
+DerivedData
+.idea/
+*.hmap
+*.xccheckout
 
-Catty.xcodeproj/xcuserdata/christofstromberger.xcuserdatad/xcdebugger/Breakpoints.xcbkptlist
-
-Mockup/*
-
-sparrow/src/Sparrow.xcodeproj/xcuserdata/dominik.xcuserdatad/xcschemes/xcschememanagement.plist
-
-sparrow/src/Sparrow.xcodeproj/xcuserdata/dominik.xcuserdatad/xcschemes/Sparrow.xcscheme
-
-*.xcuserdatad*
+# CocoaPods
+Pods
