@@ -20,27 +20,13 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#ifndef Catty_SegueDefines_h
-#define Catty_SegueDefines_h
+#import <UIKit/UIKit.h>
+#import "ProgramDefines.h"
+#import "BaseTableViewController.h"
 
-#define kSegueToLevelDetail @"segueToLevelDetail"
-#define kSegueToStage @"SEGUE_TO_STAGE"
-#define kSegueToScene @"segueToScene"
-#define kSegueToNew @"segueToNew"
-#define kSegueToObject @"segueToObject"
-#define kSegueToScripts @"segueToScripts"
-#define kSegueToLooks @"segueToLooks"
-#define kSegueToSounds @"segueToSounds"
-#define kSegueToScriptCategories @"segueToScriptCategories"
-#define kSegueToNewScriptCategory @"segueToNewScriptCategory"
+@class SpriteObject;
 
-#define kSegueContinue @"continue"
-#define kSegueNew @"new"
-#define kSeguePrograms @"programs"
-#define kSegueForum @"forum"
-#define kSegueDownload @"download"
-#define kSegueUpload @"upload"
-#define kSegueAddNewProgram @"addProgram"
-#define kSegueObjectView @"objectView"
-
-#endif
+@interface ObjectNewScriptCategoryTVC : BaseTableViewController
+@property (strong, nonatomic) SpriteObject *object;
+@property (nonatomic) kBrickType categoryType;
+@end

@@ -47,6 +47,12 @@
   [self setupToolBar];
 }
 
+- (void)viewWillAppear:(BOOL)animated
+{
+  [super viewWillAppear:animated];
+  [self.navigationController setToolbarHidden:NO];
+}
+
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView
 {
   return 1;

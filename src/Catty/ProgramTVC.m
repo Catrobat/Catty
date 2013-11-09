@@ -40,6 +40,7 @@
 #import "ActionSheetAlertViewTags.h"
 #import "ScenePresenterViewController.h"
 #import "FileManager.h"
+#import "UIColor+CatrobatUIColorExtensions.h"
 
 // constraints and default values
 #define kDefaultProgramName NSLocalizedString(@"New Program",@"Default name for new programs") // XXX: BTW: are there any restrictions or limits for the program name???
@@ -244,11 +245,11 @@
   // TODO: MID outsource to TableUtil
   switch (section) {
     case 0:
-      return 40.0;
+      return 45.0;
     case 1:
-      return 55.0;
+      return 50.0;
     default:
-      return 40.0;
+      return 45.0;
   }
 }
 
@@ -260,9 +261,17 @@
   UITableViewHeaderFooterView *headerView = [[UITableViewHeaderFooterView alloc] init];
   headerView.contentView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"darkblue"]];
 
-  NSLog(@"Width: %f, %f",headerView.frame.size.width, headerView.frame.size.height);
-  CGFloat height = [self tableView:self.tableView heightForHeaderInSection:section];
-  UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(20.0f, 0.0f, 280.0f, height)];
+  CGFloat height = [self tableView:self.tableView heightForHeaderInSection:section]-10.0;
+  UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(13.0f, 0.0f, 265.0f, height)];
+
+  CALayer *layer = titleLabel.layer;
+  CALayer *bottomBorder = [CALayer layer];
+  bottomBorder.borderColor = [UIColor airForceBlueColor].CGColor;
+  bottomBorder.borderWidth = 1;
+  bottomBorder.frame = CGRectMake(0, layer.frame.size.height-1, layer.frame.size.width, 1);
+  [bottomBorder setBorderColor:[UIColor airForceBlueColor].CGColor];
+  [layer addSublayer:bottomBorder];
+
   titleLabel.textColor = [UIColor whiteColor];
   titleLabel.tag = 1;
   titleLabel.font = [UIFont systemFontOfSize:14.0f];
@@ -273,6 +282,7 @@
   else
     titleLabel.text = [kObjectTitleSingular uppercaseString];
 
+  titleLabel.text = [NSString stringWithFormat:@"  %@", titleLabel.text];
   [headerView.contentView addSubview:titleLabel];
   return headerView;
 }
