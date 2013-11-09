@@ -57,6 +57,9 @@
 @interface ProgramTVC () <UIActionSheetDelegate, UIAlertViewDelegate, UITextFieldDelegate,
                                                                       UINavigationBarDelegate>
 @property (strong, nonatomic) Program *program;
+// FIXME: only temporarily var to indicate wether this is a new empty program or loaded from local program
+//        library (levels-container), remove this after finished implementing [program saveToDisk]
+@property (nonatomic) BOOL isNewProgram;
 @end
 
 @implementation ProgramTVC
@@ -85,6 +88,7 @@
       self.navigationItem.title = _program.header.programName;
 
     self.title = _program.header.programName;
+    self.isNewProgram = YES;
     [Util setLastProgram:_program.header.programName];
   }
   return _program;
@@ -94,6 +98,7 @@
 {
   // automatically update title name
   self.title = self.navigationItem.title = program.header.programName;
+  self.isNewProgram = NO;
   _program = program;
 }
 
@@ -162,6 +167,11 @@
 //  [self.tableView beginUpdates];
 //  [self.tableView reloadRowsAtIndexPaths:@[indexPathOfYourCell] withRowAnimation:UITableViewRowAnimationNone];
 //  [self.tableView endUpdates];
+}
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+  [self.program saveToDisk];
 }
 
 - (void)viewDidAppear:(BOOL)animated
