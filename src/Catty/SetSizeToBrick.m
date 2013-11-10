@@ -29,13 +29,20 @@
 
 -(SKAction*)action
 {
-    return [SKAction runBlock:^{
+    return [SKAction runBlock:[self actionBlock]];
+}
+
+-(dispatch_block_t)actionBlock
+{
+    return ^{
         NSDebug(@"Performing: %@", self.description);
         double sizeInPercent = [self.size interpretDoubleForSprite:self.object];
         [self.object setXScale:sizeInPercent/100.0];
         [self.object setYScale:sizeInPercent/100.0];
-    }];
+    };
+    
 }
+
 
 #pragma mark - Description
 - (NSString*)description

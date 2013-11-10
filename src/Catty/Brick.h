@@ -35,4 +35,7 @@
 
 - (SKAction*)action;
 
+#warning should be moved to Category (Needed for unit testing)
+- (dispatch_block_t)actionBlock;
+
 @end

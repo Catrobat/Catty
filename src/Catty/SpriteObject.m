@@ -419,7 +419,12 @@
 
 -(CGFloat) scaleX
 {
-    return [self scaleX];
+    return [self xScale]*100;
+}
+
+-(CGFloat) scaleY
+{
+    return [self yScale]*100;
 }
 
 

@@ -23,20 +23,30 @@
 #import "Changesizebynbrick.h"
 #import "Formula.h"
 
+
+
 @implementation ChangeSizeByNBrick
+
 
 
 
 -(SKAction*)action
 {
-    //dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
-    return [SKAction runBlock:^{
+    return [SKAction runBlock:[self actionBlock]];
+}
+
+
+-(dispatch_block_t)actionBlock
+{
+    return ^{
         NSDebug(@"Performing: %@", self.description);
         double sizeInPercent = [self.size interpretDoubleForSprite:self.object];
         [self.object setXScale:self.object.xScale + sizeInPercent/100.0];
         [self.object setYScale:self.object.yScale + sizeInPercent/100.0];
-    }];
+    };
+
 }
+
 
 #pragma mark - Description
 - (NSString*)description

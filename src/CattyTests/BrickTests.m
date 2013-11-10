@@ -44,6 +44,7 @@
 #import "ForeverBrick.h"
 #import "BroadcastWaitHandler.h"
 #import <SpriteKit/SpriteKit.h>
+#import "SetSizeToBrick.h"
 
 @interface BrickTests : XCTestCase
 
@@ -64,57 +65,47 @@
 
 - (void)setUp
 {
-//    [super setUp];
-//    // Put setup code here; it will be run once, before the first test case.
-//    NSString *basePath = [Program basePath];
-//    NSError *error;
-//    NSArray *levels = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:basePath error:&error];
-//    NSLogError(error);
-//
-//    NSMutableArray *levelLoadingInfos = [[NSMutableArray alloc] initWithCapacity:[levels count]];
-//    for (NSString *level in levels) {
-//      // exclude .DS_Store folder on MACOSX simulator
-//      if ([level isEqualToString:@".DS_Store"])
-//        continue;
-//
-//      ProgramLoadingInfo *info = [[ProgramLoadingInfo alloc] init];
-//      info.basePath = [NSString stringWithFormat:@"%@%@/", basePath, level];
-//      info.visibleName = level;
-//      NSDebug(@"Adding level: %@", info.basePath);
-//      [levelLoadingInfos addObject:info];
-//
-//      NSDebug(@"Try to load project '%@'", info.visibleName);
-//      NSDebug(@"Path: %@", info.basePath);
-//      NSString *xmlPath = [NSString stringWithFormat:@"%@", info.basePath];
-//      NSDebug(@"XML-Path: %@", xmlPath);
-//      Program *program = [[[Parser alloc] init] generateObjectForLevel:[xmlPath stringByAppendingFormat:@"%@", kProgramCodeFileName]];
-//
-//      if (! program)
-//        continue;
-//
-//      NSDebug(@"ProjectResolution: width/height:  %f / %f", program.header.screenWidth.floatValue, program.header.screenHeight.floatValue);
-//
-//      // setting effect
-//      for (SpriteObject *sprite in program.objectList)
-//      {
-//        //sprite.spriteManagerDelegate = self;
-//        //sprite.broadcastWaitDelegate = self.broadcastWaitHandler;
-//        
-//        // TODO: change!
-//        for (Script *script in sprite.scriptList) {
-//          for (Brick *brick in script.brickList) {
-//            brick.object = sprite;
-//          }
-//        }
-//      }
-//      [self.programs addObject:program];
-//    }
 }
 
 - (void)tearDown
 {
     // Put teardown code here; it will be run once, after the last test case.
     [super tearDown];
+}
+
+
+
+-(void)testSetSizeToBrickAction
+{
+    ComeToFrontBrick* brick = [[ComeToFrontBrick alloc] init];
+    SKAction* action = [brick action];
+    
+    XCTAssertNotNil(action, @"Returned action is nil");
+}
+
+-(void)testSetSizeToBrick
+{
+    
+    SpriteObject* object = [[SpriteObject alloc] init];
+    
+    SetSizeToBrick* brick = [[SetSizeToBrick alloc] init];
+    brick.object = object;
+    
+    Formula* size = [[Formula alloc] init];
+    FormulaElement* formulaTree = [[FormulaElement alloc] init];
+    formulaTree.type = NUMBER;
+    formulaTree.value = @"130";
+    size.formulaTree = formulaTree;
+    brick.size = size;
+    
+    dispatch_block_t action = [brick actionBlock];
+    
+    action();
+    
+    XCTAssertEqual([object scaleX], 130.0f, @"X - Scale not correct");
+    XCTAssertEqual([object scaleY], 130.0f, @"Y - Scale not correct");
+    
+    
 }
 
 

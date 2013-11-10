@@ -25,6 +25,7 @@
 #import "Script.h"
 
 
+
 @implementation Brick
 
 
@@ -56,6 +57,13 @@
     @throw [NSException exceptionWithName:NSInternalInconsistencyException
                                    reason:[NSString stringWithFormat:@"You must override %@ in a subclass", NSStringFromSelector(_cmd)]
                                  userInfo:nil];
+}
+
+-(dispatch_block_t)actionBlock
+{
+    return ^{
+        NSError(@"%@ (NO SPECIFIC Action GIVEN! OVERRIDE THE actionBlock METHOD!", self.class);
+    };
 }
 
 

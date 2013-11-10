@@ -40,6 +40,7 @@
 - (CGFloat) alpha;
 - (CGFloat) brightness;
 - (CGFloat) scaleX;
+- (CGFloat) scaleY;
 - (CGFloat) rotation;
 
 @end
