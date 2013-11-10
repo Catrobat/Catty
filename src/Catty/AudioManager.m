@@ -102,7 +102,7 @@ static AudioManager* sharedAudioManager = nil;
 //  }
   if (delegate)
     player.delegate = delegate;
-
+  
   [player play];
 }
 
@@ -115,20 +115,19 @@ static AudioManager* sharedAudioManager = nil;
 
 - (void)setVolumeToPercent:(CGFloat)volume forKey:(NSString*)key
 {
-    volume /=100;
+  
     NSMutableDictionary* audioPlayers = [self.sounds objectForKey:key];
     for (CatrobatAudioPlayer* player in [audioPlayers allValues]) {
-        player.volume = volume;
+        player.volume = volume/100;
     }
-    
+
 }
 
 -(void)changeVolumeByPercent:(CGFloat)volume forKey:(NSString*)key
 {
-    volume/=100;
     NSMutableDictionary* audioPlayers = [self.sounds objectForKey:key];
     for(CatrobatAudioPlayer* player in [audioPlayers allValues]) {
-        player.volume += volume;
+        player.volume += volume/100;
     }
     
 }

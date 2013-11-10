@@ -63,7 +63,7 @@
         [obj setProgram:self.program];
         [obj setUserInteractionEnabled:YES];
         [obj setNumberOfObjects:numberOfObjects];
-        zPosition++;
+        //zPosition++;
     }
 }
 

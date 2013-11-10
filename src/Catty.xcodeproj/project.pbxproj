@@ -34,6 +34,7 @@
 		81FAEE3C17E793F60052BB2B /* ScriptsViewCVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 81FAEE3B17E793F60052BB2B /* ScriptsViewCVC.m */; };
 		81FAEE3F17E7994B0052BB2B /* PrototypScriptCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 81FAEE3E17E7994B0052BB2B /* PrototypScriptCell.m */; };
 		9200F006182E3CA0008BF678 /* CatrobatAudioPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 9200F005182E3CA0008BF678 /* CatrobatAudioPlayer.m */; };
+		921C907B1830040A00A4F2CA /* stage_dialog_background_middle.png in Resources */ = {isa = PBXBuildFile; fileRef = 921C907A1830040A00A4F2CA /* stage_dialog_background_middle.png */; };
 		921FE2FA182F8122001D7CF6 /* CoreImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 921FE2F9182F8122001D7CF6 /* CoreImage.framework */; };
 		B402288217329FEB004C4942 /* IfLogicBeginBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = B402288117329FEB004C4942 /* IfLogicBeginBrick.m */; };
 		B40228911732A541004C4942 /* IfLogicElseBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = B40228901732A540004C4942 /* IfLogicElseBrick.m */; };
@@ -274,6 +275,7 @@
 		8D1107310486CEB800E47090 /* App-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "App-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
 		9200F004182E3CA0008BF678 /* CatrobatAudioPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CatrobatAudioPlayer.h; sourceTree = "<group>"; };
 		9200F005182E3CA0008BF678 /* CatrobatAudioPlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CatrobatAudioPlayer.m; sourceTree = "<group>"; };
+		921C907A1830040A00A4F2CA /* stage_dialog_background_middle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = stage_dialog_background_middle.png; sourceTree = "<group>"; };
 		921FE2F9182F8122001D7CF6 /* CoreImage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreImage.framework; path = System/Library/Frameworks/CoreImage.framework; sourceTree = SDKROOT; };
 		B4003030170EB50A00396DB7 /* CatrobatTableViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CatrobatTableViewController.h; sourceTree = "<group>"; };
 		B4003031170EB50A00396DB7 /* CatrobatTableViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CatrobatTableViewController.m; sourceTree = "<group>"; };
@@ -816,6 +818,7 @@
 				C3BF74D81811452800134B77 /* stage_dialog_button_continue_pressed.png */,
 				C3BF74D91811452800134B77 /* stage_dialog_button_back.png */,
 				C3BF74DA1811452800134B77 /* stage_dialog_button_back_pressed.png */,
+				921C907A1830040A00A4F2CA /* stage_dialog_background_middle.png */,
 				CA8F8A0717F2417000A04C03 /* icons */,
 				816C788217D5F0420029A4E6 /* settings_bg@2x.png */,
 				B4DA23D8175E78050079B381 /* menu_icon.png */,
@@ -2200,6 +2203,7 @@
 				B4BCF442170EDB80008EDF3A /* ProgramDefines.h in Resources */,
 				B4DEFC8D170F463800DD1939 /* TestParserResources in Resources */,
 				CA7AC43C18074FD300904143 /* ic_media_pause.png in Resources */,
+				921C907B1830040A00A4F2CA /* stage_dialog_background_middle.png in Resources */,
 				B43313D717329514008B4EB3 /* Localizable.strings in Resources */,
 				CA640C27182A962500DBA899 /* transparent1x1.png in Resources */,
 				B4365CE91758EBA900B4D0A6 /* LoggerProperties.plist in Resources */,
