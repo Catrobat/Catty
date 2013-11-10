@@ -83,7 +83,7 @@ static AudioManager* sharedAudioManager = nil;
   if (! player) {
     NSURL* path = [NSURL fileURLWithPath:[self pathForSound:fileName atFilePath:filePath]];
     NSError* error = nil;
-    player = [[CatrobatAudioPlayer alloc] initWithContentsOfURL:path error:&error];
+    player =[[CatrobatAudioPlayer alloc] initWithContentsOfURL:path error:&error];
     NSLogError(error);
     [player setKey:fileName];
     [audioPlayers setObject:player forKey:fileName];
@@ -117,7 +117,7 @@ static AudioManager* sharedAudioManager = nil;
 {
     volume /=100;
     NSMutableDictionary* audioPlayers = [self.sounds objectForKey:key];
-    for (AVAudioPlayer* player in [audioPlayers allValues]) {
+    for (CatrobatAudioPlayer* player in [audioPlayers allValues]) {
         player.volume = volume;
     }
     

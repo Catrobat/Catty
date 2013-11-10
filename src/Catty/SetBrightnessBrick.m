@@ -25,6 +25,7 @@
 #import "Formula.h"
 #import "Look.h"
 #import "UIImage+CatrobatUIImageExtensions.h"
+#import <CoreImage/CoreImage.h>
 
 @implementation SetBrightnessBrick
 
@@ -37,26 +38,25 @@
         CGFloat brightness = [self.brightness interpretDoubleForSprite:self.object];
         Look* look = [self.object currentLook];
         UIImage* lookImage = [UIImage imageWithContentsOfFile:[self pathForLook:look]];
-        
-        
-        if (brightness >= 0.0f){
-            if (brightness <= 1.0f) {
-                [lookImage setImage:lookImage WithBrightness:brightness];
-                self.object.currentUIImageLook = lookImage;
-                self.object.texture = [SKTexture textureWithImage:lookImage];
-            }
-            else if(brightness <= 100.0f){
-                [lookImage setImage:lookImage WithBrightness:(brightness/100)];
-                self.object.currentUIImageLook = lookImage;
-                self.object.texture = [SKTexture textureWithImage:lookImage];
-            }
-            else{
-                NSDebug(@"Wrong Brightness input: Should be between 0 and 1 or between 0 and 100");
-            }
-        }
-        else{
-            NSDebug(@"Wrong Brightness input: Should be greater than 0");
-        }
+      
+        CIImage* image = lookImage.CIImage;
+      
+        CIContext *context = [CIContext contextWithOptions:nil];
+      
+        CIFilter *filter = [CIFilter filterWithName:@"CIColorControls"
+                                    keysAndValues:kCIInputImageKey, image, @"inputBrightness",
+                          [NSNumber numberWithFloat:brightness], nil];
+        CIImage *outputImage = [filter valueForKey:@"outputImage"];
+      
+        CGImageRef cgimg =
+        [context createCGImage:outputImage fromRect:[outputImage extent]];
+
+        UIImage *newImage = [UIImage imageWithCGImage:cgimg];
+        //lookImage = [UIImage setImage:lookImage WithBrightness:(brightness)];
+        self.object.currentUIImageLook = newImage;
+        self.object.texture = [SKTexture textureWithImage:newImage];
+        CGImageRelease(cgimg);
+  
         }];
 }
 
