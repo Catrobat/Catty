@@ -63,8 +63,6 @@
 
 @property (strong, nonatomic) UIImage* currentUIImageLook;
 
-@property (nonatomic) NSInteger numberOfObjects;
-
 @property (nonatomic,strong) Program* program;
 
 - (BOOL)isBackground;

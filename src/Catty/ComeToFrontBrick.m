@@ -29,10 +29,15 @@
 
 -(SKAction*)action
 {
-    return [SKAction runBlock:^{
+    return [SKAction runBlock:[self actionBlock]];
+}
+
+-(dispatch_block_t)actionBlock
+{
+    return ^{
         NSDebug(@"Performing: %@", self.description);
         CGFloat zValue = self.object.zPosition;
-        NSInteger maxValue = self.object.numberOfObjects;
+        NSInteger maxValue = [self.object.program.objectList count];
         
         for(SpriteObject *obj in self.object.program.objectList){
             if (obj.zPosition > zValue && obj.zPosition > 1) {
@@ -43,9 +48,8 @@
         
         self.object.zPosition = maxValue;
         
-    }];
+    };
 }
-
 
 #pragma mark - Description
 - (NSString*)description

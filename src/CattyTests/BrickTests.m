@@ -109,77 +109,31 @@
 }
 
 
--(void)test_ComeToFrontBrick
+-(void)testComeToFrontBrick
 {
-//    Program *program = self.programs[0];
-//    NSLog(@"Program: %@", program.header.programName);
-//    BroadcastWaitHandler *handler = [[BroadcastWaitHandler alloc] init];
-//    for (SpriteObject *object in program.objectList) {
-//      object.broadcastWaitDelegate = handler;
-//    }
-//
-//    CGSize programSize = CGSizeMake(program.header.screenWidth.floatValue, program.header.screenHeight.floatValue);
-//    self.scene = [[Scene alloc] initWithSize:programSize andProgram:program];
-//    self.scene.scaleMode = SKSceneScaleModeAspectFit;
-//    self.skView = [[SKView alloc] init];
-//    self.scene.scaleMode = SKSceneScaleModeAspectFit;
-//    [self.skView presentScene:self.scene];
-//
-//    for (SpriteObject *object in program.objectList) {
-//      for (Script *script in object.scriptList) {
-//        for (Brick *brick in script.brickList) {
-//          // exclude following bricks
-//          NSDebug(@"Object name: %@, Brick: %@", object.name, [brick description]);
-//          if ([brick isKindOfClass:[LoopBeginBrick class]] ||
-//              [brick isKindOfClass:[LoopEndBrick class]] ||
-//              [brick isKindOfClass:[BroadcastWaitBrick class]] ||
-//              [brick isKindOfClass:[IfLogicBeginBrick class]] ||
-//              [brick isKindOfClass:[IfLogicElseBrick class]] ||
-//              [brick isKindOfClass:[IfLogicEndBrick class]] ||
-//              [brick isKindOfClass:[NoteBrick class]] ||
-//              [brick isKindOfClass:[ForeverBrick class]]) {
-//            continue;
-//          }
-//
-//          SKAction *action = [brick action];
-//          if ([brick isKindOfClass:[ComeToFrontBrick class]]) {
-//            ComeToFrontBrick *ctfBrick = (ComeToFrontBrick *)brick;
-//            NSLog(@"ComeToFront action");
-//            action = [ctfBrick action];
-//          }
-//          [script runAction:action completion:^{
-//            NSLog(@"action completed");
-//          }];
-//
-//          if ([brick isKindOfClass:[ComeToFrontBrick class]]) {
-//            NSLog(@"ZPosition is: %f, should be: %d", object.zPosition, script.object.numberOfObjects);
-//            XCTAssertEqual(script.object.numberOfObjects, object.zPosition, @"ComeToFront is not correctly calculated");
-//          }
-//        }
-//      }
-//    }
+    
+    Program* program = [[Program alloc] init];
+    
+    SpriteObject* object1 = [[SpriteObject alloc] init];
+    object1.program = program;
+    object1.zPosition = 1;
+    
+    SpriteObject* object2 = [[SpriteObject alloc] init];
+    object2.zPosition = 2;
+    
+    [program.objectList addObject:object1];
+    [program.objectList addObject:object2];
+    
+    
+    ComeToFrontBrick* brick = [[ComeToFrontBrick alloc] init];
+    brick.object = object1;
+    
+    dispatch_block_t action = [brick actionBlock];
+    action();
+    
+    XCTAssertEqual(object1.zPosition, (CGFloat)2, @"ComeToFront is not correctly calculated");
+    XCTAssertEqual(object2.zPosition, (CGFloat)1, @"ComeToFront is not correctly calculated");
 
-  ComeToFrontBrick *ctfB =[[ComeToFrontBrick alloc] init];
-  SpriteObject *obj1 =[[SpriteObject alloc] init];
-  SpriteObject *obj2 =[[SpriteObject alloc] init];
-  obj1.zPosition = 1;
-  obj2.zPosition = 2;
-  ctfB.object = obj1;
-  Program *program = [[Program alloc] init];
-  [program.objectList addObject:obj1];
-  [program.objectList addObject:obj2];
-  obj1.program = program;
-  obj2.program = program;
-  
-  Script *script = [[Script alloc] init];
-  script.object = obj1;
-  ctfB.object = obj1;
-  script.object.numberOfObjects = 2;
-  
-  [script runAction:ctfB.action];
-
-  XCTAssertEqual(script.object.numberOfObjects, obj1.zPosition, @"ComeToFront is not correctly calculated");
-  XCTAssertEqual(obj2.zPosition, 1, @"ComeToFront is not correctly calculated");
 }
 
 -(void)test_SetXBrick

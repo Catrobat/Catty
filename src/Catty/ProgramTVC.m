@@ -110,7 +110,6 @@
   //object.spriteManagerDelegate;
   //object.broadcastWaitDelegate = self.broadcastWaitHandler;
   object.currentLook = nil;
-  object.numberOfObjects = 0;
   object.name = objectName;
   object.program = self.program;
   return object;

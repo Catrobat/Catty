@@ -44,8 +44,6 @@
 
 @implementation SpriteObject
 
-@synthesize numberOfObjects;
-
 -(id)init
 {
     if(self = [super init]) {

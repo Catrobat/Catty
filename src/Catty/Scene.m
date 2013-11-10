@@ -53,7 +53,6 @@
 
 -(void)startProgram
 {
-    NSInteger numberOfObjects = (NSInteger)[self.program.objectList count];
     CGFloat zPosition = 1;
     for (SpriteObject *obj in self.program.objectList) {
         [self addChild:obj];
@@ -62,7 +61,6 @@
         [obj setLook];
         [obj setProgram:self.program];
         [obj setUserInteractionEnabled:YES];
-        [obj setNumberOfObjects:numberOfObjects];
         zPosition++;
     }
 }
