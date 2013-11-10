@@ -131,36 +131,36 @@
     dispatch_block_t action = [brick actionBlock];
     action();
     
-    XCTAssertEqual(object1.zPosition, (CGFloat)2, @"ComeToFront is not correctly calculated");
-    XCTAssertEqual(object2.zPosition, (CGFloat)1, @"ComeToFront is not correctly calculated");
+    XCTAssertEqual(object1.zPosition, (CGFloat)2.0, @"ComeToFront is not correctly calculated");
+    XCTAssertEqual(object2.zPosition, (CGFloat)1.0, @"ComeToFront is not correctly calculated");
 
 }
 
--(void)test_SetXBrick
+-(void)testSetXBrick
 {
-  SetXBrick *setxB = [[SetXBrick alloc]init];
-  SpriteObject *obj = [[SpriteObject alloc] init];
-  
-  obj.position = CGPointMake(0, 0);
-  
-  Formula *formula =[[Formula alloc] init];
-  FormulaElement * elem = [[FormulaElement alloc] initWithType:@"NUMBER" value:@"20" leftChild: nil rightChild:Nil parent:nil];
-  
-  [formula setFormulaTree:elem];
-  
-  setxB.xPosition = formula;
-  
-  
-  Script *script = [[Script alloc] init];
-  script.object = obj;
-  setxB.object = obj;
-  [obj.scriptList addObject:script];
-  [script.brickList addObject:setxB];
+        
+    SpriteObject* object = [[SpriteObject alloc] init];
+    object.position = CGPointMake(0, 0);
 
+    Scene* scene = [[Scene alloc] init];
+    [scene addChild:object];
   
-  [script runAction:setxB.action];
-  
-  XCTAssertEqual(obj.xPosition, 20, @"SetxBrick is not correctly calculated");
+    Formula* xPosition =[[Formula alloc] init];
+    FormulaElement* formulaTree  = [[FormulaElement alloc] init];
+    formulaTree.type = NUMBER;
+    formulaTree.value = @"20";
+    xPosition.formulaTree = formulaTree;
+    
+    
+    SetXBrick* brick = [[SetXBrick alloc]init];
+    brick.object = object;
+    brick.xPosition = xPosition;
+    
+    dispatch_block_t action = [brick actionBlock];
+    action();
+    
+    
+    XCTAssertEqual(object.xPosition, (CGFloat)20, @"SetxBrick is not correctly calculated");
 }
 
 @end

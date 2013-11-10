@@ -32,12 +32,17 @@
 
 -(SKAction*)action
 {
-    return [SKAction runBlock:^{
+    return [SKAction runBlock:[self actionBlock]];
+}
+
+-(dispatch_block_t)actionBlock
+{
+    return ^{
         NSDebug(@"Performing: %@", self.description);
         double xPosition = [self.xPosition interpretDoubleForSprite:self.object];
         
         self.object.position = CGPointMake(xPosition, 0);
-    }];
+    };
 }
 
 

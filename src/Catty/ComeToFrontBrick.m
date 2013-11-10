@@ -37,7 +37,7 @@
     return ^{
         NSDebug(@"Performing: %@", self.description);
         CGFloat zValue = self.object.zPosition;
-        NSInteger maxValue = [self.object.program.objectList count];
+        CGFloat maxValue = (CGFloat)[self.object.program.objectList count];
         
         for(SpriteObject *obj in self.object.program.objectList){
             if (obj.zPosition > zValue && obj.zPosition > 1) {
