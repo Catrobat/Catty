@@ -35,12 +35,12 @@
 {
     return [SKAction runBlock:^{
         
-        double steps = [self.steps interpretDoubleForSprite:self.object];
-        int xPosition = (int) round(self.object.position.x + steps*cos([self.object rotation]));
+      double steps = [self.steps interpretDoubleForSprite:self.object];
+      int xPosition = (int) round(self.object.position.x + steps);//*sin([self.object rotation]));
 
-        int yPosition = (int) round(self.object.position.y - steps*sin([self.object rotation]));
+      //int yPosition = (int) round(self.object.position.y - steps);//*cos([self.object rotation]));
 
-        self.object.position = CGPointMake(xPosition, yPosition);
+        self.object.position = CGPointMake(xPosition, self.object.yPosition);
     }];
 }
 

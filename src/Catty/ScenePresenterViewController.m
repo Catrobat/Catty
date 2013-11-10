@@ -40,6 +40,7 @@
 #import <CoreImage/CoreImage.h>
 #import <Accelerate/Accelerate.h>
 #import "UIColor+CatrobatUIColorExtensions.h"
+#import "Util.h"
 
 
 #define kWidthSlideMenu 100
@@ -128,6 +129,29 @@
 
   [self.view addGestureRecognizer:[[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(handlePan:)]];
   [self setUpMenuButtons];
+  
+//  UIImage *menuBackgroundImage = [UIImage imageNamed:@"stage_dialog_background_middle.png"];
+//  UIImage *newBackgroundImage = [[UIImage alloc] init];
+//  
+//  if ([Util getScreenHeight] == kIphone4ScreenHeight) {
+//    CGSize size = CGSizeMake(100, kIphone4ScreenHeight);
+//    UIGraphicsBeginImageContextWithOptions(size, NO, 0.0);
+//    [menuBackgroundImage drawInRect:CGRectMake(0, 0, size.width, size.height)];
+//    newBackgroundImage = UIGraphicsGetImageFromCurrentImageContext();
+//    UIGraphicsEndImageContext();
+//  }
+//  else{
+//    CGSize size = CGSizeMake(100, kIphone5ScreenHeight);
+//    UIGraphicsBeginImageContextWithOptions(size, NO, 0.0);
+//    [menuBackgroundImage drawInRect:CGRectMake(0, 0, size.width, size.height)];
+//    newBackgroundImage = UIGraphicsGetImageFromCurrentImageContext();
+//    UIGraphicsEndImageContext();
+//  }
+// 
+//  
+//  UIColor *background = [[UIColor alloc] initWithPatternImage:newBackgroundImage];
+  UIColor *background =[UIColor darkBlueColor];
+  self.menuView.backgroundColor = background;
   [self setUpMenuFrames];
   [self setUpGridView];
   [self revealMenu:nil];
@@ -360,9 +384,9 @@
 //    CGContextRef context = UIGraphicsGetCurrentContext();
 //    CGContextClipToMask(context, bounds, [snapshotImage CGImage]);
 //    CGContextFillRect(context, bounds);
-    UIColor *background = [UIColor darkBlueColor];//[[UIColor alloc] initWithPatternImage:snapshotImage];
-    
-    self.menuView.backgroundColor = background;
+//    UIColor *background = [UIColor darkBlueColor];//[[UIColor alloc] initWithPatternImage:snapshotImage];
+//    
+//    self.menuView.backgroundColor = background;
     SKView * view= (SKView*)_skView;
     view.paused=YES;
     [[AVAudioSession sharedInstance] setActive:NO error:nil];
@@ -601,8 +625,8 @@
                           options:UIViewAnimationOptionCurveEaseOut
                        animations:^{
                          [self.view bringSubviewToFront:self.menuView];
-                         UIColor *background = [UIColor darkBlueColor];//[[UIColor alloc] initWithPatternImage:snapshotImage];
-                         self.menuView.backgroundColor = background;
+//                         UIColor *background = [UIColor darkBlueColor];//[[UIColor alloc] initWithPatternImage:snapshotImage];
+//                         self.menuView.backgroundColor = background;
                          
 //                         SKView * view= (SKView*)_skView;
 //                         view.paused=YES;
@@ -657,8 +681,8 @@
                           options:UIViewAnimationOptionCurveEaseOut
                        animations:^{
                          [self.view bringSubviewToFront:self.menuView];
-                         UIColor *background = [UIColor darkBlueColor];//[[UIColor alloc] initWithPatternImage:snapshotImage];
-                         self.menuView.backgroundColor = background;
+//                         UIColor *background = [UIColor darkBlueColor];//[[UIColor alloc] initWithPatternImage:snapshotImage];
+//                         self.menuView.backgroundColor = background;
                          
                          self.menuView.frame = CGRectMake(0, 0, kWidthSlideMenu, self.menuView.frame.size.height);
                          self.menuBackButton.frame = CGRectMake(kPlaceOfButtons+((kContinueButtonSize-kMenuButtonSize)/2),self.menuBackButton.frame.origin.y, self.menuBackButton.frame.size.width, self.menuBackButton.frame.size.height);

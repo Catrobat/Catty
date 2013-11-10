@@ -41,8 +41,8 @@
         NSDebug(@"Performing: %@", self.description);
         double xPosition = [self.xPosition interpretDoubleForSprite:self.object];
         
-        self.object.position = CGPointMake(xPosition, 0);
-    };
+        self.object.position = CGPointMake(xPosition, self.object.yPosition);
+    }];
 }
 
 
