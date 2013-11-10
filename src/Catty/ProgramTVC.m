@@ -171,7 +171,8 @@
 
 - (void)viewWillDisappear:(BOOL)animated
 {
-  [self.program saveToDisk];
+  if (self.isNewProgram)
+    [self.program saveToDisk];
 }
 
 - (void)viewDidAppear:(BOOL)animated
