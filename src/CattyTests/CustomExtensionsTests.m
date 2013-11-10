@@ -41,12 +41,8 @@
     [super tearDown];
 }
 
-- (void)testExample
-{
-    XCTFail(@"No implementation for \"%s\"", __PRETTY_FUNCTION__);
-}
 
--(void) test_escapingHTMLEntities
+-(void) testEscapingHTMLEntities
 {
     NSMutableString* testString = [[NSMutableString alloc]initWithFormat:@"entities: &amp; , &quot; , &#x27; , &#x39; , &#x92; , &#x96; , &gt; and &lt; "];
     

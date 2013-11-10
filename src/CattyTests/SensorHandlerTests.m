@@ -20,10 +20,18 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
+#import <XCTest/XCTest.h>
 #import <CoreMotion/CoreMotion.h>
-#import "SensorHandlerTests.h"
 #import "SensorHandler.h"
 #import "SensorManager.h"
+
+
+
+@interface SensorHandlerTests : XCTestCase
+
+@end
+
+
 
 @implementation SensorHandlerTests
 
@@ -40,7 +48,7 @@
 }
 
 
-- (void)test_gyroActive
+- (void)testGyroActive
 {
     SensorHandler* sensorHandler = [SensorHandler sharedSensorHandler];
 
@@ -49,7 +57,7 @@
     XCTAssertTrue([motionManager isGyroActive], @"Gyro should be active!");
 }
 
-- (void)test_gyroX
+- (void)testGyroX
 {
     SensorHandler* sensorHandler = [SensorHandler sharedSensorHandler];
     
@@ -58,7 +66,7 @@
 }
 
 
-- (void)test_gyroY
+- (void)testGyroY
 {
     SensorHandler* sensorHandler = [SensorHandler sharedSensorHandler];
     
@@ -66,7 +74,7 @@
     XCTAssertTrue(isNotZero, @"It's very unlikely that y is really zero!");
 }
 
-- (void)test_gyroZ
+- (void)testGyroZ
 {
     SensorHandler* sensorHandler = [SensorHandler sharedSensorHandler];
     
@@ -75,7 +83,7 @@
 }
 
 
-- (void)test_accelerometerActive
+- (void)testAccelerometerActive
 {
     SensorHandler* sensorHandler = [SensorHandler sharedSensorHandler];
     
@@ -84,7 +92,7 @@
     XCTAssertTrue([motionManager isAccelerometerActive], @"Acceleration should be active!");
 }
 
-- (void)test_MagnetometerActive
+- (void)testMagnetometerActive
 {
     SensorHandler* sensorHandler = [SensorHandler sharedSensorHandler];
     
@@ -93,7 +101,7 @@
     XCTAssertTrue([motionManager isMagnetometerActive], @"Magnetometer should be active!");
 }
 
-- (void)test_magX
+- (void)testMagX
 {
     SensorHandler* sensorHandler = [SensorHandler sharedSensorHandler];
     
@@ -102,7 +110,7 @@
 }
 
 
-- (void)test_magY
+- (void)testMagY
 {
     SensorHandler* sensorHandler = [SensorHandler sharedSensorHandler];
     
@@ -110,7 +118,7 @@
     XCTAssertTrue(isNotZero, @"It's very unlikely that y is really zero!");
 }
 
-- (void)test_magZ
+- (void)testMagZ
 {
     SensorHandler* sensorHandler = [SensorHandler sharedSensorHandler];
     
@@ -118,7 +126,7 @@
     XCTAssertTrue(isNotZero, @"It's very unlikely that z is really zero!");
 }
 
--(void)test_valueForSensor
+-(void)testValueForSensor
 {
     SensorHandler* sensorHandler = [SensorHandler sharedSensorHandler];
     
@@ -131,7 +139,7 @@
 
 
 
--(void)test_stopSensors
+-(void)testStopSensors
 {
     SensorHandler* sensorHandler = [SensorHandler sharedSensorHandler];
     
