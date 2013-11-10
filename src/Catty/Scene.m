@@ -60,6 +60,7 @@
         [obj start:zPosition];
         [obj setLook];
         [obj setProgram:self.program];
+        [obj setUserInteractionEnabled:YES];
         zPosition++;
     }
 }
