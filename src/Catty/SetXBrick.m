@@ -42,7 +42,7 @@
         double xPosition = [self.xPosition interpretDoubleForSprite:self.object];
         
         self.object.position = CGPointMake(xPosition, self.object.yPosition);
-    }];
+    };
 }
 
 
