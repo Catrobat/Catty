@@ -86,7 +86,7 @@
   [self.tableView reloadRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationNone];
   [self.tableView endUpdates];
   self.tableView.alwaysBounceVertical = NO;
-    self.tableView.scrollEnabled = NO;// disable scrolling
+  self.tableView.scrollEnabled = YES;
 }
 
 - (void)didReceiveMemoryWarning
@@ -214,7 +214,7 @@
             height = height*kIphone4ScreenHeight/kIphone5ScreenHeight;
         }
     }
-    return height;
+    return height+1; // for scrolling reasons
 
 }
 

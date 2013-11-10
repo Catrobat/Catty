@@ -34,9 +34,10 @@
         NSDebug(@"Performing: %@", self.description);
         CGFloat brightness = [self.brightness interpretDoubleForSprite:self.object];
         UIImage* currentUIImage = self.object.currentUIImageLook;
+      
         
         if (brightness > -100.0f && brightness < 100.0f) {
-            [currentUIImage setImage:currentUIImage WithBrightness:brightness];
+            currentUIImage = [UIImage setImage:currentUIImage WithBrightness:brightness];
             self.object.currentUIImageLook = currentUIImage;
             self.object.texture = [SKTexture textureWithImage:currentUIImage];
         }
