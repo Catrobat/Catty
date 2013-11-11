@@ -149,7 +149,6 @@
 		C3BF754C18117F6000134B77 /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C3BF754B18117F6000134B77 /* Accelerate.framework */; };
 		C3E91973180BDBBC001F2232 /* MenuButtonViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C3E91972180BDBBC001F2232 /* MenuButtonViewController.m */; };
 		C3E9197B180BE0AE001F2232 /* menuButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C3E9197A180BE0AE001F2232 /* menuButton@2x.png */; };
-		C3E9197D180BE0BF001F2232 /* ic_media_play.png in Resources */ = {isa = PBXBuildFile; fileRef = C3E9197C180BE0BF001F2232 /* ic_media_play.png */; };
 		C3E9197F180BE179001F2232 /* screenshot.png in Resources */ = {isa = PBXBuildFile; fileRef = C3E9197E180BE179001F2232 /* screenshot.png */; };
 		C3F1DD5C180AD1DC00E2FA45 /* ScenePresenterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C3F1DD5B180AD1DC00E2FA45 /* ScenePresenterViewController.m */; };
 		C3F2950C1813C63200E37D61 /* iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C3F2950B1813C63200E37D61 /* iPhone.storyboard */; };
@@ -2210,7 +2209,6 @@
 				CA640C27182A962500DBA899 /* transparent1x1.png in Resources */,
 				B4365CE91758EBA900B4D0A6 /* LoggerProperties.plist in Resources */,
 				B4DA23D5175E761D0079B381 /* icon_retina.png in Resources */,
-				C3E9197D180BE0BF001F2232 /* ic_media_play.png in Resources */,
 				816C788317D5F0420029A4E6 /* settings_bg@2x.png in Resources */,
 				B4DA23D7175E76820079B381 /* icon.png in Resources */,
 				B4DA23DA175E78050079B381 /* menu_icon.png in Resources */,
@@ -2489,7 +2487,6 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
-					"$(SYSTEM_APPS_DIR)/Xcode5-DP.app/Contents/Developer/Library/Frameworks",
 				);
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -2526,7 +2523,6 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
-					"$(SYSTEM_APPS_DIR)/Xcode5-DP.app/Contents/Developer/Library/Frameworks",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "CattyTests/CattyTests-Prefix.pch";
