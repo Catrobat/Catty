@@ -28,11 +28,15 @@
 
 -(SKAction*)action
 {
-    return [SKAction runBlock:^{
-        NSDebug(@"Performing: %@", self.description);
-        self.object.hidden = NO;
-    }];
+  return [SKAction runBlock:[self actionBlock]];
+}
 
+-(dispatch_block_t)actionBlock
+{
+  return ^{
+    NSDebug(@"Performing: %@", self.description);
+    self.object.hidden = NO;
+  };
 }
 
 

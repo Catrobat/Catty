@@ -57,7 +57,7 @@
   [self initTableView];
   [self initSearchView];
   // XXX: lill' hack that works around the translucency problem
-  self.edgesForExtendedLayout = UIRectEdgeNone;
+  self.edgesForExtendedLayout = UIRectEdgeBottom;
 
   self.searchDisplayController.displaysSearchBarInNavigationBar = NO;
   self.tableView.backgroundView = [[UIImageView alloc] initWithImage:[UIImage imageWithColor:[UIColor darkBlueColor]]];
@@ -68,7 +68,8 @@
 
 - (void)viewWillAppear:(BOOL)animated
 {
-  [super viewWillAppear:animated];
+    [super viewWillAppear:animated];
+    self.edgesForExtendedLayout = UIRectEdgeBottom;
 }
 
 - (void)viewWillDisappear:(BOOL)animated
@@ -78,11 +79,12 @@
 
 - (void)viewDidAppear:(BOOL)animated
 {
-  [super viewDidAppear:animated];
-  CGRect frame = self.tableView.frame;
-  frame.origin.y = self.navigationController.navigationBar.frame.size.height;
-  frame.size.height = (frame.size.height - frame.origin.y);
-  self.tableView.frame = frame;
+    [super viewDidAppear:animated];
+    CGRect frame = self.tableView.frame;
+    frame.origin.y = self.navigationController.navigationBar.frame.size.height;
+    frame.size.height = (frame.size.height - frame.origin.y);
+    self.tableView.frame = frame;
+
 }
 
 - (void)didReceiveMemoryWarning

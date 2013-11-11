@@ -32,15 +32,20 @@
 
 -(SKAction*)action
 {
-    
-    return [SKAction runBlock:^{
-        NSDebug(@"Performing: %@", self.description);
-        float degrees = [self.degrees interpretDoubleForSprite:self.object] - kRotationDegreeOffset;
-        degrees = [((Scene*)self.object.scene) convertDegreesToScene:degrees];
-        float rad = [Util degreeToRadians:degrees];
-        self.object.zRotation = rad;
-    }];
+  return [SKAction runBlock:[self actionBlock]];
 }
+
+-(dispatch_block_t)actionBlock
+{
+  return ^{
+    NSDebug(@"Performing: %@", self.description);
+    float degrees = [self.degrees interpretDoubleForSprite:self.object] - kRotationDegreeOffset;
+    degrees = [((Scene*)self.object.scene) convertDegreesToScene:degrees];
+    float rad = [Util degreeToRadians:degrees];
+    self.object.zRotation = rad;
+  };
+}
+
 
 
 #pragma mark - Description

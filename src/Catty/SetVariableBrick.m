@@ -31,21 +31,26 @@
 
 
 
--(SKAction*) action
+
+-(SKAction*)action
 {
-    return [SKAction runBlock:^{
-        NSDebug(@"Performing: %@ on: %@", self.description, self.object);
-        
-        double result = [self.variableFormula interpretDoubleForSprite:self.object];
-        
-        Program* program = [ProgramManager sharedProgramManager].program;
-        VariablesContainer* variables = program.variables;
-        
-        [variables setUserVariable:self.userVariable toValue:result];
-            
-    }];
-    
+  return [SKAction runBlock:[self actionBlock]];
 }
+
+-(dispatch_block_t)actionBlock
+{
+  return ^{
+    NSDebug(@"Performing: %@ on: %@", self.description, self.object);
+    
+    double result = [self.variableFormula interpretDoubleForSprite:self.object];
+    
+    Program* program = [ProgramManager sharedProgramManager].program;
+    VariablesContainer* variables = program.variables;
+    
+    [variables setUserVariable:self.userVariable toValue:result];
+  };
+}
+
 
 
 #pragma mark - Description

@@ -23,15 +23,23 @@
 #import <XCTest/XCTest.h>
 #import "SpriteObject.h"
 #import "Scene.h"
-#import "ComeToFrontBrick.h"
-#import "SetXBrick.h"
-#import "Brick.h"
 #import "Script.h"
 #import "Formula.h"
 #import "FormulaElement.h"
 #import "ProgramLoadingInfo.h"
 #import "Program.h"
 #import "Parser.h"
+#import "BroadcastWaitHandler.h"
+#import <SpriteKit/SpriteKit.h>
+#import "UserVariable.h"
+#import "VariablesContainer.h"
+#import "Util.h"
+
+//BrickImports
+#import "ComeToFrontBrick.h"
+#import "SetXBrick.h"
+#import "SetYBrick.h"
+#import "Brick.h"
 #import "LoopBeginBrick.h"
 #import "LoopEndBrick.h"
 #import "LoopBeginBrick.h"
@@ -42,9 +50,13 @@
 #import "IfLogicEndBrick.h"
 #import "NoteBrick.h"
 #import "ForeverBrick.h"
-#import "BroadcastWaitHandler.h"
-#import <SpriteKit/SpriteKit.h>
 #import "SetSizeToBrick.h"
+#import "ShowBrick.h"
+#import "SetVariableBrick.h"
+#import "SetGhostEffectBrick.h"
+#import "ChangeGhostEffectByNBrick.h"
+#import "PointInDirectionBrick.h"
+#import "PlaceAtBrick.h"
 
 @interface BrickTests : XCTestCase
 
@@ -161,6 +173,202 @@
     
     
     XCTAssertEqual(object.xPosition, (CGFloat)20, @"SetxBrick is not correctly calculated");
+}
+
+-(void)testSetYBrick
+{
+  
+  SpriteObject* object = [[SpriteObject alloc] init];
+  object.position = CGPointMake(0, 0);
+  
+  Scene* scene = [[Scene alloc] init];
+  [scene addChild:object];
+  
+  Formula* yPosition =[[Formula alloc] init];
+  FormulaElement* formulaTree  = [[FormulaElement alloc] init];
+  formulaTree.type = NUMBER;
+  formulaTree.value = @"20";
+  yPosition.formulaTree = formulaTree;
+  
+  
+  SetYBrick* brick = [[SetYBrick alloc]init];
+  brick.object = object;
+  brick.yPosition = yPosition;
+  
+  dispatch_block_t action = [brick actionBlock];
+  action();
+  
+  
+  XCTAssertEqual(object.yPosition, (CGFloat)20, @"SetyBrick is not correctly calculated");
+}
+
+-(void)testShowBrick
+{
+  
+  SpriteObject* object = [[SpriteObject alloc] init];
+  object.position = CGPointMake(0, 0);
+  
+  Scene* scene = [[Scene alloc] init];
+  [scene addChild:object];
+  
+  ShowBrick* brick = [[ShowBrick alloc]init];
+  brick.object = object;
+  
+  dispatch_block_t action = [brick actionBlock];
+  action();
+  
+  
+  XCTAssertEqual(object.hidden, NO, @"ShowBrick is not correctly calculated");
+}
+
+-(void)testSetVariableBrick
+{
+//  Program* program = [[Program alloc] init];
+//  
+//  SpriteObject* object = [[SpriteObject alloc] init];
+//  object.position = CGPointMake(0, 0);
+//  
+//  object.program = program;
+//
+//  [program.objectList addObject:object];
+//  Scene* scene = [[Scene alloc] init];
+//  [scene addChild:object];
+//  
+//  Formula* formula =[[Formula alloc] init];
+//  FormulaElement* formulaTree  = [[FormulaElement alloc] init];
+////  formulaTree.type = NUMBER;
+////  formulaTree.value = @"20";
+//  formula.formulaTree = formulaTree;
+//  
+//  UserVariable *variable = [[UserVariable alloc] init];
+//  variable.name = @"Test";
+//  variable.value = @20;
+//  
+//  
+//  SetVariableBrick* brick = [[SetVariableBrick alloc]init];
+//  brick.object = object;
+//  brick.userVariable = variable;
+//  brick.variableFormula = formula;
+//
+//  
+//  dispatch_block_t action = [brick actionBlock];
+//  action();
+//  
+//  
+//  
+//  XCTAssertEqual([program.variables getUserVariableNamed:@"Test" forSpriteObject:object].value , @20, @"SetVariableBrick is not correctly calculated");
+}
+
+-(void)testSetGhostEffectBrick
+{
+  SpriteObject* object = [[SpriteObject alloc] init];
+  object.position = CGPointMake(0, 0);
+  
+  Scene* scene = [[Scene alloc] init];
+  [scene addChild:object];
+  
+  Formula* transparency =[[Formula alloc] init];
+  FormulaElement* formulaTree  = [[FormulaElement alloc] init];
+  formulaTree.type = NUMBER;
+  formulaTree.value = @"20";
+  transparency.formulaTree = formulaTree;
+  
+  SetGhostEffectBrick* brick = [[SetGhostEffectBrick alloc]init];
+  brick.object = object;
+  brick.transparency = transparency;
+  
+  dispatch_block_t action = [brick actionBlock];
+  action();
+  
+  
+  XCTAssertEqual(object.alpha, 0.8f, @"ShowBrick is not correctly calculated");
+}
+
+-(void)testChangeGhostEffectByNBrick
+{
+  // TODO: Check Brick if there really a - ???
+  
+  SpriteObject* object = [[SpriteObject alloc] init];
+  object.position = CGPointMake(0, 0);
+  
+  Scene* scene = [[Scene alloc] init];
+  [scene addChild:object];
+  
+  Formula* transparency =[[Formula alloc] init];
+  FormulaElement* formulaTree  = [[FormulaElement alloc] init];
+  formulaTree.type = NUMBER;
+  formulaTree.value = @"20";
+  transparency.formulaTree = formulaTree;
+  
+  ChangeGhostEffectByNBrick* brick = [[ChangeGhostEffectByNBrick alloc]init];
+  brick.object = object;
+  brick.changeGhostEffect = transparency;
+  
+  dispatch_block_t action = [brick actionBlock];
+  action();
+  
+  
+  XCTAssertEqual(object.alpha, 0.8f, @"ChangeGhostEffectBrick is not correctly calculated");
+}
+
+-(void)testPointInDirectionBrick
+{
+  SpriteObject* object = [[SpriteObject alloc] init];
+  object.position = CGPointMake(0, 0);
+  
+  Scene* scene = [[Scene alloc] init];
+  [scene addChild:object];
+  
+  Formula* degrees =[[Formula alloc] init];
+  FormulaElement* formulaTree  = [[FormulaElement alloc] init];
+  formulaTree.type = NUMBER;
+  formulaTree.value = @"20";
+  degrees.formulaTree = formulaTree;
+  
+  PointInDirectionBrick* brick = [[PointInDirectionBrick alloc]init];
+  brick.object = object;
+  brick.degrees = degrees;
+  
+  dispatch_block_t action = [brick actionBlock];
+  action();
+
+  
+  XCTAssertEqual(object.zRotation, (float)((360-(-70))*M_PI/180), @"PointInDirectionBrick is not correctly calculated");
+}
+
+
+-(void)testPlaceAtBrick
+{
+  
+  SpriteObject* object = [[SpriteObject alloc] init];
+  object.position = CGPointMake(0, 0);
+  
+  Scene* scene = [[Scene alloc] init];
+  [scene addChild:object];
+  
+  Formula* yPosition =[[Formula alloc] init];
+  FormulaElement* formulaTree  = [[FormulaElement alloc] init];
+  formulaTree.type = NUMBER;
+  formulaTree.value = @"20";
+  yPosition.formulaTree = formulaTree;
+  
+  Formula* xPosition =[[Formula alloc] init];
+  FormulaElement* formulaTree1  = [[FormulaElement alloc] init];
+  formulaTree1.type = NUMBER;
+  formulaTree1.value = @"20";
+  xPosition.formulaTree = formulaTree1;
+  
+  
+  PlaceAtBrick* brick = [[PlaceAtBrick alloc]init];
+  brick.object = object;
+  brick.yPosition = yPosition;
+  brick.xPosition = xPosition;
+  
+  dispatch_block_t action = [brick actionBlock];
+  action();
+  
+  CGPoint testPoint = CGPointMake(20, 20);
+  XCTAssertEqual(object.position, testPoint, @"PlaceAtBrick is not correctly calculated");
 }
 
 @end
