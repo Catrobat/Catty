@@ -30,6 +30,7 @@
 }
 
 @property (nonatomic, strong) NSMutableDictionary* sounds;
+@property (nonatomic) float current_volume;
 
 @end
 
@@ -56,6 +57,7 @@ static AudioManager* sharedAudioManager = nil;
     if (self) {
     }
     soundCounter=0;
+    self.current_volume = 1;
     return self;
 }
 
@@ -100,10 +102,11 @@ static AudioManager* sharedAudioManager = nil;
 //    [player stop];
 //    [player setCurrentTime:0];
 //  }
-  if (delegate)
-    player.delegate = delegate;
-  
-  [player play];
+    if (delegate)
+        player.delegate = delegate;
+
+    player.volume = self.current_volume;
+    [player play];
 }
 
 - (void)playSoundWithFileName:(NSString*)fileName
@@ -115,19 +118,22 @@ static AudioManager* sharedAudioManager = nil;
 
 - (void)setVolumeToPercent:(CGFloat)volume forKey:(NSString*)key
 {
-  
-    NSMutableDictionary* audioPlayers = [self.sounds objectForKey:key];
-    for (CatrobatAudioPlayer* player in [audioPlayers allValues]) {
-        player.volume = volume/100;
+    self.current_volume = volume/100;
+    for(NSMutableDictionary* audioPlayers in [self.sounds allValues]) {
+        for(CatrobatAudioPlayer* player in [audioPlayers allValues]) {
+            player.volume = self.current_volume;
+        }
     }
 
 }
 
 -(void)changeVolumeByPercent:(CGFloat)volume forKey:(NSString*)key
 {
-    NSMutableDictionary* audioPlayers = [self.sounds objectForKey:key];
-    for(CatrobatAudioPlayer* player in [audioPlayers allValues]) {
-        player.volume += volume/100;
+    self.current_volume += volume/100;
+    for(NSMutableDictionary* audioPlayers in [self.sounds allValues]) {
+        for(CatrobatAudioPlayer* player in [audioPlayers allValues]) {
+            player.volume = self.current_volume;
+        }
     }
     
 }

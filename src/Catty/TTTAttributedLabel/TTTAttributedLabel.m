@@ -117,7 +117,7 @@ static inline NSDictionary * NSAttributedStringAttributesFromLabel(TTTAttributed
         CGFloat firstLineIndent = label.firstLineIndent + leftMargin;
 
         CTLineBreakMode lineBreakMode;
-#warning Apple calls the enums of the iOS7 Simulator UILineBreakMode... and the property NSLineBreakMode. Should we create two functions to handle it without warnings or casting? 
+
         if (label.numberOfLines != 1) {
             lineBreakMode = CTLineBreakModeFromUILineBreakMode(UILineBreakModeWordWrap);
         } else {

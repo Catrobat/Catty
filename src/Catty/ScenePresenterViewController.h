@@ -39,11 +39,15 @@
 
 
 @property (nonatomic,strong) IBOutlet UIView* menuView;
-@property (strong,nonatomic) UIButton* menuBackButton;
-@property (strong,nonatomic) UIButton* menuContinueButton;
-@property (strong,nonatomic) UIButton* menuScreenshotButton;
-@property (strong,nonatomic) UIButton* menuRestartButton;
-@property (strong, nonatomic) UIButton* menuAxisButton;
-
+@property (strong,nonatomic) UIButton *menuBackButton;
+@property (strong,nonatomic) UIButton *menuContinueButton;
+@property (strong,nonatomic) UIButton *menuScreenshotButton;
+@property (strong,nonatomic) UIButton *menuRestartButton;
+@property (strong,nonatomic) UIButton *menuAxisButton;
+@property (strong,nonatomic) UILabel *menuBackLabel;
+@property (strong,nonatomic) UILabel *menuContinueLabel;
+@property (strong,nonatomic) UILabel *menuScreenshotLabel;
+@property (strong,nonatomic) UILabel *menuRestartLabel;
+@property (strong,nonatomic) UILabel *menuAxisLabel;
 
 @end

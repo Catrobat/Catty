@@ -58,7 +58,7 @@
 
 - (void)performBroadcastWaitForMessage:(NSString*)message
 {
-#warning look over again-> uncomment because of unused variable errors
+#warning look over broadcastWait
   //NSString* queueString = [NSString stringWithFormat:@"at.tugraz.ist.%@", message];
   //const char *queueName = [queueString cStringUsingEncoding:NSUTF8StringEncoding];
 

@@ -569,7 +569,7 @@
             <objects>
                 <tabBarController definesPresentationContext="YES" id="39D-hJ-FD1" customClass="DownloadTabBarController" sceneMemberID="viewController">
                     <navigationItem key="navigationItem" id="CgE-hC-aFN"/>
-                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
+                    <nil key="simulatedBottomBarMetrics"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" barStyle="black" id="g11-cP-ZdE">
                         <rect key="frame" x="129" y="330" width="163" height="49"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
@@ -837,8 +837,8 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="aum-BR-x1G"/>
-        <segue reference="dSt-wf-R4M"/>
+        <segue reference="mUB-CR-2KD"/>
         <segue reference="ZYi-SP-eKt"/>
+        <segue reference="dSt-wf-R4M"/>
     </inferredMetricsTieBreakers>
 </document>
