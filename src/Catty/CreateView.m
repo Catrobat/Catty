@@ -117,6 +117,7 @@
     
     
     
+    
     TTTAttributedLabel* descriptionLabel = [[TTTAttributedLabel alloc] initWithFrame:CGRectMake(20, 120, 280, expectedSize.height)];
     [self configureDescriptionLabel:descriptionLabel];
     descriptionLabel.delegate = target;
