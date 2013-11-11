@@ -41,7 +41,7 @@
 #pragma mark - Coordinate System
 #pragma mark Pocket Code to Scene
 
-- (void)test_PointConversionCenter
+- (void)testPointConversionCenter
 {
     
     Scene* scene = [[Scene alloc] initWithSize:CGSizeMake(480, 800)];
@@ -53,7 +53,7 @@
     XCTAssertEqual(convertedCenter, sceneCenter, @"The Scene Center is not correctly calculated");
 }
 
-- (void)test_PointConversionBottomLeft
+- (void)testPointConversionBottomLeft
 {
     
     Scene* scene = [[Scene alloc] initWithSize:CGSizeMake(480, 800)];
@@ -64,7 +64,7 @@
     XCTAssertEqual(convertedBottomLeft, sceneBottomLeft, @"The Bottom Left is not correctly calculated");
 }
 
-- (void)test_PointConversionBottomRight
+- (void)testPointConversionBottomRight
 {
     Scene* scene = [[Scene alloc] initWithSize:CGSizeMake(480, 800)];
     CGPoint pocketCodeBottomRight = CGPointMake(240, -400);
@@ -74,7 +74,7 @@
     XCTAssertEqual(convertedBottomRight, sceneBottomRight, @"The Bottom Right is not correctly calculated");
 }
 
-- (void)test_PointConversionTopLeft
+- (void)testPointConversionTopLeft
 {
     Scene* scene = [[Scene alloc] initWithSize:CGSizeMake(480, 800)];
     CGPoint pocketCodeTopLeft = CGPointMake(-240, 400);
@@ -84,7 +84,7 @@
     XCTAssertEqual(convertedTopLeft, sceneTopLeft, @"The Top Left is not correctly calculated");
 }
 
-- (void)test_PointConversionTopRight
+- (void)testPointConversionTopRight
 {
     Scene* scene = [[Scene alloc] initWithSize:CGSizeMake(480, 800)];
     CGPoint pocketCodeTopRight = CGPointMake(240, 400);
@@ -95,7 +95,7 @@
 }
 
 #pragma mark Scene to Pocked Code
-- (void)test_SceneConversionCenter
+- (void)testSceneConversionCenter
 {
     
     Scene* scene = [[Scene alloc] initWithSize:CGSizeMake(480, 800)];
@@ -106,7 +106,7 @@
     XCTAssertEqual(convertedCenter, sceneCenter, @"The Scene Center is not correctly calculated");
 }
 
-- (void)test_SceneConversionBottomLeft
+- (void)testSceneConversionBottomLeft
 {
     
     Scene* scene = [[Scene alloc] initWithSize:CGSizeMake(480, 800)];
@@ -117,7 +117,7 @@
     XCTAssertEqual(convertedBottomLeft, pocketCodeBottomLeft, @"The Bottom Left is not correctly calculated");
 }
 
-- (void)test_SceneConversionBottomRight
+- (void)testSceneConversionBottomRight
 {
     Scene* scene = [[Scene alloc] initWithSize:CGSizeMake(480, 800)];
     CGPoint pocketCodeBottomRight = CGPointMake(240, -400);
@@ -127,7 +127,7 @@
     XCTAssertEqual(convertedBottomRight, pocketCodeBottomRight, @"The Bottom Right is not correctly calculated");
 }
 
-- (void)test_SceneConversionTopLeft
+- (void)testSceneConversionTopLeft
 {
     Scene* scene = [[Scene alloc] initWithSize:CGSizeMake(480, 800)];
     CGPoint pocketCodeTopLeft = CGPointMake(-240, 400);
@@ -137,7 +137,7 @@
     XCTAssertEqual(convertedTopLeft, pocketCodeTopLeft, @"The Top Left is not correctly calculated");
 }
 
-- (void)test_SceneConversionTopRight
+- (void)testSceneConversionTopRight
 {
     Scene* scene = [[Scene alloc] initWithSize:CGSizeMake(480, 800)];
     CGPoint pocketCodeTopRight = CGPointMake(240, 400);

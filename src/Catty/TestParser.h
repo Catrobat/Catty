@@ -31,22 +31,22 @@
 
 
 // just4debugging (and testing!!!!!)
--(Program*)generateDebugProject_GlideTo;
--(Program*)generateDebugProject_nextCostume;
--(Program*)generateDebugProject_HideShow;
--(Program*)generateDebugProject_SetXY;
--(Program*)generateDebugProject_broadcast;
--(Program*)generateDebugProject_broadcastWait;
--(Program*)generateDebugProject_comeToFront;
--(Program*)generateDebugProject_goNStepsBack;
--(Program*)generateDebugProject_changeSizeByN;
--(Program*)generateDebugProject_parallelScripts;
--(Program*)generateDebugProject_loops;
--(Program*)generateDebugProject_pointToDirection;
--(Program*)generateDebugProject_setBrightness;
--(Program*)generateDebugProject_rotate;
--(Program*)generateDebugProject_rotateFullCircle;
--(Program*)generateDebugProject_rotateAndMove;
--(Program*)generateDebugProject_transparency;
+//-(Program*)generateDebugProject_GlideTo;
+//-(Program*)generateDebugProject_nextCostume;
+//-(Program*)generateDebugProject_HideShow;
+//-(Program*)generateDebugProject_SetXY;
+//-(Program*)generateDebugProject_broadcast;
+//-(Program*)generateDebugProject_broadcastWait;
+//-(Program*)generateDebugProject_comeToFront;
+//-(Program*)generateDebugProject_goNStepsBack;
+//-(Program*)generateDebugProject_changeSizeByN;
+//-(Program*)generateDebugProject_parallelScripts;
+//-(Program*)generateDebugProject_loops;
+//-(Program*)generateDebugProject_pointToDirection;
+//-(Program*)generateDebugProject_setBrightness;
+//-(Program*)generateDebugProject_rotate;
+//-(Program*)generateDebugProject_rotateFullCircle;
+//-(Program*)generateDebugProject_rotateAndMove;
+//-(Program*)generateDebugProject_transparency;
 
 @end
