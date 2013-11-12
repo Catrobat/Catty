@@ -52,18 +52,18 @@
 
 - (void)viewDidLoad
 {
-  [super viewDidLoad];
+    [super viewDidLoad];
   
-  [self initTableView];
-  [self initSearchView];
-  // XXX: lill' hack that works around the translucency problem
-  self.edgesForExtendedLayout = UIRectEdgeBottom;
-
-  self.searchDisplayController.displaysSearchBarInNavigationBar = NO;
-  self.tableView.backgroundView = [[UIImageView alloc] initWithImage:[UIImage imageWithColor:[UIColor darkBlueColor]]];
-  [self.searchDisplayController setActive:YES animated:YES];
-  [self.searchDisplayController.searchBar becomeFirstResponder];
-  self.searchDisplayController.searchBar.delegate = self;
+    [self initTableView];
+    [self initSearchView];
+    // XXX: lill' hack that works around the translucency problem
+    self.edgesForExtendedLayout = UIRectEdgeBottom;
+    
+    self.searchDisplayController.displaysSearchBarInNavigationBar = NO;
+    self.tableView.backgroundView = [[UIImageView alloc] initWithImage:[UIImage imageWithColor:[UIColor darkBlueColor]]];
+    [self.searchDisplayController setActive:YES animated:YES];
+    [self.searchDisplayController.searchBar becomeFirstResponder];
+    self.searchDisplayController.searchBar.delegate = self;
 }
 
 - (void)viewWillAppear:(BOOL)animated

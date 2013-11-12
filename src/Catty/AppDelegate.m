@@ -48,6 +48,8 @@ void uncaughtExceptionHandler(NSException *exception) {
     
     [self initNavigationBar];
     
+    [[UITextField appearance] setKeyboardAppearance:UIKeyboardAppearanceDark];
+    
     return YES;
 }
 
