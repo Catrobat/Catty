@@ -25,6 +25,7 @@
 
 #define kConnectionTimeout 30
 #define kConnectionHost @"https://pocketcode.org/api/projects"
+#define kBaseUrl @"https://pocketcode.org/"
 
 #define kConnectionSearch @"search.json"
 #define kConnectionRecent @"recent.json"

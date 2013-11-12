@@ -174,7 +174,7 @@
 
 - (void)loadRecentProjects
 {
-#warning program-info should be append, not overwritten
+#warning TODO: program-info should be append, not overwritten
     self.data = [[NSMutableData alloc] init];
 
     NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@/%@?%@%i&%@%i", kConnectionHost, kConnectionRecent, kProgramsOffset, self.programListOffset, kProgramsLimit, self.programListLimit]];
@@ -285,7 +285,7 @@
     [self.navigationController popViewControllerAnimated:YES];
 }
 
-#pragma mark - viewDidScroll
+#pragma mark - scrollViewDidEndDecelerating
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
 {
     /*
@@ -304,10 +304,6 @@
         
         [self loadRecentProjects];
     }
-    
-    //if (scrollView.contentOffset.y + scrollView.frame.size.height == scrollView.con frame.size.height)
-    
-    
 }
 
 

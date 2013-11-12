@@ -29,8 +29,10 @@
 
 @property (nonatomic, strong) NSString *documentsDirectory;
 @property (nonatomic, strong) NSString *levelsDirectory;
-@property (nonatomic, strong) NSURLConnection *connection;
-@property (nonatomic, strong) NSMutableData *data;
+@property (nonatomic, strong) NSURLConnection *programConnection;
+@property (nonatomic, strong) NSURLConnection *imageConnection;
+@property (nonatomic, strong) NSMutableData *programData;
+@property (nonatomic, strong) NSMutableData *imageData;
 @property (nonatomic, strong) NSString *projectName;
 
 @end
@@ -40,8 +42,10 @@
 
 @synthesize documentsDirectory = _documentsDirectory;
 @synthesize levelsDirectory    = _levelsDirectory;
-@synthesize connection         = _connection;
-@synthesize data               = _data;
+@synthesize programConnection    = _programConnection;
+@synthesize imageConnection      = _imageConnection;
+@synthesize programData          = _programData;
+@synthesize imageData            = _imageData;
 @synthesize projectName        = _projectName;
 @synthesize delegate           = _delegate;
 
@@ -63,12 +67,20 @@
     return _levelsDirectory;
 }
 
-- (NSMutableData*)data {
-    if (_data == nil) {
-        _data = [[NSMutableData alloc] init];
+- (NSMutableData*)programData {
+    if (_programData == nil) {
+        _programData = [[NSMutableData alloc] init];
     }
     
-    return _data;
+    return _programData;
+}
+
+- (NSMutableData*)imageData {
+    if (_imageData == nil) {
+        _imageData = [[NSMutableData alloc] init];
+    }
+    
+    return _imageData;
 }
 
 - (void)createDirectory:(NSString *)path
@@ -187,44 +199,68 @@
                                          timeoutInterval:TIMEOUT];
     
     NSURLConnection *connection = [[NSURLConnection alloc] initWithRequest:request delegate:self];
-    self.connection = connection;
+    self.programConnection = connection;
+}
+
+- (void)downloadScreenshotFromURL:(NSURL*)url
+{
+    NSURLRequest *request = [NSURLRequest requestWithURL:url
+                                             cachePolicy:NSURLRequestUseProtocolCachePolicy
+                                         timeoutInterval:TIMEOUT];
+    
+    NSURLConnection *connection = [[NSURLConnection alloc] initWithRequest:request delegate:self];
+    self.imageConnection = connection;
 }
 
 
 #pragma mark - NSURLConnection Delegates
 - (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data
 {
-    if (self.connection == connection) {
-        [self.data appendData:data];
+    if (self.programConnection == connection) {
+        [self.programData appendData:data];
+    }
+    else if (self.imageConnection == connection) {
+        [self.imageData appendData:data];
     }
 }
 
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection
 {
-    if (self.connection == connection) {
-        NSDebug(@"Finished downloading");
+    if (self.programConnection == connection) {
+        NSDebug(@"Finished program downloading");
         
         [self storeDownloadedLevel];
         
         if ([self.delegate respondsToSelector:@selector(downloadFinished)]) {
-                [self.delegate performSelector:@selector(downloadFinished)];
+            [self.delegate performSelector:@selector(downloadFinished)];
         }
         
-        self.data = nil;
-        self.connection = nil;
+        self.programData = nil;
+        self.programConnection = nil;
         self.projectName = nil;
+    }
+    else if (self.imageConnection == connection) {
+        NSDebug(@"Finished screenshot downloading");
+        UIImage *smallScreenshot = [[UIImage alloc] initWithData:self.imageData];
+        
+        [self storeDownloadedImage];
+        
+        self.imageData = nil;
+        self.imageConnection = nil;
     }
 }
 
 
 - (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error {
     
-
-    
-    if (self.connection == connection) {
-        self.data = nil;
-        self.connection = nil;
+    if (self.programConnection == connection) {
+        self.programData = nil;
+        self.programConnection = nil;
         self.projectName = nil;
+    }
+    else if (self.imageConnection == connection) {
+        self.imageData = nil;
+        self.imageConnection = nil;
     }
 }
 
@@ -243,12 +279,22 @@
 #pragma mark - Helper
 
 - (void)storeDownloadedLevel {
-    NSData *levelZip = [NSData dataWithData:self.data];
-    self.data = nil;
+    NSData *levelZip = [NSData dataWithData:self.programData];
+    self.programData = nil;
     
     [self unzipAndStore:levelZip withName:self.projectName];
 }
 
+#warning doesn't work
+- (void)storeDownloadedImage {
+    
+    if (self.imageData != nil) {
+        NSString *storePath = [NSString stringWithFormat:@"%@/levels/%@/small_screenshot.png", self.documentsDirectory, self.projectName];
+        
+        NSDebug(@"path for image is: %@", storePath);
+        [self.imageData writeToFile:storePath atomically:YES];
+    }
+}
 
 
 - (void)unzipAndStore:(NSData*)level withName:(NSString*)name {
