@@ -32,7 +32,7 @@
     NSDebug(@"Adding: %@", self.description);
     return [SKAction runBlock:^{
         NSDebug(@"Performing: %@", self.description);
-        CGFloat brightness = [self.brightness interpretDoubleForSprite:self.object];
+        CGFloat brightness = [self.changeBrightness interpretDoubleForSprite:self.object];
         UIImage* currentUIImage = self.object.currentUIImageLook;
       
         
@@ -49,7 +49,7 @@
 #pragma mark - Description
 - (NSString*)description
 {
-    return [NSString stringWithFormat:@"ChangeBrightnessByN (%f%%)", [self.brightness interpretDoubleForSprite:self.object]];
+    return [NSString stringWithFormat:@"ChangeBrightnessByN (%f%%)", [self.changeBrightness interpretDoubleForSprite:self.object]];
 }
 
 
