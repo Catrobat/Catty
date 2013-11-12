@@ -204,9 +204,14 @@
     
 //    cell.iconImageView.image = [UIImage imageNamed:@"programs"];
     
-    NSString* imagePath = [[NSString alloc] initWithFormat:@"%@/screenshot.png", info.basePath];
+    NSString* imagePath = [[NSString alloc] initWithFormat:@"%@/small_screenshot.png", info.basePath];
     
     UIImage* image = [UIImage imageWithContentsOfFile:imagePath];
+    if(!image) {
+        imagePath = [[NSString alloc] initWithFormat:@"%@/screenshot.png", info.basePath];
+        image = [UIImage imageWithContentsOfFile:imagePath];
+    }
+    
     if(!image) {
         imagePath = [[NSString alloc] initWithFormat:@"%@/manual_screenshot.png", info.basePath];
         image = [UIImage imageWithContentsOfFile:imagePath];

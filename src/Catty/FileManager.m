@@ -241,12 +241,9 @@
     }
     else if (self.imageConnection == connection) {
         NSDebug(@"Finished screenshot downloading");
-        UIImage *smallScreenshot = [[UIImage alloc] initWithData:self.imageData];
-        
+        //path may not exist at this point -> another call to 
+        //storeDownloadedImage in unzipAndStore:withName
         [self storeDownloadedImage];
-        
-        self.imageData = nil;
-        self.imageConnection = nil;
     }
 }
 
@@ -285,17 +282,17 @@
     [self unzipAndStore:levelZip withName:self.projectName];
 }
 
-#warning doesn't work
 - (void)storeDownloadedImage {
     
     if (self.imageData != nil) {
         NSString *storePath = [NSString stringWithFormat:@"%@/levels/%@/small_screenshot.png", self.documentsDirectory, self.projectName];
         
         NSDebug(@"path for image is: %@", storePath);
-        [self.imageData writeToFile:storePath atomically:YES];
+        if ([self.imageData writeToFile:storePath atomically:YES]) {
+            [self resetImageDataAndConnection];
+        }
     }
 }
-
 
 - (void)unzipAndStore:(NSData*)level withName:(NSString*)name {
     NSError *error;
@@ -317,8 +314,13 @@
     
     [Logger logError:error];
 
+    [self storeDownloadedImage];
 }
 
+- (void)resetImageDataAndConnection {
+    self.imageData = nil;
+    self.imageConnection = nil;
+}
 
 
 
