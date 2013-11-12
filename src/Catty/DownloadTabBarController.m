@@ -42,14 +42,15 @@
 
 - (void)viewDidLoad
 {
-  [super viewDidLoad];
-  [TableUtil initNavigationItem:self.navigationItem withTitle:NSLocalizedString(@"Programs", nil)];
-  //self.tabBar.backgroundImage =  [[UIImage imageNamed:@"darkblue"] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 0, 0, 0)];
-  //self.tabBar.selectionIndicatorImage = [UIImage imageWithColor:[UIColor clearColor]];
-  //self.tabBar.barTintColor = [UIColor darkBlueColor];
-  self.tabBar.tintColor = [UIColor orangeColor];
-  [[UITabBarItem appearance] setTitleTextAttributes:@{NSFontAttributeName : [UIFont fontWithName:@"HelveticaNeue-Bold" size:10.0f],
-                                                      NSForegroundColorAttributeName : [UIColor grayColor]
+    [super viewDidLoad];
+    [TableUtil initNavigationItem:self.navigationItem withTitle:NSLocalizedString(@"Programs", nil)];
+    //self.tabBar.backgroundImage =  [[UIImage imageNamed:@"darkblue"] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 0, 0, 0)];
+    //self.tabBar.selectionIndicatorImage = [UIImage imageWithColor:[UIColor clearColor]];
+    //self.tabBar.barTintColor = [UIColor darkBlueColor];
+    self.tabBar.tintColor = [UIColor lightOrangeColor];
+    
+    [[UITabBarItem appearance] setTitleTextAttributes:@{NSFontAttributeName : [UIFont fontWithName:@"HelveticaNeue-Bold" size:10.0f],
+                                                      NSForegroundColorAttributeName : [UIColor lightOrangeColor]
                                                       } forState:UIControlStateSelected];
   
 }

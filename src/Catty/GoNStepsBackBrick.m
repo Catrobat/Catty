@@ -33,7 +33,6 @@
 
     return [SKAction runBlock:^{
         NSDebug(@"Performing: %@", self.description);
-        
         int steps = [self.steps interpretIntegerForSprite:self.object];    
         self.object.zPosition = MAX(0, self.object.zPosition-steps);
     }];

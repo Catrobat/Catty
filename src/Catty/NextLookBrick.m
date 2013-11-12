@@ -36,6 +36,7 @@
         UIImage* image = [UIImage imageWithContentsOfFile:[self pathForLook:look]];
         SKTexture* texture = [SKTexture textureWithImage:image];
         self.object.currentUIImageLook = image;
+        self.object.currentLookBrightness = 0;
         double xScale = self.object.xScale;
         double yScale = self.object.yScale;
         self.object.xScale = 1.0;

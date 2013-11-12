@@ -29,14 +29,36 @@
 
 
 -(SKAction*)action
-{    
+{
+
     return [SKAction customActionWithDuration:0.0 actionBlock:^(SKNode *node, CGFloat elapsedTime) {
+        //[self actionBlock];
+        NSDebug(@"Performing: %@", self.description);
+        float degreebefore =[self.degrees interpretDoubleForSprite:self.object];
+        float rad = [Util degreeToRadians:[self.degrees interpretDoubleForSprite:self.object]]/2;
+        float newRad = self.object.zRotation - rad ;
+        NSLog(@"%f,%f,%f",degreebefore,rad,newRad);
+
+        [self.object setZRotation:newRad];
+    }];
+
+}
+
+
+-(dispatch_block_t)actionBlock
+{
+    return ^{
         
         NSDebug(@"Performing: %@", self.description);
         double rad = [Util degreeToRadians:[self.degrees interpretDoubleForSprite:self.object]];
-        self.object.zRotation = rad;
-    }];
+        double newRad = self.object.zRotation - rad;
+        if (newRad < 0) {
+            newRad += 360;
+        }
+        self.object.zRotation = newRad;
+    };
 }
+
 
 #pragma mark - Description
 - (NSString*)description

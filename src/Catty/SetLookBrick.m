@@ -38,6 +38,7 @@
     CGImageRelease(imageRef);
     SKTexture* texture = [SKTexture textureWithImage:newImage];
     self.object.currentUIImageLook = newImage;
+    self.object.currentLookBrightness = 0;
 
     return [SKAction runBlock:^{
         NSDebug(@"Performing: %@", self.description);

@@ -26,6 +26,7 @@
 #import "Look.h"
 #import "UIImage+CatrobatUIImageExtensions.h"
 #import <CoreImage/CoreImage.h>
+#import <AssetsLibrary/AssetsLibrary.h>
 
 @implementation SetBrightnessBrick
 
@@ -35,28 +36,54 @@
     NSDebug(@"Adding: %@", self.description);
     return [SKAction runBlock:^{
         NSDebug(@"Performing: %@", self.description);
-        CGFloat brightness = [self.brightness interpretDoubleForSprite:self.object];
+        CGFloat brightness = [self.brightness interpretDoubleForSprite:self.object]/100;
+        if (brightness > 2) {
+            brightness = 1.0f;
+        }
+        else if (brightness < 0){
+            brightness = -1.0f;
+        }
+        else{
+            brightness -= 1.0f;
+        }
         Look* look = [self.object currentLook];
         UIImage* lookImage = [UIImage imageWithContentsOfFile:[self pathForLook:look]];
       
-        CIImage* image = lookImage.CIImage;
-      
+        CGImageRef image = lookImage.CGImage;
+        CIImage *ciImage =[ CIImage imageWithCGImage:image];
+        /////
         CIContext *context = [CIContext contextWithOptions:nil];
-      
+        
         CIFilter *filter = [CIFilter filterWithName:@"CIColorControls"
-                                    keysAndValues:kCIInputImageKey, image, @"inputBrightness",
-                          [NSNumber numberWithFloat:brightness], nil];
-        CIImage *outputImage = [filter valueForKey:@"outputImage"];
-      
+                            keysAndValues:kCIInputImageKey, ciImage, @"inputBrightness",
+                  @(brightness), nil];
+        CIImage *outputImage = [filter outputImage];
+        
+        // 2
         CGImageRef cgimg =
         [context createCGImage:outputImage fromRect:[outputImage extent]];
-
+        
+        // 3
         UIImage *newImage = [UIImage imageWithCGImage:cgimg];
-        //lookImage = [UIImage setImage:lookImage WithBrightness:(brightness)];
         self.object.currentUIImageLook = newImage;
         self.object.texture = [SKTexture textureWithImage:newImage];
+        self.object.currentLookBrightness = brightness;
+        double xScale = self.object.xScale;
+        double yScale = self.object.yScale;
+        self.object.xScale = 1.0;
+        self.object.yScale = 1.0;
+        self.object.size = self.object.texture.size;
+        self.object.texture = self.object.texture;
+        if(xScale != 1.0) {
+            self.object.xScale = xScale;
+        }
+        if(yScale != 1.0) {
+            self.object.yScale = yScale;
+        }
+
+        // 4
         CGImageRelease(cgimg);
-  
+        
         }];
 }
 

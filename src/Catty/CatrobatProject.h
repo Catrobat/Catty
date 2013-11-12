@@ -31,6 +31,7 @@
 @property (nonatomic, strong) NSString *description;
 @property (nonatomic, strong) NSString *downloadUrl;
 @property (nonatomic, strong) NSNumber *downloads;
+@property (nonatomic, strong) NSString *projectID;
 @property (nonatomic, strong) NSString *projectName;
 @property (nonatomic, strong) NSString *projectUrl;
 @property (nonatomic, strong) NSString *screenshotBig;

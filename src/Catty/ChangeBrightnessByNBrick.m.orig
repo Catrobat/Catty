@@ -22,7 +22,6 @@
 
 #import "ChangeBrightnessByNBrick.h"
 #import "Formula.h"
-#import "Look.h"
 #import "UIImage+CatrobatUIImageExtensions.h"
 
 
@@ -33,20 +32,30 @@
     NSDebug(@"Adding: %@", self.description);
     return [SKAction runBlock:^{
         NSDebug(@"Performing: %@", self.description);
+<<<<<<< HEAD
 
-        CGFloat brightness = [self.changeBrightness interpretDoubleForSprite:self.object]/100;
+        CGFloat brightness = [self.brightness interpretDoubleForSprite:self.object]/100;
         brightness += self.object.currentLookBrightness;
         if (brightness > 2) {
             brightness = 1;
         }
         else if (brightness < 0){
             brightness = -1;
+=======
+        CGFloat brightness = [self.changeBrightness interpretDoubleForSprite:self.object];
+        UIImage* currentUIImage = self.object.currentUIImageLook;
+      
+        
+        if (brightness > -100.0f && brightness < 100.0f) {
+            currentUIImage = [UIImage setImage:currentUIImage WithBrightness:brightness];
+            self.object.currentUIImageLook = currentUIImage;
+            self.object.texture = [SKTexture textureWithImage:currentUIImage];
+>>>>>>> 48f0b1451348f7e0cf6836a631d176a6eeb73421
         }
         else{
-            //brightness -= 1;
+            brightness -= 1;
         }
-        Look* look = [self.object currentLook];
-        UIImage* lookImage = [UIImage imageWithContentsOfFile:[self pathForLook:look]];
+        UIImage* lookImage = self.object.currentUIImageLook;
         
         CGImageRef image = lookImage.CGImage;
         CIImage *ciImage =[ CIImage imageWithCGImage:image];
@@ -67,18 +76,6 @@
         self.object.currentUIImageLook = newImage;
         self.object.texture = [SKTexture textureWithImage:newImage];
         self.object.currentLookBrightness = brightness;
-        double xScale = self.object.xScale;
-        double yScale = self.object.yScale;
-        self.object.xScale = 1.0;
-        self.object.yScale = 1.0;
-        self.object.size = self.object.texture.size;
-        self.object.texture = self.object.texture;
-        if(xScale != 1.0) {
-            self.object.xScale = xScale;
-        }
-        if(yScale != 1.0) {
-            self.object.yScale = yScale;
-        }
         
         // 4
         CGImageRelease(cgimg);
@@ -91,9 +88,6 @@
 {
     return [NSString stringWithFormat:@"ChangeBrightnessByN (%f%%)", [self.changeBrightness interpretDoubleForSprite:self.object]];
 }
--(NSString*)pathForLook:(Look*)look
-{
-    return [NSString stringWithFormat:@"%@images/%@", [self.object projectPath], look.fileName];
-}
+
 
 @end

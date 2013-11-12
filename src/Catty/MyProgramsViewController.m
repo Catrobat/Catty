@@ -170,13 +170,14 @@
 }
 
 #pragma mark - Table view delegate
-/*
+
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString* segueToNew = kSegueToNew;
-    [self performSegueWithIdentifier:segueToNew sender:self];
+//    static NSString* segueToNew = kSegueToNew;
+//    [self performSegueWithIdentifier:segueToNew sender:self];
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
-*/
+
 
 #pragma mark - Segue
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
@@ -204,9 +205,14 @@
     
 //    cell.iconImageView.image = [UIImage imageNamed:@"programs"];
     
-    NSString* imagePath = [[NSString alloc] initWithFormat:@"%@/screenshot.png", info.basePath];
+    NSString* imagePath = [[NSString alloc] initWithFormat:@"%@/small_screenshot.png", info.basePath];
     
     UIImage* image = [UIImage imageWithContentsOfFile:imagePath];
+    if(!image) {
+        imagePath = [[NSString alloc] initWithFormat:@"%@/screenshot.png", info.basePath];
+        image = [UIImage imageWithContentsOfFile:imagePath];
+    }
+    
     if(!image) {
         imagePath = [[NSString alloc] initWithFormat:@"%@/manual_screenshot.png", info.basePath];
         image = [UIImage imageWithContentsOfFile:imagePath];

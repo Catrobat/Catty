@@ -163,6 +163,8 @@
 - (void)start:(CGFloat)zPosition
 {
     self.position = CGPointMake(0, 0);
+    self.zRotation = 0;
+    self.currentLookBrightness = 0;
     if ([self.name isEqualToString:@"Background"])
         self.zPosition = 0;
     else

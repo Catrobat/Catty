@@ -35,8 +35,9 @@
     return [SKAction customActionWithDuration:0.0 actionBlock:^(SKNode *node, CGFloat elapsedTime) {
         
         NSDebug(@"Performing: %@", self.description);
-        double rad = [Util degreeToRadians:[self.degrees interpretDoubleForSprite:self.object]];
-        self.object.zRotation = rad;
+        double rad = [Util degreeToRadians:[self.degrees interpretDoubleForSprite:self.object]]/2;
+        double newRad = self.object.zRotation + rad;
+        self.object.zRotation = newRad;
     }];
 
 }

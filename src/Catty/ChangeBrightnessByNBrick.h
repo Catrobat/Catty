@@ -26,6 +26,6 @@
 
 @interface ChangeBrightnessByNBrick : Brick
 
-@property (nonatomic, strong) Formula *brightness;
+@property (nonatomic, strong) Formula *changeBrightness;
 
 @end

@@ -63,6 +63,8 @@
 
 @property (strong, nonatomic) UIImage* currentUIImageLook;
 
+@property (nonatomic) CGFloat currentLookBrightness;
+
 @property (nonatomic,strong) Program* program;
 
 - (BOOL)isBackground;

@@ -32,6 +32,7 @@
         self.description     = [dict valueForKey:@"Description"];
         self.downloadUrl     = [NSString stringWithFormat:@"%@%@", baseUrl,[dict valueForKey:@"DownloadUrl"]];
         self.downloads       = [dict valueForKey:@"Downloads"];
+        self.projectID       = [dict valueForKey:@"ProjectId"];
         self.projectName     = [dict valueForKey:@"ProjectName"];
         self.projectUrl      = [dict valueForKey:@"ProjectUrl"];
         self.screenshotBig   = [NSString stringWithFormat:@"%@%@", baseUrl,[dict valueForKey:@"ScreenshotBig"]];

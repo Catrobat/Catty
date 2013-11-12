@@ -22,7 +22,7 @@
 
 #import "ScenePresenterViewController.h"
 #import "Scene.h"
-//#import "ProgramLoadingInfo.h"
+#import "ProgramLoadingInfo.h"
 #import "Parser.h"
 #import "ProgramDefines.h"
 #import "Program.h"
@@ -556,6 +556,37 @@
     }
 
 }
+- (BOOL)loadProgram:(ProgramLoadingInfo*)loadingInfo
+{
+    NSDebug(@"Try to load project '%@'", loadingInfo.visibleName);
+    NSDebug(@"Path: %@", loadingInfo.basePath);
+    NSString *xmlPath = [NSString stringWithFormat:@"%@", loadingInfo.basePath];
+    NSDebug(@"XML-Path: %@", xmlPath);
+    Program *program = [[[Parser alloc] init] generateObjectForLevel:[xmlPath stringByAppendingFormat:@"%@", kProgramCodeFileName]];
+    
+    if (! program)
+        return NO;
+    
+    NSDebug(@"ProjectResolution: width/height:  %f / %f", program.header.screenWidth.floatValue, program.header.screenHeight.floatValue);
+    
+    // setting effect
+    for (SpriteObject *sprite in program.objectList)
+    {
+        //sprite.spriteManagerDelegate = self;
+        //sprite.broadcastWaitDelegate = self.broadcastWaitHandler;
+        
+        // TODO: change!
+        for (Script *script in sprite.scriptList) {
+            for (Brick *brick in script.brickList) {
+                brick.object = sprite;
+            }
+        }
+    }
+    self.program = program;
+    [Util setLastProgram:self.program.header.programName];
+    return YES;
+}
+
 
 -(void)restartLevel:(UIButton*) sender
 {
@@ -564,9 +595,21 @@
     self.scene.scaleMode = SKSceneScaleModeAspectFit;
     SKView * view= (SKView*)self.skView;
     view.paused=NO;
-    [view presentScene:self.scene];
-    [self configureScene];
-    [self continueLevel:nil withDuration:kDontResumeSounds];
+    BOOL check = [self loadProgram:[Util programLoadingInfoForProgramWithName:[Util lastProgram]]];
+    if (check) {
+        [view presentScene:self.scene];
+        [self configureScene];
+        [self continueLevel:nil withDuration:kDontResumeSounds];
+    }
+    else{
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Can't restart level!",nil)
+                                                        message:nil
+                                                       delegate:self.menuView
+                                              cancelButtonTitle:NSLocalizedString(@"OK",nil)
+                                              otherButtonTitles:nil];
+        [alert show];
+    }
+
 
 }
 -(void)showHideAxis:(UIButton *)sender
@@ -598,7 +641,7 @@
   NSString *actionSheetTitle = NSLocalizedString(@"Save Screenshot to:",@"Action sheet menu title");
   NSString *buttonSaveToCameraRoll = NSLocalizedString(@"Camera Roll",nil);
   NSString *buttonSaveToProject = NSLocalizedString(@"Project",nil);
-  NSString *cancelTitle = @"Cancel";
+  NSString *cancelTitle = NSLocalizedString(@"Cancel",nil);
   UIActionSheet *actionSheet = [[UIActionSheet alloc]
                                 initWithTitle:actionSheetTitle
                                 delegate:self
@@ -613,10 +656,10 @@
   if ([buttonTitle isEqualToString:NSLocalizedString(@"Camera Roll",nil)]) {
     /// Write to Camera Roll
     UIImageWriteToSavedPhotosAlbum(self.snapshotImage, nil, nil, nil);
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Screenshot saved to CameraRoll!"
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Screenshot saved to CameraRoll!",nil)
                                                     message:nil
                                                    delegate:self.menuView
-                                          cancelButtonTitle:@"OK"
+                                          cancelButtonTitle:NSLocalizedString(@"OK",nil)
                                           otherButtonTitles:nil];
     [alert show];
   }
@@ -625,10 +668,10 @@
     NSString *pngFilePath = [NSString stringWithFormat:@"%@/manual_screenshot.png",path];
     NSData *data = [NSData dataWithData:UIImagePNGRepresentation(self.snapshotImage)];
     [data writeToFile:pngFilePath atomically:YES];
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Screenshot saved to Project!"
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Screenshot saved to Project!",nil)
                                                     message:nil
                                                    delegate:self.menuView
-                                          cancelButtonTitle:@"OK"
+                                          cancelButtonTitle:NSLocalizedString(@"OK",nil)
                                           otherButtonTitles:nil];
     [alert show];
 

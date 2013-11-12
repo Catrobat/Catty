@@ -56,7 +56,6 @@
     CGFloat zPosition = 1;
     for (SpriteObject *obj in self.program.objectList) {
         [self addChild:obj];
-         //NSDebug(@"%f",zPosition);
         [obj start:zPosition];
         [obj setLook];
         [obj setProgram:self.program];

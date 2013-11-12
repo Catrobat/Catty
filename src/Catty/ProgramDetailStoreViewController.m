@@ -32,6 +32,7 @@
 #import "ProgramTVC.h"
 #import "ProgramLoadingInfo.h"
 #import "Util.h"
+#import "NetworkDefines.h"
 
 #define kUIBarHeight 49
 #define kNavBarHeight 44
@@ -187,6 +188,14 @@
     
     [appDelegate.fileManager downloadFileFromURL:url withName:self.project.projectName];
     appDelegate.fileManager.delegate = self;
+    
+    NSDebug(@"url screenshot is %@", self.project.screenshotSmall)
+    NSString *urlString = self.project.screenshotSmall;
+    
+    NSDebug(@"screenshot url is: %@", urlString);
+    
+    NSURL *screenshotSmallUrl = [NSURL URLWithString:urlString];
+    [appDelegate.fileManager downloadScreenshotFromURL:screenshotSmallUrl];
 }
 
 -(void)downloadButtonPressed:(id)sender

@@ -44,6 +44,7 @@
 - (NSArray*)getContentsOfDirectory:(NSString*)directory;
 - (void)addDefaultProjectToLeveLDirectory;
 - (void)downloadFileFromURL:(NSURL*)url withName:(NSString*)name;
+- (void)downloadScreenshotFromURL:(NSURL*)url;
 - (NSString*)getPathForLevel:(NSString*)levelName;
 
 @end
