@@ -23,5 +23,8 @@ DerivedData
 # CocoaPods
 Pods
 
+#Merge
+*.orig
+
 #Custom
 Mockup/*
