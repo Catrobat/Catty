@@ -144,12 +144,20 @@
     NSString *basePath = [Program basePath];
 
     // check if level already exists, then update
+    NSInteger rowIndex = 0;
     for (ProgramLoadingInfo *info in self.levelLoadingInfos) {
         if ([info.visibleName isEqualToString:oldLevelName]) {
-            info.basePath = [NSString stringWithFormat:@"%@%@/", basePath, newLevelName];
-            info.visibleName = newLevelName;
-            
+            ProgramLoadingInfo *newInfo = [[ProgramLoadingInfo alloc] init];
+            newInfo.basePath = [NSString stringWithFormat:@"%@%@/", basePath, newLevelName];
+            newInfo.visibleName = newLevelName;
+            [self.levelLoadingInfos replaceObjectAtIndex:rowIndex withObject:newInfo];
+
+            // update existing cell
+            NSIndexPath *indexPath = [NSIndexPath indexPathForRow:rowIndex inSection:0];
+            [self.tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationNone];
+            break;
         }
+        ++rowIndex;
     }
 }
 

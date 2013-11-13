@@ -125,18 +125,18 @@
     NSString *xmlPath = [NSString stringWithFormat:@"%@", loadingInfo.basePath];
     NSDebug(@"XML-Path: %@", xmlPath);
     Program *program = [[[Parser alloc] init] generateObjectForLevel:[xmlPath stringByAppendingFormat:@"%@", kProgramCodeFileName]];
-    
+
     if (! program)
         return NO;
-    
+
     NSDebug(@"ProjectResolution: width/height:  %f / %f", program.header.screenWidth.floatValue, program.header.screenHeight.floatValue);
-    
+
     // setting effect
     for (SpriteObject *sprite in program.objectList)
     {
         //sprite.spriteManagerDelegate = self;
         //sprite.broadcastWaitDelegate = self.broadcastWaitHandler;
-        
+
         // TODO: change!
         for (Script *script in sprite.scriptList) {
             for (Brick *brick in script.brickList) {
