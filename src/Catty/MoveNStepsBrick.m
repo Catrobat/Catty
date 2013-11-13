@@ -22,6 +22,8 @@
 
 #import "MoveNStepsBrick.h"
 #import "Formula.h"
+#import "Util.h"
+#import "Scene.h"
 
 @implementation MoveNStepsBrick
 
@@ -35,12 +37,16 @@
 {
     return [SKAction runBlock:^{
         
-      double steps = [self.steps interpretDoubleForSprite:self.object];
-      int xPosition = (int) round(self.object.position.x + steps);//*sin([self.object rotation]));
+        double steps = [self.steps interpretDoubleForSprite:self.object];
+        double rotation = [self.object rotation]+90;
+        while (rotation >= 360) {
+            rotation -= 360;
+        }
+        rotation = rotation * M_PI / 180;
+        int xPosition = (int)round(self.object.position.x + (steps * sin(rotation)));
+        int yPosition = (int)round(self.object.position.y - (steps * cos(rotation)));
 
-      //int yPosition = (int) round(self.object.position.y - steps);//*cos([self.object rotation]));
-
-        self.object.position = CGPointMake(xPosition, self.object.yPosition);
+        self.object.position = CGPointMake(xPosition, yPosition);
     }];
 }
 
