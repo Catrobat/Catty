@@ -205,17 +205,7 @@
         return element.stringValue;
     }
     else if ([propertyType isEqualToString:kParserObjectTypeNumber]) {
-        
-        NSString *temp = nil;
-        NSArray* formulaTrees = [element elementsForName:@"formulaTree"];
-        if(formulaTrees) {
-#warning this should not be necessary any more!
-            abort();
-        }
-        else {
-            temp = element.stringValue;
-        }
-        return [NSNumber numberWithFloat:temp.floatValue];
+        return [NSNumber numberWithFloat:element.stringValue.floatValue];
 
     }
     else if ([propertyType isEqualToString:kParserObjectTypeDate]) {
@@ -229,8 +219,6 @@
         
         return date;
     }
-#warning JUST FOR DEBUG PURPOSES!
-    // todo: set the corresponding SPRITE!!! (and lookdata) => xstream notation
     else if ([propertyType isEqualToString:kParserObjectTypeSprite]) {
         
         if([self isReferenceElement:element]) {
@@ -243,7 +231,6 @@
 
     }
     else if ([propertyType isEqualToString:kParserObjectTypeLookData]) {
-        // sanity check
         if (self.currentActiveSprite && [self.currentActiveSprite isKindOfClass:[SpriteObject class]]) {
             
             if([self isReferenceElement:element]) {

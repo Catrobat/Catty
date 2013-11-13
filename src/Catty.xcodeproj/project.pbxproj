@@ -211,7 +211,6 @@
 		CD0CCFC5170CB39700B70036 /* SetYBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = CD0CCF1E170CB39700B70036 /* SetYBrick.m */; };
 		CD0CCFC6170CB39700B70036 /* ShowBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = CD0CCF20170CB39700B70036 /* ShowBrick.m */; };
 		CD0CCFC7170CB39700B70036 /* Sound.m in Sources */ = {isa = PBXBuildFile; fileRef = CD0CCF22170CB39700B70036 /* Sound.m */; };
-		CD0CCFC8170CB39700B70036 /* SoundInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = CD0CCF24170CB39700B70036 /* SoundInfo.m */; };
 		CD0CCFC9170CB39700B70036 /* SpeakBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = CD0CCF26170CB39700B70036 /* SpeakBrick.m */; };
 		CD0CCFD0170CB39700B70036 /* StartScript.m in Sources */ = {isa = PBXBuildFile; fileRef = CD0CCF33170CB39700B70036 /* StartScript.m */; };
 		CD0CCFD1170CB39700B70036 /* StopAllSoundsBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = CD0CCF35170CB39700B70036 /* StopAllSoundsBrick.m */; };
@@ -575,8 +574,6 @@
 		CD0CCF20170CB39700B70036 /* ShowBrick.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShowBrick.m; sourceTree = "<group>"; };
 		CD0CCF21170CB39700B70036 /* Sound.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Sound.h; sourceTree = "<group>"; };
 		CD0CCF22170CB39700B70036 /* Sound.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Sound.m; sourceTree = "<group>"; };
-		CD0CCF23170CB39700B70036 /* SoundInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SoundInfo.h; sourceTree = "<group>"; };
-		CD0CCF24170CB39700B70036 /* SoundInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SoundInfo.m; sourceTree = "<group>"; };
 		CD0CCF25170CB39700B70036 /* SpeakBrick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpeakBrick.h; sourceTree = "<group>"; };
 		CD0CCF26170CB39700B70036 /* SpeakBrick.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpeakBrick.m; sourceTree = "<group>"; };
 		CD0CCF27170CB39700B70036 /* SpriteManagerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpriteManagerDelegate.h; sourceTree = "<group>"; };
@@ -2005,8 +2002,6 @@
 		CD0CCFFB170CB97000B70036 /* Sound */ = {
 			isa = PBXGroup;
 			children = (
-				CD0CCF23170CB39700B70036 /* SoundInfo.h */,
-				CD0CCF24170CB39700B70036 /* SoundInfo.m */,
 				CD0CCF21170CB39700B70036 /* Sound.h */,
 				CD0CCF22170CB39700B70036 /* Sound.m */,
 			);
@@ -2313,7 +2308,6 @@
 				CD0CCFC5170CB39700B70036 /* SetYBrick.m in Sources */,
 				CD0CCFC6170CB39700B70036 /* ShowBrick.m in Sources */,
 				CD0CCFC7170CB39700B70036 /* Sound.m in Sources */,
-				CD0CCFC8170CB39700B70036 /* SoundInfo.m in Sources */,
 				CD0CCFC9170CB39700B70036 /* SpeakBrick.m in Sources */,
 				CD0CCFD0170CB39700B70036 /* StartScript.m in Sources */,
 				CA68820E180B39D0008A7C99 /* ColoredCell.m in Sources */,
