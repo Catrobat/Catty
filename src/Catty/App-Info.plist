@@ -46,7 +46,7 @@
 			<key>UILaunchImageMinimumOSVersion</key>
 			<string>7.0</string>
 			<key>UILaunchImageName</key>
-			<string>default-568</string>
+			<string>Default</string>
 			<key>UILaunchImageOrientation</key>
 			<string>Portrait</string>
 			<key>UILaunchImageSize</key>
@@ -56,7 +56,7 @@
 			<key>UILaunchImageMinimumOSVersion</key>
 			<string>7.0</string>
 			<key>UILaunchImageName</key>
-			<string>default-480</string>
+			<string>Default-480h</string>
 			<key>UILaunchImageOrientation</key>
 			<string>Portrait</string>
 			<key>UILaunchImageSize</key>
