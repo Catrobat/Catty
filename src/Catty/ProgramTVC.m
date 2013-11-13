@@ -41,6 +41,7 @@
 #import "ScenePresenterViewController.h"
 #import "FileManager.h"
 #import "UIColor+CatrobatUIColorExtensions.h"
+#import "LevelUpdateDelegate.h"
 
 // constraints and default values
 #define kDefaultProgramName NSLocalizedString(@"New Program",@"Default name for new programs") // XXX: BTW: are there any restrictions or limits for the program name???
@@ -89,6 +90,7 @@
 
     self.title = _program.header.programName;
     self.isNewProgram = YES;
+    [self.delegate addLevel:self.program.header.programName];
     [Util setLastProgram:_program.header.programName];
   }
   return _program;
@@ -115,35 +117,36 @@
   return object;
 }
 
+// TODO: outsource to new ProgramManager class
 - (BOOL)loadProgram:(ProgramLoadingInfo*)loadingInfo
 {
-  NSDebug(@"Try to load project '%@'", loadingInfo.visibleName);
-  NSDebug(@"Path: %@", loadingInfo.basePath);
-  NSString *xmlPath = [NSString stringWithFormat:@"%@", loadingInfo.basePath];
-  NSDebug(@"XML-Path: %@", xmlPath);
-  Program *program = [[[Parser alloc] init] generateObjectForLevel:[xmlPath stringByAppendingFormat:@"%@", kProgramCodeFileName]];
-
-  if (! program)
-    return NO;
-
-  NSDebug(@"ProjectResolution: width/height:  %f / %f", program.header.screenWidth.floatValue, program.header.screenHeight.floatValue);
-
-  // setting effect
-  for (SpriteObject *sprite in program.objectList)
-  {
-    //sprite.spriteManagerDelegate = self;
-    //sprite.broadcastWaitDelegate = self.broadcastWaitHandler;
-
-    // TODO: change!
-    for (Script *script in sprite.scriptList) {
-      for (Brick *brick in script.brickList) {
-        brick.object = sprite;
-      }
+    NSDebug(@"Try to load project '%@'", loadingInfo.visibleName);
+    NSDebug(@"Path: %@", loadingInfo.basePath);
+    NSString *xmlPath = [NSString stringWithFormat:@"%@", loadingInfo.basePath];
+    NSDebug(@"XML-Path: %@", xmlPath);
+    Program *program = [[[Parser alloc] init] generateObjectForLevel:[xmlPath stringByAppendingFormat:@"%@", kProgramCodeFileName]];
+    
+    if (! program)
+        return NO;
+    
+    NSDebug(@"ProjectResolution: width/height:  %f / %f", program.header.screenWidth.floatValue, program.header.screenHeight.floatValue);
+    
+    // setting effect
+    for (SpriteObject *sprite in program.objectList)
+    {
+        //sprite.spriteManagerDelegate = self;
+        //sprite.broadcastWaitDelegate = self.broadcastWaitHandler;
+        
+        // TODO: change!
+        for (Script *script in sprite.scriptList) {
+            for (Brick *brick in script.brickList) {
+                brick.object = sprite;
+            }
+        }
     }
-  }
-  self.program = program;
-  [Util setLastProgram:self.program.header.programName];
-  return YES;
+    self.program = program;
+    [Util setLastProgram:self.program.header.programName];
+    return YES;
 }
 
 - (id)initWithStyle:(UITableViewStyle)style
@@ -170,8 +173,9 @@
 
 - (void)viewWillDisappear:(BOOL)animated
 {
-  if (self.isNewProgram)
-    [self.program saveToDisk];
+    if (self.isNewProgram) {
+        [self.program saveToDisk];
+    }
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -181,20 +185,19 @@
 
 - (void)viewDidLoad
 {
-  [super viewDidLoad];
-
-  // Uncomment the following line to preserve selection between presentations.
-  // self.clearsSelectionOnViewWillAppear = NO;
-
-  [self initTableView];
-  //[TableUtil initNavigationItem:self.navigationItem withTitle:NSLocalizedString(@"New Programs", nil)];
-
-  // just to ensure
-  if (self.navigationItem && self.program.header)
-    self.navigationItem.title = self.program.header.programName;
-  self.title = self.program.header.programName;
-
-  [self setupToolBar];
+    [super viewDidLoad];
+    
+    // Uncomment the following line to preserve selection between presentations.
+    // self.clearsSelectionOnViewWillAppear = NO;
+    
+    [self initTableView];
+    //[TableUtil initNavigationItem:self.navigationItem withTitle:NSLocalizedString(@"New Programs", nil)];
+    
+    // just to ensure
+    if (self.navigationItem && self.program.header)
+        self.navigationItem.title = self.program.header.programName;
+    self.title = self.program.header.programName;
+    [self setupToolBar];
 }
 
 #pragma marks init
@@ -328,7 +331,7 @@
     NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
     if ([segue.identifier isEqualToString:toObjectSegueID]) {
       if ([destController isKindOfClass:[ObjectTVC class]]) {
-        ObjectTVC* tvc = (ObjectTVC*) destController;
+        ObjectTVC *tvc = (ObjectTVC*) destController;
         if ([tvc respondsToSelector:@selector(setObject:)]) {
           SpriteObject* object = [self.program.objectList objectAtIndex:(kBackgroundIndex + indexPath.section + indexPath.row)];
           [destController performSelector:@selector(setObject:) withObject:object];
@@ -386,49 +389,52 @@
 #pragma mark - UIAlertViewDelegate Handlers
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
-  if (alertView.tag == kRenameAlertViewTag) {
-    // OK button
-    if (buttonIndex == 1) {
-      NSString* input = [[alertView textFieldAtIndex:0] text];
-      if ([input isEqualToString:self.program.header.programName])
-        return;
+    if (alertView.tag == kRenameAlertViewTag) {
+        // OK button
+        if (buttonIndex == 1) {
+            NSString* input = [[alertView textFieldAtIndex:0] text];
+            if ([input isEqualToString:self.program.header.programName])
+                return;
+            
+            // FIXME: URGENT!! check, filter and validate new program name already exists here
+            
+            if ([Program programExists:input]) {
+                [self showWarningExistingProgramNameActionSheet];
+                return;
+            }
+            
+            if ((! [input length]) || (! self.program.header)) {
+                [self showWarningInvalidProgramNameActionSheet];
+                return;
+            }
+            
+            NSString *oldPath = [self.program projectPath];
+            if (self.navigationItem)
+                self.navigationItem.title = input;
 
-      // FIXME: URGENT!! check, filter and validate new program name already exists here
+            [self.delegate renameOldLevelName:self.program.header.programName ToNewLevelName:input];
+            self.program.header.programName = self.title = input;
+            NSString *newPath = [self.program projectPath];
+            [[[FileManager alloc] init] moveExistingFileOrDirectoryAtPath:oldPath ToPath:newPath];
+            [Util setLastProgram:input];
 
-      if ([Program programExists:input]) {
-        [self showWarningExistingProgramNameActionSheet];
-        return;
-      }
-
-      if ((! [input length]) || (! self.program.header)) {
-        [self showWarningInvalidProgramNameActionSheet];
-        return;
-      }
-
-      NSString *oldPath = [self.program projectPath];
-      if (self.navigationItem)
-        self.navigationItem.title = input;
-      self.program.header.programName = self.title = input;
-      NSString *newPath = [self.program projectPath];
-      [[[FileManager alloc] init] moveExistingFileOrDirectoryAtPath:oldPath ToPath:newPath];
-      [Util setLastProgram:input];
-      // TODO: update header in code.xml...
-//      [self.program saveToDisk];
+            // TODO: update header in code.xml...
+            //      [self.program saveToDisk];
+        }
+    } else if (alertView.tag == kNewObjectAlertViewTag) {
+        // OK button
+        if (buttonIndex == 1) {
+            NSString* input = [[alertView textFieldAtIndex:0] text];
+            if ([input length]) {
+                [self.program.objectList addObject:[self createObjectWithName:input]];
+                NSInteger numberOfRowsInLastSection = [self tableView:self.tableView numberOfRowsInSection:kObjectIndex];
+                NSIndexPath *indexPath = [NSIndexPath indexPathForRow:(numberOfRowsInLastSection - 1) inSection:kObjectIndex];
+                [self.tableView insertRowsAtIndexPaths:@[indexPath]
+                                      withRowAnimation:UITableViewRowAnimationFade];
+            } else
+                [self showWarningInvalidObjectNameActionSheet];
+        }
     }
-  } else if (alertView.tag == kNewObjectAlertViewTag) {
-    // OK button
-    if (buttonIndex == 1) {
-      NSString* input = [[alertView textFieldAtIndex:0] text];
-      if ([input length]) {
-        [self.program.objectList addObject:[self createObjectWithName:input]];
-        NSInteger numberOfRowsInLastSection = [self tableView:self.tableView numberOfRowsInSection:kObjectIndex];
-        NSIndexPath *indexPath = [NSIndexPath indexPathForRow:(numberOfRowsInLastSection - 1) inSection:kObjectIndex];
-        [self.tableView insertRowsAtIndexPaths:@[indexPath]
-                              withRowAnimation:UITableViewRowAnimationFade];
-      } else
-        [self showWarningInvalidObjectNameActionSheet];
-    }
-  }
 }
 
 //------------------------------------------------------------------------------------------------------------

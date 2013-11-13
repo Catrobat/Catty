@@ -32,9 +32,9 @@
 #import "CatrobatImageCell.h"
 #import "Logger.h"
 #import "SegueDefines.h"
+#import "LevelUpdateDelegate.h"
 
-
-@interface MyProgramsViewController ()
+@interface MyProgramsViewController () <LevelUpdateDelegate>
 @property (nonatomic, strong) NSMutableArray *levelLoadingInfos;
 @end
 
@@ -113,6 +113,46 @@
     }
 }
 
+- (void)addLevel:(NSString*)levelName
+{
+    NSString *basePath = [Program basePath];
+
+    NSLog(@"test..");
+    // check if level already exists, then update
+    BOOL exists = NO;
+    for (ProgramLoadingInfo *info in self.levelLoadingInfos) {
+        if ([info.visibleName isEqualToString:levelName])
+            exists = YES;
+    }
+    // add if not exists
+    if (! exists) {
+        ProgramLoadingInfo *info = [[ProgramLoadingInfo alloc] init];
+        info.basePath = [NSString stringWithFormat:@"%@%@/", basePath, levelName];
+        info.visibleName = levelName;
+        NSLog(@"Adding level: %@", info.basePath);
+        [self.levelLoadingInfos addObject:info];
+
+        // create new cell
+        NSInteger numberOfRowsInLastSection = [self tableView:self.tableView numberOfRowsInSection:0];
+        NSIndexPath *indexPath = [NSIndexPath indexPathForRow:(numberOfRowsInLastSection - 1) inSection:0];
+        [self.tableView insertRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationNone];
+    }
+}
+
+- (void)renameOldLevelName:(NSString*)oldLevelName ToNewLevelName:(NSString*)newLevelName
+{
+    NSString *basePath = [Program basePath];
+
+    // check if level already exists, then update
+    for (ProgramLoadingInfo *info in self.levelLoadingInfos) {
+        if ([info.visibleName isEqualToString:oldLevelName]) {
+            info.basePath = [NSString stringWithFormat:@"%@%@/", basePath, newLevelName];
+            info.visibleName = newLevelName;
+            
+        }
+    }
+}
+
 #pragma mark - Table view data source
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
     return 1;
@@ -182,18 +222,19 @@
 #pragma mark - Segue
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    static NSString* segueToNew = kSegueToNew;
+    static NSString *segueToNew = kSegueToNew;
     if ([[segue identifier] isEqualToString:segueToNew]) {
-      if ([sender isKindOfClass:[UITableViewCell class]]) {
-        NSIndexPath *path = [self.tableView indexPathForSelectedRow];
-        NSString* programName = [[self.levelLoadingInfos objectAtIndex:path.row] visibleName];
         if ([segue.destinationViewController isKindOfClass:[ProgramTVC class]]) {
-          ProgramTVC* programTVC = (ProgramTVC*) segue.destinationViewController;
-          [programTVC loadProgram:[Util programLoadingInfoForProgramWithName:programName]];
+            ProgramTVC *programTVC = (ProgramTVC*) segue.destinationViewController;
+            programTVC.delegate = self;
+            if ([sender isKindOfClass:[UITableViewCell class]]) {
+                NSIndexPath *path = [self.tableView indexPathForSelectedRow];
+                NSString* programName = [[self.levelLoadingInfos objectAtIndex:path.row] visibleName];
+                [programTVC loadProgram:[Util programLoadingInfoForProgramWithName:programName]];
+            } else if ([sender isKindOfClass:[UIBarButtonItem class]]) {
+                // no preparation needed
+            }
         }
-      } else if ([sender isKindOfClass:[UIBarButtonItem class]]) {
-        // no preparation needed
-      }
     }
 }
 

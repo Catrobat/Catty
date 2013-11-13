@@ -20,15 +20,12 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import <UIKit/UIKit.h>
+@protocol LevelUpdateDelegate <NSObject>
 
-@class ProgramLoadingInfo;
-@protocol LevelUpdateDelegate;
+@required
 
-@interface ProgramTVC : UITableViewController
+- (void)addLevel:(NSString*)levelName;
 
-@property (nonatomic, strong) id<LevelUpdateDelegate> delegate;
-
-- (BOOL)loadProgram:(ProgramLoadingInfo*)loadingInfo;
+- (void)renameOldLevelName:(NSString*)oldLevelName ToNewLevelName:(NSString*)newLevelName;
 
 @end

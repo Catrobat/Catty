@@ -280,7 +280,6 @@
             // update view
             [super showPlaceHolder:NO];
             [self.object.lookList addObject:look];
-//            [self.tableView reloadData];
             [self hideLoadingView];
             NSInteger numberOfRowsInLastSection = [self tableView:self.tableView numberOfRowsInSection:0];
             NSIndexPath *indexPath = [NSIndexPath indexPathForRow:(numberOfRowsInLastSection - 1) inSection:0];
