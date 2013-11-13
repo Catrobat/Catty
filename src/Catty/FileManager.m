@@ -289,6 +289,7 @@
         
         NSDebug(@"path for image is: %@", storePath);
         if ([self.imageData writeToFile:storePath atomically:YES]) {
+#warning could it be possible, that this is never successful? then the connection will not be released
             [self resetImageDataAndConnection];
         }
     }
@@ -314,6 +315,8 @@
     
     [Logger logError:error];
 
+    //image-data may not be complete at this point -> another call to
+    //storeDownloadedImage in connectionDidFinishLoading
     [self storeDownloadedImage];
 }
 

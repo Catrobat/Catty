@@ -174,7 +174,6 @@
 
 - (void)loadRecentProjects
 {
-#warning TODO: program-info should be append, not overwritten
     self.data = [[NSMutableData alloc] init];
 
     NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@/%@?%@%i&%@%i", kConnectionHost, kConnectionRecent, kProgramsOffset, self.programListOffset, kProgramsLimit, self.programListLimit]];
@@ -241,7 +240,19 @@
             
             NSArray *catrobatProjects = [jsonObject valueForKey:@"CatrobatProjects"];
             
-            self.projects = [[NSMutableArray alloc] initWithCapacity:[catrobatProjects count]];
+            if (!self.projects) {
+                self.projects = [[NSMutableArray alloc] initWithCapacity:[catrobatProjects count]];
+            }
+            else {
+                //preallocate due to performance reasons
+                NSMutableArray *tmpResizedArray = [[NSMutableArray alloc] initWithCapacity:([self.projects count] + [catrobatProjects count])];
+                for (CatrobatProject *catrobatProject in self.projects) {
+                    [tmpResizedArray addObject:catrobatProject];
+                }
+                self.projects = nil;
+                self.projects = tmpResizedArray;
+            }
+            
             
             for (NSDictionary *projectDict in catrobatProjects) {
                 CatrobatProject *project = [[CatrobatProject alloc] initWithDict:projectDict andBaseUrl:information.baseURL];
@@ -288,12 +299,6 @@
 #pragma mark - scrollViewDidEndDecelerating
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
 {
-    /*
-     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"alert" message:@"hello" delegate:nil cancelButtonTitle:@"back" otherButtonTitles:nil, nil];
-     
-     [alert show];
-     */
-    
     float bottomEdge = scrollView.contentOffset.y + scrollView.frame.size.height;
     float checkPoint = scrollView.contentOffset.y + scrollView.frame.size.height * 0.6;
     
