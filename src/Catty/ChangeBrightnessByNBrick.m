@@ -42,9 +42,7 @@
         else if (brightness < 0){
             brightness = -1;
         }
-        else{
-            //brightness -= 1;
-        }
+
         Look* look = [self.object currentLook];
         UIImage* lookImage = [UIImage imageWithContentsOfFile:[self pathForLook:look]];
         

@@ -132,8 +132,9 @@
 //    [menuBtn addTarget:self action:@selector(revealMenu:) forControlEvents:UIControlEventTouchUpInside];
 //    [self.view addSubview:self.menuBtn];
 
-  [self.view addGestureRecognizer:[[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(handlePan:)]];
-  [self setUpMenuButtons];
+    [self.view addGestureRecognizer:[[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(handlePan:)]];
+    [self setUpMenuButtons];
+
    
   
     /// MenuImageBackground
@@ -351,12 +352,14 @@
     [super viewWillAppear:animated];
     [self.navigationController setNavigationBarHidden:YES animated:animated];
     self.menuOpen = NO;
+    [[UIApplication sharedApplication] setIdleTimerDisabled:YES];
 }
 
 - (void) viewWillDisappear:(BOOL)animated
 {
     [super viewWillDisappear:animated];
     [self.navigationController setNavigationBarHidden:NO animated:animated];
+    [[UIApplication sharedApplication] setIdleTimerDisabled:NO];
 }
 
 - (void) configureScene
