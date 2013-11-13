@@ -58,10 +58,10 @@
 
 @interface TestParser ()
 
-- (Look*)createCostumeFromPath:(NSString*)path withName:(NSString*)name;
-- (Program*)createDefaultLevel;
-- (SpriteObject*)createSprite:(NSString*)name withPositionX:(NSInteger)x withPositionY:(NSInteger)y withCostumes:(NSArray*)costumesArray setCostumeIndex:(NSInteger)index;
-
+//- (Look*)createCostumeFromPath:(NSString*)path withName:(NSString*)name;
+//- (Program*)createDefaultLevel;
+//- (SpriteObject*)createSprite:(NSString*)name withPositionX:(NSInteger)x withPositionY:(NSInteger)y withCostumes:(NSArray*)costumesArray setCostumeIndex:(NSInteger)index;
+//
 
 @end
 

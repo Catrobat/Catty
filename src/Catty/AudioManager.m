@@ -25,9 +25,9 @@
 #import <AVFoundation/AVFoundation.h>
 #import "CatrobatAudioPlayer.h"
 
-@interface AudioManager(){
-    NSInteger soundCounter;
-}
+@interface AudioManager()
+
+@property (nonatomic) NSInteger soundCounter;
 
 @property (nonatomic, strong) NSMutableDictionary* sounds;
 @property (nonatomic) float current_volume;
@@ -56,7 +56,7 @@ static AudioManager* sharedAudioManager = nil;
     self = [super init];
     if (self) {
     }
-    soundCounter=0;
+    self.soundCounter=0;
     self.current_volume = 1;
     return self;
 }
@@ -90,13 +90,13 @@ static AudioManager* sharedAudioManager = nil;
     [player setKey:fileName];
     [audioPlayers setObject:player forKey:fileName];
   }else{
-      soundCounter++;
+      self.soundCounter++;
       NSURL* path = [NSURL fileURLWithPath:[self pathForSound:fileName atFilePath:filePath]];
       NSError* error = nil;
       player = [[CatrobatAudioPlayer alloc] initWithContentsOfURL:path error:&error];
       NSLogError(error);
-      [player setKey:[fileName stringByAppendingString:[NSString stringWithFormat:@"%d",soundCounter]]];
-      [audioPlayers setObject:player forKey:[fileName stringByAppendingString:[NSString stringWithFormat:@"%d",soundCounter]]];
+      [player setKey:[fileName stringByAppendingString:[NSString stringWithFormat:@"%d",self.soundCounter]]];
+      [audioPlayers setObject:player forKey:[fileName stringByAppendingString:[NSString stringWithFormat:@"%d",self.soundCounter]]];
   }
 //  if ([player isPlaying]) {
 //    [player stop];

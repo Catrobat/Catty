@@ -24,7 +24,7 @@
 #import "XMLParserProtocol.h"
 #import <GLKit/GLKit.h>
 
-@interface TestParser : NSObject <XMLParserProtocol>
+@interface TestParser : NSObject 
 
 @property (strong, nonatomic) GLKBaseEffect *effect;
 @property (nonatomic, assign) float zIndex;
