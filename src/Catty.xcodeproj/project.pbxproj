@@ -34,8 +34,10 @@
 		81FAEE3C17E793F60052BB2B /* ScriptsViewCVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 81FAEE3B17E793F60052BB2B /* ScriptsViewCVC.m */; };
 		81FAEE3F17E7994B0052BB2B /* PrototypScriptCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 81FAEE3E17E7994B0052BB2B /* PrototypScriptCell.m */; };
 		9200F006182E3CA0008BF678 /* CatrobatAudioPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 9200F005182E3CA0008BF678 /* CatrobatAudioPlayer.m */; };
+		920F20C41837F27E003E9EE0 /* SaveToProjectActivity.m in Sources */ = {isa = PBXBuildFile; fileRef = 920F20C31837F27E003E9EE0 /* SaveToProjectActivity.m */; };
 		921C907B1830040A00A4F2CA /* stage_dialog_background_middle.png in Resources */ = {isa = PBXBuildFile; fileRef = 921C907A1830040A00A4F2CA /* stage_dialog_background_middle.png */; };
 		921FE2FA182F8122001D7CF6 /* CoreImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 921FE2F9182F8122001D7CF6 /* CoreImage.framework */; };
+		9220BE5E1837B9EF005B12C7 /* activity@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9220BE5D1837B9EF005B12C7 /* activity@2x.png */; };
 		B402288217329FEB004C4942 /* IfLogicBeginBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = B402288117329FEB004C4942 /* IfLogicBeginBrick.m */; };
 		B40228911732A541004C4942 /* IfLogicElseBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = B40228901732A540004C4942 /* IfLogicElseBrick.m */; };
 		B40228961732A58E004C4942 /* IfLogicEndBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = B40228951732A58E004C4942 /* IfLogicEndBrick.m */; };
@@ -273,8 +275,11 @@
 		8D1107310486CEB800E47090 /* App-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "App-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
 		9200F004182E3CA0008BF678 /* CatrobatAudioPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CatrobatAudioPlayer.h; sourceTree = "<group>"; };
 		9200F005182E3CA0008BF678 /* CatrobatAudioPlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CatrobatAudioPlayer.m; sourceTree = "<group>"; };
+		920F20C21837F27E003E9EE0 /* SaveToProjectActivity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SaveToProjectActivity.h; sourceTree = "<group>"; };
+		920F20C31837F27E003E9EE0 /* SaveToProjectActivity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SaveToProjectActivity.m; sourceTree = "<group>"; };
 		921C907A1830040A00A4F2CA /* stage_dialog_background_middle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = stage_dialog_background_middle.png; sourceTree = "<group>"; };
 		921FE2F9182F8122001D7CF6 /* CoreImage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreImage.framework; path = System/Library/Frameworks/CoreImage.framework; sourceTree = SDKROOT; };
+		9220BE5D1837B9EF005B12C7 /* activity@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "activity@2x.png"; path = "../../../activity@2x.png"; sourceTree = "<group>"; };
 		B4003030170EB50A00396DB7 /* CatrobatTableViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CatrobatTableViewController.h; sourceTree = "<group>"; };
 		B4003031170EB50A00396DB7 /* CatrobatTableViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CatrobatTableViewController.m; sourceTree = "<group>"; };
 		B402288017329FEB004C4942 /* IfLogicBeginBrick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IfLogicBeginBrick.h; sourceTree = "<group>"; };
@@ -817,6 +822,7 @@
 				C3BF74D91811452800134B77 /* stage_dialog_button_back.png */,
 				C3BF74DA1811452800134B77 /* stage_dialog_button_back_pressed.png */,
 				921C907A1830040A00A4F2CA /* stage_dialog_background_middle.png */,
+				9220BE5D1837B9EF005B12C7 /* activity@2x.png */,
 				CA8F8A0717F2417000A04C03 /* icons */,
 				816C788217D5F0420029A4E6 /* settings_bg@2x.png */,
 				B4DA23D8175E78050079B381 /* menu_icon.png */,
@@ -1410,6 +1416,8 @@
 			children = (
 				C3F1DD5A180AD1DC00E2FA45 /* ScenePresenterViewController.h */,
 				C3F1DD5B180AD1DC00E2FA45 /* ScenePresenterViewController.m */,
+				920F20C21837F27E003E9EE0 /* SaveToProjectActivity.h */,
+				920F20C31837F27E003E9EE0 /* SaveToProjectActivity.m */,
 				C3E91971180BDBBC001F2232 /* MenuButtonViewController.h */,
 				C3E91972180BDBBC001F2232 /* MenuButtonViewController.m */,
 			);
@@ -2181,6 +2189,7 @@
 				B4BCF3EA170ECE19008EDF3A /* forum@2x.png in Resources */,
 				B4BCF3EB170ECE19008EDF3A /* new.png in Resources */,
 				B4AACF4D18321D8D00445C9F /* Default-480h@2x.png in Resources */,
+				9220BE5E1837B9EF005B12C7 /* activity@2x.png in Resources */,
 				B4BCF3EC170ECE19008EDF3A /* new@2x.png in Resources */,
 				C3BF74DE1811452800134B77 /* stage_dialog_button_toggle_axis_pressed.png in Resources */,
 				B4BCF3ED170ECE19008EDF3A /* programs.png in Resources */,
@@ -2287,6 +2296,7 @@
 				CD0CCF76170CB39700B70036 /* Header.m in Sources */,
 				CD0CCF78170CB39700B70036 /* HideBrick.m in Sources */,
 				CD0CCF9A170CB39700B70036 /* Look.m in Sources */,
+				920F20C41837F27E003E9EE0 /* SaveToProjectActivity.m in Sources */,
 				CD0CCF9B170CB39700B70036 /* LoopEndBrick.m in Sources */,
 				CD0CCFA4170CB39700B70036 /* NextLookBrick.m in Sources */,
 				CD0CCFA6170CB39700B70036 /* Parser.m in Sources */,

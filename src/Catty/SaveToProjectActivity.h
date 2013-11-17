@@ -20,33 +20,13 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
+#import "Program.h"
 
-typedef enum {
-    X_ACCELERATION,
-    Y_ACCELERATION,
-    Z_ACCELERATION,
-    COMPASS_DIRECTION,
-    X_INCLINATION,
-    Y_INCLINATION,
-    OBJECT_X,
-    OBJECT_Y,
-    OBJECT_GHOSTEFFECT,
-    OBJECT_BRIGHTNESS,
-    OBJECT_SIZE,
-    OBJECT_ROTATION,
-    OBJECT_LAYER,
-    ENVIRONMENT_SOUND
-} Sensor;
+@interface SaveToProjectActivity : UIActivity
 
+@property (nonatomic,strong)NSString *path;
+@property (nonatomic,strong)UIImage *image;
 
-@interface SensorManager : NSObject
-
-+ (Sensor) sensorForString:(NSString*)sensor;
-
-+ (NSString*) stringForSensor:(Sensor)sensor;
-
-+(BOOL) isObjectSensor:(Sensor)sensor;
-
-
+-(id)initWithImagePath:(NSString *)path;
 @end

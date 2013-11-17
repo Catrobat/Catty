@@ -45,6 +45,13 @@ typedef enum {
     ROUND,
     ABS,
     PI_F,
+    MOD,
+    POW,
+    ARCSIN,
+    ARCCOS,
+    ARCTAN,
+    MAX,
+    MIN,
     TRUE_F,
     FALSE_F
 } Function;
@@ -64,9 +71,7 @@ typedef enum {
     MINUS,
     MULT,
     DIVIDE,
-    MOD,
-    POW,
-    LOGICAL_NOT
+    LOGICAL_NOT,
 } Operator;
 
 

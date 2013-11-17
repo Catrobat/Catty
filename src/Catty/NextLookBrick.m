@@ -23,6 +23,7 @@
 #import "Nextlookbrick.h"
 #import "Look.h"
 #import "ProgramDefines.h"
+#import "UIImage+CatrobatUIImageExtensions.h"
 
 @implementation NextLookBrick
 
@@ -34,7 +35,19 @@
         NSDebug(@"Performing: %@", self.description);
         Look* look = [self.object nextLook];
         UIImage* image = [UIImage imageWithContentsOfFile:[self pathForLook:look]];
-        SKTexture* texture = [SKTexture textureWithImage:image];
+        SKTexture* texture= nil;
+        if ([self.object isBackground]) {
+            texture = [SKTexture textureWithImage:image];
+            self.object.currentUIImageLook = image;
+        }
+        else{
+            CGRect newRect = [image cropRectForImage:image];
+            CGImageRef imageRef = CGImageCreateWithImageInRect(image.CGImage, newRect);
+            UIImage *newImage = [UIImage imageWithCGImage:imageRef];
+            CGImageRelease(imageRef);
+            texture = [SKTexture textureWithImage:newImage];
+            self.object.currentUIImageLook = newImage;
+        }
         self.object.currentUIImageLook = image;
         self.object.currentLookBrightness = 0;
         double xScale = self.object.xScale;

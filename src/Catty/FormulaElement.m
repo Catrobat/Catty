@@ -31,6 +31,7 @@
 #import "NSString+CatrobatNSStringExtensions.h"
 #import "Util.h"
 
+#define ARC4RANDOM_MAX 0x100000000
 
 @implementation FormulaElement
 
@@ -118,8 +119,12 @@
 {
     
     double left = 0;
+    double right = 0;
     if(self.leftChild) {
         left = [self.leftChild interpretRecursiveForSprite:sprite];
+    }
+    if (self.rightChild) {
+        right = [self.rightChild interpretRecursiveForSprite:sprite];
     }
     
     double result = 0;
@@ -152,7 +157,7 @@
         }
         case RAND: {
             
-            double right = [self.rightChild interpretRecursiveForSprite:sprite];
+//            double right = [self.rightChild interpretRecursiveForSprite:sprite];
             double minimum;
             double maximum;
             
@@ -164,9 +169,10 @@
                 maximum = left;
             }
             
-            double random = (double)rand() / RAND_MAX;
-            result = minimum + random * (maximum - minimum);
-            
+//            double random = (double)rand() / RAND_MAX;
+//            result = minimum + random * (maximum - minimum);
+            double random = (double)arc4random() / ARC4RANDOM_MAX;
+            result = minimum + random*(maximum-minimum);
 
             if ([self doubleIsInteger:minimum] && [self doubleIsInteger:maximum]
                 && !(self.rightChild.type == NUMBER && [self.rightChild.value containsString:@"."])
@@ -192,17 +198,46 @@
             result = M_PI;
             break;
         }
-            
+        case MOD: {
+            // IEEERemainder: http://msdn.microsoft.com/de-AT/library/system.math.ieeeremainder.aspx
+//                            double dividend = left;
+//                            double divisor = right;
+//                            result =  dividend - (divisor * round(dividend / divisor));
+            while (left < 0) {
+                left += right;
+            }
+            result = fmodf(left, right);
+            break;
+        }
+        case ARCSIN: {
+            result = asin([Util degreeToRadians:left]);
+        }
+        case ARCCOS: {
+            result = acos([Util degreeToRadians:left]);
+        }
+        case ARCTAN: {
+            result = atan([Util degreeToRadians:left]);
+        }
+        case POW: {
+            result = pow(left, right);
+            break;
+        }
+        case MAX: {
+            result = MAX(left, right);
+        }
+        case MIN:{
+            result = MIN(left, right);
+  
+        }
         case TRUE_F: {
             result = 1.0;
             break;
         }
-        
+            
         case FALSE_F: {
             result = 1.0;
             break;
         }
-            
         default:
             abort();
             break;
@@ -275,17 +310,6 @@
                 }
                 break;
             }
-            case MOD: {
-                // IEEERemainder: http://msdn.microsoft.com/de-AT/library/system.math.ieeeremainder.aspx
-                double dividend = left;
-                double divisor = right;
-                result =  dividend - (divisor * round(dividend / divisor));
-                break;
-            }
-            case POW: {
-                result = pow(left, right);
-                break;
-            }
 
             default:
                 abort();
@@ -295,7 +319,6 @@
     else { // unary operator
         
         double right = [self.rightChild interpretRecursiveForSprite:sprite];
-
 
         switch (operator) {
             case MINUS: {
@@ -399,13 +422,34 @@
     if([function isEqualToString:@"PI"]) {
         return PI_F;
     }
-    if([function isEqualToString:@"TRUE"]) {
-        return TRUE_F;
+    if([function isEqualToString:@"MIN"]) {
+        return MIN;
     }
-    
+    if([function isEqualToString:@"MAX"]) {
+        return MAX;
+    }
+    if([function isEqualToString:@"MOD"]) {
+        return MOD;
+    }
+    if([function isEqualToString:@"POW"]) {
+        return POW;
+    }
     if([function isEqualToString:@"FALSE"]) {
         return FALSE_F;
     }
+    if([function isEqualToString:@"TRUE"]) {
+        return TRUE_F;
+    }
+    if([function isEqualToString:@"ACOS"]) {
+        return ARCCOS;
+    }
+    if([function isEqualToString:@"ASIN"]) {
+        return ARCSIN;
+    }
+    if([function isEqualToString:@"ATAN"]) {
+        return ARCTAN;
+    }
+
     
     NSError(@"Unknown Function: %@", function);
     return -1;
@@ -448,12 +492,6 @@
     }
     if([operator isEqualToString:@"DIVIDE"]) {
         return DIVIDE;
-    }
-    if([operator isEqualToString:@"MOD"]) {
-        return MOD;
-    }
-    if([operator isEqualToString:@"POW"]) {
-        return POW;
     }
     if([operator isEqualToString:@"LOGICAL_NOT"]) {
         return LOGICAL_NOT;

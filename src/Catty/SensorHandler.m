@@ -25,6 +25,8 @@
 #import <CoreMotion/CoreMotion.h>
 #import <CoreLocation/CoreLocation.h>
 #import "Util.h"
+#import <AVFoundation/AVFoundation.h>
+#import <CoreAudio/CoreAudioTypes.h>
 
 #define kSensorUpdateInterval 0.8
 
@@ -99,6 +101,10 @@ static SensorHandler* sharedSensorHandler = nil;
             result = [self yInclination];
             NSDebug(@"Y-inclination: %f degrees", result);
             break;
+        }
+        case ENVIRONMENT_SOUND: {
+            //TODO: Implement Microphone Handling
+//            result = 0;
         }
             
         default:

@@ -83,6 +83,9 @@ NSString * const sensorStringArray[] = {
     if([sensor isEqualToString:@"OBJECT_LAYER"]) {
         return OBJECT_LAYER;
     }
+    if([sensor isEqualToString:@"ENVIRONMENT_SOUND"]) {
+        return ENVIRONMENT_SOUND;
+    }
     
     NSError(@"Unknown Sensor: %@", sensor);
     

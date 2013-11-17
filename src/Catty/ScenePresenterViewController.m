@@ -41,6 +41,7 @@
 #import <Accelerate/Accelerate.h>
 #import "UIColor+CatrobatUIColorExtensions.h"
 #import "Util.h"
+#import "SaveToProjectActivity.h"
 
 
 #define kWidthSlideMenu 100
@@ -506,6 +507,7 @@
 
 - (void)stopLevel:(UIButton *)sender
 {
+    self.skView = nil;
     [self.navigationController setToolbarHidden:NO];
     
     [self.navigationController popViewControllerAnimated:YES];
@@ -641,46 +643,57 @@
 }
 - (void)showSaveScreenshotActionSheet
 {
-  NSString *actionSheetTitle = NSLocalizedString(@"Save Screenshot to:",@"Action sheet menu title");
-  NSString *buttonSaveToCameraRoll = NSLocalizedString(@"Camera Roll",nil);
-  NSString *buttonSaveToProject = NSLocalizedString(@"Project",nil);
-  NSString *cancelTitle = NSLocalizedString(@"Cancel",nil);
-  UIActionSheet *actionSheet = [[UIActionSheet alloc]
-                                initWithTitle:actionSheetTitle
-                                delegate:self
-                                cancelButtonTitle:cancelTitle
-                                destructiveButtonTitle:nil
-                                otherButtonTitles:buttonSaveToCameraRoll, buttonSaveToProject,  nil];
-  [actionSheet showInView:self.menuView];
-}
-- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
-{
-  NSString *buttonTitle = [actionSheet buttonTitleAtIndex:buttonIndex];
-  if ([buttonTitle isEqualToString:NSLocalizedString(@"Camera Roll",nil)]) {
-    /// Write to Camera Roll
-    UIImageWriteToSavedPhotosAlbum(self.snapshotImage, nil, nil, nil);
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Screenshot saved to CameraRoll!",nil)
-                                                    message:nil
-                                                   delegate:self.menuView
-                                          cancelButtonTitle:NSLocalizedString(@"OK",nil)
-                                          otherButtonTitles:nil];
-    [alert show];
-  }
-  if ([buttonTitle isEqualToString:NSLocalizedString(@"Project",nil)]) {
+//  NSString *actionSheetTitle = NSLocalizedString(@"Save Screenshot to:",@"Action sheet menu title");
+//  NSString *buttonSaveToCameraRoll = NSLocalizedString(@"Camera Roll",nil);
+//  NSString *buttonSaveToProject = NSLocalizedString(@"Project",nil);
+//  NSString *cancelTitle = NSLocalizedString(@"Cancel",nil);
+//  UIActionSheet *actionSheet = [[UIActionSheet alloc]
+//                                initWithTitle:actionSheetTitle
+//                                delegate:self
+//                                cancelButtonTitle:cancelTitle
+//                                destructiveButtonTitle:nil
+//                                otherButtonTitles:buttonSaveToCameraRoll, buttonSaveToProject,  nil];
+//  [actionSheet showInView:self.menuView];
+    
+    UIImage *imageToShare = self.snapshotImage;
     NSString* path = [self.program projectPath];
-    NSString *pngFilePath = [NSString stringWithFormat:@"%@/manual_screenshot.png",path];
-    NSData *data = [NSData dataWithData:UIImagePNGRepresentation(self.snapshotImage)];
-    [data writeToFile:pngFilePath atomically:YES];
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Screenshot saved to Project!",nil)
-                                                    message:nil
-                                                   delegate:self.menuView
-                                          cancelButtonTitle:NSLocalizedString(@"OK",nil)
-                                          otherButtonTitles:nil];
-    [alert show];
+    NSArray *itemsToShare = @[imageToShare];
+    
+    SaveToProjectActivity *saveToProjectActivity = [[SaveToProjectActivity alloc] initWithImagePath:path];
+    NSArray *activities = @[saveToProjectActivity];
 
-  }
-
+    UIActivityViewController *activityVC = [[UIActivityViewController alloc] initWithActivityItems:itemsToShare applicationActivities:activities];
+    activityVC.excludedActivityTypes = @[UIActivityTypeAssignToContact,UIActivityTypePostToFlickr,UIActivityTypePostToFacebook,UIActivityTypePostToVimeo,UIActivityTypePostToWeibo,UIActivityTypePostToTwitter,UIActivityTypeMail]; //or whichever you don't need
+    [self presentViewController:activityVC animated:YES completion:nil];
 }
+//- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
+//{
+//  NSString *buttonTitle = [actionSheet buttonTitleAtIndex:buttonIndex];
+//  if ([buttonTitle isEqualToString:NSLocalizedString(@"Camera Roll",nil)]) {
+//    /// Write to Camera Roll
+//    UIImageWriteToSavedPhotosAlbum(self.snapshotImage, nil, nil, nil);
+//    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Screenshot saved to CameraRoll!",nil)
+//                                                    message:nil
+//                                                   delegate:self.menuView
+//                                          cancelButtonTitle:NSLocalizedString(@"OK",nil)
+//                                          otherButtonTitles:nil];
+//    [alert show];
+//  }
+//  if ([buttonTitle isEqualToString:NSLocalizedString(@"Project",nil)]) {
+//    NSString* path = [self.program projectPath];
+//    NSString *pngFilePath = [NSString stringWithFormat:@"%@/manual_screenshot.png",path];
+//    NSData *data = [NSData dataWithData:UIImagePNGRepresentation(self.snapshotImage)];
+//    [data writeToFile:pngFilePath atomically:YES];
+//    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Screenshot saved to Project!",nil)
+//                                                    message:nil
+//                                                   delegate:self.menuView
+//                                          cancelButtonTitle:NSLocalizedString(@"OK",nil)
+//                                          otherButtonTitles:nil];
+//    [alert show];
+//
+//  }
+//
+//}
 
 
 #pragma PanGestureHandler
