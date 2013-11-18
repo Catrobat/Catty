@@ -33,8 +33,15 @@
 
     return [SKAction runBlock:^{
         NSDebug(@"Performing: %@", self.description);
-        int steps = [self.steps interpretIntegerForSprite:self.object];    
-        self.object.zPosition = MAX(0, self.object.zPosition-steps);
+        CGFloat zValue = self.object.zPosition;
+        int steps = [self.steps interpretIntegerForSprite:self.object];
+        NSLog(@"%f",self.object.zPosition-steps);
+        self.object.zPosition = MAX(1, self.object.zPosition-steps);
+        for(SpriteObject *obj in self.object.program.objectList){
+            if ((obj.zPosition < zValue) && (obj.zPosition >= self.object.zPosition) && (obj != self.object)) {
+                obj.zPosition +=1;
+            }
+        }
     }];
 
 }

@@ -41,6 +41,7 @@
     if (self = [super initWithSize:size]) {
         self.program = program;
         self.backgroundColor = [UIColor whiteColor];
+        self.numberOfObjectsWithoutBackground = 0;
         [self startProgram];
     }
     return self;
@@ -54,14 +55,24 @@
 -(void)startProgram
 {
     CGFloat zPosition = 1;
+
     for (SpriteObject *obj in self.program.objectList) {
         [self addChild:obj];
+         NSLog(@"%f",zPosition);
         [obj start:zPosition];
         [obj setLook];
         [obj setProgram:self.program];
         [obj setUserInteractionEnabled:YES];
-        zPosition++;
+        if (!([obj isBackground])) {
+            zPosition++;
+            self.numberOfObjectsWithoutBackground++;
+        }
     }
+    for (SpriteObject *obj in self.program.objectList) {
+        obj.numberOfObjectsWithoutBackground = self.numberOfObjectsWithoutBackground;
+    }
+
+    
 }
 
 -(CGPoint)convertPointToScene:(CGPoint)point

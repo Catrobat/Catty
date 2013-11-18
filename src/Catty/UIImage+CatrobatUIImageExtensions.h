@@ -38,5 +38,6 @@
 
 + (UIImage*) setImage:(UIImage*)uiImage WithBrightness:(float)brightness;
 - (CGRect)cropRectForImage:(UIImage *)image;
+- (CGContextRef)createARGBBitmapContextFromImage:(CGImageRef)inImage;
 
 @end

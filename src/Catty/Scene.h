@@ -28,6 +28,7 @@
 
 
 @property(nonatomic, strong) Program* program;
+@property(nonatomic) NSInteger numberOfObjectsWithoutBackground;
 
 
 -(id) initWithSize:(CGSize)size andProgram:(Program*)program;

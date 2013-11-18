@@ -67,6 +67,8 @@
 
 @property (nonatomic,strong) Program* program;
 
+@property (nonatomic)NSInteger numberOfObjectsWithoutBackground;
+
 - (BOOL)isBackground;
 
 - (GDataXMLElement*)toXML;

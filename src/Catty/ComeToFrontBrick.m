@@ -37,17 +37,15 @@
     return ^{
         NSDebug(@"Performing: %@", self.description);
         CGFloat zValue = self.object.zPosition;
-        CGFloat maxValue = (CGFloat)[self.object.program.objectList count];
-        
+        CGFloat frontValue = self.object.numberOfObjectsWithoutBackground;
+        self.object.zPosition = frontValue;
         for(SpriteObject *obj in self.object.program.objectList){
-            if (obj.zPosition > zValue && obj.zPosition > 1) {
-                obj.zPosition = obj.zPosition - 1;
+            if((obj.zPosition > zValue) && (obj.zPosition <= frontValue) && (obj != self.object)) {
+                obj.zPosition -=1;
             }
-            
         }
-        
-        self.object.zPosition = maxValue;
-        
+
+        NSLog(@"%f",self.object.zPosition );
     };
 }
 

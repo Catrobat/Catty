@@ -34,6 +34,7 @@
 #import "FileManager.h"
 #import "GDataXMLNode.h"
 #import "UIImage+CatrobatUIImageExtensions.h"
+#import "UIDefines.h"
 
 @interface SpriteObject()
 
@@ -85,6 +86,10 @@
 - (void)setPosition:(CGPoint)position
 {
     super.position = [((Scene*)self.scene) convertPointToScene:position];
+}
+-(void)setPositionForCropping:(CGPoint)position
+{
+    super.position = position;
 }
 
 - (void)dealloc
@@ -166,10 +171,13 @@
     self.position = CGPointMake(0, 0);
     self.zRotation = 0;
     self.currentLookBrightness = 0;
-    if ([self.name isEqualToString:@"Background"])
+    if ([self isBackground]){
         self.zPosition = 0;
-    else
+    }else{
         self.zPosition = zPosition;
+    }
+        
+    
 
     for (Script *script in self.scriptList)
     {
@@ -205,7 +213,7 @@
     NSDebug(@"Touched: %@", self.name);
 
     for (UITouch *touch in touches) {
-//        CGPoint touchedPoint = [touch locationInNode:self];
+        CGPoint touchedPoint = [touch locationInNode:self];
 //        
 //        if (touchedPoint.x >= (self.xPosition - self.texture.size.width/2) && touchedPoint.x <= (self.xPosition + self.texture.size.width/2)&& touchedPoint.y >= (self.yPosition -self.texture.size.height/2) && touchedPoint.y <= (self.yPosition + self.texture.size.height/2) ) {
      
@@ -222,6 +230,8 @@
     }
     
 }
+
+
 
 
 -(void)startAndAddScript:(Script*)script completion:(dispatch_block_t)completion
@@ -254,13 +264,29 @@
 -(void)changeLook:(Look *)look
 {
     UIImage* image = [UIImage imageWithContentsOfFile: [self pathForLook:look] ];
-    
-    CGRect newRect = [image cropRectForImage:image];
-    CGImageRef imageRef = CGImageCreateWithImageInRect(image.CGImage, newRect);
-    UIImage *newImage = [UIImage imageWithCGImage:imageRef];
-    CGImageRelease(imageRef);
-    SKTexture* texture = [SKTexture textureWithImage:newImage];
-    self.currentUIImageLook = newImage;
+    SKTexture* texture = nil;
+    if ([self isBackground]) {
+        texture = [SKTexture textureWithImage:image];
+        self.currentUIImageLook = image;
+    }
+    else{
+
+        CGRect newRect = [image cropRectForImage:image];
+#warning Hack for cropping lookImages so that they have no transparent Background
+        if ((newRect.size.height <= image.size.height - 50 && newRect.size.height <= image.size.height - 50)) {
+            CGImageRef imageRef = CGImageCreateWithImageInRect(image.CGImage, newRect);
+            UIImage *newImage = [UIImage imageWithCGImage:imageRef];
+//            NSLog(@"%f,%f,%f,%f",newRect.origin.x,newRect.origin.y,newRect.size.width,newRect.size.height);
+            [self setPositionForCropping:CGPointMake(newRect.origin.x+newRect.size.width/2,self.scene.size.height-newRect.origin.y-newRect.size.height/2)];
+            CGImageRelease(imageRef);
+            texture = [SKTexture textureWithImage:newImage];
+            self.currentUIImageLook = newImage;
+        }
+        else{
+            texture = [SKTexture textureWithImage:image];
+            self.currentUIImageLook = image;
+        }
+    }
 
     double xScale = self.xScale;
     double yScale = self.yScale;
@@ -283,8 +309,8 @@
 {
     BOOL check = YES;
 #warning Fix for issue that you can set look without a brick at the start -> change if there will be hide bricks for those objects which should not appear!
-        for (Script *script in self.scriptList)
-        {
+//        for (Script *script in self.scriptList)
+//        {
 //            if ([script isKindOfClass:[StartScript class]]) {
 //                for(Brick* brick in script.brickList){
 //                    if([brick isKindOfClass:[SetLookBrick class]]) {
@@ -299,23 +325,25 @@
 //                    }
 //                }
 //            }
-            if ([script isKindOfClass:[BroadcastScript class]]) {
-                for(Brick* brick in script.brickList){
-                    if([brick isKindOfClass:[SetLookBrick class]]) {
-                        check = NO;
-                    }
-                }
-            }
+//            
+//            /// GalaxyWar needs this insert...
+//            if ([script isKindOfClass:[BroadcastScript class]]) {
+//                for(Brick* brick in script.brickList){
+//                    if([brick isKindOfClass:[SetLookBrick class]]) {
+//                        check = NO;
+//                    }
+//                }
+//            }
+//
+//            
+//        }
 
-            
-        }
 
-    
-    if(check == YES && [self.lookList count]>0){
+    if((check == YES || ([self isBackground])) && [self.lookList count]>0){
         [self changeLook:[self.lookList objectAtIndex:0]];
         
     }
-        
+    
 
 }
 
