@@ -35,7 +35,7 @@
         NSDebug(@"Performing: %@", self.description);
         CGFloat zValue = self.object.zPosition;
         int steps = [self.steps interpretIntegerForSprite:self.object];
-        NSLog(@"%f",self.object.zPosition-steps);
+        NSDebug(@"%f",self.object.zPosition-steps);
         self.object.zPosition = MAX(1, self.object.zPosition-steps);
         for(SpriteObject *obj in self.object.program.objectList){
             if ((obj.zPosition < zValue) && (obj.zPosition >= self.object.zPosition) && (obj != self.object)) {

@@ -36,7 +36,7 @@
 -(dispatch_block_t)actionBlock
 {
     return ^{
-        NSLog(@"Performing: %@", self.description);
+        NSDebug(@"Performing: %@", self.description);
         float yMov = (float)[self.yMovement interpretDoubleForSprite:self.object];
         self.object.position = CGPointMake(self.object.position.x, self.object.position.y + yMov);
     };

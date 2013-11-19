@@ -58,7 +58,7 @@
 
     for (SpriteObject *obj in self.program.objectList) {
         [self addChild:obj];
-         NSLog(@"%f",zPosition);
+         NSDebug(@"%f",zPosition);
         [obj start:zPosition];
         [obj setLook];
         [obj setProgram:self.program];

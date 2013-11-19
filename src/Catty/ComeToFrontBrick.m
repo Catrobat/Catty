@@ -45,7 +45,7 @@
             }
         }
 
-        NSLog(@"%f",self.object.zPosition );
+        NSDebug(@"%f",self.object.zPosition );
     };
 }
 
