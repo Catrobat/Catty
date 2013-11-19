@@ -296,17 +296,15 @@
     [self.navigationController popViewControllerAnimated:YES];
 }
 
+
 #pragma mark - scrollViewDidEndDecelerating
-- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
-{
-    float bottomEdge = scrollView.contentOffset.y + scrollView.frame.size.height;
-    float checkPoint = scrollView.contentOffset.y + scrollView.frame.size.height * 0.6;
-    
-    //NSDebug(@"bottom: %@, checkpoint: %@", bottomEdge, checkPoint);
-    if (bottomEdge >= scrollView.contentSize.height)
-    {
-        NSDebug(@"Reached bottom, bottom is %f, checkpoint is %f", bottomEdge, checkPoint);
+#warning not the best solution -> scrolling must stop that this event is fired. But scrollViewDidScroll gets fired too often for this procedure!
+- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
+    float checkPoint = scrollView.contentSize.height * 0.7;
+    float currentViewBottomEdge = scrollView.contentOffset.y + scrollView.frame.size.height;
         
+    if (currentViewBottomEdge >= checkPoint) {
+        NSDebug(@"Reached scroll-checkpoint for loading further projects");
         [self loadRecentProjects];
     }
 }
