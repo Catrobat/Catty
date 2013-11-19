@@ -37,8 +37,8 @@
     return ^{
         NSDebug(@"Performing: %@", self.description);
         double sizeInPercent = [self.size interpretDoubleForSprite:self.object];
-        [self.object setXScale:sizeInPercent/100.0];
-        [self.object setYScale:sizeInPercent/100.0];
+        [self.object setXScale:(sizeInPercent/100.0)];
+        [self.object setYScale:(sizeInPercent/100.0)];
     };
     
 }

@@ -206,6 +206,7 @@
         height= [TableUtil getHeightForContinueCell];
         if ([Util getScreenHeight]==kIphone4ScreenHeight) {
             height = height*kIphone4ScreenHeight/kIphone5ScreenHeight;
+            height++;
         }
     }
     else{
@@ -214,7 +215,10 @@
             height = height*kIphone4ScreenHeight/kIphone5ScreenHeight;
         }
     }
-    return height+1; // for scrolling reasons
+    if ([Util getScreenHeight]==kIphone5ScreenHeight){
+        height++;
+    }
+    return height; // for scrolling reasons
 
 }
 

@@ -30,11 +30,17 @@
 
 -(SKAction*)action
 {
-    return [SKAction runBlock:^{
+    return [SKAction runBlock:[self actionBlock]];
+}
+
+-(dispatch_block_t)actionBlock
+{
+    return ^{
         NSDebug(@"Performing: %@", self.description);
         double xMov = [self.xMovement interpretDoubleForSprite:self.object];
         self.object.position = CGPointMake(self.object.position.x+xMov, self.object.position.y);
-    }];
+
+    };
 }
 
 #pragma mark - Description

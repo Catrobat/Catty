@@ -46,14 +46,10 @@
 -(dispatch_block_t)actionBlock
 {
     return ^{
-        
         NSDebug(@"Performing: %@", self.description);
         double rad = [Util degreeToRadians:[self.degrees interpretDoubleForSprite:self.object]]/2;
         double newRad = self.object.zRotation - rad;
-        if (newRad < 0) {
-            newRad += 360;
-        }
-        self.object.zRotation = newRad;
+        [self.object setZRotation:newRad];
     };
 }
 

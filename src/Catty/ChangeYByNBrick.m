@@ -30,11 +30,16 @@
 
 -(SKAction*)action
 {    
-    return [SKAction runBlock:^{
-        NSDebug(@"Performing: %@", self.description);
-        double yMov = [self.yMovement interpretDoubleForSprite:self.object];
-        self.object.position = CGPointMake(self.object.position.x, self.object.position.y+yMov);
-    }];
+    return [SKAction runBlock:[self actionBlock]];
+}
+
+-(dispatch_block_t)actionBlock
+{
+    return ^{
+        NSLog(@"Performing: %@", self.description);
+        float yMov = (float)[self.yMovement interpretDoubleForSprite:self.object];
+        self.object.position = CGPointMake(self.object.position.x, self.object.position.y + yMov);
+    };
 }
 
 

@@ -57,6 +57,12 @@
 #import "ChangeGhostEffectByNBrick.h"
 #import "PointInDirectionBrick.h"
 #import "PlaceAtBrick.h"
+#import "HideBrick.h"
+#import "ChangeYByNBrick.h"
+#import "ChangeXByNBrick.h"
+#import "ChangeSizeByNBrick.h"
+#import "TurnLeftBrick.h"
+#import "TurnRightBrick.h"
 
 @interface BrickTests : XCTestCase
 
@@ -222,6 +228,25 @@
   XCTAssertEqual(object.hidden, NO, @"ShowBrick is not correctly calculated");
 }
 
+-(void)testHideBrick
+{
+    
+    SpriteObject* object = [[SpriteObject alloc] init];
+    object.position = CGPointMake(0, 0);
+    
+    Scene* scene = [[Scene alloc] init];
+    [scene addChild:object];
+    
+    HideBrick* brick = [[HideBrick alloc]init];
+    brick.object = object;
+    
+    dispatch_block_t action = [brick actionBlock];
+    action();
+    
+    
+    XCTAssertEqual(object.hidden, YES, @"HideBrick is not correctly calculated");
+}
+
 -(void)testSetVariableBrick
 {
 //  Program* program = [[Program alloc] init];
@@ -370,6 +395,79 @@
   
   CGPoint testPoint = CGPointMake(20, 20);
   XCTAssertEqual(object.position, testPoint, @"PlaceAtBrick is not correctly calculated");
+}
+
+-(void)testChangeSizeByNBrick
+{
+    
+    SpriteObject* object = [[SpriteObject alloc] init];
+    object.xScale = 10;
+    object.yScale = 10;
+    
+    ChangeSizeByNBrick* brick = [[ChangeSizeByNBrick alloc] init];
+    brick.object = object;
+    
+    Formula* size = [[Formula alloc] init];
+    FormulaElement* formulaTree = [[FormulaElement alloc] init];
+    formulaTree.type = NUMBER;
+    formulaTree.value = @"30";
+    size.formulaTree = formulaTree;
+    brick.size = size;
+    
+    dispatch_block_t action = [brick actionBlock];
+    
+    action();
+    
+    XCTAssertEqual([object scaleX], 1030.0f, @"X - Scale not correct");
+    XCTAssertEqual([object scaleY], 1030.0f, @"Y - Scale not correct");
+
+    
+}
+
+-(void)testTurnLeftBrick
+{
+    SpriteObject* object = [[SpriteObject alloc] init];
+    object.zRotation = 0;
+    
+    TurnLeftBrick* brick = [[TurnLeftBrick alloc] init];
+    brick.object = object;
+    
+    Formula* degrees = [[Formula alloc] init];
+    FormulaElement* formulaTree = [[FormulaElement alloc] init];
+    formulaTree.type = NUMBER;
+    formulaTree.value = @"45";
+    degrees.formulaTree = formulaTree;
+    brick.degrees = degrees;
+    
+    dispatch_block_t action = [brick actionBlock];
+    
+    action();
+    
+    XCTAssertEqual([object zRotation], (float)(22.5 * M_PI / 180), @"TurnLeftBrick not correct");
+}
+
+
+-(void)testTurnrightBrick
+{
+    SpriteObject* object = [[SpriteObject alloc] init];
+    object.zRotation = 0;
+    
+    TurnRightBrick* brick = [[TurnRightBrick alloc] init];
+    brick.object = object;
+    
+    Formula* degrees = [[Formula alloc] init];
+    FormulaElement* formulaTree = [[FormulaElement alloc] init];
+    formulaTree.type = NUMBER;
+    formulaTree.value = @"45";
+    degrees.formulaTree = formulaTree;
+    brick.degrees = degrees;
+    
+    dispatch_block_t action = [brick actionBlock];
+    
+    action();
+    
+    XCTAssertEqual([object zRotation], (float)(-22.5 * M_PI / 180), @"TurnRightBrick not correct");
+    
 }
 
 @end
