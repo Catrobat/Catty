@@ -300,6 +300,7 @@
 #pragma mark - scrollViewDidEndDecelerating
 #warning not the best solution -> scrolling must stop that this event is fired. But scrollViewDidScroll gets fired too often for this procedure!
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
+    
     float checkPoint = scrollView.contentSize.height * 0.7;
     float currentViewBottomEdge = scrollView.contentOffset.y + scrollView.frame.size.height;
         
