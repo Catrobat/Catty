@@ -211,12 +211,15 @@
         }
         case ARCSIN: {
             result = asin([Util degreeToRadians:left]);
+            break;
         }
         case ARCCOS: {
             result = acos([Util degreeToRadians:left]);
+            break;
         }
         case ARCTAN: {
             result = atan([Util degreeToRadians:left]);
+            break;
         }
         case POW: {
             result = pow(left, right);
@@ -224,9 +227,11 @@
         }
         case MAX: {
             result = MAX(left, right);
+            break;
         }
         case MIN:{
             result = MIN(left, right);
+            break;
   
         }
         case TRUE_F: {
