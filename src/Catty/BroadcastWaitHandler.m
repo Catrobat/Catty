@@ -59,26 +59,25 @@
 - (void)performBroadcastWaitForMessage:(NSString*)message
 {
 #warning look over broadcastWait
-  //NSString* queueString = [NSString stringWithFormat:@"at.tugraz.ist.%@", message];
-  //const char *queueName = [queueString cStringUsingEncoding:NSUTF8StringEncoding];
-
-  //dispatch_queue_t broadcastWaitQueue = dispatch_queue_create(queueName, DISPATCH_QUEUE_CONCURRENT);
-
-  dispatch_queue_t broadcastWaitQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0);
-  dispatch_group_t group = dispatch_group_create();
-
-  NSArray *sprites = [self.spritesForMessages objectForKey:message];
-  for (SpriteObject *sprite in sprites) {
-    if ([sprite isKindOfClass:[SpriteObject class]] == NO) {
-      NSError(@"sprite is not a SpriteObject...abort()");
-    } else {
-      dispatch_async(broadcastWaitQueue, ^{
-          [sprite performBroadcastWaitScriptWithMessage:message];
-      });
+    dispatch_queue_t broadcastWaitQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0);
+    dispatch_group_t group = dispatch_group_create();
+    //NSMutableArray *semaArray;
+    dispatch_semaphore_t sema1 = dispatch_semaphore_create(0);
+    NSArray *sprites = [self.spritesForMessages objectForKey:message];
+    for (SpriteObject *sprite in sprites) {
+      if ([sprite isKindOfClass:[SpriteObject class]] == NO) {
+        NSError(@"sprite is not a SpriteObject...abort()");
+        } else {
+            //dispatch_semaphore_t sema1 = dispatch_semaphore_create(0);
+            //[semaArray arrayByAddingObject:sema1];
+            dispatch_async(broadcastWaitQueue, ^{
+          [sprite performBroadcastWaitScriptWithMessage:message with:sema1];
+        });
+        }
     }
-  }
-  dispatch_group_async(group, broadcastWaitQueue, ^{});
-  dispatch_group_wait(group, DISPATCH_TIME_FOREVER); // Block until we're ready
+    dispatch_group_async(group, broadcastWaitQueue, ^{});
+    dispatch_semaphore_wait(sema1, DISPATCH_TIME_FOREVER);
+ // Block until we're ready
 }
 
 @end

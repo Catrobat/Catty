@@ -160,7 +160,7 @@
                 self.currentBrickIndex = [self.brickList indexOfObject:[((IfLogicBeginBrick*)brick) ifElseBrick]]+1;
             }
             if(self.currentBrickIndex == INT_MIN) {
-                abort();
+                NSError(@"The XML-Structure is wrong, please fix the project");
             }
             
             // Needs to be async because of recursion!
@@ -172,9 +172,9 @@
         else if([brick isKindOfClass:[IfLogicElseBrick class]]) {
                         
             self.currentBrickIndex = [self.brickList indexOfObject:[((IfLogicElseBrick*)brick) ifEndBrick]]+1;
-            
+
             if(self.currentBrickIndex == INT_MIN) {
-                abort();
+                NSError(@"The XML-Structure is wrong, please fix the project");
             }
             
             // Needs to be async because of recursion!

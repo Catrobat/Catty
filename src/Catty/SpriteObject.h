@@ -82,7 +82,7 @@
 - (void)broadcast:(NSString*)message;
 - (void)broadcastAndWait:(NSString*)message;
 
--(void)performBroadcastWaitScriptWithMessage:(NSString *)message;
+-(void)performBroadcastWaitScriptWithMessage:(NSString *)message with:(dispatch_semaphore_t) sema1;
 
 - (Look*)nextLook;
 
