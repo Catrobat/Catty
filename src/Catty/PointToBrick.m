@@ -26,7 +26,7 @@
 
 @implementation PointToBrick
 
-
+#define kRotationDegreeOffset 90.0
 - (SKAction*)action
 {
     
@@ -82,7 +82,7 @@
         
         NSDebug(@"Performing: %@, Degreees: (%f), Pointed Object: Position: %@", self.description, rotationDegrees, NSStringFromCGPoint(self.pointedObject.position));
         
-        rotationDegrees = [((Scene*)self.object.scene) convertDegreesToScene:rotationDegrees];
+        rotationDegrees = [((Scene*)self.object.scene) convertDegreesToScene:rotationDegrees] + kRotationDegreeOffset;
         
         self.object.zRotation = [Util degreeToRadians:rotationDegrees];
         
