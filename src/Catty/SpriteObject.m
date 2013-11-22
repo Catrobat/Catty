@@ -213,7 +213,7 @@
     NSDebug(@"Touched: %@", self.name);
 
     for (UITouch *touch in touches) {
-        CGPoint touchedPoint = [touch locationInNode:self];
+        //CGPoint touchedPoint = [touch locationInNode:self];
 //        
 //        if (touchedPoint.x >= (self.xPosition - self.texture.size.width/2) && touchedPoint.x <= (self.xPosition + self.texture.size.width/2)&& touchedPoint.y >= (self.yPosition -self.texture.size.height/2) && touchedPoint.y <= (self.yPosition + self.texture.size.height/2) ) {
      
@@ -397,7 +397,7 @@
 
 }
 
--(void)performBroadcastWaitScriptWithMessage:(NSString *)message
+-(void)performBroadcastWaitScriptWithMessage:(NSString *)message with:(dispatch_semaphore_t)sema1
 {
 
     for (Script *script in self.scriptList) {
@@ -409,6 +409,7 @@
                 [self startAndAddScript:broadcastScript completion:^{
                     [self scriptFinished:broadcastScript];
                     dispatch_semaphore_signal(sema);
+                    dispatch_semaphore_signal(sema1);
                 }];
                 dispatch_semaphore_wait(sema, DISPATCH_TIME_FOREVER);
             }

@@ -192,9 +192,6 @@
         self.menuAxisLabel = [[UILabel alloc] initWithFrame: CGRectMake(-(kPlaceOfButtons-kWidthSlideMenu),(kIphone4ScreenHeight/2)+(kContinueButtonSize/2)+(2*kMenuIPhone4GapSize)+(2*kMenuButtonSize)-10,  100, kMenuButtonSize)];
     }
 
-    
-    
-   
     self.menuBackLabel.text = NSLocalizedString(@"Back", nil);
     self.menuBackLabel.textColor = [UIColor lightGrayColor];
     self.menuBackLabel.font = [UIFont fontWithName:@"Helvetica Neue" size:(14.0)];
@@ -202,15 +199,12 @@
     [self.menuView addSubview:self.menuBackLabel];
     [self.menuView bringSubviewToFront:self.menuBackLabel];
     
-    
     self.menuRestartLabel.text = NSLocalizedString(@"Restart", nil);
     self.menuRestartLabel.textColor = [UIColor lightGrayColor];
     self.menuRestartLabel.font = [UIFont fontWithName:@"Helvetica Neue" size:(14.0)];
     self.menuRestartLabel.textAlignment = NSTextAlignmentCenter;
     [self.menuView addSubview:self.menuRestartLabel];
     [self.menuView bringSubviewToFront:self.menuRestartLabel];
-    
-    
 
     self.menuContinueLabel.text = NSLocalizedString(@"Continue",nil);
     self.menuContinueLabel.textColor = [UIColor lightGrayColor];
@@ -218,7 +212,6 @@
     self.menuContinueLabel.textAlignment = NSTextAlignmentCenter;
     [self.menuView addSubview:self.menuContinueLabel];
     [self.menuView bringSubviewToFront:self.menuContinueLabel];
-    
 
     self.menuScreenshotLabel.text = NSLocalizedString(@"Screenshot",nil);
     self.menuScreenshotLabel.textColor = [UIColor lightGrayColor];
@@ -226,8 +219,6 @@
     self.menuScreenshotLabel.textAlignment = NSTextAlignmentCenter;
     [self.menuView addSubview:self.menuScreenshotLabel];
     [self.menuView bringSubviewToFront:self.menuScreenshotLabel];
-    
-    
 
     self.menuAxisLabel.text = NSLocalizedString(@"Grid",nil);
     self.menuAxisLabel.textColor = [UIColor lightGrayColor];
@@ -235,7 +226,6 @@
     self.menuAxisLabel.textAlignment = NSTextAlignmentCenter;
     [self.menuView addSubview:self.menuAxisLabel];
     [self.menuView bringSubviewToFront:self.menuAxisLabel];
-    
 }
 
 -(void)setUpMenuButtons
