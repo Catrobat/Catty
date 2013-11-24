@@ -444,7 +444,7 @@
 
 -(CGFloat)rotation
 {
-    return [((Scene*)self.scene) convertSceneToDegrees:[Util radiansToDegree:self.zRotation]];
+    return [Util radiansToDegree:self.zRotation];
 }
 
 -(CGFloat) zIndex

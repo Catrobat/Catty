@@ -31,7 +31,13 @@
 -(SKAction*)action
 {
 
-    return [SKAction runBlock:^{
+    return [SKAction runBlock:[self actionBlock]];
+
+}
+
+-(dispatch_block_t)actionBlock
+{
+    return ^{
         NSDebug(@"Performing: %@", self.description);
         CGFloat zValue = self.object.zPosition;
         int steps = [self.steps interpretIntegerForSprite:self.object];
@@ -42,9 +48,10 @@
                 obj.zPosition +=1;
             }
         }
-    }];
-
+    };
+    
 }
+
 
 #pragma mark - Description
 - (NSString*)description

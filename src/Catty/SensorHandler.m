@@ -28,12 +28,16 @@
 #import <AVFoundation/AVFoundation.h>
 #import <CoreAudio/CoreAudioTypes.h>
 
+
 #define kSensorUpdateInterval 0.8
 
 @interface SensorHandler()
 
 @property (nonatomic, strong) CMMotionManager* motionManager;
 @property (nonatomic, strong) CLLocationManager* locationManager;
+@property (nonatomic,strong) AVAudioRecorder* recorder;
+@property (nonatomic,strong) NSTimer* levelTimer;
+@property (nonatomic) CGFloat db;
 
 
 @end
@@ -102,9 +106,41 @@ static SensorHandler* sharedSensorHandler = nil;
             NSDebug(@"Y-inclination: %f degrees", result);
             break;
         }
-        case ENVIRONMENT_SOUND: {
-            //TODO: Implement Microphone Handling
-//            result = 0;
+        case LOUDNESS: {
+//            NSArray* pathComponents = [NSArray arrayWithObjects:[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)lastObject], [@"test" stringByAppendingString:@".m4a"], nil];
+//            
+//            NSURL* outputFileUrl = [NSURL fileURLWithPathComponents:pathComponents];
+//            
+//            AVAudioSession* session = [AVAudioSession sharedInstance];
+//            [session setCategory:AVAudioSessionCategoryPlayAndRecord error:nil];
+//            
+//            NSMutableDictionary* recordSetting = [[NSMutableDictionary alloc]init];
+//            
+//            [recordSetting setValue:[NSNumber numberWithInt:kAudioFormatMPEG4AAC] forKey:AVFormatIDKey];
+//            
+//            [recordSetting setValue:[NSNumber numberWithFloat:44100.0] forKey:AVSampleRateKey];
+//            
+//            [recordSetting setValue:[NSNumber numberWithInt:2] forKey:AVNumberOfChannelsKey];
+//            
+//            self.recorder = [[AVAudioRecorder alloc]initWithURL:outputFileUrl settings:recordSetting error:NULL];
+//            
+//            self.recorder.delegate = self;
+//            self.recorder.meteringEnabled = YES;
+//            
+//            [self.recorder prepareToRecord];
+//            
+//            
+//            [session setActive:YES error:nil];
+//            [self.recorder recordForDuration:0.1];
+//            
+//            self.db = 0;
+//            [self.recorder updateMeters];
+//             NSLog(@"%f",[self.recorder averagePowerForChannel:0]);
+//            self.db=[self.recorder averagePowerForChannel:0];
+//            [self performSelector:@selector(measure) withObject:nil afterDelay:0];
+//            result = self.db + 60;
+            
+            break;
         }
             
         default:
@@ -115,8 +151,10 @@ static SensorHandler* sharedSensorHandler = nil;
     return result;
 }
 
-
-
+-(void)measure
+{
+  [self.recorder stop];
+}
 
 - (void) stopSensors
 {

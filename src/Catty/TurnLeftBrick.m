@@ -32,13 +32,7 @@
 -(SKAction*)action
 {
 
-    return [SKAction customActionWithDuration:0.0 actionBlock:^(SKNode *node, CGFloat elapsedTime) {
-        
-        NSDebug(@"Performing: %@", self.description);
-        double rad = [Util degreeToRadians:[self.degrees interpretDoubleForSprite:self.object]]/2;
-        double newRad = self.object.zRotation + rad;
-        self.object.zRotation = newRad;
-    }];
+    return [SKAction runBlock: [self actionBlock]];
 
 }
 
@@ -46,8 +40,14 @@
 {
     return ^{
         NSDebug(@"Performing: %@", self.description);
-        double rad = [Util degreeToRadians:[self.degrees interpretDoubleForSprite:self.object]]/2;
+        double rad = [Util degreeToRadians:[self.degrees interpretDoubleForSprite:self.object]];
         double newRad = self.object.zRotation + rad;
+        if (newRad >= 2*M_PI) {
+            newRad -= 2*M_PI;
+        }
+        else if (newRad <= (- 2*M_PI)) {
+            newRad += 2*M_PI;
+        }
         self.object.zRotation = newRad;
     };
 }

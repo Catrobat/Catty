@@ -34,7 +34,13 @@
 -(SKAction*)action
 {
     NSDebug(@"Adding: %@", self.description);
-    return [SKAction runBlock:^{
+    return [SKAction runBlock:[self actionBlock]];
+
+}
+
+-(dispatch_block_t)actionBlock
+{
+    return ^{
         NSDebug(@"Performing: %@", self.description);
         CGFloat brightness = [self.brightness interpretDoubleForSprite:self.object]/100;
         if (brightness > 2) {
@@ -48,15 +54,15 @@
         }
         Look* look = [self.object currentLook];
         UIImage* lookImage = [UIImage imageWithContentsOfFile:[self pathForLook:look]];
-      
+        
         CGImageRef image = lookImage.CGImage;
         CIImage *ciImage =[ CIImage imageWithCGImage:image];
         /////
         CIContext *context = [CIContext contextWithOptions:nil];
         
         CIFilter *filter = [CIFilter filterWithName:@"CIColorControls"
-                            keysAndValues:kCIInputImageKey, ciImage, @"inputBrightness",
-                  @(brightness), nil];
+                                      keysAndValues:kCIInputImageKey, ciImage, @"inputBrightness",
+                            @(brightness), nil];
         CIImage *outputImage = [filter outputImage];
         
         // 2
@@ -80,11 +86,11 @@
         if(yScale != 1.0) {
             self.object.yScale = yScale;
         }
-
+        
         // 4
         CGImageRelease(cgimg);
         
-        }];
+    };
 }
 
 -(NSString*)pathForLook:(Look*)look
