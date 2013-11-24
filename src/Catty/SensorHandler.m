@@ -107,38 +107,38 @@ static SensorHandler* sharedSensorHandler = nil;
             break;
         }
         case LOUDNESS: {
-//            NSArray* pathComponents = [NSArray arrayWithObjects:[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)lastObject], [@"test" stringByAppendingString:@".m4a"], nil];
-//            
-//            NSURL* outputFileUrl = [NSURL fileURLWithPathComponents:pathComponents];
-//            
-//            AVAudioSession* session = [AVAudioSession sharedInstance];
-//            [session setCategory:AVAudioSessionCategoryPlayAndRecord error:nil];
-//            
-//            NSMutableDictionary* recordSetting = [[NSMutableDictionary alloc]init];
-//            
-//            [recordSetting setValue:[NSNumber numberWithInt:kAudioFormatMPEG4AAC] forKey:AVFormatIDKey];
-//            
-//            [recordSetting setValue:[NSNumber numberWithFloat:44100.0] forKey:AVSampleRateKey];
-//            
-//            [recordSetting setValue:[NSNumber numberWithInt:2] forKey:AVNumberOfChannelsKey];
-//            
-//            self.recorder = [[AVAudioRecorder alloc]initWithURL:outputFileUrl settings:recordSetting error:NULL];
-//            
-//            self.recorder.delegate = self;
-//            self.recorder.meteringEnabled = YES;
-//            
-//            [self.recorder prepareToRecord];
-//            
-//            
-//            [session setActive:YES error:nil];
-//            [self.recorder recordForDuration:0.1];
-//            
-//            self.db = 0;
-//            [self.recorder updateMeters];
-//             NSLog(@"%f",[self.recorder averagePowerForChannel:0]);
-//            self.db=[self.recorder averagePowerForChannel:0];
-//            [self performSelector:@selector(measure) withObject:nil afterDelay:0];
-//            result = self.db + 60;
+            NSArray* pathComponents = [NSArray arrayWithObjects:[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)lastObject], [@"test" stringByAppendingString:@".m4a"], nil];
+            
+            NSURL* outputFileUrl = [NSURL fileURLWithPathComponents:pathComponents];
+            
+            AVAudioSession* session = [AVAudioSession sharedInstance];
+            [session setCategory:AVAudioSessionCategoryPlayAndRecord error:nil];
+            
+            NSMutableDictionary* recordSetting = [[NSMutableDictionary alloc]init];
+            
+            [recordSetting setValue:[NSNumber numberWithInt:kAudioFormatMPEG4AAC] forKey:AVFormatIDKey];
+            
+            [recordSetting setValue:[NSNumber numberWithFloat:44100.0] forKey:AVSampleRateKey];
+            
+            [recordSetting setValue:[NSNumber numberWithInt:2] forKey:AVNumberOfChannelsKey];
+            
+            self.recorder = [[AVAudioRecorder alloc]initWithURL:outputFileUrl settings:recordSetting error:NULL];
+            
+            self.recorder.delegate = self;
+            self.recorder.meteringEnabled = YES;
+            
+            [self.recorder prepareToRecord];
+            
+            
+            [session setActive:YES error:nil];
+            [self.recorder recordForDuration:0.1];
+            
+            self.db = 0;
+            [self.recorder updateMeters];
+             NSLog(@"%f",[self.recorder averagePowerForChannel:0]);
+            self.db=[self.recorder averagePowerForChannel:0];
+            [self performSelector:@selector(measure) withObject:nil afterDelay:0];
+            result = self.db + 60;
             
             break;
         }
