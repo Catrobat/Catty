@@ -20,19 +20,11 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
+#import "Brick.h"
 
-#import <UIKit/UIKit.h>
-#import "SpriteObject.h"
-@class Script;
+@interface Brick (UnitTestingExtensions)
 
-@interface Brick : NSObject
-
-@property (nonatomic, weak) SpriteObject *object;
-
-- (id)initWithSprite:(SpriteObject*)sprite;
-
-- (NSString*)description;
-
-- (SKAction*)action;
+// Needed for unit testing
+- (dispatch_block_t)actionBlock;
 
 @end

@@ -43,37 +43,37 @@
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
-  self = [super initWithStyle:style];
-  if (self) {
-      // Custom initialization
-  }
-  return self;
+    self = [super initWithStyle:style];
+    if (self) {
+        // Custom initialization
+    }
+    return self;
 }
 
 - (void)viewDidLoad
 {
-  [super viewDidLoad];
-
-  // Uncomment the following line to preserve selection between presentations.
-  // self.clearsSelectionOnViewWillAppear = NO;
-
-  [self initTableView];
-  //[TableUtil initNavigationItem:self.navigationItem withTitle:NSLocalizedString(@"New Programs", nil)];
-
-  self.title = self.object.name;
-  self.navigationItem.title = self.object.name;
-  [self setupToolBar];
-  self.tableView.alwaysBounceVertical = NO;
+    [super viewDidLoad];
+    
+    // Uncomment the following line to preserve selection between presentations.
+    // self.clearsSelectionOnViewWillAppear = NO;
+    
+    [self initTableView];
+    //[TableUtil initNavigationItem:self.navigationItem withTitle:NSLocalizedString(@"New Programs", nil)];
+    
+    self.title = self.object.name;
+    self.navigationItem.title = self.object.name;
+    [self setupToolBar];
+    self.tableView.alwaysBounceVertical = NO;
 }
 
 #pragma marks init
 - (void)initTableView
 {
-  [self.tableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
-  self.tableView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"darkblue"]];
-  UITableViewHeaderFooterView *headerViewTemplate = [[UITableViewHeaderFooterView alloc] initWithReuseIdentifier:kTableHeaderIdentifier];
-  headerViewTemplate.contentView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"darkblue"]];
-  [self.tableView addSubview:headerViewTemplate];
+    [self.tableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
+    self.tableView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"darkblue"]];
+    UITableViewHeaderFooterView *headerViewTemplate = [[UITableViewHeaderFooterView alloc] initWithReuseIdentifier:kTableHeaderIdentifier];
+    headerViewTemplate.contentView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"darkblue"]];
+    [self.tableView addSubview:headerViewTemplate];
 }
 
 - (void)didReceiveMemoryWarning
@@ -97,129 +97,129 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-  static NSString *CellIdentifier = @"MenuCell";
-  UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
-
-  if ([cell conformsToProtocol:@protocol(CatrobatImageCell)]) {
-    UITableViewCell <CatrobatImageCell>* imageCell = (UITableViewCell <CatrobatImageCell>*)cell;
-    switch (indexPath.row) {
-      case 0:
-        imageCell.iconImageView.image = [UIImage imageNamed:@"ic_scripts"];
-        imageCell.titleLabel.text = kScriptsTitle;
-        break;
-      case 1:
-        imageCell.iconImageView.image = [UIImage imageNamed:@"ic_looks"];
-        imageCell.titleLabel.text = (self.object.isBackground ? kBackgroundsTitle : kLooksTitle);
-        break;
-      case 2:
-        imageCell.iconImageView.image = [UIImage imageNamed:@"ic_sounds"];
-        imageCell.titleLabel.text = kSoundsTitle;
-        break;
+    static NSString *CellIdentifier = @"MenuCell";
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
+    
+    if ([cell conformsToProtocol:@protocol(CatrobatImageCell)]) {
+        UITableViewCell <CatrobatImageCell>* imageCell = (UITableViewCell <CatrobatImageCell>*)cell;
+        switch (indexPath.row) {
+            case 0:
+                imageCell.iconImageView.image = [UIImage imageNamed:@"ic_scripts"];
+                imageCell.titleLabel.text = kScriptsTitle;
+                break;
+            case 1:
+                imageCell.iconImageView.image = [UIImage imageNamed:@"ic_looks"];
+                imageCell.titleLabel.text = (self.object.isBackground ? kBackgroundsTitle : kLooksTitle);
+                break;
+            case 2:
+                imageCell.iconImageView.image = [UIImage imageNamed:@"ic_sounds"];
+                imageCell.titleLabel.text = kSoundsTitle;
+                break;
+        }
     }
-  }
-  return cell;
+    return cell;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-  return [TableUtil getHeightForImageCell];
+    return [TableUtil getHeightForImageCell];
 }
 
 #pragma mark - Navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-  // Pass the selected object to the new view controller.
-  static NSString *toScriptsSegueID = kSegueToScripts;
-  static NSString *toLooksSegueID = kSegueToLooks;
-  static NSString *toSoundsSegueID = kSegueToSounds;
-  static NSString *toSceneSegueID = kSegueToScene;
-
-  UIViewController* destController = segue.destinationViewController;
-  if ([sender isKindOfClass:[UITableViewCell class]]) {
-    if (([segue.identifier isEqualToString:toScriptsSegueID] ||
-        [segue.identifier isEqualToString:toLooksSegueID] ||
-        [segue.identifier isEqualToString:toSoundsSegueID]) &&
-        [destController respondsToSelector:@selector(setObject:)]) {
-      [destController performSelector:@selector(setObject:) withObject:self.object];
-    }
-  } else if ([sender isKindOfClass:[UIBarButtonItem class]]) {
-    if ([segue.identifier isEqualToString:toSceneSegueID]) {
-        if ([destController isKindOfClass:[ScenePresenterViewController class]]) {
-            ScenePresenterViewController* scvc = (ScenePresenterViewController*) destController;
-            if ([scvc respondsToSelector:@selector(setProgram:)]) {
-               [scvc setController:(UITableViewController *)self];
-            [scvc performSelector:@selector(setProgram:) withObject:self.object.program];
+    // Pass the selected object to the new view controller.
+    static NSString *toScriptsSegueID = kSegueToScripts;
+    static NSString *toLooksSegueID = kSegueToLooks;
+    static NSString *toSoundsSegueID = kSegueToSounds;
+    static NSString *toSceneSegueID = kSegueToScene;
+    
+    UIViewController* destController = segue.destinationViewController;
+    if ([sender isKindOfClass:[UITableViewCell class]]) {
+        if (([segue.identifier isEqualToString:toScriptsSegueID] ||
+             [segue.identifier isEqualToString:toLooksSegueID] ||
+             [segue.identifier isEqualToString:toSoundsSegueID]) &&
+            [destController respondsToSelector:@selector(setObject:)]) {
+            [destController performSelector:@selector(setObject:) withObject:self.object];
         }
-      }
+    } else if ([sender isKindOfClass:[UIBarButtonItem class]]) {
+        if ([segue.identifier isEqualToString:toSceneSegueID]) {
+            if ([destController isKindOfClass:[ScenePresenterViewController class]]) {
+                ScenePresenterViewController* scvc = (ScenePresenterViewController*) destController;
+                if ([scvc respondsToSelector:@selector(setProgram:)]) {
+                    [scvc setController:(UITableViewController *)self];
+                    [scvc performSelector:@selector(setProgram:) withObject:self.object.program];
+                }
+            }
+        }
     }
-  }
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-  // Pass the selected object to the new view controller.
-  static NSString *toScriptsSegueID = kSegueToScripts;
-  static NSString *toLooksSegueID = kSegueToLooks;
-  static NSString *toSoundsSegueID = kSegueToSounds;
-
-  UITableViewCell* sender = [tableView cellForRowAtIndexPath:indexPath];
-  if (indexPath.row == 0)
-    [self performSegueWithIdentifier:toScriptsSegueID sender:sender];
-  else if (indexPath.row == 1)
-    [self performSegueWithIdentifier:toLooksSegueID sender:sender];
-  else if (indexPath.row == 2)
-    [self performSegueWithIdentifier:toSoundsSegueID sender:sender];
+    // Pass the selected object to the new view controller.
+    static NSString *toScriptsSegueID = kSegueToScripts;
+    static NSString *toLooksSegueID = kSegueToLooks;
+    static NSString *toSoundsSegueID = kSegueToSounds;
+    
+    UITableViewCell* sender = [tableView cellForRowAtIndexPath:indexPath];
+    if (indexPath.row == 0)
+        [self performSegueWithIdentifier:toScriptsSegueID sender:sender];
+    else if (indexPath.row == 1)
+        [self performSegueWithIdentifier:toLooksSegueID sender:sender];
+    else if (indexPath.row == 2)
+        [self performSegueWithIdentifier:toSoundsSegueID sender:sender];
 }
 
 #pragma mark - UIActionSheetDelegate Handlers
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
 {
-  // TODO: implement this
+    // TODO: implement this
 }
 
 - (IBAction)editObject:(id)sender
 {
-  [self showSceneActionSheet];
+    [self showSceneActionSheet];
 }
 
 #pragma mark - UIActionSheet Views
 - (void)showSceneActionSheet
 {
-  // TODO: determine whether to show delete button or not
-  //BOOL showDeleteButton = false;
-  //if (self.objectsList && self.background && [self.objectsList count] && [self.background count])
-  //showDeleteButton = true;
-  
-  UIActionSheet *edit = [[UIActionSheet alloc] initWithTitle:NSLocalizedString(@"Edit Object",nil)
-                                                    delegate:self
-                                           cancelButtonTitle:kBtnCancelTitle
-                                      destructiveButtonTitle:nil
-                                           otherButtonTitles:NSLocalizedString(@"Einstellungen",nil), nil];
-  //[edit setTag:kSceneActionSheetTag];
-  edit.actionSheetStyle = UIActionSheetStyleDefault;
-  [edit showInView:self.view];
+    // TODO: determine whether to show delete button or not
+    //BOOL showDeleteButton = false;
+    //if (self.objectsList && self.background && [self.objectsList count] && [self.background count])
+    //showDeleteButton = true;
+    
+    UIActionSheet *edit = [[UIActionSheet alloc] initWithTitle:NSLocalizedString(@"Edit Object",nil)
+                                                      delegate:self
+                                             cancelButtonTitle:kBtnCancelTitle
+                                        destructiveButtonTitle:nil
+                                             otherButtonTitles:NSLocalizedString(@"Einstellungen",nil), nil];
+    //[edit setTag:kSceneActionSheetTag];
+    edit.actionSheetStyle = UIActionSheetStyleDefault;
+    [edit showInView:self.view];
 }
 
 #pragma mark - Helper Methods
 - (void)playSceneAction:(id)sender
 {
-        [self.navigationController setToolbarHidden:YES];
+    [self.navigationController setToolbarHidden:YES];
     [self performSegueWithIdentifier:kSegueToScene sender:sender];
 }
 
 - (void)setupToolBar
 {
-  [self.navigationController setToolbarHidden:NO];
-  self.navigationController.toolbar.barStyle = UIBarStyleBlack;
-  self.navigationController.toolbar.tintColor = [UIColor orangeColor];
-  self.navigationController.toolbar.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleTopMargin;
-  UIBarButtonItem *flexItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace
-                                                                            target:nil
-                                                                            action:nil];
-  UIBarButtonItem *play = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemPlay
-                                                                        target:self
-                                                                        action:@selector(playSceneAction:)];
-  self.toolbarItems = [NSArray arrayWithObjects:flexItem, play, flexItem, nil];
+    [self.navigationController setToolbarHidden:NO];
+    self.navigationController.toolbar.barStyle = UIBarStyleBlack;
+    self.navigationController.toolbar.tintColor = [UIColor orangeColor];
+    self.navigationController.toolbar.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleTopMargin;
+    UIBarButtonItem *flexItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace
+                                                                              target:nil
+                                                                              action:nil];
+    UIBarButtonItem *play = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemPlay
+                                                                          target:self
+                                                                          action:@selector(playSceneAction:)];
+    self.toolbarItems = [NSArray arrayWithObjects:flexItem, play, flexItem, nil];
 }
 
 @end

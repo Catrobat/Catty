@@ -497,6 +497,7 @@
 		CA8F8A0917F241F700A04C03 /* ic_scripts.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ic_scripts.png; sourceTree = "<group>"; };
 		CA8F8A0A17F241F700A04C03 /* ic_sounds.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ic_sounds.png; sourceTree = "<group>"; };
 		CAC22DA31809D5730071CC5D /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
+		CACEF959184529AC00D199D8 /* Brick+UnitTestingExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Brick+UnitTestingExtensions.h"; sourceTree = "<group>"; };
 		CAEDFB7F17EF759500FDED0E /* ObjectTVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ObjectTVC.h; sourceTree = "<group>"; };
 		CAEDFB8017EF759500FDED0E /* ObjectTVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ObjectTVC.m; sourceTree = "<group>"; };
 		CAEDFB8317EFC98E00FDED0E /* AppDefines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDefines.h; sourceTree = "<group>"; };
@@ -1308,6 +1309,7 @@
 				B4D940C2170EC6A6003DDBFA /* UIColor+CatrobatUIColorExtensions */,
 				B4D940C5170EC6C6003DDBFA /* UIImage+CatrobatUIImageExtensions */,
 				CA43DD371809977A00F95B88 /* UIImageView+CatrobatUIImageViewExtensions */,
+				CACEF95C18452A8A00D199D8 /* Brick+UnitTestingExtensions */,
 			);
 			name = CustomExtensions;
 			sourceTree = "<group>";
@@ -1628,6 +1630,14 @@
 				CA7AC43B18074FD300904143 /* ic_media_pause.png */,
 			);
 			name = icons;
+			sourceTree = "<group>";
+		};
+		CACEF95C18452A8A00D199D8 /* Brick+UnitTestingExtensions */ = {
+			isa = PBXGroup;
+			children = (
+				CACEF959184529AC00D199D8 /* Brick+UnitTestingExtensions.h */,
+			);
+			name = "Brick+UnitTestingExtensions";
 			sourceTree = "<group>";
 		};
 		CD0CCE37170C9F9300B70036 /* Storyboard */ = {

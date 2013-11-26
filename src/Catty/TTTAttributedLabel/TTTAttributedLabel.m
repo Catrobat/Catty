@@ -121,7 +121,7 @@ static inline NSDictionary * NSAttributedStringAttributesFromLabel(TTTAttributed
         if (label.numberOfLines != 1) {
             lineBreakMode = CTLineBreakModeFromUILineBreakMode(UILineBreakModeWordWrap);
         } else {
-            lineBreakMode = CTLineBreakModeFromUILineBreakMode(label.lineBreakMode);
+            lineBreakMode = CTLineBreakModeFromUILineBreakMode((UILineBreakMode) label.lineBreakMode);
         }
 
         CTParagraphStyleSetting paragraphStyles[10] = {
@@ -327,13 +327,13 @@ static inline NSAttributedString * NSAttributedStringBySettingColorFromContext(N
         @synchronized(self) {
             if (_framesetter) CFRelease(_framesetter);
             if (_highlightFramesetter) CFRelease(_highlightFramesetter);
-            
+
             self.framesetter = CTFramesetterCreateWithAttributedString((__bridge CFAttributedStringRef)self.renderedAttributedText);
             self.highlightFramesetter = nil;
             _needsFramesetter = NO;
         }
     }
-    
+
     return _framesetter;
 }
 
