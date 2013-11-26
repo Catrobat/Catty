@@ -56,7 +56,7 @@
 #define kTableHeaderIdentifier @"Header"
 
 @interface ProgramTVC () <UIActionSheetDelegate, UIAlertViewDelegate, UITextFieldDelegate,
-                                                                      UINavigationBarDelegate>
+UINavigationBarDelegate>
 @property (strong, nonatomic) Program *program;
 // FIXME: only temporarily var to indicate wether this is a new empty program or loaded from local program
 //        library (levels-container), remove this after finished implementing [program saveToDisk]
@@ -70,51 +70,51 @@
 #pragma getter & setters
 - (Program*)program
 {
-  // lazy instantiation
-  if (! _program) {
-    // determine non existing program name
-    NSString *programName = kDefaultProgramName;
-    NSUInteger counter = 1; // works unless the user has not more than 2^32 programs with default name. hehe^^
-    while ([Program programExists:programName])
-      programName = [NSString stringWithFormat:@"%@ (%d)", kDefaultProgramName, counter++];
-
-    _program = [Program createNewProgramWithName:programName];
-    SpriteObject* backgroundObject = [self createObjectWithName:kBackgroundObjectName];
-    SpriteObject* firstObject = [self createObjectWithName:kDefaultObjectName];
-    // CAUTION: NEVER change order! BackgroundObject is always first object in list
-    _program.objectList = [NSMutableArray arrayWithObjects:backgroundObject, firstObject, nil];
-
-    // automatically update title
-    if (self.navigationItem && _program.header)
-      self.navigationItem.title = _program.header.programName;
-
-    self.title = _program.header.programName;
-    self.isNewProgram = YES;
-    [self.delegate addLevel:self.program.header.programName];
-    [Util setLastProgram:_program.header.programName];
-  }
-  return _program;
+    // lazy instantiation
+    if (! _program) {
+        // determine non existing program name
+        NSString *programName = kDefaultProgramName;
+        NSUInteger counter = 1; // works unless the user has not more than 2^32 programs with default name. hehe^^
+        while ([Program programExists:programName])
+            programName = [NSString stringWithFormat:@"%@ (%d)", kDefaultProgramName, counter++];
+        
+        _program = [Program createNewProgramWithName:programName];
+        SpriteObject* backgroundObject = [self createObjectWithName:kBackgroundObjectName];
+        SpriteObject* firstObject = [self createObjectWithName:kDefaultObjectName];
+        // CAUTION: NEVER change order! BackgroundObject is always first object in list
+        _program.objectList = [NSMutableArray arrayWithObjects:backgroundObject, firstObject, nil];
+        
+        // automatically update title
+        if (self.navigationItem && _program.header)
+            self.navigationItem.title = _program.header.programName;
+        
+        self.title = _program.header.programName;
+        self.isNewProgram = YES;
+        [self.delegate addLevel:self.program.header.programName];
+        [Util setLastProgram:_program.header.programName];
+    }
+    return _program;
 }
 
 - (void)setProgram:(Program*)program
 {
-  // automatically update title name
-  self.title = self.navigationItem.title = program.header.programName;
-  self.isNewProgram = NO;
-  _program = program;
+    // automatically update title name
+    self.title = self.navigationItem.title = program.header.programName;
+    self.isNewProgram = NO;
+    _program = program;
 }
 
 - (SpriteObject*)createObjectWithName:(NSString*)objectName
 {
-  // TODO: review this...
-  SpriteObject* object = [[SpriteObject alloc] init];
-  //object.originalSize;
-  //object.spriteManagerDelegate;
-  //object.broadcastWaitDelegate = self.broadcastWaitHandler;
-  object.currentLook = nil;
-  object.name = objectName;
-  object.program = self.program;
-  return object;
+    // TODO: review this...
+    SpriteObject* object = [[SpriteObject alloc] init];
+    //object.originalSize;
+    //object.spriteManagerDelegate;
+    //object.broadcastWaitDelegate = self.broadcastWaitHandler;
+    object.currentLook = nil;
+    object.name = objectName;
+    object.program = self.program;
+    return object;
 }
 
 // TODO: outsource to new ProgramManager class
@@ -125,18 +125,18 @@
     NSString *xmlPath = [NSString stringWithFormat:@"%@", loadingInfo.basePath];
     NSDebug(@"XML-Path: %@", xmlPath);
     Program *program = [[[Parser alloc] init] generateObjectForLevel:[xmlPath stringByAppendingFormat:@"%@", kProgramCodeFileName]];
-
+    
     if (! program)
         return NO;
-
+    
     NSDebug(@"ProjectResolution: width/height:  %f / %f", program.header.screenWidth.floatValue, program.header.screenHeight.floatValue);
-
+    
     // setting effect
     for (SpriteObject *sprite in program.objectList)
     {
         //sprite.spriteManagerDelegate = self;
         //sprite.broadcastWaitDelegate = self.broadcastWaitHandler;
-
+        
         // TODO: change!
         for (Script *script in sprite.scriptList) {
             for (Brick *brick in script.brickList) {
@@ -151,24 +151,24 @@
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
-  self = [super initWithStyle:style];
-  if (self) {
-    // Custom initialization
-  }
-  return self;
+    self = [super initWithStyle:style];
+    if (self) {
+        // Custom initialization
+    }
+    return self;
 }
 
 - (void)viewWillAppear:(BOOL)animated
 {
-  [super viewWillAppear:YES];
-
-// TODO: use data source for the ProgramTVC instead of reloading the whole data
-  [self.tableView reloadData];
+    [super viewWillAppear:YES];
+    
+    // TODO: use data source for the ProgramTVC instead of reloading the whole data
+    [self.tableView reloadData];
     [self.navigationController setNavigationBarHidden:NO];
     [self.navigationController setToolbarHidden:NO];
-//  [self.tableView beginUpdates];
-//  [self.tableView reloadRowsAtIndexPaths:@[indexPathOfYourCell] withRowAnimation:UITableViewRowAnimationNone];
-//  [self.tableView endUpdates];
+    //  [self.tableView beginUpdates];
+    //  [self.tableView reloadRowsAtIndexPaths:@[indexPathOfYourCell] withRowAnimation:UITableViewRowAnimationNone];
+    //  [self.tableView endUpdates];
 }
 
 - (void)viewWillDisappear:(BOOL)animated
@@ -180,7 +180,7 @@
 
 - (void)viewDidAppear:(BOOL)animated
 {
-  [super viewDidAppear:YES];
+    [super viewDidAppear:YES];
 }
 
 - (void)viewDidLoad
@@ -203,13 +203,13 @@
 #pragma marks init
 - (void)initTableView
 {
-  self.tableView.delegate = self;
-  self.tableView.dataSource = self;
-  [self.tableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
-  self.tableView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"darkblue"]];
-  UITableViewHeaderFooterView *headerViewTemplate = [[UITableViewHeaderFooterView alloc] initWithReuseIdentifier:kTableHeaderIdentifier];
-  headerViewTemplate.contentView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"darkblue"]];
-  [self.tableView addSubview:headerViewTemplate];
+    self.tableView.delegate = self;
+    self.tableView.dataSource = self;
+    [self.tableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
+    self.tableView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"darkblue"]];
+    UITableViewHeaderFooterView *headerViewTemplate = [[UITableViewHeaderFooterView alloc] initWithReuseIdentifier:kTableHeaderIdentifier];
+    headerViewTemplate.contentView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"darkblue"]];
+    [self.tableView addSubview:headerViewTemplate];
 }
 
 #pragma mark - UITableView data source
@@ -220,170 +220,170 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-  // Return the number of rows in the section.
-  switch (section) {
-    case kBackgroundIndex:
-        return kBackgroundObjects;
-    case kObjectIndex:
-        return ([self.program.objectList count] - kBackgroundObjects);
-    default:
-      return 0;
-  }
+    // Return the number of rows in the section.
+    switch (section) {
+        case kBackgroundIndex:
+            return kBackgroundObjects;
+        case kObjectIndex:
+            return ([self.program.objectList count] - kBackgroundObjects);
+        default:
+            return 0;
+    }
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-  UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ProgramCell" forIndexPath:indexPath];
-  if ([cell conformsToProtocol:@protocol(CatrobatImageCell)]) {
-    UITableViewCell <CatrobatImageCell>* imageCell = (UITableViewCell <CatrobatImageCell>*)cell;
-    SpriteObject *object = [self.program.objectList objectAtIndex:(kBackgroundIndex + indexPath.section + indexPath.row)];
-    imageCell.iconImageView.image = nil;
-    NSString *previewImagePath = [object previewImagePath];
-    if (previewImagePath) {
-      imageCell.iconImageView.image = [[UIImage alloc] initWithContentsOfFile:previewImagePath];
-      imageCell.iconImageView.contentMode = UIViewContentModeScaleAspectFit;
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ProgramCell" forIndexPath:indexPath];
+    if ([cell conformsToProtocol:@protocol(CatrobatImageCell)]) {
+        UITableViewCell <CatrobatImageCell>* imageCell = (UITableViewCell <CatrobatImageCell>*)cell;
+        SpriteObject *object = [self.program.objectList objectAtIndex:(kBackgroundIndex + indexPath.section + indexPath.row)];
+        imageCell.iconImageView.image = nil;
+        NSString *previewImagePath = [object previewImagePath];
+        if (previewImagePath) {
+            imageCell.iconImageView.image = [[UIImage alloc] initWithContentsOfFile:previewImagePath];
+            imageCell.iconImageView.contentMode = UIViewContentModeScaleAspectFit;
+        }
+        imageCell.titleLabel.text = object.name;
     }
-    imageCell.titleLabel.text = object.name;
-  }
-  return cell;
+    return cell;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-  return [TableUtil getHeightForImageCell];
+    return [TableUtil getHeightForImageCell];
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
-  // TODO: MID outsource to TableUtil
-  switch (section) {
-    case 0:
-      return 45.0;
-    case 1:
-      return 50.0;
-    default:
-      return 45.0;
-  }
+    // TODO: MID outsource to TableUtil
+    switch (section) {
+        case 0:
+            return 45.0;
+        case 1:
+            return 50.0;
+        default:
+            return 45.0;
+    }
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
-  // TODO: MID outsource to TableUtil
-  //UITableViewHeaderFooterView *headerView = [tableView dequeueReusableHeaderFooterViewWithIdentifier:kTableHeaderIdentifier];
-  // FIXME: HACK do not alloc init there. Use ReuseIdentifier instead!! But does lead to several issues...
-  UITableViewHeaderFooterView *headerView = [[UITableViewHeaderFooterView alloc] init];
-  headerView.contentView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"darkblue"]];
-
-  CGFloat height = [self tableView:self.tableView heightForHeaderInSection:section]-10.0;
-  UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(13.0f, 0.0f, 265.0f, height)];
-
-  CALayer *layer = titleLabel.layer;
-  CALayer *bottomBorder = [CALayer layer];
-  bottomBorder.borderColor = [UIColor airForceBlueColor].CGColor;
-  bottomBorder.borderWidth = 1;
-  bottomBorder.frame = CGRectMake(0, layer.frame.size.height-1, layer.frame.size.width, 1);
-  [bottomBorder setBorderColor:[UIColor airForceBlueColor].CGColor];
-  [layer addSublayer:bottomBorder];
-
-  titleLabel.textColor = [UIColor whiteColor];
-  titleLabel.tag = 1;
-  titleLabel.font = [UIFont systemFontOfSize:14.0f];
-  if (section == 0)
-    titleLabel.text = [kBackgroundTitle uppercaseString];
-  else if ([self.program.objectList count] > (kBackgroundObjects + 1))
-    titleLabel.text = [kObjectTitlePlural uppercaseString];
-  else
-    titleLabel.text = [kObjectTitleSingular uppercaseString];
-
-  titleLabel.text = [NSString stringWithFormat:@"  %@", titleLabel.text];
-  [headerView.contentView addSubview:titleLabel];
-  return headerView;
+    // TODO: MID outsource to TableUtil
+    //UITableViewHeaderFooterView *headerView = [tableView dequeueReusableHeaderFooterViewWithIdentifier:kTableHeaderIdentifier];
+    // FIXME: HACK do not alloc init there. Use ReuseIdentifier instead!! But does lead to several issues...
+    UITableViewHeaderFooterView *headerView = [[UITableViewHeaderFooterView alloc] init];
+    headerView.contentView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"darkblue"]];
+    
+    CGFloat height = [self tableView:self.tableView heightForHeaderInSection:section]-10.0;
+    UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(13.0f, 0.0f, 265.0f, height)];
+    
+    CALayer *layer = titleLabel.layer;
+    CALayer *bottomBorder = [CALayer layer];
+    bottomBorder.borderColor = [UIColor airForceBlueColor].CGColor;
+    bottomBorder.borderWidth = 1;
+    bottomBorder.frame = CGRectMake(0, layer.frame.size.height-1, layer.frame.size.width, 1);
+    [bottomBorder setBorderColor:[UIColor airForceBlueColor].CGColor];
+    [layer addSublayer:bottomBorder];
+    
+    titleLabel.textColor = [UIColor whiteColor];
+    titleLabel.tag = 1;
+    titleLabel.font = [UIFont systemFontOfSize:14.0f];
+    if (section == 0)
+        titleLabel.text = [kBackgroundTitle uppercaseString];
+    else if ([self.program.objectList count] > (kBackgroundObjects + 1))
+        titleLabel.text = [kObjectTitlePlural uppercaseString];
+    else
+        titleLabel.text = [kObjectTitleSingular uppercaseString];
+    
+    titleLabel.text = [NSString stringWithFormat:@"  %@", titleLabel.text];
+    [headerView.contentView addSubview:titleLabel];
+    return headerView;
 }
 
 // Override to support conditional editing of the table view.
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
 {
-  return ((([self.program.objectList count] - kBackgroundObjects) > kMinNumOfObjects) && (indexPath.section == 1));
+    return ((([self.program.objectList count] - kBackgroundObjects) > kMinNumOfObjects) && (indexPath.section == 1));
 }
 
 // Override to support editing the table view.
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
 {
-  if (indexPath.section == 1) {
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-      // Delete the row from the data source
-      [self.program.objectList removeObjectAtIndex:(kObjectIndex + indexPath.row)];
-      [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+    if (indexPath.section == 1) {
+        if (editingStyle == UITableViewCellEditingStyleDelete) {
+            // Delete the row from the data source
+            [self.program.objectList removeObjectAtIndex:(kObjectIndex + indexPath.row)];
+            [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+        }
     }
-  }
 }
 
 #pragma mark - Navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-  // Pass the selected object to the new view controller.
-  static NSString *toObjectSegueID = kSegueToObject;
-  static NSString *toSceneSegueID = kSegueToScene;
-
-  UIViewController *destController = segue.destinationViewController;
-  if ([sender isKindOfClass:[UITableViewCell class]]) {
-    UITableViewCell *cell = (UITableViewCell*) sender;
-    NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
-    if ([segue.identifier isEqualToString:toObjectSegueID]) {
-      if ([destController isKindOfClass:[ObjectTVC class]]) {
-        ObjectTVC *tvc = (ObjectTVC*) destController;
-        if ([tvc respondsToSelector:@selector(setObject:)]) {
-          SpriteObject* object = [self.program.objectList objectAtIndex:(kBackgroundIndex + indexPath.section + indexPath.row)];
-          [destController performSelector:@selector(setObject:) withObject:object];
+    // Pass the selected object to the new view controller.
+    static NSString *toObjectSegueID = kSegueToObject;
+    static NSString *toSceneSegueID = kSegueToScene;
+    
+    UIViewController *destController = segue.destinationViewController;
+    if ([sender isKindOfClass:[UITableViewCell class]]) {
+        UITableViewCell *cell = (UITableViewCell*) sender;
+        NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
+        if ([segue.identifier isEqualToString:toObjectSegueID]) {
+            if ([destController isKindOfClass:[ObjectTVC class]]) {
+                ObjectTVC *tvc = (ObjectTVC*) destController;
+                if ([tvc respondsToSelector:@selector(setObject:)]) {
+                    SpriteObject* object = [self.program.objectList objectAtIndex:(kBackgroundIndex + indexPath.section + indexPath.row)];
+                    [destController performSelector:@selector(setObject:) withObject:object];
+                }
+            }
         }
-      }
-    }
-  } else if ([sender isKindOfClass:[UIBarButtonItem class]]) {
-    if ([segue.identifier isEqualToString:toSceneSegueID]) {
-      if ([destController isKindOfClass:[ScenePresenterViewController class]]) {
-        ScenePresenterViewController* scvc = (ScenePresenterViewController*) destController;
-        if ([scvc respondsToSelector:@selector(setProgram:)]) {
-            [scvc setController:(UITableViewController *)self];
-          [scvc performSelector:@selector(setProgram:) withObject:self.program];
+    } else if ([sender isKindOfClass:[UIBarButtonItem class]]) {
+        if ([segue.identifier isEqualToString:toSceneSegueID]) {
+            if ([destController isKindOfClass:[ScenePresenterViewController class]]) {
+                ScenePresenterViewController* scvc = (ScenePresenterViewController*) destController;
+                if ([scvc respondsToSelector:@selector(setProgram:)]) {
+                    [scvc setController:(UITableViewController *)self];
+                    [scvc performSelector:@selector(setProgram:) withObject:self.program];
+                }
+            }
         }
-      }
     }
-  }
 }
 
 #pragma mark - IBActions
 - (IBAction)editProgram:(id)sender
 {
-  [self showSceneActionSheet];
+    [self showSceneActionSheet];
 }
 
 #pragma mark - UIActionSheetDelegate Handlers
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
 {
-  if (actionSheet.tag == kSceneActionSheetTag) {
-    // Rename button
-    if (buttonIndex == 1)
-      [self showRenameProgramAlertView];
-    // Delete button
-    if (buttonIndex == actionSheet.destructiveButtonIndex)
-    {
-      NSLog(@"Delete button pressed");
-      [self.program removeFromDisk];
-      self.program = nil;
-      [self.navigationController popViewControllerAnimated:YES];
+    if (actionSheet.tag == kSceneActionSheetTag) {
+        // Rename button
+        if (buttonIndex == 1)
+            [self showRenameProgramAlertView];
+        // Delete button
+        if (buttonIndex == actionSheet.destructiveButtonIndex)
+        {
+            NSLog(@"Delete button pressed");
+            [self.program removeFromDisk];
+            self.program = nil;
+            [self.navigationController popViewControllerAnimated:YES];
+        }
     }
-  }
-
-  // XXX: this is ugly... Why do we use ActionSheets to notify the user? -> Use UIAlertView instead
-  if (actionSheet.tag == kInvalidProgramNameWarningActionSheetTag) {
-    // OK button
-    NSLog(@"Button index was: %d", buttonIndex);
-    if (buttonIndex == 0)
-    {
-      NSLog(@"Show up object alert view again...");
-      [self showRenameProgramAlertView];
+    
+    // XXX: this is ugly... Why do we use ActionSheets to notify the user? -> Use UIAlertView instead
+    if (actionSheet.tag == kInvalidProgramNameWarningActionSheetTag) {
+        // OK button
+        NSLog(@"Button index was: %d", buttonIndex);
+        if (buttonIndex == 0)
+        {
+            NSLog(@"Show up object alert view again...");
+            [self showRenameProgramAlertView];
+        }
     }
-  }
 }
 
 #pragma mark - UIAlertViewDelegate Handlers
@@ -411,13 +411,13 @@
             NSString *oldPath = [self.program projectPath];
             if (self.navigationItem)
                 self.navigationItem.title = input;
-
+            
             [self.delegate renameOldLevelName:self.program.header.programName ToNewLevelName:input];
             self.program.header.programName = self.title = input;
             NSString *newPath = [self.program projectPath];
             [[[FileManager alloc] init] moveExistingFileOrDirectoryAtPath:oldPath ToPath:newPath];
             [Util setLastProgram:input];
-
+            
             // TODO: update header in code.xml...
             //      [self.program saveToDisk];
         }
@@ -445,90 +445,90 @@
 #pragma mark - UIAlertView Views
 - (void)showRenameProgramAlertView
 {
-  UIAlertView *renameProgramAlert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Rename program",nil)
-                                                               message:NSLocalizedString(@"Program name:",nil)
-                                                              delegate:self
-                                                     cancelButtonTitle:kBtnCancelTitle
-                                                     otherButtonTitles:kBtnOKTitle, nil];
-  [renameProgramAlert setTag:kRenameAlertViewTag];
-  renameProgramAlert.alertViewStyle = UIAlertViewStylePlainTextInput;
-  UITextField *textField = [renameProgramAlert textFieldAtIndex:0];
-  textField.placeholder = kProgramNamePlaceholder;
-
-  // populate with current program name if not default name given
-  if (! [self.program.header.programName isEqualToString: kDefaultProgramName])
-    textField.text = self.program.header.programName;
-
-  [textField setClearButtonMode:UITextFieldViewModeWhileEditing];
-  [renameProgramAlert show];
+    UIAlertView *renameProgramAlert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Rename program",nil)
+                                                                 message:NSLocalizedString(@"Program name:",nil)
+                                                                delegate:self
+                                                       cancelButtonTitle:kBtnCancelTitle
+                                                       otherButtonTitles:kBtnOKTitle, nil];
+    [renameProgramAlert setTag:kRenameAlertViewTag];
+    renameProgramAlert.alertViewStyle = UIAlertViewStylePlainTextInput;
+    UITextField *textField = [renameProgramAlert textFieldAtIndex:0];
+    textField.placeholder = kProgramNamePlaceholder;
+    
+    // populate with current program name if not default name given
+    if (! [self.program.header.programName isEqualToString: kDefaultProgramName])
+        textField.text = self.program.header.programName;
+    
+    [textField setClearButtonMode:UITextFieldViewModeWhileEditing];
+    [renameProgramAlert show];
 }
 
 - (void)showNewObjectAlertView
 {
-  UIAlertView *newObjectAlert = [[UIAlertView alloc]initWithTitle:NSLocalizedString(@"Add Object",nil)
-                                                          message:NSLocalizedString(@"Object name:",nil)
-                                                         delegate:self
-                                                cancelButtonTitle:kBtnCancelTitle
-                                                otherButtonTitles:kBtnOKTitle, nil];
-  newObjectAlert.tag = kNewObjectAlertViewTag;
-  newObjectAlert.alertViewStyle = UIAlertViewStylePlainTextInput;
-  [[newObjectAlert textFieldAtIndex:0] setClearButtonMode:UITextFieldViewModeWhileEditing];
-  [newObjectAlert show];
+    UIAlertView *newObjectAlert = [[UIAlertView alloc]initWithTitle:NSLocalizedString(@"Add Object",nil)
+                                                            message:NSLocalizedString(@"Object name:",nil)
+                                                           delegate:self
+                                                  cancelButtonTitle:kBtnCancelTitle
+                                                  otherButtonTitles:kBtnOKTitle, nil];
+    newObjectAlert.tag = kNewObjectAlertViewTag;
+    newObjectAlert.alertViewStyle = UIAlertViewStylePlainTextInput;
+    [[newObjectAlert textFieldAtIndex:0] setClearButtonMode:UITextFieldViewModeWhileEditing];
+    [newObjectAlert show];
 }
 
 #pragma mark - UIActionSheet Views
 - (void)showSceneActionSheet
 {
-  UIActionSheet *edit = [[UIActionSheet alloc] initWithTitle:NSLocalizedString(@"Edit Program",nil)
-                                                    delegate:self
-                                           cancelButtonTitle:kBtnCancelTitle
-                                      destructiveButtonTitle:kBtnDeleteTitle
-                                           otherButtonTitles:NSLocalizedString(@"Rename",nil), nil];
-  edit.tag = kSceneActionSheetTag;
-  edit.actionSheetStyle = UIActionSheetStyleDefault;
-  [edit showInView:self.view];
+    UIActionSheet *edit = [[UIActionSheet alloc] initWithTitle:NSLocalizedString(@"Edit Program",nil)
+                                                      delegate:self
+                                             cancelButtonTitle:kBtnCancelTitle
+                                        destructiveButtonTitle:kBtnDeleteTitle
+                                             otherButtonTitles:NSLocalizedString(@"Rename",nil), nil];
+    edit.tag = kSceneActionSheetTag;
+    edit.actionSheetStyle = UIActionSheetStyleDefault;
+    [edit showInView:self.view];
 }
 
 - (void)showWarningExistingProgramNameActionSheet
 {
-  UIActionSheet *warning = [[UIActionSheet alloc] initWithTitle:NSLocalizedString(@"A program with the same name already exists, try again.",nil)
-                                                       delegate:self
-                                              cancelButtonTitle:nil
-                                         destructiveButtonTitle:nil
-                                              otherButtonTitles:kBtnOKTitle, nil];
-  warning.tag = kInvalidProgramNameWarningActionSheetTag;
-  warning.actionSheetStyle = UIActionSheetStyleDefault;
-  [warning showInView:self.view];
+    UIActionSheet *warning = [[UIActionSheet alloc] initWithTitle:NSLocalizedString(@"A program with the same name already exists, try again.",nil)
+                                                         delegate:self
+                                                cancelButtonTitle:nil
+                                           destructiveButtonTitle:nil
+                                                otherButtonTitles:kBtnOKTitle, nil];
+    warning.tag = kInvalidProgramNameWarningActionSheetTag;
+    warning.actionSheetStyle = UIActionSheetStyleDefault;
+    [warning showInView:self.view];
 }
 
 - (void)showWarningInvalidProgramNameActionSheet
 {
-  UIActionSheet *warning = [[UIActionSheet alloc] initWithTitle:NSLocalizedString(@"No or invalid program name entered, try again.",nil)
-                                                       delegate:self
-                                              cancelButtonTitle:nil
-                                         destructiveButtonTitle:nil
-                                              otherButtonTitles:kBtnOKTitle, nil];
-  warning.tag = kInvalidProgramNameWarningActionSheetTag;
-  warning.actionSheetStyle = UIActionSheetStyleDefault;
-  [warning showInView:self.view];
+    UIActionSheet *warning = [[UIActionSheet alloc] initWithTitle:NSLocalizedString(@"No or invalid program name entered, try again.",nil)
+                                                         delegate:self
+                                                cancelButtonTitle:nil
+                                           destructiveButtonTitle:nil
+                                                otherButtonTitles:kBtnOKTitle, nil];
+    warning.tag = kInvalidProgramNameWarningActionSheetTag;
+    warning.actionSheetStyle = UIActionSheetStyleDefault;
+    [warning showInView:self.view];
 }
 
 - (void)showWarningInvalidObjectNameActionSheet
 {
-  UIActionSheet *warning = [[UIActionSheet alloc] initWithTitle:NSLocalizedString(@"No or invalid object name entered, aborted.",nil)
-                                                       delegate:self
-                                              cancelButtonTitle:nil
-                                         destructiveButtonTitle:nil
-                                              otherButtonTitles:kBtnOKTitle, nil];
-  warning.tag = kInvalidObjectNameWarningActionSheetTag;
-  warning.actionSheetStyle = UIActionSheetStyleDefault;
-  [warning showInView:self.view];
+    UIActionSheet *warning = [[UIActionSheet alloc] initWithTitle:NSLocalizedString(@"No or invalid object name entered, aborted.",nil)
+                                                         delegate:self
+                                                cancelButtonTitle:nil
+                                           destructiveButtonTitle:nil
+                                                otherButtonTitles:kBtnOKTitle, nil];
+    warning.tag = kInvalidObjectNameWarningActionSheetTag;
+    warning.actionSheetStyle = UIActionSheetStyleDefault;
+    [warning showInView:self.view];
 }
 
 #pragma mark - Helper Methods
 - (void)addObjectAction:(id)sender
 {
-  [self showNewObjectAlertView];
+    [self showNewObjectAlertView];
 }
 
 - (void)playSceneAction:(id)sender
@@ -539,25 +539,25 @@
 
 - (void)setupToolBar
 {
-  [self.navigationController setToolbarHidden:NO];
-  self.navigationController.toolbar.barStyle = UIBarStyleBlack;
-  self.navigationController.toolbar.tintColor = [UIColor orangeColor];
-  self.navigationController.toolbar.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleTopMargin;
-  UIBarButtonItem *flexItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace
-                                                                            target:nil
-                                                                            action:nil];
-  UIBarButtonItem *add = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd
-                                                                       target:self
-                                                                       action:@selector(addObjectAction:)];
-  UIBarButtonItem *play = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemPlay
-                                                                        target:self
-                                                                        action:@selector(playSceneAction:)];
-  // XXX: workaround for tap area problem:
-  // http://stackoverflow.com/questions/5113258/uitoolbar-unexpectedly-registers-taps-on-uibarbuttonitem-instances-even-when-tap
-  UIImageView *imageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"transparent1x1.png"]];
-  UIBarButtonItem *invisibleButton = [[UIBarButtonItem alloc] initWithCustomView:imageView];
-  self.toolbarItems = [NSArray arrayWithObjects:flexItem, invisibleButton, add, invisibleButton, flexItem,
-                       flexItem, flexItem, invisibleButton, play, invisibleButton, flexItem, nil];
+    [self.navigationController setToolbarHidden:NO];
+    self.navigationController.toolbar.barStyle = UIBarStyleBlack;
+    self.navigationController.toolbar.tintColor = [UIColor orangeColor];
+    self.navigationController.toolbar.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleTopMargin;
+    UIBarButtonItem *flexItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace
+                                                                              target:nil
+                                                                              action:nil];
+    UIBarButtonItem *add = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd
+                                                                         target:self
+                                                                         action:@selector(addObjectAction:)];
+    UIBarButtonItem *play = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemPlay
+                                                                          target:self
+                                                                          action:@selector(playSceneAction:)];
+    // XXX: workaround for tap area problem:
+    // http://stackoverflow.com/questions/5113258/uitoolbar-unexpectedly-registers-taps-on-uibarbuttonitem-instances-even-when-tap
+    UIImageView *imageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"transparent1x1.png"]];
+    UIBarButtonItem *invisibleButton = [[UIBarButtonItem alloc] initWithCustomView:imageView];
+    self.toolbarItems = [NSArray arrayWithObjects:flexItem, invisibleButton, add, invisibleButton, flexItem,
+                         flexItem, flexItem, invisibleButton, play, invisibleButton, flexItem, nil];
 }
 
 @end

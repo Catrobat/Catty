@@ -185,11 +185,6 @@
 #pragma mark - UIActionSheet Views
 - (void)showSceneActionSheet
 {
-    // TODO: determine whether to show delete button or not
-    //BOOL showDeleteButton = false;
-    //if (self.objectsList && self.background && [self.objectsList count] && [self.background count])
-    //showDeleteButton = true;
-    
     UIActionSheet *edit = [[UIActionSheet alloc] initWithTitle:NSLocalizedString(@"Edit Object",nil)
                                                       delegate:self
                                              cancelButtonTitle:kBtnCancelTitle
