@@ -20,10 +20,10 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import "ObjectTVC.h"
-#import "ObjectScriptsCVC.h"
-#import "ObjectLooksTVC.h"
-#import "ObjectSoundsTVC.h"
+#import "ObjectTableViewController.h"
+#import "ObjectScriptsCollectionViewController.h"
+#import "ObjectLooksTableViewController.h"
+#import "ObjectSoundsTableViewController.h"
 #import "SpriteObject.h"
 #import "ProgramDefines.h"
 #import "UIDefines.h"
@@ -35,11 +35,11 @@
 // identifiers
 #define kTableHeaderIdentifier @"Header"
 
-@interface ObjectTVC () <UIActionSheetDelegate>
+@interface ObjectTableViewController () <UIActionSheetDelegate>
 
 @end
 
-@implementation ObjectTVC
+@implementation ObjectTableViewController
 
 - (id)initWithStyle:(UITableViewStyle)style
 {

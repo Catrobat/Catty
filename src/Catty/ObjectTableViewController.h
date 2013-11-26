@@ -21,12 +21,9 @@
  */
 
 #import <UIKit/UIKit.h>
-#import "ProgramDefines.h"
-#import "BaseTableViewController.h"
 
 @class SpriteObject;
 
-@interface ObjectNewScriptCategoryTVC : BaseTableViewController
+@interface ObjectTableViewController : UITableViewController
 @property (strong, nonatomic) SpriteObject *object;
-@property (nonatomic) kBrickType categoryType;
 @end

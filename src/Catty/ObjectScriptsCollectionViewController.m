@@ -20,18 +20,18 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import "ObjectScriptsCVC.h"
+#import "ObjectScriptsCollectionViewController.h"
 #import "PrototypScriptCell.h"
 #import "UIDefines.h"
 #import "SpriteObject.h"
 #import "SegueDefines.h"
 #import "ScenePresenterViewController.h"
-#import "ObjectScriptCategoriesTVC.h"
+#import "ObjectScriptCategoriesTableViewController.h"
 
-@interface ObjectScriptsCVC () <UICollectionViewDelegate, UICollectionViewDelegateFlowLayout>
+@interface ObjectScriptsCollectionViewController () <UICollectionViewDelegate, UICollectionViewDelegateFlowLayout>
 @end
 
-@implementation ObjectScriptsCVC
+@implementation ObjectScriptsCollectionViewController
 
 - (void)viewDidLoad
 {
@@ -91,8 +91,8 @@
         }
       }
     } else if ([segue.identifier isEqualToString:toScriptCategoriesSegueID]) {
-      if ([destController isKindOfClass:[ObjectScriptCategoriesTVC class]]) {
-        ObjectScriptCategoriesTVC* scvc = (ObjectScriptCategoriesTVC*) destController;
+      if ([destController isKindOfClass:[ObjectScriptCategoriesTableViewController class]]) {
+        ObjectScriptCategoriesTableViewController* scvc = (ObjectScriptCategoriesTableViewController*) destController;
         if ([scvc respondsToSelector:@selector(setObject:)]) {
           [scvc performSelector:@selector(setObject:) withObject:self.object];
         }

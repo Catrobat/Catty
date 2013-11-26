@@ -21,14 +21,10 @@
  */
 
 #import <UIKit/UIKit.h>
+#import "BaseTableViewController.h"
 
-@class ProgramLoadingInfo;
-@protocol LevelUpdateDelegate;
+@class SpriteObject;
 
-@interface ProgramTVC : UITableViewController
-
-@property (nonatomic, strong) id<LevelUpdateDelegate> delegate;
-
-- (BOOL)loadProgram:(ProgramLoadingInfo*)loadingInfo;
-
+@interface ObjectScriptCategoriesTableViewController : BaseTableViewController
+@property (strong, nonatomic) SpriteObject *object;
 @end

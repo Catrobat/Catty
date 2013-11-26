@@ -20,36 +20,11 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
+#import <UIKit/UIKit.h>
+#import "BaseTableViewController.h"
 
-#import "ScriptsViewCVC.h"
-#import "PrototypScriptCell.h"
+@class SpriteObject;
 
-@interface ScriptsViewCVC ()
-
-@end
-
-@implementation ScriptsViewCVC
-
-- (void)viewDidLoad
-{
-    [super viewDidLoad];
-    
-}
-
-#pragma mark - collection view datasource
-
-
-//#pragma mark - collection view delegate
-//- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
-//{
-//  PrototypScriptCell *cell = (PrototypScriptCell *)[collectionView dequeueReusableCellWithReuseIdentifier:@"Brick" forIndexPath:indexPath];
-//  
-//  cell.leftLabel.text = @"x:";
-//  cell.rightLabel.text = @"y:";
-//  cell.backgroundColor = [UIColor blueColor];
-//  
-//  return cell;
-//}
-
-
+@interface ObjectLooksTableViewController : BaseTableViewController
+@property (strong, nonatomic) SpriteObject *object;
 @end

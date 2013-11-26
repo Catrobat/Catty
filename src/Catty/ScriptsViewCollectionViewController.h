@@ -20,11 +20,10 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
+
 #import <UIKit/UIKit.h>
-#import "BaseTableViewController.h"
 
-@class SpriteObject;
+@interface ScriptsViewCollectionViewController : UICollectionViewController
 
-@interface ObjectSoundsTVC : BaseTableViewController
-@property (strong, nonatomic) SpriteObject *object;
+
 @end

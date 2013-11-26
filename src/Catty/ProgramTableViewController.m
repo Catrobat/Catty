@@ -20,15 +20,15 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import "ProgramTVC.h"
+#import "ProgramTableViewController.h"
 #import "TableUtil.h"
-#import "ObjectTVC.h"
+#import "ObjectTableViewController.h"
 #import "SegueDefines.h"
 #import "Program.h"
 #import "Look.h"
 #import "Sound.h"
 #import "Brick.h"
-#import "ObjectTVC.h"
+#import "ObjectTableViewController.h"
 #import "CatrobatImageCell.h"
 #import "Util.h"
 #import "UIDefines.h"
@@ -55,7 +55,7 @@
 // identifiers
 #define kTableHeaderIdentifier @"Header"
 
-@interface ProgramTVC () <UIActionSheetDelegate, UIAlertViewDelegate, UITextFieldDelegate,
+@interface ProgramTableViewController () <UIActionSheetDelegate, UIAlertViewDelegate, UITextFieldDelegate,
 UINavigationBarDelegate>
 @property (strong, nonatomic) Program *program;
 // FIXME: only temporarily var to indicate wether this is a new empty program or loaded from local program
@@ -63,7 +63,7 @@ UINavigationBarDelegate>
 @property (nonatomic) BOOL isNewProgram;
 @end
 
-@implementation ProgramTVC
+@implementation ProgramTableViewController
 # pragma memory for our pointer-properties
 @synthesize program = _program;
 
@@ -162,7 +162,7 @@ UINavigationBarDelegate>
 {
     [super viewWillAppear:YES];
     
-    // TODO: use data source for the ProgramTVC instead of reloading the whole data
+    // TODO: use data source for the ProgramTableViewController instead of reloading the whole data
     [self.tableView reloadData];
     [self.navigationController setNavigationBarHidden:NO];
     [self.navigationController setToolbarHidden:NO];
@@ -330,8 +330,8 @@ UINavigationBarDelegate>
         UITableViewCell *cell = (UITableViewCell*) sender;
         NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
         if ([segue.identifier isEqualToString:toObjectSegueID]) {
-            if ([destController isKindOfClass:[ObjectTVC class]]) {
-                ObjectTVC *tvc = (ObjectTVC*) destController;
+            if ([destController isKindOfClass:[ObjectTableViewController class]]) {
+                ObjectTableViewController *tvc = (ObjectTableViewController*) destController;
                 if ([tvc respondsToSelector:@selector(setObject:)]) {
                     SpriteObject* object = [self.program.objectList objectAtIndex:(kBackgroundIndex + indexPath.section + indexPath.row)];
                     [destController performSelector:@selector(setObject:) withObject:object];

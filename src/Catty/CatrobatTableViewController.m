@@ -33,7 +33,7 @@
 #import "SegueDefines.h"
 #import "Util.h"
 #import "ScenePresenterViewController.h"
-#import "ProgramTVC.h"
+#import "ProgramTableViewController.h"
 #import "UIDefines.h"
 
 @interface CatrobatTableViewController () <UIAlertViewDelegate,
@@ -226,9 +226,9 @@
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {    
     if ([[segue identifier] isEqualToString:kSegueContinue]) {
-        ProgramTVC* programTVC = (ProgramTVC*) segue.destinationViewController;
+        ProgramTableViewController* programTableViewController = (ProgramTableViewController*) segue.destinationViewController;
         ProgramLoadingInfo* loadingInfo = [Util programLoadingInfoForProgramWithName:[Util lastProgram]];
-        BOOL success = [programTVC loadProgram:loadingInfo];
+        BOOL success = [programTableViewController loadProgram:loadingInfo];
         if (! success) {
           NSString *popuperrormessage = [NSString stringWithFormat:@"Program %@ could not be loaded!", loadingInfo.visibleName];
           UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Invalid Program"

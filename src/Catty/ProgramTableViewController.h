@@ -20,10 +20,15 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-
 #import <UIKit/UIKit.h>
 
-@interface ScriptsViewCVC : UICollectionViewController
+@class ProgramLoadingInfo;
+@protocol LevelUpdateDelegate;
 
+@interface ProgramTableViewController : UITableViewController
+
+@property (nonatomic, strong) id<LevelUpdateDelegate> delegate;
+
+- (BOOL)loadProgram:(ProgramLoadingInfo*)loadingInfo;
 
 @end
