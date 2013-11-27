@@ -119,7 +119,7 @@
 - (CGRect)cropRectForImage:(UIImage *)image {
     
     CGImageRef cgImage = image.CGImage;
-    CGContextRef context = [self createARGBBitmapContextFromImage:cgImage];
+    CGContextRef context = [self newARGBBitmapContextFromImage:cgImage];
     if (context == NULL) return CGRectZero;
     
     size_t width = CGImageGetWidth(cgImage);
@@ -156,7 +156,7 @@
     return CGRectMake(lowX, lowY, highX-lowX, highY-lowY);
 }
 
-- (CGContextRef)createARGBBitmapContextFromImage:(CGImageRef)inImage {
+- (CGContextRef)newARGBBitmapContextFromImage:(CGImageRef)inImage {
     
     CGContextRef context = NULL;
     CGColorSpaceRef colorSpace;
