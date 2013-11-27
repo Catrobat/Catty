@@ -1037,10 +1037,10 @@
 		B46B270317703F9400172837 /* CattyTests */ = {
 			isa = PBXGroup;
 			children = (
+				B46B270917703F9400172837 /* CattyTests.m */,
 				C34B44FB17F3403400624730 /* ExtensionTests */,
 				C34B44FA17F3402300624730 /* BrickTests */,
 				B46B271417703FBE00172837 /* SensorHandlerTests */,
-				B46B270917703F9400172837 /* CattyTests.m */,
 				B46B270417703F9400172837 /* Supporting Files */,
 				B496F5131775996D004BF78A /* SceneTests */,
 			);
@@ -1673,17 +1673,16 @@
 		CD0CCFDD170CB54100B70036 /* Bricks */ = {
 			isa = PBXGroup;
 			children = (
-				CD0CCFEB170CB6D200B70036 /* PlaceAtBrick */,
-				C34B44F917F1D8D700624730 /* ChangeBrightnessByNBrick */,
-				C34B44F517F1D2CF00624730 /* ClearGraphicEffectBrick */,
 				CD0CCFF7170CB8BC00B70036 /* Bricks */,
 				CD0CCFDE170CB5E300B70036 /* BroadcastBrick */,
 				CD0CCFDF170CB5EC00B70036 /* BroadcastWaitBrick */,
+				C34B44F917F1D8D700624730 /* ChangeBrightnessByNBrick */,
 				CD0CCFE0170CB5FA00B70036 /* ChangeGhostEffectByNBrick */,
 				CD0CCFE1170CB63200B70036 /* ChangeSizeByNBrick */,
 				B47068911733D6EE00EC880D /* ChangeVariableBrick */,
 				CD0CCFE2170CB63F00B70036 /* ChangeVolumeByNBrick */,
 				CD0CCFE3170CB64A00B70036 /* ChangeXYByNBrick */,
+				C34B44F517F1D2CF00624730 /* ClearGraphicEffectBrick */,
 				CD0CCFE5170CB68100B70036 /* ComeToFrontBrick */,
 				CD0CCFE7170CB6AA00B70036 /* GlideToBrick */,
 				CD0CCFE8170CB6B400B70036 /* GoNStepsBackBrick */,
@@ -1694,6 +1693,7 @@
 				B4840CAA174FAC42002DEC53 /* MoveNStepsBrick */,
 				CD0CCFEA170CB6C800B70036 /* NextLookBrick */,
 				B4826F7B174D079E00F57AE9 /* NoteBrick */,
+				CD0CCFEB170CB6D200B70036 /* PlaceAtBrick */,
 				B4D4DD3F17156A7500EEE3F8 /* PointInDirectionBrick */,
 				B40228A71732ADF8004C4942 /* PointToBrick */,
 				CD0CCFED170CB71F00B70036 /* SetBrightnessBrick */,

@@ -66,6 +66,8 @@
 #import "TurnRightBrick.h"
 #import "GoNStepsBackBrick.h"
 #import "SetBrightnessBrick.h"
+#import "MoveNStepsBrick.h"
+#import "ClearGraphicEffectBrick.h"
 
 @interface BrickTests : XCTestCase
 
@@ -478,8 +480,8 @@
 //  
 //  Formula* formula =[[Formula alloc] init];
 //  FormulaElement* formulaTree  = [[FormulaElement alloc] init];
-////  formulaTree.type = NUMBER;
-////  formulaTree.value = @"20";
+//  formulaTree.type = NUMBER;
+//  formulaTree.value = @"20";
 //  formula.formulaTree = formulaTree;
 //  
 //  UserVariable *variable = [[UserVariable alloc] init];
@@ -1273,9 +1275,10 @@
 #warning Problem with texture -> don't have a image to test
 //    SpriteObject* object = [[SpriteObject alloc] init];
 //    
-//    
 //    SetBrightnessBrick* brick = [[SetBrightnessBrick alloc] init];
 //    brick.object = object;
+//    object.texture = [SKTexture textureWithImageNamed:@"icon.png"];
+//
 //    
 //    Formula* brightness = [[Formula alloc] init];
 //    FormulaElement* formulaTree = [[FormulaElement alloc] init];
@@ -1376,6 +1379,68 @@
 //    action();
 //
 //    XCTAssertEqual([object currentLookBrightness], 0.0f, @"SetBrightnessBrick - Brightness not correct");
+}
+
+
+
+-(void)testMoveNStepsBrick
+{
+//    Program* program = [[Program alloc] init];
+//    
+//    SpriteObject* object1 = [[SpriteObject alloc] init];
+//    object1.program = program;
+//    
+//    [program.objectList addObject:object1];
+//    //[object1 setPosition:CGPointMake(20, 20)];
+//    
+//    MoveNStepsBrick* brick = [[MoveNStepsBrick alloc] init];
+//    brick.object = object1;
+//    
+//    Formula* steps = [[Formula alloc] init];
+//    FormulaElement* formulaTree = [[FormulaElement alloc] init];
+//    formulaTree.type = NUMBER;
+//    formulaTree.value = @"10";
+//    steps.formulaTree = formulaTree;
+//    brick.steps = steps;
+//    
+//    dispatch_block_t action = [brick actionBlock];
+//    action();
+//    
+//    CGPoint checkPoint = CGPointMake(30, 20);
+//    
+//    XCTAssertEqual(object1.position.x, checkPoint.x, @"MoveNSteps Brick is not correctly calculated");
+//    XCTAssertEqual(object1.position.y, checkPoint.y, @"MoveNSteps Brick is not correctly calculated");
+}
+
+-(void)testClearGraphicEffectBrick
+{
+//    SpriteObject* object = [[SpriteObject alloc] init];
+//    object.position = CGPointMake(0, 0);
+//    object.currentLook = [[Look alloc] initWithPath:[NSString stringWithFormat:@"%@/screenshot.png",[Util applicationDocumentsDirectory]]];
+//    Scene* scene = [[Scene alloc] init];
+//    [scene addChild:object];
+//    
+//    Formula* transparency =[[Formula alloc] init];
+//    FormulaElement* formulaTree  = [[FormulaElement alloc] init];
+//    formulaTree.type = NUMBER;
+//    formulaTree.value = @"20";
+//    transparency.formulaTree = formulaTree;
+//    
+//    SetGhostEffectBrick* brick = [[SetGhostEffectBrick alloc]init];
+//    brick.object = object;
+//    brick.transparency = transparency;
+//    
+//    dispatch_block_t action = [brick actionBlock];
+//    action();
+//    
+//    ClearGraphicEffectBrick* clearBrick = [[ClearGraphicEffectBrick alloc]init];
+//    clearBrick.object = object;
+//    
+//    action = [clearBrick actionBlock];
+//    action();
+//    
+//    
+//    XCTAssertEqual(object.alpha, 1.0f, @"ClearGraphic is not correctly calculated");
 }
 
 @end

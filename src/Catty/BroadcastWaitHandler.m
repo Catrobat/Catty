@@ -58,25 +58,31 @@
 
 - (void)performBroadcastWaitForMessage:(NSString*)message
 {
-#warning look over broadcastWait
+
     dispatch_queue_t broadcastWaitQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0);
     dispatch_group_t group = dispatch_group_create();
-    //NSMutableArray *semaArray;
-    dispatch_semaphore_t sema1 = dispatch_semaphore_create(0);
     NSArray *sprites = [self.spritesForMessages objectForKey:message];
+    dispatch_semaphore_t sema;
+    sema = dispatch_semaphore_create(sprites.count);
     for (SpriteObject *sprite in sprites) {
       if ([sprite isKindOfClass:[SpriteObject class]] == NO) {
         NSError(@"sprite is not a SpriteObject...abort()");
         } else {
-            //dispatch_semaphore_t sema1 = dispatch_semaphore_create(0);
-            //[semaArray arrayByAddingObject:sema1];
             dispatch_async(broadcastWaitQueue, ^{
-          [sprite performBroadcastWaitScriptWithMessage:message with:sema1];
+          [sprite performBroadcastWaitScriptWithMessage:message with:sema];
         });
+            dispatch_semaphore_wait(sema, DISPATCH_TIME_FOREVER);
         }
     }
+    
+    for (SpriteObject *sprite in sprites) {
+        dispatch_semaphore_wait(sema, DISPATCH_TIME_FOREVER);
+    }
     dispatch_group_async(group, broadcastWaitQueue, ^{});
-    dispatch_semaphore_wait(sema1, DISPATCH_TIME_FOREVER);
+
+    for (SpriteObject *sprite in sprites) {
+        dispatch_semaphore_signal(sema);
+    }
  // Block until we're ready
 }
 
