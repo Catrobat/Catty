@@ -35,7 +35,12 @@
 
 -(SKAction*)action
 {
-    return [SKAction runBlock:^{
+    return [SKAction runBlock:[self actionBlock]];
+}
+
+-(dispatch_block_t)actionBlock
+{
+    return ^{
         
         double steps = [self.steps interpretDoubleForSprite:self.object];
         double rotation = [self.object rotation]+90;
@@ -45,10 +50,11 @@
         rotation = rotation * M_PI / 180;
         int xPosition = (int)round(self.object.position.x + (steps * sin(rotation)));
         int yPosition = (int)round(self.object.position.y - (steps * cos(rotation)));
-
         self.object.position = CGPointMake(xPosition, yPosition);
-    }];
+    };
 }
+
+
 
 -(NSString*)description
 {

@@ -24,7 +24,7 @@
 #import "Util.h"
 #import "ProgramLoadingInfo.h"
 #import "Program.h"
-#import "ProgramTVC.h"
+#import "ProgramTableViewController.h"
 #import "AppDelegate.h"
 #import "TableUtil.h"
 #import "CellTagDefines.h"
@@ -226,19 +226,18 @@
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
-
 #pragma mark - Segue
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     static NSString *segueToNew = kSegueToNew;
     if ([[segue identifier] isEqualToString:segueToNew]) {
-        if ([segue.destinationViewController isKindOfClass:[ProgramTVC class]]) {
-            ProgramTVC *programTVC = (ProgramTVC*) segue.destinationViewController;
-            programTVC.delegate = self;
+        if ([segue.destinationViewController isKindOfClass:[ProgramTableViewController class]]) {
+            ProgramTableViewController *programTableViewController = (ProgramTableViewController*) segue.destinationViewController;
+            programTableViewController.delegate = self;
             if ([sender isKindOfClass:[UITableViewCell class]]) {
                 NSIndexPath *path = [self.tableView indexPathForSelectedRow];
                 NSString* programName = [[self.levelLoadingInfos objectAtIndex:path.row] visibleName];
-                [programTVC loadProgram:[Util programLoadingInfoForProgramWithName:programName]];
+                [programTableViewController loadProgram:[Util programLoadingInfoForProgramWithName:programName]];
             } else if ([sender isKindOfClass:[UIBarButtonItem class]]) {
                 // no preparation needed
             }

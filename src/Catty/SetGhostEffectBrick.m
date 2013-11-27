@@ -37,8 +37,18 @@
   return ^{
     NSDebug(@"Performing: %@", self.description);
     double transparency = [self.transparency interpretDoubleForSprite:self.object];
-    self.object.alpha = 1.0-transparency/100.0f;
-  };
+      double alpha = 1.0-transparency/100.0f;
+      if (alpha < 0) {
+          self.object.alpha = 0;
+
+      }
+      else if (alpha > 1){
+          self.object.alpha = 1;
+      }
+      else{
+          self.object.alpha = alpha;
+      }
+      };
 }
 
 

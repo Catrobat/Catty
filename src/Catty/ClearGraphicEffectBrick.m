@@ -29,7 +29,13 @@
 -(SKAction*)action
 {
     
-    return [SKAction runBlock:^{
+    return [SKAction runBlock:[self actionBlock]];
+}
+
+-(dispatch_block_t)actionBlock
+{
+    return ^{
+        NSLog(@"performing");
         NSDebug(@"Performing: %@", self.description);
         Look* look = [self.object currentLook];
         UIImage* image = [UIImage imageWithContentsOfFile:[self pathForLook:look]];
@@ -51,9 +57,8 @@
             self.object.yScale = yScale;
         }
         
-    }];
+    };
 }
-
 -(NSString*)pathForLook:(Look*)look
 {
     return [NSString stringWithFormat:@"%@images/%@", [self.object projectPath], look.fileName];

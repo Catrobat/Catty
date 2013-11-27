@@ -21,14 +21,14 @@
  */
 
 
-#import "ScriptsViewCVC.h"
+#import "ScriptsViewCollectionViewController.h"
 #import "PrototypScriptCell.h"
 
-@interface ScriptsViewCVC ()
+@interface ScriptsViewCollectionViewController ()
 
 @end
 
-@implementation ScriptsViewCVC
+@implementation ScriptsViewCollectionViewController
 
 - (void)viewDidLoad
 {

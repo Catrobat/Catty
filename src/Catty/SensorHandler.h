@@ -23,9 +23,9 @@
 #import <Foundation/Foundation.h>
 #import <CoreMotion/CoreMotion.h>
 #import "SensorManager.h"
+#import <AVFoundation/AVFoundation.h>
 
-
-@interface SensorHandler : NSObject
+@interface SensorHandler : NSObject <AVAudioRecorderDelegate,AVAudioPlayerDelegate>
 
 
 + (SensorHandler*) sharedSensorHandler;

@@ -24,6 +24,7 @@
 #import "Program.h"
 #import "SpriteObject.h"
 #import "Script.h"
+#import "WhenScript.h"
 
 
 
@@ -108,6 +109,8 @@
 {
     return 360.0 + degrees;
 }
+
+
 
 
 

@@ -40,7 +40,17 @@
   return ^{
     NSDebug(@"Performing: %@", self.description);
     double transparency = [self.changeGhostEffect interpretDoubleForSprite:self.object];
-    self.object.alpha -= transparency/100;
+      double alpha = self.object.alpha - transparency/100;
+      if (alpha < 0) {
+          self.object.alpha = 0;
+          
+      }
+      else if (alpha > 1){
+          self.object.alpha = 1;
+      }
+      else{
+          self.object.alpha = alpha;
+      }
   };
 }
 

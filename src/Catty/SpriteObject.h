@@ -83,7 +83,7 @@
 - (void)broadcastAndWait:(NSString*)message;
 
 -(void)performBroadcastWaitScriptWithMessage:(NSString *)message with:(dispatch_semaphore_t) sema1;
-
+-(void)startAndAddScript:(Script*)script completion:(dispatch_block_t)completion;
 - (Look*)nextLook;
 
 // helpers

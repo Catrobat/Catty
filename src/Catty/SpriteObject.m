@@ -211,12 +211,11 @@
 {
     
     NSDebug(@"Touched: %@", self.name);
-
-    for (UITouch *touch in touches) {
-        //CGPoint touchedPoint = [touch locationInNode:self];
-//        
-//        if (touchedPoint.x >= (self.xPosition - self.texture.size.width/2) && touchedPoint.x <= (self.xPosition + self.texture.size.width/2)&& touchedPoint.y >= (self.yPosition -self.texture.size.height/2) && touchedPoint.y <= (self.yPosition + self.texture.size.height/2) ) {
-     
+    UITouch *touch = [[event allTouches] anyObject];
+    CGPoint touchedPoint = [touch locationInNode:self];
+    //CGPoint point = [touch locationInView:self.scene.view];
+    float alpha = [self colorOfPoint:touchedPoint];
+    if (alpha > 0) {
         for (Script *script in self.scriptList)
         {
             if ([script isKindOfClass:[WhenScript class]]) {
@@ -225,13 +224,24 @@
                     [self scriptFinished:script];
                 }];
             }
+            
         }
-//        }
+
     }
-    
+            
 }
 
+- (float) colorOfPoint:(CGPoint)point
+{
 
+    CGImageRef ref = self.currentUIImageLook.CGImage;
+    
+    if(CGImageGetAlphaInfo(ref) == kCGImageAlphaOnly){
+        return 0;
+    }
+
+    return 1;
+}
 
 
 -(void)startAndAddScript:(Script*)script completion:(dispatch_block_t)completion
@@ -354,6 +364,7 @@
     [[NSNotificationCenter defaultCenter] postNotificationName:message object:self];
 }
 
+
 - (void)performBroadcastScript:(NSNotification*)notification
 {
     NSDebug(@"Notification: %@", notification.name);
@@ -409,9 +420,9 @@
                 [self startAndAddScript:broadcastScript completion:^{
                     [self scriptFinished:broadcastScript];
                     dispatch_semaphore_signal(sema);
-                    dispatch_semaphore_signal(sema1);
                 }];
                 dispatch_semaphore_wait(sema, DISPATCH_TIME_FOREVER);
+                dispatch_semaphore_signal(sema1);
             }
         }
     }
@@ -444,7 +455,7 @@
 
 -(CGFloat)rotation
 {
-    return [((Scene*)self.scene) convertSceneToDegrees:[Util radiansToDegree:self.zRotation]];
+    return [Util radiansToDegree:self.zRotation];
 }
 
 -(CGFloat) zIndex

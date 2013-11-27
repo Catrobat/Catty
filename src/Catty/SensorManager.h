@@ -36,7 +36,7 @@ typedef enum {
     OBJECT_SIZE,
     OBJECT_ROTATION,
     OBJECT_LAYER,
-    ENVIRONMENT_SOUND
+    LOUDNESS
 } Sensor;
 
 

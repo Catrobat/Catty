@@ -20,43 +20,11 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import "Turnrightbrick.h"
-#import "Formula.h"
-#import "Util.h"
+#import <UIKit/UIKit.h>
+#import "BaseTableViewController.h"
 
-@implementation TurnRightBrick
+@class SpriteObject;
 
-
-
--(SKAction*)action
-{
-
-    return [SKAction runBlock:[self actionBlock]];
-
-}
-
-
--(dispatch_block_t)actionBlock
-{
-    return ^{
-        NSDebug(@"Performing: %@", self.description);
-        double rad = [Util degreeToRadians:[self.degrees interpretDoubleForSprite:self.object]];
-        double newRad = self.object.zRotation - rad;
-        if (newRad >= 2*M_PI) {
-            newRad -= 2*M_PI;
-        }
-        else if (newRad <= (- 2*M_PI)) {
-            newRad += 2*M_PI;
-        }
-        [self.object setZRotation:newRad];
-    };
-}
-
-
-#pragma mark - Description
-- (NSString*)description
-{
-    return [NSString stringWithFormat:@"TurnRight (%f degrees)", [self.degrees interpretDoubleForSprite:self.object]];
-}
-
+@interface ObjectLooksTableViewController : BaseTableViewController
+@property (strong, nonatomic) SpriteObject *object;
 @end
