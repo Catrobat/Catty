@@ -20,19 +20,11 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-
 #import <UIKit/UIKit.h>
-#import "SpriteObject.h"
-@class Script;
+#import "BaseTableViewController.h"
 
-@interface Brick : NSObject
+@class SpriteObject;
 
-@property (nonatomic, weak) SpriteObject *object;
-
-- (id)initWithSprite:(SpriteObject*)sprite;
-
-- (NSString*)description;
-
-- (SKAction*)action;
-
+@interface ObjectLooksTableViewController : BaseTableViewController
+@property (strong, nonatomic) SpriteObject *object;
 @end

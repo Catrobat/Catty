@@ -20,13 +20,11 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import <UIKit/UIKit.h>
-#import "ProgramDefines.h"
-#import "BaseTableViewController.h"
+#import "Brick.h"
 
-@class SpriteObject;
+@interface Brick (UnitTestingExtensions)
 
-@interface ObjectNewScriptCategoryTVC : BaseTableViewController
-@property (strong, nonatomic) SpriteObject *object;
-@property (nonatomic) kBrickType categoryType;
+// Needed for unit testing
+- (dispatch_block_t)actionBlock;
+
 @end

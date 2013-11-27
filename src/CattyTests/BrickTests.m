@@ -37,6 +37,7 @@
 #import "Util.h"
 
 //BrickImports
+#import "Brick+UnitTestingExtensions.h"
 #import "ComeToFrontBrick.h"
 #import "SetXBrick.h"
 #import "SetYBrick.h"

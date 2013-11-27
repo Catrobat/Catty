@@ -20,7 +20,7 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import "ObjectSoundsTVC.h"
+#import "ObjectSoundsTableViewController.h"
 #import "UIDefines.h"
 #import "TableUtil.h"
 #import "CatrobatImageCell.h"
@@ -38,7 +38,7 @@
 #define kPocketCodeRecorderActionSheetButton @"pocketCodeRecorder"
 #define kSelectMusicTrackActionSheetButton @"selectMusicTrack"
 
-@interface ObjectSoundsTVC () <UIActionSheetDelegate, AVAudioPlayerDelegate>
+@interface ObjectSoundsTableViewController () <UIActionSheetDelegate, AVAudioPlayerDelegate>
 
 @property (nonatomic, strong) NSMutableDictionary* addSoundActionSheetBtnIndexes;
 @property (atomic, strong) Sound *currentPlayingSong;
@@ -46,7 +46,7 @@
 
 @end
 
-@implementation ObjectSoundsTVC
+@implementation ObjectSoundsTableViewController
 
 #pragma getters and setters
 - (NSMutableDictionary*)addSoundActionSheetBtnIndexes

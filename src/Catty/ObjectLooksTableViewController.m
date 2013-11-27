@@ -20,7 +20,7 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import "ObjectLooksTVC.h"
+#import "ObjectLooksTableViewController.h"
 #import "ProgramDefines.h"
 #import "UIDefines.h"
 #import "TableUtil.h"
@@ -44,12 +44,12 @@
 #define kChooseImageActionSheetButton @"chooseImage"
 #define kDrawNewImageActionSheetButton @"drawNewImage"
 
-@interface ObjectLooksTVC () <UIActionSheetDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate>
+@interface ObjectLooksTableViewController () <UIActionSheetDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate>
 @property (nonatomic, strong) LoadingView* loadingView;
 @property (nonatomic, strong) NSMutableDictionary* addLookActionSheetBtnIndexes;
 @end
 
-@implementation ObjectLooksTVC
+@implementation ObjectLooksTableViewController
 
 #pragma getters and setters
 - (NSMutableDictionary*)addLookActionSheetBtnIndexes

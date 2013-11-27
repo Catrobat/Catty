@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4514" systemVersion="13A3017" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="62e-MX-z1C">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4514" systemVersion="13A603" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="62e-MX-z1C">
     <dependencies>
         <deployment defaultVersion="1792" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3747"/>
     </dependencies>
     <scenes>
-        <!--ProgramTVC - New Program-->
+        <!--Program Table View Controller - New Program-->
         <scene sceneID="zhR-1R-Y6s">
             <objects>
-                <tableViewController id="BYa-g9-OiT" customClass="ProgramTVC" sceneMemberID="viewController">
+                <tableViewController id="BYa-g9-OiT" customClass="ProgramTableViewController" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="Obr-NN-w03">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -45,7 +45,7 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="New Program" id="mXA-lG-Ivg">
-                        <barButtonItem key="rightBarButtonItem" title="Edit" style="plain" id="PFk-jn-qtM">
+                        <barButtonItem key="rightBarButtonItem" title="Edit" id="PFk-jn-qtM">
                             <connections>
                                 <action selector="editProgram:" destination="BYa-g9-OiT" id="G4C-GX-vYc"/>
                             </connections>
@@ -61,10 +61,10 @@
             </objects>
             <point key="canvasLocation" x="-3470" y="-2396"/>
         </scene>
-        <!--ObjectTVC - Object-->
+        <!--Object Table View Controller - Object-->
         <scene sceneID="7hr-t9-tha">
             <objects>
-                <tableViewController id="DpO-xp-0fW" customClass="ObjectTVC" sceneMemberID="viewController">
+                <tableViewController id="DpO-xp-0fW" customClass="ObjectTableViewController" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="6aB-fT-ZOU">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -120,10 +120,10 @@
             </objects>
             <point key="canvasLocation" x="-3276" y="-3570"/>
         </scene>
-        <!--Object ScriptsCVC - Scripts-->
+        <!--Object Scripts Collection View Controller - Scripts-->
         <scene sceneID="ocP-zZ-Aog">
             <objects>
-                <collectionViewController autoresizesArchivedViewToFullSize="NO" id="NFs-db-lAP" customClass="ObjectScriptsCVC" sceneMemberID="viewController">
+                <collectionViewController autoresizesArchivedViewToFullSize="NO" id="NFs-db-lAP" customClass="ObjectScriptsCollectionViewController" sceneMemberID="viewController">
                     <collectionView key="view" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" minimumZoomScale="0.0" maximumZoomScale="0.0" dataMode="prototypes" id="z38-mY-wgg">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -205,10 +205,10 @@
             </objects>
             <point key="canvasLocation" x="-2639" y="-4126"/>
         </scene>
-        <!--Object Script CategoriesTVC - Categories-->
+        <!--Object Script Categories Table View Controller - Categories-->
         <scene sceneID="7WT-X9-0gQ">
             <objects>
-                <tableViewController id="eHE-Gx-X7X" customClass="ObjectScriptCategoriesTVC" sceneMemberID="viewController">
+                <tableViewController id="eHE-Gx-X7X" customClass="ObjectScriptCategoriesTableViewController" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="Zxd-ce-hNw">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -239,10 +239,10 @@
             </objects>
             <point key="canvasLocation" x="-2073" y="-4465"/>
         </scene>
-        <!--Object New Script CategoryTVC-->
+        <!--Object New Script Category Table View Controller-->
         <scene sceneID="m1y-LC-Wmw">
             <objects>
-                <tableViewController id="F5A-6b-3gS" customClass="ObjectNewScriptCategoryTVC" sceneMemberID="viewController">
+                <tableViewController id="F5A-6b-3gS" customClass="ObjectNewScriptCategoryTableViewController" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="xtq-Hj-H6r">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -268,10 +268,10 @@
             </objects>
             <point key="canvasLocation" x="-1517" y="-4465"/>
         </scene>
-        <!--Object SoundsTVC - Sounds-->
+        <!--Object Sounds Table View Controller - Sounds-->
         <scene sceneID="chZ-5K-kCV">
             <objects>
-                <tableViewController id="USc-jF-F6X" customClass="ObjectSoundsTVC" sceneMemberID="viewController">
+                <tableViewController id="USc-jF-F6X" customClass="ObjectSoundsTableViewController" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="TeL-cC-H6w">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -400,10 +400,10 @@
             </objects>
             <point key="canvasLocation" x="-3060" y="-1428"/>
         </scene>
-        <!--Object LooksTVC - Looks-->
+        <!--Object Looks Table View Controller - Looks-->
         <scene sceneID="wWp-yc-EGI">
             <objects>
-                <tableViewController id="7i9-vH-sab" customClass="ObjectLooksTVC" sceneMemberID="viewController">
+                <tableViewController id="7i9-vH-sab" customClass="ObjectLooksTableViewController" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="9mO-sp-Va8">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -838,7 +838,7 @@
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
         <segue reference="aum-BR-x1G"/>
-        <segue reference="ZYi-SP-eKt"/>
         <segue reference="dSt-wf-R4M"/>
+        <segue reference="ZYi-SP-eKt"/>
     </inferredMetricsTieBreakers>
 </document>

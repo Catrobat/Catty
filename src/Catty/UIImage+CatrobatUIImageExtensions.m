@@ -197,9 +197,9 @@
                                      8,      // bits per component
                                      bitmapBytesPerRow,
                                      colorSpace,
-                                     kCGImageAlphaPremultipliedFirst);
+                                     (CGBitmapInfo)kCGImageAlphaPremultipliedFirst);
     if (context == NULL) free (bitmapData);
-    
+
     // Make sure and release colorspace before returning
     CGColorSpaceRelease(colorSpace);
     
