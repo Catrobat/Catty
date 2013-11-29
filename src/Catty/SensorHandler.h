@@ -29,7 +29,6 @@
 
 
 + (SensorHandler*) sharedSensorHandler;
-+ (void) removeSensorHandler;
 
 - (CMRotationRate) rotationRate;
 - (CMAcceleration) acceleration;

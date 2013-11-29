@@ -118,11 +118,6 @@ UINavigationBarDelegate>
     return object;
 }
 
-- (void)dealloc
-{
-    [SensorHandler removeSensorHandler];
-}
-
 // TODO: outsource to new ProgramManager class
 - (BOOL)loadProgram:(ProgramLoadingInfo*)loadingInfo
 {

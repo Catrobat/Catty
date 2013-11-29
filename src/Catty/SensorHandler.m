@@ -59,10 +59,6 @@ static SensorHandler* sharedSensorHandler = nil;
     return sharedSensorHandler;
 }
 
-+ (void) removeSensorHandler {
-    sharedSensorHandler = nil;
-}
-
 - (id)init
 {
     self = [super init];
