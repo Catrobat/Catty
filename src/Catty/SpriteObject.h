@@ -73,7 +73,6 @@
 
 - (GDataXMLElement*)toXML;
 
-
 // events
 - (void)start:(CGFloat)zPosition;
 - (void)scriptFinished:(Script*)script;

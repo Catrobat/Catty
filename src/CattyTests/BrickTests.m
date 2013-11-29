@@ -97,8 +97,6 @@
     [super tearDown];
 }
 
-
-
 -(void)testSetSizeToBrickAction
 {
     ComeToFrontBrick* brick = [[ComeToFrontBrick alloc] init];

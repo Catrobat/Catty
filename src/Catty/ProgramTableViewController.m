@@ -42,6 +42,7 @@
 #import "FileManager.h"
 #import "UIColor+CatrobatUIColorExtensions.h"
 #import "LevelUpdateDelegate.h"
+#import "SensorHandler.h"
 
 // constraints and default values
 #define kDefaultProgramName NSLocalizedString(@"New Program",@"Default name for new programs") // XXX: BTW: are there any restrictions or limits for the program name???
@@ -74,10 +75,10 @@ UINavigationBarDelegate>
     if (! _program) {
         // determine non existing program name
         NSString *programName = kDefaultProgramName;
-        NSUInteger counter = 1; // works unless the user has not more than 2^32 programs with default name. hehe^^
+        NSUInteger counter = 1;
         while ([Program programExists:programName])
             programName = [NSString stringWithFormat:@"%@ (%d)", kDefaultProgramName, counter++];
-        
+
         _program = [Program createNewProgramWithName:programName];
         SpriteObject* backgroundObject = [self createObjectWithName:kBackgroundObjectName];
         SpriteObject* firstObject = [self createObjectWithName:kDefaultObjectName];
@@ -115,6 +116,11 @@ UINavigationBarDelegate>
     object.name = objectName;
     object.program = self.program;
     return object;
+}
+
+- (void)dealloc
+{
+    [SensorHandler removeSensorHandler];
 }
 
 // TODO: outsource to new ProgramManager class

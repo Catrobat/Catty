@@ -93,16 +93,16 @@
     }
     return _broadcastWaitHandler;
 }
+
 - (UIView*)gridView
 {
-  // lazy instantiation
-  if (! _gridView) {
-  _gridView = [[UIView alloc]initWithFrame:CGRectMake(0,0,[Util getScreenWidth],[Util getScreenHeight])];
-    _gridView.hidden = YES;
-  }
-  return _gridView;
+    // lazy instantiation
+    if (! _gridView) {
+        _gridView = [[UIView alloc]initWithFrame:CGRectMake(0,0,[Util getScreenWidth],[Util getScreenHeight])];
+        _gridView.hidden = YES;
+    }
+    return _gridView;
 }
-
 
 - (void)setProgram:(Program *)program
 {
@@ -112,8 +112,12 @@
         //sprite.spriteManagerDelegate = self;
         sprite.broadcastWaitDelegate = self.broadcastWaitHandler;
 
-        // TODO: change!
+        // NOTE: if there are still some runNextAction tasks in a queue
+        // then these actions must not be executed because the Scene is not available any more.
+        // This problem caused the app to crash sometimes in the past.
+        // Now these lines fix this issue.
         for (Script *script in sprite.scriptList) {
+            script.allowRunNextAction = YES;
             for (Brick *brick in script.brickList) {
                 brick.object = sprite;
             }
@@ -301,41 +305,40 @@
 
 -(void)setUpGridView
 {
-  self.gridView.backgroundColor = [UIColor clearColor];
-  UIView *xArrow = [[UIView alloc] initWithFrame:CGRectMake(0,[Util getScreenHeight]/2,[Util getScreenWidth],1)];
-  xArrow.backgroundColor = [UIColor redColor];
-  [self.gridView addSubview:xArrow];
-  UIView *yArrow = [[UIView alloc] initWithFrame:CGRectMake([Util getScreenWidth]/2,0,1,[Util getScreenHeight])];
-  yArrow.backgroundColor = [UIColor redColor];
-  [self.gridView addSubview:yArrow];
-  //nullLabel
-  UILabel *nullLabel = [[UILabel alloc] initWithFrame:CGRectMake([Util getScreenWidth]/2 + 5, [Util getScreenHeight]/2 + 5, 10, 15)];
-  nullLabel.text = @"0";
-  nullLabel.textColor = [UIColor redColor];
-  [self.gridView addSubview:nullLabel];
-  //positveWidth
-  UILabel *positiveWidth = [[UILabel alloc] initWithFrame:CGRectMake([Util getScreenWidth]- 40, [Util getScreenHeight]/2 + 5, 30, 15)];
-  positiveWidth.text = [NSString stringWithFormat:@"%d",(int)[Util getScreenWidth]/2];
-  positiveWidth.textColor = [UIColor redColor];
-  [self.gridView addSubview:positiveWidth];
-  //negativWidth
-  UILabel *negativeWidth = [[UILabel alloc] initWithFrame:CGRectMake(5, [Util getScreenHeight]/2 + 5, 40, 15)];
-  negativeWidth.text = [NSString stringWithFormat:@"-%d",(int)[Util getScreenWidth]/2];
-  negativeWidth.textColor = [UIColor redColor];
-  [self.gridView addSubview:negativeWidth];
-  //positveHeight
-  UILabel *positiveHeight = [[UILabel alloc] initWithFrame:CGRectMake([Util getScreenWidth]/2 + 5, [Util getScreenHeight] - 20, 40, 15)];
-  positiveHeight.text = [NSString stringWithFormat:@"%d",(int)[Util getScreenHeight]/2];
-  positiveHeight.textColor = [UIColor redColor];
-  [self.gridView addSubview:positiveHeight];
-  //negativHeight
-  UILabel *negativeHeight = [[UILabel alloc] initWithFrame:CGRectMake([Util getScreenWidth]/2 + 5,5, 40, 15)];
-  negativeHeight.text = [NSString stringWithFormat:@"-%d",(int)[Util getScreenHeight]/2];
-  negativeHeight.textColor = [UIColor redColor];
-  [self.gridView addSubview:negativeHeight];
-
-  [self.skView addSubview:self.gridView];
-  
+    self.gridView.backgroundColor = [UIColor clearColor];
+    UIView *xArrow = [[UIView alloc] initWithFrame:CGRectMake(0,[Util getScreenHeight]/2,[Util getScreenWidth],1)];
+    xArrow.backgroundColor = [UIColor redColor];
+    [self.gridView addSubview:xArrow];
+    UIView *yArrow = [[UIView alloc] initWithFrame:CGRectMake([Util getScreenWidth]/2,0,1,[Util getScreenHeight])];
+    yArrow.backgroundColor = [UIColor redColor];
+    [self.gridView addSubview:yArrow];
+    //nullLabel
+    UILabel *nullLabel = [[UILabel alloc] initWithFrame:CGRectMake([Util getScreenWidth]/2 + 5, [Util getScreenHeight]/2 + 5, 10, 15)];
+    nullLabel.text = @"0";
+    nullLabel.textColor = [UIColor redColor];
+    [self.gridView addSubview:nullLabel];
+    //positveWidth
+    UILabel *positiveWidth = [[UILabel alloc] initWithFrame:CGRectMake([Util getScreenWidth]- 40, [Util getScreenHeight]/2 + 5, 30, 15)];
+    positiveWidth.text = [NSString stringWithFormat:@"%d",(int)[Util getScreenWidth]/2];
+    positiveWidth.textColor = [UIColor redColor];
+    [self.gridView addSubview:positiveWidth];
+    //negativWidth
+    UILabel *negativeWidth = [[UILabel alloc] initWithFrame:CGRectMake(5, [Util getScreenHeight]/2 + 5, 40, 15)];
+    negativeWidth.text = [NSString stringWithFormat:@"-%d",(int)[Util getScreenWidth]/2];
+    negativeWidth.textColor = [UIColor redColor];
+    [self.gridView addSubview:negativeWidth];
+    //positveHeight
+    UILabel *positiveHeight = [[UILabel alloc] initWithFrame:CGRectMake([Util getScreenWidth]/2 + 5, [Util getScreenHeight] - 20, 40, 15)];
+    positiveHeight.text = [NSString stringWithFormat:@"%d",(int)[Util getScreenHeight]/2];
+    positiveHeight.textColor = [UIColor redColor];
+    [self.gridView addSubview:positiveHeight];
+    //negativHeight
+    UILabel *negativeHeight = [[UILabel alloc] initWithFrame:CGRectMake([Util getScreenWidth]/2 + 5,5, 40, 15)];
+    negativeHeight.text = [NSString stringWithFormat:@"-%d",(int)[Util getScreenHeight]/2];
+    negativeHeight.textColor = [UIColor redColor];
+    [self.gridView addSubview:negativeHeight];
+    
+    [self.skView addSubview:self.gridView];
 }
 
 - (void) viewWillAppear:(BOOL)animated
@@ -375,6 +378,18 @@
 {
     [[AudioManager sharedAudioManager] stopAllSounds];
     [[SensorHandler sharedSensorHandler] stopSensors];
+
+    // NOTE: if there are still some runNextAction tasks in a queue
+    // then these actions must not be executed because the Scene is not available any more.
+    // This problem caused the app to crash sometimes in the past.
+    // Now these lines fix this issue.
+    for (SpriteObject *sprite in self.program.objectList)
+    {
+        sprite.broadcastWaitDelegate = nil;
+        for (Script *script in sprite.scriptList) {
+            script.allowRunNextAction = NO;
+        }
+    }
 }
 
 -(void) alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
