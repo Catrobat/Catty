@@ -46,7 +46,7 @@
 
 #define kWidthSlideMenu 100
 #define kPlaceOfButtons 17
-#define kSlidingStartArea 20
+#define kSlidingStartArea 40
 #define kIphone5ScreenHeight 568.0f
 #define kIphone4ScreenHeight 480.0f
 #define kContinueButtonSize 66
@@ -375,6 +375,7 @@
 {
     [[AudioManager sharedAudioManager] stopAllSounds];
     [[SensorHandler sharedSensorHandler] stopSensors];
+    
 }
 
 -(void) alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
@@ -499,11 +500,11 @@
 {
     self.skView = nil;
     [self.navigationController setToolbarHidden:NO];
-    
     [self.navigationController popViewControllerAnimated:YES];
     
     [self.controller.navigationController setToolbarHidden:NO];
     [self.controller.navigationController setNavigationBarHidden:NO];
+    
 }
 
 - (void)continueLevel:(UIButton *)sender withDuration:(float)duration
@@ -845,6 +846,18 @@
     }
     
   }
+}
+
+-(void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
+{
+    for (UITouch* touch in touches) {
+        CGPoint location = [touch locationInView:self.skView];
+        NSDebug(@"StartTouch1");
+        if ([self.scene touchedwith:touches withX:location.x andY:location.y]) {
+            break;
+        }
+    }
+    
 }
 
 

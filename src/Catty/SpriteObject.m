@@ -207,15 +207,13 @@
 }
 
 
--(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
+-(BOOL)touchedwith:(NSSet *)touches withX:(CGFloat)x andY:(CGFloat)y
 {
-    
-    NSDebug(@"Touched: %@", self.name);
-    UITouch *touch = [[event allTouches] anyObject];
-    CGPoint touchedPoint = [touch locationInNode:self];
-    //CGPoint point = [touch locationInView:self.scene.view];
-    float alpha = [self colorOfPoint:touchedPoint];
-    if (alpha > 0) {
+
+    for (UITouch *touch in touches) {
+        CGPoint touchedPoint = [touch locationInNode:self];
+        BOOL isTransparent = [self.currentUIImageLook isTransparentPixel:self.currentUIImageLook withX:touchedPoint.x andY:touchedPoint.y];
+        if (isTransparent == NO) {
         for (Script *script in self.scriptList)
         {
             if ([script isKindOfClass:[WhenScript class]]) {
@@ -223,25 +221,52 @@
                 [self startAndAddScript:script completion:^{
                     [self scriptFinished:script];
                 }];
+                
             }
-            
+           
         }
+            return YES;
 
-    }
-            
-}
-
-- (float) colorOfPoint:(CGPoint)point
-{
-
-    CGImageRef ref = self.currentUIImageLook.CGImage;
-    
-    if(CGImageGetAlphaInfo(ref) == kCGImageAlphaOnly){
-        return 0;
+        }
+        else{
+            NSDebug(@"I'm transparent at this point");
+            return NO;
     }
 
-    return 1;
+    }
+    return YES;
 }
+//-(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
+//{
+//    
+//    //NSDebug(@"Touched: %@", self.name);
+//    //UITouch *touch = [[event allTouches] anyObject];
+//    for (UITouch *touch in touches) {
+//        CGPoint touchedPoint = [touch locationInNode:self];
+//        BOOL isTransparent = [self.currentUIImageLook isTransparentPixel:self.currentUIImageLook withX:touchedPoint.x andY:touchedPoint.y];
+//        if (isTransparent == NO) {
+//            for (Script *script in self.scriptList)
+//            {
+//                if ([script isKindOfClass:[WhenScript class]]) {
+//                    
+//                    [self startAndAddScript:script completion:^{
+//                        [self scriptFinished:script];
+//                    }];
+//                    
+//                }
+//                
+//            }
+//            //return YES;
+//            
+//        }
+//        else{
+//            NSLog(@"transparent");
+//            //return NO;
+//        }
+//        
+//    }
+//    //return YES;
+//}
 
 
 -(void)startAndAddScript:(Script*)script completion:(dispatch_block_t)completion
@@ -280,22 +305,23 @@
         self.currentUIImageLook = image;
     }
     else{
-
-        CGRect newRect = [image cropRectForImage:image];
+// We do not need cropping if touch through transparent pixel is possible!!!!
+        
+//        CGRect newRect = [image cropRectForImage:image];
 #warning Hack for cropping lookImages so that they have no transparent Background
-        if ((newRect.size.height <= image.size.height - 50 && newRect.size.height <= image.size.height - 50)) {
-            CGImageRef imageRef = CGImageCreateWithImageInRect(image.CGImage, newRect);
-            UIImage *newImage = [UIImage imageWithCGImage:imageRef];
-//            NSLog(@"%f,%f,%f,%f",newRect.origin.x,newRect.origin.y,newRect.size.width,newRect.size.height);
-            [self setPositionForCropping:CGPointMake(newRect.origin.x+newRect.size.width/2,self.scene.size.height-newRect.origin.y-newRect.size.height/2)];
-            CGImageRelease(imageRef);
-            texture = [SKTexture textureWithImage:newImage];
-            self.currentUIImageLook = newImage;
-        }
-        else{
+//        if ((newRect.size.height <= image.size.height - 50 && newRect.size.height <= image.size.height - 50)) {
+//            CGImageRef imageRef = CGImageCreateWithImageInRect(image.CGImage, newRect);
+//            UIImage *newImage = [UIImage imageWithCGImage:imageRef];
+////            NSLog(@"%f,%f,%f,%f",newRect.origin.x,newRect.origin.y,newRect.size.width,newRect.size.height);
+//            [self setPositionForCropping:CGPointMake(newRect.origin.x+newRect.size.width/2,self.scene.size.height-newRect.origin.y-newRect.size.height/2)];
+//            CGImageRelease(imageRef);
+//            texture = [SKTexture textureWithImage:newImage];
+//            self.currentUIImageLook = newImage;
+//        }
+//        else{
             texture = [SKTexture textureWithImage:image];
             self.currentUIImageLook = image;
-        }
+//        }
     }
 
     double xScale = self.xScale;
@@ -319,8 +345,8 @@
 {
     BOOL check = YES;
 #warning Fix for issue that you can set look without a brick at the start -> change if there will be hide bricks for those objects which should not appear!
-//        for (Script *script in self.scriptList)
-//        {
+        for (Script *script in self.scriptList)
+        {
 //            if ([script isKindOfClass:[StartScript class]]) {
 //                for(Brick* brick in script.brickList){
 //                    if([brick isKindOfClass:[SetLookBrick class]]) {
@@ -344,9 +370,9 @@
 //                    }
 //                }
 //            }
-//
-//            
-//        }
+
+            
+        }
 
 
     if((check == YES || ([self isBackground])) && [self.lookList count]>0){
