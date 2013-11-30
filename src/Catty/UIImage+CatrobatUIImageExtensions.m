@@ -119,7 +119,7 @@
 - (CGRect)cropRectForImage:(UIImage *)image {
     
     CGImageRef cgImage = image.CGImage;
-    CGContextRef context = [self createARGBBitmapContextFromImage:cgImage];
+    CGContextRef context = [self newARGBBitmapContextFromImage:cgImage];
     if (context == NULL) return CGRectZero;
     
     size_t width = CGImageGetWidth(cgImage);
@@ -156,7 +156,7 @@
     return CGRectMake(lowX, lowY, highX-lowX, highY-lowY);
 }
 
-- (CGContextRef)createARGBBitmapContextFromImage:(CGImageRef)inImage {
+- (CGContextRef)newARGBBitmapContextFromImage:(CGImageRef)inImage {
     
     CGContextRef context = NULL;
     CGColorSpaceRef colorSpace;
@@ -205,6 +205,39 @@
     
     return context;
 }
+
+-(BOOL)isTransparentPixel:(UIImage*)image withX:(CGFloat)x andY:(CGFloat)y
+{
+
+    x += (image.size.width/2);
+    y += (image.size.height/2);
+    CGImageRef cgImage = image.CGImage;
+    CGContextRef context = [self newARGBBitmapContextFromImage:cgImage];
+    if (context == NULL) return NO;
+    
+    size_t width = CGImageGetWidth(cgImage);
+    size_t height = CGImageGetHeight(cgImage);
+    CGRect rect = CGRectMake(0, 0, width, height);
+    
+    CGContextDrawImage(context, rect, cgImage);
+    
+    unsigned char *data = CGBitmapContextGetData(context);
+    CGContextRelease(context);
+    if (data != NULL) {
+        int pixelIndex = (int)(width*y + x)*4;
+                if (data[pixelIndex] == 0) {
+                    free(data);
+                    return YES;
+                }else{
+                    free(data);
+                    return NO;
+                }
+        free(data);
+    }
+    
+    return NO;
+    
+   }
 
 
 @end

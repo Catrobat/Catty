@@ -30,6 +30,7 @@
 
 @interface Script : SKNode
 
+@property (nonatomic) BOOL allowRunNextAction;
 @property (nonatomic, weak) SpriteObject *object;
 @property (nonatomic, strong) NSString *action;
 @property (strong, nonatomic) NSMutableArray *brickList;

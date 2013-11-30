@@ -73,7 +73,6 @@
 
 - (GDataXMLElement*)toXML;
 
-
 // events
 - (void)start:(CGFloat)zPosition;
 - (void)scriptFinished:(Script*)script;
@@ -85,6 +84,7 @@
 -(void)performBroadcastWaitScriptWithMessage:(NSString *)message with:(dispatch_semaphore_t) sema1;
 -(void)startAndAddScript:(Script*)script completion:(dispatch_block_t)completion;
 - (Look*)nextLook;
+-(BOOL)touchedwith:(NSSet*)touches withX:(CGFloat) x andY:(CGFloat) y;
 
 // helpers
 - (NSString*)projectPath; //for image-path!!!

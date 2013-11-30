@@ -534,8 +534,8 @@ static inline NSAttributedString * NSAttributedStringBySettingColorFromContext(N
                 // Get correct truncationType and attribute position
                 CTLineTruncationType truncationType;
                 NSUInteger truncationAttributePosition = lastLineRange.location;
-                UILineBreakMode lineBreakMode = self.lineBreakMode;
-                
+                UILineBreakMode lineBreakMode = (UILineBreakMode)self.lineBreakMode;
+
                 // Multiple lines, only use UILineBreakModeTailTruncation
                 if (numberOfLines != 1) {
                     lineBreakMode = UILineBreakModeTailTruncation;

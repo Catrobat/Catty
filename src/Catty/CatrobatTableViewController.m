@@ -165,7 +165,7 @@
 
     NSString* identifier = [self.cells objectAtIndex:indexPath.row];
 #warning the if statement should be removed once everything has been implemented..
-    if ([identifier isEqualToString:kSegueDownload ] || [identifier isEqualToString:kSeguePrograms] ||
+    if ([identifier isEqualToString:kSegueDownload] || [identifier isEqualToString:kSeguePrograms] ||
         [identifier isEqualToString:kSegueForum] || [identifier isEqualToString:kSegueContinue] ||
         [identifier isEqualToString:kSegueNew]) {
         [self performSegueWithIdentifier:identifier sender:self];
