@@ -125,24 +125,32 @@
     }
     while (!foundObject) {
         CGPoint point = [touch locationInNode:obj1];
-        if (![obj1 touchedwith:touches withX:point.x andY:point.y]) {
-            CGFloat zPosition = obj1.zPosition;
-            zPosition -= 1;
-            if (zPosition == -1 || counter < 0) {
-                foundObject =  YES;
+        if (!obj1.hidden) {
+            if (![obj1 touchedwith:touches withX:point.x andY:point.y]) {
+                CGFloat zPosition = obj1.zPosition;
+                zPosition -= 1;
+                if (zPosition == -1 || counter < 0) {
+                    foundObject =  YES;
+                    NSDebug(@"Found Object");
+                }
+                else
+                {
+                    obj1 = nodesAtPoint[counter];
+                    NSDebug(@"NextNode: %@",obj1);
+                    counter--;
+                    
+                }
+            }
+            else{
+                foundObject = YES;
                 NSDebug(@"Found Object");
             }
-            else
-            {
-                obj1 = nodesAtPoint[counter];
-                NSDebug(@"NextNode: %@",obj1);
-                counter--;
 
-            }
         }
         else{
-            foundObject = YES;
-            NSDebug(@"Found Object");
+            obj1 = nodesAtPoint[counter];
+            NSDebug(@"NextNode: %@",obj1);
+            counter--;
         }
     }
     return YES;
