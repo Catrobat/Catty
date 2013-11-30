@@ -39,6 +39,9 @@
         double sizeInPercent = [self.size interpretDoubleForSprite:self.object];
         [self.object setXScale:(sizeInPercent/100.0)];
         [self.object setYScale:(sizeInPercent/100.0)];
+        //for touch issue
+        CGImageRef image = [self.object.currentUIImageLook CGImage];
+        self.object.currentUIImageLook = [UIImage imageWithCGImage:image scale:1/(sizeInPercent/100.0) orientation:UIImageOrientationUp];
     };
     
 }

@@ -106,15 +106,16 @@
 
 -(void)runNextAction
 {
-    
+    if (! self.allowRunNextAction)
+        return;
+
     NSDebug(@"Running Next Action");
     NSDebug(@"Self Parent: %@", self.parent);
-    
-    if(self.currentBrickIndex < [self.brickList count]) {
-        Brick* brick = [self.brickList objectAtIndex:self.currentBrickIndex++];
-        
 
-        if([brick isKindOfClass:[LoopBeginBrick class]]) {            
+    if (self.currentBrickIndex < [self.brickList count]) {
+        Brick *brick = [self.brickList objectAtIndex:self.currentBrickIndex++];
+
+        if ([brick isKindOfClass:[LoopBeginBrick class]]) {
             BOOL condition = [((LoopBeginBrick*)brick) checkCondition];
             if(!condition) {
                 self.currentBrickIndex = [self.brickList indexOfObject:[((LoopBeginBrick*)brick) loopEndBrick]]+1;
@@ -154,7 +155,7 @@
         }
         else if([brick isKindOfClass:[IfLogicBeginBrick class]]) {
             
-            
+//            self.object.program
             BOOL condition = [((IfLogicBeginBrick*)brick) checkCondition];
             if(!condition) {
                 self.currentBrickIndex = [self.brickList indexOfObject:[((IfLogicBeginBrick*)brick) ifElseBrick]]+1;

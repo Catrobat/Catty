@@ -41,5 +41,7 @@
 -(CGPoint)convertSceneCoordinateToPoint:(CGPoint)point;
 -(CGFloat)convertSceneToDegrees:(CGFloat)degrees;
 
+-(BOOL)touchedwith:(NSSet*)touches withX:(CGFloat) x andY:(CGFloat) y;
+
 
 @end

@@ -59,7 +59,6 @@ static SensorHandler* sharedSensorHandler = nil;
     return sharedSensorHandler;
 }
 
-
 - (id)init
 {
     self = [super init];

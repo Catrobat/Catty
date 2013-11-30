@@ -27,9 +27,8 @@
 
 
 -(double) interpretDoubleForSprite:(SpriteObject*)sprite
-{    
+{
     return [self.formulaTree interpretRecursiveForSprite:sprite];
-            
 }
 
 -(int) interpretIntegerForSprite:(SpriteObject*)sprite

@@ -109,7 +109,45 @@
 {
     return 360.0 + degrees;
 }
+-(BOOL)touchedwith:(NSSet*)touches withX:(CGFloat) x andY:(CGFloat) y
+{
+    NSDebug(@"StartTouch2");
+    UITouch *touch = [touches anyObject];
+    CGPoint location = [touch locationInNode:self];
+    BOOL foundObject = NO;
+    NSArray *nodesAtPoint = [self nodesAtPoint:location];
+    SpriteObject *obj1 = nodesAtPoint[[nodesAtPoint count]-1];
+    int counter = [nodesAtPoint count]-2;
+    NSDebug(@"How many nodes are touched: %d",counter);
+    NSDebug(@"First Node:%@",obj1);
+    if (!obj1.name) {
+        return NO;
+    }
+    while (!foundObject) {
+        CGPoint point = [touch locationInNode:obj1];
+        if (![obj1 touchedwith:touches withX:point.x andY:point.y]) {
+            CGFloat zPosition = obj1.zPosition;
+            zPosition -= 1;
+            if (zPosition == -1 || counter < 0) {
+                foundObject =  YES;
+                NSDebug(@"Found Object");
+            }
+            else
+            {
+                obj1 = nodesAtPoint[counter];
+                NSDebug(@"NextNode: %@",obj1);
+                counter--;
 
+            }
+        }
+        else{
+            foundObject = YES;
+            NSDebug(@"Found Object");
+        }
+    }
+    return YES;
+
+}
 
 
 
