@@ -50,8 +50,16 @@ void uncaughtExceptionHandler(NSException *exception) {
     
     [[UITextField appearance] setKeyboardAppearance:UIKeyboardAppearanceDark];
     
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSDictionary *appDefaults = [NSDictionary dictionaryWithObject:@"YES"
+                                                            forKey:@"lockiphone"];
+    [defaults registerDefaults:appDefaults];
+    [defaults synchronize];
+
+    
     return YES;
 }
+
 
 
 

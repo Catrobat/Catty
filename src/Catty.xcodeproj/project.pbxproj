@@ -34,6 +34,7 @@
 		81FAEE3C17E793F60052BB2B /* ScriptsViewCVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 81FAEE3B17E793F60052BB2B /* ScriptsViewCVC.m */; };
 		81FAEE3F17E7994B0052BB2B /* PrototypScriptCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 81FAEE3E17E7994B0052BB2B /* PrototypScriptCell.m */; };
 		9200F006182E3CA0008BF678 /* CatrobatAudioPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 9200F005182E3CA0008BF678 /* CatrobatAudioPlayer.m */; };
+		9204F5CB184DE33E00E0139E /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 9204F5CA184DE33E00E0139E /* Settings.bundle */; };
 		920F20C41837F27E003E9EE0 /* SaveToProjectActivity.m in Sources */ = {isa = PBXBuildFile; fileRef = 920F20C31837F27E003E9EE0 /* SaveToProjectActivity.m */; };
 		921C907B1830040A00A4F2CA /* stage_dialog_background_middle.png in Resources */ = {isa = PBXBuildFile; fileRef = 921C907A1830040A00A4F2CA /* stage_dialog_background_middle.png */; };
 		921FE2FA182F8122001D7CF6 /* CoreImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 921FE2F9182F8122001D7CF6 /* CoreImage.framework */; };
@@ -275,6 +276,7 @@
 		8D1107310486CEB800E47090 /* App-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "App-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
 		9200F004182E3CA0008BF678 /* CatrobatAudioPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CatrobatAudioPlayer.h; sourceTree = "<group>"; };
 		9200F005182E3CA0008BF678 /* CatrobatAudioPlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CatrobatAudioPlayer.m; sourceTree = "<group>"; };
+		9204F5CA184DE33E00E0139E /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		920F20C21837F27E003E9EE0 /* SaveToProjectActivity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SaveToProjectActivity.h; sourceTree = "<group>"; };
 		920F20C31837F27E003E9EE0 /* SaveToProjectActivity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SaveToProjectActivity.m; sourceTree = "<group>"; };
 		921C907A1830040A00A4F2CA /* stage_dialog_background_middle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = stage_dialog_background_middle.png; sourceTree = "<group>"; };
@@ -683,6 +685,7 @@
 		29B97315FDCFA39411CA2CEA /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				9204F5CA184DE33E00E0139E /* Settings.bundle */,
 				29B97316FDCFA39411CA2CEA /* main.m */,
 				B4F243CB170EBEF7007A071D /* AppDelegate.h */,
 				B4F243CC170EBEF7007A071D /* AppDelegate.m */,
@@ -2215,6 +2218,7 @@
 				B4DA23D5175E761D0079B381 /* icon@2x.png in Resources */,
 				816C788317D5F0420029A4E6 /* settings_bg@2x.png in Resources */,
 				B4DA23D7175E76820079B381 /* icon.png in Resources */,
+				9204F5CB184DE33E00E0139E /* Settings.bundle in Resources */,
 				B4DA23DA175E78050079B381 /* menu_icon.png in Resources */,
 				C3BF74DD1811452800134B77 /* stage_dialog_button_toggle_axis.png in Resources */,
 				C3BF74E51811452800134B77 /* stage_dialog_button_back.png in Resources */,
