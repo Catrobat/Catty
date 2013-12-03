@@ -62,26 +62,36 @@
     [self.searchDisplayController setActive:YES animated:YES];
     [self.searchDisplayController.searchBar becomeFirstResponder];
     self.searchDisplayController.searchBar.delegate = self;
+    self.searchDisplayController.searchBar.frame = CGRectMake(0,44,self.searchDisplayController.searchBar.frame.size.width,self.searchDisplayController.searchBar.frame.size.height);
 }
 
 - (void)viewWillAppear:(BOOL)animated
 {
-    [super viewWillAppear:animated]; 
+    
+    self.searchDisplayController.displaysSearchBarInNavigationBar = NO;
+    CGRect frame = self.tableView.frame;
+    frame.origin.y = self.navigationController.navigationBar.frame.size.height;
+    frame.size.height = (frame.size.height - frame.origin.y);
+    self.tableView.frame = frame;
+    [super viewWillAppear:animated];
 }
 
 - (void)viewWillDisappear:(BOOL)animated
 {
-  [super viewWillDisappear:animated];
+    [super viewWillDisappear:animated];
 }
 
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
     CGRect frame = self.tableView.frame;
-    frame.origin.y = self.navigationController.navigationBar.frame.size.height;
+    frame.origin.y = 44;
     frame.size.height = (frame.size.height - frame.origin.y);
     self.tableView.frame = frame;
-
+    self.searchDisplayController.displaysSearchBarInNavigationBar = NO;
+    self.searchDisplayController.searchBar.frame = CGRectMake(0,44,self.searchDisplayController.searchBar.frame.size.width,self.searchDisplayController.searchBar.frame.size.height);
+//    self.navigationController.navigationBar.translucent = YES;
+    NSLog(@"TEST");
 }
 
 - (void)didReceiveMemoryWarning
@@ -125,6 +135,7 @@
   }
   return cell;
 }
+
 
 #pragma mark - Table view delegate
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
@@ -203,13 +214,19 @@
 
 - (void)searchBarTextDidBeginEditing:(UISearchBar *)searchBar
 {
+    CGRect frame = self.tableView.frame;
+    frame.origin.y = self.navigationController.navigationBar.frame.size.height;
+    frame.size.height = (frame.size.height - frame.origin.y);
+    self.tableView.frame = frame;
+    
 }
 
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar {
-  NSDebug(@"%@", searchBar.text);
-  [self queryServerForSearchString:searchBar.text];
-  [self.searchDisplayController setActive:NO animated:YES];
-  [self update];
+    NSDebug(@"%@", searchBar.text);
+    [self queryServerForSearchString:searchBar.text];
+    [self.searchDisplayController setActive:NO animated:YES];
+    [self update];
+    self.searchDisplayController.searchBar.text = searchBar.text;
 }
 
 - (void)searchBarCancelButtonClicked:(UISearchBar *)searchBar
@@ -224,6 +241,7 @@
   controller.searchResultsTableView.backgroundView = anImage;
   controller.searchResultsTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
   controller.searchResultsTableView.backgroundColor = [UIColor clearColor];
+    
   
 }
 
@@ -239,7 +257,7 @@
       [(UITextField *)subView setKeyboardAppearance: UIKeyboardAppearanceAlert];
     }
   }
-  
+
 }
 
 #pragma mark - Segue

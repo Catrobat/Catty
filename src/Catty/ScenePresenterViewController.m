@@ -45,12 +45,12 @@
 
 
 #define kWidthSlideMenu 150
-#define kPlaceOfButtons 20
+#define kPlaceOfButtons 17
 #define kSlidingStartArea 40
 #define kIphone5ScreenHeight 568.0f
 #define kIphone4ScreenHeight 480.0f
 #define kContinueButtonSize 85
-#define kContinueOffset 10
+#define kContinueOffset 15
 #define kMenuButtonSize 44
 #define kMenuIPhone4GapSize 30
 #define KMenuIPhone5GapSize 35
