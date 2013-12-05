@@ -77,7 +77,21 @@
     [self.tableView beginUpdates];
     [self.tableView reloadRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationNone];
     [self.tableView endUpdates];
+    BOOL lockIphoneEnabeled = [self shouldLockIphoneInAppWithoutScenePresenter];
+    [[UIApplication sharedApplication] setIdleTimerDisabled:(lockIphoneEnabeled)];
+
+}
+
+- (BOOL)shouldLockIphoneInAppWithoutScenePresenter {
+    // Get user preference
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    BOOL enabled = [defaults boolForKey:@"lockiphone"];
     
+    if (enabled) {
+        return NO;
+    } else {
+        return YES;
+    }
 }
 
 -(void) viewDidAppear:(BOOL)animated {

@@ -215,17 +215,20 @@
     CGContextRef context = [self newARGBBitmapContextFromImage:cgImage];
     if (context == NULL) return NO;
     
-    size_t width = CGImageGetWidth(cgImage);
-    size_t height = CGImageGetHeight(cgImage);
+    
+    size_t width =CGBitmapContextGetHeight(context);
+    size_t height = CGBitmapContextGetWidth(context);
     CGRect rect = CGRectMake(0, 0, width, height);
     
     CGContextDrawImage(context, rect, cgImage);
     
     unsigned char *data = CGBitmapContextGetData(context);
+
     CGContextRelease(context);
     if (data != NULL) {
         int pixelIndex = (int)(width*y + x)*4;
-                if (data[pixelIndex] == 0) {
+        NSDebug(@"alpha:%d",(int)data[pixelIndex]);
+                if ((int)data[pixelIndex] == 0) {
                     free(data);
                     return YES;
                 }else{
