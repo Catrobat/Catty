@@ -67,7 +67,7 @@
 
 -(void)reset
 {
-    [self removeAllActions];
+    NSDebug(@"Reset");
     for(Brick* brick in self.brickList) {
         if([brick isKindOfClass:[LoopBeginBrick class]]) {
             [((LoopBeginBrick*)brick) reset];
@@ -75,9 +75,6 @@
     }
     self.currentBrickIndex = 0;
     self.completion = NULL;
-    
-
-
 }
 
 -(void)stop
@@ -96,10 +93,18 @@
 -(void)startWithCompletion:(dispatch_block_t)completion
 {
     NSDebug(@"Starting: %@", self.description);
-
     [self reset];
     self.completion = completion;
-    [self runNextAction];
+    
+    if(self.hasActions) {
+        [self removeAllActions];
+    }
+    else {
+        [self runNextAction];
+    }
+    
+
+
     
 }
 
@@ -121,11 +126,7 @@
                 self.currentBrickIndex = [self.brickList indexOfObject:[((LoopBeginBrick*)brick) loopEndBrick]]+1;
             }
             
-            // Needs to be async because of recursion!
-            dispatch_async(dispatch_get_main_queue(), ^{
-                [self runNextAction];
-            });
-
+            [self nextAction];
         }
         
         else if([brick isKindOfClass:[LoopEndBrick class]]) {
@@ -136,10 +137,7 @@
                 abort();
             }
             
-            // Needs to be async because of recursion!
-            dispatch_async(dispatch_get_main_queue(), ^{
-                [self runNextAction];
-            });
+            [self nextAction];
         }
         else if([brick isKindOfClass:[BroadcastWaitBrick class]]) {
             
@@ -147,9 +145,8 @@
         
             dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
                 [((BroadcastWaitBrick*)brick) performBroadcastWait];
-                dispatch_async(dispatch_get_main_queue(), ^{
-                    [self runNextAction];
-                });
+
+                [self nextAction];
             });
             
         }
@@ -164,10 +161,7 @@
                 NSError(@"The XML-Structure is wrong, please fix the project");
             }
             
-            // Needs to be async because of recursion!
-            dispatch_async(dispatch_get_main_queue(), ^{
-                [self runNextAction];
-            });
+            [self nextAction];
             
         }
         else if([brick isKindOfClass:[IfLogicElseBrick class]]) {
@@ -178,24 +172,14 @@
                 NSError(@"The XML-Structure is wrong, please fix the project");
             }
             
-            // Needs to be async because of recursion!
-            dispatch_async(dispatch_get_main_queue(), ^{
-                [self runNextAction];
-            });
+            [self nextAction];
             
         }
         else if([brick isKindOfClass:[IfLogicEndBrick class]]) {
+            [self nextAction];
+        }
+        else if([brick isKindOfClass:[NoteBrick class]]) {
             
-            // Needs to be async because of recursion!
-            dispatch_async(dispatch_get_main_queue(), ^{
-                [self runNextAction];
-            });
-            
-        }else if([brick isKindOfClass:[NoteBrick class]]) {
-            // Needs to be async because of recursion!
-            dispatch_async(dispatch_get_main_queue(), ^{
-                [self runNextAction];
-            });
         }
         else {
             NSMutableArray* actionArray = [[NSMutableArray alloc] init];
@@ -206,6 +190,7 @@
                 abort();
             }
             [self runAction:sequence completion:^{
+                NSDebug(@"Finished: %@", sequence);
                 [self runNextAction];
             }];
         }
@@ -219,7 +204,15 @@
     
 }
 
-                             
+-(void) nextAction
+{
+    // Needs to be async because of recursion!
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self runNextAction];
+    });
+}
+
+
 
 -(void)runWithAction:(SKAction*)action
 {

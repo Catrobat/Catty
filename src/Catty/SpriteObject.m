@@ -274,7 +274,9 @@
     if([[self children] indexOfObject:script] == INT_MAX) {
         [self addChild:script];
     }
+
     [script startWithCompletion:completion];
+
 }
 
 
@@ -387,13 +389,14 @@
 #pragma mark - Broadcast
 -(void)broadcast:(NSString *)message
 {
+    NSDebug(@"Broadcast: %@, Object: %@", message, self.name);
     [[NSNotificationCenter defaultCenter] postNotificationName:message object:self];
 }
 
 
 - (void)performBroadcastScript:(NSNotification*)notification
 {
-    NSDebug(@"Notification: %@", notification.name);
+    NSDebug(@"Notification: %@, Object: %@", notification.name, self.name);
 
     for (Script *script in self.scriptList) {
         if ([script isKindOfClass:[BroadcastScript class]]) {
