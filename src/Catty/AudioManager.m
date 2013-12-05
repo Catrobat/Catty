@@ -88,6 +88,7 @@ static AudioManager* sharedAudioManager = nil;
     player =[[CatrobatAudioPlayer alloc] initWithContentsOfURL:path error:&error];
     if (error != nil) {
         NSError(@"Can't read that audio-file");
+        return;
     }
     [player setKey:fileName];
     [audioPlayers setObject:player forKey:fileName];
@@ -98,6 +99,8 @@ static AudioManager* sharedAudioManager = nil;
       player = [[CatrobatAudioPlayer alloc] initWithContentsOfURL:path error:&error];
       if (error != nil) {
           NSError(@"Can't read that audio-file");
+          return;
+
       }
       [player setKey:[fileName stringByAppendingString:[NSString stringWithFormat:@"%d",self.soundCounter]]];
       [audioPlayers setObject:player forKey:[fileName stringByAppendingString:[NSString stringWithFormat:@"%d",self.soundCounter]]];
