@@ -111,7 +111,7 @@
 #pragma marks init
 -(void)initTableView
 {
-    self.cells = [[NSArray alloc] initWithObjects:kSegueContinue, kSegueNew, kSeguePrograms, kSegueForum, kSegueDownload, kSegueUpload, nil];
+    self.cells = [[NSArray alloc] initWithObjects:kSegueContinue, kSegueNew, kSeguePrograms, kSegueForum, kSegueExplore, kSegueUpload, nil];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     [self.tableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
@@ -179,7 +179,7 @@
 
     NSString* identifier = [self.cells objectAtIndex:indexPath.row];
 #warning the if statement should be removed once everything has been implemented..
-    if ([identifier isEqualToString:kSegueDownload] || [identifier isEqualToString:kSeguePrograms] ||
+    if ([identifier isEqualToString:kSegueExplore] || [identifier isEqualToString:kSeguePrograms] ||
         [identifier isEqualToString:kSegueForum] || [identifier isEqualToString:kSegueContinue] ||
         [identifier isEqualToString:kSegueNew]) {
         [self performSegueWithIdentifier:identifier sender:self];
