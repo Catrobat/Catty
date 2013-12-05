@@ -350,7 +350,7 @@
     label.lineBreakMode = NSLineBreakByWordWrapping;
     label.numberOfLines = 0;
     [self configureTextLabel:label];
-    label.dataDetectorTypes = UIDataDetectorTypeAll;
+    label.enabledTextCheckingTypes = NSTextCheckingAllTypes;
     label.verticalAlignment = TTTAttributedLabelVerticalAlignmentTop;
     
     NSMutableDictionary *mutableLinkAttributes = [NSMutableDictionary dictionary];
