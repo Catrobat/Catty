@@ -91,7 +91,6 @@
     self.searchDisplayController.displaysSearchBarInNavigationBar = NO;
     self.searchDisplayController.searchBar.frame = CGRectMake(0,44,self.searchDisplayController.searchBar.frame.size.width,self.searchDisplayController.searchBar.frame.size.height);
 //    self.navigationController.navigationBar.translucent = YES;
-    NSLog(@"TEST");
 }
 
 - (void)didReceiveMemoryWarning
