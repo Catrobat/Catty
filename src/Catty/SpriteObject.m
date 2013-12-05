@@ -212,7 +212,13 @@
 
     for (UITouch *touch in touches) {
         CGPoint touchedPoint = [touch locationInNode:self];
-        BOOL isTransparent = [self.currentUIImageLook isTransparentPixel:self.currentUIImageLook withX:touchedPoint.x andY:touchedPoint.y];
+        
+        UIGraphicsBeginImageContextWithOptions(self.frame.size, NO, [UIScreen mainScreen].scale);
+        [self.scene.view drawViewHierarchyInRect:self.frame afterScreenUpdates:YES];
+        UIImage *snapshotImage = UIGraphicsGetImageFromCurrentImageContext();
+        UIGraphicsEndImageContext();
+        
+        BOOL isTransparent = [snapshotImage isTransparentPixel:self.currentUIImageLook withX:touchedPoint.x andY:touchedPoint.y];
         if (isTransparent == NO) {
         for (Script *script in self.scriptList)
         {
