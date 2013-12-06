@@ -526,10 +526,11 @@
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             </view>
-                            <view opaque="NO" alpha="0.79999999999999982" contentMode="scaleToFill" id="xIj-pz-OEX">
+                            <view alpha="0.94999999999999996" contentMode="scaleToFill" id="xIj-pz-OEX">
                                 <rect key="frame" x="0.0" y="0.0" width="100" height="568"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="tintColor" cocoaTouchSystemColor="darkTextColor"/>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>

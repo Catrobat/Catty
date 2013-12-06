@@ -114,6 +114,7 @@
     NSDebug(@"StartTouch2");
     UITouch *touch = [touches anyObject];
     CGPoint location = [touch locationInNode:self];
+    NSDebug(@"x:%f,y:%f",location.x,location.y);
     BOOL foundObject = NO;
     NSArray *nodesAtPoint = [self nodesAtPoint:location];
     SpriteObject *obj1 = nodesAtPoint[[nodesAtPoint count]-1];
