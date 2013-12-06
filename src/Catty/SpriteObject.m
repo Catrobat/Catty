@@ -212,13 +212,15 @@
 
     for (UITouch *touch in touches) {
         CGPoint touchedPoint = [touch locationInNode:self];
+        NSDebug(@"x:%f,y:%f",touchedPoint.x,touchedPoint.y);
+         //NSLog(@"test touch, %@",self.name);
+//        UIGraphicsBeginImageContextWithOptions(self.frame.size, NO, [UIScreen mainScreen].scale);
+//        [self.scene.view drawViewHierarchyInRect:self.frame afterScreenUpdates:NO];
+//        UIImage *snapshotImage = UIGraphicsGetImageFromCurrentImageContext();
+//        UIGraphicsEndImageContext();
+        NSDebug(@"image : x:%f,y:%f",self.currentUIImageLook.size.width,self.currentUIImageLook.size.height);
         
-        UIGraphicsBeginImageContextWithOptions(self.frame.size, NO, [UIScreen mainScreen].scale);
-        [self.scene.view drawViewHierarchyInRect:self.frame afterScreenUpdates:YES];
-        UIImage *snapshotImage = UIGraphicsGetImageFromCurrentImageContext();
-        UIGraphicsEndImageContext();
-        
-        BOOL isTransparent = [snapshotImage isTransparentPixel:self.currentUIImageLook withX:touchedPoint.x andY:touchedPoint.y];
+        BOOL isTransparent = [self.currentUIImageLook isTransparentPixel:self.currentUIImageLook withX:touchedPoint.x andY:touchedPoint.y];
         if (isTransparent == NO) {
         for (Script *script in self.scriptList)
         {
@@ -249,7 +251,8 @@
 //    //UITouch *touch = [[event allTouches] anyObject];
 //    for (UITouch *touch in touches) {
 //        CGPoint touchedPoint = [touch locationInNode:self];
-//        BOOL isTransparent = [self.currentUIImageLook isTransparentPixel:self.currentUIImageLook withX:touchedPoint.x andY:touchedPoint.y];
+//        BOOL isTransparent = NO;//[self.currentUIImageLook isTransparentPixel:self.currentUIImageLook withX:touchedPoint.x andY:touchedPoint.y];
+//        NSLog(@"test touch, %@",self.name);
 //        if (isTransparent == NO) {
 //            for (Script *script in self.scriptList)
 //            {

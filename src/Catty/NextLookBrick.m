@@ -41,12 +41,12 @@
             self.object.currentUIImageLook = image;
         }
         else{
-            CGRect newRect = [image cropRectForImage:image];
-            CGImageRef imageRef = CGImageCreateWithImageInRect(image.CGImage, newRect);
-            UIImage *newImage = [UIImage imageWithCGImage:imageRef];
-            CGImageRelease(imageRef);
-            texture = [SKTexture textureWithImage:newImage];
-            self.object.currentUIImageLook = newImage;
+//            CGRect newRect = [image cropRectForImage:image];
+//            CGImageRef imageRef = CGImageCreateWithImageInRect(image.CGImage, newRect);
+//            UIImage *newImage = [UIImage imageWithCGImage:imageRef];
+//            CGImageRelease(imageRef);
+            texture = [SKTexture textureWithImage:image];
+            self.object.currentUIImageLook = image;
         }
         self.object.currentUIImageLook = image;
         self.object.currentLookBrightness = 0;
