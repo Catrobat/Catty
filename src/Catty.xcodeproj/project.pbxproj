@@ -152,7 +152,6 @@
 		C3BF74E51811452800134B77 /* stage_dialog_button_back.png in Resources */ = {isa = PBXBuildFile; fileRef = C3BF74D91811452800134B77 /* stage_dialog_button_back.png */; };
 		C3BF74E61811452800134B77 /* stage_dialog_button_back_pressed.png in Resources */ = {isa = PBXBuildFile; fileRef = C3BF74DA1811452800134B77 /* stage_dialog_button_back_pressed.png */; };
 		C3BF754C18117F6000134B77 /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C3BF754B18117F6000134B77 /* Accelerate.framework */; };
-		C3E91973180BDBBC001F2232 /* MenuButtonViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C3E91972180BDBBC001F2232 /* MenuButtonViewController.m */; };
 		C3E9197B180BE0AE001F2232 /* menuButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C3E9197A180BE0AE001F2232 /* menuButton@2x.png */; };
 		C3E9197F180BE179001F2232 /* screenshot.png in Resources */ = {isa = PBXBuildFile; fileRef = C3E9197E180BE179001F2232 /* screenshot.png */; };
 		C3F1DD5C180AD1DC00E2FA45 /* ScenePresenterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C3F1DD5B180AD1DC00E2FA45 /* ScenePresenterViewController.m */; };
@@ -463,8 +462,6 @@
 		C3BF74D91811452800134B77 /* stage_dialog_button_back.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = stage_dialog_button_back.png; path = ../../stage_dialog_button_back.png; sourceTree = "<group>"; };
 		C3BF74DA1811452800134B77 /* stage_dialog_button_back_pressed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = stage_dialog_button_back_pressed.png; path = ../../stage_dialog_button_back_pressed.png; sourceTree = "<group>"; };
 		C3BF754B18117F6000134B77 /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
-		C3E91971180BDBBC001F2232 /* MenuButtonViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuButtonViewController.h; sourceTree = "<group>"; };
-		C3E91972180BDBBC001F2232 /* MenuButtonViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MenuButtonViewController.m; sourceTree = "<group>"; };
 		C3E9197A180BE0AE001F2232 /* menuButton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "menuButton@2x.png"; path = "../menuButton@2x.png"; sourceTree = "<group>"; };
 		C3E9197C180BE0BF001F2232 /* ic_media_play.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ic_media_play.png; sourceTree = "<group>"; };
 		C3E9197E180BE179001F2232 /* screenshot.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = screenshot.png; sourceTree = "<group>"; };
@@ -1434,8 +1431,6 @@
 				C3F1DD5B180AD1DC00E2FA45 /* ScenePresenterViewController.m */,
 				920F20C21837F27E003E9EE0 /* SaveToProjectActivity.h */,
 				920F20C31837F27E003E9EE0 /* SaveToProjectActivity.m */,
-				C3E91971180BDBBC001F2232 /* MenuButtonViewController.h */,
-				C3E91972180BDBBC001F2232 /* MenuButtonViewController.m */,
 			);
 			name = ScenePresenterViewController;
 			sourceTree = "<group>";
@@ -2292,7 +2287,6 @@
 				81FAEE3F17E7994B0052BB2B /* PrototypScriptCell.m in Sources */,
 				B4D940CB170EC8DA003DDBFA /* TableUtil.m in Sources */,
 				B4D940CA170EC8C4003DDBFA /* ProgramLoadingInfo.m in Sources */,
-				C3E91973180BDBBC001F2232 /* MenuButtonViewController.m in Sources */,
 				C34B44F817F1D8D200624730 /* ChangeBrightnessByNBrick.m in Sources */,
 				CA688202180AEF00008A7C99 /* BaseViewController.m in Sources */,
 				B4D940B1170EC5C2003DDBFA /* CatrobatTableViewController.m in Sources */,
