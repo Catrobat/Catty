@@ -131,7 +131,7 @@
 {
     [super viewDidLoad];
     
-    //    ///MENU_BUTTON
+    //    ///MENU_BUTTON:::Button before Sliding Menu!!!
     //    self.menuBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     //    menuBtn.frame = CGRectMake(8.0f, 10.0f, 34.0f, 24.0f);
     //    [menuBtn setBackgroundImage:[UIImage imageNamed:@"menuButton"] forState:UIControlStateNormal];
@@ -202,17 +202,14 @@
         self.menuAxisLabel          = [[UILabel alloc] initWithFrame:
                                        CGRectMake(-(kPlaceOfButtons-kWidthSlideMenu),(kIphone4ScreenHeight/2)+(kContinueButtonSize/2)+(kMenuIPhone4GapSize)+kMenuIPhone4ContinueGapSize+(2*kMenuButtonSize)-10,  100, kMenuButtonSize)];
     }
-    
-    [self setupLabel:NSLocalizedString(@"Back", nil)
-             andView:self.menuBackLabel];
-    [self setupLabel:NSLocalizedString(@"Restart", nil)
-             andView:self.menuRestartLabel];
-    [self setupLabel:NSLocalizedString(@"Continue",nil)
-             andView:self.menuContinueLabel];
-    [self setupLabel:NSLocalizedString(@"Screenshot",nil)
-             andView:self.menuScreenshotLabel];
-    [self setupLabel:NSLocalizedString(@"Grid",nil)
-             andView:self.menuAxisLabel];
+    NSArray* labelTextArray = [[NSArray alloc] initWithObjects:NSLocalizedString(@"Back", nil),NSLocalizedString(@"Restart", nil),NSLocalizedString(@"Continue",nil), NSLocalizedString(@"Screenshot",nil), NSLocalizedString(@"Grid",nil),nil];
+    NSArray* labelArray = [[NSArray alloc] initWithObjects:self.menuBackLabel,self.menuRestartLabel,self.menuContinueLabel, self.menuScreenshotLabel, self.menuAxisLabel,nil];
+    for(int i=0;i<[labelTextArray count];i++){
+        [self setupLabel:labelTextArray[i]
+                 andView:labelArray[i]];
+    }
+
+
 }
 
 -(void)setupLabel:(NSString*)name andView:(UILabel*)label
@@ -227,76 +224,57 @@
 
 -(void)setUpMenuButtons
 {
-//    [self setupButtonWithButton:self.menuBackButton
-//                ImageNameNormal:[UIImage imageNamed:@"stage_dialog_button_back"]
-//        andImageNameHighlighted:[UIImage imageNamed:@"stage_dialog_button_back_pressed"]
-//                    andSelector:@selector(stopLevel:)
-//     ];
 
     self.menuBackButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    [self.menuBackButton setBackgroundImage:[UIImage imageNamed:@"stage_dialog_button_back"] forState:UIControlStateNormal];
-    [self.menuBackButton setBackgroundImage:[UIImage imageNamed:@"stage_dialog_button_back_pressed"] forState:UIControlStateHighlighted];
-    [self.menuBackButton setBackgroundImage:[UIImage imageNamed:@"stage_dialog_button_back_pressed"] forState:UIControlStateSelected];
-    [self.menuBackButton  addTarget:self action:@selector(stopLevel:) forControlEvents:UIControlEventTouchUpInside];
-    
-    [self.menuView addSubview:self.menuBackButton];
-    
     self.menuContinueButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    [self.menuContinueButton setBackgroundImage:[UIImage imageNamed:@"stage_dialog_button_continue"] forState:UIControlStateNormal];
-    [self.menuContinueButton setBackgroundImage:[UIImage imageNamed:@"stage_dialog_button_continue_pressed"] forState:UIControlStateHighlighted];
-    [self.menuContinueButton setBackgroundImage:[UIImage imageNamed:@"stage_dialog_button_continue_pressed"] forState:UIControlStateSelected];
-    [self.menuContinueButton  addTarget:self action:@selector(continueLevel:withDuration:) forControlEvents:UIControlEventTouchUpInside];
-    
-    [self.menuView addSubview:self.menuContinueButton];
-    
-    
     self.menuScreenshotButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    
-    [_menuScreenshotButton setBackgroundImage:[UIImage imageNamed:@"stage_dialog_button_screenshot"] forState:UIControlStateNormal];
-    [_menuScreenshotButton setBackgroundImage:[UIImage imageNamed:@"stage_dialog_button_screenshot_pressed"] forState:UIControlStateHighlighted];
-    [_menuScreenshotButton setBackgroundImage:[UIImage imageNamed:@"stage_dialog_button_screenshot_pressed"] forState:UIControlStateSelected];
-    [_menuScreenshotButton addTarget:self action:@selector(takeScreenshot:) forControlEvents:UIControlEventTouchUpInside];
-    
-    [self.menuView addSubview:self.menuScreenshotButton];
-    
-    
     self.menuRestartButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    
-    [_menuRestartButton setBackgroundImage:[UIImage imageNamed:@"stage_dialog_button_restart"] forState:UIControlStateNormal];
-    [_menuRestartButton setBackgroundImage:[UIImage imageNamed:@"stage_dialog_button_restart_pressed"] forState:UIControlStateHighlighted];
-    [_menuRestartButton setBackgroundImage:[UIImage imageNamed:@"stage_dialog_button_restart_pressed"] forState:UIControlStateSelected];
-    [_menuRestartButton addTarget:self action:@selector(restartLevel:) forControlEvents:UIControlEventTouchUpInside];
-    
-    [self.menuView addSubview:self.menuRestartButton];
-    
     self.menuAxisButton = [UIButton buttonWithType:UIButtonTypeCustom];
     
-    [_menuAxisButton setBackgroundImage:[UIImage imageNamed:@"stage_dialog_button_toggle_axis"] forState:UIControlStateNormal];
-    [_menuAxisButton setBackgroundImage:[UIImage imageNamed:@"stage_dialog_button_toggle_axis_pressed"] forState:UIControlStateHighlighted];
-    [_menuAxisButton setBackgroundImage:[UIImage imageNamed:@"stage_dialog_button_toggle_axis_pressed"] forState:UIControlStateSelected];
-    [_menuAxisButton addTarget:self action:@selector(showHideAxis:) forControlEvents:UIControlEventTouchUpInside];
+    [self setupButtonWithButton:self.menuBackButton
+                ImageNameNormal:[UIImage imageNamed:@"stage_dialog_button_back"]
+        andImageNameHighlighted:[UIImage imageNamed:@"stage_dialog_button_back_pressed"]
+                    andSelector:@selector(stopLevel:)
+     ];
     
-    [self.menuView addSubview:self.menuAxisButton];
+    [self setupButtonWithButton:self.menuContinueButton
+                ImageNameNormal:[UIImage imageNamed:@"stage_dialog_button_continue"]
+        andImageNameHighlighted:[UIImage imageNamed:@"stage_dialog_button_continue_pressed"]
+                    andSelector:@selector(continueLevel:withDuration:)
+     ];
+
+    [self setupButtonWithButton:self.menuScreenshotButton
+                ImageNameNormal:[UIImage imageNamed:@"stage_dialog_button_screenshot"]
+        andImageNameHighlighted:[UIImage imageNamed:@"stage_dialog_button_screenshot_pressed"]
+                    andSelector:@selector(takeScreenshot:)
+     ];
     
+    [self setupButtonWithButton:self.menuRestartButton
+                ImageNameNormal:[UIImage imageNamed:@"stage_dialog_button_restart"]
+        andImageNameHighlighted:[UIImage imageNamed:@"stage_dialog_button_restart_pressed"]
+                    andSelector:@selector(restartLevel:)
+     ];
+    
+    [self setupButtonWithButton:self.menuAxisButton
+                ImageNameNormal:[UIImage imageNamed:@"stage_dialog_button_toggle_axis"]
+        andImageNameHighlighted:[UIImage imageNamed:@"stage_dialog_button_toggle_axis_pressed"]
+                    andSelector:@selector(showHideAxis:)
+     ];
 }
 
 -(void)setupButtonWithButton:(UIButton*)button ImageNameNormal:(UIImage*)stateNormal andImageNameHighlighted:(UIImage*)stateHighlighted andSelector:(SEL)myAction
 {
-    button = [UIButton buttonWithType:UIButtonTypeCustom];
     [button setBackgroundImage:stateNormal
                       forState:UIControlStateNormal];
     [button setBackgroundImage:stateHighlighted
                       forState:UIControlStateHighlighted];
     [button setBackgroundImage:stateHighlighted
                       forState:UIControlStateSelected];
-    [button addTarget:self
-               action:@selector(myAction)
-     forControlEvents:UIControlEventTouchUpInside];
-    
+    [button  addTarget:self
+                action:myAction
+      forControlEvents:UIControlEventTouchUpInside];
     
     [self.menuView addSubview:button];
-    [self.menuView bringSubviewToFront:button];
-
 }
 
 -(void)setUpMenuFrames

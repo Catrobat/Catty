@@ -69,24 +69,13 @@
 
 - (void)viewWillAppear:(BOOL)animated
 {
-//    self.searchDisplayController.displaysSearchBarInNavigationBar = NO;
-//    CGRect frame = self.tableView.frame;
-//    frame.origin.y = self.navigationController.navigationBar.frame.size.height;
-//    frame.size.height = (frame.size.height - frame.origin.y);
-//    self.tableView.frame = frame;
     [super viewWillAppear:animated];
-//    self.tabBarController.tabBar.translucent = YES;
+    self.tabBarController.tabBar.translucent = YES;
 }
 
 - (void)viewWillDisappear:(BOOL)animated
 {
     [super viewWillDisappear:animated];
-//    CGRect frame = self.tableView.frame;
-//    frame.origin.y = 44;
-//    frame.size.height = (frame.size.height - frame.origin.y);
-//    self.tableView.frame = frame;
-//    self.searchDisplayController.displaysSearchBarInNavigationBar = NO;
-//    self.searchDisplayController.searchBar.frame = CGRectMake(0,44,self.searchDisplayController.searchBar.frame.size.width,self.searchDisplayController.searchBar.frame.size.height);
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -98,14 +87,15 @@
     self.tableView.frame = frame;
     self.searchDisplayController.displaysSearchBarInNavigationBar = NO;
     self.searchDisplayController.searchBar.frame = CGRectMake(0,44,self.searchDisplayController.searchBar.frame.size.width,self.searchDisplayController.searchBar.frame.size.height);
-    //self.navigationController.navigationBar.translucent = YES;
+    self.navigationController.navigationBar.translucent = YES;
 }
 
-- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
+- (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView
+{
     
-    float checkPoint = 44;
-    float currentViewBottomEdge = scrollView.contentOffset.y+44;
-    if (currentViewBottomEdge == checkPoint && !self.checkSearch) {
+//    float checkPoint = 44;
+//    float currentViewBottomEdge = scrollView.contentOffset.y+44;
+    if (!self.checkSearch) {
         CGRect frame = self.tableView.frame;
         frame.origin.y = 44;
         frame.size.height = (frame.size.height - frame.origin.y);
@@ -113,6 +103,7 @@
         self.searchDisplayController.displaysSearchBarInNavigationBar = NO;
         self.searchDisplayController.searchBar.frame = CGRectMake(0,44,self.searchDisplayController.searchBar.frame.size.width,self.searchDisplayController.searchBar.frame.size.height);
         self.checkSearch=YES;
+        self.navigationController.navigationBar.translucent = YES;
         
     }
 }
@@ -237,10 +228,10 @@
 
 - (void)searchBarTextDidBeginEditing:(UISearchBar *)searchBar
 {
-    CGRect frame = self.tableView.frame;
-    frame.origin.y = self.navigationController.navigationBar.frame.size.height;
-    frame.size.height = (frame.size.height - frame.origin.y);
-    self.tableView.frame = frame;
+//    CGRect frame = self.tableView.frame;
+//    frame.origin.y = self.navigationController.navigationBar.frame.size.height;
+//    frame.size.height = (frame.size.height - frame.origin.y);
+//    self.tableView.frame = frame;
     
 }
 
@@ -250,6 +241,7 @@
     [self.searchDisplayController setActive:NO animated:YES];
     [self update];
     self.searchDisplayController.searchBar.text = searchBar.text;
+    self.tabBarController.tabBar.translucent = YES;
 }
 
 - (void)searchBarCancelButtonClicked:(UISearchBar *)searchBar
