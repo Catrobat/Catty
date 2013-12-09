@@ -24,6 +24,7 @@
 #import "LevelStoreDelegate.h"
 #import "FileManager.h"
 #import "TTTAttributedLabel.h"
+#import "SearchStoreViewController.h"
 
 
 @class CatrobatProject;
@@ -35,5 +36,6 @@
 @property (nonatomic, strong) CatrobatProject* project;
 
 @property (strong, nonatomic) IBOutlet UIScrollView *scrollViewOutlet;
+@property (strong,nonatomic) SearchStoreViewController* searchStoreController;
 
 @end

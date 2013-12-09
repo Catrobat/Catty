@@ -24,4 +24,6 @@
 
 @interface SearchStoreViewController : UITableViewController <UISearchDisplayDelegate, UISearchBarDelegate>
 
+@property (nonatomic) BOOL checkSearch;
+
 @end

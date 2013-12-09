@@ -65,13 +65,13 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-
+    
     [self initNavigationBar];
     self.hidesBottomBarWhenPushed = YES;
-
+    
     self.view.backgroundColor = [UIColor darkBlueColor];
     //[TableUtil initNavigationItem:self.navigationItem withTitle:@"Info" enableBackButton:YES target:self];
-
+    
     self.projectView = [self createViewForProject:self.project];
     [self.scrollViewOutlet addSubview:self.projectView];
     self.scrollViewOutlet.delegate = self;
@@ -79,12 +79,12 @@
     CGSize contentSize = self.projectView.bounds.size;
     CGFloat minHeight = self.view.frame.size.height-kUIBarHeight-kNavBarHeight;
     if (contentSize.height < minHeight) {
-      contentSize.height = minHeight;
+        contentSize.height = minHeight;
     }
     contentSize.height += kScrollViewOffset;
-
+    
     if (screenHeight == kIphone4ScreenHeight){
-      contentSize.height = contentSize.height - kIphone4ScreenHeight +kIphone5ScreenHeight;
+        contentSize.height = contentSize.height - kIphone4ScreenHeight +kIphone5ScreenHeight;
     }
     [self.scrollViewOutlet setContentSize:contentSize];
     self.scrollViewOutlet.userInteractionEnabled = YES;
@@ -100,7 +100,8 @@
 
 - (void) viewWillDisappear:(BOOL)animated
 {
-  self.hidesBottomBarWhenPushed = NO;
+    self.hidesBottomBarWhenPushed = NO;
+    
 }
 
 - (void)didReceiveMemoryWarning
@@ -123,6 +124,7 @@
 -(void)viewWillAppear:(BOOL)animated
 {
     [self.navigationController setToolbarHidden:YES];
+    self.searchStoreController.checkSearch = NO;
 }
 
 -(void)back
@@ -137,23 +139,23 @@
 
 #pragma mark - Segue
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-  /*
-    if ([segue.identifier isEqualToString:kSegueToScene]) {
-        if ([segue.destinationViewController isKindOfClass:[SceneViewController class]]){
+    /*
+     if ([segue.identifier isEqualToString:kSegueToScene]) {
+     if ([segue.destinationViewController isKindOfClass:[SceneViewController class]]){
+     self.hidesBottomBarWhenPushed = YES;
+     SceneViewController *destination = (SceneViewController*)segue.destinationViewController;
+     destination.programLoadingInfo = [Util programLoadingInfoForProgramWithName:self.project.name];
+     }
+     }
+     */
+    static NSString* segueToNew = kSegueToNew;
+    if ([[segue identifier] isEqualToString:segueToNew]) {
+        if ([segue.destinationViewController isKindOfClass:[ProgramTableViewController class]]) {
             self.hidesBottomBarWhenPushed = YES;
-            SceneViewController *destination = (SceneViewController*)segue.destinationViewController;
-            destination.programLoadingInfo = [Util programLoadingInfoForProgramWithName:self.project.name];            
+            ProgramTableViewController *programTableViewController = (ProgramTableViewController*) segue.destinationViewController;
+            [programTableViewController loadProgram:[Util programLoadingInfoForProgramWithName:self.project.name]];
         }
     }
-   */
-  static NSString* segueToNew = kSegueToNew;
-  if ([[segue identifier] isEqualToString:segueToNew]) {
-    if ([segue.destinationViewController isKindOfClass:[ProgramTableViewController class]]) {
-      self.hidesBottomBarWhenPushed = YES;
-      ProgramTableViewController *programTableViewController = (ProgramTableViewController*) segue.destinationViewController;
-      [programTableViewController loadProgram:[Util programLoadingInfoForProgramWithName:self.project.name]];
-    }
-  }
 }
 
 
@@ -179,7 +181,7 @@
     [downloadButton setTitleEdgeInsets:UIEdgeInsetsMake(0.0f, 25.0f, 0.0f, 0.0f)];
     downloadButton.enabled = NO;
     downloadButton.backgroundColor = [UIColor grayColor];
-
+    
     AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
     NSURL *url = [NSURL URLWithString:self.project.downloadUrl];
     

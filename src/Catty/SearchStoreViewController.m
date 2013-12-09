@@ -37,7 +37,7 @@
 @property (nonatomic, strong) NSMutableArray *searchResults;
 @property (nonatomic, strong) NSMutableData *data;
 @property (nonatomic, strong) NSURLConnection *connection;
-@property (nonatomic) BOOL checkSearch;
+
 @end
 
 @implementation SearchStoreViewController
@@ -63,7 +63,7 @@
     [self.searchDisplayController.searchBar becomeFirstResponder];
     self.searchDisplayController.searchBar.delegate = self;
     self.searchDisplayController.searchBar.frame = CGRectMake(0,44,self.searchDisplayController.searchBar.frame.size.width,self.searchDisplayController.searchBar.frame.size.height);
-    self.checkSearch = NO;
+    self.checkSearch = YES;
 
 }
 
@@ -98,7 +98,6 @@
     self.tableView.frame = frame;
     self.searchDisplayController.displaysSearchBarInNavigationBar = NO;
     self.searchDisplayController.searchBar.frame = CGRectMake(0,44,self.searchDisplayController.searchBar.frame.size.width,self.searchDisplayController.searchBar.frame.size.height);
-    self.checkSearch = NO;
     //self.navigationController.navigationBar.translucent = YES;
 }
 
@@ -293,6 +292,7 @@
     if([sender isKindOfClass:[CatrobatProject class]]) {
       ProgramDetailStoreViewController* programDetailViewController = (ProgramDetailStoreViewController*)[segue destinationViewController];
       programDetailViewController.project = sender;
+        programDetailViewController.searchStoreController = self;
     }
   }
 }
