@@ -143,7 +143,7 @@
     
     /// MenuImageBackground
     UIImage *menuBackgroundImage = [UIImage imageNamed:@"stage_dialog_background_middle.png"];
-    UIImage *newBackgroundImage = [[UIImage alloc] init];
+    UIImage *newBackgroundImage;
     
     if ([Util getScreenHeight] == kIphone4ScreenHeight) {
         CGSize size = CGSizeMake(kWidthSlideMenu, kIphone4ScreenHeight);

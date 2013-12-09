@@ -319,7 +319,7 @@
 // We do not need cropping if touch through transparent pixel is possible!!!!
         
 //        CGRect newRect = [image cropRectForImage:image];
-#warning Hack for cropping lookImages so that they have no transparent Background
+        
 //        if ((newRect.size.height <= image.size.height - 50 && newRect.size.height <= image.size.height - 50)) {
 //            CGImageRef imageRef = CGImageCreateWithImageInRect(image.CGImage, newRect);
 //            UIImage *newImage = [UIImage imageWithCGImage:imageRef];
