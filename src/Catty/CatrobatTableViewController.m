@@ -79,6 +79,7 @@
     [self.tableView endUpdates];
     BOOL lockIphoneEnabeled = [self shouldLockIphoneInAppWithoutScenePresenter];
     [[UIApplication sharedApplication] setIdleTimerDisabled:(lockIphoneEnabeled)];
+    [self.tableView deselectRowAtIndexPath:[self.tableView indexPathForSelectedRow] animated:YES];
 
 }
 

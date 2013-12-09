@@ -59,7 +59,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8T7-WP-UB7" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-3470" y="-2396"/>
+            <point key="canvasLocation" x="-2166" y="-3308"/>
         </scene>
         <!--Object Table View Controller - Object-->
         <scene sceneID="7hr-t9-tha">
@@ -118,7 +118,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="AWY-lV-YvE" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-3276" y="-3570"/>
+            <point key="canvasLocation" x="-1572" y="-3938"/>
         </scene>
         <!--Object Scripts Collection View Controller - Scripts-->
         <scene sceneID="ocP-zZ-Aog">
@@ -203,7 +203,7 @@
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="IHg-Xr-1zD" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-2639" y="-4126"/>
+            <point key="canvasLocation" x="-899" y="-4496"/>
         </scene>
         <!--Object Script Categories Table View Controller - Categories-->
         <scene sceneID="7WT-X9-0gQ">
@@ -237,7 +237,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2fY-pN-uu3" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-2073" y="-4465"/>
+            <point key="canvasLocation" x="-369" y="-4833"/>
         </scene>
         <!--Object New Script Category Table View Controller-->
         <scene sceneID="m1y-LC-Wmw">
@@ -266,7 +266,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Pae-VP-xwD" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1517" y="-4465"/>
+            <point key="canvasLocation" x="187" y="-4833"/>
         </scene>
         <!--Object Sounds Table View Controller - Sounds-->
         <scene sceneID="chZ-5K-kCV">
@@ -315,7 +315,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ckh-xJ-TUv" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-2825" y="-3010"/>
+            <point key="canvasLocation" x="-889" y="-2966"/>
         </scene>
         <!--Catrobat Table View Controller - Pocket Code-->
         <scene sceneID="vPB-Cv-GHf">
@@ -447,7 +447,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bi4-BT-YqP" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-2257" y="-3382"/>
+            <point key="canvasLocation" x="-889" y="-3758"/>
         </scene>
         <!--My Programs View Controller - Programs-->
         <scene sceneID="54w-ir-dKC">
@@ -549,7 +549,7 @@
                     <nil key="title"/>
                 </navigationItem>
             </objects>
-            <point key="canvasLocation" x="-1031" y="-2843"/>
+            <point key="canvasLocation" x="-231" y="-3819"/>
         </scene>
         <!--Menu Button View Controller-->
         <scene sceneID="fq4-jW-kYn">
@@ -563,7 +563,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="otE-X8-igJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-559" y="-2843"/>
+            <point key="canvasLocation" x="241" y="-3819"/>
         </scene>
         <!--Download Tab Bar Controller-->
         <scene sceneID="dkp-M0-hLB">
@@ -843,8 +843,8 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="1kj-7D-Va7"/>
-        <segue reference="ZYi-SP-eKt"/>
-        <segue reference="dSt-wf-R4M"/>
+        <segue reference="mUB-CR-2KD"/>
+        <segue reference="aCr-hO-8vs"/>
+        <segue reference="9nK-JY-fcb"/>
     </inferredMetricsTieBreakers>
 </document>
