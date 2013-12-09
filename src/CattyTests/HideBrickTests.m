@@ -20,18 +20,44 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import <UIKit/UIKit.h>
-#import "ScenePresenterViewController.h"
+#import <XCTest/XCTest.h>
+#import "BrickTests.h"
 
-@interface MenuButtonViewController : UIViewController
+@interface HideBrickTests : BrickTests
 
-@property (strong,nonatomic) UIButton* backButton;
-@property (strong,nonatomic) UIButton* continueButton;
-@property (strong,nonatomic) UIButton* screenshotButton;
-@property (strong,nonatomic) UIButton* restartButton;
-@property (strong, nonatomic) UIButton* axisButton;
-@property (strong,nonatomic) IBOutlet UIImageView* imageView;
-@property(weak,nonatomic) UITableViewController* controller;
-@property(weak,nonatomic) ScenePresenterViewController* presenter;
+@end
+
+@implementation HideBrickTests
+
+- (void)setUp
+{
+    [super setUp];
+    // Put setup code here; it will be run once, before the first test case.
+}
+
+- (void)tearDown
+{
+    // Put teardown code here; it will be run once, after the last test case.
+    [super tearDown];
+}
+
+-(void)testHideBrick
+{
+    
+    SpriteObject* object = [[SpriteObject alloc] init];
+    object.position = CGPointMake(0, 0);
+    
+    Scene* scene = [[Scene alloc] init];
+    [scene addChild:object];
+    
+    HideBrick* brick = [[HideBrick alloc]init];
+    brick.object = object;
+    
+    dispatch_block_t action = [brick actionBlock];
+    action();
+    
+    
+    XCTAssertEqual(object.hidden, YES, @"HideBrick is not correctly calculated");
+}
 
 @end

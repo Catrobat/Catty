@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>IfLogicBeginBrick</key>
-	<string>info</string>
+	<string>debug</string>
 	<key>ExampleClass</key>
 	<string>warn</string>
 </dict>

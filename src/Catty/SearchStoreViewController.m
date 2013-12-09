@@ -62,26 +62,50 @@
     [self.searchDisplayController setActive:YES animated:YES];
     [self.searchDisplayController.searchBar becomeFirstResponder];
     self.searchDisplayController.searchBar.delegate = self;
+    self.searchDisplayController.searchBar.frame = CGRectMake(0,44,self.searchDisplayController.searchBar.frame.size.width,self.searchDisplayController.searchBar.frame.size.height);
+    self.checkSearch = YES;
+
 }
 
 - (void)viewWillAppear:(BOOL)animated
 {
-    [super viewWillAppear:animated]; 
+    [super viewWillAppear:animated];
+    self.tabBarController.tabBar.translucent = YES;
 }
 
 - (void)viewWillDisappear:(BOOL)animated
 {
-  [super viewWillDisappear:animated];
+    [super viewWillDisappear:animated];
 }
 
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
     CGRect frame = self.tableView.frame;
-    frame.origin.y = self.navigationController.navigationBar.frame.size.height;
+    frame.origin.y = 44;
     frame.size.height = (frame.size.height - frame.origin.y);
     self.tableView.frame = frame;
+    self.searchDisplayController.displaysSearchBarInNavigationBar = NO;
+    self.searchDisplayController.searchBar.frame = CGRectMake(0,44,self.searchDisplayController.searchBar.frame.size.width,self.searchDisplayController.searchBar.frame.size.height);
+    self.navigationController.navigationBar.translucent = YES;
+}
 
+- (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView
+{
+    
+//    float checkPoint = 44;
+//    float currentViewBottomEdge = scrollView.contentOffset.y+44;
+    if (!self.checkSearch) {
+        CGRect frame = self.tableView.frame;
+        frame.origin.y = 44;
+        frame.size.height = (frame.size.height - frame.origin.y);
+        self.tableView.frame = frame;
+        self.searchDisplayController.displaysSearchBarInNavigationBar = NO;
+        self.searchDisplayController.searchBar.frame = CGRectMake(0,44,self.searchDisplayController.searchBar.frame.size.width,self.searchDisplayController.searchBar.frame.size.height);
+        self.checkSearch=YES;
+        self.navigationController.navigationBar.translucent = YES;
+        
+    }
 }
 
 - (void)didReceiveMemoryWarning
@@ -125,6 +149,7 @@
   }
   return cell;
 }
+
 
 #pragma mark - Table view delegate
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
@@ -203,13 +228,20 @@
 
 - (void)searchBarTextDidBeginEditing:(UISearchBar *)searchBar
 {
+//    CGRect frame = self.tableView.frame;
+//    frame.origin.y = self.navigationController.navigationBar.frame.size.height;
+//    frame.size.height = (frame.size.height - frame.origin.y);
+//    self.tableView.frame = frame;
+    
 }
 
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar {
-  NSDebug(@"%@", searchBar.text);
-  [self queryServerForSearchString:searchBar.text];
-  [self.searchDisplayController setActive:NO animated:YES];
-  [self update];
+    NSDebug(@"%@", searchBar.text);
+    [self queryServerForSearchString:searchBar.text];
+    [self.searchDisplayController setActive:NO animated:YES];
+    [self update];
+    self.searchDisplayController.searchBar.text = searchBar.text;
+    self.tabBarController.tabBar.translucent = YES;
 }
 
 - (void)searchBarCancelButtonClicked:(UISearchBar *)searchBar
@@ -224,6 +256,7 @@
   controller.searchResultsTableView.backgroundView = anImage;
   controller.searchResultsTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
   controller.searchResultsTableView.backgroundColor = [UIColor clearColor];
+    
   
 }
 
@@ -239,7 +272,7 @@
       [(UITextField *)subView setKeyboardAppearance: UIKeyboardAppearanceAlert];
     }
   }
-  
+
 }
 
 #pragma mark - Segue
@@ -251,6 +284,7 @@
     if([sender isKindOfClass:[CatrobatProject class]]) {
       ProgramDetailStoreViewController* programDetailViewController = (ProgramDetailStoreViewController*)[segue destinationViewController];
       programDetailViewController.project = sender;
+        programDetailViewController.searchStoreController = self;
     }
   }
 }

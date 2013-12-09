@@ -197,7 +197,7 @@
                                      8,      // bits per component
                                      bitmapBytesPerRow,
                                      colorSpace,
-                                     (CGBitmapInfo)kCGImageAlphaPremultipliedFirst);
+                                     (CGBitmapInfo)kCGImageAlphaPremultipliedLast);
     if (context == NULL) free (bitmapData);
 
     // Make sure and release colorspace before returning
@@ -211,30 +211,42 @@
 
     x += (image.size.width/2);
     y += (image.size.height/2);
+    y = image.size.height - y;
     CGImageRef cgImage = image.CGImage;
+    
     CGContextRef context = [self newARGBBitmapContextFromImage:cgImage];
     if (context == NULL) return NO;
     
-    size_t width = CGImageGetWidth(cgImage);
-    size_t height = CGImageGetHeight(cgImage);
+    
+    size_t width = CGImageGetHeight(cgImage);
+    //size_t width = image.size.width;
+    //size_t width = CGBitmapContextGetHeight(context);
+    size_t height = CGImageGetWidth(cgImage);
+    //size_t height = image.size.height;
+    //size_t height = CGBitmapContextGetWidth(context);
     CGRect rect = CGRectMake(0, 0, width, height);
     
     CGContextDrawImage(context, rect, cgImage);
-    
     unsigned char *data = CGBitmapContextGetData(context);
-    CGContextRelease(context);
-    if (data != NULL) {
+    
+    NSDebug(@"data: %c",data[0]);
+  
+    if (data[0] != '\0' && data != NULL)
+    {
         int pixelIndex = (int)(width*y + x)*4;
-                if (data[pixelIndex] == 0) {
+        NSDebug(@"alpha:%d",(int)data[pixelIndex]);
+                if ((int)data[pixelIndex] == 0) {
                     free(data);
+                    CGContextRelease(context);
                     return YES;
                 }else{
                     free(data);
+                    CGContextRelease(context);
                     return NO;
                 }
-        free(data);
     }
-    
+    free(data);
+    CGContextRelease(context);
     return NO;
     
    }

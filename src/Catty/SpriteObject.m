@@ -212,6 +212,14 @@
 
     for (UITouch *touch in touches) {
         CGPoint touchedPoint = [touch locationInNode:self];
+        NSDebug(@"x:%f,y:%f",touchedPoint.x,touchedPoint.y);
+         //NSLog(@"test touch, %@",self.name);
+//        UIGraphicsBeginImageContextWithOptions(self.frame.size, NO, [UIScreen mainScreen].scale);
+//        [self.scene.view drawViewHierarchyInRect:self.frame afterScreenUpdates:NO];
+//        UIImage *snapshotImage = UIGraphicsGetImageFromCurrentImageContext();
+//        UIGraphicsEndImageContext();
+        NSDebug(@"image : x:%f,y:%f",self.currentUIImageLook.size.width,self.currentUIImageLook.size.height);
+        
         BOOL isTransparent = [self.currentUIImageLook isTransparentPixel:self.currentUIImageLook withX:touchedPoint.x andY:touchedPoint.y];
         if (isTransparent == NO) {
         for (Script *script in self.scriptList)
@@ -243,7 +251,8 @@
 //    //UITouch *touch = [[event allTouches] anyObject];
 //    for (UITouch *touch in touches) {
 //        CGPoint touchedPoint = [touch locationInNode:self];
-//        BOOL isTransparent = [self.currentUIImageLook isTransparentPixel:self.currentUIImageLook withX:touchedPoint.x andY:touchedPoint.y];
+//        BOOL isTransparent = NO;//[self.currentUIImageLook isTransparentPixel:self.currentUIImageLook withX:touchedPoint.x andY:touchedPoint.y];
+//        NSLog(@"test touch, %@",self.name);
 //        if (isTransparent == NO) {
 //            for (Script *script in self.scriptList)
 //            {
@@ -274,7 +283,9 @@
     if([[self children] indexOfObject:script] == INT_MAX) {
         [self addChild:script];
     }
+
     [script startWithCompletion:completion];
+
 }
 
 
@@ -308,7 +319,7 @@
 // We do not need cropping if touch through transparent pixel is possible!!!!
         
 //        CGRect newRect = [image cropRectForImage:image];
-#warning Hack for cropping lookImages so that they have no transparent Background
+        
 //        if ((newRect.size.height <= image.size.height - 50 && newRect.size.height <= image.size.height - 50)) {
 //            CGImageRef imageRef = CGImageCreateWithImageInRect(image.CGImage, newRect);
 //            UIImage *newImage = [UIImage imageWithCGImage:imageRef];
@@ -387,13 +398,14 @@
 #pragma mark - Broadcast
 -(void)broadcast:(NSString *)message
 {
+    NSDebug(@"Broadcast: %@, Object: %@", message, self.name);
     [[NSNotificationCenter defaultCenter] postNotificationName:message object:self];
 }
 
 
 - (void)performBroadcastScript:(NSNotification*)notification
 {
-    NSDebug(@"Notification: %@", notification.name);
+    NSDebug(@"Notification: %@, Object: %@", notification.name, self.name);
 
     for (Script *script in self.scriptList) {
         if ([script isKindOfClass:[BroadcastScript class]]) {

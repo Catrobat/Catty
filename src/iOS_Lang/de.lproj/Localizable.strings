@@ -1,4 +1,4 @@
-/**
+/* *
  *  Copyright (C) 2010-2013 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
@@ -19,11 +19,39 @@
  *  You should have received a copy of the GNU Affero General Public License
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
+"ExampleEntry" = "ExampleTranslation";
 
-#import <UIKit/UIKit.h>
+"New" = "Neu";
 
-@interface SearchStoreViewController : UITableViewController <UISearchDisplayDelegate, UISearchBarDelegate>
+"Programs" = "Programme";
 
-@property (nonatomic) BOOL checkSearch;
+"Continue" = "Weiter";
 
-@end
+"Download" = "Herunterladen";
+
+"Upload" = "Hochladen";
+
+"Forum" = "Forum";
+
+"This feature is coming soon!" = "Kommt bald!";
+
+"Pocket Code for iOS" = "Pocket Code für iOS";
+
+"Description" = "Beschreibung";
+
+"Author" = "Autor";
+
+"Uploaded" = "Hochgeladen";
+
+"Views" = "Ansichten";
+
+"Play" = "Spielen";
+
+"Recents" = "Kürzlich";
+
+"Featured" = "Featured";
+
+"Search" = "Suche";
+
+"Screenshot" = "Screenshot";
+

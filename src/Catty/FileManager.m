@@ -289,7 +289,6 @@
         
         NSDebug(@"path for image is: %@", storePath);
         if ([self.imageData writeToFile:storePath atomically:YES]) {
-#warning could it be possible, that this is never successful? then the connection will not be released
             [self resetImageDataAndConnection];
         }
     }

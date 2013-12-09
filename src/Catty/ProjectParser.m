@@ -533,8 +533,9 @@
     }
     
     FormulaElement* parent = nil;
-#warning do we really need a parent?!
     
+    //Parent for now set to nil
+    // If needed please parse it
     FormulaElement* formulaElement = [[FormulaElement alloc] initWithType:type
                                                                     value:value
                                                                 leftChild:leftChild

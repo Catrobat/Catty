@@ -37,17 +37,9 @@
     return self;
 }
 
-- (void)performFromScript:(Script*)script
-{
-    NSDebug(@"Performing: %@", self.description);
-    
-    [self.object broadcast:self.broadcastMessage];    
-}
 
 -(SKAction*)action
 {
-    NSDebug(@"Adding: %@", self.description);
-        
     return [SKAction runBlock:^{
         NSDebug(@"Performing: %@", self.description);
         [self.object broadcast:self.broadcastMessage];

@@ -20,10 +20,44 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import <UIKit/UIKit.h>
+#import <XCTest/XCTest.h>
+#import "BrickTests.h"
 
-@interface SearchStoreViewController : UITableViewController <UISearchDisplayDelegate, UISearchBarDelegate>
+@interface ShowBrickTests : BrickTests
 
-@property (nonatomic) BOOL checkSearch;
+@end
+
+@implementation ShowBrickTests
+
+- (void)setUp
+{
+    [super setUp];
+    // Put setup code here; it will be run once, before the first test case.
+}
+
+- (void)tearDown
+{
+    // Put teardown code here; it will be run once, after the last test case.
+    [super tearDown];
+}
+
+-(void)testShowBrick
+{
+    
+    SpriteObject* object = [[SpriteObject alloc] init];
+    object.position = CGPointMake(0, 0);
+    
+    Scene* scene = [[Scene alloc] init];
+    [scene addChild:object];
+    
+    ShowBrick* brick = [[ShowBrick alloc]init];
+    brick.object = object;
+    
+    dispatch_block_t action = [brick actionBlock];
+    action();
+    
+    
+    XCTAssertEqual(object.hidden, NO, @"ShowBrick is not correctly calculated");
+}
 
 @end

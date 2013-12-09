@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4514" systemVersion="13A603" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="62e-MX-z1C">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4514" systemVersion="13A3017" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="62e-MX-z1C">
     <dependencies>
         <deployment defaultVersion="1792" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3747"/>
@@ -59,7 +59,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8T7-WP-UB7" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-3470" y="-2396"/>
+            <point key="canvasLocation" x="-2166" y="-3308"/>
         </scene>
         <!--Object Table View Controller - Object-->
         <scene sceneID="7hr-t9-tha">
@@ -118,7 +118,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="AWY-lV-YvE" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-3276" y="-3570"/>
+            <point key="canvasLocation" x="-1572" y="-3938"/>
         </scene>
         <!--Object Scripts Collection View Controller - Scripts-->
         <scene sceneID="ocP-zZ-Aog">
@@ -203,7 +203,7 @@
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="IHg-Xr-1zD" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-2639" y="-4126"/>
+            <point key="canvasLocation" x="-899" y="-4496"/>
         </scene>
         <!--Object Script Categories Table View Controller - Categories-->
         <scene sceneID="7WT-X9-0gQ">
@@ -237,7 +237,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2fY-pN-uu3" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-2073" y="-4465"/>
+            <point key="canvasLocation" x="-369" y="-4833"/>
         </scene>
         <!--Object New Script Category Table View Controller-->
         <scene sceneID="m1y-LC-Wmw">
@@ -266,7 +266,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Pae-VP-xwD" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1517" y="-4465"/>
+            <point key="canvasLocation" x="187" y="-4833"/>
         </scene>
         <!--Object Sounds Table View Controller - Sounds-->
         <scene sceneID="chZ-5K-kCV">
@@ -315,7 +315,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ckh-xJ-TUv" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-2825" y="-3010"/>
+            <point key="canvasLocation" x="-889" y="-2966"/>
         </scene>
         <!--Catrobat Table View Controller - Pocket Code-->
         <scene sceneID="vPB-Cv-GHf">
@@ -393,7 +393,7 @@
                         <segue destination="IIx-6w-DVK" kind="push" identifier="forum" id="rdV-gZ-8F0"/>
                         <segue destination="BYa-g9-OiT" kind="push" identifier="new" id="aum-BR-x1G"/>
                         <segue destination="BYa-g9-OiT" kind="push" identifier="continue" id="1kj-7D-Va7"/>
-                        <segue destination="39D-hJ-FD1" kind="push" identifier="download" id="7JT-6F-5d1"/>
+                        <segue destination="39D-hJ-FD1" kind="push" identifier="explore" id="7JT-6F-5d1"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="d1W-id-jRf" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -447,7 +447,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bi4-BT-YqP" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-2257" y="-3382"/>
+            <point key="canvasLocation" x="-889" y="-3758"/>
         </scene>
         <!--My Programs View Controller - Programs-->
         <scene sceneID="54w-ir-dKC">
@@ -526,10 +526,11 @@
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             </view>
-                            <view opaque="NO" alpha="0.79999999999999982" contentMode="scaleToFill" id="xIj-pz-OEX">
+                            <view alpha="0.94999999999999996" contentMode="scaleToFill" id="xIj-pz-OEX">
                                 <rect key="frame" x="0.0" y="0.0" width="100" height="568"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="tintColor" cocoaTouchSystemColor="darkTextColor"/>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
@@ -548,7 +549,7 @@
                     <nil key="title"/>
                 </navigationItem>
             </objects>
-            <point key="canvasLocation" x="-1031" y="-2843"/>
+            <point key="canvasLocation" x="-231" y="-3819"/>
         </scene>
         <!--Menu Button View Controller-->
         <scene sceneID="fq4-jW-kYn">
@@ -562,15 +563,16 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="otE-X8-igJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-559" y="-2843"/>
+            <point key="canvasLocation" x="241" y="-3819"/>
         </scene>
         <!--Download Tab Bar Controller-->
         <scene sceneID="dkp-M0-hLB">
             <objects>
                 <tabBarController definesPresentationContext="YES" id="39D-hJ-FD1" customClass="DownloadTabBarController" sceneMemberID="viewController">
                     <navigationItem key="navigationItem" id="CgE-hC-aFN"/>
-                    <nil key="simulatedBottomBarMetrics"/>
-                    <tabBar key="tabBar" contentMode="scaleToFill" barStyle="black" id="g11-cP-ZdE">
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics" barStyle="black"/>
+                    <tabBar key="tabBar" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" barStyle="black" id="g11-cP-ZdE">
                         <rect key="frame" x="129" y="330" width="163" height="49"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -637,6 +639,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <inset key="contentInset" minX="0.0" minY="0.0" maxX="0.0" maxY="49"/>
                         <prototypes>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="detailDisclosureButton" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="ImageCell" rowHeight="79" id="EfC-3p-1xF" customClass="DarkBlueGradientImageCell">
                                 <rect key="frame" x="0.0" y="86" width="320" height="79"/>
@@ -680,15 +683,17 @@
         <!--Search Store View Controller-->
         <scene sceneID="idB-9b-nhZ">
             <objects>
-                <tableViewController id="X6w-eP-ToB" customClass="SearchStoreViewController" sceneMemberID="viewController">
-                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="pkr-bx-PA4">
+                <tableViewController clearsSelectionOnViewWillAppear="NO" id="X6w-eP-ToB" customClass="SearchStoreViewController" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="pkr-bx-PA4">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <inset key="contentInset" minX="0.0" minY="0.0" maxX="0.0" maxY="49"/>
                         <searchBar key="tableHeaderView" autoresizesSubviews="NO" contentMode="redraw" text="" placeholder="Search" id="lNL-p9-Vaf">
                             <rect key="frame" x="0.0" y="64" width="320" height="44"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                             <rect key="contentStretch" x="0.0" y="0.0" width="0.0" height="0.0"/>
+                            <inset key="insetFor6xAndEarlier" minX="-44" minY="0.0" maxX="44" maxY="0.0"/>
                             <color key="barTintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             <textInputTraits key="textInputTraits"/>
                             <connections>
@@ -782,6 +787,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <inset key="contentInset" minX="0.0" minY="0.0" maxX="0.0" maxY="49"/>
                         <prototypes>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="detailDisclosureButton" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="ImageCell" rowHeight="79" id="c4J-Fi-xAk" customClass="DarkBlueGradientImageCell">
                                 <rect key="frame" x="0.0" y="86" width="320" height="79"/>
@@ -837,8 +843,8 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="aum-BR-x1G"/>
-        <segue reference="dSt-wf-R4M"/>
-        <segue reference="ZYi-SP-eKt"/>
+        <segue reference="mUB-CR-2KD"/>
+        <segue reference="aCr-hO-8vs"/>
+        <segue reference="9nK-JY-fcb"/>
     </inferredMetricsTieBreakers>
 </document>

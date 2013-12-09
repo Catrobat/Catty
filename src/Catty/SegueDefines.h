@@ -38,7 +38,7 @@
 #define kSegueNew @"new"
 #define kSeguePrograms @"programs"
 #define kSegueForum @"forum"
-#define kSegueDownload @"download"
+#define kSegueExplore @"explore"
 #define kSegueUpload @"upload"
 #define kSegueAddNewProgram @"addProgram"
 #define kSegueObjectView @"objectView"
