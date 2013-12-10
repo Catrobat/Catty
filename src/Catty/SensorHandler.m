@@ -119,10 +119,7 @@ static SensorHandler* sharedSensorHandler = nil;
     return result;
 }
 
--(void)measure
-{
-  [self.recorder stop];
-}
+
 
 - (void) stopSensors
 {
@@ -256,9 +253,13 @@ static SensorHandler* sharedSensorHandler = nil;
     NSDebug(@"%f",[self.recorder averagePowerForChannel:0]);
     self.db=[self.recorder averagePowerForChannel:0];
     [self performSelector:@selector(measure) withObject:nil afterDelay:0];
-    return self.db + 60;
+    [session setActive:NO error:nil];
+    return self.db + 74;
 }
-
+-(void)measure
+{
+    [self.recorder stop];
+}
 
 
 

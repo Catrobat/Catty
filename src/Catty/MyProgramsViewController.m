@@ -33,6 +33,7 @@
 #import "Logger.h"
 #import "SegueDefines.h"
 #import "LevelUpdateDelegate.h"
+#import "QuartzCore/QuartzCore.h"
 
 @interface MyProgramsViewController () <LevelUpdateDelegate>
 @property (nonatomic, strong) NSMutableArray *levelLoadingInfos;
@@ -183,7 +184,7 @@
         UITableViewCell <CatrobatImageCell>* imageCell = (UITableViewCell <CatrobatImageCell>*)cell;
         [self configureImageCell:imageCell atIndexPath:indexPath];
     }
-
+    cell.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"darkblue"]];
     return cell;
 }
 

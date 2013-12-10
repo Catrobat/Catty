@@ -38,6 +38,8 @@
 		921C907B1830040A00A4F2CA /* stage_dialog_background_middle.png in Resources */ = {isa = PBXBuildFile; fileRef = 921C907A1830040A00A4F2CA /* stage_dialog_background_middle.png */; };
 		921FE2FA182F8122001D7CF6 /* CoreImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 921FE2F9182F8122001D7CF6 /* CoreImage.framework */; };
 		9220BE5E1837B9EF005B12C7 /* activity@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9220BE5D1837B9EF005B12C7 /* activity@2x.png */; };
+		9293276B18573A1600CD92EE /* forwardbutton.png in Resources */ = {isa = PBXBuildFile; fileRef = 9293276918573A1600CD92EE /* forwardbutton.png */; };
+		9293276C18573A1600CD92EE /* forwardbutton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9293276A18573A1600CD92EE /* forwardbutton@2x.png */; };
 		92AD486B184F2AFE005B2223 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 92AD4868184F2AFE005B2223 /* Localizable.strings */; };
 		92C37A33185621FF00547C1E /* SetSizeToBrickTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 92C37A32185621FF00547C1E /* SetSizeToBrickTests.m */; };
 		92C37A381856253B00547C1E /* ComeToFrontBrickTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 92C37A371856253B00547C1E /* ComeToFrontBrickTests.m */; };
@@ -298,6 +300,8 @@
 		921C907A1830040A00A4F2CA /* stage_dialog_background_middle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = stage_dialog_background_middle.png; sourceTree = "<group>"; };
 		921FE2F9182F8122001D7CF6 /* CoreImage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreImage.framework; path = System/Library/Frameworks/CoreImage.framework; sourceTree = SDKROOT; };
 		9220BE5D1837B9EF005B12C7 /* activity@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "activity@2x.png"; path = "../../../activity@2x.png"; sourceTree = "<group>"; };
+		9293276918573A1600CD92EE /* forwardbutton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = forwardbutton.png; sourceTree = "<group>"; };
+		9293276A18573A1600CD92EE /* forwardbutton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "forwardbutton@2x.png"; sourceTree = "<group>"; };
 		92AD4869184F2AFE005B2223 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Localizable.strings; sourceTree = "<group>"; };
 		92AD486A184F2AFE005B2223 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		92C37A32185621FF00547C1E /* SetSizeToBrickTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SetSizeToBrickTests.m; sourceTree = "<group>"; };
@@ -834,6 +838,8 @@
 		B4003025170EB3C500396DB7 /* system */ = {
 			isa = PBXGroup;
 			children = (
+				9293276918573A1600CD92EE /* forwardbutton.png */,
+				9293276A18573A1600CD92EE /* forwardbutton@2x.png */,
 				B4BCF3FB170ECECF008EDF3A /* backbutton.png */,
 				B4BCF3FC170ECECF008EDF3A /* backbutton@2x.png */,
 				B4BCF3D8170ECE05008EDF3A /* accessory.png */,
@@ -2256,6 +2262,7 @@
 				B4BCF3E7170ECE19008EDF3A /* download.png in Resources */,
 				B4BCF3E8170ECE19008EDF3A /* download@2x.png in Resources */,
 				CA8F8A0D17F241F700A04C03 /* ic_sounds.png in Resources */,
+				9293276C18573A1600CD92EE /* forwardbutton@2x.png in Resources */,
 				92AD486B184F2AFE005B2223 /* Localizable.strings in Resources */,
 				C3F2950C1813C63200E37D61 /* iPhone.storyboard in Resources */,
 				CA7AC43A18074B5200904143 /* ic_media_play.png in Resources */,
@@ -2266,6 +2273,7 @@
 				9220BE5E1837B9EF005B12C7 /* activity@2x.png in Resources */,
 				B4BCF3EC170ECE19008EDF3A /* new@2x.png in Resources */,
 				C3BF74DE1811452800134B77 /* stage_dialog_button_toggle_axis_pressed.png in Resources */,
+				9293276B18573A1600CD92EE /* forwardbutton.png in Resources */,
 				B4BCF3ED170ECE19008EDF3A /* programs.png in Resources */,
 				C3BF74E41811452800134B77 /* stage_dialog_button_continue_pressed.png in Resources */,
 				B4BCF3EE170ECE19008EDF3A /* programs@2x.png in Resources */,
