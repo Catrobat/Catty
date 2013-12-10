@@ -57,7 +57,13 @@
     NSURL *url = [NSURL URLWithString:kForumURL];
     NSURLRequest *request = [NSURLRequest requestWithURL:url];
     [self.webView loadRequest:request];
+    [self setupToolBar];
     
+}
+-(void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    self.navigationController.navigationBar.translucent = YES;
 }
 
 
@@ -104,15 +110,44 @@
     [self hideLoadingView];
 }
 
+
 #pragma mark - Toolbar
 
-- (IBAction)nextPage:(id)sender
+- (void)nextPage:(id)sender
 {
     [self.webView goForward];
 }
 
-- (IBAction)previousPage:(id)sender
+- (void)previousPage:(id)sender
 {
     [self.webView goBack];
 }
+
+- (void)setupToolBar
+{
+    [self.navigationController setToolbarHidden:NO];
+    self.navigationController.toolbar.barStyle = UIBarStyleBlackTranslucent;
+    self.navigationController.toolbar.backgroundColor = [UIColor darkBlueColor];
+    self.navigationController.toolbar.translucent = YES;
+    self.navigationController.toolbar.tintColor = [UIColor orangeColor];
+    self.navigationController.toolbar.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleTopMargin;
+    UIBarButtonItem *flexItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace
+                                                                              target:nil
+                                                                              action:nil];
+#warning Add suitable icons!!-> usability team??
+    UIBarButtonItem *back = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemRewind
+                                                                         target:self
+                                                                         action:@selector(previousPage:)];
+    UIBarButtonItem *forward = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFastForward
+                                                                          target:self
+                                                                          action:@selector(nextPage:)];
+    // XXX: workaround for tap area problem:
+    // http://stackoverflow.com/questions/5113258/uitoolbar-unexpectedly-registers-taps-on-uibarbuttonitem-instances-even-when-tap
+    UIImageView *imageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"transparent1x1.png"]];
+    UIBarButtonItem *invisibleButton = [[UIBarButtonItem alloc] initWithCustomView:imageView];
+    self.toolbarItems = [NSArray arrayWithObjects:flexItem, invisibleButton, back, invisibleButton, flexItem,
+                         flexItem, flexItem, invisibleButton, forward, invisibleButton, flexItem, nil];
+}
+
+
 @end
