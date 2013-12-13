@@ -58,6 +58,7 @@
 		92C37A521856276D00547C1E /* SetBrightnessBrickTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 92C37A511856276D00547C1E /* SetBrightnessBrickTests.m */; };
 		92C37A541856279600547C1E /* MoveNStepsBrickTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 92C37A531856279600547C1E /* MoveNStepsBrickTests.m */; };
 		92C37A56185627A300547C1E /* ClearGrafficEffectBrickTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 92C37A55185627A300547C1E /* ClearGrafficEffectBrickTests.m */; };
+		92D161B0185B4DE000B5C0E7 /* stage_dialog_background_middle_1.png in Resources */ = {isa = PBXBuildFile; fileRef = 92D161AF185B4DE000B5C0E7 /* stage_dialog_background_middle_1.png */; };
 		B402288217329FEB004C4942 /* IfLogicBeginBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = B402288117329FEB004C4942 /* IfLogicBeginBrick.m */; };
 		B40228911732A541004C4942 /* IfLogicElseBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = B40228901732A540004C4942 /* IfLogicElseBrick.m */; };
 		B40228961732A58E004C4942 /* IfLogicEndBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = B40228951732A58E004C4942 /* IfLogicEndBrick.m */; };
@@ -322,6 +323,7 @@
 		92C37A511856276D00547C1E /* SetBrightnessBrickTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SetBrightnessBrickTests.m; sourceTree = "<group>"; };
 		92C37A531856279600547C1E /* MoveNStepsBrickTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MoveNStepsBrickTests.m; sourceTree = "<group>"; };
 		92C37A55185627A300547C1E /* ClearGrafficEffectBrickTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ClearGrafficEffectBrickTests.m; sourceTree = "<group>"; };
+		92D161AF185B4DE000B5C0E7 /* stage_dialog_background_middle_1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = stage_dialog_background_middle_1.png; path = media/system/stage_dialog_background_middle_1.png; sourceTree = "<group>"; };
 		B4003030170EB50A00396DB7 /* CatrobatTableViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CatrobatTableViewController.h; sourceTree = "<group>"; };
 		B4003031170EB50A00396DB7 /* CatrobatTableViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CatrobatTableViewController.m; sourceTree = "<group>"; };
 		B402288017329FEB004C4942 /* IfLogicBeginBrick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IfLogicBeginBrick.h; sourceTree = "<group>"; };
@@ -1470,6 +1472,7 @@
 			children = (
 				C3F1DD5A180AD1DC00E2FA45 /* ScenePresenterViewController.h */,
 				C3F1DD5B180AD1DC00E2FA45 /* ScenePresenterViewController.m */,
+				92D161AF185B4DE000B5C0E7 /* stage_dialog_background_middle_1.png */,
 				920F20C21837F27E003E9EE0 /* SaveToProjectActivity.h */,
 				920F20C31837F27E003E9EE0 /* SaveToProjectActivity.m */,
 			);
@@ -2256,6 +2259,7 @@
 				B4F243D0170EBF8F007A071D /* back@2x.png in Resources */,
 				B4BCF3DA170ECE05008EDF3A /* accessory.png in Resources */,
 				C3BF74E61811452800134B77 /* stage_dialog_button_back_pressed.png in Resources */,
+				92D161B0185B4DE000B5C0E7 /* stage_dialog_background_middle_1.png in Resources */,
 				B4BCF3DB170ECE05008EDF3A /* accessory@2x.png in Resources */,
 				CA8F8A0C17F241F700A04C03 /* ic_scripts.png in Resources */,
 				B4A68B071850F2B7006A15AA /* explore.png in Resources */,

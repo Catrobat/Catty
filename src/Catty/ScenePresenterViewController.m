@@ -37,10 +37,12 @@
 #import "SensorHandler.h"
 #import <AVFoundation/AVFoundation.h>
 #import <CoreImage/CoreImage.h>
+#import <AssetsLibrary/AssetsLibrary.h>
 #import <Accelerate/Accelerate.h>
 #import "UIColor+CatrobatUIColorExtensions.h"
 #import "Util.h"
 #import "SaveToProjectActivity.h"
+#import "UIImage+CatrobatUIImageExtensions.h"
 
 
 #define kWidthSlideMenu 150
@@ -142,7 +144,7 @@
     [self setUpMenuButtons];
     
     /// MenuImageBackground
-    UIImage *menuBackgroundImage = [UIImage imageNamed:@"stage_dialog_background_middle.png"];
+    UIImage *menuBackgroundImage = [UIImage imageNamed:@"stage_dialog_background_middle_1.png"];
     UIImage *newBackgroundImage;
     
     if ([Util getScreenHeight] == kIphone4ScreenHeight) {
@@ -159,8 +161,9 @@
         newBackgroundImage = UIGraphicsGetImageFromCurrentImageContext();
         UIGraphicsEndImageContext();
     }
-    
-    
+    //newBackgroundImage = [self brightnessBackground:newBackgroundImage];
+
+
     UIColor *background = [[UIColor alloc] initWithPatternImage:newBackgroundImage];
     
     //UIColor *background =[UIColor darkBlueColor];
@@ -175,6 +178,21 @@
     [self.view bringSubviewToFront:self.menuView];
 }
 
+- (UIImage*)brightnessBackground:(UIImage*)startImage
+{
+    CGImageRef image = startImage.CGImage;
+    CIImage *ciImage =[ CIImage imageWithCGImage:image];
+    CIContext *context = [CIContext contextWithOptions:nil];
+    CIFilter *filter = [CIFilter filterWithName:@"CIColorControls"
+                                  keysAndValues:kCIInputImageKey, ciImage, @"inputBrightness",
+                        @(-0.5), nil];
+    CIImage *outputImage = [filter outputImage];
+    
+    CGImageRef cgimg =
+    [context createCGImage:outputImage fromRect:[outputImage extent]];
+    
+    return [UIImage imageWithCGImage:cgimg];
+}
 
 -(void)setUpLabels
 {
@@ -295,8 +313,8 @@
         self.menuScreenshotButton.frame = CGRectMake(-(kPlaceOfButtons-kWidthSlideMenu),(kIphone5ScreenHeight/2)+(kContinueButtonSize/2)+kMenuIPhone5ContinueGapSize,  kMenuButtonSize, kMenuButtonSize);
         self.menuAxisButton.frame = CGRectMake(-(kPlaceOfButtons-kWidthSlideMenu),(kIphone5ScreenHeight/2)+(kContinueButtonSize/2)+(KMenuIPhone5GapSize)+kMenuIPhone5ContinueGapSize+(kMenuButtonSize),  kMenuButtonSize, kMenuButtonSize);
     }
-    
-    self.menuView.frame = CGRectMake(0, 0, 0, self.menuView.frame.size.height);
+    //NSLog(@"Width: %f",self.menuView.frame.size.width);
+    self.menuView.frame = CGRectMake(0, 0, kWidthSlideMenu, self.menuView.frame.size.height);
 }
 
 -(void)setUpGridView
@@ -421,7 +439,7 @@
 -(void)revealAnimation
 {
     [self.view bringSubviewToFront:self.menuView];
-    self.menuView.frame = CGRectMake(0, 0, kWidthSlideMenu, self.menuView.frame.size.height);
+    self.menuView.frame = CGRectMake(0, 0, self.menuView.frame.size.width, self.menuView.frame.size.height);
     
     self.menuBackButton.frame = CGRectMake(kPlaceOfButtons+((kContinueButtonSize-kMenuButtonSize)/2),self.menuBackButton.frame.origin.y, self.menuBackButton.frame.size.width, self.menuBackButton.frame.size.height);
     self.menuBackLabel.frame = CGRectMake(kPlaceofLabels+((kContinueButtonSize-kMenuButtonSize)/2),self.menuBackLabel.frame.origin.y,self.menuBackLabel.frame.size.width,self.menuBackLabel.frame.size.height);
@@ -489,7 +507,7 @@
 
 -(void)continueAnimation
 {
-    self.menuView.frame = CGRectMake(0, 0, 0, self.menuView.frame.size.height);
+    self.menuView.frame = CGRectMake(-kWidthSlideMenu, 0, self.menuView.frame.size.width, self.menuView.frame.size.height);
     self.menuBackButton.frame = CGRectMake(kPlaceOfButtons+((kContinueButtonSize-kMenuButtonSize)/2)-kWidthSlideMenu,self.menuBackButton.frame.origin.y, self.menuBackButton.frame.size.width, self.menuBackButton.frame.size.height);
     self.menuBackLabel.frame = CGRectMake(kPlaceofLabels+((kContinueButtonSize-kMenuButtonSize)/2)-kWidthSlideMenu,self.menuBackLabel.frame.origin.y, self.menuBackLabel.frame.size.width, self.menuBackLabel.frame.size.height);
     
@@ -687,7 +705,7 @@
         gesture.state == UIGestureRecognizerStateFailed)
     {
         
-        if (translate.x > 0.0 && self.menuOpen == NO && self.firstGestureTouchPoint.x < kSlidingStartArea)
+        if (translate.x > (kWidthSlideMenu/3) && self.menuOpen == NO && self.firstGestureTouchPoint.x < kSlidingStartArea)
         {
             [UIView animateWithDuration:0.25
                                   delay:0.0
@@ -702,7 +720,7 @@
                                  [[AudioManager sharedAudioManager] pauseAllSounds];
                              }];
         }
-        else if (translate.x < 0.0  && self.menuOpen == YES)
+        else if(translate.x > 0.0 && translate.x <(kWidthSlideMenu/3) && self.menuOpen == NO && self.firstGestureTouchPoint.x < kSlidingStartArea)
         {
             [UIView animateWithDuration:0.25
                                   delay:0.0
@@ -715,6 +733,37 @@
                                  self.menuOpen= NO;
                                  //[[AVAudioSession sharedInstance] setActive:YES error:nil];
                                  [[AudioManager sharedAudioManager] resumeAllSounds];
+                             }];
+
+        }
+        else if (translate.x < (-kWidthSlideMenu/3)  && self.menuOpen == YES)
+        {
+            [UIView animateWithDuration:0.25
+                                  delay:0.0
+                                options:UIViewAnimationOptionCurveEaseOut
+                             animations:^{[self handleCancelledNegative:translate];}
+                             completion:^(BOOL finished) {
+                                 SKView * view= (SKView*)_skView;
+                                 view.paused=NO;
+                                 //view.userInteractionEnabled = YES;
+                                 self.menuOpen= NO;
+                                 //[[AVAudioSession sharedInstance] setActive:YES error:nil];
+                                 [[AudioManager sharedAudioManager] resumeAllSounds];
+                             }];
+        }
+        else if (translate.x > (-kWidthSlideMenu/3) && translate.x < 0.0   && self.menuOpen == YES)
+        {
+            [UIView animateWithDuration:0.25
+                                  delay:0.0
+                                options:UIViewAnimationOptionCurveEaseOut
+                             animations:^{[self handleCancelledPositive:translate];}
+                             completion:^(BOOL finished) {
+                                 self.menuOpen = YES;
+                                 //pause Scene
+                                 SKView * view= (SKView*)_skView;
+                                 view.paused=YES;
+                                 //view.userInteractionEnabled = NO;
+                                 [[AudioManager sharedAudioManager] pauseAllSounds];
                              }];
         }
         
@@ -732,7 +781,7 @@
     //                         SKView * view= (SKView*)_skView;
     //                         view.paused=YES;
     
-    self.menuView.frame = CGRectMake(0, 0, translate.x, self.menuView.frame.size.height);
+    self.menuView.frame = CGRectMake(-kWidthSlideMenu+translate.x, 0, self.menuView.frame.size.width, self.menuView.frame.size.height);
     self.menuBackButton.frame = CGRectMake(translate.x+kPlaceOfButtons+((kContinueButtonSize-kMenuButtonSize)/2)-kWidthSlideMenu,self.menuBackButton.frame.origin.y, self.menuBackButton.frame.size.width, self.menuBackButton.frame.size.height);
     self.menuBackLabel.frame = CGRectMake(translate.x+kPlaceofLabels+((kContinueButtonSize-kMenuButtonSize)/2)-kWidthSlideMenu,self.menuBackLabel.frame.origin.y, self.menuBackLabel.frame.size.width, self.menuBackLabel.frame.size.height);
     
@@ -753,7 +802,7 @@
 
 -(void)handleNegativePan:(CGPoint)translate
 {
-    self.menuView.frame = CGRectMake(0, 0, kWidthSlideMenu+translate.x, self.menuView.frame.size.height);
+    self.menuView.frame = CGRectMake(translate.x, 0, self.menuView.frame.size.width, self.menuView.frame.size.height);
     self.menuBackButton.frame = CGRectMake(kPlaceOfButtons+((kContinueButtonSize-kMenuButtonSize)/2)+translate.x,self.menuBackButton.frame.origin.y, self.menuBackButton.frame.size.width, self.menuBackButton.frame.size.height);
     self.menuBackLabel.frame = CGRectMake(kPlaceofLabels+((kContinueButtonSize-kMenuButtonSize)/2)+translate.x,self.menuBackLabel.frame.origin.y, self.menuBackLabel.frame.size.width, self.menuBackLabel.frame.size.height);
     
@@ -778,7 +827,7 @@
     //                         UIColor *background = [UIColor darkBlueColor];//[[UIColor alloc] initWithPatternImage:snapshotImage];
     //                         self.menuView.backgroundColor = background;
     
-    self.menuView.frame = CGRectMake(0, 0, kWidthSlideMenu, self.menuView.frame.size.height);
+    self.menuView.frame = CGRectMake(0, 0, self.menuView.frame.size.width, self.menuView.frame.size.height);
     self.menuBackButton.frame = CGRectMake(kPlaceOfButtons+((kContinueButtonSize-kMenuButtonSize)/2),self.menuBackButton.frame.origin.y, self.menuBackButton.frame.size.width, self.menuBackButton.frame.size.height);
     self.menuBackLabel.frame =CGRectMake(kPlaceofLabels+((kContinueButtonSize-kMenuButtonSize)/2),self.menuBackLabel.frame.origin.y, self.menuBackLabel.frame.size.width, self.menuBackLabel.frame.size.height);
     
@@ -802,7 +851,7 @@
 
 -(void)handleCancelledNegative:(CGPoint)translate
 {
-    self.menuView.frame = CGRectMake(0, 0, 0, self.menuView.frame.size.height);
+    self.menuView.frame = CGRectMake(-kWidthSlideMenu, 0, self.menuView.frame.size.width, self.menuView.frame.size.height);
     self.menuBackButton.frame = CGRectMake(kPlaceOfButtons+((kContinueButtonSize-kMenuButtonSize)/2)-kWidthSlideMenu,self.menuBackButton.frame.origin.y, self.menuBackButton.frame.size.width, self.menuBackButton.frame.size.height);
     self.menuBackLabel.frame = CGRectMake(kPlaceofLabels+((kContinueButtonSize-kMenuButtonSize)/2)-kWidthSlideMenu,self.menuBackLabel.frame.origin.y, self.menuBackLabel.frame.size.width, self.menuBackLabel.frame.size.height);
     

@@ -527,7 +527,7 @@
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             </view>
                             <view opaque="NO" contentMode="scaleToFill" id="xIj-pz-OEX">
-                                <rect key="frame" x="0.0" y="0.0" width="100" height="568"/>
+                                <rect key="frame" x="0.0" y="0.0" width="150" height="568"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <color key="tintColor" cocoaTouchSystemColor="darkTextColor"/>
