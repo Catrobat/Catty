@@ -46,6 +46,7 @@
 
 
 #define kWidthSlideMenu 150
+#define kBounceEffect 5
 #define kPlaceOfButtons 17
 #define kSlidingStartArea 40
 #define kIphone5ScreenHeight 568.0f
@@ -148,14 +149,14 @@
     UIImage *newBackgroundImage;
     
     if ([Util getScreenHeight] == kIphone4ScreenHeight) {
-        CGSize size = CGSizeMake(kWidthSlideMenu, kIphone4ScreenHeight);
+        CGSize size = CGSizeMake(kWidthSlideMenu+kBounceEffect, kIphone4ScreenHeight);
         UIGraphicsBeginImageContextWithOptions(size, NO, 0.0);
         [menuBackgroundImage drawInRect:CGRectMake(0, 0, size.width, size.height)];
         newBackgroundImage = UIGraphicsGetImageFromCurrentImageContext();
         UIGraphicsEndImageContext();
     }
     else{
-        CGSize size = CGSizeMake(kWidthSlideMenu, kIphone5ScreenHeight);
+        CGSize size = CGSizeMake(kWidthSlideMenu+kBounceEffect, kIphone5ScreenHeight);
         UIGraphicsBeginImageContextWithOptions(size, NO, 0.0);
         [menuBackgroundImage drawInRect:CGRectMake(0, 0, size.width, size.height)];
         newBackgroundImage = UIGraphicsGetImageFromCurrentImageContext();
@@ -314,7 +315,7 @@
         self.menuAxisButton.frame = CGRectMake(-(kPlaceOfButtons-kWidthSlideMenu),(kIphone5ScreenHeight/2)+(kContinueButtonSize/2)+(KMenuIPhone5GapSize)+kMenuIPhone5ContinueGapSize+(kMenuButtonSize),  kMenuButtonSize, kMenuButtonSize);
     }
     //NSLog(@"Width: %f",self.menuView.frame.size.width);
-    self.menuView.frame = CGRectMake(0, 0, kWidthSlideMenu, self.menuView.frame.size.height);
+    self.menuView.frame = CGRectMake(0, 0, kWidthSlideMenu+kBounceEffect, self.menuView.frame.size.height);
 }
 
 -(void)setUpGridView
@@ -439,7 +440,7 @@
 -(void)revealAnimation
 {
     [self.view bringSubviewToFront:self.menuView];
-    self.menuView.frame = CGRectMake(0, 0, self.menuView.frame.size.width, self.menuView.frame.size.height);
+    self.menuView.frame = CGRectMake(-kBounceEffect, 0, self.menuView.frame.size.width, self.menuView.frame.size.height);
     
     self.menuBackButton.frame = CGRectMake(kPlaceOfButtons+((kContinueButtonSize-kMenuButtonSize)/2),self.menuBackButton.frame.origin.y, self.menuBackButton.frame.size.width, self.menuBackButton.frame.size.height);
     self.menuBackLabel.frame = CGRectMake(kPlaceofLabels+((kContinueButtonSize-kMenuButtonSize)/2),self.menuBackLabel.frame.origin.y,self.menuBackLabel.frame.size.width,self.menuBackLabel.frame.size.height);
@@ -507,7 +508,7 @@
 
 -(void)continueAnimation
 {
-    self.menuView.frame = CGRectMake(-kWidthSlideMenu, 0, self.menuView.frame.size.width, self.menuView.frame.size.height);
+    self.menuView.frame = CGRectMake(-kWidthSlideMenu-kBounceEffect, 0, self.menuView.frame.size.width, self.menuView.frame.size.height);
     self.menuBackButton.frame = CGRectMake(kPlaceOfButtons+((kContinueButtonSize-kMenuButtonSize)/2)-kWidthSlideMenu,self.menuBackButton.frame.origin.y, self.menuBackButton.frame.size.width, self.menuBackButton.frame.size.height);
     self.menuBackLabel.frame = CGRectMake(kPlaceofLabels+((kContinueButtonSize-kMenuButtonSize)/2)-kWidthSlideMenu,self.menuBackLabel.frame.origin.y, self.menuBackLabel.frame.size.width, self.menuBackLabel.frame.size.height);
     
@@ -667,6 +668,7 @@
 {
     CGPoint translate = [gesture translationInView:gesture.view];
     translate.y = 0.0;
+    CGFloat velocityX = [gesture velocityInView:gesture.view].x;
     
     if (gesture.state == UIGestureRecognizerStateBegan) {
         self.firstGestureTouchPoint = [gesture locationInView:gesture.view];
@@ -705,7 +707,7 @@
         gesture.state == UIGestureRecognizerStateFailed)
     {
         
-        if (translate.x > (kWidthSlideMenu/3) && self.menuOpen == NO && self.firstGestureTouchPoint.x < kSlidingStartArea)
+        if (translate.x > (kWidthSlideMenu/4) && self.menuOpen == NO && self.firstGestureTouchPoint.x < kSlidingStartArea)
         {
             [UIView animateWithDuration:0.25
                                   delay:0.0
@@ -718,9 +720,13 @@
                                  view.paused=YES;
                                  //view.userInteractionEnabled = NO;
                                  [[AudioManager sharedAudioManager] pauseAllSounds];
+
+                                 if (translate.x < (kWidthSlideMenu) && velocityX >300) {
+                                    [self bounce];
+                                 }
                              }];
         }
-        else if(translate.x > 0.0 && translate.x <(kWidthSlideMenu/3) && self.menuOpen == NO && self.firstGestureTouchPoint.x < kSlidingStartArea)
+        else if(translate.x > 0.0 && translate.x <(kWidthSlideMenu/4) && self.menuOpen == NO && self.firstGestureTouchPoint.x < kSlidingStartArea)
         {
             [UIView animateWithDuration:0.25
                                   delay:0.0
@@ -736,7 +742,7 @@
                              }];
 
         }
-        else if (translate.x < (-kWidthSlideMenu/3)  && self.menuOpen == YES)
+        else if (translate.x < (-kWidthSlideMenu/4)  && self.menuOpen == YES)
         {
             [UIView animateWithDuration:0.25
                                   delay:0.0
@@ -751,7 +757,7 @@
                                  [[AudioManager sharedAudioManager] resumeAllSounds];
                              }];
         }
-        else if (translate.x > (-kWidthSlideMenu/3) && translate.x < 0.0   && self.menuOpen == YES)
+        else if (translate.x > (-kWidthSlideMenu/4) && translate.x < 0.0   && self.menuOpen == YES)
         {
             [UIView animateWithDuration:0.25
                                   delay:0.0
@@ -764,6 +770,9 @@
                                  view.paused=YES;
                                  //view.userInteractionEnabled = NO;
                                  [[AudioManager sharedAudioManager] pauseAllSounds];
+                                 if (translate.x > -(kWidthSlideMenu) && velocityX < -100) {
+                                     [self bounce];
+                                 }
                              }];
         }
         
@@ -781,7 +790,7 @@
     //                         SKView * view= (SKView*)_skView;
     //                         view.paused=YES;
     
-    self.menuView.frame = CGRectMake(-kWidthSlideMenu+translate.x, 0, self.menuView.frame.size.width, self.menuView.frame.size.height);
+    self.menuView.frame = CGRectMake(-kWidthSlideMenu+translate.x-kBounceEffect, 0, self.menuView.frame.size.width, self.menuView.frame.size.height);
     self.menuBackButton.frame = CGRectMake(translate.x+kPlaceOfButtons+((kContinueButtonSize-kMenuButtonSize)/2)-kWidthSlideMenu,self.menuBackButton.frame.origin.y, self.menuBackButton.frame.size.width, self.menuBackButton.frame.size.height);
     self.menuBackLabel.frame = CGRectMake(translate.x+kPlaceofLabels+((kContinueButtonSize-kMenuButtonSize)/2)-kWidthSlideMenu,self.menuBackLabel.frame.origin.y, self.menuBackLabel.frame.size.width, self.menuBackLabel.frame.size.height);
     
@@ -802,7 +811,7 @@
 
 -(void)handleNegativePan:(CGPoint)translate
 {
-    self.menuView.frame = CGRectMake(translate.x, 0, self.menuView.frame.size.width, self.menuView.frame.size.height);
+    self.menuView.frame = CGRectMake(translate.x-kBounceEffect, 0, self.menuView.frame.size.width, self.menuView.frame.size.height);
     self.menuBackButton.frame = CGRectMake(kPlaceOfButtons+((kContinueButtonSize-kMenuButtonSize)/2)+translate.x,self.menuBackButton.frame.origin.y, self.menuBackButton.frame.size.width, self.menuBackButton.frame.size.height);
     self.menuBackLabel.frame = CGRectMake(kPlaceofLabels+((kContinueButtonSize-kMenuButtonSize)/2)+translate.x,self.menuBackLabel.frame.origin.y, self.menuBackLabel.frame.size.width, self.menuBackLabel.frame.size.height);
     
@@ -827,7 +836,7 @@
     //                         UIColor *background = [UIColor darkBlueColor];//[[UIColor alloc] initWithPatternImage:snapshotImage];
     //                         self.menuView.backgroundColor = background;
     
-    self.menuView.frame = CGRectMake(0, 0, self.menuView.frame.size.width, self.menuView.frame.size.height);
+    self.menuView.frame = CGRectMake(-kBounceEffect, 0, self.menuView.frame.size.width, self.menuView.frame.size.height);
     self.menuBackButton.frame = CGRectMake(kPlaceOfButtons+((kContinueButtonSize-kMenuButtonSize)/2),self.menuBackButton.frame.origin.y, self.menuBackButton.frame.size.width, self.menuBackButton.frame.size.height);
     self.menuBackLabel.frame =CGRectMake(kPlaceofLabels+((kContinueButtonSize-kMenuButtonSize)/2),self.menuBackLabel.frame.origin.y, self.menuBackLabel.frame.size.width, self.menuBackLabel.frame.size.height);
     
@@ -851,7 +860,7 @@
 
 -(void)handleCancelledNegative:(CGPoint)translate
 {
-    self.menuView.frame = CGRectMake(-kWidthSlideMenu, 0, self.menuView.frame.size.width, self.menuView.frame.size.height);
+    self.menuView.frame = CGRectMake(-kWidthSlideMenu-kBounceEffect, 0, self.menuView.frame.size.width, self.menuView.frame.size.height);
     self.menuBackButton.frame = CGRectMake(kPlaceOfButtons+((kContinueButtonSize-kMenuButtonSize)/2)-kWidthSlideMenu,self.menuBackButton.frame.origin.y, self.menuBackButton.frame.size.width, self.menuBackButton.frame.size.height);
     self.menuBackLabel.frame = CGRectMake(kPlaceofLabels+((kContinueButtonSize-kMenuButtonSize)/2)-kWidthSlideMenu,self.menuBackLabel.frame.origin.y, self.menuBackLabel.frame.size.width, self.menuBackLabel.frame.size.height);
     
@@ -868,6 +877,15 @@
     self.menuAxisLabel.frame = CGRectMake(kPlaceofLabels+((kContinueButtonSize-kMenuButtonSize)/2)-kWidthSlideMenu,self.menuAxisLabel.frame.origin.y, self.menuAxisLabel.frame.size.width, self.menuAxisLabel.frame.size.height);
     self.menuBtn.hidden=NO;
 
+}
+-(void)bounce
+{
+    CABasicAnimation * animation = [CABasicAnimation animationWithKeyPath:@"position.x"];
+    [animation setFromValue:[NSNumber numberWithFloat:kWidthSlideMenu/2]];
+    [animation setToValue:[NSNumber numberWithFloat:(kWidthSlideMenu/2)+(kBounceEffect/2)]];
+    [animation setDuration:.3];
+    [animation setTimingFunction:[CAMediaTimingFunction functionWithControlPoints:.5 :1.8 :1 :1]];
+    [self.menuView.layer addAnimation:animation forKey:@"somekey"];
 }
 
 -(void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
