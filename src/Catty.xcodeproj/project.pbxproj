@@ -27,12 +27,10 @@
 		288765FD0DF74451002DB57D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 288765FC0DF74451002DB57D /* CoreGraphics.framework */; };
 		816C788317D5F0420029A4E6 /* settings_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 816C788217D5F0420029A4E6 /* settings_bg@2x.png */; };
 		816C788617D62B7C0029A4E6 /* ProgramTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 816C788517D62B7C0029A4E6 /* ProgramTableViewController.m */; };
+		81C27424189EE41700827A95 /* ScriptCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 81C27423189EE41700827A95 /* ScriptCell.m */; };
 		81FAEE2F17E781AB0052BB2B /* ObjectScriptsCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 81FAEE2E17E781AB0052BB2B /* ObjectScriptsCollectionViewController.m */; };
 		81FAEE3217E782140052BB2B /* ObjectLooksTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 81FAEE3117E782140052BB2B /* ObjectLooksTableViewController.m */; };
 		81FAEE3517E782360052BB2B /* ObjectSoundsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 81FAEE3417E782360052BB2B /* ObjectSoundsTableViewController.m */; };
-		81FAEE3917E793240052BB2B /* ScriptsCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 81FAEE3817E793240052BB2B /* ScriptsCollectionViewCell.m */; };
-		81FAEE3C17E793F60052BB2B /* ScriptsViewCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 81FAEE3B17E793F60052BB2B /* ScriptsViewCollectionViewController.m */; };
-		81FAEE3F17E7994B0052BB2B /* PrototypScriptCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 81FAEE3E17E7994B0052BB2B /* PrototypScriptCell.m */; };
 		9200F006182E3CA0008BF678 /* CatrobatAudioPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 9200F005182E3CA0008BF678 /* CatrobatAudioPlayer.m */; };
 		920F20C41837F27E003E9EE0 /* SaveToProjectActivity.m in Sources */ = {isa = PBXBuildFile; fileRef = 920F20C31837F27E003E9EE0 /* SaveToProjectActivity.m */; };
 		921C907B1830040A00A4F2CA /* stage_dialog_background_middle.png in Resources */ = {isa = PBXBuildFile; fileRef = 921C907A1830040A00A4F2CA /* stage_dialog_background_middle.png */; };
@@ -281,18 +279,14 @@
 		816C788217D5F0420029A4E6 /* settings_bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "settings_bg@2x.png"; sourceTree = "<group>"; };
 		816C788417D62B7C0029A4E6 /* ProgramTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProgramTableViewController.h; sourceTree = "<group>"; };
 		816C788517D62B7C0029A4E6 /* ProgramTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProgramTableViewController.m; sourceTree = "<group>"; };
+		81C27422189EE41700827A95 /* ScriptCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScriptCell.h; sourceTree = "<group>"; };
+		81C27423189EE41700827A95 /* ScriptCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScriptCell.m; sourceTree = "<group>"; };
 		81FAEE2D17E781AB0052BB2B /* ObjectScriptsCollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ObjectScriptsCollectionViewController.h; sourceTree = "<group>"; };
 		81FAEE2E17E781AB0052BB2B /* ObjectScriptsCollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ObjectScriptsCollectionViewController.m; sourceTree = "<group>"; };
 		81FAEE3017E782140052BB2B /* ObjectLooksTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ObjectLooksTableViewController.h; sourceTree = "<group>"; };
 		81FAEE3117E782140052BB2B /* ObjectLooksTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ObjectLooksTableViewController.m; sourceTree = "<group>"; };
 		81FAEE3317E782360052BB2B /* ObjectSoundsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ObjectSoundsTableViewController.h; sourceTree = "<group>"; };
 		81FAEE3417E782360052BB2B /* ObjectSoundsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ObjectSoundsTableViewController.m; sourceTree = "<group>"; };
-		81FAEE3717E793240052BB2B /* ScriptsCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScriptsCollectionViewCell.h; sourceTree = "<group>"; };
-		81FAEE3817E793240052BB2B /* ScriptsCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScriptsCollectionViewCell.m; sourceTree = "<group>"; };
-		81FAEE3A17E793F60052BB2B /* ScriptsViewCollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScriptsViewCollectionViewController.h; sourceTree = "<group>"; };
-		81FAEE3B17E793F60052BB2B /* ScriptsViewCollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScriptsViewCollectionViewController.m; sourceTree = "<group>"; };
-		81FAEE3D17E7994B0052BB2B /* PrototypScriptCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrototypScriptCell.h; sourceTree = "<group>"; };
-		81FAEE3E17E7994B0052BB2B /* PrototypScriptCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PrototypScriptCell.m; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* App-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "App-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
 		9200F004182E3CA0008BF678 /* CatrobatAudioPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CatrobatAudioPlayer.h; sourceTree = "<group>"; };
 		9200F005182E3CA0008BF678 /* CatrobatAudioPlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CatrobatAudioPlayer.m; sourceTree = "<group>"; };
@@ -771,7 +765,7 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		8154EAAD17D8D15F0078BFED /* ObjectTableViewController */ = {
+		8154EAAD17D8D15F0078BFED /* ObjectViewControllers */ = {
 			isa = PBXGroup;
 			children = (
 				81FAEE3617E792620052BB2B /* ScriptsView */,
@@ -788,13 +782,13 @@
 				CAEDFB7F17EF759500FDED0E /* ObjectTableViewController.h */,
 				CAEDFB8017EF759500FDED0E /* ObjectTableViewController.m */,
 			);
-			name = ObjectTableViewController;
+			name = ObjectViewControllers;
 			sourceTree = "<group>";
 		};
 		81F10ED317CCD1F8000E4522 /* ProgramTableViewController */ = {
 			isa = PBXGroup;
 			children = (
-				8154EAAD17D8D15F0078BFED /* ObjectTableViewController */,
+				8154EAAD17D8D15F0078BFED /* ObjectViewControllers */,
 				816C788417D62B7C0029A4E6 /* ProgramTableViewController.h */,
 				816C788517D62B7C0029A4E6 /* ProgramTableViewController.m */,
 			);
@@ -804,12 +798,8 @@
 		81FAEE3617E792620052BB2B /* ScriptsView */ = {
 			isa = PBXGroup;
 			children = (
-				81FAEE3717E793240052BB2B /* ScriptsCollectionViewCell.h */,
-				81FAEE3817E793240052BB2B /* ScriptsCollectionViewCell.m */,
-				81FAEE3A17E793F60052BB2B /* ScriptsViewCollectionViewController.h */,
-				81FAEE3B17E793F60052BB2B /* ScriptsViewCollectionViewController.m */,
-				81FAEE3D17E7994B0052BB2B /* PrototypScriptCell.h */,
-				81FAEE3E17E7994B0052BB2B /* PrototypScriptCell.m */,
+				81C27422189EE41700827A95 /* ScriptCell.h */,
+				81C27423189EE41700827A95 /* ScriptCell.m */,
 			);
 			name = ScriptsView;
 			sourceTree = "<group>";
@@ -2357,7 +2347,6 @@
 				B4D940D1170EC9ED003DDBFA /* NSString+CatrobatNSStringExtensions.m in Sources */,
 				B4D940D0170EC9E9003DDBFA /* UIColor+CatrobatUIColorExtensions.m in Sources */,
 				B4D940CF170EC9E6003DDBFA /* UIImage+CatrobatUIImageExtensions.m in Sources */,
-				81FAEE3F17E7994B0052BB2B /* PrototypScriptCell.m in Sources */,
 				B4D940CB170EC8DA003DDBFA /* TableUtil.m in Sources */,
 				B4D940CA170EC8C4003DDBFA /* ProgramLoadingInfo.m in Sources */,
 				C34B44F817F1D8D200624730 /* ChangeBrightnessByNBrick.m in Sources */,
@@ -2383,7 +2372,6 @@
 				CD0CCF64170CB39700B70036 /* ComeToFrontBrick.m in Sources */,
 				CD0CCF71170CB39700B70036 /* FileManager.m in Sources */,
 				CD0CCF72170CB39700B70036 /* ForeverBrick.m in Sources */,
-				81FAEE3917E793240052BB2B /* ScriptsCollectionViewCell.m in Sources */,
 				CD0CCF74170CB39700B70036 /* GlideToBrick.m in Sources */,
 				CD0CCF75170CB39700B70036 /* GoNStepsBackBrick.m in Sources */,
 				CD0CCF76170CB39700B70036 /* Header.m in Sources */,
@@ -2410,6 +2398,7 @@
 				CD0CCFC4170CB39700B70036 /* SetXBrick.m in Sources */,
 				CD0CCFC5170CB39700B70036 /* SetYBrick.m in Sources */,
 				CD0CCFC6170CB39700B70036 /* ShowBrick.m in Sources */,
+				81C27424189EE41700827A95 /* ScriptCell.m in Sources */,
 				CD0CCFC7170CB39700B70036 /* Sound.m in Sources */,
 				CD0CCFC9170CB39700B70036 /* SpeakBrick.m in Sources */,
 				CD0CCFD0170CB39700B70036 /* StartScript.m in Sources */,
@@ -2460,7 +2449,6 @@
 				B40228911732A541004C4942 /* IfLogicElseBrick.m in Sources */,
 				B40228961732A58E004C4942 /* IfLogicEndBrick.m in Sources */,
 				B40228A51732ADF4004C4942 /* PointToBrick.m in Sources */,
-				81FAEE3C17E793F60052BB2B /* ScriptsViewCollectionViewController.m in Sources */,
 				B470688A1733BA9600EC880D /* VariablesContainer.m in Sources */,
 				B470688F1733D6CC00EC880D /* ChangeVariableBrick.m in Sources */,
 				B44F32A01737AC2E00BD97AC /* ProgramManager.m in Sources */,

@@ -20,14 +20,26 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
+#import "ScriptCell.h"
 
-#import <UIKit/UIKit.h>
+@implementation ScriptCell
 
-@interface PrototypScriptCell : UICollectionViewCell
-@property (weak, nonatomic) IBOutlet UIImageView *cellBackground;
-@property (weak, nonatomic) IBOutlet UILabel *leftLabel;
-@property (weak, nonatomic) IBOutlet UITextField *leftTextField;
-@property (weak, nonatomic) IBOutlet UILabel *rightLabel;
-@property (weak, nonatomic) IBOutlet UITextField *rightTextField;
+- (id)initWithFrame:(CGRect)frame
+{
+    self = [super initWithFrame:frame];
+    if (self) {
+        // Initialization code
+    }
+    return self;
+}
+
+/*
+// Only override drawRect: if you perform custom drawing.
+// An empty implementation adversely affects performance during animation.
+- (void)drawRect:(CGRect)rect
+{
+    // Drawing code
+}
+*/
 
 @end

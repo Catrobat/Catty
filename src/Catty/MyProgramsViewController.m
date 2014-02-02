@@ -57,9 +57,7 @@
     [super viewDidLoad];
 
     [self initTableView];
-
     [TableUtil initNavigationItem:self.navigationItem withTitle:NSLocalizedString(@"Programs", nil)];
-
     [self setupToolBar];
     [self loadLevels];
 }
@@ -337,7 +335,7 @@
   UIBarButtonItem *add = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd
                                                                        target:self
                                                                        action:@selector(addProgramAction:)];
-  self.toolbarItems = [NSArray arrayWithObjects:flexItem, add, flexItem, nil];
+    self.toolbarItems = @[flexItem, add, flexItem];
 }
 
 @end

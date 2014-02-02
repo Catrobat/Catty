@@ -21,12 +21,12 @@
  */
 
 #import "ObjectScriptsCollectionViewController.h"
-#import "PrototypScriptCell.h"
 #import "UIDefines.h"
 #import "SpriteObject.h"
 #import "SegueDefines.h"
 #import "ScenePresenterViewController.h"
 #import "ObjectScriptCategoriesTableViewController.h"
+#import "ScriptCell.h"
 
 @interface ObjectScriptsCollectionViewController () <UICollectionViewDelegate, UICollectionViewDelegateFlowLayout>
 @end
@@ -66,12 +66,8 @@
 #pragma mark - collection view delegate
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-  PrototypScriptCell *cell = (PrototypScriptCell *)[collectionView dequeueReusableCellWithReuseIdentifier:@"Brick" forIndexPath:indexPath];
-  
-  cell.leftLabel.text = @"x:";
-  cell.rightLabel.text = @"y:";
-  cell.backgroundColor = [UIColor blueColor];
-  
+  ScriptCell *cell = (ScriptCell *)[collectionView dequeueReusableCellWithReuseIdentifier:@"Brick" forIndexPath:indexPath];
+
   return cell;
 }
 
