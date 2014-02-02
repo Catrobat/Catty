@@ -23,5 +23,10 @@
 #import <UIKit/UIKit.h>
 
 @interface ScriptCell : UICollectionViewCell
+@property (nonatomic, strong) UIImageView *backgroundImage;
+@property (nonatomic, strong) UIColor *backgroundTintColor;
+
+- (void)setupBrickView:(NSDictionary *)labels;
+- (void)setBackgroundImage:(UIImageView *)backgroundImage withTintColor:(UIColor *)tintColor;
 
 @end

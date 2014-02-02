@@ -28,18 +28,43 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
-        // Initialization code
+      self.contentMode = UIViewContentModeScaleToFill;
+      self.clipsToBounds = YES;
     }
     return self;
 }
 
-/*
-// Only override drawRect: if you perform custom drawing.
-// An empty implementation adversely affects performance during animation.
-- (void)drawRect:(CGRect)rect
-{
-    // Drawing code
+#pragma mark layout
+
+- (void)setupBrickView:(NSDictionary *)labels {
+   NSAssert(NO, @"Must be overridden");
 }
-*/
+
+- (void)layoutSubviews {
+  [super layoutSubviews];
+  
+  if (self.backgroundImage) {
+    self.backgroundImage.frame = self.frame;
+    [self.contentView addSubview:self.backgroundImage];
+    [self.contentView sendSubviewToBack:self.backgroundImage];
+  }
+}
+
+#pragma mark Background Image
+
+- (UIImageView *)backgroundImage {
+  if (!_backgroundImage) {
+    _backgroundImage = [UIImageView new];
+    return _backgroundImage;
+  }
+  return nil;
+}
+
+- (void)setBackgroundImage:(UIImageView *)backgroundImage withTintColor:(UIColor *)tintColor {
+  UIImage *stencilImage = [UIImage imageNamed:@"background_image__brick"];
+  stencilImage = [stencilImage imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
+  self.backgroundImage.image = stencilImage;
+  self.backgroundImage.tintColor = tintColor;
+}
 
 @end

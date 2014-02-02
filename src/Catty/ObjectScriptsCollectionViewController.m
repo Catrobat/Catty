@@ -29,22 +29,23 @@
 #import "ScriptCell.h"
 
 @interface ObjectScriptsCollectionViewController () <UICollectionViewDelegate, UICollectionViewDelegateFlowLayout>
+@property (nonatomic, strong) NSMutableArray *bricks;
 @end
 
 @implementation ObjectScriptsCollectionViewController
 
 - (void)viewDidLoad
 {
-  [super viewDidLoad];
-  [super initPlaceHolder];
-  [super setPlaceHolderTitle:kScriptsTitle
-                 Description:[NSString stringWithFormat:NSLocalizedString(kEmptyViewPlaceHolder, nil),
-                              kScriptsTitle]];
-  [super showPlaceHolder:(! (BOOL)[self.object.lookList count])];
-
-  self.title = self.object.name;
-  self.navigationItem.title = self.object.name;
-  [self setupToolBar];
+    [super viewDidLoad];
+    [super initPlaceHolder];
+    [super setPlaceHolderTitle:kScriptsTitle
+                   Description:[NSString stringWithFormat:NSLocalizedString(kEmptyViewPlaceHolder, nil),
+                                kScriptsTitle]];
+    [super showPlaceHolder:(!(BOOL)[self.object.lookList count])];
+    
+    self.title = self.object.name;
+    self.navigationItem.title = self.object.name;
+    [self setupToolBar];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -60,7 +61,8 @@
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
-  return 3;
+  //return [self.bricks count];
+  return 1;
 }
 
 #pragma mark - collection view delegate
@@ -70,6 +72,30 @@
 
   return cell;
 }
+
+
+#pragma mark -CollectionViewLayout
+
+- (UIEdgeInsets)collectionView:(UICollectionView *)collectionView
+                        layout:(UICollectionViewLayout *)collectionViewLayout
+        insetForSectionAtIndex:(NSInteger)section {
+    return UIEdgeInsetsMake(0.f, 0.f, 0.f, 0.f);
+
+}
+
+- (CGFloat)collectionView:(UICollectionView *)collectionView
+                   layout:(UICollectionViewLayout *)collectionViewLayout
+minimumInteritemSpacingForSectionAtIndex:(NSInteger)section {
+  return 5.f;
+}
+
+- (CGFloat)collectionView:(UICollectionView *)collectionView
+                   layout:(UICollectionViewLayout *)collectionViewLayout
+minimumLineSpacingForSectionAtIndex:(NSInteger)section {
+  return 0.f;
+}
+
+
 
 #pragma mark - Navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
@@ -130,6 +156,16 @@
   UIBarButtonItem *invisibleButton = [[UIBarButtonItem alloc] initWithCustomView:imageView];
   self.toolbarItems = [NSArray arrayWithObjects:flexItem, invisibleButton, add, invisibleButton, flexItem,
                        flexItem, flexItem, invisibleButton, play, invisibleButton, flexItem, nil];
+}
+
+#pragma mark private
+
+- (NSMutableArray *)bricks {
+  if (!_bricks) {
+    _bricks = [NSMutableArray new];
+    return _bricks;
+  }
+  return nil;
 }
 
 @end
