@@ -28,30 +28,30 @@
 #define kCategoryCell @"BrickCell"
 
 @interface ObjectNewScriptCategoryTableViewController ()
-@property (nonatomic, strong) NSDictionary *cells;
+@property (nonatomic, strong) NSArray *currentCategoryBricks;
 @end
 
 @implementation ObjectNewScriptCategoryTableViewController
 
 #pragma marks - getters and setters
-- (NSDictionary*)cells
+- (NSArray*)currentCategoryBricks
 {
-  if (! _cells) {
-    if (self.categoryType == kControlBrick) {
-      _cells = kControlBrickTypeNames;
-    } else if (self.categoryType == kMotionBrick) {
-      _cells = kMotionBrickTypeNames;
-    } else if (self.categoryType == kSoundBrick) {
-      _cells = kSoundBrickTypeNames;
-    } else if (self.categoryType == kLookBrick) {
-      _cells = kLookBrickTypeNames;
-    } else if (self.categoryType == kVariableBrick) {
-      _cells = kVariableBrickTypeNames;
-    } else {
-      _cells = [OrderedDictionary dictionary];
+    if (! _currentCategoryBricks) {
+        if (self.categoryType == kControlBrick) {
+            _currentCategoryBricks = kControlBrickTypeNames;
+        } else if (self.categoryType == kMotionBrick) {
+            _currentCategoryBricks = kMotionBrickTypeNames;
+        } else if (self.categoryType == kSoundBrick) {
+            _currentCategoryBricks = kSoundBrickTypeNames;
+        } else if (self.categoryType == kLookBrick) {
+            _currentCategoryBricks = kLookBrickTypeNames;
+        } else if (self.categoryType == kVariableBrick) {
+            _currentCategoryBricks = kVariableBrickTypeNames;
+        } else {
+            _currentCategoryBricks = nil;
+        }
     }
-  }
-  return _cells;
+    return _currentCategoryBricks;
 }
 
 - (id)initWithStyle:(UITableViewStyle)style
@@ -65,40 +65,40 @@
 
 - (void)initTableView
 {
-  [super initTableView];
-  self.tableView.delegate = self;
-  self.tableView.dataSource = self;
-  [self.tableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
-  self.tableView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"darkblue"]];
-  UITableViewHeaderFooterView *headerViewTemplate = [[UITableViewHeaderFooterView alloc] initWithReuseIdentifier:kTableHeaderIdentifier];
-  headerViewTemplate.contentView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"darkblue"]];
-  [self.tableView addSubview:headerViewTemplate];
+    [super initTableView];
+    self.tableView.delegate = self;
+    self.tableView.dataSource = self;
+    [self.tableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
+    self.tableView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"darkblue"]];
+    UITableViewHeaderFooterView *headerViewTemplate = [[UITableViewHeaderFooterView alloc] initWithReuseIdentifier:kTableHeaderIdentifier];
+    headerViewTemplate.contentView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"darkblue"]];
+    [self.tableView addSubview:headerViewTemplate];
 }
 
 #pragma view events
 - (void)viewDidLoad
 {
-  [super viewDidLoad];
-
-  [self initTableView];
-  [super initPlaceHolder];
-
-  NSString *title = NSLocalizedString(@"Categories", nil);
-  self.title = title;
-  self.navigationItem.title = title;
-  self.tableView.alwaysBounceVertical = NO;
+    [super viewDidLoad];
+    
+    [self initTableView];
+    [super initPlaceHolder];
+    
+    NSString *title = NSLocalizedString(@"Categories", nil);
+    self.title = title;
+    self.navigationItem.title = title;
+    self.tableView.alwaysBounceVertical = NO;
 }
 
 - (void)viewWillAppear:(BOOL)animated
 {
-  [super viewWillAppear:animated];
-  [self.navigationController setToolbarHidden:YES];
+    [super viewWillAppear:animated];
+    [self.navigationController setToolbarHidden:YES];
 }
 
 - (void)viewWillDisappear:(BOOL)animated
 {
-  [super viewWillDisappear:animated];
-  [self.navigationController setToolbarHidden:NO];
+    [super viewWillDisappear:animated];
+    [self.navigationController setToolbarHidden:NO];
 }
 
 - (void)didReceiveMemoryWarning
@@ -110,24 +110,53 @@
 #pragma mark - Table view data source
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-  return 1;
+    return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-  return [self.cells count];
+    return [self.currentCategoryBricks count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-  static NSString *CellIdentifier = kCategoryCell;
-  UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
-//  if ([cell isKindOfClass:[UI class]]) {
-//    ColoredCell *coloredCell = (ColoredCell*)cell;
-//    coloredCell.textLabel.text = self.cells[[@(indexPath.row) stringValue]];
-//  }
-  cell.textLabel.text = self.cells[[@(indexPath.row) stringValue]];
-  return cell;
+    static NSString *CellIdentifier = kCategoryCell;
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
+    //  if ([cell isKindOfClass:[UI class]]) {
+    //    ColoredCell *coloredCell = (ColoredCell*)cell;
+    //    coloredCell.textLabel.text = self.cells[[@(indexPath.row) stringValue]];
+    //  }
+    cell.textLabel.text = self.currentCategoryBricks[indexPath.row];
+    return cell;
 }
+
+//- (NSInteger)determineCategoryBrickType:
+//{
+//    switch (self.categoryType) {
+//        case kControlBrick:
+//            if (indexPath.row)
+//            [@(kProgramStartedBrick) stringValue]
+//        [@(kTappedBrick) stringValue]
+//        [@(kWaitBrick) stringValue]
+//        [@(kReceiveBrick) stringValue]
+//        [@(kBroadcastBrick) stringValue]
+//        [@(kBroadcastWaitBrick) stringValue]
+//        [@(kNoteBrick) stringValue]
+//        [@(kForeverBrick) stringValue]
+//        [@(kIfBrick) stringValue]
+//        [@(kRepeatBrick) stringValue]
+//            break;
+//        case kMotionBrick:
+//            break;
+//        case kSoundBrick:
+//            break;
+//        case kLookBrick:
+//            break;
+//        case kVariableBrick:
+//            break;
+//        default:
+//            break;
+//    }
+//}
 
 @end

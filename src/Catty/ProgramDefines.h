@@ -34,152 +34,158 @@
 #define kMinNumOfObjects 1
 #define kBackgroundObjects 1
 
+// indexes
+#define kBackgroundIndex 0
+#define kObjectIndex (kBackgroundIndex + kBackgroundObjects)
+
 // object components
 #define kScriptsTitle NSLocalizedString(@"Scripts",nil)
 #define kLooksTitle NSLocalizedString(@"Looks",nil)
 #define kBackgroundsTitle NSLocalizedString(@"Backgrounds",nil)
 #define kSoundsTitle NSLocalizedString(@"Sounds",nil)
 
-#define kScriptCategoryControlTitle NSLocalizedString(@"Control",nil)
-#define kScriptCategoryMotionTitle NSLocalizedString(@"Motion",nil)
-#define kScriptCategorySoundTitle NSLocalizedString(@"Sound",nil)
-#define kScriptCategoryLooksTitle NSLocalizedString(@"Looks",nil)
-#define kScriptCategoryVariablesTitle NSLocalizedString(@"Variables",nil)
-
 // script categories
 typedef enum {
-  kControlBrick = 0,
-  kMotionBrick = 1,
-  kSoundBrick = 2,
-  kLookBrick = 3,
-  kVariableBrick = 4
+    kControlBrick = 0,
+    kMotionBrick = 1,
+    kSoundBrick = 2,
+    kLookBrick = 3,
+    kVariableBrick = 4
 } kBrickType;
 
-#define kBrickTypeNames @{[@(kControlBrick) stringValue] : kScriptCategoryControlTitle, [@(kMotionBrick) stringValue] : kScriptCategoryMotionTitle, [@(kSoundBrick) stringValue] : kScriptCategorySoundTitle, [@(kLookBrick) stringValue] : kScriptCategoryLooksTitle, [@(kVariableBrick) stringValue] : kScriptCategoryVariablesTitle}
+#define kBrickTypeNames @[\
+NSLocalizedString(@"Control",nil),\
+NSLocalizedString(@"Motion",nil),\
+NSLocalizedString(@"Sound",nil),\
+NSLocalizedString(@"Looks",nil),\
+NSLocalizedString(@"Variables",nil)\
+]
 
-#define kScriptCategoryControlColor [UIColor orangeColor]
-#define kScriptCategoryMotionColor [UIColor lightBlueColor]
-#define kScriptCategorySoundColor [UIColor violetColor]
-#define kScriptCategoryLooksColor [UIColor greenColor]
-#define kScriptCategoryVariablesColor [UIColor lightRedColor]
-
-#define kBrickTypeColors @{[@(kControlBrick) stringValue] : kScriptCategoryControlColor, [@(kMotionBrick) stringValue] : kScriptCategoryMotionColor, [@(kSoundBrick) stringValue] : kScriptCategorySoundColor, [@(kLookBrick) stringValue] : kScriptCategoryLooksColor, [@(kVariableBrick) stringValue] : kScriptCategoryVariablesColor}
+#define kBrickTypeColors @[\
+[UIColor orangeColor],\
+[UIColor lightBlueColor],\
+[UIColor violetColor],\
+[UIColor greenColor],\
+[UIColor lightRedColor]\
+]
 
 // script category bricks
-// control bricks
-#define kProgramStartedBrickName NSLocalizedString(@"When program started",nil)
-#define kTappedBrickName NSLocalizedString(@"When tapped",nil)
-#define kWaitBrickName NSLocalizedString(@"Wait %d second",nil)
-#define kReceiveBrickName NSLocalizedString(@"When I receive",nil)
-#define kBroadcastBrickName NSLocalizedString(@"Broadcast",nil)
-#define kBroadcastWaitBrickName NSLocalizedString(@"Broadcast and wait",nil)
-#define kNoteBrickName NSLocalizedString(@"Note",nil)
-#define kForeverBrickName NSLocalizedString(@"Forever",nil)
-#define kIfBrickName NSLocalizedString(@"If %d is true then",nil)
-#define kRepeatBrickName NSLocalizedString(@"Repeat %d times",nil)
 
-// identifiers
+// control bricks
 typedef enum {
-  kProgramStartedBrick = 0,
-  kTappedBrick = 1,
-  kWaitBrick = 2,
-  kReceiveBrick = 3,
-  kBroadcastBrick = 4,
-  kBroadcastWaitBrick = 5,
-  kNoteBrick = 6,
-  kForeverBrick = 7,
-  kIfBrick = 8,
-  kRepeatBrick = 9
+    kProgramStartedBrick = 0,
+    kTappedBrick = 1,
+    kWaitBrick = 2,
+    kReceiveBrick = 3,
+    kBroadcastBrick = 4,
+    kBroadcastWaitBrick = 5,
+    kNoteBrick = 6,
+    kForeverBrick = 7,
+    kIfBrick = 8,
+    kRepeatBrick = 9
 } kControlBrickType;
 
-#define kControlBrickTypeNames @{[@(kProgramStartedBrick) stringValue] : kProgramStartedBrickName, [@(kTappedBrick) stringValue] : kTappedBrickName, [@(kWaitBrick) stringValue] : kWaitBrickName, [@(kReceiveBrick) stringValue] : kReceiveBrickName, [@(kBroadcastBrick) stringValue] : kBroadcastBrickName, [@(kBroadcastWaitBrick) stringValue] : kBroadcastWaitBrickName, [@(kNoteBrick) stringValue] : kNoteBrickName, [@(kForeverBrick) stringValue] : kForeverBrickName, [@(kIfBrick) stringValue] : kIfBrickName, [@(kRepeatBrick) stringValue] : kRepeatBrickName}
+#define kControlBrickTypeNames @[\
+NSLocalizedString(@"When program started",nil),\
+NSLocalizedString(@"When tapped",nil),\
+NSLocalizedString(@"Wait %d second",nil),\
+NSLocalizedString(@"\nWhen I receive\n%@",nil),\
+NSLocalizedString(@"Broadcast\n%@",nil),\
+NSLocalizedString(@"Broadcast and wait\n%@",nil),\
+NSLocalizedString(@"Note %@",nil),\
+NSLocalizedString(@"Forever",nil),\
+NSLocalizedString(@"If %d is true then",nil),\
+NSLocalizedString(@"Repeat %d times",nil)\
+]
 
 // motion bricks
-#define kPlaceAtBrickName NSLocalizedString(@"Place at",nil)
-#define kSetXBrickName NSLocalizedString(@"Set X to",nil)
-#define kSetYBrickName NSLocalizedString(@"Set Y to",nil)
-#define kChangeXByNBrickName NSLocalizedString(@"Change X by",nil)
-#define kChangeYByNBrickName NSLocalizedString(@"Change Y by",nil)
-#define kMoveNStepsBrickName NSLocalizedString(@"Move %f steps",nil)
-#define kTurnLeftBrickName NSLocalizedString(@"Turn left %f°",nil)
-#define kTurnRightBrickName NSLocalizedString(@"Turn right %f°",nil)
-#define kPointInDirectionBrickName NSLocalizedString(@"Point in direction %f°",nil)
-#define kPointToBrickName NSLocalizedString(@"Point towards",nil)
-#define kGlideToBrickName NSLocalizedString(@"Glide %f second to X: %d Y: %d",nil)
-
-// identifiers
 typedef enum {
-  kPlaceAtBrick = 0,
-  kSetXBrick = 1,
-  kSetYBrick = 2,
-  kChangeXByNBrick = 3,
-  kChangeYByNBrick = 4,
-  kMoveNStepsBrick = 5,
-  kTurnLeftBrick = 6,
-  kTurnRightBrick = 7,
-  kPointInDirectionBrick = 8,
-  kPointToBrick = 9,
-  kGlideToBrick = 10
+    kPlaceAtBrick = 0,
+    kSetXBrick = 1,
+    kSetYBrick = 2,
+    kChangeXByNBrick = 3,
+    kChangeYByNBrick = 4,
+    kIfOnEdgeBounceBrick = 5,
+    kMoveNStepsBrick = 6,
+    kTurnLeftBrick = 7,
+    kTurnRightBrick = 8,
+    kPointInDirectionBrick = 9,
+    kPointToBrick = 10,
+    kGlideToBrick = 11,
+    kGoNStepsBackBrick = 12,
+    kComeToFrontBrick= 13
 } kMotionBrickType;
 
-#define kMotionBrickTypeNames @{[@(kPlaceAtBrick) stringValue] : kPlaceAtBrickName, [@(kSetXBrick) stringValue] : kSetXBrickName, [@(kSetYBrick) stringValue] : kSetYBrickName, [@(kChangeXByNBrick) stringValue] : kChangeXByNBrickName, [@(kChangeYByNBrick) stringValue] : kChangeYByNBrickName, [@(kMoveNStepsBrick) stringValue] : kMoveNStepsBrickName, [@(kTurnLeftBrick) stringValue] : kTurnLeftBrickName, [@(kTurnRightBrick) stringValue] : kTurnRightBrickName, [@(kPointInDirectionBrick) stringValue] : kPointInDirectionBrickName, [@(kPointToBrick) stringValue] : kPointToBrickName, [@(kGlideToBrick) stringValue] : kGlideToBrickName}
+#define kMotionBrickTypeNames @[\
+NSLocalizedString(@"Place at\nX: %d Y: %d",nil),\
+NSLocalizedString(@"Set X to %d",nil),\
+NSLocalizedString(@"Set Y to %d",nil),\
+NSLocalizedString(@"Change X by %d",nil),\
+NSLocalizedString(@"Change Y by %d",nil),\
+NSLocalizedString(@"If on edge, bounce",nil),\
+NSLocalizedString(@"Move %f steps",nil),\
+NSLocalizedString(@"Turn left %f°",nil),\
+NSLocalizedString(@"Turn right %f°",nil),\
+NSLocalizedString(@"Point in direction %f°",nil),\
+NSLocalizedString(@"Point towards\n%@",nil),\
+NSLocalizedString(@"Glide %f second\nto X: %d Y: %d",nil),\
+NSLocalizedString(@"Go back %d layer",nil),\
+NSLocalizedString(@"Go to front",nil)\
+]
 
-#define kPlaySoundBrickName NSLocalizedString(@"Start sound",nil)
-#define kStopAllSoundsBrickName NSLocalizedString(@"Stop all sounds",nil)
-#define kSetVolumeToBrickName NSLocalizedString(@"Set volume to %f\%",nil)
-#define kChangeVolumeByBrickName NSLocalizedString(@"Change volume by %f",nil)
-#define kSpeakBrickName NSLocalizedString(@"Speak",nil)
-
-// identifiers
+// sound bricks
 typedef enum {
-  kPlaySoundBrick = 0,
-  kStopAllSoundsBrick = 1,
-  kSetVolumeToBrick = 2,
-  kChangeVolumeByBrick = 3,
-  kSpeakBrick = 4
+    kPlaySoundBrick = 0,
+    kStopAllSoundsBrick = 1,
+    kSetVolumeToBrick = 2,
+    kChangeVolumeByBrick = 3,
+    kSpeakBrick = 4
 } kSoundBrickType;
 
-#define kSoundBrickTypeNames @{[@(kPlaySoundBrick) stringValue] : kPlaySoundBrickName, [@(kStopAllSoundsBrick) stringValue] : kStopAllSoundsBrickName, [@(kSetVolumeToBrick) stringValue] : kSetVolumeToBrickName, [@(kChangeVolumeByBrick) stringValue] : kChangeVolumeByBrickName, [@(kSpeakBrick) stringValue] : kSpeakBrickName}
+#define kSoundBrickTypeNames @[\
+NSLocalizedString(@"Start sound\%@",nil),\
+NSLocalizedString(@"Stop all sounds",nil),\
+NSLocalizedString(@"Set volume to %f\%",nil),\
+NSLocalizedString(@"Change volume by %f",nil),\
+NSLocalizedString(@"Speak %@",nil)\
+]
 
-#define kSetBackgroundBrickName NSLocalizedString(@"Set background",nil)
-#define kNextBackgroundBrickName NSLocalizedString(@"Next background",nil)
-#define kSetSizeToBrickName NSLocalizedString(@"Set size to %f\%",nil)
-#define kChangeSizeByNBrickName NSLocalizedString(@"Change size by %f\%",nil)
-#define kHideBrickName NSLocalizedString(@"Hide",nil)
-#define kShowBrickName NSLocalizedString(@"Show",nil)
-#define kSetGhostEffectBrickName NSLocalizedString(@"Set transparency to %f\%",nil)
-#define kChangeGhostEffectByNBrickName NSLocalizedString(@"Change transparency by %f\%",nil)
-#define kSetBrightnessBrickName NSLocalizedString(@"Set brightness to %f\%",nil)
-#define kChangeBrightnessByNBrickName NSLocalizedString(@"Change brightness by %f\%",nil)
-#define kClearGraphicEffectBrickName NSLocalizedString(@"Clear graphic effects",nil)
-
-// identifiers
+// look bricks
 typedef enum {
-  kSetBackgroundBrick = 0,
-  kNextBackgroundBrick = 1,
-  kSetSizeToBrick = 2,
-  kChangeSizeByNBrick = 3,
-  kHideBrick = 4,
-  kShowBrick = 5,
-  kSetGhostEffectBrick = 6,
-  kChangeGhostEffectByNBrick = 7,
-  kSetBrightnessBrick = 8,
-  kChangeBrightnessByNBrick = 9,
-  kClearGraphicEffectBrick = 10
+    kSetBackgroundBrick = 0,
+    kNextBackgroundBrick = 1,
+    kSetSizeToBrick = 2,
+    kChangeSizeByNBrick = 3,
+    kHideBrick = 4,
+    kShowBrick = 5,
+    kSetGhostEffectBrick = 6,
+    kChangeGhostEffectByNBrick = 7,
+    kSetBrightnessBrick = 8,
+    kChangeBrightnessByNBrick = 9,
+    kClearGraphicEffectBrick = 10
 } kLookBrickType;
 
-#define kLookBrickTypeNames @{[@(kSetBackgroundBrick) stringValue] : kSetBackgroundBrickName, [@(kNextBackgroundBrick) stringValue] : kNextBackgroundBrickName, [@(kSetSizeToBrick) stringValue] : kSetSizeToBrickName, [@(kChangeSizeByNBrick) stringValue] : kChangeSizeByNBrickName, [@(kHideBrick) stringValue] : kHideBrickName, [@(kShowBrick) stringValue] : kShowBrickName, [@(kSetGhostEffectBrick) stringValue] : kSetGhostEffectBrickName, [@(kChangeGhostEffectByNBrick) stringValue] : kChangeGhostEffectByNBrickName, [@(kSetBrightnessBrick) stringValue] : kSetBrightnessBrickName, [@(kChangeBrightnessByNBrick) stringValue] : kChangeBrightnessByNBrickName, [@(kClearGraphicEffectBrick) stringValue] : kClearGraphicEffectBrickName}
+#define kLookBrickTypeNames @[\
+NSLocalizedString(@"Set background\n%@",nil),\
+NSLocalizedString(@"Next background",nil),\
+NSLocalizedString(@"Set size to %f\%",nil),\
+NSLocalizedString(@"Change size by %f\%",nil),\
+NSLocalizedString(@"Hide",nil),\
+NSLocalizedString(@"Show",nil),\
+NSLocalizedString(@"Set transparency\nto %f\%",nil),\
+NSLocalizedString(@"Change transparency\nby %f\%",nil),\
+NSLocalizedString(@"Set brightness to %f\%",nil),\
+NSLocalizedString(@"Change brightness\nby %f\%",nil),\
+NSLocalizedString(@"Clear graphic effects",nil)\
+]
 
-#define kSetVariableBrickName NSLocalizedString(@"Set variable %@ to %f",nil)
-#define kChangeVariableBrickName NSLocalizedString(@"Change variable %@ by %f",nil)
-
+// variable bricks
 typedef enum {
-  kSetVariableBrick = 0,
-  kChangeVariableBrick = 1
+    kSetVariableBrick = 0,
+    kChangeVariableBrick = 1
 } kVariableBrickType;
 
-#define kVariableBrickTypeNames [OrderedDictionary dictionaryWithObjects:@[kSetVariableBrickName, kChangeVariableBrickName] forKeys:@[[@(kPlaySoundBrick) stringValue], [@(kStopAllSoundsBrick) stringValue]]];
-
-// indexes
-#define kBackgroundIndex 0
-#define kObjectIndex (kBackgroundIndex + kBackgroundObjects)
+#define kVariableBrickTypeNames @[\
+NSLocalizedString(@"Set variable\n%@\nto %f",nil),\
+NSLocalizedString(@"Change variable\n%@\nby %f",nil)\
+]

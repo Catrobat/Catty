@@ -63,7 +63,6 @@
     self.title = self.object.name;
     self.navigationItem.title = self.object.name;
     [self setupToolBar];
-    self.tableView.alwaysBounceVertical = NO;
 }
 
 #pragma marks init
