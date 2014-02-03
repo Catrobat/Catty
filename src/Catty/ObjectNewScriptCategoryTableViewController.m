@@ -21,13 +21,14 @@
  */
 
 #import "ObjectNewScriptCategoryTableViewController.h"
+#import "UIColor+CatrobatUIColorExtensions.h"
 #import "SegueDefines.h"
-#import "ColoredCell.h"
 
 #define kTableHeaderIdentifier @"Header"
 #define kCategoryCell @"BrickCell"
 
 @interface ObjectNewScriptCategoryTableViewController ()
+@property (nonatomic, strong) NSArray *categoryColors;
 @property (nonatomic, strong) NSArray *currentCategoryBricks;
 @end
 
@@ -52,6 +53,14 @@
         }
     }
     return _currentCategoryBricks;
+}
+
+- (NSArray*)categoryColors
+{
+    if (! _categoryColors) {
+        _categoryColors = kBrickTypeColors;
+    }
+    return _categoryColors;
 }
 
 - (id)initWithStyle:(UITableViewStyle)style
@@ -128,6 +137,11 @@
     //  }
     cell.textLabel.text = self.currentCategoryBricks[indexPath.row];
     return cell;
+}
+
+- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    cell.backgroundColor = self.categoryColors[self.categoryType];
 }
 
 //- (NSInteger)determineCategoryBrickType:

@@ -84,10 +84,9 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
     [self initTableView];
     [super initPlaceHolder];
-    
+
     NSString *title = NSLocalizedString(@"Categories", nil);
     self.title = title;
     self.navigationItem.title = title;

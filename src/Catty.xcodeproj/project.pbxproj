@@ -787,14 +787,14 @@
 			name = ObjectViewControllers;
 			sourceTree = "<group>";
 		};
-		81F10ED317CCD1F8000E4522 /* NewProgramViewControllers */ = {
+		81F10ED317CCD1F8000E4522 /* ProgramViewControllers */ = {
 			isa = PBXGroup;
 			children = (
 				8154EAAD17D8D15F0078BFED /* ObjectViewControllers */,
 				816C788417D62B7C0029A4E6 /* ProgramTableViewController.h */,
 				816C788517D62B7C0029A4E6 /* ProgramTableViewController.m */,
 			);
-			name = NewProgramViewControllers;
+			name = ProgramViewControllers;
 			sourceTree = "<group>";
 		};
 		81FAEE3617E792620052BB2B /* ScriptsCellView */ = {
@@ -1506,7 +1506,7 @@
 			isa = PBXGroup;
 			children = (
 				B4E7D254176EF1B900EC8AD8 /* ScenePresenterViewController */,
-				81F10ED317CCD1F8000E4522 /* NewProgramViewControllers */,
+				81F10ED317CCD1F8000E4522 /* ProgramViewControllers */,
 			);
 			name = "Continue & New";
 			sourceTree = "<group>";

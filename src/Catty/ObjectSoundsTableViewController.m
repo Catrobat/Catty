@@ -71,17 +71,15 @@
     [super viewDidLoad];
     self.currentPlayingSong = nil;
     self.currentPlayingSongCell = nil;
-    
+
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
-    
+
     [self initTableView];
     [super initPlaceHolder];
     [super setPlaceHolderTitle:kSoundsTitle
                    Description:[NSString stringWithFormat:NSLocalizedString(kEmptyViewPlaceHolder, nil), kSoundsTitle]];
     [super showPlaceHolder:(! (BOOL)[self.object.soundList count])];
-    //[TableUtil initNavigationItem:self.navigationItem withTitle:NSLocalizedString(@"New Programs", nil)];
-    
     self.title = self.object.name;
     self.navigationItem.title = self.object.name;
     [self setupToolBar];
@@ -143,13 +141,11 @@
     return [TableUtil getHeightForImageCell];
 }
 
-// Override to support conditional editing of the table view.
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
 {
     return YES;
 }
 
-// Override to support editing the table view.
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
@@ -167,8 +163,6 @@
         UITableViewCell <CatrobatImageCell>* imageCell = (UITableViewCell <CatrobatImageCell>*)cell;
         
         if (indexPath.row < [self.object.soundList count]) {
-            // synchronized to guarantee that the player never plays two (different) songs at the same time
-            // INFO: there are no operations that take much time, therefore synchronized will be no problem here
             @synchronized(self) {
                 Sound* sound = (Sound*) [self.object.soundList objectAtIndex:indexPath.row];
                 BOOL isPlaying = sound.playing;
@@ -182,9 +176,7 @@
                 self.currentPlayingSongCell.iconImageView.image = [UIImage imageNamed:@"ic_media_play.png"];
                 if (! isPlaying)
                     imageCell.iconImageView.image = [UIImage imageNamed:@"ic_media_pause.png"];
-                
-                // INFO: the synchronized-lock will be released immediatelly by the main-thread itself,
-                //       because the long-time operations are performed on another thread AFTER the lock is released
+
                 dispatch_queue_t audioPlayerQueue = dispatch_queue_create("audio player", NULL);
                 dispatch_async(audioPlayerQueue, ^{
                     [[AudioManager sharedAudioManager] stopAllSounds];
