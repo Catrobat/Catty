@@ -20,14 +20,13 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-
 #import <UIKit/UIKit.h>
 
-@interface PrototypScriptCell : UICollectionViewCell
-@property (weak, nonatomic) IBOutlet UIImageView *cellBackground;
-@property (weak, nonatomic) IBOutlet UILabel *leftLabel;
-@property (weak, nonatomic) IBOutlet UITextField *leftTextField;
-@property (weak, nonatomic) IBOutlet UILabel *rightLabel;
-@property (weak, nonatomic) IBOutlet UITextField *rightTextField;
+@interface ScriptCell : UICollectionViewCell
+@property (nonatomic, strong) UIImageView *backgroundImage;
+@property (nonatomic, strong) UIColor *backgroundTintColor;
+
+- (void)setupBrickView:(NSDictionary *)labels;
+- (void)setBackgroundImage:(UIImageView *)backgroundImage withTintColor:(UIColor *)tintColor;
 
 @end
