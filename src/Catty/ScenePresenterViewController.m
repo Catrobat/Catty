@@ -393,6 +393,7 @@
 {
     [[AudioManager sharedAudioManager] stopAllSounds];
     [[SensorHandler sharedSensorHandler] stopSensors];
+
     
     // NOTE: if there are still some runNextAction tasks in a queue
     // then these actions must not be executed because the Scene is not available any more.
@@ -405,6 +406,16 @@
             script.allowRunNextAction = NO;
         }
     }
+    
+    //Delete sound rec for loudness sensor
+    NSError *error;
+
+    NSFileManager *fileMgr = [NSFileManager defaultManager];
+
+    NSString* documentsPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
+    NSString* soundfile = [documentsPath stringByAppendingPathComponent:@"loudness_handler.m4a"];
+    if ([fileMgr removeItemAtPath:soundfile error:&error] != YES)
+        NSDebug(@"No Sound file available or unable to delete file: %@", [error localizedDescription]);
 }
 
 -(void) alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
@@ -892,7 +903,7 @@
 {
     for (UITouch* touch in touches) {
         CGPoint location = [touch locationInView:self.skView];
-        NSDebug(@"StartTouch1");
+        NSDebug(@"StartTouchinScenePresenter");
         if ([self.scene touchedwith:touches withX:location.x andY:location.y]) {
             break;
         }

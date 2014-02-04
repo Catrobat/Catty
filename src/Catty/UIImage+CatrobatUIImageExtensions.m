@@ -212,41 +212,72 @@
     x += (image.size.width/2);
     y += (image.size.height/2);
     y = image.size.height - y;
+//    CGImageRef cgImage = image.CGImage;
+//    
+//    CGContextRef context = [self newARGBBitmapContextFromImage:cgImage];
+//    if (context == NULL) return NO;
+//    
+//    
+//    size_t width = CGImageGetHeight(cgImage);
+//    //size_t width = image.size.width;
+//    //size_t width = CGBitmapContextGetHeight(context);
+//    size_t height = CGImageGetWidth(cgImage);
+//    //size_t height = image.size.height;
+//    //size_t height = CGBitmapContextGetWidth(context);
+//    CGRect rect = CGRectMake(0, 0, width, height);
+//    
+//    CGContextDrawImage(context, rect, cgImage);
+//    unsigned char *data = CGBitmapContextGetData(context);
+//    
+//    NSLog(@"data: %c",data[0]);
+//  
+//    if (data[0] != '\0' && data != NULL)
+//    {
+//        int pixelIndex = (int)(width*y + x)*4;
+//        NSDebug(@"alpha:%d",(int)data[pixelIndex]);
+//                if ((int)data[pixelIndex] == 0) {
+//                    free(data);
+//                    CGContextRelease(context);
+//                    return YES;
+//                }else{
+//                    free(data);
+//                    CGContextRelease(context);
+//                    return NO;
+//                }
+//    }
+//    free(data);
+//    CGContextRelease(context);
+//    return NO;
+    NSInteger pointX = x;
+    NSInteger pointY = y;
     CGImageRef cgImage = image.CGImage;
+    NSUInteger width = image.size.width;
+    NSUInteger height = image.size.height;
+    CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceRGB();
+    int bytesPerPixel = 4;
+    int bytesPerRow = bytesPerPixel * 1;
+    NSUInteger bitsPerComponent = 8;
+    unsigned char pixelData[4] = { 0, 0, 0, 0 };
+    CGContextRef context = CGBitmapContextCreate(pixelData,
+                                                 1,
+                                                 1,
+                                                 bitsPerComponent,
+                                                 bytesPerRow,
+                                                 colorSpace,
+                                                 kCGImageAlphaPremultipliedLast | kCGBitmapByteOrder32Big);
+    CGColorSpaceRelease(colorSpace);
+    CGContextSetBlendMode(context, kCGBlendModeCopy);
     
-    CGContextRef context = [self newARGBBitmapContextFromImage:cgImage];
-    if (context == NULL) return NO;
-    
-    
-    size_t width = CGImageGetHeight(cgImage);
-    //size_t width = image.size.width;
-    //size_t width = CGBitmapContextGetHeight(context);
-    size_t height = CGImageGetWidth(cgImage);
-    //size_t height = image.size.height;
-    //size_t height = CGBitmapContextGetWidth(context);
-    CGRect rect = CGRectMake(0, 0, width, height);
-    
-    CGContextDrawImage(context, rect, cgImage);
-    unsigned char *data = CGBitmapContextGetData(context);
-    
-    NSDebug(@"data: %c",data[0]);
-  
-    if (data[0] != '\0' && data != NULL)
-    {
-        int pixelIndex = (int)(width*y + x)*4;
-        NSDebug(@"alpha:%d",(int)data[pixelIndex]);
-                if ((int)data[pixelIndex] == 0) {
-                    free(data);
-                    CGContextRelease(context);
-                    return YES;
-                }else{
-                    free(data);
-                    CGContextRelease(context);
-                    return NO;
-                }
-    }
-    free(data);
+    // Draw the pixel we are interested in onto the bitmap context
+    CGContextTranslateCTM(context, -pointX, pointY-(CGFloat)height);
+    CGContextDrawImage(context, CGRectMake(0.0f, 0.0f, (CGFloat)width, (CGFloat)height), cgImage);
     CGContextRelease(context);
+    
+    CGFloat alpha = (CGFloat)pixelData[3] / 255.0f;
+    if(alpha == 0){
+        return YES;
+    }
+    else
     return NO;
     
    }
