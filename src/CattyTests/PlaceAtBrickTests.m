@@ -42,7 +42,7 @@
 }
 
 
--(void)testPlaceAtBrickPositiv
+-(void)testPlaceAtBrickPositive
 {
     
     SpriteObject* object = [[SpriteObject alloc] init];
@@ -76,7 +76,7 @@
     XCTAssertEqual(object.position, testPoint, @"PlaceAtBrick is not correctly calculated");
 }
 
--(void)testPlaceAtBrickNegativ
+-(void)testPlaceAtBrickNegative
 {
     
     SpriteObject* object = [[SpriteObject alloc] init];

@@ -41,7 +41,7 @@
     [super tearDown];
 }
 
--(void)testSetXBrickPositiv
+-(void)testSetXBrickPositive
 {
     
     SpriteObject* object = [[SpriteObject alloc] init];
@@ -68,7 +68,7 @@
     XCTAssertEqual(object.xPosition, (CGFloat)20, @"SetxBrick is not correctly calculated");
 }
 
--(void)testSetXBrickNegativ
+-(void)testSetXBrickNegative
 {
     
     SpriteObject* object = [[SpriteObject alloc] init];

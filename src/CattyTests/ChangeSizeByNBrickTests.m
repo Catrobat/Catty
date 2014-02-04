@@ -44,7 +44,7 @@
 
 
 
--(void)testChangeSizeByNBrickPositiv
+-(void)testChangeSizeByNBrickPositive
 {
     
     SpriteObject* object = [[SpriteObject alloc] init];
@@ -72,7 +72,7 @@
 }
 
 
--(void)testChangeSizeByNBrickNegativ
+-(void)testChangeSizeByNBrickNegative
 {
     
     SpriteObject* object = [[SpriteObject alloc] init];
