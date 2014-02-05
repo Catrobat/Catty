@@ -41,7 +41,7 @@
     [super tearDown];
 }
 
--(void)testChangeGhostEffectByNBrickPositiv
+-(void)testChangeGhostEffectByNBrickPositive
 {
     
     SpriteObject* object = [[SpriteObject alloc] init];
@@ -68,7 +68,7 @@
 }
 
 
--(void)testChangeGhostEffectByNBrickNegativ
+-(void)testChangeGhostEffectByNBrickNegative
 {
     
     SpriteObject* object = [[SpriteObject alloc] init];

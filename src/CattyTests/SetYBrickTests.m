@@ -42,7 +42,7 @@
 }
 
 
--(void)testSetYBrickPositiv
+-(void)testSetYBrickPositive
 {
     
     SpriteObject* object = [[SpriteObject alloc] init];
@@ -69,7 +69,7 @@
     XCTAssertEqual(object.yPosition, (CGFloat)20, @"SetyBrick is not correctly calculated");
 }
 
--(void)testSetYBrickNegativ
+-(void)testSetYBrickNegative
 {
     
     SpriteObject* object = [[SpriteObject alloc] init];

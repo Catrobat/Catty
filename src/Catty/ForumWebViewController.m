@@ -30,6 +30,8 @@
 
 @interface ForumWebViewController ()
 @property (nonatomic, strong) LoadingView *loadingView;
+@property (nonatomic, strong) UIBarButtonItem *back;
+@property (nonatomic, strong) UIBarButtonItem *forward;
 @end
 
 @implementation ForumWebViewController
@@ -98,16 +100,32 @@
 -(void)webViewDidStartLoad:(UIWebView *)webView
 {
     [self showLoadingView];
+    [self initButtons];
 }
 
 -(void)webViewDidFinishLoad:(UIWebView *)webView
 {
     [self hideLoadingView];
+    [self initButtons];
 }
 
 -(void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error
 {
     [self hideLoadingView];
+    [self initButtons];
+}
+
+-(BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType{
+    self.back.enabled = true;
+    return YES;
+}
+
+#pragma mark - Buttons
+
+-(void)initButtons
+{
+    self.back.enabled = self.webView.canGoBack;
+    self.forward.enabled = self.webView.canGoForward;
 }
 
 
@@ -116,11 +134,16 @@
 - (void)nextPage:(id)sender
 {
     [self.webView goForward];
+    self.back.enabled = true;
+    self.forward.enabled = self.webView.canGoForward;
+
 }
 
 - (void)previousPage:(id)sender
 {
     [self.webView goBack];
+    self.back.enabled = self.webView.canGoBack;
+    self.forward.enabled = true;
 }
 
 - (void)setupToolBar
@@ -133,22 +156,23 @@
                                                                               target:nil
                                                                               action:nil];
     
-    UIBarButtonItem *back = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"backbutton.png"]
+    self.back = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"backbutton.png"]
                                                             style:UIBarButtonItemStylePlain
                                                            target:self
                                                            action:@selector(previousPage:)];
     
-    UIBarButtonItem *forward = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"forwardbutton.png"]
+    self.forward = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"forwardbutton.png"]
                                                                style:UIBarButtonItemStylePlain
                                                               target:self
                                                               action:@selector(nextPage:)];
+    [self initButtons];
     
     // XXX: workaround for tap area problem:
     // http://stackoverflow.com/questions/5113258/uitoolbar-unexpectedly-registers-taps-on-uibarbuttonitem-instances-even-when-tap
     UIImageView *imageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"transparent1x1.png"]];
     UIBarButtonItem *invisibleButton = [[UIBarButtonItem alloc] initWithCustomView:imageView];
-    self.toolbarItems = [NSArray arrayWithObjects:flexItem, invisibleButton, back, invisibleButton, flexItem,
-                         flexItem, flexItem, invisibleButton, forward, invisibleButton, flexItem, nil];
+    self.toolbarItems = [NSArray arrayWithObjects:flexItem,  self.back,invisibleButton, invisibleButton, flexItem,
+                         flexItem, flexItem, invisibleButton, invisibleButton, self.forward, flexItem, nil];
 }
 
 
