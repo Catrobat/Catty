@@ -21,6 +21,7 @@
  */
 
 #import <UIKit/UIKit.h>
+#import "ProgramDefines.h"
 
 @interface BrickCell : UICollectionViewCell
 @property (nonatomic, strong) UIImageView *backgroundImage;
@@ -28,5 +29,8 @@
 
 - (void)setupBrickView:(NSDictionary *)labels;
 - (void)setBackgroundImage:(UIImageView *)backgroundImage withTintColor:(UIColor *)tintColor;
+- (void)convertToBrickCellForCategoryType:(kBrickCategoryType)categoryType AndBrickType:(NSInteger)brickType;
+
++ (NSInteger)numberOfAvailableBricksForCategoryType:(kBrickCategoryType)categoryType;
 
 @end

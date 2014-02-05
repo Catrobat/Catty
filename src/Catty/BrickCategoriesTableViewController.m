@@ -155,7 +155,7 @@
             [destController respondsToSelector:@selector(setCategoryType:)]) {
             [destController performSelector:@selector(setObject:) withObject:self.object];
             NSIndexPath *indexPath = [self.tableView indexPathForCell:(UITableViewCell*)sender];
-            ((BrickCollectionViewController*)destController).categoryType = (kBrickType)indexPath.row;
+            ((BricksCollectionViewController*)destController).categoryType = (kBrickCategoryType)indexPath.row;
         }
     }
 }

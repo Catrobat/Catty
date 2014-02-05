@@ -21,9 +21,132 @@
  */
 
 #import "BrickCell.h"
+#import "UIColor+CatrobatUIColorExtensions.h"
+
+@interface BrickCell ()
+@property (nonatomic, strong) NSArray *categoryColors;
+@end
 
 @implementation BrickCell
 
+#pragma marks - getters and setters
+- (NSArray*)categoryColors
+{
+  if (! _categoryColors) {
+    _categoryColors = kBrickTypeColors;
+  }
+  return _categoryColors;
+}
+
+#pragma marks creation methods
++ (NSInteger)numberOfAvailableBricksForCategoryType:(kBrickCategoryType)categoryType
+{
+    switch (categoryType) {
+        case kControlBrick:
+            return [kControlBrickTypeNames count];
+        case kMotionBrick:
+            return [kMotionBrickTypeNames count];
+        case kSoundBrick:
+            return [kSoundBrickTypeNames count];
+        case kLookBrick:
+            return [kLookBrickTypeNames count];
+        case kVariableBrick:
+            return [kVariableBrickTypeNames count];
+        default:
+          break;
+    }
+    return 0;
+}
+
+- (void)convertToBrickCellForCategoryType:(kBrickCategoryType)categoryType AndBrickType:(NSInteger)brickType
+{
+    NSString *brickTitle = nil;
+    if (categoryType == kControlBrick) {
+        brickTitle = kControlBrickTypeNames[brickType];
+        switch (brickType) {
+            case kProgramStartedBrick:
+            case kTappedBrick:
+            case kWaitBrick:
+            case kReceiveBrick:
+            case kBroadcastBrick:
+            case kBroadcastWaitBrick:
+            case kNoteBrick:
+            case kForeverBrick:
+            case kIfBrick:
+            case kRepeatBrick:
+            default:
+                break;
+        }
+    } else if (categoryType == kMotionBrick) {
+        brickTitle = kMotionBrickTypeNames[brickType];
+        switch (brickType) {
+            case kPlaceAtBrick:
+            case kSetXBrick:
+            case kSetYBrick:
+            case kChangeXByNBrick:
+            case kChangeYByNBrick:
+            case kIfOnEdgeBounceBrick:
+            case kMoveNStepsBrick:
+            case kTurnLeftBrick:
+            case kTurnRightBrick:
+            case kPointInDirectionBrick:
+            case kPointToBrick:
+            case kGlideToBrick:
+            case kGoNStepsBackBrick:
+            case kComeToFrontBrick:
+            default:
+                break;
+        }
+    } else if (categoryType == kSoundBrick) {
+        brickTitle = kSoundBrickTypeNames[brickType];
+        switch (brickType) {
+            case kPlaySoundBrick:
+            case kStopAllSoundsBrick:
+            case kSetVolumeToBrick:
+            case kChangeVolumeByBrick:
+            case kSpeakBrick:
+            default:
+                break;
+        }
+    } else if (categoryType == kLookBrick) {
+        brickTitle = kLookBrickTypeNames[brickType];
+        switch (brickType) {
+            case kSetBackgroundBrick:
+            case kNextBackgroundBrick:
+            case kSetSizeToBrick:
+            case kChangeSizeByNBrick:
+            case kHideBrick:
+            case kShowBrick:
+            case kSetGhostEffectBrick:
+            case kChangeGhostEffectByNBrick:
+            case kSetBrightnessBrick:
+            case kChangeBrightnessByNBrick:
+            case kClearGraphicEffectBrick:
+            default:
+                break;
+        }
+    } else if (categoryType == kVariableBrick) {
+        brickTitle = kVariableBrickTypeNames[brickType];
+        switch (brickType) {
+            case kSetVariableBrick:
+            case kChangeVariableBrick:
+            default:
+                break;
+        }
+    }
+    UILabel *label = [[UILabel alloc] init];
+    label.text = brickTitle;
+    label.textColor = [UIColor blackColor];
+    label.backgroundColor = [UIColor whiteColor];
+    [label adjustsFontSizeToFitWidth];
+  //  CGRect frame = self.frame;
+  //  frame.size.height = 40.0f;
+  //  self.frame = frame;
+    [self addSubview:label];
+    self.backgroundColor = self.categoryColors[categoryType];
+}
+
+#pragma marks init
 - (id)initWithFrame:(CGRect)frame
 {
     self = [super initWithFrame:frame];
@@ -35,7 +158,6 @@
 }
 
 #pragma mark layout
-
 - (void)setupBrickView:(NSDictionary *)labels
 {
    NSAssert(NO, @"Must be overridden");

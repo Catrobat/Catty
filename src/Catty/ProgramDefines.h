@@ -45,12 +45,12 @@
 #define kSoundsTitle NSLocalizedString(@"Sounds",nil)
 
 // script categories
-typedef NS_ENUM(NSInteger, kBrickType) {
-  kControlBrick = 0,
-  kMotionBrick = 1,
-  kSoundBrick = 2,
-  kLookBrick = 3,
-  kVariableBrick = 4
+typedef NS_ENUM(NSInteger, kBrickCategoryType) {
+    kControlBrick = 0,
+    kMotionBrick = 1,
+    kSoundBrick = 2,
+    kLookBrick = 3,
+    kVariableBrick = 4
 };
 
 #define kBrickTypeNames @[\

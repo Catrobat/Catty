@@ -26,7 +26,7 @@
 
 @class SpriteObject;
 
-@interface BrickCollectionViewController : BaseCollectionViewController
+@interface BricksCollectionViewController : BaseCollectionViewController
 @property (strong, nonatomic) SpriteObject *object;
-@property (nonatomic) kBrickType categoryType;
+@property (nonatomic) kBrickCategoryType categoryType;
 @end
