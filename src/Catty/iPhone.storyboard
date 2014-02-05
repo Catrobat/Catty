@@ -179,7 +179,7 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <segue destination="F5A-6b-3gS" kind="push" identifier="segueToNewScriptCategory" id="ZNY-Kd-5n6"/>
+                                    <segue destination="C75-nS-XOs" kind="push" identifier="segueToNewScriptCategory" id="bOg-UD-eu2"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -196,34 +196,40 @@
             </objects>
             <point key="canvasLocation" x="-369" y="-4833"/>
         </scene>
-        <!--Object New Script Category Table View Controller-->
-        <scene sceneID="m1y-LC-Wmw">
+        <!--Object New Script Category Collection View Controller-->
+        <scene sceneID="xaz-bZ-HZF">
             <objects>
-                <tableViewController id="F5A-6b-3gS" customClass="ObjectNewScriptCategoryTableViewController" sceneMemberID="viewController">
-                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="xtq-Hj-H6r">
+                <collectionViewController autoresizesArchivedViewToFullSize="NO" id="C75-nS-XOs" customClass="ObjectNewScriptCategoryCollectionViewController" sceneMemberID="viewController">
+                    <collectionView key="view" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" minimumZoomScale="0.0" maximumZoomScale="0.0" dataMode="prototypes" id="uZ7-Iw-8Qy">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="BrickCell" id="H4o-Jy-2xH">
-                                <rect key="frame" x="0.0" y="86" width="320" height="44"/>
+                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="u7v-ga-hMQ">
+                            <size key="itemSize" width="320" height="50"/>
+                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                            <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                        </collectionViewFlowLayout>
+                        <cells>
+                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="BrickCell" id="tXr-TJ-UsK">
+                                <rect key="frame" x="0.0" y="64" width="320" height="50"/>
                                 <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="H4o-Jy-2xH" id="xjc-3x-tNB">
-                                    <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="50"/>
                                     <autoresizingMask key="autoresizingMask"/>
-                                </tableViewCellContentView>
-                            </tableViewCell>
-                        </prototypes>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                </view>
+                            </collectionViewCell>
+                        </cells>
                         <connections>
-                            <outlet property="dataSource" destination="F5A-6b-3gS" id="7Yg-tq-4y0"/>
-                            <outlet property="delegate" destination="F5A-6b-3gS" id="uCz-we-pNK"/>
+                            <outlet property="dataSource" destination="C75-nS-XOs" id="5xY-mS-Q3C"/>
+                            <outlet property="delegate" destination="C75-nS-XOs" id="v6Y-bq-Du0"/>
                         </connections>
-                    </tableView>
-                    <navigationItem key="navigationItem" id="6HL-ME-7gw"/>
-                </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Pae-VP-xwD" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                    </collectionView>
+                    <navigationItem key="navigationItem" id="J6h-qU-wVn"/>
+                </collectionViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="DQn-YI-eb1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="187" y="-4833"/>
+            <point key="canvasLocation" x="201" y="-4833"/>
         </scene>
         <!--Object Sounds Table View Controller - Sounds-->
         <scene sceneID="chZ-5K-kCV">
@@ -784,6 +790,6 @@
     <inferredMetricsTieBreakers>
         <segue reference="ZYi-SP-eKt"/>
         <segue reference="mUB-CR-2KD"/>
-        <segue reference="9nK-JY-fcb"/>
+        <segue reference="PV7-6r-ExX"/>
     </inferredMetricsTieBreakers>
 </document>

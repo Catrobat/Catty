@@ -45,13 +45,13 @@
 #define kSoundsTitle NSLocalizedString(@"Sounds",nil)
 
 // script categories
-typedef enum {
-    kControlBrick = 0,
-    kMotionBrick = 1,
-    kSoundBrick = 2,
-    kLookBrick = 3,
-    kVariableBrick = 4
-} kBrickType;
+typedef NS_ENUM(NSInteger, kBrickType) {
+  kControlBrick = 0,
+  kMotionBrick = 1,
+  kSoundBrick = 2,
+  kLookBrick = 3,
+  kVariableBrick = 4
+};
 
 #define kBrickTypeNames @[\
 NSLocalizedString(@"Control",nil),\
@@ -72,7 +72,7 @@ NSLocalizedString(@"Variables",nil)\
 // script category bricks
 
 // control bricks
-typedef enum {
+typedef NS_ENUM(NSInteger, kControlBrickType) {
     kProgramStartedBrick = 0,
     kTappedBrick = 1,
     kWaitBrick = 2,
@@ -83,7 +83,7 @@ typedef enum {
     kForeverBrick = 7,
     kIfBrick = 8,
     kRepeatBrick = 9
-} kControlBrickType;
+};
 
 #define kControlBrickTypeNames @[\
 NSLocalizedString(@"When program started",nil),\
@@ -99,7 +99,7 @@ NSLocalizedString(@"Repeat %d times",nil)\
 ]
 
 // motion bricks
-typedef enum {
+typedef NS_ENUM(NSInteger, kMotionBrickType) {
     kPlaceAtBrick = 0,
     kSetXBrick = 1,
     kSetYBrick = 2,
@@ -114,7 +114,7 @@ typedef enum {
     kGlideToBrick = 11,
     kGoNStepsBackBrick = 12,
     kComeToFrontBrick= 13
-} kMotionBrickType;
+};
 
 #define kMotionBrickTypeNames @[\
 NSLocalizedString(@"Place at\nX: %d Y: %d",nil),\
@@ -134,13 +134,13 @@ NSLocalizedString(@"Go to front",nil)\
 ]
 
 // sound bricks
-typedef enum {
+typedef NS_ENUM(NSInteger, kSoundBrickType) {
     kPlaySoundBrick = 0,
     kStopAllSoundsBrick = 1,
     kSetVolumeToBrick = 2,
     kChangeVolumeByBrick = 3,
     kSpeakBrick = 4
-} kSoundBrickType;
+};
 
 #define kSoundBrickTypeNames @[\
 NSLocalizedString(@"Start sound\%@",nil),\
@@ -151,7 +151,7 @@ NSLocalizedString(@"Speak %@",nil)\
 ]
 
 // look bricks
-typedef enum {
+typedef NS_ENUM(NSInteger, kLookBrickType) {
     kSetBackgroundBrick = 0,
     kNextBackgroundBrick = 1,
     kSetSizeToBrick = 2,
@@ -163,7 +163,7 @@ typedef enum {
     kSetBrightnessBrick = 8,
     kChangeBrightnessByNBrick = 9,
     kClearGraphicEffectBrick = 10
-} kLookBrickType;
+};
 
 #define kLookBrickTypeNames @[\
 NSLocalizedString(@"Set background\n%@",nil),\
@@ -180,10 +180,10 @@ NSLocalizedString(@"Clear graphic effects",nil)\
 ]
 
 // variable bricks
-typedef enum {
+typedef NS_ENUM(NSInteger, kVariableBrickType) {
     kSetVariableBrick = 0,
     kChangeVariableBrick = 1
-} kVariableBrickType;
+};
 
 #define kVariableBrickTypeNames @[\
 NSLocalizedString(@"Set variable\n%@\nto %f",nil),\

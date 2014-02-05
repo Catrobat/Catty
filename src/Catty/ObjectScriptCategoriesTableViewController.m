@@ -31,7 +31,7 @@
 #import "UIImageView+CatrobatUIImageViewExtensions.h"
 #import "Util.h"
 #import "UIColor+CatrobatUIColorExtensions.h"
-#import "ObjectNewScriptCategoryTableViewController.h"
+#import "ObjectNewScriptCategoryCollectionViewController.h"
 
 #define kTableHeaderIdentifier @"Header"
 #define kCategoryCell @"CategoryCell"
@@ -147,7 +147,7 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     static NSString *toNewScriptCategorySegueID = kSegueToNewScriptCategory;
-    
+
     UIViewController* destController = segue.destinationViewController;
     if ([sender isKindOfClass:[ColoredCell class]]) {
         if ([segue.identifier isEqualToString:toNewScriptCategorySegueID] &&
@@ -155,7 +155,7 @@
             [destController respondsToSelector:@selector(setCategoryType:)]) {
             [destController performSelector:@selector(setObject:) withObject:self.object];
             NSIndexPath *indexPath = [self.tableView indexPathForCell:(UITableViewCell*)sender];
-            ((ObjectNewScriptCategoryTableViewController*)destController).categoryType = (kBrickType)indexPath.row;
+            ((ObjectNewScriptCategoryCollectionViewController*)destController).categoryType = (kBrickType)indexPath.row;
         }
     }
 }
