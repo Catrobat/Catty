@@ -20,9 +20,9 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import "ScriptCell.h"
+#import "BrickCell.h"
 
-@implementation ScriptCell
+@implementation BrickCell
 
 - (id)initWithFrame:(CGRect)frame
 {

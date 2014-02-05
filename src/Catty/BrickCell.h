@@ -22,7 +22,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ScriptCell : UICollectionViewCell
+@interface BrickCell : UICollectionViewCell
 @property (nonatomic, strong) UIImageView *backgroundImage;
 @property (nonatomic, strong) UIColor *backgroundTintColor;
 

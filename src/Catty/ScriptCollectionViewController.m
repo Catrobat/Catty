@@ -81,7 +81,7 @@
 #pragma mark - collection view delegate
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    ScriptCell *cell = (ScriptCell *)[collectionView dequeueReusableCellWithReuseIdentifier:@"Brick" forIndexPath:indexPath];
+    BrickCell *cell = (BrickCell *)[collectionView dequeueReusableCellWithReuseIdentifier:@"Brick" forIndexPath:indexPath];
     // TODO: continue here
     return cell;
 }
@@ -124,8 +124,8 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section {
                 }
           }
         } else if ([segue.identifier isEqualToString:toScriptCategoriesSegueID]) {
-            if ([destController isKindOfClass:[ObjectScriptCategoriesTableViewController class]]) {
-                ObjectScriptCategoriesTableViewController* scvc = (ObjectScriptCategoriesTableViewController*) destController;
+            if ([destController isKindOfClass:[BrickCategoriesTableViewController class]]) {
+                BrickCategoriesTableViewController* scvc = (BrickCategoriesTableViewController*) destController;
                 if ([scvc respondsToSelector:@selector(setObject:)]) {
                     [scvc performSelector:@selector(setObject:) withObject:self.object];
                 }

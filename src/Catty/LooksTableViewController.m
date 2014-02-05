@@ -20,7 +20,7 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import "ObjectLooksTableViewController.h"
+#import "LooksTableViewController.h"
 #import "ProgramDefines.h"
 #import "UIDefines.h"
 #import "TableUtil.h"

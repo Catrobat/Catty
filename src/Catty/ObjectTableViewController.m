@@ -21,9 +21,9 @@
  */
 
 #import "ObjectTableViewController.h"
-#import "ObjectScriptsCollectionViewController.h"
-#import "ObjectLooksTableViewController.h"
-#import "ObjectSoundsTableViewController.h"
+#import "ScriptCollectionViewController.h"
+#import "LooksTableViewController.h"
+#import "SoundsTableViewController.h"
 #import "SpriteObject.h"
 #import "ProgramDefines.h"
 #import "UIDefines.h"

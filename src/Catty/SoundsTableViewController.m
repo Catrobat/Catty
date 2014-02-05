@@ -20,7 +20,7 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import "ObjectSoundsTableViewController.h"
+#import "SoundsTableViewController.h"
 #import "UIDefines.h"
 #import "TableUtil.h"
 #import "CatrobatImageCell.h"
