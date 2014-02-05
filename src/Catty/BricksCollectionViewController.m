@@ -20,19 +20,19 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import "ObjectNewScriptCategoryCollectionViewController.h"
+#import "BricksCollectionViewController.h"
 #import "UIColor+CatrobatUIColorExtensions.h"
 #import "SegueDefines.h"
 
 #define kTableHeaderIdentifier @"Header"
 #define kCategoryCell @"BrickCell"
 
-@interface ObjectNewScriptCategoryCollectionViewController ()
+@interface BrickCollectionViewController ()
 @property (nonatomic, strong) NSArray *categoryColors;
 @property (nonatomic, strong) NSArray *currentCategoryBricks;
 @end
 
-@implementation ObjectNewScriptCategoryCollectionViewController
+@implementation BrickCollectionViewController
 
 #pragma marks - getters and setters
 - (NSArray*)currentCategoryBricks

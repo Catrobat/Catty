@@ -20,18 +20,18 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import "ObjectScriptsCollectionViewController.h"
+#import "ScriptCollectionViewController.h"
 #import "UIDefines.h"
 #import "SpriteObject.h"
 #import "SegueDefines.h"
 #import "ScenePresenterViewController.h"
-#import "ObjectScriptCategoriesTableViewController.h"
-#import "ScriptCell.h"
+#import "BrickCategoriesTableViewController.h"
+#import "BrickCell.h"
 
-@interface ObjectScriptsCollectionViewController () <UICollectionViewDelegate, UICollectionViewDelegateFlowLayout>
+@interface ScriptCollectionViewController () <UICollectionViewDelegate, UICollectionViewDelegateFlowLayout>
 @end
 
-@implementation ObjectScriptsCollectionViewController
+@implementation ScriptCollectionViewController
 
 #pragma marks init
 - (void)initCollectionView

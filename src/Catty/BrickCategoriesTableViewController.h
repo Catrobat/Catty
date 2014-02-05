@@ -21,12 +21,10 @@
  */
 
 #import <UIKit/UIKit.h>
-#import "ProgramDefines.h"
-#import "BaseCollectionViewController.h"
+#import "BaseTableViewController.h"
 
 @class SpriteObject;
 
-@interface ObjectNewScriptCategoryCollectionViewController : BaseCollectionViewController
+@interface BrickCategoriesTableViewController : BaseTableViewController
 @property (strong, nonatomic) SpriteObject *object;
-@property (nonatomic) kBrickType categoryType;
 @end

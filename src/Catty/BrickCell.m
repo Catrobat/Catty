@@ -36,13 +36,15 @@
 
 #pragma mark layout
 
-- (void)setupBrickView:(NSDictionary *)labels {
+- (void)setupBrickView:(NSDictionary *)labels
+{
    NSAssert(NO, @"Must be overridden");
 }
 
-- (void)layoutSubviews {
+- (void)layoutSubviews
+{
   [super layoutSubviews];
-  
+
   if (self.backgroundImage) {
     self.backgroundImage.frame = self.frame;
     [self.contentView addSubview:self.backgroundImage];
@@ -52,7 +54,8 @@
 
 #pragma mark Background Image
 
-- (UIImageView *)backgroundImage {
+- (UIImageView *)backgroundImage
+{
   if (!_backgroundImage) {
     _backgroundImage = [UIImageView new];
     return _backgroundImage;
@@ -60,7 +63,8 @@
   return nil;
 }
 
-- (void)setBackgroundImage:(UIImageView *)backgroundImage withTintColor:(UIColor *)tintColor {
+- (void)setBackgroundImage:(UIImageView *)backgroundImage withTintColor:(UIColor *)tintColor
+{
   UIImage *stencilImage = [UIImage imageNamed:@"background_image__brick"];
   stencilImage = [stencilImage imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
   self.backgroundImage.image = stencilImage;

@@ -20,7 +20,7 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import "ObjectScriptCategoriesTableViewController.h"
+#import "BrickCategoriesTableViewController.h"
 #import "UIDefines.h"
 #import "TableUtil.h"
 #import "ColoredCell.h"
@@ -31,17 +31,17 @@
 #import "UIImageView+CatrobatUIImageViewExtensions.h"
 #import "Util.h"
 #import "UIColor+CatrobatUIColorExtensions.h"
-#import "ObjectNewScriptCategoryCollectionViewController.h"
+#import "BricksCollectionViewController.h"
 
 #define kTableHeaderIdentifier @"Header"
 #define kCategoryCell @"CategoryCell"
 
-@interface ObjectScriptCategoriesTableViewController () <UIActionSheetDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate>
+@interface BrickCategoriesTableViewController () <UIActionSheetDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate>
 @property (nonatomic, strong) NSArray *brickTypeNames;
 @property (nonatomic, strong) NSArray *brickTypeColors;
 @end
 
-@implementation ObjectScriptCategoriesTableViewController
+@implementation BrickCategoriesTableViewController
 
 #pragma marks - getters and setters
 - (NSArray*)brickTypeNames
@@ -155,7 +155,7 @@
             [destController respondsToSelector:@selector(setCategoryType:)]) {
             [destController performSelector:@selector(setObject:) withObject:self.object];
             NSIndexPath *indexPath = [self.tableView indexPathForCell:(UITableViewCell*)sender];
-            ((ObjectNewScriptCategoryCollectionViewController*)destController).categoryType = (kBrickType)indexPath.row;
+            ((BrickCollectionViewController*)destController).categoryType = (kBrickType)indexPath.row;
         }
     }
 }

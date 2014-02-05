@@ -27,11 +27,11 @@
 		288765FD0DF74451002DB57D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 288765FC0DF74451002DB57D /* CoreGraphics.framework */; };
 		816C788317D5F0420029A4E6 /* settings_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 816C788217D5F0420029A4E6 /* settings_bg@2x.png */; };
 		816C788617D62B7C0029A4E6 /* ProgramTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 816C788517D62B7C0029A4E6 /* ProgramTableViewController.m */; };
-		81C27424189EE41700827A95 /* ScriptCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 81C27423189EE41700827A95 /* ScriptCell.m */; };
+		81C27424189EE41700827A95 /* BrickCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 81C27423189EE41700827A95 /* BrickCell.m */; };
 		81C27426189EF94600827A95 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 81C27425189EF94600827A95 /* Images.xcassets */; };
-		81FAEE2F17E781AB0052BB2B /* ObjectScriptsCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 81FAEE2E17E781AB0052BB2B /* ObjectScriptsCollectionViewController.m */; };
-		81FAEE3217E782140052BB2B /* ObjectLooksTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 81FAEE3117E782140052BB2B /* ObjectLooksTableViewController.m */; };
-		81FAEE3517E782360052BB2B /* ObjectSoundsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 81FAEE3417E782360052BB2B /* ObjectSoundsTableViewController.m */; };
+		81FAEE2F17E781AB0052BB2B /* ScriptCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 81FAEE2E17E781AB0052BB2B /* ScriptCollectionViewController.m */; };
+		81FAEE3217E782140052BB2B /* LooksTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 81FAEE3117E782140052BB2B /* LooksTableViewController.m */; };
+		81FAEE3517E782360052BB2B /* SoundsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 81FAEE3417E782360052BB2B /* SoundsTableViewController.m */; };
 		9200F006182E3CA0008BF678 /* CatrobatAudioPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 9200F005182E3CA0008BF678 /* CatrobatAudioPlayer.m */; };
 		920F20C41837F27E003E9EE0 /* SaveToProjectActivity.m in Sources */ = {isa = PBXBuildFile; fileRef = 920F20C31837F27E003E9EE0 /* SaveToProjectActivity.m */; };
 		921C907B1830040A00A4F2CA /* stage_dialog_background_middle.png in Resources */ = {isa = PBXBuildFile; fileRef = 921C907A1830040A00A4F2CA /* stage_dialog_background_middle.png */; };
@@ -183,11 +183,11 @@
 		CA688202180AEF00008A7C99 /* BaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA688201180AEF00008A7C99 /* BaseViewController.m */; };
 		CA688205180B0148008A7C99 /* BaseTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA688204180B0148008A7C99 /* BaseTableViewController.m */; };
 		CA688208180B2663008A7C99 /* BaseCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA688207180B2663008A7C99 /* BaseCollectionViewController.m */; };
-		CA68820B180B30E0008A7C99 /* ObjectScriptCategoriesTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA68820A180B30E0008A7C99 /* ObjectScriptCategoriesTableViewController.m */; };
+		CA68820B180B30E0008A7C99 /* BrickCategoriesTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA68820A180B30E0008A7C99 /* BrickCategoriesTableViewController.m */; };
 		CA68820E180B39D0008A7C99 /* ColoredCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CA68820D180B39D0008A7C99 /* ColoredCell.m */; };
 		CA688212180B467B008A7C99 /* OrderedDictionary.m in Sources */ = {isa = PBXBuildFile; fileRef = CA688211180B467B008A7C99 /* OrderedDictionary.m */; };
 		CA79A11A182D8A4200618283 /* GDataXMLNode+PrettyFormatterExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = CA79A119182D8A4200618283 /* GDataXMLNode+PrettyFormatterExtensions.m */; };
-		CA79A11E182DA47E00618283 /* ObjectNewScriptCategoryCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA79A11D182DA47E00618283 /* ObjectNewScriptCategoryCollectionViewController.m */; };
+		CA79A11E182DA47E00618283 /* BricksCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA79A11D182DA47E00618283 /* BricksCollectionViewController.m */; };
 		CA7AC43A18074B5200904143 /* ic_media_play.png in Resources */ = {isa = PBXBuildFile; fileRef = CA7AC43918074B5200904143 /* ic_media_play.png */; };
 		CA7AC43C18074FD300904143 /* ic_media_pause.png in Resources */ = {isa = PBXBuildFile; fileRef = CA7AC43B18074FD300904143 /* ic_media_pause.png */; };
 		CA8F8A0B17F241F700A04C03 /* ic_looks.png in Resources */ = {isa = PBXBuildFile; fileRef = CA8F8A0817F241F700A04C03 /* ic_looks.png */; };
@@ -280,15 +280,15 @@
 		816C788217D5F0420029A4E6 /* settings_bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "settings_bg@2x.png"; sourceTree = "<group>"; };
 		816C788417D62B7C0029A4E6 /* ProgramTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProgramTableViewController.h; sourceTree = "<group>"; };
 		816C788517D62B7C0029A4E6 /* ProgramTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProgramTableViewController.m; sourceTree = "<group>"; };
-		81C27422189EE41700827A95 /* ScriptCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScriptCell.h; sourceTree = "<group>"; };
-		81C27423189EE41700827A95 /* ScriptCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScriptCell.m; sourceTree = "<group>"; };
+		81C27422189EE41700827A95 /* BrickCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BrickCell.h; sourceTree = "<group>"; };
+		81C27423189EE41700827A95 /* BrickCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BrickCell.m; sourceTree = "<group>"; };
 		81C27425189EF94600827A95 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		81FAEE2D17E781AB0052BB2B /* ObjectScriptsCollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ObjectScriptsCollectionViewController.h; sourceTree = "<group>"; };
-		81FAEE2E17E781AB0052BB2B /* ObjectScriptsCollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ObjectScriptsCollectionViewController.m; sourceTree = "<group>"; };
-		81FAEE3017E782140052BB2B /* ObjectLooksTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ObjectLooksTableViewController.h; sourceTree = "<group>"; };
-		81FAEE3117E782140052BB2B /* ObjectLooksTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ObjectLooksTableViewController.m; sourceTree = "<group>"; };
-		81FAEE3317E782360052BB2B /* ObjectSoundsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ObjectSoundsTableViewController.h; sourceTree = "<group>"; };
-		81FAEE3417E782360052BB2B /* ObjectSoundsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ObjectSoundsTableViewController.m; sourceTree = "<group>"; };
+		81FAEE2D17E781AB0052BB2B /* ScriptCollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScriptCollectionViewController.h; sourceTree = "<group>"; };
+		81FAEE2E17E781AB0052BB2B /* ScriptCollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScriptCollectionViewController.m; sourceTree = "<group>"; };
+		81FAEE3017E782140052BB2B /* LooksTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LooksTableViewController.h; sourceTree = "<group>"; };
+		81FAEE3117E782140052BB2B /* LooksTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LooksTableViewController.m; sourceTree = "<group>"; };
+		81FAEE3317E782360052BB2B /* SoundsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SoundsTableViewController.h; sourceTree = "<group>"; };
+		81FAEE3417E782360052BB2B /* SoundsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SoundsTableViewController.m; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* App-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "App-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
 		9200F004182E3CA0008BF678 /* CatrobatAudioPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CatrobatAudioPlayer.h; sourceTree = "<group>"; };
 		9200F005182E3CA0008BF678 /* CatrobatAudioPlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CatrobatAudioPlayer.m; sourceTree = "<group>"; };
@@ -519,16 +519,16 @@
 		CA688204180B0148008A7C99 /* BaseTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseTableViewController.m; sourceTree = "<group>"; };
 		CA688206180B2649008A7C99 /* BaseCollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseCollectionViewController.h; sourceTree = "<group>"; };
 		CA688207180B2663008A7C99 /* BaseCollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseCollectionViewController.m; sourceTree = "<group>"; };
-		CA688209180B30B5008A7C99 /* ObjectScriptCategoriesTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ObjectScriptCategoriesTableViewController.h; sourceTree = "<group>"; };
-		CA68820A180B30E0008A7C99 /* ObjectScriptCategoriesTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ObjectScriptCategoriesTableViewController.m; sourceTree = "<group>"; };
+		CA688209180B30B5008A7C99 /* BrickCategoriesTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BrickCategoriesTableViewController.h; sourceTree = "<group>"; };
+		CA68820A180B30E0008A7C99 /* BrickCategoriesTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BrickCategoriesTableViewController.m; sourceTree = "<group>"; };
 		CA68820C180B39BB008A7C99 /* ColoredCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ColoredCell.h; sourceTree = "<group>"; };
 		CA68820D180B39D0008A7C99 /* ColoredCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ColoredCell.m; sourceTree = "<group>"; };
 		CA688210180B467B008A7C99 /* OrderedDictionary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrderedDictionary.h; sourceTree = "<group>"; };
 		CA688211180B467B008A7C99 /* OrderedDictionary.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrderedDictionary.m; sourceTree = "<group>"; };
 		CA79A118182D8A4200618283 /* GDataXMLNode+PrettyFormatterExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "GDataXMLNode+PrettyFormatterExtensions.h"; sourceTree = "<group>"; };
 		CA79A119182D8A4200618283 /* GDataXMLNode+PrettyFormatterExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "GDataXMLNode+PrettyFormatterExtensions.m"; sourceTree = "<group>"; };
-		CA79A11C182DA47E00618283 /* ObjectNewScriptCategoryCollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ObjectNewScriptCategoryCollectionViewController.h; sourceTree = "<group>"; };
-		CA79A11D182DA47E00618283 /* ObjectNewScriptCategoryCollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ObjectNewScriptCategoryCollectionViewController.m; sourceTree = "<group>"; };
+		CA79A11C182DA47E00618283 /* BricksCollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BricksCollectionViewController.h; sourceTree = "<group>"; };
+		CA79A11D182DA47E00618283 /* BricksCollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BricksCollectionViewController.m; sourceTree = "<group>"; };
 		CA7AC43918074B5200904143 /* ic_media_play.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ic_media_play.png; sourceTree = "<group>"; };
 		CA7AC43B18074FD300904143 /* ic_media_pause.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ic_media_pause.png; sourceTree = "<group>"; };
 		CA8F8A0817F241F700A04C03 /* ic_looks.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ic_looks.png; sourceTree = "<group>"; };
@@ -767,43 +767,14 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		8154EAAD17D8D15F0078BFED /* ObjectViewControllers */ = {
+		81F10ED317CCD1F8000E4522 /* MaintainProgram */ = {
 			isa = PBXGroup;
 			children = (
-				81FAEE3617E792620052BB2B /* ScriptsCellView */,
-				81FAEE2D17E781AB0052BB2B /* ObjectScriptsCollectionViewController.h */,
-				81FAEE2E17E781AB0052BB2B /* ObjectScriptsCollectionViewController.m */,
-				CA688209180B30B5008A7C99 /* ObjectScriptCategoriesTableViewController.h */,
-				CA68820A180B30E0008A7C99 /* ObjectScriptCategoriesTableViewController.m */,
-				CA79A11C182DA47E00618283 /* ObjectNewScriptCategoryCollectionViewController.h */,
-				CA79A11D182DA47E00618283 /* ObjectNewScriptCategoryCollectionViewController.m */,
-				81FAEE3017E782140052BB2B /* ObjectLooksTableViewController.h */,
-				81FAEE3117E782140052BB2B /* ObjectLooksTableViewController.m */,
-				81FAEE3317E782360052BB2B /* ObjectSoundsTableViewController.h */,
-				81FAEE3417E782360052BB2B /* ObjectSoundsTableViewController.m */,
-				CAEDFB7F17EF759500FDED0E /* ObjectTableViewController.h */,
-				CAEDFB8017EF759500FDED0E /* ObjectTableViewController.m */,
-			);
-			name = ObjectViewControllers;
-			sourceTree = "<group>";
-		};
-		81F10ED317CCD1F8000E4522 /* ProgramViewControllers */ = {
-			isa = PBXGroup;
-			children = (
-				8154EAAD17D8D15F0078BFED /* ObjectViewControllers */,
 				816C788417D62B7C0029A4E6 /* ProgramTableViewController.h */,
 				816C788517D62B7C0029A4E6 /* ProgramTableViewController.m */,
+				CA160DB518A29D1B00E5190D /* MaintainObject */,
 			);
-			name = ProgramViewControllers;
-			sourceTree = "<group>";
-		};
-		81FAEE3617E792620052BB2B /* ScriptsCellView */ = {
-			isa = PBXGroup;
-			children = (
-				81C27422189EE41700827A95 /* ScriptCell.h */,
-				81C27423189EE41700827A95 /* ScriptCell.m */,
-			);
-			name = ScriptsCellView;
+			name = MaintainProgram;
 			sourceTree = "<group>";
 		};
 		92AD4867184F2AFE005B2223 /* iOS_Lang */ = {
@@ -1507,7 +1478,7 @@
 			isa = PBXGroup;
 			children = (
 				B4E7D254176EF1B900EC8AD8 /* ScenePresenterViewController */,
-				81F10ED317CCD1F8000E4522 /* ProgramViewControllers */,
+				81F10ED317CCD1F8000E4522 /* MaintainProgram */,
 			);
 			name = "Continue & New";
 			sourceTree = "<group>";
@@ -1567,6 +1538,49 @@
 				CA05A19B18282B2C0025421A /* SearchStoreViewController.m */,
 			);
 			name = SearchStoreViewController;
+			sourceTree = "<group>";
+		};
+		CA160DB218A29CBB00E5190D /* Script */ = {
+			isa = PBXGroup;
+			children = (
+				81FAEE2D17E781AB0052BB2B /* ScriptCollectionViewController.h */,
+				81FAEE2E17E781AB0052BB2B /* ScriptCollectionViewController.m */,
+				CA688209180B30B5008A7C99 /* BrickCategoriesTableViewController.h */,
+				CA68820A180B30E0008A7C99 /* BrickCategoriesTableViewController.m */,
+				CA79A11C182DA47E00618283 /* BricksCollectionViewController.h */,
+				CA79A11D182DA47E00618283 /* BricksCollectionViewController.m */,
+			);
+			name = Script;
+			sourceTree = "<group>";
+		};
+		CA160DB318A29CC400E5190D /* Looks */ = {
+			isa = PBXGroup;
+			children = (
+				81FAEE3017E782140052BB2B /* LooksTableViewController.h */,
+				81FAEE3117E782140052BB2B /* LooksTableViewController.m */,
+			);
+			name = Looks;
+			sourceTree = "<group>";
+		};
+		CA160DB418A29CD600E5190D /* Sounds */ = {
+			isa = PBXGroup;
+			children = (
+				81FAEE3317E782360052BB2B /* SoundsTableViewController.h */,
+				81FAEE3417E782360052BB2B /* SoundsTableViewController.m */,
+			);
+			name = Sounds;
+			sourceTree = "<group>";
+		};
+		CA160DB518A29D1B00E5190D /* MaintainObject */ = {
+			isa = PBXGroup;
+			children = (
+				CAEDFB7F17EF759500FDED0E /* ObjectTableViewController.h */,
+				CAEDFB8017EF759500FDED0E /* ObjectTableViewController.m */,
+				CA160DB218A29CBB00E5190D /* Script */,
+				CA160DB318A29CC400E5190D /* Looks */,
+				CA160DB418A29CD600E5190D /* Sounds */,
+			);
+			name = MaintainObject;
 			sourceTree = "<group>";
 		};
 		CA43DD371809977A00F95B88 /* UIImageView+CatrobatUIImageViewExtensions */ = {
@@ -1655,6 +1669,8 @@
 		CA750F8218A12CFA005FC0A0 /* BrickCell */ = {
 			isa = PBXGroup;
 			children = (
+				81C27422189EE41700827A95 /* BrickCell.h */,
+				81C27423189EE41700827A95 /* BrickCell.m */,
 			);
 			name = BrickCell;
 			sourceTree = "<group>";
@@ -2412,7 +2428,7 @@
 				CD0CCFA7170CB39700B70036 /* PlaceAtBrick.m in Sources */,
 				CD0CCFAA170CB39700B70036 /* PlaySoundBrick.m in Sources */,
 				CD0CCFAB170CB39700B70036 /* Program.m in Sources */,
-				81FAEE3517E782360052BB2B /* ObjectSoundsTableViewController.m in Sources */,
+				81FAEE3517E782360052BB2B /* SoundsTableViewController.m in Sources */,
 				CD0CCFAE170CB39700B70036 /* ProjectParser.m in Sources */,
 				CD0CCFB0170CB39700B70036 /* RepeatBrick.m in Sources */,
 				CA43DD361809976900F95B88 /* UIImageView+CatrobatUIImageViewExtensions.m in Sources */,
@@ -2426,7 +2442,7 @@
 				CD0CCFC4170CB39700B70036 /* SetXBrick.m in Sources */,
 				CD0CCFC5170CB39700B70036 /* SetYBrick.m in Sources */,
 				CD0CCFC6170CB39700B70036 /* ShowBrick.m in Sources */,
-				81C27424189EE41700827A95 /* ScriptCell.m in Sources */,
+				81C27424189EE41700827A95 /* BrickCell.m in Sources */,
 				CD0CCFC7170CB39700B70036 /* Sound.m in Sources */,
 				CD0CCFC9170CB39700B70036 /* SpeakBrick.m in Sources */,
 				CD0CCFD0170CB39700B70036 /* StartScript.m in Sources */,
@@ -2440,7 +2456,7 @@
 				CD0CCFDC170CB39700B70036 /* WhenScript.m in Sources */,
 				CAEDFB8117EF759500FDED0E /* ObjectTableViewController.m in Sources */,
 				CD639C7B170DF52600FA67DA /* SpriteObject.m in Sources */,
-				CA68820B180B30E0008A7C99 /* ObjectScriptCategoriesTableViewController.m in Sources */,
+				CA68820B180B30E0008A7C99 /* BrickCategoriesTableViewController.m in Sources */,
 				CA688212180B467B008A7C99 /* OrderedDictionary.m in Sources */,
 				B4D940AD170EC2B7003DDBFA /* ioapi.c in Sources */,
 				B4D940AE170EC2B7003DDBFA /* mztools.c in Sources */,
@@ -2448,8 +2464,8 @@
 				B4D940B0170EC2B7003DDBFA /* zip.c in Sources */,
 				B4D940D4170ECA15003DDBFA /* ImageCache.m in Sources */,
 				B4D940DC170ECB65003DDBFA /* ContinueImageCell.m in Sources */,
-				81FAEE2F17E781AB0052BB2B /* ObjectScriptsCollectionViewController.m in Sources */,
-				81FAEE3217E782140052BB2B /* ObjectLooksTableViewController.m in Sources */,
+				81FAEE2F17E781AB0052BB2B /* ScriptCollectionViewController.m in Sources */,
+				81FAEE3217E782140052BB2B /* LooksTableViewController.m in Sources */,
 				B4D940E0170ECB8B003DDBFA /* DarkBlueGradientCell.m in Sources */,
 				CA43DD3A18099AA300F95B88 /* DarkBlueGradientBorderedImageCell.m in Sources */,
 				B40C3071170ECC49000B872F /* DarkBlueGradientImageCell.m in Sources */,
@@ -2484,7 +2500,7 @@
 				B4B7BAC31738E216000BDC94 /* XMLObjectReference.m in Sources */,
 				B4826F78174D076800F57AE9 /* NoteBrick.m in Sources */,
 				B4826F83174D5BB100F57AE9 /* OrderedMapTable.m in Sources */,
-				CA79A11E182DA47E00618283 /* ObjectNewScriptCategoryCollectionViewController.m in Sources */,
+				CA79A11E182DA47E00618283 /* BricksCollectionViewController.m in Sources */,
 				B4840CA7174FAC3E002DEC53 /* MoveNStepsBrick.m in Sources */,
 				B4365CE51758AF8F00B4D0A6 /* Logger.m in Sources */,
 				CDFEFCB41758CBC8002B5B0E /* IfOnEdgeBounceBrick.m in Sources */,
