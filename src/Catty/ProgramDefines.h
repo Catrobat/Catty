@@ -89,7 +89,7 @@ typedef NS_ENUM(NSInteger, kControlBrickType) {
 NSLocalizedString(@"When program started",nil),\
 NSLocalizedString(@"When tapped",nil),\
 NSLocalizedString(@"Wait %d second",nil),\
-NSLocalizedString(@"\nWhen I receive\n%@",nil),\
+NSLocalizedString(@"When I receive\n%@",nil),\
 NSLocalizedString(@"Broadcast\n%@",nil),\
 NSLocalizedString(@"Broadcast and wait\n%@",nil),\
 NSLocalizedString(@"Note %@",nil),\

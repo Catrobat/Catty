@@ -26,6 +26,23 @@
 
 #define kDefaultImageCellBorderWidth 1.0f
 
+// brick UI config
+typedef NS_ENUM(NSInteger, kBrickShapeType) {
+    kBrickShapeNormal = 0,
+    kBrickShapeRoundedThin = 1,
+    kBrickShapeRoundedBig = 2
+};
+
+#define kBrickInlineViewOffsetX 54.0f
+#define kBrickShapeNormalInlineViewOffsetY 3.0f
+#define kBrickShapeRoundedThinInlineViewOffsetY 22.0f
+#define kBrickShapeRoundedBigInlineViewOffsetY 22.0f
+#define kBrickShapeNormalMarginHeight 9.0f
+#define kBrickShapeRoundedThinMarginHeight 28.0f
+#define kBrickShapeRoundedBigMarginHeight 28.0f
+#define kBrickPatternImageViewOffsetX 0.0f
+#define kBrickPatternImageViewOffsetY 0.0f
+
 // placeholder texts
 #define kPlaceHolderTag 99998
 #define kLoadingViewTag 99999
