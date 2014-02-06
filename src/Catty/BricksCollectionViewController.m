@@ -113,6 +113,15 @@
     return cell;
 }
 
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath*)indexPath
+{
+  UICollectionViewCell *cell = [collectionView cellForItemAtIndexPath:indexPath];
+  if ([cell isKindOfClass:[BrickCell class]]) {
+      // TODO: implement
+      NSLog(@"Perform backward (pop 2 VCs from navigation bar controller stack) segue");
+  }
+}
+
 - (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
 {
     cell.backgroundColor = self.categoryColors[self.categoryType];

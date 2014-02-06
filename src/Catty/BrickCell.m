@@ -139,6 +139,9 @@
     NSString *brickTitle = nil;
     kBrickShapeType brickShapeType = kBrickShapeNormal;
     UIImage *brickPatternImage = nil;
+    UIImage *brickBackgroundPatternImage = nil;
+    CGFloat backgroundViewOffsetX = 54.0f;
+    CGFloat backgroundViewOffsetY = 0.0f;
     if (categoryType == kControlBrick) {
         brickTitle = kControlBrickTypeNames[brickType];
         switch (brickType) {
@@ -146,26 +149,42 @@
             case kTappedBrick:
                 // TODO: Performance!!! Don't load same images (shared between different bricks) again and again
                 brickPatternImage = [UIImage imageNamed:@"brick_control_1h"];
+                brickBackgroundPatternImage = [UIImage imageNamed:@"brick_control_1h_bg"];
                 brickShapeType = kBrickShapeRoundedThin;
+                backgroundViewOffsetX = 206.0f;
+                backgroundViewOffsetY = 19.0f;
                 break;
             case kReceiveBrick:
                 brickPatternImage = [UIImage imageNamed:@"brick_control_2h"];
+                brickBackgroundPatternImage = [UIImage imageNamed:@"brick_control_2h_bg"];
                 brickShapeType = kBrickShapeRoundedBig;
+                backgroundViewOffsetX = 205.0f;
+                backgroundViewOffsetY = 20.0f;
                 break;
             case kWaitBrick:
             case kForeverBrick:
             case kIfBrick:
             case kRepeatBrick:
                 brickPatternImage = [UIImage imageNamed:@"brick_orange_1h"];
+                brickBackgroundPatternImage = [UIImage imageNamed:@"brick_orange_1h_bg"];
                 break;
             case kBroadcastBrick:
             case kBroadcastWaitBrick:
             case kNoteBrick:
                 brickPatternImage = [UIImage imageNamed:@"brick_orange_2h"];
+                brickBackgroundPatternImage = [UIImage imageNamed:@"brick_orange_2h_bg"];
                 break;
             default:
                 return;
         }
+        UIView *backgroundView = [[UIView alloc] initWithFrame:CGRectMake(backgroundViewOffsetX, backgroundViewOffsetY, (self.frame.size.width - kBrickInlineViewOffsetX), brickBackgroundPatternImage.size.height)];
+        UIGraphicsBeginImageContext(backgroundView.frame.size);
+        [brickBackgroundPatternImage drawInRect:backgroundView.bounds];
+        UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
+        UIGraphicsEndImageContext();
+        backgroundView.backgroundColor = [UIColor colorWithPatternImage:image];
+        [self addSubview:backgroundView];
+        [self sendSubviewToBack:backgroundView];
     } else if (categoryType == kMotionBrick) {
         brickTitle = kMotionBrickTypeNames[brickType];
         switch (brickType) {
@@ -267,8 +286,6 @@
             break;
     }
     UIView *inlineView = [[UIView alloc] initWithFrame:CGRectMake(kBrickInlineViewOffsetX, inlineViewOffsetY, inlineViewWidth, inlineViewHeight)];
-    inlineView.backgroundColor = self.categoryColors[categoryType];
-
     UIImageView *imageView = [[UIImageView alloc] initWithImage:brickPatternImage];
     CGRect imageViewFrame = imageView.frame;
     imageViewFrame.origin.x = kBrickPatternImageViewOffsetX;
@@ -279,8 +296,9 @@
 
     UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, inlineViewWidth, inlineViewHeight)];
 //    [label adjustsFontSizeToFitWidth];
-    label.textColor = [UIColor blackColor];
+    label.textColor = [UIColor whiteColor];
     label.text = brickTitle;
+    label.font = [UIFont boldSystemFontOfSize:16];
     [inlineView addSubview:label];
 
 // just to test layout
