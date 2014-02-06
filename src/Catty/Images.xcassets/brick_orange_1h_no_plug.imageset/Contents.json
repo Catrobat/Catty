@@ -2,12 +2,13 @@
   "images" : [
     {
       "idiom" : "universal",
-      "scale" : "1x"
+      "scale" : "1x",
+      "filename" : "brick_orange_1h_no_plug-1.png"
     },
     {
       "idiom" : "universal",
       "scale" : "2x",
-      "filename" : "brick_2h.9@2x.png"
+      "filename" : "brick_orange_1h_no_plug.png"
     }
   ],
   "info" : {
