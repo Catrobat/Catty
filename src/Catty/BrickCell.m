@@ -140,7 +140,9 @@
     kBrickShapeType brickShapeType = kBrickShapeNormal;
     NSString *brickPatternImageName = nil;
     if (categoryType == kControlBrick) {
-        // TODO cast and check if valid brickType to NS_ENUM...
+        if (brickType >= [kControlBrickNames count])
+            return; // invalid
+
         brickTitle = kControlBrickNames[brickType];
         brickPatternImageName = kControlBrickImageNames[brickType];
         if ((brickType == kProgramStartedBrick) || (brickType == kTappedBrick)) {
@@ -149,19 +151,31 @@
             brickShapeType = kBrickShapeRoundedBig;
         }
     } else if (categoryType == kMotionBrick) {
-      // TODO cast and check if valid brickType to NS_ENUM...
+        if (brickType >= [kMotionBrickNames count])
+            return; // invalid
+
         brickTitle = kMotionBrickNames[brickType];
         brickPatternImageName = kMotionBrickImageNames[brickType];
     } else if (categoryType == kSoundBrick) {
-      // TODO cast and check if valid brickType to NS_ENUM...
+        if (brickType >= [kSoundBrickNames count])
+            return; // invalid
+
         brickTitle = kSoundBrickNames[brickType];
         brickPatternImageName = kSoundBrickImageNames[brickType];
     } else if (categoryType == kLookBrick) {
+        if (brickType >= [kLookBrickNames count])
+            return; // invalid
+
         brickTitle = kLookBrickNames[brickType];
         brickPatternImageName = kLookBrickImageNames[brickType];
     } else if (categoryType == kVariableBrick) {
+        if (brickType >= [kVariableBrickNames count])
+            return; // invalid
+
         brickTitle = kVariableBrickNames[brickType];
         brickPatternImageName = kVariableBrickImageNames[brickType];
+    } else {
+        return; // invalid
     }
 
     // background pattern image
