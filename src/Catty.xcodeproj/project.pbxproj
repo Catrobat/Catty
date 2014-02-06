@@ -1540,7 +1540,7 @@
 			name = SearchStoreViewController;
 			sourceTree = "<group>";
 		};
-		CA160DB218A29CBB00E5190D /* Script */ = {
+		CA160DB218A29CBB00E5190D /* MaintainScript */ = {
 			isa = PBXGroup;
 			children = (
 				81FAEE2D17E781AB0052BB2B /* ScriptCollectionViewController.h */,
@@ -1550,25 +1550,25 @@
 				CA79A11C182DA47E00618283 /* BricksCollectionViewController.h */,
 				CA79A11D182DA47E00618283 /* BricksCollectionViewController.m */,
 			);
-			name = Script;
+			name = MaintainScript;
 			sourceTree = "<group>";
 		};
-		CA160DB318A29CC400E5190D /* Looks */ = {
+		CA160DB318A29CC400E5190D /* MaintainLooks */ = {
 			isa = PBXGroup;
 			children = (
 				81FAEE3017E782140052BB2B /* LooksTableViewController.h */,
 				81FAEE3117E782140052BB2B /* LooksTableViewController.m */,
 			);
-			name = Looks;
+			name = MaintainLooks;
 			sourceTree = "<group>";
 		};
-		CA160DB418A29CD600E5190D /* Sounds */ = {
+		CA160DB418A29CD600E5190D /* MaintainSounds */ = {
 			isa = PBXGroup;
 			children = (
 				81FAEE3317E782360052BB2B /* SoundsTableViewController.h */,
 				81FAEE3417E782360052BB2B /* SoundsTableViewController.m */,
 			);
-			name = Sounds;
+			name = MaintainSounds;
 			sourceTree = "<group>";
 		};
 		CA160DB518A29D1B00E5190D /* MaintainObject */ = {
@@ -1576,9 +1576,9 @@
 			children = (
 				CAEDFB7F17EF759500FDED0E /* ObjectTableViewController.h */,
 				CAEDFB8017EF759500FDED0E /* ObjectTableViewController.m */,
-				CA160DB218A29CBB00E5190D /* Script */,
-				CA160DB318A29CC400E5190D /* Looks */,
-				CA160DB418A29CD600E5190D /* Sounds */,
+				CA160DB218A29CBB00E5190D /* MaintainScript */,
+				CA160DB318A29CC400E5190D /* MaintainLooks */,
+				CA160DB418A29CD600E5190D /* MaintainSounds */,
 			);
 			name = MaintainObject;
 			sourceTree = "<group>";
