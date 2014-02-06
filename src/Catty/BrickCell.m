@@ -44,15 +44,15 @@
 {
     switch (categoryType) {
         case kControlBrick:
-            return [kControlBrickTypeNames count];
+            return [kControlBrickNames count];
         case kMotionBrick:
-            return [kMotionBrickTypeNames count];
+            return [kMotionBrickNames count];
         case kSoundBrick:
-            return [kSoundBrickTypeNames count];
+            return [kSoundBrickNames count];
         case kLookBrick:
-            return [kLookBrickTypeNames count];
+            return [kLookBrickNames count];
         case kVariableBrick:
-            return [kVariableBrickTypeNames count];
+            return [kVariableBrickNames count];
         default:
           break;
     }
@@ -138,126 +138,54 @@
 
     NSString *brickTitle = nil;
     kBrickShapeType brickShapeType = kBrickShapeNormal;
-    UIImage *brickPatternImage = nil;
-    UIImage *brickBackgroundPatternImage = nil;
-    CGFloat backgroundViewOffsetX = 54.0f;
-    CGFloat backgroundViewOffsetY = 0.0f;
+    NSString *brickPatternImageName = nil;
     if (categoryType == kControlBrick) {
-        brickTitle = kControlBrickTypeNames[brickType];
-        switch (brickType) {
-            case kProgramStartedBrick:
-            case kTappedBrick:
-                // TODO: Performance!!! Don't load same images (shared between different bricks) again and again
-                brickPatternImage = [UIImage imageNamed:@"brick_control_1h"];
-                brickBackgroundPatternImage = [UIImage imageNamed:@"brick_control_1h_bg"];
-                brickShapeType = kBrickShapeRoundedThin;
-                backgroundViewOffsetX = 206.0f;
-                backgroundViewOffsetY = 19.0f;
-                break;
-            case kReceiveBrick:
-                brickPatternImage = [UIImage imageNamed:@"brick_control_2h"];
-                brickBackgroundPatternImage = [UIImage imageNamed:@"brick_control_2h_bg"];
-                brickShapeType = kBrickShapeRoundedBig;
-                backgroundViewOffsetX = 205.0f;
-                backgroundViewOffsetY = 20.0f;
-                break;
-            case kWaitBrick:
-            case kForeverBrick:
-            case kIfBrick:
-            case kRepeatBrick:
-                brickPatternImage = [UIImage imageNamed:@"brick_orange_1h"];
-                brickBackgroundPatternImage = [UIImage imageNamed:@"brick_orange_1h_bg"];
-                break;
-            case kBroadcastBrick:
-            case kBroadcastWaitBrick:
-            case kNoteBrick:
-                brickPatternImage = [UIImage imageNamed:@"brick_orange_2h"];
-                brickBackgroundPatternImage = [UIImage imageNamed:@"brick_orange_2h_bg"];
-                break;
-            default:
-                return;
+        // TODO cast and check if valid brickType to NS_ENUM...
+        brickTitle = kControlBrickNames[brickType];
+        brickPatternImageName = kControlBrickImageNames[brickType];
+        if ((brickType == kProgramStartedBrick) || (brickType == kTappedBrick)) {
+            brickShapeType = kBrickShapeRoundedSmall;
+        } else if (brickType == kReceiveBrick) {
+            brickShapeType = kBrickShapeRoundedBig;
         }
-        UIView *backgroundView = [[UIView alloc] initWithFrame:CGRectMake(backgroundViewOffsetX, backgroundViewOffsetY, (self.frame.size.width - kBrickInlineViewOffsetX), brickBackgroundPatternImage.size.height)];
-        UIGraphicsBeginImageContext(backgroundView.frame.size);
-        [brickBackgroundPatternImage drawInRect:backgroundView.bounds];
-        UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
-        UIGraphicsEndImageContext();
-        backgroundView.backgroundColor = [UIColor colorWithPatternImage:image];
-        [self addSubview:backgroundView];
-        [self sendSubviewToBack:backgroundView];
     } else if (categoryType == kMotionBrick) {
-        brickTitle = kMotionBrickTypeNames[brickType];
-        switch (brickType) {
-            case kPlaceAtBrick:
-            case kPointToBrick:
-                brickPatternImage = [UIImage imageNamed:@"brick_blue_2h"];
-                break;
-            case kGlideToBrick:
-                brickPatternImage = [UIImage imageNamed:@"brick_blue_3h"];
-                break;
-            case kSetXBrick:
-            case kSetYBrick:
-            case kChangeXByNBrick:
-            case kChangeYByNBrick:
-            case kIfOnEdgeBounceBrick:
-            case kMoveNStepsBrick:
-            case kTurnLeftBrick:
-            case kTurnRightBrick:
-            case kPointInDirectionBrick:
-            case kGoNStepsBackBrick:
-            case kComeToFrontBrick:
-                brickPatternImage = [UIImage imageNamed:@"brick_blue_1h"];
-                break;
-            default:
-                return;
-        }
+      // TODO cast and check if valid brickType to NS_ENUM...
+        brickTitle = kMotionBrickNames[brickType];
+        brickPatternImageName = kMotionBrickImageNames[brickType];
     } else if (categoryType == kSoundBrick) {
-        brickTitle = kSoundBrickTypeNames[brickType];
-        switch (brickType) {
-            case kStopAllSoundsBrick:
-            case kSetVolumeToBrick:
-            case kChangeVolumeByBrick:
-                brickPatternImage = [UIImage imageNamed:@"brick_violet_1h"];
-                break;
-            case kPlaySoundBrick:
-            case kSpeakBrick:
-                brickPatternImage = [UIImage imageNamed:@"brick_violet_2h"];
-                break;
-            default:
-                return;
-        }
+      // TODO cast and check if valid brickType to NS_ENUM...
+        brickTitle = kSoundBrickNames[brickType];
+        brickPatternImageName = kSoundBrickImageNames[brickType];
     } else if (categoryType == kLookBrick) {
-        brickTitle = kLookBrickTypeNames[brickType];
-        switch (brickType) {
-            case kNextBackgroundBrick:
-            case kSetSizeToBrick:
-            case kChangeSizeByNBrick:
-            case kHideBrick:
-            case kShowBrick:
-            case kClearGraphicEffectBrick:
-                brickPatternImage = [UIImage imageNamed:@"brick_green_1h"];
-                break;
-            case kSetBackgroundBrick:
-            case kSetGhostEffectBrick:
-            case kChangeGhostEffectByNBrick:
-            case kSetBrightnessBrick:
-            case kChangeBrightnessByNBrick:
-                brickPatternImage = [UIImage imageNamed:@"brick_green_2h"];
-                break;
-            default:
-                return;
-        }
+        brickTitle = kLookBrickNames[brickType];
+        brickPatternImageName = kLookBrickImageNames[brickType];
     } else if (categoryType == kVariableBrick) {
-        brickTitle = kVariableBrickTypeNames[brickType];
-        switch (brickType) {
-            case kSetVariableBrick:
-            case kChangeVariableBrick:
-                brickPatternImage = [UIImage imageNamed:@"brick_red_3h"];
-                break;
-            default:
-                return;
-        }
+        brickTitle = kVariableBrickNames[brickType];
+        brickPatternImageName = kVariableBrickImageNames[brickType];
     }
+
+    // background pattern image
+    // TODO: Performance!!! Don't load same images (shared between different bricks) again and again
+    static NSString *backgroundImageNameSuffix = kBrickBackgroundImageNameSuffix;
+    UIImage *brickBackgroundPatternImage = [UIImage imageNamed:[brickPatternImageName stringByAppendingString:backgroundImageNameSuffix]];
+    CGFloat backgroundViewOffsetX = 54.0f;
+    if (brickShapeType == kBrickShapeRoundedSmall) {
+        backgroundViewOffsetX = 206.0f;
+    } else if (brickShapeType == kBrickShapeRoundedBig) {
+        backgroundViewOffsetX = 205.0f;
+    }
+    UIView *backgroundView = [[UIView alloc] initWithFrame:CGRectMake(backgroundViewOffsetX, 0.0f, (self.frame.size.width - kBrickInlineViewOffsetX), brickBackgroundPatternImage.size.height)];
+    UIGraphicsBeginImageContext(backgroundView.frame.size);
+    [brickBackgroundPatternImage drawInRect:backgroundView.bounds];
+    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    backgroundView.backgroundColor = [UIColor colorWithPatternImage:image];
+    [self addSubview:backgroundView];
+    [self sendSubviewToBack:backgroundView];
+
+    // brick pattern image
+    // TODO: Performance!!! Don't load same images (shared between different bricks) again and again
+    UIImage *brickPatternImage = [UIImage imageNamed:brickPatternImageName];
 
     // resize frame height
     CGRect frame = self.frame;
@@ -274,7 +202,7 @@
             inlineViewHeight -= kBrickShapeNormalMarginHeight;
             inlineViewOffsetY = kBrickShapeNormalInlineViewOffsetY;
             break;
-        case kBrickShapeRoundedThin:
+        case kBrickShapeRoundedSmall:
             inlineViewHeight -= kBrickShapeRoundedThinMarginHeight;
             inlineViewOffsetY = kBrickShapeRoundedThinInlineViewOffsetY;
             break;

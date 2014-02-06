@@ -29,7 +29,7 @@
 // brick UI config
 typedef NS_ENUM(NSInteger, kBrickShapeType) {
     kBrickShapeNormal = 0,
-    kBrickShapeRoundedThin = 1,
+    kBrickShapeRoundedSmall = 1,
     kBrickShapeRoundedBig = 2
 };
 
