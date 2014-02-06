@@ -24,13 +24,10 @@
 #import "ProgramDefines.h"
 
 @interface BrickCell : UICollectionViewCell
-@property (nonatomic, strong) UIImageView *backgroundImage;
-@property (nonatomic, strong) UIColor *backgroundTintColor;
 
-- (void)setupBrickView:(NSDictionary *)labels;
-- (void)setBackgroundImage:(UIImageView *)backgroundImage withTintColor:(UIColor *)tintColor;
 - (void)convertToBrickCellForCategoryType:(kBrickCategoryType)categoryType AndBrickType:(NSInteger)brickType;
 
 + (NSInteger)numberOfAvailableBricksForCategoryType:(kBrickCategoryType)categoryType;
++ (CGFloat) getBrickCellHeightForCategoryType:(kBrickCategoryType)categoryType AndBrickType:(NSInteger)brickType;
 
 @end

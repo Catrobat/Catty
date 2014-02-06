@@ -21,6 +21,7 @@
  */
 
 #import "BrickCell.h"
+#import "UIDefines.h"
 #import "UIColor+CatrobatUIColorExtensions.h"
 
 @interface BrickCell ()
@@ -58,29 +59,123 @@
     return 0;
 }
 
++ (CGFloat) getBrickCellHeightForCategoryType:(kBrickCategoryType)categoryType AndBrickType:(NSInteger)brickType
+{
+  // TODO: outsource all these numbers to define-consts...
+  CGFloat height = 44.0f;
+  if (categoryType == kControlBrick) {
+    switch (brickType) {
+      case kProgramStartedBrick:
+      case kTappedBrick:
+        height = 62.0f;
+        break;
+      case kReceiveBrick:
+        height = 88.0f;
+        break;
+      case kBroadcastBrick:
+      case kBroadcastWaitBrick:
+      case kNoteBrick:
+        height = 71.0f;
+        break;
+      default:
+        height = 44.0f;
+        break;
+    }
+  } else if (categoryType == kMotionBrick) {
+    switch (brickType) {
+      case kPlaceAtBrick:
+      case kPointToBrick:
+          height = 71.0f;
+          break;
+      case kGlideToBrick:
+          height = 94.0f;
+          break;
+      default:
+        height = 44.0f;
+        break;
+    }
+  } else if (categoryType == kSoundBrick) {
+    switch (brickType) {
+      case kPlaySoundBrick:
+      case kSpeakBrick:
+        height = 71.0f;
+        break;
+      default:
+        height = 44.0f;
+        break;
+    }
+  } else if (categoryType == kLookBrick) {
+    switch (brickType) {
+      case kSetBackgroundBrick:
+      case kSetGhostEffectBrick:
+      case kChangeGhostEffectByNBrick:
+      case kSetBrightnessBrick:
+      case kChangeBrightnessByNBrick:
+        height = 71.0f;
+        break;
+      default:
+        height = 44.0f;
+        break;
+    }
+  } else if (categoryType == kVariableBrick) {
+    switch (brickType) {
+      case kSetVariableBrick:
+      case kChangeVariableBrick:
+        height = 94.0f;
+        break;
+      default:
+        height = 44.0f;
+        break;
+    }
+  }
+  return height;
+}
+
 - (void)convertToBrickCellForCategoryType:(kBrickCategoryType)categoryType AndBrickType:(NSInteger)brickType
 {
+    // Note: for performance reasons we use reusable cells, so we have to remove all subviews first
+    [self.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
+
     NSString *brickTitle = nil;
+    kBrickShapeType brickShapeType = kBrickShapeNormal;
+    UIImage *brickPatternImage = nil;
     if (categoryType == kControlBrick) {
         brickTitle = kControlBrickTypeNames[brickType];
         switch (brickType) {
             case kProgramStartedBrick:
             case kTappedBrick:
-            case kWaitBrick:
+                // TODO: Performance!!! Don't load same images (shared between different bricks) again and again
+                brickPatternImage = [UIImage imageNamed:@"brick_control_1h"];
+                brickShapeType = kBrickShapeRoundedThin;
+                break;
             case kReceiveBrick:
-            case kBroadcastBrick:
-            case kBroadcastWaitBrick:
-            case kNoteBrick:
+                brickPatternImage = [UIImage imageNamed:@"brick_control_2h"];
+                brickShapeType = kBrickShapeRoundedBig;
+                break;
+            case kWaitBrick:
             case kForeverBrick:
             case kIfBrick:
             case kRepeatBrick:
-            default:
+                brickPatternImage = [UIImage imageNamed:@"brick_orange_1h"];
                 break;
+            case kBroadcastBrick:
+            case kBroadcastWaitBrick:
+            case kNoteBrick:
+                brickPatternImage = [UIImage imageNamed:@"brick_orange_2h"];
+                break;
+            default:
+                return;
         }
     } else if (categoryType == kMotionBrick) {
         brickTitle = kMotionBrickTypeNames[brickType];
         switch (brickType) {
             case kPlaceAtBrick:
+            case kPointToBrick:
+                brickPatternImage = [UIImage imageNamed:@"brick_blue_2h"];
+                break;
+            case kGlideToBrick:
+                brickPatternImage = [UIImage imageNamed:@"brick_blue_3h"];
+                break;
             case kSetXBrick:
             case kSetYBrick:
             case kChangeXByNBrick:
@@ -90,60 +185,108 @@
             case kTurnLeftBrick:
             case kTurnRightBrick:
             case kPointInDirectionBrick:
-            case kPointToBrick:
-            case kGlideToBrick:
             case kGoNStepsBackBrick:
             case kComeToFrontBrick:
-            default:
+                brickPatternImage = [UIImage imageNamed:@"brick_blue_1h"];
                 break;
+            default:
+                return;
         }
     } else if (categoryType == kSoundBrick) {
         brickTitle = kSoundBrickTypeNames[brickType];
         switch (brickType) {
-            case kPlaySoundBrick:
             case kStopAllSoundsBrick:
             case kSetVolumeToBrick:
             case kChangeVolumeByBrick:
-            case kSpeakBrick:
-            default:
+                brickPatternImage = [UIImage imageNamed:@"brick_violet_1h"];
                 break;
+            case kPlaySoundBrick:
+            case kSpeakBrick:
+                brickPatternImage = [UIImage imageNamed:@"brick_violet_2h"];
+                break;
+            default:
+                return;
         }
     } else if (categoryType == kLookBrick) {
         brickTitle = kLookBrickTypeNames[brickType];
         switch (brickType) {
-            case kSetBackgroundBrick:
             case kNextBackgroundBrick:
             case kSetSizeToBrick:
             case kChangeSizeByNBrick:
             case kHideBrick:
             case kShowBrick:
+            case kClearGraphicEffectBrick:
+                brickPatternImage = [UIImage imageNamed:@"brick_green_1h"];
+                break;
+            case kSetBackgroundBrick:
             case kSetGhostEffectBrick:
             case kChangeGhostEffectByNBrick:
             case kSetBrightnessBrick:
             case kChangeBrightnessByNBrick:
-            case kClearGraphicEffectBrick:
-            default:
+                brickPatternImage = [UIImage imageNamed:@"brick_green_2h"];
                 break;
+            default:
+                return;
         }
     } else if (categoryType == kVariableBrick) {
         brickTitle = kVariableBrickTypeNames[brickType];
         switch (brickType) {
             case kSetVariableBrick:
             case kChangeVariableBrick:
-            default:
+                brickPatternImage = [UIImage imageNamed:@"brick_red_3h"];
                 break;
+            default:
+                return;
         }
     }
-    UILabel *label = [[UILabel alloc] init];
-    label.text = brickTitle;
+
+    // resize frame height
+    CGRect frame = self.frame;
+    frame.size.height = brickPatternImage.size.height;
+    self.frame = frame;
+    self.backgroundColor = [UIColor clearColor];
+
+    // determine inlineView height via brickPatternImageHeight
+    CGFloat inlineViewWidth = self.frame.size.width - kBrickInlineViewOffsetX;
+    CGFloat inlineViewHeight = brickPatternImage.size.height;
+    CGFloat inlineViewOffsetY = 0.0f;
+    switch (brickShapeType) {
+        case kBrickShapeNormal:
+            inlineViewHeight -= kBrickShapeNormalMarginHeight;
+            inlineViewOffsetY = kBrickShapeNormalInlineViewOffsetY;
+            break;
+        case kBrickShapeRoundedThin:
+            inlineViewHeight -= kBrickShapeRoundedThinMarginHeight;
+            inlineViewOffsetY = kBrickShapeRoundedThinInlineViewOffsetY;
+            break;
+        case kBrickShapeRoundedBig:
+            inlineViewHeight -= kBrickShapeRoundedBigMarginHeight;
+            inlineViewOffsetY = kBrickShapeRoundedBigInlineViewOffsetY;
+            break;
+        default:
+            break;
+    }
+    UIView *inlineView = [[UIView alloc] initWithFrame:CGRectMake(kBrickInlineViewOffsetX, inlineViewOffsetY, inlineViewWidth, inlineViewHeight)];
+    inlineView.backgroundColor = self.categoryColors[categoryType];
+
+    UIImageView *imageView = [[UIImageView alloc] initWithImage:brickPatternImage];
+    CGRect imageViewFrame = imageView.frame;
+    imageViewFrame.origin.x = kBrickPatternImageViewOffsetX;
+    imageViewFrame.origin.y = kBrickPatternImageViewOffsetY;
+    imageView.frame = imageViewFrame;
+    imageView.backgroundColor = [UIColor clearColor];
+    [self addSubview:imageView];
+
+    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, inlineViewWidth, inlineViewHeight)];
+//    [label adjustsFontSizeToFitWidth];
     label.textColor = [UIColor blackColor];
-    label.backgroundColor = [UIColor whiteColor];
-    [label adjustsFontSizeToFitWidth];
-  //  CGRect frame = self.frame;
-  //  frame.size.height = 40.0f;
-  //  self.frame = frame;
-    [self addSubview:label];
-    self.backgroundColor = self.categoryColors[categoryType];
+    label.text = brickTitle;
+    [inlineView addSubview:label];
+
+// just to test layout
+//    self.layer.borderWidth=1.0f;
+//    self.layer.borderColor=[UIColor whiteColor].CGColor;
+    [self addSubview:inlineView];
 }
 
 #pragma marks init
@@ -155,42 +298,6 @@
       self.clipsToBounds = YES;
     }
     return self;
-}
-
-#pragma mark layout
-- (void)setupBrickView:(NSDictionary *)labels
-{
-   NSAssert(NO, @"Must be overridden");
-}
-
-- (void)layoutSubviews
-{
-  [super layoutSubviews];
-
-  if (self.backgroundImage) {
-    self.backgroundImage.frame = self.frame;
-    [self.contentView addSubview:self.backgroundImage];
-    [self.contentView sendSubviewToBack:self.backgroundImage];
-  }
-}
-
-#pragma mark Background Image
-
-- (UIImageView *)backgroundImage
-{
-  if (!_backgroundImage) {
-    _backgroundImage = [UIImageView new];
-    return _backgroundImage;
-  }
-  return nil;
-}
-
-- (void)setBackgroundImage:(UIImageView *)backgroundImage withTintColor:(UIColor *)tintColor
-{
-  UIImage *stencilImage = [UIImage imageNamed:@"background_image__brick"];
-  stencilImage = [stencilImage imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
-  self.backgroundImage.image = stencilImage;
-  self.backgroundImage.tintColor = tintColor;
 }
 
 @end
