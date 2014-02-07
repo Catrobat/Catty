@@ -98,7 +98,7 @@
 - (CGSize)collectionView:(UICollectionView*)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath*)indexPath
 {
     CGFloat width = self.view.frame.size.width;
-    CGFloat height = [BrickCell getBrickCellHeightForCategoryType:self.categoryType AndBrickType:indexPath.row];
+    CGFloat height = [BrickCell brickCellHeightForCategoryType:self.categoryType AndBrickType:indexPath.row];
     return CGSizeMake(width, height);
 }
 

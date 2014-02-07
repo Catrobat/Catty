@@ -43,7 +43,7 @@
 
 @implementation BrickCategoriesTableViewController
 
-#pragma marks - getters and setters
+#pragma mark - getters and setters
 - (NSArray*)brickTypeNames
 {
     if (! _brickTypeNames)
@@ -58,7 +58,7 @@
     return _brickTypeColors;
 }
 
-#pragma marks init
+#pragma mark init
 - (id)initWithStyle:(UITableViewStyle)style
 {
     self = [super initWithStyle:style];

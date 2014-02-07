@@ -60,7 +60,7 @@
   return _addLookActionSheetBtnIndexes;
 }
 
-#pragma marks init
+#pragma mark init
 - (id)initWithStyle:(UITableViewStyle)style
 {
   self = [super initWithStyle:style];

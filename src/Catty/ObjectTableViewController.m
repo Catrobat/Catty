@@ -65,7 +65,7 @@
     [self setupToolBar];
 }
 
-#pragma marks init
+#pragma mark init
 - (void)initTableView
 {
     [self.tableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];

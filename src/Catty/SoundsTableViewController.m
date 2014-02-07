@@ -93,7 +93,7 @@
     self.currentPlayingSongCell = nil;
 }
 
-#pragma marks init
+#pragma mark init
 - (void)initTableView
 {
     [super initTableView];

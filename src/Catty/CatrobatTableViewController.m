@@ -109,7 +109,7 @@
     [super didReceiveMemoryWarning];
 }
 
-#pragma marks init
+#pragma mark init
 -(void)initTableView
 {
     self.cells = [[NSArray alloc] initWithObjects:kSegueContinue, kSegueNew, kSeguePrograms, kSegueForum, kSegueExplore, kSegueUpload, nil];

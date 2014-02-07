@@ -32,7 +32,7 @@
 
 @implementation BaseCollectionViewController
 
-#pragma marks init
+#pragma mark init
 - (void)initPlaceHolder
 {
   self.placeholder = [[UIView alloc] initWithFrame:self.view.bounds];

@@ -73,7 +73,7 @@
     [self.navigationController setToolbarHidden:NO];
 }
 
-#pragma marks init
+#pragma mark init
 -(void)initTableView
 {
     self.tableView.delegate = self;

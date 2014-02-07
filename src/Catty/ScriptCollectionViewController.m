@@ -33,7 +33,7 @@
 
 @implementation ScriptCollectionViewController
 
-#pragma marks init
+#pragma mark init
 - (void)initCollectionView
 {
     //[super initCollectionView];

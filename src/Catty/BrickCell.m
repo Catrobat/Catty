@@ -26,20 +26,65 @@
 
 @interface BrickCell ()
 @property (nonatomic, strong) NSArray *categoryColors;
+@property (nonatomic, strong) UIView *backgroundImageView;
+@property (nonatomic, strong) UIView *inlineView;
+@property (nonatomic, strong) UIImageView *imageView;
+@property (nonatomic, strong) UILabel *textLabel;
 @end
 
 @implementation BrickCell
 
-#pragma marks - getters and setters
+#pragma mark - getters and setters (lazy instantiation)
 - (NSArray*)categoryColors
 {
-  if (! _categoryColors) {
-    _categoryColors = kBrickTypeColors;
-  }
-  return _categoryColors;
+    if (! _categoryColors) {
+        _categoryColors = kBrickTypeColors;
+    }
+    return _categoryColors;
 }
 
-#pragma marks creation methods
+- (UIView*)inlineView
+{
+    if (! _inlineView) {
+        _inlineView = [[UIView alloc] init];
+        [self addSubview:_inlineView];
+    }
+    return _inlineView;
+}
+
+- (UIView*)backgroundImageView
+{
+    if (! _backgroundImageView) {
+        _backgroundImageView = [[UIView alloc] init];
+        [self addSubview:_backgroundImageView];
+        [self sendSubviewToBack:_backgroundImageView];
+    }
+    return _backgroundImageView;
+}
+
+- (UIImageView*)imageView
+{
+    if (! _imageView) {
+        _imageView = [[UIImageView alloc] init];
+        self.imageView.backgroundColor = [UIColor clearColor];
+        [self addSubview:_imageView];
+        [self sendSubviewToBack:_imageView];
+    }
+    return _imageView;
+}
+
+- (UILabel*)textLabel
+{
+    if (! _textLabel) {
+        _textLabel = [[UILabel alloc] init];
+        self.textLabel.textColor = [UIColor whiteColor];
+        self.textLabel.font = [UIFont boldSystemFontOfSize:16];
+        [self.inlineView addSubview:_textLabel];
+    }
+    return _textLabel;
+}
+
+#pragma mark creation methods
 + (NSInteger)numberOfAvailableBricksForCategoryType:(kBrickCategoryType)categoryType
 {
     switch (categoryType) {
@@ -59,203 +104,240 @@
     return 0;
 }
 
-+ (CGFloat) getBrickCellHeightForCategoryType:(kBrickCategoryType)categoryType AndBrickType:(NSInteger)brickType
++ (CGFloat) brickCellHeightForCategoryType:(kBrickCategoryType)categoryType AndBrickType:(NSInteger)brickType
 {
-  // TODO: outsource all these numbers to define-consts...
-  CGFloat height = 44.0f;
-  if (categoryType == kControlBrick) {
-    switch (brickType) {
-      case kProgramStartedBrick:
-      case kTappedBrick:
-        height = 62.0f;
-        break;
-      case kReceiveBrick:
-        height = 88.0f;
-        break;
-      case kBroadcastBrick:
-      case kBroadcastWaitBrick:
-      case kNoteBrick:
-        height = 71.0f;
-        break;
-      default:
-        height = 44.0f;
-        break;
+    // FIXME: outsource all these numbers to define-consts...
+    CGFloat height = 44.0f;
+    if (categoryType == kControlBrick) {
+        switch (brickType) {
+            case kProgramStartedBrick:
+            case kTappedBrick:
+                height = 62.0f;
+                break;
+            case kReceiveBrick:
+                height = 88.0f;
+                break;
+            case kBroadcastBrick:
+            case kBroadcastWaitBrick:
+            case kNoteBrick:
+                height = 71.0f;
+                break;
+            default:
+                height = 44.0f;
+                break;
+        }
+    } else if (categoryType == kMotionBrick) {
+        switch (brickType) {
+            case kPlaceAtBrick:
+            case kPointToBrick:
+                height = 71.0f;
+                break;
+            case kGlideToBrick:
+                height = 94.0f;
+                break;
+            default:
+                height = 44.0f;
+                break;
+        }
+    } else if (categoryType == kSoundBrick) {
+        switch (brickType) {
+            case kPlaySoundBrick:
+            case kSpeakBrick:
+                height = 71.0f;
+                break;
+            default:
+                height = 44.0f;
+                break;
+        }
+    } else if (categoryType == kLookBrick) {
+        switch (brickType) {
+            case kSetBackgroundBrick:
+            case kSetGhostEffectBrick:
+            case kChangeGhostEffectByNBrick:
+            case kSetBrightnessBrick:
+            case kChangeBrightnessByNBrick:
+                height = 71.0f;
+                break;
+            default:
+                height = 44.0f;
+                break;
+        }
+    } else if (categoryType == kVariableBrick) {
+        switch (brickType) {
+            case kSetVariableBrick:
+            case kChangeVariableBrick:
+                height = 94.0f;
+                break;
+            default:
+                height = 44.0f;
+                break;
+        }
     }
-  } else if (categoryType == kMotionBrick) {
-    switch (brickType) {
-      case kPlaceAtBrick:
-      case kPointToBrick:
-          height = 71.0f;
-          break;
-      case kGlideToBrick:
-          height = 94.0f;
-          break;
-      default:
-        height = 44.0f;
-        break;
-    }
-  } else if (categoryType == kSoundBrick) {
-    switch (brickType) {
-      case kPlaySoundBrick:
-      case kSpeakBrick:
-        height = 71.0f;
-        break;
-      default:
-        height = 44.0f;
-        break;
-    }
-  } else if (categoryType == kLookBrick) {
-    switch (brickType) {
-      case kSetBackgroundBrick:
-      case kSetGhostEffectBrick:
-      case kChangeGhostEffectByNBrick:
-      case kSetBrightnessBrick:
-      case kChangeBrightnessByNBrick:
-        height = 71.0f;
-        break;
-      default:
-        height = 44.0f;
-        break;
-    }
-  } else if (categoryType == kVariableBrick) {
-    switch (brickType) {
-      case kSetVariableBrick:
-      case kChangeVariableBrick:
-        height = 94.0f;
-        break;
-      default:
-        height = 44.0f;
-        break;
-    }
-  }
-  return height;
+    return height;
 }
 
-- (void)convertToBrickCellForCategoryType:(kBrickCategoryType)categoryType AndBrickType:(NSInteger)brickType
++ (kBrickShapeType)shapeTypeForCategoryType:(kBrickCategoryType)categoryType AndBrickType:(NSInteger)brickType
 {
-    // Note: for performance reasons we use reusable cells, so we have to remove all subviews first
-    [self.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
+    if (categoryType == kControlBrick) {
+        if ((brickType == kProgramStartedBrick) || (brickType == kTappedBrick)) {
+            return kBrickShapeRoundedSmall;
+        } else if (brickType == kReceiveBrick) {
+            return kBrickShapeRoundedBig;
+        }
+    }
+    return kBrickShapeNormal;
+}
 
++ (NSString*)brickPatternImageNameForCategoryType:(kBrickCategoryType)categoryType AndBrickType:(NSInteger)brickType
+{
+    if (categoryType == kControlBrick) {
+        if (brickType >= [kControlBrickNames count])
+            return nil; // invalid
+
+        return kControlBrickImageNames[brickType];
+    } else if (categoryType == kMotionBrick) {
+        if (brickType >= [kMotionBrickNames count])
+            return nil; // invalid
+
+        return kMotionBrickImageNames[brickType];
+    } else if (categoryType == kSoundBrick) {
+        if (brickType >= [kSoundBrickNames count])
+            return nil; // invalid
+
+        return kSoundBrickImageNames[brickType];
+    } else if (categoryType == kLookBrick) {
+        if (brickType >= [kLookBrickNames count])
+            return nil; // invalid
+
+        return kLookBrickImageNames[brickType];
+    } else if (categoryType == kVariableBrick) {
+        if (brickType >= [kVariableBrickNames count])
+            return nil; // invalid
+
+        return kVariableBrickImageNames[brickType];
+    }
+    return nil; // invalid
+}
+
+- (void)setViewForCategoryType:(kBrickCategoryType)categoryType AndBrickType:(NSInteger)brickType
+{
+    CGRect frame = self.frame;
+    frame.size.height = [BrickCell brickCellHeightForCategoryType:categoryType AndBrickType:brickType];
+    self.frame = frame;
+}
+
+- (void)setInlineViewForCategoryType:(kBrickCategoryType)categoryType AndBrickType:(NSInteger)brickType
+{
+    CGFloat inlineViewWidth = self.frame.size.width - kBrickInlineViewOffsetX;
+    CGFloat inlineViewHeight = [BrickCell brickCellHeightForCategoryType:categoryType AndBrickType:brickType];
+    kBrickShapeType brickShapeType = [BrickCell shapeTypeForCategoryType:categoryType AndBrickType:brickType];
+    CGFloat inlineViewOffsetY = 0.0f;
+    if (brickShapeType == kBrickShapeNormal) {
+        inlineViewHeight -= kBrickShapeNormalMarginHeightDeduction;
+        inlineViewOffsetY = kBrickShapeNormalInlineViewOffsetY;
+    } else if (brickShapeType == kBrickShapeRoundedSmall) {
+        inlineViewHeight -= kBrickShapeRoundedSmallMarginHeightDeduction;
+        inlineViewOffsetY = kBrickShapeRoundedSmallInlineViewOffsetY;
+    } else if (brickShapeType == kBrickShapeRoundedBig) {
+        inlineViewHeight -= kBrickShapeRoundedBigMarginHeightDeduction;
+        inlineViewOffsetY = kBrickShapeRoundedBigInlineViewOffsetY;
+    } else {
+        NSError(@"unknown brick shape type given");
+    }
+    self.inlineView.frame = CGRectMake(kBrickInlineViewOffsetX, inlineViewOffsetY, inlineViewWidth, inlineViewHeight);
+}
+
+- (void)setBrickPatternImageForCategoryType:(kBrickCategoryType)categoryType AndBrickType:(NSInteger)brickType
+{
+    // TODO: Performance!!! Don't load same images (shared between different bricks) again and again
+    UIImage *brickPatternImage = [UIImage imageNamed:[BrickCell brickPatternImageNameForCategoryType:categoryType AndBrickType:brickType]];
+    self.imageView.frame = CGRectMake(kBrickPatternImageViewOffsetX, kBrickPatternImageViewOffsetY, brickPatternImage.size.width, brickPatternImage.size.height);
+    self.imageView.image = brickPatternImage;
+}
+
+- (void)setBrickPatternBackgroundImageForCategoryType:(kBrickCategoryType)categoryType AndBrickType:(NSInteger)brickType
+{
+    NSString *imageName = [BrickCell brickPatternImageNameForCategoryType:categoryType AndBrickType:brickType];
+    UIImage *brickBackgroundPatternImage = [UIImage imageNamed:[imageName stringByAppendingString:kBrickBackgroundImageNameSuffix]];
+    CGRect frame = CGRectMake(kBrickPatternBackgroundImageViewOffsetX, kBrickPatternBackgroundImageViewOffsetY, (self.frame.size.width-kBrickInlineViewOffsetX), brickBackgroundPatternImage.size.height);
+    self.backgroundImageView.frame = frame;
+    UIGraphicsBeginImageContext(self.backgroundImageView.frame.size);
+    [brickBackgroundPatternImage drawInRect:self.backgroundImageView.bounds];
+    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    self.backgroundImageView.backgroundColor = [UIColor colorWithPatternImage:image];
+}
+
+- (void)setBrickLabelForCategoryType:(kBrickCategoryType)categoryType AndBrickType:(NSInteger)brickType
+{
     NSString *brickTitle = nil;
-    kBrickShapeType brickShapeType = kBrickShapeNormal;
-    NSString *brickPatternImageName = nil;
     if (categoryType == kControlBrick) {
         if (brickType >= [kControlBrickNames count])
             return; // invalid
 
         brickTitle = kControlBrickNames[brickType];
-        brickPatternImageName = kControlBrickImageNames[brickType];
-        if ((brickType == kProgramStartedBrick) || (brickType == kTappedBrick)) {
-            brickShapeType = kBrickShapeRoundedSmall;
-        } else if (brickType == kReceiveBrick) {
-            brickShapeType = kBrickShapeRoundedBig;
-        }
     } else if (categoryType == kMotionBrick) {
         if (brickType >= [kMotionBrickNames count])
             return; // invalid
 
         brickTitle = kMotionBrickNames[brickType];
-        brickPatternImageName = kMotionBrickImageNames[brickType];
     } else if (categoryType == kSoundBrick) {
         if (brickType >= [kSoundBrickNames count])
             return; // invalid
 
         brickTitle = kSoundBrickNames[brickType];
-        brickPatternImageName = kSoundBrickImageNames[brickType];
     } else if (categoryType == kLookBrick) {
         if (brickType >= [kLookBrickNames count])
             return; // invalid
 
         brickTitle = kLookBrickNames[brickType];
-        brickPatternImageName = kLookBrickImageNames[brickType];
     } else if (categoryType == kVariableBrick) {
         if (brickType >= [kVariableBrickNames count])
             return; // invalid
 
         brickTitle = kVariableBrickNames[brickType];
-        brickPatternImageName = kVariableBrickImageNames[brickType];
     } else {
         return; // invalid
     }
+    self.textLabel.frame = CGRectMake(kBrickLabelOffsetX, kBrickLabelOffsetY, self.inlineView.frame.size.width, self.inlineView.frame.size.height);
+    self.textLabel.text = brickTitle;
+//    [self.textLabel adjustsFontSizeToFitWidth];
+}
 
-    // background pattern image
-    // TODO: Performance!!! Don't load same images (shared between different bricks) again and again
-    static NSString *backgroundImageNameSuffix = kBrickBackgroundImageNameSuffix;
-    UIImage *brickBackgroundPatternImage = [UIImage imageNamed:[brickPatternImageName stringByAppendingString:backgroundImageNameSuffix]];
-    CGFloat backgroundViewOffsetX = 54.0f;
-    if (brickShapeType == kBrickShapeRoundedSmall) {
-        backgroundViewOffsetX = 206.0f;
-    } else if (brickShapeType == kBrickShapeRoundedBig) {
-        backgroundViewOffsetX = 205.0f;
-    }
-    UIView *backgroundView = [[UIView alloc] initWithFrame:CGRectMake(backgroundViewOffsetX, 0.0f, (self.frame.size.width - kBrickInlineViewOffsetX), brickBackgroundPatternImage.size.height)];
-    UIGraphicsBeginImageContext(backgroundView.frame.size);
-    [brickBackgroundPatternImage drawInRect:backgroundView.bounds];
-    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
-    UIGraphicsEndImageContext();
-    backgroundView.backgroundColor = [UIColor colorWithPatternImage:image];
-    [self addSubview:backgroundView];
-    [self sendSubviewToBack:backgroundView];
-
-    // brick pattern image
-    // TODO: Performance!!! Don't load same images (shared between different bricks) again and again
-    UIImage *brickPatternImage = [UIImage imageNamed:brickPatternImageName];
-
-    // resize frame height
-    CGRect frame = self.frame;
-    frame.size.height = brickPatternImage.size.height;
-    self.frame = frame;
-    self.backgroundColor = [UIColor clearColor];
-
-    // determine inlineView height via brickPatternImageHeight
-    CGFloat inlineViewWidth = self.frame.size.width - kBrickInlineViewOffsetX;
-    CGFloat inlineViewHeight = brickPatternImage.size.height;
-    CGFloat inlineViewOffsetY = 0.0f;
-    switch (brickShapeType) {
-        case kBrickShapeNormal:
-            inlineViewHeight -= kBrickShapeNormalMarginHeight;
-            inlineViewOffsetY = kBrickShapeNormalInlineViewOffsetY;
-            break;
-        case kBrickShapeRoundedSmall:
-            inlineViewHeight -= kBrickShapeRoundedThinMarginHeight;
-            inlineViewOffsetY = kBrickShapeRoundedThinInlineViewOffsetY;
-            break;
-        case kBrickShapeRoundedBig:
-            inlineViewHeight -= kBrickShapeRoundedBigMarginHeight;
-            inlineViewOffsetY = kBrickShapeRoundedBigInlineViewOffsetY;
-            break;
-        default:
-            break;
-    }
-    UIView *inlineView = [[UIView alloc] initWithFrame:CGRectMake(kBrickInlineViewOffsetX, inlineViewOffsetY, inlineViewWidth, inlineViewHeight)];
-    UIImageView *imageView = [[UIImageView alloc] initWithImage:brickPatternImage];
-    CGRect imageViewFrame = imageView.frame;
-    imageViewFrame.origin.x = kBrickPatternImageViewOffsetX;
-    imageViewFrame.origin.y = kBrickPatternImageViewOffsetY;
-    imageView.frame = imageViewFrame;
-    imageView.backgroundColor = [UIColor clearColor];
-    [self addSubview:imageView];
-
-    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, inlineViewWidth, inlineViewHeight)];
-//    [label adjustsFontSizeToFitWidth];
-    label.textColor = [UIColor whiteColor];
-    label.text = brickTitle;
-    label.font = [UIFont boldSystemFontOfSize:16];
-    [inlineView addSubview:label];
+//    [self.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
+//    self.inlineView = nil;
+- (void)convertToBrickCellForCategoryType:(kBrickCategoryType)categoryType AndBrickType:(NSInteger)brickType
+{
+    [self setViewForCategoryType:categoryType AndBrickType:brickType];
+    [self setBrickPatternImageForCategoryType:categoryType AndBrickType:brickType];
+    [self setBrickPatternBackgroundImageForCategoryType:categoryType AndBrickType:brickType];
+    [self setInlineViewForCategoryType:categoryType AndBrickType:brickType];
+    [self setBrickLabelForCategoryType:categoryType AndBrickType:brickType];
 
 // just to test layout
 //    self.layer.borderWidth=1.0f;
 //    self.layer.borderColor=[UIColor whiteColor].CGColor;
-    [self addSubview:inlineView];
 }
 
-#pragma marks init
+#pragma mark init
 - (id)initWithFrame:(CGRect)frame
 {
     self = [super initWithFrame:frame];
     if (self) {
-      self.contentMode = UIViewContentModeScaleToFill;
-      self.clipsToBounds = YES;
+        self.contentMode = UIViewContentModeScaleToFill;
+        self.clipsToBounds = YES;
+        self.backgroundColor = [UIColor clearColor];
+    }
+    return self;
+}
+
+- (id)init
+{
+    self = [super init];
+    if (self) {
+        self.contentMode = UIViewContentModeScaleToFill;
+        self.clipsToBounds = YES;
+        self.backgroundColor = [UIColor clearColor];
     }
     return self;
 }

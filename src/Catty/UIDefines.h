@@ -35,13 +35,17 @@ typedef NS_ENUM(NSInteger, kBrickShapeType) {
 
 #define kBrickInlineViewOffsetX 54.0f
 #define kBrickShapeNormalInlineViewOffsetY 3.0f
-#define kBrickShapeRoundedThinInlineViewOffsetY 22.0f
+#define kBrickShapeRoundedSmallInlineViewOffsetY 22.0f
 #define kBrickShapeRoundedBigInlineViewOffsetY 22.0f
-#define kBrickShapeNormalMarginHeight 9.0f
-#define kBrickShapeRoundedThinMarginHeight 28.0f
-#define kBrickShapeRoundedBigMarginHeight 28.0f
+#define kBrickShapeNormalMarginHeightDeduction 9.0f
+#define kBrickShapeRoundedSmallMarginHeightDeduction 28.0f
+#define kBrickShapeRoundedBigMarginHeightDeduction 28.0f
 #define kBrickPatternImageViewOffsetX 0.0f
 #define kBrickPatternImageViewOffsetY 0.0f
+#define kBrickPatternBackgroundImageViewOffsetX 54.0f
+#define kBrickPatternBackgroundImageViewOffsetY 0.0f
+#define kBrickLabelOffsetX 0.0f
+#define kBrickLabelOffsetY 0.0f
 
 // placeholder texts
 #define kPlaceHolderTag 99998
