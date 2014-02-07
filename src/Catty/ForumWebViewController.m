@@ -32,6 +32,7 @@
 @property (nonatomic, strong) LoadingView *loadingView;
 @property (nonatomic, strong) UIBarButtonItem *back;
 @property (nonatomic, strong) UIBarButtonItem *forward;
+@property (nonatomic) float scrollIndicator;
 @end
 
 @implementation ForumWebViewController
@@ -52,6 +53,7 @@
 	// Do any additional setup after loading the view.
     
     self.webView.delegate = self;
+    self.webView.scrollView.delegate = self;
     self.webView.backgroundColor = [UIColor darkBlueColor];
     
     [TableUtil initNavigationItem:self.navigationItem withTitle:NSLocalizedString(@"Programs", nil)];
@@ -60,6 +62,7 @@
     NSURLRequest *request = [NSURLRequest requestWithURL:url];
     [self.webView loadRequest:request];
     [self setupToolBar];
+   
     
 }
 -(void)viewWillAppear:(BOOL)animated
@@ -174,6 +177,36 @@
     self.toolbarItems = [NSArray arrayWithObjects:flexItem,  self.back,invisibleButton, invisibleButton, flexItem,
                          flexItem, flexItem, invisibleButton, invisibleButton, self.forward, flexItem, nil];
 }
+
+
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView
+{
+    if (self.scrollIndicator > scrollView.contentOffset.y) {
+        self.navigationController.toolbar.hidden = NO;
+        self.navigationController.navigationBar.hidden = NO;
+    }
+
+    else {
+        
+        if(scrollView.contentOffset.y >= (scrollView.contentSize.height - scrollView.frame.size.height)){
+            NSDebug(@"BOTTOM REACHED");
+            self.navigationController.toolbar.hidden = NO;
+            self.navigationController.navigationBar.hidden = NO;
+        }
+        else if(scrollView.contentOffset.y <= 0.0){
+            NSDebug(@"TOP REACHED");
+            self.navigationController.toolbar.hidden = NO;
+            self.navigationController.navigationBar.hidden = NO;
+        }
+        else{
+            self.navigationController.toolbar.hidden = YES;
+            self.navigationController.navigationBar.hidden = YES;
+        }
+        
+    }
+    self.scrollIndicator = scrollView.contentOffset.y;
+}
+
 
 
 @end
