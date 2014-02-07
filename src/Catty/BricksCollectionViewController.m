@@ -29,18 +29,27 @@
 #define kCategoryCell @"BrickCell"
 
 @interface BricksCollectionViewController ()
-@property (nonatomic, strong) NSArray *categoryColors;
+@property (nonatomic, strong) NSArray *brickCategoryColors;
 @end
 
 @implementation BricksCollectionViewController
 
 #pragma mark getters and setters
-- (NSArray*)categoryColors
+- (NSArray*)brickCategoryColors
 {
-  if (! _categoryColors) {
-    _categoryColors = kBrickTypeColors;
-  }
-  return _categoryColors;
+    if (! _brickCategoryColors) {
+        _brickCategoryColors = kBrickCategoryColors;
+    }
+    return _brickCategoryColors;
+}
+
+- (void)setBrickCategoryType:(kBrickCategoryType)brickCategoryType
+{
+    _brickCategoryType = brickCategoryType;
+    // update title when brick category changed
+    NSString *title = kBrickCategoryNames[_brickCategoryType];
+    self.title = title;
+    self.navigationItem.title = title;
 }
 
 #pragma mark init
@@ -56,11 +65,10 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-
     [self initCollectionView];
     [super initPlaceHolder];
 
-    NSString *title = NSLocalizedString(@"Categories", nil);
+    NSString *title = kBrickCategoryNames[self.brickCategoryType];
     self.title = title;
     self.navigationItem.title = title;
     self.collectionView.alwaysBounceVertical = NO;
@@ -92,13 +100,13 @@
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
-    return [BrickCell numberOfAvailableBricksForCategoryType:self.categoryType];
+    return [BrickCell numberOfAvailableBricksForCategoryType:self.brickCategoryType];
 }
 
 - (CGSize)collectionView:(UICollectionView*)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath*)indexPath
 {
     CGFloat width = self.view.frame.size.width;
-    CGFloat height = [BrickCell brickCellHeightForCategoryType:self.categoryType AndBrickType:indexPath.row];
+    CGFloat height = [BrickCell brickCellHeightForCategoryType:self.brickCategoryType AndBrickType:indexPath.row];
     return CGSizeMake(width, height);
 }
 
@@ -108,23 +116,23 @@
     UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:CellIdentifier forIndexPath:indexPath];
     if ([cell isKindOfClass:[BrickCell class]]) {
         BrickCell *brickCell = (BrickCell*)cell;
-        [brickCell convertToBrickCellForCategoryType:self.categoryType AndBrickType:indexPath.row];
+        [brickCell convertToBrickCellForCategoryType:self.brickCategoryType AndBrickType:indexPath.row];
     }
     return cell;
 }
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath*)indexPath
 {
-  UICollectionViewCell *cell = [collectionView cellForItemAtIndexPath:indexPath];
-  if ([cell isKindOfClass:[BrickCell class]]) {
-      // TODO: implement
-      NSLog(@"Perform backward (pop 2 VCs from navigation bar controller stack) segue");
-  }
+    UICollectionViewCell *cell = [collectionView cellForItemAtIndexPath:indexPath];
+    if ([cell isKindOfClass:[BrickCell class]]) {
+        // TODO: implement
+        NSLog(@"Perform backward (pop 2 VCs from navigation bar controller stack) segue");
+    }
 }
 
 - (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    cell.backgroundColor = self.categoryColors[self.categoryType];
+    cell.backgroundColor = self.brickCategoryColors[self.brickCategoryType];
 }
 
 @end

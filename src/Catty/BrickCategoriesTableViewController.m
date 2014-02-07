@@ -37,25 +37,25 @@
 #define kCategoryCell @"CategoryCell"
 
 @interface BrickCategoriesTableViewController () <UIActionSheetDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate>
-@property (nonatomic, strong) NSArray *brickTypeNames;
-@property (nonatomic, strong) NSArray *brickTypeColors;
+@property (nonatomic, strong) NSArray *brickCategoryNames;
+@property (nonatomic, strong) NSArray *brickCategoryColors;
 @end
 
 @implementation BrickCategoriesTableViewController
 
 #pragma mark - getters and setters
-- (NSArray*)brickTypeNames
+- (NSArray*)brickCategoryNames
 {
-    if (! _brickTypeNames)
-        _brickTypeNames = kBrickTypeNames;
-    return _brickTypeNames;
+    if (! _brickCategoryNames)
+        _brickCategoryNames = kBrickCategoryNames;
+    return _brickCategoryNames;
 }
 
 - (NSArray*)brickTypeColors
 {
-    if (! _brickTypeColors)
-        _brickTypeColors = kBrickTypeColors;
-    return _brickTypeColors;
+    if (! _brickCategoryColors)
+        _brickCategoryColors = kBrickCategoryColors;
+    return _brickCategoryColors;
 }
 
 #pragma mark init
@@ -112,7 +112,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return [self.brickTypeNames count];
+    return [self.brickCategoryNames count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -121,7 +121,7 @@
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
     if ([cell isKindOfClass:[ColoredCell class]]) {
         ColoredCell *coloredCell = (ColoredCell*)cell;
-        coloredCell.textLabel.text = self.brickTypeNames[indexPath.row];
+        coloredCell.textLabel.text = self.brickCategoryNames[indexPath.row];
     }
     return cell;
 }
@@ -134,7 +134,7 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     CGFloat navBarHeight = self.navigationController.navigationBar.frame.size.height;
-    return (([Util getScreenHeight] - navBarHeight - kAddScriptCategoryTableViewBottomMargin) / [self.brickTypeNames count]);
+    return (([Util getScreenHeight] - navBarHeight - kAddScriptCategoryTableViewBottomMargin) / [self.brickCategoryNames count]);
 }
 
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
@@ -152,10 +152,10 @@
     if ([sender isKindOfClass:[ColoredCell class]]) {
         if ([segue.identifier isEqualToString:toNewScriptCategorySegueID] &&
             [destController respondsToSelector:@selector(setObject:)] &&
-            [destController respondsToSelector:@selector(setCategoryType:)]) {
+            [destController respondsToSelector:@selector(setBrickCategoryType:)]) {
             [destController performSelector:@selector(setObject:) withObject:self.object];
             NSIndexPath *indexPath = [self.tableView indexPathForCell:(UITableViewCell*)sender];
-            ((BricksCollectionViewController*)destController).categoryType = (kBrickCategoryType)indexPath.row;
+            ((BricksCollectionViewController*)destController).brickCategoryType = (kBrickCategoryType)indexPath.row;
         }
     }
 }

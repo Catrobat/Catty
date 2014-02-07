@@ -25,7 +25,7 @@
 #import "UIColor+CatrobatUIColorExtensions.h"
 
 @interface BrickCell ()
-@property (nonatomic, strong) NSArray *categoryColors;
+@property (nonatomic, strong) NSArray *brickCategoryColors;
 @property (nonatomic, strong) UIView *backgroundImageView;
 @property (nonatomic, strong) UIView *inlineView;
 @property (nonatomic, strong) UIImageView *imageView;
@@ -35,12 +35,12 @@
 @implementation BrickCell
 
 #pragma mark - getters and setters (lazy instantiation)
-- (NSArray*)categoryColors
+- (NSArray*)brickCategoryColors
 {
-    if (! _categoryColors) {
-        _categoryColors = kBrickTypeColors;
+    if (! _brickCategoryColors) {
+        _brickCategoryColors = kBrickCategoryColors;
     }
-    return _categoryColors;
+    return _brickCategoryColors;
 }
 
 - (UIView*)inlineView

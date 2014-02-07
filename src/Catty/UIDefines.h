@@ -52,7 +52,7 @@ typedef NS_ENUM(NSInteger, kBrickCategoryType) {
 #define kAddScriptCategoryTableViewBottomMargin 15.0f
 
 // brick categories
-#define kBrickTypeNames @[\
+#define kBrickCategoryNames @[\
     NSLocalizedString(@"Control",nil),\
     NSLocalizedString(@"Motion",nil),\
     NSLocalizedString(@"Sound",nil),\
@@ -60,7 +60,7 @@ typedef NS_ENUM(NSInteger, kBrickCategoryType) {
     NSLocalizedString(@"Variables",nil)\
 ]
 
-#define kBrickTypeColors @[\
+#define kBrickCategoryColors @[\
     [UIColor orangeColor],\
     [UIColor lightBlueColor],\
     [UIColor violetColor],\

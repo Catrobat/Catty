@@ -196,7 +196,7 @@
             </objects>
             <point key="canvasLocation" x="-369" y="-4833"/>
         </scene>
-        <!--Bricks Collection View Controller-->
+        <!--Bricks Collection View Controller - Category-->
         <scene sceneID="xaz-bZ-HZF">
             <objects>
                 <collectionViewController autoresizesArchivedViewToFullSize="NO" id="C75-nS-XOs" customClass="BricksCollectionViewController" sceneMemberID="viewController">
@@ -204,17 +204,17 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="u7v-ga-hMQ">
-                            <size key="itemSize" width="320" height="40"/>
+                            <size key="itemSize" width="320" height="30"/>
                             <size key="headerReferenceSize" width="0.0" height="0.0"/>
                             <size key="footerReferenceSize" width="0.0" height="0.0"/>
                             <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                         </collectionViewFlowLayout>
                         <cells>
                             <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="BrickCell" id="tXr-TJ-UsK" customClass="BrickCell">
-                                <rect key="frame" x="0.0" y="64" width="320" height="40"/>
+                                <rect key="frame" x="0.0" y="64" width="320" height="30"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                    <rect key="frame" x="0.0" y="0.0" width="320" height="40"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="30"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 </view>
@@ -225,7 +225,7 @@
                             <outlet property="delegate" destination="C75-nS-XOs" id="v6Y-bq-Du0"/>
                         </connections>
                     </collectionView>
-                    <navigationItem key="navigationItem" id="J6h-qU-wVn"/>
+                    <navigationItem key="navigationItem" title="Category" id="J6h-qU-wVn"/>
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DQn-YI-eb1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
