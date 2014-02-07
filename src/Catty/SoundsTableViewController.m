@@ -80,8 +80,9 @@
     [super setPlaceHolderTitle:kSoundsTitle
                    Description:[NSString stringWithFormat:NSLocalizedString(kEmptyViewPlaceHolder, nil), kSoundsTitle]];
     [super showPlaceHolder:(! (BOOL)[self.object.soundList count])];
-    self.title = self.object.name;
-    self.navigationItem.title = self.object.name;
+
+//    self.title = self.object.name;
+//    self.navigationItem.title = self.object.name;
     [self setupToolBar];
 }
 

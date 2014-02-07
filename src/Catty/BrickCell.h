@@ -26,6 +26,10 @@
 
 @interface BrickCell : UICollectionViewCell
 
+@property (nonatomic, readonly) kBrickCategoryType categoryType;
+@property (nonatomic, readonly) NSInteger brickType;
+@property (nonatomic, readonly, getter = isScriptBrickCell) BOOL scriptBrickCell;
+
 - (void)convertToBrickCellForCategoryType:(kBrickCategoryType)categoryType AndBrickType:(NSInteger)brickType;
 
 + (NSInteger)numberOfAvailableBricksForCategoryType:(kBrickCategoryType)categoryType;

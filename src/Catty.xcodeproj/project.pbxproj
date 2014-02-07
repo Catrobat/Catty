@@ -1802,7 +1802,6 @@
 				CD0CCFE0170CB5FA00B70036 /* ChangeGhostEffectByNBrick */,
 				CD0CCFE1170CB63200B70036 /* ChangeSizeByNBrick */,
 				B47068911733D6EE00EC880D /* ChangeVariableBrick */,
-				CD0CCFE2170CB63F00B70036 /* ChangeVolumeByNBrick */,
 				CD0CCFE3170CB64A00B70036 /* ChangeXYByNBrick */,
 				C34B44F517F1D2CF00624730 /* ClearGraphicEffectBrick */,
 				CD0CCFE5170CB68100B70036 /* ComeToFrontBrick */,
@@ -1866,15 +1865,6 @@
 				CD0CCE7D170CB39600B70036 /* ChangeSizeByNBrick.m */,
 			);
 			name = ChangeSizeByNBrick;
-			sourceTree = "<group>";
-		};
-		CD0CCFE2170CB63F00B70036 /* ChangeVolumeByNBrick */ = {
-			isa = PBXGroup;
-			children = (
-				CD0CCE7E170CB39600B70036 /* ChangeVolumeByNBrick.h */,
-				CD0CCE7F170CB39600B70036 /* ChangeVolumeByNBrick.m */,
-			);
-			name = ChangeVolumeByNBrick;
 			sourceTree = "<group>";
 		};
 		CD0CCFE3170CB64A00B70036 /* ChangeXYByNBrick */ = {
@@ -1962,6 +1952,8 @@
 			children = (
 				CD0CCF19170CB39700B70036 /* SetVolumeToBrick.h */,
 				CD0CCF1A170CB39700B70036 /* SetVolumeToBrick.m */,
+				CD0CCE7E170CB39600B70036 /* ChangeVolumeByNBrick.h */,
+				CD0CCE7F170CB39600B70036 /* ChangeVolumeByNBrick.m */,
 				CD0CCF25170CB39700B70036 /* SpeakBrick.h */,
 				CD0CCF26170CB39700B70036 /* SpeakBrick.m */,
 				CD0CCF34170CB39700B70036 /* StopAllSoundsBrick.h */,
@@ -2249,7 +2241,7 @@
 				LastUpgradeCheck = 0500;
 				TargetAttributes = {
 					1D6058900D05DD3D006BFB54 = {
-						DevelopmentTeam = 4V6T7BCGGR;
+						DevelopmentTeam = 9NJ4SV439Q;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
 								enabled = 0;

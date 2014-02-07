@@ -119,6 +119,7 @@
 {
     static NSString *CellIdentifier = kCategoryCell;
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
     if ([cell isKindOfClass:[ColoredCell class]]) {
         ColoredCell *coloredCell = (ColoredCell*)cell;
         coloredCell.textLabel.text = self.brickCategoryNames[indexPath.row];

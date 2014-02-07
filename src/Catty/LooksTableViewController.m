@@ -104,8 +104,8 @@
   [super showPlaceHolder:(! (BOOL)[self.object.lookList count])];
   //[TableUtil initNavigationItem:self.navigationItem withTitle:NSLocalizedString(@"New Programs", nil)];
 
-  self.title = self.object.name;
-  self.navigationItem.title = self.object.name;
+//  self.title = self.object.name;
+//  self.navigationItem.title = self.object.name;
   [self setupToolBar];
 }
 

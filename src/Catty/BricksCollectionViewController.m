@@ -71,7 +71,7 @@
     NSString *title = kBrickCategoryNames[self.brickCategoryType];
     self.title = title;
     self.navigationItem.title = title;
-    self.collectionView.alwaysBounceVertical = NO;
+    self.collectionView.alwaysBounceVertical = YES;
 }
 
 - (void)viewWillAppear:(BOOL)animated

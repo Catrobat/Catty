@@ -218,7 +218,7 @@ typedef NS_ENUM(NSInteger, kSoundBrickType) {
     kPlaySoundBrick = 0,
     kStopAllSoundsBrick = 1,
     kSetVolumeToBrick = 2,
-    kChangeVolumeByBrick = 3,
+    kChangeVolumeByNBrick = 3,
     kSpeakBrick = 4
 };
 

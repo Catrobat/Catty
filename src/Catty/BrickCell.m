@@ -25,6 +25,9 @@
 #import "UIColor+CatrobatUIColorExtensions.h"
 
 @interface BrickCell ()
+@property (nonatomic) kBrickCategoryType categoryType;
+@property (nonatomic) NSInteger brickType;
+@property (nonatomic) BOOL scriptBrickCell;
 @property (nonatomic, strong) NSArray *brickCategoryColors;
 @property (nonatomic, strong) UIView *backgroundImageView;
 @property (nonatomic, strong) UIView *inlineView;
@@ -34,7 +37,22 @@
 
 @implementation BrickCell
 
-#pragma mark - getters and setters (lazy instantiation)
+#pragma mark - getters and setters
+- (BOOL)scriptBrickCell
+{
+    if (self.categoryType == kControlBrick) {
+        switch (self.brickType) {
+            case kProgramStartedBrick:
+            case kTappedBrick:
+            case kReceiveBrick:
+                return YES;
+            default:
+                break;
+        }
+    }
+    return NO;
+}
+
 - (NSArray*)brickCategoryColors
 {
     if (! _brickCategoryColors) {
@@ -43,6 +61,7 @@
     return _brickCategoryColors;
 }
 
+// lazy instantiation
 - (UIView*)inlineView
 {
     if (! _inlineView) {
@@ -173,6 +192,8 @@
 #pragma mark - convert cell methods
 - (void)convertToBrickCellForCategoryType:(kBrickCategoryType)categoryType AndBrickType:(NSInteger)brickType
 {
+    self.categoryType = categoryType;
+    self.brickType = brickType;
     [self setViewForCategoryType:categoryType AndBrickType:brickType];
     [self setBrickPatternImageForCategoryType:categoryType AndBrickType:brickType];
     [self setBrickPatternBackgroundImageForCategoryType:categoryType AndBrickType:brickType];
@@ -189,6 +210,8 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
+        self.categoryType = kControlBrick;
+        self.brickType = kProgramStartedBrick;
         self.contentMode = UIViewContentModeScaleToFill;
         self.clipsToBounds = YES;
         self.backgroundColor = [UIColor clearColor];
@@ -200,6 +223,8 @@
 {
     self = [super init];
     if (self) {
+        self.categoryType = kControlBrick;
+        self.brickType = kProgramStartedBrick;
         self.contentMode = UIViewContentModeScaleToFill;
         self.clipsToBounds = YES;
         self.backgroundColor = [UIColor clearColor];
@@ -210,21 +235,21 @@
 #pragma mark helpers
 + (NSInteger)numberOfAvailableBricksForCategoryType:(kBrickCategoryType)categoryType
 {
-  switch (categoryType) {
-    case kControlBrick:
-      return [kControlBrickNames count];
-    case kMotionBrick:
-      return [kMotionBrickNames count];
-    case kSoundBrick:
-      return [kSoundBrickNames count];
-    case kLookBrick:
-      return [kLookBrickNames count];
-    case kVariableBrick:
-      return [kVariableBrickNames count];
-    default:
-      break;
-  }
-  return 0;
+    switch (categoryType) {
+        case kControlBrick:
+            return [kControlBrickNames count];
+        case kMotionBrick:
+            return [kMotionBrickNames count];
+        case kSoundBrick:
+            return [kSoundBrickNames count];
+        case kLookBrick:
+            return [kLookBrickNames count];
+        case kVariableBrick:
+            return [kVariableBrickNames count];
+        default:
+            break;
+    }
+    return 0;
 }
 
 + (CGFloat) brickCellHeightForCategoryType:(kBrickCategoryType)categoryType AndBrickType:(NSInteger)brickType
@@ -266,14 +291,14 @@
 
 + (kBrickShapeType)shapeTypeForCategoryType:(kBrickCategoryType)categoryType AndBrickType:(NSInteger)brickType
 {
-  if (categoryType == kControlBrick) {
-    if ((brickType == kProgramStartedBrick) || (brickType == kTappedBrick)) {
-      return kBrickShapeRoundedSmall;
-    } else if (brickType == kReceiveBrick) {
-      return kBrickShapeRoundedBig;
+    if (categoryType == kControlBrick) {
+        if ((brickType == kProgramStartedBrick) || (brickType == kTappedBrick)) {
+            return kBrickShapeRoundedSmall;
+        } else if (brickType == kReceiveBrick) {
+            return kBrickShapeRoundedBig;
+        }
     }
-  }
-  return kBrickShapeNormal;
+    return kBrickShapeNormal;
 }
 
 + (NSString*)brickPatternImageNameForCategoryType:(kBrickCategoryType)categoryType AndBrickType:(NSInteger)brickType
