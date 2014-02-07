@@ -21,7 +21,7 @@
  */
 
 #import <UIKit/UIKit.h>
-#import "ProgramDefines.h"
+#import "UIDefines.h"
 #import "BaseCollectionViewController.h"
 
 @class SpriteObject;
