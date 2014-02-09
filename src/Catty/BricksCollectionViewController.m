@@ -37,12 +37,13 @@
 
 - (void)viewDidLoad
 {
-    [super viewDidLoad];
-    [self initCollectionView];
-    [super initPlaceHolder];
-    [self setupNavigationBar];
-    self.collectionView.scrollEnabled = YES;
-    self.collectionView.alwaysBounceVertical = YES;
+  [super viewDidLoad];
+  [self initCollectionView];
+  [super initPlaceHolder];
+  [self setupNavigationBar];
+  self.collectionView.scrollEnabled = YES;
+  self.collectionView.alwaysBounceVertical = YES;
+  self.collectionView.delaysContentTouches = NO;
 }
 
 - (void)viewWillAppear:(BOOL)animated

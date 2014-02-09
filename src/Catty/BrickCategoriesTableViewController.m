@@ -88,15 +88,15 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-  
+  //ColoredCell *cell = (ColoredCell *)[tableView cellForRowAtIndexPath:indexPath];
   
   UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"iPhone" bundle:nil];
-  
-  BrickCategoriesTableViewController *brickCategoryTVC = [storyboard instantiateViewControllerWithIdentifier:@"BricksDetailViewCVC"];
-  UINavigationController *navController = [[UINavigationController alloc]initWithRootViewController:brickCategoryTVC];
+  BricksCollectionViewController *brickCategoryCVC = [storyboard instantiateViewControllerWithIdentifier:@"BricksDetailViewCVC"];
+  UINavigationController *navController = [[UINavigationController alloc]initWithRootViewController:brickCategoryCVC];
   
   [self presentViewController:navController animated:YES completion:^{
-    
+    brickCategoryCVC.brickCategoryType = (kBrickCategoryType)indexPath.row;
+    brickCategoryCVC.object = self.object;
   }];
 }
 
@@ -125,24 +125,6 @@
 {
     return NO;
 }
-
-//#pragma mark - Navigation
-//// In a story board-based application, you will often want to do a little preparation before navigation
-//- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-//{
-//    static NSString *toNewScriptCategorySegueID = kSegueToNewScriptCategory;
-//
-//    UIViewController* destController = segue.destinationViewController;
-//    if ([sender isKindOfClass:[ColoredCell class]]) {
-//        if ([segue.identifier isEqualToString:toNewScriptCategorySegueID] &&
-//            [destController respondsToSelector:@selector(setObject:)] &&
-//            [destController respondsToSelector:@selector(setBrickCategoryType:)]) {
-//            [destController performSelector:@selector(setObject:) withObject:self.object];
-//            NSIndexPath *indexPath = [self.tableView indexPathForCell:(UITableViewCell*)sender];
-//            ((BricksCollectionViewController*)destController).brickCategoryType = (kBrickCategoryType)indexPath.row;
-//        }
-//    }
-//}
 
 #pragma mark helpers
 
