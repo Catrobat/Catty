@@ -63,7 +63,7 @@
     //
     //    action();
     //
-    //    XCTAssertEqual([object currentLookBrightness], -0.7f, @"SetBrightnessBrick - Brightness not correct");
+    //    XCTAssertEqual([object currentLookBrightness], -70f, @"SetBrightnessBrick - Brightness not correct");
 }
 
 -(void)testSetBrightnessBrickBrighter
@@ -86,7 +86,7 @@
     //
     //    action();
     //
-    //    XCTAssertEqual([object currentLookBrightness], 1.3f, @"SetBrightnessBrick - Brightness not correct");
+    //    XCTAssertEqual([object currentLookBrightness], 130f, @"SetBrightnessBrick - Brightness not correct");
 }
 -(void)testSetBrightnessBrickTooBright
 {
@@ -106,7 +106,7 @@
     //    dispatch_block_t action = [brick actionBlock];
     //
     //    action();
-    //    XCTAssertEqual([object currentLookBrightness], -1.0f, @"SetBrightnessBrick - Brightness not correct");
+    //    XCTAssertEqual([object currentLookBrightness], -100f, @"SetBrightnessBrick - Brightness not correct");
 }
 -(void)testSetBrightnessBrickTooDark
 {
@@ -128,7 +128,7 @@
     //
     //    action();
     //
-    //    XCTAssertEqual([object currentLookBrightness], 1.0f, @"SetBrightnessBrick - Brightness not correct");
+    //    XCTAssertEqual([object currentLookBrightness], 100f, @"SetBrightnessBrick - Brightness not correct");
 }
 -(void)testSetBrightnessBrickWrongInput
 {

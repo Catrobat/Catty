@@ -85,7 +85,7 @@
     XCTAssertEqual([object rotation], (float)40, @"TurnLeftBrick not correct");
 }
 
--(void)testTurnLeftBrickNegativ
+-(void)testTurnLeftBrickNegative
 {
     SpriteObject* object = [[SpriteObject alloc] init];
     object.zRotation = 0;
@@ -107,7 +107,7 @@
     XCTAssertEqual([object rotation], (float)-60, @"TurnLeftBrick not correct");
 }
 
--(void)testTurnLeftBrickNegativOver360
+-(void)testTurnLeftBrickNegativeOver360
 {
     SpriteObject* object = [[SpriteObject alloc] init];
     object.zRotation = 0;

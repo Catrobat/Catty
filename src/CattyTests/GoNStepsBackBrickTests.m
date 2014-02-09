@@ -75,6 +75,39 @@
     XCTAssertEqual(object2.zPosition, (CGFloat)3.0, @"GoNStepsBack is not correctly calculated");
     
 }
+-(void)testGoNStepsBackBrickTwice
+{
+    Program* program = [[Program alloc] init];
+    
+    SpriteObject* object1 = [[SpriteObject alloc] init];
+    object1.program = program;
+    object1.zPosition = 6;
+    object1.numberOfObjectsWithoutBackground = 2;
+    
+    SpriteObject* object2 = [[SpriteObject alloc] init];
+    object2.zPosition = 3;
+    
+    [program.objectList addObject:object1];
+    [program.objectList addObject:object2];
+    
+    
+    GoNStepsBackBrick* brick = [[GoNStepsBackBrick alloc] init];
+    brick.object = object1;
+    
+    Formula* steps = [[Formula alloc] init];
+    FormulaElement* formulaTree = [[FormulaElement alloc] init];
+    formulaTree.type = NUMBER;
+    formulaTree.value = @"2";
+    steps.formulaTree = formulaTree;
+    brick.steps = steps;
+    
+    dispatch_block_t action = [brick actionBlock];
+    action();
+    
+    XCTAssertEqual(object1.zPosition, (CGFloat)4.0, @"GoNStepsBack is not correctly calculated");
+    XCTAssertEqual(object2.zPosition, (CGFloat)3.0, @"GoNStepsBack is not correctly calculated");
+    
+}
 
 -(void)testGoNStepsBackBrickComeToSameLayer
 {

@@ -48,12 +48,18 @@
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated
 {
     [super setSelected:selected animated:animated];
-
+    
 }
 
 -(void)initialize {
     self.selectedBackgroundView = [self createSelectedBackground];
-    self.accessoryView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"accessory"]];
+    switch (self.accessoryType) {
+        case UITableViewCellAccessoryDisclosureIndicator:
+        case UITableViewCellAccessoryDetailDisclosureButton:
+            self.accessoryView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"accessory"]];
+        default:
+            break;
+    }
     [self addCellSeperator];
 }
 

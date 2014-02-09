@@ -33,6 +33,7 @@
 #import "Logger.h"
 #import "SegueDefines.h"
 #import "LevelUpdateDelegate.h"
+#import "QuartzCore/QuartzCore.h"
 
 @interface MyProgramsViewController () <LevelUpdateDelegate>
 @property (nonatomic, strong) NSMutableArray *levelLoadingInfos;
@@ -56,9 +57,7 @@
     [super viewDidLoad];
 
     [self initTableView];
-
     [TableUtil initNavigationItem:self.navigationItem withTitle:NSLocalizedString(@"Programs", nil)];
-
     [self setupToolBar];
     [self loadLevels];
 }
@@ -74,7 +73,7 @@
     [self.navigationController setToolbarHidden:NO];
 }
 
-#pragma marks init
+#pragma mark init
 -(void)initTableView
 {
     self.tableView.delegate = self;
@@ -183,7 +182,7 @@
         UITableViewCell <CatrobatImageCell>* imageCell = (UITableViewCell <CatrobatImageCell>*)cell;
         [self configureImageCell:imageCell atIndexPath:indexPath];
     }
-
+    cell.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"darkblue"]];
     return cell;
 }
 
@@ -336,7 +335,7 @@
   UIBarButtonItem *add = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd
                                                                        target:self
                                                                        action:@selector(addProgramAction:)];
-  self.toolbarItems = [NSArray arrayWithObjects:flexItem, add, flexItem, nil];
+    self.toolbarItems = @[flexItem, add, flexItem];
 }
 
 @end

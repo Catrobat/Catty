@@ -111,12 +111,15 @@
 }
 -(BOOL)touchedwith:(NSSet*)touches withX:(CGFloat) x andY:(CGFloat) y
 {
-    NSDebug(@"StartTouch2");
+    NSDebug(@"StartTouchofScene");
     UITouch *touch = [touches anyObject];
     CGPoint location = [touch locationInNode:self];
     NSDebug(@"x:%f,y:%f",location.x,location.y);
     BOOL foundObject = NO;
     NSArray *nodesAtPoint = [self nodesAtPoint:location];
+    if ([nodesAtPoint count]==0) {
+        return NO;
+    }
     SpriteObject *obj1 = nodesAtPoint[[nodesAtPoint count]-1];
     int counter = [nodesAtPoint count]-2;
     NSDebug(@"How many nodes are touched: %d",counter);

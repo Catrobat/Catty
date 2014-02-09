@@ -30,6 +30,9 @@
 
 @interface ForumWebViewController ()
 @property (nonatomic, strong) LoadingView *loadingView;
+@property (nonatomic, strong) UIBarButtonItem *back;
+@property (nonatomic, strong) UIBarButtonItem *forward;
+@property (nonatomic) float scrollIndicator;
 @end
 
 @implementation ForumWebViewController
@@ -50,6 +53,7 @@
 	// Do any additional setup after loading the view.
     
     self.webView.delegate = self;
+    self.webView.scrollView.delegate = self;
     self.webView.backgroundColor = [UIColor darkBlueColor];
     
     [TableUtil initNavigationItem:self.navigationItem withTitle:NSLocalizedString(@"Programs", nil)];
@@ -57,7 +61,14 @@
     NSURL *url = [NSURL URLWithString:kForumURL];
     NSURLRequest *request = [NSURLRequest requestWithURL:url];
     [self.webView loadRequest:request];
+    [self setupToolBar];
+   
     
+}
+-(void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    self.navigationController.navigationBar.translucent = YES;
 }
 
 
@@ -92,27 +103,110 @@
 -(void)webViewDidStartLoad:(UIWebView *)webView
 {
     [self showLoadingView];
+    [self initButtons];
 }
 
 -(void)webViewDidFinishLoad:(UIWebView *)webView
 {
     [self hideLoadingView];
+    [self initButtons];
 }
 
 -(void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error
 {
     [self hideLoadingView];
+    [self initButtons];
 }
+
+-(BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType{
+    self.back.enabled = true;
+    return YES;
+}
+
+#pragma mark - Buttons
+
+-(void)initButtons
+{
+    self.back.enabled = self.webView.canGoBack;
+    self.forward.enabled = self.webView.canGoForward;
+}
+
 
 #pragma mark - Toolbar
 
-- (IBAction)nextPage:(id)sender
+- (void)nextPage:(id)sender
 {
     [self.webView goForward];
+    self.back.enabled = true;
+    self.forward.enabled = self.webView.canGoForward;
+
 }
 
-- (IBAction)previousPage:(id)sender
+- (void)previousPage:(id)sender
 {
     [self.webView goBack];
+    self.back.enabled = self.webView.canGoBack;
+    self.forward.enabled = true;
 }
+
+- (void)setupToolBar
+{
+    [self.navigationController setToolbarHidden:NO];
+    self.navigationController.toolbar.barStyle = UIBarStyleBlack;
+    self.navigationController.toolbar.tintColor = [UIColor orangeColor];
+    self.navigationController.toolbar.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleTopMargin;
+    UIBarButtonItem *flexItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace
+                                                                              target:nil
+                                                                              action:nil];
+    
+    self.back = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"backbutton.png"]
+                                                            style:UIBarButtonItemStylePlain
+                                                           target:self
+                                                           action:@selector(previousPage:)];
+    
+    self.forward = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"forwardbutton.png"]
+                                                               style:UIBarButtonItemStylePlain
+                                                              target:self
+                                                              action:@selector(nextPage:)];
+    [self initButtons];
+    
+    // XXX: workaround for tap area problem:
+    // http://stackoverflow.com/questions/5113258/uitoolbar-unexpectedly-registers-taps-on-uibarbuttonitem-instances-even-when-tap
+    UIImageView *imageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"transparent1x1.png"]];
+    UIBarButtonItem *invisibleButton = [[UIBarButtonItem alloc] initWithCustomView:imageView];
+    self.toolbarItems = [NSArray arrayWithObjects:flexItem,  self.back,invisibleButton, invisibleButton, flexItem,
+                         flexItem, flexItem, invisibleButton, invisibleButton, self.forward, flexItem, nil];
+}
+
+
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView
+{
+    if (self.scrollIndicator > scrollView.contentOffset.y) {
+        self.navigationController.toolbar.hidden = NO;
+        self.navigationController.navigationBar.hidden = NO;
+    }
+
+    else {
+        
+        if(scrollView.contentOffset.y >= (scrollView.contentSize.height - scrollView.frame.size.height)){
+            NSDebug(@"BOTTOM REACHED");
+            self.navigationController.toolbar.hidden = NO;
+            self.navigationController.navigationBar.hidden = NO;
+        }
+        else if(scrollView.contentOffset.y <= 0.0){
+            NSDebug(@"TOP REACHED");
+            self.navigationController.toolbar.hidden = NO;
+            self.navigationController.navigationBar.hidden = NO;
+        }
+        else{
+            self.navigationController.toolbar.hidden = YES;
+            self.navigationController.navigationBar.hidden = YES;
+        }
+        
+    }
+    self.scrollIndicator = scrollView.contentOffset.y;
+}
+
+
+
 @end

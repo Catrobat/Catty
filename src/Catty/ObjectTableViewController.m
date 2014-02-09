@@ -21,9 +21,9 @@
  */
 
 #import "ObjectTableViewController.h"
-#import "ObjectScriptsCollectionViewController.h"
-#import "ObjectLooksTableViewController.h"
-#import "ObjectSoundsTableViewController.h"
+#import "ScriptCollectionViewController.h"
+#import "LooksTableViewController.h"
+#import "SoundsTableViewController.h"
 #import "SpriteObject.h"
 #import "ProgramDefines.h"
 #import "UIDefines.h"
@@ -63,10 +63,9 @@
     self.title = self.object.name;
     self.navigationItem.title = self.object.name;
     [self setupToolBar];
-    self.tableView.alwaysBounceVertical = NO;
 }
 
-#pragma marks init
+#pragma mark init
 - (void)initTableView
 {
     [self.tableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
