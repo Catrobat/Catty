@@ -37,6 +37,7 @@
 @property (nonatomic, strong) UIView *inlineView;
 @property (nonatomic, strong) UIImageView *imageView;
 @property (nonatomic, strong) UILabel *textLabel;
+@property(strong, nonatomic) UIImageView *overlayView;
 @end
 
 @implementation BrickCell
@@ -56,6 +57,40 @@
         }
     }
     return NO;
+}
+
+- (void)layoutSubviews {
+  [super layoutSubviews];
+
+  UIImage *brickImage = self.imageView.image;
+  brickImage = [brickImage imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
+  self.overlayView.image = brickImage;
+  self.overlayView.tintColor = [UIColor colorWithRed:0.0f green:0.0f blue:0.0f alpha:0.4f];
+  
+  // TODO get correct frame
+  self.overlayView.frame = self.imageView.frame;
+}
+
+#pragma mark Highlight state / collevtion view cell delegate
+
+- (void)setHighlighted:(BOOL)highlighted {
+  [super setHighlighted:highlighted];
+  
+  if (highlighted) {
+    [self.contentView addSubview:self.overlayView];
+  } else {
+    
+    [self.overlayView removeFromSuperview];
+  }
+  [self setNeedsDisplay];
+}
+
+- (UIImageView *)overlayView {
+  if (!_overlayView) {
+    _overlayView = [[UIImageView alloc] initWithFrame:CGRectZero];
+    // _overlayView.backgroundColor = [UIColor colorWithRed:0.0f green:0.0f blue:0.0f alpha:0.4f];
+  }
+  return _overlayView;
 }
 
 - (NSArray*)brickCategoryColors
@@ -342,5 +377,6 @@
     NSError(@"unknown brick category type given");
     abort();
 }
+
 
 @end

@@ -88,20 +88,26 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-  NSLog(@"selected: %@", [self.tableView cellForRowAtIndexPath:indexPath]);
+  
+  
+  UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"iPhone" bundle:nil];
+  
+  BrickCategoriesTableViewController *brickCategoryTVC = [storyboard instantiateViewControllerWithIdentifier:@"BricksDetailViewCVC"];
+  UINavigationController *navController = [[UINavigationController alloc]initWithRootViewController:brickCategoryTVC];
+  
+  [self presentViewController:navController animated:YES completion:^{
+    
+  }];
 }
 
 -(void)tableView:(UITableView *)tableView didHighlightRowAtIndexPath:(NSIndexPath *)indexPath {
   ColoredCell *cell = (ColoredCell *)[self.tableView cellForRowAtIndexPath:indexPath];
-  self.overlayView.frame = cell.frame;
+  self.overlayView.bounds = CGRectMake(cell.bounds.origin.x, cell.bounds.origin.y, CGRectGetWidth(cell.bounds) * 2.f, CGRectGetHeight(cell.bounds) * 2.f);
   [cell.contentView addSubview:self.overlayView];
-  [cell setNeedsDisplay];
 }
 
 -(void)tableView:(UITableView *)tableView didUnhighlightRowAtIndexPath:(NSIndexPath *)indexPath {
-  ColoredCell *cell = (ColoredCell *)[self.tableView cellForRowAtIndexPath:indexPath];
   [self.overlayView removeFromSuperview];
-  [cell setNeedsDisplay];
 }
 
 - (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
@@ -192,7 +198,7 @@
 - (UIView *)overlayView {
   if (!_overlayView) {
     _overlayView = [[UIView alloc] initWithFrame:CGRectZero];
-    _overlayView.backgroundColor = [UIColor colorWithRed:0.0f green:0.0f blue:0.0f alpha:0.4f];
+    _overlayView.backgroundColor = [UIColor colorWithRed:0.0f green:0.0f blue:0.0f alpha:0.5f];
   }
   return _overlayView;
 }

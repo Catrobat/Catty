@@ -34,43 +34,14 @@
 
 @implementation BricksCollectionViewController
 
-#pragma mark getters and setters
-- (NSArray*)brickCategoryColors
-{
-    if (! _brickCategoryColors) {
-        _brickCategoryColors = kBrickCategoryColors;
-    }
-    return _brickCategoryColors;
-}
 
-- (void)setBrickCategoryType:(kBrickCategoryType)brickCategoryType
-{
-    _brickCategoryType = brickCategoryType;
-    // update title when brick category changed
-    NSString *title = kBrickCategoryNames[_brickCategoryType];
-    self.title = title;
-    self.navigationItem.title = title;
-}
-
-#pragma mark init
-- (void)initCollectionView
-{
-  //[super initCollectionView];
-  self.collectionView.delegate = self;
-  self.collectionView.dataSource = self;
-  self.collectionView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"darkblue"]];
-}
-
-#pragma view events
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     [self initCollectionView];
     [super initPlaceHolder];
-
-    NSString *title = kBrickCategoryNames[self.brickCategoryType];
-    self.title = title;
-    self.navigationItem.title = title;
+    [self setupNavigationBar];
+    self.collectionView.scrollEnabled = YES;
     self.collectionView.alwaysBounceVertical = YES;
 }
 
@@ -84,12 +55,6 @@
 {
     [super viewWillDisappear:animated];
     [self.navigationController setToolbarHidden:NO];
-}
-
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 #pragma mark - Table view data source
@@ -133,6 +98,57 @@
 - (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
 {
     cell.backgroundColor = self.brickCategoryColors[self.brickCategoryType];
+}
+
+- (void)setupNavigationBar {
+  NSString *title = kBrickCategoryNames[self.brickCategoryType];
+  self.title = title;
+  self.navigationItem.title = title;
+  
+  UIBarButtonItem *closeButton = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(dismissBricksCVC:)];
+  self.navigationItem.leftBarButtonItems = @[closeButton];
+}
+
+#pragma mark actions
+
+- (void)dismissBricksCVC:(id)sender {
+  if ([sender isKindOfClass:[UIBarButtonItem class]]) {
+    if (!self.presentingViewController.isBeingPresented) {
+      [self dismissViewControllerAnimated:YES completion:^{
+        
+      }];
+    }
+  }
+}
+
+
+#pragma mark getters and setters
+
+- (NSArray*)brickCategoryColors
+{
+  if (! _brickCategoryColors) {
+    _brickCategoryColors = kBrickCategoryColors;
+  }
+  return _brickCategoryColors;
+}
+
+- (void)setBrickCategoryType:(kBrickCategoryType)brickCategoryType
+{
+  _brickCategoryType = brickCategoryType;
+  // update title when brick category changed
+  NSString *title = kBrickCategoryNames[_brickCategoryType];
+  self.title = title;
+  self.navigationItem.title = title;
+}
+
+#pragma mark init
+
+- (void)initCollectionView
+{
+  //[super initCollectionView];
+  self.collectionView.delegate = self;
+  self.collectionView.dataSource = self;
+  self.collectionView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"darkblue"]];
 }
 
 @end
