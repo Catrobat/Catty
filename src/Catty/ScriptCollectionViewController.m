@@ -90,13 +90,18 @@
                                 kScriptsTitle]];
     [super showPlaceHolder:(!(BOOL)[self.object.lookList count])];
 
+    [self setupToolBar];
 //    self.title = self.object.name;
 //    self.navigationItem.title = self.object.name;
-    [self setupToolBar];
     [super setPlaceHolderTitle:kScriptsTitle
                    Description:[NSString stringWithFormat:NSLocalizedString(kEmptyViewPlaceHolder, nil), kScriptsTitle]];
     [super showPlaceHolder:(! (BOOL)[self.object.scriptList count])];
     self.collectionView.alwaysBounceVertical = YES;
+    self.collectionView.scrollEnabled = YES;
+    self.collectionView.delegate = self;
+    self.collectionView.dataSource = self;
+
+    self.brickList = [NSMutableArray array];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -129,169 +134,160 @@
 
 #pragma mark - collection view delegate
 
-- (CGSize)collectionView:(UICollectionView*)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath*)indexPath
-{
-    CGFloat width = self.view.frame.size.width;
-    kBrickCategoryType categoryType = kControlBrick;
-    NSInteger brickType = kProgramStartedBrick;
-    Script *script = [self.object.scriptList objectAtIndex:indexPath.section];
-    if (indexPath.row == 0) {
-      // case it's a script brick
-      categoryType = kControlBrick;
-      brickType = kReceiveBrick;
-      if ([script isKindOfClass:[StartScript class]]) {
-        brickType = kProgramStartedBrick;
-      } else if ([script isKindOfClass:[WhenScript class]]) {
-        brickType = kTappedBrick;
-      }
-    } else {
-      // case it's a normal brick
+//- (CGSize)collectionView:(UICollectionView*)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath*)indexPath
+//{
+//    CGFloat width = self.view.frame.size.width;
+//    kBrickCategoryType categoryType = kControlBrick;
+//    NSInteger brickType = kProgramStartedBrick;
+//    Script *script = [self.object.scriptList objectAtIndex:indexPath.section];
+//    if (indexPath.row == 0) {
+//      // case it's a script brick
 //      categoryType = kControlBrick;
 //      brickType = kIfBrick;
-      Brick *brick = [script.brickList objectAtIndex:(indexPath.row - 1)];
-
-      // TODO: use brick name to class name mapping with >> Class class = NSClassFromString(@"ClassName") <<
-      // control bricks
-      if ([brick isKindOfClass:[WaitBrick class]]) {
-        categoryType = kControlBrick;
-        brickType = kWaitBrick;
-      } else if ([brick isKindOfClass:[BroadcastBrick class]]) {
-        categoryType = kControlBrick;
-        brickType = kBroadcastBrick;
-      } else if ([brick isKindOfClass:[BroadcastWaitBrick class]]) {
-        categoryType = kControlBrick;
-        brickType = kBroadcastWaitBrick;
-      } else if ([brick isKindOfClass:[NoteBrick class]]) {
-        categoryType = kControlBrick;
-        brickType = kNoteBrick;
-      } else if ([brick isKindOfClass:[ForeverBrick class]]) {
-        categoryType = kControlBrick;
-        brickType = kForeverBrick;
-      } else if ([brick isKindOfClass:[IfLogicBeginBrick class]]) {
-        categoryType = kControlBrick;
-        brickType = kIfBrick;
-      } else if ([brick isKindOfClass:[RepeatBrick class]]) {
-        categoryType = kControlBrick;
-        brickType = kRepeatBrick;
-      // motion bricks
-      } else if ([brick isKindOfClass:[PlaceAtBrick class]]) {
-        categoryType = kMotionBrick;
-        brickType = kPlaceAtBrick;
-      } else if ([brick isKindOfClass:[SetXBrick class]]) {
-        categoryType = kMotionBrick;
-        brickType = kSetXBrick;
-      } else if ([brick isKindOfClass:[SetYBrick class]]) {
-        categoryType = kMotionBrick;
-        brickType = kSetYBrick;
-      } else if ([brick isKindOfClass:[ChangeXByNBrick class]]) {
-        categoryType = kMotionBrick;
-        brickType = kChangeXByNBrick;
-      } else if ([brick isKindOfClass:[ChangeYByNBrick class]]) {
-        categoryType = kMotionBrick;
-        brickType = kChangeYByNBrick;
-      } else if ([brick isKindOfClass:[IfOnEdgeBounceBrick class]]) {
-        categoryType = kMotionBrick;
-        brickType = kIfOnEdgeBounceBrick;
-      } else if ([brick isKindOfClass:[MoveNStepsBrick class]]) {
-        categoryType = kMotionBrick;
-        brickType = kMoveNStepsBrick;
-      } else if ([brick isKindOfClass:[TurnLeftBrick class]]) {
-        categoryType = kMotionBrick;
-        brickType = kTurnLeftBrick;
-      } else if ([brick isKindOfClass:[TurnRightBrick class]]) {
-        categoryType = kMotionBrick;
-        brickType = kTurnRightBrick;
-      } else if ([brick isKindOfClass:[PointInDirectionBrick class]]) {
-        categoryType = kMotionBrick;
-        brickType = kPointInDirectionBrick;
-      } else if ([brick isKindOfClass:[PointToBrick class]]) {
-        categoryType = kMotionBrick;
-        brickType = kPointToBrick;
-      } else if ([brick isKindOfClass:[GlideToBrick class]]) {
-        categoryType = kMotionBrick;
-        brickType = kGlideToBrick;
-      } else if ([brick isKindOfClass:[GoNStepsBackBrick class]]) {
-        categoryType = kMotionBrick;
-        brickType = kGoNStepsBackBrick;
-      } else if ([brick isKindOfClass:[ComeToFrontBrick class]]) {
-        categoryType = kMotionBrick;
-        brickType = kComeToFrontBrick;
-      // sound bricks
-      } else if ([brick isKindOfClass:[PlaySoundBrick class]]) {
-        categoryType = kSoundBrick;
-        brickType = kPlaySoundBrick;
-      } else if ([brick isKindOfClass:[StopAllSoundsBrick class]]) {
-        categoryType = kSoundBrick;
-        brickType = kStopAllSoundsBrick;
-      } else if ([brick isKindOfClass:[SetVolumeToBrick class]]) {
-        categoryType = kSoundBrick;
-        brickType = kSetVolumeToBrick;
-      } else if ([brick isKindOfClass:[ChangeVolumeByNBrick class]]) {
-        categoryType = kSoundBrick;
-        brickType = kChangeVolumeByNBrick;
-      } else if ([brick isKindOfClass:[SpeakBrick class]]) {
-        categoryType = kSoundBrick;
-        brickType = kSpeakBrick;
-      // look bricks
-      } else if ([brick isKindOfClass:[SetLookBrick class]]) {
-        categoryType = kLookBrick;
-        brickType = kSetBackgroundBrick;
-      } else if ([brick isKindOfClass:[NextLookBrick class]]) {
-        categoryType = kLookBrick;
-        brickType = kNextBackgroundBrick;
-      } else if ([brick isKindOfClass:[SetSizeToBrick class]]) {
-        categoryType = kLookBrick;
-        brickType = kSetSizeToBrick;
-      } else if ([brick isKindOfClass:[ChangeSizeByNBrick class]]) {
-        categoryType = kLookBrick;
-        brickType = kChangeSizeByNBrick;
-      } else if ([brick isKindOfClass:[HideBrick class]]) {
-        categoryType = kLookBrick;
-        brickType = kHideBrick;
-      } else if ([brick isKindOfClass:[ShowBrick class]]) {
-        categoryType = kLookBrick;
-        brickType = kShowBrick;
-      } else if ([brick isKindOfClass:[SetGhostEffectBrick class]]) {
-        categoryType = kLookBrick;
-        brickType = kSetGhostEffectBrick;
-      } else if ([brick isKindOfClass:[ChangeGhostEffectByNBrick class]]) {
-        categoryType = kLookBrick;
-        brickType = kChangeGhostEffectByNBrick;
-      } else if ([brick isKindOfClass:[SetBrightnessBrick class]]) {
-        categoryType = kLookBrick;
-        brickType = kSetBrightnessBrick;
-      } else if ([brick isKindOfClass:[ChangeBrightnessByNBrick class]]) {
-        categoryType = kLookBrick;
-        brickType = kChangeBrightnessByNBrick;
-      } else if ([brick isKindOfClass:[ClearGraphicEffectBrick class]]) {
-        categoryType = kLookBrick;
-        brickType = kClearGraphicEffectBrick;
-      // variable bricks
-      } else if ([brick isKindOfClass:[SetVariableBrick class]]) {
-        categoryType = kLookBrick;
-        brickType = kSetVariableBrick;
-      } else if ([brick isKindOfClass:[ChangeVariableBrick class]]) {
-        categoryType = kLookBrick;
-        brickType = kChangeVariableBrick;
-      // FIXME: if-else, if-end, loop-end bricks are already missing... implement them!!!
-      }
-    }
-    CGFloat height = [BrickCell brickCellHeightForCategoryType:categoryType AndBrickType:brickType];
-
-    // TODO: increase top margin of all script bricks
-    height -= 4.0f; // TODO: outsource to const...
-    if (indexPath.section == ([self.object.scriptList count] - 1)) {
-        Script *script = [self.object.scriptList objectAtIndex:indexPath.section];
-        if (! script) {
-            NSError(@"This should never happen");
-            abort();
-        }
-        if (indexPath.row == [script.brickList count]) { // NOTE: there are ([brickList count]+1) cells!!
-            height += 8.0f; // TODO: outsource...
-        }
-    }
-    return CGSizeMake(width, height);
-}
+//      Brick *brick = [script.brickList objectAtIndex:(indexPath.row - 1)];
+//
+//      // TODO: use brick name to class name mapping with >> Class class = NSClassFromString(@"ClassName") <<
+//      // control bricks
+//      if ([brick isKindOfClass:[WaitBrick class]]) {
+//        categoryType = kControlBrick;
+//        brickType = kWaitBrick;
+//      } else if ([brick isKindOfClass:[BroadcastBrick class]]) {
+//        categoryType = kControlBrick;
+//        brickType = kBroadcastBrick;
+//      } else if ([brick isKindOfClass:[BroadcastWaitBrick class]]) {
+//        categoryType = kControlBrick;
+//        brickType = kBroadcastWaitBrick;
+//      } else if ([brick isKindOfClass:[NoteBrick class]]) {
+//        categoryType = kControlBrick;
+//        brickType = kNoteBrick;
+//      } else if ([brick isKindOfClass:[ForeverBrick class]]) {
+//        categoryType = kControlBrick;
+//        brickType = kForeverBrick;
+//      } else if ([brick isKindOfClass:[IfLogicBeginBrick class]]) {
+//        categoryType = kControlBrick;
+//        brickType = kIfBrick;
+//      } else if ([brick isKindOfClass:[RepeatBrick class]]) {
+//        categoryType = kControlBrick;
+//        brickType = kRepeatBrick;
+//      // motion bricks
+//      } else if ([brick isKindOfClass:[PlaceAtBrick class]]) {
+//        categoryType = kMotionBrick;
+//        brickType = kPlaceAtBrick;
+//      } else if ([brick isKindOfClass:[SetXBrick class]]) {
+//        categoryType = kMotionBrick;
+//        brickType = kSetXBrick;
+//      } else if ([brick isKindOfClass:[SetYBrick class]]) {
+//        categoryType = kMotionBrick;
+//        brickType = kSetYBrick;
+//      } else if ([brick isKindOfClass:[ChangeXByNBrick class]]) {
+//        categoryType = kMotionBrick;
+//        brickType = kChangeXByNBrick;
+//      } else if ([brick isKindOfClass:[ChangeYByNBrick class]]) {
+//        categoryType = kMotionBrick;
+//        brickType = kChangeYByNBrick;
+//      } else if ([brick isKindOfClass:[IfOnEdgeBounceBrick class]]) {
+//        categoryType = kMotionBrick;
+//        brickType = kIfOnEdgeBounceBrick;
+//      } else if ([brick isKindOfClass:[MoveNStepsBrick class]]) {
+//        categoryType = kMotionBrick;
+//        brickType = kMoveNStepsBrick;
+//      } else if ([brick isKindOfClass:[TurnLeftBrick class]]) {
+//        categoryType = kMotionBrick;
+//        brickType = kTurnLeftBrick;
+//      } else if ([brick isKindOfClass:[TurnRightBrick class]]) {
+//        categoryType = kMotionBrick;
+//        brickType = kTurnRightBrick;
+//      } else if ([brick isKindOfClass:[PointInDirectionBrick class]]) {
+//        categoryType = kMotionBrick;
+//        brickType = kPointInDirectionBrick;
+//      } else if ([brick isKindOfClass:[PointToBrick class]]) {
+//        categoryType = kMotionBrick;
+//        brickType = kPointToBrick;
+//      } else if ([brick isKindOfClass:[GlideToBrick class]]) {
+//        categoryType = kMotionBrick;
+//        brickType = kGlideToBrick;
+//      } else if ([brick isKindOfClass:[GoNStepsBackBrick class]]) {
+//        categoryType = kMotionBrick;
+//        brickType = kGoNStepsBackBrick;
+//      } else if ([brick isKindOfClass:[ComeToFrontBrick class]]) {
+//        categoryType = kMotionBrick;
+//        brickType = kComeToFrontBrick;
+//      // sound bricks
+//      } else if ([brick isKindOfClass:[PlaySoundBrick class]]) {
+//        categoryType = kSoundBrick;
+//        brickType = kPlaySoundBrick;
+//      } else if ([brick isKindOfClass:[StopAllSoundsBrick class]]) {
+//        categoryType = kSoundBrick;
+//        brickType = kStopAllSoundsBrick;
+//      } else if ([brick isKindOfClass:[SetVolumeToBrick class]]) {
+//        categoryType = kSoundBrick;
+//        brickType = kSetVolumeToBrick;
+//      } else if ([brick isKindOfClass:[ChangeVolumeByNBrick class]]) {
+//        categoryType = kSoundBrick;
+//        brickType = kChangeVolumeByNBrick;
+//      } else if ([brick isKindOfClass:[SpeakBrick class]]) {
+//        categoryType = kSoundBrick;
+//        brickType = kSpeakBrick;
+//      // look bricks
+//      } else if ([brick isKindOfClass:[SetLookBrick class]]) {
+//        categoryType = kLookBrick;
+//        brickType = kSetBackgroundBrick;
+//      } else if ([brick isKindOfClass:[NextLookBrick class]]) {
+//        categoryType = kLookBrick;
+//        brickType = kNextBackgroundBrick;
+//      } else if ([brick isKindOfClass:[SetSizeToBrick class]]) {
+//        categoryType = kLookBrick;
+//        brickType = kSetSizeToBrick;
+//      } else if ([brick isKindOfClass:[ChangeSizeByNBrick class]]) {
+//        categoryType = kLookBrick;
+//        brickType = kChangeSizeByNBrick;
+//      } else if ([brick isKindOfClass:[HideBrick class]]) {
+//        categoryType = kLookBrick;
+//        brickType = kHideBrick;
+//      } else if ([brick isKindOfClass:[ShowBrick class]]) {
+//        categoryType = kLookBrick;
+//        brickType = kShowBrick;
+//      } else if ([brick isKindOfClass:[SetGhostEffectBrick class]]) {
+//        categoryType = kLookBrick;
+//        brickType = kSetGhostEffectBrick;
+//      } else if ([brick isKindOfClass:[ChangeGhostEffectByNBrick class]]) {
+//        categoryType = kLookBrick;
+//        brickType = kChangeGhostEffectByNBrick;
+//      } else if ([brick isKindOfClass:[SetBrightnessBrick class]]) {
+//        categoryType = kLookBrick;
+//        brickType = kSetBrightnessBrick;
+//      } else if ([brick isKindOfClass:[ChangeBrightnessByNBrick class]]) {
+//        categoryType = kLookBrick;
+//        brickType = kChangeBrightnessByNBrick;
+//      } else if ([brick isKindOfClass:[ClearGraphicEffectBrick class]]) {
+//        categoryType = kLookBrick;
+//        brickType = kClearGraphicEffectBrick;
+//      // variable bricks
+//      } else if ([brick isKindOfClass:[SetVariableBrick class]]) {
+//        categoryType = kLookBrick;
+//        brickType = kSetVariableBrick;
+//      } else if ([brick isKindOfClass:[ChangeVariableBrick class]]) {
+//        categoryType = kLookBrick;
+//        brickType = kChangeVariableBrick;
+//      // FIXME: if-else, if-end, loop-end bricks are already missing... implement them!!!
+//      }
+//    }
+//    CGFloat height = [BrickCell brickCellHeightForCategoryType:categoryType AndBrickType:brickType];
+//
+//    // TODO: increase top margin of all script bricks
+//    height -= 4.0f; // TODO: outsource to const...
+//    if (indexPath.section == ([self.object.scriptList count] - 1)) {
+//        Script *script = [self.object.scriptList objectAtIndex:indexPath.section];
+//        if (! script) {
+//            NSError(@"This should never happen");
+//            abort();
+//        }
+//        if (indexPath.row == [script.brickList count]) { // NOTE: there are ([brickList count]+1) cells!!
+//            height += 8.0f; // TODO: outsource...
+//        }
+//    }
+//    return CGSizeMake(width, height);
+//}
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -452,7 +448,6 @@
     return cell;
 }
 
-
 #pragma mark - Navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
@@ -525,4 +520,16 @@
     self.collectionView.dataSource = self;
     self.collectionView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"darkblue"]];
 }
+
+#pragma mark Notification
+
+- (void)brickAdded:(NSNotification *)notification {
+  if (notification.userInfo) {
+    NSLog(@"%@: Notification Received with UserInfo: %@", [self class], notification.userInfo);
+    [self.brickList addObject:notification.userInfo[UserInfoKeyBrickCell]];
+    
+    [super showPlaceHolder:NO];
+  }
+}
+
 @end
