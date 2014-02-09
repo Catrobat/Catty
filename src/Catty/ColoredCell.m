@@ -31,19 +31,20 @@
 @implementation ColoredCell
 
 
-- (id)initWithCoder:(NSCoder *)aDecoder {
-  if (self = [super initWithCoder:aDecoder]) {
-    [self configure];
-  }
-  return self;
+- (id)initWithCoder:(NSCoder *)aDecoder
+{
+    if (self = [super initWithCoder:aDecoder]) {
+        [self configure];
+    }
+    return self;
 }
 
 
 - (void)configure
 {
-  self.contentView.backgroundColor = [UIColor clearColor];
-  self.textLabel.backgroundColor = [UIColor clearColor];
-  self.textLabel.textColor = [UIColor whiteColor];
+    self.contentView.backgroundColor = [UIColor clearColor];
+    self.textLabel.backgroundColor = [UIColor clearColor];
+    self.textLabel.textColor = [UIColor whiteColor];
 }
 
 @end

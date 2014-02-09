@@ -74,8 +74,6 @@
 #import "ChangeVariableBrick.h"
 
 @interface ScriptCollectionViewController () <UICollectionViewDelegate, UICollectionViewDelegateFlowLayout>
-@property (strong, nonatomic) IBOutlet UICollectionView *collectionView;
-
 @end
 
 @implementation ScriptCollectionViewController
@@ -84,61 +82,42 @@
 #pragma view events
 - (void)viewDidLoad
 {
-  [super viewDidLoad];
-  [self initCollectionView];
-  [super initPlaceHolder];
-  [super setPlaceHolderTitle:kScriptsTitle
-                 Description:[NSString stringWithFormat:NSLocalizedString(kEmptyViewPlaceHolder, nil),
-                              kScriptsTitle]];
-  [super showPlaceHolder:(!(BOOL)[self.object.lookList count])];
-  [self setupToolBar];
-  [super setPlaceHolderTitle:kScriptsTitle
-                 Description:[NSString stringWithFormat:NSLocalizedString(kEmptyViewPlaceHolder, nil), kScriptsTitle]];
-  [super showPlaceHolder:(! (BOOL)[self.object.scriptList count])];
-  self.collectionView.alwaysBounceVertical = YES;
-  self.collectionView.scrollEnabled = YES;
-  self.collectionView.delegate = self;
-  self.collectionView.dataSource = self;
-  
-  self.brickList = [NSMutableArray array];
+    [super viewDidLoad];
+    [self initCollectionView];
+    [super initPlaceHolder];
+    [super setPlaceHolderTitle:kScriptsTitle
+                   Description:[NSString stringWithFormat:NSLocalizedString(kEmptyViewPlaceHolder, nil),
+                                kScriptsTitle]];
+    [super showPlaceHolder:(!(BOOL)[self.object.lookList count])];
+
+//    self.title = self.object.name;
+//    self.navigationItem.title = self.object.name;
+    [self setupToolBar];
+    [super setPlaceHolderTitle:kScriptsTitle
+                   Description:[NSString stringWithFormat:NSLocalizedString(kEmptyViewPlaceHolder, nil), kScriptsTitle]];
+    [super showPlaceHolder:(! (BOOL)[self.object.scriptList count])];
+    self.collectionView.alwaysBounceVertical = YES;
 }
 
 - (void)viewWillAppear:(BOOL)animated
 {
-  [super viewWillAppear:animated];
-  NSNotificationCenter *dnc = NSNotificationCenter.defaultCenter;
-  [dnc addObserver:self selector:@selector(brickAdded:) name:BrickCellAddedNotification object:nil];
-  [self.navigationController setToolbarHidden:NO];
-}
-
-- (void)viewWillDisappear:(BOOL)animated {
-  [super viewWillDisappear:animated];
-  
-  NSNotificationCenter *dnc = NSNotificationCenter.defaultCenter;
-  [dnc removeObserver:self name:BrickCellAddedNotification object:nil];
-}
-
-- (void)viewDidAppear:(BOOL)animated {
-  [super viewDidAppear:animated];
-  [self.collectionView reloadData];
-  
+    [super viewWillAppear:animated];
+    [self.navigationController setToolbarHidden:NO];
 }
 
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView
 {
-  //return [self.object.scriptList count];
-  return 1;
+    return [self.object.scriptList count];
 }
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
-//    Script *script = [self.object.scriptList objectAtIndex:section];
-//    if (! script) {
-//        NSError(@"This should never happen");
-//        abort();
-//    }
-//    return ([script.brickList count] + 1); // because script itself is a brick in IDE too
-  return [self.brickList count];
+    Script *script = [self.object.scriptList objectAtIndex:section];
+    if (! script) {
+        NSError(@"This should never happen");
+        abort();
+    }
+    return ([script.brickList count] + 1); // because script itself is a brick in IDE too
 }
 
 
@@ -308,7 +287,7 @@
             abort();
         }
         if (indexPath.row == [script.brickList count]) { // NOTE: there are ([brickList count]+1) cells!!
-            height += 8.0f; // TODO: outsource to const...
+            height += 8.0f; // TODO: outsource...
         }
     }
     return CGSizeMake(width, height);
@@ -316,7 +295,9 @@
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    BrickCell *brickCell = (BrickCell *)[collectionView dequeueReusableCellWithReuseIdentifier:@"BrickCell" forIndexPath:indexPath];
+    UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"BrickCell" forIndexPath:indexPath];
+    if ([cell isKindOfClass:[BrickCell class]]) {
+        BrickCell *brickCell = (BrickCell*)cell;
         Script *script = [self.object.scriptList objectAtIndex:indexPath.section];
         if (! script) {
             NSError(@"This should never happen");
@@ -466,42 +447,47 @@
             }
             [brickCell convertToBrickCellForCategoryType:categoryType AndBrickType:brickType];
         }
+    }
     // TODO: continue here
-    return brickCell;
+    return cell;
 }
 
 
 #pragma mark - Navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-  static NSString* toSceneSegueID = kSegueToScene;
+    static NSString* toSceneSegueID = kSegueToScene;
   //    static NSString* toScriptCategoriesSegueID = kSegueToScriptCategories;
-  UIViewController* destController = segue.destinationViewController;
-  if ([sender isKindOfClass:[UIBarButtonItem class]]) {
-    if ([segue.identifier isEqualToString:toSceneSegueID]) {
-      if ([destController isKindOfClass:[ScenePresenterViewController class]]) {
-        ScenePresenterViewController* scvc = (ScenePresenterViewController*) destController;
-        if ([scvc respondsToSelector:@selector(setProgram:)]) {
-          [scvc setController:(UITableViewController *)self];
-          [scvc performSelector:@selector(setProgram:) withObject:self.object.program];
+    UIViewController* destController = segue.destinationViewController;
+    if ([sender isKindOfClass:[UIBarButtonItem class]]) {
+        if ([segue.identifier isEqualToString:toSceneSegueID]) {
+            if ([destController isKindOfClass:[ScenePresenterViewController class]]) {
+                ScenePresenterViewController* scvc = (ScenePresenterViewController*) destController;
+                if ([scvc respondsToSelector:@selector(setProgram:)]) {
+                    [scvc setController:(UITableViewController *)self];
+                  [scvc performSelector:@selector(setProgram:) withObject:self.object.program];
+                }
+          }
         }
-      }
+//        else if ([segue.identifier isEqualToString:toScriptCategoriesSegueID]) {
+//            if ([destController isKindOfClass:[BrickCategoriesTableViewController class]]) {
+//                BrickCategoriesTableViewController* scvc = (BrickCategoriesTableViewController*) destController;
+//                if ([scvc respondsToSelector:@selector(setObject:)]) {
+//                    [scvc performSelector:@selector(setObject:) withObject:self.object];
+//                }
+//            }
+//        }
     }
-  }
 }
 
 #pragma mark - Helper Methods
-
 - (void)addScriptAction:(id)sender
 {
-  // [self performSegueWithIdentifier:kSegueToScriptCategories sender:sender];
-  UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"iPhone" bundle:nil];
-
-  BrickCategoriesTableViewController *brickCategoryTVC = [storyboard instantiateViewControllerWithIdentifier:@"BricksCategoryTVC"];
-  brickCategoryTVC.object = self.object;
-  UINavigationController *navController = [[UINavigationController alloc]initWithRootViewController:brickCategoryTVC];
-  
-  [self presentViewController:navController animated:YES completion:NULL];
+//    [self performSegueWithIdentifier:kSegueToScriptCategories sender:sender];
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"iPhone" bundle:nil];
+    BrickCategoriesTableViewController *brickCategoryTVC = [storyboard instantiateViewControllerWithIdentifier:@"BrickCategoriesTableViewController"];
+    UINavigationController *navController = [[UINavigationController alloc]initWithRootViewController:brickCategoryTVC];
+    [self presentViewController:navController animated:YES completion:NULL];
 }
 
 - (void)playSceneAction:(id)sender
@@ -535,17 +521,8 @@
 
 - (void)initCollectionView
 {
-  self.collectionView.delegate = self;
-  self.collectionView.dataSource = self;
-  self.collectionView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"darkblue"]];
+    self.collectionView.delegate = self;
+    self.collectionView.dataSource = self;
+    self.collectionView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"darkblue"]];
 }
-
-#pragma mark Notification
-
-- (void)brickAdded:(NSNotification *)notification {
-  if (notification.userInfo) {
-    NSLog(@"%@: Notification Received with UserInfo: %@", [self class], notification.userInfo);
-  }
-}
-
 @end

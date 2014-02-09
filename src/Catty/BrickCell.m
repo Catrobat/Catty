@@ -25,9 +25,6 @@
 #import "UIColor+CatrobatUIColorExtensions.h"
 #import "Brick.h"
 
-
-
-
 @interface BrickCell ()
 @property (nonatomic) kBrickCategoryType categoryType;
 @property (nonatomic) NSInteger brickType;
@@ -37,13 +34,12 @@
 @property (nonatomic, strong) UIView *inlineView;
 @property (nonatomic, strong) UIImageView *imageView;
 @property (nonatomic, strong) UILabel *textLabel;
-@property(strong, nonatomic) UIImageView *overlayView;
+@property (strong, nonatomic) UIImageView *overlayView;
 @end
 
 @implementation BrickCell
 
 #pragma mark - getters and setters
-
 - (BOOL)scriptBrickCell
 {
     if (self.categoryType == kControlBrick) {
@@ -71,9 +67,9 @@
   self.overlayView.frame = self.imageView.frame;
 }
 
-#pragma mark Highlight state / collevtion view cell delegate
-
-- (void)setHighlighted:(BOOL)highlighted {
+#pragma mark Highlight state / collection view cell delegate
+- (void)setHighlighted:(BOOL)highlighted
+{
   [super setHighlighted:highlighted];
   
   if (highlighted) {
@@ -85,7 +81,8 @@
   [self setNeedsDisplay];
 }
 
-- (UIImageView *)overlayView {
+- (UIImageView *)overlayView
+{
   if (!_overlayView) {
     _overlayView = [[UIImageView alloc] initWithFrame:CGRectZero];
     // _overlayView.backgroundColor = [UIColor colorWithRed:0.0f green:0.0f blue:0.0f alpha:0.4f];
@@ -377,6 +374,5 @@
     NSError(@"unknown brick category type given");
     abort();
 }
-
 
 @end
