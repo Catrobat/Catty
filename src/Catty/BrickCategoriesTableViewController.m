@@ -162,9 +162,7 @@
 - (void)dismissCatergoryScriptsVC:(id)sender {
   if ([sender isKindOfClass:[UIBarButtonItem class]]) {
     if (!self.presentingViewController.isBeingPresented) {
-      [self dismissViewControllerAnimated:YES completion:^{
-        
-      }];
+      [self dismissViewControllerAnimated:YES completion:NULL];
     }
   }
 }
@@ -198,7 +196,10 @@
 - (void)brickAdded:(NSNotification *)notification {
   if (notification.userInfo) {
     if (![self.presentedViewController isBeingPresented]) {
-      [self dismissViewControllerAnimated:YES completion:NULL];
+      [self dismissViewControllerAnimated:YES completion:^{
+        NSNotificationCenter *dnc = NSNotificationCenter.defaultCenter;
+        [dnc postNotificationName:BrickCellAddedNotification object:nil userInfo:notification.userInfo];
+      }];
     }
   }
 }

@@ -101,16 +101,24 @@
   self.collectionView.dataSource = self;
   
   self.brickList = [NSMutableArray array];
-
 }
 
 - (void)viewWillAppear:(BOOL)animated
 {
-    [super viewWillAppear:animated];
-    [self.navigationController setToolbarHidden:NO];
+  [super viewWillAppear:animated];
+  NSNotificationCenter *dnc = NSNotificationCenter.defaultCenter;
+  [dnc addObserver:self selector:@selector(brickAdded:) name:BrickCellAddedNotification object:nil];
+  [self.navigationController setToolbarHidden:NO];
 }
 
-- (void)viewDisAppear:(BOOL)animated {
+- (void)viewWillDisappear:(BOOL)animated {
+  [super viewWillDisappear:animated];
+  
+  NSNotificationCenter *dnc = NSNotificationCenter.defaultCenter;
+  [dnc removeObserver:self name:BrickCellAddedNotification object:nil];
+}
+
+- (void)viewDidAppear:(BOOL)animated {
   [super viewDidAppear:animated];
   [self.collectionView reloadData];
   
@@ -530,6 +538,14 @@
   self.collectionView.delegate = self;
   self.collectionView.dataSource = self;
   self.collectionView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"darkblue"]];
+}
+
+#pragma mark Notification
+
+- (void)brickAdded:(NSNotification *)notification {
+  if (notification.userInfo) {
+    NSLog(@"%@: Notification Received with UserInfo: %@", [self class], notification.userInfo);
+  }
 }
 
 @end
