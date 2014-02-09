@@ -39,6 +39,7 @@
 @interface BrickCategoriesTableViewController () <UIActionSheetDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate>
 @property (nonatomic, strong) NSArray *brickCategoryNames;
 @property (nonatomic, strong) NSArray *brickCategoryColors;
+@property(strong, nonatomic) UIView *overlayView;
 @end
 
 @implementation BrickCategoriesTableViewController
@@ -48,7 +49,7 @@
 {
     [super viewDidLoad];
     [self initTableView];
-    [super initPlaceHolder];
+  //    [super initPlaceHolder];
     [self setupNavigationBar];
 }
 
@@ -79,12 +80,28 @@
     if ([cell isKindOfClass:[ColoredCell class]]) {
         ColoredCell *coloredCell = (ColoredCell*)cell;
         coloredCell.textLabel.text = self.brickCategoryNames[indexPath.row];
+        coloredCell.textLabel.textAlignment = NSTextAlignmentCenter;
+        coloredCell.accessoryType = UITableViewCellSelectionStyleNone;
+      
     }
     return cell;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-  
+  NSLog(@"selected: %@", [self.tableView cellForRowAtIndexPath:indexPath]);
+}
+
+-(void)tableView:(UITableView *)tableView didHighlightRowAtIndexPath:(NSIndexPath *)indexPath {
+  ColoredCell *cell = (ColoredCell *)[self.tableView cellForRowAtIndexPath:indexPath];
+  self.overlayView.frame = cell.frame;
+  [cell.contentView addSubview:self.overlayView];
+  [cell setNeedsDisplay];
+}
+
+-(void)tableView:(UITableView *)tableView didUnhighlightRowAtIndexPath:(NSIndexPath *)indexPath {
+  ColoredCell *cell = (ColoredCell *)[self.tableView cellForRowAtIndexPath:indexPath];
+  [self.overlayView removeFromSuperview];
+  [cell setNeedsDisplay];
 }
 
 - (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
@@ -171,5 +188,14 @@
     _brickCategoryColors = kBrickCategoryColors;
   return _brickCategoryColors;
 }
+
+- (UIView *)overlayView {
+  if (!_overlayView) {
+    _overlayView = [[UIView alloc] initWithFrame:CGRectZero];
+    _overlayView.backgroundColor = [UIColor colorWithRed:0.0f green:0.0f blue:0.0f alpha:0.4f];
+  }
+  return _overlayView;
+}
+
 
 @end
