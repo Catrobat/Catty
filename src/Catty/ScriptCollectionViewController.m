@@ -78,14 +78,6 @@
 
 @implementation ScriptCollectionViewController
 
-#pragma mark init
-- (void)initCollectionView
-{
-    //[super initCollectionView];
-    self.collectionView.delegate = self;
-    self.collectionView.dataSource = self;
-    self.collectionView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"darkblue"]];
-}
 
 #pragma view events
 - (void)viewDidLoad
@@ -128,7 +120,15 @@
     return ([script.brickList count] + 1); // because script itself is a brick in IDE too
 }
 
+
+#pragma mark Collection View Datasource
+
+-  (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
+  
+}
+
 #pragma mark - collection view delegate
+
 - (CGSize)collectionView:(UICollectionView*)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath*)indexPath
 {
     CGFloat width = self.view.frame.size.width;
@@ -452,30 +452,12 @@
     return cell;
 }
 
-//#pragma mark -CollectionViewLayout
-//- (UIEdgeInsets)collectionView:(UICollectionView *)collectionView
-//                        layout:(UICollectionViewLayout *)collectionViewLayout
-//        insetForSectionAtIndex:(NSInteger)section {
-//    return UIEdgeInsetsMake(0.f, 0.f, 0.f, 0.f);
-//}
-//
-//- (CGFloat)collectionView:(UICollectionView *)collectionView
-//                   layout:(UICollectionViewLayout *)collectionViewLayout
-//minimumInteritemSpacingForSectionAtIndex:(NSInteger)section {
-//    return 5.f;
-//}
-//
-//- (CGFloat)collectionView:(UICollectionView *)collectionView
-//                   layout:(UICollectionViewLayout *)collectionViewLayout
-//minimumLineSpacingForSectionAtIndex:(NSInteger)section {
-//    return 0.f;
-//}
 
 #pragma mark - Navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     static NSString* toSceneSegueID = kSegueToScene;
-    static NSString* toScriptCategoriesSegueID = kSegueToScriptCategories;
+  //    static NSString* toScriptCategoriesSegueID = kSegueToScriptCategories;
     UIViewController* destController = segue.destinationViewController;
     if ([sender isKindOfClass:[UIBarButtonItem class]]) {
         if ([segue.identifier isEqualToString:toSceneSegueID]) {
@@ -486,21 +468,32 @@
                   [scvc performSelector:@selector(setProgram:) withObject:self.object.program];
                 }
           }
-        } else if ([segue.identifier isEqualToString:toScriptCategoriesSegueID]) {
-            if ([destController isKindOfClass:[BrickCategoriesTableViewController class]]) {
-                BrickCategoriesTableViewController* scvc = (BrickCategoriesTableViewController*) destController;
-                if ([scvc respondsToSelector:@selector(setObject:)]) {
-                    [scvc performSelector:@selector(setObject:) withObject:self.object];
-                }
-            }
         }
+//        else if ([segue.identifier isEqualToString:toScriptCategoriesSegueID]) {
+//            if ([destController isKindOfClass:[BrickCategoriesTableViewController class]]) {
+//                BrickCategoriesTableViewController* scvc = (BrickCategoriesTableViewController*) destController;
+//                if ([scvc respondsToSelector:@selector(setObject:)]) {
+//                    [scvc performSelector:@selector(setObject:) withObject:self.object];
+//                }
+//            }
+//        }
     }
 }
 
 #pragma mark - Helper Methods
+
 - (void)addScriptAction:(id)sender
 {
-    [self performSegueWithIdentifier:kSegueToScriptCategories sender:sender];
+  // [self performSegueWithIdentifier:kSegueToScriptCategories sender:sender];
+  UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"iPhone" bundle:nil];
+
+  BrickCategoriesTableViewController *brickCategoryTVC = [storyboard instantiateViewControllerWithIdentifier:@"BricksCategoryTVC"];
+  UINavigationController *navController = [[UINavigationController alloc]initWithRootViewController:brickCategoryTVC];
+  
+  [self presentViewController:navController animated:YES completion:^{
+    
+  }];
+  
 }
 
 - (void)playSceneAction:(id)sender
@@ -530,6 +523,13 @@
     UIBarButtonItem *invisibleButton = [[UIBarButtonItem alloc] initWithCustomView:imageView];
     self.toolbarItems = [NSArray arrayWithObjects:flexItem, invisibleButton, add, invisibleButton, flexItem,
                          flexItem, flexItem, invisibleButton, play, invisibleButton, flexItem, nil];
+}
+
+- (void)initCollectionView
+{
+  self.collectionView.delegate = self;
+  self.collectionView.dataSource = self;
+  self.collectionView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"darkblue"]];
 }
 
 @end
