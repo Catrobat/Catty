@@ -49,16 +49,25 @@
 {
     [super viewDidLoad];
     [self initTableView];
-  //    [super initPlaceHolder];
     [self setupNavigationBar];
 }
 
 - (void)viewWillAppear:(BOOL)animated
 {
-    [super viewWillAppear:animated];
-    [self.navigationController setToolbarHidden:YES];
+  [super viewWillAppear:animated];
+  [self.navigationController setToolbarHidden:YES];
+  
+  NSNotificationCenter *dnc = NSNotificationCenter.defaultCenter;
+  [dnc addObserver:self selector:@selector(brickAdded:) name:BrickCellAddedNotification object:nil];
 }
 
+- (void)viewDidDisappear:(BOOL)animated {
+  [super viewDidDisappear:animated];
+  
+  NSNotificationCenter *dnc = NSNotificationCenter.defaultCenter;
+  [dnc removeObserver:self name:BrickCellAddedNotification object:nil];
+
+}
 
 #pragma mark - Table view data source
 
@@ -92,12 +101,11 @@
   
   UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"iPhone" bundle:nil];
   BricksCollectionViewController *brickCategoryCVC = [storyboard instantiateViewControllerWithIdentifier:@"BricksDetailViewCVC"];
+  brickCategoryCVC.brickCategoryType = (kBrickCategoryType)indexPath.row;
+  brickCategoryCVC.object = self.object;
   UINavigationController *navController = [[UINavigationController alloc]initWithRootViewController:brickCategoryCVC];
   
-  [self presentViewController:navController animated:YES completion:^{
-    brickCategoryCVC.brickCategoryType = (kBrickCategoryType)indexPath.row;
-    brickCategoryCVC.object = self.object;
-  }];
+  [self presentViewController:navController animated:YES completion:NULL];
 }
 
 -(void)tableView:(UITableView *)tableView didHighlightRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -183,6 +191,16 @@
     _overlayView.backgroundColor = [UIColor colorWithRed:0.0f green:0.0f blue:0.0f alpha:0.5f];
   }
   return _overlayView;
+}
+
+#pragma mark Notification
+
+- (void)brickAdded:(NSNotification *)notification {
+  if (notification.userInfo) {
+    if (![self.presentedViewController isBeingPresented]) {
+      [self dismissViewControllerAnimated:YES completion:NULL];
+    }
+  }
 }
 
 

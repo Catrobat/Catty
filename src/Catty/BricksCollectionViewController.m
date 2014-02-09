@@ -24,6 +24,7 @@
 #import "UIColor+CatrobatUIColorExtensions.h"
 #import "SegueDefines.h"
 #import "BrickCell.h"
+#import "ScriptCollectionViewController.h"
 
 #define kTableHeaderIdentifier @"Header"
 #define kCategoryCell @"BrickCell"
@@ -89,11 +90,15 @@
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath*)indexPath
 {
-    UICollectionViewCell *cell = [collectionView cellForItemAtIndexPath:indexPath];
-    if ([cell isKindOfClass:[BrickCell class]]) {
-        // TODO: implement
-        NSLog(@"Perform backward (pop 2 VCs from navigation bar controller stack) segue");
-    }
+  BrickCell *cell = (BrickCell *)[collectionView cellForItemAtIndexPath:indexPath];
+  
+  if (![self.presentedViewController isBeingPresented]) {
+    [self dismissViewControllerAnimated:YES completion:^{
+      NSNotificationCenter *dnc = NSNotificationCenter.defaultCenter;
+      [dnc postNotificationName:BrickCellAddedNotification object:nil userInfo:@{UserInfoKeyBrickCell: cell,
+                                                                                 UserInfoSpriteObject: self.object}];
+    }];
+  }
 }
 
 - (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath

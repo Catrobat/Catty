@@ -329,3 +329,12 @@ typedef NS_ENUM(NSInteger, kBrickShapeType) {
     kBrickShapeRoundedSmall = 1,
     kBrickShapeRoundedBig = 2
 };
+
+// Notifications
+static NSString *const BrickCellAddedNotification = @"BrickCellAddedNotification";
+
+// Notification keys
+static NSString *const UserInfoKeyBrickCell = @"UserInfoKeyBrickCell";
+static NSString *const UserInfoSpriteObject = @"UserInfoSpriteObject";
+
+
