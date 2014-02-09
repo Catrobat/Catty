@@ -146,8 +146,8 @@
       }
     } else {
       // case it's a normal brick
-      categoryType = kControlBrick;
-      brickType = kIfBrick;
+//      categoryType = kControlBrick;
+//      brickType = kIfBrick;
       Brick *brick = [script.brickList objectAtIndex:(indexPath.row - 1)];
 
       // TODO: use brick name to class name mapping with >> Class class = NSClassFromString(@"ClassName") <<

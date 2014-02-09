@@ -24,6 +24,8 @@
 #import "ProgramDefines.h"
 #import "UIDefines.h"
 
+@class Brick;
+
 @interface BrickCell : UICollectionViewCell
 
 @property (nonatomic, readonly) kBrickCategoryType categoryType;

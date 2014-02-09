@@ -23,6 +23,10 @@
 #import "BrickCell.h"
 #import "UIDefines.h"
 #import "UIColor+CatrobatUIColorExtensions.h"
+#import "Brick.h"
+
+
+
 
 @interface BrickCell ()
 @property (nonatomic) kBrickCategoryType categoryType;
@@ -38,6 +42,7 @@
 @implementation BrickCell
 
 #pragma mark - getters and setters
+
 - (BOOL)scriptBrickCell
 {
     if (self.categoryType == kControlBrick) {

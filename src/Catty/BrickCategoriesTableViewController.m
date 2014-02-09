@@ -43,53 +43,13 @@
 
 @implementation BrickCategoriesTableViewController
 
-#pragma mark - getters and setters
-- (NSArray*)brickCategoryNames
-{
-    if (! _brickCategoryNames)
-        _brickCategoryNames = kBrickCategoryNames;
-    return _brickCategoryNames;
-}
-
-- (NSArray*)brickTypeColors
-{
-    if (! _brickCategoryColors)
-        _brickCategoryColors = kBrickCategoryColors;
-    return _brickCategoryColors;
-}
-
-#pragma mark init
-- (id)initWithStyle:(UITableViewStyle)style
-{
-    self = [super initWithStyle:style];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
-}
-
-- (void)initTableView
-{
-    [super initTableView];
-    self.tableView.delegate = self;
-    self.tableView.dataSource = self;
-    [self.tableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
-    self.tableView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"darkblue"]];
-    UITableViewHeaderFooterView *headerViewTemplate = [[UITableViewHeaderFooterView alloc] initWithReuseIdentifier:kTableHeaderIdentifier];
-    headerViewTemplate.contentView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"darkblue"]];
-    [self.tableView addSubview:headerViewTemplate];
-}
-
 #pragma view events
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     [self initTableView];
     [super initPlaceHolder];
-
-    NSString *title = NSLocalizedString(@"Categories", nil);
-    self.title = title;
-    self.navigationItem.title = title;
+    [self setupNavigationBar];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -98,13 +58,9 @@
     [self.navigationController setToolbarHidden:YES];
 }
 
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
 
 #pragma mark - Table view data source
+
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     return 1;
@@ -127,6 +83,10 @@
     return cell;
 }
 
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+  
+}
+
 - (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
 {
     cell.backgroundColor = self.brickTypeColors[indexPath.row];
@@ -143,22 +103,73 @@
     return NO;
 }
 
-#pragma mark - Navigation
-// In a story board-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    static NSString *toNewScriptCategorySegueID = kSegueToNewScriptCategory;
+//#pragma mark - Navigation
+//// In a story board-based application, you will often want to do a little preparation before navigation
+//- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+//{
+//    static NSString *toNewScriptCategorySegueID = kSegueToNewScriptCategory;
+//
+//    UIViewController* destController = segue.destinationViewController;
+//    if ([sender isKindOfClass:[ColoredCell class]]) {
+//        if ([segue.identifier isEqualToString:toNewScriptCategorySegueID] &&
+//            [destController respondsToSelector:@selector(setObject:)] &&
+//            [destController respondsToSelector:@selector(setBrickCategoryType:)]) {
+//            [destController performSelector:@selector(setObject:) withObject:self.object];
+//            NSIndexPath *indexPath = [self.tableView indexPathForCell:(UITableViewCell*)sender];
+//            ((BricksCollectionViewController*)destController).brickCategoryType = (kBrickCategoryType)indexPath.row;
+//        }
+//    }
+//}
 
-    UIViewController* destController = segue.destinationViewController;
-    if ([sender isKindOfClass:[ColoredCell class]]) {
-        if ([segue.identifier isEqualToString:toNewScriptCategorySegueID] &&
-            [destController respondsToSelector:@selector(setObject:)] &&
-            [destController respondsToSelector:@selector(setBrickCategoryType:)]) {
-            [destController performSelector:@selector(setObject:) withObject:self.object];
-            NSIndexPath *indexPath = [self.tableView indexPathForCell:(UITableViewCell*)sender];
-            ((BricksCollectionViewController*)destController).brickCategoryType = (kBrickCategoryType)indexPath.row;
-        }
+#pragma mark helpers
+
+- (void)initTableView
+{
+  [super initTableView];
+  self.tableView.delegate = self;
+  self.tableView.dataSource = self;
+  [self.tableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
+  self.tableView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"darkblue"]];
+  UITableViewHeaderFooterView *headerViewTemplate = [[UITableViewHeaderFooterView alloc] initWithReuseIdentifier:kTableHeaderIdentifier];
+  headerViewTemplate.contentView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"darkblue"]];
+  [self.tableView addSubview:headerViewTemplate];
+}
+
+- (void)setupNavigationBar {
+  NSString *title = NSLocalizedString(@"Categories", nil);
+  self.title = title;
+  self.navigationItem.title = title;
+  
+  UIBarButtonItem *closeButton = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(dismissCatergoryScriptsVC:)];
+  self.navigationItem.leftBarButtonItems = @[closeButton];
+}
+
+#pragma mark actions
+
+- (void)dismissCatergoryScriptsVC:(id)sender {
+  if ([sender isKindOfClass:[UIBarButtonItem class]]) {
+    if (!self.presentingViewController.isBeingPresented) {
+      [self dismissViewControllerAnimated:YES completion:^{
+        
+      }];
     }
+  }
+}
+
+#pragma mark private
+
+- (NSArray*)brickCategoryNames
+{
+  if (! _brickCategoryNames)
+    _brickCategoryNames = kBrickCategoryNames;
+  return _brickCategoryNames;
+}
+
+- (NSArray*)brickTypeColors
+{
+  if (! _brickCategoryColors)
+    _brickCategoryColors = kBrickCategoryColors;
+  return _brickCategoryColors;
 }
 
 @end
