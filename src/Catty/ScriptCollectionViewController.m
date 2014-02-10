@@ -72,10 +72,10 @@
 #import "ClearGraphicEffectBrick.h"
 #import "SetVariableBrick.h"
 #import "ChangeVariableBrick.h"
+#import "StartScriptBrickCell.h"
 
 @interface ScriptCollectionViewController () <UICollectionViewDelegate, UICollectionViewDelegateFlowLayout>
 @property (strong, nonatomic) IBOutlet UICollectionView *collectionView;
-
 @end
 
 @implementation ScriptCollectionViewController
@@ -556,7 +556,6 @@
     if (notification.userInfo) {
         NSLog(@"%@: Notification Received with UserInfo: %@", [self class], notification.userInfo);
         [self.brickList addObject:notification.userInfo[UserInfoKeyBrickCell]];
-        
         [super showPlaceHolder:NO];
     }
 }

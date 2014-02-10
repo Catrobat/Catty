@@ -236,10 +236,16 @@
     [self setBrickPatternBackgroundImageForCategoryType:categoryType AndBrickType:brickType];
     [self setInlineViewForCategoryType:categoryType AndBrickType:brickType];
     [self setBrickLabelForCategoryType:categoryType AndBrickType:brickType];
-    
+
     // just to test layout
     //    self.layer.borderWidth=1.0f;
     //    self.layer.borderColor=[UIColor whiteColor].CGColor;
+}
+
+- (void)setupForSubclass:(NSString*)subclassName
+{
+    self.categoryType = kControlBrick;
+    self.brickType = kProgramStartedBrick;
 }
 
 #pragma mark - init
@@ -247,6 +253,7 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
+        [self setupForSubclass:NSStringFromClass([self class])];
         self.categoryType = kControlBrick;
         self.brickType = kProgramStartedBrick;
         self.contentMode = UIViewContentModeScaleToFill;
@@ -260,8 +267,7 @@
 {
     self = [super init];
     if (self) {
-        self.categoryType = kControlBrick;
-        self.brickType = kProgramStartedBrick;
+        [self setupForSubclass:NSStringFromClass([self class])];
         self.contentMode = UIViewContentModeScaleToFill;
         self.clipsToBounds = YES;
         self.backgroundColor = [UIColor clearColor];

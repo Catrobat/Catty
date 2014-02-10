@@ -36,6 +36,11 @@ typedef NS_ENUM(NSInteger, kBrickCategoryType) {
     kVariableBrick = 4
 };
 
+typedef struct kCategoryAndBrickType {
+    kBrickCategoryType categoryType;
+    NSInteger brickType;
+} kCategoryAndBrickType;
+
 // object components
 #define kScriptsTitle NSLocalizedString(@"Scripts",nil)
 #define kLooksTitle NSLocalizedString(@"Looks",nil)
@@ -102,7 +107,10 @@ typedef NS_ENUM(NSInteger, kControlBrickType) {
     kNoteBrick = 6,
     kForeverBrick = 7,
     kIfBrick = 8,
-    kRepeatBrick = 9
+    kIfElseBrick = 9,
+    kIfEndBrick = 10,
+    kRepeatBrick = 11,
+    kLoopEndBrick = 12
 };
 
 #define kControlBrickNames @[\
@@ -115,7 +123,10 @@ typedef NS_ENUM(NSInteger, kControlBrickType) {
     NSLocalizedString(@"Note %@",nil),\
     NSLocalizedString(@"Forever",nil),\
     NSLocalizedString(@"If %d is true then",nil),\
-    NSLocalizedString(@"Repeat %d times",nil)\
+    NSLocalizedString(@"Else",nil),\
+    NSLocalizedString(@"If End",nil),\
+    NSLocalizedString(@"Repeat %d times",nil),\
+    NSLocalizedString(@"End of Loop",nil)\
 ]
 
 #define kControlBrickImageNames @[\
@@ -128,7 +139,10 @@ typedef NS_ENUM(NSInteger, kControlBrickType) {
     @"brick_orange_2h",    /* note            */\
     @"brick_orange_1h",    /* forever         */\
     @"brick_orange_1h",    /* if              */\
-    @"brick_orange_1h"     /* repeat          */\
+    @"brick_orange_1h",    /* else            */\
+    @"brick_orange_1h",    /* if end          */\
+    @"brick_orange_1h",    /* repeat          */\
+    @"brick_orange_1h"     /* loop end        */\
 ]
 
 #define kControlBrickHeights @[\
@@ -141,7 +155,10 @@ typedef NS_ENUM(NSInteger, kControlBrickType) {
     kBrickHeight2h,        /* note            */\
     kBrickHeight1h,        /* forever         */\
     kBrickHeight1h,        /* if              */\
-    kBrickHeight1h         /* repeat          */\
+    kBrickHeight1h,        /* else            */\
+    kBrickHeight1h,        /* if end          */\
+    kBrickHeight1h,        /* repeat          */\
+    kBrickHeight1h         /* loop end        */\
 ]
 
 // motion bricks
@@ -329,6 +346,59 @@ typedef NS_ENUM(NSInteger, kBrickShapeType) {
     kBrickShapeRoundedSmall = 1,
     kBrickShapeRoundedBig = 2
 };
+
+#define kClassNameBrickNameMap @{\
+    /* control bricks */\
+    @"StartScript"               : kCategoryAndBrickType(kControlBrick, kProgramStartedBrick),\
+    @"WhenScript"                : kCategoryAndBrickType(kControlBrick, kTappedBrick),\
+    @"WaitBrick"                 : kCategoryAndBrickType(kControlBrick, kWaitBrick),\
+    @"BroadcastScript"           : kCategoryAndBrickType(kControlBrick, kReceiveBrick),\
+    @"BroadcastBrick"            : kCategoryAndBrickType(kControlBrick, kBroadcastBrick),\
+    @"BroadcastWaitBrick"        : kCategoryAndBrickType(kControlBrick, kBroadcastWaitBrick),\
+    @"NoteBrick"                 : kCategoryAndBrickType(kControlBrick, kNoteBrick),\
+    @"ForeverBrick"              : kCategoryAndBrickType(kControlBrick, kForeverBrick),\
+    @"IfLogicBeginBrick"         : kCategoryAndBrickType(kControlBrick, kIfBrick),\
+    @"IfLogicElseBrick"          : kCategoryAndBrickType(kControlBrick, kIfElseBrick),\
+    @"IfLogicEndBrick"           : kCategoryAndBrickType(kControlBrick, kIfEndBrick),\
+    @"RepeatBrick"               : kCategoryAndBrickType(kControlBrick, kRepeatBrick),\
+    @"LoopEndBrick"              : kCategoryAndBrickType(kControlBrick, kLoopEndBrick),\
+    /* motion bricks */\
+    @"PlaceAtBrick"              : kCategoryAndBrickType(kMotionBrick, kPlaceAtBrick),\
+    @"SetXBrick"                 : kCategoryAndBrickType(kMotionBrick, kSetXBrick),\
+    @"SetYBrick"                 : kCategoryAndBrickType(kMotionBrick, kSetYBrick),\
+    @"ChangeXByNBrick"           : kCategoryAndBrickType(kMotionBrick, kChangeXByNBrick),\
+    @"ChangeYByNBrick"           : kCategoryAndBrickType(kMotionBrick, kChangeYByNBrick),\
+    @"IfOnEdgeBounceBrick"       : kCategoryAndBrickType(kMotionBrick, kIfOnEdgeBounceBrick),\
+    @"MoveNStepsBrick"           : kCategoryAndBrickType(kMotionBrick, kMoveNStepsBrick),\
+    @"TurnLeftBrick"             : kCategoryAndBrickType(kMotionBrick, kTurnLeftBrick),\
+    @"TurnRightBrick"            : kCategoryAndBrickType(kMotionBrick, kTurnRightBrick),\
+    @"PointInDirectionBrick"     : kCategoryAndBrickType(kMotionBrick, kPointInDirectionBrick),\
+    @"PointToBrick"              : kCategoryAndBrickType(kMotionBrick, kPointToBrick),\
+    @"GlideToBrick"              : kCategoryAndBrickType(kMotionBrick, kGlideToBrick),\
+    @"GoNStepsBackBrick"         : kCategoryAndBrickType(kMotionBrick, kGoNStepsBackBrick),\
+    @"ComeToFrontBrick"          : kCategoryAndBrickType(kMotionBrick, kComeToFrontBrick),\
+    /* sound bricks */\
+    @"PlaySoundBrick"            : kCategoryAndBrickType(kSoundBrick, kPlaySoundBrick),\
+    @"StopAllSoundsBrick"        : kCategoryAndBrickType(kSoundBrick, kStopAllSoundsBrick),\
+    @"SetVolumeToBrick"          : kCategoryAndBrickType(kSoundBrick, kSetVolumeToBrick),\
+    @"ChangeVolumeByNBrick"      : kCategoryAndBrickType(kSoundBrick, kChangeVolumeByNBrick),\
+    @"SpeakBrick"                : kCategoryAndBrickType(kSoundBrick, kSpeakBrick),\
+    /* look bricks */\
+    @"SetLookBrick"              : kCategoryAndBrickType(kLookBrick, kSetBackgroundBrick),\
+    @"NextLookBrick"             : kCategoryAndBrickType(kLookBrick, kNextBackgroundBrick),\
+    @"SetSizeToBrick"            : kCategoryAndBrickType(kLookBrick, kSetSizeToBrick),\
+    @"ChangeSizeByNBrick"        : kCategoryAndBrickType(kLookBrick, kChangeSizeByNBrick),\
+    @"HideBrick"                 : kCategoryAndBrickType(kLookBrick, kHideBrick),\
+    @"ShowBrick"                 : kCategoryAndBrickType(kLookBrick, kShowBrick),\
+    @"SetGhostEffectBrick"       : kCategoryAndBrickType(kLookBrick, kSetGhostEffectBrick),\
+    @"ChangeGhostEffectByNBrick" : kCategoryAndBrickType(kLookBrick, kChangeGhostEffectByNBrick),\
+    @"SetBrightnessBrick"        : kCategoryAndBrickType(kLookBrick, kSetBrightnessBrick),\
+    @"ChangeBrightnessByNBrick"  : kCategoryAndBrickType(kLookBrick, kChangeBrightnessByNBrick),\
+    @"ClearGraphicEffectBrick"   : kCategoryAndBrickType(kLookBrick, kClearGraphicEffectBrick),\
+    /* look bricks */\
+    @"SetVariableBrick"          : kCategoryAndBrickType(kLookBrick, kSetVariableBrick),\
+    @"ChangeVariableBrick"       : kCategoryAndBrickType(kLookBrick, kChangeVariableBrick)\
+}
 
 // Notifications
 static NSString *const BrickCellAddedNotification = @"BrickCellAddedNotification";
