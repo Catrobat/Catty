@@ -38,13 +38,13 @@
 
 - (void)viewDidLoad
 {
-  [super viewDidLoad];
-  [self initCollectionView];
-  [super initPlaceHolder];
-  [self setupNavigationBar];
-  self.collectionView.scrollEnabled = YES;
-  self.collectionView.alwaysBounceVertical = YES;
-  self.collectionView.delaysContentTouches = NO;
+    [super viewDidLoad];
+    [self initCollectionView];
+    [super initPlaceHolder];
+    [self setupNavigationBar];
+    self.collectionView.scrollEnabled = YES;
+    self.collectionView.alwaysBounceVertical = YES;
+    self.collectionView.delaysContentTouches = NO;
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -82,23 +82,23 @@
     static NSString *CellIdentifier = kCategoryCell;
     UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:CellIdentifier forIndexPath:indexPath];
     if ([cell isKindOfClass:[BrickCell class]]) {
-        BrickCell *brickCell = (BrickCell*)cell;
-        [brickCell convertToBrickCellForCategoryType:self.brickCategoryType AndBrickType:indexPath.row];
+//        BrickCell *brickCell = (BrickCell*)cell;
+//        [brickCell convertToBrickCellForCategoryType:self.brickCategoryType AndBrickType:indexPath.row];
     }
     return cell;
 }
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath*)indexPath
 {
-  BrickCell *cell = (BrickCell *)[collectionView cellForItemAtIndexPath:indexPath];
-  
-  if (![self.presentedViewController isBeingPresented]) {
-    [self dismissViewControllerAnimated:YES completion:^{
-      NSNotificationCenter *dnc = NSNotificationCenter.defaultCenter;
-      [dnc postNotificationName:BrickCellAddedNotification object:nil userInfo:@{UserInfoKeyBrickCell: cell,
-                                                                                 UserInfoSpriteObject: self.object}];
-    }];
-  }
+    BrickCell *cell = (BrickCell *)[collectionView cellForItemAtIndexPath:indexPath];
+    
+    if (![self.presentedViewController isBeingPresented]) {
+        [self dismissViewControllerAnimated:YES completion:^{
+            NSNotificationCenter *dnc = NSNotificationCenter.defaultCenter;
+            [dnc postNotificationName:BrickCellAddedNotification object:nil userInfo:@{UserInfoKeyBrickCell: cell,
+                                                                                       UserInfoSpriteObject: self.object}];
+        }];
+    }
 }
 
 - (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
@@ -107,29 +107,27 @@
 }
 
 - (void)setupNavigationBar {
-  NSString *title = kBrickCategoryNames[self.brickCategoryType];
-  self.title = title;
-  self.navigationItem.title = title;
-  
-  UIBarButtonItem *closeButton = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(dismissBricksCVC:)];
-  self.navigationItem.leftBarButtonItems = @[closeButton];
+    NSString *title = kBrickCategoryNames[self.brickCategoryType];
+    self.title = title;
+    self.navigationItem.title = title;
+
+    UIBarButtonItem *closeButton = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(dismissBricksCVC:)];
+    self.navigationItem.leftBarButtonItems = @[closeButton];
 }
 
 #pragma mark actions
 
 - (void)dismissBricksCVC:(id)sender {
-  if ([sender isKindOfClass:[UIBarButtonItem class]]) {
-    if (!self.presentingViewController.isBeingPresented) {
-      [self dismissViewControllerAnimated:YES completion:^{
-        
-      }];
+    if ([sender isKindOfClass:[UIBarButtonItem class]]) {
+        if (!self.presentingViewController.isBeingPresented) {
+            [self dismissViewControllerAnimated:YES completion:^{
+                
+            }];
+        }
     }
-  }
 }
 
-
 #pragma mark getters and setters
-
 - (NSArray*)brickCategoryColors
 {
   if (! _brickCategoryColors) {
@@ -148,7 +146,6 @@
 }
 
 #pragma mark init
-
 - (void)initCollectionView
 {
   //[super initCollectionView];

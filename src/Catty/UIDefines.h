@@ -36,11 +36,6 @@ typedef NS_ENUM(NSInteger, kBrickCategoryType) {
     kVariableBrick = 4
 };
 
-typedef struct kCategoryAndBrickType {
-    kBrickCategoryType categoryType;
-    NSInteger brickType;
-} kCategoryAndBrickType;
-
 // object components
 #define kScriptsTitle NSLocalizedString(@"Scripts",nil)
 #define kLooksTitle NSLocalizedString(@"Looks",nil)
@@ -349,55 +344,55 @@ typedef NS_ENUM(NSInteger, kBrickShapeType) {
 
 #define kClassNameBrickNameMap @{\
     /* control bricks */\
-    @"StartScript"               : kCategoryAndBrickType(kControlBrick, kProgramStartedBrick),\
-    @"WhenScript"                : kCategoryAndBrickType(kControlBrick, kTappedBrick),\
-    @"WaitBrick"                 : kCategoryAndBrickType(kControlBrick, kWaitBrick),\
-    @"BroadcastScript"           : kCategoryAndBrickType(kControlBrick, kReceiveBrick),\
-    @"BroadcastBrick"            : kCategoryAndBrickType(kControlBrick, kBroadcastBrick),\
-    @"BroadcastWaitBrick"        : kCategoryAndBrickType(kControlBrick, kBroadcastWaitBrick),\
-    @"NoteBrick"                 : kCategoryAndBrickType(kControlBrick, kNoteBrick),\
-    @"ForeverBrick"              : kCategoryAndBrickType(kControlBrick, kForeverBrick),\
-    @"IfLogicBeginBrick"         : kCategoryAndBrickType(kControlBrick, kIfBrick),\
-    @"IfLogicElseBrick"          : kCategoryAndBrickType(kControlBrick, kIfElseBrick),\
-    @"IfLogicEndBrick"           : kCategoryAndBrickType(kControlBrick, kIfEndBrick),\
-    @"RepeatBrick"               : kCategoryAndBrickType(kControlBrick, kRepeatBrick),\
-    @"LoopEndBrick"              : kCategoryAndBrickType(kControlBrick, kLoopEndBrick),\
+    @"StartScript"               : @{@"categoryType" : @(kControlBrick), @"brickType" : @(kProgramStartedBrick)},\
+    @"WhenScript"                : @{@"categoryType" : @(kControlBrick), @"brickType" : @(kTappedBrick)},\
+    @"WaitBrick"                 : @{@"categoryType" : @(kControlBrick), @"brickType" : @(kWaitBrick)},\
+    @"BroadcastScript"           : @{@"categoryType" : @(kControlBrick), @"brickType" : @(kReceiveBrick)},\
+    @"BroadcastBrick"            : @{@"categoryType" : @(kControlBrick), @"brickType" : @(kBroadcastBrick)},\
+    @"BroadcastWaitBrick"        : @{@"categoryType" : @(kControlBrick), @"brickType" : @(kBroadcastWaitBrick)},\
+    @"NoteBrick"                 : @{@"categoryType" : @(kControlBrick), @"brickType" : @(kNoteBrick)},\
+    @"ForeverBrick"              : @{@"categoryType" : @(kControlBrick), @"brickType" : @(kForeverBrick)},\
+    @"IfLogicBeginBrick"         : @{@"categoryType" : @(kControlBrick), @"brickType" : @(kIfBrick)},\
+    @"IfLogicElseBrick"          : @{@"categoryType" : @(kControlBrick), @"brickType" : @(kIfElseBrick)},\
+    @"IfLogicEndBrick"           : @{@"categoryType" : @(kControlBrick), @"brickType" : @(kIfEndBrick)},\
+    @"RepeatBrick"               : @{@"categoryType" : @(kControlBrick), @"brickType" : @(kRepeatBrick)},\
+    @"LoopEndBrick"              : @{@"categoryType" : @(kControlBrick), @"brickType" : @(kLoopEndBrick)},\
     /* motion bricks */\
-    @"PlaceAtBrick"              : kCategoryAndBrickType(kMotionBrick, kPlaceAtBrick),\
-    @"SetXBrick"                 : kCategoryAndBrickType(kMotionBrick, kSetXBrick),\
-    @"SetYBrick"                 : kCategoryAndBrickType(kMotionBrick, kSetYBrick),\
-    @"ChangeXByNBrick"           : kCategoryAndBrickType(kMotionBrick, kChangeXByNBrick),\
-    @"ChangeYByNBrick"           : kCategoryAndBrickType(kMotionBrick, kChangeYByNBrick),\
-    @"IfOnEdgeBounceBrick"       : kCategoryAndBrickType(kMotionBrick, kIfOnEdgeBounceBrick),\
-    @"MoveNStepsBrick"           : kCategoryAndBrickType(kMotionBrick, kMoveNStepsBrick),\
-    @"TurnLeftBrick"             : kCategoryAndBrickType(kMotionBrick, kTurnLeftBrick),\
-    @"TurnRightBrick"            : kCategoryAndBrickType(kMotionBrick, kTurnRightBrick),\
-    @"PointInDirectionBrick"     : kCategoryAndBrickType(kMotionBrick, kPointInDirectionBrick),\
-    @"PointToBrick"              : kCategoryAndBrickType(kMotionBrick, kPointToBrick),\
-    @"GlideToBrick"              : kCategoryAndBrickType(kMotionBrick, kGlideToBrick),\
-    @"GoNStepsBackBrick"         : kCategoryAndBrickType(kMotionBrick, kGoNStepsBackBrick),\
-    @"ComeToFrontBrick"          : kCategoryAndBrickType(kMotionBrick, kComeToFrontBrick),\
+    @"PlaceAtBrick"              : @{@"categoryType" : @(kMotionBrick),  @"brickType" : @(kPlaceAtBrick)},\
+    @"SetXBrick"                 : @{@"categoryType" : @(kMotionBrick),  @"brickType" : @(kSetXBrick)},\
+    @"SetYBrick"                 : @{@"categoryType" : @(kMotionBrick),  @"brickType" : @(kSetYBrick)},\
+    @"ChangeXByNBrick"           : @{@"categoryType" : @(kMotionBrick),  @"brickType" : @(kChangeXByNBrick)},\
+    @"ChangeYByNBrick"           : @{@"categoryType" : @(kMotionBrick),  @"brickType" : @(kChangeYByNBrick)},\
+    @"IfOnEdgeBounceBrick"       : @{@"categoryType" : @(kMotionBrick),  @"brickType" : @(kIfOnEdgeBounceBrick)},\
+    @"MoveNStepsBrick"           : @{@"categoryType" : @(kMotionBrick),  @"brickType" : @(kMoveNStepsBrick)},\
+    @"TurnLeftBrick"             : @{@"categoryType" : @(kMotionBrick),  @"brickType" : @(kTurnLeftBrick)},\
+    @"TurnRightBrick"            : @{@"categoryType" : @(kMotionBrick),  @"brickType" : @(kTurnRightBrick)},\
+    @"PointInDirectionBrick"     : @{@"categoryType" : @(kMotionBrick),  @"brickType" : @(kPointInDirectionBrick)},\
+    @"PointToBrick"              : @{@"categoryType" : @(kMotionBrick),  @"brickType" : @(kPointToBrick)},\
+    @"GlideToBrick"              : @{@"categoryType" : @(kMotionBrick),  @"brickType" : @(kGlideToBrick)},\
+    @"GoNStepsBackBrick"         : @{@"categoryType" : @(kMotionBrick),  @"brickType" : @(kGoNStepsBackBrick)},\
+    @"ComeToFrontBrick"          : @{@"categoryType" : @(kMotionBrick),  @"brickType" : @(kComeToFrontBrick)},\
     /* sound bricks */\
-    @"PlaySoundBrick"            : kCategoryAndBrickType(kSoundBrick, kPlaySoundBrick),\
-    @"StopAllSoundsBrick"        : kCategoryAndBrickType(kSoundBrick, kStopAllSoundsBrick),\
-    @"SetVolumeToBrick"          : kCategoryAndBrickType(kSoundBrick, kSetVolumeToBrick),\
-    @"ChangeVolumeByNBrick"      : kCategoryAndBrickType(kSoundBrick, kChangeVolumeByNBrick),\
-    @"SpeakBrick"                : kCategoryAndBrickType(kSoundBrick, kSpeakBrick),\
+    @"PlaySoundBrick"            : @{@"categoryType" : @(kSoundBrick),   @"brickType" : @(kPlaySoundBrick)},\
+    @"StopAllSoundsBrick"        : @{@"categoryType" : @(kSoundBrick),   @"brickType" : @(kStopAllSoundsBrick)},\
+    @"SetVolumeToBrick"          : @{@"categoryType" : @(kSoundBrick),   @"brickType" : @(kSetVolumeToBrick)},\
+    @"ChangeVolumeByNBrick"      : @{@"categoryType" : @(kSoundBrick),   @"brickType" : @(kChangeVolumeByNBrick)},\
+    @"SpeakBrick"                : @{@"categoryType" : @(kSoundBrick),   @"brickType" : @(kSpeakBrick)},\
     /* look bricks */\
-    @"SetLookBrick"              : kCategoryAndBrickType(kLookBrick, kSetBackgroundBrick),\
-    @"NextLookBrick"             : kCategoryAndBrickType(kLookBrick, kNextBackgroundBrick),\
-    @"SetSizeToBrick"            : kCategoryAndBrickType(kLookBrick, kSetSizeToBrick),\
-    @"ChangeSizeByNBrick"        : kCategoryAndBrickType(kLookBrick, kChangeSizeByNBrick),\
-    @"HideBrick"                 : kCategoryAndBrickType(kLookBrick, kHideBrick),\
-    @"ShowBrick"                 : kCategoryAndBrickType(kLookBrick, kShowBrick),\
-    @"SetGhostEffectBrick"       : kCategoryAndBrickType(kLookBrick, kSetGhostEffectBrick),\
-    @"ChangeGhostEffectByNBrick" : kCategoryAndBrickType(kLookBrick, kChangeGhostEffectByNBrick),\
-    @"SetBrightnessBrick"        : kCategoryAndBrickType(kLookBrick, kSetBrightnessBrick),\
-    @"ChangeBrightnessByNBrick"  : kCategoryAndBrickType(kLookBrick, kChangeBrightnessByNBrick),\
-    @"ClearGraphicEffectBrick"   : kCategoryAndBrickType(kLookBrick, kClearGraphicEffectBrick),\
+    @"SetLookBrick"              : @{@"categoryType" : @(kLookBrick),    @"brickType" : @(kSetBackgroundBrick)},\
+    @"NextLookBrick"             : @{@"categoryType" : @(kLookBrick),    @"brickType" : @(kNextBackgroundBrick)},\
+    @"SetSizeToBrick"            : @{@"categoryType" : @(kLookBrick),    @"brickType" : @(kSetSizeToBrick)},\
+    @"ChangeSizeByNBrick"        : @{@"categoryType" : @(kLookBrick),    @"brickType" : @(kChangeSizeByNBrick)},\
+    @"HideBrick"                 : @{@"categoryType" : @(kLookBrick),    @"brickType" : @(kHideBrick)},\
+    @"ShowBrick"                 : @{@"categoryType" : @(kLookBrick),    @"brickType" : @(kShowBrick)},\
+    @"SetGhostEffectBrick"       : @{@"categoryType" : @(kLookBrick),    @"brickType" : @(kSetGhostEffectBrick)},\
+    @"ChangeGhostEffectByNBrick" : @{@"categoryType" : @(kLookBrick),    @"brickType" : @(kChangeGhostEffectByNBrick)},\
+    @"SetBrightnessBrick"        : @{@"categoryType" : @(kLookBrick),    @"brickType" : @(kSetBrightnessBrick)},\
+    @"ChangeBrightnessByNBrick"  : @{@"categoryType" : @(kLookBrick),    @"brickType" : @(kChangeBrightnessByNBrick)},\
+    @"ClearGraphicEffectBrick"   : @{@"categoryType" : @(kLookBrick),    @"brickType" : @(kClearGraphicEffectBrick)},\
     /* look bricks */\
-    @"SetVariableBrick"          : kCategoryAndBrickType(kLookBrick, kSetVariableBrick),\
-    @"ChangeVariableBrick"       : kCategoryAndBrickType(kLookBrick, kChangeVariableBrick)\
+    @"SetVariableBrick"          : @{@"categoryType" : @(kLookBrick),    @"brickType" : @(kSetVariableBrick)},\
+    @"ChangeVariableBrick"       : @{@"categoryType" : @(kLookBrick),    @"brickType" : @(kChangeVariableBrick)}\
 }
 
 // Notifications

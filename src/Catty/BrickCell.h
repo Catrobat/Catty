@@ -32,7 +32,7 @@
 @property (nonatomic, readonly) NSInteger brickType;
 @property (nonatomic, readonly, getter = isScriptBrickCell) BOOL scriptBrickCell;
 
-- (void)convertToBrickCellForCategoryType:(kBrickCategoryType)categoryType AndBrickType:(NSInteger)brickType;
+//- (void)convertToBrickCellForCategoryType:(kBrickCategoryType)categoryType AndBrickType:(NSInteger)brickType;
 
 + (NSInteger)numberOfAvailableBricksForCategoryType:(kBrickCategoryType)categoryType;
 + (CGFloat) brickCellHeightForCategoryType:(kBrickCategoryType)categoryType AndBrickType:(NSInteger)brickType;
