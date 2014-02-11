@@ -20,8 +20,17 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import "BrickCell.h"
+#import "WhenScriptCell.h"
 
-@interface StartScriptBrickCell : BrickCell
+@implementation WhenScriptCell
+
+- (id)initWithFrame:(CGRect)frame
+{
+    self = [super initWithFrame:frame];
+    if (self) {
+        // Initialization code
+    }
+    return self;
+}
 
 @end

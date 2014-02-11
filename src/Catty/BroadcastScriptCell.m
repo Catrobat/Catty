@@ -20,9 +20,17 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import "StartScriptBrickCell.h"
-#import "UIDefines.h"
+#import "BroadcastScriptCell.h"
 
-@implementation StartScriptBrickCell
+@implementation BroadcastScriptCell
+
+- (id)initWithFrame:(CGRect)frame
+{
+    self = [super initWithFrame:frame];
+    if (self) {
+        // Initialization code
+    }
+    return self;
+}
 
 @end

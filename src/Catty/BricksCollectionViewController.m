@@ -45,16 +45,14 @@
     self.collectionView.alwaysBounceVertical = YES;
     self.collectionView.delaysContentTouches = NO;
 
-    // register brick cells for current category
+    // register brick cells for current brick category
     NSDictionary *allCategoriesAndBrickTypes = self.classNameBrickNameMap;
     for (NSString *brickTypeName in allCategoriesAndBrickTypes) {
         kBrickCategoryType categoryType = (kBrickCategoryType) [allCategoriesAndBrickTypes[brickTypeName][@"categoryType"] integerValue];
         if (self.brickCategoryType != categoryType)
             continue;
 
-        NSString *brickCellClassName = [brickTypeName stringByAppendingString:(([brickTypeName rangeOfString:@"Script"].location != NSNotFound)
-                                                                               ? @"BrickCell" : @"Cell")];
-        NSLog(@"Brick Class name is: %@", brickCellClassName);
+        NSString *brickCellClassName = [brickTypeName stringByAppendingString:@"Cell"];
         [self.collectionView registerClass:NSClassFromString(brickCellClassName) forCellWithReuseIdentifier:brickTypeName];
     }
 }
@@ -99,8 +97,7 @@
             continue;
 
         return [collectionView dequeueReusableCellWithReuseIdentifier:brickTypeName forIndexPath:indexPath];
-//        NSString *brickCellClassName = [brickTypeName stringByAppendingString:(([brickTypeName rangeOfString:@"Script"].location != NSNotFound)
-//                                                                               ? @"BrickCell" : @"Cell")];
+//        NSString *brickCellClassName = [brickTypeName stringByAppendingString:@"Cell"];
 //        BrickCell* brickCell = [collectionView dequeueReusableCellWithReuseIdentifier:brickTypeName forIndexPath:indexPath];
 //        if ([brickCell isKindOfClass:NSClassFromString(brickCellClassName)]) {
 //            return brickCell;

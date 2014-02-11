@@ -26,6 +26,7 @@
 #import "Brick.h"
 
 @interface BrickCell ()
+@property (nonatomic, strong) NSDictionary *classNameBrickNameMap;
 @property (nonatomic) kBrickCategoryType categoryType;
 @property (nonatomic) NSInteger brickType;
 @property (nonatomic) BOOL scriptBrickCell;
@@ -247,22 +248,7 @@
 }
 
 #pragma mark - convert cell methods
-//- (void)convertToBrickCellForCategoryType:(kBrickCategoryType)categoryType AndBrickType:(NSInteger)brickType
-//{
-//    self.categoryType = categoryType;
-//    self.brickType = brickType;
-//    [self setView];
-//    [self setBrickPatternImage];
-//    [self setBrickPatternBackgroundImage];
-//    [self setInlineView];
-//    [self setBrickLabel];
-//
-//    // just to test layout
-//    //    self.layer.borderWidth=1.0f;
-//    //    self.layer.borderColor=[UIColor whiteColor].CGColor;
-//}
-
-+ (NSDictionary*)classNameBrickNameMap
+- (NSDictionary*)classNameBrickNameMap
 {
     static NSDictionary *classNameBrickNameMap = nil;
     if (classNameBrickNameMap == nil) {
@@ -273,10 +259,12 @@
 
 - (void)setupForSubclass:(NSString*)subclassName
 {
-    NSDictionary *allCategoriesAndBrickTypes = [BrickCell classNameBrickNameMap];
-    NSDictionary *categoryAndBrickType = allCategoriesAndBrickTypes[subclassName];
+    NSLog(@"I was called. SubClassName is: %@", subclassName);
+    NSDictionary *allCategoriesAndBrickTypes = self.classNameBrickNameMap;
+    NSDictionary *categoryAndBrickType = allCategoriesAndBrickTypes[[subclassName stringByReplacingOccurrencesOfString:@"Cell" withString:@""]];
     self.categoryType = (kBrickCategoryType) [categoryAndBrickType[@"categoryType"] integerValue];
     self.brickType = [categoryAndBrickType[@"brickType"] integerValue];
+    NSLog(@"SubClassName: %@, BrickCategoryType: %d, BrickType: %d", subclassName, self.categoryType, self.brickType);
 
     [self setView];
     [self setBrickPatternImage];
@@ -295,8 +283,6 @@
     self = [super initWithFrame:frame];
     if (self) {
         [self setupForSubclass:NSStringFromClass([self class])];
-        self.categoryType = kControlBrick;
-        self.brickType = kProgramStartedBrick;
         self.contentMode = UIViewContentModeScaleToFill;
         self.clipsToBounds = YES;
         self.backgroundColor = [UIColor clearColor];

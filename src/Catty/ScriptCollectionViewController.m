@@ -72,7 +72,7 @@
 #import "ClearGraphicEffectBrick.h"
 #import "SetVariableBrick.h"
 #import "ChangeVariableBrick.h"
-#import "StartScriptBrickCell.h"
+#import "StartScriptCell.h"
 
 @interface ScriptCollectionViewController () <UICollectionViewDelegate, UICollectionViewDelegateFlowLayout>
 @property (strong, nonatomic) IBOutlet UICollectionView *collectionView;

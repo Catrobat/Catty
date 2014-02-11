@@ -20,8 +20,18 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import "BrickCell.h"
+#import "StartScriptCell.h"
+#import "UIDefines.h"
 
-@interface WhenScriptBrickCell : BrickCell
+@implementation StartScriptCell
+
+- (id)initWithFrame:(CGRect)frame
+{
+    self = [super initWithFrame:frame];
+    if (self) {
+        // Initialization code
+    }
+    return self;
+}
 
 @end
