@@ -25,24 +25,12 @@
 #import "SegueDefines.h"
 #import "BrickCell.h"
 #import "ScriptCollectionViewController.h"
-#import "StartScriptBrickCell.h"
-#import "WhenScriptBrickCell.h"
-#import "BroadcastScriptBrickCell.h"
-#import "WaitBrickCell.h"
-#import "BroadcastBrickCell.h"
-#import "BroadcastWaitBrickCell.h"
-#import "NoteBrickCell.h"
-#import "ForeverBrickCell.h"
-#import "IfLogicBeginBrickCell.h"
-#import "IfLogicElseBrickCell.h"
-#import "IfLogicEndBrickCell.h"
-#import "RepeatBrickCell.h"
 
 #define kTableHeaderIdentifier @"Header"
-#define kCategoryCell @"BrickCell"
 
 @interface BricksCollectionViewController ()
 @property (nonatomic, strong) NSArray *brickCategoryColors;
+@property (nonatomic, strong) NSDictionary *classNameBrickNameMap;
 @end
 
 @implementation BricksCollectionViewController
@@ -57,12 +45,17 @@
     self.collectionView.alwaysBounceVertical = YES;
     self.collectionView.delaysContentTouches = NO;
 
-    // register all available brick cells
-    NSDictionary *allCategoriesAndBrickTypes = kClassNameBrickNameMap;
+    // register brick cells for current category
+    NSDictionary *allCategoriesAndBrickTypes = self.classNameBrickNameMap;
     for (NSString *brickTypeName in allCategoriesAndBrickTypes) {
-        NSString *brickCellClassName = [brickTypeName stringByAppendingString:(([brickTypeName rangeOfString:@"Script"].location != NSNotFound) ? @"BrickCell" : @"Cell")];
-        NSDebug(@"Brick Class name is: %@", brickCellClassName);
-        [self.collectionView registerClass:NSClassFromString(brickCellClassName) forCellWithReuseIdentifier:brickCellClassName];
+        kBrickCategoryType categoryType = (kBrickCategoryType) [allCategoriesAndBrickTypes[brickTypeName][@"categoryType"] integerValue];
+        if (self.brickCategoryType != categoryType)
+            continue;
+
+        NSString *brickCellClassName = [brickTypeName stringByAppendingString:(([brickTypeName rangeOfString:@"Script"].location != NSNotFound)
+                                                                               ? @"BrickCell" : @"Cell")];
+        NSLog(@"Brick Class name is: %@", brickCellClassName);
+        [self.collectionView registerClass:NSClassFromString(brickCellClassName) forCellWithReuseIdentifier:brickTypeName];
     }
 }
 
@@ -98,19 +91,29 @@
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *CellIdentifier = kCategoryCell;
-    UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:CellIdentifier forIndexPath:indexPath];
-    if ([cell isKindOfClass:[BrickCell class]]) {
-//        BrickCell *brickCell = (BrickCell*)cell;
-//        [brickCell convertToBrickCellForCategoryType:self.brickCategoryType AndBrickType:indexPath.row];
+    NSDictionary *allCategoriesAndBrickTypes = self.classNameBrickNameMap;
+    for (NSString *brickTypeName in allCategoriesAndBrickTypes) {
+        kBrickCategoryType categoryType = (kBrickCategoryType) [allCategoriesAndBrickTypes[brickTypeName][@"categoryType"] integerValue];
+        NSInteger brickType = [allCategoriesAndBrickTypes[brickTypeName][@"brickType"] integerValue];
+        if ((self.brickCategoryType != categoryType) || (indexPath.row != brickType))
+            continue;
+
+        return [collectionView dequeueReusableCellWithReuseIdentifier:brickTypeName forIndexPath:indexPath];
+//        NSString *brickCellClassName = [brickTypeName stringByAppendingString:(([brickTypeName rangeOfString:@"Script"].location != NSNotFound)
+//                                                                               ? @"BrickCell" : @"Cell")];
+//        BrickCell* brickCell = [collectionView dequeueReusableCellWithReuseIdentifier:brickTypeName forIndexPath:indexPath];
+//        if ([brickCell isKindOfClass:NSClassFromString(brickCellClassName)]) {
+//            return brickCell;
+//        }
     }
-    return cell;
+    NSLog(@"Unknown brick type");
+    abort();
 }
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath*)indexPath
 {
     BrickCell *cell = (BrickCell *)[collectionView cellForItemAtIndexPath:indexPath];
-    
+
     if (![self.presentedViewController isBeingPresented]) {
         [self dismissViewControllerAnimated:YES completion:^{
             NSNotificationCenter *dnc = NSNotificationCenter.defaultCenter;
@@ -149,28 +152,37 @@
 #pragma mark getters and setters
 - (NSArray*)brickCategoryColors
 {
-  if (! _brickCategoryColors) {
-    _brickCategoryColors = kBrickCategoryColors;
-  }
-  return _brickCategoryColors;
+    if (! _brickCategoryColors) {
+        _brickCategoryColors = kBrickCategoryColors;
+    }
+    return _brickCategoryColors;
 }
 
 - (void)setBrickCategoryType:(kBrickCategoryType)brickCategoryType
 {
-  _brickCategoryType = brickCategoryType;
-  // update title when brick category changed
-  NSString *title = kBrickCategoryNames[_brickCategoryType];
-  self.title = title;
-  self.navigationItem.title = title;
+    _brickCategoryType = brickCategoryType;
+    // update title when brick category changed
+    NSString *title = kBrickCategoryNames[_brickCategoryType];
+    self.title = title;
+    self.navigationItem.title = title;
+}
+
+- (NSDictionary*)classNameBrickNameMap
+{
+    static NSDictionary *classNameBrickNameMap = nil;
+    if (classNameBrickNameMap == nil) {
+        classNameBrickNameMap = kClassNameBrickNameMap;
+    }
+    return classNameBrickNameMap;
 }
 
 #pragma mark init
 - (void)initCollectionView
 {
-  //[super initCollectionView];
-  self.collectionView.delegate = self;
-  self.collectionView.dataSource = self;
-  self.collectionView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"darkblue"]];
+    //[super initCollectionView];
+    self.collectionView.delegate = self;
+    self.collectionView.dataSource = self;
+    self.collectionView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"darkblue"]];
 }
 
 @end
