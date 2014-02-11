@@ -96,10 +96,6 @@
             continue;
 
         return [collectionView dequeueReusableCellWithReuseIdentifier:brickTypeName forIndexPath:indexPath];
-//        BrickCell* brickCell = [collectionView dequeueReusableCellWithReuseIdentifier:brickTypeName forIndexPath:indexPath];
-//        if ([brickCell isKindOfClass:NSClassFromString([brickTypeName stringByAppendingString:@"Cell"])]) {
-//            return brickCell;
-//        }
     }
     NSLog(@"Unknown brick type");
     abort();

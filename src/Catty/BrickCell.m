@@ -186,7 +186,6 @@
 
 - (void)setInlineView
 {
-    CGFloat inlineViewWidth = self.frame.size.width - kBrickInlineViewOffsetX;
     CGFloat inlineViewHeight = [BrickCell brickCellHeightForCategoryType:self.categoryType AndBrickType:self.brickType];
     kBrickShapeType brickShapeType = [BrickCell shapeTypeForCategoryType:self.categoryType AndBrickType:self.brickType];
     CGFloat inlineViewOffsetY = 0.0f;
@@ -202,7 +201,7 @@
     } else {
         NSError(@"unknown brick shape type given");
     }
-    self.inlineView.frame = CGRectMake(kBrickInlineViewOffsetX, inlineViewOffsetY, inlineViewWidth, inlineViewHeight);
+    self.inlineView.frame = CGRectMake(kBrickInlineViewOffsetX, inlineViewOffsetY, (self.frame.size.width - kBrickInlineViewOffsetX), inlineViewHeight);
 }
 
 - (void)setBrickPatternImage
@@ -284,7 +283,7 @@
     if (self) {
         [self setupForSubclass:NSStringFromClass([self class])];
         self.contentMode = UIViewContentModeScaleToFill;
-        self.clipsToBounds = YES;
+        self.clipsToBounds = NO;
         self.backgroundColor = [UIColor clearColor];
     }
     return self;
@@ -296,7 +295,7 @@
     if (self) {
         [self setupForSubclass:NSStringFromClass([self class])];
         self.contentMode = UIViewContentModeScaleToFill;
-        self.clipsToBounds = YES;
+        self.clipsToBounds = NO;
         self.backgroundColor = [UIColor clearColor];
     }
     return self;
