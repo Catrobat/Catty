@@ -25,6 +25,18 @@
 #import "SegueDefines.h"
 #import "BrickCell.h"
 #import "ScriptCollectionViewController.h"
+#import "StartScriptBrickCell.h"
+#import "WhenScriptBrickCell.h"
+#import "BroadcastScriptBrickCell.h"
+#import "WaitBrickCell.h"
+#import "BroadcastBrickCell.h"
+#import "BroadcastWaitBrickCell.h"
+#import "NoteBrickCell.h"
+#import "ForeverBrickCell.h"
+#import "IfLogicBeginBrickCell.h"
+#import "IfLogicElseBrickCell.h"
+#import "IfLogicEndBrickCell.h"
+#import "RepeatBrickCell.h"
 
 #define kTableHeaderIdentifier @"Header"
 #define kCategoryCell @"BrickCell"
@@ -35,7 +47,6 @@
 
 @implementation BricksCollectionViewController
 
-
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -45,6 +56,14 @@
     self.collectionView.scrollEnabled = YES;
     self.collectionView.alwaysBounceVertical = YES;
     self.collectionView.delaysContentTouches = NO;
+
+    // register all available brick cells
+    NSDictionary *allCategoriesAndBrickTypes = kClassNameBrickNameMap;
+    for (NSString *brickTypeName in allCategoriesAndBrickTypes) {
+        NSString *brickCellClassName = [brickTypeName stringByAppendingString:(([brickTypeName rangeOfString:@"Script"].location != NSNotFound) ? @"BrickCell" : @"Cell")];
+        NSDebug(@"Brick Class name is: %@", brickCellClassName);
+        [self.collectionView registerClass:NSClassFromString(brickCellClassName) forCellWithReuseIdentifier:brickCellClassName];
+    }
 }
 
 - (void)viewWillAppear:(BOOL)animated
