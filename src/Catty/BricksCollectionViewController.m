@@ -52,8 +52,7 @@
         if (self.brickCategoryType != categoryType)
             continue;
 
-        NSString *brickCellClassName = [brickTypeName stringByAppendingString:@"Cell"];
-        [self.collectionView registerClass:NSClassFromString(brickCellClassName) forCellWithReuseIdentifier:brickTypeName];
+        [self.collectionView registerClass:NSClassFromString([brickTypeName stringByAppendingString:@"Cell"]) forCellWithReuseIdentifier:brickTypeName];
     }
 }
 
@@ -97,9 +96,8 @@
             continue;
 
         return [collectionView dequeueReusableCellWithReuseIdentifier:brickTypeName forIndexPath:indexPath];
-//        NSString *brickCellClassName = [brickTypeName stringByAppendingString:@"Cell"];
 //        BrickCell* brickCell = [collectionView dequeueReusableCellWithReuseIdentifier:brickTypeName forIndexPath:indexPath];
-//        if ([brickCell isKindOfClass:NSClassFromString(brickCellClassName)]) {
+//        if ([brickCell isKindOfClass:NSClassFromString([brickTypeName stringByAppendingString:@"Cell"])]) {
 //            return brickCell;
 //        }
     }
