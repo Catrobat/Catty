@@ -22,7 +22,29 @@
 
 #import "RepeatBrickCell.h"
 
+@interface RepeatBrickCell ()
+@property (nonatomic, strong) UILabel *textLabel;
+@end
+
 @implementation RepeatBrickCell
+
+- (UILabel*)textLabel
+{
+    if (! _textLabel) {
+        _textLabel = [[UILabel alloc] init];
+        self.textLabel.textColor = [UIColor whiteColor];
+        self.textLabel.font = [UIFont boldSystemFontOfSize:16];
+        [self.inlineView addSubview:_textLabel];
+    }
+    return _textLabel;
+}
+
+- (void)setupInlineView
+{
+    NSString *brickTitle = kControlBrickNames[kRepeatBrick];
+    self.textLabel.frame = CGRectMake(kBrickLabelOffsetX, kBrickLabelOffsetY, self.inlineView.frame.size.width, self.inlineView.frame.size.height);
+    self.textLabel.text = brickTitle;
+}
 
 - (id)initWithFrame:(CGRect)frame
 {

@@ -28,51 +28,7 @@
 #import "BrickCategoriesTableViewController.h"
 #import "BrickCell.h"
 #import "Script.h"
-#import "StartScript.h"
-#import "WhenScript.h"
-#import "BroadcastScript.h"
-#import "WaitBrick.h"
-#import "BroadcastBrick.h"
-#import "BroadcastWaitBrick.h"
-#import "NoteBrick.h"
-#import "ForeverBrick.h"
-#import "IfLogicBeginBrick.h"
-#import "IfLogicElseBrick.h"
-#import "IfLogicEndBrick.h"
-#import "RepeatBrick.h"
-#import "PlaceAtBrick.h"
-#import "SetXBrick.h"
-#import "SetYBrick.h"
-#import "ChangeXByNBrick.h"
-#import "ChangeYByNBrick.h"
-#import "IfOnEdgeBounceBrick.h"
-#import "MoveNStepsBrick.h"
-#import "TurnLeftBrick.h"
-#import "TurnRightBrick.h"
-#import "PointInDirectionBrick.h"
-#import "PointToBrick.h"
-#import "GlideToBrick.h"
-#import "GoNStepsBackBrick.h"
-#import "ComeToFrontBrick.h"
-#import "PlaySoundBrick.h"
-#import "StopAllSoundsBrick.h"
-#import "SetVolumeToBrick.h"
-#import "ChangeVolumeByNBrick.h"
-#import "SpeakBrick.h"
-#import "SetLookBrick.h"
-#import "NextLookBrick.h"
-#import "SetSizeToBrick.h"
-#import "ChangeSizeByNBrick.h"
-#import "HideBrick.h"
-#import "ShowBrick.h"
-#import "SetGhostEffectBrick.h"
-#import "ChangeGhostEffectByNBrick.h"
-#import "SetBrightnessBrick.h"
-#import "ChangeBrightnessByNBrick.h"
-#import "ClearGraphicEffectBrick.h"
-#import "SetVariableBrick.h"
-#import "ChangeVariableBrick.h"
-#import "StartScriptCell.h"
+#import "Brick.h"
 
 @interface ScriptCollectionViewController () <UICollectionViewDelegate, UICollectionViewDelegateFlowLayout>
 @property (nonatomic, strong) NSDictionary *classNameBrickNameMap;
@@ -80,7 +36,6 @@
 @end
 
 @implementation ScriptCollectionViewController
-
 
 #pragma view events
 - (void)viewDidLoad
@@ -149,9 +104,8 @@
 
 
 #pragma mark Collection View Datasource
-
--  (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
-    
+-  (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath*)indexPath
+{
 }
 
 #pragma mark - collection view delegate
@@ -191,8 +145,10 @@
     }
     CGFloat height = [BrickCell brickCellHeightForCategoryType:categoryType AndBrickType:brickType];
 
-    // TODO: increase top margin of all script bricks
-    height -= 4.0f; // TODO: outsource to const...
+    // TODO: outsource all consts
+    height -= 4.0f; // reduce height for overlapping
+
+    // if last brick in last section => no overlapping and no height deduction!
     if (indexPath.section == ([self.object.scriptList count] - 1)) {
         Script *script = [self.object.scriptList objectAtIndex:indexPath.section];
         if (! script) {
@@ -200,7 +156,7 @@
             abort();
         }
         if (indexPath.row == [script.brickList count]) { // NOTE: there are ([brickList count]+1) cells!!
-            height += 8.0f; // TODO: outsource to const...
+            height += 4.0f;
         }
     }
     return CGSizeMake(width, height);

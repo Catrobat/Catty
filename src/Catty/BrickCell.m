@@ -21,7 +21,6 @@
  */
 
 #import "BrickCell.h"
-#import "UIDefines.h"
 #import "UIColor+CatrobatUIColorExtensions.h"
 #import "Brick.h"
 
@@ -32,15 +31,23 @@
 @property (nonatomic) BOOL scriptBrickCell;
 @property (nonatomic, strong) NSArray *brickCategoryColors;
 @property (nonatomic, strong) UIView *backgroundImageView;
-@property (nonatomic, strong) UIView *inlineView;
 @property (nonatomic, strong) UIImageView *imageView;
-@property (nonatomic, strong) UILabel *textLabel;
-@property (strong, nonatomic) UIImageView *overlayView;
+@property (nonatomic, strong) UIView *inlineView;
+@property (nonatomic, strong) UIImageView *overlayView;
 @end
 
 @implementation BrickCell
 
 #pragma mark - getters and setters
+- (NSDictionary*)classNameBrickNameMap
+{
+    static NSDictionary *classNameBrickNameMap = nil;
+    if (classNameBrickNameMap == nil) {
+        classNameBrickNameMap = kClassNameBrickNameMap;
+    }
+    return classNameBrickNameMap;
+}
+
 - (BOOL)scriptBrickCell
 {
     if (self.categoryType == kControlBrick) {
@@ -91,7 +98,8 @@
 }
 
 #pragma mark - layout
-- (void)layoutSubviews {
+- (void)layoutSubviews
+{
     [super layoutSubviews];
     
     UIImage *brickImage = self.imageView.image;
@@ -158,22 +166,11 @@
 {
     if (! _imageView) {
         _imageView = [[UIImageView alloc] init];
-        self.imageView.backgroundColor = [UIColor clearColor];
+        _imageView.backgroundColor = [UIColor clearColor];
         [self addSubview:_imageView];
         [self sendSubviewToBack:_imageView];
     }
     return _imageView;
-}
-
-- (UILabel*)textLabel
-{
-    if (! _textLabel) {
-        _textLabel = [[UILabel alloc] init];
-        self.textLabel.textColor = [UIColor whiteColor];
-        self.textLabel.font = [UIFont boldSystemFontOfSize:16];
-        [self.inlineView addSubview:_textLabel];
-    }
-    return _textLabel;
 }
 
 #pragma mark - setup for subviews
@@ -226,39 +223,17 @@
     self.backgroundImageView.backgroundColor = [UIColor colorWithPatternImage:image];
 }
 
-- (void)setBrickLabel
-{
-    NSString *brickTitle = nil;
-    if (self.categoryType == kControlBrick) {
-        brickTitle = kControlBrickNames[self.brickType];
-    } else if (self.categoryType == kMotionBrick) {
-        brickTitle = kMotionBrickNames[self.brickType];
-    } else if (self.categoryType == kSoundBrick) {
-        brickTitle = kSoundBrickNames[self.brickType];
-    } else if (self.categoryType == kLookBrick) {
-        brickTitle = kLookBrickNames[self.brickType];
-    } else if (self.categoryType == kVariableBrick) {
-        brickTitle = kVariableBrickNames[self.brickType];
-    } else {
-        return;
-    }
-    self.textLabel.frame = CGRectMake(kBrickLabelOffsetX, kBrickLabelOffsetY, self.inlineView.frame.size.width, self.inlineView.frame.size.height);
-    self.textLabel.text = brickTitle;
-}
+#pragma mark - setup methods
 
-#pragma mark - convert cell methods
-- (NSDictionary*)classNameBrickNameMap
+- (void)setupInlineView
 {
-    static NSDictionary *classNameBrickNameMap = nil;
-    if (classNameBrickNameMap == nil) {
-        classNameBrickNameMap = kClassNameBrickNameMap;
-    }
-    return classNameBrickNameMap;
+    @throw [NSException exceptionWithName:NSInternalInconsistencyException
+                                   reason:[NSString stringWithFormat:@"You must override %@ in a subclass", NSStringFromSelector(_cmd)]
+                                 userInfo:nil];
 }
 
 - (void)setupForSubclass:(NSString*)subclassName
 {
-    NSLog(@"I was called. SubClassName is: %@", subclassName);
     NSDictionary *allCategoriesAndBrickTypes = self.classNameBrickNameMap;
     NSDictionary *categoryAndBrickType = allCategoriesAndBrickTypes[[subclassName stringByReplacingOccurrencesOfString:@"Cell" withString:@""]];
     self.categoryType = (kBrickCategoryType) [categoryAndBrickType[@"categoryType"] integerValue];
@@ -269,7 +244,7 @@
     [self setBrickPatternImage];
     [self setBrickPatternBackgroundImage];
     [self setInlineView];
-    [self setBrickLabel];
+    [self setupInlineView];
 
     // just to test layout
     //    self.layer.borderWidth=1.0f;

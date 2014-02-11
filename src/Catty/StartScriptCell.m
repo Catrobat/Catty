@@ -21,9 +21,30 @@
  */
 
 #import "StartScriptCell.h"
-#import "UIDefines.h"
+
+@interface StartScriptCell ()
+@property (nonatomic, strong) UILabel *textLabel;
+@end
 
 @implementation StartScriptCell
+
+- (UILabel*)textLabel
+{
+    if (! _textLabel) {
+        _textLabel = [[UILabel alloc] init];
+        _textLabel.textColor = [UIColor whiteColor];
+        _textLabel.font = [UIFont boldSystemFontOfSize:16];
+        [self.inlineView addSubview:_textLabel];
+    }
+    return _textLabel;
+}
+
+- (void)setupInlineView
+{
+    NSString *brickTitle = kControlBrickNames[kProgramStartedBrick];
+    self.textLabel.frame = CGRectMake(kBrickLabelOffsetX, kBrickLabelOffsetY, self.inlineView.frame.size.width, self.inlineView.frame.size.height);
+    self.textLabel.text = brickTitle;
+}
 
 - (id)initWithFrame:(CGRect)frame
 {

@@ -108,20 +108,54 @@ typedef NS_ENUM(NSInteger, kControlBrickType) {
     kLoopEndBrick = 12
 };
 
+// Note:
+// -----------------------------------------------------------------------------------------------------------
+// \n                  ... NewLine
+// {INT;range=(X,Y)}   ... UITextField (NSInteger), inf ... infinite
+// {FLOAT;range=(X,Y)} ... UITextField (float), inf ... infinite
+// {MESSAGE}           ... UIPicker (select message)
+// {OBJECT}            ... UIPicker (select object)
+// {SOUND}             ... UIPicker (select sound)
+// {LOOK}              ... UIPicker (select sound)
+// {VARIABLE}          ... UIPicker (select variable)
+// {TEXT}              ... UITextField (NSString)
+
+// Examples for possible ranges:
+// {FLOAT;range=(inf, 0.0f]} ... All negative float numbers including (!) zero
+// {FLOAT;range=(inf, 0.0f)} ... All negative float numbers excluding (!) zero
+// {INT;range=(0, 11]}       ... All positive integer numbers 1-11
+// {INT;range=[0, 11)}       ... All positive integer numbers 0-10
+
 #define kControlBrickNames @[\
     NSLocalizedString(@"When program started",nil),\
     NSLocalizedString(@"When tapped",nil),\
-    NSLocalizedString(@"Wait %d second",nil),\
+    NSLocalizedString(@"Wait %@ second(s)",nil),\
     NSLocalizedString(@"When I receive\n%@",nil),\
     NSLocalizedString(@"Broadcast\n%@",nil),\
     NSLocalizedString(@"Broadcast and wait\n%@",nil),\
     NSLocalizedString(@"Note %@",nil),\
     NSLocalizedString(@"Forever",nil),\
-    NSLocalizedString(@"If %d is true then",nil),\
+    NSLocalizedString(@"If %@ is true then",nil),\
     NSLocalizedString(@"Else",nil),\
     NSLocalizedString(@"If End",nil),\
-    NSLocalizedString(@"Repeat %d times",nil),\
+    NSLocalizedString(@"Repeat %@ times",nil),\
     NSLocalizedString(@"End of Loop",nil)\
+]
+
+#define kControlBrickNameParams @[\
+    nil,                            /* program started */\
+    nil,                            /* tapped          */\
+    @"{FLOAT;range=(0.0f,inf)}",    /* wait            */\
+    @"{MESSAGE}",                   /* receive         */\
+    @"{MESSAGE}",                   /* broadcast       */\
+    @"{MESSAGE}",                   /* broadcast wait  */\
+    @"{TEXT}",                      /* note            */\
+    nil,                            /* forever         */\
+    @"{FLOAT;range=(-inf,inf)}",    /* if              */\
+    nil,                            /* else            */\
+    nil,                            /* if end          */\
+    @"{INT;range=[0,inf)}",         /* repeat          */\
+    nil                             /* loop end        */\
 ]
 
 #define kControlBrickImageNames @[\
@@ -175,20 +209,37 @@ typedef NS_ENUM(NSInteger, kMotionBrickType) {
 };
 
 #define kMotionBrickNames @[\
-    NSLocalizedString(@"Place at\nX: %d Y: %d",nil),\
-    NSLocalizedString(@"Set X to %d",nil),\
-    NSLocalizedString(@"Set Y to %d",nil),\
-    NSLocalizedString(@"Change X by %d",nil),\
-    NSLocalizedString(@"Change Y by %d",nil),\
+    NSLocalizedString(@"Place at\nX: %@ Y: %@",nil),\
+    NSLocalizedString(@"Set X to %@",nil),\
+    NSLocalizedString(@"Set Y to %@",nil),\
+    NSLocalizedString(@"Change X by %@",nil),\
+    NSLocalizedString(@"Change Y by %@",nil),\
     NSLocalizedString(@"If on edge, bounce",nil),\
-    NSLocalizedString(@"Move %f steps",nil),\
-    NSLocalizedString(@"Turn left %f°",nil),\
-    NSLocalizedString(@"Turn right %f°",nil),\
-    NSLocalizedString(@"Point in direction %f°",nil),\
+    NSLocalizedString(@"Move %@ steps",nil),\
+    NSLocalizedString(@"Turn left %@°",nil),\
+    NSLocalizedString(@"Turn right %@°",nil),\
+    NSLocalizedString(@"Point in direction %@°",nil),\
     NSLocalizedString(@"Point towards\n%@",nil),\
-    NSLocalizedString(@"Glide %f second\nto X: %d Y: %d",nil),\
-    NSLocalizedString(@"Go back %d layer",nil),\
+    NSLocalizedString(@"Glide %@ second\nto X: %@ Y: %@",nil),\
+    NSLocalizedString(@"Go back %@ layer",nil),\
     NSLocalizedString(@"Go to front",nil)\
+]
+
+#define kMotionBrickNameParams @[\
+    @[@"{FLOAT;range=(-inf,inf)}", @"{FLOAT;range=(-inf,inf)}"], /* place at           */\
+    @"{FLOAT;range=(-inf,inf)}",                                 /* set X              */\
+    @"{FLOAT;range=(-inf,inf)}",                                 /* set Y              */\
+    @"{FLOAT;range=(-inf,inf)}",                                 /* change X by N      */\
+    @"{FLOAT;range=(-inf,inf)}",                                 /* change Y by N      */\
+    nil,                                                         /* if on edge bounce  */\
+    @"{INT;range=[0,inf)}",                                      /* move N steps       */\
+    @"{FLOAT;range=(-inf,inf)}",                                 /* turn left          */\
+    @"{FLOAT;range=(-inf,inf)}",                                 /* turn right         */\
+    @"{FLOAT;range=(-inf,inf)}",                                 /* point in direction */\
+    @"{OBJECT}",                                                 /* point to brick     */\
+    @[@"{FLOAT;range=(0,inf)}", @"{FLOAT;range=(-inf,inf)}", @"{FLOAT;range=(-inf,inf)}"], /* glide to brick     */\
+    @"brick_blue_1h",                                            /* go N steps back    */\
+    nil                                                          /* come to front      */\
 ]
 
 #define kMotionBrickImageNames @[\
@@ -237,9 +288,17 @@ typedef NS_ENUM(NSInteger, kSoundBrickType) {
 #define kSoundBrickNames @[\
     NSLocalizedString(@"Start sound\%@",nil),\
     NSLocalizedString(@"Stop all sounds",nil),\
-    NSLocalizedString(@"Set volume to %f\%",nil),\
-    NSLocalizedString(@"Change volume by %f",nil),\
+    NSLocalizedString(@"Set volume to %@\%",nil),\
+    NSLocalizedString(@"Change volume by %@",nil),\
     NSLocalizedString(@"Speak %@",nil)\
+]
+
+#define kSoundBrickNameParams @[\
+    @"{SOUND}",                     /* play sound         */\
+    nil,                            /* stop all sounds    */\
+    @"{FLOAT;range=(-inf,inf)}",    /* set volume to      */\
+    @"{FLOAT;range=(-inf,inf)}",    /* change volume to   */\
+    @"{TEXT}"                       /* speak              */\
 ]
 
 #define kSoundBrickImageNames @[\
@@ -276,15 +335,29 @@ typedef NS_ENUM(NSInteger, kLookBrickType) {
 #define kLookBrickNames @[\
     NSLocalizedString(@"Set background\n%@",nil),\
     NSLocalizedString(@"Next background",nil),\
-    NSLocalizedString(@"Set size to %f\%",nil),\
-    NSLocalizedString(@"Change size by %f\%",nil),\
+    NSLocalizedString(@"Set size to %@\%",nil),\
+    NSLocalizedString(@"Change size by %@\%",nil),\
     NSLocalizedString(@"Hide",nil),\
     NSLocalizedString(@"Show",nil),\
-    NSLocalizedString(@"Set transparency\nto %f\%",nil),\
-    NSLocalizedString(@"Change transparency\nby %f\%",nil),\
-    NSLocalizedString(@"Set brightness to %f\%",nil),\
-    NSLocalizedString(@"Change brightness\nby %f\%",nil),\
+    NSLocalizedString(@"Set transparency\nto %@\%",nil),\
+    NSLocalizedString(@"Change transparency\nby %@\%",nil),\
+    NSLocalizedString(@"Set brightness to %@\%",nil),\
+    NSLocalizedString(@"Change brightness\nby %@\%",nil),\
     NSLocalizedString(@"Clear graphic effects",nil)\
+]
+
+#define kLookBrickNameParams @[\
+    @"{LOOK}",                      /* set background           */\
+    nil,                            /* next background          */\
+    @"{FLOAT;range=(-inf,inf)}",    /* set size to              */\
+    @"{FLOAT;range=(-inf,inf)}",    /* change size by N         */\
+    nil,                            /* hide                     */\
+    nil,                            /* show                     */\
+    @"{FLOAT;range=(-inf,inf)}",    /* set ghost effect         */\
+    @"{FLOAT;range=(-inf,inf)}",    /* change ghost effect by N */\
+    @"{FLOAT;range=(-inf,inf)}",    /* set brightness           */\
+    @"{FLOAT;range=(-inf,inf)}",    /* change brightness by N   */\
+    nil                             /* clear graphic effect     */\
 ]
 
 #define kLookBrickImageNames @[\
@@ -324,6 +397,11 @@ typedef NS_ENUM(NSInteger, kVariableBrickType) {
 #define kVariableBrickNames @[\
     NSLocalizedString(@"Set variable\n%@\nto %f",nil),\
     NSLocalizedString(@"Change variable\n%@\nby %f",nil)\
+]
+
+#define kVariableBrickNameParams @[\
+    @[@"{VARIABLE}",@"{FLOAT;range=(-inf,inf)}"],    /* set size to              */\
+    @[@"{VARIABLE}",@"{FLOAT;range=(-inf,inf)}"]     /* change size by N         */\
 ]
 
 #define kVariableBrickImageNames @[\

@@ -31,8 +31,9 @@
 @property (nonatomic, readonly) kBrickCategoryType categoryType;
 @property (nonatomic, readonly) NSInteger brickType;
 @property (nonatomic, readonly, getter = isScriptBrickCell) BOOL scriptBrickCell;
+@property (nonatomic, readonly) UIView *inlineView; // TODO: make this protected!!
 
-//- (void)convertToBrickCellForCategoryType:(kBrickCategoryType)categoryType AndBrickType:(NSInteger)brickType;
+- (void)setupInlineView; // abstract
 
 + (NSInteger)numberOfAvailableBricksForCategoryType:(kBrickCategoryType)categoryType;
 + (CGFloat) brickCellHeightForCategoryType:(kBrickCategoryType)categoryType AndBrickType:(NSInteger)brickType;
