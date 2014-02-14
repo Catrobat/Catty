@@ -415,7 +415,7 @@
         <!--My Programs View Controller - Programs-->
         <scene sceneID="54w-ir-dKC">
             <objects>
-                <tableViewController id="s37-PF-3iN" customClass="MyProgramsViewController" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="MyProgramsViewController" id="s37-PF-3iN" customClass="MyProgramsViewController" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="e7Z-A0-JPr">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -788,8 +788,8 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="mUB-CR-2KD"/>
-        <segue reference="ZYi-SP-eKt"/>
+        <segue reference="y1P-mf-Wvq"/>
         <segue reference="dSt-wf-R4M"/>
+        <segue reference="ZYi-SP-eKt"/>
     </inferredMetricsTieBreakers>
 </document>

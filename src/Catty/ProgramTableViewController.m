@@ -51,13 +51,11 @@
 @interface ProgramTableViewController () <UIActionSheetDelegate, UIAlertViewDelegate, UITextFieldDelegate,
 UINavigationBarDelegate>
 @property (strong, nonatomic) Program *program;
-// FIXME: only temporarily var to indicate wether this is a new empty program or loaded from local program
-//        library (levels-container), remove this after finished implementing [program saveToDisk]
+#warning isNewProgram is only a temporarily var to indicate wether this is a new program or loaded from disk
 @property (nonatomic) BOOL isNewProgram;
 @end
 
 @implementation ProgramTableViewController
-# pragma memory for our pointer-properties
 @synthesize program = _program;
 
 #pragma getter & setters
@@ -382,7 +380,7 @@ UINavigationBarDelegate>
 {
     if (alertView.tag == kRenameAlertViewTag) {
         // OK button
-        if (buttonIndex == 1) {
+        if (buttonIndex == kAlertViewButtonOK) {
             NSString* input = [[alertView textFieldAtIndex:0] text];
             if ([input isEqualToString:self.program.header.programName])
                 return;
@@ -414,7 +412,7 @@ UINavigationBarDelegate>
         }
     } else if (alertView.tag == kNewObjectAlertViewTag) {
         // OK button
-        if (buttonIndex == 1) {
+        if (buttonIndex == kAlertViewButtonOK) {
             NSString* input = [[alertView textFieldAtIndex:0] text];
             if ([input length]) {
                 [self.program.objectList addObject:[self createObjectWithName:input]];
@@ -445,11 +443,11 @@ UINavigationBarDelegate>
     renameProgramAlert.alertViewStyle = UIAlertViewStylePlainTextInput;
     UITextField *textField = [renameProgramAlert textFieldAtIndex:0];
     textField.placeholder = kProgramNamePlaceholder;
-    
+
     // populate with current program name if not default name given
     if (! [self.program.header.programName isEqualToString: kDefaultProgramName])
         textField.text = self.program.header.programName;
-    
+
     [textField setClearButtonMode:UITextFieldViewModeWhileEditing];
     [renameProgramAlert show];
 }

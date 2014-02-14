@@ -20,6 +20,10 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
+// NOTE: needed for ProgramTableViewController.h to make some non-public methods that are needed for testing
+// visible for this class
+#define CATTY_TESTS 1
+
 #import "ProgramTableViewControllerTests.h"
 #import "ProgramTableViewController.h"
 #import "Program.h"
@@ -35,6 +39,10 @@
 #import "SpriteObject.h"
 #import "Brick.h"
 #import "Script.h"
+#import "ActionSheetAlertViewTags.h"
+#import "MyProgramsViewController.h"
+
+// TODO: use mock objects for dependencies and constructor dependency injection, but XCTest does not seem to support this at the moment
 
 @interface ProgramTableViewControllerTests ()
 @property (nonatomic, strong) ProgramTableViewController *programTableViewController;
@@ -122,6 +130,67 @@
     [self.programTableViewController viewWillAppear:NO];
     NSInteger numberOfObjectRows = [self.programTableViewController tableView:self.programTableViewController.tableView numberOfRowsInSection:kObjectSectionIndex];
     XCTAssertEqual(numberOfObjectRows, kMinNumOfObjects, @"Wrong number of object rows in ProgramTableViewController");
+}
+
+- (void)testNewDefaultProgramRenameProgramName
+{
+    NSString *newProgramName = @"This is a test program";
+    [ProgramTableViewControllerTests removeProject:[NSString stringWithFormat:@"%@%@", [Program basePath], newProgramName]];
+    [self.programTableViewController viewDidLoad];
+    [self.programTableViewController viewWillAppear:NO];
+    UIAlertView *alertView = [[UIAlertView alloc] init];
+    alertView.tag = kRenameAlertViewTag;
+    alertView.alertViewStyle = UIAlertViewStylePlainTextInput;
+    UITextField *textField = [alertView textFieldAtIndex:0];
+    textField.text = newProgramName;
+    XCTAssertNoThrow([self.programTableViewController alertView:alertView clickedButtonAtIndex:kAlertViewButtonOK], @"Could not rename program");
+
+    // TODO: write some tests for random input to test input validators and filters
+
+    Program *program = self.programTableViewController.program;
+    XCTAssertNotNil(program.header.programName, @"Name of renamed program is nil, testing an empty string...");
+    XCTAssertTrue([program.header.programName isEqualToString:newProgramName], @"Name of renamed program is %@, but should be %@ ProgramTableViewController", program.header.programName, newProgramName);
+    [ProgramTableViewControllerTests removeProject:[NSString stringWithFormat:@"%@%@", [Program basePath], newProgramName]];
+}
+
+- (void)testNewDefaultProgramRenameProgramNameDelegateTest
+{
+    NSString *newProgramName = @"This is a test program";
+    [ProgramTableViewControllerTests removeProject:[NSString stringWithFormat:@"%@%@", [Program basePath], newProgramName]];
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"iPhone" bundle:[NSBundle mainBundle]];
+    MyProgramsViewController<LevelUpdateDelegate> *myProgramsViewController = [storyboard instantiateViewControllerWithIdentifier:@"MyProgramsViewController"];
+    [myProgramsViewController performSelectorOnMainThread:@selector(view) withObject:nil waitUntilDone:YES];
+    self.programTableViewController.delegate = myProgramsViewController;
+    [self.programTableViewController viewDidLoad];
+    [self.programTableViewController viewWillAppear:NO];
+    UIAlertView *alertView = [[UIAlertView alloc] init];
+    alertView.tag = kRenameAlertViewTag;
+    alertView.alertViewStyle = UIAlertViewStylePlainTextInput;
+    UITextField *textField = [alertView textFieldAtIndex:0];
+    textField.text = newProgramName;
+    XCTAssertNoThrow([self.programTableViewController alertView:alertView clickedButtonAtIndex:kAlertViewButtonOK], @"Could not rename program");
+
+    // TODO: write some tests for random input to test input validators and filters
+
+    NSInteger numberOfRows = [myProgramsViewController tableView:myProgramsViewController.tableView numberOfRowsInSection:0];
+    NSInteger matchNewNameCounter = 0;
+    for (NSInteger counter = 0; counter < numberOfRows; ++counter) {
+        NSIndexPath *indexPath = [NSIndexPath indexPathForRow:counter inSection:0];
+        UITableViewCell *cell = [myProgramsViewController tableView:myProgramsViewController.tableView cellForRowAtIndexPath:indexPath];
+        NSString *levelName = nil;
+        if ([cell conformsToProtocol:@protocol(CatrobatImageCell)]) {
+            UITableViewCell <CatrobatImageCell>* imageCell = (UITableViewCell <CatrobatImageCell>*)cell;
+            levelName = imageCell.titleLabel.text;
+        }
+        NSLog(@"Name of level is: %@", levelName);
+        XCTAssertNotNil(levelName, @"Name of renamed program is nil, testing an empty string...");
+        XCTAssertFalse([levelName isEqualToString:kDefaultProgramName], @"Did not rename level of delegate");
+        if ([levelName isEqualToString:newProgramName]) {
+            ++matchNewNameCounter;
+        }
+    }
+    XCTAssertEqual(matchNewNameCounter, 1, @"Did not rename level of delegate correctly. Number of renamed levels: %d", matchNewNameCounter);
+    [ProgramTableViewControllerTests removeProject:[NSString stringWithFormat:@"%@%@", [Program basePath], newProgramName]];
 }
 
 #pragma mark - Tests for all existing programs

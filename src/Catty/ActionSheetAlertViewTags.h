@@ -20,9 +20,6 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#ifndef Catty_ActionSheetAlertViewTags_h
-#define Catty_ActionSheetAlertViewTags_h
-
 // Action sheet
 #define kSceneActionSheetTag 1
 #define kInvalidProgramNameWarningActionSheetTag 2
@@ -34,4 +31,5 @@
 #define kRenameAlertViewTag 1
 #define kNewObjectAlertViewTag 2
 
-#endif
+// Alert view button indexes
+#define kAlertViewButtonOK 1
