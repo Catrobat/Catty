@@ -212,11 +212,10 @@ UINavigationBarDelegate>
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    // Return the number of rows in the section.
     switch (section) {
-        case kBackgroundIndex:
+        case kBackgroundSectionIndex:
             return kBackgroundObjects;
-        case kObjectIndex:
+        case kObjectSectionIndex:
             return ([self.program.objectList count] - kBackgroundObjects);
         default:
             return 0;
@@ -228,7 +227,7 @@ UINavigationBarDelegate>
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:kObjectCell forIndexPath:indexPath];
     if ([cell conformsToProtocol:@protocol(CatrobatImageCell)]) {
         UITableViewCell <CatrobatImageCell>* imageCell = (UITableViewCell <CatrobatImageCell>*)cell;
-        SpriteObject *object = [self.program.objectList objectAtIndex:(kBackgroundIndex + indexPath.section + indexPath.row)];
+        SpriteObject *object = [self.program.objectList objectAtIndex:(kBackgroundSectionIndex + indexPath.section + indexPath.row)];
 
         imageCell.iconImageView.image = nil;
         NSString *previewImagePath = [object previewImagePath];
@@ -236,9 +235,6 @@ UINavigationBarDelegate>
             imageCell.iconImageView.image = [[UIImage alloc] initWithContentsOfFile:previewImagePath];
             imageCell.iconImageView.contentMode = UIViewContentModeScaleAspectFit;
         }
-        // TODO: remove this when fixed problem with IBOutlets in XCTests
-        if (! imageCell.titleLabel)
-            imageCell.titleLabel = [[UILabel alloc] init];
         imageCell.titleLabel.text = object.name;
     }
     return cell;
@@ -251,7 +247,7 @@ UINavigationBarDelegate>
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
-    // TODO: MID outsource to TableUtil
+    // TODO: outsource to TableUtil
     switch (section) {
         case 0:
             return 45.0;
@@ -305,7 +301,7 @@ UINavigationBarDelegate>
 // Override to support editing the table view.
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (indexPath.section == 1) {
+    if (indexPath.section == kObjectSectionIndex) {
         if (editingStyle == UITableViewCellEditingStyleDelete) {
             // Delete the row from the data source
             [self.program.objectList removeObjectAtIndex:(kObjectIndex + indexPath.row)];
@@ -329,7 +325,7 @@ UINavigationBarDelegate>
             if ([destController isKindOfClass:[ObjectTableViewController class]]) {
                 ObjectTableViewController *tvc = (ObjectTableViewController*) destController;
                 if ([tvc respondsToSelector:@selector(setObject:)]) {
-                    SpriteObject* object = [self.program.objectList objectAtIndex:(kBackgroundIndex + indexPath.section + indexPath.row)];
+                    SpriteObject* object = [self.program.objectList objectAtIndex:(kBackgroundObjectIndex + indexPath.section + indexPath.row)];
                     [destController performSelector:@selector(setObject:) withObject:object];
                 }
             }

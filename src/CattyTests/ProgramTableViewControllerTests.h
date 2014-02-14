@@ -22,6 +22,6 @@
 
 #import <XCTest/XCTest.h>
 
-@interface ProgramTests : XCTestCase
+@interface ProgramTableViewControllerTests : XCTestCase
 
 @end

@@ -44,5 +44,7 @@
 
 // indexes
 #define kNumberOfSectionsInProgramTableViewController 2
-#define kBackgroundIndex 0
-#define kObjectIndex (kBackgroundIndex + 1)
+#define kBackgroundSectionIndex 0
+#define kBackgroundObjectIndex 0
+#define kObjectSectionIndex 1
+#define kObjectIndex 0
