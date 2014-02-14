@@ -314,6 +314,114 @@
     }
 }
 
+- (void)testExistingProgramsTestRemoveBackgroundObjectTestMustFail
+{
+    [ProgramTableViewControllerTests removeProject:[ProgramTableViewControllerTests defaultProjectPath]];
+    NSString *basePath = [Program basePath];
+    NSError *error;
+    NSArray *levels = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:basePath error:&error];
+    NSLogError(error);
+
+    for (NSString *level in levels) {
+        // exclude .DS_Store folder on MACOSX simulator
+        if ([level isEqualToString:@".DS_Store"])
+            continue;
+
+        ProgramLoadingInfo *loadingInfo = [[ProgramLoadingInfo alloc] init];
+        loadingInfo.basePath = [NSString stringWithFormat:@"%@%@/", [Program basePath], level];
+        loadingInfo.visibleName = level;
+        NSLog(@"Project name: %@", level);
+
+        self.programTableViewController.delegate = nil; // no delegate needed for this test
+        [self.programTableViewController loadProgram:loadingInfo];
+        [self.programTableViewController performSelectorOnMainThread:@selector(view) withObject:nil waitUntilDone:YES];
+        [self.programTableViewController viewDidLoad];
+        [self.programTableViewController viewWillAppear:NO];
+
+        NSIndexPath *indexPath = [NSIndexPath indexPathForRow:kBackgroundObjectIndex inSection:kBackgroundSectionIndex];
+        BOOL result = [self.programTableViewController tableView:self.programTableViewController.tableView canEditRowAtIndexPath:indexPath];
+        XCTAssertFalse(result, @"ProgramTableViewController permits removing background cell in program %@", level);
+        self.programTableViewController = nil; // unload program table view controller
+    }
+}
+
+- (void)testExistingProgramsTestRemoveAllObjectsExceptLastOneMustSucceedAndRemoveLastObjectMustFail
+{
+    [ProgramTableViewControllerTests removeProject:[ProgramTableViewControllerTests defaultProjectPath]];
+    NSString *basePath = [Program basePath];
+    NSError *error;
+    NSArray *levels = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:basePath error:&error];
+    NSLogError(error);
+    
+    for (NSString *level in levels) {
+        // exclude .DS_Store folder on MACOSX simulator
+        if ([level isEqualToString:@".DS_Store"])
+            continue;
+
+        ProgramLoadingInfo *loadingInfo = [[ProgramLoadingInfo alloc] init];
+        loadingInfo.basePath = [NSString stringWithFormat:@"%@%@/", [Program basePath], level];
+        loadingInfo.visibleName = level;
+        NSLog(@"Project name: %@", level);
+        Program *program = [self loadProgram:loadingInfo];
+        XCTAssertNotNil(program, @"Could not create program");
+        if (! program) {
+            NSLog(@"Loading level %@ failed", level);
+            continue;
+        }
+
+        self.programTableViewController.delegate = nil; // no delegate needed for this test
+        [self.programTableViewController loadProgram:loadingInfo];
+        [self.programTableViewController performSelectorOnMainThread:@selector(view) withObject:nil waitUntilDone:YES];
+        [self.programTableViewController viewDidLoad];
+        [self.programTableViewController viewWillAppear:NO];
+
+        NSInteger objectCounter = 0;
+        NSInteger totalNumOfObjects = [program.objectList count];
+        for (SpriteObject *object in program.objectList) {
+            // first object = background object => skip removing background object
+            // (already considered in previous test)
+            if (! objectCounter) {
+                objectCounter++;
+                continue;
+            }
+            // remove object at first index row
+            NSIndexPath *indexPath = [NSIndexPath indexPathForRow:kObjectIndex inSection:kObjectSectionIndex];
+            BOOL result = [self.programTableViewController tableView:self.programTableViewController.tableView canEditRowAtIndexPath:indexPath];
+            if (objectCounter < (totalNumOfObjects - 1)) {
+                XCTAssertTrue(result, @"ProgramTableViewController forbids removing object cell (but not last object cell) for object %@ in program %@", object.name, program.header.programName);
+                if (result) {
+                    [self.programTableViewController tableView:self.programTableViewController.tableView commitEditingStyle:UITableViewCellEditingStyleDelete forRowAtIndexPath:indexPath];
+                }
+            } else {
+                XCTAssertFalse(result, @"ProgramTableViewController permits removing last object cell for object %@ in program %@", object.name, program.header.programName);
+            }
+            objectCounter++;
+        }
+
+        // number of remaining table rows in background section must be 1
+        NSInteger numberOfRows = [self.programTableViewController tableView:self.programTableViewController.tableView numberOfRowsInSection:kBackgroundSectionIndex];
+        XCTAssertEqual(numberOfRows, 1, @"Wrong number of background rows in ProgramTableViewController for program: %@", program.header.programName);
+
+        // number of remaining table rows in object section must be 1
+        numberOfRows = [self.programTableViewController tableView:self.programTableViewController.tableView numberOfRowsInSection:kObjectSectionIndex];
+        XCTAssertEqual(numberOfRows, 1, @"Wrong number of object rows in ProgramTableViewController for program: %@", program.header.programName);
+
+        // check if name of last object name is equal to the title of the last remaining table row in the object section
+        NSIndexPath *indexPath = [NSIndexPath indexPathForRow:kObjectIndex inSection:kObjectSectionIndex];
+        UITableViewCell *cell = [self.programTableViewController tableView:self.programTableViewController.tableView cellForRowAtIndexPath:indexPath];
+        NSString *objectCellTitle = nil;
+        if ([cell conformsToProtocol:@protocol(CatrobatImageCell)]) {
+            UITableViewCell <CatrobatImageCell>* imageCell = (UITableViewCell <CatrobatImageCell>*)cell;
+            objectCellTitle = imageCell.titleLabel.text;
+        }
+        SpriteObject *lastObject = [program.objectList objectAtIndex:(totalNumOfObjects-1)];
+        NSLog(@"Name for object cell %@ - should be: %@", objectCellTitle, lastObject.name);
+        XCTAssertNotNil(lastObject.name, @"Name of SpriteObject is nil, testing an empty string...");
+        XCTAssertTrue([objectCellTitle isEqualToString:lastObject.name], @"Wrong name for object cell %@ in program %@. Should be: %@", objectCellTitle, program.header.programName, lastObject.name);
+        self.programTableViewController = nil; // unload program table view controller
+    }
+}
+
 #pragma mark - Getters and setters
 - (ProgramTableViewController*)programTableViewController
 {

@@ -292,13 +292,11 @@ UINavigationBarDelegate>
     return headerView;
 }
 
-// Override to support conditional editing of the table view.
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return ((([self.program.objectList count] - kBackgroundObjects) > kMinNumOfObjects) && (indexPath.section == 1));
+    return ((indexPath.section == kObjectSectionIndex) && (([self.program.objectList count] - kBackgroundObjects) > kMinNumOfObjects));
 }
 
-// Override to support editing the table view.
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (indexPath.section == kObjectSectionIndex) {
