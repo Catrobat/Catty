@@ -34,6 +34,14 @@
 #define kMinNumOfObjects 1
 #define kBackgroundObjects 1
 
+#define kDefaultProgramName NSLocalizedString(@"New Program",@"Default name for new programs")
+#define kBackgroundTitle NSLocalizedString(@"Background",@"Title for Background-Section-Header in program view")
+#define kObjectTitleSingular NSLocalizedString(@"Object",@"Title for Object-Section-Header in program view (singular)")
+#define kObjectTitlePlural NSLocalizedString(@"Objects",@"Title for Object-Section-Header in program view (plural)")
+#define kBackgroundObjectName NSLocalizedString(@"Background",@"Title for Background-Object in program view")
+#define kDefaultObjectName NSLocalizedString(@"My Object",@"Title for first (default) object in program view")
+#define kProgramNamePlaceholder NSLocalizedString(@"Enter your program name here...",@"Placeholder for rename-program-name input field")
+
 // indexes
 #define kBackgroundIndex 0
 #define kObjectIndex (kBackgroundIndex + kBackgroundObjects)

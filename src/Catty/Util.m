@@ -125,13 +125,12 @@
 {
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
     NSString* lastProgram = [userDefaults objectForKey:kLastProgram];
-    if(!lastProgram) {
+    if(! lastProgram) {
         [userDefaults setObject:kDefaultProject forKey:kLastProgram];
         [userDefaults synchronize];
         lastProgram = kDefaultProject;
     }
     return lastProgram;
-    
 }
 
 + (void)setLastProgram:(NSString*)visibleName

@@ -26,6 +26,8 @@
 
 - (void)addLevel:(NSString*)levelName;
 
+- (void)removeLevel:(NSString*)levelName;
+
 - (void)renameOldLevelName:(NSString*)oldLevelName ToNewLevelName:(NSString*)newLevelName;
 
 @end

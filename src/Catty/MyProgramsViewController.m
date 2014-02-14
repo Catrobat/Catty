@@ -116,7 +116,6 @@
 {
     NSString *basePath = [Program basePath];
 
-    NSLog(@"test..");
     // check if level already exists, then update
     BOOL exists = NO;
     for (ProgramLoadingInfo *info in self.levelLoadingInfos) {
@@ -138,20 +137,29 @@
     }
 }
 
+- (void)removeLevel:(NSString*)levelName
+{
+    NSInteger rowIndex = 0;
+    for (ProgramLoadingInfo *info in self.levelLoadingInfos) {
+        if ([info.visibleName isEqualToString:levelName]) {
+            [self.levelLoadingInfos removeObjectAtIndex:rowIndex];
+            NSIndexPath *indexPath = [NSIndexPath indexPathForRow:rowIndex inSection:0];
+            [self.tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationNone];
+            break;
+        }
+        ++rowIndex;
+    }
+}
+
 - (void)renameOldLevelName:(NSString*)oldLevelName ToNewLevelName:(NSString*)newLevelName
 {
-    NSString *basePath = [Program basePath];
-
-    // check if level already exists, then update
     NSInteger rowIndex = 0;
     for (ProgramLoadingInfo *info in self.levelLoadingInfos) {
         if ([info.visibleName isEqualToString:oldLevelName]) {
             ProgramLoadingInfo *newInfo = [[ProgramLoadingInfo alloc] init];
-            newInfo.basePath = [NSString stringWithFormat:@"%@%@/", basePath, newLevelName];
+            newInfo.basePath = [NSString stringWithFormat:@"%@%@/", [Program basePath], newLevelName];
             newInfo.visibleName = newLevelName;
             [self.levelLoadingInfos replaceObjectAtIndex:rowIndex withObject:newInfo];
-
-            // update existing cell
             NSIndexPath *indexPath = [NSIndexPath indexPathForRow:rowIndex inSection:0];
             [self.tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationNone];
             break;
@@ -205,6 +213,7 @@
     if (editingStyle == UITableViewCellEditingStyleDelete) {
         // Delete the row from the data source
         ProgramLoadingInfo *level = [self.levelLoadingInfos objectAtIndex:indexPath.row];
+        // TODO: use program manager for this later
         AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
         [appDelegate.fileManager deleteDirectory:level.basePath];
         [self.levelLoadingInfos removeObject:level];
@@ -220,8 +229,6 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-//    static NSString* segueToNew = kSegueToNew;
-//    [self performSegueWithIdentifier:segueToNew sender:self];
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 

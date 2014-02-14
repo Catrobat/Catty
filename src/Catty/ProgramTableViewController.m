@@ -43,15 +43,7 @@
 #import "UIColor+CatrobatUIColorExtensions.h"
 #import "LevelUpdateDelegate.h"
 #import "SensorHandler.h"
-
-// constraints and default values
-#define kDefaultProgramName NSLocalizedString(@"New Program",@"Default name for new programs") // XXX: BTW: are there any restrictions or limits for the program name???
-#define kBackgroundTitle NSLocalizedString(@"Background",@"Title for Background-Section-Header in program view")
-#define kObjectTitleSingular NSLocalizedString(@"Object",@"Title for Object-Section-Header in program view (singular)")
-#define kObjectTitlePlural NSLocalizedString(@"Objects",@"Title for Object-Section-Header in program view (plural)")
-#define kBackgroundObjectName NSLocalizedString(@"Background",@"Title for Background-Object in program view")
-#define kDefaultObjectName NSLocalizedString(@"My Object",@"Title for first (default) object in program view")
-#define kProgramNamePlaceholder NSLocalizedString(@"Enter your program name here...",@"Placeholder for rename-program-name input field")
+#import "CellTagDefines.h"
 
 // identifiers
 #define kTableHeaderIdentifier @"Header"
@@ -82,13 +74,12 @@ UINavigationBarDelegate>
         _program = [Program createNewProgramWithName:programName];
         SpriteObject* backgroundObject = [self createObjectWithName:kBackgroundObjectName];
         SpriteObject* firstObject = [self createObjectWithName:kDefaultObjectName];
-        // CAUTION: NEVER change order! BackgroundObject is always first object in list
         _program.objectList = [NSMutableArray arrayWithObjects:backgroundObject, firstObject, nil];
-        
+
         // automatically update title
         if (self.navigationItem && _program.header)
             self.navigationItem.title = _program.header.programName;
-        
+
         self.title = _program.header.programName;
         self.isNewProgram = YES;
         [self.delegate addLevel:self.program.header.programName];
@@ -137,7 +128,7 @@ UINavigationBarDelegate>
     {
         //sprite.spriteManagerDelegate = self;
         //sprite.broadcastWaitDelegate = self.broadcastWaitHandler;
-        
+
         // TODO: change!
         for (Script *script in sprite.scriptList) {
             for (Brick *brick in script.brickList) {
@@ -234,16 +225,19 @@ UINavigationBarDelegate>
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ProgramCell" forIndexPath:indexPath];
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:kObjectCell forIndexPath:indexPath];
     if ([cell conformsToProtocol:@protocol(CatrobatImageCell)]) {
         UITableViewCell <CatrobatImageCell>* imageCell = (UITableViewCell <CatrobatImageCell>*)cell;
         SpriteObject *object = [self.program.objectList objectAtIndex:(kBackgroundIndex + indexPath.section + indexPath.row)];
+
         imageCell.iconImageView.image = nil;
         NSString *previewImagePath = [object previewImagePath];
         if (previewImagePath) {
             imageCell.iconImageView.image = [[UIImage alloc] initWithContentsOfFile:previewImagePath];
             imageCell.iconImageView.contentMode = UIViewContentModeScaleAspectFit;
         }
+        if (! imageCell.titleLabel)
+            imageCell.titleLabel = [[UILabel alloc] init];
         imageCell.titleLabel.text = object.name;
     }
     return cell;
@@ -369,12 +363,13 @@ UINavigationBarDelegate>
         if (buttonIndex == actionSheet.destructiveButtonIndex)
         {
             NSLog(@"Delete button pressed");
+            [self.delegate removeLevel:self.program.header.programName];
             [self.program removeFromDisk];
             self.program = nil;
             [self.navigationController popViewControllerAnimated:YES];
         }
     }
-    
+
     // XXX: this is ugly... Why do we use ActionSheets to notify the user? -> Use UIAlertView instead
     if (actionSheet.tag == kInvalidProgramNameWarningActionSheetTag) {
         // OK button

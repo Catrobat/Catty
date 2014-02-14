@@ -179,6 +179,7 @@
 		CA05A19E18286CDA0025421A /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA05A19D18286CDA0025421A /* AssetsLibrary.framework */; };
 		CA43DD361809976900F95B88 /* UIImageView+CatrobatUIImageViewExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = CA43DD351809976900F95B88 /* UIImageView+CatrobatUIImageViewExtensions.m */; };
 		CA43DD3A18099AA300F95B88 /* DarkBlueGradientBorderedImageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CA43DD3918099AA300F95B88 /* DarkBlueGradientBorderedImageCell.m */; };
+		CA52403618AD782600052914 /* ProgramTests.m in Sources */ = {isa = PBXBuildFile; fileRef = CA52403518AD782600052914 /* ProgramTests.m */; };
 		CA640C27182A962500DBA899 /* transparent1x1.png in Resources */ = {isa = PBXBuildFile; fileRef = CA640C26182A962500DBA899 /* transparent1x1.png */; };
 		CA688202180AEF00008A7C99 /* BaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA688201180AEF00008A7C99 /* BaseViewController.m */; };
 		CA688205180B0148008A7C99 /* BaseTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA688204180B0148008A7C99 /* BaseTableViewController.m */; };
@@ -557,6 +558,8 @@
 		CA43DD351809976900F95B88 /* UIImageView+CatrobatUIImageViewExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+CatrobatUIImageViewExtensions.m"; sourceTree = "<group>"; };
 		CA43DD3818099AA300F95B88 /* DarkBlueGradientBorderedImageCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DarkBlueGradientBorderedImageCell.h; sourceTree = "<group>"; };
 		CA43DD3918099AA300F95B88 /* DarkBlueGradientBorderedImageCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DarkBlueGradientBorderedImageCell.m; sourceTree = "<group>"; };
+		CA52403518AD782600052914 /* ProgramTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProgramTests.m; sourceTree = "<group>"; };
+		CA52403718AD786200052914 /* ProgramTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ProgramTests.h; sourceTree = "<group>"; };
 		CA640C26182A962500DBA899 /* transparent1x1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = transparent1x1.png; sourceTree = "<group>"; };
 		CA688200180AEEC2008A7C99 /* BaseTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseTableViewController.h; sourceTree = "<group>"; };
 		CA688201180AEF00008A7C99 /* BaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseViewController.m; sourceTree = "<group>"; };
@@ -1159,6 +1162,7 @@
 				B46B271417703FBE00172837 /* SensorHandlerTests */,
 				B46B270417703F9400172837 /* Supporting Files */,
 				B496F5131775996D004BF78A /* SceneTests */,
+				CA52403418AD77DB00052914 /* IDETests */,
 			);
 			path = CattyTests;
 			sourceTree = "<group>";
@@ -1735,6 +1739,15 @@
 				CA43DD3918099AA300F95B88 /* DarkBlueGradientBorderedImageCell.m */,
 			);
 			name = DarkBlueGradientBorderedImageCell;
+			sourceTree = "<group>";
+		};
+		CA52403418AD77DB00052914 /* IDETests */ = {
+			isa = PBXGroup;
+			children = (
+				CA52403718AD786200052914 /* ProgramTests.h */,
+				CA52403518AD782600052914 /* ProgramTests.m */,
+			);
+			name = IDETests;
 			sourceTree = "<group>";
 		};
 		CA6881FE180AEA85008A7C99 /* TableView */ = {
@@ -2827,6 +2840,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				92C37A441856264700547C1E /* ChangeGhostEffectByNBrickTests.m in Sources */,
+				CA52403618AD782600052914 /* ProgramTests.m in Sources */,
 				92C37A40185625E700547C1E /* HideBrickTests.m in Sources */,
 				92C37A421856262700547C1E /* SetGhostEffectBrickTests.m in Sources */,
 				92C37A48185626B600547C1E /* PlaceAtBrickTests.m in Sources */,
