@@ -207,7 +207,7 @@ UINavigationBarDelegate>
 #pragma mark - UITableView data source
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 2;
+    return kNumberOfSectionsInProgramTableViewController;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -236,6 +236,7 @@ UINavigationBarDelegate>
             imageCell.iconImageView.image = [[UIImage alloc] initWithContentsOfFile:previewImagePath];
             imageCell.iconImageView.contentMode = UIViewContentModeScaleAspectFit;
         }
+        // TODO: remove this when fixed problem with IBOutlets in XCTests
         if (! imageCell.titleLabel)
             imageCell.titleLabel = [[UILabel alloc] init];
         imageCell.titleLabel.text = object.name;

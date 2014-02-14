@@ -42,6 +42,7 @@
 - (void)setUp
 {
     [super setUp];
+    self.programTableViewController.delegate = nil; // no delegate needed for our tests
     [self removeProject:[self defaultProjectPath]];
 }
 
@@ -56,19 +57,16 @@
 #pragma mark - Tests
 - (void)testNewProgramWithDefaultProgramIfFolderExists
 {
-    self.programTableViewController.delegate = nil; // no delegate needed for this test
     NSString *projectPath = [NSString stringWithFormat:@"%@%@/", [Program basePath], kDefaultProgramName];
     XCTAssertFalse([self.fileManager directoryExists:projectPath], @"The ProgramTableViewController did not create the project folder for the new project");
 }
 
 - (void)testNewProgramHasBackgroundObjectCell
 {
-    self.programTableViewController.delegate = nil; // no delegate needed for this test
-    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:kBackgroundIndex inSection:0];
-    [self.programTableViewController.tableView registerClass:[DarkBlueGradientBorderedImageCell class] forCellReuseIdentifier:@"cellId"];
     [self.programTableViewController viewDidLoad];
     [self.programTableViewController viewWillAppear:NO];
 
+    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:kBackgroundIndex inSection:0];
     UITableViewCell *cell = [self.programTableViewController tableView:self.programTableViewController.tableView cellForRowAtIndexPath:indexPath];
     NSString *backgroundCellTitle = nil;
     if ([cell conformsToProtocol:@protocol(CatrobatImageCell)]) {
@@ -77,6 +75,49 @@
     }
 
     XCTAssertTrue([backgroundCellTitle isEqualToString:kBackgroundObjectName], @"The ProgramTableViewController did not create the background cell correctly.");
+}
+
+- (void)testNewProgramHasFirstObjectCell
+{
+    [self.programTableViewController viewDidLoad];
+    [self.programTableViewController viewWillAppear:NO];
+
+    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:1];
+    UITableViewCell *cell = [self.programTableViewController tableView:self.programTableViewController.tableView cellForRowAtIndexPath:indexPath];
+    NSString *firstObjectCellTitle = nil;
+    if ([cell conformsToProtocol:@protocol(CatrobatImageCell)]) {
+        UITableViewCell <CatrobatImageCell>* imageCell = (UITableViewCell <CatrobatImageCell>*)cell;
+        firstObjectCellTitle = imageCell.titleLabel.text;
+    }
+
+    XCTAssertTrue([firstObjectCellTitle isEqualToString:kDefaultObjectName], @"The ProgramTableViewController did not create the first object cell correctly.");
+}
+
+- (void)testNewProgramNumberOfSections
+{
+    [self.programTableViewController viewDidLoad];
+    [self.programTableViewController viewWillAppear:NO];
+
+    NSInteger numberOfSections = [self.programTableViewController numberOfSectionsInTableView:self.programTableViewController.tableView];
+    XCTAssertEqual(numberOfSections, kNumberOfSectionsInProgramTableViewController, @"Wrong number of sections in ProgramTableViewController");
+}
+
+- (void)testNewProgramNumberOfBackgroundRows
+{
+    [self.programTableViewController viewDidLoad];
+    [self.programTableViewController viewWillAppear:NO];
+
+    NSInteger numberOfBackgroundRows = [self.programTableViewController tableView:self.programTableViewController.tableView numberOfRowsInSection:kBackgroundIndex];
+    XCTAssertEqual(numberOfBackgroundRows, kBackgroundObjects, @"Wrong number of background rows in ProgramTableViewController");
+}
+
+- (void)testNewProgramNumberOfObjectRows
+{
+    [self.programTableViewController viewDidLoad];
+    [self.programTableViewController viewWillAppear:NO];
+
+    NSInteger numberOfObjectRows = [self.programTableViewController tableView:self.programTableViewController.tableView numberOfRowsInSection:kObjectIndex];
+    XCTAssertEqual(numberOfObjectRows, kMinNumOfObjects, @"Wrong number of object rows in ProgramTableViewController");
 }
 
 - (void)testExistingProgramsIfFolderExists

@@ -43,5 +43,6 @@
 #define kProgramNamePlaceholder NSLocalizedString(@"Enter your program name here...",@"Placeholder for rename-program-name input field")
 
 // indexes
+#define kNumberOfSectionsInProgramTableViewController 2
 #define kBackgroundIndex 0
-#define kObjectIndex (kBackgroundIndex + kBackgroundObjects)
+#define kObjectIndex (kBackgroundIndex + 1)
