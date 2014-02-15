@@ -199,22 +199,19 @@
 
 - (void)setBrickPatternBackgroundImage
 {
-    //    [self addSubview:self.backgroundImageView];
-    [self sendSubviewToBack:self.backgroundImageView];
     // TODO: Cache!!! Performance!!! Don't load same images (shared between different bricks) again and again
     NSString *imageName = [BrickCell brickPatternImageNameForCategoryType:self.categoryType AndBrickType:self.brickType];
     UIImage *brickBackgroundPatternImage = [UIImage imageNamed:[imageName stringByAppendingString:kBrickBackgroundImageNameSuffix]];
     CGRect frame = CGRectMake(kBrickPatternBackgroundImageViewOffsetX, kBrickPatternBackgroundImageViewOffsetY, (self.frame.size.width-kBrickInlineViewOffsetX), brickBackgroundPatternImage.size.height);
+    self.backgroundImageView.frame = frame;
     UIGraphicsBeginImageContext(self.backgroundImageView.frame.size);
     [brickBackgroundPatternImage drawInRect:self.backgroundImageView.bounds];
     UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
     self.backgroundImageView.backgroundColor = [UIColor colorWithPatternImage:image];
-    self.backgroundImageView.frame = frame;
 }
 
 #pragma mark - setup methods
-
 - (void)setupInlineView
 {
     @throw [NSException exceptionWithName:NSInternalInconsistencyException
