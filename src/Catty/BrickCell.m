@@ -30,10 +30,14 @@
 @property (nonatomic) NSInteger brickType;
 @property (nonatomic) BOOL scriptBrickCell;
 @property (nonatomic, strong) NSArray *brickCategoryColors;
-@property (nonatomic, strong) UIView *backgroundImageView;
-@property (nonatomic, strong) UIImageView *imageView;
-@property (nonatomic, strong) UIView *inlineView;
-@property (nonatomic, strong) UIImageView *overlayView;
+@property (weak, nonatomic) IBOutlet UIImageView *backgroundImageView;
+//@property (nonatomic, strong) UIImageView *backgroundImageView;
+@property (weak, nonatomic) IBOutlet UIImageView *imageView;
+//@property (nonatomic, strong) UIImageView *imageView;
+@property (weak, nonatomic) IBOutlet UIView *inlineView;
+//@property (nonatomic, strong) UIView *inlineView;
+//@property (nonatomic, strong) UIImageView *overlayView;
+@property (nonatomic) BOOL alreadyDone;
 @end
 
 @implementation BrickCell
@@ -97,42 +101,42 @@
     _brickType = brickType;
 }
 
-#pragma mark - layout
-- (void)layoutSubviews
-{
-    [super layoutSubviews];
-    
-    UIImage *brickImage = self.imageView.image;
-    brickImage = [brickImage imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
-    self.overlayView.image = brickImage;
-    self.overlayView.tintColor = [UIColor colorWithRed:0.0f green:0.0f blue:0.0f alpha:0.4f];
-    
-    // TODO get correct frame
-    self.overlayView.frame = self.imageView.frame;
-}
-
-#pragma mark Highlight state / collection view cell delegate
-- (void)setHighlighted:(BOOL)highlighted
-{
-    [super setHighlighted:highlighted];
-    
-    if (highlighted) {
-        [self.contentView addSubview:self.overlayView];
-    } else {
-        
-        [self.overlayView removeFromSuperview];
-    }
-    [self setNeedsDisplay];
-}
-
-- (UIImageView *)overlayView
-{
-    if (!_overlayView) {
-        _overlayView = [[UIImageView alloc] initWithFrame:CGRectZero];
-        // _overlayView.backgroundColor = [UIColor colorWithRed:0.0f green:0.0f blue:0.0f alpha:0.4f];
-    }
-    return _overlayView;
-}
+//#pragma mark - layout
+//- (void)layoutSubviews
+//{
+//    [super layoutSubviews];
+//    
+//    UIImage *brickImage = self.imageView.image;
+//    brickImage = [brickImage imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
+//    self.overlayView.image = brickImage;
+//    self.overlayView.tintColor = [UIColor colorWithRed:0.0f green:0.0f blue:0.0f alpha:0.4f];
+//    
+//    // TODO get correct frame
+//    self.overlayView.frame = self.imageView.frame;
+//}
+//
+//#pragma mark Highlight state / collection view cell delegate
+//- (void)setHighlighted:(BOOL)highlighted
+//{
+//    [super setHighlighted:highlighted];
+//    
+//    if (highlighted) {
+//        [self.contentView addSubview:self.overlayView];
+//    } else {
+//        
+//        [self.overlayView removeFromSuperview];
+//    }
+//    [self setNeedsDisplay];
+//}
+//
+//- (UIImageView *)overlayView
+//{
+//    if (!_overlayView) {
+//        _overlayView = [[UIImageView alloc] initWithFrame:CGRectZero];
+//        // _overlayView.backgroundColor = [UIColor colorWithRed:0.0f green:0.0f blue:0.0f alpha:0.4f];
+//    }
+//    return _overlayView;
+//}
 
 - (NSArray*)brickCategoryColors
 {
@@ -150,27 +154,6 @@
         [self addSubview:_inlineView];
     }
     return _inlineView;
-}
-
-- (UIView*)backgroundImageView
-{
-    if (! _backgroundImageView) {
-        _backgroundImageView = [[UIView alloc] init];
-        [self addSubview:_backgroundImageView];
-        [self sendSubviewToBack:_backgroundImageView];
-    }
-    return _backgroundImageView;
-}
-
-- (UIImageView*)imageView
-{
-    if (! _imageView) {
-        _imageView = [[UIImageView alloc] init];
-        _imageView.backgroundColor = [UIColor clearColor];
-        [self addSubview:_imageView];
-        [self sendSubviewToBack:_imageView];
-    }
-    return _imageView;
 }
 
 #pragma mark - setup for subviews
@@ -199,6 +182,7 @@
         NSError(@"unknown brick shape type given");
     }
     self.inlineView.frame = CGRectMake(kBrickInlineViewOffsetX, inlineViewOffsetY, (self.frame.size.width - kBrickInlineViewOffsetX), inlineViewHeight);
+    self.inlineView.backgroundColor = [UIColor clearColor];
 }
 
 - (void)setBrickPatternImage
@@ -207,20 +191,26 @@
     UIImage *brickPatternImage = [UIImage imageNamed:[BrickCell brickPatternImageNameForCategoryType:self.categoryType AndBrickType:self.brickType]];
     self.imageView.frame = CGRectMake(kBrickPatternImageViewOffsetX, kBrickPatternImageViewOffsetY, brickPatternImage.size.width, brickPatternImage.size.height);
     self.imageView.image = brickPatternImage;
+    self.imageView.backgroundColor = [UIColor clearColor];
+    // just to test layout
+//    self.imageView.layer.borderWidth=1.0f;
+//    self.imageView.layer.borderColor=[UIColor whiteColor].CGColor;
 }
 
 - (void)setBrickPatternBackgroundImage
 {
+    //    [self addSubview:self.backgroundImageView];
+    [self sendSubviewToBack:self.backgroundImageView];
     // TODO: Cache!!! Performance!!! Don't load same images (shared between different bricks) again and again
     NSString *imageName = [BrickCell brickPatternImageNameForCategoryType:self.categoryType AndBrickType:self.brickType];
     UIImage *brickBackgroundPatternImage = [UIImage imageNamed:[imageName stringByAppendingString:kBrickBackgroundImageNameSuffix]];
     CGRect frame = CGRectMake(kBrickPatternBackgroundImageViewOffsetX, kBrickPatternBackgroundImageViewOffsetY, (self.frame.size.width-kBrickInlineViewOffsetX), brickBackgroundPatternImage.size.height);
-    self.backgroundImageView.frame = frame;
     UIGraphicsBeginImageContext(self.backgroundImageView.frame.size);
     [brickBackgroundPatternImage drawInRect:self.backgroundImageView.bounds];
     UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
     self.backgroundImageView.backgroundColor = [UIColor colorWithPatternImage:image];
+    self.backgroundImageView.frame = frame;
 }
 
 #pragma mark - setup methods
@@ -234,8 +224,14 @@
 
 - (void)setupForSubclass:(NSString*)subclassName
 {
+    // only execute this once
+    if (self.alreadyDone) {
+        return;
+    }
+
     NSDictionary *allCategoriesAndBrickTypes = self.classNameBrickNameMap;
-    NSDictionary *categoryAndBrickType = allCategoriesAndBrickTypes[[subclassName stringByReplacingOccurrencesOfString:@"Cell" withString:@""]];
+//    NSDictionary *categoryAndBrickType = allCategoriesAndBrickTypes[[subclassName stringByReplacingOccurrencesOfString:@"Cell" withString:@""]];
+    NSDictionary *categoryAndBrickType = allCategoriesAndBrickTypes[subclassName];
     self.categoryType = (kBrickCategoryType) [categoryAndBrickType[@"categoryType"] integerValue];
     self.brickType = [categoryAndBrickType[@"brickType"] integerValue];
     NSLog(@"SubClassName: %@, BrickCategoryType: %d, BrickType: %d", subclassName, self.categoryType, self.brickType);
@@ -244,11 +240,12 @@
     [self setBrickPatternImage];
     [self setBrickPatternBackgroundImage];
     [self setInlineView];
-    [self setupInlineView];
+//    [self setupInlineView];
+    self.alreadyDone = YES;
 
     // just to test layout
-    //    self.layer.borderWidth=1.0f;
-    //    self.layer.borderColor=[UIColor whiteColor].CGColor;
+//    self.layer.borderWidth=1.0f;
+//    self.layer.borderColor=[UIColor whiteColor].CGColor;
 }
 
 #pragma mark - init
@@ -256,7 +253,9 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
-        [self setupForSubclass:NSStringFromClass([self class])];
+        self.alreadyDone = NO;
+        self.backgroundColor = [UIColor clearColor];
+//        [self setupForSubclass:NSStringFromClass([self class])];
         self.contentMode = UIViewContentModeScaleToFill;
         self.clipsToBounds = NO;
         self.backgroundColor = [UIColor clearColor];
@@ -268,7 +267,9 @@
 {
     self = [super init];
     if (self) {
-        [self setupForSubclass:NSStringFromClass([self class])];
+        self.alreadyDone = NO;
+        self.backgroundColor = [UIColor clearColor];
+//        [self setupForSubclass:NSStringFromClass([self class])];
         self.contentMode = UIViewContentModeScaleToFill;
         self.clipsToBounds = NO;
         self.backgroundColor = [UIColor clearColor];

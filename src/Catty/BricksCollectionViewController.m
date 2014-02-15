@@ -52,7 +52,8 @@
         if (self.brickCategoryType != categoryType)
             continue;
 
-        [self.collectionView registerClass:NSClassFromString([brickTypeName stringByAppendingString:@"Cell"]) forCellWithReuseIdentifier:brickTypeName];
+        [self.collectionView registerNib:[UINib nibWithNibName:@"BrickCell" bundle:nil] forCellWithReuseIdentifier:brickTypeName];
+//        [self.collectionView registerClass:NSClassFromString([brickTypeName stringByAppendingString:@"Cell"]) forCellWithReuseIdentifier:brickTypeName];
     }
 }
 
@@ -95,7 +96,9 @@
         if ((self.brickCategoryType != categoryType) || (indexPath.row != brickType))
             continue;
 
-        return [collectionView dequeueReusableCellWithReuseIdentifier:brickTypeName forIndexPath:indexPath];
+        BrickCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:brickTypeName forIndexPath:indexPath];
+        [cell setupForSubclass:brickTypeName];
+        return cell;
     }
     NSLog(@"Unknown brick type");
     abort();

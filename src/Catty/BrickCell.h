@@ -33,6 +33,7 @@
 @property (nonatomic, readonly, getter = isScriptBrickCell) BOOL scriptBrickCell;
 @property (nonatomic, readonly) UIView *inlineView; // TODO: make this protected!!
 
+- (void)setupForSubclass:(NSString*)subclassName;
 - (void)setupInlineView; // abstract
 
 + (NSInteger)numberOfAvailableBricksForCategoryType:(kBrickCategoryType)categoryType;

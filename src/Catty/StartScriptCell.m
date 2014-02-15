@@ -23,7 +23,7 @@
 #import "StartScriptCell.h"
 
 @interface StartScriptCell ()
-@property (nonatomic, strong) UILabel *textLabel;
+@property (weak, nonatomic) IBOutlet UILabel *textLabel;
 @end
 
 @implementation StartScriptCell
@@ -31,7 +31,6 @@
 - (UILabel*)textLabel
 {
     if (! _textLabel) {
-        _textLabel = [[UILabel alloc] init];
         _textLabel.textColor = [UIColor whiteColor];
         _textLabel.font = [UIFont boldSystemFontOfSize:16];
         [self.inlineView addSubview:_textLabel];
