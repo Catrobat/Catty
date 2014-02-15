@@ -30,14 +30,13 @@
 @property (nonatomic) NSInteger brickType;
 @property (nonatomic) BOOL scriptBrickCell;
 @property (nonatomic, strong) NSArray *brickCategoryColors;
-@property (weak, nonatomic) IBOutlet UIImageView *backgroundImageView;
-//@property (nonatomic, strong) UIImageView *backgroundImageView;
-@property (weak, nonatomic) IBOutlet UIImageView *imageView;
-//@property (nonatomic, strong) UIImageView *imageView;
-@property (weak, nonatomic) IBOutlet UIView *inlineView;
-//@property (nonatomic, strong) UIView *inlineView;
-//@property (nonatomic, strong) UIImageView *overlayView;
 @property (nonatomic) BOOL alreadyDone;
+
+// subviews
+@property (weak, nonatomic) IBOutlet UIImageView *backgroundImageView;
+@property (weak, nonatomic) IBOutlet UIImageView *imageView;
+@property (weak, nonatomic) IBOutlet UIView *inlineView;
+//@property (nonatomic, strong) UIImageView *overlayView;
 @end
 
 @implementation BrickCell
@@ -147,14 +146,14 @@
 }
 
 // lazy instantiation
-- (UIView*)inlineView
-{
-    if (! _inlineView) {
-        _inlineView = [[UIView alloc] init];
-        [self addSubview:_inlineView];
-    }
-    return _inlineView;
-}
+//- (UIView*)inlineView
+//{
+//    if (! _inlineView) {
+//        _inlineView = [[UIView alloc] init];
+//        [self addSubview:_inlineView];
+//    }
+//    return _inlineView;
+//}
 
 #pragma mark - setup for subviews
 - (void)setView
@@ -164,7 +163,7 @@
     self.frame = frame;
 }
 
-- (void)setInlineView
+- (void)set
 {
     CGFloat inlineViewHeight = [BrickCell brickCellHeightForCategoryType:self.categoryType AndBrickType:self.brickType];
     kBrickShapeType brickShapeType = [BrickCell shapeTypeForCategoryType:self.categoryType AndBrickType:self.brickType];
@@ -212,14 +211,14 @@
 }
 
 #pragma mark - setup methods
-- (void)setupInlineView
-{
-    @throw [NSException exceptionWithName:NSInternalInconsistencyException
-                                   reason:[NSString stringWithFormat:@"You must override %@ in a subclass", NSStringFromSelector(_cmd)]
-                                 userInfo:nil];
-}
+//- (void)setupInlineView
+//{
+//    @throw [NSException exceptionWithName:NSInternalInconsistencyException
+//                                   reason:[NSString stringWithFormat:@"You must override %@ in a subclass", NSStringFromSelector(_cmd)]
+//                                 userInfo:nil];
+//}
 
-- (void)setupForSubclass:(NSString*)subclassName
+- (void)setupForInlineViewClassName:(NSString*)inlineViewClassName
 {
     // only execute this once
     if (self.alreadyDone) {
@@ -228,16 +227,16 @@
 
     NSDictionary *allCategoriesAndBrickTypes = self.classNameBrickNameMap;
 //    NSDictionary *categoryAndBrickType = allCategoriesAndBrickTypes[[subclassName stringByReplacingOccurrencesOfString:@"Cell" withString:@""]];
-    NSDictionary *categoryAndBrickType = allCategoriesAndBrickTypes[subclassName];
+    NSDictionary *categoryAndBrickType = allCategoriesAndBrickTypes[inlineViewClassName];
     self.categoryType = (kBrickCategoryType) [categoryAndBrickType[@"categoryType"] integerValue];
     self.brickType = [categoryAndBrickType[@"brickType"] integerValue];
-    NSLog(@"SubClassName: %@, BrickCategoryType: %d, BrickType: %d", subclassName, self.categoryType, self.brickType);
+    NSLog(@"SubClassName: %@, BrickCategoryType: %d, BrickType: %d", inlineViewClassName, self.categoryType, self.brickType);
 
     [self setView];
     [self setBrickPatternImage];
     [self setBrickPatternBackgroundImage];
-    [self setInlineView];
-//    [self setupInlineView];
+    [self set];
+//    [self setup];
     self.alreadyDone = YES;
 
     // just to test layout

@@ -20,31 +20,17 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import "IfLogicEndBrickCell.h"
+#import "StartScriptView.h"
 
-@interface IfLogicEndBrickCell ()
-@property (nonatomic, strong) UILabel *textLabel;
+@interface StartScriptView ()
+@property (weak, nonatomic) IBOutlet UILabel *textLabel;
 @end
 
-@implementation IfLogicEndBrickCell
+@implementation StartScriptView
 
-- (UILabel*)textLabel
-{
-    if (! _textLabel) {
-        _textLabel = [[UILabel alloc] init];
-        self.textLabel.textColor = [UIColor whiteColor];
-        self.textLabel.font = [UIFont boldSystemFontOfSize:16];
-        [self.inlineView addSubview:_textLabel];
-    }
-    return _textLabel;
-}
-
-- (void)setupInlineView
-{
-    NSString *brickTitle = kControlBrickNames[kIfEndBrick];
-    self.textLabel.frame = CGRectMake(kBrickLabelOffsetX, kBrickLabelOffsetY, self.inlineView.frame.size.width, self.inlineView.frame.size.height);
-    self.textLabel.text = brickTitle;
-}
+//    NSString *brickTitle = kControlBrickNames[kProgramStartedBrick];
+//    self.textLabel.frame = CGRectMake(kBrickLabelOffsetX, kBrickLabelOffsetY, self..frame.size.width, self..frame.size.height);
+//    self.textLabel.text = brickTitle;
 
 - (id)initWithFrame:(CGRect)frame
 {

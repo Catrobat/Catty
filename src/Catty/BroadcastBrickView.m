@@ -20,31 +20,31 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import "ForeverBrickCell.h"
+#import "BroadcastBrickView.h"
 
-@interface ForeverBrickCell ()
+@interface BroadcastBrickView ()
 @property (nonatomic, strong) UILabel *textLabel;
 @end
 
-@implementation ForeverBrickCell
+@implementation BroadcastBrickView
 
-- (UILabel*)textLabel
-{
-    if (! _textLabel) {
-        _textLabel = [[UILabel alloc] init];
-        self.textLabel.textColor = [UIColor whiteColor];
-        self.textLabel.font = [UIFont boldSystemFontOfSize:16];
-        [self.inlineView addSubview:_textLabel];
-    }
-    return _textLabel;
-}
-
-- (void)setupInlineView
-{
-    NSString *brickTitle = kControlBrickNames[kForeverBrick];
-    self.textLabel.frame = CGRectMake(kBrickLabelOffsetX, kBrickLabelOffsetY, self.inlineView.frame.size.width, self.inlineView.frame.size.height);
-    self.textLabel.text = brickTitle;
-}
+//- (UILabel*)textLabel
+//{
+//    if (! _textLabel) {
+//        _textLabel = [[UILabel alloc] init];
+//        self.textLabel.textColor = [UIColor whiteColor];
+//        self.textLabel.font = [UIFont boldSystemFontOfSize:16];
+//        [self. addSubview:_textLabel];
+//    }
+//    return _textLabel;
+//}
+//
+//- (void)setup
+//{
+//    NSString *brickTitle = kControlBrickNames[kBroadcastBrick];
+//    self.textLabel.frame = CGRectMake(kBrickLabelOffsetX, kBrickLabelOffsetY, self..frame.size.width, self..frame.size.height);
+//    self.textLabel.text = brickTitle;
+//}
 
 - (id)initWithFrame:(CGRect)frame
 {

@@ -53,7 +53,6 @@
             continue;
 
         [self.collectionView registerNib:[UINib nibWithNibName:@"BrickCell" bundle:nil] forCellWithReuseIdentifier:brickTypeName];
-//        [self.collectionView registerClass:NSClassFromString([brickTypeName stringByAppendingString:@"Cell"]) forCellWithReuseIdentifier:brickTypeName];
     }
 }
 
@@ -97,7 +96,7 @@
             continue;
 
         BrickCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:brickTypeName forIndexPath:indexPath];
-        [cell setupForSubclass:brickTypeName];
+        [cell setupForInlineViewClassName:brickTypeName];
         return cell;
     }
     NSLog(@"Unknown brick type");

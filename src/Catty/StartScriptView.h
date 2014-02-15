@@ -20,39 +20,8 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import "BroadcastWaitBrickCell.h"
+#import "BrickCellInlineView.h"
 
-@interface BroadcastWaitBrickCell ()
-@property (nonatomic, strong) UILabel *textLabel;
-@end
-
-@implementation BroadcastWaitBrickCell
-
-- (UILabel*)textLabel
-{
-    if (! _textLabel) {
-        _textLabel = [[UILabel alloc] init];
-        self.textLabel.textColor = [UIColor whiteColor];
-        self.textLabel.font = [UIFont boldSystemFontOfSize:16];
-        [self.inlineView addSubview:_textLabel];
-    }
-    return _textLabel;
-}
-
-- (void)setupInlineView
-{
-    NSString *brickTitle = kControlBrickNames[kBroadcastWaitBrick];
-    self.textLabel.frame = CGRectMake(kBrickLabelOffsetX, kBrickLabelOffsetY, self.inlineView.frame.size.width, self.inlineView.frame.size.height);
-    self.textLabel.text = brickTitle;
-}
-
-- (id)initWithFrame:(CGRect)frame
-{
-    self = [super initWithFrame:frame];
-    if (self) {
-        // Initialization code
-    }
-    return self;
-}
+@interface StartScriptView : BrickCellInlineView
 
 @end

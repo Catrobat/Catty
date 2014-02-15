@@ -178,28 +178,30 @@
 		CA05A19C18282B2C0025421A /* SearchStoreViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA05A19B18282B2C0025421A /* SearchStoreViewController.m */; };
 		CA05A19E18286CDA0025421A /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA05A19D18286CDA0025421A /* AssetsLibrary.framework */; };
 		CA3671C718AEE5E50004EB15 /* BrickCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA3671C518AEDD400004EB15 /* BrickCell.xib */; };
+		CA3671C918AEF8F60004EB15 /* StartScriptCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA3671C818AEF8F60004EB15 /* StartScriptCell.xib */; };
 		CA43DD361809976900F95B88 /* UIImageView+CatrobatUIImageViewExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = CA43DD351809976900F95B88 /* UIImageView+CatrobatUIImageViewExtensions.m */; };
 		CA43DD3A18099AA300F95B88 /* DarkBlueGradientBorderedImageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CA43DD3918099AA300F95B88 /* DarkBlueGradientBorderedImageCell.m */; };
 		CA52403618AD782600052914 /* ProgramTableViewControllerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = CA52403518AD782600052914 /* ProgramTableViewControllerTests.m */; };
 		CA640C27182A962500DBA899 /* transparent1x1.png in Resources */ = {isa = PBXBuildFile; fileRef = CA640C26182A962500DBA899 /* transparent1x1.png */; };
+		CA68214918AEFF97004FFF01 /* BrickCellInlineView.m in Sources */ = {isa = PBXBuildFile; fileRef = CA68214818AEFF97004FFF01 /* BrickCellInlineView.m */; };
 		CA688202180AEF00008A7C99 /* BaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA688201180AEF00008A7C99 /* BaseViewController.m */; };
 		CA688205180B0148008A7C99 /* BaseTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA688204180B0148008A7C99 /* BaseTableViewController.m */; };
 		CA688208180B2663008A7C99 /* BaseCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA688207180B2663008A7C99 /* BaseCollectionViewController.m */; };
 		CA68820B180B30E0008A7C99 /* BrickCategoriesTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA68820A180B30E0008A7C99 /* BrickCategoriesTableViewController.m */; };
 		CA68820E180B39D0008A7C99 /* ColoredCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CA68820D180B39D0008A7C99 /* ColoredCell.m */; };
 		CA688212180B467B008A7C99 /* OrderedDictionary.m in Sources */ = {isa = PBXBuildFile; fileRef = CA688211180B467B008A7C99 /* OrderedDictionary.m */; };
-		CA75C22618A9603400FC8C2F /* StartScriptCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CA75C22518A9603400FC8C2F /* StartScriptCell.m */; };
-		CA75C22918A9605D00FC8C2F /* WhenScriptCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CA75C22818A9605D00FC8C2F /* WhenScriptCell.m */; };
-		CA75C22C18A9606D00FC8C2F /* BroadcastScriptCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CA75C22B18A9606D00FC8C2F /* BroadcastScriptCell.m */; };
-		CA75C22F18A9612300FC8C2F /* WaitBrickCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CA75C22E18A9612300FC8C2F /* WaitBrickCell.m */; };
-		CA75C23218A9613A00FC8C2F /* BroadcastBrickCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CA75C23118A9613A00FC8C2F /* BroadcastBrickCell.m */; };
-		CA75C23518A9614100FC8C2F /* BroadcastWaitBrickCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CA75C23418A9614100FC8C2F /* BroadcastWaitBrickCell.m */; };
-		CA75C23818A9614C00FC8C2F /* NoteBrickCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CA75C23718A9614C00FC8C2F /* NoteBrickCell.m */; };
-		CA75C23B18A9615600FC8C2F /* ForeverBrickCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CA75C23A18A9615600FC8C2F /* ForeverBrickCell.m */; };
-		CA75C23E18A9616000FC8C2F /* IfLogicBeginBrickCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CA75C23D18A9616000FC8C2F /* IfLogicBeginBrickCell.m */; };
-		CA75C24118A9616800FC8C2F /* IfLogicElseBrickCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CA75C24018A9616800FC8C2F /* IfLogicElseBrickCell.m */; };
-		CA75C24418A9617100FC8C2F /* IfLogicEndBrickCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CA75C24318A9617100FC8C2F /* IfLogicEndBrickCell.m */; };
-		CA75C24718A9617900FC8C2F /* RepeatBrickCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CA75C24618A9617900FC8C2F /* RepeatBrickCell.m */; };
+		CA75C22618A9603400FC8C2F /* StartScriptView.m in Sources */ = {isa = PBXBuildFile; fileRef = CA75C22518A9603400FC8C2F /* StartScriptView.m */; };
+		CA75C22918A9605D00FC8C2F /* WhenScriptView.m in Sources */ = {isa = PBXBuildFile; fileRef = CA75C22818A9605D00FC8C2F /* WhenScriptView.m */; };
+		CA75C22C18A9606D00FC8C2F /* BroadcastScriptView.m in Sources */ = {isa = PBXBuildFile; fileRef = CA75C22B18A9606D00FC8C2F /* BroadcastScriptView.m */; };
+		CA75C22F18A9612300FC8C2F /* WaitBrickView.m in Sources */ = {isa = PBXBuildFile; fileRef = CA75C22E18A9612300FC8C2F /* WaitBrickView.m */; };
+		CA75C23218A9613A00FC8C2F /* BroadcastBrickView.m in Sources */ = {isa = PBXBuildFile; fileRef = CA75C23118A9613A00FC8C2F /* BroadcastBrickView.m */; };
+		CA75C23518A9614100FC8C2F /* BroadcastWaitBrickView.m in Sources */ = {isa = PBXBuildFile; fileRef = CA75C23418A9614100FC8C2F /* BroadcastWaitBrickView.m */; };
+		CA75C23818A9614C00FC8C2F /* NoteBrickView.m in Sources */ = {isa = PBXBuildFile; fileRef = CA75C23718A9614C00FC8C2F /* NoteBrickView.m */; };
+		CA75C23B18A9615600FC8C2F /* ForeverBrickView.m in Sources */ = {isa = PBXBuildFile; fileRef = CA75C23A18A9615600FC8C2F /* ForeverBrickView.m */; };
+		CA75C23E18A9616000FC8C2F /* IfLogicBeginBrickView.m in Sources */ = {isa = PBXBuildFile; fileRef = CA75C23D18A9616000FC8C2F /* IfLogicBeginBrickView.m */; };
+		CA75C24118A9616800FC8C2F /* IfLogicElseBrickView.m in Sources */ = {isa = PBXBuildFile; fileRef = CA75C24018A9616800FC8C2F /* IfLogicElseBrickView.m */; };
+		CA75C24418A9617100FC8C2F /* IfLogicEndBrickView.m in Sources */ = {isa = PBXBuildFile; fileRef = CA75C24318A9617100FC8C2F /* IfLogicEndBrickView.m */; };
+		CA75C24718A9617900FC8C2F /* RepeatBrickView.m in Sources */ = {isa = PBXBuildFile; fileRef = CA75C24618A9617900FC8C2F /* RepeatBrickView.m */; };
 		CA75C24A18A9618000FC8C2F /* PlaceAtBrickCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CA75C24918A9618000FC8C2F /* PlaceAtBrickCell.m */; };
 		CA75C24D18A9618700FC8C2F /* SetXBrickCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CA75C24C18A9618700FC8C2F /* SetXBrickCell.m */; };
 		CA75C25018A9618D00FC8C2F /* SetYBrickCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CA75C24F18A9618D00FC8C2F /* SetYBrickCell.m */; };
@@ -232,7 +234,7 @@
 		CA75C2A118A9626B00FC8C2F /* ClearGraphicEffectBrickCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CA75C2A018A9626B00FC8C2F /* ClearGraphicEffectBrickCell.m */; };
 		CA75C2A418A9627200FC8C2F /* SetVariableBrickCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CA75C2A318A9627200FC8C2F /* SetVariableBrickCell.m */; };
 		CA75C2A718A9627800FC8C2F /* ChangeVariableBrickCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CA75C2A618A9627800FC8C2F /* ChangeVariableBrickCell.m */; };
-		CA75C2B018A9A62B00FC8C2F /* LoopEndBrickCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CA75C2AF18A9A62B00FC8C2F /* LoopEndBrickCell.m */; };
+		CA75C2B018A9A62B00FC8C2F /* LoopEndBrickView.m in Sources */ = {isa = PBXBuildFile; fileRef = CA75C2AF18A9A62B00FC8C2F /* LoopEndBrickView.m */; };
 		CA79A11A182D8A4200618283 /* GDataXMLNode+PrettyFormatterExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = CA79A119182D8A4200618283 /* GDataXMLNode+PrettyFormatterExtensions.m */; };
 		CA79A11E182DA47E00618283 /* BricksCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA79A11D182DA47E00618283 /* BricksCollectionViewController.m */; };
 		CA7AC43A18074B5200904143 /* ic_media_play.png in Resources */ = {isa = PBXBuildFile; fileRef = CA7AC43918074B5200904143 /* ic_media_play.png */; };
@@ -555,8 +557,8 @@
 		CA05A19A18282B2C0025421A /* SearchStoreViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchStoreViewController.h; sourceTree = "<group>"; };
 		CA05A19B18282B2C0025421A /* SearchStoreViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchStoreViewController.m; sourceTree = "<group>"; };
 		CA05A19D18286CDA0025421A /* AssetsLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AssetsLibrary.framework; path = System/Library/Frameworks/AssetsLibrary.framework; sourceTree = SDKROOT; };
-		CA3671C318AEDBF20004EB15 /* StartScriptCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = StartScriptCell.xib; sourceTree = "<group>"; };
-		CA3671C518AEDD400004EB15 /* BrickCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = BrickCell.xib; path = Catty/BrickCell.xib; sourceTree = "<group>"; };
+		CA3671C518AEDD400004EB15 /* BrickCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BrickCell.xib; sourceTree = "<group>"; };
+		CA3671C818AEF8F60004EB15 /* StartScriptCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = StartScriptCell.xib; sourceTree = "<group>"; };
 		CA43DD341809976900F95B88 /* UIImageView+CatrobatUIImageViewExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImageView+CatrobatUIImageViewExtensions.h"; sourceTree = "<group>"; };
 		CA43DD351809976900F95B88 /* UIImageView+CatrobatUIImageViewExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+CatrobatUIImageViewExtensions.m"; sourceTree = "<group>"; };
 		CA43DD3818099AA300F95B88 /* DarkBlueGradientBorderedImageCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DarkBlueGradientBorderedImageCell.h; sourceTree = "<group>"; };
@@ -564,6 +566,8 @@
 		CA52403518AD782600052914 /* ProgramTableViewControllerTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProgramTableViewControllerTests.m; sourceTree = "<group>"; };
 		CA52403718AD786200052914 /* ProgramTableViewControllerTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ProgramTableViewControllerTests.h; sourceTree = "<group>"; };
 		CA640C26182A962500DBA899 /* transparent1x1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = transparent1x1.png; sourceTree = "<group>"; };
+		CA68214718AEFF97004FFF01 /* BrickCellInlineView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BrickCellInlineView.h; sourceTree = "<group>"; };
+		CA68214818AEFF97004FFF01 /* BrickCellInlineView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BrickCellInlineView.m; sourceTree = "<group>"; };
 		CA688200180AEEC2008A7C99 /* BaseTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseTableViewController.h; sourceTree = "<group>"; };
 		CA688201180AEF00008A7C99 /* BaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseViewController.m; sourceTree = "<group>"; };
 		CA688203180B00C1008A7C99 /* BaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseViewController.h; sourceTree = "<group>"; };
@@ -576,30 +580,30 @@
 		CA68820D180B39D0008A7C99 /* ColoredCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ColoredCell.m; sourceTree = "<group>"; };
 		CA688210180B467B008A7C99 /* OrderedDictionary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrderedDictionary.h; sourceTree = "<group>"; };
 		CA688211180B467B008A7C99 /* OrderedDictionary.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrderedDictionary.m; sourceTree = "<group>"; };
-		CA75C22418A9603400FC8C2F /* StartScriptCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StartScriptCell.h; sourceTree = "<group>"; };
-		CA75C22518A9603400FC8C2F /* StartScriptCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StartScriptCell.m; sourceTree = "<group>"; };
-		CA75C22718A9605D00FC8C2F /* WhenScriptCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WhenScriptCell.h; sourceTree = "<group>"; };
-		CA75C22818A9605D00FC8C2F /* WhenScriptCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WhenScriptCell.m; sourceTree = "<group>"; };
-		CA75C22A18A9606D00FC8C2F /* BroadcastScriptCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BroadcastScriptCell.h; sourceTree = "<group>"; };
-		CA75C22B18A9606D00FC8C2F /* BroadcastScriptCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BroadcastScriptCell.m; sourceTree = "<group>"; };
-		CA75C22D18A9612300FC8C2F /* WaitBrickCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WaitBrickCell.h; sourceTree = "<group>"; };
-		CA75C22E18A9612300FC8C2F /* WaitBrickCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WaitBrickCell.m; sourceTree = "<group>"; };
-		CA75C23018A9613A00FC8C2F /* BroadcastBrickCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BroadcastBrickCell.h; sourceTree = "<group>"; };
-		CA75C23118A9613A00FC8C2F /* BroadcastBrickCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BroadcastBrickCell.m; sourceTree = "<group>"; };
-		CA75C23318A9614100FC8C2F /* BroadcastWaitBrickCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BroadcastWaitBrickCell.h; sourceTree = "<group>"; };
-		CA75C23418A9614100FC8C2F /* BroadcastWaitBrickCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BroadcastWaitBrickCell.m; sourceTree = "<group>"; };
-		CA75C23618A9614C00FC8C2F /* NoteBrickCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NoteBrickCell.h; sourceTree = "<group>"; };
-		CA75C23718A9614C00FC8C2F /* NoteBrickCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NoteBrickCell.m; sourceTree = "<group>"; };
-		CA75C23918A9615600FC8C2F /* ForeverBrickCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ForeverBrickCell.h; sourceTree = "<group>"; };
-		CA75C23A18A9615600FC8C2F /* ForeverBrickCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ForeverBrickCell.m; sourceTree = "<group>"; };
-		CA75C23C18A9616000FC8C2F /* IfLogicBeginBrickCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IfLogicBeginBrickCell.h; sourceTree = "<group>"; };
-		CA75C23D18A9616000FC8C2F /* IfLogicBeginBrickCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IfLogicBeginBrickCell.m; sourceTree = "<group>"; };
-		CA75C23F18A9616800FC8C2F /* IfLogicElseBrickCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IfLogicElseBrickCell.h; sourceTree = "<group>"; };
-		CA75C24018A9616800FC8C2F /* IfLogicElseBrickCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IfLogicElseBrickCell.m; sourceTree = "<group>"; };
-		CA75C24218A9617100FC8C2F /* IfLogicEndBrickCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IfLogicEndBrickCell.h; sourceTree = "<group>"; };
-		CA75C24318A9617100FC8C2F /* IfLogicEndBrickCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IfLogicEndBrickCell.m; sourceTree = "<group>"; };
-		CA75C24518A9617900FC8C2F /* RepeatBrickCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RepeatBrickCell.h; sourceTree = "<group>"; };
-		CA75C24618A9617900FC8C2F /* RepeatBrickCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RepeatBrickCell.m; sourceTree = "<group>"; };
+		CA75C22418A9603400FC8C2F /* StartScriptView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StartScriptView.h; sourceTree = "<group>"; };
+		CA75C22518A9603400FC8C2F /* StartScriptView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StartScriptView.m; sourceTree = "<group>"; };
+		CA75C22718A9605D00FC8C2F /* WhenScriptView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WhenScriptView.h; sourceTree = "<group>"; };
+		CA75C22818A9605D00FC8C2F /* WhenScriptView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WhenScriptView.m; sourceTree = "<group>"; };
+		CA75C22A18A9606D00FC8C2F /* BroadcastScriptView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BroadcastScriptView.h; sourceTree = "<group>"; };
+		CA75C22B18A9606D00FC8C2F /* BroadcastScriptView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BroadcastScriptView.m; sourceTree = "<group>"; };
+		CA75C22D18A9612300FC8C2F /* WaitBrickView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WaitBrickView.h; sourceTree = "<group>"; };
+		CA75C22E18A9612300FC8C2F /* WaitBrickView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WaitBrickView.m; sourceTree = "<group>"; };
+		CA75C23018A9613A00FC8C2F /* BroadcastBrickView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BroadcastBrickView.h; sourceTree = "<group>"; };
+		CA75C23118A9613A00FC8C2F /* BroadcastBrickView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BroadcastBrickView.m; sourceTree = "<group>"; };
+		CA75C23318A9614100FC8C2F /* BroadcastWaitBrickView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BroadcastWaitBrickView.h; sourceTree = "<group>"; };
+		CA75C23418A9614100FC8C2F /* BroadcastWaitBrickView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BroadcastWaitBrickView.m; sourceTree = "<group>"; };
+		CA75C23618A9614C00FC8C2F /* NoteBrickView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NoteBrickView.h; sourceTree = "<group>"; };
+		CA75C23718A9614C00FC8C2F /* NoteBrickView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NoteBrickView.m; sourceTree = "<group>"; };
+		CA75C23918A9615600FC8C2F /* ForeverBrickView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ForeverBrickView.h; sourceTree = "<group>"; };
+		CA75C23A18A9615600FC8C2F /* ForeverBrickView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ForeverBrickView.m; sourceTree = "<group>"; };
+		CA75C23C18A9616000FC8C2F /* IfLogicBeginBrickView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IfLogicBeginBrickView.h; sourceTree = "<group>"; };
+		CA75C23D18A9616000FC8C2F /* IfLogicBeginBrickView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IfLogicBeginBrickView.m; sourceTree = "<group>"; };
+		CA75C23F18A9616800FC8C2F /* IfLogicElseBrickView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IfLogicElseBrickView.h; sourceTree = "<group>"; };
+		CA75C24018A9616800FC8C2F /* IfLogicElseBrickView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IfLogicElseBrickView.m; sourceTree = "<group>"; };
+		CA75C24218A9617100FC8C2F /* IfLogicEndBrickView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IfLogicEndBrickView.h; sourceTree = "<group>"; };
+		CA75C24318A9617100FC8C2F /* IfLogicEndBrickView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IfLogicEndBrickView.m; sourceTree = "<group>"; };
+		CA75C24518A9617900FC8C2F /* RepeatBrickView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RepeatBrickView.h; sourceTree = "<group>"; };
+		CA75C24618A9617900FC8C2F /* RepeatBrickView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RepeatBrickView.m; sourceTree = "<group>"; };
 		CA75C24818A9618000FC8C2F /* PlaceAtBrickCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlaceAtBrickCell.h; sourceTree = "<group>"; };
 		CA75C24918A9618000FC8C2F /* PlaceAtBrickCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlaceAtBrickCell.m; sourceTree = "<group>"; };
 		CA75C24B18A9618700FC8C2F /* SetXBrickCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SetXBrickCell.h; sourceTree = "<group>"; };
@@ -664,8 +668,8 @@
 		CA75C2A318A9627200FC8C2F /* SetVariableBrickCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SetVariableBrickCell.m; sourceTree = "<group>"; };
 		CA75C2A518A9627800FC8C2F /* ChangeVariableBrickCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChangeVariableBrickCell.h; sourceTree = "<group>"; };
 		CA75C2A618A9627800FC8C2F /* ChangeVariableBrickCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChangeVariableBrickCell.m; sourceTree = "<group>"; };
-		CA75C2AE18A9A62B00FC8C2F /* LoopEndBrickCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoopEndBrickCell.h; sourceTree = "<group>"; };
-		CA75C2AF18A9A62B00FC8C2F /* LoopEndBrickCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoopEndBrickCell.m; sourceTree = "<group>"; };
+		CA75C2AE18A9A62B00FC8C2F /* LoopEndBrickView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoopEndBrickView.h; sourceTree = "<group>"; };
+		CA75C2AF18A9A62B00FC8C2F /* LoopEndBrickView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoopEndBrickView.m; sourceTree = "<group>"; };
 		CA79A118182D8A4200618283 /* GDataXMLNode+PrettyFormatterExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "GDataXMLNode+PrettyFormatterExtensions.h"; sourceTree = "<group>"; };
 		CA79A119182D8A4200618283 /* GDataXMLNode+PrettyFormatterExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "GDataXMLNode+PrettyFormatterExtensions.m"; sourceTree = "<group>"; };
 		CA79A11C182DA47E00618283 /* BricksCollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BricksCollectionViewController.h; sourceTree = "<group>"; };
@@ -843,11 +847,9 @@
 		29B97314FDCFA39411CA2CEA /* CustomTemplate */ = {
 			isa = PBXGroup;
 			children = (
-				CA3671C518AEDD400004EB15 /* BrickCell.xib */,
-				CA3671C318AEDBF20004EB15 /* StartScriptCell.xib */,
 				81C27425189EF94600827A95 /* Images.xcassets */,
 				CD0CCE54170CB39600B70036 /* Catty */,
-				CD0CCE37170C9F9300B70036 /* Storyboard */,
+				CD0CCE37170C9F9300B70036 /* Storyboard & XIBs */,
 				29B97315FDCFA39411CA2CEA /* Supporting Files */,
 				29B97317FDCFA39411CA2CEA /* Resources */,
 				B46B270317703F9400172837 /* CattyTests */,
@@ -1825,6 +1827,8 @@
 			children = (
 				81C27422189EE41700827A95 /* BrickCell.h */,
 				81C27423189EE41700827A95 /* BrickCell.m */,
+				CA68214718AEFF97004FFF01 /* BrickCellInlineView.h */,
+				CA68214818AEFF97004FFF01 /* BrickCellInlineView.m */,
 				CA75C2A918A9647C00FC8C2F /* ControlBrickCells */,
 				CA75C2AA18A964AB00FC8C2F /* MotionBrickCells */,
 				CA75C2AB18A964C900FC8C2F /* SoundBrickCells */,
@@ -1837,12 +1841,12 @@
 		CA75C2A818A9628A00FC8C2F /* ScriptCells */ = {
 			isa = PBXGroup;
 			children = (
-				CA75C22418A9603400FC8C2F /* StartScriptCell.h */,
-				CA75C22518A9603400FC8C2F /* StartScriptCell.m */,
-				CA75C22718A9605D00FC8C2F /* WhenScriptCell.h */,
-				CA75C22818A9605D00FC8C2F /* WhenScriptCell.m */,
-				CA75C22A18A9606D00FC8C2F /* BroadcastScriptCell.h */,
-				CA75C22B18A9606D00FC8C2F /* BroadcastScriptCell.m */,
+				CA75C22418A9603400FC8C2F /* StartScriptView.h */,
+				CA75C22518A9603400FC8C2F /* StartScriptView.m */,
+				CA75C22718A9605D00FC8C2F /* WhenScriptView.h */,
+				CA75C22818A9605D00FC8C2F /* WhenScriptView.m */,
+				CA75C22A18A9606D00FC8C2F /* BroadcastScriptView.h */,
+				CA75C22B18A9606D00FC8C2F /* BroadcastScriptView.m */,
 			);
 			name = ScriptCells;
 			sourceTree = "<group>";
@@ -1851,26 +1855,26 @@
 			isa = PBXGroup;
 			children = (
 				CA75C2A818A9628A00FC8C2F /* ScriptCells */,
-				CA75C22D18A9612300FC8C2F /* WaitBrickCell.h */,
-				CA75C22E18A9612300FC8C2F /* WaitBrickCell.m */,
-				CA75C23018A9613A00FC8C2F /* BroadcastBrickCell.h */,
-				CA75C23118A9613A00FC8C2F /* BroadcastBrickCell.m */,
-				CA75C23318A9614100FC8C2F /* BroadcastWaitBrickCell.h */,
-				CA75C23418A9614100FC8C2F /* BroadcastWaitBrickCell.m */,
-				CA75C23618A9614C00FC8C2F /* NoteBrickCell.h */,
-				CA75C23718A9614C00FC8C2F /* NoteBrickCell.m */,
-				CA75C23918A9615600FC8C2F /* ForeverBrickCell.h */,
-				CA75C23A18A9615600FC8C2F /* ForeverBrickCell.m */,
-				CA75C23C18A9616000FC8C2F /* IfLogicBeginBrickCell.h */,
-				CA75C23D18A9616000FC8C2F /* IfLogicBeginBrickCell.m */,
-				CA75C23F18A9616800FC8C2F /* IfLogicElseBrickCell.h */,
-				CA75C24018A9616800FC8C2F /* IfLogicElseBrickCell.m */,
-				CA75C24218A9617100FC8C2F /* IfLogicEndBrickCell.h */,
-				CA75C24318A9617100FC8C2F /* IfLogicEndBrickCell.m */,
-				CA75C24518A9617900FC8C2F /* RepeatBrickCell.h */,
-				CA75C24618A9617900FC8C2F /* RepeatBrickCell.m */,
-				CA75C2AE18A9A62B00FC8C2F /* LoopEndBrickCell.h */,
-				CA75C2AF18A9A62B00FC8C2F /* LoopEndBrickCell.m */,
+				CA75C22D18A9612300FC8C2F /* WaitBrickView.h */,
+				CA75C22E18A9612300FC8C2F /* WaitBrickView.m */,
+				CA75C23018A9613A00FC8C2F /* BroadcastBrickView.h */,
+				CA75C23118A9613A00FC8C2F /* BroadcastBrickView.m */,
+				CA75C23318A9614100FC8C2F /* BroadcastWaitBrickView.h */,
+				CA75C23418A9614100FC8C2F /* BroadcastWaitBrickView.m */,
+				CA75C23618A9614C00FC8C2F /* NoteBrickView.h */,
+				CA75C23718A9614C00FC8C2F /* NoteBrickView.m */,
+				CA75C23918A9615600FC8C2F /* ForeverBrickView.h */,
+				CA75C23A18A9615600FC8C2F /* ForeverBrickView.m */,
+				CA75C23C18A9616000FC8C2F /* IfLogicBeginBrickView.h */,
+				CA75C23D18A9616000FC8C2F /* IfLogicBeginBrickView.m */,
+				CA75C23F18A9616800FC8C2F /* IfLogicElseBrickView.h */,
+				CA75C24018A9616800FC8C2F /* IfLogicElseBrickView.m */,
+				CA75C24218A9617100FC8C2F /* IfLogicEndBrickView.h */,
+				CA75C24318A9617100FC8C2F /* IfLogicEndBrickView.m */,
+				CA75C24518A9617900FC8C2F /* RepeatBrickView.h */,
+				CA75C24618A9617900FC8C2F /* RepeatBrickView.m */,
+				CA75C2AE18A9A62B00FC8C2F /* LoopEndBrickView.h */,
+				CA75C2AF18A9A62B00FC8C2F /* LoopEndBrickView.m */,
 			);
 			name = ControlBrickCells;
 			sourceTree = "<group>";
@@ -2043,12 +2047,14 @@
 			name = "Brick+UnitTestingExtensions";
 			sourceTree = "<group>";
 		};
-		CD0CCE37170C9F9300B70036 /* Storyboard */ = {
+		CD0CCE37170C9F9300B70036 /* Storyboard & XIBs */ = {
 			isa = PBXGroup;
 			children = (
 				C3F2950B1813C63200E37D61 /* iPhone.storyboard */,
+				CA3671C518AEDD400004EB15 /* BrickCell.xib */,
+				CA3671C818AEF8F60004EB15 /* StartScriptCell.xib */,
 			);
-			name = Storyboard;
+			name = "Storyboard & XIBs";
 			path = Catty;
 			sourceTree = "<group>";
 		};
@@ -2601,6 +2607,7 @@
 				B4BCF3EB170ECE19008EDF3A /* new.png in Resources */,
 				B4AACF4D18321D8D00445C9F /* Default-480h@2x.png in Resources */,
 				9220BE5E1837B9EF005B12C7 /* activity@2x.png in Resources */,
+				CA3671C918AEF8F60004EB15 /* StartScriptCell.xib in Resources */,
 				B4BCF3EC170ECE19008EDF3A /* new@2x.png in Resources */,
 				C3BF74DE1811452800134B77 /* stage_dialog_button_toggle_axis_pressed.png in Resources */,
 				9293276B18573A1600CD92EE /* forwardbutton.png in Resources */,
@@ -2669,7 +2676,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B4E7D257176EF20F00EC8AD8 /* Scene.m in Sources */,
-				CA75C23B18A9615600FC8C2F /* ForeverBrickCell.m in Sources */,
+				CA75C23B18A9615600FC8C2F /* ForeverBrickView.m in Sources */,
 				CA688205180B0148008A7C99 /* BaseTableViewController.m in Sources */,
 				B40C306E170ECC30000B872F /* CatrobatBaseCell.m in Sources */,
 				CA75C24A18A9618000FC8C2F /* PlaceAtBrickCell.m in Sources */,
@@ -2683,6 +2690,7 @@
 				C34B44F817F1D8D200624730 /* ChangeBrightnessByNBrick.m in Sources */,
 				CA688202180AEF00008A7C99 /* BaseViewController.m in Sources */,
 				B4D940B1170EC5C2003DDBFA /* CatrobatTableViewController.m in Sources */,
+				CA68214918AEFF97004FFF01 /* BrickCellInlineView.m in Sources */,
 				B4D940A0170EC249003DDBFA /* AppDelegate.m in Sources */,
 				1D60589B0D05DD56006BFB54 /* main.m in Sources */,
 				CD0CCF51170CB39700B70036 /* BaseSprite.m in Sources */,
@@ -2694,7 +2702,7 @@
 				816C788617D62B7C0029A4E6 /* ProgramTableViewController.m in Sources */,
 				CD0CCF55170CB39700B70036 /* BroadcastWaitBrick.m in Sources */,
 				CA75C26E18A961FC00FC8C2F /* GoNStepsBackBrickCell.m in Sources */,
-				CA75C22918A9605D00FC8C2F /* WhenScriptCell.m in Sources */,
+				CA75C22918A9605D00FC8C2F /* WhenScriptView.m in Sources */,
 				CA75C29E18A9626400FC8C2F /* ChangeBrightnessByNBrickCell.m in Sources */,
 				B46475301770F60500CD277F /* AudioManager.m in Sources */,
 				CD0CCF56170CB39700B70036 /* BroadcastWaitHandler.m in Sources */,
@@ -2717,7 +2725,7 @@
 				920F20C41837F27E003E9EE0 /* SaveToProjectActivity.m in Sources */,
 				CA75C26218A961B800FC8C2F /* TurnRightBrickCell.m in Sources */,
 				CD0CCF9B170CB39700B70036 /* LoopEndBrick.m in Sources */,
-				CA75C22C18A9606D00FC8C2F /* BroadcastScriptCell.m in Sources */,
+				CA75C22C18A9606D00FC8C2F /* BroadcastScriptView.m in Sources */,
 				CD0CCFA4170CB39700B70036 /* NextLookBrick.m in Sources */,
 				CD0CCFA6170CB39700B70036 /* Parser.m in Sources */,
 				CD0CCFA7170CB39700B70036 /* PlaceAtBrick.m in Sources */,
@@ -2735,10 +2743,10 @@
 				9200F006182E3CA0008BF678 /* CatrobatAudioPlayer.m in Sources */,
 				CD0CCFBF170CB39700B70036 /* SetLookBrick.m in Sources */,
 				CD0CCFC0170CB39700B70036 /* SetSizeToBrick.m in Sources */,
-				CA75C2B018A9A62B00FC8C2F /* LoopEndBrickCell.m in Sources */,
+				CA75C2B018A9A62B00FC8C2F /* LoopEndBrickView.m in Sources */,
 				CD0CCFC3170CB39700B70036 /* SetVolumeToBrick.m in Sources */,
 				CA75C28918A9623500FC8C2F /* SetSizeToBrickCell.m in Sources */,
-				CA75C22618A9603400FC8C2F /* StartScriptCell.m in Sources */,
+				CA75C22618A9603400FC8C2F /* StartScriptView.m in Sources */,
 				CD0CCFC4170CB39700B70036 /* SetXBrick.m in Sources */,
 				CA75C2A418A9627200FC8C2F /* SetVariableBrickCell.m in Sources */,
 				CD0CCFC5170CB39700B70036 /* SetYBrick.m in Sources */,
@@ -2753,14 +2761,14 @@
 				CA68820E180B39D0008A7C99 /* ColoredCell.m in Sources */,
 				CD0CCFD1170CB39700B70036 /* StopAllSoundsBrick.m in Sources */,
 				CA75C29518A9624F00FC8C2F /* SetGhostEffectBrickCell.m in Sources */,
-				CA75C23218A9613A00FC8C2F /* BroadcastBrickCell.m in Sources */,
+				CA75C23218A9613A00FC8C2F /* BroadcastBrickView.m in Sources */,
 				C34B44F417F1D2C700624730 /* ClearGraphicEffectBrick.m in Sources */,
 				CD0CCFD7170CB39700B70036 /* TurnLeftBrick.m in Sources */,
 				CD0CCFD8170CB39700B70036 /* TurnRightBrick.m in Sources */,
 				CA75C29B18A9625C00FC8C2F /* SetBrightnessBrickCell.m in Sources */,
 				CD0CCFDA170CB39700B70036 /* Util.m in Sources */,
 				CD0CCFDB170CB39700B70036 /* WaitBrick.m in Sources */,
-				CA75C24118A9616800FC8C2F /* IfLogicElseBrickCell.m in Sources */,
+				CA75C24118A9616800FC8C2F /* IfLogicElseBrickView.m in Sources */,
 				CD0CCFDC170CB39700B70036 /* WhenScript.m in Sources */,
 				CAEDFB8117EF759500FDED0E /* ObjectTableViewController.m in Sources */,
 				CD639C7B170DF52600FA67DA /* SpriteObject.m in Sources */,
@@ -2774,7 +2782,7 @@
 				CA75C25318A9619400FC8C2F /* ChangeXByNBrickCell.m in Sources */,
 				B4D940B0170EC2B7003DDBFA /* zip.c in Sources */,
 				B4D940D4170ECA15003DDBFA /* ImageCache.m in Sources */,
-				CA75C23818A9614C00FC8C2F /* NoteBrickCell.m in Sources */,
+				CA75C23818A9614C00FC8C2F /* NoteBrickView.m in Sources */,
 				B4D940DC170ECB65003DDBFA /* ContinueImageCell.m in Sources */,
 				81FAEE2F17E781AB0052BB2B /* ScriptCollectionViewController.m in Sources */,
 				81FAEE3217E782140052BB2B /* LooksTableViewController.m in Sources */,
@@ -2785,7 +2793,7 @@
 				B40C3071170ECC49000B872F /* DarkBlueGradientImageCell.m in Sources */,
 				CA79A11A182D8A4200618283 /* GDataXMLNode+PrettyFormatterExtensions.m in Sources */,
 				B4BCF407170ECFA2008EDF3A /* MyProgramsViewController.m in Sources */,
-				CA75C23E18A9616000FC8C2F /* IfLogicBeginBrickCell.m in Sources */,
+				CA75C23E18A9616000FC8C2F /* IfLogicBeginBrickView.m in Sources */,
 				B4BCF414170ED1F2008EDF3A /* CatrobatInformation.m in Sources */,
 				B4BCF41B170ED300008EDF3A /* ProgramDetailStoreViewController.m in Sources */,
 				B4BCF421170ED3B7008EDF3A /* TTTAttributedLabel.m in Sources */,
@@ -2808,7 +2816,7 @@
 				CD8CC8BC1724346200239EBF /* ForumWebViewController.m in Sources */,
 				CA75C28018A9622100FC8C2F /* SpeakBrickCell.m in Sources */,
 				CA75C2A118A9626B00FC8C2F /* ClearGraphicEffectBrickCell.m in Sources */,
-				CA75C23518A9614100FC8C2F /* BroadcastWaitBrickCell.m in Sources */,
+				CA75C23518A9614100FC8C2F /* BroadcastWaitBrickView.m in Sources */,
 				B45A5827173253E5000E038F /* SetVariableBrick.m in Sources */,
 				B45A582C17325442000E038F /* UserVariable.m in Sources */,
 				B45A583117327887000E038F /* Formula.m in Sources */,
@@ -2819,7 +2827,7 @@
 				B40228961732A58E004C4942 /* IfLogicEndBrick.m in Sources */,
 				B40228A51732ADF4004C4942 /* PointToBrick.m in Sources */,
 				B470688A1733BA9600EC880D /* VariablesContainer.m in Sources */,
-				CA75C24418A9617100FC8C2F /* IfLogicEndBrickCell.m in Sources */,
+				CA75C24418A9617100FC8C2F /* IfLogicEndBrickView.m in Sources */,
 				B470688F1733D6CC00EC880D /* ChangeVariableBrick.m in Sources */,
 				B44F32A01737AC2E00BD97AC /* ProgramManager.m in Sources */,
 				B44F32A51737BBB100BD97AC /* SensorHandler.m in Sources */,
@@ -2831,13 +2839,13 @@
 				CA75C25918A961A300FC8C2F /* IfOnEdgeBounceBrickCell.m in Sources */,
 				B4365CE51758AF8F00B4D0A6 /* Logger.m in Sources */,
 				CDFEFCB41758CBC8002B5B0E /* IfOnEdgeBounceBrick.m in Sources */,
-				CA75C24718A9617900FC8C2F /* RepeatBrickCell.m in Sources */,
+				CA75C24718A9617900FC8C2F /* RepeatBrickView.m in Sources */,
 				B4DA23D1175E26550079B381 /* SensorManager.m in Sources */,
 				B4F499B0175E8387002E1BBD /* PullableView.m in Sources */,
 				B4A92DCD175F8DF700608667 /* SSZipArchive.m in Sources */,
 				B46B271B17708E6700172837 /* LoopBeginBrick.m in Sources */,
 				B4A92DD2175FD4B800608667 /* GDataXMLNode.m in Sources */,
-				CA75C22F18A9612300FC8C2F /* WaitBrickCell.m in Sources */,
+				CA75C22F18A9612300FC8C2F /* WaitBrickView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

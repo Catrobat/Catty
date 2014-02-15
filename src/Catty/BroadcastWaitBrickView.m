@@ -20,8 +20,39 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import "BrickCell.h"
+#import "BroadcastWaitBrickView.h"
 
-@interface BroadcastWaitBrickCell : BrickCell
+@interface BroadcastWaitBrickView ()
+@property (nonatomic, strong) UILabel *textLabel;
+@end
+
+@implementation BroadcastWaitBrickView
+
+//- (UILabel*)textLabel
+//{
+//    if (! _textLabel) {
+//        _textLabel = [[UILabel alloc] init];
+//        self.textLabel.textColor = [UIColor whiteColor];
+//        self.textLabel.font = [UIFont boldSystemFontOfSize:16];
+//        [self. addSubview:_textLabel];
+//    }
+//    return _textLabel;
+//}
+//
+//- (void)setup
+//{
+//    NSString *brickTitle = kControlBrickNames[kBroadcastWaitBrick];
+//    self.textLabel.frame = CGRectMake(kBrickLabelOffsetX, kBrickLabelOffsetY, self..frame.size.width, self..frame.size.height);
+//    self.textLabel.text = brickTitle;
+//}
+
+- (id)initWithFrame:(CGRect)frame
+{
+    self = [super initWithFrame:frame];
+    if (self) {
+        // Initialization code
+    }
+    return self;
+}
 
 @end

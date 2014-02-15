@@ -60,8 +60,7 @@
     // register brick cells for current brick category
     NSDictionary *allCategoriesAndBrickTypes = self.classNameBrickNameMap;
     for (NSString *brickTypeName in allCategoriesAndBrickTypes) {
-        NSString *brickCellClassName = [brickTypeName stringByAppendingString:@"Cell"];
-        [self.collectionView registerClass:NSClassFromString(brickCellClassName) forCellWithReuseIdentifier:brickTypeName];
+        [self.collectionView registerNib:[UINib nibWithNibName:@"BrickCell" bundle:nil] forCellWithReuseIdentifier:brickTypeName];
     }
 }
 
@@ -172,13 +171,17 @@
 
     if (indexPath.row == 0) {
         // case it's a script brick
-        NSString *scriptSubClassName = NSStringFromClass([script class]);
-        return [collectionView dequeueReusableCellWithReuseIdentifier:scriptSubClassName forIndexPath:indexPath];
+        NSString *scriptInlineViewClassName = NSStringFromClass([script class]);
+        BrickCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:scriptInlineViewClassName forIndexPath:indexPath];
+        [cell setupForInlineViewClassName:scriptInlineViewClassName];
+        return cell;
     } else {
         // case it's a normal brick
         Brick *brick = [script.brickList objectAtIndex:(indexPath.row - 1)];
-        NSString *brickSubClassName = NSStringFromClass([brick class]);
-        return [collectionView dequeueReusableCellWithReuseIdentifier:brickSubClassName forIndexPath:indexPath];
+        NSString *brickInlineViewClassName = NSStringFromClass([brick class]);
+        BrickCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:brickInlineViewClassName forIndexPath:indexPath];
+        [cell setupForInlineViewClassName:brickInlineViewClassName];
+        return cell;
     }
     NSError(@"Unknown brick type");
 }

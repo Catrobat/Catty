@@ -20,25 +20,39 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import <UIKit/UIKit.h>
-#import "ProgramDefines.h"
-#import "UIDefines.h"
+#import "ForeverBrickView.h"
 
-@class Brick;
+@interface ForeverBrickView ()
+@property (nonatomic, strong) UILabel *textLabel;
+@end
 
-@interface BrickCell : UICollectionViewCell
+@implementation ForeverBrickView
 
-@property (nonatomic, readonly) kBrickCategoryType categoryType;
-@property (nonatomic, readonly) NSInteger brickType;
-@property (nonatomic, readonly, getter = isScriptBrickCellInlineView) BOOL scriptBrickCellInlineView;
-@property (nonatomic, readonly) UIView *inlineView;
+//- (UILabel*)textLabel
+//{
+//    if (! _textLabel) {
+//        _textLabel = [[UILabel alloc] init];
+//        self.textLabel.textColor = [UIColor whiteColor];
+//        self.textLabel.font = [UIFont boldSystemFontOfSize:16];
+//        [self. addSubview:_textLabel];
+//    }
+//    return _textLabel;
+//}
+//
+//- (void)setup
+//{
+//    NSString *brickTitle = kControlBrickNames[kForeverBrick];
+//    self.textLabel.frame = CGRectMake(kBrickLabelOffsetX, kBrickLabelOffsetY, self..frame.size.width, self..frame.size.height);
+//    self.textLabel.text = brickTitle;
+//}
 
-- (void)setupForInlineViewClassName:(NSString*)inlineViewClassName;
-//- (void)setupInlineView; // abstract
-
-+ (NSInteger)numberOfAvailableBricksForCategoryType:(kBrickCategoryType)categoryType;
-+ (CGFloat) brickCellHeightForCategoryType:(kBrickCategoryType)categoryType AndBrickType:(NSInteger)brickType;
-+ (kBrickShapeType)shapeTypeForCategoryType:(kBrickCategoryType)categoryType AndBrickType:(NSInteger)brickType;
-+ (NSString*)brickPatternImageNameForCategoryType:(kBrickCategoryType)categoryType AndBrickType:(NSInteger)brickType;
+- (id)initWithFrame:(CGRect)frame
+{
+    self = [super initWithFrame:frame];
+    if (self) {
+        // Initialization code
+    }
+    return self;
+}
 
 @end

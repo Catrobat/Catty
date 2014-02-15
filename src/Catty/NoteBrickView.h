@@ -20,25 +20,8 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import <UIKit/UIKit.h>
-#import "ProgramDefines.h"
-#import "UIDefines.h"
+#import "BrickCellInlineView.h"
 
-@class Brick;
-
-@interface BrickCell : UICollectionViewCell
-
-@property (nonatomic, readonly) kBrickCategoryType categoryType;
-@property (nonatomic, readonly) NSInteger brickType;
-@property (nonatomic, readonly, getter = isScriptBrickCellInlineView) BOOL scriptBrickCellInlineView;
-@property (nonatomic, readonly) UIView *inlineView;
-
-- (void)setupForInlineViewClassName:(NSString*)inlineViewClassName;
-//- (void)setupInlineView; // abstract
-
-+ (NSInteger)numberOfAvailableBricksForCategoryType:(kBrickCategoryType)categoryType;
-+ (CGFloat) brickCellHeightForCategoryType:(kBrickCategoryType)categoryType AndBrickType:(NSInteger)brickType;
-+ (kBrickShapeType)shapeTypeForCategoryType:(kBrickCategoryType)categoryType AndBrickType:(NSInteger)brickType;
-+ (NSString*)brickPatternImageNameForCategoryType:(kBrickCategoryType)categoryType AndBrickType:(NSInteger)brickType;
+@interface NoteBrickView : BrickCellInlineView
 
 @end
