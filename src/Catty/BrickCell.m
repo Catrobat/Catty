@@ -435,13 +435,16 @@
     }
 
     // case: more than one subview
-    // TODO: make x-offset calculation much more smarter...
     NSArray *partLabels = [labelTitle componentsSeparatedByString:@"%@"];
     NSUInteger totalNumberOfPartLabels = [partLabels count];
     NSUInteger totalNumberOfSubViews = totalNumberOfPartLabels + totalNumberOfParams;
     NSMutableArray *subviews = [NSMutableArray arrayWithCapacity:totalNumberOfSubViews];
     NSInteger counter = 0;
     for (NSString *partLabelTitle in partLabels) {
+
+        // -----------------------------------
+        // TODO: make x-offset calculation much more smarter...
+
         UILabel *textLabel = [UIUtil newDefaultBrickLabelWithFrame:remainingFrame AndText:partLabelTitle];
 //        textLabel.backgroundColor = [UIColor blueColor];
         remainingFrame.origin.x += (textLabel.frame.size.width + kBrickInputFieldLeftMargin);
@@ -450,7 +453,11 @@
 
         // determine UI component
         if (counter < totalNumberOfParams) {
-            // TODO: continue to implement here
+
+            // -----------------------------------
+            // TODO: This is only code used for testing purposes. TO BE REFACTORED...
+            // TODO: Pickers, Pluralization, Hook Ups only for inputFields ...
+
             CGRect inputViewFrame = remainingFrame;
             inputViewFrame.origin.y += kBrickInputFieldTopMargin;
             inputViewFrame.size.height -= (kBrickInputFieldTopMargin + kBrickInputFieldBottomMargin);
@@ -465,9 +472,30 @@
                 UITextField *textField = [UIUtil newDefaultBrickTextFieldWithFrame:inputViewFrame];
                 textField.enabled = NO;
                 inputField = (UIView*)textField;
-            } else {
+            } else if ([afterLabelParam rangeOfString:@"TEXT"].location != NSNotFound) {
+                inputViewFrame.origin.y = (remainingFrame.size.height - kBrickInputFieldHeight)/2.0f+(kBrickInputFieldTopMargin - kBrickInputFieldBottomMargin);
+                inputViewFrame.size.height = kBrickInputFieldHeight;
+                UITextField *textField = [UIUtil newDefaultBrickTextFieldWithFrame:inputViewFrame];
+                textField.enabled = NO;
+                inputField = (UIView*)textField;
+            } else if ([afterLabelParam rangeOfString:@"MESSAGE"].location != NSNotFound) {
                 UIPickerView *pickerView = [[UIPickerView alloc] initWithFrame:inputViewFrame];
                 inputField = (UIView*)pickerView;
+            } else if ([afterLabelParam rangeOfString:@"OBJECT"].location != NSNotFound) {
+                UIPickerView *pickerView = [[UIPickerView alloc] initWithFrame:inputViewFrame];
+                inputField = (UIView*)pickerView;
+            } else if ([afterLabelParam rangeOfString:@"SOUND"].location != NSNotFound) {
+                UIPickerView *pickerView = [[UIPickerView alloc] initWithFrame:inputViewFrame];
+                inputField = (UIView*)pickerView;
+            } else if ([afterLabelParam rangeOfString:@"LOOK"].location != NSNotFound) {
+                UIPickerView *pickerView = [[UIPickerView alloc] initWithFrame:inputViewFrame];
+                inputField = (UIView*)pickerView;
+            } else if ([afterLabelParam rangeOfString:@"VARIABLE"].location != NSNotFound) {
+                UIPickerView *pickerView = [[UIPickerView alloc] initWithFrame:inputViewFrame];
+                inputField = (UIView*)pickerView;
+            } else {
+                NSError(@"unknown data type %@ given", afterLabelParam);
+                abort();
             }
 
             remainingFrame.origin.x += (inputField.frame.size.width + kBrickInputFieldRightMargin);

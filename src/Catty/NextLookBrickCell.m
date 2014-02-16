@@ -22,7 +22,16 @@
 
 #import "NextLookBrickCell.h"
 
+@interface NextLookBrickCell ()
+@property (nonatomic, strong) UILabel *textLabel;
+@end
+
 @implementation NextLookBrickCell
+
+- (void)hookUpSubViews:(NSArray *)inlineViewSubViews
+{
+    self.textLabel = inlineViewSubViews[0];
+}
 
 - (id)initWithFrame:(CGRect)frame
 {

@@ -22,7 +22,19 @@
 
 #import "ChangeBrightnessByNBrickCell.h"
 
+@interface ChangeBrightnessByNBrickCell ()
+@property (nonatomic, strong) UILabel *firstRowTextLabel;
+@property (nonatomic, strong) UILabel *secondRowTextLabel;
+@end
+
 @implementation ChangeBrightnessByNBrickCell
+
+- (void)hookUpSubViews:(NSArray *)inlineViewSubViews
+{
+    self.firstRowTextLabel = inlineViewSubViews[0];
+    self.secondRowTextLabel = inlineViewSubViews[1];
+    self.brightnessTextField = inlineViewSubViews[2];
+}
 
 - (id)initWithFrame:(CGRect)frame
 {

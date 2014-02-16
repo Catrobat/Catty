@@ -24,4 +24,6 @@
 
 @interface SetVolumeToBrickCell : BrickCell
 
+@property (nonatomic, strong) UITextField *volumeTextField;
+
 @end

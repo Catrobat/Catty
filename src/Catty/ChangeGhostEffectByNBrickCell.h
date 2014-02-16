@@ -24,4 +24,6 @@
 
 @interface ChangeGhostEffectByNBrickCell : BrickCell
 
+@property (nonatomic, strong) UITextField *transparencyTextField;
+
 @end

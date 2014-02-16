@@ -22,7 +22,16 @@
 
 #import "IfOnEdgeBounceBrickCell.h"
 
+@interface IfOnEdgeBounceBrickCell ()
+@property (nonatomic, strong) UILabel *textLabel;
+@end
+
 @implementation IfOnEdgeBounceBrickCell
+
+- (void)hookUpSubViews:(NSArray *)inlineViewSubViews
+{
+    self.textLabel = inlineViewSubViews[0];
+}
 
 - (id)initWithFrame:(CGRect)frame
 {

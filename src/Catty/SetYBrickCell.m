@@ -22,7 +22,17 @@
 
 #import "SetYBrickCell.h"
 
+@interface SetYBrickCell ()
+@property (nonatomic, strong) UILabel *textLabel;
+@end
+
 @implementation SetYBrickCell
+
+- (void)hookUpSubViews:(NSArray *)inlineViewSubViews
+{
+    self.textLabel = inlineViewSubViews[0];
+    self.yCoordTextField = inlineViewSubViews[1];
+}
 
 - (id)initWithFrame:(CGRect)frame
 {

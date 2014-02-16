@@ -22,7 +22,16 @@
 
 #import "StopAllSoundsBrickCell.h"
 
+@interface StopAllSoundsBrickCell ()
+@property (nonatomic, strong) UILabel *textLabel;
+@end
+
 @implementation StopAllSoundsBrickCell
+
+- (void)hookUpSubViews:(NSArray *)inlineViewSubViews
+{
+    self.textLabel = inlineViewSubViews[0];
+}
 
 - (id)initWithFrame:(CGRect)frame
 {

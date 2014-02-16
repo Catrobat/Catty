@@ -22,7 +22,17 @@
 
 #import "ChangeYByNBrickCell.h"
 
+@interface ChangeYByNBrickCell ()
+@property (nonatomic, strong) UILabel *textLabel;
+@end
+
 @implementation ChangeYByNBrickCell
+
+- (void)hookUpSubViews:(NSArray *)inlineViewSubViews
+{
+    self.textLabel = inlineViewSubViews[0];
+    self.yCoordTextField = inlineViewSubViews[1];
+}
 
 - (id)initWithFrame:(CGRect)frame
 {

@@ -22,7 +22,21 @@
 
 #import "SetGhostEffectBrickCell.h"
 
+@interface SetGhostEffectBrickCell ()
+@property (nonatomic, strong) UILabel *firstRowTextLabel;
+@property (nonatomic, strong) UILabel *secondRowLeftTextLabel;
+@property (nonatomic, strong) UILabel *secondRowRightTextLabel;
+@end
+
 @implementation SetGhostEffectBrickCell
+
+- (void)hookUpSubViews:(NSArray *)inlineViewSubViews
+{
+    self.firstRowTextLabel = inlineViewSubViews[0];
+    self.secondRowLeftTextLabel = inlineViewSubViews[1];
+    self.transparencyTextField = inlineViewSubViews[2];
+    self.secondRowRightTextLabel = inlineViewSubViews[3];
+}
 
 - (id)initWithFrame:(CGRect)frame
 {

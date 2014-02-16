@@ -22,7 +22,16 @@
 
 #import "ClearGraphicEffectBrickCell.h"
 
+@interface ClearGraphicEffectBrickCell ()
+@property (nonatomic, strong) UILabel *textLabel;
+@end
+
 @implementation ClearGraphicEffectBrickCell
+
+- (void)hookUpSubViews:(NSArray *)inlineViewSubViews
+{
+    self.textLabel = inlineViewSubViews[0];
+}
 
 - (id)initWithFrame:(CGRect)frame
 {

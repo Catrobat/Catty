@@ -24,4 +24,6 @@
 
 @interface TurnRightBrickCell : BrickCell
 
+@property (nonatomic, strong) UITextField *degreesTextField;
+
 @end

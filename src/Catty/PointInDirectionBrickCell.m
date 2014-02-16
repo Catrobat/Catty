@@ -22,7 +22,19 @@
 
 #import "PointInDirectionBrickCell.h"
 
+@interface PointInDirectionBrickCell ()
+@property (nonatomic, strong) UILabel *leftTextLabel;
+@property (nonatomic, strong) UILabel *rightTextLabel;
+@end
+
 @implementation PointInDirectionBrickCell
+
+- (void)hookUpSubViews:(NSArray *)inlineViewSubViews
+{
+    self.leftTextLabel = inlineViewSubViews[0];
+    self.degreesTextField = inlineViewSubViews[1];
+    self.rightTextLabel = inlineViewSubViews[2];
+}
 
 - (id)initWithFrame:(CGRect)frame
 {

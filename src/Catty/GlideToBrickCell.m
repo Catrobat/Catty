@@ -22,7 +22,25 @@
 
 #import "GlideToBrickCell.h"
 
+@interface GlideToBrickCell ()
+@property (nonatomic, strong) UILabel *firstRowLeftLabel;
+@property (nonatomic, strong) UILabel *firstRowRightLabel;
+@property (nonatomic, strong) UILabel *secondRowLeftLabel;
+@property (nonatomic, strong) UILabel *secondRowRightLabel;
+@end
+
 @implementation GlideToBrickCell
+
+- (void)hookUpSubViews:(NSArray *)inlineViewSubViews
+{
+    self.firstRowLeftLabel = inlineViewSubViews[0];
+    self.durationTextField = inlineViewSubViews[1];
+    self.firstRowRightLabel = inlineViewSubViews[2];
+    self.secondRowLeftLabel = inlineViewSubViews[3];
+    self.xCoordTextField = inlineViewSubViews[4];
+    self.secondRowRightLabel = inlineViewSubViews[5];
+    self.yCoordTextField = inlineViewSubViews[6];
+}
 
 - (id)initWithFrame:(CGRect)frame
 {

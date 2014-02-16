@@ -24,4 +24,6 @@
 
 @interface SpeakBrickCell : BrickCell
 
+@property (nonatomic, strong) UITextField *speakTextField;
+
 @end

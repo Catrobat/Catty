@@ -22,7 +22,17 @@
 
 #import "SpeakBrickCell.h"
 
+@interface SpeakBrickCell ()
+@property (nonatomic, strong) UILabel *textLabel;
+@end
+
 @implementation SpeakBrickCell
+
+- (void)hookUpSubViews:(NSArray *)inlineViewSubViews
+{
+    self.textLabel = inlineViewSubViews[0];
+    self.speakTextField = inlineViewSubViews[1];
+}
 
 - (id)initWithFrame:(CGRect)frame
 {

@@ -22,7 +22,17 @@
 
 #import "SetLookBrickCell.h"
 
+@interface SetLookBrickCell ()
+@property (nonatomic, strong) UILabel *textLabel;
+@end
+
 @implementation SetLookBrickCell
+
+- (void)hookUpSubViews:(NSArray *)inlineViewSubViews
+{
+    self.textLabel = inlineViewSubViews[0];
+    self.lookPickerView = inlineViewSubViews[1];
+}
 
 - (id)initWithFrame:(CGRect)frame
 {

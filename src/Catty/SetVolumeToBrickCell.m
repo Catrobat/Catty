@@ -22,7 +22,19 @@
 
 #import "SetVolumeToBrickCell.h"
 
+@interface SetVolumeToBrickCell ()
+@property (nonatomic, strong) UILabel *rightTextLabel;
+@property (nonatomic, strong) UILabel *leftTextLabel;
+@end
+
 @implementation SetVolumeToBrickCell
+
+- (void)hookUpSubViews:(NSArray *)inlineViewSubViews
+{
+    self.leftTextLabel = inlineViewSubViews[0];
+    self.volumeTextField = inlineViewSubViews[1];
+    self.rightTextLabel = inlineViewSubViews[2];
+}
 
 - (id)initWithFrame:(CGRect)frame
 {

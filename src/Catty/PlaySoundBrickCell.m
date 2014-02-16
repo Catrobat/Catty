@@ -22,7 +22,17 @@
 
 #import "PlaySoundBrickCell.h"
 
+@interface PlaySoundBrickCell ()
+@property (nonatomic, strong) UILabel *textLabel;
+@end
+
 @implementation PlaySoundBrickCell
+
+- (void)hookUpSubViews:(NSArray *)inlineViewSubViews
+{
+    self.textLabel = inlineViewSubViews[0];
+    self.soundPickerView = inlineViewSubViews[1];
+}
 
 - (id)initWithFrame:(CGRect)frame
 {

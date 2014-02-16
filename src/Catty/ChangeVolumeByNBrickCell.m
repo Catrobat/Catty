@@ -22,7 +22,16 @@
 
 #import "ChangeVolumeByNBrickCell.h"
 
+@interface ChangeVolumeByNBrickCell ()
+@property (nonatomic, strong) UILabel *textLabel;
+@end
+
 @implementation ChangeVolumeByNBrickCell
+
+- (void)hookUpSubViews:(NSArray *)inlineViewSubViews
+{
+    self.textLabel = inlineViewSubViews[0];
+}
 
 - (id)initWithFrame:(CGRect)frame
 {

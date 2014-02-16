@@ -24,17 +24,6 @@
 #define kBtnOKTitle NSLocalizedString(@"OK", @"OK button for views")
 #define kBtnDeleteTitle NSLocalizedString(@"Delete", @"Delete button for views")
 
-#define kBrickLabelFontSize 16.0f
-#define kBrickTextFieldFontSize 15.0f
-#define kBrickInputFieldHeight 22.0f
-#define kBrickInputFieldMinWidth 60.0f
-#define kBrickInputFieldTopMargin 2.0f
-#define kBrickInputFieldBottomMargin 2.0f
-#define kBrickInputFieldLeftMargin 4.0f
-#define kBrickInputFieldRightMargin 4.0f
-#define kBrickInputFieldMinRowHeight (kBrickInputFieldHeight + 4.0f)
-#define kDefaultImageCellBorderWidth 1.0f
-
 // brick UI config
 // brick categories
 typedef NS_ENUM(NSInteger, kBrickCategoryType) {
@@ -101,6 +90,17 @@ typedef NS_ENUM(NSInteger, kBrickCategoryType) {
 #define kBrickHeight3h @94
 #define kBrickHeightControl1h @62
 #define kBrickHeightControl2h @88
+
+#define kBrickLabelFontSize 16.0f
+#define kBrickTextFieldFontSize 15.0f
+#define kBrickInputFieldHeight 28.0f
+#define kBrickInputFieldMinWidth 60.0f
+#define kBrickInputFieldTopMargin 4.0f
+#define kBrickInputFieldBottomMargin 5.0f
+#define kBrickInputFieldLeftMargin 4.0f
+#define kBrickInputFieldRightMargin 4.0f
+#define kBrickInputFieldMinRowHeight (kBrickInputFieldHeight + 4.0f)
+#define kDefaultImageCellBorderWidth 1.0f
 
 // control bricks
 typedef NS_ENUM(NSInteger, kControlBrickType) {
@@ -232,7 +232,7 @@ typedef NS_ENUM(NSInteger, kMotionBrickType) {
     NSLocalizedString(@"Point in direction %@°",nil),\
     NSLocalizedString(@"Point towards\n%@",nil),\
     NSLocalizedString(@"Glide %@ second(s)\nto X: %@ Y: %@",nil),\
-    NSLocalizedString(@"Go back %@ layer",nil),\
+    NSLocalizedString(@"Go back %@ step(s)",nil),\
     NSLocalizedString(@"Go to front",nil)\
 ]
 
@@ -249,7 +249,7 @@ typedef NS_ENUM(NSInteger, kMotionBrickType) {
     @"{FLOAT;range=(-inf,inf)}",                                 /* point in direction */\
     @"{OBJECT}",                                                 /* point to brick     */\
     @[@"{FLOAT;range=(0,inf)}", @"{FLOAT;range=(-inf,inf)}", @"{FLOAT;range=(-inf,inf)}"], /* glide to brick     */\
-    @"brick_blue_1h",                                            /* go N steps back    */\
+    @"{INT;range=[0,inf)}",                                      /* go N steps back    */\
     @[]                                                          /* come to front      */\
 ]
 
@@ -297,7 +297,7 @@ typedef NS_ENUM(NSInteger, kSoundBrickType) {
 };
 
 #define kSoundBrickNames @[\
-    NSLocalizedString(@"Start sound\%@",nil),\
+    NSLocalizedString(@"Start sound\n%@",nil),\
     NSLocalizedString(@"Stop all sounds",nil),\
     NSLocalizedString(@"Set volume to %@\%",nil),\
     NSLocalizedString(@"Change volume by %@",nil),\
@@ -405,9 +405,10 @@ typedef NS_ENUM(NSInteger, kVariableBrickType) {
     kChangeVariableBrick = 1
 };
 
+// TODO: change this after code supports more than 2 lines
 #define kVariableBrickNames @[\
-    NSLocalizedString(@"Set variable\n%@\nto %f",nil),\
-    NSLocalizedString(@"Change variable\n%@\nby %f",nil)\
+    NSLocalizedString(@"Set variable %@\nto %@",nil),\
+    NSLocalizedString(@"Change variable %@\nby %@",nil)\
 ]
 
 #define kVariableBrickNameParams @[\
@@ -434,7 +435,7 @@ typedef NS_ENUM(NSInteger, kBrickShapeType) {
 // bricks that are note shown in BricksCollectionViewController, because they are dependent on other bricks
 #define kUnselectableBricks @[\
     @[@(kIfElseBrick), @(kIfEndBrick), @(kLoopEndBrick)], /* control bricks  */\
-    @[],                                                  /* motion bricks   */\
+    @[@(kGoNStepsBackBrick), @(kComeToFrontBrick)],       /* motion bricks   */\
     @[],                                                  /* sound bricks    */\
     @[],                                                  /* look bricks     */\
     @[]                                                   /* variable bricks */\

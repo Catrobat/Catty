@@ -22,7 +22,17 @@
 
 #import "PointToBrickCell.h"
 
+@interface PointToBrickCell ()
+@property (nonatomic, strong) UILabel *textLabel;
+@end
+
 @implementation PointToBrickCell
+
+- (void)hookUpSubViews:(NSArray *)inlineViewSubViews
+{
+    self.textLabel = inlineViewSubViews[0];
+    self.objectPickerView = inlineViewSubViews[1];
+}
 
 - (id)initWithFrame:(CGRect)frame
 {

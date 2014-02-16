@@ -22,7 +22,19 @@
 
 #import "ChangeSizeByNBrickCell.h"
 
+@interface ChangeSizeByNBrickCell ()
+@property (nonatomic, strong) UILabel *leftTextLabel;
+@property (nonatomic, strong) UILabel *rightTextLabel;
+@end
+
 @implementation ChangeSizeByNBrickCell
+
+- (void)hookUpSubViews:(NSArray *)inlineViewSubViews
+{
+    self.leftTextLabel = inlineViewSubViews[0];
+    self.sizeTextField = inlineViewSubViews[1];
+    self.rightTextLabel = inlineViewSubViews[2];
+}
 
 - (id)initWithFrame:(CGRect)frame
 {

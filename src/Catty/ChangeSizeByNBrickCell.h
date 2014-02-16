@@ -24,4 +24,6 @@
 
 @interface ChangeSizeByNBrickCell : BrickCell
 
+@property (nonatomic, strong) UITextField *sizeTextField;
+
 @end

@@ -22,7 +22,19 @@
 
 #import "TurnRightBrickCell.h"
 
+@interface TurnRightBrickCell ()
+@property (nonatomic, strong) UILabel *leftTextLabel;
+@property (nonatomic, strong) UILabel *rightTextLabel;
+@end
+
 @implementation TurnRightBrickCell
+
+- (void)hookUpSubViews:(NSArray *)inlineViewSubViews
+{
+    self.leftTextLabel = inlineViewSubViews[0];
+    self.degreesTextField = inlineViewSubViews[1];
+    self.rightTextLabel = inlineViewSubViews[2];
+}
 
 - (id)initWithFrame:(CGRect)frame
 {

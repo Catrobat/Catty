@@ -24,4 +24,8 @@
 
 @interface GlideToBrickCell : BrickCell
 
+@property (nonatomic, strong) UITextField *durationTextField;
+@property (nonatomic, strong) UITextField *xCoordTextField;
+@property (nonatomic, strong) UITextField *yCoordTextField;
+
 @end

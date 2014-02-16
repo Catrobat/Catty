@@ -22,7 +22,19 @@
 
 #import "SetBrightnessBrickCell.h"
 
+@interface SetBrightnessBrickCell ()
+@property (nonatomic, strong) UILabel *leftTextLabel;
+@property (nonatomic, strong) UILabel *rightTextLabel;
+@end
+
 @implementation SetBrightnessBrickCell
+
+- (void)hookUpSubViews:(NSArray *)inlineViewSubViews
+{
+    self.leftTextLabel = inlineViewSubViews[0];
+    self.brightnessTextField = inlineViewSubViews[1];
+    self.rightTextLabel = inlineViewSubViews[2];
+}
 
 - (id)initWithFrame:(CGRect)frame
 {

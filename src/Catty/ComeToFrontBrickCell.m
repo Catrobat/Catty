@@ -22,7 +22,16 @@
 
 #import "ComeToFrontBrickCell.h"
 
+@interface ComeToFrontBrickCell ()
+@property (nonatomic, strong) UILabel *textLabel;
+@end
+
 @implementation ComeToFrontBrickCell
+
+- (void)hookUpSubViews:(NSArray *)inlineViewSubViews
+{
+    self.textLabel = inlineViewSubViews[0];
+}
 
 - (id)initWithFrame:(CGRect)frame
 {

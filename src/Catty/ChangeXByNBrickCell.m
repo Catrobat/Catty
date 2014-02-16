@@ -22,7 +22,17 @@
 
 #import "ChangeXByNBrickCell.h"
 
+@interface ChangeXByNBrickCell ()
+@property (nonatomic, strong) UILabel *textLabel;
+@end
+
 @implementation ChangeXByNBrickCell
+
+- (void)hookUpSubViews:(NSArray *)inlineViewSubViews
+{
+    self.textLabel = inlineViewSubViews[0];
+    self.xCoordTextField = inlineViewSubViews[1];
+}
 
 - (id)initWithFrame:(CGRect)frame
 {

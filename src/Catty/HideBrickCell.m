@@ -22,7 +22,16 @@
 
 #import "HideBrickCell.h"
 
+@interface HideBrickCell ()
+@property (nonatomic, strong) UILabel *textLabel;
+@end
+
 @implementation HideBrickCell
+
+- (void)hookUpSubViews:(NSArray *)inlineViewSubViews
+{
+    self.textLabel = inlineViewSubViews[0];
+}
 
 - (id)initWithFrame:(CGRect)frame
 {

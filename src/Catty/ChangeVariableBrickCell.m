@@ -22,7 +22,20 @@
 
 #import "ChangeVariableBrickCell.h"
 
+@interface ChangeVariableBrickCell ()
+@property (nonatomic, strong) UILabel *firstRowTextLabel;
+@property (nonatomic, strong) UILabel *thirdRowTextLabel;
+@end
+
 @implementation ChangeVariableBrickCell
+
+- (void)hookUpSubViews:(NSArray *)inlineViewSubViews
+{
+    self.firstRowTextLabel = inlineViewSubViews[0];
+    self.variablePickerView = inlineViewSubViews[1];
+    self.thirdRowTextLabel = inlineViewSubViews[2];
+    self.valueTextField = inlineViewSubViews[3];
+}
 
 - (id)initWithFrame:(CGRect)frame
 {

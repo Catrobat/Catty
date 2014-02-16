@@ -22,7 +22,17 @@
 
 #import "GoNStepsBackBrickCell.h"
 
+@interface GoNStepsBackBrickCell ()
+@property (nonatomic, strong) UILabel *textLabel;
+@end
+
 @implementation GoNStepsBackBrickCell
+
+- (void)hookUpSubViews:(NSArray *)inlineViewSubViews
+{
+    self.textLabel = inlineViewSubViews[0];
+    self.stepsTextField = inlineViewSubViews[1];
+}
 
 - (id)initWithFrame:(CGRect)frame
 {

@@ -24,4 +24,6 @@
 
 @interface MoveNStepsBrickCell : BrickCell
 
+@property (nonatomic, strong) UITextField *stepsTextField;
+
 @end
