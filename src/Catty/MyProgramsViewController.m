@@ -36,6 +36,7 @@
 #import "QuartzCore/QuartzCore.h"
 
 @interface MyProgramsViewController () <LevelUpdateDelegate>
+@property (nonatomic, strong) NSMutableDictionary *assertCache;
 @property (nonatomic, strong) NSMutableArray *levelLoadingInfos;
 @end
 
@@ -43,6 +44,17 @@
 
 @synthesize levelLoadingInfos = _levelLoadingInfos;
 
+#pragma mark - getters and setters
+- (NSMutableDictionary*)assertCache
+{
+    // lazy instantiation
+    if (! _assertCache) {
+        _assertCache = [NSMutableDictionary dictionaryWithCapacity:[self.levelLoadingInfos count]];
+    }
+    return _assertCache;
+}
+
+#pragma mark - initialization
 - (id)initWithStyle:(UITableViewStyle)style
 {
     self = [super initWithStyle:style];
@@ -52,6 +64,7 @@
     return self;
 }
 
+#pragma mark - view events
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -65,8 +78,9 @@
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+    self.assertCache = nil;
 }
+
 -(void)viewWillAppear:(BOOL)animated
 {
     [self.navigationController setNavigationBarHidden:NO];
@@ -180,17 +194,17 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     static NSString *CellIdentifier = kImageCell;
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-
-    if (! cell) {
-        NSLog(@"This should not happen - since ios5 - storyboards manages allocation of cells");
-        abort();
-    }
-
     if ([cell conformsToProtocol:@protocol(CatrobatImageCell)]) {
-        UITableViewCell <CatrobatImageCell>* imageCell = (UITableViewCell <CatrobatImageCell>*)cell;
+        UITableViewCell <CatrobatImageCell>* imageCell = (UITableViewCell<CatrobatImageCell>*)cell;
         [self configureImageCell:imageCell atIndexPath:indexPath];
     }
-    cell.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"darkblue"]];
+    NSString *patternName = @"pattern";
+    UIColor* color = [self.assertCache objectForKey:patternName];
+    if (! color) {
+        color = [UIColor colorWithPatternImage:[UIImage imageNamed:@"darkblue"]];
+        [self.assertCache setObject:color forKey:patternName];
+    }
+    cell.backgroundColor = color;
     return cell;
 }
 
@@ -254,37 +268,38 @@
     cell.titleLabel.text = info.visibleName;
     
 //    cell.iconImageView.image = [UIImage imageNamed:@"programs"];
-    
+
     NSString* imagePath = [[NSString alloc] initWithFormat:@"%@/small_screenshot.png", info.basePath];
-    
-    UIImage* image = [UIImage imageWithContentsOfFile:imagePath];
-    if(!image) {
-        imagePath = [[NSString alloc] initWithFormat:@"%@/screenshot.png", info.basePath];
+
+    UIImage* image = [self.assertCache objectForKey:imagePath];
+    if (! image) {
         image = [UIImage imageWithContentsOfFile:imagePath];
+        if (!image) {
+            imagePath = [[NSString alloc] initWithFormat:@"%@/screenshot.png", info.basePath];
+            image = [UIImage imageWithContentsOfFile:imagePath];
+        }
+        
+        if (!image) {
+            imagePath = [[NSString alloc] initWithFormat:@"%@/manual_screenshot.png", info.basePath];
+            image = [UIImage imageWithContentsOfFile:imagePath];
+        }
+        
+        if (!image) {
+            imagePath = [[NSString alloc] initWithFormat:@"%@/automatic_screenshot.png", info.basePath];
+            image = [UIImage imageWithContentsOfFile:imagePath];
+        }
+        if (!image) {
+            image = [UIImage imageNamed:@"programs"];
+        }
+        //    CGSize imageSize = image.size;
+        //    UIGraphicsBeginImageContext(imageSize);
+        //    [image drawInRect:CGRectMake(0, 0, imageSize.width, imageSize.height)];
+        //    image = UIGraphicsGetImageFromCurrentImageContext();
+        //    UIGraphicsEndImageContext();
+        [self.assertCache setObject:image forKey:imagePath];
     }
-    
-    if(!image) {
-        imagePath = [[NSString alloc] initWithFormat:@"%@/manual_screenshot.png", info.basePath];
-        image = [UIImage imageWithContentsOfFile:imagePath];
-    }
-    
-    if(!image) {
-        imagePath = [[NSString alloc] initWithFormat:@"%@/automatic_screenshot.png", info.basePath];
-        image = [UIImage imageWithContentsOfFile:imagePath];
-    }
-    if(!image) {
-        image = [UIImage imageNamed:@"programs"];
-    }
-    
-//    CGSize imageSize = image.size;
-//    UIGraphicsBeginImageContext(imageSize);
-//    [image drawInRect:CGRectMake(0, 0, imageSize.width, imageSize.height)];
-//    image = UIGraphicsGetImageFromCurrentImageContext();
-//    UIGraphicsEndImageContext();
-    
     cell.iconImageView.image = image;
-    
-    
+
 //    dispatch_queue_t imageQueue = dispatch_queue_create("at.tugraz.ist.catrobat.ImageLoadingQueue", NULL);
 //    dispatch_async(imageQueue, ^{
 //        

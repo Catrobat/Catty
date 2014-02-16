@@ -38,8 +38,6 @@
 
 @implementation ImageCache
 
-
-
 static ImageCache *sharedImageCache = nil;
 
 

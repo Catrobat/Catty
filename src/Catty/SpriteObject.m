@@ -150,7 +150,7 @@
   [objectXMLElement addChild:[GDataXMLElement elementWithName:@"name" stringValue:self.name]];
 
   GDataXMLElement *scriptListXMLElement = [GDataXMLNode elementWithName:@"scriptList"];
-  // TODO: uncomment this after toXML-method in all Script-subclasses have been completely implemented
+  // TODO: uncomment this after toXML-method in all Script-subclasses has been completely implemented
 //  for (id script in self.scriptList) {
 //    if ([script isKindOfClass:[Script class]])
 //      [scriptListXMLElement addChild:[((Script*) script) toXML]];

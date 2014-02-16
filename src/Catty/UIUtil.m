@@ -27,15 +27,28 @@
 
 + (UILabel*)newDefaultBrickLabelWithFrame:(CGRect)frame
 {
+    return [self newDefaultBrickLabelWithFrame:frame AndText:nil];
+}
+
++ (UILabel*)newDefaultBrickLabelWithFrame:(CGRect)frame AndText:(NSString*)text
+{
     UILabel *label = [[UILabel alloc] initWithFrame:frame];
     label.textColor = [UIColor whiteColor];
-    label.font = [UIFont systemFontOfSize:kBrickLabelFontSize];
+    label.font = [UIFont fontWithName:@"Helvetica-Bold" size:kBrickLabelFontSize];
+    if (text) {
+        label.text = text;
+        // adapt size to fit text
+        [label sizeToFit];
+        CGRect labelFrame = label.frame;
+        labelFrame.size.height = frame.size.height;
+        label.frame = labelFrame;
+    }
     return label;
 }
 
 + (UITextField*)newDefaultBrickTextFieldWithFrame:(CGRect)frame
 {
-    UITextField *textField = [[UITextField alloc] init];
+    UITextField *textField = [[UITextField alloc] initWithFrame:frame];
     textField.borderStyle = UITextBorderStyleRoundedRect;
     textField.font = [UIFont systemFontOfSize:kBrickTextFieldFontSize];
     textField.autocorrectionType = UITextAutocorrectionTypeNo;
@@ -44,6 +57,14 @@
     textField.clearButtonMode = UITextFieldViewModeWhileEditing;
     textField.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
     return textField;
+}
+
+// TODO: implement picker-classes and picker-methods for objects, sounds, looks, etc...
++ (UIPickerView*)newDefaultBrickPickerViewWithFrame:(CGRect)frame
+{
+    UIPickerView *pickerView = [[UIPickerView alloc] initWithFrame:frame];
+    pickerView.showsSelectionIndicator = NO;
+    return pickerView;
 }
 
 @end

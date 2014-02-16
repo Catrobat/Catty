@@ -152,7 +152,7 @@
   NSString *title = NSLocalizedString(@"Categories", nil);
   self.title = title;
   self.navigationItem.title = title;
-  
+
   UIBarButtonItem *closeButton = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(dismissCatergoryScriptsVC:)];
   self.navigationItem.leftBarButtonItems = @[closeButton];
 }

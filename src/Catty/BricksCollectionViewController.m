@@ -29,8 +29,8 @@
 #define kTableHeaderIdentifier @"Header"
 
 @interface BricksCollectionViewController ()
-@property (nonatomic, strong) NSArray *brickCategoryColors;
-@property (nonatomic, strong) NSDictionary *classNameBrickNameMap;
+@property (nonatomic, strong) NSArray *selectableBricksSortedIndexes;
+@property (nonatomic, strong) NSDictionary *selectableBricks;
 @end
 
 @implementation BricksCollectionViewController
@@ -46,12 +46,9 @@
     self.collectionView.delaysContentTouches = NO;
 
     // register brick cells for current brick category
-    NSDictionary *allCategoriesAndBrickTypes = self.classNameBrickNameMap;
-    for (NSString *brickTypeName in allCategoriesAndBrickTypes) {
-        kBrickCategoryType categoryType = (kBrickCategoryType) [allCategoriesAndBrickTypes[brickTypeName][@"categoryType"] integerValue];
-        if (self.brickCategoryType != categoryType)
-            continue;
-
+    NSDictionary *selectableBricks = self.selectableBricks;
+    for (NSNumber *brickType in selectableBricks) {
+        NSString *brickTypeName = selectableBricks[brickType];
         [self.collectionView registerClass:NSClassFromString([brickTypeName stringByAppendingString:@"Cell"]) forCellWithReuseIdentifier:brickTypeName];
     }
 }
@@ -76,7 +73,7 @@
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
-    return [BrickCell numberOfAvailableBricksForCategoryType:self.brickCategoryType];
+    return [self.selectableBricks count];
 }
 
 - (CGSize)collectionView:(UICollectionView*)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath*)indexPath
@@ -88,17 +85,9 @@
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSDictionary *allCategoriesAndBrickTypes = self.classNameBrickNameMap;
-    for (NSString *brickTypeName in allCategoriesAndBrickTypes) {
-        kBrickCategoryType categoryType = (kBrickCategoryType) [allCategoriesAndBrickTypes[brickTypeName][@"categoryType"] integerValue];
-        NSInteger brickType = [allCategoriesAndBrickTypes[brickTypeName][@"brickType"] integerValue];
-        if ((self.brickCategoryType != categoryType) || (indexPath.row != brickType))
-            continue;
-
-        return [collectionView dequeueReusableCellWithReuseIdentifier:brickTypeName forIndexPath:indexPath];
-    }
-    NSLog(@"Unknown brick type");
-    abort();
+    NSNumber *brickType = [self.selectableBricksSortedIndexes objectAtIndex:indexPath.row];
+    NSString *brickTypeName = [self.selectableBricks objectForKey:brickType];
+    return [collectionView dequeueReusableCellWithReuseIdentifier:brickTypeName forIndexPath:indexPath];
 }
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath*)indexPath
@@ -112,11 +101,6 @@
                                                                                        UserInfoSpriteObject: self.object}];
         }];
     }
-}
-
-- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    cell.backgroundColor = self.brickCategoryColors[self.brickCategoryType];
 }
 
 - (void)setupNavigationBar {
@@ -141,30 +125,47 @@
 }
 
 #pragma mark getters and setters
-- (NSArray*)brickCategoryColors
+- (NSArray*)selectableBricksSortedIndexes
 {
-    if (! _brickCategoryColors) {
-        _brickCategoryColors = kBrickCategoryColors;
+    if (! _selectableBricksSortedIndexes) {
+        _selectableBricksSortedIndexes = [[self.selectableBricks allKeys] sortedArrayUsingSelector:@selector(compare:)];
     }
-    return _brickCategoryColors;
+    return _selectableBricksSortedIndexes;
+}
+
+- (NSDictionary*)selectableBricks
+{
+    if (! _selectableBricks) {
+        NSArray *unselectableBricks = [kUnselectableBricks objectAtIndex:self.brickCategoryType];
+        NSDictionary *allCategoriesAndBrickTypes = kClassNameBrickNameMap;
+        NSInteger capacity = ([BrickCell numberOfAvailableBricksForCategoryType:self.brickCategoryType] - [unselectableBricks count]);
+        NSMutableDictionary *selectableBricks = [NSMutableDictionary dictionaryWithCapacity:capacity];
+        for (NSString *brickTypeName in allCategoriesAndBrickTypes) {
+            kBrickCategoryType categoryType = (kBrickCategoryType) [allCategoriesAndBrickTypes[brickTypeName][@"categoryType"] integerValue];
+            NSNumber *brickType = allCategoriesAndBrickTypes[brickTypeName][@"brickType"];
+            if ((categoryType != self.brickCategoryType) || [unselectableBricks containsObject:brickType]) {
+                continue;
+            }
+            [selectableBricks setObject:brickTypeName forKey:brickType];
+        }
+        _selectableBricks = [selectableBricks copy];
+        // selectableBricksSortedIndexes should refetch/update on next getter-call
+        self.selectableBricksSortedIndexes = nil;
+    }
+    return _selectableBricks;
 }
 
 - (void)setBrickCategoryType:(kBrickCategoryType)brickCategoryType
 {
     _brickCategoryType = brickCategoryType;
+
+    // selecatable bricks should refetch/update on next getter-call
+    self.selectableBricks = nil;
+
     // update title when brick category changed
     NSString *title = kBrickCategoryNames[_brickCategoryType];
     self.title = title;
     self.navigationItem.title = title;
-}
-
-- (NSDictionary*)classNameBrickNameMap
-{
-    static NSDictionary *classNameBrickNameMap = nil;
-    if (classNameBrickNameMap == nil) {
-        classNameBrickNameMap = kClassNameBrickNameMap;
-    }
-    return classNameBrickNameMap;
 }
 
 #pragma mark init

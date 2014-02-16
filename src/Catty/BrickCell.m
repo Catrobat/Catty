@@ -176,6 +176,16 @@
     return _brickCategoryColors;
 }
 
+#pragma mark - static getters and setters
++ (NSMutableDictionary*)imageCache
+{
+    static NSMutableDictionary *imageCache = nil;
+    if (! imageCache) {
+        imageCache = [NSMutableDictionary dictionary];
+    }
+    return imageCache;
+}
+
 #pragma mark - setup for subviews
 - (void)setupView
 {
@@ -205,14 +215,17 @@
     self.inlineView.frame = frame;
     self.inlineView.backgroundColor = [UIColor clearColor];
 
+    NSArray *inlineViewSubViews = [self inlineViewSubviews];
     // call specific subclass method (virtual)
 #warning remove this "try-catch-check" later
     @try {
-        [self hookUpSubViews:[self inlineViewSubviews]];
+        [self hookUpSubViews:inlineViewSubViews];
     } @catch (NSException *exception) {
+        NSLog(@"Exception: %@", [exception description]);
         frame.origin.x = 0.0f;
         frame.origin.y = 0.0f;
         UILabel *label = [[UILabel alloc] initWithFrame:frame];
+        label.font = [UIFont systemFontOfSize:10.0f];
         label.text = [@"Please implement hookUpSubViews in " stringByAppendingString:NSStringFromClass([self class])];
         label.textColor = [UIColor redColor];
         label.backgroundColor = [UIColor whiteColor];
@@ -220,14 +233,20 @@
         [self.inlineView addSubview:label];
     }
     // just to test layout
-    self.inlineView.layer.borderWidth=1.0f;
-    self.inlineView.layer.borderColor=[UIColor whiteColor].CGColor;
+//    self.inlineView.layer.borderWidth=1.0f;
+//    self.inlineView.layer.borderColor=[UIColor whiteColor].CGColor;
 }
 
 - (void)setupBrickPatternImage
 {
-    // TODO: Cache!!! Performance!!! Don't load same images (shared between different bricks) again and again
-    UIImage *brickPatternImage = [UIImage imageNamed:[BrickCell brickPatternImageNameForCategoryType:self.categoryType AndBrickType:self.brickType]];
+    NSMutableDictionary *imageCache = [BrickCell imageCache];
+    NSString *imageName = [BrickCell brickPatternImageNameForCategoryType:self.categoryType
+                                                             AndBrickType:self.brickType];
+    UIImage *brickPatternImage = [imageCache objectForKey:imageName];
+    if (! brickPatternImage) {
+        brickPatternImage = [UIImage imageNamed:imageName];
+        [imageCache setObject:brickPatternImage forKey:imageName];
+    }
     self.imageView.frame = CGRectMake(kBrickPatternImageViewOffsetX, kBrickPatternImageViewOffsetY, brickPatternImage.size.width, brickPatternImage.size.height);
     self.imageView.image = brickPatternImage;
     self.imageView.backgroundColor = [UIColor clearColor];
@@ -238,9 +257,15 @@
 
 - (void)setupBrickPatternBackgroundImage
 {
-    // TODO: Cache!!! Performance!!! Don't load same images (shared between different bricks) again and again
-    NSString *imageName = [BrickCell brickPatternImageNameForCategoryType:self.categoryType AndBrickType:self.brickType];
-    UIImage *brickBackgroundPatternImage = [UIImage imageNamed:[imageName stringByAppendingString:kBrickBackgroundImageNameSuffix]];
+    NSMutableDictionary *imageCache = [BrickCell imageCache];
+    NSString *imageName = [[BrickCell brickPatternImageNameForCategoryType:self.categoryType
+                                                              AndBrickType:self.brickType]
+                           stringByAppendingString:kBrickBackgroundImageNameSuffix];
+    UIImage *brickBackgroundPatternImage = [imageCache objectForKey:imageName];
+    if (! brickBackgroundPatternImage) {
+        brickBackgroundPatternImage = [UIImage imageNamed:imageName];
+        [imageCache setObject:brickBackgroundPatternImage forKey:imageName];
+    }
     CGRect frame = CGRectMake(kBrickPatternBackgroundImageViewOffsetX, kBrickPatternBackgroundImageViewOffsetY, (self.frame.size.width-kBrickInlineViewOffsetX), brickBackgroundPatternImage.size.height);
     self.backgroundImageView.frame = frame;
     UIGraphicsBeginImageContext(self.backgroundImageView.frame.size);
@@ -349,24 +374,40 @@
         NSError *error = NULL;
         NSString *topLine = [brickTitle substringToIndex:range.location];
         NSString *bottomLine = [brickTitle substringFromIndex:(range.location+range.length)];
-        NSLog(@"String1 = %@",topLine);
-        NSLog(@"String2 = %@",bottomLine);
-        CGRect topFrame = canvasFrame; // FIXME: determine right height and change that
-        CGRect bottomFrame = canvasFrame; // FIXME: determine right height and change that
+        NSDebug(@"String1 = %@",topLine);
+        NSDebug(@"String2 = %@",bottomLine);
         NSArray *topParams = @[];
         NSArray *bottomParams = @[];
 
         NSUInteger totalNumberOfParams = [brickParams count];
+        NSUInteger numberOfTopParams = 0;
+        NSUInteger numberOfBottomParams = 0;
         if (totalNumberOfParams) {
             NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@"%@" options:NSRegularExpressionCaseInsensitive error:&error];
-            NSUInteger numberOfParamsInLine1 = [regex numberOfMatchesInString:topLine options:0 range:NSMakeRange(0, [topLine length])];
-            if (numberOfParamsInLine1) {
-                topParams = [brickParams subarrayWithRange:NSMakeRange(0, numberOfParamsInLine1)];
+            numberOfTopParams = [regex numberOfMatchesInString:topLine options:0 range:NSMakeRange(0, [topLine length])];
+            numberOfBottomParams = totalNumberOfParams - numberOfTopParams;
+            if (numberOfTopParams) {
+                topParams = [brickParams subarrayWithRange:NSMakeRange(0, numberOfTopParams)];
             }
-            if (numberOfParamsInLine1 < totalNumberOfParams) {
-                bottomParams = [brickParams subarrayWithRange:NSMakeRange(numberOfParamsInLine1, (totalNumberOfParams - numberOfParamsInLine1))];
+            if (numberOfTopParams < totalNumberOfParams) {
+                bottomParams = [brickParams subarrayWithRange:NSMakeRange(numberOfTopParams, numberOfBottomParams)];
             }
         }
+        CGRect topFrame = canvasFrame;
+        CGRect bottomFrame = canvasFrame;
+        topFrame.size.height /= 2.0f;
+        bottomFrame.origin.y = topFrame.size.height;
+        bottomFrame.size.height -= topFrame.size.height;
+
+        // if at least one input field in only one line occurs, update height of this row to fixed size
+        if (numberOfTopParams && (! numberOfBottomParams)) {
+            bottomFrame.origin.y = topFrame.size.height = kBrickInputFieldMinRowHeight;
+            bottomFrame.size.height -= topFrame.size.height;
+        } else if ((! numberOfTopParams) && numberOfBottomParams) {
+            bottomFrame.size.height = kBrickInputFieldMinRowHeight;
+            bottomFrame.origin.y = topFrame.size.height = (canvasFrame.size.height - bottomFrame.size.height);
+        }
+
         NSMutableArray *bothLinesSubviews = [NSMutableArray array];
         [bothLinesSubviews addObjectsFromArray:[self inlineViewSubviewsOfLabel:topLine WithParams:topParams WithFrame:topFrame]];
         [bothLinesSubviews addObjectsFromArray:[self inlineViewSubviewsOfLabel:bottomLine WithParams:bottomParams WithFrame:bottomFrame]];
@@ -384,38 +425,54 @@
 
 - (NSMutableArray*)inlineViewSubviewsOfLabel:(NSString*)labelTitle WithParams:(NSArray*)params WithFrame:(CGRect)frame
 {
+    CGRect remainingFrame = frame;
     NSUInteger totalNumberOfParams = [params count];
     if (! totalNumberOfParams) {
         NSMutableArray *subviews = [NSMutableArray array];
-        UILabel *textLabel = [UIUtil newDefaultBrickLabelWithFrame:frame];
-        textLabel.text = labelTitle;
+        UILabel *textLabel = [UIUtil newDefaultBrickLabelWithFrame:remainingFrame AndText:labelTitle];
         [subviews addObject:textLabel];
         return subviews;
     }
 
-    // more than one subview
-    // TODO: continue to implement here...
+    // case: more than one subview
+    // TODO: make x-offset calculation much more smarter...
     NSArray *partLabels = [labelTitle componentsSeparatedByString:@"%@"];
     NSUInteger totalNumberOfPartLabels = [partLabels count];
     NSUInteger totalNumberOfSubViews = totalNumberOfPartLabels + totalNumberOfParams;
     NSMutableArray *subviews = [NSMutableArray arrayWithCapacity:totalNumberOfSubViews];
     NSInteger counter = 0;
     for (NSString *partLabelTitle in partLabels) {
-        UILabel *textLabel = [UIUtil newDefaultBrickLabelWithFrame:frame];
-        textLabel.text = partLabelTitle;
+        UILabel *textLabel = [UIUtil newDefaultBrickLabelWithFrame:remainingFrame AndText:partLabelTitle];
+//        textLabel.backgroundColor = [UIColor blueColor];
+        remainingFrame.origin.x += (textLabel.frame.size.width + kBrickInputFieldLeftMargin);
+        remainingFrame.size.width -= (textLabel.frame.size.width + kBrickInputFieldLeftMargin);
         [subviews addObject:textLabel];
 
         // determine UI component
         if (counter < totalNumberOfParams) {
             // TODO: continue to implement here
+            CGRect inputViewFrame = remainingFrame;
+            inputViewFrame.origin.y += kBrickInputFieldTopMargin;
+            inputViewFrame.size.height -= (kBrickInputFieldTopMargin + kBrickInputFieldBottomMargin);
+            inputViewFrame.size.width = kBrickInputFieldMinWidth;
             NSString *afterLabelParam = [params objectAtIndex:counter];
+            UIView *inputField = nil;
             if ([afterLabelParam rangeOfString:@"FLOAT"].location != NSNotFound) {
-                UITextField *textField = [UIUtil newDefaultBrickTextFieldWithFrame:frame];
-                [subviews addObject:textField];
+                UITextField *textField = [UIUtil newDefaultBrickTextFieldWithFrame:inputViewFrame];
+                textField.enabled = NO;
+                inputField = (UIView*)textField;
             } else if ([afterLabelParam rangeOfString:@"INT"].location != NSNotFound) {
-                UITextField *textField = [UIUtil newDefaultBrickTextFieldWithFrame:frame];
-                [subviews addObject:textField];
+                UITextField *textField = [UIUtil newDefaultBrickTextFieldWithFrame:inputViewFrame];
+                textField.enabled = NO;
+                inputField = (UIView*)textField;
+            } else {
+                UIPickerView *pickerView = [[UIPickerView alloc] initWithFrame:inputViewFrame];
+                inputField = (UIView*)pickerView;
             }
+
+            remainingFrame.origin.x += (inputField.frame.size.width + kBrickInputFieldRightMargin);
+            remainingFrame.size.width -= (inputField.frame.size.width + kBrickInputFieldRightMargin);
+            [subviews addObject:inputField];
         }
         counter++;
     }

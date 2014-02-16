@@ -24,8 +24,15 @@
 #define kBtnOKTitle NSLocalizedString(@"OK", @"OK button for views")
 #define kBtnDeleteTitle NSLocalizedString(@"Delete", @"Delete button for views")
 
-#define kBrickLabelFontSize 16
-#define kBrickTextFieldFontSize 15
+#define kBrickLabelFontSize 16.0f
+#define kBrickTextFieldFontSize 15.0f
+#define kBrickInputFieldHeight 22.0f
+#define kBrickInputFieldMinWidth 60.0f
+#define kBrickInputFieldTopMargin 2.0f
+#define kBrickInputFieldBottomMargin 2.0f
+#define kBrickInputFieldLeftMargin 4.0f
+#define kBrickInputFieldRightMargin 4.0f
+#define kBrickInputFieldMinRowHeight (kBrickInputFieldHeight + 4.0f)
 #define kDefaultImageCellBorderWidth 1.0f
 
 // brick UI config
@@ -423,6 +430,15 @@ typedef NS_ENUM(NSInteger, kBrickShapeType) {
     kBrickShapeRoundedSmall = 1,
     kBrickShapeRoundedBig = 2
 };
+
+// bricks that are note shown in BricksCollectionViewController, because they are dependent on other bricks
+#define kUnselectableBricks @[\
+    @[@(kIfElseBrick), @(kIfEndBrick), @(kLoopEndBrick)], /* control bricks  */\
+    @[],                                                  /* motion bricks   */\
+    @[],                                                  /* sound bricks    */\
+    @[],                                                  /* look bricks     */\
+    @[]                                                   /* variable bricks */\
+]
 
 #define kClassNameBrickNameMap @{\
     /* control bricks */\

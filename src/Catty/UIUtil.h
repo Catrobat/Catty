@@ -25,6 +25,8 @@
 @interface UIUtil : NSObject
 
 + (UILabel*)newDefaultBrickLabelWithFrame:(CGRect)frame;
++ (UILabel*)newDefaultBrickLabelWithFrame:(CGRect)frame AndText:(NSString*)text;
 + (UITextField*)newDefaultBrickTextFieldWithFrame:(CGRect)frame;
++ (UIPickerView*)newDefaultBrickPickerViewWithFrame:(CGRect)frame;
 
 @end

@@ -51,6 +51,7 @@
 @interface ProgramTableViewController () <UIActionSheetDelegate, UIAlertViewDelegate, UITextFieldDelegate,
 UINavigationBarDelegate>
 @property (strong, nonatomic) Program *program;
+@property (strong, nonatomic) NSMutableDictionary *imageCache;
 #warning isNewProgram is only a temporarily var to indicate wether this is a new program or loaded from disk
 @property (nonatomic) BOOL isNewProgram;
 @end
@@ -86,12 +87,27 @@ UINavigationBarDelegate>
     return _program;
 }
 
+- (NSMutableDictionary*)imageCache
+{
+    // lazy instantiation
+    if (! _imageCache) {
+        _imageCache = [NSMutableDictionary dictionaryWithCapacity:[self.program.objectList count]];
+    }
+    return _imageCache;
+}
+
 - (void)setProgram:(Program*)program
 {
     // automatically update title name
     self.title = self.navigationItem.title = program.header.programName;
     self.isNewProgram = NO;
     _program = program;
+}
+
+- (void)didReceiveMemoryWarning
+{
+    [super didReceiveMemoryWarning];
+    self.imageCache = nil;
 }
 
 - (SpriteObject*)createObjectWithName:(NSString*)objectName
@@ -224,13 +240,20 @@ UINavigationBarDelegate>
 {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:kObjectCell forIndexPath:indexPath];
     if ([cell conformsToProtocol:@protocol(CatrobatImageCell)]) {
-        UITableViewCell <CatrobatImageCell>* imageCell = (UITableViewCell <CatrobatImageCell>*)cell;
-        SpriteObject *object = [self.program.objectList objectAtIndex:(kBackgroundSectionIndex + indexPath.section + indexPath.row)];
+        UITableViewCell <CatrobatImageCell>* imageCell = (UITableViewCell<CatrobatImageCell>*)cell;
+        NSInteger index = (kBackgroundSectionIndex + indexPath.section + indexPath.row);
+        SpriteObject *object = [self.program.objectList objectAtIndex:index];
 
         imageCell.iconImageView.image = nil;
         NSString *previewImagePath = [object previewImagePath];
         if (previewImagePath) {
-            imageCell.iconImageView.image = [[UIImage alloc] initWithContentsOfFile:previewImagePath];
+            NSNumber *indexAsNumber = @(index);
+            UIImage *image = [self.imageCache objectForKey:indexAsNumber];
+            if (! image) {
+                image = [[UIImage alloc] initWithContentsOfFile:previewImagePath];
+                [self.imageCache setObject:image forKey:indexAsNumber];
+            }
+            imageCell.iconImageView.image = image;
             imageCell.iconImageView.contentMode = UIViewContentModeScaleAspectFit;
         }
         imageCell.titleLabel.text = object.name;
