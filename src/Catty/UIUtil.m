@@ -20,39 +20,30 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import "IfLogicEndBrickView.h"
+#import "UIUtil.h"
+#import "UIDefines.h"
 
-@interface IfLogicEndBrickView ()
-@property (nonatomic, strong) UILabel *textLabel;
-@end
+@implementation UIUtil
 
-@implementation IfLogicEndBrickView
-
-//- (UILabel*)textLabel
-//{
-//    if (! _textLabel) {
-//        _textLabel = [[UILabel alloc] init];
-//        self.textLabel.textColor = [UIColor whiteColor];
-//        self.textLabel.font = [UIFont boldSystemFontOfSize:16];
-//        [self. addSubview:_textLabel];
-//    }
-//    return _textLabel;
-//}
-//
-//- (void)setup
-//{
-//    NSString *brickTitle = kControlBrickNames[kIfEndBrick];
-//    self.textLabel.frame = CGRectMake(kBrickLabelOffsetX, kBrickLabelOffsetY, self..frame.size.width, self..frame.size.height);
-//    self.textLabel.text = brickTitle;
-//}
-
-- (id)initWithFrame:(CGRect)frame
++ (UILabel*)newDefaultBrickLabelWithFrame:(CGRect)frame
 {
-    self = [super initWithFrame:frame];
-    if (self) {
-        // Initialization code
-    }
-    return self;
+    UILabel *label = [[UILabel alloc] initWithFrame:frame];
+    label.textColor = [UIColor whiteColor];
+    label.font = [UIFont systemFontOfSize:kBrickLabelFontSize];
+    return label;
+}
+
++ (UITextField*)newDefaultBrickTextFieldWithFrame:(CGRect)frame
+{
+    UITextField *textField = [[UITextField alloc] init];
+    textField.borderStyle = UITextBorderStyleRoundedRect;
+    textField.font = [UIFont systemFontOfSize:kBrickTextFieldFontSize];
+    textField.autocorrectionType = UITextAutocorrectionTypeNo;
+    textField.keyboardType = UIKeyboardTypeDefault;
+    textField.returnKeyType = UIReturnKeyDone;
+    textField.clearButtonMode = UITextFieldViewModeWhileEditing;
+    textField.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
+    return textField;
 }
 
 @end

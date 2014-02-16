@@ -20,31 +20,18 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import "BroadcastBrickView.h"
+#import "IfLogicEndBrickCell.h"
 
-@interface BroadcastBrickView ()
+@interface IfLogicEndBrickCell ()
 @property (nonatomic, strong) UILabel *textLabel;
 @end
 
-@implementation BroadcastBrickView
+@implementation IfLogicEndBrickCell
 
-//- (UILabel*)textLabel
-//{
-//    if (! _textLabel) {
-//        _textLabel = [[UILabel alloc] init];
-//        self.textLabel.textColor = [UIColor whiteColor];
-//        self.textLabel.font = [UIFont boldSystemFontOfSize:16];
-//        [self. addSubview:_textLabel];
-//    }
-//    return _textLabel;
-//}
-//
-//- (void)setup
-//{
-//    NSString *brickTitle = kControlBrickNames[kBroadcastBrick];
-//    self.textLabel.frame = CGRectMake(kBrickLabelOffsetX, kBrickLabelOffsetY, self..frame.size.width, self..frame.size.height);
-//    self.textLabel.text = brickTitle;
-//}
+- (void)hookUpSubViews:(NSArray *)inlineViewSubViews
+{
+    self.textLabel = inlineViewSubViews[0];
+}
 
 - (id)initWithFrame:(CGRect)frame
 {

@@ -20,8 +20,28 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
+#import "StartScriptCell.h"
 #import "BrickCellInlineView.h"
+#import "UIUtil.h"
 
-@interface BroadcastWaitBrickView : BrickCellInlineView
+@interface StartScriptCell ()
+@property (strong, nonatomic) UILabel *textLabel;
+@end
+
+@implementation StartScriptCell
+
+- (void)hookUpSubViews:(NSArray *)inlineViewSubViews
+{
+    self.textLabel = inlineViewSubViews[0];
+}
+
+- (id)initWithFrame:(CGRect)frame
+{
+    self = [super initWithFrame:frame];
+    if (self) {
+        // Initialization code
+    }
+    return self;
+}
 
 @end

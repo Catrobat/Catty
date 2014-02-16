@@ -20,17 +20,19 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import "StartScriptView.h"
+#import "BroadcastBrickCell.h"
 
-@interface StartScriptView ()
-@property (weak, nonatomic) IBOutlet UILabel *textLabel;
+@interface BroadcastBrickCell ()
+@property (nonatomic, strong) UILabel *textLabel;
 @end
 
-@implementation StartScriptView
+@implementation BroadcastBrickCell
 
-//    NSString *brickTitle = kControlBrickNames[kProgramStartedBrick];
-//    self.textLabel.frame = CGRectMake(kBrickLabelOffsetX, kBrickLabelOffsetY, self..frame.size.width, self..frame.size.height);
-//    self.textLabel.text = brickTitle;
+- (void)hookUpSubViews:(NSArray *)inlineViewSubViews
+{
+    self.textLabel = inlineViewSubViews[0];
+    self.messagePickerView = inlineViewSubViews[1];
+}
 
 - (id)initWithFrame:(CGRect)frame
 {

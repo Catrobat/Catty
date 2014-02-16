@@ -20,8 +20,29 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import "BrickCellInlineView.h"
+#import "WaitBrickCell.h"
 
-@interface BroadcastScriptView : BrickCellInlineView
+@interface WaitBrickCell ()
+@property (nonatomic, strong) UILabel *leftTextLabel;
+@property (nonatomic, strong) UILabel *rightTextLabel;
+@end
+
+@implementation WaitBrickCell
+
+- (void)hookUpSubViews:(NSArray *)inlineViewSubViews
+{
+    self.LeftTextLabel = inlineViewSubViews[0];
+    self.delayTextField = inlineViewSubViews[1];
+    self.rightTextLabel = inlineViewSubViews[1];
+}
+
+- (id)initWithFrame:(CGRect)frame
+{
+    self = [super initWithFrame:frame];
+    if (self) {
+        // Initialization code
+    }
+    return self;
+}
 
 @end

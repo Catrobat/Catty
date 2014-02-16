@@ -20,8 +20,27 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import "BrickCellInlineView.h"
+#import "BroadcastWaitBrickCell.h"
 
-@interface IfLogicBeginBrickView : BrickCellInlineView
+@interface BroadcastWaitBrickCell ()
+@property (nonatomic, strong) UILabel *textLabel;
+@end
+
+@implementation BroadcastWaitBrickCell
+
+- (void)hookUpSubViews:(NSArray *)inlineViewSubViews
+{
+    self.textLabel = inlineViewSubViews[0];
+    self.messagePickerView = inlineViewSubViews[1];
+}
+
+- (id)initWithFrame:(CGRect)frame
+{
+    self = [super initWithFrame:frame];
+    if (self) {
+        // Initialization code
+    }
+    return self;
+}
 
 @end

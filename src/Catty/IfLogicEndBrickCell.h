@@ -20,8 +20,8 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import "BrickCellInlineView.h"
+#import "BrickCell.h"
 
-@interface WhenScriptView : BrickCellInlineView
+@interface IfLogicEndBrickCell : BrickCell
 
 @end

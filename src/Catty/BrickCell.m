@@ -23,6 +23,8 @@
 #import "BrickCell.h"
 #import "UIColor+CatrobatUIColorExtensions.h"
 #import "Brick.h"
+#import "BrickCellInlineView.h"
+#import "UIUtil.h"
 
 @interface BrickCell ()
 @property (nonatomic, strong) NSDictionary *classNameBrickNameMap;
@@ -30,13 +32,12 @@
 @property (nonatomic) NSInteger brickType;
 @property (nonatomic) BOOL scriptBrickCell;
 @property (nonatomic, strong) NSArray *brickCategoryColors;
-@property (nonatomic) BOOL alreadyDone;
 
 // subviews
-@property (weak, nonatomic) IBOutlet UIImageView *backgroundImageView;
-@property (weak, nonatomic) IBOutlet UIImageView *imageView;
-@property (weak, nonatomic) IBOutlet UIView *inlineView;
-//@property (nonatomic, strong) UIImageView *overlayView;
+@property (strong, nonatomic) UIImageView *backgroundImageView;
+@property (strong, nonatomic) UIImageView *imageView;
+@property (strong, nonatomic) BrickCellInlineView *inlineView;
+@property (strong, nonatomic) UIImageView *overlayView;
 @end
 
 @implementation BrickCell
@@ -100,42 +101,72 @@
     _brickType = brickType;
 }
 
-//#pragma mark - layout
-//- (void)layoutSubviews
-//{
-//    [super layoutSubviews];
-//    
-//    UIImage *brickImage = self.imageView.image;
-//    brickImage = [brickImage imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
-//    self.overlayView.image = brickImage;
-//    self.overlayView.tintColor = [UIColor colorWithRed:0.0f green:0.0f blue:0.0f alpha:0.4f];
-//    
-//    // TODO get correct frame
-//    self.overlayView.frame = self.imageView.frame;
-//}
-//
-//#pragma mark Highlight state / collection view cell delegate
-//- (void)setHighlighted:(BOOL)highlighted
-//{
-//    [super setHighlighted:highlighted];
-//    
-//    if (highlighted) {
-//        [self.contentView addSubview:self.overlayView];
-//    } else {
-//        
-//        [self.overlayView removeFromSuperview];
-//    }
-//    [self setNeedsDisplay];
-//}
-//
-//- (UIImageView *)overlayView
-//{
-//    if (!_overlayView) {
-//        _overlayView = [[UIImageView alloc] initWithFrame:CGRectZero];
-//        // _overlayView.backgroundColor = [UIColor colorWithRed:0.0f green:0.0f blue:0.0f alpha:0.4f];
-//    }
-//    return _overlayView;
-//}
+// lazy instantiation
+- (UIImageView*)backgroundImageView
+{
+    if (! _backgroundImageView) {
+        _backgroundImageView = [[UIImageView alloc] initWithFrame:CGRectZero];
+        [self addSubview:_backgroundImageView];
+    }
+    return _backgroundImageView;
+}
+
+// lazy instantiation
+- (UIImageView*)imageView
+{
+    if (! _imageView) {
+        _imageView = [[UIImageView alloc] initWithFrame:CGRectZero];
+        [self addSubview:_imageView];
+    }
+    return _imageView;
+}
+
+// lazy instantiation
+- (BrickCellInlineView*)inlineView
+{
+    if (! _inlineView) {
+        _inlineView = [[BrickCellInlineView alloc] initWithFrame:CGRectZero];
+        [self addSubview:_inlineView];
+    }
+    return _inlineView;
+}
+
+#pragma mark - layout
+- (void)layoutSubviews
+{
+    [super layoutSubviews];
+
+    UIImage *brickImage = self.imageView.image;
+    brickImage = [brickImage imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
+    self.overlayView.image = brickImage;
+    self.overlayView.tintColor = [UIColor colorWithRed:0.0f green:0.0f blue:0.0f alpha:0.4f];
+
+    // TODO get correct frame
+    self.overlayView.frame = self.imageView.frame;
+}
+
+#pragma mark Highlight state / collection view cell delegate
+- (void)setHighlighted:(BOOL)highlighted
+{
+    [super setHighlighted:highlighted];
+    
+    if (highlighted) {
+        [self.contentView addSubview:self.overlayView];
+    } else {
+        
+        [self.overlayView removeFromSuperview];
+    }
+    [self setNeedsDisplay];
+}
+
+- (UIImageView *)overlayView
+{
+    if (!_overlayView) {
+        _overlayView = [[UIImageView alloc] initWithFrame:CGRectZero];
+        // _overlayView.backgroundColor = [UIColor colorWithRed:0.0f green:0.0f blue:0.0f alpha:0.4f];
+    }
+    return _overlayView;
+}
 
 - (NSArray*)brickCategoryColors
 {
@@ -145,25 +176,15 @@
     return _brickCategoryColors;
 }
 
-// lazy instantiation
-//- (UIView*)inlineView
-//{
-//    if (! _inlineView) {
-//        _inlineView = [[UIView alloc] init];
-//        [self addSubview:_inlineView];
-//    }
-//    return _inlineView;
-//}
-
 #pragma mark - setup for subviews
-- (void)setView
+- (void)setupView
 {
     CGRect frame = self.frame;
     frame.size.height = [BrickCell brickCellHeightForCategoryType:self.categoryType AndBrickType:self.brickType];
     self.frame = frame;
 }
 
-- (void)set
+- (void)setupInlineView
 {
     CGFloat inlineViewHeight = [BrickCell brickCellHeightForCategoryType:self.categoryType AndBrickType:self.brickType];
     kBrickShapeType brickShapeType = [BrickCell shapeTypeForCategoryType:self.categoryType AndBrickType:self.brickType];
@@ -180,11 +201,30 @@
     } else {
         NSError(@"unknown brick shape type given");
     }
-    self.inlineView.frame = CGRectMake(kBrickInlineViewOffsetX, inlineViewOffsetY, (self.frame.size.width - kBrickInlineViewOffsetX), inlineViewHeight);
+    CGRect frame = CGRectMake(kBrickInlineViewOffsetX, inlineViewOffsetY, (self.frame.size.width - kBrickInlineViewOffsetX), inlineViewHeight);
+    self.inlineView.frame = frame;
     self.inlineView.backgroundColor = [UIColor clearColor];
+
+    // call specific subclass method (virtual)
+#warning remove this "try-catch-check" later
+    @try {
+        [self hookUpSubViews:[self inlineViewSubviews]];
+    } @catch (NSException *exception) {
+        frame.origin.x = 0.0f;
+        frame.origin.y = 0.0f;
+        UILabel *label = [[UILabel alloc] initWithFrame:frame];
+        label.text = [@"Please implement hookUpSubViews in " stringByAppendingString:NSStringFromClass([self class])];
+        label.textColor = [UIColor redColor];
+        label.backgroundColor = [UIColor whiteColor];
+        [label sizeThatFits:frame.size];
+        [self.inlineView addSubview:label];
+    }
+    // just to test layout
+    self.inlineView.layer.borderWidth=1.0f;
+    self.inlineView.layer.borderColor=[UIColor whiteColor].CGColor;
 }
 
-- (void)setBrickPatternImage
+- (void)setupBrickPatternImage
 {
     // TODO: Cache!!! Performance!!! Don't load same images (shared between different bricks) again and again
     UIImage *brickPatternImage = [UIImage imageNamed:[BrickCell brickPatternImageNameForCategoryType:self.categoryType AndBrickType:self.brickType]];
@@ -196,7 +236,7 @@
 //    self.imageView.layer.borderColor=[UIColor whiteColor].CGColor;
 }
 
-- (void)setBrickPatternBackgroundImage
+- (void)setupBrickPatternBackgroundImage
 {
     // TODO: Cache!!! Performance!!! Don't load same images (shared between different bricks) again and again
     NSString *imageName = [BrickCell brickPatternImageNameForCategoryType:self.categoryType AndBrickType:self.brickType];
@@ -208,36 +248,29 @@
     UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
     self.backgroundImageView.backgroundColor = [UIColor colorWithPatternImage:image];
+    [self sendSubviewToBack:self.backgroundImageView];
 }
 
 #pragma mark - setup methods
-//- (void)setupInlineView
-//{
-//    @throw [NSException exceptionWithName:NSInternalInconsistencyException
-//                                   reason:[NSString stringWithFormat:@"You must override %@ in a subclass", NSStringFromSelector(_cmd)]
-//                                 userInfo:nil];
-//}
-
-- (void)setupForInlineViewClassName:(NSString*)inlineViewClassName
+- (void)hookUpSubViews:(NSArray *)inlineViewSubViews
 {
-    // only execute this once
-    if (self.alreadyDone) {
-        return;
-    }
+    @throw [NSException exceptionWithName:NSInternalInconsistencyException
+                                   reason:[NSString stringWithFormat:@"You must override %@ in a subclass", NSStringFromSelector(_cmd)]
+                                 userInfo:nil];
+}
 
+- (void)setupForSubclassWithName:(NSString*)subclassName
+{
     NSDictionary *allCategoriesAndBrickTypes = self.classNameBrickNameMap;
-//    NSDictionary *categoryAndBrickType = allCategoriesAndBrickTypes[[subclassName stringByReplacingOccurrencesOfString:@"Cell" withString:@""]];
-    NSDictionary *categoryAndBrickType = allCategoriesAndBrickTypes[inlineViewClassName];
+    NSDictionary *categoryAndBrickType = allCategoriesAndBrickTypes[[subclassName stringByReplacingOccurrencesOfString:@"Cell" withString:@""]];
     self.categoryType = (kBrickCategoryType) [categoryAndBrickType[@"categoryType"] integerValue];
     self.brickType = [categoryAndBrickType[@"brickType"] integerValue];
-    NSLog(@"SubClassName: %@, BrickCategoryType: %d, BrickType: %d", inlineViewClassName, self.categoryType, self.brickType);
+    NSLog(@"SubClassName: %@, BrickCategoryType: %d, BrickType: %d", subclassName, self.categoryType, self.brickType);
 
-    [self setView];
-    [self setBrickPatternImage];
-    [self setBrickPatternBackgroundImage];
-    [self set];
-//    [self setup];
-    self.alreadyDone = YES;
+    [self setupView];
+    [self setupBrickPatternImage];
+    [self setupBrickPatternBackgroundImage];
+    [self setupInlineView];
 
     // just to test layout
 //    self.layer.borderWidth=1.0f;
@@ -249,9 +282,8 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
-        self.alreadyDone = NO;
         self.backgroundColor = [UIColor clearColor];
-//        [self setupForSubclass:NSStringFromClass([self class])];
+        [self setupForSubclassWithName:NSStringFromClass([self class])];
         self.contentMode = UIViewContentModeScaleToFill;
         self.clipsToBounds = NO;
         self.backgroundColor = [UIColor clearColor];
@@ -263,9 +295,8 @@
 {
     self = [super init];
     if (self) {
-        self.alreadyDone = NO;
         self.backgroundColor = [UIColor clearColor];
-//        [self setupForSubclass:NSStringFromClass([self class])];
+        [self setupForSubclassWithName:NSStringFromClass([self class])];
         self.contentMode = UIViewContentModeScaleToFill;
         self.clipsToBounds = NO;
         self.backgroundColor = [UIColor clearColor];
@@ -274,6 +305,123 @@
 }
 
 #pragma mark - helpers
+- (NSArray*)inlineViewSubviews
+{
+    CGRect canvasFrame = CGRectMake(kBrickInlineViewCanvasOffsetX, kBrickInlineViewCanvasOffsetY, self.inlineView.frame.size.width, self.inlineView.frame.size.height);
+
+    // get correct NSString array
+    NSArray *brickCategoryTitles = nil;
+    NSArray *brickCategoryParams = nil;
+    switch (self.categoryType) {
+        case kControlBrick:
+            brickCategoryTitles = kControlBrickNames;
+            brickCategoryParams = kControlBrickNameParams;
+            break;
+        case kMotionBrick:
+            brickCategoryTitles = kMotionBrickNames;
+            brickCategoryParams = kMotionBrickNameParams;
+            break;
+        case kSoundBrick:
+            brickCategoryTitles = kSoundBrickNames;
+            brickCategoryParams = kSoundBrickNameParams;
+            break;
+        case kLookBrick:
+            brickCategoryTitles = kLookBrickNames;
+            brickCategoryParams = kLookBrickNameParams;
+            break;
+        case kVariableBrick:
+            brickCategoryTitles = kVariableBrickNames;
+            brickCategoryParams = kVariableBrickNameParams;
+            break;
+        default:
+            NSError(@"unknown brick category type given");
+            abort();
+    }
+    NSString *brickTitle = brickCategoryTitles[self.brickType];
+    id brickParamsUnconverted = brickCategoryParams[self.brickType];
+    NSArray *brickParams = (([brickParamsUnconverted isKindOfClass:[NSString class]]) ? @[brickParamsUnconverted] : brickParamsUnconverted);
+    NSArray *subviews = nil;
+
+    // check if it is a "two-liner" or a "one-liner" brick
+    NSRange range = [brickTitle rangeOfString:@"\n"];
+    if (range.location != NSNotFound) {
+        // first case: it's a two liner
+        NSError *error = NULL;
+        NSString *topLine = [brickTitle substringToIndex:range.location];
+        NSString *bottomLine = [brickTitle substringFromIndex:(range.location+range.length)];
+        NSLog(@"String1 = %@",topLine);
+        NSLog(@"String2 = %@",bottomLine);
+        CGRect topFrame = canvasFrame; // FIXME: determine right height and change that
+        CGRect bottomFrame = canvasFrame; // FIXME: determine right height and change that
+        NSArray *topParams = @[];
+        NSArray *bottomParams = @[];
+
+        NSUInteger totalNumberOfParams = [brickParams count];
+        if (totalNumberOfParams) {
+            NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@"%@" options:NSRegularExpressionCaseInsensitive error:&error];
+            NSUInteger numberOfParamsInLine1 = [regex numberOfMatchesInString:topLine options:0 range:NSMakeRange(0, [topLine length])];
+            if (numberOfParamsInLine1) {
+                topParams = [brickParams subarrayWithRange:NSMakeRange(0, numberOfParamsInLine1)];
+            }
+            if (numberOfParamsInLine1 < totalNumberOfParams) {
+                bottomParams = [brickParams subarrayWithRange:NSMakeRange(numberOfParamsInLine1, (totalNumberOfParams - numberOfParamsInLine1))];
+            }
+        }
+        NSMutableArray *bothLinesSubviews = [NSMutableArray array];
+        [bothLinesSubviews addObjectsFromArray:[self inlineViewSubviewsOfLabel:topLine WithParams:topParams WithFrame:topFrame]];
+        [bothLinesSubviews addObjectsFromArray:[self inlineViewSubviewsOfLabel:bottomLine WithParams:bottomParams WithFrame:bottomFrame]];
+        subviews = [bothLinesSubviews copy]; // makes immutable copy of (NSMutableArray*) => returns (NSArray*)
+    } else {
+        // second case: it's a one liner
+        subviews = [[self inlineViewSubviewsOfLabel:brickTitle WithParams:brickParams WithFrame:canvasFrame] copy]; // makes immutable copy of (NSMutableArray*) => returns (NSArray*)
+    }
+    // finally add all subviews to the inline view
+    for (UIView* subview in subviews) {
+        [self.inlineView addSubview:subview];
+    }
+    return subviews;
+}
+
+- (NSMutableArray*)inlineViewSubviewsOfLabel:(NSString*)labelTitle WithParams:(NSArray*)params WithFrame:(CGRect)frame
+{
+    NSUInteger totalNumberOfParams = [params count];
+    if (! totalNumberOfParams) {
+        NSMutableArray *subviews = [NSMutableArray array];
+        UILabel *textLabel = [UIUtil newDefaultBrickLabelWithFrame:frame];
+        textLabel.text = labelTitle;
+        [subviews addObject:textLabel];
+        return subviews;
+    }
+
+    // more than one subview
+    // TODO: continue to implement here...
+    NSArray *partLabels = [labelTitle componentsSeparatedByString:@"%@"];
+    NSUInteger totalNumberOfPartLabels = [partLabels count];
+    NSUInteger totalNumberOfSubViews = totalNumberOfPartLabels + totalNumberOfParams;
+    NSMutableArray *subviews = [NSMutableArray arrayWithCapacity:totalNumberOfSubViews];
+    NSInteger counter = 0;
+    for (NSString *partLabelTitle in partLabels) {
+        UILabel *textLabel = [UIUtil newDefaultBrickLabelWithFrame:frame];
+        textLabel.text = partLabelTitle;
+        [subviews addObject:textLabel];
+
+        // determine UI component
+        if (counter < totalNumberOfParams) {
+            // TODO: continue to implement here
+            NSString *afterLabelParam = [params objectAtIndex:counter];
+            if ([afterLabelParam rangeOfString:@"FLOAT"].location != NSNotFound) {
+                UITextField *textField = [UIUtil newDefaultBrickTextFieldWithFrame:frame];
+                [subviews addObject:textField];
+            } else if ([afterLabelParam rangeOfString:@"INT"].location != NSNotFound) {
+                UITextField *textField = [UIUtil newDefaultBrickTextFieldWithFrame:frame];
+                [subviews addObject:textField];
+            }
+        }
+        counter++;
+    }
+    return subviews;
+}
+
 + (kBrickShapeType)shapeTypeForCategoryType:(kBrickCategoryType)categoryType AndBrickType:(NSInteger)brickType
 {
     if (categoryType == kControlBrick) {

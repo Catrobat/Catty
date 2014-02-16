@@ -20,25 +20,11 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import "WhenScriptView.h"
+#import "BrickCell.h"
 
-@interface WhenScriptView ()
-@property (nonatomic, strong) UILabel *textLabel;
-@end
+@interface BroadcastBrickCell : BrickCell
 
-@implementation WhenScriptView
-
-//    NSString *brickTitle = kControlBrickNames[kTappedBrick];
-//    self.textLabel.frame = CGRectMake(kBrickLabelOffsetX, kBrickLabelOffsetY, self..frame.size.width, self..frame.size.height);
-//    self.textLabel.text = brickTitle;
-
-- (id)initWithFrame:(CGRect)frame
-{
-    self = [super initWithFrame:frame];
-    if (self) {
-        // Initialization code
-    }
-    return self;
-}
+// FIXME: write classes for all custom pickers. messagePicker, objectPicker, soundPicker, ...
+@property (nonatomic, strong) UIPickerView *messagePickerView;
 
 @end

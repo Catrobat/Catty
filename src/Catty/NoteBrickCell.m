@@ -20,24 +20,27 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import <UIKit/UIKit.h>
-#import "ProgramDefines.h"
-#import "UIDefines.h"
+#import "NoteBrickCell.h"
 
-@class Brick;
-@class BrickCellInlineView;
+@interface NoteBrickCell ()
+@property (nonatomic, strong) UILabel *textLabel;
+@end
 
-@interface BrickCell : UICollectionViewCell
+@implementation NoteBrickCell
 
-@property (nonatomic, readonly) kBrickCategoryType categoryType;
-@property (nonatomic, readonly) NSInteger brickType;
-@property (nonatomic, readonly, getter = isScriptBrickCell) BOOL scriptBrickCell;
+- (void)hookUpSubViews:(NSArray *)inlineViewSubViews
+{
+    self.textLabel = inlineViewSubViews[0];
+    self.noteTextField = inlineViewSubViews[1];
+}
 
-- (void)hookUpSubViews:(NSArray *)inlineViewSubViews; // abstract (only called internally)
-
-+ (NSInteger)numberOfAvailableBricksForCategoryType:(kBrickCategoryType)categoryType;
-+ (CGFloat) brickCellHeightForCategoryType:(kBrickCategoryType)categoryType AndBrickType:(NSInteger)brickType;
-+ (kBrickShapeType)shapeTypeForCategoryType:(kBrickCategoryType)categoryType AndBrickType:(NSInteger)brickType;
-+ (NSString*)brickPatternImageNameForCategoryType:(kBrickCategoryType)categoryType AndBrickType:(NSInteger)brickType;
+- (id)initWithFrame:(CGRect)frame
+{
+    self = [super initWithFrame:frame];
+    if (self) {
+        // Initialization code
+    }
+    return self;
+}
 
 @end

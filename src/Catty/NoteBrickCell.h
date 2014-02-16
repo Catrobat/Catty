@@ -20,24 +20,10 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import <UIKit/UIKit.h>
-#import "ProgramDefines.h"
-#import "UIDefines.h"
+#import "BrickCell.h"
 
-@class Brick;
-@class BrickCellInlineView;
+@interface NoteBrickCell : BrickCell
 
-@interface BrickCell : UICollectionViewCell
-
-@property (nonatomic, readonly) kBrickCategoryType categoryType;
-@property (nonatomic, readonly) NSInteger brickType;
-@property (nonatomic, readonly, getter = isScriptBrickCell) BOOL scriptBrickCell;
-
-- (void)hookUpSubViews:(NSArray *)inlineViewSubViews; // abstract (only called internally)
-
-+ (NSInteger)numberOfAvailableBricksForCategoryType:(kBrickCategoryType)categoryType;
-+ (CGFloat) brickCellHeightForCategoryType:(kBrickCategoryType)categoryType AndBrickType:(NSInteger)brickType;
-+ (kBrickShapeType)shapeTypeForCategoryType:(kBrickCategoryType)categoryType AndBrickType:(NSInteger)brickType;
-+ (NSString*)brickPatternImageNameForCategoryType:(kBrickCategoryType)categoryType AndBrickType:(NSInteger)brickType;
+@property (nonatomic, strong) UITextField *noteTextField;
 
 @end

@@ -20,8 +20,29 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import "BrickCellInlineView.h"
+#import "RepeatBrickCell.h"
 
-@interface RepeatBrickView : BrickCellInlineView
+@interface RepeatBrickCell ()
+@property (nonatomic, strong) UILabel *leftTextLabel;
+@property (nonatomic, strong) UILabel *rightTextLabel;
+@end
+
+@implementation RepeatBrickCell
+
+- (void)hookUpSubViews:(NSArray *)inlineViewSubViews
+{
+    self.leftTextLabel = inlineViewSubViews[0];
+    self.numberOfLoopsTextField = inlineViewSubViews[1];
+    self.rightTextLabel = inlineViewSubViews[2];
+}
+
+- (id)initWithFrame:(CGRect)frame
+{
+    self = [super initWithFrame:frame];
+    if (self) {
+        // Initialization code
+    }
+    return self;
+}
 
 @end

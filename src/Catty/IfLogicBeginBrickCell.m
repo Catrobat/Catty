@@ -20,10 +20,29 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import "BrickCellInlineView.h"
+#import "IfLogicBeginBrickCell.h"
 
-@interface WaitBrickView : BrickCellInlineView
+@interface IfLogicBeginBrickCell ()
+@property (nonatomic, strong) UILabel *leftTextLabel;
+@property (nonatomic, strong) UILabel *rightTextLabel;
+@end
 
-@property (nonatomic, strong) UITextField *delayInput;
+@implementation IfLogicBeginBrickCell
+
+- (void)hookUpSubViews:(NSArray *)inlineViewSubViews
+{
+    self.leftTextLabel = inlineViewSubViews[0];
+    self.expressionTextField = inlineViewSubViews[1];
+    self.rightTextLabel = inlineViewSubViews[2];
+}
+
+- (id)initWithFrame:(CGRect)frame
+{
+    self = [super initWithFrame:frame];
+    if (self) {
+        // Initialization code
+    }
+    return self;
+}
 
 @end

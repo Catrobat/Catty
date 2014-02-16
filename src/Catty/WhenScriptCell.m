@@ -20,8 +20,28 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
+#import "WhenScriptCell.h"
 #import "BrickCellInlineView.h"
+#import "UIUtil.h"
 
-@interface NoteBrickView : BrickCellInlineView
+@interface WhenScriptCell ()
+@property (nonatomic, strong) UILabel *textLabel;
+@end
+
+@implementation WhenScriptCell
+
+- (void)hookUpSubViews:(NSArray *)inlineViewSubViews
+{
+    self.textLabel = inlineViewSubViews[0];
+}
+
+- (id)initWithFrame:(CGRect)frame
+{
+    self = [super initWithFrame:frame];
+    if (self) {
+        // Initialization code
+    }
+    return self;
+}
 
 @end

@@ -20,8 +20,11 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import "BrickCellInlineView.h"
+#import <Foundation/Foundation.h>
 
-@interface ForeverBrickView : BrickCellInlineView
+@interface UIUtil : NSObject
+
++ (UILabel*)newDefaultBrickLabelWithFrame:(CGRect)frame;
++ (UITextField*)newDefaultBrickTextFieldWithFrame:(CGRect)frame;
 
 @end

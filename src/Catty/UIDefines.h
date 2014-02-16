@@ -24,6 +24,8 @@
 #define kBtnOKTitle NSLocalizedString(@"OK", @"OK button for views")
 #define kBtnDeleteTitle NSLocalizedString(@"Delete", @"Delete button for views")
 
+#define kBrickLabelFontSize 16
+#define kBrickTextFieldFontSize 15
 #define kDefaultImageCellBorderWidth 1.0f
 
 // brick UI config
@@ -82,6 +84,8 @@ typedef NS_ENUM(NSInteger, kBrickCategoryType) {
 #define kBrickPatternBackgroundImageViewOffsetY 0.0f
 #define kBrickLabelOffsetX 0.0f
 #define kBrickLabelOffsetY 0.0f
+#define kBrickInlineViewCanvasOffsetX 0.0f
+#define kBrickInlineViewCanvasOffsetY 0.0f
 #define kBrickBackgroundImageNameSuffix @"_bg"
 
 // brick heights
@@ -143,19 +147,19 @@ typedef NS_ENUM(NSInteger, kControlBrickType) {
 ]
 
 #define kControlBrickNameParams @[\
-    nil,                            /* program started */\
-    nil,                            /* tapped          */\
+    @[],                            /* program started */\
+    @[],                            /* tapped          */\
     @"{FLOAT;range=(0.0f,inf)}",    /* wait            */\
     @"{MESSAGE}",                   /* receive         */\
     @"{MESSAGE}",                   /* broadcast       */\
     @"{MESSAGE}",                   /* broadcast wait  */\
     @"{TEXT}",                      /* note            */\
-    nil,                            /* forever         */\
+    @[],                            /* forever         */\
     @"{FLOAT;range=(-inf,inf)}",    /* if              */\
-    nil,                            /* else            */\
-    nil,                            /* if end          */\
+    @[],                            /* else            */\
+    @[],                            /* if end          */\
     @"{INT;range=[0,inf)}",         /* repeat          */\
-    nil                             /* loop end        */\
+    @[]                             /* loop end        */\
 ]
 
 #define kControlBrickImageNames @[\
@@ -215,12 +219,12 @@ typedef NS_ENUM(NSInteger, kMotionBrickType) {
     NSLocalizedString(@"Change X by %@",nil),\
     NSLocalizedString(@"Change Y by %@",nil),\
     NSLocalizedString(@"If on edge, bounce",nil),\
-    NSLocalizedString(@"Move %@ steps",nil),\
+    NSLocalizedString(@"Move %@ step(s)",nil),\
     NSLocalizedString(@"Turn left %@°",nil),\
     NSLocalizedString(@"Turn right %@°",nil),\
     NSLocalizedString(@"Point in direction %@°",nil),\
     NSLocalizedString(@"Point towards\n%@",nil),\
-    NSLocalizedString(@"Glide %@ second\nto X: %@ Y: %@",nil),\
+    NSLocalizedString(@"Glide %@ second(s)\nto X: %@ Y: %@",nil),\
     NSLocalizedString(@"Go back %@ layer",nil),\
     NSLocalizedString(@"Go to front",nil)\
 ]
@@ -231,7 +235,7 @@ typedef NS_ENUM(NSInteger, kMotionBrickType) {
     @"{FLOAT;range=(-inf,inf)}",                                 /* set Y              */\
     @"{FLOAT;range=(-inf,inf)}",                                 /* change X by N      */\
     @"{FLOAT;range=(-inf,inf)}",                                 /* change Y by N      */\
-    nil,                                                         /* if on edge bounce  */\
+    @[],                                                         /* if on edge bounce  */\
     @"{INT;range=[0,inf)}",                                      /* move N steps       */\
     @"{FLOAT;range=(-inf,inf)}",                                 /* turn left          */\
     @"{FLOAT;range=(-inf,inf)}",                                 /* turn right         */\
@@ -239,7 +243,7 @@ typedef NS_ENUM(NSInteger, kMotionBrickType) {
     @"{OBJECT}",                                                 /* point to brick     */\
     @[@"{FLOAT;range=(0,inf)}", @"{FLOAT;range=(-inf,inf)}", @"{FLOAT;range=(-inf,inf)}"], /* glide to brick     */\
     @"brick_blue_1h",                                            /* go N steps back    */\
-    nil                                                          /* come to front      */\
+    @[]                                                          /* come to front      */\
 ]
 
 #define kMotionBrickImageNames @[\
@@ -295,7 +299,7 @@ typedef NS_ENUM(NSInteger, kSoundBrickType) {
 
 #define kSoundBrickNameParams @[\
     @"{SOUND}",                     /* play sound         */\
-    nil,                            /* stop all sounds    */\
+    @[],                            /* stop all sounds    */\
     @"{FLOAT;range=(-inf,inf)}",    /* set volume to      */\
     @"{FLOAT;range=(-inf,inf)}",    /* change volume to   */\
     @"{TEXT}"                       /* speak              */\
@@ -348,16 +352,16 @@ typedef NS_ENUM(NSInteger, kLookBrickType) {
 
 #define kLookBrickNameParams @[\
     @"{LOOK}",                      /* set background           */\
-    nil,                            /* next background          */\
+    @[],                            /* next background          */\
     @"{FLOAT;range=(-inf,inf)}",    /* set size to              */\
     @"{FLOAT;range=(-inf,inf)}",    /* change size by N         */\
-    nil,                            /* hide                     */\
-    nil,                            /* show                     */\
+    @[],                            /* hide                     */\
+    @[],                            /* show                     */\
     @"{FLOAT;range=(-inf,inf)}",    /* set ghost effect         */\
     @"{FLOAT;range=(-inf,inf)}",    /* change ghost effect by N */\
     @"{FLOAT;range=(-inf,inf)}",    /* set brightness           */\
     @"{FLOAT;range=(-inf,inf)}",    /* change brightness by N   */\
-    nil                             /* clear graphic effect     */\
+    @[]                             /* clear graphic effect     */\
 ]
 
 #define kLookBrickImageNames @[\
