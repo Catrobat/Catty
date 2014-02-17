@@ -45,6 +45,7 @@
 #define kDrawNewImageActionSheetButton @"drawNewImage"
 
 @interface ObjectLooksTableViewController () <UIActionSheetDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate>
+@property (strong, nonatomic) NSMutableDictionary *imageCache; // NONatomic, only (!) accessed via main queue = serial (!) queue
 @property (nonatomic, strong) LoadingView* loadingView;
 @property (nonatomic, strong) NSMutableDictionary* addLookActionSheetBtnIndexes;
 @end
@@ -54,59 +55,59 @@
 #pragma getters and setters
 - (NSMutableDictionary*)addLookActionSheetBtnIndexes
 {
-  // lazy instantiation
-  if (_addLookActionSheetBtnIndexes == nil)
-    _addLookActionSheetBtnIndexes = [NSMutableDictionary dictionaryWithCapacity:3];
-  return _addLookActionSheetBtnIndexes;
+    // lazy instantiation
+    if (_addLookActionSheetBtnIndexes == nil)
+        _addLookActionSheetBtnIndexes = [NSMutableDictionary dictionaryWithCapacity:3];
+    return _addLookActionSheetBtnIndexes;
 }
 
 #pragma mark init
 - (id)initWithStyle:(UITableViewStyle)style
 {
-  self = [super initWithStyle:style];
-  if (self) {
-    // Custom initialization
-  }
-  return self;
+    self = [super initWithStyle:style];
+    if (self) {
+        // Custom initialization
+    }
+    return self;
 }
 
 - (void)initTableView
 {
-  [super initTableView];
-  self.tableView.delegate = self;
-  self.tableView.dataSource = self;
-  [self.tableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
-  self.tableView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"darkblue"]];
-  UITableViewHeaderFooterView *headerViewTemplate = [[UITableViewHeaderFooterView alloc] initWithReuseIdentifier:kTableHeaderIdentifier];
-  headerViewTemplate.contentView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"darkblue"]];
-  [self.tableView addSubview:headerViewTemplate];
+    [super initTableView];
+    self.tableView.delegate = self;
+    self.tableView.dataSource = self;
+    [self.tableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
+    self.tableView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"darkblue"]];
+    UITableViewHeaderFooterView *headerViewTemplate = [[UITableViewHeaderFooterView alloc] initWithReuseIdentifier:kTableHeaderIdentifier];
+    headerViewTemplate.contentView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"darkblue"]];
+    [self.tableView addSubview:headerViewTemplate];
 }
 
 - (void)dealloc
 {
-  [self.loadingView removeFromSuperview];
-  self.loadingView = nil;
+    [self.loadingView removeFromSuperview];
+    self.loadingView = nil;
 }
 
 #pragma view events
 - (void)viewDidLoad
 {
-  [super viewDidLoad];
+    [super viewDidLoad];
 
-  // Uncomment the following line to preserve selection between presentations.
-  // self.clearsSelectionOnViewWillAppear = NO;
+    // Uncomment the following line to preserve selection between presentations.
+    // self.clearsSelectionOnViewWillAppear = NO;
 
-  [self initTableView];
-  [super initPlaceHolder];
-  [super setPlaceHolderTitle:([self.object isBackground] ? kBackgroundsTitle : kLooksTitle)
-                 Description:[NSString stringWithFormat:NSLocalizedString(kEmptyViewPlaceHolder, nil),
-                              ([self.object isBackground] ? kBackgroundsTitle : kLooksTitle)]];
-  [super showPlaceHolder:(! (BOOL)[self.object.lookList count])];
-  //[TableUtil initNavigationItem:self.navigationItem withTitle:NSLocalizedString(@"New Programs", nil)];
+    [self initTableView];
+    [super initPlaceHolder];
+    [super setPlaceHolderTitle:([self.object isBackground] ? kBackgroundsTitle : kLooksTitle)
+                   Description:[NSString stringWithFormat:NSLocalizedString(kEmptyViewPlaceHolder, nil),
+                                ([self.object isBackground] ? kBackgroundsTitle : kLooksTitle)]];
+    [super showPlaceHolder:(! (BOOL)[self.object.lookList count])];
+    //[TableUtil initNavigationItem:self.navigationItem withTitle:NSLocalizedString(@"New Programs", nil)];
 
-//  self.title = self.object.name;
-//  self.navigationItem.title = self.object.name;
-  [self setupToolBar];
+    //  self.title = self.object.name;
+    //  self.navigationItem.title = self.object.name;
+    [self setupToolBar];
 }
 
 - (void)didReceiveMemoryWarning
@@ -128,22 +129,84 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-  static NSString *CellIdentifier = @"LookCell";
-  UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
+    static NSString *CellIdentifier = @"LookCell";
 
-  // Configure the cell...
-  if ([cell conformsToProtocol:@protocol(CatrobatImageCell)]) {
-    UITableViewCell <CatrobatImageCell>* imageCell = (UITableViewCell <CatrobatImageCell>*)cell;
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
+    if (! [cell conformsToProtocol:@protocol(CatrobatImageCell)]) {
+        return cell;
+    }
+    UITableViewCell <CatrobatImageCell>* imageCell = (UITableViewCell<CatrobatImageCell>*)cell;
+
+    Look *look = [self.object.lookList objectAtIndex:indexPath.row];
     imageCell.iconImageView.image = nil;
     NSString *previewImagePath = [self.object previewImagePathForLookAtIndex:indexPath.row];
-    if (previewImagePath) {
-      imageCell.iconImageView.image = [[UIImage alloc] initWithContentsOfFile:previewImagePath];
-      imageCell.iconImageView.contentMode = UIViewContentModeScaleAspectFit;
+    NSNumber *indexAsNumber = @(indexPath.row);
+    UIImage *image = [self.imageCache objectForKey:indexAsNumber];
+    imageCell.iconImageView.contentMode = UIViewContentModeScaleAspectFit;
+    if (! image) {
+        imageCell.iconImageView.image = nil;
+        imageCell.indexPath = indexPath;
+        if (previewImagePath) {
+            // best effort via global queue
+            dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0ul);
+            dispatch_async(queue, ^{
+                UIImage *image = [[UIImage alloc] initWithContentsOfFile:previewImagePath];
+                // perform UI stuff on main queue (UIKit is not thread safe!!)
+                // use sync not async here!!
+                dispatch_sync(dispatch_get_main_queue(), ^{
+                    // check if cell still needed
+                    if ([imageCell.indexPath isEqual:indexPath]) {
+                        imageCell.iconImageView.image = image;
+                        [imageCell setNeedsLayout];
+                        [self.imageCache setObject:image forKey:indexAsNumber];
+                    }
+                });
+            });
+        } else {
+            // fallback
+            // best effort via global queue
+            dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0ul);
+            dispatch_async(queue, ^{
+                // TODO: outsource this "thumbnail generation code" to helper class
+                NSString *newPreviewImagePath = [NSString stringWithFormat:@"%@%@/%@",
+                                                 [self.object projectPath], kProgramImagesDirName,
+                                                 [look previewImageFileName]];
+
+                NSString *imagePath = [NSString stringWithFormat:@"%@%@/%@",
+                                       [self.object projectPath], kProgramImagesDirName,
+                                       look.fileName];
+                UIImage *image = [UIImage imageWithContentsOfFile:imagePath];
+
+                // generate thumbnail image (retina)
+                CGSize previewImageSize = CGSizeMake(kPreviewImageWidth, kPreviewImageHeight);
+                // determine aspect ratio
+                if (image.size.height > image.size.width)
+                    previewImageSize.width = (image.size.width*previewImageSize.width)/image.size.height;
+                else
+                    previewImageSize.height = (image.size.height*previewImageSize.height)/image.size.width;
+
+                UIGraphicsBeginImageContext(previewImageSize);
+                UIImage *previewImage = [image copy];
+                [previewImage drawInRect:CGRectMake(0, 0, previewImageSize.width, previewImageSize.height)];
+                previewImage = UIGraphicsGetImageFromCurrentImageContext();
+                UIGraphicsEndImageContext();
+                [UIImagePNGRepresentation(previewImage) writeToFile:newPreviewImagePath atomically:YES];
+
+                dispatch_sync(dispatch_get_main_queue(), ^{
+                    // check if cell still needed
+                    if ([imageCell.indexPath isEqual:indexPath]) {
+                        imageCell.iconImageView.image = previewImage;
+                        [imageCell setNeedsLayout];
+                        [self.imageCache setObject:previewImage forKey:indexAsNumber];
+                    }
+                });
+            });
+        }
+    } else {
+        imageCell.iconImageView.image = image;
     }
-    Look *look = [self.object.lookList objectAtIndex:indexPath.row];
     imageCell.titleLabel.text = look.name;
-  }
-  return cell;
+    return imageCell;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -247,9 +310,6 @@
       NSString *newImagePath = [NSString stringWithFormat:@"%@%@/%@",
                                  [self.object projectPath], kProgramImagesDirName,
                                  newImageFileName];
-      NSString *newPreviewImagePath = [NSString stringWithFormat:@"%@%@/%@",
-                                        [self.object projectPath], kProgramImagesDirName,
-                                        [look previewImageFileName]];
       NSString *mediaType = info[UIImagePickerControllerMediaType];
 
       NSLog(@"Writing file to disk");
@@ -257,21 +317,6 @@
         // TODO: update program on disc...
         NSBlockOperation* saveOp = [NSBlockOperation blockOperationWithBlock: ^{
           [UIImagePNGRepresentation(image) writeToFile:newImagePath atomically:YES];
-
-          // generate thumbnail image (retina)
-          CGSize previewImageSize = CGSizeMake(kPreviewImageWidth, kPreviewImageHeight);
-          // determine aspect ratio
-          if (image.size.height > image.size.width)
-            previewImageSize.width = (image.size.width*previewImageSize.width)/image.size.height;
-          else
-            previewImageSize.height = (image.size.height*previewImageSize.height)/image.size.width;
-
-          UIGraphicsBeginImageContext(previewImageSize);
-          UIImage *previewImage = [image copy];
-          [previewImage drawInRect:CGRectMake(0, 0, previewImageSize.width, previewImageSize.height)];
-          previewImage = UIGraphicsGetImageFromCurrentImageContext();
-          UIGraphicsEndImageContext();
-          [UIImagePNGRepresentation(previewImage) writeToFile:newPreviewImagePath atomically:YES];
         }];
 
         // Use the completion block to update UI on the main queue

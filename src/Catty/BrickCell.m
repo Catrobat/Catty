@@ -290,7 +290,6 @@
     NSDictionary *categoryAndBrickType = allCategoriesAndBrickTypes[[subclassName stringByReplacingOccurrencesOfString:@"Cell" withString:@""]];
     self.categoryType = (kBrickCategoryType) [categoryAndBrickType[@"categoryType"] integerValue];
     self.brickType = [categoryAndBrickType[@"brickType"] integerValue];
-    NSLog(@"SubClassName: %@, BrickCategoryType: %d, BrickType: %d", subclassName, self.categoryType, self.brickType);
 
     [self setupView];
     [self setupBrickPatternImage];

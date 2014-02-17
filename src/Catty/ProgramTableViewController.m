@@ -44,6 +44,7 @@
 #import "LevelUpdateDelegate.h"
 #import "SensorHandler.h"
 #import "CellTagDefines.h"
+#import "AppDelegate.h"
 
 // identifiers
 #define kTableHeaderIdentifier @"Header"
@@ -51,7 +52,7 @@
 @interface ProgramTableViewController () <UIActionSheetDelegate, UIAlertViewDelegate, UITextFieldDelegate,
 UINavigationBarDelegate>
 @property (strong, nonatomic) Program *program;
-@property (strong, nonatomic) NSMutableDictionary *imageCache;
+@property (strong, nonatomic) NSMutableDictionary *imageCache; // NONatomic, only (!) accessed via main queue = serial (!) queue
 #warning isNewProgram is only a temporarily var to indicate wether this is a new program or loaded from disk
 @property (nonatomic) BOOL isNewProgram;
 @end
@@ -239,26 +240,83 @@ UINavigationBarDelegate>
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:kObjectCell forIndexPath:indexPath];
-    if ([cell conformsToProtocol:@protocol(CatrobatImageCell)]) {
-        UITableViewCell <CatrobatImageCell>* imageCell = (UITableViewCell<CatrobatImageCell>*)cell;
-        NSInteger index = (kBackgroundSectionIndex + indexPath.section + indexPath.row);
-        SpriteObject *object = [self.program.objectList objectAtIndex:index];
-
-        imageCell.iconImageView.image = nil;
-        NSString *previewImagePath = [object previewImagePath];
-        if (previewImagePath) {
-            NSNumber *indexAsNumber = @(index);
-            UIImage *image = [self.imageCache objectForKey:indexAsNumber];
-            if (! image) {
-                image = [[UIImage alloc] initWithContentsOfFile:previewImagePath];
-                [self.imageCache setObject:image forKey:indexAsNumber];
-            }
-            imageCell.iconImageView.image = image;
-            imageCell.iconImageView.contentMode = UIViewContentModeScaleAspectFit;
-        }
-        imageCell.titleLabel.text = object.name;
+    if (! [cell conformsToProtocol:@protocol(CatrobatImageCell)]) {
+        return cell;
     }
-    return cell;
+    UITableViewCell <CatrobatImageCell>* imageCell = (UITableViewCell<CatrobatImageCell>*)cell;
+    NSInteger index = (kBackgroundSectionIndex + indexPath.section + indexPath.row);
+    SpriteObject *object = [self.program.objectList objectAtIndex:index];
+
+    imageCell.iconImageView.image = nil;
+    NSString *previewImagePath = [object previewImagePath];
+    NSNumber *indexAsNumber = @(index);
+    UIImage *image = [self.imageCache objectForKey:indexAsNumber];
+    imageCell.iconImageView.contentMode = UIViewContentModeScaleAspectFit;
+    if (! image) {
+        imageCell.iconImageView.image = nil;
+        imageCell.indexPath = indexPath;
+        if (previewImagePath) {
+            // best effort via global queue
+            dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0ul);
+            dispatch_async(queue, ^{
+                UIImage *image = [[UIImage alloc] initWithContentsOfFile:previewImagePath];
+                // perform UI stuff on main queue (UIKit is not thread safe!!)
+                // use sync not async here!!
+                dispatch_sync(dispatch_get_main_queue(), ^{
+                    // check if cell still needed
+                    if ([imageCell.indexPath isEqual:indexPath]) {
+                        imageCell.iconImageView.image = image;
+                        [imageCell setNeedsLayout];
+                        [self.imageCache setObject:image forKey:indexAsNumber];
+                    }
+                });
+            });
+        } else {
+            // fallback
+            // best effort via global queue
+            dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0ul);
+            dispatch_async(queue, ^{
+                // TODO: outsource this "thumbnail generation code" to helper class
+                Look* look = [object.lookList objectAtIndex:kBackgroundObjectIndex];
+                NSString *newPreviewImagePath = [NSString stringWithFormat:@"%@%@/%@",
+                                                 [object projectPath], kProgramImagesDirName,
+                                                 [look previewImageFileName]];
+
+                NSString *imagePath = [NSString stringWithFormat:@"%@%@/%@",
+                                       [object projectPath], kProgramImagesDirName,
+                                       look.fileName];
+                UIImage *image = [UIImage imageWithContentsOfFile:imagePath];
+
+                // generate thumbnail image (retina)
+                CGSize previewImageSize = CGSizeMake(kPreviewImageWidth, kPreviewImageHeight);
+                // determine aspect ratio
+                if (image.size.height > image.size.width)
+                    previewImageSize.width = (image.size.width*previewImageSize.width)/image.size.height;
+                else
+                    previewImageSize.height = (image.size.height*previewImageSize.height)/image.size.width;
+                
+                UIGraphicsBeginImageContext(previewImageSize);
+                UIImage *previewImage = [image copy];
+                [previewImage drawInRect:CGRectMake(0, 0, previewImageSize.width, previewImageSize.height)];
+                previewImage = UIGraphicsGetImageFromCurrentImageContext();
+                UIGraphicsEndImageContext();
+                [UIImagePNGRepresentation(previewImage) writeToFile:newPreviewImagePath atomically:YES];
+
+                dispatch_sync(dispatch_get_main_queue(), ^{
+                    // check if cell still needed
+                    if ([imageCell.indexPath isEqual:indexPath]) {
+                        imageCell.iconImageView.image = previewImage;
+                        [imageCell setNeedsLayout];
+                        [self.imageCache setObject:previewImage forKey:indexAsNumber];
+                    }
+                });
+            });
+        }
+    } else {
+        imageCell.iconImageView.image = image;
+    }
+    imageCell.titleLabel.text = object.name;
+    return imageCell;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
