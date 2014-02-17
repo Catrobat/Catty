@@ -258,7 +258,7 @@ static SensorHandler* sharedSensorHandler = nil;
     if (self.recorder) {
         self.recorder.delegate = self;
         self.recorder.meteringEnabled = YES;
-         [self.recorder prepareToRecord];
+        [self.recorder prepareToRecord];
     }
 
 }

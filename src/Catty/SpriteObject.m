@@ -356,8 +356,8 @@
 {
     BOOL check = YES;
 #warning Fix for issue that you can set look without a brick at the start -> change if there will be hide bricks for those objects which should not appear!
-        for (Script *script in self.scriptList)
-        {
+//        for (Script *script in self.scriptList)
+//        {
 //            if ([script isKindOfClass:[StartScript class]]) {
 //                for(Brick* brick in script.brickList){
 //                    if([brick isKindOfClass:[SetLookBrick class]]) {
@@ -381,9 +381,9 @@
 //                    }
 //                }
 //            }
-
-            
-        }
+//
+//            
+//        }
 
 
     if((check == YES || ([self isBackground])) && [self.lookList count]>0){
