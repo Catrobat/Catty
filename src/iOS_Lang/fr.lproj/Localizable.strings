@@ -21,11 +21,11 @@
  */
 "ExampleEntry" = "ExampleTranslation";
 
-"New" = "New";
+"New" = "Nouveau";
 
-"Programs" = "Programs";
+"Programs" = "Programmes";
 
-"Continue" = "Continue";
+"Continue" = "Continuer";
 
 "Download" = "Download";
 
@@ -33,25 +33,55 @@
 
 "Forum" = "Forum";
 
-"This feature is coming soon!" = "This feature is coming soon!";
+"This feature is coming soon!" = "Cette fonctionnalité sera bientôt disponible !";
 
-"Pocket Code for iOS" = "Pocket Code for iOS";
+"Pocket Code for iOS" = "Pocket Code pour iOS";
 
 "Description" = "Description";
 
-"Author" = "Author";
+"Author" = "Auteur";
 
 "Uploaded" = "Uploaded";
 
-"Views" = "Views";
+"Views" = "Vues";
 
-"Play" = "Play";
+"Play" = "Jouer";
 
-"Recents" = "Recents";
+"Recents" = "Récent";
 
 "Featured" = "Featured";
 
-"Search" = "Search";
+"Search" = "chercher";
 
 "Screenshot" = "Screenshot";
+
+"Back" = "Back";
+
+"Restart" = "Restart";
+
+"Grid" = "Grid";
+
+"Edit" = "Edit";
+
+"Background" = "Background";
+
+"Objects" = "Objects";
+
+"Object" = "Object";
+
+"My Object" = "My Object";
+
+"Delete" = "Delete";
+
+"Cancel" = "Cancel";
+
+"Add Object" = "Add Object";
+
+"Object name:" = "Object name:";
+
+"Save Screenshot to:" = "Save Screenshot to:";
+
+"Camera Roll" = "Camera Roll";
+
+"Project" = "Project";
 

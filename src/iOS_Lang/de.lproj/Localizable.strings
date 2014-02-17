@@ -55,3 +55,33 @@
 
 "Screenshot" = "Bildschirmfoto";
 
+"Back" = "Zurück";
+
+"Restart" = "Neu starten";
+
+"Grid" = "Raster";
+
+"Edit" = "Bearbeiten";
+
+"Background" = "Hintergrund";
+
+"Objects" = "Objekte";
+
+"Object" = "Objekt";
+
+"My Object" = "Mein Objekt";
+
+"Delete" = "Löschen";
+
+"Cancel" = "Abbrechen";
+
+"Add Object" = "Objekt hinzufügen";
+
+"Object name:" = "Objektname:";
+
+"Save Screenshot to:" = "Screenshot speichern in:";
+
+"Camera Roll" = "Fotoalbum";
+
+"Project" = "Projekt";
+

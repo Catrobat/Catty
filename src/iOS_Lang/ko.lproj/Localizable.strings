@@ -55,3 +55,33 @@
 
 "Screenshot" = "Screenshot";
 
+"Back" = "Back";
+
+"Restart" = "Restart";
+
+"Grid" = "Grid";
+
+"Edit" = "Edit";
+
+"Background" = "배경";
+
+"Objects" = "Objects";
+
+"Object" = "스프라이트";
+
+"My Object" = "내 스프라이트";
+
+"Delete" = "삭제";
+
+"Cancel" = "취소";
+
+"Add Object" = "Add Object";
+
+"Object name:" = "Object name:";
+
+"Save Screenshot to:" = "Save Screenshot to:";
+
+"Camera Roll" = "Camera Roll";
+
+"Project" = "Project";
+
