@@ -407,8 +407,8 @@ typedef NS_ENUM(NSInteger, kVariableBrickType) {
 
 // TODO: change this after code supports more than 2 lines
 #define kVariableBrickNames @[\
-    NSLocalizedString(@"Set variable %@\nto %@",nil),\
-    NSLocalizedString(@"Change variable %@\nby %@",nil)\
+    NSLocalizedString(@"Set variable\n%@\nto %@",nil),\
+    NSLocalizedString(@"Change variable\n%@\nby %@",nil)\
 ]
 
 #define kVariableBrickNameParams @[\

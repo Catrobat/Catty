@@ -26,6 +26,9 @@
 #import "BrickCellInlineView.h"
 #import "UIUtil.h"
 
+// uncomment this to get special log outputs, etc...
+//#define LAYOUT_DEBUG 0
+
 @interface BrickCell ()
 @property (nonatomic, strong) NSDictionary *classNameBrickNameMap;
 @property (nonatomic) kBrickCategoryType categoryType;
@@ -371,52 +374,57 @@
     NSArray *subviews = nil;
 
     // check if it is a "two-liner" or a "one-liner" brick
-    NSRange range = [brickTitle rangeOfString:@"\n"];
-    if (range.location != NSNotFound) {
-        // first case: it's a two liner
-        NSError *error = NULL;
-        NSString *topLine = [brickTitle substringToIndex:range.location];
-        NSString *bottomLine = [brickTitle substringFromIndex:(range.location+range.length)];
-        NSDebug(@"String1 = %@",topLine);
-        NSDebug(@"String2 = %@",bottomLine);
-        NSArray *topParams = @[];
-        NSArray *bottomParams = @[];
+    NSArray *lines = [brickTitle componentsSeparatedByString:@"\n"];
+    NSUInteger numberOfLines = [lines count];
 
+    if (! numberOfLines) {
+        return nil;
+    }
+
+    if (numberOfLines > 1) {
+        // determine number of params per line
         NSUInteger totalNumberOfParams = [brickParams count];
-        NSUInteger numberOfTopParams = 0;
-        NSUInteger numberOfBottomParams = 0;
-        if (totalNumberOfParams) {
-            NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@"%@" options:NSRegularExpressionCaseInsensitive error:&error];
-            numberOfTopParams = [regex numberOfMatchesInString:topLine options:0 range:NSMakeRange(0, [topLine length])];
-            numberOfBottomParams = totalNumberOfParams - numberOfTopParams;
-            if (numberOfTopParams) {
-                topParams = [brickParams subarrayWithRange:NSMakeRange(0, numberOfTopParams)];
-            }
-            if (numberOfTopParams < totalNumberOfParams) {
-                bottomParams = [brickParams subarrayWithRange:NSMakeRange(numberOfTopParams, numberOfBottomParams)];
-            }
-        }
-        CGRect topFrame = canvasFrame;
-        CGRect bottomFrame = canvasFrame;
-        topFrame.size.height /= 2.0f;
-        bottomFrame.origin.y = topFrame.size.height;
-        bottomFrame.size.height -= topFrame.size.height;
+        NSMutableArray *paramsOfLines = [NSMutableArray arrayWithCapacity:numberOfLines];
+        NSUInteger numberOfPreviousLineParams = 0;
+        NSUInteger numberOfLinesWithParams = 0;
+        for (NSInteger lineIndex = 0; lineIndex < numberOfLines; ++lineIndex) {
+            NSString *currentLine = [lines objectAtIndex:lineIndex];
+            NSUInteger numberOfCurrentLineParams = 0;
+            NSArray *currentLineParams = @[];
+            if (totalNumberOfParams) {
+                NSError *error = NULL;
+                NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@"%@" options:NSRegularExpressionCaseInsensitive error:&error];
+                numberOfCurrentLineParams = [regex numberOfMatchesInString:currentLine options:0 range:NSMakeRange(0, [currentLine length])];
 
-        // if at least one input field in only one line occurs, update height of this row to fixed size
-        if (numberOfTopParams && (! numberOfBottomParams)) {
-            bottomFrame.origin.y = topFrame.size.height = kBrickInputFieldMinRowHeight;
-            bottomFrame.size.height -= topFrame.size.height;
-        } else if ((! numberOfTopParams) && numberOfBottomParams) {
-            bottomFrame.size.height = kBrickInputFieldMinRowHeight;
-            bottomFrame.origin.y = topFrame.size.height = (canvasFrame.size.height - bottomFrame.size.height);
+                if (numberOfCurrentLineParams) {
+                    currentLineParams = [brickParams subarrayWithRange:NSMakeRange(numberOfPreviousLineParams, numberOfCurrentLineParams)];
+                    ++numberOfLinesWithParams;
+                }
+            }
+            numberOfPreviousLineParams = numberOfCurrentLineParams;
+            [paramsOfLines addObject:currentLineParams];
         }
 
-        NSMutableArray *bothLinesSubviews = [NSMutableArray array];
-        [bothLinesSubviews addObjectsFromArray:[self inlineViewSubviewsOfLabel:topLine WithParams:topParams WithFrame:topFrame]];
-        [bothLinesSubviews addObjectsFromArray:[self inlineViewSubviewsOfLabel:bottomLine WithParams:bottomParams WithFrame:bottomFrame]];
-        subviews = [bothLinesSubviews copy]; // makes immutable copy of (NSMutableArray*) => returns (NSArray*)
+        // determine height per line and generate subviews of all lines
+        CGFloat totalHeight = canvasFrame.size.height;
+        CGFloat averageHeight = totalHeight / (CGFloat)numberOfLines;
+        CGFloat heightForLineWithParams = ((averageHeight > kBrickInputFieldMinRowHeight) ? averageHeight : kBrickInputFieldMinRowHeight);
+        CGFloat remainingTotalHeight = (totalHeight - (heightForLineWithParams * numberOfLinesWithParams));
+        CGFloat heightForLineWithNoParams = (remainingTotalHeight / (numberOfLines - numberOfLinesWithParams));
+        NSMutableArray *allLinesSubviews = [NSMutableArray array];
+        CGFloat yOffset = 0.0f;
+        for (NSInteger lineIndex = 0; lineIndex < numberOfLines; ++lineIndex) {
+            NSString *line = [lines objectAtIndex:lineIndex];
+            NSArray *params = [paramsOfLines objectAtIndex:lineIndex];
+            CGRect frame = canvasFrame;
+            frame.origin.y = yOffset;
+            frame.size.height = ([params count] ? heightForLineWithParams : heightForLineWithNoParams);
+            yOffset += frame.size.height;
+            [allLinesSubviews addObjectsFromArray:[self inlineViewSubviewsOfLabel:line WithParams:params WithFrame:frame]];
+        }
+        subviews = [allLinesSubviews copy]; // makes immutable copy of (NSMutableArray*) => returns (NSArray*)
     } else {
-        // second case: it's a one liner
+        // case: one line
         subviews = [[self inlineViewSubviewsOfLabel:brickTitle WithParams:brickParams WithFrame:canvasFrame] copy]; // makes immutable copy of (NSMutableArray*) => returns (NSArray*)
     }
     // finally add all subviews to the inline view
@@ -433,6 +441,10 @@
     if (! totalNumberOfParams) {
         NSMutableArray *subviews = [NSMutableArray array];
         UILabel *textLabel = [UIUtil newDefaultBrickLabelWithFrame:remainingFrame AndText:labelTitle];
+#ifdef LAYOUT_DEBUG
+        NSLog(@"Label Title: %@, Width: %f, Height: %f", labelTitle, remainingFrame.size.width, remainingFrame.size.height);
+        textLabel.backgroundColor = [UIColor yellowColor];
+#endif
         [subviews addObject:textLabel];
         return subviews;
     }
@@ -449,7 +461,10 @@
         // TODO: make x-offset calculation much more smarter...
 
         UILabel *textLabel = [UIUtil newDefaultBrickLabelWithFrame:remainingFrame AndText:partLabelTitle];
-//        textLabel.backgroundColor = [UIColor blueColor];
+#ifdef LAYOUT_DEBUG
+        NSLog(@"Label Title: %@, Width: %f, Height: %f", partLabelTitle, remainingFrame.size.width, remainingFrame.size.height);
+        textLabel.backgroundColor = [UIColor blueColor];
+#endif
         remainingFrame.origin.x += (textLabel.frame.size.width + kBrickInputFieldLeftMargin);
         remainingFrame.size.width -= (textLabel.frame.size.width + kBrickInputFieldLeftMargin);
         [subviews addObject:textLabel];
@@ -462,8 +477,10 @@
             // TODO: Pickers, Pluralization, Hook Ups only for inputFields ...
 
             CGRect inputViewFrame = remainingFrame;
-            inputViewFrame.origin.y += kBrickInputFieldTopMargin;
-            inputViewFrame.size.height -= (kBrickInputFieldTopMargin + kBrickInputFieldBottomMargin);
+//            inputViewFrame.origin.y += kBrickInputFieldTopMargin;
+//            inputViewFrame.size.height -= (kBrickInputFieldTopMargin + kBrickInputFieldBottomMargin);
+            inputViewFrame.origin.y += kBrickInputFieldTopMargin/(kBrickInputFieldTopMargin + kBrickInputFieldBottomMargin) * (remainingFrame.size.height - kBrickInputFieldHeight);
+            inputViewFrame.size.height = kBrickInputFieldHeight;
             inputViewFrame.size.width = kBrickInputFieldMinWidth;
             NSString *afterLabelParam = [params objectAtIndex:counter];
             UIView *inputField = nil;
@@ -476,8 +493,8 @@
                 textField.enabled = NO;
                 inputField = (UIView*)textField;
             } else if ([afterLabelParam rangeOfString:@"TEXT"].location != NSNotFound) {
-                inputViewFrame.origin.y = (remainingFrame.size.height - kBrickInputFieldHeight)/2.0f+(kBrickInputFieldTopMargin - kBrickInputFieldBottomMargin);
-                inputViewFrame.size.height = kBrickInputFieldHeight;
+//                inputViewFrame.origin.y = (remainingFrame.size.height - kBrickInputFieldHeight)/2.0f+(kBrickInputFieldTopMargin - kBrickInputFieldBottomMargin);
+//                inputViewFrame.size.height = kBrickInputFieldHeight;
                 UITextField *textField = [UIUtil newDefaultBrickTextFieldWithFrame:inputViewFrame];
                 textField.enabled = NO;
                 inputField = (UIView*)textField;
