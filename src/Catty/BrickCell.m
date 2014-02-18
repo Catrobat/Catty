@@ -165,8 +165,9 @@
 - (UIImageView *)overlayView
 {
     if (!_overlayView) {
-        _overlayView = [[UIImageView alloc] initWithFrame:CGRectZero];
-        // _overlayView.backgroundColor = [UIColor colorWithRed:0.0f green:0.0f blue:0.0f alpha:0.4f];
+        UIImageView *overlayView = [[UIImageView alloc] initWithFrame:CGRectZero];
+        // overlayView.backgroundColor = [UIColor colorWithRed:0.0f green:0.0f blue:0.0f alpha:0.4f];
+        _overlayView = overlayView;
     }
     return _overlayView;
 }
