@@ -246,6 +246,11 @@ UINavigationBarDelegate>
     UITableViewCell <CatrobatImageCell>* imageCell = (UITableViewCell<CatrobatImageCell>*)cell;
     NSInteger index = (kBackgroundSectionIndex + indexPath.section + indexPath.row);
     SpriteObject *object = [self.program.objectList objectAtIndex:index];
+    if (! [object.lookList count]) {
+        imageCell.iconImageView.image = nil;
+        imageCell.titleLabel.text = object.name;
+        return imageCell;
+    }
 
     imageCell.iconImageView.image = nil;
     NSString *previewImagePath = [object previewImagePath];
@@ -256,12 +261,10 @@ UINavigationBarDelegate>
         imageCell.iconImageView.image = nil;
         imageCell.indexPath = indexPath;
         if (previewImagePath) {
-            // best effort via global queue
             dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0ul);
             dispatch_async(queue, ^{
                 UIImage *image = [[UIImage alloc] initWithContentsOfFile:previewImagePath];
                 // perform UI stuff on main queue (UIKit is not thread safe!!)
-                // use sync not async here!!
                 dispatch_sync(dispatch_get_main_queue(), ^{
                     // check if cell still needed
                     if ([imageCell.indexPath isEqual:indexPath]) {
@@ -273,7 +276,6 @@ UINavigationBarDelegate>
             });
         } else {
             // fallback
-            // best effort via global queue
             dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0ul);
             dispatch_async(queue, ^{
                 // TODO: outsource this "thumbnail generation code" to helper class
@@ -344,10 +346,10 @@ UINavigationBarDelegate>
     // FIXME: HACK do not alloc init there. Use ReuseIdentifier instead!! But does lead to several issues...
     UITableViewHeaderFooterView *headerView = [[UITableViewHeaderFooterView alloc] init];
     headerView.contentView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"darkblue"]];
-    
+
     CGFloat height = [self tableView:self.tableView heightForHeaderInSection:section]-10.0;
     UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(13.0f, 0.0f, 265.0f, height)];
-    
+
     CALayer *layer = titleLabel.layer;
     CALayer *bottomBorder = [CALayer layer];
     bottomBorder.borderColor = [UIColor airForceBlueColor].CGColor;
@@ -355,7 +357,7 @@ UINavigationBarDelegate>
     bottomBorder.frame = CGRectMake(0, layer.frame.size.height-1, layer.frame.size.width, 1);
     [bottomBorder setBorderColor:[UIColor airForceBlueColor].CGColor];
     [layer addSublayer:bottomBorder];
-    
+
     titleLabel.textColor = [UIColor whiteColor];
     titleLabel.tag = 1;
     titleLabel.font = [UIFont systemFontOfSize:14.0f];
@@ -365,7 +367,7 @@ UINavigationBarDelegate>
         titleLabel.text = [kObjectTitlePlural uppercaseString];
     else
         titleLabel.text = [kObjectTitleSingular uppercaseString];
-    
+
     titleLabel.text = [NSString stringWithFormat:@"  %@", titleLabel.text];
     [headerView.contentView addSubview:titleLabel];
     return headerView;
@@ -393,7 +395,7 @@ UINavigationBarDelegate>
     // Pass the selected object to the new view controller.
     static NSString *toObjectSegueID = kSegueToObject;
     static NSString *toSceneSegueID = kSegueToScene;
-    
+
     UIViewController *destController = segue.destinationViewController;
     if ([sender isKindOfClass:[UITableViewCell class]]) {
         UITableViewCell *cell = (UITableViewCell*) sender;

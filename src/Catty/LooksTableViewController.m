@@ -147,12 +147,10 @@
         imageCell.iconImageView.image = nil;
         imageCell.indexPath = indexPath;
         if (previewImagePath) {
-            // best effort via global queue
             dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0ul);
             dispatch_async(queue, ^{
                 UIImage *image = [[UIImage alloc] initWithContentsOfFile:previewImagePath];
                 // perform UI stuff on main queue (UIKit is not thread safe!!)
-                // use sync not async here!!
                 dispatch_sync(dispatch_get_main_queue(), ^{
                     // check if cell still needed
                     if ([imageCell.indexPath isEqual:indexPath]) {
@@ -164,7 +162,6 @@
             });
         } else {
             // fallback
-            // best effort via global queue
             dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0ul);
             dispatch_async(queue, ^{
                 // TODO: outsource this "thumbnail generation code" to helper class
