@@ -161,6 +161,12 @@
     return CGSizeMake(width, height);
 }
 
+- (UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout insetForSectionAtIndex:(NSInteger)section
+{
+    // TODO: outsource all consts
+    return UIEdgeInsetsMake(10, 0, 5, 0);
+}
+
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
     Script *script = [self.object.scriptList objectAtIndex:indexPath.section];

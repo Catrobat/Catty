@@ -57,17 +57,7 @@
 
 - (BOOL)scriptBrickCell
 {
-    if (self.categoryType == kControlBrick) {
-        switch (self.brickType) {
-            case kProgramStartedBrick:
-            case kTappedBrick:
-            case kReceiveBrick:
-                return YES;
-            default:
-                break;
-        }
-    }
-    return NO;
+    return [BrickCell isScriptBrickCellForCategoryType:self.categoryType AndBrickType:self.brickType];
 }
 
 - (void)setBrickType:(NSInteger)brickType
@@ -594,6 +584,21 @@
             break;
     }
     return 0;
+}
+
++ (BOOL)isScriptBrickCellForCategoryType:(kBrickCategoryType)categoryType AndBrickType:(NSInteger)brickType
+{
+    if (categoryType == kControlBrick) {
+        switch (brickType) {
+            case kProgramStartedBrick:
+            case kTappedBrick:
+            case kReceiveBrick:
+                return YES;
+            default:
+                break;
+        }
+    }
+    return NO;
 }
 
 + (CGFloat) brickCellHeightForCategoryType:(kBrickCategoryType)categoryType AndBrickType:(NSInteger)brickType

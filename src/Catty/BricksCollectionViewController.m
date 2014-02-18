@@ -68,33 +68,47 @@
 #pragma mark - Table view data source
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView
 {
-    return 1;
+    return [self.selectableBricks count];
 }
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
-    return [self.selectableBricks count];
+//    return [self.selectableBricks count];
+    return 1;
 }
 
 - (CGSize)collectionView:(UICollectionView*)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath*)indexPath
 {
     CGFloat width = self.view.frame.size.width;
-    CGFloat height = [BrickCell brickCellHeightForCategoryType:self.brickCategoryType AndBrickType:indexPath.row];
+//    CGFloat height = [BrickCell brickCellHeightForCategoryType:self.brickCategoryType AndBrickType:indexPath.row];
+    CGFloat height = [BrickCell brickCellHeightForCategoryType:self.brickCategoryType AndBrickType:indexPath.section];
     return CGSizeMake(width, height);
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSNumber *brickType = [self.selectableBricksSortedIndexes objectAtIndex:indexPath.row];
+//    NSNumber *brickType = [self.selectableBricksSortedIndexes objectAtIndex:indexPath.row];
+    NSNumber *brickType = [self.selectableBricksSortedIndexes objectAtIndex:indexPath.section];
     NSString *brickTypeName = [self.selectableBricks objectForKey:brickType];
     return [collectionView dequeueReusableCellWithReuseIdentifier:brickTypeName forIndexPath:indexPath];
+}
+
+- (UIEdgeInsets)collectionView:(UICollectionView *)collectionView
+                        layout:(UICollectionViewLayout*)collectionViewLayout
+        insetForSectionAtIndex:(NSInteger)section
+{
+    UIEdgeInsets insets = UIEdgeInsetsMake(0.0f, 0.0f, 0.0f, 0.0f);
+    if ([BrickCell isScriptBrickCellForCategoryType:self.brickCategoryType AndBrickType:section]) {
+        insets.top += 10.0f;
+    }
+    return insets;
 }
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath*)indexPath
 {
     BrickCell *cell = (BrickCell *)[collectionView cellForItemAtIndexPath:indexPath];
 
-    if (![self.presentedViewController isBeingPresented]) {
+    if (! [self.presentedViewController isBeingPresented]) {
         [self dismissViewControllerAnimated:YES completion:^{
             NSNotificationCenter *dnc = NSNotificationCenter.defaultCenter;
             [dnc postNotificationName:BrickCellAddedNotification object:nil userInfo:@{UserInfoKeyBrickCell: cell,
@@ -171,7 +185,6 @@
 #pragma mark init
 - (void)initCollectionView
 {
-    //[super initCollectionView];
     self.collectionView.delegate = self;
     self.collectionView.dataSource = self;
     self.collectionView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"darkblue"]];
