@@ -29,7 +29,7 @@
 
 "Download" = "Download";
 
-"Upload" = "Upload";
+"Upload" = "Загрузить";
 
 "Forum" = "Forum";
 
@@ -63,17 +63,17 @@
 
 "Edit" = "Edit";
 
-"Background" = "Background";
+"Background" = "Фон";
 
 "Objects" = "Objects";
 
-"Object" = "Object";
+"Object" = "объект";
 
-"My Object" = "My Object";
+"My Object" = "названиеобъекта";
 
-"Delete" = "Delete";
+"Delete" = "Удалить";
 
-"Cancel" = "Cancel";
+"Cancel" = "Отмена";
 
 "Add Object" = "Add Object";
 

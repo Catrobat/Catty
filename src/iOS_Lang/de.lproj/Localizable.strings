@@ -25,15 +25,15 @@
 
 "Programs" = "Programme";
 
-"Continue" = "Weiter";
+"Continue" = "Fortsetzen";
 
-"Download" = "Herunterladen";
+"Download" = "Download";
 
 "Upload" = "Hochladen";
 
 "Forum" = "Forum";
 
-"This feature is coming soon!" = "Kommt bald!";
+"This feature is coming soon!" = "Diese Funktion ist bald verfügbar!";
 
 "Pocket Code for iOS" = "Pocket Code für iOS";
 
@@ -49,9 +49,39 @@
 
 "Recents" = "Kürzlich";
 
-"Featured" = "Featured";
+"Featured" = "Unterstützt";
 
 "Search" = "Suche";
 
-"Screenshot" = "Screenshot";
+"Screenshot" = "Bildschirmfoto";
+
+"Back" = "Zurück";
+
+"Restart" = "Neu starten";
+
+"Grid" = "Raster";
+
+"Edit" = "Bearbeiten";
+
+"Background" = "Hintergrund";
+
+"Objects" = "Objekte";
+
+"Object" = "Objekt";
+
+"My Object" = "Mein Objekt";
+
+"Delete" = "Löschen";
+
+"Cancel" = "Abbrechen";
+
+"Add Object" = "Objekt hinzufügen";
+
+"Object name:" = "Objektname:";
+
+"Save Screenshot to:" = "Screenshot speichern in:";
+
+"Camera Roll" = "Fotoalbum";
+
+"Project" = "Projekt";
 

@@ -29,7 +29,7 @@
 
 "Download" = "Download";
 
-"Upload" = "Upload";
+"Upload" = "アップロード";
 
 "Forum" = "Forum";
 
@@ -63,17 +63,17 @@
 
 "Edit" = "Edit";
 
-"Background" = "Background";
+"Background" = "背景";
 
 "Objects" = "Objects";
 
-"Object" = "Object";
+"Object" = "スプライト";
 
-"My Object" = "My Object";
+"My Object" = "私のスプライト";
 
-"Delete" = "Delete";
+"Delete" = "削除";
 
-"Cancel" = "Cancel";
+"Cancel" = "キャンセル";
 
 "Add Object" = "Add Object";
 

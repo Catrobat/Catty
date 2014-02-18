@@ -21,15 +21,15 @@
  */
 "ExampleEntry" = "ExampleTranslation";
 
-"New" = "New";
+"New" = "Nieuw";
 
-"Programs" = "Programs";
+"Programs" = "Programma's";
 
-"Continue" = "Continue";
+"Continue" = "Doorgaan";
 
 "Download" = "Download";
 
-"Upload" = "Upload";
+"Upload" = "Uploaden";
 
 "Forum" = "Forum";
 
@@ -37,7 +37,7 @@
 
 "Pocket Code for iOS" = "Pocket Code for iOS";
 
-"Description" = "Description";
+"Description" = "Omschrijving";
 
 "Author" = "Author";
 
@@ -53,27 +53,27 @@
 
 "Search" = "Search";
 
-"Screenshot" = "Screenshot";
+"Screenshot" = "Schermafdruk";
 
-"Back" = "Back";
+"Back" = "Terug";
 
-"Restart" = "Restart";
+"Restart" = "Opnieuw starten";
 
 "Grid" = "Grid";
 
 "Edit" = "Edit";
 
-"Background" = "Background";
+"Background" = "Achtergrond";
 
-"Objects" = "Objects";
+"Objects" = "Objecten";
 
 "Object" = "Object";
 
-"My Object" = "My Object";
+"My Object" = "Mijn object";
 
-"Delete" = "Delete";
+"Delete" = "verwijderen";
 
-"Cancel" = "Cancel";
+"Cancel" = "Annuleren";
 
 "Add Object" = "Add Object";
 

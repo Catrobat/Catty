@@ -29,7 +29,7 @@
 
 "Download" = "Download";
 
-"Upload" = "Upload";
+"Upload" = "업로드";
 
 "Forum" = "Forum";
 
@@ -63,17 +63,17 @@
 
 "Edit" = "Edit";
 
-"Background" = "Background";
+"Background" = "배경";
 
 "Objects" = "Objects";
 
-"Object" = "Object";
+"Object" = "스프라이트";
 
-"My Object" = "My Object";
+"My Object" = "내 스프라이트";
 
-"Delete" = "Delete";
+"Delete" = "삭제";
 
-"Cancel" = "Cancel";
+"Cancel" = "취소";
 
 "Add Object" = "Add Object";
 

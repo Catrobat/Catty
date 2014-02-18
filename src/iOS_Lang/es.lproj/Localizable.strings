@@ -1,4 +1,4 @@
-/**
+/* *
  *  Copyright (C) 2010-2013 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
@@ -20,36 +20,68 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 "ExampleEntry" = "ExampleTranslation";
-"New" = "Neu";
-"Programs" = "Programme";
-"Continue" = "Weiter";
+
+"New" = "Nuevo";
+
+"Programs" = "Programas";
+
+"Continue" = "Continuar";
+
 "Download" = "Download";
+
 "Upload" = "Upload";
-"Forum" = "Forum";
-"This feature is coming soon!" = "Diese Funktion wird bald verfügbar sein!";
-"Pocket Code for iOS" = "Pocket Code für iOS";
-"Description" = "Beschreibung";
+
+"Forum" = "Foro";
+
+"This feature is coming soon!" = "Esta característica viene pronto!";
+
+"Pocket Code for iOS" = "Pocket Code para iOS";
+
+"Description" = "Descripción";
+
 "Author" = "Autor";
-"Uploaded" = "Hochgeladen";
-"Views" = "Betrachteranzahl";
-"Play" = "Spielen";
-"Recents" = "Neu";
-"Featured" = "Ausgezeichnet";
-"Search" = "Suchen";
-"Back" = "Zurück";
-"Restart" = "Restart";
+
+"Uploaded" = "Uploaded";
+
+"Views" = "Vistas";
+
+"Play" = "Jugar";
+
+"Recents" = "Recientes";
+
+"Featured" = "Destacados";
+
+"Search" = "Búsqueda";
+
 "Screenshot" = "Screenshot";
-"Grid" = "Raster";
-"Edit" = "Bearbeiten";
-"Background" = "Hintergrund";
-"Objects" = "Objekte";
-"Object" = "Objekt";
-"My Object" = "Mein Objekt";
-"Delete" = "Löschen";
-"Cancel" = "Abbrechen";
-"Add Object" = "Objekt hinzufügen";
-"Object name:" = "Objektname:";
-"Save Screenshot to:" = "Wohin soll der Screenshot gespeichert werden?";
-"Camera Roll" = "Fotoalbum";
-"Project" = "Projekt";
+
+"Back" = "Back";
+
+"Restart" = "Restart";
+
+"Grid" = "Grid";
+
+"Edit" = "Edit";
+
+"Background" = "Background";
+
+"Objects" = "Objects";
+
+"Object" = "Object";
+
+"My Object" = "My Object";
+
+"Delete" = "Delete";
+
+"Cancel" = "Cancel";
+
+"Add Object" = "Add Object";
+
+"Object name:" = "Object name:";
+
+"Save Screenshot to:" = "Save Screenshot to:";
+
+"Camera Roll" = "Camera Roll";
+
+"Project" = "Project";
 

@@ -29,7 +29,7 @@
 
 "Download" = "Download";
 
-"Upload" = "Upload";
+"Upload" = "Încărcare";
 
 "Forum" = "Forum";
 
@@ -63,17 +63,17 @@
 
 "Edit" = "Edit";
 
-"Background" = "Background";
+"Background" = "Fundal";
 
 "Objects" = "Objects";
 
-"Object" = "Object";
+"Object" = "obiect";
 
-"My Object" = "My Object";
+"My Object" = "denumireaObiectului";
 
-"Delete" = "Delete";
+"Delete" = "Ștergere";
 
-"Cancel" = "Cancel";
+"Cancel" = "Anulare";
 
 "Add Object" = "Add Object";
 

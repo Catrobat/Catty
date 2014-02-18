@@ -191,44 +191,59 @@
     
     CGImageRef cgimg =
     [context createCGImage:outputImage fromRect:[outputImage extent]];
-    
-    return [UIImage imageWithCGImage:cgimg];
+  
+    UIImage *output = [UIImage imageWithCGImage:cgimg];
+    CFRelease(cgimg);
+    return output;
 }
 
 -(void)setUpLabels
 {
-    if ([Util getScreenHeight]==kIphone5ScreenHeight) {
-        self.menuBackLabel         =[[UILabel alloc] initWithFrame:
-                                     CGRectMake(-(kPlaceofLabels-kWidthSlideMenu),(kIphone5ScreenHeight/2)-(kContinueButtonSize/2)-(KMenuIPhone5GapSize)-kMenuIPhone5ContinueGapSize-(kMenuButtonSize)-10, 100, kMenuButtonSize)];
-        self.menuRestartLabel       =[[UILabel alloc] initWithFrame:
-                                      CGRectMake(-(kPlaceofLabels-kWidthSlideMenu),(kIphone5ScreenHeight/2)-(kContinueButtonSize/2)-kMenuIPhone5ContinueGapSize-10,100, kMenuButtonSize)];
-        self.menuContinueLabel      = [[UILabel alloc] initWithFrame:
-                                       CGRectMake(-(kPlaceofLabels-kWidthSlideMenu),(kIphone5ScreenHeight/2)+(kContinueButtonSize/2)-10,  kContinueButtonSize, kMenuButtonSize)];
-        self.menuScreenshotLabel    = [[UILabel alloc] initWithFrame:
-                                       CGRectMake(-(kPlaceOfButtons-kWidthSlideMenu),(kIphone5ScreenHeight/2)+(kContinueButtonSize/2)+kMenuIPhone5ContinueGapSize+kMenuButtonSize-10,  100, kMenuButtonSize)];
-        self.menuAxisLabel          = [[UILabel alloc] initWithFrame:
-                                       CGRectMake(-(kPlaceOfButtons-kWidthSlideMenu),(kIphone5ScreenHeight/2)+                    (kContinueButtonSize/2)+(KMenuIPhone5GapSize)+kMenuIPhone5ContinueGapSize+(2*kMenuButtonSize)-10,  100, kMenuButtonSize)];
-    }
-    if ([Util getScreenHeight]==kIphone4ScreenHeight) {
-        self.menuBackLabel          =[[UILabel alloc] initWithFrame:
-                                      CGRectMake(-(kPlaceofLabels-kWidthSlideMenu),(kIphone4ScreenHeight/2)-(kContinueButtonSize/2)-(kMenuIPhone4GapSize)-kMenuIPhone4ContinueGapSize-(kMenuButtonSize)-10, 100, kMenuButtonSize)];
-        self.menuRestartLabel       =[[UILabel alloc] initWithFrame:
-                                      CGRectMake(-(kPlaceofLabels-kWidthSlideMenu),(kIphone4ScreenHeight/2)-(kContinueButtonSize/2)-kMenuIPhone4ContinueGapSize-10,100, kMenuButtonSize)];
-        self.menuContinueLabel      = [[UILabel alloc] initWithFrame:
-                                       CGRectMake(-(kPlaceofLabels-kWidthSlideMenu),(kIphone4ScreenHeight/2)+(kContinueButtonSize/2)-10,  kContinueButtonSize, kMenuButtonSize)];
-        self.menuScreenshotLabel    = [[UILabel alloc] initWithFrame:
-                                       CGRectMake(-(kPlaceOfButtons-kWidthSlideMenu),(kIphone4ScreenHeight/2)+(kContinueButtonSize/2)+kMenuIPhone4ContinueGapSize+kMenuButtonSize-10,  100, kMenuButtonSize)];
-        self.menuAxisLabel          = [[UILabel alloc] initWithFrame:
-                                       CGRectMake(-(kPlaceOfButtons-kWidthSlideMenu),(kIphone4ScreenHeight/2)+(kContinueButtonSize/2)+(kMenuIPhone4GapSize)+kMenuIPhone4ContinueGapSize+(2*kMenuButtonSize)-10,  100, kMenuButtonSize)];
-    }
-    NSArray* labelTextArray = [[NSArray alloc] initWithObjects:NSLocalizedString(@"Back", nil),NSLocalizedString(@"Restart", nil),NSLocalizedString(@"Continue",nil), NSLocalizedString(@"Screenshot",nil), NSLocalizedString(@"Grid",nil),nil];
-    NSArray* labelArray = [[NSArray alloc] initWithObjects:self.menuBackLabel,self.menuRestartLabel,self.menuContinueLabel, self.menuScreenshotLabel, self.menuAxisLabel,nil];
-    for(int i=0;i<[labelTextArray count];i++){
-        [self setupLabel:labelTextArray[i]
-                 andView:labelArray[i]];
-    }
-
-
+  if ([Util getScreenHeight]==kIphone5ScreenHeight) {
+    UILabel* label      = [[UILabel alloc] initWithFrame:
+                           CGRectMake(-(kPlaceofLabels-kWidthSlideMenu),(kIphone5ScreenHeight/2)-(kContinueButtonSize/2)-(KMenuIPhone5GapSize)-kMenuIPhone5ContinueGapSize-(kMenuButtonSize)-10, 100, kMenuButtonSize)];
+    self.menuBackLabel  = label;
+    
+    label               =[[UILabel alloc] initWithFrame:
+                          CGRectMake(-(kPlaceofLabels-kWidthSlideMenu),(kIphone5ScreenHeight/2)-(kContinueButtonSize/2)-kMenuIPhone5ContinueGapSize-10,100, kMenuButtonSize)];
+    self.menuRestartLabel = label;
+    label               = [[UILabel alloc] initWithFrame:
+                           CGRectMake(-(kPlaceofLabels-kWidthSlideMenu),(kIphone5ScreenHeight/2)+(kContinueButtonSize/2)-10,  kContinueButtonSize, kMenuButtonSize)];
+    self.menuContinueLabel = label;
+    
+    label               = [[UILabel alloc] initWithFrame:
+                           CGRectMake(-(kPlaceOfButtons-kWidthSlideMenu),(kIphone5ScreenHeight/2)+(kContinueButtonSize/2)+kMenuIPhone5ContinueGapSize+kMenuButtonSize-10,  100, kMenuButtonSize)];
+    
+    self.menuScreenshotLabel = label;
+    label               = [[UILabel alloc] initWithFrame:
+                           CGRectMake(-(kPlaceOfButtons-kWidthSlideMenu),(kIphone5ScreenHeight/2)+                    (kContinueButtonSize/2)+(KMenuIPhone5GapSize)+kMenuIPhone5ContinueGapSize+(2*kMenuButtonSize)-10,  100, kMenuButtonSize)];
+    self.menuAxisLabel  = label;
+  }
+  if ([Util getScreenHeight]==kIphone4ScreenHeight) {
+    UILabel* label     =[[UILabel alloc] initWithFrame:
+                         CGRectMake(-(kPlaceofLabels-kWidthSlideMenu),(kIphone4ScreenHeight/2)-(kContinueButtonSize/2)-(kMenuIPhone4GapSize)-kMenuIPhone4ContinueGapSize-(kMenuButtonSize)-10, 100, kMenuButtonSize)];
+    self.menuBackLabel = label;
+    label              =[[UILabel alloc] initWithFrame:
+                         CGRectMake(-(kPlaceofLabels-kWidthSlideMenu),(kIphone4ScreenHeight/2)-(kContinueButtonSize/2)-kMenuIPhone4ContinueGapSize-10,100, kMenuButtonSize)];
+    self.menuRestartLabel = label;
+    label     = [[UILabel alloc] initWithFrame:
+                 CGRectMake(-(kPlaceofLabels-kWidthSlideMenu),(kIphone4ScreenHeight/2)+(kContinueButtonSize/2)-10,  kContinueButtonSize, kMenuButtonSize)];
+    self.menuContinueLabel = label;
+    label    = [[UILabel alloc] initWithFrame:
+                CGRectMake(-(kPlaceOfButtons-kWidthSlideMenu),(kIphone4ScreenHeight/2)+(kContinueButtonSize/2)+kMenuIPhone4ContinueGapSize+kMenuButtonSize-10,  100, kMenuButtonSize)];
+    self.menuScreenshotLabel = label;
+    label         = [[UILabel alloc] initWithFrame:
+                     CGRectMake(-(kPlaceOfButtons-kWidthSlideMenu),(kIphone4ScreenHeight/2)+(kContinueButtonSize/2)+(kMenuIPhone4GapSize)+kMenuIPhone4ContinueGapSize+(2*kMenuButtonSize)-10,  100, kMenuButtonSize)];
+    self.menuAxisLabel  = label;
+  }
+  NSArray* labelTextArray = [[NSArray alloc] initWithObjects:NSLocalizedString(@"Back", nil),NSLocalizedString(@"Restart", nil),NSLocalizedString(@"Continue",nil), NSLocalizedString(@"Screenshot",nil), NSLocalizedString(@"Grid",nil),nil];
+  NSArray* labelArray = [[NSArray alloc] initWithObjects:self.menuBackLabel,self.menuRestartLabel,self.menuContinueLabel, self.menuScreenshotLabel, self.menuAxisLabel,nil];
+  for(int i=0;i<[labelTextArray count];i++){
+    [self setupLabel:labelTextArray[i]
+             andView:labelArray[i]];
+  }
+  
+  
 }
 
 -(void)setupLabel:(NSString*)name andView:(UILabel*)label
@@ -366,26 +381,27 @@
 
 - (void) viewWillDisappear:(BOOL)animated
 {
-    [super viewWillDisappear:animated];
-    [self.navigationController setNavigationBarHidden:NO animated:animated];
-    [[UIApplication sharedApplication] setIdleTimerDisabled:NO];
+  [super viewWillDisappear:animated];
+  [self.navigationController setNavigationBarHidden:NO animated:animated];
+  [[UIApplication sharedApplication] setIdleTimerDisabled:NO];
 }
 
 - (void) configureScene
 {
-    SKView *skView = (SKView*) self.skView;
-    [self.view addSubview:skView];
+  SKView *skView = (SKView*) self.skView;
+  [self.view addSubview:skView];
 #ifdef DEBUG
-    skView.showsFPS = YES;
-    skView.showsNodeCount = YES;
+  skView.showsFPS = YES;
+  skView.showsNodeCount = YES;
 #endif
-    
-    //Program* program = [self loadProgram];
-    CGSize programSize = CGSizeMake(self.program.header.screenWidth.floatValue, self.program.header.screenHeight.floatValue);
-    self.scene = [[Scene alloc] initWithSize:programSize andProgram:self.program];
-    self.scene.scaleMode = SKSceneScaleModeAspectFit;
-    [skView presentScene:self.scene];
-    [[ProgramManager sharedProgramManager] setProgram:self.program];
+  
+  //Program* program = [self loadProgram];
+  CGSize programSize = CGSizeMake(self.program.header.screenWidth.floatValue, self.program.header.screenHeight.floatValue);
+  Scene* scene = [[Scene alloc] initWithSize:programSize andProgram:self.program];
+  self.scene = scene;
+  self.scene.scaleMode = SKSceneScaleModeAspectFit;
+  [skView presentScene:self.scene];
+  [[ProgramManager sharedProgramManager] setProgram:self.program];
 }
 
 

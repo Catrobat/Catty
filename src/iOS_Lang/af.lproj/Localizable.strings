@@ -1,4 +1,4 @@
-/**
+/* *
  *  Copyright (C) 2010-2013 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
@@ -20,21 +20,68 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 "ExampleEntry" = "ExampleTranslation";
-"New" = "nuevo";
-"Programs" = "programas";
-"Continue" = "continuar";
-"Download" = "download";
-"Upload" = "upload";
-"Forum" = "foro";
-"This feature is coming soon!" = "Esta característica es muy pronto!";
-"Pocket Code for iOS" = "Pocket Code por iOS";
-"Description" = "descripción";
-"Author" = "escritor";
-"Uploaded" = "subido";
-"Views" = "vistas";
-"Play" = "juguetear";
-"Recents" = "reciente";
-"Featured" = "destacado";
-"Search" = "búsqueda";
 
+"New" = "New";
+
+"Programs" = "Programs";
+
+"Continue" = "Continue";
+
+"Download" = "Download";
+
+"Upload" = "Upload";
+
+"Forum" = "Forum";
+
+"This feature is coming soon!" = "This feature is coming soon!";
+
+"Pocket Code for iOS" = "Pocket Code for iOS";
+
+"Description" = "Description";
+
+"Author" = "Author";
+
+"Uploaded" = "Uploaded";
+
+"Views" = "Views";
+
+"Play" = "Play";
+
+"Recents" = "Recents";
+
+"Featured" = "Featured";
+
+"Search" = "Search";
+
+"Screenshot" = "Screenshot";
+
+"Back" = "Back";
+
+"Restart" = "Restart";
+
+"Grid" = "Grid";
+
+"Edit" = "Edit";
+
+"Background" = "Background";
+
+"Objects" = "Objects";
+
+"Object" = "Object";
+
+"My Object" = "My Object";
+
+"Delete" = "Delete";
+
+"Cancel" = "Cancel";
+
+"Add Object" = "Add Object";
+
+"Object name:" = "Object name:";
+
+"Save Screenshot to:" = "Save Screenshot to:";
+
+"Camera Roll" = "Camera Roll";
+
+"Project" = "Project";
 
