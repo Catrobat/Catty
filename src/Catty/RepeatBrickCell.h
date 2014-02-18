@@ -24,6 +24,6 @@
 
 @interface RepeatBrickCell : BrickCell
 
-@property (nonatomic, strong) UITextField *numberOfLoopsTextField;
+@property (nonatomic, weak) UITextField *numberOfLoopsTextField;
 
 @end

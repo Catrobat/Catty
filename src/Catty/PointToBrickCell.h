@@ -25,6 +25,6 @@
 @interface PointToBrickCell : BrickCell
 
 // FIXME: write classes for all custom pickers. messagePicker, objectPicker, soundPicker, ...
-@property (nonatomic, strong) UIPickerView *objectPickerView;
+@property (nonatomic, weak) UIPickerView *objectPickerView;
 
 @end

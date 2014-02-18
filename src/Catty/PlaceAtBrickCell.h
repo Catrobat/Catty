@@ -24,7 +24,7 @@
 
 @interface PlaceAtBrickCell : BrickCell
 
-@property (nonatomic, strong) UITextField *xCoordTextField;
-@property (nonatomic, strong) UITextField *yCoordTextField;
+@property (nonatomic, weak) UITextField *xCoordTextField;
+@property (nonatomic, weak) UITextField *yCoordTextField;
 
 @end

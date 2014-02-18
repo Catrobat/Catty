@@ -24,6 +24,6 @@
 
 @interface SetBrightnessBrickCell : BrickCell
 
-@property (nonatomic, strong) UITextField *brightnessTextField;
+@property (nonatomic, weak) UITextField *brightnessTextField;
 
 @end

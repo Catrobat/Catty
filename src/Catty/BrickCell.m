@@ -34,10 +34,10 @@
 @property (nonatomic, strong) NSArray *brickCategoryColors;
 
 // subviews
-@property (strong, nonatomic) UIImageView *backgroundImageView;
-@property (strong, nonatomic) UIImageView *imageView;
-@property (strong, nonatomic) BrickCellInlineView *inlineView;
-@property (strong, nonatomic) UIImageView *overlayView;
+@property (nonatomic, weak) UIImageView *backgroundImageView;
+@property (nonatomic, weak) UIImageView *imageView;
+@property (nonatomic, weak) BrickCellInlineView *inlineView;
+@property (nonatomic, weak) UIImageView *overlayView;
 @end
 
 @implementation BrickCell
@@ -105,8 +105,9 @@
 - (UIImageView*)backgroundImageView
 {
     if (! _backgroundImageView) {
-        _backgroundImageView = [[UIImageView alloc] initWithFrame:CGRectZero];
-        [self addSubview:_backgroundImageView];
+        UIImageView *backgroundImageView = [[UIImageView alloc] initWithFrame:CGRectZero];
+        [self addSubview:backgroundImageView];
+        _backgroundImageView = backgroundImageView;
     }
     return _backgroundImageView;
 }
@@ -115,8 +116,9 @@
 - (UIImageView*)imageView
 {
     if (! _imageView) {
-        _imageView = [[UIImageView alloc] initWithFrame:CGRectZero];
-        [self addSubview:_imageView];
+        UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectZero];
+        [self addSubview:imageView];
+        _imageView = imageView;
     }
     return _imageView;
 }
@@ -125,8 +127,9 @@
 - (BrickCellInlineView*)inlineView
 {
     if (! _inlineView) {
-        _inlineView = [[BrickCellInlineView alloc] initWithFrame:CGRectZero];
-        [self addSubview:_inlineView];
+        BrickCellInlineView *inlineView = [[BrickCellInlineView alloc] initWithFrame:CGRectZero];
+        [self addSubview:inlineView];
+        _inlineView = inlineView;
     }
     return _inlineView;
 }

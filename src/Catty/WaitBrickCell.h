@@ -24,6 +24,6 @@
 
 @interface WaitBrickCell : BrickCell
 
-@property (nonatomic, strong) UITextField *delayTextField;
+@property (nonatomic, weak) UITextField *delayTextField;
 
 @end

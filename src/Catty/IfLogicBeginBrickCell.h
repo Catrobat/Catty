@@ -24,6 +24,6 @@
 
 @interface IfLogicBeginBrickCell : BrickCell
 
-@property (nonatomic, strong) UITextField *expressionTextField;
+@property (nonatomic, weak) UITextField *expressionTextField;
 
 @end

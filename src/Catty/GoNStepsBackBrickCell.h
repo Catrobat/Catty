@@ -24,6 +24,6 @@
 
 @interface GoNStepsBackBrickCell : BrickCell
 
-@property (nonatomic, strong) UITextField *stepsTextField;
+@property (nonatomic, weak) UITextField *stepsTextField;
 
 @end

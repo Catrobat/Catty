@@ -24,6 +24,6 @@
 
 @interface NoteBrickCell : BrickCell
 
-@property (nonatomic, strong) UITextField *noteTextField;
+@property (nonatomic, weak) UITextField *noteTextField;
 
 @end

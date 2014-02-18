@@ -24,6 +24,6 @@
 
 @interface ChangeXByNBrickCell : BrickCell
 
-@property (nonatomic, strong) UITextField *xCoordTextField;
+@property (nonatomic, weak) UITextField *xCoordTextField;
 
 @end
