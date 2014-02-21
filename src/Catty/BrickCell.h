@@ -24,17 +24,21 @@
 #import "ProgramDefines.h"
 #import "UIDefines.h"
 
+@class Brick;
+@class BrickCellInlineView;
+
 @interface BrickCell : UICollectionViewCell
 
 @property (nonatomic, readonly) kBrickCategoryType categoryType;
 @property (nonatomic, readonly) NSInteger brickType;
 @property (nonatomic, readonly, getter = isScriptBrickCell) BOOL scriptBrickCell;
 
-- (void)convertToBrickCellForCategoryType:(kBrickCategoryType)categoryType AndBrickType:(NSInteger)brickType;
+- (void)hookUpSubViews:(NSArray *)inlineViewSubViews; // abstract (only called internally)
 
 + (NSInteger)numberOfAvailableBricksForCategoryType:(kBrickCategoryType)categoryType;
 + (CGFloat) brickCellHeightForCategoryType:(kBrickCategoryType)categoryType AndBrickType:(NSInteger)brickType;
 + (kBrickShapeType)shapeTypeForCategoryType:(kBrickCategoryType)categoryType AndBrickType:(NSInteger)brickType;
++ (BOOL)isScriptBrickCellForCategoryType:(kBrickCategoryType)categoryType AndBrickType:(NSInteger)brickType;
 + (NSString*)brickPatternImageNameForCategoryType:(kBrickCategoryType)categoryType AndBrickType:(NSInteger)brickType;
 
 @end

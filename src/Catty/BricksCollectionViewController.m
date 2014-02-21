@@ -24,54 +24,33 @@
 #import "UIColor+CatrobatUIColorExtensions.h"
 #import "SegueDefines.h"
 #import "BrickCell.h"
+#import "ScriptCollectionViewController.h"
 
 #define kTableHeaderIdentifier @"Header"
-#define kCategoryCell @"BrickCell"
 
 @interface BricksCollectionViewController ()
-@property (nonatomic, strong) NSArray *brickCategoryColors;
+@property (nonatomic, strong) NSArray *selectableBricksSortedIndexes;
+@property (nonatomic, strong) NSDictionary *selectableBricks;
 @end
 
 @implementation BricksCollectionViewController
 
-#pragma mark getters and setters
-- (NSArray*)brickCategoryColors
-{
-    if (! _brickCategoryColors) {
-        _brickCategoryColors = kBrickCategoryColors;
-    }
-    return _brickCategoryColors;
-}
-
-- (void)setBrickCategoryType:(kBrickCategoryType)brickCategoryType
-{
-    _brickCategoryType = brickCategoryType;
-    // update title when brick category changed
-    NSString *title = kBrickCategoryNames[_brickCategoryType];
-    self.title = title;
-    self.navigationItem.title = title;
-}
-
-#pragma mark init
-- (void)initCollectionView
-{
-  //[super initCollectionView];
-  self.collectionView.delegate = self;
-  self.collectionView.dataSource = self;
-  self.collectionView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"darkblue"]];
-}
-
-#pragma view events
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     [self initCollectionView];
     [super initPlaceHolder];
-
-    NSString *title = kBrickCategoryNames[self.brickCategoryType];
-    self.title = title;
-    self.navigationItem.title = title;
+    [self setupNavigationBar];
+    self.collectionView.scrollEnabled = YES;
     self.collectionView.alwaysBounceVertical = YES;
+    self.collectionView.delaysContentTouches = NO;
+
+    // register brick cells for current brick category
+    NSDictionary *selectableBricks = self.selectableBricks;
+    for (NSNumber *brickType in selectableBricks) {
+        NSString *brickTypeName = selectableBricks[brickType];
+        [self.collectionView registerClass:NSClassFromString([brickTypeName stringByAppendingString:@"Cell"]) forCellWithReuseIdentifier:brickTypeName];
+    }
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -86,53 +65,129 @@
     [self.navigationController setToolbarHidden:NO];
 }
 
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
 #pragma mark - Table view data source
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView
 {
-    return 1;
+    return [self.selectableBricks count];
 }
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
-    return [BrickCell numberOfAvailableBricksForCategoryType:self.brickCategoryType];
+//    return [self.selectableBricks count];
+    return 1;
 }
 
 - (CGSize)collectionView:(UICollectionView*)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath*)indexPath
 {
     CGFloat width = self.view.frame.size.width;
-    CGFloat height = [BrickCell brickCellHeightForCategoryType:self.brickCategoryType AndBrickType:indexPath.row];
+//    CGFloat height = [BrickCell brickCellHeightForCategoryType:self.brickCategoryType AndBrickType:indexPath.row];
+    CGFloat height = [BrickCell brickCellHeightForCategoryType:self.brickCategoryType AndBrickType:indexPath.section];
     return CGSizeMake(width, height);
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *CellIdentifier = kCategoryCell;
-    UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:CellIdentifier forIndexPath:indexPath];
-    if ([cell isKindOfClass:[BrickCell class]]) {
-        BrickCell *brickCell = (BrickCell*)cell;
-        [brickCell convertToBrickCellForCategoryType:self.brickCategoryType AndBrickType:indexPath.row];
+//    NSNumber *brickType = [self.selectableBricksSortedIndexes objectAtIndex:indexPath.row];
+    NSNumber *brickType = [self.selectableBricksSortedIndexes objectAtIndex:indexPath.section];
+    NSString *brickTypeName = [self.selectableBricks objectForKey:brickType];
+    return [collectionView dequeueReusableCellWithReuseIdentifier:brickTypeName forIndexPath:indexPath];
+}
+
+- (UIEdgeInsets)collectionView:(UICollectionView *)collectionView
+                        layout:(UICollectionViewLayout*)collectionViewLayout
+        insetForSectionAtIndex:(NSInteger)section
+{
+    UIEdgeInsets insets = UIEdgeInsetsMake(0.0f, 0.0f, 0.0f, 0.0f);
+    if ([BrickCell isScriptBrickCellForCategoryType:self.brickCategoryType AndBrickType:section]) {
+        insets.top += 10.0f;
     }
-    return cell;
+    return insets;
 }
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath*)indexPath
 {
-    UICollectionViewCell *cell = [collectionView cellForItemAtIndexPath:indexPath];
-    if ([cell isKindOfClass:[BrickCell class]]) {
-        // TODO: implement
-        NSLog(@"Perform backward (pop 2 VCs from navigation bar controller stack) segue");
+    BrickCell *cell = (BrickCell *)[collectionView cellForItemAtIndexPath:indexPath];
+
+    if (! [self.presentedViewController isBeingPresented]) {
+        [self dismissViewControllerAnimated:YES completion:^{
+            NSNotificationCenter *dnc = NSNotificationCenter.defaultCenter;
+            [dnc postNotificationName:BrickCellAddedNotification object:nil userInfo:@{UserInfoKeyBrickCell: cell,
+                                                                                       UserInfoSpriteObject: self.object}];
+        }];
     }
 }
 
-- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
+- (void)setupNavigationBar {
+    NSString *title = kBrickCategoryNames[self.brickCategoryType];
+    self.title = title;
+    self.navigationItem.title = title;
+
+    UIBarButtonItem *closeButton = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(dismissBricksCVC:)];
+    self.navigationItem.leftBarButtonItems = @[closeButton];
+}
+
+#pragma mark actions
+
+- (void)dismissBricksCVC:(id)sender {
+    if ([sender isKindOfClass:[UIBarButtonItem class]]) {
+        if (!self.presentingViewController.isBeingPresented) {
+            [self dismissViewControllerAnimated:YES completion:^{
+                
+            }];
+        }
+    }
+}
+
+#pragma mark getters and setters
+- (NSArray*)selectableBricksSortedIndexes
 {
-    cell.backgroundColor = self.brickCategoryColors[self.brickCategoryType];
+    if (! _selectableBricksSortedIndexes) {
+        _selectableBricksSortedIndexes = [[self.selectableBricks allKeys] sortedArrayUsingSelector:@selector(compare:)];
+    }
+    return _selectableBricksSortedIndexes;
+}
+
+- (NSDictionary*)selectableBricks
+{
+    if (! _selectableBricks) {
+        NSArray *unselectableBricks = [kUnselectableBricks objectAtIndex:self.brickCategoryType];
+        NSDictionary *allCategoriesAndBrickTypes = kClassNameBrickNameMap;
+        NSInteger capacity = ([BrickCell numberOfAvailableBricksForCategoryType:self.brickCategoryType] - [unselectableBricks count]);
+        NSMutableDictionary *selectableBricks = [NSMutableDictionary dictionaryWithCapacity:capacity];
+        for (NSString *brickTypeName in allCategoriesAndBrickTypes) {
+            kBrickCategoryType categoryType = (kBrickCategoryType) [allCategoriesAndBrickTypes[brickTypeName][@"categoryType"] integerValue];
+            NSNumber *brickType = allCategoriesAndBrickTypes[brickTypeName][@"brickType"];
+            if ((categoryType != self.brickCategoryType) || [unselectableBricks containsObject:brickType]) {
+                continue;
+            }
+            [selectableBricks setObject:brickTypeName forKey:brickType];
+        }
+        _selectableBricks = [selectableBricks copy];
+        // selectableBricksSortedIndexes should refetch/update on next getter-call
+        self.selectableBricksSortedIndexes = nil;
+    }
+    return _selectableBricks;
+}
+
+- (void)setBrickCategoryType:(kBrickCategoryType)brickCategoryType
+{
+    _brickCategoryType = brickCategoryType;
+
+    // selecatable bricks should refetch/update on next getter-call
+    self.selectableBricks = nil;
+
+    // update title when brick category changed
+    NSString *title = kBrickCategoryNames[_brickCategoryType];
+    self.title = title;
+    self.navigationItem.title = title;
+}
+
+#pragma mark init
+- (void)initCollectionView
+{
+    self.collectionView.delegate = self;
+    self.collectionView.dataSource = self;
+    self.collectionView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"darkblue"]];
 }
 
 @end

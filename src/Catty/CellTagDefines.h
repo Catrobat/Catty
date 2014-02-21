@@ -20,21 +20,11 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#ifndef CellTagDefines_h
-#define CellTagDefines_h
-
 #define kContinueCell @"ContinueCell"
 #define kImageCell    @"ImageCell"
 #define kSearchCell   @"SearchCell"
-#define kBackgroundCell @"BackgroundCell"
-#define kObjectCell @"ObjectCell"
-#define kObjectProgramCell @"ObjectProgramCell"
-
+#define kObjectCell   @"ObjectCell"
 
 #define kImageLabelTag     11
 #define kTitleLabelTag     12
 #define kSubtitleLabelTag  13
-
-
-
-#endif

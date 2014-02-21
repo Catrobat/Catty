@@ -43,15 +43,8 @@
 #import "UIColor+CatrobatUIColorExtensions.h"
 #import "LevelUpdateDelegate.h"
 #import "SensorHandler.h"
-
-// constraints and default values
-#define kDefaultProgramName NSLocalizedString(@"New Program",@"Default name for new programs") // XXX: BTW: are there any restrictions or limits for the program name???
-#define kBackgroundTitle NSLocalizedString(@"Background",@"Title for Background-Section-Header in program view")
-#define kObjectTitleSingular NSLocalizedString(@"Object",@"Title for Object-Section-Header in program view (singular)")
-#define kObjectTitlePlural NSLocalizedString(@"Objects",@"Title for Object-Section-Header in program view (plural)")
-#define kBackgroundObjectName NSLocalizedString(@"Background",@"Title for Background-Object in program view")
-#define kDefaultObjectName NSLocalizedString(@"My Object",@"Title for first (default) object in program view")
-#define kProgramNamePlaceholder NSLocalizedString(@"Enter your program name here...",@"Placeholder for rename-program-name input field")
+#import "CellTagDefines.h"
+#import "AppDelegate.h"
 
 // identifiers
 #define kTableHeaderIdentifier @"Header"
@@ -59,13 +52,12 @@
 @interface ProgramTableViewController () <UIActionSheetDelegate, UIAlertViewDelegate, UITextFieldDelegate,
 UINavigationBarDelegate>
 @property (strong, nonatomic) Program *program;
-// FIXME: only temporarily var to indicate wether this is a new empty program or loaded from local program
-//        library (levels-container), remove this after finished implementing [program saveToDisk]
+@property (strong, nonatomic) NSMutableDictionary *imageCache; // NONatomic, only (!) accessed via main queue = serial (!) queue
+#warning isNewProgram is only a temporarily var to indicate wether this is a new program or loaded from disk
 @property (nonatomic) BOOL isNewProgram;
 @end
 
 @implementation ProgramTableViewController
-# pragma memory for our pointer-properties
 @synthesize program = _program;
 
 #pragma getter & setters
@@ -82,13 +74,12 @@ UINavigationBarDelegate>
         _program = [Program createNewProgramWithName:programName];
         SpriteObject* backgroundObject = [self createObjectWithName:kBackgroundObjectName];
         SpriteObject* firstObject = [self createObjectWithName:kDefaultObjectName];
-        // CAUTION: NEVER change order! BackgroundObject is always first object in list
         _program.objectList = [NSMutableArray arrayWithObjects:backgroundObject, firstObject, nil];
-        
+
         // automatically update title
         if (self.navigationItem && _program.header)
             self.navigationItem.title = _program.header.programName;
-        
+
         self.title = _program.header.programName;
         self.isNewProgram = YES;
         [self.delegate addLevel:self.program.header.programName];
@@ -97,12 +88,27 @@ UINavigationBarDelegate>
     return _program;
 }
 
+- (NSMutableDictionary*)imageCache
+{
+    // lazy instantiation
+    if (! _imageCache) {
+        _imageCache = [NSMutableDictionary dictionaryWithCapacity:[self.program.objectList count]];
+    }
+    return _imageCache;
+}
+
 - (void)setProgram:(Program*)program
 {
     // automatically update title name
     self.title = self.navigationItem.title = program.header.programName;
     self.isNewProgram = NO;
     _program = program;
+}
+
+- (void)didReceiveMemoryWarning
+{
+    [super didReceiveMemoryWarning];
+    self.imageCache = nil;
 }
 
 - (SpriteObject*)createObjectWithName:(NSString*)objectName
@@ -137,7 +143,7 @@ UINavigationBarDelegate>
     {
         //sprite.spriteManagerDelegate = self;
         //sprite.broadcastWaitDelegate = self.broadcastWaitHandler;
-        
+
         // TODO: change!
         for (Script *script in sprite.scriptList) {
             for (Brick *brick in script.brickList) {
@@ -216,16 +222,15 @@ UINavigationBarDelegate>
 #pragma mark - UITableView data source
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 2;
+    return kNumberOfSectionsInProgramTableViewController;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    // Return the number of rows in the section.
     switch (section) {
-        case kBackgroundIndex:
+        case kBackgroundSectionIndex:
             return kBackgroundObjects;
-        case kObjectIndex:
+        case kObjectSectionIndex:
             return ([self.program.objectList count] - kBackgroundObjects);
         default:
             return 0;
@@ -234,19 +239,86 @@ UINavigationBarDelegate>
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ProgramCell" forIndexPath:indexPath];
-    if ([cell conformsToProtocol:@protocol(CatrobatImageCell)]) {
-        UITableViewCell <CatrobatImageCell>* imageCell = (UITableViewCell <CatrobatImageCell>*)cell;
-        SpriteObject *object = [self.program.objectList objectAtIndex:(kBackgroundIndex + indexPath.section + indexPath.row)];
-        imageCell.iconImageView.image = nil;
-        NSString *previewImagePath = [object previewImagePath];
-        if (previewImagePath) {
-            imageCell.iconImageView.image = [[UIImage alloc] initWithContentsOfFile:previewImagePath];
-            imageCell.iconImageView.contentMode = UIViewContentModeScaleAspectFit;
-        }
-        imageCell.titleLabel.text = object.name;
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:kObjectCell forIndexPath:indexPath];
+    if (! [cell conformsToProtocol:@protocol(CatrobatImageCell)]) {
+        return cell;
     }
-    return cell;
+    UITableViewCell <CatrobatImageCell>* imageCell = (UITableViewCell<CatrobatImageCell>*)cell;
+    NSInteger index = (kBackgroundSectionIndex + indexPath.section + indexPath.row);
+    SpriteObject *object = [self.program.objectList objectAtIndex:index];
+    if (! [object.lookList count]) {
+        imageCell.iconImageView.image = nil;
+        imageCell.titleLabel.text = object.name;
+        return imageCell;
+    }
+
+    imageCell.iconImageView.image = nil;
+    NSString *previewImagePath = [object previewImagePath];
+    NSNumber *indexAsNumber = @(index);
+    UIImage *image = [self.imageCache objectForKey:indexAsNumber];
+    imageCell.iconImageView.contentMode = UIViewContentModeScaleAspectFit;
+    if (! image) {
+        imageCell.iconImageView.image = nil;
+        imageCell.indexPath = indexPath;
+        if (previewImagePath) {
+            dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0ul);
+            dispatch_async(queue, ^{
+                UIImage *image = [[UIImage alloc] initWithContentsOfFile:previewImagePath];
+                // perform UI stuff on main queue (UIKit is not thread safe!!)
+                dispatch_sync(dispatch_get_main_queue(), ^{
+                    // check if cell still needed
+                    if ([imageCell.indexPath isEqual:indexPath]) {
+                        imageCell.iconImageView.image = image;
+                        [imageCell setNeedsLayout];
+                        [self.imageCache setObject:image forKey:indexAsNumber];
+                    }
+                });
+            });
+        } else {
+            // fallback
+            dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0ul);
+            dispatch_async(queue, ^{
+                // TODO: outsource this "thumbnail generation code" to helper class
+                Look* look = [object.lookList objectAtIndex:kBackgroundObjectIndex];
+                NSString *newPreviewImagePath = [NSString stringWithFormat:@"%@%@/%@",
+                                                 [object projectPath], kProgramImagesDirName,
+                                                 [look previewImageFileName]];
+
+                NSString *imagePath = [NSString stringWithFormat:@"%@%@/%@",
+                                       [object projectPath], kProgramImagesDirName,
+                                       look.fileName];
+                UIImage *image = [UIImage imageWithContentsOfFile:imagePath];
+
+                // generate thumbnail image (retina)
+                CGSize previewImageSize = CGSizeMake(kPreviewImageWidth, kPreviewImageHeight);
+                // determine aspect ratio
+                if (image.size.height > image.size.width)
+                    previewImageSize.width = (image.size.width*previewImageSize.width)/image.size.height;
+                else
+                    previewImageSize.height = (image.size.height*previewImageSize.height)/image.size.width;
+                
+                UIGraphicsBeginImageContext(previewImageSize);
+                UIImage *previewImage = [image copy];
+                [previewImage drawInRect:CGRectMake(0, 0, previewImageSize.width, previewImageSize.height)];
+                previewImage = UIGraphicsGetImageFromCurrentImageContext();
+                UIGraphicsEndImageContext();
+                [UIImagePNGRepresentation(previewImage) writeToFile:newPreviewImagePath atomically:YES];
+
+                dispatch_sync(dispatch_get_main_queue(), ^{
+                    // check if cell still needed
+                    if ([imageCell.indexPath isEqual:indexPath]) {
+                        imageCell.iconImageView.image = previewImage;
+                        [imageCell setNeedsLayout];
+                        [self.imageCache setObject:previewImage forKey:indexAsNumber];
+                    }
+                });
+            });
+        }
+    } else {
+        imageCell.iconImageView.image = image;
+    }
+    imageCell.titleLabel.text = object.name;
+    return imageCell;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -256,7 +328,7 @@ UINavigationBarDelegate>
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
-    // TODO: MID outsource to TableUtil
+    // TODO: outsource to TableUtil
     switch (section) {
         case 0:
             return 45.0;
@@ -274,10 +346,10 @@ UINavigationBarDelegate>
     // FIXME: HACK do not alloc init there. Use ReuseIdentifier instead!! But does lead to several issues...
     UITableViewHeaderFooterView *headerView = [[UITableViewHeaderFooterView alloc] init];
     headerView.contentView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"darkblue"]];
-    
+
     CGFloat height = [self tableView:self.tableView heightForHeaderInSection:section]-10.0;
     UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(13.0f, 0.0f, 265.0f, height)];
-    
+
     CALayer *layer = titleLabel.layer;
     CALayer *bottomBorder = [CALayer layer];
     bottomBorder.borderColor = [UIColor airForceBlueColor].CGColor;
@@ -285,7 +357,7 @@ UINavigationBarDelegate>
     bottomBorder.frame = CGRectMake(0, layer.frame.size.height-1, layer.frame.size.width, 1);
     [bottomBorder setBorderColor:[UIColor airForceBlueColor].CGColor];
     [layer addSublayer:bottomBorder];
-    
+
     titleLabel.textColor = [UIColor whiteColor];
     titleLabel.tag = 1;
     titleLabel.font = [UIFont systemFontOfSize:14.0f];
@@ -295,22 +367,20 @@ UINavigationBarDelegate>
         titleLabel.text = [kObjectTitlePlural uppercaseString];
     else
         titleLabel.text = [kObjectTitleSingular uppercaseString];
-    
+
     titleLabel.text = [NSString stringWithFormat:@"  %@", titleLabel.text];
     [headerView.contentView addSubview:titleLabel];
     return headerView;
 }
 
-// Override to support conditional editing of the table view.
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return ((([self.program.objectList count] - kBackgroundObjects) > kMinNumOfObjects) && (indexPath.section == 1));
+    return ((indexPath.section == kObjectSectionIndex) && (([self.program.objectList count] - kBackgroundObjects) > kMinNumOfObjects));
 }
 
-// Override to support editing the table view.
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (indexPath.section == 1) {
+    if (indexPath.section == kObjectSectionIndex) {
         if (editingStyle == UITableViewCellEditingStyleDelete) {
             // Delete the row from the data source
             [self.program.objectList removeObjectAtIndex:(kObjectIndex + indexPath.row)];
@@ -325,7 +395,7 @@ UINavigationBarDelegate>
     // Pass the selected object to the new view controller.
     static NSString *toObjectSegueID = kSegueToObject;
     static NSString *toSceneSegueID = kSegueToScene;
-    
+
     UIViewController *destController = segue.destinationViewController;
     if ([sender isKindOfClass:[UITableViewCell class]]) {
         UITableViewCell *cell = (UITableViewCell*) sender;
@@ -334,7 +404,7 @@ UINavigationBarDelegate>
             if ([destController isKindOfClass:[ObjectTableViewController class]]) {
                 ObjectTableViewController *tvc = (ObjectTableViewController*) destController;
                 if ([tvc respondsToSelector:@selector(setObject:)]) {
-                    SpriteObject* object = [self.program.objectList objectAtIndex:(kBackgroundIndex + indexPath.section + indexPath.row)];
+                    SpriteObject* object = [self.program.objectList objectAtIndex:(kBackgroundObjectIndex + indexPath.section + indexPath.row)];
                     [destController performSelector:@selector(setObject:) withObject:object];
                 }
             }
@@ -369,12 +439,13 @@ UINavigationBarDelegate>
         if (buttonIndex == actionSheet.destructiveButtonIndex)
         {
             NSLog(@"Delete button pressed");
+            [self.delegate removeLevel:self.program.header.programName];
             [self.program removeFromDisk];
             self.program = nil;
             [self.navigationController popViewControllerAnimated:YES];
         }
     }
-    
+
     // XXX: this is ugly... Why do we use ActionSheets to notify the user? -> Use UIAlertView instead
     if (actionSheet.tag == kInvalidProgramNameWarningActionSheetTag) {
         // OK button
@@ -392,7 +463,7 @@ UINavigationBarDelegate>
 {
     if (alertView.tag == kRenameAlertViewTag) {
         // OK button
-        if (buttonIndex == 1) {
+        if (buttonIndex == kAlertViewButtonOK) {
             NSString* input = [[alertView textFieldAtIndex:0] text];
             if ([input isEqualToString:self.program.header.programName])
                 return;
@@ -424,7 +495,7 @@ UINavigationBarDelegate>
         }
     } else if (alertView.tag == kNewObjectAlertViewTag) {
         // OK button
-        if (buttonIndex == 1) {
+        if (buttonIndex == kAlertViewButtonOK) {
             NSString* input = [[alertView textFieldAtIndex:0] text];
             if ([input length]) {
                 [self.program.objectList addObject:[self createObjectWithName:input]];
@@ -455,11 +526,11 @@ UINavigationBarDelegate>
     renameProgramAlert.alertViewStyle = UIAlertViewStylePlainTextInput;
     UITextField *textField = [renameProgramAlert textFieldAtIndex:0];
     textField.placeholder = kProgramNamePlaceholder;
-    
+
     // populate with current program name if not default name given
     if (! [self.program.header.programName isEqualToString: kDefaultProgramName])
         textField.text = self.program.header.programName;
-    
+
     [textField setClearButtonMode:UITextFieldViewModeWhileEditing];
     [renameProgramAlert show];
 }

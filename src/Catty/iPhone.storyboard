@@ -8,13 +8,13 @@
         <!--Program Table View Controller - New Program-->
         <scene sceneID="zhR-1R-Y6s">
             <objects>
-                <tableViewController id="BYa-g9-OiT" customClass="ProgramTableViewController" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="ProgramTableViewController" id="BYa-g9-OiT" customClass="ProgramTableViewController" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="Obr-NN-w03">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleAspectFit" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="ProgramCell" rowHeight="79" id="4dE-Mc-fH1" customClass="DarkBlueGradientBorderedImageCell">
+                            <tableViewCell contentMode="scaleAspectFit" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="ObjectCell" rowHeight="79" id="4dE-Mc-fH1" customClass="DarkBlueGradientBorderedImageCell">
                                 <rect key="frame" x="0.0" y="119" width="320" height="79"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="4dE-Mc-fH1" id="IxA-QY-Kgo">
@@ -123,7 +123,7 @@
         <!--Script Collection View Controller - Scripts-->
         <scene sceneID="ocP-zZ-Aog">
             <objects>
-                <collectionViewController autoresizesArchivedViewToFullSize="NO" id="NFs-db-lAP" customClass="ScriptCollectionViewController" sceneMemberID="viewController">
+                <collectionViewController storyboardIdentifier="ScriptCVC" autoresizesArchivedViewToFullSize="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" id="NFs-db-lAP" customClass="ScriptCollectionViewController" sceneMemberID="viewController">
                     <collectionView key="view" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" minimumZoomScale="0.0" maximumZoomScale="0.0" dataMode="prototypes" id="z38-mY-wgg">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -133,18 +133,7 @@
                             <size key="footerReferenceSize" width="0.0" height="0.0"/>
                             <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                         </collectionViewFlowLayout>
-                        <cells>
-                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="BrickCell" id="PJF-k6-cGD" userLabel="Brick" customClass="BrickCell">
-                                <rect key="frame" x="0.0" y="64" width="320" height="30"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                    <rect key="frame" x="0.0" y="0.0" width="320" height="30"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                </view>
-                                <size key="customSize" width="320" height="30"/>
-                            </collectionViewCell>
-                        </cells>
+                        <cells/>
                         <connections>
                             <outlet property="dataSource" destination="NFs-db-lAP" id="0oo-Jz-cP1"/>
                             <outlet property="delegate" destination="NFs-db-lAP" id="iFB-xM-EII"/>
@@ -154,7 +143,7 @@
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
-                        <segue destination="eHE-Gx-X7X" kind="push" identifier="segueToScriptCategories" id="atV-4U-Inn"/>
+                        <outlet property="collectionView" destination="z38-mY-wgg" id="gKx-Co-Pgv"/>
                         <segue destination="lLN-Ii-gwh" kind="push" identifier="segueToScene" id="9nK-JY-fcb"/>
                     </connections>
                 </collectionViewController>
@@ -165,8 +154,8 @@
         <!--Brick Categories Table View Controller - Categories-->
         <scene sceneID="7WT-X9-0gQ">
             <objects>
-                <tableViewController id="eHE-Gx-X7X" customClass="BrickCategoriesTableViewController" sceneMemberID="viewController">
-                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="Zxd-ce-hNw">
+                <tableViewController storyboardIdentifier="BricksCategoryTVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="eHE-Gx-X7X" customClass="BrickCategoriesTableViewController" sceneMemberID="viewController">
+                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" delaysContentTouches="NO" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="Zxd-ce-hNw">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -178,9 +167,6 @@
                                     <rect key="frame" x="0.0" y="0.0" width="287" height="43"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
-                                <connections>
-                                    <segue destination="C75-nS-XOs" kind="push" identifier="segueToNewScriptCategory" id="bOg-UD-eu2"/>
-                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -194,13 +180,13 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2fY-pN-uu3" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-369" y="-4833"/>
+            <point key="canvasLocation" x="-390" y="-4760"/>
         </scene>
         <!--Bricks Collection View Controller - Category-->
         <scene sceneID="xaz-bZ-HZF">
             <objects>
-                <collectionViewController autoresizesArchivedViewToFullSize="NO" id="C75-nS-XOs" customClass="BricksCollectionViewController" sceneMemberID="viewController">
-                    <collectionView key="view" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" minimumZoomScale="0.0" maximumZoomScale="0.0" dataMode="prototypes" id="uZ7-Iw-8Qy">
+                <collectionViewController storyboardIdentifier="BricksDetailViewCVC" autoresizesArchivedViewToFullSize="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" id="C75-nS-XOs" customClass="BricksCollectionViewController" sceneMemberID="viewController">
+                    <collectionView key="view" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" delaysContentTouches="NO" minimumZoomScale="0.0" maximumZoomScale="0.0" dataMode="prototypes" id="uZ7-Iw-8Qy">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="u7v-ga-hMQ">
@@ -209,18 +195,7 @@
                             <size key="footerReferenceSize" width="0.0" height="0.0"/>
                             <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                         </collectionViewFlowLayout>
-                        <cells>
-                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="BrickCell" id="tXr-TJ-UsK" customClass="BrickCell">
-                                <rect key="frame" x="0.0" y="64" width="320" height="30"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                    <rect key="frame" x="0.0" y="0.0" width="320" height="30"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                </view>
-                                <size key="customSize" width="320" height="30"/>
-                            </collectionViewCell>
-                        </cells>
+                        <cells/>
                         <connections>
                             <outlet property="dataSource" destination="C75-nS-XOs" id="5xY-mS-Q3C"/>
                             <outlet property="delegate" destination="C75-nS-XOs" id="v6Y-bq-Du0"/>
@@ -232,7 +207,7 @@
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DQn-YI-eb1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="201" y="-4833"/>
+            <point key="canvasLocation" x="40" y="-4760"/>
         </scene>
         <!--Object Sounds Table View Controller - Sounds-->
         <scene sceneID="chZ-5K-kCV">
@@ -418,7 +393,7 @@
         <!--My Programs View Controller - Programs-->
         <scene sceneID="54w-ir-dKC">
             <objects>
-                <tableViewController id="s37-PF-3iN" customClass="MyProgramsViewController" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="MyProgramsViewController" id="s37-PF-3iN" customClass="MyProgramsViewController" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="e7Z-A0-JPr">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -791,8 +766,8 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="mUB-CR-2KD"/>
-        <segue reference="ZYi-SP-eKt"/>
+        <segue reference="y1P-mf-Wvq"/>
         <segue reference="9nK-JY-fcb"/>
+        <segue reference="ZYi-SP-eKt"/>
     </inferredMetricsTieBreakers>
 </document>

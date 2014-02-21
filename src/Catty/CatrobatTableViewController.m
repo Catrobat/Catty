@@ -58,15 +58,12 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
     [self initTableView];
     [self initNavigationBar];
-    
-    
-    AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
+
+    AppDelegate *appDelegate = [UIApplication sharedApplication].delegate;
     [appDelegate.fileManager addDefaultProjectToLeveLDirectory];
 }
-
 
 - (void)viewWillAppear:(BOOL)animated
 {

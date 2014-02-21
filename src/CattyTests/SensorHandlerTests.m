@@ -25,16 +25,11 @@
 #import "SensorHandler.h"
 #import "SensorManager.h"
 
-
-
 @interface SensorHandlerTests : XCTestCase
 
 @end
 
-
-
 @implementation SensorHandlerTests
-
 
 #if !(TARGET_IPHONE_SIMULATOR)
 - (void)setUp
@@ -137,8 +132,6 @@
     
 }
 
-
-
 -(void)testStopSensors
 {
     SensorHandler* sensorHandler = [SensorHandler sharedSensorHandler];
@@ -160,8 +153,6 @@
     XCTAssertFalse([motionManager isGyroActive], @"Magnetometer should not be active!");
     XCTAssertFalse([motionManager isMagnetometerActive], @"Magnetometer should not be active!");
 }
-
-
 
 #endif
 

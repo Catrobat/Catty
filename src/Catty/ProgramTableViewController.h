@@ -22,6 +22,10 @@
 
 #import <UIKit/UIKit.h>
 
+#ifdef CATTY_TESTS
+@class Program;
+#endif
+
 @class ProgramLoadingInfo;
 @protocol LevelUpdateDelegate;
 
@@ -30,5 +34,10 @@
 @property (nonatomic, strong) id<LevelUpdateDelegate> delegate;
 
 - (BOOL)loadProgram:(ProgramLoadingInfo*)loadingInfo;
+
+#ifdef CATTY_TESTS
+- (Program*)program;
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex;
+#endif
 
 @end
