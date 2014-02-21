@@ -282,20 +282,20 @@
         dispatch_async(queue, ^{
             UIImage *image = [[UIImage alloc] initWithContentsOfFile:imagePath];
             NSString *newImagePath = nil;
-            image = [UIImage imageWithContentsOfFile:imagePath];
+            //image = [UIImage imageWithContentsOfFile:imagePath];
             if (! image) {
                 newImagePath = [[NSString alloc] initWithFormat:@"%@/screenshot.png", info.basePath];
-                image = [UIImage imageWithContentsOfFile:imagePath];
+                image = [UIImage imageWithContentsOfFile:newImagePath];
             }
 
             if (! image) {
                 newImagePath = [[NSString alloc] initWithFormat:@"%@/manual_screenshot.png", info.basePath];
-                image = [UIImage imageWithContentsOfFile:imagePath];
+                image = [UIImage imageWithContentsOfFile:newImagePath];
             }
 
             if (! image) {
                 newImagePath = [[NSString alloc] initWithFormat:@"%@/automatic_screenshot.png", info.basePath];
-                image = [UIImage imageWithContentsOfFile:imagePath];
+                image = [UIImage imageWithContentsOfFile:newImagePath];
             }
 
             if (! image) {
