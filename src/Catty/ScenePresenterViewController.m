@@ -917,11 +917,17 @@
 
 -(void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
 {
-    for (UITouch* touch in touches) {
-        CGPoint location = [touch locationInView:self.skView];
-        NSDebug(@"StartTouchinScenePresenter");
-        if ([self.scene touchedwith:touches withX:location.x andY:location.y]) {
-            break;
+    if (self.menuOpen) {
+        NSDebug(@"touch on scene not allowed, because menu is open");
+    }
+    else{
+        NSDebug(@"touch on scene allowed");
+        for (UITouch* touch in touches) {
+            CGPoint location = [touch locationInView:self.skView];
+            NSDebug(@"StartTouchinScenePresenter");
+            if ([self.scene touchedwith:touches withX:location.x andY:location.y]) {
+                break;
+            }
         }
     }
     
