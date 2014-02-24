@@ -20,24 +20,17 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import <Foundation/Foundation.h>
+#import "MessageComboBoxView.h"
 
-@class MessageComboBoxView;
-@class ObjectComboBoxView;
-@class SoundComboBoxView;
-@class LookComboBoxView;
-@class VariableComboBoxView;
+@implementation MessageComboBoxView
 
-@interface UIUtil : NSObject
-
-+ (UILabel*)newDefaultBrickLabelWithFrame:(CGRect)frame;
-+ (UILabel*)newDefaultBrickLabelWithFrame:(CGRect)frame AndText:(NSString*)text;
-+ (UITextField*)newDefaultBrickTextFieldWithFrame:(CGRect)frame;
-
-+ (MessageComboBoxView*)newDefaultBrickMessageComboBoxWithFrame:(CGRect)frame AndItems:(NSArray*)items;
-+ (ObjectComboBoxView*)newDefaultBrickObjectComboBoxWithFrame:(CGRect)frame AndItems:(NSArray*)items;
-+ (SoundComboBoxView*)newDefaultBrickSoundComboBoxWithFrame:(CGRect)frame AndItems:(NSArray*)items;
-+ (LookComboBoxView*)newDefaultBrickLookComboBoxWithFrame:(CGRect)frame AndItems:(NSArray*)items;
-+ (VariableComboBoxView*)newDefaultBrickVariableComboBoxWithFrame:(CGRect)frame AndItems:(NSArray*)items;
+- (id)initWithFrame:(CGRect)frame
+{
+    self = [super initWithFrame:frame];
+    if (self) {
+        // Initialization code
+    }
+    return self;
+}
 
 @end

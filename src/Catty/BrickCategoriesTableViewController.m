@@ -192,16 +192,15 @@
 }
 
 #pragma mark Notification
-
 - (void)brickAdded:(NSNotification *)notification {
-  if (notification.userInfo) {
-    if (![self.presentedViewController isBeingPresented]) {
-      [self dismissViewControllerAnimated:YES completion:^{
-        NSNotificationCenter *dnc = NSNotificationCenter.defaultCenter;
-        [dnc postNotificationName:BrickCellAddedNotification object:nil userInfo:notification.userInfo];
-      }];
+    if (notification.userInfo) {
+        if (! [self.presentedViewController isBeingPresented]) {
+            [self dismissViewControllerAnimated:YES completion:^{
+                NSNotificationCenter *dnc = NSNotificationCenter.defaultCenter;
+                [dnc postNotificationName:BrickCellAddedNotification object:nil userInfo:notification.userInfo];
+            }];
+        }
     }
-  }
 }
 
 

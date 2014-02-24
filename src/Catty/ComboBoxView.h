@@ -20,24 +20,14 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 
-@class MessageComboBoxView;
-@class ObjectComboBoxView;
-@class SoundComboBoxView;
-@class LookComboBoxView;
-@class VariableComboBoxView;
+@interface ComboBoxView : UIView
 
-@interface UIUtil : NSObject
+@property (nonatomic, strong) NSArray *items;
+@property (nonatomic, strong, readonly) NSString *selectedItem;
+@property (nonatomic) BOOL enabled;
 
-+ (UILabel*)newDefaultBrickLabelWithFrame:(CGRect)frame;
-+ (UILabel*)newDefaultBrickLabelWithFrame:(CGRect)frame AndText:(NSString*)text;
-+ (UITextField*)newDefaultBrickTextFieldWithFrame:(CGRect)frame;
-
-+ (MessageComboBoxView*)newDefaultBrickMessageComboBoxWithFrame:(CGRect)frame AndItems:(NSArray*)items;
-+ (ObjectComboBoxView*)newDefaultBrickObjectComboBoxWithFrame:(CGRect)frame AndItems:(NSArray*)items;
-+ (SoundComboBoxView*)newDefaultBrickSoundComboBoxWithFrame:(CGRect)frame AndItems:(NSArray*)items;
-+ (LookComboBoxView*)newDefaultBrickLookComboBoxWithFrame:(CGRect)frame AndItems:(NSArray*)items;
-+ (VariableComboBoxView*)newDefaultBrickVariableComboBoxWithFrame:(CGRect)frame AndItems:(NSArray*)items;
+- (void)preselectItemAtIndex:(NSUInteger)index;
 
 @end

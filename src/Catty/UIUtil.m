@@ -22,6 +22,11 @@
 
 #import "UIUtil.h"
 #import "UIDefines.h"
+#import "MessageComboBoxView.h"
+#import "ObjectComboBoxView.h"
+#import "SoundComboBoxView.h"
+#import "LookComboBoxView.h"
+#import "VariableComboBoxView.h"
 
 @implementation UIUtil
 
@@ -59,12 +64,39 @@
     return textField;
 }
 
-// TODO: implement picker-classes and picker-methods for objects, sounds, looks, etc...
-+ (UIPickerView*)newDefaultBrickPickerViewWithFrame:(CGRect)frame
++ (MessageComboBoxView*)newDefaultBrickMessageComboBoxWithFrame:(CGRect)frame AndItems:(NSArray*)items
 {
-    UIPickerView *pickerView = [[UIPickerView alloc] initWithFrame:frame];
-    pickerView.showsSelectionIndicator = NO;
-    return pickerView;
+    MessageComboBoxView *comboBox = [[MessageComboBoxView alloc] initWithFrame:frame];
+    comboBox.items = items;
+    return comboBox;
+}
+
++ (ObjectComboBoxView*)newDefaultBrickObjectComboBoxWithFrame:(CGRect)frame AndItems:(NSArray*)items
+{
+    ObjectComboBoxView *comboBox = [[ObjectComboBoxView alloc] initWithFrame:frame];
+    comboBox.items = items;
+    return comboBox;
+}
+
++ (SoundComboBoxView*)newDefaultBrickSoundComboBoxWithFrame:(CGRect)frame AndItems:(NSArray*)items
+{
+    SoundComboBoxView *comboBox = [[SoundComboBoxView alloc] initWithFrame:frame];
+    comboBox.items = items;
+    return comboBox;
+}
+
++ (LookComboBoxView*)newDefaultBrickLookComboBoxWithFrame:(CGRect)frame AndItems:(NSArray*)items
+{
+    LookComboBoxView *comboBox = [[LookComboBoxView alloc] initWithFrame:frame];
+    comboBox.items = items;
+    return comboBox;
+}
+
++ (VariableComboBoxView*)newDefaultBrickVariableComboBoxWithFrame:(CGRect)frame AndItems:(NSArray*)items
+{
+    VariableComboBoxView *comboBox = [[VariableComboBoxView alloc] initWithFrame:frame];
+    comboBox.items = items;
+    return comboBox;
 }
 
 @end
