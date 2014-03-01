@@ -25,6 +25,11 @@
 #import "Brick.h"
 #import "BrickCellInlineView.h"
 #import "UIUtil.h"
+#import "MessageComboBoxView.h"
+#import "ObjectComboBoxView.h"
+#import "SoundComboBoxView.h"
+#import "LookComboBoxView.h"
+#import "VariableComboBoxView.h"
 
 // uncomment this to get special log outputs, etc...
 //#define LAYOUT_DEBUG 0
@@ -92,6 +97,17 @@
         abort();
     }
     _brickType = brickType;
+}
+
+- (void)setEnabled:(BOOL)enabled
+{
+    for (UIView *view in self.inlineView.subviews) {
+        if ([view isKindOfClass:[UITextField class]]) {
+            ((UITextField*) view).enabled = enabled;
+        } else if ([view isKindOfClass:[ComboBoxView class]]) {
+            ((ComboBoxView*) view).enabled = enabled;
+        }
+    }
 }
 
 // lazy instantiation
@@ -174,13 +190,26 @@
 }
 
 #pragma mark - static getters and setters
-+ (NSMutableDictionary*)imageCache
++ (NSMutableDictionary*)imageCacheAndClear:(BOOL)clear
 {
     static NSMutableDictionary *imageCache = nil;
     if (! imageCache) {
         imageCache = [NSMutableDictionary dictionary];
     }
+    if (clear) {
+        imageCache = nil;
+    }
     return imageCache;
+}
+
++ (NSMutableDictionary*)imageCache
+{
+    return [BrickCell imageCacheAndClear:NO];
+}
+
++ (void)clearImageCache
+{
+    [BrickCell imageCacheAndClear:YES];
 }
 
 #pragma mark - setup for subviews
@@ -450,14 +479,16 @@
         // -----------------------------------
         // TODO: make x-offset calculation much more smarter...
 
-        UILabel *textLabel = [UIUtil newDefaultBrickLabelWithFrame:remainingFrame AndText:partLabelTitle];
-#ifdef LAYOUT_DEBUG
-        NSLog(@"Label Title: %@, Width: %f, Height: %f", partLabelTitle, remainingFrame.size.width, remainingFrame.size.height);
-        textLabel.backgroundColor = [UIColor blueColor];
-#endif
-        remainingFrame.origin.x += (textLabel.frame.size.width + kBrickInputFieldLeftMargin);
-        remainingFrame.size.width -= (textLabel.frame.size.width + kBrickInputFieldLeftMargin);
-        [subviews addObject:textLabel];
+        if (partLabelTitle.length) {
+            UILabel *textLabel = [UIUtil newDefaultBrickLabelWithFrame:remainingFrame AndText:partLabelTitle];
+    #ifdef LAYOUT_DEBUG
+            NSLog(@"Label Title: %@, Width: %f, Height: %f", partLabelTitle, remainingFrame.size.width, remainingFrame.size.height);
+            textLabel.backgroundColor = [UIColor blueColor];
+    #endif
+            remainingFrame.origin.x += (textLabel.frame.size.width + kBrickInputFieldLeftMargin);
+            remainingFrame.size.width -= (textLabel.frame.size.width + kBrickInputFieldLeftMargin);
+            [subviews addObject:textLabel];
+        }
 
         // determine UI component
         if (counter < totalNumberOfParams) {
@@ -476,33 +507,55 @@
             UIView *inputField = nil;
             if ([afterLabelParam rangeOfString:@"FLOAT"].location != NSNotFound) {
                 UITextField *textField = [UIUtil newDefaultBrickTextFieldWithFrame:inputViewFrame];
-                textField.enabled = NO;
                 inputField = (UIView*)textField;
             } else if ([afterLabelParam rangeOfString:@"INT"].location != NSNotFound) {
                 UITextField *textField = [UIUtil newDefaultBrickTextFieldWithFrame:inputViewFrame];
-                textField.enabled = NO;
                 inputField = (UIView*)textField;
             } else if ([afterLabelParam rangeOfString:@"TEXT"].location != NSNotFound) {
 //                inputViewFrame.origin.y = (remainingFrame.size.height - kBrickInputFieldHeight)/2.0f+(kBrickInputFieldTopMargin - kBrickInputFieldBottomMargin);
 //                inputViewFrame.size.height = kBrickInputFieldHeight;
                 UITextField *textField = [UIUtil newDefaultBrickTextFieldWithFrame:inputViewFrame];
-                textField.enabled = NO;
                 inputField = (UIView*)textField;
             } else if ([afterLabelParam rangeOfString:@"MESSAGE"].location != NSNotFound) {
-                UIPickerView *pickerView = [[UIPickerView alloc] initWithFrame:inputViewFrame];
-                inputField = (UIView*)pickerView;
+                inputViewFrame.size.width = kBrickComboBoxWidth;
+                NSMutableArray* messages = [[NSMutableArray alloc] init];
+                [messages addObject:@"New..."];
+                [messages addObject:@"message 1"];
+                ComboBoxView *comboBox = [UIUtil newDefaultBrickMessageComboBoxWithFrame:inputViewFrame AndItems:messages];
+                [comboBox preselectItemAtIndex:1];
+                inputField = (UIView*)comboBox;
             } else if ([afterLabelParam rangeOfString:@"OBJECT"].location != NSNotFound) {
-                UIPickerView *pickerView = [[UIPickerView alloc] initWithFrame:inputViewFrame];
-                inputField = (UIView*)pickerView;
+                inputViewFrame.size.width = kBrickComboBoxWidth;
+                NSMutableArray* objects = [[NSMutableArray alloc] init];
+                [objects addObject:@"New..."];
+                [objects addObject:@"object 1"];
+                ComboBoxView *comboBox = [UIUtil newDefaultBrickObjectComboBoxWithFrame:inputViewFrame AndItems:objects];
+                [comboBox preselectItemAtIndex:1];
+                inputField = (UIView*)comboBox;
             } else if ([afterLabelParam rangeOfString:@"SOUND"].location != NSNotFound) {
-                UIPickerView *pickerView = [[UIPickerView alloc] initWithFrame:inputViewFrame];
-                inputField = (UIView*)pickerView;
+                inputViewFrame.size.width = kBrickComboBoxWidth;
+                NSMutableArray* sounds = [[NSMutableArray alloc] init];
+                [sounds addObject:@"New..."];
+                [sounds addObject:@"sound 1"];
+                ComboBoxView *comboBox = [UIUtil newDefaultBrickSoundComboBoxWithFrame:inputViewFrame AndItems:sounds];
+                [comboBox preselectItemAtIndex:1];
+                inputField = (UIView*)comboBox;
             } else if ([afterLabelParam rangeOfString:@"LOOK"].location != NSNotFound) {
-                UIPickerView *pickerView = [[UIPickerView alloc] initWithFrame:inputViewFrame];
-                inputField = (UIView*)pickerView;
+                inputViewFrame.size.width = kBrickComboBoxWidth;
+                NSMutableArray* looks = [[NSMutableArray alloc] init];
+                [looks addObject:@"New..."];
+                [looks addObject:@"look 1"];
+                ComboBoxView *comboBox = [UIUtil newDefaultBrickLookComboBoxWithFrame:inputViewFrame AndItems:looks];
+                [comboBox preselectItemAtIndex:1];
+                inputField = (UIView*)comboBox;
             } else if ([afterLabelParam rangeOfString:@"VARIABLE"].location != NSNotFound) {
-                UIPickerView *pickerView = [[UIPickerView alloc] initWithFrame:inputViewFrame];
-                inputField = (UIView*)pickerView;
+                inputViewFrame.size.width = kBrickComboBoxWidth;
+                NSMutableArray* variables = [[NSMutableArray alloc] init];
+                [variables addObject:@"New..."];
+                [variables addObject:@"variable 1"];
+                ComboBoxView *comboBox = [UIUtil newDefaultBrickLookComboBoxWithFrame:inputViewFrame AndItems:variables];
+                [comboBox preselectItemAtIndex:1];
+                inputField = (UIView*)comboBox;
             } else {
                 NSError(@"unknown data type %@ given", afterLabelParam);
                 abort();

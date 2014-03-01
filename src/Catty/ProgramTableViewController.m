@@ -467,9 +467,8 @@ UINavigationBarDelegate>
             NSString* input = [[alertView textFieldAtIndex:0] text];
             if ([input isEqualToString:self.program.header.programName])
                 return;
-            
-            // FIXME: URGENT!! check, filter and validate new program name already exists here
-            
+
+            // TODO: check, filter and validate new program name already exists here
             if ([Program programExists:input]) {
                 [self showWarningExistingProgramNameActionSheet];
                 return;

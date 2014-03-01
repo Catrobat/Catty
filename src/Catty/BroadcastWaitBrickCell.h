@@ -21,10 +21,10 @@
  */
 
 #import "BrickCell.h"
+#import "MessageComboBoxView.h"
 
 @interface BroadcastWaitBrickCell : BrickCell
 
-// FIXME: write classes for all custom pickers. messagePicker, objectPicker, soundPicker, ...
-@property (nonatomic, weak) UIPickerView *messagePickerView;
+@property (nonatomic, weak) MessageComboBoxView *messageComboBoxView;
 
 @end

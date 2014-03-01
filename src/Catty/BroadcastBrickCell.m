@@ -31,7 +31,7 @@
 - (void)hookUpSubViews:(NSArray *)inlineViewSubViews
 {
     self.textLabel = inlineViewSubViews[0];
-    self.messagePickerView = inlineViewSubViews[1];
+    self.messageComboBoxView = inlineViewSubViews[1];
 }
 
 - (id)initWithFrame:(CGRect)frame

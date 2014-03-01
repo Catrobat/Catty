@@ -28,16 +28,24 @@
 #import "BrickCategoriesTableViewController.h"
 #import "BrickCell.h"
 #import "Script.h"
+#import "StartScript.h"
 #import "Brick.h"
 
 @interface ScriptCollectionViewController () <UICollectionViewDelegate, UICollectionViewDelegateFlowLayout>
 @property (nonatomic, strong) NSDictionary *classNameBrickNameMap;
-@property (strong, nonatomic) IBOutlet UICollectionView *collectionView;
+@property (nonatomic, weak) IBOutlet UICollectionView *collectionView;
 @end
 
 @implementation ScriptCollectionViewController
 
-#pragma view events
+#pragma mark - application events
+- (void)didReceiveMemoryWarning
+{
+    [super didReceiveMemoryWarning];
+    [BrickCell clearImageCache];
+}
+
+#pragma mark - view events
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -46,7 +54,7 @@
     [super setPlaceHolderTitle:kScriptsTitle
                    Description:[NSString stringWithFormat:NSLocalizedString(kEmptyViewPlaceHolder, nil),
                                 kScriptsTitle]];
-    [super showPlaceHolder:(!(BOOL)[self.object.lookList count])];
+    [super showPlaceHolder:(!(BOOL)[self.object.scriptList count])];
     [self setupToolBar];
     [super setPlaceHolderTitle:kScriptsTitle
                    Description:[NSString stringWithFormat:NSLocalizedString(kEmptyViewPlaceHolder, nil), kScriptsTitle]];
@@ -54,8 +62,6 @@
     self.collectionView.scrollEnabled = YES;
     self.collectionView.delegate = self;
     self.collectionView.dataSource = self;
-
-    self.brickList = [NSMutableArray array];
 
     // register brick cells for current brick category
     NSDictionary *allCategoriesAndBrickTypes = self.classNameBrickNameMap;
@@ -75,7 +81,6 @@
 - (void)viewWillDisappear:(BOOL)animated
 {
     [super viewWillDisappear:animated];
-    
     NSNotificationCenter *dnc = NSNotificationCenter.defaultCenter;
     [dnc removeObserver:self name:BrickCellAddedNotification object:nil];
 }
@@ -175,17 +180,19 @@
         abort();
     }
 
+    BrickCell *brickCell = nil;
     if (indexPath.row == 0) {
         // case it's a script brick
         NSString *scriptSubClassName = NSStringFromClass([script class]);
-        return [collectionView dequeueReusableCellWithReuseIdentifier:scriptSubClassName forIndexPath:indexPath];
+        brickCell = [collectionView dequeueReusableCellWithReuseIdentifier:scriptSubClassName forIndexPath:indexPath];
     } else {
         // case it's a normal brick
         Brick *brick = [script.brickList objectAtIndex:(indexPath.row - 1)];
         NSString *brickSubClassName = NSStringFromClass([brick class]);
-        return [collectionView dequeueReusableCellWithReuseIdentifier:brickSubClassName forIndexPath:indexPath];
+        brickCell = [collectionView dequeueReusableCellWithReuseIdentifier:brickSubClassName forIndexPath:indexPath];
     }
-    NSError(@"Unknown brick type");
+    brickCell.enabled = YES;
+    return brickCell;
 }
 
 #pragma mark - Navigation
@@ -215,6 +222,46 @@
         classNameBrickNameMap = kClassNameBrickNameMap;
     }
     return classNameBrickNameMap;
+}
+
+- (void)addBrickCell:(BrickCell *)brickCell
+{
+    if (! brickCell) {
+        return;
+    }
+
+    // convert brickCell to brick
+    NSString *brickCellClassName = NSStringFromClass([brickCell class]);
+    NSString *brickOrScriptClassName = [brickCellClassName stringByReplacingOccurrencesOfString:@"Cell" withString:@""];
+    id brickOrScript = [[NSClassFromString(brickOrScriptClassName) alloc] init];
+
+    if ([brickOrScript isKindOfClass:[Brick class]]) {
+        Script *script = nil;
+        // automatically create new script if the object does not contain any of them
+        if (! [self.object.scriptList count]) {
+            script = [[StartScript alloc] init];
+            script.allowRunNextAction = YES;
+            script.object = self.object;
+            [self.object.scriptList addObject:script];
+        } else {
+            // add brick to first script
+            script = [self.object.scriptList objectAtIndex:0];
+        }
+        Brick *brick = (Brick*)brickOrScript;
+        brick.object = self.object;
+        [script.brickList addObject:brick];
+    } else if ([brickOrScript isKindOfClass:[Script class]]) {
+        Script *script = (Script*)brickOrScript;
+        script.object = self.object;
+        [self.object.scriptList addObject:script];
+    } else {
+        NSError(@"Unknown class type given...");
+        abort();
+    }
+    [super showPlaceHolder:NO];
+
+    // TODO: change this...
+    [self.collectionView reloadData];
 }
 
 #pragma mark - Helper Methods
@@ -270,8 +317,7 @@
 - (void)brickAdded:(NSNotification *)notification {
     if (notification.userInfo) {
         NSLog(@"%@: Notification Received with UserInfo: %@", [self class], notification.userInfo);
-        [self.brickList addObject:notification.userInfo[UserInfoKeyBrickCell]];
-        [super showPlaceHolder:NO];
+        [self addBrickCell:notification.userInfo[UserInfoKeyBrickCell]];
     }
 }
 

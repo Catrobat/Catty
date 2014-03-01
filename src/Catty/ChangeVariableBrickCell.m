@@ -32,7 +32,7 @@
 - (void)hookUpSubViews:(NSArray *)inlineViewSubViews
 {
     self.firstRowTextLabel = inlineViewSubViews[0];
-    self.variablePickerView = inlineViewSubViews[1];
+    self.variableComboBoxView = inlineViewSubViews[1];
     self.thirdRowTextLabel = inlineViewSubViews[2];
     self.valueTextField = inlineViewSubViews[3];
 }

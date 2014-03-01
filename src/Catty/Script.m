@@ -59,11 +59,10 @@
 #pragma mark - Custom getter and setter
 -(NSMutableArray*)brickList
 {
-    if (_brickList == nil)
+    if (! _brickList)
         _brickList = [[NSMutableArray alloc] init];
     return _brickList;
 }
-
 
 -(void)reset
 {
