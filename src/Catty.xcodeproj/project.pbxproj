@@ -25,6 +25,7 @@
 		1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
 		1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
 		288765FD0DF74451002DB57D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 288765FC0DF74451002DB57D /* CoreGraphics.framework */; };
+		81506F4D18C3EE18000ED328 /* LXReorderableCollectionViewFlowLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 81506F4C18C3EE18000ED328 /* LXReorderableCollectionViewFlowLayout.m */; };
 		816C788317D5F0420029A4E6 /* settings_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 816C788217D5F0420029A4E6 /* settings_bg@2x.png */; };
 		816C788617D62B7C0029A4E6 /* ProgramTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 816C788517D62B7C0029A4E6 /* ProgramTableViewController.m */; };
 		81C27424189EE41700827A95 /* BrickCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 81C27423189EE41700827A95 /* BrickCell.m */; };
@@ -331,6 +332,8 @@
 		288765FC0DF74451002DB57D /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		32CA4F630368D1EE00C91783 /* App-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "App-Prefix.pch"; sourceTree = "<group>"; };
+		81506F4B18C3EE18000ED328 /* LXReorderableCollectionViewFlowLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LXReorderableCollectionViewFlowLayout.h; sourceTree = "<group>"; };
+		81506F4C18C3EE18000ED328 /* LXReorderableCollectionViewFlowLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LXReorderableCollectionViewFlowLayout.m; sourceTree = "<group>"; };
 		816C788217D5F0420029A4E6 /* settings_bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "settings_bg@2x.png"; sourceTree = "<group>"; };
 		816C788417D62B7C0029A4E6 /* ProgramTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProgramTableViewController.h; sourceTree = "<group>"; };
 		816C788517D62B7C0029A4E6 /* ProgramTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProgramTableViewController.m; sourceTree = "<group>"; };
@@ -960,6 +963,15 @@
 				B46B26E817703E4000172837 /* XCTest.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		81506F4A18C3EDDC000ED328 /* 3Party */ = {
+			isa = PBXGroup;
+			children = (
+				81506F4B18C3EE18000ED328 /* LXReorderableCollectionViewFlowLayout.h */,
+				81506F4C18C3EE18000ED328 /* LXReorderableCollectionViewFlowLayout.m */,
+			);
+			name = 3Party;
 			sourceTree = "<group>";
 		};
 		81F10ED317CCD1F8000E4522 /* MaintainProgram */ = {
@@ -1742,6 +1754,7 @@
 		CA160DB218A29CBB00E5190D /* MaintainScript */ = {
 			isa = PBXGroup;
 			children = (
+				81506F4A18C3EDDC000ED328 /* 3Party */,
 				81FAEE2D17E781AB0052BB2B /* ScriptCollectionViewController.h */,
 				81FAEE2E17E781AB0052BB2B /* ScriptCollectionViewController.m */,
 				CA688209180B30B5008A7C99 /* BrickCategoriesTableViewController.h */,
@@ -2879,6 +2892,7 @@
 				C34B44F417F1D2C700624730 /* ClearGraphicEffectBrick.m in Sources */,
 				CD0CCFD7170CB39700B70036 /* TurnLeftBrick.m in Sources */,
 				CD0CCFD8170CB39700B70036 /* TurnRightBrick.m in Sources */,
+				81506F4D18C3EE18000ED328 /* LXReorderableCollectionViewFlowLayout.m in Sources */,
 				CA75C29B18A9625C00FC8C2F /* SetBrightnessBrickCell.m in Sources */,
 				CD0CCFDA170CB39700B70036 /* Util.m in Sources */,
 				CD0CCFDB170CB39700B70036 /* WaitBrick.m in Sources */,

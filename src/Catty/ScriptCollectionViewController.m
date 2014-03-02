@@ -30,6 +30,7 @@
 #import "Script.h"
 #import "StartScript.h"
 #import "Brick.h"
+#import "LXReorderableCollectionViewFlowLayout.h"
 
 @interface ScriptCollectionViewController () <UICollectionViewDelegate, UICollectionViewDelegateFlowLayout>
 @property (nonatomic, strong) NSDictionary *classNameBrickNameMap;
@@ -87,8 +88,11 @@
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
-    [self.collectionView reloadData];
     
+//    [self.collectionView performBatchUpdates:^{
+//        [self.collectionView reloadSections:[NSIndexSet indexSetWithIndexesInRange:NSMakeRange(0, self.object.scriptList.count)]];
+//    } completion:NULL];
+    [self.collectionView reloadData];
 }
 
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView
@@ -108,11 +112,36 @@
 
 
 #pragma mark Collection View Datasource
--  (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath*)indexPath
-{
-}
+
+//-  (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath*)indexPath
+//{
+//}
 
 #pragma mark - collection view delegate
+
+- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    Script *script = [self.object.scriptList objectAtIndex:indexPath.section];
+    if (! script) {
+        NSError(@"This should never happen");
+        abort();
+    }
+    
+    BrickCell *brickCell = nil;
+    if (indexPath.row == 0) {
+        // case it's a script brick
+        NSString *scriptSubClassName = NSStringFromClass([script class]);
+        brickCell = [collectionView dequeueReusableCellWithReuseIdentifier:scriptSubClassName forIndexPath:indexPath];
+    } else {
+        // case it's a normal brick
+        Brick *brick = [script.brickList objectAtIndex:(indexPath.row - 1)];
+        NSString *brickSubClassName = NSStringFromClass([brick class]);
+        brickCell = [collectionView dequeueReusableCellWithReuseIdentifier:brickSubClassName forIndexPath:indexPath];
+    }
+    brickCell.enabled = YES;
+    return brickCell;
+}
+
 - (CGSize)collectionView:(UICollectionView*)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath*)indexPath
 {
     CGFloat width = self.view.frame.size.width;
@@ -166,36 +195,24 @@
     return CGSizeMake(width, height);
 }
 
-- (UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout insetForSectionAtIndex:(NSInteger)section
-{
-    // TODO: outsource all consts
-    return UIEdgeInsetsMake(10, 0, 5, 0);
-}
+//- (UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout insetForSectionAtIndex:(NSInteger)section
+//{
+//    // TODO: outsource all consts
+//    return UIEdgeInsetsMake(10, 0, 5, 0);
+//}
 
-- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
-{
-    Script *script = [self.object.scriptList objectAtIndex:indexPath.section];
-    if (! script) {
-        NSError(@"This should never happen");
-        abort();
-    }
+#pragma mark LXReorderableCollectionViewDatasource
 
-    BrickCell *brickCell = nil;
-    if (indexPath.row == 0) {
-        // case it's a script brick
-        NSString *scriptSubClassName = NSStringFromClass([script class]);
-        brickCell = [collectionView dequeueReusableCellWithReuseIdentifier:scriptSubClassName forIndexPath:indexPath];
-    } else {
-        // case it's a normal brick
-        Brick *brick = [script.brickList objectAtIndex:(indexPath.row - 1)];
-        NSString *brickSubClassName = NSStringFromClass([brick class]);
-        brickCell = [collectionView dequeueReusableCellWithReuseIdentifier:brickSubClassName forIndexPath:indexPath];
-    }
-    brickCell.enabled = YES;
-    return brickCell;
+- (void)collectionView:(UICollectionView *)collectionView itemAtIndexPath:(NSIndexPath *)fromIndexPath willMoveToIndexPath:(NSIndexPath *)toIndexPath {
+//    Script *script = [self.object.scriptList objectAtIndex:fromIndexPath.section];
+//    Brick *brick = [script.brickList objectAtIndex:fromIndexPath.row - 1];
+//    
+//    [script.brickList removeObjectAtIndex:fromIndexPath.item];
+//    [script.brickList insertObject:brick atIndex:toIndexPath.item];
 }
 
 #pragma mark - Navigation
+
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     static NSString* toSceneSegueID = kSegueToScene;
@@ -292,18 +309,17 @@
     UIBarButtonItem *flexItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace
                                                                               target:nil
                                                                               action:nil];
+    UIBarButtonItem *fixedSpace= [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace
+                                                                               target:nil
+                                                                               action:nil];
+    fixedSpace.width = 200.;
     UIBarButtonItem *add = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd
                                                                          target:self
                                                                          action:@selector(addScriptAction:)];
     UIBarButtonItem *play = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemPlay
                                                                           target:self
                                                                           action:@selector(playSceneAction:)];
-    // XXX: workaround for tap area problem:
-    // http://stackoverflow.com/questions/5113258/uitoolbar-unexpectedly-registers-taps-on-uibarbuttonitem-instances-even-when-tap
-    UIImageView *imageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"transparent1x1.png"]];
-    UIBarButtonItem *invisibleButton = [[UIBarButtonItem alloc] initWithCustomView:imageView];
-    self.toolbarItems = [NSArray arrayWithObjects:flexItem, invisibleButton, add, invisibleButton, flexItem,
-                         flexItem, flexItem, invisibleButton, play, invisibleButton, flexItem, nil];
+    self.toolbarItems = @[flexItem, add, fixedSpace, play, flexItem];
 }
 
 - (void)initCollectionView

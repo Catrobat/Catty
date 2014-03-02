@@ -127,7 +127,7 @@
                     <collectionView key="view" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" minimumZoomScale="0.0" maximumZoomScale="0.0" dataMode="prototypes" id="z38-mY-wgg">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="gNd-7Q-rpU">
+                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="gNd-7Q-rpU" customClass="LXReorderableCollectionViewFlowLayout">
                             <size key="itemSize" width="320" height="30"/>
                             <size key="headerReferenceSize" width="0.0" height="0.0"/>
                             <size key="footerReferenceSize" width="0.0" height="0.0"/>
@@ -768,6 +768,6 @@
     <inferredMetricsTieBreakers>
         <segue reference="aum-BR-x1G"/>
         <segue reference="ZYi-SP-eKt"/>
-        <segue reference="dSt-wf-R4M"/>
+        <segue reference="9nK-JY-fcb"/>
     </inferredMetricsTieBreakers>
 </document>
