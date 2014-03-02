@@ -85,12 +85,11 @@
 {
   static NSString *CellIdentifier = kCategoryCell;
   UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
-  cell.selectionStyle = UITableViewCellSelectionStyleNone;
   if ([cell isKindOfClass:[ColoredCell class]]) {
     ColoredCell *coloredCell = (ColoredCell*)cell;
     coloredCell.textLabel.text = self.brickCategoryNames[indexPath.row];
-    coloredCell.textLabel.textAlignment = NSTextAlignmentCenter;
-    coloredCell.accessoryType = UITableViewCellSelectionStyleNone;
+    coloredCell.textLabel.textAlignment = NSTextAlignmentLeft;
+    coloredCell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     
   }
   return cell;
@@ -103,9 +102,7 @@
   BricksCollectionViewController *brickCategoryCVC = [storyboard instantiateViewControllerWithIdentifier:@"BricksDetailViewCVC"];
   brickCategoryCVC.brickCategoryType = (kBrickCategoryType)indexPath.row;
   brickCategoryCVC.object = self.object;
-  UINavigationController *navController = [[UINavigationController alloc]initWithRootViewController:brickCategoryCVC];
-  
-  [self presentViewController:navController animated:YES completion:NULL];
+  [self.navigationController pushViewController:brickCategoryCVC animated:YES];
 }
 
 -(void)tableView:(UITableView *)tableView didHighlightRowAtIndexPath:(NSIndexPath *)indexPath {

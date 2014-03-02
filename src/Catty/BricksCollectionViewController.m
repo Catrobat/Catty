@@ -76,13 +76,12 @@
 #pragma mark - Table view data source
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView
 {
-    return [self.selectableBricks count];
+    return 1;
 }
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
-//    return [self.selectableBricks count];
-    return 1;
+    return [self.selectableBricks count];
 }
 
 - (CGSize)collectionView:(UICollectionView*)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath*)indexPath
@@ -95,7 +94,6 @@
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-//    NSNumber *brickType = [self.selectableBricksSortedIndexes objectAtIndex:indexPath.row];
     NSNumber *brickType = [self.selectableBricksSortedIndexes objectAtIndex:indexPath.section];
     NSString *brickTypeName = [self.selectableBricks objectForKey:brickType];
     BrickCell *brickCell = [collectionView dequeueReusableCellWithReuseIdentifier:brickTypeName forIndexPath:indexPath];
@@ -131,9 +129,6 @@
     NSString *title = kBrickCategoryNames[self.brickCategoryType];
     self.title = title;
     self.navigationItem.title = title;
-
-    UIBarButtonItem *closeButton = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(dismissBricksCVC:)];
-    self.navigationItem.leftBarButtonItems = @[closeButton];
 }
 
 #pragma mark actions
