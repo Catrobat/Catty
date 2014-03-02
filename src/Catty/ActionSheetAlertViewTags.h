@@ -28,8 +28,9 @@
 #define kAddSoundActionSheetTag 5
 
 // Alert view tags
-#define kRenameAlertViewTag 1
-#define kNewObjectAlertViewTag 2
+#define kRenameAlertViewTag 100
+#define kNewObjectAlertViewTag 101
+#define lNewProgramAlertViewTag 103
 
 // Alert view button indexes
 #define kAlertViewButtonOK 1

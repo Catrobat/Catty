@@ -60,6 +60,46 @@ UINavigationBarDelegate>
 @implementation ProgramTableViewController
 @synthesize program = _program;
 
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:YES];
+    
+    // TODO: use data source for the ProgramTableViewController instead of reloading the whole data
+    [self.tableView reloadData];
+    [self.navigationController setNavigationBarHidden:NO];
+    [self.navigationController setToolbarHidden:NO];
+    //  [self.tableView beginUpdates];
+    //  [self.tableView reloadRowsAtIndexPaths:@[indexPathOfYourCell] withRowAnimation:UITableViewRowAnimationNone];
+    //  [self.tableView endUpdates];
+}
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+    if (self.isNewProgram) {
+        [self.program saveToDisk];
+    }
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:YES];
+}
+
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
+    
+    [self initTableView];
+    
+    // just to ensure
+    if (self.navigationItem && self.program.header) {
+        self.navigationItem.title = self.program.header.programName;
+        self.title = self.program.header.programName;
+    }
+    [self setupToolBar];
+}
+
 #pragma getter & setters
 - (Program*)program
 {
@@ -105,11 +145,11 @@ UINavigationBarDelegate>
     _program = program;
 }
 
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    self.imageCache = nil;
-}
+//- (void)didReceiveMemoryWarning
+//{
+//    [super didReceiveMemoryWarning];
+//    self.imageCache = nil;
+//}
 
 - (SpriteObject*)createObjectWithName:(NSString*)objectName
 {
@@ -156,57 +196,6 @@ UINavigationBarDelegate>
     return YES;
 }
 
-- (id)initWithStyle:(UITableViewStyle)style
-{
-    self = [super initWithStyle:style];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
-}
-
-- (void)viewWillAppear:(BOOL)animated
-{
-    [super viewWillAppear:YES];
-    
-    // TODO: use data source for the ProgramTableViewController instead of reloading the whole data
-    [self.tableView reloadData];
-    [self.navigationController setNavigationBarHidden:NO];
-    [self.navigationController setToolbarHidden:NO];
-    //  [self.tableView beginUpdates];
-    //  [self.tableView reloadRowsAtIndexPaths:@[indexPathOfYourCell] withRowAnimation:UITableViewRowAnimationNone];
-    //  [self.tableView endUpdates];
-}
-
-- (void)viewWillDisappear:(BOOL)animated
-{
-    if (self.isNewProgram) {
-        [self.program saveToDisk];
-    }
-}
-
-- (void)viewDidAppear:(BOOL)animated
-{
-    [super viewDidAppear:YES];
-}
-
-- (void)viewDidLoad
-{
-    [super viewDidLoad];
-    
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
-    
-    [self initTableView];
-    //[TableUtil initNavigationItem:self.navigationItem withTitle:NSLocalizedString(@"New Programs", nil)];
-    
-    // just to ensure
-    if (self.navigationItem && self.program.header)
-        self.navigationItem.title = self.program.header.programName;
-    self.title = self.program.header.programName;
-    [self setupToolBar];
-}
-
 #pragma mark init
 - (void)initTableView
 {
@@ -220,6 +209,7 @@ UINavigationBarDelegate>
 }
 
 #pragma mark - UITableView data source
+
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     return kNumberOfSectionsInProgramTableViewController;
@@ -459,52 +449,55 @@ UINavigationBarDelegate>
 }
 
 #pragma mark - UIAlertViewDelegate Handlers
+
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
-    if (alertView.tag == kRenameAlertViewTag) {
-        // OK button
-        if (buttonIndex == kAlertViewButtonOK) {
-            NSString* input = [[alertView textFieldAtIndex:0] text];
-            if ([input isEqualToString:self.program.header.programName])
-                return;
-
-            // TODO: check, filter and validate new program name already exists here
-            if ([Program programExists:input]) {
-                [self showWarningExistingProgramNameActionSheet];
-                return;
+    switch (alertView.tag) {
+        case kRenameAlertViewTag:
+            if (buttonIndex == kAlertViewButtonOK) {
+                NSString* input = [[alertView textFieldAtIndex:0] text];
+                if ([input isEqualToString:self.program.header.programName])
+                    return;
+                
+                // TODO: check, filter and validate new program name already exists here
+                if ([Program programExists:input]) {
+                    [self showWarningExistingProgramNameActionSheet];
+                    return;
+                }
+                
+                if ((! [input length]) || (! self.program.header)) {
+                    [self showWarningInvalidProgramNameActionSheet];
+                    return;
+                }
+                
+                NSString *oldPath = [self.program projectPath];
+                if (self.navigationItem)
+                    self.navigationItem.title = input;
+                
+                [self.delegate renameOldLevelName:self.program.header.programName ToNewLevelName:input];
+                self.program.header.programName = self.title = input;
+                NSString *newPath = [self.program projectPath];
+                [[[FileManager alloc] init] moveExistingFileOrDirectoryAtPath:oldPath ToPath:newPath];
+                [Util setLastProgram:input];
+                
+                // TODO: update header in code.xml...
+                //      [self.program saveToDisk];
             }
+            break;
             
-            if ((! [input length]) || (! self.program.header)) {
-                [self showWarningInvalidProgramNameActionSheet];
-                return;
+        case kNewObjectAlertViewTag: {
+            if (buttonIndex == kAlertViewButtonOK) {
+                NSString* input = [[alertView textFieldAtIndex:0] text];
+                if ([input length]) {
+                    [self.program.objectList addObject:[self createObjectWithName:input]];
+                    [self.tableView reloadSections:[NSIndexSet indexSetWithIndexesInRange:NSMakeRange(1, 1)] withRowAnimation:UITableViewRowAnimationFade];
+                } else
+                    [self showWarningInvalidObjectNameActionSheet];
             }
-            
-            NSString *oldPath = [self.program projectPath];
-            if (self.navigationItem)
-                self.navigationItem.title = input;
-            
-            [self.delegate renameOldLevelName:self.program.header.programName ToNewLevelName:input];
-            self.program.header.programName = self.title = input;
-            NSString *newPath = [self.program projectPath];
-            [[[FileManager alloc] init] moveExistingFileOrDirectoryAtPath:oldPath ToPath:newPath];
-            [Util setLastProgram:input];
-            
-            // TODO: update header in code.xml...
-            //      [self.program saveToDisk];
         }
-    } else if (alertView.tag == kNewObjectAlertViewTag) {
-        // OK button
-        if (buttonIndex == kAlertViewButtonOK) {
-            NSString* input = [[alertView textFieldAtIndex:0] text];
-            if ([input length]) {
-                [self.program.objectList addObject:[self createObjectWithName:input]];
-                NSInteger numberOfRowsInLastSection = [self tableView:self.tableView numberOfRowsInSection:kObjectIndex];
-                NSIndexPath *indexPath = [NSIndexPath indexPathForRow:(numberOfRowsInLastSection - 1) inSection:kObjectIndex];
-                [self.tableView insertRowsAtIndexPaths:@[indexPath]
-                                      withRowAnimation:UITableViewRowAnimationFade];
-            } else
-                [self showWarningInvalidObjectNameActionSheet];
-        }
+            
+        default:
+            break;
     }
 }
 
@@ -514,6 +507,24 @@ UINavigationBarDelegate>
 //       This is not part of the controller logic and highly decreases readability!!
 
 #pragma mark - UIAlertView Views
+
+//- (void)showNewProgramAlertView
+//{
+//    UIAlertView *newProgramAlert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"New program",nil)
+//                                                                 message:NSLocalizedString(@"Program name:",nil)
+//                                                                delegate:self
+//                                                       cancelButtonTitle:kBtnCancelTitle
+//                                                       otherButtonTitles:kBtnOKTitle, nil];
+//    [newProgramAlert setTag:lNewProgramAlertViewTag];
+//    newProgramAlert.alertViewStyle = UIAlertViewStylePlainTextInput;
+//    UITextField *textField = [newProgramAlert textFieldAtIndex:0];
+//    textField.placeholder = kProgramNamePlaceholder;
+//    [textField setClearButtonMode:UITextFieldViewModeWhileEditing];
+//    
+//    
+//    [newProgramAlert show];
+//}
+
 - (void)showRenameProgramAlertView
 {
     UIAlertView *renameProgramAlert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Rename program",nil)
@@ -610,25 +621,24 @@ UINavigationBarDelegate>
 
 - (void)setupToolBar
 {
-    [self.navigationController setToolbarHidden:NO];
     self.navigationController.toolbar.barStyle = UIBarStyleBlack;
     self.navigationController.toolbar.tintColor = [UIColor orangeColor];
     self.navigationController.toolbar.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleTopMargin;
     UIBarButtonItem *flexItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace
                                                                               target:nil
                                                                               action:nil];
+    UIBarButtonItem *fixedSpace= [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace
+                                                                              target:nil
+                                                                              action:nil];
+    fixedSpace.width = 200.;
+    
     UIBarButtonItem *add = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd
                                                                          target:self
                                                                          action:@selector(addObjectAction:)];
     UIBarButtonItem *play = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemPlay
                                                                           target:self
                                                                           action:@selector(playSceneAction:)];
-    // XXX: workaround for tap area problem:
-    // http://stackoverflow.com/questions/5113258/uitoolbar-unexpectedly-registers-taps-on-uibarbuttonitem-instances-even-when-tap
-    UIImageView *imageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"transparent1x1.png"]];
-    UIBarButtonItem *invisibleButton = [[UIBarButtonItem alloc] initWithCustomView:imageView];
-    self.toolbarItems = [NSArray arrayWithObjects:flexItem, invisibleButton, add, invisibleButton, flexItem,
-                         flexItem, flexItem, invisibleButton, play, invisibleButton, flexItem, nil];
+    self.toolbarItems = @[flexItem, add, fixedSpace, play, flexItem];
 }
 
 @end

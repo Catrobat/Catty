@@ -47,14 +47,6 @@
 @implementation CatrobatTableViewController
 
 
-- (id)initWithStyle:(UITableViewStyle)style
-{
-    self = [super initWithStyle:style];
-    if (self) {
-    }
-    return self;
-}
-
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -77,7 +69,6 @@
     BOOL lockIphoneEnabeled = [self shouldLockIphoneInAppWithoutScenePresenter];
     [[UIApplication sharedApplication] setIdleTimerDisabled:(lockIphoneEnabeled)];
     [self.tableView deselectRowAtIndexPath:[self.tableView indexPathForSelectedRow] animated:YES];
-
 }
 
 - (BOOL)shouldLockIphoneInAppWithoutScenePresenter {
@@ -99,11 +90,6 @@
   [self.tableView endUpdates];
   self.tableView.alwaysBounceVertical = NO;
   self.tableView.scrollEnabled = YES;
-}
-
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
 }
 
 #pragma mark init
