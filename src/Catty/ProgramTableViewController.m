@@ -52,8 +52,8 @@
 @interface ProgramTableViewController () <UIActionSheetDelegate, UIAlertViewDelegate, UITextFieldDelegate,
 UINavigationBarDelegate>
 @property (strong, nonatomic) Program *program;
-@property (strong, nonatomic) NSMutableDictionary *imageCache; // NONatomic, only (!) accessed via main queue = serial (!) queue
-#warning isNewProgram is only a temporarily var to indicate wether this is a new program or loaded from disk
+@property (strong, nonatomic) NSMutableDictionary *imageCache;
+#warning remove this after persisting programs feature is fully implemented...
 @property (nonatomic) BOOL isNewProgram;
 @end
 
@@ -145,11 +145,11 @@ UINavigationBarDelegate>
     _program = program;
 }
 
-//- (void)didReceiveMemoryWarning
-//{
-//    [super didReceiveMemoryWarning];
-//    self.imageCache = nil;
-//}
+- (void)didReceiveMemoryWarning
+{
+    [super didReceiveMemoryWarning];
+    self.imageCache = nil;
+}
 
 - (SpriteObject*)createObjectWithName:(NSString*)objectName
 {
