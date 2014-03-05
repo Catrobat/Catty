@@ -195,15 +195,17 @@
     return CGSizeMake(width, height);
 }
 
-//- (UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout insetForSectionAtIndex:(NSInteger)section
-//{
-//    // TODO: outsource all consts
-//    return UIEdgeInsetsMake(10, 0, 5, 0);
-//}
+- (UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout insetForSectionAtIndex:(NSInteger)section
+{
+    // !!! PLEASE DO NOT COMMENT THESE LINES OUT !!!
+    // margin between CVC-sections ( = scripts) as you can see in Catroid's PocketCode version
+    // TODO: outsource all consts
+    return UIEdgeInsetsMake(10, 0, 5, 0);
+}
 
 #pragma mark LXReorderableCollectionViewDatasource
-
-- (void)collectionView:(UICollectionView *)collectionView itemAtIndexPath:(NSIndexPath *)fromIndexPath willMoveToIndexPath:(NSIndexPath *)toIndexPath {
+- (void)collectionView:(UICollectionView *)collectionView itemAtIndexPath:(NSIndexPath *)fromIndexPath willMoveToIndexPath:(NSIndexPath *)toIndexPath
+{
 //    Script *script = [self.object.scriptList objectAtIndex:fromIndexPath.section];
 //    Brick *brick = [script.brickList objectAtIndex:fromIndexPath.row - 1];
 //    
@@ -216,7 +218,6 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     static NSString* toSceneSegueID = kSegueToScene;
-    //    static NSString* toScriptCategoriesSegueID = kSegueToScriptCategories;
     UIViewController* destController = segue.destinationViewController;
     if ([sender isKindOfClass:[UIBarButtonItem class]]) {
         if ([segue.identifier isEqualToString:toSceneSegueID]) {
@@ -300,8 +301,11 @@
     [self performSegueWithIdentifier:kSegueToScene sender:sender];
 }
 
+
 - (void)setupToolBar
 {
+    // @INFO: Please do not modify or remove this code again, unless you don't exactly know what you are doing.
+    
     [self.navigationController setToolbarHidden:NO];
     self.navigationController.toolbar.barStyle = UIBarStyleBlack;
     self.navigationController.toolbar.tintColor = [UIColor orangeColor];
@@ -309,18 +313,46 @@
     UIBarButtonItem *flexItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace
                                                                               target:nil
                                                                               action:nil];
-    UIBarButtonItem *fixedSpace= [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace
-                                                                               target:nil
-                                                                               action:nil];
-    fixedSpace.width = 200.;
     UIBarButtonItem *add = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd
                                                                          target:self
                                                                          action:@selector(addScriptAction:)];
     UIBarButtonItem *play = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemPlay
                                                                           target:self
                                                                           action:@selector(playSceneAction:)];
-    self.toolbarItems = @[flexItem, add, fixedSpace, play, flexItem];
+    // XXX: workaround for tap area problem:
+    // http://stackoverflow.com/questions/5113258/uitoolbar-unexpectedly-registers-taps-on-uibarbuttonitem-instances-even-when-tap
+    UIImageView *imageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"transparent1x1.png"]];
+    UIBarButtonItem *invisibleButton = [[UIBarButtonItem alloc] initWithCustomView:imageView];
+    self.toolbarItems = [NSArray arrayWithObjects:flexItem, invisibleButton, add, invisibleButton, flexItem,
+                         flexItem, flexItem, invisibleButton, play, invisibleButton, flexItem, nil];
 }
+
+// @INFO: Dominik told me that he wants buttons aligned to the center.
+//        In addition this code leads to same tapping problem as we had before.
+//        The above code handles all these aspects. ;)
+//
+//- (void)setupToolBar
+//{
+//    [self.navigationController setToolbarHidden:NO];
+//    self.navigationController.toolbar.barStyle = UIBarStyleBlack;
+//    self.navigationController.toolbar.tintColor = [UIColor orangeColor];
+//    self.navigationController.toolbar.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleTopMargin;
+//    UIBarButtonItem *flexItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace
+//                                                                              target:nil
+//                                                                              action:nil];
+//    UIBarButtonItem *fixedSpace= [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace
+//                                                                               target:nil
+//                                                                               action:nil];
+//
+//    fixedSpace.width = 200.;
+//    UIBarButtonItem *add = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd
+//                                                                         target:self
+//                                                                         action:@selector(addScriptAction:)];
+//    UIBarButtonItem *play = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemPlay
+//                                                                          target:self
+//                                                                          action:@selector(playSceneAction:)];
+//    self.toolbarItems = @[flexItem, add, fixedSpace, play, flexItem];
+//}
 
 - (void)initCollectionView
 {
@@ -330,7 +362,8 @@
 }
 
 #pragma mark Notification
-- (void)brickAdded:(NSNotification *)notification {
+- (void)brickAdded:(NSNotification *)notification
+{
     if (notification.userInfo) {
         NSLog(@"%@: Notification Received with UserInfo: %@", [self class], notification.userInfo);
         [self addBrickCell:notification.userInfo[UserInfoKeyBrickCell]];

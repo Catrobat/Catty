@@ -31,7 +31,6 @@
 #define kSegueToScripts @"segueToScripts"
 #define kSegueToLooks @"segueToLooks"
 #define kSegueToSounds @"segueToSounds"
-#define kSegueToScriptCategories @"segueToScriptCategories"
 #define kSegueToNewScriptCategory @"segueToNewScriptCategory"
 
 #define kSegueContinue @"continue"

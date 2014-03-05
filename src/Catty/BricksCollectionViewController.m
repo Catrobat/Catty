@@ -76,12 +76,14 @@
 #pragma mark - Table view data source
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView
 {
-    return 1;
+    // @INFO: we use 1 section per brick to easily circumvent the inset-problem...
+    //        otherwise we probably have to use a custom CVC-layout...
+    return [self.selectableBricks count];
 }
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
-    return [self.selectableBricks count];
+    return 1;
 }
 
 - (CGSize)collectionView:(UICollectionView*)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath*)indexPath
