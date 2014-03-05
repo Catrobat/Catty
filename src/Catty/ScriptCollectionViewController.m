@@ -31,6 +31,7 @@
 #import "StartScript.h"
 #import "Brick.h"
 #import "LXReorderableCollectionViewFlowLayout.h"
+#import "BrickManager.h"
 
 @interface ScriptCollectionViewController () <UICollectionViewDelegate, UICollectionViewDelegateFlowLayout>
 @property (nonatomic, strong) NSDictionary *classNameBrickNameMap;
@@ -244,6 +245,7 @@
 
 - (void)addBrickCell:(BrickCell *)brickCell
 {
+//    BrickManager *brickManager = [BrickManager sharedBrickManager];
     if (! brickCell) {
         return;
     }

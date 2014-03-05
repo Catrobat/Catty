@@ -20,21 +20,20 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
+#import "BrickManager.h"
 
-#import "ProgramManager.h"
+@implementation BrickManager
 
-@implementation ProgramManager
+static BrickManager *sharedBrickManager = nil;
 
-static ProgramManager *sharedProgramManager = nil;
-
-+ (ProgramManager*)sharedProgramManager
++ (BrickManager*)sharedBrickManager
 {
     @synchronized(self) {
-        if (sharedProgramManager == nil) {
-            sharedProgramManager = [[ProgramManager alloc] init];
+        if (sharedBrickManager == nil) {
+            sharedBrickManager = [[BrickManager alloc] init];
         }
     }
-    return sharedProgramManager;
+    return sharedBrickManager;
 }
 
 @end

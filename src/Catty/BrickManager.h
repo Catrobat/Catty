@@ -20,21 +20,10 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
+#import <Foundation/Foundation.h>
 
-#import "ProgramManager.h"
+@interface BrickManager : NSObject
 
-@implementation ProgramManager
-
-static ProgramManager *sharedProgramManager = nil;
-
-+ (ProgramManager*)sharedProgramManager
-{
-    @synchronized(self) {
-        if (sharedProgramManager == nil) {
-            sharedProgramManager = [[ProgramManager alloc] init];
-        }
-    }
-    return sharedProgramManager;
-}
++ (BrickManager*)sharedBrickManager;
 
 @end

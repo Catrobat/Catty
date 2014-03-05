@@ -176,6 +176,7 @@
 		C3E9197F180BE179001F2232 /* screenshot.png in Resources */ = {isa = PBXBuildFile; fileRef = C3E9197E180BE179001F2232 /* screenshot.png */; };
 		C3F1DD5C180AD1DC00E2FA45 /* ScenePresenterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C3F1DD5B180AD1DC00E2FA45 /* ScenePresenterViewController.m */; };
 		C3F2950C1813C63200E37D61 /* iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C3F2950B1813C63200E37D61 /* iPhone.storyboard */; };
+		CA047EC418C782550078BE08 /* BrickManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CA047EC318C782550078BE08 /* BrickManager.m */; };
 		CA05A19C18282B2C0025421A /* SearchStoreViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA05A19B18282B2C0025421A /* SearchStoreViewController.m */; };
 		CA05A19E18286CDA0025421A /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA05A19D18286CDA0025421A /* AssetsLibrary.framework */; };
 		CA43DD361809976900F95B88 /* UIImageView+CatrobatUIImageViewExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = CA43DD351809976900F95B88 /* UIImageView+CatrobatUIImageViewExtensions.m */; };
@@ -593,6 +594,8 @@
 		C3F1DD5A180AD1DC00E2FA45 /* ScenePresenterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScenePresenterViewController.h; sourceTree = "<group>"; };
 		C3F1DD5B180AD1DC00E2FA45 /* ScenePresenterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScenePresenterViewController.m; sourceTree = "<group>"; };
 		C3F2950B1813C63200E37D61 /* iPhone.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = iPhone.storyboard; sourceTree = "<group>"; };
+		CA047EC218C782550078BE08 /* BrickManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BrickManager.h; sourceTree = "<group>"; };
+		CA047EC318C782550078BE08 /* BrickManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BrickManager.m; sourceTree = "<group>"; };
 		CA05A19A18282B2C0025421A /* SearchStoreViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchStoreViewController.h; sourceTree = "<group>"; };
 		CA05A19B18282B2C0025421A /* SearchStoreViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchStoreViewController.m; sourceTree = "<group>"; };
 		CA05A19D18286CDA0025421A /* AssetsLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AssetsLibrary.framework; path = System/Library/Frameworks/AssetsLibrary.framework; sourceTree = SDKROOT; };
@@ -1045,6 +1048,7 @@
 				B46475321770F60E00CD277F /* AudioManager */,
 				B4D940D5170ECA19003DDBFA /* ImageCache */,
 				CD0CD004170CBFEE00B70036 /* minizip */,
+				CA047EC118C782320078BE08 /* BrickManager */,
 				B44F32A21737AC3100BD97AC /* ProgramManager */,
 				B400302D170EB46A00396DB7 /* SSZipArchive */,
 				CA5FED5118B0199100A517B6 /* UIUtil */,
@@ -1683,6 +1687,15 @@
 				C34B44EC17F079F500624730 /* CustomExtensionsTests.m */,
 			);
 			name = ExtensionTests;
+			sourceTree = "<group>";
+		};
+		CA047EC118C782320078BE08 /* BrickManager */ = {
+			isa = PBXGroup;
+			children = (
+				CA047EC218C782550078BE08 /* BrickManager.h */,
+				CA047EC318C782550078BE08 /* BrickManager.m */,
+			);
+			name = BrickManager;
 			sourceTree = "<group>";
 		};
 		CA04EDA317E7D1610063EB25 /* Continue & New */ = {
@@ -2807,6 +2820,7 @@
 				B4D940CF170EC9E6003DDBFA /* UIImage+CatrobatUIImageExtensions.m in Sources */,
 				B4D940CB170EC8DA003DDBFA /* TableUtil.m in Sources */,
 				B4D940CA170EC8C4003DDBFA /* ProgramLoadingInfo.m in Sources */,
+				CA047EC418C782550078BE08 /* BrickManager.m in Sources */,
 				CA68B67718BAA80A007042E4 /* ComboBoxView.m in Sources */,
 				CA75C27718A9620E00FC8C2F /* StopAllSoundsBrickCell.m in Sources */,
 				C34B44F817F1D8D200624730 /* ChangeBrightnessByNBrick.m in Sources */,
