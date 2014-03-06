@@ -32,6 +32,7 @@
 @property (nonatomic, readonly) kBrickCategoryType categoryType;
 @property (nonatomic, readonly) NSInteger brickType;
 @property (nonatomic, readonly, getter = isScriptBrickCell) BOOL scriptBrickCell;
+@property (nonatomic) BOOL enabled;
 
 - (void)hookUpSubViews:(NSArray *)inlineViewSubViews; // abstract (only called internally)
 
@@ -40,5 +41,6 @@
 + (kBrickShapeType)shapeTypeForCategoryType:(kBrickCategoryType)categoryType AndBrickType:(NSInteger)brickType;
 + (BOOL)isScriptBrickCellForCategoryType:(kBrickCategoryType)categoryType AndBrickType:(NSInteger)brickType;
 + (NSString*)brickPatternImageNameForCategoryType:(kBrickCategoryType)categoryType AndBrickType:(NSInteger)brickType;
++ (void)clearImageCache;
 
 @end

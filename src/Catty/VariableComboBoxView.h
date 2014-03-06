@@ -20,39 +20,8 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import "SetVariableBrickCell.h"
+#import "ComboBoxView.h"
 
-@interface SetVariableBrickCell ()
-@property (nonatomic, strong) UILabel *firstRowTextLabel;
-@property (nonatomic, strong) UILabel *thirdRowTextLabel;
-@end
-
-@implementation SetVariableBrickCell
-
-- (void)hookUpSubViews:(NSArray *)inlineViewSubViews
-{
-    self.firstRowTextLabel = inlineViewSubViews[0];
-    self.variableComboBoxView = inlineViewSubViews[1];
-    self.thirdRowTextLabel = inlineViewSubViews[2];
-    self.valueTextField = inlineViewSubViews[3];
-}
-
-- (id)initWithFrame:(CGRect)frame
-{
-    self = [super initWithFrame:frame];
-    if (self) {
-        // Initialization code
-    }
-    return self;
-}
-
-/*
-// Only override drawRect: if you perform custom drawing.
-// An empty implementation adversely affects performance during animation.
-- (void)drawRect:(CGRect)rect
-{
-    // Drawing code
-}
-*/
+@interface VariableComboBoxView : ComboBoxView
 
 @end

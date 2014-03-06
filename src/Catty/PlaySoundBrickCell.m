@@ -31,7 +31,7 @@
 - (void)hookUpSubViews:(NSArray *)inlineViewSubViews
 {
     self.textLabel = inlineViewSubViews[0];
-    self.soundPickerView = inlineViewSubViews[1];
+    self.soundComboBoxView = inlineViewSubViews[1];
 }
 
 - (id)initWithFrame:(CGRect)frame

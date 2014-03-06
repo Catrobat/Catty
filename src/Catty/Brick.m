@@ -24,7 +24,7 @@
 
 @implementation Brick
 
--(id)initWithSprite:(SpriteObject *)sprite
+- (id)initWithSprite:(SpriteObject *)sprite
 {
     self = [super init];
     if (self)

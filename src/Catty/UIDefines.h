@@ -95,6 +95,7 @@ typedef NS_ENUM(NSInteger, kBrickCategoryType) {
 #define kBrickTextFieldFontSize 15.0f
 #define kBrickInputFieldHeight 28.0f
 #define kBrickInputFieldMinWidth 60.0f
+#define kBrickComboBoxWidth 250.0f
 #define kBrickInputFieldTopMargin 4.0f
 #define kBrickInputFieldBottomMargin 5.0f
 #define kBrickInputFieldLeftMargin 4.0f

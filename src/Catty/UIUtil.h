@@ -22,11 +22,22 @@
 
 #import <Foundation/Foundation.h>
 
+@class MessageComboBoxView;
+@class ObjectComboBoxView;
+@class SoundComboBoxView;
+@class LookComboBoxView;
+@class VariableComboBoxView;
+
 @interface UIUtil : NSObject
 
 + (UILabel*)newDefaultBrickLabelWithFrame:(CGRect)frame;
 + (UILabel*)newDefaultBrickLabelWithFrame:(CGRect)frame AndText:(NSString*)text;
 + (UITextField*)newDefaultBrickTextFieldWithFrame:(CGRect)frame;
-+ (UIPickerView*)newDefaultBrickPickerViewWithFrame:(CGRect)frame;
+
++ (MessageComboBoxView*)newDefaultBrickMessageComboBoxWithFrame:(CGRect)frame AndItems:(NSArray*)items;
++ (ObjectComboBoxView*)newDefaultBrickObjectComboBoxWithFrame:(CGRect)frame AndItems:(NSArray*)items;
++ (SoundComboBoxView*)newDefaultBrickSoundComboBoxWithFrame:(CGRect)frame AndItems:(NSArray*)items;
++ (LookComboBoxView*)newDefaultBrickLookComboBoxWithFrame:(CGRect)frame AndItems:(NSArray*)items;
++ (VariableComboBoxView*)newDefaultBrickVariableComboBoxWithFrame:(CGRect)frame AndItems:(NSArray*)items;
 
 @end

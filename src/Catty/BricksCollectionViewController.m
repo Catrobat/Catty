@@ -35,6 +35,14 @@
 
 @implementation BricksCollectionViewController
 
+#pragma mark - application events
+- (void)didReceiveMemoryWarning
+{
+    [super didReceiveMemoryWarning];
+    [BrickCell clearImageCache];
+}
+
+#pragma mark - view events
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -90,7 +98,9 @@
 //    NSNumber *brickType = [self.selectableBricksSortedIndexes objectAtIndex:indexPath.row];
     NSNumber *brickType = [self.selectableBricksSortedIndexes objectAtIndex:indexPath.section];
     NSString *brickTypeName = [self.selectableBricks objectForKey:brickType];
-    return [collectionView dequeueReusableCellWithReuseIdentifier:brickTypeName forIndexPath:indexPath];
+    BrickCell *brickCell = [collectionView dequeueReusableCellWithReuseIdentifier:brickTypeName forIndexPath:indexPath];
+    brickCell.enabled = NO;
+    return brickCell;
 }
 
 - (UIEdgeInsets)collectionView:(UICollectionView *)collectionView
@@ -106,13 +116,13 @@
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath*)indexPath
 {
-    BrickCell *cell = (BrickCell *)[collectionView cellForItemAtIndexPath:indexPath];
+    BrickCell *brickCell = (BrickCell *)[collectionView cellForItemAtIndexPath:indexPath];
 
     if (! [self.presentedViewController isBeingPresented]) {
         [self dismissViewControllerAnimated:YES completion:^{
             NSNotificationCenter *dnc = NSNotificationCenter.defaultCenter;
-            [dnc postNotificationName:BrickCellAddedNotification object:nil userInfo:@{UserInfoKeyBrickCell: cell,
-                                                                                       UserInfoSpriteObject: self.object}];
+            [dnc postNotificationName:BrickCellAddedNotification object:nil userInfo:@{UserInfoKeyBrickCell : brickCell,
+                                                                                       UserInfoSpriteObject : self.object}];
         }];
     }
 }

@@ -189,6 +189,7 @@
 		CA68820B180B30E0008A7C99 /* BrickCategoriesTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA68820A180B30E0008A7C99 /* BrickCategoriesTableViewController.m */; };
 		CA68820E180B39D0008A7C99 /* ColoredCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CA68820D180B39D0008A7C99 /* ColoredCell.m */; };
 		CA688212180B467B008A7C99 /* OrderedDictionary.m in Sources */ = {isa = PBXBuildFile; fileRef = CA688211180B467B008A7C99 /* OrderedDictionary.m */; };
+		CA68B67718BAA80A007042E4 /* ComboBoxView.m in Sources */ = {isa = PBXBuildFile; fileRef = CA68B67518BAA80A007042E4 /* ComboBoxView.m */; };
 		CA75C22618A9603400FC8C2F /* StartScriptCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CA75C22518A9603400FC8C2F /* StartScriptCell.m */; };
 		CA75C22918A9605D00FC8C2F /* WhenScriptCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CA75C22818A9605D00FC8C2F /* WhenScriptCell.m */; };
 		CA75C22C18A9606D00FC8C2F /* BroadcastScriptCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CA75C22B18A9606D00FC8C2F /* BroadcastScriptCell.m */; };
@@ -241,6 +242,11 @@
 		CA8F8A0B17F241F700A04C03 /* ic_looks.png in Resources */ = {isa = PBXBuildFile; fileRef = CA8F8A0817F241F700A04C03 /* ic_looks.png */; };
 		CA8F8A0C17F241F700A04C03 /* ic_scripts.png in Resources */ = {isa = PBXBuildFile; fileRef = CA8F8A0917F241F700A04C03 /* ic_scripts.png */; };
 		CA8F8A0D17F241F700A04C03 /* ic_sounds.png in Resources */ = {isa = PBXBuildFile; fileRef = CA8F8A0A17F241F700A04C03 /* ic_sounds.png */; };
+		CABE07BC18BAB8B200BE26EF /* MessageComboBoxView.m in Sources */ = {isa = PBXBuildFile; fileRef = CABE07BB18BAB8B200BE26EF /* MessageComboBoxView.m */; };
+		CABE07BF18BAB8EF00BE26EF /* ObjectComboBoxView.m in Sources */ = {isa = PBXBuildFile; fileRef = CABE07BE18BAB8EF00BE26EF /* ObjectComboBoxView.m */; };
+		CABE07C218BAB90400BE26EF /* SoundComboBoxView.m in Sources */ = {isa = PBXBuildFile; fileRef = CABE07C118BAB90400BE26EF /* SoundComboBoxView.m */; };
+		CABE07C518BAB91F00BE26EF /* LookComboBoxView.m in Sources */ = {isa = PBXBuildFile; fileRef = CABE07C418BAB91F00BE26EF /* LookComboBoxView.m */; };
+		CABE07C818BAB94000BE26EF /* VariableComboBoxView.m in Sources */ = {isa = PBXBuildFile; fileRef = CABE07C718BAB94000BE26EF /* VariableComboBoxView.m */; };
 		CAC22DA41809D5730071CC5D /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CAC22DA31809D5730071CC5D /* MobileCoreServices.framework */; };
 		CAEDFB8117EF759500FDED0E /* ObjectTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CAEDFB8017EF759500FDED0E /* ObjectTableViewController.m */; };
 		CD0CCF51170CB39700B70036 /* BaseSprite.m in Sources */ = {isa = PBXBuildFile; fileRef = CD0CCE5E170CB39600B70036 /* BaseSprite.m */; };
@@ -611,6 +617,8 @@
 		CA68820D180B39D0008A7C99 /* ColoredCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ColoredCell.m; sourceTree = "<group>"; };
 		CA688210180B467B008A7C99 /* OrderedDictionary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrderedDictionary.h; sourceTree = "<group>"; };
 		CA688211180B467B008A7C99 /* OrderedDictionary.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrderedDictionary.m; sourceTree = "<group>"; };
+		CA68B67418BAA80A007042E4 /* ComboBoxView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ComboBoxView.h; sourceTree = "<group>"; };
+		CA68B67518BAA80A007042E4 /* ComboBoxView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ComboBoxView.m; sourceTree = "<group>"; };
 		CA75C22418A9603400FC8C2F /* StartScriptCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StartScriptCell.h; sourceTree = "<group>"; };
 		CA75C22518A9603400FC8C2F /* StartScriptCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StartScriptCell.m; sourceTree = "<group>"; };
 		CA75C22718A9605D00FC8C2F /* WhenScriptCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WhenScriptCell.h; sourceTree = "<group>"; };
@@ -710,6 +718,16 @@
 		CA8F8A0817F241F700A04C03 /* ic_looks.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ic_looks.png; sourceTree = "<group>"; };
 		CA8F8A0917F241F700A04C03 /* ic_scripts.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ic_scripts.png; sourceTree = "<group>"; };
 		CA8F8A0A17F241F700A04C03 /* ic_sounds.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ic_sounds.png; sourceTree = "<group>"; };
+		CABE07BA18BAB8B200BE26EF /* MessageComboBoxView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageComboBoxView.h; sourceTree = "<group>"; };
+		CABE07BB18BAB8B200BE26EF /* MessageComboBoxView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageComboBoxView.m; sourceTree = "<group>"; };
+		CABE07BD18BAB8EF00BE26EF /* ObjectComboBoxView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ObjectComboBoxView.h; sourceTree = "<group>"; };
+		CABE07BE18BAB8EF00BE26EF /* ObjectComboBoxView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ObjectComboBoxView.m; sourceTree = "<group>"; };
+		CABE07C018BAB90400BE26EF /* SoundComboBoxView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SoundComboBoxView.h; sourceTree = "<group>"; };
+		CABE07C118BAB90400BE26EF /* SoundComboBoxView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SoundComboBoxView.m; sourceTree = "<group>"; };
+		CABE07C318BAB91F00BE26EF /* LookComboBoxView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LookComboBoxView.h; sourceTree = "<group>"; };
+		CABE07C418BAB91F00BE26EF /* LookComboBoxView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LookComboBoxView.m; sourceTree = "<group>"; };
+		CABE07C618BAB94000BE26EF /* VariableComboBoxView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VariableComboBoxView.h; sourceTree = "<group>"; };
+		CABE07C718BAB94000BE26EF /* VariableComboBoxView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VariableComboBoxView.m; sourceTree = "<group>"; };
 		CAC22DA31809D5730071CC5D /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		CACEF959184529AC00D199D8 /* Brick+UnitTestingExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Brick+UnitTestingExtensions.h"; sourceTree = "<group>"; };
 		CAEDFB7F17EF759500FDED0E /* ObjectTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ObjectTableViewController.h; sourceTree = "<group>"; };
@@ -1416,6 +1434,7 @@
 		B4D940B2170EC5D5003DDBFA /* UserInterface */ = {
 			isa = PBXGroup;
 			children = (
+				CAC3141318BA84C700DAAB72 /* ComboBoxView */,
 				CA750F8018A12CD3005FC0A0 /* CollectionView */,
 				CA6881FE180AEA85008A7C99 /* TableView */,
 				B4BCF425170ED41B008EDF3A /* CreateView */,
@@ -2079,6 +2098,25 @@
 				B4AACF4C18321D8D00445C9F /* Default-568h@2x.png */,
 			);
 			name = backgrounds;
+			sourceTree = "<group>";
+		};
+		CAC3141318BA84C700DAAB72 /* ComboBoxView */ = {
+			isa = PBXGroup;
+			children = (
+				CA68B67418BAA80A007042E4 /* ComboBoxView.h */,
+				CA68B67518BAA80A007042E4 /* ComboBoxView.m */,
+				CABE07BA18BAB8B200BE26EF /* MessageComboBoxView.h */,
+				CABE07BB18BAB8B200BE26EF /* MessageComboBoxView.m */,
+				CABE07BD18BAB8EF00BE26EF /* ObjectComboBoxView.h */,
+				CABE07BE18BAB8EF00BE26EF /* ObjectComboBoxView.m */,
+				CABE07C018BAB90400BE26EF /* SoundComboBoxView.h */,
+				CABE07C118BAB90400BE26EF /* SoundComboBoxView.m */,
+				CABE07C318BAB91F00BE26EF /* LookComboBoxView.h */,
+				CABE07C418BAB91F00BE26EF /* LookComboBoxView.m */,
+				CABE07C618BAB94000BE26EF /* VariableComboBoxView.h */,
+				CABE07C718BAB94000BE26EF /* VariableComboBoxView.m */,
+			);
+			name = ComboBoxView;
 			sourceTree = "<group>";
 		};
 		CACEF95C18452A8A00D199D8 /* Brick+UnitTestingExtensions */ = {
@@ -2756,6 +2794,7 @@
 				B4D940CF170EC9E6003DDBFA /* UIImage+CatrobatUIImageExtensions.m in Sources */,
 				B4D940CB170EC8DA003DDBFA /* TableUtil.m in Sources */,
 				B4D940CA170EC8C4003DDBFA /* ProgramLoadingInfo.m in Sources */,
+				CA68B67718BAA80A007042E4 /* ComboBoxView.m in Sources */,
 				CA75C27718A9620E00FC8C2F /* StopAllSoundsBrickCell.m in Sources */,
 				C34B44F817F1D8D200624730 /* ChangeBrightnessByNBrick.m in Sources */,
 				CA688202180AEF00008A7C99 /* BaseViewController.m in Sources */,
@@ -2771,7 +2810,9 @@
 				CD0CCF54170CB39700B70036 /* BroadcastScript.m in Sources */,
 				816C788617D62B7C0029A4E6 /* ProgramTableViewController.m in Sources */,
 				CD0CCF55170CB39700B70036 /* BroadcastWaitBrick.m in Sources */,
+				CABE07C218BAB90400BE26EF /* SoundComboBoxView.m in Sources */,
 				CA75C26E18A961FC00FC8C2F /* GoNStepsBackBrickCell.m in Sources */,
+				CABE07C818BAB94000BE26EF /* VariableComboBoxView.m in Sources */,
 				CA75C22918A9605D00FC8C2F /* WhenScriptCell.m in Sources */,
 				CA75C29E18A9626400FC8C2F /* ChangeBrightnessByNBrickCell.m in Sources */,
 				B46475301770F60500CD277F /* AudioManager.m in Sources */,
@@ -2800,6 +2841,7 @@
 				CD0CCFA6170CB39700B70036 /* Parser.m in Sources */,
 				CD0CCFA7170CB39700B70036 /* PlaceAtBrick.m in Sources */,
 				CD0CCFAA170CB39700B70036 /* PlaySoundBrick.m in Sources */,
+				CABE07C518BAB91F00BE26EF /* LookComboBoxView.m in Sources */,
 				CA5FED5418B019B200A517B6 /* UIUtil.m in Sources */,
 				CD0CCFAB170CB39700B70036 /* Program.m in Sources */,
 				81FAEE3517E782360052BB2B /* SoundsTableViewController.m in Sources */,
@@ -2809,6 +2851,7 @@
 				CD0CCFBC170CB39700B70036 /* Script.m in Sources */,
 				CA75C25F18A961B200FC8C2F /* TurnLeftBrickCell.m in Sources */,
 				CD0CCFBD170CB39700B70036 /* SetBrightnessBrick.m in Sources */,
+				CABE07BC18BAB8B200BE26EF /* MessageComboBoxView.m in Sources */,
 				CA75C25018A9618D00FC8C2F /* SetYBrickCell.m in Sources */,
 				CD0CCFBE170CB39700B70036 /* SetGhostEffectBrick.m in Sources */,
 				9200F006182E3CA0008BF678 /* CatrobatAudioPlayer.m in Sources */,
@@ -2850,6 +2893,7 @@
 				B4D940AE170EC2B7003DDBFA /* mztools.c in Sources */,
 				CA75C25618A9619B00FC8C2F /* ChangeYByNBrickCell.m in Sources */,
 				B4D940AF170EC2B7003DDBFA /* unzip.c in Sources */,
+				CABE07BF18BAB8EF00BE26EF /* ObjectComboBoxView.m in Sources */,
 				CA75C25318A9619400FC8C2F /* ChangeXByNBrickCell.m in Sources */,
 				B4D940B0170EC2B7003DDBFA /* zip.c in Sources */,
 				B4D940D4170ECA15003DDBFA /* ImageCache.m in Sources */,
