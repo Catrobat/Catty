@@ -191,8 +191,10 @@
     
     CGImageRef cgimg =
     [context createCGImage:outputImage fromRect:[outputImage extent]];
-    
-    return [UIImage imageWithCGImage:cgimg];
+  
+    UIImage *output = [UIImage imageWithCGImage:cgimg];
+    CFRelease(cgimg);
+    return output;
 }
 
 -(void)setUpLabels
