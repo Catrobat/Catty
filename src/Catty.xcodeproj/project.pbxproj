@@ -582,7 +582,7 @@
 		C3E9197C180BE0BF001F2232 /* ic_media_play.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ic_media_play.png; sourceTree = "<group>"; };
 		C3E9197E180BE179001F2232 /* screenshot.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = screenshot.png; sourceTree = "<group>"; };
 		C3F1DD5A180AD1DC00E2FA45 /* ScenePresenterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScenePresenterViewController.h; sourceTree = "<group>"; };
-		C3F1DD5B180AD1DC00E2FA45 /* ScenePresenterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScenePresenterViewController.m; sourceTree = "<group>"; };
+		C3F1DD5B180AD1DC00E2FA45 /* ScenePresenterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 4; lastKnownFileType = sourcecode.c.objc; path = ScenePresenterViewController.m; sourceTree = "<group>"; tabWidth = 4; };
 		C3F2950B1813C63200E37D61 /* iPhone.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = iPhone.storyboard; sourceTree = "<group>"; };
 		CA05A19A18282B2C0025421A /* SearchStoreViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchStoreViewController.h; sourceTree = "<group>"; };
 		CA05A19B18282B2C0025421A /* SearchStoreViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchStoreViewController.m; sourceTree = "<group>"; };
