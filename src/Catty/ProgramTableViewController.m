@@ -372,8 +372,7 @@ UINavigationBarDelegate>
 {
     if (indexPath.section == kObjectSectionIndex) {
         if (editingStyle == UITableViewCellEditingStyleDelete) {
-            // Delete the row from the data source
-            [self.program.objectList removeObjectAtIndex:(kObjectIndex + indexPath.row)];
+            [self.program.objectList removeObjectAtIndex:(kObjectSectionIndex + indexPath.row)];
             [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
         }
     }

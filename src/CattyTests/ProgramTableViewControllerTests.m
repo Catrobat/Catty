@@ -129,7 +129,7 @@
     [self.programTableViewController viewDidLoad];
     [self.programTableViewController viewWillAppear:NO];
     NSInteger numberOfObjectRows = [self.programTableViewController tableView:self.programTableViewController.tableView numberOfRowsInSection:kObjectSectionIndex];
-    XCTAssertEqual(numberOfObjectRows, kMinNumOfObjects, @"Wrong number of object rows in ProgramTableViewController");
+    XCTAssertEqual(numberOfObjectRows, kDefaultNumOfObjects, @"Wrong number of object rows in ProgramTableViewController");
 }
 
 - (void)testNewDefaultProgramRenameProgramName
@@ -456,8 +456,8 @@
             // remove object at first index row
             NSIndexPath *indexPath = [NSIndexPath indexPathForRow:kObjectIndex inSection:kObjectSectionIndex];
             BOOL result = [self.programTableViewController tableView:self.programTableViewController.tableView canEditRowAtIndexPath:indexPath];
-            if (objectCounter < (totalNumOfObjects - 1)) {
-                XCTAssertTrue(result, @"ProgramTableViewController forbids removing object cell (but not last object cell) for object %@ in program %@", object.name, program.header.programName);
+            if (objectCounter < totalNumOfObjects) {
+                XCTAssertTrue(result, @"ProgramTableViewController forbids removing object cell for object %@ in program %@", object.name, program.header.programName);
                 if (result) {
                     [self.programTableViewController tableView:self.programTableViewController.tableView commitEditingStyle:UITableViewCellEditingStyleDelete forRowAtIndexPath:indexPath];
                 }
@@ -473,17 +473,17 @@
 
         // number of remaining table rows in object section must be 1
         numberOfRows = [self.programTableViewController tableView:self.programTableViewController.tableView numberOfRowsInSection:kObjectSectionIndex];
-        XCTAssertEqual(numberOfRows, 1, @"Wrong number of object rows in ProgramTableViewController for program: %@", program.header.programName);
+        XCTAssertEqual(numberOfRows, 0, @"Wrong number of object rows in ProgramTableViewController for program: %@", program.header.programName);
 
         // check if name of last object name is equal to the title of the last remaining table row in the object section
-        NSIndexPath *indexPath = [NSIndexPath indexPathForRow:kObjectIndex inSection:kObjectSectionIndex];
+        NSIndexPath *indexPath = [NSIndexPath indexPathForRow:kBackgroundObjectIndex inSection:kBackgroundSectionIndex];
         UITableViewCell *cell = [self.programTableViewController tableView:self.programTableViewController.tableView cellForRowAtIndexPath:indexPath];
         NSString *objectCellTitle = nil;
         if ([cell conformsToProtocol:@protocol(CatrobatImageCell)]) {
             UITableViewCell <CatrobatImageCell>* imageCell = (UITableViewCell <CatrobatImageCell>*)cell;
             objectCellTitle = imageCell.titleLabel.text;
         }
-        SpriteObject *lastObject = [program.objectList objectAtIndex:(totalNumOfObjects-1)];
+        SpriteObject *lastObject = [program.objectList objectAtIndex:kBackgroundObjectIndex];
         NSLog(@"Name for object cell %@ - should be: %@", objectCellTitle, lastObject.name);
         XCTAssertNotNil(lastObject.name, @"Name of SpriteObject is nil, testing an empty string...");
         XCTAssertTrue([objectCellTitle isEqualToString:lastObject.name], @"Wrong name for object cell %@ in program %@. Should be: %@", objectCellTitle, program.header.programName, lastObject.name);

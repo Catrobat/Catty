@@ -31,7 +31,8 @@
 #define kPreviewImageNamePrefix @"small_" // [UUID]_small_[fileName] e.g. 34A109A82231694B6FE09C216B390570_small_normalCat
 #define kPreviewImageWidth 160
 #define kPreviewImageHeight 160
-#define kMinNumOfObjects 1
+#define kMinNumOfObjects 0
+#define kDefaultNumOfObjects 1
 #define kBackgroundObjects 1
 
 #define kDefaultProgramName NSLocalizedString(@"New Program",@"Default name for new programs")
