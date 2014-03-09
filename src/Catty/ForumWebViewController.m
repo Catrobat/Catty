@@ -37,8 +37,7 @@
 
 @implementation ForumWebViewController
 
-
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle*)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
@@ -65,23 +64,22 @@
    
     
 }
--(void)viewWillAppear:(BOOL)animated
+- (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
     self.navigationController.navigationBar.translucent = YES;
 }
 
-
--(void)viewDidUnload
+- (void)viewDidUnload
 {
     self.webView = nil;
 }
--(void)dealloc
+
+- (void)dealloc
 {
     [self.loadingView removeFromSuperview];
     self.loadingView = nil;
 }
-
 
 #pragma mark - loading view
 - (void)showLoadingView
@@ -93,53 +91,48 @@
     [self.loadingView show];
 }
 
-- (void) hideLoadingView
+- (void)hideLoadingView
 {
     [self.loadingView hide];
 }
 
 #pragma mark - UIWebViewDelegate
-
--(void)webViewDidStartLoad:(UIWebView *)webView
+- (void)webViewDidStartLoad:(UIWebView *)webView
 {
     [self showLoadingView];
     [self initButtons];
 }
 
--(void)webViewDidFinishLoad:(UIWebView *)webView
+- (void)webViewDidFinishLoad:(UIWebView *)webView
 {
     [self hideLoadingView];
     [self initButtons];
 }
 
--(void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error
+- (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error
 {
     [self hideLoadingView];
     [self initButtons];
 }
 
--(BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType{
+- (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType{
     self.back.enabled = true;
     return YES;
 }
 
 #pragma mark - Buttons
-
--(void)initButtons
+- (void)initButtons
 {
     self.back.enabled = self.webView.canGoBack;
     self.forward.enabled = self.webView.canGoForward;
 }
 
-
-#pragma mark - Toolbar
-
+#pragma mark - toolbar
 - (void)nextPage:(id)sender
 {
     [self.webView goForward];
     self.back.enabled = true;
     self.forward.enabled = self.webView.canGoForward;
-
 }
 
 - (void)previousPage:(id)sender
@@ -169,7 +162,7 @@
                                                               target:self
                                                               action:@selector(nextPage:)];
     [self initButtons];
-    
+
     // XXX: workaround for tap area problem:
     // http://stackoverflow.com/questions/5113258/uitoolbar-unexpectedly-registers-taps-on-uibarbuttonitem-instances-even-when-tap
     UIImageView *imageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"transparent1x1.png"]];

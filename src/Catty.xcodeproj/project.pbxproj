@@ -185,7 +185,6 @@
 		CA5FED5018B0070300A517B6 /* BrickCellInlineView.m in Sources */ = {isa = PBXBuildFile; fileRef = CA5FED4F18B0070300A517B6 /* BrickCellInlineView.m */; };
 		CA5FED5418B019B200A517B6 /* UIUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = CA5FED5318B019B200A517B6 /* UIUtil.m */; };
 		CA640C27182A962500DBA899 /* transparent1x1.png in Resources */ = {isa = PBXBuildFile; fileRef = CA640C26182A962500DBA899 /* transparent1x1.png */; };
-		CA688202180AEF00008A7C99 /* BaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA688201180AEF00008A7C99 /* BaseViewController.m */; };
 		CA688205180B0148008A7C99 /* BaseTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA688204180B0148008A7C99 /* BaseTableViewController.m */; };
 		CA688208180B2663008A7C99 /* BaseCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA688207180B2663008A7C99 /* BaseCollectionViewController.m */; };
 		CA68820B180B30E0008A7C99 /* BrickCategoriesTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA68820A180B30E0008A7C99 /* BrickCategoriesTableViewController.m */; };
@@ -612,8 +611,6 @@
 		CA5FED5318B019B200A517B6 /* UIUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIUtil.m; sourceTree = "<group>"; };
 		CA640C26182A962500DBA899 /* transparent1x1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = transparent1x1.png; sourceTree = "<group>"; };
 		CA688200180AEEC2008A7C99 /* BaseTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseTableViewController.h; sourceTree = "<group>"; };
-		CA688201180AEF00008A7C99 /* BaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseViewController.m; sourceTree = "<group>"; };
-		CA688203180B00C1008A7C99 /* BaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseViewController.h; sourceTree = "<group>"; };
 		CA688204180B0148008A7C99 /* BaseTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseTableViewController.m; sourceTree = "<group>"; };
 		CA688206180B2649008A7C99 /* BaseCollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseCollectionViewController.h; sourceTree = "<group>"; };
 		CA688207180B2663008A7C99 /* BaseCollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseCollectionViewController.m; sourceTree = "<group>"; };
@@ -1726,8 +1723,6 @@
 				CA688204180B0148008A7C99 /* BaseTableViewController.m */,
 				CA688206180B2649008A7C99 /* BaseCollectionViewController.h */,
 				CA688207180B2663008A7C99 /* BaseCollectionViewController.m */,
-				CA688203180B00C1008A7C99 /* BaseViewController.h */,
-				CA688201180AEF00008A7C99 /* BaseViewController.m */,
 			);
 			name = BaseClasses;
 			sourceTree = "<group>";
@@ -2824,7 +2819,6 @@
 				CA68B67718BAA80A007042E4 /* ComboBoxView.m in Sources */,
 				CA75C27718A9620E00FC8C2F /* StopAllSoundsBrickCell.m in Sources */,
 				C34B44F817F1D8D200624730 /* ChangeBrightnessByNBrick.m in Sources */,
-				CA688202180AEF00008A7C99 /* BaseViewController.m in Sources */,
 				B4D940B1170EC5C2003DDBFA /* CatrobatTableViewController.m in Sources */,
 				CA5FED5018B0070300A517B6 /* BrickCellInlineView.m in Sources */,
 				B4D940A0170EC249003DDBFA /* AppDelegate.m in Sources */,

@@ -40,11 +40,12 @@
 
 @implementation ScriptCollectionViewController
 
-#pragma mark - application events
-- (void)didReceiveMemoryWarning
+#pragma mark - initialization
+- (void)initCollectionView
 {
-    [super didReceiveMemoryWarning];
-    [BrickCell clearImageCache];
+    self.collectionView.delegate = self;
+    self.collectionView.dataSource = self;
+    self.collectionView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"darkblue"]];
 }
 
 #pragma mark - view events
@@ -96,6 +97,33 @@
     [self.collectionView reloadData];
 }
 
+#pragma mark - application events
+- (void)didReceiveMemoryWarning
+{
+    [super didReceiveMemoryWarning];
+    [BrickCell clearImageCache];
+}
+
+#pragma mark - actions
+- (void)addScriptAction:(id)sender
+{
+    // [self performSegueWithIdentifier:kSegueToScriptCategories sender:sender];
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"iPhone" bundle:nil];
+    
+    BrickCategoriesTableViewController *brickCategoryTVC = [storyboard instantiateViewControllerWithIdentifier:@"BricksCategoryTVC"];
+    brickCategoryTVC.object = self.object;
+    UINavigationController *navController = [[UINavigationController alloc]initWithRootViewController:brickCategoryTVC];
+    
+    [self presentViewController:navController animated:YES completion:NULL];
+}
+
+- (void)playSceneAction:(id)sender
+{
+    [self.navigationController setToolbarHidden:YES];
+    [self performSegueWithIdentifier:kSegueToScene sender:sender];
+}
+
+#pragma mark - collection view datasource
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView
 {
     return [self.object.scriptList count];
@@ -111,15 +139,11 @@
     return ([script.brickList count] + 1); // because script itself is a brick in IDE too
 }
 
-
-#pragma mark Collection View Datasource
-
-//-  (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath*)indexPath
-//{
-//}
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath*)indexPath
+{
+}
 
 #pragma mark - collection view delegate
-
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
     Script *script = [self.object.scriptList objectAtIndex:indexPath.section];
@@ -204,18 +228,7 @@
     return UIEdgeInsetsMake(10, 0, 5, 0);
 }
 
-#pragma mark LXReorderableCollectionViewDatasource
-- (void)collectionView:(UICollectionView *)collectionView itemAtIndexPath:(NSIndexPath *)fromIndexPath willMoveToIndexPath:(NSIndexPath *)toIndexPath
-{
-//    Script *script = [self.object.scriptList objectAtIndex:fromIndexPath.section];
-//    Brick *brick = [script.brickList objectAtIndex:fromIndexPath.row - 1];
-//    
-//    [script.brickList removeObjectAtIndex:fromIndexPath.item];
-//    [script.brickList insertObject:brick atIndex:toIndexPath.item];
-}
-
-#pragma mark - Navigation
-
+#pragma mark - segue handling
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     static NSString* toSceneSegueID = kSegueToScene;
@@ -284,30 +297,22 @@
     [self.collectionView reloadData];
 }
 
-#pragma mark - Helper Methods
-- (void)addScriptAction:(id)sender
+#pragma mark LXReorderableCollectionViewDatasource
+- (void)collectionView:(UICollectionView *)collectionView itemAtIndexPath:(NSIndexPath *)fromIndexPath willMoveToIndexPath:(NSIndexPath *)toIndexPath
 {
-    // [self performSegueWithIdentifier:kSegueToScriptCategories sender:sender];
-    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"iPhone" bundle:nil];
-    
-    BrickCategoriesTableViewController *brickCategoryTVC = [storyboard instantiateViewControllerWithIdentifier:@"BricksCategoryTVC"];
-    brickCategoryTVC.object = self.object;
-    UINavigationController *navController = [[UINavigationController alloc]initWithRootViewController:brickCategoryTVC];
-    
-    [self presentViewController:navController animated:YES completion:NULL];
-}
-
-- (void)playSceneAction:(id)sender
-{
-    [self.navigationController setToolbarHidden:YES];
-    [self performSegueWithIdentifier:kSegueToScene sender:sender];
+    //    Script *script = [self.object.scriptList objectAtIndex:fromIndexPath.section];
+    //    Brick *brick = [script.brickList objectAtIndex:fromIndexPath.row - 1];
+    //
+    //    [script.brickList removeObjectAtIndex:fromIndexPath.item];
+    //    [script.brickList insertObject:brick atIndex:toIndexPath.item];
 }
 
 
 - (void)setupToolBar
 {
     // @INFO: Please do not modify or remove this code again, unless you don't exactly know what you are doing.
-    
+
+    [super setupToolBar];
     [self.navigationController setToolbarHidden:NO];
     self.navigationController.toolbar.barStyle = UIBarStyleBlack;
     self.navigationController.toolbar.tintColor = [UIColor orangeColor];
@@ -355,13 +360,6 @@
 //                                                                          action:@selector(playSceneAction:)];
 //    self.toolbarItems = @[flexItem, add, fixedSpace, play, flexItem];
 //}
-
-- (void)initCollectionView
-{
-    self.collectionView.delegate = self;
-    self.collectionView.dataSource = self;
-    self.collectionView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"darkblue"]];
-}
 
 #pragma mark Notification
 - (void)brickAdded:(NSNotification *)notification

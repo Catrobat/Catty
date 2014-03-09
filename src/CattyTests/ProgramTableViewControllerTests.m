@@ -212,7 +212,7 @@
         loadingInfo.visibleName = level;
         NSLog(@"Project name: %@", level);
         self.programTableViewController.delegate = nil; // no delegate needed for this test
-        [self.programTableViewController loadProgram:loadingInfo];
+        self.programTableViewController.program = [Program programWithLoadingInfo:loadingInfo];
         [self.programTableViewController viewDidLoad];
         [self.programTableViewController viewWillAppear:NO];
         XCTAssertFalse([self.fileManager directoryExists:loadingInfo.basePath], @"The ProgramTableViewController did not create the project folder for the new project");
@@ -245,7 +245,7 @@
         }
 
         self.programTableViewController.delegate = nil; // no delegate needed for this test
-        [self.programTableViewController loadProgram:loadingInfo];
+        self.programTableViewController.program = [Program programWithLoadingInfo:loadingInfo];
         [self.programTableViewController performSelectorOnMainThread:@selector(view) withObject:nil waitUntilDone:YES];
         [self.programTableViewController viewDidLoad];
         [self.programTableViewController viewWillAppear:NO];
@@ -306,7 +306,7 @@
         NSLog(@"Project name: %@", level);
 
         self.programTableViewController.delegate = nil; // no delegate needed for this test
-        [self.programTableViewController loadProgram:loadingInfo];
+        self.programTableViewController.program = [Program programWithLoadingInfo:loadingInfo];
         [self.programTableViewController performSelectorOnMainThread:@selector(view) withObject:nil waitUntilDone:YES];
         [self.programTableViewController viewDidLoad];
         [self.programTableViewController viewWillAppear:NO];
@@ -336,7 +336,7 @@
         NSLog(@"Project name: %@", level);
 
         self.programTableViewController.delegate = nil; // no delegate needed for this test
-        [self.programTableViewController loadProgram:loadingInfo];
+        self.programTableViewController.program = [Program programWithLoadingInfo:loadingInfo];
         [self.programTableViewController performSelectorOnMainThread:@selector(view) withObject:nil waitUntilDone:YES];
         [self.programTableViewController viewDidLoad];
         [self.programTableViewController viewWillAppear:NO];
@@ -372,7 +372,7 @@
         }
 
         self.programTableViewController.delegate = nil; // no delegate needed for this test
-        [self.programTableViewController loadProgram:loadingInfo];
+        self.programTableViewController.program = [Program programWithLoadingInfo:loadingInfo];
         [self.programTableViewController performSelectorOnMainThread:@selector(view) withObject:nil waitUntilDone:YES];
         [self.programTableViewController viewDidLoad];
         [self.programTableViewController viewWillAppear:NO];
@@ -402,7 +402,7 @@
         NSLog(@"Project name: %@", level);
 
         self.programTableViewController.delegate = nil; // no delegate needed for this test
-        [self.programTableViewController loadProgram:loadingInfo];
+        self.programTableViewController.program = [Program programWithLoadingInfo:loadingInfo];
         [self.programTableViewController performSelectorOnMainThread:@selector(view) withObject:nil waitUntilDone:YES];
         [self.programTableViewController viewDidLoad];
         [self.programTableViewController viewWillAppear:NO];
@@ -439,7 +439,7 @@
         }
 
         self.programTableViewController.delegate = nil; // no delegate needed for this test
-        [self.programTableViewController loadProgram:loadingInfo];
+        self.programTableViewController.program = [Program programWithLoadingInfo:loadingInfo];
         [self.programTableViewController performSelectorOnMainThread:@selector(view) withObject:nil waitUntilDone:YES];
         [self.programTableViewController viewDidLoad];
         [self.programTableViewController viewWillAppear:NO];

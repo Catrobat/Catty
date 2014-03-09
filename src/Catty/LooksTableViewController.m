@@ -116,6 +116,18 @@
     // Dispose of any resources that can be recreated.
 }
 
+#pragma mark - actions
+- (void)addLookAction:(id)sender
+{
+    [self showAddLookActionSheet];
+}
+
+- (void)playSceneAction:(id)sender
+{
+    [self.navigationController setToolbarHidden:YES];
+    [self performSegueWithIdentifier:kSegueToScene sender:sender];
+}
+
 #pragma mark - Table view data source
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
@@ -397,67 +409,53 @@
   [[UIApplication sharedApplication] setStatusBarHidden:YES];
 }
 
-#pragma mark - Helper Methods
-- (void)addLookAction:(id)sender
-{
-  [self showAddLookActionSheet];
-}
-
-- (void)playSceneAction:(id)sender
-{
-    [self.navigationController setToolbarHidden:YES];
-    [self performSegueWithIdentifier:kSegueToScene sender:sender];
-}
-
+#pragma mark - helpers
 - (void)setupToolBar
 {
-  [self.navigationController setToolbarHidden:NO];
-  self.navigationController.toolbar.barStyle = UIBarStyleBlack;
-  self.navigationController.toolbar.tintColor = [UIColor orangeColor];
-  self.navigationController.toolbar.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleTopMargin;
-  UIBarButtonItem *flexItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace
-                                                                            target:nil
-                                                                            action:nil];
-  UIBarButtonItem *add = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd
-                                                                       target:self
-                                                                       action:@selector(addLookAction:)];
-  UIBarButtonItem *play = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemPlay
-                                                                        target:self
-                                                                        action:@selector(playSceneAction:)];
-  // XXX: workaround for tap area problem:
-  // http://stackoverflow.com/questions/5113258/uitoolbar-unexpectedly-registers-taps-on-uibarbuttonitem-instances-even-when-tap
-  UIImageView *imageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"transparent1x1.png"]];
-  UIBarButtonItem *invisibleButton = [[UIBarButtonItem alloc] initWithCustomView:imageView];
-  self.toolbarItems = [NSArray arrayWithObjects:flexItem, invisibleButton, add, invisibleButton, flexItem,
-                       flexItem, flexItem, invisibleButton, play, invisibleButton, flexItem, nil];
+    [super setupToolBar];
+    UIBarButtonItem *flexItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace
+                                                                              target:nil
+                                                                              action:nil];
+    UIBarButtonItem *add = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd
+                                                                         target:self
+                                                                         action:@selector(addLookAction:)];
+    UIBarButtonItem *play = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemPlay
+                                                                          target:self
+                                                                          action:@selector(playSceneAction:)];
+    // XXX: workaround for tap area problem:
+    // http://stackoverflow.com/questions/5113258/uitoolbar-unexpectedly-registers-taps-on-uibarbuttonitem-instances-even-when-tap
+    UIImageView *imageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"transparent1x1.png"]];
+    UIBarButtonItem *invisibleButton = [[UIBarButtonItem alloc] initWithCustomView:imageView];
+    self.toolbarItems = [NSArray arrayWithObjects:flexItem, invisibleButton, add, invisibleButton, flexItem,
+                         flexItem, flexItem, invisibleButton, play, invisibleButton, flexItem, nil];
 }
 
 - (void)showLoadingView
 {
-  if (! self.loadingView) {
-    self.loadingView = [[LoadingView alloc] init];
-    [self.view addSubview:self.loadingView];
-  }
-  self.loadingView.backgroundColor = [UIColor whiteColor];
-  self.loadingView.alpha = 1.0;
-  CGPoint top = CGPointMake(0, -self.navigationController.navigationBar.frame.size.height);
-  [self.tableView setContentOffset:top animated:NO];
-  self.tableView.scrollEnabled = NO;
-  self.tableView.userInteractionEnabled = NO;
-  [self.navigationController.navigationBar setUserInteractionEnabled:NO];
-  [self.navigationController.toolbar setUserInteractionEnabled:NO];
-  [self showPlaceHolder:NO];
-  [self.loadingView show];
+    if (! self.loadingView) {
+        self.loadingView = [[LoadingView alloc] init];
+        [self.view addSubview:self.loadingView];
+    }
+    self.loadingView.backgroundColor = [UIColor whiteColor];
+    self.loadingView.alpha = 1.0;
+    CGPoint top = CGPointMake(0, -self.navigationController.navigationBar.frame.size.height);
+    [self.tableView setContentOffset:top animated:NO];
+    self.tableView.scrollEnabled = NO;
+    self.tableView.userInteractionEnabled = NO;
+    [self.navigationController.navigationBar setUserInteractionEnabled:NO];
+    [self.navigationController.toolbar setUserInteractionEnabled:NO];
+    [self showPlaceHolder:NO];
+    [self.loadingView show];
 }
 
-- (void) hideLoadingView
+- (void)hideLoadingView
 {
-  [self showPlaceHolder:([self.object.lookList count] == 0)];
-  self.tableView.scrollEnabled = YES;
-  self.tableView.userInteractionEnabled = YES;
-  [self.navigationController.navigationBar setUserInteractionEnabled:YES];
-  [self.navigationController.toolbar setUserInteractionEnabled:YES];
-  [self.loadingView hide];
+    [self showPlaceHolder:([self.object.lookList count] == 0)];
+    self.tableView.scrollEnabled = YES;
+    self.tableView.userInteractionEnabled = YES;
+    [self.navigationController.navigationBar setUserInteractionEnabled:YES];
+    [self.navigationController.toolbar setUserInteractionEnabled:YES];
+    [self.loadingView hide];
 }
 
 @end

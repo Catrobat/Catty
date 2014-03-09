@@ -22,8 +22,8 @@
 
 
 #import <UIKit/UIKit.h>
+#import "BaseTableViewController.h"
 
-@interface MyProgramsViewController : UITableViewController
-
+@interface MyProgramsViewController : BaseTableViewController
 
 @end

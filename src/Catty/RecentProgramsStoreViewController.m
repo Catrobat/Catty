@@ -32,10 +32,8 @@
 #import "NetworkDefines.h"
 #import "SegueDefines.h"
 #import "ProgramDetailStoreViewController.h"
-
 #import "UIImage+CatrobatUIImageExtensions.h"
 #import "UIColor+CatrobatUIColorExtensions.h"
-
 
 @interface RecentProgramsStoreViewController ()
 
@@ -220,8 +218,8 @@
     }
 }
 
-- (void)connectionDidFinishLoading:(NSURLConnection *)connection {
-    
+- (void)connectionDidFinishLoading:(NSURLConnection *)connection
+{
     if (self.connection == connection) {
         
         [self.loadingView hide];
@@ -285,31 +283,31 @@
 
 #pragma mark - update
 
-- (void)update {
+- (void)update
+{
     [self.tableView reloadData];
     [self.searchDisplayController setActive:NO animated:YES];
 }
 
 
 #pragma mark - BackButtonDelegate
--(void)back {
+- (void)back
+{
     [self.navigationController popViewControllerAnimated:YES];
 }
 
 
 #pragma mark - scrollViewDidEndDecelerating
 #warning not the best solution -> scrolling must stop that this event is fired. But scrollViewDidScroll gets fired too often for this procedure!
-- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
-    
+- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
+{
     float checkPoint = scrollView.contentSize.height * 0.7;
     float currentViewBottomEdge = scrollView.contentOffset.y + scrollView.frame.size.height;
-        
+
     if (currentViewBottomEdge >= checkPoint) {
         NSDebug(@"Reached scroll-checkpoint for loading further projects");
         [self loadRecentProjects];
     }
 }
-
-
 
 @end

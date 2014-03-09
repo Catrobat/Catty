@@ -34,7 +34,6 @@
 #import "UIDefines.h"
 #import "ProgramDefines.h"
 #import "ProgramLoadingInfo.h"
-#import "Parser.h"
 #import "Script.h"
 #import "Brick.h"
 #import "ActionSheetAlertViewTags.h"
@@ -51,20 +50,23 @@
 
 @interface ProgramTableViewController () <UIActionSheetDelegate, UIAlertViewDelegate, UITextFieldDelegate,
 UINavigationBarDelegate>
-@property (strong, nonatomic) Program *program;
 @property (strong, nonatomic) NSMutableDictionary *imageCache;
-#warning remove this after persisting programs feature is fully implemented...
-@property (nonatomic) BOOL isNewProgram;
 @end
 
 @implementation ProgramTableViewController
-@synthesize program = _program;
 
+- (void)setProgram:(Program *)program
+{
+    if (program) {
+        [program setAsLastProgram];
+    }
+    _program = program;
+}
 
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:YES];
-    
+
     // TODO: use data source for the ProgramTableViewController instead of reloading the whole data
     [self.tableView reloadData];
     [self.navigationController setNavigationBarHidden:NO];
@@ -89,11 +91,9 @@ UINavigationBarDelegate>
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
     [self initTableView];
-    
-    // just to ensure
-    if (self.navigationItem && self.program.header) {
+
+    if (self.program.header.programName) {
         self.navigationItem.title = self.program.header.programName;
         self.title = self.program.header.programName;
     }
@@ -101,33 +101,6 @@ UINavigationBarDelegate>
 }
 
 #pragma getter & setters
-- (Program*)program
-{
-    // lazy instantiation
-    if (! _program) {
-        // determine non existing program name
-        NSString *programName = kDefaultProgramName;
-        NSUInteger counter = 1;
-        while ([Program programExists:programName])
-            programName = [NSString stringWithFormat:@"%@ (%d)", kDefaultProgramName, counter++];
-
-        _program = [Program createNewProgramWithName:programName];
-        SpriteObject* backgroundObject = [self createObjectWithName:kBackgroundObjectName];
-        SpriteObject* firstObject = [self createObjectWithName:kDefaultObjectName];
-        _program.objectList = [NSMutableArray arrayWithObjects:backgroundObject, firstObject, nil];
-
-        // automatically update title
-        if (self.navigationItem && _program.header)
-            self.navigationItem.title = _program.header.programName;
-
-        self.title = _program.header.programName;
-        self.isNewProgram = YES;
-        [self.delegate addLevel:self.program.header.programName];
-        [Util setLastProgram:_program.header.programName];
-    }
-    return _program;
-}
-
 - (NSMutableDictionary*)imageCache
 {
     // lazy instantiation
@@ -135,20 +108,6 @@ UINavigationBarDelegate>
         _imageCache = [NSMutableDictionary dictionaryWithCapacity:[self.program.objectList count]];
     }
     return _imageCache;
-}
-
-- (void)setProgram:(Program*)program
-{
-    // automatically update title name
-    self.title = self.navigationItem.title = program.header.programName;
-    self.isNewProgram = NO;
-    _program = program;
-}
-
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    self.imageCache = nil;
 }
 
 - (SpriteObject*)createObjectWithName:(NSString*)objectName
@@ -164,38 +123,6 @@ UINavigationBarDelegate>
     return object;
 }
 
-// TODO: outsource to new ProgramManager class
-- (BOOL)loadProgram:(ProgramLoadingInfo*)loadingInfo
-{
-    NSDebug(@"Try to load project '%@'", loadingInfo.visibleName);
-    NSDebug(@"Path: %@", loadingInfo.basePath);
-    NSString *xmlPath = [NSString stringWithFormat:@"%@", loadingInfo.basePath];
-    NSDebug(@"XML-Path: %@", xmlPath);
-    Program *program = [[[Parser alloc] init] generateObjectForLevel:[xmlPath stringByAppendingFormat:@"%@", kProgramCodeFileName]];
-    
-    if (! program)
-        return NO;
-    
-    NSDebug(@"ProjectResolution: width/height:  %f / %f", program.header.screenWidth.floatValue, program.header.screenHeight.floatValue);
-    
-    // setting effect
-    for (SpriteObject *sprite in program.objectList)
-    {
-        //sprite.spriteManagerDelegate = self;
-        //sprite.broadcastWaitDelegate = self.broadcastWaitHandler;
-
-        // TODO: change!
-        for (Script *script in sprite.scriptList) {
-            for (Brick *brick in script.brickList) {
-                brick.object = sprite;
-            }
-        }
-    }
-    self.program = program;
-    [Util setLastProgram:self.program.header.programName];
-    return YES;
-}
-
 #pragma mark init
 - (void)initTableView
 {
@@ -208,8 +135,14 @@ UINavigationBarDelegate>
     [self.tableView addSubview:headerViewTemplate];
 }
 
-#pragma mark - UITableView data source
+#pragma mark - didReceiveMemoryWarning
+- (void)didReceiveMemoryWarning
+{
+    [super didReceiveMemoryWarning];
+    self.imageCache = nil;
+}
 
+#pragma mark - UITableView data source
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     return kNumberOfSectionsInProgramTableViewController;
@@ -434,69 +367,47 @@ UINavigationBarDelegate>
             [self.navigationController popViewControllerAnimated:YES];
         }
     }
-
-    // XXX: this is ugly... Why do we use ActionSheets to notify the user? -> Use UIAlertView instead
-    if (actionSheet.tag == kInvalidProgramNameWarningActionSheetTag) {
-        // OK button
-        NSLog(@"Button index was: %d", buttonIndex);
-        if (buttonIndex == 0)
-        {
-            NSLog(@"Show up object alert view again...");
-            [self showRenameProgramAlertView];
-        }
-    }
 }
 
 #pragma mark - UIAlertViewDelegate Handlers
-
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
-    switch (alertView.tag) {
-        case kRenameAlertViewTag:
-            if (buttonIndex == kAlertViewButtonOK) {
-                NSString* input = [[alertView textFieldAtIndex:0] text];
-                if ([input isEqualToString:self.program.header.programName])
-                    return;
-                
-                // TODO: check, filter and validate new program name already exists here
-                if ([Program programExists:input]) {
-                    [self showWarningExistingProgramNameActionSheet];
-                    return;
-                }
-                
-                if ((! [input length]) || (! self.program.header)) {
-                    [self showWarningInvalidProgramNameActionSheet];
-                    return;
-                }
-                
-                NSString *oldPath = [self.program projectPath];
-                if (self.navigationItem)
-                    self.navigationItem.title = input;
-                
+    if (alertView.tag == kRenameAlertViewTag) {
+        NSString* input = [alertView textFieldAtIndex:0].text;
+        if (buttonIndex == kAlertViewButtonOK) {
+            if ([input isEqualToString:self.program.header.programName])
+                return;
+
+            kProgramNameValidationResult validationResult = [Program validateProgramName:input];
+            if (validationResult == kProgramNameValidationResultInvalid) {
+                [Util alertWithText:NSLocalizedString(@"No or invalid program name entered, try again.",nil) delegate:self tag:kInvalidProgramNameWarningAlertViewTag];
+            } else if (validationResult == kProgramNameValidationResultAlreadyExists) {
+                [Util alertWithText:NSLocalizedString(@"A program with the same name already exists, try again.",nil) delegate:self tag:kInvalidProgramNameWarningAlertViewTag];
+            } else {
                 [self.delegate renameOldLevelName:self.program.header.programName ToNewLevelName:input];
-                self.program.header.programName = self.title = input;
-                NSString *newPath = [self.program projectPath];
-                [[[FileManager alloc] init] moveExistingFileOrDirectoryAtPath:oldPath ToPath:newPath];
-                [Util setLastProgram:input];
-                
-                // TODO: update header in code.xml...
-                //      [self.program saveToDisk];
-            }
-            break;
-            
-        case kNewObjectAlertViewTag: {
-            if (buttonIndex == kAlertViewButtonOK) {
-                NSString* input = [[alertView textFieldAtIndex:0] text];
-                if ([input length]) {
-                    [self.program.objectList addObject:[self createObjectWithName:input]];
-                    [self.tableView reloadSections:[NSIndexSet indexSetWithIndexesInRange:NSMakeRange(1, 1)] withRowAnimation:UITableViewRowAnimationFade];
-                } else
-                    [self showWarningInvalidObjectNameActionSheet];
+                [self.program renameToProgramName:input];
+                [self.program setAsLastProgram];
+                self.navigationItem.title = self.title = input;
             }
         }
-            
-        default:
-            break;
+    }
+    if (alertView.tag == kNewObjectAlertViewTag) {
+        NSString* input = [[alertView textFieldAtIndex:0] text];
+        if (buttonIndex == kAlertViewButtonOK) {
+            return;
+        }
+        if (! [input length]) {
+            [Util alertWithText:NSLocalizedString(@"No or invalid object name entered, aborted.",nil) delegate:self tag:kInvalidObjectNameWarningAlertViewTag];
+            return;
+        }
+        [self.program.objectList addObject:[self createObjectWithName:input]];
+        [self.tableView reloadSections:[NSIndexSet indexSetWithIndexesInRange:NSMakeRange(1, 1)] withRowAnimation:UITableViewRowAnimationFade];
+    }
+    if (alertView.tag == kInvalidProgramNameWarningAlertViewTag) {
+        // title of cancel button is "OK"
+        if (buttonIndex == 0) {
+            [self showRenameProgramAlertView];
+        }
     }
 }
 
@@ -506,24 +417,6 @@ UINavigationBarDelegate>
 //       This is not part of the controller logic and highly decreases readability!!
 
 #pragma mark - UIAlertView Views
-
-//- (void)showNewProgramAlertView
-//{
-//    UIAlertView *newProgramAlert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"New program",nil)
-//                                                                 message:NSLocalizedString(@"Program name:",nil)
-//                                                                delegate:self
-//                                                       cancelButtonTitle:kBtnCancelTitle
-//                                                       otherButtonTitles:kBtnOKTitle, nil];
-//    [newProgramAlert setTag:lNewProgramAlertViewTag];
-//    newProgramAlert.alertViewStyle = UIAlertViewStylePlainTextInput;
-//    UITextField *textField = [newProgramAlert textFieldAtIndex:0];
-//    textField.placeholder = kProgramNamePlaceholder;
-//    [textField setClearButtonMode:UITextFieldViewModeWhileEditing];
-//    
-//    
-//    [newProgramAlert show];
-//}
-
 - (void)showRenameProgramAlertView
 {
     UIAlertView *renameProgramAlert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Rename program",nil)
@@ -537,7 +430,7 @@ UINavigationBarDelegate>
     textField.placeholder = kProgramNamePlaceholder;
 
     // populate with current program name if not default name given
-    if (! [self.program.header.programName isEqualToString: kDefaultProgramName])
+    if (! [self.program.header.programName isEqualToString:kDefaultProgramName])
         textField.text = self.program.header.programName;
 
     [textField setClearButtonMode:UITextFieldViewModeWhileEditing];
@@ -570,42 +463,6 @@ UINavigationBarDelegate>
     [edit showInView:self.view];
 }
 
-- (void)showWarningExistingProgramNameActionSheet
-{
-    UIActionSheet *warning = [[UIActionSheet alloc] initWithTitle:NSLocalizedString(@"A program with the same name already exists, try again.",nil)
-                                                         delegate:self
-                                                cancelButtonTitle:nil
-                                           destructiveButtonTitle:nil
-                                                otherButtonTitles:kBtnOKTitle, nil];
-    warning.tag = kInvalidProgramNameWarningActionSheetTag;
-    warning.actionSheetStyle = UIActionSheetStyleDefault;
-    [warning showInView:self.view];
-}
-
-- (void)showWarningInvalidProgramNameActionSheet
-{
-    UIActionSheet *warning = [[UIActionSheet alloc] initWithTitle:NSLocalizedString(@"No or invalid program name entered, try again.",nil)
-                                                         delegate:self
-                                                cancelButtonTitle:nil
-                                           destructiveButtonTitle:nil
-                                                otherButtonTitles:kBtnOKTitle, nil];
-    warning.tag = kInvalidProgramNameWarningActionSheetTag;
-    warning.actionSheetStyle = UIActionSheetStyleDefault;
-    [warning showInView:self.view];
-}
-
-- (void)showWarningInvalidObjectNameActionSheet
-{
-    UIActionSheet *warning = [[UIActionSheet alloc] initWithTitle:NSLocalizedString(@"No or invalid object name entered, aborted.",nil)
-                                                         delegate:self
-                                                cancelButtonTitle:nil
-                                           destructiveButtonTitle:nil
-                                                otherButtonTitles:kBtnOKTitle, nil];
-    warning.tag = kInvalidObjectNameWarningActionSheetTag;
-    warning.actionSheetStyle = UIActionSheetStyleDefault;
-    [warning showInView:self.view];
-}
-
 #pragma mark - Helper Methods
 - (void)addObjectAction:(id)sender
 {
@@ -621,11 +478,7 @@ UINavigationBarDelegate>
 - (void)setupToolBar
 {
     // @INFO: Please do not modify or remove this code again, unless you don't exactly know what you are doing.
-
-    [self.navigationController setToolbarHidden:NO];
-    self.navigationController.toolbar.barStyle = UIBarStyleBlack;
-    self.navigationController.toolbar.tintColor = [UIColor orangeColor];
-    self.navigationController.toolbar.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleTopMargin;
+    [super setupToolBar];
     UIBarButtonItem *flexItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace
                                                                               target:nil
                                                                               action:nil];

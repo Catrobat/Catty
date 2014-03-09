@@ -34,6 +34,7 @@
 #import "SegueDefines.h"
 #import "LevelUpdateDelegate.h"
 #import "QuartzCore/QuartzCore.h"
+#import "Program.h"
 
 @interface MyProgramsViewController () <LevelUpdateDelegate>
 @property (nonatomic, strong) NSMutableDictionary *assertCache;
@@ -41,8 +42,6 @@
 @end
 
 @implementation MyProgramsViewController
-
-@synthesize levelLoadingInfos = _levelLoadingInfos;
 
 #pragma mark - getters and setters
 - (NSMutableDictionary*)assertCache
@@ -64,6 +63,15 @@
     return self;
 }
 
+- (void)initTableView
+{
+    self.tableView.delegate = self;
+    self.tableView.dataSource = self;
+    [self.tableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
+    self.tableView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"darkblue"]];
+    
+}
+
 #pragma mark - view events
 - (void)viewDidLoad
 {
@@ -75,29 +83,20 @@
     [self loadLevels];
 }
 
+- (void)viewWillAppear:(BOOL)animated
+{
+    [self.navigationController setNavigationBarHidden:NO];
+    [self.navigationController setToolbarHidden:NO];
+}
+
+#pragma mark - system events
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     self.assertCache = nil;
 }
 
--(void)viewWillAppear:(BOOL)animated
-{
-    [self.navigationController setNavigationBarHidden:NO];
-    [self.navigationController setToolbarHidden:NO];
-}
-
-#pragma mark init
--(void)initTableView
-{
-    self.tableView.delegate = self;
-    self.tableView.dataSource = self;
-    [self.tableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
-    self.tableView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"darkblue"]];
-    
-}
-
--(void)dealloc
+- (void)dealloc
 {
     self.tableView.dataSource = nil;
     self.tableView.delegate = nil;
@@ -105,84 +104,13 @@
     
 }
 
--(void)loadLevels
+#pragma mark - actions
+- (void)addProgramAction:(id)sender
 {
-    NSString *basePath = [Program basePath];
-    NSError *error;
-    NSArray *levels = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:basePath error:&error];
-    NSLogError(error);
-
-    self.levelLoadingInfos = [[NSMutableArray alloc] initWithCapacity:[levels count]];
-    for (NSString *level in levels) {
-        // exclude .DS_Store folder on MACOSX simulator
-        if ([level isEqualToString:@".DS_Store"])
-          continue;
-
-        ProgramLoadingInfo *info = [[ProgramLoadingInfo alloc] init];
-        info.basePath = [NSString stringWithFormat:@"%@%@/", basePath, level];
-        info.visibleName = level;
-        NSDebug(@"Adding level: %@", info.basePath);
-        [self.levelLoadingInfos addObject:info];
-    }
+    [self performSegueWithIdentifier:kSegueToNewProgram sender:sender];
 }
 
-- (void)addLevel:(NSString*)levelName
-{
-    NSString *basePath = [Program basePath];
-
-    // check if level already exists, then update
-    BOOL exists = NO;
-    for (ProgramLoadingInfo *info in self.levelLoadingInfos) {
-        if ([info.visibleName isEqualToString:levelName])
-            exists = YES;
-    }
-    // add if not exists
-    if (! exists) {
-        ProgramLoadingInfo *info = [[ProgramLoadingInfo alloc] init];
-        info.basePath = [NSString stringWithFormat:@"%@%@/", basePath, levelName];
-        info.visibleName = levelName;
-        NSLog(@"Adding level: %@", info.basePath);
-        [self.levelLoadingInfos addObject:info];
-
-        // create new cell
-        NSInteger numberOfRowsInLastSection = [self tableView:self.tableView numberOfRowsInSection:0];
-        NSIndexPath *indexPath = [NSIndexPath indexPathForRow:(numberOfRowsInLastSection - 1) inSection:0];
-        [self.tableView insertRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationNone];
-    }
-}
-
-- (void)removeLevel:(NSString*)levelName
-{
-    NSInteger rowIndex = 0;
-    for (ProgramLoadingInfo *info in self.levelLoadingInfos) {
-        if ([info.visibleName isEqualToString:levelName]) {
-            [self.levelLoadingInfos removeObjectAtIndex:rowIndex];
-            NSIndexPath *indexPath = [NSIndexPath indexPathForRow:rowIndex inSection:0];
-            [self.tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationNone];
-            break;
-        }
-        ++rowIndex;
-    }
-}
-
-- (void)renameOldLevelName:(NSString*)oldLevelName ToNewLevelName:(NSString*)newLevelName
-{
-    NSInteger rowIndex = 0;
-    for (ProgramLoadingInfo *info in self.levelLoadingInfos) {
-        if ([info.visibleName isEqualToString:oldLevelName]) {
-            ProgramLoadingInfo *newInfo = [[ProgramLoadingInfo alloc] init];
-            newInfo.basePath = [NSString stringWithFormat:@"%@%@/", [Program basePath], newLevelName];
-            newInfo.visibleName = newLevelName;
-            [self.levelLoadingInfos replaceObjectAtIndex:rowIndex withObject:newInfo];
-            NSIndexPath *indexPath = [NSIndexPath indexPathForRow:rowIndex inSection:0];
-            [self.tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationNone];
-            break;
-        }
-        ++rowIndex;
-    }
-}
-
-#pragma mark - Table view data source
+#pragma mark - table view data source
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return 1;
 }
@@ -208,7 +136,7 @@
     return cell;
 }
 
--(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     return [TableUtil getHeightForImageCell];
 }
@@ -236,43 +164,20 @@
     }   
 }
 
-#pragma mark - Table view delegate
+#pragma mark - table view delegate
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
-#pragma mark - Segue
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    static NSString *segueToNew = kSegueToNew;
-    if ([[segue identifier] isEqualToString:segueToNew]) {
-        if ([segue.destinationViewController isKindOfClass:[ProgramTableViewController class]]) {
-            ProgramTableViewController *programTableViewController = (ProgramTableViewController*) segue.destinationViewController;
-            programTableViewController.delegate = self;
-            if ([sender isKindOfClass:[UITableViewCell class]]) {
-                NSIndexPath *path = [self.tableView indexPathForSelectedRow];
-                NSString* programName = [[self.levelLoadingInfos objectAtIndex:path.row] visibleName];
-                [programTableViewController loadProgram:[Util programLoadingInfoForProgramWithName:programName]];
-            } else if ([sender isKindOfClass:[UIBarButtonItem class]]) {
-                // no preparation needed
-            }
-        }
-    }
-}
-
-#pragma mark - Cell Helper
+#pragma mark - table view helpers
 -(void)configureImageCell:(UITableViewCell <CatrobatImageCell>*)cell atIndexPath:(NSIndexPath*)indexPath
 {
     ProgramLoadingInfo *info = [self.levelLoadingInfos objectAtIndex:indexPath.row];
     cell.titleLabel.text = info.visibleName;
-    
 //    cell.iconImageView.image = [UIImage imageNamed:@"programs"];
-
     NSString* imagePath = [[NSString alloc] initWithFormat:@"%@/small_screenshot.png", info.basePath];
-
     UIImage* image = [self.assertCache objectForKey:imagePath];
-
     cell.iconImageView.contentMode = UIViewContentModeScaleAspectFit;
 
     if (! image) {
@@ -356,24 +261,139 @@
 
 }
 
-#pragma mark - Helper Methods
-- (void)addProgramAction:(id)sender
+#pragma mark - segue handling
+//- (BOOL)shouldPerformSegueWithIdentifier:(NSString *)identifier sender:(id)sender
+//{
+//    if ([identifier isEqualToString:kSegueToContinue]) {
+//        // check if program loaded successfully -> not nil
+//        if (self.lastProgram) {
+//            return YES;
+//        }
+//        
+//        // program failed loading...
+//        [Util alertWithText:kMsgUnableToLoadProgram];
+//        return NO;
+//    } else if ([identifier isEqualToString:kSegueNew]) {
+//        // if there is no program name, abort performing this segue and ask user for program name
+//        // after user entered a valid program name this segue will be called again and accepted
+//        if (! self.defaultProgram) {
+//            [Util promptWithTitle:kTitleNewProgram
+//                          message:kMsgPromptProgramName
+//                         delegate:self
+//                      placeholder:kProgramNamePlaceholder
+//                              tag:kNewProgramAlertViewTag];
+//            return NO;
+//        }
+//        return YES;
+//    }
+//    return [super shouldPerformSegueWithIdentifier:identifier sender:sender];
+//}
+
+- (void)prepareForSegue:(UIStoryboardSegue*)segue sender:(id)sender
 {
-  [self performSegueWithIdentifier:kSegueToNew sender:sender];
+    static NSString *segueToNewProgram = kSegueToNewProgram;
+    if ([segue.identifier isEqualToString:segueToNewProgram]) {
+        if ([segue.destinationViewController isKindOfClass:[ProgramTableViewController class]]) {
+            ProgramTableViewController *programTableViewController = (ProgramTableViewController*)segue.destinationViewController;
+            programTableViewController.delegate = self;
+            if ([sender isKindOfClass:[UITableViewCell class]]) {
+                NSIndexPath *path = [self.tableView indexPathForSelectedRow];
+                programTableViewController.program = [Program programWithLoadingInfo:[self.levelLoadingInfos objectAtIndex:path.row]];
+            } else if ([sender isKindOfClass:[UIBarButtonItem class]]) {
+                // no preparation needed
+            }
+        }
+    }
 }
 
+#pragma mark - level handling
+- (void)loadLevels
+{
+    NSString *basePath = [Program basePath];
+    NSError *error;
+    NSArray *levels = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:basePath error:&error];
+    NSLogError(error);
+    
+    self.levelLoadingInfos = [[NSMutableArray alloc] initWithCapacity:[levels count]];
+    for (NSString *level in levels) {
+        // exclude .DS_Store folder on MACOSX simulator
+        if ([level isEqualToString:@".DS_Store"])
+            continue;
+        
+        ProgramLoadingInfo *info = [[ProgramLoadingInfo alloc] init];
+        info.basePath = [NSString stringWithFormat:@"%@%@/", basePath, level];
+        info.visibleName = level;
+        NSDebug(@"Adding level: %@", info.basePath);
+        [self.levelLoadingInfos addObject:info];
+    }
+}
+
+- (void)addLevel:(NSString*)levelName
+{
+    NSString *basePath = [Program basePath];
+    
+    // check if level already exists, then update
+    BOOL exists = NO;
+    for (ProgramLoadingInfo *info in self.levelLoadingInfos) {
+        if ([info.visibleName isEqualToString:levelName])
+            exists = YES;
+    }
+    // add if not exists
+    if (! exists) {
+        ProgramLoadingInfo *info = [[ProgramLoadingInfo alloc] init];
+        info.basePath = [NSString stringWithFormat:@"%@%@/", basePath, levelName];
+        info.visibleName = levelName;
+        NSLog(@"Adding level: %@", info.basePath);
+        [self.levelLoadingInfos addObject:info];
+        
+        // create new cell
+        NSInteger numberOfRowsInLastSection = [self tableView:self.tableView numberOfRowsInSection:0];
+        NSIndexPath *indexPath = [NSIndexPath indexPathForRow:(numberOfRowsInLastSection - 1) inSection:0];
+        [self.tableView insertRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationNone];
+    }
+}
+
+- (void)removeLevel:(NSString*)levelName
+{
+    NSInteger rowIndex = 0;
+    for (ProgramLoadingInfo *info in self.levelLoadingInfos) {
+        if ([info.visibleName isEqualToString:levelName]) {
+            [self.levelLoadingInfos removeObjectAtIndex:rowIndex];
+            NSIndexPath *indexPath = [NSIndexPath indexPathForRow:rowIndex inSection:0];
+            [self.tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationNone];
+            break;
+        }
+        ++rowIndex;
+    }
+}
+
+- (void)renameOldLevelName:(NSString*)oldLevelName ToNewLevelName:(NSString*)newLevelName
+{
+    NSInteger rowIndex = 0;
+    for (ProgramLoadingInfo *info in self.levelLoadingInfos) {
+        if ([info.visibleName isEqualToString:oldLevelName]) {
+            ProgramLoadingInfo *newInfo = [[ProgramLoadingInfo alloc] init];
+            newInfo.basePath = [NSString stringWithFormat:@"%@%@/", [Program basePath], newLevelName];
+            newInfo.visibleName = newLevelName;
+            [self.levelLoadingInfos replaceObjectAtIndex:rowIndex withObject:newInfo];
+            NSIndexPath *indexPath = [NSIndexPath indexPathForRow:rowIndex inSection:0];
+            [self.tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationNone];
+            break;
+        }
+        ++rowIndex;
+    }
+}
+
+#pragma mark - helpers
 - (void)setupToolBar
 {
-  [self.navigationController setToolbarHidden:NO];
-  self.navigationController.toolbar.barStyle = UIBarStyleBlack;
-  self.navigationController.toolbar.tintColor = [UIColor orangeColor];
-  self.navigationController.toolbar.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleTopMargin;
-  UIBarButtonItem *flexItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace
-                                                                            target:nil
-                                                                            action:nil];
-  UIBarButtonItem *add = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd
-                                                                       target:self
-                                                                       action:@selector(addProgramAction:)];
+    [super setupToolBar];
+    UIBarButtonItem *flexItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace
+                                                                              target:nil
+                                                                              action:nil];
+    UIBarButtonItem *add = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd
+                                                                         target:self
+                                                                         action:@selector(addProgramAction:)];
     self.toolbarItems = @[flexItem, add, flexItem];
 }
 

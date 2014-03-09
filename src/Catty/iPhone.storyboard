@@ -209,10 +209,10 @@
             </objects>
             <point key="canvasLocation" x="40" y="-4760"/>
         </scene>
-        <!--Object Sounds Table View Controller - Sounds-->
+        <!--Sounds Table View Controller - Sounds-->
         <scene sceneID="chZ-5K-kCV">
             <objects>
-                <tableViewController id="USc-jF-F6X" customClass="ObjectSoundsTableViewController" sceneMemberID="viewController">
+                <tableViewController id="USc-jF-F6X" customClass="SoundsTableViewController" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="TeL-cC-H6w">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -330,11 +330,11 @@
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
-                        <segue destination="s37-PF-3iN" kind="push" identifier="programs" id="d1c-M4-4gJ"/>
-                        <segue destination="IIx-6w-DVK" kind="push" identifier="forum" id="rdV-gZ-8F0"/>
-                        <segue destination="BYa-g9-OiT" kind="push" identifier="new" id="aum-BR-x1G"/>
-                        <segue destination="BYa-g9-OiT" kind="push" identifier="continue" id="1kj-7D-Va7"/>
-                        <segue destination="39D-hJ-FD1" kind="push" identifier="explore" id="7JT-6F-5d1"/>
+                        <segue destination="s37-PF-3iN" kind="push" identifier="segueToPrograms" id="d1c-M4-4gJ"/>
+                        <segue destination="IIx-6w-DVK" kind="push" identifier="segueToForum" id="rdV-gZ-8F0"/>
+                        <segue destination="BYa-g9-OiT" kind="push" identifier="segueToNewProgram" id="aum-BR-x1G"/>
+                        <segue destination="BYa-g9-OiT" kind="push" identifier="segueToContinue" id="1kj-7D-Va7"/>
+                        <segue destination="39D-hJ-FD1" kind="push" identifier="segueToExplore" id="7JT-6F-5d1"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="d1W-id-jRf" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -420,7 +420,7 @@
                                 <connections>
                                     <outlet property="iconImageView" destination="642-Kc-jVe" id="SsN-uJ-caO"/>
                                     <outlet property="titleLabel" destination="7VV-Cs-K8i" id="dum-xb-EpA"/>
-                                    <segue destination="BYa-g9-OiT" kind="push" identifier="segueToNew" id="y1P-mf-Wvq"/>
+                                    <segue destination="BYa-g9-OiT" kind="push" identifier="segueToContinue" id="y1P-mf-Wvq"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -695,7 +695,7 @@
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="scrollViewOutlet" destination="qwE-Ve-7jz" id="s6T-uY-bi7"/>
-                        <segue destination="BYa-g9-OiT" kind="push" identifier="segueToNew" id="mUB-CR-2KD"/>
+                        <segue destination="BYa-g9-OiT" kind="push" identifier="segueToContinue" id="mUB-CR-2KD"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dmN-gD-N9f" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -766,8 +766,8 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="aum-BR-x1G"/>
+        <segue reference="1kj-7D-Va7"/>
         <segue reference="ZYi-SP-eKt"/>
-        <segue reference="9nK-JY-fcb"/>
+        <segue reference="PV7-6r-ExX"/>
     </inferredMetricsTieBreakers>
 </document>

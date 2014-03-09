@@ -21,22 +21,19 @@
  */
 
 #import <UIKit/UIKit.h>
-
-#ifdef CATTY_TESTS
-@class Program;
-#endif
+#import "BaseTableViewController.h"
 
 @class ProgramLoadingInfo;
+@class Program;
 @protocol LevelUpdateDelegate;
 
-@interface ProgramTableViewController : UITableViewController
-
+@interface ProgramTableViewController : BaseTableViewController
 @property (nonatomic, strong) id<LevelUpdateDelegate> delegate;
-
-- (BOOL)loadProgram:(ProgramLoadingInfo*)loadingInfo;
+@property (strong, nonatomic) Program *program;
+// TODO: remove this after persisting programs feature is fully implemented...
+@property (nonatomic) BOOL isNewProgram;
 
 #ifdef CATTY_TESTS
-- (Program*)program;
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex;
 #endif
 

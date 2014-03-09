@@ -38,7 +38,7 @@
 #define kPocketCodeRecorderActionSheetButton @"pocketCodeRecorder"
 #define kSelectMusicTrackActionSheetButton @"selectMusicTrack"
 
-@interface ObjectSoundsTableViewController () <UIActionSheetDelegate, AVAudioPlayerDelegate>
+@interface SoundsTableViewController () <UIActionSheetDelegate, AVAudioPlayerDelegate>
 
 @property (nonatomic, strong) NSMutableDictionary* addSoundActionSheetBtnIndexes;
 @property (strong, nonatomic) NSMutableDictionary *imageCache;
@@ -47,7 +47,7 @@
 
 @end
 
-@implementation ObjectSoundsTableViewController
+@implementation SoundsTableViewController
 
 #pragma getters and setters
 - (NSMutableDictionary*)imageCache
@@ -342,10 +342,7 @@
 
 - (void)setupToolBar
 {
-    [self.navigationController setToolbarHidden:NO];
-    self.navigationController.toolbar.barStyle = UIBarStyleBlack;
-    self.navigationController.toolbar.tintColor = [UIColor orangeColor];
-    self.navigationController.toolbar.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleTopMargin;
+    [super setupToolBar];
     UIBarButtonItem *flexItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace
                                                                               target:nil
                                                                               action:nil];

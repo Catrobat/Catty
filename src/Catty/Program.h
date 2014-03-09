@@ -40,6 +40,7 @@
 - (void)saveToDisk;
 - (BOOL)isLastProgram;
 - (void)setAsLastProgram;
+- (void)renameToProgramName:(NSString*)programName;
 
 + (Program*)defaultProgramWithName:(NSString*)programName;
 + (Program*)lastProgram;

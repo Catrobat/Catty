@@ -142,8 +142,6 @@
     return object;
 }
 
-
-
 #pragma mark - Custom getter and setter
 - (NSMutableArray*)objectList
 {
@@ -227,6 +225,17 @@
 - (void)setAsLastProgram
 {
     [Program setLastProgram:self];
+}
+
+- (void)renameToProgramName:(NSString *)programName
+{
+    NSString *oldPath = [self projectPath];
+    self.header.programName = programName;
+    NSString *newPath = [self projectPath];
+    [[[FileManager alloc] init] moveExistingFileOrDirectoryAtPath:oldPath ToPath:newPath];
+
+    // TODO: update header in code.xml...
+    //      [self.program saveToDisk];
 }
 
 #pragma mark - helpers

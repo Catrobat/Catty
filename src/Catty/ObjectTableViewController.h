@@ -21,9 +21,10 @@
  */
 
 #import <UIKit/UIKit.h>
+#import "BaseTableViewController.h"
 
 @class SpriteObject;
 
-@interface ObjectTableViewController : UITableViewController
+@interface ObjectTableViewController : BaseTableViewController
 @property (strong, nonatomic) SpriteObject *object;
 @end

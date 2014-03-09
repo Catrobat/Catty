@@ -22,8 +22,8 @@
 
 
 #import <UIKit/UIKit.h>
+#import "BaseTableViewController.h"
 
-@interface CatrobatTableViewController : UITableViewController
-
+@interface CatrobatTableViewController : BaseTableViewController
 
 @end

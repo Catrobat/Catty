@@ -21,8 +21,9 @@
  */
 
 #import <UIKit/UIKit.h>
+#import "BaseTableViewController.h"
 
-@interface SearchStoreViewController : UITableViewController <UISearchDisplayDelegate, UISearchBarDelegate>
+@interface SearchStoreViewController : BaseTableViewController<UISearchDisplayDelegate, UISearchBarDelegate>
 
 @property (nonatomic) BOOL checkSearch;
 

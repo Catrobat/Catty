@@ -81,6 +81,13 @@
     // Dispose of any resources that can be recreated.
 }
 
+#pragma mark - actions
+- (void)playSceneAction:(id)sender
+{
+    [self.navigationController setToolbarHidden:YES];
+    [self performSegueWithIdentifier:kSegueToScene sender:sender];
+}
+
 #pragma mark - Table view data source
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
@@ -194,19 +201,10 @@
     [edit showInView:self.view];
 }
 
-#pragma mark - Helper Methods
-- (void)playSceneAction:(id)sender
-{
-    [self.navigationController setToolbarHidden:YES];
-    [self performSegueWithIdentifier:kSegueToScene sender:sender];
-}
-
+#pragma mark - helpers
 - (void)setupToolBar
 {
-    [self.navigationController setToolbarHidden:NO];
-    self.navigationController.toolbar.barStyle = UIBarStyleBlack;
-    self.navigationController.toolbar.tintColor = [UIColor orangeColor];
-    self.navigationController.toolbar.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleTopMargin;
+    [super setupToolBar];
     UIBarButtonItem *flexItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace
                                                                               target:nil
                                                                               action:nil];
