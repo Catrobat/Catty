@@ -86,7 +86,7 @@
     UITableViewCell *cell = [self.programTableViewController tableView:self.programTableViewController.tableView cellForRowAtIndexPath:indexPath];
     NSString *backgroundCellTitle = nil;
     if ([cell conformsToProtocol:@protocol(CatrobatImageCell)]) {
-        UITableViewCell <CatrobatImageCell>* imageCell = (UITableViewCell <CatrobatImageCell>*)cell;
+        UITableViewCell<CatrobatImageCell> *imageCell = (UITableViewCell<CatrobatImageCell>*)cell;
         backgroundCellTitle = imageCell.titleLabel.text;
     }
 

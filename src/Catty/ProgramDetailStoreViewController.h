@@ -29,7 +29,7 @@
 
 @class CatrobatProject;
 
-@interface ProgramDetailStoreViewController : BaseTableViewController<LevelStoreDelegate, UIScrollViewDelegate, FileManagerDelegate, TTTAttributedLabelDelegate> {
+@interface ProgramDetailStoreViewController : UIViewController<LevelStoreDelegate, UIScrollViewDelegate, FileManagerDelegate, TTTAttributedLabelDelegate> {
     CatrobatProject* project;
 }
 

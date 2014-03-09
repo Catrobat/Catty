@@ -271,7 +271,7 @@
 #pragma mark - alert view handlers
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
-    static NSString *toNewProgramSegueIdentifier = kSegueToNewProgram;
+    static NSString *segueToNewProgramIdentifier = kSegueToNewProgram;
     if (alertView.tag == kNewProgramAlertViewTag) {
         NSString *input = [alertView textFieldAtIndex:0].text;
         if ((buttonIndex == alertView.cancelButtonIndex) || (buttonIndex != kAlertViewButtonOK)) {
@@ -282,10 +282,10 @@
             [Util alertWithText:kMsgInvalidProgramName delegate:self tag:kInvalidProgramNameWarningAlertViewTag];
         } else if (validationResult == kProgramNameValidationResultAlreadyExists) {
             [Util alertWithText:kMsgInvalidProgramNameAlreadyExists delegate:self tag:kInvalidProgramNameWarningAlertViewTag];
-        } else {
+        } else if (validationResult == kProgramNameValidationResultOK) {
             self.defaultProgram = [Program defaultProgramWithName:input];
-            if ([self shouldPerformSegueWithIdentifier:toNewProgramSegueIdentifier sender:self]) {
-                [self performSegueWithIdentifier:toNewProgramSegueIdentifier sender:self];
+            if ([self shouldPerformSegueWithIdentifier:segueToNewProgramIdentifier sender:self]) {
+                [self performSegueWithIdentifier:segueToNewProgramIdentifier sender:self];
             }
         }
     } else if (alertView.tag == kInvalidProgramNameWarningAlertViewTag) {

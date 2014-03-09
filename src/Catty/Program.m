@@ -77,16 +77,19 @@
     }
 
     FileManager *fileManager = [[FileManager alloc] init];
-    if (! [self programExists:program.projectPath])
-        [fileManager createDirectory:program.projectPath];
+    if (! [self programExists:[program projectPath]]) {
+        [fileManager createDirectory:[program projectPath]];
+    }
 
-    NSString *imagesDirName = [NSString stringWithFormat:@"%@%@", program.projectPath, kProgramImagesDirName];
-    if (! [fileManager directoryExists:imagesDirName])
+    NSString *imagesDirName = [NSString stringWithFormat:@"%@%@", [program projectPath], kProgramImagesDirName];
+    if (! [fileManager directoryExists:imagesDirName]) {
         [fileManager createDirectory:imagesDirName];
+    }
 
-    NSString *soundsDirName = [NSString stringWithFormat:@"%@%@", program.projectPath, kProgramSoundsDirName];
-    if (! [fileManager directoryExists:soundsDirName])
+    NSString *soundsDirName = [NSString stringWithFormat:@"%@%@", [program projectPath], kProgramSoundsDirName];
+    if (! [fileManager directoryExists:soundsDirName]) {
         [fileManager createDirectory:soundsDirName];
+    }
 
     [program addNewObjectWithName:kBackgroundObjectName];
     [program addNewObjectWithName:kDefaultObjectName];

@@ -35,10 +35,14 @@
 #import "LevelUpdateDelegate.h"
 #import "QuartzCore/QuartzCore.h"
 #import "Program.h"
+#import "UIDefines.h"
+#import "ActionSheetAlertViewTags.h"
 
-@interface MyProgramsViewController () <LevelUpdateDelegate>
+@interface MyProgramsViewController () <LevelUpdateDelegate, UIAlertViewDelegate>
 @property (nonatomic, strong) NSMutableDictionary *assertCache;
 @property (nonatomic, strong) NSMutableArray *levelLoadingInfos;
+@property (nonatomic, strong) Program *selectedProgram;
+@property (nonatomic, strong) Program *defaultProgram;
 @end
 
 @implementation MyProgramsViewController
@@ -77,6 +81,8 @@
 {
     [super viewDidLoad];
 
+    self.defaultProgram = nil;
+    self.selectedProgram = nil;
     [self initTableView];
     [TableUtil initNavigationItem:self.navigationItem withTitle:NSLocalizedString(@"Programs", nil)];
     [self setupToolBar];
@@ -85,6 +91,8 @@
 
 - (void)viewWillAppear:(BOOL)animated
 {
+    self.defaultProgram = nil;
+    self.selectedProgram = nil;
     [self.navigationController setNavigationBarHidden:NO];
     [self.navigationController setToolbarHidden:NO];
 }
@@ -107,7 +115,10 @@
 #pragma mark - actions
 - (void)addProgramAction:(id)sender
 {
-    [self performSegueWithIdentifier:kSegueToNewProgram sender:sender];
+    static NSString *segueToNewProgram = kSegueToNewProgram;
+    if ([self shouldPerformSegueWithIdentifier:segueToNewProgram sender:self]) {
+        [self performSegueWithIdentifier:segueToNewProgram sender:sender];
+    }
 }
 
 #pragma mark - table view data source
@@ -262,46 +273,97 @@
 }
 
 #pragma mark - segue handling
-//- (BOOL)shouldPerformSegueWithIdentifier:(NSString *)identifier sender:(id)sender
-//{
-//    if ([identifier isEqualToString:kSegueToContinue]) {
-//        // check if program loaded successfully -> not nil
-//        if (self.lastProgram) {
-//            return YES;
-//        }
-//        
-//        // program failed loading...
-//        [Util alertWithText:kMsgUnableToLoadProgram];
-//        return NO;
-//    } else if ([identifier isEqualToString:kSegueNew]) {
-//        // if there is no program name, abort performing this segue and ask user for program name
-//        // after user entered a valid program name this segue will be called again and accepted
-//        if (! self.defaultProgram) {
-//            [Util promptWithTitle:kTitleNewProgram
-//                          message:kMsgPromptProgramName
-//                         delegate:self
-//                      placeholder:kProgramNamePlaceholder
-//                              tag:kNewProgramAlertViewTag];
-//            return NO;
-//        }
-//        return YES;
-//    }
-//    return [super shouldPerformSegueWithIdentifier:identifier sender:sender];
-//}
+- (BOOL)shouldPerformSegueWithIdentifier:(NSString *)identifier sender:(id)sender
+{
+    static NSString *segueToContinue = kSegueToContinue;
+    static NSString *segueToNewProgram = kSegueToNewProgram;
+    if ([identifier isEqualToString:segueToContinue]) {
+        if ([sender isKindOfClass:[UITableViewCell class]]) {
+            NSIndexPath *path = [self.tableView indexPathForCell:sender];
+            // check if program loaded successfully -> not nil
+            self.selectedProgram = [Program programWithLoadingInfo:[self.levelLoadingInfos objectAtIndex:path.row]];
+            if (self.selectedProgram) {
+                return YES;
+            }
+
+            // program failed loading...
+            [Util alertWithText:kMsgUnableToLoadProgram];
+            return NO;
+        }
+    } else if ([identifier isEqualToString:segueToNewProgram]) {
+        // if there is no program name, abort performing this segue and ask user for program name
+        // after user entered a valid program name this segue will be called again and accepted
+        if (! self.defaultProgram) {
+            [Util promptWithTitle:kTitleNewProgram
+                          message:kMsgPromptProgramName
+                         delegate:self
+                      placeholder:kProgramNamePlaceholder
+                              tag:kNewProgramAlertViewTag];
+            return NO;
+        }
+        return YES;
+    }
+    return [super shouldPerformSegueWithIdentifier:identifier sender:sender];
+}
 
 - (void)prepareForSegue:(UIStoryboardSegue*)segue sender:(id)sender
 {
+    static NSString *segueToContinue = kSegueToContinue;
     static NSString *segueToNewProgram = kSegueToNewProgram;
-    if ([segue.identifier isEqualToString:segueToNewProgram]) {
+    if ([segue.identifier isEqualToString:segueToContinue]) {
         if ([segue.destinationViewController isKindOfClass:[ProgramTableViewController class]]) {
-            ProgramTableViewController *programTableViewController = (ProgramTableViewController*)segue.destinationViewController;
-            programTableViewController.delegate = self;
             if ([sender isKindOfClass:[UITableViewCell class]]) {
-                NSIndexPath *path = [self.tableView indexPathForSelectedRow];
-                programTableViewController.program = [Program programWithLoadingInfo:[self.levelLoadingInfos objectAtIndex:path.row]];
-            } else if ([sender isKindOfClass:[UIBarButtonItem class]]) {
-                // no preparation needed
+                ProgramTableViewController *programTableViewController = (ProgramTableViewController*)segue.destinationViewController;
+                programTableViewController.delegate = self;
+                programTableViewController.program = self.selectedProgram;
+
+                // TODO: remove this after persisting programs feature is fully implemented...
+                programTableViewController.isNewProgram = NO;
             }
+        }
+    } else if ([segue.identifier isEqualToString:segueToNewProgram]) {
+        ProgramTableViewController *programTableViewController = (ProgramTableViewController*)segue.destinationViewController;
+        programTableViewController.delegate = self;
+        programTableViewController.program = self.defaultProgram;
+
+        // TODO: remove this after persisting programs feature is fully implemented...
+        programTableViewController.isNewProgram = YES;
+    }
+}
+
+#pragma mark - alert view handlers
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    static NSString *segueToNewProgramIdentifier = kSegueToNewProgram;
+    if (alertView.tag == kNewProgramAlertViewTag) {
+        NSString *input = [alertView textFieldAtIndex:0].text;
+        if ((buttonIndex == alertView.cancelButtonIndex) || (buttonIndex != kAlertViewButtonOK)) {
+            return;
+        }
+        kProgramNameValidationResult validationResult = [Program validateProgramName:input];
+        if (validationResult == kProgramNameValidationResultInvalid) {
+            [Util alertWithText:kMsgInvalidProgramName
+                       delegate:self
+                            tag:kInvalidProgramNameWarningAlertViewTag];
+        } else if (validationResult == kProgramNameValidationResultAlreadyExists) {
+            [Util alertWithText:kMsgInvalidProgramNameAlreadyExists
+                       delegate:self
+                            tag:kInvalidProgramNameWarningAlertViewTag];
+        } else if (validationResult == kProgramNameValidationResultOK) {
+            self.defaultProgram = [Program defaultProgramWithName:input];
+            if ([self shouldPerformSegueWithIdentifier:segueToNewProgramIdentifier sender:self]) {
+                [self addLevel:input];
+                [self performSegueWithIdentifier:segueToNewProgramIdentifier sender:self];
+            }
+        }
+    } else if (alertView.tag == kInvalidProgramNameWarningAlertViewTag) {
+        // title of cancel button is "OK"
+        if (buttonIndex == alertView.cancelButtonIndex) {
+            [Util promptWithTitle:kTitleNewProgram
+                          message:kMsgPromptProgramName
+                         delegate:self
+                      placeholder:kProgramNamePlaceholder
+                              tag:kNewProgramAlertViewTag];
         }
     }
 }
@@ -313,13 +375,13 @@
     NSError *error;
     NSArray *levels = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:basePath error:&error];
     NSLogError(error);
-    
+
     self.levelLoadingInfos = [[NSMutableArray alloc] initWithCapacity:[levels count]];
     for (NSString *level in levels) {
         // exclude .DS_Store folder on MACOSX simulator
         if ([level isEqualToString:@".DS_Store"])
             continue;
-        
+
         ProgramLoadingInfo *info = [[ProgramLoadingInfo alloc] init];
         info.basePath = [NSString stringWithFormat:@"%@%@/", basePath, level];
         info.visibleName = level;
@@ -331,7 +393,7 @@
 - (void)addLevel:(NSString*)levelName
 {
     NSString *basePath = [Program basePath];
-    
+
     // check if level already exists, then update
     BOOL exists = NO;
     for (ProgramLoadingInfo *info in self.levelLoadingInfos) {
@@ -345,7 +407,7 @@
         info.visibleName = levelName;
         NSLog(@"Adding level: %@", info.basePath);
         [self.levelLoadingInfos addObject:info];
-        
+
         // create new cell
         NSInteger numberOfRowsInLastSection = [self tableView:self.tableView numberOfRowsInSection:0];
         NSIndexPath *indexPath = [NSIndexPath indexPathForRow:(numberOfRowsInLastSection - 1) inSection:0];
