@@ -69,6 +69,7 @@
     [self initTableView];
     [self initNavigationBar];
 
+    self.lastProgram = nil;
     self.defaultProgram = nil;
     AppDelegate *appDelegate = [UIApplication sharedApplication].delegate;
     [appDelegate.fileManager addDefaultProjectToLeveLDirectory];
@@ -77,6 +78,7 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:YES];
+    self.lastProgram = nil;
     self.defaultProgram = nil;
     [self.navigationController setToolbarHidden:YES];
     [self.navigationController setNavigationBarHidden:NO];
@@ -229,6 +231,10 @@
         }
 
         // program failed loading...
+        // update continue cell
+        [Util setLastProgram:nil];
+        NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:0];
+        [self.tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationNone];
         [Util alertWithText:kMsgUnableToLoadProgram];
         return NO;
     } else if ([identifier isEqualToString:kSegueToNewProgram]) {
