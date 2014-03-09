@@ -23,23 +23,31 @@
 
 #import <UIKit/UIKit.h>
 #import "Header.h"
+#import "ProgramDefines.h"
 
 @class VariablesContainer;
+@class SpriteObject;
+@class ProgramLoadingInfo;
 
 @interface Program : NSObject
 
 @property (nonatomic, strong) Header *header;
 @property (nonatomic, strong) NSMutableArray *objectList;
 @property (nonatomic, strong) VariablesContainer *variables;
+- (SpriteObject*)addNewObjectWithName:(NSString*)objectName;
 - (NSString*)projectPath;
 - (void)removeFromDisk;
 - (void)saveToDisk;
+- (BOOL)isLastProgram;
+- (void)setAsLastProgram;
 
-// factories
-+ (Program*)createNewProgramWithName:(NSString*)programName;
-
-// helpers
-+ (NSString*)basePath;
++ (Program*)defaultProgramWithName:(NSString*)programName;
++ (Program*)lastProgram;
++ (Program*)programWithLoadingInfo:(ProgramLoadingInfo*)loadingInfo;
 + (BOOL)programExists:(NSString *)programName;
++ (kProgramNameValidationResult)validateProgramName:(NSString*)programName;
++ (BOOL)isLastProgram:(Program*)program;
++ (void)setLastProgram:(Program*)program;
++ (NSString*)basePath;
 
 @end

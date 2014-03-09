@@ -49,3 +49,9 @@
 #define kBackgroundObjectIndex 0
 #define kObjectSectionIndex 1
 #define kObjectIndex 0
+
+typedef NS_ENUM(NSUInteger, kProgramNameValidationResult) {
+    kProgramNameValidationResultOK = 0,
+    kProgramNameValidationResultInvalid = 1,
+    kProgramNameValidationResultAlreadyExists
+};

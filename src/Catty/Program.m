@@ -25,13 +25,16 @@
 #import "VariablesContainer.h"
 #import "Util.h"
 #import "OrderedMapTable.h"
-#import "ProgramDefines.h"
 #import "AppDefines.h"
 #import "SpriteObject.h"
 #import "AppDelegate.h"
 #import "FileManager.h"
 #import "GDataXMLNode+PrettyFormatterExtensions.h"
 #import "SensorHandler.h"
+#import "ProgramLoadingInfo.h"
+#import "Parser.h"
+#import "Script.h"
+#import "Brick.h"
 
 @implementation Program
 
@@ -43,11 +46,11 @@
 }
 
 # pragma mark - factories
-+ (Program*)createNewProgramWithName:(NSString*)programName
++ (Program*)defaultProgramWithName:(NSString*)programName
 {
     Program* program = [[Program alloc] init];
     program.header = [[Header alloc] init];
-    
+
     // FIXME: check all constants for this default header properties...
     // maybe we wanna outsource that later to another factory method in Header class
     {
@@ -72,21 +75,74 @@
         program.header.programScreenshotManuallyTaken = (YES ? @"true" : @"false");
         program.header.tags = nil;
     }
-    
+
     FileManager *fileManager = [[FileManager alloc] init];
     if (! [self programExists:program.projectPath])
         [fileManager createDirectory:program.projectPath];
-    
+
     NSString *imagesDirName = [NSString stringWithFormat:@"%@%@", program.projectPath, kProgramImagesDirName];
     if (! [fileManager directoryExists:imagesDirName])
         [fileManager createDirectory:imagesDirName];
-    
+
     NSString *soundsDirName = [NSString stringWithFormat:@"%@%@", program.projectPath, kProgramSoundsDirName];
     if (! [fileManager directoryExists:soundsDirName])
         [fileManager createDirectory:soundsDirName];
-    
+
+    [program addNewObjectWithName:kBackgroundObjectName];
+    [program addNewObjectWithName:kDefaultObjectName];
     return program;
 }
+
++ (Program*)programWithLoadingInfo:(ProgramLoadingInfo*)loadingInfo;
+{
+    NSDebug(@"Try to load project '%@'", loadingInfo.visibleName);
+    NSDebug(@"Path: %@", loadingInfo.basePath);
+    NSString *xmlPath = [NSString stringWithFormat:@"%@", loadingInfo.basePath];
+    NSDebug(@"XML-Path: %@", xmlPath);
+    Program *program = [[[Parser alloc] init] generateObjectForLevel:[xmlPath stringByAppendingFormat:@"%@", kProgramCodeFileName]];
+
+    if (! program)
+        return nil;
+
+    NSDebug(@"ProjectResolution: width/height:  %f / %f", program.header.screenWidth.floatValue, program.header.screenHeight.floatValue);
+
+    // setting effect
+    for (SpriteObject *sprite in program.objectList) {
+        //sprite.spriteManagerDelegate = self;
+        //sprite.broadcastWaitDelegate = self.broadcastWaitHandler;
+
+        // TODO: change!
+        for (Script *script in sprite.scriptList) {
+            for (Brick *brick in script.brickList) {
+                brick.object = sprite;
+            }
+        }
+    }
+    return program;
+}
+
++ (Program*)lastProgram
+{
+    NSString *lastProgramName = [Util lastProgram];
+    ProgramLoadingInfo *loadingInfo = [Util programLoadingInfoForProgramWithName:lastProgramName];
+    return [Program programWithLoadingInfo:loadingInfo];
+}
+
+- (SpriteObject*)addNewObjectWithName:(NSString*)objectName
+{
+    // TODO: review this...
+    SpriteObject* object = [[SpriteObject alloc] init];
+    //object.originalSize;
+    //object.spriteManagerDelegate;
+    //object.broadcastWaitDelegate = self.broadcastWaitHandler;
+    object.currentLook = nil;
+    object.name = objectName;
+    object.program = self;
+    [self.objectList addObject:object];
+    return object;
+}
+
+
 
 #pragma mark - Custom getter and setter
 - (NSMutableArray*)objectList
@@ -163,7 +219,17 @@
     });
 }
 
-# pragma mark - helpers
+- (BOOL)isLastProgram
+{
+    return [Program isLastProgram:self];
+}
+
+- (void)setAsLastProgram
+{
+    [Program setLastProgram:self];
+}
+
+#pragma mark - helpers
 - (NSString*)description
 {
     NSMutableString *ret = [[NSMutableString alloc] init];
@@ -192,15 +258,37 @@
     return [NSString stringWithString:ret];
 }
 
-+ (NSString*)basePath
-{
-    return [NSString stringWithFormat:@"%@/%@/", [Util applicationDocumentsDirectory], kProgramsFolder];
-}
-
 + (BOOL)programExists:(NSString *)programName
 {
     NSString *projectPath = [NSString stringWithFormat:@"%@%@/", [Program basePath], programName];
     return [[[FileManager alloc] init] directoryExists:projectPath];
+}
+
++ (BOOL)isLastProgram:(Program*)program
+{
+    return ([program.header.programName isEqualToString:[Util lastProgram]]);
+}
+
++ (void)setLastProgram:(Program*)program
+{
+    [Util setLastProgram:program.header.programName];
+}
+
++ (kProgramNameValidationResult)validateProgramName:(NSString *)programName
+{
+    // TODO: check, filter and validate program name...
+    if (! [programName length]) {
+        return kProgramNameValidationResultInvalid;
+    }
+    if ([Program programExists:programName]) {
+        return kProgramNameValidationResultAlreadyExists;
+    }
+    return kProgramNameValidationResultOK;
+}
+
++ (NSString*)basePath
+{
+    return [NSString stringWithFormat:@"%@/%@/", [Util applicationDocumentsDirectory], kProgramsFolder];
 }
 
 @end
