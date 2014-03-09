@@ -111,4 +111,13 @@
     return [TableUtil getHeightForImageCell];
 }
 
+#pragma mark - helpers
+- (void)setupToolBar
+{
+    [self.navigationController setToolbarHidden:NO];
+    self.navigationController.toolbar.barStyle = UIBarStyleBlack;
+    self.navigationController.toolbar.tintColor = [UIColor orangeColor];
+    self.navigationController.toolbar.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleTopMargin;
+}
+
 @end

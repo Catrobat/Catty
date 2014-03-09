@@ -26,4 +26,5 @@
 - (void)setPlaceHolderTitle:(NSString*)title Description:(NSString*)description;
 - (void)showPlaceHolder:(BOOL)show;
 - (void)initPlaceHolder;
+- (void)setupToolBar;
 @end
