@@ -42,6 +42,8 @@
 #import "ActionSheetAlertViewTags.h"
 #import "MyProgramsViewController.h"
 
+#define kNewProgramName @"My new program"
+
 // TODO: use mock objects for dependencies and constructor dependency injection, but XCTest does not seem to support this at the moment
 
 @interface ProgramTableViewControllerTests ()
@@ -57,6 +59,12 @@
     self.programTableViewController.delegate = nil; // no delegate needed for our tests
 }
 
+- (void)setupForNewProgram
+{
+    self.programTableViewController.program = [Program defaultProgramWithName:kNewProgramName];
+    self.programTableViewController.isNewProgram = YES;
+}
+
 - (void)tearDown
 {
     [super tearDown];
@@ -70,16 +78,10 @@
     self.fileManager = nil;
 }
 
-#pragma mark - Default Program Tests
-- (void)testNewDefaultProgramIfFolderExists
+#pragma mark - New Program Tests
+- (void)testNewProgramHasBackgroundObjectCell
 {
-    // check if setUp method instantiated an instance of ProgramTableViewController (lazy instantiation) and
-    // the instance should have created an empty default project including a defaultProject-directory
-    XCTAssertFalse([self.fileManager directoryExists:[ProgramTableViewControllerTests defaultProjectPath]], @"The ProgramTableViewController did not create the project folder for the new project");
-}
-
-- (void)testNewDefaultProgramHasBackgroundObjectCell
-{
+    [self setupForNewProgram];
     NSIndexPath *indexPath = [NSIndexPath indexPathForRow:kBackgroundObjectIndex inSection:kBackgroundSectionIndex];
     [self.programTableViewController viewDidLoad];
     [self.programTableViewController viewWillAppear:NO];
@@ -93,8 +95,9 @@
     XCTAssertTrue([backgroundCellTitle isEqualToString:kBackgroundObjectName], @"The ProgramTableViewController did not create the background cell correctly.");
 }
 
-- (void)testNewDefaultProgramObjectCellTitles
+- (void)testNewProgramObjectCellTitles
 {
+    [self setupForNewProgram];
     NSIndexPath *indexPath = [NSIndexPath indexPathForRow:kObjectIndex inSection:kObjectSectionIndex];
     [self.programTableViewController viewDidLoad];
     [self.programTableViewController viewWillAppear:NO];
@@ -108,32 +111,36 @@
     XCTAssertTrue([firstObjectCellTitle isEqualToString:kDefaultObjectName], @"The ProgramTableViewController did not create the first object cell correctly.");
 }
 
-- (void)testNewDefaultProgramNumberOfSections
+- (void)testNewProgramNumberOfSections
 {
+    [self setupForNewProgram];
     [self.programTableViewController viewDidLoad];
     [self.programTableViewController viewWillAppear:NO];
     NSInteger numberOfSections = [self.programTableViewController numberOfSectionsInTableView:self.programTableViewController.tableView];
     XCTAssertEqual(numberOfSections, kNumberOfSectionsInProgramTableViewController, @"Wrong number of sections in ProgramTableViewController");
 }
 
-- (void)testNewDefaultProgramNumberOfBackgroundRows
+- (void)testNewProgramNumberOfBackgroundRows
 {
+    [self setupForNewProgram];
     [self.programTableViewController viewDidLoad];
     [self.programTableViewController viewWillAppear:NO];
     NSInteger numberOfBackgroundRows = [self.programTableViewController tableView:self.programTableViewController.tableView numberOfRowsInSection:kBackgroundSectionIndex];
     XCTAssertEqual(numberOfBackgroundRows, kBackgroundObjects, @"Wrong number of background rows in ProgramTableViewController");
 }
 
-- (void)testNewDefaultProgramNumberOfObjectRows
+- (void)testNewProgramNumberOfObjectRows
 {
+    [self setupForNewProgram];
     [self.programTableViewController viewDidLoad];
     [self.programTableViewController viewWillAppear:NO];
     NSInteger numberOfObjectRows = [self.programTableViewController tableView:self.programTableViewController.tableView numberOfRowsInSection:kObjectSectionIndex];
     XCTAssertEqual(numberOfObjectRows, kDefaultNumOfObjects, @"Wrong number of object rows in ProgramTableViewController");
 }
 
-- (void)testNewDefaultProgramRenameProgramName
+- (void)testNewProgramRenameProgramName
 {
+    [self setupForNewProgram];
     NSString *newProgramName = @"This is a test program";
     [ProgramTableViewControllerTests removeProject:[NSString stringWithFormat:@"%@%@", [Program basePath], newProgramName]];
     [self.programTableViewController viewDidLoad];
@@ -153,8 +160,9 @@
     [ProgramTableViewControllerTests removeProject:[NSString stringWithFormat:@"%@%@", [Program basePath], newProgramName]];
 }
 
-- (void)testNewDefaultProgramRenameProgramNameDelegateTest
+- (void)testNewProgramRenameProgramNameDelegateTest
 {
+    [self setupForNewProgram];
     NSString *newProgramName = @"This is a test program";
     [ProgramTableViewControllerTests removeProject:[NSString stringWithFormat:@"%@%@", [Program basePath], newProgramName]];
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"iPhone" bundle:[NSBundle mainBundle]];
@@ -491,7 +499,7 @@
     }
 }
 
-#pragma mark - Getters and setters
+#pragma mark - getters and setters
 - (ProgramTableViewController*)programTableViewController
 {
     // lazy instantiation

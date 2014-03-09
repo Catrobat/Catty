@@ -222,7 +222,7 @@
 }
 
 #pragma mark - segue handling
-- (BOOL)shouldPerformSegueWithIdentifier:(NSString *)identifier sender:(id)sender
+- (BOOL)shouldPerformSegueWithIdentifier:(NSString*)identifier sender:(id)sender
 {
     if ([identifier isEqualToString:kSegueToContinue]) {
         // check if program loaded successfully -> not nil

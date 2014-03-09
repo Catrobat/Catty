@@ -240,6 +240,7 @@
 		CA79A11E182DA47E00618283 /* BricksCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA79A11D182DA47E00618283 /* BricksCollectionViewController.m */; };
 		CA7AC43A18074B5200904143 /* ic_media_play.png in Resources */ = {isa = PBXBuildFile; fileRef = CA7AC43918074B5200904143 /* ic_media_play.png */; };
 		CA7AC43C18074FD300904143 /* ic_media_pause.png in Resources */ = {isa = PBXBuildFile; fileRef = CA7AC43B18074FD300904143 /* ic_media_pause.png */; };
+		CA8C247818CD053300314C2B /* ProgramTests.m in Sources */ = {isa = PBXBuildFile; fileRef = CA8C247718CD053300314C2B /* ProgramTests.m */; };
 		CA8F8A0B17F241F700A04C03 /* ic_looks.png in Resources */ = {isa = PBXBuildFile; fileRef = CA8F8A0817F241F700A04C03 /* ic_looks.png */; };
 		CA8F8A0C17F241F700A04C03 /* ic_scripts.png in Resources */ = {isa = PBXBuildFile; fileRef = CA8F8A0917F241F700A04C03 /* ic_scripts.png */; };
 		CA8F8A0D17F241F700A04C03 /* ic_sounds.png in Resources */ = {isa = PBXBuildFile; fileRef = CA8F8A0A17F241F700A04C03 /* ic_sounds.png */; };
@@ -718,6 +719,7 @@
 		CA79A11D182DA47E00618283 /* BricksCollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BricksCollectionViewController.m; sourceTree = "<group>"; };
 		CA7AC43918074B5200904143 /* ic_media_play.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ic_media_play.png; sourceTree = "<group>"; };
 		CA7AC43B18074FD300904143 /* ic_media_pause.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ic_media_pause.png; sourceTree = "<group>"; };
+		CA8C247718CD053300314C2B /* ProgramTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProgramTests.m; sourceTree = "<group>"; };
 		CA8F8A0817F241F700A04C03 /* ic_looks.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ic_looks.png; sourceTree = "<group>"; };
 		CA8F8A0917F241F700A04C03 /* ic_scripts.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ic_scripts.png; sourceTree = "<group>"; };
 		CA8F8A0A17F241F700A04C03 /* ic_sounds.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ic_sounds.png; sourceTree = "<group>"; };
@@ -1229,6 +1231,7 @@
 			children = (
 				B46B270917703F9400172837 /* CattyTests.m */,
 				C34B44FB17F3403400624730 /* ExtensionTests */,
+				CA8C247918CD06BA00314C2B /* ProgramTests */,
 				C34B44FA17F3402300624730 /* BrickTests */,
 				B46B271417703FBE00172837 /* SensorHandlerTests */,
 				B46B270417703F9400172837 /* Supporting Files */,
@@ -2060,6 +2063,14 @@
 				CA79A119182D8A4200618283 /* GDataXMLNode+PrettyFormatterExtensions.m */,
 			);
 			name = "GDataXMLNode+PrettyFormatterExtensions";
+			sourceTree = "<group>";
+		};
+		CA8C247918CD06BA00314C2B /* ProgramTests */ = {
+			isa = PBXGroup;
+			children = (
+				CA8C247718CD053300314C2B /* ProgramTests.m */,
+			);
+			name = ProgramTests;
 			sourceTree = "<group>";
 		};
 		CA9C043618679B5600E1DDBF /* icons */ = {
@@ -2994,6 +3005,7 @@
 				CA52403618AD782600052914 /* ProgramTableViewControllerTests.m in Sources */,
 				92C37A40185625E700547C1E /* HideBrickTests.m in Sources */,
 				92C37A421856262700547C1E /* SetGhostEffectBrickTests.m in Sources */,
+				CA8C247818CD053300314C2B /* ProgramTests.m in Sources */,
 				92C37A48185626B600547C1E /* PlaceAtBrickTests.m in Sources */,
 				92C37A3E185625D900547C1E /* ShowBrickTests.m in Sources */,
 				B496F51117759969004BF78A /* SceneTests.m in Sources */,
