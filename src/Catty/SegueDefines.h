@@ -23,23 +23,19 @@
 #ifndef Catty_SegueDefines_h
 #define Catty_SegueDefines_h
 
+#define kSegueToContinue @"segueToContinue"
+#define kSegueToNewProgram @"segueToNewProgram"
+#define kSegueToPrograms @"segueToPrograms"
+#define kSegueToForum @"segueToForum"
+#define kSegueToExplore @"segueToExplore"
+#define kSegueToUpload @"segueToUpload"
+#define kSegueToAddNewProgram @"segueToAddProgram"
+
 #define kSegueToLevelDetail @"segueToLevelDetail"
-#define kSegueToStage @"SEGUE_TO_STAGE"
 #define kSegueToScene @"segueToScene"
-#define kSegueToNew @"segueToNew"
 #define kSegueToObject @"segueToObject"
 #define kSegueToScripts @"segueToScripts"
 #define kSegueToLooks @"segueToLooks"
 #define kSegueToSounds @"segueToSounds"
-#define kSegueToNewScriptCategory @"segueToNewScriptCategory"
-
-#define kSegueContinue @"continue"
-#define kSegueNew @"new"
-#define kSeguePrograms @"programs"
-#define kSegueForum @"forum"
-#define kSegueExplore @"explore"
-#define kSegueUpload @"upload"
-#define kSegueAddNewProgram @"addProgram"
-#define kSegueObjectView @"objectView"
 
 #endif

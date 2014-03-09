@@ -24,6 +24,20 @@
 #define kBtnOKTitle NSLocalizedString(@"OK", @"OK button for views")
 #define kBtnDeleteTitle NSLocalizedString(@"Delete", @"Delete button for views")
 
+#define kTitleNewProgram NSLocalizedString(@"New program",nil)
+
+#define kMsgInvalidProgramName NSLocalizedString(@"No or invalid program name entered, try again.",nil)
+#define kMsgInvalidProgramNameAlreadyExists NSLocalizedString(@"A program with the same name already exists, try again.",nil)
+#define kMsgUnableToLoadProgram NSLocalizedString(@"Unable to load program!",nil)
+#define kMsgPromptProgramName NSLocalizedString(@"Program name:",nil)
+
+#define kMenuTitleContinue NSLocalizedString(@"Continue",nil)
+#define kMenuTitleNew NSLocalizedString(@"New",nil)
+#define kMenuTitlePrograms NSLocalizedString(@"Programs",nil)
+#define kMenuTitleForum NSLocalizedString(@"Forum",nil)
+#define kMenuTitleExplore NSLocalizedString(@"Explore",nil)
+#define kMenuTitleUpload NSLocalizedString(@"Upload",nil)
+
 // brick UI config
 // brick categories
 typedef NS_ENUM(NSInteger, kBrickCategoryType) {
