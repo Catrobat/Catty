@@ -27,6 +27,8 @@
 
 #define TIMEOUT 30.0f
 
+@protocol UIAlertViewDelegate;
+
 @class SceneViewController;
 @class ProgramLoadingInfo;
 
@@ -37,6 +39,14 @@
 + (void)showComingSoonAlertView;
 
 + (void)alertWithText:(NSString*)text;
+
++ (void)alertWithText:(NSString*)text delegate:(id<UIAlertViewDelegate>)delegate tag:(NSInteger)tag;
+
++ (void)promptWithTitle:(NSString*)title
+                message:(NSString*)message
+               delegate:(id<UIAlertViewDelegate>)delegate
+            placeholder:(NSString*)placeholder
+                    tag:(NSInteger)tag;
 
 + (NSString*)getProjectName;
 

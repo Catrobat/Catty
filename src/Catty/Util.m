@@ -24,6 +24,7 @@
 #import "ScenePresenterViewController.h"
 #import "ProgramDefines.h"
 #import "ProgramLoadingInfo.h"
+#import "UIDefines.h"
 
 @implementation Util
 
@@ -44,21 +45,45 @@
                           initWithTitle:@"Catty"
                           message:alert_message
                           delegate:nil
-                          cancelButtonTitle:@"OK"
+                          cancelButtonTitle:kBtnOKTitle
                           otherButtonTitles:nil];
     [alert show];
 }
 
-
 + (void)alertWithText:(NSString*)text
 {
+    [self alertWithText:text delegate:nil tag:0];
+}
+
++ (void)alertWithText:(NSString*)text delegate:(id<UIAlertViewDelegate>)delegate tag:(NSInteger)tag
+{
     UIAlertView *alert = [[UIAlertView alloc]
-                          initWithTitle:@"Catty"
+                          initWithTitle:NSLocalizedString(@"Pocket Code", nil)
                           message:text
-                          delegate:nil
-                          cancelButtonTitle:@"OK"
+                          delegate:delegate
+                          cancelButtonTitle:kBtnOKTitle
                           otherButtonTitles:nil];
+    alert.tag = tag;
     [alert show];
+}
+
++ (void)promptWithTitle:(NSString*)title
+                message:(NSString*)message
+               delegate:(id<UIAlertViewDelegate>)delegate
+            placeholder:(NSString*)placeholder
+                    tag:(NSInteger)tag
+{
+    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:title
+                                                        message:message
+                                                       delegate:delegate
+                                              cancelButtonTitle:kBtnCancelTitle
+                                              otherButtonTitles:kBtnOKTitle, nil];
+    alertView.tag = tag;
+    alertView.alertViewStyle = UIAlertViewStylePlainTextInput;
+    UITextField *textField = [alertView textFieldAtIndex:0];
+    textField.placeholder = placeholder;
+    [textField setClearButtonMode:UITextFieldViewModeWhileEditing];
+    [alertView show];
 }
 
 + (NSString*)getProjectName
