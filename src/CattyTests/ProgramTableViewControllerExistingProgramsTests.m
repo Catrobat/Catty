@@ -24,7 +24,7 @@
 // visible for this class
 #define CATTY_TESTS 1
 
-#import "ProgramTableViewControllerTests.h"
+#import "ProgramTableViewControllerExistingProgramsTests.h"
 #import "ProgramTableViewController.h"
 #import "Program.h"
 #import "ProgramDefines.h"
@@ -46,12 +46,12 @@
 
 // TODO: use mock objects for dependencies and constructor dependency injection, but XCTest does not seem to support this at the moment
 
-@interface ProgramTableViewControllerTests ()
+@interface ProgramTableViewControllerExistingProgramsTests ()
 @property (nonatomic, strong) ProgramTableViewController *programTableViewController;
 @property (nonatomic, strong) FileManager *fileManager;
 @end
 
-@implementation ProgramTableViewControllerTests
+@implementation ProgramTableViewControllerExistingProgramsTests
 
 - (void)setUp
 {
@@ -59,146 +59,11 @@
     self.programTableViewController.delegate = nil; // no delegate needed for our tests
 }
 
-- (void)setupForNewProgram
-{
-    self.programTableViewController.program = [Program defaultProgramWithName:kNewProgramName];
-    self.programTableViewController.isNewProgram = YES;
-}
-
 - (void)tearDown
 {
-    [super tearDown];
-    [ProgramTableViewControllerTests removeProject:[ProgramTableViewControllerTests defaultProjectPath]];
-    // TODO: remove this hack later
-    for (NSUInteger i = 1; i < 20; i++) {
-        NSLog(@"%@", [NSString stringWithFormat:@"%@ (%d)",[ProgramTableViewControllerTests defaultProjectPath],i]);
-        [ProgramTableViewControllerTests removeProject:[NSString stringWithFormat:@"%@ (%d)",[ProgramTableViewControllerTests defaultProjectPath],i]];
-    }
     self.programTableViewController = nil;
     self.fileManager = nil;
-}
-
-#pragma mark - New Program Tests
-- (void)testNewProgramHasBackgroundObjectCell
-{
-    [self setupForNewProgram];
-    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:kBackgroundObjectIndex inSection:kBackgroundSectionIndex];
-    [self.programTableViewController viewDidLoad];
-    [self.programTableViewController viewWillAppear:NO];
-    UITableViewCell *cell = [self.programTableViewController tableView:self.programTableViewController.tableView cellForRowAtIndexPath:indexPath];
-    NSString *backgroundCellTitle = nil;
-    if ([cell conformsToProtocol:@protocol(CatrobatImageCell)]) {
-        UITableViewCell<CatrobatImageCell> *imageCell = (UITableViewCell<CatrobatImageCell>*)cell;
-        backgroundCellTitle = imageCell.titleLabel.text;
-    }
-
-    XCTAssertTrue([backgroundCellTitle isEqualToString:kBackgroundObjectName], @"The ProgramTableViewController did not create the background cell correctly.");
-}
-
-- (void)testNewProgramObjectCellTitles
-{
-    [self setupForNewProgram];
-    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:kObjectIndex inSection:kObjectSectionIndex];
-    [self.programTableViewController viewDidLoad];
-    [self.programTableViewController viewWillAppear:NO];
-    UITableViewCell *cell = [self.programTableViewController tableView:self.programTableViewController.tableView cellForRowAtIndexPath:indexPath];
-    NSString *firstObjectCellTitle = nil;
-    if ([cell conformsToProtocol:@protocol(CatrobatImageCell)]) {
-        UITableViewCell <CatrobatImageCell>* imageCell = (UITableViewCell <CatrobatImageCell>*)cell;
-        firstObjectCellTitle = imageCell.titleLabel.text;
-    }
-
-    XCTAssertTrue([firstObjectCellTitle isEqualToString:kDefaultObjectName], @"The ProgramTableViewController did not create the first object cell correctly.");
-}
-
-- (void)testNewProgramNumberOfSections
-{
-    [self setupForNewProgram];
-    [self.programTableViewController viewDidLoad];
-    [self.programTableViewController viewWillAppear:NO];
-    NSInteger numberOfSections = [self.programTableViewController numberOfSectionsInTableView:self.programTableViewController.tableView];
-    XCTAssertEqual(numberOfSections, kNumberOfSectionsInProgramTableViewController, @"Wrong number of sections in ProgramTableViewController");
-}
-
-- (void)testNewProgramNumberOfBackgroundRows
-{
-    [self setupForNewProgram];
-    [self.programTableViewController viewDidLoad];
-    [self.programTableViewController viewWillAppear:NO];
-    NSInteger numberOfBackgroundRows = [self.programTableViewController tableView:self.programTableViewController.tableView numberOfRowsInSection:kBackgroundSectionIndex];
-    XCTAssertEqual(numberOfBackgroundRows, kBackgroundObjects, @"Wrong number of background rows in ProgramTableViewController");
-}
-
-- (void)testNewProgramNumberOfObjectRows
-{
-    [self setupForNewProgram];
-    [self.programTableViewController viewDidLoad];
-    [self.programTableViewController viewWillAppear:NO];
-    NSInteger numberOfObjectRows = [self.programTableViewController tableView:self.programTableViewController.tableView numberOfRowsInSection:kObjectSectionIndex];
-    XCTAssertEqual(numberOfObjectRows, kDefaultNumOfObjects, @"Wrong number of object rows in ProgramTableViewController");
-}
-
-- (void)testNewProgramRenameProgramName
-{
-    [self setupForNewProgram];
-    NSString *newProgramName = @"This is a test program";
-    [ProgramTableViewControllerTests removeProject:[NSString stringWithFormat:@"%@%@", [Program basePath], newProgramName]];
-    [self.programTableViewController viewDidLoad];
-    [self.programTableViewController viewWillAppear:NO];
-    UIAlertView *alertView = [[UIAlertView alloc] init];
-    alertView.tag = kRenameAlertViewTag;
-    alertView.alertViewStyle = UIAlertViewStylePlainTextInput;
-    UITextField *textField = [alertView textFieldAtIndex:0];
-    textField.text = newProgramName;
-    XCTAssertNoThrow([self.programTableViewController alertView:alertView clickedButtonAtIndex:kAlertViewButtonOK], @"Could not rename program");
-
-    // TODO: write some tests for random input to test input validators and filters
-
-    Program *program = self.programTableViewController.program;
-    XCTAssertNotNil(program.header.programName, @"Name of renamed program is nil, testing an empty string...");
-    XCTAssertTrue([program.header.programName isEqualToString:newProgramName], @"Name of renamed program is %@, but should be %@ ProgramTableViewController", program.header.programName, newProgramName);
-    [ProgramTableViewControllerTests removeProject:[NSString stringWithFormat:@"%@%@", [Program basePath], newProgramName]];
-}
-
-- (void)testNewProgramRenameProgramNameDelegateTest
-{
-    [self setupForNewProgram];
-    NSString *newProgramName = @"This is a test program";
-    [ProgramTableViewControllerTests removeProject:[NSString stringWithFormat:@"%@%@", [Program basePath], newProgramName]];
-    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"iPhone" bundle:[NSBundle mainBundle]];
-    MyProgramsViewController<LevelUpdateDelegate> *myProgramsViewController = [storyboard instantiateViewControllerWithIdentifier:@"MyProgramsViewController"];
-    [myProgramsViewController performSelectorOnMainThread:@selector(view) withObject:nil waitUntilDone:YES];
-    self.programTableViewController.delegate = myProgramsViewController;
-    [self.programTableViewController viewDidLoad];
-    [self.programTableViewController viewWillAppear:NO];
-    UIAlertView *alertView = [[UIAlertView alloc] init];
-    alertView.tag = kRenameAlertViewTag;
-    alertView.alertViewStyle = UIAlertViewStylePlainTextInput;
-    UITextField *textField = [alertView textFieldAtIndex:0];
-    textField.text = newProgramName;
-    XCTAssertNoThrow([self.programTableViewController alertView:alertView clickedButtonAtIndex:kAlertViewButtonOK], @"Could not rename program");
-
-    // TODO: write some tests for random input to test input validators and filters
-
-    NSInteger numberOfRows = [myProgramsViewController tableView:myProgramsViewController.tableView numberOfRowsInSection:0];
-    NSInteger matchNewNameCounter = 0;
-    for (NSInteger counter = 0; counter < numberOfRows; ++counter) {
-        NSIndexPath *indexPath = [NSIndexPath indexPathForRow:counter inSection:0];
-        UITableViewCell *cell = [myProgramsViewController tableView:myProgramsViewController.tableView cellForRowAtIndexPath:indexPath];
-        NSString *levelName = nil;
-        if ([cell conformsToProtocol:@protocol(CatrobatImageCell)]) {
-            UITableViewCell <CatrobatImageCell>* imageCell = (UITableViewCell <CatrobatImageCell>*)cell;
-            levelName = imageCell.titleLabel.text;
-        }
-        NSLog(@"Name of level is: %@", levelName);
-        XCTAssertNotNil(levelName, @"Name of renamed program is nil, testing an empty string...");
-        XCTAssertFalse([levelName isEqualToString:kDefaultProgramName], @"Did not rename level of delegate");
-        if ([levelName isEqualToString:newProgramName]) {
-            ++matchNewNameCounter;
-        }
-    }
-    XCTAssertEqual(matchNewNameCounter, 1, @"Did not rename level of delegate correctly. Number of renamed levels: %d", matchNewNameCounter);
-    [ProgramTableViewControllerTests removeProject:[NSString stringWithFormat:@"%@%@", [Program basePath], newProgramName]];
+    [super tearDown];
 }
 
 #pragma mark - Tests for all existing programs
@@ -211,8 +76,8 @@
     NSLogError(error);
 
     for (NSString *level in levels) {
-        // exclude .DS_Store folder on MACOSX simulator
-        if ([level isEqualToString:@".DS_Store"])
+        // exclude .DS_Store folder on MACOSX simulator and new program
+        if ([level isEqualToString:@".DS_Store"] || [level isEqualToString:kNewProgramName])
             continue;
 
         ProgramLoadingInfo *loadingInfo = [[ProgramLoadingInfo alloc] init];
@@ -230,15 +95,14 @@
 
 - (void)testExistingProgramsObjectCells
 {
-    [ProgramTableViewControllerTests removeProject:[ProgramTableViewControllerTests defaultProjectPath]];
     NSString *basePath = [Program basePath];
     NSError *error;
     NSArray *levels = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:basePath error:&error];
     NSLogError(error);
 
     for (NSString *level in levels) {
-        // exclude .DS_Store folder on MACOSX simulator
-        if ([level isEqualToString:@".DS_Store"])
+        // exclude .DS_Store folder on MACOSX simulator and new program
+        if ([level isEqualToString:@".DS_Store"] || [level isEqualToString:kNewProgramName])
             continue;
 
         ProgramLoadingInfo *loadingInfo = [[ProgramLoadingInfo alloc] init];
@@ -297,15 +161,14 @@
 
 - (void)testExistingProgramsNumberOfSections
 {
-    [ProgramTableViewControllerTests removeProject:[ProgramTableViewControllerTests defaultProjectPath]];
     NSString *basePath = [Program basePath];
     NSError *error;
     NSArray *levels = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:basePath error:&error];
     NSLogError(error);
 
     for (NSString *level in levels) {
-        // exclude .DS_Store folder on MACOSX simulator
-        if ([level isEqualToString:@".DS_Store"])
+        // exclude .DS_Store folder on MACOSX simulator and new program
+        if ([level isEqualToString:@".DS_Store"] || [level isEqualToString:kNewProgramName])
             continue;
 
         ProgramLoadingInfo *loadingInfo = [[ProgramLoadingInfo alloc] init];
@@ -327,15 +190,14 @@
 
 - (void)testExistingProgramsNumberOfBackgroundRows
 {
-    [ProgramTableViewControllerTests removeProject:[ProgramTableViewControllerTests defaultProjectPath]];
     NSString *basePath = [Program basePath];
     NSError *error;
     NSArray *levels = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:basePath error:&error];
     NSLogError(error);
 
     for (NSString *level in levels) {
-        // exclude .DS_Store folder on MACOSX simulator
-        if ([level isEqualToString:@".DS_Store"])
+        // exclude .DS_Store folder on MACOSX simulator and new program
+        if ([level isEqualToString:@".DS_Store"] || [level isEqualToString:kNewProgramName])
             continue;
 
         ProgramLoadingInfo *loadingInfo = [[ProgramLoadingInfo alloc] init];
@@ -357,15 +219,14 @@
 
 - (void)testExistingProgramsNumberOfObjectRows
 {
-    [ProgramTableViewControllerTests removeProject:[ProgramTableViewControllerTests defaultProjectPath]];
     NSString *basePath = [Program basePath];
     NSError *error;
     NSArray *levels = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:basePath error:&error];
     NSLogError(error);
 
     for (NSString *level in levels) {
-        // exclude .DS_Store folder on MACOSX simulator
-        if ([level isEqualToString:@".DS_Store"])
+        // exclude .DS_Store folder on MACOSX simulator and new program
+        if ([level isEqualToString:@".DS_Store"] || [level isEqualToString:kNewProgramName])
             continue;
 
         ProgramLoadingInfo *loadingInfo = [[ProgramLoadingInfo alloc] init];
@@ -393,15 +254,14 @@
 
 - (void)testExistingProgramsTestRemoveBackgroundObjectTestMustFail
 {
-    [ProgramTableViewControllerTests removeProject:[ProgramTableViewControllerTests defaultProjectPath]];
     NSString *basePath = [Program basePath];
     NSError *error;
     NSArray *levels = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:basePath error:&error];
     NSLogError(error);
 
     for (NSString *level in levels) {
-        // exclude .DS_Store folder on MACOSX simulator
-        if ([level isEqualToString:@".DS_Store"])
+        // exclude .DS_Store folder on MACOSX simulator and new program
+        if ([level isEqualToString:@".DS_Store"] || [level isEqualToString:kNewProgramName])
             continue;
 
         ProgramLoadingInfo *loadingInfo = [[ProgramLoadingInfo alloc] init];
@@ -424,15 +284,14 @@
 
 - (void)testExistingProgramsTestRemoveAllObjectsExceptLastOneMustSucceedAndRemoveLastObjectMustFail
 {
-    [ProgramTableViewControllerTests removeProject:[ProgramTableViewControllerTests defaultProjectPath]];
     NSString *basePath = [Program basePath];
     NSError *error;
     NSArray *levels = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:basePath error:&error];
     NSLogError(error);
     
     for (NSString *level in levels) {
-        // exclude .DS_Store folder on MACOSX simulator
-        if ([level isEqualToString:@".DS_Store"])
+        // exclude .DS_Store folder on MACOSX simulator and new program
+        if ([level isEqualToString:@".DS_Store"] || [level isEqualToString:kNewProgramName])
             continue;
 
         ProgramLoadingInfo *loadingInfo = [[ProgramLoadingInfo alloc] init];
@@ -555,11 +414,6 @@
     if ([fileManager directoryExists:projectPath])
         [fileManager deleteDirectory:projectPath];
     [Util setLastProgram:nil];
-}
-
-+ (NSString*)defaultProjectPath
-{
-    return [NSString stringWithFormat:@"%@%@", [Program basePath], kDefaultProgramName];
 }
 
 @end
