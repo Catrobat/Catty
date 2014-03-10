@@ -28,6 +28,7 @@
 
 #define kMsgInvalidProgramName NSLocalizedString(@"No or invalid program name entered, try again.",nil)
 #define kMsgInvalidProgramNameAlreadyExists NSLocalizedString(@"A program with the same name already exists, try again.",nil)
+#define kMsgInvalidObjectName NSLocalizedString(@"No or invalid object name entered, try again.",nil)
 #define kMsgUnableToLoadProgram NSLocalizedString(@"Unable to load program!",nil)
 #define kMsgPromptProgramName NSLocalizedString(@"Program name:",nil)
 

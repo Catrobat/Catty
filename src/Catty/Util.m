@@ -73,6 +73,16 @@
             placeholder:(NSString*)placeholder
                     tag:(NSInteger)tag
 {
+    [Util promptWithTitle:title message:message delegate:delegate placeholder:placeholder tag:tag value:nil];
+}
+
++ (void)promptWithTitle:(NSString*)title
+                message:(NSString*)message
+               delegate:(id<UIAlertViewDelegate>)delegate
+            placeholder:(NSString*)placeholder
+                    tag:(NSInteger)tag
+                  value:(NSString*)value
+{
     UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:title
                                                         message:message
                                                        delegate:delegate
@@ -83,6 +93,7 @@
     UITextField *textField = [alertView textFieldAtIndex:0];
     textField.placeholder = placeholder;
     [textField setClearButtonMode:UITextFieldViewModeWhileEditing];
+    textField.text = value;
     [alertView show];
 }
 

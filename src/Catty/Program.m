@@ -139,10 +139,41 @@
     //object.spriteManagerDelegate;
     //object.broadcastWaitDelegate = self.broadcastWaitHandler;
     object.currentLook = nil;
-    object.name = objectName;
+
+    // TODO: filter/change object name if same name already exists
+    NSInteger counter = 0;
+    NSString *finalObjectName = objectName;
+    while ([self objectExistsWithName:finalObjectName]) {
+        finalObjectName = [NSString stringWithFormat:@"%@ (%d)", objectName, ++counter];
+    }
+    object.name = finalObjectName;
     object.program = self;
     [self.objectList addObject:object];
     return object;
+}
+
+- (void)removeObject:(SpriteObject*)object
+{
+    // do not use NSArray's removeObject here
+    // => if isEqual is overriden this would lead to wrong results
+    NSUInteger index = 0;
+    for (SpriteObject *currentObject in self.objectList) {
+        if (currentObject == object) {
+            [self.objectList removeObjectAtIndex:index];
+            break;
+        }
+        ++index;
+    }
+}
+
+- (BOOL)objectExistsWithName:(NSString*)objectName
+{
+    for (SpriteObject *object in self.objectList) {
+        if ([object.name isEqualToString:objectName]) {
+            return YES;
+        }
+    }
+    return NO;
 }
 
 #pragma mark - Custom getter and setter
@@ -180,9 +211,12 @@
 {
     FileManager *fileManager = ((AppDelegate*)[[UIApplication sharedApplication] delegate]).fileManager;
     NSString *projectPath = [self projectPath];
-    if ([fileManager directoryExists:projectPath])
+    if ([fileManager directoryExists:projectPath]) {
         [fileManager deleteDirectory:projectPath];
-    [Util setLastProgram:nil];
+    }
+    if ([self isLastProgram]) {
+        [Util setLastProgram:nil];
+    }
 }
 
 - (GDataXMLElement*)toXML
@@ -235,10 +269,10 @@
     NSString *oldPath = [self projectPath];
     self.header.programName = programName;
     NSString *newPath = [self projectPath];
-    [[[FileManager alloc] init] moveExistingFileOrDirectoryAtPath:oldPath ToPath:newPath];
+    [[[FileManager alloc] init] moveExistingFileOrDirectoryAtPath:oldPath toPath:newPath];
 
     // TODO: update header in code.xml...
-    //      [self.program saveToDisk];
+    [self saveToDisk];
 }
 
 #pragma mark - helpers

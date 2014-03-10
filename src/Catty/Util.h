@@ -48,6 +48,13 @@
             placeholder:(NSString*)placeholder
                     tag:(NSInteger)tag;
 
++ (void)promptWithTitle:(NSString*)title
+                message:(NSString*)message
+               delegate:(id<UIAlertViewDelegate>)delegate
+            placeholder:(NSString*)placeholder
+                    tag:(NSInteger)tag
+                  value:(NSString*)value;
+
 + (NSString*)getProjectName;
 
 + (NSString*)getProjectVersion;

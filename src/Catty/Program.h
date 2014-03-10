@@ -35,12 +35,14 @@
 @property (nonatomic, strong) NSMutableArray *objectList;
 @property (nonatomic, strong) VariablesContainer *variables;
 - (SpriteObject*)addNewObjectWithName:(NSString*)objectName;
+- (void)removeObject:(SpriteObject*)object;
 - (NSString*)projectPath;
 - (void)removeFromDisk;
 - (void)saveToDisk;
 - (BOOL)isLastProgram;
 - (void)setAsLastProgram;
 - (void)renameToProgramName:(NSString*)programName;
+
 
 + (Program*)defaultProgramWithName:(NSString*)programName;
 + (Program*)lastProgram;

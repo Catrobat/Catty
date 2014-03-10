@@ -41,7 +41,8 @@
 #define kObjectTitlePlural NSLocalizedString(@"Objects",@"Title for Object-Section-Header in program view (plural)")
 #define kBackgroundObjectName NSLocalizedString(@"Background",@"Title for Background-Object in program view")
 #define kDefaultObjectName NSLocalizedString(@"My Object",@"Title for first (default) object in program view")
-#define kProgramNamePlaceholder NSLocalizedString(@"Enter your program name here...",@"Placeholder for rename-program-name input field")
+#define kProgramNamePlaceholder NSLocalizedString(@"Enter your program name here...",@"Placeholder for program-name input field")
+#define kObjectNamePlaceholder NSLocalizedString(@"Enter your object name here...",@"Placeholder for add object-name input field")
 
 // indexes
 #define kNumberOfSectionsInProgramTableViewController 2

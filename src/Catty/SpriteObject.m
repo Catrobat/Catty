@@ -229,8 +229,7 @@
         }
             return YES;
 
-        }
-        else{
+        } else {
             NSDebug(@"I'm transparent at this point");
             return NO;
     }
