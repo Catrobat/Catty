@@ -255,7 +255,7 @@ typedef NS_ENUM(NSInteger, kMotionBrickType) {
     NSLocalizedString(@"Point in direction %@°",nil),\
     NSLocalizedString(@"Point towards\n%@",nil),\
     NSLocalizedString(@"Glide %@ second(s)\nto X: %@ Y: %@",nil),\
-    NSLocalizedString(@"Go back %@ step(s)",nil),\
+    NSLocalizedString(@"Go back %@ layer(s)",nil),\
     NSLocalizedString(@"Go to front",nil)\
 ]
 
@@ -367,8 +367,8 @@ typedef NS_ENUM(NSInteger, kLookBrickType) {
 };
 
 #define kLookBrickNames @[\
-    NSLocalizedString(@"Set background\n%@",nil),\
-    NSLocalizedString(@"Next background",nil),\
+    NSLocalizedString(@"Switch to look\n%@",nil),\
+    NSLocalizedString(@"Next look",nil),\
     NSLocalizedString(@"Set size to %@\%",nil),\
     NSLocalizedString(@"Change size by %@\%",nil),\
     NSLocalizedString(@"Hide",nil),\
@@ -455,7 +455,15 @@ typedef NS_ENUM(NSInteger, kBrickShapeType) {
 };
 
 // bricks that are note shown in BricksCollectionViewController, because they are dependent on other bricks
-#define kUnselectableBricks @[\
+#define kUnselectableBricksObject @[\
+    @[@(kIfElseBrick), @(kIfEndBrick), @(kLoopEndBrick)], /* control bricks  */\
+    @[],                                                  /* motion bricks   */\
+    @[],                                                  /* sound bricks    */\
+    @[],                                                  /* look bricks     */\
+    @[]                                                   /* variable bricks */\
+]
+
+#define kUnselectableBricksBackgroundObject @[\
     @[@(kIfElseBrick), @(kIfEndBrick), @(kLoopEndBrick)], /* control bricks  */\
     @[@(kGoNStepsBackBrick), @(kComeToFrontBrick)],       /* motion bricks   */\
     @[],                                                  /* sound bricks    */\

@@ -242,8 +242,9 @@
     self.inlineView.backgroundColor = [UIColor clearColor];
 
     NSArray *inlineViewSubViews = [self inlineViewSubviews];
-    // call specific subclass method (virtual)
-#warning remove this "try-catch-check" later
+
+    // call corresponding subclass method, specific implementation (overridden method)
+    // TODO: remove this "try-catch-check" later
     @try {
         [self hookUpSubViews:inlineViewSubViews];
     } @catch (NSException *exception) {

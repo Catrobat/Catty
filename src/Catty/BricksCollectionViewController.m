@@ -48,14 +48,13 @@
 - (NSDictionary*)selectableBricks
 {
     if (! _selectableBricks) {
-        // TODO: issue #128 IDE - brick titles for background objects and hide unavailable bricks in their...
+        // hide unselectable bricks
+        NSArray *allUnselectableBricks = kUnselectableBricksObject;
         if ([self.object isBackground]) {
-            // TODO: determine available bricks for background object...
-        } else {
-            // TODO: determine available bricks for normal object...
+            allUnselectableBricks = kUnselectableBricksBackgroundObject;
         }
-        
-        NSArray *unselectableBricks = [kUnselectableBricks objectAtIndex:self.brickCategoryType];
+
+        NSArray *unselectableBricks = [allUnselectableBricks objectAtIndex:self.brickCategoryType];
         NSDictionary *allCategoriesAndBrickTypes = kClassNameBrickNameMap;
         NSInteger capacity = ([BrickCell numberOfAvailableBricksForCategoryType:self.brickCategoryType] - [unselectableBricks count]);
         NSMutableDictionary *selectableBricks = [NSMutableDictionary dictionaryWithCapacity:capacity];
