@@ -107,7 +107,7 @@
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
     
     if ([cell conformsToProtocol:@protocol(CatrobatImageCell)]) {
-        UITableViewCell <CatrobatImageCell>* imageCell = (UITableViewCell <CatrobatImageCell>*)cell;
+        UITableViewCell <CatrobatImageCell> *imageCell = (UITableViewCell<CatrobatImageCell>*)cell;
         switch (indexPath.row) {
             case 0:
                 imageCell.iconImageView.image = [UIImage imageNamed:@"ic_scripts"];
@@ -131,8 +131,27 @@
     return [TableUtil getHeightForImageCell];
 }
 
-#pragma mark - Navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+#pragma mark - table view delegates
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    // Pass the selected object to the new view controller.
+    static NSString *toScriptsSegueID = kSegueToScripts;
+    static NSString *toLooksSegueID = kSegueToLooks;
+    static NSString *toSoundsSegueID = kSegueToSounds;
+    
+    UITableViewCell* sender = [tableView cellForRowAtIndexPath:indexPath];
+    if (indexPath.row == 0)
+        [self performSegueWithIdentifier:toScriptsSegueID sender:sender];
+    else if (indexPath.row == 1)
+        [self performSegueWithIdentifier:toLooksSegueID sender:sender];
+    else if (indexPath.row == 2)
+        [self performSegueWithIdentifier:toSoundsSegueID sender:sender];
+    
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+}
+
+#pragma mark - segue handlers
+- (void)prepareForSegue:(UIStoryboardSegue*)segue sender:(id)sender
 {
     // Pass the selected object to the new view controller.
     static NSString *toScriptsSegueID = kSegueToScripts;
@@ -159,22 +178,6 @@
             }
         }
     }
-}
-
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Pass the selected object to the new view controller.
-    static NSString *toScriptsSegueID = kSegueToScripts;
-    static NSString *toLooksSegueID = kSegueToLooks;
-    static NSString *toSoundsSegueID = kSegueToSounds;
-    
-    UITableViewCell* sender = [tableView cellForRowAtIndexPath:indexPath];
-    if (indexPath.row == 0)
-        [self performSegueWithIdentifier:toScriptsSegueID sender:sender];
-    else if (indexPath.row == 1)
-        [self performSegueWithIdentifier:toLooksSegueID sender:sender];
-    else if (indexPath.row == 2)
-        [self performSegueWithIdentifier:toSoundsSegueID sender:sender];
 }
 
 #pragma mark - UIActionSheetDelegate Handlers

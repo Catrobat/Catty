@@ -93,16 +93,6 @@
 {
     [super viewWillAppear:animated];
     [self.navigationController setToolbarHidden:YES];
-    
-    NSNotificationCenter *dnc = NSNotificationCenter.defaultCenter;
-    [dnc addObserver:self selector:@selector(brickAdded:) name:BrickCellAddedNotification object:nil];
-}
-
-- (void)viewDidDisappear:(BOOL)animated
-{
-    [super viewDidDisappear:animated];
-    NSNotificationCenter *dnc = NSNotificationCenter.defaultCenter;
-    [dnc removeObserver:self name:BrickCellAddedNotification object:nil];
 }
 
 #pragma mark - actions
@@ -140,30 +130,35 @@
     return cell;
 }
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    //ColoredCell *cell = (ColoredCell *)[tableView cellForRowAtIndexPath:indexPath];
+#pragma mark - table view delegates
+- (void)tableView:(UITableView*)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"iPhone" bundle:nil];
-    BricksCollectionViewController *brickCategoryCVC = [storyboard instantiateViewControllerWithIdentifier:@"BricksDetailViewCVC"];
+    BricksCollectionViewController *brickCategoryCVC;
+    brickCategoryCVC = (BricksCollectionViewController*)[storyboard instantiateViewControllerWithIdentifier:@"BricksDetailViewCollectionViewController"];
     brickCategoryCVC.brickCategoryType = (kBrickCategoryType)indexPath.row;
     brickCategoryCVC.object = self.object;
     [self.navigationController pushViewController:brickCategoryCVC animated:YES];
 }
 
-- (void)tableView:(UITableView *)tableView didHighlightRowAtIndexPath:(NSIndexPath*)indexPath
+- (void)tableView:(UITableView*)tableView didHighlightRowAtIndexPath:(NSIndexPath*)indexPath
 {
-    ColoredCell *cell = (ColoredCell *)[self.tableView cellForRowAtIndexPath:indexPath];
-    self.overlayView.bounds = CGRectMake(cell.bounds.origin.x, cell.bounds.origin.y, CGRectGetWidth(cell.bounds) * 2.f, CGRectGetHeight(cell.bounds) * 2.f);
+    ColoredCell *cell = (ColoredCell*)[self.tableView cellForRowAtIndexPath:indexPath];
+    self.overlayView.bounds = CGRectMake(cell.bounds.origin.x,
+                                         cell.bounds.origin.y,
+                                         CGRectGetWidth(cell.bounds) * 2.0f,
+                                         CGRectGetHeight(cell.bounds) * 2.0f);
     [cell.contentView addSubview:self.overlayView];
 }
 
-- (void)tableView:(UITableView *)tableView didUnhighlightRowAtIndexPath:(NSIndexPath *)indexPath
+- (void)tableView:(UITableView*)tableView didUnhighlightRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [self.overlayView removeFromSuperview];
 }
 
-- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell*)cell forRowAtIndexPath:(NSIndexPath*)indexPath
+- (void)tableView:(UITableView*)tableView willDisplayCell:(UITableViewCell*)cell forRowAtIndexPath:(NSIndexPath*)indexPath
 {
-    cell.backgroundColor = self.brickTypeColors[indexPath.row];
+    cell.backgroundColor = [self.brickTypeColors objectAtIndex:indexPath.row];
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -172,33 +167,15 @@
     return (([Util getScreenHeight] - navBarHeight - kAddScriptCategoryTableViewBottomMargin) / [self.brickCategoryNames count]);
 }
 
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    return NO;
-}
-
 #pragma mark - helpers
 - (void)setupNavigationBar
 {
-    NSString *title = NSLocalizedString(@"Categories", nil);
-    self.title = title;
-    self.navigationItem.title = title;
-
-    UIBarButtonItem *closeButton = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(dismissCatergoryScriptsVC:)];
+    self.title = self.navigationItem.title = NSLocalizedString(@"Categories", nil);
+    UIBarButtonItem *closeButton;
+    closeButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone
+                                                                target:self
+                                                                action:@selector(dismissCatergoryScriptsVC:)];
     self.navigationItem.leftBarButtonItems = @[closeButton];
 }
-
-- (void)brickAdded:(NSNotification *)notification
-{
-    if (notification.userInfo) {
-        if (! [self.presentedViewController isBeingPresented]) {
-            [self dismissViewControllerAnimated:YES completion:^{
-                NSNotificationCenter *dnc = NSNotificationCenter.defaultCenter;
-                [dnc postNotificationName:BrickCellAddedNotification object:nil userInfo:notification.userInfo];
-            }];
-        }
-    }
-}
-
 
 @end

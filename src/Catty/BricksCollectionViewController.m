@@ -25,6 +25,7 @@
 #import "SegueDefines.h"
 #import "BrickCell.h"
 #import "ScriptCollectionViewController.h"
+#import "SpriteObject.h"
 
 #define kTableHeaderIdentifier @"Header"
 
@@ -35,117 +36,7 @@
 
 @implementation BricksCollectionViewController
 
-#pragma mark - application events
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    [BrickCell clearImageCache];
-}
-
-#pragma mark - view events
-- (void)viewDidLoad
-{
-    [super viewDidLoad];
-    [self initCollectionView];
-    [super initPlaceHolder];
-    [self setupNavigationBar];
-    self.collectionView.scrollEnabled = YES;
-    self.collectionView.alwaysBounceVertical = YES;
-    self.collectionView.delaysContentTouches = NO;
-
-    // register brick cells for current brick category
-    NSDictionary *selectableBricks = self.selectableBricks;
-    for (NSNumber *brickType in selectableBricks) {
-        NSString *brickTypeName = selectableBricks[brickType];
-        [self.collectionView registerClass:NSClassFromString([brickTypeName stringByAppendingString:@"Cell"]) forCellWithReuseIdentifier:brickTypeName];
-    }
-}
-
-- (void)viewWillAppear:(BOOL)animated
-{
-    [super viewWillAppear:animated];
-    [self.navigationController setToolbarHidden:YES];
-}
-
-- (void)viewWillDisappear:(BOOL)animated
-{
-    [super viewWillDisappear:animated];
-    [self.navigationController setToolbarHidden:NO];
-}
-
-#pragma mark - Table view data source
-- (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView
-{
-    // @INFO: we use 1 section per brick to easily circumvent the inset-problem...
-    //        otherwise we probably have to use a custom CVC-layout...
-    return [self.selectableBricks count];
-}
-
-- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
-{
-    return 1;
-}
-
-- (CGSize)collectionView:(UICollectionView*)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath*)indexPath
-{
-    CGFloat width = self.view.frame.size.width;
-//    CGFloat height = [BrickCell brickCellHeightForCategoryType:self.brickCategoryType AndBrickType:indexPath.row];
-    CGFloat height = [BrickCell brickCellHeightForCategoryType:self.brickCategoryType AndBrickType:indexPath.section];
-    return CGSizeMake(width, height);
-}
-
-- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
-{
-    NSNumber *brickType = [self.selectableBricksSortedIndexes objectAtIndex:indexPath.section];
-    NSString *brickTypeName = [self.selectableBricks objectForKey:brickType];
-    BrickCell *brickCell = [collectionView dequeueReusableCellWithReuseIdentifier:brickTypeName forIndexPath:indexPath];
-    brickCell.enabled = NO;
-    return brickCell;
-}
-
-- (UIEdgeInsets)collectionView:(UICollectionView *)collectionView
-                        layout:(UICollectionViewLayout*)collectionViewLayout
-        insetForSectionAtIndex:(NSInteger)section
-{
-    UIEdgeInsets insets = UIEdgeInsetsMake(0.0f, 0.0f, 0.0f, 0.0f);
-    if ([BrickCell isScriptBrickCellForCategoryType:self.brickCategoryType AndBrickType:section]) {
-        insets.top += 10.0f;
-    }
-    return insets;
-}
-
-- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath*)indexPath
-{
-    BrickCell *brickCell = (BrickCell *)[collectionView cellForItemAtIndexPath:indexPath];
-
-    if (! [self.presentedViewController isBeingPresented]) {
-        [self dismissViewControllerAnimated:YES completion:^{
-            NSNotificationCenter *dnc = NSNotificationCenter.defaultCenter;
-            [dnc postNotificationName:BrickCellAddedNotification object:nil userInfo:@{UserInfoKeyBrickCell : brickCell,
-                                                                                       UserInfoSpriteObject : self.object}];
-        }];
-    }
-}
-
-- (void)setupNavigationBar {
-    NSString *title = kBrickCategoryNames[self.brickCategoryType];
-    self.title = title;
-    self.navigationItem.title = title;
-}
-
-#pragma mark actions
-
-- (void)dismissBricksCVC:(id)sender {
-    if ([sender isKindOfClass:[UIBarButtonItem class]]) {
-        if (!self.presentingViewController.isBeingPresented) {
-            [self dismissViewControllerAnimated:YES completion:^{
-                
-            }];
-        }
-    }
-}
-
-#pragma mark getters and setters
+#pragma mark - getters and setters
 - (NSArray*)selectableBricksSortedIndexes
 {
     if (! _selectableBricksSortedIndexes) {
@@ -157,6 +48,13 @@
 - (NSDictionary*)selectableBricks
 {
     if (! _selectableBricks) {
+        // TODO: issue #128 IDE - brick titles for background objects and hide unavailable bricks in their...
+        if ([self.object isBackground]) {
+            // TODO: determine available bricks for background object...
+        } else {
+            // TODO: determine available bricks for normal object...
+        }
+        
         NSArray *unselectableBricks = [kUnselectableBricks objectAtIndex:self.brickCategoryType];
         NSDictionary *allCategoriesAndBrickTypes = kClassNameBrickNameMap;
         NSInteger capacity = ([BrickCell numberOfAvailableBricksForCategoryType:self.brickCategoryType] - [unselectableBricks count]);
@@ -189,12 +87,112 @@
     self.navigationItem.title = title;
 }
 
-#pragma mark init
+#pragma mark - initialization
 - (void)initCollectionView
 {
     self.collectionView.delegate = self;
     self.collectionView.dataSource = self;
     self.collectionView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"darkblue"]];
+}
+
+#pragma mark - view events
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
+    [self initCollectionView];
+    [super initPlaceHolder];
+    [self setupNavigationBar];
+    self.collectionView.scrollEnabled = YES;
+    self.collectionView.alwaysBounceVertical = YES;
+    self.collectionView.delaysContentTouches = NO;
+
+    // register brick cells for current brick category
+    NSDictionary *selectableBricks = self.selectableBricks;
+    for (NSNumber *brickType in selectableBricks) {
+        NSString *brickTypeName = selectableBricks[brickType];
+        [self.collectionView registerClass:NSClassFromString([brickTypeName stringByAppendingString:@"Cell"])
+                forCellWithReuseIdentifier:brickTypeName];
+    }
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [self.navigationController setToolbarHidden:YES];
+}
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    [self.navigationController setToolbarHidden:NO];
+}
+
+#pragma mark - application events
+- (void)didReceiveMemoryWarning
+{
+    [super didReceiveMemoryWarning];
+    [BrickCell clearImageCache];
+}
+
+#pragma mark - Table view data source
+- (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView
+{
+    // @INFO: we use 1 section per brick to easily circumvent the inset-problem...
+    //        otherwise we probably have to use a custom CVC-layout...
+    return [self.selectableBricks count];
+}
+
+- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
+{
+    return 1;
+}
+
+- (CGSize)collectionView:(UICollectionView*)collectionView
+                  layout:(UICollectionViewLayout*)collectionViewLayout
+  sizeForItemAtIndexPath:(NSIndexPath*)indexPath
+{
+    CGFloat width = self.view.frame.size.width;
+    CGFloat height = [BrickCell brickCellHeightForCategoryType:self.brickCategoryType AndBrickType:indexPath.section];
+    return CGSizeMake(width, height);
+}
+
+- (UICollectionViewCell*)collectionView:(UICollectionView*)collectionView
+                 cellForItemAtIndexPath:(NSIndexPath*)indexPath
+{
+    NSNumber *brickType = [self.selectableBricksSortedIndexes objectAtIndex:indexPath.section];
+    NSString *brickTypeName = [self.selectableBricks objectForKey:brickType];
+    BrickCell *brickCell = [collectionView dequeueReusableCellWithReuseIdentifier:brickTypeName forIndexPath:indexPath];
+    brickCell.enabled = NO;
+    return brickCell;
+}
+
+- (UIEdgeInsets)collectionView:(UICollectionView *)collectionView
+                        layout:(UICollectionViewLayout*)collectionViewLayout
+        insetForSectionAtIndex:(NSInteger)section
+{
+    UIEdgeInsets insets = UIEdgeInsetsMake(0.0f, 0.0f, 0.0f, 0.0f);
+    if ([BrickCell isScriptBrickCellForCategoryType:self.brickCategoryType AndBrickType:section]) {
+        insets.top += 10.0f;
+    }
+    return insets;
+}
+
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath*)indexPath
+{
+    BrickCell *brickCell = (BrickCell*)[collectionView cellForItemAtIndexPath:indexPath];
+    [self.presentingViewController dismissViewControllerAnimated:YES completion:^{
+        NSNotificationCenter *dnc = [NSNotificationCenter defaultCenter];
+        [dnc postNotificationName:kBrickCellAddedNotification
+                           object:nil
+                         userInfo:@{ kUserInfoKeyBrickCell : brickCell,
+                                     kUserInfoSpriteObject : self.object }];
+    }];
+}
+
+#pragma mark - helpers
+- (void)setupNavigationBar
+{
+    self.navigationItem.title = self.title = [kBrickCategoryNames objectAtIndex:self.brickCategoryType];
 }
 
 @end

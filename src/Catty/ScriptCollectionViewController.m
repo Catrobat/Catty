@@ -40,6 +40,16 @@
 
 @implementation ScriptCollectionViewController
 
+#pragma mark - Getters and Setters
+- (NSDictionary*)classNameBrickNameMap
+{
+    static NSDictionary *classNameBrickNameMap = nil;
+    if (classNameBrickNameMap == nil) {
+        classNameBrickNameMap = kClassNameBrickNameMap;
+    }
+    return classNameBrickNameMap;
+}
+
 #pragma mark - initialization
 - (void)initCollectionView
 {
@@ -76,16 +86,16 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    NSNotificationCenter *dnc = NSNotificationCenter.defaultCenter;
-    [dnc addObserver:self selector:@selector(brickAdded:) name:BrickCellAddedNotification object:nil];
+    NSNotificationCenter *dnc = [NSNotificationCenter defaultCenter];
+    [dnc addObserver:self selector:@selector(brickAdded:) name:kBrickCellAddedNotification object:nil];
     [self.navigationController setToolbarHidden:NO];
 }
 
 - (void)viewWillDisappear:(BOOL)animated
 {
     [super viewWillDisappear:animated];
-    NSNotificationCenter *dnc = NSNotificationCenter.defaultCenter;
-    [dnc removeObserver:self name:BrickCellAddedNotification object:nil];
+    NSNotificationCenter *dnc = [NSNotificationCenter defaultCenter];
+    [dnc removeObserver:self name:kBrickCellAddedNotification object:nil];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -105,22 +115,71 @@
 }
 
 #pragma mark - actions
-- (void)addScriptAction:(id)sender
+- (void)addBrickAction:(id)sender
 {
-    // [self performSegueWithIdentifier:kSegueToScriptCategories sender:sender];
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"iPhone" bundle:nil];
-    
-    BrickCategoriesTableViewController *brickCategoryTVC = [storyboard instantiateViewControllerWithIdentifier:@"BricksCategoryTVC"];
+    BrickCategoriesTableViewController *brickCategoryTVC;
+    brickCategoryTVC = [storyboard instantiateViewControllerWithIdentifier:@"BrickCategoriesTableViewController"];
     brickCategoryTVC.object = self.object;
-    UINavigationController *navController = [[UINavigationController alloc]initWithRootViewController:brickCategoryTVC];
-    
-    [self presentViewController:navController animated:YES completion:NULL];
+    UINavigationController *navigationController = [[UINavigationController alloc]
+                                                    initWithRootViewController:brickCategoryTVC];
+    [self presentViewController:navigationController animated:YES completion:NULL];
 }
 
 - (void)playSceneAction:(id)sender
 {
     [self.navigationController setToolbarHidden:YES];
     [self performSegueWithIdentifier:kSegueToScene sender:sender];
+}
+
+- (void)addBrickCellAction:(BrickCell*)brickCell
+{
+    //    BrickManager *brickManager = [BrickManager sharedBrickManager];
+    if (! brickCell) {
+        return;
+    }
+
+    // convert brickCell to brick
+    NSString *brickCellClassName = NSStringFromClass([brickCell class]);
+    NSString *brickOrScriptClassName = [brickCellClassName stringByReplacingOccurrencesOfString:@"Cell" withString:@""];
+    id brickOrScript = [[NSClassFromString(brickOrScriptClassName) alloc] init];
+    
+    if ([brickOrScript isKindOfClass:[Brick class]]) {
+        Script *script = nil;
+        // automatically create new script if the object does not contain any of them
+        if (! [self.object.scriptList count]) {
+            script = [[StartScript alloc] init];
+            script.allowRunNextAction = YES;
+            script.object = self.object;
+            [self.object.scriptList addObject:script];
+        } else {
+            // add brick to first script
+            script = [self.object.scriptList objectAtIndex:0];
+        }
+        Brick *brick = (Brick*)brickOrScript;
+        brick.object = self.object;
+        [script.brickList addObject:brick];
+    } else if ([brickOrScript isKindOfClass:[Script class]]) {
+        Script *script = (Script*)brickOrScript;
+        script.object = self.object;
+        [self.object.scriptList addObject:script];
+    } else {
+        NSError(@"Unknown class type given...");
+        abort();
+    }
+    [super showPlaceHolder:NO];
+    
+    // TODO: change this...
+    [self.collectionView reloadData];
+}
+
+#pragma mark - notification
+- (void)brickAdded:(NSNotification*)notification
+{
+    if (notification.userInfo) {
+        NSLog(@"brickAdded notification received with userInfo: %@", [notification.userInfo description]);
+        [self addBrickCellAction:notification.userInfo[kUserInfoKeyBrickCell]];
+    }
 }
 
 #pragma mark - collection view datasource
@@ -167,7 +226,9 @@
     return brickCell;
 }
 
-- (CGSize)collectionView:(UICollectionView*)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath*)indexPath
+- (CGSize)collectionView:(UICollectionView*)collectionView
+                  layout:(UICollectionViewLayout*)collectionViewLayout
+  sizeForItemAtIndexPath:(NSIndexPath*)indexPath
 {
     CGFloat width = self.view.frame.size.width;
     kBrickCategoryType categoryType = kControlBrick;
@@ -220,12 +281,25 @@
     return CGSizeMake(width, height);
 }
 
-- (UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout insetForSectionAtIndex:(NSInteger)section
+- (UIEdgeInsets)collectionView:(UICollectionView *)collectionView
+                        layout:(UICollectionViewLayout*)collectionViewLayout
+        insetForSectionAtIndex:(NSInteger)section
 {
     // !!! PLEASE DO NOT COMMENT THESE LINES OUT !!!
-    // margin between CVC-sections ( = scripts) as you can see in Catroid's PocketCode version
+    // margin between CVC-sections as you can see in Catroid's PocketCode version
     // TODO: outsource all consts
     return UIEdgeInsetsMake(10, 0, 5, 0);
+}
+
+#pragma mark LXReorderableCollectionViewDatasource
+- (void)collectionView:(UICollectionView *)collectionView
+       itemAtIndexPath:(NSIndexPath *)fromIndexPath
+   willMoveToIndexPath:(NSIndexPath *)toIndexPath
+{
+//    Script *script = [self.object.scriptList objectAtIndex:fromIndexPath.section];
+//    Brick *brick = [script.brickList objectAtIndex:fromIndexPath.row - 1];
+//    [script.brickList removeObjectAtIndex:fromIndexPath.item];
+//    [script.brickList insertObject:brick atIndex:toIndexPath.item];
 }
 
 #pragma mark - segue handling
@@ -246,68 +320,7 @@
     }
 }
 
-#pragma mark - Getters and Setters
-- (NSDictionary*)classNameBrickNameMap
-{
-    static NSDictionary *classNameBrickNameMap = nil;
-    if (classNameBrickNameMap == nil) {
-        classNameBrickNameMap = kClassNameBrickNameMap;
-    }
-    return classNameBrickNameMap;
-}
-
-- (void)addBrickCell:(BrickCell *)brickCell
-{
-//    BrickManager *brickManager = [BrickManager sharedBrickManager];
-    if (! brickCell) {
-        return;
-    }
-
-    // convert brickCell to brick
-    NSString *brickCellClassName = NSStringFromClass([brickCell class]);
-    NSString *brickOrScriptClassName = [brickCellClassName stringByReplacingOccurrencesOfString:@"Cell" withString:@""];
-    id brickOrScript = [[NSClassFromString(brickOrScriptClassName) alloc] init];
-
-    if ([brickOrScript isKindOfClass:[Brick class]]) {
-        Script *script = nil;
-        // automatically create new script if the object does not contain any of them
-        if (! [self.object.scriptList count]) {
-            script = [[StartScript alloc] init];
-            script.allowRunNextAction = YES;
-            script.object = self.object;
-            [self.object.scriptList addObject:script];
-        } else {
-            // add brick to first script
-            script = [self.object.scriptList objectAtIndex:0];
-        }
-        Brick *brick = (Brick*)brickOrScript;
-        brick.object = self.object;
-        [script.brickList addObject:brick];
-    } else if ([brickOrScript isKindOfClass:[Script class]]) {
-        Script *script = (Script*)brickOrScript;
-        script.object = self.object;
-        [self.object.scriptList addObject:script];
-    } else {
-        NSError(@"Unknown class type given...");
-        abort();
-    }
-    [super showPlaceHolder:NO];
-
-    // TODO: change this...
-    [self.collectionView reloadData];
-}
-
-#pragma mark LXReorderableCollectionViewDatasource
-- (void)collectionView:(UICollectionView *)collectionView itemAtIndexPath:(NSIndexPath *)fromIndexPath willMoveToIndexPath:(NSIndexPath *)toIndexPath
-{
-    //    Script *script = [self.object.scriptList objectAtIndex:fromIndexPath.section];
-    //    Brick *brick = [script.brickList objectAtIndex:fromIndexPath.row - 1];
-    //
-    //    [script.brickList removeObjectAtIndex:fromIndexPath.item];
-    //    [script.brickList insertObject:brick atIndex:toIndexPath.item];
-}
-
-
+#pragma mark - helpers
 - (void)setupToolBar
 {
     // @INFO: Please do not modify or remove this code again, unless you don't exactly know what you are doing.
@@ -322,7 +335,7 @@
                                                                               action:nil];
     UIBarButtonItem *add = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd
                                                                          target:self
-                                                                         action:@selector(addScriptAction:)];
+                                                                         action:@selector(addBrickAction:)];
     UIBarButtonItem *play = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemPlay
                                                                           target:self
                                                                           action:@selector(playSceneAction:)];
@@ -354,20 +367,11 @@
 //    fixedSpace.width = 200.;
 //    UIBarButtonItem *add = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd
 //                                                                         target:self
-//                                                                         action:@selector(addScriptAction:)];
+//                                                                         action:@selector(addBrickAction:)];
 //    UIBarButtonItem *play = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemPlay
 //                                                                          target:self
 //                                                                          action:@selector(playSceneAction:)];
 //    self.toolbarItems = @[flexItem, add, fixedSpace, play, flexItem];
 //}
-
-#pragma mark Notification
-- (void)brickAdded:(NSNotification *)notification
-{
-    if (notification.userInfo) {
-        NSLog(@"%@: Notification Received with UserInfo: %@", [self class], notification.userInfo);
-        [self addBrickCell:notification.userInfo[UserInfoKeyBrickCell]];
-    }
-}
 
 @end
