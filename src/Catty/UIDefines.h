@@ -39,6 +39,13 @@
 #define kMenuTitleExplore NSLocalizedString(@"Explore",nil)
 #define kMenuTitleUpload NSLocalizedString(@"Upload",nil)
 
+#define kMenuImageNameContinue @"continue"
+#define kMenuImageNameNew @"new"
+#define kMenuImageNamePrograms @"programs"
+#define kMenuImageNameForum @"forum"
+#define kMenuImageNameExplore @"explore"
+#define kMenuImageNameUpload @"upload"
+
 // brick UI config
 // brick categories
 typedef NS_ENUM(NSInteger, kBrickCategoryType) {

@@ -74,7 +74,7 @@ static ImageCache *sharedImageCache = nil;
 }
 
 
--(UIImage*) getImageWithName:(NSString*)imageName;
+- (UIImage*) getImageWithName:(NSString*)imageName;
 {
     UIImage* image = [self.imageCache objectForKey:imageName];
     if(!image) {
@@ -84,7 +84,7 @@ static ImageCache *sharedImageCache = nil;
     return image;
 }
 
--(void)addImage:(UIImage *)image withName:(NSString *)imageName persist:(BOOL)persist
+- (void)addImage:(UIImage *)image withName:(NSString *)imageName persist:(BOOL)persist
 {
     if(![self.imageCache objectForKey:imageName] && image && imageName) {
         [self.imageCache setObject:image forKey:imageName];
@@ -95,8 +95,8 @@ static ImageCache *sharedImageCache = nil;
 }
 
 
--(void)subscribeToAppEvents {
-
+- (void)subscribeToAppEvents
+{
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(clearImageCache)
                                                  name:UIApplicationDidReceiveMemoryWarningNotification
@@ -109,8 +109,8 @@ static ImageCache *sharedImageCache = nil;
 }
 
 
--(void)removeOldCachedImagesFromDisk {
-    
+- (void)removeOldCachedImagesFromDisk
+{
     NSMutableArray *urlsToDelete = [[NSMutableArray alloc] init];
     
     NSURL *imageCacheUrl = [NSURL fileURLWithPath:self.imageCachePath isDirectory:YES];
@@ -137,13 +137,14 @@ static ImageCache *sharedImageCache = nil;
 }
 
 
--(void)clearImageCache {
+- (void)clearImageCache
+{
     [self.imageCache removeAllObjects];
 }
 
 
--(void)storeImageToDisk:(UIImage*)image withName:(NSString*)imageName{
-    
+- (void)storeImageToDisk:(UIImage*)image withName:(NSString*)imageName
+{
     dispatch_async(self.imageCacheQueue, ^ {
         
         [self createCacheDirectoryIfNotExists];
@@ -158,9 +159,8 @@ static ImageCache *sharedImageCache = nil;
     
 }
 
-
--(UIImage*)readImageFromDiskWithName:(NSString*)imageName {
-    
+- (UIImage*)readImageFromDiskWithName:(NSString*)imageName
+{
     NSString* path = [[NSString alloc] initWithFormat:@"%@/%@.png", self.imageCachePath, [imageName sha1]];
     NSError *err = nil;
     NSData *data = [NSData dataWithContentsOfFile:path
@@ -168,18 +168,16 @@ static ImageCache *sharedImageCache = nil;
                                           error:&err];
     
     return [UIImage imageWithData:data];
-
 }
 
 
--(void)createCacheDirectoryIfNotExists {
+- (void)createCacheDirectoryIfNotExists
+{
     NSFileManager *fileManager = [NSFileManager defaultManager];
     if (![fileManager fileExistsAtPath:self.imageCachePath])
     {
         [fileManager createDirectoryAtPath:self.imageCachePath withIntermediateDirectories:YES attributes:nil error:NULL];
     }
 }
-
-
 
 @end

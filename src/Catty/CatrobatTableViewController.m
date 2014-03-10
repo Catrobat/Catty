@@ -45,9 +45,10 @@
 @interface CatrobatTableViewController () <UIAlertViewDelegate, UITextFieldDelegate>
 
 @property (nonatomic, strong) NSArray *cells;
+@property (nonatomic, strong) NSArray *imageNames;
+@property (nonatomic, strong) NSArray *identifiers;
 @property (nonatomic, strong) Program *lastProgram;
 @property (nonatomic, strong) Program *defaultProgram;
-@property (nonatomic, strong) NSArray *identifiers;
 
 @end
 
@@ -111,6 +112,7 @@
 - (void)initTableView
 {
     self.cells = [[NSArray alloc] initWithObjects:kMenuTitleContinue, kMenuTitleNew, kMenuTitlePrograms, kMenuTitleForum, kMenuTitleExplore, kMenuTitleUpload, nil];
+    self.imageNames = [[NSArray alloc] initWithObjects:kMenuImageNameContinue, kMenuImageNameNew, kMenuImageNamePrograms, kMenuImageNameForum, kMenuImageNameExplore, kMenuImageNameUpload, nil];
     self.identifiers = [[NSArray alloc] initWithObjects:kSegueToContinue, kSegueToNewProgram, kSegueToPrograms, kSegueToForum, kSegueToExplore, kSegueToUpload, nil];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
@@ -153,7 +155,7 @@
         NSError(@"Should Never happen - since iOS5 Storyboard *always* instantiates our cell!");
     }
     if ([cell conformsToProtocol:@protocol(CatrobatImageCell)]) {
-        UITableViewCell <CatrobatImageCell>* imageCell = (UITableViewCell <CatrobatImageCell>*)cell;
+        UITableViewCell<CatrobatImageCell> *imageCell = (UITableViewCell<CatrobatImageCell>*)cell;
         [self configureImageCell:imageCell atIndexPath:indexPath];
     }
     if (indexPath.row == 0) {
@@ -163,7 +165,7 @@
 }
 
 #pragma mark - table view delegate
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath*)indexPath
 {
     NSString* identifier = [self.identifiers objectAtIndex:indexPath.row];
 #warning the if statement should be removed once everything has been implemented..
@@ -187,8 +189,8 @@
 #pragma mark - table view helpers
 - (void)configureImageCell:(UITableViewCell <CatrobatImageCell>*)cell atIndexPath:(NSIndexPath*)indexPath
 {
-    cell.titleLabel.text = NSLocalizedString([[self.cells objectAtIndex:indexPath.row] capitalizedString], nil);
-    cell.iconImageView.image = [UIImage imageNamed: [self.cells objectAtIndex:indexPath.row]];
+    cell.titleLabel.text = [self.cells objectAtIndex:indexPath.row];
+    cell.iconImageView.image = [UIImage imageNamed:[self.imageNames objectAtIndex:indexPath.row]];
 }
 
 - (void)configureSubtitleLabelForCell:(UITableViewCell*)cell
