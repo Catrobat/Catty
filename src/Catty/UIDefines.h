@@ -517,10 +517,10 @@ typedef NS_ENUM(NSInteger, kBrickShapeType) {
 }
 
 // Notifications
-static NSString *const BrickCellAddedNotification = @"BrickCellAddedNotification";
+static NSString *const kBrickCellAddedNotification = @"BrickCellAddedNotification";
 
 // Notification keys
-static NSString *const UserInfoKeyBrickCell = @"UserInfoKeyBrickCell";
-static NSString *const UserInfoSpriteObject = @"UserInfoSpriteObject";
+static NSString *const kUserInfoKeyBrickCell = @"UserInfoKeyBrickCell";
+static NSString *const kUserInfoSpriteObject = @"UserInfoSpriteObject";
 
 

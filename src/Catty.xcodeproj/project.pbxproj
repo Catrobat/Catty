@@ -245,6 +245,7 @@
 		CA8F8A0B17F241F700A04C03 /* ic_looks.png in Resources */ = {isa = PBXBuildFile; fileRef = CA8F8A0817F241F700A04C03 /* ic_looks.png */; };
 		CA8F8A0C17F241F700A04C03 /* ic_scripts.png in Resources */ = {isa = PBXBuildFile; fileRef = CA8F8A0917F241F700A04C03 /* ic_scripts.png */; };
 		CA8F8A0D17F241F700A04C03 /* ic_sounds.png in Resources */ = {isa = PBXBuildFile; fileRef = CA8F8A0A17F241F700A04C03 /* ic_sounds.png */; };
+		CAB95BA518CD51EF006638F6 /* LookImageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CAB95BA418CD51EF006638F6 /* LookImageViewController.m */; };
 		CABE07BC18BAB8B200BE26EF /* MessageComboBoxView.m in Sources */ = {isa = PBXBuildFile; fileRef = CABE07BB18BAB8B200BE26EF /* MessageComboBoxView.m */; };
 		CABE07BF18BAB8EF00BE26EF /* ObjectComboBoxView.m in Sources */ = {isa = PBXBuildFile; fileRef = CABE07BE18BAB8EF00BE26EF /* ObjectComboBoxView.m */; };
 		CABE07C218BAB90400BE26EF /* SoundComboBoxView.m in Sources */ = {isa = PBXBuildFile; fileRef = CABE07C118BAB90400BE26EF /* SoundComboBoxView.m */; };
@@ -726,6 +727,8 @@
 		CA8F8A0817F241F700A04C03 /* ic_looks.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ic_looks.png; sourceTree = "<group>"; };
 		CA8F8A0917F241F700A04C03 /* ic_scripts.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ic_scripts.png; sourceTree = "<group>"; };
 		CA8F8A0A17F241F700A04C03 /* ic_sounds.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ic_sounds.png; sourceTree = "<group>"; };
+		CAB95BA318CD51EF006638F6 /* LookImageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LookImageViewController.h; sourceTree = "<group>"; };
+		CAB95BA418CD51EF006638F6 /* LookImageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LookImageViewController.m; sourceTree = "<group>"; };
 		CABE07BA18BAB8B200BE26EF /* MessageComboBoxView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageComboBoxView.h; sourceTree = "<group>"; };
 		CABE07BB18BAB8B200BE26EF /* MessageComboBoxView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageComboBoxView.m; sourceTree = "<group>"; };
 		CABE07BD18BAB8EF00BE26EF /* ObjectComboBoxView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ObjectComboBoxView.h; sourceTree = "<group>"; };
@@ -1784,6 +1787,8 @@
 			children = (
 				81FAEE3017E782140052BB2B /* LooksTableViewController.h */,
 				81FAEE3117E782140052BB2B /* LooksTableViewController.m */,
+				CAB95BA318CD51EF006638F6 /* LookImageViewController.h */,
+				CAB95BA418CD51EF006638F6 /* LookImageViewController.m */,
 			);
 			name = MaintainLooks;
 			sourceTree = "<group>";
@@ -2970,6 +2975,7 @@
 				CA75C28018A9622100FC8C2F /* SpeakBrickCell.m in Sources */,
 				CA75C2A118A9626B00FC8C2F /* ClearGraphicEffectBrickCell.m in Sources */,
 				CA75C23518A9614100FC8C2F /* BroadcastWaitBrickCell.m in Sources */,
+				CAB95BA518CD51EF006638F6 /* LookImageViewController.m in Sources */,
 				B45A5827173253E5000E038F /* SetVariableBrick.m in Sources */,
 				B45A582C17325442000E038F /* UserVariable.m in Sources */,
 				B45A583117327887000E038F /* Formula.m in Sources */,

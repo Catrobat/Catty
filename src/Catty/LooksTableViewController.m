@@ -30,6 +30,7 @@
 #import "SegueDefines.h"
 #import "ActionSheetAlertViewTags.h"
 #import "ScenePresenterViewController.h"
+#import "LookImageViewController.h"
 #import "ProgramDefines.h"
 #import "UIImageView+CatrobatUIImageViewExtensions.h"
 #import "Util.h"
@@ -218,6 +219,11 @@
     return imageCell;
 }
 
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath*)indexPath
+{
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+}
+
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
   return [TableUtil getHeightForImageCell];
@@ -245,168 +251,183 @@
 // In a story board-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-  static NSString* toSceneSegueID = kSegueToScene;
-  UIViewController* destController = segue.destinationViewController;
-  if ([sender isKindOfClass:[UIBarButtonItem class]]) {
-    if ([segue.identifier isEqualToString:toSceneSegueID]) {
-      if ([destController isKindOfClass:[ScenePresenterViewController class]]) {
-        ScenePresenterViewController* scvc = (ScenePresenterViewController*) destController;
-        if ([scvc respondsToSelector:@selector(setProgram:)]) {
-            [scvc setController:(UITableViewController *)self];
-          [scvc performSelector:@selector(setProgram:) withObject:self.object.program];
+    static NSString* segueToSceneIdentifier = kSegueToScene;
+    static NSString* segueToImageIdentifier = kSegueToImage;
+    UIViewController* destController = segue.destinationViewController;
+    if ([sender isKindOfClass:[UIBarButtonItem class]]) {
+        if ([segue.identifier isEqualToString:segueToSceneIdentifier]) {
+            if ([destController isKindOfClass:[ScenePresenterViewController class]]) {
+                ScenePresenterViewController *scvc = (ScenePresenterViewController*)destController;
+                if ([scvc respondsToSelector:@selector(setProgram:)]) {
+                    [scvc setController:(UITableViewController*)self];
+                    [scvc performSelector:@selector(setProgram:) withObject:self.object.program];
+                }
+            }
         }
-      }
+    } else if ([sender isKindOfClass:[UITableViewCell class]]) {
+        UITableViewCell *cell = (UITableViewCell*)sender;
+        NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
+        if ([segue.identifier isEqualToString:segueToImageIdentifier]) {
+            if ([destController isKindOfClass:[LookImageViewController class]]) {
+                LookImageViewController *livc = (LookImageViewController*)destController;
+                if ([livc respondsToSelector:@selector(setImageName:)] && [livc respondsToSelector:@selector(setImagePath:)]) {
+                    Look *look = [self.object.lookList objectAtIndex:indexPath.row];
+                    [livc performSelector:@selector(setImageName:) withObject:look.name];
+                    NSString *lookImagePath = [self.object pathForLook:look];
+                    [livc performSelector:@selector(setImagePath:) withObject:lookImagePath];
+                }
+            }
+        }
     }
-  }
 }
 
 #pragma mark - UIImagePicker Handler
 - (void) presentImagePicker:(UIImagePickerControllerSourceType)sourceType
 {
-  if (! [UIImagePickerController isSourceTypeAvailable:sourceType])
-    return;
-
-  NSArray *availableMediaTypes = [UIImagePickerController availableMediaTypesForSourceType:sourceType];
-  if (! [availableMediaTypes containsObject:(NSString *)kUTTypeImage])
-    return;
-
-  UIImagePickerController *picker = [[UIImagePickerController alloc] init];
-  picker.sourceType = sourceType;
-  picker.mediaTypes = @[(NSString*)kUTTypeImage];
-  picker.allowsEditing = NO;
-  picker.delegate = self;
-  [self presentViewController:picker animated:YES completion:nil];
+    if (! [UIImagePickerController isSourceTypeAvailable:sourceType])
+        return;
+    
+    NSArray *availableMediaTypes = [UIImagePickerController availableMediaTypesForSourceType:sourceType];
+    if (! [availableMediaTypes containsObject:(NSString *)kUTTypeImage])
+        return;
+    
+    UIImagePickerController *picker = [[UIImagePickerController alloc] init];
+    picker.sourceType = sourceType;
+    picker.mediaTypes = @[(NSString*)kUTTypeImage];
+    picker.allowsEditing = YES;
+    picker.delegate = self;
+    [self presentViewController:picker animated:YES completion:nil];
 }
 
 - (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker
 {
-  [self dismissViewControllerAnimated:YES completion:nil];
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
 {
-  UIImage *image = info[UIImagePickerControllerEditedImage];
-  if (! image)
-    image = info[UIImagePickerControllerOriginalImage];
-
-  if (image) {
-    // add image to object now
-    NSURL *imageURL = [info objectForKey:UIImagePickerControllerReferenceURL];
-//    NSString *imageFileName = [imagePath lastPathComponent];
-    [self showLoadingView];
-
-    ALAssetsLibraryAssetForURLResultBlock resultblock = ^(ALAsset *myasset)
-    {
-      ALAssetRepresentation *representation = [myasset defaultRepresentation];
-      NSString *imageFileName = [representation filename];
-      NSLog(@"fileName : %@",imageFileName);
-
-      imageFileName = [[imageFileName componentsSeparatedByString:@"."] firstObject];
-      if (! [imageFileName length])
-        imageFileName = @"default"; // TODO: outsource this constant...
-
-      // save image to programs directory
-      // XXX: I do not know whether this fileNamePrefix should be a UUID or any hash string.
-      //      Actually the length already equals UUID's length.
-      //      But it could also be any hash string since e.g. MD5-strings have the same size too.
-      //      ATM I am using UUID.
-      // TODO: Fix this unless using UUID is not the right way here, otherwise please delete the comment above until read.
-      NSString *fileNamePrefix = [[[NSString uuid] stringByReplacingOccurrencesOfString:@"-" withString:@""] uppercaseString];
-      NSString *newImageFileName = [NSString stringWithFormat:@"%@%@%@", fileNamePrefix, kResourceFileNameSeparator, imageFileName];
-      Look* look = [[Look alloc] initWithName:imageFileName andPath:newImageFileName];
-
-      // TODO: outsource this to FileManager
-      NSString *newImagePath = [NSString stringWithFormat:@"%@%@/%@",
-                                 [self.object projectPath], kProgramImagesDirName,
-                                 newImageFileName];
-      NSString *mediaType = info[UIImagePickerControllerMediaType];
-
-      NSLog(@"Writing file to disk");
-      if ([mediaType isEqualToString:@"public.image"]) {
-        // TODO: update program on disc...
-        NSBlockOperation* saveOp = [NSBlockOperation blockOperationWithBlock: ^{
-          [UIImagePNGRepresentation(image) writeToFile:newImagePath atomically:YES];
-        }];
-
-        // Use the completion block to update UI on the main queue
-        [saveOp setCompletionBlock:^{
-          [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-            // update view
-            [super showPlaceHolder:NO];
-            [self.object.lookList addObject:look];
-            [self hideLoadingView];
-            NSInteger numberOfRowsInLastSection = [self tableView:self.tableView numberOfRowsInSection:0];
-            NSIndexPath *indexPath = [NSIndexPath indexPathForRow:(numberOfRowsInLastSection - 1) inSection:0];
-            [self.tableView insertRowsAtIndexPaths:@[indexPath]
-                                  withRowAnimation:UITableViewRowAnimationFade];
-          }];
-        }];
-        NSOperationQueue *queue = [[NSOperationQueue alloc] init];
-        [queue addOperation:saveOp];
-      }
-    };
-
-    ALAssetsLibrary* assetslibrary = [[ALAssetsLibrary alloc] init];
-    [assetslibrary assetForURL:imageURL
-                   resultBlock:resultblock
-                  failureBlock:nil];
-  }
-  [self dismissViewControllerAnimated:YES completion:nil];
+    UIImage *image = info[UIImagePickerControllerEditedImage];
+    if (! image)
+        image = info[UIImagePickerControllerOriginalImage];
+    
+    if (image) {
+        // add image to object now
+        NSURL *imageURL = [info objectForKey:UIImagePickerControllerReferenceURL];
+        //    NSString *imageFileName = [imagePath lastPathComponent];
+        [self showLoadingView];
+        
+        ALAssetsLibraryAssetForURLResultBlock resultblock = ^(ALAsset *myasset)
+        {
+        ALAssetRepresentation *representation = [myasset defaultRepresentation];
+        NSString *imageFileName = [representation filename];
+        NSLog(@"fileName : %@",imageFileName);
+        
+        imageFileName = [[imageFileName componentsSeparatedByString:@"."] firstObject];
+        if (! [imageFileName length])
+            imageFileName = @"default"; // TODO: outsource this constant...
+        
+        // save image to programs directory
+        // XXX: I do not know whether this fileNamePrefix should be a UUID or any hash string.
+        //      Actually the length already equals UUID's length.
+        //      But it could also be any hash string since e.g. MD5-strings have the same size too.
+        //      ATM I am using UUID.
+        // TODO: Fix this unless using UUID is not the right way here, otherwise please delete the comment above until read.
+        NSString *fileNamePrefix = [[[NSString uuid] stringByReplacingOccurrencesOfString:@"-" withString:@""] uppercaseString];
+        NSString *newImageFileName = [NSString stringWithFormat:@"%@%@%@", fileNamePrefix, kResourceFileNameSeparator, imageFileName];
+        Look* look = [[Look alloc] initWithName:imageFileName andPath:newImageFileName];
+        
+        // TODO: outsource this to FileManager
+        NSString *newImagePath = [NSString stringWithFormat:@"%@%@/%@",
+                                  [self.object projectPath], kProgramImagesDirName,
+                                  newImageFileName];
+        NSString *mediaType = info[UIImagePickerControllerMediaType];
+        
+        NSLog(@"Writing file to disk");
+        if ([mediaType isEqualToString:@"public.image"]) {
+            // TODO: update program on disc...
+            NSBlockOperation* saveOp = [NSBlockOperation blockOperationWithBlock: ^{
+                [UIImagePNGRepresentation(image) writeToFile:newImagePath atomically:YES];
+            }];
+            
+            // Use the completion block to update UI on the main queue
+            [saveOp setCompletionBlock:^{
+                [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+                    // update view
+                    [super showPlaceHolder:NO];
+                    [self.object.lookList addObject:look];
+                    [self hideLoadingView];
+                    NSInteger numberOfRowsInLastSection = [self tableView:self.tableView numberOfRowsInSection:0];
+                    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:(numberOfRowsInLastSection - 1) inSection:0];
+                    [self.tableView insertRowsAtIndexPaths:@[indexPath]
+                                          withRowAnimation:UITableViewRowAnimationFade];
+                }];
+            }];
+            NSOperationQueue *queue = [[NSOperationQueue alloc] init];
+            [queue addOperation:saveOp];
+        }
+        };
+        
+        ALAssetsLibrary* assetslibrary = [[ALAssetsLibrary alloc] init];
+        [assetslibrary assetForURL:imageURL
+                       resultBlock:resultblock
+                      failureBlock:nil];
+    }
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 #pragma mark - UIActionSheetDelegate Handlers
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
 {
-  if (actionSheet.tag == kAddLookActionSheetTag) {
-    NSString *action = self.addLookActionSheetBtnIndexes[@(buttonIndex)];
-    if ([action isEqualToString:kFromCameraActionSheetButton]) {
-      // take picture from camera
-      NSLog(@"Accessing camera");
-      [self presentImagePicker:UIImagePickerControllerSourceTypeCamera];
-    } else if ([action isEqualToString:kChooseImageActionSheetButton]) {
-      // choose picture from camera roll
-      NSLog(@"Choose image from camera roll");
-      [self presentImagePicker:UIImagePickerControllerSourceTypeSavedPhotosAlbum];
-    } else if ([action isEqualToString:kDrawNewImageActionSheetButton]) {
-      // draw new image
-      // TODO: @all: in android they invoke Pocket Paint.
-      // But there is no Pocket Paint App for iOS a.t.m.
-      // What to do here??
-      NSLog(@"Draw new image");
-      [Util showComingSoonAlertView];
+    if (actionSheet.tag == kAddLookActionSheetTag) {
+        NSString *action = self.addLookActionSheetBtnIndexes[@(buttonIndex)];
+        if ([action isEqualToString:kFromCameraActionSheetButton]) {
+            // take picture from camera
+            NSLog(@"Accessing camera");
+            [self presentImagePicker:UIImagePickerControllerSourceTypeCamera];
+        } else if ([action isEqualToString:kChooseImageActionSheetButton]) {
+            // choose picture from camera roll
+            NSLog(@"Choose image from camera roll");
+            [self presentImagePicker:UIImagePickerControllerSourceTypeSavedPhotosAlbum];
+        } else if ([action isEqualToString:kDrawNewImageActionSheetButton]) {
+            // draw new image
+            // TODO: @all: in android they invoke Pocket Paint.
+            // But there is no Pocket Paint App for iOS a.t.m.
+            // What to do here??
+            NSLog(@"Draw new image");
+            [Util showComingSoonAlertView];
+        }
     }
-  }
 }
 
 #pragma mark - UIActionSheet Views
 - (void)showAddLookActionSheet
 {
-  UIActionSheet *sheet = [[UIActionSheet alloc] init];
-  sheet.title = NSLocalizedString(@"Add look",@"Action sheet menu title");
-  sheet.delegate = self;
-
-  if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
-    NSArray *availableMediaTypes = [UIImagePickerController availableMediaTypesForSourceType:UIImagePickerControllerSourceTypeCamera];
-    if ([availableMediaTypes containsObject:(NSString *)kUTTypeImage])
-      self.addLookActionSheetBtnIndexes[@([sheet addButtonWithTitle:NSLocalizedString(@"From Camera",nil)])] = kFromCameraActionSheetButton;
-  }
-  if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeSavedPhotosAlbum]) {
-    NSArray *availableMediaTypes = [UIImagePickerController availableMediaTypesForSourceType:UIImagePickerControllerSourceTypeSavedPhotosAlbum];
-    if ([availableMediaTypes containsObject:(NSString *)kUTTypeImage])
-      self.addLookActionSheetBtnIndexes[@([sheet addButtonWithTitle:NSLocalizedString(@"Choose image",nil)])] = kChooseImageActionSheetButton;
-  }
-
-  self.addLookActionSheetBtnIndexes[@([sheet addButtonWithTitle:NSLocalizedString(@"Draw new image",nil)])] = kDrawNewImageActionSheetButton;
-  sheet.cancelButtonIndex = [sheet addButtonWithTitle:kBtnCancelTitle];
-  sheet.tag = kAddLookActionSheetTag;
-  sheet.actionSheetStyle = UIActionSheetStyleDefault;
-  [sheet showInView:self.view];
+    UIActionSheet *sheet = [[UIActionSheet alloc] init];
+    sheet.title = NSLocalizedString(@"Add look",@"Action sheet menu title");
+    sheet.delegate = self;
+    
+    if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
+        NSArray *availableMediaTypes = [UIImagePickerController availableMediaTypesForSourceType:UIImagePickerControllerSourceTypeCamera];
+        if ([availableMediaTypes containsObject:(NSString *)kUTTypeImage])
+            self.addLookActionSheetBtnIndexes[@([sheet addButtonWithTitle:NSLocalizedString(@"From Camera",nil)])] = kFromCameraActionSheetButton;
+    }
+    if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeSavedPhotosAlbum]) {
+        NSArray *availableMediaTypes = [UIImagePickerController availableMediaTypesForSourceType:UIImagePickerControllerSourceTypeSavedPhotosAlbum];
+        if ([availableMediaTypes containsObject:(NSString *)kUTTypeImage])
+            self.addLookActionSheetBtnIndexes[@([sheet addButtonWithTitle:NSLocalizedString(@"Choose image",nil)])] = kChooseImageActionSheetButton;
+    }
+    
+    self.addLookActionSheetBtnIndexes[@([sheet addButtonWithTitle:NSLocalizedString(@"Draw new image",nil)])] = kDrawNewImageActionSheetButton;
+    sheet.cancelButtonIndex = [sheet addButtonWithTitle:kBtnCancelTitle];
+    sheet.tag = kAddLookActionSheetTag;
+    sheet.actionSheetStyle = UIActionSheetStyleDefault;
+    [sheet showInView:self.view];
 }
 
 - (void)navigationController:(UINavigationController *)navigationController willShowViewController:(UIViewController *)viewController animated:(BOOL)animated
 {
-  // this line forces to hide the status bar when UIImagePickerController is shown
-  [[UIApplication sharedApplication] setStatusBarHidden:YES];
+    // this line forces to hide the status bar when UIImagePickerController is shown
+    [[UIApplication sharedApplication] setStatusBarHidden:YES];
 }
 
 #pragma mark - helpers

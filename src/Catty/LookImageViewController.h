@@ -20,23 +20,11 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#ifndef Catty_SegueDefines_h
-#define Catty_SegueDefines_h
+#import <UIKit/UIKit.h>
 
-#define kSegueToContinue @"segueToContinue"
-#define kSegueToNewProgram @"segueToNewProgram"
-#define kSegueToPrograms @"segueToPrograms"
-#define kSegueToForum @"segueToForum"
-#define kSegueToExplore @"segueToExplore"
-#define kSegueToUpload @"segueToUpload"
-#define kSegueToAddNewProgram @"segueToAddProgram"
+@interface LookImageViewController : UIViewController
 
-#define kSegueToLevelDetail @"segueToLevelDetail"
-#define kSegueToScene @"segueToScene"
-#define kSegueToObject @"segueToObject"
-#define kSegueToScripts @"segueToScripts"
-#define kSegueToLooks @"segueToLooks"
-#define kSegueToSounds @"segueToSounds"
-#define kSegueToImage @"segueToImage"
+@property (nonatomic, strong) NSString *imageName;
+@property (nonatomic, strong) NSString *imagePath;
 
-#endif
+@end
