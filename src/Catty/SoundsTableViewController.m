@@ -138,7 +138,11 @@
 {
     static NSString *CellIdentifier = @"SoundCell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
-    
+
+    Sound *sound = (Sound*)[self.object.soundList objectAtIndex:indexPath.row];
+    NSString *path = [NSString stringWithFormat:@"%@sounds/%@", [self.object projectPath], sound.fileName];
+    CGFloat duration = [[AudioManager sharedAudioManager] durationOfSoundWithFilePath:path];
+
     if ([cell conformsToProtocol:@protocol(CatrobatImageCell)]) {
         UITableViewCell <CatrobatImageCell>* imageCell = (UITableViewCell <CatrobatImageCell>*)cell;
         imageCell.indexPath = indexPath;
@@ -161,8 +165,7 @@
         } else {
             imageCell.iconImageView.image = image;
         }
-        imageCell.titleLabel.text = ((Sound*)[self.object.soundList objectAtIndex:indexPath.row]).name;
-
+        imageCell.titleLabel.text = [NSString stringWithFormat:@"(%.02f sec.) %@", (float)duration, sound.name];
         imageCell.iconImageView.userInteractionEnabled = YES;
         UITapGestureRecognizer *tapped = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(playSound:)];
         tapped.numberOfTapsRequired = 1;
@@ -204,7 +207,7 @@
                             [[AudioManager sharedAudioManager] playSoundWithFileName:sound.fileName
                                                                               andKey:self.object.name
                                                                           atFilePath:[self.object projectPath]
-                                                                            Delegate:self];
+                                                                            delegate:self];
                         }
                     });
                 }
@@ -254,6 +257,7 @@
 
         static NSString *playIconName = @"ic_media_play.png";
         UIImage *image = [self.imageCache objectForKey:playIconName];
+
         if (! image) {
             dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0ul);
             dispatch_async(queue, ^{
