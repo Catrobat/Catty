@@ -181,7 +181,7 @@
 }
 
 #pragma mark - UIActionSheetDelegate Handlers
-- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
+- (void)actionSheet:(UIActionSheet*)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
 {
     // TODO: implement this
 }

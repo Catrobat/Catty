@@ -146,6 +146,9 @@
             self.hidesBottomBarWhenPushed = YES;
             ProgramTableViewController *programTableViewController = (ProgramTableViewController*)segue.destinationViewController;
             programTableViewController.program = [Program programWithLoadingInfo:[Util programLoadingInfoForProgramWithName:self.project.name]];
+
+            // TODO: remove this after persisting programs feature is fully implemented...
+            programTableViewController.isNewProgram = NO;
         }
     }
 }
@@ -163,7 +166,7 @@
     [self playButtonPressed];
 }
 
-- (void) downloadButtonPressed
+- (void)downloadButtonPressed
 {
     NSDebug(@"Download Button!");
     UIButton* downloadButton = (UIButton*)[self.projectView viewWithTag:kDownloadButtonTag];

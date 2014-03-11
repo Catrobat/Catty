@@ -139,6 +139,7 @@
     brickCategoryCVC.brickCategoryType = (kBrickCategoryType)indexPath.row;
     brickCategoryCVC.object = self.object;
     [self.navigationController pushViewController:brickCategoryCVC animated:YES];
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
 - (void)tableView:(UITableView*)tableView didHighlightRowAtIndexPath:(NSIndexPath*)indexPath
