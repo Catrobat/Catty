@@ -25,4 +25,7 @@
 
 @interface RecentProgramsStoreViewController : UITableViewController <NSURLConnectionDataDelegate>
 
+
+@property (weak, nonatomic) IBOutlet UISegmentedControl *downloadSegmentedControl;
+
 @end
