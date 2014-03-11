@@ -147,12 +147,31 @@
     }
     
     if([cell conformsToProtocol:@protocol(CatrobatImageCell)]) {
-        CatrobatProject *project = [self.projects objectAtIndex:indexPath.row];
+        if(indexPath.row == [self.projects count]-1){
+            UITableViewCell <CatrobatImageCell>* imageCell = (UITableViewCell <CatrobatImageCell>*)cell;
+            //cell.textLabel.text = @"Loading...";
+            imageCell.titleLabel.text = NSLocalizedString(@"Loading...",nil);
+            imageCell.imageView.image = nil;
+            UIActivityIndicatorView *activityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite];
+            
+            imageCell.accessoryView = activityIndicator;
+            [activityIndicator startAnimating];
+            NSDebug(@"LoadingCell");
+            imageCell.iconImageView.image = nil;
+
+        }
+        else{
+            CatrobatProject *project = [self.projects objectAtIndex:indexPath.row];
         
-        UITableViewCell <CatrobatImageCell>* imageCell = (UITableViewCell <CatrobatImageCell>*)cell;
-        imageCell.titleLabel.text = project.projectName;
+            UITableViewCell <CatrobatImageCell>* imageCell = (UITableViewCell <CatrobatImageCell>*)cell;
+            imageCell.titleLabel.text = project.projectName;
         
-        [self loadImage:project.screenshotSmall forCell:imageCell atIndexPath:indexPath];
+            [self loadImage:project.screenshotSmall forCell:imageCell atIndexPath:indexPath];
+            NSDebug(@"Normal Cell");
+            imageCell.accessoryView = nil;
+            imageCell.accessoryType= UITableViewCellAccessoryDisclosureIndicator;
+            
+        }
     }
   
     return cell;

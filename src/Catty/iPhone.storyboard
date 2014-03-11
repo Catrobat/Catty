@@ -778,8 +778,8 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="ZYi-SP-eKt"/>
         <segue reference="y1P-mf-Wvq"/>
+        <segue reference="KzM-S0-ouk"/>
         <segue reference="9nK-JY-fcb"/>
     </inferredMetricsTieBreakers>
 </document>
