@@ -92,18 +92,17 @@ NSString * const sensorStringArray[] = {
     return -1;
 }
 
-+ (NSString*) stringForSensor:(Sensor)sensor
++ (NSString*)stringForSensor:(Sensor)sensor
 {
     if(sensor < sizeof(sensorStringArray) / sizeof(Sensor))
         return sensorStringArray[sensor];
-    
+
     return @"Unknown Sensor";
 }
 
-+(BOOL) isObjectSensor:(Sensor)sensor
++ (BOOL)isObjectSensor:(Sensor)sensor
 {
     return (sensor >= OBJECT_X && sensor <= OBJECT_LAYER) ? YES : NO;
 }
-
 
 @end
