@@ -141,10 +141,10 @@
     object.currentLook = nil;
 
     // TODO: filter/change object name if same name already exists
-    NSInteger counter = 0;
+    NSUInteger counter = 0;
     NSString *finalObjectName = objectName;
     while ([self objectExistsWithName:finalObjectName]) {
-        finalObjectName = [NSString stringWithFormat:@"%@ (%d)", objectName, ++counter];
+        finalObjectName = [NSString stringWithFormat:@"%@ (%ld)", objectName, (unsigned long)++counter];
     }
     object.name = finalObjectName;
     object.program = self;

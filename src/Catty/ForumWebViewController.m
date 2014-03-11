@@ -27,12 +27,16 @@
 #import "UIColor+CatrobatUIColorExtensions.h"
 
 #define kForumURL @"https://groups.google.com/forum/?fromgroups=#!forum/pocketcode"
+#define kBarsHeight 44
 
 @interface ForumWebViewController ()
 @property (nonatomic, strong) LoadingView *loadingView;
 @property (nonatomic, strong) UIBarButtonItem *back;
 @property (nonatomic, strong) UIBarButtonItem *forward;
 @property (nonatomic) float scrollIndicator;
+@property (nonatomic) NSInteger originalNavigationYPos;
+@property (nonatomic) NSInteger originalToolbarFrameYPos;
+@property (nonatomic) BOOL  WebviewFinishedLoading;
 @end
 
 @implementation ForumWebViewController
@@ -42,6 +46,7 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
+        
     }
     return self;
 }
@@ -54,6 +59,7 @@
     self.webView.delegate = self;
     self.webView.scrollView.delegate = self;
     self.webView.backgroundColor = [UIColor darkBlueColor];
+    self.WebviewFinishedLoading = NO;
     
     [TableUtil initNavigationItem:self.navigationItem withTitle:NSLocalizedString(@"Programs", nil)];
     
@@ -61,13 +67,23 @@
     NSURLRequest *request = [NSURLRequest requestWithURL:url];
     [self.webView loadRequest:request];
     [self setupToolBar];
-   
     
+    self.originalNavigationYPos = self.navigationController.navigationBar.frame.origin.y;
+    self.originalToolbarFrameYPos = [Util getScreenHeight]-kBarsHeight;
+    
+    NSDebug(@"%i & %i", self.originalNavigationYPos,self.originalToolbarFrameYPos);
+
 }
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
     self.navigationController.navigationBar.translucent = YES;
+}
+
+-(void)viewWillDisappear:(BOOL)animated
+{
+    self.navigationController.toolbar.frame = CGRectMake(self.navigationController.toolbar.frame.origin.x,self.originalToolbarFrameYPos,self.navigationController.toolbar.frame.size.width,self.navigationController.toolbar.frame.size.height);
+    self.navigationController.navigationBar.frame = CGRectMake(self.navigationController.navigationBar.frame.origin.x,self.originalNavigationYPos,self.navigationController.navigationBar.frame.size.width,self.navigationController.navigationBar.frame.size.height);
 }
 
 - (void)viewDidUnload
@@ -107,6 +123,7 @@
 {
     [self hideLoadingView];
     [self initButtons];
+    self.WebviewFinishedLoading = YES;
 }
 
 - (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error
@@ -174,30 +191,33 @@
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView
 {
-    if (self.scrollIndicator > scrollView.contentOffset.y) {
-        self.navigationController.toolbar.hidden = NO;
-        self.navigationController.navigationBar.hidden = NO;
-    }
-
-    else {
-        
-        if(scrollView.contentOffset.y >= (scrollView.contentSize.height - scrollView.frame.size.height)){
-            NSDebug(@"BOTTOM REACHED");
-            self.navigationController.toolbar.hidden = NO;
-            self.navigationController.navigationBar.hidden = NO;
-        }
-        else if(scrollView.contentOffset.y <= 0.0){
-            NSDebug(@"TOP REACHED");
-            self.navigationController.toolbar.hidden = NO;
-            self.navigationController.navigationBar.hidden = NO;
-        }
-        else{
-            self.navigationController.toolbar.hidden = YES;
-            self.navigationController.navigationBar.hidden = YES;
+    CGFloat yOffset = scrollView.contentOffset.y+kBarsHeight;
+    if (self.WebviewFinishedLoading == YES) {
+        if (yOffset <= 0) {
+            self.navigationController.toolbar.frame = CGRectMake(self.navigationController.toolbar.frame.origin.x,self.originalToolbarFrameYPos,self.navigationController.toolbar.frame.size.width,self.navigationController.toolbar.frame.size.height);
+            self.navigationController.navigationBar.frame = CGRectMake(self.navigationController.navigationBar.frame.origin.x,self.originalNavigationYPos,self.navigationController.navigationBar.frame.size.width,self.navigationController.navigationBar.frame.size.height);
+            
         }
         
+        else if (scrollView.contentOffset.y >= (scrollView.contentSize.height - scrollView.frame.size.height)){
+            self.navigationController.toolbar.frame = CGRectMake(self.navigationController.toolbar.frame.origin.x,self.originalToolbarFrameYPos,self.navigationController.toolbar.frame.size.width,self.navigationController.toolbar.frame.size.height);
+            self.navigationController.navigationBar.frame = CGRectMake(self.navigationController.navigationBar.frame.origin.x,self.originalNavigationYPos,self.navigationController.navigationBar.frame.size.width,self.navigationController.navigationBar.frame.size.height);
+        }
+        else if (yOffset > 0) {
+            
+            if (yOffset <= self.scrollIndicator) {
+                self.navigationController.toolbar.frame = CGRectMake(self.navigationController.toolbar.frame.origin.x,self.originalToolbarFrameYPos,self.navigationController.toolbar.frame.size.width,self.navigationController.toolbar.frame.size.height);
+                self.navigationController.navigationBar.frame = CGRectMake(self.navigationController.navigationBar.frame.origin.x,self.originalNavigationYPos,self.navigationController.navigationBar.frame.size.width,self.navigationController.navigationBar.frame.size.height);
+            }
+            else{
+                self.navigationController.toolbar.frame = CGRectMake(self.navigationController.toolbar.frame.origin.x, self.originalToolbarFrameYPos + yOffset, self.navigationController.toolbar.frame.size.width, self.navigationController.toolbar.frame.size.height);
+                self.navigationController.navigationBar.frame = CGRectMake(self.navigationController.navigationBar.frame.origin.x, self.originalNavigationYPos - yOffset, self.navigationController.navigationBar.frame.size.width, self.navigationController.navigationBar.frame.size.height);
+                
+            }
+            
+        }
+        self.scrollIndicator = yOffset;
     }
-    self.scrollIndicator = scrollView.contentOffset.y;
 }
 
 

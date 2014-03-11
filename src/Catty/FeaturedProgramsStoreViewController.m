@@ -66,8 +66,8 @@
   [self loadFeaturedProjects];
   [self initTableView];
   [TableUtil initNavigationItem:self.navigationItem withTitle:@"Featured Programs"];
-  CGFloat navigationBarHeight = self.navigationController.navigationBar.frame.size.height;
-  self.tableView.contentInset = UIEdgeInsetsMake(navigationBarHeight, 0, 0, 0);
+//  CGFloat navigationBarHeight = self.navigationController.navigationBar.frame.size.height;
+//  self.tableView.contentInset = UIEdgeInsetsMake(navigationBarHeight, 0, 0, 0);
 }
 
 - (void)viewWillAppear:(BOOL)animated

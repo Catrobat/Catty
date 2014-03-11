@@ -383,7 +383,7 @@
 
         else if([pathComponent hasPrefix:@"object"] || [pathComponent hasPrefix:@"look"]) {
             
-            int index = [self indexForArrayObject:pathComponent];
+            NSInteger index = [self indexForArrayObject:pathComponent];
             
             if (index+1 > [lastComponent count] || index < 0) {
                 [NSException raise:@"IndexOutOfBoundsException" format:@"IndexOutOfBounds for lastComponent!"];
@@ -391,8 +391,8 @@
             
             lastComponent = [lastComponent objectAtIndex:index];
         }
-        else if([pathComponent hasPrefix:@"entry"]) { // e.g. objectVariableList/entry[3]
-            int index = [self indexForArrayObject:pathComponent];
+        else if ([pathComponent hasPrefix:@"entry"]) { // e.g. objectVariableList/entry[3]
+            NSInteger index = [self indexForArrayObject:pathComponent];
             
             if (index+1 > [lastComponent count] || index < 0) {
                 [NSException raise:@"IndexOutOfBoundsException" format:@"IndexOutOfBounds for lastComponent!"];
@@ -420,7 +420,7 @@
                     [list addObject:obj];
             }
             
-            int index = [self indexForArrayObject:pathComponent];
+            NSInteger index = [self indexForArrayObject:pathComponent];
             
             if (index+1 > [list count] || index < 0) {
                 [NSException raise:@"IndexOutOfBoundsException" format:@"IndexOutOfBounds for lastComponent!"];
@@ -624,12 +624,10 @@ const char* property_getTypeString(objc_property_t property) {
     
 }
 
-
-
--(int)numberOfOccurencesOfSubstring:(NSString*)substring inString:(NSString*)str
+- (int)numberOfOccurencesOfSubstring:(NSString*)substring inString:(NSString*)str
 {
     int cnt = 0;
-    int length = [str length];
+    NSUInteger length = [str length];
     NSRange range = NSMakeRange(0, length);
     while(range.location != NSNotFound)
     {
@@ -641,24 +639,21 @@ const char* property_getTypeString(objc_property_t property) {
         }
     }
     return cnt;
-    
 }
 
-
--(BOOL) component:(NSString*)component containsString:(NSString*)stringToCheck
+- (BOOL)component:(NSString*)component containsString:(NSString*)stringToCheck
 {
     NSString* pattern = [NSString stringWithFormat:@"[a-zA-Z]*%@(\\[[0-9]+\\])*", stringToCheck];
     NSError* error = nil;
     NSRegularExpression* regex = [NSRegularExpression regularExpressionWithPattern:pattern options:0 error:&error];
-    int matches = [regex numberOfMatchesInString:component options:0 range:NSMakeRange(0, [component length])];
-    if(matches == 1) {
+    NSUInteger matches = [regex numberOfMatchesInString:component options:0 range:NSMakeRange(0, [component length])];
+    if (matches == 1) {
         return YES;
     }
     return NO;
 }
 
-
--(NSString*) stripArrayBrackets:(NSString*)stringToStrip
+- (NSString*)stripArrayBrackets:(NSString*)stringToStrip
 {
     NSError* error = nil;
     NSRegularExpression* regex = [NSRegularExpression regularExpressionWithPattern:@"[a-zA-Z]*" options:0 error:&error];
@@ -669,14 +664,14 @@ const char* property_getTypeString(objc_property_t property) {
     return stringToStrip;
 }
 
--(int) indexForArrayObject:(NSString*)arrayObject
+- (NSInteger)indexForArrayObject:(NSString*)arrayObject
 {
-    int index = -1;
+    NSInteger index = -1;
     if([arrayObject hasSuffix:@"]"]) {
         NSRange begin = [arrayObject rangeOfString:@"["];
         NSRange end = [arrayObject rangeOfString:@"]"];
-        int length= end.location - begin.location - begin.length;
-        int location = begin.location + begin.length;
+        NSUInteger length = end.location - begin.location - begin.length;
+        NSUInteger location = begin.location + begin.length;
         NSRange indexRange = NSMakeRange(location, length);
         NSString *indexString = [arrayObject substringWithRange:indexRange];
         index = indexString.integerValue;
@@ -685,11 +680,7 @@ const char* property_getTypeString(objc_property_t property) {
     else {
         index = 0;
     }
-    
     return index;
 }
-
-
-
 
 @end

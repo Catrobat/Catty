@@ -102,8 +102,8 @@ static AudioManager* sharedAudioManager = nil;
           return;
 
       }
-      [player setKey:[fileName stringByAppendingString:[NSString stringWithFormat:@"%d",self.soundCounter]]];
-      [audioPlayers setObject:player forKey:[fileName stringByAppendingString:[NSString stringWithFormat:@"%d",self.soundCounter]]];
+      [player setKey:[fileName stringByAppendingString:[NSString stringWithFormat:@"%ld",(long)self.soundCounter]]];
+      [audioPlayers setObject:player forKey:[fileName stringByAppendingString:[NSString stringWithFormat:@"%ld",(long)self.soundCounter]]];
   }
 //  if ([player isPlaying]) {
 //    [player stop];

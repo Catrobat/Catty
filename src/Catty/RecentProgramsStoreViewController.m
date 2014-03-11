@@ -65,12 +65,19 @@
 
 - (void)viewDidLoad
 {
-  self.programListLimit = 20;
-  self.programListOffset = 0;
+    self.programListLimit = 20;
+    self.programListOffset = 0;
     
-  [super viewDidLoad];
-  [self loadRecentProjects];
-  [self initTableView];
+    [super viewDidLoad];
+    [self loadProjects];
+    [self initTableView];
+    CGFloat navigationBarHeight = self.navigationController.navigationBar.frame.size.height;
+    self.tableView.contentInset = UIEdgeInsetsMake(navigationBarHeight, 0, 0, 0);
+    
+    [self.downloadSegmentedControl addTarget:self action:@selector(changeView) forControlEvents:UIControlEventValueChanged];
+    [self.downloadSegmentedControl setTitle:NSLocalizedString(@"Most Downloaded",nil) forSegmentAtIndex:0];
+    [self.downloadSegmentedControl setTitle:NSLocalizedString(@"Most Viewed",nil) forSegmentAtIndex:1];
+    [self.downloadSegmentedControl setTitle:NSLocalizedString(@"Newest",nil) forSegmentAtIndex:2];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -138,12 +145,31 @@
     }
     
     if([cell conformsToProtocol:@protocol(CatrobatImageCell)]) {
-        CatrobatProject *project = [self.projects objectAtIndex:indexPath.row];
+        if(indexPath.row == [self.projects count]-1){
+            UITableViewCell <CatrobatImageCell>* imageCell = (UITableViewCell <CatrobatImageCell>*)cell;
+            //cell.textLabel.text = @"Loading...";
+            imageCell.titleLabel.text = NSLocalizedString(@"Loading...",nil);
+            imageCell.imageView.image = nil;
+            UIActivityIndicatorView *activityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite];
+            
+            imageCell.accessoryView = activityIndicator;
+            [activityIndicator startAnimating];
+            NSDebug(@"LoadingCell");
+            imageCell.iconImageView.image = nil;
+
+        }
+        else{
+            CatrobatProject *project = [self.projects objectAtIndex:indexPath.row];
         
-        UITableViewCell <CatrobatImageCell>* imageCell = (UITableViewCell <CatrobatImageCell>*)cell;
-        imageCell.titleLabel.text = project.projectName;
+            UITableViewCell <CatrobatImageCell>* imageCell = (UITableViewCell <CatrobatImageCell>*)cell;
+            imageCell.titleLabel.text = project.projectName;
         
-        [self loadImage:project.screenshotSmall forCell:imageCell atIndexPath:indexPath];
+            [self loadImage:project.screenshotSmall forCell:imageCell atIndexPath:indexPath];
+            NSDebug(@"Normal Cell");
+            imageCell.accessoryView = nil;
+            imageCell.accessoryType= UITableViewCellAccessoryDisclosureIndicator;
+            
+        }
     }
   
     return cell;
@@ -170,12 +196,28 @@
                             }];
 }
 
-- (void)loadRecentProjects
+- (void)loadProjects
 {
     self.data = [[NSMutableData alloc] init];
+    NSURL *url = [NSURL alloc];
+    switch (self.downloadSegmentedControl.selectedSegmentIndex) {
+        case 0:
+            url = [NSURL URLWithString:[NSString stringWithFormat:@"%@/%@?%@%i&%@%i", kConnectionHost, kConnectionMostDownloaded, kProgramsOffset, self.programListOffset, kProgramsLimit, self.programListLimit]];
 
-    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@/%@?%@%i&%@%i", kConnectionHost, kConnectionRecent, kProgramsOffset, self.programListOffset, kProgramsLimit, self.programListLimit]];
-    NSURLRequest *request = [NSURLRequest requestWithURL:url cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:kConnectionTimeout];
+            break;
+        case 1:
+            url = [NSURL URLWithString:[NSString stringWithFormat:@"%@/%@?%@%i&%@%i", kConnectionHost, kConnectionMostViewed, kProgramsOffset, self.programListOffset, kProgramsLimit, self.programListLimit]];
+
+            break;
+        case 2:
+            url = [NSURL URLWithString:[NSString stringWithFormat:@"%@/%@?%@%i&%@%i", kConnectionHost, kConnectionRecent, kProgramsOffset, self.programListOffset, kProgramsLimit, self.programListLimit]];
+
+            break;
+            
+        default:
+            break;
+    }
+        NSURLRequest *request = [NSURLRequest requestWithURL:url cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:kConnectionTimeout];
 
     NSDebug(@"url is: %@", url);
     NSURLConnection *connection = [[NSURLConnection alloc] initWithRequest:request delegate:self];
@@ -296,7 +338,6 @@
     [self.navigationController popViewControllerAnimated:YES];
 }
 
-
 #pragma mark - scrollViewDidEndDecelerating
 #warning not the best solution -> scrolling must stop that this event is fired. But scrollViewDidScroll gets fired too often for this procedure!
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
@@ -306,8 +347,17 @@
 
     if (currentViewBottomEdge >= checkPoint) {
         NSDebug(@"Reached scroll-checkpoint for loading further projects");
-        [self loadRecentProjects];
+        [self loadProjects];
     }
+}
+
+- (void)changeView
+{
+    NSDebug(@"test %li", (long)self.downloadSegmentedControl.selectedSegmentIndex);
+    // TODO: Add support that downloaded data is cached! Now everytime all projects are downloaded after a segmentation click.
+    [self.projects removeAllObjects];
+    self.programListOffset = 0;
+    [self loadProjects];
 }
 
 @end

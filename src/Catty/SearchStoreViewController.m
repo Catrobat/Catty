@@ -58,6 +58,7 @@
     [self initSearchView];
     
     self.searchDisplayController.displaysSearchBarInNavigationBar = NO;
+    self.searchDisplayController.searchBar.backgroundColor = [UIColor darkBlueColor];
     self.tableView.backgroundView = [[UIImageView alloc] initWithImage:[UIImage imageWithColor:[UIColor darkBlueColor]]];
     [self.searchDisplayController setActive:YES animated:YES];
     [self.searchDisplayController.searchBar becomeFirstResponder];
