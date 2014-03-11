@@ -69,7 +69,7 @@ UINavigationBarDelegate>
         NSString *programName = kDefaultProgramName;
         NSUInteger counter = 1;
         while ([Program programExists:programName])
-            programName = [NSString stringWithFormat:@"%@ (%d)", kDefaultProgramName, counter++];
+            programName = [NSString stringWithFormat:@"%@ (%lu)", kDefaultProgramName, (unsigned long)counter++];
 
         _program = [Program createNewProgramWithName:programName];
         SpriteObject* backgroundObject = [self createObjectWithName:kBackgroundObjectName];
@@ -449,7 +449,7 @@ UINavigationBarDelegate>
     // XXX: this is ugly... Why do we use ActionSheets to notify the user? -> Use UIAlertView instead
     if (actionSheet.tag == kInvalidProgramNameWarningActionSheetTag) {
         // OK button
-        NSLog(@"Button index was: %d", buttonIndex);
+        NSLog(@"Button index was: %ld", (long)buttonIndex);
         if (buttonIndex == 0)
         {
             NSLog(@"Show up object alert view again...");

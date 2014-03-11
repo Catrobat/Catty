@@ -285,7 +285,7 @@
 
 - (Look*)nextLook
 {
-    int index = [self.lookList indexOfObject:self.currentLook];
+    NSInteger index = [self.lookList indexOfObject:self.currentLook];
     index++;
     index %= [self.lookList count];
     return [self.lookList objectAtIndex:index];
