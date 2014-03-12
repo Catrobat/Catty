@@ -124,18 +124,18 @@
 // [in] node: The current GDataXMLElement node of the XML file
 - (id)parseNode:(GDataXMLElement*)node withParent:(XMLObjectReference*)parent {
 
-    if (!node)
+    if (! node)
       return nil;
 
     // instantiate object based on node name (= class name)
     NSString *className = [[node.name componentsSeparatedByString:@"."] lastObject]; // this is just because of org.catrobat.catroid.bla...
-    if (!className)                                                                  // Maybe we can remove this when the XML is finished?
+    if (! className)                                                                  // Maybe we can remove this when the XML is finished?
         className = node.name;
 
     className = [self classNameForString:className];
 
     id object = [[NSClassFromString(className) alloc] init];
-    if (!object)
+    if (! object)
         [NSException raise:@"ClassNotFoundException" format:@"Implementation of <%@> NOT FOUND!", className];
 
     if([object isKindOfClass:[Program class]])
@@ -188,8 +188,6 @@
     }
     return object;
 }
-
-
 
 // -----------------------------------------------------------------------------
 // getSingleValue:ofType:

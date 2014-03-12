@@ -70,6 +70,7 @@
         program.header.remixOf = nil;
         program.header.screenHeight = @([Util getScreenHeight]);
         program.header.screenWidth = @([Util getScreenWidth]);
+        program.header.screenMode = @"STRETCH";
         program.header.url = nil;
         program.header.userHandle = nil;
         program.header.programScreenshotManuallyTaken = (YES ? @"true" : @"false");
@@ -296,6 +297,7 @@
     [ret appendFormat:@"Remix of: %@\n", self.header.remixOf];
     [ret appendFormat:@"Screen Height: %@\n", self.header.screenHeight];
     [ret appendFormat:@"Screen Width: %@\n", self.header.screenWidth];
+    [ret appendFormat:@"Screen Mode: %@\n", self.header.screenMode];
     [ret appendFormat:@"Sprite List: %@\n", self.objectList];
     [ret appendFormat:@"URL: %@\n", self.header.url];
     [ret appendFormat:@"User Handle: %@\n", self.header.userHandle];
