@@ -43,6 +43,7 @@
 @property (nonatomic, strong) NSString *remixOf;
 @property (nonatomic, strong) NSNumber *screenHeight;
 @property (nonatomic, strong) NSNumber *screenWidth;
+@property (nonatomic, strong) NSString *screenMode;
 
 @property (nonatomic, strong) NSString *url;
 @property (nonatomic, strong) NSString *userHandle;
