@@ -72,7 +72,9 @@
     [self loadProjects];
     [self initTableView];
     CGFloat navigationBarHeight = self.navigationController.navigationBar.frame.size.height;
-    self.tableView.contentInset = UIEdgeInsetsMake(navigationBarHeight, 0, 0, 0);
+    self.edgesForExtendedLayout = UIRectEdgeAll;
+    self.tableView.contentInset = UIEdgeInsetsMake(navigationBarHeight, 0.0f, CGRectGetHeight(self.tabBarController.tabBar.frame), 0.0f);
+    
     
     [self.downloadSegmentedControl addTarget:self action:@selector(changeView) forControlEvents:UIControlEventValueChanged];
     [self.downloadSegmentedControl setTitle:NSLocalizedString(@"Most Downloaded",nil) forSegmentAtIndex:0];
@@ -166,8 +168,8 @@
         
             [self loadImage:project.screenshotSmall forCell:imageCell atIndexPath:indexPath];
             NSDebug(@"Normal Cell");
-            imageCell.accessoryView = nil;
-            imageCell.accessoryType= UITableViewCellAccessoryDisclosureIndicator;
+            
+            imageCell.accessoryView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"accessory"]];
             
         }
     }
