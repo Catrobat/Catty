@@ -149,8 +149,8 @@
 
 + (ProgramLoadingInfo*) programLoadingInfoForProgramWithName:(NSString*)program
 {
-    NSString *documentsDirectoy = [Util applicationDocumentsDirectory];
-    NSString *levelsPath = [NSString stringWithFormat:@"%@/%@", documentsDirectoy, kProgramsFolder];
+    NSString *documentsDirectory = [Util applicationDocumentsDirectory];
+    NSString *levelsPath = [NSString stringWithFormat:@"%@/%@", documentsDirectory, kProgramsFolder];
     ProgramLoadingInfo *info = [[ProgramLoadingInfo alloc] init];
     info.basePath = [NSString stringWithFormat:@"%@/%@/", levelsPath, program];
     info.visibleName = program;
