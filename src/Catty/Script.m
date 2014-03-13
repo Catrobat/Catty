@@ -133,7 +133,7 @@
             
             self.currentBrickIndex = [self.brickList indexOfObject:[((LoopEndBrick*)brick) loopBeginBrick]];
             
-            if(self.currentBrickIndex == INT_MAX) {
+            if(self.currentBrickIndex == NSNotFound) {
                 abort();
             }
             

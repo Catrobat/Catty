@@ -280,7 +280,7 @@
 
 -(void)startAndAddScript:(Script*)script completion:(dispatch_block_t)completion
 {
-    if([[self children] indexOfObject:script] == INT_MAX) {
+    if([[self children] indexOfObject:script] == NSNotFound) {
         [self addChild:script];
     }
 
