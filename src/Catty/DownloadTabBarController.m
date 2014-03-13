@@ -43,7 +43,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [TableUtil initNavigationItem:self.navigationItem withTitle:NSLocalizedString(@"Programs", nil)];
+    [TableUtil initNavigationItem:self.navigationItem withTitle:NSLocalizedString(@"Explore", nil)];
     //self.tabBar.backgroundImage =  [[UIImage imageNamed:@"darkblue"] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 0, 0, 0)];
     //self.tabBar.selectionIndicatorImage = [UIImage imageWithColor:[UIColor clearColor]];
     //self.tabBar.barTintColor = [UIColor darkBlueColor];
