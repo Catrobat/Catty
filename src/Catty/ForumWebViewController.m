@@ -61,7 +61,7 @@
     self.webView.backgroundColor = [UIColor darkBlueColor];
     self.WebviewFinishedLoading = NO;
     
-    [TableUtil initNavigationItem:self.navigationItem withTitle:NSLocalizedString(@"Programs", nil)];
+    [TableUtil initNavigationItem:self.navigationItem withTitle:NSLocalizedString(@"Forum", nil)];
     
     NSURL *url = [NSURL URLWithString:kForumURL];
     NSURLRequest *request = [NSURLRequest requestWithURL:url];
@@ -72,6 +72,8 @@
     self.originalToolbarFrameYPos = [Util getScreenHeight]-kBarsHeight;
     
     NSDebug(@"%i & %i", self.originalNavigationYPos,self.originalToolbarFrameYPos);
+    
+    
 
 }
 - (void)viewWillAppear:(BOOL)animated

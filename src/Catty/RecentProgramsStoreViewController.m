@@ -43,6 +43,7 @@
 @property (nonatomic, strong) LoadingView* loadingView;
 @property (assign)            int programListOffset;
 @property (assign)            int programListLimit;
+@property (nonatomic, strong) CatrobatInformation* information;
 
 @end
 
@@ -149,7 +150,6 @@
     if([cell conformsToProtocol:@protocol(CatrobatImageCell)]) {
         if(indexPath.row == [self.projects count]-1){
             UITableViewCell <CatrobatImageCell>* imageCell = (UITableViewCell <CatrobatImageCell>*)cell;
-            //cell.textLabel.text = @"Loading...";
             imageCell.titleLabel.text = NSLocalizedString(@"Loading...",nil);
             imageCell.imageView.image = nil;
             UIActivityIndicatorView *activityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite];
@@ -172,6 +172,7 @@
             imageCell.accessoryView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"accessory"]];
             
         }
+
     }
   
     return cell;
@@ -262,6 +263,20 @@
     }
 }
 
+//-(void) connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response
+//{
+//    if (self.connection == connection)
+//    {
+//        NSDebug(@"Received response");
+//        NSHTTPURLResponse * httpResponse = (NSHTTPURLResponse *) response;
+//        NSInteger errorCode = httpResponse.statusCode;
+//        NSLog(@"CODE: %li",(long)errorCode);
+//        if (self.information.totalProjects.integerValue <= self.projects.count) {
+//            NSLog(@"stop loading");
+//        }
+//    }
+//}
+
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection
 {
     if (self.connection == connection) {
@@ -278,7 +293,7 @@
         if ([jsonObject isKindOfClass:[NSDictionary class]]) {
             NSDictionary *catrobatInformation = [jsonObject valueForKey:@"CatrobatInformation"];
             
-            CatrobatInformation *information = [[CatrobatInformation alloc] initWithDict:catrobatInformation];
+            self.information = [[CatrobatInformation alloc] initWithDict:catrobatInformation];
             
             NSArray *catrobatProjects = [jsonObject valueForKey:@"CatrobatProjects"];
             
@@ -297,7 +312,7 @@
             
             
             for (NSDictionary *projectDict in catrobatProjects) {
-                CatrobatProject *project = [[CatrobatProject alloc] initWithDict:projectDict andBaseUrl:information.baseURL];
+                CatrobatProject *project = [[CatrobatProject alloc] initWithDict:projectDict andBaseUrl:self.information.baseURL];
                 [self.projects addObject:project];
             }
         }

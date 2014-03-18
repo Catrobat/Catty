@@ -561,7 +561,7 @@
         <!--Forum Web View Controller - Forum-->
         <scene sceneID="fip-Bj-Leu">
             <objects>
-                <viewController id="IIx-6w-DVK" customClass="ForumWebViewController" sceneMemberID="viewController">
+                <viewController title="Forum" id="IIx-6w-DVK" customClass="ForumWebViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="s6X-pF-Bnn">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -781,7 +781,7 @@
                             <outlet property="delegate" destination="7kO-X5-kpa" id="luj-ci-17E"/>
                         </connections>
                     </tableView>
-                    <tabBarItem key="tabBarItem" systemItem="recents" id="LKv-4F-JKt"/>
+                    <tabBarItem key="tabBarItem" systemItem="mostViewed" id="LKv-4F-JKt" userLabel="Tab Bar Item - Top Charts"/>
                     <navigationItem key="navigationItem" id="uYZ-5N-mqR"/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
@@ -808,8 +808,8 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="mUB-CR-2KD"/>
         <segue reference="KzM-S0-ouk"/>
+        <segue reference="mUB-CR-2KD"/>
         <segue reference="9nK-JY-fcb"/>
     </inferredMetricsTieBreakers>
 </document>

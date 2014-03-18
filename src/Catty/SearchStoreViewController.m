@@ -65,6 +65,8 @@
     self.searchDisplayController.searchBar.delegate = self;
     self.searchDisplayController.searchBar.frame = CGRectMake(0,44,self.searchDisplayController.searchBar.frame.size.width,self.searchDisplayController.searchBar.frame.size.height);
     self.checkSearch = YES;
+    self.searchDisplayController.searchBar.barTintColor = [UIColor darkBlueColor];
+    self.searchDisplayController.searchBar.barStyle = UISearchBarStyleMinimal;
 
 }
 
