@@ -60,7 +60,7 @@
     
     action();
     
-    XCTAssertEqual([object rotation], (float)60, @"TurnLeftBrick not correct");
+    XCTAssertEqualWithAccuracy([object rotation], 60.0f, 0.0001, @"TurnLeftBrick not correct");
 }
 
 -(void)testTurnLeftBrickOver360
@@ -82,7 +82,7 @@
     
     action();
     
-    XCTAssertEqual([object rotation], (float)40, @"TurnLeftBrick not correct");
+    XCTAssertEqualWithAccuracy([object rotation], 40.0f, 0.0001, @"TurnLeftBrick not correct");
 }
 
 -(void)testTurnLeftBrickNegative
@@ -104,7 +104,7 @@
     
     action();
     
-    XCTAssertEqual([object rotation], (float)-60, @"TurnLeftBrick not correct");
+    XCTAssertEqualWithAccuracy([object rotation], -60.0f, 0.0001, @"TurnLeftBrick not correct");
 }
 
 -(void)testTurnLeftBrickNegativeOver360
@@ -126,7 +126,7 @@
     
     action();
     
-    XCTAssertEqual([object rotation], (float)-40, @"TurnLeftBrick not correct");
+    XCTAssertEqualWithAccuracy([object rotation], -40.0f, 0.0001, @"TurnLeftBrick not correct");
 }
 
 

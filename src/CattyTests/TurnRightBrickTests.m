@@ -61,7 +61,7 @@
     action();
     NSLog(@"Rotation: %f",[object rotation]);
     
-    XCTAssertEqual([object rotation], (float)-20, @"TurnRightBrick not correct");
+    XCTAssertEqualWithAccuracy([object rotation], -20.0f, 0.0001, @"TurnRightBrick not correct");
 }
 
 -(void)testTurnrightBrickOver360
@@ -84,7 +84,7 @@
     action();
     NSLog(@"Rotation: %f",[object rotation]);
     
-    XCTAssertEqual([object rotation], (float)-40, @"TurnRightBrick not correct");
+    XCTAssertEqualWithAccuracy([object rotation], -40.0f, 0.0001, @"TurnRightBrick not correct");
 }
 
 
@@ -108,7 +108,7 @@
     action();
     NSLog(@"Rotation: %f",[object rotation]);
     
-    XCTAssertEqual([object rotation], (float)20, @"TurnRightBrick not correct");
+    XCTAssertEqualWithAccuracy([object rotation], 20.0f, 0.0001, @"TurnRightBrick not correct");
 }
 
 -(void)testTurnrightBrickNegativeOver360
@@ -131,7 +131,7 @@
     action();
     NSLog(@"Rotation: %f",[object rotation]);
     
-    XCTAssertEqual([object rotation], (float)40, @"TurnRightBrick not correct");
+    XCTAssertEqualWithAccuracy([object rotation], 40.0f, 0.0001, @"TurnRightBrick not correct");
 }
 
 -(void)testTurnrightBrickWrongInput
@@ -154,7 +154,7 @@
     action();
     NSLog(@"Rotation: %f",[object rotation]);
     
-    XCTAssertEqual([object rotation], (float)0, @"TurnRightBrick not correct");
+    XCTAssertEqualWithAccuracy([object rotation], 0.0, 0.0001, @"TurnRightBrick not correct");
 }
 
 
