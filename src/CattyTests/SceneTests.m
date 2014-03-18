@@ -50,7 +50,7 @@
     CGPoint convertedCenter = [scene convertPointToScene:pocketCodeCenter];
     
     
-    XCTAssertEqual(convertedCenter, sceneCenter, @"The Scene Center is not correctly calculated");
+   XCTAssertTrue(CGPointEqualToPoint(convertedCenter, sceneCenter), @"The Scene Center is not correctly calculated");
 }
 
 - (void)testPointConversionBottomLeft
@@ -61,7 +61,7 @@
     CGPoint sceneBottomLeft = CGPointMake(0, 0);
     CGPoint convertedBottomLeft = [scene convertPointToScene:pocketCodeBottomLeft];
     
-    XCTAssertEqual(convertedBottomLeft, sceneBottomLeft, @"The Bottom Left is not correctly calculated");
+    XCTAssertTrue(CGPointEqualToPoint(convertedBottomLeft, sceneBottomLeft), @"The Bottom Left is not correctly calculated");
 }
 
 - (void)testPointConversionBottomRight
@@ -71,7 +71,7 @@
     CGPoint sceneBottomRight = CGPointMake(480, 0);
     CGPoint convertedBottomRight = [scene convertPointToScene:pocketCodeBottomRight];
     
-    XCTAssertEqual(convertedBottomRight, sceneBottomRight, @"The Bottom Right is not correctly calculated");
+    XCTAssertTrue(CGPointEqualToPoint(convertedBottomRight, sceneBottomRight), @"The Bottom Right is not correctly calculated");
 }
 
 - (void)testPointConversionTopLeft
@@ -81,7 +81,7 @@
     CGPoint sceneTopLeft = CGPointMake(0, 800);
     CGPoint convertedTopLeft = [scene convertPointToScene:pocketCodeTopLeft];
     
-    XCTAssertEqual(convertedTopLeft, sceneTopLeft, @"The Top Left is not correctly calculated");
+    XCTAssertTrue(CGPointEqualToPoint(convertedTopLeft, sceneTopLeft), @"The Top Left is not correctly calculated");
 }
 
 - (void)testPointConversionTopRight
@@ -91,7 +91,7 @@
     CGPoint sceneTopRight = CGPointMake(480, 800);
     CGPoint convertedTopRight = [scene convertPointToScene:pocketCodeTopRight];
     
-    XCTAssertEqual(convertedTopRight, sceneTopRight, @"The Top Right is not correctly calculated");
+    XCTAssertTrue(CGPointEqualToPoint(convertedTopRight, sceneTopRight), @"The Top Right is not correctly calculated");
 }
 
 #pragma mark Scene to Pocked Code
@@ -103,7 +103,7 @@
     CGPoint sceneCenter = CGPointMake(240, 400);
     CGPoint convertedCenter = [scene convertPointToScene:pocketCodeCenter];
     
-    XCTAssertEqual(convertedCenter, sceneCenter, @"The Scene Center is not correctly calculated");
+    XCTAssertTrue(CGPointEqualToPoint(convertedCenter, sceneCenter), @"The Scene Center is not correctly calculated");
 }
 
 - (void)testSceneConversionBottomLeft
@@ -114,7 +114,7 @@
     CGPoint sceneBottomLeft = CGPointMake(0, 0);
     CGPoint convertedBottomLeft = [scene convertSceneCoordinateToPoint:sceneBottomLeft];
     
-    XCTAssertEqual(convertedBottomLeft, pocketCodeBottomLeft, @"The Bottom Left is not correctly calculated");
+    XCTAssertTrue(CGPointEqualToPoint(convertedBottomLeft, pocketCodeBottomLeft), @"The Bottom Left is not correctly calculated");
 }
 
 - (void)testSceneConversionBottomRight
@@ -124,7 +124,7 @@
     CGPoint sceneBottomRight = CGPointMake(480, 0);
     CGPoint convertedBottomRight = [scene convertSceneCoordinateToPoint:sceneBottomRight];
     
-    XCTAssertEqual(convertedBottomRight, pocketCodeBottomRight, @"The Bottom Right is not correctly calculated");
+    XCTAssertTrue(CGPointEqualToPoint(convertedBottomRight, pocketCodeBottomRight), @"The Bottom Right is not correctly calculated");
 }
 
 - (void)testSceneConversionTopLeft
@@ -134,7 +134,7 @@
     CGPoint sceneTopLeft = CGPointMake(0, 800);
     CGPoint convertedTopLeft = [scene convertSceneCoordinateToPoint:sceneTopLeft];
     
-    XCTAssertEqual(convertedTopLeft, pocketCodeTopLeft, @"The Top Left is not correctly calculated");
+    XCTAssertTrue(CGPointEqualToPoint(convertedTopLeft, pocketCodeTopLeft), @"The Top Left is not correctly calculated");
 }
 
 - (void)testSceneConversionTopRight
@@ -144,7 +144,7 @@
     CGPoint sceneTopRight = CGPointMake(480, 800);
     CGPoint convertedTopRight = [scene convertSceneCoordinateToPoint:sceneTopRight];
     
-    XCTAssertEqual(convertedTopRight, pocketCodeTopRight, @"The Top Right is not correctly calculated");
+    XCTAssertTrue(CGPointEqualToPoint(convertedTopRight, pocketCodeTopRight), @"The Top Right is not correctly calculated");
 }
 
 

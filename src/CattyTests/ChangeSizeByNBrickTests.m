@@ -92,6 +92,8 @@
     dispatch_block_t action = [brick actionBlock];
     
     action();
+  
+    CGPointE
     
     XCTAssertEqual([object scaleX], 970.0f, @"X - Scale not correct");
     XCTAssertEqual([object scaleY], 970.0f, @"Y - Scale not correct");
