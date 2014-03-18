@@ -64,10 +64,9 @@
     dispatch_block_t action = [brick actionBlock];
     
     action();
-    
-    XCTAssertEqual([object scaleX], 1030.0f, @"X - Scale not correct");
-    XCTAssertEqual([object scaleY], 1030.0f, @"Y - Scale not correct");
-    
+  
+    XCTAssertEqualWithAccuracy([object scaleX], 1030.0f, 0.0001, @"X - Scale not correct");
+    XCTAssertEqualWithAccuracy([object scaleY], 1030.0f, 0.0001, @"Y - Scale not correct");
     
 }
 
@@ -92,9 +91,10 @@
     dispatch_block_t action = [brick actionBlock];
     
     action();
-    
-    XCTAssertEqual([object scaleX], 970.0f, @"X - Scale not correct");
-    XCTAssertEqual([object scaleY], 970.0f, @"Y - Scale not correct");
+  
+  
+    XCTAssertEqualWithAccuracy([object scaleX], 970.0f, 0.0001, @"X - Scale not correct");
+    XCTAssertEqualWithAccuracy([object scaleY], 970.0f, 0.0001, @"Y - Scale not correct");
     
     
 }
@@ -119,8 +119,8 @@
     
     action();
     
-    XCTAssertEqual([object scaleX], 1000.0f, @"X - Scale not correct");
-    XCTAssertEqual([object scaleY], 1000.0f, @"Y - Scale not correct");
+    XCTAssertEqualWithAccuracy([object scaleX], 1000.0f, 0.0001, @"X - Scale not correct");
+    XCTAssertEqualWithAccuracy([object scaleY], 1000.0f, 0.0001,@"Y - Scale not correct");
     
     
 }

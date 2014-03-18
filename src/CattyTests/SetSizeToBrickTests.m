@@ -68,8 +68,8 @@
     
     action();
     
-    XCTAssertEqual([object scaleX], 130.0f, @"X - Scale not correct");
-    XCTAssertEqual([object scaleY], 130.0f, @"Y - Scale not correct");
+    XCTAssertEqualWithAccuracy([object scaleX], 130.0f, 0.0001, @"X - Scale not correct");
+    XCTAssertEqualWithAccuracy([object scaleY], 130.0f, 0.0001, @"Y - Scale not correct");
     
     
 }
@@ -93,8 +93,8 @@
     
     action();
     
-    XCTAssertEqual([object scaleX], -130.0f, @"X - Scale not correct");
-    XCTAssertEqual([object scaleY], -130.0f, @"Y - Scale not correct");
+    XCTAssertEqualWithAccuracy([object scaleX], -130.0f, 0.0001,  @"X - Scale not correct");
+    XCTAssertEqualWithAccuracy([object scaleY], -130.0f, 0.0001, @"Y - Scale not correct");
     
     
 }
@@ -118,8 +118,8 @@
     
     action();
     
-    XCTAssertEqual([object scaleX], 0.0f, @"X - Scale not correct");
-    XCTAssertEqual([object scaleY], 0.0f, @"Y - Scale not correct");
+    XCTAssertEqualWithAccuracy([object scaleX], 0.0f, 0.0001, @"X - Scale not correct");
+    XCTAssertEqualWithAccuracy([object scaleY], 0.0f, 0.0001,@"Y - Scale not correct");
     
     
 }
