@@ -356,13 +356,12 @@
 }
 
 #pragma mark - scrollViewDidEndDecelerating
-#warning not the best solution -> scrolling must stop that this event is fired. But scrollViewDidScroll gets fired too often for this procedure!
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
 {
     float checkPoint = scrollView.contentSize.height * 0.7;
     float currentViewBottomEdge = scrollView.contentOffset.y + scrollView.frame.size.height;
 
-    if (currentViewBottomEdge >= checkPoint) {
+    if (currentViewBottomEdge >= checkPoint && [self.projects count] >= self.programListOffset) {
         NSDebug(@"Reached scroll-checkpoint for loading further projects");
         [self loadProjects];
     }

@@ -601,20 +601,13 @@
                                     <rect key="frame" x="0.0" y="0.0" width="253" height="78"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" tag="12" contentMode="left" text="Title" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="QD1-Zc-X5A">
-                                            <rect key="frame" x="95" y="30" width="185" height="22"/>
-                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
-                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                            <color key="highlightedColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                        </label>
                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" tag="11" contentMode="scaleAspectFill" id="49q-B8-MBG">
-                                            <rect key="frame" x="20" y="16" width="50" height="50"/>
+                                            <rect key="frame" x="8" y="5" width="245" height="67"/>
                                         </imageView>
                                     </subviews>
                                 </tableViewCellContentView>
                                 <connections>
                                     <outlet property="iconImageView" destination="49q-B8-MBG" id="4pU-ee-LyV"/>
-                                    <outlet property="titleLabel" destination="QD1-Zc-X5A" id="WPM-Yw-Bpj"/>
                                     <segue destination="5oV-85-Xov" kind="push" identifier="segueToLevelDetail" id="aCr-hO-8vs"/>
                                 </connections>
                             </tableViewCell>
@@ -808,7 +801,7 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="KzM-S0-ouk"/>
+        <segue reference="aCr-hO-8vs"/>
         <segue reference="mUB-CR-2KD"/>
         <segue reference="9nK-JY-fcb"/>
     </inferredMetricsTieBreakers>
