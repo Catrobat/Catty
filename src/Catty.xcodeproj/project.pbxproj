@@ -637,7 +637,7 @@
 		CD0CCF47170CB39700B70036 /* WhenScript.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WhenScript.m; sourceTree = "<group>"; };
 		CD0CCF48170CB39700B70036 /* XMLParserProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XMLParserProtocol.h; sourceTree = "<group>"; };
 		CD639C79170DF52600FA67DA /* SpriteObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpriteObject.h; sourceTree = "<group>"; };
-		CD639C7A170DF52600FA67DA /* SpriteObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpriteObject.m; sourceTree = "<group>"; };
+		CD639C7A170DF52600FA67DA /* SpriteObject.m */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 4; lastKnownFileType = sourcecode.c.objc; path = SpriteObject.m; sourceTree = "<group>"; tabWidth = 4; };
 		CD8CC8BA1724346200239EBF /* ForumWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ForumWebViewController.h; sourceTree = "<group>"; };
 		CD8CC8BB1724346200239EBF /* ForumWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ForumWebViewController.m; sourceTree = "<group>"; };
 		CDFEFCB21758CBC8002B5B0E /* IfOnEdgeBounceBrick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IfOnEdgeBounceBrick.h; sourceTree = "<group>"; };
