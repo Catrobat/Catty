@@ -25,6 +25,7 @@
 		1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
 		1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
 		288765FD0DF74451002DB57D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 288765FC0DF74451002DB57D /* CoreGraphics.framework */; };
+		4CDBFDA518DAF07800D9570A /* SampleTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CDBFDA418DAF07800D9570A /* SampleTest.m */; };
 		816C788317D5F0420029A4E6 /* settings_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 816C788217D5F0420029A4E6 /* settings_bg@2x.png */; };
 		816C788617D62B7C0029A4E6 /* ProgramTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 816C788517D62B7C0029A4E6 /* ProgramTableViewController.m */; };
 		81C27424189EE41700827A95 /* BrickCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 81C27423189EE41700827A95 /* BrickCell.m */; };
@@ -277,6 +278,7 @@
 		288765FC0DF74451002DB57D /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		32CA4F630368D1EE00C91783 /* App-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "App-Prefix.pch"; sourceTree = "<group>"; };
+		4CDBFDA418DAF07800D9570A /* SampleTest.m */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 4; lastKnownFileType = sourcecode.c.objc; path = SampleTest.m; sourceTree = "<group>"; tabWidth = 4; };
 		816C788217D5F0420029A4E6 /* settings_bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "settings_bg@2x.png"; sourceTree = "<group>"; };
 		816C788417D62B7C0029A4E6 /* ProgramTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProgramTableViewController.h; sourceTree = "<group>"; };
 		816C788517D62B7C0029A4E6 /* ProgramTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProgramTableViewController.m; sourceTree = "<group>"; };
@@ -767,6 +769,14 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		4CDBFDA318DAF05700D9570A /* Sample */ = {
+			isa = PBXGroup;
+			children = (
+				4CDBFDA418DAF07800D9570A /* SampleTest.m */,
+			);
+			name = Sample;
+			sourceTree = "<group>";
+		};
 		81F10ED317CCD1F8000E4522 /* MaintainProgram */ = {
 			isa = PBXGroup;
 			children = (
@@ -1017,6 +1027,7 @@
 		B46B270317703F9400172837 /* CattyTests */ = {
 			isa = PBXGroup;
 			children = (
+				4CDBFDA318DAF05700D9570A /* Sample */,
 				B46B270917703F9400172837 /* CattyTests.m */,
 				C34B44FB17F3403400624730 /* ExtensionTests */,
 				C34B44FA17F3402300624730 /* BrickTests */,
@@ -2523,6 +2534,7 @@
 				B46B271317703FB700172837 /* SensorHandlerTests.m in Sources */,
 				92C37A56185627A300547C1E /* ClearGrafficEffectBrickTests.m in Sources */,
 				92C37A4A185626DB00547C1E /* ChangeSizeByNBrickTests.m in Sources */,
+				4CDBFDA518DAF07800D9570A /* SampleTest.m in Sources */,
 				92C37A4E1856271100547C1E /* TurnRightBrickTests.m in Sources */,
 				92C37A521856276D00547C1E /* SetBrightnessBrickTests.m in Sources */,
 				92C37A3A1856257300547C1E /* SetXBrickTests.m in Sources */,

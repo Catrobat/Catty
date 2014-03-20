@@ -138,6 +138,7 @@
   brick.xPosition = xPosition;
   
   dispatch_block_t action = [brick actionBlock];
+  
   action();
   
   CGPoint testPoint = CGPointMake(-20000, -20000);
