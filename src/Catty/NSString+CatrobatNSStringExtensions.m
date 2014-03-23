@@ -23,7 +23,6 @@
 #import "NSString+CatrobatNSStringExtensions.h"
 #import <CommonCrypto/CommonDigest.h>
 
-
 @implementation NSString (CustomExtensions)
 
 - (NSString*)sha1
@@ -76,7 +75,7 @@ NSMutableString* resultString;
 }
 
 
-+(NSString *)uuid
++ (NSString *)uuid
 {
     CFUUIDRef uuid = CFUUIDCreate(kCFAllocatorDefault);
     NSString *uuidStr = (__bridge_transfer NSString *)CFUUIDCreateString(kCFAllocatorDefault, uuid);

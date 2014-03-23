@@ -20,21 +20,15 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
+#import <Foundation/Foundation.h>
 
-@interface NSString (CatrobatNSStringExtensions) <NSXMLParserDelegate>
+@interface NSData (Hashes)
 
+- (NSString*)md5;
 - (NSString*)sha1;
-
-- (NSString*)stringByEscapingHTMLEntities;
-- (NSString*)firstCharacterUppercaseString;
-
-- (BOOL)containsString:(NSString*)string;
-
-+ (NSString*)uuid;
-
+- (NSString*)sha224;
+- (NSString*)sha256;
+- (NSString*)sha384;
+- (NSString*)sha512;
 
 @end
-
-
-
-

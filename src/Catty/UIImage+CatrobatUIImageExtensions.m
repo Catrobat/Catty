@@ -24,7 +24,6 @@
 #import "ImageCache.h"
 #import <CoreImage/CoreImage.h>
 
-
 #define kImageDownloadQueue "at.tugraz.ist.catrobat.ImageDownloadQueue"
 
 @interface UIImage()

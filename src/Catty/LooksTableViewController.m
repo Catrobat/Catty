@@ -38,6 +38,7 @@
 #import "NSString+CatrobatNSStringExtensions.h"
 #import <MobileCoreServices/MobileCoreServices.h>
 #import <AssetsLibrary/AssetsLibrary.h>
+#import "NSData+Hashes.h"
 #import "LoadingView.h"
 
 #define kTableHeaderIdentifier @"Header"
@@ -316,57 +317,52 @@
         //    NSString *imageFileName = [imagePath lastPathComponent];
         [self showLoadingView];
         
-        ALAssetsLibraryAssetForURLResultBlock resultblock = ^(ALAsset *myasset)
-        {
-        ALAssetRepresentation *representation = [myasset defaultRepresentation];
-        NSString *imageFileName = [representation filename];
-        NSLog(@"fileName : %@",imageFileName);
-        
-        imageFileName = [[imageFileName componentsSeparatedByString:@"."] firstObject];
-        if (! [imageFileName length])
-            imageFileName = @"default"; // TODO: outsource this constant...
-        
-        // save image to programs directory
-        // XXX: I do not know whether this fileNamePrefix should be a UUID or any hash string.
-        //      Actually the length already equals UUID's length.
-        //      But it could also be any hash string since e.g. MD5-strings have the same size too.
-        //      ATM I am using UUID.
-        // TODO: Fix this unless using UUID is not the right way here, otherwise please delete the comment above until read.
-        NSString *fileNamePrefix = [[[NSString uuid] stringByReplacingOccurrencesOfString:@"-" withString:@""] uppercaseString];
-        NSString *newImageFileName = [NSString stringWithFormat:@"%@%@%@", fileNamePrefix, kResourceFileNameSeparator, imageFileName];
-        Look* look = [[Look alloc] initWithName:imageFileName andPath:newImageFileName];
-        
-        // TODO: outsource this to FileManager
-        NSString *newImagePath = [NSString stringWithFormat:@"%@%@/%@",
-                                  [self.object projectPath], kProgramImagesDirName,
-                                  newImageFileName];
-        NSString *mediaType = info[UIImagePickerControllerMediaType];
-        
-        NSLog(@"Writing file to disk");
-        if ([mediaType isEqualToString:@"public.image"]) {
-            // TODO: update program on disc...
-            NSBlockOperation* saveOp = [NSBlockOperation blockOperationWithBlock: ^{
-                [UIImagePNGRepresentation(image) writeToFile:newImagePath atomically:YES];
-            }];
-            
-            // Use the completion block to update UI on the main queue
-            [saveOp setCompletionBlock:^{
-                [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-                    // update view
-                    [super showPlaceHolder:NO];
-                    [self.object.lookList addObject:look];
-                    [self hideLoadingView];
-                    NSInteger numberOfRowsInLastSection = [self tableView:self.tableView numberOfRowsInSection:0];
-                    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:(numberOfRowsInLastSection - 1) inSection:0];
-                    [self.tableView insertRowsAtIndexPaths:@[indexPath]
-                                          withRowAnimation:UITableViewRowAnimationFade];
+        ALAssetsLibraryAssetForURLResultBlock resultblock = ^(ALAsset *myasset) {
+            ALAssetRepresentation *representation = [myasset defaultRepresentation];
+            NSString *imageFileName = [representation filename];
+            NSLog(@"fileName: %@",imageFileName);
+
+            imageFileName = [[imageFileName componentsSeparatedByString:@"."] firstObject];
+            if (! [imageFileName length])
+                imageFileName = kDefaultImportedImageName; // TODO: outsource this constant...
+
+            // save image to programs directory
+            NSData *imageData = UIImagePNGRepresentation(image);
+            NSString *fileNamePrefix = [[[imageData md5] stringByReplacingOccurrencesOfString:@"-" withString:@""] uppercaseString];
+            NSString *newImageFileName = [NSString stringWithFormat:@"%@%@%@", fileNamePrefix, kResourceFileNameSeparator, imageFileName];
+            Look *look = [[Look alloc] initWithName:imageFileName andPath:newImageFileName];
+            NSLog(@"FilePath: %@", newImageFileName);
+
+            // TODO: outsource this to FileManager
+            NSString *newImagePath = [NSString stringWithFormat:@"%@%@/%@",
+                                      [self.object projectPath], kProgramImagesDirName,
+                                      newImageFileName];
+            NSString *mediaType = info[UIImagePickerControllerMediaType];
+
+            NSLog(@"Writing file to disk");
+            if ([mediaType isEqualToString:@"public.image"]) {
+                // TODO: update program on disc...
+                NSBlockOperation* saveOp = [NSBlockOperation blockOperationWithBlock: ^{
+                    [imageData writeToFile:newImagePath atomically:YES];
                 }];
-            }];
-            NSOperationQueue *queue = [[NSOperationQueue alloc] init];
-            [queue addOperation:saveOp];
-        }
+                
+                // Use the completion block to update UI on the main queue
+                [saveOp setCompletionBlock:^{
+                    [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+                        // update view
+                        [super showPlaceHolder:NO];
+                        [self.object.lookList addObject:look];
+                        [self hideLoadingView];
+                        NSInteger numberOfRowsInLastSection = [self tableView:self.tableView numberOfRowsInSection:0];
+                        NSIndexPath *indexPath = [NSIndexPath indexPathForRow:(numberOfRowsInLastSection - 1) inSection:0];
+                        [self.tableView insertRowsAtIndexPaths:@[indexPath]
+                                              withRowAnimation:UITableViewRowAnimationFade];
+                    }];
+                }];
+                NSOperationQueue *queue = [[NSOperationQueue alloc] init];
+                [queue addOperation:saveOp];
+            }
         };
-        
         ALAssetsLibrary* assetslibrary = [[ALAssetsLibrary alloc] init];
         [assetslibrary assetForURL:imageURL
                        resultBlock:resultblock

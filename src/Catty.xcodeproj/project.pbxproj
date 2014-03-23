@@ -191,6 +191,7 @@
 		CA68820E180B39D0008A7C99 /* ColoredCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CA68820D180B39D0008A7C99 /* ColoredCell.m */; };
 		CA688212180B467B008A7C99 /* OrderedDictionary.m in Sources */ = {isa = PBXBuildFile; fileRef = CA688211180B467B008A7C99 /* OrderedDictionary.m */; };
 		CA68B67718BAA80A007042E4 /* ComboBoxView.m in Sources */ = {isa = PBXBuildFile; fileRef = CA68B67518BAA80A007042E4 /* ComboBoxView.m */; };
+		CA727B3B18DF469F00D1EE13 /* NSData+Hashes.m in Sources */ = {isa = PBXBuildFile; fileRef = CA727B3A18DF469F00D1EE13 /* NSData+Hashes.m */; };
 		CA75C22618A9603400FC8C2F /* StartScriptCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CA75C22518A9603400FC8C2F /* StartScriptCell.m */; };
 		CA75C22918A9605D00FC8C2F /* WhenScriptCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CA75C22818A9605D00FC8C2F /* WhenScriptCell.m */; };
 		CA75C22C18A9606D00FC8C2F /* BroadcastScriptCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CA75C22B18A9606D00FC8C2F /* BroadcastScriptCell.m */; };
@@ -625,6 +626,8 @@
 		CA688211180B467B008A7C99 /* OrderedDictionary.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrderedDictionary.m; sourceTree = "<group>"; };
 		CA68B67418BAA80A007042E4 /* ComboBoxView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ComboBoxView.h; sourceTree = "<group>"; };
 		CA68B67518BAA80A007042E4 /* ComboBoxView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ComboBoxView.m; sourceTree = "<group>"; };
+		CA727B3918DF468100D1EE13 /* NSData+Hashes.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "NSData+Hashes.h"; path = "../NSData+Hashes.h"; sourceTree = "<group>"; };
+		CA727B3A18DF469F00D1EE13 /* NSData+Hashes.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+Hashes.m"; sourceTree = SOURCE_ROOT; };
 		CA75C22418A9603400FC8C2F /* StartScriptCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StartScriptCell.h; sourceTree = "<group>"; };
 		CA75C22518A9603400FC8C2F /* StartScriptCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StartScriptCell.m; sourceTree = "<group>"; };
 		CA75C22718A9605D00FC8C2F /* WhenScriptCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WhenScriptCell.h; sourceTree = "<group>"; };
@@ -1504,6 +1507,7 @@
 		B4D940BC170EC670003DDBFA /* CustomExtensions */ = {
 			isa = PBXGroup;
 			children = (
+				CA727B3C18DF46AA00D1EE13 /* NSData+Hashes */,
 				CA79A11B182D8A4E00618283 /* GDataXMLNode+PrettyFormatterExtensions */,
 				B4BCF429170ED448008EDF3A /* CAGradientLayer+CatrobatCAGradientExtensions */,
 				B4D940BF170EC68A003DDBFA /* NSString+CatrobatNSStringExtensions */,
@@ -1899,6 +1903,15 @@
 				CA688213180B4680008A7C99 /* OrderedDictionary */,
 			);
 			name = DataStructures;
+			sourceTree = "<group>";
+		};
+		CA727B3C18DF46AA00D1EE13 /* NSData+Hashes */ = {
+			isa = PBXGroup;
+			children = (
+				CA727B3918DF468100D1EE13 /* NSData+Hashes.h */,
+				CA727B3A18DF469F00D1EE13 /* NSData+Hashes.m */,
+			);
+			name = "NSData+Hashes";
 			sourceTree = "<group>";
 		};
 		CA750F8018A12CD3005FC0A0 /* CollectionView */ = {
@@ -2659,7 +2672,7 @@
 				LastUpgradeCheck = 0500;
 				TargetAttributes = {
 					1D6058900D05DD3D006BFB54 = {
-						DevelopmentTeam = 4V6T7BCGGR;
+						DevelopmentTeam = 9NJ4SV439Q;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
 								enabled = 0;
@@ -2926,6 +2939,7 @@
 				CD0CCFDA170CB39700B70036 /* Util.m in Sources */,
 				CD0CCFDB170CB39700B70036 /* WaitBrick.m in Sources */,
 				CA75C24118A9616800FC8C2F /* IfLogicElseBrickCell.m in Sources */,
+				CA727B3B18DF469F00D1EE13 /* NSData+Hashes.m in Sources */,
 				CD0CCFDC170CB39700B70036 /* WhenScript.m in Sources */,
 				CAEDFB8117EF759500FDED0E /* ObjectTableViewController.m in Sources */,
 				CD639C7B170DF52600FA67DA /* SpriteObject.m in Sources */,
