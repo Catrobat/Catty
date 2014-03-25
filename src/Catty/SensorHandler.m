@@ -31,7 +31,7 @@
 
 #define kSensorUpdateInterval 0.8
 
-#define NOISE_RECOGNIZER_DEFAULT_REFERENCE_LEVEL 5
+#define NOISE_RECOGNIZER_DEFAULT_REFERENCE_PROGRAM 5
 #define NOISE_RECOGNIZER_DEFAULT_RANGE 160
 #define NOISE_RECOGNIZER_DEFAULT_OFFSET 50
 #define NOISE_RECOGNIZER_DEFAULT_UPDATE_INTERVAL 0.001
@@ -41,9 +41,8 @@
 @property (nonatomic, strong) CMMotionManager* motionManager;
 @property (nonatomic, strong) CLLocationManager* locationManager;
 @property (nonatomic,strong) AVAudioRecorder* recorder;
-@property (nonatomic,strong) NSTimer* levelTimer;
+@property (nonatomic,strong) NSTimer* programTimer;
 @property (nonatomic) CGFloat db;
-
 
 @end
 
@@ -54,7 +53,6 @@ static SensorHandler* sharedSensorHandler = nil;
 
 
 + (SensorHandler *) sharedSensorHandler {
-    
     @synchronized(self) {
         if (sharedSensorHandler == nil) {
             sharedSensorHandler = [[SensorHandler alloc] init];
@@ -76,7 +74,7 @@ static SensorHandler* sharedSensorHandler = nil;
 }
 
 
--(double) valueForSensor:(Sensor)sensor {
+- (double)valueForSensor:(Sensor)sensor {
     double result = 0;
     switch (sensor) {
         case X_ACCELERATION: {
@@ -127,9 +125,7 @@ static SensorHandler* sharedSensorHandler = nil;
     return result;
 }
 
-
-
-- (void) stopSensors
+- (void)stopSensors
 {
 
     if([self.motionManager isAccelerometerActive]) {
@@ -152,8 +148,8 @@ static SensorHandler* sharedSensorHandler = nil;
     if(self.recorder)
     {
         [self.recorder stop];
-        [self.levelTimer invalidate];
-        self.levelTimer = nil;
+        [self.programTimer invalidate];
+        self.programTimer = nil;
         self.recorder = nil;
         
     }
@@ -161,7 +157,7 @@ static SensorHandler* sharedSensorHandler = nil;
     
 }
 
-- (CMRotationRate) rotationRate
+- (CMRotationRate)rotationRate
 {
     if(![self.motionManager isGyroActive])
     {
@@ -172,7 +168,7 @@ static SensorHandler* sharedSensorHandler = nil;
     return self.motionManager.gyroData.rotationRate;
 }
 
-- (CMAcceleration) acceleration
+- (CMAcceleration)acceleration
 {
     if(![self.motionManager isAccelerometerActive])
     {
@@ -182,7 +178,7 @@ static SensorHandler* sharedSensorHandler = nil;
     return self.motionManager.accelerometerData.acceleration;
 }
 
-- (CMMagneticField) magneticField
+- (CMMagneticField)magneticField
 {
     if(![self.motionManager isMagnetometerActive])
     {
@@ -192,7 +188,7 @@ static SensorHandler* sharedSensorHandler = nil;
     return self.motionManager.magnetometerData.magneticField;
 }
 
--(double) direction
+- (double)direction
 {
     [self.locationManager startUpdatingHeading];
 
@@ -202,7 +198,7 @@ static SensorHandler* sharedSensorHandler = nil;
 
 }
 
--(double) xInclination
+- (double)xInclination
 {
     if(![self.motionManager isDeviceMotionActive]) {
         [self.motionManager startDeviceMotionUpdates];
@@ -213,7 +209,7 @@ static SensorHandler* sharedSensorHandler = nil;
     return [Util radiansToDegree:xInclination];
 }
 
--(double) yInclination
+- (double)yInclination
 {
     if(![self.motionManager isDeviceMotionActive]) {
         [self.motionManager startDeviceMotionUpdates];
@@ -236,7 +232,7 @@ static SensorHandler* sharedSensorHandler = nil;
     return yInclination;
 }
 
--(void)recorderinit
+- (void)recorderinit
 {
     NSArray* pathComponents = [NSArray arrayWithObjects:[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)lastObject], [@"loudness_handler" stringByAppendingString:@".m4a"], nil];
     
@@ -260,11 +256,9 @@ static SensorHandler* sharedSensorHandler = nil;
         self.recorder.meteringEnabled = YES;
         [self.recorder prepareToRecord];
     }
-
 }
 
-
--(void)loudness
+- (void)loudness
 {
 
 //    
@@ -304,31 +298,31 @@ static SensorHandler* sharedSensorHandler = nil;
 //    [self.recorder updateMeters];
 //    float averagePower = [self.recorder averagePowerForChannel:0];
 //    int SPL = [self SPL:averagePower];
-//    NSDebug(@"Decibels level: %d",SPL);
+//    NSDebug(@"Decibels program: %d",SPL);
 //    self.db = SPL;
-    self.levelTimer = [NSTimer scheduledTimerWithTimeInterval: NOISE_RECOGNIZER_DEFAULT_UPDATE_INTERVAL
-                                                  target: self
-                                                selector: @selector(levelTimerCallback:)
-                                                userInfo: nil
-                                                 repeats: NO];
+    self.programTimer = [NSTimer scheduledTimerWithTimeInterval: NOISE_RECOGNIZER_DEFAULT_UPDATE_INTERVAL
+                                                         target: self
+                                                       selector: @selector(programTimerCallback:)
+                                                       userInfo: nil
+                                                        repeats: NO];
 
     //return self.db;
-    
 }
+
 //-(void)measure
 //{
 //    [self.recorder stop];
 //}
-- (void)levelTimerCallback:(NSTimer *)timer
+- (void)programTimerCallback:(NSTimer *)timer
 {
     [self.recorder updateMeters];
     float averagePower = [self.recorder averagePowerForChannel:0];
     int SPL = [self SPL:averagePower];
-    NSDebug(@"Decibels level: %d",SPL);
+    NSDebug(@"Decibels program: %d",SPL);
     self.db = SPL;
 }
 -(int)SPL:(float)decibelsPower {
-    int SPL = 20 * log10(NOISE_RECOGNIZER_DEFAULT_REFERENCE_LEVEL * powf(10, (decibelsPower/20)) * NOISE_RECOGNIZER_DEFAULT_RANGE + NOISE_RECOGNIZER_DEFAULT_OFFSET);
+    int SPL = 20 * log10(NOISE_RECOGNIZER_DEFAULT_REFERENCE_PROGRAM * powf(10, (decibelsPower/20)) * NOISE_RECOGNIZER_DEFAULT_RANGE + NOISE_RECOGNIZER_DEFAULT_OFFSET);
     return SPL;
 }
 

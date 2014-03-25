@@ -42,9 +42,9 @@
 - (void)moveExistingFileOrDirectoryAtPath:(NSString*)oldPath toPath:(NSString*)newPath;
 - (void)deleteDirectory:(NSString*)path;
 - (NSArray*)getContentsOfDirectory:(NSString*)directory;
-- (void)addDefaultProjectToLeveLDirectory;
+- (void)addDefaultProjectsToProgramsRootDirectory;
 - (void)downloadFileFromURL:(NSURL*)url withName:(NSString*)name;
 - (void)downloadScreenshotFromURL:(NSURL*)url;
-- (NSString*)getPathForLevel:(NSString*)levelName;
+- (NSString*)getFullPathForProgram:(NSString*)programName;
 
 @end

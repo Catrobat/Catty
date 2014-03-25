@@ -608,7 +608,7 @@
                                 </tableViewCellContentView>
                                 <connections>
                                     <outlet property="iconImageView" destination="49q-B8-MBG" id="4pU-ee-LyV"/>
-                                    <segue destination="5oV-85-Xov" kind="push" identifier="segueToLevelDetail" id="aCr-hO-8vs"/>
+                                    <segue destination="5oV-85-Xov" kind="push" identifier="segueToProgramDetail" id="aCr-hO-8vs"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -682,7 +682,7 @@
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="searchDisplayController" destination="bIn-x3-cSt" id="L0h-hm-2Le"/>
-                        <segue destination="5oV-85-Xov" kind="push" identifier="segueToLevelDetail" id="ZYi-SP-eKt"/>
+                        <segue destination="5oV-85-Xov" kind="push" identifier="segueToProgramDetail" id="ZYi-SP-eKt"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1r2-Rg-6Wh" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -765,7 +765,7 @@
                                 <connections>
                                     <outlet property="iconImageView" destination="QUc-fh-QWd" id="0YA-dU-A0W"/>
                                     <outlet property="titleLabel" destination="KnU-wu-e0A" id="gBk-tu-he7"/>
-                                    <segue destination="5oV-85-Xov" kind="push" identifier="segueToLevelDetail" id="KzM-S0-ouk"/>
+                                    <segue destination="5oV-85-Xov" kind="push" identifier="segueToProgramDetail" id="KzM-S0-ouk"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -802,7 +802,7 @@
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
         <segue reference="aCr-hO-8vs"/>
-        <segue reference="mUB-CR-2KD"/>
+        <segue reference="y1P-mf-Wvq"/>
         <segue reference="9nK-JY-fcb"/>
     </inferredMetricsTieBreakers>
 </document>

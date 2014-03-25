@@ -32,15 +32,15 @@
 #import "CatrobatImageCell.h"
 #import "Logger.h"
 #import "SegueDefines.h"
-#import "LevelUpdateDelegate.h"
+#import "ProgramUpdateDelegate.h"
 #import "QuartzCore/QuartzCore.h"
 #import "Program.h"
 #import "UIDefines.h"
 #import "ActionSheetAlertViewTags.h"
 
-@interface MyProgramsViewController () <LevelUpdateDelegate, UIAlertViewDelegate>
+@interface MyProgramsViewController () <ProgramUpdateDelegate, UIAlertViewDelegate>
 @property (nonatomic, strong) NSMutableDictionary *assertCache;
-@property (nonatomic, strong) NSMutableArray *levelLoadingInfos;
+@property (nonatomic, strong) NSMutableArray *programLoadingInfos;
 @property (nonatomic, strong) Program *selectedProgram;
 @property (nonatomic, strong) Program *defaultProgram;
 @end
@@ -52,7 +52,7 @@
 {
     // lazy instantiation
     if (! _assertCache) {
-        _assertCache = [NSMutableDictionary dictionaryWithCapacity:[self.levelLoadingInfos count]];
+        _assertCache = [NSMutableDictionary dictionaryWithCapacity:[self.programLoadingInfos count]];
     }
     return _assertCache;
 }
@@ -86,7 +86,7 @@
     [self initTableView];
     [TableUtil initNavigationItem:self.navigationItem withTitle:NSLocalizedString(@"Programs", nil)];
     [self setupToolBar];
-    [self loadLevels];
+    [self loadPrograms];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -108,7 +108,7 @@
 {
     self.tableView.dataSource = nil;
     self.tableView.delegate = nil;
-    self.levelLoadingInfos = nil;
+    self.programLoadingInfos = nil;
     
 }
 
@@ -128,15 +128,15 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return [self.levelLoadingInfos count];
+    return [self.programLoadingInfos count];
 }
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+- (UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *CellIdentifier = kImageCell;
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if ([cell conformsToProtocol:@protocol(CatrobatImageCell)]) {
-        UITableViewCell <CatrobatImageCell>* imageCell = (UITableViewCell<CatrobatImageCell>*)cell;
+        UITableViewCell<CatrobatImageCell> *imageCell = (UITableViewCell<CatrobatImageCell>*)cell;
         [self configureImageCell:imageCell atIndexPath:indexPath];
     }
     NSString *patternName = @"pattern";
@@ -164,11 +164,11 @@
 {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
         // Delete the row from the data source
-        ProgramLoadingInfo *level = [self.levelLoadingInfos objectAtIndex:indexPath.row];
+        ProgramLoadingInfo *programLoadingInfo = [self.programLoadingInfos objectAtIndex:indexPath.row];
         // TODO: use program manager for this later
         AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
-        [appDelegate.fileManager deleteDirectory:level.basePath];
-        [self.levelLoadingInfos removeObject:level];
+        [appDelegate.fileManager deleteDirectory:programLoadingInfo.basePath];
+        [self.programLoadingInfos removeObject:programLoadingInfo];
         [Util setLastProgram:nil];
         [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
     }
@@ -186,7 +186,7 @@
 #pragma mark - table view helpers
 -(void)configureImageCell:(UITableViewCell <CatrobatImageCell>*)cell atIndexPath:(NSIndexPath*)indexPath
 {
-    ProgramLoadingInfo *info = [self.levelLoadingInfos objectAtIndex:indexPath.row];
+    ProgramLoadingInfo *info = [self.programLoadingInfos objectAtIndex:indexPath.row];
     cell.titleLabel.text = info.visibleName;
 //    cell.iconImageView.image = [UIImage imageNamed:@"programs"];
     NSString* imagePath = [[NSString alloc] initWithFormat:@"%@/small_screenshot.png", info.basePath];
@@ -283,7 +283,7 @@
         if ([sender isKindOfClass:[UITableViewCell class]]) {
             NSIndexPath *path = [self.tableView indexPathForCell:sender];
             // check if program loaded successfully -> not nil
-            self.selectedProgram = [Program programWithLoadingInfo:[self.levelLoadingInfos objectAtIndex:path.row]];
+            self.selectedProgram = [Program programWithLoadingInfo:[self.programLoadingInfos objectAtIndex:path.row]];
             if (self.selectedProgram) {
                 return YES;
             }
@@ -354,7 +354,7 @@
         } else if (validationResult == kProgramNameValidationResultOK) {
             self.defaultProgram = [Program defaultProgramWithName:input];
             if ([self shouldPerformSegueWithIdentifier:segueToNewProgramIdentifier sender:self]) {
-                [self addLevel:input];
+                [self addProgram:input];
                 [self performSegueWithIdentifier:segueToNewProgramIdentifier sender:self];
             }
         }
@@ -370,45 +370,45 @@
     }
 }
 
-#pragma mark - level handling
-- (void)loadLevels
+#pragma mark - program handling
+- (void)loadPrograms
 {
     NSString *basePath = [Program basePath];
     NSError *error;
-    NSArray *levels = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:basePath error:&error];
+    NSArray *programLoadingInfos = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:basePath error:&error];
     NSLogError(error);
 
-    self.levelLoadingInfos = [[NSMutableArray alloc] initWithCapacity:[levels count]];
-    for (NSString *level in levels) {
+    self.programLoadingInfos = [[NSMutableArray alloc] initWithCapacity:[programLoadingInfos count]];
+    for (NSString *programLoadingInfo in programLoadingInfos) {
         // exclude .DS_Store folder on MACOSX simulator
-        if ([level isEqualToString:@".DS_Store"])
+        if ([programLoadingInfo isEqualToString:@".DS_Store"])
             continue;
 
         ProgramLoadingInfo *info = [[ProgramLoadingInfo alloc] init];
-        info.basePath = [NSString stringWithFormat:@"%@%@/", basePath, level];
-        info.visibleName = level;
-        NSDebug(@"Adding level: %@", info.basePath);
-        [self.levelLoadingInfos addObject:info];
+        info.basePath = [NSString stringWithFormat:@"%@%@/", basePath, programLoadingInfo];
+        info.visibleName = programLoadingInfo;
+        NSDebug(@"Adding loaded program: %@", info.basePath);
+        [self.programLoadingInfos addObject:info];
     }
 }
 
-- (void)addLevel:(NSString*)levelName
+- (void)addProgram:(NSString *)programName
 {
     NSString *basePath = [Program basePath];
 
-    // check if level already exists, then update
+    // check if program already exists, then update
     BOOL exists = NO;
-    for (ProgramLoadingInfo *info in self.levelLoadingInfos) {
-        if ([info.visibleName isEqualToString:levelName])
+    for (ProgramLoadingInfo *programLoadingInfo in self.programLoadingInfos) {
+        if ([programLoadingInfo.visibleName isEqualToString:programName])
             exists = YES;
     }
     // add if not exists
     if (! exists) {
-        ProgramLoadingInfo *info = [[ProgramLoadingInfo alloc] init];
-        info.basePath = [NSString stringWithFormat:@"%@%@/", basePath, levelName];
-        info.visibleName = levelName;
-        NSLog(@"Adding level: %@", info.basePath);
-        [self.levelLoadingInfos addObject:info];
+        ProgramLoadingInfo *programLoadingInfo = [[ProgramLoadingInfo alloc] init];
+        programLoadingInfo.basePath = [NSString stringWithFormat:@"%@%@/", basePath, programName];
+        programLoadingInfo.visibleName = programName;
+        NSLog(@"Adding program: %@", programLoadingInfo.basePath);
+        [self.programLoadingInfos addObject:programLoadingInfo];
 
         // create new cell
         NSInteger numberOfRowsInLastSection = [self tableView:self.tableView numberOfRowsInSection:0];
@@ -417,12 +417,12 @@
     }
 }
 
-- (void)removeLevel:(NSString*)levelName
+- (void)removeProgram:(NSString *)programName
 {
     NSInteger rowIndex = 0;
-    for (ProgramLoadingInfo *info in self.levelLoadingInfos) {
-        if ([info.visibleName isEqualToString:levelName]) {
-            [self.levelLoadingInfos removeObjectAtIndex:rowIndex];
+    for (ProgramLoadingInfo *info in self.programLoadingInfos) {
+        if ([info.visibleName isEqualToString:programName]) {
+            [self.programLoadingInfos removeObjectAtIndex:rowIndex];
             NSIndexPath *indexPath = [NSIndexPath indexPathForRow:rowIndex inSection:0];
             [self.tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationNone];
             break;
@@ -431,15 +431,20 @@
     }
 }
 
-- (void)renameOldLevelName:(NSString*)oldLevelName ToNewLevelName:(NSString*)newLevelName
+- (void)renameOldProgramName:(NSString *)oldProgramName ToNewProgramName:(NSString *)newProgramName
 {
     NSInteger rowIndex = 0;
-    for (ProgramLoadingInfo *info in self.levelLoadingInfos) {
-        if ([info.visibleName isEqualToString:oldLevelName]) {
+    for (ProgramLoadingInfo *info in self.programLoadingInfos) {
+        if ([info.visibleName isEqualToString:oldProgramName]) {
             ProgramLoadingInfo *newInfo = [[ProgramLoadingInfo alloc] init];
-            newInfo.basePath = [NSString stringWithFormat:@"%@%@/", [Program basePath], newLevelName];
-            newInfo.visibleName = newLevelName;
-            [self.levelLoadingInfos replaceObjectAtIndex:rowIndex withObject:newInfo];
+            newInfo.basePath = [NSString stringWithFormat:@"%@%@/", [Program basePath], newProgramName];
+            newInfo.visibleName = newProgramName;
+            [self.programLoadingInfos replaceObjectAtIndex:rowIndex withObject:newInfo];
+
+             // flush assert/image cache
+            self.assertCache = nil;
+
+            // update table
             NSIndexPath *indexPath = [NSIndexPath indexPathForRow:rowIndex inSection:0];
             [self.tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationNone];
             break;

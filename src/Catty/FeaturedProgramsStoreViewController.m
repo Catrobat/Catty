@@ -194,8 +194,8 @@
 
 
 #pragma mark - Table view delegate
-
--(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
     return [TableUtil getHeightForImageCell];
 }
 
@@ -248,14 +248,14 @@
     }
 }
 
-# pragma mark - Segue delegate
+#pragma mark - Segue delegate
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    if([[segue identifier] isEqualToString:kSegueToLevelDetail]) {
+    if([[segue identifier] isEqualToString:kSegueToProgramDetail]) {
         NSIndexPath *selectedRowIndexPath = self.tableView.indexPathForSelectedRow;
-        CatrobatProject *level = [self.projects objectAtIndex:selectedRowIndexPath.row];
-        ProgramDetailStoreViewController* levelDetailViewController = (ProgramDetailStoreViewController*)[segue destinationViewController];
-        levelDetailViewController.project = level;
+        CatrobatProject *catrobatProject = [self.projects objectAtIndex:selectedRowIndexPath.row];
+        ProgramDetailStoreViewController* programDetailViewController = (ProgramDetailStoreViewController*)[segue destinationViewController];
+        programDetailViewController.project = catrobatProject;
     }
 }
 

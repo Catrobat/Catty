@@ -503,7 +503,7 @@
 		B4BCF417170ED246008EDF3A /* SegueDefines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SegueDefines.h; sourceTree = "<group>"; };
 		B4BCF419170ED300008EDF3A /* ProgramDetailStoreViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProgramDetailStoreViewController.h; sourceTree = "<group>"; };
 		B4BCF41A170ED300008EDF3A /* ProgramDetailStoreViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProgramDetailStoreViewController.m; sourceTree = "<group>"; };
-		B4BCF41D170ED34D008EDF3A /* LevelStoreDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LevelStoreDelegate.h; sourceTree = "<group>"; };
+		B4BCF41D170ED34D008EDF3A /* ProgramStoreDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProgramStoreDelegate.h; sourceTree = "<group>"; };
 		B4BCF41F170ED3B7008EDF3A /* TTTAttributedLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTTAttributedLabel.h; sourceTree = "<group>"; };
 		B4BCF420170ED3B7008EDF3A /* TTTAttributedLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTTAttributedLabel.m; sourceTree = "<group>"; };
 		B4BCF422170ED418008EDF3A /* CreateView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreateView.h; sourceTree = "<group>"; };
@@ -602,13 +602,13 @@
 		CA05A19A18282B2C0025421A /* SearchStoreViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchStoreViewController.h; sourceTree = "<group>"; };
 		CA05A19B18282B2C0025421A /* SearchStoreViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchStoreViewController.m; sourceTree = "<group>"; };
 		CA05A19D18286CDA0025421A /* AssetsLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AssetsLibrary.framework; path = System/Library/Frameworks/AssetsLibrary.framework; sourceTree = SDKROOT; };
+		CA1B7A1D18E1D9B700452234 /* ProgramUpdateDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ProgramUpdateDelegate.h; sourceTree = "<group>"; };
 		CA43DD341809976900F95B88 /* UIImageView+CatrobatUIImageViewExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImageView+CatrobatUIImageViewExtensions.h"; sourceTree = "<group>"; };
 		CA43DD351809976900F95B88 /* UIImageView+CatrobatUIImageViewExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+CatrobatUIImageViewExtensions.m"; sourceTree = "<group>"; };
 		CA43DD3818099AA300F95B88 /* DarkBlueGradientBorderedImageCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DarkBlueGradientBorderedImageCell.h; sourceTree = "<group>"; };
 		CA43DD3918099AA300F95B88 /* DarkBlueGradientBorderedImageCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DarkBlueGradientBorderedImageCell.m; sourceTree = "<group>"; };
 		CA52403518AD782600052914 /* ProgramTableViewControllerExistingProgramsTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProgramTableViewControllerExistingProgramsTests.m; sourceTree = "<group>"; };
 		CA52403718AD786200052914 /* ProgramTableViewControllerExistingProgramsTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ProgramTableViewControllerExistingProgramsTests.h; sourceTree = "<group>"; };
-		CA5FED4C18AFE41600A517B6 /* BrickCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BrickCell.xib; sourceTree = "<group>"; };
 		CA5FED4E18B0070300A517B6 /* BrickCellInlineView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BrickCellInlineView.h; sourceTree = "<group>"; };
 		CA5FED4F18B0070300A517B6 /* BrickCellInlineView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BrickCellInlineView.m; sourceTree = "<group>"; };
 		CA5FED5218B019B200A517B6 /* UIUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIUtil.h; sourceTree = "<group>"; };
@@ -1343,7 +1343,10 @@
 		B4BCF409170ECFC3008EDF3A /* Delegates */ = {
 			isa = PBXGroup;
 			children = (
-				B4BCF41D170ED34D008EDF3A /* LevelStoreDelegate.h */,
+				CD0CCE67170CB39600B70036 /* BroadcastWaitDelegate.h */,
+				B4BCF41D170ED34D008EDF3A /* ProgramStoreDelegate.h */,
+				CA1B7A1D18E1D9B700452234 /* ProgramUpdateDelegate.h */,
+				CD0CCF27170CB39700B70036 /* SpriteManagerDelegate.h */,
 			);
 			name = Delegates;
 			sourceTree = "<group>";
@@ -2186,7 +2189,6 @@
 			isa = PBXGroup;
 			children = (
 				C3F2950B1813C63200E37D61 /* iPhone.storyboard */,
-				CA5FED4C18AFE41600A517B6 /* BrickCell.xib */,
 			);
 			name = "Storyboard & XIBs";
 			path = Catty;
@@ -2484,7 +2486,6 @@
 				CD0CCFFA170CB92D00B70036 /* Scripts */,
 				CD0CCFFB170CB97000B70036 /* Sound */,
 				CD0CCFF6170CB89E00B70036 /* Sprite */,
-				CD0CCF27170CB39700B70036 /* SpriteManagerDelegate.h */,
 				B45A582E17325446000E038F /* UserVariable */,
 				B45A58331732788C000E038F /* Formula */,
 				B45A583817327BC2000E038F /* FormulaElement */,
@@ -2582,7 +2583,6 @@
 		CD0CD000170CBB8900B70036 /* BroadcastWait */ = {
 			isa = PBXGroup;
 			children = (
-				CD0CCE67170CB39600B70036 /* BroadcastWaitDelegate.h */,
 				CD0CCE68170CB39600B70036 /* BroadcastWaitHandler.h */,
 				CD0CCE69170CB39600B70036 /* BroadcastWaitHandler.m */,
 			);
@@ -2672,7 +2672,7 @@
 				LastUpgradeCheck = 0500;
 				TargetAttributes = {
 					1D6058900D05DD3D006BFB54 = {
-						DevelopmentTeam = 4V6T7BCGGR;
+						DevelopmentTeam = 9NJ4SV439Q;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
 								enabled = 0;

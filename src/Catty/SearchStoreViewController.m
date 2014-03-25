@@ -157,8 +157,8 @@
 #pragma mark - Table view delegate
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-  CatrobatProject *level = [self.searchResults objectAtIndex:indexPath.row];
-  [self performSegueWithIdentifier:kSegueToLevelDetail sender:level];
+  CatrobatProject *catrobatProject = [self.searchResults objectAtIndex:indexPath.row];
+  [self performSegueWithIdentifier:kSegueToProgramDetail sender:catrobatProject];
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -283,7 +283,7 @@
 {
   [self.searchDisplayController setActive:NO animated:YES];
   [self update];
-  if([[segue identifier] isEqualToString:kSegueToLevelDetail]) {
+  if([[segue identifier] isEqualToString:kSegueToProgramDetail]) {
     if([sender isKindOfClass:[CatrobatProject class]]) {
       ProgramDetailStoreViewController* programDetailViewController = (ProgramDetailStoreViewController*)[segue destinationViewController];
       programDetailViewController.project = sender;

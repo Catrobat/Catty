@@ -21,7 +21,7 @@
  */
 
 #import <UIKit/UIKit.h>
-#import "LevelStoreDelegate.h"
+#import "ProgramStoreDelegate.h"
 #import "FileManager.h"
 #import "TTTAttributedLabel.h"
 #import "SearchStoreViewController.h"
@@ -29,9 +29,7 @@
 
 @class CatrobatProject;
 
-@interface ProgramDetailStoreViewController : UIViewController<LevelStoreDelegate, UIScrollViewDelegate, FileManagerDelegate, TTTAttributedLabelDelegate> {
-    CatrobatProject* project;
-}
+@interface ProgramDetailStoreViewController : UIViewController<ProgramStoreDelegate, UIScrollViewDelegate, FileManagerDelegate, TTTAttributedLabelDelegate>
 
 @property (nonatomic, strong) CatrobatProject *project;
 @property (nonatomic, strong) IBOutlet UIScrollView *scrollViewOutlet;

@@ -103,7 +103,7 @@
     NSDebug(@"Path: %@", loadingInfo.basePath);
     NSString *xmlPath = [NSString stringWithFormat:@"%@", loadingInfo.basePath];
     NSDebug(@"XML-Path: %@", xmlPath);
-    Program *program = [[[Parser alloc] init] generateObjectForLevel:[xmlPath stringByAppendingFormat:@"%@", kProgramCodeFileName]];
+    Program *program = [[[Parser alloc] init] generateObjectForProgramWithPath:[xmlPath stringByAppendingFormat:@"%@", kProgramCodeFileName]];
 
     if (! program)
         return nil;

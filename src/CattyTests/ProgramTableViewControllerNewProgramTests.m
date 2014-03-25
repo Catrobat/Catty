@@ -168,7 +168,7 @@
     NSString *newProgramName = @"This is a test program";
     [ProgramTableViewControllerNewProgramTests removeProject:[NSString stringWithFormat:@"%@%@", [Program basePath], newProgramName]];
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"iPhone" bundle:[NSBundle mainBundle]];
-    MyProgramsViewController<LevelUpdateDelegate> *myProgramsViewController = [storyboard instantiateViewControllerWithIdentifier:@"MyProgramsViewController"];
+    MyProgramsViewController<ProgramUpdateDelegate> *myProgramsViewController = [storyboard instantiateViewControllerWithIdentifier:@"MyProgramsViewController"];
     [myProgramsViewController performSelectorOnMainThread:@selector(view) withObject:nil waitUntilDone:YES];
     self.programTableViewController.delegate = myProgramsViewController;
     [self.programTableViewController viewDidLoad];
@@ -187,19 +187,19 @@
     for (NSInteger counter = 0; counter < numberOfRows; ++counter) {
         NSIndexPath *indexPath = [NSIndexPath indexPathForRow:counter inSection:0];
         UITableViewCell *cell = [myProgramsViewController tableView:myProgramsViewController.tableView cellForRowAtIndexPath:indexPath];
-        NSString *levelName = nil;
+        NSString *programName = nil;
         if ([cell conformsToProtocol:@protocol(CatrobatImageCell)]) {
             UITableViewCell <CatrobatImageCell>* imageCell = (UITableViewCell <CatrobatImageCell>*)cell;
-            levelName = imageCell.titleLabel.text;
+            programName = imageCell.titleLabel.text;
         }
-        NSLog(@"Name of level is: %@", levelName);
-        XCTAssertNotNil(levelName, @"Name of renamed program is nil, testing an empty string...");
-        XCTAssertFalse([levelName isEqualToString:kDefaultProgramName], @"Did not rename level of delegate");
-        if ([levelName isEqualToString:newProgramName]) {
+        NSLog(@"Name of program is: %@", programName);
+        XCTAssertNotNil(programName, @"Name of renamed program is nil, testing an empty string...");
+        XCTAssertFalse([programName isEqualToString:kDefaultProgramName], @"Did not rename program of delegate");
+        if ([programName isEqualToString:newProgramName]) {
             ++matchNewNameCounter;
         }
     }
-    XCTAssertEqual(matchNewNameCounter, 1, @"Did not rename level of delegate correctly. Number of renamed levels: %d", matchNewNameCounter);
+    XCTAssertEqual(matchNewNameCounter, 1, @"Did not rename program of delegate correctly. Number of renamed programs: %d", matchNewNameCounter);
     [ProgramTableViewControllerNewProgramTests removeProject:[NSString stringWithFormat:@"%@%@", [Program basePath], newProgramName]];
 }
 
@@ -229,7 +229,7 @@
     NSDebug(@"Path: %@", loadingInfo.basePath);
     NSString *xmlPath = [NSString stringWithFormat:@"%@", loadingInfo.basePath];
     NSDebug(@"XML-Path: %@", xmlPath);
-    Program *program = [[[Parser alloc] init] generateObjectForLevel:[xmlPath stringByAppendingFormat:@"%@", kProgramCodeFileName]];
+    Program *program = [[[Parser alloc] init] generateObjectForProgramWithPath:[xmlPath stringByAppendingFormat:@"%@", kProgramCodeFileName]];
 
     if (! program)
         return nil;

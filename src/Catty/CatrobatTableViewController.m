@@ -73,7 +73,7 @@
     self.lastProgram = nil;
     self.defaultProgram = nil;
     AppDelegate *appDelegate = [UIApplication sharedApplication].delegate;
-    [appDelegate.fileManager addDefaultProjectToLeveLDirectory];
+    [appDelegate.fileManager addDefaultProjectsToProgramsRootDirectory];
 }
 
 - (void)viewWillAppear:(BOOL)animated

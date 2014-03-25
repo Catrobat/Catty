@@ -21,7 +21,7 @@
  */
 
 #import <UIKit/UIKit.h>
-#import "LevelStoreDelegate.h"
+#import "ProgramStoreDelegate.h"
 #import "BaseTableViewController.h"
 
 @interface RecentProgramsStoreViewController : BaseTableViewController<NSURLConnectionDataDelegate>

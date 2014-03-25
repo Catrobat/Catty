@@ -72,18 +72,18 @@
 {
     NSString *basePath = [Program basePath];
     NSError *error;
-    NSArray *levels = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:basePath error:&error];
+    NSArray *programNames = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:basePath error:&error];
     NSLogError(error);
 
-    for (NSString *level in levels) {
+    for (NSString *programName in programNames) {
         // exclude .DS_Store folder on MACOSX simulator and new program
-        if ([level isEqualToString:@".DS_Store"] || [level isEqualToString:kNewProgramName])
+        if ([programName isEqualToString:@".DS_Store"] || [programName isEqualToString:kNewProgramName])
             continue;
 
         ProgramLoadingInfo *loadingInfo = [[ProgramLoadingInfo alloc] init];
-        loadingInfo.basePath = [NSString stringWithFormat:@"%@%@/", [Program basePath], level];
-        loadingInfo.visibleName = level;
-        NSLog(@"Project name: %@", level);
+        loadingInfo.basePath = [NSString stringWithFormat:@"%@%@/", [Program basePath], programName];
+        loadingInfo.visibleName = programName;
+        NSLog(@"Project name: %@", programName);
         self.programTableViewController.delegate = nil; // no delegate needed for this test
         self.programTableViewController.program = [Program programWithLoadingInfo:loadingInfo];
         [self.programTableViewController viewDidLoad];
@@ -97,22 +97,22 @@
 {
     NSString *basePath = [Program basePath];
     NSError *error;
-    NSArray *levels = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:basePath error:&error];
+    NSArray *programNames = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:basePath error:&error];
     NSLogError(error);
 
-    for (NSString *level in levels) {
+    for (NSString *programName in programNames) {
         // exclude .DS_Store folder on MACOSX simulator and new program
-        if ([level isEqualToString:@".DS_Store"] || [level isEqualToString:kNewProgramName])
+        if ([programName isEqualToString:@".DS_Store"] || [programName isEqualToString:kNewProgramName])
             continue;
 
         ProgramLoadingInfo *loadingInfo = [[ProgramLoadingInfo alloc] init];
-        loadingInfo.basePath = [NSString stringWithFormat:@"%@%@/", [Program basePath], level];
-        loadingInfo.visibleName = level;
-        NSLog(@"Project name: %@", level);
+        loadingInfo.basePath = [NSString stringWithFormat:@"%@%@/", [Program basePath], programName];
+        loadingInfo.visibleName = programName;
+        NSLog(@"Project name: %@", programName);
         Program *program = [self loadProgram:loadingInfo];
         XCTAssertNotNil(program, @"Could not create program");
         if (! program) {
-            NSLog(@"Loading level %@ failed", level);
+            NSLog(@"Loading program %@ failed", programName);
             continue;
         }
 
@@ -163,18 +163,18 @@
 {
     NSString *basePath = [Program basePath];
     NSError *error;
-    NSArray *levels = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:basePath error:&error];
+    NSArray *programNames = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:basePath error:&error];
     NSLogError(error);
 
-    for (NSString *level in levels) {
+    for (NSString *programName in programNames) {
         // exclude .DS_Store folder on MACOSX simulator and new program
-        if ([level isEqualToString:@".DS_Store"] || [level isEqualToString:kNewProgramName])
+        if ([programName isEqualToString:@".DS_Store"] || [programName isEqualToString:kNewProgramName])
             continue;
 
         ProgramLoadingInfo *loadingInfo = [[ProgramLoadingInfo alloc] init];
-        loadingInfo.basePath = [NSString stringWithFormat:@"%@%@/", [Program basePath], level];
-        loadingInfo.visibleName = level;
-        NSLog(@"Project name: %@", level);
+        loadingInfo.basePath = [NSString stringWithFormat:@"%@%@/", [Program basePath], programName];
+        loadingInfo.visibleName = programName;
+        NSLog(@"Project name: %@", programName);
 
         self.programTableViewController.delegate = nil; // no delegate needed for this test
         self.programTableViewController.program = [Program programWithLoadingInfo:loadingInfo];
@@ -183,7 +183,7 @@
         [self.programTableViewController viewWillAppear:NO];
 
         NSInteger numberOfSections = (NSInteger)[self.programTableViewController numberOfSectionsInTableView:self.programTableViewController.tableView];
-        XCTAssertEqual(numberOfSections, kNumberOfSectionsInProgramTableViewController, @"Wrong number of sections in ProgramTableViewController for program: %@", level);
+        XCTAssertEqual(numberOfSections, kNumberOfSectionsInProgramTableViewController, @"Wrong number of sections in ProgramTableViewController for program: %@", programName);
         self.programTableViewController = nil; // unload program table view controller
     }
 }
@@ -192,18 +192,18 @@
 {
     NSString *basePath = [Program basePath];
     NSError *error;
-    NSArray *levels = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:basePath error:&error];
+    NSArray *programNames = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:basePath error:&error];
     NSLogError(error);
 
-    for (NSString *level in levels) {
+    for (NSString *programName in programNames) {
         // exclude .DS_Store folder on MACOSX simulator and new program
-        if ([level isEqualToString:@".DS_Store"] || [level isEqualToString:kNewProgramName])
+        if ([programName isEqualToString:@".DS_Store"] || [programName isEqualToString:kNewProgramName])
             continue;
 
         ProgramLoadingInfo *loadingInfo = [[ProgramLoadingInfo alloc] init];
-        loadingInfo.basePath = [NSString stringWithFormat:@"%@%@/", [Program basePath], level];
-        loadingInfo.visibleName = level;
-        NSLog(@"Project name: %@", level);
+        loadingInfo.basePath = [NSString stringWithFormat:@"%@%@/", [Program basePath], programName];
+        loadingInfo.visibleName = programName;
+        NSLog(@"Project name: %@", programName);
 
         self.programTableViewController.delegate = nil; // no delegate needed for this test
         self.programTableViewController.program = [Program programWithLoadingInfo:loadingInfo];
@@ -212,7 +212,7 @@
         [self.programTableViewController viewWillAppear:NO];
 
         NSInteger numberOfBackgroundRows = (NSInteger)[self.programTableViewController tableView:self.programTableViewController.tableView numberOfRowsInSection:kBackgroundSectionIndex];
-        XCTAssertEqual(numberOfBackgroundRows, kBackgroundObjects, @"Wrong number of background rows in ProgramTableViewController for program: %@", level);
+        XCTAssertEqual(numberOfBackgroundRows, kBackgroundObjects, @"Wrong number of background rows in ProgramTableViewController for program: %@", programName);
         self.programTableViewController = nil; // unload program table view controller
     }
 }
@@ -221,22 +221,22 @@
 {
     NSString *basePath = [Program basePath];
     NSError *error;
-    NSArray *levels = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:basePath error:&error];
+    NSArray *programNames = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:basePath error:&error];
     NSLogError(error);
 
-    for (NSString *level in levels) {
+    for (NSString *programName in programNames) {
         // exclude .DS_Store folder on MACOSX simulator and new program
-        if ([level isEqualToString:@".DS_Store"] || [level isEqualToString:kNewProgramName])
+        if ([programName isEqualToString:@".DS_Store"] || [programName isEqualToString:kNewProgramName])
             continue;
 
         ProgramLoadingInfo *loadingInfo = [[ProgramLoadingInfo alloc] init];
-        loadingInfo.basePath = [NSString stringWithFormat:@"%@%@/", [Program basePath], level];
-        loadingInfo.visibleName = level;
-        NSLog(@"Project name: %@", level);
+        loadingInfo.basePath = [NSString stringWithFormat:@"%@%@/", [Program basePath], programName];
+        loadingInfo.visibleName = programName;
+        NSLog(@"Project name: %@", programName);
         Program *program = [self loadProgram:loadingInfo];
         XCTAssertNotNil(program, @"Could not create program");
         if (! program) {
-            NSLog(@"Loading level %@ failed", level);
+            NSLog(@"Loading program %@ failed", programName);
             continue;
         }
 
@@ -256,18 +256,18 @@
 {
     NSString *basePath = [Program basePath];
     NSError *error;
-    NSArray *levels = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:basePath error:&error];
+    NSArray *programNames = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:basePath error:&error];
     NSLogError(error);
 
-    for (NSString *level in levels) {
+    for (NSString *programName in programNames) {
         // exclude .DS_Store folder on MACOSX simulator and new program
-        if ([level isEqualToString:@".DS_Store"] || [level isEqualToString:kNewProgramName])
+        if ([programName isEqualToString:@".DS_Store"] || [programName isEqualToString:kNewProgramName])
             continue;
 
         ProgramLoadingInfo *loadingInfo = [[ProgramLoadingInfo alloc] init];
-        loadingInfo.basePath = [NSString stringWithFormat:@"%@%@/", [Program basePath], level];
-        loadingInfo.visibleName = level;
-        NSLog(@"Project name: %@", level);
+        loadingInfo.basePath = [NSString stringWithFormat:@"%@%@/", [Program basePath], programName];
+        loadingInfo.visibleName = programName;
+        NSLog(@"Project name: %@", programName);
 
         self.programTableViewController.delegate = nil; // no delegate needed for this test
         self.programTableViewController.program = [Program programWithLoadingInfo:loadingInfo];
@@ -277,7 +277,7 @@
 
         NSIndexPath *indexPath = [NSIndexPath indexPathForRow:kBackgroundObjectIndex inSection:kBackgroundSectionIndex];
         BOOL result = [self.programTableViewController tableView:self.programTableViewController.tableView canEditRowAtIndexPath:indexPath];
-        XCTAssertFalse(result, @"ProgramTableViewController permits removing background cell in program %@", level);
+        XCTAssertFalse(result, @"ProgramTableViewController permits removing background cell in program %@", programName);
         self.programTableViewController = nil; // unload program table view controller
     }
 }
@@ -286,22 +286,22 @@
 {
     NSString *basePath = [Program basePath];
     NSError *error;
-    NSArray *levels = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:basePath error:&error];
+    NSArray *programNames = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:basePath error:&error];
     NSLogError(error);
     
-    for (NSString *level in levels) {
+    for (NSString *programName in programNames) {
         // exclude .DS_Store folder on MACOSX simulator and new program
-        if ([level isEqualToString:@".DS_Store"] || [level isEqualToString:kNewProgramName])
+        if ([programName isEqualToString:@".DS_Store"] || [programName isEqualToString:kNewProgramName])
             continue;
 
         ProgramLoadingInfo *loadingInfo = [[ProgramLoadingInfo alloc] init];
-        loadingInfo.basePath = [NSString stringWithFormat:@"%@%@/", [Program basePath], level];
-        loadingInfo.visibleName = level;
-        NSLog(@"Project name: %@", level);
+        loadingInfo.basePath = [NSString stringWithFormat:@"%@%@/", [Program basePath], programName];
+        loadingInfo.visibleName = programName;
+        NSLog(@"Project name: %@", programName);
         Program *program = [self loadProgram:loadingInfo];
         XCTAssertNotNil(program, @"Could not create program");
         if (! program) {
-            NSLog(@"Loading level %@ failed", level);
+            NSLog(@"Loading program %@ failed", programName);
             continue;
         }
 
@@ -384,7 +384,7 @@
     NSDebug(@"Path: %@", loadingInfo.basePath);
     NSString *xmlPath = [NSString stringWithFormat:@"%@", loadingInfo.basePath];
     NSDebug(@"XML-Path: %@", xmlPath);
-    Program *program = [[[Parser alloc] init] generateObjectForLevel:[xmlPath stringByAppendingFormat:@"%@", kProgramCodeFileName]];
+    Program *program = [[[Parser alloc] init] generateObjectForProgramWithPath:[xmlPath stringByAppendingFormat:@"%@", kProgramCodeFileName]];
 
     if (! program)
         return nil;

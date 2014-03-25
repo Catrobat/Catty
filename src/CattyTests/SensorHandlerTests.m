@@ -124,8 +124,7 @@
 -(void)testValueForSensor
 {
     SensorHandler* sensorHandler = [SensorHandler sharedSensorHandler];
-    
-    for(int sensor=X_ACCELERATION; sensor < OBJECT_X; sensor++) {
+    for (int sensor = X_ACCELERATION; sensor < OBJECT_X; sensor++) {
         BOOL isNotZero = [sensorHandler valueForSensor:sensor] != 0.0;
         XCTAssertTrue(isNotZero, @"It's very unlikely that the sensor (%@) really returned zero!", [SensorManager stringForSensor:sensor]);
     }

@@ -40,7 +40,7 @@
 #import "ScenePresenterViewController.h"
 #import "FileManager.h"
 #import "UIColor+CatrobatUIColorExtensions.h"
-#import "LevelUpdateDelegate.h"
+#import "ProgramUpdateDelegate.h"
 #import "SensorHandler.h"
 #import "CellTagDefines.h"
 #import "AppDelegate.h"
@@ -387,7 +387,7 @@ UINavigationBarDelegate>
         if (buttonIndex == actionSheet.destructiveButtonIndex)
         {
             NSLog(@"Delete button pressed");
-            [self.delegate removeLevel:self.program.header.programName];
+            [self.delegate removeProgram:self.program.header.programName];
             [self.program removeFromDisk];
             self.program = nil;
             [self.navigationController popViewControllerAnimated:YES];
@@ -410,8 +410,9 @@ UINavigationBarDelegate>
             } else if (validationResult == kProgramNameValidationResultAlreadyExists) {
                 [Util alertWithText:kMsgInvalidProgramNameAlreadyExists delegate:self tag:kInvalidProgramNameWarningAlertViewTag];
             } else if (validationResult == kProgramNameValidationResultOK) {
-                [self.delegate renameOldLevelName:self.program.header.programName ToNewLevelName:input];
+                NSString *oldProgramName = self.program.header.programName;
                 [self.program renameToProgramName:input];
+                [self.delegate renameOldProgramName:oldProgramName ToNewProgramName:input];
                 [self.program setAsLastProgram];
                 self.navigationItem.title = self.title = input;
             }

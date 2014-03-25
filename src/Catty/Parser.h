@@ -25,4 +25,6 @@
 
 @interface Parser : NSObject <XMLParserProtocol>
 
+- (Program*)generateObjectForProgramWithPath:(NSString*)path;
+
 @end

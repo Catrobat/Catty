@@ -20,14 +20,12 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-@protocol LevelUpdateDelegate <NSObject>
+@protocol ProgramStoreDelegate <NSObject>
 
 @required
 
-- (void)addLevel:(NSString*)levelName;
+- (void) playButtonPressed:(id)sender;
 
-- (void)removeLevel:(NSString*)levelName;
-
-- (void)renameOldLevelName:(NSString*)oldLevelName ToNewLevelName:(NSString*)newLevelName;
+- (void) downloadButtonPressed:(id)sender;
 
 @end

@@ -31,7 +31,7 @@
 #define kSegueToUpload @"segueToUpload"
 #define kSegueToAddNewProgram @"segueToAddProgram"
 
-#define kSegueToLevelDetail @"segueToLevelDetail"
+#define kSegueToProgramDetail @"segueToProgramDetail"
 #define kSegueToScene @"segueToScene"
 #define kSegueToObject @"segueToObject"
 #define kSegueToScripts @"segueToScripts"
