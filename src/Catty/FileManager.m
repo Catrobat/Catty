@@ -150,11 +150,11 @@
     return contents;
 }
 
-
 - (void)addDefaultProjectsToProgramsRootDirectory
 {
-    [self addBundleProjectWithName:@"My first project"];
-    [self addBundleProjectWithName:@"Aquarium 3"];
+    [self addBundleProjectWithName:kDefaultFirstProgramName];
+    [self addBundleProjectWithName:kDefaultSecondProgramName];
+    [Util setLastProgram:kDefaultFirstProgramName];
 }
 
 - (void)addBundleProjectWithName:(NSString*)projectName
