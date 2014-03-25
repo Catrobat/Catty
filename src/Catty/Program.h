@@ -49,7 +49,8 @@
 + (Program*)programWithLoadingInfo:(ProgramLoadingInfo*)loadingInfo;
 + (BOOL)programExists:(NSString *)programName;
 + (kProgramNameValidationResult)validateProgramName:(NSString*)programName;
-+ (BOOL)isLastProgram:(Program*)program;
++ (void)removeProgramFromDiskWithProgramName:(NSString*)programName;
++ (BOOL)isLastProgram:(NSString*)programName;
 + (void)setLastProgram:(Program*)program;
 + (NSString*)basePath;
 

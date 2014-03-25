@@ -325,6 +325,7 @@ UINavigationBarDelegate>
             SpriteObject *object = [self.program.objectList objectAtIndex:(kObjectSectionIndex + indexPath.row)];
             [self.imageCache objectForKey:object.name];
             [self.program removeObject:object];
+            
             [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
         }
     }

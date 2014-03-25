@@ -165,11 +165,10 @@
     if (editingStyle == UITableViewCellEditingStyleDelete) {
         // Delete the row from the data source
         ProgramLoadingInfo *programLoadingInfo = [self.programLoadingInfos objectAtIndex:indexPath.row];
-        // TODO: use program manager for this later
+        [Program removeProgramFromDiskWithProgramName:programLoadingInfo.visibleName];
         AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
         [appDelegate.fileManager deleteDirectory:programLoadingInfo.basePath];
         [self.programLoadingInfos removeObject:programLoadingInfo];
-        [Util setLastProgram:nil];
         [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
     }
     else if (editingStyle == UITableViewCellEditingStyleInsert) {

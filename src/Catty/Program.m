@@ -205,20 +205,45 @@
 
 - (NSString*)projectPath
 {
-    return [NSString stringWithFormat:@"%@%@/", [Program basePath], self.header.programName];
+    return [Program projectPathForProgramWithName:self.header.programName];
+}
+
++ (NSString*)projectPathForProgramWithName:(NSString*)programName
+{
+    return [NSString stringWithFormat:@"%@%@/", [Program basePath], programName];
 }
 
 - (void)removeFromDisk
 {
+    [Program removeProgramFromDiskWithProgramName:self.header.programName];
+}
+
++ (void)removeProgramFromDiskWithProgramName:(NSString*)programName
+{
     FileManager *fileManager = ((AppDelegate*)[[UIApplication sharedApplication] delegate]).fileManager;
-    NSString *projectPath = [self projectPath];
+    NSString *projectPath = [self projectPathForProgramWithName:programName];
     if ([fileManager directoryExists:projectPath]) {
         [fileManager deleteDirectory:projectPath];
     }
-    if ([self isLastProgram]) {
+
+    // it this is currently set as last program, then look for next program to set it as the last program
+    if ([Program isLastProgram:programName]) {
         [Util setLastProgram:nil];
+        NSString *basePath = [Program basePath];
+        NSError *error;
+        NSArray *programLoadingInfos = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:basePath error:&error];
+        NSLogError(error);
+        for (NSString *programLoadingInfo in programLoadingInfos) {
+            // exclude .DS_Store folder on MACOSX simulator
+            if ([programLoadingInfo isEqualToString:@".DS_Store"])
+                continue;
+
+            [Util setLastProgram:programLoadingInfo];
+            break;
+        }
     }
 }
+
 
 - (GDataXMLElement*)toXML
 {
@@ -257,7 +282,7 @@
 
 - (BOOL)isLastProgram
 {
-    return [Program isLastProgram:self];
+    return [Program isLastProgram:self.header.programName];
 }
 
 - (void)setAsLastProgram
@@ -306,15 +331,15 @@
     return [NSString stringWithString:ret];
 }
 
-+ (BOOL)programExists:(NSString *)programName
++ (BOOL)programExists:(NSString*)programName
 {
     NSString *projectPath = [NSString stringWithFormat:@"%@%@/", [Program basePath], programName];
     return [[[FileManager alloc] init] directoryExists:projectPath];
 }
 
-+ (BOOL)isLastProgram:(Program*)program
++ (BOOL)isLastProgram:(NSString*)programName
 {
-    return ([program.header.programName isEqualToString:[Util lastProgram]]);
+    return ([programName isEqualToString:[Util lastProgram]]);
 }
 
 + (void)setLastProgram:(Program*)program
