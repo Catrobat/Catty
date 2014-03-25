@@ -170,13 +170,13 @@
     UIBarButtonItem *flexItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace
                                                                               target:nil
                                                                               action:nil];
-    
-    self.back = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"backbutton.png"]
+
+    self.back = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"backbutton"]
                                                             style:UIBarButtonItemStylePlain
                                                            target:self
                                                            action:@selector(previousPage:)];
-    
-    self.forward = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"forwardbutton.png"]
+
+    self.forward = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"forwardbutton"]
                                                                style:UIBarButtonItemStylePlain
                                                               target:self
                                                               action:@selector(nextPage:)];
@@ -184,12 +184,11 @@
 
     // XXX: workaround for tap area problem:
     // http://stackoverflow.com/questions/5113258/uitoolbar-unexpectedly-registers-taps-on-uibarbuttonitem-instances-even-when-tap
-    UIImageView *imageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"transparent1x1.png"]];
+    UIImageView *imageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"transparent1x1"]];
     UIBarButtonItem *invisibleButton = [[UIBarButtonItem alloc] initWithCustomView:imageView];
-    self.toolbarItems = [NSArray arrayWithObjects:flexItem,  self.back,invisibleButton, invisibleButton, flexItem,
+    self.toolbarItems = [NSArray arrayWithObjects:flexItem,  self.back, invisibleButton, invisibleButton, flexItem,
                          flexItem, flexItem, invisibleButton, invisibleButton, self.forward, flexItem, nil];
 }
-
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView
 {

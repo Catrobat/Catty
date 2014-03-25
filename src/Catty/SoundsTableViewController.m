@@ -147,7 +147,7 @@
         UITableViewCell <CatrobatImageCell>* imageCell = (UITableViewCell <CatrobatImageCell>*)cell;
         imageCell.indexPath = indexPath;
 
-        static NSString *playIconName = @"ic_media_play.png";
+        static NSString *playIconName = @"ic_media_play";
         UIImage *image = [self.imageCache objectForKey:playIconName];
         if (! image) {
             dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0ul);
@@ -190,16 +190,15 @@
                     BOOL isPlaying = sound.isPlaying;
                     if (self.currentPlayingSong && self.currentPlayingSongCell) {
                         self.currentPlayingSong.playing = NO;
-                        self.currentPlayingSongCell.iconImageView.image = [UIImage imageNamed:@"ic_media_play.png"];
+                        self.currentPlayingSongCell.iconImageView.image = [UIImage imageNamed:@"ic_media_play"];
                     }
                     self.currentPlayingSong = sound;
                     self.currentPlayingSongCell = imageCell;
                     self.currentPlayingSong.playing = (! isPlaying);
-                    self.currentPlayingSongCell.iconImageView.image = [UIImage imageNamed:@"ic_media_play.png"];
+                    self.currentPlayingSongCell.iconImageView.image = [UIImage imageNamed:@"ic_media_play"];
                     if (! isPlaying)
-                        imageCell.iconImageView.image = [UIImage imageNamed:@"ic_media_pause.png"];
+                        imageCell.iconImageView.image = [UIImage imageNamed:@"ic_media_pause"];
 
-                    // XXX: not sure if this task should be executed on main queue...
                     dispatch_queue_t queue = dispatch_queue_create("at.tugraz.ist.catrobat.PlaySoundTVCQueue", NULL);
                     dispatch_async(queue, ^{
                         [[AudioManager sharedAudioManager] stopAllSounds];
@@ -255,7 +254,7 @@
         self.currentPlayingSong = nil;
         self.currentPlayingSongCell = nil;
 
-        static NSString *playIconName = @"ic_media_play.png";
+        static NSString *playIconName = @"ic_media_play";
         UIImage *image = [self.imageCache objectForKey:playIconName];
 
         if (! image) {
@@ -358,7 +357,7 @@
                                                                           action:@selector(playSceneAction:)];
     // XXX: workaround for tap area problem:
     // http://stackoverflow.com/questions/5113258/uitoolbar-unexpectedly-registers-taps-on-uibarbuttonitem-instances-even-when-tap
-    UIImageView *imageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"transparent1x1.png"]];
+    UIImageView *imageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"transparent1x1"]];
     UIBarButtonItem *invisibleButton = [[UIBarButtonItem alloc] initWithCustomView:imageView];
     self.toolbarItems = [NSArray arrayWithObjects:flexItem, invisibleButton, add, invisibleButton, flexItem,
                          flexItem, flexItem, invisibleButton, play, invisibleButton, flexItem, nil];

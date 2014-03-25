@@ -49,7 +49,7 @@
     //
     //    SetBrightnessBrick* brick = [[SetBrightnessBrick alloc] init];
     //    brick.object = object;
-    //    object.texture = [SKTexture textureWithImageNamed:@"icon.png"];
+    //    object.texture = [SKTexture textureWithImageNamed:@"icon"];
     //
     //
     //    Formula* brightness = [[Formula alloc] init];

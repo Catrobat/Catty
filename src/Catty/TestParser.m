@@ -115,8 +115,8 @@
 ////    
 ////    
 ////    //creating cat looks (normal and ceshire cat)
-////    LookData *costume2 = [self createCostumeFromPath:@"normalcat.png" withName:@"Normal cat"];
-////    LookData *costume3 = [self createCostumeFromPath:@"ceshirecat.png" withName:@"Ceshire cat"];
+////    LookData *costume2 = [self createCostumeFromPath:@"normalcat" withName:@"Normal cat"];
+////    LookData *costume3 = [self createCostumeFromPath:@"ceshirecat" withName:@"Ceshire cat"];
 ////    
 ////    //creating cat sprite
 ////    Sprite *sprite2 = [self createSprite:@"Catroid" withPositionX:100 withPositionY:100 
@@ -177,7 +177,6 @@
 //- (Look*)createCostumeFromPath:(NSString*)path withName:(NSString*)name
 //{
 //    Look *retCostume = [[Look alloc] initWithName:name andPath:path];
-//    
 //    return retCostume;
 //}
 //
@@ -221,7 +220,7 @@
 //    project.header.screenHeight = [NSNumber numberWithInt:480];
 //    
 //    
-//    Look *look= [self createCostumeFromPath:@"normalcat.png" withName:@"cat1"];
+//    Look *look= [self createCostumeFromPath:@"normalcat" withName:@"cat1"];
 //    
 //    Setlookbrick *setLookBrick = [[Setlookbrick alloc]init];
 //    setLookBrick.look = look;
@@ -273,8 +272,8 @@
 //    project.header.screenHeight = [NSNumber numberWithInt:480];
 //    
 //    
-//    Look *look1= [self createCostumeFromPath:@"normalcat.png" withName:@"cat1"];
-//    Look *look2 = [self createCostumeFromPath:@"cheshirecat.png" withName:@"cat2"];
+//    Look *look1= [self createCostumeFromPath:@"normalcat" withName:@"cat1"];
+//    Look *look2 = [self createCostumeFromPath:@"cheshirecat" withName:@"cat2"];
 //    
 //    Nextlookbrick *nextCostumeBrick1 = [[Nextlookbrick alloc]init];
 //    Nextlookbrick *nextCostumeBrick2 = [[Nextlookbrick alloc]init];
@@ -321,7 +320,7 @@
 //    project.header.screenWidth  = [NSNumber numberWithInt:320];
 //    project.header.screenHeight = [NSNumber numberWithInt:480];
 //    
-//    Look *look= [self createCostumeFromPath:@"normalcat.png" withName:@"cat1"];
+//    Look *look= [self createCostumeFromPath:@"normalcat" withName:@"cat1"];
 //    
 //    Setlookbrick *setLookBrick = [[Setlookbrick alloc]init];
 //    setLookBrick.look = look;
@@ -366,7 +365,7 @@
 //    project.header.screenHeight = [NSNumber numberWithInt:480];
 //    
 //        
-//    Look *look = [self createCostumeFromPath:@"normalcat.png" withName:@"cat1"];
+//    Look *look = [self createCostumeFromPath:@"normalcat" withName:@"cat1"];
 //    
 //    Setlookbrick *setLookBrick = [[Setlookbrick alloc]init];
 //    setLookBrick.look = look;
@@ -422,7 +421,7 @@
 //    NSString *documentsDirectory = [paths objectAtIndex:0];
 //    
 //    //sprite1
-//    Look *look1 = [self createCostumeFromPath:@"normalcat.png" withName:@"cat1"];
+//    Look *look1 = [self createCostumeFromPath:@"normalcat" withName:@"cat1"];
 //    Setlookbrick *setLookBrick1 = [[Setlookbrick alloc]init];
 //    setLookBrick1.look = look1;
 //    NSArray *looks1 = [NSArray arrayWithObjects:look1, nil];
@@ -450,7 +449,7 @@
 //    
 //    
 //    //sprite2
-//    Look *look2 = [self createCostumeFromPath:@"normalcat.png" withName:@"cat1"];
+//    Look *look2 = [self createCostumeFromPath:@"normalcat" withName:@"cat1"];
 //    Setlookbrick *setLookBrick2 = [[Setlookbrick alloc]init];
 //    setLookBrick2.look = look2;
 //    NSArray *looks2 = [NSArray arrayWithObjects:look2, nil];
@@ -479,7 +478,7 @@
 //    
 //    
 //    //sprite3
-//    Look *look3 = [self createCostumeFromPath:@"normalcat.png" withName:@"cat1"];
+//    Look *look3 = [self createCostumeFromPath:@"normalcat" withName:@"cat1"];
 //    Setlookbrick *setLookBrick3 = [[Setlookbrick alloc]init];
 //    setLookBrick3.look = look3;
 //    NSArray *looks3 = [NSArray arrayWithObjects:look3, nil];
@@ -532,7 +531,7 @@
 //    NSString *documentsDirectory = [paths objectAtIndex:0];
 //    
 //    //sprite1
-//    Look *look1 = [self createCostumeFromPath:@"normalcat.png" withName:@"cat1"];
+//    Look *look1 = [self createCostumeFromPath:@"normalcat" withName:@"cat1"];
 //    Setlookbrick *setLookBrick1 = [[Setlookbrick alloc]init];
 //    setLookBrick1.look = look1;
 //    NSArray *looks1 = [NSArray arrayWithObjects:look1, nil];
@@ -563,7 +562,7 @@
 //    
 //    
 //    //sprite2
-//    Look *look2 = [self createCostumeFromPath:@"normalcat.png" withName:@"cat1"];
+//    Look *look2 = [self createCostumeFromPath:@"normalcat" withName:@"cat1"];
 //    Setlookbrick *setLookBrick2 = [[Setlookbrick alloc]init];
 //    setLookBrick2.look = look2;
 //    NSArray *looks2 = [NSArray arrayWithObjects:look2, nil];
@@ -592,7 +591,7 @@
 //    
 //    
 //    //sprite3
-//    Look *look3 = [self createCostumeFromPath:@"normalcat.png" withName:@"cat1"];
+//    Look *look3 = [self createCostumeFromPath:@"normalcat" withName:@"cat1"];
 //    Setlookbrick *setLookBrick3 = [[Setlookbrick alloc]init];
 //    setLookBrick3.look = look3;
 //    NSArray *looks3 = [NSArray arrayWithObjects:look3, nil];
@@ -641,9 +640,9 @@
 //    NSString *documentsDirectory = [paths objectAtIndex:0];
 //    
 //    //sprite1
-//    Look *look1 = [self createCostumeFromPath:@"normalcat.png" withName:@"cat1"];
-//    Look *look2 = [self createCostumeFromPath:@"normalcat.png" withName:@"cat1"];
-//    Look *look3 = [self createCostumeFromPath:@"normalcat.png" withName:@"cat1"];
+//    Look *look1 = [self createCostumeFromPath:@"normalcat" withName:@"cat1"];
+//    Look *look2 = [self createCostumeFromPath:@"normalcat" withName:@"cat1"];
+//    Look *look3 = [self createCostumeFromPath:@"normalcat" withName:@"cat1"];
 //    
 //    Cometofrontbrick *comeToFrontBrick1 = [[Cometofrontbrick alloc]init];
 //    Cometofrontbrick *comeToFrontBrick2 = [[Cometofrontbrick alloc]init];
@@ -736,9 +735,9 @@
 //    NSString *documentsDirectory = [paths objectAtIndex:0];
 //    
 //    //sprite1
-//    Look *look1 = [self createCostumeFromPath:@"normalcat.png" withName:@"cat1"];
-//    Look *look2 = [self createCostumeFromPath:@"normalcat.png" withName:@"cat1"];
-//    Look *look3 = [self createCostumeFromPath:@"normalcat.png" withName:@"cat1"];
+//    Look *look1 = [self createCostumeFromPath:@"normalcat" withName:@"cat1"];
+//    Look *look2 = [self createCostumeFromPath:@"normalcat" withName:@"cat1"];
+//    Look *look3 = [self createCostumeFromPath:@"normalcat" withName:@"cat1"];
 //    
 //    Gonstepsbackbrick *goNStepsBack1 = [[Gonstepsbackbrick alloc]init];
 //    goNStepsBack1.steps = [NSNumber numberWithInt:1];
@@ -831,7 +830,7 @@
 ////    project.screenWidth  = [NSNumber numberWithInt:320];
 ////    project.screenHeight = [NSNumber numberWithInt:480];
 ////    
-////    LookData *look= [self createCostumeFromPath:@"normalcat.png" withName:@"cat1"];
+////    LookData *look= [self createCostumeFromPath:@"normalcat" withName:@"cat1"];
 ////    
 ////    ChangeSizeByNBrick *changeSizeByNBrick1 = [[ChangeSizeByNBrick alloc]initWithSizeChangeRate:50];
 ////    ChangeSizeByNBrick *changeSizeByNBrick2 = [[ChangeSizeByNBrick alloc]initWithSizeChangeRate:-100];
@@ -863,7 +862,7 @@
 ////    project.screenWidth  = [NSNumber numberWithInt:320];
 ////    project.screenHeight = [NSNumber numberWithInt:480];
 ////    
-////    LookData *look= [self createCostumeFromPath:@"normalcat.png" withName:@"cat1"];
+////    LookData *look= [self createCostumeFromPath:@"normalcat" withName:@"cat1"];
 ////    
 ////    StartScript *startScript = [[StartScript alloc]init];
 ////    PlaceAtBrick *placeAtBrick = [[PlaceAtBrick alloc]initWithPosition:GLKVector3Make(-100, 100, 0)];
@@ -895,8 +894,8 @@
 ////    project.screenWidth  = [NSNumber numberWithInt:320];
 ////    project.screenHeight = [NSNumber numberWithInt:480];
 ////    
-////    LookData *costume1 = [self createCostumeFromPath:@"normalcat.png" withName:@"cat1"];
-////    LookData *costume2 = [self createCostumeFromPath:@"cheshirecat.png" withName:@"cat2"];
+////    LookData *costume1 = [self createCostumeFromPath:@"normalcat" withName:@"cat1"];
+////    LookData *costume2 = [self createCostumeFromPath:@"cheshirecat" withName:@"cat2"];
 ////    
 ////    StartScript *startScript = [[StartScript alloc]init];
 ////    RepeatBrick *loopStart = [[RepeatBrick alloc]initWithNumberOfLoops:5];
@@ -936,7 +935,7 @@
 //    project.header.screenHeight = [NSNumber numberWithInt:480];
 //    
 //    
-//    Look *look= [self createCostumeFromPath:@"normalcat.png" withName:@"cat1"];
+//    Look *look= [self createCostumeFromPath:@"normalcat" withName:@"cat1"];
 //    
 //    Setlookbrick *setLookBrick = [[Setlookbrick alloc]init];
 //    setLookBrick.look = look;
@@ -980,7 +979,7 @@
 //    project.header.screenHeight = [NSNumber numberWithInt:480];
 //    
 //    
-//    Look *look= [self createCostumeFromPath:@"normalcat.png" withName:@"cat1"];
+//    Look *look= [self createCostumeFromPath:@"normalcat" withName:@"cat1"];
 //    
 //    Waitbrick *wait = [[Waitbrick alloc] init];
 //    wait.timeToWaitInSeconds = [NSNumber numberWithFloat:0.75f];
@@ -1037,7 +1036,7 @@
 //    project.header.screenWidth  = [NSNumber numberWithInt:320];
 //    project.header.screenHeight = [NSNumber numberWithInt:480];
 //    
-//    Look *look= [self createCostumeFromPath:@"cheshirecat.png" withName:@"cat1"];
+//    Look *look= [self createCostumeFromPath:@"cheshirecat" withName:@"cat1"];
 //    Setlookbrick *setLook = [[Setlookbrick alloc]init];
 //    setLook.look = look;
 //    Placeatbrick   *placeAt   = [[Placeatbrick   alloc]initWithXPosition:[NSNumber numberWithFloat:-80.0f] yPosition:[NSNumber numberWithFloat: -120.0f]];
@@ -1094,7 +1093,7 @@
 //
 //
 //    
-//    Look *look= [self createCostumeFromPath:@"cheshirecat.png" withName:@"cat1"];
+//    Look *look= [self createCostumeFromPath:@"cheshirecat" withName:@"cat1"];
 //    Setlookbrick *setLook = [[Setlookbrick alloc]init];
 //    setLook.look = look;
 //    
@@ -1128,7 +1127,7 @@
 ////    
 ////    // sprite 2
 ////    
-////    Look *look2= [self createCostumeFromPath:@"cheshirecat.png" withName:@"cat2"];
+////    Look *look2= [self createCostumeFromPath:@"cheshirecat" withName:@"cat2"];
 ////    Setlookbrick *setLook2 = [[Setlookbrick alloc]init];
 ////    setLook2.look = look2;
 ////    NSArray *looks2 = [NSArray arrayWithObjects:look2, nil];
@@ -1171,7 +1170,7 @@
 //    NSString *documentsDirectory = [paths objectAtIndex:0];
 //    
 //    
-//    Look*look= [self createCostumeFromPath:@"cheshirecat.png" withName:@"cat1"];
+//    Look*look= [self createCostumeFromPath:@"cheshirecat" withName:@"cat1"];
 //    NSArray *looks = [NSArray arrayWithObjects:look, nil];
 //    
 //    Setlookbrick *setLook = [[Setlookbrick alloc]init];
@@ -1233,7 +1232,7 @@
 //    project.header.screenHeight = [NSNumber numberWithInt:900];
 //    
 //    
-//    Look *look= [self createCostumeFromPath:@"normalcat.png" withName:@"cat1"];
+//    Look *look= [self createCostumeFromPath:@"normalcat" withName:@"cat1"];
 //    
 //    Setghosteffectbrick *setGhostEffect1 = [[Setghosteffectbrick alloc] initWithTransparencyInPercent:[NSNumber numberWithInt:50]];
 //    Setghosteffectbrick *setGhostEffect2 = [[Setghosteffectbrick alloc] initWithTransparencyInPercent:[NSNumber numberWithInt:0]];

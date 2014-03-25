@@ -143,19 +143,18 @@
     
     [self.view addGestureRecognizer:[[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(handlePan:)]];
     [self setUpMenuButtons];
-    
+
     /// MenuImageBackground
-    UIImage *menuBackgroundImage = [UIImage imageNamed:@"stage_dialog_background_middle_1.png"];
+    UIImage *menuBackgroundImage = [UIImage imageNamed:@"stage_dialog_background_middle_1"];
     UIImage *newBackgroundImage;
-    
+
     if ([Util getScreenHeight] == kIphone4ScreenHeight) {
         CGSize size = CGSizeMake(kWidthSlideMenu+kBounceEffect, kIphone4ScreenHeight);
         UIGraphicsBeginImageContextWithOptions(size, NO, 0.0);
         [menuBackgroundImage drawInRect:CGRectMake(0, 0, size.width, size.height)];
         newBackgroundImage = UIGraphicsGetImageFromCurrentImageContext();
         UIGraphicsEndImageContext();
-    }
-    else{
+    } else {
         CGSize size = CGSizeMake(kWidthSlideMenu+kBounceEffect, kIphone5ScreenHeight);
         UIGraphicsBeginImageContextWithOptions(size, NO, 0.0);
         [menuBackgroundImage drawInRect:CGRectMake(0, 0, size.width, size.height)];
@@ -164,12 +163,11 @@
     }
     //newBackgroundImage = [self brightnessBackground:newBackgroundImage];
 
-
     UIColor *background = [[UIColor alloc] initWithPatternImage:newBackgroundImage];
-    
+
     //UIColor *background =[UIColor darkBlueColor];
     self.menuView.backgroundColor = background;
-    
+
     [self setUpMenuFrames];
     [self setUpLabels];
     [self setUpGridView];

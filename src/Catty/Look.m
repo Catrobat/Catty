@@ -37,40 +37,31 @@
 - (id)initWithPath:(NSString*)filePath
 {
     self = [super init];
-    if (self) 
-    {
+    if (self) {
         self.name = nil;
-        if (filePath == nil || [filePath length] == 0)
-        {
+        if (filePath == nil || [filePath length] == 0) {
             @throw [NSException exceptionWithName:NSInternalInconsistencyException
                                            reason:@"You cannot instantiate a costume without a file path"
                                          userInfo:nil];
             return nil;
-        }
-        else 
-        {
+        } else {
             self.fileName = filePath;
         }
     }
     return self;
 }
 
-
 - (id)initWithName:(NSString*)name andPath:(NSString*)filePath
 {
     self = [super init];
-    if (self) 
-    {
+    if (self) {
         self.name = name;
-        if (filePath == nil || [filePath length] == 0)
-        {
+        if (filePath == nil || [filePath length] == 0) {
             @throw [NSException exceptionWithName:NSInternalInconsistencyException
                                            reason:@"You cannot instantiate a costume without a file path"
                                          userInfo:nil];
             return nil;
-        }
-        else 
-        {
+        } else {
             self.fileName = filePath;
         }
     }
