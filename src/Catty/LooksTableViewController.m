@@ -384,13 +384,12 @@
             // choose picture from camera roll
             NSLog(@"Choose image from camera roll");
             [self presentImagePicker:UIImagePickerControllerSourceTypeSavedPhotosAlbum];
-        } else if ([action isEqualToString:kDrawNewImageActionSheetButton]) {
-            // draw new image
-            // TODO: @all: in android they invoke Pocket Paint.
-            // But there is no Pocket Paint App for iOS a.t.m.
-            // What to do here??
-            NSLog(@"Draw new image");
-            [Util showComingSoonAlertView];
+
+            // TODO: implement this after Pocket Paint is fully integrated
+//        } else if ([action isEqualToString:kDrawNewImageActionSheetButton]) {
+//            // draw new image
+//            NSLog(@"Draw new image");
+//            [Util showComingSoonAlertView];
         }
     }
 }
@@ -412,8 +411,8 @@
         if ([availableMediaTypes containsObject:(NSString *)kUTTypeImage])
             self.addLookActionSheetBtnIndexes[@([sheet addButtonWithTitle:NSLocalizedString(@"Choose image",nil)])] = kChooseImageActionSheetButton;
     }
-    
-    self.addLookActionSheetBtnIndexes[@([sheet addButtonWithTitle:NSLocalizedString(@"Draw new image",nil)])] = kDrawNewImageActionSheetButton;
+
+//    self.addLookActionSheetBtnIndexes[@([sheet addButtonWithTitle:NSLocalizedString(@"Draw new image",nil)])] = kDrawNewImageActionSheetButton;
     sheet.cancelButtonIndex = [sheet addButtonWithTitle:kBtnCancelTitle];
     sheet.tag = kAddLookActionSheetTag;
     sheet.actionSheetStyle = UIActionSheetStyleDefault;

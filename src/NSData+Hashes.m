@@ -24,7 +24,7 @@
 
 #import "NSData+Hashes.h"
 
-static inline NSString*CCHashFunction(unsigned char *(function)(const void *data, CC_LONG len, unsigned char *md), CC_LONG digestLength, NSData *data)
+static inline NSString *CCHashFunction(unsigned char *(function)(const void *data, CC_LONG len, unsigned char *md), CC_LONG digestLength, NSData *data)
 {
     uint8_t digest[digestLength];
     function(data.bytes, (CC_LONG)data.length, digest);
