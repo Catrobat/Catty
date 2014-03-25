@@ -40,8 +40,6 @@ NSString * const sensorStringArray[] = {
     @"OBJECT_LAYER",
 };
 
-
-
 +(Sensor) sensorForString:(NSString*)sensor
 {
     if([sensor isEqualToString:@"X_ACCELERATION"]) {
@@ -94,7 +92,7 @@ NSString * const sensorStringArray[] = {
 
 + (NSString*)stringForSensor:(Sensor)sensor
 {
-    if(sensor < sizeof(sensorStringArray) / sizeof(Sensor))
+    if (((NSInteger) sensor) < ((NSInteger)(sizeof(sensorStringArray) / sizeof(Sensor))))
         return sensorStringArray[sensor];
 
     return @"Unknown Sensor";

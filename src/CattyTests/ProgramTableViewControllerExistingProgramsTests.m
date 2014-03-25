@@ -135,7 +135,7 @@
 
         NSUInteger objectCounter = 0;
         NSLog(@"Program: %@", program.header.programName);
-        NSLog(@"Number of objects: %d", [program.objectList count]);
+        NSLog(@"Number of objects: %lu", (unsigned long)[program.objectList count]);
         for (SpriteObject *object in program.objectList) {
             if (! objectCounter) {
                 ++objectCounter;

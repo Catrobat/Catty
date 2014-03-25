@@ -371,45 +371,40 @@
     NSRegularExpression *aTagRegex = [NSRegularExpression regularExpressionWithPattern:kHTMLATagPattern options:NSRegularExpressionCaseInsensitive error:&error];
     NSArray *aTags = [aTagRegex matchesInString:text options:0 range:NSMakeRange(0, [text length])];
     NSRegularExpression *aHrefRegex = [NSRegularExpression regularExpressionWithPattern:kHTMLAHrefTagPattern options:NSRegularExpressionCaseInsensitive error:&error];
-    
+
     NSMapTable* urlRangeMapTable = [NSMapTable strongToStrongObjectsMapTable];
-    
-    for(int i = [aTags count]-1; i>=0; i--) {
-        NSTextCheckingResult* result = [aTags objectAtIndex:i];
+
+    for (NSInteger index = ([aTags count] - 1); index >= 0; --index) {
+        NSTextCheckingResult* result = [aTags objectAtIndex:index];
         NSString* href = [text substringWithRange:[result rangeAtIndex:1]];
         NSString* name = [text substringWithRange:[result rangeAtIndex:2]];
-        
-        
+
         NSTextCheckingResult* urlResult = [aHrefRegex firstMatchInString:href options:0 range:NSMakeRange(0, [href length])];
         NSString* url = [href substringWithRange:[urlResult rangeAtIndex:1]];
-        
+
         NSRange resultRange = [result range];
         NSUInteger offset = text.length;
         text = [text stringByReplacingCharactersInRange:resultRange withString:name];
         offset -= text.length;
-        
+
         NSEnumerator *enumerator = [urlRangeMapTable keyEnumerator];
         NSArray* keys = [enumerator allObjects];
-        
+
         for (NSString* key in keys) {
-            
             NSRange nameRange = [[urlRangeMapTable objectForKey:key ] rangeValue];
             nameRange.location = nameRange.location-offset;
             [urlRangeMapTable setObject:[NSValue valueWithRange:nameRange] forKey:key];
         }
-        
+
         NSRange nameRange = NSMakeRange(resultRange.location, name.length);
         [urlRangeMapTable setObject:[NSValue valueWithRange:nameRange] forKey:url];
     }
-    
+
     label.text = text;
-    for( NSString* url in urlRangeMapTable)
-    {
+    for (NSString* url in urlRangeMapTable) {
         NSRange nameRange = [[urlRangeMapTable objectForKey:url ] rangeValue];
         [label addLinkToURL:[NSURL URLWithString:url] withRange:nameRange];
     }
-
-    
 }
 
 

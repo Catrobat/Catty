@@ -168,7 +168,7 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath*)indexPath
 {
     NSString* identifier = [self.identifiers objectAtIndex:indexPath.row];
-#warning the if statement should be removed once everything has been implemented..
+    // TODO: the if statement should be removed once everything has been implemented...
     if ([identifier isEqualToString:kSegueToExplore] || [identifier isEqualToString:kSegueToPrograms] ||
         [identifier isEqualToString:kSegueToForum] || [identifier isEqualToString:kSegueToContinue] ||
         [identifier isEqualToString:kSegueToNewProgram]) {
