@@ -871,13 +871,13 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		81506F4A18C3EDDC000ED328 /* 3Party */ = {
+		81506F4A18C3EDDC000ED328 /* LXReorderableCollectionViewFlowLayout */ = {
 			isa = PBXGroup;
 			children = (
 				81506F4B18C3EE18000ED328 /* LXReorderableCollectionViewFlowLayout.h */,
 				81506F4C18C3EE18000ED328 /* LXReorderableCollectionViewFlowLayout.m */,
 			);
-			name = 3Party;
+			name = LXReorderableCollectionViewFlowLayout;
 			sourceTree = "<group>";
 		};
 		81F10ED317CCD1F8000E4522 /* MaintainProgram */ = {
@@ -1324,6 +1324,7 @@
 				B4BCF438170ED5DB008EDF3A /* LoadingView */,
 				B4BCF41E170ED3B7008EDF3A /* TTTAttributedLabel */,
 				B4F499B3175E838B002E1BBD /* PullableView */,
+				81506F4A18C3EDDC000ED328 /* LXReorderableCollectionViewFlowLayout */,
 			);
 			name = UserInterface;
 			sourceTree = "<group>";
@@ -1632,7 +1633,6 @@
 		CA160DB218A29CBB00E5190D /* MaintainScript */ = {
 			isa = PBXGroup;
 			children = (
-				81506F4A18C3EDDC000ED328 /* 3Party */,
 				81FAEE2D17E781AB0052BB2B /* ScriptCollectionViewController.h */,
 				81FAEE2E17E781AB0052BB2B /* ScriptCollectionViewController.m */,
 				CA688209180B30B5008A7C99 /* BrickCategoriesTableViewController.h */,
@@ -2466,7 +2466,7 @@
 				LastUpgradeCheck = 0500;
 				TargetAttributes = {
 					1D6058900D05DD3D006BFB54 = {
-						DevelopmentTeam = 9NJ4SV439Q;
+						DevelopmentTeam = 4V6T7BCGGR;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
 								enabled = 0;
