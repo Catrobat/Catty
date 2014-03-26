@@ -337,9 +337,9 @@
 {
     if([[segue identifier] isEqualToString:kSegueToProgramDetail]) {
         NSIndexPath *selectedRowIndexPath = self.tableView.indexPathForSelectedRow;
-        CatrobatProject *level = [self.projects objectAtIndex:selectedRowIndexPath.row];
-        ProgramDetailStoreViewController* levelDetailViewController = (ProgramDetailStoreViewController*)[segue destinationViewController];
-        levelDetailViewController.project = level;
+        CatrobatProject *catrobatProject = [self.projects objectAtIndex:selectedRowIndexPath.row];
+        ProgramDetailStoreViewController* programDetailViewController = (ProgramDetailStoreViewController*)[segue destinationViewController];
+        programDetailViewController.project = catrobatProject;
     }
 }
 

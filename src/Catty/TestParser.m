@@ -296,7 +296,7 @@
 //    SpriteObject *sprite = [self createSprite:@"cat" withPositionX:(NSInteger)0 withPositionY:(NSInteger)0 withCostumes:looks setCostumeIndex:(NSInteger)0];
 //    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
 //    NSString *documentsDirectory = [paths objectAtIndex:0];
-//    sprite.projectPath = [documentsDirectory stringByAppendingString:@"/programs/TestParser/"];
+//    sprite.projectPath = [documentsDirectory stringByAppendingString:@"/.programs/TestParser/"];
 //    NSMutableArray *temp = [[NSMutableArray alloc] init];
 //    [temp addObject:startScript];
 //    [temp addObject:whenScript];
@@ -344,7 +344,7 @@
 //    SpriteObject *sprite = [self createSprite:@"cat" withPositionX:(NSInteger)0 withPositionY:(NSInteger)0 withCostumes:looks setCostumeIndex:(NSInteger)0];
 //    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
 //    NSString *documentsDirectory = [paths objectAtIndex:0];
-//    sprite.projectPath = [documentsDirectory stringByAppendingString:@"/programs/TestParser/"];
+//    sprite.projectPath = [documentsDirectory stringByAppendingString:@"/.programs/TestParser/"];
 //    NSMutableArray *temp = [[NSMutableArray alloc] init];
 //    [temp addObject:startScript];
 //    [temp addObject:whenScript];
@@ -393,7 +393,7 @@
 //    sprite.scriptList = [NSArray arrayWithObjects: startScript, whenScript, nil];
 //    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
 //    NSString *documentsDirectory = [paths objectAtIndex:0];
-//    sprite.projectPath = [documentsDirectory stringByAppendingString:@"/programs/TestParser/"];
+//    sprite.projectPath = [documentsDirectory stringByAppendingString:@"/.programs/TestParser/"];
 //    //[sprite addWhenScript:whenScript];
 //    
 //    project.objectList = [NSMutableArray arrayWithObject:sprite];
@@ -445,7 +445,7 @@
 //    [temp addObject:whenScript];
 //    sprite1.scriptList = temp;
 //    sprite1.lookList = looks1;
-//    sprite1.projectPath = [documentsDirectory stringByAppendingString:@"/programs/TestParser/"];
+//    sprite1.projectPath = [documentsDirectory stringByAppendingString:@"/.programs/TestParser/"];
 //    
 //    
 //    //sprite2
@@ -474,7 +474,7 @@
 //    [temp2 addObject:broadcastScript1];
 //    sprite2.scriptList = temp2;
 //    sprite2.lookList = looks2;
-//    sprite2.projectPath = [documentsDirectory stringByAppendingString:@"/programs/TestParser/"];
+//    sprite2.projectPath = [documentsDirectory stringByAppendingString:@"/.programs/TestParser/"];
 //    
 //    
 //    //sprite3
@@ -503,7 +503,7 @@
 //    [temp3 addObject:startScript3];
 //    [temp3 addObject:broadcastScript2];
 //    sprite3.scriptList = temp3;
-//    sprite3.projectPath = [documentsDirectory stringByAppendingString:@"/programs/TestParser/"];
+//    sprite3.projectPath = [documentsDirectory stringByAppendingString:@"/.programs/TestParser/"];
 //
 //
 //    ///
@@ -558,7 +558,7 @@
 //    [temp addObject:whenScript];
 //    sprite1.scriptList = temp;
 //    sprite1.lookList = looks1;
-//    sprite1.projectPath = [documentsDirectory stringByAppendingString:@"/programs/TestParser/"];
+//    sprite1.projectPath = [documentsDirectory stringByAppendingString:@"/.programs/TestParser/"];
 //    
 //    
 //    //sprite2
@@ -587,7 +587,7 @@
 //    [temp2 addObject:broadcastScript1];
 //    sprite2.scriptList = temp2;
 //    sprite2.lookList = looks2;
-//    sprite2.projectPath = [documentsDirectory stringByAppendingString:@"/programs/TestParser/"];
+//    sprite2.projectPath = [documentsDirectory stringByAppendingString:@"/.programs/TestParser/"];
 //    
 //    
 //    //sprite3
@@ -616,7 +616,7 @@
 //    [temp3 addObject:startScript3];
 //    [temp3 addObject:broadcastScript2];
 //    sprite3.scriptList = temp3;
-//    sprite3.projectPath = [documentsDirectory stringByAppendingString:@"/programs/TestParser/"];
+//    sprite3.projectPath = [documentsDirectory stringByAppendingString:@"/.programs/TestParser/"];
 //    
 //    
 //    ///
@@ -685,7 +685,7 @@
 //    [startScript addBrick:setLookBrick1];
 //    [startScript addBrick:placeat1];
 //    sprite1.scriptList = [NSArray arrayWithObjects:startScript, whenScript1, nil];
-//    sprite1.projectPath = [documentsDirectory stringByAppendingString:@"/programs/TestParser/"];
+//    sprite1.projectPath = [documentsDirectory stringByAppendingString:@"/.programs/TestParser/"];
 //    sprite1.lookList = looks1;
 //    
 //    //[sprite1 addWhenScript:whenScript];
@@ -696,7 +696,7 @@
 //    [startScript2 addBrick:setLookBrick2];
 //    [startScript2 addBrick:placeat2];
 //    sprite2.scriptList = [NSArray arrayWithObjects:startScript2, whenScript2, nil];
-//    sprite2.projectPath = [documentsDirectory stringByAppendingString:@"/programs/TestParser/"];
+//    sprite2.projectPath = [documentsDirectory stringByAppendingString:@"/.programs/TestParser/"];
 //    sprite2.lookList = looks2;
 //    
 //    
@@ -708,7 +708,7 @@
 //    [startScript3 addBrick:setLookBrick3];
 //    [startScript3 addBrick:placeat3];
 //    sprite3.scriptList = [NSArray arrayWithObjects:startScript3, whenScript3, nil];
-//    sprite3.projectPath = [documentsDirectory stringByAppendingString:@"/programs/TestParser/"];
+//    sprite3.projectPath = [documentsDirectory stringByAppendingString:@"/.programs/TestParser/"];
 //    sprite3.lookList = looks3;
 //    
 //    //[sprite3 addWhenScript:whenScript];
@@ -783,7 +783,7 @@
 //    [startScript addBrick:setLookBrick1];
 //    [startScript addBrick:placeat1];
 //    sprite1.scriptList = [NSArray arrayWithObjects:startScript, whenScript1, nil];
-//    sprite1.projectPath = [documentsDirectory stringByAppendingString:@"/programs/TestParser/"];
+//    sprite1.projectPath = [documentsDirectory stringByAppendingString:@"/.programs/TestParser/"];
 //    sprite1.lookList = looks1;
 //    
 //    //[sprite1 addWhenScript:whenScript];
@@ -794,7 +794,7 @@
 //    [startScript2 addBrick:setLookBrick2];
 //    [startScript2 addBrick:placeat2];
 //    sprite2.scriptList = [NSArray arrayWithObjects:startScript2, whenScript2, nil];
-//    sprite2.projectPath = [documentsDirectory stringByAppendingString:@"/programs/TestParser/"];
+//    sprite2.projectPath = [documentsDirectory stringByAppendingString:@"/.programs/TestParser/"];
 //    sprite2.lookList = looks2;
 //    
 //    
@@ -806,7 +806,7 @@
 //    [startScript3 addBrick:setLookBrick3];
 //    [startScript3 addBrick:placeat3];
 //    sprite3.scriptList = [NSArray arrayWithObjects:startScript3, whenScript3, nil];
-//    sprite3.projectPath = [documentsDirectory stringByAppendingString:@"/programs/TestParser/"];
+//    sprite3.projectPath = [documentsDirectory stringByAppendingString:@"/.programs/TestParser/"];
 //    sprite3.lookList = looks3;
 //    
 //    //[sprite3 addWhenScript:whenScript];
@@ -956,7 +956,7 @@
 //    SpriteObject *sprite = [self createSprite:@"cat" withPositionX:(NSInteger)0 withPositionY:(NSInteger)0 withCostumes:looks setCostumeIndex:(NSInteger)0];
 //    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
 //    NSString *documentsDirectory = [paths objectAtIndex:0];
-//    sprite.projectPath = [documentsDirectory stringByAppendingString:@"/programs/TestParser/"];
+//    sprite.projectPath = [documentsDirectory stringByAppendingString:@"/.programs/TestParser/"];
 //    NSMutableArray *temp = [[NSMutableArray alloc] init];
 //    [temp addObject:startScript];
 //    [temp addObject:whenScript];
@@ -1013,7 +1013,7 @@
 //    SpriteObject *sprite = [self createSprite:@"cat" withPositionX:(NSInteger)0 withPositionY:(NSInteger)0 withCostumes:looks setCostumeIndex:(NSInteger)0];
 //    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
 //    NSString *documentsDirectory = [paths objectAtIndex:0];
-//    sprite.projectPath = [documentsDirectory stringByAppendingString:@"/programs/TestParser/"];
+//    sprite.projectPath = [documentsDirectory stringByAppendingString:@"/.programs/TestParser/"];
 //    NSMutableArray *temp = [[NSMutableArray alloc] init];
 //    [temp addObject:startScript];
 //    [temp addObject:whenScript];
@@ -1061,7 +1061,7 @@
 ////    SpriteObject *sprite = [self createSprite:@"cat" withPositionX:(NSInteger)0 withPositionY:(NSInteger)0 withCostumes:looks setCostumeIndex:(NSInteger)0];
 ////    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
 ////    NSString *documentsDirectory = [paths objectAtIndex:0];
-////    sprite.projectPath = [documentsDirectory stringByAppendingString:@"/programs/TestParser/"];
+////    sprite.projectPath = [documentsDirectory stringByAppendingString:@"/.programs/TestParser/"];
 ////    NSMutableArray *temp = [[NSMutableArray alloc] init];
 ////    [temp addObject:startScript];
 ////    [temp addObject:whenScript];
@@ -1120,7 +1120,7 @@
 ////    startScript1.brickList = [NSArray arrayWithObjects:setLook, placeAt1, nil];
 ////    
 ////    SpriteObject *sprite1 = [self createSprite:@"cat1" withPositionX:(NSInteger)0 withPositionY:(NSInteger)0 withCostumes:looks setCostumeIndex:(NSInteger)0];
-////    sprite1.projectPath = [documentsDirectory stringByAppendingString:@"/programs/TestParser/"];
+////    sprite1.projectPath = [documentsDirectory stringByAppendingString:@"/.programs/TestParser/"];
 ////    sprite1.scriptList = [NSArray arrayWithObjects:startScript1, whenScript1, nil];
 //////
 ////    
@@ -1148,7 +1148,7 @@
 ////    startScript2.brickList = [NSArray arrayWithObjects:setLook2, placeAt2, nil];
 ////    
 ////    SpriteObject *sprite2 = [self createSprite:@"cat2" withPositionX:(NSInteger)0 withPositionY:(NSInteger)0 withCostumes:looks setCostumeIndex:(NSInteger)0];
-////    sprite2.projectPath = [documentsDirectory stringByAppendingString:@"/programs/TestParser/"];
+////    sprite2.projectPath = [documentsDirectory stringByAppendingString:@"/.programs/TestParser/"];
 ////    sprite2.scriptList = [NSArray arrayWithObjects:startScript2, whenScript2, nil];
 ////
 ////    project.objectList = [NSMutableArray arrayWithObjects:sprite1, sprite2, nil];
@@ -1213,7 +1213,7 @@
 ////    
 ////    SpriteObject *sprite = [self createSprite:@"cat" withPositionX:(NSInteger)0 withPositionY:(NSInteger)0 withCostumes:looks setCostumeIndex:(NSInteger)0];
 ////    sprite.scriptList = [NSArray arrayWithObjects:whenScript, startScript, nil];
-////    sprite.projectPath = [documentsDirectory stringByAppendingString:@"/programs/TestParser/"];
+////    sprite.projectPath = [documentsDirectory stringByAppendingString:@"/.programs/TestParser/"];
 ////    
 ////    ////
 ////    project.objectList = [NSMutableArray arrayWithObjects:sprite, nil];
@@ -1260,7 +1260,7 @@
 //    SpriteObject *sprite = [self createSprite:@"cat" withPositionX:(NSInteger)0 withPositionY:(NSInteger)0 withCostumes:looks setCostumeIndex:(NSInteger)0];
 //    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
 //    NSString *documentsDirectory = [paths objectAtIndex:0];
-//    sprite.projectPath = [documentsDirectory stringByAppendingString:@"/programs/TestParser/"];
+//    sprite.projectPath = [documentsDirectory stringByAppendingString:@"/.programs/TestParser/"];
 //    NSMutableArray *temp = [[NSMutableArray alloc] init];
 //    [temp addObject:startScript];
 //    [temp addObject:whenScript];

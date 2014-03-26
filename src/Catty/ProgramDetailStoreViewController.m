@@ -113,7 +113,7 @@
     
     AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
     UIView *view = [CreateView createProgramDetailView:self.project target:self];
-    if ([appDelegate.fileManager getPathForLevel:self.project.projectName]) {
+    if ([appDelegate.fileManager getFullPathForProgram:self.project.projectName]) {
         [view viewWithTag:kDownloadButtonTag].hidden = YES;
         [view viewWithTag:kPlayButtonTag].hidden = NO;
     }

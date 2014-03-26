@@ -37,7 +37,6 @@
 #define kBackgroundObjects 1
 
 #define kDefaultFirstProgramName NSLocalizedString(@"My first project",nil)
-#define kDefaultFirstProgramName NSLocalizedString(@"My first project",nil)
 #define kDefaultSecondProgramName NSLocalizedString(@"Aquarium 3",nil)
 #define kDefaultProgramName NSLocalizedString(@"New Program",@"Default name for new programs")
 #define kBackgroundTitle NSLocalizedString(@"Background",@"Title for Background-Section-Header in program view")

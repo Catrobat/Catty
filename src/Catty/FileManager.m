@@ -25,11 +25,12 @@
 #import "SSZipArchive.h"
 #import "Logger.h"
 #import "ProgramDetailStoreViewController.h"
+#import "ProgramDefines.h"
 
 @interface FileManager()
 
 @property (nonatomic, strong) NSString *documentsDirectory;
-@property (nonatomic, strong) NSString *levelsDirectory;
+@property (nonatomic, strong) NSString *programsDirectory;
 @property (nonatomic, strong) NSURLConnection *programConnection;
 @property (nonatomic, strong) NSURLConnection *imageConnection;
 @property (nonatomic, strong) NSMutableData *programData;
@@ -40,24 +41,22 @@
 
 @end
 
-
 @implementation FileManager
 
-#pragma mark - Getter
+#pragma mark - Getters and Setters
 - (NSString*)documentsDirectory {
     if (_documentsDirectory == nil) {
         _documentsDirectory = [[NSString alloc] initWithString:[Util applicationDocumentsDirectory]];
     }
-    
     return _documentsDirectory;
 }
 
-- (NSString*)levelsDirectory {
-    if (_levelsDirectory == nil) {
-        _levelsDirectory = [[NSString alloc] initWithFormat:@"%@/programs", self.documentsDirectory];
+- (NSString*)programsDirectory
+{
+    if (_programsDirectory == nil) {
+        _programsDirectory = [[NSString alloc] initWithFormat:@"%@/%@", self.documentsDirectory, kProgramsFolder];
     }
-    
-    return _levelsDirectory;
+    return _programsDirectory;
 }
 
 - (NSMutableData*)programData {
@@ -92,6 +91,7 @@
     return _imageArray;
 }
 
+#pragma mark - Operations
 - (void)createDirectory:(NSString *)path
 {
     NSFileManager *fileManager= [NSFileManager defaultManager];
@@ -101,11 +101,12 @@
     NSLogError(error);
 }
 
-- (void)deleteAllFilesInDocumentsDirectory {
-    [self deleteAllFillesOfDirectory:self.documentsDirectory];
+- (void)deleteAllFilesInDocumentsDirectory
+{
+    [self deleteAllFilesOfDirectory:self.documentsDirectory];
 }
 
-- (void)deleteAllFillesOfDirectory:(NSString*)path {
+- (void)deleteAllFilesOfDirectory:(NSString*)path {
     NSFileManager *fm = [NSFileManager defaultManager];
     
     if (![path hasSuffix:@"/"]) {
@@ -164,45 +165,37 @@
     return contents;
 }
 
-
-- (void)addDefaultProjectToLeveLDirectory {
-    
-    [self addBundleProjectWithName:@"My first project"];
-    [self addBundleProjectWithName:@"Aquarium 3"];
+- (void)addDefaultProjectsToProgramsRootDirectory
+{
+    [self addBundleProjectWithName:kDefaultFirstProgramName];
+    [self addBundleProjectWithName:kDefaultSecondProgramName];
+    [Util setLastProgram:kDefaultFirstProgramName];
 }
-
 
 - (void)addBundleProjectWithName:(NSString*)projectName
 {
-    
     NSError *error;
-    
-    if (![[NSFileManager defaultManager] fileExistsAtPath:self.levelsDirectory]) {
-        [[NSFileManager defaultManager] createDirectoryAtPath:self.levelsDirectory withIntermediateDirectories:NO attributes:nil error:&error];
+
+    if (! [[NSFileManager defaultManager] fileExistsAtPath:self.programsDirectory]) {
+        [[NSFileManager defaultManager] createDirectoryAtPath:self.programsDirectory withIntermediateDirectories:NO attributes:nil error:&error];
         NSLogError(error);
     }
-    
-    NSArray *contents = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:self.levelsDirectory error:&error];
+
+    NSArray *contents = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:self.programsDirectory error:&error];
     NSLogError(error);
-    
+
     if ([contents indexOfObject:projectName]) {
-        
         NSString *filePath = [[NSBundle mainBundle] pathForResource:projectName ofType:@"catrobat"];
         NSData *defaultProject = [NSData dataWithContentsOfFile:filePath];
-        
         [self unzipAndStore:defaultProject withName:projectName];
-    }
-    else {
+    } else {
         NSInfo(@"%@ already exists...", projectName);
     }
-    
-    
 }
 
-- (void)downloadFileFromURL:(NSURL*)url withName:(NSString*)name {
+- (void)downloadFileFromURL:(NSURL*)url withName:(NSString*)name
+{
     self.projectName = name;
-    
-    
     NSURLRequest *request = [NSURLRequest requestWithURL:url
                                              cachePolicy:NSURLRequestUseProtocolCachePolicy
                                          timeoutInterval:TIMEOUT];
@@ -254,7 +247,7 @@
     //    if (self.programConnection == connection) {
     //        NSDebug(@"Finished program downloading");
     //
-    //        [self storeDownloadedLevel];
+    //        [self storeDownloadedProgram];
     //
     //        if ([self.delegate respondsToSelector:@selector(downloadFinished)]) {
     //            [self.delegate performSelector:@selector(downloadFinished)];
@@ -286,34 +279,28 @@
     //    }
 }
 
-
-- (NSString*)getPathForLevel:(NSString*)levelName {
-    NSString *path = [NSString stringWithFormat:@"%@/%@", self.levelsDirectory, levelName];
-    
+- (NSString*)getFullPathForProgram:(NSString *)programName
+{
+    NSString *path = [NSString stringWithFormat:@"%@/%@", self.programsDirectory, programName];
     if ([[NSFileManager defaultManager] fileExistsAtPath:path]) {
         return path;
     }
-    
     return nil;
 }
 
-
 #pragma mark - Helper
-
-- (void)storeDownloadedLevel:(NSData*) data andResponse:(NSURLResponse*) response{
+- (void)storeDownloadedProgram:(NSData*)data andResponse:(NSURLResponse*)response
+{
     NSString* name = [self.programArray objectForKey:response.URL];
-    
     [self unzipAndStore:data withName:name];
 }
 
-- (void)storeDownloadedImage:(NSData*)data andResponse:(NSURLResponse*) response{
-    
+- (void)storeDownloadedImage:(NSData*)data andResponse:(NSURLResponse*)response
+{
     if (data != nil) {
-        NSString* name = [self.imageArray objectForKey:response.URL];
-        NSString *storePath = [NSString stringWithFormat:@"%@/programs/%@/small_screenshot.png", self.documentsDirectory,name];
-        
+        NSString *name = [self.imageArray objectForKey:response.URL];
+        NSString *storePath = [NSString stringWithFormat:@"%@/small_screenshot.png", [self getFullPathForProgram:name]];
         //[self resetImageDataAndConnection:response];
-        
         NSDebug(@"path for image is: %@", storePath);
         if ([self.imageData writeToFile:storePath atomically:YES]) {
             //[self resetImageDataAndConnection:response];
@@ -321,57 +308,50 @@
     }
 }
 
-- (void)unzipAndStore:(NSData*)level withName:(NSString*)name{
+- (void)unzipAndStore:(NSData*)programData withName:(NSString*)name
+{
     NSError *error;
-    
     NSString *tempPath = [NSString stringWithFormat:@"%@temp.zip", NSTemporaryDirectory()];
-    [level writeToFile:tempPath atomically:YES];
-    
-    NSString *storePath = [NSString stringWithFormat:@"%@/programs/%@", self.documentsDirectory, name];
-    
+    [programData writeToFile:tempPath atomically:YES];
+    NSString *storePath = [NSString stringWithFormat:@"%@/%@", self.programsDirectory, name];
+
     NSDebug(@"Starting unzip");
-    
     [SSZipArchive unzipFileAtPath:tempPath toDestination:storePath];
-    
     NSDebug(@"Unzip finished");
-    
+
     NSDebug(@"Removing temp zip file");
-    
     [[NSFileManager defaultManager] removeItemAtPath:tempPath error:&error];
-    
+
     [Logger logError:error];
-    
-    
+
     //image-data may not be complete at this point -> another call to
     //storeDownloadedImage in connectionDidFinishLoading
     if (self.imageArray.count > 0) {
         NSArray *temp = [self.imageArray allKeysForObject:name];
         if (temp) {
             NSURLResponse *key = [temp objectAtIndex:0];
-            [self storeDownloadedImage:level andResponse:key];
-            
+            [self storeDownloadedImage:programData andResponse:key];
         }
     }
-    
 }
 
-- (void)resetImageDataAndConnection:(NSURLResponse*)response {
+- (void)resetImageDataAndConnection:(NSURLResponse*)response
+{
     [self.imageArray removeObjectForKey:response.URL];
 }
 
--(void)resetProgramDatawithKey:(NSURLResponse*)response{
+- (void)resetProgramDatawithKey:(NSURLResponse*)response
+{
     [self.programArray removeObjectForKey:response.URL];
 }
 
--(void)loadProgram:(NSData*)data andResponse:(NSURLResponse*)response
+- (void)loadProgram:(NSData*)data andResponse:(NSURLResponse*)response
 {
-    
-    [self storeDownloadedLevel:data andResponse:response];
+    [self storeDownloadedProgram:data andResponse:response];
     //    if ([_delegate respondsToSelector:@selector(downloadFinished)]) {
     //        [_delegate performSelector:@selector(downloadFinished)];
     //    }
     [[NSNotificationCenter defaultCenter] postNotificationName:@"finishedloading" object:nil];
-    
     self.programData = nil;
     self.programConnection = nil;
     self.projectName = nil;

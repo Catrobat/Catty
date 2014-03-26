@@ -588,30 +588,26 @@
     
     if([[segue identifier] isEqualToString:kSegueToProgramDetail]) {
         NSIndexPath *selectedRowIndexPath = self.tableView.indexPathForSelectedRow;
-        CatrobatProject *level;
+        CatrobatProject *catrobatProject;
         switch (self.downloadSegmentedControl.selectedSegmentIndex) {
             case 0:
-                level = [self.mostDownloadedProjects objectAtIndex:selectedRowIndexPath.row];
+                catrobatProject = [self.mostDownloadedProjects objectAtIndex:selectedRowIndexPath.row];
                 break;
             case 1:
-                level = [self.mostViewedProjects objectAtIndex:selectedRowIndexPath.row];
+                catrobatProject = [self.mostViewedProjects objectAtIndex:selectedRowIndexPath.row];
                 break;
             case 2:
-                level = [self.mostRecentProjects objectAtIndex:selectedRowIndexPath.row];
+                catrobatProject = [self.mostRecentProjects objectAtIndex:selectedRowIndexPath.row];
                 break;
-                
             default:
                 break;
         }
-        
-        ProgramDetailStoreViewController* levelDetailViewController = (ProgramDetailStoreViewController*)[segue destinationViewController];
-        levelDetailViewController.project = level;
+        ProgramDetailStoreViewController* programDetailViewController = (ProgramDetailStoreViewController*)[segue destinationViewController];
+        programDetailViewController.project = catrobatProject;
     }
 }
 
-
 #pragma mark - update
-
 - (void)update
 {
     [self.tableView reloadData];
