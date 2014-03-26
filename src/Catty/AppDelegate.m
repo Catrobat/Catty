@@ -20,17 +20,15 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-
 #import "AppDelegate.h"
 #import "FileManager.h"
 #import "Util.h"
 #import "UIColor+CatrobatUIColorExtensions.h"
 
-
-void uncaughtExceptionHandler(NSException *exception) {
+void uncaughtExceptionHandler(NSException *exception)
+{
     NSError(@"uncaught exception: %@", exception.description);
 }
-
 
 @implementation AppDelegate
 
@@ -41,47 +39,36 @@ void uncaughtExceptionHandler(NSException *exception) {
     return _fileManager;
 }
 
-
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {    
     NSSetUncaughtExceptionHandler(&uncaughtExceptionHandler);
-    
+
     [self initNavigationBar];
-    
+
     [[UITextField appearance] setKeyboardAppearance:UIKeyboardAppearanceDark];
-    
+
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     NSDictionary *appDefaults = [NSDictionary dictionaryWithObject:@"YES"
                                                             forKey:@"lockiphone"];
     [defaults registerDefaults:appDefaults];
     [defaults synchronize];
-    
     [[UIApplication sharedApplication] setStatusBarHidden:NO];
-
-    
     return YES;
 }
 
-
-
-
 -(void) initNavigationBar
 {
-    
     UIImage *navbarimage = [[UIImage imageNamed:@"darkblue"]
                             resizableImageWithCapInsets:UIEdgeInsetsMake(0, 0, 0, 0)];
-    
+
     [[UINavigationBar appearance] setBackgroundImage:navbarimage
                                        forBarMetrics:UIBarMetricsDefault];
-    
+
     self.window.tintColor = [UIColor lightOrangeColor];
-    
+
     [[UINavigationBar appearance] setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:
                                                           [UIColor skyBlueColor],
                                                           NSForegroundColorAttributeName, nil]];
-    
-    
 }
-
 
 @end
