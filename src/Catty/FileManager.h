@@ -33,6 +33,8 @@
 @interface FileManager : NSObject <NSURLConnectionDelegate>
 
 @property (nonatomic, weak) id delegate;
+@property (nonatomic, strong, readonly) NSString *documentsDirectory;
+@property (nonatomic, strong, readonly) NSString *iTunesSoundsDirectory;
 
 - (void)createDirectory:(NSString*)path;
 - (void)deleteAllFilesInDocumentsDirectory;

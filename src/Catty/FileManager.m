@@ -29,7 +29,8 @@
 
 @interface FileManager()
 
-@property (nonatomic, strong) NSString *documentsDirectory;
+@property (nonatomic, strong, readwrite) NSString *documentsDirectory;
+@property (nonatomic, strong, readwrite) NSString *iTunesSoundsDirectory;
 @property (nonatomic, strong) NSString *programsDirectory;
 @property (nonatomic, strong) NSURLConnection *programConnection;
 @property (nonatomic, strong) NSURLConnection *imageConnection;
@@ -44,11 +45,21 @@
 @implementation FileManager
 
 #pragma mark - Getters and Setters
-- (NSString*)documentsDirectory {
+- (NSString*)documentsDirectory
+{
     if (_documentsDirectory == nil) {
         _documentsDirectory = [[NSString alloc] initWithString:[Util applicationDocumentsDirectory]];
     }
     return _documentsDirectory;
+}
+
+#warning remove this later!
+- (NSString*)iTunesSoundsDirectory
+{
+    if (_iTunesSoundsDirectory == nil) {
+        _iTunesSoundsDirectory = [[NSString alloc] initWithFormat:@"%@/%@", self.documentsDirectory, kITunesSoundsFolder];
+    }
+    return _iTunesSoundsDirectory;
 }
 
 - (NSString*)programsDirectory
