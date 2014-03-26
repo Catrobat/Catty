@@ -29,7 +29,7 @@
 #define kIphone5ScreenHeight 568.0f
 #define kIphone4ScreenHeight 480.0f
 #define kContinueCellHeight  120.0f
-#define kImageCellHeight     74.0f
+#define kImageCellHeight     75.0f
 
 
 
