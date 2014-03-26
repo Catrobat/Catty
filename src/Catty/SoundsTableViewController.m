@@ -32,6 +32,8 @@
 #import "AudioManager.h"
 #import "ProgramDefines.h"
 #import "Util.h"
+#import "FileManager.h"
+#import "AppDelegate.h"
 #import <AVFoundation/AVFoundation.h>
 
 #define kTableHeaderIdentifier @"Header"
@@ -301,12 +303,19 @@
     if (actionSheet.tag == kAddSoundActionSheetTag) {
         NSString *action = self.addSoundActionSheetBtnIndexes[@(buttonIndex)];
         if ([action isEqualToString:kPocketCodeRecorderActionSheetButton]) {
+            // TODO: implement this, when Pocket Code Recorder will be implemented...
             // Pocket Code Recorder
             NSLog(@"Pocket Code Recorder");
             [Util showComingSoonAlertView];
         } else if ([action isEqualToString:kSelectMusicTrackActionSheetButton]) {
             // Select music track
             NSLog(@"Select music track");
+            AppDelegate *delegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
+            if (! [delegate.fileManager documentsDirectoryContainsPlayableSound]) {
+                [Util alertWithText:NSLocalizedString(@"No imported sounds found. Please connect your iPhone with your PC/Mac and use iTunes FileSharing to import sound files to the PocketCode app.", nil)];
+                return;
+            }
+            [Util showComingSoonAlertView];
         }
     }
 }
@@ -315,16 +324,11 @@
 - (void)showAddSoundActionSheet
 {
     UIActionSheet *sheet = [[UIActionSheet alloc] init];
-    sheet.title = NSLocalizedString(@"Add sound",@"Action sheet menu title");
+    sheet.title = NSLocalizedString(@"Add sound", @"Action sheet menu title");
     sheet.delegate = self;
-    self.addSoundActionSheetBtnIndexes[@([sheet addButtonWithTitle:NSLocalizedString(@"Pocket Code Recorder",nil)])] = kPocketCodeRecorderActionSheetButton;
-    
-    //  if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeSavedPhotosAlbum]) {
-    //    NSArray *availableMediaTypes = [UIImagePickerController availableMediaTypesForSourceType:UIImagePickerControllerSourceTypeSavedPhotosAlbum];
-    //    if ([availableMediaTypes containsObject:(NSString *)kUTTypeImage])
-    //      self.addSoundActionSheetBtnIndexes[@([sheet addButtonWithTitle:NSLocalizedString(@"Choose image",nil)])] = kSelectMusicTrackActionSheetButton;
-    //  }
-    
+//    self.addSoundActionSheetBtnIndexes[@([sheet addButtonWithTitle:NSLocalizedString(@"Pocket Code Recorder",nil)])] = kPocketCodeRecorderActionSheetButton;
+
+    self.addSoundActionSheetBtnIndexes[@([sheet addButtonWithTitle:NSLocalizedString(@"Choose sound",nil)])] = kSelectMusicTrackActionSheetButton;
     sheet.cancelButtonIndex = [sheet addButtonWithTitle:kBtnCancelTitle];
     sheet.tag = kAddSoundActionSheetTag;
     sheet.actionSheetStyle = UIActionSheetStyleDefault;

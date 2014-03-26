@@ -47,6 +47,7 @@
 - (void)addDefaultProjectsToProgramsRootDirectory;
 - (void)downloadFileFromURL:(NSURL*)url withName:(NSString*)name;
 - (void)downloadScreenshotFromURL:(NSURL*)url andBaseUrl:(NSURL*)baseurl;
-- (NSString*)getFullPathForProgram:(NSString *)programName;
+- (NSString*)getFullPathForProgram:(NSString*)programName;
+- (BOOL)documentsDirectoryContainsPlayableSound;
 
 @end

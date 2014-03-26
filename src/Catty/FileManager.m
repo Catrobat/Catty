@@ -26,6 +26,7 @@
 #import "Logger.h"
 #import "ProgramDetailStoreViewController.h"
 #import "ProgramDefines.h"
+#import <MobileCoreServices/MobileCoreServices.h>
 
 @interface FileManager()
 
@@ -297,6 +298,34 @@
         return path;
     }
     return nil;
+}
+
+- (BOOL)documentsDirectoryContainsPlayableSound
+{
+    NSError *error;
+    NSArray *fileNames = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:self.documentsDirectory error:&error];
+    NSLogError(error);
+
+    for (NSString *fileName in fileNames) {
+        // exclude .DS_Store folder on MACOSX simulator
+        if ([fileName isEqualToString:@".DS_Store"])
+            continue;
+
+        NSString *file = [NSString stringWithFormat:@"%@/%@", self.documentsDirectory, fileName];
+        CFStringRef fileExtension = (__bridge CFStringRef)[file pathExtension];
+        CFStringRef fileUTI = UTTypeCreatePreferredIdentifierForTag(kUTTagClassFilenameExtension, fileExtension, NULL);
+//        NSString *contentType = (__bridge_transfer NSString *)UTTypeCopyPreferredTagWithClass(fileUTI, kUTTagClassMIMEType);
+//        NSLog(@"contentType: %@", contentType);
+
+        // check if mime type is playable with AVAudioPlayer
+        BOOL isPlayable = UTTypeConformsTo(fileUTI, kUTTypeAudio);
+        CFRelease(fileUTI); // manually free this, because ownership was transfered to ARC
+
+        if (isPlayable) {
+            return YES;
+        }
+    }
+    return NO;
 }
 
 #pragma mark - Helper
