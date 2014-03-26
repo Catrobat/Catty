@@ -33,6 +33,7 @@
 #import "Util.h"
 #import "NetworkDefines.h"
 #import "Program.h"
+#import "LoadingView.h"
 
 #define kUIBarHeight 49
 #define kNavBarHeight 44
@@ -45,6 +46,7 @@
 @interface ProgramDetailStoreViewController ()
 
 @property (nonatomic, strong) UIView* projectView;
+@property (nonatomic, strong) LoadingView* loadingView;
 
 @end
 
@@ -69,7 +71,10 @@
     
     self.view.backgroundColor = [UIColor darkBlueColor];
     //[TableUtil initNavigationItem:self.navigationItem withTitle:@"Info" enableBackButton:YES target:self];
-    
+    NSDebug(@"%@",self.project.author);
+    if(!self.project.author){
+        [self showLoadingView];
+    }
     self.projectView = [self createViewForProject:self.project];
     [self.scrollViewOutlet addSubview:self.projectView];
     self.scrollViewOutlet.delegate = self;
@@ -112,8 +117,8 @@
 - (UIView*)createViewForProject:(CatrobatProject*)project {
     
     AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
-    UIView *view = [CreateView createProgramDetailView:self.project target:self];
-    if ([appDelegate.fileManager getFullPathForProgram:self.project.projectName]) {
+    UIView *view = [CreateView createProgramDetailView:project target:self];
+    if ([appDelegate.fileManager getFullPathForProgram:project.projectName]) {
         [view viewWithTag:kDownloadButtonTag].hidden = YES;
         [view viewWithTag:kPlayButtonTag].hidden = NO;
     }
@@ -227,6 +232,44 @@
         NSURL *url = [NSURL URLWithString:phoneURLString];
         [[UIApplication sharedApplication] openURL:url];
     }
+}
+
+-(void)reloadWithProject:(CatrobatProject *)loadedProject
+{
+    NSLog(@"test2");
+    [self.projectView removeFromSuperview];
+    self.projectView = [self createViewForProject:loadedProject];
+    self.project = loadedProject;
+    [self.scrollViewOutlet addSubview:self.projectView];
+    self.scrollViewOutlet.delegate = self;
+    CGFloat screenHeight =[Util getScreenHeight];
+    CGSize contentSize = self.projectView.bounds.size;
+    CGFloat minHeight = self.view.frame.size.height-kUIBarHeight-kNavBarHeight;
+    if (contentSize.height < minHeight) {
+        contentSize.height = minHeight;
+    }
+    contentSize.height += kScrollViewOffset;
+    
+    if (screenHeight == kIphone4ScreenHeight){
+        contentSize.height = contentSize.height - kIphone4ScreenHeight +kIphone5ScreenHeight;
+    }
+    [self.scrollViewOutlet setContentSize:contentSize];
+    self.scrollViewOutlet.userInteractionEnabled = YES;
+    self.scrollViewOutlet.exclusiveTouch = YES;
+    [self hideLoadingView];
+}
+- (void)showLoadingView
+{
+    if(!self.loadingView) {
+        self.loadingView = [[LoadingView alloc] init];
+        [self.view addSubview:self.loadingView];
+    }
+    [self.loadingView show];
+}
+
+- (void) hideLoadingView
+{
+    [self.loadingView hide];
 }
 
 @end
