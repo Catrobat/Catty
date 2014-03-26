@@ -23,6 +23,14 @@
 #import <UIKit/UIKit.h>
 #import "ProgramStoreDelegate.h"
 #import "BaseTableViewController.h"
+#import "CatrobatProject.h"
+
+@protocol RecentProgramsStoreDelegate <NSObject>
+
+-(void)reloadWithProject:(CatrobatProject *)loadedProject;
+
+@end
+
 
 @interface RecentProgramsStoreViewController : UIViewController<NSURLConnectionDataDelegate,UITableViewDelegate, UITableViewDataSource,UIScrollViewDelegate>
 
@@ -31,5 +39,6 @@
 @property (strong, nonatomic)UIView * footerView;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) IBOutlet UIView *segmentedControlView;
+@property (weak, nonatomic) id<RecentProgramsStoreDelegate>delegate;
 
 @end
