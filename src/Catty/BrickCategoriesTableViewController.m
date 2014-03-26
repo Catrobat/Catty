@@ -96,7 +96,7 @@
 }
 
 #pragma mark - actions
-- (void)dismissCatergoryScriptsVC:(id)sender
+- (void)dismissCategoryScriptsVC:(id)sender
 {
     if ([sender isKindOfClass:[UIBarButtonItem class]]) {
         if (!self.presentingViewController.isBeingPresented) {
@@ -175,8 +175,8 @@
     UIBarButtonItem *closeButton;
     closeButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone
                                                                 target:self
-                                                                action:@selector(dismissCatergoryScriptsVC:)];
-    self.navigationItem.leftBarButtonItems = @[closeButton];
+                                                                action:@selector(dismissCategoryScriptsVC:)];
+    self.navigationItem.rightBarButtonItems = @[closeButton];
 }
 
 @end

@@ -133,6 +133,16 @@
     [BrickCell clearImageCache];
 }
 
+#pragma mark - actions
+- (void)dismissCategoryScriptsVC:(id)sender
+{
+    if ([sender isKindOfClass:[UIBarButtonItem class]]) {
+        if (!self.presentingViewController.isBeingPresented) {
+            [self dismissViewControllerAnimated:YES completion:NULL];
+        }
+    }
+}
+
 #pragma mark - Table view data source
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView
 {
@@ -192,6 +202,11 @@
 - (void)setupNavigationBar
 {
     self.navigationItem.title = self.title = [kBrickCategoryNames objectAtIndex:self.brickCategoryType];
+    UIBarButtonItem *closeButton;
+    closeButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone
+                                                                target:self
+                                                                action:@selector(dismissCategoryScriptsVC:)];
+    self.navigationItem.rightBarButtonItems = @[closeButton];
 }
 
 @end
