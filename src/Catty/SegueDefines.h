@@ -26,7 +26,7 @@
 #define kSegueToContinue @"segueToContinue"
 #define kSegueToNewProgram @"segueToNewProgram"
 #define kSegueToPrograms @"segueToPrograms"
-#define kSegueToForum @"segueToForum"
+#define kSegueToHelp @"segueToHelp"
 #define kSegueToExplore @"segueToExplore"
 #define kSegueToUpload @"segueToUpload"
 #define kSegueToAddNewProgram @"segueToAddProgram"

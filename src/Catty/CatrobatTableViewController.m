@@ -73,9 +73,8 @@
     self.lastProgram = nil;
     self.defaultProgram = nil;
     AppDelegate *appDelegate = [UIApplication sharedApplication].delegate;
-    [appDelegate.fileManager addDefaultProjectsToProgramsRootDirectory];
+    [appDelegate.fileManager addDefaultProjectToLeveLDirectory];
 }
-
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:YES];
@@ -111,9 +110,9 @@
 #pragma mark init
 - (void)initTableView
 {
-    self.cells = [[NSArray alloc] initWithObjects:kMenuTitleContinue, kMenuTitleNew, kMenuTitlePrograms, kMenuTitleForum, kMenuTitleExplore, kMenuTitleUpload, nil];
-    self.imageNames = [[NSArray alloc] initWithObjects:kMenuImageNameContinue, kMenuImageNameNew, kMenuImageNamePrograms, kMenuImageNameForum, kMenuImageNameExplore, kMenuImageNameUpload, nil];
-    self.identifiers = [[NSArray alloc] initWithObjects:kSegueToContinue, kSegueToNewProgram, kSegueToPrograms, kSegueToForum, kSegueToExplore, kSegueToUpload, nil];
+    self.cells = [[NSArray alloc] initWithObjects:kMenuTitleContinue, kMenuTitleNew, kMenuTitlePrograms, kMenuTitleHelp, kMenuTitleExplore, kMenuTitleUpload, nil];
+    self.imageNames = [[NSArray alloc] initWithObjects:kMenuImageNameContinue, kMenuImageNameNew, kMenuImageNamePrograms, kMenuImageNameHelp, kMenuImageNameExplore, kMenuImageNameUpload, nil];
+    self.identifiers = [[NSArray alloc] initWithObjects:kSegueToContinue, kSegueToNewProgram, kSegueToPrograms, kSegueToHelp, kSegueToExplore, kSegueToUpload, nil];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     [self.tableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
@@ -170,7 +169,7 @@
     NSString* identifier = [self.identifiers objectAtIndex:indexPath.row];
     // TODO: the if statement should be removed once everything has been implemented...
     if ([identifier isEqualToString:kSegueToExplore] || [identifier isEqualToString:kSegueToPrograms] ||
-        [identifier isEqualToString:kSegueToForum] || [identifier isEqualToString:kSegueToContinue] ||
+        [identifier isEqualToString:kSegueToHelp] || [identifier isEqualToString:kSegueToContinue] ||
         [identifier isEqualToString:kSegueToNewProgram]) {
         if ([self shouldPerformSegueWithIdentifier:identifier sender:self]) {
             [self performSegueWithIdentifier:identifier sender:self];
@@ -208,7 +207,6 @@
         height= [TableUtil getHeightForContinueCell];
         if ([Util getScreenHeight] == kIphone4ScreenHeight) {
             height = height*kIphone4ScreenHeight/kIphone5ScreenHeight;
-            ++height;
         }
     }
     else {
@@ -218,7 +216,6 @@
         }
     }
     if ([Util getScreenHeight] == kIphone5ScreenHeight){
-        ++height;
     }
     return height; // for scrolling reasons
 }

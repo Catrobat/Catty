@@ -87,6 +87,7 @@
     [self.scrollViewOutlet setContentSize:contentSize];
     self.scrollViewOutlet.userInteractionEnabled = YES;
     self.scrollViewOutlet.exclusiveTouch = YES;
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(downloadFinished) name:@"finishedloading" object:nil];
 }
 
 - (void)initNavigationBar
@@ -112,7 +113,7 @@
     
     AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
     UIView *view = [CreateView createProgramDetailView:self.project target:self];
-    if ([appDelegate.fileManager getFullPathForProgram:self.project.projectName]) {
+    if ([appDelegate.fileManager getPathForLevel:self.project.projectName]) {
         [view viewWithTag:kDownloadButtonTag].hidden = YES;
         [view viewWithTag:kPlayButtonTag].hidden = NO;
     }
@@ -190,7 +191,8 @@
     NSDebug(@"screenshot url is: %@", urlString);
     
     NSURL *screenshotSmallUrl = [NSURL URLWithString:urlString];
-    [appDelegate.fileManager downloadScreenshotFromURL:screenshotSmallUrl];
+    [appDelegate.fileManager downloadScreenshotFromURL:screenshotSmallUrl andBaseUrl:url];
+    self.project.isdownloading = YES;
 }
 
 - (void)downloadButtonPressed:(id)sender
@@ -204,6 +206,7 @@
     NSLog(@"Download Finished!!!!!!");
     [self.projectView viewWithTag:kDownloadButtonTag].hidden = YES;
     [self.projectView viewWithTag:kPlayButtonTag].hidden = NO;
+    self.project.isdownloading = NO;
     
 }
 

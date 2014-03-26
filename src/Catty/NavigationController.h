@@ -21,15 +21,7 @@
  */
 
 #import <UIKit/UIKit.h>
-#import "ProgramStoreDelegate.h"
-#import "BaseTableViewController.h"
 
-@interface RecentProgramsStoreViewController : UIViewController<NSURLConnectionDataDelegate,UITableViewDelegate, UITableViewDataSource,UIScrollViewDelegate>
-
-
-@property (weak, nonatomic) IBOutlet UISegmentedControl *downloadSegmentedControl;
-@property (strong, nonatomic)UIView * footerView;
-@property (weak, nonatomic) IBOutlet UITableView *tableView;
-@property (weak, nonatomic) IBOutlet UIView *segmentedControlView;
+@interface NavigationController : UINavigationController
 
 @end

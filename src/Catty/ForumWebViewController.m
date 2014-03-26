@@ -26,7 +26,7 @@
 #import "LoadingView.h"
 #import "UIColor+CatrobatUIColorExtensions.h"
 
-#define kForumURL @"https://groups.google.com/forum/?fromgroups=#!forum/pocketcode"
+#define kForumURL @"https://pocketcode.org/tutorial"
 #define kBarsHeight 44
 
 @interface ForumWebViewController ()
@@ -61,7 +61,7 @@
     self.webView.backgroundColor = [UIColor darkBlueColor];
     self.WebviewFinishedLoading = NO;
     
-    [TableUtil initNavigationItem:self.navigationItem withTitle:NSLocalizedString(@"Forum", nil)];
+    [TableUtil initNavigationItem:self.navigationItem withTitle:NSLocalizedString(@"Help", nil)];
     
     NSURL *url = [NSURL URLWithString:kForumURL];
     NSURLRequest *request = [NSURLRequest requestWithURL:url];

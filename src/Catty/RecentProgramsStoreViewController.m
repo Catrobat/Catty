@@ -44,6 +44,13 @@
 @property (assign)            int programListOffset;
 @property (assign)            int programListLimit;
 @property (nonatomic, strong) CatrobatInformation* information;
+@property (nonatomic, strong) NSMutableArray* mostDownloadedProjects;
+@property (nonatomic, strong) NSMutableArray* mostViewedProjects;
+@property (nonatomic, strong) NSMutableArray* mostRecentProjects;
+@property (nonatomic) NSInteger previousSelectedIndex;
+@property (assign)            int mostDownloadedProgramListOffset;
+@property (assign)            int mostViewedprogramListOffset;
+@property (assign)            int mostRecentprogramListOffset;
 
 @end
 
@@ -56,9 +63,9 @@
 @synthesize programListLimit  = _programListLimit;
 
 
-- (id)initWithStyle:(UITableViewStyle)style
+- (id)init
 {
-    self = [super initWithStyle:style];
+    self = [super init];
     if (self) {
     }
     return self;
@@ -70,27 +77,26 @@
     self.programListOffset = 0;
     
     [super viewDidLoad];
-    [self loadProjects];
+    [self loadProjectsWithIndicator:0];
     [self initTableView];
-    CGFloat navigationBarHeight = self.navigationController.navigationBar.frame.size.height;
-    self.edgesForExtendedLayout = UIRectEdgeAll;
-    self.tableView.contentInset = UIEdgeInsetsMake(navigationBarHeight, 0.0f, CGRectGetHeight(self.tabBarController.tabBar.frame), 0.0f);
+    self.view.backgroundColor = [UIColor darkBlueColor];
+    [self initSegmentedControl];
+    self.previousSelectedIndex = 0;
     
     
-    [self.downloadSegmentedControl addTarget:self action:@selector(changeView) forControlEvents:UIControlEventValueChanged];
-    [self.downloadSegmentedControl setTitle:NSLocalizedString(@"Most Downloaded",nil) forSegmentAtIndex:0];
-    [self.downloadSegmentedControl setTitle:NSLocalizedString(@"Most Viewed",nil) forSegmentAtIndex:1];
-    [self.downloadSegmentedControl setTitle:NSLocalizedString(@"Newest",nil) forSegmentAtIndex:2];
 }
+
+
 
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+    [self.tableView deselectRowAtIndexPath:[self.tableView indexPathForSelectedRow] animated:YES];
 }
 
 - (void)viewWillDisappear:(BOOL)animated
 {
-  [super viewWillDisappear:animated];
+    [super viewWillDisappear:animated];
 }
 
 - (void)dealloc
@@ -114,7 +120,22 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return self.projects.count;
+    switch (self.downloadSegmentedControl.selectedSegmentIndex) {
+        case 0:
+            return self.mostDownloadedProjects.count;
+            break;
+        case 1:
+            return self.mostViewedProjects.count;
+            break;
+        case 2:
+            return self.mostRecentProjects.count;
+            break;
+            
+        default:
+            break;
+    }
+    
+    return 1;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -133,6 +154,41 @@
     self.tableView.dataSource = self;
     [self.tableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
     self.tableView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"darkblue"]];
+    CGFloat navigationBarHeight = self.navigationController.navigationBar.frame.size.height;
+    CGFloat segmentedcontrolHeight = self.segmentedControlView.frame.size.height;
+    self.tableView.frame = CGRectMake(0, navigationBarHeight+segmentedcontrolHeight+[UIApplication sharedApplication].statusBarFrame.size.height, self.tableView.frame.size.width, [Util getScreenHeight]-(navigationBarHeight+segmentedcontrolHeight));
+    self.tableView.scrollsToTop = YES;
+}
+-(void)initSegmentedControl
+{
+    [self.downloadSegmentedControl addTarget:self action:@selector(changeView) forControlEvents:UIControlEventValueChanged];
+    [self.downloadSegmentedControl setTitle:NSLocalizedString(@"Most Downloaded",nil) forSegmentAtIndex:0];
+    [self.downloadSegmentedControl setTitle:NSLocalizedString(@"Most Viewed",nil) forSegmentAtIndex:1];
+    [self.downloadSegmentedControl setTitle:NSLocalizedString(@"Newest",nil) forSegmentAtIndex:2];
+    [self initFooterView];
+    CGFloat navigationBarHeight = self.navigationController.navigationBar.frame.size.height;
+    //CGFloat segmentedControlViewheight = self.segmentedControlView.frame.size.height;
+    self.downloadSegmentedControl.backgroundColor = [UIColor darkBlueColor];
+    self.downloadSegmentedControl.tintColor = [UIColor lightOrangeColor];
+    self.segmentedControlView.frame = CGRectMake(0, navigationBarHeight+[UIApplication sharedApplication].statusBarFrame.size.height, self.segmentedControlView.frame.size.width, self.segmentedControlView.frame.size.height);
+    self.segmentedControlView.backgroundColor = [UIColor darkBlueColor];
+    
+}
+-(void)initFooterView
+{
+    self.footerView = [[UIView alloc] initWithFrame:CGRectMake(0.0, 0.0, 320.0, 40.0)];
+    
+    UIActivityIndicatorView * actInd = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite];
+    
+    actInd.tag = 10;
+    
+    actInd.frame = CGRectMake(150.0, 5.0, 20.0, 20.0);
+    
+    actInd.hidesWhenStopped = YES;
+    
+    [self.footerView addSubview:actInd];
+    
+    actInd = nil;
 }
 
 #pragma mark - Helper
@@ -148,33 +204,48 @@
     }
     
     if([cell conformsToProtocol:@protocol(CatrobatImageCell)]) {
-        if(indexPath.row == [self.projects count]-1){
-            UITableViewCell <CatrobatImageCell>* imageCell = (UITableViewCell <CatrobatImageCell>*)cell;
-            imageCell.titleLabel.text = NSLocalizedString(@"Loading...",nil);
-            imageCell.imageView.image = nil;
-            UIActivityIndicatorView *activityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite];
-            
-            imageCell.accessoryView = activityIndicator;
-            [activityIndicator startAnimating];
-            NSDebug(@"LoadingCell");
-            imageCell.iconImageView.image = nil;
-
+        //        if(indexPath.row == [self.projects count]-1){
+        //            UITableViewCell <CatrobatImageCell>* imageCell = (UITableViewCell <CatrobatImageCell>*)cell;
+        //            imageCell.titleLabel.text = nil;//NSLocalizedString(@"Loading...",nil);
+        //            imageCell.imageView.image = nil;
+        //            UIActivityIndicatorView *activityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite];
+        //
+        //            imageCell.accessoryView = activityIndicator;
+        //            [activityIndicator startAnimating];
+        //            NSDebug(@"LoadingCell");
+        //            imageCell.iconImageView.image = nil;
+        //
+        //        }
+        //        else{
+        CatrobatProject *project ;
+        switch (self.downloadSegmentedControl.selectedSegmentIndex) {
+            case 0:
+                project = [self.mostDownloadedProjects objectAtIndex:indexPath.row];
+                break;
+            case 1:
+                project = [self.mostViewedProjects objectAtIndex:indexPath.row];
+                break;
+            case 2:
+                project = [self.mostRecentProjects objectAtIndex:indexPath.row];
+                break;
+                
+            default:
+                break;
         }
-        else{
-            CatrobatProject *project = [self.projects objectAtIndex:indexPath.row];
         
-            UITableViewCell <CatrobatImageCell>* imageCell = (UITableViewCell <CatrobatImageCell>*)cell;
-            imageCell.titleLabel.text = project.projectName;
         
-            [self loadImage:project.screenshotSmall forCell:imageCell atIndexPath:indexPath];
-            NSDebug(@"Normal Cell");
-            
-            imageCell.accessoryView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"accessory"]];
-            
-        }
-
+        UITableViewCell <CatrobatImageCell>* imageCell = (UITableViewCell <CatrobatImageCell>*)cell;
+        imageCell.titleLabel.text = project.projectName;
+        
+        [self loadImage:project.screenshotSmall forCell:imageCell atIndexPath:indexPath];
+        NSDebug(@"Normal Cell");
+        
+        imageCell.accessoryView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"accessory"]];
+        
+        //        }
+        
     }
-  
+    
     return cell;
 }
 
@@ -185,48 +256,232 @@
 {
     
     imageCell.iconImageView.image =
-        [UIImage imageWithContentsOfURL:[NSURL URLWithString:imageURLString]
-                       placeholderImage:[UIImage imageNamed:@"programs"]
-                           onCompletion:^(UIImage *image) {
-                               dispatch_async(dispatch_get_main_queue(), ^{
-                                   [self.tableView beginUpdates];
-                                   UITableViewCell <CatrobatImageCell>* cell = (UITableViewCell <CatrobatImageCell>*)[self.tableView cellForRowAtIndexPath:indexPath];
-                                   if(cell) {
-                                       cell.iconImageView.image = image;
-                                   }
-                                   [self.tableView endUpdates];
-                               });
-                            }];
+    [UIImage imageWithContentsOfURL:[NSURL URLWithString:imageURLString]
+                   placeholderImage:[UIImage imageNamed:@"programs"]
+                       onCompletion:^(UIImage *image) {
+                           dispatch_async(dispatch_get_main_queue(), ^{
+                               [self.tableView beginUpdates];
+                               UITableViewCell <CatrobatImageCell>* cell = (UITableViewCell <CatrobatImageCell>*)[self.tableView cellForRowAtIndexPath:indexPath];
+                               if(cell) {
+                                   cell.iconImageView.image = image;
+                               }
+                               [self.tableView endUpdates];
+                           });
+                       }];
 }
 
-- (void)loadProjects
+- (void)loadProjectsWithIndicator:(NSInteger)indicator
 {
     self.data = [[NSMutableData alloc] init];
     NSURL *url = [NSURL alloc];
     switch (self.downloadSegmentedControl.selectedSegmentIndex) {
         case 0:
             url = [NSURL URLWithString:[NSString stringWithFormat:@"%@/%@?%@%i&%@%i", kConnectionHost, kConnectionMostDownloaded, kProgramsOffset, self.programListOffset, kProgramsLimit, self.programListLimit]];
-
+            
             break;
         case 1:
             url = [NSURL URLWithString:[NSString stringWithFormat:@"%@/%@?%@%i&%@%i", kConnectionHost, kConnectionMostViewed, kProgramsOffset, self.programListOffset, kProgramsLimit, self.programListLimit]];
-
+            
             break;
         case 2:
             url = [NSURL URLWithString:[NSString stringWithFormat:@"%@/%@?%@%i&%@%i", kConnectionHost, kConnectionRecent, kProgramsOffset, self.programListOffset, kProgramsLimit, self.programListLimit]];
-
+            
             break;
             
         default:
             break;
     }
-        NSURLRequest *request = [NSURLRequest requestWithURL:url cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:kConnectionTimeout];
-
+    NSURLRequest *request = [NSURLRequest requestWithURL:url cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:kConnectionTimeout];
+    
     NSDebug(@"url is: %@", url);
-    NSURLConnection *connection = [[NSURLConnection alloc] initWithRequest:request delegate:self];
-    self.connection = connection;
-    [self showLoadingView];
+    //    NSURLConnection *connection = [[NSURLConnection alloc] initWithRequest:request delegate:self];
+    //    self.connection = connection;
+    [NSURLConnection sendAsynchronousRequest:request
+                                       queue:[NSOperationQueue mainQueue]
+                           completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
+                               [self loadIDsWith:data andResponse:response];}];
+    if (indicator==0) {
+        [self showLoadingView];
+    }
+    
     self.programListOffset += self.programListLimit;
+}
+
+-(void)loadIDsWith:(NSData*)data andResponse:(NSURLResponse*)response
+{
+    NSError *error = nil;
+    id jsonObject = [NSJSONSerialization JSONObjectWithData:data
+                                                    options:NSJSONReadingMutableContainers
+                                                      error:&error];
+    NSDebug(@"array: %@", jsonObject);
+    
+    
+    if ([jsonObject isKindOfClass:[NSDictionary class]]) {
+        NSDictionary *catrobatInformation = [jsonObject valueForKey:@"CatrobatInformation"];
+        
+        CatrobatInformation *information = [[CatrobatInformation alloc] initWithDict:catrobatInformation];
+        
+        NSArray *catrobatProjects = [jsonObject valueForKey:@"CatrobatProjects"];
+        
+        switch (self.downloadSegmentedControl.selectedSegmentIndex) {
+            case 0:
+                
+                if (!self.mostDownloadedProjects) {
+                    self.mostDownloadedProjects = [[NSMutableArray alloc] initWithCapacity:[catrobatProjects count]];
+                }
+                else {
+                    //preallocate due to performance reasons
+                    NSMutableArray *tmpResizedArray = [[NSMutableArray alloc] initWithCapacity:([self.mostDownloadedProjects count] + [catrobatProjects count])];
+                    for (CatrobatProject *catrobatProject in self.mostDownloadedProjects) {
+                        [tmpResizedArray addObject:catrobatProject];
+                    }
+                    self.mostDownloadedProjects = nil;
+                    self.mostDownloadedProjects = tmpResizedArray;
+                }
+                
+                
+                [self loadIDForArray:self.mostDownloadedProjects andInformation:information andProjects:catrobatProjects];
+                break;
+            case 1:
+                if (!self.mostViewedProjects) {
+                    self.mostViewedProjects = [[NSMutableArray alloc] initWithCapacity:[catrobatProjects count]];
+                }
+                else {
+                    //preallocate due to performance reasons
+                    NSMutableArray *tmpResizedArray = [[NSMutableArray alloc] initWithCapacity:([self.mostViewedProjects count] + [catrobatProjects count])];
+                    for (CatrobatProject *catrobatProject in self.mostViewedProjects) {
+                        [tmpResizedArray addObject:catrobatProject];
+                    }
+                    self.mostViewedProjects = nil;
+                    self.mostViewedProjects = tmpResizedArray;
+                }
+                
+                [self loadIDForArray:self.mostViewedProjects andInformation:information andProjects:catrobatProjects];
+                break;
+            case 2:
+                if (!self.mostRecentProjects) {
+                    self.mostRecentProjects = [[NSMutableArray alloc] initWithCapacity:[catrobatProjects count]];
+                }
+                else {
+                    //preallocate due to performance reasons
+                    NSMutableArray *tmpResizedArray = [[NSMutableArray alloc] initWithCapacity:([self.mostRecentProjects count] + [catrobatProjects count])];
+                    for (CatrobatProject *catrobatProject in self.mostRecentProjects) {
+                        [tmpResizedArray addObject:catrobatProject];
+                    }
+                    self.mostRecentProjects = nil;
+                    self.mostRecentProjects = tmpResizedArray;
+                }
+                [self loadIDForArray:self.mostRecentProjects andInformation:information andProjects:catrobatProjects];
+                break;
+                
+            default:
+                break;
+        }
+        
+    }
+    
+    
+    
+    [self update];
+    
+}
+
+-(void)loadIDForArray:(NSMutableArray*)projects andInformation:(CatrobatInformation*) information andProjects:(NSArray*)catrobatProjects
+{
+    
+    for (NSDictionary *projectDict in catrobatProjects) {
+        CatrobatProject *project = [[CatrobatProject alloc] initWithDict:projectDict andBaseUrl:information.baseURL];
+        [projects addObject:project];
+    }
+    [self update];
+    for (CatrobatProject* project in projects) {
+        //if ([project.author isEqualToString:@""]) {
+        
+        NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@/%@?id=%@", kConnectionHost, kConnectionIDQuery,project.projectID]];
+        NSURLRequest *request = [NSURLRequest requestWithURL:url cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:kConnectionTimeout];
+        
+        //    NSURLConnection *connection = [[NSURLConnection alloc] initWithRequest:request delegate:self];
+        //    self.connection = connection;
+        
+        [NSURLConnection sendAsynchronousRequest:request
+                                           queue:[NSOperationQueue mainQueue]
+                               completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
+                                   [self loadInfosWith:data andResponse:response];}];
+        // }
+    }
+    [self showLoadingView];
+    
+}
+
+
+-(void)loadInfosWith:(NSData*)data andResponse:(NSURLResponse*)response
+{
+    NSError *error = nil;
+    id jsonObject = [NSJSONSerialization JSONObjectWithData:data
+                                                    options:NSJSONReadingMutableContainers
+                                                      error:&error];
+    NSDebug(@"array: %@", jsonObject);
+    
+    
+    if ([jsonObject isKindOfClass:[NSDictionary class]]) {
+        NSDictionary *catrobatInformation = [jsonObject valueForKey:@"CatrobatInformation"];
+        
+        CatrobatInformation *information = [[CatrobatInformation alloc] initWithDict:catrobatInformation];
+        
+        NSArray *catrobatProjects = [jsonObject valueForKey:@"CatrobatProjects"];
+        
+        NSInteger counter=0;
+        CatrobatProject *loadedProject;
+        NSDictionary *projectDict = [catrobatProjects objectAtIndex:[catrobatProjects count]-1];
+        loadedProject = [[CatrobatProject alloc] initWithDict:projectDict andBaseUrl:information.baseURL];
+        switch (self.downloadSegmentedControl.selectedSegmentIndex) {
+            case 0:
+                for (CatrobatProject* project in self.mostDownloadedProjects) {
+                    if ([project.projectID isEqualToString:loadedProject.projectID ]) {
+                        
+                        [self.mostDownloadedProjects removeObject:project];
+                        [self.mostDownloadedProjects insertObject:loadedProject atIndex:counter];
+                        
+                        break;
+                    }
+                    counter++;
+                }
+                
+                break;
+            case 1:
+                for (CatrobatProject* project in self.mostViewedProjects) {
+                    if ([project.projectID isEqualToString:loadedProject.projectID ]) {
+                        
+                        [self.mostViewedProjects removeObject:project];
+                        [self.mostViewedProjects insertObject:loadedProject atIndex:counter];
+                        
+                        break;
+                    }
+                    counter++;
+                }
+                
+                break;
+            case 2:
+                for (CatrobatProject* project in self.mostRecentProjects) {
+                    if ([project.projectID isEqualToString:loadedProject.projectID ]) {
+                        
+                        [self.mostRecentProjects removeObject:project];
+                        [self.mostRecentProjects insertObject:loadedProject atIndex:counter];
+                        
+                        break;
+                    }
+                    counter++;
+                }
+                
+                break;
+                
+            default:
+                break;
+        }
+    }
+    [self update];
+    [self hideLoadingView];
+    
 }
 
 - (void)showLoadingView
@@ -256,12 +511,12 @@
 }
 
 #pragma mark - NSURLConnection Delegates
-- (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data {
-    if (self.connection == connection) {
-        NSLog(@"Received data from server");
-        [self.data appendData:data];
-    }
-}
+//- (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data {
+//    if (self.connection == connection) {
+//        NSLog(@"Received data from server");
+//        [self.data appendData:data];
+//    }
+//}
 
 //-(void) connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response
 //{
@@ -277,69 +532,86 @@
 //    }
 //}
 
-- (void)connectionDidFinishLoading:(NSURLConnection *)connection
-{
-    if (self.connection == connection) {
-        
-        [self.loadingView hide];
-        
-        NSError *error = nil;
-        id jsonObject = [NSJSONSerialization JSONObjectWithData:self.data
-                                                        options:NSJSONReadingMutableContainers
-                                                          error:&error];
-        NSDebug(@"array: %@", jsonObject);
-        
-        
-        if ([jsonObject isKindOfClass:[NSDictionary class]]) {
-            NSDictionary *catrobatInformation = [jsonObject valueForKey:@"CatrobatInformation"];
-            
-            self.information = [[CatrobatInformation alloc] initWithDict:catrobatInformation];
-            
-            NSArray *catrobatProjects = [jsonObject valueForKey:@"CatrobatProjects"];
-            
-            if (!self.projects) {
-                self.projects = [[NSMutableArray alloc] initWithCapacity:[catrobatProjects count]];
-            }
-            else {
-                //preallocate due to performance reasons
-                NSMutableArray *tmpResizedArray = [[NSMutableArray alloc] initWithCapacity:([self.projects count] + [catrobatProjects count])];
-                for (CatrobatProject *catrobatProject in self.projects) {
-                    [tmpResizedArray addObject:catrobatProject];
-                }
-                self.projects = nil;
-                self.projects = tmpResizedArray;
-            }
-            
-            
-            for (NSDictionary *projectDict in catrobatProjects) {
-                CatrobatProject *project = [[CatrobatProject alloc] initWithDict:projectDict andBaseUrl:self.information.baseURL];
-                [self.projects addObject:project];
-            }
-        }
-        
-        self.data = nil;
-        self.connection = nil;
-        
-
-        [self update];
-    }
-}
+//- (void)connectionDidFinishLoading:(NSURLConnection *)connection
+//{
+//    if (self.connection == connection) {
+//
+//        [self.loadingView hide];
+//
+//        NSError *error = nil;
+//        id jsonObject = [NSJSONSerialization JSONObjectWithData:self.data
+//                                                        options:NSJSONReadingMutableContainers
+//                                                          error:&error];
+//        NSDebug(@"array: %@", jsonObject);
+//
+//
+//        if ([jsonObject isKindOfClass:[NSDictionary class]]) {
+//            NSDictionary *catrobatInformation = [jsonObject valueForKey:@"CatrobatInformation"];
+//
+//            self.information = [[CatrobatInformation alloc] initWithDict:catrobatInformation];
+//
+//            NSArray *catrobatProjects = [jsonObject valueForKey:@"CatrobatProjects"];
+//
+//            if (!self.projects) {
+//                self.projects = [[NSMutableArray alloc] initWithCapacity:[catrobatProjects count]];
+//            }
+//            else {
+//                //preallocate due to performance reasons
+//                NSMutableArray *tmpResizedArray = [[NSMutableArray alloc] initWithCapacity:([self.projects count] + [catrobatProjects count])];
+//                for (CatrobatProject *catrobatProject in self.projects) {
+//                    [tmpResizedArray addObject:catrobatProject];
+//                }
+//                self.projects = nil;
+//                self.projects = tmpResizedArray;
+//            }
+//
+//
+//            for (NSDictionary *projectDict in catrobatProjects) {
+//                CatrobatProject *project = [[CatrobatProject alloc] initWithDict:projectDict andBaseUrl:self.information.baseURL];
+//                [self.projects addObject:project];
+//            }
+//        }
+//
+//        self.data = nil;
+//        self.connection = nil;
+//
+//
+//        [self update];
+//    }
+//}
 
 
 # pragma mark - Segue delegate
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{    
+{
     
     if([[segue identifier] isEqualToString:kSegueToProgramDetail]) {
         NSIndexPath *selectedRowIndexPath = self.tableView.indexPathForSelectedRow;
-        CatrobatProject *catrobatProject = [self.projects objectAtIndex:selectedRowIndexPath.row];
-        ProgramDetailStoreViewController* programDetailViewController = (ProgramDetailStoreViewController*)[segue destinationViewController];
-        programDetailViewController.project = catrobatProject;
+        CatrobatProject *level;
+        switch (self.downloadSegmentedControl.selectedSegmentIndex) {
+            case 0:
+                level = [self.mostDownloadedProjects objectAtIndex:selectedRowIndexPath.row];
+                break;
+            case 1:
+                level = [self.mostViewedProjects objectAtIndex:selectedRowIndexPath.row];
+                break;
+            case 2:
+                level = [self.mostRecentProjects objectAtIndex:selectedRowIndexPath.row];
+                break;
+                
+            default:
+                break;
+        }
+        
+        ProgramDetailStoreViewController* levelDetailViewController = (ProgramDetailStoreViewController*)[segue destinationViewController];
+        levelDetailViewController.project = level;
     }
 }
 
+
 #pragma mark - update
+
 - (void)update
 {
     [self.tableView reloadData];
@@ -353,25 +625,102 @@
     [self.navigationController popViewControllerAnimated:YES];
 }
 
-#pragma mark - scrollViewDidEndDecelerating
+#pragma mark - scrollView
+-(void)scrollViewWillBeginDragging:(UIScrollView *)scrollView
+{
+    self.tableView.tableFooterView = self.footerView;
+    
+    [(UIActivityIndicatorView *)[self.footerView viewWithTag:10] startAnimating];
+}
+
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
 {
     float checkPoint = scrollView.contentSize.height * 0.7;
     float currentViewBottomEdge = scrollView.contentOffset.y + scrollView.frame.size.height;
-
-    if (currentViewBottomEdge >= checkPoint && [self.projects count] >= self.programListOffset) {
-        NSDebug(@"Reached scroll-checkpoint for loading further projects");
-        [self loadProjects];
+    switch (self.downloadSegmentedControl.selectedSegmentIndex) {
+        case 0:
+            if (currentViewBottomEdge >= checkPoint && [self.mostDownloadedProjects count] >= self.programListOffset) {
+                NSDebug(@"Reached scroll-checkpoint for loading further projects");
+                [self loadProjectsWithIndicator:1];
+            }
+            else{
+                self.tableView.tableFooterView = nil;
+            }
+            
+            break;
+        case 1:
+            if (currentViewBottomEdge >= checkPoint && [self.mostViewedProjects count] >= self.programListOffset) {
+                NSDebug(@"Reached scroll-checkpoint for loading further projects");
+                [self loadProjectsWithIndicator:1];
+            }
+            else{
+                self.tableView.tableFooterView = nil;
+            }
+            
+            break;
+        case 2:
+            if (currentViewBottomEdge >= checkPoint && [self.mostViewedProjects count] >= self.programListOffset) {
+                NSDebug(@"Reached scroll-checkpoint for loading further projects");
+                [self loadProjectsWithIndicator:1];
+            }
+            else{
+                self.tableView.tableFooterView = nil;
+            }
+            
+            break;
+        default:
+            break;
     }
+    
 }
 
 - (void)changeView
 {
     NSDebug(@"test %li", (long)self.downloadSegmentedControl.selectedSegmentIndex);
-    // TODO: Add support that downloaded data is cached! Now everytime all projects are downloaded after a segmentation click.
-    [self.projects removeAllObjects];
-    self.programListOffset = 0;
-    [self loadProjects];
+    switch (self.previousSelectedIndex) {
+        case 0:
+            self.mostDownloadedProgramListOffset = self.programListOffset;
+            break;
+        case 1:
+            self.mostViewedprogramListOffset = self.programListOffset;
+            break;
+        case 2:
+            self.mostRecentprogramListOffset = self.programListOffset;
+            break;
+        default:
+            break;
+    }
+    switch (self.downloadSegmentedControl.selectedSegmentIndex) {
+        case 0:
+            self.programListOffset = self.mostDownloadedProgramListOffset;
+            if (self.mostDownloadedProjects.count == 0) {
+                [self loadProjectsWithIndicator:0];
+            }
+            break;
+        case 1:
+            self.programListOffset = self.mostViewedprogramListOffset;
+            if (self.mostViewedProjects.count == 0) {
+                [self loadProjectsWithIndicator:0];
+            }
+            break;
+        case 2:
+            self.programListOffset =  self.mostRecentprogramListOffset;
+            if (self.mostRecentProjects.count == 0) {
+                [self loadProjectsWithIndicator:0];
+            }
+            break;
+        default:
+            break;
+    }
+    
+    self.previousSelectedIndex = self.downloadSegmentedControl.selectedSegmentIndex;
+    
+    [self update];
+    
+    // TODO: Add Support that tableView will scroll to the top after changing
+    //self.tableView.contentOffset = CGPointMake(0, 0);
+    
+    
 }
 
 @end

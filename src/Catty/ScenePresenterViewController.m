@@ -134,6 +134,8 @@
 {
     [super viewDidLoad];
     
+    [[UIApplication sharedApplication] setStatusBarHidden:YES];
+    
     //    ///MENU_BUTTON:::Button before Sliding Menu!!!
     //    self.menuBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     //    menuBtn.frame = CGRectMake(8.0f, 10.0f, 34.0f, 24.0f);
@@ -402,11 +404,17 @@
 }
 
 
+- (BOOL)prefersStatusBarHidden
+{
+    return YES;
+}
+
+
 -(void)dealloc
 {
     [[AudioManager sharedAudioManager] stopAllSounds];
     [[SensorHandler sharedSensorHandler] stopSensors];
-
+    [[UIApplication sharedApplication] setStatusBarHidden:YES withAnimation:UIStatusBarAnimationFade];
     
     // NOTE: if there are still some runNextAction tasks in a queue
     // then these actions must not be executed because the Scene is not available any more.

@@ -95,6 +95,7 @@
     self.selectedProgram = nil;
     [self.navigationController setNavigationBarHidden:NO];
     [self.navigationController setToolbarHidden:NO];
+    [self.tableView reloadData];
 }
 
 #pragma mark - system events

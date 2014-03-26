@@ -55,6 +55,8 @@ void uncaughtExceptionHandler(NSException *exception) {
                                                             forKey:@"lockiphone"];
     [defaults registerDefaults:appDefaults];
     [defaults synchronize];
+    
+    [[UIApplication sharedApplication] setStatusBarHidden:NO];
 
     
     return YES;

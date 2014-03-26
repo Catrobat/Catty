@@ -35,14 +35,14 @@
 #define kMenuTitleContinue NSLocalizedString(@"Continue",nil)
 #define kMenuTitleNew NSLocalizedString(@"New",nil)
 #define kMenuTitlePrograms NSLocalizedString(@"Programs",nil)
-#define kMenuTitleForum NSLocalizedString(@"Forum",nil)
+#define kMenuTitleHelp NSLocalizedString(@"Help",nil)
 #define kMenuTitleExplore NSLocalizedString(@"Explore",nil)
 #define kMenuTitleUpload NSLocalizedString(@"Upload",nil)
 
 #define kMenuImageNameContinue @"continue"
 #define kMenuImageNameNew @"new"
 #define kMenuImageNamePrograms @"programs"
-#define kMenuImageNameForum @"forum"
+#define kMenuImageNameHelp @"help"
 #define kMenuImageNameExplore @"explore"
 #define kMenuImageNameUpload @"upload"
 

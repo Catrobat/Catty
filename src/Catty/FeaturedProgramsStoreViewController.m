@@ -62,22 +62,22 @@
 
 - (void)viewDidLoad
 {
-  [super viewDidLoad];
-  [self loadFeaturedProjects];
-  [self initTableView];
-  [TableUtil initNavigationItem:self.navigationItem withTitle:@"Featured Programs"];
-//  CGFloat navigationBarHeight = self.navigationController.navigationBar.frame.size.height;
-//  self.tableView.contentInset = UIEdgeInsetsMake(navigationBarHeight, 0, 0, 0);
+    [super viewDidLoad];
+    [self loadFeaturedProjects];
+    [self initTableView];
+    [TableUtil initNavigationItem:self.navigationItem withTitle:@"Featured Programs"];
+    //  CGFloat navigationBarHeight = self.navigationController.navigationBar.frame.size.height;
+    //  self.tableView.contentInset = UIEdgeInsetsMake(navigationBarHeight, 0, 0, 0);
 }
 
 - (void)viewWillAppear:(BOOL)animated
 {
-  [super viewWillAppear:animated];
+    [super viewWillAppear:animated];
 }
 
 - (void)viewWillDisappear:(BOOL)animated
 {
-  [super viewWillDisappear:animated];
+    [super viewWillDisappear:animated];
 }
 
 - (void)dealloc
@@ -168,14 +168,98 @@
 
 - (void)loadFeaturedProjects
 {
-    self.data = [[NSMutableData alloc] init];
+    //self.data = [[NSMutableData alloc] init];
     NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@/%@", kConnectionHost, kConnectionFeatured]];
     NSURLRequest *request = [NSURLRequest requestWithURL:url cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:kConnectionTimeout];
     
-    NSURLConnection *connection = [[NSURLConnection alloc] initWithRequest:request delegate:self];
-    self.connection = connection;
+    //    NSURLConnection *connection = [[NSURLConnection alloc] initWithRequest:request delegate:self];
+    //    self.connection = connection;
+    
+    [NSURLConnection sendAsynchronousRequest:request
+                                       queue:[NSOperationQueue mainQueue]
+                           completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
+                               [self loadIDsWith:data andResponse:response];}];
     
     [self showLoadingView];
+}
+
+-(void)loadIDsWith:(NSData*)data andResponse:(NSURLResponse*)response
+{
+    NSError *error = nil;
+    id jsonObject = [NSJSONSerialization JSONObjectWithData:data
+                                                    options:NSJSONReadingMutableContainers
+                                                      error:&error];
+    NSDebug(@"array: %@", jsonObject);
+    
+    
+    if ([jsonObject isKindOfClass:[NSDictionary class]]) {
+        NSDictionary *catrobatInformation = [jsonObject valueForKey:@"CatrobatInformation"];
+        
+        CatrobatInformation *information = [[CatrobatInformation alloc] initWithDict:catrobatInformation];
+        
+        NSArray *catrobatProjects = [jsonObject valueForKey:@"CatrobatProjects"];
+        
+        self.projects = [[NSMutableArray alloc] initWithCapacity:[catrobatProjects count]];
+        
+        for (NSDictionary *projectDict in catrobatProjects) {
+            CatrobatProject *project = [[CatrobatProject alloc] initWithDict:projectDict andBaseUrl:information.baseURL];
+            [self.projects addObject:project];
+        }
+    }
+    [self update];
+    
+    for (CatrobatProject* project in self.projects) {
+        
+        NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@/%@?id=%@", kConnectionHost, kConnectionIDQuery,project.projectID]];
+        NSURLRequest *request = [NSURLRequest requestWithURL:url cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:kConnectionTimeout];
+        
+        //    NSURLConnection *connection = [[NSURLConnection alloc] initWithRequest:request delegate:self];
+        //    self.connection = connection;
+        
+        [NSURLConnection sendAsynchronousRequest:request
+                                           queue:[NSOperationQueue mainQueue]
+                               completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
+                                   [self loadInfosWith:data andResponse:response];}];
+    }
+    [self showLoadingView];
+    
+    
+}
+-(void)loadInfosWith:(NSData*)data andResponse:(NSURLResponse*)response
+{
+    NSError *error = nil;
+    id jsonObject = [NSJSONSerialization JSONObjectWithData:data
+                                                    options:NSJSONReadingMutableContainers
+                                                      error:&error];
+    NSDebug(@"array: %@", jsonObject);
+    
+    
+    if ([jsonObject isKindOfClass:[NSDictionary class]]) {
+        NSDictionary *catrobatInformation = [jsonObject valueForKey:@"CatrobatInformation"];
+        
+        CatrobatInformation *information = [[CatrobatInformation alloc] initWithDict:catrobatInformation];
+        
+        NSArray *catrobatProjects = [jsonObject valueForKey:@"CatrobatProjects"];
+        
+        NSInteger counter=0;
+        CatrobatProject *loadedProject;
+        for (NSDictionary *projectDict in catrobatProjects) {
+            loadedProject = [[CatrobatProject alloc] initWithDict:projectDict andBaseUrl:information.baseURL];
+        }
+        for (CatrobatProject* project in self.projects) {
+            if ([project.projectID isEqualToString:loadedProject.projectID ]) {
+                @synchronized(self.projects){
+                    [self.projects removeObject:project];
+                    [self.projects insertObject:loadedProject atIndex:counter];
+                }
+                break;
+            }
+            counter++;
+        }
+    }
+    [self update];
+    [self hideLoadingView];
+    
 }
 
 - (void)showLoadingView
@@ -194,8 +278,8 @@
 
 
 #pragma mark - Table view delegate
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
-{
+
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     return [TableUtil getHeightForImageCell];
 }
 
@@ -205,57 +289,57 @@
 
 
 #pragma mark - NSURLConnection Delegates
-- (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data {
-    if (self.connection == connection) {
-        NSLog(@"Received data from server");
-        [self.data appendData:data];
-    }
-}
+//- (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data {
+//    if (self.connection == connection) {
+//        NSLog(@"Received data from server");
+//        [self.data appendData:data];
+//    }
+//}
+//
+//- (void)connectionDidFinishLoading:(NSURLConnection *)connection {
+//
+//    if (self.connection == connection) {
+//
+//        [self.loadingView hide];
+//
+//        NSError *error = nil;
+//        id jsonObject = [NSJSONSerialization JSONObjectWithData:self.data
+//                                                        options:NSJSONReadingMutableContainers
+//                                                          error:&error];
+//        NSDebug(@"array: %@", jsonObject);
+//
+//
+//        if ([jsonObject isKindOfClass:[NSDictionary class]]) {
+//            NSDictionary *catrobatInformation = [jsonObject valueForKey:@"CatrobatInformation"];
+//
+//            CatrobatInformation *information = [[CatrobatInformation alloc] initWithDict:catrobatInformation];
+//
+//            NSArray *catrobatProjects = [jsonObject valueForKey:@"CatrobatProjects"];
+//
+//            self.projects = [[NSMutableArray alloc] initWithCapacity:[catrobatProjects count]];
+//
+//            for (NSDictionary *projectDict in catrobatProjects) {
+//                CatrobatProject *project = [[CatrobatProject alloc] initWithDict:projectDict andBaseUrl:information.baseURL];
+//                [self.projects addObject:project];
+//            }
+//        }
+//
+//        self.data = nil;
+//        self.connection = nil;
+//
+//
+//        [self update];
+//    }
+//}
 
-- (void)connectionDidFinishLoading:(NSURLConnection *)connection {
-    
-    if (self.connection == connection) {
-        
-        [self.loadingView hide];
-        
-        NSError *error = nil;
-        id jsonObject = [NSJSONSerialization JSONObjectWithData:self.data
-                                                        options:NSJSONReadingMutableContainers
-                                                          error:&error];
-        NSDebug(@"array: %@", jsonObject);
-        
-        
-        if ([jsonObject isKindOfClass:[NSDictionary class]]) {
-            NSDictionary *catrobatInformation = [jsonObject valueForKey:@"CatrobatInformation"];
-            
-            CatrobatInformation *information = [[CatrobatInformation alloc] initWithDict:catrobatInformation];
-            
-            NSArray *catrobatProjects = [jsonObject valueForKey:@"CatrobatProjects"];
-            
-            self.projects = [[NSMutableArray alloc] initWithCapacity:[catrobatProjects count]];
-            
-            for (NSDictionary *projectDict in catrobatProjects) {
-                CatrobatProject *project = [[CatrobatProject alloc] initWithDict:projectDict andBaseUrl:information.baseURL];
-                [self.projects addObject:project];
-            }
-        }
-        
-        self.data = nil;
-        self.connection = nil;
-        
-        
-        [self update];
-    }
-}
-
-#pragma mark - Segue delegate
+# pragma mark - Segue delegate
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     if([[segue identifier] isEqualToString:kSegueToProgramDetail]) {
         NSIndexPath *selectedRowIndexPath = self.tableView.indexPathForSelectedRow;
-        CatrobatProject *catrobatProject = [self.projects objectAtIndex:selectedRowIndexPath.row];
-        ProgramDetailStoreViewController* programDetailViewController = (ProgramDetailStoreViewController*)[segue destinationViewController];
-        programDetailViewController.project = catrobatProject;
+        CatrobatProject *level = [self.projects objectAtIndex:selectedRowIndexPath.row];
+        ProgramDetailStoreViewController* levelDetailViewController = (ProgramDetailStoreViewController*)[segue destinationViewController];
+        levelDetailViewController.project = level;
     }
 }
 
