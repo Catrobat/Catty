@@ -51,6 +51,7 @@
 @property (assign)            int mostDownloadedProgramListOffset;
 @property (assign)            int mostViewedprogramListOffset;
 @property (assign)            int mostRecentprogramListOffset;
+@property (nonatomic, strong) ProgramDetailStoreViewController* controller;
 
 @end
 
@@ -82,7 +83,7 @@
     self.view.backgroundColor = [UIColor darkBlueColor];
     [self initSegmentedControl];
     self.previousSelectedIndex = 0;
-    
+
     
 }
 
@@ -92,6 +93,7 @@
 {
     [super viewWillAppear:animated];
     [self.tableView deselectRowAtIndexPath:[self.tableView indexPathForSelectedRow] animated:YES];
+    self.delegate=nil;
 }
 
 - (void)viewWillDisappear:(BOOL)animated
@@ -441,7 +443,11 @@
                         
                         [self.mostDownloadedProjects removeObject:project];
                         [self.mostDownloadedProjects insertObject:loadedProject atIndex:counter];
-                        
+                        NSLog(@"test");
+                        if ([self.delegate respondsToSelector:@selector(reloadWithProject:)] && [self.controller.project.projectID isEqualToString:loadedProject.projectID]){
+                            NSLog(@"test1");
+                            [self.delegate reloadWithProject:loadedProject];
+                        }
                         break;
                     }
                     counter++;
@@ -454,7 +460,9 @@
                         
                         [self.mostViewedProjects removeObject:project];
                         [self.mostViewedProjects insertObject:loadedProject atIndex:counter];
-                        
+                        if (self.delegate != nil && [self.delegate respondsToSelector:@selector(reloadWithProject:)] && [self.controller.project.projectID isEqualToString:loadedProject.projectID]){
+                            [self.delegate reloadWithProject:loadedProject];
+                        }
                         break;
                     }
                     counter++;
@@ -468,6 +476,9 @@
                         [self.mostRecentProjects removeObject:project];
                         [self.mostRecentProjects insertObject:loadedProject atIndex:counter];
                         
+                        if (self.delegate != nil && [self.delegate respondsToSelector:@selector(reloadWithProject:)] && [self.controller.project.projectID isEqualToString:loadedProject.projectID]){
+                            [self.delegate reloadWithProject:loadedProject];
+                        }
                         break;
                     }
                     counter++;
@@ -602,8 +613,9 @@
             default:
                 break;
         }
-        ProgramDetailStoreViewController* programDetailViewController = (ProgramDetailStoreViewController*)[segue destinationViewController];
-        programDetailViewController.project = catrobatProject;
+        self.controller = (ProgramDetailStoreViewController*)[segue destinationViewController];
+        self.controller.project = catrobatProject;
+        self.delegate = self.controller;
     }
 }
 
