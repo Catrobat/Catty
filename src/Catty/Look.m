@@ -37,40 +37,31 @@
 - (id)initWithPath:(NSString*)filePath
 {
     self = [super init];
-    if (self) 
-    {
+    if (self) {
         self.name = nil;
-        if (filePath == nil || [filePath length] == 0)
-        {
+        if (filePath == nil || [filePath length] == 0) {
             @throw [NSException exceptionWithName:NSInternalInconsistencyException
                                            reason:@"You cannot instantiate a costume without a file path"
                                          userInfo:nil];
             return nil;
-        }
-        else 
-        {
+        } else {
             self.fileName = filePath;
         }
     }
     return self;
 }
 
-
 - (id)initWithName:(NSString*)name andPath:(NSString*)filePath
 {
     self = [super init];
-    if (self) 
-    {
+    if (self) {
         self.name = name;
-        if (filePath == nil || [filePath length] == 0)
-        {
+        if (filePath == nil || [filePath length] == 0) {
             @throw [NSException exceptionWithName:NSInternalInconsistencyException
                                            reason:@"You cannot instantiate a costume without a file path"
                                          userInfo:nil];
             return nil;
-        }
-        else 
-        {
+        } else {
             self.fileName = filePath;
         }
     }
@@ -79,28 +70,29 @@
 
 - (NSString*)previewImageFileName
 {
-  // e.g. 34A109A82231694B6FE09C216B390570_normalCat
-  NSRange result = [self.fileName rangeOfString:kResourceFileNameSeparator];
-  if ((result.location == NSNotFound) || (result.location == 0) || (result.location >= ([self.fileName length]-1)))
-    return nil; // Invalid file name convention -> this should not happen. XXX/FIXME: maybe we want to abort here??
+    // e.g. 34A109A82231694B6FE09C216B390570_normalCat
+    NSRange result = [self.fileName rangeOfString:kResourceFileNameSeparator];
+    if ((result.location == NSNotFound) || (result.location == 0) || (result.location >= ([self.fileName length]-1)))
+        return nil; // Invalid file name convention -> this should not happen. XXX/FIXME: maybe we want to abort here??
 
-  return [NSString stringWithFormat:@"%@_%@%@",
-    [self.fileName substringToIndex:result.location],
-    kPreviewImageNamePrefix,
-    [self.fileName substringFromIndex:(result.location + 1)]
-  ];
+    return [NSString stringWithFormat:@"%@_%@%@",
+        [self.fileName substringToIndex:result.location],
+        kPreviewImageNamePrefix,
+        [self.fileName substringFromIndex:(result.location + 1)]
+    ];
 }
 
 - (GDataXMLElement*)toXML
 {
-  GDataXMLElement *lookXMLElement = [GDataXMLNode elementWithName:@"look"];
-  [lookXMLElement addChild:[GDataXMLElement elementWithName:@"fileName" stringValue:self.fileName]];
-  [lookXMLElement addChild:[GDataXMLElement elementWithName:@"name" stringValue:self.name]];
-  return lookXMLElement;
+    GDataXMLElement *lookXMLElement = [GDataXMLNode elementWithName:@"look"];
+    [lookXMLElement addChild:[GDataXMLElement elementWithName:@"fileName" stringValue:self.fileName]];
+    [lookXMLElement addChild:[GDataXMLElement elementWithName:@"name" stringValue:self.name]];
+    return lookXMLElement;
 }
 
 #pragma mark - description
-- (NSString*)description {
+- (NSString*)description
+{
     return [NSString stringWithFormat:@"Name: %@\rPath: %@\r", self.name, self.fileName];
 }
 

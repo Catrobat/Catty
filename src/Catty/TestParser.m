@@ -59,7 +59,7 @@
 @interface TestParser ()
 
 //- (Look*)createCostumeFromPath:(NSString*)path withName:(NSString*)name;
-//- (Program*)createDefaultLevel;
+//- (Program*)createDefaultProgram;
 //- (SpriteObject*)createSprite:(NSString*)name withPositionX:(NSInteger)x withPositionY:(NSInteger)y withCostumes:(NSArray*)costumesArray setCostumeIndex:(NSInteger)index;
 //
 
@@ -71,7 +71,7 @@
 @synthesize zIndex = _zIndex;
 
 //
-////- (Project*)generateObjectForLevel:(NSString*)path
+////- (Project*)generateObjectForProgram:(NSString*)path
 ////{
 ////    self.zIndex = 0;
 ////    /// TODO: call xml-parser instead of following lines... I know, wrong place...doesn't matter...
@@ -80,7 +80,7 @@
 ////    NSMutableArray *whenScriptsMutable = [[NSMutableArray alloc] init];
 ////        
 ////    //creating new Project (with some default values, such as name and version)
-////    Project *project = [self createDefaultLevel];
+////    Project *project = [self createDefaultProgram];
 ////    
 ////    //creating background look
 ////    LookData *costume1 = [self createCostumeFromPath:@"background.png" withName:@"Background"];
@@ -115,8 +115,8 @@
 ////    
 ////    
 ////    //creating cat looks (normal and ceshire cat)
-////    LookData *costume2 = [self createCostumeFromPath:@"normalcat.png" withName:@"Normal cat"];
-////    LookData *costume3 = [self createCostumeFromPath:@"ceshirecat.png" withName:@"Ceshire cat"];
+////    LookData *costume2 = [self createCostumeFromPath:@"normalcat" withName:@"Normal cat"];
+////    LookData *costume3 = [self createCostumeFromPath:@"ceshirecat" withName:@"Ceshire cat"];
 ////    
 ////    //creating cat sprite
 ////    Sprite *sprite2 = [self createSprite:@"Catroid" withPositionX:100 withPositionY:100 
@@ -163,25 +163,24 @@
 ////    [sprite2 addStartScript:newStartScript];
 ////    [sprite2 addWhenScript:newWhenScript];
 ////    
-////    //adding sprites to level
+////    //adding sprites to program
 ////    project.spriteList = [[NSMutableArray alloc] initWithObjects: sprite1, sprite2, nil];
 ////
 ////    //assuming start and when scripts
 //////    project.startScriptsArray = [[NSArray alloc] initWithArray:startScriptsMutable];
 //////    project.whenScriptsArray = [[NSArray alloc] initWithArray:whenScriptsMutable];
 ////    
-////    return level;
+////    return program;
 ////}
 
 //#pragma mark - private methods
 //- (Look*)createCostumeFromPath:(NSString*)path withName:(NSString*)name
 //{
 //    Look *retCostume = [[Look alloc] initWithName:name andPath:path];
-//    
 //    return retCostume;
 //}
 //
-//- (Program*)createDefaultLevel
+//- (Program*)createDefaultProgram
 //{
 //    Program *project = [[Program alloc]init];
 //    project.header.programName = @"Catty1";
@@ -221,7 +220,7 @@
 //    project.header.screenHeight = [NSNumber numberWithInt:480];
 //    
 //    
-//    Look *look= [self createCostumeFromPath:@"normalcat.png" withName:@"cat1"];
+//    Look *look= [self createCostumeFromPath:@"normalcat" withName:@"cat1"];
 //    
 //    Setlookbrick *setLookBrick = [[Setlookbrick alloc]init];
 //    setLookBrick.look = look;
@@ -273,8 +272,8 @@
 //    project.header.screenHeight = [NSNumber numberWithInt:480];
 //    
 //    
-//    Look *look1= [self createCostumeFromPath:@"normalcat.png" withName:@"cat1"];
-//    Look *look2 = [self createCostumeFromPath:@"cheshirecat.png" withName:@"cat2"];
+//    Look *look1= [self createCostumeFromPath:@"normalcat" withName:@"cat1"];
+//    Look *look2 = [self createCostumeFromPath:@"cheshirecat" withName:@"cat2"];
 //    
 //    Nextlookbrick *nextCostumeBrick1 = [[Nextlookbrick alloc]init];
 //    Nextlookbrick *nextCostumeBrick2 = [[Nextlookbrick alloc]init];
@@ -297,7 +296,7 @@
 //    SpriteObject *sprite = [self createSprite:@"cat" withPositionX:(NSInteger)0 withPositionY:(NSInteger)0 withCostumes:looks setCostumeIndex:(NSInteger)0];
 //    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
 //    NSString *documentsDirectory = [paths objectAtIndex:0];
-//    sprite.projectPath = [documentsDirectory stringByAppendingString:@"/levels/TestParser/"];
+//    sprite.projectPath = [documentsDirectory stringByAppendingString:@"/.programs/TestParser/"];
 //    NSMutableArray *temp = [[NSMutableArray alloc] init];
 //    [temp addObject:startScript];
 //    [temp addObject:whenScript];
@@ -321,7 +320,7 @@
 //    project.header.screenWidth  = [NSNumber numberWithInt:320];
 //    project.header.screenHeight = [NSNumber numberWithInt:480];
 //    
-//    Look *look= [self createCostumeFromPath:@"normalcat.png" withName:@"cat1"];
+//    Look *look= [self createCostumeFromPath:@"normalcat" withName:@"cat1"];
 //    
 //    Setlookbrick *setLookBrick = [[Setlookbrick alloc]init];
 //    setLookBrick.look = look;
@@ -345,7 +344,7 @@
 //    SpriteObject *sprite = [self createSprite:@"cat" withPositionX:(NSInteger)0 withPositionY:(NSInteger)0 withCostumes:looks setCostumeIndex:(NSInteger)0];
 //    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
 //    NSString *documentsDirectory = [paths objectAtIndex:0];
-//    sprite.projectPath = [documentsDirectory stringByAppendingString:@"/levels/TestParser/"];
+//    sprite.projectPath = [documentsDirectory stringByAppendingString:@"/.programs/TestParser/"];
 //    NSMutableArray *temp = [[NSMutableArray alloc] init];
 //    [temp addObject:startScript];
 //    [temp addObject:whenScript];
@@ -366,7 +365,7 @@
 //    project.header.screenHeight = [NSNumber numberWithInt:480];
 //    
 //        
-//    Look *look = [self createCostumeFromPath:@"normalcat.png" withName:@"cat1"];
+//    Look *look = [self createCostumeFromPath:@"normalcat" withName:@"cat1"];
 //    
 //    Setlookbrick *setLookBrick = [[Setlookbrick alloc]init];
 //    setLookBrick.look = look;
@@ -394,7 +393,7 @@
 //    sprite.scriptList = [NSArray arrayWithObjects: startScript, whenScript, nil];
 //    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
 //    NSString *documentsDirectory = [paths objectAtIndex:0];
-//    sprite.projectPath = [documentsDirectory stringByAppendingString:@"/levels/TestParser/"];
+//    sprite.projectPath = [documentsDirectory stringByAppendingString:@"/.programs/TestParser/"];
 //    //[sprite addWhenScript:whenScript];
 //    
 //    project.objectList = [NSMutableArray arrayWithObject:sprite];
@@ -422,7 +421,7 @@
 //    NSString *documentsDirectory = [paths objectAtIndex:0];
 //    
 //    //sprite1
-//    Look *look1 = [self createCostumeFromPath:@"normalcat.png" withName:@"cat1"];
+//    Look *look1 = [self createCostumeFromPath:@"normalcat" withName:@"cat1"];
 //    Setlookbrick *setLookBrick1 = [[Setlookbrick alloc]init];
 //    setLookBrick1.look = look1;
 //    NSArray *looks1 = [NSArray arrayWithObjects:look1, nil];
@@ -446,11 +445,11 @@
 //    [temp addObject:whenScript];
 //    sprite1.scriptList = temp;
 //    sprite1.lookList = looks1;
-//    sprite1.projectPath = [documentsDirectory stringByAppendingString:@"/levels/TestParser/"];
+//    sprite1.projectPath = [documentsDirectory stringByAppendingString:@"/.programs/TestParser/"];
 //    
 //    
 //    //sprite2
-//    Look *look2 = [self createCostumeFromPath:@"normalcat.png" withName:@"cat1"];
+//    Look *look2 = [self createCostumeFromPath:@"normalcat" withName:@"cat1"];
 //    Setlookbrick *setLookBrick2 = [[Setlookbrick alloc]init];
 //    setLookBrick2.look = look2;
 //    NSArray *looks2 = [NSArray arrayWithObjects:look2, nil];
@@ -475,11 +474,11 @@
 //    [temp2 addObject:broadcastScript1];
 //    sprite2.scriptList = temp2;
 //    sprite2.lookList = looks2;
-//    sprite2.projectPath = [documentsDirectory stringByAppendingString:@"/levels/TestParser/"];
+//    sprite2.projectPath = [documentsDirectory stringByAppendingString:@"/.programs/TestParser/"];
 //    
 //    
 //    //sprite3
-//    Look *look3 = [self createCostumeFromPath:@"normalcat.png" withName:@"cat1"];
+//    Look *look3 = [self createCostumeFromPath:@"normalcat" withName:@"cat1"];
 //    Setlookbrick *setLookBrick3 = [[Setlookbrick alloc]init];
 //    setLookBrick3.look = look3;
 //    NSArray *looks3 = [NSArray arrayWithObjects:look3, nil];
@@ -504,7 +503,7 @@
 //    [temp3 addObject:startScript3];
 //    [temp3 addObject:broadcastScript2];
 //    sprite3.scriptList = temp3;
-//    sprite3.projectPath = [documentsDirectory stringByAppendingString:@"/levels/TestParser/"];
+//    sprite3.projectPath = [documentsDirectory stringByAppendingString:@"/.programs/TestParser/"];
 //
 //
 //    ///
@@ -532,7 +531,7 @@
 //    NSString *documentsDirectory = [paths objectAtIndex:0];
 //    
 //    //sprite1
-//    Look *look1 = [self createCostumeFromPath:@"normalcat.png" withName:@"cat1"];
+//    Look *look1 = [self createCostumeFromPath:@"normalcat" withName:@"cat1"];
 //    Setlookbrick *setLookBrick1 = [[Setlookbrick alloc]init];
 //    setLookBrick1.look = look1;
 //    NSArray *looks1 = [NSArray arrayWithObjects:look1, nil];
@@ -559,11 +558,11 @@
 //    [temp addObject:whenScript];
 //    sprite1.scriptList = temp;
 //    sprite1.lookList = looks1;
-//    sprite1.projectPath = [documentsDirectory stringByAppendingString:@"/levels/TestParser/"];
+//    sprite1.projectPath = [documentsDirectory stringByAppendingString:@"/.programs/TestParser/"];
 //    
 //    
 //    //sprite2
-//    Look *look2 = [self createCostumeFromPath:@"normalcat.png" withName:@"cat1"];
+//    Look *look2 = [self createCostumeFromPath:@"normalcat" withName:@"cat1"];
 //    Setlookbrick *setLookBrick2 = [[Setlookbrick alloc]init];
 //    setLookBrick2.look = look2;
 //    NSArray *looks2 = [NSArray arrayWithObjects:look2, nil];
@@ -588,11 +587,11 @@
 //    [temp2 addObject:broadcastScript1];
 //    sprite2.scriptList = temp2;
 //    sprite2.lookList = looks2;
-//    sprite2.projectPath = [documentsDirectory stringByAppendingString:@"/levels/TestParser/"];
+//    sprite2.projectPath = [documentsDirectory stringByAppendingString:@"/.programs/TestParser/"];
 //    
 //    
 //    //sprite3
-//    Look *look3 = [self createCostumeFromPath:@"normalcat.png" withName:@"cat1"];
+//    Look *look3 = [self createCostumeFromPath:@"normalcat" withName:@"cat1"];
 //    Setlookbrick *setLookBrick3 = [[Setlookbrick alloc]init];
 //    setLookBrick3.look = look3;
 //    NSArray *looks3 = [NSArray arrayWithObjects:look3, nil];
@@ -617,7 +616,7 @@
 //    [temp3 addObject:startScript3];
 //    [temp3 addObject:broadcastScript2];
 //    sprite3.scriptList = temp3;
-//    sprite3.projectPath = [documentsDirectory stringByAppendingString:@"/levels/TestParser/"];
+//    sprite3.projectPath = [documentsDirectory stringByAppendingString:@"/.programs/TestParser/"];
 //    
 //    
 //    ///
@@ -641,9 +640,9 @@
 //    NSString *documentsDirectory = [paths objectAtIndex:0];
 //    
 //    //sprite1
-//    Look *look1 = [self createCostumeFromPath:@"normalcat.png" withName:@"cat1"];
-//    Look *look2 = [self createCostumeFromPath:@"normalcat.png" withName:@"cat1"];
-//    Look *look3 = [self createCostumeFromPath:@"normalcat.png" withName:@"cat1"];
+//    Look *look1 = [self createCostumeFromPath:@"normalcat" withName:@"cat1"];
+//    Look *look2 = [self createCostumeFromPath:@"normalcat" withName:@"cat1"];
+//    Look *look3 = [self createCostumeFromPath:@"normalcat" withName:@"cat1"];
 //    
 //    Cometofrontbrick *comeToFrontBrick1 = [[Cometofrontbrick alloc]init];
 //    Cometofrontbrick *comeToFrontBrick2 = [[Cometofrontbrick alloc]init];
@@ -686,7 +685,7 @@
 //    [startScript addBrick:setLookBrick1];
 //    [startScript addBrick:placeat1];
 //    sprite1.scriptList = [NSArray arrayWithObjects:startScript, whenScript1, nil];
-//    sprite1.projectPath = [documentsDirectory stringByAppendingString:@"/levels/TestParser/"];
+//    sprite1.projectPath = [documentsDirectory stringByAppendingString:@"/.programs/TestParser/"];
 //    sprite1.lookList = looks1;
 //    
 //    //[sprite1 addWhenScript:whenScript];
@@ -697,7 +696,7 @@
 //    [startScript2 addBrick:setLookBrick2];
 //    [startScript2 addBrick:placeat2];
 //    sprite2.scriptList = [NSArray arrayWithObjects:startScript2, whenScript2, nil];
-//    sprite2.projectPath = [documentsDirectory stringByAppendingString:@"/levels/TestParser/"];
+//    sprite2.projectPath = [documentsDirectory stringByAppendingString:@"/.programs/TestParser/"];
 //    sprite2.lookList = looks2;
 //    
 //    
@@ -709,7 +708,7 @@
 //    [startScript3 addBrick:setLookBrick3];
 //    [startScript3 addBrick:placeat3];
 //    sprite3.scriptList = [NSArray arrayWithObjects:startScript3, whenScript3, nil];
-//    sprite3.projectPath = [documentsDirectory stringByAppendingString:@"/levels/TestParser/"];
+//    sprite3.projectPath = [documentsDirectory stringByAppendingString:@"/.programs/TestParser/"];
 //    sprite3.lookList = looks3;
 //    
 //    //[sprite3 addWhenScript:whenScript];
@@ -736,9 +735,9 @@
 //    NSString *documentsDirectory = [paths objectAtIndex:0];
 //    
 //    //sprite1
-//    Look *look1 = [self createCostumeFromPath:@"normalcat.png" withName:@"cat1"];
-//    Look *look2 = [self createCostumeFromPath:@"normalcat.png" withName:@"cat1"];
-//    Look *look3 = [self createCostumeFromPath:@"normalcat.png" withName:@"cat1"];
+//    Look *look1 = [self createCostumeFromPath:@"normalcat" withName:@"cat1"];
+//    Look *look2 = [self createCostumeFromPath:@"normalcat" withName:@"cat1"];
+//    Look *look3 = [self createCostumeFromPath:@"normalcat" withName:@"cat1"];
 //    
 //    Gonstepsbackbrick *goNStepsBack1 = [[Gonstepsbackbrick alloc]init];
 //    goNStepsBack1.steps = [NSNumber numberWithInt:1];
@@ -784,7 +783,7 @@
 //    [startScript addBrick:setLookBrick1];
 //    [startScript addBrick:placeat1];
 //    sprite1.scriptList = [NSArray arrayWithObjects:startScript, whenScript1, nil];
-//    sprite1.projectPath = [documentsDirectory stringByAppendingString:@"/levels/TestParser/"];
+//    sprite1.projectPath = [documentsDirectory stringByAppendingString:@"/.programs/TestParser/"];
 //    sprite1.lookList = looks1;
 //    
 //    //[sprite1 addWhenScript:whenScript];
@@ -795,7 +794,7 @@
 //    [startScript2 addBrick:setLookBrick2];
 //    [startScript2 addBrick:placeat2];
 //    sprite2.scriptList = [NSArray arrayWithObjects:startScript2, whenScript2, nil];
-//    sprite2.projectPath = [documentsDirectory stringByAppendingString:@"/levels/TestParser/"];
+//    sprite2.projectPath = [documentsDirectory stringByAppendingString:@"/.programs/TestParser/"];
 //    sprite2.lookList = looks2;
 //    
 //    
@@ -807,7 +806,7 @@
 //    [startScript3 addBrick:setLookBrick3];
 //    [startScript3 addBrick:placeat3];
 //    sprite3.scriptList = [NSArray arrayWithObjects:startScript3, whenScript3, nil];
-//    sprite3.projectPath = [documentsDirectory stringByAppendingString:@"/levels/TestParser/"];
+//    sprite3.projectPath = [documentsDirectory stringByAppendingString:@"/.programs/TestParser/"];
 //    sprite3.lookList = looks3;
 //    
 //    //[sprite3 addWhenScript:whenScript];
@@ -831,7 +830,7 @@
 ////    project.screenWidth  = [NSNumber numberWithInt:320];
 ////    project.screenHeight = [NSNumber numberWithInt:480];
 ////    
-////    LookData *look= [self createCostumeFromPath:@"normalcat.png" withName:@"cat1"];
+////    LookData *look= [self createCostumeFromPath:@"normalcat" withName:@"cat1"];
 ////    
 ////    ChangeSizeByNBrick *changeSizeByNBrick1 = [[ChangeSizeByNBrick alloc]initWithSizeChangeRate:50];
 ////    ChangeSizeByNBrick *changeSizeByNBrick2 = [[ChangeSizeByNBrick alloc]initWithSizeChangeRate:-100];
@@ -863,7 +862,7 @@
 ////    project.screenWidth  = [NSNumber numberWithInt:320];
 ////    project.screenHeight = [NSNumber numberWithInt:480];
 ////    
-////    LookData *look= [self createCostumeFromPath:@"normalcat.png" withName:@"cat1"];
+////    LookData *look= [self createCostumeFromPath:@"normalcat" withName:@"cat1"];
 ////    
 ////    StartScript *startScript = [[StartScript alloc]init];
 ////    PlaceAtBrick *placeAtBrick = [[PlaceAtBrick alloc]initWithPosition:GLKVector3Make(-100, 100, 0)];
@@ -895,8 +894,8 @@
 ////    project.screenWidth  = [NSNumber numberWithInt:320];
 ////    project.screenHeight = [NSNumber numberWithInt:480];
 ////    
-////    LookData *costume1 = [self createCostumeFromPath:@"normalcat.png" withName:@"cat1"];
-////    LookData *costume2 = [self createCostumeFromPath:@"cheshirecat.png" withName:@"cat2"];
+////    LookData *costume1 = [self createCostumeFromPath:@"normalcat" withName:@"cat1"];
+////    LookData *costume2 = [self createCostumeFromPath:@"cheshirecat" withName:@"cat2"];
 ////    
 ////    StartScript *startScript = [[StartScript alloc]init];
 ////    RepeatBrick *loopStart = [[RepeatBrick alloc]initWithNumberOfLoops:5];
@@ -936,7 +935,7 @@
 //    project.header.screenHeight = [NSNumber numberWithInt:480];
 //    
 //    
-//    Look *look= [self createCostumeFromPath:@"normalcat.png" withName:@"cat1"];
+//    Look *look= [self createCostumeFromPath:@"normalcat" withName:@"cat1"];
 //    
 //    Setlookbrick *setLookBrick = [[Setlookbrick alloc]init];
 //    setLookBrick.look = look;
@@ -957,7 +956,7 @@
 //    SpriteObject *sprite = [self createSprite:@"cat" withPositionX:(NSInteger)0 withPositionY:(NSInteger)0 withCostumes:looks setCostumeIndex:(NSInteger)0];
 //    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
 //    NSString *documentsDirectory = [paths objectAtIndex:0];
-//    sprite.projectPath = [documentsDirectory stringByAppendingString:@"/levels/TestParser/"];
+//    sprite.projectPath = [documentsDirectory stringByAppendingString:@"/.programs/TestParser/"];
 //    NSMutableArray *temp = [[NSMutableArray alloc] init];
 //    [temp addObject:startScript];
 //    [temp addObject:whenScript];
@@ -980,7 +979,7 @@
 //    project.header.screenHeight = [NSNumber numberWithInt:480];
 //    
 //    
-//    Look *look= [self createCostumeFromPath:@"normalcat.png" withName:@"cat1"];
+//    Look *look= [self createCostumeFromPath:@"normalcat" withName:@"cat1"];
 //    
 //    Waitbrick *wait = [[Waitbrick alloc] init];
 //    wait.timeToWaitInSeconds = [NSNumber numberWithFloat:0.75f];
@@ -1014,7 +1013,7 @@
 //    SpriteObject *sprite = [self createSprite:@"cat" withPositionX:(NSInteger)0 withPositionY:(NSInteger)0 withCostumes:looks setCostumeIndex:(NSInteger)0];
 //    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
 //    NSString *documentsDirectory = [paths objectAtIndex:0];
-//    sprite.projectPath = [documentsDirectory stringByAppendingString:@"/levels/TestParser/"];
+//    sprite.projectPath = [documentsDirectory stringByAppendingString:@"/.programs/TestParser/"];
 //    NSMutableArray *temp = [[NSMutableArray alloc] init];
 //    [temp addObject:startScript];
 //    [temp addObject:whenScript];
@@ -1037,7 +1036,7 @@
 //    project.header.screenWidth  = [NSNumber numberWithInt:320];
 //    project.header.screenHeight = [NSNumber numberWithInt:480];
 //    
-//    Look *look= [self createCostumeFromPath:@"cheshirecat.png" withName:@"cat1"];
+//    Look *look= [self createCostumeFromPath:@"cheshirecat" withName:@"cat1"];
 //    Setlookbrick *setLook = [[Setlookbrick alloc]init];
 //    setLook.look = look;
 //    Placeatbrick   *placeAt   = [[Placeatbrick   alloc]initWithXPosition:[NSNumber numberWithFloat:-80.0f] yPosition:[NSNumber numberWithFloat: -120.0f]];
@@ -1062,7 +1061,7 @@
 ////    SpriteObject *sprite = [self createSprite:@"cat" withPositionX:(NSInteger)0 withPositionY:(NSInteger)0 withCostumes:looks setCostumeIndex:(NSInteger)0];
 ////    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
 ////    NSString *documentsDirectory = [paths objectAtIndex:0];
-////    sprite.projectPath = [documentsDirectory stringByAppendingString:@"/levels/TestParser/"];
+////    sprite.projectPath = [documentsDirectory stringByAppendingString:@"/.programs/TestParser/"];
 ////    NSMutableArray *temp = [[NSMutableArray alloc] init];
 ////    [temp addObject:startScript];
 ////    [temp addObject:whenScript];
@@ -1094,7 +1093,7 @@
 //
 //
 //    
-//    Look *look= [self createCostumeFromPath:@"cheshirecat.png" withName:@"cat1"];
+//    Look *look= [self createCostumeFromPath:@"cheshirecat" withName:@"cat1"];
 //    Setlookbrick *setLook = [[Setlookbrick alloc]init];
 //    setLook.look = look;
 //    
@@ -1121,14 +1120,14 @@
 ////    startScript1.brickList = [NSArray arrayWithObjects:setLook, placeAt1, nil];
 ////    
 ////    SpriteObject *sprite1 = [self createSprite:@"cat1" withPositionX:(NSInteger)0 withPositionY:(NSInteger)0 withCostumes:looks setCostumeIndex:(NSInteger)0];
-////    sprite1.projectPath = [documentsDirectory stringByAppendingString:@"/levels/TestParser/"];
+////    sprite1.projectPath = [documentsDirectory stringByAppendingString:@"/.programs/TestParser/"];
 ////    sprite1.scriptList = [NSArray arrayWithObjects:startScript1, whenScript1, nil];
 //////
 ////    
 ////    
 ////    // sprite 2
 ////    
-////    Look *look2= [self createCostumeFromPath:@"cheshirecat.png" withName:@"cat2"];
+////    Look *look2= [self createCostumeFromPath:@"cheshirecat" withName:@"cat2"];
 ////    Setlookbrick *setLook2 = [[Setlookbrick alloc]init];
 ////    setLook2.look = look2;
 ////    NSArray *looks2 = [NSArray arrayWithObjects:look2, nil];
@@ -1149,7 +1148,7 @@
 ////    startScript2.brickList = [NSArray arrayWithObjects:setLook2, placeAt2, nil];
 ////    
 ////    SpriteObject *sprite2 = [self createSprite:@"cat2" withPositionX:(NSInteger)0 withPositionY:(NSInteger)0 withCostumes:looks setCostumeIndex:(NSInteger)0];
-////    sprite2.projectPath = [documentsDirectory stringByAppendingString:@"/levels/TestParser/"];
+////    sprite2.projectPath = [documentsDirectory stringByAppendingString:@"/.programs/TestParser/"];
 ////    sprite2.scriptList = [NSArray arrayWithObjects:startScript2, whenScript2, nil];
 ////
 ////    project.objectList = [NSMutableArray arrayWithObjects:sprite1, sprite2, nil];
@@ -1171,7 +1170,7 @@
 //    NSString *documentsDirectory = [paths objectAtIndex:0];
 //    
 //    
-//    Look*look= [self createCostumeFromPath:@"cheshirecat.png" withName:@"cat1"];
+//    Look*look= [self createCostumeFromPath:@"cheshirecat" withName:@"cat1"];
 //    NSArray *looks = [NSArray arrayWithObjects:look, nil];
 //    
 //    Setlookbrick *setLook = [[Setlookbrick alloc]init];
@@ -1214,7 +1213,7 @@
 ////    
 ////    SpriteObject *sprite = [self createSprite:@"cat" withPositionX:(NSInteger)0 withPositionY:(NSInteger)0 withCostumes:looks setCostumeIndex:(NSInteger)0];
 ////    sprite.scriptList = [NSArray arrayWithObjects:whenScript, startScript, nil];
-////    sprite.projectPath = [documentsDirectory stringByAppendingString:@"/levels/TestParser/"];
+////    sprite.projectPath = [documentsDirectory stringByAppendingString:@"/.programs/TestParser/"];
 ////    
 ////    ////
 ////    project.objectList = [NSMutableArray arrayWithObjects:sprite, nil];
@@ -1233,7 +1232,7 @@
 //    project.header.screenHeight = [NSNumber numberWithInt:900];
 //    
 //    
-//    Look *look= [self createCostumeFromPath:@"normalcat.png" withName:@"cat1"];
+//    Look *look= [self createCostumeFromPath:@"normalcat" withName:@"cat1"];
 //    
 //    Setghosteffectbrick *setGhostEffect1 = [[Setghosteffectbrick alloc] initWithTransparencyInPercent:[NSNumber numberWithInt:50]];
 //    Setghosteffectbrick *setGhostEffect2 = [[Setghosteffectbrick alloc] initWithTransparencyInPercent:[NSNumber numberWithInt:0]];
@@ -1261,7 +1260,7 @@
 //    SpriteObject *sprite = [self createSprite:@"cat" withPositionX:(NSInteger)0 withPositionY:(NSInteger)0 withCostumes:looks setCostumeIndex:(NSInteger)0];
 //    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
 //    NSString *documentsDirectory = [paths objectAtIndex:0];
-//    sprite.projectPath = [documentsDirectory stringByAppendingString:@"/levels/TestParser/"];
+//    sprite.projectPath = [documentsDirectory stringByAppendingString:@"/.programs/TestParser/"];
 //    NSMutableArray *temp = [[NSMutableArray alloc] init];
 //    [temp addObject:startScript];
 //    [temp addObject:whenScript];

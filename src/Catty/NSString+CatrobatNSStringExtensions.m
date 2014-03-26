@@ -23,14 +23,13 @@
 #import "NSString+CatrobatNSStringExtensions.h"
 #import <CommonCrypto/CommonDigest.h>
 
-
 @implementation NSString (CustomExtensions)
 
--(NSString*) sha1
+- (NSString*)sha1
 {
     const char *cStr = [self UTF8String];
     unsigned char result[CC_SHA1_DIGEST_LENGTH];
-    CC_SHA1(cStr, strlen(cStr), result);
+    CC_SHA1(cStr, (unsigned int)strlen(cStr), result);
     return [NSString  stringWithFormat:
             @"%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x",
             result[0], result[1], result[2], result[3], result[4],
@@ -76,7 +75,7 @@ NSMutableString* resultString;
 }
 
 
-+(NSString *)uuid
++ (NSString *)uuid
 {
     CFUUIDRef uuid = CFUUIDCreate(kCFAllocatorDefault);
     NSString *uuidStr = (__bridge_transfer NSString *)CFUUIDCreateString(kCFAllocatorDefault, uuid);

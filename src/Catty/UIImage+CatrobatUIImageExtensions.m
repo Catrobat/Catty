@@ -24,7 +24,6 @@
 #import "ImageCache.h"
 #import <CoreImage/CoreImage.h>
 
-
 #define kImageDownloadQueue "at.tugraz.ist.catrobat.ImageDownloadQueue"
 
 @interface UIImage()
@@ -103,7 +102,7 @@
 
   CIFilter *filter = [CIFilter filterWithName:@"CIColorControls"
                       keysAndValues:kCIInputImageKey, image, @"inputBrightness",
-            [NSNumber numberWithFloat:brightness], nil];
+            [NSNumber numberWithFloat:(float)brightness], nil];
   CIImage *outputImage = [filter valueForKey:@"outputImage"];
   
   CGImageRef cgimg =
@@ -132,14 +131,14 @@
     CGContextRelease(context);
     
     //Filter through data and look for non-transparent pixels.
-    int lowX = width;
-    int lowY = height;
-    int highX = 0;
-    int highY = 0;
+    NSInteger lowX = width;
+    NSInteger lowY = height;
+    NSInteger highX = 0;
+    NSInteger highY = 0;
     if (data != NULL) {
-        for (int y=0; y<height; y++) {
-            for (int x=0; x<width; x++) {
-                int pixelIndex = (width * y + x) * 4 /* 4 for A, R, G, B */;
+        for (NSInteger y=0; y<height; y++) {
+            for (NSInteger x=0; x<width; x++) {
+                NSInteger pixelIndex = (width * y + x) * 4 /* 4 for A, R, G, B */;
                 if (data[pixelIndex] != 0) { //Alpha value is not zero; pixel is not transparent.
                     if (x < lowX) lowX = x;
                     if (x > highX) highX = x;
@@ -161,8 +160,8 @@
     CGContextRef context = NULL;
     CGColorSpaceRef colorSpace;
     void *bitmapData;
-    int bitmapByteCount;
-    int bitmapBytesPerRow;
+    NSInteger bitmapByteCount;
+    NSInteger bitmapBytesPerRow;
     
     // Get image width, height. We'll use the entire image.
     size_t width = CGImageGetWidth(inImage);

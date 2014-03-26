@@ -25,6 +25,6 @@
 
 @class SpriteObject;
 
-@interface ObjectSoundsTableViewController : BaseTableViewController
+@interface SoundsTableViewController : BaseTableViewController
 @property (strong, nonatomic) SpriteObject *object;
 @end

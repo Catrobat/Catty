@@ -74,13 +74,13 @@
             dispatch_semaphore_wait(sema, DISPATCH_TIME_FOREVER);
         }
     }
-    
-    for (SpriteObject *sprite in sprites) {
+    NSInteger numberOfSprites = sprites.count;
+    for (NSInteger counter = 0;counter < numberOfSprites; counter++) {
         dispatch_semaphore_wait(sema, DISPATCH_TIME_FOREVER);
     }
     dispatch_group_async(group, broadcastWaitQueue, ^{});
 
-    for (SpriteObject *sprite in sprites) {
+    for (NSInteger counter = 0;counter < numberOfSprites; counter++) {
         dispatch_semaphore_signal(sema);
     }
  // Block until we're ready

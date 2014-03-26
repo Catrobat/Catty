@@ -81,6 +81,13 @@
     // Dispose of any resources that can be recreated.
 }
 
+#pragma mark - actions
+- (void)playSceneAction:(id)sender
+{
+    [self.navigationController setToolbarHidden:YES];
+    [self performSegueWithIdentifier:kSegueToScene sender:sender];
+}
+
 #pragma mark - Table view data source
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
@@ -100,7 +107,7 @@
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
     
     if ([cell conformsToProtocol:@protocol(CatrobatImageCell)]) {
-        UITableViewCell <CatrobatImageCell>* imageCell = (UITableViewCell <CatrobatImageCell>*)cell;
+        UITableViewCell <CatrobatImageCell> *imageCell = (UITableViewCell<CatrobatImageCell>*)cell;
         switch (indexPath.row) {
             case 0:
                 imageCell.iconImageView.image = [UIImage imageNamed:@"ic_scripts"];
@@ -124,8 +131,27 @@
     return [TableUtil getHeightForImageCell];
 }
 
-#pragma mark - Navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+#pragma mark - table view delegates
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    // Pass the selected object to the new view controller.
+    static NSString *toScriptsSegueID = kSegueToScripts;
+    static NSString *toLooksSegueID = kSegueToLooks;
+    static NSString *toSoundsSegueID = kSegueToSounds;
+    
+    UITableViewCell* sender = [tableView cellForRowAtIndexPath:indexPath];
+    if (indexPath.row == 0)
+        [self performSegueWithIdentifier:toScriptsSegueID sender:sender];
+    else if (indexPath.row == 1)
+        [self performSegueWithIdentifier:toLooksSegueID sender:sender];
+    else if (indexPath.row == 2)
+        [self performSegueWithIdentifier:toSoundsSegueID sender:sender];
+    
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+}
+
+#pragma mark - segue handlers
+- (void)prepareForSegue:(UIStoryboardSegue*)segue sender:(id)sender
 {
     // Pass the selected object to the new view controller.
     static NSString *toScriptsSegueID = kSegueToScripts;
@@ -154,24 +180,8 @@
     }
 }
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Pass the selected object to the new view controller.
-    static NSString *toScriptsSegueID = kSegueToScripts;
-    static NSString *toLooksSegueID = kSegueToLooks;
-    static NSString *toSoundsSegueID = kSegueToSounds;
-    
-    UITableViewCell* sender = [tableView cellForRowAtIndexPath:indexPath];
-    if (indexPath.row == 0)
-        [self performSegueWithIdentifier:toScriptsSegueID sender:sender];
-    else if (indexPath.row == 1)
-        [self performSegueWithIdentifier:toLooksSegueID sender:sender];
-    else if (indexPath.row == 2)
-        [self performSegueWithIdentifier:toSoundsSegueID sender:sender];
-}
-
 #pragma mark - UIActionSheetDelegate Handlers
-- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
+- (void)actionSheet:(UIActionSheet*)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
 {
     // TODO: implement this
 }
@@ -194,19 +204,10 @@
     [edit showInView:self.view];
 }
 
-#pragma mark - Helper Methods
-- (void)playSceneAction:(id)sender
-{
-    [self.navigationController setToolbarHidden:YES];
-    [self performSegueWithIdentifier:kSegueToScene sender:sender];
-}
-
+#pragma mark - helpers
 - (void)setupToolBar
 {
-    [self.navigationController setToolbarHidden:NO];
-    self.navigationController.toolbar.barStyle = UIBarStyleBlack;
-    self.navigationController.toolbar.tintColor = [UIColor orangeColor];
-    self.navigationController.toolbar.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleTopMargin;
+    [super setupToolBar];
     UIBarButtonItem *flexItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace
                                                                               target:nil
                                                                               action:nil];

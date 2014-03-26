@@ -105,24 +105,20 @@
 
 - (NSString*)previewImagePathForLookAtIndex:(NSUInteger)index
 {
-  if (index >= [self.lookList count])
+    if (index >= [self.lookList count])
+        return nil;
+
+    Look* look = [self.lookList objectAtIndex:index];
+    if (! look)
+        return nil;
+
+    NSString *imageDirPath = [[self projectPath] stringByAppendingString:kProgramImagesDirName];
+    NSString *previewImageFilePath = [NSString stringWithFormat:@"%@/%@", imageDirPath, [look previewImageFileName]];
+    FileManager *fileManager = [[FileManager alloc] init];
+    if ([fileManager fileExists:previewImageFilePath])
+        return previewImageFilePath;
+
     return nil;
-
-  Look* look = [self.lookList objectAtIndex:index];
-  if (! look)
-    return nil;
-
-  NSString *imageDirPath = [[self projectPath] stringByAppendingString:kProgramImagesDirName];
-  NSString *previewImageFilePath = [NSString stringWithFormat:@"%@/%@", imageDirPath, [look previewImageFileName]];
-  FileManager *fileManager = [[FileManager alloc] init];
-  if ([fileManager fileExists:previewImageFilePath])
-    return previewImageFilePath;
-
-  previewImageFilePath = [self pathForLook:look];
-  if ([fileManager fileExists:previewImageFilePath])
-    return previewImageFilePath;
-
-  return nil;
 }
 
 - (NSString*)previewImagePath
@@ -130,7 +126,7 @@
   return [self previewImagePathForLookAtIndex:0];
 }
 
--(BOOL)isBackground
+- (BOOL)isBackground
 {
   if (self.program && [self.program.objectList count])
     return ([self.program.objectList objectAtIndex:0] == self);
@@ -150,7 +146,7 @@
   [objectXMLElement addChild:[GDataXMLElement elementWithName:@"name" stringValue:self.name]];
 
   GDataXMLElement *scriptListXMLElement = [GDataXMLNode elementWithName:@"scriptList"];
-  // TODO: uncomment this after toXML-method in all Script-subclasses have been completely implemented
+  // TODO: uncomment this after toXML-method in all Script-subclasses has been completely implemented
 //  for (id script in self.scriptList) {
 //    if ([script isKindOfClass:[Script class]])
 //      [scriptListXMLElement addChild:[((Script*) script) toXML]];
@@ -200,14 +196,12 @@
     }
 }
 
-
 - (void)scriptFinished:(Script*)script
 {
     [self removeChildrenInArray:@[script]];
 }
 
-
--(BOOL)touchedwith:(NSSet *)touches withX:(CGFloat)x andY:(CGFloat)y
+- (BOOL)touchedwith:(NSSet *)touches withX:(CGFloat)x andY:(CGFloat)y
 {
 
     for (UITouch *touch in touches) {
@@ -235,8 +229,7 @@
         }
             return YES;
 
-        }
-        else{
+        } else {
             NSDebug(@"I'm transparent at this point");
             return NO;
     }
@@ -244,6 +237,7 @@
     }
     return YES;
 }
+
 //-(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
 //{
 //    
@@ -277,8 +271,7 @@
 //    //return YES;
 //}
 
-
--(void)startAndAddScript:(Script*)script completion:(dispatch_block_t)completion
+- (void)startAndAddScript:(Script*)script completion:(dispatch_block_t)completion
 {
     if([[self children] indexOfObject:script] == NSNotFound) {
         [self addChild:script];
@@ -289,33 +282,32 @@
 }
 
 
--(Look*)nextLook
+- (Look*)nextLook
 {
-    int index = [self.lookList indexOfObject:self.currentLook];
+    NSInteger index = [self.lookList indexOfObject:self.currentLook];
     index++;
     index %= [self.lookList count];
     return [self.lookList objectAtIndex:index];
 }
 
--(NSString*)pathForLook:(Look*)look
+- (NSString*)pathForLook:(Look*)look
 {
   return [NSString stringWithFormat:@"%@%@/%@", [self projectPath], kProgramImagesDirName, look.fileName];
 }
 
--(NSString*)pathForSound:(Sound*)sound
+- (NSString*)pathForSound:(Sound*)sound
 {
   return [NSString stringWithFormat:@"%@%@/%@", [self projectPath], kProgramSoundsDirName, sound.fileName];
 }
 
--(void)changeLook:(Look *)look
+- (void)changeLook:(Look *)look
 {
     UIImage* image = [UIImage imageWithContentsOfFile: [self pathForLook:look] ];
     SKTexture* texture = nil;
     if ([self isBackground]) {
         texture = [SKTexture textureWithImage:image];
         self.currentUIImageLook = image;
-    }
-    else{
+    } else {
 // We do not need cropping if touch through transparent pixel is possible!!!!
         
 //        CGRect newRect = [image cropRectForImage:image];
@@ -342,22 +334,22 @@
     self.size = texture.size;
     self.texture = texture;
     self.currentLook = look;
-    
-    if(xScale != 1.0) {
+
+    if (xScale != 1.0) {
         self.xScale = xScale;
     }
-    if(yScale != 1.0) {
+    if (yScale != 1.0) {
         self.yScale = yScale;
     }
-    
+
 }
 
--(void) setLook
+- (void)setLook
 {
     BOOL check = YES;
 #warning Fix for issue that you can set look without a brick at the start -> change if there will be hide bricks for those objects which should not appear!
-        for (Script *script in self.scriptList)
-        {
+//        for (Script *script in self.scriptList)
+//        {
 //            if ([script isKindOfClass:[StartScript class]]) {
 //                for(Brick* brick in script.brickList){
 //                    if([brick isKindOfClass:[SetLookBrick class]]) {
@@ -381,9 +373,9 @@
 //                    }
 //                }
 //            }
-
-            
-        }
+//
+//            
+//        }
 
 
     if((check == YES || ([self isBackground])) && [self.lookList count]>0){

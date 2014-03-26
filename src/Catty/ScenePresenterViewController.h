@@ -38,7 +38,6 @@
 @property (nonatomic,weak) UITableViewController* controller;
 @property (nonatomic,strong) UIButton* backButton;
 
-
 @property (nonatomic,strong) IBOutlet UIView* menuView;
 @property (strong,nonatomic) UIButton *menuBackButton;
 @property (strong,nonatomic) UIButton *menuContinueButton;

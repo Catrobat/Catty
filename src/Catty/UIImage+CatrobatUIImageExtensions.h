@@ -36,7 +36,7 @@
                        onCompletion:(void (^)(UIImage *image))completion;
 
 
-+ (UIImage*) setImage:(UIImage*)uiImage WithBrightness:(float)brightness;
++ (UIImage*) setImage:(UIImage*)uiImage WithBrightness:(CGFloat)brightness;
 - (CGRect)cropRectForImage:(UIImage *)image;
 - (CGContextRef)newARGBBitmapContextFromImage:(CGImageRef)inImage;
 - (BOOL)isTransparentPixel:(UIImage*)image withX:(CGFloat)x andY:(CGFloat)y;

@@ -23,14 +23,14 @@
 
 @interface NSString (CatrobatNSStringExtensions) <NSXMLParserDelegate>
 
-- (NSString*) sha1;
+- (NSString*)sha1;
 
-- (NSString*) stringByEscapingHTMLEntities;
-- (NSString*) firstCharacterUppercaseString;
+- (NSString*)stringByEscapingHTMLEntities;
+- (NSString*)firstCharacterUppercaseString;
 
 - (BOOL)containsString:(NSString*)string;
 
-+ (NSString *)uuid;
++ (NSString*)uuid;
 
 
 @end

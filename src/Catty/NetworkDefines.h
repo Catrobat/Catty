@@ -30,6 +30,9 @@
 #define kConnectionSearch @"search.json"
 #define kConnectionRecent @"recent.json"
 #define kConnectionFeatured @"featured.json"
+#define kConnectionMostDownloaded @"mostdownloaded.json"
+#define kConnectionMostViewed @"mostviewed.json"
+#define kConnectionIDQuery @"getInfoById.json"
 
 #define kProgramsOffset @"offset="
 #define kProgramsLimit @"limit="

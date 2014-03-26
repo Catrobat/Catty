@@ -36,15 +36,15 @@
 
 - (void)createDirectory:(NSString*)path;
 - (void)deleteAllFilesInDocumentsDirectory;
-- (void)deleteAllFillesOfDirectory:(NSString*)path;
+- (void)deleteAllFilesOfDirectory:(NSString*)path;
 - (BOOL)fileExists:(NSString*)path;
 - (BOOL)directoryExists:(NSString*)path;
-- (void)moveExistingFileOrDirectoryAtPath:(NSString*)oldPath ToPath:(NSString*)newPath;
+- (void)moveExistingFileOrDirectoryAtPath:(NSString*)oldPath toPath:(NSString*)newPath;
 - (void)deleteDirectory:(NSString*)path;
 - (NSArray*)getContentsOfDirectory:(NSString*)directory;
-- (void)addDefaultProjectToLeveLDirectory;
+- (void)addDefaultProjectsToProgramsRootDirectory;
 - (void)downloadFileFromURL:(NSURL*)url withName:(NSString*)name;
-- (void)downloadScreenshotFromURL:(NSURL*)url;
-- (NSString*)getPathForLevel:(NSString*)levelName;
+- (void)downloadScreenshotFromURL:(NSURL*)url andBaseUrl:(NSURL*)baseurl;
+- (NSString*)getFullPathForProgram:(NSString *)programName;
 
 @end

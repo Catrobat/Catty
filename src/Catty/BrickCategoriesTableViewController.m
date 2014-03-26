@@ -39,6 +39,7 @@
 @interface BrickCategoriesTableViewController () <UIActionSheetDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate>
 @property (nonatomic, strong) NSArray *brickCategoryNames;
 @property (nonatomic, strong) NSArray *brickCategoryColors;
+@property(strong, nonatomic) UIView *overlayView;
 @end
 
 @implementation BrickCategoriesTableViewController
@@ -58,16 +59,16 @@
     return _brickCategoryColors;
 }
 
-#pragma mark init
-- (id)initWithStyle:(UITableViewStyle)style
+- (UIView *)overlayView
 {
-    self = [super initWithStyle:style];
-    if (self) {
-        // Custom initialization
+    if (!_overlayView) {
+        _overlayView = [[UIView alloc] initWithFrame:CGRectZero];
+        _overlayView.backgroundColor = [UIColor colorWithRed:0.0f green:0.0f blue:0.0f alpha:0.5f];
     }
-    return self;
+    return _overlayView;
 }
 
+#pragma mark - initialization
 - (void)initTableView
 {
     [super initTableView];
@@ -80,16 +81,12 @@
     [self.tableView addSubview:headerViewTemplate];
 }
 
-#pragma view events
+#pragma mark - view events
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     [self initTableView];
-    [super initPlaceHolder];
-
-    NSString *title = NSLocalizedString(@"Categories", nil);
-    self.title = title;
-    self.navigationItem.title = title;
+    [self setupNavigationBar];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -98,13 +95,17 @@
     [self.navigationController setToolbarHidden:YES];
 }
 
-- (void)didReceiveMemoryWarning
+#pragma mark - actions
+- (void)dismissCategoryScriptsVC:(id)sender
 {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+    if ([sender isKindOfClass:[UIBarButtonItem class]]) {
+        if (!self.presentingViewController.isBeingPresented) {
+            [self dismissViewControllerAnimated:YES completion:NULL];
+        }
+    }
 }
 
-#pragma mark - Table view data source
+#pragma mark - table view data source
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     return 1;
@@ -119,17 +120,46 @@
 {
     static NSString *CellIdentifier = kCategoryCell;
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
-    cell.selectionStyle = UITableViewCellSelectionStyleNone;
     if ([cell isKindOfClass:[ColoredCell class]]) {
         ColoredCell *coloredCell = (ColoredCell*)cell;
         coloredCell.textLabel.text = self.brickCategoryNames[indexPath.row];
+        coloredCell.textLabel.textAlignment = NSTextAlignmentLeft;
+        coloredCell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+        
     }
     return cell;
 }
 
-- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
+#pragma mark - table view delegates
+- (void)tableView:(UITableView*)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    cell.backgroundColor = self.brickTypeColors[indexPath.row];
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"iPhone" bundle:nil];
+    BricksCollectionViewController *brickCategoryCVC;
+    brickCategoryCVC = (BricksCollectionViewController*)[storyboard instantiateViewControllerWithIdentifier:@"BricksDetailViewCollectionViewController"];
+    brickCategoryCVC.brickCategoryType = (kBrickCategoryType)indexPath.row;
+    brickCategoryCVC.object = self.object;
+    [self.navigationController pushViewController:brickCategoryCVC animated:YES];
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+}
+
+- (void)tableView:(UITableView*)tableView didHighlightRowAtIndexPath:(NSIndexPath*)indexPath
+{
+    ColoredCell *cell = (ColoredCell*)[self.tableView cellForRowAtIndexPath:indexPath];
+    self.overlayView.bounds = CGRectMake(cell.bounds.origin.x,
+                                         cell.bounds.origin.y,
+                                         CGRectGetWidth(cell.bounds) * 2.0f,
+                                         CGRectGetHeight(cell.bounds) * 2.0f);
+    [cell.contentView addSubview:self.overlayView];
+}
+
+- (void)tableView:(UITableView*)tableView didUnhighlightRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    [self.overlayView removeFromSuperview];
+}
+
+- (void)tableView:(UITableView*)tableView willDisplayCell:(UITableViewCell*)cell forRowAtIndexPath:(NSIndexPath*)indexPath
+{
+    cell.backgroundColor = [self.brickTypeColors objectAtIndex:indexPath.row];
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -138,27 +168,15 @@
     return (([Util getScreenHeight] - navBarHeight - kAddScriptCategoryTableViewBottomMargin) / [self.brickCategoryNames count]);
 }
 
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
+#pragma mark - helpers
+- (void)setupNavigationBar
 {
-    return NO;
-}
-
-#pragma mark - Navigation
-// In a story board-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    static NSString *toNewScriptCategorySegueID = kSegueToNewScriptCategory;
-
-    UIViewController* destController = segue.destinationViewController;
-    if ([sender isKindOfClass:[ColoredCell class]]) {
-        if ([segue.identifier isEqualToString:toNewScriptCategorySegueID] &&
-            [destController respondsToSelector:@selector(setObject:)] &&
-            [destController respondsToSelector:@selector(setBrickCategoryType:)]) {
-            [destController performSelector:@selector(setObject:) withObject:self.object];
-            NSIndexPath *indexPath = [self.tableView indexPathForCell:(UITableViewCell*)sender];
-            ((BricksCollectionViewController*)destController).brickCategoryType = (kBrickCategoryType)indexPath.row;
-        }
-    }
+    self.title = self.navigationItem.title = NSLocalizedString(@"Categories", nil);
+    UIBarButtonItem *closeButton;
+    closeButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone
+                                                                target:self
+                                                                action:@selector(dismissCategoryScriptsVC:)];
+    self.navigationItem.rightBarButtonItems = @[closeButton];
 }
 
 @end

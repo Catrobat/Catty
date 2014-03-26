@@ -58,12 +58,15 @@
     [self initSearchView];
     
     self.searchDisplayController.displaysSearchBarInNavigationBar = NO;
+    self.searchDisplayController.searchBar.backgroundColor = [UIColor darkBlueColor];
     self.tableView.backgroundView = [[UIImageView alloc] initWithImage:[UIImage imageWithColor:[UIColor darkBlueColor]]];
     [self.searchDisplayController setActive:YES animated:YES];
     [self.searchDisplayController.searchBar becomeFirstResponder];
     self.searchDisplayController.searchBar.delegate = self;
     self.searchDisplayController.searchBar.frame = CGRectMake(0,44,self.searchDisplayController.searchBar.frame.size.width,self.searchDisplayController.searchBar.frame.size.height);
     self.checkSearch = YES;
+    self.searchDisplayController.searchBar.barTintColor = [UIColor darkBlueColor];
+    self.searchDisplayController.searchBar.barStyle = UISearchBarStyleMinimal;
 
 }
 
@@ -82,11 +85,11 @@
 {
     [super viewDidAppear:animated];
     CGRect frame = self.tableView.frame;
-    frame.origin.y = 44;
+    frame.origin.y = 44+[UIApplication sharedApplication].statusBarFrame.size.height;
     frame.size.height = (frame.size.height - frame.origin.y);
     self.tableView.frame = frame;
     self.searchDisplayController.displaysSearchBarInNavigationBar = NO;
-    self.searchDisplayController.searchBar.frame = CGRectMake(0,44,self.searchDisplayController.searchBar.frame.size.width,self.searchDisplayController.searchBar.frame.size.height);
+    self.searchDisplayController.searchBar.frame = CGRectMake(0,44+[UIApplication sharedApplication].statusBarFrame.size.height,self.searchDisplayController.searchBar.frame.size.width,self.searchDisplayController.searchBar.frame.size.height);
     self.navigationController.navigationBar.translucent = YES;
 }
 
@@ -97,11 +100,11 @@
 //    float currentViewBottomEdge = scrollView.contentOffset.y+44;
     if (!self.checkSearch) {
         CGRect frame = self.tableView.frame;
-        frame.origin.y = 44;
+        frame.origin.y = 44+[UIApplication sharedApplication].statusBarFrame.size.height;
         frame.size.height = (frame.size.height - frame.origin.y);
         self.tableView.frame = frame;
         self.searchDisplayController.displaysSearchBarInNavigationBar = NO;
-        self.searchDisplayController.searchBar.frame = CGRectMake(0,44,self.searchDisplayController.searchBar.frame.size.width,self.searchDisplayController.searchBar.frame.size.height);
+        self.searchDisplayController.searchBar.frame = CGRectMake(0,44+[UIApplication sharedApplication].statusBarFrame.size.height,self.searchDisplayController.searchBar.frame.size.width,self.searchDisplayController.searchBar.frame.size.height);
         self.checkSearch=YES;
         self.navigationController.navigationBar.translucent = YES;
         
@@ -154,8 +157,8 @@
 #pragma mark - Table view delegate
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-  CatrobatProject *level = [self.searchResults objectAtIndex:indexPath.row];
-  [self performSegueWithIdentifier:kSegueToLevelDetail sender:level];
+  CatrobatProject *catrobatProject = [self.searchResults objectAtIndex:indexPath.row];
+  [self performSegueWithIdentifier:kSegueToProgramDetail sender:catrobatProject];
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -280,7 +283,7 @@
 {
   [self.searchDisplayController setActive:NO animated:YES];
   [self update];
-  if([[segue identifier] isEqualToString:kSegueToLevelDetail]) {
+  if([[segue identifier] isEqualToString:kSegueToProgramDetail]) {
     if([sender isKindOfClass:[CatrobatProject class]]) {
       ProgramDetailStoreViewController* programDetailViewController = (ProgramDetailStoreViewController*)[segue destinationViewController];
       programDetailViewController.project = sender;

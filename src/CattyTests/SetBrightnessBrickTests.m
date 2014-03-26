@@ -44,12 +44,12 @@
 
 -(void)testSetBrightnessBrickDarker
 {
-#warning Problem with texture -> don't have a image to test
+#warning Problem with texture -> don't have an image to test
     //    SpriteObject* object = [[SpriteObject alloc] init];
     //
     //    SetBrightnessBrick* brick = [[SetBrightnessBrick alloc] init];
     //    brick.object = object;
-    //    object.texture = [SKTexture textureWithImageNamed:@"icon.png"];
+    //    object.texture = [SKTexture textureWithImageNamed:@"icon"];
     //
     //
     //    Formula* brightness = [[Formula alloc] init];

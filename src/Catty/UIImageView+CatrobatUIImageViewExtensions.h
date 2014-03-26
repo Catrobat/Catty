@@ -24,8 +24,8 @@
 
 @interface UIImageView (CatrobatUIImageViewExtensions)
 
-- (void) setBorder:(UIColor*)color Width:(CGFloat)width;
+- (void)setBorder:(UIColor*)color Width:(CGFloat)width;
 
-- (void) setRoundedBorder:(UIColor*)color Width:(CGFloat)width CornerRadius:(CGFloat)radius;
+- (void)setRoundedBorder:(UIColor*)color Width:(CGFloat)width CornerRadius:(CGFloat)radius;
 
 @end

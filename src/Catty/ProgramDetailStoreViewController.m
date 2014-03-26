@@ -28,11 +28,11 @@
 #import "ButtonTags.h"
 #import "UIColor+CatrobatUIColorExtensions.h"
 #import "SegueDefines.h"
-//#import "SceneViewController.h"
 #import "ProgramTableViewController.h"
 #import "ProgramLoadingInfo.h"
 #import "Util.h"
 #import "NetworkDefines.h"
+#import "Program.h"
 
 #define kUIBarHeight 49
 #define kNavBarHeight 44
@@ -50,8 +50,6 @@
 
 
 @implementation ProgramDetailStoreViewController
-
-@synthesize project = _project;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -89,9 +87,10 @@
     [self.scrollViewOutlet setContentSize:contentSize];
     self.scrollViewOutlet.userInteractionEnabled = YES;
     self.scrollViewOutlet.exclusiveTouch = YES;
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(downloadFinished) name:@"finishedloading" object:nil];
 }
 
--(void)initNavigationBar
+- (void)initNavigationBar
 {
     self.navigationItem.title = NSLocalizedString(@"Info", nil);
     UIImageView *imageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"menu_icon"]];
@@ -110,69 +109,64 @@
     // Dispose of any resources that can be recreated.
 }
 
-
 - (UIView*)createViewForProject:(CatrobatProject*)project {
     
     AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
     UIView *view = [CreateView createProgramDetailView:self.project target:self];
-    if ([appDelegate.fileManager getPathForLevel:self.project.projectName]) {
+    if ([appDelegate.fileManager getFullPathForProgram:self.project.projectName]) {
         [view viewWithTag:kDownloadButtonTag].hidden = YES;
         [view viewWithTag:kPlayButtonTag].hidden = NO;
     }
     return view;
 }
--(void)viewWillAppear:(BOOL)animated
+
+- (void)viewWillAppear:(BOOL)animated
 {
     [self.navigationController setToolbarHidden:YES];
     self.searchStoreController.checkSearch = NO;
 }
 
--(void)back
+- (void)back
 {
     [self.navigationController popViewControllerAnimated:YES];
 }
 
-- (void)viewDidUnload {
+- (void)viewDidUnload
+{
     [self setScrollViewOutlet:nil];
     [super viewDidUnload];
 }
 
 #pragma mark - Segue
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    /*
-     if ([segue.identifier isEqualToString:kSegueToScene]) {
-     if ([segue.destinationViewController isKindOfClass:[SceneViewController class]]){
-     self.hidesBottomBarWhenPushed = YES;
-     SceneViewController *destination = (SceneViewController*)segue.destinationViewController;
-     destination.programLoadingInfo = [Util programLoadingInfoForProgramWithName:self.project.name];
-     }
-     }
-     */
-    static NSString* segueToNew = kSegueToNew;
-    if ([[segue identifier] isEqualToString:segueToNew]) {
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    static NSString* segueToContinue = kSegueToContinue;
+    if ([[segue identifier] isEqualToString:segueToContinue]) {
         if ([segue.destinationViewController isKindOfClass:[ProgramTableViewController class]]) {
             self.hidesBottomBarWhenPushed = YES;
-            ProgramTableViewController *programTableViewController = (ProgramTableViewController*) segue.destinationViewController;
-            [programTableViewController loadProgram:[Util programLoadingInfoForProgramWithName:self.project.name]];
+            ProgramTableViewController *programTableViewController = (ProgramTableViewController*)segue.destinationViewController;
+            programTableViewController.program = [Program programWithLoadingInfo:[Util programLoadingInfoForProgramWithName:self.project.name]];
+
+            // TODO: remove this after persisting programs feature is fully implemented...
+            programTableViewController.isNewProgram = NO;
         }
     }
 }
 
-
-# pragma mark - LevelStore Delegate
-- (void) playButtonPressed
+#pragma mark - ProgramStore Delegate
+- (void)playButtonPressed
 {
-    static NSString* segueToNew = kSegueToNew;
+    static NSString* segueToContinue = kSegueToContinue;
     NSDebug(@"Play Button");
-    [self performSegueWithIdentifier:segueToNew sender:self];
+    [self performSegueWithIdentifier:segueToContinue sender:self];
 }
--(void)playButtonPressed:(id)sender
+
+- (void)playButtonPressed:(id)sender
 {
     [self playButtonPressed];
 }
 
-
-- (void) downloadButtonPressed
+- (void)downloadButtonPressed
 {
     NSDebug(@"Download Button!");
     UIButton* downloadButton = (UIButton*)[self.projectView viewWithTag:kDownloadButtonTag];
@@ -197,10 +191,11 @@
     NSDebug(@"screenshot url is: %@", urlString);
     
     NSURL *screenshotSmallUrl = [NSURL URLWithString:urlString];
-    [appDelegate.fileManager downloadScreenshotFromURL:screenshotSmallUrl];
+    [appDelegate.fileManager downloadScreenshotFromURL:screenshotSmallUrl andBaseUrl:url];
+    self.project.isdownloading = YES;
 }
 
--(void)downloadButtonPressed:(id)sender
+- (void)downloadButtonPressed:(id)sender
 {
     [self downloadButtonPressed];
 }
@@ -211,18 +206,17 @@
     NSLog(@"Download Finished!!!!!!");
     [self.projectView viewWithTag:kDownloadButtonTag].hidden = YES;
     [self.projectView viewWithTag:kPlayButtonTag].hidden = NO;
+    self.project.isdownloading = NO;
     
 }
 
-
 #pragma mark - TTTAttributedLabelDelegate
-
--(void)attributedLabel:(TTTAttributedLabel *)label didSelectLinkWithURL:(NSURL *)url
+- (void)attributedLabel:(TTTAttributedLabel *)label didSelectLinkWithURL:(NSURL *)url
 {
     [[UIApplication sharedApplication] openURL:url];
 }
 
--(void)attributedLabel:(TTTAttributedLabel *)label didSelectLinkWithPhoneNumber:(NSString *)phoneNumber
+- (void)attributedLabel:(TTTAttributedLabel *)label didSelectLinkWithPhoneNumber:(NSString *)phoneNumber
 {
     UIDevice *device = [UIDevice currentDevice];
     if ([[device model] isEqualToString:@"iPhone"] ) {
@@ -234,6 +228,5 @@
         [[UIApplication sharedApplication] openURL:url];
     }
 }
-
 
 @end

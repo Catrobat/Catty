@@ -31,12 +31,14 @@
 - (void)playSoundWithFileName:(NSString*)fileName
                        andKey:(NSString*)key
                    atFilePath:(NSString*)filePath
-                     Delegate:(id<AVAudioPlayerDelegate>) delegate;
--(void)playSoundWithFileName:(NSString*)fileName andKey:(NSString*)key atFilePath:(NSString*)filePath;
--(void)setVolumeToPercent:(CGFloat)volume forKey:(NSString*)key;
--(void)changeVolumeByPercent:(CGFloat)volume forKey:(NSString*)key;
--(void)stopAllSounds;
--(void)pauseAllSounds;
--(void)resumeAllSounds;
+                     delegate:(id<AVAudioPlayerDelegate>) delegate;
+- (void)playSoundWithFileName:(NSString*)fileName andKey:(NSString*)key atFilePath:(NSString*)filePath;
+
+- (void)setVolumeToPercent:(CGFloat)volume forKey:(NSString*)key;
+- (void)changeVolumeByPercent:(CGFloat)volume forKey:(NSString*)key;
+- (void)stopAllSounds;
+- (void)pauseAllSounds;
+- (void)resumeAllSounds;
+- (CGFloat)durationOfSoundWithFilePath:(NSString*)filePath;
 
 @end

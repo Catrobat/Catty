@@ -27,4 +27,5 @@
 - (void)showPlaceHolder:(BOOL)show;
 - (void)initPlaceHolder;
 - (void)initTableView;
+- (void)setupToolBar;
 @end

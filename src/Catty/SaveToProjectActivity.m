@@ -45,31 +45,35 @@
     return @"Save to Project";
 }
 
-- (UIImage *)activityImage {
-    return [UIImage imageNamed:@"activity@2x.png"];
+- (UIImage *)activityImage
+{
+    return [UIImage imageNamed:@"activity"];
 }
 
-- (BOOL)canPerformWithActivityItems:(NSArray *)activityItems {
+- (BOOL)canPerformWithActivityItems:(NSArray *)activityItems
+{
     return YES;
 }
 
-- (UIViewController *)performWithActivityItems:(NSArray *)activityItems {
+- (UIViewController *)performWithActivityItems:(NSArray *)activityItems
+{
     return nil;
 }
-- (void)prepareWithActivityItems:(NSArray *)activityItems {
 
+- (void)prepareWithActivityItems:(NSArray *)activityItems
+{
     self.image = activityItems[0];
     //self.path = activityItems[1];
 }
 
 
--(void)performActivity {
-
+-(void)performActivity
+{
     //Dimensions of Screenshot???
     NSString *pngFilePath = [NSString stringWithFormat:@"%@/manual_screenshot.png",self.path];
     NSData *data = [NSData dataWithData:UIImagePNGRepresentation(self.image)];
     [data writeToFile:pngFilePath atomically:YES];
-    
+
     ///Save small Screenshot too??
     NSString *pngFilePathSmall = [NSString stringWithFormat:@"%@/small_screenshot.png",self.path];
     UIGraphicsBeginImageContext( CGSizeMake(160, 160) );
@@ -78,9 +82,7 @@
     UIGraphicsEndImageContext();
     NSData *dataSmall = [NSData dataWithData:UIImagePNGRepresentation(newImage)];
     [dataSmall writeToFile:pngFilePathSmall atomically:YES];
-    
-    
     [self activityDidFinish:YES];
-    
 }
+
 @end

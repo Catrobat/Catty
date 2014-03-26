@@ -32,17 +32,32 @@
 #import "CatrobatImageCell.h"
 #import "Logger.h"
 #import "SegueDefines.h"
-#import "LevelUpdateDelegate.h"
+#import "ProgramUpdateDelegate.h"
 #import "QuartzCore/QuartzCore.h"
+#import "Program.h"
+#import "UIDefines.h"
+#import "ActionSheetAlertViewTags.h"
 
-@interface MyProgramsViewController () <LevelUpdateDelegate>
-@property (nonatomic, strong) NSMutableArray *levelLoadingInfos;
+@interface MyProgramsViewController () <ProgramUpdateDelegate, UIAlertViewDelegate>
+@property (nonatomic, strong) NSMutableDictionary *assertCache;
+@property (nonatomic, strong) NSMutableArray *programLoadingInfos;
+@property (nonatomic, strong) Program *selectedProgram;
+@property (nonatomic, strong) Program *defaultProgram;
 @end
 
 @implementation MyProgramsViewController
 
-@synthesize levelLoadingInfos = _levelLoadingInfos;
+#pragma mark - getters and setters
+- (NSMutableDictionary*)assertCache
+{
+    // lazy instantiation
+    if (! _assertCache) {
+        _assertCache = [NSMutableDictionary dictionaryWithCapacity:[self.programLoadingInfos count]];
+    }
+    return _assertCache;
+}
 
+#pragma mark - initialization
 - (id)initWithStyle:(UITableViewStyle)style
 {
     self = [super initWithStyle:style];
@@ -52,29 +67,7 @@
     return self;
 }
 
-- (void)viewDidLoad
-{
-    [super viewDidLoad];
-
-    [self initTableView];
-    [TableUtil initNavigationItem:self.navigationItem withTitle:NSLocalizedString(@"Programs", nil)];
-    [self setupToolBar];
-    [self loadLevels];
-}
-
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
--(void)viewWillAppear:(BOOL)animated
-{
-    [self.navigationController setNavigationBarHidden:NO];
-    [self.navigationController setToolbarHidden:NO];
-}
-
-#pragma mark init
--(void)initTableView
+- (void)initTableView
 {
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
@@ -83,110 +76,81 @@
     
 }
 
--(void)dealloc
+#pragma mark - view events
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
+
+    self.defaultProgram = nil;
+    self.selectedProgram = nil;
+    [self initTableView];
+    [TableUtil initNavigationItem:self.navigationItem withTitle:NSLocalizedString(@"Programs", nil)];
+    [self setupToolBar];
+    [self loadPrograms];
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    self.defaultProgram = nil;
+    self.selectedProgram = nil;
+    [self.navigationController setNavigationBarHidden:NO];
+    [self.navigationController setToolbarHidden:NO];
+    [self.tableView reloadData];
+}
+
+#pragma mark - system events
+- (void)didReceiveMemoryWarning
+{
+    [super didReceiveMemoryWarning];
+    self.assertCache = nil;
+}
+
+- (void)dealloc
 {
     self.tableView.dataSource = nil;
     self.tableView.delegate = nil;
-    self.levelLoadingInfos = nil;
+    self.programLoadingInfos = nil;
     
 }
 
--(void)loadLevels
+#pragma mark - actions
+- (void)addProgramAction:(id)sender
 {
-    NSString *basePath = [Program basePath];
-    NSError *error;
-    NSArray *levels = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:basePath error:&error];
-    NSLogError(error);
-
-    self.levelLoadingInfos = [[NSMutableArray alloc] initWithCapacity:[levels count]];
-    for (NSString *level in levels) {
-        // exclude .DS_Store folder on MACOSX simulator
-        if ([level isEqualToString:@".DS_Store"])
-          continue;
-
-        ProgramLoadingInfo *info = [[ProgramLoadingInfo alloc] init];
-        info.basePath = [NSString stringWithFormat:@"%@%@/", basePath, level];
-        info.visibleName = level;
-        NSDebug(@"Adding level: %@", info.basePath);
-        [self.levelLoadingInfos addObject:info];
+    static NSString *segueToNewProgram = kSegueToNewProgram;
+    if ([self shouldPerformSegueWithIdentifier:segueToNewProgram sender:self]) {
+        [self performSegueWithIdentifier:segueToNewProgram sender:sender];
     }
 }
 
-- (void)addLevel:(NSString*)levelName
-{
-    NSString *basePath = [Program basePath];
-
-    NSLog(@"test..");
-    // check if level already exists, then update
-    BOOL exists = NO;
-    for (ProgramLoadingInfo *info in self.levelLoadingInfos) {
-        if ([info.visibleName isEqualToString:levelName])
-            exists = YES;
-    }
-    // add if not exists
-    if (! exists) {
-        ProgramLoadingInfo *info = [[ProgramLoadingInfo alloc] init];
-        info.basePath = [NSString stringWithFormat:@"%@%@/", basePath, levelName];
-        info.visibleName = levelName;
-        NSLog(@"Adding level: %@", info.basePath);
-        [self.levelLoadingInfos addObject:info];
-
-        // create new cell
-        NSInteger numberOfRowsInLastSection = [self tableView:self.tableView numberOfRowsInSection:0];
-        NSIndexPath *indexPath = [NSIndexPath indexPathForRow:(numberOfRowsInLastSection - 1) inSection:0];
-        [self.tableView insertRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationNone];
-    }
-}
-
-- (void)renameOldLevelName:(NSString*)oldLevelName ToNewLevelName:(NSString*)newLevelName
-{
-    NSString *basePath = [Program basePath];
-
-    // check if level already exists, then update
-    NSInteger rowIndex = 0;
-    for (ProgramLoadingInfo *info in self.levelLoadingInfos) {
-        if ([info.visibleName isEqualToString:oldLevelName]) {
-            ProgramLoadingInfo *newInfo = [[ProgramLoadingInfo alloc] init];
-            newInfo.basePath = [NSString stringWithFormat:@"%@%@/", basePath, newLevelName];
-            newInfo.visibleName = newLevelName;
-            [self.levelLoadingInfos replaceObjectAtIndex:rowIndex withObject:newInfo];
-
-            // update existing cell
-            NSIndexPath *indexPath = [NSIndexPath indexPathForRow:rowIndex inSection:0];
-            [self.tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationNone];
-            break;
-        }
-        ++rowIndex;
-    }
-}
-
-#pragma mark - Table view data source
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
+#pragma mark - table view data source
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return 1;
 }
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return [self.levelLoadingInfos count];
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    return [self.programLoadingInfos count];
 }
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+- (UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
     static NSString *CellIdentifier = kImageCell;
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-
-    if (! cell) {
-        NSLog(@"This should not happen - since ios5 - storyboards manages allocation of cells");
-        abort();
-    }
-
     if ([cell conformsToProtocol:@protocol(CatrobatImageCell)]) {
-        UITableViewCell <CatrobatImageCell>* imageCell = (UITableViewCell <CatrobatImageCell>*)cell;
+        UITableViewCell<CatrobatImageCell> *imageCell = (UITableViewCell<CatrobatImageCell>*)cell;
         [self configureImageCell:imageCell atIndexPath:indexPath];
     }
-    cell.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"darkblue"]];
+    NSString *patternName = @"pattern";
+    UIColor* color = [self.assertCache objectForKey:patternName];
+    if (! color) {
+        color = [UIColor colorWithPatternImage:[UIImage imageNamed:@"darkblue"]];
+        [self.assertCache setObject:color forKey:patternName];
+    }
+    cell.backgroundColor = color;
     return cell;
 }
 
--(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     return [TableUtil getHeightForImageCell];
 }
@@ -197,18 +161,15 @@
     return YES;
 }
 
-
-
-// Override to support editing the table view.
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
         // Delete the row from the data source
-        ProgramLoadingInfo *level = [self.levelLoadingInfos objectAtIndex:indexPath.row];
+        ProgramLoadingInfo *programLoadingInfo = [self.programLoadingInfos objectAtIndex:indexPath.row];
+        [Program removeProgramFromDiskWithProgramName:programLoadingInfo.visibleName];
         AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
-        [appDelegate.fileManager deleteDirectory:level.basePath];
-        [self.levelLoadingInfos removeObject:level];
-        [Util setLastProgram:nil];
+        [appDelegate.fileManager deleteDirectory:programLoadingInfo.basePath];
+        [self.programLoadingInfos removeObject:programLoadingInfo];
         [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
     }
     else if (editingStyle == UITableViewCellEditingStyleInsert) {
@@ -216,72 +177,68 @@
     }   
 }
 
-#pragma mark - Table view delegate
-
+#pragma mark - table view delegate
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-//    static NSString* segueToNew = kSegueToNew;
-//    [self performSegueWithIdentifier:segueToNew sender:self];
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
-#pragma mark - Segue
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    static NSString *segueToNew = kSegueToNew;
-    if ([[segue identifier] isEqualToString:segueToNew]) {
-        if ([segue.destinationViewController isKindOfClass:[ProgramTableViewController class]]) {
-            ProgramTableViewController *programTableViewController = (ProgramTableViewController*) segue.destinationViewController;
-            programTableViewController.delegate = self;
-            if ([sender isKindOfClass:[UITableViewCell class]]) {
-                NSIndexPath *path = [self.tableView indexPathForSelectedRow];
-                NSString* programName = [[self.levelLoadingInfos objectAtIndex:path.row] visibleName];
-                [programTableViewController loadProgram:[Util programLoadingInfoForProgramWithName:programName]];
-            } else if ([sender isKindOfClass:[UIBarButtonItem class]]) {
-                // no preparation needed
-            }
-        }
-    }
-}
-
-#pragma mark - Cell Helper
+#pragma mark - table view helpers
 -(void)configureImageCell:(UITableViewCell <CatrobatImageCell>*)cell atIndexPath:(NSIndexPath*)indexPath
 {
-    ProgramLoadingInfo *info = [self.levelLoadingInfos objectAtIndex:indexPath.row];
+    ProgramLoadingInfo *info = [self.programLoadingInfos objectAtIndex:indexPath.row];
     cell.titleLabel.text = info.visibleName;
-    
 //    cell.iconImageView.image = [UIImage imageNamed:@"programs"];
-    
     NSString* imagePath = [[NSString alloc] initWithFormat:@"%@/small_screenshot.png", info.basePath];
-    
-    UIImage* image = [UIImage imageWithContentsOfFile:imagePath];
-    if(!image) {
-        imagePath = [[NSString alloc] initWithFormat:@"%@/screenshot.png", info.basePath];
-        image = [UIImage imageWithContentsOfFile:imagePath];
+    UIImage* image = [self.assertCache objectForKey:imagePath];
+    cell.iconImageView.contentMode = UIViewContentModeScaleAspectFit;
+
+    if (! image) {
+        cell.iconImageView.image = nil;
+        cell.indexPath = indexPath;
+        dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0ul);
+        dispatch_async(queue, ^{
+            UIImage *image = [[UIImage alloc] initWithContentsOfFile:imagePath];
+            NSString *newImagePath = nil;
+            //image = [UIImage imageWithContentsOfFile:imagePath];
+            if (! image) {
+                newImagePath = [[NSString alloc] initWithFormat:@"%@/screenshot.png", info.basePath];
+                image = [UIImage imageWithContentsOfFile:newImagePath];
+            }
+
+            if (! image) {
+                newImagePath = [[NSString alloc] initWithFormat:@"%@/manual_screenshot.png", info.basePath];
+                image = [UIImage imageWithContentsOfFile:newImagePath];
+            }
+
+            if (! image) {
+                newImagePath = [[NSString alloc] initWithFormat:@"%@/automatic_screenshot.png", info.basePath];
+                image = [UIImage imageWithContentsOfFile:newImagePath];
+            }
+
+            if (! image) {
+                image = [UIImage imageNamed:@"programs"];
+            }
+            //    CGSize imageSize = image.size;
+            //    UIGraphicsBeginImageContext(imageSize);
+            //    [image drawInRect:CGRectMake(0, 0, imageSize.width, imageSize.height)];
+            //    image = UIGraphicsGetImageFromCurrentImageContext();
+            //    UIGraphicsEndImageContext();
+
+            // perform UI stuff on main queue (UIKit is not thread safe!!)
+            dispatch_sync(dispatch_get_main_queue(), ^{
+                // check if cell still needed
+                if ([cell.indexPath isEqual:indexPath]) {
+                    cell.iconImageView.image = image;
+                    [cell setNeedsLayout];
+                    [self.assertCache setObject:image forKey:imagePath];
+                }
+            });
+        });
+    } else {
+        cell.iconImageView.image = image;
     }
-    
-    if(!image) {
-        imagePath = [[NSString alloc] initWithFormat:@"%@/manual_screenshot.png", info.basePath];
-        image = [UIImage imageWithContentsOfFile:imagePath];
-    }
-    
-    if(!image) {
-        imagePath = [[NSString alloc] initWithFormat:@"%@/automatic_screenshot.png", info.basePath];
-        image = [UIImage imageWithContentsOfFile:imagePath];
-    }
-    if(!image) {
-        image = [UIImage imageNamed:@"programs"];
-    }
-    
-//    CGSize imageSize = image.size;
-//    UIGraphicsBeginImageContext(imageSize);
-//    [image drawInRect:CGRectMake(0, 0, imageSize.width, imageSize.height)];
-//    image = UIGraphicsGetImageFromCurrentImageContext();
-//    UIGraphicsEndImageContext();
-    
-    cell.iconImageView.image = image;
-    
-    
+
 //    dispatch_queue_t imageQueue = dispatch_queue_create("at.tugraz.ist.catrobat.ImageLoadingQueue", NULL);
 //    dispatch_async(imageQueue, ^{
 //        
@@ -317,24 +274,195 @@
 
 }
 
-#pragma mark - Helper Methods
-- (void)addProgramAction:(id)sender
+#pragma mark - segue handling
+- (BOOL)shouldPerformSegueWithIdentifier:(NSString *)identifier sender:(id)sender
 {
-  [self performSegueWithIdentifier:kSegueToNew sender:sender];
+    static NSString *segueToContinue = kSegueToContinue;
+    static NSString *segueToNewProgram = kSegueToNewProgram;
+    if ([identifier isEqualToString:segueToContinue]) {
+        if ([sender isKindOfClass:[UITableViewCell class]]) {
+            NSIndexPath *path = [self.tableView indexPathForCell:sender];
+            // check if program loaded successfully -> not nil
+            self.selectedProgram = [Program programWithLoadingInfo:[self.programLoadingInfos objectAtIndex:path.row]];
+            if (self.selectedProgram) {
+                return YES;
+            }
+
+            // program failed loading...
+            [Util alertWithText:kMsgUnableToLoadProgram];
+            return NO;
+        }
+    } else if ([identifier isEqualToString:segueToNewProgram]) {
+        // if there is no program name, abort performing this segue and ask user for program name
+        // after user entered a valid program name this segue will be called again and accepted
+        if (! self.defaultProgram) {
+            [Util promptWithTitle:kTitleNewProgram
+                          message:kMsgPromptProgramName
+                         delegate:self
+                      placeholder:kProgramNamePlaceholder
+                              tag:kNewProgramAlertViewTag];
+            return NO;
+        }
+        return YES;
+    }
+    return [super shouldPerformSegueWithIdentifier:identifier sender:sender];
 }
 
+- (void)prepareForSegue:(UIStoryboardSegue*)segue sender:(id)sender
+{
+    static NSString *segueToContinue = kSegueToContinue;
+    static NSString *segueToNewProgram = kSegueToNewProgram;
+    if ([segue.identifier isEqualToString:segueToContinue]) {
+        if ([segue.destinationViewController isKindOfClass:[ProgramTableViewController class]]) {
+            if ([sender isKindOfClass:[UITableViewCell class]]) {
+                ProgramTableViewController *programTableViewController = (ProgramTableViewController*)segue.destinationViewController;
+                programTableViewController.delegate = self;
+                programTableViewController.program = self.selectedProgram;
+
+                // TODO: remove this after persisting programs feature is fully implemented...
+                programTableViewController.isNewProgram = NO;
+            }
+        }
+    } else if ([segue.identifier isEqualToString:segueToNewProgram]) {
+        ProgramTableViewController *programTableViewController = (ProgramTableViewController*)segue.destinationViewController;
+        programTableViewController.delegate = self;
+        programTableViewController.program = self.defaultProgram;
+
+        // TODO: remove this after persisting programs feature is fully implemented...
+        programTableViewController.isNewProgram = YES;
+    }
+}
+
+#pragma mark - alert view handlers
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    static NSString *segueToNewProgramIdentifier = kSegueToNewProgram;
+    if (alertView.tag == kNewProgramAlertViewTag) {
+        NSString *input = [alertView textFieldAtIndex:0].text;
+        if ((buttonIndex == alertView.cancelButtonIndex) || (buttonIndex != kAlertViewButtonOK)) {
+            return;
+        }
+        kProgramNameValidationResult validationResult = [Program validateProgramName:input];
+        if (validationResult == kProgramNameValidationResultInvalid) {
+            [Util alertWithText:kMsgInvalidProgramName
+                       delegate:self
+                            tag:kInvalidProgramNameWarningAlertViewTag];
+        } else if (validationResult == kProgramNameValidationResultAlreadyExists) {
+            [Util alertWithText:kMsgInvalidProgramNameAlreadyExists
+                       delegate:self
+                            tag:kInvalidProgramNameWarningAlertViewTag];
+        } else if (validationResult == kProgramNameValidationResultOK) {
+            self.defaultProgram = [Program defaultProgramWithName:input];
+            if ([self shouldPerformSegueWithIdentifier:segueToNewProgramIdentifier sender:self]) {
+                [self addProgram:input];
+                [self performSegueWithIdentifier:segueToNewProgramIdentifier sender:self];
+            }
+        }
+    } else if (alertView.tag == kInvalidProgramNameWarningAlertViewTag) {
+        // title of cancel button is "OK"
+        if (buttonIndex == alertView.cancelButtonIndex) {
+            [Util promptWithTitle:kTitleNewProgram
+                          message:kMsgPromptProgramName
+                         delegate:self
+                      placeholder:kProgramNamePlaceholder
+                              tag:kNewProgramAlertViewTag];
+        }
+    }
+}
+
+#pragma mark - program handling
+- (void)loadPrograms
+{
+    NSString *basePath = [Program basePath];
+    NSError *error;
+    NSArray *programLoadingInfos = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:basePath error:&error];
+    NSLogError(error);
+
+    self.programLoadingInfos = [[NSMutableArray alloc] initWithCapacity:[programLoadingInfos count]];
+    for (NSString *programLoadingInfo in programLoadingInfos) {
+        // exclude .DS_Store folder on MACOSX simulator
+        if ([programLoadingInfo isEqualToString:@".DS_Store"])
+            continue;
+
+        ProgramLoadingInfo *info = [[ProgramLoadingInfo alloc] init];
+        info.basePath = [NSString stringWithFormat:@"%@%@/", basePath, programLoadingInfo];
+        info.visibleName = programLoadingInfo;
+        NSDebug(@"Adding loaded program: %@", info.basePath);
+        [self.programLoadingInfos addObject:info];
+    }
+}
+
+- (void)addProgram:(NSString *)programName
+{
+    NSString *basePath = [Program basePath];
+
+    // check if program already exists, then update
+    BOOL exists = NO;
+    for (ProgramLoadingInfo *programLoadingInfo in self.programLoadingInfos) {
+        if ([programLoadingInfo.visibleName isEqualToString:programName])
+            exists = YES;
+    }
+    // add if not exists
+    if (! exists) {
+        ProgramLoadingInfo *programLoadingInfo = [[ProgramLoadingInfo alloc] init];
+        programLoadingInfo.basePath = [NSString stringWithFormat:@"%@%@/", basePath, programName];
+        programLoadingInfo.visibleName = programName;
+        NSLog(@"Adding program: %@", programLoadingInfo.basePath);
+        [self.programLoadingInfos addObject:programLoadingInfo];
+
+        // create new cell
+        NSInteger numberOfRowsInLastSection = [self tableView:self.tableView numberOfRowsInSection:0];
+        NSIndexPath *indexPath = [NSIndexPath indexPathForRow:(numberOfRowsInLastSection - 1) inSection:0];
+        [self.tableView insertRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationNone];
+    }
+}
+
+- (void)removeProgram:(NSString *)programName
+{
+    NSInteger rowIndex = 0;
+    for (ProgramLoadingInfo *info in self.programLoadingInfos) {
+        if ([info.visibleName isEqualToString:programName]) {
+            [self.programLoadingInfos removeObjectAtIndex:rowIndex];
+            NSIndexPath *indexPath = [NSIndexPath indexPathForRow:rowIndex inSection:0];
+            [self.tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationNone];
+            break;
+        }
+        ++rowIndex;
+    }
+}
+
+- (void)renameOldProgramName:(NSString *)oldProgramName ToNewProgramName:(NSString *)newProgramName
+{
+    NSInteger rowIndex = 0;
+    for (ProgramLoadingInfo *info in self.programLoadingInfos) {
+        if ([info.visibleName isEqualToString:oldProgramName]) {
+            ProgramLoadingInfo *newInfo = [[ProgramLoadingInfo alloc] init];
+            newInfo.basePath = [NSString stringWithFormat:@"%@%@/", [Program basePath], newProgramName];
+            newInfo.visibleName = newProgramName;
+            [self.programLoadingInfos replaceObjectAtIndex:rowIndex withObject:newInfo];
+
+             // flush assert/image cache
+            self.assertCache = nil;
+
+            // update table
+            NSIndexPath *indexPath = [NSIndexPath indexPathForRow:rowIndex inSection:0];
+            [self.tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationNone];
+            break;
+        }
+        ++rowIndex;
+    }
+}
+
+#pragma mark - helpers
 - (void)setupToolBar
 {
-  [self.navigationController setToolbarHidden:NO];
-  self.navigationController.toolbar.barStyle = UIBarStyleBlack;
-  self.navigationController.toolbar.tintColor = [UIColor orangeColor];
-  self.navigationController.toolbar.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleTopMargin;
-  UIBarButtonItem *flexItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace
-                                                                            target:nil
-                                                                            action:nil];
-  UIBarButtonItem *add = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd
-                                                                       target:self
-                                                                       action:@selector(addProgramAction:)];
+    [super setupToolBar];
+    UIBarButtonItem *flexItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace
+                                                                              target:nil
+                                                                              action:nil];
+    UIBarButtonItem *add = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd
+                                                                         target:self
+                                                                         action:@selector(addProgramAction:)];
     self.toolbarItems = @[flexItem, add, flexItem];
 }
 

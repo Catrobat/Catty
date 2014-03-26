@@ -23,35 +23,28 @@
 #import "ColoredCell.h"
 #import "UIColor+CatrobatUIColorExtensions.h"
 
+@interface ColoredCell ()
+
+@end
+
+
 @implementation ColoredCell
 
-- (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
+
+- (id)initWithCoder:(NSCoder *)aDecoder
 {
-  self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
-  if (self) {
-      // Initialization code
-  }
-  return self;
+    if (self = [super initWithCoder:aDecoder]) {
+        [self configure];
+    }
+    return self;
 }
 
-- (id)initWithCoder:(NSCoder *)aDecoder {
-  if (self = [super initWithCoder:aDecoder]) {
-      [self configure];
-  }
-  return self;
-}
-
-- (void)setSelected:(BOOL)selected animated:(BOOL)animated
-{
-  [super setSelected:selected animated:animated];
-  // Configure the view for the selected state
-}
 
 - (void)configure
 {
-  self.contentView.backgroundColor = [UIColor clearColor];
-  self.textLabel.backgroundColor = [UIColor clearColor];
-  self.textLabel.textColor = [UIColor whiteColor];
+    self.contentView.backgroundColor = [UIColor clearColor];
+    self.textLabel.backgroundColor = [UIColor clearColor];
+    self.textLabel.textColor = [UIColor whiteColor];
 }
 
 @end

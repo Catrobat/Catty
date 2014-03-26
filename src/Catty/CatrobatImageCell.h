@@ -25,8 +25,10 @@
 @protocol CatrobatImageCell <NSObject>
 
 @required
-@property (strong, nonatomic) IBOutlet UIImageView *iconImageView;
+@property (nonatomic, strong) NSIndexPath *indexPath;
 
-@property (strong, nonatomic) IBOutlet UILabel *titleLabel;
+@property (nonatomic, strong) IBOutlet UIImageView *iconImageView;
+
+@property (nonatomic, strong) IBOutlet UILabel *titleLabel;
 
 @end

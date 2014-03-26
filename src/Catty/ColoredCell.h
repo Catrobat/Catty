@@ -21,8 +21,9 @@
  */
 
 #import <UIKit/UIKit.h>
-#import "CatrobatBaseCell.h"
 
 @interface ColoredCell : UITableViewCell
+
+@property (nonatomic, strong) NSIndexPath *indexPath;
 
 @end

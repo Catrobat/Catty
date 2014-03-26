@@ -24,7 +24,4 @@
 
 @implementation ProgramLoadingInfo
 
-@synthesize basePath    = _basePath;
-@synthesize visibleName = _visibleName;
-
 @end

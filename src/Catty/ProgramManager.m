@@ -27,9 +27,8 @@
 
 static ProgramManager *sharedProgramManager = nil;
 
-
-+ (ProgramManager *) sharedProgramManager {
-    
++ (ProgramManager*)sharedProgramManager
+{
     @synchronized(self) {
         if (sharedProgramManager == nil) {
             sharedProgramManager = [[ProgramManager alloc] init];
@@ -37,7 +36,5 @@ static ProgramManager *sharedProgramManager = nil;
     }
     return sharedProgramManager;
 }
-
-
 
 @end

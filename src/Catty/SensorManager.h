@@ -39,7 +39,6 @@ typedef enum {
     LOUDNESS
 } Sensor;
 
-
 @interface SensorManager : NSObject
 
 + (Sensor) sensorForString:(NSString*)sensor;

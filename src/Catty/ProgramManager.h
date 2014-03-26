@@ -27,8 +27,8 @@
 
 @interface ProgramManager : NSObject
 
-@property (nonatomic, weak) Program* program;
+@property (nonatomic, weak) Program *program;
 
-+(ProgramManager *)sharedProgramManager;
++ (ProgramManager*)sharedProgramManager;
 
 @end

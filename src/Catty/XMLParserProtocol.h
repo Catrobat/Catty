@@ -26,6 +26,6 @@
 
 @protocol XMLParserProtocol <NSObject>
 
-- (Program*)generateObjectForLevel:(NSString*)path;
+- (Program*)generateObjectForProgramWithPath:(NSString*)path;
 
 @end

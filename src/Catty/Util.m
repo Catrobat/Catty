@@ -24,6 +24,7 @@
 #import "ScenePresenterViewController.h"
 #import "ProgramDefines.h"
 #import "ProgramLoadingInfo.h"
+#import "UIDefines.h"
 
 @implementation Util
 
@@ -44,21 +45,56 @@
                           initWithTitle:@"Catty"
                           message:alert_message
                           delegate:nil
-                          cancelButtonTitle:@"OK"
+                          cancelButtonTitle:kBtnOKTitle
                           otherButtonTitles:nil];
     [alert show];
 }
 
-
 + (void)alertWithText:(NSString*)text
 {
+    [self alertWithText:text delegate:nil tag:0];
+}
+
++ (void)alertWithText:(NSString*)text delegate:(id<UIAlertViewDelegate>)delegate tag:(NSInteger)tag
+{
     UIAlertView *alert = [[UIAlertView alloc]
-                          initWithTitle:@"Catty"
+                          initWithTitle:NSLocalizedString(@"Pocket Code", nil)
                           message:text
-                          delegate:nil
-                          cancelButtonTitle:@"OK"
+                          delegate:delegate
+                          cancelButtonTitle:kBtnOKTitle
                           otherButtonTitles:nil];
+    alert.tag = tag;
     [alert show];
+}
+
++ (void)promptWithTitle:(NSString*)title
+                message:(NSString*)message
+               delegate:(id<UIAlertViewDelegate>)delegate
+            placeholder:(NSString*)placeholder
+                    tag:(NSInteger)tag
+{
+    [Util promptWithTitle:title message:message delegate:delegate placeholder:placeholder tag:tag value:nil];
+}
+
++ (void)promptWithTitle:(NSString*)title
+                message:(NSString*)message
+               delegate:(id<UIAlertViewDelegate>)delegate
+            placeholder:(NSString*)placeholder
+                    tag:(NSInteger)tag
+                  value:(NSString*)value
+{
+    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:title
+                                                        message:message
+                                                       delegate:delegate
+                                              cancelButtonTitle:kBtnCancelTitle
+                                              otherButtonTitles:kBtnOKTitle, nil];
+    alertView.tag = tag;
+    alertView.alertViewStyle = UIAlertViewStylePlainTextInput;
+    UITextField *textField = [alertView textFieldAtIndex:0];
+    textField.placeholder = placeholder;
+    [textField setClearButtonMode:UITextFieldViewModeWhileEditing];
+    textField.text = value;
+    [alertView show];
 }
 
 + (NSString*)getProjectName
@@ -113,10 +149,10 @@
 
 + (ProgramLoadingInfo*) programLoadingInfoForProgramWithName:(NSString*)program
 {
-    NSString *documentsDirectoy = [Util applicationDocumentsDirectory];
-    NSString *levelsPath = [NSString stringWithFormat:@"%@/%@", documentsDirectoy, kProgramsFolder];
+    NSString *documentsDirectory = [Util applicationDocumentsDirectory];
+    NSString *programsPath = [NSString stringWithFormat:@"%@/%@", documentsDirectory, kProgramsFolder];
     ProgramLoadingInfo *info = [[ProgramLoadingInfo alloc] init];
-    info.basePath = [NSString stringWithFormat:@"%@/%@/", levelsPath, program];
+    info.basePath = [NSString stringWithFormat:@"%@/%@/", programsPath, program];
     info.visibleName = program;
     return info;
 }
@@ -125,13 +161,12 @@
 {
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
     NSString* lastProgram = [userDefaults objectForKey:kLastProgram];
-    if(!lastProgram) {
+    if(! lastProgram) {
         [userDefaults setObject:kDefaultProject forKey:kLastProgram];
         [userDefaults synchronize];
         lastProgram = kDefaultProject;
     }
     return lastProgram;
-    
 }
 
 + (void)setLastProgram:(NSString*)visibleName

@@ -38,17 +38,27 @@
 #define kPocketCodeRecorderActionSheetButton @"pocketCodeRecorder"
 #define kSelectMusicTrackActionSheetButton @"selectMusicTrack"
 
-@interface ObjectSoundsTableViewController () <UIActionSheetDelegate, AVAudioPlayerDelegate>
+@interface SoundsTableViewController () <UIActionSheetDelegate, AVAudioPlayerDelegate>
 
 @property (nonatomic, strong) NSMutableDictionary* addSoundActionSheetBtnIndexes;
+@property (strong, nonatomic) NSMutableDictionary *imageCache;
 @property (atomic, strong) Sound *currentPlayingSong;
 @property (atomic, weak) UITableViewCell<CatrobatImageCell> *currentPlayingSongCell;
 
 @end
 
-@implementation ObjectSoundsTableViewController
+@implementation SoundsTableViewController
 
 #pragma getters and setters
+- (NSMutableDictionary*)imageCache
+{
+    // lazy instantiation
+    if (! _imageCache) {
+        _imageCache = [NSMutableDictionary dictionaryWithCapacity:[self.object.soundList count]];
+    }
+    return _imageCache;
+}
+
 - (NSMutableDictionary*)addSoundActionSheetBtnIndexes
 {
     // lazy instantiation
@@ -110,7 +120,7 @@
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+    self.imageCache = nil;
 }
 
 #pragma mark - Table view data source
@@ -128,13 +138,81 @@
 {
     static NSString *CellIdentifier = @"SoundCell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
-    
+
+    Sound *sound = (Sound*)[self.object.soundList objectAtIndex:indexPath.row];
+    NSString *path = [NSString stringWithFormat:@"%@sounds/%@", [self.object projectPath], sound.fileName];
+    CGFloat duration = [[AudioManager sharedAudioManager] durationOfSoundWithFilePath:path];
+
     if ([cell conformsToProtocol:@protocol(CatrobatImageCell)]) {
         UITableViewCell <CatrobatImageCell>* imageCell = (UITableViewCell <CatrobatImageCell>*)cell;
-        imageCell.iconImageView.image = [UIImage imageNamed:@"ic_media_play.png"];
-        imageCell.titleLabel.text = ((Sound*) [self.object.soundList objectAtIndex:indexPath.row]).name;
+        imageCell.indexPath = indexPath;
+
+        static NSString *playIconName = @"ic_media_play";
+        UIImage *image = [self.imageCache objectForKey:playIconName];
+        if (! image) {
+            dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0ul);
+            dispatch_async(queue, ^{
+                UIImage *image = [UIImage imageNamed:playIconName];
+                [self.imageCache setObject:image forKey:playIconName];
+                dispatch_sync(dispatch_get_main_queue(), ^{
+                    // check if cell still needed
+                    if ([imageCell.indexPath isEqual:indexPath]) {
+                        imageCell.iconImageView.image = image;
+                        [imageCell setNeedsLayout];
+                    }
+                });
+            });
+        } else {
+            imageCell.iconImageView.image = image;
+        }
+        imageCell.titleLabel.text = [NSString stringWithFormat:@"(%.02f sec.) %@", (float)duration, sound.name];
+        imageCell.iconImageView.userInteractionEnabled = YES;
+        UITapGestureRecognizer *tapped = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(playSound:)];
+        tapped.numberOfTapsRequired = 1;
+        [imageCell.iconImageView addGestureRecognizer:tapped];
     }
     return cell;
+}
+
+- (void)playSound:(id)sender
+{
+    UITapGestureRecognizer *gesture = (UITapGestureRecognizer*)sender;
+    if ([gesture.view isKindOfClass:[UIImageView class]]) {
+        UIImageView *imageView = (UIImageView*)gesture.view;
+        CGPoint position = [imageView convertPoint:CGPointZero toView:self.tableView];
+        NSIndexPath *indexPath = [self.tableView indexPathForRowAtPoint:position];
+        UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:indexPath];
+        if ([cell conformsToProtocol:@protocol(CatrobatImageCell)]) {
+            UITableViewCell<CatrobatImageCell> *imageCell = (UITableViewCell<CatrobatImageCell>*)cell;
+            if (indexPath.row < [self.object.soundList count]) {
+                @synchronized(self) {
+                    Sound *sound = (Sound*)[self.object.soundList objectAtIndex:indexPath.row];
+                    BOOL isPlaying = sound.isPlaying;
+                    if (self.currentPlayingSong && self.currentPlayingSongCell) {
+                        self.currentPlayingSong.playing = NO;
+                        self.currentPlayingSongCell.iconImageView.image = [UIImage imageNamed:@"ic_media_play"];
+                    }
+                    self.currentPlayingSong = sound;
+                    self.currentPlayingSongCell = imageCell;
+                    self.currentPlayingSong.playing = (! isPlaying);
+                    self.currentPlayingSongCell.iconImageView.image = [UIImage imageNamed:@"ic_media_play"];
+                    if (! isPlaying)
+                        imageCell.iconImageView.image = [UIImage imageNamed:@"ic_media_pause"];
+
+                    dispatch_queue_t queue = dispatch_queue_create("at.tugraz.ist.catrobat.PlaySoundTVCQueue", NULL);
+                    dispatch_async(queue, ^{
+                        [[AudioManager sharedAudioManager] stopAllSounds];
+                        if (! isPlaying) {
+                            [[AudioManager sharedAudioManager] playSoundWithFileName:sound.fileName
+                                                                              andKey:self.object.name
+                                                                          atFilePath:[self.object projectPath]
+                                                                            delegate:self];
+                        }
+                    });
+                }
+            }
+        }
+    }
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -159,56 +237,44 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
-    if ([cell conformsToProtocol:@protocol(CatrobatImageCell)]) {
-        UITableViewCell <CatrobatImageCell>* imageCell = (UITableViewCell <CatrobatImageCell>*)cell;
-        
-        if (indexPath.row < [self.object.soundList count]) {
-            @synchronized(self) {
-                Sound* sound = (Sound*) [self.object.soundList objectAtIndex:indexPath.row];
-                BOOL isPlaying = sound.playing;
-                if (self.currentPlayingSong && self.currentPlayingSongCell) {
-                    self.currentPlayingSong.playing = NO;
-                    self.currentPlayingSongCell.iconImageView.image = [UIImage imageNamed:@"ic_media_play.png"];
-                }
-                self.currentPlayingSong = sound;
-                self.currentPlayingSongCell = imageCell;
-                self.currentPlayingSong.playing = (! isPlaying);
-                self.currentPlayingSongCell.iconImageView.image = [UIImage imageNamed:@"ic_media_play.png"];
-                if (! isPlaying)
-                    imageCell.iconImageView.image = [UIImage imageNamed:@"ic_media_pause.png"];
-
-                dispatch_queue_t audioPlayerQueue = dispatch_queue_create("audio player", NULL);
-                dispatch_async(audioPlayerQueue, ^{
-                    [[AudioManager sharedAudioManager] stopAllSounds];
-                    if (! isPlaying)
-                        [[AudioManager sharedAudioManager] playSoundWithFileName:sound.fileName
-                                                                          andKey:self.object.name
-                                                                      atFilePath:[self.object projectPath]
-                                                                        Delegate:self];
-                });
-            }
-        }
-    }
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
 #pragma audio delegate methods
 - (void)audioPlayerDidFinishPlaying:(AVAudioPlayer *)player successfully:(BOOL)flag
 {
-    // mark all sounds as stopped
-    // switch back to main thread here, since UI-actions have to be performed on main thread!!
-    dispatch_async(dispatch_get_main_queue(), ^{
-        // FIXME: fix possible concurrency issue with didSelectRowAtIndexPath
-        @synchronized(self) {
-            if (self.currentPlayingSong && self.currentPlayingSongCell) {
-                self.currentPlayingSong.playing = NO;
-                self.currentPlayingSongCell.iconImageView.image = [UIImage imageNamed:@"ic_media_play.png"];
-            }
-            self.currentPlayingSong = nil;
-            self.currentPlayingSongCell = nil;
+    if ((! flag) || (! self.currentPlayingSong) || (! self.currentPlayingSongCell)) {
+        return;
+    }
+
+    @synchronized(self) {
+        Sound *currentPlayingSong = self.currentPlayingSong;
+        UITableViewCell<CatrobatImageCell> *currentPlayingSongCell = self.currentPlayingSongCell;
+        self.currentPlayingSong.playing = NO;
+        self.currentPlayingSong = nil;
+        self.currentPlayingSongCell = nil;
+
+        static NSString *playIconName = @"ic_media_play";
+        UIImage *image = [self.imageCache objectForKey:playIconName];
+
+        if (! image) {
+            dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0ul);
+            dispatch_async(queue, ^{
+                UIImage *image = [UIImage imageNamed:playIconName];
+                [self.imageCache setObject:image forKey:playIconName];
+                dispatch_sync(dispatch_get_main_queue(), ^{
+                    // check if user tapped again on this song in the meantime...
+                    @synchronized(self) {
+                        if ((currentPlayingSong != self.currentPlayingSong) && (currentPlayingSongCell != self.currentPlayingSongCell)) {
+                            currentPlayingSongCell.iconImageView.image = image;
+                        }
+                    }
+                });
+            });
+        } else {
+            currentPlayingSongCell.iconImageView.image = image;
         }
-    });
+    }
 }
 
 #pragma mark - Navigation
@@ -279,10 +345,7 @@
 
 - (void)setupToolBar
 {
-    [self.navigationController setToolbarHidden:NO];
-    self.navigationController.toolbar.barStyle = UIBarStyleBlack;
-    self.navigationController.toolbar.tintColor = [UIColor orangeColor];
-    self.navigationController.toolbar.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleTopMargin;
+    [super setupToolBar];
     UIBarButtonItem *flexItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace
                                                                               target:nil
                                                                               action:nil];
@@ -294,7 +357,7 @@
                                                                           action:@selector(playSceneAction:)];
     // XXX: workaround for tap area problem:
     // http://stackoverflow.com/questions/5113258/uitoolbar-unexpectedly-registers-taps-on-uibarbuttonitem-instances-even-when-tap
-    UIImageView *imageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"transparent1x1.png"]];
+    UIImageView *imageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"transparent1x1"]];
     UIBarButtonItem *invisibleButton = [[UIBarButtonItem alloc] initWithCustomView:imageView];
     self.toolbarItems = [NSArray arrayWithObjects:flexItem, invisibleButton, add, invisibleButton, flexItem,
                          flexItem, flexItem, invisibleButton, play, invisibleButton, flexItem, nil];
