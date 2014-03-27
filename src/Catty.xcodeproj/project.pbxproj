@@ -193,6 +193,7 @@
 		CA79A11E182DA47E00618283 /* BricksCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA79A11D182DA47E00618283 /* BricksCollectionViewController.m */; };
 		CA8C247818CD053300314C2B /* ProgramTests.m in Sources */ = {isa = PBXBuildFile; fileRef = CA8C247718CD053300314C2B /* ProgramTests.m */; };
 		CA8C247B18CD127C00314C2B /* ProgramTableViewControllerNewProgramTests.m in Sources */ = {isa = PBXBuildFile; fileRef = CA8C247A18CD127C00314C2B /* ProgramTableViewControllerNewProgramTests.m */; };
+		CAA96AFE18E4B21F00763409 /* SoundPickerTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CAA96AFD18E4B21F00763409 /* SoundPickerTableViewController.m */; };
 		CAB95BA518CD51EF006638F6 /* LookImageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CAB95BA418CD51EF006638F6 /* LookImageViewController.m */; };
 		CABE07BC18BAB8B200BE26EF /* MessageComboBoxView.m in Sources */ = {isa = PBXBuildFile; fileRef = CABE07BB18BAB8B200BE26EF /* MessageComboBoxView.m */; };
 		CABE07BF18BAB8EF00BE26EF /* ObjectComboBoxView.m in Sources */ = {isa = PBXBuildFile; fileRef = CABE07BE18BAB8EF00BE26EF /* ObjectComboBoxView.m */; };
@@ -625,6 +626,8 @@
 		CA8C247718CD053300314C2B /* ProgramTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProgramTests.m; sourceTree = "<group>"; };
 		CA8C247A18CD127C00314C2B /* ProgramTableViewControllerNewProgramTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProgramTableViewControllerNewProgramTests.m; sourceTree = "<group>"; };
 		CA8C247C18CD12C100314C2B /* ProgramTableViewControllerNewProgramTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProgramTableViewControllerNewProgramTests.h; sourceTree = "<group>"; };
+		CAA96AFC18E4B21F00763409 /* SoundPickerTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SoundPickerTableViewController.h; sourceTree = "<group>"; };
+		CAA96AFD18E4B21F00763409 /* SoundPickerTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SoundPickerTableViewController.m; sourceTree = "<group>"; };
 		CAB95BA318CD51EF006638F6 /* LookImageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LookImageViewController.h; sourceTree = "<group>"; };
 		CAB95BA418CD51EF006638F6 /* LookImageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LookImageViewController.m; sourceTree = "<group>"; };
 		CABE07BA18BAB8B200BE26EF /* MessageComboBoxView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageComboBoxView.h; sourceTree = "<group>"; };
@@ -1659,6 +1662,8 @@
 			children = (
 				81FAEE3317E782360052BB2B /* SoundsTableViewController.h */,
 				81FAEE3417E782360052BB2B /* SoundsTableViewController.m */,
+				CAA96AFC18E4B21F00763409 /* SoundPickerTableViewController.h */,
+				CAA96AFD18E4B21F00763409 /* SoundPickerTableViewController.m */,
 			);
 			name = MaintainSounds;
 			sourceTree = "<group>";
@@ -2692,6 +2697,7 @@
 				CA75C25618A9619B00FC8C2F /* ChangeYByNBrickCell.m in Sources */,
 				B4D940AF170EC2B7003DDBFA /* unzip.c in Sources */,
 				CABE07BF18BAB8EF00BE26EF /* ObjectComboBoxView.m in Sources */,
+				CAA96AFE18E4B21F00763409 /* SoundPickerTableViewController.m in Sources */,
 				CA75C25318A9619400FC8C2F /* ChangeXByNBrickCell.m in Sources */,
 				B4D940B0170EC2B7003DDBFA /* zip.c in Sources */,
 				B4D940D4170ECA15003DDBFA /* ImageCache.m in Sources */,

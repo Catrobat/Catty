@@ -20,19 +20,10 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import "Sound.h"
-#import "GDataXMLNode.h"
+#import "BaseTableViewController.h"
 
-@implementation Sound
+@interface SoundPickerTableViewController : BaseTableViewController
 
-- (GDataXMLElement*)toXML
-{
-  GDataXMLElement *soundXMLElement = [GDataXMLNode elementWithName:@"sound"];
-
-  // Example: <sound reference="../../scriptList/broadcastScript/brickList/playSoundBrick/sound"/>
-  NSString *reference = @""; // TODO: determine path for reference...
-  [soundXMLElement addAttribute:[GDataXMLNode attributeWithName:@"reference" stringValue:reference]];
-  return soundXMLElement;
-}
+@property (nonatomic, strong) NSString *directory;
 
 @end

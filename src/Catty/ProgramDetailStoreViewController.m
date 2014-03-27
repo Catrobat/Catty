@@ -118,7 +118,7 @@
 
 - (UIView*)createViewForProject:(CatrobatProject*)project {
     
-    AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
+    AppDelegate *appDelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
     UIView *view = [CreateView createProgramDetailView:project target:self];
     if ([appDelegate.fileManager getFullPathForProgram:project.projectName]) {
         [view viewWithTag:kDownloadButtonTag].hidden = YES;
@@ -194,7 +194,7 @@
 //    downloadButton.backgroundColor = [UIColor grayColor];
     [self.projectView viewWithTag:kDownloadButtonTag].hidden = YES;
     downloadButton.hidden = NO;
-    AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
+    AppDelegate *appDelegate = (AppDelegate*)[UIApplication sharedApplication].delegate;
     NSURL *url = [NSURL URLWithString:self.project.downloadUrl];
     
     UIActivityIndicatorView *activity = (UIActivityIndicatorView*)[downloadButton viewWithTag:kActivityIndicator];
@@ -285,21 +285,13 @@
     [self.loadingView hide];
 }
 
--(void)stopLoading
-
+- (void)stopLoading
 {
-    
-    AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
-    
+    AppDelegate *appDelegate = (AppDelegate*)[UIApplication sharedApplication].delegate;
     [appDelegate.fileManager stopLoading:self.project.name];
-    
     appDelegate.fileManager.delegate = self;
-    
     [self.view viewWithTag:kStopLoadingTag].hidden = YES;
-    
     [self.view viewWithTag:kDownloadButtonTag].hidden = NO;
- 
-    
 }
 
 @end

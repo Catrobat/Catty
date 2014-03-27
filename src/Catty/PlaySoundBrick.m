@@ -35,7 +35,7 @@
 
     return [SKAction runBlock:^{
         NSDebug(@"Performing: %@", self.description);
-        [[AudioManager sharedAudioManager] playSoundWithFileName:self.sound.fileName andKey:self.object.name atFilePath:[self.object projectPath]];
+        [[AudioManager sharedAudioManager] playSoundWithFileName:self.sound.fileName andKey:self.object.name atFilePath:[NSString stringWithFormat:@"%@%@", [self.object projectPath], kProgramSoundsDirName]];
     }];
 }
 

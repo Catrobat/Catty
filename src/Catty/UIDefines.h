@@ -526,9 +526,9 @@ typedef NS_ENUM(NSInteger, kBrickShapeType) {
 
 // Notifications
 static NSString *const kBrickCellAddedNotification = @"BrickCellAddedNotification";
+static NSString *const kSoundAddedNotification = @"SoundAddedNotification";
 
 // Notification keys
 static NSString *const kUserInfoKeyBrickCell = @"UserInfoKeyBrickCell";
 static NSString *const kUserInfoSpriteObject = @"UserInfoSpriteObject";
-
-
+static NSString *const kUserInfoSound = @"UserInfoSound";

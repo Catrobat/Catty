@@ -34,6 +34,8 @@
 #import "Util.h"
 #import "FileManager.h"
 #import "AppDelegate.h"
+#import "SoundPickerTableViewController.h"
+#import "NSData+Hashes.h"
 #import <AVFoundation/AVFoundation.h>
 
 #define kTableHeaderIdentifier @"Header"
@@ -51,31 +53,20 @@
 
 @implementation SoundsTableViewController
 
-#pragma getters and setters
+#pragma mark - getters and setters
 - (NSMutableDictionary*)imageCache
 {
-    // lazy instantiation
     if (! _imageCache) {
-        _imageCache = [NSMutableDictionary dictionaryWithCapacity:[self.object.soundList count]];
+        _imageCache = [NSMutableDictionary dictionary];
     }
     return _imageCache;
 }
 
 - (NSMutableDictionary*)addSoundActionSheetBtnIndexes
 {
-    // lazy instantiation
     if (_addSoundActionSheetBtnIndexes == nil)
         _addSoundActionSheetBtnIndexes = [NSMutableDictionary dictionaryWithCapacity:3];
     return _addSoundActionSheetBtnIndexes;
-}
-
-- (id)initWithStyle:(UITableViewStyle)style
-{
-    self = [super initWithStyle:style];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
 }
 
 - (void)viewDidLoad
@@ -98,12 +89,39 @@
     [self setupToolBar];
 }
 
--(void)dealloc
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    NSNotificationCenter *dnc = [NSNotificationCenter defaultCenter];
+    [dnc addObserver:self selector:@selector(soundAdded:) name:kSoundAddedNotification object:nil];
+    [self.navigationController setToolbarHidden:NO];
+}
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    NSNotificationCenter *dnc = [NSNotificationCenter defaultCenter];
+    [dnc removeObserver:self name:kSoundAddedNotification object:nil];
+}
+
+- (void)dealloc
 {
     [[AudioManager sharedAudioManager] stopAllSounds];
     self.currentPlayingSong.playing = NO;
     self.currentPlayingSong = nil;
     self.currentPlayingSongCell = nil;
+}
+
+#pragma mark - notification
+- (void)soundAdded:(NSNotification*)notification
+{
+    if (notification.userInfo) {
+        NSLog(@"soundAdded notification received with userInfo: %@", [notification.userInfo description]);
+        id sound = notification.userInfo[kUserInfoSound];
+        if ([sound isKindOfClass:[Sound class]]) {
+            [self addSoundToObjectAction:(Sound*)sound];
+        }
+    }
 }
 
 #pragma mark init
@@ -123,6 +141,40 @@
 {
     [super didReceiveMemoryWarning];
     self.imageCache = nil;
+}
+
+#pragma mark - actions
+- (void)addSoundToObjectAction:(Sound*)sound
+{
+    AppDelegate *delegate = (AppDelegate*)[UIApplication sharedApplication].delegate;
+    NSString *oldPath = [NSString stringWithFormat:@"%@/%@", delegate.fileManager.documentsDirectory, sound.fileName];
+    NSData *data = [NSData dataWithContentsOfFile:oldPath];
+    NSString *newFileName = [NSString stringWithFormat:@"%@%@%@", [data md5], kResourceFileNameSeparator, sound.fileName];
+    sound.fileName = newFileName;
+    NSString *newPath = [self.object pathForSound:sound];
+
+    // if file with same hash and filename already exists
+    if ([delegate.fileManager fileExists:newPath]) {
+        // check if this sound file already belongs to the same object
+        BOOL found = NO;
+        for (Sound *sound in self.object.soundList) {
+            if ([sound.fileName isEqualToString:newFileName]) {
+                found = YES;
+                break;
+            }
+        }
+        if (found) {
+            [Util alertWithText:NSLocalizedString(@"This sound file already exists in that object.", nil)];
+            return;
+        }
+    } else {
+        [delegate.fileManager copyExistingFileAtPath:oldPath toPath:newPath];
+    }
+    [self.object.soundList addObject:sound];
+    NSInteger numberOfRowsInLastSection = [self tableView:self.tableView numberOfRowsInSection:0];
+    [self showPlaceHolder:NO];
+    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:(numberOfRowsInLastSection - 1) inSection:0];
+    [self.tableView insertRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationNone];
 }
 
 #pragma mark - Table view data source
@@ -146,7 +198,7 @@
     CGFloat duration = [[AudioManager sharedAudioManager] durationOfSoundWithFilePath:path];
 
     if ([cell conformsToProtocol:@protocol(CatrobatImageCell)]) {
-        UITableViewCell <CatrobatImageCell>* imageCell = (UITableViewCell <CatrobatImageCell>*)cell;
+        UITableViewCell <CatrobatImageCell>* imageCell = (UITableViewCell<CatrobatImageCell>*)cell;
         imageCell.indexPath = indexPath;
 
         static NSString *playIconName = @"ic_media_play";
@@ -207,7 +259,7 @@
                         if (! isPlaying) {
                             [[AudioManager sharedAudioManager] playSoundWithFileName:sound.fileName
                                                                               andKey:self.object.name
-                                                                          atFilePath:[self.object projectPath]
+                                                                          atFilePath:[NSString stringWithFormat:@"%@%@", [self.object projectPath], kProgramSoundsDirName]
                                                                             delegate:self];
                         }
                     });
@@ -310,12 +362,19 @@
         } else if ([action isEqualToString:kSelectMusicTrackActionSheetButton]) {
             // Select music track
             NSLog(@"Select music track");
-            AppDelegate *delegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
-            if (! [delegate.fileManager documentsDirectoryContainsPlayableSound]) {
+            AppDelegate *delegate = (AppDelegate*)[UIApplication sharedApplication].delegate;
+            if (! [delegate.fileManager existPlayableSoundsInDirectory:delegate.fileManager.documentsDirectory]) {
                 [Util alertWithText:NSLocalizedString(@"No imported sounds found. Please connect your iPhone with your PC/Mac and use iTunes FileSharing to import sound files to the PocketCode app.", nil)];
                 return;
             }
-            [Util showComingSoonAlertView];
+
+            UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"iPhone" bundle:nil];
+            SoundPickerTableViewController *soundPickerTVC;
+            soundPickerTVC = [storyboard instantiateViewControllerWithIdentifier:@"SoundPickerTableViewController"];
+            soundPickerTVC.directory = delegate.fileManager.documentsDirectory;
+            UINavigationController *navigationController = [[UINavigationController alloc]
+                                                            initWithRootViewController:soundPickerTVC];
+            [self presentViewController:navigationController animated:YES completion:NULL];
         }
     }
 }

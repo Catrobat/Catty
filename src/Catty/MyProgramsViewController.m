@@ -167,7 +167,7 @@
         // Delete the row from the data source
         ProgramLoadingInfo *programLoadingInfo = [self.programLoadingInfos objectAtIndex:indexPath.row];
         [Program removeProgramFromDiskWithProgramName:programLoadingInfo.visibleName];
-//        AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
+//        AppDelegate *appDelegate = (AppDelegate*)[UIApplication sharedApplication].delegate;
 //        [appDelegate.fileManager deleteDirectory:programLoadingInfo.basePath];
         [self.programLoadingInfos removeObject:programLoadingInfo];
         [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
