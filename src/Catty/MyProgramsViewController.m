@@ -167,8 +167,8 @@
         // Delete the row from the data source
         ProgramLoadingInfo *programLoadingInfo = [self.programLoadingInfos objectAtIndex:indexPath.row];
         [Program removeProgramFromDiskWithProgramName:programLoadingInfo.visibleName];
-        AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
-        [appDelegate.fileManager deleteDirectory:programLoadingInfo.basePath];
+//        AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
+//        [appDelegate.fileManager deleteDirectory:programLoadingInfo.basePath];
         [self.programLoadingInfos removeObject:programLoadingInfo];
         [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
     } else if (editingStyle == UITableViewCellEditingStyleInsert) {

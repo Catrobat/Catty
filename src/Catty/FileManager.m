@@ -39,6 +39,7 @@
 @property (nonatomic, strong) NSMutableData *imageData;
 @property (nonatomic, strong) NSMutableDictionary *imageArray;
 @property (nonatomic, strong) NSMutableDictionary *programArray;
+@property (nonatomic, strong) NSMutableDictionary *taskDict;
 @property (nonatomic, strong) NSString *projectName;
 
 @end
@@ -101,6 +102,13 @@
     }
     
     return _imageArray;
+}
+-(NSMutableDictionary*)taskDict
+{
+    if (!_taskDict) {
+        _taskDict = [[NSMutableDictionary alloc] init];
+    }
+    return _taskDict;
 }
 
 #pragma mark - Operations
@@ -208,21 +216,36 @@
 - (void)downloadFileFromURL:(NSURL*)url withName:(NSString*)name
 {
     self.projectName = name;
+//    NSOperationQueue * queue = [[NSOperationQueue alloc]init];
     NSURLRequest *request = [NSURLRequest requestWithURL:url
                                              cachePolicy:NSURLRequestUseProtocolCachePolicy
                                          timeoutInterval:TIMEOUT];
     
+//    
+//    [NSURLConnection sendAsynchronousRequest:request
+//                                       queue:queue
+//                           completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
+////                               if (![queue isSuspended]) {
+//                                   [self loadProgram:data andResponse:response];
+////                               }
+//                               
+//                           }];
+    NSURLSession *session = [NSURLSession sharedSession];
+    NSURLSessionDataTask *task = [session dataTaskWithRequest:request
+                                            completionHandler:
+                                  ^(NSData *data, NSURLResponse *response, NSError *error) {
+                                      if (!error) {
+                                          [self loadProgram:data andResponse:response];
+                                      }
+                                      
+                                  }];
     
-    [NSURLConnection sendAsynchronousRequest:request
-                                       queue:[NSOperationQueue mainQueue]
-                           completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
-                               [self loadProgram:data andResponse:response];
-                           }];
+    [task resume];
     
+
     [self.programArray setObject:name forKey:url];
-    
-    //[[NSURLConnection alloc] initWithRequest:request delegate:self];
-    //self.programConnection = connection;
+    [self.taskDict setObject:task forKey:name];
+
 }
 
 - (void)downloadScreenshotFromURL:(NSURL*)url andBaseUrl:(NSURL*)baseurl
@@ -402,4 +425,28 @@
     [self storeDownloadedImage:data andResponse: response];
 }
 
+-(void)stopLoading:(NSString *)name
+{
+     NSURLSessionDataTask * task = [self.taskDict objectForKey:name];
+    [self.taskDict removeObjectForKey:name];
+    [task cancel];
+
+}
+
+#pragma mark SESSION Delegate
+
+-(void)URLSession:(NSURLSession *)session downloadTask:(NSURLSessionDownloadTask *)downloadTask didWriteData:(int64_t)bytesWritten totalBytesWritten:(int64_t)totalBytesWritten totalBytesExpectedToWrite:(int64_t)totalBytesExpectedToWrite
+{
+    NSDebug(@"%@:::::%lli",downloadTask,bytesWritten);
+}
+
+-(void)URLSession:(NSURLSession *)session downloadTask:(NSURLSessionDownloadTask *)downloadTask didResumeAtOffset:(int64_t)fileOffset expectedTotalBytes:(int64_t)expectedTotalBytes
+{
+    
+}
+
+-(void) URLSession:(NSURLSession *)session downloadTask:(NSURLSessionDownloadTask *)downloadTask didFinishDownloadingToURL:(NSURL *)location
+{
+   [[NSNotificationCenter defaultCenter] postNotificationName:@"finishedloading" object:nil];
+}
 @end

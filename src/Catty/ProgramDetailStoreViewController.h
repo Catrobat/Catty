@@ -37,3 +37,5 @@
 @property (nonatomic, strong) SearchStoreViewController *searchStoreController;
 
 @end
+
+

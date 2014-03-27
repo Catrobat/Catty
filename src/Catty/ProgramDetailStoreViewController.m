@@ -62,6 +62,8 @@
     return self;
 }
 
+
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -91,7 +93,7 @@
     }
     [self.scrollViewOutlet setContentSize:contentSize];
     self.scrollViewOutlet.userInteractionEnabled = YES;
-    self.scrollViewOutlet.exclusiveTouch = YES;
+//    self.scrollViewOutlet.exclusiveTouch = YES;
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(downloadFinished) name:@"finishedloading" object:nil];
 }
 
@@ -121,7 +123,9 @@
     if ([appDelegate.fileManager getFullPathForProgram:project.projectName]) {
         [view viewWithTag:kDownloadButtonTag].hidden = YES;
         [view viewWithTag:kPlayButtonTag].hidden = NO;
+        [view viewWithTag:kStopLoadingTag].hidden = YES;
     }
+
     return view;
 }
 
@@ -174,13 +178,14 @@
 - (void)downloadButtonPressed
 {
     NSDebug(@"Download Button!");
-    UIButton* downloadButton = (UIButton*)[self.projectView viewWithTag:kDownloadButtonTag];
-    NSString* title = [[NSString alloc] initWithFormat:@"%@...", NSLocalizedString(@"Loading", nil)];
-    [downloadButton setTitle:title forState:UIControlStateNormal];
-    [downloadButton setTitleEdgeInsets:UIEdgeInsetsMake(0.0f, 25.0f, 0.0f, 0.0f)];
-    downloadButton.enabled = NO;
-    downloadButton.backgroundColor = [UIColor grayColor];
-    
+    UIButton* downloadButton = (UIButton*)[self.projectView viewWithTag:kStopLoadingTag];
+//    NSString* title = [[NSString alloc] initWithFormat:@"%@...", NSLocalizedString(@"Cancel", nil)];
+//    [downloadButton setTitle:title forState:UIControlStateNormal];
+//    [downloadButton setTitleEdgeInsets:UIEdgeInsetsMake(0.0f, 25.0f, 0.0f, 0.0f)];
+//    downloadButton.enabled = NO;
+//    downloadButton.backgroundColor = [UIColor grayColor];
+    [self.projectView viewWithTag:kDownloadButtonTag].hidden = YES;
+    downloadButton.hidden = NO;
     AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
     NSURL *url = [NSURL URLWithString:self.project.downloadUrl];
     
@@ -210,6 +215,7 @@
 {
     NSLog(@"Download Finished!!!!!!");
     [self.projectView viewWithTag:kDownloadButtonTag].hidden = YES;
+    [self.projectView viewWithTag:kStopLoadingTag].hidden = YES;
     [self.projectView viewWithTag:kPlayButtonTag].hidden = NO;
     self.project.isdownloading = NO;
     
@@ -236,7 +242,6 @@
 
 -(void)reloadWithProject:(CatrobatProject *)loadedProject
 {
-    NSLog(@"test2");
     [self.projectView removeFromSuperview];
     self.projectView = [self createViewForProject:loadedProject];
     self.project = loadedProject;
@@ -270,6 +275,23 @@
 - (void) hideLoadingView
 {
     [self.loadingView hide];
+}
+
+-(void)stopLoading
+
+{
+    
+    AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
+    
+    [appDelegate.fileManager stopLoading:self.project.name];
+    
+    appDelegate.fileManager.delegate = self;
+    
+    [self.view viewWithTag:kStopLoadingTag].hidden = YES;
+    
+    [self.view viewWithTag:kDownloadButtonTag].hidden = NO;
+ 
+    
 }
 
 @end

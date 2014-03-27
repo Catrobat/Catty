@@ -443,9 +443,9 @@
                         
                         [self.mostDownloadedProjects removeObject:project];
                         [self.mostDownloadedProjects insertObject:loadedProject atIndex:counter];
-                        NSLog(@"test");
+                        
                         if ([self.delegate respondsToSelector:@selector(reloadWithProject:)] && [self.controller.project.projectID isEqualToString:loadedProject.projectID]){
-                            NSLog(@"test1");
+                            
                             [self.delegate reloadWithProject:loadedProject];
                         }
                         break;
