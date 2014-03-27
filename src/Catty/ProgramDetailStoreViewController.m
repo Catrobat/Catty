@@ -125,6 +125,14 @@
         [view viewWithTag:kPlayButtonTag].hidden = NO;
         [view viewWithTag:kStopLoadingTag].hidden = YES;
     }
+  if (self.project.isdownloading) {
+    [view viewWithTag:kDownloadButtonTag].hidden = YES;
+    [view viewWithTag:kPlayButtonTag].hidden = YES;
+    [view viewWithTag:kStopLoadingTag].hidden = NO;
+    UIActivityIndicatorView *activity = (UIActivityIndicatorView*)[[view viewWithTag:kStopLoadingTag] viewWithTag:kActivityIndicator];
+    [activity startAnimating];
+  }
+
 
     return view;
 }
