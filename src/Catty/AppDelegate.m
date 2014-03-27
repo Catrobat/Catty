@@ -52,23 +52,8 @@ void uncaughtExceptionHandler(NSException *exception)
                                                             forKey:@"lockiphone"];
     [defaults registerDefaults:appDefaults];
     [defaults synchronize];
-    [[UIApplication sharedApplication] setStatusBarHidden:NO];
-
-//    // if there is no sounds directory in Documents directory, then automatically create one
-//    // needed for iTunes File Sharing
-//    if (! [self.fileManager directoryExists:self.fileManager.iTunesSoundsDirectory]) {
-//        [self.fileManager createDirectory:self.fileManager.iTunesSoundsDirectory];
-//
-//        //make a file name to write the data to using the documents directory:
-//        NSString *fileName = [NSString stringWithFormat:@"%@/textfile.txt", self.fileManager.iTunesSoundsDirectory];
-//        //create content - four lines of text
-//        NSString *content = @"One\nTwo\nThree\nFour\nFive";
-//        //save content to the documents directory
-//        [content writeToFile:fileName
-//                  atomically:NO
-//                    encoding:NSStringEncodingConversionAllowLossy
-//                       error:nil];
-//    }
+    application.statusBarHidden = NO;
+    application.statusBarStyle = UIStatusBarStyleLightContent;
     return YES;
 }
 
