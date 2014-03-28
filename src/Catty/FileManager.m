@@ -27,12 +27,12 @@
 #import "ProgramDetailStoreViewController.h"
 #import "ProgramDefines.h"
 #import "AppDelegate.h"
+#import "Sound.h"
 #import <MobileCoreServices/MobileCoreServices.h>
 
 @interface FileManager()
 
 @property (nonatomic, strong, readwrite) NSString *documentsDirectory;
-@property (nonatomic, strong, readwrite) NSString *iTunesSoundsDirectory;
 @property (nonatomic, strong) NSString *programsDirectory;
 @property (nonatomic, strong) NSMutableDictionary *imageArray;
 @property (nonatomic, strong) NSMutableDictionary *programArray;
@@ -59,15 +59,6 @@
     return _documentsDirectory;
 }
 
-#warning remove this later!
-- (NSString*)iTunesSoundsDirectory
-{
-    if (_iTunesSoundsDirectory == nil) {
-        _iTunesSoundsDirectory = [[NSString alloc] initWithFormat:@"%@/%@", self.documentsDirectory, kITunesSoundsFolder];
-    }
-    return _iTunesSoundsDirectory;
-}
-
 - (NSString*)programsDirectory
 {
     if (_programsDirectory == nil) {
@@ -81,7 +72,6 @@
     if (_programArray == nil) {
         _programArray = [[NSMutableDictionary alloc] init];
     }
-    
     return _programArray;
 }
 
@@ -89,7 +79,6 @@
     if (_imageArray == nil) {
         _imageArray = [[NSMutableDictionary alloc] init];
     }
-    
     return _imageArray;
 }
 
@@ -122,7 +111,7 @@
 {
     NSFileManager *fileManager= [NSFileManager defaultManager];
     NSError *error = nil;
-    if(! [self directoryExists:path])
+    if (! [self directoryExists:path])
         [fileManager createDirectoryAtPath:path withIntermediateDirectories:NO attributes:nil error:&error];
     NSLogError(error);
 }
@@ -134,16 +123,16 @@
 
 - (void)deleteAllFilesOfDirectory:(NSString*)path {
     NSFileManager *fm = [NSFileManager defaultManager];
-    
+
     if (![path hasSuffix:@"/"]) {
         path = [NSString stringWithFormat:@"%@/", path];
     }
-    
+
     NSError *error = nil;
     for (NSString *file in [fm contentsOfDirectoryAtPath:path error:&error]) {
         BOOL success = [fm removeItemAtPath:[NSString stringWithFormat:@"%@%@", path, file] error:&error];
         NSLogError(error);
-        
+
         if (!success) {
             NSError(@"Error deleting file.");
         }
@@ -162,11 +151,53 @@
     return ([[NSFileManager defaultManager] fileExistsAtPath:path isDirectory:&isDir] && isDir);
 }
 
-- (void)moveExistingFileOrDirectoryAtPath:(NSString*)oldPath toPath:(NSString*)newPath
+- (void)copyExistingFileAtPath:(NSString*)oldPath toPath:(NSString*)newPath
+{
+    if (! [self fileExists:oldPath])
+        return;
+
+    // Attempt the copy
+    NSURL *oldURL = [NSURL fileURLWithPath:oldPath];
+    NSURL *newURL = [NSURL fileURLWithPath:newPath];
+    NSError *error = nil;
+    if ([[NSFileManager defaultManager] copyItemAtURL:oldURL toURL:newURL error:&error] != YES)
+        NSLog(@"Unable to copy file: %@", [error localizedDescription]);
+    NSLogError(error);
+}
+
+- (void)copyExistingDirectoryAtPath:(NSString*)oldPath toPath:(NSString*)newPath
 {
     if (! [self directoryExists:oldPath])
         return;
-    
+
+    // Attempt the copy
+    NSURL *oldURL = [NSURL fileURLWithPath:oldPath];
+    NSURL *newURL = [NSURL fileURLWithPath:newPath];
+    NSError *error = nil;
+    if ([[NSFileManager defaultManager] copyItemAtURL:oldURL toURL:newURL error:&error] != YES)
+        NSLog(@"Unable to copy file: %@", [error localizedDescription]);
+    NSLogError(error);
+}
+
+- (void)moveExistingFileAtPath:(NSString*)oldPath toPath:(NSString*)newPath
+{
+    if (! [self fileExists:oldPath])
+        return;
+
+    // Attempt the move
+    NSURL *oldURL = [NSURL fileURLWithPath:oldPath];
+    NSURL *newURL = [NSURL fileURLWithPath:newPath];
+    NSError *error = nil;
+    if ([[NSFileManager defaultManager] moveItemAtURL:oldURL toURL:newURL error:&error] != YES)
+        NSLog(@"Unable to move file: %@", [error localizedDescription]);
+    NSLogError(error);
+}
+
+- (void)moveExistingDirectoryAtPath:(NSString*)oldPath toPath:(NSString*)newPath
+{
+    if (! [self fileExists:oldPath])
+        return;
+
     // Attempt the move
     NSURL *oldURL = [NSURL fileURLWithPath:oldPath];
     NSURL *newURL = [NSURL fileURLWithPath:newPath];
@@ -187,7 +218,6 @@
     NSError *error = nil;
     NSArray *contents = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:directory error:&error];
     NSLogError(error);
-    
     return contents;
 }
 
@@ -201,7 +231,6 @@
 - (void)addBundleProjectWithName:(NSString*)projectName
 {
     NSError *error;
-
     if (! [[NSFileManager defaultManager] fileExistsAtPath:self.programsDirectory]) {
         [[NSFileManager defaultManager] createDirectoryAtPath:self.programsDirectory withIntermediateDirectories:NO attributes:nil error:&error];
         NSLogError(error);
@@ -238,10 +267,8 @@
 ////                               }
 //                               
 //                           }];
-
     [self.programArray setObject:name forKey:connection.currentRequest.URL];
     [self.connectionArray addObject:connection];
-
 }
 
 - (void)downloadScreenshotFromURL:(NSURL*)url andBaseUrl:(NSURL*)baseurl andName:(NSString*) name
@@ -262,7 +289,6 @@
     [self.connectionArray addObject:connection];
     //self.imageConnection = connection;
 }
-
 
 #pragma mark - NSURLConnection Delegates
 
@@ -361,7 +387,6 @@
     //    }
 }
 
-
 - (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error {
     
     //    if (self.programConnection == connection) {
@@ -390,12 +415,18 @@
     return nil;
 }
 
-- (BOOL)documentsDirectoryContainsPlayableSound
+- (BOOL)existPlayableSoundsInDirectory:(NSString*)directoryPath
+{
+    return ([[self playableSoundsInDirectory:directoryPath] count] > 0);
+}
+
+- (NSArray*)playableSoundsInDirectory:(NSString*)directoryPath
 {
     NSError *error;
-    NSArray *fileNames = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:self.documentsDirectory error:&error];
+    NSArray *fileNames = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:directoryPath error:&error];
     NSLogError(error);
 
+    NSMutableArray *sounds = [NSMutableArray array];
     for (NSString *fileName in fileNames) {
         // exclude .DS_Store folder on MACOSX simulator
         if ([fileName isEqualToString:@".DS_Store"])
@@ -404,18 +435,24 @@
         NSString *file = [NSString stringWithFormat:@"%@/%@", self.documentsDirectory, fileName];
         CFStringRef fileExtension = (__bridge CFStringRef)[file pathExtension];
         CFStringRef fileUTI = UTTypeCreatePreferredIdentifierForTag(kUTTagClassFilenameExtension, fileExtension, NULL);
-//        NSString *contentType = (__bridge_transfer NSString *)UTTypeCopyPreferredTagWithClass(fileUTI, kUTTagClassMIMEType);
-//        NSLog(@"contentType: %@", contentType);
+        //        NSString *contentType = (__bridge_transfer NSString *)UTTypeCopyPreferredTagWithClass(fileUTI, kUTTagClassMIMEType);
+        //        NSLog(@"contentType: %@", contentType);
 
         // check if mime type is playable with AVAudioPlayer
         BOOL isPlayable = UTTypeConformsTo(fileUTI, kUTTypeAudio);
         CFRelease(fileUTI); // manually free this, because ownership was transfered to ARC
 
         if (isPlayable) {
-            return YES;
+            Sound *sound = [[Sound alloc] init];
+            NSArray *fileParts = [fileName componentsSeparatedByString:@"."];
+            NSString *fileNameWithoutExtension = ([fileParts count] ? [fileParts objectAtIndex:0] : fileName);
+            sound.fileName = fileName;
+            sound.name = fileNameWithoutExtension;
+            sound.playing = NO;
+            [sounds addObject:sound];
         }
     }
-    return NO;
+    return [sounds copy];
 }
 
 #pragma mark - Helper

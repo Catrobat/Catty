@@ -121,7 +121,7 @@
 
 - (UIView*)createViewForProject:(CatrobatProject*)project {
     
-    AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
+    AppDelegate *appDelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
     UIView *view = [CreateView createProgramDetailView:project target:self];
     if ([appDelegate.fileManager getFullPathForProgram:project.projectName]) {
         [view viewWithTag:kDownloadButtonTag].hidden = YES;
@@ -198,7 +198,7 @@
     [self.projectView viewWithTag:kDownloadButtonTag].hidden = YES;
     button.hidden = NO;
     button.progress = 0;
-    AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
+    AppDelegate *appDelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
     NSURL *url = [NSURL URLWithString:self.project.downloadUrl];
 //
 //    UIActivityIndicatorView *activity = (UIActivityIndicatorView*)[downloadButton viewWithTag:kActivityIndicator];
@@ -291,16 +291,14 @@
     [self.loadingView hide];
 }
 
--(void)stopLoading
-
+- (void)stopLoading
 {
-    AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
+    AppDelegate *appDelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
     NSURL *url = [NSURL URLWithString:self.project.downloadUrl];
     NSString *urlString = self.project.screenshotSmall;
     NSURL *screenshotSmallUrl = [NSURL URLWithString:urlString];
     [appDelegate.fileManager stopLoading:url andImageURL:screenshotSmallUrl];
     appDelegate.fileManager.delegate = self;
-    
     EVCircularProgressView* button = (EVCircularProgressView*)[self.view viewWithTag:kStopLoadingTag];
     button.hidden = YES;
     button.progress = 0;

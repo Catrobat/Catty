@@ -34,21 +34,25 @@
 
 @property (nonatomic, weak) id delegate;
 @property (nonatomic, strong, readonly) NSString *documentsDirectory;
-@property (nonatomic, strong, readonly) NSString *iTunesSoundsDirectory;
 
 - (void)createDirectory:(NSString*)path;
 - (void)deleteAllFilesInDocumentsDirectory;
 - (void)deleteAllFilesOfDirectory:(NSString*)path;
 - (BOOL)fileExists:(NSString*)path;
 - (BOOL)directoryExists:(NSString*)path;
-- (void)moveExistingFileOrDirectoryAtPath:(NSString*)oldPath toPath:(NSString*)newPath;
+- (void)copyExistingFileAtPath:(NSString*)oldPath toPath:(NSString*)newPath;
+- (void)copyExistingDirectoryAtPath:(NSString*)oldPath toPath:(NSString*)newPath;
+- (void)moveExistingFileAtPath:(NSString*)oldPath toPath:(NSString*)newPath;
+- (void)moveExistingDirectoryAtPath:(NSString*)oldPath toPath:(NSString*)newPath;
 - (void)deleteDirectory:(NSString*)path;
 - (NSArray*)getContentsOfDirectory:(NSString*)directory;
 - (void)addDefaultProjectsToProgramsRootDirectory;
 - (void)downloadFileFromURL:(NSURL*)url withName:(NSString*)name;
 - (void)downloadScreenshotFromURL:(NSURL*)url andBaseUrl:(NSURL*)baseurl andName:(NSString*) name;
 - (NSString*)getFullPathForProgram:(NSString*)programName;
-- (BOOL)documentsDirectoryContainsPlayableSound;
+- (BOOL)existPlayableSoundsInDirectory:(NSString*)directoryPath;
 -(void)stopLoading:(NSURL *)projecturl andImageURL:(NSURL *)imageurl;
+- (NSArray*)playableSoundsInDirectory:(NSString*)directoryPath;
+
 
 @end
