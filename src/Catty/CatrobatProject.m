@@ -37,6 +37,7 @@
         self.projectUrl      = [dict valueForKey:@"ProjectUrl"];
         self.screenshotBig   = [NSString stringWithFormat:@"%@%@", baseUrl,[dict valueForKey:@"ScreenshotBig"]];
         self.screenshotSmall = [NSString stringWithFormat:@"%@%@", baseUrl,[dict valueForKey:@"ScreenshotSmall"]];
+        self.featuredImage   = [NSString stringWithFormat:@"%@%@", baseUrl,[dict valueForKey:@"FeaturedImage"]];
         self.uploaded        = [dict valueForKey:@"Uploaded"];
         self.version         = [dict valueForKey:@"Version"];
         self.views           = [dict valueForKey:@"Views"];

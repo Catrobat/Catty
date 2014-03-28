@@ -140,7 +140,7 @@
         UITableViewCell <CatrobatImageCell>* imageCell = (UITableViewCell <CatrobatImageCell>*)cell;
         imageCell.titleLabel.text = project.projectName;
         
-        [self loadImage:project.screenshotSmall forCell:imageCell atIndexPath:indexPath];
+        [self loadImage:project.featuredImage forCell:imageCell atIndexPath:indexPath];
     }
     
     return cell;
@@ -249,6 +249,7 @@
         for (CatrobatProject* project in self.projects) {
             if ([project.projectID isEqualToString:loadedProject.projectID ]) {
                 @synchronized(self.projects){
+                    loadedProject.featuredImage = [NSString stringWithString:project.featuredImage];
                     [self.projects removeObject:project];
                     [self.projects insertObject:loadedProject atIndex:counter];
                 }
