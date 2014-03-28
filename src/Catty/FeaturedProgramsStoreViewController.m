@@ -133,7 +133,7 @@
         NSLog(@"Should Never happen - since iOS5 Storyboard *always* instantiates our cell!");
         abort();
     }
-    
+
     if([cell conformsToProtocol:@protocol(CatrobatImageCell)]) {
         CatrobatProject *project = [self.projects objectAtIndex:indexPath.row];
         
@@ -163,6 +163,10 @@
                                [self.tableView endUpdates];
                            });
                        }];
+    
+    imageCell.iconImageView.layer.cornerRadius = 5.0;
+    imageCell.iconImageView.layer.masksToBounds = YES;
+    imageCell.iconImageView.contentMode = UIViewContentModeScaleAspectFit;
 }
 
 
