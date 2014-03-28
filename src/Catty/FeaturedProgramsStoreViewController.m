@@ -164,8 +164,8 @@
                            });
                        }];
     
-    //imageCell.iconImageView.layer.cornerRadius = 5.0;
-    //imageCell.iconImageView.layer.masksToBounds = YES;
+    
+    
     imageCell.iconImageView.contentMode = UIViewContentModeScaleAspectFit;
 }
 
@@ -332,7 +332,6 @@
 //        self.data = nil;
 //        self.connection = nil;
 //
-//
 //        [self update];
 //    }
 //}
@@ -345,6 +344,7 @@
         CatrobatProject *catrobatProject = [self.projects objectAtIndex:selectedRowIndexPath.row];
         ProgramDetailStoreViewController* programDetailViewController = (ProgramDetailStoreViewController*)[segue destinationViewController];
         programDetailViewController.project = catrobatProject;
+        
     }
 }
 
