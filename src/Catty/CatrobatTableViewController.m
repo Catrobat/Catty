@@ -44,6 +44,7 @@
 
 @interface CatrobatTableViewController () <UIAlertViewDelegate, UITextFieldDelegate>
 
+@property (strong, nonatomic) NSCharacterSet *blockedCharacterSet;
 @property (nonatomic, strong) NSArray *cells;
 @property (nonatomic, strong) NSArray *imageNames;
 @property (nonatomic, strong) NSArray *identifiers;
@@ -55,6 +56,14 @@
 @implementation CatrobatTableViewController
 
 #pragma mark - getters and setters
+- (NSCharacterSet*)blockedCharacterSet
+{
+    if (! _blockedCharacterSet) {
+        _blockedCharacterSet = [[NSCharacterSet characterSetWithCharactersInString:kTextFieldAllowedCharacters] invertedSet];
+    }
+    return _blockedCharacterSet;
+}
+
 - (Program*)lastProgram
 {
     if (! _lastProgram) {
@@ -245,7 +254,8 @@
                           message:kMsgPromptProgramName
                          delegate:self
                       placeholder:kProgramNamePlaceholder
-                              tag:kNewProgramAlertViewTag];
+                              tag:kNewProgramAlertViewTag
+                textFieldDelegate:self];
             return NO;
         }
         return YES;
@@ -272,6 +282,12 @@
             programTableViewController.isNewProgram = YES;
         }
     }
+}
+
+#pragma mark - text field delegates
+- (BOOL)textField:(UITextField*)field shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString*)characters
+{
+    return ([characters rangeOfCharacterFromSet:self.blockedCharacterSet].location == NSNotFound);
 }
 
 #pragma mark - alert view handlers
@@ -301,7 +317,8 @@
                           message:kMsgPromptProgramName
                          delegate:self
                       placeholder:kProgramNamePlaceholder
-                              tag:kNewProgramAlertViewTag];
+                              tag:kNewProgramAlertViewTag
+                textFieldDelegate:self];
         }
     }
 }

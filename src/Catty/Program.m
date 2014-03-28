@@ -134,20 +134,17 @@
 
 - (SpriteObject*)addNewObjectWithName:(NSString*)objectName
 {
-    // TODO: review this...
     SpriteObject* object = [[SpriteObject alloc] init];
     //object.originalSize;
     //object.spriteManagerDelegate;
     //object.broadcastWaitDelegate = self.broadcastWaitHandler;
     object.currentLook = nil;
 
-    // TODO: filter/change object name if same name already exists
-    NSUInteger counter = 0;
-    NSString *finalObjectName = objectName;
-    while ([self objectExistsWithName:finalObjectName]) {
-        finalObjectName = [NSString stringWithFormat:@"%@ (%ld)", objectName, (unsigned long)++counter];
+    NSMutableArray *objectNames = [NSMutableArray arrayWithCapacity:[self.objectList count]];
+    for (SpriteObject *currentObject in self.objectList) {
+        [objectNames addObject:currentObject.name];
     }
-    object.name = finalObjectName;
+    object.name = [Util uniqueName:objectName existingNames:objectNames];
     object.program = self;
     [self.objectList addObject:object];
     return object;

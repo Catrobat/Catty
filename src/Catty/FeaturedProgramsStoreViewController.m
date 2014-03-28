@@ -133,14 +133,14 @@
         NSLog(@"Should Never happen - since iOS5 Storyboard *always* instantiates our cell!");
         abort();
     }
-    
+
     if([cell conformsToProtocol:@protocol(CatrobatImageCell)]) {
         CatrobatProject *project = [self.projects objectAtIndex:indexPath.row];
         
         UITableViewCell <CatrobatImageCell>* imageCell = (UITableViewCell <CatrobatImageCell>*)cell;
         imageCell.titleLabel.text = project.projectName;
         
-        [self loadImage:project.screenshotSmall forCell:imageCell atIndexPath:indexPath];
+        [self loadImage:project.featuredImage forCell:imageCell atIndexPath:indexPath];
     }
     
     return cell;
@@ -163,6 +163,10 @@
                                [self.tableView endUpdates];
                            });
                        }];
+    
+    //imageCell.iconImageView.layer.cornerRadius = 5.0;
+    //imageCell.iconImageView.layer.masksToBounds = YES;
+    imageCell.iconImageView.contentMode = UIViewContentModeScaleAspectFit;
 }
 
 
@@ -243,12 +247,13 @@
         
         NSInteger counter=0;
         CatrobatProject *loadedProject;
-        for (NSDictionary *projectDict in catrobatProjects) {
-            loadedProject = [[CatrobatProject alloc] initWithDict:projectDict andBaseUrl:information.baseURL];
-        }
+        NSDictionary *projectDict = [catrobatProjects objectAtIndex:[catrobatProjects count]-1];
+        loadedProject = [[CatrobatProject alloc] initWithDict:projectDict andBaseUrl:information.baseURL];
+        
         for (CatrobatProject* project in self.projects) {
             if ([project.projectID isEqualToString:loadedProject.projectID ]) {
                 @synchronized(self.projects){
+                    loadedProject.featuredImage = [NSString stringWithString:project.featuredImage];
                     [self.projects removeObject:project];
                     [self.projects insertObject:loadedProject atIndex:counter];
                 }

@@ -36,6 +36,7 @@
 @property (nonatomic, strong) NSString *projectUrl;
 @property (nonatomic, strong) NSString *screenshotBig;
 @property (nonatomic, strong) NSString *screenshotSmall;
+@property (nonatomic, strong) NSString *featuredImage;
 @property (nonatomic, strong) NSString *uploaded;
 @property (nonatomic, strong) NSString *version;
 @property (nonatomic, strong) NSNumber *views;

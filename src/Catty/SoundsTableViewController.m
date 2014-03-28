@@ -146,30 +146,18 @@
 #pragma mark - actions
 - (void)addSoundToObjectAction:(Sound*)sound
 {
+    NSMutableArray *soundNames = [NSMutableArray arrayWithCapacity:[self.object.soundList count]];
+    for (Sound *currentSound in self.object.soundList) {
+        [soundNames addObject:currentSound.name];
+    }
+    sound.name = [Util uniqueName:sound.name existingNames:soundNames];
     AppDelegate *delegate = (AppDelegate*)[UIApplication sharedApplication].delegate;
     NSString *oldPath = [NSString stringWithFormat:@"%@/%@", delegate.fileManager.documentsDirectory, sound.fileName];
     NSData *data = [NSData dataWithContentsOfFile:oldPath];
     NSString *newFileName = [NSString stringWithFormat:@"%@%@%@", [data md5], kResourceFileNameSeparator, sound.fileName];
     sound.fileName = newFileName;
     NSString *newPath = [self.object pathForSound:sound];
-
-    // if file with same hash and filename already exists
-    if ([delegate.fileManager fileExists:newPath]) {
-        // check if this sound file already belongs to the same object
-        BOOL found = NO;
-        for (Sound *sound in self.object.soundList) {
-            if ([sound.fileName isEqualToString:newFileName]) {
-                found = YES;
-                break;
-            }
-        }
-        if (found) {
-            [Util alertWithText:NSLocalizedString(@"This sound file already exists in that object.", nil)];
-            return;
-        }
-    } else {
-        [delegate.fileManager copyExistingFileAtPath:oldPath toPath:newPath];
-    }
+    [delegate.fileManager copyExistingFileAtPath:oldPath toPath:newPath];
     [self.object.soundList addObject:sound];
     NSInteger numberOfRowsInLastSection = [self tableView:self.tableView numberOfRowsInSection:0];
     [self showPlaceHolder:NO];
