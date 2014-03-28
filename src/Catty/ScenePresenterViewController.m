@@ -414,7 +414,7 @@
 {
     [[AudioManager sharedAudioManager] stopAllSounds];
     [[SensorHandler sharedSensorHandler] stopSensors];
-    [[UIApplication sharedApplication] setStatusBarHidden:YES withAnimation:UIStatusBarAnimationFade];
+    [[UIApplication sharedApplication] setStatusBarHidden:NO withAnimation:UIStatusBarAnimationFade];
     
     // NOTE: if there are still some runNextAction tasks in a queue
     // then these actions must not be executed because the Scene is not available any more.
