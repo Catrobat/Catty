@@ -306,7 +306,7 @@
 }
 -(void)updateProgress:(float)progress
 {
-    NSLog(@"updateProgress:%f",(progress));
+    NSDebug(@"updateProgress:%f",(progress));
     EVCircularProgressView* button = (EVCircularProgressView*)[self.view viewWithTag:kStopLoadingTag];
     [button setProgress:(progress) animated:YES];
 }
