@@ -67,9 +67,7 @@ UINavigationBarDelegate>
 
 - (void)setProgram:(Program *)program
 {
-    if (program) {
-        [program setAsLastProgram];
-    }
+    [program setAsLastProgram];
     _program = program;
 }
 
@@ -301,12 +299,13 @@ UINavigationBarDelegate>
     titleLabel.textColor = [UIColor whiteColor];
     titleLabel.tag = 1;
     titleLabel.font = [UIFont systemFontOfSize:14.0f];
-    if (section == 0)
+    if (section == 0) {
         titleLabel.text = [kBackgroundTitle uppercaseString];
-    else if ([self.program.objectList count] > (kBackgroundObjects + 1))
+    } else if ([self.program.objectList count] > (kBackgroundObjects + 1)) {
         titleLabel.text = [kObjectTitlePlural uppercaseString];
-    else
+    } else {
         titleLabel.text = [kObjectTitleSingular uppercaseString];
+    }
 
     titleLabel.text = [NSString stringWithFormat:@"  %@", titleLabel.text];
     [headerView.contentView addSubview:titleLabel];
