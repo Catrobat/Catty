@@ -38,7 +38,7 @@
 #import "UIDefines.h"
 #import "ActionSheetAlertViewTags.h"
 
-@interface MyProgramsViewController () <ProgramUpdateDelegate, UIAlertViewDelegate>
+@interface MyProgramsViewController () <ProgramUpdateDelegate, UIAlertViewDelegate, UITextFieldDelegate>
 @property (nonatomic, strong) NSMutableDictionary *assertCache;
 @property (nonatomic, strong) NSMutableArray *programLoadingInfos;
 @property (nonatomic, strong) Program *selectedProgram;
@@ -299,7 +299,8 @@
                           message:kMsgPromptProgramName
                          delegate:self
                       placeholder:kProgramNamePlaceholder
-                              tag:kNewProgramAlertViewTag];
+                              tag:kNewProgramAlertViewTag
+                textFieldDelegate:self];
             return NO;
         }
         return YES;
@@ -330,6 +331,13 @@
         // TODO: remove this after persisting programs feature is fully implemented...
         programTableViewController.isNewProgram = YES;
     }
+}
+
+#pragma mark - text field delegates
+- (BOOL)textField:(UITextField*)field shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString*)characters
+{
+    NSCharacterSet *blockedCharacters = [[NSCharacterSet characterSetWithCharactersInString:kTextFieldAllowedCharacters] invertedSet];
+    return ([characters rangeOfCharacterFromSet:blockedCharacters].location == NSNotFound);
 }
 
 #pragma mark - alert view handlers
@@ -364,7 +372,8 @@
                           message:kMsgPromptProgramName
                          delegate:self
                       placeholder:kProgramNamePlaceholder
-                              tag:kNewProgramAlertViewTag];
+                              tag:kNewProgramAlertViewTag
+                textFieldDelegate:self];
         }
     }
 }

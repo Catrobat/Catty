@@ -308,15 +308,15 @@
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
 {
     UIImage *image = info[UIImagePickerControllerEditedImage];
-    if (! image)
+    if (! image) {
         image = info[UIImagePickerControllerOriginalImage];
-    
+    }
+
     if (image) {
         // add image to object now
         NSURL *imageURL = [info objectForKey:UIImagePickerControllerReferenceURL];
-        //    NSString *imageFileName = [imagePath lastPathComponent];
         [self showLoadingView];
-        
+
         ALAssetsLibraryAssetForURLResultBlock resultblock = ^(ALAsset *myasset) {
             ALAssetRepresentation *representation = [myasset defaultRepresentation];
             NSString *imageFileName = [representation filename];
@@ -324,13 +324,20 @@
 
             imageFileName = [[imageFileName componentsSeparatedByString:@"."] firstObject];
             if (! [imageFileName length])
-                imageFileName = kDefaultImportedImageName; // TODO: outsource this constant...
+                imageFileName = kDefaultImportedImageName;
 
             // save image to programs directory
             NSData *imageData = UIImagePNGRepresentation(image);
             NSString *fileNamePrefix = [[[imageData md5] stringByReplacingOccurrencesOfString:@"-" withString:@""] uppercaseString];
+            NSString *lookName = imageFileName;
             NSString *newImageFileName = [NSString stringWithFormat:@"%@%@%@", fileNamePrefix, kResourceFileNameSeparator, imageFileName];
-            Look *look = [[Look alloc] initWithName:imageFileName andPath:newImageFileName];
+
+            // get all look names of that object
+            NSMutableArray *lookNames = [NSMutableArray arrayWithCapacity:[self.object.lookList count]];
+            for (Look *look in self.object.lookList) {
+                [lookNames addObject:look.name];
+            }
+            Look *look = [[Look alloc] initWithName:[Util uniqueName:lookName existingNames:lookNames] andPath:newImageFileName];
             NSLog(@"FilePath: %@", newImageFileName);
 
             // TODO: outsource this to FileManager
@@ -345,7 +352,7 @@
                 NSBlockOperation* saveOp = [NSBlockOperation blockOperationWithBlock: ^{
                     [imageData writeToFile:newImagePath atomically:YES];
                 }];
-                
+
                 // Use the completion block to update UI on the main queue
                 [saveOp setCompletionBlock:^{
                     [[NSOperationQueue mainQueue] addOperationWithBlock:^{
