@@ -26,6 +26,7 @@
 #import "Logger.h"
 #import "ProgramDetailStoreViewController.h"
 #import "ProgramDefines.h"
+#import "AppDelegate.h"
 #import <MobileCoreServices/MobileCoreServices.h>
 
 @interface FileManager()
@@ -33,14 +34,17 @@
 @property (nonatomic, strong, readwrite) NSString *documentsDirectory;
 @property (nonatomic, strong, readwrite) NSString *iTunesSoundsDirectory;
 @property (nonatomic, strong) NSString *programsDirectory;
-@property (nonatomic, strong) NSURLConnection *programConnection;
-@property (nonatomic, strong) NSURLConnection *imageConnection;
-@property (nonatomic, strong) NSMutableData *programData;
-@property (nonatomic, strong) NSMutableData *imageData;
 @property (nonatomic, strong) NSMutableDictionary *imageArray;
 @property (nonatomic, strong) NSMutableDictionary *programArray;
-@property (nonatomic, strong) NSMutableDictionary *taskDict;
+@property (nonatomic, strong) NSMutableDictionary *programDataArray;
+@property (nonatomic, strong) NSMutableDictionary *imageDataArray;
+@property (nonatomic, strong) NSMutableArray *connectionArray;
+@property (nonatomic) long long downloadsize;
+
+@property float downloadprogress;
+
 @property (nonatomic, strong) NSString *projectName;
+
 
 @end
 
@@ -72,21 +76,6 @@
     return _programsDirectory;
 }
 
-- (NSMutableData*)programData {
-    if (_programData == nil) {
-        _programData = [[NSMutableData alloc] init];
-    }
-    
-    return _programData;
-}
-
-- (NSMutableData*)imageData {
-    if (_imageData == nil) {
-        _imageData = [[NSMutableData alloc] init];
-    }
-    
-    return _imageData;
-}
 
 - (NSMutableDictionary*)programArray {
     if (_programArray == nil) {
@@ -103,13 +92,30 @@
     
     return _imageArray;
 }
--(NSMutableDictionary*)taskDict
+
+
+-(NSMutableDictionary*)programDataArray
 {
-    if (!_taskDict) {
-        _taskDict = [[NSMutableDictionary alloc] init];
+    if (!_programDataArray) {
+        _programDataArray = [[NSMutableDictionary alloc] init];
     }
-    return _taskDict;
+    return _programDataArray;
 }
+-(NSMutableDictionary*)imageDataArray
+{
+    if (!_imageDataArray) {
+        _imageDataArray = [[NSMutableDictionary alloc] init];
+    }
+    return _imageDataArray;
+}
+-(NSMutableArray*)connectionArray
+{
+    if (!_connectionArray) {
+        _connectionArray = [[NSMutableArray alloc] init];
+    }
+    return _connectionArray;
+}
+
 
 #pragma mark - Operations
 - (void)createDirectory:(NSString *)path
@@ -213,15 +219,17 @@
     }
 }
 
+
 - (void)downloadFileFromURL:(NSURL*)url withName:(NSString*)name
 {
     self.projectName = name;
+    NSDebug(@"%@",url);
 //    NSOperationQueue * queue = [[NSOperationQueue alloc]init];
     NSURLRequest *request = [NSURLRequest requestWithURL:url
                                              cachePolicy:NSURLRequestUseProtocolCachePolicy
                                          timeoutInterval:TIMEOUT];
-    
-//    
+    NSURLConnection *connection = [[NSURLConnection alloc] initWithRequest:request delegate:self];
+//    NSLog(@"Data: %@",connection);
 //    [NSURLConnection sendAsynchronousRequest:request
 //                                       queue:queue
 //                           completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
@@ -230,55 +238,108 @@
 ////                               }
 //                               
 //                           }];
-    NSURLSession *session = [NSURLSession sharedSession];
-    NSURLSessionDataTask *task = [session dataTaskWithRequest:request
-                                            completionHandler:
-                                  ^(NSData *data, NSURLResponse *response, NSError *error) {
-                                      if (!error) {
-                                          [self loadProgram:data andResponse:response];
-                                      }
-                                      
-                                  }];
-    
-    [task resume];
-    
 
-    [self.programArray setObject:name forKey:url];
-    [self.taskDict setObject:task forKey:name];
+    [self.programArray setObject:name forKey:connection.currentRequest.URL];
+    [self.connectionArray addObject:connection];
 
 }
 
-- (void)downloadScreenshotFromURL:(NSURL*)url andBaseUrl:(NSURL*)baseurl
+- (void)downloadScreenshotFromURL:(NSURL*)url andBaseUrl:(NSURL*)baseurl andName:(NSString*) name
 {
     NSURLRequest *request = [NSURLRequest requestWithURL:url
                                              cachePolicy:NSURLRequestUseProtocolCachePolicy
                                          timeoutInterval:TIMEOUT];
     
-    //NSURLConnection *connection = [[NSURLConnection alloc] initWithRequest:request delegate:self];
-    [NSURLConnection sendAsynchronousRequest:request
-                                       queue:[NSOperationQueue mainQueue]
-                           completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
-                               [self loadImage:data andResponse:response];}];
+    NSURLConnection *connection = [[NSURLConnection alloc] initWithRequest:request delegate:self];
+    NSDebug(@"Image: %@",connection);
+//    [NSURLConnection sendAsynchronousRequest:request
+//                                       queue:[NSOperationQueue mainQueue]
+//                           completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
+//                               [self loadImage:data andResponse:response];}];
     //NSString* name = [self.programArray objectForKey:url];
     
-    //[self.imageArray setObject:name forKey:url];
+    [self.imageArray setObject:name forKey:connection.currentRequest.URL];
+    [self.connectionArray addObject:connection];
     //self.imageConnection = connection;
 }
 
 
 #pragma mark - NSURLConnection Delegates
+
+
+-(void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response
+{
+    NSMutableData* data = [[NSMutableData alloc] init];
+    
+    NSString* name = [self.programArray objectForKey:connection.currentRequest.URL];
+    if (name) {
+        [self.programDataArray setObject:data forKey:connection.currentRequest.URL];
+    }
+    else
+    {
+        [self.imageDataArray setObject:data forKey:connection.currentRequest.URL];
+    }
+    
+    
+    ///Length of data!!!
+    self.downloadsize= [response expectedContentLength];
+}
+
 - (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data
 {
+    NSMutableData* storedData = [self.programDataArray objectForKey:connection.currentRequest.URL];
+    if (storedData) {
+        [storedData appendData:data];
+        
+        [self.programDataArray removeObjectForKey:connection.currentRequest.URL];
+        [self.programDataArray setObject:storedData forKey:connection.currentRequest.URL];
+    }
+    else{
+        storedData =[self.imageDataArray objectForKey:connection.currentRequest.URL];
+        
+        [storedData appendData:data];
+        
+        [self.imageDataArray removeObjectForKey:connection.currentRequest];
+        [self.imageDataArray setObject:storedData forKey:connection.currentRequest.URL];
+
+    }
+    
+    //do something with data length
+    
+    self.downloadprogress = self.downloadprogress+((float) [data length] / (float) self.downloadsize);
+    if ([self.delegate respondsToSelector:@selector(updateProgress:)]) {
+        [self.delegate performSelector:@selector(updateProgress:)];
+    }
+    NSDebug(@"%f",self.downloadprogress-1);
     //    if (self.programConnection == connection) {
     //        [self.programData appendData:data];
     //    }
     //    else if (self.imageConnection == connection) {
     //        [self.imageData appendData:data];
     //    }
+    
 }
 
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection
 {
+    
+    NSMutableData* storedData = [self.programDataArray objectForKey:connection.currentRequest.URL];
+    if (storedData) {
+        [self storeDownloadedProgram:storedData andConnection:connection];
+        
+        [self.programDataArray removeObjectForKey:connection.currentRequest.URL];
+        [self resetProgramDatawithKey:connection];
+        self.downloadprogress = 0;
+    }
+    else{
+        storedData =[self.imageDataArray objectForKey:connection.currentRequest.URL];
+        
+        [self storeDownloadedImage:storedData andURL:connection.currentRequest.URL];
+        [self.imageDataArray removeObjectForKey:connection.currentRequest.URL];
+        [self resetImageDataAndConnection:connection];
+        
+    }
+    
     //    if (self.programConnection == connection) {
     //        NSDebug(@"Finished program downloading");
     //
@@ -312,6 +373,12 @@
     //        self.imageData = nil;
     //        self.imageConnection = nil;
     //    }
+    [self resetImageDataAndConnection:connection];
+    [self resetProgramDatawithKey:connection];
+    [self.imageDataArray removeObjectForKey:connection.currentRequest.URL];
+    [self.programDataArray removeObjectForKey:connection.currentRequest.URL];
+    [connection cancel];
+    
 }
 
 - (NSString*)getFullPathForProgram:(NSString *)programName
@@ -352,21 +419,21 @@
 }
 
 #pragma mark - Helper
-- (void)storeDownloadedProgram:(NSData*)data andResponse:(NSURLResponse*)response
+- (void)storeDownloadedProgram:(NSData*)data andConnection:(NSURLConnection*)connection
 {
-    NSString* name = [self.programArray objectForKey:response.URL];
+    NSString* name = [self.programArray objectForKey:connection.currentRequest.URL];
     [self unzipAndStore:data withName:name];
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"finishedloading" object:nil];
 }
 
-- (void)storeDownloadedImage:(NSData*)data andResponse:(NSURLResponse*)response
+- (void)storeDownloadedImage:(NSData*)data andURL:(NSURL*)url
 {
     if (data != nil) {
-        NSString *name = [self.imageArray objectForKey:response.URL];
+        NSString *name = [self.imageArray objectForKey:url];
         NSString *storePath = [NSString stringWithFormat:@"%@/small_screenshot.png", [self getFullPathForProgram:name]];
-        //[self resetImageDataAndConnection:response];
         NSDebug(@"path for image is: %@", storePath);
-        if ([self.imageData writeToFile:storePath atomically:YES]) {
-            //[self resetImageDataAndConnection:response];
+        if ([data writeToFile:storePath atomically:YES]) {
+//            [self resetImageDataAndConnection:response];
         }
     }
 }
@@ -392,61 +459,44 @@
     if (self.imageArray.count > 0) {
         NSArray *temp = [self.imageArray allKeysForObject:name];
         if (temp) {
-            NSURLResponse *key = [temp objectAtIndex:0];
-            [self storeDownloadedImage:programData andResponse:key];
+            NSURL *key = [temp objectAtIndex:0];
+            [self storeDownloadedImage:programData andURL:key];
         }
     }
 }
 
-- (void)resetImageDataAndConnection:(NSURLResponse*)response
+- (void)resetImageDataAndConnection:(NSURLConnection*)connection
 {
-    [self.imageArray removeObjectForKey:response.URL];
+    [self.imageArray removeObjectForKey:connection.currentRequest.URL];
 }
 
-- (void)resetProgramDatawithKey:(NSURLResponse*)response
+- (void)resetProgramDatawithKey:(NSURLConnection*)connection
 {
-    [self.programArray removeObjectForKey:response.URL];
+    [self.programArray removeObjectForKey:connection.currentRequest.URL];
 }
 
-- (void)loadProgram:(NSData*)data andResponse:(NSURLResponse*)response
+
+-(void)loadImage:(NSData*)data andResponse:(NSURLConnection*)connection
 {
-    [self storeDownloadedProgram:data andResponse:response];
-    //    if ([_delegate respondsToSelector:@selector(downloadFinished)]) {
-    //        [_delegate performSelector:@selector(downloadFinished)];
-    //    }
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"finishedloading" object:nil];
-    self.programData = nil;
-    self.programConnection = nil;
-    self.projectName = nil;
+    [self storeDownloadedImage:data andURL:connection.currentRequest.URL];
 }
 
--(void)loadImage:(NSData*)data andResponse:(NSURLResponse*)response
+-(void)stopLoading:(NSURL *)projecturl andImageURL:(NSURL *)imageurl
 {
-    [self storeDownloadedImage:data andResponse: response];
+    for (NSURLConnection* connection in self.connectionArray) {
+        if ([connection.currentRequest.URL isEqual:projecturl]) {
+            [connection cancel];
+            [self.connectionArray removeObject:connection];
+            return;
+        }
+        if ([connection.currentRequest.URL isEqual:imageurl]) {
+            [connection cancel];
+            [self.connectionArray removeObject:connection];
+            return;
+        }
+
+    }
+
 }
 
--(void)stopLoading:(NSString *)name
-{
-     NSURLSessionDataTask * task = [self.taskDict objectForKey:name];
-    [self.taskDict removeObjectForKey:name];
-    [task cancel];
-
-}
-
-#pragma mark SESSION Delegate
-
--(void)URLSession:(NSURLSession *)session downloadTask:(NSURLSessionDownloadTask *)downloadTask didWriteData:(int64_t)bytesWritten totalBytesWritten:(int64_t)totalBytesWritten totalBytesExpectedToWrite:(int64_t)totalBytesExpectedToWrite
-{
-    NSDebug(@"%@:::::%lli",downloadTask,bytesWritten);
-}
-
--(void)URLSession:(NSURLSession *)session downloadTask:(NSURLSessionDownloadTask *)downloadTask didResumeAtOffset:(int64_t)fileOffset expectedTotalBytes:(int64_t)expectedTotalBytes
-{
-    
-}
-
--(void) URLSession:(NSURLSession *)session downloadTask:(NSURLSessionDownloadTask *)downloadTask didFinishDownloadingToURL:(NSURL *)location
-{
-   [[NSNotificationCenter defaultCenter] postNotificationName:@"finishedloading" object:nil];
-}
 @end

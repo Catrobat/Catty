@@ -36,6 +36,7 @@
 		920F20C41837F27E003E9EE0 /* SaveToProjectActivity.m in Sources */ = {isa = PBXBuildFile; fileRef = 920F20C31837F27E003E9EE0 /* SaveToProjectActivity.m */; };
 		921FE2FA182F8122001D7CF6 /* CoreImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 921FE2F9182F8122001D7CF6 /* CoreImage.framework */; };
 		92300D0B18B2196700F2B4DC /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 92300CE918B2196700F2B4DC /* Localizable.strings */; };
+		9232B4FF18E54C4B00ED7AB1 /* EVCircularProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9232B4FE18E54C4B00ED7AB1 /* EVCircularProgressView.m */; };
 		925E22B618E3313C001A26A6 /* NavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 925E22B518E3313C001A26A6 /* NavigationController.m */; };
 		92C37A33185621FF00547C1E /* SetSizeToBrickTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 92C37A32185621FF00547C1E /* SetSizeToBrickTests.m */; };
 		92C37A381856253B00547C1E /* ComeToFrontBrickTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 92C37A371856253B00547C1E /* ComeToFrontBrickTests.m */; };
@@ -335,6 +336,8 @@
 		92300D0818B2196700F2B4DC /* uk */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = uk; path = uk.lproj/Localizable.strings; sourceTree = "<group>"; };
 		92300D0918B2196700F2B4DC /* vi */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = vi; path = vi.lproj/Localizable.strings; sourceTree = "<group>"; };
 		92300D0A18B2196700F2B4DC /* zh */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = zh; path = zh.lproj/Localizable.strings; sourceTree = "<group>"; };
+		9232B4FD18E54C4B00ED7AB1 /* EVCircularProgressView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EVCircularProgressView.h; sourceTree = "<group>"; };
+		9232B4FE18E54C4B00ED7AB1 /* EVCircularProgressView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EVCircularProgressView.m; sourceTree = "<group>"; };
 		925E22B418E3313C001A26A6 /* NavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NavigationController.h; sourceTree = "<group>"; };
 		925E22B518E3313C001A26A6 /* NavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NavigationController.m; sourceTree = "<group>"; };
 		92C37A32185621FF00547C1E /* SetSizeToBrickTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SetSizeToBrickTests.m; sourceTree = "<group>"; };
@@ -1316,6 +1319,8 @@
 		B4D940B2170EC5D5003DDBFA /* UserInterface */ = {
 			isa = PBXGroup;
 			children = (
+				9232B4FD18E54C4B00ED7AB1 /* EVCircularProgressView.h */,
+				9232B4FE18E54C4B00ED7AB1 /* EVCircularProgressView.m */,
 				CAC3141318BA84C700DAAB72 /* ComboBoxView */,
 				CA750F8018A12CD3005FC0A0 /* CollectionView */,
 				CA6881FE180AEA85008A7C99 /* TableView */,
@@ -2682,6 +2687,7 @@
 				CA75C24118A9616800FC8C2F /* IfLogicElseBrickCell.m in Sources */,
 				CA727B3B18DF469F00D1EE13 /* NSData+Hashes.m in Sources */,
 				CD0CCFDC170CB39700B70036 /* WhenScript.m in Sources */,
+				9232B4FF18E54C4B00ED7AB1 /* EVCircularProgressView.m in Sources */,
 				CAEDFB8117EF759500FDED0E /* ObjectTableViewController.m in Sources */,
 				CD639C7B170DF52600FA67DA /* SpriteObject.m in Sources */,
 				CA68820B180B30E0008A7C99 /* BrickCategoriesTableViewController.m in Sources */,

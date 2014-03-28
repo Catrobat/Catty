@@ -30,7 +30,7 @@
 
 @end
 
-@interface FileManager : NSObject <NSURLConnectionDelegate,NSURLSessionDownloadDelegate>
+@interface FileManager : NSObject <NSURLConnectionDataDelegate>
 
 @property (nonatomic, weak) id delegate;
 @property (nonatomic, strong, readonly) NSString *documentsDirectory;
@@ -46,9 +46,9 @@
 - (NSArray*)getContentsOfDirectory:(NSString*)directory;
 - (void)addDefaultProjectsToProgramsRootDirectory;
 - (void)downloadFileFromURL:(NSURL*)url withName:(NSString*)name;
-- (void)downloadScreenshotFromURL:(NSURL*)url andBaseUrl:(NSURL*)baseurl;
+- (void)downloadScreenshotFromURL:(NSURL*)url andBaseUrl:(NSURL*)baseurl andName:(NSString*) name;
 - (NSString*)getFullPathForProgram:(NSString*)programName;
 - (BOOL)documentsDirectoryContainsPlayableSound;
--(void)stopLoading:(NSString *)name;
+-(void)stopLoading:(NSURL *)projecturl andImageURL:(NSURL *)imageurl;
 
 @end
