@@ -154,8 +154,6 @@
     textField.text = newProgramName;
     XCTAssertNoThrow([self.programTableViewController alertView:alertView clickedButtonAtIndex:kAlertViewButtonOK], @"Could not rename program");
 
-    // TODO: write some tests for random input to test input validators and filters
-
     Program *program = self.programTableViewController.program;
     XCTAssertNotNil(program.header.programName, @"Name of renamed program is nil, testing an empty string...");
     XCTAssertTrue([program.header.programName isEqualToString:newProgramName], @"Name of renamed program is %@, but should be %@ ProgramTableViewController", program.header.programName, newProgramName);
@@ -179,8 +177,6 @@
     UITextField *textField = [alertView textFieldAtIndex:0];
     textField.text = newProgramName;
     XCTAssertNoThrow([self.programTableViewController alertView:alertView clickedButtonAtIndex:kAlertViewButtonOK], @"Could not rename program");
-
-    // TODO: write some tests for random input to test input validators and filters
 
     NSInteger numberOfRows = [myProgramsViewController tableView:myProgramsViewController.tableView numberOfRowsInSection:0];
     NSInteger matchNewNameCounter = 0;

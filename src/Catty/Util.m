@@ -193,7 +193,7 @@
         duplicate = NO;
         for (NSString *existingName in existingNames) {
             if ([existingName isEqualToString:uniqueName]) {
-                uniqueName = [NSString stringWithFormat:@"%@ (%lu)", nameToCheck, ++counter];
+                uniqueName = [NSString stringWithFormat:@"%@ (%lu)", nameToCheck, (unsigned long)++counter];
                 duplicate = YES;
                 break;
             }
