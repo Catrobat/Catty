@@ -52,11 +52,12 @@ void uncaughtExceptionHandler(NSException *exception)
                                                             forKey:@"lockiphone"];
     [defaults registerDefaults:appDefaults];
     [defaults synchronize];
-    [[UIApplication sharedApplication] setStatusBarHidden:NO];
+    application.statusBarHidden = NO;
+    application.statusBarStyle = UIStatusBarStyleLightContent;
     return YES;
 }
 
--(void) initNavigationBar
+- (void)initNavigationBar
 {
     UIImage *navbarimage = [[UIImage imageNamed:@"darkblue"]
                             resizableImageWithCapInsets:UIEdgeInsetsMake(0, 0, 0, 0)];

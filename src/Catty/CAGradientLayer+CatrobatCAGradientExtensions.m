@@ -60,4 +60,22 @@
     return gradientLayer;
 }
 
++ (CAGradientLayer*) redGradientLayerWithFrame:(CGRect)frame
+{
+    CAGradientLayer *gradientLayer = [CAGradientLayer layer];
+    gradientLayer.frame = frame;
+    
+    gradientLayer.colors = [NSArray arrayWithObjects:
+                            (id)[UIColor colorWithRed:204/255.0f green:26/255.0f blue:26/255.0f alpha:1.0f].CGColor,
+                            (id)[UIColor colorWithRed:170/255.0f green:40/255.0f blue:45/255.0f alpha:1.0f].CGColor,
+                            nil];
+    
+    gradientLayer.locations = [NSArray arrayWithObjects:
+                               [NSNumber numberWithFloat:0.0f],
+                               [NSNumber numberWithFloat:1.0f],
+                               nil];
+    
+    return gradientLayer;
+}
+
 @end

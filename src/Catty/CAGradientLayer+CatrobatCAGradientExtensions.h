@@ -28,5 +28,6 @@
 
 + (CAGradientLayer*) greenGradientLayerWithFrame:(CGRect)frame;
 
++ (CAGradientLayer*) redGradientLayerWithFrame:(CGRect)frame;
 
 @end
