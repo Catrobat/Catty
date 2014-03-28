@@ -26,13 +26,16 @@
 #import "TTTAttributedLabel.h"
 #import "SearchStoreViewController.h"
 #import "BaseTableViewController.h"
+#import "RecentProgramsStoreViewController.h"
 
 @class CatrobatProject;
 
-@interface ProgramDetailStoreViewController : UIViewController<ProgramStoreDelegate, UIScrollViewDelegate, FileManagerDelegate, TTTAttributedLabelDelegate>
+@interface ProgramDetailStoreViewController : UIViewController<ProgramStoreDelegate, UIScrollViewDelegate, FileManagerDelegate, TTTAttributedLabelDelegate, RecentProgramsStoreDelegate>
 
 @property (nonatomic, strong) CatrobatProject *project;
 @property (nonatomic, strong) IBOutlet UIScrollView *scrollViewOutlet;
 @property (nonatomic, strong) SearchStoreViewController *searchStoreController;
 
 @end
+
+

@@ -100,7 +100,6 @@
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
-    
 //    [self.collectionView performBatchUpdates:^{
 //        [self.collectionView reloadSections:[NSIndexSet indexSetWithIndexesInRange:NSMakeRange(0, self.object.scriptList.count)]];
 //    } completion:NULL];
@@ -210,7 +209,7 @@
         NSError(@"This should never happen");
         abort();
     }
-    
+
     BrickCell *brickCell = nil;
     if (indexPath.row == 0) {
         // case it's a script brick
@@ -323,7 +322,7 @@
 #pragma mark - helpers
 - (void)setupToolBar
 {
-    // @INFO: Please do not modify or remove this code again, unless you don't exactly know what you are doing.
+    // @INFO: Please do not modify or remove this code again, unless you don't know exactly what you are doing.
 
     [super setupToolBar];
     [self.navigationController setToolbarHidden:NO];
@@ -346,32 +345,5 @@
     self.toolbarItems = [NSArray arrayWithObjects:flexItem, invisibleButton, add, invisibleButton, flexItem,
                          flexItem, flexItem, invisibleButton, play, invisibleButton, flexItem, nil];
 }
-
-// @INFO: Dominik told me that he wants buttons aligned to the center.
-//        In addition this code leads to same tapping problem as we had before.
-//        The above code handles all these aspects. ;)
-//
-//- (void)setupToolBar
-//{
-//    [self.navigationController setToolbarHidden:NO];
-//    self.navigationController.toolbar.barStyle = UIBarStyleBlack;
-//    self.navigationController.toolbar.tintColor = [UIColor orangeColor];
-//    self.navigationController.toolbar.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleTopMargin;
-//    UIBarButtonItem *flexItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace
-//                                                                              target:nil
-//                                                                              action:nil];
-//    UIBarButtonItem *fixedSpace= [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace
-//                                                                               target:nil
-//                                                                               action:nil];
-//
-//    fixedSpace.width = 200.;
-//    UIBarButtonItem *add = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd
-//                                                                         target:self
-//                                                                         action:@selector(addBrickAction:)];
-//    UIBarButtonItem *play = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemPlay
-//                                                                          target:self
-//                                                                          action:@selector(playSceneAction:)];
-//    self.toolbarItems = @[flexItem, add, fixedSpace, play, flexItem];
-//}
 
 @end

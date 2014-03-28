@@ -373,7 +373,7 @@
 - (FileManager*)fileManager
 {
     if (_fileManager)
-        _fileManager = ((AppDelegate*)[[UIApplication sharedApplication] delegate]).fileManager;
+        _fileManager = ((AppDelegate*)[UIApplication sharedApplication].delegate).fileManager;
     return _fileManager;
 }
 
@@ -410,7 +410,7 @@
 
 + (void)removeProject:(NSString*)projectPath
 {
-    FileManager *fileManager = ((AppDelegate*)[[UIApplication sharedApplication] delegate]).fileManager;
+    FileManager *fileManager = ((AppDelegate*)[UIApplication sharedApplication].delegate).fileManager;
     if ([fileManager directoryExists:projectPath])
         [fileManager deleteDirectory:projectPath];
     [Util setLastProgram:nil];

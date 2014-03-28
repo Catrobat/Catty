@@ -167,24 +167,23 @@
         // Delete the row from the data source
         ProgramLoadingInfo *programLoadingInfo = [self.programLoadingInfos objectAtIndex:indexPath.row];
         [Program removeProgramFromDiskWithProgramName:programLoadingInfo.visibleName];
-        AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
-        [appDelegate.fileManager deleteDirectory:programLoadingInfo.basePath];
+//        AppDelegate *appDelegate = (AppDelegate*)[UIApplication sharedApplication].delegate;
+//        [appDelegate.fileManager deleteDirectory:programLoadingInfo.basePath];
         [self.programLoadingInfos removeObject:programLoadingInfo];
         [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    }
-    else if (editingStyle == UITableViewCellEditingStyleInsert) {
+    } else if (editingStyle == UITableViewCellEditingStyleInsert) {
         // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
+    }
 }
 
 #pragma mark - table view delegate
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+- (void)tableView:(UITableView*)tableView didSelectRowAtIndexPath:(NSIndexPath*)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
 #pragma mark - table view helpers
--(void)configureImageCell:(UITableViewCell <CatrobatImageCell>*)cell atIndexPath:(NSIndexPath*)indexPath
+-(void)configureImageCell:(UITableViewCell<CatrobatImageCell>*)cell atIndexPath:(NSIndexPath*)indexPath
 {
     ProgramLoadingInfo *info = [self.programLoadingInfos objectAtIndex:indexPath.row];
     cell.titleLabel.text = info.visibleName;

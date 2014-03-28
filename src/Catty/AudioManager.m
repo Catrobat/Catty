@@ -75,36 +75,35 @@ static AudioManager* sharedAudioManager = nil;
                    atFilePath:(NSString*)filePath
                      delegate:(id<AVAudioPlayerDelegate>) delegate
 {
-  NSMutableDictionary* audioPlayers = [self.sounds objectForKey:key];
-  if (! audioPlayers) {
-    audioPlayers = [[NSMutableDictionary alloc] init];
-    [self.sounds setObject:audioPlayers forKey:key];
-  }
-  
-  CatrobatAudioPlayer* player = [audioPlayers objectForKey:fileName];
-  if (! player) {
-    NSURL* path = [NSURL fileURLWithPath:[self pathForSound:fileName atFilePath:filePath]];
-    NSError* error = nil;
-    player =[[CatrobatAudioPlayer alloc] initWithContentsOfURL:path error:&error];
-    if (error != nil) {
-        NSError(@"Can't read that audio-file");
-        return;
+    NSMutableDictionary* audioPlayers = [self.sounds objectForKey:key];
+    if (! audioPlayers) {
+        audioPlayers = [[NSMutableDictionary alloc] init];
+        [self.sounds setObject:audioPlayers forKey:key];
     }
-    [player setKey:fileName];
-    [audioPlayers setObject:player forKey:fileName];
-  }else{
-      self.soundCounter++;
-      NSURL* path = [NSURL fileURLWithPath:[self pathForSound:fileName atFilePath:filePath]];
-      NSError* error = nil;
-      player = [[CatrobatAudioPlayer alloc] initWithContentsOfURL:path error:&error];
-      if (error != nil) {
-          NSError(@"Can't read that audio-file");
-          return;
 
-      }
-      [player setKey:[fileName stringByAppendingString:[NSString stringWithFormat:@"%ld",(long)self.soundCounter]]];
-      [audioPlayers setObject:player forKey:[fileName stringByAppendingString:[NSString stringWithFormat:@"%ld",(long)self.soundCounter]]];
-  }
+    CatrobatAudioPlayer *player = [audioPlayers objectForKey:fileName];
+    if (! player) {
+        NSURL *path = [NSURL fileURLWithPath:[NSString stringWithFormat:@"%@/%@", filePath, fileName]];
+        NSError *error = nil;
+        player = [[CatrobatAudioPlayer alloc] initWithContentsOfURL:path error:&error];
+        if (error != nil) {
+            NSError(@"Can't read that audio-file");
+            return;
+        }
+        [player setKey:fileName];
+        [audioPlayers setObject:player forKey:fileName];
+    } else {
+        self.soundCounter++;
+        NSURL *path = [NSURL fileURLWithPath:[NSString stringWithFormat:@"%@/%@", filePath, fileName]];
+        NSError *error = nil;
+        player = [[CatrobatAudioPlayer alloc] initWithContentsOfURL:path error:&error];
+        if (error != nil) {
+            NSError(@"Can't read that audio-file");
+            return;
+        }
+        [player setKey:[fileName stringByAppendingString:[NSString stringWithFormat:@"%ld",(long)self.soundCounter]]];
+        [audioPlayers setObject:player forKey:[fileName stringByAppendingString:[NSString stringWithFormat:@"%ld",(long)self.soundCounter]]];
+    }
 //  if ([player isPlaying]) {
 //    [player stop];
 //    [player setCurrentTime:0];
@@ -189,11 +188,6 @@ static AudioManager* sharedAudioManager = nil;
   for(NSMutableDictionary* audioPlayers in [self.sounds allValues]) {
     [audioPlayers removeObjectForKey:playerToDelete.key];
   }
-}
-
-- (NSString*)pathForSound:(NSString*)fileName atFilePath:(NSString*)filePath
-{
-    return [NSString stringWithFormat:@"%@sounds/%@", filePath, fileName];
 }
 
 - (CGFloat)durationOfSoundWithFilePath:(NSString*)filePath

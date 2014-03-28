@@ -240,7 +240,7 @@
         }
             
         case FALSE_F: {
-            result = 1.0;
+            result = 0.0;
             break;
         }
         default:

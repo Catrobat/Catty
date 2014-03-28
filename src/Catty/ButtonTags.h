@@ -25,6 +25,7 @@
 
 #define kDownloadButtonTag 501
 #define kPlayButtonTag 502
+#define kStopLoadingTag 503
 
 #define kActivityIndicator 228
 

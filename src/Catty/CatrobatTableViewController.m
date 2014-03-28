@@ -72,7 +72,7 @@
 
     self.lastProgram = nil;
     self.defaultProgram = nil;
-    AppDelegate *appDelegate = [UIApplication sharedApplication].delegate;
+    AppDelegate *appDelegate = (AppDelegate*)[UIApplication sharedApplication].delegate;
     [appDelegate.fileManager addDefaultProjectsToProgramsRootDirectory];
 }
 

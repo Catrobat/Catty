@@ -20,7 +20,6 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-
 #import "Sound.h"
 #import "GDataXMLNode.h"
 

@@ -75,7 +75,7 @@
 - (FileManager*)fileManager
 {
     if (_fileManager)
-        _fileManager = ((AppDelegate*)[[UIApplication sharedApplication] delegate]).fileManager;
+        _fileManager = ((AppDelegate*)[UIApplication sharedApplication].delegate).fileManager;
     return _fileManager;
 }
 
