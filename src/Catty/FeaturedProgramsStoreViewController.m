@@ -243,9 +243,9 @@
         
         NSInteger counter=0;
         CatrobatProject *loadedProject;
-        for (NSDictionary *projectDict in catrobatProjects) {
-            loadedProject = [[CatrobatProject alloc] initWithDict:projectDict andBaseUrl:information.baseURL];
-        }
+        NSDictionary *projectDict = [catrobatProjects objectAtIndex:[catrobatProjects count]-1];
+        loadedProject = [[CatrobatProject alloc] initWithDict:projectDict andBaseUrl:information.baseURL];
+        
         for (CatrobatProject* project in self.projects) {
             if ([project.projectID isEqualToString:loadedProject.projectID ]) {
                 @synchronized(self.projects){
