@@ -85,11 +85,11 @@
 {
     [super viewDidAppear:animated];
     CGRect frame = self.tableView.frame;
-    frame.origin.y = 44+[UIApplication sharedApplication].statusBarFrame.size.height;
+    frame.origin.y = 65;
     frame.size.height = (frame.size.height - frame.origin.y);
     self.tableView.frame = frame;
     self.searchDisplayController.displaysSearchBarInNavigationBar = NO;
-    self.searchDisplayController.searchBar.frame = CGRectMake(0,44+[UIApplication sharedApplication].statusBarFrame.size.height,self.searchDisplayController.searchBar.frame.size.width,self.searchDisplayController.searchBar.frame.size.height);
+    self.searchDisplayController.searchBar.frame = CGRectMake(0,65,self.searchDisplayController.searchBar.frame.size.width,self.searchDisplayController.searchBar.frame.size.height);
     self.navigationController.navigationBar.translucent = YES;
 }
 
@@ -100,11 +100,11 @@
 //    float currentViewBottomEdge = scrollView.contentOffset.y+44;
     if (!self.checkSearch) {
         CGRect frame = self.tableView.frame;
-        frame.origin.y = 44+[UIApplication sharedApplication].statusBarFrame.size.height;
+        frame.origin.y = 65;
         frame.size.height = (frame.size.height - frame.origin.y);
         self.tableView.frame = frame;
         self.searchDisplayController.displaysSearchBarInNavigationBar = NO;
-        self.searchDisplayController.searchBar.frame = CGRectMake(0,44+[UIApplication sharedApplication].statusBarFrame.size.height,self.searchDisplayController.searchBar.frame.size.width,self.searchDisplayController.searchBar.frame.size.height);
+        self.searchDisplayController.searchBar.frame = CGRectMake(0,65,self.searchDisplayController.searchBar.frame.size.width,self.searchDisplayController.searchBar.frame.size.height);
         self.checkSearch=YES;
         self.navigationController.navigationBar.translucent = YES;
         
@@ -242,9 +242,9 @@
     NSDebug(@"%@", searchBar.text);
     [self queryServerForSearchString:searchBar.text];
     [self.searchDisplayController setActive:NO animated:YES];
-    [self update];
     self.searchDisplayController.searchBar.text = searchBar.text;
     self.tabBarController.tabBar.translucent = YES;
+    [self update];
 }
 
 - (void)searchBarCancelButtonClicked:(UISearchBar *)searchBar
