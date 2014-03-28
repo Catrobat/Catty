@@ -28,10 +28,13 @@
 #define kBaseUrl @"https://pocketcode.org/"
 
 #define kConnectionSearch @"search.json"
-#define kConnectionRecent @"recent.json"
+#define kConnectionRecent @"recentIDs.json"
+#define kConnectionRecentFull @"recent.json"
 #define kConnectionFeatured @"featured.json"
-#define kConnectionMostDownloaded @"mostdownloaded.json"
-#define kConnectionMostViewed @"mostviewed.json"
+#define kConnectionMostDownloaded @"mostDownloadedIDs.json"
+#define kConnectionMostDownloadedFull @"mostDownloaded.json"
+#define kConnectionMostViewed @"mostViewedIDs.json"
+#define kConnectionMostViewedFull @"mostViewed.json"
 #define kConnectionIDQuery @"getInfoById.json"
 
 #define kProgramsOffset @"offset="
