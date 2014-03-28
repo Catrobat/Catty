@@ -164,8 +164,7 @@
                            });
                        }];
     
-    //imageCell.iconImageView.layer.cornerRadius = 5.0;
-    //imageCell.iconImageView.layer.masksToBounds = YES;
+    
     imageCell.iconImageView.contentMode = UIViewContentModeScaleAspectFit;
 }
 
