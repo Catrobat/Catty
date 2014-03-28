@@ -46,14 +46,16 @@
                 message:(NSString*)message
                delegate:(id<UIAlertViewDelegate>)delegate
             placeholder:(NSString*)placeholder
-                    tag:(NSInteger)tag;
+                    tag:(NSInteger)tag
+      textFieldDelegate:(id<UITextFieldDelegate>)textFieldDelegate;
 
 + (void)promptWithTitle:(NSString*)title
                 message:(NSString*)message
                delegate:(id<UIAlertViewDelegate>)delegate
             placeholder:(NSString*)placeholder
                     tag:(NSInteger)tag
-                  value:(NSString*)value;
+                  value:(NSString*)value
+      textFieldDelegate:(id<UITextFieldDelegate>)textFieldDelegate;
 
 + (NSString*)getProjectName;
 
@@ -77,9 +79,10 @@
 
 + (void)setLastProgram:(NSString*)visibleName;
 
++ (NSString*)uniqueName:(NSString*)nameToCheck existingNames:(NSArray*)existingNames;
+
 + (double)radiansToDegree:(float)rad;
 
 + (double)degreeToRadians:(float)deg;
-
 
 @end

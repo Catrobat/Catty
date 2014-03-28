@@ -210,7 +210,7 @@
 
 - (void)moveExistingDirectoryAtPath:(NSString*)oldPath toPath:(NSString*)newPath
 {
-    if (! [self fileExists:oldPath])
+    if (! [self directoryExists:oldPath])
         return;
 
     // Attempt the move
