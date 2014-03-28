@@ -27,6 +27,7 @@
 @protocol FileManagerDelegate <NSObject>
 
 - (void) downloadFinished;
+- (void) updateProgress:(float)progress;
 
 @end
 

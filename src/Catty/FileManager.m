@@ -39,9 +39,9 @@
 @property (nonatomic, strong) NSMutableDictionary *programDataArray;
 @property (nonatomic, strong) NSMutableDictionary *imageDataArray;
 @property (nonatomic, strong) NSMutableArray *connectionArray;
+@property (nonatomic,strong) NSMutableDictionary *progressDict;
+@property (nonatomic,strong) NSMutableDictionary *downloadSizeDict;
 @property (nonatomic) long long downloadsize;
-
-@property float downloadprogress;
 
 @property (nonatomic, strong) NSString *projectName;
 
@@ -103,6 +103,20 @@
         _connectionArray = [[NSMutableArray alloc] init];
     }
     return _connectionArray;
+}
+-(NSMutableDictionary*)progressDict
+{
+    if (!_progressDict) {
+        _progressDict = [[NSMutableDictionary alloc] init];
+    }
+    return _progressDict;
+}
+-(NSMutableDictionary*)downloadSizeDict
+{
+    if (!_downloadSizeDict) {
+        _downloadSizeDict = [[NSMutableDictionary alloc] init];
+    }
+    return _downloadSizeDict;
 }
 
 
@@ -300,15 +314,18 @@
     NSString* name = [self.programArray objectForKey:connection.currentRequest.URL];
     if (name) {
         [self.programDataArray setObject:data forKey:connection.currentRequest.URL];
+        NSNumber *progress = [NSNumber numberWithFloat:0];
+        [self.progressDict setObject:progress forKey:connection.currentRequest.URL];
     }
     else
     {
         [self.imageDataArray setObject:data forKey:connection.currentRequest.URL];
     }
     
-    
+    NSNumber* size = [NSNumber numberWithLongLong:[response expectedContentLength]];
     ///Length of data!!!
-    self.downloadsize= [response expectedContentLength];
+    [self.downloadSizeDict setObject:size forKey:connection.currentRequest.URL];
+
 }
 
 - (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data
@@ -319,6 +336,7 @@
         
         [self.programDataArray removeObjectForKey:connection.currentRequest.URL];
         [self.programDataArray setObject:storedData forKey:connection.currentRequest.URL];
+
     }
     else{
         storedData =[self.imageDataArray objectForKey:connection.currentRequest.URL];
@@ -329,14 +347,25 @@
         [self.imageDataArray setObject:storedData forKey:connection.currentRequest.URL];
 
     }
-    
     //do something with data length
+    NSNumber* progress = [self.progressDict objectForKey:connection.currentRequest.URL];
+    [self.progressDict removeObjectForKey:connection.currentRequest.URL];
     
-    self.downloadprogress = self.downloadprogress+((float) [data length] / (float) self.downloadsize);
+    NSNumber* size = [self.downloadSizeDict objectForKey:connection.currentRequest.URL];
+    NSLog(@"%f",progress.floatValue+((float) [data length] / (float) size.longLongValue));
+    progress = [NSNumber numberWithFloat:progress.floatValue+((float) [data length] / (float) size.longLongValue)];
+    [self.progressDict setObject:progress forKey:connection.currentRequest.URL];
     if ([self.delegate respondsToSelector:@selector(updateProgress:)]) {
-        [self.delegate performSelector:@selector(updateProgress:)];
+        if (progress.floatValue == 1) {
+            [self.delegate updateProgress:progress.floatValue-1];
+        }
+        else{
+            [self.delegate updateProgress:progress.floatValue];
+        }
+        
     }
-    NSDebug(@"%f",self.downloadprogress-1);
+    NSDebug(@"%f",progress.floatValue+((float) [data length] / (float) size.longLongValue));
+
     //    if (self.programConnection == connection) {
     //        [self.programData appendData:data];
     //    }
@@ -355,7 +384,8 @@
         
         [self.programDataArray removeObjectForKey:connection.currentRequest.URL];
         [self resetProgramDatawithKey:connection];
-        self.downloadprogress = 0;
+        [self.progressDict removeObjectForKey:connection.currentRequest.URL];
+        [self.downloadSizeDict removeObjectForKey:connection.currentRequest.URL];
     }
     else{
         storedData =[self.imageDataArray objectForKey:connection.currentRequest.URL];
@@ -402,6 +432,8 @@
     [self resetProgramDatawithKey:connection];
     [self.imageDataArray removeObjectForKey:connection.currentRequest.URL];
     [self.programDataArray removeObjectForKey:connection.currentRequest.URL];
+    [self.progressDict removeObjectForKey:connection.currentRequest.URL];
+    [self.downloadSizeDict removeObjectForKey:connection.currentRequest.URL];
     [connection cancel];
     
 }
@@ -533,7 +565,8 @@
         }
 
     }
-
+    [self.progressDict removeObjectForKey:projecturl];
+    [self.downloadSizeDict removeObjectForKey:projecturl];
 }
 
 @end
