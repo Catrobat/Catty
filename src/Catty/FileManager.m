@@ -374,7 +374,7 @@
     [self.progressDict removeObjectForKey:connection.currentRequest.URL];
     
     NSNumber* size = [self.downloadSizeDict objectForKey:connection.currentRequest.URL];
-    NSLog(@"%f",progress.floatValue+((float) [data length] / (float) size.longLongValue));
+    NSDebug(@"%f",progress.floatValue+((float) [data length] / (float) size.longLongValue));
     progress = [NSNumber numberWithFloat:progress.floatValue+((float) [data length] / (float) size.longLongValue)];
     [self.progressDict setObject:progress forKey:connection.currentRequest.URL];
     if ([self.delegate respondsToSelector:@selector(updateProgress:)]) {
