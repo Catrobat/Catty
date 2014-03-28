@@ -34,6 +34,7 @@
 #import "NetworkDefines.h"
 #import "Program.h"
 #import "LoadingView.h"
+#import "EVCircularProgressView.h"
 
 #define kUIBarHeight 49
 #define kNavBarHeight 44
@@ -74,10 +75,12 @@
     self.view.backgroundColor = [UIColor darkBlueColor];
     //[TableUtil initNavigationItem:self.navigationItem withTitle:@"Info" enableBackButton:YES target:self];
     NSDebug(@"%@",self.project.author);
+    self.projectView = [self createViewForProject:self.project];
     if(!self.project.author){
         [self showLoadingView];
+        UIButton * button =(UIButton*)[self.projectView viewWithTag:kDownloadButtonTag];
+        button.enabled = NO;
     }
-    self.projectView = [self createViewForProject:self.project];
     [self.scrollViewOutlet addSubview:self.projectView];
     self.scrollViewOutlet.delegate = self;
     CGFloat screenHeight =[Util getScreenHeight];
@@ -129,8 +132,8 @@
     [view viewWithTag:kDownloadButtonTag].hidden = YES;
     [view viewWithTag:kPlayButtonTag].hidden = YES;
     [view viewWithTag:kStopLoadingTag].hidden = NO;
-    UIActivityIndicatorView *activity = (UIActivityIndicatorView*)[[view viewWithTag:kStopLoadingTag] viewWithTag:kActivityIndicator];
-    [activity startAnimating];
+//    UIActivityIndicatorView *activity = (UIActivityIndicatorView*)[[view viewWithTag:kStopLoadingTag] viewWithTag:kActivityIndicator];
+//    [activity startAnimating];
   }
 
 
@@ -186,20 +189,21 @@
 - (void)downloadButtonPressed
 {
     NSDebug(@"Download Button!");
-    UIButton* downloadButton = (UIButton*)[self.projectView viewWithTag:kStopLoadingTag];
+    EVCircularProgressView* button = (EVCircularProgressView*)[self.projectView viewWithTag:kStopLoadingTag];
 //    NSString* title = [[NSString alloc] initWithFormat:@"%@...", NSLocalizedString(@"Cancel", nil)];
 //    [downloadButton setTitle:title forState:UIControlStateNormal];
 //    [downloadButton setTitleEdgeInsets:UIEdgeInsetsMake(0.0f, 25.0f, 0.0f, 0.0f)];
 //    downloadButton.enabled = NO;
 //    downloadButton.backgroundColor = [UIColor grayColor];
     [self.projectView viewWithTag:kDownloadButtonTag].hidden = YES;
-    downloadButton.hidden = NO;
+    button.hidden = NO;
+    button.progress = 0;
     AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
     NSURL *url = [NSURL URLWithString:self.project.downloadUrl];
-    
-    UIActivityIndicatorView *activity = (UIActivityIndicatorView*)[downloadButton viewWithTag:kActivityIndicator];
-    [activity startAnimating];
-    
+//
+//    UIActivityIndicatorView *activity = (UIActivityIndicatorView*)[downloadButton viewWithTag:kActivityIndicator];
+//    [activity startAnimating];
+//    
     [appDelegate.fileManager downloadFileFromURL:url withName:self.project.projectName];
     appDelegate.fileManager.delegate = self;
     
@@ -209,7 +213,7 @@
     NSDebug(@"screenshot url is: %@", urlString);
     
     NSURL *screenshotSmallUrl = [NSURL URLWithString:urlString];
-    [appDelegate.fileManager downloadScreenshotFromURL:screenshotSmallUrl andBaseUrl:url];
+    [appDelegate.fileManager downloadScreenshotFromURL:screenshotSmallUrl andBaseUrl:url andName:self.project.name];
     self.project.isdownloading = YES;
 }
 
@@ -222,7 +226,7 @@
 - (void) downloadFinished
 {
     NSLog(@"Download Finished!!!!!!");
-    [self.projectView viewWithTag:kDownloadButtonTag].hidden = YES;
+//    [self.projectView viewWithTag:kDownloadButtonTag].hidden = YES;
     [self.projectView viewWithTag:kStopLoadingTag].hidden = YES;
     [self.projectView viewWithTag:kPlayButtonTag].hidden = NO;
     self.project.isdownloading = NO;
@@ -269,6 +273,8 @@
     [self.scrollViewOutlet setContentSize:contentSize];
     self.scrollViewOutlet.userInteractionEnabled = YES;
     self.scrollViewOutlet.exclusiveTouch = YES;
+    UIButton * button =(UIButton*)[self.projectView viewWithTag:kDownloadButtonTag];
+    button.enabled = YES;
     [self hideLoadingView];
 }
 - (void)showLoadingView
@@ -288,18 +294,25 @@
 -(void)stopLoading
 
 {
-    
     AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
-    
-    [appDelegate.fileManager stopLoading:self.project.name];
-    
+    NSURL *url = [NSURL URLWithString:self.project.downloadUrl];
+    NSString *urlString = self.project.screenshotSmall;
+    NSURL *screenshotSmallUrl = [NSURL URLWithString:urlString];
+    [appDelegate.fileManager stopLoading:url andImageURL:screenshotSmallUrl];
     appDelegate.fileManager.delegate = self;
     
-    [self.view viewWithTag:kStopLoadingTag].hidden = YES;
-    
+    EVCircularProgressView* button = (EVCircularProgressView*)[self.view viewWithTag:kStopLoadingTag];
+    button.hidden = YES;
+    button.progress = 0;
     [self.view viewWithTag:kDownloadButtonTag].hidden = NO;
- 
-    
 }
+-(void)updateProgress:(float)progress
+{
+    NSDebug(@"updateProgress:%f",(progress-1));
+    EVCircularProgressView* button = (EVCircularProgressView*)[self.view viewWithTag:kStopLoadingTag];
+    [button setProgress:(progress-1) animated:YES];
+}
+
+
 
 @end
