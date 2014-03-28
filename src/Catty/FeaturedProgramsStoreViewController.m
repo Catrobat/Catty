@@ -165,6 +165,7 @@
                        }];
     
     
+    
     imageCell.iconImageView.contentMode = UIViewContentModeScaleAspectFit;
 }
 
@@ -344,6 +345,7 @@
         CatrobatProject *catrobatProject = [self.projects objectAtIndex:selectedRowIndexPath.row];
         ProgramDetailStoreViewController* programDetailViewController = (ProgramDetailStoreViewController*)[segue destinationViewController];
         programDetailViewController.project = catrobatProject;
+        
     }
 }
 
