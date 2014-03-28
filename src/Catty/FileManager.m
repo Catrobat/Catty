@@ -28,6 +28,7 @@
 #import "ProgramDefines.h"
 #import "AppDelegate.h"
 #import "Sound.h"
+#import "Program.h"
 #import <MobileCoreServices/MobileCoreServices.h>
 
 @interface FileManager()
@@ -209,7 +210,7 @@
 
 - (void)moveExistingDirectoryAtPath:(NSString*)oldPath toPath:(NSString*)newPath
 {
-    if (! [self fileExists:oldPath])
+    if (! [self directoryExists:oldPath])
         return;
 
     // Attempt the move
@@ -237,9 +238,30 @@
 
 - (void)addDefaultProjectsToProgramsRootDirectory
 {
-    [self addBundleProjectWithName:kDefaultFirstProgramName];
-    [self addBundleProjectWithName:kDefaultSecondProgramName];
-    [Util setLastProgram:kDefaultFirstProgramName];
+    NSString *basePath = [Program basePath];
+    NSError *error;
+    NSArray *programLoadingInfos = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:basePath error:&error];
+    NSLogError(error);
+
+    BOOL firstProgramExists = NO;
+    BOOL secondProgramExists = NO;
+    for (NSString *programLoadingInfo in programLoadingInfos) {
+        if ([programLoadingInfo isEqualToString:kDefaultFirstProgramName]) {
+            firstProgramExists = YES;
+        } else if ([programLoadingInfo isEqualToString:kDefaultSecondProgramName]) {
+            secondProgramExists = YES;
+        }
+    }
+    if (firstProgramExists) {
+        [self addBundleProjectWithName:kDefaultFirstProgramName];
+    }
+    if (secondProgramExists) {
+        [self addBundleProjectWithName:kDefaultSecondProgramName];
+    }
+
+    if (! [Util lastProgram]) {
+        [Util setLastProgram:kDefaultFirstProgramName];
+    }
 }
 
 - (void)addBundleProjectWithName:(NSString*)projectName
@@ -352,7 +374,7 @@
     [self.progressDict removeObjectForKey:connection.currentRequest.URL];
     
     NSNumber* size = [self.downloadSizeDict objectForKey:connection.currentRequest.URL];
-    NSLog(@"%f",progress.floatValue+((float) [data length] / (float) size.longLongValue));
+    NSDebug(@"%f",progress.floatValue+((float) [data length] / (float) size.longLongValue));
     progress = [NSNumber numberWithFloat:progress.floatValue+((float) [data length] / (float) size.longLongValue)];
     [self.progressDict setObject:progress forKey:connection.currentRequest.URL];
     if ([self.delegate respondsToSelector:@selector(updateProgress:)]) {

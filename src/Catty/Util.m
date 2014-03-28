@@ -72,8 +72,15 @@
                delegate:(id<UIAlertViewDelegate>)delegate
             placeholder:(NSString*)placeholder
                     tag:(NSInteger)tag
+      textFieldDelegate:(id<UITextFieldDelegate>)textFieldDelegate
 {
-    [Util promptWithTitle:title message:message delegate:delegate placeholder:placeholder tag:tag value:nil];
+    [Util promptWithTitle:title
+                  message:message
+                 delegate:delegate
+              placeholder:placeholder
+                      tag:tag
+                    value:nil
+        textFieldDelegate:textFieldDelegate];
 }
 
 + (void)promptWithTitle:(NSString*)title
@@ -82,6 +89,7 @@
             placeholder:(NSString*)placeholder
                     tag:(NSInteger)tag
                   value:(NSString*)value
+      textFieldDelegate:(id<UITextFieldDelegate>)textFieldDelegate
 {
     UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:title
                                                         message:message
@@ -94,6 +102,7 @@
     textField.placeholder = placeholder;
     [textField setClearButtonMode:UITextFieldViewModeWhileEditing];
     textField.text = value;
+    textField.delegate = textFieldDelegate;
     [alertView show];
 }
 
@@ -146,8 +155,7 @@
     return transition;
 }
 
-
-+ (ProgramLoadingInfo*) programLoadingInfoForProgramWithName:(NSString*)program
++ (ProgramLoadingInfo*)programLoadingInfoForProgramWithName:(NSString*)program
 {
     NSString *documentsDirectory = [Util applicationDocumentsDirectory];
     NSString *programsPath = [NSString stringWithFormat:@"%@/%@", documentsDirectory, kProgramsFolder];
@@ -176,12 +184,30 @@
     [userDefaults synchronize];
 }
 
-+(double) radiansToDegree:(float)rad
++ (NSString*)uniqueName:(NSString*)nameToCheck existingNames:(NSArray*)existingNames
+{
+    NSString *uniqueName = nameToCheck;
+    NSUInteger counter = 0;
+    BOOL duplicate;
+    do {
+        duplicate = NO;
+        for (NSString *existingName in existingNames) {
+            if ([existingName isEqualToString:uniqueName]) {
+                uniqueName = [NSString stringWithFormat:@"%@ (%lu)", nameToCheck, ++counter];
+                duplicate = YES;
+                break;
+            }
+        }
+    } while (duplicate);
+    return uniqueName;
+}
+
++ (double)radiansToDegree:(float)rad
 {
     return rad * 180.0 / M_PI;
 }
 
-+(double) degreeToRadians:(float)deg
++ (double)degreeToRadians:(float)deg
 {
     return deg * M_PI / 180.0;
 }

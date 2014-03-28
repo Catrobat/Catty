@@ -50,12 +50,21 @@
 
 @interface ProgramTableViewController () <UIActionSheetDelegate, UIAlertViewDelegate, UITextFieldDelegate,
 UINavigationBarDelegate>
+@property (strong, nonatomic) NSCharacterSet *blockedCharacterSet;
 @property (strong, nonatomic) NSMutableDictionary *imageCache;
 @end
 
 @implementation ProgramTableViewController
 
 #pragma mark - getter & setters
+- (NSCharacterSet*)blockedCharacterSet
+{
+    if (! _blockedCharacterSet) {
+        _blockedCharacterSet = [[NSCharacterSet characterSetWithCharactersInString:kTextFieldAllowedCharacters] invertedSet];
+    }
+    return _blockedCharacterSet;
+}
+
 - (NSMutableDictionary*)imageCache
 {
     // lazy instantiation
@@ -67,9 +76,7 @@ UINavigationBarDelegate>
 
 - (void)setProgram:(Program *)program
 {
-    if (program) {
-        [program setAsLastProgram];
-    }
+    [program setAsLastProgram];
     _program = program;
 }
 
@@ -138,7 +145,8 @@ UINavigationBarDelegate>
                   message:NSLocalizedString(@"Object name:",nil)
                  delegate:self
               placeholder:kObjectNamePlaceholder
-                      tag:kNewObjectAlertViewTag];
+                      tag:kNewObjectAlertViewTag
+        textFieldDelegate:self];
 }
 
 - (void)playSceneAction:(id)sender
@@ -301,12 +309,13 @@ UINavigationBarDelegate>
     titleLabel.textColor = [UIColor whiteColor];
     titleLabel.tag = 1;
     titleLabel.font = [UIFont systemFontOfSize:14.0f];
-    if (section == 0)
+    if (section == 0) {
         titleLabel.text = [kBackgroundTitle uppercaseString];
-    else if ([self.program.objectList count] > (kBackgroundObjects + 1))
+    } else if ([self.program.objectList count] > (kBackgroundObjects + 1)) {
         titleLabel.text = [kObjectTitlePlural uppercaseString];
-    else
+    } else {
         titleLabel.text = [kObjectTitleSingular uppercaseString];
+    }
 
     titleLabel.text = [NSString stringWithFormat:@"  %@", titleLabel.text];
     [headerView.contentView addSubview:titleLabel];
@@ -370,7 +379,13 @@ UINavigationBarDelegate>
     }
 }
 
-#pragma mark - action sheet delegate handlers
+#pragma mark - text field delegates
+- (BOOL)textField:(UITextField *)field shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)characters
+{
+    return ([characters rangeOfCharacterFromSet:self.blockedCharacterSet].location == NSNotFound);
+}
+
+#pragma mark - action sheet delegates
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
 {
     if (actionSheet.tag == kSceneActionSheetTag) {
@@ -382,7 +397,8 @@ UINavigationBarDelegate>
                       placeholder:kProgramNamePlaceholder
                               tag:kRenameAlertViewTag
                             value:((! [self.program.header.programName isEqualToString:kDefaultProgramName])
-                                   ? self.program.header.programName : nil)];
+                                   ? self.program.header.programName : nil)
+                textFieldDelegate:self];
         }
         // Delete button
         if (buttonIndex == actionSheet.destructiveButtonIndex)
@@ -440,7 +456,8 @@ UINavigationBarDelegate>
                       placeholder:kProgramNamePlaceholder
                               tag:kRenameAlertViewTag
                             value:((! [self.program.header.programName isEqualToString:kDefaultProgramName])
-                                   ? self.program.header.programName : nil)];
+                                   ? self.program.header.programName : nil)
+                textFieldDelegate:self];
         }
     }
 }

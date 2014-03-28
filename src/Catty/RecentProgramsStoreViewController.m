@@ -278,7 +278,7 @@
     NSURL *url = [NSURL alloc];
     switch (self.downloadSegmentedControl.selectedSegmentIndex) {
         case 0:
-            url = [NSURL URLWithString:[NSString stringWithFormat:@"%@/%@?%@%i&%@%i", kConnectionHost, kConnectionMostDownloaded, kProgramsOffset, self.programListOffset, kProgramsLimit, self.programListLimit]];
+            url = [NSURL URLWithString:[NSString stringWithFormat:@"%@/%@?%@%i&%@%i", kConnectionHost, kConnectionMostDownloadedFull, kProgramsOffset, self.programListOffset, kProgramsLimit, self.programListLimit]];
             
             break;
         case 1:
@@ -398,20 +398,27 @@
     [self update];
     for (CatrobatProject* project in projects) {
         //if ([project.author isEqualToString:@""]) {
+        if (!project.author) {
+            NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@/%@?id=%@", kConnectionHost, kConnectionIDQuery,project.projectID]];
+            NSURLRequest *request = [NSURLRequest requestWithURL:url cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:kConnectionTimeout];
+            
+            //    NSURLConnection *connection = [[NSURLConnection alloc] initWithRequest:request delegate:self];
+            //    self.connection = connection;
+            
+            [NSURLConnection sendAsynchronousRequest:request
+                                               queue:[NSOperationQueue mainQueue]
+                                   completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
+                                       [self loadInfosWith:data andResponse:response];}];
+            [self showLoadingView];
+        }
+        else
+        {
+            [self hideLoadingView];
+        }
         
-        NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@/%@?id=%@", kConnectionHost, kConnectionIDQuery,project.projectID]];
-        NSURLRequest *request = [NSURLRequest requestWithURL:url cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:kConnectionTimeout];
-        
-        //    NSURLConnection *connection = [[NSURLConnection alloc] initWithRequest:request delegate:self];
-        //    self.connection = connection;
-        
-        [NSURLConnection sendAsynchronousRequest:request
-                                           queue:[NSOperationQueue mainQueue]
-                               completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
-                                   [self loadInfosWith:data andResponse:response];}];
         // }
     }
-    [self showLoadingView];
+    
     
 }
 
