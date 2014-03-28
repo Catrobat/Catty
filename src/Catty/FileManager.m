@@ -124,7 +124,7 @@
 #pragma mark - Operations
 - (void)createDirectory:(NSString *)path
 {
-    NSFileManager *fileManager= [NSFileManager defaultManager];
+    NSFileManager *fileManager = [NSFileManager defaultManager];
     NSError *error = nil;
     if (! [self directoryExists:path])
         [fileManager createDirectoryAtPath:path withIntermediateDirectories:NO attributes:nil error:&error];
@@ -218,7 +218,7 @@
     NSURL *newURL = [NSURL fileURLWithPath:newPath];
     NSError *error = nil;
     if ([[NSFileManager defaultManager] moveItemAtURL:oldURL toURL:newURL error:&error] != YES)
-        NSLog(@"Unable to move file: %@", [error localizedDescription]);
+        NSLog(@"Unable to move directory: %@", [error localizedDescription]);
     NSLogError(error);
 }
 

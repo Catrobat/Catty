@@ -190,7 +190,7 @@
         }
         NSLog(@"Name of program is: %@", programName);
         XCTAssertNotNil(programName, @"Name of renamed program is nil, testing an empty string...");
-        XCTAssertFalse([programName isEqualToString:kDefaultProgramName], @"Did not rename program of delegate");
+        XCTAssertFalse([programName isEqualToString:kNewProgramName], @"Did not rename program in delegate");
         if ([programName isEqualToString:newProgramName]) {
             ++matchNewNameCounter;
         }
