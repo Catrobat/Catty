@@ -199,7 +199,7 @@
             ++matchNewNameCounter;
         }
     }
-    XCTAssertEqual(matchNewNameCounter, 1, @"Did not rename program of delegate correctly. Number of renamed programs: %ld", matchNewNameCounter);
+    XCTAssertEqual(matchNewNameCounter, 1, @"Did not rename program of delegate correctly. Number of renamed programs: %ld", (long)matchNewNameCounter);
     [ProgramTableViewControllerNewProgramTests removeProject:[NSString stringWithFormat:@"%@%@", [Program basePath], newProgramName]];
 }
 
