@@ -24,6 +24,7 @@
 #import "Program.h"
 #import "FileManager.h"
 #import "AppDelegate.h"
+#import "Util.h"
 
 #define kNewProgramName @"My new program"
 
@@ -39,10 +40,18 @@
 - (void)setUp
 {
     [super setUp];
+    if (! [self.fileManager directoryExists:[Program basePath]]) {
+        [self.fileManager createDirectory:[Program basePath]];
+    }
 }
 
 - (void)tearDown
 {
+    if (self.program) {
+        [ProgramTests removeProject:[self.program projectPath]];
+    }
+    self.program = nil;
+    self.fileManager = nil;
     [super tearDown];
 }
 
@@ -54,29 +63,37 @@
 - (void)testNewProgramIfProjectFolderExists
 {
     [self setupForNewProgram];
-    XCTAssertFalse([self.fileManager directoryExists:[self.program projectPath]], @"No project folder created for the new project");
+    XCTAssertTrue([self.fileManager directoryExists:[self.program projectPath]], @"No project folder created for the new project");
 }
 
 - (void)testNewProgramIfImagesFolderExists
 {
     [self setupForNewProgram];
     NSString *imagesDirName = [NSString stringWithFormat:@"%@%@", [self.program projectPath], kProgramImagesDirName];
-    XCTAssertFalse([self.fileManager directoryExists:imagesDirName], @"No images folder created for the new project");
+    XCTAssertTrue([self.fileManager directoryExists:imagesDirName], @"No images folder created for the new project");
 }
 
 - (void)testNewProgramIfSoundsFolderExists
 {
     [self setupForNewProgram];
     NSString *soundsDirName = [NSString stringWithFormat:@"%@%@", [self.program projectPath], kProgramSoundsDirName];
-    XCTAssertFalse([self.fileManager directoryExists:soundsDirName], @"No sounds folder created for the new project");
+    XCTAssertTrue([self.fileManager directoryExists:soundsDirName], @"No sounds folder created for the new project");
 }
 
 #pragma mark - getters and setters
 - (FileManager*)fileManager
 {
-    if (_fileManager)
+    if (! _fileManager)
         _fileManager = ((AppDelegate*)[UIApplication sharedApplication].delegate).fileManager;
     return _fileManager;
+}
+
++ (void)removeProject:(NSString*)projectPath
+{
+    FileManager *fileManager = ((AppDelegate*)[UIApplication sharedApplication].delegate).fileManager;
+    if ([fileManager directoryExists:projectPath])
+        [fileManager deleteDirectory:projectPath];
+    [Util setLastProgram:nil];
 }
 
 @end

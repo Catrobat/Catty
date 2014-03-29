@@ -57,6 +57,9 @@
 - (void)setUp
 {
     [super setUp];
+    if (! [self.fileManager directoryExists:[Program basePath]]) {
+        [self.fileManager createDirectory:[Program basePath]];
+    }
     if (self.defaultProgram) {
         [ProgramTableViewControllerNewProgramTests removeProject:[self.defaultProgram projectPath]];
     }
@@ -109,7 +112,6 @@
         UITableViewCell <CatrobatImageCell>* imageCell = (UITableViewCell <CatrobatImageCell>*)cell;
         firstObjectCellTitle = imageCell.titleLabel.text;
     }
-
     XCTAssertTrue([firstObjectCellTitle isEqualToString:kDefaultObjectName], @"The ProgramTableViewController did not create the first object cell correctly.");
 }
 
@@ -213,7 +215,7 @@
 
 - (FileManager*)fileManager
 {
-    if (_fileManager)
+    if (! _fileManager)
         _fileManager = ((AppDelegate*)[UIApplication sharedApplication].delegate).fileManager;
     return _fileManager;
 }

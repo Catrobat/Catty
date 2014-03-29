@@ -78,7 +78,7 @@
     }
 
     FileManager *fileManager = [[FileManager alloc] init];
-    if (! [self programExists:[program projectPath]]) {
+    if (! [self programExists:programName]) {
         [fileManager createDirectory:[program projectPath]];
     }
 

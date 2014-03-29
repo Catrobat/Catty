@@ -56,6 +56,9 @@
 - (void)setUp
 {
     [super setUp];
+    if (! [self.fileManager directoryExists:[Program basePath]]) {
+        [self.fileManager createDirectory:[Program basePath]];
+    }
     self.programTableViewController.delegate = nil; // no delegate needed for our tests
 }
 
@@ -372,7 +375,7 @@
 
 - (FileManager*)fileManager
 {
-    if (_fileManager)
+    if (! _fileManager)
         _fileManager = ((AppDelegate*)[UIApplication sharedApplication].delegate).fileManager;
     return _fileManager;
 }
