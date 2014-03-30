@@ -100,9 +100,6 @@
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
-//    [self.collectionView performBatchUpdates:^{
-//        [self.collectionView reloadSections:[NSIndexSet indexSetWithIndexesInRange:NSMakeRange(0, self.object.scriptList.count)]];
-//    } completion:NULL];
     [self.collectionView reloadData];
 }
 
@@ -176,7 +173,7 @@
 - (void)brickAdded:(NSNotification*)notification
 {
     if (notification.userInfo) {
-        NSLog(@"brickAdded notification received with userInfo: %@", [notification.userInfo description]);
+        // NSLog(@"brickAdded notification received with userInfo: %@", [notification.userInfo description]);
         [self addBrickCellAction:notification.userInfo[kUserInfoKeyBrickCell]];
     }
 }
@@ -288,6 +285,11 @@
     // margin between CVC-sections as you can see in Catroid's PocketCode version
     // TODO: outsource all consts
     return UIEdgeInsetsMake(10, 0, 5, 0);
+}
+
+- (void)collectionView:(UICollectionView *)collectionView didHighlightItemAtIndexPath:(NSIndexPath *)indexPath {
+    BrickCell *cell = (BrickCell*)[self.collectionView cellForItemAtIndexPath:indexPath];
+    NSLog(@"did hihlieght cell: %@", cell.class);
 }
 
 #pragma mark LXReorderableCollectionViewDatasource

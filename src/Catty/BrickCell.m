@@ -45,7 +45,6 @@
 @property (nonatomic, weak) UIImageView *backgroundImageView;
 @property (nonatomic, weak) UIImageView *imageView;
 @property (nonatomic, weak) BrickCellInlineView *inlineView;
-@property (nonatomic, weak) UIImageView *overlayView;
 @end
 
 @implementation BrickCell
@@ -150,36 +149,21 @@
 
     UIImage *brickImage = self.imageView.image;
     brickImage = [brickImage imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
-    self.overlayView.image = brickImage;
-    self.overlayView.tintColor = [UIColor colorWithRed:0.0f green:0.0f blue:0.0f alpha:0.4f];
-
-    // TODO get correct frame
-    self.overlayView.frame = self.imageView.frame;
 }
 
 #pragma mark Highlight state / collection view cell delegate
-- (void)setHighlighted:(BOOL)highlighted
-{
-    [super setHighlighted:highlighted];
-    
-    if (highlighted) {
-        [self.contentView addSubview:self.overlayView];
-    } else {
-        
-        [self.overlayView removeFromSuperview];
-    }
-    [self setNeedsDisplay];
-}
+//- (void)setHighlighted:(BOOL)highlighted
+//{
+//    [super setHighlighted:highlighted];
 
-- (UIImageView *)overlayView
-{
-    if (!_overlayView) {
-        UIImageView *overlayView = [[UIImageView alloc] initWithFrame:CGRectZero];
-        // overlayView.backgroundColor = [UIColor colorWithRed:0.0f green:0.0f blue:0.0f alpha:0.4f];
-        _overlayView = overlayView;
-    }
-    return _overlayView;
-}
+//    if (highlighted) {
+//        [self.contentView addSubview:self.overlayView];
+//    } else {
+//        
+//        [self.overlayView removeFromSuperview];
+//    }
+//    [self setNeedsDisplay];
+//}
 
 - (NSArray*)brickCategoryColors
 {
@@ -337,7 +321,7 @@
         [self setupForSubclassWithName:NSStringFromClass([self class])];
         self.contentMode = UIViewContentModeScaleToFill;
         self.clipsToBounds = NO;
-        self.backgroundColor = [UIColor clearColor];
+        self.opaque = NO;
     }
     return self;
 }
