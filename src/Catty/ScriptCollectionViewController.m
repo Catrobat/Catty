@@ -32,8 +32,9 @@
 #import "Brick.h"
 #import "LXReorderableCollectionViewFlowLayout.h"
 #import "BrickManager.h"
+#import "StartScriptCell.h"
 
-@interface ScriptCollectionViewController () <UICollectionViewDelegate, UICollectionViewDelegateFlowLayout>
+@interface ScriptCollectionViewController () <UICollectionViewDelegate, LXReorderableCollectionViewDelegateFlowLayout, LXReorderableCollectionViewDataSource>
 @property (nonatomic, strong) NSDictionary *classNameBrickNameMap;
 @property (nonatomic, weak) IBOutlet UICollectionView *collectionView;
 @end
@@ -194,10 +195,6 @@
     return ([script.brickList count] + 1); // because script itself is a brick in IDE too
 }
 
-- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath*)indexPath
-{
-}
-
 #pragma mark - collection view delegate
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -289,7 +286,7 @@
 
 - (void)collectionView:(UICollectionView *)collectionView didHighlightItemAtIndexPath:(NSIndexPath *)indexPath {
     BrickCell *cell = (BrickCell*)[self.collectionView cellForItemAtIndexPath:indexPath];
-    NSLog(@"did hihlieght cell: %@", cell.class);
+    cell.alpha = .7f;
 }
 
 #pragma mark LXReorderableCollectionViewDatasource
@@ -297,10 +294,25 @@
        itemAtIndexPath:(NSIndexPath *)fromIndexPath
    willMoveToIndexPath:(NSIndexPath *)toIndexPath
 {
-//    Script *script = [self.object.scriptList objectAtIndex:fromIndexPath.section];
-//    Brick *brick = [script.brickList objectAtIndex:fromIndexPath.row - 1];
-//    [script.brickList removeObjectAtIndex:fromIndexPath.item];
-//    [script.brickList insertObject:brick atIndex:toIndexPath.item];
+    Script *script = [self.object.scriptList objectAtIndex:fromIndexPath.section];
+    Brick *toBrick = [script.brickList objectAtIndex:toIndexPath.item - 1];
+    [script.brickList removeObjectAtIndex:toIndexPath.item - 1];
+    [script.brickList insertObject:toBrick atIndex:fromIndexPath.item - 1];
+}
+
+- (BOOL)collectionView:(UICollectionView *)collectionView itemAtIndexPath:(NSIndexPath *)fromIndexPath canMoveToIndexPath:(NSIndexPath *)toIndexPath {
+    return toIndexPath.item == 0 ? NO : YES;
+}
+
+- (BOOL)collectionView:(UICollectionView *)collectionView canMoveItemAtIndexPath:(NSIndexPath *)indexPath {
+    BrickCell *cell = (BrickCell *)[self.collectionView cellForItemAtIndexPath:indexPath];
+    
+    // dont move start script brick
+    if ([cell isKindOfClass:StartScriptCell.class] || indexPath.row == 0) {
+        return NO;
+    }
+    
+    return YES;
 }
 
 #pragma mark - segue handling
