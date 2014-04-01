@@ -171,7 +171,9 @@
     NSNumber *brickType = [self.selectableBricksSortedIndexes objectAtIndex:indexPath.section];
     NSString *brickTypeName = [self.selectableBricks objectForKey:brickType];
     BrickCell *brickCell = [collectionView dequeueReusableCellWithReuseIdentifier:brickTypeName forIndexPath:indexPath];
+    brickCell.backgroundBrickCell = self.object.isBackground;
     brickCell.enabled = NO;
+    [brickCell renderSubViews];
     return brickCell;
 }
 

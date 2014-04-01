@@ -355,8 +355,8 @@ typedef NS_ENUM(NSInteger, kSoundBrickType) {
 
 // look bricks
 typedef NS_ENUM(NSInteger, kLookBrickType) {
-    kSetBackgroundBrick = 0,
-    kNextBackgroundBrick = 1,
+    kSetLookBrick = 0,
+    kNextLookBrick = 1,
     kSetSizeToBrick = 2,
     kChangeSizeByNBrick = 3,
     kHideBrick = 4,
@@ -467,10 +467,18 @@ typedef NS_ENUM(NSInteger, kBrickShapeType) {
 
 #define kUnselectableBricksBackgroundObject @[\
     @[@(kIfElseBrick), @(kIfEndBrick), @(kLoopEndBrick)], /* control bricks  */\
-    @[@(kGoNStepsBackBrick), @(kComeToFrontBrick)],       /* motion bricks   */\
+    @[@(kIfOnEdgeBounceBrick), @(kGoNStepsBackBrick), @(kComeToFrontBrick)], /* motion bricks   */\
     @[],                                                  /* sound bricks    */\
     @[],                                                  /* look bricks     */\
     @[]                                                   /* variable bricks */\
+]
+
+#define kBrickModifiedTitlesForBackgroundObject @[\
+    @{},                                                  /* control bricks  */\
+    @{},                                                  /* motion bricks   */\
+    @{},                                                  /* sound bricks    */\
+    @{@(kSetLookBrick) : NSLocalizedString(@"Set background\n%@",nil), @(kNextLookBrick) : NSLocalizedString(@"Next background",nil) }, /* look bricks     */\
+    @{}                                                   /* variable bricks */\
 ]
 
 #define kClassNameBrickNameMap @{\
@@ -510,8 +518,8 @@ typedef NS_ENUM(NSInteger, kBrickShapeType) {
     @"ChangeVolumeByNBrick"      : @{@"categoryType" : @(kSoundBrick),   @"brickType" : @(kChangeVolumeByNBrick)},\
     @"SpeakBrick"                : @{@"categoryType" : @(kSoundBrick),   @"brickType" : @(kSpeakBrick)},\
     /* look bricks */\
-    @"SetLookBrick"              : @{@"categoryType" : @(kLookBrick),    @"brickType" : @(kSetBackgroundBrick)},\
-    @"NextLookBrick"             : @{@"categoryType" : @(kLookBrick),    @"brickType" : @(kNextBackgroundBrick)},\
+    @"SetLookBrick"              : @{@"categoryType" : @(kLookBrick),    @"brickType" : @(kSetLookBrick)},\
+    @"NextLookBrick"             : @{@"categoryType" : @(kLookBrick),    @"brickType" : @(kNextLookBrick)},\
     @"SetSizeToBrick"            : @{@"categoryType" : @(kLookBrick),    @"brickType" : @(kSetSizeToBrick)},\
     @"ChangeSizeByNBrick"        : @{@"categoryType" : @(kLookBrick),    @"brickType" : @(kChangeSizeByNBrick)},\
     @"HideBrick"                 : @{@"categoryType" : @(kLookBrick),    @"brickType" : @(kHideBrick)},\

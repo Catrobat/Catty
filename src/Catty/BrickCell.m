@@ -147,8 +147,9 @@
 {
     [super layoutSubviews];
 
-    UIImage *brickImage = self.imageView.image;
-    brickImage = [brickImage imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
+    // XXX: Value stored to 'brickImage' is never read...
+//    UIImage *brickImage = self.imageView.image;
+//    brickImage = [brickImage imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
 }
 
 #pragma mark Highlight state / collection view cell delegate
@@ -295,8 +296,16 @@
                                  userInfo:nil];
 }
 
-- (void)setupForSubclassWithName:(NSString*)subclassName
+- (void)renderSubViews
 {
+    [self.backgroundImageView removeFromSuperview];
+    [self.imageView removeFromSuperview];
+    [self.inlineView removeFromSuperview];
+    self.backgroundImageView = nil;
+    self.imageView = nil;
+    self.inlineView = nil;
+
+    NSString *subclassName = NSStringFromClass([self class]);
     NSDictionary *allCategoriesAndBrickTypes = self.classNameBrickNameMap;
     NSDictionary *categoryAndBrickType = allCategoriesAndBrickTypes[[subclassName stringByReplacingOccurrencesOfString:@"Cell" withString:@""]];
     self.categoryType = (kBrickCategoryType) [categoryAndBrickType[@"categoryType"] integerValue];
@@ -318,7 +327,6 @@
     self = [super initWithFrame:frame];
     if (self) {
         self.backgroundColor = [UIColor clearColor];
-        [self setupForSubclassWithName:NSStringFromClass([self class])];
         self.contentMode = UIViewContentModeScaleToFill;
         self.clipsToBounds = NO;
         self.opaque = NO;
@@ -331,7 +339,6 @@
     self = [super init];
     if (self) {
         self.backgroundColor = [UIColor clearColor];
-        [self setupForSubclassWithName:NSStringFromClass([self class])];
         self.contentMode = UIViewContentModeScaleToFill;
         self.clipsToBounds = NO;
         self.backgroundColor = [UIColor clearColor];
@@ -372,6 +379,20 @@
             NSError(@"unknown brick category type given");
             abort();
     }
+    if (self.isBackgroundBrickCell) {
+        NSMutableArray *modifiedBrickCategoryTitles = [NSMutableArray array];
+        NSDictionary *modifiedTitles = kBrickModifiedTitlesForBackgroundObject[self.categoryType];
+        for (NSUInteger counter = 0; counter < [brickCategoryTitles count]; ++counter) {
+            NSString *modifiedTitle = [modifiedTitles objectForKey:@(counter)];
+            if (modifiedTitle) {
+                [modifiedBrickCategoryTitles addObject:modifiedTitle];
+            } else {
+                [modifiedBrickCategoryTitles addObject:[brickCategoryTitles objectAtIndex:counter]];
+            }
+        }
+        brickCategoryTitles = [modifiedBrickCategoryTitles copy];
+    }
+
     NSString *brickTitle = brickCategoryTitles[self.brickType];
     id brickParamsUnconverted = brickCategoryParams[self.brickType];
     NSArray *brickParams = (([brickParamsUnconverted isKindOfClass:[NSString class]]) ? @[brickParamsUnconverted] : brickParamsUnconverted);

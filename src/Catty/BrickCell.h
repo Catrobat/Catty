@@ -31,9 +31,10 @@
 
 @property (nonatomic, readonly) kBrickCategoryType categoryType;
 @property (nonatomic, readonly) NSInteger brickType;
-@property (nonatomic, readonly, getter = isScriptBrickCell) BOOL scriptBrickCell;
+@property (nonatomic, getter = isBackgroundBrickCell) BOOL backgroundBrickCell;
 @property (nonatomic) BOOL enabled;
 
+- (void)renderSubViews;
 - (void)hookUpSubViews:(NSArray *)inlineViewSubViews; // abstract (only called internally)
 
 + (NSInteger)numberOfAvailableBricksForCategoryType:(kBrickCategoryType)categoryType;

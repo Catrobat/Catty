@@ -68,7 +68,7 @@
     [super setPlaceHolderTitle:kScriptsTitle
                    Description:[NSString stringWithFormat:NSLocalizedString(kEmptyViewPlaceHolder, nil),
                                 kScriptsTitle]];
-    [super showPlaceHolder:(!(BOOL)[self.object.scriptList count])];
+    [super showPlaceHolder:(! (BOOL)[self.object.scriptList count])];
     [self setupToolBar];
     [super setPlaceHolderTitle:kScriptsTitle
                    Description:[NSString stringWithFormat:NSLocalizedString(kEmptyViewPlaceHolder, nil), kScriptsTitle]];
@@ -215,7 +215,9 @@
         NSString *brickSubClassName = NSStringFromClass([brick class]);
         brickCell = [collectionView dequeueReusableCellWithReuseIdentifier:brickSubClassName forIndexPath:indexPath];
     }
+    brickCell.backgroundBrickCell = self.object.isBackground;
     brickCell.enabled = YES;
+    [brickCell renderSubViews];
     return brickCell;
 }
 
