@@ -91,7 +91,7 @@
         self.programTableViewController.program = [Program programWithLoadingInfo:loadingInfo];
         [self.programTableViewController viewDidLoad];
         [self.programTableViewController viewWillAppear:NO];
-        XCTAssertFalse([self.fileManager directoryExists:loadingInfo.basePath], @"The ProgramTableViewController did not create the project folder for the new project");
+        XCTAssertTrue([self.fileManager directoryExists:loadingInfo.basePath], @"The ProgramTableViewController did not create the project folder for the project %@", programName);
         self.programTableViewController = nil; // unload program table view controller
     }
 }
