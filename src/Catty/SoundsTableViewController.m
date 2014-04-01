@@ -106,10 +106,8 @@
 
 - (void)dealloc
 {
-    [[AudioManager sharedAudioManager] stopAllSounds];
-    self.currentPlayingSong.playing = NO;
-    self.currentPlayingSong = nil;
     self.currentPlayingSongCell = nil;
+    [self stopAllSounds];
 }
 
 #pragma mark - notification
@@ -157,7 +155,7 @@
     NSString *newFileName = [NSString stringWithFormat:@"%@%@%@", [data md5], kResourceFileNameSeparator, sound.fileName];
     sound.fileName = newFileName;
     NSString *newPath = [self.object pathForSound:sound];
-    [delegate.fileManager copyExistingFileAtPath:oldPath toPath:newPath];
+    [delegate.fileManager copyExistingFileAtPath:oldPath toPath:newPath overwrite:YES];
     [self.object.soundList addObject:sound];
     NSInteger numberOfRowsInLastSection = [self tableView:self.tableView numberOfRowsInSection:0];
     [self showPlaceHolder:NO];
@@ -356,6 +354,7 @@
                 return;
             }
 
+            [self stopAllSounds];
             UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"iPhone" bundle:nil];
             SoundPickerTableViewController *soundPickerTVC;
             soundPickerTVC = [storyboard instantiateViewControllerWithIdentifier:@"SoundPickerTableViewController"];
@@ -383,6 +382,17 @@
 }
 
 #pragma mark - Helper Methods
+- (void)stopAllSounds
+{
+    [[AudioManager sharedAudioManager] stopAllSounds];
+    if (self.currentPlayingSongCell) {
+        self.currentPlayingSongCell.iconImageView.image = [UIImage imageNamed:@"ic_media_play"];
+    }
+    self.currentPlayingSong.playing = NO;
+    self.currentPlayingSong = nil;
+    self.currentPlayingSongCell = nil;
+}
+
 - (void)addSoundAction:(id)sender
 {
     [self showAddSoundActionSheet];
