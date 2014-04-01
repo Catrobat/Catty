@@ -248,24 +248,17 @@
     NSArray *programLoadingInfos = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:basePath error:&error];
     NSLogError(error);
 
-    BOOL firstProgramExists = NO;
-    BOOL secondProgramExists = NO;
+    BOOL defaultProgramExists = NO;
     for (NSString *programLoadingInfo in programLoadingInfos) {
-        if ([programLoadingInfo isEqualToString:kDefaultFirstProgramName]) {
-            firstProgramExists = YES;
-        } else if ([programLoadingInfo isEqualToString:kDefaultSecondProgramName]) {
-            secondProgramExists = YES;
+        if ([programLoadingInfo isEqualToString:kDefaultProgramName]) {
+            defaultProgramExists = YES;
         }
     }
-    if (! firstProgramExists) {
-        [self addBundleProjectWithName:kDefaultFirstProgramName];
+    if (! defaultProgramExists) {
+        [self addBundleProjectWithName:kDefaultProgramName];
     }
-    if (! secondProgramExists) {
-        [self addBundleProjectWithName:kDefaultSecondProgramName];
-    }
-
     if (! [Util lastProgram]) {
-        [Util setLastProgram:kDefaultFirstProgramName];
+        [Util setLastProgram:kDefaultProgramName];
     }
 }
 

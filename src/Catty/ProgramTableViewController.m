@@ -396,7 +396,7 @@ UINavigationBarDelegate>
                          delegate:self
                       placeholder:kProgramNamePlaceholder
                               tag:kRenameAlertViewTag
-                            value:((! [self.program.header.programName isEqualToString:kDefaultProgramName])
+                            value:((! [self.program.header.programName isEqualToString:kNewDefaultProgramName])
                                    ? self.program.header.programName : nil)
                 textFieldDelegate:self];
         }
@@ -455,7 +455,7 @@ UINavigationBarDelegate>
                          delegate:self
                       placeholder:kProgramNamePlaceholder
                               tag:kRenameAlertViewTag
-                            value:((! [self.program.header.programName isEqualToString:kDefaultProgramName])
+                            value:((! [self.program.header.programName isEqualToString:kNewDefaultProgramName])
                                    ? self.program.header.programName : nil)
                 textFieldDelegate:self];
         }

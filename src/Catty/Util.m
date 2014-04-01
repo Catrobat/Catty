@@ -169,10 +169,10 @@
 {
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
     NSString* lastProgram = [userDefaults objectForKey:kLastProgram];
-    if(! lastProgram) {
-        [userDefaults setObject:kDefaultProject forKey:kLastProgram];
+    if (! lastProgram) {
+        [userDefaults setObject:kDefaultProgramName forKey:kLastProgram];
         [userDefaults synchronize];
-        lastProgram = kDefaultProject;
+        lastProgram = kDefaultProgramName;
     }
     return lastProgram;
 }

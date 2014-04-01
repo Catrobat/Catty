@@ -100,7 +100,6 @@
 		B4BCF433170ED5AD008EDF3A /* RecentProgramsStoreViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B4BCF432170ED5AD008EDF3A /* RecentProgramsStoreViewController.m */; };
 		B4BCF437170ED5D4008EDF3A /* LoadingView.m in Sources */ = {isa = PBXBuildFile; fileRef = B4BCF436170ED5D4008EDF3A /* LoadingView.m */; };
 		B4BCF43B170ED60D008EDF3A /* FeaturedProgramsStoreViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B4BCF43A170ED60C008EDF3A /* FeaturedProgramsStoreViewController.m */; };
-		B4BCF442170EDB80008EDF3A /* ProgramDefines.h in Resources */ = {isa = PBXBuildFile; fileRef = B4BCF441170EDB80008EDF3A /* ProgramDefines.h */; };
 		B4D4DD4317156A8500EEE3F8 /* PointInDirectionBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = B4D4DD4217156A8500EEE3F8 /* PointInDirectionBrick.m */; };
 		B4D940A0170EC249003DDBFA /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B4F243CC170EBEF7007A071D /* AppDelegate.m */; };
 		B4D940AD170EC2B7003DDBFA /* ioapi.c in Sources */ = {isa = PBXBuildFile; fileRef = B4D940A5170EC2B7003DDBFA /* ioapi.c */; };
@@ -115,7 +114,6 @@
 		B4D940D1170EC9ED003DDBFA /* NSString+CatrobatNSStringExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = B4D940BE170EC681003DDBFA /* NSString+CatrobatNSStringExtensions.m */; };
 		B4D940D4170ECA15003DDBFA /* ImageCache.m in Sources */ = {isa = PBXBuildFile; fileRef = B4D940D3170ECA15003DDBFA /* ImageCache.m */; };
 		B4D940D8170ECB31003DDBFA /* Aquarium 3.catrobat in Resources */ = {isa = PBXBuildFile; fileRef = B4D940D7170ECB0D003DDBFA /* Aquarium 3.catrobat */; };
-		B4D940D9170ECB31003DDBFA /* My first project.catrobat in Resources */ = {isa = PBXBuildFile; fileRef = B4D940D6170ECAFF003DDBFA /* My first project.catrobat */; };
 		B4D940DC170ECB65003DDBFA /* ContinueImageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B4D940DB170ECB65003DDBFA /* ContinueImageCell.m */; };
 		B4D940E0170ECB8B003DDBFA /* DarkBlueGradientCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B4D940DF170ECB8B003DDBFA /* DarkBlueGradientCell.m */; };
 		B4DA23D1175E26550079B381 /* SensorManager.m in Sources */ = {isa = PBXBuildFile; fileRef = B4DA23D0175E26550079B381 /* SensorManager.m */; };
@@ -474,7 +472,6 @@
 		B4D940CD170EC903003DDBFA /* CatrobatBaseCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CatrobatBaseCell.m; sourceTree = "<group>"; };
 		B4D940D2170ECA15003DDBFA /* ImageCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageCache.h; sourceTree = "<group>"; };
 		B4D940D3170ECA15003DDBFA /* ImageCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageCache.m; sourceTree = "<group>"; };
-		B4D940D6170ECAFF003DDBFA /* My first project.catrobat */ = {isa = PBXFileReference; lastKnownFileType = file; path = "My first project.catrobat"; sourceTree = "<group>"; };
 		B4D940D7170ECB0D003DDBFA /* Aquarium 3.catrobat */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Aquarium 3.catrobat"; sourceTree = "<group>"; };
 		B4D940DA170ECB65003DDBFA /* ContinueImageCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContinueImageCell.h; sourceTree = "<group>"; };
 		B4D940DB170ECB65003DDBFA /* ContinueImageCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContinueImageCell.m; sourceTree = "<group>"; };
@@ -843,7 +840,6 @@
 			isa = PBXGroup;
 			children = (
 				B4D940D7170ECB0D003DDBFA /* Aquarium 3.catrobat */,
-				B4D940D6170ECAFF003DDBFA /* My first project.catrobat */,
 			);
 			name = Resources;
 			path = Catty/Resources;
@@ -2556,10 +2552,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				B4D940D8170ECB31003DDBFA /* Aquarium 3.catrobat in Resources */,
-				B4D940D9170ECB31003DDBFA /* My first project.catrobat in Resources */,
 				81C27426189EF94600827A95 /* Images.xcassets in Resources */,
 				C3F2950C1813C63200E37D61 /* iPhone.storyboard in Resources */,
-				B4BCF442170EDB80008EDF3A /* ProgramDefines.h in Resources */,
 				92300D0B18B2196700F2B4DC /* Localizable.strings in Resources */,
 				B4365CE91758EBA900B4D0A6 /* LoggerProperties.plist in Resources */,
 			);

@@ -82,6 +82,9 @@
     self.lastProgram = nil;
     self.defaultProgram = nil;
     AppDelegate *appDelegate = (AppDelegate*)[UIApplication sharedApplication].delegate;
+    if (! [appDelegate.fileManager directoryExists:[Program basePath]]) {
+        [appDelegate.fileManager createDirectory:[Program basePath]];
+    }
     [appDelegate.fileManager addDefaultProjectsToProgramsRootDirectory];
 }
 

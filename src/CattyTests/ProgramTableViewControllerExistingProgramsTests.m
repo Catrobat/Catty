@@ -70,7 +70,7 @@
 }
 
 #pragma mark - Tests for all existing programs
-// existing programs like Aquarium 3, My first project, ...
+// existing programs like Aquarium 3, ...
 - (void)testExistingProgramsIfFolderExists
 {
     NSString *basePath = [Program basePath];
