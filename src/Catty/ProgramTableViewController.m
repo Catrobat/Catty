@@ -124,6 +124,7 @@ UINavigationBarDelegate>
     [super viewDidLoad];
     [self initTableView];
 
+    self.editing = NO;
     if (self.program.header.programName) {
         self.navigationItem.title = self.program.header.programName;
         self.title = self.program.header.programName;
@@ -162,10 +163,20 @@ UINavigationBarDelegate>
                                                       delegate:self
                                              cancelButtonTitle:kBtnCancelTitle
                                         destructiveButtonTitle:kBtnDeleteTitle
-                                             otherButtonTitles:NSLocalizedString(@"Rename",nil), nil];
+                                             otherButtonTitles:NSLocalizedString(@"Rename",nil), NSLocalizedString(@"Delete multiple objects",nil), nil];
     edit.tag = kSceneActionSheetTag;
     edit.actionSheetStyle = UIActionSheetStyleDefault;
     [edit showInView:self.view];
+}
+
+- (void)cancelEditing:(id)sender
+{
+    UIBarButtonItem *editButton = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Edit", nil) style:UIBarButtonItemStylePlain target:self action:@selector(editProgram:)];
+    self.navigationItem.hidesBackButton = NO;
+    self.navigationItem.rightBarButtonItem = editButton;
+    [self.tableView setEditing:NO animated:YES];
+    [self setupToolBar];
+    self.editing = NO;
 }
 
 #pragma mark - table view data source
@@ -327,6 +338,11 @@ UINavigationBarDelegate>
     return ((indexPath.section == kObjectSectionIndex) && (([self.program.objectList count] - kBackgroundObjects) > kMinNumOfObjects));
 }
 
+-(UITableViewCellEditingStyle)tableView:(UITableView*)tableView editingStyleForRowAtIndexPath:(NSIndexPath*)indexPath
+{
+    return 3; // strange, no corresponding enum value available for that...
+}
+
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (indexPath.section == kObjectSectionIndex) {
@@ -334,7 +350,7 @@ UINavigationBarDelegate>
             SpriteObject *object = [self.program.objectList objectAtIndex:(kObjectSectionIndex + indexPath.row)];
             [self.imageCache objectForKey:object.name];
             [self.program removeObject:object];
-            
+
             [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
         }
     }
@@ -344,6 +360,13 @@ UINavigationBarDelegate>
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath*)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+
+//    UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+//    if (cell.accessoryType == UITableViewCellAccessoryCheckmark) {
+//        cell.accessoryType = UITableViewCellAccessoryNone;
+//    } else if (cell.accessoryType == UITableViewCellAccessoryNone) {
+//        cell.accessoryType = UITableViewCellAccessoryCheckmark;
+//    }
 }
 
 #pragma mark - segue handler
@@ -379,6 +402,11 @@ UINavigationBarDelegate>
     }
 }
 
+- (BOOL)shouldPerformSegueWithIdentifier:(NSString *)identifier sender:(id)sender
+{
+    return (! self.isEditing);
+}
+
 #pragma mark - text field delegates
 - (BOOL)textField:(UITextField *)field shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)characters
 {
@@ -400,7 +428,20 @@ UINavigationBarDelegate>
                                    ? self.program.header.programName : nil)
                 textFieldDelegate:self];
         }
-        // Delete button
+        // Delete multiple objects button
+        if (buttonIndex == 2) {
+            UIBarButtonItem *cancelButton = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Cancel", nil)
+                                                                             style:UIBarButtonItemStylePlain
+                                                                            target:self
+                                                                            action:@selector(cancelEditing:)];
+            self.navigationItem.hidesBackButton = YES;
+            self.navigationItem.rightBarButtonItem = cancelButton;
+            [self.tableView setEditing:YES animated:YES];
+//            self.navigationItem.leftBarButtonItem = markAllButton;
+            self.editing = YES;
+            [self setupEditingToolBar];
+        }
+        // Delete program button
         if (buttonIndex == actionSheet.destructiveButtonIndex)
         {
             NSLog(@"Delete button pressed");
@@ -465,7 +506,6 @@ UINavigationBarDelegate>
 #pragma mark - helpers
 - (void)setupToolBar
 {
-    // @INFO: Please do not modify or remove this code again, unless you don't exactly know what you are doing.
     [super setupToolBar];
     UIBarButtonItem *flexItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace
                                                                               target:nil
@@ -482,6 +522,23 @@ UINavigationBarDelegate>
     UIBarButtonItem *invisibleButton = [[UIBarButtonItem alloc] initWithCustomView:imageView];
     self.toolbarItems = [NSArray arrayWithObjects:flexItem, invisibleButton, add, invisibleButton, flexItem,
                          flexItem, flexItem, invisibleButton, play, invisibleButton, flexItem, nil];
+}
+
+- (void)setupEditingToolBar
+{
+    [super setupToolBar];
+    UIBarButtonItem *flexItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace
+                                                                              target:nil
+                                                                              action:nil];
+    UIBarButtonItem *markAllButton = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Mark all", nil)
+                                                                      style:UIBarButtonItemStylePlain
+                                                                     target:self
+                                                                     action:@selector(markAllObjects:)];
+    UIBarButtonItem *deleteButton = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Delete", nil)
+                                                                     style:UIBarButtonItemStylePlain
+                                                                    target:self
+                                                                    action:@selector(deleteSelectedObjects:)];
+    self.toolbarItems = [NSArray arrayWithObjects:markAllButton, flexItem, deleteButton, nil];
 }
 
 @end
