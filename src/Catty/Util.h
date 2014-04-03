@@ -38,24 +38,31 @@
 
 + (void)showComingSoonAlertView;
 
-+ (void)alertWithText:(NSString*)text;
++ (UIAlertView*)alertWithText:(NSString*)text;
 
-+ (void)alertWithText:(NSString*)text delegate:(id<UIAlertViewDelegate>)delegate tag:(NSInteger)tag;
++ (UIAlertView*)alertWithText:(NSString*)text delegate:(id<UIAlertViewDelegate>)delegate tag:(NSInteger)tag;
 
-+ (void)promptWithTitle:(NSString*)title
-                message:(NSString*)message
-               delegate:(id<UIAlertViewDelegate>)delegate
-            placeholder:(NSString*)placeholder
-                    tag:(NSInteger)tag
-      textFieldDelegate:(id<UITextFieldDelegate>)textFieldDelegate;
++ (UIAlertView*)promptWithTitle:(NSString*)title
+                        message:(NSString*)message
+                       delegate:(id<UIAlertViewDelegate>)delegate
+                    placeholder:(NSString*)placeholder
+                            tag:(NSInteger)tag
+              textFieldDelegate:(id<UITextFieldDelegate>)textFieldDelegate;
 
-+ (void)promptWithTitle:(NSString*)title
-                message:(NSString*)message
-               delegate:(id<UIAlertViewDelegate>)delegate
-            placeholder:(NSString*)placeholder
-                    tag:(NSInteger)tag
-                  value:(NSString*)value
-      textFieldDelegate:(id<UITextFieldDelegate>)textFieldDelegate;
++ (UIAlertView*)promptWithTitle:(NSString*)title
+                        message:(NSString*)message
+                       delegate:(id<UIAlertViewDelegate>)delegate
+                    placeholder:(NSString*)placeholder
+                            tag:(NSInteger)tag
+                          value:(NSString*)value
+              textFieldDelegate:(id<UITextFieldDelegate>)textFieldDelegate;
+
++ (UIActionSheet*)actionSheetWithTitle:(NSString*)title
+                              delegate:(id<UIActionSheetDelegate>)delegate
+                destructiveButtonTitle:(NSString*)destructiveButtonTitle
+                     otherButtonTitles:(NSArray*)otherButtonTitles
+                                   tag:(NSInteger)tag
+                                  view:(UIView*)view;
 
 + (NSString*)getProjectName;
 

@@ -50,46 +50,46 @@
     [alert show];
 }
 
-+ (void)alertWithText:(NSString*)text
++ (UIAlertView*)alertWithText:(NSString*)text
 {
-    [self alertWithText:text delegate:nil tag:0];
+    return [self alertWithText:text delegate:nil tag:0];
 }
 
-+ (void)alertWithText:(NSString*)text delegate:(id<UIAlertViewDelegate>)delegate tag:(NSInteger)tag
++ (UIAlertView*)alertWithText:(NSString*)text delegate:(id<UIAlertViewDelegate>)delegate tag:(NSInteger)tag
 {
-    UIAlertView *alert = [[UIAlertView alloc]
-                          initWithTitle:NSLocalizedString(@"Pocket Code", nil)
-                          message:text
-                          delegate:delegate
-                          cancelButtonTitle:kBtnOKTitle
-                          otherButtonTitles:nil];
-    alert.tag = tag;
-    [alert show];
+    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Pocket Code", nil)
+                                                        message:text
+                                                       delegate:delegate
+                                              cancelButtonTitle:kBtnOKTitle
+                                              otherButtonTitles:nil];
+    alertView.tag = tag;
+    [alertView show];
+    return alertView;
 }
 
-+ (void)promptWithTitle:(NSString*)title
++ (UIAlertView*)promptWithTitle:(NSString*)title
                 message:(NSString*)message
                delegate:(id<UIAlertViewDelegate>)delegate
             placeholder:(NSString*)placeholder
                     tag:(NSInteger)tag
       textFieldDelegate:(id<UITextFieldDelegate>)textFieldDelegate
 {
-    [Util promptWithTitle:title
-                  message:message
-                 delegate:delegate
-              placeholder:placeholder
-                      tag:tag
-                    value:nil
-        textFieldDelegate:textFieldDelegate];
+    return [Util promptWithTitle:title
+                         message:message
+                        delegate:delegate
+                     placeholder:placeholder
+                             tag:tag
+                           value:nil
+               textFieldDelegate:textFieldDelegate];
 }
 
-+ (void)promptWithTitle:(NSString*)title
-                message:(NSString*)message
-               delegate:(id<UIAlertViewDelegate>)delegate
-            placeholder:(NSString*)placeholder
-                    tag:(NSInteger)tag
-                  value:(NSString*)value
-      textFieldDelegate:(id<UITextFieldDelegate>)textFieldDelegate
++ (UIAlertView*)promptWithTitle:(NSString*)title
+                        message:(NSString*)message
+                       delegate:(id<UIAlertViewDelegate>)delegate
+                    placeholder:(NSString*)placeholder
+                            tag:(NSInteger)tag
+                          value:(NSString*)value
+              textFieldDelegate:(id<UITextFieldDelegate>)textFieldDelegate
 {
     UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:title
                                                         message:message
@@ -104,6 +104,34 @@
     textField.text = value;
     textField.delegate = textFieldDelegate;
     [alertView show];
+    return alertView;
+}
+
++ (UIActionSheet*)actionSheetWithTitle:(NSString*)title
+                              delegate:(id<UIActionSheetDelegate>)delegate
+                destructiveButtonTitle:(NSString*)destructiveButtonTitle
+                     otherButtonTitles:(NSArray*)otherButtonTitles
+                                   tag:(NSInteger)tag
+                                  view:(UIView*)view
+{
+    UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:title
+                                                             delegate:delegate
+                                                    cancelButtonTitle:nil
+                                               destructiveButtonTitle:nil
+                                                    otherButtonTitles:nil];
+    actionSheet.title = title;
+    actionSheet.delegate = delegate;
+    actionSheet.destructiveButtonIndex = [actionSheet addButtonWithTitle:destructiveButtonTitle];
+    for (id otherButtonTitle in otherButtonTitles) {
+        if ([otherButtonTitle isKindOfClass:[NSString class]]) {
+            [actionSheet addButtonWithTitle:otherButtonTitle];
+        }
+    }
+    actionSheet.cancelButtonIndex = [actionSheet addButtonWithTitle:kBtnCancelTitle];
+    actionSheet.tag = tag;
+    actionSheet.actionSheetStyle = UIActionSheetStyleDefault;
+    [actionSheet showInView:view];
+    return actionSheet;
 }
 
 + (NSString*)getProjectName

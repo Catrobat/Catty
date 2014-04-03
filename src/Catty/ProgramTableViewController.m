@@ -158,15 +158,12 @@ UINavigationBarDelegate>
 
 - (IBAction)editProgram:(id)sender
 {
-    // TODO: outsource to Util class
-    UIActionSheet *edit = [[UIActionSheet alloc] initWithTitle:NSLocalizedString(@"Edit Program",nil)
-                                                      delegate:self
-                                             cancelButtonTitle:kBtnCancelTitle
-                                        destructiveButtonTitle:kBtnDeleteTitle
-                                             otherButtonTitles:NSLocalizedString(@"Rename",nil), NSLocalizedString(@"Delete multiple objects",nil), nil];
-    edit.tag = kSceneActionSheetTag;
-    edit.actionSheetStyle = UIActionSheetStyleDefault;
-    [edit showInView:self.view];
+    [Util actionSheetWithTitle:NSLocalizedString(@"Edit Program",nil)
+                      delegate:self
+        destructiveButtonTitle:kBtnDeleteTitle
+             otherButtonTitles:@[NSLocalizedString(@"Rename",nil), NSLocalizedString(@"Delete multiple objects",nil)]
+                           tag:kSceneActionSheetTag
+                          view:self.view];
 }
 
 - (void)cancelEditing:(id)sender
@@ -432,7 +429,6 @@ UINavigationBarDelegate>
             self.navigationItem.hidesBackButton = YES;
             self.navigationItem.rightBarButtonItem = cancelButton;
             [self.tableView setEditing:YES animated:YES];
-//            self.navigationItem.leftBarButtonItem = markAllButton;
             self.editing = YES;
             [self setupEditingToolBar];
         }
