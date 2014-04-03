@@ -45,6 +45,12 @@
 #import "CellTagDefines.h"
 #import "AppDelegate.h"
 
+// TODO: outsource...
+#define kSelectAllItemsTitle NSLocalizedString(@"Select all", nil)
+#define kUnselectAllItemsTitle NSLocalizedString(@"Unselect all", nil)
+#define kSelectAllItemsTag 0
+#define kUnselectAllItemsTag 1
+
 // identifiers
 #define kTableHeaderIdentifier @"Header"
 
@@ -166,6 +172,50 @@ UINavigationBarDelegate>
                           view:self.view];
 }
 
+- (void)selectAllObjects:(id)sender
+{
+    BOOL selectAll = NO;
+    if ([sender isKindOfClass:[UIBarButtonItem class]]) {
+        UIBarButtonItem *button = (UIBarButtonItem*)sender;
+        if (button.tag == kSelectAllItemsTag) {
+            button.tag = kUnselectAllItemsTag;
+            selectAll = YES;
+            button.title = kUnselectAllItemsTitle;
+        } else {
+            button.tag = kSelectAllItemsTag;
+            selectAll = NO;
+            button.title = kSelectAllItemsTitle;
+        }
+    }
+    for (NSInteger index = 0; index < [self.tableView numberOfRowsInSection:kObjectSectionIndex]; ++index) {
+        if (selectAll) {
+            [self.tableView selectRowAtIndexPath:[NSIndexPath indexPathForRow:index inSection:kObjectSectionIndex]
+                                        animated:NO
+                                  scrollPosition:UITableViewScrollPositionNone];
+        } else {
+            [self.tableView deselectRowAtIndexPath:[NSIndexPath indexPathForRow:index inSection:kObjectSectionIndex]
+                                        animated:NO];
+        }
+    }
+}
+
+- (void)deleteSelectedObjects:(id)sender
+{
+    NSMutableArray *indexPaths = [NSMutableArray array];
+    for (NSInteger row = 0; row < [self.tableView numberOfRowsInSection:kObjectSectionIndex]; ++row) {
+        NSIndexPath *indexPath = [NSIndexPath indexPathForItem:row inSection:kObjectSectionIndex];
+        UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:indexPath];
+        if (cell.isSelected) {
+            SpriteObject *object = [self.program.objectList objectAtIndex:(kObjectSectionIndex + indexPath.row)];
+            [self.imageCache objectForKey:object.name];
+            [self.program removeObject:object];
+            [indexPaths addObject:indexPath];
+        }
+    }
+    [self cancelEditing:sender];
+    [self.tableView deleteRowsAtIndexPaths:indexPaths withRowAnimation:UITableViewRowAnimationNone];
+}
+
 - (void)cancelEditing:(id)sender
 {
     UIBarButtonItem *editButton = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Edit", nil) style:UIBarButtonItemStylePlain target:self action:@selector(editProgram:)];
@@ -200,7 +250,7 @@ UINavigationBarDelegate>
     if (! [cell conformsToProtocol:@protocol(CatrobatImageCell)]) {
         return cell;
     }
-    UITableViewCell <CatrobatImageCell>* imageCell = (UITableViewCell<CatrobatImageCell>*)cell;
+    UITableViewCell<CatrobatImageCell> *imageCell = (UITableViewCell<CatrobatImageCell>*)cell;
     NSInteger index = (kBackgroundSectionIndex + indexPath.section + indexPath.row);
     SpriteObject *object = [self.program.objectList objectAtIndex:index];
     if (! [object.lookList count]) {
@@ -521,15 +571,16 @@ UINavigationBarDelegate>
     UIBarButtonItem *flexItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace
                                                                               target:nil
                                                                               action:nil];
-    UIBarButtonItem *markAllButton = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Mark all", nil)
-                                                                      style:UIBarButtonItemStylePlain
-                                                                     target:self
-                                                                     action:@selector(markAllObjects:)];
+    UIBarButtonItem *selectAllButton = [[UIBarButtonItem alloc] initWithTitle:kSelectAllItemsTitle
+                                                                        style:UIBarButtonItemStylePlain
+                                                                       target:self
+                                                                       action:@selector(selectAllObjects:)];
+    selectAllButton.tag = kSelectAllItemsTag;
     UIBarButtonItem *deleteButton = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Delete", nil)
                                                                      style:UIBarButtonItemStylePlain
                                                                     target:self
                                                                     action:@selector(deleteSelectedObjects:)];
-    self.toolbarItems = [NSArray arrayWithObjects:markAllButton, flexItem, deleteButton, nil];
+    self.toolbarItems = [NSArray arrayWithObjects:selectAllButton, flexItem, deleteButton, nil];
 }
 
 @end
