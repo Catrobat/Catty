@@ -359,14 +359,9 @@ UINavigationBarDelegate>
 #pragma mark - table view delegates
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath*)indexPath
 {
-    [tableView deselectRowAtIndexPath:indexPath animated:YES];
-
-//    UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
-//    if (cell.accessoryType == UITableViewCellAccessoryCheckmark) {
-//        cell.accessoryType = UITableViewCellAccessoryNone;
-//    } else if (cell.accessoryType == UITableViewCellAccessoryNone) {
-//        cell.accessoryType = UITableViewCellAccessoryCheckmark;
-//    }
+    if (! self.isEditing) {
+        [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    }
 }
 
 #pragma mark - segue handler
