@@ -347,9 +347,9 @@
         controller.transitioningDelegate = self;
         controller.modalPresentationStyle = UIModalPresentationCustom;
         self.collectionView.userInteractionEnabled = NO;
-        [self.navigationController setNavigationBarHidden:YES animated:NO];
-        [self.navigationController setToolbarHidden:YES animated:NO];
-        [UIApplication.sharedApplication setStatusBarHidden:YES];
+        [self.navigationController setNavigationBarHidden:YES animated:YES];
+        [self.navigationController setToolbarHidden:YES animated:YES];
+        [UIApplication.sharedApplication setStatusBarHidden:YES withAnimation:UIStatusBarAnimationSlide];
         [self presentViewController:controller animated:YES completion:NULL];
     }
 }

@@ -65,7 +65,7 @@
                              animations:^{
                                  move.frame = endFrame;
                                  self.dimView.alpha = 1.f;
-                                 self.collectionView.transform = CGAffineTransformMakeScale(.90f, .90f);
+                                 //self.collectionView.transform = CGAffineTransformMakeScale(.90f, .90f);
                              }
                              completion:^(BOOL finished) {
                                  if (finished) {
@@ -94,7 +94,7 @@
                                           move.frame = self.touchRect;
                                           self.cell.frame = self.touchRect;
                                           self.dimView.alpha = 0.f;
-                                          self.collectionView.transform = CGAffineTransformIdentity;
+                                          //self.collectionView.transform = CGAffineTransformIdentity;
                                           
                                       } completion:^(BOOL finished) {
                                           if (finished) {
