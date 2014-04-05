@@ -36,12 +36,13 @@
 #import "BrickScaleTransition.h"
 #import "BrickDetailViewController.h"
 #import "WhenScriptCell.h"
+#import "FXBlurView.h"
 
 @interface ScriptCollectionViewController () <UICollectionViewDelegate, LXReorderableCollectionViewDelegateFlowLayout, LXReorderableCollectionViewDataSource, UIViewControllerTransitioningDelegate>
 @property (nonatomic, strong) NSDictionary *classNameBrickNameMap;
 @property (nonatomic, weak) IBOutlet UICollectionView *collectionView;
 @property (nonatomic, strong) BrickScaleTransition *brickScaleTransition;
-@property (nonatomic, strong) UIView *dimView;
+@property (nonatomic, strong) FXBlurView *dimView;
 @end
 
 @implementation ScriptCollectionViewController
@@ -83,10 +84,14 @@
     self.collectionView.dataSource = self;
     
     self.brickScaleTransition = [BrickScaleTransition new];
-    self.dimView = [[UIView alloc] initWithFrame:self.view.bounds];
+    self.dimView = [[FXBlurView alloc] initWithFrame:self.view.bounds];
     self.dimView.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
     self.dimView.userInteractionEnabled = NO;
-    self.dimView.backgroundColor = [UIColor blackColor];
+    self.dimView.tintColor = UIColor.clearColor;
+    self.dimView.underlyingView = self.collectionView;
+    self.dimView.blurEnabled = YES;
+    self.dimView.blurRadius = 10.f;
+    self.dimView.dynamic = YES;
     self.dimView.alpha = 0.f;
     self.dimView.hidden = YES;
     [self.view addSubview:self.dimView];
@@ -212,7 +217,7 @@
 
 - (void)brickDetailViewDismissed:(NSNotification *)notification {
     self.collectionView.userInteractionEnabled = YES;
-    [UIApplication.sharedApplication setStatusBarHidden:NO];
+    [UIApplication.sharedApplication setStatusBarHidden:NO withAnimation:UIStatusBarAnimationSlide];
     
     if (self.navigationController.toolbar.hidden && self.navigationController.navigationBar.hidden) {
         [self.navigationController setToolbarHidden:NO animated:YES];
@@ -330,7 +335,7 @@
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     BrickCell *cell = (BrickCell*)[self.collectionView cellForItemAtIndexPath:indexPath];
-    NSLog(@"selected cell = %@", cell);
+    // NSLog(@"selected cell = %@", cell);
     
     // TODO exclude not editable bricks
     if (![cell isKindOfClass:StartScriptCell.class] || ![cell isKindOfClass:WhenScriptCell.class]) {
@@ -338,13 +343,14 @@
         self.brickScaleTransition.cell = cell;
         self.brickScaleTransition.touchRect = cell.frame;
         self.brickScaleTransition.dimView = self.dimView;
+        self.brickScaleTransition.collectionView = self.collectionView;
         controller.transitioningDelegate = self;
         controller.modalPresentationStyle = UIModalPresentationCustom;
         self.collectionView.userInteractionEnabled = NO;
         [self.navigationController setNavigationBarHidden:YES animated:NO];
-        [self presentViewController:controller animated:YES completion:^{
-            [self.navigationController setToolbarHidden:YES animated:YES];
-        }];
+        [self.navigationController setToolbarHidden:YES animated:NO];
+        [UIApplication.sharedApplication setStatusBarHidden:YES];
+        [self presentViewController:controller animated:YES completion:NULL];
     }
 }
 
