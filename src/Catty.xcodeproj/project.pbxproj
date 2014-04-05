@@ -904,14 +904,6 @@
 			name = Transitions;
 			sourceTree = "<group>";
 		};
-		817B544618F050C400AF6BFE /* xib */ = {
-			isa = PBXGroup;
-			children = (
-				817B544B18F0520800AF6BFE /* BrickDetailViewController.xib */,
-			);
-			name = xib;
-			sourceTree = "<group>";
-		};
 		81F10ED317CCD1F8000E4522 /* MaintainProgram */ = {
 			isa = PBXGroup;
 			children = (
@@ -1668,7 +1660,6 @@
 			children = (
 				817B544918F0520800AF6BFE /* BrickDetailViewController.h */,
 				817B544A18F0520800AF6BFE /* BrickDetailViewController.m */,
-				817B544618F050C400AF6BFE /* xib */,
 				81FAEE2D17E781AB0052BB2B /* ScriptCollectionViewController.h */,
 				81FAEE2E17E781AB0052BB2B /* ScriptCollectionViewController.m */,
 				CA688209180B30B5008A7C99 /* BrickCategoriesTableViewController.h */,
@@ -2030,6 +2021,7 @@
 		CD0CCE37170C9F9300B70036 /* Storyboard & XIBs */ = {
 			isa = PBXGroup;
 			children = (
+				817B544B18F0520800AF6BFE /* BrickDetailViewController.xib */,
 				C3F2950B1813C63200E37D61 /* iPhone.storyboard */,
 			);
 			name = "Storyboard & XIBs";

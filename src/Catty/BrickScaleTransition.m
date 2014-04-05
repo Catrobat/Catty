@@ -21,7 +21,6 @@
  */
 
 #import "BrickScaleTransition.h"
-
 @implementation BrickScaleTransition
 
 - (void)animateTransition:(id<UIViewControllerContextTransitioning>)transitionContext {
@@ -31,13 +30,12 @@
     UIViewController *toVC = [transitionContext viewControllerForKey:UITransitionContextToViewControllerKey];
     UIView *fromView = fromVC.view;
     UIView *toView = toVC.view;
-    
+        
     UIView *move = nil;
     CGRect beginFrame = [container convertRect:self.cell.bounds fromView:self.cell];
     
     CGFloat width;
     CGFloat height;
-    
     if (self.transitionMode == TransitionModePresent) {
         width = toView.bounds.size.width;
         height = CGRectGetHeight(self.cell.bounds);
@@ -47,58 +45,62 @@
     }
     
     CGRect endFrame = CGRectMake(toView.frame.origin.x, toView.frame.origin.y, width, height);
-
-
+    
     switch (self.transitionMode) {
         case TransitionModePresent: {
-            self.cell.hidden = YES;
             toView.frame = endFrame;
             
-            move = [toView snapshotViewAfterScreenUpdates:YES];
-        
+            move = [self.cell snapshotViewAfterScreenUpdates:YES];
+            
             move.frame = beginFrame;
             [container addSubview:move];
             
             self.dimView.hidden = NO;
-            
+            self.cell.hidden = YES;
             [UIView animateWithDuration:.7f
                                   delay:0.f
-                 usingSpringWithDamping:2.f
-                  initialSpringVelocity:27.f
+                 usingSpringWithDamping:3.f
+                  initialSpringVelocity:20.f
                                 options:UIViewAnimationOptionCurveEaseInOut
                              animations:^{
                                  move.frame = endFrame;
                                  self.dimView.alpha = 0.9f;
                              }
                              completion:^(BOOL finished) {
-                                 [toVC.view addSubview:self.cell.contentView];
-                                 toView.frame = endFrame;
-                                 [container addSubview:toView];
-                                 [move removeFromSuperview];
-                                 [transitionContext completeTransition:YES];
+                                 if (finished) {
+                                     self.cell.hidden = NO;
+                                     self.cell.frame = toView.frame;
+                                     [toVC.view addSubview:self.cell];
+                                     toView.frame = endFrame;
+                                     [container addSubview:toView];
+                                     [move removeFromSuperview];
+                                     [transitionContext completeTransition:YES];
+                                 }
                              }];
         }
             break;
             
         case TransitionModeDismiss: {
-            move =[fromView snapshotViewAfterScreenUpdates:YES];
+            move = [fromView snapshotViewAfterScreenUpdates:YES];
             [fromView removeFromSuperview];
-            
-            // move.center = toView.center;
             [container addSubview:move];
             
-            [UIView animateKeyframesWithDuration:.5f
+//            NSLog(@"touch rect = %@", NSStringFromCGRect(self.touchRect));
+            [UIView animateKeyframesWithDuration:.4f
                                            delay:0.f
                                          options:UIViewKeyframeAnimationOptionBeginFromCurrentState
                                       animations:^{
-                                          move.frame = beginFrame;
+                                          move.frame = self.touchRect;
+                                          self.cell.frame = self.touchRect;
                                           self.dimView.alpha = 0.f;
                                           
                                       } completion:^(BOOL finished) {
-                                          self.cell.hidden = NO;
-                                          self.dimView.hidden = YES;
-                                          [move removeFromSuperview];
-                                          [transitionContext completeTransition:YES];
+                                          if (finished) {
+//                                              NSLog(@"cell frame = %@", NSStringFromCGRect(self.cell.frame));
+                                              self.dimView.hidden = YES;
+                                              [move removeFromSuperview];
+                                              [transitionContext completeTransition:YES];
+                                          }
                                       }];
         }
             break;

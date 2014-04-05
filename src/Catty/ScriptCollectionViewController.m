@@ -211,10 +211,13 @@
 
 - (void)brickDetailViewDismissed:(NSNotification *)notification {
     self.collectionView.userInteractionEnabled = YES;
+    [UIApplication.sharedApplication setStatusBarHidden:NO];
+    
     if (self.navigationController.toolbar.hidden && self.navigationController.navigationBar.hidden) {
         [self.navigationController setToolbarHidden:NO animated:YES];
         [self.navigationController setNavigationBarHidden:NO animated:YES];
     }
+    [self.collectionView reloadData];
 }
 
 #pragma mark - collection view datasource
@@ -326,8 +329,10 @@
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     BrickCell *cell = (BrickCell*)[self.collectionView cellForItemAtIndexPath:indexPath];
+    NSLog(@"selected cell = %@", cell);
     BrickDetailViewController *controller = [[BrickDetailViewController alloc]initWithNibName:@"BrickDetailViewController" bundle:nil];
     self.brickScaleTransition.cell = cell;
+    self.brickScaleTransition.touchRect = cell.frame;
     self.brickScaleTransition.dimView = self.dimView;
     controller.transitioningDelegate = self;
     controller.modalPresentationStyle = UIModalPresentationCustom;

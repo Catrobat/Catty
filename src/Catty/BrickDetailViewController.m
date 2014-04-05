@@ -32,7 +32,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.view.backgroundColor = UIColor.whiteColor;
+    self.view.backgroundColor = UIColor.clearColor;
     
 }
 
@@ -42,6 +42,8 @@
     self.recognizer.numberOfTapsRequired = 1;
     self.recognizer.cancelsTouchesInView = NO;
     [self.view.window addGestureRecognizer:self.recognizer];
+    
+    [UIApplication.sharedApplication setStatusBarHidden:YES withAnimation:UIStatusBarAnimationSlide];
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
@@ -50,6 +52,10 @@
     if ([self.view.window.gestureRecognizers containsObject:self.recognizer]) {
         [self.view.window removeGestureRecognizer:self.recognizer];
     }
+}
+
+- (BOOL)prefersStatusBarHidden {
+    return YES;
 }
 
 - (void)handleTap:(UITapGestureRecognizer *)sender {

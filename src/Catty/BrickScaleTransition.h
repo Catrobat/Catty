@@ -25,6 +25,7 @@
 
 @interface BrickScaleTransition : BaseTransition
 @property (nonatomic, strong) UIView *dimView;
-@property (nonatomic, strong) UICollectionViewCell *cell;
+@property (nonatomic, strong) BrickCell *cell;
+@property (nonatomic, assign) CGRect touchRect;
 
 @end
