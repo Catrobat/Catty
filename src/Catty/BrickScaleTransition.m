@@ -33,46 +33,45 @@
     UIView *toView = toVC.view;
     
     UIView *move = nil;
-    CGRect beginFrame = [container convertRect:self.cell.backgroundView.bounds fromView:self.cell];
+    CGRect beginFrame = [container convertRect:self.cell.bounds fromView:self.cell];
     
     CGFloat width;
     CGFloat height;
     
     if (self.transitionMode == TransitionModePresent) {
         width = toView.bounds.size.width;
-        height = toView.bounds.size.height / 4.f;
+        height = CGRectGetHeight(self.cell.bounds);
     } else {
         width = fromView.bounds.size.width;
         height = fromView.bounds.size.height;
     }
     
-    CGRect endFrame = CGRectMake(0.f, 0.f, width, height);
+    CGRect endFrame = CGRectMake(toView.frame.origin.x, toView.frame.origin.y, width, height);
 
 
-    
     switch (self.transitionMode) {
         case TransitionModePresent: {
             self.cell.hidden = YES;
             toView.frame = endFrame;
             
-            move = [self.cell snapshotViewAfterScreenUpdates:YES];
+            move = [toView snapshotViewAfterScreenUpdates:YES];
         
             move.frame = beginFrame;
             [container addSubview:move];
             
             self.dimView.hidden = NO;
             
-            [UIView animateWithDuration:.6f
+            [UIView animateWithDuration:.7f
                                   delay:0.f
                  usingSpringWithDamping:2.f
-                  initialSpringVelocity:17.f
+                  initialSpringVelocity:27.f
                                 options:UIViewAnimationOptionCurveEaseInOut
                              animations:^{
                                  move.frame = endFrame;
-                                 self.dimView.alpha = 0.6f;
+                                 self.dimView.alpha = 0.9f;
                              }
                              completion:^(BOOL finished) {
-                                 [toVC.view addSubview:self.cell.backgroundView];
+                                 [toVC.view addSubview:self.cell.contentView];
                                  toView.frame = endFrame;
                                  [container addSubview:toView];
                                  [move removeFromSuperview];
@@ -92,11 +91,8 @@
                                            delay:0.f
                                          options:UIViewKeyframeAnimationOptionBeginFromCurrentState
                                       animations:^{
-                                          move.alpha = 0.f;
                                           move.frame = beginFrame;
-                                          self.cell.alpha = 1.f;
                                           self.dimView.alpha = 0.f;
-                                          self.cell.hidden = NO;
                                           
                                       } completion:^(BOOL finished) {
                                           self.cell.hidden = NO;

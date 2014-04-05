@@ -42,9 +42,9 @@
 @property (nonatomic, strong) NSArray *brickCategoryColors;
 
 // subviews
+@property (nonatomic, weak) BrickCellInlineView *inlineView;
 @property (nonatomic, weak) UIImageView *backgroundImageView;
 @property (nonatomic, weak) UIImageView *imageView;
-@property (nonatomic, weak) BrickCellInlineView *inlineView;
 @end
 
 @implementation BrickCell
@@ -146,25 +146,8 @@
 - (void)layoutSubviews
 {
     [super layoutSubviews];
-
-    // XXX: Value stored to 'brickImage' is never read...
-//    UIImage *brickImage = self.imageView.image;
-//    brickImage = [brickImage imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
+    
 }
-
-#pragma mark Highlight state / collection view cell delegate
-//- (void)setHighlighted:(BOOL)highlighted
-//{
-//    [super setHighlighted:highlighted];
-
-//    if (highlighted) {
-//        [self.contentView addSubview:self.overlayView];
-//    } else {
-//        
-//        [self.overlayView removeFromSuperview];
-//    }
-//    [self setNeedsDisplay];
-//}
 
 - (NSArray*)brickCategoryColors
 {

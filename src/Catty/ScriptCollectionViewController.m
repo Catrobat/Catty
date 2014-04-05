@@ -211,8 +211,9 @@
 
 - (void)brickDetailViewDismissed:(NSNotification *)notification {
     self.collectionView.userInteractionEnabled = YES;
-    if (self.navigationController.toolbar.hidden) {
+    if (self.navigationController.toolbar.hidden && self.navigationController.navigationBar.hidden) {
         [self.navigationController setToolbarHidden:NO animated:YES];
+        [self.navigationController setNavigationBarHidden:NO animated:YES];
     }
 }
 
@@ -331,10 +332,10 @@
     controller.transitioningDelegate = self;
     controller.modalPresentationStyle = UIModalPresentationCustom;
     self.collectionView.userInteractionEnabled = NO;
+    [self.navigationController setNavigationBarHidden:YES animated:NO];
     [self presentViewController:controller animated:YES completion:^{
-       [self.navigationController setToolbarHidden:YES animated:YES];
+        [self.navigationController setToolbarHidden:YES animated:YES];
     }];
-    
 }
 
 - (void)collectionView:(UICollectionView *)collectionView didHighlightItemAtIndexPath:(NSIndexPath *)indexPath {
