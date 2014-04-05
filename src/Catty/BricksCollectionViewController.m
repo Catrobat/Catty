@@ -27,8 +27,6 @@
 #import "ScriptCollectionViewController.h"
 #import "SpriteObject.h"
 
-#define kTableHeaderIdentifier @"Header"
-
 @interface BricksCollectionViewController ()
 @property (nonatomic, strong) NSArray *selectableBricksSortedIndexes;
 @property (nonatomic, strong) NSDictionary *selectableBricks;

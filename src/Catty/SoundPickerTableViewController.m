@@ -60,7 +60,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [self initTableView];
+    [super initTableView];
     [super initPlaceHolder];
     [self setupNavigationBar];
     [super showPlaceHolder:NO];

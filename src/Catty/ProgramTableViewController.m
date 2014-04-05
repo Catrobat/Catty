@@ -45,9 +45,6 @@
 #import "CellTagDefines.h"
 #import "AppDelegate.h"
 
-// identifiers
-#define kTableHeaderIdentifier @"Header"
-
 @interface ProgramTableViewController () <UIActionSheetDelegate, UIAlertViewDelegate, UITextFieldDelegate,
 UINavigationBarDelegate>
 @property (strong, nonatomic) NSCharacterSet *blockedCharacterSet;
@@ -80,19 +77,6 @@ UINavigationBarDelegate>
     _program = program;
 }
 
-#pragma mark - initialization
-- (void)initTableView
-{
-    self.tableView.delegate = self;
-    self.tableView.dataSource = self;
-    [self.tableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
-    UIColor *backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"darkblue"]];
-    self.tableView.backgroundColor = backgroundColor;
-    UITableViewHeaderFooterView *headerViewTemplate = [[UITableViewHeaderFooterView alloc] initWithReuseIdentifier:kTableHeaderIdentifier];
-    headerViewTemplate.contentView.backgroundColor = backgroundColor;
-    [self.tableView addSubview:headerViewTemplate];
-}
-
 #pragma mark - view events
 - (void)viewWillAppear:(BOOL)animated
 {
@@ -122,7 +106,7 @@ UINavigationBarDelegate>
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [self initTableView];
+    [super initTableView];
 
     self.editableSections = @[@(kObjectSectionIndex)];
     if (self.program.header.programName) {

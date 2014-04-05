@@ -53,10 +53,9 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-  
-    [self initTableView];
+    [super initTableView];
     [self initSearchView];
-    
+
     self.searchDisplayController.displaysSearchBarInNavigationBar = NO;
     self.searchDisplayController.searchBar.backgroundColor = [UIColor darkBlueColor];
     self.tableView.backgroundView = [[UIImageView alloc] initWithImage:[UIImage imageWithColor:[UIColor darkBlueColor]]];
@@ -210,15 +209,6 @@
     self.connection = nil;
     [self update];
   }
-}
-
-#pragma mark - Init
-- (void)initTableView
-{
-  self.tableView.delegate = self;
-  self.tableView.dataSource = self;
-  [self.tableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
-  self.tableView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"darkblue"]];
 }
 
 #pragma mark - Search display delegate

@@ -67,23 +67,13 @@
     return self;
 }
 
-- (void)initTableView
-{
-    self.tableView.delegate = self;
-    self.tableView.dataSource = self;
-    [self.tableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
-    self.tableView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"darkblue"]];
-    
-}
-
 #pragma mark - view events
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-
     self.defaultProgram = nil;
     self.selectedProgram = nil;
-    [self initTableView];
+    [super initTableView];
     [TableUtil initNavigationItem:self.navigationItem withTitle:NSLocalizedString(@"Programs", nil)];
     [self setupToolBar];
     [self loadPrograms];

@@ -25,13 +25,16 @@
 #import "TableUtil.h"
 #import "UIDefines.h"
 
-// TODO: outsource...
+// identifiers
+#define kTableHeaderIdentifier @"Header"
+
+// button titles
 #define kSelectAllItemsTitle NSLocalizedString(@"Select all", nil)
 #define kUnselectAllItemsTitle NSLocalizedString(@"Unselect all", nil)
+
+// tags
 #define kSelectAllItemsTag 0
 #define kUnselectAllItemsTag 1
-
-#define kTableHeaderIdentifier @"Header"
 
 @interface BaseTableViewController ()
 @property (nonatomic, strong) UIBarButtonItem *selectAllRowsButtonItem;

@@ -64,7 +64,7 @@
 {
     [super viewDidLoad];
     [self loadFeaturedProjects];
-    [self initTableView];
+    [super initTableView];
     [TableUtil initNavigationItem:self.navigationItem withTitle:@"Featured Programs"];
     //  CGFloat navigationBarHeight = self.navigationController.navigationBar.frame.size.height;
     //  self.tableView.contentInset = UIEdgeInsetsMake(navigationBarHeight, 0, 0, 0);
@@ -111,16 +111,6 @@
     cell = [self cellForProjectsTableView:tableView atIndexPath:indexPath];
     
     return cell;
-}
-
-
-#pragma mark - Init
--(void)initTableView
-{
-    self.tableView.delegate = self;
-    self.tableView.dataSource = self;
-    [self.tableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
-    self.tableView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"darkblue"]];
 }
 
 #pragma mark - Helper

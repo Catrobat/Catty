@@ -38,7 +38,6 @@
 #import "NSData+Hashes.h"
 #import <AVFoundation/AVFoundation.h>
 
-#define kTableHeaderIdentifier @"Header"
 #define kPocketCodeRecorderActionSheetButton @"pocketCodeRecorder"
 #define kSelectMusicTrackActionSheetButton @"selectMusicTrack"
 
@@ -78,7 +77,7 @@
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
 
-    [self initTableView];
+    [super initTableView];
     [super initPlaceHolder];
     [super setPlaceHolderTitle:kSoundsTitle
                    Description:[NSString stringWithFormat:NSLocalizedString(kEmptyViewPlaceHolder, nil), kSoundsTitle]];
@@ -120,19 +119,6 @@
             [self addSoundToObjectAction:(Sound*)sound];
         }
     }
-}
-
-#pragma mark init
-- (void)initTableView
-{
-    [super initTableView];
-    self.tableView.delegate = self;
-    self.tableView.dataSource = self;
-    [self.tableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
-    self.tableView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"darkblue"]];
-    UITableViewHeaderFooterView *headerViewTemplate = [[UITableViewHeaderFooterView alloc] initWithReuseIdentifier:kTableHeaderIdentifier];
-    headerViewTemplate.contentView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"darkblue"]];
-    [self.tableView addSubview:headerViewTemplate];
 }
 
 - (void)didReceiveMemoryWarning

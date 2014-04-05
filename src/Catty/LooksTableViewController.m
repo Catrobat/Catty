@@ -41,7 +41,6 @@
 #import "NSData+Hashes.h"
 #import "LoadingView.h"
 
-#define kTableHeaderIdentifier @"Header"
 #define kFromCameraActionSheetButton @"camera"
 #define kChooseImageActionSheetButton @"chooseImage"
 #define kDrawNewImageActionSheetButton @"drawNewImage"
@@ -73,18 +72,6 @@
     return self;
 }
 
-- (void)initTableView
-{
-    [super initTableView];
-    self.tableView.delegate = self;
-    self.tableView.dataSource = self;
-    [self.tableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
-    self.tableView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"darkblue"]];
-    UITableViewHeaderFooterView *headerViewTemplate = [[UITableViewHeaderFooterView alloc] initWithReuseIdentifier:kTableHeaderIdentifier];
-    headerViewTemplate.contentView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"darkblue"]];
-    [self.tableView addSubview:headerViewTemplate];
-}
-
 - (void)dealloc
 {
     [self.loadingView removeFromSuperview];
@@ -98,8 +85,7 @@
 
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
-
-    [self initTableView];
+    [super initTableView];
     [super initPlaceHolder];
     [super setPlaceHolderTitle:([self.object isBackground] ? kBackgroundsTitle : kLooksTitle)
                    Description:[NSString stringWithFormat:NSLocalizedString(kEmptyViewPlaceHolder, nil),
