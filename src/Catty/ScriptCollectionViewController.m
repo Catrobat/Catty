@@ -301,8 +301,6 @@
        itemAtIndexPath:(NSIndexPath *)fromIndexPath
    willMoveToIndexPath:(NSIndexPath *)toIndexPath
 {
-    NSLog(@"to section :%ld", (long)toIndexPath.section);
-    NSLog(@"from section :%ld", (long)fromIndexPath.section);
     if (fromIndexPath.section == toIndexPath.section) {
         Script *script = [self.object.scriptList objectAtIndex:fromIndexPath.section];
         Brick *toBrick = [script.brickList objectAtIndex:toIndexPath.item - 1];
@@ -313,18 +311,18 @@
         Brick *toBrick = [toScript.brickList objectAtIndex:toIndexPath.item - 1];
         
         Script *fromScript = [self.object.scriptList objectAtIndex:fromIndexPath.section];
-        Brick *fromBrick = [fromScript.brickList objectAtIndex:toIndexPath.item - 1];
+        Brick *fromBrick = [fromScript.brickList objectAtIndex:fromIndexPath.item - 1];
         
+        [toScript.brickList removeObjectAtIndex:toIndexPath.item -1];
         [fromScript.brickList removeObjectAtIndex:fromIndexPath.item - 1];
         [toScript.brickList insertObject:fromBrick atIndex:toIndexPath.item - 1];
-        
+        [toScript.brickList insertObject:toBrick atIndex:toIndexPath.item];
     }
-
 }
 
-//- (void)collectionView:(UICollectionView *)collectionView itemAtIndexPath:(NSIndexPath *)fromIndexPath didMoveToIndexPath:(NSIndexPath *)toIndexPath {
-//   NSLog(@"to section :%ld", (long)toIndexPath.section);
-//}
+- (void)collectionView:(UICollectionView *)collectionView itemAtIndexPath:(NSIndexPath *)fromIndexPath didMoveToIndexPath:(NSIndexPath *)toIndexPath {
+    [self.collectionView reloadData];
+}
 
 - (BOOL)collectionView:(UICollectionView *)collectionView itemAtIndexPath:(NSIndexPath *)fromIndexPath canMoveToIndexPath:(NSIndexPath *)toIndexPath {
     return toIndexPath.item == 0 ? NO : YES;
