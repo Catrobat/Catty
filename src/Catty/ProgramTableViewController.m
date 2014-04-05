@@ -202,19 +202,23 @@ UINavigationBarDelegate>
 
 - (void)deleteSelectedObjects:(id)sender
 {
-    NSMutableArray *indexPaths = [NSMutableArray array];
-    for (NSInteger row = 0; row < [self.tableView numberOfRowsInSection:kObjectSectionIndex]; ++row) {
-        NSIndexPath *indexPath = [NSIndexPath indexPathForItem:row inSection:kObjectSectionIndex];
-        UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:indexPath];
-        if (cell.isSelected) {
-            SpriteObject *object = [self.program.objectList objectAtIndex:(kObjectSectionIndex + indexPath.row)];
-            [self.imageCache objectForKey:object.name];
-            [self.program removeObject:object];
-            [indexPaths addObject:indexPath];
+    NSArray *selectedRowsIndexPaths = [self.tableView indexPathsForSelectedRows];
+    NSMutableArray *objectsToRemove = [NSMutableArray arrayWithCapacity:[selectedRowsIndexPaths count]];
+    for (NSIndexPath *selectedRowIndexPath in selectedRowsIndexPaths) {
+        // sanity check
+        if (selectedRowIndexPath.section != kObjectSectionIndex) {
+            continue;
         }
+        NSLog(@"IndexPath: %@", [selectedRowIndexPath description]);
+        SpriteObject *object = (SpriteObject*)[self.program.objectList objectAtIndex:(kObjectSectionIndex + selectedRowIndexPath.row)];
+        [self.imageCache objectForKey:object.name];
+        [objectsToRemove addObject:object];
+    }
+    for (SpriteObject *objectToRemove in objectsToRemove) {
+        [self.program removeObject:objectToRemove];
     }
     [self cancelEditing:sender];
-    [self.tableView deleteRowsAtIndexPaths:indexPaths withRowAnimation:UITableViewRowAnimationNone];
+    [self.tableView deleteRowsAtIndexPaths:selectedRowsIndexPaths withRowAnimation:UITableViewRowAnimationNone];
 }
 
 - (void)cancelEditing:(id)sender
