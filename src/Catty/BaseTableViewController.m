@@ -138,6 +138,9 @@
 - (UITableViewCellEditingStyle)tableView:(UITableView*)tableView
            editingStyleForRowAtIndexPath:(NSIndexPath*)indexPath
 {
+    if (! self.isEditing) {
+        return UITableViewCellEditingStyleDelete;
+    }
     return 3; // XXX: strange, but no corresponding enum value available for that...
 }
 
@@ -240,6 +243,7 @@
     self.navigationItem.hidesBackButton = YES;
     self.normalModeRightBarButtonItem = self.navigationItem.rightBarButtonItem;
     self.navigationItem.rightBarButtonItem = cancelButton;
+    [self.tableView reloadData];
     [self.tableView setEditing:YES animated:YES];
     self.editing = YES;
 }
