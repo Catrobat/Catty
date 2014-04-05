@@ -138,7 +138,7 @@
 
         NSUInteger objectCounter = 0;
         NSLog(@"Program: %@", program.header.programName);
-        NSLog(@"Number of objects: %lu", (unsigned long)[program.objectList count]);
+        NSLog(@"Number of objects: %lu", (unsigned long)[program numberOfTotalObjects]);
         for (SpriteObject *object in program.objectList) {
             if (! objectCounter) {
                 ++objectCounter;
@@ -250,7 +250,7 @@
         [self.programTableViewController viewWillAppear:NO];
 
         NSUInteger numberOfObjectRows = (NSUInteger)[self.programTableViewController tableView:self.programTableViewController.tableView numberOfRowsInSection:kObjectSectionIndex];
-        XCTAssertEqual(numberOfObjectRows, ([program.objectList count] - 1), @"Wrong number of object rows in ProgramTableViewController for program: %@", program.header.programName);
+        XCTAssertEqual(numberOfObjectRows, [program numberOfNormalObjects], @"Wrong number of object rows in ProgramTableViewController for program: %@", program.header.programName);
         self.programTableViewController = nil; // unload program table view controller
     }
 }
