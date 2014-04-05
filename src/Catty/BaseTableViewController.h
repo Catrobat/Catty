@@ -28,4 +28,5 @@
 - (void)initPlaceHolder;
 - (void)initTableView;
 - (void)setupToolBar;
+- (BOOL)areAllCellsSelectedInSection:(NSInteger)section;
 @end

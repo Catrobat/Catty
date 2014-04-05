@@ -120,4 +120,21 @@
     self.navigationController.toolbar.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleTopMargin;
 }
 
+- (BOOL)areAllCellsSelectedInSection:(NSInteger)section
+{
+    NSInteger totalNumberOfRows = [self.tableView numberOfRowsInSection:section];
+    if (! totalNumberOfRows) {
+        return NO;
+    }
+
+    NSArray *indexPaths = [self.tableView indexPathsForSelectedRows];
+    NSInteger counter = 0;
+    for (NSIndexPath *indexPath in indexPaths) {
+        if (indexPath.section == section) {
+            ++counter;
+        }
+    }
+    return (totalNumberOfRows == counter);
+}
+
 @end
