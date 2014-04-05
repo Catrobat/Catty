@@ -77,6 +77,16 @@ UINavigationBarDelegate>
     _program = program;
 }
 
+#pragma mark - initialization
+- (void)initNavigationBar
+{
+    UIBarButtonItem *editButton = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Edit", nil)
+                                                                   style:UIBarButtonItemStylePlain
+                                                                  target:self
+                                                                  action:@selector(editAction:)];
+    self.navigationItem.rightBarButtonItem = editButton;
+}
+
 #pragma mark - view events
 - (void)viewWillAppear:(BOOL)animated
 {
@@ -106,6 +116,7 @@ UINavigationBarDelegate>
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    [self initNavigationBar];
     [super initTableView];
 
     self.editableSections = @[@(kObjectSectionIndex)];
@@ -140,7 +151,7 @@ UINavigationBarDelegate>
     [self performSegueWithIdentifier:kSegueToScene sender:sender];
 }
 
-- (IBAction)editProgram:(id)sender
+- (void)editAction:(id)sender
 {
     NSMutableArray *options = [NSMutableArray array];
     [options addObject:NSLocalizedString(@"Rename",nil)];
@@ -155,7 +166,7 @@ UINavigationBarDelegate>
                           view:self.view];
 }
 
-- (void)deleteSelectedObjects:(id)sender
+- (void)deleteSelectedObjectsAction:(id)sender
 {
     NSArray *selectedRowsIndexPaths = [self.tableView indexPathsForSelectedRows];
     if (! [selectedRowsIndexPaths count]) {
@@ -506,7 +517,7 @@ UINavigationBarDelegate>
     UIBarButtonItem *deleteButton = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Delete", nil)
                                                                      style:UIBarButtonItemStylePlain
                                                                     target:self
-                                                                    action:@selector(deleteSelectedObjects:)];
+                                                                    action:@selector(deleteSelectedObjectsAction:)];
     // XXX: workaround for tap area problem:
     // http://stackoverflow.com/questions/5113258/uitoolbar-unexpectedly-registers-taps-on-uibarbuttonitem-instances-even-when-tap
     UIImageView *imageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"transparent1x1"]];

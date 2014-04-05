@@ -228,7 +228,7 @@
     if (self.isEditing) {
         return NO;
     }
-    return [super shouldPerformSegueWithIdentifier:identifier sender:sender];
+    return YES;
 }
 
 #pragma mark - helpers
