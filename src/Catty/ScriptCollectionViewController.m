@@ -33,10 +33,12 @@
 #import "LXReorderableCollectionViewFlowLayout.h"
 #import "BrickManager.h"
 #import "StartScriptCell.h"
+#import "BrickScaleTransition.h"
 
 @interface ScriptCollectionViewController () <UICollectionViewDelegate, LXReorderableCollectionViewDelegateFlowLayout, LXReorderableCollectionViewDataSource>
 @property (nonatomic, strong) NSDictionary *classNameBrickNameMap;
 @property (nonatomic, weak) IBOutlet UICollectionView *collectionView;
+@property (nonatomic, strong) BrickScaleTransition *brickScaleTransition;
 @end
 
 @implementation ScriptCollectionViewController
@@ -76,6 +78,8 @@
     self.collectionView.scrollEnabled = YES;
     self.collectionView.delegate = self;
     self.collectionView.dataSource = self;
+    
+    self.brickScaleTransition = [BrickScaleTransition new];
 
     // register brick cells for current brick category
     NSDictionary *allCategoriesAndBrickTypes = self.classNameBrickNameMap;
@@ -104,11 +108,26 @@
     [self.collectionView reloadData];
 }
 
+
 #pragma mark - application events
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     [BrickCell clearImageCache];
+}
+
+#pragma mark - UIViewControllerAnimatedTransitioning delegate
+
+- (id<UIViewControllerAnimatedTransitioning>)animationControllerForPresentedController:(UIViewController *)presented
+                                                                  presentingController:(UIViewController *)presenting
+                                                                      sourceController:(UIViewController *)source {
+    self.brickScaleTransition.transitionMode = TransitionModePresent;
+    return self.brickScaleTransition;
+}
+
+- (id<UIViewControllerAnimatedTransitioning>)animationControllerForDismissedController:(UIViewController *)dismissed {
+    self.brickScaleTransition.transitionMode = TransitionModeDismiss;
+    return self.brickScaleTransition;
 }
 
 #pragma mark - actions
@@ -284,6 +303,11 @@
     // margin between CVC-sections as you can see in Catroid's PocketCode version
     // TODO: outsource all consts
     return UIEdgeInsetsMake(10, 0, 5, 0);
+}
+
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
+    BrickCell *cell = (BrickCell*)[self.collectionView cellForItemAtIndexPath:indexPath];
+    NSLog(@"selected cell = %@", cell);
 }
 
 - (void)collectionView:(UICollectionView *)collectionView didHighlightItemAtIndexPath:(NSIndexPath *)indexPath {
