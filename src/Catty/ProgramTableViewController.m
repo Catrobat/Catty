@@ -58,6 +58,7 @@
 UINavigationBarDelegate>
 @property (strong, nonatomic) NSCharacterSet *blockedCharacterSet;
 @property (strong, nonatomic) NSMutableDictionary *imageCache;
+@property (strong, nonatomic) UIBarButtonItem *selectAllItemsButton;
 @end
 
 @implementation ProgramTableViewController
@@ -387,7 +388,7 @@ UINavigationBarDelegate>
 
 -(UITableViewCellEditingStyle)tableView:(UITableView*)tableView editingStyleForRowAtIndexPath:(NSIndexPath*)indexPath
 {
-    return 3; // strange, no corresponding enum value available for that...
+    return 3; // XXX: strange, but no corresponding enum value available for that...
 }
 
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
@@ -408,6 +409,26 @@ UINavigationBarDelegate>
 {
     if (! self.isEditing) {
         [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    }
+    // check if all rows are selected and if so, change SelectAll button to UnselectAll button
+    if ([self areAllCellsSelectedInSection:kObjectSectionIndex]) {
+        self.selectAllItemsButton.tag = kUnselectAllItemsTag;
+        self.selectAllItemsButton.title = kUnselectAllItemsTitle;
+    } else {
+        self.selectAllItemsButton.tag = kSelectAllItemsTag;
+        self.selectAllItemsButton.title = kSelectAllItemsTitle;
+    }
+}
+
+- (void)tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    // check if all rows are selected and if so, change SelectAll button to UnselectAll button
+    if ([self areAllCellsSelectedInSection:kObjectSectionIndex]) {
+        self.selectAllItemsButton.tag = kUnselectAllItemsTag;
+        self.selectAllItemsButton.title = kUnselectAllItemsTitle;
+    } else {
+        self.selectAllItemsButton.tag = kSelectAllItemsTag;
+        self.selectAllItemsButton.title = kSelectAllItemsTitle;
     }
 }
 
@@ -565,22 +586,30 @@ UINavigationBarDelegate>
                          flexItem, flexItem, invisibleButton, play, invisibleButton, flexItem, nil];
 }
 
+- (UIBarButtonItem*)selectAllItemsButton
+{
+    if (! _selectAllItemsButton) {
+        UIBarButtonItem *selectAllItemsButton = [[UIBarButtonItem alloc] initWithTitle:kSelectAllItemsTitle
+                                                                                 style:UIBarButtonItemStylePlain
+                                                                                target:self
+                                                                                action:@selector(selectAllObjects:)];
+        selectAllItemsButton.tag = kSelectAllItemsTag;
+        _selectAllItemsButton = selectAllItemsButton;
+    }
+    return _selectAllItemsButton;
+}
+
 - (void)setupEditingToolBar
 {
     [super setupToolBar];
     UIBarButtonItem *flexItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace
                                                                               target:nil
                                                                               action:nil];
-    UIBarButtonItem *selectAllButton = [[UIBarButtonItem alloc] initWithTitle:kSelectAllItemsTitle
-                                                                        style:UIBarButtonItemStylePlain
-                                                                       target:self
-                                                                       action:@selector(selectAllObjects:)];
-    selectAllButton.tag = kSelectAllItemsTag;
     UIBarButtonItem *deleteButton = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Delete", nil)
                                                                      style:UIBarButtonItemStylePlain
                                                                     target:self
                                                                     action:@selector(deleteSelectedObjects:)];
-    self.toolbarItems = [NSArray arrayWithObjects:selectAllButton, flexItem, deleteButton, nil];
+    self.toolbarItems = [NSArray arrayWithObjects:self.selectAllItemsButton, flexItem, deleteButton, nil];
 }
 
 @end
