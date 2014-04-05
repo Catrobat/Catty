@@ -26,13 +26,14 @@
 
 @interface TableUtil : NSObject
 
++ (CGFloat)getHeightForContinueCell;
 
-+(CGFloat)getHeightForContinueCell;
++ (CGFloat)getHeightForImageCell;
 
-+(CGFloat)getHeightForImageCell;
++ (void)initNavigationItem:(UINavigationItem*)navigationItem withTitle:(NSString*)title;
 
-+(void)initNavigationItem:(UINavigationItem*)navigationItem withTitle:(NSString*)title;
++ (UIBarButtonItem*)editButtonItemWithTarget:(id)target action:(SEL)action;
 
-+(void)addSeperatorForCell:(CatrobatBaseCell*)cell;
++ (void)addSeperatorForCell:(CatrobatBaseCell*)cell;
 
 @end

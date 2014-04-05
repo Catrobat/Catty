@@ -39,7 +39,7 @@
 #import "ActionSheetAlertViewTags.h"
 
 @interface MyProgramsViewController () <ProgramUpdateDelegate, UIAlertViewDelegate, UITextFieldDelegate>
-@property (nonatomic, strong) NSMutableDictionary *assertCache;
+@property (nonatomic, strong) NSMutableDictionary *assetCache;
 @property (nonatomic, strong) NSMutableArray *programLoadingInfos;
 @property (nonatomic, strong) Program *selectedProgram;
 @property (nonatomic, strong) Program *defaultProgram;
@@ -48,13 +48,13 @@
 @implementation MyProgramsViewController
 
 #pragma mark - getters and setters
-- (NSMutableDictionary*)assertCache
+- (NSMutableDictionary*)assetCache
 {
     // lazy instantiation
-    if (! _assertCache) {
-        _assertCache = [NSMutableDictionary dictionaryWithCapacity:[self.programLoadingInfos count]];
+    if (! _assetCache) {
+        _assetCache = [NSMutableDictionary dictionaryWithCapacity:[self.programLoadingInfos count]];
     }
-    return _assertCache;
+    return _assetCache;
 }
 
 #pragma mark - initialization
@@ -67,16 +67,28 @@
     return self;
 }
 
+- (void)initNavigationBar
+{
+    if (! [self.programLoadingInfos count]) {
+        [TableUtil initNavigationItem:self.navigationItem withTitle:self.title];
+        return;
+    }
+    UIBarButtonItem *editButtonItem = [TableUtil editButtonItemWithTarget:self action:@selector(editAction:)];
+    self.navigationItem.rightBarButtonItem = editButtonItem;
+}
+
 #pragma mark - view events
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.navigationController.title = self.title = NSLocalizedString(@"Programs", nil);
+    [self loadPrograms];
+    [self initNavigationBar];
+    [super initTableView];
+
     self.defaultProgram = nil;
     self.selectedProgram = nil;
-    [super initTableView];
-    [TableUtil initNavigationItem:self.navigationItem withTitle:NSLocalizedString(@"Programs", nil)];
     [self setupToolBar];
-    [self loadPrograms];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -85,6 +97,7 @@
     self.selectedProgram = nil;
     [self.navigationController setNavigationBarHidden:NO];
     [self.navigationController setToolbarHidden:NO];
+    [self initNavigationBar];
     [self.tableView reloadData];
 }
 
@@ -92,7 +105,7 @@
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
-    self.assertCache = nil;
+    self.assetCache = nil;
 }
 
 - (void)dealloc
@@ -104,12 +117,39 @@
 }
 
 #pragma mark - actions
+- (void)editAction:(id)sender
+{
+    [self setupEditingToolBar];
+    [super changeToEditingMode:sender];
+}
+
 - (void)addProgramAction:(id)sender
 {
     static NSString *segueToNewProgram = kSegueToNewProgram;
     if ([self shouldPerformSegueWithIdentifier:segueToNewProgram sender:self]) {
         [self performSegueWithIdentifier:segueToNewProgram sender:sender];
     }
+}
+
+- (void)deleteSelectedProgramsAction:(id)sender
+{
+    NSArray *selectedRowsIndexPaths = [self.tableView indexPathsForSelectedRows];
+    if (! [selectedRowsIndexPaths count]) {
+        // nothing selected, nothing to delete...
+        [super exitEditingMode:sender];
+        return;
+    }
+
+    NSMutableArray *programNamesToRemove = [NSMutableArray arrayWithCapacity:[selectedRowsIndexPaths count]];
+    for (NSIndexPath *selectedRowIndexPath in selectedRowsIndexPaths) {
+        ProgramLoadingInfo *programLoadingInfo = [self.programLoadingInfos objectAtIndex:selectedRowIndexPath.row];
+        [programNamesToRemove addObject:programLoadingInfo.visibleName];
+    }
+    for (NSString *programNameToRemove in programNamesToRemove) {
+        [self removeProgram:programNameToRemove];
+    }
+    [super exitEditingMode:sender];
+    [self initNavigationBar];
 }
 
 #pragma mark - table view data source
@@ -131,10 +171,10 @@
         [self configureImageCell:imageCell atIndexPath:indexPath];
     }
     NSString *patternName = @"pattern";
-    UIColor* color = [self.assertCache objectForKey:patternName];
+    UIColor* color = [self.assetCache objectForKey:patternName];
     if (! color) {
         color = [UIColor colorWithPatternImage:[UIImage imageNamed:@"darkblue"]];
-        [self.assertCache setObject:color forKey:patternName];
+        [self.assetCache setObject:color forKey:patternName];
     }
     cell.backgroundColor = color;
     return cell;
@@ -154,22 +194,10 @@
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
         ProgramLoadingInfo *programLoadingInfo = [self.programLoadingInfos objectAtIndex:indexPath.row];
-        [Program removeProgramFromDiskWithProgramName:programLoadingInfo.visibleName];
-//        AppDelegate *appDelegate = (AppDelegate*)[UIApplication sharedApplication].delegate;
-//        [appDelegate.fileManager deleteDirectory:programLoadingInfo.basePath];
-        [self.programLoadingInfos removeObject:programLoadingInfo];
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    } else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
+        [self removeProgram:programLoadingInfo.visibleName];
+        [self initNavigationBar];
     }
-}
-
-#pragma mark - table view delegate
-- (void)tableView:(UITableView*)tableView didSelectRowAtIndexPath:(NSIndexPath*)indexPath
-{
-    [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
 #pragma mark - table view helpers
@@ -179,7 +207,7 @@
     cell.titleLabel.text = info.visibleName;
 //    cell.iconImageView.image = [UIImage imageNamed:@"programs"];
     NSString* imagePath = [[NSString alloc] initWithFormat:@"%@/small_screenshot.png", info.basePath];
-    UIImage* image = [self.assertCache objectForKey:imagePath];
+    UIImage* image = [self.assetCache objectForKey:imagePath];
     cell.iconImageView.contentMode = UIViewContentModeScaleAspectFit;
 
     if (! image) {
@@ -220,7 +248,7 @@
                 if ([cell.indexPath isEqual:indexPath]) {
                     cell.iconImageView.image = image;
                     [cell setNeedsLayout];
-                    [self.assertCache setObject:image forKey:imagePath];
+                    [self.assetCache setObject:image forKey:imagePath];
                 }
             });
         });
@@ -266,6 +294,10 @@
 #pragma mark - segue handling
 - (BOOL)shouldPerformSegueWithIdentifier:(NSString *)identifier sender:(id)sender
 {
+    if (self.editing) {
+        return NO;
+    }
+
     static NSString *segueToContinue = kSegueToContinue;
     static NSString *segueToNewProgram = kSegueToNewProgram;
     if ([identifier isEqualToString:segueToContinue]) {
@@ -390,7 +422,7 @@
     }
 }
 
-- (void)addProgram:(NSString *)programName
+- (void)addProgram:(NSString*)programName
 {
     NSString *basePath = [Program basePath];
 
@@ -415,21 +447,22 @@
     }
 }
 
-- (void)removeProgram:(NSString *)programName
+- (void)removeProgram:(NSString*)programName
 {
     NSInteger rowIndex = 0;
     for (ProgramLoadingInfo *info in self.programLoadingInfos) {
         if ([info.visibleName isEqualToString:programName]) {
+            [Program removeProgramFromDiskWithProgramName:programName];
             [self.programLoadingInfos removeObjectAtIndex:rowIndex];
             NSIndexPath *indexPath = [NSIndexPath indexPathForRow:rowIndex inSection:0];
-            [self.tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationNone];
+            [self.tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
             break;
         }
         ++rowIndex;
     }
 }
 
-- (void)renameOldProgramName:(NSString *)oldProgramName ToNewProgramName:(NSString *)newProgramName
+- (void)renameOldProgramName:(NSString*)oldProgramName ToNewProgramName:(NSString*)newProgramName
 {
     NSInteger rowIndex = 0;
     for (ProgramLoadingInfo *info in self.programLoadingInfos) {
@@ -439,8 +472,8 @@
             newInfo.visibleName = newProgramName;
             [self.programLoadingInfos replaceObjectAtIndex:rowIndex withObject:newInfo];
 
-             // flush assert/image cache
-            self.assertCache = nil;
+             // flush asset/image cache
+            self.assetCache = nil;
 
             // update table
             NSIndexPath *indexPath = [NSIndexPath indexPathForRow:rowIndex inSection:0];
@@ -462,6 +495,24 @@
                                                                          target:self
                                                                          action:@selector(addProgramAction:)];
     self.toolbarItems = @[flexItem, add, flexItem];
+}
+
+- (void)setupEditingToolBar
+{
+    [super setupEditingToolBar];
+    UIBarButtonItem *flexItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace
+                                                                              target:nil
+                                                                              action:nil];
+    UIBarButtonItem *deleteButton = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Delete", nil)
+                                                                     style:UIBarButtonItemStylePlain
+                                                                    target:self
+                                                                    action:@selector(deleteSelectedProgramsAction:)];
+    // XXX: workaround for tap area problem:
+    // http://stackoverflow.com/questions/5113258/uitoolbar-unexpectedly-registers-taps-on-uibarbuttonitem-instances-even-when-tap
+    UIImageView *imageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"transparent1x1"]];
+    UIBarButtonItem *invisibleButton = [[UIBarButtonItem alloc] initWithCustomView:imageView];
+    self.toolbarItems = [NSArray arrayWithObjects:self.selectAllRowsButtonItem, invisibleButton, flexItem,
+                         invisibleButton, deleteButton, nil];
 }
 
 @end
