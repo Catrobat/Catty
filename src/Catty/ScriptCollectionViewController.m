@@ -291,16 +291,40 @@
     cell.alpha = .7f;
 }
 
+- (void)collectionView:(UICollectionView *)collectionView didUnhighlightItemAtIndexPath:(NSIndexPath *)indexPath {
+    BrickCell *cell = (BrickCell*)[self.collectionView cellForItemAtIndexPath:indexPath];
+    cell.alpha = 1.f;
+}
+
 #pragma mark LXReorderableCollectionViewDatasource
 - (void)collectionView:(UICollectionView *)collectionView
        itemAtIndexPath:(NSIndexPath *)fromIndexPath
    willMoveToIndexPath:(NSIndexPath *)toIndexPath
 {
-    Script *script = [self.object.scriptList objectAtIndex:fromIndexPath.section];
-    Brick *toBrick = [script.brickList objectAtIndex:toIndexPath.item - 1];
-    [script.brickList removeObjectAtIndex:toIndexPath.item - 1];
-    [script.brickList insertObject:toBrick atIndex:fromIndexPath.item - 1];
+    NSLog(@"to section :%ld", (long)toIndexPath.section);
+    NSLog(@"from section :%ld", (long)fromIndexPath.section);
+    if (fromIndexPath.section == toIndexPath.section) {
+        Script *script = [self.object.scriptList objectAtIndex:fromIndexPath.section];
+        Brick *toBrick = [script.brickList objectAtIndex:toIndexPath.item - 1];
+        [script.brickList removeObjectAtIndex:toIndexPath.item - 1];
+        [script.brickList insertObject:toBrick atIndex:fromIndexPath.item - 1];
+    } else {
+        Script *toScript = [self.object.scriptList objectAtIndex:toIndexPath.section];
+        Brick *toBrick = [toScript.brickList objectAtIndex:toIndexPath.item - 1];
+        
+        Script *fromScript = [self.object.scriptList objectAtIndex:fromIndexPath.section];
+        Brick *fromBrick = [fromScript.brickList objectAtIndex:toIndexPath.item - 1];
+        
+        [fromScript.brickList removeObjectAtIndex:fromIndexPath.item - 1];
+        [toScript.brickList insertObject:fromBrick atIndex:toIndexPath.item - 1];
+        
+    }
+
 }
+
+//- (void)collectionView:(UICollectionView *)collectionView itemAtIndexPath:(NSIndexPath *)fromIndexPath didMoveToIndexPath:(NSIndexPath *)toIndexPath {
+//   NSLog(@"to section :%ld", (long)toIndexPath.section);
+//}
 
 - (BOOL)collectionView:(UICollectionView *)collectionView itemAtIndexPath:(NSIndexPath *)fromIndexPath canMoveToIndexPath:(NSIndexPath *)toIndexPath {
     return toIndexPath.item == 0 ? NO : YES;
