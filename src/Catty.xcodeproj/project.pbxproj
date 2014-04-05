@@ -27,6 +27,10 @@
 		288765FD0DF74451002DB57D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 288765FC0DF74451002DB57D /* CoreGraphics.framework */; };
 		81506F4D18C3EE18000ED328 /* LXReorderableCollectionViewFlowLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 81506F4C18C3EE18000ED328 /* LXReorderableCollectionViewFlowLayout.m */; };
 		816C788617D62B7C0029A4E6 /* ProgramTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 816C788517D62B7C0029A4E6 /* ProgramTableViewController.m */; };
+		817B544018F03C0D00AF6BFE /* BaseTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = 817B543F18F03C0D00AF6BFE /* BaseTransition.m */; };
+		817B544318F03D4C00AF6BFE /* BrickScaleTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = 817B544218F03D4C00AF6BFE /* BrickScaleTransition.m */; };
+		817B544C18F0520800AF6BFE /* BrickDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 817B544A18F0520800AF6BFE /* BrickDetailViewController.m */; };
+		817B544D18F0520800AF6BFE /* BrickDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 817B544B18F0520800AF6BFE /* BrickDetailViewController.xib */; };
 		81C27424189EE41700827A95 /* BrickCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 81C27423189EE41700827A95 /* BrickCell.m */; };
 		81C27426189EF94600827A95 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 81C27425189EF94600827A95 /* Images.xcassets */; };
 		81FAEE2F17E781AB0052BB2B /* ScriptCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 81FAEE2E17E781AB0052BB2B /* ScriptCollectionViewController.m */; };
@@ -287,6 +291,13 @@
 		81506F4C18C3EE18000ED328 /* LXReorderableCollectionViewFlowLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LXReorderableCollectionViewFlowLayout.m; sourceTree = "<group>"; };
 		816C788417D62B7C0029A4E6 /* ProgramTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProgramTableViewController.h; sourceTree = "<group>"; };
 		816C788517D62B7C0029A4E6 /* ProgramTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProgramTableViewController.m; sourceTree = "<group>"; };
+		817B543E18F03C0D00AF6BFE /* BaseTransition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseTransition.h; sourceTree = "<group>"; };
+		817B543F18F03C0D00AF6BFE /* BaseTransition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseTransition.m; sourceTree = "<group>"; };
+		817B544118F03D4C00AF6BFE /* BrickScaleTransition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BrickScaleTransition.h; sourceTree = "<group>"; };
+		817B544218F03D4C00AF6BFE /* BrickScaleTransition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BrickScaleTransition.m; sourceTree = "<group>"; };
+		817B544918F0520800AF6BFE /* BrickDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BrickDetailViewController.h; sourceTree = "<group>"; };
+		817B544A18F0520800AF6BFE /* BrickDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BrickDetailViewController.m; sourceTree = "<group>"; };
+		817B544B18F0520800AF6BFE /* BrickDetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BrickDetailViewController.xib; sourceTree = "<group>"; };
 		81C27422189EE41700827A95 /* BrickCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BrickCell.h; sourceTree = "<group>"; };
 		81C27423189EE41700827A95 /* BrickCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BrickCell.m; sourceTree = "<group>"; };
 		81C27425189EF94600827A95 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = Catty/Images.xcassets; sourceTree = "<group>"; };
@@ -880,6 +891,17 @@
 				81506F4C18C3EE18000ED328 /* LXReorderableCollectionViewFlowLayout.m */,
 			);
 			name = LXReorderableCollectionViewFlowLayout;
+			sourceTree = "<group>";
+		};
+		817B543D18F03BC700AF6BFE /* Transitions */ = {
+			isa = PBXGroup;
+			children = (
+				817B543E18F03C0D00AF6BFE /* BaseTransition.h */,
+				817B543F18F03C0D00AF6BFE /* BaseTransition.m */,
+				817B544118F03D4C00AF6BFE /* BrickScaleTransition.h */,
+				817B544218F03D4C00AF6BFE /* BrickScaleTransition.m */,
+			);
+			name = Transitions;
 			sourceTree = "<group>";
 		};
 		81F10ED317CCD1F8000E4522 /* MaintainProgram */ = {
@@ -1636,6 +1658,8 @@
 		CA160DB218A29CBB00E5190D /* MaintainScript */ = {
 			isa = PBXGroup;
 			children = (
+				817B544918F0520800AF6BFE /* BrickDetailViewController.h */,
+				817B544A18F0520800AF6BFE /* BrickDetailViewController.m */,
 				81FAEE2D17E781AB0052BB2B /* ScriptCollectionViewController.h */,
 				81FAEE2E17E781AB0052BB2B /* ScriptCollectionViewController.m */,
 				CA688209180B30B5008A7C99 /* BrickCategoriesTableViewController.h */,
@@ -1997,6 +2021,7 @@
 		CD0CCE37170C9F9300B70036 /* Storyboard & XIBs */ = {
 			isa = PBXGroup;
 			children = (
+				817B544B18F0520800AF6BFE /* BrickDetailViewController.xib */,
 				C3F2950B1813C63200E37D61 /* iPhone.storyboard */,
 			);
 			name = "Storyboard & XIBs";
@@ -2006,6 +2031,7 @@
 		CD0CCE3B170CA00F00B70036 /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
+				817B543D18F03BC700AF6BFE /* Transitions */,
 				CA05A193182826950025421A /* Download */,
 				CA05A194182826E40025421A /* BaseClasses */,
 				B4003032170EB51000396DB7 /* CatrobatTableViewController */,
@@ -2553,6 +2579,7 @@
 			files = (
 				B4D940D8170ECB31003DDBFA /* Aquarium 3.catrobat in Resources */,
 				81C27426189EF94600827A95 /* Images.xcassets in Resources */,
+				817B544D18F0520800AF6BFE /* BrickDetailViewController.xib in Resources */,
 				C3F2950C1813C63200E37D61 /* iPhone.storyboard in Resources */,
 				92300D0B18B2196700F2B4DC /* Localizable.strings in Resources */,
 				B4365CE91758EBA900B4D0A6 /* LoggerProperties.plist in Resources */,
@@ -2604,6 +2631,7 @@
 				CA047EC418C782550078BE08 /* BrickManager.m in Sources */,
 				CA68B67718BAA80A007042E4 /* ComboBoxView.m in Sources */,
 				CA75C27718A9620E00FC8C2F /* StopAllSoundsBrickCell.m in Sources */,
+				817B544018F03C0D00AF6BFE /* BaseTransition.m in Sources */,
 				C34B44F817F1D8D200624730 /* ChangeBrightnessByNBrick.m in Sources */,
 				B4D940B1170EC5C2003DDBFA /* CatrobatTableViewController.m in Sources */,
 				CA5FED5018B0070300A517B6 /* BrickCellInlineView.m in Sources */,
@@ -2611,6 +2639,7 @@
 				1D60589B0D05DD56006BFB54 /* main.m in Sources */,
 				CD0CCF51170CB39700B70036 /* BaseSprite.m in Sources */,
 				CD0CCF52170CB39700B70036 /* Brick.m in Sources */,
+				817B544C18F0520800AF6BFE /* BrickDetailViewController.m in Sources */,
 				CA05A19C18282B2C0025421A /* SearchStoreViewController.m in Sources */,
 				CD0CCF53170CB39700B70036 /* BroadcastBrick.m in Sources */,
 				CA75C2A718A9627800FC8C2F /* ChangeVariableBrickCell.m in Sources */,
@@ -2694,6 +2723,7 @@
 				CA75C24118A9616800FC8C2F /* IfLogicElseBrickCell.m in Sources */,
 				CA727B3B18DF469F00D1EE13 /* NSData+Hashes.m in Sources */,
 				CD0CCFDC170CB39700B70036 /* WhenScript.m in Sources */,
+				817B544318F03D4C00AF6BFE /* BrickScaleTransition.m in Sources */,
 				9232B4FF18E54C4B00ED7AB1 /* EVCircularProgressView.m in Sources */,
 				CAEDFB8117EF759500FDED0E /* ObjectTableViewController.m in Sources */,
 				CD639C7B170DF52600FA67DA /* SpriteObject.m in Sources */,
