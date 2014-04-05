@@ -124,7 +124,7 @@ UINavigationBarDelegate>
     [super viewDidLoad];
     [self initTableView];
 
-    self.editing = NO;
+    self.editableSections = @[@(kObjectSectionIndex)];
     if (self.program.header.programName) {
         self.navigationItem.title = self.program.header.programName;
         self.title = self.program.header.programName;
@@ -174,13 +174,18 @@ UINavigationBarDelegate>
 - (void)deleteSelectedObjects:(id)sender
 {
     NSArray *selectedRowsIndexPaths = [self.tableView indexPathsForSelectedRows];
+    if (! [selectedRowsIndexPaths count]) {
+        // nothing selected, nothing to delete...
+        [super exitEditingMode:sender];
+        return;
+    }
+
     NSMutableArray *objectsToRemove = [NSMutableArray arrayWithCapacity:[selectedRowsIndexPaths count]];
     for (NSIndexPath *selectedRowIndexPath in selectedRowsIndexPaths) {
         // sanity check
         if (selectedRowIndexPath.section != kObjectSectionIndex) {
             continue;
         }
-        NSLog(@"IndexPath: %@", [selectedRowIndexPath description]);
         SpriteObject *object = (SpriteObject*)[self.program.objectList objectAtIndex:(kObjectSectionIndex + selectedRowIndexPath.row)];
         [self.imageCache objectForKey:object.name];
         [objectsToRemove addObject:object];
@@ -422,7 +427,7 @@ UINavigationBarDelegate>
     } else if (buttonIndex == 2 && [self.program numberOfNormalObjects]) {
         // Delete multiple objects button
         [self setupEditingToolBar];
-        [super changeToEditingMode:actionSheet editableSections:@[@(kObjectSectionIndex)]];
+        [super changeToEditingMode:actionSheet];
     } else if (buttonIndex == actionSheet.destructiveButtonIndex) {
         // Delete program button
         [self.delegate removeProgram:self.program.header.programName];
@@ -518,7 +523,12 @@ UINavigationBarDelegate>
                                                                      style:UIBarButtonItemStylePlain
                                                                     target:self
                                                                     action:@selector(deleteSelectedObjects:)];
-    self.toolbarItems = [NSArray arrayWithObjects:self.selectAllRowsButtonItem, flexItem, deleteButton, nil];
+    // XXX: workaround for tap area problem:
+    // http://stackoverflow.com/questions/5113258/uitoolbar-unexpectedly-registers-taps-on-uibarbuttonitem-instances-even-when-tap
+    UIImageView *imageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"transparent1x1"]];
+    UIBarButtonItem *invisibleButton = [[UIBarButtonItem alloc] initWithCustomView:imageView];
+    self.toolbarItems = [NSArray arrayWithObjects:self.selectAllRowsButtonItem, invisibleButton, flexItem,
+                         invisibleButton, deleteButton, nil];
 }
 
 @end

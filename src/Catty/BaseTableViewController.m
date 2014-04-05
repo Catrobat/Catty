@@ -35,7 +35,6 @@
 
 @interface BaseTableViewController ()
 @property (nonatomic, strong) UIBarButtonItem *selectAllRowsButtonItem;
-@property (nonatomic, strong) NSArray *editableSections;
 @property (nonatomic, strong) UIBarButtonItem *normalModeRightBarButtonItem;
 @property (nonatomic, strong) UIView *placeholder;
 @property (nonatomic, strong) UILabel *placeholderTitleLabel;
@@ -45,14 +44,6 @@
 @implementation BaseTableViewController
 
 #pragma mark - getters and setters
-- (NSArray*)editableSections
-{
-    if (! _editableSections) {
-        _editableSections = [NSArray array];
-    }
-    return _editableSections;
-}
-
 - (UIBarButtonItem*)selectAllRowsButtonItem
 {
     if (! _selectAllRowsButtonItem) {
@@ -65,6 +56,12 @@
 }
 
 #pragma mark - init
+- (void)viewDidLoad
+{
+    self.editing = NO;
+    self.editableSections = nil;
+}
+
 - (void)initPlaceHolder
 {
     self.placeholder = [[UIView alloc] initWithFrame:self.tableView.bounds];
@@ -93,9 +90,10 @@
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     [self.tableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
-    self.tableView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"darkblue"]];
+    UIColor *backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"darkblue"]];
+    self.tableView.backgroundColor = backgroundColor;
     UITableViewHeaderFooterView *headerViewTemplate = [[UITableViewHeaderFooterView alloc] initWithReuseIdentifier:kTableHeaderIdentifier];
-    headerViewTemplate.contentView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"darkblue"]];
+    headerViewTemplate.contentView.backgroundColor = backgroundColor;
     [self.tableView addSubview:headerViewTemplate];
 }
 
@@ -135,6 +133,19 @@
 }
 
 #pragma mark - table view delegates
+- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (self.isEditing && (! self.editableSections)) {
+        return YES;
+    }
+    for (NSNumber *section in self.editableSections) {
+        if (indexPath.section == [section integerValue]) {
+            return YES;
+        }
+    }
+    return NO;
+}
+
 - (UITableViewCellEditingStyle)tableView:(UITableView*)tableView
            editingStyleForRowAtIndexPath:(NSIndexPath*)indexPath
 {
@@ -151,7 +162,16 @@
     }
     // check if all rows are selected and if so, change SelectAll button to UnselectAll button
     BOOL allItemsInAllSectionsSelected = YES;
-    for (NSNumber *section in self.editableSections) {
+    NSArray *editableSections = self.editableSections;
+    if (! self.editableSections) {
+        NSInteger numberOfSections = [self numberOfSectionsInTableView:self.tableView];
+        NSMutableArray *temp = [[NSMutableArray alloc] initWithCapacity:numberOfSections];
+        for (NSInteger index = 0; index < numberOfSections; ++index) {
+            [temp addObject:@(index)];
+        }
+        editableSections = [temp copy];
+    }
+    for (NSNumber *section in editableSections) {
         if (! [self areAllCellsSelectedInSection:[section integerValue]]) {
             allItemsInAllSectionsSelected = NO;
             break;
@@ -170,7 +190,16 @@
 {
     // check if all rows are selected and if so, change SelectAll button to UnselectAll button
     BOOL allItemsInAllSectionsSelected = YES;
-    for (NSNumber *section in self.editableSections) {
+    NSArray *editableSections = self.editableSections;
+    if (! self.editableSections) {
+        NSInteger numberOfSections = [self numberOfSectionsInTableView:self.tableView];
+        NSMutableArray *temp = [[NSMutableArray alloc] initWithCapacity:numberOfSections];
+        for (NSInteger index = 0; index < numberOfSections; ++index) {
+            [temp addObject:@(index)];
+        }
+        editableSections = [temp copy];
+    }
+    for (NSNumber *section in editableSections) {
         if (! [self areAllCellsSelectedInSection:[section integerValue]]) {
             allItemsInAllSectionsSelected = NO;
             break;
@@ -233,9 +262,8 @@
     return (totalNumberOfRows == counter);
 }
 
-- (void)changeToEditingMode:(id)sender editableSections:(NSArray*)editableSections
+- (void)changeToEditingMode:(id)sender
 {
-    self.editableSections = editableSections;
     UIBarButtonItem *cancelButton = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Cancel", nil)
                                                                      style:UIBarButtonItemStylePlain
                                                                     target:self
@@ -272,7 +300,16 @@
             button.title = kSelectAllItemsTitle;
         }
     }
-    for (NSNumber *section in self.editableSections) {
+    NSArray *editableSections = self.editableSections;
+    if (! self.editableSections) {
+        NSInteger numberOfSections = [self numberOfSectionsInTableView:self.tableView];
+        NSMutableArray *temp = [[NSMutableArray alloc] initWithCapacity:numberOfSections];
+        for (NSInteger index = 0; index < numberOfSections; ++index) {
+            [temp addObject:@(index)];
+        }
+        editableSections = [temp copy];
+    }
+    for (NSNumber *section in editableSections) {
         for (NSInteger index = 0; index < [self.tableView numberOfRowsInSection:[section integerValue]]; ++index) {
             NSIndexPath *indexPath = [NSIndexPath indexPathForRow:index inSection:[section integerValue]];
             if (selectAll) {

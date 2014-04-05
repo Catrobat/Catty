@@ -23,11 +23,14 @@
 #import <UIKit/UIKit.h>
 
 @interface BaseTableViewController : UITableViewController
+@property (nonatomic, strong) NSArray *editableSections;
 @property (nonatomic, strong, readonly) UIBarButtonItem *selectAllRowsButtonItem;
+- (void)viewDidLoad;
 - (void)setPlaceHolderTitle:(NSString*)title Description:(NSString*)description;
 - (void)showPlaceHolder:(BOOL)show;
 - (void)initPlaceHolder;
 - (void)initTableView;
+- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath;
 - (UITableViewCellEditingStyle)tableView:(UITableView*)tableView editingStyleForRowAtIndexPath:(NSIndexPath*)indexPath;
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath*)indexPath;
 - (void)tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath;
@@ -36,6 +39,6 @@
 - (void)setupToolBar;
 - (void)setupEditingToolBar;
 - (BOOL)areAllCellsSelectedInSection:(NSInteger)section;
-- (void)changeToEditingMode:(id)sender editableSections:(NSArray*)editableSections;
+- (void)changeToEditingMode:(id)sender;
 - (void)exitEditingMode:(id)sender;
 @end
