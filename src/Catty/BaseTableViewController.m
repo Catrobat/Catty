@@ -25,9 +25,18 @@
 #import "TableUtil.h"
 #import "UIDefines.h"
 
+// TODO: outsource...
+#define kSelectAllItemsTitle NSLocalizedString(@"Select all", nil)
+#define kUnselectAllItemsTitle NSLocalizedString(@"Unselect all", nil)
+#define kSelectAllItemsTag 0
+#define kUnselectAllItemsTag 1
+
 #define kTableHeaderIdentifier @"Header"
 
 @interface BaseTableViewController ()
+@property (nonatomic, strong) UIBarButtonItem *selectAllRowsButtonItem;
+@property (nonatomic, strong) NSArray *editableSections;
+@property (nonatomic, strong) UIBarButtonItem *normalModeRightBarButtonItem;
 @property (nonatomic, strong) UIView *placeholder;
 @property (nonatomic, strong) UILabel *placeholderTitleLabel;
 @property (nonatomic, strong) UILabel *placeholderDescriptionLabel;
@@ -35,19 +44,39 @@
 
 @implementation BaseTableViewController
 
-#pragma mark init
+#pragma mark - getters and setters
+- (NSArray*)editableSections
+{
+    if (! _editableSections) {
+        _editableSections = [NSArray array];
+    }
+    return _editableSections;
+}
+
+- (UIBarButtonItem*)selectAllRowsButtonItem
+{
+    if (! _selectAllRowsButtonItem) {
+        _selectAllRowsButtonItem = [[UIBarButtonItem alloc] initWithTitle:kSelectAllItemsTitle
+                                                                    style:UIBarButtonItemStylePlain
+                                                                   target:self
+                                                                   action:@selector(selectAllRows:)];
+    }
+    return _selectAllRowsButtonItem;
+}
+
+#pragma mark - init
 - (void)initPlaceHolder
 {
     self.placeholder = [[UIView alloc] initWithFrame:self.tableView.bounds];
     self.placeholder.tag = kPlaceHolderTag;
-    
+
     // setup title label
     self.placeholderTitleLabel = [[UILabel alloc] init];
     self.placeholderTitleLabel.textAlignment = NSTextAlignmentCenter;
     self.placeholderTitleLabel.backgroundColor = [UIColor clearColor];
     self.placeholderTitleLabel.textColor = [UIColor skyBlueColor];
     self.placeholderTitleLabel.font = [self.placeholderTitleLabel.font fontWithSize:45];
-    
+
     // setup description label
     self.placeholderDescriptionLabel = [[UILabel alloc] init];
     self.placeholderDescriptionLabel.textAlignment = NSTextAlignmentCenter;
@@ -105,10 +134,66 @@
     self.tableView.alwaysBounceVertical = self.placeholder.hidden = (! show);
 }
 
-#pragma mark - Table view data source
+#pragma mark - table view delegates
+- (UITableViewCellEditingStyle)tableView:(UITableView*)tableView
+           editingStyleForRowAtIndexPath:(NSIndexPath*)indexPath
+{
+    return 3; // XXX: strange, but no corresponding enum value available for that...
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath*)indexPath
+{
+    if (! self.isEditing) {
+        [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    }
+    // check if all rows are selected and if so, change SelectAll button to UnselectAll button
+    BOOL allItemsInAllSectionsSelected = YES;
+    for (NSNumber *section in self.editableSections) {
+        if (! [self areAllCellsSelectedInSection:[section integerValue]]) {
+            allItemsInAllSectionsSelected = NO;
+            break;
+        }
+    }
+    if (allItemsInAllSectionsSelected) {
+        self.selectAllRowsButtonItem.tag = kUnselectAllItemsTag;
+        self.selectAllRowsButtonItem.title = kUnselectAllItemsTitle;
+    } else {
+        self.selectAllRowsButtonItem.tag = kSelectAllItemsTag;
+        self.selectAllRowsButtonItem.title = kSelectAllItemsTitle;
+    }
+}
+
+- (void)tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    // check if all rows are selected and if so, change SelectAll button to UnselectAll button
+    BOOL allItemsInAllSectionsSelected = YES;
+    for (NSNumber *section in self.editableSections) {
+        if (! [self areAllCellsSelectedInSection:[section integerValue]]) {
+            allItemsInAllSectionsSelected = NO;
+            break;
+        }
+    }
+    if (allItemsInAllSectionsSelected) {
+        self.selectAllRowsButtonItem.tag = kUnselectAllItemsTag;
+        self.selectAllRowsButtonItem.title = kUnselectAllItemsTitle;
+    } else {
+        self.selectAllRowsButtonItem.tag = kSelectAllItemsTag;
+        self.selectAllRowsButtonItem.title = kSelectAllItemsTitle;
+    }
+}
+
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     return [TableUtil getHeightForImageCell];
+}
+
+#pragma mark - segue handlers
+- (BOOL)shouldPerformSegueWithIdentifier:(NSString *)identifier sender:(id)sender
+{
+    if (self.isEditing) {
+        return NO;
+    }
+    return [super shouldPerformSegueWithIdentifier:identifier sender:sender];
 }
 
 #pragma mark - helpers
@@ -118,6 +203,14 @@
     self.navigationController.toolbar.barStyle = UIBarStyleBlack;
     self.navigationController.toolbar.tintColor = [UIColor orangeColor];
     self.navigationController.toolbar.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleTopMargin;
+}
+
+- (void)setupEditingToolBar
+{
+    [self setupToolBar];
+    self.selectAllRowsButtonItem.tintColor = [UIColor orangeColor];
+    self.selectAllRowsButtonItem.title = kSelectAllItemsTitle;
+    self.selectAllRowsButtonItem.tag = kSelectAllItemsTag;
 }
 
 - (BOOL)areAllCellsSelectedInSection:(NSInteger)section
@@ -135,6 +228,56 @@
         }
     }
     return (totalNumberOfRows == counter);
+}
+
+- (void)changeToEditingMode:(id)sender editableSections:(NSArray*)editableSections
+{
+    self.editableSections = editableSections;
+    UIBarButtonItem *cancelButton = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Cancel", nil)
+                                                                     style:UIBarButtonItemStylePlain
+                                                                    target:self
+                                                                    action:@selector(exitEditingMode:)];
+    self.navigationItem.hidesBackButton = YES;
+    self.normalModeRightBarButtonItem = self.navigationItem.rightBarButtonItem;
+    self.navigationItem.rightBarButtonItem = cancelButton;
+    [self.tableView setEditing:YES animated:YES];
+    self.editing = YES;
+}
+
+- (void)exitEditingMode:(id)sender
+{
+    self.navigationItem.hidesBackButton = NO;
+    self.navigationItem.rightBarButtonItem = self.normalModeRightBarButtonItem;
+    [self.tableView setEditing:NO animated:YES];
+    [self setupToolBar];
+    self.editing = NO;
+}
+
+- (void)selectAllRows:(id)sender
+{
+    BOOL selectAll = NO;
+    if ([sender isKindOfClass:[UIBarButtonItem class]]) {
+        UIBarButtonItem *button = (UIBarButtonItem*)sender;
+        if (button.tag == kSelectAllItemsTag) {
+            button.tag = kUnselectAllItemsTag;
+            selectAll = YES;
+            button.title = kUnselectAllItemsTitle;
+        } else {
+            button.tag = kSelectAllItemsTag;
+            selectAll = NO;
+            button.title = kSelectAllItemsTitle;
+        }
+    }
+    for (NSNumber *section in self.editableSections) {
+        for (NSInteger index = 0; index < [self.tableView numberOfRowsInSection:[section integerValue]]; ++index) {
+            NSIndexPath *indexPath = [NSIndexPath indexPathForRow:index inSection:[section integerValue]];
+            if (selectAll) {
+                [self.tableView selectRowAtIndexPath:indexPath animated:NO scrollPosition:UITableViewScrollPositionNone];
+            } else {
+                [self.tableView deselectRowAtIndexPath:indexPath animated:NO];
+            }
+        }
+    }
 }
 
 @end

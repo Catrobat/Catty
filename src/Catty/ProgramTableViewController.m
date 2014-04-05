@@ -45,12 +45,6 @@
 #import "CellTagDefines.h"
 #import "AppDelegate.h"
 
-// TODO: outsource...
-#define kSelectAllItemsTitle NSLocalizedString(@"Select all", nil)
-#define kUnselectAllItemsTitle NSLocalizedString(@"Unselect all", nil)
-#define kSelectAllItemsTag 0
-#define kUnselectAllItemsTag 1
-
 // identifiers
 #define kTableHeaderIdentifier @"Header"
 
@@ -58,7 +52,6 @@
 UINavigationBarDelegate>
 @property (strong, nonatomic) NSCharacterSet *blockedCharacterSet;
 @property (strong, nonatomic) NSMutableDictionary *imageCache;
-@property (strong, nonatomic) UIBarButtonItem *selectAllItemsButton;
 @end
 
 @implementation ProgramTableViewController
@@ -79,18 +72,6 @@ UINavigationBarDelegate>
         _imageCache = [NSMutableDictionary dictionaryWithCapacity:[self.program numberOfTotalObjects]];
     }
     return _imageCache;
-}
-
-- (UIBarButtonItem*)selectAllItemsButton
-{
-    if (! _selectAllItemsButton) {
-        UIBarButtonItem *selectAllItemsButton = [[UIBarButtonItem alloc] initWithTitle:kSelectAllItemsTitle
-                                                                                 style:UIBarButtonItemStylePlain
-                                                                                target:self
-                                                                                action:@selector(selectAllObjects:)];
-        _selectAllItemsButton = selectAllItemsButton;
-    }
-    return _selectAllItemsButton;
 }
 
 - (void)setProgram:(Program *)program
@@ -190,33 +171,6 @@ UINavigationBarDelegate>
                           view:self.view];
 }
 
-- (void)selectAllObjects:(id)sender
-{
-    BOOL selectAll = NO;
-    if ([sender isKindOfClass:[UIBarButtonItem class]]) {
-        UIBarButtonItem *button = (UIBarButtonItem*)sender;
-        if (button.tag == kSelectAllItemsTag) {
-            button.tag = kUnselectAllItemsTag;
-            selectAll = YES;
-            button.title = kUnselectAllItemsTitle;
-        } else {
-            button.tag = kSelectAllItemsTag;
-            selectAll = NO;
-            button.title = kSelectAllItemsTitle;
-        }
-    }
-    for (NSInteger index = 0; index < [self.tableView numberOfRowsInSection:kObjectSectionIndex]; ++index) {
-        if (selectAll) {
-            [self.tableView selectRowAtIndexPath:[NSIndexPath indexPathForRow:index inSection:kObjectSectionIndex]
-                                        animated:NO
-                                  scrollPosition:UITableViewScrollPositionNone];
-        } else {
-            [self.tableView deselectRowAtIndexPath:[NSIndexPath indexPathForRow:index inSection:kObjectSectionIndex]
-                                        animated:NO];
-        }
-    }
-}
-
 - (void)deleteSelectedObjects:(id)sender
 {
     NSArray *selectedRowsIndexPaths = [self.tableView indexPathsForSelectedRows];
@@ -234,21 +188,8 @@ UINavigationBarDelegate>
     for (SpriteObject *objectToRemove in objectsToRemove) {
         [self.program removeObject:objectToRemove];
     }
-    [self cancelEditing:sender];
+    [super exitEditingMode:sender];
     [self.tableView deleteRowsAtIndexPaths:selectedRowsIndexPaths withRowAnimation:UITableViewRowAnimationNone];
-}
-
-- (void)cancelEditing:(id)sender
-{
-    UIBarButtonItem *editButton = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Edit", nil)
-                                                                   style:UIBarButtonItemStylePlain
-                                                                  target:self
-                                                                  action:@selector(editProgram:)];
-    self.navigationItem.hidesBackButton = NO;
-    self.navigationItem.rightBarButtonItem = editButton;
-    [self.tableView setEditing:NO animated:YES];
-    [self setupToolBar];
-    self.editing = NO;
 }
 
 #pragma mark - table view data source
@@ -410,52 +351,15 @@ UINavigationBarDelegate>
             && ([self.program numberOfNormalObjects] > kMinNumOfObjects));
 }
 
--(UITableViewCellEditingStyle)tableView:(UITableView*)tableView
-          editingStyleForRowAtIndexPath:(NSIndexPath*)indexPath
-{
-    return 3; // XXX: strange, but no corresponding enum value available for that...
-}
-
-- (void)tableView:(UITableView*)tableView
-commitEditingStyle:(UITableViewCellEditingStyle)editingStyle
-forRowAtIndexPath:(NSIndexPath*)indexPath
+- (void)tableView:(UITableView*)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath*)indexPath
 {
     if (indexPath.section == kObjectSectionIndex) {
         if (editingStyle == UITableViewCellEditingStyleDelete) {
             SpriteObject *object = [self.program.objectList objectAtIndex:(kObjectSectionIndex + indexPath.row)];
             [self.imageCache objectForKey:object.name];
             [self.program removeObject:object];
-
             [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
         }
-    }
-}
-
-#pragma mark - table view delegates
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath*)indexPath
-{
-    if (! self.isEditing) {
-        [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    }
-    // check if all rows are selected and if so, change SelectAll button to UnselectAll button
-    if ([self areAllCellsSelectedInSection:kObjectSectionIndex]) {
-        self.selectAllItemsButton.tag = kUnselectAllItemsTag;
-        self.selectAllItemsButton.title = kUnselectAllItemsTitle;
-    } else {
-        self.selectAllItemsButton.tag = kSelectAllItemsTag;
-        self.selectAllItemsButton.title = kSelectAllItemsTitle;
-    }
-}
-
-- (void)tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // check if all rows are selected and if so, change SelectAll button to UnselectAll button
-    if ([self areAllCellsSelectedInSection:kObjectSectionIndex]) {
-        self.selectAllItemsButton.tag = kUnselectAllItemsTag;
-        self.selectAllItemsButton.title = kUnselectAllItemsTitle;
-    } else {
-        self.selectAllItemsButton.tag = kSelectAllItemsTag;
-        self.selectAllItemsButton.title = kSelectAllItemsTitle;
     }
 }
 
@@ -492,11 +396,6 @@ forRowAtIndexPath:(NSIndexPath*)indexPath
     }
 }
 
-- (BOOL)shouldPerformSegueWithIdentifier:(NSString *)identifier sender:(id)sender
-{
-    return (! self.isEditing);
-}
-
 #pragma mark - text field delegates
 - (BOOL)textField:(UITextField *)field shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)characters
 {
@@ -522,15 +421,8 @@ forRowAtIndexPath:(NSIndexPath*)indexPath
             textFieldDelegate:self];
     } else if (buttonIndex == 2 && [self.program numberOfNormalObjects]) {
         // Delete multiple objects button
-        UIBarButtonItem *cancelButton = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Cancel", nil)
-                                                                         style:UIBarButtonItemStylePlain
-                                                                        target:self
-                                                                        action:@selector(cancelEditing:)];
-        self.navigationItem.hidesBackButton = YES;
-        self.navigationItem.rightBarButtonItem = cancelButton;
-        [self.tableView setEditing:YES animated:YES];
-        self.editing = YES;
         [self setupEditingToolBar];
+        [super changeToEditingMode:actionSheet editableSections:@[@(kObjectSectionIndex)]];
     } else if (buttonIndex == actionSheet.destructiveButtonIndex) {
         // Delete program button
         [self.delegate removeProgram:self.program.header.programName];
@@ -551,9 +443,13 @@ forRowAtIndexPath:(NSIndexPath*)indexPath
 
             kProgramNameValidationResult validationResult = [Program validateProgramName:input];
             if (validationResult == kProgramNameValidationResultInvalid) {
-                [Util alertWithText:kMsgInvalidProgramName delegate:self tag:kInvalidProgramNameWarningAlertViewTag];
+                [Util alertWithText:kMsgInvalidProgramName
+                           delegate:self
+                                tag:kInvalidProgramNameWarningAlertViewTag];
             } else if (validationResult == kProgramNameValidationResultAlreadyExists) {
-                [Util alertWithText:kMsgInvalidProgramNameAlreadyExists delegate:self tag:kInvalidProgramNameWarningAlertViewTag];
+                [Util alertWithText:kMsgInvalidProgramNameAlreadyExists
+                           delegate:self
+                                tag:kInvalidProgramNameWarningAlertViewTag];
             } else if (validationResult == kProgramNameValidationResultOK) {
                 NSString *oldProgramName = self.program.header.programName;
                 [self.program renameToProgramName:input];
@@ -573,7 +469,8 @@ forRowAtIndexPath:(NSIndexPath*)indexPath
             return;
         }
         [self.program addNewObjectWithName:input];
-        [self.tableView reloadSections:[NSIndexSet indexSetWithIndexesInRange:NSMakeRange(1, 1)] withRowAnimation:UITableViewRowAnimationFade];
+        [self.tableView reloadSections:[NSIndexSet indexSetWithIndexesInRange:NSMakeRange(1, 1)]
+                      withRowAnimation:UITableViewRowAnimationFade];
     }
     if (alertView.tag == kInvalidProgramNameWarningAlertViewTag) {
         // title of cancel button is "OK"
@@ -613,7 +510,7 @@ forRowAtIndexPath:(NSIndexPath*)indexPath
 
 - (void)setupEditingToolBar
 {
-    [super setupToolBar];
+    [super setupEditingToolBar];
     UIBarButtonItem *flexItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace
                                                                               target:nil
                                                                               action:nil];
@@ -621,8 +518,7 @@ forRowAtIndexPath:(NSIndexPath*)indexPath
                                                                      style:UIBarButtonItemStylePlain
                                                                     target:self
                                                                     action:@selector(deleteSelectedObjects:)];
-    self.selectAllItemsButton.tag = kSelectAllItemsTag;
-    self.toolbarItems = [NSArray arrayWithObjects:self.selectAllItemsButton, flexItem, deleteButton, nil];
+    self.toolbarItems = [NSArray arrayWithObjects:self.selectAllRowsButtonItem, flexItem, deleteButton, nil];
 }
 
 @end

@@ -23,10 +23,19 @@
 #import <UIKit/UIKit.h>
 
 @interface BaseTableViewController : UITableViewController
+@property (nonatomic, strong, readonly) UIBarButtonItem *selectAllRowsButtonItem;
 - (void)setPlaceHolderTitle:(NSString*)title Description:(NSString*)description;
 - (void)showPlaceHolder:(BOOL)show;
 - (void)initPlaceHolder;
 - (void)initTableView;
+- (UITableViewCellEditingStyle)tableView:(UITableView*)tableView editingStyleForRowAtIndexPath:(NSIndexPath*)indexPath;
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath*)indexPath;
+- (void)tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath;
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath;
+- (BOOL)shouldPerformSegueWithIdentifier:(NSString *)identifier sender:(id)sender;
 - (void)setupToolBar;
+- (void)setupEditingToolBar;
 - (BOOL)areAllCellsSelectedInSection:(NSInteger)section;
+- (void)changeToEditingMode:(id)sender editableSections:(NSArray*)editableSections;
+- (void)exitEditingMode:(id)sender;
 @end
