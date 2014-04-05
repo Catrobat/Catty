@@ -35,6 +35,7 @@
 #import "StartScriptCell.h"
 #import "BrickScaleTransition.h"
 #import "BrickDetailViewController.h"
+#import "WhenScriptCell.h"
 
 @interface ScriptCollectionViewController () <UICollectionViewDelegate, LXReorderableCollectionViewDelegateFlowLayout, LXReorderableCollectionViewDataSource, UIViewControllerTransitioningDelegate>
 @property (nonatomic, strong) NSDictionary *classNameBrickNameMap;
@@ -330,17 +331,21 @@
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     BrickCell *cell = (BrickCell*)[self.collectionView cellForItemAtIndexPath:indexPath];
     NSLog(@"selected cell = %@", cell);
-    BrickDetailViewController *controller = [[BrickDetailViewController alloc]initWithNibName:@"BrickDetailViewController" bundle:nil];
-    self.brickScaleTransition.cell = cell;
-    self.brickScaleTransition.touchRect = cell.frame;
-    self.brickScaleTransition.dimView = self.dimView;
-    controller.transitioningDelegate = self;
-    controller.modalPresentationStyle = UIModalPresentationCustom;
-    self.collectionView.userInteractionEnabled = NO;
-    [self.navigationController setNavigationBarHidden:YES animated:NO];
-    [self presentViewController:controller animated:YES completion:^{
-        [self.navigationController setToolbarHidden:YES animated:YES];
-    }];
+    
+    // TODO exclude not editable bricks
+    if (![cell isKindOfClass:StartScriptCell.class] || ![cell isKindOfClass:WhenScriptCell.class]) {
+        BrickDetailViewController *controller = [[BrickDetailViewController alloc]initWithNibName:@"BrickDetailViewController" bundle:nil];
+        self.brickScaleTransition.cell = cell;
+        self.brickScaleTransition.touchRect = cell.frame;
+        self.brickScaleTransition.dimView = self.dimView;
+        controller.transitioningDelegate = self;
+        controller.modalPresentationStyle = UIModalPresentationCustom;
+        self.collectionView.userInteractionEnabled = NO;
+        [self.navigationController setNavigationBarHidden:YES animated:NO];
+        [self presentViewController:controller animated:YES completion:^{
+            [self.navigationController setToolbarHidden:YES animated:YES];
+        }];
+    }
 }
 
 - (void)collectionView:(UICollectionView *)collectionView didHighlightItemAtIndexPath:(NSIndexPath *)indexPath {
