@@ -20,11 +20,8 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import "BaseTransition.h"
-#import "BrickCell.h"
+#import <UIKit/UIKit.h>
 
-@interface BrickScaleTransition : BaseTransition
-@property (nonatomic, strong) UIView *dimView;
-@property (nonatomic, strong) BrickCell *cell;
+@interface BrickDetailViewController : UIViewController
 
 @end

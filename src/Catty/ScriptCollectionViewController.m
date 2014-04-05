@@ -34,11 +34,13 @@
 #import "BrickManager.h"
 #import "StartScriptCell.h"
 #import "BrickScaleTransition.h"
+#import "BrickDetailViewController.h"
 
-@interface ScriptCollectionViewController () <UICollectionViewDelegate, LXReorderableCollectionViewDelegateFlowLayout, LXReorderableCollectionViewDataSource>
+@interface ScriptCollectionViewController () <UICollectionViewDelegate, LXReorderableCollectionViewDelegateFlowLayout, LXReorderableCollectionViewDataSource, UIViewControllerTransitioningDelegate>
 @property (nonatomic, strong) NSDictionary *classNameBrickNameMap;
 @property (nonatomic, weak) IBOutlet UICollectionView *collectionView;
 @property (nonatomic, strong) BrickScaleTransition *brickScaleTransition;
+@property (nonatomic, strong) UIView *dimView;
 @end
 
 @implementation ScriptCollectionViewController
@@ -80,6 +82,13 @@
     self.collectionView.dataSource = self;
     
     self.brickScaleTransition = [BrickScaleTransition new];
+    self.dimView = [[UIView alloc] initWithFrame:self.view.bounds];
+    self.dimView.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
+    self.dimView.userInteractionEnabled = NO;
+    self.dimView.backgroundColor = [UIColor blackColor];
+    self.dimView.alpha = 0.f;
+    self.dimView.hidden = YES;
+    [self.view addSubview:self.dimView];
 
     // register brick cells for current brick category
     NSDictionary *allCategoriesAndBrickTypes = self.classNameBrickNameMap;
@@ -93,6 +102,8 @@
     [super viewWillAppear:animated];
     NSNotificationCenter *dnc = [NSNotificationCenter defaultCenter];
     [dnc addObserver:self selector:@selector(brickAdded:) name:kBrickCellAddedNotification object:nil];
+    // TODO constants
+    [dnc addObserver:self selector:@selector(brickDetailViewDismissed:) name:@"kBrickDetailViewDismissed" object:nil];
     [self.navigationController setToolbarHidden:NO];
 }
 
@@ -195,6 +206,13 @@
     if (notification.userInfo) {
         // NSLog(@"brickAdded notification received with userInfo: %@", [notification.userInfo description]);
         [self addBrickCellAction:notification.userInfo[kUserInfoKeyBrickCell]];
+    }
+}
+
+- (void)brickDetailViewDismissed:(NSNotification *)notification {
+    self.collectionView.userInteractionEnabled = YES;
+    if (self.navigationController.toolbar.hidden) {
+        [self.navigationController setToolbarHidden:NO animated:YES];
     }
 }
 
@@ -307,7 +325,16 @@
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     BrickCell *cell = (BrickCell*)[self.collectionView cellForItemAtIndexPath:indexPath];
-    NSLog(@"selected cell = %@", cell);
+    BrickDetailViewController *controller = [[BrickDetailViewController alloc]initWithNibName:@"BrickDetailViewController" bundle:nil];
+    self.brickScaleTransition.cell = cell;
+    self.brickScaleTransition.dimView = self.dimView;
+    controller.transitioningDelegate = self;
+    controller.modalPresentationStyle = UIModalPresentationCustom;
+    self.collectionView.userInteractionEnabled = NO;
+    [self presentViewController:controller animated:YES completion:^{
+       [self.navigationController setToolbarHidden:YES animated:YES];
+    }];
+    
 }
 
 - (void)collectionView:(UICollectionView *)collectionView didHighlightItemAtIndexPath:(NSIndexPath *)indexPath {
