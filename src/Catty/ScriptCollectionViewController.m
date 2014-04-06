@@ -109,7 +109,7 @@
     NSNotificationCenter *dnc = [NSNotificationCenter defaultCenter];
     [dnc addObserver:self selector:@selector(brickAdded:) name:kBrickCellAddedNotification object:nil];
     // TODO constants
-    [dnc addObserver:self selector:@selector(brickDetailViewDismissed:) name:@"kBrickDetailViewDismissed" object:nil];
+    [dnc addObserver:self selector:@selector(brickDetailViewDismissed:) name:kBrickDetailViewDismissed object:nil];
     [self.navigationController setToolbarHidden:NO];
 }
 
@@ -343,7 +343,6 @@
         self.brickScaleTransition.cell = cell;
         self.brickScaleTransition.touchRect = cell.frame;
         self.brickScaleTransition.dimView = self.dimView;
-        self.brickScaleTransition.collectionView = self.collectionView;
         controller.transitioningDelegate = self;
         controller.modalPresentationStyle = UIModalPresentationCustom;
         self.collectionView.userInteractionEnabled = NO;

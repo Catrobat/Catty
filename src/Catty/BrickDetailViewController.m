@@ -21,6 +21,7 @@
  */
 
 #import "BrickDetailViewController.h"
+#import "UIDefines.h"
 
 @interface BrickDetailViewController ()
 @property (strong, nonatomic) UITapGestureRecognizer *recognizer;
@@ -64,7 +65,7 @@
             CGPoint location = [sender locationInView:nil];
             if (![self.view pointInside:[self.view convertPoint:location fromView:self.view.window] withEvent:nil]) {
                 [self dismissViewControllerAnimated:YES completion:^{
-                    [NSNotificationCenter.defaultCenter postNotificationName:@"kBrickDetailViewDismissed"
+                    [NSNotificationCenter.defaultCenter postNotificationName:kBrickDetailViewDismissed
                                                                       object:NULL];
                 }];
             }
