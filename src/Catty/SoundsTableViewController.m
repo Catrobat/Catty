@@ -68,9 +68,22 @@
     return _addSoundActionSheetBtnIndexes;
 }
 
+#pragma mark - initialization
+- (void)initNavigationBar
+{
+    if (! [self.object.soundList count]) {
+        [TableUtil initNavigationItem:self.navigationItem withTitle:self.title];
+        return;
+    }
+    UIBarButtonItem *editButtonItem = [TableUtil editButtonItemWithTarget:self action:@selector(editAction:)];
+    self.navigationItem.rightBarButtonItem = editButtonItem;
+}
+
+#pragma mark - events
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    [self initNavigationBar];
     self.currentPlayingSong = nil;
     self.currentPlayingSongCell = nil;
 
@@ -109,6 +122,12 @@
     [self stopAllSounds];
 }
 
+- (void)didReceiveMemoryWarning
+{
+    [super didReceiveMemoryWarning];
+    self.imageCache = nil;
+}
+
 #pragma mark - notification
 - (void)soundAdded:(NSNotification*)notification
 {
@@ -121,13 +140,13 @@
     }
 }
 
-- (void)didReceiveMemoryWarning
+#pragma mark - actions
+- (void)editAction:(id)sender
 {
-    [super didReceiveMemoryWarning];
-    self.imageCache = nil;
+    [self setupEditingToolBar];
+    [super changeToEditingMode:sender];
 }
 
-#pragma mark - actions
 - (void)addSoundToObjectAction:(Sound*)sound
 {
     NSMutableArray *soundNames = [NSMutableArray arrayWithCapacity:[self.object.soundList count]];
@@ -147,6 +166,51 @@
     [self showPlaceHolder:NO];
     NSIndexPath *indexPath = [NSIndexPath indexPathForRow:(numberOfRowsInLastSection - 1) inSection:0];
     [self.tableView insertRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationNone];
+}
+
+- (void)confirmDeleteSelectedSoundsAction:(id)sender
+{
+    NSArray *selectedRowsIndexPaths = [self.tableView indexPathsForSelectedRows];
+    if (! [selectedRowsIndexPaths count]) {
+        // nothing selected, nothing to delete...
+        [super exitEditingMode];
+        return;
+    }
+    [self performActionOnConfirmation:@selector(deleteSelectedSoundsAction)
+                       canceledAction:@selector(exitEditingMode)
+                               target:self
+                         confirmTitle:(([selectedRowsIndexPaths count] != 1)
+                                       ? kConfirmTitleDeleteSounds : kConfirmTitleDeleteSound)
+                       confirmMessage:kConfirmMessageDelete];
+}
+
+- (void)deleteSelectedSoundsAction
+{
+    [self stopAllSounds];
+    NSArray *selectedRowsIndexPaths = [self.tableView indexPathsForSelectedRows];
+    NSMutableArray *soundsToRemove = [NSMutableArray arrayWithCapacity:[selectedRowsIndexPaths count]];
+    for (NSIndexPath *selectedRowIndexPath in selectedRowsIndexPaths) {
+        Sound *sound = (Sound*)[self.object.soundList objectAtIndex:selectedRowIndexPath.row];
+        [soundsToRemove addObject:sound];
+    }
+    for (Sound *soundToRemove in soundsToRemove) {
+        [self.object removeSound:soundToRemove];
+    }
+    [super exitEditingMode];
+    [self.tableView deleteRowsAtIndexPaths:selectedRowsIndexPaths withRowAnimation:UITableViewRowAnimationNone];
+    [self initNavigationBar];
+    [super showPlaceHolder:(! (BOOL)[self.object.soundList count])];
+}
+
+- (void)deleteSoundForIndexPath:(NSIndexPath*)indexPath
+{
+    [self stopAllSounds];
+    Sound *sound = (Sound*)[self.object.soundList objectAtIndex:indexPath.row];
+    [self.object removeSound:sound];
+    [self.tableView deleteRowsAtIndexPaths:@[indexPath]
+                          withRowAnimation:UITableViewRowAnimationNone];
+    [self initNavigationBar];
+    [super showPlaceHolder:(! (BOOL)[self.object.soundList count])];
 }
 
 #pragma mark - Table view data source
@@ -254,16 +318,15 @@
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        //[tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    } else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
+        [self.tableView reloadRowsAtIndexPaths:@[indexPath]
+                              withRowAnimation:UITableViewRowAnimationNone];
+        [self performActionOnConfirmation:@selector(deleteSoundForIndexPath:)
+                           canceledAction:nil
+                               withObject:indexPath
+                                   target:self
+                             confirmTitle:kConfirmTitleDeleteSound
+                           confirmMessage:kConfirmMessageDelete];
     }
-}
-
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
 #pragma audio delegate methods
@@ -408,6 +471,24 @@
     UIBarButtonItem *invisibleButton = [[UIBarButtonItem alloc] initWithCustomView:imageView];
     self.toolbarItems = [NSArray arrayWithObjects:flexItem, invisibleButton, add, invisibleButton, flexItem,
                          flexItem, flexItem, invisibleButton, play, invisibleButton, flexItem, nil];
+}
+
+- (void)setupEditingToolBar
+{
+    [super setupEditingToolBar];
+    UIBarButtonItem *flexItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace
+                                                                              target:nil
+                                                                              action:nil];
+    UIBarButtonItem *deleteButton = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Delete", nil)
+                                                                     style:UIBarButtonItemStylePlain
+                                                                    target:self
+                                                                    action:@selector(confirmDeleteSelectedSoundsAction:)];
+    // XXX: workaround for tap area problem:
+    // http://stackoverflow.com/questions/5113258/uitoolbar-unexpectedly-registers-taps-on-uibarbuttonitem-instances-even-when-tap
+    UIImageView *imageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"transparent1x1"]];
+    UIBarButtonItem *invisibleButton = [[UIBarButtonItem alloc] initWithCustomView:imageView];
+    self.toolbarItems = [NSArray arrayWithObjects:self.selectAllRowsButtonItem, invisibleButton, flexItem,
+                         invisibleButton, deleteButton, nil];
 }
 
 @end

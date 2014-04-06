@@ -32,10 +32,7 @@
 #define kInvalidProgramNameWarningAlertViewTag 103
 #define kInvalidObjectNameWarningAlertViewTag 104
 
-#define kDeleteObjectsAlertViewTag 200
-#define kDeleteObjectAlertViewTag 201
-#define kDeleteProgramsAlertViewTag 202
-#define kDeleteProgramAlertViewTag 203
+#define kConfirmAlertViewTag 200
 
 // Alert view button indexes
 #define kAlertViewButtonOK 1

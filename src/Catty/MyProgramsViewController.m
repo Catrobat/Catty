@@ -39,7 +39,6 @@
 #import "ActionSheetAlertViewTags.h"
 
 @interface MyProgramsViewController () <ProgramUpdateDelegate, UIAlertViewDelegate, UITextFieldDelegate>
-@property (nonatomic, strong) NSIndexPath *indexPathForRowToDelete;
 @property (nonatomic, strong) NSMutableDictionary *assetCache;
 @property (nonatomic, strong) NSMutableArray *programLoadingInfos;
 @property (nonatomic, strong) Program *selectedProgram;
@@ -87,7 +86,6 @@
     [self initNavigationBar];
     [super initTableView];
 
-    self.indexPathForRowToDelete = nil;
     self.defaultProgram = nil;
     self.selectedProgram = nil;
     [self setupToolBar];
@@ -138,17 +136,18 @@
     NSArray *selectedRowsIndexPaths = [self.tableView indexPathsForSelectedRows];
     if (! [selectedRowsIndexPaths count]) {
         // nothing selected, nothing to delete...
-        [super exitEditingMode:sender];
+        [super exitEditingMode];
         return;
     }
-    [Util confirmAlertWithTitle:(([selectedRowsIndexPaths count] != 1)
-                                 ? kConfirmTitleDeletePrograms : kConfirmTitleDeleteProgram)
-                        message:kConfirmMessageDelete
-                       delegate:self
-                            tag:kDeleteProgramsAlertViewTag];
+    [self performActionOnConfirmation:@selector(deleteSelectedProgramsAction)
+                       canceledAction:@selector(exitEditingMode)
+                               target:self
+                         confirmTitle:(([selectedRowsIndexPaths count] != 1)
+                                       ? kConfirmTitleDeletePrograms : kConfirmTitleDeleteProgram)
+                       confirmMessage:kConfirmMessageDelete];
 }
 
-- (void)deleteSelectedProgramsAction:(id)sender
+- (void)deleteSelectedProgramsAction
 {
     NSArray *selectedRowsIndexPaths = [self.tableView indexPathsForSelectedRows];
     NSMutableArray *programNamesToRemove = [NSMutableArray arrayWithCapacity:[selectedRowsIndexPaths count]];
@@ -159,7 +158,7 @@
     for (NSString *programNameToRemove in programNamesToRemove) {
         [self removeProgram:programNameToRemove];
     }
-    [super exitEditingMode:sender];
+    [super exitEditingMode];
     [self initNavigationBar];
 }
 
@@ -212,13 +211,14 @@
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
-        self.indexPathForRowToDelete = indexPath;
         [self.tableView reloadRowsAtIndexPaths:@[indexPath]
                               withRowAnimation:UITableViewRowAnimationNone];
-        [Util confirmAlertWithTitle:kConfirmTitleDeleteProgram
-                            message:kConfirmMessageDelete
-                           delegate:self
-                                tag:kDeleteProgramAlertViewTag];
+        [self performActionOnConfirmation:@selector(deleteProgramForIndexPath:)
+                           canceledAction:nil
+                               withObject:indexPath
+                                   target:self
+                             confirmTitle:kConfirmTitleDeleteProgram
+                           confirmMessage:kConfirmMessageDelete];
     }
 }
 
@@ -419,19 +419,8 @@
                               tag:kNewProgramAlertViewTag
                 textFieldDelegate:self];
         }
-    } else if (alertView.tag == kDeleteProgramsAlertViewTag) {
-        // check if user agreed
-        if (buttonIndex != alertView.cancelButtonIndex) {
-            [self deleteSelectedProgramsAction:alertView];
-        } else {
-            [super exitEditingMode:alertView];
-        }
-    } else if (alertView.tag == kDeleteProgramAlertViewTag) {
-        // check if user agreed
-        if (buttonIndex != alertView.cancelButtonIndex) {
-            [self deleteProgramForIndexPath:self.indexPathForRowToDelete];
-        }
-        self.indexPathForRowToDelete = nil;
+    } else {
+        [super alertView:alertView clickedButtonAtIndex:buttonIndex];
     }
 }
 

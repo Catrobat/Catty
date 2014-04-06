@@ -62,49 +62,46 @@
     return _addLookActionSheetBtnIndexes;
 }
 
-#pragma mark init
-- (id)initWithStyle:(UITableViewStyle)style
+#pragma mark - initialization
+- (void)initNavigationBar
 {
-    self = [super initWithStyle:style];
-    if (self) {
-        // Custom initialization
+    if (! [self.object.lookList count]) {
+        [TableUtil initNavigationItem:self.navigationItem withTitle:self.title];
+        return;
     }
-    return self;
+    UIBarButtonItem *editButtonItem = [TableUtil editButtonItemWithTarget:self action:@selector(editAction:)];
+    self.navigationItem.rightBarButtonItem = editButtonItem;
 }
 
-- (void)dealloc
-{
-    [self.loadingView removeFromSuperview];
-    self.loadingView = nil;
-}
-
-#pragma view events
+#pragma - events
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
+    [self initNavigationBar];
     [super initTableView];
     [super initPlaceHolder];
+
     [super setPlaceHolderTitle:([self.object isBackground] ? kBackgroundsTitle : kLooksTitle)
                    Description:[NSString stringWithFormat:NSLocalizedString(kEmptyViewPlaceHolder, nil),
                                 ([self.object isBackground] ? kBackgroundsTitle : kLooksTitle)]];
     [super showPlaceHolder:(! (BOOL)[self.object.lookList count])];
-    //[TableUtil initNavigationItem:self.navigationItem withTitle:NSLocalizedString(@"New Programs", nil)];
-
-    //  self.title = self.object.name;
-    //  self.navigationItem.title = self.object.name;
+    self.title = self.navigationItem.title = self.object.name;
     [self setupToolBar];
 }
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+    self.imageCache = nil;
 }
 
 #pragma mark - actions
+- (void)editAction:(id)sender
+{
+    [self setupEditingToolBar];
+    [super changeToEditingMode:sender];
+}
+
 - (void)addLookAction:(id)sender
 {
     [self showAddLookActionSheet];
@@ -114,6 +111,51 @@
 {
     [self.navigationController setToolbarHidden:YES];
     [self performSegueWithIdentifier:kSegueToScene sender:sender];
+}
+
+- (void)confirmDeleteSelectedLooksAction:(id)sender
+{
+    NSArray *selectedRowsIndexPaths = [self.tableView indexPathsForSelectedRows];
+    if (! [selectedRowsIndexPaths count]) {
+        // nothing selected, nothing to delete...
+        [super exitEditingMode];
+        return;
+    }
+    [self performActionOnConfirmation:@selector(deleteSelectedLooksAction)
+                       canceledAction:@selector(exitEditingMode)
+                               target:self
+                         confirmTitle:(([selectedRowsIndexPaths count] != 1)
+                                       ? kConfirmTitleDeleteLooks : kConfirmTitleDeleteLook)
+                       confirmMessage:kConfirmMessageDelete];
+}
+
+- (void)deleteSelectedLooksAction
+{
+    NSArray *selectedRowsIndexPaths = [self.tableView indexPathsForSelectedRows];
+    NSMutableArray *looksToRemove = [NSMutableArray arrayWithCapacity:[selectedRowsIndexPaths count]];
+    for (NSIndexPath *selectedRowIndexPath in selectedRowsIndexPaths) {
+        Look *look = (Look*)[self.object.lookList objectAtIndex:selectedRowIndexPath.row];
+        [looksToRemove addObject:look];
+    }
+    for (Look *lookToRemove in looksToRemove) {
+        [self.object removeLook:lookToRemove];
+    }
+    self.imageCache = nil;
+    [super exitEditingMode];
+    [self.tableView deleteRowsAtIndexPaths:selectedRowsIndexPaths withRowAnimation:UITableViewRowAnimationNone];
+    [self initNavigationBar];
+    [super showPlaceHolder:(! (BOOL)[self.object.lookList count])];
+}
+
+- (void)deleteLookForIndexPath:(NSIndexPath*)indexPath
+{
+    Look *look = (Look*)[self.object.lookList objectAtIndex:indexPath.row];
+    [self.imageCache removeObjectForKey:@(indexPath.row)];
+    [self.object removeLook:look];
+    [self.tableView deleteRowsAtIndexPaths:@[indexPath]
+                          withRowAnimation:UITableViewRowAnimationNone];
+    [self initNavigationBar];
+    [super showPlaceHolder:(! (BOOL)[self.object.lookList count])];
 }
 
 #pragma mark - Table view data source
@@ -206,36 +248,31 @@
     return imageCell;
 }
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath*)indexPath
-{
-    [tableView deselectRowAtIndexPath:indexPath animated:YES];
-}
-
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
   return [TableUtil getHeightForImageCell];
 }
 
-// Override to support conditional editing of the table view.
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
 {
     return YES;
 }
 
-// Override to support editing the table view.
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        //[tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    }   
-    else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
+        [self.tableView reloadRowsAtIndexPaths:@[indexPath]
+                              withRowAnimation:UITableViewRowAnimationNone];
+        [self performActionOnConfirmation:@selector(deleteLookForIndexPath:)
+                           canceledAction:nil
+                               withObject:indexPath
+                                   target:self
+                             confirmTitle:kConfirmTitleDeleteLook
+                           confirmMessage:kConfirmMessageDelete];
+    }
 }
 
 #pragma mark - Navigation
-// In a story board-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     static NSString* segueToSceneIdentifier = kSegueToScene;
@@ -345,6 +382,7 @@
                         // update view
                         [super showPlaceHolder:NO];
                         [self.object.lookList addObject:look];
+                        [self initNavigationBar];
                         [self hideLoadingView];
                         NSInteger numberOfRowsInLastSection = [self tableView:self.tableView numberOfRowsInSection:0];
                         NSIndexPath *indexPath = [NSIndexPath indexPathForRow:(numberOfRowsInLastSection - 1) inSection:0];
@@ -437,6 +475,24 @@
     UIBarButtonItem *invisibleButton = [[UIBarButtonItem alloc] initWithCustomView:imageView];
     self.toolbarItems = [NSArray arrayWithObjects:flexItem, invisibleButton, add, invisibleButton, flexItem,
                          flexItem, flexItem, invisibleButton, play, invisibleButton, flexItem, nil];
+}
+
+- (void)setupEditingToolBar
+{
+    [super setupEditingToolBar];
+    UIBarButtonItem *flexItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace
+                                                                              target:nil
+                                                                              action:nil];
+    UIBarButtonItem *deleteButton = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Delete", nil)
+                                                                     style:UIBarButtonItemStylePlain
+                                                                    target:self
+                                                                    action:@selector(confirmDeleteSelectedLooksAction:)];
+    // XXX: workaround for tap area problem:
+    // http://stackoverflow.com/questions/5113258/uitoolbar-unexpectedly-registers-taps-on-uibarbuttonitem-instances-even-when-tap
+    UIImageView *imageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"transparent1x1"]];
+    UIBarButtonItem *invisibleButton = [[UIBarButtonItem alloc] initWithCustomView:imageView];
+    self.toolbarItems = [NSArray arrayWithObjects:self.selectAllRowsButtonItem, invisibleButton, flexItem,
+                         invisibleButton, deleteButton, nil];
 }
 
 - (void)showLoadingView

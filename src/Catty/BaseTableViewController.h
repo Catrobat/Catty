@@ -39,5 +39,11 @@
 - (void)setupEditingToolBar;
 - (BOOL)areAllCellsSelectedInSection:(NSInteger)section;
 - (void)changeToEditingMode:(id)sender;
-- (void)exitEditingMode:(id)sender;
+- (void)exitEditingMode;
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex;
+- (void)performActionOnConfirmation:(SEL)confirmedAction canceledAction:(SEL)canceledAction
+                         withObject:(id)object target:(id)target confirmTitle:(NSString*)confirmTitle
+                     confirmMessage:(NSString*)confirmMessage;
+- (void)performActionOnConfirmation:(SEL)confirmedAction canceledAction:(SEL)canceledAction target:(id)target
+                       confirmTitle:(NSString*)confirmTitle confirmMessage:(NSString*)confirmMessage;
 @end

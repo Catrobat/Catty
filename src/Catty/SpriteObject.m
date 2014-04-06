@@ -302,7 +302,7 @@
 
 - (void)changeLook:(Look *)look
 {
-    UIImage* image = [UIImage imageWithContentsOfFile: [self pathForLook:look] ];
+    UIImage* image = [UIImage imageWithContentsOfFile:[self pathForLook:look]];
     SKTexture* texture = nil;
     if ([self isBackground]) {
         texture = [SKTexture textureWithImage:image];
@@ -386,6 +386,33 @@
 
 }
 
+- (void)removeLook:(Look*)look
+{
+    // do not use NSArray's removeObject here
+    // => if isEqual is overriden this would lead to wrong results
+    NSUInteger index = 0;
+    for (Look *currentLook in self.lookList) {
+        if (currentLook == look) {
+            [self.lookList removeObjectAtIndex:index];
+            break;
+        }
+        ++index;
+    }
+}
+
+- (void)removeSound:(Sound*)sound
+{
+    // do not use NSArray's removeObject here
+    // => if isEqual is overriden this would lead to wrong results
+    NSUInteger index = 0;
+    for (Sound *currentSound in self.soundList) {
+        if (currentSound == sound) {
+            [self.soundList removeObjectAtIndex:index];
+            break;
+        }
+        ++index;
+    }
+}
 
 #pragma mark - Broadcast
 -(void)broadcast:(NSString *)message

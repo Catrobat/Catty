@@ -47,7 +47,6 @@
 
 @interface ProgramTableViewController () <UIActionSheetDelegate, UIAlertViewDelegate, UITextFieldDelegate,
 UINavigationBarDelegate>
-@property (strong, nonatomic) NSIndexPath *indexPathForRowToDelete;
 @property (strong, nonatomic) NSCharacterSet *blockedCharacterSet;
 @property (strong, nonatomic) NSMutableDictionary *imageCache;
 @end
@@ -115,7 +114,6 @@ UINavigationBarDelegate>
     [self initNavigationBar];
     [super initTableView];
 
-    self.indexPathForRowToDelete = nil;
     self.editableSections = @[@(kObjectSectionIndex)];
     if (self.program.header.programName) {
         self.navigationItem.title = self.program.header.programName;
@@ -153,7 +151,7 @@ UINavigationBarDelegate>
     NSMutableArray *options = [NSMutableArray array];
     [options addObject:NSLocalizedString(@"Rename",nil)];
     if ([self.program numberOfNormalObjects]) {
-        [options addObject:NSLocalizedString(@"Delete multiple objects",nil)];
+        [options addObject:NSLocalizedString(@"Delete objects",nil)];
     }
     [Util actionSheetWithTitle:NSLocalizedString(@"Edit Program",nil)
                       delegate:self
@@ -168,17 +166,18 @@ UINavigationBarDelegate>
     NSArray *selectedRowsIndexPaths = [self.tableView indexPathsForSelectedRows];
     if (! [selectedRowsIndexPaths count]) {
         // nothing selected, nothing to delete...
-        [super exitEditingMode:sender];
+        [super exitEditingMode];
         return;
     }
-    [Util confirmAlertWithTitle:(([selectedRowsIndexPaths count] != 1)
-                                 ? kConfirmTitleDeleteObjects : kConfirmTitleDeleteObject)
-                        message:kConfirmMessageDelete
-                       delegate:self
-                            tag:kDeleteObjectsAlertViewTag];
+    [self performActionOnConfirmation:@selector(deleteSelectedObjectsAction)
+                       canceledAction:@selector(exitEditingMode)
+                               target:self
+                         confirmTitle:(([selectedRowsIndexPaths count] != 1)
+                                       ? kConfirmTitleDeleteObjects : kConfirmTitleDeleteObject)
+                       confirmMessage:kConfirmMessageDelete];
 }
 
-- (void)deleteSelectedObjectsAction:(id)sender
+- (void)deleteSelectedObjectsAction
 {
     NSArray *selectedRowsIndexPaths = [self.tableView indexPathsForSelectedRows];
     NSMutableArray *objectsToRemove = [NSMutableArray arrayWithCapacity:[selectedRowsIndexPaths count]];
@@ -188,13 +187,13 @@ UINavigationBarDelegate>
             continue;
         }
         SpriteObject *object = (SpriteObject*)[self.program.objectList objectAtIndex:(kObjectSectionIndex + selectedRowIndexPath.row)];
-        [self.imageCache objectForKey:object.name];
+        [self.imageCache removeObjectForKey:object.name];
         [objectsToRemove addObject:object];
     }
     for (SpriteObject *objectToRemove in objectsToRemove) {
         [self.program removeObject:objectToRemove];
     }
-    [super exitEditingMode:sender];
+    [super exitEditingMode];
     [self.tableView deleteRowsAtIndexPaths:selectedRowsIndexPaths withRowAnimation:UITableViewRowAnimationNone];
 }
 
@@ -202,7 +201,7 @@ UINavigationBarDelegate>
 {
     NSUInteger index = (kBackgroundObjects + indexPath.row);
     SpriteObject *object = (SpriteObject*)[self.program.objectList objectAtIndex:index];
-    [self.imageCache objectForKey:object.name];
+    [self.imageCache removeObjectForKey:object.name];
     [self.program removeObject:object];
     [self.tableView deleteRowsAtIndexPaths:@[indexPath]
                           withRowAnimation:UITableViewRowAnimationNone];
@@ -371,13 +370,14 @@ UINavigationBarDelegate>
 {
     if (indexPath.section == kObjectSectionIndex) {
         if (editingStyle == UITableViewCellEditingStyleDelete) {
-            self.indexPathForRowToDelete = indexPath;
             [self.tableView reloadRowsAtIndexPaths:@[indexPath]
                                   withRowAnimation:UITableViewRowAnimationNone];
-            [Util confirmAlertWithTitle:kConfirmTitleDeleteObject
-                                message:kConfirmMessageDelete
-                               delegate:self
-                                    tag:kDeleteObjectAlertViewTag];
+            [self performActionOnConfirmation:@selector(deleteObjectForIndexPath:)
+                               canceledAction:nil
+                                   withObject:indexPath
+                                       target:self
+                                 confirmTitle:kConfirmTitleDeleteObject
+                               confirmMessage:kConfirmMessageDelete];
         }
     }
 }
@@ -439,7 +439,7 @@ UINavigationBarDelegate>
                                ? self.program.header.programName : nil)
             textFieldDelegate:self];
     } else if (buttonIndex == 2 && [self.program numberOfNormalObjects]) {
-        // Delete multiple objects button
+        // Delete objects button
         [self setupEditingToolBar];
         [super changeToEditingMode:actionSheet];
     } else if (buttonIndex == actionSheet.destructiveButtonIndex) {
@@ -454,6 +454,7 @@ UINavigationBarDelegate>
 #pragma mark - alert view delegate handlers
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
+    [super alertView:alertView clickedButtonAtIndex:buttonIndex];
     if (alertView.tag == kRenameAlertViewTag) {
         NSString* input = [alertView textFieldAtIndex:0].text;
         if (buttonIndex == kAlertViewButtonOK) {
@@ -503,21 +504,6 @@ UINavigationBarDelegate>
                                    ? self.program.header.programName : nil)
                 textFieldDelegate:self];
         }
-    }
-    if (alertView.tag == kDeleteObjectsAlertViewTag) {
-        // check if user agreed
-        if (buttonIndex != alertView.cancelButtonIndex) {
-            [self deleteSelectedObjectsAction:alertView];
-        } else {
-            [super exitEditingMode:alertView];
-        }
-    }
-    if (alertView.tag == kDeleteObjectAlertViewTag) {
-        // check if user agreed
-        if (buttonIndex != alertView.cancelButtonIndex) {
-            [self deleteObjectForIndexPath:self.indexPathForRowToDelete];
-        }
-        self.indexPathForRowToDelete = nil;
     }
 }
 

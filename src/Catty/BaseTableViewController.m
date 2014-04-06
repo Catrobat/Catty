@@ -24,6 +24,8 @@
 #import "UIColor+CatrobatUIColorExtensions.h"
 #import "TableUtil.h"
 #import "UIDefines.h"
+#import "Util.h"
+#import "ActionSheetAlertViewTags.h"
 
 // identifiers
 #define kTableHeaderIdentifier @"Header"
@@ -36,12 +38,17 @@
 #define kSelectAllItemsTag 0
 #define kUnselectAllItemsTag 1
 
-@interface BaseTableViewController ()
+@interface BaseTableViewController () <UIAlertViewDelegate>
 @property (nonatomic, strong) UIBarButtonItem *selectAllRowsButtonItem;
 @property (nonatomic, strong) UIBarButtonItem *normalModeRightBarButtonItem;
 @property (nonatomic, strong) UIView *placeholder;
 @property (nonatomic, strong) UILabel *placeholderTitleLabel;
 @property (nonatomic, strong) UILabel *placeholderDescriptionLabel;
+
+@property (nonatomic) SEL confirmedAction;
+@property (nonatomic) SEL canceledAction;
+@property (nonatomic, strong) id target;
+@property (nonatomic, strong) id passingObject;
 @end
 
 @implementation BaseTableViewController
@@ -155,7 +162,6 @@
         [tableView deselectRowAtIndexPath:indexPath animated:YES];
     }
     // check if all rows are selected and if so, change SelectAll button to UnselectAll button
-    BOOL allItemsInAllSectionsSelected = YES;
     NSArray *editableSections = self.editableSections;
     if (! self.editableSections) {
         NSInteger numberOfSections = [self numberOfSectionsInTableView:self.tableView];
@@ -165,11 +171,18 @@
         }
         editableSections = [temp copy];
     }
+    BOOL selectedRowWithinEditableSection = NO;
+    BOOL allItemsInAllSectionsSelected = YES;
     for (NSNumber *section in editableSections) {
+        if (indexPath.section == [section integerValue]) {
+            selectedRowWithinEditableSection = YES;
+        }
         if (! [self areAllCellsSelectedInSection:[section integerValue]]) {
             allItemsInAllSectionsSelected = NO;
-            break;
         }
+    }
+    if (! selectedRowWithinEditableSection) {
+        [tableView deselectRowAtIndexPath:indexPath animated:YES];
     }
     if (allItemsInAllSectionsSelected) {
         self.selectAllRowsButtonItem.tag = kUnselectAllItemsTag;
@@ -260,7 +273,7 @@
     UIBarButtonItem *cancelButton = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Cancel", nil)
                                                                      style:UIBarButtonItemStylePlain
                                                                     target:self
-                                                                    action:@selector(exitEditingMode:)];
+                                                                    action:@selector(exitEditingMode)];
     self.navigationItem.hidesBackButton = YES;
     self.normalModeRightBarButtonItem = self.navigationItem.rightBarButtonItem;
     self.navigationItem.rightBarButtonItem = cancelButton;
@@ -270,7 +283,7 @@
     self.editing = YES;
 }
 
-- (void)exitEditingMode:(id)sender
+- (void)exitEditingMode
 {
     self.navigationItem.hidesBackButton = NO;
     self.navigationItem.rightBarButtonItem = self.normalModeRightBarButtonItem;
@@ -310,6 +323,67 @@
                 [self.tableView selectRowAtIndexPath:indexPath animated:NO scrollPosition:UITableViewScrollPositionNone];
             } else {
                 [self.tableView deselectRowAtIndexPath:indexPath animated:NO];
+            }
+        }
+    }
+}
+
+- (void)performActionOnConfirmation:(SEL)confirmedAction
+                     canceledAction:(SEL)canceledAction
+                         withObject:(id)object
+                             target:(id)target
+                       confirmTitle:(NSString*)confirmTitle
+                     confirmMessage:(NSString*)confirmMessage
+{
+    [Util confirmAlertWithTitle:confirmTitle
+                        message:confirmMessage
+                       delegate:self
+                            tag:kConfirmAlertViewTag];
+    self.confirmedAction = confirmedAction;
+    self.canceledAction = canceledAction;
+    self.target = target;
+    self.passingObject = object;
+}
+
+- (void)performActionOnConfirmation:(SEL)confirmedAction
+                     canceledAction:(SEL)canceledAction
+                             target:(id)target
+                       confirmTitle:(NSString*)confirmTitle
+                     confirmMessage:(NSString*)confirmMessage
+{
+    [self performActionOnConfirmation:confirmedAction
+                       canceledAction:canceledAction
+                           withObject:nil
+                               target:target
+                         confirmTitle:confirmTitle
+                       confirmMessage:confirmMessage];
+}
+
+#pragma mark - alert view delegate handlers
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if (alertView.tag == kConfirmAlertViewTag) {
+        // check if user agreed
+        if (buttonIndex != alertView.cancelButtonIndex) {
+            // XXX: hack to avoid compiler warning
+            // http://stackoverflow.com/questions/7017281/performselector-may-cause-a-leak-because-its-selector-is-unknown
+            SEL selector = self.confirmedAction;
+            if (selector) {
+                IMP imp = [self.target methodForSelector:selector];
+                if (! self.passingObject) {
+                    void (*func)(id, SEL) = (void *)imp;
+                    func(self.target, selector);
+                } else {
+                    void (*func)(id, SEL, id) = (void *)imp;
+                    func(self.target, selector, self.passingObject);
+                }
+            }
+        } else {
+            SEL selector = self.canceledAction;
+            if (selector) {
+                IMP imp = [self.target methodForSelector:selector];
+                void (*func)(id, SEL) = (void *)imp;
+                func(self.target, selector);
             }
         }
     }

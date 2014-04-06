@@ -330,7 +330,7 @@
                 XCTAssertTrue(result, @"ProgramTableViewController forbids removing object cell for object %@ in program %@", object.name, program.header.programName);
                 if (result) {
                     [self.programTableViewController tableView:self.programTableViewController.tableView commitEditingStyle:UITableViewCellEditingStyleDelete forRowAtIndexPath:indexPath];
-                    UIAlertView *alertView = [Util confirmAlertWithTitle:nil message:nil delegate:nil tag:kDeleteObjectAlertViewTag];
+                    UIAlertView *alertView = [Util confirmAlertWithTitle:nil message:nil delegate:nil tag:kConfirmAlertViewTag];
                     alertView.cancelButtonIndex = -1;
                     XCTAssertNoThrow([self.programTableViewController alertView:alertView clickedButtonAtIndex:0], @"Could not confirm to remove object");
                 }
@@ -353,7 +353,7 @@
         UITableViewCell *cell = [self.programTableViewController tableView:self.programTableViewController.tableView cellForRowAtIndexPath:indexPath];
         NSString *objectCellTitle = nil;
         if ([cell conformsToProtocol:@protocol(CatrobatImageCell)]) {
-            UITableViewCell <CatrobatImageCell>* imageCell = (UITableViewCell <CatrobatImageCell>*)cell;
+            UITableViewCell<CatrobatImageCell>* imageCell = (UITableViewCell <CatrobatImageCell>*)cell;
             objectCellTitle = imageCell.titleLabel.text;
         }
         SpriteObject *lastObject = [program.objectList objectAtIndex:kBackgroundObjectIndex];

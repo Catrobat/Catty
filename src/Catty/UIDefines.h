@@ -40,6 +40,10 @@
 #define kConfirmTitleDeleteObject NSLocalizedString(@"Delete this object", nil)
 #define kConfirmTitleDeletePrograms NSLocalizedString(@"Delete these programs", nil)
 #define kConfirmTitleDeleteProgram NSLocalizedString(@"Delete this program", nil)
+#define kConfirmTitleDeleteLooks NSLocalizedString(@"Delete these looks", nil)
+#define kConfirmTitleDeleteLook NSLocalizedString(@"Delete this look", nil)
+#define kConfirmTitleDeleteSounds NSLocalizedString(@"Delete these sounds", nil)
+#define kConfirmTitleDeleteSound NSLocalizedString(@"Delete this sound", nil)
 #define kConfirmMessageDelete NSLocalizedString(@"This can not be undone!", nil)
 
 #define kMenuTitleContinue NSLocalizedString(@"Continue",nil)
