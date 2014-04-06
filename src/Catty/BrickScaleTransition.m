@@ -59,12 +59,13 @@
             self.cell.hidden = YES;
             [UIView animateWithDuration:.7f
                                   delay:0.f
-                 usingSpringWithDamping:3.f
-                  initialSpringVelocity:20.f
+                 usingSpringWithDamping:2.5f
+                  initialSpringVelocity:17.f
                                 options:UIViewAnimationOptionCurveEaseInOut
                              animations:^{
                                  move.frame = endFrame;
-                                 self.dimView.alpha = 0.9f;
+                                 self.dimView.alpha = 1.f;
+                                 //self.collectionView.transform = CGAffineTransformMakeScale(.90f, .90f);
                              }
                              completion:^(BOOL finished) {
                                  if (finished) {
@@ -93,6 +94,7 @@
                                           move.frame = self.touchRect;
                                           self.cell.frame = self.touchRect;
                                           self.dimView.alpha = 0.f;
+                                          //self.collectionView.transform = CGAffineTransformIdentity;
                                           
                                       } completion:^(BOOL finished) {
                                           if (finished) {
