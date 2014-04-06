@@ -330,6 +330,9 @@
                 XCTAssertTrue(result, @"ProgramTableViewController forbids removing object cell for object %@ in program %@", object.name, program.header.programName);
                 if (result) {
                     [self.programTableViewController tableView:self.programTableViewController.tableView commitEditingStyle:UITableViewCellEditingStyleDelete forRowAtIndexPath:indexPath];
+                    UIAlertView *alertView = [Util confirmAlertWithTitle:nil message:nil delegate:nil tag:kDeleteObjectAlertViewTag];
+                    alertView.cancelButtonIndex = -1;
+                    XCTAssertNoThrow([self.programTableViewController alertView:alertView clickedButtonAtIndex:0], @"Could not confirm to remove object");
                 }
             } else {
                 XCTAssertFalse(result, @"ProgramTableViewController permits removing last object cell for object %@ in program %@", object.name, program.header.programName);
