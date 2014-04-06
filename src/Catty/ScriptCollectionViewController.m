@@ -331,22 +331,19 @@
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     BrickCell *cell = (BrickCell*)[self.collectionView cellForItemAtIndexPath:indexPath];
-    NSLog(@"selected cell = %@", cell);
+    // NSLog(@"selected cell = %@", cell);
     
-    // TODO exclude not editable bricks
-    if (![cell isKindOfClass:StartScriptCell.class] || ![cell isKindOfClass:WhenScriptCell.class]) {
-        BrickDetailViewController *controller = [[BrickDetailViewController alloc]initWithNibName:@"BrickDetailViewController" bundle:nil];
-        self.brickScaleTransition.cell = cell;
-        self.brickScaleTransition.touchRect = cell.frame;
-        self.brickScaleTransition.dimView = self.dimView;
-        controller.transitioningDelegate = self;
-        controller.modalPresentationStyle = UIModalPresentationCustom;
-        self.collectionView.userInteractionEnabled = NO;
-        [self.navigationController setNavigationBarHidden:YES animated:YES];
-        [self.navigationController setToolbarHidden:YES animated:YES];
-        [UIApplication.sharedApplication setStatusBarHidden:YES withAnimation:UIStatusBarAnimationSlide];
-        [self presentViewController:controller animated:YES completion:NULL];
-    }
+    BrickDetailViewController *controller = [[BrickDetailViewController alloc]initWithNibName:@"BrickDetailViewController" bundle:nil];
+    self.brickScaleTransition.cell = cell;
+    self.brickScaleTransition.touchRect = cell.frame;
+    self.brickScaleTransition.dimView = self.dimView;
+    controller.transitioningDelegate = self;
+    controller.modalPresentationStyle = UIModalPresentationCustom;
+    self.collectionView.userInteractionEnabled = NO;
+    [self.navigationController setNavigationBarHidden:YES animated:YES];
+    [self.navigationController setToolbarHidden:YES animated:YES];
+    [UIApplication.sharedApplication setStatusBarHidden:YES withAnimation:UIStatusBarAnimationSlide];
+    [self presentViewController:controller animated:YES completion:NULL];
 }
 
 - (void)collectionView:(UICollectionView *)collectionView didHighlightItemAtIndexPath:(NSIndexPath *)indexPath {
