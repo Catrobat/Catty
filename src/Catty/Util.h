@@ -42,6 +42,11 @@
 
 + (UIAlertView*)alertWithText:(NSString*)text delegate:(id<UIAlertViewDelegate>)delegate tag:(NSInteger)tag;
 
++ (UIAlertView*)confirmAlertWithTitle:(NSString*)title
+                              message:(NSString*)message
+                             delegate:(id<UIAlertViewDelegate>)delegate
+                                  tag:(NSInteger)tag;
+
 + (UIAlertView*)promptWithTitle:(NSString*)title
                         message:(NSString*)message
                        delegate:(id<UIAlertViewDelegate>)delegate

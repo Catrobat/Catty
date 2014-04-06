@@ -47,13 +47,14 @@
 
 @interface ProgramTableViewController () <UIActionSheetDelegate, UIAlertViewDelegate, UITextFieldDelegate,
 UINavigationBarDelegate>
+@property (strong, nonatomic) NSIndexPath *indexPathForRowToDelete;
 @property (strong, nonatomic) NSCharacterSet *blockedCharacterSet;
 @property (strong, nonatomic) NSMutableDictionary *imageCache;
 @end
 
 @implementation ProgramTableViewController
 
-#pragma mark - getter & setters
+#pragma mark - getter and setters
 - (NSCharacterSet*)blockedCharacterSet
 {
     if (! _blockedCharacterSet) {
@@ -91,14 +92,9 @@ UINavigationBarDelegate>
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:YES];
-
-    // TODO: use data source for the ProgramTableViewController instead of reloading the whole data
     [self.tableView reloadData];
     [self.navigationController setNavigationBarHidden:NO];
     [self.navigationController setToolbarHidden:NO];
-    //  [self.tableView beginUpdates];
-    //  [self.tableView reloadRowsAtIndexPaths:@[indexPathOfYourCell] withRowAnimation:UITableViewRowAnimationNone];
-    //  [self.tableView endUpdates];
 }
 
 - (void)viewWillDisappear:(BOOL)animated
@@ -119,6 +115,7 @@ UINavigationBarDelegate>
     [self initNavigationBar];
     [super initTableView];
 
+    self.indexPathForRowToDelete = nil;
     self.editableSections = @[@(kObjectSectionIndex)];
     if (self.program.header.programName) {
         self.navigationItem.title = self.program.header.programName;
@@ -162,11 +159,11 @@ UINavigationBarDelegate>
                       delegate:self
         destructiveButtonTitle:kBtnDeleteTitle
              otherButtonTitles:options
-                           tag:kSceneActionSheetTag
+                           tag:kEditProgramActionSheetTag
                           view:self.view];
 }
 
-- (void)deleteSelectedObjectsAction:(id)sender
+- (void)confirmDeleteSelectedObjectsAction:(id)sender
 {
     NSArray *selectedRowsIndexPaths = [self.tableView indexPathsForSelectedRows];
     if (! [selectedRowsIndexPaths count]) {
@@ -174,7 +171,16 @@ UINavigationBarDelegate>
         [super exitEditingMode:sender];
         return;
     }
+    [Util confirmAlertWithTitle:(([selectedRowsIndexPaths count] != 1)
+                                 ? kConfirmTitleDeleteObjects : kConfirmTitleDeleteObject)
+                        message:kConfirmMessageDelete
+                       delegate:self
+                            tag:kDeleteObjectsAlertViewTag];
+}
 
+- (void)deleteSelectedObjectsAction:(id)sender
+{
+    NSArray *selectedRowsIndexPaths = [self.tableView indexPathsForSelectedRows];
     NSMutableArray *objectsToRemove = [NSMutableArray arrayWithCapacity:[selectedRowsIndexPaths count]];
     for (NSIndexPath *selectedRowIndexPath in selectedRowsIndexPaths) {
         // sanity check
@@ -190,6 +196,16 @@ UINavigationBarDelegate>
     }
     [super exitEditingMode:sender];
     [self.tableView deleteRowsAtIndexPaths:selectedRowsIndexPaths withRowAnimation:UITableViewRowAnimationNone];
+}
+
+- (void)deleteObjectForIndexPath:(NSIndexPath*)indexPath
+{
+    NSUInteger index = (kBackgroundObjects + indexPath.row);
+    SpriteObject *object = (SpriteObject*)[self.program.objectList objectAtIndex:index];
+    [self.imageCache objectForKey:object.name];
+    [self.program removeObject:object];
+    [self.tableView deleteRowsAtIndexPaths:@[indexPath]
+                          withRowAnimation:UITableViewRowAnimationNone];
 }
 
 #pragma mark - table view data source
@@ -355,10 +371,13 @@ UINavigationBarDelegate>
 {
     if (indexPath.section == kObjectSectionIndex) {
         if (editingStyle == UITableViewCellEditingStyleDelete) {
-            SpriteObject *object = [self.program.objectList objectAtIndex:(kObjectSectionIndex + indexPath.row)];
-            [self.imageCache objectForKey:object.name];
-            [self.program removeObject:object];
-            [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+            self.indexPathForRowToDelete = indexPath;
+            [self.tableView reloadRowsAtIndexPaths:@[indexPath]
+                                  withRowAnimation:UITableViewRowAnimationNone];
+            [Util confirmAlertWithTitle:kConfirmTitleDeleteObject
+                                message:kConfirmMessageDelete
+                               delegate:self
+                                    tag:kDeleteObjectAlertViewTag];
         }
     }
 }
@@ -405,7 +424,7 @@ UINavigationBarDelegate>
 #pragma mark - action sheet delegates
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
 {
-    if (actionSheet.tag != kSceneActionSheetTag) {
+    if (actionSheet.tag != kEditProgramActionSheetTag) {
         return;
     }
 
@@ -470,7 +489,7 @@ UINavigationBarDelegate>
         }
         [self.program addNewObjectWithName:input];
         [self.tableView reloadSections:[NSIndexSet indexSetWithIndexesInRange:NSMakeRange(1, 1)]
-                      withRowAnimation:UITableViewRowAnimationFade];
+                      withRowAnimation:UITableViewRowAnimationNone];
     }
     if (alertView.tag == kInvalidProgramNameWarningAlertViewTag) {
         // title of cancel button is "OK"
@@ -484,6 +503,21 @@ UINavigationBarDelegate>
                                    ? self.program.header.programName : nil)
                 textFieldDelegate:self];
         }
+    }
+    if (alertView.tag == kDeleteObjectsAlertViewTag) {
+        // check if user agreed
+        if (buttonIndex != alertView.cancelButtonIndex) {
+            [self deleteSelectedObjectsAction:alertView];
+        } else {
+            [super exitEditingMode:alertView];
+        }
+    }
+    if (alertView.tag == kDeleteObjectAlertViewTag) {
+        // check if user agreed
+        if (buttonIndex != alertView.cancelButtonIndex) {
+            [self deleteObjectForIndexPath:self.indexPathForRowToDelete];
+        }
+        self.indexPathForRowToDelete = nil;
     }
 }
 
@@ -517,7 +551,7 @@ UINavigationBarDelegate>
     UIBarButtonItem *deleteButton = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Delete", nil)
                                                                      style:UIBarButtonItemStylePlain
                                                                     target:self
-                                                                    action:@selector(deleteSelectedObjectsAction:)];
+                                                                    action:@selector(confirmDeleteSelectedObjectsAction:)];
     // XXX: workaround for tap area problem:
     // http://stackoverflow.com/questions/5113258/uitoolbar-unexpectedly-registers-taps-on-uibarbuttonitem-instances-even-when-tap
     UIImageView *imageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"transparent1x1"]];

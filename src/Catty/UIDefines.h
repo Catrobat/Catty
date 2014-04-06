@@ -24,6 +24,8 @@
 
 #define kBtnCancelTitle NSLocalizedString(@"Cancel", @"Cancel button for views")
 #define kBtnOKTitle NSLocalizedString(@"OK", @"OK button for views")
+#define kBtnAgreeTitle NSLocalizedString(@"Yes", @"Agree button for views")
+#define kBtnDisagreeTitle NSLocalizedString(@"No", @"Disagree button for views")
 #define kBtnDeleteTitle NSLocalizedString(@"Delete", @"Delete button for views")
 
 #define kTitleNewProgram NSLocalizedString(@"New program",nil)
@@ -33,6 +35,12 @@
 #define kMsgInvalidObjectName NSLocalizedString(@"No or invalid object name entered, try again.",nil)
 #define kMsgUnableToLoadProgram NSLocalizedString(@"Unable to load program!",nil)
 #define kMsgPromptProgramName NSLocalizedString(@"Program name:",nil)
+
+#define kConfirmTitleDeleteObjects NSLocalizedString(@"Delete these objects", nil)
+#define kConfirmTitleDeleteObject NSLocalizedString(@"Delete this object", nil)
+#define kConfirmTitleDeletePrograms NSLocalizedString(@"Delete these programs", nil)
+#define kConfirmTitleDeleteProgram NSLocalizedString(@"Delete this program", nil)
+#define kConfirmMessageDelete NSLocalizedString(@"This can not be undone!", nil)
 
 #define kMenuTitleContinue NSLocalizedString(@"Continue",nil)
 #define kMenuTitleNew NSLocalizedString(@"New",nil)

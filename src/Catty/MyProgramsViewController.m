@@ -39,6 +39,7 @@
 #import "ActionSheetAlertViewTags.h"
 
 @interface MyProgramsViewController () <ProgramUpdateDelegate, UIAlertViewDelegate, UITextFieldDelegate>
+@property (nonatomic, strong) NSIndexPath *indexPathForRowToDelete;
 @property (nonatomic, strong) NSMutableDictionary *assetCache;
 @property (nonatomic, strong) NSMutableArray *programLoadingInfos;
 @property (nonatomic, strong) Program *selectedProgram;
@@ -86,6 +87,7 @@
     [self initNavigationBar];
     [super initTableView];
 
+    self.indexPathForRowToDelete = nil;
     self.defaultProgram = nil;
     self.selectedProgram = nil;
     [self setupToolBar];
@@ -131,7 +133,7 @@
     }
 }
 
-- (void)deleteSelectedProgramsAction:(id)sender
+- (void)confirmDeleteSelectedProgramsAction:(id)sender
 {
     NSArray *selectedRowsIndexPaths = [self.tableView indexPathsForSelectedRows];
     if (! [selectedRowsIndexPaths count]) {
@@ -139,7 +141,16 @@
         [super exitEditingMode:sender];
         return;
     }
+    [Util confirmAlertWithTitle:(([selectedRowsIndexPaths count] != 1)
+                                 ? kConfirmTitleDeletePrograms : kConfirmTitleDeleteProgram)
+                        message:kConfirmMessageDelete
+                       delegate:self
+                            tag:kDeleteProgramsAlertViewTag];
+}
 
+- (void)deleteSelectedProgramsAction:(id)sender
+{
+    NSArray *selectedRowsIndexPaths = [self.tableView indexPathsForSelectedRows];
     NSMutableArray *programNamesToRemove = [NSMutableArray arrayWithCapacity:[selectedRowsIndexPaths count]];
     for (NSIndexPath *selectedRowIndexPath in selectedRowsIndexPaths) {
         ProgramLoadingInfo *programLoadingInfo = [self.programLoadingInfos objectAtIndex:selectedRowIndexPath.row];
@@ -149,6 +160,13 @@
         [self removeProgram:programNameToRemove];
     }
     [super exitEditingMode:sender];
+    [self initNavigationBar];
+}
+
+- (void)deleteProgramForIndexPath:(NSIndexPath*)indexPath
+{
+    ProgramLoadingInfo *programLoadingInfo = [self.programLoadingInfos objectAtIndex:indexPath.row];
+    [self removeProgram:programLoadingInfo.visibleName];
     [self initNavigationBar];
 }
 
@@ -186,7 +204,7 @@
 }
 
 
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
+- (BOOL)tableView:(UITableView*)tableView canEditRowAtIndexPath:(NSIndexPath*)indexPath
 {
     return YES;
 }
@@ -194,9 +212,13 @@
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
-        ProgramLoadingInfo *programLoadingInfo = [self.programLoadingInfos objectAtIndex:indexPath.row];
-        [self removeProgram:programLoadingInfo.visibleName];
-        [self initNavigationBar];
+        self.indexPathForRowToDelete = indexPath;
+        [self.tableView reloadRowsAtIndexPaths:@[indexPath]
+                              withRowAnimation:UITableViewRowAnimationNone];
+        [Util confirmAlertWithTitle:kConfirmTitleDeleteProgram
+                            message:kConfirmMessageDelete
+                           delegate:self
+                                tag:kDeleteProgramAlertViewTag];
     }
 }
 
@@ -397,6 +419,19 @@
                               tag:kNewProgramAlertViewTag
                 textFieldDelegate:self];
         }
+    } else if (alertView.tag == kDeleteProgramsAlertViewTag) {
+        // check if user agreed
+        if (buttonIndex != alertView.cancelButtonIndex) {
+            [self deleteSelectedProgramsAction:alertView];
+        } else {
+            [super exitEditingMode:alertView];
+        }
+    } else if (alertView.tag == kDeleteProgramAlertViewTag) {
+        // check if user agreed
+        if (buttonIndex != alertView.cancelButtonIndex) {
+            [self deleteProgramForIndexPath:self.indexPathForRowToDelete];
+        }
+        self.indexPathForRowToDelete = nil;
     }
 }
 
@@ -506,7 +541,7 @@
     UIBarButtonItem *deleteButton = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Delete", nil)
                                                                      style:UIBarButtonItemStylePlain
                                                                     target:self
-                                                                    action:@selector(deleteSelectedProgramsAction:)];
+                                                                    action:@selector(confirmDeleteSelectedProgramsAction:)];
     // XXX: workaround for tap area problem:
     // http://stackoverflow.com/questions/5113258/uitoolbar-unexpectedly-registers-taps-on-uibarbuttonitem-instances-even-when-tap
     UIImageView *imageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"transparent1x1"]];

@@ -149,15 +149,6 @@
     return NO;
 }
 
-- (UITableViewCellEditingStyle)tableView:(UITableView*)tableView
-           editingStyleForRowAtIndexPath:(NSIndexPath*)indexPath
-{
-    if (! self.isEditing) {
-        return UITableViewCellEditingStyleDelete;
-    }
-    return 3; // XXX: strange, but no corresponding enum value available for that...
-}
-
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath*)indexPath
 {
     if (! self.isEditing) {
@@ -276,6 +267,7 @@
     self.navigationItem.rightBarButtonItem = cancelButton;
     [self.tableView reloadData];
     [self.tableView setEditing:YES animated:YES];
+    self.tableView.allowsMultipleSelectionDuringEditing = YES;
     self.editing = YES;
 }
 

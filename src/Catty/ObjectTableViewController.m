@@ -168,7 +168,7 @@
                                              cancelButtonTitle:kBtnCancelTitle
                                         destructiveButtonTitle:nil
                                              otherButtonTitles:NSLocalizedString(@"Einstellungen",nil), nil];
-    //[edit setTag:kSceneActionSheetTag];
+//    edit.tag = kSceneActionSheetTag;
     edit.actionSheetStyle = UIActionSheetStyleDefault;
     [edit showInView:self.view];
 }

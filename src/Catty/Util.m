@@ -28,8 +28,7 @@
 
 @implementation Util
 
-
-+ (NSString *)applicationDocumentsDirectory 
++ (NSString *)applicationDocumentsDirectory
 {    
     NSArray *paths = 
     NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
@@ -62,6 +61,23 @@
                                                        delegate:delegate
                                               cancelButtonTitle:kBtnOKTitle
                                               otherButtonTitles:nil];
+    alertView.tag = tag;
+    [alertView show];
+    return alertView;
+}
+
++ (UIAlertView*)confirmAlertWithTitle:(NSString*)title
+                              message:(NSString*)message
+                             delegate:(id<UIAlertViewDelegate>)delegate
+                                  tag:(NSInteger)tag
+{
+    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:title
+                                                        message:message
+                                                       delegate:delegate
+                                              cancelButtonTitle:nil
+                                              otherButtonTitles:nil];
+    [alertView addButtonWithTitle:kBtnAgreeTitle];
+    alertView.cancelButtonIndex = [alertView addButtonWithTitle:kBtnDisagreeTitle];
     alertView.tag = tag;
     [alertView show];
     return alertView;
