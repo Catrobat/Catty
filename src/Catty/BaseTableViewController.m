@@ -234,9 +234,8 @@
 - (void)setupEditingToolBar
 {
     [self setupToolBar];
-    self.selectAllRowsButtonItem.tintColor = [UIColor orangeColor];
-    self.selectAllRowsButtonItem.title = kSelectAllItemsTitle;
-    self.selectAllRowsButtonItem.tag = kSelectAllItemsTag;
+    // force to reinstantiate new UIBarButtonItem
+    self.selectAllRowsButtonItem = nil;
 }
 
 - (BOOL)areAllCellsSelectedInSection:(NSInteger)section
