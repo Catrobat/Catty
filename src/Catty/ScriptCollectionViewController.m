@@ -167,7 +167,6 @@
 
 - (void)addBrickCellAction:(BrickCell*)brickCell
 {
-    //    BrickManager *brickManager = [BrickManager sharedBrickManager];
     if (! brickCell) {
         return;
     }
@@ -201,9 +200,6 @@
         abort();
     }
     [super showPlaceHolder:NO];
-    
-    // TODO: change this...
-    [self.collectionView reloadData];
 }
 
 #pragma mark - notification
@@ -335,7 +331,7 @@
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     BrickCell *cell = (BrickCell*)[self.collectionView cellForItemAtIndexPath:indexPath];
-    // NSLog(@"selected cell = %@", cell);
+    NSLog(@"selected cell = %@", cell);
     
     // TODO exclude not editable bricks
     if (![cell isKindOfClass:StartScriptCell.class] || ![cell isKindOfClass:WhenScriptCell.class]) {
