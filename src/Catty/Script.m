@@ -60,7 +60,7 @@
 -(NSMutableArray*)brickList
 {
     if (! _brickList)
-        _brickList = [[NSMutableArray alloc] init];
+        _brickList = [NSMutableArray array];
     return _brickList;
 }
 

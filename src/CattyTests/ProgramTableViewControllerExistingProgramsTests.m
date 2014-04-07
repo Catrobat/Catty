@@ -70,7 +70,7 @@
 }
 
 #pragma mark - Tests for all existing programs
-// existing programs like Aquarium 3, My first project, ...
+// existing programs like Aquarium 3, ...
 - (void)testExistingProgramsIfFolderExists
 {
     NSString *basePath = [Program basePath];
@@ -91,7 +91,7 @@
         self.programTableViewController.program = [Program programWithLoadingInfo:loadingInfo];
         [self.programTableViewController viewDidLoad];
         [self.programTableViewController viewWillAppear:NO];
-        XCTAssertFalse([self.fileManager directoryExists:loadingInfo.basePath], @"The ProgramTableViewController did not create the project folder for the new project");
+        XCTAssertTrue([self.fileManager directoryExists:loadingInfo.basePath], @"The ProgramTableViewController did not create the project folder for the project %@", programName);
         self.programTableViewController = nil; // unload program table view controller
     }
 }
@@ -138,7 +138,7 @@
 
         NSUInteger objectCounter = 0;
         NSLog(@"Program: %@", program.header.programName);
-        NSLog(@"Number of objects: %lu", (unsigned long)[program.objectList count]);
+        NSLog(@"Number of objects: %lu", (unsigned long)[program numberOfTotalObjects]);
         for (SpriteObject *object in program.objectList) {
             if (! objectCounter) {
                 ++objectCounter;
@@ -250,7 +250,7 @@
         [self.programTableViewController viewWillAppear:NO];
 
         NSUInteger numberOfObjectRows = (NSUInteger)[self.programTableViewController tableView:self.programTableViewController.tableView numberOfRowsInSection:kObjectSectionIndex];
-        XCTAssertEqual(numberOfObjectRows, ([program.objectList count] - 1), @"Wrong number of object rows in ProgramTableViewController for program: %@", program.header.programName);
+        XCTAssertEqual(numberOfObjectRows, [program numberOfNormalObjects], @"Wrong number of object rows in ProgramTableViewController for program: %@", program.header.programName);
         self.programTableViewController = nil; // unload program table view controller
     }
 }
@@ -330,6 +330,9 @@
                 XCTAssertTrue(result, @"ProgramTableViewController forbids removing object cell for object %@ in program %@", object.name, program.header.programName);
                 if (result) {
                     [self.programTableViewController tableView:self.programTableViewController.tableView commitEditingStyle:UITableViewCellEditingStyleDelete forRowAtIndexPath:indexPath];
+                    UIAlertView *alertView = [Util confirmAlertWithTitle:nil message:nil delegate:nil tag:kConfirmAlertViewTag];
+                    alertView.cancelButtonIndex = -1;
+                    XCTAssertNoThrow([self.programTableViewController alertView:alertView clickedButtonAtIndex:0], @"Could not confirm to remove object");
                 }
             } else {
                 XCTAssertFalse(result, @"ProgramTableViewController permits removing last object cell for object %@ in program %@", object.name, program.header.programName);
@@ -350,7 +353,7 @@
         UITableViewCell *cell = [self.programTableViewController tableView:self.programTableViewController.tableView cellForRowAtIndexPath:indexPath];
         NSString *objectCellTitle = nil;
         if ([cell conformsToProtocol:@protocol(CatrobatImageCell)]) {
-            UITableViewCell <CatrobatImageCell>* imageCell = (UITableViewCell <CatrobatImageCell>*)cell;
+            UITableViewCell<CatrobatImageCell>* imageCell = (UITableViewCell <CatrobatImageCell>*)cell;
             objectCellTitle = imageCell.titleLabel.text;
         }
         SpriteObject *lastObject = [program.objectList objectAtIndex:kBackgroundObjectIndex];

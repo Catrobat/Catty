@@ -21,9 +21,9 @@
  */
 
 // Action sheet
-#define kSceneActionSheetTag 1
-#define kAddLookActionSheetTag 3
-#define kAddSoundActionSheetTag 4
+#define kEditProgramActionSheetTag 1
+#define kAddLookActionSheetTag 2
+#define kAddSoundActionSheetTag 3
 
 // Alert view tags
 #define kRenameAlertViewTag 100
@@ -31,6 +31,8 @@
 #define kNewProgramAlertViewTag 102
 #define kInvalidProgramNameWarningAlertViewTag 103
 #define kInvalidObjectNameWarningAlertViewTag 104
+
+#define kConfirmAlertViewTag 200
 
 // Alert view button indexes
 #define kAlertViewButtonOK 1

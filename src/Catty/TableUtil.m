@@ -25,47 +25,50 @@
 #import "UIColor+CatrobatUIColorExtensions.h"
 #import "CatrobatBaseCell.h"
 
-
 #define kIphone5ScreenHeight 568.0f
 #define kIphone4ScreenHeight 480.0f
 #define kContinueCellHeight  120.0f
 #define kImageCellHeight     75.0f
 
-
-
 @implementation TableUtil
 
-+(CGFloat)getHeightForContinueCell {
++ (CGFloat)getHeightForContinueCell
+{
     CGFloat screenHeight = [Util getScreenHeight];
     if (screenHeight == kIphone5ScreenHeight) {
         return ((kContinueCellHeight+2)*screenHeight)/kIphone5ScreenHeight;
-    }
-    else{
+    } else {
         return (kContinueCellHeight*screenHeight)/kIphone4ScreenHeight;
     }
-
 }
 
-+(CGFloat)getHeightForImageCell {
++ (CGFloat)getHeightForImageCell
+{
     CGFloat screenHeight = [Util getScreenHeight];
     if (screenHeight == kIphone5ScreenHeight) {
         return ((kImageCellHeight+2)*screenHeight)/kIphone5ScreenHeight;
-    }
-    else{
+    } else {
         return (kImageCellHeight*screenHeight)/kIphone4ScreenHeight;
     }
 }
 
-+(void)initNavigationItem:(UINavigationItem*)navigationItem withTitle:(NSString*)title{
-    
++ (void)initNavigationItem:(UINavigationItem*)navigationItem withTitle:(NSString*)title
+{
     navigationItem.title = title;
-    
     UIImageView *imageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"menu_icon"]];
-    [navigationItem setRightBarButtonItem:[[UIBarButtonItem alloc] initWithCustomView:imageView]];
-    
+    navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:imageView];
 }
 
-+(void)addSeperatorForCell:(CatrobatBaseCell*)cell{
++ (UIBarButtonItem*)editButtonItemWithTarget:(id)target action:(SEL)action
+{
+    UIBarButtonItem *editButton = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Edit", nil)
+                                                                   style:UIBarButtonItemStylePlain
+                                                                  target:target
+                                                                  action:action];
+    return editButton;
+}
+
++ (void)addSeperatorForCell:(CatrobatBaseCell*)cell{
     if(cell.seperatorView == nil) {
         UIImageView *seperator = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"cellseperator"]];
         seperator.frame = CGRectMake(0.0f, 0.0f, cell.bounds.size.width, 4.0f);
@@ -74,26 +77,16 @@
     }
 }
 
-
-
 #pragma mark Helper
-+(UIBarButtonItem*)createBackButtonWithTarget:(id)target{
++ (UIBarButtonItem*)createBackButtonWithTarget:(id)target{
     UIButton *backbutton = [UIButton buttonWithType:UIButtonTypeCustom];
     UIImage *img = [UIImage imageNamed:@"backbutton"];
-    
     backbutton.frame = CGRectMake(20, 100, img.size.width+10, img.size.height);
-    
-    
     [backbutton setImage:img forState:UIControlStateNormal];
     [backbutton setImage:img forState:UIControlStateHighlighted];
     [backbutton setImage:img forState:UIControlStateSelected];
     [backbutton addTarget:target action:@selector(back) forControlEvents:UIControlEventTouchUpInside];
-    
     return [[UIBarButtonItem alloc] initWithCustomView:backbutton];
-    
-
 }
-
-
 
 @end

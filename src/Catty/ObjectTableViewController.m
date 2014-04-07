@@ -32,53 +32,24 @@
 #import "CatrobatImageCell.h"
 #import "ScenePresenterViewController.h"
 
-// identifiers
-#define kTableHeaderIdentifier @"Header"
-
 @interface ObjectTableViewController () <UIActionSheetDelegate>
 
 @end
 
 @implementation ObjectTableViewController
 
-- (id)initWithStyle:(UITableViewStyle)style
-{
-    self = [super initWithStyle:style];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
-}
-
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
-    
-    [self initTableView];
-    //[TableUtil initNavigationItem:self.navigationItem withTitle:NSLocalizedString(@"New Programs", nil)];
-    
+    [super initTableView];
     self.title = self.object.name;
     self.navigationItem.title = self.object.name;
     [self setupToolBar];
 }
 
-#pragma mark init
-- (void)initTableView
-{
-    [self.tableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
-    self.tableView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"darkblue"]];
-    UITableViewHeaderFooterView *headerViewTemplate = [[UITableViewHeaderFooterView alloc] initWithReuseIdentifier:kTableHeaderIdentifier];
-    headerViewTemplate.contentView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"darkblue"]];
-    [self.tableView addSubview:headerViewTemplate];
-}
-
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 #pragma mark - actions
@@ -91,13 +62,11 @@
 #pragma mark - Table view data source
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    // Return the number of sections.
     return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    // Return the number of rows in the section.
     return 3;
 }
 
@@ -199,7 +168,7 @@
                                              cancelButtonTitle:kBtnCancelTitle
                                         destructiveButtonTitle:nil
                                              otherButtonTitles:NSLocalizedString(@"Einstellungen",nil), nil];
-    //[edit setTag:kSceneActionSheetTag];
+//    edit.tag = kSceneActionSheetTag;
     edit.actionSheetStyle = UIActionSheetStyleDefault;
     [edit showInView:self.view];
 }

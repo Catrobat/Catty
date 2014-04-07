@@ -34,6 +34,9 @@
 @property (nonatomic, strong) Header *header;
 @property (nonatomic, strong) NSMutableArray *objectList;
 @property (nonatomic, strong) VariablesContainer *variables;
+- (NSInteger)numberOfTotalObjects;
+- (NSInteger)numberOfBackgroundObjects;
+- (NSInteger)numberOfNormalObjects;
 - (SpriteObject*)addNewObjectWithName:(NSString*)objectName;
 - (void)removeObject:(SpriteObject*)object;
 - (NSString*)projectPath;
@@ -42,7 +45,6 @@
 - (BOOL)isLastProgram;
 - (void)setAsLastProgram;
 - (void)renameToProgramName:(NSString*)programName;
-
 
 + (Program*)defaultProgramWithName:(NSString*)programName;
 + (Program*)lastProgram;

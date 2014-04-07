@@ -24,6 +24,8 @@
 
 #define kBtnCancelTitle NSLocalizedString(@"Cancel", @"Cancel button for views")
 #define kBtnOKTitle NSLocalizedString(@"OK", @"OK button for views")
+#define kBtnAgreeTitle NSLocalizedString(@"Yes", @"Agree button for views")
+#define kBtnDisagreeTitle NSLocalizedString(@"No", @"Disagree button for views")
 #define kBtnDeleteTitle NSLocalizedString(@"Delete", @"Delete button for views")
 
 #define kTitleNewProgram NSLocalizedString(@"New program",nil)
@@ -33,6 +35,16 @@
 #define kMsgInvalidObjectName NSLocalizedString(@"No or invalid object name entered, try again.",nil)
 #define kMsgUnableToLoadProgram NSLocalizedString(@"Unable to load program!",nil)
 #define kMsgPromptProgramName NSLocalizedString(@"Program name:",nil)
+
+#define kConfirmTitleDeleteObjects NSLocalizedString(@"Delete these objects", nil)
+#define kConfirmTitleDeleteObject NSLocalizedString(@"Delete this object", nil)
+#define kConfirmTitleDeletePrograms NSLocalizedString(@"Delete these programs", nil)
+#define kConfirmTitleDeleteProgram NSLocalizedString(@"Delete this program", nil)
+#define kConfirmTitleDeleteLooks NSLocalizedString(@"Delete these looks", nil)
+#define kConfirmTitleDeleteLook NSLocalizedString(@"Delete this look", nil)
+#define kConfirmTitleDeleteSounds NSLocalizedString(@"Delete these sounds", nil)
+#define kConfirmTitleDeleteSound NSLocalizedString(@"Delete this sound", nil)
+#define kConfirmMessageDelete NSLocalizedString(@"This can not be undone!", nil)
 
 #define kMenuTitleContinue NSLocalizedString(@"Continue",nil)
 #define kMenuTitleNew NSLocalizedString(@"New",nil)
@@ -355,8 +367,8 @@ typedef NS_ENUM(NSInteger, kSoundBrickType) {
 
 // look bricks
 typedef NS_ENUM(NSInteger, kLookBrickType) {
-    kSetBackgroundBrick = 0,
-    kNextBackgroundBrick = 1,
+    kSetLookBrick = 0,
+    kNextLookBrick = 1,
     kSetSizeToBrick = 2,
     kChangeSizeByNBrick = 3,
     kHideBrick = 4,
@@ -467,10 +479,18 @@ typedef NS_ENUM(NSInteger, kBrickShapeType) {
 
 #define kUnselectableBricksBackgroundObject @[\
     @[@(kIfElseBrick), @(kIfEndBrick), @(kLoopEndBrick)], /* control bricks  */\
-    @[@(kGoNStepsBackBrick), @(kComeToFrontBrick)],       /* motion bricks   */\
+    @[@(kIfOnEdgeBounceBrick), @(kGoNStepsBackBrick), @(kComeToFrontBrick)], /* motion bricks   */\
     @[],                                                  /* sound bricks    */\
     @[],                                                  /* look bricks     */\
     @[]                                                   /* variable bricks */\
+]
+
+#define kBrickModifiedTitlesForBackgroundObject @[\
+    @{},                                                  /* control bricks  */\
+    @{},                                                  /* motion bricks   */\
+    @{},                                                  /* sound bricks    */\
+    @{@(kSetLookBrick) : NSLocalizedString(@"Set background\n%@",nil), @(kNextLookBrick) : NSLocalizedString(@"Next background",nil) }, /* look bricks     */\
+    @{}                                                   /* variable bricks */\
 ]
 
 #define kClassNameBrickNameMap @{\
@@ -510,8 +530,8 @@ typedef NS_ENUM(NSInteger, kBrickShapeType) {
     @"ChangeVolumeByNBrick"      : @{@"categoryType" : @(kSoundBrick),   @"brickType" : @(kChangeVolumeByNBrick)},\
     @"SpeakBrick"                : @{@"categoryType" : @(kSoundBrick),   @"brickType" : @(kSpeakBrick)},\
     /* look bricks */\
-    @"SetLookBrick"              : @{@"categoryType" : @(kLookBrick),    @"brickType" : @(kSetBackgroundBrick)},\
-    @"NextLookBrick"             : @{@"categoryType" : @(kLookBrick),    @"brickType" : @(kNextBackgroundBrick)},\
+    @"SetLookBrick"              : @{@"categoryType" : @(kLookBrick),    @"brickType" : @(kSetLookBrick)},\
+    @"NextLookBrick"             : @{@"categoryType" : @(kLookBrick),    @"brickType" : @(kNextLookBrick)},\
     @"SetSizeToBrick"            : @{@"categoryType" : @(kLookBrick),    @"brickType" : @(kSetSizeToBrick)},\
     @"ChangeSizeByNBrick"        : @{@"categoryType" : @(kLookBrick),    @"brickType" : @(kChangeSizeByNBrick)},\
     @"HideBrick"                 : @{@"categoryType" : @(kLookBrick),    @"brickType" : @(kHideBrick)},\

@@ -82,6 +82,9 @@
     self.lastProgram = nil;
     self.defaultProgram = nil;
     AppDelegate *appDelegate = (AppDelegate*)[UIApplication sharedApplication].delegate;
+    if (! [appDelegate.fileManager directoryExists:[Program basePath]]) {
+        [appDelegate.fileManager createDirectory:[Program basePath]];
+    }
     [appDelegate.fileManager addDefaultProjectsToProgramsRootDirectory];
 }
 
@@ -120,13 +123,10 @@
 #pragma mark init
 - (void)initTableView
 {
+    [super initTableView];
     self.cells = [[NSArray alloc] initWithObjects:kMenuTitleContinue, kMenuTitleNew, kMenuTitlePrograms, kMenuTitleHelp, kMenuTitleExplore, kMenuTitleUpload, nil];
     self.imageNames = [[NSArray alloc] initWithObjects:kMenuImageNameContinue, kMenuImageNameNew, kMenuImageNamePrograms, kMenuImageNameHelp, kMenuImageNameExplore, kMenuImageNameUpload, nil];
     self.identifiers = [[NSArray alloc] initWithObjects:kSegueToContinue, kSegueToNewProgram, kSegueToPrograms, kSegueToHelp, kSegueToExplore, kSegueToUpload, nil];
-    self.tableView.delegate = self;
-    self.tableView.dataSource = self;
-    [self.tableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
-    self.tableView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"darkblue"]];
 }
 
 - (void)initNavigationBar

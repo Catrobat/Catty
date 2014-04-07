@@ -132,6 +132,29 @@
     return [Program programWithLoadingInfo:loadingInfo];
 }
 
+- (NSInteger)numberOfTotalObjects
+{
+    return [self.objectList count];
+}
+
+- (NSInteger)numberOfBackgroundObjects
+{
+    NSInteger numberOfTotalObjects = [self numberOfTotalObjects];
+    if (numberOfTotalObjects < kBackgroundObjects) {
+        return numberOfTotalObjects;
+    }
+    return kBackgroundObjects;
+}
+
+- (NSInteger)numberOfNormalObjects
+{
+    NSInteger numberOfTotalObjects = [self numberOfTotalObjects];
+    if (numberOfTotalObjects > kBackgroundObjects) {
+        return (numberOfTotalObjects - kBackgroundObjects);
+    }
+    return 0;
+}
+
 - (SpriteObject*)addNewObjectWithName:(NSString*)objectName
 {
     SpriteObject* object = [[SpriteObject alloc] init];

@@ -20,20 +20,8 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 
-@class CatrobatBaseCell;
-
-@interface TableUtil : NSObject
-
-+ (CGFloat)getHeightForContinueCell;
-
-+ (CGFloat)getHeightForImageCell;
-
-+ (void)initNavigationItem:(UINavigationItem*)navigationItem withTitle:(NSString*)title;
-
-+ (UIBarButtonItem*)editButtonItemWithTarget:(id)target action:(SEL)action;
-
-+ (void)addSeperatorForCell:(CatrobatBaseCell*)cell;
+@interface BrickDetailViewController : UIViewController
 
 @end

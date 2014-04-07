@@ -76,18 +76,14 @@
 {
     self.programListLimit = 20;
     self.programListOffset = 0;
-    
+
     [super viewDidLoad];
     [self loadProjectsWithIndicator:0];
     [self initTableView];
     self.view.backgroundColor = [UIColor darkBlueColor];
     [self initSegmentedControl];
     self.previousSelectedIndex = 0;
-
-    
 }
-
-
 
 - (void)viewWillAppear:(BOOL)animated
 {
@@ -150,7 +146,7 @@
 
 
 #pragma mark - Init
--(void)initTableView
+- (void)initTableView
 {
     self.tableView.delegate = self;
     self.tableView.dataSource = self;

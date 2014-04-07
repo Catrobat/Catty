@@ -22,18 +22,9 @@
 
 #import <Foundation/Foundation.h>
 
-@class CatrobatBaseCell;
+typedef NS_ENUM(NSInteger, TransitionMode) { TransitionModePresent = 0, TransitionModeDismiss };
 
-@interface TableUtil : NSObject
-
-+ (CGFloat)getHeightForContinueCell;
-
-+ (CGFloat)getHeightForImageCell;
-
-+ (void)initNavigationItem:(UINavigationItem*)navigationItem withTitle:(NSString*)title;
-
-+ (UIBarButtonItem*)editButtonItemWithTarget:(id)target action:(SEL)action;
-
-+ (void)addSeperatorForCell:(CatrobatBaseCell*)cell;
+@interface BaseTransition : NSObject <UIViewControllerAnimatedTransitioning, UIViewControllerTransitioningDelegate>
+@property (nonatomic, assign) TransitionMode transitionMode;
 
 @end

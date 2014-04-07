@@ -77,7 +77,6 @@
 - (void)start:(CGFloat)zPosition;
 - (void)scriptFinished:(Script*)script;
 
-
 - (void)broadcast:(NSString*)message;
 - (void)broadcastAndWait:(NSString*)message;
 
@@ -96,6 +95,8 @@
 // actions
 - (void)changeLook:(Look*)look;
 - (void)setLook;
+- (void)removeLook:(Look*)look;
+- (void)removeSound:(Sound*)sound;
 
 //- (void)glideToPosition:(CGPoint)position withDurationInSeconds:(float)durationInSeconds fromScript:(Script*)script;
 //- (void)hide;

@@ -32,10 +32,17 @@
 #import "Brick.h"
 #import "LXReorderableCollectionViewFlowLayout.h"
 #import "BrickManager.h"
+#import "StartScriptCell.h"
+#import "BrickScaleTransition.h"
+#import "BrickDetailViewController.h"
+#import "WhenScriptCell.h"
+#import "FXBlurView.h"
 
-@interface ScriptCollectionViewController () <UICollectionViewDelegate, UICollectionViewDelegateFlowLayout>
+@interface ScriptCollectionViewController () <UICollectionViewDelegate, LXReorderableCollectionViewDelegateFlowLayout, LXReorderableCollectionViewDataSource, UIViewControllerTransitioningDelegate>
 @property (nonatomic, strong) NSDictionary *classNameBrickNameMap;
 @property (nonatomic, weak) IBOutlet UICollectionView *collectionView;
+@property (nonatomic, strong) BrickScaleTransition *brickScaleTransition;
+@property (nonatomic, strong) FXBlurView *dimView;
 @end
 
 @implementation ScriptCollectionViewController
@@ -67,7 +74,7 @@
     [super setPlaceHolderTitle:kScriptsTitle
                    Description:[NSString stringWithFormat:NSLocalizedString(kEmptyViewPlaceHolder, nil),
                                 kScriptsTitle]];
-    [super showPlaceHolder:(!(BOOL)[self.object.scriptList count])];
+    [super showPlaceHolder:(! (BOOL)[self.object.scriptList count])];
     [self setupToolBar];
     [super setPlaceHolderTitle:kScriptsTitle
                    Description:[NSString stringWithFormat:NSLocalizedString(kEmptyViewPlaceHolder, nil), kScriptsTitle]];
@@ -75,6 +82,19 @@
     self.collectionView.scrollEnabled = YES;
     self.collectionView.delegate = self;
     self.collectionView.dataSource = self;
+    
+    self.brickScaleTransition = [BrickScaleTransition new];
+    self.dimView = [[FXBlurView alloc] initWithFrame:self.view.bounds];
+    self.dimView.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
+    self.dimView.userInteractionEnabled = NO;
+    self.dimView.tintColor = UIColor.clearColor;
+    self.dimView.underlyingView = self.collectionView;
+    self.dimView.blurEnabled = YES;
+    self.dimView.blurRadius = 10.f;
+    self.dimView.dynamic = YES;
+    self.dimView.alpha = 0.f;
+    self.dimView.hidden = YES;
+    [self.view addSubview:self.dimView];
 
     // register brick cells for current brick category
     NSDictionary *allCategoriesAndBrickTypes = self.classNameBrickNameMap;
@@ -88,6 +108,8 @@
     [super viewWillAppear:animated];
     NSNotificationCenter *dnc = [NSNotificationCenter defaultCenter];
     [dnc addObserver:self selector:@selector(brickAdded:) name:kBrickCellAddedNotification object:nil];
+    // TODO constants
+    [dnc addObserver:self selector:@selector(brickDetailViewDismissed:) name:@"kBrickDetailViewDismissed" object:nil];
     [self.navigationController setToolbarHidden:NO];
 }
 
@@ -100,17 +122,29 @@
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
-//    [self.collectionView performBatchUpdates:^{
-//        [self.collectionView reloadSections:[NSIndexSet indexSetWithIndexesInRange:NSMakeRange(0, self.object.scriptList.count)]];
-//    } completion:NULL];
     [self.collectionView reloadData];
 }
+
 
 #pragma mark - application events
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     [BrickCell clearImageCache];
+}
+
+#pragma mark - UIViewControllerAnimatedTransitioning delegate
+
+- (id<UIViewControllerAnimatedTransitioning>)animationControllerForPresentedController:(UIViewController *)presented
+                                                                  presentingController:(UIViewController *)presenting
+                                                                      sourceController:(UIViewController *)source {
+    self.brickScaleTransition.transitionMode = TransitionModePresent;
+    return self.brickScaleTransition;
+}
+
+- (id<UIViewControllerAnimatedTransitioning>)animationControllerForDismissedController:(UIViewController *)dismissed {
+    self.brickScaleTransition.transitionMode = TransitionModeDismiss;
+    return self.brickScaleTransition;
 }
 
 #pragma mark - actions
@@ -176,9 +210,20 @@
 - (void)brickAdded:(NSNotification*)notification
 {
     if (notification.userInfo) {
-        NSLog(@"brickAdded notification received with userInfo: %@", [notification.userInfo description]);
+        // NSLog(@"brickAdded notification received with userInfo: %@", [notification.userInfo description]);
         [self addBrickCellAction:notification.userInfo[kUserInfoKeyBrickCell]];
     }
+}
+
+- (void)brickDetailViewDismissed:(NSNotification *)notification {
+    self.collectionView.userInteractionEnabled = YES;
+    [UIApplication.sharedApplication setStatusBarHidden:NO withAnimation:UIStatusBarAnimationSlide];
+    
+    if (self.navigationController.toolbar.hidden && self.navigationController.navigationBar.hidden) {
+        [self.navigationController setToolbarHidden:NO animated:YES];
+        [self.navigationController setNavigationBarHidden:NO animated:YES];
+    }
+    [self.collectionView reloadData];
 }
 
 #pragma mark - collection view datasource
@@ -195,10 +240,6 @@
         abort();
     }
     return ([script.brickList count] + 1); // because script itself is a brick in IDE too
-}
-
-- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath*)indexPath
-{
 }
 
 #pragma mark - collection view delegate
@@ -221,7 +262,9 @@
         NSString *brickSubClassName = NSStringFromClass([brick class]);
         brickCell = [collectionView dequeueReusableCellWithReuseIdentifier:brickSubClassName forIndexPath:indexPath];
     }
+    brickCell.backgroundBrickCell = self.object.isBackground;
     brickCell.enabled = YES;
+    [brickCell renderSubViews];
     return brickCell;
 }
 
@@ -290,15 +333,78 @@
     return UIEdgeInsetsMake(10, 0, 5, 0);
 }
 
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
+    BrickCell *cell = (BrickCell*)[self.collectionView cellForItemAtIndexPath:indexPath];
+    // NSLog(@"selected cell = %@", cell);
+    
+    // TODO exclude not editable bricks
+    if (![cell isKindOfClass:StartScriptCell.class] || ![cell isKindOfClass:WhenScriptCell.class]) {
+        BrickDetailViewController *controller = [[BrickDetailViewController alloc]initWithNibName:@"BrickDetailViewController" bundle:nil];
+        self.brickScaleTransition.cell = cell;
+        self.brickScaleTransition.touchRect = cell.frame;
+        self.brickScaleTransition.dimView = self.dimView;
+        self.brickScaleTransition.collectionView = self.collectionView;
+        controller.transitioningDelegate = self;
+        controller.modalPresentationStyle = UIModalPresentationCustom;
+        self.collectionView.userInteractionEnabled = NO;
+        [self.navigationController setNavigationBarHidden:YES animated:YES];
+        [self.navigationController setToolbarHidden:YES animated:YES];
+        [UIApplication.sharedApplication setStatusBarHidden:YES withAnimation:UIStatusBarAnimationSlide];
+        [self presentViewController:controller animated:YES completion:NULL];
+    }
+}
+
+- (void)collectionView:(UICollectionView *)collectionView didHighlightItemAtIndexPath:(NSIndexPath *)indexPath {
+    BrickCell *cell = (BrickCell*)[self.collectionView cellForItemAtIndexPath:indexPath];
+    cell.alpha = .7f;
+}
+
+- (void)collectionView:(UICollectionView *)collectionView didUnhighlightItemAtIndexPath:(NSIndexPath *)indexPath {
+    BrickCell *cell = (BrickCell*)[self.collectionView cellForItemAtIndexPath:indexPath];
+    cell.alpha = 1.f;
+}
+
 #pragma mark LXReorderableCollectionViewDatasource
 - (void)collectionView:(UICollectionView *)collectionView
        itemAtIndexPath:(NSIndexPath *)fromIndexPath
    willMoveToIndexPath:(NSIndexPath *)toIndexPath
 {
-//    Script *script = [self.object.scriptList objectAtIndex:fromIndexPath.section];
-//    Brick *brick = [script.brickList objectAtIndex:fromIndexPath.row - 1];
-//    [script.brickList removeObjectAtIndex:fromIndexPath.item];
-//    [script.brickList insertObject:brick atIndex:toIndexPath.item];
+    if (fromIndexPath.section == toIndexPath.section) {
+        Script *script = [self.object.scriptList objectAtIndex:fromIndexPath.section];
+        Brick *toBrick = [script.brickList objectAtIndex:toIndexPath.item - 1];
+        [script.brickList removeObjectAtIndex:toIndexPath.item - 1];
+        [script.brickList insertObject:toBrick atIndex:fromIndexPath.item - 1];
+    } else {
+        Script *toScript = [self.object.scriptList objectAtIndex:toIndexPath.section];
+        Brick *toBrick = [toScript.brickList objectAtIndex:toIndexPath.item - 1];
+        
+        Script *fromScript = [self.object.scriptList objectAtIndex:fromIndexPath.section];
+        Brick *fromBrick = [fromScript.brickList objectAtIndex:fromIndexPath.item - 1];
+        
+        [toScript.brickList removeObjectAtIndex:toIndexPath.item -1];
+        [fromScript.brickList removeObjectAtIndex:fromIndexPath.item - 1];
+        [toScript.brickList insertObject:fromBrick atIndex:toIndexPath.item - 1];
+        [toScript.brickList insertObject:toBrick atIndex:toIndexPath.item];
+    }
+}
+
+- (void)collectionView:(UICollectionView *)collectionView itemAtIndexPath:(NSIndexPath *)fromIndexPath didMoveToIndexPath:(NSIndexPath *)toIndexPath {
+    [self.collectionView reloadData];
+}
+
+- (BOOL)collectionView:(UICollectionView *)collectionView itemAtIndexPath:(NSIndexPath *)fromIndexPath canMoveToIndexPath:(NSIndexPath *)toIndexPath {
+    return toIndexPath.item == 0 ? NO : YES;
+}
+
+- (BOOL)collectionView:(UICollectionView *)collectionView canMoveItemAtIndexPath:(NSIndexPath *)indexPath {
+    BrickCell *cell = (BrickCell *)[self.collectionView cellForItemAtIndexPath:indexPath];
+    
+    // dont move start script brick
+    if ([cell isKindOfClass:StartScriptCell.class] || indexPath.row == 0) {
+        return NO;
+    }
+    
+    return YES;
 }
 
 #pragma mark - segue handling

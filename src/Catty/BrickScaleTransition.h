@@ -20,20 +20,14 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import <Foundation/Foundation.h>
+#import "BaseTransition.h"
+#import "BrickCell.h"
+#import "FXBlurView.h"
 
-@class CatrobatBaseCell;
-
-@interface TableUtil : NSObject
-
-+ (CGFloat)getHeightForContinueCell;
-
-+ (CGFloat)getHeightForImageCell;
-
-+ (void)initNavigationItem:(UINavigationItem*)navigationItem withTitle:(NSString*)title;
-
-+ (UIBarButtonItem*)editButtonItemWithTarget:(id)target action:(SEL)action;
-
-+ (void)addSeperatorForCell:(CatrobatBaseCell*)cell;
+@interface BrickScaleTransition : BaseTransition
+@property (nonatomic, strong) FXBlurView *dimView;
+@property (nonatomic, strong) BrickCell *cell;
+@property (nonatomic, assign) CGRect touchRect;
+@property (nonatomic, strong) UICollectionView * collectionView;
 
 @end

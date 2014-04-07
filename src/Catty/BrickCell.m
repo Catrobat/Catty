@@ -42,10 +42,9 @@
 @property (nonatomic, strong) NSArray *brickCategoryColors;
 
 // subviews
+@property (nonatomic, weak) BrickCellInlineView *inlineView;
 @property (nonatomic, weak) UIImageView *backgroundImageView;
 @property (nonatomic, weak) UIImageView *imageView;
-@property (nonatomic, weak) BrickCellInlineView *inlineView;
-@property (nonatomic, weak) UIImageView *overlayView;
 @end
 
 @implementation BrickCell
@@ -147,38 +146,7 @@
 - (void)layoutSubviews
 {
     [super layoutSubviews];
-
-    UIImage *brickImage = self.imageView.image;
-    brickImage = [brickImage imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
-    self.overlayView.image = brickImage;
-    self.overlayView.tintColor = [UIColor colorWithRed:0.0f green:0.0f blue:0.0f alpha:0.4f];
-
-    // TODO get correct frame
-    self.overlayView.frame = self.imageView.frame;
-}
-
-#pragma mark Highlight state / collection view cell delegate
-- (void)setHighlighted:(BOOL)highlighted
-{
-    [super setHighlighted:highlighted];
     
-    if (highlighted) {
-        [self.contentView addSubview:self.overlayView];
-    } else {
-        
-        [self.overlayView removeFromSuperview];
-    }
-    [self setNeedsDisplay];
-}
-
-- (UIImageView *)overlayView
-{
-    if (!_overlayView) {
-        UIImageView *overlayView = [[UIImageView alloc] initWithFrame:CGRectZero];
-        // overlayView.backgroundColor = [UIColor colorWithRed:0.0f green:0.0f blue:0.0f alpha:0.4f];
-        _overlayView = overlayView;
-    }
-    return _overlayView;
 }
 
 - (NSArray*)brickCategoryColors
@@ -311,8 +279,16 @@
                                  userInfo:nil];
 }
 
-- (void)setupForSubclassWithName:(NSString*)subclassName
+- (void)renderSubViews
 {
+    [self.backgroundImageView removeFromSuperview];
+    [self.imageView removeFromSuperview];
+    [self.inlineView removeFromSuperview];
+    self.backgroundImageView = nil;
+    self.imageView = nil;
+    self.inlineView = nil;
+
+    NSString *subclassName = NSStringFromClass([self class]);
     NSDictionary *allCategoriesAndBrickTypes = self.classNameBrickNameMap;
     NSDictionary *categoryAndBrickType = allCategoriesAndBrickTypes[[subclassName stringByReplacingOccurrencesOfString:@"Cell" withString:@""]];
     self.categoryType = (kBrickCategoryType) [categoryAndBrickType[@"categoryType"] integerValue];
@@ -334,10 +310,9 @@
     self = [super initWithFrame:frame];
     if (self) {
         self.backgroundColor = [UIColor clearColor];
-        [self setupForSubclassWithName:NSStringFromClass([self class])];
         self.contentMode = UIViewContentModeScaleToFill;
         self.clipsToBounds = NO;
-        self.backgroundColor = [UIColor clearColor];
+        self.opaque = NO;
     }
     return self;
 }
@@ -347,7 +322,6 @@
     self = [super init];
     if (self) {
         self.backgroundColor = [UIColor clearColor];
-        [self setupForSubclassWithName:NSStringFromClass([self class])];
         self.contentMode = UIViewContentModeScaleToFill;
         self.clipsToBounds = NO;
         self.backgroundColor = [UIColor clearColor];
@@ -388,6 +362,20 @@
             NSError(@"unknown brick category type given");
             abort();
     }
+    if (self.isBackgroundBrickCell) {
+        NSMutableArray *modifiedBrickCategoryTitles = [NSMutableArray array];
+        NSDictionary *modifiedTitles = kBrickModifiedTitlesForBackgroundObject[self.categoryType];
+        for (NSUInteger counter = 0; counter < [brickCategoryTitles count]; ++counter) {
+            NSString *modifiedTitle = [modifiedTitles objectForKey:@(counter)];
+            if (modifiedTitle) {
+                [modifiedBrickCategoryTitles addObject:modifiedTitle];
+            } else {
+                [modifiedBrickCategoryTitles addObject:[brickCategoryTitles objectAtIndex:counter]];
+            }
+        }
+        brickCategoryTitles = [modifiedBrickCategoryTitles copy];
+    }
+
     NSString *brickTitle = brickCategoryTitles[self.brickType];
     id brickParamsUnconverted = brickCategoryParams[self.brickType];
     NSArray *brickParams = (([brickParamsUnconverted isKindOfClass:[NSString class]]) ? @[brickParamsUnconverted] : brickParamsUnconverted);

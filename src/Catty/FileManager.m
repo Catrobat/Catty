@@ -167,18 +167,22 @@
     return ([[NSFileManager defaultManager] fileExistsAtPath:path isDirectory:&isDir] && isDir);
 }
 
-- (void)copyExistingFileAtPath:(NSString*)oldPath toPath:(NSString*)newPath
+- (void)copyExistingFileAtPath:(NSString*)oldPath toPath:(NSString*)newPath overwrite:(BOOL)overwrite
 {
     if (! [self fileExists:oldPath])
         return;
 
-    // Attempt the copy
-    NSURL *oldURL = [NSURL fileURLWithPath:oldPath];
-    NSURL *newURL = [NSURL fileURLWithPath:newPath];
-    NSError *error = nil;
-    if ([[NSFileManager defaultManager] copyItemAtURL:oldURL toURL:newURL error:&error] != YES)
-        NSLog(@"Unable to copy file: %@", [error localizedDescription]);
-    NSLogError(error);
+    if ((! [self fileExists:newPath]) || overwrite) {
+        NSData *data = [NSData dataWithContentsOfFile:oldPath];
+        [data writeToFile:newPath atomically:YES];
+    }
+
+//    NSURL *oldURL = [NSURL fileURLWithPath:oldPath];
+//    NSURL *newURL = [NSURL fileURLWithPath:newPath];
+//    NSError *error = nil;
+//    if ([[NSFileManager defaultManager] copyItemAtURL:oldURL toURL:newURL error:&error] != YES)
+//        NSLog(@"Unable to copy file: %@", [error localizedDescription]);
+//    NSLogError(error);
 }
 
 - (void)copyExistingDirectoryAtPath:(NSString*)oldPath toPath:(NSString*)newPath
@@ -244,33 +248,25 @@
     NSArray *programLoadingInfos = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:basePath error:&error];
     NSLogError(error);
 
-    BOOL firstProgramExists = NO;
-    BOOL secondProgramExists = NO;
+    BOOL defaultProgramExists = NO;
     for (NSString *programLoadingInfo in programLoadingInfos) {
-        if ([programLoadingInfo isEqualToString:kDefaultFirstProgramName]) {
-            firstProgramExists = YES;
-        } else if ([programLoadingInfo isEqualToString:kDefaultSecondProgramName]) {
-            secondProgramExists = YES;
+        if ([programLoadingInfo isEqualToString:kDefaultProgramName]) {
+            defaultProgramExists = YES;
         }
     }
-    if (firstProgramExists) {
-        [self addBundleProjectWithName:kDefaultFirstProgramName];
+    if (! defaultProgramExists) {
+        [self addBundleProjectWithName:kDefaultProgramName];
     }
-    if (secondProgramExists) {
-        [self addBundleProjectWithName:kDefaultSecondProgramName];
-    }
-
     if (! [Util lastProgram]) {
-        [Util setLastProgram:kDefaultFirstProgramName];
+        [Util setLastProgram:kDefaultProgramName];
     }
 }
 
 - (void)addBundleProjectWithName:(NSString*)projectName
 {
     NSError *error;
-    if (! [[NSFileManager defaultManager] fileExistsAtPath:self.programsDirectory]) {
-        [[NSFileManager defaultManager] createDirectoryAtPath:self.programsDirectory withIntermediateDirectories:NO attributes:nil error:&error];
-        NSLogError(error);
+    if (! [self directoryExists:self.programsDirectory]) {
+        [self createDirectory:self.programsDirectory];
     }
 
     NSArray *contents = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:self.programsDirectory error:&error];
@@ -284,7 +280,6 @@
         NSInfo(@"%@ already exists...", projectName);
     }
 }
-
 
 - (void)downloadFileFromURL:(NSURL*)url withName:(NSString*)name
 {

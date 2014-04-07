@@ -41,7 +41,7 @@
 - (void)deleteAllFilesOfDirectory:(NSString*)path;
 - (BOOL)fileExists:(NSString*)path;
 - (BOOL)directoryExists:(NSString*)path;
-- (void)copyExistingFileAtPath:(NSString*)oldPath toPath:(NSString*)newPath;
+- (void)copyExistingFileAtPath:(NSString*)oldPath toPath:(NSString*)newPath overwrite:(BOOL)overwrite;
 - (void)copyExistingDirectoryAtPath:(NSString*)oldPath toPath:(NSString*)newPath;
 - (void)moveExistingFileAtPath:(NSString*)oldPath toPath:(NSString*)newPath;
 - (void)moveExistingDirectoryAtPath:(NSString*)oldPath toPath:(NSString*)newPath;

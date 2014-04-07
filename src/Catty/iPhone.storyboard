@@ -44,13 +44,7 @@
                             <outlet property="delegate" destination="BYa-g9-OiT" id="tMB-vk-erl"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="New Program" id="mXA-lG-Ivg">
-                        <barButtonItem key="rightBarButtonItem" title="Edit" id="PFk-jn-qtM">
-                            <connections>
-                                <action selector="editProgram:" destination="BYa-g9-OiT" id="G4C-GX-vYc"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" title="New Program" id="mXA-lG-Ivg"/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
@@ -847,8 +841,8 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="aCr-hO-8vs"/>
         <segue reference="aum-BR-x1G"/>
-        <segue reference="PV7-6r-ExX"/>
+        <segue reference="aCr-hO-8vs"/>
+        <segue reference="dSt-wf-R4M"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -31,9 +31,7 @@
 
 @end
 
-
 @interface RecentProgramsStoreViewController : UIViewController<NSURLConnectionDataDelegate,UITableViewDelegate, UITableViewDataSource,UIScrollViewDelegate>
-
 
 @property (weak, nonatomic) IBOutlet UISegmentedControl *downloadSegmentedControl;
 @property (strong, nonatomic)UIView * footerView;

@@ -33,7 +33,6 @@
 #import "UIColor+CatrobatUIColorExtensions.h"
 #import "BricksCollectionViewController.h"
 
-#define kTableHeaderIdentifier @"Header"
 #define kCategoryCell @"CategoryCell"
 
 @interface BrickCategoriesTableViewController () <UIActionSheetDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate>
@@ -68,24 +67,11 @@
     return _overlayView;
 }
 
-#pragma mark - initialization
-- (void)initTableView
-{
-    [super initTableView];
-    self.tableView.delegate = self;
-    self.tableView.dataSource = self;
-    [self.tableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
-    self.tableView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"darkblue"]];
-    UITableViewHeaderFooterView *headerViewTemplate = [[UITableViewHeaderFooterView alloc] initWithReuseIdentifier:kTableHeaderIdentifier];
-    headerViewTemplate.contentView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"darkblue"]];
-    [self.tableView addSubview:headerViewTemplate];
-}
-
 #pragma mark - view events
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [self initTableView];
+    [super initTableView];
     [self setupNavigationBar];
 }
 

@@ -23,9 +23,27 @@
 #import <UIKit/UIKit.h>
 
 @interface BaseTableViewController : UITableViewController
+@property (nonatomic, strong) NSArray *editableSections;
+@property (nonatomic, strong, readonly) UIBarButtonItem *selectAllRowsButtonItem;
+- (void)viewDidLoad;
 - (void)setPlaceHolderTitle:(NSString*)title Description:(NSString*)description;
 - (void)showPlaceHolder:(BOOL)show;
 - (void)initPlaceHolder;
 - (void)initTableView;
+- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath;
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath*)indexPath;
+- (void)tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath;
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath;
+- (BOOL)shouldPerformSegueWithIdentifier:(NSString *)identifier sender:(id)sender;
 - (void)setupToolBar;
+- (void)setupEditingToolBar;
+- (BOOL)areAllCellsSelectedInSection:(NSInteger)section;
+- (void)changeToEditingMode:(id)sender;
+- (void)exitEditingMode;
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex;
+- (void)performActionOnConfirmation:(SEL)confirmedAction canceledAction:(SEL)canceledAction
+                         withObject:(id)object target:(id)target confirmTitle:(NSString*)confirmTitle
+                     confirmMessage:(NSString*)confirmMessage;
+- (void)performActionOnConfirmation:(SEL)confirmedAction canceledAction:(SEL)canceledAction target:(id)target
+                       confirmTitle:(NSString*)confirmTitle confirmMessage:(NSString*)confirmMessage;
 @end

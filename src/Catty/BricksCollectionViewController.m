@@ -27,8 +27,6 @@
 #import "ScriptCollectionViewController.h"
 #import "SpriteObject.h"
 
-#define kTableHeaderIdentifier @"Header"
-
 @interface BricksCollectionViewController ()
 @property (nonatomic, strong) NSArray *selectableBricksSortedIndexes;
 @property (nonatomic, strong) NSDictionary *selectableBricks;
@@ -171,7 +169,9 @@
     NSNumber *brickType = [self.selectableBricksSortedIndexes objectAtIndex:indexPath.section];
     NSString *brickTypeName = [self.selectableBricks objectForKey:brickType];
     BrickCell *brickCell = [collectionView dequeueReusableCellWithReuseIdentifier:brickTypeName forIndexPath:indexPath];
+    brickCell.backgroundBrickCell = self.object.isBackground;
     brickCell.enabled = NO;
+    [brickCell renderSubViews];
     return brickCell;
 }
 
