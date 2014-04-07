@@ -393,6 +393,8 @@
     NSUInteger index = 0;
     for (Look *currentLook in self.lookList) {
         if (currentLook == look) {
+            // TODO: remove image from disk that is not needed any more...
+            //       check if image is used by other look-object in that or in other object...
             [self.lookList removeObjectAtIndex:index];
             break;
         }
@@ -407,6 +409,8 @@
     NSUInteger index = 0;
     for (Sound *currentSound in self.soundList) {
         if (currentSound == sound) {
+            // TODO: remove sound from disk that is not needed any more...
+            //       check if sound is used by other sound-object in that or in other object...
             [self.soundList removeObjectAtIndex:index];
             break;
         }

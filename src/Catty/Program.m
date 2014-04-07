@@ -180,6 +180,7 @@
     NSUInteger index = 0;
     for (SpriteObject *currentObject in self.objectList) {
         if (currentObject == object) {
+            // TODO: remove all sounds, images from disk that are not needed any more...
             [self.objectList removeObjectAtIndex:index];
             break;
         }
