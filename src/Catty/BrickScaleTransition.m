@@ -57,27 +57,48 @@
             
             self.dimView.hidden = NO;
             self.cell.hidden = YES;
-            [UIView animateWithDuration:.7f
-                                  delay:0.f
-                 usingSpringWithDamping:2.5f
-                  initialSpringVelocity:17.f
-                                options:UIViewAnimationOptionCurveEaseInOut
-                             animations:^{
-                                 move.frame = endFrame;
-                                 self.dimView.alpha = 1.f;
-                                 //self.collectionView.transform = CGAffineTransformMakeScale(.90f, .90f);
-                             }
-                             completion:^(BOOL finished) {
-                                 if (finished) {
-                                     self.cell.hidden = NO;
-                                     self.cell.frame = toView.frame;
-                                     [toVC.view addSubview:self.cell];
-                                     toView.frame = endFrame;
-                                     [container addSubview:toView];
-                                     [move removeFromSuperview];
-                                     [transitionContext completeTransition:YES];
-                                 }
-                             }];
+            
+            [UIView animateKeyframesWithDuration:.4f
+                                           delay:0.f
+                                         options:UIViewKeyframeAnimationOptionBeginFromCurrentState
+                                      animations:^{
+                                          move.frame = endFrame;
+                                          self.dimView.alpha = 1.f;
+                                      } completion:^(BOOL finished) {
+                                          if (finished) {
+                                              if (finished) {
+                                                  self.cell.hidden = NO;
+                                                  self.cell.frame = toView.frame;
+                                                  [toVC.view addSubview:self.cell];
+                                                  toView.frame = endFrame;
+                                                  [container addSubview:toView];
+                                                  [move removeFromSuperview];
+                                                  [transitionContext completeTransition:YES];
+                                              }
+                                          }
+                                      }];
+
+//            [UIView animateWithDuration:.7f
+//                                  delay:0.f
+//                 usingSpringWithDamping:0.f
+//                  initialSpringVelocity:0.f
+//                                options:UIViewAnimationOptionCurveEaseInOut
+//                             animations:^{
+//                                 move.frame = endFrame;
+//                                 self.dimView.alpha = 1.f;
+//                                 //self.collectionView.transform = CGAffineTransformMakeScale(.90f, .90f);
+//                             }
+//                             completion:^(BOOL finished) {
+//                                 if (finished) {
+//                                     self.cell.hidden = NO;
+//                                     self.cell.frame = toView.frame;
+//                                     [toVC.view addSubview:self.cell];
+//                                     toView.frame = endFrame;
+//                                     [container addSubview:toView];
+//                                     [move removeFromSuperview];
+//                                     [transitionContext completeTransition:YES];
+//                                 }
+//                             }];
         }
             break;
             
@@ -86,7 +107,6 @@
             [fromView removeFromSuperview];
             [container addSubview:move];
             
-//            NSLog(@"touch rect = %@", NSStringFromCGRect(self.touchRect));
             [UIView animateKeyframesWithDuration:.4f
                                            delay:0.f
                                          options:UIViewKeyframeAnimationOptionBeginFromCurrentState
@@ -94,7 +114,6 @@
                                           move.frame = self.touchRect;
                                           self.cell.frame = self.touchRect;
                                           self.dimView.alpha = 0.f;
-                                          //self.collectionView.transform = CGAffineTransformIdentity;
                                           
                                       } completion:^(BOOL finished) {
                                           if (finished) {

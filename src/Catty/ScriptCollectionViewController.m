@@ -109,7 +109,7 @@
     NSNotificationCenter *dnc = [NSNotificationCenter defaultCenter];
     [dnc addObserver:self selector:@selector(brickAdded:) name:kBrickCellAddedNotification object:nil];
     // TODO constants
-    [dnc addObserver:self selector:@selector(brickDetailViewDismissed:) name:@"kBrickDetailViewDismissed" object:nil];
+    [dnc addObserver:self selector:@selector(brickDetailViewDismissed:) name:kBrickDetailViewDismissed object:nil];
     [self.navigationController setToolbarHidden:NO];
 }
 
@@ -167,7 +167,6 @@
 
 - (void)addBrickCellAction:(BrickCell*)brickCell
 {
-    //    BrickManager *brickManager = [BrickManager sharedBrickManager];
     if (! brickCell) {
         return;
     }
@@ -201,9 +200,6 @@
         abort();
     }
     [super showPlaceHolder:NO];
-    
-    // TODO: change this...
-    [self.collectionView reloadData];
 }
 
 #pragma mark - notification
@@ -337,21 +333,17 @@
     BrickCell *cell = (BrickCell*)[self.collectionView cellForItemAtIndexPath:indexPath];
     // NSLog(@"selected cell = %@", cell);
     
-    // TODO exclude not editable bricks
-    if (![cell isKindOfClass:StartScriptCell.class] || ![cell isKindOfClass:WhenScriptCell.class]) {
-        BrickDetailViewController *controller = [[BrickDetailViewController alloc]initWithNibName:@"BrickDetailViewController" bundle:nil];
-        self.brickScaleTransition.cell = cell;
-        self.brickScaleTransition.touchRect = cell.frame;
-        self.brickScaleTransition.dimView = self.dimView;
-        self.brickScaleTransition.collectionView = self.collectionView;
-        controller.transitioningDelegate = self;
-        controller.modalPresentationStyle = UIModalPresentationCustom;
-        self.collectionView.userInteractionEnabled = NO;
-        [self.navigationController setNavigationBarHidden:YES animated:YES];
-        [self.navigationController setToolbarHidden:YES animated:YES];
-        [UIApplication.sharedApplication setStatusBarHidden:YES withAnimation:UIStatusBarAnimationSlide];
-        [self presentViewController:controller animated:YES completion:NULL];
-    }
+    BrickDetailViewController *controller = [[BrickDetailViewController alloc]initWithNibName:@"BrickDetailViewController" bundle:nil];
+    self.brickScaleTransition.cell = cell;
+    self.brickScaleTransition.touchRect = cell.frame;
+    self.brickScaleTransition.dimView = self.dimView;
+    controller.transitioningDelegate = self;
+    controller.modalPresentationStyle = UIModalPresentationCustom;
+    self.collectionView.userInteractionEnabled = NO;
+    [self.navigationController setNavigationBarHidden:YES animated:YES];
+    [self.navigationController setToolbarHidden:YES animated:YES];
+    [UIApplication.sharedApplication setStatusBarHidden:YES withAnimation:UIStatusBarAnimationSlide];
+    [self presentViewController:controller animated:YES completion:NULL];
 }
 
 - (void)collectionView:(UICollectionView *)collectionView didHighlightItemAtIndexPath:(NSIndexPath *)indexPath {
