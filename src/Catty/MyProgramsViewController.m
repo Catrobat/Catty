@@ -38,6 +38,7 @@
 #import "Program.h"
 #import "UIDefines.h"
 #import "ActionSheetAlertViewTags.h"
+#import "DarkBlueGradientImageDetailCell.h"
 
 // TODO: outsource...
 #define kUserDetailsShowDetailsKey @"showDetails"
@@ -210,11 +211,21 @@
         cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     } else {
         cell = [tableView dequeueReusableCellWithIdentifier:DetailCellIdentifier];
-        // TODO: add detail info...
     }
     if ([cell conformsToProtocol:@protocol(CatrobatImageCell)]) {
         UITableViewCell<CatrobatImageCell> *imageCell = (UITableViewCell<CatrobatImageCell>*)cell;
         [self configureImageCell:imageCell atIndexPath:indexPath];
+        if (self.useDetailCells && [cell isKindOfClass:[DarkBlueGradientImageDetailCell class]]) {
+            DarkBlueGradientImageDetailCell *imageDetailCell = (DarkBlueGradientImageDetailCell*)imageCell;
+            imageDetailCell.topLeftDetailLabel.textColor = [UIColor whiteColor];
+            imageDetailCell.topLeftDetailLabel.text = @"Last access:";
+            imageDetailCell.topRightDetailLabel.textColor = [UIColor whiteColor];
+            imageDetailCell.topRightDetailLabel.text = @"Today 10:46 PM";
+            imageDetailCell.bottomLeftDetailLabel.textColor = [UIColor whiteColor];
+            imageDetailCell.bottomLeftDetailLabel.text = @"Size:";
+            imageDetailCell.bottomRightDetailLabel.textColor = [UIColor whiteColor];
+            imageDetailCell.bottomRightDetailLabel.text = @"429.3 KB";
+        }
     }
     NSString *patternName = @"pattern";
     UIColor* color = [self.assetCache objectForKey:patternName];
@@ -252,7 +263,7 @@
 }
 
 #pragma mark - table view helpers
--(void)configureImageCell:(UITableViewCell<CatrobatImageCell>*)cell atIndexPath:(NSIndexPath*)indexPath
+- (void)configureImageCell:(UITableViewCell<CatrobatImageCell>*)cell atIndexPath:(NSIndexPath*)indexPath
 {
     ProgramLoadingInfo *info = [self.programLoadingInfos objectAtIndex:indexPath.row];
     cell.titleLabel.text = info.visibleName;
@@ -431,7 +442,8 @@
         } else {
             showDetailsMutable = [showDetails mutableCopy];
         }
-        [showDetailsMutable setObject:@(self.useDetailCells) forKey:kUserDetailsShowDetailsProgramsKey];
+        [showDetailsMutable setObject:[NSNumber numberWithBool:self.useDetailCells]
+                               forKey:kUserDetailsShowDetailsProgramsKey];
         [defaults setObject:showDetailsMutable forKey:kUserDetailsShowDetailsKey];
         [defaults synchronize];
         [self.tableView reloadData];

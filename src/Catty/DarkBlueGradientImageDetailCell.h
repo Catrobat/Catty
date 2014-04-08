@@ -29,6 +29,12 @@
 
 @property (strong, nonatomic) IBOutlet UILabel *titleLabel;
 
-@property (strong, nonatomic) IBOutlet UIView *detailView;
+@property (strong, nonatomic) IBOutlet UILabel *topLeftDetailLabel;
+
+@property (strong, nonatomic) IBOutlet UILabel *topRightDetailLabel;
+
+@property (strong, nonatomic) IBOutlet UILabel *bottomLeftDetailLabel;
+
+@property (strong, nonatomic) IBOutlet UILabel *bottomRightDetailLabel;
 
 @end
