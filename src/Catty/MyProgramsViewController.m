@@ -39,6 +39,10 @@
 #import "UIDefines.h"
 #import "ActionSheetAlertViewTags.h"
 
+// TODO: outsource...
+#define kUserDetailsShowDetailsKey @"showDetails"
+#define kUserDetailsShowDetailsProgramsKey @"showDetails"
+
 @interface MyProgramsViewController () <ProgramUpdateDelegate, UIActionSheetDelegate, UIAlertViewDelegate, UITextFieldDelegate>
 @property (nonatomic) BOOL useDetailCells;
 @property (nonatomic, strong) NSMutableDictionary *assetCache;
@@ -83,7 +87,9 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.useDetailCells = NO;
+    NSDictionary *showDetails = [[NSUserDefaults standardUserDefaults] objectForKey:kUserDetailsShowDetailsKey];
+    NSNumber *showDetailsProgramsValue = (NSNumber*)[showDetails objectForKey:kUserDetailsShowDetailsProgramsKey];
+    self.useDetailCells = [showDetailsProgramsValue boolValue];
     self.navigationController.title = self.title = NSLocalizedString(@"Programs", nil);
     [self loadPrograms];
     [self initNavigationBar];
@@ -204,7 +210,7 @@
         cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     } else {
         cell = [tableView dequeueReusableCellWithIdentifier:DetailCellIdentifier];
-        // add detail info...
+        // TODO: add detail info...
     }
     if ([cell conformsToProtocol:@protocol(CatrobatImageCell)]) {
         UITableViewCell<CatrobatImageCell> *imageCell = (UITableViewCell<CatrobatImageCell>*)cell;
@@ -417,6 +423,17 @@
     if (buttonIndex == 0) {
         // Show/Hide Details button
         self.useDetailCells = (! self.useDetailCells);
+        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+        NSDictionary *showDetails = [defaults objectForKey:kUserDetailsShowDetailsKey];
+        NSMutableDictionary *showDetailsMutable = nil;
+        if (! showDetails) {
+            showDetailsMutable = [NSMutableDictionary dictionary];
+        } else {
+            showDetailsMutable = [showDetails mutableCopy];
+        }
+        [showDetailsMutable setObject:@(self.useDetailCells) forKey:kUserDetailsShowDetailsProgramsKey];
+        [defaults setObject:showDetailsMutable forKey:kUserDetailsShowDetailsKey];
+        [defaults synchronize];
         [self.tableView reloadData];
     } else if (buttonIndex == 1 && [self.programLoadingInfos count]) {
         // Delete Programs button
