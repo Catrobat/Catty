@@ -40,6 +40,7 @@
 #import "ActionSheetAlertViewTags.h"
 
 @interface MyProgramsViewController () <ProgramUpdateDelegate, UIActionSheetDelegate, UIAlertViewDelegate, UITextFieldDelegate>
+@property (nonatomic) BOOL useDetailCells;
 @property (nonatomic, strong) NSMutableDictionary *assetCache;
 @property (nonatomic, strong) NSMutableArray *programLoadingInfos;
 @property (nonatomic, strong) Program *selectedProgram;
@@ -82,6 +83,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.useDetailCells = NO;
     self.navigationController.title = self.title = NSLocalizedString(@"Programs", nil);
     [self loadPrograms];
     [self initNavigationBar];
@@ -121,7 +123,11 @@
 - (void)editAction:(id)sender
 {
     NSMutableArray *options = [NSMutableArray array];
-    [options addObject:NSLocalizedString(@"Show Details",nil)];
+    if (self.useDetailCells) {
+        [options addObject:NSLocalizedString(@"Hide Details",nil)];
+    } else {
+        [options addObject:NSLocalizedString(@"Show Details",nil)];
+    }
     if ([self.programLoadingInfos count]) {
         [options addObject:NSLocalizedString(@"Delete Programs",nil)];
     }
@@ -192,7 +198,14 @@
 - (UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *CellIdentifier = kImageCell;
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    static NSString *DetailCellIdentifier = kDetailImageCell;
+    UITableViewCell *cell = nil;
+    if (! self.useDetailCells) {
+        cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    } else {
+        cell = [tableView dequeueReusableCellWithIdentifier:DetailCellIdentifier];
+        // add detail info...
+    }
     if ([cell conformsToProtocol:@protocol(CatrobatImageCell)]) {
         UITableViewCell<CatrobatImageCell> *imageCell = (UITableViewCell<CatrobatImageCell>*)cell;
         [self configureImageCell:imageCell atIndexPath:indexPath];
@@ -403,8 +416,8 @@
 
     if (buttonIndex == 0) {
         // Show/Hide Details button
-        // TODO: implement this
-        NSLog(@"Show/Hide Details button");
+        self.useDetailCells = (! self.useDetailCells);
+        [self.tableView reloadData];
     } else if (buttonIndex == 1 && [self.programLoadingInfos count]) {
         // Delete Programs button
         [self setupEditingToolBar];

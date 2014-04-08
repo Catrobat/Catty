@@ -14,7 +14,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleAspectFit" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="ObjectCell" rowHeight="79" id="4dE-Mc-fH1" customClass="DarkBlueGradientImageCell">
+                            <tableViewCell contentMode="scaleAspectFit" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="ImageCell" rowHeight="79" id="4dE-Mc-fH1" customClass="DarkBlueGradientImageCell">
                                 <rect key="frame" x="0.0" y="119" width="320" height="79"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="4dE-Mc-fH1" id="IxA-QY-Kgo">
@@ -418,7 +418,7 @@
                                     <segue destination="BYa-g9-OiT" kind="push" identifier="segueToContinue" id="y1P-mf-Wvq"/>
                                 </connections>
                             </tableViewCell>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="ImageDetailCell" rowHeight="79" id="i0U-sQ-Apc" customClass="DarkBlueGradientImageDetailCell">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="DetailImageCell" rowHeight="79" id="i0U-sQ-Apc" customClass="DarkBlueGradientImageDetailCell">
                                 <rect key="frame" x="0.0" y="165" width="320" height="79"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="i0U-sQ-Apc" id="y1x-SU-LDS">
@@ -872,6 +872,6 @@
     <inferredMetricsTieBreakers>
         <segue reference="y1P-mf-Wvq"/>
         <segue reference="K4O-DO-I3f"/>
-        <segue reference="PV7-6r-ExX"/>
+        <segue reference="dSt-wf-R4M"/>
     </inferredMetricsTieBreakers>
 </document>
