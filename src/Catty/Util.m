@@ -137,7 +137,9 @@
                                                     otherButtonTitles:nil];
     actionSheet.title = title;
     actionSheet.delegate = delegate;
-    actionSheet.destructiveButtonIndex = [actionSheet addButtonWithTitle:destructiveButtonTitle];
+    if (destructiveButtonTitle) {
+        actionSheet.destructiveButtonIndex = [actionSheet addButtonWithTitle:destructiveButtonTitle];
+    }
     for (id otherButtonTitle in otherButtonTitles) {
         if ([otherButtonTitle isKindOfClass:[NSString class]]) {
             [actionSheet addButtonWithTitle:otherButtonTitle];

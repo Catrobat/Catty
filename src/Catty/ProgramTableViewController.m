@@ -152,7 +152,7 @@ UINavigationBarDelegate>
     NSMutableArray *options = [NSMutableArray array];
     [options addObject:NSLocalizedString(@"Rename",nil)];
     if ([self.program numberOfNormalObjects]) {
-        [options addObject:NSLocalizedString(@"Delete objects",nil)];
+        [options addObject:NSLocalizedString(@"Delete Objects",nil)];
     }
     [Util actionSheetWithTitle:NSLocalizedString(@"Edit Program",nil)
                       delegate:self
@@ -440,11 +440,11 @@ UINavigationBarDelegate>
                                ? self.program.header.programName : nil)
             textFieldDelegate:self];
     } else if (buttonIndex == 2 && [self.program numberOfNormalObjects]) {
-        // Delete objects button
+        // Delete Objects button
         [self setupEditingToolBar];
         [super changeToEditingMode:actionSheet];
     } else if (buttonIndex == actionSheet.destructiveButtonIndex) {
-        // Delete program button
+        // Delete Program button
         [self.delegate removeProgram:self.program.header.programName];
         [self.program removeFromDisk];
         self.program = nil;

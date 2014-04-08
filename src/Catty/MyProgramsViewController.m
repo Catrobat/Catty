@@ -39,7 +39,7 @@
 #import "UIDefines.h"
 #import "ActionSheetAlertViewTags.h"
 
-@interface MyProgramsViewController () <ProgramUpdateDelegate, UIAlertViewDelegate, UITextFieldDelegate>
+@interface MyProgramsViewController () <ProgramUpdateDelegate, UIActionSheetDelegate, UIAlertViewDelegate, UITextFieldDelegate>
 @property (nonatomic, strong) NSMutableDictionary *assetCache;
 @property (nonatomic, strong) NSMutableArray *programLoadingInfos;
 @property (nonatomic, strong) Program *selectedProgram;
@@ -70,10 +70,10 @@
 
 - (void)initNavigationBar
 {
-    if (! [self.programLoadingInfos count]) {
-        [TableUtil initNavigationItem:self.navigationItem withTitle:self.title];
-        return;
-    }
+//    if (! [self.programLoadingInfos count]) {
+//        [TableUtil initNavigationItem:self.navigationItem withTitle:self.title];
+//        return;
+//    }
     UIBarButtonItem *editButtonItem = [TableUtil editButtonItemWithTarget:self action:@selector(editAction:)];
     self.navigationItem.rightBarButtonItem = editButtonItem;
 }
@@ -120,8 +120,17 @@
 #pragma mark - actions
 - (void)editAction:(id)sender
 {
-    [self setupEditingToolBar];
-    [super changeToEditingMode:sender];
+    NSMutableArray *options = [NSMutableArray array];
+    [options addObject:NSLocalizedString(@"Show Details",nil)];
+    if ([self.programLoadingInfos count]) {
+        [options addObject:NSLocalizedString(@"Delete Programs",nil)];
+    }
+    [Util actionSheetWithTitle:NSLocalizedString(@"Edit Programs",nil)
+                      delegate:self
+        destructiveButtonTitle:nil
+             otherButtonTitles:options
+                           tag:kEditProgramsActionSheetTag
+                          view:self.view];
 }
 
 - (void)addProgramAction:(id)sender
@@ -383,6 +392,24 @@
 {
     NSCharacterSet *blockedCharacters = [[NSCharacterSet characterSetWithCharactersInString:kTextFieldAllowedCharacters] invertedSet];
     return ([characters rangeOfCharacterFromSet:blockedCharacters].location == NSNotFound);
+}
+
+#pragma mark - action sheet delegates
+- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if (actionSheet.tag != kEditProgramsActionSheetTag) {
+        return;
+    }
+
+    if (buttonIndex == 0) {
+        // Show/Hide Details button
+        // TODO: implement this
+        NSLog(@"Show/Hide Details button");
+    } else if (buttonIndex == 1 && [self.programLoadingInfos count]) {
+        // Delete Programs button
+        [self setupEditingToolBar];
+        [super changeToEditingMode:actionSheet];
+    }
 }
 
 #pragma mark - alert view handlers
