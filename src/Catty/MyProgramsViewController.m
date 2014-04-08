@@ -228,7 +228,6 @@
 {
     ProgramLoadingInfo *info = [self.programLoadingInfos objectAtIndex:indexPath.row];
     cell.titleLabel.text = info.visibleName;
-//    cell.iconImageView.image = [UIImage imageNamed:@"programs"];
     NSString* imagePath = [[NSString alloc] initWithFormat:@"%@/small_screenshot.png", info.basePath];
     UIImage* image = [self.assetCache objectForKey:imagePath];
     cell.iconImageView.contentMode = UIViewContentModeScaleAspectFit;

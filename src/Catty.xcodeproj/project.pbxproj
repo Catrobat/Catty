@@ -137,7 +137,6 @@
 		CA05A19C18282B2C0025421A /* SearchStoreViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA05A19B18282B2C0025421A /* SearchStoreViewController.m */; };
 		CA05A19E18286CDA0025421A /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA05A19D18286CDA0025421A /* AssetsLibrary.framework */; };
 		CA43DD361809976900F95B88 /* UIImageView+CatrobatUIImageViewExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = CA43DD351809976900F95B88 /* UIImageView+CatrobatUIImageViewExtensions.m */; };
-		CA43DD3A18099AA300F95B88 /* DarkBlueGradientBorderedImageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CA43DD3918099AA300F95B88 /* DarkBlueGradientBorderedImageCell.m */; };
 		CA52403618AD782600052914 /* ProgramTableViewControllerExistingProgramsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = CA52403518AD782600052914 /* ProgramTableViewControllerExistingProgramsTests.m */; };
 		CA5FED5018B0070300A517B6 /* BrickCellInlineView.m in Sources */ = {isa = PBXBuildFile; fileRef = CA5FED4F18B0070300A517B6 /* BrickCellInlineView.m */; };
 		CA5FED5418B019B200A517B6 /* UIUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = CA5FED5318B019B200A517B6 /* UIUtil.m */; };
@@ -198,6 +197,7 @@
 		CA8C247818CD053300314C2B /* ProgramTests.m in Sources */ = {isa = PBXBuildFile; fileRef = CA8C247718CD053300314C2B /* ProgramTests.m */; };
 		CA8C247B18CD127C00314C2B /* ProgramTableViewControllerNewProgramTests.m in Sources */ = {isa = PBXBuildFile; fileRef = CA8C247A18CD127C00314C2B /* ProgramTableViewControllerNewProgramTests.m */; };
 		CAA96AFE18E4B21F00763409 /* SoundPickerTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CAA96AFD18E4B21F00763409 /* SoundPickerTableViewController.m */; };
+		CAAA269218F4546A002E55B9 /* DarkBlueGradientImageDetailCell.h in Sources */ = {isa = PBXBuildFile; fileRef = CAAA269118F4546A002E55B9 /* DarkBlueGradientImageDetailCell.h */; };
 		CAB95BA518CD51EF006638F6 /* LookImageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CAB95BA418CD51EF006638F6 /* LookImageViewController.m */; };
 		CABE07BC18BAB8B200BE26EF /* MessageComboBoxView.m in Sources */ = {isa = PBXBuildFile; fileRef = CABE07BB18BAB8B200BE26EF /* MessageComboBoxView.m */; };
 		CABE07BF18BAB8EF00BE26EF /* ObjectComboBoxView.m in Sources */ = {isa = PBXBuildFile; fileRef = CABE07BE18BAB8EF00BE26EF /* ObjectComboBoxView.m */; };
@@ -521,8 +521,6 @@
 		CA1B7A1D18E1D9B700452234 /* ProgramUpdateDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ProgramUpdateDelegate.h; sourceTree = "<group>"; };
 		CA43DD341809976900F95B88 /* UIImageView+CatrobatUIImageViewExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImageView+CatrobatUIImageViewExtensions.h"; sourceTree = "<group>"; };
 		CA43DD351809976900F95B88 /* UIImageView+CatrobatUIImageViewExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+CatrobatUIImageViewExtensions.m"; sourceTree = "<group>"; };
-		CA43DD3818099AA300F95B88 /* DarkBlueGradientBorderedImageCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DarkBlueGradientBorderedImageCell.h; sourceTree = "<group>"; };
-		CA43DD3918099AA300F95B88 /* DarkBlueGradientBorderedImageCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DarkBlueGradientBorderedImageCell.m; sourceTree = "<group>"; };
 		CA52403518AD782600052914 /* ProgramTableViewControllerExistingProgramsTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProgramTableViewControllerExistingProgramsTests.m; sourceTree = "<group>"; };
 		CA52403718AD786200052914 /* ProgramTableViewControllerExistingProgramsTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ProgramTableViewControllerExistingProgramsTests.h; sourceTree = "<group>"; };
 		CA5FED4E18B0070300A517B6 /* BrickCellInlineView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BrickCellInlineView.h; sourceTree = "<group>"; };
@@ -642,6 +640,8 @@
 		CA8C247C18CD12C100314C2B /* ProgramTableViewControllerNewProgramTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProgramTableViewControllerNewProgramTests.h; sourceTree = "<group>"; };
 		CAA96AFC18E4B21F00763409 /* SoundPickerTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SoundPickerTableViewController.h; sourceTree = "<group>"; };
 		CAA96AFD18E4B21F00763409 /* SoundPickerTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SoundPickerTableViewController.m; sourceTree = "<group>"; };
+		CAAA269018F4510E002E55B9 /* DarkBlueGradientImageDetailCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DarkBlueGradientImageDetailCell.m; sourceTree = "<group>"; };
+		CAAA269118F4546A002E55B9 /* DarkBlueGradientImageDetailCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DarkBlueGradientImageDetailCell.h; sourceTree = "<group>"; };
 		CAB95BA318CD51EF006638F6 /* LookImageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LookImageViewController.h; sourceTree = "<group>"; };
 		CAB95BA418CD51EF006638F6 /* LookImageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LookImageViewController.m; sourceTree = "<group>"; };
 		CABE07BA18BAB8B200BE26EF /* MessageComboBoxView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageComboBoxView.h; sourceTree = "<group>"; };
@@ -1726,15 +1726,6 @@
 			name = "UIImageView+CatrobatUIImageViewExtensions";
 			sourceTree = "<group>";
 		};
-		CA43DD3B18099AC000F95B88 /* DarkBlueGradientBorderedImageCell */ = {
-			isa = PBXGroup;
-			children = (
-				CA43DD3818099AA300F95B88 /* DarkBlueGradientBorderedImageCell.h */,
-				CA43DD3918099AA300F95B88 /* DarkBlueGradientBorderedImageCell.m */,
-			);
-			name = DarkBlueGradientBorderedImageCell;
-			sourceTree = "<group>";
-		};
 		CA52403418AD77DB00052914 /* ProgramTableViewControllerTests */ = {
 			isa = PBXGroup;
 			children = (
@@ -1772,7 +1763,7 @@
 				B4D940DD170ECB68003DDBFA /* ContinueImageCell */,
 				B4D940E1170ECB8F003DDBFA /* DarkBlueGradientCell */,
 				B40C3072170ECC53000B872F /* DarkBlueGradientImageCell */,
-				CA43DD3B18099AC000F95B88 /* DarkBlueGradientBorderedImageCell */,
+				CAAA269318F454AD002E55B9 /* DarkBlueGradientImageDetailCell */,
 			);
 			name = Cell;
 			sourceTree = "<group>";
@@ -1993,6 +1984,15 @@
 				CA8C247718CD053300314C2B /* ProgramTests.m */,
 			);
 			name = ProgramTests;
+			sourceTree = "<group>";
+		};
+		CAAA269318F454AD002E55B9 /* DarkBlueGradientImageDetailCell */ = {
+			isa = PBXGroup;
+			children = (
+				CAAA269118F4546A002E55B9 /* DarkBlueGradientImageDetailCell.h */,
+				CAAA269018F4510E002E55B9 /* DarkBlueGradientImageDetailCell.m */,
+			);
+			name = DarkBlueGradientImageDetailCell;
 			sourceTree = "<group>";
 		};
 		CAC3141318BA84C700DAAB72 /* ComboBoxView */ = {
@@ -2740,6 +2740,7 @@
 				9232B4FF18E54C4B00ED7AB1 /* EVCircularProgressView.m in Sources */,
 				CAEDFB8117EF759500FDED0E /* ObjectTableViewController.m in Sources */,
 				CD639C7B170DF52600FA67DA /* SpriteObject.m in Sources */,
+				CAAA269218F4546A002E55B9 /* DarkBlueGradientImageDetailCell.h in Sources */,
 				CA68820B180B30E0008A7C99 /* BrickCategoriesTableViewController.m in Sources */,
 				CA75C27A18A9621500FC8C2F /* SetVolumeToBrickCell.m in Sources */,
 				CA688212180B467B008A7C99 /* OrderedDictionary.m in Sources */,
@@ -2759,7 +2760,6 @@
 				B4D940E0170ECB8B003DDBFA /* DarkBlueGradientCell.m in Sources */,
 				CA75C28C18A9623B00FC8C2F /* ChangeSizeByNBrickCell.m in Sources */,
 				CA75C28618A9622E00FC8C2F /* NextLookBrickCell.m in Sources */,
-				CA43DD3A18099AA300F95B88 /* DarkBlueGradientBorderedImageCell.m in Sources */,
 				B40C3071170ECC49000B872F /* DarkBlueGradientImageCell.m in Sources */,
 				CA79A11A182D8A4200618283 /* GDataXMLNode+PrettyFormatterExtensions.m in Sources */,
 				B4BCF407170ECFA2008EDF3A /* MyProgramsViewController.m in Sources */,

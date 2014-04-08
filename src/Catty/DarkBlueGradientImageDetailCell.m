@@ -20,13 +20,19 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import "DarkBlueGradientCell.h"
-#import "CatrobatImageCell.h"
+#import "DarkBlueGradientImageDetailCell.h"
+#import "UIColor+CatrobatUIColorExtensions.h"
 
-@interface DarkBlueGradientImageCell : DarkBlueGradientCell <CatrobatImageCell>
+@implementation DarkBlueGradientImageDetailCell
 
-@property (strong, nonatomic) IBOutlet UIImageView *iconImageView;
+- (void)awakeFromNib
+{
+    [self configureImageCell];
+}
 
-@property (strong, nonatomic) IBOutlet UILabel *titleLabel;
+- (void)configureImageCell
+{
+    self.titleLabel.textColor = [UIColor skyBlueColor];
+}
 
 @end

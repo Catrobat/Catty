@@ -418,6 +418,35 @@
                                     <segue destination="BYa-g9-OiT" kind="push" identifier="segueToContinue" id="y1P-mf-Wvq"/>
                                 </connections>
                             </tableViewCell>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="ImageDetailCell" rowHeight="79" id="i0U-sQ-Apc" customClass="DarkBlueGradientImageDetailCell">
+                                <rect key="frame" x="0.0" y="165" width="320" height="79"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="i0U-sQ-Apc" id="y1x-SU-LDS">
+                                    <rect key="frame" x="0.0" y="0.0" width="287" height="78"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" tag="12" contentMode="left" text="Title" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="fMf-8f-vof">
+                                            <rect key="frame" x="95" y="13" width="185" height="22"/>
+                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <color key="highlightedColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        </label>
+                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" tag="11" contentMode="scaleAspectFill" id="JH2-I8-7aq">
+                                            <rect key="frame" x="20" y="16" width="50" height="50"/>
+                                        </imageView>
+                                        <view contentMode="scaleToFill" id="VGc-eA-rOE">
+                                            <rect key="frame" x="95" y="34" width="192" height="32"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                                        </view>
+                                    </subviews>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="detailView" destination="VGc-eA-rOE" id="FWb-vJ-jee"/>
+                                    <outlet property="iconImageView" destination="JH2-I8-7aq" id="cl0-hC-bH1"/>
+                                    <outlet property="titleLabel" destination="fMf-8f-vof" id="3eB-kz-IOg"/>
+                                </connections>
+                            </tableViewCell>
                         </prototypes>
                         <connections>
                             <outlet property="dataSource" destination="s37-PF-3iN" id="F7s-yf-inb"/>

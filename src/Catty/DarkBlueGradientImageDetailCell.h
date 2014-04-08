@@ -23,10 +23,12 @@
 #import "DarkBlueGradientCell.h"
 #import "CatrobatImageCell.h"
 
-@interface DarkBlueGradientImageCell : DarkBlueGradientCell <CatrobatImageCell>
+@interface DarkBlueGradientImageDetailCell : DarkBlueGradientCell <CatrobatImageCell>
 
 @property (strong, nonatomic) IBOutlet UIImageView *iconImageView;
 
 @property (strong, nonatomic) IBOutlet UILabel *titleLabel;
+
+@property (strong, nonatomic) IBOutlet UIView *detailView;
 
 @end
