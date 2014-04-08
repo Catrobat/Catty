@@ -234,7 +234,39 @@
     NSLogError(error);
 }
 
-- (NSArray*)getContentsOfDirectory:(NSString*)directory {
+- (NSUInteger)sizeOfDirectory:(NSString*)path
+{
+    if (! [self directoryExists:path]) {
+        return 0;
+    }
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+    NSArray *filesArray = [fileManager subpathsOfDirectoryAtPath:path error:nil];
+    NSEnumerator *filesEnumerator = [filesArray objectEnumerator];
+    NSString *fileName;
+    NSUInteger fileSize = 0;
+    NSError *error = nil;
+    while (fileName = [filesEnumerator nextObject]) {
+        NSDictionary *fileDictionary = [fileManager attributesOfItemAtPath:[path stringByAppendingPathComponent:fileName] error:&error];
+        NSLogError(error);
+        fileSize += [fileDictionary fileSize];
+    }
+    return fileSize;
+}
+
+- (NSDate*)lastAccessTimeOfFile:(NSString*)path
+{
+    if (! [self fileExists:path]) {
+        return 0;
+    }
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+    NSError *error = nil;
+    NSDictionary *fileDictionary = [fileManager attributesOfItemAtPath:path error:&error];
+    NSLogError(error);
+    return [fileDictionary fileModificationDate];
+}
+
+- (NSArray*)getContentsOfDirectory:(NSString*)directory
+{
     NSError *error = nil;
     NSArray *contents = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:directory error:&error];
     NSLogError(error);
