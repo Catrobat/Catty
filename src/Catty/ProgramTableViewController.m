@@ -40,6 +40,7 @@
 #import "ScenePresenterViewController.h"
 #import "FileManager.h"
 #import "UIColor+CatrobatUIColorExtensions.h"
+#import "UIImageView+CatrobatUIImageViewExtensions.h"
 #import "ProgramUpdateDelegate.h"
 #import "SensorHandler.h"
 #import "CellTagDefines.h"
@@ -234,13 +235,13 @@ UINavigationBarDelegate>
     UITableViewCell<CatrobatImageCell> *imageCell = (UITableViewCell<CatrobatImageCell>*)cell;
     NSInteger index = (kBackgroundSectionIndex + indexPath.section + indexPath.row);
     SpriteObject *object = [self.program.objectList objectAtIndex:index];
+    imageCell.iconImageView.image = nil;
+    [imageCell.iconImageView setBorder:[UIColor skyBlueColor] Width:kDefaultImageCellBorderWidth];
     if (! [object.lookList count]) {
-        imageCell.iconImageView.image = nil;
         imageCell.titleLabel.text = object.name;
         return imageCell;
     }
 
-    imageCell.iconImageView.image = nil;
     NSString *previewImagePath = [object previewImagePath];
     UIImage *image = [self.imageCache objectForKey:object.name];
     imageCell.iconImageView.contentMode = UIViewContentModeScaleAspectFit;

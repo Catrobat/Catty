@@ -14,7 +14,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleAspectFit" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="ObjectCell" rowHeight="79" id="4dE-Mc-fH1" customClass="DarkBlueGradientBorderedImageCell">
+                            <tableViewCell contentMode="scaleAspectFit" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="ObjectCell" rowHeight="79" id="4dE-Mc-fH1" customClass="DarkBlueGradientImageCell">
                                 <rect key="frame" x="0.0" y="119" width="320" height="79"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="4dE-Mc-fH1" id="IxA-QY-Kgo">
@@ -344,7 +344,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleAspectFit" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="LookCell" rowHeight="79" id="XOB-VF-psW" customClass="DarkBlueGradientBorderedImageCell">
+                            <tableViewCell contentMode="scaleAspectFit" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="LookCell" rowHeight="79" id="XOB-VF-psW" customClass="DarkBlueGradientImageCell">
                                 <rect key="frame" x="0.0" y="86" width="320" height="79"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="XOB-VF-psW" id="Tp3-Ei-0FR">
@@ -841,8 +841,8 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="aum-BR-x1G"/>
-        <segue reference="aCr-hO-8vs"/>
-        <segue reference="dSt-wf-R4M"/>
+        <segue reference="y1P-mf-Wvq"/>
+        <segue reference="K4O-DO-I3f"/>
+        <segue reference="PV7-6r-ExX"/>
     </inferredMetricsTieBreakers>
 </document>

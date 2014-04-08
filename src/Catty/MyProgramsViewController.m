@@ -29,6 +29,7 @@
 #import "TableUtil.h"
 #import "CellTagDefines.h"
 #import "UIColor+CatrobatUIColorExtensions.h"
+#import "UIImageView+CatrobatUIImageViewExtensions.h"
 #import "CatrobatImageCell.h"
 #import "Logger.h"
 #import "SegueDefines.h"
@@ -277,6 +278,7 @@
     } else {
         cell.iconImageView.image = image;
     }
+    [cell.iconImageView setBorder:[UIColor skyBlueColor] Width:kDefaultImageCellBorderWidth];
 
 //    dispatch_queue_t imageQueue = dispatch_queue_create("at.tugraz.ist.catrobat.ImageLoadingQueue", NULL);
 //    dispatch_async(imageQueue, ^{

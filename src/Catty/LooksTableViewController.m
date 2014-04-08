@@ -36,6 +36,7 @@
 #import "Util.h"
 #import "UIColor+CatrobatUIColorExtensions.h"
 #import "NSString+CatrobatNSStringExtensions.h"
+#import "UIImageView+CatrobatUIImageViewExtensions.h"
 #import <MobileCoreServices/MobileCoreServices.h>
 #import <AssetsLibrary/AssetsLibrary.h>
 #import "NSData+Hashes.h"
@@ -177,10 +178,11 @@
     if (! [cell conformsToProtocol:@protocol(CatrobatImageCell)]) {
         return cell;
     }
-    UITableViewCell <CatrobatImageCell>* imageCell = (UITableViewCell<CatrobatImageCell>*)cell;
 
+    UITableViewCell <CatrobatImageCell>* imageCell = (UITableViewCell<CatrobatImageCell>*)cell;
     Look *look = [self.object.lookList objectAtIndex:indexPath.row];
     imageCell.iconImageView.image = nil;
+    [imageCell.iconImageView setBorder:[UIColor skyBlueColor] Width:kDefaultImageCellBorderWidth];
     NSString *previewImagePath = [self.object previewImagePathForLookAtIndex:indexPath.row];
     NSNumber *indexAsNumber = @(indexPath.row);
     UIImage *image = [self.imageCache objectForKey:indexAsNumber];
