@@ -445,6 +445,7 @@
                                     <outlet property="detailView" destination="VGc-eA-rOE" id="FWb-vJ-jee"/>
                                     <outlet property="iconImageView" destination="JH2-I8-7aq" id="cl0-hC-bH1"/>
                                     <outlet property="titleLabel" destination="fMf-8f-vof" id="3eB-kz-IOg"/>
+                                    <segue destination="BYa-g9-OiT" kind="push" identifier="segueToContinue" id="Cek-Kf-HCk"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -870,7 +871,7 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="y1P-mf-Wvq"/>
+        <segue reference="Ynr-aF-UI3"/>
         <segue reference="K4O-DO-I3f"/>
         <segue reference="dSt-wf-R4M"/>
     </inferredMetricsTieBreakers>
