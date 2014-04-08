@@ -196,8 +196,8 @@
 		CA79A11E182DA47E00618283 /* BricksCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA79A11D182DA47E00618283 /* BricksCollectionViewController.m */; };
 		CA8C247818CD053300314C2B /* ProgramTests.m in Sources */ = {isa = PBXBuildFile; fileRef = CA8C247718CD053300314C2B /* ProgramTests.m */; };
 		CA8C247B18CD127C00314C2B /* ProgramTableViewControllerNewProgramTests.m in Sources */ = {isa = PBXBuildFile; fileRef = CA8C247A18CD127C00314C2B /* ProgramTableViewControllerNewProgramTests.m */; };
+		CAA24DE818F46B7C00197AE3 /* DarkBlueGradientImageDetailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CAAA269018F4510E002E55B9 /* DarkBlueGradientImageDetailCell.m */; };
 		CAA96AFE18E4B21F00763409 /* SoundPickerTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CAA96AFD18E4B21F00763409 /* SoundPickerTableViewController.m */; };
-		CAAA269218F4546A002E55B9 /* DarkBlueGradientImageDetailCell.h in Sources */ = {isa = PBXBuildFile; fileRef = CAAA269118F4546A002E55B9 /* DarkBlueGradientImageDetailCell.h */; };
 		CAB95BA518CD51EF006638F6 /* LookImageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CAB95BA418CD51EF006638F6 /* LookImageViewController.m */; };
 		CABE07BC18BAB8B200BE26EF /* MessageComboBoxView.m in Sources */ = {isa = PBXBuildFile; fileRef = CABE07BB18BAB8B200BE26EF /* MessageComboBoxView.m */; };
 		CABE07BF18BAB8EF00BE26EF /* ObjectComboBoxView.m in Sources */ = {isa = PBXBuildFile; fileRef = CABE07BE18BAB8EF00BE26EF /* ObjectComboBoxView.m */; };
@@ -2630,6 +2630,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CAA24DE818F46B7C00197AE3 /* DarkBlueGradientImageDetailCell.m in Sources */,
 				B4E7D257176EF20F00EC8AD8 /* Scene.m in Sources */,
 				CA75C23B18A9615600FC8C2F /* ForeverBrickCell.m in Sources */,
 				CA688205180B0148008A7C99 /* BaseTableViewController.m in Sources */,
@@ -2740,7 +2741,6 @@
 				9232B4FF18E54C4B00ED7AB1 /* EVCircularProgressView.m in Sources */,
 				CAEDFB8117EF759500FDED0E /* ObjectTableViewController.m in Sources */,
 				CD639C7B170DF52600FA67DA /* SpriteObject.m in Sources */,
-				CAAA269218F4546A002E55B9 /* DarkBlueGradientImageDetailCell.h in Sources */,
 				CA68820B180B30E0008A7C99 /* BrickCategoriesTableViewController.m in Sources */,
 				CA75C27A18A9621500FC8C2F /* SetVolumeToBrickCell.m in Sources */,
 				CA688212180B467B008A7C99 /* OrderedDictionary.m in Sources */,
