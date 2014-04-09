@@ -33,7 +33,7 @@
 #import "Util.h"
 #import "ProgramLoadingInfo.h"
 #import "CatrobatImageCell.h"
-#import "DarkBlueGradientBorderedImageCell.h"
+#import "DarkBlueGradientImageCell.h"
 #import "CellTagDefines.h"
 #import "Parser.h"
 #import "SpriteObject.h"
