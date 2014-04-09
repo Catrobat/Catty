@@ -43,7 +43,7 @@
 
 // TODO: outsource...
 #define kUserDetailsShowDetailsKey @"showDetails"
-#define kUserDetailsShowDetailsProgramsKey @"showDetails"
+#define kUserDetailsShowDetailsProgramsKey @"detailsForPrograms"
 
 @interface MyProgramsViewController () <ProgramUpdateDelegate, UIActionSheetDelegate, UIAlertViewDelegate, UITextFieldDelegate>
 @property (nonatomic) BOOL useDetailCells;

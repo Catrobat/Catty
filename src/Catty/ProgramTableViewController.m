@@ -46,8 +46,13 @@
 #import "CellTagDefines.h"
 #import "AppDelegate.h"
 
+// TODO: outsource...
+#define kUserDetailsShowDetailsKey @"showDetails"
+#define kUserDetailsShowDetailsObjectsKey @"detailsForObjects"
+
 @interface ProgramTableViewController () <UIActionSheetDelegate, UIAlertViewDelegate, UITextFieldDelegate,
 UINavigationBarDelegate>
+@property (nonatomic) BOOL useDetailCells;
 @property (strong, nonatomic) NSCharacterSet *blockedCharacterSet;
 @property (strong, nonatomic) NSMutableDictionary *imageCache;
 @end
@@ -112,6 +117,9 @@ UINavigationBarDelegate>
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    NSDictionary *showDetails = [[NSUserDefaults standardUserDefaults] objectForKey:kUserDetailsShowDetailsKey];
+    NSNumber *showDetailsObjectsValue = (NSNumber*)[showDetails objectForKey:kUserDetailsShowDetailsObjectsKey];
+    self.useDetailCells = [showDetailsObjectsValue boolValue];
     [self initNavigationBar];
     [super initTableView];
 
@@ -153,6 +161,11 @@ UINavigationBarDelegate>
     [options addObject:NSLocalizedString(@"Rename",nil)];
     if ([self.program numberOfNormalObjects]) {
         [options addObject:NSLocalizedString(@"Delete Objects",nil)];
+    }
+    if (self.useDetailCells) {
+        [options addObject:NSLocalizedString(@"Hide Details",nil)];
+    } else {
+        [options addObject:NSLocalizedString(@"Show Details",nil)];
     }
     [Util actionSheetWithTitle:NSLocalizedString(@"Edit Program",nil)
                       delegate:self
@@ -443,6 +456,22 @@ UINavigationBarDelegate>
         // Delete Objects button
         [self setupEditingToolBar];
         [super changeToEditingMode:actionSheet];
+    } else if (buttonIndex == 3 || ((buttonIndex == 2) && (! [self.program numberOfNormalObjects]))) {
+        // Show/Hide Details button
+        self.useDetailCells = (! self.useDetailCells);
+        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+        NSDictionary *showDetails = [defaults objectForKey:kUserDetailsShowDetailsKey];
+        NSMutableDictionary *showDetailsMutable = nil;
+        if (! showDetails) {
+            showDetailsMutable = [NSMutableDictionary dictionary];
+        } else {
+            showDetailsMutable = [showDetails mutableCopy];
+        }
+        [showDetailsMutable setObject:[NSNumber numberWithBool:self.useDetailCells]
+                               forKey:kUserDetailsShowDetailsObjectsKey];
+        [defaults setObject:showDetailsMutable forKey:kUserDetailsShowDetailsKey];
+        [defaults synchronize];
+        [self.tableView reloadData];
     } else if (buttonIndex == actionSheet.destructiveButtonIndex) {
         // Delete Program button
         [self.delegate removeProgram:self.program.header.programName];
