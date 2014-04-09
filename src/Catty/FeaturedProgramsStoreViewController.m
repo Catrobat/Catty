@@ -117,7 +117,7 @@
 -(UITableViewCell*)cellForProjectsTableView:(UITableView*)tableView atIndexPath:(NSIndexPath*)indexPath {
     
     static NSString *CellIdentifier = kImageCell;
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
     
     if (!cell) {
         NSLog(@"Should Never happen - since iOS5 Storyboard *always* instantiates our cell!");

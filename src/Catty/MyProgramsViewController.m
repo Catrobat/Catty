@@ -211,9 +211,9 @@
     static NSString *DetailCellIdentifier = kDetailImageCell;
     UITableViewCell *cell = nil;
     if (! self.useDetailCells) {
-        cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+        cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
     } else {
-        cell = [tableView dequeueReusableCellWithIdentifier:DetailCellIdentifier];
+        cell = [tableView dequeueReusableCellWithIdentifier:DetailCellIdentifier forIndexPath:indexPath];
     }
     if ([cell conformsToProtocol:@protocol(CatrobatImageCell)]) {
         UITableViewCell<CatrobatImageCell> *imageCell = (UITableViewCell<CatrobatImageCell>*)cell;

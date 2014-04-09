@@ -246,9 +246,9 @@
     static NSString *DetailCellIdentifier = kDetailImageCell;
     UITableViewCell *cell = nil;
     if (! self.useDetailCells) {
-        cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+        cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
     } else {
-        cell = [tableView dequeueReusableCellWithIdentifier:DetailCellIdentifier];
+        cell = [tableView dequeueReusableCellWithIdentifier:DetailCellIdentifier forIndexPath:indexPath];
     }
     Sound *sound = (Sound*)[self.object.soundList objectAtIndex:indexPath.row];
     if ([cell conformsToProtocol:@protocol(CatrobatImageCell)]) {

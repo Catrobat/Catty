@@ -190,18 +190,12 @@
 }
 
 #pragma mark - Helper
--(UITableViewCell*)cellForProjectsTableView:(UITableView*)tableView atIndexPath:(NSIndexPath*)indexPath {
-    
-    
+- (UITableViewCell*)cellForProjectsTableView:(UITableView*)tableView atIndexPath:(NSIndexPath*)indexPath
+{
     static NSString *CellIdentifier = kImageCell;
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    
-    if (!cell) {
-        NSLog(@"Should Never happen - since iOS5 Storyboard *always* instantiates our cell!");
-        abort();
-    }
-    
-    if([cell conformsToProtocol:@protocol(CatrobatImageCell)]) {
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
+
+    if ([cell conformsToProtocol:@protocol(CatrobatImageCell)]) {
         //        if(indexPath.row == [self.projects count]-1){
         //            UITableViewCell <CatrobatImageCell>* imageCell = (UITableViewCell <CatrobatImageCell>*)cell;
         //            imageCell.titleLabel.text = nil;//NSLocalizedString(@"Loading...",nil);
@@ -230,20 +224,17 @@
             default:
                 break;
         }
-        
-        
+
         UITableViewCell <CatrobatImageCell>* imageCell = (UITableViewCell <CatrobatImageCell>*)cell;
         imageCell.titleLabel.text = project.projectName;
-        
+
         [self loadImage:project.screenshotSmall forCell:imageCell atIndexPath:indexPath];
         NSDebug(@"Normal Cell");
-        
+
         imageCell.accessoryView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"accessory"]];
-        
+
         //        }
-        
     }
-    
     return cell;
 }
 
