@@ -234,7 +234,7 @@
     NSLogError(error);
 }
 
-- (NSUInteger)sizeOfDirectory:(NSString*)path
+- (NSUInteger)sizeOfDirectoryAtPath:(NSString*)path
 {
     if (! [self directoryExists:path]) {
         return 0;
@@ -251,6 +251,18 @@
         fileSize += [fileDictionary fileSize];
     }
     return fileSize;
+}
+
+- (NSUInteger)sizeOfFileAtPath:(NSString*)path
+{
+    if (! [self fileExists:path]) {
+        return 0;
+    }
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+    NSError *error = nil;
+    NSDictionary *fileDictionary = [fileManager attributesOfItemAtPath:path error:&error];
+    NSLogError(error);
+    return [fileDictionary fileSize];
 }
 
 - (NSDate*)lastAccessTimeOfFile:(NSString*)path

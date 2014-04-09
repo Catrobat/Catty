@@ -35,12 +35,13 @@
 #import "GDataXMLNode.h"
 #import "UIImage+CatrobatUIImageExtensions.h"
 #import "UIDefines.h"
+#import "AudioManager.h"
+#import "AppDelegate.h"
 
 @interface SpriteObject()
 
 @property (nonatomic, strong) NSMutableArray *activeScripts;
 @property (nonatomic, strong) NSMutableDictionary *sounds;
-
 
 @end
 
@@ -144,8 +145,8 @@
 
     NSString *imageDirPath = [[self projectPath] stringByAppendingString:kProgramImagesDirName];
     NSString *previewImageFilePath = [NSString stringWithFormat:@"%@/%@", imageDirPath, [look previewImageFileName]];
-    FileManager *fileManager = [[FileManager alloc] init];
-    if ([fileManager fileExists:previewImageFilePath])
+    AppDelegate *appDelegate = (AppDelegate*)[UIApplication sharedApplication].delegate;
+    if ([appDelegate.fileManager fileExists:previewImageFilePath])
         return previewImageFilePath;
 
     return nil;
@@ -328,6 +329,19 @@
 - (NSString*)pathForSound:(Sound*)sound
 {
   return [NSString stringWithFormat:@"%@%@/%@", [self projectPath], kProgramSoundsDirName, sound.fileName];
+}
+
+- (CGFloat)durationOfSound:(Sound*)sound
+{
+    NSString *path = [self pathForSound:sound];
+    return [[AudioManager sharedAudioManager] durationOfSoundWithFilePath:path];
+}
+
+- (NSUInteger)fileSizeOfSound:(Sound*)sound
+{
+    NSString *path = [self pathForSound:sound];
+    AppDelegate *appDelegate = (AppDelegate*)[UIApplication sharedApplication].delegate;
+    return [appDelegate.fileManager sizeOfFileAtPath:path];
 }
 
 - (void)changeLook:(Look *)look

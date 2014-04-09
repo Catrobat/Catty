@@ -66,10 +66,6 @@
 #pragma mark - initialization
 - (void)initNavigationBar
 {
-    if (! [self.object.lookList count]) {
-        [TableUtil initNavigationItem:self.navigationItem withTitle:self.title];
-        return;
-    }
     UIBarButtonItem *editButtonItem = [TableUtil editButtonItemWithTarget:self action:@selector(editAction:)];
     self.navigationItem.rightBarButtonItem = editButtonItem;
 }
@@ -78,6 +74,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.title = self.navigationItem.title = NSLocalizedString(@"Looks", nil);
     [self initNavigationBar];
     [super initTableView];
     [super initPlaceHolder];
@@ -86,7 +83,6 @@
                    Description:[NSString stringWithFormat:NSLocalizedString(kEmptyViewPlaceHolder, nil),
                                 ([self.object isBackground] ? kBackgroundsTitle : kLooksTitle)]];
     [super showPlaceHolder:(! (BOOL)[self.object.lookList count])];
-    self.title = self.navigationItem.title = self.object.name;
     [self setupToolBar];
 }
 
@@ -144,7 +140,6 @@
     self.imageCache = nil;
     [super exitEditingMode];
     [self.tableView deleteRowsAtIndexPaths:selectedRowsIndexPaths withRowAnimation:UITableViewRowAnimationNone];
-    [self initNavigationBar];
     [super showPlaceHolder:(! (BOOL)[self.object.lookList count])];
 }
 
@@ -155,7 +150,6 @@
     [self.object removeLook:look];
     [self.tableView deleteRowsAtIndexPaths:@[indexPath]
                           withRowAnimation:UITableViewRowAnimationNone];
-    [self initNavigationBar];
     [super showPlaceHolder:(! (BOOL)[self.object.lookList count])];
 }
 
@@ -384,7 +378,6 @@
                         // update view
                         [super showPlaceHolder:NO];
                         [self.object.lookList addObject:look];
-                        [self initNavigationBar];
                         [self hideLoadingView];
                         NSInteger numberOfRowsInLastSection = [self tableView:self.tableView numberOfRowsInSection:0];
                         NSIndexPath *indexPath = [NSIndexPath indexPathForRow:(numberOfRowsInLastSection - 1) inSection:0];

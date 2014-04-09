@@ -85,10 +85,6 @@
 
 - (void)initNavigationBar
 {
-//    if (! [self.programLoadingInfos count]) {
-//        [TableUtil initNavigationItem:self.navigationItem withTitle:self.title];
-//        return;
-//    }
     UIBarButtonItem *editButtonItem = [TableUtil editButtonItemWithTarget:self action:@selector(editAction:)];
     self.navigationItem.rightBarButtonItem = editButtonItem;
 }
@@ -117,7 +113,6 @@
     self.selectedProgram = nil;
     [self.navigationController setNavigationBarHidden:NO];
     [self.navigationController setToolbarHidden:NO];
-    [self initNavigationBar];
     [self.tableView reloadData];
 }
 
@@ -192,14 +187,12 @@
         [self removeProgram:programNameToRemove];
     }
     [super exitEditingMode];
-    [self initNavigationBar];
 }
 
 - (void)deleteProgramForIndexPath:(NSIndexPath*)indexPath
 {
     ProgramLoadingInfo *programLoadingInfo = [self.programLoadingInfos objectAtIndex:indexPath.row];
     [self removeProgram:programLoadingInfo.visibleName];
-    [self initNavigationBar];
 }
 
 #pragma mark - table view data source
@@ -238,7 +231,7 @@
             NSNumber *programSize = [self.dataCache objectForKey:info.visibleName];
             AppDelegate *appDelegate = (AppDelegate*)[UIApplication sharedApplication].delegate;
             if (! programSize) {
-                NSUInteger resultSize = [appDelegate.fileManager sizeOfDirectory:info.basePath];
+                NSUInteger resultSize = [appDelegate.fileManager sizeOfDirectoryAtPath:info.basePath];
                 programSize = [NSNumber numberWithUnsignedInteger:resultSize];
                 [self.dataCache setObject:programSize forKey:info.visibleName];
             }
@@ -472,7 +465,7 @@
         [defaults setObject:showDetailsMutable forKey:kUserDetailsShowDetailsKey];
         [defaults synchronize];
         [self.tableView reloadData];
-    } else if (buttonIndex == 1 && [self.programLoadingInfos count]) {
+    } else if ((buttonIndex == 1) && [self.programLoadingInfos count]) {
         // Delete Programs button
         [self setupEditingToolBar];
         [super changeToEditingMode:actionSheet];

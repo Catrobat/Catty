@@ -46,7 +46,8 @@
 - (void)moveExistingFileAtPath:(NSString*)oldPath toPath:(NSString*)newPath;
 - (void)moveExistingDirectoryAtPath:(NSString*)oldPath toPath:(NSString*)newPath;
 - (void)deleteDirectory:(NSString*)path;
-- (NSUInteger)sizeOfDirectory:(NSString*)path;
+- (NSUInteger)sizeOfDirectoryAtPath:(NSString*)path;
+- (NSUInteger)sizeOfFileAtPath:(NSString*)path;
 - (NSDate*)lastAccessTimeOfFile:(NSString*)path;
 - (NSArray*)getContentsOfDirectory:(NSString*)directory;
 - (void)addDefaultProjectsToProgramsRootDirectory;

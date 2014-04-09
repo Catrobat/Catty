@@ -25,6 +25,7 @@
 #define kEditProgramActionSheetTag 2
 #define kAddLookActionSheetTag 3
 #define kAddSoundActionSheetTag 4
+#define kEditSoundsActionSheetTag 5
 
 // Alert view tags
 #define kRenameAlertViewTag 100
