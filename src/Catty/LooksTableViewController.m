@@ -24,6 +24,7 @@
 #import "ProgramDefines.h"
 #import "UIDefines.h"
 #import "TableUtil.h"
+#import "CellTagDefines.h"
 #import "CatrobatImageCell.h"
 #import "Look.h"
 #import "SpriteObject.h"
@@ -166,9 +167,14 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *CellIdentifier = @"LookCell";
-
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
+    static NSString *CellIdentifier = kImageCell;
+//    static NSString *DetailCellIdentifier = kDetailImageCell;
+    UITableViewCell *cell = nil;
+//    if (! self.useDetailCells) {
+        cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+//    } else {
+//        cell = [tableView dequeueReusableCellWithIdentifier:DetailCellIdentifier];
+//    }
     if (! [cell conformsToProtocol:@protocol(CatrobatImageCell)]) {
         return cell;
     }

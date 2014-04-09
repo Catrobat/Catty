@@ -240,7 +240,7 @@
     return [self.object.soundList count];
 }
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+- (UITableViewCell*)tableView:(UITableView*)tableView cellForRowAtIndexPath:(NSIndexPath*)indexPath
 {
     static NSString *CellIdentifier = kImageCell;
     static NSString *DetailCellIdentifier = kDetailImageCell;
