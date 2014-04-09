@@ -91,6 +91,7 @@
                                     <outlet property="titleLabel" destination="wSQ-tB-9sE" id="d7l-R9-1MB"/>
                                     <outlet property="topLeftDetailLabel" destination="zQW-3h-lht" id="3Ji-hS-Gpn"/>
                                     <outlet property="topRightDetailLabel" destination="fa5-fY-eIM" id="ssb-UP-TWx"/>
+                                    <segue destination="DpO-xp-0fW" kind="push" identifier="segueToObject" id="tS5-pA-EEz"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -1063,7 +1064,8 @@
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
         <segue reference="Ynr-aF-UI3"/>
+        <segue reference="tS5-pA-EEz"/>
+        <segue reference="dSt-wf-R4M"/>
         <segue reference="K4O-DO-I3f"/>
-        <segue reference="PV7-6r-ExX"/>
     </inferredMetricsTieBreakers>
 </document>

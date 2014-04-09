@@ -46,9 +46,9 @@
 
 @implementation SpriteObject
 
--(id)init
+- (id)init
 {
-    if(self = [super init]) {
+    if (self = [super init]) {
         self.activeScripts = [[NSMutableArray alloc] initWithCapacity:self.scriptList.count];
     }
     return self;
@@ -56,26 +56,26 @@
 
 -(NSMutableArray*)lookList
 {
-  // lazy instantiation
-  if (! _lookList)
-    _lookList = [NSMutableArray array];
-  return _lookList;
+    // lazy instantiation
+    if (! _lookList)
+        _lookList = [NSMutableArray array];
+    return _lookList;
 }
 
 - (NSMutableArray*)soundList
 {
-  // lazy instantiation
-  if (! _soundList)
-    _soundList = [NSMutableArray array];
-  return _soundList;
+    // lazy instantiation
+    if (! _soundList)
+        _soundList = [NSMutableArray array];
+    return _soundList;
 }
 
 - (NSMutableArray*)scriptList
 {
-  // lazy instantiation
-  if (! _scriptList)
-    _scriptList = [NSMutableArray array];
-  return _scriptList;
+    // lazy instantiation
+    if (! _scriptList)
+        _scriptList = [NSMutableArray array];
+    return _scriptList;
 }
 
 - (CGPoint)position
@@ -87,7 +87,8 @@
 {
     super.position = [((Scene*)self.scene) convertPointToScene:position];
 }
--(void)setPositionForCropping:(CGPoint)position
+
+- (void)setPositionForCropping:(CGPoint)position
 {
     super.position = position;
 }
@@ -96,6 +97,35 @@
 {
     NSDebug(@"Dealloc: %@", self);
     [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
+- (NSInteger)numberOfScripts
+{
+    return [self.scriptList count];
+}
+
+- (NSInteger)numberOfTotalBricks
+{
+    return ([self numberOfScripts] + [self numberOfNormalBricks]);
+}
+
+- (NSInteger)numberOfNormalBricks
+{
+    NSInteger numberOfBricks = 0;
+    for (Script *script in self.scriptList) {
+        numberOfBricks += [script.brickList count];
+    }
+    return numberOfBricks;
+}
+
+- (NSInteger)numberOfLooks
+{
+    return [self.lookList count];
+}
+
+- (NSInteger)numberOfSounds
+{
+    return [self.soundList count];
 }
 
 - (NSString *)projectPath

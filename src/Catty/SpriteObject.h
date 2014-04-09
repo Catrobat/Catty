@@ -69,6 +69,16 @@
 
 @property (nonatomic)NSInteger numberOfObjectsWithoutBackground;
 
+- (NSInteger)numberOfScripts;
+
+- (NSInteger)numberOfTotalBricks; // including script bricks
+
+- (NSInteger)numberOfNormalBricks; // excluding script bricks
+
+- (NSInteger)numberOfLooks;
+
+- (NSInteger)numberOfSounds;
+
 - (BOOL)isBackground;
 
 - (GDataXMLElement*)toXML;

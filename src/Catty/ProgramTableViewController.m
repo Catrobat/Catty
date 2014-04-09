@@ -30,6 +30,7 @@
 #import "Brick.h"
 #import "ObjectTableViewController.h"
 #import "CatrobatImageCell.h"
+#import "DarkBlueGradientImageDetailCell.h"
 #import "Util.h"
 #import "UIDefines.h"
 #import "ProgramDefines.h"
@@ -241,7 +242,14 @@ UINavigationBarDelegate>
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:kImageCell forIndexPath:indexPath];
+    static NSString *CellIdentifier = kImageCell;
+    static NSString *DetailCellIdentifier = kDetailImageCell;
+    UITableViewCell *cell = nil;
+    if (! self.useDetailCells) {
+        cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    } else {
+        cell = [tableView dequeueReusableCellWithIdentifier:DetailCellIdentifier];
+    }
     if (! [cell conformsToProtocol:@protocol(CatrobatImageCell)]) {
         return cell;
     }
@@ -317,6 +325,25 @@ UINavigationBarDelegate>
         }
     } else {
         imageCell.iconImageView.image = image;
+    }
+    if (self.useDetailCells && [cell isKindOfClass:[DarkBlueGradientImageDetailCell class]]) {
+        DarkBlueGradientImageDetailCell *detailCell = (DarkBlueGradientImageDetailCell*)imageCell;
+        detailCell.topLeftDetailLabel.textColor = [UIColor whiteColor];
+        detailCell.topLeftDetailLabel.text = [NSString stringWithFormat:@"%@: %lu",
+                                              NSLocalizedString(@"Scripts", nil),
+                                              [object numberOfScripts]];
+        detailCell.topRightDetailLabel.textColor = [UIColor whiteColor];
+        detailCell.topRightDetailLabel.text = [NSString stringWithFormat:@"%@: %lu",
+                                               NSLocalizedString(@"Bricks", nil),
+                                               [object numberOfTotalBricks]];
+        detailCell.bottomLeftDetailLabel.textColor = [UIColor whiteColor];
+        detailCell.bottomLeftDetailLabel.text = [NSString stringWithFormat:@"%@: %lu",
+                                                 NSLocalizedString(@"Looks", nil),
+                                                 [object numberOfLooks]];
+        detailCell.bottomRightDetailLabel.textColor = [UIColor whiteColor];
+        detailCell.bottomRightDetailLabel.text = [NSString stringWithFormat:@"%@: %lu",
+                                                  NSLocalizedString(@"Sounds", nil),
+                                                  [object numberOfSounds]];
     }
     imageCell.titleLabel.text = object.name;
     return imageCell;
