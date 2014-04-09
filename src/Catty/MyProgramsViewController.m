@@ -39,6 +39,7 @@
 #import "UIDefines.h"
 #import "ActionSheetAlertViewTags.h"
 #import "DarkBlueGradientImageDetailCell.h"
+#import "NSDate+CustomExtensions.h"
 
 // TODO: outsource...
 #define kUserDetailsShowDetailsKey @"showDetails"
@@ -243,7 +244,7 @@
             }
             NSString *xmlPath = [NSString stringWithFormat:@"%@/%@", info.basePath, kProgramCodeFileName];
             NSDate *lastAccessDate = [appDelegate.fileManager lastAccessTimeOfFile:xmlPath];
-            detailCell.topRightDetailLabel.text = [lastAccessDate description];
+            detailCell.topRightDetailLabel.text = [lastAccessDate humanFriendlyFormattedString];
             detailCell.bottomRightDetailLabel.text = [NSByteCountFormatter stringFromByteCount:[programSize unsignedIntegerValue]
                                                                                     countStyle:NSByteCountFormatterCountStyleBinary];
         }

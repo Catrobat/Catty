@@ -198,6 +198,7 @@
 		CA8C247B18CD127C00314C2B /* ProgramTableViewControllerNewProgramTests.m in Sources */ = {isa = PBXBuildFile; fileRef = CA8C247A18CD127C00314C2B /* ProgramTableViewControllerNewProgramTests.m */; };
 		CAA24DE818F46B7C00197AE3 /* DarkBlueGradientImageDetailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CAAA269018F4510E002E55B9 /* DarkBlueGradientImageDetailCell.m */; };
 		CAA96AFE18E4B21F00763409 /* SoundPickerTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CAA96AFD18E4B21F00763409 /* SoundPickerTableViewController.m */; };
+		CAB3637118F5987B00AB8401 /* NSDate+CustomExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = CAB3637018F5987B00AB8401 /* NSDate+CustomExtensions.m */; };
 		CAB95BA518CD51EF006638F6 /* LookImageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CAB95BA418CD51EF006638F6 /* LookImageViewController.m */; };
 		CABE07BC18BAB8B200BE26EF /* MessageComboBoxView.m in Sources */ = {isa = PBXBuildFile; fileRef = CABE07BB18BAB8B200BE26EF /* MessageComboBoxView.m */; };
 		CABE07BF18BAB8EF00BE26EF /* ObjectComboBoxView.m in Sources */ = {isa = PBXBuildFile; fileRef = CABE07BE18BAB8EF00BE26EF /* ObjectComboBoxView.m */; };
@@ -642,6 +643,8 @@
 		CAA96AFD18E4B21F00763409 /* SoundPickerTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SoundPickerTableViewController.m; sourceTree = "<group>"; };
 		CAAA269018F4510E002E55B9 /* DarkBlueGradientImageDetailCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DarkBlueGradientImageDetailCell.m; sourceTree = "<group>"; };
 		CAAA269118F4546A002E55B9 /* DarkBlueGradientImageDetailCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DarkBlueGradientImageDetailCell.h; sourceTree = "<group>"; };
+		CAB3636F18F5987B00AB8401 /* NSDate+CustomExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+CustomExtensions.h"; sourceTree = "<group>"; };
+		CAB3637018F5987B00AB8401 /* NSDate+CustomExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+CustomExtensions.m"; sourceTree = "<group>"; };
 		CAB95BA318CD51EF006638F6 /* LookImageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LookImageViewController.h; sourceTree = "<group>"; };
 		CAB95BA418CD51EF006638F6 /* LookImageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LookImageViewController.m; sourceTree = "<group>"; };
 		CABE07BA18BAB8B200BE26EF /* MessageComboBoxView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageComboBoxView.h; sourceTree = "<group>"; };
@@ -1411,6 +1414,7 @@
 				B4D940C5170EC6C6003DDBFA /* UIImage+CatrobatUIImageExtensions */,
 				CA43DD371809977A00F95B88 /* UIImageView+CatrobatUIImageViewExtensions */,
 				CACEF95C18452A8A00D199D8 /* Brick+UnitTestingExtensions */,
+				CAB3637218F599BD00AB8401 /* NSDate+CustomExtensions */,
 			);
 			name = CustomExtensions;
 			sourceTree = "<group>";
@@ -1993,6 +1997,15 @@
 				CAAA269018F4510E002E55B9 /* DarkBlueGradientImageDetailCell.m */,
 			);
 			name = DarkBlueGradientImageDetailCell;
+			sourceTree = "<group>";
+		};
+		CAB3637218F599BD00AB8401 /* NSDate+CustomExtensions */ = {
+			isa = PBXGroup;
+			children = (
+				CAB3636F18F5987B00AB8401 /* NSDate+CustomExtensions.h */,
+				CAB3637018F5987B00AB8401 /* NSDate+CustomExtensions.m */,
+			);
+			name = "NSDate+CustomExtensions";
 			sourceTree = "<group>";
 		};
 		CAC3141318BA84C700DAAB72 /* ComboBoxView */ = {
@@ -2656,6 +2669,7 @@
 				817B544C18F0520800AF6BFE /* BrickDetailViewController.m in Sources */,
 				CA05A19C18282B2C0025421A /* SearchStoreViewController.m in Sources */,
 				CD0CCF53170CB39700B70036 /* BroadcastBrick.m in Sources */,
+				CAB3637118F5987B00AB8401 /* NSDate+CustomExtensions.m in Sources */,
 				CA75C2A718A9627800FC8C2F /* ChangeVariableBrickCell.m in Sources */,
 				CD0CCF54170CB39700B70036 /* BroadcastScript.m in Sources */,
 				816C788617D62B7C0029A4E6 /* ProgramTableViewController.m in Sources */,
