@@ -382,9 +382,10 @@
         return NO;
     }
 
-    static NSString *segueToContinue = kSegueToContinue;
+    static NSString *segueToContinue1 = kSegueToContinue1;
+    static NSString *segueToContinue2 = kSegueToContinue2;
     static NSString *segueToNewProgram = kSegueToNewProgram;
-    if ([identifier isEqualToString:segueToContinue]) {
+    if ([identifier isEqualToString:segueToContinue1] || [identifier isEqualToString:segueToContinue2]) {
         if ([sender isKindOfClass:[UITableViewCell class]]) {
             NSIndexPath *path = [self.tableView indexPathForCell:sender];
             // check if program loaded successfully -> not nil
@@ -416,9 +417,10 @@
 
 - (void)prepareForSegue:(UIStoryboardSegue*)segue sender:(id)sender
 {
-    static NSString *segueToContinue = kSegueToContinue;
+    static NSString *segueToContinue1 = kSegueToContinue1;
+    static NSString *segueToContinue2 = kSegueToContinue2;
     static NSString *segueToNewProgram = kSegueToNewProgram;
-    if ([segue.identifier isEqualToString:segueToContinue]) {
+    if ([segue.identifier isEqualToString:segueToContinue1] || [segue.identifier isEqualToString:segueToContinue2]) {
         if ([segue.destinationViewController isKindOfClass:[ProgramTableViewController class]]) {
             if ([sender isKindOfClass:[UITableViewCell class]]) {
                 [self.dataCache removeObjectForKey:self.selectedProgram.header.programName];

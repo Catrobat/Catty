@@ -35,7 +35,7 @@
                                 <connections>
                                     <outlet property="iconImageView" destination="nsC-LQ-yHN" id="t4g-it-tws"/>
                                     <outlet property="titleLabel" destination="UZk-4d-EUO" id="tnZ-rf-Oab"/>
-                                    <segue destination="DpO-xp-0fW" kind="push" identifier="segueToObject" id="z5I-OA-Ekf"/>
+                                    <segue destination="DpO-xp-0fW" kind="push" identifier="segueToObject1" id="z5I-OA-Ekf"/>
                                 </connections>
                             </tableViewCell>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="DetailImageCell" rowHeight="79" id="ePg-N5-867" customClass="DarkBlueGradientImageDetailCell">
@@ -91,7 +91,7 @@
                                     <outlet property="titleLabel" destination="wSQ-tB-9sE" id="d7l-R9-1MB"/>
                                     <outlet property="topLeftDetailLabel" destination="zQW-3h-lht" id="3Ji-hS-Gpn"/>
                                     <outlet property="topRightDetailLabel" destination="fa5-fY-eIM" id="ssb-UP-TWx"/>
-                                    <segue destination="DpO-xp-0fW" kind="push" identifier="segueToObject" id="tS5-pA-EEz"/>
+                                    <segue destination="DpO-xp-0fW" kind="push" identifier="segueToObject2" id="tS5-pA-EEz"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -581,7 +581,7 @@
                                 <connections>
                                     <outlet property="iconImageView" destination="642-Kc-jVe" id="SsN-uJ-caO"/>
                                     <outlet property="titleLabel" destination="7VV-Cs-K8i" id="dum-xb-EpA"/>
-                                    <segue destination="BYa-g9-OiT" kind="push" identifier="segueToContinue" id="y1P-mf-Wvq"/>
+                                    <segue destination="BYa-g9-OiT" kind="push" identifier="segueToContinue1" id="y1P-mf-Wvq"/>
                                 </connections>
                             </tableViewCell>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="DetailImageCell" rowHeight="79" id="i0U-sQ-Apc" customClass="DarkBlueGradientImageDetailCell">
@@ -637,7 +637,7 @@
                                     <outlet property="titleLabel" destination="fMf-8f-vof" id="3eB-kz-IOg"/>
                                     <outlet property="topLeftDetailLabel" destination="MOw-Zb-ZrB" id="gxa-HJ-U2c"/>
                                     <outlet property="topRightDetailLabel" destination="hKH-2X-bUN" id="Zym-GY-aef"/>
-                                    <segue destination="BYa-g9-OiT" kind="push" identifier="segueToContinue" id="Cek-Kf-HCk"/>
+                                    <segue destination="BYa-g9-OiT" kind="push" identifier="segueToContinue2" id="Cek-Kf-HCk"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -1063,7 +1063,7 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="Ynr-aF-UI3"/>
+        <segue reference="Cek-Kf-HCk"/>
         <segue reference="tS5-pA-EEz"/>
         <segue reference="dSt-wf-R4M"/>
         <segue reference="K4O-DO-I3f"/>

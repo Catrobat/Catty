@@ -427,14 +427,15 @@ UINavigationBarDelegate>
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     // Pass the selected object to the new view controller.
-    static NSString *toObjectSegueID = kSegueToObject;
+    static NSString *toObjectSegue1ID = kSegueToObject1;
+    static NSString *toObjectSegue2ID = kSegueToObject2;
     static NSString *toSceneSegueID = kSegueToScene;
 
     UIViewController *destController = segue.destinationViewController;
     if ([sender isKindOfClass:[UITableViewCell class]]) {
         UITableViewCell *cell = (UITableViewCell*) sender;
         NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
-        if ([segue.identifier isEqualToString:toObjectSegueID]) {
+        if ([segue.identifier isEqualToString:toObjectSegue1ID] || [segue.identifier isEqualToString:toObjectSegue2ID]) {
             if ([destController isKindOfClass:[ObjectTableViewController class]]) {
                 ObjectTableViewController *tvc = (ObjectTableViewController*) destController;
                 if ([tvc respondsToSelector:@selector(setObject:)]) {
