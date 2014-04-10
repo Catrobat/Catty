@@ -20,8 +20,21 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import "DarkBlueGradientImageCell.h"
+#import "DarkBlueGradientCell.h"
+#import "CatrobatImageCell.h"
 
-@interface DarkBlueGradientBorderedImageCell : DarkBlueGradientImageCell
+@interface DarkBlueGradientImageDetailCell : DarkBlueGradientCell <CatrobatImageCell>
+
+@property (strong, nonatomic) IBOutlet UIImageView *iconImageView;
+
+@property (strong, nonatomic) IBOutlet UILabel *titleLabel;
+
+@property (strong, nonatomic) IBOutlet UILabel *topLeftDetailLabel;
+
+@property (strong, nonatomic) IBOutlet UILabel *topRightDetailLabel;
+
+@property (strong, nonatomic) IBOutlet UILabel *bottomLeftDetailLabel;
+
+@property (strong, nonatomic) IBOutlet UILabel *bottomRightDetailLabel;
 
 @end

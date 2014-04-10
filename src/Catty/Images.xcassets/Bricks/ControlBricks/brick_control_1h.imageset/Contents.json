@@ -6,9 +6,20 @@
       "filename" : "brick_control_1h.png"
     },
     {
+      "resizing" : {
+        "mode" : "3-part-vertical",
+        "center" : {
+          "mode" : "fill",
+          "height" : 124
+        },
+        "capInsets" : {
+          "top" : 0,
+          "bottom" : 0
+        }
+      },
       "idiom" : "universal",
-      "scale" : "2x",
-      "filename" : "brick_control_1h@2x.png"
+      "filename" : "brick_control_1h@2x.png",
+      "scale" : "2x"
     }
   ],
   "info" : {

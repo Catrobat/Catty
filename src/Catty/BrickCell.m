@@ -312,6 +312,8 @@
         self.backgroundColor = [UIColor clearColor];
         self.contentMode = UIViewContentModeScaleToFill;
         self.clipsToBounds = NO;
+        self.backgroundImageView.clipsToBounds = NO;
+        self.imageView.clipsToBounds = NO;
         self.opaque = NO;
     }
     return self;
@@ -325,6 +327,9 @@
         self.contentMode = UIViewContentModeScaleToFill;
         self.clipsToBounds = NO;
         self.backgroundColor = [UIColor clearColor];
+        self.backgroundImageView.clipsToBounds = NO;
+        self.imageView.clipsToBounds = NO;
+        self.opaque = NO;
     }
     return self;
 }

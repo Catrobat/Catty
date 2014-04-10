@@ -21,9 +21,19 @@
  */
 
 #import "BrickDetailViewController.h"
+#import "UIDefines.h"
+#import "Brick.h"
 
-@interface BrickDetailViewController ()
+@interface BrickDetailViewController () <UIActionSheetDelegate>
 @property (strong, nonatomic) UITapGestureRecognizer *recognizer;
+@property (strong, nonatomic) UIActionSheet *brickMenu;
+
+// TODO remove this methods and make delegates (or notfiications) for updating script datasource and bricks
+- (void)highlightScript;
+- (void)copyBrick:(Brick *)brick;
+- (void)deleteBrick:(Brick *)brick;
+- (void)editFormula;
+- (void)deleteScript:(Script *)script;
 
 @end
 
@@ -33,6 +43,13 @@
 {
     [super viewDidLoad];
     self.view.backgroundColor = UIColor.clearColor;
+    self.brickMenu = [[UIActionSheet alloc]initWithTitle:nil
+                                                delegate:self
+                                     cancelButtonTitle:NSLocalizedString(@"Close", nil)
+                                destructiveButtonTitle:NSLocalizedString(@"Delete Brick", nil)
+                                    otherButtonTitles:NSLocalizedString(@"Highlight Script", nil),
+                                                      NSLocalizedString(@"Copy Brick", nil),
+                                                      NSLocalizedString(@"Edit Formula", nil), nil];
     
 }
 
@@ -43,7 +60,12 @@
     self.recognizer.cancelsTouchesInView = NO;
     [self.view.window addGestureRecognizer:self.recognizer];
     
-    // [UIApplication.sharedApplication setStatusBarHidden:YES withAnimation:UIStatusBarAnimationSlide];
+//    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)),
+//                   dispatch_get_main_queue(), ^{
+//                       [self.brickMenu showInView:self.view];
+//    });
+      [self.brickMenu showInView:self.view];
+   
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
@@ -64,12 +86,65 @@
             CGPoint location = [sender locationInView:nil];
             if (![self.view pointInside:[self.view convertPoint:location fromView:self.view.window] withEvent:nil]) {
                 [self dismissViewControllerAnimated:YES completion:^{
-                    [NSNotificationCenter.defaultCenter postNotificationName:@"kBrickDetailViewDismissed"
+                    [NSNotificationCenter.defaultCenter postNotificationName:kBrickDetailViewDismissed
                                                                       object:NULL];
                 }];
+            } else {
+                if (!self.brickMenu.hidden) {
+                    [self.brickMenu showInView:self.view];
+                }
             }
         }
     }
+}
+
+#pragma Action Sheet Delegate
+- (void)dismissWithClickedButtonIndex:(NSInteger)buttonIndex animated:(BOOL)animated {
+    
+}
+
+-(void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
+    switch (buttonIndex) {
+        case 0:
+
+            break;
+        case 1:
+            
+            break;
+        case 2:
+            
+             break;
+        case 3:
+
+            break;
+    }
+}
+
+// TODO remove this methods and make delegates (or notfiications) for updating script datasource and bricks
+#pragma mark edit menu items
+
+- (void)moveBrick; {
+    NSLog(@"moveBrick");
+}
+
+- (void)highlightScript {
+   NSLog(@"highlightScript");
+}
+
+- (void)copyBrick:(Brick *)brick {
+    NSLog(@"copyBrick");
+}
+
+- (void)deleteBrick:(Brick *)brick {
+    NSLog(@"deleteBrick");
+}
+
+- (void)editFormula {
+    NSLog(@"editFormula");
+}
+
+- (void)deleteScript:(Script *)script {
+    NSLog(@"deleteScript");
 }
 
 @end

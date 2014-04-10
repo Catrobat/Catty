@@ -25,22 +25,12 @@
 
 @implementation DarkBlueGradientImageCell
 
-- (id)initWithFrame:(CGRect)frame
-{
-    self = [super initWithFrame:frame];
-    if (self) {
-    }
-
-    
-    return self;
-}
-
-- (void) awakeFromNib
+- (void)awakeFromNib
 {
     [self configureImageCell];
 }
 
-- (void) configureImageCell
+- (void)configureImageCell
 {
     self.titleLabel.textColor = [UIColor skyBlueColor];
 }

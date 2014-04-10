@@ -132,7 +132,7 @@
   UITableViewCell *cell = nil;
   if (self.searchResults.count == 0) {
     static NSString *loadingCellIdentifier = @"loadingCell";
-    cell = [tableView dequeueReusableCellWithIdentifier:loadingCellIdentifier];
+    cell = [tableView dequeueReusableCellWithIdentifier:loadingCellIdentifier forIndexPath:indexPath];
     if (cell == nil) {
       cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:loadingCellIdentifier];
       cell.textLabel.textColor = [UIColor blueGrayColor];
@@ -312,7 +312,7 @@
 - (UITableViewCell*)cellForProjectsTableView:(UITableView*)tableView atIndexPath:(NSIndexPath*)indexPath
 {
   static NSString *CellIdentifier = kImageCell;
-  UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+  UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
 
   if (!cell) {
     NSLog(@"Should Never happen - since iOS5 Storyboard *always* instantiates our cell!");
@@ -330,22 +330,21 @@
   return cell;
 }
 
--(UITableViewCell*)cellForSearchResultsTableView:(UITableView*)tableView atIndexPath:(NSIndexPath*)indexPath
+- (UITableViewCell*)cellForSearchResultsTableView:(UITableView*)tableView atIndexPath:(NSIndexPath*)indexPath
 {
   static NSString *searchCellIdentifier = kSearchCell;
   UITableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:searchCellIdentifier];
-  if (cell == nil) {
+  if (! cell) {
     cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:searchCellIdentifier];
     cell.textLabel.textColor = [UIColor blueGrayColor];
     cell.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"darkblue"]];
   }
-
   CatrobatProject *project = [self.searchResults objectAtIndex:indexPath.row];
   cell.textLabel.text = project.projectName;
   return cell;
 }
 
--(void)loadImage:(NSString*)imageURLString forCell:(UITableViewCell <CatrobatImageCell>*) imageCell atIndexPath:(NSIndexPath*)indexPath
+- (void)loadImage:(NSString*)imageURLString forCell:(UITableViewCell <CatrobatImageCell>*) imageCell atIndexPath:(NSIndexPath*)indexPath
 {
   imageCell.iconImageView.image =
   [UIImage imageWithContentsOfURL:[NSURL URLWithString:imageURLString]

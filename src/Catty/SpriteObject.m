@@ -35,20 +35,22 @@
 #import "GDataXMLNode.h"
 #import "UIImage+CatrobatUIImageExtensions.h"
 #import "UIDefines.h"
+#import "AudioManager.h"
+#import "AppDelegate.h"
+#import "NSString+FastImageSize.h"
 
 @interface SpriteObject()
 
 @property (nonatomic, strong) NSMutableArray *activeScripts;
 @property (nonatomic, strong) NSMutableDictionary *sounds;
 
-
 @end
 
 @implementation SpriteObject
 
--(id)init
+- (id)init
 {
-    if(self = [super init]) {
+    if (self = [super init]) {
         self.activeScripts = [[NSMutableArray alloc] initWithCapacity:self.scriptList.count];
     }
     return self;
@@ -56,26 +58,26 @@
 
 -(NSMutableArray*)lookList
 {
-  // lazy instantiation
-  if (! _lookList)
-    _lookList = [NSMutableArray array];
-  return _lookList;
+    // lazy instantiation
+    if (! _lookList)
+        _lookList = [NSMutableArray array];
+    return _lookList;
 }
 
 - (NSMutableArray*)soundList
 {
-  // lazy instantiation
-  if (! _soundList)
-    _soundList = [NSMutableArray array];
-  return _soundList;
+    // lazy instantiation
+    if (! _soundList)
+        _soundList = [NSMutableArray array];
+    return _soundList;
 }
 
 - (NSMutableArray*)scriptList
 {
-  // lazy instantiation
-  if (! _scriptList)
-    _scriptList = [NSMutableArray array];
-  return _scriptList;
+    // lazy instantiation
+    if (! _scriptList)
+        _scriptList = [NSMutableArray array];
+    return _scriptList;
 }
 
 - (CGPoint)position
@@ -87,7 +89,8 @@
 {
     super.position = [((Scene*)self.scene) convertPointToScene:position];
 }
--(void)setPositionForCropping:(CGPoint)position
+
+- (void)setPositionForCropping:(CGPoint)position
 {
     super.position = position;
 }
@@ -96,6 +99,35 @@
 {
     NSDebug(@"Dealloc: %@", self);
     [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
+- (NSUInteger)numberOfScripts
+{
+    return [self.scriptList count];
+}
+
+- (NSUInteger)numberOfTotalBricks
+{
+    return ([self numberOfScripts] + [self numberOfNormalBricks]);
+}
+
+- (NSUInteger)numberOfNormalBricks
+{
+    NSUInteger numberOfBricks = 0;
+    for (Script *script in self.scriptList) {
+        numberOfBricks += [script.brickList count];
+    }
+    return numberOfBricks;
+}
+
+- (NSUInteger)numberOfLooks
+{
+    return [self.lookList count];
+}
+
+- (NSUInteger)numberOfSounds
+{
+    return [self.soundList count];
 }
 
 - (NSString *)projectPath
@@ -114,8 +146,8 @@
 
     NSString *imageDirPath = [[self projectPath] stringByAppendingString:kProgramImagesDirName];
     NSString *previewImageFilePath = [NSString stringWithFormat:@"%@/%@", imageDirPath, [look previewImageFileName]];
-    FileManager *fileManager = [[FileManager alloc] init];
-    if ([fileManager fileExists:previewImageFilePath])
+    AppDelegate *appDelegate = (AppDelegate*)[UIApplication sharedApplication].delegate;
+    if ([appDelegate.fileManager fileExists:previewImageFilePath])
         return previewImageFilePath;
 
     return nil;
@@ -300,6 +332,33 @@
   return [NSString stringWithFormat:@"%@%@/%@", [self projectPath], kProgramSoundsDirName, sound.fileName];
 }
 
+- (NSUInteger)fileSizeOfLook:(Look*)look
+{
+    NSString *path = [self pathForLook:look];
+    AppDelegate *appDelegate = (AppDelegate*)[UIApplication sharedApplication].delegate;
+    return [appDelegate.fileManager sizeOfFileAtPath:path];
+}
+
+- (CGSize)dimensionsOfLook:(Look*)look
+{
+    NSString *path = [self pathForLook:look];
+    // very fast implementation! far more quicker than UIImage's size method/property
+    return [path sizeOfImageForFilePath];
+}
+
+- (NSUInteger)fileSizeOfSound:(Sound*)sound
+{
+    NSString *path = [self pathForSound:sound];
+    AppDelegate *appDelegate = (AppDelegate*)[UIApplication sharedApplication].delegate;
+    return [appDelegate.fileManager sizeOfFileAtPath:path];
+}
+
+- (CGFloat)durationOfSound:(Sound*)sound
+{
+    NSString *path = [self pathForSound:sound];
+    return [[AudioManager sharedAudioManager] durationOfSoundWithFilePath:path];
+}
+
 - (void)changeLook:(Look *)look
 {
     UIImage* image = [UIImage imageWithContentsOfFile:[self pathForLook:look]];
@@ -393,6 +452,8 @@
     NSUInteger index = 0;
     for (Look *currentLook in self.lookList) {
         if (currentLook == look) {
+            // TODO: remove image from disk that is not needed any more...
+            //       check if image is used by other look-object in that or in other object...
             [self.lookList removeObjectAtIndex:index];
             break;
         }
@@ -407,6 +468,8 @@
     NSUInteger index = 0;
     for (Sound *currentSound in self.soundList) {
         if (currentSound == sound) {
+            // TODO: remove sound from disk that is not needed any more...
+            //       check if sound is used by other sound-object in that or in other object...
             [self.soundList removeObjectAtIndex:index];
             break;
         }
