@@ -331,19 +331,19 @@ UINavigationBarDelegate>
         detailCell.topLeftDetailLabel.textColor = [UIColor whiteColor];
         detailCell.topLeftDetailLabel.text = [NSString stringWithFormat:@"%@: %lu",
                                               NSLocalizedString(@"Scripts", nil),
-                                              [object numberOfScripts]];
+                                              (unsigned long)[object numberOfScripts]];
         detailCell.topRightDetailLabel.textColor = [UIColor whiteColor];
         detailCell.topRightDetailLabel.text = [NSString stringWithFormat:@"%@: %lu",
                                                NSLocalizedString(@"Bricks", nil),
-                                               [object numberOfTotalBricks]];
+                                               (unsigned long)[object numberOfTotalBricks]];
         detailCell.bottomLeftDetailLabel.textColor = [UIColor whiteColor];
         detailCell.bottomLeftDetailLabel.text = [NSString stringWithFormat:@"%@: %lu",
                                                  NSLocalizedString(@"Looks", nil),
-                                                 [object numberOfLooks]];
+                                                 (unsigned long)[object numberOfLooks]];
         detailCell.bottomRightDetailLabel.textColor = [UIColor whiteColor];
         detailCell.bottomRightDetailLabel.text = [NSString stringWithFormat:@"%@: %lu",
                                                   NSLocalizedString(@"Sounds", nil),
-                                                  [object numberOfSounds]];
+                                                  (unsigned long)[object numberOfSounds]];
     }
     imageCell.titleLabel.text = object.name;
     return imageCell;

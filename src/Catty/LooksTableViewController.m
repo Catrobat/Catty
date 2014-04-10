@@ -277,8 +277,8 @@
         detailCell.topRightDetailLabel.textColor = [UIColor whiteColor];
         CGSize dimensions = [self.object dimensionsOfLook:look];
         detailCell.topRightDetailLabel.text = [NSString stringWithFormat:@"%lux%lu",
-                                               (NSUInteger)dimensions.width,
-                                               (NSUInteger)dimensions.height];
+                                               (unsigned long)dimensions.width,
+                                               (unsigned long)dimensions.height];
         detailCell.bottomLeftDetailLabel.textColor = [UIColor whiteColor];
         detailCell.bottomLeftDetailLabel.text = [NSString stringWithFormat:@"%@:",
                                                  NSLocalizedString(@"Size", nil)];

@@ -69,15 +69,15 @@
 
 @property (nonatomic)NSInteger numberOfObjectsWithoutBackground;
 
-- (NSInteger)numberOfScripts;
+- (NSUInteger)numberOfScripts;
 
-- (NSInteger)numberOfTotalBricks; // including script bricks
+- (NSUInteger)numberOfTotalBricks; // including script bricks
 
-- (NSInteger)numberOfNormalBricks; // excluding script bricks
+- (NSUInteger)numberOfNormalBricks; // excluding script bricks
 
-- (NSInteger)numberOfLooks;
+- (NSUInteger)numberOfLooks;
 
-- (NSInteger)numberOfSounds;
+- (NSUInteger)numberOfSounds;
 
 - (BOOL)isBackground;
 

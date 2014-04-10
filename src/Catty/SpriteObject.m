@@ -101,31 +101,31 @@
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
-- (NSInteger)numberOfScripts
+- (NSUInteger)numberOfScripts
 {
     return [self.scriptList count];
 }
 
-- (NSInteger)numberOfTotalBricks
+- (NSUInteger)numberOfTotalBricks
 {
     return ([self numberOfScripts] + [self numberOfNormalBricks]);
 }
 
-- (NSInteger)numberOfNormalBricks
+- (NSUInteger)numberOfNormalBricks
 {
-    NSInteger numberOfBricks = 0;
+    NSUInteger numberOfBricks = 0;
     for (Script *script in self.scriptList) {
         numberOfBricks += [script.brickList count];
     }
     return numberOfBricks;
 }
 
-- (NSInteger)numberOfLooks
+- (NSUInteger)numberOfLooks
 {
     return [self.lookList count];
 }
 
-- (NSInteger)numberOfSounds
+- (NSUInteger)numberOfSounds
 {
     return [self.soundList count];
 }
