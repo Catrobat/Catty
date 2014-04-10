@@ -20,12 +20,19 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#define kContinueCell    @"ContinueCell"
-#define kImageCell       @"ImageCell"
-#define kDetailImageCell @"DetailImageCell"
-#define kSearchCell      @"SearchCell"
-#define kObjectCell      @"ObjectCell"
+#import <Foundation/Foundation.h>
 
-#define kImageLabelTag     11
-#define kTitleLabelTag     12
-#define kSubtitleLabelTag  13
+@interface NSDate (CustomExtensions)
+
+- (BOOL)isLaterThanOrEqualTo:(NSDate*)date;
+- (BOOL)isEarlierThanOrEqualTo:(NSDate*)date;
+- (BOOL)isLaterThan:(NSDate*)date;
+- (BOOL)isEarlierThan:(NSDate*)date;
+- (BOOL)isSameDay:(NSDate*)date;
+- (BOOL)isToday;
+- (BOOL)isYesterday;
+- (BOOL)isWithinLastSevenDays;
+- (NSString*)weekdayName:(BOOL)shortName;
+- (NSString*)humanFriendlyFormattedString;
+
+@end

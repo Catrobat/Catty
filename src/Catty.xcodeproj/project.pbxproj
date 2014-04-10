@@ -136,8 +136,8 @@
 		CA047EC418C782550078BE08 /* BrickManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CA047EC318C782550078BE08 /* BrickManager.m */; };
 		CA05A19C18282B2C0025421A /* SearchStoreViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA05A19B18282B2C0025421A /* SearchStoreViewController.m */; };
 		CA05A19E18286CDA0025421A /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA05A19D18286CDA0025421A /* AssetsLibrary.framework */; };
+		CA2F7CAE18F61BA000A5C021 /* NSString+FastImageSize.m in Sources */ = {isa = PBXBuildFile; fileRef = CA2F7CAD18F61BA000A5C021 /* NSString+FastImageSize.m */; };
 		CA43DD361809976900F95B88 /* UIImageView+CatrobatUIImageViewExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = CA43DD351809976900F95B88 /* UIImageView+CatrobatUIImageViewExtensions.m */; };
-		CA43DD3A18099AA300F95B88 /* DarkBlueGradientBorderedImageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CA43DD3918099AA300F95B88 /* DarkBlueGradientBorderedImageCell.m */; };
 		CA52403618AD782600052914 /* ProgramTableViewControllerExistingProgramsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = CA52403518AD782600052914 /* ProgramTableViewControllerExistingProgramsTests.m */; };
 		CA5FED5018B0070300A517B6 /* BrickCellInlineView.m in Sources */ = {isa = PBXBuildFile; fileRef = CA5FED4F18B0070300A517B6 /* BrickCellInlineView.m */; };
 		CA5FED5418B019B200A517B6 /* UIUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = CA5FED5318B019B200A517B6 /* UIUtil.m */; };
@@ -197,7 +197,9 @@
 		CA79A11E182DA47E00618283 /* BricksCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA79A11D182DA47E00618283 /* BricksCollectionViewController.m */; };
 		CA8C247818CD053300314C2B /* ProgramTests.m in Sources */ = {isa = PBXBuildFile; fileRef = CA8C247718CD053300314C2B /* ProgramTests.m */; };
 		CA8C247B18CD127C00314C2B /* ProgramTableViewControllerNewProgramTests.m in Sources */ = {isa = PBXBuildFile; fileRef = CA8C247A18CD127C00314C2B /* ProgramTableViewControllerNewProgramTests.m */; };
+		CAA24DE818F46B7C00197AE3 /* DarkBlueGradientImageDetailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CAAA269018F4510E002E55B9 /* DarkBlueGradientImageDetailCell.m */; };
 		CAA96AFE18E4B21F00763409 /* SoundPickerTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CAA96AFD18E4B21F00763409 /* SoundPickerTableViewController.m */; };
+		CAB3637118F5987B00AB8401 /* NSDate+CustomExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = CAB3637018F5987B00AB8401 /* NSDate+CustomExtensions.m */; };
 		CAB95BA518CD51EF006638F6 /* LookImageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CAB95BA418CD51EF006638F6 /* LookImageViewController.m */; };
 		CABE07BC18BAB8B200BE26EF /* MessageComboBoxView.m in Sources */ = {isa = PBXBuildFile; fileRef = CABE07BB18BAB8B200BE26EF /* MessageComboBoxView.m */; };
 		CABE07BF18BAB8EF00BE26EF /* ObjectComboBoxView.m in Sources */ = {isa = PBXBuildFile; fileRef = CABE07BE18BAB8EF00BE26EF /* ObjectComboBoxView.m */; };
@@ -519,10 +521,10 @@
 		CA05A19B18282B2C0025421A /* SearchStoreViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchStoreViewController.m; sourceTree = "<group>"; };
 		CA05A19D18286CDA0025421A /* AssetsLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AssetsLibrary.framework; path = System/Library/Frameworks/AssetsLibrary.framework; sourceTree = SDKROOT; };
 		CA1B7A1D18E1D9B700452234 /* ProgramUpdateDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ProgramUpdateDelegate.h; sourceTree = "<group>"; };
+		CA2F7CAC18F61BA000A5C021 /* NSString+FastImageSize.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+FastImageSize.h"; sourceTree = "<group>"; };
+		CA2F7CAD18F61BA000A5C021 /* NSString+FastImageSize.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+FastImageSize.m"; sourceTree = "<group>"; };
 		CA43DD341809976900F95B88 /* UIImageView+CatrobatUIImageViewExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImageView+CatrobatUIImageViewExtensions.h"; sourceTree = "<group>"; };
 		CA43DD351809976900F95B88 /* UIImageView+CatrobatUIImageViewExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+CatrobatUIImageViewExtensions.m"; sourceTree = "<group>"; };
-		CA43DD3818099AA300F95B88 /* DarkBlueGradientBorderedImageCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DarkBlueGradientBorderedImageCell.h; sourceTree = "<group>"; };
-		CA43DD3918099AA300F95B88 /* DarkBlueGradientBorderedImageCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DarkBlueGradientBorderedImageCell.m; sourceTree = "<group>"; };
 		CA52403518AD782600052914 /* ProgramTableViewControllerExistingProgramsTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProgramTableViewControllerExistingProgramsTests.m; sourceTree = "<group>"; };
 		CA52403718AD786200052914 /* ProgramTableViewControllerExistingProgramsTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ProgramTableViewControllerExistingProgramsTests.h; sourceTree = "<group>"; };
 		CA5FED4E18B0070300A517B6 /* BrickCellInlineView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BrickCellInlineView.h; sourceTree = "<group>"; };
@@ -642,6 +644,10 @@
 		CA8C247C18CD12C100314C2B /* ProgramTableViewControllerNewProgramTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProgramTableViewControllerNewProgramTests.h; sourceTree = "<group>"; };
 		CAA96AFC18E4B21F00763409 /* SoundPickerTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SoundPickerTableViewController.h; sourceTree = "<group>"; };
 		CAA96AFD18E4B21F00763409 /* SoundPickerTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SoundPickerTableViewController.m; sourceTree = "<group>"; };
+		CAAA269018F4510E002E55B9 /* DarkBlueGradientImageDetailCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DarkBlueGradientImageDetailCell.m; sourceTree = "<group>"; };
+		CAAA269118F4546A002E55B9 /* DarkBlueGradientImageDetailCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DarkBlueGradientImageDetailCell.h; sourceTree = "<group>"; };
+		CAB3636F18F5987B00AB8401 /* NSDate+CustomExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+CustomExtensions.h"; sourceTree = "<group>"; };
+		CAB3637018F5987B00AB8401 /* NSDate+CustomExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+CustomExtensions.m"; sourceTree = "<group>"; };
 		CAB95BA318CD51EF006638F6 /* LookImageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LookImageViewController.h; sourceTree = "<group>"; };
 		CAB95BA418CD51EF006638F6 /* LookImageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LookImageViewController.m; sourceTree = "<group>"; };
 		CABE07BA18BAB8B200BE26EF /* MessageComboBoxView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageComboBoxView.h; sourceTree = "<group>"; };
@@ -1407,10 +1413,12 @@
 				CA79A11B182D8A4E00618283 /* GDataXMLNode+PrettyFormatterExtensions */,
 				B4BCF429170ED448008EDF3A /* CAGradientLayer+CatrobatCAGradientExtensions */,
 				B4D940BF170EC68A003DDBFA /* NSString+CatrobatNSStringExtensions */,
+				CA2F7CAF18F61C0100A5C021 /* NSString+FastImageSize */,
 				B4D940C2170EC6A6003DDBFA /* UIColor+CatrobatUIColorExtensions */,
 				B4D940C5170EC6C6003DDBFA /* UIImage+CatrobatUIImageExtensions */,
 				CA43DD371809977A00F95B88 /* UIImageView+CatrobatUIImageViewExtensions */,
 				CACEF95C18452A8A00D199D8 /* Brick+UnitTestingExtensions */,
+				CAB3637218F599BD00AB8401 /* NSDate+CustomExtensions */,
 			);
 			name = CustomExtensions;
 			sourceTree = "<group>";
@@ -1717,6 +1725,15 @@
 			name = MaintainObject;
 			sourceTree = "<group>";
 		};
+		CA2F7CAF18F61C0100A5C021 /* NSString+FastImageSize */ = {
+			isa = PBXGroup;
+			children = (
+				CA2F7CAC18F61BA000A5C021 /* NSString+FastImageSize.h */,
+				CA2F7CAD18F61BA000A5C021 /* NSString+FastImageSize.m */,
+			);
+			name = "NSString+FastImageSize";
+			sourceTree = "<group>";
+		};
 		CA43DD371809977A00F95B88 /* UIImageView+CatrobatUIImageViewExtensions */ = {
 			isa = PBXGroup;
 			children = (
@@ -1724,15 +1741,6 @@
 				CA43DD351809976900F95B88 /* UIImageView+CatrobatUIImageViewExtensions.m */,
 			);
 			name = "UIImageView+CatrobatUIImageViewExtensions";
-			sourceTree = "<group>";
-		};
-		CA43DD3B18099AC000F95B88 /* DarkBlueGradientBorderedImageCell */ = {
-			isa = PBXGroup;
-			children = (
-				CA43DD3818099AA300F95B88 /* DarkBlueGradientBorderedImageCell.h */,
-				CA43DD3918099AA300F95B88 /* DarkBlueGradientBorderedImageCell.m */,
-			);
-			name = DarkBlueGradientBorderedImageCell;
 			sourceTree = "<group>";
 		};
 		CA52403418AD77DB00052914 /* ProgramTableViewControllerTests */ = {
@@ -1772,7 +1780,7 @@
 				B4D940DD170ECB68003DDBFA /* ContinueImageCell */,
 				B4D940E1170ECB8F003DDBFA /* DarkBlueGradientCell */,
 				B40C3072170ECC53000B872F /* DarkBlueGradientImageCell */,
-				CA43DD3B18099AC000F95B88 /* DarkBlueGradientBorderedImageCell */,
+				CAAA269318F454AD002E55B9 /* DarkBlueGradientImageDetailCell */,
 			);
 			name = Cell;
 			sourceTree = "<group>";
@@ -1993,6 +2001,24 @@
 				CA8C247718CD053300314C2B /* ProgramTests.m */,
 			);
 			name = ProgramTests;
+			sourceTree = "<group>";
+		};
+		CAAA269318F454AD002E55B9 /* DarkBlueGradientImageDetailCell */ = {
+			isa = PBXGroup;
+			children = (
+				CAAA269118F4546A002E55B9 /* DarkBlueGradientImageDetailCell.h */,
+				CAAA269018F4510E002E55B9 /* DarkBlueGradientImageDetailCell.m */,
+			);
+			name = DarkBlueGradientImageDetailCell;
+			sourceTree = "<group>";
+		};
+		CAB3637218F599BD00AB8401 /* NSDate+CustomExtensions */ = {
+			isa = PBXGroup;
+			children = (
+				CAB3636F18F5987B00AB8401 /* NSDate+CustomExtensions.h */,
+				CAB3637018F5987B00AB8401 /* NSDate+CustomExtensions.m */,
+			);
+			name = "NSDate+CustomExtensions";
 			sourceTree = "<group>";
 		};
 		CAC3141318BA84C700DAAB72 /* ComboBoxView */ = {
@@ -2630,6 +2656,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CAA24DE818F46B7C00197AE3 /* DarkBlueGradientImageDetailCell.m in Sources */,
 				B4E7D257176EF20F00EC8AD8 /* Scene.m in Sources */,
 				CA75C23B18A9615600FC8C2F /* ForeverBrickCell.m in Sources */,
 				CA688205180B0148008A7C99 /* BaseTableViewController.m in Sources */,
@@ -2655,6 +2682,7 @@
 				817B544C18F0520800AF6BFE /* BrickDetailViewController.m in Sources */,
 				CA05A19C18282B2C0025421A /* SearchStoreViewController.m in Sources */,
 				CD0CCF53170CB39700B70036 /* BroadcastBrick.m in Sources */,
+				CAB3637118F5987B00AB8401 /* NSDate+CustomExtensions.m in Sources */,
 				CA75C2A718A9627800FC8C2F /* ChangeVariableBrickCell.m in Sources */,
 				CD0CCF54170CB39700B70036 /* BroadcastScript.m in Sources */,
 				816C788617D62B7C0029A4E6 /* ProgramTableViewController.m in Sources */,
@@ -2732,6 +2760,7 @@
 				81506F4D18C3EE18000ED328 /* LXReorderableCollectionViewFlowLayout.m in Sources */,
 				CA75C29B18A9625C00FC8C2F /* SetBrightnessBrickCell.m in Sources */,
 				CD0CCFDA170CB39700B70036 /* Util.m in Sources */,
+				CA2F7CAE18F61BA000A5C021 /* NSString+FastImageSize.m in Sources */,
 				CD0CCFDB170CB39700B70036 /* WaitBrick.m in Sources */,
 				CA75C24118A9616800FC8C2F /* IfLogicElseBrickCell.m in Sources */,
 				CA727B3B18DF469F00D1EE13 /* NSData+Hashes.m in Sources */,
@@ -2759,7 +2788,6 @@
 				B4D940E0170ECB8B003DDBFA /* DarkBlueGradientCell.m in Sources */,
 				CA75C28C18A9623B00FC8C2F /* ChangeSizeByNBrickCell.m in Sources */,
 				CA75C28618A9622E00FC8C2F /* NextLookBrickCell.m in Sources */,
-				CA43DD3A18099AA300F95B88 /* DarkBlueGradientBorderedImageCell.m in Sources */,
 				B40C3071170ECC49000B872F /* DarkBlueGradientImageCell.m in Sources */,
 				CA79A11A182D8A4200618283 /* GDataXMLNode+PrettyFormatterExtensions.m in Sources */,
 				B4BCF407170ECFA2008EDF3A /* MyProgramsViewController.m in Sources */,

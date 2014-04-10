@@ -38,9 +38,17 @@
 #import "Program.h"
 #import "UIDefines.h"
 #import "ActionSheetAlertViewTags.h"
+#import "DarkBlueGradientImageDetailCell.h"
+#import "NSDate+CustomExtensions.h"
 
-@interface MyProgramsViewController () <ProgramUpdateDelegate, UIAlertViewDelegate, UITextFieldDelegate>
+// TODO: outsource...
+#define kUserDetailsShowDetailsKey @"showDetails"
+#define kUserDetailsShowDetailsProgramsKey @"detailsForPrograms"
+
+@interface MyProgramsViewController () <ProgramUpdateDelegate, UIActionSheetDelegate, UIAlertViewDelegate, UITextFieldDelegate>
+@property (nonatomic) BOOL useDetailCells;
 @property (nonatomic, strong) NSMutableDictionary *assetCache;
+@property (nonatomic, strong) NSMutableDictionary *dataCache;
 @property (nonatomic, strong) NSMutableArray *programLoadingInfos;
 @property (nonatomic, strong) Program *selectedProgram;
 @property (nonatomic, strong) Program *defaultProgram;
@@ -51,11 +59,18 @@
 #pragma mark - getters and setters
 - (NSMutableDictionary*)assetCache
 {
-    // lazy instantiation
     if (! _assetCache) {
         _assetCache = [NSMutableDictionary dictionaryWithCapacity:[self.programLoadingInfos count]];
     }
     return _assetCache;
+}
+
+- (NSMutableDictionary*)dataCache
+{
+    if (! _dataCache) {
+        _dataCache = [NSMutableDictionary dictionaryWithCapacity:[self.programLoadingInfos count]];
+    }
+    return _dataCache;
 }
 
 #pragma mark - initialization
@@ -70,10 +85,6 @@
 
 - (void)initNavigationBar
 {
-    if (! [self.programLoadingInfos count]) {
-        [TableUtil initNavigationItem:self.navigationItem withTitle:self.title];
-        return;
-    }
     UIBarButtonItem *editButtonItem = [TableUtil editButtonItemWithTarget:self action:@selector(editAction:)];
     self.navigationItem.rightBarButtonItem = editButtonItem;
 }
@@ -82,11 +93,15 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    NSDictionary *showDetails = [[NSUserDefaults standardUserDefaults] objectForKey:kUserDetailsShowDetailsKey];
+    NSNumber *showDetailsProgramsValue = (NSNumber*)[showDetails objectForKey:kUserDetailsShowDetailsProgramsKey];
+    self.useDetailCells = [showDetailsProgramsValue boolValue];
     self.navigationController.title = self.title = NSLocalizedString(@"Programs", nil);
     [self loadPrograms];
     [self initNavigationBar];
     [super initTableView];
 
+    self.dataCache = nil;
     self.defaultProgram = nil;
     self.selectedProgram = nil;
     [self setupToolBar];
@@ -98,7 +113,6 @@
     self.selectedProgram = nil;
     [self.navigationController setNavigationBarHidden:NO];
     [self.navigationController setToolbarHidden:NO];
-    [self initNavigationBar];
     [self.tableView reloadData];
 }
 
@@ -107,6 +121,7 @@
 {
     [super didReceiveMemoryWarning];
     self.assetCache = nil;
+    self.dataCache = nil;
 }
 
 - (void)dealloc
@@ -114,14 +129,26 @@
     self.tableView.dataSource = nil;
     self.tableView.delegate = nil;
     self.programLoadingInfos = nil;
-    
 }
 
 #pragma mark - actions
 - (void)editAction:(id)sender
 {
-    [self setupEditingToolBar];
-    [super changeToEditingMode:sender];
+    NSMutableArray *options = [NSMutableArray array];
+    if (self.useDetailCells) {
+        [options addObject:NSLocalizedString(@"Hide Details",nil)];
+    } else {
+        [options addObject:NSLocalizedString(@"Show Details",nil)];
+    }
+    if ([self.programLoadingInfos count]) {
+        [options addObject:NSLocalizedString(@"Delete Programs",nil)];
+    }
+    [Util actionSheetWithTitle:NSLocalizedString(@"Edit Programs",nil)
+                      delegate:self
+        destructiveButtonTitle:nil
+             otherButtonTitles:options
+                           tag:kEditProgramsActionSheetTag
+                          view:self.view];
 }
 
 - (void)addProgramAction:(id)sender
@@ -160,14 +187,12 @@
         [self removeProgram:programNameToRemove];
     }
     [super exitEditingMode];
-    [self initNavigationBar];
 }
 
 - (void)deleteProgramForIndexPath:(NSIndexPath*)indexPath
 {
     ProgramLoadingInfo *programLoadingInfo = [self.programLoadingInfos objectAtIndex:indexPath.row];
     [self removeProgram:programLoadingInfo.visibleName];
-    [self initNavigationBar];
 }
 
 #pragma mark - table view data source
@@ -183,10 +208,39 @@
 - (UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *CellIdentifier = kImageCell;
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    static NSString *DetailCellIdentifier = kDetailImageCell;
+    UITableViewCell *cell = nil;
+    if (! self.useDetailCells) {
+        cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
+    } else {
+        cell = [tableView dequeueReusableCellWithIdentifier:DetailCellIdentifier forIndexPath:indexPath];
+    }
     if ([cell conformsToProtocol:@protocol(CatrobatImageCell)]) {
         UITableViewCell<CatrobatImageCell> *imageCell = (UITableViewCell<CatrobatImageCell>*)cell;
         [self configureImageCell:imageCell atIndexPath:indexPath];
+        if (self.useDetailCells && [cell isKindOfClass:[DarkBlueGradientImageDetailCell class]]) {
+            DarkBlueGradientImageDetailCell *detailCell = (DarkBlueGradientImageDetailCell*)imageCell;
+            detailCell.topLeftDetailLabel.textColor = [UIColor whiteColor];
+            detailCell.topLeftDetailLabel.text = NSLocalizedString(@"Last access:", nil);
+            detailCell.topRightDetailLabel.textColor = [UIColor whiteColor];
+            detailCell.bottomLeftDetailLabel.textColor = [UIColor whiteColor];
+            detailCell.bottomLeftDetailLabel.text = NSLocalizedString(@"Size:", nil);
+            detailCell.bottomRightDetailLabel.textColor = [UIColor whiteColor];
+
+            ProgramLoadingInfo *info = [self.programLoadingInfos objectAtIndex:indexPath.row];
+            NSNumber *programSize = [self.dataCache objectForKey:info.visibleName];
+            AppDelegate *appDelegate = (AppDelegate*)[UIApplication sharedApplication].delegate;
+            if (! programSize) {
+                NSUInteger resultSize = [appDelegate.fileManager sizeOfDirectoryAtPath:info.basePath];
+                programSize = [NSNumber numberWithUnsignedInteger:resultSize];
+                [self.dataCache setObject:programSize forKey:info.visibleName];
+            }
+            NSString *xmlPath = [NSString stringWithFormat:@"%@/%@", info.basePath, kProgramCodeFileName];
+            NSDate *lastAccessDate = [appDelegate.fileManager lastAccessTimeOfFile:xmlPath];
+            detailCell.topRightDetailLabel.text = [lastAccessDate humanFriendlyFormattedString];
+            detailCell.bottomRightDetailLabel.text = [NSByteCountFormatter stringFromByteCount:[programSize unsignedIntegerValue]
+                                                                                    countStyle:NSByteCountFormatterCountStyleBinary];
+        }
     }
     NSString *patternName = @"pattern";
     UIColor* color = [self.assetCache objectForKey:patternName];
@@ -224,11 +278,10 @@
 }
 
 #pragma mark - table view helpers
--(void)configureImageCell:(UITableViewCell<CatrobatImageCell>*)cell atIndexPath:(NSIndexPath*)indexPath
+- (void)configureImageCell:(UITableViewCell<CatrobatImageCell>*)cell atIndexPath:(NSIndexPath*)indexPath
 {
     ProgramLoadingInfo *info = [self.programLoadingInfos objectAtIndex:indexPath.row];
     cell.titleLabel.text = info.visibleName;
-//    cell.iconImageView.image = [UIImage imageNamed:@"programs"];
     NSString* imagePath = [[NSString alloc] initWithFormat:@"%@/small_screenshot.png", info.basePath];
     UIImage* image = [self.assetCache objectForKey:imagePath];
     cell.iconImageView.contentMode = UIViewContentModeScaleAspectFit;
@@ -322,9 +375,10 @@
         return NO;
     }
 
-    static NSString *segueToContinue = kSegueToContinue;
+    static NSString *segueToContinue1 = kSegueToContinue1;
+    static NSString *segueToContinue2 = kSegueToContinue2;
     static NSString *segueToNewProgram = kSegueToNewProgram;
-    if ([identifier isEqualToString:segueToContinue]) {
+    if ([identifier isEqualToString:segueToContinue1] || [identifier isEqualToString:segueToContinue2]) {
         if ([sender isKindOfClass:[UITableViewCell class]]) {
             NSIndexPath *path = [self.tableView indexPathForCell:sender];
             // check if program loaded successfully -> not nil
@@ -356,11 +410,13 @@
 
 - (void)prepareForSegue:(UIStoryboardSegue*)segue sender:(id)sender
 {
-    static NSString *segueToContinue = kSegueToContinue;
+    static NSString *segueToContinue1 = kSegueToContinue1;
+    static NSString *segueToContinue2 = kSegueToContinue2;
     static NSString *segueToNewProgram = kSegueToNewProgram;
-    if ([segue.identifier isEqualToString:segueToContinue]) {
+    if ([segue.identifier isEqualToString:segueToContinue1] || [segue.identifier isEqualToString:segueToContinue2]) {
         if ([segue.destinationViewController isKindOfClass:[ProgramTableViewController class]]) {
             if ([sender isKindOfClass:[UITableViewCell class]]) {
+                [self.dataCache removeObjectForKey:self.selectedProgram.header.programName];
                 ProgramTableViewController *programTableViewController = (ProgramTableViewController*)segue.destinationViewController;
                 programTableViewController.delegate = self;
                 programTableViewController.program = self.selectedProgram;
@@ -384,6 +440,36 @@
 {
     NSCharacterSet *blockedCharacters = [[NSCharacterSet characterSetWithCharactersInString:kTextFieldAllowedCharacters] invertedSet];
     return ([characters rangeOfCharacterFromSet:blockedCharacters].location == NSNotFound);
+}
+
+#pragma mark - action sheet delegates
+- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if (actionSheet.tag != kEditProgramsActionSheetTag) {
+        return;
+    }
+
+    if (buttonIndex == 0) {
+        // Show/Hide Details button
+        self.useDetailCells = (! self.useDetailCells);
+        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+        NSDictionary *showDetails = [defaults objectForKey:kUserDetailsShowDetailsKey];
+        NSMutableDictionary *showDetailsMutable = nil;
+        if (! showDetails) {
+            showDetailsMutable = [NSMutableDictionary dictionary];
+        } else {
+            showDetailsMutable = [showDetails mutableCopy];
+        }
+        [showDetailsMutable setObject:[NSNumber numberWithBool:self.useDetailCells]
+                               forKey:kUserDetailsShowDetailsProgramsKey];
+        [defaults setObject:showDetailsMutable forKey:kUserDetailsShowDetailsKey];
+        [defaults synchronize];
+        [self.tableView reloadData];
+    } else if ((buttonIndex == 1) && [self.programLoadingInfos count]) {
+        // Delete Programs button
+        [self setupEditingToolBar];
+        [super changeToEditingMode:actionSheet];
+    }
 }
 
 #pragma mark - alert view handlers
@@ -499,6 +585,7 @@
             [self.programLoadingInfos replaceObjectAtIndex:rowIndex withObject:newInfo];
 
              // flush asset/image cache
+            self.dataCache = nil;
             self.assetCache = nil;
 
             // update table

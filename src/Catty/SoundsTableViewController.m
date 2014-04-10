@@ -23,7 +23,9 @@
 #import "SoundsTableViewController.h"
 #import "UIDefines.h"
 #import "TableUtil.h"
+#import "CellTagDefines.h"
 #import "CatrobatImageCell.h"
+#import "DarkBlueGradientImageDetailCell.h"
 #import "Sound.h"
 #import "SegueDefines.h"
 #import "ActionSheetAlertViewTags.h"
@@ -38,16 +40,19 @@
 #import "NSData+Hashes.h"
 #import <AVFoundation/AVFoundation.h>
 
+// TODO: outsource...
+#define kUserDetailsShowDetailsKey @"showDetails"
+#define kUserDetailsShowDetailsSoundsKey @"detailsForSounds"
+
 #define kPocketCodeRecorderActionSheetButton @"pocketCodeRecorder"
 #define kSelectMusicTrackActionSheetButton @"selectMusicTrack"
 
 @interface SoundsTableViewController () <UIActionSheetDelegate, AVAudioPlayerDelegate>
-
+@property (nonatomic) BOOL useDetailCells;
 @property (nonatomic, strong) NSMutableDictionary* addSoundActionSheetBtnIndexes;
 @property (strong, nonatomic) NSMutableDictionary *imageCache;
 @property (atomic, strong) Sound *currentPlayingSong;
 @property (atomic, weak) UITableViewCell<CatrobatImageCell> *currentPlayingSongCell;
-
 @end
 
 @implementation SoundsTableViewController
@@ -71,10 +76,6 @@
 #pragma mark - initialization
 - (void)initNavigationBar
 {
-    if (! [self.object.soundList count]) {
-        [TableUtil initNavigationItem:self.navigationItem withTitle:self.title];
-        return;
-    }
     UIBarButtonItem *editButtonItem = [TableUtil editButtonItemWithTarget:self action:@selector(editAction:)];
     self.navigationItem.rightBarButtonItem = editButtonItem;
 }
@@ -83,12 +84,13 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    NSDictionary *showDetails = [[NSUserDefaults standardUserDefaults] objectForKey:kUserDetailsShowDetailsKey];
+    NSNumber *showDetailsSoundsValue = (NSNumber*)[showDetails objectForKey:kUserDetailsShowDetailsSoundsKey];
+    self.useDetailCells = [showDetailsSoundsValue boolValue];
+    self.navigationController.title = self.title = NSLocalizedString(@"Sounds", nil);
     [self initNavigationBar];
     self.currentPlayingSong = nil;
     self.currentPlayingSongCell = nil;
-
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
 
     [super initTableView];
     [super initPlaceHolder];
@@ -143,8 +145,21 @@
 #pragma mark - actions
 - (void)editAction:(id)sender
 {
-    [self setupEditingToolBar];
-    [super changeToEditingMode:sender];
+    NSMutableArray *options = [NSMutableArray array];
+    if ([self.object.soundList count]) {
+        [options addObject:NSLocalizedString(@"Delete Sounds",nil)];
+    }
+    if (self.useDetailCells) {
+        [options addObject:NSLocalizedString(@"Hide Details",nil)];
+    } else {
+        [options addObject:NSLocalizedString(@"Show Details",nil)];
+    }
+    [Util actionSheetWithTitle:NSLocalizedString(@"Edit Sounds",nil)
+                      delegate:self
+        destructiveButtonTitle:nil
+             otherButtonTitles:options
+                           tag:kEditSoundsActionSheetTag
+                          view:self.view];
 }
 
 - (void)addSoundToObjectAction:(Sound*)sound
@@ -198,7 +213,6 @@
     }
     [super exitEditingMode];
     [self.tableView deleteRowsAtIndexPaths:selectedRowsIndexPaths withRowAnimation:UITableViewRowAnimationNone];
-    [self initNavigationBar];
     [super showPlaceHolder:(! (BOOL)[self.object.soundList count])];
 }
 
@@ -209,7 +223,6 @@
     [self.object removeSound:sound];
     [self.tableView deleteRowsAtIndexPaths:@[indexPath]
                           withRowAnimation:UITableViewRowAnimationNone];
-    [self initNavigationBar];
     [super showPlaceHolder:(! (BOOL)[self.object.soundList count])];
 }
 
@@ -224,15 +237,17 @@
     return [self.object.soundList count];
 }
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+- (UITableViewCell*)tableView:(UITableView*)tableView cellForRowAtIndexPath:(NSIndexPath*)indexPath
 {
-    static NSString *CellIdentifier = @"SoundCell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
-
+    static NSString *CellIdentifier = kImageCell;
+    static NSString *DetailCellIdentifier = kDetailImageCell;
+    UITableViewCell *cell = nil;
+    if (! self.useDetailCells) {
+        cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
+    } else {
+        cell = [tableView dequeueReusableCellWithIdentifier:DetailCellIdentifier forIndexPath:indexPath];
+    }
     Sound *sound = (Sound*)[self.object.soundList objectAtIndex:indexPath.row];
-    NSString *path = [NSString stringWithFormat:@"%@sounds/%@", [self.object projectPath], sound.fileName];
-    CGFloat duration = [[AudioManager sharedAudioManager] durationOfSoundWithFilePath:path];
-
     if ([cell conformsToProtocol:@protocol(CatrobatImageCell)]) {
         UITableViewCell <CatrobatImageCell>* imageCell = (UITableViewCell<CatrobatImageCell>*)cell;
         imageCell.indexPath = indexPath;
@@ -255,7 +270,25 @@
         } else {
             imageCell.iconImageView.image = image;
         }
-        imageCell.titleLabel.text = [NSString stringWithFormat:@"(%.02f sec.) %@", (float)duration, sound.name];
+        if (self.useDetailCells && [cell isKindOfClass:[DarkBlueGradientImageDetailCell class]]) {
+            // TODO: enhancement: use data cache for this later...
+            DarkBlueGradientImageDetailCell *detailCell = (DarkBlueGradientImageDetailCell*)imageCell;
+            detailCell.topLeftDetailLabel.textColor = [UIColor whiteColor];
+            detailCell.topLeftDetailLabel.text = [NSString stringWithFormat:@"%@:",
+                                                  NSLocalizedString(@"Length", nil)];
+            detailCell.topRightDetailLabel.textColor = [UIColor whiteColor];
+            detailCell.topRightDetailLabel.text = [NSString stringWithFormat:@"%.02fs",
+                                                   (float)[self.object durationOfSound:sound]];
+            detailCell.bottomLeftDetailLabel.textColor = [UIColor whiteColor];
+            detailCell.bottomLeftDetailLabel.text = [NSString stringWithFormat:@"%@:",
+                                                     NSLocalizedString(@"Size", nil)];
+            detailCell.bottomRightDetailLabel.textColor = [UIColor whiteColor];
+            NSUInteger resultSize = [self.object fileSizeOfSound:sound];
+            NSNumber *sizeOfSound = [NSNumber numberWithUnsignedInteger:resultSize];
+            detailCell.bottomRightDetailLabel.text = [NSByteCountFormatter stringFromByteCount:[sizeOfSound unsignedIntegerValue]
+                                                                                    countStyle:NSByteCountFormatterCountStyleBinary];
+        }
+        imageCell.titleLabel.text = sound.name;
         imageCell.iconImageView.userInteractionEnabled = YES;
         UITapGestureRecognizer *tapped = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(playSound:)];
         tapped.numberOfTapsRequired = 1;
@@ -387,7 +420,37 @@
 #pragma mark - UIActionSheetDelegate Handlers
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
 {
-    if (actionSheet.tag == kAddSoundActionSheetTag) {
+    if (actionSheet.tag == kEditSoundsActionSheetTag) {
+        BOOL showHideSelected = NO;
+        if ([self.object.soundList count]) {
+            if (buttonIndex == 0) {
+                // Delete Sounds button
+                [self setupEditingToolBar];
+                [super changeToEditingMode:actionSheet];
+            } else if (buttonIndex == 1) {
+                showHideSelected = YES;
+            }
+        } else if (buttonIndex == 0) {
+            showHideSelected = YES;
+        }
+        if (showHideSelected) {
+            // Show/Hide Details button
+            self.useDetailCells = (! self.useDetailCells);
+            NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+            NSDictionary *showDetails = [defaults objectForKey:kUserDetailsShowDetailsKey];
+            NSMutableDictionary *showDetailsMutable = nil;
+            if (! showDetails) {
+                showDetailsMutable = [NSMutableDictionary dictionary];
+            } else {
+                showDetailsMutable = [showDetails mutableCopy];
+            }
+            [showDetailsMutable setObject:[NSNumber numberWithBool:self.useDetailCells]
+                                   forKey:kUserDetailsShowDetailsSoundsKey];
+            [defaults setObject:showDetailsMutable forKey:kUserDetailsShowDetailsKey];
+            [defaults synchronize];
+            [self.tableView reloadData];
+        }
+    } else if (actionSheet.tag == kAddSoundActionSheetTag) {
         NSString *action = self.addSoundActionSheetBtnIndexes[@(buttonIndex)];
         if ([action isEqualToString:kPocketCodeRecorderActionSheetButton]) {
             // TODO: implement this, when Pocket Code Recorder will be implemented...
@@ -399,7 +462,7 @@
             NSLog(@"Select music track");
             AppDelegate *delegate = (AppDelegate*)[UIApplication sharedApplication].delegate;
             if (! [delegate.fileManager existPlayableSoundsInDirectory:delegate.fileManager.documentsDirectory]) {
-                [Util alertWithText:NSLocalizedString(@"No imported sounds found. Please connect your iPhone with your PC/Mac and use iTunes FileSharing to import sound files to the PocketCode app.", nil)];
+                [Util alertWithText:NSLocalizedString(@"No imported sounds found. Please connect your iPhone to your PC/Mac and use iTunes FileSharing to import sound files into the PocketCode app.", nil)];
                 return;
             }
 

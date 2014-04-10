@@ -20,12 +20,19 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#define kContinueCell    @"ContinueCell"
-#define kImageCell       @"ImageCell"
-#define kDetailImageCell @"DetailImageCell"
-#define kSearchCell      @"SearchCell"
-#define kObjectCell      @"ObjectCell"
+#import "DarkBlueGradientImageDetailCell.h"
+#import "UIColor+CatrobatUIColorExtensions.h"
 
-#define kImageLabelTag     11
-#define kTitleLabelTag     12
-#define kSubtitleLabelTag  13
+@implementation DarkBlueGradientImageDetailCell
+
+- (void)awakeFromNib
+{
+    [self configureImageCell];
+}
+
+- (void)configureImageCell
+{
+    self.titleLabel.textColor = [UIColor skyBlueColor];
+}
+
+@end

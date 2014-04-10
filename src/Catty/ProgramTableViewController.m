@@ -30,6 +30,7 @@
 #import "Brick.h"
 #import "ObjectTableViewController.h"
 #import "CatrobatImageCell.h"
+#import "DarkBlueGradientImageDetailCell.h"
 #import "Util.h"
 #import "UIDefines.h"
 #import "ProgramDefines.h"
@@ -46,8 +47,13 @@
 #import "CellTagDefines.h"
 #import "AppDelegate.h"
 
+// TODO: outsource...
+#define kUserDetailsShowDetailsKey @"showDetails"
+#define kUserDetailsShowDetailsObjectsKey @"detailsForObjects"
+
 @interface ProgramTableViewController () <UIActionSheetDelegate, UIAlertViewDelegate, UITextFieldDelegate,
 UINavigationBarDelegate>
+@property (nonatomic) BOOL useDetailCells;
 @property (strong, nonatomic) NSCharacterSet *blockedCharacterSet;
 @property (strong, nonatomic) NSMutableDictionary *imageCache;
 @end
@@ -112,6 +118,9 @@ UINavigationBarDelegate>
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    NSDictionary *showDetails = [[NSUserDefaults standardUserDefaults] objectForKey:kUserDetailsShowDetailsKey];
+    NSNumber *showDetailsObjectsValue = (NSNumber*)[showDetails objectForKey:kUserDetailsShowDetailsObjectsKey];
+    self.useDetailCells = [showDetailsObjectsValue boolValue];
     [self initNavigationBar];
     [super initTableView];
 
@@ -152,7 +161,12 @@ UINavigationBarDelegate>
     NSMutableArray *options = [NSMutableArray array];
     [options addObject:NSLocalizedString(@"Rename",nil)];
     if ([self.program numberOfNormalObjects]) {
-        [options addObject:NSLocalizedString(@"Delete objects",nil)];
+        [options addObject:NSLocalizedString(@"Delete Objects",nil)];
+    }
+    if (self.useDetailCells) {
+        [options addObject:NSLocalizedString(@"Hide Details",nil)];
+    } else {
+        [options addObject:NSLocalizedString(@"Show Details",nil)];
     }
     [Util actionSheetWithTitle:NSLocalizedString(@"Edit Program",nil)
                       delegate:self
@@ -228,7 +242,14 @@ UINavigationBarDelegate>
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:kObjectCell forIndexPath:indexPath];
+    static NSString *CellIdentifier = kImageCell;
+    static NSString *DetailCellIdentifier = kDetailImageCell;
+    UITableViewCell *cell = nil;
+    if (! self.useDetailCells) {
+        cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
+    } else {
+        cell = [tableView dequeueReusableCellWithIdentifier:DetailCellIdentifier forIndexPath:indexPath];
+    }
     if (! [cell conformsToProtocol:@protocol(CatrobatImageCell)]) {
         return cell;
     }
@@ -304,6 +325,25 @@ UINavigationBarDelegate>
         }
     } else {
         imageCell.iconImageView.image = image;
+    }
+    if (self.useDetailCells && [cell isKindOfClass:[DarkBlueGradientImageDetailCell class]]) {
+        DarkBlueGradientImageDetailCell *detailCell = (DarkBlueGradientImageDetailCell*)imageCell;
+        detailCell.topLeftDetailLabel.textColor = [UIColor whiteColor];
+        detailCell.topLeftDetailLabel.text = [NSString stringWithFormat:@"%@: %lu",
+                                              NSLocalizedString(@"Scripts", nil),
+                                              [object numberOfScripts]];
+        detailCell.topRightDetailLabel.textColor = [UIColor whiteColor];
+        detailCell.topRightDetailLabel.text = [NSString stringWithFormat:@"%@: %lu",
+                                               NSLocalizedString(@"Bricks", nil),
+                                               [object numberOfTotalBricks]];
+        detailCell.bottomLeftDetailLabel.textColor = [UIColor whiteColor];
+        detailCell.bottomLeftDetailLabel.text = [NSString stringWithFormat:@"%@: %lu",
+                                                 NSLocalizedString(@"Looks", nil),
+                                                 [object numberOfLooks]];
+        detailCell.bottomRightDetailLabel.textColor = [UIColor whiteColor];
+        detailCell.bottomRightDetailLabel.text = [NSString stringWithFormat:@"%@: %lu",
+                                                  NSLocalizedString(@"Sounds", nil),
+                                                  [object numberOfSounds]];
     }
     imageCell.titleLabel.text = object.name;
     return imageCell;
@@ -387,14 +427,15 @@ UINavigationBarDelegate>
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     // Pass the selected object to the new view controller.
-    static NSString *toObjectSegueID = kSegueToObject;
+    static NSString *toObjectSegue1ID = kSegueToObject1;
+    static NSString *toObjectSegue2ID = kSegueToObject2;
     static NSString *toSceneSegueID = kSegueToScene;
 
     UIViewController *destController = segue.destinationViewController;
     if ([sender isKindOfClass:[UITableViewCell class]]) {
         UITableViewCell *cell = (UITableViewCell*) sender;
         NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
-        if ([segue.identifier isEqualToString:toObjectSegueID]) {
+        if ([segue.identifier isEqualToString:toObjectSegue1ID] || [segue.identifier isEqualToString:toObjectSegue2ID]) {
             if ([destController isKindOfClass:[ObjectTableViewController class]]) {
                 ObjectTableViewController *tvc = (ObjectTableViewController*) destController;
                 if ([tvc respondsToSelector:@selector(setObject:)]) {
@@ -440,11 +481,27 @@ UINavigationBarDelegate>
                                ? self.program.header.programName : nil)
             textFieldDelegate:self];
     } else if (buttonIndex == 2 && [self.program numberOfNormalObjects]) {
-        // Delete objects button
+        // Delete Objects button
         [self setupEditingToolBar];
         [super changeToEditingMode:actionSheet];
+    } else if (buttonIndex == 3 || ((buttonIndex == 2) && (! [self.program numberOfNormalObjects]))) {
+        // Show/Hide Details button
+        self.useDetailCells = (! self.useDetailCells);
+        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+        NSDictionary *showDetails = [defaults objectForKey:kUserDetailsShowDetailsKey];
+        NSMutableDictionary *showDetailsMutable = nil;
+        if (! showDetails) {
+            showDetailsMutable = [NSMutableDictionary dictionary];
+        } else {
+            showDetailsMutable = [showDetails mutableCopy];
+        }
+        [showDetailsMutable setObject:[NSNumber numberWithBool:self.useDetailCells]
+                               forKey:kUserDetailsShowDetailsObjectsKey];
+        [defaults setObject:showDetailsMutable forKey:kUserDetailsShowDetailsKey];
+        [defaults synchronize];
+        [self.tableView reloadData];
     } else if (buttonIndex == actionSheet.destructiveButtonIndex) {
-        // Delete program button
+        // Delete Program button
         [self.delegate removeProgram:self.program.header.programName];
         [self.program removeFromDisk];
         self.program = nil;

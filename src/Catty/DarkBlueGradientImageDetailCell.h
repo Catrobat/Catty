@@ -20,12 +20,21 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#define kContinueCell    @"ContinueCell"
-#define kImageCell       @"ImageCell"
-#define kDetailImageCell @"DetailImageCell"
-#define kSearchCell      @"SearchCell"
-#define kObjectCell      @"ObjectCell"
+#import "DarkBlueGradientCell.h"
+#import "CatrobatImageCell.h"
 
-#define kImageLabelTag     11
-#define kTitleLabelTag     12
-#define kSubtitleLabelTag  13
+@interface DarkBlueGradientImageDetailCell : DarkBlueGradientCell <CatrobatImageCell>
+
+@property (strong, nonatomic) IBOutlet UIImageView *iconImageView;
+
+@property (strong, nonatomic) IBOutlet UILabel *titleLabel;
+
+@property (strong, nonatomic) IBOutlet UILabel *topLeftDetailLabel;
+
+@property (strong, nonatomic) IBOutlet UILabel *topRightDetailLabel;
+
+@property (strong, nonatomic) IBOutlet UILabel *bottomLeftDetailLabel;
+
+@property (strong, nonatomic) IBOutlet UILabel *bottomRightDetailLabel;
+
+@end

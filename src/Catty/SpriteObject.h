@@ -69,6 +69,16 @@
 
 @property (nonatomic)NSInteger numberOfObjectsWithoutBackground;
 
+- (NSInteger)numberOfScripts;
+
+- (NSInteger)numberOfTotalBricks; // including script bricks
+
+- (NSInteger)numberOfNormalBricks; // excluding script bricks
+
+- (NSInteger)numberOfLooks;
+
+- (NSInteger)numberOfSounds;
+
 - (BOOL)isBackground;
 
 - (GDataXMLElement*)toXML;
@@ -91,6 +101,10 @@
 - (NSString*)previewImagePath; // thumbnail/preview image-path of first (!) look shown in several TableViewCells!!!
 - (NSString*)pathForLook:(Look*)look;
 - (NSString*)pathForSound:(Sound*)sound;
+- (NSUInteger)fileSizeOfLook:(Look*)look;
+- (CGSize)dimensionsOfLook:(Look*)look;
+- (NSUInteger)fileSizeOfSound:(Sound*)sound;
+- (CGFloat)durationOfSound:(Sound*)sound;
 
 // actions
 - (void)changeLook:(Look*)look;
