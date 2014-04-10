@@ -92,9 +92,6 @@
     self.currentPlayingSong = nil;
     self.currentPlayingSongCell = nil;
 
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
-
     [super initTableView];
     [super initPlaceHolder];
     [super setPlaceHolderTitle:kSoundsTitle
@@ -274,6 +271,7 @@
             imageCell.iconImageView.image = image;
         }
         if (self.useDetailCells && [cell isKindOfClass:[DarkBlueGradientImageDetailCell class]]) {
+            // TODO: enhancement: use data cache for this later...
             DarkBlueGradientImageDetailCell *detailCell = (DarkBlueGradientImageDetailCell*)imageCell;
             detailCell.topLeftDetailLabel.textColor = [UIColor whiteColor];
             detailCell.topLeftDetailLabel.text = [NSString stringWithFormat:@"%@:",

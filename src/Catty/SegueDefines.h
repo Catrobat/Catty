@@ -40,6 +40,7 @@
 #define kSegueToScripts @"segueToScripts"
 #define kSegueToLooks @"segueToLooks"
 #define kSegueToSounds @"segueToSounds"
-#define kSegueToImage @"segueToImage"
+#define kSegueToImage1 @"segueToImage1"
+#define kSegueToImage2 @"segueToImage2"
 
 #endif

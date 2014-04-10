@@ -26,6 +26,7 @@
 #import "TableUtil.h"
 #import "CellTagDefines.h"
 #import "CatrobatImageCell.h"
+#import "DarkBlueGradientImageDetailCell.h"
 #import "Look.h"
 #import "SpriteObject.h"
 #import "SegueDefines.h"
@@ -43,11 +44,16 @@
 #import "NSData+Hashes.h"
 #import "LoadingView.h"
 
+// TODO: outsource...
+#define kUserDetailsShowDetailsKey @"showDetails"
+#define kUserDetailsShowDetailsLooksKey @"detailsForLooks"
+
 #define kFromCameraActionSheetButton @"camera"
 #define kChooseImageActionSheetButton @"chooseImage"
 #define kDrawNewImageActionSheetButton @"drawNewImage"
 
 @interface ObjectLooksTableViewController () <UIActionSheetDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate>
+@property (nonatomic) BOOL useDetailCells;
 @property (strong, nonatomic) NSMutableDictionary *imageCache; // NONatomic, only (!) accessed via main queue = serial (!) queue
 @property (nonatomic, strong) LoadingView* loadingView;
 @property (nonatomic, strong) NSMutableDictionary* addLookActionSheetBtnIndexes;
@@ -75,6 +81,9 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    NSDictionary *showDetails = [[NSUserDefaults standardUserDefaults] objectForKey:kUserDetailsShowDetailsKey];
+    NSNumber *showDetailsProgramsValue = (NSNumber*)[showDetails objectForKey:kUserDetailsShowDetailsLooksKey];
+    self.useDetailCells = [showDetailsProgramsValue boolValue];
     self.title = self.navigationItem.title = NSLocalizedString(@"Looks", nil);
     [self initNavigationBar];
     [super initTableView];
@@ -96,8 +105,21 @@
 #pragma mark - actions
 - (void)editAction:(id)sender
 {
-    [self setupEditingToolBar];
-    [super changeToEditingMode:sender];
+    NSMutableArray *options = [NSMutableArray array];
+    if ([self.object.lookList count]) {
+        [options addObject:NSLocalizedString(@"Delete Looks",nil)];
+    }
+    if (self.useDetailCells) {
+        [options addObject:NSLocalizedString(@"Hide Details",nil)];
+    } else {
+        [options addObject:NSLocalizedString(@"Show Details",nil)];
+    }
+    [Util actionSheetWithTitle:NSLocalizedString(@"Edit Looks",nil)
+                      delegate:self
+        destructiveButtonTitle:nil
+             otherButtonTitles:options
+                           tag:kEditLooksActionSheetTag
+                          view:self.view];
 }
 
 - (void)addLookAction:(id)sender
@@ -168,13 +190,13 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *CellIdentifier = kImageCell;
-//    static NSString *DetailCellIdentifier = kDetailImageCell;
+    static NSString *DetailCellIdentifier = kDetailImageCell;
     UITableViewCell *cell = nil;
-//    if (! self.useDetailCells) {
+    if (! self.useDetailCells) {
         cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
-//    } else {
-//        cell = [tableView dequeueReusableCellWithIdentifier:DetailCellIdentifier forIndexPath:indexPath];
-//    }
+    } else {
+        cell = [tableView dequeueReusableCellWithIdentifier:DetailCellIdentifier forIndexPath:indexPath];
+    }
     if (! [cell conformsToProtocol:@protocol(CatrobatImageCell)]) {
         return cell;
     }
@@ -246,6 +268,26 @@
     } else {
         imageCell.iconImageView.image = image;
     }
+    if (self.useDetailCells && [cell isKindOfClass:[DarkBlueGradientImageDetailCell class]]) {
+        // TODO: enhancement: use data cache for this later...
+        DarkBlueGradientImageDetailCell *detailCell = (DarkBlueGradientImageDetailCell*)imageCell;
+        detailCell.topLeftDetailLabel.textColor = [UIColor whiteColor];
+        detailCell.topLeftDetailLabel.text = [NSString stringWithFormat:@"%@:",
+                                              NSLocalizedString(@"Measure", nil)];
+        detailCell.topRightDetailLabel.textColor = [UIColor whiteColor];
+        CGSize dimensions = [self.object dimensionsOfLook:look];
+        detailCell.topRightDetailLabel.text = [NSString stringWithFormat:@"%lux%lu",
+                                               (NSUInteger)dimensions.width,
+                                               (NSUInteger)dimensions.height];
+        detailCell.bottomLeftDetailLabel.textColor = [UIColor whiteColor];
+        detailCell.bottomLeftDetailLabel.text = [NSString stringWithFormat:@"%@:",
+                                                 NSLocalizedString(@"Size", nil)];
+        detailCell.bottomRightDetailLabel.textColor = [UIColor whiteColor];
+        NSUInteger resultSize = [self.object fileSizeOfLook:look];
+        NSNumber *sizeOfSound = [NSNumber numberWithUnsignedInteger:resultSize];
+        detailCell.bottomRightDetailLabel.text = [NSByteCountFormatter stringFromByteCount:[sizeOfSound unsignedIntegerValue]
+                                                                                countStyle:NSByteCountFormatterCountStyleBinary];
+    }
     imageCell.titleLabel.text = look.name;
     return imageCell;
 }
@@ -278,7 +320,8 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     static NSString* segueToSceneIdentifier = kSegueToScene;
-    static NSString* segueToImageIdentifier = kSegueToImage;
+    static NSString* segueToImage1Identifier = kSegueToImage1;
+    static NSString* segueToImage2Identifier = kSegueToImage2;
     UIViewController* destController = segue.destinationViewController;
     if ([sender isKindOfClass:[UIBarButtonItem class]]) {
         if ([segue.identifier isEqualToString:segueToSceneIdentifier]) {
@@ -293,7 +336,7 @@
     } else if ([sender isKindOfClass:[UITableViewCell class]]) {
         UITableViewCell *cell = (UITableViewCell*)sender;
         NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
-        if ([segue.identifier isEqualToString:segueToImageIdentifier]) {
+        if ([segue.identifier isEqualToString:segueToImage1Identifier] || [segue.identifier isEqualToString:segueToImage2Identifier]) {
             if ([destController isKindOfClass:[LookImageViewController class]]) {
                 LookImageViewController *livc = (LookImageViewController*)destController;
                 if ([livc respondsToSelector:@selector(setImageName:)] && [livc respondsToSelector:@selector(setImagePath:)]) {
@@ -308,7 +351,7 @@
 }
 
 #pragma mark - UIImagePicker Handler
-- (void) presentImagePicker:(UIImagePickerControllerSourceType)sourceType
+- (void)presentImagePicker:(UIImagePickerControllerSourceType)sourceType
 {
     if (! [UIImagePickerController isSourceTypeAvailable:sourceType])
         return;
@@ -404,9 +447,39 @@
 }
 
 #pragma mark - UIActionSheetDelegate Handlers
-- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
+- (void)actionSheet:(UIActionSheet*)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
 {
-    if (actionSheet.tag == kAddLookActionSheetTag) {
+    if (actionSheet.tag == kEditLooksActionSheetTag) {
+        BOOL showHideSelected = NO;
+        if ([self.object.lookList count]) {
+            if (buttonIndex == 0) {
+                // Delete Looks button
+                [self setupEditingToolBar];
+                [super changeToEditingMode:actionSheet];
+            } else if (buttonIndex == 1) {
+                showHideSelected = YES;
+            }
+        } else if (buttonIndex == 0) {
+            showHideSelected = YES;
+        }
+        if (showHideSelected) {
+            // Show/Hide Details button
+            self.useDetailCells = (! self.useDetailCells);
+            NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+            NSDictionary *showDetails = [defaults objectForKey:kUserDetailsShowDetailsKey];
+            NSMutableDictionary *showDetailsMutable = nil;
+            if (! showDetails) {
+                showDetailsMutable = [NSMutableDictionary dictionary];
+            } else {
+                showDetailsMutable = [showDetails mutableCopy];
+            }
+            [showDetailsMutable setObject:[NSNumber numberWithBool:self.useDetailCells]
+                                   forKey:kUserDetailsShowDetailsLooksKey];
+            [defaults setObject:showDetailsMutable forKey:kUserDetailsShowDetailsKey];
+            [defaults synchronize];
+            [self.tableView reloadData];
+        }
+    } else if (actionSheet.tag == kAddLookActionSheetTag) {
         NSString *action = self.addLookActionSheetBtnIndexes[@(buttonIndex)];
         if ([action isEqualToString:kFromCameraActionSheetButton]) {
             // take picture from camera

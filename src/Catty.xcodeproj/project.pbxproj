@@ -136,6 +136,7 @@
 		CA047EC418C782550078BE08 /* BrickManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CA047EC318C782550078BE08 /* BrickManager.m */; };
 		CA05A19C18282B2C0025421A /* SearchStoreViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA05A19B18282B2C0025421A /* SearchStoreViewController.m */; };
 		CA05A19E18286CDA0025421A /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA05A19D18286CDA0025421A /* AssetsLibrary.framework */; };
+		CA2F7CAE18F61BA000A5C021 /* NSString+FastImageSize.m in Sources */ = {isa = PBXBuildFile; fileRef = CA2F7CAD18F61BA000A5C021 /* NSString+FastImageSize.m */; };
 		CA43DD361809976900F95B88 /* UIImageView+CatrobatUIImageViewExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = CA43DD351809976900F95B88 /* UIImageView+CatrobatUIImageViewExtensions.m */; };
 		CA52403618AD782600052914 /* ProgramTableViewControllerExistingProgramsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = CA52403518AD782600052914 /* ProgramTableViewControllerExistingProgramsTests.m */; };
 		CA5FED5018B0070300A517B6 /* BrickCellInlineView.m in Sources */ = {isa = PBXBuildFile; fileRef = CA5FED4F18B0070300A517B6 /* BrickCellInlineView.m */; };
@@ -520,6 +521,8 @@
 		CA05A19B18282B2C0025421A /* SearchStoreViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchStoreViewController.m; sourceTree = "<group>"; };
 		CA05A19D18286CDA0025421A /* AssetsLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AssetsLibrary.framework; path = System/Library/Frameworks/AssetsLibrary.framework; sourceTree = SDKROOT; };
 		CA1B7A1D18E1D9B700452234 /* ProgramUpdateDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ProgramUpdateDelegate.h; sourceTree = "<group>"; };
+		CA2F7CAC18F61BA000A5C021 /* NSString+FastImageSize.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+FastImageSize.h"; sourceTree = "<group>"; };
+		CA2F7CAD18F61BA000A5C021 /* NSString+FastImageSize.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+FastImageSize.m"; sourceTree = "<group>"; };
 		CA43DD341809976900F95B88 /* UIImageView+CatrobatUIImageViewExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImageView+CatrobatUIImageViewExtensions.h"; sourceTree = "<group>"; };
 		CA43DD351809976900F95B88 /* UIImageView+CatrobatUIImageViewExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+CatrobatUIImageViewExtensions.m"; sourceTree = "<group>"; };
 		CA52403518AD782600052914 /* ProgramTableViewControllerExistingProgramsTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProgramTableViewControllerExistingProgramsTests.m; sourceTree = "<group>"; };
@@ -1410,6 +1413,7 @@
 				CA79A11B182D8A4E00618283 /* GDataXMLNode+PrettyFormatterExtensions */,
 				B4BCF429170ED448008EDF3A /* CAGradientLayer+CatrobatCAGradientExtensions */,
 				B4D940BF170EC68A003DDBFA /* NSString+CatrobatNSStringExtensions */,
+				CA2F7CAF18F61C0100A5C021 /* NSString+FastImageSize */,
 				B4D940C2170EC6A6003DDBFA /* UIColor+CatrobatUIColorExtensions */,
 				B4D940C5170EC6C6003DDBFA /* UIImage+CatrobatUIImageExtensions */,
 				CA43DD371809977A00F95B88 /* UIImageView+CatrobatUIImageViewExtensions */,
@@ -1719,6 +1723,15 @@
 				CA160DB418A29CD600E5190D /* MaintainSounds */,
 			);
 			name = MaintainObject;
+			sourceTree = "<group>";
+		};
+		CA2F7CAF18F61C0100A5C021 /* NSString+FastImageSize */ = {
+			isa = PBXGroup;
+			children = (
+				CA2F7CAC18F61BA000A5C021 /* NSString+FastImageSize.h */,
+				CA2F7CAD18F61BA000A5C021 /* NSString+FastImageSize.m */,
+			);
+			name = "NSString+FastImageSize";
 			sourceTree = "<group>";
 		};
 		CA43DD371809977A00F95B88 /* UIImageView+CatrobatUIImageViewExtensions */ = {
@@ -2747,6 +2760,7 @@
 				81506F4D18C3EE18000ED328 /* LXReorderableCollectionViewFlowLayout.m in Sources */,
 				CA75C29B18A9625C00FC8C2F /* SetBrightnessBrickCell.m in Sources */,
 				CD0CCFDA170CB39700B70036 /* Util.m in Sources */,
+				CA2F7CAE18F61BA000A5C021 /* NSString+FastImageSize.m in Sources */,
 				CD0CCFDB170CB39700B70036 /* WaitBrick.m in Sources */,
 				CA75C24118A9616800FC8C2F /* IfLogicElseBrickCell.m in Sources */,
 				CA727B3B18DF469F00D1EE13 /* NSData+Hashes.m in Sources */,

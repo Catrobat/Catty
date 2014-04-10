@@ -37,6 +37,7 @@
 #import "UIDefines.h"
 #import "AudioManager.h"
 #import "AppDelegate.h"
+#import "NSString+FastImageSize.h"
 
 @interface SpriteObject()
 
@@ -331,10 +332,18 @@
   return [NSString stringWithFormat:@"%@%@/%@", [self projectPath], kProgramSoundsDirName, sound.fileName];
 }
 
-- (CGFloat)durationOfSound:(Sound*)sound
+- (NSUInteger)fileSizeOfLook:(Look*)look
 {
-    NSString *path = [self pathForSound:sound];
-    return [[AudioManager sharedAudioManager] durationOfSoundWithFilePath:path];
+    NSString *path = [self pathForLook:look];
+    AppDelegate *appDelegate = (AppDelegate*)[UIApplication sharedApplication].delegate;
+    return [appDelegate.fileManager sizeOfFileAtPath:path];
+}
+
+- (CGSize)dimensionsOfLook:(Look*)look
+{
+    NSString *path = [self pathForLook:look];
+    // very fast implementation! far more quicker than UIImage's size method/property
+    return [path sizeOfImageForFilePath];
 }
 
 - (NSUInteger)fileSizeOfSound:(Sound*)sound
@@ -342,6 +351,12 @@
     NSString *path = [self pathForSound:sound];
     AppDelegate *appDelegate = (AppDelegate*)[UIApplication sharedApplication].delegate;
     return [appDelegate.fileManager sizeOfFileAtPath:path];
+}
+
+- (CGFloat)durationOfSound:(Sound*)sound
+{
+    NSString *path = [self pathForSound:sound];
+    return [[AudioManager sharedAudioManager] durationOfSoundWithFilePath:path];
 }
 
 - (void)changeLook:(Look *)look

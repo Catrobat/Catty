@@ -101,8 +101,10 @@
 - (NSString*)previewImagePath; // thumbnail/preview image-path of first (!) look shown in several TableViewCells!!!
 - (NSString*)pathForLook:(Look*)look;
 - (NSString*)pathForSound:(Sound*)sound;
-- (CGFloat)durationOfSound:(Sound*)sound;
+- (NSUInteger)fileSizeOfLook:(Look*)look;
+- (CGSize)dimensionsOfLook:(Look*)look;
 - (NSUInteger)fileSizeOfSound:(Sound*)sound;
+- (CGFloat)durationOfSound:(Sound*)sound;
 
 // actions
 - (void)changeLook:(Look*)look;
