@@ -55,5 +55,5 @@
 typedef NS_ENUM(NSUInteger, kProgramNameValidationResult) {
     kProgramNameValidationResultOK = 0,
     kProgramNameValidationResultInvalid = 1,
-    kProgramNameValidationResultAlreadyExists
+    kProgramNameValidationResultAlreadyExists = 2
 };
