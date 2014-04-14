@@ -29,6 +29,8 @@
 #import "AppDelegate.h"
 #import "Util.h"
 #import "CatrobatImageCell.h"
+#import "DownloadTabBarController.h"
+#import "ProgramDetailStoreViewController.h"
 #import "ProgramLoadingInfo.h"
 #import "SegueDefines.h"
 #import "Parser.h"
@@ -41,6 +43,7 @@
 #import "ProgramDefines.h"
 #import "UIDefines.h"
 #import "ActionSheetAlertViewTags.h"
+#import "Reachability.h"
 
 @interface CatrobatTableViewController () <UIAlertViewDelegate, UITextFieldDelegate>
 
@@ -50,6 +53,7 @@
 @property (nonatomic, strong) NSArray *identifiers;
 @property (nonatomic, strong) Program *lastProgram;
 @property (nonatomic, strong) Program *defaultProgram;
+@property (nonatomic, strong) Reachability *reachability;
 
 @end
 
@@ -86,6 +90,11 @@
         [appDelegate.fileManager createDirectory:[Program basePath]];
     }
     [appDelegate.fileManager addDefaultProjectsToProgramsRootDirectory];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(networkStatusChanged:) name:kReachabilityChangedNotification object:nil];
+    
+    self.reachability = [Reachability reachabilityForInternetConnection];
+    [self.reachability startNotifier];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -259,6 +268,27 @@
             return NO;
         }
         return YES;
+    } else if([identifier isEqualToString:kSegueToExplore]){
+        NetworkStatus remoteHostStatus = [self.reachability currentReachabilityStatus];
+        
+        if(remoteHostStatus == NotReachable) {
+            [Util alertWithText:@"No Internet Connection!"];
+            NSDebug(@"not reachable");
+            return NO;
+        } else if (remoteHostStatus == ReachableViaWiFi) {
+            NSDebug(@"reachable via Wifi");
+            return YES;
+        } else if (remoteHostStatus == ReachableViaWWAN){
+            if (!self.reachability.connectionRequired) {
+                NSDebug(@"reachable via celullar");
+                return YES;
+            }else{
+                NSDebug(@" not reachable via celullar");
+                [Util alertWithText:@"No Internet Connection!"];
+                return NO;
+            }
+            return YES;
+        }
     }
     return [super shouldPerformSegueWithIdentifier:identifier sender:sender];
 }
@@ -293,7 +323,7 @@
 #pragma mark - alert view handlers
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
-    static NSString *segueToNewProgramIdentifier = kSegueToNewProgram;
+    static NSString *segueToNewProgramIdentifier = kSegueToNewProgram;;
     if (alertView.tag == kNewProgramAlertViewTag) {
         NSString *input = [alertView textFieldAtIndex:0].text;
         if ((buttonIndex == alertView.cancelButtonIndex) || (buttonIndex != kAlertViewButtonOK)) {
@@ -321,6 +351,38 @@
                 textFieldDelegate:self];
         }
     }
+}
+
+- (void)networkStatusChanged:(NSNotification *)notification
+{
+    
+    NetworkStatus remoteHostStatus = [self.reachability currentReachabilityStatus];
+    if(remoteHostStatus == NotReachable) {
+        if ([self.navigationController.topViewController isKindOfClass:[DownloadTabBarController class]] ||
+            [self.navigationController.topViewController isKindOfClass:[ProgramDetailStoreViewController class]]) {
+            [Util alertWithText:@"No Internet Connection!"];
+            [self.navigationController popToRootViewControllerAnimated:YES];
+        }
+        NSDebug(@"not reachable");
+    } else if (remoteHostStatus == ReachableViaWiFi) {
+        NSDebug(@"reachable via Wifi");
+    }  else if (remoteHostStatus == ReachableViaWWAN){
+        if (!self.reachability.connectionRequired) {
+            NSDebug(@"celluar data ok");
+        }else{
+           NSDebug(@"reachable via cellular but no data");
+            if ([self.navigationController.topViewController isKindOfClass:[DownloadTabBarController class]] ||
+                [self.navigationController.topViewController isKindOfClass:[ProgramDetailStoreViewController class]]) {
+                [Util alertWithText:@"No Internet Connection!"];
+                [self.navigationController popToRootViewControllerAnimated:YES];
+            }
+        }
+    }
+}
+
+- (void)dealloc
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:kReachabilityChangedNotification object:nil];
 }
 
 @end

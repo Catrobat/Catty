@@ -20,23 +20,43 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-// Action sheet
-#define kEditProgramsActionSheetTag 1
-#define kEditProgramActionSheetTag 2
-#define kAddLookActionSheetTag 3
-#define kEditLooksActionSheetTag 4
-#define kAddSoundActionSheetTag 5
-#define kEditSoundsActionSheetTag 6
 
-// Alert view tags
-#define kRenameAlertViewTag 100
-#define kNewObjectAlertViewTag 101
-#define kNewProgramAlertViewTag 102
-#define kInvalidProgramNameWarningAlertViewTag 103
-#define kInvalidObjectNameWarningAlertViewTag 104
-#define kNoInternetConnection 105
+#import <Foundation/Foundation.h>
+#import <SystemConfiguration/SystemConfiguration.h>
+#import <netinet/in.h>
 
-#define kConfirmAlertViewTag 200
 
-// Alert view button indexes
-#define kAlertViewButtonOK 1
+typedef enum : NSInteger {
+	NotReachable = 0,
+	ReachableViaWiFi,
+	ReachableViaWWAN
+} NetworkStatus;
+
+
+extern NSString *kReachabilityChangedNotification;
+
+
+@interface Reachability : NSObject
+
+
+/*!
+ * Checks whether the default route is available. Should be used by applications that do not connect to a particular host.
+ */
++ (instancetype)reachabilityForInternetConnection;
+
+/*!
+ * Start listening for reachability notifications on the current run loop.
+ */
+- (BOOL)startNotifier;
+- (void)stopNotifier;
+
+- (NetworkStatus)currentReachabilityStatus;
+
+/*!
+ * WWAN may be available, but not active until a connection has been established. WiFi may require a connection for VPN on Demand.
+ */
+- (BOOL)connectionRequired;
+
+@end
+
+
