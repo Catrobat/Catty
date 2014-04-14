@@ -330,22 +330,21 @@
   return cell;
 }
 
--(UITableViewCell*)cellForSearchResultsTableView:(UITableView*)tableView atIndexPath:(NSIndexPath*)indexPath
+- (UITableViewCell*)cellForSearchResultsTableView:(UITableView*)tableView atIndexPath:(NSIndexPath*)indexPath
 {
   static NSString *searchCellIdentifier = kSearchCell;
-  UITableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:searchCellIdentifier forIndexPath:indexPath];
-  if (cell == nil) {
+  UITableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:searchCellIdentifier];
+  if (! cell) {
     cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:searchCellIdentifier];
     cell.textLabel.textColor = [UIColor blueGrayColor];
     cell.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"darkblue"]];
   }
-
   CatrobatProject *project = [self.searchResults objectAtIndex:indexPath.row];
   cell.textLabel.text = project.projectName;
   return cell;
 }
 
--(void)loadImage:(NSString*)imageURLString forCell:(UITableViewCell <CatrobatImageCell>*) imageCell atIndexPath:(NSIndexPath*)indexPath
+- (void)loadImage:(NSString*)imageURLString forCell:(UITableViewCell <CatrobatImageCell>*) imageCell atIndexPath:(NSIndexPath*)indexPath
 {
   imageCell.iconImageView.image =
   [UIImage imageWithContentsOfURL:[NSURL URLWithString:imageURLString]
