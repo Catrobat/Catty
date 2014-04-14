@@ -279,13 +279,14 @@
             NSDebug(@"reachable via Wifi");
             return YES;
         } else if (remoteHostStatus == ReachableViaWWAN){
-            if (self.reachability.connectionRequired) {
+            if (!self.reachability.connectionRequired) {
                 NSDebug(@"reachable via celullar");
                 return YES;
             }else{
                 NSDebug(@" not reachable via celullar");
                 return NO;
             }
+            return YES;
         }
     }
     return [super shouldPerformSegueWithIdentifier:identifier sender:sender];
@@ -355,7 +356,6 @@
 {
     
     NetworkStatus remoteHostStatus = [self.reachability currentReachabilityStatus];
-    
     if(remoteHostStatus == NotReachable) {
         if ([self.navigationController.topViewController isKindOfClass:[DownloadTabBarController class]] ||
             [self.navigationController.topViewController isKindOfClass:[ProgramDetailStoreViewController class]]) {
@@ -367,13 +367,14 @@
         NSDebug(@"reachable via Wifi");
     }  else if (remoteHostStatus == ReachableViaWWAN){
         if (!self.reachability.connectionRequired) {
+            NSDebug(@"celluar data ok");
+        }else{
+           NSDebug(@"reachable via cellular but no data");
             if ([self.navigationController.topViewController isKindOfClass:[DownloadTabBarController class]] ||
                 [self.navigationController.topViewController isKindOfClass:[ProgramDetailStoreViewController class]]) {
                 [Util alertWithText:@"No Internet Connection!"];
                 [self.navigationController popToRootViewControllerAnimated:YES];
             }
-        }else{
-           NSDebug(@"reachable via cellular");
         }
     }
 }
