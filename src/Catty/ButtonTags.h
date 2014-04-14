@@ -20,15 +20,8 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#ifndef Catty_ButtonTags_h
-#define Catty_ButtonTags_h
-
 #define kDownloadButtonTag 501
 #define kPlayButtonTag 502
 #define kStopLoadingTag 503
 
 #define kActivityIndicator 228
-
-
-
-#endif

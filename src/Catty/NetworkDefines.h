@@ -20,9 +20,6 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#ifndef Catty_NetworkDefines_h
-#define Catty_NetworkDefines_h
-
 #define kConnectionTimeout 30
 #define kConnectionHost @"https://pocketcode.org/api/projects"
 #define kBaseUrl @"https://pocketcode.org/"
@@ -39,6 +36,3 @@
 
 #define kProgramsOffset @"offset="
 #define kProgramsLimit @"limit="
-
-
-#endif

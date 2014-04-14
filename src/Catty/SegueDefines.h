@@ -20,9 +20,6 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#ifndef Catty_SegueDefines_h
-#define Catty_SegueDefines_h
-
 #define kSegueToContinue @"segueToContinue"
 #define kSegueToContinue1 @"segueToContinue1"
 #define kSegueToContinue2 @"segueToContinue2"
@@ -42,5 +39,3 @@
 #define kSegueToSounds @"segueToSounds"
 #define kSegueToImage1 @"segueToImage1"
 #define kSegueToImage2 @"segueToImage2"
-
-#endif
