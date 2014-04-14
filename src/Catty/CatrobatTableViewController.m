@@ -284,6 +284,7 @@
                 return YES;
             }else{
                 NSDebug(@" not reachable via celullar");
+                [Util alertWithText:@"No Internet Connection!"];
                 return NO;
             }
             return YES;
