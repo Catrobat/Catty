@@ -60,7 +60,7 @@
     self.webView.scrollView.delegate = self;
     self.webView.backgroundColor = [UIColor darkBlueColor];
     self.WebviewFinishedLoading = NO;
-    [TableUtil initNavigationItem:self.navigationItem withTitle:kUIViewControllerTitleHelp];
+    self.navigationItem.title = kUIViewControllerTitleHelp;
 
     NSURL *url = [NSURL URLWithString:kForumURL];
     NSURLRequest *request = [NSURLRequest requestWithURL:url];

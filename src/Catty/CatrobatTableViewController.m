@@ -147,7 +147,7 @@
 
 - (void)initNavigationBar
 {
-    [TableUtil initNavigationItem:self.navigationItem withTitle:@"Pocket Code"];
+    self.navigationItem.title = kUIViewControllerTitlePocketCode;
     UIButton *button = [UIButton buttonWithType:UIButtonTypeInfoLight];
     [button addTarget:self action:@selector(infoPressed:) forControlEvents:UIControlEventTouchUpInside];
     UIBarButtonItem *infoItem = [[UIBarButtonItem alloc] initWithCustomView:button];

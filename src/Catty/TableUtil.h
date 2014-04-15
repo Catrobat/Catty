@@ -30,8 +30,6 @@
 
 + (CGFloat)getHeightForImageCell;
 
-+ (void)initNavigationItem:(UINavigationItem*)navigationItem withTitle:(NSString*)title;
-
 + (UIBarButtonItem*)editButtonItemWithTarget:(id)target action:(SEL)action;
 
 + (void)addSeperatorForCell:(CatrobatBaseCell*)cell;

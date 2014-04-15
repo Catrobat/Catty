@@ -92,6 +92,7 @@
  * -----------------------------------------------------------------------------------------------------------
  */
 
+#define kUIViewControllerTitlePocketCode NSLocalizedString(@"Pocket Code", nil)
 #define kUIViewControllerTitleCategories NSLocalizedString(@"Categories", nil)
 #define kUIViewControllerTitleExplore NSLocalizedString(@"Explore", nil)
 #define kUIViewControllerTitleHelp NSLocalizedString(@"Help", nil)
@@ -100,6 +101,7 @@
 #define kUIViewControllerTitleSounds NSLocalizedString(@"Sounds", nil)
 #define kUIViewControllerTitleChooseSound NSLocalizedString(@"Choose sound", nil)
 #define kUIViewControllerTitlePrograms NSLocalizedString(@"Programs", nil)
+#define kUIViewControllerTitleFeaturedPrograms NSLocalizedString(@"Featured Programs", nil)
 
 /*
  * -----------------------------------------------------------------------------------------------------------

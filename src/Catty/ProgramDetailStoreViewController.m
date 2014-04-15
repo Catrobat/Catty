@@ -74,7 +74,7 @@
     self.hidesBottomBarWhenPushed = YES;
     
     self.view.backgroundColor = [UIColor darkBlueColor];
-    //[TableUtil initNavigationItem:self.navigationItem withTitle:@"Info" enableBackButton:YES target:self];
+    self.navigationItem.title = kUIViewControllerTitleInfo;
     NSDebug(@"%@",self.project.author);
     self.projectView = [self createViewForProject:self.project];
     if(!self.project.author){
@@ -104,8 +104,6 @@
 - (void)initNavigationBar
 {
     self.title = self.navigationItem.title = kUIViewControllerTitleInfo;
-    UIImageView *imageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"menu_icon"]];
-    [self.navigationItem setRightBarButtonItem:[[UIBarButtonItem alloc] initWithCustomView:imageView]];
 }
 
 - (void) viewWillDisappear:(BOOL)animated

@@ -134,9 +134,9 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
+
     [[UIApplication sharedApplication] setStatusBarHidden:YES];
-    
+
     //    ///MENU_BUTTON:::Button before Sliding Menu!!!
     //    self.menuBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     //    menuBtn.frame = CGRectMake(8.0f, 10.0f, 34.0f, 24.0f);

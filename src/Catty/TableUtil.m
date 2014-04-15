@@ -53,13 +53,6 @@
     }
 }
 
-+ (void)initNavigationItem:(UINavigationItem*)navigationItem withTitle:(NSString*)title
-{
-    navigationItem.title = title;
-    UIImageView *imageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"menu_icon"]];
-    navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:imageView];
-}
-
 + (UIBarButtonItem*)editButtonItemWithTarget:(id)target action:(SEL)action
 {
     UIBarButtonItem *editButton = [[UIBarButtonItem alloc] initWithTitle:kUIBarButtonItemTitleEdit
