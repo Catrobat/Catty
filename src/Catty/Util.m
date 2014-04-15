@@ -43,7 +43,7 @@
     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:kUIAlertViewTitleStandard
                                                     message:kUIAlertViewMessageFeatureComingSoon
                                                    delegate:nil
-                                          cancelButtonTitle:kBtnOKTitle
+                                          cancelButtonTitle:kUIAlertViewButtonTitleOK
                                           otherButtonTitles:nil];
     [alert show];
 }
@@ -58,7 +58,7 @@
     UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:kUIAlertViewTitleStandard
                                                         message:text
                                                        delegate:delegate
-                                              cancelButtonTitle:kBtnOKTitle
+                                              cancelButtonTitle:kUIAlertViewButtonTitleOK
                                               otherButtonTitles:nil];
     alertView.tag = tag;
     [alertView show];
@@ -75,8 +75,8 @@
                                                        delegate:delegate
                                               cancelButtonTitle:nil
                                               otherButtonTitles:nil];
-    [alertView addButtonWithTitle:kBtnAgreeTitle];
-    alertView.cancelButtonIndex = [alertView addButtonWithTitle:kBtnDisagreeTitle];
+    [alertView addButtonWithTitle:kUIAlertViewButtonTitleYes];
+    alertView.cancelButtonIndex = [alertView addButtonWithTitle:kUIAlertViewButtonTitleNo];
     alertView.tag = tag;
     [alertView show];
     return alertView;
@@ -109,8 +109,8 @@
     UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:title
                                                         message:message
                                                        delegate:delegate
-                                              cancelButtonTitle:kBtnCancelTitle
-                                              otherButtonTitles:kBtnOKTitle, nil];
+                                              cancelButtonTitle:kUIAlertViewButtonTitleCancel
+                                              otherButtonTitles:kUIAlertViewButtonTitleOK, nil];
     alertView.tag = tag;
     alertView.alertViewStyle = UIAlertViewStylePlainTextInput;
     UITextField *textField = [alertView textFieldAtIndex:0];
@@ -144,7 +144,7 @@
             [actionSheet addButtonWithTitle:otherButtonTitle];
         }
     }
-    actionSheet.cancelButtonIndex = [actionSheet addButtonWithTitle:kBtnCancelTitle];
+    actionSheet.cancelButtonIndex = [actionSheet addButtonWithTitle:kUIActionSheetButtonTitleCancel];
     actionSheet.tag = tag;
     actionSheet.actionSheetStyle = UIActionSheetStyleDefault;
     [actionSheet showInView:view];

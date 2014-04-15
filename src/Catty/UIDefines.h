@@ -20,38 +20,9 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
+#import "LanguageTranslationDefines.h"
+
 #define kTextFieldAllowedCharacters @"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz_ 1234567890"
-
-#define kBtnCancelTitle NSLocalizedString(@"Cancel", @"Cancel button for views")
-#define kBtnOKTitle NSLocalizedString(@"OK", @"OK button for views")
-#define kBtnAgreeTitle NSLocalizedString(@"Yes", @"Agree button for views")
-#define kBtnDisagreeTitle NSLocalizedString(@"No", @"Disagree button for views")
-#define kBtnDeleteTitle NSLocalizedString(@"Delete", @"Delete button for views")
-
-#define kTitleNewProgram NSLocalizedString(@"New program",nil)
-
-#define kMsgInvalidProgramName NSLocalizedString(@"No or invalid program name entered, try again.",nil)
-#define kMsgInvalidProgramNameAlreadyExists NSLocalizedString(@"A program with the same name already exists, try again.",nil)
-#define kMsgInvalidObjectName NSLocalizedString(@"No or invalid object name entered, try again.",nil)
-#define kMsgUnableToLoadProgram NSLocalizedString(@"Unable to load program!",nil)
-#define kMsgPromptProgramName NSLocalizedString(@"Program name:",nil)
-
-#define kConfirmTitleDeleteObjects NSLocalizedString(@"Delete these objects", nil)
-#define kConfirmTitleDeleteObject NSLocalizedString(@"Delete this object", nil)
-#define kConfirmTitleDeletePrograms NSLocalizedString(@"Delete these programs", nil)
-#define kConfirmTitleDeleteProgram NSLocalizedString(@"Delete this program", nil)
-#define kConfirmTitleDeleteLooks NSLocalizedString(@"Delete these looks", nil)
-#define kConfirmTitleDeleteLook NSLocalizedString(@"Delete this look", nil)
-#define kConfirmTitleDeleteSounds NSLocalizedString(@"Delete these sounds", nil)
-#define kConfirmTitleDeleteSound NSLocalizedString(@"Delete this sound", nil)
-#define kConfirmMessageDelete NSLocalizedString(@"This can not be undone!", nil)
-
-#define kMenuTitleContinue NSLocalizedString(@"Continue",nil)
-#define kMenuTitleNew NSLocalizedString(@"New",nil)
-#define kMenuTitlePrograms NSLocalizedString(@"Programs",nil)
-#define kMenuTitleHelp NSLocalizedString(@"Help",nil)
-#define kMenuTitleExplore NSLocalizedString(@"Explore",nil)
-#define kMenuTitleUpload NSLocalizedString(@"Upload",nil)
 
 #define kMenuImageNameContinue @"continue"
 #define kMenuImageNameNew @"new"
@@ -80,11 +51,11 @@ typedef NS_ENUM(NSInteger, kBrickCategoryType) {
 
 // brick categories
 #define kBrickCategoryNames @[\
-    NSLocalizedString(@"Control",nil),\
-    NSLocalizedString(@"Motion",nil),\
-    NSLocalizedString(@"Sound",nil),\
-    NSLocalizedString(@"Looks",nil),\
-    NSLocalizedString(@"Variables",nil)\
+    kBrickCellControlCategoryTitle,\
+    kBrickCellMotionCategoryTitle,\
+    kBrickCellSoundCategoryTitle,\
+    kBrickCellLooksCategoryTitle,\
+    kBrickCellVariablesCategoryTitle\
 ]
 
 #define kBrickCategoryColors @[\
@@ -168,19 +139,19 @@ typedef NS_ENUM(NSInteger, kControlBrickType) {
 // {INT;range=[0, 11)}       ... All positive integer numbers 0-10
 
 #define kControlBrickNames @[\
-    NSLocalizedString(@"When program started",nil),\
-    NSLocalizedString(@"When tapped",nil),\
-    NSLocalizedString(@"Wait %@ second(s)",nil),\
-    NSLocalizedString(@"When I receive\n%@",nil),\
-    NSLocalizedString(@"Broadcast\n%@",nil),\
-    NSLocalizedString(@"Broadcast and wait\n%@",nil),\
-    NSLocalizedString(@"Note %@",nil),\
-    NSLocalizedString(@"Forever",nil),\
-    NSLocalizedString(@"If %@ is true then",nil),\
-    NSLocalizedString(@"Else",nil),\
-    NSLocalizedString(@"If End",nil),\
-    NSLocalizedString(@"Repeat %@ times",nil),\
-    NSLocalizedString(@"End of Loop",nil)\
+    kBrickCellControlTitleWhenProgramStarted,\
+    kBrickCellControlTitleWhenTapped,\
+    kBrickCellControlTitleWait,\
+    kBrickCellControlTitleWhenIReceive,\
+    kBrickCellControlTitleBroadcast,\
+    kBrickCellControlTitleBroadcastAndWait,\
+    kBrickCellControlTitleNote,\
+    kBrickCellControlTitleForever,\
+    kBrickCellControlTitleIf,\
+    kBrickCellControlTitleElse,\
+    kBrickCellControlTitleEndIf,\
+    kBrickCellControlTitleRepeat,\
+    kBrickCellControlTitleEndOfLoop\
 ]
 
 #define kControlBrickNameParams @[\
@@ -250,20 +221,20 @@ typedef NS_ENUM(NSInteger, kMotionBrickType) {
 };
 
 #define kMotionBrickNames @[\
-    NSLocalizedString(@"Place at\nX: %@ Y: %@",nil),\
-    NSLocalizedString(@"Set X to %@",nil),\
-    NSLocalizedString(@"Set Y to %@",nil),\
-    NSLocalizedString(@"Change X by %@",nil),\
-    NSLocalizedString(@"Change Y by %@",nil),\
-    NSLocalizedString(@"If on edge, bounce",nil),\
-    NSLocalizedString(@"Move %@ step(s)",nil),\
-    NSLocalizedString(@"Turn left %@°",nil),\
-    NSLocalizedString(@"Turn right %@°",nil),\
-    NSLocalizedString(@"Point in direction %@°",nil),\
-    NSLocalizedString(@"Point towards\n%@",nil),\
-    NSLocalizedString(@"Glide %@ second(s)\nto X: %@ Y: %@",nil),\
-    NSLocalizedString(@"Go back %@ layer(s)",nil),\
-    NSLocalizedString(@"Go to front",nil)\
+    kBrickCellMotionTitlePlaceAt,\
+    kBrickCellMotionTitleSetX,\
+    kBrickCellMotionTitleSetY,\
+    kBrickCellMotionTitleChangeX,\
+    kBrickCellMotionTitleChangeY,\
+    kBrickCellMotionTitleIfOnEdgeBounce,\
+    kBrickCellMotionTitleMoveNSteps,\
+    kBrickCellMotionTitleTurnLeft,\
+    kBrickCellMotionTitleTurnRight,\
+    kBrickCellMotionTitlePointInDirection,\
+    kBrickCellMotionTitlePointTowards,\
+    kBrickCellMotionTitleGlideTo,\
+    kBrickCellMotionTitleGoNStepsBack,\
+    kBrickCellMotionTitleComeToFront\
 ]
 
 #define kMotionBrickNameParams @[\
@@ -327,11 +298,11 @@ typedef NS_ENUM(NSInteger, kSoundBrickType) {
 };
 
 #define kSoundBrickNames @[\
-    NSLocalizedString(@"Start sound\n%@",nil),\
-    NSLocalizedString(@"Stop all sounds",nil),\
-    NSLocalizedString(@"Set volume to %@\%",nil),\
-    NSLocalizedString(@"Change volume by %@",nil),\
-    NSLocalizedString(@"Speak %@",nil)\
+    kBrickCellSoundTitlePlaySound,\
+    kBrickCellSoundTitleStopAllSounds,\
+    kBrickCellSoundTitleSetVolumeTo,\
+    kBrickCellSoundTitleChangeVolumeByN,\
+    kBrickCellSoundTitleSpeak\
 ]
 
 #define kSoundBrickNameParams @[\
@@ -374,17 +345,17 @@ typedef NS_ENUM(NSInteger, kLookBrickType) {
 };
 
 #define kLookBrickNames @[\
-    NSLocalizedString(@"Switch to look\n%@",nil),\
-    NSLocalizedString(@"Next look",nil),\
-    NSLocalizedString(@"Set size to %@\%",nil),\
-    NSLocalizedString(@"Change size by %@\%",nil),\
-    NSLocalizedString(@"Hide",nil),\
-    NSLocalizedString(@"Show",nil),\
-    NSLocalizedString(@"Set transparency\nto %@\%",nil),\
-    NSLocalizedString(@"Change transparency\nby %@\%",nil),\
-    NSLocalizedString(@"Set brightness to %@\%",nil),\
-    NSLocalizedString(@"Change brightness\nby %@\%",nil),\
-    NSLocalizedString(@"Clear graphic effects",nil)\
+    kBrickCellLookTitleSetLook,\
+    kBrickCellLookTitleNextLook,\
+    kBrickCellLookTitleSetSizeTo,\
+    kBrickCellLookTitleChangeSizeByN,\
+    kBrickCellLookTitleHide,\
+    kBrickCellLookTitleShow,\
+    kBrickCellLookTitleSetGhostEffect,\
+    kBrickCellLookTitleChangeGhostEffectByN,\
+    kBrickCellLookTitleSetBrightness,\
+    kBrickCellLookTitleChangeBrightnessByN,\
+    kBrickCellLookTitleClearGraphicEffect\
 ]
 
 #define kLookBrickNameParams @[\
@@ -436,8 +407,8 @@ typedef NS_ENUM(NSInteger, kVariableBrickType) {
 };
 
 #define kVariableBrickNames @[\
-    NSLocalizedString(@"Set variable\n%@\nto %@",nil),\
-    NSLocalizedString(@"Change variable\n%@\nby %@",nil)\
+    kBrickCellVariableTitleSetVariable,\
+    kBrickCellVariableTitleChangeVariable\
 ]
 
 #define kVariableBrickNameParams @[\
@@ -482,7 +453,7 @@ typedef NS_ENUM(NSInteger, kBrickShapeType) {
     @{},                                                  /* control bricks  */\
     @{},                                                  /* motion bricks   */\
     @{},                                                  /* sound bricks    */\
-    @{@(kSetLookBrick) : NSLocalizedString(@"Set background\n%@",nil), @(kNextLookBrick) : NSLocalizedString(@"Next background",nil) }, /* look bricks     */\
+    @{@(kSetLookBrick) : kBrickCellLookTitleSetBackground, @(kNextLookBrick) : kBrickCellLookTitleNextBackground }, /* look bricks     */\
     @{}                                                   /* variable bricks */\
 ]
 

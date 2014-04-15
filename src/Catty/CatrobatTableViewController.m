@@ -134,7 +134,13 @@
 - (void)initTableView
 {
     [super initTableView];
-    self.cells = [[NSArray alloc] initWithObjects:kMenuTitleContinue, kMenuTitleNew, kMenuTitlePrograms, kMenuTitleHelp, kMenuTitleExplore, kMenuTitleUpload, nil];
+    self.cells = [[NSArray alloc] initWithObjects:
+                  kUITableViewControllerMenuTitleContinue,
+                  kUITableViewControllerMenuTitleNew,
+                  kUITableViewControllerMenuTitlePrograms,
+                  kUITableViewControllerMenuTitleHelp,
+                  kUITableViewControllerMenuTitleExplore,
+                  kUITableViewControllerMenuTitleUpload, nil];
     self.imageNames = [[NSArray alloc] initWithObjects:kMenuImageNameContinue, kMenuImageNameNew, kMenuImageNamePrograms, kMenuImageNameHelp, kMenuImageNameExplore, kMenuImageNameUpload, nil];
     self.identifiers = [[NSArray alloc] initWithObjects:kSegueToContinue, kSegueToNewProgram, kSegueToPrograms, kSegueToHelp, kSegueToExplore, kSegueToUpload, nil];
 }
@@ -254,14 +260,14 @@
         [Util setLastProgram:nil];
         NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:0];
         [self.tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationNone];
-        [Util alertWithText:kMsgUnableToLoadProgram];
+        [Util alertWithText:kUIAlertViewMessageUnableToLoadProgram];
         return NO;
     } else if ([identifier isEqualToString:kSegueToNewProgram]) {
         // if there is no program name, abort performing this segue and ask user for program name
         // after user entered a valid program name this segue will be called again and accepted
         if (! self.defaultProgram) {
-            [Util promptWithTitle:kTitleNewProgram
-                          message:kMsgPromptProgramName
+            [Util promptWithTitle:kUIAlertViewTitleNewProgram
+                          message:[NSString stringWithFormat:@"%@:", kUIAlertViewMessageProgramName]
                          delegate:self
                       placeholder:kUIAlertViewPlaceholderEnterProgramName
                               tag:kNewProgramAlertViewTag
@@ -332,9 +338,9 @@
         }
         kProgramNameValidationResult validationResult = [Program validateProgramName:input];
         if (validationResult == kProgramNameValidationResultInvalid) {
-            [Util alertWithText:kMsgInvalidProgramName delegate:self tag:kInvalidProgramNameWarningAlertViewTag];
+            [Util alertWithText:kUIAlertViewMessageInvalidProgramName delegate:self tag:kInvalidProgramNameWarningAlertViewTag];
         } else if (validationResult == kProgramNameValidationResultAlreadyExists) {
-            [Util alertWithText:kMsgInvalidProgramNameAlreadyExists delegate:self tag:kInvalidProgramNameWarningAlertViewTag];
+            [Util alertWithText:kUIAlertViewMessageProgramNameAlreadyExists delegate:self tag:kInvalidProgramNameWarningAlertViewTag];
         } else if (validationResult == kProgramNameValidationResultOK) {
             self.defaultProgram = [Program defaultProgramWithName:input];
             if ([self shouldPerformSegueWithIdentifier:segueToNewProgramIdentifier sender:self]) {
@@ -344,8 +350,8 @@
     } else if (alertView.tag == kInvalidProgramNameWarningAlertViewTag) {
         // title of cancel button is "OK"
         if (buttonIndex == alertView.cancelButtonIndex) {
-            [Util promptWithTitle:kTitleNewProgram
-                          message:kMsgPromptProgramName
+            [Util promptWithTitle:kUIAlertViewTitleNewProgram
+                          message:[NSString stringWithFormat:@"%@:", kUIAlertViewMessageProgramName]
                          delegate:self
                       placeholder:kUIAlertViewPlaceholderEnterProgramName
                               tag:kNewProgramAlertViewTag

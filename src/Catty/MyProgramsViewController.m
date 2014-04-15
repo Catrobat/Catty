@@ -172,8 +172,9 @@
                        canceledAction:@selector(exitEditingMode)
                                target:self
                          confirmTitle:(([selectedRowsIndexPaths count] != 1)
-                                       ? kConfirmTitleDeletePrograms : kConfirmTitleDeleteProgram)
-                       confirmMessage:kConfirmMessageDelete];
+                                       ? kUIAlertViewTitleDeleteMultiplePrograms
+                                       : kUIAlertViewTitleDeleteSingleProgram)
+                       confirmMessage:kUIAlertViewMessageIrreversibleAction];
 }
 
 - (void)deleteSelectedProgramsAction
@@ -273,8 +274,8 @@
                            canceledAction:nil
                                withObject:indexPath
                                    target:self
-                             confirmTitle:kConfirmTitleDeleteProgram
-                           confirmMessage:kConfirmMessageDelete];
+                             confirmTitle:kUIAlertViewTitleDeleteSingleProgram
+                           confirmMessage:kUIAlertViewMessageIrreversibleAction];
     }
 }
 
@@ -389,15 +390,15 @@
             }
 
             // program failed loading...
-            [Util alertWithText:kMsgUnableToLoadProgram];
+            [Util alertWithText:kUIAlertViewMessageUnableToLoadProgram];
             return NO;
         }
     } else if ([identifier isEqualToString:segueToNewProgram]) {
         // if there is no program name, abort performing this segue and ask user for program name
         // after user entered a valid program name this segue will be called again and accepted
         if (! self.defaultProgram) {
-            [Util promptWithTitle:kTitleNewProgram
-                          message:kMsgPromptProgramName
+            [Util promptWithTitle:kUIAlertViewTitleNewProgram
+                          message:[NSString stringWithFormat:@"%@:", kUIAlertViewMessageProgramName]
                          delegate:self
                       placeholder:kUIAlertViewPlaceholderEnterProgramName
                               tag:kNewProgramAlertViewTag
@@ -484,11 +485,11 @@
         }
         kProgramNameValidationResult validationResult = [Program validateProgramName:input];
         if (validationResult == kProgramNameValidationResultInvalid) {
-            [Util alertWithText:kMsgInvalidProgramName
+            [Util alertWithText:kUIAlertViewMessageInvalidProgramName
                        delegate:self
                             tag:kInvalidProgramNameWarningAlertViewTag];
         } else if (validationResult == kProgramNameValidationResultAlreadyExists) {
-            [Util alertWithText:kMsgInvalidProgramNameAlreadyExists
+            [Util alertWithText:kUIAlertViewMessageProgramNameAlreadyExists
                        delegate:self
                             tag:kInvalidProgramNameWarningAlertViewTag];
         } else if (validationResult == kProgramNameValidationResultOK) {
@@ -501,8 +502,8 @@
     } else if (alertView.tag == kInvalidProgramNameWarningAlertViewTag) {
         // title of cancel button is "OK"
         if (buttonIndex == alertView.cancelButtonIndex) {
-            [Util promptWithTitle:kTitleNewProgram
-                          message:kMsgPromptProgramName
+            [Util promptWithTitle:kUIAlertViewTitleNewProgram
+                          message:kUIAlertViewMessageProgramName
                          delegate:self
                       placeholder:kUIAlertViewPlaceholderEnterProgramName
                               tag:kNewProgramAlertViewTag

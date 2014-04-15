@@ -26,7 +26,7 @@
  * -----------------------------------------------------------------------------------------------------------
  */
 
-#define kGeneralNewDefaultProgramName NSLocalizedString(@"New Program",@"Default name for new programs")
+#define kGeneralNewDefaultProgramName NSLocalizedString(@"New Program", @"Default name for new programs")
 #define kGeneralBackgroundObjectName NSLocalizedString(@"Background", @"Title for background object")
 #define kGeneralDefaultObjectName NSLocalizedString(@"My Object", @"Title for first (default) object")
 
@@ -120,6 +120,13 @@
  * -----------------------------------------------------------------------------------------------------------
  */
 
+#define kUITableViewControllerMenuTitleContinue NSLocalizedString(@"Continue", nil)
+#define kUITableViewControllerMenuTitleNew NSLocalizedString(@"New", nil)
+#define kUITableViewControllerMenuTitlePrograms NSLocalizedString(@"Programs", nil)
+#define kUITableViewControllerMenuTitleHelp NSLocalizedString(@"Help", nil)
+#define kUITableViewControllerMenuTitleExplore NSLocalizedString(@"Explore", nil)
+#define kUITableViewControllerMenuTitleUpload NSLocalizedString(@"Upload", nil)
+
 #define kUITableViewControllerMenuTitleScripts kUIViewControllerPlaceholderTitleScripts
 #define kUITableViewControllerMenuTitleBackgrounds kUIViewControllerPlaceholderTitleBackgrounds
 #define kUITableViewControllerMenuTitleLooks kUIViewControllerPlaceholderTitleLooks
@@ -182,6 +189,7 @@
 #define kUIActionSheetButtonTitleCameraRoll NSLocalizedString(@"Camera Roll", nil)
 #define kUIActionSheetButtonTitleProject NSLocalizedString(@"Project", nil)
 #define kUIActionSheetButtonTitleCancel NSLocalizedString(@"Cancel", nil)
+#define kUIActionSheetButtonTitleDelete NSLocalizedString(@"Delete", nil)
 
 /*
  * -----------------------------------------------------------------------------------------------------------
@@ -206,6 +214,15 @@
 #define kUIAlertViewTitleCantRestartProgram NSLocalizedString(@"Can't restart program!", nil)
 #define kUIAlertViewTitleScreenshotSavedToCameraRoll NSLocalizedString(@"Screenshot saved to Camera Roll", nil)
 #define kUIAlertViewTitleScreenshotSavedToProject NSLocalizedString(@"Screenshot saved to project", nil)
+#define kUIAlertViewTitleNewProgram NSLocalizedString(@"New program", nil)
+#define kUIAlertViewTitleDeleteMultipleObjects NSLocalizedString(@"Delete these objects", nil)
+#define kUIAlertViewTitleDeleteSingleObject NSLocalizedString(@"Delete this object", nil)
+#define kUIAlertViewTitleDeleteMultiplePrograms NSLocalizedString(@"Delete these programs", nil)
+#define kUIAlertViewTitleDeleteSingleProgram NSLocalizedString(@"Delete this program", nil)
+#define kUIAlertViewTitleDeleteMultipleLooks NSLocalizedString(@"Delete these looks", nil)
+#define kUIAlertViewTitleDeleteSingleLook NSLocalizedString(@"Delete this look", nil)
+#define kUIAlertViewTitleDeleteMultipleSounds NSLocalizedString(@"Delete these sounds", nil)
+#define kUIAlertViewTitleDeleteSingleSound NSLocalizedString(@"Delete this sound", nil)
 
 // placeholder defines
 #define kUIAlertViewPlaceholderEnterProgramName NSLocalizedString(@"Enter your program name here...", @"Placeholder for program-name input field")
@@ -217,8 +234,18 @@
 #define kUIAlertViewMessageProgramName NSLocalizedString(@"Program name", nil)
 #define kUIAlertViewMessageObjectName NSLocalizedString(@"Object name", nil)
 #define kUIAlertViewMessageNoImportedSoundsFound NSLocalizedString(@"No imported sounds found. Please connect your iPhone to your PC/Mac and use iTunes FileSharing to import sound files into the PocketCode app.", nil)
+#define kUIAlertViewMessageInvalidProgramName NSLocalizedString(@"No or invalid program name entered, try again.", nil)
+#define kUIAlertViewMessageProgramNameAlreadyExists NSLocalizedString(@"A program with the same name already exists, try again.", nil)
+#define kUIAlertViewMessageInvalidObjectName NSLocalizedString(@"No or invalid object name entered, try again.", nil)
+#define kUIAlertViewMessageUnableToLoadProgram NSLocalizedString(@"Unable to load program!", nil)
+#define kUIAlertViewMessageIrreversibleAction NSLocalizedString(@"This can not be undone!", nil)
 
+// button defines
 #define kUIAlertViewButtonTitleOK NSLocalizedString(@"OK", nil)
+#define kUIAlertViewButtonTitleCancel NSLocalizedString(@"Cancel", nil)
+#define kUIAlertViewButtonTitleYes NSLocalizedString(@"Yes", nil)
+#define kUIAlertViewButtonTitleNo NSLocalizedString(@"No", nil)
+#define kUIAlertViewButtonTitleDelete NSLocalizedString(@"Delete", nil)
 
 /*
  * -----------------------------------------------------------------------------------------------------------
@@ -265,3 +292,73 @@
 #define kUISegmentedControlTitleMostDownloaded NSLocalizedString(@"Most Downloaded", nil)
 #define kUISegmentedControlTitleMostViewed NSLocalizedString(@"Most Viewed", nil)
 #define kUISegmentedControlTitleNewest NSLocalizedString(@"Newest", nil)
+
+/*
+ * -----------------------------------------------------------------------------------------------------------
+ * BrickCell title defines
+ * -----------------------------------------------------------------------------------------------------------
+ */
+
+// categories
+#define kBrickCellControlCategoryTitle NSLocalizedString(@"Control", nil)
+#define kBrickCellMotionCategoryTitle NSLocalizedString(@"Motion", nil)
+#define kBrickCellSoundCategoryTitle NSLocalizedString(@"Sound", nil)
+#define kBrickCellLooksCategoryTitle NSLocalizedString(@"Looks", nil)
+#define kBrickCellVariablesCategoryTitle NSLocalizedString(@"Variables", nil)
+
+// control bricks
+#define kBrickCellControlTitleWhenProgramStarted NSLocalizedString(@"When program started", nil)
+#define kBrickCellControlTitleWhenTapped NSLocalizedString(@"When tapped", nil)
+#define kBrickCellControlTitleWait NSLocalizedString(@"Wait %@ second(s)", nil)
+#define kBrickCellControlTitleWhenIReceive NSLocalizedString(@"When I receive\n%@", nil)
+#define kBrickCellControlTitleBroadcast NSLocalizedString(@"Broadcast\n%@", nil)
+#define kBrickCellControlTitleBroadcastAndWait NSLocalizedString(@"Broadcast and wait\n%@", nil)
+#define kBrickCellControlTitleNote NSLocalizedString(@"Note %@", nil)
+#define kBrickCellControlTitleForever NSLocalizedString(@"Forever", nil)
+#define kBrickCellControlTitleIf NSLocalizedString(@"If %@ is true then", nil)
+#define kBrickCellControlTitleElse NSLocalizedString(@"Else", nil)
+#define kBrickCellControlTitleEndIf NSLocalizedString(@"If End", nil)
+#define kBrickCellControlTitleRepeat NSLocalizedString(@"Repeat %@ times", nil)
+#define kBrickCellControlTitleEndOfLoop NSLocalizedString(@"End of Loop", nil)
+
+// motion bricks
+#define kBrickCellMotionTitlePlaceAt NSLocalizedString(@"Place at\nX: %@ Y: %@", nil)
+#define kBrickCellMotionTitleSetX NSLocalizedString(@"Set X to %@", nil)
+#define kBrickCellMotionTitleSetY NSLocalizedString(@"Set Y to %@", nil)
+#define kBrickCellMotionTitleChangeX NSLocalizedString(@"Change X by %@", nil)
+#define kBrickCellMotionTitleChangeY NSLocalizedString(@"Change Y by %@", nil)
+#define kBrickCellMotionTitleIfOnEdgeBounce NSLocalizedString(@"If on edge, bounce", nil)
+#define kBrickCellMotionTitleMoveNSteps NSLocalizedString(@"Move %@ step(s)", nil)
+#define kBrickCellMotionTitleTurnLeft NSLocalizedString(@"Turn left %@°", nil)
+#define kBrickCellMotionTitleTurnRight NSLocalizedString(@"Turn right %@°", nil)
+#define kBrickCellMotionTitlePointInDirection NSLocalizedString(@"Point in direction %@°", nil)
+#define kBrickCellMotionTitlePointTowards NSLocalizedString(@"Point towards\n%@", nil)
+#define kBrickCellMotionTitleGlideTo NSLocalizedString(@"Glide %@ second(s)\nto X: %@ Y: %@", nil)
+#define kBrickCellMotionTitleGoNStepsBack NSLocalizedString(@"Go back %@ layer(s)", nil)
+#define kBrickCellMotionTitleComeToFront NSLocalizedString(@"Go to front", nil)
+
+// look bricks
+#define kBrickCellLookTitleSetLook NSLocalizedString(@"Switch to look\n%@", nil)
+#define kBrickCellLookTitleSetBackground NSLocalizedString(@"Set background\n%@", nil)
+#define kBrickCellLookTitleNextLook NSLocalizedString(@"Next look", nil)
+#define kBrickCellLookTitleNextBackground NSLocalizedString(@"Next background", nil)
+#define kBrickCellLookTitleSetSizeTo NSLocalizedString(@"Set size to %@\%", nil)
+#define kBrickCellLookTitleChangeSizeByN NSLocalizedString(@"Change size by %@\%", nil)
+#define kBrickCellLookTitleHide NSLocalizedString(@"Hide", nil)
+#define kBrickCellLookTitleShow NSLocalizedString(@"Show", nil)
+#define kBrickCellLookTitleSetGhostEffect NSLocalizedString(@"Set transparency\nto %@\%", nil)
+#define kBrickCellLookTitleChangeGhostEffectByN NSLocalizedString(@"Change transparency\nby %@\%", nil)
+#define kBrickCellLookTitleSetBrightness NSLocalizedString(@"Set brightness to %@\%", nil)
+#define kBrickCellLookTitleChangeBrightnessByN NSLocalizedString(@"Change brightness\nby %@\%", nil)
+#define kBrickCellLookTitleClearGraphicEffect NSLocalizedString(@"Clear graphic effects", nil)
+
+// sound bricks
+#define kBrickCellSoundTitlePlaySound NSLocalizedString(@"Start sound\n%@", nil)
+#define kBrickCellSoundTitleStopAllSounds NSLocalizedString(@"Stop all sounds", nil)
+#define kBrickCellSoundTitleSetVolumeTo NSLocalizedString(@"Set volume to %@\%", nil)
+#define kBrickCellSoundTitleChangeVolumeByN NSLocalizedString(@"Change volume by %@", nil)
+#define kBrickCellSoundTitleSpeak NSLocalizedString(@"Speak %@", nil)
+
+// variable bricks
+#define kBrickCellVariableTitleSetVariable NSLocalizedString(@"Set variable\n%@\nto %@", nil)
+#define kBrickCellVariableTitleChangeVariable NSLocalizedString(@"Change variable\n%@\nby %@", nil)

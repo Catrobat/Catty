@@ -196,8 +196,9 @@
                        canceledAction:@selector(exitEditingMode)
                                target:self
                          confirmTitle:(([selectedRowsIndexPaths count] != 1)
-                                       ? kConfirmTitleDeleteSounds : kConfirmTitleDeleteSound)
-                       confirmMessage:kConfirmMessageDelete];
+                                       ? kUIAlertViewTitleDeleteMultipleSounds
+                                       : kUIAlertViewTitleDeleteSingleSound)
+                       confirmMessage:kUIAlertViewMessageIrreversibleAction];
 }
 
 - (void)deleteSelectedSoundsAction
@@ -337,17 +338,17 @@
     }
 }
 
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+- (CGFloat)tableView:(UITableView*)tableView heightForRowAtIndexPath:(NSIndexPath*)indexPath
 {
     return [TableUtil getHeightForImageCell];
 }
 
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
+- (BOOL)tableView:(UITableView*)tableView canEditRowAtIndexPath:(NSIndexPath*)indexPath
 {
     return YES;
 }
 
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
+- (void)tableView:(UITableView*)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath*)indexPath
 {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
         [self.tableView reloadRowsAtIndexPaths:@[indexPath]
@@ -356,13 +357,13 @@
                            canceledAction:nil
                                withObject:indexPath
                                    target:self
-                             confirmTitle:kConfirmTitleDeleteSound
-                           confirmMessage:kConfirmMessageDelete];
+                             confirmTitle:kUIAlertViewTitleDeleteSingleSound
+                           confirmMessage:kUIAlertViewMessageIrreversibleAction];
     }
 }
 
 #pragma audio delegate methods
-- (void)audioPlayerDidFinishPlaying:(AVAudioPlayer *)player successfully:(BOOL)flag
+- (void)audioPlayerDidFinishPlaying:(AVAudioPlayer*)player successfully:(BOOL)flag
 {
     if ((! flag) || (! self.currentPlayingSong) || (! self.currentPlayingSongCell)) {
         return;
@@ -485,7 +486,7 @@
     sheet.delegate = self;
 //    self.addSoundActionSheetBtnIndexes[@([sheet addButtonWithTitle:kUIActionSheetButtonTitlePocketCodeRecorder])] = kPocketCodeRecorderActionSheetButton;
     self.addSoundActionSheetBtnIndexes[@([sheet addButtonWithTitle:kUIActionSheetButtonTitleChooseSound])] = kSelectMusicTrackActionSheetButton;
-    sheet.cancelButtonIndex = [sheet addButtonWithTitle:kBtnCancelTitle];
+    sheet.cancelButtonIndex = [sheet addButtonWithTitle:kUIActionSheetButtonTitleCancel];
     sheet.tag = kAddSoundActionSheetTag;
     sheet.actionSheetStyle = UIActionSheetStyleDefault;
     [sheet showInView:self.view];

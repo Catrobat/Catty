@@ -171,7 +171,7 @@ UINavigationBarDelegate>
     }
     [Util actionSheetWithTitle:kUIActionSheetTitleEditProgramSingular
                       delegate:self
-        destructiveButtonTitle:kBtnDeleteTitle
+        destructiveButtonTitle:kUIActionSheetButtonTitleDelete
              otherButtonTitles:options
                            tag:kEditProgramActionSheetTag
                           view:self.view];
@@ -189,8 +189,9 @@ UINavigationBarDelegate>
                        canceledAction:@selector(exitEditingMode)
                                target:self
                          confirmTitle:(([selectedRowsIndexPaths count] != 1)
-                                       ? kConfirmTitleDeleteObjects : kConfirmTitleDeleteObject)
-                       confirmMessage:kConfirmMessageDelete];
+                                       ? kUIAlertViewTitleDeleteMultipleObjects
+                                       : kUIAlertViewTitleDeleteSingleObject)
+                       confirmMessage:kUIAlertViewMessageIrreversibleAction];
 }
 
 - (void)deleteSelectedObjectsAction
@@ -414,8 +415,8 @@ UINavigationBarDelegate>
                                canceledAction:nil
                                    withObject:indexPath
                                        target:self
-                                 confirmTitle:kConfirmTitleDeleteObject
-                               confirmMessage:kConfirmMessageDelete];
+                                 confirmTitle:kUIAlertViewTitleDeleteSingleObject
+                               confirmMessage:kUIAlertViewMessageIrreversibleAction];
         }
     }
 }
@@ -518,11 +519,11 @@ UINavigationBarDelegate>
 
             kProgramNameValidationResult validationResult = [Program validateProgramName:input];
             if (validationResult == kProgramNameValidationResultInvalid) {
-                [Util alertWithText:kMsgInvalidProgramName
+                [Util alertWithText:kUIAlertViewMessageInvalidProgramName
                            delegate:self
                                 tag:kInvalidProgramNameWarningAlertViewTag];
             } else if (validationResult == kProgramNameValidationResultAlreadyExists) {
-                [Util alertWithText:kMsgInvalidProgramNameAlreadyExists
+                [Util alertWithText:kUIAlertViewMessageProgramNameAlreadyExists
                            delegate:self
                                 tag:kInvalidProgramNameWarningAlertViewTag];
             } else if (validationResult == kProgramNameValidationResultOK) {
@@ -540,7 +541,9 @@ UINavigationBarDelegate>
             return;
         }
         if (! [input length]) {
-            [Util alertWithText:kMsgInvalidObjectName delegate:self tag:kInvalidObjectNameWarningAlertViewTag];
+            [Util alertWithText:kUIAlertViewMessageInvalidObjectName
+                       delegate:self
+                            tag:kInvalidObjectNameWarningAlertViewTag];
             return;
         }
         [self.program addNewObjectWithName:input];

@@ -150,8 +150,9 @@
                        canceledAction:@selector(exitEditingMode)
                                target:self
                          confirmTitle:(([selectedRowsIndexPaths count] != 1)
-                                       ? kConfirmTitleDeleteLooks : kConfirmTitleDeleteLook)
-                       confirmMessage:kConfirmMessageDelete];
+                                       ? kUIAlertViewTitleDeleteMultipleLooks
+                                       : kUIAlertViewTitleDeleteSingleLook)
+                       confirmMessage:kUIAlertViewMessageIrreversibleAction];
 }
 
 - (void)deleteSelectedLooksAction
@@ -305,7 +306,7 @@
     return YES;
 }
 
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
+- (void)tableView:(UITableView*)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath*)indexPath
 {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
         [self.tableView reloadRowsAtIndexPaths:@[indexPath]
@@ -314,8 +315,8 @@
                            canceledAction:nil
                                withObject:indexPath
                                    target:self
-                             confirmTitle:kConfirmTitleDeleteLook
-                           confirmMessage:kConfirmMessageDelete];
+                             confirmTitle:kUIAlertViewTitleDeleteSingleLook
+                           confirmMessage:kUIAlertViewMessageIrreversibleAction];
     }
 }
 
@@ -521,7 +522,7 @@
     }
 
 //    self.addLookActionSheetBtnIndexes[@([sheet addButtonWithTitle:kUIActionSheetButtonTitleDrawNewImage])] = kDrawNewImageActionSheetButton;
-    sheet.cancelButtonIndex = [sheet addButtonWithTitle:kBtnCancelTitle];
+    sheet.cancelButtonIndex = [sheet addButtonWithTitle:kUIActionSheetButtonTitleCancel];
     sheet.tag = kAddLookActionSheetTag;
     sheet.actionSheetStyle = UIActionSheetStyleDefault;
     [sheet showInView:self.view];
