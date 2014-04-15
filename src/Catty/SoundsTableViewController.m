@@ -39,6 +39,7 @@
 #import "SoundPickerTableViewController.h"
 #import "NSData+Hashes.h"
 #import <AVFoundation/AVFoundation.h>
+#import "LanguageTranslationDefines.h"
 
 // TODO: outsource...
 #define kUserDetailsShowDetailsKey @"showDetails"
@@ -87,19 +88,19 @@
     NSDictionary *showDetails = [[NSUserDefaults standardUserDefaults] objectForKey:kUserDetailsShowDetailsKey];
     NSNumber *showDetailsSoundsValue = (NSNumber*)[showDetails objectForKey:kUserDetailsShowDetailsSoundsKey];
     self.useDetailCells = [showDetailsSoundsValue boolValue];
-    self.navigationController.title = self.title = NSLocalizedString(@"Sounds", nil);
+    self.navigationController.title = self.title = kUIViewControllerTitleSounds;
+    //    self.title = self.object.name;
+    //    self.navigationItem.title = self.object.name;
     [self initNavigationBar];
     self.currentPlayingSong = nil;
     self.currentPlayingSongCell = nil;
 
     [super initTableView];
     [super initPlaceHolder];
-    [super setPlaceHolderTitle:kSoundsTitle
-                   Description:[NSString stringWithFormat:NSLocalizedString(kEmptyViewPlaceHolder, nil), kSoundsTitle]];
+    [super setPlaceHolderTitle:kUIViewControllerPlaceholderTitleSounds
+                   Description:[NSString stringWithFormat:kUIViewControllerPlaceholderDescriptionStandard,
+                                kUIViewControllerPlaceholderTitleSounds]];
     [super showPlaceHolder:(! (BOOL)[self.object.soundList count])];
-
-//    self.title = self.object.name;
-//    self.navigationItem.title = self.object.name;
     [self setupToolBar];
 }
 
@@ -147,14 +148,14 @@
 {
     NSMutableArray *options = [NSMutableArray array];
     if ([self.object.soundList count]) {
-        [options addObject:NSLocalizedString(@"Delete Sounds",nil)];
+        [options addObject:kUIActionSheetButtonTitleDeleteSounds];
     }
     if (self.useDetailCells) {
-        [options addObject:NSLocalizedString(@"Hide Details",nil)];
+        [options addObject:kUIActionSheetButtonTitleHideDetails];
     } else {
-        [options addObject:NSLocalizedString(@"Show Details",nil)];
+        [options addObject:kUIActionSheetButtonTitleShowDetails];
     }
-    [Util actionSheetWithTitle:NSLocalizedString(@"Edit Sounds",nil)
+    [Util actionSheetWithTitle:kUIActionSheetTitleEditSounds
                       delegate:self
         destructiveButtonTitle:nil
              otherButtonTitles:options

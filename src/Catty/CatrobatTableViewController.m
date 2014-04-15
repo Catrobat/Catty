@@ -44,6 +44,7 @@
 #import "UIDefines.h"
 #import "ActionSheetAlertViewTags.h"
 #import "Reachability.h"
+#import "LanguageTranslationDefines.h"
 
 @interface CatrobatTableViewController () <UIAlertViewDelegate, UITextFieldDelegate>
 
@@ -150,7 +151,7 @@
 #pragma mark - actions
 - (void)infoPressed:(id)sender
 {
-    [Util alertWithText:NSLocalizedString(@"Pocket Code for iOS",nil)];
+    [Util alertWithText:kUIAlertViewMessageInfoForPocketCode];
 }
 
 #pragma mark - table view data source

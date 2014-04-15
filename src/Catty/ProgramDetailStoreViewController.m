@@ -35,6 +35,7 @@
 #import "Program.h"
 #import "LoadingView.h"
 #import "EVCircularProgressView.h"
+#import "LanguageTranslationDefines.h"
 
 #define kUIBarHeight 49
 #define kNavBarHeight 44
@@ -102,7 +103,7 @@
 
 - (void)initNavigationBar
 {
-    self.navigationItem.title = NSLocalizedString(@"Info", nil);
+    self.title = self.navigationItem.title = kUIViewControllerTitleInfo;
     UIImageView *imageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"menu_icon"]];
     [self.navigationItem setRightBarButtonItem:[[UIBarButtonItem alloc] initWithCustomView:imageView]];
 }
@@ -110,13 +111,11 @@
 - (void) viewWillDisappear:(BOOL)animated
 {
     self.hidesBottomBarWhenPushed = NO;
-    
 }
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 - (UIView*)createViewForProject:(CatrobatProject*)project {
@@ -190,7 +189,7 @@
 {
     NSDebug(@"Download Button!");
     EVCircularProgressView* button = (EVCircularProgressView*)[self.projectView viewWithTag:kStopLoadingTag];
-//    NSString* title = [[NSString alloc] initWithFormat:@"%@...", NSLocalizedString(@"Cancel", nil)];
+//    NSString* title = [[NSString alloc] initWithFormat:@"%@...", kUIButtonTitleCancel];
 //    [downloadButton setTitle:title forState:UIControlStateNormal];
 //    [downloadButton setTitleEdgeInsets:UIEdgeInsetsMake(0.0f, 25.0f, 0.0f, 0.0f)];
 //    downloadButton.enabled = NO;

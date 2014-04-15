@@ -31,6 +31,7 @@
 #import "TableUtil.h"
 #import "CatrobatImageCell.h"
 #import "ScenePresenterViewController.h"
+#import "LanguageTranslationDefines.h"
 
 @interface ObjectTableViewController () <UIActionSheetDelegate>
 
@@ -65,12 +66,12 @@
     return 1;
 }
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+- (NSInteger)tableView:(UITableView*)tableView numberOfRowsInSection:(NSInteger)section
 {
     return 3;
 }
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+- (UITableViewCell*)tableView:(UITableView*)tableView cellForRowAtIndexPath:(NSIndexPath*)indexPath
 {
     static NSString *CellIdentifier = @"MenuCell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
@@ -80,15 +81,17 @@
         switch (indexPath.row) {
             case 0:
                 imageCell.iconImageView.image = [UIImage imageNamed:@"ic_scripts"];
-                imageCell.titleLabel.text = kScriptsTitle;
+                imageCell.titleLabel.text = kUITableViewControllerMenuTitleScripts;
                 break;
             case 1:
                 imageCell.iconImageView.image = [UIImage imageNamed:@"ic_looks"];
-                imageCell.titleLabel.text = (self.object.isBackground ? kBackgroundsTitle : kLooksTitle);
+                imageCell.titleLabel.text = (self.object.isBackground
+                                          ? kUITableViewControllerMenuTitleBackgrounds
+                                          : kUITableViewControllerMenuTitleLooks);
                 break;
             case 2:
                 imageCell.iconImageView.image = [UIImage imageNamed:@"ic_sounds"];
-                imageCell.titleLabel.text = kSoundsTitle;
+                imageCell.titleLabel.text = kUITableViewControllerMenuTitleSounds;
                 break;
         }
     }
@@ -103,11 +106,11 @@
 #pragma mark - table view delegates
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    // Pass the selected object to the new view controller.
+    // Pass the selected object to the new view controller
     static NSString *toScriptsSegueID = kSegueToScripts;
     static NSString *toLooksSegueID = kSegueToLooks;
     static NSString *toSoundsSegueID = kSegueToSounds;
-    
+
     UITableViewCell* sender = [tableView cellForRowAtIndexPath:indexPath];
     if (indexPath.row == 0)
         [self performSegueWithIdentifier:toScriptsSegueID sender:sender];
@@ -115,7 +118,7 @@
         [self performSegueWithIdentifier:toLooksSegueID sender:sender];
     else if (indexPath.row == 2)
         [self performSegueWithIdentifier:toSoundsSegueID sender:sender];
-    
+
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
@@ -127,7 +130,7 @@
     static NSString *toLooksSegueID = kSegueToLooks;
     static NSString *toSoundsSegueID = kSegueToSounds;
     static NSString *toSceneSegueID = kSegueToScene;
-    
+
     UIViewController* destController = segue.destinationViewController;
     if ([sender isKindOfClass:[UITableViewCell class]]) {
         if (([segue.identifier isEqualToString:toScriptsSegueID] ||
@@ -147,30 +150,6 @@
             }
         }
     }
-}
-
-#pragma mark - UIActionSheetDelegate Handlers
-- (void)actionSheet:(UIActionSheet*)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
-{
-    // TODO: implement this
-}
-
-- (IBAction)editObject:(id)sender
-{
-    [self showSceneActionSheet];
-}
-
-#pragma mark - UIActionSheet Views
-- (void)showSceneActionSheet
-{
-    UIActionSheet *edit = [[UIActionSheet alloc] initWithTitle:NSLocalizedString(@"Edit Object",nil)
-                                                      delegate:self
-                                             cancelButtonTitle:kBtnCancelTitle
-                                        destructiveButtonTitle:nil
-                                             otherButtonTitles:NSLocalizedString(@"Einstellungen",nil), nil];
-//    edit.tag = kSceneActionSheetTag;
-    edit.actionSheetStyle = UIActionSheetStyleDefault;
-    [edit showInView:self.view];
 }
 
 #pragma mark - helpers

@@ -25,6 +25,7 @@
 #import "UIColor+CatrobatUIColorExtensions.h"
 #import "UIImage+CatrobatUIImageExtensions.h"
 #import <QuartzCore/QuartzCore.h>
+#import "LanguageTranslationDefines.h"
 
 @interface DownloadTabBarController ()
 
@@ -43,12 +44,11 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [TableUtil initNavigationItem:self.navigationItem withTitle:NSLocalizedString(@"Explore", nil)];
+    [TableUtil initNavigationItem:self.navigationItem withTitle:kUIViewControllerTitleExplore];
     //self.tabBar.backgroundImage =  [[UIImage imageNamed:@"darkblue"] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 0, 0, 0)];
     //self.tabBar.selectionIndicatorImage = [UIImage imageWithColor:[UIColor clearColor]];
     //self.tabBar.barTintColor = [UIColor darkBlueColor];
     self.tabBar.tintColor = [UIColor lightOrangeColor];
-    
     [[UITabBarItem appearance] setTitleTextAttributes:@{NSFontAttributeName : [UIFont fontWithName:@"HelveticaNeue-Bold" size:10.0f],
                                                       NSForegroundColorAttributeName : [UIColor lightOrangeColor]
                                                       } forState:UIControlStateSelected];
@@ -59,6 +59,5 @@
 {
   [super didReceiveMemoryWarning];
 }
-
 
 @end

@@ -43,6 +43,7 @@
 #import <AssetsLibrary/AssetsLibrary.h>
 #import "NSData+Hashes.h"
 #import "LoadingView.h"
+#import "LanguageTranslationDefines.h"
 
 // TODO: outsource...
 #define kUserDetailsShowDetailsKey @"showDetails"
@@ -84,14 +85,18 @@
     NSDictionary *showDetails = [[NSUserDefaults standardUserDefaults] objectForKey:kUserDetailsShowDetailsKey];
     NSNumber *showDetailsProgramsValue = (NSNumber*)[showDetails objectForKey:kUserDetailsShowDetailsLooksKey];
     self.useDetailCells = [showDetailsProgramsValue boolValue];
-    self.title = self.navigationItem.title = NSLocalizedString(@"Looks", nil);
+    self.title = self.navigationItem.title = kUIViewControllerTitleHelp;
     [self initNavigationBar];
     [super initTableView];
     [super initPlaceHolder];
 
-    [super setPlaceHolderTitle:([self.object isBackground] ? kBackgroundsTitle : kLooksTitle)
-                   Description:[NSString stringWithFormat:NSLocalizedString(kEmptyViewPlaceHolder, nil),
-                                ([self.object isBackground] ? kBackgroundsTitle : kLooksTitle)]];
+    [super setPlaceHolderTitle:([self.object isBackground]
+                                ? kUIViewControllerPlaceholderTitleBackgrounds
+                                : kUIViewControllerPlaceholderTitleLooks)
+                   Description:[NSString stringWithFormat:kUIViewControllerPlaceholderDescriptionStandard,
+                                ([self.object isBackground]
+                                 ? kUIViewControllerPlaceholderTitleBackgrounds
+                                 : kUIViewControllerPlaceholderTitleLooks)]];
     [super showPlaceHolder:(! (BOOL)[self.object.lookList count])];
     [self setupToolBar];
 }

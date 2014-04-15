@@ -37,6 +37,7 @@
 #import "BrickDetailViewController.h"
 #import "WhenScriptCell.h"
 #import "FXBlurView.h"
+#import "LanguageTranslationDefines.h"
 
 @interface ScriptCollectionViewController () <UICollectionViewDelegate, LXReorderableCollectionViewDelegateFlowLayout, LXReorderableCollectionViewDataSource, UIViewControllerTransitioningDelegate>
 @property (nonatomic, strong) NSDictionary *classNameBrickNameMap;
@@ -71,18 +72,16 @@
     [super viewDidLoad];
     [self initCollectionView];
     [super initPlaceHolder];
-    [super setPlaceHolderTitle:kScriptsTitle
-                   Description:[NSString stringWithFormat:NSLocalizedString(kEmptyViewPlaceHolder, nil),
-                                kScriptsTitle]];
+    [super setPlaceHolderTitle:kUIViewControllerPlaceholderTitleScripts
+                   Description:[NSString stringWithFormat:kUIViewControllerPlaceholderDescriptionStandard,
+                                kUIViewControllerPlaceholderTitleScripts]];
     [super showPlaceHolder:(! (BOOL)[self.object.scriptList count])];
     [self setupToolBar];
-    [super setPlaceHolderTitle:kScriptsTitle
-                   Description:[NSString stringWithFormat:NSLocalizedString(kEmptyViewPlaceHolder, nil), kScriptsTitle]];
     self.collectionView.alwaysBounceVertical = YES;
     self.collectionView.scrollEnabled = YES;
     self.collectionView.delegate = self;
     self.collectionView.dataSource = self;
-    
+
     self.brickScaleTransition = [BrickScaleTransition new];
     self.dimView = [[FXBlurView alloc] initWithFrame:self.view.bounds];
     self.dimView.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;

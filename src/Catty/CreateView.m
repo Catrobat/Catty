@@ -31,11 +31,10 @@
 #import "ButtonTags.h"
 #import "TTTAttributedLabel.h"
 #import "EVCircularProgressView.h"
-
+#import "LanguageTranslationDefines.h"
 
 #define kHTMLATagPattern @"(?i)<a([^>]+)>(.+?)</a>"
 #define kHTMLAHrefTagPattern @"href=\"(.*?)\""
-
 
 @implementation CreateView
 
@@ -66,7 +65,7 @@
     
 }
 
-+ (void) addNameLabelWithProjectName:(NSString*)projectName toView:(UIView*)view
++ (void)addNameLabelWithProjectName:(NSString*)projectName toView:(UIView*)view
 {
     UILabel* nameLabel = [[UILabel alloc] initWithFrame:CGRectMake(100, 10, 155, 25)];
     nameLabel.text = projectName;
@@ -76,7 +75,7 @@
     [view addSubview:nameLabel];
 }
 
-+ (void) addAuthorLabelWithAuthor:(NSString*)author toView:(UIView*)view
++ (void)addAuthorLabelWithAuthor:(NSString*)author toView:(UIView*)view
 {
     
     UILabel* authorLabel = [[UILabel alloc] initWithFrame:CGRectMake(100, 30, 155, 25)];
@@ -87,56 +86,46 @@
     
 }
 
-+ (CGFloat) addProgramDescriptionLabelWithDescription:(NSString*)description toView:(UIView*)view target:(id)target
++ (CGFloat)addProgramDescriptionLabelWithDescription:(NSString*)description toView:(UIView*)view target:(id)target
 {
     UILabel* descriptionTitleLabel = [[UILabel alloc] initWithFrame:CGRectMake(20, 95, 155, 25)];
     [self configureTitleLabel:descriptionTitleLabel];
-    descriptionTitleLabel.text = NSLocalizedString(@"Description", nil);
+    descriptionTitleLabel.text = kUILabelTextDescription;
     [view addSubview:descriptionTitleLabel];
 ////////
 #warning remove if webteam resolved the issue
     description = [description stringByReplacingOccurrencesOfString:@"<br>" withString:@""];
     description = [description stringByReplacingOccurrencesOfString:@"<br />" withString:@""];
 /////////
-    
-    if(!description || [description isEqualToString:@""]) {
-        description =  NSLocalizedString(@"No Description available", nil);
+
+    if ((! description) || [description isEqualToString:@""]) {
+        description = kUILabelTextNoDescriptionAvailable;
         
     }
-        
+
     CGSize maximumLabelSize = CGSizeMake(296, FLT_MAX);
-
 //    CGSize expectedSize = [description sizeWithAttributes:@{NSFontAttributeName:[UIFont systemFontOfSize:17.0f]}];
-
     NSDictionary *attributes = [NSDictionary dictionaryWithObject:[UIFont systemFontOfSize:14] forKey:NSFontAttributeName];
-    
     CGRect labelBounds = [description boundingRectWithSize:maximumLabelSize
                                                    options:NSStringDrawingUsesLineFragmentOrigin
                                                 attributes:attributes
                                                    context:nil];
-    
     CGSize expectedSize = CGSizeMake(ceilf(labelBounds.size.width), ceilf(labelBounds.size.height));
-    
 //    CGSize expectedSize = [description sizeWithFont:[UIFont systemFontOfSize:14] constrainedToSize:maximumLabelSize lineBreakMode:NSLineBreakByWordWrapping];
-    
-    
-    
-    
+
     TTTAttributedLabel* descriptionLabel = [[TTTAttributedLabel alloc] initWithFrame:CGRectMake(20, 120, 280, expectedSize.height)];
     [self configureDescriptionLabel:descriptionLabel];
     descriptionLabel.delegate = target;
     descriptionLabel.text = description;
-       
+
     expectedSize = [descriptionLabel.text sizeWithFont:[UIFont systemFontOfSize:14] constrainedToSize:maximumLabelSize lineBreakMode:NSLineBreakByWordWrapping];
     descriptionLabel.frame = CGRectMake(descriptionLabel.frame.origin.x, descriptionLabel.frame.origin.y, descriptionLabel.frame.size.width, expectedSize.height);
     [view addSubview:descriptionLabel];
-    
     [self setMaxHeightIfGreaterForView:view withHeight:120+expectedSize.height];
-    
     return descriptionLabel.frame.size.height;
 }
 
-+ (void) addThumbnailImageWithImageUrlString:(NSString*)imageUrlString toView:(UIView*)view
++ (void)addThumbnailImageWithImageUrlString:(NSString*)imageUrlString toView:(UIView*)view
 {
     UIImage* image = [[ImageCache sharedImageCache] getImageWithName:imageUrlString];
     
@@ -192,28 +181,24 @@
 
 + (void) addDownloadButtonToView:(UIView*)view withTarget:(id)target
 {
-    NSString *title = NSLocalizedString(@"Download", nil);
     UIButton *downloadButton = [UIButton buttonWithType:UIButtonTypeCustom];
     downloadButton.tag = kDownloadButtonTag;
     downloadButton.frame = CGRectMake(195, 55, 105, 25);
     downloadButton.titleLabel.font = [UIFont boldSystemFontOfSize:14];
-    [downloadButton setTitle:title forState:UIControlStateNormal];
+    [downloadButton setTitle:kUIButtonTitleDownload forState:UIControlStateNormal];
     downloadButton.backgroundColor = [UIColor airForceBlueColor];
     [downloadButton addTarget:target action:@selector(downloadButtonPressed) forControlEvents:UIControlEventTouchUpInside];
-    
-    
     [downloadButton setBackgroundImage:[UIImage imageNamed:@"darkblue"] forState:UIControlStateSelected | UIControlStateHighlighted];
     CAGradientLayer *gradientLayer = [CAGradientLayer blueGradientLayerWithFrame:downloadButton.layer.bounds];
     downloadButton.layer.cornerRadius = 3.0f;
     gradientLayer.cornerRadius = downloadButton.layer.cornerRadius;
     //[downloadButton.layer insertSublayer:gradientLayer atIndex:0];
     downloadButton.layer.masksToBounds = YES;
-    
     [self addShadowToTitleLabelForButton:downloadButton];
-    
+
     downloadButton.layer.borderColor = [UIColor colorWithRed:41/255.0f green:103/255.0f blue:147/255.0f alpha:0.5f].CGColor;
     downloadButton.layer.borderWidth = 1.0f;
-    
+
     UIActivityIndicatorView *activity = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite];
     activity.tag = kActivityIndicator;
     activity.frame = CGRectMake(5, 0, 25, 25);
@@ -223,32 +208,26 @@
     [view addSubview:downloadButton];
 }
 
-+ (void) addPlayButtonToView:(UIView*)view withTarget:(id)target
++ (void)addPlayButtonToView:(UIView*)view withTarget:(id)target
 {
-    
-    NSString *title = NSLocalizedString(@"Play", nil);
     UIButton *playButton = [UIButton buttonWithType:UIButtonTypeCustom];
     playButton.tag = kPlayButtonTag;
     playButton.hidden = YES;
     playButton.frame = CGRectMake(195, 55, 105, 25);
     playButton.titleLabel.font = [UIFont boldSystemFontOfSize:14];
-    [playButton setTitle:title forState:UIControlStateNormal];
+    [playButton setTitle:kUIButtonTitlePlay forState:UIControlStateNormal];
     playButton.backgroundColor = [UIColor clearColor];
     [playButton addTarget:target action:@selector(playButtonPressed) forControlEvents:UIControlEventTouchUpInside];
-    
-    
+
     CAGradientLayer *gradientLayer = [CAGradientLayer greenGradientLayerWithFrame:playButton.layer.bounds];
     playButton.layer.cornerRadius = 3.0f;
     gradientLayer.cornerRadius = playButton.layer.cornerRadius;
     [playButton.layer insertSublayer:gradientLayer atIndex:0];
     playButton.layer.masksToBounds = YES;
-    
     [self addShadowToTitleLabelForButton:playButton];
-    
+
     playButton.layer.borderColor = [UIColor colorWithRed:61/255.0f green:118/255.0f blue:26/255.0f alpha:0.5f].CGColor;
     playButton.layer.borderWidth = 1.0f;
-    
-    
     [view addSubview:playButton];
 }
 
@@ -258,9 +237,9 @@
     button.tag =kStopLoadingTag;
     button.tintColor = [UIColor lightOrangeColor];
     button.frame = CGRectMake(235, 55, 28, 28);
-    button.hidden=YES;
-    
-//    NSString *title = NSLocalizedString(@"Cancel", nil);
+    button.hidden = YES;
+
+//    NSString *title = kUIBarButtonItemTitleCancel;
 //    UIButton *stopLoadingButton = [UIButton buttonWithType:UIButtonTypeCustom];
 //    stopLoadingButton.tag = kStopLoadingTag;
 //    stopLoadingButton.hidden = YES;
@@ -269,67 +248,53 @@
 //    [stopLoadingButton setTitle:title forState:UIControlStateNormal];
 //    stopLoadingButton.backgroundColor = [UIColor clearColor];
     [button addTarget:target action:@selector(stopLoading) forControlEvents:UIControlEventTouchUpInside];
-    
-    
+
 //    CAGradientLayer *gradientLayer = [CAGradientLayer redGradientLayerWithFrame:stopLoadingButton.layer.bounds];
 //    stopLoadingButton.layer.cornerRadius = 3.0f;
 //    gradientLayer.cornerRadius = stopLoadingButton.layer.cornerRadius;
 //    [stopLoadingButton.layer insertSublayer:gradientLayer atIndex:0];
 //    stopLoadingButton.layer.masksToBounds = YES;
-    
 //    [self addShadowToTitleLabelForButton:stopLoadingButton];
-//    
+//
 //    stopLoadingButton.layer.borderColor = [UIColor colorWithRed:118/255.0f green:61/255.0f blue:26/255.0f alpha:0.5f].CGColor;
 //    stopLoadingButton.layer.borderWidth = 1.0f;
-//    
+//
 //    UIActivityIndicatorView *activity = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite];
 //    activity.tag = kActivityIndicator;
 //    activity.frame = CGRectMake(5, 0, 25, 25);
 //    [stopLoadingButton addSubview:activity];
-
-    
-    
     [view addSubview:button];
-
 }
 
-+ (void) addInformationLabelToView:(UIView*)view withAuthor:(NSString*)author downloads:(NSNumber*)downloads uploaded:(NSString*)uploaded version:(NSString*)version views:(NSNumber*)views
++ (void)addInformationLabelToView:(UIView*)view withAuthor:(NSString*)author downloads:(NSNumber*)downloads uploaded:(NSString*)uploaded version:(NSString*)version views:(NSNumber*)views
 {
     CGFloat offset = view.frame.size.height + 10;
     UILabel* informationLabel = [[UILabel alloc] initWithFrame:CGRectMake(20, offset, 155, 25)];
-    informationLabel.text = NSLocalizedString(@"Information", nil);
+    informationLabel.text = kUILabelTextInformation;
     [self configureTitleLabel:informationLabel];
     [view addSubview:informationLabel];
     offset += 25.0f;
-    
-    
+
     NSArray* informationArray = [[NSArray alloc] initWithObjects:author, downloads, uploaded, version, views, nil];
     NSArray* informationTitleArray = [[NSArray alloc] initWithObjects:
-                                                        NSLocalizedString(@"Author", nil),
-                                                        NSLocalizedString(@"Downloads", nil),
-                                                        NSLocalizedString(@"Uploaded", nil),
-                                                        NSLocalizedString(@"Version", nil),
-                                                        NSLocalizedString(@"Views", nil) 
-                                      , nil];
-
-    int i = 0;
-    for(id info in informationArray)
-    {
-        UILabel* titleLabel = [self getInformationTitleLabelWithTitle:[informationTitleArray objectAtIndex:i] atYPosition:offset];
+                                      kUILabelTextAuthor,
+                                      kUILabelTextDownloads,
+                                      kUILabelTextUploaded,
+                                      kUILabelTextVersion,
+                                      kUILabelTextViews, nil];
+    NSUInteger counter = 0;
+    for (id info in informationArray) {
+        UILabel* titleLabel = [self getInformationTitleLabelWithTitle:[informationTitleArray objectAtIndex:counter] atYPosition:offset];
         [view addSubview:titleLabel];
-        
+
         UILabel* infoLabel = [self getInformationDetailLabelWithTitle:info atYPosition:offset];
         [view addSubview:infoLabel];
-        
+
         offset += 25.0f;
-        i++;
+        ++counter;
     }
-        
     [self setMaxHeightIfGreaterForView:view withHeight:offset];
-    
-
 }
-
 
 + (void) addShadowToTitleLabelForButton:(UIButton*)button
 {

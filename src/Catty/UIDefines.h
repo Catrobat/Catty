@@ -70,16 +70,9 @@ typedef NS_ENUM(NSInteger, kBrickCategoryType) {
     kVariableBrick = 4
 };
 
-// object components
-#define kScriptsTitle NSLocalizedString(@"Scripts",nil)
-#define kLooksTitle NSLocalizedString(@"Looks",nil)
-#define kBackgroundsTitle NSLocalizedString(@"Backgrounds",nil)
-#define kSoundsTitle NSLocalizedString(@"Sounds",nil)
-
 // placeholder texts
 #define kPlaceHolderTag 99998
 #define kLoadingViewTag 99999
-#define kEmptyViewPlaceHolder @"Click \"+\" to add %@"
 
 #define kIphone5ScreenHeight 568.0f
 #define kIphone4ScreenHeight 480.0f

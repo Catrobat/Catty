@@ -26,13 +26,10 @@
 #import "UIDefines.h"
 #import "Util.h"
 #import "ActionSheetAlertViewTags.h"
+#import "LanguageTranslationDefines.h"
 
 // identifiers
 #define kTableHeaderIdentifier @"Header"
-
-// button titles
-#define kSelectAllItemsTitle NSLocalizedString(@"Select all", nil)
-#define kUnselectAllItemsTitle NSLocalizedString(@"Unselect all", nil)
 
 // tags
 #define kSelectAllItemsTag 0
@@ -57,7 +54,7 @@
 - (UIBarButtonItem*)selectAllRowsButtonItem
 {
     if (! _selectAllRowsButtonItem) {
-        _selectAllRowsButtonItem = [[UIBarButtonItem alloc] initWithTitle:kSelectAllItemsTitle
+        _selectAllRowsButtonItem = [[UIBarButtonItem alloc] initWithTitle:kUIBarButtonItemTitleSelectAllItems
                                                                     style:UIBarButtonItemStylePlain
                                                                    target:self
                                                                    action:@selector(selectAllRows:)];
@@ -186,10 +183,10 @@
     }
     if (allItemsInAllSectionsSelected) {
         self.selectAllRowsButtonItem.tag = kUnselectAllItemsTag;
-        self.selectAllRowsButtonItem.title = kUnselectAllItemsTitle;
+        self.selectAllRowsButtonItem.title = kUIBarButtonItemTitleUnselectAllItems;
     } else {
         self.selectAllRowsButtonItem.tag = kSelectAllItemsTag;
-        self.selectAllRowsButtonItem.title = kSelectAllItemsTitle;
+        self.selectAllRowsButtonItem.title = kUIBarButtonItemTitleSelectAllItems;
     }
 }
 
@@ -214,10 +211,10 @@
     }
     if (allItemsInAllSectionsSelected) {
         self.selectAllRowsButtonItem.tag = kUnselectAllItemsTag;
-        self.selectAllRowsButtonItem.title = kUnselectAllItemsTitle;
+        self.selectAllRowsButtonItem.title = kUIBarButtonItemTitleUnselectAllItems;
     } else {
         self.selectAllRowsButtonItem.tag = kSelectAllItemsTag;
-        self.selectAllRowsButtonItem.title = kSelectAllItemsTitle;
+        self.selectAllRowsButtonItem.title = kUIBarButtonItemTitleSelectAllItems;
     }
 }
 
@@ -270,7 +267,7 @@
 
 - (void)changeToEditingMode:(id)sender
 {
-    UIBarButtonItem *cancelButton = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Cancel", nil)
+    UIBarButtonItem *cancelButton = [[UIBarButtonItem alloc] initWithTitle:kUIBarButtonItemTitleCancel
                                                                      style:UIBarButtonItemStylePlain
                                                                     target:self
                                                                     action:@selector(exitEditingMode)];
@@ -300,11 +297,11 @@
         if (button.tag == kSelectAllItemsTag) {
             button.tag = kUnselectAllItemsTag;
             selectAll = YES;
-            button.title = kUnselectAllItemsTitle;
+            button.title = kUIBarButtonItemTitleUnselectAllItems;
         } else {
             button.tag = kSelectAllItemsTag;
             selectAll = NO;
-            button.title = kSelectAllItemsTitle;
+            button.title = kUIBarButtonItemTitleSelectAllItems;
         }
     }
     NSArray *editableSections = self.editableSections;

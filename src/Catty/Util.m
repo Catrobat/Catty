@@ -25,6 +25,7 @@
 #import "ProgramDefines.h"
 #import "ProgramLoadingInfo.h"
 #import "UIDefines.h"
+#import "LanguageTranslationDefines.h"
 
 @implementation Util
 
@@ -39,13 +40,11 @@
 
 + (void)showComingSoonAlertView
 {
-    NSString* alert_message = [NSString localizedStringWithFormat:NSLocalizedString(@"This feature is coming soon!", nil)];
-    UIAlertView *alert = [[UIAlertView alloc]
-                          initWithTitle:@"Catty"
-                          message:alert_message
-                          delegate:nil
-                          cancelButtonTitle:kBtnOKTitle
-                          otherButtonTitles:nil];
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:kUIAlertViewTitleStandard
+                                                    message:kUIAlertViewMessageFeatureComingSoon
+                                                   delegate:nil
+                                          cancelButtonTitle:kBtnOKTitle
+                                          otherButtonTitles:nil];
     [alert show];
 }
 
@@ -56,7 +55,7 @@
 
 + (UIAlertView*)alertWithText:(NSString*)text delegate:(id<UIAlertViewDelegate>)delegate tag:(NSInteger)tag
 {
-    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Pocket Code", nil)
+    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:kUIAlertViewTitleStandard
                                                         message:text
                                                        delegate:delegate
                                               cancelButtonTitle:kBtnOKTitle

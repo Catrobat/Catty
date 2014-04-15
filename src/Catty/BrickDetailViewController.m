@@ -23,6 +23,7 @@
 #import "BrickDetailViewController.h"
 #import "UIDefines.h"
 #import "Brick.h"
+#import "LanguageTranslationDefines.h"
 
 @interface BrickDetailViewController () <UIActionSheetDelegate>
 @property (strong, nonatomic) UITapGestureRecognizer *recognizer;
@@ -43,14 +44,13 @@
 {
     [super viewDidLoad];
     self.view.backgroundColor = UIColor.clearColor;
-    self.brickMenu = [[UIActionSheet alloc]initWithTitle:nil
-                                                delegate:self
-                                     cancelButtonTitle:NSLocalizedString(@"Close", nil)
-                                destructiveButtonTitle:NSLocalizedString(@"Delete Brick", nil)
-                                    otherButtonTitles:NSLocalizedString(@"Highlight Script", nil),
-                                                      NSLocalizedString(@"Copy Brick", nil),
-                                                      NSLocalizedString(@"Edit Formula", nil), nil];
-    
+    self.brickMenu = [[UIActionSheet alloc] initWithTitle:nil
+                                                 delegate:self
+                                        cancelButtonTitle:kUIActionSheetButtonTitleClose
+                                   destructiveButtonTitle:kUIActionSheetButtonTitleDeleteBrick
+                                        otherButtonTitles:kUIActionSheetButtonTitleHighlightScript,
+                                                          kUIActionSheetButtonTitleCopyBrick,
+                                                          kUIActionSheetButtonTitleEditFormula, nil];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -59,7 +59,7 @@
     self.recognizer.numberOfTapsRequired = 1;
     self.recognizer.cancelsTouchesInView = NO;
     [self.view.window addGestureRecognizer:self.recognizer];
-    
+
 //    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)),
 //                   dispatch_get_main_queue(), ^{
 //                       [self.brickMenu showInView:self.view];
