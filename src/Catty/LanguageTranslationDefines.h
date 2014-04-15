@@ -22,6 +22,16 @@
 
 /*
  * -----------------------------------------------------------------------------------------------------------
+ * General defines
+ * -----------------------------------------------------------------------------------------------------------
+ */
+
+#define kGeneralNewDefaultProgramName NSLocalizedString(@"New Program",@"Default name for new programs")
+#define kGeneralBackgroundObjectName NSLocalizedString(@"Background", @"Title for background object")
+#define kGeneralDefaultObjectName NSLocalizedString(@"My Object", @"Title for first (default) object")
+
+/*
+ * -----------------------------------------------------------------------------------------------------------
  * NSDate title defines
  * -----------------------------------------------------------------------------------------------------------
  */
@@ -89,6 +99,7 @@
 #define kUIViewControllerTitleLooks NSLocalizedString(@"Looks", nil)
 #define kUIViewControllerTitleSounds NSLocalizedString(@"Sounds", nil)
 #define kUIViewControllerTitleChooseSound NSLocalizedString(@"Choose sound", nil)
+#define kUIViewControllerTitlePrograms NSLocalizedString(@"Programs", nil)
 
 /*
  * -----------------------------------------------------------------------------------------------------------
@@ -116,14 +127,6 @@
 
 /*
  * -----------------------------------------------------------------------------------------------------------
- * UIActionSheet title defines
- * -----------------------------------------------------------------------------------------------------------
- */
-
-#define kUIActionSheetTitleEditSounds NSLocalizedString(@"Edit Sounds",nil)
-
-/*
- * -----------------------------------------------------------------------------------------------------------
  * UIBarButtonItem title defines
  * -----------------------------------------------------------------------------------------------------------
  */
@@ -132,6 +135,21 @@
 #define kUIBarButtonItemTitleCancel NSLocalizedString(@"Cancel", nil)
 #define kUIBarButtonItemTitleSelectAllItems NSLocalizedString(@"Select all", nil)
 #define kUIBarButtonItemTitleUnselectAllItems NSLocalizedString(@"Unselect all", nil)
+#define kUIBarButtonItemTitleDelete NSLocalizedString(@"Delete", nil)
+
+/*
+ * -----------------------------------------------------------------------------------------------------------
+ * UIActionSheet title defines
+ * -----------------------------------------------------------------------------------------------------------
+ */
+
+#define kUIActionSheetTitleEditSounds NSLocalizedString(@"Edit Sounds",@"Action sheet menu title")
+#define kUIActionSheetTitleEditLooks NSLocalizedString(@"Edit Looks", @"Action sheet menu title")
+#define kUIActionSheetTitleAddLook NSLocalizedString(@"Add look", @"Action sheet menu title")
+#define kUIActionSheetTitleEditProgramSingular NSLocalizedString(@"Edit Program", nil)
+#define kUIActionSheetTitleEditProgramPlural NSLocalizedString(@"Edit Programs", nil)
+#define kUIActionSheetTitleAddSound NSLocalizedString(@"Add sound", @"Action sheet menu title")
+#define kUIActionSheetTitleSaveScreenshot NSLocalizedString(@"Save Screenshot to", @"Action sheet menu title")
 
 /*
  * -----------------------------------------------------------------------------------------------------------
@@ -149,6 +167,22 @@
 #define kUIActionSheetButtonTitleHideDetails NSLocalizedString(@"Hide Details", nil)
 #define kUIActionSheetButtonTitleShowDetails NSLocalizedString(@"Show Details", nil)
 
+#define kUIActionSheetButtonTitleShowDetails NSLocalizedString(@"Show Details", nil)
+#define kUIActionSheetButtonTitleDeleteLooks NSLocalizedString(@"Delete Looks",nil)
+#define kUIActionSheetButtonTitleFromCamera NSLocalizedString(@"From Camera", nil)
+#define kUIActionSheetButtonTitleChooseImage NSLocalizedString(@"Choose image", nil)
+#define kUIActionSheetButtonTitleDrawNewImage NSLocalizedString(@"Draw new image", nil)
+
+#define kUIActionSheetButtonTitleRename NSLocalizedString(@"Rename", nil)
+#define kUIActionSheetButtonTitleDeleteObjects NSLocalizedString(@"Delete Objects", nil)
+#define kUIActionSheetButtonTitleDeletePrograms NSLocalizedString(@"Delete Programs", nil)
+#define kUIActionSheetButtonTitlePocketCodeRecorder NSLocalizedString(@"Pocket Code Recorder", nil)
+#define kUIActionSheetButtonTitleChooseSound NSLocalizedString(@"Choose sound", nil)
+
+#define kUIActionSheetButtonTitleCameraRoll NSLocalizedString(@"Camera Roll", nil)
+#define kUIActionSheetButtonTitleProject NSLocalizedString(@"Project", nil)
+#define kUIActionSheetButtonTitleCancel NSLocalizedString(@"Cancel", nil)
+
 /*
  * -----------------------------------------------------------------------------------------------------------
  * UIButton title defines
@@ -161,16 +195,30 @@
 
 /*
  * -----------------------------------------------------------------------------------------------------------
- * UIAlertView title and text defines
+ * UIAlertView title, placeholder, text, button defines
  * -----------------------------------------------------------------------------------------------------------
  */
 
 // title defines
 #define kUIAlertViewTitleStandard NSLocalizedString(@"Pocket Code", nil)
+#define kUIAlertViewTitleAddObject NSLocalizedString(@"Add Object", nil)
+#define kUIAlertViewTitleRenameProgram NSLocalizedString(@"Rename program", nil)
+#define kUIAlertViewTitleCantRestartProgram NSLocalizedString(@"Can't restart program!", nil)
+#define kUIAlertViewTitleScreenshotSavedToCameraRoll NSLocalizedString(@"Screenshot saved to Camera Roll", nil)
+#define kUIAlertViewTitleScreenshotSavedToProject NSLocalizedString(@"Screenshot saved to project", nil)
+
+// placeholder defines
+#define kUIAlertViewPlaceholderEnterProgramName NSLocalizedString(@"Enter your program name here...", @"Placeholder for program-name input field")
+#define kUIAlertViewPlaceholderEnterObjectName NSLocalizedString(@"Enter your object name here...", @"Placeholder for add object-name input field")
 
 // text defines
 #define kUIAlertViewMessageInfoForPocketCode NSLocalizedString(@"Pocket Code for iOS", nil)
 #define kUIAlertViewMessageFeatureComingSoon NSLocalizedString(@"This feature is coming soon!", nil)
+#define kUIAlertViewMessageProgramName NSLocalizedString(@"Program name", nil)
+#define kUIAlertViewMessageObjectName NSLocalizedString(@"Object name", nil)
+#define kUIAlertViewMessageNoImportedSoundsFound NSLocalizedString(@"No imported sounds found. Please connect your iPhone to your PC/Mac and use iTunes FileSharing to import sound files into the PocketCode app.", nil)
+
+#define kUIAlertViewButtonTitleOK NSLocalizedString(@"OK", nil)
 
 /*
  * -----------------------------------------------------------------------------------------------------------
@@ -187,6 +235,26 @@
 #define kUILabelTextVersion NSLocalizedString(@"Version", nil)
 #define kUILabelTextViews NSLocalizedString(@"Views", nil)
 #define kUILabelTextInformation NSLocalizedString(@"Information", nil)
+#define kUILabelTextMeasure NSLocalizedString(@"Measure", nil)
+#define kUILabelTextSize NSLocalizedString(@"Size", nil)
+#define kUILabelTextBackground NSLocalizedString(@"Background", @"Title for Background-Section-Header in program view")
+#define kUILabelTextObjectSingular NSLocalizedString(@"Object",@"Title for Object-Section-Header in program view (singular)")
+#define kUILabelTextObjectPlural NSLocalizedString(@"Objects",@"Title for Object-Section-Header in program view (plural)")
+#define kUILabelTextScripts NSLocalizedString(@"Scripts", nil)
+#define kUILabelTextBricks NSLocalizedString(@"Bricks", nil)
+#define kUILabelTextLooks NSLocalizedString(@"Looks", nil)
+#define kUILabelTextSounds NSLocalizedString(@"Sounds", nil)
+#define kUILabelTextLastAccess NSLocalizedString(@"Last access", nil)
+#define kUILabelTextSize NSLocalizedString(@"Size", nil)
+#define kUILabelTextLength NSLocalizedString(@"Length", nil)
+
+#define kUILabelTextBack NSLocalizedString(@"Back", nil)
+#define kUILabelTextRestart NSLocalizedString(@"Restart", nil)
+#define kUILabelTextBack NSLocalizedString(@"Back", nil)
+#define kUILabelTextBack NSLocalizedString(@"Back", nil)
+#define kUILabelTextContinue NSLocalizedString(@"Continue", nil)
+#define kUILabelTextScreenshot NSLocalizedString(@"Screenshot", nil)
+#define kUILabelTextGrid NSLocalizedString(@"Grid", nil)
 
 /*
  * -----------------------------------------------------------------------------------------------------------

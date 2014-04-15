@@ -275,14 +275,12 @@
             // TODO: enhancement: use data cache for this later...
             DarkBlueGradientImageDetailCell *detailCell = (DarkBlueGradientImageDetailCell*)imageCell;
             detailCell.topLeftDetailLabel.textColor = [UIColor whiteColor];
-            detailCell.topLeftDetailLabel.text = [NSString stringWithFormat:@"%@:",
-                                                  NSLocalizedString(@"Length", nil)];
+            detailCell.topLeftDetailLabel.text = [NSString stringWithFormat:@"%@:", kUILabelTextLength];
             detailCell.topRightDetailLabel.textColor = [UIColor whiteColor];
             detailCell.topRightDetailLabel.text = [NSString stringWithFormat:@"%.02fs",
                                                    (float)[self.object durationOfSound:sound]];
             detailCell.bottomLeftDetailLabel.textColor = [UIColor whiteColor];
-            detailCell.bottomLeftDetailLabel.text = [NSString stringWithFormat:@"%@:",
-                                                     NSLocalizedString(@"Size", nil)];
+            detailCell.bottomLeftDetailLabel.text = [NSString stringWithFormat:@"%@:", kUILabelTextSize];
             detailCell.bottomRightDetailLabel.textColor = [UIColor whiteColor];
             NSUInteger resultSize = [self.object fileSizeOfSound:sound];
             NSNumber *sizeOfSound = [NSNumber numberWithUnsignedInteger:resultSize];
@@ -463,7 +461,7 @@
             NSLog(@"Select music track");
             AppDelegate *delegate = (AppDelegate*)[UIApplication sharedApplication].delegate;
             if (! [delegate.fileManager existPlayableSoundsInDirectory:delegate.fileManager.documentsDirectory]) {
-                [Util alertWithText:NSLocalizedString(@"No imported sounds found. Please connect your iPhone to your PC/Mac and use iTunes FileSharing to import sound files into the PocketCode app.", nil)];
+                [Util alertWithText:kUIAlertViewMessageNoImportedSoundsFound];
                 return;
             }
 
@@ -483,11 +481,10 @@
 - (void)showAddSoundActionSheet
 {
     UIActionSheet *sheet = [[UIActionSheet alloc] init];
-    sheet.title = NSLocalizedString(@"Add sound", @"Action sheet menu title");
+    sheet.title = kUIActionSheetTitleAddSound;
     sheet.delegate = self;
-//    self.addSoundActionSheetBtnIndexes[@([sheet addButtonWithTitle:NSLocalizedString(@"Pocket Code Recorder",nil)])] = kPocketCodeRecorderActionSheetButton;
-
-    self.addSoundActionSheetBtnIndexes[@([sheet addButtonWithTitle:NSLocalizedString(@"Choose sound",nil)])] = kSelectMusicTrackActionSheetButton;
+//    self.addSoundActionSheetBtnIndexes[@([sheet addButtonWithTitle:kUIActionSheetButtonTitlePocketCodeRecorder])] = kPocketCodeRecorderActionSheetButton;
+    self.addSoundActionSheetBtnIndexes[@([sheet addButtonWithTitle:kUIActionSheetButtonTitleChooseSound])] = kSelectMusicTrackActionSheetButton;
     sheet.cancelButtonIndex = [sheet addButtonWithTitle:kBtnCancelTitle];
     sheet.tag = kAddSoundActionSheetTag;
     sheet.actionSheetStyle = UIActionSheetStyleDefault;
@@ -543,7 +540,7 @@
     UIBarButtonItem *flexItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace
                                                                               target:nil
                                                                               action:nil];
-    UIBarButtonItem *deleteButton = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Delete", nil)
+    UIBarButtonItem *deleteButton = [[UIBarButtonItem alloc] initWithTitle:kUIBarButtonItemTitleDelete
                                                                      style:UIBarButtonItemStylePlain
                                                                     target:self
                                                                     action:@selector(confirmDeleteSelectedSoundsAction:)];

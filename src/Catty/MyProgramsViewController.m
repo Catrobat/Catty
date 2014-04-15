@@ -40,6 +40,7 @@
 #import "ActionSheetAlertViewTags.h"
 #import "DarkBlueGradientImageDetailCell.h"
 #import "NSDate+CustomExtensions.h"
+#import "LanguageTranslationDefines.h"
 
 // TODO: outsource...
 #define kUserDetailsShowDetailsKey @"showDetails"
@@ -96,7 +97,7 @@
     NSDictionary *showDetails = [[NSUserDefaults standardUserDefaults] objectForKey:kUserDetailsShowDetailsKey];
     NSNumber *showDetailsProgramsValue = (NSNumber*)[showDetails objectForKey:kUserDetailsShowDetailsProgramsKey];
     self.useDetailCells = [showDetailsProgramsValue boolValue];
-    self.navigationController.title = self.title = NSLocalizedString(@"Programs", nil);
+    self.navigationController.title = self.title = kUIViewControllerTitlePrograms;
     [self loadPrograms];
     [self initNavigationBar];
     [super initTableView];
@@ -136,14 +137,14 @@
 {
     NSMutableArray *options = [NSMutableArray array];
     if (self.useDetailCells) {
-        [options addObject:NSLocalizedString(@"Hide Details",nil)];
+        [options addObject:kUIActionSheetButtonTitleHideDetails];
     } else {
-        [options addObject:NSLocalizedString(@"Show Details",nil)];
+        [options addObject:kUIActionSheetButtonTitleShowDetails];
     }
     if ([self.programLoadingInfos count]) {
-        [options addObject:NSLocalizedString(@"Delete Programs",nil)];
+        [options addObject:kUIActionSheetButtonTitleDeletePrograms];
     }
-    [Util actionSheetWithTitle:NSLocalizedString(@"Edit Programs",nil)
+    [Util actionSheetWithTitle:kUIActionSheetTitleEditProgramPlural
                       delegate:self
         destructiveButtonTitle:nil
              otherButtonTitles:options
@@ -221,10 +222,10 @@
         if (self.useDetailCells && [cell isKindOfClass:[DarkBlueGradientImageDetailCell class]]) {
             DarkBlueGradientImageDetailCell *detailCell = (DarkBlueGradientImageDetailCell*)imageCell;
             detailCell.topLeftDetailLabel.textColor = [UIColor whiteColor];
-            detailCell.topLeftDetailLabel.text = NSLocalizedString(@"Last access:", nil);
+            detailCell.topLeftDetailLabel.text = [NSString stringWithFormat:@"%@:", kUILabelTextLastAccess];
             detailCell.topRightDetailLabel.textColor = [UIColor whiteColor];
             detailCell.bottomLeftDetailLabel.textColor = [UIColor whiteColor];
-            detailCell.bottomLeftDetailLabel.text = NSLocalizedString(@"Size:", nil);
+            detailCell.bottomLeftDetailLabel.text = [NSString stringWithFormat:@"%@:", kUILabelTextSize];
             detailCell.bottomRightDetailLabel.textColor = [UIColor whiteColor];
 
             ProgramLoadingInfo *info = [self.programLoadingInfos objectAtIndex:indexPath.row];
@@ -398,7 +399,7 @@
             [Util promptWithTitle:kTitleNewProgram
                           message:kMsgPromptProgramName
                          delegate:self
-                      placeholder:kProgramNamePlaceholder
+                      placeholder:kUIAlertViewPlaceholderEnterProgramName
                               tag:kNewProgramAlertViewTag
                 textFieldDelegate:self];
             return NO;
@@ -503,7 +504,7 @@
             [Util promptWithTitle:kTitleNewProgram
                           message:kMsgPromptProgramName
                          delegate:self
-                      placeholder:kProgramNamePlaceholder
+                      placeholder:kUIAlertViewPlaceholderEnterProgramName
                               tag:kNewProgramAlertViewTag
                 textFieldDelegate:self];
         }
@@ -616,7 +617,7 @@
     UIBarButtonItem *flexItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace
                                                                               target:nil
                                                                               action:nil];
-    UIBarButtonItem *deleteButton = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Delete", nil)
+    UIBarButtonItem *deleteButton = [[UIBarButtonItem alloc] initWithTitle:kUIBarButtonItemTitleDelete
                                                                      style:UIBarButtonItemStylePlain
                                                                     target:self
                                                                     action:@selector(confirmDeleteSelectedProgramsAction:)];

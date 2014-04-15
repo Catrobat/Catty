@@ -46,6 +46,7 @@
 #import "SensorHandler.h"
 #import "CellTagDefines.h"
 #import "AppDelegate.h"
+#import "LanguageTranslationDefines.h"
 
 // TODO: outsource...
 #define kUserDetailsShowDetailsKey @"showDetails"
@@ -87,7 +88,7 @@ UINavigationBarDelegate>
 #pragma mark - initialization
 - (void)initNavigationBar
 {
-    UIBarButtonItem *editButton = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Edit", nil)
+    UIBarButtonItem *editButton = [[UIBarButtonItem alloc] initWithTitle:kUIBarButtonItemTitleEdit
                                                                    style:UIBarButtonItemStylePlain
                                                                   target:self
                                                                   action:@selector(editAction:)];
@@ -142,10 +143,10 @@ UINavigationBarDelegate>
 #pragma mark - actions
 - (void)addObjectAction:(id)sender
 {
-    [Util promptWithTitle:NSLocalizedString(@"Add Object",nil)
-                  message:NSLocalizedString(@"Object name:",nil)
+    [Util promptWithTitle:kUIAlertViewTitleAddObject
+                  message:[NSString stringWithFormat:@"%@:", kUIAlertViewMessageObjectName]
                  delegate:self
-              placeholder:kObjectNamePlaceholder
+              placeholder:kUIAlertViewPlaceholderEnterObjectName
                       tag:kNewObjectAlertViewTag
         textFieldDelegate:self];
 }
@@ -159,16 +160,16 @@ UINavigationBarDelegate>
 - (void)editAction:(id)sender
 {
     NSMutableArray *options = [NSMutableArray array];
-    [options addObject:NSLocalizedString(@"Rename",nil)];
+    [options addObject:kUIActionSheetButtonTitleRename];
     if ([self.program numberOfNormalObjects]) {
-        [options addObject:NSLocalizedString(@"Delete Objects",nil)];
+        [options addObject:kUIActionSheetButtonTitleDeleteObjects];
     }
     if (self.useDetailCells) {
-        [options addObject:NSLocalizedString(@"Hide Details",nil)];
+        [options addObject:kUIActionSheetButtonTitleHideDetails];
     } else {
-        [options addObject:NSLocalizedString(@"Show Details",nil)];
+        [options addObject:kUIActionSheetButtonTitleShowDetails];
     }
-    [Util actionSheetWithTitle:NSLocalizedString(@"Edit Program",nil)
+    [Util actionSheetWithTitle:kUIActionSheetTitleEditProgramSingular
                       delegate:self
         destructiveButtonTitle:kBtnDeleteTitle
              otherButtonTitles:options
@@ -329,20 +330,16 @@ UINavigationBarDelegate>
     if (self.useDetailCells && [cell isKindOfClass:[DarkBlueGradientImageDetailCell class]]) {
         DarkBlueGradientImageDetailCell *detailCell = (DarkBlueGradientImageDetailCell*)imageCell;
         detailCell.topLeftDetailLabel.textColor = [UIColor whiteColor];
-        detailCell.topLeftDetailLabel.text = [NSString stringWithFormat:@"%@: %lu",
-                                              NSLocalizedString(@"Scripts", nil),
+        detailCell.topLeftDetailLabel.text = [NSString stringWithFormat:@"%@: %lu", kUILabelTextScripts,
                                               (unsigned long)[object numberOfScripts]];
         detailCell.topRightDetailLabel.textColor = [UIColor whiteColor];
-        detailCell.topRightDetailLabel.text = [NSString stringWithFormat:@"%@: %lu",
-                                               NSLocalizedString(@"Bricks", nil),
+        detailCell.topRightDetailLabel.text = [NSString stringWithFormat:@"%@: %lu", kUILabelTextBricks,
                                                (unsigned long)[object numberOfTotalBricks]];
         detailCell.bottomLeftDetailLabel.textColor = [UIColor whiteColor];
-        detailCell.bottomLeftDetailLabel.text = [NSString stringWithFormat:@"%@: %lu",
-                                                 NSLocalizedString(@"Looks", nil),
+        detailCell.bottomLeftDetailLabel.text = [NSString stringWithFormat:@"%@: %lu", kUILabelTextLooks,
                                                  (unsigned long)[object numberOfLooks]];
         detailCell.bottomRightDetailLabel.textColor = [UIColor whiteColor];
-        detailCell.bottomRightDetailLabel.text = [NSString stringWithFormat:@"%@: %lu",
-                                                  NSLocalizedString(@"Sounds", nil),
+        detailCell.bottomRightDetailLabel.text = [NSString stringWithFormat:@"%@: %lu", kUILabelTextSounds,
                                                   (unsigned long)[object numberOfSounds]];
     }
     imageCell.titleLabel.text = object.name;
@@ -390,11 +387,11 @@ UINavigationBarDelegate>
     titleLabel.tag = 1;
     titleLabel.font = [UIFont systemFontOfSize:14.0f];
     if (section == 0) {
-        titleLabel.text = [kBackgroundTitle uppercaseString];
+        titleLabel.text = [kUILabelTextBackground uppercaseString];
     } else {
         titleLabel.text = (([self.program numberOfNormalObjects] != 1)
-                        ? [kObjectTitlePlural uppercaseString]
-                        : [kObjectTitleSingular uppercaseString]);
+                        ? [kUILabelTextObjectPlural uppercaseString]
+                        : [kUILabelTextObjectSingular uppercaseString]);
     }
     titleLabel.text = [NSString stringWithFormat:@"  %@", titleLabel.text];
     [headerView.contentView addSubview:titleLabel];
@@ -472,12 +469,12 @@ UINavigationBarDelegate>
 
     if (buttonIndex == 1) {
         // Rename button
-        [Util promptWithTitle:NSLocalizedString(@"Rename program",nil)
-                      message:NSLocalizedString(@"Program name:",nil)
+        [Util promptWithTitle:kUIAlertViewTitleRenameProgram
+                      message:[NSString stringWithFormat:@"%@:", kUIAlertViewMessageProgramName]
                      delegate:self
-                  placeholder:kProgramNamePlaceholder
+                  placeholder:kUIAlertViewPlaceholderEnterProgramName
                           tag:kRenameAlertViewTag
-                        value:((! [self.program.header.programName isEqualToString:kNewDefaultProgramName])
+                        value:((! [self.program.header.programName isEqualToString:kGeneralNewDefaultProgramName])
                                ? self.program.header.programName : nil)
             textFieldDelegate:self];
     } else if (buttonIndex == 2 && [self.program numberOfNormalObjects]) {
@@ -553,12 +550,12 @@ UINavigationBarDelegate>
     if (alertView.tag == kInvalidProgramNameWarningAlertViewTag) {
         // title of cancel button is "OK"
         if (buttonIndex == 0) {
-            [Util promptWithTitle:NSLocalizedString(@"Rename program",nil)
-                          message:NSLocalizedString(@"Program name:",nil)
+            [Util promptWithTitle:kUIAlertViewTitleRenameProgram
+                          message:[NSString stringWithFormat:@"%@:", kUIAlertViewMessageProgramName]
                          delegate:self
-                      placeholder:kProgramNamePlaceholder
+                      placeholder:kUIAlertViewPlaceholderEnterProgramName
                               tag:kRenameAlertViewTag
-                            value:((! [self.program.header.programName isEqualToString:kNewDefaultProgramName])
+                            value:((! [self.program.header.programName isEqualToString:kGeneralNewDefaultProgramName])
                                    ? self.program.header.programName : nil)
                 textFieldDelegate:self];
         }
@@ -592,7 +589,7 @@ UINavigationBarDelegate>
     UIBarButtonItem *flexItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace
                                                                               target:nil
                                                                               action:nil];
-    UIBarButtonItem *deleteButton = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Delete", nil)
+    UIBarButtonItem *deleteButton = [[UIBarButtonItem alloc] initWithTitle:kUIBarButtonItemTitleDelete
                                                                      style:UIBarButtonItemStylePlain
                                                                     target:self
                                                                     action:@selector(confirmDeleteSelectedObjectsAction:)];

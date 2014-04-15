@@ -112,14 +112,14 @@
 {
     NSMutableArray *options = [NSMutableArray array];
     if ([self.object.lookList count]) {
-        [options addObject:NSLocalizedString(@"Delete Looks",nil)];
+        [options addObject:kUIActionSheetButtonTitleDeleteLooks];
     }
     if (self.useDetailCells) {
-        [options addObject:NSLocalizedString(@"Hide Details",nil)];
+        [options addObject:kUIActionSheetButtonTitleHideDetails];
     } else {
-        [options addObject:NSLocalizedString(@"Show Details",nil)];
+        [options addObject:kUIActionSheetButtonTitleShowDetails];
     }
-    [Util actionSheetWithTitle:NSLocalizedString(@"Edit Looks",nil)
+    [Util actionSheetWithTitle:kUIActionSheetTitleEditLooks
                       delegate:self
         destructiveButtonTitle:nil
              otherButtonTitles:options
@@ -277,16 +277,14 @@
         // TODO: enhancement: use data cache for this later...
         DarkBlueGradientImageDetailCell *detailCell = (DarkBlueGradientImageDetailCell*)imageCell;
         detailCell.topLeftDetailLabel.textColor = [UIColor whiteColor];
-        detailCell.topLeftDetailLabel.text = [NSString stringWithFormat:@"%@:",
-                                              NSLocalizedString(@"Measure", nil)];
+        detailCell.topLeftDetailLabel.text = [NSString stringWithFormat:@"%@:", kUILabelTextMeasure];
         detailCell.topRightDetailLabel.textColor = [UIColor whiteColor];
         CGSize dimensions = [self.object dimensionsOfLook:look];
         detailCell.topRightDetailLabel.text = [NSString stringWithFormat:@"%lux%lu",
                                                (unsigned long)dimensions.width,
                                                (unsigned long)dimensions.height];
         detailCell.bottomLeftDetailLabel.textColor = [UIColor whiteColor];
-        detailCell.bottomLeftDetailLabel.text = [NSString stringWithFormat:@"%@:",
-                                                 NSLocalizedString(@"Size", nil)];
+        detailCell.bottomLeftDetailLabel.text = [NSString stringWithFormat:@"%@:", kUILabelTextSize];
         detailCell.bottomRightDetailLabel.textColor = [UIColor whiteColor];
         NSUInteger resultSize = [self.object fileSizeOfLook:look];
         NSNumber *sizeOfSound = [NSNumber numberWithUnsignedInteger:resultSize];
@@ -297,7 +295,7 @@
     return imageCell;
 }
 
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+- (CGFloat)tableView:(UITableView*)tableView heightForRowAtIndexPath:(NSIndexPath*)indexPath
 {
   return [TableUtil getHeightForImageCell];
 }
@@ -508,31 +506,25 @@
 - (void)showAddLookActionSheet
 {
     UIActionSheet *sheet = [[UIActionSheet alloc] init];
-    sheet.title = NSLocalizedString(@"Add look",@"Action sheet menu title");
+    sheet.title = kUIActionSheetTitleAddLook;
     sheet.delegate = self;
-    
+
     if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
         NSArray *availableMediaTypes = [UIImagePickerController availableMediaTypesForSourceType:UIImagePickerControllerSourceTypeCamera];
         if ([availableMediaTypes containsObject:(NSString *)kUTTypeImage])
-            self.addLookActionSheetBtnIndexes[@([sheet addButtonWithTitle:NSLocalizedString(@"From Camera",nil)])] = kFromCameraActionSheetButton;
+            self.addLookActionSheetBtnIndexes[@([sheet addButtonWithTitle:kUIActionSheetButtonTitleFromCamera])] = kFromCameraActionSheetButton;
     }
     if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeSavedPhotosAlbum]) {
         NSArray *availableMediaTypes = [UIImagePickerController availableMediaTypesForSourceType:UIImagePickerControllerSourceTypeSavedPhotosAlbum];
         if ([availableMediaTypes containsObject:(NSString *)kUTTypeImage])
-            self.addLookActionSheetBtnIndexes[@([sheet addButtonWithTitle:NSLocalizedString(@"Choose image",nil)])] = kChooseImageActionSheetButton;
+            self.addLookActionSheetBtnIndexes[@([sheet addButtonWithTitle:kUIActionSheetButtonTitleChooseImage])] = kChooseImageActionSheetButton;
     }
 
-//    self.addLookActionSheetBtnIndexes[@([sheet addButtonWithTitle:NSLocalizedString(@"Draw new image",nil)])] = kDrawNewImageActionSheetButton;
+//    self.addLookActionSheetBtnIndexes[@([sheet addButtonWithTitle:kUIActionSheetButtonTitleDrawNewImage])] = kDrawNewImageActionSheetButton;
     sheet.cancelButtonIndex = [sheet addButtonWithTitle:kBtnCancelTitle];
     sheet.tag = kAddLookActionSheetTag;
     sheet.actionSheetStyle = UIActionSheetStyleDefault;
     [sheet showInView:self.view];
-}
-
-- (void)navigationController:(UINavigationController *)navigationController willShowViewController:(UIViewController *)viewController animated:(BOOL)animated
-{
-    // this line forces to hide the status bar when UIImagePickerController is shown
-    [[UIApplication sharedApplication] setStatusBarHidden:YES];
 }
 
 #pragma mark - helpers
@@ -562,7 +554,7 @@
     UIBarButtonItem *flexItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace
                                                                               target:nil
                                                                               action:nil];
-    UIBarButtonItem *deleteButton = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Delete", nil)
+    UIBarButtonItem *deleteButton = [[UIBarButtonItem alloc] initWithTitle:kUIBarButtonItemTitleDelete
                                                                      style:UIBarButtonItemStylePlain
                                                                     target:self
                                                                     action:@selector(confirmDeleteSelectedLooksAction:)];

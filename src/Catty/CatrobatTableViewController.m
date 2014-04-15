@@ -263,7 +263,7 @@
             [Util promptWithTitle:kTitleNewProgram
                           message:kMsgPromptProgramName
                          delegate:self
-                      placeholder:kProgramNamePlaceholder
+                      placeholder:kUIAlertViewPlaceholderEnterProgramName
                               tag:kNewProgramAlertViewTag
                 textFieldDelegate:self];
             return NO;
@@ -347,7 +347,7 @@
             [Util promptWithTitle:kTitleNewProgram
                           message:kMsgPromptProgramName
                          delegate:self
-                      placeholder:kProgramNamePlaceholder
+                      placeholder:kUIAlertViewPlaceholderEnterProgramName
                               tag:kNewProgramAlertViewTag
                 textFieldDelegate:self];
         }
