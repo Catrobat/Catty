@@ -29,6 +29,15 @@
 
 @implementation Util
 
++ (BOOL)activateTestMode:(BOOL)activate
+{
+    static BOOL alreadyActive = NO;
+    if (activate) {
+        alreadyActive = YES;
+    }
+    return alreadyActive;
+}
+
 + (NSString *)applicationDocumentsDirectory
 {    
     NSArray *paths = 
@@ -45,7 +54,9 @@
                                                    delegate:nil
                                           cancelButtonTitle:kUIAlertViewButtonTitleOK
                                           otherButtonTitles:nil];
-    [alert show];
+    if (! [self activateTestMode:NO]) {
+        [alert show];
+    }
 }
 
 + (UIAlertView*)alertWithText:(NSString*)text
@@ -61,7 +72,9 @@
                                               cancelButtonTitle:kUIAlertViewButtonTitleOK
                                               otherButtonTitles:nil];
     alertView.tag = tag;
-    [alertView show];
+    if (! [self activateTestMode:NO]) {
+        [alertView show];
+    }
     return alertView;
 }
 
@@ -78,7 +91,9 @@
     [alertView addButtonWithTitle:kUIAlertViewButtonTitleYes];
     alertView.cancelButtonIndex = [alertView addButtonWithTitle:kUIAlertViewButtonTitleNo];
     alertView.tag = tag;
-    [alertView show];
+    if (! [self activateTestMode:NO]) {
+        [alertView show];
+    }
     return alertView;
 }
 
@@ -118,7 +133,9 @@
     [textField setClearButtonMode:UITextFieldViewModeWhileEditing];
     textField.text = value;
     textField.delegate = textFieldDelegate;
-    [alertView show];
+    if (! [self activateTestMode:NO]) {
+        [alertView show];
+    }
     return alertView;
 }
 
@@ -147,7 +164,9 @@
     actionSheet.cancelButtonIndex = [actionSheet addButtonWithTitle:kUIActionSheetButtonTitleCancel];
     actionSheet.tag = tag;
     actionSheet.actionSheetStyle = UIActionSheetStyleDefault;
-    [actionSheet showInView:view];
+    if (! [self activateTestMode:NO]) {
+        [actionSheet showInView:view];
+    }
     return actionSheet;
 }
 

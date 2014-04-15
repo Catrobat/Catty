@@ -65,6 +65,7 @@
         [ProgramTableViewControllerNewProgramTests removeProject:[self.defaultProgram projectPath]];
     }
     self.programTableViewController.delegate = nil; // no delegate needed for our tests
+    [Util activateTestMode:YES];
 }
 
 - (void)setupForNewProgram
