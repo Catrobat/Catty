@@ -59,8 +59,12 @@
     self.webView.delegate = self;
     self.webView.scrollView.delegate = self;
     self.webView.backgroundColor = [UIColor darkBlueColor];
+    self.view.backgroundColor = [UIColor darkBlueColor];
+    [self.webView setOpaque:NO];
+    [self.view setOpaque:NO];
     self.WebviewFinishedLoading = NO;
     self.navigationItem.title = kUIViewControllerTitleHelp;
+    [self showLoadingView];
 
     NSURL *url = [NSURL URLWithString:kForumURL];
     NSURLRequest *request = [NSURLRequest requestWithURL:url];
@@ -113,13 +117,17 @@
 #pragma mark - UIWebViewDelegate
 - (void)webViewDidStartLoad:(UIWebView*)webView
 {
-    [self showLoadingView];
+//    [self showLoadingView];
+    UIApplication* app = [UIApplication sharedApplication];
+    app.networkActivityIndicatorVisible = YES;
     [self initButtons];
 }
 
 - (void)webViewDidFinishLoad:(UIWebView*)webView
 {
     [self hideLoadingView];
+    UIApplication* app = [UIApplication sharedApplication];
+    app.networkActivityIndicatorVisible = NO;
     [self initButtons];
     self.WebviewFinishedLoading = YES;
 }
