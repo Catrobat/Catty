@@ -216,8 +216,7 @@
                                    [self loadInfosWith:data andResponse:response];}];
     }
     [self showLoadingView];
-    
-    
+  
 }
 -(void)loadInfosWith:(NSData*)data andResponse:(NSURLResponse*)response
 {
@@ -254,7 +253,7 @@
     }
     [self update];
     [self hideLoadingView];
-    
+   
 }
 
 - (void)showLoadingView
@@ -264,11 +263,15 @@
         [self.view addSubview:self.loadingView];
     }
     [self.loadingView show];
+    UIApplication* app = [UIApplication sharedApplication];
+    app.networkActivityIndicatorVisible = YES;
 }
 
 - (void) hideLoadingView
 {
     [self.loadingView hide];
+    UIApplication* app = [UIApplication sharedApplication];
+    app.networkActivityIndicatorVisible = NO;
 }
 
 

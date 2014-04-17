@@ -294,8 +294,10 @@
                            completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
                                [self loadIDsWith:data andResponse:response];}];
     if (indicator==0) {
-//        [self showLoadingView];
+        [self showLoadingView];
     }
+    UIApplication* app = [UIApplication sharedApplication];
+    app.networkActivityIndicatorVisible = YES;
     
     self.programListOffset += self.programListLimit;
 }
@@ -490,6 +492,8 @@
     }
     [self update];
     [self hideLoadingView];
+    UIApplication* app = [UIApplication sharedApplication];
+    app.networkActivityIndicatorVisible = NO;
     
 }
 

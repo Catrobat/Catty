@@ -38,6 +38,7 @@
 @property (nonatomic) NSInteger originalNavigationYPos;
 @property (nonatomic) NSInteger originalToolbarFrameYPos;
 @property (nonatomic) BOOL  WebviewFinishedLoading;
+@property (nonatomic, strong) NSTimer *progressTimer;
 @end
 
 @implementation HelpWebViewController
@@ -80,12 +81,17 @@
 {
     [super viewWillAppear:animated];
     self.navigationController.navigationBar.translucent = YES;
+    self.webView.scalesPageToFit = YES;
+    self.webView.delegate = self;
 }
 
 - (void)viewWillDisappear:(BOOL)animated
 {
     self.navigationController.toolbar.frame = CGRectMake(self.navigationController.toolbar.frame.origin.x,self.originalToolbarFrameYPos,self.navigationController.toolbar.frame.size.width,self.navigationController.toolbar.frame.size.height);
     self.navigationController.navigationBar.frame = CGRectMake(self.navigationController.navigationBar.frame.origin.x,self.originalNavigationYPos,self.navigationController.navigationBar.frame.size.width,self.navigationController.navigationBar.frame.size.height);
+    [self.webView removeFromSuperview];
+    self.webView.delegate = nil;
+    self.webView = nil;
 }
 
 - (void)viewDidUnload
@@ -120,6 +126,13 @@
     [self initButtons];
     UIApplication* app = [UIApplication sharedApplication];
     app.networkActivityIndicatorVisible = YES;
+    if (self.navigationController.navigationBar.frame.origin.y == self.originalNavigationYPos) {
+        self.progressView.progress = 0;
+        self.progressView.hidden = NO;
+        self.progressTimer = [NSTimer scheduledTimerWithTimeInterval:0.05 target:self selector:@selector(timerCallback) userInfo:nil repeats:YES];
+    }
+    self.WebviewFinishedLoading = NO;
+    
 }
 
 - (void)webViewDidFinishLoad:(UIWebView*)webView
@@ -129,6 +142,8 @@
     self.WebviewFinishedLoading = YES;
     UIApplication* app = [UIApplication sharedApplication];
     app.networkActivityIndicatorVisible = NO;
+    self.navigationController.toolbar.frame = CGRectMake(self.navigationController.toolbar.frame.origin.x,self.originalToolbarFrameYPos,self.navigationController.toolbar.frame.size.width,self.navigationController.toolbar.frame.size.height);
+    self.navigationController.navigationBar.frame = CGRectMake(self.navigationController.navigationBar.frame.origin.x,self.originalNavigationYPos,self.navigationController.navigationBar.frame.size.width,self.navigationController.navigationBar.frame.size.height);
 }
 
 - (void)webView:(UIWebView*)webView didFailLoadWithError:(NSError*)error
@@ -202,26 +217,47 @@
             self.navigationController.toolbar.frame = CGRectMake(self.navigationController.toolbar.frame.origin.x,self.originalToolbarFrameYPos,self.navigationController.toolbar.frame.size.width,self.navigationController.toolbar.frame.size.height);
             self.navigationController.navigationBar.frame = CGRectMake(self.navigationController.navigationBar.frame.origin.x,self.originalNavigationYPos,self.navigationController.navigationBar.frame.size.width,self.navigationController.navigationBar.frame.size.height);
             
+            
         }
         
         else if (scrollView.contentOffset.y >= (scrollView.contentSize.height - scrollView.frame.size.height)){
             self.navigationController.toolbar.frame = CGRectMake(self.navigationController.toolbar.frame.origin.x,self.originalToolbarFrameYPos,self.navigationController.toolbar.frame.size.width,self.navigationController.toolbar.frame.size.height);
             self.navigationController.navigationBar.frame = CGRectMake(self.navigationController.navigationBar.frame.origin.x,self.originalNavigationYPos,self.navigationController.navigationBar.frame.size.width,self.navigationController.navigationBar.frame.size.height);
+            
         }
         else if (yOffset > 0) {
             
             if (yOffset <= self.scrollIndicator) {
                 self.navigationController.toolbar.frame = CGRectMake(self.navigationController.toolbar.frame.origin.x,self.originalToolbarFrameYPos,self.navigationController.toolbar.frame.size.width,self.navigationController.toolbar.frame.size.height);
                 self.navigationController.navigationBar.frame = CGRectMake(self.navigationController.navigationBar.frame.origin.x,self.originalNavigationYPos,self.navigationController.navigationBar.frame.size.width,self.navigationController.navigationBar.frame.size.height);
+                
             }
             else{
                 self.navigationController.toolbar.frame = CGRectMake(self.navigationController.toolbar.frame.origin.x, self.originalToolbarFrameYPos + yOffset, self.navigationController.toolbar.frame.size.width, self.navigationController.toolbar.frame.size.height);
                 self.navigationController.navigationBar.frame = CGRectMake(self.navigationController.navigationBar.frame.origin.x, self.originalNavigationYPos - yOffset, self.navigationController.navigationBar.frame.size.width, self.navigationController.navigationBar.frame.size.height);
+                self.progressView.hidden=YES;
                 
             }
             
         }
         self.scrollIndicator = yOffset;
+    }
+}
+
+-(void)timerCallback {
+    if (self.WebviewFinishedLoading) {
+        if (self.progressView.progress >= 1) {
+            self.progressView.hidden = YES;
+        }
+        else {
+            self.progressView.progress += 0.1;
+        }
+    }
+    else {
+        self.progressView.progress += 0.05;
+        if (self.progressView.progress >= 0.95) {
+            self.progressView.progress = 0.95;
+        }
     }
 }
 
