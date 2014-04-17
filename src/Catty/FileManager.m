@@ -44,6 +44,7 @@
 @property (nonatomic,strong) NSMutableDictionary *downloadSizeDict;
 @property (nonatomic) long long downloadsize;
 
+
 @property (nonatomic, strong) NSString *projectName;
 
 
@@ -419,7 +420,7 @@
     progress = [NSNumber numberWithFloat:progress.floatValue+((float) [data length] / (float) size.longLongValue)];
     [self.progressDict setObject:progress forKey:connection.currentRequest.URL];
     
-    if ([self.delegate respondsToSelector:@selector(updateProgress:)]) {
+    if ([self.delegate respondsToSelector:@selector(updateProgress:)] && [self.projectURL isEqual:connection.currentRequest.URL]) {
         if (progress.floatValue == 1) {
             [self.delegate updateProgress:progress.floatValue-1];
         }
@@ -559,7 +560,7 @@
     NSString* name = [self.programArray objectForKey:connection.currentRequest.URL];
     [self unzipAndStore:data withName:name];
     //[[NSNotificationCenter defaultCenter] postNotificationName:@"finishedloading" object:nil];
-    if ([self.delegate respondsToSelector:@selector(downloadFinishedWithURL:)]) {
+    if ([self.delegate respondsToSelector:@selector(downloadFinishedWithURL:)] && [self.projectURL isEqual:connection.currentRequest.URL]) {
         [self.delegate downloadFinishedWithURL:connection.currentRequest.URL];
     }
 

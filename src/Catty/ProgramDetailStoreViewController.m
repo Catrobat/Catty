@@ -111,6 +111,8 @@
 //    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(downloadFinishedWithURL:) name:@"finishedloading" object:nil];
     AppDelegate *appDelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
     appDelegate.fileManager.delegate = self;
+    appDelegate.fileManager.projectURL = [NSURL URLWithString:self.project.downloadUrl];
+
 }
 
 - (void)initNavigationBar
