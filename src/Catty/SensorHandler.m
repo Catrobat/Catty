@@ -283,12 +283,14 @@ static SensorHandler* sharedSensorHandler = nil;
 {
     [self.recorder updateMeters];
     self.loudnessInPercent = [self decibelToPercent:[self.recorder averagePowerForChannel:0]];
+    NSLog(@"loudness: %f", self.loudnessInPercent);
 }
 
 - (CGFloat)decibelToPercent:(CGFloat)decibel
 {
     // http://stackoverflow.com/questions/1512131/iphone-avaudioplayer-convert-decibel-level-into-percent
-    CGFloat percent = pow (10, (0.05 * decibel));
+//    CGFloat percent = pow (10, (0.05 * decibel));
+    CGFloat percent = pow (10, decibel / 20);
     return percent * 100.0f;
 }
 
