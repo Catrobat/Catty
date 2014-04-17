@@ -34,6 +34,10 @@
 
 @interface Util : NSObject
 
+#ifdef CATTY_TESTS
++ (void)activateTestMode:(BOOL)activate;
+#endif
+
 + (NSString*)applicationDocumentsDirectory;
 
 + (void)showComingSoonAlertView;

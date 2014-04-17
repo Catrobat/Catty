@@ -25,6 +25,7 @@
 #import "UIColor+CatrobatUIColorExtensions.h"
 #import "UIDefines.h"
 #import <QuartzCore/QuartzCore.h>
+#import "LanguageTranslationDefines.h"
 
 #define kLoadingBackgroundHeight 100
 #define kLoadingBackgroundWidth 270
@@ -89,7 +90,7 @@
   self.loadingLabel = [[UILabel alloc] initWithFrame:CGRectMake(15, 65, 240, 20)];
   self.loadingLabel.backgroundColor = [UIColor clearColor];
   self.loadingLabel.textColor = [UIColor blueGrayColor];
-  NSString* loadingText = [[NSString alloc] initWithFormat:@"%@...", NSLocalizedString(@"Loading", nil) ];
+  NSString* loadingText = [[NSString alloc] initWithFormat:@"%@...", kUILabelTextLoading];
   self.loadingLabel.text = loadingText;
   self.loadingLabel.textAlignment = NSTextAlignmentCenter;
   self.loadingLabel.font = [UIFont boldSystemFontOfSize:16];

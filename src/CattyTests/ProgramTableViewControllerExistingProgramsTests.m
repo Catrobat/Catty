@@ -41,6 +41,7 @@
 #import "Script.h"
 #import "ActionSheetAlertViewTags.h"
 #import "MyProgramsViewController.h"
+#import "LanguageTranslationDefines.h"
 
 #define kNewProgramName @"My new program"
 
@@ -60,6 +61,7 @@
         [self.fileManager createDirectory:[Program basePath]];
     }
     self.programTableViewController.delegate = nil; // no delegate needed for our tests
+    [Util activateTestMode:YES];
 }
 
 - (void)tearDown
@@ -134,7 +136,7 @@
             backgroundObjectCellTitle = imageCell.titleLabel.text;
         }
         // TODO: german name "Hintergrund" instead of "background"
-        XCTAssertTrue(([backgroundObjectCellTitle isEqualToString:kBackgroundTitle] || [backgroundObjectCellTitle isEqualToString:@"Hintergrund"]), @"The ProgramTableViewController did not create the background object cell correctly.");
+        XCTAssertTrue(([backgroundObjectCellTitle isEqualToString:kUILabelTextBackground] || [backgroundObjectCellTitle isEqualToString:@"Hintergrund"]), @"The ProgramTableViewController did not create the background object cell correctly.");
 
         NSUInteger objectCounter = 0;
         NSLog(@"Program: %@", program.header.programName);
@@ -285,7 +287,7 @@
     }
 }
 
-- (void)testExistingProgramsTestRemoveAllObjectsExceptLastOneMustSucceedAndRemoveLastObjectMustFail
+- (void)testExistingProgramsTestRemoveAllObjectsExceptBackgroundObjectMustSucceedAndRemoveBackgroundObjectMustFail
 {
     NSString *basePath = [Program basePath];
     NSError *error;
@@ -329,7 +331,10 @@
             if (objectCounter < totalNumOfObjects) {
                 XCTAssertTrue(result, @"ProgramTableViewController forbids removing object cell for object %@ in program %@", object.name, program.header.programName);
                 if (result) {
-                    [self.programTableViewController tableView:self.programTableViewController.tableView commitEditingStyle:UITableViewCellEditingStyleDelete forRowAtIndexPath:indexPath];
+                    NSLog(@"IndexPath: %@", [indexPath description]);
+                    [self.programTableViewController tableView:self.programTableViewController.tableView
+                                            commitEditingStyle:UITableViewCellEditingStyleDelete
+                                             forRowAtIndexPath:indexPath];
                     UIAlertView *alertView = [Util confirmAlertWithTitle:nil message:nil delegate:nil tag:kConfirmAlertViewTag];
                     alertView.cancelButtonIndex = -1;
                     XCTAssertNoThrow([self.programTableViewController alertView:alertView clickedButtonAtIndex:0], @"Could not confirm to remove object");

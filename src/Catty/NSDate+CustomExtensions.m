@@ -21,44 +21,42 @@
  */
 
 #import "NSDate+CustomExtensions.h"
+#import "LanguageTranslationDefines.h"
 
 #define kWeekdayNamesShort @[\
-    NSLocalizedString(@"Su", nil),\
-    NSLocalizedString(@"Mo", nil),\
-    NSLocalizedString(@"Tu", nil),\
-    NSLocalizedString(@"We", nil),\
-    NSLocalizedString(@"Th", nil),\
-    NSLocalizedString(@"Fr", nil),\
-    NSLocalizedString(@"Sa", nil)\
+    kNSDateTitleWeekdayShortNameSunday,\
+    kNSDateTitleWeekdayShortNameMonday,\
+    kNSDateTitleWeekdayShortNameTuesday,\
+    kNSDateTitleWeekdayShortNameWednesday,\
+    kNSDateTitleWeekdayShortNameThursday,\
+    kNSDateTitleWeekdayShortNameFriday,\
+    kNSDateTitleWeekdayShortNameSaturday\
 ]
 
 #define kWeekdayNames @[\
-    NSLocalizedString(@"Sunday", nil),\
-    NSLocalizedString(@"Monday", nil),\
-    NSLocalizedString(@"Tuesday", nil),\
-    NSLocalizedString(@"Wednesday", nil),\
-    NSLocalizedString(@"Thursday", nil),\
-    NSLocalizedString(@"Friday", nil),\
-    NSLocalizedString(@"Saturday", nil)\
+    kNSDateTitleWeekdayNameSunday,\
+    kNSDateTitleWeekdayNameMonday,\
+    kNSDateTitleWeekdayNameTuesday,\
+    kNSDateTitleWeekdayNameWednesday,\
+    kNSDateTitleWeekdayNameThursday,\
+    kNSDateTitleWeekdayNameFriday,\
+    kNSDateTitleWeekdayNameSaturday\
 ]
 
 #define kMonthNamesShort @[\
-    NSLocalizedString(@"Jan", nil),\
-    NSLocalizedString(@"Feb", nil),\
-    NSLocalizedString(@"Mar", nil),\
-    NSLocalizedString(@"Apr", nil),\
-    NSLocalizedString(@"May", nil),\
-    NSLocalizedString(@"Jun", nil),\
-    NSLocalizedString(@"Jul", nil),\
-    NSLocalizedString(@"Aug", nil),\
-    NSLocalizedString(@"Sep", nil),\
-    NSLocalizedString(@"Oct", nil),\
-    NSLocalizedString(@"Nov", nil),\
-    NSLocalizedString(@"Dec", nil)\
+    kNSDateTitleMonthShortNameJanuary,\
+    kNSDateTitleMonthShortNameFebruary,\
+    kNSDateTitleMonthShortNameMarch,\
+    kNSDateTitleMonthShortNameApril,\
+    kNSDateTitleMonthShortNameMay,\
+    kNSDateTitleMonthShortNameJune,\
+    kNSDateTitleMonthShortNameJuly,\
+    kNSDateTitleMonthShortNameAugust,\
+    kNSDateTitleMonthShortNameSeptember,\
+    kNSDateTitleMonthShortNameOctober,\
+    kNSDateTitleMonthShortNameNovember,\
+    kNSDateTitleMonthShortNameDecember\
 ]
-
-#define kTodayName NSLocalizedString(@"Today", nil)
-#define kYesterdayName NSLocalizedString(@"Yesterday", nil)
 
 @implementation NSDate (CustomExtensions)
 
@@ -122,9 +120,9 @@
     if ([self isToday]) {
         NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
         [dateFormatter setDateFormat:@"HH:mm"];
-        return [NSString stringWithFormat:@"%@ %@", kTodayName, [dateFormatter stringFromDate:self]];
+        return [NSString stringWithFormat:@"%@ %@", kNSDateTitleNameToday, [dateFormatter stringFromDate:self]];
     } else if ([self isYesterday]) {
-        return kYesterdayName;
+        return kNSDateTitleNameYesterday;
     }
     NSCalendar *calendar = [NSCalendar currentCalendar];
     NSCalendarUnit options = (NSCalendarUnitDay | NSCalendarUnitMonth | NSCalendarUnitYear);

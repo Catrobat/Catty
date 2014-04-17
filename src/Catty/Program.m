@@ -35,6 +35,7 @@
 #import "Parser.h"
 #import "Script.h"
 #import "Brick.h"
+#import "LanguageTranslationDefines.h"
 
 @implementation Program
 
@@ -92,8 +93,8 @@
         [fileManager createDirectory:soundsDirName];
     }
 
-    [program addNewObjectWithName:kBackgroundObjectName];
-    [program addNewObjectWithName:kDefaultObjectName];
+    [program addNewObjectWithName:kGeneralBackgroundObjectName];
+    [program addNewObjectWithName:kGeneralDefaultObjectName];
     return program;
 }
 

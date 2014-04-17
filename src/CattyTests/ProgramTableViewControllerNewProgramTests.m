@@ -41,6 +41,7 @@
 #import "Script.h"
 #import "ActionSheetAlertViewTags.h"
 #import "MyProgramsViewController.h"
+#import "LanguageTranslationDefines.h"
 
 #define kNewProgramName @"My new program"
 
@@ -64,6 +65,7 @@
         [ProgramTableViewControllerNewProgramTests removeProject:[self.defaultProgram projectPath]];
     }
     self.programTableViewController.delegate = nil; // no delegate needed for our tests
+    [Util activateTestMode:YES];
 }
 
 - (void)setupForNewProgram
@@ -97,7 +99,7 @@
         backgroundCellTitle = imageCell.titleLabel.text;
     }
 
-    XCTAssertTrue([backgroundCellTitle isEqualToString:kBackgroundObjectName], @"The ProgramTableViewController did not create the background cell correctly.");
+    XCTAssertTrue([backgroundCellTitle isEqualToString:kGeneralBackgroundObjectName], @"The ProgramTableViewController did not create the background cell correctly.");
 }
 
 - (void)testNewProgramObjectCellTitles
@@ -112,7 +114,7 @@
         UITableViewCell <CatrobatImageCell>* imageCell = (UITableViewCell <CatrobatImageCell>*)cell;
         firstObjectCellTitle = imageCell.titleLabel.text;
     }
-    XCTAssertTrue([firstObjectCellTitle isEqualToString:kDefaultObjectName], @"The ProgramTableViewController did not create the first object cell correctly.");
+    XCTAssertTrue([firstObjectCellTitle isEqualToString:kGeneralDefaultObjectName], @"The ProgramTableViewController did not create the first object cell correctly.");
 }
 
 - (void)testNewProgramNumberOfSections

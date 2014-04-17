@@ -43,6 +43,7 @@
 #import "Util.h"
 #import "SaveToProjectActivity.h"
 #import "UIImage+CatrobatUIImageExtensions.h"
+#import "LanguageTranslationDefines.h"
 
 #define kWidthSlideMenu 150
 #define kBounceEffect 5
@@ -133,9 +134,9 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
+
     [[UIApplication sharedApplication] setStatusBarHidden:YES];
-    
+
     //    ///MENU_BUTTON:::Button before Sliding Menu!!!
     //    self.menuBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     //    menuBtn.frame = CGRectMake(8.0f, 10.0f, 34.0f, 24.0f);
@@ -199,51 +200,54 @@
 
 - (void)setUpLabels
 {
-  if ([Util getScreenHeight]==kIphone5ScreenHeight) {
-    UILabel* label      = [[UILabel alloc] initWithFrame:
-                           CGRectMake(-(kPlaceofLabels-kWidthSlideMenu),(kIphone5ScreenHeight/2)-(kContinueButtonSize/2)-(KMenuIPhone5GapSize)-kMenuIPhone5ContinueGapSize-(kMenuButtonSize)-10, 100, kMenuButtonSize)];
-    self.menuBackLabel  = label;
-    
-    label               =[[UILabel alloc] initWithFrame:
-                          CGRectMake(-(kPlaceofLabels-kWidthSlideMenu),(kIphone5ScreenHeight/2)-(kContinueButtonSize/2)-kMenuIPhone5ContinueGapSize-10,100, kMenuButtonSize)];
-    self.menuRestartLabel = label;
-    label               = [[UILabel alloc] initWithFrame:
-                           CGRectMake(-(kPlaceofLabels-kWidthSlideMenu),(kIphone5ScreenHeight/2)+(kContinueButtonSize/2)-10,  kContinueButtonSize, kMenuButtonSize)];
-    self.menuContinueLabel = label;
-    
-    label               = [[UILabel alloc] initWithFrame:
-                           CGRectMake(-(kPlaceOfButtons-kWidthSlideMenu),(kIphone5ScreenHeight/2)+(kContinueButtonSize/2)+kMenuIPhone5ContinueGapSize+kMenuButtonSize-10,  100, kMenuButtonSize)];
-    
-    self.menuScreenshotLabel = label;
-    label               = [[UILabel alloc] initWithFrame:
-                           CGRectMake(-(kPlaceOfButtons-kWidthSlideMenu),(kIphone5ScreenHeight/2)+                    (kContinueButtonSize/2)+(KMenuIPhone5GapSize)+kMenuIPhone5ContinueGapSize+(2*kMenuButtonSize)-10,  100, kMenuButtonSize)];
-    self.menuAxisLabel  = label;
-  }
-  if ([Util getScreenHeight]==kIphone4ScreenHeight) {
-    UILabel* label     =[[UILabel alloc] initWithFrame:
-                         CGRectMake(-(kPlaceofLabels-kWidthSlideMenu),(kIphone4ScreenHeight/2)-(kContinueButtonSize/2)-(kMenuIPhone4GapSize)-kMenuIPhone4ContinueGapSize-(kMenuButtonSize)-10, 100, kMenuButtonSize)];
-    self.menuBackLabel = label;
-    label              =[[UILabel alloc] initWithFrame:
-                         CGRectMake(-(kPlaceofLabels-kWidthSlideMenu),(kIphone4ScreenHeight/2)-(kContinueButtonSize/2)-kMenuIPhone4ContinueGapSize-10,100, kMenuButtonSize)];
-    self.menuRestartLabel = label;
-    label     = [[UILabel alloc] initWithFrame:
-                 CGRectMake(-(kPlaceofLabels-kWidthSlideMenu),(kIphone4ScreenHeight/2)+(kContinueButtonSize/2)-10,  kContinueButtonSize, kMenuButtonSize)];
-    self.menuContinueLabel = label;
-    label    = [[UILabel alloc] initWithFrame:
-                CGRectMake(-(kPlaceOfButtons-kWidthSlideMenu),(kIphone4ScreenHeight/2)+(kContinueButtonSize/2)+kMenuIPhone4ContinueGapSize+kMenuButtonSize-10,  100, kMenuButtonSize)];
-    self.menuScreenshotLabel = label;
-    label         = [[UILabel alloc] initWithFrame:
-                     CGRectMake(-(kPlaceOfButtons-kWidthSlideMenu),(kIphone4ScreenHeight/2)+(kContinueButtonSize/2)+(kMenuIPhone4GapSize)+kMenuIPhone4ContinueGapSize+(2*kMenuButtonSize)-10,  100, kMenuButtonSize)];
-    self.menuAxisLabel  = label;
-  }
-  NSArray* labelTextArray = [[NSArray alloc] initWithObjects:NSLocalizedString(@"Back", nil),NSLocalizedString(@"Restart", nil),NSLocalizedString(@"Continue",nil), NSLocalizedString(@"Screenshot",nil), NSLocalizedString(@"Grid",nil),nil];
-  NSArray* labelArray = [[NSArray alloc] initWithObjects:self.menuBackLabel,self.menuRestartLabel,self.menuContinueLabel, self.menuScreenshotLabel, self.menuAxisLabel,nil];
-  for(int i=0;i<[labelTextArray count];i++){
-    [self setupLabel:labelTextArray[i]
-             andView:labelArray[i]];
-  }
-  
-  
+    if ([Util getScreenHeight]==kIphone5ScreenHeight) {
+        UILabel* label      = [[UILabel alloc] initWithFrame:
+                               CGRectMake(-(kPlaceofLabels-kWidthSlideMenu),(kIphone5ScreenHeight/2)-(kContinueButtonSize/2)-(KMenuIPhone5GapSize)-kMenuIPhone5ContinueGapSize-(kMenuButtonSize)-10, 100, kMenuButtonSize)];
+        self.menuBackLabel  = label;
+        
+        label               =[[UILabel alloc] initWithFrame:
+                              CGRectMake(-(kPlaceofLabels-kWidthSlideMenu),(kIphone5ScreenHeight/2)-(kContinueButtonSize/2)-kMenuIPhone5ContinueGapSize-10,100, kMenuButtonSize)];
+        self.menuRestartLabel = label;
+        label               = [[UILabel alloc] initWithFrame:
+                               CGRectMake(-(kPlaceofLabels-kWidthSlideMenu),(kIphone5ScreenHeight/2)+(kContinueButtonSize/2)-10,  kContinueButtonSize, kMenuButtonSize)];
+        self.menuContinueLabel = label;
+        
+        label               = [[UILabel alloc] initWithFrame:
+                               CGRectMake(-(kPlaceOfButtons-kWidthSlideMenu),(kIphone5ScreenHeight/2)+(kContinueButtonSize/2)+kMenuIPhone5ContinueGapSize+kMenuButtonSize-10,  100, kMenuButtonSize)];
+        
+        self.menuScreenshotLabel = label;
+        label               = [[UILabel alloc] initWithFrame:
+                               CGRectMake(-(kPlaceOfButtons-kWidthSlideMenu),(kIphone5ScreenHeight/2)+                    (kContinueButtonSize/2)+(KMenuIPhone5GapSize)+kMenuIPhone5ContinueGapSize+(2*kMenuButtonSize)-10,  100, kMenuButtonSize)];
+        self.menuAxisLabel  = label;
+    }
+    if ([Util getScreenHeight]==kIphone4ScreenHeight) {
+        UILabel* label     =[[UILabel alloc] initWithFrame:
+                             CGRectMake(-(kPlaceofLabels-kWidthSlideMenu),(kIphone4ScreenHeight/2)-(kContinueButtonSize/2)-(kMenuIPhone4GapSize)-kMenuIPhone4ContinueGapSize-(kMenuButtonSize)-10, 100, kMenuButtonSize)];
+        self.menuBackLabel = label;
+        label              =[[UILabel alloc] initWithFrame:
+                             CGRectMake(-(kPlaceofLabels-kWidthSlideMenu),(kIphone4ScreenHeight/2)-(kContinueButtonSize/2)-kMenuIPhone4ContinueGapSize-10,100, kMenuButtonSize)];
+        self.menuRestartLabel = label;
+        label     = [[UILabel alloc] initWithFrame:
+                     CGRectMake(-(kPlaceofLabels-kWidthSlideMenu),(kIphone4ScreenHeight/2)+(kContinueButtonSize/2)-10,  kContinueButtonSize, kMenuButtonSize)];
+        self.menuContinueLabel = label;
+        label    = [[UILabel alloc] initWithFrame:
+                    CGRectMake(-(kPlaceOfButtons-kWidthSlideMenu),(kIphone4ScreenHeight/2)+(kContinueButtonSize/2)+kMenuIPhone4ContinueGapSize+kMenuButtonSize-10,  100, kMenuButtonSize)];
+        self.menuScreenshotLabel = label;
+        label         = [[UILabel alloc] initWithFrame:
+                         CGRectMake(-(kPlaceOfButtons-kWidthSlideMenu),(kIphone4ScreenHeight/2)+(kContinueButtonSize/2)+(kMenuIPhone4GapSize)+kMenuIPhone4ContinueGapSize+(2*kMenuButtonSize)-10,  100, kMenuButtonSize)];
+        self.menuAxisLabel  = label;
+    }
+    NSArray* labelTextArray = [[NSArray alloc] initWithObjects:
+                               kUILabelTextBack,
+                               kUILabelTextRestart,
+                               kUILabelTextContinue,
+                               kUILabelTextScreenshot,
+                               kUILabelTextGrid, nil];
+    NSArray* labelArray = [[NSArray alloc] initWithObjects:self.menuBackLabel,self.menuRestartLabel,self.menuContinueLabel, self.menuScreenshotLabel, self.menuAxisLabel,nil];
+    for (int i = 0; i < [labelTextArray count]; ++i) {
+        [self setupLabel:labelTextArray[i]
+                 andView:labelArray[i]];
+    }
 }
 
 - (void)setupLabel:(NSString*)name andView:(UILabel*)label
@@ -558,13 +562,12 @@
     
     self.menuAxisButton.frame = CGRectMake(kPlaceOfButtons+((kContinueButtonSize-kMenuButtonSize)/2)-kWidthSlideMenu,self.menuAxisButton.frame.origin.y, self.menuAxisButton.frame.size.width, self.menuAxisButton.frame.size.height);
     self.menuAxisLabel.frame = CGRectMake(kPlaceofLabels+((kContinueButtonSize-kMenuButtonSize)/2)-kWidthSlideMenu,self.menuAxisLabel.frame.origin.y, self.menuAxisLabel.frame.size.width, self.menuAxisLabel.frame.size.height);
-
     //self.menuBtn.hidden=NO;
 }
 
 - (void)restartProgram:(UIButton*)sender
 {
-    ///Reset Scene
+    // reset scene
     self.scene = nil;
     self.scene.scaleMode = SKSceneScaleModeAspectFit;
     SKView * view= (SKView*)self.skView;
@@ -573,15 +576,14 @@
     [Util setLastProgram:self.program.header.programName];
 
     if (! self.program) {
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Can't restart program!",nil)
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:kUIAlertViewTitleCantRestartProgram
                                                         message:nil
                                                        delegate:self.menuView
-                                              cancelButtonTitle:NSLocalizedString(@"OK",nil)
+                                              cancelButtonTitle:kUIAlertViewButtonTitleOK
                                               otherButtonTitles:nil];
         [alert show];
         return;
     }
-
     [view presentScene:self.scene];
     [self configureScene];
     [self continueProgram:nil withDuration:kDontResumeSounds];
@@ -612,10 +614,10 @@
 }
 - (void)showSaveScreenshotActionSheet
 {
-    //  NSString *actionSheetTitle = NSLocalizedString(@"Save Screenshot to:",@"Action sheet menu title");
-    //  NSString *buttonSaveToCameraRoll = NSLocalizedString(@"Camera Roll",nil);
-    //  NSString *buttonSaveToProject = NSLocalizedString(@"Project",nil);
-    //  NSString *cancelTitle = NSLocalizedString(@"Cancel",nil);
+    //  NSString *actionSheetTitle = [NSString stringWithFormat:@"%@:", kUIActionSheetTitleSaveScreenshot];
+    //  NSString *buttonSaveToCameraRoll = kUIActionSheetButtonTitleCameraRoll;
+    //  NSString *buttonSaveToProject = kUIActionSheetButtonTitleProject;
+    //  NSString *cancelTitle = kUIActionSheetButtonTitleCancel;
     //  UIActionSheet *actionSheet = [[UIActionSheet alloc]
     //                                initWithTitle:actionSheetTitle
     //                                delegate:self
@@ -623,47 +625,54 @@
     //                                destructiveButtonTitle:nil
     //                                otherButtonTitles:buttonSaveToCameraRoll, buttonSaveToProject,  nil];
     //  [actionSheet showInView:self.menuView];
-    
+
     UIImage *imageToShare = self.snapshotImage;
     NSString* path = [self.program projectPath];
     NSArray *itemsToShare = @[imageToShare];
-    
+
     SaveToProjectActivity *saveToProjectActivity = [[SaveToProjectActivity alloc] initWithImagePath:path];
     NSArray *activities = @[saveToProjectActivity];
-    
+
     UIActivityViewController *activityVC = [[UIActivityViewController alloc] initWithActivityItems:itemsToShare applicationActivities:activities];
-    activityVC.excludedActivityTypes = @[UIActivityTypeAssignToContact,UIActivityTypePostToFlickr,UIActivityTypePostToFacebook,UIActivityTypePostToVimeo,UIActivityTypePostToWeibo,UIActivityTypePostToTwitter,UIActivityTypeMail]; //or whichever you don't need
+    activityVC.excludedActivityTypes = @[UIActivityTypeAssignToContact,
+                                         UIActivityTypePostToFlickr,
+                                         UIActivityTypePostToFacebook,
+                                         UIActivityTypePostToVimeo,
+                                         UIActivityTypePostToWeibo,
+                                         UIActivityTypePostToTwitter,
+                                         UIActivityTypeMail]; //or whichever you don't need
     [self presentViewController:activityVC animated:YES completion:nil];
 }
+
 //- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
 //{
 //  NSString *buttonTitle = [actionSheet buttonTitleAtIndex:buttonIndex];
-//  if ([buttonTitle isEqualToString:NSLocalizedString(@"Camera Roll",nil)]) {
+//  if ([buttonTitle isEqualToString:kUIActionSheetButtonTitleCameraRoll]) {
 //    /// Write to Camera Roll
 //    UIImageWriteToSavedPhotosAlbum(self.snapshotImage, nil, nil, nil);
-//    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Screenshot saved to CameraRoll!",nil)
+//    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:kUIAlertViewTitleScreenshotSavedToCameraRoll
 //                                                    message:nil
 //                                                   delegate:self.menuView
-//                                          cancelButtonTitle:NSLocalizedString(@"OK",nil)
+//                                          cancelButtonTitle:kUIAlertViewButtonTitleOK
 //                                          otherButtonTitles:nil];
 //    [alert show];
 //  }
-//  if ([buttonTitle isEqualToString:NSLocalizedString(@"Project",nil)]) {
+//
+//  if ([buttonTitle isEqualToString:kUIActionSheetButtonTitleProject]) {
 //    NSString* path = [self.program projectPath];
 //    NSString *pngFilePath = [NSString stringWithFormat:@"%@/manual_screenshot.png",path];
 //    NSData *data = [NSData dataWithData:UIImagePNGRepresentation(self.snapshotImage)];
 //    [data writeToFile:pngFilePath atomically:YES];
-//    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Screenshot saved to Project!",nil)
+//    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:kUIAlertViewTitleScreenshotSavedToProject
 //                                                    message:nil
 //                                                   delegate:self.menuView
-//                                          cancelButtonTitle:NSLocalizedString(@"OK",nil)
+//                                          cancelButtonTitle:kUIAlertViewButtonTitleOK
 //                                          otherButtonTitles:nil];
 //    [alert show];
 //
 //  }
 //
 //}
-
 
 #pragma PanGestureHandler
 - (void)handlePan:(UIPanGestureRecognizer *)gesture

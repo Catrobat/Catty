@@ -29,6 +29,7 @@
 #import "TableUtil.h"
 #import "UIDefines.h"
 #import <AVFoundation/AVFoundation.h>
+#import "LanguageTranslationDefines.h"
 
 @interface SoundPickerTableViewController () <AVAudioPlayerDelegate>
 @property (strong, nonatomic) NSMutableDictionary *imageCache;
@@ -252,7 +253,7 @@
 #pragma mark - helpers
 - (void)setupNavigationBar
 {
-    self.navigationItem.title = self.title = NSLocalizedString(@"Choose sound", nil);
+    self.navigationItem.title = self.title = kUIViewControllerTitleChooseSound;
     UIBarButtonItem *closeButton;
     closeButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone
                                                                 target:self

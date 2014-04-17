@@ -34,6 +34,7 @@
 #import "ProgramDetailStoreViewController.h"
 #import "UIImage+CatrobatUIImageExtensions.h"
 #import "UIColor+CatrobatUIColorExtensions.h"
+#import "LanguageTranslationDefines.h"
 
 @interface RecentProgramsStoreViewController ()
 
@@ -157,12 +158,13 @@
     self.tableView.frame = CGRectMake(0, navigationBarHeight+segmentedcontrolHeight+[UIApplication sharedApplication].statusBarFrame.size.height, self.tableView.frame.size.width, [Util getScreenHeight]-(navigationBarHeight+segmentedcontrolHeight));
     self.tableView.scrollsToTop = YES;
 }
--(void)initSegmentedControl
+
+- (void)initSegmentedControl
 {
     [self.downloadSegmentedControl addTarget:self action:@selector(changeView) forControlEvents:UIControlEventValueChanged];
-    [self.downloadSegmentedControl setTitle:NSLocalizedString(@"Most Downloaded",nil) forSegmentAtIndex:0];
-    [self.downloadSegmentedControl setTitle:NSLocalizedString(@"Most Viewed",nil) forSegmentAtIndex:1];
-    [self.downloadSegmentedControl setTitle:NSLocalizedString(@"Newest",nil) forSegmentAtIndex:2];
+    [self.downloadSegmentedControl setTitle:kUISegmentedControlTitleMostDownloaded forSegmentAtIndex:0];
+    [self.downloadSegmentedControl setTitle:kUISegmentedControlTitleMostViewed forSegmentAtIndex:1];
+    [self.downloadSegmentedControl setTitle:kUISegmentedControlTitleNewest forSegmentAtIndex:2];
     [self initFooterView];
     CGFloat navigationBarHeight = self.navigationController.navigationBar.frame.size.height;
     //CGFloat segmentedControlViewheight = self.segmentedControlView.frame.size.height;
@@ -198,7 +200,7 @@
     if ([cell conformsToProtocol:@protocol(CatrobatImageCell)]) {
         //        if(indexPath.row == [self.projects count]-1){
         //            UITableViewCell <CatrobatImageCell>* imageCell = (UITableViewCell <CatrobatImageCell>*)cell;
-        //            imageCell.titleLabel.text = nil;//NSLocalizedString(@"Loading...",nil);
+        //            imageCell.titleLabel.text = nil;
         //            imageCell.imageView.image = nil;
         //            UIActivityIndicatorView *activityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite];
         //

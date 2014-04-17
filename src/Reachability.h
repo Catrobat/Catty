@@ -20,19 +20,43 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#define kConnectionTimeout 30
-#define kConnectionHost @"https://pocketcode.org/api/projects"
-#define kBaseUrl @"https://pocketcode.org/"
 
-#define kConnectionSearch @"search.json"
-#define kConnectionRecent @"recentIDs.json"
-#define kConnectionRecentFull @"recent.json"
-#define kConnectionFeatured @"featured.json"
-#define kConnectionMostDownloaded @"mostDownloadedIDs.json"
-#define kConnectionMostDownloadedFull @"mostDownloaded.json"
-#define kConnectionMostViewed @"mostViewedIDs.json"
-#define kConnectionMostViewedFull @"mostViewed.json"
-#define kConnectionIDQuery @"getInfoById.json"
+#import <Foundation/Foundation.h>
+#import <SystemConfiguration/SystemConfiguration.h>
+#import <netinet/in.h>
 
-#define kProgramsOffset @"offset="
-#define kProgramsLimit @"limit="
+
+typedef enum : NSInteger {
+	NotReachable = 0,
+	ReachableViaWiFi,
+	ReachableViaWWAN
+} NetworkStatus;
+
+
+extern NSString *kReachabilityChangedNotification;
+
+
+@interface Reachability : NSObject
+
+
+/*!
+ * Checks whether the default route is available. Should be used by applications that do not connect to a particular host.
+ */
++ (instancetype)reachabilityForInternetConnection;
+
+/*!
+ * Start listening for reachability notifications on the current run loop.
+ */
+- (BOOL)startNotifier;
+- (void)stopNotifier;
+
+- (NetworkStatus)currentReachabilityStatus;
+
+/*!
+ * WWAN may be available, but not active until a connection has been established. WiFi may require a connection for VPN on Demand.
+ */
+- (BOOL)connectionRequired;
+
+@end
+
+

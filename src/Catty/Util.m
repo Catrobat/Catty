@@ -25,8 +25,18 @@
 #import "ProgramDefines.h"
 #import "ProgramLoadingInfo.h"
 #import "UIDefines.h"
+#import "LanguageTranslationDefines.h"
 
 @implementation Util
+
++ (BOOL)activateTestMode:(BOOL)activate
+{
+    static BOOL alreadyActive = NO;
+    if (activate) {
+        alreadyActive = YES;
+    }
+    return alreadyActive;
+}
 
 + (NSString *)applicationDocumentsDirectory
 {    
@@ -39,14 +49,14 @@
 
 + (void)showComingSoonAlertView
 {
-    NSString* alert_message = [NSString localizedStringWithFormat:NSLocalizedString(@"This feature is coming soon!", nil)];
-    UIAlertView *alert = [[UIAlertView alloc]
-                          initWithTitle:@"Catty"
-                          message:alert_message
-                          delegate:nil
-                          cancelButtonTitle:kBtnOKTitle
-                          otherButtonTitles:nil];
-    [alert show];
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:kUIAlertViewTitleStandard
+                                                    message:kUIAlertViewMessageFeatureComingSoon
+                                                   delegate:nil
+                                          cancelButtonTitle:kUIAlertViewButtonTitleOK
+                                          otherButtonTitles:nil];
+    if (! [self activateTestMode:NO]) {
+        [alert show];
+    }
 }
 
 + (UIAlertView*)alertWithText:(NSString*)text
@@ -56,13 +66,15 @@
 
 + (UIAlertView*)alertWithText:(NSString*)text delegate:(id<UIAlertViewDelegate>)delegate tag:(NSInteger)tag
 {
-    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Pocket Code", nil)
+    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:kUIAlertViewTitleStandard
                                                         message:text
                                                        delegate:delegate
-                                              cancelButtonTitle:kBtnOKTitle
+                                              cancelButtonTitle:kUIAlertViewButtonTitleOK
                                               otherButtonTitles:nil];
     alertView.tag = tag;
-    [alertView show];
+    if (! [self activateTestMode:NO]) {
+        [alertView show];
+    }
     return alertView;
 }
 
@@ -76,10 +88,12 @@
                                                        delegate:delegate
                                               cancelButtonTitle:nil
                                               otherButtonTitles:nil];
-    [alertView addButtonWithTitle:kBtnAgreeTitle];
-    alertView.cancelButtonIndex = [alertView addButtonWithTitle:kBtnDisagreeTitle];
+    [alertView addButtonWithTitle:kUIAlertViewButtonTitleYes];
+    alertView.cancelButtonIndex = [alertView addButtonWithTitle:kUIAlertViewButtonTitleNo];
     alertView.tag = tag;
-    [alertView show];
+    if (! [self activateTestMode:NO]) {
+        [alertView show];
+    }
     return alertView;
 }
 
@@ -110,8 +124,8 @@
     UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:title
                                                         message:message
                                                        delegate:delegate
-                                              cancelButtonTitle:kBtnCancelTitle
-                                              otherButtonTitles:kBtnOKTitle, nil];
+                                              cancelButtonTitle:kUIAlertViewButtonTitleCancel
+                                              otherButtonTitles:kUIAlertViewButtonTitleOK, nil];
     alertView.tag = tag;
     alertView.alertViewStyle = UIAlertViewStylePlainTextInput;
     UITextField *textField = [alertView textFieldAtIndex:0];
@@ -119,7 +133,9 @@
     [textField setClearButtonMode:UITextFieldViewModeWhileEditing];
     textField.text = value;
     textField.delegate = textFieldDelegate;
-    [alertView show];
+    if (! [self activateTestMode:NO]) {
+        [alertView show];
+    }
     return alertView;
 }
 
@@ -145,10 +161,12 @@
             [actionSheet addButtonWithTitle:otherButtonTitle];
         }
     }
-    actionSheet.cancelButtonIndex = [actionSheet addButtonWithTitle:kBtnCancelTitle];
+    actionSheet.cancelButtonIndex = [actionSheet addButtonWithTitle:kUIActionSheetButtonTitleCancel];
     actionSheet.tag = tag;
     actionSheet.actionSheetStyle = UIActionSheetStyleDefault;
-    [actionSheet showInView:view];
+    if (! [self activateTestMode:NO]) {
+        [actionSheet showInView:view];
+    }
     return actionSheet;
 }
 

@@ -29,6 +29,8 @@
 #import "AppDelegate.h"
 #import "Util.h"
 #import "CatrobatImageCell.h"
+#import "DownloadTabBarController.h"
+#import "ProgramDetailStoreViewController.h"
 #import "ProgramLoadingInfo.h"
 #import "SegueDefines.h"
 #import "Parser.h"
@@ -41,6 +43,8 @@
 #import "ProgramDefines.h"
 #import "UIDefines.h"
 #import "ActionSheetAlertViewTags.h"
+#import "Reachability.h"
+#import "LanguageTranslationDefines.h"
 
 @interface CatrobatTableViewController () <UIAlertViewDelegate, UITextFieldDelegate>
 
@@ -50,6 +54,7 @@
 @property (nonatomic, strong) NSArray *identifiers;
 @property (nonatomic, strong) Program *lastProgram;
 @property (nonatomic, strong) Program *defaultProgram;
+@property (nonatomic, strong) Reachability *reachability;
 
 @end
 
@@ -86,6 +91,11 @@
         [appDelegate.fileManager createDirectory:[Program basePath]];
     }
     [appDelegate.fileManager addDefaultProjectsToProgramsRootDirectory];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(networkStatusChanged:) name:kReachabilityChangedNotification object:nil];
+    
+    self.reachability = [Reachability reachabilityForInternetConnection];
+    [self.reachability startNotifier];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -124,14 +134,20 @@
 - (void)initTableView
 {
     [super initTableView];
-    self.cells = [[NSArray alloc] initWithObjects:kMenuTitleContinue, kMenuTitleNew, kMenuTitlePrograms, kMenuTitleHelp, kMenuTitleExplore, kMenuTitleUpload, nil];
+    self.cells = [[NSArray alloc] initWithObjects:
+                  kUITableViewControllerMenuTitleContinue,
+                  kUITableViewControllerMenuTitleNew,
+                  kUITableViewControllerMenuTitlePrograms,
+                  kUITableViewControllerMenuTitleHelp,
+                  kUITableViewControllerMenuTitleExplore,
+                  kUITableViewControllerMenuTitleUpload, nil];
     self.imageNames = [[NSArray alloc] initWithObjects:kMenuImageNameContinue, kMenuImageNameNew, kMenuImageNamePrograms, kMenuImageNameHelp, kMenuImageNameExplore, kMenuImageNameUpload, nil];
     self.identifiers = [[NSArray alloc] initWithObjects:kSegueToContinue, kSegueToNewProgram, kSegueToPrograms, kSegueToHelp, kSegueToExplore, kSegueToUpload, nil];
 }
 
 - (void)initNavigationBar
 {
-    [TableUtil initNavigationItem:self.navigationItem withTitle:@"Pocket Code"];
+    self.navigationItem.title = kUIViewControllerTitlePocketCode;
     UIButton *button = [UIButton buttonWithType:UIButtonTypeInfoLight];
     [button addTarget:self action:@selector(infoPressed:) forControlEvents:UIControlEventTouchUpInside];
     UIBarButtonItem *infoItem = [[UIBarButtonItem alloc] initWithCustomView:button];
@@ -141,7 +157,7 @@
 #pragma mark - actions
 - (void)infoPressed:(id)sender
 {
-    [Util alertWithText:NSLocalizedString(@"Pocket Code for iOS",nil)];
+    [Util alertWithText:kUIAlertViewMessageInfoForPocketCode];
 }
 
 #pragma mark - table view data source
@@ -244,21 +260,42 @@
         [Util setLastProgram:nil];
         NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:0];
         [self.tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationNone];
-        [Util alertWithText:kMsgUnableToLoadProgram];
+        [Util alertWithText:kUIAlertViewMessageUnableToLoadProgram];
         return NO;
     } else if ([identifier isEqualToString:kSegueToNewProgram]) {
         // if there is no program name, abort performing this segue and ask user for program name
         // after user entered a valid program name this segue will be called again and accepted
         if (! self.defaultProgram) {
-            [Util promptWithTitle:kTitleNewProgram
-                          message:kMsgPromptProgramName
+            [Util promptWithTitle:kUIAlertViewTitleNewProgram
+                          message:[NSString stringWithFormat:@"%@:", kUIAlertViewMessageProgramName]
                          delegate:self
-                      placeholder:kProgramNamePlaceholder
+                      placeholder:kUIAlertViewPlaceholderEnterProgramName
                               tag:kNewProgramAlertViewTag
                 textFieldDelegate:self];
             return NO;
         }
         return YES;
+    } else if([identifier isEqualToString:kSegueToExplore]){
+        NetworkStatus remoteHostStatus = [self.reachability currentReachabilityStatus];
+        
+        if(remoteHostStatus == NotReachable) {
+            [Util alertWithText:@"No Internet Connection!"];
+            NSDebug(@"not reachable");
+            return NO;
+        } else if (remoteHostStatus == ReachableViaWiFi) {
+            NSDebug(@"reachable via Wifi");
+            return YES;
+        } else if (remoteHostStatus == ReachableViaWWAN){
+            if (!self.reachability.connectionRequired) {
+                NSDebug(@"reachable via celullar");
+                return YES;
+            }else{
+                NSDebug(@" not reachable via celullar");
+                [Util alertWithText:@"No Internet Connection!"];
+                return NO;
+            }
+            return YES;
+        }
     }
     return [super shouldPerformSegueWithIdentifier:identifier sender:sender];
 }
@@ -293,7 +330,7 @@
 #pragma mark - alert view handlers
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
-    static NSString *segueToNewProgramIdentifier = kSegueToNewProgram;
+    static NSString *segueToNewProgramIdentifier = kSegueToNewProgram;;
     if (alertView.tag == kNewProgramAlertViewTag) {
         NSString *input = [alertView textFieldAtIndex:0].text;
         if ((buttonIndex == alertView.cancelButtonIndex) || (buttonIndex != kAlertViewButtonOK)) {
@@ -301,9 +338,9 @@
         }
         kProgramNameValidationResult validationResult = [Program validateProgramName:input];
         if (validationResult == kProgramNameValidationResultInvalid) {
-            [Util alertWithText:kMsgInvalidProgramName delegate:self tag:kInvalidProgramNameWarningAlertViewTag];
+            [Util alertWithText:kUIAlertViewMessageInvalidProgramName delegate:self tag:kInvalidProgramNameWarningAlertViewTag];
         } else if (validationResult == kProgramNameValidationResultAlreadyExists) {
-            [Util alertWithText:kMsgInvalidProgramNameAlreadyExists delegate:self tag:kInvalidProgramNameWarningAlertViewTag];
+            [Util alertWithText:kUIAlertViewMessageProgramNameAlreadyExists delegate:self tag:kInvalidProgramNameWarningAlertViewTag];
         } else if (validationResult == kProgramNameValidationResultOK) {
             self.defaultProgram = [Program defaultProgramWithName:input];
             if ([self shouldPerformSegueWithIdentifier:segueToNewProgramIdentifier sender:self]) {
@@ -313,14 +350,46 @@
     } else if (alertView.tag == kInvalidProgramNameWarningAlertViewTag) {
         // title of cancel button is "OK"
         if (buttonIndex == alertView.cancelButtonIndex) {
-            [Util promptWithTitle:kTitleNewProgram
-                          message:kMsgPromptProgramName
+            [Util promptWithTitle:kUIAlertViewTitleNewProgram
+                          message:[NSString stringWithFormat:@"%@:", kUIAlertViewMessageProgramName]
                          delegate:self
-                      placeholder:kProgramNamePlaceholder
+                      placeholder:kUIAlertViewPlaceholderEnterProgramName
                               tag:kNewProgramAlertViewTag
                 textFieldDelegate:self];
         }
     }
+}
+
+- (void)networkStatusChanged:(NSNotification *)notification
+{
+    
+    NetworkStatus remoteHostStatus = [self.reachability currentReachabilityStatus];
+    if(remoteHostStatus == NotReachable) {
+        if ([self.navigationController.topViewController isKindOfClass:[DownloadTabBarController class]] ||
+            [self.navigationController.topViewController isKindOfClass:[ProgramDetailStoreViewController class]]) {
+            [Util alertWithText:@"No Internet Connection!"];
+            [self.navigationController popToRootViewControllerAnimated:YES];
+        }
+        NSDebug(@"not reachable");
+    } else if (remoteHostStatus == ReachableViaWiFi) {
+        NSDebug(@"reachable via Wifi");
+    }  else if (remoteHostStatus == ReachableViaWWAN){
+        if (!self.reachability.connectionRequired) {
+            NSDebug(@"celluar data ok");
+        }else{
+           NSDebug(@"reachable via cellular but no data");
+            if ([self.navigationController.topViewController isKindOfClass:[DownloadTabBarController class]] ||
+                [self.navigationController.topViewController isKindOfClass:[ProgramDetailStoreViewController class]]) {
+                [Util alertWithText:@"No Internet Connection!"];
+                [self.navigationController popToRootViewControllerAnimated:YES];
+            }
+        }
+    }
+}
+
+- (void)dealloc
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:kReachabilityChangedNotification object:nil];
 }
 
 @end

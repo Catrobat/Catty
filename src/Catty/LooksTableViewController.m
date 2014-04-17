@@ -43,6 +43,7 @@
 #import <AssetsLibrary/AssetsLibrary.h>
 #import "NSData+Hashes.h"
 #import "LoadingView.h"
+#import "LanguageTranslationDefines.h"
 
 // TODO: outsource...
 #define kUserDetailsShowDetailsKey @"showDetails"
@@ -84,14 +85,18 @@
     NSDictionary *showDetails = [[NSUserDefaults standardUserDefaults] objectForKey:kUserDetailsShowDetailsKey];
     NSNumber *showDetailsProgramsValue = (NSNumber*)[showDetails objectForKey:kUserDetailsShowDetailsLooksKey];
     self.useDetailCells = [showDetailsProgramsValue boolValue];
-    self.title = self.navigationItem.title = NSLocalizedString(@"Looks", nil);
+    self.title = self.navigationItem.title = kUIViewControllerTitleHelp;
     [self initNavigationBar];
     [super initTableView];
     [super initPlaceHolder];
 
-    [super setPlaceHolderTitle:([self.object isBackground] ? kBackgroundsTitle : kLooksTitle)
-                   Description:[NSString stringWithFormat:NSLocalizedString(kEmptyViewPlaceHolder, nil),
-                                ([self.object isBackground] ? kBackgroundsTitle : kLooksTitle)]];
+    [super setPlaceHolderTitle:([self.object isBackground]
+                                ? kUIViewControllerPlaceholderTitleBackgrounds
+                                : kUIViewControllerPlaceholderTitleLooks)
+                   Description:[NSString stringWithFormat:kUIViewControllerPlaceholderDescriptionStandard,
+                                ([self.object isBackground]
+                                 ? kUIViewControllerPlaceholderTitleBackgrounds
+                                 : kUIViewControllerPlaceholderTitleLooks)]];
     [super showPlaceHolder:(! (BOOL)[self.object.lookList count])];
     [self setupToolBar];
 }
@@ -107,14 +112,14 @@
 {
     NSMutableArray *options = [NSMutableArray array];
     if ([self.object.lookList count]) {
-        [options addObject:NSLocalizedString(@"Delete Looks",nil)];
+        [options addObject:kUIActionSheetButtonTitleDeleteLooks];
     }
     if (self.useDetailCells) {
-        [options addObject:NSLocalizedString(@"Hide Details",nil)];
+        [options addObject:kUIActionSheetButtonTitleHideDetails];
     } else {
-        [options addObject:NSLocalizedString(@"Show Details",nil)];
+        [options addObject:kUIActionSheetButtonTitleShowDetails];
     }
-    [Util actionSheetWithTitle:NSLocalizedString(@"Edit Looks",nil)
+    [Util actionSheetWithTitle:kUIActionSheetTitleEditLooks
                       delegate:self
         destructiveButtonTitle:nil
              otherButtonTitles:options
@@ -145,8 +150,9 @@
                        canceledAction:@selector(exitEditingMode)
                                target:self
                          confirmTitle:(([selectedRowsIndexPaths count] != 1)
-                                       ? kConfirmTitleDeleteLooks : kConfirmTitleDeleteLook)
-                       confirmMessage:kConfirmMessageDelete];
+                                       ? kUIAlertViewTitleDeleteMultipleLooks
+                                       : kUIAlertViewTitleDeleteSingleLook)
+                       confirmMessage:kUIAlertViewMessageIrreversibleAction];
 }
 
 - (void)deleteSelectedLooksAction
@@ -272,16 +278,14 @@
         // TODO: enhancement: use data cache for this later...
         DarkBlueGradientImageDetailCell *detailCell = (DarkBlueGradientImageDetailCell*)imageCell;
         detailCell.topLeftDetailLabel.textColor = [UIColor whiteColor];
-        detailCell.topLeftDetailLabel.text = [NSString stringWithFormat:@"%@:",
-                                              NSLocalizedString(@"Measure", nil)];
+        detailCell.topLeftDetailLabel.text = [NSString stringWithFormat:@"%@:", kUILabelTextMeasure];
         detailCell.topRightDetailLabel.textColor = [UIColor whiteColor];
         CGSize dimensions = [self.object dimensionsOfLook:look];
         detailCell.topRightDetailLabel.text = [NSString stringWithFormat:@"%lux%lu",
                                                (unsigned long)dimensions.width,
                                                (unsigned long)dimensions.height];
         detailCell.bottomLeftDetailLabel.textColor = [UIColor whiteColor];
-        detailCell.bottomLeftDetailLabel.text = [NSString stringWithFormat:@"%@:",
-                                                 NSLocalizedString(@"Size", nil)];
+        detailCell.bottomLeftDetailLabel.text = [NSString stringWithFormat:@"%@:", kUILabelTextSize];
         detailCell.bottomRightDetailLabel.textColor = [UIColor whiteColor];
         NSUInteger resultSize = [self.object fileSizeOfLook:look];
         NSNumber *sizeOfSound = [NSNumber numberWithUnsignedInteger:resultSize];
@@ -292,7 +296,7 @@
     return imageCell;
 }
 
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+- (CGFloat)tableView:(UITableView*)tableView heightForRowAtIndexPath:(NSIndexPath*)indexPath
 {
   return [TableUtil getHeightForImageCell];
 }
@@ -302,7 +306,7 @@
     return YES;
 }
 
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
+- (void)tableView:(UITableView*)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath*)indexPath
 {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
         [self.tableView reloadRowsAtIndexPaths:@[indexPath]
@@ -311,8 +315,8 @@
                            canceledAction:nil
                                withObject:indexPath
                                    target:self
-                             confirmTitle:kConfirmTitleDeleteLook
-                           confirmMessage:kConfirmMessageDelete];
+                             confirmTitle:kUIAlertViewTitleDeleteSingleLook
+                           confirmMessage:kUIAlertViewMessageIrreversibleAction];
     }
 }
 
@@ -503,31 +507,25 @@
 - (void)showAddLookActionSheet
 {
     UIActionSheet *sheet = [[UIActionSheet alloc] init];
-    sheet.title = NSLocalizedString(@"Add look",@"Action sheet menu title");
+    sheet.title = kUIActionSheetTitleAddLook;
     sheet.delegate = self;
-    
+
     if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
         NSArray *availableMediaTypes = [UIImagePickerController availableMediaTypesForSourceType:UIImagePickerControllerSourceTypeCamera];
         if ([availableMediaTypes containsObject:(NSString *)kUTTypeImage])
-            self.addLookActionSheetBtnIndexes[@([sheet addButtonWithTitle:NSLocalizedString(@"From Camera",nil)])] = kFromCameraActionSheetButton;
+            self.addLookActionSheetBtnIndexes[@([sheet addButtonWithTitle:kUIActionSheetButtonTitleFromCamera])] = kFromCameraActionSheetButton;
     }
     if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeSavedPhotosAlbum]) {
         NSArray *availableMediaTypes = [UIImagePickerController availableMediaTypesForSourceType:UIImagePickerControllerSourceTypeSavedPhotosAlbum];
         if ([availableMediaTypes containsObject:(NSString *)kUTTypeImage])
-            self.addLookActionSheetBtnIndexes[@([sheet addButtonWithTitle:NSLocalizedString(@"Choose image",nil)])] = kChooseImageActionSheetButton;
+            self.addLookActionSheetBtnIndexes[@([sheet addButtonWithTitle:kUIActionSheetButtonTitleChooseImage])] = kChooseImageActionSheetButton;
     }
 
-//    self.addLookActionSheetBtnIndexes[@([sheet addButtonWithTitle:NSLocalizedString(@"Draw new image",nil)])] = kDrawNewImageActionSheetButton;
-    sheet.cancelButtonIndex = [sheet addButtonWithTitle:kBtnCancelTitle];
+//    self.addLookActionSheetBtnIndexes[@([sheet addButtonWithTitle:kUIActionSheetButtonTitleDrawNewImage])] = kDrawNewImageActionSheetButton;
+    sheet.cancelButtonIndex = [sheet addButtonWithTitle:kUIActionSheetButtonTitleCancel];
     sheet.tag = kAddLookActionSheetTag;
     sheet.actionSheetStyle = UIActionSheetStyleDefault;
     [sheet showInView:self.view];
-}
-
-- (void)navigationController:(UINavigationController *)navigationController willShowViewController:(UIViewController *)viewController animated:(BOOL)animated
-{
-    // this line forces to hide the status bar when UIImagePickerController is shown
-    [[UIApplication sharedApplication] setStatusBarHidden:YES];
 }
 
 #pragma mark - helpers
@@ -557,7 +555,7 @@
     UIBarButtonItem *flexItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace
                                                                               target:nil
                                                                               action:nil];
-    UIBarButtonItem *deleteButton = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Delete", nil)
+    UIBarButtonItem *deleteButton = [[UIBarButtonItem alloc] initWithTitle:kUIBarButtonItemTitleDelete
                                                                      style:UIBarButtonItemStylePlain
                                                                     target:self
                                                                     action:@selector(confirmDeleteSelectedLooksAction:)];

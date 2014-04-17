@@ -32,6 +32,7 @@
 #import "Util.h"
 #import "UIColor+CatrobatUIColorExtensions.h"
 #import "BricksCollectionViewController.h"
+#import "LanguageTranslationDefines.h"
 
 #define kCategoryCell @"CategoryCell"
 
@@ -157,7 +158,7 @@
 #pragma mark - helpers
 - (void)setupNavigationBar
 {
-    self.title = self.navigationItem.title = NSLocalizedString(@"Categories", nil);
+    self.title = self.navigationItem.title = kUIViewControllerTitleCategories;
     UIBarButtonItem *closeButton;
     closeButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone
                                                                 target:self

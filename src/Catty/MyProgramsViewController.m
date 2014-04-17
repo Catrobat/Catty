@@ -40,6 +40,7 @@
 #import "ActionSheetAlertViewTags.h"
 #import "DarkBlueGradientImageDetailCell.h"
 #import "NSDate+CustomExtensions.h"
+#import "LanguageTranslationDefines.h"
 
 // TODO: outsource...
 #define kUserDetailsShowDetailsKey @"showDetails"
@@ -96,7 +97,7 @@
     NSDictionary *showDetails = [[NSUserDefaults standardUserDefaults] objectForKey:kUserDetailsShowDetailsKey];
     NSNumber *showDetailsProgramsValue = (NSNumber*)[showDetails objectForKey:kUserDetailsShowDetailsProgramsKey];
     self.useDetailCells = [showDetailsProgramsValue boolValue];
-    self.navigationController.title = self.title = NSLocalizedString(@"Programs", nil);
+    self.navigationController.title = self.title = kUIViewControllerTitlePrograms;
     [self loadPrograms];
     [self initNavigationBar];
     [super initTableView];
@@ -136,14 +137,14 @@
 {
     NSMutableArray *options = [NSMutableArray array];
     if (self.useDetailCells) {
-        [options addObject:NSLocalizedString(@"Hide Details",nil)];
+        [options addObject:kUIActionSheetButtonTitleHideDetails];
     } else {
-        [options addObject:NSLocalizedString(@"Show Details",nil)];
+        [options addObject:kUIActionSheetButtonTitleShowDetails];
     }
     if ([self.programLoadingInfos count]) {
-        [options addObject:NSLocalizedString(@"Delete Programs",nil)];
+        [options addObject:kUIActionSheetButtonTitleDeletePrograms];
     }
-    [Util actionSheetWithTitle:NSLocalizedString(@"Edit Programs",nil)
+    [Util actionSheetWithTitle:kUIActionSheetTitleEditProgramPlural
                       delegate:self
         destructiveButtonTitle:nil
              otherButtonTitles:options
@@ -171,8 +172,9 @@
                        canceledAction:@selector(exitEditingMode)
                                target:self
                          confirmTitle:(([selectedRowsIndexPaths count] != 1)
-                                       ? kConfirmTitleDeletePrograms : kConfirmTitleDeleteProgram)
-                       confirmMessage:kConfirmMessageDelete];
+                                       ? kUIAlertViewTitleDeleteMultiplePrograms
+                                       : kUIAlertViewTitleDeleteSingleProgram)
+                       confirmMessage:kUIAlertViewMessageIrreversibleAction];
 }
 
 - (void)deleteSelectedProgramsAction
@@ -221,10 +223,10 @@
         if (self.useDetailCells && [cell isKindOfClass:[DarkBlueGradientImageDetailCell class]]) {
             DarkBlueGradientImageDetailCell *detailCell = (DarkBlueGradientImageDetailCell*)imageCell;
             detailCell.topLeftDetailLabel.textColor = [UIColor whiteColor];
-            detailCell.topLeftDetailLabel.text = NSLocalizedString(@"Last access:", nil);
+            detailCell.topLeftDetailLabel.text = [NSString stringWithFormat:@"%@:", kUILabelTextLastAccess];
             detailCell.topRightDetailLabel.textColor = [UIColor whiteColor];
             detailCell.bottomLeftDetailLabel.textColor = [UIColor whiteColor];
-            detailCell.bottomLeftDetailLabel.text = NSLocalizedString(@"Size:", nil);
+            detailCell.bottomLeftDetailLabel.text = [NSString stringWithFormat:@"%@:", kUILabelTextSize];
             detailCell.bottomRightDetailLabel.textColor = [UIColor whiteColor];
 
             ProgramLoadingInfo *info = [self.programLoadingInfos objectAtIndex:indexPath.row];
@@ -272,8 +274,8 @@
                            canceledAction:nil
                                withObject:indexPath
                                    target:self
-                             confirmTitle:kConfirmTitleDeleteProgram
-                           confirmMessage:kConfirmMessageDelete];
+                             confirmTitle:kUIAlertViewTitleDeleteSingleProgram
+                           confirmMessage:kUIAlertViewMessageIrreversibleAction];
     }
 }
 
@@ -388,17 +390,17 @@
             }
 
             // program failed loading...
-            [Util alertWithText:kMsgUnableToLoadProgram];
+            [Util alertWithText:kUIAlertViewMessageUnableToLoadProgram];
             return NO;
         }
     } else if ([identifier isEqualToString:segueToNewProgram]) {
         // if there is no program name, abort performing this segue and ask user for program name
         // after user entered a valid program name this segue will be called again and accepted
         if (! self.defaultProgram) {
-            [Util promptWithTitle:kTitleNewProgram
-                          message:kMsgPromptProgramName
+            [Util promptWithTitle:kUIAlertViewTitleNewProgram
+                          message:[NSString stringWithFormat:@"%@:", kUIAlertViewMessageProgramName]
                          delegate:self
-                      placeholder:kProgramNamePlaceholder
+                      placeholder:kUIAlertViewPlaceholderEnterProgramName
                               tag:kNewProgramAlertViewTag
                 textFieldDelegate:self];
             return NO;
@@ -483,11 +485,11 @@
         }
         kProgramNameValidationResult validationResult = [Program validateProgramName:input];
         if (validationResult == kProgramNameValidationResultInvalid) {
-            [Util alertWithText:kMsgInvalidProgramName
+            [Util alertWithText:kUIAlertViewMessageInvalidProgramName
                        delegate:self
                             tag:kInvalidProgramNameWarningAlertViewTag];
         } else if (validationResult == kProgramNameValidationResultAlreadyExists) {
-            [Util alertWithText:kMsgInvalidProgramNameAlreadyExists
+            [Util alertWithText:kUIAlertViewMessageProgramNameAlreadyExists
                        delegate:self
                             tag:kInvalidProgramNameWarningAlertViewTag];
         } else if (validationResult == kProgramNameValidationResultOK) {
@@ -500,10 +502,10 @@
     } else if (alertView.tag == kInvalidProgramNameWarningAlertViewTag) {
         // title of cancel button is "OK"
         if (buttonIndex == alertView.cancelButtonIndex) {
-            [Util promptWithTitle:kTitleNewProgram
-                          message:kMsgPromptProgramName
+            [Util promptWithTitle:kUIAlertViewTitleNewProgram
+                          message:kUIAlertViewMessageProgramName
                          delegate:self
-                      placeholder:kProgramNamePlaceholder
+                      placeholder:kUIAlertViewPlaceholderEnterProgramName
                               tag:kNewProgramAlertViewTag
                 textFieldDelegate:self];
         }
@@ -616,7 +618,7 @@
     UIBarButtonItem *flexItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace
                                                                               target:nil
                                                                               action:nil];
-    UIBarButtonItem *deleteButton = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Delete", nil)
+    UIBarButtonItem *deleteButton = [[UIBarButtonItem alloc] initWithTitle:kUIBarButtonItemTitleDelete
                                                                      style:UIBarButtonItemStylePlain
                                                                     target:self
                                                                     action:@selector(confirmDeleteSelectedProgramsAction:)];

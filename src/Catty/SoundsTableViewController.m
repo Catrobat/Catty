@@ -39,6 +39,7 @@
 #import "SoundPickerTableViewController.h"
 #import "NSData+Hashes.h"
 #import <AVFoundation/AVFoundation.h>
+#import "LanguageTranslationDefines.h"
 
 // TODO: outsource...
 #define kUserDetailsShowDetailsKey @"showDetails"
@@ -87,19 +88,19 @@
     NSDictionary *showDetails = [[NSUserDefaults standardUserDefaults] objectForKey:kUserDetailsShowDetailsKey];
     NSNumber *showDetailsSoundsValue = (NSNumber*)[showDetails objectForKey:kUserDetailsShowDetailsSoundsKey];
     self.useDetailCells = [showDetailsSoundsValue boolValue];
-    self.navigationController.title = self.title = NSLocalizedString(@"Sounds", nil);
+    self.navigationController.title = self.title = kUIViewControllerTitleSounds;
+    //    self.title = self.object.name;
+    //    self.navigationItem.title = self.object.name;
     [self initNavigationBar];
     self.currentPlayingSong = nil;
     self.currentPlayingSongCell = nil;
 
     [super initTableView];
     [super initPlaceHolder];
-    [super setPlaceHolderTitle:kSoundsTitle
-                   Description:[NSString stringWithFormat:NSLocalizedString(kEmptyViewPlaceHolder, nil), kSoundsTitle]];
+    [super setPlaceHolderTitle:kUIViewControllerPlaceholderTitleSounds
+                   Description:[NSString stringWithFormat:kUIViewControllerPlaceholderDescriptionStandard,
+                                kUIViewControllerPlaceholderTitleSounds]];
     [super showPlaceHolder:(! (BOOL)[self.object.soundList count])];
-
-//    self.title = self.object.name;
-//    self.navigationItem.title = self.object.name;
     [self setupToolBar];
 }
 
@@ -147,14 +148,14 @@
 {
     NSMutableArray *options = [NSMutableArray array];
     if ([self.object.soundList count]) {
-        [options addObject:NSLocalizedString(@"Delete Sounds",nil)];
+        [options addObject:kUIActionSheetButtonTitleDeleteSounds];
     }
     if (self.useDetailCells) {
-        [options addObject:NSLocalizedString(@"Hide Details",nil)];
+        [options addObject:kUIActionSheetButtonTitleHideDetails];
     } else {
-        [options addObject:NSLocalizedString(@"Show Details",nil)];
+        [options addObject:kUIActionSheetButtonTitleShowDetails];
     }
-    [Util actionSheetWithTitle:NSLocalizedString(@"Edit Sounds",nil)
+    [Util actionSheetWithTitle:kUIActionSheetTitleEditSounds
                       delegate:self
         destructiveButtonTitle:nil
              otherButtonTitles:options
@@ -195,8 +196,9 @@
                        canceledAction:@selector(exitEditingMode)
                                target:self
                          confirmTitle:(([selectedRowsIndexPaths count] != 1)
-                                       ? kConfirmTitleDeleteSounds : kConfirmTitleDeleteSound)
-                       confirmMessage:kConfirmMessageDelete];
+                                       ? kUIAlertViewTitleDeleteMultipleSounds
+                                       : kUIAlertViewTitleDeleteSingleSound)
+                       confirmMessage:kUIAlertViewMessageIrreversibleAction];
 }
 
 - (void)deleteSelectedSoundsAction
@@ -274,14 +276,12 @@
             // TODO: enhancement: use data cache for this later...
             DarkBlueGradientImageDetailCell *detailCell = (DarkBlueGradientImageDetailCell*)imageCell;
             detailCell.topLeftDetailLabel.textColor = [UIColor whiteColor];
-            detailCell.topLeftDetailLabel.text = [NSString stringWithFormat:@"%@:",
-                                                  NSLocalizedString(@"Length", nil)];
+            detailCell.topLeftDetailLabel.text = [NSString stringWithFormat:@"%@:", kUILabelTextLength];
             detailCell.topRightDetailLabel.textColor = [UIColor whiteColor];
             detailCell.topRightDetailLabel.text = [NSString stringWithFormat:@"%.02fs",
                                                    (float)[self.object durationOfSound:sound]];
             detailCell.bottomLeftDetailLabel.textColor = [UIColor whiteColor];
-            detailCell.bottomLeftDetailLabel.text = [NSString stringWithFormat:@"%@:",
-                                                     NSLocalizedString(@"Size", nil)];
+            detailCell.bottomLeftDetailLabel.text = [NSString stringWithFormat:@"%@:", kUILabelTextSize];
             detailCell.bottomRightDetailLabel.textColor = [UIColor whiteColor];
             NSUInteger resultSize = [self.object fileSizeOfSound:sound];
             NSNumber *sizeOfSound = [NSNumber numberWithUnsignedInteger:resultSize];
@@ -338,17 +338,17 @@
     }
 }
 
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+- (CGFloat)tableView:(UITableView*)tableView heightForRowAtIndexPath:(NSIndexPath*)indexPath
 {
     return [TableUtil getHeightForImageCell];
 }
 
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
+- (BOOL)tableView:(UITableView*)tableView canEditRowAtIndexPath:(NSIndexPath*)indexPath
 {
     return YES;
 }
 
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
+- (void)tableView:(UITableView*)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath*)indexPath
 {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
         [self.tableView reloadRowsAtIndexPaths:@[indexPath]
@@ -357,13 +357,13 @@
                            canceledAction:nil
                                withObject:indexPath
                                    target:self
-                             confirmTitle:kConfirmTitleDeleteSound
-                           confirmMessage:kConfirmMessageDelete];
+                             confirmTitle:kUIAlertViewTitleDeleteSingleSound
+                           confirmMessage:kUIAlertViewMessageIrreversibleAction];
     }
 }
 
 #pragma audio delegate methods
-- (void)audioPlayerDidFinishPlaying:(AVAudioPlayer *)player successfully:(BOOL)flag
+- (void)audioPlayerDidFinishPlaying:(AVAudioPlayer*)player successfully:(BOOL)flag
 {
     if ((! flag) || (! self.currentPlayingSong) || (! self.currentPlayingSongCell)) {
         return;
@@ -462,7 +462,7 @@
             NSLog(@"Select music track");
             AppDelegate *delegate = (AppDelegate*)[UIApplication sharedApplication].delegate;
             if (! [delegate.fileManager existPlayableSoundsInDirectory:delegate.fileManager.documentsDirectory]) {
-                [Util alertWithText:NSLocalizedString(@"No imported sounds found. Please connect your iPhone to your PC/Mac and use iTunes FileSharing to import sound files into the PocketCode app.", nil)];
+                [Util alertWithText:kUIAlertViewMessageNoImportedSoundsFound];
                 return;
             }
 
@@ -482,12 +482,11 @@
 - (void)showAddSoundActionSheet
 {
     UIActionSheet *sheet = [[UIActionSheet alloc] init];
-    sheet.title = NSLocalizedString(@"Add sound", @"Action sheet menu title");
+    sheet.title = kUIActionSheetTitleAddSound;
     sheet.delegate = self;
-//    self.addSoundActionSheetBtnIndexes[@([sheet addButtonWithTitle:NSLocalizedString(@"Pocket Code Recorder",nil)])] = kPocketCodeRecorderActionSheetButton;
-
-    self.addSoundActionSheetBtnIndexes[@([sheet addButtonWithTitle:NSLocalizedString(@"Choose sound",nil)])] = kSelectMusicTrackActionSheetButton;
-    sheet.cancelButtonIndex = [sheet addButtonWithTitle:kBtnCancelTitle];
+//    self.addSoundActionSheetBtnIndexes[@([sheet addButtonWithTitle:kUIActionSheetButtonTitlePocketCodeRecorder])] = kPocketCodeRecorderActionSheetButton;
+    self.addSoundActionSheetBtnIndexes[@([sheet addButtonWithTitle:kUIActionSheetButtonTitleChooseSound])] = kSelectMusicTrackActionSheetButton;
+    sheet.cancelButtonIndex = [sheet addButtonWithTitle:kUIActionSheetButtonTitleCancel];
     sheet.tag = kAddSoundActionSheetTag;
     sheet.actionSheetStyle = UIActionSheetStyleDefault;
     [sheet showInView:self.view];
@@ -542,7 +541,7 @@
     UIBarButtonItem *flexItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace
                                                                               target:nil
                                                                               action:nil];
-    UIBarButtonItem *deleteButton = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Delete", nil)
+    UIBarButtonItem *deleteButton = [[UIBarButtonItem alloc] initWithTitle:kUIBarButtonItemTitleDelete
                                                                      style:UIBarButtonItemStylePlain
                                                                     target:self
                                                                     action:@selector(confirmDeleteSelectedSoundsAction:)];

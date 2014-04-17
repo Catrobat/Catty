@@ -35,7 +35,7 @@
 
 #import "UIImage+CatrobatUIImageExtensions.h"
 #import "UIColor+CatrobatUIColorExtensions.h"
-
+#import "LanguageTranslationDefines.h"
 
 @interface FeaturedProgramsStoreViewController ()
 
@@ -65,7 +65,7 @@
     [super viewDidLoad];
     [self loadFeaturedProjects];
     [super initTableView];
-    [TableUtil initNavigationItem:self.navigationItem withTitle:@"Featured Programs"];
+    self.navigationItem.title = kUIViewControllerTitleFeaturedPrograms;
     //  CGFloat navigationBarHeight = self.navigationController.navigationBar.frame.size.height;
     //  self.tableView.contentInset = UIEdgeInsetsMake(navigationBarHeight, 0, 0, 0);
 }

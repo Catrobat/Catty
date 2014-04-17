@@ -24,6 +24,7 @@
 #import "Util.h"
 #import "UIColor+CatrobatUIColorExtensions.h"
 #import "CatrobatBaseCell.h"
+#import "LanguageTranslationDefines.h"
 
 #define kIphone5ScreenHeight 568.0f
 #define kIphone4ScreenHeight 480.0f
@@ -52,16 +53,9 @@
     }
 }
 
-+ (void)initNavigationItem:(UINavigationItem*)navigationItem withTitle:(NSString*)title
-{
-    navigationItem.title = title;
-    UIImageView *imageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"menu_icon"]];
-    navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:imageView];
-}
-
 + (UIBarButtonItem*)editButtonItemWithTarget:(id)target action:(SEL)action
 {
-    UIBarButtonItem *editButton = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Edit", nil)
+    UIBarButtonItem *editButton = [[UIBarButtonItem alloc] initWithTitle:kUIBarButtonItemTitleEdit
                                                                    style:UIBarButtonItemStylePlain
                                                                   target:target
                                                                   action:action];

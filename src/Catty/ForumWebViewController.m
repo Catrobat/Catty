@@ -25,6 +25,7 @@
 #import "Util.h"
 #import "LoadingView.h"
 #import "UIColor+CatrobatUIColorExtensions.h"
+#import "LanguageTranslationDefines.h"
 
 #define kForumURL @"https://pocketcode.org/tutorial"
 #define kBarsHeight 44
@@ -54,35 +55,30 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	// Do any additional setup after loading the view.
-    
+
     self.webView.delegate = self;
     self.webView.scrollView.delegate = self;
     self.webView.backgroundColor = [UIColor darkBlueColor];
     self.WebviewFinishedLoading = NO;
-    
-    [TableUtil initNavigationItem:self.navigationItem withTitle:NSLocalizedString(@"Help", nil)];
-    
+    self.navigationItem.title = kUIViewControllerTitleHelp;
+
     NSURL *url = [NSURL URLWithString:kForumURL];
     NSURLRequest *request = [NSURLRequest requestWithURL:url];
     [self.webView loadRequest:request];
     [self setupToolBar];
-    
-    self.originalNavigationYPos = self.navigationController.navigationBar.frame.origin.y;
-    self.originalToolbarFrameYPos = [Util getScreenHeight]-kBarsHeight;
-    
-    NSDebug(@"%i & %i", self.originalNavigationYPos,self.originalToolbarFrameYPos);
-    
-    
 
+    self.originalNavigationYPos = self.navigationController.navigationBar.frame.origin.y;
+    self.originalToolbarFrameYPos = ([Util getScreenHeight] - kBarsHeight);
+    NSDebug(@"%i & %i", self.originalNavigationYPos,self.originalToolbarFrameYPos);
 }
+
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
     self.navigationController.navigationBar.translucent = YES;
 }
 
--(void)viewWillDisappear:(BOOL)animated
+- (void)viewWillDisappear:(BOOL)animated
 {
     self.navigationController.toolbar.frame = CGRectMake(self.navigationController.toolbar.frame.origin.x,self.originalToolbarFrameYPos,self.navigationController.toolbar.frame.size.width,self.navigationController.toolbar.frame.size.height);
     self.navigationController.navigationBar.frame = CGRectMake(self.navigationController.navigationBar.frame.origin.x,self.originalNavigationYPos,self.navigationController.navigationBar.frame.size.width,self.navigationController.navigationBar.frame.size.height);
@@ -115,26 +111,27 @@
 }
 
 #pragma mark - UIWebViewDelegate
-- (void)webViewDidStartLoad:(UIWebView *)webView
+- (void)webViewDidStartLoad:(UIWebView*)webView
 {
     [self showLoadingView];
     [self initButtons];
 }
 
-- (void)webViewDidFinishLoad:(UIWebView *)webView
+- (void)webViewDidFinishLoad:(UIWebView*)webView
 {
     [self hideLoadingView];
     [self initButtons];
     self.WebviewFinishedLoading = YES;
 }
 
-- (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error
+- (void)webView:(UIWebView*)webView didFailLoadWithError:(NSError*)error
 {
     [self hideLoadingView];
     [self initButtons];
 }
 
-- (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType{
+- (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType
+{
     self.back.enabled = true;
     return YES;
 }
