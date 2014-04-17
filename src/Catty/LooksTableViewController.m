@@ -367,7 +367,7 @@
     UIImagePickerController *picker = [[UIImagePickerController alloc] init];
     picker.sourceType = sourceType;
     picker.mediaTypes = @[(NSString*)kUTTypeImage];
-    picker.allowsEditing = YES;
+    picker.allowsEditing = NO;
     picker.delegate = self;
     [self presentViewController:picker animated:YES completion:nil];
 }
