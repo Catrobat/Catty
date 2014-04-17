@@ -211,9 +211,14 @@
     self.data = nil;
     self.connection = nil;
     [self update];
-      UIApplication* app = [UIApplication sharedApplication];
-      app.networkActivityIndicatorVisible = NO;
+    [self loadingIndicator:NO];
   }
+}
+
+-(void)loadingIndicator:(BOOL)value
+{
+    UIApplication* app = [UIApplication sharedApplication];
+    app.networkActivityIndicatorVisible = value;
 }
 
 #pragma mark - Search display delegate
@@ -240,15 +245,12 @@
     self.searchDisplayController.searchBar.text = searchBar.text;
     self.tabBarController.tabBar.translucent = YES;
     [self update];
-    UIApplication* app = [UIApplication sharedApplication];
-    app.networkActivityIndicatorVisible = YES;
+    [self loadingIndicator:YES];
 }
 
 - (void)searchBarCancelButtonClicked:(UISearchBar *)searchBar
 {
     [self update];
-    UIApplication* app = [UIApplication sharedApplication];
-    app.networkActivityIndicatorVisible = NO;
 }
 
 - (void)searchDisplayControllerDidBeginSearch:(UISearchDisplayController *)controller
