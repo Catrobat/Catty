@@ -234,85 +234,53 @@ static SensorHandler* sharedSensorHandler = nil;
 
 - (void)recorderinit
 {
-    NSArray* pathComponents = [NSArray arrayWithObjects:[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)lastObject], [@"loudness_handler" stringByAppendingString:@".m4a"], nil];
     
-    NSURL* url = [NSURL fileURLWithPathComponents:pathComponents];
-    //NSURL *url = [NSURL fileURLWithPath:@"/dev/null"];
+    NSURL *url = [NSURL fileURLWithPath:@"/dev/null"];
     
     NSDictionary *settings = [NSDictionary dictionaryWithObjectsAndKeys:
                               [NSNumber numberWithFloat: 44100.0],                 AVSampleRateKey,
                               [NSNumber numberWithInt: kAudioFormatAppleLossless], AVFormatIDKey,
-                              [NSNumber numberWithInt: 2],                         AVNumberOfChannelsKey,
+                              [NSNumber numberWithInt: 0],                         AVNumberOfChannelsKey,
                               [NSNumber numberWithInt: AVAudioQualityMax],         AVEncoderAudioQualityKey,
                               nil];
     
     NSError *error;
     
+    AVAudioSession *audioSession = [AVAudioSession sharedInstance];
+    [audioSession setActive:YES error:nil];
+    [[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryPlayAndRecord error:nil];
+    
+    self.recorder = [[AVAudioRecorder alloc] initWithURL:url settings:settings error:&error];
+    
+    
     if (self.recorder == nil)
         self.recorder = [[AVAudioRecorder alloc] initWithURL:url settings:settings error:&error];
     
     if (self.recorder) {
-        self.recorder.delegate = self;
-        self.recorder.meteringEnabled = YES;
         [self.recorder prepareToRecord];
+        self.recorder.meteringEnabled = TRUE;
     }
 }
 
 - (void)loudness
 {
 
-//    
-//    AVAudioSession* session = [AVAudioSession sharedInstance];
-//    [session setCategory:AVAudioSessionCategoryPlayAndRecord error:nil];
-//    
-//    NSMutableDictionary* recordSetting = [[NSMutableDictionary alloc]init];
-//    
-//    [recordSetting setValue:[NSNumber numberWithInt:kAudioFormatMPEG4AAC] forKey:AVFormatIDKey];
-//    
-//    [recordSetting setValue:[NSNumber numberWithFloat:44100.0] forKey:AVSampleRateKey];
-//    
-//    [recordSetting setValue:[NSNumber numberWithInt:2] forKey:AVNumberOfChannelsKey];
-//    
-//    self.recorder = [[AVAudioRecorder alloc]initWithURL:outputFileUrl settings:recordSetting error:NULL];
-//    
-//    self.recorder.delegate = self;
-//    self.recorder.meteringEnabled = YES;
-//    
-//    [self.recorder prepareToRecord];
-//    
-//    
-//    [session setActive:YES error:nil];
-//    [self.recorder recordForDuration:0.1];
-//    
-//    self.db = 0;
-//    [self.recorder updateMeters];
-//    NSDebug(@"%f",[self.recorder averagePowerForChannel:0]);
-//    self.db=[self.recorder averagePowerForChannel:0];
-//    [self performSelector:@selector(measure) withObject:nil afterDelay:0];
-//    [session setActive:NO error:nil];
-//    return self.db + 74;
    if(!self.recorder.isRecording)
    {
        [self.recorder record];
    }
-//    [self.recorder updateMeters];
-//    float averagePower = [self.recorder averagePowerForChannel:0];
-//    int SPL = [self SPL:averagePower];
-//    NSDebug(@"Decibels program: %d",SPL);
-//    self.db = SPL;
+
     self.programTimer = [NSTimer scheduledTimerWithTimeInterval: NOISE_RECOGNIZER_DEFAULT_UPDATE_INTERVAL
                                                          target: self
                                                        selector: @selector(programTimerCallback:)
                                                        userInfo: nil
                                                         repeats: NO];
+    
+    NSLog(@"Loudnes called %f", self.db);
 
-    //return self.db;
 }
 
-//-(void)measure
-//{
-//    [self.recorder stop];
-//}
+
 - (void)programTimerCallback:(NSTimer *)timer
 {
     [self.recorder updateMeters];
