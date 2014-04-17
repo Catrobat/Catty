@@ -44,6 +44,7 @@
 @property (nonatomic,strong) NSMutableDictionary *downloadSizeDict;
 @property (nonatomic) long long downloadsize;
 
+
 @property (nonatomic, strong) NSString *projectName;
 
 
@@ -98,6 +99,7 @@
     }
     return _imageDataArray;
 }
+
 -(NSMutableArray*)connectionArray
 {
     if (!_connectionArray) {
@@ -345,6 +347,7 @@
 //                           }];
     [self.programArray setObject:name forKey:connection.currentRequest.URL];
     [self.connectionArray addObject:connection];
+
 }
 
 - (void)downloadScreenshotFromURL:(NSURL*)url andBaseUrl:(NSURL*)baseurl andName:(NSString*) name
@@ -388,6 +391,8 @@
     ///Length of data!!!
     [self.downloadSizeDict setObject:size forKey:connection.currentRequest.URL];
 
+    UIApplication* app = [UIApplication sharedApplication];
+    app.networkActivityIndicatorVisible = YES;
 }
 
 - (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data
@@ -417,7 +422,8 @@
     NSDebug(@"%f",progress.floatValue+((float) [data length] / (float) size.longLongValue));
     progress = [NSNumber numberWithFloat:progress.floatValue+((float) [data length] / (float) size.longLongValue)];
     [self.progressDict setObject:progress forKey:connection.currentRequest.URL];
-    if ([self.delegate respondsToSelector:@selector(updateProgress:)]) {
+    
+    if ([self.delegate respondsToSelector:@selector(updateProgress:)] && [self.projectURL isEqual:connection.currentRequest.URL]) {
         if (progress.floatValue == 1) {
             [self.delegate updateProgress:progress.floatValue-1];
         }
@@ -426,6 +432,9 @@
         }
         
     }
+    UIApplication* app = [UIApplication sharedApplication];
+    app.networkActivityIndicatorVisible = YES;
+    
     NSDebug(@"%f",progress.floatValue+((float) [data length] / (float) size.longLongValue));
 
     //    if (self.programConnection == connection) {
@@ -457,6 +466,9 @@
         [self resetImageDataAndConnection:connection];
         
     }
+
+    UIApplication* app = [UIApplication sharedApplication];
+    app.networkActivityIndicatorVisible = NO;
     
     //    if (self.programConnection == connection) {
     //        NSDebug(@"Finished program downloading");
@@ -497,6 +509,8 @@
     [self.progressDict removeObjectForKey:connection.currentRequest.URL];
     [self.downloadSizeDict removeObjectForKey:connection.currentRequest.URL];
     [connection cancel];
+    UIApplication* app = [UIApplication sharedApplication];
+    app.networkActivityIndicatorVisible = NO;
     
 }
 
@@ -554,7 +568,11 @@
 {
     NSString* name = [self.programArray objectForKey:connection.currentRequest.URL];
     [self unzipAndStore:data withName:name];
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"finishedloading" object:nil];
+    //[[NSNotificationCenter defaultCenter] postNotificationName:@"finishedloading" object:nil];
+    if ([self.delegate respondsToSelector:@selector(downloadFinishedWithURL:)] && [self.projectURL isEqual:connection.currentRequest.URL]) {
+        [self.delegate downloadFinishedWithURL:connection.currentRequest.URL];
+    }
+
 }
 
 - (void)storeDownloadedImage:(NSData*)data andURL:(NSURL*)url

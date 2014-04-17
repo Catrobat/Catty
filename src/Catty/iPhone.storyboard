@@ -769,10 +769,10 @@
             </objects>
             <point key="canvasLocation" x="-2434" y="-1422"/>
         </scene>
-        <!--Forum Web View Controller - Forum-->
+        <!--Help Web View Controller - Forum-->
         <scene sceneID="fip-Bj-Leu">
             <objects>
-                <viewController title="Forum" id="IIx-6w-DVK" customClass="ForumWebViewController" sceneMemberID="viewController">
+                <viewController title="Forum" id="IIx-6w-DVK" customClass="HelpWebViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="s6X-pF-Bnn">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -782,12 +782,17 @@
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                             </webView>
+                            <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progress="0.5" id="CzM-Q6-tFW">
+                                <rect key="frame" x="0.0" y="64" width="320" height="2"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </progressView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" title="Forum" id="FwJ-XT-rqC"/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <connections>
+                        <outlet property="progressView" destination="CzM-Q6-tFW" id="8eu-x3-zvw"/>
                         <outlet property="webView" destination="YEh-ma-7Vk" id="Q7G-V6-pWl"/>
                     </connections>
                 </viewController>
@@ -907,7 +912,7 @@
                     </connections>
                 </searchDisplayController>
             </objects>
-            <point key="canvasLocation" x="-1822" y="-748"/>
+            <point key="canvasLocation" x="-1822" y="-724"/>
         </scene>
         <!--Program Detail Store View Controller-->
         <scene sceneID="9qo-sP-Szn">
@@ -1058,10 +1063,10 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="Ynr-aF-UI3"/>
         <segue reference="tS5-pA-EEz"/>
+        <segue reference="Ynr-aF-UI3"/>
+        <segue reference="ZYi-SP-eKt"/>
         <segue reference="aIY-Zf-gcf"/>
         <segue reference="Mul-oO-Qtl"/>
-        <segue reference="K4O-DO-I3f"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -23,10 +23,9 @@
 #import <Foundation/Foundation.h>
 
 
-
 @protocol FileManagerDelegate <NSObject>
 
-- (void) downloadFinished;
+- (void) downloadFinishedWithURL:(NSURL*)url;
 - (void) updateProgress:(float)progress;
 
 @end
@@ -35,6 +34,7 @@
 
 @property (nonatomic, weak) id delegate;
 @property (nonatomic, strong, readonly) NSString *documentsDirectory;
+@property (nonatomic, strong) NSURL* projectURL;
 
 - (void)createDirectory:(NSString*)path;
 - (void)deleteAllFilesInDocumentsDirectory;
