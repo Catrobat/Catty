@@ -50,10 +50,20 @@
 @property (nonatomic, strong) UIView* projectView;
 @property (nonatomic, strong) LoadingView* loadingView;
 
+
 @end
 
 
 @implementation ProgramDetailStoreViewController
+
+
+-(NSMutableDictionary*)projects
+{
+    if (!_projects) {
+        _projects = [[NSMutableDictionary alloc] init];
+    }
+    return _projects;
+}
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -98,7 +108,11 @@
     [self.scrollViewOutlet setContentSize:contentSize];
     self.scrollViewOutlet.userInteractionEnabled = YES;
 //    self.scrollViewOutlet.exclusiveTouch = YES;
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(downloadFinished) name:@"finishedloading" object:nil];
+//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(downloadFinishedWithURL:) name:@"finishedloading" object:nil];
+    AppDelegate *appDelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
+    appDelegate.fileManager.delegate = self;
+    appDelegate.fileManager.projectURL = [NSURL URLWithString:self.project.downloadUrl];
+
 }
 
 - (void)initNavigationBar
@@ -124,13 +138,10 @@
         [view viewWithTag:kDownloadButtonTag].hidden = YES;
         [view viewWithTag:kPlayButtonTag].hidden = NO;
         [view viewWithTag:kStopLoadingTag].hidden = YES;
-    }
-  if (self.project.isdownloading) {
+    } else if (self.project.isdownloading) {
     [view viewWithTag:kDownloadButtonTag].hidden = YES;
     [view viewWithTag:kPlayButtonTag].hidden = YES;
     [view viewWithTag:kStopLoadingTag].hidden = NO;
-//    UIActivityIndicatorView *activity = (UIActivityIndicatorView*)[[view viewWithTag:kStopLoadingTag] viewWithTag:kActivityIndicator];
-//    [activity startAnimating];
   }
 
 
@@ -187,22 +198,14 @@
 {
     NSDebug(@"Download Button!");
     EVCircularProgressView* button = (EVCircularProgressView*)[self.projectView viewWithTag:kStopLoadingTag];
-//    NSString* title = [[NSString alloc] initWithFormat:@"%@...", kUIButtonTitleCancel];
-//    [downloadButton setTitle:title forState:UIControlStateNormal];
-//    [downloadButton setTitleEdgeInsets:UIEdgeInsetsMake(0.0f, 25.0f, 0.0f, 0.0f)];
-//    downloadButton.enabled = NO;
-//    downloadButton.backgroundColor = [UIColor grayColor];
     [self.projectView viewWithTag:kDownloadButtonTag].hidden = YES;
     button.hidden = NO;
     button.progress = 0;
     AppDelegate *appDelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
     NSURL *url = [NSURL URLWithString:self.project.downloadUrl];
-//
-//    UIActivityIndicatorView *activity = (UIActivityIndicatorView*)[downloadButton viewWithTag:kActivityIndicator];
-//    [activity startAnimating];
-//    
-    [appDelegate.fileManager downloadFileFromURL:url withName:self.project.projectName];
     appDelegate.fileManager.delegate = self;
+    [appDelegate.fileManager downloadFileFromURL:url withName:self.project.projectName];
+   
     
     NSDebug(@"url screenshot is %@", self.project.screenshotSmall)
     NSString *urlString = self.project.screenshotSmall;
@@ -212,6 +215,7 @@
     NSURL *screenshotSmallUrl = [NSURL URLWithString:urlString];
     [appDelegate.fileManager downloadScreenshotFromURL:screenshotSmallUrl andBaseUrl:url andName:self.project.name];
     self.project.isdownloading = YES;
+    [self.projects setObject:self.project forKey:url];
 }
 
 - (void)downloadButtonPressed:(id)sender
@@ -220,13 +224,16 @@
 }
 
 #pragma mark - File Manager Delegate
-- (void) downloadFinished
+- (void) downloadFinishedWithURL:(NSURL*)url
 {
     NSLog(@"Download Finished!!!!!!");
 //    [self.projectView viewWithTag:kDownloadButtonTag].hidden = YES;
     [self.projectView viewWithTag:kStopLoadingTag].hidden = YES;
     [self.projectView viewWithTag:kPlayButtonTag].hidden = NO;
     self.project.isdownloading = NO;
+    [self.projects removeObjectForKey:url];
+    [self reloadWithProject:self.project];
+    
     
 }
 
@@ -253,6 +260,7 @@
 {
     [self.projectView removeFromSuperview];
     self.projectView = [self createViewForProject:loadedProject];
+    [self.view addSubview:self.projectView];
     self.project = loadedProject;
     [self.scrollViewOutlet addSubview:self.projectView];
     self.scrollViewOutlet.delegate = self;
