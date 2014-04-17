@@ -524,6 +524,7 @@
 
 - (void)playSceneAction:(id)sender
 {
+    [self stopAllSounds];
     [self.navigationController setToolbarHidden:YES];
     [self performSegueWithIdentifier:kSegueToScene sender:sender];
 }
