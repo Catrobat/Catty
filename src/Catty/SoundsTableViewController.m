@@ -255,12 +255,22 @@
         imageCell.indexPath = indexPath;
 
         static NSString *playIconName = @"ic_media_play";
-        UIImage *image = [self.imageCache objectForKey:playIconName];
+        static NSString *stopIconName = @"ic_media_pause";
+
+        // determine right icon, therefore check if this song is played currently
+        NSString *rightIconName = playIconName;
+        @synchronized(self) {
+            if (sound.isPlaying && [self.currentPlayingSong.name isEqual:sound.name]) {
+                rightIconName = stopIconName;
+            }
+        }
+
+        UIImage *image = [self.imageCache objectForKey:rightIconName];
         if (! image) {
             dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0ul);
             dispatch_async(queue, ^{
-                UIImage *image = [UIImage imageNamed:playIconName];
-                [self.imageCache setObject:image forKey:playIconName];
+                UIImage *image = [UIImage imageNamed:rightIconName];
+                [self.imageCache setObject:image forKey:rightIconName];
                 dispatch_sync(dispatch_get_main_queue(), ^{
                     // check if cell still needed
                     if ([imageCell.indexPath isEqual:indexPath]) {
@@ -460,7 +470,6 @@
                                    forKey:kUserDetailsShowDetailsSoundsKey];
             [defaults setObject:showDetailsMutable forKey:kUserDetailsShowDetailsKey];
             [defaults synchronize];
-            [self stopAllSounds];
             [self.tableView reloadData];
         }
     } else if (actionSheet.tag == kAddSoundActionSheetTag) {
