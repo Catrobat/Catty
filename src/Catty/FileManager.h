@@ -26,7 +26,7 @@
 
 @protocol FileManagerDelegate <NSObject>
 
-- (void) downloadFinished;
+- (void) downloadFinishedWithURL:(NSURL*)url;
 - (void) updateProgress:(float)progress;
 
 @end

@@ -33,6 +33,7 @@
 @interface ProgramDetailStoreViewController : UIViewController<ProgramStoreDelegate, UIScrollViewDelegate, FileManagerDelegate, TTTAttributedLabelDelegate, RecentProgramsStoreDelegate>
 
 @property (nonatomic, strong) CatrobatProject *project;
+@property (nonatomic, strong) NSMutableDictionary *projects;
 @property (nonatomic, strong) IBOutlet UIScrollView *scrollViewOutlet;
 @property (nonatomic, strong) SearchStoreViewController *searchStoreController;
 
