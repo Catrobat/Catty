@@ -907,7 +907,7 @@
                     </connections>
                 </searchDisplayController>
             </objects>
-            <point key="canvasLocation" x="-1822" y="-748"/>
+            <point key="canvasLocation" x="-1822" y="-724"/>
         </scene>
         <!--Program Detail Store View Controller-->
         <scene sceneID="9qo-sP-Szn">
@@ -1058,10 +1058,10 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="Ynr-aF-UI3"/>
         <segue reference="tS5-pA-EEz"/>
+        <segue reference="Ynr-aF-UI3"/>
+        <segue reference="ZYi-SP-eKt"/>
         <segue reference="aIY-Zf-gcf"/>
         <segue reference="Mul-oO-Qtl"/>
-        <segue reference="K4O-DO-I3f"/>
     </inferredMetricsTieBreakers>
 </document>

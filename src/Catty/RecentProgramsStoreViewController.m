@@ -91,6 +91,8 @@
     [super viewWillAppear:animated];
     [self.tableView deselectRowAtIndexPath:[self.tableView indexPathForSelectedRow] animated:YES];
     self.delegate=nil;
+    self.navigationController.navigationBar.translucent = YES;
+
 }
 
 - (void)viewWillDisappear:(BOOL)animated

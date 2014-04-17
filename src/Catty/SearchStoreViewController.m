@@ -31,6 +31,7 @@
 #import "UIColor+CatrobatUIColorExtensions.h"
 #import "SegueDefines.h"
 #import "ProgramDetailStoreViewController.h"
+#import "Util.h"
 
 @interface SearchStoreViewController ()
 
@@ -62,7 +63,6 @@
     [self.searchDisplayController setActive:YES animated:YES];
     [self.searchDisplayController.searchBar becomeFirstResponder];
     self.searchDisplayController.searchBar.delegate = self;
-    self.searchDisplayController.searchBar.frame = CGRectMake(0,44,self.searchDisplayController.searchBar.frame.size.width,self.searchDisplayController.searchBar.frame.size.height);
     self.checkSearch = YES;
     self.searchDisplayController.searchBar.barTintColor = [UIColor darkBlueColor];
     self.searchDisplayController.searchBar.barStyle = UISearchBarStyleMinimal;
@@ -74,6 +74,7 @@
     [super viewWillAppear:animated];
     self.tabBarController.tabBar.translucent = YES;
     self.navigationController.navigationBar.translucent = NO;
+
 }
 
 - (void)viewWillDisappear:(BOOL)animated
@@ -109,6 +110,7 @@
 //        self.navigationController.navigationBar.translucent = YES;
 //        
 //    }
+
 }
 
 - (void)didReceiveMemoryWarning
