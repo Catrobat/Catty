@@ -308,6 +308,7 @@
         if ([cell conformsToProtocol:@protocol(CatrobatImageCell)]) {
             UITableViewCell<CatrobatImageCell> *imageCell = (UITableViewCell<CatrobatImageCell>*)cell;
             if (indexPath.row < [self.object.soundList count]) {
+                // acquire lock
                 @synchronized(self) {
                     Sound *sound = (Sound*)[self.object.soundList objectAtIndex:indexPath.row];
                     BOOL isPlaying = sound.isPlaying;
@@ -322,14 +323,25 @@
                     if (! isPlaying)
                         imageCell.iconImageView.image = [UIImage imageNamed:@"ic_media_pause"];
 
+                    // ASYNC !! lock lost here...
+                    // acquire new lock, because this part is executed asynchronously (!) on another thread
                     dispatch_queue_t queue = dispatch_queue_create("at.tugraz.ist.catrobat.PlaySoundTVCQueue", NULL);
                     dispatch_async(queue, ^{
-                        [[AudioManager sharedAudioManager] stopAllSounds];
-                        if (! isPlaying) {
-                            [[AudioManager sharedAudioManager] playSoundWithFileName:sound.fileName
-                                                                              andKey:self.object.name
-                                                                          atFilePath:[NSString stringWithFormat:@"%@%@", [self.object projectPath], kProgramSoundsDirName]
-                                                                            delegate:self];
+                        @synchronized(self) {
+                            [[AudioManager sharedAudioManager] stopAllSounds];
+                            if (! isPlaying) {
+                                BOOL isPlayable = [[AudioManager sharedAudioManager] playSoundWithFileName:sound.fileName
+                                                                                                    andKey:self.object.name
+                                                                                                atFilePath:[NSString stringWithFormat:@"%@%@", [self.object projectPath], kProgramSoundsDirName]
+                                                                                                  delegate:self];
+                                if (! isPlayable) {
+                                    // SYNC !! so lock is not lost => busy waiting in PlaySoundTVCQueue
+                                    dispatch_sync(dispatch_get_main_queue(), ^{
+                                        [Util alertWithText:kUIAlertViewMessageUnableToPlaySound];
+                                        [self stopAllSounds];
+                                    });
+                                }
+                            }
                         }
                     });
                 }
@@ -448,6 +460,7 @@
                                    forKey:kUserDetailsShowDetailsSoundsKey];
             [defaults setObject:showDetailsMutable forKey:kUserDetailsShowDetailsKey];
             [defaults synchronize];
+            [self stopAllSounds];
             [self.tableView reloadData];
         }
     } else if (actionSheet.tag == kAddSoundActionSheetTag) {
