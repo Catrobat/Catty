@@ -85,7 +85,7 @@
     NSDictionary *showDetails = [[NSUserDefaults standardUserDefaults] objectForKey:kUserDetailsShowDetailsKey];
     NSNumber *showDetailsProgramsValue = (NSNumber*)[showDetails objectForKey:kUserDetailsShowDetailsLooksKey];
     self.useDetailCells = [showDetailsProgramsValue boolValue];
-    self.title = self.navigationItem.title = kUIViewControllerTitleHelp;
+    self.title = self.navigationItem.title = kUIViewControllerTitleLooks;
     [self initNavigationBar];
     [super initTableView];
     [super initPlaceHolder];

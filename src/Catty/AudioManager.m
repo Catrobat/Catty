@@ -70,7 +70,7 @@ static AudioManager* sharedAudioManager = nil;
     return _sounds;
 }
 
-- (void)playSoundWithFileName:(NSString*)fileName
+- (BOOL)playSoundWithFileName:(NSString*)fileName
                        andKey:(NSString*)key
                    atFilePath:(NSString*)filePath
                      delegate:(id<AVAudioPlayerDelegate>) delegate
@@ -88,7 +88,7 @@ static AudioManager* sharedAudioManager = nil;
         player = [[CatrobatAudioPlayer alloc] initWithContentsOfURL:path error:&error];
         if (error != nil) {
             NSError(@"Can't read that audio-file");
-            return;
+            return NO;
         }
         [player setKey:fileName];
         [audioPlayers setObject:player forKey:fileName];
@@ -99,7 +99,7 @@ static AudioManager* sharedAudioManager = nil;
         player = [[CatrobatAudioPlayer alloc] initWithContentsOfURL:path error:&error];
         if (error != nil) {
             NSError(@"Can't read that audio-file");
-            return;
+            return NO;
         }
         [player setKey:[fileName stringByAppendingString:[NSString stringWithFormat:@"%ld",(long)self.soundCounter]]];
         [audioPlayers setObject:player forKey:[fileName stringByAppendingString:[NSString stringWithFormat:@"%ld",(long)self.soundCounter]]];
@@ -113,13 +113,14 @@ static AudioManager* sharedAudioManager = nil;
 
     player.volume = self.current_volume;
     [player play];
+    return YES;
 }
 
-- (void)playSoundWithFileName:(NSString*)fileName
+- (BOOL)playSoundWithFileName:(NSString*)fileName
                        andKey:(NSString*)key
                    atFilePath:(NSString*)filePath
 {
-  [self playSoundWithFileName:fileName andKey:key atFilePath:filePath delegate:nil];
+    return [self playSoundWithFileName:fileName andKey:key atFilePath:filePath delegate:nil];
 }
 
 - (void)setVolumeToPercent:(CGFloat)volume forKey:(NSString*)key
