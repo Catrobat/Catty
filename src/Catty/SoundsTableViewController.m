@@ -470,6 +470,7 @@
                                    forKey:kUserDetailsShowDetailsSoundsKey];
             [defaults setObject:showDetailsMutable forKey:kUserDetailsShowDetailsKey];
             [defaults synchronize];
+            [self stopAllSounds];
             [self.tableView reloadData];
         }
     } else if (actionSheet.tag == kAddSoundActionSheetTag) {
