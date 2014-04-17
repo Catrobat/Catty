@@ -327,18 +327,20 @@
                     // acquire new lock, because this part is executed asynchronously (!) on another thread
                     dispatch_queue_t queue = dispatch_queue_create("at.tugraz.ist.catrobat.PlaySoundTVCQueue", NULL);
                     dispatch_async(queue, ^{
-                        [[AudioManager sharedAudioManager] stopAllSounds];
-                        if (! isPlaying) {
-                            BOOL isPlayable = [[AudioManager sharedAudioManager] playSoundWithFileName:sound.fileName
-                                                                                                andKey:self.object.name
-                                                                                            atFilePath:[NSString stringWithFormat:@"%@%@", [self.object projectPath], kProgramSoundsDirName]
-                                                                                              delegate:self];
-                            if (! isPlayable) {
-                                // SYNC !! so lock is not lost => busy waiting in PlaySoundTVCQueue
-                                dispatch_sync(dispatch_get_main_queue(), ^{
-                                    [Util alertWithText:kUIAlertViewMessageUnableToPlaySound];
-                                    [self stopAllSounds];
-                                });
+                        @synchronized(self) {
+                            [[AudioManager sharedAudioManager] stopAllSounds];
+                            if (! isPlaying) {
+                                BOOL isPlayable = [[AudioManager sharedAudioManager] playSoundWithFileName:sound.fileName
+                                                                                                    andKey:self.object.name
+                                                                                                atFilePath:[NSString stringWithFormat:@"%@%@", [self.object projectPath], kProgramSoundsDirName]
+                                                                                                  delegate:self];
+                                if (! isPlayable) {
+                                    // SYNC !! so lock is not lost => busy waiting in PlaySoundTVCQueue
+                                    dispatch_sync(dispatch_get_main_queue(), ^{
+                                        [Util alertWithText:kUIAlertViewMessageUnableToPlaySound];
+                                        [self stopAllSounds];
+                                    });
+                                }
                             }
                         }
                     });
