@@ -347,6 +347,7 @@
 //                           }];
     [self.programArray setObject:name forKey:connection.currentRequest.URL];
     [self.connectionArray addObject:connection];
+
 }
 
 - (void)downloadScreenshotFromURL:(NSURL*)url andBaseUrl:(NSURL*)baseurl andName:(NSString*) name
@@ -390,6 +391,8 @@
     ///Length of data!!!
     [self.downloadSizeDict setObject:size forKey:connection.currentRequest.URL];
 
+    UIApplication* app = [UIApplication sharedApplication];
+    app.networkActivityIndicatorVisible = YES;
 }
 
 - (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data
@@ -429,6 +432,8 @@
         }
         
     }
+    UIApplication* app = [UIApplication sharedApplication];
+    app.networkActivityIndicatorVisible = YES;
     
     NSDebug(@"%f",progress.floatValue+((float) [data length] / (float) size.longLongValue));
 
@@ -462,6 +467,8 @@
         
     }
 
+    UIApplication* app = [UIApplication sharedApplication];
+    app.networkActivityIndicatorVisible = NO;
     
     //    if (self.programConnection == connection) {
     //        NSDebug(@"Finished program downloading");
@@ -502,6 +509,8 @@
     [self.progressDict removeObjectForKey:connection.currentRequest.URL];
     [self.downloadSizeDict removeObjectForKey:connection.currentRequest.URL];
     [connection cancel];
+    UIApplication* app = [UIApplication sharedApplication];
+    app.networkActivityIndicatorVisible = NO;
     
 }
 
