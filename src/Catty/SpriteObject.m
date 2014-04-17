@@ -405,44 +405,7 @@
 
 - (void)setLook
 {
-    BOOL check = YES;
-#warning Fix for issue that you can set look without a brick at the start -> change if there will be hide bricks for those objects which should not appear!
-//        for (Script *script in self.scriptList)
-//        {
-//            if ([script isKindOfClass:[StartScript class]]) {
-//                for(Brick* brick in script.brickList){
-//                    if([brick isKindOfClass:[SetLookBrick class]]) {
-//                        check = NO;
-//                    }
-//                }
-//            }
-//            if ([script isKindOfClass:[WhenScript class]]) {
-//                for(Brick* brick in script.brickList){
-//                    if([brick isKindOfClass:[SetLookBrick class]]) {
-//                        check = NO;
-//                    }
-//                }
-//            }
-//            
-//            /// GalaxyWar needs this insert...
-//            if ([script isKindOfClass:[BroadcastScript class]]) {
-//                for(Brick* brick in script.brickList){
-//                    if([brick isKindOfClass:[SetLookBrick class]]) {
-//                        check = NO;
-//                    }
-//                }
-//            }
-//
-//            
-//        }
-
-
-    if((check == YES || ([self isBackground])) && [self.lookList count]>0){
-        [self changeLook:[self.lookList objectAtIndex:0]];
-        
-    }
-    
-
+    [self changeLook:[self.lookList objectAtIndex:0]];
 }
 
 - (void)removeLook:(Look*)look

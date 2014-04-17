@@ -98,6 +98,7 @@
     }
     return _imageDataArray;
 }
+
 -(NSMutableArray*)connectionArray
 {
     if (!_connectionArray) {
@@ -417,6 +418,7 @@
     NSDebug(@"%f",progress.floatValue+((float) [data length] / (float) size.longLongValue));
     progress = [NSNumber numberWithFloat:progress.floatValue+((float) [data length] / (float) size.longLongValue)];
     [self.progressDict setObject:progress forKey:connection.currentRequest.URL];
+    
     if ([self.delegate respondsToSelector:@selector(updateProgress:)]) {
         if (progress.floatValue == 1) {
             [self.delegate updateProgress:progress.floatValue-1];
@@ -426,6 +428,7 @@
         }
         
     }
+    
     NSDebug(@"%f",progress.floatValue+((float) [data length] / (float) size.longLongValue));
 
     //    if (self.programConnection == connection) {
@@ -457,6 +460,7 @@
         [self resetImageDataAndConnection:connection];
         
     }
+
     
     //    if (self.programConnection == connection) {
     //        NSDebug(@"Finished program downloading");
@@ -554,7 +558,11 @@
 {
     NSString* name = [self.programArray objectForKey:connection.currentRequest.URL];
     [self unzipAndStore:data withName:name];
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"finishedloading" object:nil];
+    //[[NSNotificationCenter defaultCenter] postNotificationName:@"finishedloading" object:nil];
+    if ([self.delegate respondsToSelector:@selector(downloadFinishedWithURL:)]) {
+        [self.delegate downloadFinishedWithURL:connection.currentRequest.URL];
+    }
+
 }
 
 - (void)storeDownloadedImage:(NSData*)data andURL:(NSURL*)url

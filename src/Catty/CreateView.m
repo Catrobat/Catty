@@ -92,11 +92,10 @@
     [self configureTitleLabel:descriptionTitleLabel];
     descriptionTitleLabel.text = kUILabelTextDescription;
     [view addSubview:descriptionTitleLabel];
-////////
-#warning remove if webteam resolved the issue
+
     description = [description stringByReplacingOccurrencesOfString:@"<br>" withString:@""];
     description = [description stringByReplacingOccurrencesOfString:@"<br />" withString:@""];
-/////////
+
 
     if ((! description) || [description isEqualToString:@""]) {
         description = kUILabelTextNoDescriptionAvailable;

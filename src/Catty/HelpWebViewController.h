@@ -22,7 +22,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ForumWebViewController : UIViewController<UIWebViewDelegate, UIScrollViewDelegate>
+@interface HelpWebViewController : UIViewController<UIWebViewDelegate, UIScrollViewDelegate>
 @property (strong, nonatomic) IBOutlet UIWebView *webView;
 
 - (IBAction)previousPage:(id)sender;

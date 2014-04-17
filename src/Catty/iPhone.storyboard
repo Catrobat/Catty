@@ -769,10 +769,10 @@
             </objects>
             <point key="canvasLocation" x="-2434" y="-1422"/>
         </scene>
-        <!--Forum Web View Controller - Forum-->
+        <!--Help Web View Controller - Forum-->
         <scene sceneID="fip-Bj-Leu">
             <objects>
-                <viewController title="Forum" id="IIx-6w-DVK" customClass="ForumWebViewController" sceneMemberID="viewController">
+                <viewController title="Forum" id="IIx-6w-DVK" customClass="HelpWebViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="s6X-pF-Bnn">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -907,7 +907,7 @@
                     </connections>
                 </searchDisplayController>
             </objects>
-            <point key="canvasLocation" x="-1822" y="-748"/>
+            <point key="canvasLocation" x="-1822" y="-724"/>
         </scene>
         <!--Program Detail Store View Controller-->
         <scene sceneID="9qo-sP-Szn">
@@ -1058,10 +1058,10 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="Ynr-aF-UI3"/>
         <segue reference="tS5-pA-EEz"/>
+        <segue reference="Ynr-aF-UI3"/>
+        <segue reference="ZYi-SP-eKt"/>
         <segue reference="aIY-Zf-gcf"/>
         <segue reference="Mul-oO-Qtl"/>
-        <segue reference="K4O-DO-I3f"/>
     </inferredMetricsTieBreakers>
 </document>

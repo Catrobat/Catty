@@ -91,6 +91,8 @@
     [super viewWillAppear:animated];
     [self.tableView deselectRowAtIndexPath:[self.tableView indexPathForSelectedRow] animated:YES];
     self.delegate=nil;
+    self.navigationController.navigationBar.translucent = YES;
+
 }
 
 - (void)viewWillDisappear:(BOOL)animated
@@ -292,7 +294,7 @@
                            completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
                                [self loadIDsWith:data andResponse:response];}];
     if (indicator==0) {
-        [self showLoadingView];
+//        [self showLoadingView];
     }
     
     self.programListOffset += self.programListLimit;
@@ -398,7 +400,7 @@
                                                queue:[NSOperationQueue mainQueue]
                                    completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
                                        [self loadInfosWith:data andResponse:response];}];
-            [self showLoadingView];
+//            [self showLoadingView];
         }
         else
         {
@@ -456,7 +458,7 @@
                         
                         [self.mostViewedProjects removeObject:project];
                         [self.mostViewedProjects insertObject:loadedProject atIndex:counter];
-                        if (self.delegate != nil && [self.delegate respondsToSelector:@selector(reloadWithProject:)] && [self.controller.project.projectID isEqualToString:loadedProject.projectID]){
+                        if ([self.delegate respondsToSelector:@selector(reloadWithProject:)] && [self.controller.project.projectID isEqualToString:loadedProject.projectID]){
                             [self.delegate reloadWithProject:loadedProject];
                         }
                         break;
@@ -472,7 +474,7 @@
                         [self.mostRecentProjects removeObject:project];
                         [self.mostRecentProjects insertObject:loadedProject atIndex:counter];
                         
-                        if (self.delegate != nil && [self.delegate respondsToSelector:@selector(reloadWithProject:)] && [self.controller.project.projectID isEqualToString:loadedProject.projectID]){
+                        if ([self.delegate respondsToSelector:@selector(reloadWithProject:)] && [self.controller.project.projectID isEqualToString:loadedProject.projectID]){
                             [self.delegate reloadWithProject:loadedProject];
                         }
                         break;

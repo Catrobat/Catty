@@ -31,6 +31,7 @@
 #import "UIColor+CatrobatUIColorExtensions.h"
 #import "SegueDefines.h"
 #import "ProgramDetailStoreViewController.h"
+#import "Util.h"
 
 @interface SearchStoreViewController ()
 
@@ -62,7 +63,6 @@
     [self.searchDisplayController setActive:YES animated:YES];
     [self.searchDisplayController.searchBar becomeFirstResponder];
     self.searchDisplayController.searchBar.delegate = self;
-    self.searchDisplayController.searchBar.frame = CGRectMake(0,44,self.searchDisplayController.searchBar.frame.size.width,self.searchDisplayController.searchBar.frame.size.height);
     self.checkSearch = YES;
     self.searchDisplayController.searchBar.barTintColor = [UIColor darkBlueColor];
     self.searchDisplayController.searchBar.barStyle = UISearchBarStyleMinimal;
@@ -73,6 +73,8 @@
 {
     [super viewWillAppear:animated];
     self.tabBarController.tabBar.translucent = YES;
+    self.navigationController.navigationBar.translucent = NO;
+
 }
 
 - (void)viewWillDisappear:(BOOL)animated
@@ -83,31 +85,32 @@
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-    CGRect frame = self.tableView.frame;
-    frame.origin.y = 65;
-    frame.size.height = (frame.size.height - frame.origin.y);
-    self.tableView.frame = frame;
-    self.searchDisplayController.displaysSearchBarInNavigationBar = NO;
-    self.searchDisplayController.searchBar.frame = CGRectMake(0,65,self.searchDisplayController.searchBar.frame.size.width,self.searchDisplayController.searchBar.frame.size.height);
-    self.navigationController.navigationBar.translucent = YES;
+    ///Hack for translucency
+//    CGRect frame = self.tableView.frame;
+//    frame.origin.y = 65;
+//    frame.size.height = (frame.size.height - frame.origin.y);
+//    self.tableView.frame = frame;
+//    self.searchDisplayController.displaysSearchBarInNavigationBar = NO;
+//    self.searchDisplayController.searchBar.frame = CGRectMake(0,65,self.searchDisplayController.searchBar.frame.size.width,self.searchDisplayController.searchBar.frame.size.height);
+//    self.navigationController.navigationBar.translucent = YES;
 }
 
 - (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView
 {
     
-//    float checkPoint = 44;
-//    float currentViewBottomEdge = scrollView.contentOffset.y+44;
-    if (!self.checkSearch) {
-        CGRect frame = self.tableView.frame;
-        frame.origin.y = 65;
-        frame.size.height = (frame.size.height - frame.origin.y);
-        self.tableView.frame = frame;
-        self.searchDisplayController.displaysSearchBarInNavigationBar = NO;
-        self.searchDisplayController.searchBar.frame = CGRectMake(0,65,self.searchDisplayController.searchBar.frame.size.width,self.searchDisplayController.searchBar.frame.size.height);
-        self.checkSearch=YES;
-        self.navigationController.navigationBar.translucent = YES;
-        
-    }
+    ///Hack for translucency
+//    if (!self.checkSearch) {
+//        CGRect frame = self.tableView.frame;
+//        frame.origin.y = 65;
+//        frame.size.height = (frame.size.height - frame.origin.y);
+//        self.tableView.frame = frame;
+//        self.searchDisplayController.displaysSearchBarInNavigationBar = NO;
+//        self.searchDisplayController.searchBar.frame = CGRectMake(0,65,self.searchDisplayController.searchBar.frame.size.width,self.searchDisplayController.searchBar.frame.size.height);
+//        self.checkSearch=YES;
+//        self.navigationController.navigationBar.translucent = YES;
+//        
+//    }
+
 }
 
 - (void)didReceiveMemoryWarning
