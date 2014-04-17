@@ -24,6 +24,7 @@
 
 @interface HelpWebViewController : UIViewController<UIWebViewDelegate, UIScrollViewDelegate>
 @property (strong, nonatomic) IBOutlet UIWebView *webView;
+@property (weak, nonatomic) IBOutlet UIProgressView *progressView;
 
 - (IBAction)previousPage:(id)sender;
 - (IBAction)nextPage:(id)sender;
