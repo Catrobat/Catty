@@ -296,8 +296,7 @@
     if (indicator==0) {
         [self showLoadingView];
     }
-    UIApplication* app = [UIApplication sharedApplication];
-    app.networkActivityIndicatorVisible = YES;
+    [self loadingIndicator:YES];
     
     self.programListOffset += self.programListLimit;
 }
@@ -407,6 +406,7 @@
         else
         {
             [self hideLoadingView];
+            [self loadingIndicator:NO];
         }
         
         // }
@@ -492,8 +492,7 @@
     }
     [self update];
     [self hideLoadingView];
-    UIApplication* app = [UIApplication sharedApplication];
-    app.networkActivityIndicatorVisible = NO;
+    [self loadingIndicator:NO];
     
 }
 
@@ -731,6 +730,12 @@
     //self.tableView.contentOffset = CGPointMake(0, 0);
     
     
+}
+
+-(void)loadingIndicator:(BOOL)value
+{
+    UIApplication* app = [UIApplication sharedApplication];
+    app.networkActivityIndicatorVisible = value;
 }
 
 @end

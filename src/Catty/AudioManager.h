@@ -28,11 +28,11 @@
 
 + (AudioManager*) sharedAudioManager;
 
-- (void)playSoundWithFileName:(NSString*)fileName
+- (BOOL)playSoundWithFileName:(NSString*)fileName
                        andKey:(NSString*)key
                    atFilePath:(NSString*)filePath
                      delegate:(id<AVAudioPlayerDelegate>) delegate;
-- (void)playSoundWithFileName:(NSString*)fileName andKey:(NSString*)key atFilePath:(NSString*)filePath;
+- (BOOL)playSoundWithFileName:(NSString*)fileName andKey:(NSString*)key atFilePath:(NSString*)filePath;
 
 - (void)setVolumeToPercent:(CGFloat)volume forKey:(NSString*)key;
 - (void)changeVolumeByPercent:(CGFloat)volume forKey:(NSString*)key;

@@ -85,7 +85,7 @@
     NSDictionary *showDetails = [[NSUserDefaults standardUserDefaults] objectForKey:kUserDetailsShowDetailsKey];
     NSNumber *showDetailsProgramsValue = (NSNumber*)[showDetails objectForKey:kUserDetailsShowDetailsLooksKey];
     self.useDetailCells = [showDetailsProgramsValue boolValue];
-    self.title = self.navigationItem.title = kUIViewControllerTitleHelp;
+    self.title = self.navigationItem.title = kUIViewControllerTitleLooks;
     [self initNavigationBar];
     [super initTableView];
     [super initPlaceHolder];
@@ -367,7 +367,7 @@
     UIImagePickerController *picker = [[UIImagePickerController alloc] init];
     picker.sourceType = sourceType;
     picker.mediaTypes = @[(NSString*)kUTTypeImage];
-    picker.allowsEditing = YES;
+    picker.allowsEditing = NO;
     picker.delegate = self;
     [self presentViewController:picker animated:YES completion:nil];
 }

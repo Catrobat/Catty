@@ -255,12 +255,22 @@
         imageCell.indexPath = indexPath;
 
         static NSString *playIconName = @"ic_media_play";
-        UIImage *image = [self.imageCache objectForKey:playIconName];
+        static NSString *stopIconName = @"ic_media_pause";
+
+        // determine right icon, therefore check if this song is played currently
+        NSString *rightIconName = playIconName;
+        @synchronized(self) {
+            if (sound.isPlaying && [self.currentPlayingSong.name isEqual:sound.name]) {
+                rightIconName = stopIconName;
+            }
+        }
+
+        UIImage *image = [self.imageCache objectForKey:rightIconName];
         if (! image) {
             dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0ul);
             dispatch_async(queue, ^{
-                UIImage *image = [UIImage imageNamed:playIconName];
-                [self.imageCache setObject:image forKey:playIconName];
+                UIImage *image = [UIImage imageNamed:rightIconName];
+                [self.imageCache setObject:image forKey:rightIconName];
                 dispatch_sync(dispatch_get_main_queue(), ^{
                     // check if cell still needed
                     if ([imageCell.indexPath isEqual:indexPath]) {
@@ -308,6 +318,7 @@
         if ([cell conformsToProtocol:@protocol(CatrobatImageCell)]) {
             UITableViewCell<CatrobatImageCell> *imageCell = (UITableViewCell<CatrobatImageCell>*)cell;
             if (indexPath.row < [self.object.soundList count]) {
+                // acquire lock
                 @synchronized(self) {
                     Sound *sound = (Sound*)[self.object.soundList objectAtIndex:indexPath.row];
                     BOOL isPlaying = sound.isPlaying;
@@ -322,14 +333,25 @@
                     if (! isPlaying)
                         imageCell.iconImageView.image = [UIImage imageNamed:@"ic_media_pause"];
 
+                    // ASYNC !! lock lost here...
+                    // acquire new lock, because this part is executed asynchronously (!) on another thread
                     dispatch_queue_t queue = dispatch_queue_create("at.tugraz.ist.catrobat.PlaySoundTVCQueue", NULL);
                     dispatch_async(queue, ^{
-                        [[AudioManager sharedAudioManager] stopAllSounds];
-                        if (! isPlaying) {
-                            [[AudioManager sharedAudioManager] playSoundWithFileName:sound.fileName
-                                                                              andKey:self.object.name
-                                                                          atFilePath:[NSString stringWithFormat:@"%@%@", [self.object projectPath], kProgramSoundsDirName]
-                                                                            delegate:self];
+                        @synchronized(self) {
+                            [[AudioManager sharedAudioManager] stopAllSounds];
+                            if (! isPlaying) {
+                                BOOL isPlayable = [[AudioManager sharedAudioManager] playSoundWithFileName:sound.fileName
+                                                                                                    andKey:self.object.name
+                                                                                                atFilePath:[NSString stringWithFormat:@"%@%@", [self.object projectPath], kProgramSoundsDirName]
+                                                                                                  delegate:self];
+                                if (! isPlayable) {
+                                    // SYNC !! so lock is not lost => busy waiting in PlaySoundTVCQueue
+                                    dispatch_sync(dispatch_get_main_queue(), ^{
+                                        [Util alertWithText:kUIAlertViewMessageUnableToPlaySound];
+                                        [self stopAllSounds];
+                                    });
+                                }
+                            }
                         }
                     });
                 }
@@ -448,6 +470,7 @@
                                    forKey:kUserDetailsShowDetailsSoundsKey];
             [defaults setObject:showDetailsMutable forKey:kUserDetailsShowDetailsKey];
             [defaults synchronize];
+            [self stopAllSounds];
             [self.tableView reloadData];
         }
     } else if (actionSheet.tag == kAddSoundActionSheetTag) {
@@ -511,6 +534,7 @@
 
 - (void)playSceneAction:(id)sender
 {
+    [self stopAllSounds];
     [self.navigationController setToolbarHidden:YES];
     [self performSegueWithIdentifier:kSegueToScene sender:sender];
 }
