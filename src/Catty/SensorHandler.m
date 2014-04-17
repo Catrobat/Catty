@@ -42,7 +42,7 @@
 @property (nonatomic, strong) CLLocationManager* locationManager;
 @property (nonatomic,strong) AVAudioRecorder* recorder;
 @property (nonatomic,strong) NSTimer* programTimer;
-@property (nonatomic) CGFloat db;
+@property (nonatomic) CGFloat loudnessInPercent;
 
 @end
 
@@ -112,8 +112,8 @@ static SensorHandler* sharedSensorHandler = nil;
                 [self recorderinit];
             }
             [self loudness];
-            result = self.db;
-            NSDebug(@"Loudness: %f db", result);
+            result = self.loudnessInPercent;
+            NSDebug(@"Loudness: %f \%", result);
             break;
         }
             
@@ -276,23 +276,22 @@ static SensorHandler* sharedSensorHandler = nil;
                                                        userInfo: nil
                                                         repeats: NO];
     
-    NSLog(@"Loudnes called %f", self.db);
-
 }
 
 
 - (void)programTimerCallback:(NSTimer *)timer
 {
     [self.recorder updateMeters];
-    float averagePower = [self.recorder averagePowerForChannel:0];
-    int SPL = [self SPL:averagePower];
-    NSDebug(@"Decibels program: %d",SPL);
-    self.db = SPL;
+    self.loudnessInPercent = [self decibelToPercent:[self.recorder averagePowerForChannel:0]];
 }
--(int)SPL:(float)decibelsPower {
-    int SPL = 20 * log10(NOISE_RECOGNIZER_DEFAULT_REFERENCE_PROGRAM * powf(10, (decibelsPower/20)) * NOISE_RECOGNIZER_DEFAULT_RANGE + NOISE_RECOGNIZER_DEFAULT_OFFSET);
-    return SPL;
+
+- (CGFloat)decibelToPercent:(CGFloat)decibel
+{
+    // http://stackoverflow.com/questions/1512131/iphone-avaudioplayer-convert-decibel-level-into-percent
+    CGFloat percent = pow (10, (0.05 * decibel));
+    return percent * 100.0f;
 }
+
 
 
 
