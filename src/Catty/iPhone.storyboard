@@ -769,10 +769,10 @@
             </objects>
             <point key="canvasLocation" x="-2434" y="-1422"/>
         </scene>
-        <!--Forum Web View Controller - Forum-->
+        <!--Help Web View Controller - Forum-->
         <scene sceneID="fip-Bj-Leu">
             <objects>
-                <viewController title="Forum" id="IIx-6w-DVK" customClass="ForumWebViewController" sceneMemberID="viewController">
+                <viewController title="Forum" id="IIx-6w-DVK" customClass="HelpWebViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="s6X-pF-Bnn">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>

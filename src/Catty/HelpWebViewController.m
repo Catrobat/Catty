@@ -20,7 +20,7 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import "ForumWebViewController.h"
+#import "HelpWebViewController.h"
 #import "TableUtil.h"
 #import "Util.h"
 #import "LoadingView.h"
@@ -30,7 +30,7 @@
 #define kForumURL @"https://pocketcode.org/tutorial"
 #define kBarsHeight 44
 
-@interface ForumWebViewController ()
+@interface HelpWebViewController ()
 @property (nonatomic, strong) LoadingView *loadingView;
 @property (nonatomic, strong) UIBarButtonItem *back;
 @property (nonatomic, strong) UIBarButtonItem *forward;
@@ -40,7 +40,7 @@
 @property (nonatomic) BOOL  WebviewFinishedLoading;
 @end
 
-@implementation ForumWebViewController
+@implementation HelpWebViewController
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle*)nibBundleOrNil
 {
@@ -55,13 +55,13 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-
-    self.webView.delegate = self;
-    self.webView.scrollView.delegate = self;
     self.webView.backgroundColor = [UIColor darkBlueColor];
     self.view.backgroundColor = [UIColor darkBlueColor];
     [self.webView setOpaque:NO];
     [self.view setOpaque:NO];
+    
+    self.webView.delegate = self;
+    self.webView.scrollView.delegate = self;
     self.WebviewFinishedLoading = NO;
     self.navigationItem.title = kUIViewControllerTitleHelp;
     [self showLoadingView];
@@ -117,19 +117,18 @@
 #pragma mark - UIWebViewDelegate
 - (void)webViewDidStartLoad:(UIWebView*)webView
 {
-//    [self showLoadingView];
+    [self initButtons];
     UIApplication* app = [UIApplication sharedApplication];
     app.networkActivityIndicatorVisible = YES;
-    [self initButtons];
 }
 
 - (void)webViewDidFinishLoad:(UIWebView*)webView
 {
     [self hideLoadingView];
-    UIApplication* app = [UIApplication sharedApplication];
-    app.networkActivityIndicatorVisible = NO;
     [self initButtons];
     self.WebviewFinishedLoading = YES;
+    UIApplication* app = [UIApplication sharedApplication];
+    app.networkActivityIndicatorVisible = NO;
 }
 
 - (void)webView:(UIWebView*)webView didFailLoadWithError:(NSError*)error
