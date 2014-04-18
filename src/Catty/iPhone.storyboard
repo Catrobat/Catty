@@ -840,12 +840,12 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Qpj-ch-Y40" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1822" y="-1428"/>
+            <point key="canvasLocation" x="-1830" y="-1446"/>
         </scene>
         <!--Search Store View Controller-->
         <scene sceneID="idB-9b-nhZ">
             <objects>
-                <tableViewController clearsSelectionOnViewWillAppear="NO" id="X6w-eP-ToB" customClass="SearchStoreViewController" sceneMemberID="viewController">
+                <tableViewController id="X6w-eP-ToB" customClass="SearchStoreViewController" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="pkr-bx-PA4">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -941,7 +941,7 @@
             </objects>
             <point key="canvasLocation" x="-1295" y="-1760"/>
         </scene>
-        <!--Recent Programs Store View Controller-->
+        <!--Recent Programs Store View Controller - Charts-->
         <scene sceneID="SIN-nq-kFT">
             <objects>
                 <viewController id="NKa-LQ-PR2" customClass="RecentProgramsStoreViewController" sceneMemberID="viewController">
@@ -999,7 +999,7 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
-                    <tabBarItem key="tabBarItem" systemItem="mostViewed" id="cyM-fk-ZFD"/>
+                    <tabBarItem key="tabBarItem" title="Charts" image="top_charts" id="cyM-fk-ZFD"/>
                     <connections>
                         <outlet property="downloadSegmentedControl" destination="jxg-mt-dvB" id="2Ib-94-qEx"/>
                         <outlet property="segmentedControlView" destination="7PH-x9-xjS" id="ltA-go-6KI"/>
@@ -1057,15 +1057,18 @@
             <point key="canvasLocation" x="-444" y="-2330"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="top_charts" width="25" height="23"/>
+    </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="tS5-pA-EEz"/>
-        <segue reference="Ynr-aF-UI3"/>
         <segue reference="ZYi-SP-eKt"/>
+        <segue reference="Ynr-aF-UI3"/>
+        <segue reference="tS5-pA-EEz"/>
         <segue reference="aIY-Zf-gcf"/>
         <segue reference="Mul-oO-Qtl"/>
     </inferredMetricsTieBreakers>
