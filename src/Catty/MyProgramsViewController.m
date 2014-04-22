@@ -75,15 +75,6 @@
 }
 
 #pragma mark - initialization
-- (id)initWithStyle:(UITableViewStyle)style
-{
-    self = [super initWithStyle:style];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
-}
-
 - (void)initNavigationBar
 {
     UIBarButtonItem *editButtonItem = [TableUtil editButtonItemWithTarget:self action:@selector(editAction:)];
@@ -573,6 +564,12 @@
             break;
         }
         ++rowIndex;
+    }
+    // if last program was removed [programLoadingInfos count] returns 0,
+    // then default program was automatically recreated, therefore reload
+    if (! [self.programLoadingInfos count]) {
+        [self loadPrograms];
+        [self.tableView reloadData];
     }
 }
 
