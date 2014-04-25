@@ -50,7 +50,7 @@
 - (NSUInteger)sizeOfFileAtPath:(NSString*)path;
 - (NSDate*)lastAccessTimeOfFile:(NSString*)path;
 - (NSArray*)getContentsOfDirectory:(NSString*)directory;
-- (void)addDefaultProjectsToProgramsRootDirectory;
+- (void)addDefaultProgramToProgramsRootDirectoryIfNoProgramsExist;
 - (void)downloadFileFromURL:(NSURL*)url withName:(NSString*)name;
 - (void)downloadScreenshotFromURL:(NSURL*)url andBaseUrl:(NSURL*)baseurl andName:(NSString*) name;
 - (NSString*)getFullPathForProgram:(NSString*)programName;

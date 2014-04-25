@@ -248,13 +248,14 @@
         [fileManager deleteDirectory:projectPath];
     }
 
-    // it this is currently set as last program, then look for next program to set it as the last program
+    NSString *basePath = [Program basePath];
+    NSError *error;
+    NSArray *programLoadingInfos = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:basePath error:&error];
+    NSLogError(error);
+
+    // if this is currently set as last program, then look for next program to set it as the last program
     if ([Program isLastProgram:programName]) {
         [Util setLastProgram:nil];
-        NSString *basePath = [Program basePath];
-        NSError *error;
-        NSArray *programLoadingInfos = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:basePath error:&error];
-        NSLogError(error);
         for (NSString *programLoadingInfo in programLoadingInfos) {
             // exclude .DS_Store folder on MACOSX simulator
             if ([programLoadingInfo isEqualToString:@".DS_Store"])
@@ -264,8 +265,10 @@
             break;
         }
     }
-}
 
+    // if there are no programs left, then automatically recreate default program
+    [fileManager addDefaultProgramToProgramsRootDirectoryIfNoProgramsExist];
+}
 
 - (GDataXMLElement*)toXML
 {
