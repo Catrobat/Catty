@@ -84,6 +84,8 @@
     self.view.backgroundColor = [UIColor darkBlueColor];
     [self initSegmentedControl];
     self.previousSelectedIndex = 0;
+    self.edgesForExtendedLayout = UIRectEdgeAll;
+    self.tableView.contentInset = UIEdgeInsetsMake(0., 0., CGRectGetHeight(self.tabBarController.tabBar.frame)+44, 0);
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -92,6 +94,7 @@
     [self.tableView deselectRowAtIndexPath:[self.tableView indexPathForSelectedRow] animated:YES];
     self.delegate=nil;
     self.navigationController.navigationBar.translucent = YES;
+    self.tabBarController.tabBar.translucent = YES;
 
 }
 
@@ -169,7 +172,6 @@
     [self.downloadSegmentedControl setTitle:kUISegmentedControlTitleNewest forSegmentAtIndex:2];
     [self initFooterView];
     CGFloat navigationBarHeight = self.navigationController.navigationBar.frame.size.height;
-    //CGFloat segmentedControlViewheight = self.segmentedControlView.frame.size.height;
     self.downloadSegmentedControl.backgroundColor = [UIColor darkBlueColor];
     self.downloadSegmentedControl.tintColor = [UIColor lightOrangeColor];
     self.segmentedControlView.frame = CGRectMake(0, navigationBarHeight+[UIApplication sharedApplication].statusBarFrame.size.height, self.segmentedControlView.frame.size.width, self.segmentedControlView.frame.size.height);
@@ -296,8 +298,7 @@
     if (indicator==0) {
         [self showLoadingView];
     }
-    UIApplication* app = [UIApplication sharedApplication];
-    app.networkActivityIndicatorVisible = YES;
+    [self loadingIndicator:YES];
     
     self.programListOffset += self.programListLimit;
 }
@@ -407,6 +408,7 @@
         else
         {
             [self hideLoadingView];
+            [self loadingIndicator:NO];
         }
         
         // }
@@ -492,8 +494,7 @@
     }
     [self update];
     [self hideLoadingView];
-    UIApplication* app = [UIApplication sharedApplication];
-    app.networkActivityIndicatorVisible = NO;
+    [self loadingIndicator:NO];
     
 }
 
@@ -731,6 +732,12 @@
     //self.tableView.contentOffset = CGPointMake(0, 0);
     
     
+}
+
+-(void)loadingIndicator:(BOOL)value
+{
+    UIApplication* app = [UIApplication sharedApplication];
+    app.networkActivityIndicatorVisible = value;
 }
 
 @end
