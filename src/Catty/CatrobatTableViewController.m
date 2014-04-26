@@ -90,10 +90,10 @@
     if (! [appDelegate.fileManager directoryExists:[Program basePath]]) {
         [appDelegate.fileManager createDirectory:[Program basePath]];
     }
-    [appDelegate.fileManager addDefaultProjectsToProgramsRootDirectory];
-    
+    [appDelegate.fileManager addDefaultProgramToProgramsRootDirectoryIfNoProgramsExist];
+
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(networkStatusChanged:) name:kReachabilityChangedNotification object:nil];
-    
+
     self.reachability = [Reachability reachabilityForInternetConnection];
     [self.reachability startNotifier];
 }

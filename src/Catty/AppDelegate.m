@@ -40,12 +40,13 @@ void uncaughtExceptionHandler(NSException *exception)
 }
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
-{    
+{
     NSSetUncaughtExceptionHandler(&uncaughtExceptionHandler);
 
     [self initNavigationBar];
 
-    [[UITextField appearance] setKeyboardAppearance:UIKeyboardAppearanceDark];
+
+    [UITextField appearance].keyboardAppearance = UIKeyboardAppearanceDark;
 
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     NSDictionary *appDefaults = [NSDictionary dictionaryWithObject:@"YES"
