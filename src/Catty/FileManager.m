@@ -287,28 +287,29 @@
     return contents;
 }
 
-- (void)addDefaultProjectsToProgramsRootDirectory
+- (void)addDefaultProgramToProgramsRootDirectoryIfNoProgramsExist
 {
     NSString *basePath = [Program basePath];
     NSError *error;
     NSArray *programLoadingInfos = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:basePath error:&error];
     NSLogError(error);
 
-    BOOL defaultProgramExists = NO;
+    BOOL areAnyProgramsLeft = NO;
     for (NSString *programLoadingInfo in programLoadingInfos) {
-        if ([programLoadingInfo isEqualToString:kDefaultProgramName]) {
-            defaultProgramExists = YES;
+        // exclude .DS_Store folder on MACOSX simulator
+        if ([programLoadingInfo isEqualToString:@".DS_Store"]) {
+            continue;
         }
+        areAnyProgramsLeft = YES;
+        break;
     }
-    if (! defaultProgramExists) {
-        [self addBundleProjectWithName:kDefaultProgramName];
-    }
-    if (! [Util lastProgram]) {
-        [Util setLastProgram:kDefaultProgramName];
+    if (! areAnyProgramsLeft) {
+        [self addBundleProgramWithName:kDefaultProgramName];
+        [Util lastProgram];
     }
 }
 
-- (void)addBundleProjectWithName:(NSString*)projectName
+- (void)addBundleProgramWithName:(NSString*)projectName
 {
     NSError *error;
     if (! [self directoryExists:self.programsDirectory]) {
