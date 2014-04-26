@@ -220,30 +220,9 @@
     button.frame = CGRectMake(235, 55, 28, 28);
     button.hidden = YES;
 
-//    NSString *title = kUIBarButtonItemTitleCancel;
-//    UIButton *stopLoadingButton = [UIButton buttonWithType:UIButtonTypeCustom];
-//    stopLoadingButton.tag = kStopLoadingTag;
-//    stopLoadingButton.hidden = YES;
-//    stopLoadingButton.frame = CGRectMake(195, 55, 105, 25);
-//    stopLoadingButton.titleLabel.font = [UIFont boldSystemFontOfSize:14];
-//    [stopLoadingButton setTitle:title forState:UIControlStateNormal];
-//    stopLoadingButton.backgroundColor = [UIColor clearColor];
     [button addTarget:target action:@selector(stopLoading) forControlEvents:UIControlEventTouchUpInside];
 
-//    CAGradientLayer *gradientLayer = [CAGradientLayer redGradientLayerWithFrame:stopLoadingButton.layer.bounds];
-//    stopLoadingButton.layer.cornerRadius = 3.0f;
-//    gradientLayer.cornerRadius = stopLoadingButton.layer.cornerRadius;
-//    [stopLoadingButton.layer insertSublayer:gradientLayer atIndex:0];
-//    stopLoadingButton.layer.masksToBounds = YES;
-//    [self addShadowToTitleLabelForButton:stopLoadingButton];
-//
-//    stopLoadingButton.layer.borderColor = [UIColor colorWithRed:118/255.0f green:61/255.0f blue:26/255.0f alpha:0.5f].CGColor;
-//    stopLoadingButton.layer.borderWidth = 1.0f;
-//
-//    UIActivityIndicatorView *activity = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite];
-//    activity.tag = kActivityIndicator;
-//    activity.frame = CGRectMake(5, 0, 25, 25);
-//    [stopLoadingButton addSubview:activity];
+
     [view addSubview:button];
 }
 
