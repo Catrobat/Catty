@@ -275,7 +275,6 @@ static SensorHandler* sharedSensorHandler = nil;
                                                        selector: @selector(programTimerCallback:)
                                                        userInfo: nil
                                                         repeats: NO];
-    
 }
 
 
@@ -293,9 +292,6 @@ static SensorHandler* sharedSensorHandler = nil;
     CGFloat percent = pow (10, decibel / 20);
     return percent * 100.0f;
 }
-
-
-
 
 
 
