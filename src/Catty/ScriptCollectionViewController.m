@@ -66,7 +66,7 @@
     self.collectionView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"darkblue"]];
 }
 
-#pragma mark - view events
+#pragma mark - events
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -124,16 +124,18 @@
     [self.collectionView reloadData];
 }
 
-
-#pragma mark - application events
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     [BrickCell clearImageCache];
 }
 
-#pragma mark - UIViewControllerAnimatedTransitioning delegate
+- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent*)event
+{
+    [self.view endEditing:YES];
+}
 
+#pragma mark - UIViewControllerAnimatedTransitioning delegate
 - (id<UIViewControllerAnimatedTransitioning>)animationControllerForPresentedController:(UIViewController *)presented
                                                                   presentingController:(UIViewController *)presenting
                                                                       sourceController:(UIViewController *)source {

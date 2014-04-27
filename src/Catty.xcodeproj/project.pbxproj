@@ -60,8 +60,9 @@
 		92C37A521856276D00547C1E /* SetBrightnessBrickTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 92C37A511856276D00547C1E /* SetBrightnessBrickTests.m */; };
 		92C37A541856279600547C1E /* MoveNStepsBrickTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 92C37A531856279600547C1E /* MoveNStepsBrickTests.m */; };
 		92C37A56185627A300547C1E /* ClearGrafficEffectBrickTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 92C37A55185627A300547C1E /* ClearGrafficEffectBrickTests.m */; };
-		92E3351C18FBB5850056C390 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 92E3351B18FBB5850056C390 /* Reachability.m */; };
 		92E3351E18FBB6750056C390 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 92E3351D18FBB6750056C390 /* SystemConfiguration.framework */; };
+		92F13A76190BD3C600A6EBDE /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 92F13A75190BD3C600A6EBDE /* Reachability.m */; };
+		92F13A79190BD66700A6EBDE /* RoundBorderedButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 92F13A78190BD66700A6EBDE /* RoundBorderedButton.m */; };
 		B402288217329FEB004C4942 /* IfLogicBeginBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = B402288117329FEB004C4942 /* IfLogicBeginBrick.m */; };
 		B40228911732A541004C4942 /* IfLogicElseBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = B40228901732A540004C4942 /* IfLogicElseBrick.m */; };
 		B40228961732A58E004C4942 /* IfLogicEndBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = B40228951732A58E004C4942 /* IfLogicEndBrick.m */; };
@@ -375,9 +376,11 @@
 		92C37A511856276D00547C1E /* SetBrightnessBrickTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SetBrightnessBrickTests.m; sourceTree = "<group>"; };
 		92C37A531856279600547C1E /* MoveNStepsBrickTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MoveNStepsBrickTests.m; sourceTree = "<group>"; };
 		92C37A55185627A300547C1E /* ClearGrafficEffectBrickTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ClearGrafficEffectBrickTests.m; sourceTree = "<group>"; };
-		92E3351A18FBB5850056C390 /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Reachability.h; path = ../Reachability.h; sourceTree = "<group>"; };
-		92E3351B18FBB5850056C390 /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Reachability.m; path = ../Reachability.m; sourceTree = "<group>"; };
 		92E3351D18FBB6750056C390 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		92F13A74190BD3C600A6EBDE /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Reachability.h; path = ../Reachability.h; sourceTree = "<group>"; };
+		92F13A75190BD3C600A6EBDE /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Reachability.m; path = ../Reachability.m; sourceTree = "<group>"; };
+		92F13A77190BD66700A6EBDE /* RoundBorderedButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RoundBorderedButton.h; sourceTree = "<group>"; };
+		92F13A78190BD66700A6EBDE /* RoundBorderedButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RoundBorderedButton.m; sourceTree = "<group>"; };
 		B4003030170EB50A00396DB7 /* CatrobatTableViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CatrobatTableViewController.h; sourceTree = "<group>"; };
 		B4003031170EB50A00396DB7 /* CatrobatTableViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CatrobatTableViewController.m; sourceTree = "<group>"; };
 		B402288017329FEB004C4942 /* IfLogicBeginBrick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IfLogicBeginBrick.h; sourceTree = "<group>"; };
@@ -952,10 +955,19 @@
 		92E3351618FBB3340056C390 /* InternetConnection */ = {
 			isa = PBXGroup;
 			children = (
-				92E3351A18FBB5850056C390 /* Reachability.h */,
-				92E3351B18FBB5850056C390 /* Reachability.m */,
+				92F13A74190BD3C600A6EBDE /* Reachability.h */,
+				92F13A75190BD3C600A6EBDE /* Reachability.m */,
 			);
 			name = InternetConnection;
+			sourceTree = "<group>";
+		};
+		92F13A7A190BD85800A6EBDE /* RoundBorderedButton */ = {
+			isa = PBXGroup;
+			children = (
+				92F13A77190BD66700A6EBDE /* RoundBorderedButton.h */,
+				92F13A78190BD66700A6EBDE /* RoundBorderedButton.m */,
+			);
+			name = RoundBorderedButton;
 			sourceTree = "<group>";
 		};
 		B400302C170EB45200396DB7 /* Helpers */ = {
@@ -1376,6 +1388,7 @@
 		B4D940B2170EC5D5003DDBFA /* UserInterface */ = {
 			isa = PBXGroup;
 			children = (
+				92F13A7A190BD85800A6EBDE /* RoundBorderedButton */,
 				817B544E18F0AAE600AF6BFE /* FXBlurView */,
 				CAEBC91918E5A1D800554CA2 /* EVCircularProgressView */,
 				CAC3141318BA84C700DAAB72 /* ComboBoxView */,
@@ -2801,6 +2814,7 @@
 				B4D940D4170ECA15003DDBFA /* ImageCache.m in Sources */,
 				CA75C23818A9614C00FC8C2F /* NoteBrickCell.m in Sources */,
 				B4D940DC170ECB65003DDBFA /* ContinueImageCell.m in Sources */,
+				92F13A79190BD66700A6EBDE /* RoundBorderedButton.m in Sources */,
 				81FAEE2F17E781AB0052BB2B /* ScriptCollectionViewController.m in Sources */,
 				81FAEE3217E782140052BB2B /* LooksTableViewController.m in Sources */,
 				B4D940E0170ECB8B003DDBFA /* DarkBlueGradientCell.m in Sources */,
@@ -2857,7 +2871,7 @@
 				B4840CA7174FAC3E002DEC53 /* MoveNStepsBrick.m in Sources */,
 				CA75C25918A961A300FC8C2F /* IfOnEdgeBounceBrickCell.m in Sources */,
 				B4365CE51758AF8F00B4D0A6 /* Logger.m in Sources */,
-				92E3351C18FBB5850056C390 /* Reachability.m in Sources */,
+				92F13A76190BD3C600A6EBDE /* Reachability.m in Sources */,
 				CDFEFCB41758CBC8002B5B0E /* IfOnEdgeBounceBrick.m in Sources */,
 				CA75C24718A9617900FC8C2F /* RepeatBrickCell.m in Sources */,
 				B4DA23D1175E26550079B381 /* SensorManager.m in Sources */,

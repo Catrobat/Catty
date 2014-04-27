@@ -50,4 +50,7 @@
 @property (strong,nonatomic) UILabel *menuRestartLabel;
 @property (strong,nonatomic) UILabel *menuAxisLabel;
 
+-(void)pause;
+-(void)resume;
+
 @end

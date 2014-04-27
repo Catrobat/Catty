@@ -126,9 +126,9 @@
     SensorHandler* sensorHandler = [SensorHandler sharedSensorHandler];
     for (int sensor = X_ACCELERATION; sensor < OBJECT_X; sensor++) {
         // FIXME: fix and remove this small workaround after problem solved...
-        if (sensor == X_ACCELERATION || sensor == COMPASS_DIRECTION)
-            continue; // skip first and fourth test... always returns zero, don't know why...
-
+        if (sensor == COMPASS_DIRECTION)
+            continue; // fourth test... always returns zero, don't know why...
+        
         double sensorValue = [sensorHandler valueForSensor:sensor];
         BOOL isNotZero = (sensorValue != 0.0);
         XCTAssertTrue(isNotZero, @"It's very unlikely that the sensor (%@) really returned zero!", [SensorManager stringForSensor:sensor]);
