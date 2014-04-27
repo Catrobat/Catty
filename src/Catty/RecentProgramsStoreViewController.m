@@ -83,6 +83,7 @@
     [self initTableView];
     self.view.backgroundColor = [UIColor darkBlueColor];
     [self initSegmentedControl];
+    [self initFooterView];
     self.previousSelectedIndex = 0;
     self.edgesForExtendedLayout = UIRectEdgeAll;
     self.tableView.contentInset = UIEdgeInsetsMake(0., 0., CGRectGetHeight(self.tabBarController.tabBar.frame)+44, 0);
@@ -170,7 +171,7 @@
     [self.downloadSegmentedControl setTitle:kUISegmentedControlTitleMostDownloaded forSegmentAtIndex:0];
     [self.downloadSegmentedControl setTitle:kUISegmentedControlTitleMostViewed forSegmentAtIndex:1];
     [self.downloadSegmentedControl setTitle:kUISegmentedControlTitleNewest forSegmentAtIndex:2];
-    [self initFooterView];
+
     CGFloat navigationBarHeight = self.navigationController.navigationBar.frame.size.height;
     self.downloadSegmentedControl.backgroundColor = [UIColor darkBlueColor];
     self.downloadSegmentedControl.tintColor = [UIColor lightOrangeColor];
@@ -182,12 +183,12 @@
 {
     self.footerView = [[UIView alloc] initWithFrame:CGRectMake(0.0, 0.0, 320.0, 40.0)];
     
-    UIActivityIndicatorView * actInd = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite];
+    UIActivityIndicatorView * actInd = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
     
     actInd.tag = 10;
     
-    actInd.frame = CGRectMake(150.0, 5.0, 20.0, 20.0);
-    
+    actInd.frame = CGRectMake(self.tableView.frame.size.width/2-20, 10.0, 40.0, 40.0);
+
     actInd.hidesWhenStopped = YES;
     
     [self.footerView addSubview:actInd];
