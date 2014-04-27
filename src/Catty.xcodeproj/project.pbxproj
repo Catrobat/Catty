@@ -1400,6 +1400,7 @@
 				B4BCF41E170ED3B7008EDF3A /* TTTAttributedLabel */,
 				B4F499B3175E838B002E1BBD /* PullableView */,
 				81506F4A18C3EDDC000ED328 /* LXReorderableCollectionViewFlowLayout */,
+				817B543D18F03BC700AF6BFE /* Transitions */,
 			);
 			name = UserInterface;
 			sourceTree = "<group>";
@@ -2102,9 +2103,8 @@
 		CD0CCE3B170CA00F00B70036 /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
-				817B543D18F03BC700AF6BFE /* Transitions */,
-				CA05A193182826950025421A /* Download */,
 				CA05A194182826E40025421A /* BaseClasses */,
+				CA05A193182826950025421A /* Download */,
 				B4003032170EB51000396DB7 /* CatrobatTableViewController */,
 				CA04EDA317E7D1610063EB25 /* Continue & New */,
 				CA05A1961828275B0025421A /* Programs */,
