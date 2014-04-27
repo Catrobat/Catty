@@ -62,7 +62,6 @@ void uncaughtExceptionHandler(NSException *exception)
 
 - (void)applicationWillResignActive:(UIApplication *)application
 {
-    [[AVAudioSession sharedInstance] setActive:NO error:nil];
     UINavigationController *vc = (UINavigationController*)self.window.rootViewController;
     
     if([vc.topViewController isKindOfClass:[ScenePresenterViewController class]]){
@@ -80,7 +79,6 @@ void uncaughtExceptionHandler(NSException *exception)
 - (void)applicationWillEnterForeground:(UIApplication *)application
 {
     // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
-    [[AVAudioSession sharedInstance] setActive:YES error:nil];
     UINavigationController *vc = (UINavigationController*)self.window.rootViewController;
     
     if([vc.topViewController isKindOfClass:[ScenePresenterViewController class]]){
