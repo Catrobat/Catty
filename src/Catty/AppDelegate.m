@@ -24,6 +24,7 @@
 #import "FileManager.h"
 #import "Util.h"
 #import "UIColor+CatrobatUIColorExtensions.h"
+#import <AVFoundation/AVFoundation.h>
 
 void uncaughtExceptionHandler(NSException *exception)
 {
@@ -56,6 +57,16 @@ void uncaughtExceptionHandler(NSException *exception)
     application.statusBarHidden = NO;
     application.statusBarStyle = UIStatusBarStyleLightContent;
     return YES;
+}
+
+- (void)applicationWillResignActive:(UIApplication *)application
+{
+    [[AVAudioSession sharedInstance] setActive:YES error:nil];
+}
+
+- (void)applicationDidEnterBackground:(UIApplication *)application
+{
+    [[AVAudioSession sharedInstance] setActive:NO error:nil];
 }
 
 - (void)initNavigationBar
