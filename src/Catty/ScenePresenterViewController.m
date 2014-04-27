@@ -917,7 +917,21 @@
     
 }
 
+-(void)pause
+{
+    SKView * view= (SKView*)_skView;
+    view.paused=YES;
+    [[AVAudioSession sharedInstance] setActive:NO error:nil];
+    [[AudioManager sharedAudioManager] pauseAllSounds];
+}
 
+-(void)resume
+{
+    SKView * view= (SKView*)_skView;
+    view.paused=NO;
+    [[AVAudioSession sharedInstance] setActive:YES error:nil];
+    [[AudioManager sharedAudioManager] resumeAllSounds];
+}
 
 @end
 
