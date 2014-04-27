@@ -27,6 +27,7 @@
 #import <AVFoundation/AVFoundation.h>
 #import "ScenePresenterViewController.h"
 
+
 void uncaughtExceptionHandler(NSException *exception)
 {
     NSError(@"uncaught exception: %@", exception.description);
@@ -76,6 +77,7 @@ void uncaughtExceptionHandler(NSException *exception)
     [[AVAudioSession sharedInstance] setActive:NO error:nil];
 }
 
+
 - (void)applicationWillEnterForeground:(UIApplication *)application
 {
     // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
@@ -89,6 +91,7 @@ void uncaughtExceptionHandler(NSException *exception)
     
     
 }
+
 - (void)initNavigationBar
 {
     UIImage *navbarimage = [[UIImage imageNamed:@"darkblue"]
