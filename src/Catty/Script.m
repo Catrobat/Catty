@@ -79,7 +79,7 @@
 -(void)stop
 {
     [self removeAllActions];
-    self.currentBrickIndex = INT_MAX;
+    self.currentBrickIndex = NSNotFound;
 }
 
 
@@ -156,7 +156,7 @@
             if(!condition) {
                 self.currentBrickIndex = [self.brickList indexOfObject:[((IfLogicBeginBrick*)brick) ifElseBrick]]+1;
             }
-            if(self.currentBrickIndex == INT_MIN) {
+            if(self.currentBrickIndex == NSIntegerMin) {
                 NSError(@"The XML-Structure is wrong, please fix the project");
             }
             
@@ -167,7 +167,7 @@
                         
             self.currentBrickIndex = [self.brickList indexOfObject:[((IfLogicElseBrick*)brick) ifEndBrick]]+1;
 
-            if(self.currentBrickIndex == INT_MIN) {
+            if(self.currentBrickIndex == NSIntegerMin) {
                 NSError(@"The XML-Structure is wrong, please fix the project");
             }
             
@@ -178,7 +178,7 @@
             [self nextAction];
         }
         else if([brick isKindOfClass:[NoteBrick class]]) {
-            
+            [self nextAction];
         }
         else {
             NSMutableArray* actionArray = [[NSMutableArray alloc] init];
