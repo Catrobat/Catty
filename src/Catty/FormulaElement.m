@@ -272,11 +272,11 @@
                 break;
             }
             case EQUAL: {
-                result = (round(left)) == (round(right)) ? 1.0 : 0.0;
+                result = left == right ? 1.0 : 0.0;
                 break;
             }
             case NOT_EQUAL: {
-                result = (round(left)) == (round(right)) ? 0.0 : 1.0;
+                result = left == right ? 0.0 : 1.0;
                 break;
             }
             case SMALLER_OR_EQUAL: {
