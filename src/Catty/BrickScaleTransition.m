@@ -31,8 +31,6 @@
     
     UIViewController *fromVC = [transitionContext viewControllerForKey:UITransitionContextFromViewControllerKey];
     UIViewController *toVC = [transitionContext viewControllerForKey:UITransitionContextToViewControllerKey];
-    UIView *fromView = fromVC.view;
-    UIView *toView = toVC.view;
     
     UIView *move = nil;
     CGRect beginFrame = [container convertRect:self.cell.bounds fromView:self.cell];
@@ -42,45 +40,40 @@
     switch (self.transitionMode) {
         case TransitionModePresent: {
             move = [self.cell snapshotViewAfterScreenUpdates:YES];
-            move.frame = beginFrame;
+            move.frame =beginFrame;
             [container addSubview:move];
+            self.cell.hidden = YES;
             self.dimView.hidden = NO;
             
-            [UIView animateKeyframesWithDuration:.4f
-                                           delay:0.f
-                                         options:UIViewKeyframeAnimationOptionCalculationModeLinear
-                                      animations:^{
-                                          move.frame = endFrame;
-                                          self.dimView.alpha = 1.f;
-                                      } completion:^(BOOL finished) {
-                                          if (finished) {
-                                              self.cell.frame = endFrame;
-                                              [toVC.view addSubview:self.cell];
-                                              self.cell.hidden = NO;
-                                              [toVC.view addSubview:self.cell];
-                                              [container addSubview:toView];
-                                              [move removeFromSuperview];
-                                              [transitionContext completeTransition:YES];
-                                          }
-                                      }];
-            
+            [UIView animateWithDuration:.8f delay:0.f usingSpringWithDamping:0.75f initialSpringVelocity:1.5f options:UIViewAnimationOptionCurveEaseInOut animations:^{
+                move.frame = endFrame;
+                self.dimView.alpha = 1.f;
+                self.collectionView.alpha = .3f;
+            } completion:^(BOOL finished) {
+                if (finished) {
+                    toVC.view.frame = endFrame;
+                    self.cell.hidden = NO;
+                    self.cell.frame = CGRectMake(0.f, 0.f, CGRectGetWidth(self.cell.bounds), CGRectGetHeight(self.cell.bounds));
+                    [toVC.view addSubview:self.cell];
+                    [container addSubview:toVC.view];
+                    [move removeFromSuperview];
+                    [transitionContext completeTransition:YES];
+                }
+            }];
         }
             break;
             
         case TransitionModeDismiss: {
-            move = [fromView snapshotViewAfterScreenUpdates:YES];
-            [container addSubview:move];
-            
             [UIView animateKeyframesWithDuration:.4f
                                            delay:0.f
-                                         options:UIViewKeyframeAnimationOptionCalculationModeLinear
+                                         options:UIViewKeyframeAnimationOptionBeginFromCurrentState
                                       animations:^{
-                                          move.frame = self.touchRect;
                                           self.cell.frame = self.touchRect;
                                           self.dimView.alpha = 0.f;
+                                          self.collectionView.alpha = 1.f;
                                       } completion:^(BOOL finished) {
                                           if (finished) {
-                                              [fromView removeFromSuperview];
+                                              [fromVC.view removeFromSuperview];
                                               self.dimView.hidden = YES;
                                               [move removeFromSuperview];
                                               [transitionContext completeTransition:YES];

@@ -28,5 +28,6 @@
 @property (nonatomic, strong) FXBlurView *dimView;
 @property (nonatomic, strong) BrickCell *cell;
 @property (nonatomic, assign) CGRect touchRect;
+@property (nonatomic, assign) UICollectionView *collectionView;
 
 @end

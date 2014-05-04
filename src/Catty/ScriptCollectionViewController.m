@@ -86,7 +86,7 @@
     self.dimView = [[FXBlurView alloc] initWithFrame:self.view.bounds];
     self.dimView.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
     self.dimView.userInteractionEnabled = NO;
-    self.dimView.tintColor = UIColor.blackColor;
+    self.dimView.tintColor = UIColor.clearColor;
     self.dimView.underlyingView = self.collectionView;
     self.dimView.blurEnabled = YES;
     self.dimView.blurRadius = 15.f;
@@ -337,6 +337,7 @@
     
     BrickDetailViewController *controller = [[BrickDetailViewController alloc]initWithNibName:@"BrickDetailViewController" bundle:nil];
     self.brickScaleTransition.cell = cell;
+    self.brickScaleTransition.collectionView = self.collectionView;
     self.brickScaleTransition.touchRect = cell.frame;
     self.brickScaleTransition.dimView = self.dimView;
     controller.transitioningDelegate = self;
