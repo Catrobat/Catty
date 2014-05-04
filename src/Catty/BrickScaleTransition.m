@@ -21,7 +21,10 @@
  */
 
 #import "BrickScaleTransition.h"
+
 @implementation BrickScaleTransition
+
+#define NAVIGATION_BAR_HEIGHT 64
 
 - (void)animateTransition:(id<UIViewControllerContextTransitioning>)transitionContext {
     UIView *container = transitionContext.containerView;
@@ -30,94 +33,54 @@
     UIViewController *toVC = [transitionContext viewControllerForKey:UITransitionContextToViewControllerKey];
     UIView *fromView = fromVC.view;
     UIView *toView = toVC.view;
-        
+    
     UIView *move = nil;
     CGRect beginFrame = [container convertRect:self.cell.bounds fromView:self.cell];
     
-    CGFloat width;
-    CGFloat height;
-    if (self.transitionMode == TransitionModePresent) {
-        width = toView.bounds.size.width;
-        height = CGRectGetHeight(self.cell.bounds);
-    } else {
-        width = fromView.bounds.size.width;
-        height = fromView.bounds.size.height;
-    }
-    
-    CGRect endFrame = CGRectMake(toView.frame.origin.x, toView.frame.origin.y, width, height);
+    CGRect endFrame = CGRectMake(0.f, NAVIGATION_BAR_HEIGHT, CGRectGetWidth(self.cell.bounds), CGRectGetHeight(self.cell.bounds));
     
     switch (self.transitionMode) {
         case TransitionModePresent: {
-            toView.frame = endFrame;
-            
             move = [self.cell snapshotViewAfterScreenUpdates:YES];
-            
             move.frame = beginFrame;
             [container addSubview:move];
-            
             self.dimView.hidden = NO;
-            self.cell.hidden = YES;
             
             [UIView animateKeyframesWithDuration:.4f
                                            delay:0.f
-                                         options:UIViewKeyframeAnimationOptionBeginFromCurrentState
+                                         options:UIViewKeyframeAnimationOptionCalculationModeLinear
                                       animations:^{
                                           move.frame = endFrame;
                                           self.dimView.alpha = 1.f;
                                       } completion:^(BOOL finished) {
                                           if (finished) {
-                                              if (finished) {
-                                                  self.cell.hidden = NO;
-                                                  self.cell.frame = toView.frame;
-                                                  [toVC.view addSubview:self.cell];
-                                                  toView.frame = endFrame;
-                                                  [container addSubview:toView];
-                                                  [move removeFromSuperview];
-                                                  [transitionContext completeTransition:YES];
-                                              }
+                                              self.cell.frame = endFrame;
+                                              [toVC.view addSubview:self.cell];
+                                              self.cell.hidden = NO;
+                                              [toVC.view addSubview:self.cell];
+                                              [container addSubview:toView];
+                                              [move removeFromSuperview];
+                                              [transitionContext completeTransition:YES];
                                           }
                                       }];
-
-//            [UIView animateWithDuration:.7f
-//                                  delay:0.f
-//                 usingSpringWithDamping:0.f
-//                  initialSpringVelocity:0.f
-//                                options:UIViewAnimationOptionCurveEaseInOut
-//                             animations:^{
-//                                 move.frame = endFrame;
-//                                 self.dimView.alpha = 1.f;
-//                                 //self.collectionView.transform = CGAffineTransformMakeScale(.90f, .90f);
-//                             }
-//                             completion:^(BOOL finished) {
-//                                 if (finished) {
-//                                     self.cell.hidden = NO;
-//                                     self.cell.frame = toView.frame;
-//                                     [toVC.view addSubview:self.cell];
-//                                     toView.frame = endFrame;
-//                                     [container addSubview:toView];
-//                                     [move removeFromSuperview];
-//                                     [transitionContext completeTransition:YES];
-//                                 }
-//                             }];
+            
         }
             break;
             
         case TransitionModeDismiss: {
             move = [fromView snapshotViewAfterScreenUpdates:YES];
-            [fromView removeFromSuperview];
             [container addSubview:move];
             
             [UIView animateKeyframesWithDuration:.4f
                                            delay:0.f
-                                         options:UIViewKeyframeAnimationOptionBeginFromCurrentState
+                                         options:UIViewKeyframeAnimationOptionCalculationModeLinear
                                       animations:^{
                                           move.frame = self.touchRect;
                                           self.cell.frame = self.touchRect;
                                           self.dimView.alpha = 0.f;
-                                          
                                       } completion:^(BOOL finished) {
                                           if (finished) {
-//                                              NSLog(@"cell frame = %@", NSStringFromCGRect(self.cell.frame));
+                                              [fromView removeFromSuperview];
                                               self.dimView.hidden = YES;
                                               [move removeFromSuperview];
                                               [transitionContext completeTransition:YES];

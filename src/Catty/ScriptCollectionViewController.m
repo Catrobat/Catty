@@ -86,10 +86,10 @@
     self.dimView = [[FXBlurView alloc] initWithFrame:self.view.bounds];
     self.dimView.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
     self.dimView.userInteractionEnabled = NO;
-    self.dimView.tintColor = UIColor.clearColor;
+    self.dimView.tintColor = UIColor.blackColor;
     self.dimView.underlyingView = self.collectionView;
     self.dimView.blurEnabled = YES;
-    self.dimView.blurRadius = 10.f;
+    self.dimView.blurRadius = 15.f;
     self.dimView.dynamic = YES;
     self.dimView.alpha = 0.f;
     self.dimView.hidden = YES;
@@ -203,7 +203,7 @@
     [super showPlaceHolder:NO];
 }
 
-#pragma mark - notification
+#pragma mark - Notification
 - (void)brickAdded:(NSNotification*)notification
 {
     if (notification.userInfo) {
@@ -216,10 +216,11 @@
     self.collectionView.userInteractionEnabled = YES;
     [UIApplication.sharedApplication setStatusBarHidden:NO withAnimation:UIStatusBarAnimationSlide];
     
-    if (self.navigationController.toolbar.hidden && self.navigationController.navigationBar.hidden) {
-        [self.navigationController setToolbarHidden:NO animated:YES];
-        [self.navigationController setNavigationBarHidden:NO animated:YES];
-    }
+//    if (self.navigationController.toolbar.hidden && self.navigationController.navigationBar.hidden) {
+//        [self.navigationController setToolbarHidden:NO animated:YES];
+//        [self.navigationController setNavigationBarHidden:NO animated:YES];
+//    }
+    [self.navigationController setToolbarHidden:NO animated:YES];
     [self.collectionView reloadData];
 }
 
@@ -341,9 +342,9 @@
     controller.transitioningDelegate = self;
     controller.modalPresentationStyle = UIModalPresentationCustom;
     self.collectionView.userInteractionEnabled = NO;
-    [self.navigationController setNavigationBarHidden:YES animated:YES];
+//    [self.navigationController setNavigationBarHidden:YES animated:YES];
     [self.navigationController setToolbarHidden:YES animated:YES];
-    [UIApplication.sharedApplication setStatusBarHidden:YES withAnimation:UIStatusBarAnimationSlide];
+//    [UIApplication.sharedApplication setStatusBarHidden:YES withAnimation:UIStatusBarAnimationSlide];
     [self presentViewController:controller animated:YES completion:NULL];
 }
 

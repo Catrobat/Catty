@@ -59,13 +59,7 @@
     self.recognizer.numberOfTapsRequired = 1;
     self.recognizer.cancelsTouchesInView = NO;
     [self.view.window addGestureRecognizer:self.recognizer];
-
-//    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)),
-//                   dispatch_get_main_queue(), ^{
-//                       [self.brickMenu showInView:self.view];
-//    });
-      [self.brickMenu showInView:self.view];
-   
+    // [self.brickMenu showInView:self.view];
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
@@ -77,7 +71,7 @@
 }
 
 - (BOOL)prefersStatusBarHidden {
-    return YES;
+    return NO;
 }
 
 - (void)handleTap:(UITapGestureRecognizer *)sender {
