@@ -24,10 +24,12 @@
 #import "UIDefines.h"
 #import "Brick.h"
 #import "LanguageTranslationDefines.h"
+#import "UIColor+CatrobatUIColorExtensions.h"
 
 @interface BrickDetailViewController () <UIActionSheetDelegate>
 @property (strong, nonatomic) UITapGestureRecognizer *recognizer;
 @property (strong, nonatomic) UIActionSheet *brickMenu;
+@property (strong, nonatomic) NSNumber *deleteFlag;
 @end
 
 @implementation BrickDetailViewController
@@ -43,6 +45,7 @@
                                         otherButtonTitles:kUIActionSheetButtonTitleHighlightScript,
                       kUIActionSheetButtonTitleCopyBrick,
                       kUIActionSheetButtonTitleEditFormula, nil];
+    self.deleteFlag = [[NSNumber alloc]initWithBool:NO];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -79,8 +82,11 @@
 #pragma mark - Action Sheet Delegate
 -(void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
     switch (buttonIndex) {
-        case 0:
-            
+        case 0: {
+            // delete brick
+            self.deleteFlag = [NSNumber numberWithBool:YES];
+            [self dismissBrickDetailViewController];
+        }
             break;
         case 1:
             
@@ -91,7 +97,7 @@
         case 3:
             
             break;
-        
+            
         case 4:
             // cancel button
             [self dismissBrickDetailViewController];
@@ -113,7 +119,8 @@
 - (void)dismissBrickDetailViewController {
     [self dismissViewControllerAnimated:YES completion:^{
         [NSNotificationCenter.defaultCenter postNotificationName:kBrickDetailViewDismissed
-                                                          object:NULL];
+                                                          object:NULL
+                                                        userInfo:@{@"brickDeleted": self.deleteFlag}];
     }];
 }
 

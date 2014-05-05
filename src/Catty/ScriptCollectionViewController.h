@@ -27,5 +27,5 @@
 
 @interface ScriptCollectionViewController : BaseCollectionViewController
 @property (strong, nonatomic) SpriteObject *object;
-@property (strong, nonatomic) UIActionSheet *brickMenu;
+
 @end

@@ -44,6 +44,7 @@
 @property (nonatomic, weak) IBOutlet UICollectionView *collectionView;
 @property (nonatomic, strong) BrickScaleTransition *brickScaleTransition;
 @property (nonatomic, strong) FXBlurView *dimView;
+@property (nonatomic, strong) NSIndexPath *selectedIndexPath;
 @end
 
 @implementation ScriptCollectionViewController
@@ -218,6 +219,11 @@
     [self.navigationController setToolbarHidden:NO animated:YES];
     self.navigationController.navigationBar.userInteractionEnabled = YES;
     [self.collectionView reloadData];
+    
+    BOOL delete = [notification.userInfo[@"brickDeleted"] boolValue];
+    if  (delete) {
+        [self removeBrickFromScriptCollectionViewFromIndex:self.selectedIndexPath];
+    }
 }
 
 #pragma mark - collection view datasource
@@ -328,27 +334,31 @@
 }
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
+    self.selectedIndexPath =  indexPath;
     BrickCell *cell = (BrickCell*)[self.collectionView cellForItemAtIndexPath:indexPath];
-    // NSLog(@"selected cell = %@", cell);
+    NSLog(@"selected cell = %@", cell);
     NSString *brickName =  NSStringFromClass(cell.class);
     if (brickName.length) {
         brickName = [brickName substringToIndex:brickName.length - 4];
     }
     
-    BrickDetailViewController *brickDetailViewcontroller = [[BrickDetailViewController alloc]initWithNibName:@"BrickDetailViewController" bundle:nil];
-    brickDetailViewcontroller.scriptCollectionViewControllerToolbar = self.navigationController.toolbar;
-    brickDetailViewcontroller.brickName = brickName;
-    self.brickScaleTransition.cell = cell;
-    self.brickScaleTransition.navigationBar = self.navigationController.navigationBar;
-    self.brickScaleTransition.collectionView = self.collectionView;
-    self.brickScaleTransition.touchRect = cell.frame;
-    self.brickScaleTransition.dimView = self.dimView;
-    brickDetailViewcontroller.transitioningDelegate = self;
-    brickDetailViewcontroller.modalPresentationStyle = UIModalPresentationCustom;
-    self.collectionView.userInteractionEnabled = NO;
-    [self presentViewController:brickDetailViewcontroller animated:YES completion:^{
-        self.navigationController.navigationBar.userInteractionEnabled = NO;
-    }];
+    // TDOD handle bricks which can be edited
+    if (![cell isKindOfClass:StartScriptCell.class]) {
+        BrickDetailViewController *brickDetailViewcontroller = [[BrickDetailViewController alloc]initWithNibName:@"BrickDetailViewController" bundle:nil];
+        brickDetailViewcontroller.scriptCollectionViewControllerToolbar = self.navigationController.toolbar;
+        brickDetailViewcontroller.brickName = brickName;
+        self.brickScaleTransition.cell = cell;
+        self.brickScaleTransition.navigationBar = self.navigationController.navigationBar;
+        self.brickScaleTransition.collectionView = self.collectionView;
+        self.brickScaleTransition.touchRect = cell.frame;
+        self.brickScaleTransition.dimView = self.dimView;
+        brickDetailViewcontroller.transitioningDelegate = self;
+        brickDetailViewcontroller.modalPresentationStyle = UIModalPresentationCustom;
+        self.collectionView.userInteractionEnabled = NO;
+        [self presentViewController:brickDetailViewcontroller animated:YES completion:^{
+            self.navigationController.navigationBar.userInteractionEnabled = NO;
+        }];
+    }
 }
 
 - (void)collectionView:(UICollectionView *)collectionView didHighlightItemAtIndexPath:(NSIndexPath *)indexPath {
@@ -361,7 +371,7 @@
     cell.alpha = 1.f;
 }
 
-#pragma mark LXReorderableCollectionViewDatasource
+#pragma mark - LXReorderableCollectionViewDatasource
 - (void)collectionView:(UICollectionView *)collectionView
        itemAtIndexPath:(NSIndexPath *)fromIndexPath
    willMoveToIndexPath:(NSIndexPath *)toIndexPath
@@ -447,6 +457,20 @@
     UIBarButtonItem *invisibleButton = [[UIBarButtonItem alloc] initWithCustomView:imageView];
     self.toolbarItems = [NSArray arrayWithObjects:flexItem, invisibleButton, add, invisibleButton, flexItem,
                          flexItem, flexItem, invisibleButton, play, invisibleButton, flexItem, nil];
+}
+
+- (void)removeBrickFromScriptCollectionViewFromIndex:(NSIndexPath *)indexPath {
+    if (indexPath) {
+        Script *script = [self.object.scriptList objectAtIndex:indexPath.section];
+        Brick *brick = [script.brickList objectAtIndex:indexPath.item - 1];
+        
+        if (script.brickList.count) {
+            [script.brickList removeObjectAtIndex:indexPath.item - 1];
+            [self.collectionView reloadData];
+        }
+
+        NSLog(@"Brick deleted %@", brick);
+    }
 }
 
 @end
