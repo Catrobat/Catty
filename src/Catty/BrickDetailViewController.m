@@ -28,14 +28,6 @@
 @interface BrickDetailViewController () <UIActionSheetDelegate>
 @property (strong, nonatomic) UITapGestureRecognizer *recognizer;
 @property (strong, nonatomic) UIActionSheet *brickMenu;
-
-// TODO remove this methods and make delegates (or notfiications) for updating script datasource and bricks
-- (void)highlightScript;
-- (void)copyBrick:(Brick *)brick;
-- (void)deleteBrick:(Brick *)brick;
-- (void)editFormula;
-- (void)deleteScript:(Script *)script;
-
 @end
 
 @implementation BrickDetailViewController
@@ -49,8 +41,8 @@
                                         cancelButtonTitle:kUIActionSheetButtonTitleClose
                                    destructiveButtonTitle:kUIActionSheetButtonTitleDeleteBrick
                                         otherButtonTitles:kUIActionSheetButtonTitleHighlightScript,
-                                                          kUIActionSheetButtonTitleCopyBrick,
-                                                          kUIActionSheetButtonTitleEditFormula, nil];
+                      kUIActionSheetButtonTitleCopyBrick,
+                      kUIActionSheetButtonTitleEditFormula, nil];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -59,7 +51,7 @@
     self.recognizer.numberOfTapsRequired = 1;
     self.recognizer.cancelsTouchesInView = NO;
     [self.view.window addGestureRecognizer:self.recognizer];
-    // [self.brickMenu showInView:self.view];
+    [self.brickMenu showFromToolbar:self.scriptCollectionViewControllerToolbar];
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
@@ -70,9 +62,6 @@
     }
 }
 
-- (BOOL)prefersStatusBarHidden {
-    return NO;
-}
 
 - (void)handleTap:(UITapGestureRecognizer *)sender {
     if ([sender isKindOfClass:UITapGestureRecognizer.class]) {
@@ -84,61 +73,31 @@
                                                                       object:NULL];
                 }];
             } else {
-                if (!self.brickMenu.hidden) {
-                    [self.brickMenu showInView:self.view];
+                if (!self.scriptCollectionViewControllerToolbar.hidden) {
+                    [self.brickMenu showFromToolbar:self.scriptCollectionViewControllerToolbar];
                 }
             }
         }
     }
 }
 
-#pragma Action Sheet Delegate
-- (void)dismissWithClickedButtonIndex:(NSInteger)buttonIndex animated:(BOOL)animated {
-    
-}
-
+#pragma mark - Action Sheet Delegate
 -(void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
     switch (buttonIndex) {
         case 0:
-
+            
             break;
         case 1:
             
             break;
         case 2:
             
-             break;
+            break;
         case 3:
-
+            
             break;
     }
 }
 
-// TODO remove this methods and make delegates (or notfiications) for updating script datasource and bricks
-#pragma mark edit menu items
-
-- (void)moveBrick; {
-    NSLog(@"moveBrick");
-}
-
-- (void)highlightScript {
-   NSLog(@"highlightScript");
-}
-
-- (void)copyBrick:(Brick *)brick {
-    NSLog(@"copyBrick");
-}
-
-- (void)deleteBrick:(Brick *)brick {
-    NSLog(@"deleteBrick");
-}
-
-- (void)editFormula {
-    NSLog(@"editFormula");
-}
-
-- (void)deleteScript:(Script *)script {
-    NSLog(@"deleteScript");
-}
 
 @end

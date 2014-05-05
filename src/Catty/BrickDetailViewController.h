@@ -21,7 +21,9 @@
  */
 
 #import <UIKit/UIKit.h>
+#import "ScriptCollectionViewController.h"
 
 @interface BrickDetailViewController : UIViewController
+@property (strong ,nonatomic) UIToolbar *scriptCollectionViewControllerToolbar;
 
 @end

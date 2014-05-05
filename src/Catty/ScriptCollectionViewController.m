@@ -94,7 +94,7 @@
     self.dimView.alpha = 0.f;
     self.dimView.hidden = YES;
     [self.view addSubview:self.dimView];
-
+    
     // register brick cells for current brick category
     NSDictionary *allCategoriesAndBrickTypes = self.classNameBrickNameMap;
     for (NSString *brickTypeName in allCategoriesAndBrickTypes) {
@@ -331,17 +331,18 @@
     BrickCell *cell = (BrickCell*)[self.collectionView cellForItemAtIndexPath:indexPath];
     // NSLog(@"selected cell = %@", cell);
     
-    BrickDetailViewController *controller = [[BrickDetailViewController alloc]initWithNibName:@"BrickDetailViewController" bundle:nil];
+    BrickDetailViewController *brickDetailViewcontroller = [[BrickDetailViewController alloc]initWithNibName:@"BrickDetailViewController" bundle:nil];
+    brickDetailViewcontroller.scriptCollectionViewControllerToolbar = self.navigationController.toolbar;
     self.brickScaleTransition.cell = cell;
     self.brickScaleTransition.navigationBar = self.navigationController.navigationBar;
     self.brickScaleTransition.collectionView = self.collectionView;
     self.brickScaleTransition.touchRect = cell.frame;
     self.brickScaleTransition.dimView = self.dimView;
-    controller.transitioningDelegate = self;
-    controller.modalPresentationStyle = UIModalPresentationCustom;
+    brickDetailViewcontroller.transitioningDelegate = self;
+    brickDetailViewcontroller.modalPresentationStyle = UIModalPresentationCustom;
     self.collectionView.userInteractionEnabled = NO;
-    [self.navigationController setToolbarHidden:YES animated:YES];
-    [self presentViewController:controller animated:YES completion:^{
+    // [self.navigationController setToolbarHidden:YES animated:YES];
+    [self presentViewController:brickDetailViewcontroller animated:YES completion:^{
         self.navigationController.navigationBar.userInteractionEnabled = NO;
     }];
 }
