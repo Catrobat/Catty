@@ -330,9 +330,14 @@
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     BrickCell *cell = (BrickCell*)[self.collectionView cellForItemAtIndexPath:indexPath];
     // NSLog(@"selected cell = %@", cell);
+    NSString *brickName =  NSStringFromClass(cell.class);
+    if (brickName.length) {
+        brickName = [brickName substringToIndex:brickName.length - 4];
+    }
     
     BrickDetailViewController *brickDetailViewcontroller = [[BrickDetailViewController alloc]initWithNibName:@"BrickDetailViewController" bundle:nil];
     brickDetailViewcontroller.scriptCollectionViewControllerToolbar = self.navigationController.toolbar;
+    brickDetailViewcontroller.brickName = brickName;
     self.brickScaleTransition.cell = cell;
     self.brickScaleTransition.navigationBar = self.navigationController.navigationBar;
     self.brickScaleTransition.collectionView = self.collectionView;
@@ -341,7 +346,6 @@
     brickDetailViewcontroller.transitioningDelegate = self;
     brickDetailViewcontroller.modalPresentationStyle = UIModalPresentationCustom;
     self.collectionView.userInteractionEnabled = NO;
-    // [self.navigationController setToolbarHidden:YES animated:YES];
     [self presentViewController:brickDetailViewcontroller animated:YES completion:^{
         self.navigationController.navigationBar.userInteractionEnabled = NO;
     }];

@@ -25,5 +25,6 @@
 
 @interface BrickDetailViewController : UIViewController
 @property (strong ,nonatomic) UIToolbar *scriptCollectionViewControllerToolbar;
+@property (strong, nonatomic) NSString *brickName;
 
 @end

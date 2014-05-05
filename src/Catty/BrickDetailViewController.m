@@ -36,7 +36,7 @@
 {
     [super viewDidLoad];
     self.view.backgroundColor = UIColor.clearColor;
-    self.brickMenu = [[UIActionSheet alloc] initWithTitle:nil
+    self.brickMenu = [[UIActionSheet alloc] initWithTitle:self.brickName
                                                  delegate:self
                                         cancelButtonTitle:kUIActionSheetButtonTitleClose
                                    destructiveButtonTitle:kUIActionSheetButtonTitleDeleteBrick
@@ -68,7 +68,7 @@
         if (sender.state == UIGestureRecognizerStateEnded) {
             CGPoint location = [sender locationInView:nil];
             if (![self.view pointInside:[self.view convertPoint:location fromView:self.view.window] withEvent:nil]) {
-                [self dimissBrickDetailViewController];
+                [self dismissBrickDetailViewController];
             } else {
                 [self.brickMenu showFromToolbar:self.scriptCollectionViewControllerToolbar];
             }
@@ -94,7 +94,7 @@
         
         case 4:
             // cancel button
-            
+            [self dismissBrickDetailViewController];
             break;
     }
 }
@@ -110,7 +110,7 @@
 }
 
 #pragma mark - helper methods
-- (void)dimissBrickDetailViewController {
+- (void)dismissBrickDetailViewController {
     [self dismissViewControllerAnimated:YES completion:^{
         [NSNotificationCenter.defaultCenter postNotificationName:kBrickDetailViewDismissed
                                                           object:NULL];
