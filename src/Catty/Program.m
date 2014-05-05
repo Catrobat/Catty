@@ -123,6 +123,10 @@
             }
         }
     }
+
+    // update last access time
+    AppDelegate *appDelegate = (AppDelegate*)[UIApplication sharedApplication].delegate;
+    [appDelegate.fileManager changeModificationDate:[NSDate date] forFileAtPath:xmlPath];
     return program;
 }
 
@@ -295,13 +299,17 @@
         //    NSData *xmlData = document.XMLData;
         NSString *xmlString = [document.rootElement XMLStringPrettyPrinted:YES];
         // TODO: outsource this to file manager
-        NSString *filePath = [NSString stringWithFormat:@"%@%@", [self projectPath], kProgramCodeFileName];
+        NSString *xmlPath = [NSString stringWithFormat:@"%@%@", [self projectPath], kProgramCodeFileName];
         //    [xmlData writeToFile:filePath atomically:YES];
         NSError *error = nil;
-        [xmlString writeToFile:filePath atomically:YES encoding:NSUTF8StringEncoding error:&error];
+        [xmlString writeToFile:xmlPath atomically:YES encoding:NSUTF8StringEncoding error:&error];
         NSLogError(error);
         // maybe later call some functions back here, that should update the UI on main thread...
         //    dispatch_async(dispatch_get_main_queue(), ^{});
+
+        // update last access time
+        AppDelegate *appDelegate = (AppDelegate*)[UIApplication sharedApplication].delegate;
+        [appDelegate.fileManager changeModificationDate:[NSDate date] forFileAtPath:xmlPath];
     });
 }
 
