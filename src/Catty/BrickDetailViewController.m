@@ -68,14 +68,9 @@
         if (sender.state == UIGestureRecognizerStateEnded) {
             CGPoint location = [sender locationInView:nil];
             if (![self.view pointInside:[self.view convertPoint:location fromView:self.view.window] withEvent:nil]) {
-                [self dismissViewControllerAnimated:YES completion:^{
-                    [NSNotificationCenter.defaultCenter postNotificationName:kBrickDetailViewDismissed
-                                                                      object:NULL];
-                }];
+                [self dimissBrickDetailViewController];
             } else {
-                if (!self.scriptCollectionViewControllerToolbar.hidden) {
-                    [self.brickMenu showFromToolbar:self.scriptCollectionViewControllerToolbar];
-                }
+                [self.brickMenu showFromToolbar:self.scriptCollectionViewControllerToolbar];
             }
         }
     }
@@ -96,8 +91,30 @@
         case 3:
             
             break;
+        
+        case 4:
+            // cancel button
+            
+            break;
     }
 }
 
+- (void)willPresentActionSheet:(UIActionSheet *)actionSheet {
+    if (self.scriptCollectionViewControllerToolbar.hidden) {
+        self.scriptCollectionViewControllerToolbar.hidden = NO;
+    }
+}
+
+- (void)didPresentActionSheet:(UIActionSheet *)actionSheet {
+    self.scriptCollectionViewControllerToolbar.hidden = YES;
+}
+
+#pragma mark - helper methods
+- (void)dimissBrickDetailViewController {
+    [self dismissViewControllerAnimated:YES completion:^{
+        [NSNotificationCenter.defaultCenter postNotificationName:kBrickDetailViewDismissed
+                                                          object:NULL];
+    }];
+}
 
 @end
