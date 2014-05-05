@@ -465,8 +465,12 @@
         Brick *brick = [script.brickList objectAtIndex:indexPath.item - 1];
         
         if (script.brickList.count) {
-            [script.brickList removeObjectAtIndex:indexPath.item - 1];
-            [self.collectionView reloadData];
+            [self.collectionView performBatchUpdates:^{
+                [script.brickList removeObjectAtIndex:indexPath.item - 1];
+                [self.collectionView deleteItemsAtIndexPaths:@[indexPath]];
+            } completion:^(BOOL finished) {
+                [self.collectionView reloadData];
+            }];
         }
 
         NSLog(@"Brick deleted %@", brick);
