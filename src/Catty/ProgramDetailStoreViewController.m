@@ -317,6 +317,15 @@
     EVCircularProgressView* button = (EVCircularProgressView*)[self.view viewWithTag:kStopLoadingTag];
     [button setProgress:(progress) animated:YES];
 }
+
+-(void)setBackDownloadStatus
+{
+    [self.view viewWithTag:kDownloadButtonTag].hidden = NO;
+    [self.view viewWithTag:kPlayButtonTag].hidden = YES;
+    [self.view viewWithTag:kStopLoadingTag].hidden = YES;
+    [self loadingIndicator:NO];
+}
+
 -(void)loadingIndicator:(BOOL)value
 {
     UIApplication* app = [UIApplication sharedApplication];
