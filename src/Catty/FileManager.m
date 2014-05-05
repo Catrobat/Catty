@@ -399,6 +399,10 @@
     }else{
         [self stopLoading:connection.currentRequest.URL andImageURL:connection.currentRequest.URL];
         [Util alertWithText:kUIAlertViewTitleNotEnoughFreeMemory];
+        if ([self.delegate respondsToSelector:@selector(setBackDownloadStatus)]) {
+            [self.delegate setBackDownloadStatus];
+        }
+    
     }
     
     NSNumber* size = [NSNumber numberWithLongLong:[response expectedContentLength]];

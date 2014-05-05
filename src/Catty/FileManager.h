@@ -27,6 +27,7 @@
 
 - (void) downloadFinishedWithURL:(NSURL*)url;
 - (void) updateProgress:(float)progress;
+- (void) setBackDownloadStatus;
 
 @end
 
