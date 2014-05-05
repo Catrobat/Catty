@@ -89,7 +89,7 @@
     self.dimView.tintColor = UIColor.clearColor;
     self.dimView.underlyingView = self.collectionView;
     self.dimView.blurEnabled = YES;
-    self.dimView.blurRadius = 15.f;
+    self.dimView.blurRadius = 10.f;
     self.dimView.dynamic = YES;
     self.dimView.alpha = 0.f;
     self.dimView.hidden = YES;
@@ -215,12 +215,8 @@
 - (void)brickDetailViewDismissed:(NSNotification *)notification {
     self.collectionView.userInteractionEnabled = YES;
     [UIApplication.sharedApplication setStatusBarHidden:NO withAnimation:UIStatusBarAnimationSlide];
-    
-//    if (self.navigationController.toolbar.hidden && self.navigationController.navigationBar.hidden) {
-//        [self.navigationController setToolbarHidden:NO animated:YES];
-//        [self.navigationController setNavigationBarHidden:NO animated:YES];
-//    }
     [self.navigationController setToolbarHidden:NO animated:YES];
+    self.navigationController.navigationBar.userInteractionEnabled = YES;
     [self.collectionView reloadData];
 }
 
@@ -337,16 +333,17 @@
     
     BrickDetailViewController *controller = [[BrickDetailViewController alloc]initWithNibName:@"BrickDetailViewController" bundle:nil];
     self.brickScaleTransition.cell = cell;
+    self.brickScaleTransition.navigationBar = self.navigationController.navigationBar;
     self.brickScaleTransition.collectionView = self.collectionView;
     self.brickScaleTransition.touchRect = cell.frame;
     self.brickScaleTransition.dimView = self.dimView;
     controller.transitioningDelegate = self;
     controller.modalPresentationStyle = UIModalPresentationCustom;
     self.collectionView.userInteractionEnabled = NO;
-//    [self.navigationController setNavigationBarHidden:YES animated:YES];
     [self.navigationController setToolbarHidden:YES animated:YES];
-//    [UIApplication.sharedApplication setStatusBarHidden:YES withAnimation:UIStatusBarAnimationSlide];
-    [self presentViewController:controller animated:YES completion:NULL];
+    [self presentViewController:controller animated:YES completion:^{
+        self.navigationController.navigationBar.userInteractionEnabled = NO;
+    }];
 }
 
 - (void)collectionView:(UICollectionView *)collectionView didHighlightItemAtIndexPath:(NSIndexPath *)indexPath {

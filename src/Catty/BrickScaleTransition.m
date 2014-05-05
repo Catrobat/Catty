@@ -21,6 +21,7 @@
  */
 
 #import "BrickScaleTransition.h"
+#import "UIColor+CatrobatUIColorExtensions.h"
 
 @implementation BrickScaleTransition
 
@@ -48,7 +49,8 @@
             [UIView animateWithDuration:.8f delay:0.f usingSpringWithDamping:0.75f initialSpringVelocity:1.5f options:UIViewAnimationOptionCurveEaseInOut animations:^{
                 move.frame = endFrame;
                 self.dimView.alpha = 1.f;
-                self.collectionView.alpha = .3f;
+                self.collectionView.alpha = .2f;
+                self.navigationBar.tintColor = UIColor.brightGrayColor;
             } completion:^(BOOL finished) {
                 if (finished) {
                     toVC.view.frame = endFrame;
@@ -71,6 +73,7 @@
                                           self.cell.frame = self.touchRect;
                                           self.dimView.alpha = 0.f;
                                           self.collectionView.alpha = 1.f;
+                                          self.navigationBar.tintColor = UIColor.lightOrangeColor;
                                       } completion:^(BOOL finished) {
                                           if (finished) {
                                               [fromVC.view removeFromSuperview];
