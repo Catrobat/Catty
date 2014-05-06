@@ -215,13 +215,11 @@
 
 - (void)brickDetailViewDismissed:(NSNotification *)notification {
     self.collectionView.userInteractionEnabled = YES;
-    [UIApplication.sharedApplication setStatusBarHidden:NO withAnimation:UIStatusBarAnimationSlide];
     [self.navigationController setToolbarHidden:NO animated:YES];
     self.navigationController.navigationBar.userInteractionEnabled = YES;
     [self.collectionView reloadData];
     
-    BOOL delete = [notification.userInfo[@"brickDeleted"] boolValue];
-    if  (delete) {
+    if  ([notification.userInfo[@"brickDeleted"] boolValue]) {
         [self removeBrickFromScriptCollectionViewFromIndex:self.selectedIndexPath];
     }
 }
@@ -336,7 +334,7 @@
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     self.selectedIndexPath =  indexPath;
     BrickCell *cell = (BrickCell*)[self.collectionView cellForItemAtIndexPath:indexPath];
-    NSLog(@"selected cell = %@", cell);
+//    NSLog(@"selected cell = %@", cell);
     NSString *brickName =  NSStringFromClass(cell.class);
     if (brickName.length) {
         brickName = [brickName substringToIndex:brickName.length - 4];
@@ -473,7 +471,7 @@
             }];
         }
 
-        NSLog(@"Brick deleted %@", brick);
+        //        NSLog(@"Brick deleted %@", brick);
     }
 }
 

@@ -23,6 +23,7 @@
 #import "BrickScaleTransition.h"
 #import "UIColor+CatrobatUIColorExtensions.h"
 
+
 @implementation BrickScaleTransition
 
 #define NAVIGATION_BAR_HEIGHT 64
@@ -46,7 +47,7 @@
             self.cell.hidden = YES;
             self.dimView.hidden = NO;
             
-            [UIView animateWithDuration:.8f delay:0.f usingSpringWithDamping:0.75f initialSpringVelocity:1.5f options:UIViewAnimationOptionCurveEaseInOut animations:^{
+            [UIView animateWithDuration:.9f delay:0.f usingSpringWithDamping:0.6f initialSpringVelocity:1.3f options:UIViewAnimationOptionCurveEaseInOut animations:^{
                 move.frame = endFrame;
                 self.dimView.alpha = 1.f;
                 self.collectionView.alpha = .2f;
@@ -66,16 +67,20 @@
             break;
             
         case TransitionModeDismiss: {
+            CGFloat y = 0.f;
+            y = self.touchRect.origin.y >= toVC.view.frame.size.height ? self.touchRect.origin.y - self.collectionView.contentOffset.y - NAVIGATION_BAR_HEIGHT: self.touchRect.origin.y;
+            
             [UIView animateKeyframesWithDuration:.4f
                                            delay:0.f
                                          options:UIViewKeyframeAnimationOptionBeginFromCurrentState
                                       animations:^{
-                                          self.cell.frame = self.touchRect;
+                                          self.cell.frame = CGRectMake(self.touchRect.origin.x, y, self.touchRect.size.width, self.touchRect.size.height);
                                           self.dimView.alpha = 0.f;
                                           self.collectionView.alpha = 1.f;
                                           self.navigationBar.tintColor = UIColor.lightOrangeColor;
                                       } completion:^(BOOL finished) {
                                           if (finished) {
+                                              self.cell.frame = self.touchRect;
                                               [fromVC.view removeFromSuperview];
                                               self.dimView.hidden = YES;
                                               [move removeFromSuperview];
