@@ -229,7 +229,7 @@
                 [self.dataCache setObject:programSize forKey:info.visibleName];
             }
             NSString *xmlPath = [NSString stringWithFormat:@"%@/%@", info.basePath, kProgramCodeFileName];
-            NSDate *lastAccessDate = [appDelegate.fileManager lastAccessTimeOfFile:xmlPath];
+            NSDate *lastAccessDate = [appDelegate.fileManager lastModificationTimeOfFile:xmlPath];
             detailCell.topRightDetailLabel.text = [lastAccessDate humanFriendlyFormattedString];
             detailCell.bottomRightDetailLabel.text = [NSByteCountFormatter stringFromByteCount:[programSize unsignedIntegerValue]
                                                                                     countStyle:NSByteCountFormatterCountStyleBinary];

@@ -123,6 +123,40 @@
     return _downloadSizeDict;
 }
 
+- (NSArray*)playableSoundsInDirectory:(NSString*)directoryPath
+{
+    NSError *error;
+    NSArray *fileNames = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:directoryPath error:&error];
+    NSLogError(error);
+    
+    NSMutableArray *sounds = [NSMutableArray array];
+    for (NSString *fileName in fileNames) {
+        // exclude .DS_Store folder on MACOSX simulator
+        if ([fileName isEqualToString:@".DS_Store"])
+            continue;
+        
+        NSString *file = [NSString stringWithFormat:@"%@/%@", self.documentsDirectory, fileName];
+        CFStringRef fileExtension = (__bridge CFStringRef)[file pathExtension];
+        CFStringRef fileUTI = UTTypeCreatePreferredIdentifierForTag(kUTTagClassFilenameExtension, fileExtension, NULL);
+        //        NSString *contentType = (__bridge_transfer NSString *)UTTypeCopyPreferredTagWithClass(fileUTI, kUTTagClassMIMEType);
+        //        NSLog(@"contentType: %@", contentType);
+        
+        // check if mime type is playable with AVAudioPlayer
+        BOOL isPlayable = UTTypeConformsTo(fileUTI, kUTTypeAudio);
+        CFRelease(fileUTI); // manually free this, because ownership was transfered to ARC
+        
+        if (isPlayable) {
+            Sound *sound = [[Sound alloc] init];
+            NSArray *fileParts = [fileName componentsSeparatedByString:@"."];
+            NSString *fileNameWithoutExtension = ([fileParts count] ? [fileParts objectAtIndex:0] : fileName);
+            sound.fileName = fileName;
+            sound.name = fileNameWithoutExtension;
+            sound.playing = NO;
+            [sounds addObject:sound];
+        }
+    }
+    return [sounds copy];
+}
 
 #pragma mark - Operations
 - (void)createDirectory:(NSString *)path
@@ -268,7 +302,7 @@
     return [fileDictionary fileSize];
 }
 
-- (NSDate*)lastAccessTimeOfFile:(NSString*)path
+- (NSDate*)lastModificationTimeOfFile:(NSString*)path
 {
     if (! [self fileExists:path]) {
         return 0;
@@ -371,9 +405,19 @@
     //self.imageConnection = connection;
 }
 
+- (void)changeModificationDate:(NSDate*)date forFileAtPath:(NSString*)path
+{
+    if (! [self fileExists:path]) {
+        return;
+    }
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+    NSError *error = nil;
+    NSDictionary *attributes = [NSDictionary dictionaryWithObjectsAndKeys:date, NSFileModificationDate, NULL];
+    [fileManager setAttributes:attributes ofItemAtPath:path error:&error];
+    NSLogError(error);
+}
+
 #pragma mark - NSURLConnection Delegates
-
-
 -(void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response
 {
     NSMutableData* data = [[NSMutableData alloc] init];
@@ -544,41 +588,6 @@
 - (BOOL)existPlayableSoundsInDirectory:(NSString*)directoryPath
 {
     return ([[self playableSoundsInDirectory:directoryPath] count] > 0);
-}
-
-- (NSArray*)playableSoundsInDirectory:(NSString*)directoryPath
-{
-    NSError *error;
-    NSArray *fileNames = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:directoryPath error:&error];
-    NSLogError(error);
-
-    NSMutableArray *sounds = [NSMutableArray array];
-    for (NSString *fileName in fileNames) {
-        // exclude .DS_Store folder on MACOSX simulator
-        if ([fileName isEqualToString:@".DS_Store"])
-            continue;
-
-        NSString *file = [NSString stringWithFormat:@"%@/%@", self.documentsDirectory, fileName];
-        CFStringRef fileExtension = (__bridge CFStringRef)[file pathExtension];
-        CFStringRef fileUTI = UTTypeCreatePreferredIdentifierForTag(kUTTagClassFilenameExtension, fileExtension, NULL);
-        //        NSString *contentType = (__bridge_transfer NSString *)UTTypeCopyPreferredTagWithClass(fileUTI, kUTTagClassMIMEType);
-        //        NSLog(@"contentType: %@", contentType);
-
-        // check if mime type is playable with AVAudioPlayer
-        BOOL isPlayable = UTTypeConformsTo(fileUTI, kUTTypeAudio);
-        CFRelease(fileUTI); // manually free this, because ownership was transfered to ARC
-
-        if (isPlayable) {
-            Sound *sound = [[Sound alloc] init];
-            NSArray *fileParts = [fileName componentsSeparatedByString:@"."];
-            NSString *fileNameWithoutExtension = ([fileParts count] ? [fileParts objectAtIndex:0] : fileName);
-            sound.fileName = fileName;
-            sound.name = fileNameWithoutExtension;
-            sound.playing = NO;
-            [sounds addObject:sound];
-        }
-    }
-    return [sounds copy];
 }
 
 #pragma mark - Helper
