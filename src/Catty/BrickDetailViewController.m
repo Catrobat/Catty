@@ -59,6 +59,7 @@
 
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
+    self.self.scriptCollectionViewControllerToolbar.hidden = NO;
     
     if ([self.view.window.gestureRecognizers containsObject:self.recognizer]) {
         [self.view.window removeGestureRecognizer:self.recognizer];
@@ -112,7 +113,9 @@
 }
 
 - (void)didPresentActionSheet:(UIActionSheet *)actionSheet {
-    self.scriptCollectionViewControllerToolbar.hidden = YES;
+    if (!self.scriptCollectionViewControllerToolbar.hidden) {
+        self.scriptCollectionViewControllerToolbar.hidden = YES;
+    }
 }
 
 #pragma mark - helper methods
