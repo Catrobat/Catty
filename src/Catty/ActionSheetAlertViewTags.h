@@ -31,10 +31,11 @@
 // Alert view tags
 #define kRenameAlertViewTag 100
 #define kNewObjectAlertViewTag 101
-#define kNewProgramAlertViewTag 102
-#define kInvalidProgramNameWarningAlertViewTag 103
-#define kInvalidObjectNameWarningAlertViewTag 104
-#define kNoInternetConnection 105
+#define kNewImageAlertViewTag 102
+#define kNewProgramAlertViewTag 103
+#define kInvalidProgramNameWarningAlertViewTag 104
+#define kInvalidObjectNameWarningAlertViewTag 105
+#define kNoInternetConnection 106
 
 #define kConfirmAlertViewTag 200
 

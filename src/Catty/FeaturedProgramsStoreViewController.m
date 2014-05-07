@@ -216,8 +216,7 @@
                                    [self loadInfosWith:data andResponse:response];}];
     }
     [self showLoadingView];
-    
-    
+  
 }
 -(void)loadInfosWith:(NSData*)data andResponse:(NSURLResponse*)response
 {
@@ -254,7 +253,7 @@
     }
     [self update];
     [self hideLoadingView];
-    
+   
 }
 
 - (void)showLoadingView
@@ -264,11 +263,19 @@
         [self.view addSubview:self.loadingView];
     }
     [self.loadingView show];
+    [self loadingIndicator:YES];
 }
 
 - (void) hideLoadingView
 {
     [self.loadingView hide];
+    [self loadingIndicator:NO];
+}
+
+-(void)loadingIndicator:(BOOL)value
+{
+    UIApplication* app = [UIApplication sharedApplication];
+    app.networkActivityIndicatorVisible = value;
 }
 
 

@@ -31,6 +31,7 @@
 #import "UIColor+CatrobatUIColorExtensions.h"
 #import "SegueDefines.h"
 #import "ProgramDetailStoreViewController.h"
+#import "Util.h"
 
 @interface SearchStoreViewController ()
 
@@ -42,9 +43,9 @@
 
 @implementation SearchStoreViewController
 
-- (id)initWithStyle:(UITableViewStyle)style
+- (id)init
 {
-  self = [super initWithStyle:style];
+  self = [super init];
   if (self) {
   }
   return self;
@@ -53,26 +54,24 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [super initTableView];
-    [self initSearchView];
-
-    self.searchDisplayController.displaysSearchBarInNavigationBar = NO;
-    self.searchDisplayController.searchBar.backgroundColor = [UIColor darkBlueColor];
-    self.tableView.backgroundView = [[UIImageView alloc] initWithImage:[UIImage imageWithColor:[UIColor darkBlueColor]]];
-    [self.searchDisplayController setActive:YES animated:YES];
-    [self.searchDisplayController.searchBar becomeFirstResponder];
-    self.searchDisplayController.searchBar.delegate = self;
-    self.searchDisplayController.searchBar.frame = CGRectMake(0,44,self.searchDisplayController.searchBar.frame.size.width,self.searchDisplayController.searchBar.frame.size.height);
-    self.checkSearch = YES;
-    self.searchDisplayController.searchBar.barTintColor = [UIColor darkBlueColor];
-    self.searchDisplayController.searchBar.barStyle = UISearchBarStyleMinimal;
-
+    [self initTableView];
+    [self.searchBar becomeFirstResponder];
+    self.view.backgroundColor = [UIColor darkBlueColor];
+    [[UITextField appearanceWhenContainedIn:[UISearchBar class], nil] setTextColor:[UIColor lightOrangeColor]];
+    self.edgesForExtendedLayout = UIRectEdgeAll;
+    self.tableView.contentInset = UIEdgeInsetsMake(0., 0., CGRectGetHeight(self.tabBarController.tabBar.frame)+44, 0);
 }
 
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
     self.tabBarController.tabBar.translucent = YES;
+    self.navigationController.navigationBar.translucent =YES;
+//    self.edgesForExtendedLayout = UIRectEdgeNone;
+    self.searchBar.searchBarStyle = UISearchBarStyleMinimal;
+    self.searchBar.tintColor = [UIColor lightOrangeColor];
+    self.searchBar.translucent = YES;
+
 }
 
 - (void)viewWillDisappear:(BOOL)animated
@@ -83,31 +82,32 @@
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-    CGRect frame = self.tableView.frame;
-    frame.origin.y = 65;
-    frame.size.height = (frame.size.height - frame.origin.y);
-    self.tableView.frame = frame;
-    self.searchDisplayController.displaysSearchBarInNavigationBar = NO;
-    self.searchDisplayController.searchBar.frame = CGRectMake(0,65,self.searchDisplayController.searchBar.frame.size.width,self.searchDisplayController.searchBar.frame.size.height);
-    self.navigationController.navigationBar.translucent = YES;
+    ///Hack for translucency
+//    CGRect frame = self.tableView.frame;
+//    frame.origin.y = self.navigationController.navigationBar.frame.size.height;
+//    frame.size.height = (frame.size.height - frame.origin.y);
+//    self.tableView.frame = frame;
+//    self.searchDisplayController.displaysSearchBarInNavigationBar = NO;
+//    self.searchDisplayController.searchBar.frame = CGRectMake(0,65,self.searchDisplayController.searchBar.frame.size.width,self.searchDisplayController.searchBar.frame.size.height);
+//    self.navigationController.navigationBar.translucent = YES;
 }
 
 - (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView
 {
     
-//    float checkPoint = 44;
-//    float currentViewBottomEdge = scrollView.contentOffset.y+44;
-    if (!self.checkSearch) {
-        CGRect frame = self.tableView.frame;
-        frame.origin.y = 65;
-        frame.size.height = (frame.size.height - frame.origin.y);
-        self.tableView.frame = frame;
-        self.searchDisplayController.displaysSearchBarInNavigationBar = NO;
-        self.searchDisplayController.searchBar.frame = CGRectMake(0,65,self.searchDisplayController.searchBar.frame.size.width,self.searchDisplayController.searchBar.frame.size.height);
-        self.checkSearch=YES;
-        self.navigationController.navigationBar.translucent = YES;
-        
-    }
+    ///Hack for translucency
+//    if (!self.checkSearch) {
+//        CGRect frame = self.tableView.frame;
+//        frame.origin.y = 65;
+//        frame.size.height = (frame.size.height - frame.origin.y);
+//        self.tableView.frame = frame;
+//        self.searchDisplayController.displaysSearchBarInNavigationBar = NO;
+//        self.searchDisplayController.searchBar.frame = CGRectMake(0,65,self.searchDisplayController.searchBar.frame.size.width,self.searchDisplayController.searchBar.frame.size.height);
+//        self.checkSearch=YES;
+//        self.navigationController.navigationBar.translucent = YES;
+//        
+//    }
+
 }
 
 - (void)didReceiveMemoryWarning
@@ -142,9 +142,9 @@
   else if([tableView isEqual:self.tableView]) {
     cell = [self cellForProjectsTableView:tableView atIndexPath:indexPath];
   }
-  else if([tableView isEqual:self.searchDisplayController.searchResultsTableView]) {
-    cell = [self cellForSearchResultsTableView:tableView atIndexPath:indexPath];
-  }
+//  else if([tableView isEqual:self.searchDisplayController.searchResultsTableView]) {
+//    cell = [self cellForSearchResultsTableView:tableView atIndexPath:indexPath];
+//  }
   if (! cell) {
     NSLog(@"Why?! Should not happen!");
     abort();
@@ -208,7 +208,14 @@
     self.data = nil;
     self.connection = nil;
     [self update];
+    [self loadingIndicator:NO];
   }
+}
+
+-(void)loadingIndicator:(BOOL)value
+{
+    UIApplication* app = [UIApplication sharedApplication];
+    app.networkActivityIndicatorVisible = value;
 }
 
 #pragma mark - Search display delegate
@@ -218,47 +225,45 @@
     [self performSelector:@selector(queryServerForSearchString:) withObject:searchText afterDelay:0.2];
   }
 }
-
-- (void)searchBarTextDidBeginEditing:(UISearchBar *)searchBar
-{
-//    CGRect frame = self.tableView.frame;
-//    frame.origin.y = self.navigationController.navigationBar.frame.size.height;
-//    frame.size.height = (frame.size.height - frame.origin.y);
-//    self.tableView.frame = frame;
-    
+- (BOOL)searchBarShouldBeginEditing:(UISearchBar*)searchBar {
+    self.searchBar.showsCancelButton = YES;
+    return YES;
 }
 
+-(BOOL)searchBarShouldEndEditing:(UISearchBar *)searchBar {
+    self.searchBar.showsCancelButton = NO;
+    return YES;
+}
+
+
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar {
-    NSDebug(@"%@", searchBar.text);
+    [searchBar resignFirstResponder];
     [self queryServerForSearchString:searchBar.text];
-    [self.searchDisplayController setActive:NO animated:YES];
-    self.searchDisplayController.searchBar.text = searchBar.text;
     self.tabBarController.tabBar.translucent = YES;
     [self update];
+    [self loadingIndicator:YES];
 }
 
 - (void)searchBarCancelButtonClicked:(UISearchBar *)searchBar
 {
-  [self update];
+    [self update];
+    self.searchBar.showsCancelButton = NO;
+    [searchBar resignFirstResponder];
 }
 
-- (void)searchDisplayControllerDidBeginSearch:(UISearchDisplayController *)controller
+
+- (void)initTableView
 {
-  [controller.searchResultsTableView setDelegate:self];
-  UIImageView *anImage = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"darkblue"]];
-  controller.searchResultsTableView.backgroundView = anImage;
-  controller.searchResultsTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-  controller.searchResultsTableView.backgroundColor = [UIColor clearColor];
-    
-  
+    self.tableView.delegate = self;
+    self.tableView.dataSource = self;
+    [self.tableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
+    self.tableView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"darkblue"]];
+
 }
 
 -(void)initSearchView
 {
   self.searchResults = [[NSMutableArray alloc] init];
-  self.searchDisplayController.searchBar.clipsToBounds = YES;
-  self.searchDisplayController.searchBar.autocorrectionType = UITextAutocorrectionTypeNo;
-  //self.searchDisplayController.searchBar.translucent = YES;
 
   for (UIView *subView in self.searchDisplayController.searchBar.subviews) {
     if([subView isKindOfClass: [UITextField class]]) {
@@ -305,7 +310,7 @@
 
 - (void)update
 {
-  [self.searchDisplayController.searchResultsTableView reloadData];
+//  [self.searchDisplayController.searchResultsTableView reloadData];
   [self.tableView reloadData];
 }
 
@@ -330,19 +335,6 @@
   return cell;
 }
 
-- (UITableViewCell*)cellForSearchResultsTableView:(UITableView*)tableView atIndexPath:(NSIndexPath*)indexPath
-{
-  static NSString *searchCellIdentifier = kSearchCell;
-  UITableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:searchCellIdentifier];
-  if (! cell) {
-    cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:searchCellIdentifier];
-    cell.textLabel.textColor = [UIColor blueGrayColor];
-    cell.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"darkblue"]];
-  }
-  CatrobatProject *project = [self.searchResults objectAtIndex:indexPath.row];
-  cell.textLabel.text = project.projectName;
-  return cell;
-}
 
 - (void)loadImage:(NSString*)imageURLString forCell:(UITableViewCell <CatrobatImageCell>*) imageCell atIndexPath:(NSIndexPath*)indexPath
 {

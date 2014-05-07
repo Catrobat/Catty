@@ -21,12 +21,12 @@
  */
 
 #import <UIKit/UIKit.h>
-#import "BaseTableViewController.h"
 
-@interface SearchStoreViewController : UIViewController<UISearchBarDelegate,UITableViewDelegate, UITableViewDataSource,UIScrollViewDelegate>
+@interface HelpWebViewController : UIViewController<UIWebViewDelegate, UIScrollViewDelegate>
+@property (strong, nonatomic) IBOutlet UIWebView *webView;
+@property (weak, nonatomic) IBOutlet UIProgressView *progressView;
 
-@property (nonatomic) BOOL checkSearch;
-@property (weak, nonatomic) IBOutlet UITableView *tableView;
-@property (weak, nonatomic) IBOutlet UISearchBar *searchBar;
+- (IBAction)previousPage:(id)sender;
+- (IBAction)nextPage:(id)sender;
 
 @end

@@ -30,6 +30,7 @@
 #import "Sound.h"
 #import "Program.h"
 #import <MobileCoreServices/MobileCoreServices.h>
+#import "LanguageTranslationDefines.h"
 
 @interface FileManager()
 
@@ -43,6 +44,7 @@
 @property (nonatomic,strong) NSMutableDictionary *progressDict;
 @property (nonatomic,strong) NSMutableDictionary *downloadSizeDict;
 @property (nonatomic) long long downloadsize;
+
 
 @property (nonatomic, strong) NSString *projectName;
 
@@ -98,6 +100,7 @@
     }
     return _imageDataArray;
 }
+
 -(NSMutableArray*)connectionArray
 {
     if (!_connectionArray) {
@@ -285,28 +288,29 @@
     return contents;
 }
 
-- (void)addDefaultProjectsToProgramsRootDirectory
+- (void)addDefaultProgramToProgramsRootDirectoryIfNoProgramsExist
 {
     NSString *basePath = [Program basePath];
     NSError *error;
     NSArray *programLoadingInfos = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:basePath error:&error];
     NSLogError(error);
 
-    BOOL defaultProgramExists = NO;
+    BOOL areAnyProgramsLeft = NO;
     for (NSString *programLoadingInfo in programLoadingInfos) {
-        if ([programLoadingInfo isEqualToString:kDefaultProgramName]) {
-            defaultProgramExists = YES;
+        // exclude .DS_Store folder on MACOSX simulator
+        if ([programLoadingInfo isEqualToString:@".DS_Store"]) {
+            continue;
         }
+        areAnyProgramsLeft = YES;
+        break;
     }
-    if (! defaultProgramExists) {
-        [self addBundleProjectWithName:kDefaultProgramName];
-    }
-    if (! [Util lastProgram]) {
-        [Util setLastProgram:kDefaultProgramName];
+    if (! areAnyProgramsLeft) {
+        [self addBundleProgramWithName:kDefaultProgramName];
+        [Util lastProgram];
     }
 }
 
-- (void)addBundleProjectWithName:(NSString*)projectName
+- (void)addBundleProgramWithName:(NSString*)projectName
 {
     NSError *error;
     if (! [self directoryExists:self.programsDirectory]) {
@@ -345,6 +349,7 @@
 //                           }];
     [self.programArray setObject:name forKey:connection.currentRequest.URL];
     [self.connectionArray addObject:connection];
+
 }
 
 - (void)downloadScreenshotFromURL:(NSURL*)url andBaseUrl:(NSURL*)baseurl andName:(NSString*) name
@@ -384,10 +389,28 @@
         [self.imageDataArray setObject:data forKey:connection.currentRequest.URL];
     }
     
+    if ([self getFreeDiskspace]>[response expectedContentLength]) {
+        NSNumber* size = [NSNumber numberWithLongLong:[response expectedContentLength]];
+        ///Length of data!!!
+        [self.downloadSizeDict setObject:size forKey:connection.currentRequest.URL];
+        
+        UIApplication* app = [UIApplication sharedApplication];
+        app.networkActivityIndicatorVisible = YES;
+    }else{
+        [self stopLoading:connection.currentRequest.URL andImageURL:connection.currentRequest.URL];
+        [Util alertWithText:kUIAlertViewTitleNotEnoughFreeMemory];
+        if ([self.delegate respondsToSelector:@selector(setBackDownloadStatus)]) {
+            [self.delegate setBackDownloadStatus];
+        }
+    
+    }
+    
     NSNumber* size = [NSNumber numberWithLongLong:[response expectedContentLength]];
     ///Length of data!!!
     [self.downloadSizeDict setObject:size forKey:connection.currentRequest.URL];
 
+    UIApplication* app = [UIApplication sharedApplication];
+    app.networkActivityIndicatorVisible = YES;
 }
 
 - (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data
@@ -417,7 +440,8 @@
     NSDebug(@"%f",progress.floatValue+((float) [data length] / (float) size.longLongValue));
     progress = [NSNumber numberWithFloat:progress.floatValue+((float) [data length] / (float) size.longLongValue)];
     [self.progressDict setObject:progress forKey:connection.currentRequest.URL];
-    if ([self.delegate respondsToSelector:@selector(updateProgress:)]) {
+    
+    if ([self.delegate respondsToSelector:@selector(updateProgress:)] && [self.projectURL isEqual:connection.currentRequest.URL]) {
         if (progress.floatValue == 1) {
             [self.delegate updateProgress:progress.floatValue-1];
         }
@@ -426,6 +450,9 @@
         }
         
     }
+    UIApplication* app = [UIApplication sharedApplication];
+    app.networkActivityIndicatorVisible = YES;
+    
     NSDebug(@"%f",progress.floatValue+((float) [data length] / (float) size.longLongValue));
 
     //    if (self.programConnection == connection) {
@@ -457,6 +484,9 @@
         [self resetImageDataAndConnection:connection];
         
     }
+
+    UIApplication* app = [UIApplication sharedApplication];
+    app.networkActivityIndicatorVisible = NO;
     
     //    if (self.programConnection == connection) {
     //        NSDebug(@"Finished program downloading");
@@ -497,6 +527,8 @@
     [self.progressDict removeObjectForKey:connection.currentRequest.URL];
     [self.downloadSizeDict removeObjectForKey:connection.currentRequest.URL];
     [connection cancel];
+    UIApplication* app = [UIApplication sharedApplication];
+    app.networkActivityIndicatorVisible = NO;
     
 }
 
@@ -554,7 +586,11 @@
 {
     NSString* name = [self.programArray objectForKey:connection.currentRequest.URL];
     [self unzipAndStore:data withName:name];
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"finishedloading" object:nil];
+    //[[NSNotificationCenter defaultCenter] postNotificationName:@"finishedloading" object:nil];
+    if ([self.delegate respondsToSelector:@selector(downloadFinishedWithURL:)] && [self.projectURL isEqual:connection.currentRequest.URL]) {
+        [self.delegate downloadFinishedWithURL:connection.currentRequest.URL];
+    }
+
 }
 
 - (void)storeDownloadedImage:(NSData*)data andURL:(NSURL*)url
@@ -629,6 +665,26 @@
     }
     [self.progressDict removeObjectForKey:projecturl];
     [self.downloadSizeDict removeObjectForKey:projecturl];
+}
+
+-(uint64_t)getFreeDiskspace {
+    uint64_t totalSpace = 0;
+    uint64_t totalFreeSpace = 0;
+    NSError *error = nil;
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSDictionary *dictionary = [[NSFileManager defaultManager] attributesOfFileSystemForPath:[paths lastObject] error: &error];
+    
+    if (dictionary) {
+        NSNumber *fileSystemSizeInBytes = [dictionary objectForKey: NSFileSystemSize];
+        NSNumber *freeFileSystemSizeInBytes = [dictionary objectForKey:NSFileSystemFreeSize];
+        totalSpace = [fileSystemSizeInBytes unsignedLongLongValue];
+        totalFreeSpace = [freeFileSystemSizeInBytes unsignedLongLongValue];
+        NSDebug(@"Memory Capacity of %llu MiB with %llu MiB Free memory available.", ((totalSpace/1024ll)/1024ll), ((totalFreeSpace/1024ll)/1024ll));
+    } else {
+        NSError(@"Error Obtaining System Memory Info: Domain = %@, Code = %ld", [error domain], (long)[error code]);
+    }
+    
+    return totalFreeSpace;
 }
 
 @end

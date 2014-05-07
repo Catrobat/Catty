@@ -23,11 +23,11 @@
 #import <Foundation/Foundation.h>
 
 
-
 @protocol FileManagerDelegate <NSObject>
 
-- (void) downloadFinished;
+- (void) downloadFinishedWithURL:(NSURL*)url;
 - (void) updateProgress:(float)progress;
+- (void) setBackDownloadStatus;
 
 @end
 
@@ -35,6 +35,7 @@
 
 @property (nonatomic, weak) id delegate;
 @property (nonatomic, strong, readonly) NSString *documentsDirectory;
+@property (nonatomic, strong) NSURL* projectURL;
 
 - (void)createDirectory:(NSString*)path;
 - (void)deleteAllFilesInDocumentsDirectory;
@@ -50,13 +51,12 @@
 - (NSUInteger)sizeOfFileAtPath:(NSString*)path;
 - (NSDate*)lastAccessTimeOfFile:(NSString*)path;
 - (NSArray*)getContentsOfDirectory:(NSString*)directory;
-- (void)addDefaultProjectsToProgramsRootDirectory;
+- (void)addDefaultProgramToProgramsRootDirectoryIfNoProgramsExist;
 - (void)downloadFileFromURL:(NSURL*)url withName:(NSString*)name;
 - (void)downloadScreenshotFromURL:(NSURL*)url andBaseUrl:(NSURL*)baseurl andName:(NSString*) name;
 - (NSString*)getFullPathForProgram:(NSString*)programName;
 - (BOOL)existPlayableSoundsInDirectory:(NSString*)directoryPath;
 -(void)stopLoading:(NSURL *)projecturl andImageURL:(NSURL *)imageurl;
 - (NSArray*)playableSoundsInDirectory:(NSString*)directoryPath;
-
 
 @end

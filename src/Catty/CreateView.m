@@ -32,6 +32,7 @@
 #import "TTTAttributedLabel.h"
 #import "EVCircularProgressView.h"
 #import "LanguageTranslationDefines.h"
+#import "RoundBorderedButton.h"
 
 #define kHTMLATagPattern @"(?i)<a([^>]+)>(.+?)</a>"
 #define kHTMLAHrefTagPattern @"href=\"(.*?)\""
@@ -92,11 +93,10 @@
     [self configureTitleLabel:descriptionTitleLabel];
     descriptionTitleLabel.text = kUILabelTextDescription;
     [view addSubview:descriptionTitleLabel];
-////////
-#warning remove if webteam resolved the issue
+
     description = [description stringByReplacingOccurrencesOfString:@"<br>" withString:@""];
     description = [description stringByReplacingOccurrencesOfString:@"<br />" withString:@""];
-/////////
+
 
     if ((! description) || [description isEqualToString:@""]) {
         description = kUILabelTextNoDescriptionAvailable;
@@ -181,23 +181,13 @@
 
 + (void) addDownloadButtonToView:(UIView*)view withTarget:(id)target
 {
-    UIButton *downloadButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    UIButton *downloadButton = [[RoundBorderedButton alloc] initWithFrame:CGRectMake(195, 55, 105, 25)];
     downloadButton.tag = kDownloadButtonTag;
-    downloadButton.frame = CGRectMake(195, 55, 105, 25);
     downloadButton.titleLabel.font = [UIFont boldSystemFontOfSize:14];
     [downloadButton setTitle:kUIButtonTitleDownload forState:UIControlStateNormal];
-    downloadButton.backgroundColor = [UIColor airForceBlueColor];
-    [downloadButton addTarget:target action:@selector(downloadButtonPressed) forControlEvents:UIControlEventTouchUpInside];
-    [downloadButton setBackgroundImage:[UIImage imageNamed:@"darkblue"] forState:UIControlStateSelected | UIControlStateHighlighted];
-    CAGradientLayer *gradientLayer = [CAGradientLayer blueGradientLayerWithFrame:downloadButton.layer.bounds];
-    downloadButton.layer.cornerRadius = 3.0f;
-    gradientLayer.cornerRadius = downloadButton.layer.cornerRadius;
-    //[downloadButton.layer insertSublayer:gradientLayer atIndex:0];
-    downloadButton.layer.masksToBounds = YES;
-    [self addShadowToTitleLabelForButton:downloadButton];
+    [downloadButton setTintColor:[UIColor lightOrangeColor]];
 
-    downloadButton.layer.borderColor = [UIColor colorWithRed:41/255.0f green:103/255.0f blue:147/255.0f alpha:0.5f].CGColor;
-    downloadButton.layer.borderWidth = 1.0f;
+    [downloadButton addTarget:target action:@selector(downloadButtonPressed) forControlEvents:UIControlEventTouchUpInside];
 
     UIActivityIndicatorView *activity = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite];
     activity.tag = kActivityIndicator;
@@ -210,24 +200,15 @@
 
 + (void)addPlayButtonToView:(UIView*)view withTarget:(id)target
 {
-    UIButton *playButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    UIButton *playButton = [[RoundBorderedButton alloc] initWithFrame:CGRectMake(195, 55, 105, 25)];
     playButton.tag = kPlayButtonTag;
     playButton.hidden = YES;
-    playButton.frame = CGRectMake(195, 55, 105, 25);
     playButton.titleLabel.font = [UIFont boldSystemFontOfSize:14];
     [playButton setTitle:kUIButtonTitlePlay forState:UIControlStateNormal];
-    playButton.backgroundColor = [UIColor clearColor];
     [playButton addTarget:target action:@selector(playButtonPressed) forControlEvents:UIControlEventTouchUpInside];
+    [playButton setTintColor:[UIColor lightOrangeColor]];
+   
 
-    CAGradientLayer *gradientLayer = [CAGradientLayer greenGradientLayerWithFrame:playButton.layer.bounds];
-    playButton.layer.cornerRadius = 3.0f;
-    gradientLayer.cornerRadius = playButton.layer.cornerRadius;
-    [playButton.layer insertSublayer:gradientLayer atIndex:0];
-    playButton.layer.masksToBounds = YES;
-    [self addShadowToTitleLabelForButton:playButton];
-
-    playButton.layer.borderColor = [UIColor colorWithRed:61/255.0f green:118/255.0f blue:26/255.0f alpha:0.5f].CGColor;
-    playButton.layer.borderWidth = 1.0f;
     [view addSubview:playButton];
 }
 
@@ -239,30 +220,9 @@
     button.frame = CGRectMake(235, 55, 28, 28);
     button.hidden = YES;
 
-//    NSString *title = kUIBarButtonItemTitleCancel;
-//    UIButton *stopLoadingButton = [UIButton buttonWithType:UIButtonTypeCustom];
-//    stopLoadingButton.tag = kStopLoadingTag;
-//    stopLoadingButton.hidden = YES;
-//    stopLoadingButton.frame = CGRectMake(195, 55, 105, 25);
-//    stopLoadingButton.titleLabel.font = [UIFont boldSystemFontOfSize:14];
-//    [stopLoadingButton setTitle:title forState:UIControlStateNormal];
-//    stopLoadingButton.backgroundColor = [UIColor clearColor];
     [button addTarget:target action:@selector(stopLoading) forControlEvents:UIControlEventTouchUpInside];
 
-//    CAGradientLayer *gradientLayer = [CAGradientLayer redGradientLayerWithFrame:stopLoadingButton.layer.bounds];
-//    stopLoadingButton.layer.cornerRadius = 3.0f;
-//    gradientLayer.cornerRadius = stopLoadingButton.layer.cornerRadius;
-//    [stopLoadingButton.layer insertSublayer:gradientLayer atIndex:0];
-//    stopLoadingButton.layer.masksToBounds = YES;
-//    [self addShadowToTitleLabelForButton:stopLoadingButton];
-//
-//    stopLoadingButton.layer.borderColor = [UIColor colorWithRed:118/255.0f green:61/255.0f blue:26/255.0f alpha:0.5f].CGColor;
-//    stopLoadingButton.layer.borderWidth = 1.0f;
-//
-//    UIActivityIndicatorView *activity = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite];
-//    activity.tag = kActivityIndicator;
-//    activity.frame = CGRectMake(5, 0, 25, 25);
-//    [stopLoadingButton addSubview:activity];
+
     [view addSubview:button];
 }
 

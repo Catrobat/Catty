@@ -22,10 +22,8 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ForumWebViewController : UIViewController<UIWebViewDelegate, UIScrollViewDelegate>
-@property (strong, nonatomic) IBOutlet UIWebView *webView;
+@interface RoundBorderedButton : UIButton
 
-- (IBAction)previousPage:(id)sender;
-- (IBAction)nextPage:(id)sender;
+- (void)setPlusIconVisibility:(BOOL)show;
 
 @end

@@ -513,7 +513,7 @@ UINavigationBarDelegate>
 {
     [super alertView:alertView clickedButtonAtIndex:buttonIndex];
     if (alertView.tag == kRenameAlertViewTag) {
-        NSString* input = [alertView textFieldAtIndex:0].text;
+        NSString *input = [alertView textFieldAtIndex:0].text;
         if (buttonIndex == kAlertViewButtonOK) {
             if ([input isEqualToString:self.program.header.programName])
                 return;
