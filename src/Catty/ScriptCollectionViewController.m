@@ -112,9 +112,7 @@
     [super viewWillAppear:animated];
     NSNotificationCenter *dnc = [NSNotificationCenter defaultCenter];
     [dnc addObserver:self selector:@selector(brickAdded:) name:kBrickCellAddedNotification object:nil];
-    // TODO constants
     [dnc addObserver:self selector:@selector(brickDetailViewDismissed:) name:kBrickDetailViewDismissed object:nil];
-    [self.navigationController setToolbarHidden:NO];
 }
 
 - (void)viewWillDisappear:(BOOL)animated
@@ -124,10 +122,6 @@
     [dnc removeObserver:self name:kBrickCellAddedNotification object:nil];
 }
 
-- (void)viewDidAppear:(BOOL)animated {
-    [super viewDidAppear:animated];
-    [self.collectionView reloadData];
-}
 
 - (void)didReceiveMemoryWarning
 {
@@ -135,10 +129,6 @@
     [BrickCell clearImageCache];
 }
 
-- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent*)event
-{
-    [self.view endEditing:YES];
-}
 
 #pragma mark - UIViewControllerAnimatedTransitioning delegate
 - (id<UIViewControllerAnimatedTransitioning>)animationControllerForPresentedController:(UIViewController *)presented
@@ -213,8 +203,14 @@
 {
     if (notification.userInfo) {
         __weak UICollectionView *weakself = self.collectionView;
+        NSUInteger sectionCount = self.object.scriptList.count;
+        Script *script = [self.object.scriptList objectAtIndex:sectionCount - 1];
+        NSUInteger brickCountInSection = script.brickList.count;
+        
+        NSIndexPath *lastIndexPath = [NSIndexPath indexPathForItem:brickCountInSection inSection:sectionCount - 1];
         [self addBrickCellAction:notification.userInfo[kUserInfoKeyBrickCell] completionBlock:^{
             [weakself reloadData];
+            [weakself scrollToItemAtIndexPath:lastIndexPath atScrollPosition:UICollectionViewScrollPositionTop animated:YES];
         }];
     }
 }
@@ -276,6 +272,7 @@
     return brickCell;
 }
 
+#pragma mark - CollectionView layout
 - (CGSize)collectionView:(UICollectionView*)collectionView
                   layout:(UICollectionViewLayout*)collectionViewLayout
   sizeForItemAtIndexPath:(NSIndexPath*)indexPath
