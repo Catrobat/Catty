@@ -38,6 +38,7 @@
 #import "WhenScriptCell.h"
 #import "FXBlurView.h"
 #import "LanguageTranslationDefines.h"
+#import "PlaceHolderView.h"
 
 @interface ScriptCollectionViewController () <UICollectionViewDelegate, LXReorderableCollectionViewDelegateFlowLayout, LXReorderableCollectionViewDataSource, UIViewControllerTransitioningDelegate>
 @property (nonatomic, strong) NSDictionary *classNameBrickNameMap;
@@ -45,6 +46,8 @@
 @property (nonatomic, strong) BrickScaleTransition *brickScaleTransition;
 @property (nonatomic, strong) FXBlurView *dimView;
 @property (nonatomic, strong) NSIndexPath *selectedIndexPath;
+@property (nonatomic, strong) PlaceHolderView *placeHolderView;
+
 @end
 
 @implementation ScriptCollectionViewController
@@ -54,26 +57,7 @@
 {
     [super viewDidLoad];
     [self setupCollectionView];
-    [self setPlaceHolderTitle:kUIViewControllerPlaceholderTitleScripts
-                   Description:[NSString stringWithFormat:kUIViewControllerPlaceholderDescriptionStandard,
-                                kUIViewControllerPlaceholderTitleScripts]];
-    [self showPlaceHolder:(! (BOOL)[self.object.scriptList count])];
     [self setupToolBar];
-
-    self.brickScaleTransition = [BrickScaleTransition new];
-    self.dimView = [[FXBlurView alloc] initWithFrame:self.view.bounds];
-    self.dimView.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
-    self.dimView.userInteractionEnabled = NO;
-    self.dimView.tintColor = UIColor.clearColor;
-    self.dimView.underlyingView = self.collectionView;
-    self.dimView.blurEnabled = YES;
-    self.dimView.blurRadius = 10.f;
-    self.dimView.dynamic = YES;
-    self.dimView.alpha = 0.f;
-    self.dimView.hidden = YES;
-    [self.view addSubview:self.dimView];
-    
-    self.navigationItem.rightBarButtonItems = @[self.editButtonItem];
     
     // register brick cells for current brick category
     NSDictionary *allCategoriesAndBrickTypes = self.classNameBrickNameMap;
@@ -102,6 +86,25 @@
     self.collectionView.scrollEnabled = YES;
     self.collectionView.delegate = self;
     self.collectionView.dataSource = self;
+    
+    self.navigationItem.rightBarButtonItems = @[self.editButtonItem];
+    
+    self.placeHolderView = [[PlaceHolderView alloc]initWithFrame:self.collectionView.bounds];
+    [self.view addSubview:self.placeHolderView];
+    self.placeHolderView.hidden = NO;
+    
+    self.brickScaleTransition = [BrickScaleTransition new];
+    self.dimView = [[FXBlurView alloc] initWithFrame:self.view.bounds];
+    self.dimView.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
+    self.dimView.userInteractionEnabled = NO;
+    self.dimView.tintColor = UIColor.clearColor;
+    self.dimView.underlyingView = self.collectionView;
+    self.dimView.blurEnabled = YES;
+    self.dimView.blurRadius = 10.f;
+    self.dimView.dynamic = YES;
+    self.dimView.alpha = 0.f;
+    self.dimView.hidden = YES;
+    [self.view addSubview:self.dimView];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -202,7 +205,6 @@
         NSError(@"Unknown class type given...");
         abort();
     }
-    [super showPlaceHolder:NO];
 }
 
 #pragma mark - Notification
@@ -265,6 +267,9 @@
     brickCell.backgroundBrickCell = self.object.isBackground;
     brickCell.enabled = YES;
     [brickCell renderSubViews];
+    
+    self.placeHolderView.hidden = self.object.scriptList.count ? YES : NO;
+    
     return brickCell;
 }
 
@@ -443,7 +448,6 @@
 {
     // @INFO: Please do not modify or remove this code again, unless you don't know exactly what you are doing.
 
-    [super setupToolBar];
     [self.navigationController setToolbarHidden:NO];
     self.navigationController.toolbar.barStyle = UIBarStyleBlack;
     self.navigationController.toolbar.tintColor = [UIColor orangeColor];
@@ -487,7 +491,7 @@
             [self.collectionView deleteSections:[NSIndexSet indexSetWithIndex:indexPath.section]];
         } completion:^(BOOL finished) {
             [self.collectionView reloadData];
-            [self showPlaceHolder:!self.object.scriptList.count];
+            self.placeHolderView.hidden = self.object.scriptList.count ? YES : NO;
         }];
     }
 }

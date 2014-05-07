@@ -114,7 +114,7 @@
 #define kUIViewControllerPlaceholderTitleLooks kUIViewControllerTitleLooks
 #define kUIViewControllerPlaceholderTitleSounds kUIViewControllerTitleSounds
 
-#define kUIViewControllerPlaceholderDescriptionStandard NSLocalizedString(@"Click \"+\" to add %@", nil)
+#define kUIViewControllerPlaceholderDescriptionStandard NSLocalizedString(@"Select \"+\" to add %@", nil)
 
 /*
  * -----------------------------------------------------------------------------------------------------------
