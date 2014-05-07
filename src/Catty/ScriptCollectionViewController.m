@@ -261,15 +261,7 @@
         Brick *brick = [script.brickList objectAtIndex:(indexPath.row - 1)];
         NSString *brickSubClassName = NSStringFromClass([brick class]);
         brickCell = [collectionView dequeueReusableCellWithReuseIdentifier:brickSubClassName forIndexPath:indexPath];
-        // [brickCell setEditing:self.isEditing];
-
-        if (self.isEditing) {
-            brickCell.transform = CGAffineTransformMakeScale(0.8f, 0.8f);
-            brickCell.alpha = 0.3f;
-        } else {
-            brickCell.transform = CGAffineTransformIdentity;
-            brickCell.alpha = 1.0f;
-        }
+        [brickCell setBrickEditing:self.isEditing];
     }
     brickCell.backgroundBrickCell = self.object.isBackground;
     brickCell.enabled = YES;
@@ -352,21 +344,23 @@
     }
     
     // TDOD handle bricks which can be edited
-    if (![cell isKindOfClass:StartScriptCell.class]) {
-        BrickDetailViewController *brickDetailViewcontroller = [[BrickDetailViewController alloc]initWithNibName:@"BrickDetailViewController" bundle:nil];
-        brickDetailViewcontroller.scriptCollectionViewControllerToolbar = self.navigationController.toolbar;
-        brickDetailViewcontroller.brickName = brickName;
-        self.brickScaleTransition.cell = cell;
-        self.brickScaleTransition.navigationBar = self.navigationController.navigationBar;
-        self.brickScaleTransition.collectionView = self.collectionView;
-        self.brickScaleTransition.touchRect = cell.frame;
-        self.brickScaleTransition.dimView = self.dimView;
-        brickDetailViewcontroller.transitioningDelegate = self;
-        brickDetailViewcontroller.modalPresentationStyle = UIModalPresentationCustom;
-        self.collectionView.userInteractionEnabled = NO;
-        [self presentViewController:brickDetailViewcontroller animated:YES completion:^{
-            self.navigationController.navigationBar.userInteractionEnabled = NO;
-        }];
+    if (!self.isEditing) {
+        if (![cell isKindOfClass:StartScriptCell.class]) {
+            BrickDetailViewController *brickDetailViewcontroller = [[BrickDetailViewController alloc]initWithNibName:@"BrickDetailViewController" bundle:nil];
+            brickDetailViewcontroller.scriptCollectionViewControllerToolbar = self.navigationController.toolbar;
+            brickDetailViewcontroller.brickName = brickName;
+            self.brickScaleTransition.cell = cell;
+            self.brickScaleTransition.navigationBar = self.navigationController.navigationBar;
+            self.brickScaleTransition.collectionView = self.collectionView;
+            self.brickScaleTransition.touchRect = cell.frame;
+            self.brickScaleTransition.dimView = self.dimView;
+            brickDetailViewcontroller.transitioningDelegate = self;
+            brickDetailViewcontroller.modalPresentationStyle = UIModalPresentationCustom;
+            self.collectionView.userInteractionEnabled = NO;
+            [self presentViewController:brickDetailViewcontroller animated:YES completion:^{
+                self.navigationController.navigationBar.userInteractionEnabled = NO;
+            }];
+        }
     }
 }
 
@@ -487,6 +481,7 @@
     [super setEditing:editing animated:animated];
 
     if (self.isEditing) {
+        self.navigationItem.title = NSLocalizedString(@"Edit Mode", nil);
          __block NSInteger section = 0;
         for (NSUInteger idx = 0; idx < self.collectionView.numberOfSections; idx++) {
             Script *script = [self.object.scriptList objectAtIndex:idx];
@@ -495,15 +490,16 @@
                 
                 BrickCell *cell = (BrickCell *)[self.collectionView cellForItemAtIndexPath:[NSIndexPath indexPathForItem:idx + 1 inSection:section]];
                 cell.userInteractionEnabled = NO;
-                [UIView animateWithDuration:0.55f delay:0.0f usingSpringWithDamping:0.45f initialSpringVelocity:2.0f options:UIViewAnimationOptionCurveEaseInOut animations:^{
-                    cell.alpha = 0.3f;
-                    cell.transform = CGAffineTransformMakeScale(0.8f, 0.8f);
+                [UIView animateWithDuration:0.55f delay:0.0f usingSpringWithDamping:5.0f/*0.45f*/ initialSpringVelocity:0.0f/*2.0f*/ options:UIViewAnimationOptionCurveEaseInOut animations:^{
+                    cell.alpha = 0.2f;
+                    // cell.transform = CGAffineTransformMakeScale(0.8f, 0.8f);  // TODO dont work right at the moment with the bacghround image. fix later
                 } completion:NULL];
             }];
             section++;
         }
     } else {
          __block NSInteger section = 0;
+        self.navigationItem.title = NSLocalizedString(@"Scripts", nil);
         for (NSUInteger idx = 0; idx < self.collectionView.numberOfSections; idx++) {
             Script *script = [self.object.scriptList objectAtIndex:idx];
             [script.brickList enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
@@ -513,7 +509,8 @@
                 cell.userInteractionEnabled = YES;
                 [UIView animateWithDuration:0.35f delay:0.0f usingSpringWithDamping:0.5f initialSpringVelocity:2.0f options:UIViewAnimationOptionCurveEaseInOut animations:^{
                     cell.alpha = 1.0;
-                    cell.transform = CGAffineTransformIdentity;
+                    //   cell.transform = CGAffineTransformIdentity; // TODO dont work right at the moment with the bacghround image. fix later
+
                 } completion:NULL];
             }];
             section++;

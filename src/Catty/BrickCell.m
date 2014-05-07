@@ -46,6 +46,8 @@
 @property (nonatomic, weak) UIImageView *backgroundImageView;
 @property (nonatomic, weak) UIImageView *imageView;
 
+@property (nonatomic, assign) BOOL editing;
+
 @end
 
 @implementation BrickCell
@@ -689,8 +691,18 @@
 }
 
 #pragma mark - cell editing
-//- (void)setEditing:(BOOL)editing {
-//    self.editing = editing;
-//}
+- (void)setBrickEditing:(BOOL)editing {
+    self.editing = editing;
+    
+    if (self.editing) {
+        //  self.transform = CGAffineTransformMakeScale(0.8f, 0.8f);
+        self.alpha = 0.2f;
+        self.userInteractionEnabled = NO;
+    } else {
+        // self.transform = CGAffineTransformIdentity;
+        self.alpha = 1.0f;
+        self.userInteractionEnabled = YES;
+    }
+}
 
 @end
