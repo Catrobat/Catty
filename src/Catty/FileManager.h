@@ -49,14 +49,15 @@
 - (void)deleteDirectory:(NSString*)path;
 - (NSUInteger)sizeOfDirectoryAtPath:(NSString*)path;
 - (NSUInteger)sizeOfFileAtPath:(NSString*)path;
-- (NSDate*)lastAccessTimeOfFile:(NSString*)path;
+- (NSDate*)lastModificationTimeOfFile:(NSString*)path;
 - (NSArray*)getContentsOfDirectory:(NSString*)directory;
 - (void)addDefaultProgramToProgramsRootDirectoryIfNoProgramsExist;
 - (void)downloadFileFromURL:(NSURL*)url withName:(NSString*)name;
 - (void)downloadScreenshotFromURL:(NSURL*)url andBaseUrl:(NSURL*)baseurl andName:(NSString*) name;
 - (NSString*)getFullPathForProgram:(NSString*)programName;
 - (BOOL)existPlayableSoundsInDirectory:(NSString*)directoryPath;
--(void)stopLoading:(NSURL *)projecturl andImageURL:(NSURL *)imageurl;
+- (void)stopLoading:(NSURL *)projecturl andImageURL:(NSURL *)imageurl;
 - (NSArray*)playableSoundsInDirectory:(NSString*)directoryPath;
+- (void)changeModificationDate:(NSDate*)date forFileAtPath:(NSString*)path;
 
 @end
