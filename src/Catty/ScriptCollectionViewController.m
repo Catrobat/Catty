@@ -337,17 +337,19 @@
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     self.selectedIndexPath =  indexPath;
     BrickCell *cell = (BrickCell*)[self.collectionView cellForItemAtIndexPath:indexPath];
-//    NSLog(@"selected cell = %@", cell);
-    NSString *brickName =  NSStringFromClass(cell.class);
-    if (brickName.length) {
-        brickName = [brickName substringToIndex:brickName.length - 4];
-    }
+    NSLog(@"selected cell = %@", cell);
     
     // TDOD handle bricks which can be edited
     if (!self.isEditing) {
         if (![cell isKindOfClass:StartScriptCell.class]) {
             BrickDetailViewController *brickDetailViewcontroller = [[BrickDetailViewController alloc]initWithNibName:@"BrickDetailViewController" bundle:nil];
             brickDetailViewcontroller.scriptCollectionViewControllerToolbar = self.navigationController.toolbar;
+            
+            NSString *brickName =  NSStringFromClass(cell.class);
+            if (brickName.length) {
+                brickName = [brickName substringToIndex:brickName.length - 4];
+            }
+            
             brickDetailViewcontroller.brickName = brickName;
             self.brickScaleTransition.cell = cell;
             self.brickScaleTransition.navigationBar = self.navigationController.navigationBar;
@@ -361,6 +363,8 @@
                 self.navigationController.navigationBar.userInteractionEnabled = NO;
             }];
         }
+    } else {
+        [self removeScriptSectionWithIndexPath:indexPath];
     }
 }
 
@@ -473,6 +477,22 @@
                 [self.collectionView reloadData];
             }];
         }
+    }
+}
+
+- (void)removeScriptSectionWithIndexPath:(NSIndexPath *)indexPath {
+    if (indexPath.section <= self.collectionView.numberOfSections) {
+        Script *script = [self.object.scriptList objectAtIndex:indexPath.section];
+        [self.collectionView performBatchUpdates:^{
+            [self.object.scriptList removeObject:script];
+            [self.collectionView deleteSections:[NSIndexSet indexSetWithIndex:indexPath.section]];
+        } completion:^(BOOL finished) {
+            [self.collectionView reloadData];
+            
+            if (!self.object.scriptList.count) {
+                
+            }
+        }];
     }
 }
 
