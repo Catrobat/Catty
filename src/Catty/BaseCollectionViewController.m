@@ -23,20 +23,27 @@
 #import "BaseCollectionViewController.h"
 #import "UIDefines.h"
 #import "UIColor+CatrobatUIColorExtensions.h"
+#import "FBShimmering/FBShimmeringView.h"
 
 @interface BaseCollectionViewController ()
-@property (nonatomic, strong) UIView *placeholder;
+@property (nonatomic, strong) FBShimmeringView *placeholderView;
 @property (nonatomic, strong) UILabel *placeholderTitleLabel;
 @property (nonatomic, strong) UILabel *placeholderDescriptionLabel;
 @end
 
 @implementation BaseCollectionViewController
 
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    [self initPlaceHolder];
+}
+
+
 #pragma mark init
 - (void)initPlaceHolder
 {
-    self.placeholder = [[UIView alloc] initWithFrame:self.collectionView.bounds];
-    self.placeholder.tag = kPlaceHolderTag;
+    self.placeholderView = [[FBShimmeringView alloc] initWithFrame:self.collectionView.bounds];
+    self.placeholderView.tag = kPlaceHolderTag;
 
     // setup title label
     self.placeholderTitleLabel = [[UILabel alloc] init];
@@ -45,43 +52,24 @@
     self.placeholderTitleLabel.textColor = [UIColor skyBlueColor];
     self.placeholderTitleLabel.font = [self.placeholderTitleLabel.font fontWithSize:45];
 
+    self.placeholderView.contentView = self.placeholderTitleLabel;
+    
     // setup description label
     self.placeholderDescriptionLabel = [[UILabel alloc] init];
     self.placeholderDescriptionLabel.textAlignment = NSTextAlignmentCenter;
     self.placeholderDescriptionLabel.backgroundColor = [UIColor clearColor];
     self.placeholderDescriptionLabel.textColor = [UIColor skyBlueColor];
-    [self.placeholder addSubview:self.placeholderTitleLabel];
-    [self.placeholder addSubview:self.placeholderDescriptionLabel];
-    [self.collectionView addSubview:self.placeholder];
-    self.placeholder.hidden = YES;
+    [self.placeholderView addSubview:self.placeholderTitleLabel];
+    [self.placeholderView addSubview:self.placeholderDescriptionLabel];
+    [self.collectionView addSubview:self.placeholderView];
+    self.placeholderView.hidden = YES;
 }
 
-//#pragma mark - getters and setters
-//- (void)setPlaceHolderTitle:(NSString*)title Description:(NSString*)description
-//{
-//  // title label
-//  self.placeholderTitleLabel.text = title;
-//  [self.placeholderTitleLabel sizeToFit];
-//  CGRect frame = self.view.bounds;
-//  CGRect bounds = self.placeholderTitleLabel.bounds;
-//  #define placeholderTitlePaddingBottom 15.0f
-//  frame.origin.y = (frame.size.height/2.0f)-bounds.size.height-placeholderTitlePaddingBottom;
-//  frame.size.height = bounds.size.height;
-//  self.placeholderTitleLabel.frame = frame;
-//
-//  // description label
-//  self.placeholderDescriptionLabel.text = description;
-//  [self.placeholderDescriptionLabel sizeToFit];
-//  bounds = self.placeholderDescriptionLabel.bounds;
-//  frame = self.view.bounds;
-//  frame.origin.y = (frame.size.height/2.0f);
-//  frame.size.height = bounds.size.height;
-//  self.placeholderDescriptionLabel.frame = frame;
-//}
 
 #pragma mark - getters and setters
 - (void)setPlaceHolderTitle:(NSString*)title Description:(NSString*)description
 {
+    //  self.placeholderView.alpha = 0.0f;
     // title label
     self.placeholderTitleLabel.text = title;
     [self.placeholderTitleLabel sizeToFit];
@@ -107,11 +95,15 @@
 
     frameDescription.origin.y = offsetY + frameTitle.size.height;
     self.placeholderDescriptionLabel.frame = frameDescription;
+    
+    self.placeholderView.shimmering = YES;
+    
+    // [UIView animateWithDuration:0.25f animations:^{ self.placeholderView.alpha = 1.0f; }];
 }
 
 - (void)showPlaceHolder:(BOOL)show
 {
-    self.collectionView.alwaysBounceVertical = self.placeholder.hidden = (! show);
+    self.collectionView.alwaysBounceVertical = self.placeholderView.hidden = (! show);
 }
 
 #pragma mark - helpers

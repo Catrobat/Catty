@@ -49,39 +49,16 @@
 
 @implementation ScriptCollectionViewController
 
-#pragma mark - Getters and Setters
-- (NSDictionary*)classNameBrickNameMap
-{
-    static NSDictionary *classNameBrickNameMap = nil;
-    if (classNameBrickNameMap == nil) {
-        classNameBrickNameMap = kClassNameBrickNameMap;
-    }
-    return classNameBrickNameMap;
-}
-
-#pragma mark - initialization
-- (void)initCollectionView
-{
-    self.collectionView.delegate = self;
-    self.collectionView.dataSource = self;
-    self.collectionView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"darkblue"]];
-}
-
 #pragma mark - events
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [self initCollectionView];
-    [super initPlaceHolder];
-    [super setPlaceHolderTitle:kUIViewControllerPlaceholderTitleScripts
+    [self setupCollectionView];
+    [self setPlaceHolderTitle:kUIViewControllerPlaceholderTitleScripts
                    Description:[NSString stringWithFormat:kUIViewControllerPlaceholderDescriptionStandard,
                                 kUIViewControllerPlaceholderTitleScripts]];
-    [super showPlaceHolder:(! (BOOL)[self.object.scriptList count])];
+    [self showPlaceHolder:(! (BOOL)[self.object.scriptList count])];
     [self setupToolBar];
-    self.collectionView.alwaysBounceVertical = YES;
-    self.collectionView.scrollEnabled = YES;
-    self.collectionView.delegate = self;
-    self.collectionView.dataSource = self;
 
     self.brickScaleTransition = [BrickScaleTransition new];
     self.dimView = [[FXBlurView alloc] initWithFrame:self.view.bounds];
@@ -103,6 +80,28 @@
     for (NSString *brickTypeName in allCategoriesAndBrickTypes) {
         [self.collectionView registerClass:NSClassFromString([brickTypeName stringByAppendingString:@"Cell"]) forCellWithReuseIdentifier:brickTypeName];
     }
+}
+
+#pragma mark - Getters and Setters
+- (NSDictionary*)classNameBrickNameMap
+{
+    static NSDictionary *classNameBrickNameMap = nil;
+    if (classNameBrickNameMap == nil) {
+        classNameBrickNameMap = kClassNameBrickNameMap;
+    }
+    return classNameBrickNameMap;
+}
+
+#pragma mark - initialization
+- (void)setupCollectionView
+{
+    self.collectionView.delegate = self;
+    self.collectionView.dataSource = self;
+    self.collectionView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"darkblue"]];
+    self.collectionView.alwaysBounceVertical = YES;
+    self.collectionView.scrollEnabled = YES;
+    self.collectionView.delegate = self;
+    self.collectionView.dataSource = self;
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -488,10 +487,7 @@
             [self.collectionView deleteSections:[NSIndexSet indexSetWithIndex:indexPath.section]];
         } completion:^(BOOL finished) {
             [self.collectionView reloadData];
-            
-            if (!self.object.scriptList.count) {
-                
-            }
+            [self showPlaceHolder:!self.object.scriptList.count];
         }];
     }
 }
