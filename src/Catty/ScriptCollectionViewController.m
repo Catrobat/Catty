@@ -171,8 +171,7 @@
     [self performSegueWithIdentifier:kSegueToScene sender:sender];
 }
 
-- (void)addBrickCellAction:(BrickCell*)brickCell
-{
+- (void)addBrickCellAction:(BrickCell*)brickCell completionBlock:(void(^)())completionBlock {
     if (! brickCell) {
         return;
     }
@@ -192,7 +191,7 @@
             [self.object.scriptList addObject:script];
         } else {
             // add brick to first script
-            script = [self.object.scriptList objectAtIndex:0];
+            script = [self.object.scriptList objectAtIndex:self.collectionView.numberOfSections - 1];
         }
         Brick *brick = (Brick*)brickOrScript;
         brick.object = self.object;
@@ -205,14 +204,18 @@
         NSError(@"Unknown class type given...");
         abort();
     }
+    
+    if (completionBlock) completionBlock();
 }
 
 #pragma mark - Notification
 - (void)brickAdded:(NSNotification*)notification
 {
     if (notification.userInfo) {
-        // NSLog(@"brickAdded notification received with userInfo: %@", [notification.userInfo description]);
-        [self addBrickCellAction:notification.userInfo[kUserInfoKeyBrickCell]];
+        __weak UICollectionView *weakself = self.collectionView;
+        [self addBrickCellAction:notification.userInfo[kUserInfoKeyBrickCell] completionBlock:^{
+            [weakself reloadData];
+        }];
     }
 }
 

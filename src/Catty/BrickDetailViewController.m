@@ -34,8 +34,7 @@
 
 @implementation BrickDetailViewController
 
-- (void)viewDidLoad
-{
+- (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor = UIColor.clearColor;
     self.brickMenu = [[UIActionSheet alloc] initWithTitle:self.brickName
