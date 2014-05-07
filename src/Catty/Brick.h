@@ -23,11 +23,16 @@
 
 #import <UIKit/UIKit.h>
 #import "SpriteObject.h"
+#import "UIDefines.h"
+
 @class Script;
 
 @interface Brick : NSObject
 
 @property (nonatomic, weak) SpriteObject *object;
+
+// TODO: use protocol to define interfaces for Brick and Script class
+@property (nonatomic) kBrickType brickType;
 
 - (id)initWithSprite:(SpriteObject*)sprite;
 
