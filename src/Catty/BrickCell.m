@@ -45,6 +45,7 @@
 @property (nonatomic, weak) BrickCellInlineView *inlineView;
 @property (nonatomic, weak) UIImageView *backgroundImageView;
 @property (nonatomic, weak) UIImageView *imageView;
+
 @end
 
 @implementation BrickCell
@@ -309,6 +310,7 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
+        self.editing = NO;
         self.backgroundColor = [UIColor clearColor];
         self.contentMode = UIViewContentModeScaleToFill;
         self.clipsToBounds = NO;
@@ -323,6 +325,7 @@
 {
     self = [super init];
     if (self) {
+        self.editing = NO;
         self.backgroundColor = [UIColor clearColor];
         self.contentMode = UIViewContentModeScaleToFill;
         self.clipsToBounds = NO;
@@ -684,5 +687,10 @@
     NSError(@"unknown brick category type given");
     abort();
 }
+
+#pragma mark - cell editing
+//- (void)setEditing:(BOOL)editing {
+//    self.editing = editing;
+//}
 
 @end

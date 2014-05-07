@@ -33,6 +33,7 @@
 @property (nonatomic, readonly) NSInteger brickType;
 @property (nonatomic, getter = isBackgroundBrickCell) BOOL backgroundBrickCell;
 @property (nonatomic) BOOL enabled;
+@property (nonatomic, assign) BOOL editing;
 
 - (void)renderSubViews;
 - (void)hookUpSubViews:(NSArray *)inlineViewSubViews; // abstract (only called internally)
@@ -43,5 +44,7 @@
 + (BOOL)isScriptBrickCellForCategoryType:(kBrickCategoryType)categoryType AndBrickType:(NSInteger)brickType;
 + (NSString*)brickPatternImageNameForCategoryType:(kBrickCategoryType)categoryType AndBrickType:(NSInteger)brickType;
 + (void)clearImageCache;
+
+//- (void)setEditing:(BOOL)editing;
 
 @end

@@ -96,6 +96,8 @@
     self.dimView.hidden = YES;
     [self.view addSubview:self.dimView];
     
+    self.navigationItem.rightBarButtonItems = @[self.editButtonItem];
+    
     // register brick cells for current brick category
     NSDictionary *allCategoriesAndBrickTypes = self.classNameBrickNameMap;
     for (NSString *brickTypeName in allCategoriesAndBrickTypes) {
@@ -259,6 +261,15 @@
         Brick *brick = [script.brickList objectAtIndex:(indexPath.row - 1)];
         NSString *brickSubClassName = NSStringFromClass([brick class]);
         brickCell = [collectionView dequeueReusableCellWithReuseIdentifier:brickSubClassName forIndexPath:indexPath];
+        // [brickCell setEditing:self.isEditing];
+
+        if (self.isEditing) {
+            brickCell.transform = CGAffineTransformMakeScale(0.8f, 0.8f);
+            brickCell.alpha = 0.3f;
+        } else {
+            brickCell.transform = CGAffineTransformIdentity;
+            brickCell.alpha = 1.0f;
+        }
     }
     brickCell.backgroundBrickCell = self.object.isBackground;
     brickCell.enabled = YES;
@@ -460,8 +471,6 @@
 - (void)removeBrickFromScriptCollectionViewFromIndex:(NSIndexPath *)indexPath {
     if (indexPath) {
         Script *script = [self.object.scriptList objectAtIndex:indexPath.section];
-        Brick *brick = [script.brickList objectAtIndex:indexPath.item - 1];
-        
         if (script.brickList.count) {
             [self.collectionView performBatchUpdates:^{
                 [script.brickList removeObjectAtIndex:indexPath.item - 1];
@@ -470,8 +479,45 @@
                 [self.collectionView reloadData];
             }];
         }
+    }
+}
 
-        //        NSLog(@"Brick deleted %@", brick);
+#pragma mark - Editing
+-(void)setEditing:(BOOL)editing animated:(BOOL)animated {
+    [super setEditing:editing animated:animated];
+
+    if (self.isEditing) {
+         __block NSInteger section = 0;
+        for (NSUInteger idx = 0; idx < self.collectionView.numberOfSections; idx++) {
+            Script *script = [self.object.scriptList objectAtIndex:idx];
+            [script.brickList enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+                *stop = section > self.collectionView.numberOfSections ? YES : NO;
+                
+                BrickCell *cell = (BrickCell *)[self.collectionView cellForItemAtIndexPath:[NSIndexPath indexPathForItem:idx + 1 inSection:section]];
+                cell.userInteractionEnabled = NO;
+                [UIView animateWithDuration:0.55f delay:0.0f usingSpringWithDamping:0.45f initialSpringVelocity:2.0f options:UIViewAnimationOptionCurveEaseInOut animations:^{
+                    cell.alpha = 0.3f;
+                    cell.transform = CGAffineTransformMakeScale(0.8f, 0.8f);
+                } completion:NULL];
+            }];
+            section++;
+        }
+    } else {
+         __block NSInteger section = 0;
+        for (NSUInteger idx = 0; idx < self.collectionView.numberOfSections; idx++) {
+            Script *script = [self.object.scriptList objectAtIndex:idx];
+            [script.brickList enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+                *stop = section > self.collectionView.numberOfSections ? YES : NO;
+                
+                BrickCell *cell = (BrickCell *)[self.collectionView cellForItemAtIndexPath:[NSIndexPath indexPathForItem:idx + 1 inSection:section]];
+                cell.userInteractionEnabled = YES;
+                [UIView animateWithDuration:0.35f delay:0.0f usingSpringWithDamping:0.5f initialSpringVelocity:2.0f options:UIViewAnimationOptionCurveEaseInOut animations:^{
+                    cell.alpha = 1.0;
+                    cell.transform = CGAffineTransformIdentity;
+                } completion:NULL];
+            }];
+            section++;
+        }
     }
 }
 
