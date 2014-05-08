@@ -353,28 +353,27 @@
     
     // TDOD handle bricks which can be edited
     if (!self.isEditing) {
-        if (![cell isKindOfClass:StartScriptCell.class]) {
-            BrickDetailViewController *brickDetailViewcontroller = [[BrickDetailViewController alloc]initWithNibName:@"BrickDetailViewController" bundle:nil];
-            brickDetailViewcontroller.scriptCollectionViewControllerToolbar = self.navigationController.toolbar;
-            
-            NSString *brickName =  NSStringFromClass(cell.class);
-            if (brickName.length) {
-                brickName = [brickName substringToIndex:brickName.length - 4];
-            }
-            
-            brickDetailViewcontroller.brickName = brickName;
-            self.brickScaleTransition.cell = cell;
-            self.brickScaleTransition.navigationBar = self.navigationController.navigationBar;
-            self.brickScaleTransition.collectionView = self.collectionView;
-            self.brickScaleTransition.touchRect = cell.frame;
-            self.brickScaleTransition.dimView = self.dimView;
-            brickDetailViewcontroller.transitioningDelegate = self;
-            brickDetailViewcontroller.modalPresentationStyle = UIModalPresentationCustom;
-            self.collectionView.userInteractionEnabled = NO;
-            [self presentViewController:brickDetailViewcontroller animated:YES completion:^{
-                self.navigationController.navigationBar.userInteractionEnabled = NO;
-            }];
+        BrickDetailViewController *brickDetailViewcontroller = [[BrickDetailViewController alloc]initWithNibName:@"BrickDetailViewController" bundle:nil];
+        brickDetailViewcontroller.scriptCollectionViewControllerToolbar = self.navigationController.toolbar;
+        
+        NSString *brickName =  NSStringFromClass(cell.class);
+        if (brickName.length) {
+            brickName = [brickName substringToIndex:brickName.length - 4];
         }
+        
+        brickDetailViewcontroller.brickName = brickName;
+        brickDetailViewcontroller.brickCell = cell;
+        self.brickScaleTransition.cell = cell;
+        self.brickScaleTransition.navigationBar = self.navigationController.navigationBar;
+        self.brickScaleTransition.collectionView = self.collectionView;
+        self.brickScaleTransition.touchRect = cell.frame;
+        self.brickScaleTransition.dimView = self.dimView;
+        brickDetailViewcontroller.transitioningDelegate = self;
+        brickDetailViewcontroller.modalPresentationStyle = UIModalPresentationCustom;
+        self.collectionView.userInteractionEnabled = NO;
+        [self presentViewController:brickDetailViewcontroller animated:YES completion:^{
+            self.navigationController.navigationBar.userInteractionEnabled = NO;
+        }];
     } else {
         [self removeScriptSectionWithIndexPath:indexPath];
     }
@@ -423,10 +422,7 @@
 }
 
 - (BOOL)collectionView:(UICollectionView *)collectionView canMoveItemAtIndexPath:(NSIndexPath *)indexPath {
-    BrickCell *cell = (BrickCell *)[self.collectionView cellForItemAtIndexPath:indexPath];
-    
-    // dont move start script brick
-    if ([cell isKindOfClass:StartScriptCell.class] || indexPath.row == 0) {
+    if (self.isEditing || indexPath.item == 0) {
         return NO;
     }
     

@@ -25,6 +25,9 @@
 #import "Brick.h"
 #import "LanguageTranslationDefines.h"
 #import "UIColor+CatrobatUIColorExtensions.h"
+#import "StartScriptCell.h"
+#import "WhenScriptCell.h"
+#import "BroadcastScriptCell.h"
 
 @interface BrickDetailViewController () <UIActionSheetDelegate>
 @property (strong, nonatomic) UITapGestureRecognizer *recognizer;
@@ -37,13 +40,13 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor = UIColor.clearColor;
+    
     self.brickMenu = [[UIActionSheet alloc] initWithTitle:self.brickName
                                                  delegate:self
                                         cancelButtonTitle:kUIActionSheetButtonTitleClose
-                                   destructiveButtonTitle:kUIActionSheetButtonTitleDeleteBrick
-                                        otherButtonTitles:kUIActionSheetButtonTitleHighlightScript,
-                      kUIActionSheetButtonTitleCopyBrick,
-                      kUIActionSheetButtonTitleEditFormula, nil];
+                                   destructiveButtonTitle:[self deleteMenuItemNameWithBrickCell:self.brickCell]
+                                        otherButtonTitles:[self secondMenuItemWithBrickCell:self.brickCell],
+                                                          [self editFormulaMenuItemWithVrickCell:self.brickCell], nil];
     self.deleteFlag = [[NSNumber alloc]initWithBool:NO];
 }
 
@@ -83,24 +86,30 @@
 -(void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
     switch (buttonIndex) {
         case 0: {
-            // delete brick
+            // delete brick or script
             self.deleteFlag = [NSNumber numberWithBool:YES];
             [self dismissBrickDetailViewController];
         }
-            break;
+            
         case 1:
+            // copy brick or highlight script
             
             break;
+            
         case 2:
+            // edit formula or cancel if script
+            if ([self handleScript:self.brickCell] ) {
+                [self dismissBrickDetailViewController];
+            }
             
             break;
+            
         case 3:
-            
-            break;
-            
-        case 4:
             // cancel button
             [self dismissBrickDetailViewController];
+            break;
+            
+        default:
             break;
     }
 }
@@ -124,6 +133,36 @@
                                                           object:NULL
                                                         userInfo:@{@"brickDeleted": self.deleteFlag}];
     }];
+}
+
+- (NSString *)deleteMenuItemNameWithBrickCell:(BrickCell *)cell {
+    if ([self handleScript:cell]) {
+        return kUIActionSheetButtonTitleDeleteScript;
+    }
+    return kUIActionSheetButtonTitleDeleteBrick;
+}
+
+- (NSString *)secondMenuItemWithBrickCell:(BrickCell *)cell {
+    if ([self handleScript:cell]) {
+        return kUIActionSheetButtonTitleHighlightScript;
+    }
+    return kUIActionSheetButtonTitleCopyBrick;
+}
+
+- (NSString *)editFormulaMenuItemWithVrickCell:(BrickCell *)cell {
+    if ([self handleScript:cell]) {
+        return nil;
+    }
+    return kUIActionSheetButtonTitleEditFormula;
+}
+
+- (BOOL)handleScript:(BrickCell *)brickcell {
+    if ([brickcell isKindOfClass:StartScriptCell.class] ||
+        [brickcell isKindOfClass:WhenScriptCell.class] ||
+        [brickcell isKindOfClass:BroadcastScriptCell.class]) {
+        return YES;
+    }
+    return NO;
 }
 
 @end
