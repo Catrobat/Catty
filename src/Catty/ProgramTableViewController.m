@@ -260,6 +260,7 @@ UINavigationBarDelegate>
     SpriteObject *object = [self.program.objectList objectAtIndex:index];
     imageCell.iconImageView.image = nil;
     [imageCell.iconImageView setBorder:[UIColor skyBlueColor] Width:kDefaultImageCellBorderWidth];
+    imageCell.backgroundColor = UIColor.darkBlueColor;
     if (! [object.lookList count]) {
         imageCell.titleLabel.text = object.name;
         return imageCell;
