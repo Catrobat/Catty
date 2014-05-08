@@ -204,14 +204,22 @@
     if (notification.userInfo) {
         __weak UICollectionView *weakself = self.collectionView;
         NSUInteger sectionCount = self.object.scriptList.count;
-        Script *script = [self.object.scriptList objectAtIndex:sectionCount - 1];
-        NSUInteger brickCountInSection = script.brickList.count;
         
-        NSIndexPath *lastIndexPath = [NSIndexPath indexPathForItem:brickCountInSection inSection:sectionCount - 1];
-        [self addBrickCellAction:notification.userInfo[kUserInfoKeyBrickCell] completionBlock:^{
-            [weakself reloadData];
-            [weakself scrollToItemAtIndexPath:lastIndexPath atScrollPosition:UICollectionViewScrollPositionTop animated:YES];
-        }];
+        if (self.object.scriptList.count) {
+            Script *script = [self.object.scriptList objectAtIndex:sectionCount - 1];
+            NSUInteger brickCountInSection = script.brickList.count;
+            
+            NSIndexPath *lastIndexPath = [NSIndexPath indexPathForItem:brickCountInSection inSection:sectionCount - 1];
+            [self addBrickCellAction:notification.userInfo[kUserInfoKeyBrickCell] completionBlock:^{
+                [weakself reloadData];
+                [weakself scrollToItemAtIndexPath:lastIndexPath atScrollPosition:UICollectionViewScrollPositionTop animated:YES];
+            }];
+        } else {
+            [self addBrickCellAction:notification.userInfo[kUserInfoKeyBrickCell] completionBlock:^{
+                [weakself reloadData];
+            }];
+        }
+
     }
 }
 
