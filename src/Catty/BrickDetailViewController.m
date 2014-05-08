@@ -98,7 +98,7 @@
             
         case 2:
             // edit formula or cancel if script
-            if ([self handleScript:self.brickCell] ) {
+            if ([self isScript:self.brickCell] ) {
                 [self dismissBrickDetailViewController];
             }
             
@@ -131,32 +131,33 @@
     [self dismissViewControllerAnimated:YES completion:^{
         [NSNotificationCenter.defaultCenter postNotificationName:kBrickDetailViewDismissed
                                                           object:NULL
-                                                        userInfo:@{@"brickDeleted": self.deleteFlag}];
+                                                        userInfo:@{@"brickDeleted": self.deleteFlag,
+                                                                   @"isScript": @([self isScript:self.brickCell])}];
     }];
 }
 
 - (NSString *)deleteMenuItemNameWithBrickCell:(BrickCell *)cell {
-    if ([self handleScript:cell]) {
+    if ([self isScript:cell]) {
         return kUIActionSheetButtonTitleDeleteScript;
     }
     return kUIActionSheetButtonTitleDeleteBrick;
 }
 
 - (NSString *)secondMenuItemWithBrickCell:(BrickCell *)cell {
-    if ([self handleScript:cell]) {
+    if ([self isScript:cell]) {
         return kUIActionSheetButtonTitleHighlightScript;
     }
     return kUIActionSheetButtonTitleCopyBrick;
 }
 
 - (NSString *)editFormulaMenuItemWithVrickCell:(BrickCell *)cell {
-    if ([self handleScript:cell]) {
+    if ([self isScript:cell]) {
         return nil;
     }
     return kUIActionSheetButtonTitleEditFormula;
 }
 
-- (BOOL)handleScript:(BrickCell *)brickcell {
+- (BOOL)isScript:(BrickCell *)brickcell {
     if ([brickcell isKindOfClass:StartScriptCell.class] ||
         [brickcell isKindOfClass:WhenScriptCell.class] ||
         [brickcell isKindOfClass:BroadcastScriptCell.class]) {

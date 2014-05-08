@@ -230,7 +230,12 @@
     [self.collectionView reloadData];
     
     if  ([notification.userInfo[@"brickDeleted"] boolValue]) {
-        [self removeBrickFromScriptCollectionViewFromIndex:self.selectedIndexPath];
+        if (![notification.userInfo[@"isScript"] boolValue]) {
+             [self removeBrickFromScriptCollectionViewFromIndex:self.selectedIndexPath];
+        } else {
+            [self removeScriptSectionWithIndexPath:self.selectedIndexPath];
+        }
+       
     }
 }
 
