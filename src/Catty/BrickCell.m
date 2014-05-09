@@ -150,7 +150,7 @@
 {
     if (!_deleteButton) {
         _deleteButton = [[ScriptDeleteButton alloc]initWithFrame:CGRectZero];
-        _deleteButton.hidden = self.hideDeleteButton;
+        _deleteButton.hidden = YES;
     }
     return _deleteButton;
 }
@@ -710,17 +710,19 @@
         //  self.transform = CGAffineTransformMakeScale(0.8f, 0.8f);
         self.alpha = 0.2f;
         self.userInteractionEnabled = NO;
+        self.hideDeleteButton = NO;
     } else {
         // self.transform = CGAffineTransformIdentity;
         self.alpha = 1.0f;
         self.userInteractionEnabled = YES;
+        self.hideDeleteButton = YES;
     }
 }
 
 #pragma mark delete button
-- (void)setShowDeleteButton:(BOOL)hideDeleteButton {
+- (void)setHideDeleteButton:(BOOL)hideDeleteButton {
     _hideDeleteButton = hideDeleteButton;
-    self.deleteButton.hidden = !hideDeleteButton;
+    self.deleteButton.hidden = hideDeleteButton;
 }
 
 @end

@@ -39,6 +39,7 @@
 #import "FXBlurView.h"
 #import "LanguageTranslationDefines.h"
 #import "PlaceHolderView.h"
+#import "BroadcastScriptCell.h"
 
 @interface ScriptCollectionViewController () <UICollectionViewDelegate, LXReorderableCollectionViewDelegateFlowLayout, LXReorderableCollectionViewDataSource, UIViewControllerTransitioningDelegate>
 @property (nonatomic, strong) NSDictionary *classNameBrickNameMap;
@@ -91,7 +92,7 @@
     
     self.placeHolderView = [[PlaceHolderView alloc]initWithFrame:self.collectionView.bounds];
     [self.view addSubview:self.placeHolderView];
-    self.placeHolderView.hidden = NO;
+    self.placeHolderView.hidden = self.object.scriptList.count ? YES : NO;
     
     self.brickScaleTransition = [BrickScaleTransition new];
     self.dimView = [[FXBlurView alloc] initWithFrame:self.view.bounds];
@@ -162,6 +163,18 @@
     [self performSegueWithIdentifier:kSegueToScene sender:sender];
 }
 
+- (void)scriptDeleteButtonAction:(id)sender
+{
+    if ([sender isKindOfClass:ScriptDeleteButton.class]) {
+        ScriptDeleteButton *button = (ScriptDeleteButton *)sender;
+        NSIndexPath *indexPath = [self.collectionView indexPathForItemAtPoint:[self.collectionView convertPoint:button.center fromView:button.superview]];
+        if (indexPath) {
+            [self removeScriptSectionWithIndexPath:indexPath];
+        }
+
+    }
+}
+
 #pragma mark - Notification
 - (void)brickAdded:(NSNotification*)notification
 {
@@ -182,7 +195,8 @@
     }
 }
 
-- (void)brickDetailViewDismissed:(NSNotification *)notification {
+- (void)brickDetailViewDismissed:(NSNotification *)notification
+{
     self.collectionView.userInteractionEnabled = YES;
     [self.navigationController setToolbarHidden:NO animated:YES];
     self.navigationController.navigationBar.userInteractionEnabled = YES;
@@ -236,18 +250,23 @@
         // case it's a script brick
         NSString *scriptSubClassName = NSStringFromClass([script class]);
         brickCell = [collectionView dequeueReusableCellWithReuseIdentifier:scriptSubClassName forIndexPath:indexPath];
+        [brickCell.deleteButton addTarget:self action:@selector(scriptDeleteButtonAction:) forControlEvents:UIControlEventTouchUpInside];
+        [brickCell setBrickEditing:self.isEditing];
+        
+        // overwriten values, needs refactoring later
+        brickCell.alpha = 1.0f;
+        brickCell.userInteractionEnabled = YES;
     } else {
         // case it's a normal brick
         Brick *brick = [script.brickList objectAtIndex:(indexPath.row - 1)];
         NSString *brickSubClassName = NSStringFromClass([brick class]);
         brickCell = [collectionView dequeueReusableCellWithReuseIdentifier:brickSubClassName forIndexPath:indexPath];
         [brickCell setBrickEditing:self.isEditing];
+        brickCell.hideDeleteButton = YES;
     }
     brickCell.backgroundBrickCell = self.object.isBackground;
     brickCell.enabled = YES;
     [brickCell renderSubViews];
-    
-    self.placeHolderView.hidden = self.object.scriptList.count ? YES : NO;
     
     return brickCell;
 }
@@ -346,9 +365,7 @@
         [self presentViewController:brickDetailViewcontroller animated:YES completion:^{
             self.navigationController.navigationBar.userInteractionEnabled = NO;
         }];
-    } else {
-        [self removeScriptSectionWithIndexPath:indexPath];
-    }
+    } 
 }
 
 - (void)collectionView:(UICollectionView *)collectionView didHighlightItemAtIndexPath:(NSIndexPath *)indexPath {
@@ -503,7 +520,7 @@
         NSError(@"Unknown class type given...");
         abort();
     }
-    
+    self.placeHolderView.hidden = self.object.scriptList.count ? YES : NO;
     if (completionBlock) completionBlock();
 }
 
@@ -521,15 +538,17 @@
 
     if (self.isEditing) {
         self.navigationItem.title = NSLocalizedString(@"Edit Mode", nil);
-         __block NSInteger section = 0;
+         __block NSInteger section = 0;;
         for (NSUInteger idx = 0; idx < self.collectionView.numberOfSections; idx++) {
+            BrickCell *controlBrickCell = (BrickCell *)[self.collectionView cellForItemAtIndexPath:[NSIndexPath indexPathForItem:0 inSection:section]];
+            [self animateStataCellDeleteButton:controlBrickCell];
+            
             Script *script = [self.object.scriptList objectAtIndex:idx];
             [script.brickList enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
                 *stop = section > self.collectionView.numberOfSections ? YES : NO;
-                
                 BrickCell *cell = (BrickCell *)[self.collectionView cellForItemAtIndexPath:[NSIndexPath indexPathForItem:idx + 1 inSection:section]];
                 cell.userInteractionEnabled = NO;
-                [UIView animateWithDuration:0.55f delay:0.0f usingSpringWithDamping:5.0f/*0.45f*/ initialSpringVelocity:0.0f/*2.0f*/ options:UIViewAnimationOptionCurveEaseInOut animations:^{
+                [UIView animateWithDuration:0.35f delay:0.0f usingSpringWithDamping:1.0f/*0.45f*/ initialSpringVelocity:5.0f/*2.0f*/ options:UIViewAnimationOptionCurveEaseInOut animations:^{
                     cell.alpha = 0.2f;
                     // cell.transform = CGAffineTransformMakeScale(0.8f, 0.8f);  // TODO dont work right at the moment with the bacghround image. fix later
                 } completion:NULL];
@@ -537,18 +556,19 @@
             section++;
         }
         
-        
     } else {
+           self.navigationItem.title = NSLocalizedString(@"Scripts", nil);
          __block NSInteger section = 0;
-        self.navigationItem.title = NSLocalizedString(@"Scripts", nil);
         for (NSUInteger idx = 0; idx < self.collectionView.numberOfSections; idx++) {
+            BrickCell *controlBrickCell = (BrickCell *)[self.collectionView cellForItemAtIndexPath:[NSIndexPath indexPathForItem:0 inSection:section]];
+            [self animateStataCellDeleteButton:controlBrickCell];
+            
             Script *script = [self.object.scriptList objectAtIndex:idx];
             [script.brickList enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
                 *stop = section > self.collectionView.numberOfSections ? YES : NO;
-                
                 BrickCell *cell = (BrickCell *)[self.collectionView cellForItemAtIndexPath:[NSIndexPath indexPathForItem:idx + 1 inSection:section]];
                 cell.userInteractionEnabled = YES;
-                [UIView animateWithDuration:0.35f delay:0.0f usingSpringWithDamping:0.5f initialSpringVelocity:2.0f options:UIViewAnimationOptionCurveEaseInOut animations:^{
+                [UIView animateWithDuration:0.25f delay:0.0f usingSpringWithDamping:0.5f initialSpringVelocity:2.0f options:UIViewAnimationOptionCurveEaseInOut animations:^{
                     cell.alpha = 1.0;
                     //   cell.transform = CGAffineTransformIdentity; // TODO dont work right at the moment with the bacghround image. fix later
 
@@ -558,5 +578,42 @@
         }
     }
 }
+
+- (void)animateStataCellDeleteButton:(BrickCell *)controlBrickCell
+{
+    CGFloat endAlpha;
+    CGAffineTransform transform;
+    BOOL start = NO;
+    
+    controlBrickCell.hideDeleteButton = NO;
+    if (self.isEditing) {
+        start = YES;
+        controlBrickCell.deleteButton.alpha = 0.0f;
+        endAlpha = 1.0f;
+        controlBrickCell.deleteButton.transform = CGAffineTransformMakeScale(0.1f, 0.1f);
+        transform = CGAffineTransformMakeScale(1.0f, 1.0f);
+    } else {
+        endAlpha = 0.0f;
+    }
+    
+    [UIView animateWithDuration:0.35f
+                          delay:0
+         usingSpringWithDamping:1.0f
+          initialSpringVelocity:1.0f
+                        options:UIViewAnimationOptionCurveEaseOut
+                     animations:^{
+                         controlBrickCell.deleteButton.transform = transform;
+                         controlBrickCell.deleteButton.alpha = endAlpha;
+                     }
+                     completion:^(BOOL finished) {
+                         if (finished) {
+                             controlBrickCell.deleteButton.transform = CGAffineTransformIdentity;
+                             controlBrickCell.hideDeleteButton = !start;
+                         }
+                     }];
+    
+}
+
+
 
 @end
