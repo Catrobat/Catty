@@ -120,6 +120,7 @@
     [super viewWillDisappear:animated];
     NSNotificationCenter *dnc = [NSNotificationCenter defaultCenter];
     [dnc removeObserver:self name:kBrickCellAddedNotification object:nil];
+    [dnc removeObserver:self name:kBrickDetailViewDismissed object:nil];
 }
 
 
