@@ -161,62 +161,20 @@
     [self performSegueWithIdentifier:kSegueToScene sender:sender];
 }
 
-- (void)addBrickCellAction:(BrickCell*)brickCell completionBlock:(void(^)())completionBlock {
-    if (! brickCell) {
-        return;
-    }
-
-    // convert brickCell to brick
-    NSString *brickCellClassName = NSStringFromClass([brickCell class]);
-    NSString *brickOrScriptClassName = [brickCellClassName stringByReplacingOccurrencesOfString:@"Cell" withString:@""];
-    id brickOrScript = [[NSClassFromString(brickOrScriptClassName) alloc] init];
-    
-    if ([brickOrScript isKindOfClass:[Brick class]]) {
-        Script *script = nil;
-        // automatically create new script if the object does not contain any of them
-        if (! [self.object.scriptList count]) {
-            script = [[StartScript alloc] init];
-            script.allowRunNextAction = YES;
-            script.object = self.object;
-            [self.object.scriptList addObject:script];
-        } else {
-            // add brick to first script
-            script = [self.object.scriptList objectAtIndex:self.collectionView.numberOfSections - 1];
-        }
-        Brick *brick = (Brick*)brickOrScript;
-        brick.object = self.object;
-        [script.brickList addObject:brick];
-    } else if ([brickOrScript isKindOfClass:[Script class]]) {
-        Script *script = (Script*)brickOrScript;
-        script.object = self.object;
-        [self.object.scriptList addObject:script];
-    } else {
-        NSError(@"Unknown class type given...");
-        abort();
-    }
-    
-    if (completionBlock) completionBlock();
-}
-
 #pragma mark - Notification
 - (void)brickAdded:(NSNotification*)notification
 {
     if (notification.userInfo) {
-        __weak UICollectionView *weakself = self.collectionView;
-        NSUInteger sectionCount = self.object.scriptList.count;
-        
+        __weak UICollectionView *weakCollectionView = self.collectionView;
+        __weak ScriptCollectionViewController *weakself = self;
         if (self.object.scriptList.count) {
-            Script *script = [self.object.scriptList objectAtIndex:sectionCount - 1];
-            NSUInteger brickCountInSection = script.brickList.count;
-            
-            NSIndexPath *lastIndexPath = [NSIndexPath indexPathForItem:brickCountInSection inSection:sectionCount - 1];
             [self addBrickCellAction:notification.userInfo[kUserInfoKeyBrickCell] completionBlock:^{
-                [weakself reloadData];
-                [weakself scrollToItemAtIndexPath:lastIndexPath atScrollPosition:UICollectionViewScrollPositionTop animated:YES];
+                [weakCollectionView reloadData];
+                [weakself scrollToLastbrickinCollectionView:weakCollectionView];
             }];
         } else {
             [self addBrickCellAction:notification.userInfo[kUserInfoKeyBrickCell] completionBlock:^{
-                [weakself reloadData];
+                [weakCollectionView reloadData];
             }];
         }
 
@@ -235,7 +193,15 @@
         } else {
             [self removeScriptSectionWithIndexPath:self.selectedIndexPath];
         }
-       
+    } else {
+        if ([notification.userInfo[@"copy"] boolValue] && notification.userInfo[@"copiedCell"]) {
+            __weak UICollectionView *weakCollectionView = self.collectionView;
+            __weak ScriptCollectionViewController *weakself = self;
+            [self addBrickCellAction:notification.userInfo[@"copiedCell"] completionBlock:^{
+                [weakCollectionView reloadData];
+                [weakself scrollToLastbrickinCollectionView:weakCollectionView];
+            }];
+        }
     }
 }
 
@@ -352,8 +318,8 @@
 }
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
-    self.selectedIndexPath =  indexPath;
     BrickCell *cell = (BrickCell*)[self.collectionView cellForItemAtIndexPath:indexPath];
+    self.selectedIndexPath =  indexPath;
     NSLog(@"selected cell = %@", cell);
     
     // TDOD handle bricks which can be edited
@@ -455,8 +421,6 @@
 #pragma mark - helpers
 - (void)setupToolBar
 {
-    // @INFO: Please do not modify or remove this code again, unless you don't know exactly what you are doing.
-
     [self.navigationController setToolbarHidden:NO];
     self.navigationController.toolbar.barStyle = UIBarStyleBlack;
     self.navigationController.toolbar.tintColor = [UIColor orangeColor];
@@ -503,6 +467,51 @@
             self.placeHolderView.hidden = self.object.scriptList.count ? YES : NO;
         }];
     }
+}
+
+- (void)addBrickCellAction:(BrickCell*)brickCell completionBlock:(void(^)())completionBlock {
+    if (! brickCell) {
+        return;
+    }
+    
+    // convert brickCell to brick
+    NSString *brickCellClassName = NSStringFromClass([brickCell class]);
+    NSString *brickOrScriptClassName = [brickCellClassName stringByReplacingOccurrencesOfString:@"Cell" withString:@""];
+    id brickOrScript = [[NSClassFromString(brickOrScriptClassName) alloc] init];
+    
+    if ([brickOrScript isKindOfClass:[Brick class]]) {
+        Script *script = nil;
+        // automatically create new script if the object does not contain any of them
+        if (! [self.object.scriptList count]) {
+            script = [[StartScript alloc] init];
+            script.allowRunNextAction = YES;
+            script.object = self.object;
+            [self.object.scriptList addObject:script];
+        } else {
+            // add brick to first script
+            script = [self.object.scriptList objectAtIndex:self.collectionView.numberOfSections - 1];
+        }
+        Brick *brick = (Brick*)brickOrScript;
+        brick.object = self.object;
+        [script.brickList addObject:brick];
+    } else if ([brickOrScript isKindOfClass:[Script class]]) {
+        Script *script = (Script*)brickOrScript;
+        script.object = self.object;
+        [self.object.scriptList addObject:script];
+    } else {
+        NSError(@"Unknown class type given...");
+        abort();
+    }
+    
+    if (completionBlock) completionBlock();
+}
+
+- (void)scrollToLastbrickinCollectionView:(UICollectionView *)collectionView {
+    NSUInteger sectionCount = self.object.scriptList.count;
+    Script *script = [self.object.scriptList objectAtIndex:sectionCount - 1];
+    NSUInteger brickCountInSection = script.brickList.count;
+    NSIndexPath *lastIndexPath = [NSIndexPath indexPathForItem:brickCountInSection inSection:sectionCount - 1];
+    [collectionView scrollToItemAtIndexPath:lastIndexPath atScrollPosition:UICollectionViewScrollPositionTop animated:YES];
 }
 
 #pragma mark - Editing

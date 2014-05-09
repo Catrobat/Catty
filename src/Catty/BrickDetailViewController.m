@@ -32,7 +32,8 @@
 @interface BrickDetailViewController () <UIActionSheetDelegate>
 @property (strong, nonatomic) UITapGestureRecognizer *recognizer;
 @property (strong, nonatomic) UIActionSheet *brickMenu;
-@property (strong, nonatomic) NSNumber *deleteFlag;
+@property (strong, nonatomic) NSNumber *deleteBrickOrScriptFlag;
+@property (strong, nonatomic) NSNumber *brickCopyFlag;
 @end
 
 @implementation BrickDetailViewController
@@ -47,7 +48,8 @@
                                    destructiveButtonTitle:[self deleteMenuItemNameWithBrickCell:self.brickCell]
                                         otherButtonTitles:[self secondMenuItemWithBrickCell:self.brickCell],
                                                           [self editFormulaMenuItemWithVrickCell:self.brickCell], nil];
-    self.deleteFlag = [[NSNumber alloc]initWithBool:NO];
+    self.deleteBrickOrScriptFlag = [[NSNumber alloc]initWithBool:NO];
+    self.brickCopyFlag = [[NSNumber alloc]initWithBool:NO];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -87,12 +89,16 @@
     switch (buttonIndex) {
         case 0: {
             // delete brick or script
-            self.deleteFlag = [NSNumber numberWithBool:YES];
+            self.deleteBrickOrScriptFlag = [NSNumber numberWithBool:YES];
             [self dismissBrickDetailViewController];
         }
             
         case 1:
             // copy brick or highlight script
+            if (![self isScript:self.brickCell]) {
+                self.brickCopyFlag = [NSNumber numberWithBool:YES];
+                [self dismissBrickDetailViewController];
+            }
             
             break;
             
@@ -131,8 +137,10 @@
     [self dismissViewControllerAnimated:YES completion:^{
         [NSNotificationCenter.defaultCenter postNotificationName:kBrickDetailViewDismissed
                                                           object:NULL
-                                                        userInfo:@{@"brickDeleted": self.deleteFlag,
-                                                                   @"isScript": @([self isScript:self.brickCell])}];
+                                                        userInfo:@{@"brickDeleted": self.deleteBrickOrScriptFlag,
+                                                                   @"isScript": @([self isScript:self.brickCell]),
+                                                                   @"copy": self.brickCopyFlag,
+                                                                   @"copiedCell": self.brickCell }];
     }];
 }
 
