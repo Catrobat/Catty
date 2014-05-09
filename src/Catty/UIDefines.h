@@ -95,13 +95,16 @@ typedef NS_ENUM(NSInteger, kBrickCategoryType) {
 #define kBrickTextFieldFontSize 15.0f
 #define kBrickInputFieldHeight 28.0f
 #define kBrickInputFieldMinWidth 60.0f
-#define kBrickComboBoxWidth 250.0f
+#define kBrickComboBoxWidth 210.0f
 #define kBrickInputFieldTopMargin 4.0f
 #define kBrickInputFieldBottomMargin 5.0f
 #define kBrickInputFieldLeftMargin 4.0f
 #define kBrickInputFieldRightMargin 4.0f
 #define kBrickInputFieldMinRowHeight (kBrickInputFieldHeight + 4.0f)
 #define kDefaultImageCellBorderWidth 1.0f
+
+// delete button bricks
+#define kBrickDeleteButtonSize 22.0f
 
 // control bricks
 typedef NS_ENUM(NSInteger, kControlBrickType) {

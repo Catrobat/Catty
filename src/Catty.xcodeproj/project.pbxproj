@@ -29,6 +29,7 @@
 		815420D9191A51F200E628D2 /* FBShimmeringLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 815420D6191A51F200E628D2 /* FBShimmeringLayer.m */; };
 		815420DA191A51F200E628D2 /* FBShimmeringView.m in Sources */ = {isa = PBXBuildFile; fileRef = 815420D8191A51F200E628D2 /* FBShimmeringView.m */; };
 		815420DD191A5C1F00E628D2 /* PlaceHolderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 815420DC191A5C1F00E628D2 /* PlaceHolderView.m */; };
+		81649E10191D35090099AE7E /* ScriptDeleteButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 81649E0F191D35090099AE7E /* ScriptDeleteButton.m */; };
 		816C788617D62B7C0029A4E6 /* ProgramTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 816C788517D62B7C0029A4E6 /* ProgramTableViewController.m */; };
 		817B544018F03C0D00AF6BFE /* BaseTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = 817B543F18F03C0D00AF6BFE /* BaseTransition.m */; };
 		817B544318F03D4C00AF6BFE /* BrickScaleTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = 817B544218F03D4C00AF6BFE /* BrickScaleTransition.m */; };
@@ -304,6 +305,8 @@
 		815420D8191A51F200E628D2 /* FBShimmeringView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FBShimmeringView.m; sourceTree = "<group>"; };
 		815420DB191A5C1F00E628D2 /* PlaceHolderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlaceHolderView.h; sourceTree = "<group>"; };
 		815420DC191A5C1F00E628D2 /* PlaceHolderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlaceHolderView.m; sourceTree = "<group>"; };
+		81649E0E191D35090099AE7E /* ScriptDeleteButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScriptDeleteButton.h; sourceTree = "<group>"; };
+		81649E0F191D35090099AE7E /* ScriptDeleteButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScriptDeleteButton.m; sourceTree = "<group>"; };
 		816C788417D62B7C0029A4E6 /* ProgramTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProgramTableViewController.h; sourceTree = "<group>"; };
 		816C788517D62B7C0029A4E6 /* ProgramTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProgramTableViewController.m; sourceTree = "<group>"; };
 		817B543E18F03C0D00AF6BFE /* BaseTransition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseTransition.h; sourceTree = "<group>"; };
@@ -929,6 +932,15 @@
 				815420D8191A51F200E628D2 /* FBShimmeringView.m */,
 			);
 			path = FBShimmering;
+			sourceTree = "<group>";
+		};
+		81649E0D191D34E30099AE7E /* SubViews */ = {
+			isa = PBXGroup;
+			children = (
+				81649E0E191D35090099AE7E /* ScriptDeleteButton.h */,
+				81649E0F191D35090099AE7E /* ScriptDeleteButton.m */,
+			);
+			name = SubViews;
 			sourceTree = "<group>";
 		};
 		817B543D18F03BC700AF6BFE /* Transitions */ = {
@@ -1881,6 +1893,7 @@
 		CA750F8218A12CFA005FC0A0 /* BrickCells */ = {
 			isa = PBXGroup;
 			children = (
+				81649E0D191D34E30099AE7E /* SubViews */,
 				81C27422189EE41700827A95 /* BrickCell.h */,
 				81C27423189EE41700827A95 /* BrickCell.m */,
 				CA5FED4E18B0070300A517B6 /* BrickCellInlineView.h */,
@@ -2888,6 +2901,7 @@
 				B4F499B0175E8387002E1BBD /* PullableView.m in Sources */,
 				B4A92DCD175F8DF700608667 /* SSZipArchive.m in Sources */,
 				B46B271B17708E6700172837 /* LoopBeginBrick.m in Sources */,
+				81649E10191D35090099AE7E /* ScriptDeleteButton.m in Sources */,
 				B4A92DD2175FD4B800608667 /* GDataXMLNode.m in Sources */,
 				CA75C22F18A9612300FC8C2F /* WaitBrickCell.m in Sources */,
 			);

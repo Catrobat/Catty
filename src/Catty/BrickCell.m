@@ -33,6 +33,7 @@
 
 // uncomment this to get special log outputs, etc...
 //#define LAYOUT_DEBUG 0
+#define kDeleteButtonOffset 1.0f
 
 @interface BrickCell ()
 @property (nonatomic, strong) NSDictionary *classNameBrickNameMap;
@@ -145,10 +146,23 @@
     return _inlineView;
 }
 
-#pragma mark - layout
+- (ScriptDeleteButton *)deleteButton
+{
+    if (!_deleteButton) {
+        _deleteButton = [[ScriptDeleteButton alloc]initWithFrame:CGRectZero];
+        _deleteButton.hidden = self.hideDeleteButton;
+    }
+    return _deleteButton;
+}
+
+#pragma mark - layout subviews
 - (void)layoutSubviews
 {
     [super layoutSubviews];
+    self.deleteButton.frame = CGRectIntegral(CGRectMake(self.bounds.origin.x + kDeleteButtonOffset,
+                                                        self.bounds.origin.y,
+                                                        kBrickDeleteButtonSize,
+                                                        kBrickDeleteButtonSize)) ;
     
 }
 
@@ -301,10 +315,8 @@
     [self setupBrickPatternImage];
     [self setupBrickPatternBackgroundImage];
     [self setupInlineView];
-
-    // just to test layout
-//    self.layer.borderWidth=1.0f;
-//    self.layer.borderColor=[UIColor whiteColor].CGColor;
+    
+    [self addSubview:self.deleteButton];
 }
 
 #pragma mark - init
@@ -703,6 +715,12 @@
         self.alpha = 1.0f;
         self.userInteractionEnabled = YES;
     }
+}
+
+#pragma mark delete button
+- (void)setShowDeleteButton:(BOOL)hideDeleteButton {
+    _hideDeleteButton = hideDeleteButton;
+    self.deleteButton.hidden = !hideDeleteButton;
 }
 
 @end
