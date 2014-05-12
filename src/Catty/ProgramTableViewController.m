@@ -133,6 +133,7 @@ UINavigationBarDelegate>
         self.title = self.program.header.programName;
     }
     [self setupToolBar];
+    self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
 }
 
 #pragma mark - application events

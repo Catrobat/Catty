@@ -99,6 +99,7 @@
                                  : kUIViewControllerPlaceholderTitleLooks)]];
     [super showPlaceHolder:(! (BOOL)[self.object.lookList count])];
     [self setupToolBar];
+    self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
 }
 
 - (void)didReceiveMemoryWarning

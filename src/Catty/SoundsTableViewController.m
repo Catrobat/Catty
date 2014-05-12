@@ -102,6 +102,7 @@
                                 kUIViewControllerPlaceholderTitleSounds]];
     [super showPlaceHolder:(! (BOOL)[self.object.soundList count])];
     [self setupToolBar];
+    self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
 }
 
 - (void)viewWillAppear:(BOOL)animated
