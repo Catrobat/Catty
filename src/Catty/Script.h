@@ -36,7 +36,7 @@
 @property (strong, nonatomic) NSMutableArray *brickList;
 
 // TODO: use protocol to define interfaces for Brick and Script class
-@property (nonatomic) kBrickType brickType;
+//@property (nonatomic) kBrickType brickType;
 
 - (void)startWithCompletion:(dispatch_block_t)block;
 
