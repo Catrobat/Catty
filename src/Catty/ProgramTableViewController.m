@@ -379,7 +379,6 @@ UINavigationBarDelegate>
                                                     ? [kUILabelTextObjectPlural uppercaseString]
                                                     : [kUILabelTextObjectSingular uppercaseString]);
     }
-
     return headerView;
 }
 

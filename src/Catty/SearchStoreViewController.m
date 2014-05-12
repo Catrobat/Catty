@@ -66,8 +66,9 @@
     self.checkSearch = YES;
     self.searchDisplayController.searchBar.barTintColor = [UIColor darkBlueColor];
     self.searchDisplayController.searchBar.barStyle = UISearchBarStyleMinimal;
+    self.tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
+    self.tableView.separatorColor = UIColor.skyBlueColor;
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
-
 }
 
 - (void)viewWillAppear:(BOOL)animated

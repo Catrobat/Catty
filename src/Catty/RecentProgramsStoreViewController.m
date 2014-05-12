@@ -84,6 +84,8 @@
     self.view.backgroundColor = [UIColor darkBlueColor];
     [self initSegmentedControl];
     self.previousSelectedIndex = 0;
+    self.tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
+    self.tableView.separatorColor = UIColor.skyBlueColor;
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
 }
 
@@ -235,9 +237,6 @@
 
         [self loadImage:project.screenshotSmall forCell:imageCell atIndexPath:indexPath];
         NSDebug(@"Normal Cell");
-
-        imageCell.accessoryView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"accessory"]];
-
         //        }
     }
     return cell;
