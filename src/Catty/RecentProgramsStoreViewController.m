@@ -84,6 +84,7 @@
     self.view.backgroundColor = [UIColor darkBlueColor];
     [self initSegmentedControl];
     self.previousSelectedIndex = 0;
+    self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
 }
 
 - (void)viewWillAppear:(BOOL)animated
