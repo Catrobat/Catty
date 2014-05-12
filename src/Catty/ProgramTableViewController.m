@@ -372,18 +372,18 @@ UINavigationBarDelegate>
     //UITableViewHeaderFooterView *headerView = [tableView dequeueReusableHeaderFooterViewWithIdentifier:kTableHeaderIdentifier];
     // FIXME: HACK do not alloc init there. Use ReuseIdentifier instead!! But does lead to several issues...
     UITableViewHeaderFooterView *headerView = [[UITableViewHeaderFooterView alloc] init];
-    headerView.contentView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"darkblue"]];
+//    headerView.contentView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"darkblue"]];
 
     CGFloat height = [self tableView:self.tableView heightForHeaderInSection:section]-10.0;
     UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(13.0f, 0.0f, 265.0f, height)];
 
-    CALayer *layer = titleLabel.layer;
-    CALayer *bottomBorder = [CALayer layer];
-    bottomBorder.borderColor = [UIColor airForceBlueColor].CGColor;
-    bottomBorder.borderWidth = 1;
-    bottomBorder.frame = CGRectMake(0, layer.frame.size.height-1, layer.frame.size.width, 1);
-    [bottomBorder setBorderColor:[UIColor airForceBlueColor].CGColor];
-    [layer addSublayer:bottomBorder];
+//    CALayer *layer = titleLabel.layer;
+//    CALayer *bottomBorder = [CALayer layer];
+//    bottomBorder.borderColor = [UIColor airForceBlueColor].CGColor;
+//    bottomBorder.borderWidth = 1;
+//    bottomBorder.frame = CGRectMake(0, layer.frame.size.height-1, layer.frame.size.width, 1);
+//    [bottomBorder setBorderColor:[UIColor airForceBlueColor].CGColor];
+//    [layer addSublayer:bottomBorder];
 
     titleLabel.textColor = [UIColor whiteColor];
     titleLabel.tag = 1;

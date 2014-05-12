@@ -96,12 +96,9 @@
 {
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
-    [self.tableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
-    UIColor *backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"darkblue"]];
-    self.tableView.backgroundColor = backgroundColor;
-    UITableViewHeaderFooterView *headerViewTemplate = [[UITableViewHeaderFooterView alloc] initWithReuseIdentifier:kTableHeaderIdentifier];
-    headerViewTemplate.contentView.backgroundColor = backgroundColor;
-    [self.tableView addSubview:headerViewTemplate];
+    self.tableView.backgroundColor = UIColor.darkBlueColor;
+    self.tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
+    self.tableView.separatorColor = UIColor.skyBlueColor;
 }
 
 #pragma mark - getters and setters

@@ -97,6 +97,8 @@
     self.reachability = [Reachability reachabilityForInternetConnection];
     [self.reachability startNotifier];
     self.tableView.delaysContentTouches = NO;
+    self.tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
+    self.tableView.separatorColor = UIColor.skyBlueColor;
 }
 
 - (void)viewWillAppear:(BOOL)animated
