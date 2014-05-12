@@ -181,17 +181,12 @@
     if (notification.userInfo) {
         __weak UICollectionView *weakCollectionView = self.collectionView;
         __weak ScriptCollectionViewController *weakself = self;
-        if (self.object.scriptList.count) {
-            [self addBrickCellAction:notification.userInfo[kUserInfoKeyBrickCell] completionBlock:^{
+        if (self.object.scriptList) {
+            [self addBrickCellAction:notification.userInfo[kUserInfoKeyBrickCell] copyBrick:NO completionBlock:^{
                 [weakCollectionView reloadData];
                 [weakself scrollToLastbrickinCollectionView:weakCollectionView];
             }];
-        } else {
-            [self addBrickCellAction:notification.userInfo[kUserInfoKeyBrickCell] completionBlock:^{
-                [weakCollectionView reloadData];
-            }];
         }
-
     }
 }
 
@@ -203,18 +198,15 @@
     [self.collectionView reloadData];
     
     if  ([notification.userInfo[@"brickDeleted"] boolValue]) {
-        if (![notification.userInfo[@"isScript"] boolValue]) {
-             [self removeBrickFromScriptCollectionViewFromIndex:self.selectedIndexPath];
-        } else {
-            [self removeScriptSectionWithIndexPath:self.selectedIndexPath];
-        }
+        [notification.userInfo[@"isScript"] boolValue] ? [self removeScriptSectionWithIndexPath:self.selectedIndexPath] :
+                                                         [self removeBrickFromScriptCollectionViewFromIndex:self.selectedIndexPath];
+        
     } else {
-        if ([notification.userInfo[@"copy"] boolValue] && notification.userInfo[@"copiedCell"]) {
+        BOOL copy = [notification.userInfo[@"copy"] boolValue];
+        if (copy && [notification.userInfo[@"copiedCell"] isKindOfClass:BrickCell.class]) {
             __weak UICollectionView *weakCollectionView = self.collectionView;
-            __weak ScriptCollectionViewController *weakself = self;
-            [self addBrickCellAction:notification.userInfo[@"copiedCell"] completionBlock:^{
+            [self addBrickCellAction:notification.userInfo[@"copiedCell"] copyBrick:copy completionBlock:^{
                 [weakCollectionView reloadData];
-                [weakself scrollToLastbrickinCollectionView:weakCollectionView];
             }];
         }
     }
@@ -487,8 +479,9 @@
     }
 }
 
-- (void)addBrickCellAction:(BrickCell*)brickCell completionBlock:(void(^)())completionBlock {
-    if (! brickCell) {
+- (void)addBrickCellAction:(BrickCell*)brickCell copyBrick:(BOOL)copy completionBlock:(void(^)())completionBlock
+{
+    if (!brickCell) {
         return;
     }
     
@@ -506,12 +499,12 @@
             script.object = self.object;
             [self.object.scriptList addObject:script];
         } else {
-            // add brick to first script
-            script = [self.object.scriptList objectAtIndex:self.collectionView.numberOfSections - 1];
+            script = copy ? [self.object.scriptList objectAtIndex:self.selectedIndexPath.section] :
+                            [self.object.scriptList objectAtIndex:self.collectionView.numberOfSections - 1];
         }
         Brick *brick = (Brick*)brickOrScript;
         brick.object = self.object;
-        [script.brickList addObject:brick];
+        [self insertBrick:brick intoScriptList:script copy:copy];
     } else if ([brickOrScript isKindOfClass:[Script class]]) {
         Script *script = (Script*)brickOrScript;
         script.object = self.object;
@@ -524,12 +517,18 @@
     if (completionBlock) completionBlock();
 }
 
+- (void)insertBrick:(Brick *)brick intoScriptList:(Script *)script copy:(BOOL)copy
+{
+    copy ? [script.brickList insertObject:brick atIndex:self.selectedIndexPath.item] : [script.brickList addObject:brick];
+}
+
+
 - (void)scrollToLastbrickinCollectionView:(UICollectionView *)collectionView {
     NSUInteger sectionCount = self.object.scriptList.count;
     Script *script = [self.object.scriptList objectAtIndex:sectionCount - 1];
     NSUInteger brickCountInSection = script.brickList.count;
     NSIndexPath *lastIndexPath = [NSIndexPath indexPathForItem:brickCountInSection inSection:sectionCount - 1];
-    [collectionView scrollToItemAtIndexPath:lastIndexPath atScrollPosition:UICollectionViewScrollPositionTop animated:YES];
+    [collectionView scrollToItemAtIndexPath:lastIndexPath atScrollPosition:UICollectionViewScrollPositionBottom animated:YES];
 }
 
 #pragma mark - Editing
