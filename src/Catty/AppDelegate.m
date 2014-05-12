@@ -24,6 +24,9 @@
 #import "FileManager.h"
 #import "Util.h"
 #import "UIColor+CatrobatUIColorExtensions.h"
+#import <AVFoundation/AVFoundation.h>
+#import "ScenePresenterViewController.h"
+
 
 void uncaughtExceptionHandler(NSException *exception)
 {
@@ -40,13 +43,14 @@ void uncaughtExceptionHandler(NSException *exception)
 }
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
-{    
+{
     NSSetUncaughtExceptionHandler(&uncaughtExceptionHandler);
-
+    
     [self initNavigationBar];
-
-    [[UITextField appearance] setKeyboardAppearance:UIKeyboardAppearanceDark];
-
+    
+    
+    [UITextField appearance].keyboardAppearance = UIKeyboardAppearanceDark;
+    
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     NSDictionary *appDefaults = [NSDictionary dictionaryWithObject:@"YES"
                                                             forKey:@"lockiphone"];
@@ -57,16 +61,47 @@ void uncaughtExceptionHandler(NSException *exception)
     return YES;
 }
 
+- (void)applicationWillResignActive:(UIApplication *)application
+{
+    UINavigationController *vc = (UINavigationController*)self.window.rootViewController;
+    
+    if([vc.topViewController isKindOfClass:[ScenePresenterViewController class]]){
+        ScenePresenterViewController* spvc = (ScenePresenterViewController*)vc.topViewController;
+        [spvc pause];
+        
+    }
+}
+
+- (void)applicationDidEnterBackground:(UIApplication *)application
+{
+    [[AVAudioSession sharedInstance] setActive:NO error:nil];
+}
+
+
+- (void)applicationWillEnterForeground:(UIApplication *)application
+{
+    // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
+    UINavigationController *vc = (UINavigationController*)self.window.rootViewController;
+    
+    if([vc.topViewController isKindOfClass:[ScenePresenterViewController class]]){
+        ScenePresenterViewController* spvc = (ScenePresenterViewController*)vc.topViewController;
+        [spvc resume];
+        
+    }
+    
+    
+}
+
 - (void)initNavigationBar
 {
     UIImage *navbarimage = [[UIImage imageNamed:@"darkblue"]
                             resizableImageWithCapInsets:UIEdgeInsetsMake(0, 0, 0, 0)];
-
+    
     [[UINavigationBar appearance] setBackgroundImage:navbarimage
                                        forBarMetrics:UIBarMetricsDefault];
-
+    
     self.window.tintColor = [UIColor lightOrangeColor];
-
+    
     [[UINavigationBar appearance] setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:
                                                           [UIColor skyBlueColor],
                                                           NSForegroundColorAttributeName, nil]];
