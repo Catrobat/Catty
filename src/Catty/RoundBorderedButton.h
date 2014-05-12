@@ -21,12 +21,9 @@
  */
 
 #import <UIKit/UIKit.h>
-#import "BaseTableViewController.h"
 
-@interface SearchStoreViewController : UIViewController<UISearchBarDelegate,UITableViewDelegate, UITableViewDataSource,UIScrollViewDelegate>
+@interface RoundBorderedButton : UIButton
 
-@property (nonatomic) BOOL checkSearch;
-@property (weak, nonatomic) IBOutlet UITableView *tableView;
-@property (weak, nonatomic) IBOutlet UISearchBar *searchBar;
+- (void)setPlusIconVisibility:(BOOL)show;
 
 @end

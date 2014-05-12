@@ -260,7 +260,22 @@ UINavigationBarDelegate>
     SpriteObject *object = [self.program.objectList objectAtIndex:index];
     imageCell.iconImageView.image = nil;
     [imageCell.iconImageView setBorder:[UIColor skyBlueColor] Width:kDefaultImageCellBorderWidth];
-    imageCell.backgroundColor = UIColor.darkBlueColor;
+
+    if (self.useDetailCells && [cell isKindOfClass:[DarkBlueGradientImageDetailCell class]]) {
+        DarkBlueGradientImageDetailCell *detailCell = (DarkBlueGradientImageDetailCell*)imageCell;
+        detailCell.topLeftDetailLabel.textColor = [UIColor whiteColor];
+        detailCell.topLeftDetailLabel.text = [NSString stringWithFormat:@"%@: %lu", kUILabelTextScripts,
+                                              (unsigned long)[object numberOfScripts]];
+        detailCell.topRightDetailLabel.textColor = [UIColor whiteColor];
+        detailCell.topRightDetailLabel.text = [NSString stringWithFormat:@"%@: %lu", kUILabelTextBricks,
+                                               (unsigned long)[object numberOfTotalBricks]];
+        detailCell.bottomLeftDetailLabel.textColor = [UIColor whiteColor];
+        detailCell.bottomLeftDetailLabel.text = [NSString stringWithFormat:@"%@: %lu", kUILabelTextLooks,
+                                                 (unsigned long)[object numberOfLooks]];
+        detailCell.bottomRightDetailLabel.textColor = [UIColor whiteColor];
+        detailCell.bottomRightDetailLabel.text = [NSString stringWithFormat:@"%@: %lu", kUILabelTextSounds,
+                                                  (unsigned long)[object numberOfSounds]];
+    }
     if (! [object.lookList count]) {
         imageCell.titleLabel.text = object.name;
         return imageCell;
@@ -328,21 +343,6 @@ UINavigationBarDelegate>
         }
     } else {
         imageCell.iconImageView.image = image;
-    }
-    if (self.useDetailCells && [cell isKindOfClass:[DarkBlueGradientImageDetailCell class]]) {
-        DarkBlueGradientImageDetailCell *detailCell = (DarkBlueGradientImageDetailCell*)imageCell;
-        detailCell.topLeftDetailLabel.textColor = [UIColor whiteColor];
-        detailCell.topLeftDetailLabel.text = [NSString stringWithFormat:@"%@: %lu", kUILabelTextScripts,
-                                              (unsigned long)[object numberOfScripts]];
-        detailCell.topRightDetailLabel.textColor = [UIColor whiteColor];
-        detailCell.topRightDetailLabel.text = [NSString stringWithFormat:@"%@: %lu", kUILabelTextBricks,
-                                               (unsigned long)[object numberOfTotalBricks]];
-        detailCell.bottomLeftDetailLabel.textColor = [UIColor whiteColor];
-        detailCell.bottomLeftDetailLabel.text = [NSString stringWithFormat:@"%@: %lu", kUILabelTextLooks,
-                                                 (unsigned long)[object numberOfLooks]];
-        detailCell.bottomRightDetailLabel.textColor = [UIColor whiteColor];
-        detailCell.bottomRightDetailLabel.text = [NSString stringWithFormat:@"%@: %lu", kUILabelTextSounds,
-                                                  (unsigned long)[object numberOfSounds]];
     }
     imageCell.titleLabel.text = object.name;
     return imageCell;
@@ -513,7 +513,7 @@ UINavigationBarDelegate>
 {
     [super alertView:alertView clickedButtonAtIndex:buttonIndex];
     if (alertView.tag == kRenameAlertViewTag) {
-        NSString* input = [alertView textFieldAtIndex:0].text;
+        NSString *input = [alertView textFieldAtIndex:0].text;
         if (buttonIndex == kAlertViewButtonOK) {
             if ([input isEqualToString:self.program.header.programName])
                 return;

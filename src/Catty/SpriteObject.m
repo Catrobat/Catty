@@ -405,7 +405,10 @@
 
 - (void)setLook
 {
-    [self changeLook:[self.lookList objectAtIndex:0]];
+    if (self.lookList.count > 0) {
+        [self changeLook:[self.lookList objectAtIndex:0]];
+    }
+    
 }
 
 - (void)removeLook:(Look*)look

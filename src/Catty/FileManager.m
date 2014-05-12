@@ -30,6 +30,7 @@
 #import "Sound.h"
 #import "Program.h"
 #import <MobileCoreServices/MobileCoreServices.h>
+#import "LanguageTranslationDefines.h"
 
 @interface FileManager()
 
@@ -287,28 +288,29 @@
     return contents;
 }
 
-- (void)addDefaultProjectsToProgramsRootDirectory
+- (void)addDefaultProgramToProgramsRootDirectoryIfNoProgramsExist
 {
     NSString *basePath = [Program basePath];
     NSError *error;
     NSArray *programLoadingInfos = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:basePath error:&error];
     NSLogError(error);
 
-    BOOL defaultProgramExists = NO;
+    BOOL areAnyProgramsLeft = NO;
     for (NSString *programLoadingInfo in programLoadingInfos) {
-        if ([programLoadingInfo isEqualToString:kDefaultProgramName]) {
-            defaultProgramExists = YES;
+        // exclude .DS_Store folder on MACOSX simulator
+        if ([programLoadingInfo isEqualToString:@".DS_Store"]) {
+            continue;
         }
+        areAnyProgramsLeft = YES;
+        break;
     }
-    if (! defaultProgramExists) {
-        [self addBundleProjectWithName:kDefaultProgramName];
-    }
-    if (! [Util lastProgram]) {
-        [Util setLastProgram:kDefaultProgramName];
+    if (! areAnyProgramsLeft) {
+        [self addBundleProgramWithName:kDefaultProgramName];
+        [Util lastProgram];
     }
 }
 
-- (void)addBundleProjectWithName:(NSString*)projectName
+- (void)addBundleProgramWithName:(NSString*)projectName
 {
     NSError *error;
     if (! [self directoryExists:self.programsDirectory]) {
@@ -385,6 +387,22 @@
     else
     {
         [self.imageDataArray setObject:data forKey:connection.currentRequest.URL];
+    }
+    
+    if ([self getFreeDiskspace]>[response expectedContentLength]) {
+        NSNumber* size = [NSNumber numberWithLongLong:[response expectedContentLength]];
+        ///Length of data!!!
+        [self.downloadSizeDict setObject:size forKey:connection.currentRequest.URL];
+        
+        UIApplication* app = [UIApplication sharedApplication];
+        app.networkActivityIndicatorVisible = YES;
+    }else{
+        [self stopLoading:connection.currentRequest.URL andImageURL:connection.currentRequest.URL];
+        [Util alertWithText:kUIAlertViewTitleNotEnoughFreeMemory];
+        if ([self.delegate respondsToSelector:@selector(setBackDownloadStatus)]) {
+            [self.delegate setBackDownloadStatus];
+        }
+    
     }
     
     NSNumber* size = [NSNumber numberWithLongLong:[response expectedContentLength]];
@@ -647,6 +665,26 @@
     }
     [self.progressDict removeObjectForKey:projecturl];
     [self.downloadSizeDict removeObjectForKey:projecturl];
+}
+
+-(uint64_t)getFreeDiskspace {
+    uint64_t totalSpace = 0;
+    uint64_t totalFreeSpace = 0;
+    NSError *error = nil;
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSDictionary *dictionary = [[NSFileManager defaultManager] attributesOfFileSystemForPath:[paths lastObject] error: &error];
+    
+    if (dictionary) {
+        NSNumber *fileSystemSizeInBytes = [dictionary objectForKey: NSFileSystemSize];
+        NSNumber *freeFileSystemSizeInBytes = [dictionary objectForKey:NSFileSystemFreeSize];
+        totalSpace = [fileSystemSizeInBytes unsignedLongLongValue];
+        totalFreeSpace = [freeFileSystemSizeInBytes unsignedLongLongValue];
+        NSDebug(@"Memory Capacity of %llu MiB with %llu MiB Free memory available.", ((totalSpace/1024ll)/1024ll), ((totalFreeSpace/1024ll)/1024ll));
+    } else {
+        NSError(@"Error Obtaining System Memory Info: Domain = %@, Code = %ld", [error domain], (long)[error code]);
+    }
+    
+    return totalFreeSpace;
 }
 
 @end
