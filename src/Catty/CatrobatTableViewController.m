@@ -96,6 +96,7 @@
     
     self.reachability = [Reachability reachabilityForInternetConnection];
     [self.reachability startNotifier];
+    self.tableView.delaysContentTouches = NO;
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -186,6 +187,7 @@
     if (indexPath.row == 0) {
         [self configureSubtitleLabelForCell:cell];
     }
+    
     return cell;
 }
 

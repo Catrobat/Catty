@@ -42,4 +42,6 @@
 
 + (UIColor*) violetColor;
 
++ (UIColor *)cellBlueColor;
+
 @end

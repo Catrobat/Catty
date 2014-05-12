@@ -25,64 +25,50 @@
 
 @implementation CatrobatBaseCell
 
-@synthesize seperatorView = _topSeperatorView;
-
-- (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
-{
-    self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
-    if (self) {
-    }
-    return self;
-}
-
+//@synthesize seperatorView = _topSeperatorView;
 
 -(id)initWithCoder:(NSCoder *)aDecoder {
     if(self = [super initWithCoder:aDecoder]) {
         [self initialize];
     }
-    
     return self;
 }
 
-
-- (void)setSelected:(BOOL)selected animated:(BOOL)animated
-{
-    [super setSelected:selected animated:animated];
-    
-}
-
 -(void)initialize {
+    self.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     self.selectedBackgroundView = [self createSelectedBackground];
-    switch (self.accessoryType) {
-        case UITableViewCellAccessoryDisclosureIndicator:
-        case UITableViewCellAccessoryDetailDisclosureButton:
-            self.accessoryView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"accessory"]];
-        default:
-            break;
-    }
-    [self addCellSeperator];
+    
+//    switch (self.accessoryType) {
+//        case UITableViewCellAccessoryDisclosureIndicator:
+//        case UITableViewCellAccessoryDetailDisclosureButton:
+//            self.accessoryView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"accessory"]];
+//            
+//        default:
+//            break;
+//    }
+//    [self addCellSeperator];
 }
 
 
 -(UIView*)createSelectedBackground{
     UIView *bgColorView = [[UIView alloc] init];
-    [bgColorView setBackgroundColor:[UIColor colorWithRed:1.0f green:1.0f blue:1.0f alpha:0.15f]];
+    [bgColorView setBackgroundColor:[UIColor colorWithRed:1.0f green:1.0f blue:1.0f alpha:0.09f]];
     return bgColorView;
 }
 
 
--(void)addCellSeperator {
-    UIImageView *seperator = [self createCellSeperator];
-    [self.contentView addSubview:seperator];
-    self.seperatorView = seperator;
-}
-
--(UIImageView*)createCellSeperator {
-    UIImageView *seperator = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"cellseperator"]];
-    seperator.frame = CGRectMake(0.0f, 0.0f, self.bounds.size.width, 4.0f);
-    return seperator;
-    
-}
+//-(void)addCellSeperator {
+//    UIImageView *seperator = [self createCellSeperator];
+//    [self.contentView addSubview:seperator];
+//    self.seperatorView = seperator;
+//}
+//
+//-(UIImageView*)createCellSeperator {
+//    UIImageView *seperator = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"cellseperator"]];
+//    seperator.frame = CGRectMake(0.0f, 0.0f, self.bounds.size.width, 4.0f);
+//    return seperator;
+//    
+//}
 
 
 

@@ -27,6 +27,6 @@
 @interface CatrobatBaseCell : UITableViewCell
 
 @property (nonatomic, strong) NSIndexPath *indexPath;
-@property UIView* seperatorView;
+//@property UIView* seperatorView;
 
 @end

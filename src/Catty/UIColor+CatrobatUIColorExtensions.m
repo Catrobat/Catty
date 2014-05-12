@@ -90,4 +90,8 @@
 	return [self colorWithHex: 0xEE82EE];
 }
 
++ (UIColor *)cellBlueColor
+{
+  return [UIColor colorWithRed:36.0f/255.0f green:71.0f/255.0f blue:94.0f/255.0f alpha:1.0f];
+}
 @end
