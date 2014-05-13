@@ -22,8 +22,7 @@
 
 - (void)setupView
 {
-    self.backgroundColor = UIColor.skyBlueColor;
-    self.textLabel.textColor = UIColor.lightOrangeColor;
+    self.contentView.backgroundColor = UIColor.darkBlueColor;
 }
 
 @end
