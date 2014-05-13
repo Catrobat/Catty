@@ -45,7 +45,6 @@
 #import "AppDelegate.h"
 #import "LoadingView.h"
 #import "LanguageTranslationDefines.h"
-#import "UIImage+CatrobatUIImageExtensions.h"
 
 // TODO: outsource...
 #define kUserDetailsShowDetailsKey @"showDetails"
@@ -58,7 +57,6 @@
 @interface ObjectLooksTableViewController () <UIActionSheetDelegate, UIImagePickerControllerDelegate,
                                               UINavigationControllerDelegate, UIAlertViewDelegate>
 @property (nonatomic) BOOL useDetailCells;
-@property (nonatomic, strong) NSMutableDictionary *imageCache;
 @property (nonatomic, strong) Look *lookToAdd;
 @property (nonatomic, strong) LoadingView* loadingView;
 @property (nonatomic, strong) NSMutableDictionary* addLookActionSheetBtnIndexes;
@@ -208,6 +206,7 @@
     } else {
         cell = [tableView dequeueReusableCellWithIdentifier:DetailCellIdentifier forIndexPath:indexPath];
     }
+
     if (! [cell conformsToProtocol:@protocol(CatrobatImageCell)]) {
         return cell;
     }
@@ -279,6 +278,9 @@
     } else {
         imageCell.iconImageView.image = image;
     }
+
+    imageCell.titleLabel.text = look.name;
+
     if (self.useDetailCells && [cell isKindOfClass:[DarkBlueGradientImageDetailCell class]]) {
         // TODO: enhancement: use data cache for this later...
         DarkBlueGradientImageDetailCell *detailCell = (DarkBlueGradientImageDetailCell*)imageCell;
@@ -296,8 +298,8 @@
         NSNumber *sizeOfSound = [NSNumber numberWithUnsignedInteger:resultSize];
         detailCell.bottomRightDetailLabel.text = [NSByteCountFormatter stringFromByteCount:[sizeOfSound unsignedIntegerValue]
                                                                                 countStyle:NSByteCountFormatterCountStyleBinary];
+        return detailCell;
     }
-    imageCell.titleLabel.text = look.name;
     return imageCell;
 }
 
