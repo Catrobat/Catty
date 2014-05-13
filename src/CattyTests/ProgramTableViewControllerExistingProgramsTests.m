@@ -136,7 +136,9 @@
             backgroundObjectCellTitle = imageCell.titleLabel.text;
         }
         // TODO: german name "Hintergrund" instead of "background"
-        XCTAssertTrue(([backgroundObjectCellTitle isEqualToString:kUILabelTextBackground] || [backgroundObjectCellTitle isEqualToString:@"Hintergrund"]), @"The ProgramTableViewController did not create the background object cell correctly.");
+        XCTAssertTrue(([backgroundObjectCellTitle isEqualToString:kUILabelTextBackground]
+                       || [backgroundObjectCellTitle isEqualToString:@"Background"]),
+                      @"The ProgramTableViewController did not create the background object cell correctly.");
 
         NSUInteger objectCounter = 0;
         NSLog(@"Program: %@", program.header.programName);

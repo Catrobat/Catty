@@ -56,7 +56,6 @@
 UINavigationBarDelegate>
 @property (nonatomic) BOOL useDetailCells;
 @property (strong, nonatomic) NSCharacterSet *blockedCharacterSet;
-@property (strong, nonatomic) NSMutableDictionary *imageCache;
 @end
 
 @implementation ProgramTableViewController
@@ -68,15 +67,6 @@ UINavigationBarDelegate>
         _blockedCharacterSet = [[NSCharacterSet characterSetWithCharactersInString:kTextFieldAllowedCharacters] invertedSet];
     }
     return _blockedCharacterSet;
-}
-
-- (NSMutableDictionary*)imageCache
-{
-    // lazy instantiation
-    if (! _imageCache) {
-        _imageCache = [NSMutableDictionary dictionaryWithCapacity:[self.program numberOfTotalObjects]];
-    }
-    return _imageCache;
 }
 
 - (void)setProgram:(Program *)program
@@ -252,9 +242,11 @@ UINavigationBarDelegate>
     } else {
         cell = [tableView dequeueReusableCellWithIdentifier:DetailCellIdentifier forIndexPath:indexPath];
     }
+
     if (! [cell conformsToProtocol:@protocol(CatrobatImageCell)]) {
         return cell;
     }
+
     UITableViewCell<CatrobatImageCell> *imageCell = (UITableViewCell<CatrobatImageCell>*)cell;
     NSInteger index = (kBackgroundSectionIndex + indexPath.section + indexPath.row);
     SpriteObject *object = [self.program.objectList objectAtIndex:index];
@@ -276,6 +268,7 @@ UINavigationBarDelegate>
         detailCell.bottomRightDetailLabel.text = [NSString stringWithFormat:@"%@: %lu", kUILabelTextSounds,
                                                   (unsigned long)[object numberOfSounds]];
     }
+
     if (! [object.lookList count]) {
         imageCell.titleLabel.text = object.name;
         return imageCell;

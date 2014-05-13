@@ -24,6 +24,7 @@
 #import "BackgroundLayer.h"
 #import "Util.h"
 #import "TableUtil.h"
+#import "UIColor+CatrobatUIColorExtensions.h"
 
 @implementation DarkBlueGradientCell
 
@@ -53,7 +54,8 @@
 
 -(void)configure
 {
-    self.backgroundView = [[UIImageView alloc] initWithImage:[[UIImage imageNamed:@"darkBlueGradient"]resizableImageWithCapInsets:UIEdgeInsetsZero]];
+    self.backgroundView = [[UIImageView alloc] initWithImage:[[UIImage imageNamed:@"darkBlueGradient"] resizableImageWithCapInsets:UIEdgeInsetsZero]];
+    self.backgroundColor = [UIColor darkBlueColor];
 }
 
 -(CAGradientLayer*)getBackgroundLayerForFrame:(CGRect)frame
