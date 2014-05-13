@@ -943,7 +943,7 @@
 			name = SubViews;
 			sourceTree = "<group>";
 		};
-		817B543D18F03BC700AF6BFE /* Transitions */ = {
+		817B543D18F03BC700AF6BFE /* ViewControllerTransitions */ = {
 			isa = PBXGroup;
 			children = (
 				817B543E18F03C0D00AF6BFE /* BaseTransition.h */,
@@ -951,7 +951,7 @@
 				817B544118F03D4C00AF6BFE /* BrickScaleTransition.h */,
 				817B544218F03D4C00AF6BFE /* BrickScaleTransition.m */,
 			);
-			name = Transitions;
+			name = ViewControllerTransitions;
 			sourceTree = "<group>";
 		};
 		817B544E18F0AAE600AF6BFE /* FXBlurView */ = {
@@ -980,7 +980,7 @@
 			children = (
 				81B748771921432A00990E5F /* CreateView */,
 				81B7487619213CFB00990E5F /* PlaceHolderView */,
-				817B543D18F03BC700AF6BFE /* Transitions */,
+				817B543D18F03BC700AF6BFE /* ViewControllerTransitions */,
 				CAC3141318BA84C700DAAB72 /* ComboBoxView */,
 				CA750F8118A12CDE005FC0A0 /* Cell */,
 				CA6881FE180AEA85008A7C99 /* TableView */,
