@@ -55,7 +55,8 @@
 #define kDrawNewImageActionSheetButton @"drawNewImage"
 
 @interface ObjectLooksTableViewController () <UIActionSheetDelegate, UIImagePickerControllerDelegate,
-                                              UINavigationControllerDelegate, UIAlertViewDelegate>
+                                              UINavigationControllerDelegate, UIAlertViewDelegate,
+                                              UITextFieldDelegate>
 @property (nonatomic) BOOL useDetailCells;
 @property (nonatomic, strong) Look *lookToAdd;
 @property (nonatomic, strong) LoadingView* loadingView;
@@ -456,7 +457,7 @@
                                                           delegate:self
                                                        placeholder:kUIAlertViewPlaceholderEnterImageName
                                                                tag:kNewImageAlertViewTag
-                                                 textFieldDelegate:nil];
+                                                 textFieldDelegate:self];
                     UITextField *textField = [alertView textFieldAtIndex:0];
                     textField.text = look.name;
                 }];
@@ -471,7 +472,14 @@
                   failureBlock:nil];
 }
 
-#pragma mark - UIActionSheetDelegate Handlers
+#pragma mark - text field delegates
+- (BOOL)textField:(UITextField*)field shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString*)characters
+{
+    NSCharacterSet *blockedCharacters = [[NSCharacterSet characterSetWithCharactersInString:kTextFieldAllowedCharacters] invertedSet];
+    return ([characters rangeOfCharacterFromSet:blockedCharacters].location == NSNotFound);
+}
+
+#pragma mark - action sheet delegates
 - (void)actionSheet:(UIActionSheet*)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
 {
     if (actionSheet.tag == kEditLooksActionSheetTag) {
