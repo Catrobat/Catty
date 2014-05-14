@@ -51,6 +51,14 @@
 @implementation BaseTableViewController
 
 #pragma mark - getters and setters
+- (NSMutableDictionary*)imageCache
+{
+    if (! _imageCache) {
+        _imageCache = [NSMutableDictionary dictionary];
+    }
+    return _imageCache;
+}
+
 - (UIBarButtonItem*)selectAllRowsButtonItem
 {
     if (! _selectAllRowsButtonItem) {

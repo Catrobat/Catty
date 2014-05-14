@@ -48,7 +48,6 @@
 
 @interface MyProgramsViewController () <ProgramUpdateDelegate, UIActionSheetDelegate, UIAlertViewDelegate, UITextFieldDelegate>
 @property (nonatomic) BOOL useDetailCells;
-@property (nonatomic, strong) NSMutableDictionary *assetCache;
 @property (nonatomic, strong) NSMutableDictionary *dataCache;
 @property (nonatomic, strong) NSMutableArray *programLoadingInfos;
 @property (nonatomic, strong) Program *selectedProgram;
@@ -58,14 +57,6 @@
 @implementation MyProgramsViewController
 
 #pragma mark - getters and setters
-- (NSMutableDictionary*)assetCache
-{
-    if (! _assetCache) {
-        _assetCache = [NSMutableDictionary dictionaryWithCapacity:[self.programLoadingInfos count]];
-    }
-    return _assetCache;
-}
-
 - (NSMutableDictionary*)dataCache
 {
     if (! _dataCache) {
@@ -75,15 +66,6 @@
 }
 
 #pragma mark - initialization
-- (id)initWithStyle:(UITableViewStyle)style
-{
-    self = [super initWithStyle:style];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
-}
-
 - (void)initNavigationBar
 {
     UIBarButtonItem *editButtonItem = [TableUtil editButtonItemWithTarget:self action:@selector(editAction:)];
@@ -122,7 +104,7 @@
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
-    self.assetCache = nil;
+    self.imageCache = nil;
     self.dataCache = nil;
 }
 
@@ -218,41 +200,37 @@
     } else {
         cell = [tableView dequeueReusableCellWithIdentifier:DetailCellIdentifier forIndexPath:indexPath];
     }
-    if ([cell conformsToProtocol:@protocol(CatrobatImageCell)]) {
-        UITableViewCell<CatrobatImageCell> *imageCell = (UITableViewCell<CatrobatImageCell>*)cell;
-        [self configureImageCell:imageCell atIndexPath:indexPath];
-        if (self.useDetailCells && [cell isKindOfClass:[DarkBlueGradientImageDetailCell class]]) {
-            DarkBlueGradientImageDetailCell *detailCell = (DarkBlueGradientImageDetailCell*)imageCell;
-            detailCell.topLeftDetailLabel.textColor = [UIColor whiteColor];
-            detailCell.topLeftDetailLabel.text = [NSString stringWithFormat:@"%@:", kUILabelTextLastAccess];
-            detailCell.topRightDetailLabel.textColor = [UIColor whiteColor];
-            detailCell.bottomLeftDetailLabel.textColor = [UIColor whiteColor];
-            detailCell.bottomLeftDetailLabel.text = [NSString stringWithFormat:@"%@:", kUILabelTextSize];
-            detailCell.bottomRightDetailLabel.textColor = [UIColor whiteColor];
+    if (! [cell conformsToProtocol:@protocol(CatrobatImageCell)]) {
+        return cell;
+    }
 
-            ProgramLoadingInfo *info = [self.programLoadingInfos objectAtIndex:indexPath.row];
-            NSNumber *programSize = [self.dataCache objectForKey:info.visibleName];
-            AppDelegate *appDelegate = (AppDelegate*)[UIApplication sharedApplication].delegate;
-            if (! programSize) {
-                NSUInteger resultSize = [appDelegate.fileManager sizeOfDirectoryAtPath:info.basePath];
-                programSize = [NSNumber numberWithUnsignedInteger:resultSize];
-                [self.dataCache setObject:programSize forKey:info.visibleName];
-            }
-            NSString *xmlPath = [NSString stringWithFormat:@"%@/%@", info.basePath, kProgramCodeFileName];
-            NSDate *lastAccessDate = [appDelegate.fileManager lastAccessTimeOfFile:xmlPath];
-            detailCell.topRightDetailLabel.text = [lastAccessDate humanFriendlyFormattedString];
-            detailCell.bottomRightDetailLabel.text = [NSByteCountFormatter stringFromByteCount:[programSize unsignedIntegerValue]
-                                                                                    countStyle:NSByteCountFormatterCountStyleBinary];
+    UITableViewCell<CatrobatImageCell> *imageCell = (UITableViewCell<CatrobatImageCell>*)cell;
+    [self configureImageCell:imageCell atIndexPath:indexPath];
+    if (self.useDetailCells && [cell isKindOfClass:[DarkBlueGradientImageDetailCell class]]) {
+        DarkBlueGradientImageDetailCell *detailCell = (DarkBlueGradientImageDetailCell*)imageCell;
+        detailCell.topLeftDetailLabel.textColor = [UIColor whiteColor];
+        detailCell.topLeftDetailLabel.text = [NSString stringWithFormat:@"%@:", kUILabelTextLastAccess];
+        detailCell.topRightDetailLabel.textColor = [UIColor whiteColor];
+        detailCell.bottomLeftDetailLabel.textColor = [UIColor whiteColor];
+        detailCell.bottomLeftDetailLabel.text = [NSString stringWithFormat:@"%@:", kUILabelTextSize];
+        detailCell.bottomRightDetailLabel.textColor = [UIColor whiteColor];
+        
+        ProgramLoadingInfo *info = [self.programLoadingInfos objectAtIndex:indexPath.row];
+        NSNumber *programSize = [self.dataCache objectForKey:info.visibleName];
+        AppDelegate *appDelegate = (AppDelegate*)[UIApplication sharedApplication].delegate;
+        if (! programSize) {
+            NSUInteger resultSize = [appDelegate.fileManager sizeOfDirectoryAtPath:info.basePath];
+            programSize = [NSNumber numberWithUnsignedInteger:resultSize];
+            [self.dataCache setObject:programSize forKey:info.visibleName];
         }
+        NSString *xmlPath = [NSString stringWithFormat:@"%@/%@", info.basePath, kProgramCodeFileName];
+        NSDate *lastAccessDate = [appDelegate.fileManager lastModificationTimeOfFile:xmlPath];
+        detailCell.topRightDetailLabel.text = [lastAccessDate humanFriendlyFormattedString];
+        detailCell.bottomRightDetailLabel.text = [NSByteCountFormatter stringFromByteCount:[programSize unsignedIntegerValue]
+                                                                                countStyle:NSByteCountFormatterCountStyleBinary];
+        return detailCell;
     }
-    NSString *patternName = @"pattern";
-    UIColor* color = [self.assetCache objectForKey:patternName];
-    if (! color) {
-        color = [UIColor colorWithPatternImage:[UIImage imageNamed:@"darkblue"]];
-        [self.assetCache setObject:color forKey:patternName];
-    }
-    cell.backgroundColor = color;
-    return cell;
+    return imageCell;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -286,7 +264,7 @@
     ProgramLoadingInfo *info = [self.programLoadingInfos objectAtIndex:indexPath.row];
     cell.titleLabel.text = info.visibleName;
     NSString* imagePath = [[NSString alloc] initWithFormat:@"%@/small_screenshot.png", info.basePath];
-    UIImage* image = [self.assetCache objectForKey:imagePath];
+    UIImage* image = [self.imageCache objectForKey:imagePath];
     cell.iconImageView.contentMode = UIViewContentModeScaleAspectFit;
 
     if (! image) {
@@ -327,7 +305,7 @@
                 if ([cell.indexPath isEqual:indexPath]) {
                     cell.iconImageView.image = image;
                     [cell setNeedsLayout];
-                    [self.assetCache setObject:image forKey:imagePath];
+                    [self.imageCache setObject:image forKey:imagePath];
                 }
             });
         });
@@ -575,6 +553,12 @@
         }
         ++rowIndex;
     }
+    // if last program was removed [programLoadingInfos count] returns 0,
+    // then default program was automatically recreated, therefore reload
+    if (! [self.programLoadingInfos count]) {
+        [self loadPrograms];
+        [self.tableView reloadData];
+    }
 }
 
 - (void)renameOldProgramName:(NSString*)oldProgramName ToNewProgramName:(NSString*)newProgramName
@@ -587,9 +571,9 @@
             newInfo.visibleName = newProgramName;
             [self.programLoadingInfos replaceObjectAtIndex:rowIndex withObject:newInfo];
 
-             // flush asset/image cache
+            // flush asset/image cache
             self.dataCache = nil;
-            self.assetCache = nil;
+            self.imageCache = nil;
 
             // update table
             NSIndexPath *indexPath = [NSIndexPath indexPathForRow:rowIndex inSection:0];

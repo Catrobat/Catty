@@ -51,7 +51,6 @@
 @interface SoundsTableViewController () <UIActionSheetDelegate, AVAudioPlayerDelegate>
 @property (nonatomic) BOOL useDetailCells;
 @property (nonatomic, strong) NSMutableDictionary* addSoundActionSheetBtnIndexes;
-@property (strong, nonatomic) NSMutableDictionary *imageCache;
 @property (atomic, strong) Sound *currentPlayingSong;
 @property (atomic, weak) UITableViewCell<CatrobatImageCell> *currentPlayingSongCell;
 @end
@@ -59,14 +58,6 @@
 @implementation SoundsTableViewController
 
 #pragma mark - getters and setters
-- (NSMutableDictionary*)imageCache
-{
-    if (! _imageCache) {
-        _imageCache = [NSMutableDictionary dictionary];
-    }
-    return _imageCache;
-}
-
 - (NSMutableDictionary*)addSoundActionSheetBtnIndexes
 {
     if (_addSoundActionSheetBtnIndexes == nil)
@@ -250,62 +241,67 @@
     } else {
         cell = [tableView dequeueReusableCellWithIdentifier:DetailCellIdentifier forIndexPath:indexPath];
     }
+
     Sound *sound = (Sound*)[self.object.soundList objectAtIndex:indexPath.row];
-    if ([cell conformsToProtocol:@protocol(CatrobatImageCell)]) {
-        UITableViewCell <CatrobatImageCell>* imageCell = (UITableViewCell<CatrobatImageCell>*)cell;
-        imageCell.indexPath = indexPath;
-
-        static NSString *playIconName = @"ic_media_play";
-        static NSString *stopIconName = @"ic_media_pause";
-
-        // determine right icon, therefore check if this song is played currently
-        NSString *rightIconName = playIconName;
-        @synchronized(self) {
-            if (sound.isPlaying && [self.currentPlayingSong.name isEqual:sound.name]) {
-                rightIconName = stopIconName;
-            }
-        }
-
-        UIImage *image = [self.imageCache objectForKey:rightIconName];
-        if (! image) {
-            dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0ul);
-            dispatch_async(queue, ^{
-                UIImage *image = [UIImage imageNamed:rightIconName];
-                [self.imageCache setObject:image forKey:rightIconName];
-                dispatch_sync(dispatch_get_main_queue(), ^{
-                    // check if cell still needed
-                    if ([imageCell.indexPath isEqual:indexPath]) {
-                        imageCell.iconImageView.image = image;
-                        [imageCell setNeedsLayout];
-                    }
-                });
-            });
-        } else {
-            imageCell.iconImageView.image = image;
-        }
-        if (self.useDetailCells && [cell isKindOfClass:[DarkBlueGradientImageDetailCell class]]) {
-            // TODO: enhancement: use data cache for this later...
-            DarkBlueGradientImageDetailCell *detailCell = (DarkBlueGradientImageDetailCell*)imageCell;
-            detailCell.topLeftDetailLabel.textColor = [UIColor whiteColor];
-            detailCell.topLeftDetailLabel.text = [NSString stringWithFormat:@"%@:", kUILabelTextLength];
-            detailCell.topRightDetailLabel.textColor = [UIColor whiteColor];
-            detailCell.topRightDetailLabel.text = [NSString stringWithFormat:@"%.02fs",
-                                                   (float)[self.object durationOfSound:sound]];
-            detailCell.bottomLeftDetailLabel.textColor = [UIColor whiteColor];
-            detailCell.bottomLeftDetailLabel.text = [NSString stringWithFormat:@"%@:", kUILabelTextSize];
-            detailCell.bottomRightDetailLabel.textColor = [UIColor whiteColor];
-            NSUInteger resultSize = [self.object fileSizeOfSound:sound];
-            NSNumber *sizeOfSound = [NSNumber numberWithUnsignedInteger:resultSize];
-            detailCell.bottomRightDetailLabel.text = [NSByteCountFormatter stringFromByteCount:[sizeOfSound unsignedIntegerValue]
-                                                                                    countStyle:NSByteCountFormatterCountStyleBinary];
-        }
-        imageCell.titleLabel.text = sound.name;
-        imageCell.iconImageView.userInteractionEnabled = YES;
-        UITapGestureRecognizer *tapped = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(playSound:)];
-        tapped.numberOfTapsRequired = 1;
-        [imageCell.iconImageView addGestureRecognizer:tapped];
+    if (! [cell conformsToProtocol:@protocol(CatrobatImageCell)]) {
+        return cell;
     }
-    return cell;
+    UITableViewCell <CatrobatImageCell>* imageCell = (UITableViewCell<CatrobatImageCell>*)cell;
+    imageCell.indexPath = indexPath;
+
+    static NSString *playIconName = @"ic_media_play";
+    static NSString *stopIconName = @"ic_media_pause";
+
+    // determine right icon, therefore check if this song is played currently
+    NSString *rightIconName = playIconName;
+    @synchronized(self) {
+        if (sound.isPlaying && [self.currentPlayingSong.name isEqual:sound.name]) {
+            rightIconName = stopIconName;
+        }
+    }
+
+    UIImage *image = [self.imageCache objectForKey:rightIconName];
+    if (! image) {
+        dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0ul);
+        dispatch_async(queue, ^{
+            UIImage *image = [UIImage imageNamed:rightIconName];
+            [self.imageCache setObject:image forKey:rightIconName];
+            dispatch_sync(dispatch_get_main_queue(), ^{
+                // check if cell still needed
+                if ([imageCell.indexPath isEqual:indexPath]) {
+                    imageCell.iconImageView.image = image;
+                    [imageCell setNeedsLayout];
+                }
+            });
+        });
+    } else {
+        imageCell.iconImageView.image = image;
+    }
+
+    imageCell.titleLabel.text = sound.name;
+    imageCell.iconImageView.userInteractionEnabled = YES;
+    UITapGestureRecognizer *tapped = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(playSound:)];
+    tapped.numberOfTapsRequired = 1;
+    [imageCell.iconImageView addGestureRecognizer:tapped];
+
+    if (self.useDetailCells && [cell isKindOfClass:[DarkBlueGradientImageDetailCell class]]) {
+        // TODO: enhancement: use data cache for this later...
+        DarkBlueGradientImageDetailCell *detailCell = (DarkBlueGradientImageDetailCell*)imageCell;
+        detailCell.topLeftDetailLabel.textColor = [UIColor whiteColor];
+        detailCell.topLeftDetailLabel.text = [NSString stringWithFormat:@"%@:", kUILabelTextLength];
+        detailCell.topRightDetailLabel.textColor = [UIColor whiteColor];
+        detailCell.topRightDetailLabel.text = [NSString stringWithFormat:@"%.02fs",
+                                               (float)[self.object durationOfSound:sound]];
+        detailCell.bottomLeftDetailLabel.textColor = [UIColor whiteColor];
+        detailCell.bottomLeftDetailLabel.text = [NSString stringWithFormat:@"%@:", kUILabelTextSize];
+        detailCell.bottomRightDetailLabel.textColor = [UIColor whiteColor];
+        NSUInteger resultSize = [self.object fileSizeOfSound:sound];
+        NSNumber *sizeOfSound = [NSNumber numberWithUnsignedInteger:resultSize];
+        detailCell.bottomRightDetailLabel.text = [NSByteCountFormatter stringFromByteCount:[sizeOfSound unsignedIntegerValue]
+                                                                                countStyle:NSByteCountFormatterCountStyleBinary];
+        return detailCell;
+    }
+    return imageCell;
 }
 
 - (void)playSound:(id)sender

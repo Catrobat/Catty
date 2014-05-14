@@ -52,31 +52,28 @@
     Program* program = [[Program alloc] init];
     program.header = [[Header alloc] init];
 
-    // FIXME: check all constants for this default header properties...
-    // maybe we wanna outsource that later to another factory method in Header class
-    {
-        program.header.applicationBuildName = nil;
-        program.header.applicationBuildNumber = @"0";
-        program.header.applicationName = [Util getProjectName];
-        program.header.applicationVersion = [Util getProjectVersion];
-        program.header.catrobatLanguageVersion = kCatrobatLanguageVersion;
-        program.header.dateTimeUpload = nil;
-        program.header.description = @"XStream kompatibel";
-        program.header.deviceName = [Util getDeviceName];
-        program.header.mediaLicense = nil;
-        program.header.platform = [Util getPlatformName];
-        program.header.platformVersion = [Util getPlatformVersion];
-        program.header.programLicense = nil;
-        program.header.programName = programName;
-        program.header.remixOf = nil;
-        program.header.screenHeight = @([Util getScreenHeight]);
-        program.header.screenWidth = @([Util getScreenWidth]);
-        program.header.screenMode = @"STRETCH";
-        program.header.url = nil;
-        program.header.userHandle = nil;
-        program.header.programScreenshotManuallyTaken = (YES ? @"true" : @"false");
-        program.header.tags = nil;
-    }
+    // TODO: check all constants for this default header properties after Webteam has updated code.xml (remove refs, etc.)...
+    program.header.applicationBuildName = nil;
+    program.header.applicationBuildNumber = @"0";
+    program.header.applicationName = [Util getProjectName];
+    program.header.applicationVersion = [Util getProjectVersion];
+    program.header.catrobatLanguageVersion = kCatrobatLanguageVersion;
+    program.header.dateTimeUpload = nil;
+    program.header.description = @"XStream kompatibel";
+    program.header.deviceName = [Util getDeviceName];
+    program.header.mediaLicense = nil;
+    program.header.platform = [Util getPlatformName];
+    program.header.platformVersion = [Util getPlatformVersion];
+    program.header.programLicense = nil;
+    program.header.programName = programName;
+    program.header.remixOf = nil;
+    program.header.screenHeight = @([Util getScreenHeight]);
+    program.header.screenWidth = @([Util getScreenWidth]);
+    program.header.screenMode = @"STRETCH";
+    program.header.url = nil;
+    program.header.userHandle = nil;
+    program.header.programScreenshotManuallyTaken = (YES ? @"true" : @"false");
+    program.header.tags = nil;
 
     FileManager *fileManager = [[FileManager alloc] init];
     if (! [self programExists:programName]) {
@@ -102,9 +99,9 @@
 {
     NSDebug(@"Try to load project '%@'", loadingInfo.visibleName);
     NSDebug(@"Path: %@", loadingInfo.basePath);
-    NSString *xmlPath = [NSString stringWithFormat:@"%@", loadingInfo.basePath];
+    NSString *xmlPath = [NSString stringWithFormat:@"%@%@", loadingInfo.basePath, kProgramCodeFileName];
     NSDebug(@"XML-Path: %@", xmlPath);
-    Program *program = [[[Parser alloc] init] generateObjectForProgramWithPath:[xmlPath stringByAppendingFormat:@"%@", kProgramCodeFileName]];
+    Program *program = [[[Parser alloc] init] generateObjectForProgramWithPath:xmlPath];
 
     if (! program)
         return nil;
@@ -123,6 +120,11 @@
             }
         }
     }
+
+    // update last modification time
+    AppDelegate *appDelegate = (AppDelegate*)[UIApplication sharedApplication].delegate;
+    [appDelegate.fileManager changeModificationDate:[NSDate date]
+                                      forFileAtPath:xmlPath];
     return program;
 }
 
@@ -248,13 +250,14 @@
         [fileManager deleteDirectory:projectPath];
     }
 
-    // it this is currently set as last program, then look for next program to set it as the last program
+    NSString *basePath = [Program basePath];
+    NSError *error;
+    NSArray *programLoadingInfos = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:basePath error:&error];
+    NSLogError(error);
+
+    // if this is currently set as last program, then look for next program to set it as the last program
     if ([Program isLastProgram:programName]) {
         [Util setLastProgram:nil];
-        NSString *basePath = [Program basePath];
-        NSError *error;
-        NSArray *programLoadingInfos = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:basePath error:&error];
-        NSLogError(error);
         for (NSString *programLoadingInfo in programLoadingInfos) {
             // exclude .DS_Store folder on MACOSX simulator
             if ([programLoadingInfo isEqualToString:@".DS_Store"])
@@ -264,8 +267,10 @@
             break;
         }
     }
-}
 
+    // if there are no programs left, then automatically recreate default program
+    [fileManager addDefaultProgramToProgramsRootDirectoryIfNoProgramsExist];
+}
 
 - (GDataXMLElement*)toXML
 {
@@ -292,13 +297,17 @@
         //    NSData *xmlData = document.XMLData;
         NSString *xmlString = [document.rootElement XMLStringPrettyPrinted:YES];
         // TODO: outsource this to file manager
-        NSString *filePath = [NSString stringWithFormat:@"%@%@", [self projectPath], kProgramCodeFileName];
+        NSString *xmlPath = [NSString stringWithFormat:@"%@%@", [self projectPath], kProgramCodeFileName];
         //    [xmlData writeToFile:filePath atomically:YES];
         NSError *error = nil;
-        [xmlString writeToFile:filePath atomically:YES encoding:NSUTF8StringEncoding error:&error];
+        [xmlString writeToFile:xmlPath atomically:YES encoding:NSUTF8StringEncoding error:&error];
         NSLogError(error);
         // maybe later call some functions back here, that should update the UI on main thread...
         //    dispatch_async(dispatch_get_main_queue(), ^{});
+
+        // update last access time
+        AppDelegate *appDelegate = (AppDelegate*)[UIApplication sharedApplication].delegate;
+        [appDelegate.fileManager changeModificationDate:[NSDate date] forFileAtPath:xmlPath];
     });
 }
 

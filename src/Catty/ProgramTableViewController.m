@@ -57,7 +57,6 @@
 UINavigationBarDelegate>
 @property (nonatomic) BOOL useDetailCells;
 @property (strong, nonatomic) NSCharacterSet *blockedCharacterSet;
-@property (strong, nonatomic) NSMutableDictionary *imageCache;
 @end
 
 @implementation ProgramTableViewController
@@ -69,15 +68,6 @@ UINavigationBarDelegate>
         _blockedCharacterSet = [[NSCharacterSet characterSetWithCharactersInString:kTextFieldAllowedCharacters] invertedSet];
     }
     return _blockedCharacterSet;
-}
-
-- (NSMutableDictionary*)imageCache
-{
-    // lazy instantiation
-    if (! _imageCache) {
-        _imageCache = [NSMutableDictionary dictionaryWithCapacity:[self.program numberOfTotalObjects]];
-    }
-    return _imageCache;
 }
 
 - (void)setProgram:(Program *)program
@@ -255,14 +245,33 @@ UINavigationBarDelegate>
     } else {
         cell = [tableView dequeueReusableCellWithIdentifier:DetailCellIdentifier forIndexPath:indexPath];
     }
+
     if (! [cell conformsToProtocol:@protocol(CatrobatImageCell)]) {
         return cell;
     }
+
     UITableViewCell<CatrobatImageCell> *imageCell = (UITableViewCell<CatrobatImageCell>*)cell;
     NSInteger index = (kBackgroundSectionIndex + indexPath.section + indexPath.row);
     SpriteObject *object = [self.program.objectList objectAtIndex:index];
     imageCell.iconImageView.image = nil;
     [imageCell.iconImageView setBorder:[UIColor skyBlueColor] Width:kDefaultImageCellBorderWidth];
+
+    if (self.useDetailCells && [cell isKindOfClass:[DarkBlueGradientImageDetailCell class]]) {
+        DarkBlueGradientImageDetailCell *detailCell = (DarkBlueGradientImageDetailCell*)imageCell;
+        detailCell.topLeftDetailLabel.textColor = [UIColor whiteColor];
+        detailCell.topLeftDetailLabel.text = [NSString stringWithFormat:@"%@: %lu", kUILabelTextScripts,
+                                              (unsigned long)[object numberOfScripts]];
+        detailCell.topRightDetailLabel.textColor = [UIColor whiteColor];
+        detailCell.topRightDetailLabel.text = [NSString stringWithFormat:@"%@: %lu", kUILabelTextBricks,
+                                               (unsigned long)[object numberOfTotalBricks]];
+        detailCell.bottomLeftDetailLabel.textColor = [UIColor whiteColor];
+        detailCell.bottomLeftDetailLabel.text = [NSString stringWithFormat:@"%@: %lu", kUILabelTextLooks,
+                                                 (unsigned long)[object numberOfLooks]];
+        detailCell.bottomRightDetailLabel.textColor = [UIColor whiteColor];
+        detailCell.bottomRightDetailLabel.text = [NSString stringWithFormat:@"%@: %lu", kUILabelTextSounds,
+                                                  (unsigned long)[object numberOfSounds]];
+    }
+
     if (! [object.lookList count]) {
         imageCell.titleLabel.text = object.name;
         return imageCell;
@@ -330,21 +339,6 @@ UINavigationBarDelegate>
         }
     } else {
         imageCell.iconImageView.image = image;
-    }
-    if (self.useDetailCells && [cell isKindOfClass:[DarkBlueGradientImageDetailCell class]]) {
-        DarkBlueGradientImageDetailCell *detailCell = (DarkBlueGradientImageDetailCell*)imageCell;
-        detailCell.topLeftDetailLabel.textColor = [UIColor whiteColor];
-        detailCell.topLeftDetailLabel.text = [NSString stringWithFormat:@"%@: %lu", kUILabelTextScripts,
-                                              (unsigned long)[object numberOfScripts]];
-        detailCell.topRightDetailLabel.textColor = [UIColor whiteColor];
-        detailCell.topRightDetailLabel.text = [NSString stringWithFormat:@"%@: %lu", kUILabelTextBricks,
-                                               (unsigned long)[object numberOfTotalBricks]];
-        detailCell.bottomLeftDetailLabel.textColor = [UIColor whiteColor];
-        detailCell.bottomLeftDetailLabel.text = [NSString stringWithFormat:@"%@: %lu", kUILabelTextLooks,
-                                                 (unsigned long)[object numberOfLooks]];
-        detailCell.bottomRightDetailLabel.textColor = [UIColor whiteColor];
-        detailCell.bottomRightDetailLabel.text = [NSString stringWithFormat:@"%@: %lu", kUILabelTextSounds,
-                                                  (unsigned long)[object numberOfSounds]];
     }
     imageCell.titleLabel.text = object.name;
     return imageCell;
@@ -495,7 +489,7 @@ UINavigationBarDelegate>
 {
     [super alertView:alertView clickedButtonAtIndex:buttonIndex];
     if (alertView.tag == kRenameAlertViewTag) {
-        NSString* input = [alertView textFieldAtIndex:0].text;
+        NSString *input = [alertView textFieldAtIndex:0].text;
         if (buttonIndex == kAlertViewButtonOK) {
             if ([input isEqualToString:self.program.header.programName])
                 return;

@@ -22,7 +22,8 @@
 
 #import "LanguageTranslationDefines.h"
 
-#define kTextFieldAllowedCharacters @"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz_ 1234567890"
+// TODO: which characters in program, object, image names do we have to support?
+#define kTextFieldAllowedCharacters @"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz_- 1234567890"
 
 #define kMenuImageNameContinue @"continue"
 #define kMenuImageNameNew @"new"
@@ -48,6 +49,68 @@ typedef NS_ENUM(NSInteger, kBrickCategoryType) {
 #define kIphone5ScreenHeight 568.0f
 #define kIphone4ScreenHeight 480.0f
 #define kAddScriptCategoryTableViewBottomMargin 15.0f
+
+// brick type identifiers
+//typedef NS_ENUM(NSUInteger, kBrickType) {
+//
+//    // 1 control bricks
+//    kProgramStartedBrick = 100,
+//    kTappedBrick = 101,
+//    kWaitBrick = 102,
+//    kReceiveBrick = 103,
+//    kBroadcastBrick = 104,
+//    kBroadcastWaitBrick = 105,
+//    kNoteBrick = 106,
+//    kForeverBrick = 107,
+//    kIfBrick = 108,
+//    kIfElseBrick = 109,
+//    kIfEndBrick = 110,
+//    kRepeatBrick = 111,
+//    kLoopEndBrick = 112,
+//
+//    // 2 motion bricks
+//    kPlaceAtBrick = 200,
+//    kSetXBrick = 201,
+//    kSetYBrick = 202,
+//    kChangeXByNBrick = 203,
+//    kChangeYByNBrick = 204,
+//    kIfOnEdgeBounceBrick = 205,
+//    kMoveNStepsBrick = 206,
+//    kTurnLeftBrick = 207,
+//    kTurnRightBrick = 208,
+//    kPointInDirectionBrick = 209,
+//    kPointToBrick = 210,
+//    kGlideToBrick = 211,
+//    kGoNStepsBackBrick = 212,
+//    kComeToFrontBrick = 213,
+//
+//    // 3 sound bricks
+//    kPlaySoundBrick = 300,
+//    kStopAllSoundsBrick = 301,
+//    kSetVolumeToBrick = 302,
+//    kChangeVolumeByNBrick = 303,
+//    kSpeakBrick = 304,
+//
+//    // 4 look bricks
+//    kSetLookBrick = 400,
+//    kNextLookBrick = 401,
+//    kSetSizeToBrick = 402,
+//    kChangeSizeByNBrick = 403,
+//    kHideBrick = 404,
+//    kShowBrick = 405,
+//    kSetGhostEffectBrick = 406,
+//    kChangeGhostEffectByNBrick = 407,
+//    kSetBrightnessBrick = 408,
+//    kChangeBrightnessByNBrick = 409,
+//    kClearGraphicEffectBrick = 410,
+//
+//    // 5 variable bricks
+//    kSetVariableBrick = 500,
+//    kChangeVariableBrick = 501
+//
+//};
+
+// ----------------- REFACTOR BEGIN -------------------
 
 // brick categories
 #define kBrickCategoryNames @[\
@@ -512,6 +575,8 @@ typedef NS_ENUM(NSInteger, kBrickShapeType) {
     @"SetVariableBrick"          : @{@"categoryType" : @(kVariableBrick),@"brickType" : @(kSetVariableBrick)},\
     @"ChangeVariableBrick"       : @{@"categoryType" : @(kVariableBrick),@"brickType" : @(kChangeVariableBrick)}\
 }
+
+// ----------------- REFACTOR END -------------------
 
 // Notifications
 static NSString *const kBrickCellAddedNotification = @"BrickCellAddedNotification";

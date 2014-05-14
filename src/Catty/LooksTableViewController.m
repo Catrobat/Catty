@@ -21,6 +21,8 @@
  */
 
 #import "LooksTableViewController.h"
+#import <MobileCoreServices/MobileCoreServices.h>
+#import <AssetsLibrary/AssetsLibrary.h>
 #import "ProgramDefines.h"
 #import "UIDefines.h"
 #import "TableUtil.h"
@@ -39,9 +41,8 @@
 #import "UIColor+CatrobatUIColorExtensions.h"
 #import "NSString+CatrobatNSStringExtensions.h"
 #import "UIImageView+CatrobatUIImageViewExtensions.h"
-#import <MobileCoreServices/MobileCoreServices.h>
-#import <AssetsLibrary/AssetsLibrary.h>
 #import "NSData+Hashes.h"
+#import "AppDelegate.h"
 #import "LoadingView.h"
 #import "LanguageTranslationDefines.h"
 
@@ -53,9 +54,11 @@
 #define kChooseImageActionSheetButton @"chooseImage"
 #define kDrawNewImageActionSheetButton @"drawNewImage"
 
-@interface ObjectLooksTableViewController () <UIActionSheetDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate>
+@interface ObjectLooksTableViewController () <UIActionSheetDelegate, UIImagePickerControllerDelegate,
+                                              UINavigationControllerDelegate, UIAlertViewDelegate,
+                                              UITextFieldDelegate>
 @property (nonatomic) BOOL useDetailCells;
-@property (strong, nonatomic) NSMutableDictionary *imageCache; // NONatomic, only (!) accessed via main queue = serial (!) queue
+@property (nonatomic, strong) Look *lookToAdd;
 @property (nonatomic, strong) LoadingView* loadingView;
 @property (nonatomic, strong) NSMutableDictionary* addLookActionSheetBtnIndexes;
 @end
@@ -82,6 +85,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.lookToAdd = nil;
     NSDictionary *showDetails = [[NSUserDefaults standardUserDefaults] objectForKey:kUserDetailsShowDetailsKey];
     NSNumber *showDetailsProgramsValue = (NSNumber*)[showDetails objectForKey:kUserDetailsShowDetailsLooksKey];
     self.useDetailCells = [showDetailsProgramsValue boolValue];
@@ -204,6 +208,7 @@
     } else {
         cell = [tableView dequeueReusableCellWithIdentifier:DetailCellIdentifier forIndexPath:indexPath];
     }
+
     if (! [cell conformsToProtocol:@protocol(CatrobatImageCell)]) {
         return cell;
     }
@@ -275,6 +280,9 @@
     } else {
         imageCell.iconImageView.image = image;
     }
+
+    imageCell.titleLabel.text = look.name;
+
     if (self.useDetailCells && [cell isKindOfClass:[DarkBlueGradientImageDetailCell class]]) {
         // TODO: enhancement: use data cache for this later...
         DarkBlueGradientImageDetailCell *detailCell = (DarkBlueGradientImageDetailCell*)imageCell;
@@ -292,8 +300,8 @@
         NSNumber *sizeOfSound = [NSNumber numberWithUnsignedInteger:resultSize];
         detailCell.bottomRightDetailLabel.text = [NSByteCountFormatter stringFromByteCount:[sizeOfSound unsignedIntegerValue]
                                                                                 countStyle:NSByteCountFormatterCountStyleBinary];
+        return detailCell;
     }
-    imageCell.titleLabel.text = look.name;
     return imageCell;
 }
 
@@ -360,17 +368,19 @@
 {
     if (! [UIImagePickerController isSourceTypeAvailable:sourceType])
         return;
-    
+
     NSArray *availableMediaTypes = [UIImagePickerController availableMediaTypesForSourceType:sourceType];
     if (! [availableMediaTypes containsObject:(NSString *)kUTTypeImage])
         return;
-    
+
     UIImagePickerController *picker = [[UIImagePickerController alloc] init];
     picker.sourceType = sourceType;
     picker.mediaTypes = @[(NSString*)kUTTypeImage];
     picker.allowsEditing = NO;
     picker.delegate = self;
-    [self presentViewController:picker animated:YES completion:nil];
+    [self presentViewController:picker animated:YES completion:^{
+        [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleLightContent;
+    }];
 }
 
 - (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker
@@ -380,78 +390,97 @@
 
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
 {
+    // executed on the main queue
+    [self dismissViewControllerAnimated:YES completion:nil];
     UIImage *image = info[UIImagePickerControllerEditedImage];
     if (! image) {
         image = info[UIImagePickerControllerOriginalImage];
     }
 
-    if (image) {
-        // add image to object now
-        NSURL *imageURL = [info objectForKey:UIImagePickerControllerReferenceURL];
-        [self showLoadingView];
-
-        ALAssetsLibraryAssetForURLResultBlock resultblock = ^(ALAsset *myasset) {
-            ALAssetRepresentation *representation = [myasset defaultRepresentation];
-            NSString *imageFileName = [representation filename];
-            NSLog(@"fileName: %@",imageFileName);
-
-            imageFileName = [[imageFileName componentsSeparatedByString:@"."] firstObject];
-            if (! [imageFileName length])
-                imageFileName = kDefaultImportedImageName;
-
-            // save image to programs directory
-            NSData *imageData = UIImagePNGRepresentation(image);
-            NSString *fileNamePrefix = [[[imageData md5] stringByReplacingOccurrencesOfString:@"-" withString:@""] uppercaseString];
-            NSString *lookName = imageFileName;
-            NSString *newImageFileName = [NSString stringWithFormat:@"%@%@%@", fileNamePrefix, kResourceFileNameSeparator, imageFileName];
-
-            // get all look names of that object
-            NSMutableArray *lookNames = [NSMutableArray arrayWithCapacity:[self.object.lookList count]];
-            for (Look *look in self.object.lookList) {
-                [lookNames addObject:look.name];
-            }
-            Look *look = [[Look alloc] initWithName:[Util uniqueName:lookName existingNames:lookNames] andPath:newImageFileName];
-            NSLog(@"FilePath: %@", newImageFileName);
-
-            // TODO: outsource this to FileManager
-            NSString *newImagePath = [NSString stringWithFormat:@"%@%@/%@",
-                                      [self.object projectPath], kProgramImagesDirName,
-                                      newImageFileName];
-            NSString *mediaType = info[UIImagePickerControllerMediaType];
-
-            NSLog(@"Writing file to disk");
-            if ([mediaType isEqualToString:@"public.image"]) {
-                // TODO: update program on disc...
-                NSBlockOperation* saveOp = [NSBlockOperation blockOperationWithBlock: ^{
-                    [imageData writeToFile:newImagePath atomically:YES];
-                }];
-
-                // Use the completion block to update UI on the main queue
-                [saveOp setCompletionBlock:^{
-                    [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-                        // update view
-                        [super showPlaceHolder:NO];
-                        [self.object.lookList addObject:look];
-                        [self hideLoadingView];
-                        NSInteger numberOfRowsInLastSection = [self tableView:self.tableView numberOfRowsInSection:0];
-                        NSIndexPath *indexPath = [NSIndexPath indexPathForRow:(numberOfRowsInLastSection - 1) inSection:0];
-                        [self.tableView insertRowsAtIndexPaths:@[indexPath]
-                                              withRowAnimation:UITableViewRowAnimationFade];
-                    }];
-                }];
-                NSOperationQueue *queue = [[NSOperationQueue alloc] init];
-                [queue addOperation:saveOp];
-            }
-        };
-        ALAssetsLibrary* assetslibrary = [[ALAssetsLibrary alloc] init];
-        [assetslibrary assetForURL:imageURL
-                       resultBlock:resultblock
-                      failureBlock:nil];
+    if (! image) {
+        return;
     }
-    [self dismissViewControllerAnimated:YES completion:nil];
+
+    // add image to object now
+    NSURL *imageURL = [info objectForKey:UIImagePickerControllerReferenceURL];
+    [self showLoadingView];
+
+    ALAssetsLibraryAssetForURLResultBlock resultblock = ^(ALAsset *myasset) {
+        // still on the main queue here
+        ALAssetRepresentation *representation = [myasset defaultRepresentation];
+        NSString *imageFileName = [representation filename];
+        NSLog(@"fileName: %@",imageFileName);
+        NSArray *imageFileNameParts = [imageFileName componentsSeparatedByString:@"."];
+        imageFileName = [imageFileNameParts firstObject];
+        NSString *imageFileNameExtension = [imageFileNameParts lastObject];
+        if ((! [imageFileName length]) || (! [imageFileNameExtension length])) {
+            imageFileName = kDefaultImportedImageName;
+            imageFileNameExtension = kDefaultImportedImageNameExtension;
+        }
+
+        NSData *imageData = UIImagePNGRepresentation(image);
+        NSString *fileNamePrefix = [[[imageData md5] stringByReplacingOccurrencesOfString:@"-" withString:@""] uppercaseString];
+        NSString *lookName = imageFileName;
+        NSString *newImageFileName = [NSString stringWithFormat:@"%@%@%@.%@", fileNamePrefix,
+                                      kResourceFileNameSeparator, imageFileName, imageFileNameExtension];
+
+        // get all look names of that object
+        NSMutableArray *lookNames = [NSMutableArray arrayWithCapacity:[self.object.lookList count]];
+        for (Look *look in self.object.lookList) {
+            [lookNames addObject:look.name];
+        }
+        Look *look = [[Look alloc] initWithName:[Util uniqueName:lookName existingNames:lookNames] andPath:newImageFileName];
+        NSLog(@"FilePath: %@", newImageFileName);
+
+        // TODO: outsource this to FileManager
+        NSString *newImagePath = [NSString stringWithFormat:@"%@%@/%@",
+                                  [self.object projectPath], kProgramImagesDirName,
+                                  newImageFileName];
+        NSString *mediaType = info[UIImagePickerControllerMediaType];
+
+        NSLog(@"Writing file to disk");
+        if ([mediaType isEqualToString:@"public.image"]) {
+            // leaving the main queue here!
+            NSBlockOperation* saveOp = [NSBlockOperation blockOperationWithBlock:^{
+                // save image to programs directory
+                [imageData writeToFile:newImagePath atomically:YES];
+            }];
+            // completion block is NOT executed on the main queue
+            [saveOp setCompletionBlock:^{
+                // execute this on the main queue
+                [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+                    [self hideLoadingView];
+
+                    // ask user for image name
+                    self.lookToAdd = look;
+                    UIAlertView *alertView = [Util promptWithTitle:kUIAlertViewTitleAddImage
+                                                           message:[NSString stringWithFormat:@"%@:", kUIAlertViewMessageImageName]
+                                                          delegate:self
+                                                       placeholder:kUIAlertViewPlaceholderEnterImageName
+                                                               tag:kNewImageAlertViewTag
+                                                 textFieldDelegate:self];
+                    UITextField *textField = [alertView textFieldAtIndex:0];
+                    textField.text = look.name;
+                }];
+            }];
+            NSOperationQueue *queue = [[NSOperationQueue alloc] init];
+            [queue addOperation:saveOp];
+        }
+    };
+    ALAssetsLibrary* assetslibrary = [[ALAssetsLibrary alloc] init];
+    [assetslibrary assetForURL:imageURL
+                   resultBlock:resultblock
+                  failureBlock:nil];
 }
 
-#pragma mark - UIActionSheetDelegate Handlers
+#pragma mark - text field delegates
+- (BOOL)textField:(UITextField*)field shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString*)characters
+{
+    NSCharacterSet *blockedCharacters = [[NSCharacterSet characterSetWithCharactersInString:kTextFieldAllowedCharacters] invertedSet];
+    return ([characters rangeOfCharacterFromSet:blockedCharacters].location == NSNotFound);
+}
+
+#pragma mark - action sheet delegates
 - (void)actionSheet:(UIActionSheet*)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
 {
     if (actionSheet.tag == kEditLooksActionSheetTag) {
@@ -501,6 +530,44 @@
 //            NSLog(@"Draw new image");
 //            [Util showComingSoonAlertView];
         }
+    }
+}
+
+#pragma mark - alert view delegate handlers
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    [super alertView:alertView clickedButtonAtIndex:buttonIndex];
+    if (alertView.tag == kNewImageAlertViewTag) {
+        NSString *input = [alertView textFieldAtIndex:0].text;
+        [self.object.lookList addObject:self.lookToAdd];
+
+        if (! input) {
+            [self.object removeLook:self.lookToAdd];
+            self.lookToAdd = nil;
+            return;
+        }
+
+        if (buttonIndex == kAlertViewButtonOK) {
+            [super showPlaceHolder:NO];
+            AppDelegate *appDelegate = (AppDelegate*)[UIApplication sharedApplication].delegate;
+            NSString *oldPath = [self.object pathForLook:self.lookToAdd];
+            self.lookToAdd.name = input;
+            NSArray *fileNameParts = [self.lookToAdd.fileName componentsSeparatedByString:@"."];
+            NSString *hash = [[[fileNameParts firstObject] componentsSeparatedByString:@"_"] firstObject];
+            NSString *fileExtension = [fileNameParts lastObject];
+            self.lookToAdd.fileName = [NSString stringWithFormat:@"%@_%@.%@", hash, input, fileExtension];
+            NSString *newPath = [self.object pathForLook:self.lookToAdd];
+            [appDelegate.fileManager moveExistingFileAtPath:oldPath toPath:newPath];
+            NSInteger numberOfRowsInLastSection = [self tableView:self.tableView numberOfRowsInSection:0];
+            NSIndexPath *indexPath = [NSIndexPath indexPathForRow:(numberOfRowsInLastSection - 1) inSection:0];
+            [self.tableView insertRowsAtIndexPaths:@[indexPath]
+                                  withRowAnimation:UITableViewRowAnimationFade];
+            // TODO: update program on disk (run async on another queue)...
+        } else {
+            // cancel button clicked, remove look!
+            [self.object removeLook:self.lookToAdd];
+        }
+        self.lookToAdd = nil;
     }
 }
 

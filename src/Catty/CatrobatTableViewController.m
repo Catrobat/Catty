@@ -90,10 +90,10 @@
     if (! [appDelegate.fileManager directoryExists:[Program basePath]]) {
         [appDelegate.fileManager createDirectory:[Program basePath]];
     }
-    [appDelegate.fileManager addDefaultProjectsToProgramsRootDirectory];
-    
+    [appDelegate.fileManager addDefaultProgramToProgramsRootDirectoryIfNoProgramsExist];
+
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(networkStatusChanged:) name:kReachabilityChangedNotification object:nil];
-    
+
     self.reachability = [Reachability reachabilityForInternetConnection];
     [self.reachability startNotifier];
     self.tableView.delaysContentTouches = NO;
@@ -288,7 +288,18 @@
             NSDebug(@"not reachable");
             return NO;
         } else if (remoteHostStatus == ReachableViaWiFi) {
-            NSDebug(@"reachable via Wifi");
+            if (!self.reachability.connectionRequired) {
+                NSDebug(@"reachable via Wifi");
+                return YES;
+            }else{
+                NSDebug(@"reachable via wifi but no data");
+                if ([self.navigationController.topViewController isKindOfClass:[DownloadTabBarController class]] ||
+                    [self.navigationController.topViewController isKindOfClass:[ProgramDetailStoreViewController class]]) {
+                    [Util alertWithText:@"No Internet Connection!"];
+                    [self.navigationController popToRootViewControllerAnimated:YES];
+                    return NO;
+                }
+            }
             return YES;
         } else if (remoteHostStatus == ReachableViaWWAN){
             if (!self.reachability.connectionRequired) {
@@ -377,7 +388,16 @@
         }
         NSDebug(@"not reachable");
     } else if (remoteHostStatus == ReachableViaWiFi) {
-        NSDebug(@"reachable via Wifi");
+        if (!self.reachability.connectionRequired) {
+            NSDebug(@"reachable via Wifi");
+        }else{
+            NSDebug(@"reachable via wifi but no data");
+            if ([self.navigationController.topViewController isKindOfClass:[DownloadTabBarController class]] ||
+                [self.navigationController.topViewController isKindOfClass:[ProgramDetailStoreViewController class]]) {
+                [Util alertWithText:@"No Internet Connection!"];
+                [self.navigationController popToRootViewControllerAnimated:YES];
+            }
+        }
     }  else if (remoteHostStatus == ReachableViaWWAN){
         if (!self.reachability.connectionRequired) {
             NSDebug(@"celluar data ok");
