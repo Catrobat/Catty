@@ -496,6 +496,8 @@
             [self.object.scriptList addObject:script];
         } else {
             script = copy ? [self.object.scriptList objectAtIndex:self.selectedIndexPath.section] :
+            
+            // TODO get section for visible Cells
                             [self.object.scriptList objectAtIndex:self.collectionView.numberOfSections - 1];
         }
         Brick *brick = (Brick*)brickOrScript;
@@ -522,8 +524,23 @@
             [script.brickList insertObject:brick atIndex:self.selectedIndexPath.item];
             [self.collectionView insertItemsAtIndexPaths:@[self.selectedIndexPath]];
         } else {
-            [script.brickList addObject:brick];
-            [self.collectionView insertItemsAtIndexPaths:@[[NSIndexPath indexPathForItem:self.selectedIndexPath.item inSection:self.collectionView.numberOfSections - 1]]];
+            // insert new brick in visible indexpath
+            NSIndexPath *visibleIndexPath = nil;
+            for (BrickCell *cell in self.collectionView.visibleCells) {
+                visibleIndexPath = [self.collectionView indexPathForCell:cell];
+                if (visibleIndexPath) {
+                    break;
+                }
+            }
+            
+            if (visibleIndexPath) {
+              [script.brickList insertObject:brick atIndex:visibleIndexPath.item];
+              [self.collectionView insertItemsAtIndexPaths:@[[NSIndexPath indexPathForItem:visibleIndexPath.item inSection:self.collectionView.numberOfSections - 1]]];
+            } else {
+                // last section (script)
+               [script.brickList addObject:brick];
+               [self.collectionView insertItemsAtIndexPaths:@[[NSIndexPath indexPathForItem:self.selectedIndexPath.item inSection:self.collectionView.numberOfSections - 1]]];
+            }
         }
     } completion:^(BOOL finished) {
         if (finished) {
