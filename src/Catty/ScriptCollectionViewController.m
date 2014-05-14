@@ -498,7 +498,7 @@
             script.object = self.object;
             [self.object.scriptList addObject:script];
         } else {
-           script = [self lastVisibleScriptOnScreen:copy];
+           script = [self firstVisibleScriptOnScreen:copy];
         }
         Brick *brick = (Brick*)brickOrScript;
         brick.object = self.object;
@@ -517,24 +517,46 @@
     if (completionBlock) completionBlock();
 }
 
-- (Script *)lastVisibleScriptOnScreen:(BOOL)copy
+- (Script *)firstVisibleScriptOnScreen:(BOOL)copy
 {
     Script *script = nil;
     if (copy) {
         script = [self.object.scriptList objectAtIndex:selectedIndexPath.section];
     } else {
         // insert new brick in last visible script (section)
-        NSArray *visbleCells = self.collectionView.visibleCells;
         NSMutableArray *scriptCells = [NSMutableArray array];
-        if (visbleCells.count) {
-            for (BrickCell *cell in visbleCells) {
+        if (self.collectionView.visibleCells.count) {
+            for (BrickCell *cell in self.collectionView.visibleCells) {
                 if ([self isScriptCell:cell]) {
                     [scriptCells addObject:cell];
                 }
             }
         }
-        BrickCell *cell = [scriptCells lastObject];
-        script = [self.object.scriptList objectAtIndex:[self.collectionView indexPathForCell:cell].section];
+        
+        if (scriptCells.count) {
+            [scriptCells sortUsingComparator:^(BrickCell *cell1, BrickCell *cell2) {
+                if (cell1.frame.origin.y > cell2.frame.origin.y) {
+                    return (NSComparisonResult)NSOrderedDescending;
+                }
+                
+                if (cell1.frame.origin.y < cell2.frame.origin.y) {
+                    return (NSComparisonResult)NSOrderedAscending;
+                }
+                return (NSComparisonResult)NSOrderedSame;
+            }];
+        }
+        
+        BOOL emtpyScript = NO;
+        for (BrickCell *scriptCell in scriptCells) {
+            script = [self.object.scriptList objectAtIndex:[self.collectionView indexPathForCell:scriptCell].section];
+            if (! script.brickList.count) {
+                emtpyScript = YES;
+                break;
+            }
+        }
+        
+        BrickCell *cell = scriptCells.count ? scriptCells.lastObject : [self.collectionView.visibleCells firstObject];
+        script = emtpyScript ? script : [self.object.scriptList objectAtIndex:[self.collectionView indexPathForCell:cell].section];
         addedIndexPath = [self.collectionView indexPathForCell:cell];
     }
     return script;
@@ -563,8 +585,15 @@
         }];
     } else {
         [self.collectionView performBatchUpdates:^{
-            [script.brickList insertObject:brick atIndex:script.brickList.count];
-            [self.collectionView insertItemsAtIndexPaths:@[[NSIndexPath indexPathForItem:script.brickList.count inSection:addedIndexPath.section]]];
+            if (! script.brickList.count) {
+                [script.brickList addObject:brick];
+                            [self.collectionView insertItemsAtIndexPaths:@[[NSIndexPath indexPathForItem:script.brickList.count inSection:self.collectionView.numberOfSections - 1]]];
+                
+            } else {
+                [script.brickList insertObject:brick atIndex:script.brickList.count];
+                [self.collectionView insertItemsAtIndexPaths:@[[NSIndexPath indexPathForItem:script.brickList.count inSection:addedIndexPath.section]]];
+            }
+            
         } completion:^(BOOL finished) {
             if (finished) {
                 [self.collectionView reloadData];
