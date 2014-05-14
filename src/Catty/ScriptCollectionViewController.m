@@ -686,6 +686,7 @@
         controlBrickCell.deleteButton.transform = CGAffineTransformMakeScale(0.1f, 0.1f);
         transform = CGAffineTransformMakeScale(1.0f, 1.0f);
     } else {
+        transform = CGAffineTransformMakeScale(1.0f, 1.0f);
         endAlpha = 0.0f;
     }
     
@@ -700,7 +701,6 @@
                      }
                      completion:^(BOOL finished) {
                          if (finished) {
-                             controlBrickCell.deleteButton.transform = CGAffineTransformIdentity;
                              controlBrickCell.hideDeleteButton = !start;
                          }
                      }];

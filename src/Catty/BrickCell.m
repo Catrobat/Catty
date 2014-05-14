@@ -149,21 +149,13 @@
 - (ScriptDeleteButton *)deleteButton
 {
     if (!_deleteButton) {
-        _deleteButton = [[ScriptDeleteButton alloc]initWithFrame:CGRectZero];
+        _deleteButton = [[ScriptDeleteButton alloc]initWithFrame:CGRectIntegral(CGRectMake(self.bounds.origin.x + kDeleteButtonOffset,
+                                                                                           self.bounds.origin.y,
+                                                                                           kBrickDeleteButtonSize,
+                                                                                           kBrickDeleteButtonSize))];
         _deleteButton.hidden = YES;
     }
     return _deleteButton;
-}
-
-#pragma mark - layout subviews
-- (void)layoutSubviews
-{
-    [super layoutSubviews];
-    self.deleteButton.frame = CGRectIntegral(CGRectMake(self.bounds.origin.x + kDeleteButtonOffset,
-                                                        self.bounds.origin.y,
-                                                        kBrickDeleteButtonSize,
-                                                        kBrickDeleteButtonSize)) ;
-    
 }
 
 - (NSArray*)brickCategoryColors
