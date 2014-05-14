@@ -51,64 +51,64 @@ typedef NS_ENUM(NSInteger, kBrickCategoryType) {
 #define kAddScriptCategoryTableViewBottomMargin 15.0f
 
 // brick type identifiers
-//typedef NS_ENUM(NSUInteger, kBrickType) {
-//
-//    // 1 control bricks
-//    kProgramStartedBrick = 100,
-//    kTappedBrick = 101,
-//    kWaitBrick = 102,
-//    kReceiveBrick = 103,
-//    kBroadcastBrick = 104,
-//    kBroadcastWaitBrick = 105,
-//    kNoteBrick = 106,
-//    kForeverBrick = 107,
-//    kIfBrick = 108,
-//    kIfElseBrick = 109,
-//    kIfEndBrick = 110,
-//    kRepeatBrick = 111,
-//    kLoopEndBrick = 112,
-//
-//    // 2 motion bricks
-//    kPlaceAtBrick = 200,
-//    kSetXBrick = 201,
-//    kSetYBrick = 202,
-//    kChangeXByNBrick = 203,
-//    kChangeYByNBrick = 204,
-//    kIfOnEdgeBounceBrick = 205,
-//    kMoveNStepsBrick = 206,
-//    kTurnLeftBrick = 207,
-//    kTurnRightBrick = 208,
-//    kPointInDirectionBrick = 209,
-//    kPointToBrick = 210,
-//    kGlideToBrick = 211,
-//    kGoNStepsBackBrick = 212,
-//    kComeToFrontBrick = 213,
-//
-//    // 3 sound bricks
-//    kPlaySoundBrick = 300,
-//    kStopAllSoundsBrick = 301,
-//    kSetVolumeToBrick = 302,
-//    kChangeVolumeByNBrick = 303,
-//    kSpeakBrick = 304,
-//
-//    // 4 look bricks
-//    kSetLookBrick = 400,
-//    kNextLookBrick = 401,
-//    kSetSizeToBrick = 402,
-//    kChangeSizeByNBrick = 403,
-//    kHideBrick = 404,
-//    kShowBrick = 405,
-//    kSetGhostEffectBrick = 406,
-//    kChangeGhostEffectByNBrick = 407,
-//    kSetBrightnessBrick = 408,
-//    kChangeBrightnessByNBrick = 409,
-//    kClearGraphicEffectBrick = 410,
-//
-//    // 5 variable bricks
-//    kSetVariableBrick = 500,
-//    kChangeVariableBrick = 501
-//
-//};
+typedef NS_ENUM(NSUInteger, kBrickType) {
+
+    // 0 control bricks
+    kProgramStartedBrick = 0,
+    kTappedBrick = 1,
+    kWaitBrick = 2,
+    kReceiveBrick = 3,
+    kBroadcastBrick = 4,
+    kBroadcastWaitBrick = 5,
+    kNoteBrick = 6,
+    kForeverBrick = 7,
+    kIfBrick = 8,
+    kIfElseBrick = 9,
+    kIfEndBrick = 10,
+    kRepeatBrick = 11,
+    kLoopEndBrick = 12,
+
+    // 1 motion bricks
+    kPlaceAtBrick = 100,
+    kSetXBrick = 101,
+    kSetYBrick = 102,
+    kChangeXByNBrick = 103,
+    kChangeYByNBrick = 104,
+    kIfOnEdgeBounceBrick = 105,
+    kMoveNStepsBrick = 106,
+    kTurnLeftBrick = 107,
+    kTurnRightBrick = 108,
+    kPointInDirectionBrick = 109,
+    kPointToBrick = 110,
+    kGlideToBrick = 111,
+    kGoNStepsBackBrick = 112,
+    kComeToFrontBrick = 113,
+
+    // 2 sound bricks
+    kPlaySoundBrick = 200,
+    kStopAllSoundsBrick = 201,
+    kSetVolumeToBrick = 202,
+    kChangeVolumeByNBrick = 203,
+    kSpeakBrick = 204,
+
+    // 3 look bricks
+    kSetLookBrick = 300,
+    kNextLookBrick = 301,
+    kSetSizeToBrick = 302,
+    kChangeSizeByNBrick = 303,
+    kHideBrick = 304,
+    kShowBrick = 305,
+    kSetGhostEffectBrick = 306,
+    kChangeGhostEffectByNBrick = 307,
+    kSetBrightnessBrick = 308,
+    kChangeBrightnessByNBrick = 309,
+    kClearGraphicEffectBrick = 310,
+
+    // 4 variable bricks
+    kSetVariableBrick = 400,
+    kChangeVariableBrick = 401
+
+};
 
 // ----------------- REFACTOR BEGIN -------------------
 
@@ -168,23 +168,6 @@ typedef NS_ENUM(NSInteger, kBrickCategoryType) {
 
 // delete button bricks
 #define kBrickDeleteButtonSize 22.0f
-
-// control bricks
-typedef NS_ENUM(NSInteger, kControlBrickType) {
-    kProgramStartedBrick = 0,
-    kTappedBrick = 1,
-    kWaitBrick = 2,
-    kReceiveBrick = 3,
-    kBroadcastBrick = 4,
-    kBroadcastWaitBrick = 5,
-    kNoteBrick = 6,
-    kForeverBrick = 7,
-    kIfBrick = 8,
-    kIfElseBrick = 9,
-    kIfEndBrick = 10,
-    kRepeatBrick = 11,
-    kLoopEndBrick = 12
-};
 
 // Note:
 // -----------------------------------------------------------------------------------------------------------
@@ -269,23 +252,6 @@ typedef NS_ENUM(NSInteger, kControlBrickType) {
 ]
 
 // motion bricks
-typedef NS_ENUM(NSInteger, kMotionBrickType) {
-    kPlaceAtBrick = 0,
-    kSetXBrick = 1,
-    kSetYBrick = 2,
-    kChangeXByNBrick = 3,
-    kChangeYByNBrick = 4,
-    kIfOnEdgeBounceBrick = 5,
-    kMoveNStepsBrick = 6,
-    kTurnLeftBrick = 7,
-    kTurnRightBrick = 8,
-    kPointInDirectionBrick = 9,
-    kPointToBrick = 10,
-    kGlideToBrick = 11,
-    kGoNStepsBackBrick = 12,
-    kComeToFrontBrick = 13
-};
-
 #define kMotionBrickNames @[\
     kBrickCellMotionTitlePlaceAt,\
     kBrickCellMotionTitleSetX,\
@@ -355,14 +321,6 @@ typedef NS_ENUM(NSInteger, kMotionBrickType) {
 ]
 
 // sound bricks
-typedef NS_ENUM(NSInteger, kSoundBrickType) {
-    kPlaySoundBrick = 0,
-    kStopAllSoundsBrick = 1,
-    kSetVolumeToBrick = 2,
-    kChangeVolumeByNBrick = 3,
-    kSpeakBrick = 4
-};
-
 #define kSoundBrickNames @[\
     kBrickCellSoundTitlePlaySound,\
     kBrickCellSoundTitleStopAllSounds,\
@@ -396,20 +354,6 @@ typedef NS_ENUM(NSInteger, kSoundBrickType) {
 ]
 
 // look bricks
-typedef NS_ENUM(NSInteger, kLookBrickType) {
-    kSetLookBrick = 0,
-    kNextLookBrick = 1,
-    kSetSizeToBrick = 2,
-    kChangeSizeByNBrick = 3,
-    kHideBrick = 4,
-    kShowBrick = 5,
-    kSetGhostEffectBrick = 6,
-    kChangeGhostEffectByNBrick = 7,
-    kSetBrightnessBrick = 8,
-    kChangeBrightnessByNBrick = 9,
-    kClearGraphicEffectBrick = 10
-};
-
 #define kLookBrickNames @[\
     kBrickCellLookTitleSetLook,\
     kBrickCellLookTitleNextLook,\
@@ -467,11 +411,6 @@ typedef NS_ENUM(NSInteger, kLookBrickType) {
 ]
 
 // variable bricks
-typedef NS_ENUM(NSInteger, kVariableBrickType) {
-    kSetVariableBrick = 0,
-    kChangeVariableBrick = 1
-};
-
 #define kVariableBrickNames @[\
     kBrickCellVariableTitleSetVariable,\
     kBrickCellVariableTitleChangeVariable\

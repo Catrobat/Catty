@@ -20,28 +20,11 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
+#import <Foundation/Foundation.h>
 
-#import <UIKit/UIKit.h>
-#import <SpriteKit/SpriteKit.h>
-#import "UIDefines.h"
-#import "BrickProtocol.h"
+@protocol BrickProtocol <NSObject>
 
-@class Brick;
-@class SpriteObject;
-
-@interface Script : SKNode <BrickProtocol>
-
+@required
 @property (nonatomic) kBrickType brickType;
-
-@property (nonatomic) BOOL allowRunNextAction;
-@property (nonatomic, weak) SpriteObject *object;
-@property (nonatomic, strong) NSString *action;
-@property (strong, nonatomic) NSMutableArray *brickList;
-
-- (void)startWithCompletion:(dispatch_block_t)block;
-
-- (void)stop;
-
-- (NSString*)description;
 
 @end

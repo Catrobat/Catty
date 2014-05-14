@@ -658,6 +658,7 @@
 		CA8C247C18CD12C100314C2B /* ProgramTableViewControllerNewProgramTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProgramTableViewControllerNewProgramTests.h; sourceTree = "<group>"; };
 		CA9B7EA018FFCC0400F1790D /* NSData+Hashes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+Hashes.h"; sourceTree = "<group>"; };
 		CA9B7EA118FFCC0400F1790D /* NSData+Hashes.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+Hashes.m"; sourceTree = "<group>"; };
+		CAA443B3192410D00076BA35 /* BrickProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BrickProtocol.h; sourceTree = "<group>"; };
 		CAA96AFC18E4B21F00763409 /* SoundPickerTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SoundPickerTableViewController.h; sourceTree = "<group>"; };
 		CAA96AFD18E4B21F00763409 /* SoundPickerTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SoundPickerTableViewController.m; sourceTree = "<group>"; };
 		CAAA269018F4510E002E55B9 /* DarkBlueGradientImageDetailCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DarkBlueGradientImageDetailCell.m; sourceTree = "<group>"; };
@@ -1334,15 +1335,13 @@
 			name = MyProgramsViewController;
 			sourceTree = "<group>";
 		};
-		B4BCF409170ECFC3008EDF3A /* Delegates */ = {
+		B4BCF409170ECFC3008EDF3A /* Delegates & Protocols */ = {
 			isa = PBXGroup;
 			children = (
-				CD0CCE67170CB39600B70036 /* BroadcastWaitDelegate.h */,
-				B4BCF41D170ED34D008EDF3A /* ProgramStoreDelegate.h */,
-				CA1B7A1D18E1D9B700452234 /* ProgramUpdateDelegate.h */,
-				CD0CCF27170CB39700B70036 /* SpriteManagerDelegate.h */,
+				CAA443B5192412AF0076BA35 /* Delegates */,
+				CAA443B6192412BB0076BA35 /* Protocols */,
 			);
-			name = Delegates;
+			name = "Delegates & Protocols";
 			sourceTree = "<group>";
 		};
 		B4BCF40F170ED1C6008EDF3A /* JSON */ = {
@@ -2066,6 +2065,25 @@
 			name = ProgramTests;
 			sourceTree = "<group>";
 		};
+		CAA443B5192412AF0076BA35 /* Delegates */ = {
+			isa = PBXGroup;
+			children = (
+				CD0CCE67170CB39600B70036 /* BroadcastWaitDelegate.h */,
+				B4BCF41D170ED34D008EDF3A /* ProgramStoreDelegate.h */,
+				CA1B7A1D18E1D9B700452234 /* ProgramUpdateDelegate.h */,
+				CD0CCF27170CB39700B70036 /* SpriteManagerDelegate.h */,
+			);
+			name = Delegates;
+			sourceTree = "<group>";
+		};
+		CAA443B6192412BB0076BA35 /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				CAA443B3192410D00076BA35 /* BrickProtocol.h */,
+			);
+			name = Protocols;
+			sourceTree = "<group>";
+		};
 		CAAA269318F454AD002E55B9 /* DarkBlueGradientImageDetailCell */ = {
 			isa = PBXGroup;
 			children = (
@@ -2148,7 +2166,7 @@
 			isa = PBXGroup;
 			children = (
 				B4D940BC170EC670003DDBFA /* CustomExtensions */,
-				B4BCF409170ECFC3008EDF3A /* Delegates */,
+				B4BCF409170ECFC3008EDF3A /* Delegates & Protocols */,
 				B4D940B3170EC5EE003DDBFA /* Defines */,
 				B400302C170EB45200396DB7 /* Helpers */,
 				CD0CCFF5170CB88F00B70036 /* DataModel */,
