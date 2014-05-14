@@ -46,12 +46,14 @@
 @property (nonatomic, weak) IBOutlet UICollectionView *collectionView;
 @property (nonatomic, strong) BrickScaleTransition *brickScaleTransition;
 @property (nonatomic, strong) FXBlurView *dimView;
-@property (nonatomic, strong) NSIndexPath *selectedIndexPath;
 @property (nonatomic, strong) PlaceHolderView *placeHolderView;
 
 @end
 
-@implementation ScriptCollectionViewController
+@implementation ScriptCollectionViewController {
+    NSIndexPath *addedIndexPath;
+    NSIndexPath *selectedIndexPath;
+}
 
 #pragma mark - events
 - (void)viewDidLoad
@@ -183,8 +185,9 @@
         __weak ScriptCollectionViewController *weakself = self;
         if (self.object.scriptList) {
             [self addBrickCellAction:notification.userInfo[kUserInfoKeyBrickCell] copyBrick:NO completionBlock:^{
-                [weakCollectionView reloadData];
-                [weakself scrollToLastbrickinCollectionView:weakCollectionView];
+                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                      [weakself scrollToLastbrickinCollectionView:weakCollectionView];
+                });
             }];
         }
     }
@@ -198,12 +201,17 @@
     [self.collectionView reloadData];
     
     if  ([notification.userInfo[@"brickDeleted"] boolValue]) {
-        [notification.userInfo[@"isScript"] boolValue] ? [self removeScriptSectionWithIndexPath:self.selectedIndexPath] :
-                                                         [self removeBrickFromScriptCollectionViewFromIndex:self.selectedIndexPath];
+        [notification.userInfo[@"isScript"] boolValue] ? [self removeScriptSectionWithIndexPath:selectedIndexPath] :
+                                                         [self removeBrickFromScriptCollectionViewFromIndex:selectedIndexPath];
     } else {
         BOOL copy = [notification.userInfo[@"copy"] boolValue];
         if (copy && [notification.userInfo[@"copiedCell"] isKindOfClass:BrickCell.class]) {
-            [self addBrickCellAction:notification.userInfo[@"copiedCell"] copyBrick:copy completionBlock:NULL];
+//            __weak UICollectionView *weakCollectionView = self.collectionView;
+//            __weak NSIndexPath *weakIndexPath = self.selectedIndexPath;
+            [self addBrickCellAction:notification.userInfo[@"copiedCell"] copyBrick:copy completionBlock:^{
+//                BrickCell *cell = (BrickCell *)[weakCollectionView cellForItemAtIndexPath:weakIndexPath];
+//                cell.transform = CGAffineTransformMakeScale(0.9f, 0.9f);
+            }];
         }
     }
 }
@@ -327,7 +335,7 @@
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     BrickCell *cell = (BrickCell*)[self.collectionView cellForItemAtIndexPath:indexPath];
-    self.selectedIndexPath =  indexPath;
+    selectedIndexPath =  indexPath;
     NSLog(@"selected cell = %@", cell);
     
     // TDOD handle bricks which can be edited
@@ -495,16 +503,12 @@
             script.object = self.object;
             [self.object.scriptList addObject:script];
         } else {
-            script = copy ? [self.object.scriptList objectAtIndex:self.selectedIndexPath.section] :
-            
-            // TODO get section for visible Cells
-                            [self.object.scriptList objectAtIndex:self.collectionView.numberOfSections - 1];
+           script = [self lastVisibleScriptOnScreen:copy];
         }
         Brick *brick = (Brick*)brickOrScript;
         brick.object = self.object;
         
         [self insertBrick:brick intoScriptList:script copy:copy];
-        
     } else if ([brickOrScript isKindOfClass:[Script class]]) {
         Script *script = (Script*)brickOrScript;
         script.object = self.object;
@@ -517,45 +521,67 @@
     if (completionBlock) completionBlock();
 }
 
-- (void)insertBrick:(Brick *)brick intoScriptList:(Script *)script copy:(BOOL)copy
+- (Script *)lastVisibleScriptOnScreen:(BOOL)copy
 {
-    [self.collectionView performBatchUpdates:^{
-        if (copy) {
-            [script.brickList insertObject:brick atIndex:self.selectedIndexPath.item];
-            [self.collectionView insertItemsAtIndexPaths:@[self.selectedIndexPath]];
-        } else {
-            // insert new brick in visible indexpath
-            NSIndexPath *visibleIndexPath = nil;
-            for (BrickCell *cell in self.collectionView.visibleCells) {
-                visibleIndexPath = [self.collectionView indexPathForCell:cell];
-                if (visibleIndexPath) {
-                    break;
+    Script *script = nil;
+    if (copy) {
+        script = [self.object.scriptList objectAtIndex:selectedIndexPath.section];
+    } else {
+        // insert new brick in last visible script (section)
+        NSArray *visbleCells = self.collectionView.visibleCells;
+        NSMutableArray *scriptCells = [NSMutableArray array];
+        if (visbleCells.count) {
+            for (BrickCell *cell in visbleCells) {
+                if ([self isScriptCell:cell]) {
+                    [scriptCells addObject:cell];
                 }
             }
-            
-            if (visibleIndexPath) {
-              [script.brickList insertObject:brick atIndex:visibleIndexPath.item];
-              [self.collectionView insertItemsAtIndexPaths:@[[NSIndexPath indexPathForItem:visibleIndexPath.item inSection:self.collectionView.numberOfSections - 1]]];
-            } else {
-                // last section (script)
-               [script.brickList addObject:brick];
-               [self.collectionView insertItemsAtIndexPaths:@[[NSIndexPath indexPathForItem:self.selectedIndexPath.item inSection:self.collectionView.numberOfSections - 1]]];
+        }
+        BrickCell *cell = [scriptCells lastObject];
+        script = [self.object.scriptList objectAtIndex:[self.collectionView indexPathForCell:cell].section];
+        addedIndexPath = [self.collectionView indexPathForCell:cell];
+    }
+    return script;
+}
+
+- (BOOL)isScriptCell:(BrickCell *)cell
+{
+    if ([cell isKindOfClass:StartScriptCell.class] ||
+        [cell isKindOfClass:WhenScriptCell.class] ||
+        [cell isKindOfClass:BroadcastScriptCell.class]) {
+        return YES;
+    }
+    return NO;
+}
+
+- (void)insertBrick:(Brick *)brick intoScriptList:(Script *)script copy:(BOOL)copy
+{
+    if (copy) {
+        [self.collectionView performBatchUpdates:^{
+            [script.brickList insertObject:brick atIndex:selectedIndexPath.item];
+            [self.collectionView insertItemsAtIndexPaths:@[selectedIndexPath]];
+        } completion:^(BOOL finished) {
+            if (finished) {
+                [self.collectionView reloadData];
             }
-        }
-    } completion:^(BOOL finished) {
-        if (finished) {
-            [self.collectionView reloadData];
-        }
-    }];
-    
+        }];
+    } else {
+        [self.collectionView performBatchUpdates:^{
+            [script.brickList insertObject:brick atIndex:script.brickList.count];
+            [self.collectionView insertItemsAtIndexPaths:@[addedIndexPath]];
+        } completion:^(BOOL finished) {
+            if (finished) {
+                [self.collectionView reloadData];
+            }
+        }];
+    }
 }
 
 
 - (void)scrollToLastbrickinCollectionView:(UICollectionView *)collectionView {
-    NSUInteger sectionCount = self.object.scriptList.count;
-    Script *script = [self.object.scriptList objectAtIndex:sectionCount - 1];
+    Script *script = [self.object.scriptList objectAtIndex:addedIndexPath.section];
     NSUInteger brickCountInSection = script.brickList.count;
-    NSIndexPath *lastIndexPath = [NSIndexPath indexPathForItem:brickCountInSection inSection:sectionCount - 1];
+    NSIndexPath *lastIndexPath = [NSIndexPath indexPathForItem:brickCountInSection inSection:addedIndexPath.section];
     [collectionView scrollToItemAtIndexPath:lastIndexPath atScrollPosition:UICollectionViewScrollPositionCenteredVertically animated:YES];
 }
 
