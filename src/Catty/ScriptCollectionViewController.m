@@ -92,7 +92,8 @@
     
     self.navigationItem.rightBarButtonItems = @[self.editButtonItem];
     
-    self.placeHolderView = [[PlaceHolderView alloc]initWithFrame:self.collectionView.bounds];
+    self.placeHolderView = [[PlaceHolderView alloc]initWithTitle:kUIViewControllerPlaceholderTitleScripts];
+    self.placeHolderView.frame = self.collectionView.bounds;
     [self.view addSubview:self.placeHolderView];
     self.placeHolderView.hidden = self.object.scriptList.count ? YES : NO;
     

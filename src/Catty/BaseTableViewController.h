@@ -21,15 +21,14 @@
  */
 
 #import <UIKit/UIKit.h>
+#import "PlaceHolderView.h"
 
 @interface BaseTableViewController : UITableViewController
 @property (nonatomic, strong) NSArray *editableSections;
 @property (nonatomic, strong, readonly) UIBarButtonItem *selectAllRowsButtonItem;
 - (void)viewDidLoad;
-- (void)setPlaceHolderTitle:(NSString*)title Description:(NSString*)description;
-- (void)showPlaceHolder:(BOOL)show;
-- (void)initPlaceHolder;
 - (void)initTableView;
+- (void)showPlaceHolder:(BOOL)show;
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath;
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath*)indexPath;
 - (void)tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath;
@@ -46,4 +45,7 @@
                      confirmMessage:(NSString*)confirmMessage;
 - (void)performActionOnConfirmation:(SEL)confirmedAction canceledAction:(SEL)canceledAction target:(id)target
                        confirmTitle:(NSString*)confirmTitle confirmMessage:(NSString*)confirmMessage;
+
+@property (nonatomic, strong) PlaceHolderView *placeHolderView;
+
 @end
