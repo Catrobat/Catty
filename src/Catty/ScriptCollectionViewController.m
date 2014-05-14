@@ -206,12 +206,7 @@
     } else {
         BOOL copy = [notification.userInfo[@"copy"] boolValue];
         if (copy && [notification.userInfo[@"copiedCell"] isKindOfClass:BrickCell.class]) {
-//            __weak UICollectionView *weakCollectionView = self.collectionView;
-//            __weak NSIndexPath *weakIndexPath = self.selectedIndexPath;
-            [self addBrickCellAction:notification.userInfo[@"copiedCell"] copyBrick:copy completionBlock:^{
-//                BrickCell *cell = (BrickCell *)[weakCollectionView cellForItemAtIndexPath:weakIndexPath];
-//                cell.transform = CGAffineTransformMakeScale(0.9f, 0.9f);
-            }];
+            [self addBrickCellAction:notification.userInfo[@"copiedCell"] copyBrick:copy completionBlock:NULL];
         }
     }
 }
@@ -518,6 +513,7 @@
         abort();
     }
     self.placeHolderView.hidden = self.object.scriptList.count ? YES : NO;
+    [self.collectionView reloadData];
     if (completionBlock) completionBlock();
 }
 
@@ -568,7 +564,7 @@
     } else {
         [self.collectionView performBatchUpdates:^{
             [script.brickList insertObject:brick atIndex:script.brickList.count];
-            [self.collectionView insertItemsAtIndexPaths:@[addedIndexPath]];
+            [self.collectionView insertItemsAtIndexPaths:@[[NSIndexPath indexPathForItem:script.brickList.count inSection:addedIndexPath.section]]];
         } completion:^(BOOL finished) {
             if (finished) {
                 [self.collectionView reloadData];
