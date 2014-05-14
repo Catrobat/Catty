@@ -211,6 +211,7 @@
 		CABE07C518BAB91F00BE26EF /* LookComboBoxView.m in Sources */ = {isa = PBXBuildFile; fileRef = CABE07C418BAB91F00BE26EF /* LookComboBoxView.m */; };
 		CABE07C818BAB94000BE26EF /* VariableComboBoxView.m in Sources */ = {isa = PBXBuildFile; fileRef = CABE07C718BAB94000BE26EF /* VariableComboBoxView.m */; };
 		CAC22DA41809D5730071CC5D /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CAC22DA31809D5730071CC5D /* MobileCoreServices.framework */; };
+		CACD66541922ED2B0002530E /* CreateView.m in Sources */ = {isa = PBXBuildFile; fileRef = CACD66531922ED2B0002530E /* CreateView.m */; };
 		CAEDFB8117EF759500FDED0E /* ObjectTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CAEDFB8017EF759500FDED0E /* ObjectTableViewController.m */; };
 		CD0CCF51170CB39700B70036 /* BaseSprite.m in Sources */ = {isa = PBXBuildFile; fileRef = CD0CCE5E170CB39600B70036 /* BaseSprite.m */; };
 		CD0CCF52170CB39700B70036 /* Brick.m in Sources */ = {isa = PBXBuildFile; fileRef = CD0CCE60170CB39600B70036 /* Brick.m */; };
@@ -675,6 +676,8 @@
 		CABE07C618BAB94000BE26EF /* VariableComboBoxView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VariableComboBoxView.h; sourceTree = "<group>"; };
 		CABE07C718BAB94000BE26EF /* VariableComboBoxView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VariableComboBoxView.m; sourceTree = "<group>"; };
 		CAC22DA31809D5730071CC5D /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
+		CACD66531922ED2B0002530E /* CreateView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreateView.m; sourceTree = "<group>"; };
+		CACD66551922ED320002530E /* CreateView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CreateView.h; sourceTree = "<group>"; };
 		CACEF959184529AC00D199D8 /* Brick+UnitTestingExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Brick+UnitTestingExtensions.h"; sourceTree = "<group>"; };
 		CAEDFB7F17EF759500FDED0E /* ObjectTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ObjectTableViewController.h; sourceTree = "<group>"; };
 		CAEDFB8017EF759500FDED0E /* ObjectTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ObjectTableViewController.m; sourceTree = "<group>"; };
@@ -975,7 +978,7 @@
 		81B7487519213CE900990E5F /* Custom */ = {
 			isa = PBXGroup;
 			children = (
-				81B748771921432A00990E5F /* CreateView */,
+				CACD66521922ED1D0002530E /* CreateView */,
 				81B7487619213CFB00990E5F /* PlaceHolderView */,
 				817B543D18F03BC700AF6BFE /* Transitions */,
 				CAC3141318BA84C700DAAB72 /* ComboBoxView */,
@@ -994,17 +997,6 @@
 				815420DC191A5C1F00E628D2 /* PlaceHolderView.m */,
 			);
 			name = PlaceHolderView;
-			sourceTree = "<group>";
-		};
-		81B748771921432A00990E5F /* CreateView */ = {
-			isa = PBXGroup;
-			children = (
-				81B7487B192143AA00990E5F /* RoundBorderedButton.h */,
-				81B7487C192143AA00990E5F /* RoundBorderedButton.m */,
-				81B748781921433700990E5F /* CreateView.m */,
-				81B748791921433700990E5F /* CreateView.h */,
-			);
-			name = CreateView;
 			sourceTree = "<group>";
 		};
 		81F10ED317CCD1F8000E4522 /* MaintainProgram */ = {
@@ -2102,6 +2094,15 @@
 			name = ComboBoxView;
 			sourceTree = "<group>";
 		};
+		CACD66521922ED1D0002530E /* CreateView */ = {
+			isa = PBXGroup;
+			children = (
+				CACD66551922ED320002530E /* CreateView.h */,
+				CACD66531922ED2B0002530E /* CreateView.m */,
+			);
+			name = CreateView;
+			sourceTree = "<group>";
+		};
 		CACEF95C18452A8A00D199D8 /* Brick+UnitTestingExtensions */ = {
 			isa = PBXGroup;
 			children = (
@@ -2813,6 +2814,7 @@
 				CD0CCFD0170CB39700B70036 /* StartScript.m in Sources */,
 				CA75C28318A9622700FC8C2F /* SetLookBrickCell.m in Sources */,
 				CA68820E180B39D0008A7C99 /* ColoredCell.m in Sources */,
+				CACD66541922ED2B0002530E /* CreateView.m in Sources */,
 				CD0CCFD1170CB39700B70036 /* StopAllSoundsBrick.m in Sources */,
 				CA75C29518A9624F00FC8C2F /* SetGhostEffectBrickCell.m in Sources */,
 				CA75C23218A9613A00FC8C2F /* BroadcastBrickCell.m in Sources */,
@@ -2880,7 +2882,6 @@
 				CA75C2A118A9626B00FC8C2F /* ClearGraphicEffectBrickCell.m in Sources */,
 				CA75C23518A9614100FC8C2F /* BroadcastWaitBrickCell.m in Sources */,
 				CAB95BA518CD51EF006638F6 /* LookImageViewController.m in Sources */,
-				81B7487A1921433700990E5F /* CreateView.m in Sources */,
 				B45A5827173253E5000E038F /* SetVariableBrick.m in Sources */,
 				B45A582C17325442000E038F /* UserVariable.m in Sources */,
 				B45A583117327887000E038F /* Formula.m in Sources */,
@@ -2911,7 +2912,6 @@
 				81649E10191D35090099AE7E /* ScriptDeleteButton.m in Sources */,
 				B4A92DD2175FD4B800608667 /* GDataXMLNode.m in Sources */,
 				CA75C22F18A9612300FC8C2F /* WaitBrickCell.m in Sources */,
-				81B7487D192143AA00990E5F /* RoundBorderedButton.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
