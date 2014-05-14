@@ -212,6 +212,7 @@
 		CABE07C818BAB94000BE26EF /* VariableComboBoxView.m in Sources */ = {isa = PBXBuildFile; fileRef = CABE07C718BAB94000BE26EF /* VariableComboBoxView.m */; };
 		CAC22DA41809D5730071CC5D /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CAC22DA31809D5730071CC5D /* MobileCoreServices.framework */; };
 		CACD66541922ED2B0002530E /* CreateView.m in Sources */ = {isa = PBXBuildFile; fileRef = CACD66531922ED2B0002530E /* CreateView.m */; };
+		CACD66581922EE0D0002530E /* RoundBorderedButton.m in Sources */ = {isa = PBXBuildFile; fileRef = CACD66571922EE0D0002530E /* RoundBorderedButton.m */; };
 		CAEDFB8117EF759500FDED0E /* ObjectTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CAEDFB8017EF759500FDED0E /* ObjectTableViewController.m */; };
 		CD0CCF51170CB39700B70036 /* BaseSprite.m in Sources */ = {isa = PBXBuildFile; fileRef = CD0CCE5E170CB39600B70036 /* BaseSprite.m */; };
 		CD0CCF52170CB39700B70036 /* Brick.m in Sources */ = {isa = PBXBuildFile; fileRef = CD0CCE60170CB39600B70036 /* Brick.m */; };
@@ -678,6 +679,8 @@
 		CAC22DA31809D5730071CC5D /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		CACD66531922ED2B0002530E /* CreateView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreateView.m; sourceTree = "<group>"; };
 		CACD66551922ED320002530E /* CreateView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CreateView.h; sourceTree = "<group>"; };
+		CACD66561922EE0D0002530E /* RoundBorderedButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RoundBorderedButton.h; sourceTree = "<group>"; };
+		CACD66571922EE0D0002530E /* RoundBorderedButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RoundBorderedButton.m; sourceTree = "<group>"; };
 		CACEF959184529AC00D199D8 /* Brick+UnitTestingExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Brick+UnitTestingExtensions.h"; sourceTree = "<group>"; };
 		CAEDFB7F17EF759500FDED0E /* ObjectTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ObjectTableViewController.h; sourceTree = "<group>"; };
 		CAEDFB8017EF759500FDED0E /* ObjectTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ObjectTableViewController.m; sourceTree = "<group>"; };
@@ -978,6 +981,7 @@
 		81B7487519213CE900990E5F /* Custom */ = {
 			isa = PBXGroup;
 			children = (
+				CACD66591922EE110002530E /* RoundBorderedButton */,
 				CACD66521922ED1D0002530E /* CreateView */,
 				81B7487619213CFB00990E5F /* PlaceHolderView */,
 				817B543D18F03BC700AF6BFE /* Transitions */,
@@ -2103,6 +2107,15 @@
 			name = CreateView;
 			sourceTree = "<group>";
 		};
+		CACD66591922EE110002530E /* RoundBorderedButton */ = {
+			isa = PBXGroup;
+			children = (
+				CACD66561922EE0D0002530E /* RoundBorderedButton.h */,
+				CACD66571922EE0D0002530E /* RoundBorderedButton.m */,
+			);
+			name = RoundBorderedButton;
+			sourceTree = "<group>";
+		};
 		CACEF95C18452A8A00D199D8 /* Brick+UnitTestingExtensions */ = {
 			isa = PBXGroup;
 			children = (
@@ -2865,6 +2878,7 @@
 				CA75C29818A9625600FC8C2F /* ChangeGhostEffectByNBrickCell.m in Sources */,
 				B4BCF42F170ED584008EDF3A /* DownloadTabBarController.m in Sources */,
 				B4BCF433170ED5AD008EDF3A /* RecentProgramsStoreViewController.m in Sources */,
+				CACD66581922EE0D0002530E /* RoundBorderedButton.m in Sources */,
 				B4BCF437170ED5D4008EDF3A /* LoadingView.m in Sources */,
 				CA75C27118A9620200FC8C2F /* ComeToFrontBrickCell.m in Sources */,
 				B4BCF43B170ED60D008EDF3A /* FeaturedProgramsStoreViewController.m in Sources */,
