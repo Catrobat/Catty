@@ -51,7 +51,6 @@
         default:
             break;
     }
-//    [self addCellSeperator];
 }
 
 - (UIView*)createSelectedBackground
@@ -60,18 +59,5 @@
     [bgColorView setBackgroundColor:[UIColor colorWithRed:1.0f green:1.0f blue:1.0f alpha:0.09f]];
     return bgColorView;
 }
-
- //-(void)addCellSeperator {
- //    UIImageView *seperator = [self createCellSeperator];
- //    [self.contentView addSubview:seperator];
- //    self.seperatorView = seperator;
- //}
-
- //-(UIImageView*)createCellSeperator {
- //    UIImageView *seperator = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"cellseperator"]];
- //    seperator.frame = CGRectMake(0.0f, 0.0f, self.bounds.size.width, 4.0f);
- //    return seperator;
- //    
- //}
 
 @end
