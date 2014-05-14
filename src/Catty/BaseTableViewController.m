@@ -38,9 +38,6 @@
 @interface BaseTableViewController () <UIAlertViewDelegate>
 @property (nonatomic, strong) UIBarButtonItem *selectAllRowsButtonItem;
 @property (nonatomic, strong) UIBarButtonItem *normalModeRightBarButtonItem;
-@property (nonatomic, strong) UIView *placeholder;
-@property (nonatomic, strong) UILabel *placeholderTitleLabel;
-@property (nonatomic, strong) UILabel *placeholderDescriptionLabel;
 
 @property (nonatomic) SEL confirmedAction;
 @property (nonatomic) SEL canceledAction;
@@ -50,54 +47,20 @@
 
 @implementation BaseTableViewController
 
-#pragma mark - getters and setters
-- (NSMutableDictionary*)imageCache
-{
-    if (! _imageCache) {
-        _imageCache = [NSMutableDictionary dictionary];
-    }
-    return _imageCache;
-}
-
-- (UIBarButtonItem*)selectAllRowsButtonItem
-{
-    if (! _selectAllRowsButtonItem) {
-        _selectAllRowsButtonItem = [[UIBarButtonItem alloc] initWithTitle:kUIBarButtonItemTitleSelectAllItems
-                                                                    style:UIBarButtonItemStylePlain
-                                                                   target:self
-                                                                   action:@selector(selectAllRows:)];
-    }
-    return _selectAllRowsButtonItem;
-}
 
 #pragma mark - init
 - (void)viewDidLoad
 {
     self.editing = NO;
     self.editableSections = nil;
+    [self initPlaceHolder];
 }
 
 - (void)initPlaceHolder
 {
-    self.placeholder = [[UIView alloc] initWithFrame:self.tableView.bounds];
-    self.placeholder.tag = kPlaceHolderTag;
-
-    // setup title label
-    self.placeholderTitleLabel = [[UILabel alloc] init];
-    self.placeholderTitleLabel.textAlignment = NSTextAlignmentCenter;
-    self.placeholderTitleLabel.backgroundColor = [UIColor clearColor];
-    self.placeholderTitleLabel.textColor = [UIColor skyBlueColor];
-    self.placeholderTitleLabel.font = [self.placeholderTitleLabel.font fontWithSize:45];
-
-    // setup description label
-    self.placeholderDescriptionLabel = [[UILabel alloc] init];
-    self.placeholderDescriptionLabel.textAlignment = NSTextAlignmentCenter;
-    self.placeholderDescriptionLabel.backgroundColor = [UIColor clearColor];
-    self.placeholderDescriptionLabel.textColor = [UIColor skyBlueColor];
-    [self.placeholder addSubview:self.placeholderTitleLabel];
-    [self.placeholder addSubview:self.placeholderDescriptionLabel];
-    [self.tableView addSubview:self.placeholder];
-    self.tableView.alwaysBounceVertical = self.placeholder.hidden = YES;
+    self.placeHolderView = [[PlaceHolderView alloc] initWithFrame:self.tableView.bounds];
+    [self.view addSubview:self.placeHolderView];
+    self.tableView.alwaysBounceVertical = self.placeHolderView.hidden = YES;
 }
 
 - (void)initTableView
@@ -113,38 +76,29 @@
 }
 
 #pragma mark - getters and setters
-- (void)setPlaceHolderTitle:(NSString*)title Description:(NSString*)description
-{
-    // title label
-    self.placeholderTitleLabel.text = title;
-    [self.placeholderTitleLabel sizeToFit];
-
-    // description label
-    self.placeholderDescriptionLabel.text = description;
-    [self.placeholderDescriptionLabel sizeToFit];
-
-    // set alignemnt: middle center
-    CGRect frameTitle = self.placeholderTitleLabel.frame;
-    CGRect frameDescription = self.placeholderDescriptionLabel.frame;
-    CGFloat totalHeight = frameTitle.size.height + frameDescription.size.height;
-    NSUInteger offsetY;
-
-    // this sets vertical alignment of the placeholder to the center of table view
-//    offsetY = (self.navigationController.toolbar.frame.origin.y - self.navigationController.navigationBar.frame.size.height - totalHeight)/2.0f;
-    // this sets vertical alignment of the placeholder to the center of whole screen
-    offsetY = (self.navigationController.toolbar.frame.origin.y - totalHeight)/2.0f - self.navigationController.navigationBar.frame.size.height;
-    frameTitle.origin.y = offsetY;
-    frameTitle.origin.x = frameDescription.origin.x = 0.0f;
-    frameTitle.size.width = frameDescription.size.width = self.view.frame.size.width;
-    self.placeholderTitleLabel.frame = frameTitle;
-
-    frameDescription.origin.y = offsetY + frameTitle.size.height;
-    self.placeholderDescriptionLabel.frame = frameDescription;
-}
 
 - (void)showPlaceHolder:(BOOL)show
 {
-    self.tableView.alwaysBounceVertical = self.placeholder.hidden = (! show);
+    self.tableView.alwaysBounceVertical = self.placeHolderView.hidden = (! show);
+}
+
+- (UIBarButtonItem*)selectAllRowsButtonItem
+{
+    if (! _selectAllRowsButtonItem) {
+        _selectAllRowsButtonItem = [[UIBarButtonItem alloc] initWithTitle:kUIBarButtonItemTitleSelectAllItems
+                                                                    style:UIBarButtonItemStylePlain
+                                                                   target:self
+                                                                   action:@selector(selectAllRows:)];
+    }
+    return _selectAllRowsButtonItem;
+}
+
+- (NSMutableDictionary*)imageCache
+{
+    if (! _imageCache) {
+        _imageCache = [NSMutableDictionary dictionary];
+    }
+    return _imageCache;
 }
 
 #pragma mark - table view delegates

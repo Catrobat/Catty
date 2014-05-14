@@ -46,8 +46,10 @@
 @property (nonatomic, weak) IBOutlet UICollectionView *collectionView;
 @property (nonatomic, strong) BrickScaleTransition *brickScaleTransition;
 @property (nonatomic, strong) FXBlurView *dimView;
-@property (nonatomic, strong) NSIndexPath *selectedIndexPath;
 @property (nonatomic, strong) PlaceHolderView *placeHolderView;
+@property (nonatomic, strong) NSIndexPath *addedIndexPath;
+@property (nonatomic, strong) NSIndexPath *selectedIndexPath;
+
 
 @end
 
@@ -90,7 +92,8 @@
     
     self.navigationItem.rightBarButtonItems = @[self.editButtonItem];
     
-    self.placeHolderView = [[PlaceHolderView alloc]initWithFrame:self.collectionView.bounds];
+    self.placeHolderView = [[PlaceHolderView alloc]initWithTitle:kUIViewControllerPlaceholderTitleScripts];
+    self.placeHolderView.frame = self.collectionView.bounds;
     [self.view addSubview:self.placeHolderView];
     self.placeHolderView.hidden = self.object.scriptList.count ? YES : NO;
     
@@ -183,8 +186,20 @@
         __weak ScriptCollectionViewController *weakself = self;
         if (self.object.scriptList) {
             [self addBrickCellAction:notification.userInfo[kUserInfoKeyBrickCell] copyBrick:NO completionBlock:^{
-                [weakCollectionView reloadData];
-                [weakself scrollToLastbrickinCollectionView:weakCollectionView];
+                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                    [weakself scrollToLastbrickinCollectionView:weakCollectionView completion:^(NSIndexPath *indexPath) {
+                        BrickCell *brickCell = (BrickCell *)[weakCollectionView cellForItemAtIndexPath:indexPath];
+                        CAKeyframeAnimation *animation = [CAKeyframeAnimation animation];
+                        animation.keyPath = @"position.x";
+                        animation.values = @[@0, @10, @-10, @10, @0];
+                        animation.keyTimes = @[@0, @(1 / 6.0), @(3 / 6.0), @(5 / 6.0), @1];
+                        animation.duration = 0.4f;
+                        animation.additive = YES;
+                        animation.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionLinear];
+                        [brickCell.layer addAnimation:animation forKey:@"shake"];
+                    }];
+                    
+                });
             }];
         }
     }
@@ -200,14 +215,10 @@
     if  ([notification.userInfo[@"brickDeleted"] boolValue]) {
         [notification.userInfo[@"isScript"] boolValue] ? [self removeScriptSectionWithIndexPath:self.selectedIndexPath] :
                                                          [self removeBrickFromScriptCollectionViewFromIndex:self.selectedIndexPath];
-        
     } else {
         BOOL copy = [notification.userInfo[@"copy"] boolValue];
         if (copy && [notification.userInfo[@"copiedCell"] isKindOfClass:BrickCell.class]) {
-            __weak UICollectionView *weakCollectionView = self.collectionView;
-            [self addBrickCellAction:notification.userInfo[@"copiedCell"] copyBrick:copy completionBlock:^{
-                [weakCollectionView reloadData];
-            }];
+            [self addBrickCellAction:notification.userInfo[@"copiedCell"] copyBrick:copy completionBlock:NULL];
         }
     }
 }
@@ -499,11 +510,11 @@
             script.object = self.object;
             [self.object.scriptList addObject:script];
         } else {
-            script = copy ? [self.object.scriptList objectAtIndex:self.selectedIndexPath.section] :
-                            [self.object.scriptList objectAtIndex:self.collectionView.numberOfSections - 1];
+           script = [self firstVisibleScriptOnScreen:copy];
         }
         Brick *brick = (Brick*)brickOrScript;
         brick.object = self.object;
+        
         [self insertBrick:brick intoScriptList:script copy:copy];
     } else if ([brickOrScript isKindOfClass:[Script class]]) {
         Script *script = (Script*)brickOrScript;
@@ -514,21 +525,105 @@
         abort();
     }
     self.placeHolderView.hidden = self.object.scriptList.count ? YES : NO;
+    [self.collectionView reloadData];
     if (completionBlock) completionBlock();
+}
+
+- (Script *)firstVisibleScriptOnScreen:(BOOL)copy
+{
+    Script *script = nil;
+    if (copy) {
+        script = [self.object.scriptList objectAtIndex:self.selectedIndexPath.section];
+    } else {
+        // insert new brick in last visible script (section)
+        NSMutableArray *scriptCells = [NSMutableArray array];
+        if (self.collectionView.visibleCells.count) {
+            for (BrickCell *cell in self.collectionView.visibleCells) {
+                if ([self isScriptCell:cell]) {
+                    [scriptCells addObject:cell];
+                }
+            }
+        }
+        
+        if (scriptCells.count) {
+            [scriptCells sortUsingComparator:^(BrickCell *cell1, BrickCell *cell2) {
+                if (cell1.frame.origin.y > cell2.frame.origin.y) {
+                    return (NSComparisonResult)NSOrderedDescending;
+                }
+                
+                if (cell1.frame.origin.y < cell2.frame.origin.y) {
+                    return (NSComparisonResult)NSOrderedAscending;
+                }
+                return (NSComparisonResult)NSOrderedSame;
+            }];
+        }
+        
+        BOOL emtpyScript = NO;
+        for (BrickCell *scriptCell in scriptCells) {
+            script = [self.object.scriptList objectAtIndex:[self.collectionView indexPathForCell:scriptCell].section];
+            if (! script.brickList.count) {
+                emtpyScript = YES;
+                break;
+            }
+        }
+        
+        BrickCell *cell = scriptCells.count ? scriptCells.lastObject : [self.collectionView.visibleCells firstObject];
+        script = emtpyScript ? script : [self.object.scriptList objectAtIndex:[self.collectionView indexPathForCell:cell].section];
+        self.addedIndexPath = [self.collectionView indexPathForCell:cell];
+    }
+    return script;
+}
+
+- (BOOL)isScriptCell:(BrickCell *)cell
+{
+    if ([cell isKindOfClass:StartScriptCell.class] ||
+        [cell isKindOfClass:WhenScriptCell.class] ||
+        [cell isKindOfClass:BroadcastScriptCell.class]) {
+        return YES;
+    }
+    return NO;
 }
 
 - (void)insertBrick:(Brick *)brick intoScriptList:(Script *)script copy:(BOOL)copy
 {
-    copy ? [script.brickList insertObject:brick atIndex:self.selectedIndexPath.item] : [script.brickList addObject:brick];
+    if (copy) {
+        [self.collectionView performBatchUpdates:^{
+            [script.brickList insertObject:brick atIndex:self.selectedIndexPath.item];
+            [self.collectionView insertItemsAtIndexPaths:@[self.selectedIndexPath]];
+        } completion:^(BOOL finished) {
+            if (finished) {
+                [self.collectionView reloadData];
+            }
+        }];
+    } else {
+         __block NSIndexPath *indexPath = nil;
+        [self.collectionView performBatchUpdates:^{
+            if (! script.brickList.count) {
+                [script.brickList addObject:brick];
+                indexPath = [NSIndexPath indexPathForItem:script.brickList.count inSection:self.collectionView.numberOfSections - 1];
+                [self.collectionView insertItemsAtIndexPaths:@[indexPath]];
+            } else {
+                [script.brickList insertObject:brick atIndex:script.brickList.count];
+                 indexPath = [NSIndexPath indexPathForItem:script.brickList.count inSection:self.addedIndexPath.section];
+                [self.collectionView insertItemsAtIndexPaths:@[indexPath]];
+            }
+            
+        } completion:^(BOOL finished) {
+            if (finished) {
+                [self.collectionView reloadData];
+            }
+        }];
+    }
 }
 
 
-- (void)scrollToLastbrickinCollectionView:(UICollectionView *)collectionView {
-    NSUInteger sectionCount = self.object.scriptList.count;
-    Script *script = [self.object.scriptList objectAtIndex:sectionCount - 1];
+- (void)scrollToLastbrickinCollectionView:(UICollectionView *)collectionView completion:(void(^)(NSIndexPath *indexPath)) completion {
+    Script *script = [self.object.scriptList objectAtIndex:self.addedIndexPath.section];
     NSUInteger brickCountInSection = script.brickList.count;
-    NSIndexPath *lastIndexPath = [NSIndexPath indexPathForItem:brickCountInSection inSection:sectionCount - 1];
-    [collectionView scrollToItemAtIndexPath:lastIndexPath atScrollPosition:UICollectionViewScrollPositionBottom animated:YES];
+    NSIndexPath *lastIndexPath = [NSIndexPath indexPathForItem:brickCountInSection inSection:self.addedIndexPath.section];
+    [collectionView scrollToItemAtIndexPath:lastIndexPath atScrollPosition:UICollectionViewScrollPositionCenteredVertically animated:YES];
+    
+    if (completion) completion(lastIndexPath);
 }
 
 #pragma mark - Editing
@@ -592,6 +687,7 @@
         controlBrickCell.deleteButton.transform = CGAffineTransformMakeScale(0.1f, 0.1f);
         transform = CGAffineTransformMakeScale(1.0f, 1.0f);
     } else {
+        transform = CGAffineTransformMakeScale(1.0f, 1.0f);
         endAlpha = 0.0f;
     }
     
@@ -606,7 +702,6 @@
                      }
                      completion:^(BOOL finished) {
                          if (finished) {
-                             controlBrickCell.deleteButton.transform = CGAffineTransformIdentity;
                              controlBrickCell.hideDeleteButton = !start;
                          }
                      }];

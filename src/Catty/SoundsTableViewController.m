@@ -53,6 +53,7 @@
 @property (nonatomic, strong) NSMutableDictionary* addSoundActionSheetBtnIndexes;
 @property (atomic, strong) Sound *currentPlayingSong;
 @property (atomic, weak) UITableViewCell<CatrobatImageCell> *currentPlayingSongCell;
+
 @end
 
 @implementation SoundsTableViewController
@@ -87,10 +88,7 @@
     self.currentPlayingSongCell = nil;
 
     [super initTableView];
-    [super initPlaceHolder];
-    [super setPlaceHolderTitle:kUIViewControllerPlaceholderTitleSounds
-                   Description:[NSString stringWithFormat:kUIViewControllerPlaceholderDescriptionStandard,
-                                kUIViewControllerPlaceholderTitleSounds]];
+    self.placeHolderView.title = kUIViewControllerPlaceholderTitleSounds;
     [super showPlaceHolder:(! (BOOL)[self.object.soundList count])];
     [self setupToolBar];
 }

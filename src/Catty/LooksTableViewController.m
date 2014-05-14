@@ -90,18 +90,9 @@
     NSNumber *showDetailsProgramsValue = (NSNumber*)[showDetails objectForKey:kUserDetailsShowDetailsLooksKey];
     self.useDetailCells = [showDetailsProgramsValue boolValue];
     self.title = self.navigationItem.title = kUIViewControllerTitleLooks;
+    self.placeHolderView.title = kUIViewControllerPlaceholderTitleLooks;
     [self initNavigationBar];
     [super initTableView];
-    [super initPlaceHolder];
-
-    [super setPlaceHolderTitle:([self.object isBackground]
-                                ? kUIViewControllerPlaceholderTitleBackgrounds
-                                : kUIViewControllerPlaceholderTitleLooks)
-                   Description:[NSString stringWithFormat:kUIViewControllerPlaceholderDescriptionStandard,
-                                ([self.object isBackground]
-                                 ? kUIViewControllerPlaceholderTitleBackgrounds
-                                 : kUIViewControllerPlaceholderTitleLooks)]];
-    [super showPlaceHolder:(! (BOOL)[self.object.lookList count])];
     [self setupToolBar];
 }
 
