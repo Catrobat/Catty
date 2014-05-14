@@ -20,7 +20,6 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-
 #import <UIKit/UIKit.h>
 #import "SpriteObject.h"
 #import "UIDefines.h"
@@ -30,7 +29,8 @@
 
 @interface Brick : NSObject <BrickProtocol>
 
-@property (nonatomic) kBrickType brickType;
+@property (nonatomic, readonly) kBrickCategoryType brickCategoryType;
+@property (nonatomic, readonly) kBrickType brickType;
 
 @property (nonatomic, weak) SpriteObject *object;
 

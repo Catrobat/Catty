@@ -22,13 +22,42 @@
 #import "Brick.h"
 #import "Script.h"
 
+@interface Brick()
+
+@property (nonatomic, readwrite) kBrickCategoryType brickCategoryType;
+@property (nonatomic, readwrite) kBrickType brickType;
+
+@end
+
+
 @implementation Brick
+
+- (id)init
+{
+    self = [super init];
+    if (self) {
+        NSString *subclassName = NSStringFromClass([self class]);
+        static NSDictionary *classNameBrickNameMap = nil;
+        if (classNameBrickNameMap == nil) {
+            classNameBrickNameMap = kClassNameBrickNameMap;
+        }
+        self.brickType = (kBrickType)[classNameBrickNameMap[subclassName] unsignedIntegerValue];
+        self.brickCategoryType = (kBrickCategoryType)(((NSUInteger)self.brickType) / 100);
+    }
+    return self;
+}
 
 - (id)initWithSprite:(SpriteObject *)sprite
 {
     self = [super init];
-    if (self)
-    {
+    if (self) {
+        NSString *subclassName = NSStringFromClass([self class]);
+        static NSDictionary *classNameBrickNameMap = nil;
+        if (classNameBrickNameMap == nil) {
+            classNameBrickNameMap = kClassNameBrickNameMap;
+        }
+        self.brickType = (kBrickType)[classNameBrickNameMap[subclassName] unsignedIntegerValue];
+        self.brickCategoryType = (kBrickCategoryType)(((NSUInteger)self.brickType) / 100);
         self.object = sprite;
     }
     return self;

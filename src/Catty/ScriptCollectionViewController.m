@@ -284,7 +284,7 @@
         NSString *scriptSubClassName = NSStringFromClass([script class]);
         for (NSString *brickTypeName in allCategoriesAndBrickTypes) {
             if ([brickTypeName isEqualToString:scriptSubClassName]) {
-                brickType = [allCategoriesAndBrickTypes[brickTypeName][@"brickType"] integerValue];
+                brickType = [allCategoriesAndBrickTypes[brickTypeName] integerValue];
                 break;
             }
         }
@@ -294,8 +294,8 @@
         NSString *brickSubClassName = NSStringFromClass([brick class]);
         for (NSString *brickTypeName in allCategoriesAndBrickTypes) {
             if ([brickTypeName isEqualToString:brickSubClassName]) {
-                categoryType = (kBrickCategoryType)[allCategoriesAndBrickTypes[brickTypeName][@"categoryType"] integerValue];
-                brickType = [allCategoriesAndBrickTypes[brickTypeName][@"brickType"] integerValue];
+                brickType = [allCategoriesAndBrickTypes[brickTypeName] integerValue];
+                categoryType = (kBrickCategoryType)(((NSUInteger)brickType)/100);
                 break;
             }
         }

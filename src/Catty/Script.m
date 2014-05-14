@@ -37,6 +37,8 @@
 
 @interface Script()
 
+@property (nonatomic, readwrite) kBrickCategoryType brickCategoryType;
+@property (nonatomic, readwrite) kBrickType brickType;
 @property (nonatomic, assign) NSUInteger currentBrickIndex;
 @property (copy) dispatch_block_t completion;
 
@@ -47,8 +49,14 @@
 
 - (id)init
 {
-    if (self = [super init])
-    {
+    if (self = [super init]) {
+        NSString *subclassName = NSStringFromClass([self class]);
+        static NSDictionary *classNameBrickNameMap = nil;
+        if (classNameBrickNameMap == nil) {
+            classNameBrickNameMap = kClassNameBrickNameMap;
+        }
+        self.brickType = (kBrickType)[classNameBrickNameMap[subclassName] unsignedIntegerValue];
+        self.brickCategoryType = (kBrickCategoryType)(((NSUInteger)self.brickType) / 100);
         self.currentBrickIndex = 0;
     }
     return self;

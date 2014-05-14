@@ -31,7 +31,8 @@
 
 @interface Script : SKNode <BrickProtocol>
 
-@property (nonatomic) kBrickType brickType;
+@property (nonatomic, readonly) kBrickCategoryType brickCategoryType;
+@property (nonatomic, readonly) kBrickType brickType;
 
 @property (nonatomic) BOOL allowRunNextAction;
 @property (nonatomic, weak) SpriteObject *object;

@@ -25,6 +25,7 @@
 @protocol BrickProtocol <NSObject>
 
 @required
-@property (nonatomic) kBrickType brickType;
+@property (nonatomic, readonly) kBrickCategoryType brickCategoryType;
+@property (nonatomic, readonly) kBrickType brickType;
 
 @end
