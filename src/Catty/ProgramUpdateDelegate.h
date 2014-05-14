@@ -22,9 +22,11 @@
 
 @protocol ProgramUpdateDelegate <NSObject>
 
-@required
+@optional
 
 - (void)addProgram:(NSString*)programName;
+
+@required
 
 - (void)removeProgram:(NSString*)programName;
 
