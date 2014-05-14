@@ -26,27 +26,52 @@
 
 @implementation CatrobatBaseCell
 
--(id)initWithCoder:(NSCoder *)aDecoder {
-    if(self = [super initWithCoder:aDecoder]) {
+- (id)initWithCoder:(NSCoder *)aDecoder
+{
+    if (self = [super initWithCoder:aDecoder]) {
         [self initialize];
     }
     return self;
 }
 
--(void)initialize {
-    self.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-    UIImage *accessoryImage = [UIImage imageNamed:@"accessory"];
-    accessoryImage = [accessoryImage imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
-    self.accessoryView = [[UIImageView alloc] initWithImage:accessoryImage];
-    self.accessoryView.tintColor = UIColor.skyBlueColor;
+- (void)initialize
+{
     self.selectedBackgroundView = [self createSelectedBackground];
+
+    // IMPORTANT: needed to dynamically hide/show indicator via cellForRowAtIndexPath method
+    //            in TableViewController class (do not remove this any more!!)
+    UIImage *accessoryImage = nil;
+    switch (self.accessoryType) {
+        case UITableViewCellAccessoryDisclosureIndicator:
+        case UITableViewCellAccessoryDetailDisclosureButton:
+            accessoryImage = [UIImage imageNamed:@"accessory"];
+            accessoryImage = [accessoryImage imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
+            self.accessoryView = [[UIImageView alloc] initWithImage:accessoryImage];
+            self.accessoryView.tintColor = UIColor.skyBlueColor;
+        default:
+            break;
+    }
+//    [self addCellSeperator];
 }
 
--(UIView*)createSelectedBackground{
+- (UIView*)createSelectedBackground
+{
     UIView *bgColorView = [[UIView alloc] init];
     [bgColorView setBackgroundColor:[UIColor colorWithRed:1.0f green:1.0f blue:1.0f alpha:0.09f]];
     return bgColorView;
 }
 
+ //-(void)addCellSeperator {
+ //    UIImageView *seperator = [self createCellSeperator];
+ //    [self.contentView addSubview:seperator];
+ //    self.seperatorView = seperator;
+ //}
+
+ //-(UIImageView*)createCellSeperator {
+ //    UIImageView *seperator = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"cellseperator"]];
+ //    seperator.frame = CGRectMake(0.0f, 0.0f, self.bounds.size.width, 4.0f);
+ //    return seperator;
+ //    
+ //}
 
 @end

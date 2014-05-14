@@ -57,6 +57,7 @@
     [self setupNavigationBar];
     [super showPlaceHolder:NO];
     self.navigationController.toolbarHidden = YES;
+    self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
 }
 
 - (void)dealloc
@@ -93,9 +94,6 @@
     static NSString *CellIdentifier = @"SoundCell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
     Sound *sound = (Sound*)[self.playableSounds objectAtIndex:indexPath.row];
-    AppDelegate *appDelegate = (AppDelegate*)[UIApplication sharedApplication].delegate;
-    NSString *path = [NSString stringWithFormat:@"%@/%@", appDelegate.fileManager.documentsDirectory, sound.fileName];
-    CGFloat duration = [[AudioManager sharedAudioManager] durationOfSoundWithFilePath:path];
 
     if (! [cell conformsToProtocol:@protocol(CatrobatImageCell)]) {
         return cell;
@@ -121,7 +119,7 @@
     } else {
         imageCell.iconImageView.image = image;
     }
-    imageCell.titleLabel.text = [NSString stringWithFormat:@"(%.02f sec.) %@", (float)duration, sound.name];
+    imageCell.titleLabel.text = sound.name;
     imageCell.iconImageView.userInteractionEnabled = YES;
     UITapGestureRecognizer *tapped = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(playSound:)];
     tapped.numberOfTapsRequired = 1;
