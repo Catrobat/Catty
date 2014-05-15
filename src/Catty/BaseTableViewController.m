@@ -27,6 +27,7 @@
 #import "Util.h"
 #import "ActionSheetAlertViewTags.h"
 #import "LanguageTranslationDefines.h"
+#import <tgmath.h>
 
 // identifiers
 #define kTableHeaderIdentifier @"Header"
@@ -66,7 +67,8 @@
 - (PlaceHolderView *)placeHolderView
 {
     if (!_placeHolderView) {
-        _placeHolderView = [[PlaceHolderView alloc] initWithFrame:self.tableView.bounds];
+        CGFloat height = __tg_ceil(CGRectGetHeight(self.view.bounds) / 4.0f);
+        _placeHolderView = [[PlaceHolderView alloc] initWithFrame:CGRectMake(0.0f, CGRectGetHeight(UIScreen.mainScreen.bounds) / 2.0f - height, CGRectGetWidth(self.view.bounds), height)];
         [self.view addSubview:_placeHolderView];
         _placeHolderView.hidden = YES;
     }

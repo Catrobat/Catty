@@ -1439,13 +1439,13 @@
 			name = PointInDirectionBrick;
 			sourceTree = "<group>";
 		};
-		B4D940B2170EC5D5003DDBFA /* UserInterface */ = {
+		B4D940B2170EC5D5003DDBFA /* Views */ = {
 			isa = PBXGroup;
 			children = (
 				81B7487519213CE900990E5F /* Custom */,
 				81B7487419213C3800990E5F /* 3rdParty */,
 			);
-			name = UserInterface;
+			name = Views;
 			sourceTree = "<group>";
 		};
 		B4D940B3170EC5EE003DDBFA /* Defines */ = {
@@ -2167,7 +2167,7 @@
 				CD0CCFF5170CB88F00B70036 /* DataModel */,
 				CD0CCFF9170CB91A00B70036 /* Parser */,
 				B4E7D258176EF23200EC8AD8 /* Scene */,
-				B4D940B2170EC5D5003DDBFA /* UserInterface */,
+				B4D940B2170EC5D5003DDBFA /* Views */,
 				CD0CCE3B170CA00F00B70036 /* ViewController */,
 			);
 			path = Catty;
