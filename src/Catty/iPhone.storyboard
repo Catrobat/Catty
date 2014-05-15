@@ -168,9 +168,10 @@
         <scene sceneID="ocP-zZ-Aog">
             <objects>
                 <collectionViewController storyboardIdentifier="ScriptCVC" autoresizesArchivedViewToFullSize="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" id="NFs-db-lAP" customClass="ScriptCollectionViewController" sceneMemberID="viewController">
-                    <collectionView key="view" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" minimumZoomScale="0.0" maximumZoomScale="0.0" dataMode="prototypes" id="z38-mY-wgg">
+                    <collectionView key="view" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" delaysContentTouches="NO" minimumZoomScale="0.0" maximumZoomScale="0.0" dataMode="prototypes" id="z38-mY-wgg">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="gNd-7Q-rpU" customClass="LXReorderableCollectionViewFlowLayout">
                             <size key="itemSize" width="320" height="30"/>
                             <size key="headerReferenceSize" width="0.0" height="0.0"/>
@@ -813,7 +814,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <inset key="contentInset" minX="0.0" minY="0.0" maxX="0.0" maxY="49"/>
                         <prototypes>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="ImageCell" rowHeight="123" id="EfC-3p-1xF" customClass="DarkBlueGradientImageCell">
                                 <rect key="frame" x="0.0" y="86" width="320" height="123"/>
@@ -1061,8 +1061,8 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="raV-as-guB"/>
         <segue reference="y1P-mf-Wvq"/>
+        <segue reference="raV-as-guB"/>
         <segue reference="tS5-pA-EEz"/>
         <segue reference="PV7-6r-ExX"/>
         <segue reference="Mul-oO-Qtl"/>

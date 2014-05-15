@@ -99,7 +99,6 @@
                 self.brickCopyFlag = [NSNumber numberWithBool:YES];
                 [self dismissBrickDetailViewController];
             }
-            
             break;
             
         case 2:
@@ -107,7 +106,6 @@
             if ([self isScript:self.brickCell] ) {
                 [self dismissBrickDetailViewController];
             }
-            
             break;
             
         case 3:
