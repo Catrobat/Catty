@@ -22,11 +22,9 @@
 
 #import "BrickScaleTransition.h"
 #import "UIColor+CatrobatUIColorExtensions.h"
-
+#import "UIDefines.h"
 
 @implementation BrickScaleTransition
-
-#define NAVIGATION_BAR_HEIGHT 64
 
 - (void)animateTransition:(id<UIViewControllerContextTransitioning>)transitionContext {
     UIView *container = transitionContext.containerView;

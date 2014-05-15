@@ -81,15 +81,11 @@
     NSNumber *showDetailsSoundsValue = (NSNumber*)[showDetails objectForKey:kUserDetailsShowDetailsSoundsKey];
     self.useDetailCells = [showDetailsSoundsValue boolValue];
     self.navigationController.title = self.title = kUIViewControllerTitleSounds;
-    //    self.title = self.object.name;
-    //    self.navigationItem.title = self.object.name;
     [self initNavigationBar];
     self.currentPlayingSong = nil;
     self.currentPlayingSongCell = nil;
-
-    [super initTableView];
     self.placeHolderView.title = kUIViewControllerPlaceholderTitleSounds;
-    [super showPlaceHolder:(! (BOOL)[self.object.soundList count])];
+    [self showPlaceHolder:(! (BOOL)[self.object.soundList count])];
     [self setupToolBar];
 }
 
@@ -106,10 +102,6 @@
     [super viewWillDisappear:animated];
     NSNotificationCenter *dnc = [NSNotificationCenter defaultCenter];
     [dnc removeObserver:self name:kSoundAddedNotification object:nil];
-}
-
-- (void)dealloc
-{
     self.currentPlayingSongCell = nil;
     [self stopAllSounds];
 }

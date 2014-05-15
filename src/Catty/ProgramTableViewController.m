@@ -113,7 +113,6 @@ UINavigationBarDelegate>
     NSNumber *showDetailsObjectsValue = (NSNumber*)[showDetails objectForKey:kUserDetailsShowDetailsObjectsKey];
     self.useDetailCells = [showDetailsObjectsValue boolValue];
     [self initNavigationBar];
-    [super initTableView];
 
     self.editableSections = @[@(kObjectSectionIndex)];
     if (self.program.header.programName) {

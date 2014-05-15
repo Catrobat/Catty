@@ -65,6 +65,27 @@
 
 @implementation ObjectLooksTableViewController
 
+#pragma - events
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
+    self.lookToAdd = nil;
+    NSDictionary *showDetails = [[NSUserDefaults standardUserDefaults] objectForKey:kUserDetailsShowDetailsKey];
+    NSNumber *showDetailsProgramsValue = (NSNumber*)[showDetails objectForKey:kUserDetailsShowDetailsLooksKey];
+    self.useDetailCells = [showDetailsProgramsValue boolValue];
+    self.title = self.navigationItem.title = kUIViewControllerTitleLooks;
+    [self initNavigationBar];
+    self.placeHolderView.title = kUIViewControllerPlaceholderTitleLooks;
+    [self showPlaceHolder:(! (BOOL)[self.object.lookList count])];
+    [self setupToolBar];
+}
+
+- (void)didReceiveMemoryWarning
+{
+    [super didReceiveMemoryWarning];
+    self.imageCache = nil;
+}
+
 #pragma getters and setters
 - (NSMutableDictionary*)addLookActionSheetBtnIndexes
 {
@@ -79,27 +100,6 @@
 {
     UIBarButtonItem *editButtonItem = [TableUtil editButtonItemWithTarget:self action:@selector(editAction:)];
     self.navigationItem.rightBarButtonItem = editButtonItem;
-}
-
-#pragma - events
-- (void)viewDidLoad
-{
-    [super viewDidLoad];
-    self.lookToAdd = nil;
-    NSDictionary *showDetails = [[NSUserDefaults standardUserDefaults] objectForKey:kUserDetailsShowDetailsKey];
-    NSNumber *showDetailsProgramsValue = (NSNumber*)[showDetails objectForKey:kUserDetailsShowDetailsLooksKey];
-    self.useDetailCells = [showDetailsProgramsValue boolValue];
-    self.title = self.navigationItem.title = kUIViewControllerTitleLooks;
-    self.placeHolderView.title = kUIViewControllerPlaceholderTitleLooks;
-    [self initNavigationBar];
-    [super initTableView];
-    [self setupToolBar];
-}
-
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    self.imageCache = nil;
 }
 
 #pragma mark - actions
@@ -164,7 +164,7 @@
     self.imageCache = nil;
     [super exitEditingMode];
     [self.tableView deleteRowsAtIndexPaths:selectedRowsIndexPaths withRowAnimation:UITableViewRowAnimationNone];
-    [super showPlaceHolder:(! (BOOL)[self.object.lookList count])];
+    [self showPlaceHolder:(! (BOOL)[self.object.lookList count])];
 }
 
 - (void)deleteLookForIndexPath:(NSIndexPath*)indexPath
@@ -174,7 +174,7 @@
     [self.object removeLook:look];
     [self.tableView deleteRowsAtIndexPaths:@[indexPath]
                           withRowAnimation:UITableViewRowAnimationNone];
-    [super showPlaceHolder:(! (BOOL)[self.object.lookList count])];
+    [self showPlaceHolder:(! (BOOL)[self.object.lookList count])];
 }
 
 #pragma mark - Table view data source
@@ -538,7 +538,7 @@
         }
 
         if (buttonIndex == kAlertViewButtonOK) {
-            [super showPlaceHolder:NO];
+            [self showPlaceHolder:NO];
             AppDelegate *appDelegate = (AppDelegate*)[UIApplication sharedApplication].delegate;
             NSString *oldPath = [self.object pathForLook:self.lookToAdd];
             self.lookToAdd.name = input;

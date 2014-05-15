@@ -37,7 +37,6 @@
 
 - (void)initPlaceHolderView
 {
-    // setup description label
     self.userInteractionEnabled = NO;
     _placeholderDescriptionLabel = [UILabel new];
     _placeholderDescriptionLabel.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin |
@@ -48,9 +47,9 @@
     [_placeholderDescriptionLabel setFont:[UIFont systemFontOfSize:25]];
     _placeholderDescriptionLabel.text = [NSString stringWithFormat:kUIViewControllerPlaceholderDescriptionStandard,
                                              _title];
-    _placeholderDescriptionLabel.backgroundColor = [UIColor clearColor];
+    _placeholderDescriptionLabel.backgroundColor = UIColor.clearColor;
     _placeholderDescriptionLabel.textColor = UIColor.skyBlueColor;
-    self.contentView = self.placeholderDescriptionLabel;
+    self.contentView = _placeholderDescriptionLabel;
     self.shimmering = YES;
 }
 

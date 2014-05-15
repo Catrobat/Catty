@@ -52,7 +52,6 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [super initTableView];
     [self setupNavigationBar];
     [super showPlaceHolder:NO];
     self.navigationController.toolbarHidden = YES;

@@ -53,29 +53,25 @@
 {
     self.editing = NO;
     self.editableSections = nil;
-    [self initPlaceHolder];
-}
-
-- (void)initPlaceHolder
-{
-    self.placeHolderView = [[PlaceHolderView alloc] initWithFrame:self.tableView.bounds];
-    [self.view addSubview:self.placeHolderView];
-    self.tableView.alwaysBounceVertical = self.placeHolderView.hidden = YES;
-}
-
-- (void)initTableView
-{
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     [self.tableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
-    UIColor *backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"darkblue"]];
-    self.tableView.backgroundColor = backgroundColor;
-    UITableViewHeaderFooterView *headerViewTemplate = [[UITableViewHeaderFooterView alloc] initWithReuseIdentifier:kTableHeaderIdentifier];
-    headerViewTemplate.contentView.backgroundColor = backgroundColor;
-    [self.tableView addSubview:headerViewTemplate];
+    self.tableView.backgroundColor = UIColor.darkBlueColor;
 }
 
 #pragma mark - getters and setters
+
+- (PlaceHolderView *)placeHolderView
+{
+    if (!_placeHolderView) {
+//        _placeHolderView = [[PlaceHolderView alloc] initWithFrame:CGRectMake(0.0f, 0.0f, CGRectGetWidth(self.tableView.bounds), CGRectGetHeight(self.tableView.bounds) - NAVIGATION_BAR_HEIGHT - STATUS_BAR_HEIGHT)];
+//         [self.view addSubview:_placeHolderView];
+        _placeHolderView = [[PlaceHolderView alloc] initWithFrame:self.tableView.bounds];
+        [self.view addSubview:_placeHolderView];
+        _placeHolderView.hidden = YES;
+    }
+    return _placeHolderView;
+}
 
 - (void)showPlaceHolder:(BOOL)show
 {
