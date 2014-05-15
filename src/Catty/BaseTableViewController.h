@@ -27,8 +27,6 @@
 @property (nonatomic, strong) NSMutableDictionary *imageCache;
 @property (nonatomic, strong) NSArray *editableSections;
 @property (nonatomic, strong, readonly) UIBarButtonItem *selectAllRowsButtonItem;
-- (void)viewDidLoad;
-//- (void)initTableView;
 - (void)showPlaceHolder:(BOOL)show;
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath;
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath*)indexPath;

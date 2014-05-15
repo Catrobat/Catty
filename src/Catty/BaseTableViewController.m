@@ -51,6 +51,7 @@
 #pragma mark - init
 - (void)viewDidLoad
 {
+    [super viewDidLoad];
     self.editing = NO;
     self.editableSections = nil;
     self.tableView.delegate = self;
@@ -64,8 +65,6 @@
 - (PlaceHolderView *)placeHolderView
 {
     if (!_placeHolderView) {
-//        _placeHolderView = [[PlaceHolderView alloc] initWithFrame:CGRectMake(0.0f, 0.0f, CGRectGetWidth(self.tableView.bounds), CGRectGetHeight(self.tableView.bounds) - NAVIGATION_BAR_HEIGHT - STATUS_BAR_HEIGHT)];
-//         [self.view addSubview:_placeHolderView];
         _placeHolderView = [[PlaceHolderView alloc] initWithFrame:self.tableView.bounds];
         [self.view addSubview:_placeHolderView];
         _placeHolderView.hidden = YES;
