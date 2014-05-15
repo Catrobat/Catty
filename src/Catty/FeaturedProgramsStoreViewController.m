@@ -64,7 +64,6 @@
 {
     [super viewDidLoad];
     [self loadFeaturedProjects];
-    [super initTableView];
     self.navigationItem.title = kUIViewControllerTitleFeaturedPrograms;
     //  CGFloat navigationBarHeight = self.navigationController.navigationBar.frame.size.height;
     //  self.tableView.contentInset = UIEdgeInsetsMake(navigationBarHeight, 0, 0, 0);

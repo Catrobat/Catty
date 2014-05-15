@@ -72,7 +72,6 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [super initTableView];
     [self setupNavigationBar];
 }
 

@@ -137,7 +137,6 @@
 #pragma mark init
 - (void)initTableView
 {
-    [super initTableView];
     self.cells = [[NSArray alloc] initWithObjects:
                   kUITableViewControllerMenuTitleContinue,
                   kUITableViewControllerMenuTitleNew,

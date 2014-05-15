@@ -42,7 +42,6 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [super initTableView];
     self.title = self.object.name;
     self.navigationItem.title = self.object.name;
     [self setupToolBar];
