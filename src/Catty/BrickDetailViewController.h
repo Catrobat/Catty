@@ -25,7 +25,6 @@
 #import "BrickCell.h"
 
 @interface BrickDetailViewController : UIViewController
-@property (strong, nonatomic) NSString *brickName;
 @property (strong, nonatomic) BrickCell *brickCell;
 
 @end

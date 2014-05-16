@@ -344,13 +344,7 @@
     // TDOD handle bricks which can be edited
     if (!self.isEditing) {
         BrickDetailViewController *brickDetailViewcontroller = [[BrickDetailViewController alloc]initWithNibName:@"BrickDetailViewController" bundle:nil];
-        
-        NSString *brickName =  NSStringFromClass(cell.class);
-        if (brickName.length) {
-            brickName = [brickName substringToIndex:brickName.length - 4];
-        }
-        
-        brickDetailViewcontroller.brickName = brickName;
+                
         brickDetailViewcontroller.brickCell = cell;
         self.brickScaleTransition.cell = cell;
         self.brickScaleTransition.navigationBar = self.navigationController.navigationBar;
@@ -360,6 +354,7 @@
         brickDetailViewcontroller.transitioningDelegate = self;
         brickDetailViewcontroller.modalPresentationStyle = UIModalPresentationCustom;
         self.collectionView.userInteractionEnabled = NO;
+        [self.navigationController setToolbarHidden:YES animated:YES];
         [self presentViewController:brickDetailViewcontroller animated:YES completion:^{
             self.navigationController.navigationBar.userInteractionEnabled = NO;
         }];
@@ -437,7 +432,6 @@
 #pragma mark - helpers
 - (void)setupToolBar
 {
-    [self.navigationController setToolbarHidden:NO];
     self.navigationController.toolbar.barStyle = UIBarStyleBlack;
     self.navigationController.toolbar.tintColor = [UIColor orangeColor];
     self.navigationController.toolbar.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleTopMargin;

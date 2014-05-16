@@ -35,6 +35,7 @@
 @property (strong, nonatomic) IBActionSheet *brickMenu;
 @property (strong, nonatomic) NSNumber *deleteBrickOrScriptFlag;
 @property (strong, nonatomic) NSNumber *brickCopyFlag;
+@property (strong, nonatomic) NSString *brickName;
 @end
 
 @implementation BrickDetailViewController
@@ -63,6 +64,16 @@
     }
     return _brickMenu;
 }
+- (NSString *)brickName
+{
+    if (! _brickMenu) {
+        NSString *brickName =  NSStringFromClass(self.brickCell.class);
+        if (brickName.length) {
+            _brickName = [brickName substringToIndex:brickName.length - 4];
+        }
+    }
+    return _brickName;
+}
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
@@ -85,7 +96,7 @@
     if ([sender isKindOfClass:UITapGestureRecognizer.class]) {
         if (sender.state == UIGestureRecognizerStateEnded) {
             CGPoint location = [sender locationInView:nil];
-            if (![self.view pointInside:[self.view convertPoint:location fromView:self.view.window] withEvent:nil]) {
+            if (![self.brickCell pointInside:[self.brickCell convertPoint:location fromView:self.view.window] withEvent:nil]) {
                 [self dismissBrickDetailViewController];
             } else {
                 [self.brickMenu showInView:self.view];
@@ -135,14 +146,6 @@
             break;
     }
 }
-
-
-//- (void)didPresentActionSheet:(UIActionSheet *)actionSheet
-//{
-//    if (!self.scriptCollectionViewControllerToolbar.hidden) {
-//        self.scriptCollectionViewControllerToolbar.hidden = YES;
-//    }
-//}
 
 #pragma mark - helper methods
 - (void)dismissBrickDetailViewController
