@@ -28,8 +28,6 @@
 #import "StartScriptCell.h"
 #import "WhenScriptCell.h"
 #import "BroadcastScriptCell.h"
-#import "AHKActionSheet.h"
-
 
 @interface BrickDetailViewController () <UIActionSheetDelegate>
 @property (strong, nonatomic) UITapGestureRecognizer *recognizer;
@@ -43,7 +41,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor = UIColor.clearColor;
-    
     self.brickMenu = [[UIActionSheet alloc] initWithTitle:self.brickName
                                                  delegate:self
                                         cancelButtonTitle:kUIActionSheetButtonTitleClose
@@ -93,47 +90,63 @@
             // delete brick or script
             self.deleteBrickOrScriptFlag = [NSNumber numberWithBool:YES];
             [self dismissBrickDetailViewController];
+            break;
         }
             
-        case 1:
+        case 1: {
             // copy brick or highlight script
-            if (![self isScript:self.brickCell]) {
+            if (! [self isScript:self.brickCell]) {
                 self.brickCopyFlag = [NSNumber numberWithBool:YES];
                 [self dismissBrickDetailViewController];
+            } else {
+                // TDOD highlight script
             }
             break;
+        }
             
-        case 2:
+        case 2: {
             // edit formula or cancel if script
             if ([self isScript:self.brickCell] ) {
                 [self dismissBrickDetailViewController];
+            } else {
+                // TODO edit formula mode
             }
             break;
+        }
             
-        case 3:
+        case 3: {
             // cancel button
             [self dismissBrickDetailViewController];
             break;
+        }
             
         default:
             break;
     }
 }
 
-- (void)willPresentActionSheet:(UIActionSheet *)actionSheet {
-    if (self.scriptCollectionViewControllerToolbar.hidden) {
-        self.scriptCollectionViewControllerToolbar.hidden = NO;
+- (void)willPresentActionSheet:(UIActionSheet *)actionSheet
+{
+    for (UIView *subview in actionSheet.subviews) {
+        if ([subview isKindOfClass:[UIButton class]]) {
+            UIButton *button = (UIButton *)subview;
+            if (! [button.titleLabel.text isEqualToString:[self deleteMenuItemNameWithBrickCell:self.brickCell]]) {
+                button.titleLabel.textColor = UIColor.lightOrangeColor;
+            }
+        }
     }
 }
 
-- (void)didPresentActionSheet:(UIActionSheet *)actionSheet {
+- (void)didPresentActionSheet:(UIActionSheet *)actionSheet
+{
     if (!self.scriptCollectionViewControllerToolbar.hidden) {
         self.scriptCollectionViewControllerToolbar.hidden = YES;
     }
 }
 
 #pragma mark - helper methods
-- (void)dismissBrickDetailViewController {
+- (void)dismissBrickDetailViewController
+{
     [self dismissViewControllerAnimated:YES completion:^{
         [NSNotificationCenter.defaultCenter postNotificationName:kBrickDetailViewDismissed
                                                           object:NULL
@@ -144,28 +157,32 @@
     }];
 }
 
-- (NSString *)deleteMenuItemNameWithBrickCell:(BrickCell *)cell {
+- (NSString *)deleteMenuItemNameWithBrickCell:(BrickCell *)cell
+{
     if ([self isScript:cell]) {
         return kUIActionSheetButtonTitleDeleteScript;
     }
     return kUIActionSheetButtonTitleDeleteBrick;
 }
 
-- (NSString *)secondMenuItemWithBrickCell:(BrickCell *)cell {
+- (NSString *)secondMenuItemWithBrickCell:(BrickCell *)cell
+{
     if ([self isScript:cell]) {
         return kUIActionSheetButtonTitleHighlightScript;
     }
     return kUIActionSheetButtonTitleCopyBrick;
 }
 
-- (NSString *)editFormulaMenuItemWithVrickCell:(BrickCell *)cell {
+- (NSString *)editFormulaMenuItemWithVrickCell:(BrickCell *)cell
+{
     if ([self isScript:cell]) {
         return nil;
     }
     return kUIActionSheetButtonTitleEditFormula;
 }
 
-- (BOOL)isScript:(BrickCell *)brickcell {
+- (BOOL)isScript:(BrickCell *)brickcell
+{
     if ([brickcell isKindOfClass:StartScriptCell.class] ||
         [brickcell isKindOfClass:WhenScriptCell.class] ||
         [brickcell isKindOfClass:BroadcastScriptCell.class]) {
