@@ -40,6 +40,10 @@
 		81B7487D192143AA00990E5F /* RoundBorderedButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 81B7487C192143AA00990E5F /* RoundBorderedButton.m */; };
 		81C27424189EE41700827A95 /* BrickCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 81C27423189EE41700827A95 /* BrickCell.m */; };
 		81C27426189EF94600827A95 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 81C27425189EF94600827A95 /* Images.xcassets */; };
+		81C64F8119264E2800199161 /* AHKActionSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = 81C64F7A19264E2800199161 /* AHKActionSheet.m */; };
+		81C64F8219264E2800199161 /* AHKActionSheetViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 81C64F7C19264E2800199161 /* AHKActionSheetViewController.m */; };
+		81C64F8319264E2800199161 /* UIImage+AHKAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 81C64F7E19264E2800199161 /* UIImage+AHKAdditions.m */; };
+		81C64F8419264E2800199161 /* UIWindow+AHKAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 81C64F8019264E2800199161 /* UIWindow+AHKAdditions.m */; };
 		81FAEE2F17E781AB0052BB2B /* ScriptCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 81FAEE2E17E781AB0052BB2B /* ScriptCollectionViewController.m */; };
 		81FAEE3217E782140052BB2B /* LooksTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 81FAEE3117E782140052BB2B /* LooksTableViewController.m */; };
 		81FAEE3517E782360052BB2B /* SoundsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 81FAEE3417E782360052BB2B /* SoundsTableViewController.m */; };
@@ -325,6 +329,14 @@
 		81C27422189EE41700827A95 /* BrickCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BrickCell.h; sourceTree = "<group>"; };
 		81C27423189EE41700827A95 /* BrickCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BrickCell.m; sourceTree = "<group>"; };
 		81C27425189EF94600827A95 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = Catty/Images.xcassets; sourceTree = "<group>"; };
+		81C64F7919264E2800199161 /* AHKActionSheet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AHKActionSheet.h; sourceTree = "<group>"; };
+		81C64F7A19264E2800199161 /* AHKActionSheet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AHKActionSheet.m; sourceTree = "<group>"; };
+		81C64F7B19264E2800199161 /* AHKActionSheetViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AHKActionSheetViewController.h; sourceTree = "<group>"; };
+		81C64F7C19264E2800199161 /* AHKActionSheetViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AHKActionSheetViewController.m; sourceTree = "<group>"; };
+		81C64F7D19264E2800199161 /* UIImage+AHKAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+AHKAdditions.h"; sourceTree = "<group>"; };
+		81C64F7E19264E2800199161 /* UIImage+AHKAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+AHKAdditions.m"; sourceTree = "<group>"; };
+		81C64F7F19264E2800199161 /* UIWindow+AHKAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIWindow+AHKAdditions.h"; sourceTree = "<group>"; };
+		81C64F8019264E2800199161 /* UIWindow+AHKAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIWindow+AHKAdditions.m"; sourceTree = "<group>"; };
 		81FAEE2D17E781AB0052BB2B /* ScriptCollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScriptCollectionViewController.h; sourceTree = "<group>"; };
 		81FAEE2E17E781AB0052BB2B /* ScriptCollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScriptCollectionViewController.m; sourceTree = "<group>"; };
 		81FAEE3017E782140052BB2B /* LooksTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LooksTableViewController.h; sourceTree = "<group>"; };
@@ -966,6 +978,7 @@
 		81B7487419213C3800990E5F /* 3rdParty */ = {
 			isa = PBXGroup;
 			children = (
+				81C64F7819264E1A00199161 /* AHKActionSheet */,
 				81506F4A18C3EDDC000ED328 /* LXReorderableCollectionViewFlowLayout */,
 				B4BCF41E170ED3B7008EDF3A /* TTTAttributedLabel */,
 				815420D2191A51F200E628D2 /* FBShimmering */,
@@ -1008,6 +1021,21 @@
 				81B748791921433700990E5F /* CreateView.h */,
 			);
 			name = CreateView;
+			sourceTree = "<group>";
+		};
+		81C64F7819264E1A00199161 /* AHKActionSheet */ = {
+			isa = PBXGroup;
+			children = (
+				81C64F7919264E2800199161 /* AHKActionSheet.h */,
+				81C64F7A19264E2800199161 /* AHKActionSheet.m */,
+				81C64F7B19264E2800199161 /* AHKActionSheetViewController.h */,
+				81C64F7C19264E2800199161 /* AHKActionSheetViewController.m */,
+				81C64F7D19264E2800199161 /* UIImage+AHKAdditions.h */,
+				81C64F7E19264E2800199161 /* UIImage+AHKAdditions.m */,
+				81C64F7F19264E2800199161 /* UIWindow+AHKAdditions.h */,
+				81C64F8019264E2800199161 /* UIWindow+AHKAdditions.m */,
+			);
+			name = AHKActionSheet;
 			sourceTree = "<group>";
 		};
 		81F10ED317CCD1F8000E4522 /* MaintainProgram */ = {
@@ -2853,9 +2881,11 @@
 				B40C3071170ECC49000B872F /* DarkBlueGradientImageCell.m in Sources */,
 				CA79A11A182D8A4200618283 /* GDataXMLNode+PrettyFormatterExtensions.m in Sources */,
 				815420DD191A5C1F00E628D2 /* PlaceHolderView.m in Sources */,
+				81C64F8219264E2800199161 /* AHKActionSheetViewController.m in Sources */,
 				B4BCF407170ECFA2008EDF3A /* MyProgramsViewController.m in Sources */,
 				CA75C23E18A9616000FC8C2F /* IfLogicBeginBrickCell.m in Sources */,
 				B4BCF414170ED1F2008EDF3A /* CatrobatInformation.m in Sources */,
+				81C64F8119264E2800199161 /* AHKActionSheet.m in Sources */,
 				B4BCF41B170ED300008EDF3A /* ProgramDetailStoreViewController.m in Sources */,
 				B4BCF421170ED3B7008EDF3A /* TTTAttributedLabel.m in Sources */,
 				CA9B7EA218FFCC0400F1790D /* NSData+Hashes.m in Sources */,
@@ -2876,11 +2906,13 @@
 				CA75C26B18A961CE00FC8C2F /* GlideToBrickCell.m in Sources */,
 				817B545118F0AAE600AF6BFE /* FXBlurView.m in Sources */,
 				CD8CC8BC1724346200239EBF /* HelpWebViewController.m in Sources */,
+				81C64F8419264E2800199161 /* UIWindow+AHKAdditions.m in Sources */,
 				CA75C28018A9622100FC8C2F /* SpeakBrickCell.m in Sources */,
 				CA75C2A118A9626B00FC8C2F /* ClearGraphicEffectBrickCell.m in Sources */,
 				CA75C23518A9614100FC8C2F /* BroadcastWaitBrickCell.m in Sources */,
 				CAB95BA518CD51EF006638F6 /* LookImageViewController.m in Sources */,
 				81B7487A1921433700990E5F /* CreateView.m in Sources */,
+				81C64F8319264E2800199161 /* UIImage+AHKAdditions.m in Sources */,
 				B45A5827173253E5000E038F /* SetVariableBrick.m in Sources */,
 				B45A582C17325442000E038F /* UserVariable.m in Sources */,
 				B45A583117327887000E038F /* Formula.m in Sources */,
@@ -3143,6 +3175,7 @@
 		C01FCF4F08A954540054247B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
@@ -3181,6 +3214,7 @@
 		C01FCF5008A954540054247B /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_EMPTY_BODY = YES;

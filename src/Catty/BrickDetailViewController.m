@@ -28,6 +28,8 @@
 #import "StartScriptCell.h"
 #import "WhenScriptCell.h"
 #import "BroadcastScriptCell.h"
+#import "AHKActionSheet.h"
+
 
 @interface BrickDetailViewController () <UIActionSheetDelegate>
 @property (strong, nonatomic) UITapGestureRecognizer *recognizer;
