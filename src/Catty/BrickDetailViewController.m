@@ -40,7 +40,8 @@
 
 @implementation BrickDetailViewController
 
-- (void)viewDidLoad {
+- (void)viewDidLoad
+{
     [super viewDidLoad];
     self.view.backgroundColor = UIColor.clearColor;
     self.deleteBrickOrScriptFlag = [[NSNumber alloc]initWithBool:NO];
@@ -51,7 +52,7 @@
 - (IBActionSheet *)brickMenu
 {
     if (! _brickMenu) {
-        self.brickMenu = [[IBActionSheet alloc] initWithTitle:self.brickName
+        _brickMenu = [[IBActionSheet alloc] initWithTitle:self.brickName
                                                      delegate:self
                                             cancelButtonTitle:kUIActionSheetButtonTitleClose
                                        destructiveButtonTitle:[self deleteMenuItemNameWithBrickCell:self.brickCell]
@@ -64,6 +65,7 @@
     }
     return _brickMenu;
 }
+
 - (NSString *)brickName
 {
     if (! _brickMenu) {
@@ -75,7 +77,8 @@
     return _brickName;
 }
 
-- (void)viewDidAppear:(BOOL)animated {
+- (void)viewDidAppear:(BOOL)animated
+{
     [super viewDidAppear:animated];
     self.recognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleTap:)];
     self.recognizer.numberOfTapsRequired = 1;
@@ -92,11 +95,12 @@
 }
 
 
-- (void)handleTap:(UITapGestureRecognizer *)sender {
+- (void)handleTap:(UITapGestureRecognizer *)sender
+{
     if ([sender isKindOfClass:UITapGestureRecognizer.class]) {
         if (sender.state == UIGestureRecognizerStateEnded) {
             CGPoint location = [sender locationInView:nil];
-            if (![self.brickCell pointInside:[self.brickCell convertPoint:location fromView:self.view.window] withEvent:nil]) {
+            if (![self.view pointInside:[self.view convertPoint:location fromView:self.view.window] withEvent:nil]) {
                 [self dismissBrickDetailViewController];
             } else {
                 [self.brickMenu showInView:self.view];
@@ -106,7 +110,8 @@
 }
 
 #pragma mark - Action Sheet Delegate
-- (void)actionSheet:(IBActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
+- (void)actionSheet:(IBActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
+{
     switch (buttonIndex) {
         case 0: {
             // delete brick or script
@@ -150,14 +155,17 @@
 #pragma mark - helper methods
 - (void)dismissBrickDetailViewController
 {
-    [self dismissViewControllerAnimated:YES completion:^{
-        [NSNotificationCenter.defaultCenter postNotificationName:kBrickDetailViewDismissed
-                                                          object:NULL
-                                                        userInfo:@{@"brickDeleted": self.deleteBrickOrScriptFlag,
-                                                                   @"isScript": @([self isScript:self.brickCell]),
-                                                                   @"copy": self.brickCopyFlag,
-                                                                   @"copiedCell": self.brickCell }];
-    }];
+    if (! self.presentingViewController.isBeingDismissed) {
+        [self.brickMenu dismissWithClickedButtonIndex:-1 animated:YES];
+        [self.presentingViewController dismissViewControllerAnimated:YES completion:^{
+            [NSNotificationCenter.defaultCenter postNotificationName:kBrickDetailViewDismissed
+                                                              object:NULL
+                                                            userInfo:@{@"brickDeleted": self.deleteBrickOrScriptFlag,
+                                                                       @"isScript": @([self isScript:self.brickCell]),
+                                                                       @"copy": self.brickCopyFlag,
+                                                                       @"copiedCell": self.brickCell }];
+        }];
+    }
 }
 
 - (NSString *)deleteMenuItemNameWithBrickCell:(BrickCell *)cell

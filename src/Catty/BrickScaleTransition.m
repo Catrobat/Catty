@@ -45,7 +45,7 @@
             self.cell.hidden = YES;
             self.dimView.hidden = NO;
             
-            [UIView animateWithDuration:.8f delay:0.f usingSpringWithDamping:0.5f initialSpringVelocity:2.0f options:UIViewAnimationOptionCurveEaseIn animations:^{
+            [UIView animateWithDuration:0.7f delay:0.f usingSpringWithDamping:0.5f initialSpringVelocity:2.0f options:UIViewAnimationOptionCurveEaseIn animations:^{
                 move.frame = endFrame;
                 self.dimView.alpha = 1.f;
                 self.collectionView.alpha = .3f;
