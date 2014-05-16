@@ -28,10 +28,11 @@
 #import "StartScriptCell.h"
 #import "WhenScriptCell.h"
 #import "BroadcastScriptCell.h"
+#import "IBActionSheet.h"
 
-@interface BrickDetailViewController () <UIActionSheetDelegate>
+@interface BrickDetailViewController () <IBActionSheetDelegate>
 @property (strong, nonatomic) UITapGestureRecognizer *recognizer;
-@property (strong, nonatomic) UIActionSheet *brickMenu;
+@property (strong, nonatomic) IBActionSheet *brickMenu;
 @property (strong, nonatomic) NSNumber *deleteBrickOrScriptFlag;
 @property (strong, nonatomic) NSNumber *brickCopyFlag;
 @end
@@ -41,14 +42,26 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor = UIColor.clearColor;
-    self.brickMenu = [[UIActionSheet alloc] initWithTitle:self.brickName
-                                                 delegate:self
-                                        cancelButtonTitle:kUIActionSheetButtonTitleClose
-                                   destructiveButtonTitle:[self deleteMenuItemNameWithBrickCell:self.brickCell]
-                                        otherButtonTitles:[self secondMenuItemWithBrickCell:self.brickCell],
-                                                          [self editFormulaMenuItemWithVrickCell:self.brickCell], nil];
     self.deleteBrickOrScriptFlag = [[NSNumber alloc]initWithBool:NO];
     self.brickCopyFlag = [[NSNumber alloc]initWithBool:NO];
+}
+
+#pragma mark - getters
+- (IBActionSheet *)brickMenu
+{
+    if (! _brickMenu) {
+        self.brickMenu = [[IBActionSheet alloc] initWithTitle:self.brickName
+                                                     delegate:self
+                                            cancelButtonTitle:kUIActionSheetButtonTitleClose
+                                       destructiveButtonTitle:[self deleteMenuItemNameWithBrickCell:self.brickCell]
+                                            otherButtonTitles:[self secondMenuItemWithBrickCell:self.brickCell],
+                          [self editFormulaMenuItemWithVrickCell:self.brickCell], nil];
+        [_brickMenu setButtonBackgroundColor:UIColor.darkBlueColor];
+        [_brickMenu setButtonTextColor:UIColor.lightOrangeColor];
+        [_brickMenu setTitleTextColor:UIColor.skyBlueColor];
+        [_brickMenu setButtonTextColor:UIColor.redColor forButtonAtIndex:0];
+    }
+    return _brickMenu;
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -57,13 +70,11 @@
     self.recognizer.numberOfTapsRequired = 1;
     self.recognizer.cancelsTouchesInView = NO;
     [self.view.window addGestureRecognizer:self.recognizer];
-    [self.brickMenu showFromToolbar:self.scriptCollectionViewControllerToolbar];
+    [self.brickMenu showInView:self.view];
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
-    self.self.scriptCollectionViewControllerToolbar.hidden = NO;
-    
     if ([self.view.window.gestureRecognizers containsObject:self.recognizer]) {
         [self.view.window removeGestureRecognizer:self.recognizer];
     }
@@ -77,14 +88,14 @@
             if (![self.view pointInside:[self.view convertPoint:location fromView:self.view.window] withEvent:nil]) {
                 [self dismissBrickDetailViewController];
             } else {
-                [self.brickMenu showFromToolbar:self.scriptCollectionViewControllerToolbar];
+                [self.brickMenu showInView:self.view];
             }
         }
     }
 }
 
 #pragma mark - Action Sheet Delegate
--(void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
+- (void)actionSheet:(IBActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
     switch (buttonIndex) {
         case 0: {
             // delete brick or script
@@ -125,24 +136,13 @@
     }
 }
 
-- (void)willPresentActionSheet:(UIActionSheet *)actionSheet
-{
-    for (UIView *subview in actionSheet.subviews) {
-        if ([subview isKindOfClass:[UIButton class]]) {
-            UIButton *button = (UIButton *)subview;
-            if (! [button.titleLabel.text isEqualToString:[self deleteMenuItemNameWithBrickCell:self.brickCell]]) {
-                button.titleLabel.textColor = UIColor.lightOrangeColor;
-            }
-        }
-    }
-}
 
-- (void)didPresentActionSheet:(UIActionSheet *)actionSheet
-{
-    if (!self.scriptCollectionViewControllerToolbar.hidden) {
-        self.scriptCollectionViewControllerToolbar.hidden = YES;
-    }
-}
+//- (void)didPresentActionSheet:(UIActionSheet *)actionSheet
+//{
+//    if (!self.scriptCollectionViewControllerToolbar.hidden) {
+//        self.scriptCollectionViewControllerToolbar.hidden = YES;
+//    }
+//}
 
 #pragma mark - helper methods
 - (void)dismissBrickDetailViewController

@@ -344,7 +344,6 @@
     // TDOD handle bricks which can be edited
     if (!self.isEditing) {
         BrickDetailViewController *brickDetailViewcontroller = [[BrickDetailViewController alloc]initWithNibName:@"BrickDetailViewController" bundle:nil];
-        brickDetailViewcontroller.scriptCollectionViewControllerToolbar = self.navigationController.toolbar;
         
         NSString *brickName =  NSStringFromClass(cell.class);
         if (brickName.length) {

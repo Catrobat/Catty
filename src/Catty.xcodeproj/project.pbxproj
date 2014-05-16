@@ -44,6 +44,7 @@
 		81C64F8219264E2800199161 /* AHKActionSheetViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 81C64F7C19264E2800199161 /* AHKActionSheetViewController.m */; };
 		81C64F8319264E2800199161 /* UIImage+AHKAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 81C64F7E19264E2800199161 /* UIImage+AHKAdditions.m */; };
 		81C64F8419264E2800199161 /* UIWindow+AHKAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 81C64F8019264E2800199161 /* UIWindow+AHKAdditions.m */; };
+		81C64F8819268DF000199161 /* IBActionSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = 81C64F8719268DF000199161 /* IBActionSheet.m */; };
 		81FAEE2F17E781AB0052BB2B /* ScriptCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 81FAEE2E17E781AB0052BB2B /* ScriptCollectionViewController.m */; };
 		81FAEE3217E782140052BB2B /* LooksTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 81FAEE3117E782140052BB2B /* LooksTableViewController.m */; };
 		81FAEE3517E782360052BB2B /* SoundsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 81FAEE3417E782360052BB2B /* SoundsTableViewController.m */; };
@@ -337,6 +338,8 @@
 		81C64F7E19264E2800199161 /* UIImage+AHKAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+AHKAdditions.m"; sourceTree = "<group>"; };
 		81C64F7F19264E2800199161 /* UIWindow+AHKAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIWindow+AHKAdditions.h"; sourceTree = "<group>"; };
 		81C64F8019264E2800199161 /* UIWindow+AHKAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIWindow+AHKAdditions.m"; sourceTree = "<group>"; };
+		81C64F8619268DF000199161 /* IBActionSheet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IBActionSheet.h; sourceTree = "<group>"; };
+		81C64F8719268DF000199161 /* IBActionSheet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IBActionSheet.m; sourceTree = "<group>"; };
 		81FAEE2D17E781AB0052BB2B /* ScriptCollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScriptCollectionViewController.h; sourceTree = "<group>"; };
 		81FAEE2E17E781AB0052BB2B /* ScriptCollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScriptCollectionViewController.m; sourceTree = "<group>"; };
 		81FAEE3017E782140052BB2B /* LooksTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LooksTableViewController.h; sourceTree = "<group>"; };
@@ -978,6 +981,7 @@
 		81B7487419213C3800990E5F /* 3rdParty */ = {
 			isa = PBXGroup;
 			children = (
+				81C64F8519268DDF00199161 /* IBActionSheet */,
 				81C64F7819264E1A00199161 /* AHKActionSheet */,
 				81506F4A18C3EDDC000ED328 /* LXReorderableCollectionViewFlowLayout */,
 				B4BCF41E170ED3B7008EDF3A /* TTTAttributedLabel */,
@@ -1036,6 +1040,15 @@
 				81C64F8019264E2800199161 /* UIWindow+AHKAdditions.m */,
 			);
 			name = AHKActionSheet;
+			sourceTree = "<group>";
+		};
+		81C64F8519268DDF00199161 /* IBActionSheet */ = {
+			isa = PBXGroup;
+			children = (
+				81C64F8619268DF000199161 /* IBActionSheet.h */,
+				81C64F8719268DF000199161 /* IBActionSheet.m */,
+			);
+			name = IBActionSheet;
 			sourceTree = "<group>";
 		};
 		81F10ED317CCD1F8000E4522 /* MaintainProgram */ = {
@@ -2881,6 +2894,7 @@
 				B40C3071170ECC49000B872F /* DarkBlueGradientImageCell.m in Sources */,
 				CA79A11A182D8A4200618283 /* GDataXMLNode+PrettyFormatterExtensions.m in Sources */,
 				815420DD191A5C1F00E628D2 /* PlaceHolderView.m in Sources */,
+				81C64F8819268DF000199161 /* IBActionSheet.m in Sources */,
 				81C64F8219264E2800199161 /* AHKActionSheetViewController.m in Sources */,
 				B4BCF407170ECFA2008EDF3A /* MyProgramsViewController.m in Sources */,
 				CA75C23E18A9616000FC8C2F /* IfLogicBeginBrickCell.m in Sources */,
