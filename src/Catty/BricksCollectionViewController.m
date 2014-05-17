@@ -26,6 +26,7 @@
 #import "BrickCell.h"
 #import "ScriptCollectionViewController.h"
 #import "SpriteObject.h"
+#import "BrickManager.h"
 
 @interface BricksCollectionViewController ()
 @property (nonatomic, strong) NSArray *selectableBricksSortedIndexes;
@@ -53,16 +54,17 @@
         }
 
         NSArray *unselectableBricks = [allUnselectableBricks objectAtIndex:self.brickCategoryType];
-        NSDictionary *allCategoriesAndBrickTypes = kClassNameBrickNameMap;
+        BrickManager *brickManager = [BrickManager sharedBrickManager];
+        NSDictionary *allBrickTypes = [brickManager classNameBrickTypeMap];
         NSInteger capacity = ([BrickCell numberOfAvailableBricksForCategoryType:self.brickCategoryType] - [unselectableBricks count]);
         NSMutableDictionary *selectableBricks = [NSMutableDictionary dictionaryWithCapacity:capacity];
-        for (NSString *brickTypeName in allCategoriesAndBrickTypes) {
-            kBrickCategoryType categoryType = (kBrickCategoryType) [allCategoriesAndBrickTypes[brickTypeName][@"categoryType"] integerValue];
-            NSNumber *brickType = allCategoriesAndBrickTypes[brickTypeName][@"brickType"];
+        for (NSString *className in allBrickTypes) {
+            NSNumber *brickType = allBrickTypes[className];
+            kBrickCategoryType categoryType = [brickManager brickCategoryTypeForBrickType:[brickType unsignedIntegerValue]];
             if ((categoryType != self.brickCategoryType) || [unselectableBricks containsObject:brickType]) {
                 continue;
             }
-            [selectableBricks setObject:brickTypeName forKey:brickType];
+            [selectableBricks setObject:className forKey:brickType];
         }
         _selectableBricks = [selectableBricks copy];
         // selectableBricksSortedIndexes should refetch/update on next getter-call

@@ -33,7 +33,7 @@
 #import "NSString+CatrobatNSStringExtensions.h"
 #import <objc/runtime.h>
 #import "BroadcastWaitBrick.h"
-
+#import "BrickManager.h"
 
 @interface Script()
 
@@ -44,19 +44,15 @@
 
 @end
 
-
 @implementation Script
 
 - (id)init
 {
     if (self = [super init]) {
         NSString *subclassName = NSStringFromClass([self class]);
-        static NSDictionary *classNameBrickNameMap = nil;
-        if (classNameBrickNameMap == nil) {
-            classNameBrickNameMap = kClassNameBrickNameMap;
-        }
-        self.brickType = (kBrickType)[classNameBrickNameMap[subclassName] unsignedIntegerValue];
-        self.brickCategoryType = (kBrickCategoryType)(((NSUInteger)self.brickType) / 100);
+        BrickManager *brickManager = [BrickManager sharedBrickManager];
+        self.brickType = [brickManager brickTypeForClassName:subclassName];
+        self.brickCategoryType = [brickManager brickCategoryTypeForBrickType:self.brickType];
         self.currentBrickIndex = 0;
     }
     return self;

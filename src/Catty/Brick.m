@@ -21,6 +21,7 @@
  */
 #import "Brick.h"
 #import "Script.h"
+#import "BrickManager.h"
 
 @interface Brick()
 
@@ -29,7 +30,6 @@
 
 @end
 
-
 @implementation Brick
 
 - (id)init
@@ -37,12 +37,9 @@
     self = [super init];
     if (self) {
         NSString *subclassName = NSStringFromClass([self class]);
-        static NSDictionary *classNameBrickNameMap = nil;
-        if (classNameBrickNameMap == nil) {
-            classNameBrickNameMap = kClassNameBrickNameMap;
-        }
-        self.brickType = (kBrickType)[classNameBrickNameMap[subclassName] unsignedIntegerValue];
-        self.brickCategoryType = (kBrickCategoryType)(((NSUInteger)self.brickType) / 100);
+        BrickManager *brickManager = [BrickManager sharedBrickManager];
+        self.brickType = [brickManager brickTypeForClassName:subclassName];
+        self.brickCategoryType = [brickManager brickCategoryTypeForBrickType:self.brickType];
     }
     return self;
 }
@@ -52,12 +49,9 @@
     self = [super init];
     if (self) {
         NSString *subclassName = NSStringFromClass([self class]);
-        static NSDictionary *classNameBrickNameMap = nil;
-        if (classNameBrickNameMap == nil) {
-            classNameBrickNameMap = kClassNameBrickNameMap;
-        }
-        self.brickType = (kBrickType)[classNameBrickNameMap[subclassName] unsignedIntegerValue];
-        self.brickCategoryType = (kBrickCategoryType)(((NSUInteger)self.brickType) / 100);
+        BrickManager *brickManager = [BrickManager sharedBrickManager];
+        self.brickType = [brickManager brickTypeForClassName:subclassName];
+        self.brickCategoryType = [brickManager brickCategoryTypeForBrickType:self.brickType];
         self.object = sprite;
     }
     return self;

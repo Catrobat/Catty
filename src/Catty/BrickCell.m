@@ -54,15 +54,6 @@
 @implementation BrickCell
 
 #pragma mark - getters and setters
-- (NSDictionary*)classNameBrickNameMap
-{
-    static NSDictionary *classNameBrickNameMap = nil;
-    if (classNameBrickNameMap == nil) {
-        classNameBrickNameMap = kClassNameBrickNameMap;
-    }
-    return classNameBrickNameMap;
-}
-
 - (BOOL)scriptBrickCell
 {
     return [BrickCell isScriptBrickCellForCategoryType:self.categoryType AndBrickType:self.brickType];
