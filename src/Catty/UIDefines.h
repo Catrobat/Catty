@@ -32,16 +32,6 @@
 #define kMenuImageNameExplore @"explore"
 #define kMenuImageNameUpload @"upload"
 
-// brick UI config
-// brick categories
-typedef NS_ENUM(NSInteger, kBrickCategoryType) {
-    kControlBrick = 0,
-    kMotionBrick = 1,
-    kSoundBrick = 2,
-    kLookBrick = 3,
-    kVariableBrick = 4
-};
-
 // placeholder texts
 #define kPlaceHolderTag 99998
 #define kLoadingViewTag 99999
@@ -50,67 +40,93 @@ typedef NS_ENUM(NSInteger, kBrickCategoryType) {
 #define kIphone4ScreenHeight 480.0f
 #define kAddScriptCategoryTableViewBottomMargin 15.0f
 
+// ---------------------- BRICK CONFIG ---------------------------------------
+// brick categories
+typedef NS_ENUM(NSInteger, kBrickCategoryType) {
+    kControlBrick              = 0,
+    kMotionBrick               = 1,
+    kSoundBrick                = 2,
+    kLookBrick                 = 3,
+    kVariableBrick             = 4
+};
+
 // brick type identifiers
 typedef NS_ENUM(NSUInteger, kBrickType) {
 
-    // 0 control bricks
-    kProgramStartedBrick = 0,
-    kTappedBrick = 1,
-    kWaitBrick = 2,
-    kReceiveBrick = 3,
-    kBroadcastBrick = 4,
-    kBroadcastWaitBrick = 5,
-    kNoteBrick = 6,
-    kForeverBrick = 7,
-    kIfBrick = 8,
-    kIfElseBrick = 9,
-    kIfEndBrick = 10,
-    kRepeatBrick = 11,
-    kLoopEndBrick = 12,
+    // 0xx control bricks
+    kProgramStartedBrick       =   0,
+    kTappedBrick               =   1,
+    kWaitBrick                 =   2,
+    kReceiveBrick              =   3,
+    kBroadcastBrick            =   4,
+    kBroadcastWaitBrick        =   5,
+    kNoteBrick                 =   6,
+    kForeverBrick              =   7,
+    kIfBrick                   =   8,
+    kIfElseBrick               =   9,
+    kIfEndBrick                =  10,
+    kRepeatBrick               =  11,
+    kLoopEndBrick              =  12,
 
-    // 1 motion bricks
-    kPlaceAtBrick = 100,
-    kSetXBrick = 101,
-    kSetYBrick = 102,
-    kChangeXByNBrick = 103,
-    kChangeYByNBrick = 104,
-    kIfOnEdgeBounceBrick = 105,
-    kMoveNStepsBrick = 106,
-    kTurnLeftBrick = 107,
-    kTurnRightBrick = 108,
-    kPointInDirectionBrick = 109,
-    kPointToBrick = 110,
-    kGlideToBrick = 111,
-    kGoNStepsBackBrick = 112,
-    kComeToFrontBrick = 113,
+    // 1xx motion bricks
+    kPlaceAtBrick              = 100,
+    kSetXBrick                 = 101,
+    kSetYBrick                 = 102,
+    kChangeXByNBrick           = 103,
+    kChangeYByNBrick           = 104,
+    kIfOnEdgeBounceBrick       = 105,
+    kMoveNStepsBrick           = 106,
+    kTurnLeftBrick             = 107,
+    kTurnRightBrick            = 108,
+    kPointInDirectionBrick     = 109,
+    kPointToBrick              = 110,
+    kGlideToBrick              = 111,
+    kGoNStepsBackBrick         = 112,
+    kComeToFrontBrick          = 113,
 
-    // 2 sound bricks
-    kPlaySoundBrick = 200,
-    kStopAllSoundsBrick = 201,
-    kSetVolumeToBrick = 202,
-    kChangeVolumeByNBrick = 203,
-    kSpeakBrick = 204,
+    // 2xx sound bricks
+    kPlaySoundBrick            = 200,
+    kStopAllSoundsBrick        = 201,
+    kSetVolumeToBrick          = 202,
+    kChangeVolumeByNBrick      = 203,
+    kSpeakBrick                = 204,
 
-    // 3 look bricks
-    kSetLookBrick = 300,
-    kNextLookBrick = 301,
-    kSetSizeToBrick = 302,
-    kChangeSizeByNBrick = 303,
-    kHideBrick = 304,
-    kShowBrick = 305,
-    kSetGhostEffectBrick = 306,
+    // 3xx look bricks
+    kSetLookBrick              = 300,
+    kNextLookBrick             = 301,
+    kSetSizeToBrick            = 302,
+    kChangeSizeByNBrick        = 303,
+    kHideBrick                 = 304,
+    kShowBrick                 = 305,
+    kSetGhostEffectBrick       = 306,
     kChangeGhostEffectByNBrick = 307,
-    kSetBrightnessBrick = 308,
-    kChangeBrightnessByNBrick = 309,
-    kClearGraphicEffectBrick = 310,
+    kSetBrightnessBrick        = 308,
+    kChangeBrightnessByNBrick  = 309,
+    kClearGraphicEffectBrick   = 310,
 
-    // 4 variable bricks
-    kSetVariableBrick = 400,
-    kChangeVariableBrick = 401
+    // 4xx variable bricks
+    kSetVariableBrick          = 400,
+    kChangeVariableBrick       = 401
 
 };
 
-// TODO: move to plist...
+#define kBrickCategoryColors @[\
+    [UIColor orangeColor],\
+    [UIColor lightBlueColor],\
+    [UIColor violetColor],\
+    [UIColor greenColor],\
+    [UIColor lightRedColor]\
+]
+
+// brick categories
+#define kBrickCategoryNames @[\
+    kBrickCellControlCategoryTitle,\
+    kBrickCellMotionCategoryTitle,\
+    kBrickCellSoundCategoryTitle,\
+    kBrickCellLooksCategoryTitle,\
+    kBrickCellVariablesCategoryTitle\
+]
+
 #define kClassNameBrickNameMap @{\
 \
     /* control bricks */\
@@ -170,24 +186,6 @@ typedef NS_ENUM(NSUInteger, kBrickType) {
 }
 
 // ----------------- REFACTOR BEGIN -------------------
-
-// brick categories
-#define kBrickCategoryNames @[\
-    kBrickCellControlCategoryTitle,\
-    kBrickCellMotionCategoryTitle,\
-    kBrickCellSoundCategoryTitle,\
-    kBrickCellLooksCategoryTitle,\
-    kBrickCellVariablesCategoryTitle\
-]
-
-#define kBrickCategoryColors @[\
-    [UIColor orangeColor],\
-    [UIColor lightBlueColor],\
-    [UIColor violetColor],\
-    [UIColor greenColor],\
-    [UIColor lightRedColor]\
-]
-
 // brick subview const values
 #define kBrickInlineViewOffsetX 54.0f
 #define kBrickShapeNormalInlineViewOffsetY 3.0f
@@ -496,7 +494,7 @@ typedef NS_ENUM(NSInteger, kBrickShapeType) {
     kBrickShapeRoundedBig = 2
 };
 
-// bricks that are note shown in BricksCollectionViewController, because they are dependent on other bricks
+// bricks that are not shown in BricksCollectionViewController, because they are dependent on other bricks
 #define kUnselectableBricksObject @[\
     @[@(kIfElseBrick), @(kIfEndBrick), @(kLoopEndBrick)], /* control bricks  */\
     @[],                                                  /* motion bricks   */\
