@@ -70,6 +70,7 @@
 		B40C306D170ECC1B000B872F /* BackgroundLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = B4D940B6170EC631003DDBFA /* BackgroundLayer.m */; };
 		B40C306E170ECC30000B872F /* CatrobatBaseCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B4D940CD170EC903003DDBFA /* CatrobatBaseCell.m */; };
 		B40C3071170ECC49000B872F /* DarkBlueGradientImageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B40C3070170ECC49000B872F /* DarkBlueGradientImageCell.m */; };
+		B43498501927A875002F9075 /* My First Program.catrobat in Resources */ = {isa = PBXBuildFile; fileRef = B434984F1927A863002F9075 /* My First Program.catrobat */; };
 		B4365CE51758AF8F00B4D0A6 /* Logger.m in Sources */ = {isa = PBXBuildFile; fileRef = B4365CE41758AF8F00B4D0A6 /* Logger.m */; };
 		B4365CE91758EBA900B4D0A6 /* LoggerProperties.plist in Resources */ = {isa = PBXBuildFile; fileRef = B4365CE81758EBA900B4D0A6 /* LoggerProperties.plist */; };
 		B44F32A01737AC2E00BD97AC /* ProgramManager.m in Sources */ = {isa = PBXBuildFile; fileRef = B44F329F1737AC2E00BD97AC /* ProgramManager.m */; };
@@ -121,7 +122,6 @@
 		B4D940D0170EC9E9003DDBFA /* UIColor+CatrobatUIColorExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = B4D940C1170EC69B003DDBFA /* UIColor+CatrobatUIColorExtensions.m */; };
 		B4D940D1170EC9ED003DDBFA /* NSString+CatrobatNSStringExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = B4D940BE170EC681003DDBFA /* NSString+CatrobatNSStringExtensions.m */; };
 		B4D940D4170ECA15003DDBFA /* ImageCache.m in Sources */ = {isa = PBXBuildFile; fileRef = B4D940D3170ECA15003DDBFA /* ImageCache.m */; };
-		B4D940D8170ECB31003DDBFA /* Aquarium 3.catrobat in Resources */ = {isa = PBXBuildFile; fileRef = B4D940D7170ECB0D003DDBFA /* Aquarium 3.catrobat */; };
 		B4D940DC170ECB65003DDBFA /* ContinueImageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B4D940DB170ECB65003DDBFA /* ContinueImageCell.m */; };
 		B4D940E0170ECB8B003DDBFA /* DarkBlueGradientCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B4D940DF170ECB8B003DDBFA /* DarkBlueGradientCell.m */; };
 		B4DA23D1175E26550079B381 /* SensorManager.m in Sources */ = {isa = PBXBuildFile; fileRef = B4DA23D0175E26550079B381 /* SensorManager.m */; };
@@ -394,6 +394,7 @@
 		B405BAC7175DD3F600B1A0FC /* libxml2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.dylib; path = usr/lib/libxml2.dylib; sourceTree = SDKROOT; };
 		B40C306F170ECC49000B872F /* DarkBlueGradientImageCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DarkBlueGradientImageCell.h; sourceTree = "<group>"; };
 		B40C3070170ECC49000B872F /* DarkBlueGradientImageCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DarkBlueGradientImageCell.m; sourceTree = "<group>"; };
+		B434984F1927A863002F9075 /* My First Program.catrobat */ = {isa = PBXFileReference; lastKnownFileType = file; path = "My First Program.catrobat"; sourceTree = "<group>"; };
 		B4365CE31758AF8F00B4D0A6 /* Logger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Logger.h; sourceTree = "<group>"; };
 		B4365CE41758AF8F00B4D0A6 /* Logger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Logger.m; sourceTree = "<group>"; };
 		B4365CE81758EBA900B4D0A6 /* LoggerProperties.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = LoggerProperties.plist; sourceTree = "<group>"; };
@@ -496,7 +497,6 @@
 		B4D940CD170EC903003DDBFA /* CatrobatBaseCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CatrobatBaseCell.m; sourceTree = "<group>"; };
 		B4D940D2170ECA15003DDBFA /* ImageCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageCache.h; sourceTree = "<group>"; };
 		B4D940D3170ECA15003DDBFA /* ImageCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageCache.m; sourceTree = "<group>"; };
-		B4D940D7170ECB0D003DDBFA /* Aquarium 3.catrobat */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Aquarium 3.catrobat"; sourceTree = "<group>"; };
 		B4D940DA170ECB65003DDBFA /* ContinueImageCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContinueImageCell.h; sourceTree = "<group>"; };
 		B4D940DB170ECB65003DDBFA /* ContinueImageCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContinueImageCell.m; sourceTree = "<group>"; };
 		B4D940DE170ECB8B003DDBFA /* DarkBlueGradientCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DarkBlueGradientCell.h; sourceTree = "<group>"; };
@@ -842,7 +842,7 @@
 				CD0CCE54170CB39600B70036 /* Catty */,
 				CD0CCE37170C9F9300B70036 /* Storyboard & XIBs */,
 				29B97315FDCFA39411CA2CEA /* Supporting Files */,
-				29B97317FDCFA39411CA2CEA /* Resources */,
+				B43498471927A3AB002F9075 /* Resources */,
 				B46B270317703F9400172837 /* CattyTests */,
 				29B97323FDCFA39411CA2CEA /* Frameworks */,
 				19C28FACFE9D520D11CA2CBB /* Products */,
@@ -864,15 +864,6 @@
 			);
 			name = "Supporting Files";
 			path = Catty;
-			sourceTree = "<group>";
-		};
-		29B97317FDCFA39411CA2CEA /* Resources */ = {
-			isa = PBXGroup;
-			children = (
-				B4D940D7170ECB0D003DDBFA /* Aquarium 3.catrobat */,
-			);
-			name = Resources;
-			path = Catty/Resources;
 			sourceTree = "<group>";
 		};
 		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
@@ -1082,6 +1073,15 @@
 				B40C3070170ECC49000B872F /* DarkBlueGradientImageCell.m */,
 			);
 			name = DarkBlueGradientImageCell;
+			sourceTree = "<group>";
+		};
+		B43498471927A3AB002F9075 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				B434984F1927A863002F9075 /* My First Program.catrobat */,
+			);
+			name = Resources;
+			path = Catty;
 			sourceTree = "<group>";
 		};
 		B4365CE71758AF9200B4D0A6 /* Logger */ = {
@@ -2648,7 +2648,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B4D940D8170ECB31003DDBFA /* Aquarium 3.catrobat in Resources */,
+				B43498501927A875002F9075 /* My First Program.catrobat in Resources */,
 				81C27426189EF94600827A95 /* Images.xcassets in Resources */,
 				817B544D18F0520800AF6BFE /* BrickDetailViewController.xib in Resources */,
 				C3F2950C1813C63200E37D61 /* iPhone.storyboard in Resources */,
@@ -3141,7 +3141,7 @@
 				PROVISIONING_PROFILE = "";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				USER_HEADER_SEARCH_PATHS = "${SPARROW_SRC}";
+				USER_HEADER_SEARCH_PATHS = "";
 				VERSIONING_SYSTEM = "";
 			};
 			name = Debug;
@@ -3175,7 +3175,7 @@
 				PROVISIONING_PROFILE = "";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				USER_HEADER_SEARCH_PATHS = "${SPARROW_SRC}";
+				USER_HEADER_SEARCH_PATHS = "";
 				VALIDATE_PRODUCT = YES;
 				VERSIONING_SYSTEM = "";
 			};

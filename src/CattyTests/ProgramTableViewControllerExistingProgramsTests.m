@@ -72,7 +72,7 @@
 }
 
 #pragma mark - Tests for all existing programs
-// existing programs like Aquarium 3, ...
+// existing programs like Whack a mole, ...
 - (void)testExistingProgramsIfFolderExists
 {
     NSString *basePath = [Program basePath];
