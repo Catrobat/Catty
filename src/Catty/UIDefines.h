@@ -52,6 +52,8 @@ typedef NS_ENUM(NSInteger, kBrickCategoryType) {
 
 // brick type identifiers
 typedef NS_ENUM(NSUInteger, kBrickType) {
+    // invalid brick type
+    kInvalidBrick              = NSUIntegerMax,
 
     // 0xx control bricks
     kProgramStartedBrick       =   0,
@@ -127,7 +129,7 @@ typedef NS_ENUM(NSUInteger, kBrickType) {
     kBrickCellVariablesCategoryTitle\
 ]
 
-#define kClassNameBrickNameMap @{\
+#define kClassNameBrickTypeMap @{\
 \
     /* control bricks */\
     @"StartScript"               : @(kProgramStartedBrick),\

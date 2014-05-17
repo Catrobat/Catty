@@ -24,16 +24,70 @@
 
 @implementation BrickManager
 
+#pragma mark - construction methods
 static BrickManager *sharedBrickManager = nil;
 
 + (BrickManager*)sharedBrickManager
 {
+    // singletone instance
     @synchronized(self) {
         if (sharedBrickManager == nil) {
             sharedBrickManager = [[BrickManager alloc] init];
         }
     }
     return sharedBrickManager;
+}
+
+#pragma mark - getters and setters
+- (NSDictionary*)classNameBrickTypeMap
+{
+    // save map of kClassNameBrickTypeMap statically
+    // for performance reasons
+    static NSDictionary *classNameBrickTypeMap = nil;
+    if (classNameBrickTypeMap == nil) {
+        classNameBrickTypeMap = kClassNameBrickTypeMap;
+    }
+    return classNameBrickTypeMap;
+}
+
+- (NSDictionary*)brickTypeClassNameMap
+{
+    static NSDictionary *brickTypeClassNameMap = nil;
+    // get inverse map of kClassNameBrickTypeMap
+    // and save this map statically for performance reasons
+    if (brickTypeClassNameMap == nil) {
+        NSDictionary *classNameBrickTypeMap = [self classNameBrickTypeMap];
+        NSMutableDictionary *brickTypeClassNameMutableMap = nil;
+        brickTypeClassNameMap = [NSMutableDictionary
+                                 dictionaryWithCapacity:[classNameBrickTypeMap count]];
+        for (NSNumber *brickType in classNameBrickTypeMap) {
+            [brickTypeClassNameMutableMap setObject:classNameBrickTypeMap[brickType]
+                                             forKey:brickType];
+        }
+        brickTypeClassNameMap = [brickTypeClassNameMutableMap copy];
+    }
+    return brickTypeClassNameMap;
+}
+
+- (kBrickType)brickTypeForClassName:(NSString*)className
+{
+    NSDictionary *classNameBrickTypeMap = [self classNameBrickTypeMap];
+    NSNumber *brickTypeAsNumber = classNameBrickTypeMap[className];
+    if (! brickTypeAsNumber) {
+        return kInvalidBrick;
+    }
+    return (kBrickType)[brickTypeAsNumber unsignedIntegerValue];
+}
+
+- (kBrickCategoryType)brickCategoryTypeForBrickType:(kBrickType)brickType
+{
+    return (kBrickCategoryType)(((NSUInteger)brickType) / 100);
+}
+
+- (NSString*)classNameForBrickType:(kBrickType)brickType
+{
+    NSDictionary *brickTypeClassNameMap = [self brickTypeClassNameMap];
+    return brickTypeClassNameMap[@(brickType)];
 }
 
 @end
