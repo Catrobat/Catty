@@ -317,6 +317,7 @@
         if ([segue.destinationViewController isKindOfClass:[ProgramTableViewController class]]) {
             ProgramTableViewController *programTableViewController = (ProgramTableViewController*)segue.destinationViewController;
             programTableViewController.program = self.lastProgram;
+            self.lastProgram = nil;
 
             // TODO: remove this after persisting programs feature is fully implemented...
             programTableViewController.isNewProgram = NO;
@@ -325,6 +326,7 @@
         if ([segue.destinationViewController isKindOfClass:[ProgramTableViewController class]]) {
             ProgramTableViewController *programTableViewController = (ProgramTableViewController*)segue.destinationViewController;
             programTableViewController.program = self.defaultProgram;
+            self.defaultProgram = nil;
 
             // TODO: remove this after persisting programs feature is fully implemented...
             programTableViewController.isNewProgram = YES;
