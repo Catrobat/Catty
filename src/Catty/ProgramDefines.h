@@ -36,7 +36,7 @@
 #define kDefaultNumOfObjects 1
 #define kBackgroundObjects 1
 
-#define kDefaultProgramName @"Aquarium 3"
+#define kDefaultProgramName @"My First Program"
 
 // indexes
 #define kNumberOfSectionsInProgramTableViewController 2
