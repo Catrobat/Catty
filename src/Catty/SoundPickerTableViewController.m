@@ -32,7 +32,6 @@
 #import "LanguageTranslationDefines.h"
 
 @interface SoundPickerTableViewController () <AVAudioPlayerDelegate>
-@property (strong, nonatomic) NSMutableDictionary *imageCache;
 @property (atomic, strong) Sound *currentPlayingSong;
 @property (atomic, weak) UITableViewCell<CatrobatImageCell> *currentPlayingSongCell;
 @property (nonatomic, strong) NSArray *playableSounds;
@@ -41,14 +40,6 @@
 @implementation SoundPickerTableViewController
 
 #pragma mark - getters and setters
-- (NSMutableDictionary*)imageCache
-{
-    if (! _imageCache) {
-        _imageCache = [NSMutableDictionary dictionary];
-    }
-    return _imageCache;
-}
-
 - (NSArray*)playableSounds
 {
     if (! _playableSounds && self.directory) {
@@ -106,35 +97,36 @@
     NSString *path = [NSString stringWithFormat:@"%@/%@", appDelegate.fileManager.documentsDirectory, sound.fileName];
     CGFloat duration = [[AudioManager sharedAudioManager] durationOfSoundWithFilePath:path];
 
-    if ([cell conformsToProtocol:@protocol(CatrobatImageCell)]) {
-        UITableViewCell <CatrobatImageCell>* imageCell = (UITableViewCell <CatrobatImageCell>*)cell;
-        imageCell.indexPath = indexPath;
-
-        static NSString *playIconName = @"ic_media_play";
-        UIImage *image = [self.imageCache objectForKey:playIconName];
-        if (! image) {
-            dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0ul);
-            dispatch_async(queue, ^{
-                UIImage *image = [UIImage imageNamed:playIconName];
-                [self.imageCache setObject:image forKey:playIconName];
-                dispatch_sync(dispatch_get_main_queue(), ^{
-                    // check if cell still needed
-                    if ([imageCell.indexPath isEqual:indexPath]) {
-                        imageCell.iconImageView.image = image;
-                        [imageCell setNeedsLayout];
-                    }
-                });
-            });
-        } else {
-            imageCell.iconImageView.image = image;
-        }
-        imageCell.titleLabel.text = [NSString stringWithFormat:@"(%.02f sec.) %@", (float)duration, sound.name];
-        imageCell.iconImageView.userInteractionEnabled = YES;
-        UITapGestureRecognizer *tapped = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(playSound:)];
-        tapped.numberOfTapsRequired = 1;
-        [imageCell.iconImageView addGestureRecognizer:tapped];
+    if (! [cell conformsToProtocol:@protocol(CatrobatImageCell)]) {
+        return cell;
     }
-    return cell;
+    UITableViewCell <CatrobatImageCell>* imageCell = (UITableViewCell <CatrobatImageCell>*)cell;
+    imageCell.indexPath = indexPath;
+
+    static NSString *playIconName = @"ic_media_play";
+    UIImage *image = [self.imageCache objectForKey:playIconName];
+    if (! image) {
+        dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0ul);
+        dispatch_async(queue, ^{
+            UIImage *image = [UIImage imageNamed:playIconName];
+            [self.imageCache setObject:image forKey:playIconName];
+            dispatch_sync(dispatch_get_main_queue(), ^{
+                // check if cell still needed
+                if ([imageCell.indexPath isEqual:indexPath]) {
+                    imageCell.iconImageView.image = image;
+                    [imageCell setNeedsLayout];
+                }
+            });
+        });
+    } else {
+        imageCell.iconImageView.image = image;
+    }
+    imageCell.titleLabel.text = [NSString stringWithFormat:@"(%.02f sec.) %@", (float)duration, sound.name];
+    imageCell.iconImageView.userInteractionEnabled = YES;
+    UITapGestureRecognizer *tapped = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(playSound:)];
+    tapped.numberOfTapsRequired = 1;
+    [imageCell.iconImageView addGestureRecognizer:tapped];
+    return imageCell;
 }
 
 - (void)playSound:(id)sender
@@ -182,11 +174,6 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     return [TableUtil getHeightForImageCell];
-}
-
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    return YES;
 }
 
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath

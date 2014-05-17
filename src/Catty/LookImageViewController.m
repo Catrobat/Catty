@@ -46,7 +46,7 @@
                         self.imageView.clipsToBounds = YES;
                         self.imageView.frame = self.scrollView.bounds;
                         self.scrollView.contentSize = CGSizeMake(self.imageView.frame.size.width, self.imageView.frame.size.height);
-                        self.scrollView.maximumZoomScale = 4.0;
+                        self.scrollView.maximumZoomScale = 2.0;
                         self.scrollView.minimumZoomScale = 1.0;
                         self.scrollView.delegate = self;
                     }

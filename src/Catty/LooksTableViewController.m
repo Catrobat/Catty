@@ -45,7 +45,6 @@
 #import "AppDelegate.h"
 #import "LoadingView.h"
 #import "LanguageTranslationDefines.h"
-#import "UIImage+CatrobatUIImageExtensions.h"
 
 // TODO: outsource...
 #define kUserDetailsShowDetailsKey @"showDetails"
@@ -56,9 +55,9 @@
 #define kDrawNewImageActionSheetButton @"drawNewImage"
 
 @interface ObjectLooksTableViewController () <UIActionSheetDelegate, UIImagePickerControllerDelegate,
-                                              UINavigationControllerDelegate, UIAlertViewDelegate>
+                                              UINavigationControllerDelegate, UIAlertViewDelegate,
+                                              UITextFieldDelegate>
 @property (nonatomic) BOOL useDetailCells;
-@property (nonatomic, strong) NSMutableDictionary *imageCache;
 @property (nonatomic, strong) Look *lookToAdd;
 @property (nonatomic, strong) LoadingView* loadingView;
 @property (nonatomic, strong) NSMutableDictionary* addLookActionSheetBtnIndexes;
@@ -208,6 +207,7 @@
     } else {
         cell = [tableView dequeueReusableCellWithIdentifier:DetailCellIdentifier forIndexPath:indexPath];
     }
+
     if (! [cell conformsToProtocol:@protocol(CatrobatImageCell)]) {
         return cell;
     }
@@ -279,6 +279,9 @@
     } else {
         imageCell.iconImageView.image = image;
     }
+
+    imageCell.titleLabel.text = look.name;
+
     if (self.useDetailCells && [cell isKindOfClass:[DarkBlueGradientImageDetailCell class]]) {
         // TODO: enhancement: use data cache for this later...
         DarkBlueGradientImageDetailCell *detailCell = (DarkBlueGradientImageDetailCell*)imageCell;
@@ -296,8 +299,8 @@
         NSNumber *sizeOfSound = [NSNumber numberWithUnsignedInteger:resultSize];
         detailCell.bottomRightDetailLabel.text = [NSByteCountFormatter stringFromByteCount:[sizeOfSound unsignedIntegerValue]
                                                                                 countStyle:NSByteCountFormatterCountStyleBinary];
+        return detailCell;
     }
-    imageCell.titleLabel.text = look.name;
     return imageCell;
 }
 
@@ -454,7 +457,7 @@
                                                           delegate:self
                                                        placeholder:kUIAlertViewPlaceholderEnterImageName
                                                                tag:kNewImageAlertViewTag
-                                                 textFieldDelegate:nil];
+                                                 textFieldDelegate:self];
                     UITextField *textField = [alertView textFieldAtIndex:0];
                     textField.text = look.name;
                 }];
@@ -469,7 +472,14 @@
                   failureBlock:nil];
 }
 
-#pragma mark - UIActionSheetDelegate Handlers
+#pragma mark - text field delegates
+- (BOOL)textField:(UITextField*)field shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString*)characters
+{
+    NSCharacterSet *blockedCharacters = [[NSCharacterSet characterSetWithCharactersInString:kTextFieldAllowedCharacters] invertedSet];
+    return ([characters rangeOfCharacterFromSet:blockedCharacters].location == NSNotFound);
+}
+
+#pragma mark - action sheet delegates
 - (void)actionSheet:(UIActionSheet*)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
 {
     if (actionSheet.tag == kEditLooksActionSheetTag) {

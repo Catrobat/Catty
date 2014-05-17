@@ -22,7 +22,8 @@
 
 #import "LanguageTranslationDefines.h"
 
-#define kTextFieldAllowedCharacters @"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz_ 1234567890"
+// TODO: which characters in program, object, image names do we have to support?
+#define kTextFieldAllowedCharacters @"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz_- 1234567890"
 
 #define kMenuImageNameContinue @"continue"
 #define kMenuImageNameNew @"new"

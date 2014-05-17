@@ -23,6 +23,7 @@
 #import <UIKit/UIKit.h>
 
 @interface BaseTableViewController : UITableViewController
+@property (nonatomic, strong) NSMutableDictionary *imageCache;
 @property (nonatomic, strong) NSArray *editableSections;
 @property (nonatomic, strong, readonly) UIBarButtonItem *selectAllRowsButtonItem;
 - (void)viewDidLoad;
