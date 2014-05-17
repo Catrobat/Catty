@@ -98,17 +98,6 @@
     self.placeHolderView.hidden = self.object.scriptList.count ? YES : NO;
     
     self.brickScaleTransition = [BrickScaleTransition new];
-    self.dimView = [[FXBlurView alloc] initWithFrame:self.view.bounds];
-    self.dimView.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
-    self.dimView.userInteractionEnabled = NO;
-    self.dimView.tintColor = UIColor.clearColor;
-    self.dimView.underlyingView = self.collectionView;
-    self.dimView.blurEnabled = YES;
-    self.dimView.blurRadius = 10.f;
-    self.dimView.dynamic = YES;
-    self.dimView.alpha = 0.f;
-    self.dimView.hidden = YES;
-    [self.view addSubview:self.dimView];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -134,6 +123,23 @@
     [BrickCell clearImageCache];
 }
 
+- (FXBlurView *)dimView
+{
+    if (! _dimView) {
+        _dimView = [[FXBlurView alloc] initWithFrame:self.view.bounds];
+        _dimView.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
+        _dimView.userInteractionEnabled = NO;
+        _dimView.tintColor = UIColor.clearColor;
+        _dimView.underlyingView = self.collectionView;
+        _dimView.blurEnabled = YES;
+        _dimView.blurRadius = 10.f;
+        _dimView.dynamic = YES;
+        _dimView.alpha = 0.f;
+        _dimView.hidden = YES;
+        [self.view addSubview:self.dimView];
+    }
+    return _dimView;
+}
 
 #pragma mark - UIViewControllerAnimatedTransitioning delegate
 - (id<UIViewControllerAnimatedTransitioning>)animationControllerForPresentedController:(UIViewController *)presented
@@ -187,17 +193,7 @@
         if (self.object.scriptList) {
             [self addBrickCellAction:notification.userInfo[kUserInfoKeyBrickCell] copyBrick:NO completionBlock:^{
                 dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                    [weakself scrollToLastbrickinCollectionView:weakCollectionView completion:^(NSIndexPath *indexPath) {
-                        BrickCell *brickCell = (BrickCell *)[weakCollectionView cellForItemAtIndexPath:indexPath];
-                        CAKeyframeAnimation *animation = [CAKeyframeAnimation animation];
-                        animation.keyPath = @"position.x";
-                        animation.values = @[@0, @10, @-10, @10, @0];
-                        animation.keyTimes = @[@0, @(1 / 6.0), @(3 / 6.0), @(5 / 6.0), @1];
-                        animation.duration = 0.4f;
-                        animation.additive = YES;
-                        animation.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionLinear];
-                        [brickCell.layer addAnimation:animation forKey:@"shake"];
-                    }];
+                    [weakself scrollToLastbrickinCollectionView:weakCollectionView completion:NULL];
                     
                 });
             }];
@@ -343,19 +339,12 @@
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     BrickCell *cell = (BrickCell*)[self.collectionView cellForItemAtIndexPath:indexPath];
     self.selectedIndexPath =  indexPath;
-    NSLog(@"selected cell = %@", cell);
+//    NSLog(@"selected cell = %@", cell);
     
     // TDOD handle bricks which can be edited
     if (!self.isEditing) {
         BrickDetailViewController *brickDetailViewcontroller = [[BrickDetailViewController alloc]initWithNibName:@"BrickDetailViewController" bundle:nil];
-        brickDetailViewcontroller.scriptCollectionViewControllerToolbar = self.navigationController.toolbar;
-        
-        NSString *brickName =  NSStringFromClass(cell.class);
-        if (brickName.length) {
-            brickName = [brickName substringToIndex:brickName.length - 4];
-        }
-        
-        brickDetailViewcontroller.brickName = brickName;
+                
         brickDetailViewcontroller.brickCell = cell;
         self.brickScaleTransition.cell = cell;
         self.brickScaleTransition.navigationBar = self.navigationController.navigationBar;
@@ -365,6 +354,7 @@
         brickDetailViewcontroller.transitioningDelegate = self;
         brickDetailViewcontroller.modalPresentationStyle = UIModalPresentationCustom;
         self.collectionView.userInteractionEnabled = NO;
+        [self.navigationController setToolbarHidden:YES animated:YES];
         [self presentViewController:brickDetailViewcontroller animated:YES completion:^{
             self.navigationController.navigationBar.userInteractionEnabled = NO;
         }];
@@ -442,7 +432,6 @@
 #pragma mark - helpers
 - (void)setupToolBar
 {
-    [self.navigationController setToolbarHidden:NO];
     self.navigationController.toolbar.barStyle = UIBarStyleBlack;
     self.navigationController.toolbar.tintColor = [UIColor orangeColor];
     self.navigationController.toolbar.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleTopMargin;
@@ -544,7 +533,6 @@
                 }
             }
         }
-        
         if (scriptCells.count) {
             [scriptCells sortUsingComparator:^(BrickCell *cell1, BrickCell *cell2) {
                 if (cell1.frame.origin.y > cell2.frame.origin.y) {
