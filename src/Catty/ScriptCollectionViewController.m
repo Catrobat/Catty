@@ -40,6 +40,7 @@
 #import "LanguageTranslationDefines.h"
 #import "PlaceHolderView.h"
 #import "BroadcastScriptCell.h"
+#import "UIColor+CatrobatUIColorExtensions.h"
 
 @interface ScriptCollectionViewController () <UICollectionViewDelegate, LXReorderableCollectionViewDelegateFlowLayout, LXReorderableCollectionViewDataSource, UIViewControllerTransitioningDelegate>
 @property (nonatomic, strong) NSDictionary *classNameBrickNameMap;
@@ -84,7 +85,7 @@
 {
     self.collectionView.delegate = self;
     self.collectionView.dataSource = self;
-    self.collectionView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"darkblue"]];
+    self.collectionView.backgroundColor = UIColor.backgroundBlueColor;
     self.collectionView.alwaysBounceVertical = YES;
     self.collectionView.scrollEnabled = YES;
     self.collectionView.delegate = self;

@@ -375,6 +375,13 @@ UINavigationBarDelegate>
     return headerView;
 }
 
+- (void)tableView:(UITableView *)tableView willDisplayHeaderView:(UIView *)view forSection:(NSInteger)section
+{
+    ProgramTableHeaderView *headerView = (ProgramTableHeaderView *)view;
+    headerView.textLabel.textColor = UIColor.headerTextColor;
+}
+
+#pragma mark editing
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
 {
     return ((indexPath.section == kObjectSectionIndex)
