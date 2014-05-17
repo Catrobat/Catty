@@ -36,6 +36,7 @@
 #import "LoadingView.h"
 #import "EVCircularProgressView.h"
 #import "LanguageTranslationDefines.h"
+#import "ProgramUpdateDelegate.h"
 
 #define kUIBarHeight 49
 #define kNavBarHeight 44
@@ -45,11 +46,10 @@
 #define kIphone5ScreenHeight 568.0f
 #define kIphone4ScreenHeight 480.0f
 
-@interface ProgramDetailStoreViewController ()
+@interface ProgramDetailStoreViewController () <ProgramUpdateDelegate>
 
 @property (nonatomic, strong) UIView* projectView;
 @property (nonatomic, strong) LoadingView* loadingView;
-
 
 @end
 
@@ -57,7 +57,7 @@
 @implementation ProgramDetailStoreViewController
 
 
--(NSMutableDictionary*)projects
+- (NSMutableDictionary*)projects
 {
     if (!_projects) {
         _projects = [[NSMutableDictionary alloc] init];
@@ -174,11 +174,23 @@
             self.hidesBottomBarWhenPushed = YES;
             ProgramTableViewController *programTableViewController = (ProgramTableViewController*)segue.destinationViewController;
             programTableViewController.program = [Program programWithLoadingInfo:[Util programLoadingInfoForProgramWithName:self.project.name]];
+            programTableViewController.delegate = self;
 
             // TODO: remove this after persisting programs feature is fully implemented...
             programTableViewController.isNewProgram = NO;
         }
     }
+}
+
+#pragma mark - program update delegates
+- (void)removeProgram:(NSString *)programName
+{
+    [self showPlayButton];
+}
+
+- (void)renameOldProgramName:(NSString *)oldProgramName ToNewProgramName:(NSString *)newProgramName
+{
+    [self showPlayButton];
 }
 
 #pragma mark - ProgramStore Delegate
@@ -233,8 +245,6 @@
     self.project.isdownloading = NO;
     [self.projects removeObjectForKey:url];
     [self reloadWithProject:self.project];
-    
-    
 }
 
 #pragma mark - TTTAttributedLabelDelegate
@@ -282,6 +292,8 @@
     button.enabled = YES;
     [self hideLoadingView];
 }
+
+#pragma mark - loading view
 - (void)showLoadingView
 {
     if(!self.loadingView) {
@@ -296,6 +308,15 @@
     [self.loadingView hide];
 }
 
+#pragma mark - play button
+- (void)showPlayButton
+{
+    [self.projectView viewWithTag:kDownloadButtonTag].hidden = NO;
+    [self.projectView viewWithTag:kStopLoadingTag].hidden = YES;
+    [self.projectView viewWithTag:kPlayButtonTag].hidden = YES;
+}
+
+#pragma mark - actions
 - (void)stopLoading
 {
     AppDelegate *appDelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
