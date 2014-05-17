@@ -90,4 +90,39 @@ static BrickManager *sharedBrickManager = nil;
     return brickTypeClassNameMap[@(brickType)];
 }
 
+- (NSUInteger)numberOfAvailableBricksForCategoryType:(kBrickCategoryType)categoryType
+{
+    switch (categoryType) {
+        case kControlBrick:
+            return [kControlBrickNames count];
+        case kMotionBrick:
+            return [kMotionBrickNames count];
+        case kSoundBrick:
+            return [kSoundBrickNames count];
+        case kLookBrick:
+            return [kLookBrickNames count];
+        case kVariableBrick:
+            return [kVariableBrickNames count];
+        default:
+            break;
+    }
+    return 0;
+}
+
+- (BOOL)isScriptBrickForBrickType:(NSInteger)brickType
+{
+    kBrickCategoryType categoryType = (kBrickCategoryType)(((NSUInteger)brickType) / 100);
+    if (categoryType == kControlBrick) {
+        switch (brickType) {
+            case kProgramStartedBrick:
+            case kTappedBrick:
+            case kReceiveBrick:
+                return YES;
+            default:
+                break;
+        }
+    }
+    return NO;
+}
+
 @end

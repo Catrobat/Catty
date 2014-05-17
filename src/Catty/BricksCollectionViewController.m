@@ -56,7 +56,7 @@
         NSArray *unselectableBricks = [allUnselectableBricks objectAtIndex:self.brickCategoryType];
         BrickManager *brickManager = [BrickManager sharedBrickManager];
         NSDictionary *allBrickTypes = [brickManager classNameBrickTypeMap];
-        NSInteger capacity = ([BrickCell numberOfAvailableBricksForCategoryType:self.brickCategoryType] - [unselectableBricks count]);
+        NSInteger capacity = ([brickManager numberOfAvailableBricksForCategoryType:self.brickCategoryType] - [unselectableBricks count]);
         NSMutableDictionary *selectableBricks = [NSMutableDictionary dictionaryWithCapacity:capacity];
         for (NSString *className in allBrickTypes) {
             NSNumber *brickType = allBrickTypes[className];
@@ -160,7 +160,9 @@
   sizeForItemAtIndexPath:(NSIndexPath*)indexPath
 {
     CGFloat width = self.view.frame.size.width;
-    CGFloat height = [BrickCell brickCellHeightForCategoryType:self.brickCategoryType AndBrickType:indexPath.section];
+    // TODO: outsource this line as helper method to BrickManager
+    kBrickType brickType = (kBrickType)(self.brickCategoryType * 100 + indexPath.section);
+    CGFloat height = [BrickCell brickCellHeightForBrickType:brickType];
     return CGSizeMake(width, height);
 }
 
@@ -181,7 +183,10 @@
         insetForSectionAtIndex:(NSInteger)section
 {
     UIEdgeInsets insets = UIEdgeInsetsMake(0.0f, 0.0f, 0.0f, 0.0f);
-    if ([BrickCell isScriptBrickCellForCategoryType:self.brickCategoryType AndBrickType:section]) {
+    BrickManager *brickManager = [BrickManager sharedBrickManager];
+    // TODO: outsource this line as helper method to BrickManager
+    kBrickType brickType = (kBrickType)(self.brickCategoryType * 100 + section);
+    if ([brickManager isScriptBrickForBrickType:brickType]) {
         insets.top += 10.0f;
     }
     return insets;

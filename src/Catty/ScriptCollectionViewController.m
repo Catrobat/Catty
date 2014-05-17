@@ -42,7 +42,6 @@
 #import "BroadcastScriptCell.h"
 
 @interface ScriptCollectionViewController () <UICollectionViewDelegate, LXReorderableCollectionViewDelegateFlowLayout, LXReorderableCollectionViewDataSource, UIViewControllerTransitioningDelegate>
-@property (nonatomic, strong) NSDictionary *classNameBrickNameMap;
 @property (nonatomic, weak) IBOutlet UICollectionView *collectionView;
 @property (nonatomic, strong) BrickScaleTransition *brickScaleTransition;
 @property (nonatomic, strong) FXBlurView *dimView;
@@ -59,11 +58,12 @@
     [super viewDidLoad];
     [self setupCollectionView];
     [self setupToolBar];
-    
+
     // register brick cells for current brick category
-    NSDictionary *allCategoriesAndBrickTypes = self.classNameBrickNameMap;
-    for (NSString *brickTypeName in allCategoriesAndBrickTypes) {
-        [self.collectionView registerClass:NSClassFromString([brickTypeName stringByAppendingString:@"Cell"]) forCellWithReuseIdentifier:brickTypeName];
+    NSDictionary *allBrickTypes = [[BrickManager sharedBrickManager] classNameBrickTypeMap];
+    for (NSString *className in allBrickTypes) {
+        [self.collectionView registerClass:NSClassFromString([className stringByAppendingString:@"Cell"])
+                forCellWithReuseIdentifier:className];
     }
 }
 
@@ -234,7 +234,7 @@
         brickCell = [collectionView dequeueReusableCellWithReuseIdentifier:scriptSubClassName forIndexPath:indexPath];
         [brickCell.deleteButton addTarget:self action:@selector(scriptDeleteButtonAction:) forControlEvents:UIControlEventTouchUpInside];
         [brickCell setBrickEditing:self.isEditing];
-        
+
         // overwriten values, needs refactoring later
         brickCell.alpha = 1.0f;
         brickCell.userInteractionEnabled = YES;
@@ -249,7 +249,7 @@
     brickCell.backgroundBrickCell = self.object.isBackground;
     brickCell.enabled = YES;
     [brickCell renderSubViews];
-    
+
     return brickCell;
 }
 
@@ -267,30 +267,18 @@
         abort();
     }
 
-    NSDictionary *allCategoriesAndBrickTypes = self.classNameBrickNameMap;
+    BrickManager *brickManager = [BrickManager sharedBrickManager];
     if (indexPath.row == 0) {
         // case it's a script brick
         categoryType = kControlBrick;
-        NSString *scriptSubClassName = NSStringFromClass([script class]);
-        for (NSString *brickTypeName in allCategoriesAndBrickTypes) {
-            if ([brickTypeName isEqualToString:scriptSubClassName]) {
-                brickType = [allCategoriesAndBrickTypes[brickTypeName] integerValue];
-                break;
-            }
-        }
+        brickType = [brickManager brickTypeForClassName:NSStringFromClass([script class])];
     } else {
         // case it's a normal brick
         Brick *brick = [script.brickList objectAtIndex:(indexPath.row - 1)];
-        NSString *brickSubClassName = NSStringFromClass([brick class]);
-        for (NSString *brickTypeName in allCategoriesAndBrickTypes) {
-            if ([brickTypeName isEqualToString:brickSubClassName]) {
-                brickType = [allCategoriesAndBrickTypes[brickTypeName] integerValue];
-                categoryType = (kBrickCategoryType)(((NSUInteger)brickType)/100);
-                break;
-            }
-        }
+        brickType = [brickManager brickTypeForClassName:NSStringFromClass([brick class])];
+        categoryType = [brickManager brickCategoryTypeForBrickType:brickType];
     }
-    CGFloat height = [BrickCell brickCellHeightForCategoryType:categoryType AndBrickType:brickType];
+    CGFloat height = [BrickCell brickCellHeightForBrickType:brickType];
 
     // TODO: outsource all consts
     height -= 4.0f; // reduce height for overlapping

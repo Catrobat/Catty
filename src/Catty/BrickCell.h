@@ -40,11 +40,9 @@
 - (void)renderSubViews;
 - (void)hookUpSubViews:(NSArray *)inlineViewSubViews; // abstract (only called internally)
 
-+ (NSInteger)numberOfAvailableBricksForCategoryType:(kBrickCategoryType)categoryType;
-+ (CGFloat) brickCellHeightForCategoryType:(kBrickCategoryType)categoryType AndBrickType:(NSInteger)brickType;
-+ (kBrickShapeType)shapeTypeForCategoryType:(kBrickCategoryType)categoryType AndBrickType:(NSInteger)brickType;
-+ (BOOL)isScriptBrickCellForCategoryType:(kBrickCategoryType)categoryType AndBrickType:(NSInteger)brickType;
-+ (NSString*)brickPatternImageNameForCategoryType:(kBrickCategoryType)categoryType AndBrickType:(NSInteger)brickType;
++ (CGFloat)brickCellHeightForBrickType:(NSInteger)brickType;
++ (kBrickShapeType)shapeTypeForBrickType:(NSInteger)brickType;
++ (NSString*)brickPatternImageNameForBrickType:(NSInteger)brickType;
 + (void)clearImageCache;
 
 - (void)setBrickEditing:(BOOL)editing;
