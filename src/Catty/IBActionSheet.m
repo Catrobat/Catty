@@ -147,7 +147,7 @@
             [topButton setTitle:[titles objectAtIndex:0] forState:UIControlStateAll];
             [self.buttons insertObject:topButton atIndex:0];
             
-            int whereToStop = titles.count - 1;
+            NSUInteger whereToStop = titles.count - 1;
             for (int i = 1; i < whereToStop; ++i) {
                 IBActionSheetButton *middleButton = [[IBActionSheetButton alloc] init];
                 [middleButton setTitle:[titles objectAtIndex:i] forState:UIControlStateAll];
@@ -217,7 +217,7 @@
         
         CGPoint pointOfReference = CGPointMake(CGRectGetWidth(self.frame) / 2.0, CGRectGetHeight(self.frame) - 30);
         
-        int whereToStop;
+        NSUInteger whereToStop;
         if (self.hasCancelButton) {
             [self addSubview:[self.buttons lastObject]];
             [[self.buttons lastObject] setCenter:pointOfReference];
@@ -230,7 +230,7 @@
             whereToStop = self.buttons.count - 1;
         }
         
-        for (int i = 0, j = whereToStop; i <= whereToStop; ++i, --j) {
+        for (NSUInteger i = 0, j = whereToStop; i <= whereToStop; ++i, --j) {
             [self addSubview:[self.buttons objectAtIndex:i]];
             [[self.buttons objectAtIndex:i] setCenter:CGPointMake(pointOfReference.x, pointOfReference.y - (44.5 * j))];
         }
@@ -262,7 +262,7 @@
         
         CGPoint pointOfReference = CGPointMake(CGRectGetWidth(self.frame) / 2.0, CGRectGetHeight(self.frame) - 30);
         
-        int whereToStop;
+        NSUInteger whereToStop;
         if (self.hasCancelButton) {
             [self addSubview:[self.buttons lastObject]];
             [[self.buttons lastObject] setCenter:pointOfReference];
@@ -275,7 +275,7 @@
             whereToStop = self.buttons.count - 1;
         }
         
-        for (int i = 0, j = whereToStop; i <= whereToStop; ++i, --j) {
+        for (NSUInteger i = 0, j = whereToStop; i <= whereToStop; ++i, --j) {
             [self addSubview:[self.buttons objectAtIndex:i]];
             [[self.buttons objectAtIndex:i] setCenter:CGPointMake(pointOfReference.x, pointOfReference.y - (45 * j))];
         }
@@ -347,7 +347,7 @@
 
 - (NSInteger)addButtonWithTitle:(NSString *)title {
     
-    int index = self.buttons.count;
+    NSUInteger index = self.buttons.count;
     
     if (self.hasCancelButton) {
         index -= 1;
