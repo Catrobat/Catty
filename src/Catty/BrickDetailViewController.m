@@ -65,6 +65,7 @@
         [_brickMenu setButtonTextColor:UIColor.lightOrangeColor];
         [_brickMenu setTitleTextColor:UIColor.skyBlueColor];
         [_brickMenu setButtonTextColor:UIColor.redColor forButtonAtIndex:0];
+        _brickMenu.transparentView = nil;
     }
     return _brickMenu;
 }
@@ -112,10 +113,13 @@
     if ([sender isKindOfClass:UITapGestureRecognizer.class]) {
         if (sender.state == UIGestureRecognizerStateEnded) {
             CGPoint location = [sender locationInView:nil];
-            if (![self.view pointInside:[self.view convertPoint:location fromView:self.view.window] withEvent:nil]) {
+            if (![self.brickCell pointInside:[self.brickCell convertPoint:location fromView:self.view] withEvent:nil] &&
+                ![self.brickMenu pointInside:[self.brickMenu convertPoint:location fromView:self.view] withEvent:nil]) {
                 [self dismissBrickDetailViewController];
             } else {
-                [self.brickMenu showInView:self.view];
+                if (!self.brickMenu.visible) {
+                    [self.brickMenu showInView:self.view];
+                }
             }
         }
     }
