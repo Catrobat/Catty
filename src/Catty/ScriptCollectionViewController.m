@@ -238,6 +238,12 @@
         // overwriten values, needs refactoring later
         brickCell.alpha = 1.0f;
         brickCell.userInteractionEnabled = YES;
+
+        @try {
+            NSLog(@"ScriptTitle: %@", script.brickTitle);
+        } @catch (NSException *exception) {
+            NSLog(@"ScriptTitle: n.a., Exception: %@", [exception description]);
+        }
     } else {
         // case it's a normal brick
         Brick *brick = [script.brickList objectAtIndex:(indexPath.row - 1)];
@@ -245,6 +251,12 @@
         brickCell = [collectionView dequeueReusableCellWithReuseIdentifier:brickSubClassName forIndexPath:indexPath];
         [brickCell setBrickEditing:self.isEditing];
         brickCell.hideDeleteButton = YES;
+
+        @try {
+            NSLog(@"BrickTitle: %@", brick.brickTitle);
+        } @catch (NSException *exception) {
+            NSLog(@"BrickTitle: n.a., Exception: %@", [exception description]);
+        }
     }
     brickCell.backgroundBrickCell = self.object.isBackground;
     brickCell.enabled = YES;

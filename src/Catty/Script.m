@@ -59,14 +59,22 @@
 }
 
 #pragma mark - Custom getter and setter
--(NSMutableArray*)brickList
+- (NSString*)brickTitle
+{
+    @throw [NSException exceptionWithName:NSInternalInconsistencyException
+                                   reason:[NSString stringWithFormat:@"You must override %@ in the subclass %@",
+                                           NSStringFromSelector(_cmd), NSStringFromClass([self class])]
+                                 userInfo:nil];
+}
+
+- (NSMutableArray*)brickList
 {
     if (! _brickList)
         _brickList = [NSMutableArray array];
     return _brickList;
 }
 
--(void)reset
+- (void)reset
 {
     NSDebug(@"Reset");
     for(Brick* brick in self.brickList) {
@@ -78,20 +86,20 @@
     self.completion = NULL;
 }
 
--(void)stop
+- (void)stop
 {
     [self removeAllActions];
     self.currentBrickIndex = NSNotFound;
 }
 
 
--(void)dealloc
+- (void)dealloc
 {
     NSDebug(@"Dealloc %@ %@", [self class], self.parent);
     
 }
 
--(void)startWithCompletion:(dispatch_block_t)completion
+- (void)startWithCompletion:(dispatch_block_t)completion
 {
     NSDebug(@"Starting: %@", self.description);
     [self reset];
@@ -110,7 +118,7 @@
 }
 
 
--(void)runNextAction
+- (void)runNextAction
 {
     if (! self.allowRunNextAction)
         return;
@@ -205,7 +213,7 @@
     
 }
 
--(void) nextAction
+- (void) nextAction
 {
     // Needs to be async because of recursion!
     dispatch_async(dispatch_get_main_queue(), ^{
@@ -215,7 +223,7 @@
 
 
 
--(void)runWithAction:(SKAction*)action
+- (void)runWithAction:(SKAction*)action
 {
     
     
@@ -496,7 +504,7 @@
 
 
 #pragma mark - Description
--(NSString*)description
+- (NSString*)description
 {
     NSMutableString *ret = [[NSMutableString alloc] initWithString:@"Script"];
     [ret appendFormat:@"(%@)", self.object.name ];

@@ -94,15 +94,15 @@ static BrickManager *sharedBrickManager = nil;
 {
     switch (categoryType) {
         case kControlBrick:
-            return [kControlBrickNames count];
+            return [kControlBrickHeights count];
         case kMotionBrick:
-            return [kMotionBrickNames count];
+            return [kMotionBrickHeights count];
         case kSoundBrick:
-            return [kSoundBrickNames count];
+            return [kSoundBrickHeights count];
         case kLookBrick:
-            return [kLookBrickNames count];
+            return [kLookBrickHeights count];
         case kVariableBrick:
-            return [kVariableBrickNames count];
+            return [kVariableBrickHeights count];
         default:
             break;
     }

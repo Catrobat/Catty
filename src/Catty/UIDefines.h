@@ -246,21 +246,21 @@ typedef NS_ENUM(NSUInteger, kBrickType) {
 // {INT;range=(0, 11]}       ... All positive integer numbers 1-11
 // {INT;range=[0, 11)}       ... All positive integer numbers 0-10
 
-#define kControlBrickNames @[\
-    kBrickCellControlTitleWhenProgramStarted,\
-    kBrickCellControlTitleWhenTapped,\
-    kBrickCellControlTitleWait,\
-    kBrickCellControlTitleWhenIReceive,\
-    kBrickCellControlTitleBroadcast,\
-    kBrickCellControlTitleBroadcastAndWait,\
-    kBrickCellControlTitleNote,\
-    kBrickCellControlTitleForever,\
-    kBrickCellControlTitleIf,\
-    kBrickCellControlTitleElse,\
-    kBrickCellControlTitleEndIf,\
-    kBrickCellControlTitleRepeat,\
-    kBrickCellControlTitleEndOfLoop\
-]
+//#define kControlBrickNames @[\
+//    kBrickCellControlTitleWhenProgramStarted,\
+//    kBrickCellControlTitleWhenTapped,\
+//    kBrickCellControlTitleWait,\
+//    kBrickCellControlTitleWhenIReceive,\
+//    kBrickCellControlTitleBroadcast,\
+//    kBrickCellControlTitleBroadcastAndWait,\
+//    kBrickCellControlTitleNote,\
+//    kBrickCellControlTitleForever,\
+//    kBrickCellControlTitleIf,\
+//    kBrickCellControlTitleElse,\
+//    kBrickCellControlTitleEndIf,\
+//    kBrickCellControlTitleRepeat,\
+//    kBrickCellControlTitleEndOfLoop\
+//]
 
 #define kControlBrickNameParams @[\
     @[],                            /* program started */\
@@ -511,14 +511,6 @@ typedef NS_ENUM(NSInteger, kBrickShapeType) {
     @[],                                                  /* sound bricks    */\
     @[],                                                  /* look bricks     */\
     @[]                                                   /* variable bricks */\
-]
-
-#define kBrickModifiedTitlesForBackgroundObject @[\
-    @{},                                                  /* control bricks  */\
-    @{},                                                  /* motion bricks   */\
-    @{},                                                  /* sound bricks    */\
-    @{@(kSetLookBrick) : kBrickCellLookTitleSetBackground, @(kNextLookBrick) : kBrickCellLookTitleNextBackground }, /* look bricks     */\
-    @{}                                                   /* variable bricks */\
 ]
 
 // ----------------- REFACTOR END -------------------

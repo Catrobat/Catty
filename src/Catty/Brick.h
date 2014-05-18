@@ -31,6 +31,7 @@
 
 @property (nonatomic, readonly) kBrickCategoryType brickCategoryType;
 @property (nonatomic, readonly) kBrickType brickType;
+@property (nonatomic, strong, readonly) NSString *brickTitle;
 
 @property (nonatomic, weak) SpriteObject *object;
 

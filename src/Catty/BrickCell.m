@@ -59,27 +59,27 @@
     kBrickCategoryType categoryType = [brickManager brickCategoryTypeForBrickType:brickType];
     NSUInteger brickIndex = [brickManager brickIndexForBrickType:brickType];
     if (categoryType == kControlBrick) {
-        if (brickIndex >= [kControlBrickNames count]) {
+        if (brickIndex >= [kControlBrickHeights count]) {
             NSError(@"unknown brick type given");
             abort();
         }
     } else if (categoryType == kMotionBrick) {
-        if (brickIndex >= [kMotionBrickNames count]) {
+        if (brickIndex >= [kMotionBrickHeights count]) {
             NSError(@"unknown brick type given");
             abort();
         }
     } else if (categoryType == kSoundBrick) {
-        if (brickIndex >= [kSoundBrickNames count]){
+        if (brickIndex >= [kSoundBrickHeights count]){
             NSError(@"unknown brick type given");
             abort();
         }
     } else if (categoryType == kLookBrick) {
-        if (brickIndex >= [kLookBrickNames count]){
+        if (brickIndex >= [kLookBrickHeights count]){
             NSError(@"unknown brick type given");
             abort();
         }
     } else if (categoryType == kVariableBrick) {
-        if (brickIndex >= [kVariableBrickNames count]){
+        if (brickIndex >= [kVariableBrickHeights count]){
             NSError(@"unknown brick type given");
             abort();
         }
@@ -344,50 +344,48 @@
     CGRect canvasFrame = CGRectMake(kBrickInlineViewCanvasOffsetX, kBrickInlineViewCanvasOffsetY, self.inlineView.frame.size.width, self.inlineView.frame.size.height);
 
     // get correct NSString array
-    NSArray *brickCategoryTitles = nil;
     NSArray *brickCategoryParams = nil;
     switch (self.categoryType) {
         case kControlBrick:
-            brickCategoryTitles = kControlBrickNames;
             brickCategoryParams = kControlBrickNameParams;
             break;
         case kMotionBrick:
-            brickCategoryTitles = kMotionBrickNames;
             brickCategoryParams = kMotionBrickNameParams;
             break;
         case kSoundBrick:
-            brickCategoryTitles = kSoundBrickNames;
             brickCategoryParams = kSoundBrickNameParams;
             break;
         case kLookBrick:
-            brickCategoryTitles = kLookBrickNames;
             brickCategoryParams = kLookBrickNameParams;
             break;
         case kVariableBrick:
-            brickCategoryTitles = kVariableBrickNames;
             brickCategoryParams = kVariableBrickNameParams;
             break;
         default:
             NSError(@"unknown brick category type given");
             abort();
     }
-    if (self.isBackgroundBrickCell) {
-        NSMutableArray *modifiedBrickCategoryTitles = [NSMutableArray array];
-        NSDictionary *modifiedTitles = kBrickModifiedTitlesForBackgroundObject[self.categoryType];
-        for (NSUInteger counter = 0; counter < [brickCategoryTitles count]; ++counter) {
-            NSString *modifiedTitle = [modifiedTitles objectForKey:@(counter)];
-            if (modifiedTitle) {
-                [modifiedBrickCategoryTitles addObject:modifiedTitle];
-            } else {
-                [modifiedBrickCategoryTitles addObject:[brickCategoryTitles objectAtIndex:counter]];
-            }
-        }
-        brickCategoryTitles = [modifiedBrickCategoryTitles copy];
-    }
+
+    //########################################################################################################
+    // !!! FIXME !!! support for modified titles is missing now due to refactoring!!!
+    //########################################################################################################
+//    if (self.isBackgroundBrickCell) {
+//        NSMutableArray *modifiedBrickCategoryTitles = [NSMutableArray array];
+//        NSDictionary *modifiedTitles = kBrickModifiedTitlesForBackgroundObject[self.categoryType];
+//        for (NSUInteger counter = 0; counter < [brickCategoryTitles count]; ++counter) {
+//            NSString *modifiedTitle = [modifiedTitles objectForKey:@(counter)];
+//            if (modifiedTitle) {
+//                [modifiedBrickCategoryTitles addObject:modifiedTitle];
+//            } else {
+//                [modifiedBrickCategoryTitles addObject:[brickCategoryTitles objectAtIndex:counter]];
+//            }
+//        }
+//        brickCategoryTitles = [modifiedBrickCategoryTitles copy];
+//    }
 
     BrickManager *brickManager = [BrickManager sharedBrickManager];
     NSUInteger brickIndex = [brickManager brickIndexForBrickType:self.brickType];
-    NSString *brickTitle = brickCategoryTitles[brickIndex];
+    NSString *brickTitle = @"Test test";// TODO: implement this!! brickCategoryTitles[brickIndex];
     id brickParamsUnconverted = brickCategoryParams[brickIndex];
     NSArray *brickParams = (([brickParamsUnconverted isKindOfClass:[NSString class]]) ? @[brickParamsUnconverted] : brickParamsUnconverted);
     NSArray *subviews = nil;

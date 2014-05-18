@@ -24,6 +24,7 @@
 #import <UIKit/UIKit.h>
 #import <SpriteKit/SpriteKit.h>
 #import "UIDefines.h"
+#import "LanguageTranslationDefines.h"
 #import "BrickProtocol.h"
 
 @class Brick;
@@ -33,6 +34,7 @@
 
 @property (nonatomic, readonly) kBrickCategoryType brickCategoryType;
 @property (nonatomic, readonly) kBrickType brickType;
+@property (nonatomic, strong, readonly) NSString *brickTitle;
 
 @property (nonatomic) BOOL allowRunNextAction;
 @property (nonatomic, weak) SpriteObject *object;
