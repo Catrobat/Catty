@@ -29,7 +29,12 @@
 
 @synthesize timeToWaitInSeconds = _timeToWaitInSeconds;
 
--(SKAction*)action
+- (NSString*)brickTitle
+{
+    return kBrickCellControlTitleWait;
+}
+
+- (SKAction*)action
 {
     NSDebug(@"Performing: %@", self.description);
 

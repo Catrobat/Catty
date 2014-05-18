@@ -24,6 +24,11 @@
 
 @implementation IfLogicElseBrick
 
+- (NSString*)brickTitle
+{
+    return kBrickCellControlTitleElse;
+}
+
 - (void)performFromScript:(Script*)script
 {
     NSDebug(@"Performing: %@", self.description);

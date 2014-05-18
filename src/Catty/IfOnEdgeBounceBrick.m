@@ -25,6 +25,11 @@
 
 @implementation IfOnEdgeBounceBrick
 
+- (NSString*)brickTitle
+{
+    return kBrickCellMotionTitleIfOnEdgeBounce;
+}
+
 - (void)performFromScript:(Script*)script;
 {
     NSLog(@"Performing: %@", self.description);

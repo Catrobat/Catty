@@ -30,15 +30,19 @@
 
 @implementation SetBrightnessBrick
 
+- (NSString*)brickTitle
+{
+    return kBrickCellLookTitleSetBrightness;
+}
 
--(SKAction*)action
+- (SKAction*)action
 {
     NSDebug(@"Adding: %@", self.description);
     return [SKAction runBlock:[self actionBlock]];
 
 }
 
--(dispatch_block_t)actionBlock
+- (dispatch_block_t)actionBlock
 {
     return ^{
         NSDebug(@"Performing: %@", self.description);

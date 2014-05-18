@@ -32,7 +32,7 @@
     return ([self.object isBackground] ? kBrickCellLookTitleNextBackground : kBrickCellLookTitleNextLook);
 }
 
--(SKAction*)action
+- (SKAction*)action
 {
 
     return [SKAction runBlock:^{

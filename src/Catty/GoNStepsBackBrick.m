@@ -27,6 +27,10 @@
 
 @synthesize steps = _steps;
 
+- (NSString*)brickTitle
+{
+    return kBrickCellMotionTitleGoNStepsBack;
+}
 
 -(SKAction*)action
 {

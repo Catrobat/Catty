@@ -182,12 +182,18 @@ typedef NS_ENUM(NSUInteger, kBrickType) {
     @"ChangeBrightnessByNBrick"  : @(kChangeBrightnessByNBrick),\
     @"ClearGraphicEffectBrick"   : @(kClearGraphicEffectBrick),\
 \
-    /* look bricks */\
+    /* variable bricks */\
     @"SetVariableBrick"          : @(kSetVariableBrick),\
     @"ChangeVariableBrick"       : @(kChangeVariableBrick)\
 }
 
 // ----------------- REFACTOR BEGIN -------------------
+typedef NS_ENUM(NSInteger, kBrickShapeType) {
+    kBrickShapeNormal = 0,
+    kBrickShapeRoundedSmall = 1,
+    kBrickShapeRoundedBig = 2
+};
+
 // brick subview const values
 #define kBrickInlineViewOffsetX 54.0f
 #define kBrickShapeNormalInlineViewOffsetY 3.0f
@@ -246,22 +252,6 @@ typedef NS_ENUM(NSUInteger, kBrickType) {
 // {INT;range=(0, 11]}       ... All positive integer numbers 1-11
 // {INT;range=[0, 11)}       ... All positive integer numbers 0-10
 
-//#define kControlBrickNames @[\
-//    kBrickCellControlTitleWhenProgramStarted,\
-//    kBrickCellControlTitleWhenTapped,\
-//    kBrickCellControlTitleWait,\
-//    kBrickCellControlTitleWhenIReceive,\
-//    kBrickCellControlTitleBroadcast,\
-//    kBrickCellControlTitleBroadcastAndWait,\
-//    kBrickCellControlTitleNote,\
-//    kBrickCellControlTitleForever,\
-//    kBrickCellControlTitleIf,\
-//    kBrickCellControlTitleElse,\
-//    kBrickCellControlTitleEndIf,\
-//    kBrickCellControlTitleRepeat,\
-//    kBrickCellControlTitleEndOfLoop\
-//]
-
 #define kControlBrickNameParams @[\
     @[],                            /* program started */\
     @[],                            /* tapped          */\
@@ -311,23 +301,6 @@ typedef NS_ENUM(NSUInteger, kBrickType) {
 ]
 
 // motion bricks
-#define kMotionBrickNames @[\
-    kBrickCellMotionTitlePlaceAt,\
-    kBrickCellMotionTitleSetX,\
-    kBrickCellMotionTitleSetY,\
-    kBrickCellMotionTitleChangeX,\
-    kBrickCellMotionTitleChangeY,\
-    kBrickCellMotionTitleIfOnEdgeBounce,\
-    kBrickCellMotionTitleMoveNSteps,\
-    kBrickCellMotionTitleTurnLeft,\
-    kBrickCellMotionTitleTurnRight,\
-    kBrickCellMotionTitlePointInDirection,\
-    kBrickCellMotionTitlePointTowards,\
-    kBrickCellMotionTitleGlideTo,\
-    kBrickCellMotionTitleGoNStepsBack,\
-    kBrickCellMotionTitleComeToFront\
-]
-
 #define kMotionBrickNameParams @[\
     @[@"{FLOAT;range=(-inf,inf)}", @"{FLOAT;range=(-inf,inf)}"], /* place at           */\
     @"{FLOAT;range=(-inf,inf)}",                                 /* set X              */\
@@ -380,14 +353,6 @@ typedef NS_ENUM(NSUInteger, kBrickType) {
 ]
 
 // sound bricks
-#define kSoundBrickNames @[\
-    kBrickCellSoundTitlePlaySound,\
-    kBrickCellSoundTitleStopAllSounds,\
-    kBrickCellSoundTitleSetVolumeTo,\
-    kBrickCellSoundTitleChangeVolumeByN,\
-    kBrickCellSoundTitleSpeak\
-]
-
 #define kSoundBrickNameParams @[\
     @"{SOUND}",                     /* play sound         */\
     @[],                            /* stop all sounds    */\
@@ -413,20 +378,6 @@ typedef NS_ENUM(NSUInteger, kBrickType) {
 ]
 
 // look bricks
-#define kLookBrickNames @[\
-    kBrickCellLookTitleSetLook,\
-    kBrickCellLookTitleNextLook,\
-    kBrickCellLookTitleSetSizeTo,\
-    kBrickCellLookTitleChangeSizeByN,\
-    kBrickCellLookTitleHide,\
-    kBrickCellLookTitleShow,\
-    kBrickCellLookTitleSetGhostEffect,\
-    kBrickCellLookTitleChangeGhostEffectByN,\
-    kBrickCellLookTitleSetBrightness,\
-    kBrickCellLookTitleChangeBrightnessByN,\
-    kBrickCellLookTitleClearGraphicEffect\
-]
-
 #define kLookBrickNameParams @[\
     @"{LOOK}",                      /* set background           */\
     @[],                            /* next background          */\
@@ -470,11 +421,6 @@ typedef NS_ENUM(NSUInteger, kBrickType) {
 ]
 
 // variable bricks
-#define kVariableBrickNames @[\
-    kBrickCellVariableTitleSetVariable,\
-    kBrickCellVariableTitleChangeVariable\
-]
-
 #define kVariableBrickNameParams @[\
     @[@"{VARIABLE}",@"{FLOAT;range=(-inf,inf)}"],    /* set size to              */\
     @[@"{VARIABLE}",@"{FLOAT;range=(-inf,inf)}"]     /* change size by N         */\
@@ -489,12 +435,6 @@ typedef NS_ENUM(NSUInteger, kBrickType) {
     kBrickHeight3h,        /* set variable    */\
     kBrickHeight3h         /* change variable */\
 ]
-
-typedef NS_ENUM(NSInteger, kBrickShapeType) {
-    kBrickShapeNormal = 0,
-    kBrickShapeRoundedSmall = 1,
-    kBrickShapeRoundedBig = 2
-};
 
 // bricks that are not shown in BricksCollectionViewController, because they are dependent on other bricks
 #define kUnselectableBricksObject @[\

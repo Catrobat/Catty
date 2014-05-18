@@ -23,9 +23,12 @@
 #import "Cometofrontbrick.h"
 #import "Scene.h"
 
-
 @implementation ComeToFrontBrick
 
+- (NSString*)brickTitle
+{
+    return kBrickCellMotionTitleComeToFront;
+}
 
 -(SKAction*)action
 {

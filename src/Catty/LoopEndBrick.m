@@ -24,12 +24,15 @@
 
 @implementation LoopEndBrick
 
+- (NSString*)brickTitle
+{
+    return kBrickCellControlTitleEndOfLoop;
+}
+
 - (void)performFromScript:(Script*)script
 {
     NSDebug(@"Performing: %@", self.description);
 }
-
-
 
 #pragma mark - Description
 - (NSString*)description

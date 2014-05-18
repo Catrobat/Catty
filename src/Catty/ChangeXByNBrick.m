@@ -27,6 +27,10 @@
 
 @synthesize xMovement = _xMovement;
 
+- (NSString*)brickTitle
+{
+    return kBrickCellMotionTitleChangeX;
+}
 
 -(SKAction*)action
 {

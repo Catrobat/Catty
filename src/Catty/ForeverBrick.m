@@ -24,6 +24,11 @@
 
 @implementation ForeverBrick
 
+- (NSString*)brickTitle
+{
+    return kBrickCellControlTitleForever;
+}
+
 -(BOOL)checkCondition
 {
     return YES;

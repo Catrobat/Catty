@@ -29,13 +29,17 @@
 
 @synthesize xPosition = _xPosition;
 
+- (NSString*)brickTitle
+{
+    return kBrickCellMotionTitleSetX;
+}
 
--(SKAction*)action
+- (SKAction*)action
 {
     return [SKAction runBlock:[self actionBlock]];
 }
 
--(dispatch_block_t)actionBlock
+- (dispatch_block_t)actionBlock
 {
     return ^{
         NSDebug(@"Performing: %@", self.description);
@@ -44,8 +48,6 @@
         self.object.position = CGPointMake(xPosition, self.object.yPosition);
     };
 }
-
-
 
 #pragma mark - Description
 - (NSString*)description

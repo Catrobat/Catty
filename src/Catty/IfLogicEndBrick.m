@@ -25,6 +25,11 @@
 
 @implementation IfLogicEndBrick
 
+- (NSString*)brickTitle
+{
+    return kBrickCellControlTitleEndIf;
+}
+
 - (void)performFromScript:(Script*)script
 {
     
