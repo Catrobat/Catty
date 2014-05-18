@@ -64,6 +64,11 @@
     return YES;
 }
 
+- (kBrickShapeType)brickShapeType
+{
+    return kBrickShapeRoundedSmall;
+}
+
 - (NSString*)brickTitle
 {
     @throw [NSException exceptionWithName:NSInternalInconsistencyException

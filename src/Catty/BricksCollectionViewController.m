@@ -139,8 +139,6 @@
 - (UICollectionViewCell*)collectionView:(UICollectionView*)collectionView
                  cellForItemAtIndexPath:(NSIndexPath*)indexPath
 {
-//    NSNumber *brickType = [self.selectableBricksSortedIndexes objectAtIndex:indexPath.section];
-//    NSString *brickTypeName = [self.selectableBricks objectForKey:brickType];
     id brick = [self.selectableBricks objectAtIndex:indexPath.section];
     NSString *brickTypeName = NSStringFromClass([brick class]);
     BrickCell *brickCell = [collectionView dequeueReusableCellWithReuseIdentifier:brickTypeName

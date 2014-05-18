@@ -168,7 +168,7 @@
 - (void)setupInlineView
 {
     CGFloat inlineViewHeight = [BrickCell brickCellHeightForBrickType:self.brickType];
-    kBrickShapeType brickShapeType = [BrickCell shapeTypeForBrickType:self.brickType];
+    kBrickShapeType brickShapeType = self.brick.brickShapeType;
     CGFloat inlineViewOffsetY = 0.0f;
     if (brickShapeType == kBrickShapeNormal) {
         inlineViewHeight -= kBrickShapeNormalMarginHeightDeduction;
@@ -512,20 +512,6 @@
         counter++;
     }
     return subviews;
-}
-
-+ (kBrickShapeType)shapeTypeForBrickType:(NSUInteger)brickType
-{
-    BrickManager *brickManager = [BrickManager sharedBrickManager];
-    kBrickCategoryType categoryType = [brickManager brickCategoryTypeForBrickType:brickType];
-    if (categoryType == kControlBrick) {
-        if ((brickType == kProgramStartedBrick) || (brickType == kTappedBrick)) {
-            return kBrickShapeRoundedSmall;
-        } else if (brickType == kReceiveBrick) {
-            return kBrickShapeRoundedBig;
-        }
-    }
-    return kBrickShapeNormal;
 }
 
 + (NSString*)brickPatternImageNameForBrickType:(NSUInteger)brickType

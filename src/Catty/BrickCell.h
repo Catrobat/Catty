@@ -40,7 +40,6 @@
 - (void)hookUpSubViews:(NSArray *)inlineViewSubViews; // abstract (only called internally)
 
 + (CGFloat)brickCellHeightForBrickType:(NSUInteger)brickType;
-+ (kBrickShapeType)shapeTypeForBrickType:(NSUInteger)brickType;
 + (NSString*)brickPatternImageNameForBrickType:(NSUInteger)brickType;
 + (void)clearImageCache;
 
