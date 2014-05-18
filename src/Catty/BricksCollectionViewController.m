@@ -160,8 +160,8 @@
   sizeForItemAtIndexPath:(NSIndexPath*)indexPath
 {
     CGFloat width = self.view.frame.size.width;
-    // TODO: outsource this line as helper method to BrickManager
-    kBrickType brickType = (kBrickType)(self.brickCategoryType * 100 + indexPath.section);
+    kBrickType brickType = [[BrickManager sharedBrickManager] brickTypeForCategoryType:self.brickCategoryType
+                                                                         andBrickIndex:indexPath.section];
     CGFloat height = [BrickCell brickCellHeightForBrickType:brickType];
     return CGSizeMake(width, height);
 }
@@ -171,7 +171,8 @@
 {
     NSNumber *brickType = [self.selectableBricksSortedIndexes objectAtIndex:indexPath.section];
     NSString *brickTypeName = [self.selectableBricks objectForKey:brickType];
-    BrickCell *brickCell = [collectionView dequeueReusableCellWithReuseIdentifier:brickTypeName forIndexPath:indexPath];
+    BrickCell *brickCell = [collectionView dequeueReusableCellWithReuseIdentifier:brickTypeName
+                                                                     forIndexPath:indexPath];
     brickCell.backgroundBrickCell = self.object.isBackground;
     brickCell.enabled = NO;
     [brickCell renderSubViews];
@@ -185,7 +186,8 @@
     UIEdgeInsets insets = UIEdgeInsetsMake(0.0f, 0.0f, 0.0f, 0.0f);
     BrickManager *brickManager = [BrickManager sharedBrickManager];
     // TODO: outsource this line as helper method to BrickManager
-    kBrickType brickType = (kBrickType)(self.brickCategoryType * 100 + section);
+    kBrickType brickType = [[BrickManager sharedBrickManager] brickTypeForCategoryType:self.brickCategoryType
+                                                                         andBrickIndex:section];
     if ([brickManager isScriptBrickForBrickType:brickType]) {
         insets.top += 10.0f;
     }

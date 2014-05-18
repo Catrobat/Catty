@@ -37,9 +37,8 @@
 #define kDeleteButtonOffset 1.0f
 
 @interface BrickCell ()
-@property (nonatomic, strong) NSDictionary *classNameBrickNameMap;
 @property (nonatomic) kBrickCategoryType categoryType;
-@property (nonatomic) NSInteger brickType;
+@property (nonatomic) kBrickType brickType;
 @property (nonatomic, strong) NSArray *brickCategoryColors;
 
 // subviews
@@ -54,30 +53,33 @@
 @implementation BrickCell
 
 #pragma mark - getters and setters
-- (void)setBrickType:(NSInteger)brickType
+- (void)setBrickType:(kBrickType)brickType
 {
-    if (self.categoryType == kControlBrick) {
-        if (self.brickType >= [kControlBrickNames count]) {
+    BrickManager *brickManager = [BrickManager sharedBrickManager];
+    kBrickCategoryType categoryType = [brickManager brickCategoryTypeForBrickType:brickType];
+    NSUInteger brickIndex = [brickManager brickIndexForBrickType:brickType];
+    if (categoryType == kControlBrick) {
+        if (brickIndex >= [kControlBrickNames count]) {
             NSError(@"unknown brick type given");
             abort();
         }
-    } else if (self.categoryType == kMotionBrick) {
-        if (self.brickType >= [kMotionBrickNames count]) {
+    } else if (categoryType == kMotionBrick) {
+        if (brickIndex >= [kMotionBrickNames count]) {
             NSError(@"unknown brick type given");
             abort();
         }
-    } else if (self.categoryType == kSoundBrick) {
-        if (self.brickType >= [kSoundBrickNames count]){
+    } else if (categoryType == kSoundBrick) {
+        if (brickIndex >= [kSoundBrickNames count]){
             NSError(@"unknown brick type given");
             abort();
         }
-    } else if (self.categoryType == kLookBrick) {
-        if (self.brickType >= [kLookBrickNames count]){
+    } else if (categoryType == kLookBrick) {
+        if (brickIndex >= [kLookBrickNames count]){
             NSError(@"unknown brick type given");
             abort();
         }
-    } else if (self.categoryType == kVariableBrick) {
-        if (self.brickType >= [kVariableBrickNames count]){
+    } else if (categoryType == kVariableBrick) {
+        if (brickIndex >= [kVariableBrickNames count]){
             NSError(@"unknown brick type given");
             abort();
         }
@@ -85,6 +87,7 @@
         NSError(@"unknown brick type given");
         abort();
     }
+    self.categoryType = categoryType;
     _brickType = brickType;
 }
 
@@ -289,11 +292,11 @@
     self.imageView = nil;
     self.inlineView = nil;
 
-    NSString *subclassName = NSStringFromClass([self class]);
-    NSDictionary *allCategoriesAndBrickTypes = self.classNameBrickNameMap;
-    NSDictionary *categoryAndBrickType = allCategoriesAndBrickTypes[[subclassName stringByReplacingOccurrencesOfString:@"Cell" withString:@""]];
-    self.categoryType = (kBrickCategoryType) [categoryAndBrickType[@"categoryType"] integerValue];
-    self.brickType = [categoryAndBrickType[@"brickType"] integerValue];
+    BrickManager *brickManager = [BrickManager sharedBrickManager];
+    NSString *subClassName = NSStringFromClass([self class]);
+    NSString *cellClassName = [subClassName stringByReplacingOccurrencesOfString:@"Cell"
+                                                                      withString:@""];
+    self.brickType = [brickManager brickTypeForClassName:cellClassName]; // sets brick type and category type
 
     [self setupView];
     [self setupBrickPatternImage];
@@ -382,8 +385,10 @@
         brickCategoryTitles = [modifiedBrickCategoryTitles copy];
     }
 
-    NSString *brickTitle = brickCategoryTitles[self.brickType];
-    id brickParamsUnconverted = brickCategoryParams[self.brickType];
+    BrickManager *brickManager = [BrickManager sharedBrickManager];
+    NSUInteger brickIndex = [brickManager brickIndexForBrickType:self.brickType];
+    NSString *brickTitle = brickCategoryTitles[brickIndex];
+    id brickParamsUnconverted = brickCategoryParams[brickIndex];
     NSArray *brickParams = (([brickParamsUnconverted isKindOfClass:[NSString class]]) ? @[brickParamsUnconverted] : brickParamsUnconverted);
     NSArray *subviews = nil;
 
@@ -565,7 +570,7 @@
     return subviews;
 }
 
-+ (kBrickShapeType)shapeTypeForBrickType:(NSInteger)brickType
++ (kBrickShapeType)shapeTypeForBrickType:(NSUInteger)brickType
 {
     BrickManager *brickManager = [BrickManager sharedBrickManager];
     kBrickCategoryType categoryType = [brickManager brickCategoryTypeForBrickType:brickType];
@@ -579,51 +584,52 @@
     return kBrickShapeNormal;
 }
 
-+ (NSString*)brickPatternImageNameForBrickType:(NSInteger)brickType
++ (NSString*)brickPatternImageNameForBrickType:(NSUInteger)brickType
 {
     BrickManager *brickManager = [BrickManager sharedBrickManager];
     kBrickCategoryType categoryType = [brickManager brickCategoryTypeForBrickType:brickType];
-
+    NSUInteger brickTypeIndex = [brickManager brickIndexForBrickType:brickType];
     if (categoryType == kControlBrick) {
-        if (brickType >= [kControlBrickImageNames count]) {
+        if (brickTypeIndex >= [kControlBrickImageNames count]) {
             NSError(@"unknown brick type given");
             abort();
         }
-        return kControlBrickImageNames[brickType];
+        return kControlBrickImageNames[brickTypeIndex];
     } else if (categoryType == kMotionBrick) {
-        if (brickType >= [kMotionBrickImageNames count]) {
+        if (brickTypeIndex >= [kMotionBrickImageNames count]) {
             NSError(@"unknown brick type given");
             abort();
         }
-        return kMotionBrickImageNames[brickType];
+        return kMotionBrickImageNames[brickTypeIndex];
     } else if (categoryType == kSoundBrick) {
-        if (brickType >= [kSoundBrickImageNames count]) {
+        if (brickTypeIndex >= [kSoundBrickImageNames count]) {
             NSError(@"unknown brick type given");
             abort();
         }
-        return kSoundBrickImageNames[brickType];
+        return kSoundBrickImageNames[brickTypeIndex];
     } else if (categoryType == kLookBrick) {
-        if (brickType >= [kLookBrickImageNames count]) {
+        if (brickTypeIndex >= [kLookBrickImageNames count]) {
             NSError(@"unknown brick type given");
             abort();
         }
-        return kLookBrickImageNames[brickType];
+        return kLookBrickImageNames[brickTypeIndex];
     } else if (categoryType == kVariableBrick) {
-        if (brickType >= [kVariableBrickImageNames count]) {
+        if (brickTypeIndex >= [kVariableBrickImageNames count]) {
             NSError(@"unknown brick type given");
             abort();
         }
-        return kVariableBrickImageNames[brickType];
+        return kVariableBrickImageNames[brickTypeIndex];
     }
     NSError(@"unknown brick category type given");
     abort();
 }
 
 #pragma mark - helpers
-+ (CGFloat) brickCellHeightForBrickType:(NSInteger)brickType
++ (CGFloat)brickCellHeightForBrickType:(NSUInteger)brickType
 {
-    kBrickCategoryType categoryType = (kBrickCategoryType)(((NSUInteger)brickType) / 100);
-    NSUInteger brickTypeIndex = (brickType % 100);
+    BrickManager *brickManager = [BrickManager sharedBrickManager];
+    kBrickCategoryType categoryType = [brickManager brickCategoryTypeForBrickType:brickType];
+    NSUInteger brickTypeIndex = [brickManager brickIndexForBrickType:brickType];
     if (categoryType == kControlBrick) {
         if (brickTypeIndex >= [kControlBrickHeights count]) {
             NSError(@"unknown brick type given");
@@ -662,7 +668,7 @@
 #pragma mark - cell editing
 - (void)setBrickEditing:(BOOL)editing {
     self.editing = editing;
-    
+
     if (self.editing) {
         //  self.transform = CGAffineTransformMakeScale(0.8f, 0.8f);
         self.alpha = 0.2f;

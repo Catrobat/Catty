@@ -30,8 +30,7 @@
 
 @interface BrickCell : UICollectionViewCell
 
-@property (nonatomic, readonly) kBrickCategoryType categoryType;
-@property (nonatomic, readonly) NSInteger brickType;
+@property (nonatomic, readonly) kBrickType brickType;
 @property (nonatomic, getter = isBackgroundBrickCell) BOOL backgroundBrickCell;
 @property (nonatomic) BOOL enabled;
 @property (strong, nonatomic) ScriptDeleteButton *deleteButton;
@@ -40,9 +39,9 @@
 - (void)renderSubViews;
 - (void)hookUpSubViews:(NSArray *)inlineViewSubViews; // abstract (only called internally)
 
-+ (CGFloat)brickCellHeightForBrickType:(NSInteger)brickType;
-+ (kBrickShapeType)shapeTypeForBrickType:(NSInteger)brickType;
-+ (NSString*)brickPatternImageNameForBrickType:(NSInteger)brickType;
++ (CGFloat)brickCellHeightForBrickType:(NSUInteger)brickType;
++ (kBrickShapeType)shapeTypeForBrickType:(NSUInteger)brickType;
++ (NSString*)brickPatternImageNameForBrickType:(NSUInteger)brickType;
 + (void)clearImageCache;
 
 - (void)setBrickEditing:(BOOL)editing;

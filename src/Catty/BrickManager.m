@@ -38,7 +38,7 @@ static BrickManager *sharedBrickManager = nil;
     return sharedBrickManager;
 }
 
-#pragma mark - getters and setters
+#pragma mark - helpers
 - (NSDictionary*)classNameBrickTypeMap
 {
     // save map of kClassNameBrickTypeMap statically
@@ -109,7 +109,7 @@ static BrickManager *sharedBrickManager = nil;
     return 0;
 }
 
-- (BOOL)isScriptBrickForBrickType:(NSInteger)brickType
+- (BOOL)isScriptBrickForBrickType:(kBrickType)brickType
 {
     kBrickCategoryType categoryType = (kBrickCategoryType)(((NSUInteger)brickType) / 100);
     if (categoryType == kControlBrick) {
@@ -123,6 +123,16 @@ static BrickManager *sharedBrickManager = nil;
         }
     }
     return NO;
+}
+
+- (kBrickType)brickTypeForCategoryType:(kBrickCategoryType)categoryType andBrickIndex:(NSUInteger)index
+{
+    return (kBrickType)(categoryType * 100 + index);
+}
+
+- (NSUInteger)brickIndexForBrickType:(kBrickType)brickType
+{
+    return (brickType % 100);
 }
 
 @end
