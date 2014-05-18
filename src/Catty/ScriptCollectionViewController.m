@@ -232,6 +232,7 @@
         // case it's a script brick
         NSString *scriptSubClassName = NSStringFromClass([script class]);
         brickCell = [collectionView dequeueReusableCellWithReuseIdentifier:scriptSubClassName forIndexPath:indexPath];
+        brickCell.brick = script;
         [brickCell.deleteButton addTarget:self action:@selector(scriptDeleteButtonAction:) forControlEvents:UIControlEventTouchUpInside];
         [brickCell setBrickEditing:self.isEditing];
 
@@ -249,6 +250,7 @@
         Brick *brick = [script.brickList objectAtIndex:(indexPath.row - 1)];
         NSString *brickSubClassName = NSStringFromClass([brick class]);
         brickCell = [collectionView dequeueReusableCellWithReuseIdentifier:brickSubClassName forIndexPath:indexPath];
+        brickCell.brick = brick;
         [brickCell setBrickEditing:self.isEditing];
         brickCell.hideDeleteButton = YES;
 
@@ -258,7 +260,6 @@
             NSLog(@"BrickTitle: n.a., Exception: %@", [exception description]);
         }
     }
-    brickCell.backgroundBrickCell = self.object.isBackground;
     brickCell.enabled = YES;
     [brickCell renderSubViews];
 

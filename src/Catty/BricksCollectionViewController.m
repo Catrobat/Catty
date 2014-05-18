@@ -29,46 +29,16 @@
 #import "BrickManager.h"
 
 @interface BricksCollectionViewController ()
-@property (nonatomic, strong) NSArray *selectableBricksSortedIndexes;
-@property (nonatomic, strong) NSDictionary *selectableBricks;
+@property (nonatomic, strong) NSArray *selectableBricks;
 @end
 
 @implementation BricksCollectionViewController
 
 #pragma mark - getters and setters
-- (NSArray*)selectableBricksSortedIndexes
-{
-    if (! _selectableBricksSortedIndexes) {
-        _selectableBricksSortedIndexes = [[self.selectableBricks allKeys] sortedArrayUsingSelector:@selector(compare:)];
-    }
-    return _selectableBricksSortedIndexes;
-}
-
-- (NSDictionary*)selectableBricks
+- (NSArray*)selectableBricks
 {
     if (! _selectableBricks) {
-        // hide unselectable bricks
-        NSArray *allUnselectableBricks = kUnselectableBricksObject;
-        if ([self.object isBackground]) {
-            allUnselectableBricks = kUnselectableBricksBackgroundObject;
-        }
-
-        NSArray *unselectableBricks = [allUnselectableBricks objectAtIndex:self.brickCategoryType];
-        BrickManager *brickManager = [BrickManager sharedBrickManager];
-        NSDictionary *allBrickTypes = [brickManager classNameBrickTypeMap];
-        NSInteger capacity = ([brickManager numberOfAvailableBricksForCategoryType:self.brickCategoryType] - [unselectableBricks count]);
-        NSMutableDictionary *selectableBricks = [NSMutableDictionary dictionaryWithCapacity:capacity];
-        for (NSString *className in allBrickTypes) {
-            NSNumber *brickType = allBrickTypes[className];
-            kBrickCategoryType categoryType = [brickManager brickCategoryTypeForBrickType:[brickType unsignedIntegerValue]];
-            if ((categoryType != self.brickCategoryType) || [unselectableBricks containsObject:brickType]) {
-                continue;
-            }
-            [selectableBricks setObject:className forKey:brickType];
-        }
-        _selectableBricks = [selectableBricks copy];
-        // selectableBricksSortedIndexes should refetch/update on next getter-call
-        self.selectableBricksSortedIndexes = nil;
+        _selectableBricks = [[BrickManager sharedBrickManager] selectableBricksForCategoryType:self.brickCategoryType];
     }
     return _selectableBricks;
 }
@@ -105,9 +75,9 @@
     self.collectionView.delaysContentTouches = NO;
 
     // register brick cells for current brick category
-    NSDictionary *selectableBricks = self.selectableBricks;
-    for (NSNumber *brickType in selectableBricks) {
-        NSString *brickTypeName = selectableBricks[brickType];
+    NSArray *selectableBricks = self.selectableBricks;
+    for (id brick in selectableBricks) {
+        NSString *brickTypeName = NSStringFromClass([brick class]);
         [self.collectionView registerClass:NSClassFromString([brickTypeName stringByAppendingString:@"Cell"])
                 forCellWithReuseIdentifier:brickTypeName];
     }
@@ -169,11 +139,13 @@
 - (UICollectionViewCell*)collectionView:(UICollectionView*)collectionView
                  cellForItemAtIndexPath:(NSIndexPath*)indexPath
 {
-    NSNumber *brickType = [self.selectableBricksSortedIndexes objectAtIndex:indexPath.section];
-    NSString *brickTypeName = [self.selectableBricks objectForKey:brickType];
+//    NSNumber *brickType = [self.selectableBricksSortedIndexes objectAtIndex:indexPath.section];
+//    NSString *brickTypeName = [self.selectableBricks objectForKey:brickType];
+    id brick = [self.selectableBricks objectAtIndex:indexPath.section];
+    NSString *brickTypeName = NSStringFromClass([brick class]);
     BrickCell *brickCell = [collectionView dequeueReusableCellWithReuseIdentifier:brickTypeName
                                                                      forIndexPath:indexPath];
-    brickCell.backgroundBrickCell = self.object.isBackground;
+    brickCell.brick = [self.selectableBricks objectAtIndex:indexPath.section];
     brickCell.enabled = NO;
     [brickCell renderSubViews];
     return brickCell;

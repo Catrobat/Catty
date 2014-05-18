@@ -25,6 +25,11 @@
 
 @implementation ComeToFrontBrick
 
+- (BOOL)isSelectableForObject
+{
+    return (! [self.object isBackground]);
+}
+
 - (NSString*)brickTitle
 {
     return kBrickCellMotionTitleComeToFront;

@@ -59,6 +59,11 @@
 }
 
 #pragma mark - Custom getter and setter
+- (BOOL)isSelectableForObject
+{
+    return YES;
+}
+
 - (NSString*)brickTitle
 {
     @throw [NSException exceptionWithName:NSInternalInconsistencyException

@@ -24,6 +24,11 @@
 
 @implementation IfLogicElseBrick
 
+- (BOOL)isSelectableForObject
+{
+    return NO;
+}
+
 - (NSString*)brickTitle
 {
     return kBrickCellControlTitleElse;

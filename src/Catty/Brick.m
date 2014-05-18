@@ -57,6 +57,11 @@
     return self;
 }
 
+- (BOOL)isSelectableForObject
+{
+    return YES;
+}
+
 - (NSString*)description
 {
     return @"Brick (NO SPECIFIC DESCRIPTION GIVEN! OVERRIDE THE DESCRIPTION METHOD!";

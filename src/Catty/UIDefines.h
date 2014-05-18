@@ -112,14 +112,6 @@ typedef NS_ENUM(NSUInteger, kBrickType) {
 
 };
 
-#define kBrickCategoryColors @[\
-    [UIColor orangeColor],\
-    [UIColor lightBlueColor],\
-    [UIColor violetColor],\
-    [UIColor greenColor],\
-    [UIColor lightRedColor]\
-]
-
 // brick categories
 #define kBrickCategoryNames @[\
     kBrickCellControlCategoryTitle,\
@@ -129,6 +121,15 @@ typedef NS_ENUM(NSUInteger, kBrickType) {
     kBrickCellVariablesCategoryTitle\
 ]
 
+#define kBrickCategoryColors @[\
+    [UIColor orangeColor],\
+    [UIColor lightBlueColor],\
+    [UIColor violetColor],\
+    [UIColor greenColor],\
+    [UIColor lightRedColor]\
+]
+
+// map brick classes to corresponding brick type identifiers
 #define kClassNameBrickTypeMap @{\
 \
     /* control bricks */\
@@ -434,23 +435,6 @@ typedef NS_ENUM(NSInteger, kBrickShapeType) {
 #define kVariableBrickHeights @[\
     kBrickHeight3h,        /* set variable    */\
     kBrickHeight3h         /* change variable */\
-]
-
-// bricks that are not shown in BricksCollectionViewController, because they are dependent on other bricks
-#define kUnselectableBricksObject @[\
-    @[@(kIfElseBrick), @(kIfEndBrick), @(kLoopEndBrick)], /* control bricks  */\
-    @[],                                                  /* motion bricks   */\
-    @[],                                                  /* sound bricks    */\
-    @[],                                                  /* look bricks     */\
-    @[]                                                   /* variable bricks */\
-]
-
-#define kUnselectableBricksBackgroundObject @[\
-    @[@(kIfElseBrick), @(kIfEndBrick), @(kLoopEndBrick)], /* control bricks  */\
-    @[@(kIfOnEdgeBounceBrick), @(kGoNStepsBackBrick), @(kComeToFrontBrick)], /* motion bricks   */\
-    @[],                                                  /* sound bricks    */\
-    @[],                                                  /* look bricks     */\
-    @[]                                                   /* variable bricks */\
 ]
 
 // ----------------- REFACTOR END -------------------

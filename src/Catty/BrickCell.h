@@ -27,14 +27,14 @@
 
 @class Brick;
 @class BrickCellInlineView;
+@protocol BrickProtocol;
 
 @interface BrickCell : UICollectionViewCell
 
-@property (nonatomic, readonly) kBrickType brickType;
-@property (nonatomic, getter = isBackgroundBrickCell) BOOL backgroundBrickCell;
+@property (nonatomic, strong) id<BrickProtocol> brick;
 @property (nonatomic) BOOL enabled;
-@property (strong, nonatomic) ScriptDeleteButton *deleteButton;
-@property (assign, nonatomic) BOOL hideDeleteButton;
+@property (nonatomic, strong) ScriptDeleteButton *deleteButton;
+@property (nonatomic, assign) BOOL hideDeleteButton;
 
 - (void)renderSubViews;
 - (void)hookUpSubViews:(NSArray *)inlineViewSubViews; // abstract (only called internally)

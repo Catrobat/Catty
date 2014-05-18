@@ -25,6 +25,11 @@
 
 @implementation IfOnEdgeBounceBrick
 
+- (BOOL)isSelectableForObject
+{
+    return (! [self.object isBackground]);
+}
+
 - (NSString*)brickTitle
 {
     return kBrickCellMotionTitleIfOnEdgeBounce;

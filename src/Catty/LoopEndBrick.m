@@ -24,6 +24,11 @@
 
 @implementation LoopEndBrick
 
+- (BOOL)isSelectableForObject
+{
+    return NO;
+}
+
 - (NSString*)brickTitle
 {
     return kBrickCellControlTitleEndOfLoop;

@@ -21,6 +21,7 @@
  */
 
 #import "BrickManager.h"
+#import "BrickProtocol.h"
 
 @implementation BrickManager
 
@@ -29,7 +30,6 @@ static BrickManager *sharedBrickManager = nil;
 
 + (BrickManager*)sharedBrickManager
 {
-    // singletone instance
     @synchronized(self) {
         if (sharedBrickManager == nil) {
             sharedBrickManager = [[BrickManager alloc] init];
@@ -52,25 +52,25 @@ static BrickManager *sharedBrickManager = nil;
 
 - (NSDictionary*)brickTypeClassNameMap
 {
-    static NSDictionary *brickTypeClassNameMap = nil;
     // get inverse map of kClassNameBrickTypeMap
     // and save this map statically for performance reasons
+    static NSDictionary *brickTypeClassNameMap = nil;
     if (brickTypeClassNameMap == nil) {
         NSDictionary *classNameBrickTypeMap = [self classNameBrickTypeMap];
-        NSMutableDictionary *brickTypeClassNameMutableMap = nil;
-        brickTypeClassNameMap = [NSMutableDictionary
-                                 dictionaryWithCapacity:[classNameBrickTypeMap count]];
-        for (NSNumber *brickType in classNameBrickTypeMap) {
-            [brickTypeClassNameMutableMap setObject:classNameBrickTypeMap[brickType]
-                                             forKey:brickType];
+        NSMutableDictionary *brickTypeClassNameMutableMap = [NSMutableDictionary
+                                                             dictionaryWithCapacity:[classNameBrickTypeMap count]];
+        for (NSString *className in classNameBrickTypeMap) {
+            [brickTypeClassNameMutableMap setObject:className
+                                             forKey:classNameBrickTypeMap[className]];
         }
-        brickTypeClassNameMap = [brickTypeClassNameMutableMap copy];
+        brickTypeClassNameMap = [brickTypeClassNameMutableMap copy]; // make NSDictionary out of NSMutableDictionary
     }
     return brickTypeClassNameMap;
 }
 
 - (kBrickType)brickTypeForClassName:(NSString*)className
 {
+    // find right brick type by given class name (use regular map)
     NSDictionary *classNameBrickTypeMap = [self classNameBrickTypeMap];
     NSNumber *brickTypeAsNumber = classNameBrickTypeMap[className];
     if (! brickTypeAsNumber) {
@@ -79,15 +79,71 @@ static BrickManager *sharedBrickManager = nil;
     return (kBrickType)[brickTypeAsNumber unsignedIntegerValue];
 }
 
+- (NSString*)classNameForBrickType:(kBrickType)brickType
+{
+    // find right class name by given brick type (use inverse map)
+    NSDictionary *brickTypeClassNameMap = [self brickTypeClassNameMap];
+    return brickTypeClassNameMap[@(brickType)];
+}
+
 - (kBrickCategoryType)brickCategoryTypeForBrickType:(kBrickType)brickType
 {
     return (kBrickCategoryType)(((NSUInteger)brickType) / 100);
 }
 
-- (NSString*)classNameForBrickType:(kBrickType)brickType
+- (NSArray*)brickClassNamesOrderedByBrickType
 {
-    NSDictionary *brickTypeClassNameMap = [self brickTypeClassNameMap];
-    return brickTypeClassNameMap[@(brickType)];
+    // save array statically for performance reasons
+    static NSArray *orderedBrickClassNames = nil;
+    if (orderedBrickClassNames == nil) {
+        // get all brick types in NSMutableArray and sort them
+        NSDictionary *brickTypeClassNameMap = [self brickTypeClassNameMap];
+        NSArray *allBrickTypes = [brickTypeClassNameMap allKeys];
+        NSArray *orderedBrickTypes = [allBrickTypes sortedArrayUsingSelector:@selector(compare:)];
+
+        // collect class names
+        NSMutableArray *orderedBrickClassNamesMutable = [NSMutableArray arrayWithCapacity:[orderedBrickTypes count]];
+        for (NSNumber *brickType in orderedBrickTypes) {
+            [orderedBrickClassNamesMutable addObject:brickTypeClassNameMap[brickType]];
+        }
+        orderedBrickClassNames = [orderedBrickClassNamesMutable copy]; // make NSArray out of NSMutableArray
+    }
+    return orderedBrickClassNames;
+}
+
+- (NSArray*)selectableBricks
+{
+    // retrieve all bricks that are selectable and return their objects stored in NSArray
+    // and save this NSArray statically for performance reasons
+    static NSArray *selectableBricks = nil;
+    if (selectableBricks == nil) {
+        NSArray *orderedBrickClassNames = [self brickClassNamesOrderedByBrickType];
+        NSMutableArray *selectableBricksMutableArray = [NSMutableArray arrayWithCapacity:[orderedBrickClassNames count]];
+        for (NSString *className in orderedBrickClassNames) {
+            // only add selectable brick/script objects to the array
+            id brickOrScript = [[NSClassFromString(className) alloc] init];
+            if ([brickOrScript conformsToProtocol:@protocol(BrickProtocol)]) {
+                id<BrickProtocol> brick = brickOrScript;
+                if (brick.isSelectableForObject) {
+                    [selectableBricksMutableArray addObject:brick];
+                }
+            }
+        }
+        selectableBricks = [selectableBricksMutableArray copy]; // make NSArray out of NSMutableArray
+    }
+    return selectableBricks;
+}
+
+- (NSArray*)selectableBricksForCategoryType:(kBrickCategoryType)categoryType
+{
+    NSArray *selectableBricks = [self selectableBricks];
+    NSMutableArray *selectableBricksForCategoryMutable = [NSMutableArray arrayWithCapacity:[selectableBricks count]];
+    for (id<BrickProtocol> brick in selectableBricks) {
+        if (brick.brickCategoryType == categoryType) {
+            [selectableBricksForCategoryMutable addObject:brick];
+        }
+    }
+    return [selectableBricksForCategoryMutable copy];
 }
 
 - (NSUInteger)numberOfAvailableBricksForCategoryType:(kBrickCategoryType)categoryType
