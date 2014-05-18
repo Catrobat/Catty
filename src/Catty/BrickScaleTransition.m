@@ -48,7 +48,7 @@
             [UIView animateWithDuration:0.7f delay:0.f usingSpringWithDamping:0.5f initialSpringVelocity:2.0f options:UIViewAnimationOptionCurveEaseIn animations:^{
                 move.frame = endFrame;
                 self.dimView.alpha = 1.f;
-                self.collectionView.alpha = .3f;
+                self.collectionView.alpha = .5;
                 self.navigationBar.tintColor = UIColor.brightGrayColor;
             } completion:^(BOOL finished) {
                 if (finished) {

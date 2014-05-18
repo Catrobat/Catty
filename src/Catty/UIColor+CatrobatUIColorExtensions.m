@@ -90,4 +90,8 @@
 	return [self colorWithHex: 0xEE82EE];
 }
 
++ (UIColor*)menuDarkBlueColor
+{
+    return [UIColor colorWithRed:0 green:37.0f/255.0f blue:52.0f/255.0f alpha:0.85f];
+}
 @end

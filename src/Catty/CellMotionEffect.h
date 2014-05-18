@@ -20,28 +20,12 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import <UIKit/UIKit.h>
+#import <Foundation/Foundation.h>
 
-@interface UIColor (CatrobatUIColorExtensions)
+@interface CellMotionEffect : NSObject
 
-+ (UIColor*) skyBlueColor;
++ (void)addMotionEffectForView:(UIView *)view withDepthX:(CGFloat)depthX withDepthY:(CGFloat)depthY withMotionEffectGroup:(UIMotionEffectGroup *)group;
 
-+ (UIColor*) blueGrayColor;
-
-+ (UIColor*) airForceBlueColor;
-
-+ (UIColor*) darkBlueColor;
-
-+ (UIColor*) brightGrayColor;
-
-+ (UIColor*) lightOrangeColor;
-
-+ (UIColor*) lightBlueColor;
-
-+ (UIColor*) lightRedColor;
-
-+ (UIColor*) violetColor;
-
-+ (UIColor*)menuDarkBlueColor;
++ (void)removeMotionEffect:(UIMotionEffectGroup *)group fromView:(UIView *)view;
 
 @end

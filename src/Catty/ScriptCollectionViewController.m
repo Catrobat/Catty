@@ -40,6 +40,8 @@
 #import "LanguageTranslationDefines.h"
 #import "PlaceHolderView.h"
 #import "BroadcastScriptCell.h"
+#import "UIColor+CatrobatUIColorExtensions.h"
+#import "AHKActionSheet.h"
 
 @interface ScriptCollectionViewController () <UICollectionViewDelegate, LXReorderableCollectionViewDelegateFlowLayout, LXReorderableCollectionViewDataSource, UIViewControllerTransitioningDelegate>
 @property (nonatomic, strong) NSDictionary *classNameBrickNameMap;
@@ -49,6 +51,7 @@
 @property (nonatomic, strong) PlaceHolderView *placeHolderView;
 @property (nonatomic, strong) NSIndexPath *addedIndexPath;
 @property (nonatomic, strong) NSIndexPath *selectedIndexPath;
+@property (nonatomic, strong) AHKActionSheet *brickSelectionMenu;
 
 
 @end
@@ -79,12 +82,73 @@
     return classNameBrickNameMap;
 }
 
+- (AHKActionSheet *)brickSelectionMenu
+{
+    if (!_brickSelectionMenu) {
+        _brickSelectionMenu = [[AHKActionSheet alloc]initWithTitle:NSLocalizedString(kSelectionMenuTitle, nil)];
+        _brickSelectionMenu.blurTintColor = [UIColor colorWithWhite:0.0f alpha:0.7f];
+        _brickSelectionMenu.separatorColor = UIColor.skyBlueColor;
+        _brickSelectionMenu.titleTextAttributes = @{NSFontAttributeName : [UIFont systemFontOfSize:14.0f] ,
+                                                    NSForegroundColorAttributeName : UIColor.skyBlueColor};
+        _brickSelectionMenu.cancelButtonTextAttributes = @{NSForegroundColorAttributeName : UIColor.lightOrangeColor};
+        _brickSelectionMenu.buttonTextAttributes = @{NSForegroundColorAttributeName : UIColor.whiteColor};
+        _brickSelectionMenu.selectedBackgroundColor = [UIColor colorWithWhite:0.0f alpha:0.3f];
+        _brickSelectionMenu.automaticallyTintButtonImages = NO;
+
+        
+        [_brickSelectionMenu addButtonWithTitle:NSLocalizedString(@"Control", nil)
+                                          image:[UIImage imageNamed:@"orange_indicator"]
+                                   type:AHKActionSheetButtonTypeDefault
+                                  handler:nil];
+        
+        [_brickSelectionMenu addButtonWithTitle:NSLocalizedString(@"Motion", nil)
+                                          image:[UIImage imageNamed:@"lightblue_indicator"]
+                                           type:AHKActionSheetButtonTypeDefault
+                                        handler:nil];
+        
+        [_brickSelectionMenu addButtonWithTitle:NSLocalizedString(@"Sound", nil)
+                                          image:[UIImage imageNamed:@"pink_indicator"]
+                                           type:AHKActionSheetButtonTypeDefault
+                                        handler:nil];
+        
+        [_brickSelectionMenu addButtonWithTitle:NSLocalizedString(@"Looks", nil)
+                                          image:[UIImage imageNamed:@"green_indicator"]
+                                           type:AHKActionSheetButtonTypeDefault
+                                        handler:nil];
+        
+        [_brickSelectionMenu addButtonWithTitle:NSLocalizedString(@"Variables", nil)
+                                          image:[UIImage imageNamed:@"red_indicator"]
+                                           type:AHKActionSheetButtonTypeDefault
+                                        handler:nil];
+    }
+    return _brickSelectionMenu;
+}
+
+- (FXBlurView *)dimView
+{
+    if (! _dimView) {
+        _dimView = [[FXBlurView alloc] initWithFrame:self.view.bounds];
+        _dimView.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
+        _dimView.userInteractionEnabled = NO;
+        _dimView.tintColor = UIColor.clearColor;
+        _dimView.underlyingView = self.collectionView;
+        _dimView.blurEnabled = YES;
+        _dimView.blurRadius = 20.f;
+        _dimView.dynamic = YES;
+        _dimView.alpha = 0.f;
+        _dimView.hidden = YES;
+        [self.view addSubview:self.dimView];
+    }
+    return _dimView;
+}
+
 #pragma mark - initialization
 - (void)setupCollectionView
 {
     self.collectionView.delegate = self;
     self.collectionView.dataSource = self;
-    self.collectionView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"darkblue"]];
+    self.collectionView.backgroundColor = UIColor.darkBlueColor;
+    self.view.backgroundColor = UIColor.darkBlueColor;
     self.collectionView.alwaysBounceVertical = YES;
     self.collectionView.scrollEnabled = YES;
     self.collectionView.delegate = self;
@@ -123,24 +187,6 @@
     [BrickCell clearImageCache];
 }
 
-- (FXBlurView *)dimView
-{
-    if (! _dimView) {
-        _dimView = [[FXBlurView alloc] initWithFrame:self.view.bounds];
-        _dimView.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
-        _dimView.userInteractionEnabled = NO;
-        _dimView.tintColor = UIColor.clearColor;
-        _dimView.underlyingView = self.collectionView;
-        _dimView.blurEnabled = YES;
-        _dimView.blurRadius = 10.f;
-        _dimView.dynamic = YES;
-        _dimView.alpha = 0.f;
-        _dimView.hidden = YES;
-        [self.view addSubview:self.dimView];
-    }
-    return _dimView;
-}
-
 #pragma mark - UIViewControllerAnimatedTransitioning delegate
 - (id<UIViewControllerAnimatedTransitioning>)animationControllerForPresentedController:(UIViewController *)presented
                                                                   presentingController:(UIViewController *)presenting
@@ -157,13 +203,14 @@
 #pragma mark - actions
 - (void)addBrickAction:(id)sender
 {
-    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"iPhone" bundle:nil];
-    BrickCategoriesTableViewController *brickCategoryTVC;
-    brickCategoryTVC = [storyboard instantiateViewControllerWithIdentifier:@"BrickCategoriesTableViewController"];
-    brickCategoryTVC.object = self.object;
-    UINavigationController *navigationController = [[UINavigationController alloc]
-                                                    initWithRootViewController:brickCategoryTVC];
-    [self presentViewController:navigationController animated:YES completion:NULL];
+//    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"iPhone" bundle:nil];
+//    BrickCategoriesTableViewController *brickCategoryTVC;
+//    brickCategoryTVC = [storyboard instantiateViewControllerWithIdentifier:@"BrickCategoriesTableViewController"];
+//    brickCategoryTVC.object = self.object;
+//    UINavigationController *navigationController = [[UINavigationController alloc]
+//                                                    initWithRootViewController:brickCategoryTVC];
+//    [self presentViewController:navigationController animated:YES completion:NULL];
+    [self.brickSelectionMenu show];
 }
 
 - (void)playSceneAction:(id)sender
@@ -194,7 +241,6 @@
             [self addBrickCellAction:notification.userInfo[kUserInfoKeyBrickCell] copyBrick:NO completionBlock:^{
                 dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
                     [weakself scrollToLastbrickinCollectionView:weakCollectionView completion:NULL];
-                    
                 });
             }];
         }

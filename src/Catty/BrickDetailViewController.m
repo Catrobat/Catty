@@ -29,6 +29,7 @@
 #import "WhenScriptCell.h"
 #import "BroadcastScriptCell.h"
 #import "IBActionSheet.h"
+#import "CellMotionEffect.h"
 
 @interface BrickDetailViewController () <IBActionSheetDelegate>
 @property (strong, nonatomic) UITapGestureRecognizer *recognizer;
@@ -36,6 +37,7 @@
 @property (strong, nonatomic) NSNumber *deleteBrickOrScriptFlag;
 @property (strong, nonatomic) NSNumber *brickCopyFlag;
 @property (strong, nonatomic) NSString *brickName;
+@property (strong, nonatomic) UIMotionEffectGroup *motionEffects;
 @end
 
 @implementation BrickDetailViewController
@@ -46,6 +48,7 @@
     self.view.backgroundColor = UIColor.clearColor;
     self.deleteBrickOrScriptFlag = [[NSNumber alloc]initWithBool:NO];
     self.brickCopyFlag = [[NSNumber alloc]initWithBool:NO];
+    [CellMotionEffect addMotionEffectForView:self.brickCell withDepthX:0.0f withDepthY:12.0f withMotionEffectGroup:self.motionEffects];
 }
 
 #pragma mark - getters
@@ -58,7 +61,7 @@
                                        destructiveButtonTitle:[self deleteMenuItemNameWithBrickCell:self.brickCell]
                                             otherButtonTitles:[self secondMenuItemWithBrickCell:self.brickCell],
                           [self editFormulaMenuItemWithVrickCell:self.brickCell], nil];
-        [_brickMenu setButtonBackgroundColor:UIColor.darkBlueColor];
+        [_brickMenu setButtonBackgroundColor:UIColor.menuDarkBlueColor];
         [_brickMenu setButtonTextColor:UIColor.lightOrangeColor];
         [_brickMenu setTitleTextColor:UIColor.skyBlueColor];
         [_brickMenu setButtonTextColor:UIColor.redColor forButtonAtIndex:0];
@@ -77,6 +80,13 @@
     return _brickName;
 }
 
+- (UIMotionEffectGroup *)motionEffects {
+    if (!_motionEffects) {
+        _motionEffects = [UIMotionEffectGroup new];
+    }
+    return _motionEffects;
+}
+
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
@@ -89,6 +99,8 @@
 
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
+    [CellMotionEffect removeMotionEffect:self.motionEffects fromView:self.brickCell];
+    self.motionEffects = nil;
     if ([self.view.window.gestureRecognizers containsObject:self.recognizer]) {
         [self.view.window removeGestureRecognizer:self.recognizer];
     }
