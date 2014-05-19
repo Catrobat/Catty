@@ -25,7 +25,6 @@
 #import "SpriteObject.h"
 #import "SegueDefines.h"
 #import "ScenePresenterViewController.h"
-#import "BrickCategoriesTableViewController.h"
 #import "BrickCell.h"
 #import "Script.h"
 #import "StartScript.h"
@@ -96,7 +95,7 @@
         _brickSelectionMenu.selectedBackgroundColor = [UIColor colorWithWhite:0.0f alpha:0.3f];
         _brickSelectionMenu.automaticallyTintButtonImages = NO;
 
-        __weak ScriptCollectionViewController *weakSelf = self;
+        __weak typeof(self) weakSelf = self;
         [_brickSelectionMenu addButtonWithTitle:NSLocalizedString(@"Control", nil)
                                           image:[UIImage imageNamed:@"orange_indicator"]
                                    type:AHKActionSheetButtonTypeDefault
@@ -229,13 +228,6 @@
 #pragma mark - actions
 - (void)addBrickAction:(id)sender
 {
-//    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"iPhone" bundle:nil];
-//    BrickCategoriesTableViewController *brickCategoryTVC;
-//    brickCategoryTVC = [storyboard instantiateViewControllerWithIdentifier:@"BrickCategoriesTableViewController"];
-//    brickCategoryTVC.object = self.object;
-//    UINavigationController *navigationController = [[UINavigationController alloc]
-//                                                    initWithRootViewController:brickCategoryTVC];
-//    [self presentViewController:navigationController animated:YES completion:NULL];
     [self.brickSelectionMenu show];
 }
 
@@ -261,8 +253,8 @@
 - (void)brickAdded:(NSNotification*)notification
 {
     if (notification.userInfo) {
-        __weak UICollectionView *weakCollectionView = self.collectionView;
-        __weak ScriptCollectionViewController *weakself = self;
+        __weak typeof(UICollectionView) *weakCollectionView = self.collectionView;
+        __weak typeof(ScriptCollectionViewController) *weakself = self;
         if (self.object.scriptList) {
             [self addBrickCellAction:notification.userInfo[kUserInfoKeyBrickCell] copyBrick:NO completionBlock:^{
                 dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{

@@ -154,7 +154,6 @@
 		CA5FED5018B0070300A517B6 /* BrickCellInlineView.m in Sources */ = {isa = PBXBuildFile; fileRef = CA5FED4F18B0070300A517B6 /* BrickCellInlineView.m */; };
 		CA5FED5418B019B200A517B6 /* UIUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = CA5FED5318B019B200A517B6 /* UIUtil.m */; };
 		CA688205180B0148008A7C99 /* BaseTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA688204180B0148008A7C99 /* BaseTableViewController.m */; };
-		CA68820B180B30E0008A7C99 /* BrickCategoriesTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA68820A180B30E0008A7C99 /* BrickCategoriesTableViewController.m */; };
 		CA68820E180B39D0008A7C99 /* ColoredCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CA68820D180B39D0008A7C99 /* ColoredCell.m */; };
 		CA688212180B467B008A7C99 /* OrderedDictionary.m in Sources */ = {isa = PBXBuildFile; fileRef = CA688211180B467B008A7C99 /* OrderedDictionary.m */; };
 		CA68B67718BAA80A007042E4 /* ComboBoxView.m in Sources */ = {isa = PBXBuildFile; fileRef = CA68B67518BAA80A007042E4 /* ComboBoxView.m */; };
@@ -569,8 +568,6 @@
 		CA5FED5318B019B200A517B6 /* UIUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIUtil.m; sourceTree = "<group>"; };
 		CA688200180AEEC2008A7C99 /* BaseTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseTableViewController.h; sourceTree = "<group>"; };
 		CA688204180B0148008A7C99 /* BaseTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseTableViewController.m; sourceTree = "<group>"; };
-		CA688209180B30B5008A7C99 /* BrickCategoriesTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BrickCategoriesTableViewController.h; sourceTree = "<group>"; };
-		CA68820A180B30E0008A7C99 /* BrickCategoriesTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BrickCategoriesTableViewController.m; sourceTree = "<group>"; };
 		CA68820C180B39BB008A7C99 /* ColoredCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ColoredCell.h; sourceTree = "<group>"; };
 		CA68820D180B39D0008A7C99 /* ColoredCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ColoredCell.m; sourceTree = "<group>"; };
 		CA688210180B467B008A7C99 /* OrderedDictionary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrderedDictionary.h; sourceTree = "<group>"; };
@@ -1807,8 +1804,6 @@
 				817B544A18F0520800AF6BFE /* BrickDetailViewController.m */,
 				81FAEE2D17E781AB0052BB2B /* ScriptCollectionViewController.h */,
 				81FAEE2E17E781AB0052BB2B /* ScriptCollectionViewController.m */,
-				CA688209180B30B5008A7C99 /* BrickCategoriesTableViewController.h */,
-				CA68820A180B30E0008A7C99 /* BrickCategoriesTableViewController.m */,
 				CA79A11C182DA47E00618283 /* BricksCollectionViewController.h */,
 				CA79A11D182DA47E00618283 /* BricksCollectionViewController.m */,
 			);
@@ -2886,7 +2881,6 @@
 				9232B4FF18E54C4B00ED7AB1 /* EVCircularProgressView.m in Sources */,
 				CAEDFB8117EF759500FDED0E /* ObjectTableViewController.m in Sources */,
 				CD639C7B170DF52600FA67DA /* SpriteObject.m in Sources */,
-				CA68820B180B30E0008A7C99 /* BrickCategoriesTableViewController.m in Sources */,
 				CA75C27A18A9621500FC8C2F /* SetVolumeToBrickCell.m in Sources */,
 				CA688212180B467B008A7C99 /* OrderedDictionary.m in Sources */,
 				B4D940AD170EC2B7003DDBFA /* ioapi.c in Sources */,

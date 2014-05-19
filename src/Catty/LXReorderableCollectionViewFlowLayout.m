@@ -165,18 +165,23 @@ static NSString * const kLXCollectionViewKeyPath = @"collectionView";
     }
 
     __weak typeof(self) weakSelf = self;
-    [self.collectionView performBatchUpdates:^{
-        __strong typeof(self) strongSelf = weakSelf;
-        if (strongSelf) {
-            [strongSelf.collectionView deleteItemsAtIndexPaths:@[ previousIndexPath ]];
-            [strongSelf.collectionView insertItemsAtIndexPaths:@[ newIndexPath ]];
-        }
-    } completion:^(BOOL finished) {
-        __strong typeof(self) strongSelf = weakSelf;
-        if ([strongSelf.dataSource respondsToSelector:@selector(collectionView:itemAtIndexPath:didMoveToIndexPath:)]) {
-            [strongSelf.dataSource collectionView:strongSelf.collectionView itemAtIndexPath:previousIndexPath didMoveToIndexPath:newIndexPath];
-        }
-    }];
+    @try {
+        [self.collectionView performBatchUpdates:^{
+            __strong typeof(self) strongSelf = weakSelf;
+            if (strongSelf) {
+                [strongSelf.collectionView deleteItemsAtIndexPaths:@[ previousIndexPath ]];
+                [strongSelf.collectionView insertItemsAtIndexPaths:@[ newIndexPath ]];
+            }
+        } completion:^(BOOL finished) {
+            __strong typeof(self) strongSelf = weakSelf;
+            if ([strongSelf.dataSource respondsToSelector:@selector(collectionView:itemAtIndexPath:didMoveToIndexPath:)]) {
+                [strongSelf.dataSource collectionView:strongSelf.collectionView itemAtIndexPath:previousIndexPath didMoveToIndexPath:newIndexPath];
+            }
+        }];
+    }
+    @catch (NSException *exception) {
+        NSLog(@"DEBUG: failure to batch update.  %@", exception.description);
+    }
 }
 
 - (void)invalidatesScrollTimer {

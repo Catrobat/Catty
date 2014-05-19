@@ -26,19 +26,36 @@
 #import "BrickCell.h"
 #import "ScriptCollectionViewController.h"
 #import "SpriteObject.h"
+#import "LXReorderableCollectionViewFlowLayout.h"
 
-@interface BricksCollectionViewController ()
-@property (nonatomic, strong) NSArray *selectableBricksSortedIndexes;
+@interface BricksCollectionViewController () <LXReorderableCollectionViewDelegateFlowLayout, LXReorderableCollectionViewDataSource>
+@property (nonatomic, strong) NSMutableArray *selectableBricksSortedIndexes;
 @property (nonatomic, strong) NSDictionary *selectableBricks;
 @end
 
 @implementation BricksCollectionViewController
 
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
+    [self initCollectionView];
+    self.collectionView.alwaysBounceVertical = YES;
+    self.collectionView.delaysContentTouches = NO;
+    
+    // register brick cells for current brick category
+    NSDictionary *selectableBricks = self.selectableBricks;
+    for (NSNumber *brickType in selectableBricks) {
+        NSString *brickTypeName = selectableBricks[brickType];
+        [self.collectionView registerClass:NSClassFromString([brickTypeName stringByAppendingString:@"Cell"])
+                forCellWithReuseIdentifier:brickTypeName];
+    }
+}
+
 #pragma mark - getters and setters
 - (NSArray*)selectableBricksSortedIndexes
 {
     if (! _selectableBricksSortedIndexes) {
-        _selectableBricksSortedIndexes = [[self.selectableBricks allKeys] sortedArrayUsingSelector:@selector(compare:)];
+        _selectableBricksSortedIndexes = [[[self.selectableBricks allKeys] sortedArrayUsingSelector:@selector(compare:)] mutableCopy];
     }
     return _selectableBricksSortedIndexes;
 }
@@ -89,39 +106,9 @@
 {
     self.collectionView.delegate = self;
     self.collectionView.dataSource = self;
-    self.collectionView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"darkblue"]];
+    self.collectionView.backgroundColor = UIColor.darkBlueColor;
 }
 
-#pragma mark - view events
-- (void)viewDidLoad
-{
-    [super viewDidLoad];
-    [self initCollectionView];
-    [self setupNavigationBar];
-    self.collectionView.scrollEnabled = YES;
-    self.collectionView.alwaysBounceVertical = YES;
-    self.collectionView.delaysContentTouches = NO;
-
-    // register brick cells for current brick category
-    NSDictionary *selectableBricks = self.selectableBricks;
-    for (NSNumber *brickType in selectableBricks) {
-        NSString *brickTypeName = selectableBricks[brickType];
-        [self.collectionView registerClass:NSClassFromString([brickTypeName stringByAppendingString:@"Cell"])
-                forCellWithReuseIdentifier:brickTypeName];
-    }
-}
-
-- (void)viewWillAppear:(BOOL)animated
-{
-    [super viewWillAppear:animated];
-    [self.navigationController setToolbarHidden:YES];
-}
-
-- (void)viewWillDisappear:(BOOL)animated
-{
-    [super viewWillDisappear:animated];
-    [self.navigationController setToolbarHidden:NO];
-}
 
 #pragma mark - application events
 - (void)didReceiveMemoryWarning
@@ -140,11 +127,9 @@
     }
 }
 
-#pragma mark - Table view data source
+#pragma mark - data source
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView
 {
-    // @INFO: we use 1 section per brick to easily circumvent the inset-problem...
-    //        otherwise we probably have to use a custom CVC-layout...
     return [self.selectableBricks count];
 }
 
@@ -153,59 +138,73 @@
     return 1;
 }
 
-- (CGSize)collectionView:(UICollectionView*)collectionView
-                  layout:(UICollectionViewLayout*)collectionViewLayout
-  sizeForItemAtIndexPath:(NSIndexPath*)indexPath
-{
-    CGFloat width = self.view.frame.size.width;
-    CGFloat height = [BrickCell brickCellHeightForCategoryType:self.brickCategoryType AndBrickType:indexPath.section];
-    return CGSizeMake(width, height);
-}
-
 - (UICollectionViewCell*)collectionView:(UICollectionView*)collectionView
                  cellForItemAtIndexPath:(NSIndexPath*)indexPath
 {
-    NSNumber *brickType = [self.selectableBricksSortedIndexes objectAtIndex:indexPath.section];
-    NSString *brickTypeName = [self.selectableBricks objectForKey:brickType];
+    NSNumber *brickTypeID = [self.selectableBricksSortedIndexes objectAtIndex:indexPath.section];
+    NSString *brickTypeName = [self.selectableBricks objectForKey:brickTypeID];
     BrickCell *brickCell = [collectionView dequeueReusableCellWithReuseIdentifier:brickTypeName forIndexPath:indexPath];
     brickCell.backgroundBrickCell = self.object.isBackground;
     brickCell.enabled = NO;
     [brickCell renderSubViews];
+//    NSLog(@"frame = %@", NSStringFromCGRect(brickCell.bounds));
     return brickCell;
 }
 
-- (UIEdgeInsets)collectionView:(UICollectionView *)collectionView
-                        layout:(UICollectionViewLayout*)collectionViewLayout
-        insetForSectionAtIndex:(NSInteger)section
-{
-    UIEdgeInsets insets = UIEdgeInsetsMake(0.0f, 0.0f, 0.0f, 0.0f);
-    if ([BrickCell isScriptBrickCellForCategoryType:self.brickCategoryType AndBrickType:section]) {
-        insets.top += 10.0f;
-    }
-    return insets;
-}
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath*)indexPath
 {
     BrickCell *brickCell = (BrickCell*)[collectionView cellForItemAtIndexPath:indexPath];
     [self.presentingViewController dismissViewControllerAnimated:YES completion:^{
-        NSNotificationCenter *dnc = [NSNotificationCenter defaultCenter];
-        [dnc postNotificationName:kBrickCellAddedNotification
-                           object:nil
-                         userInfo:@{ kUserInfoKeyBrickCell : brickCell,
-                                     kUserInfoSpriteObject : self.object }];
+        [NSNotificationCenter.defaultCenter postNotificationName:kBrickCellAddedNotification
+                                                          object:nil
+                                                        userInfo:@{ kUserInfoKeyBrickCell : brickCell,
+                                                                    kUserInfoSpriteObject : self.object }];
     }];
 }
 
-#pragma mark - helpers
-- (void)setupNavigationBar
+#pragma mark - CollectionView FlowLayout
+
+- (UIEdgeInsets)collectionView:(UICollectionView *)collectionView
+                        layout:(UICollectionViewLayout *)collectionViewLayout
+        insetForSectionAtIndex:(NSInteger)section
 {
-    self.navigationItem.title = self.title = [kBrickCategoryNames objectAtIndex:self.brickCategoryType];
-    UIBarButtonItem *closeButton;
-    closeButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone
-                                                                target:self
-                                                                action:@selector(dismissCategoryScriptsVC:)];
-    self.navigationItem.rightBarButtonItems = @[closeButton];
+    UIEdgeInsets insets = UIEdgeInsetsZero;
+    
+    return insets = section == 0 ?  UIEdgeInsetsMake(30.f, 0.0f, 0.0f, 0.0f) : UIEdgeInsetsMake(0.f, 0.0f, 0.0f, 0.0f);
+}
+
+- (CGSize)collectionView:(UICollectionView*)collectionView
+                  layout:(UICollectionViewLayout*)collectionViewLayout
+  sizeForItemAtIndexPath:(NSIndexPath*)indexPath
+{
+    CGFloat width = CGRectGetWidth(self.view.bounds);
+    CGFloat height = [BrickCell brickCellHeightForCategoryType:self.brickCategoryType AndBrickType:indexPath.section];
+    return CGSizeMake(width, height);
+}
+
+
+#pragma mark - LXReorderableCollectionViewDatasource
+
+- (void)collectionView:(UICollectionView *)collectionView
+       itemAtIndexPath:(NSIndexPath *)fromIndexPath
+   willMoveToIndexPath:(NSIndexPath *)toIndexPath
+{
+    
+    // TODO Fix reordering, crashed
+    id object = [self.selectableBricksSortedIndexes objectAtIndex:fromIndexPath.section];
+    [self.selectableBricksSortedIndexes removeObjectAtIndex:fromIndexPath.section];
+    [self.selectableBricksSortedIndexes insertObject:object atIndex:toIndexPath.section];
+    
+//    id toTyp = [self.selectableBricksSortedIndexes objectAtIndex:toIndexPath.section];
+//    id fromTyp = [self.selectableBricksSortedIndexes objectAtIndex:fromIndexPath.section];
+//    
+//    [self.selectableBricksSortedIndexes removeObjectAtIndex:toIndexPath.section];
+//    [self.selectableBricksSortedIndexes insertObject:fromTyp atIndex:toIndexPath.section];
+    
+//    [self.selectableBricksSortedIndexes removeObjectAtIndex:fromIndexPath.section];
+//    [self.selectableBricksSortedIndexes insertObject:toTyp atIndex:fromIndexPath.section];
+    
 }
 
 @end
