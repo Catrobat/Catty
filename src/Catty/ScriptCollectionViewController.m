@@ -42,6 +42,7 @@
 #import "BroadcastScriptCell.h"
 #import "UIColor+CatrobatUIColorExtensions.h"
 #import "AHKActionSheet.h"
+#import "BricksCollectionViewController.h"
 
 @interface ScriptCollectionViewController () <UICollectionViewDelegate, LXReorderableCollectionViewDelegateFlowLayout, LXReorderableCollectionViewDataSource, UIViewControllerTransitioningDelegate>
 @property (nonatomic, strong) NSDictionary *classNameBrickNameMap;
@@ -95,34 +96,58 @@
         _brickSelectionMenu.selectedBackgroundColor = [UIColor colorWithWhite:0.0f alpha:0.3f];
         _brickSelectionMenu.automaticallyTintButtonImages = NO;
 
-        
+        __weak ScriptCollectionViewController *weakSelf = self;
         [_brickSelectionMenu addButtonWithTitle:NSLocalizedString(@"Control", nil)
                                           image:[UIImage imageNamed:@"orange_indicator"]
                                    type:AHKActionSheetButtonTypeDefault
-                                  handler:nil];
+                                  handler:^(AHKActionSheet *actionSheet) {
+                                      [weakSelf showBrickCategoryCVC:kControlBrick];
+                                  }];
         
         [_brickSelectionMenu addButtonWithTitle:NSLocalizedString(@"Motion", nil)
                                           image:[UIImage imageNamed:@"lightblue_indicator"]
                                            type:AHKActionSheetButtonTypeDefault
-                                        handler:nil];
+                                        handler:^(AHKActionSheet *actionSheet) {
+                                            [weakSelf showBrickCategoryCVC:kMotionBrick];
+                                        }];
         
         [_brickSelectionMenu addButtonWithTitle:NSLocalizedString(@"Sound", nil)
                                           image:[UIImage imageNamed:@"pink_indicator"]
                                            type:AHKActionSheetButtonTypeDefault
-                                        handler:nil];
+                                        handler:^(AHKActionSheet *actionSheet) {
+                                            [weakSelf showBrickCategoryCVC:kSoundBrick];
+                                        }];
         
         [_brickSelectionMenu addButtonWithTitle:NSLocalizedString(@"Looks", nil)
                                           image:[UIImage imageNamed:@"green_indicator"]
                                            type:AHKActionSheetButtonTypeDefault
-                                        handler:nil];
+                                        handler:^(AHKActionSheet *actionSheet) {
+                                            [weakSelf showBrickCategoryCVC:kLookBrick];
+                                        }];
         
         [_brickSelectionMenu addButtonWithTitle:NSLocalizedString(@"Variables", nil)
                                           image:[UIImage imageNamed:@"red_indicator"]
                                            type:AHKActionSheetButtonTypeDefault
-                                        handler:nil];
+                                        handler:^(AHKActionSheet *actionSheet) {
+                                            [weakSelf showBrickCategoryCVC:kVariableBrick];
+                                        }];
     }
     return _brickSelectionMenu;
 }
+
+#pragma mark - Brick Selection Menu Action
+
+- (void)showBrickCategoryCVC:(kBrickCategoryType)type
+{
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"iPhone" bundle:nil];
+    BricksCollectionViewController *brickCategoryCVC;
+    brickCategoryCVC = (BricksCollectionViewController*)[storyboard instantiateViewControllerWithIdentifier:@"BricksDetailViewCollectionViewController"];
+    brickCategoryCVC.brickCategoryType = type;
+    brickCategoryCVC.object = self.object;
+    [self presentViewController:brickCategoryCVC animated:YES
+                                              completion:NULL];
+}
+
 
 - (FXBlurView *)dimView
 {
