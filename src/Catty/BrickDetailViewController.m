@@ -48,7 +48,7 @@
     self.view.backgroundColor = UIColor.clearColor;
     self.deleteBrickOrScriptFlag = [[NSNumber alloc]initWithBool:NO];
     self.brickCopyFlag = [[NSNumber alloc]initWithBool:NO];
-    [CellMotionEffect addMotionEffectForView:self.brickCell withDepthX:0.0f withDepthY:12.0f withMotionEffectGroup:self.motionEffects];
+    [CellMotionEffect addMotionEffectForView:self.brickCell withDepthX:0.0f withDepthY:25.0f withMotionEffectGroup:self.motionEffects];
 }
 
 #pragma mark - getters

@@ -35,7 +35,7 @@
     UIView *move = nil;
     CGRect beginFrame = [container convertRect:self.cell.bounds fromView:self.cell];
     
-    CGRect endFrame = CGRectMake(0.f, NAVIGATION_BAR_HEIGHT, CGRectGetWidth(self.cell.bounds), CGRectGetHeight(self.cell.bounds));
+    CGRect endFrame = CGRectMake(0.0f, CGRectGetHeight(UIScreen.mainScreen.bounds) / 2.0f - CGRectGetHeight(self.cell.bounds), CGRectGetWidth(self.cell.bounds), CGRectGetHeight(self.cell.bounds));
     
     switch (self.transitionMode) {
         case TransitionModePresent: {
@@ -49,16 +49,19 @@
                 move.frame = endFrame;
                 self.dimView.alpha = 1.f;
                 self.collectionView.alpha = .5;
-                self.navigationBar.tintColor = UIColor.brightGrayColor;
             } completion:^(BOOL finished) {
                 if (finished) {
-                    toVC.view.frame = fromVC.view.frame;
-                    self.cell.hidden = NO;
-                    self.cell.frame = CGRectMake(0.f, NAVIGATION_BAR_HEIGHT, CGRectGetWidth(self.cell.bounds), CGRectGetHeight(self.cell.bounds));
-                    [toVC.view addSubview:self.cell];
-                    [container addSubview:toVC.view];
-                    [move removeFromSuperview];
-                    [transitionContext completeTransition:YES];
+                    [UIView animateWithDuration:0.25f animations:^{
+                        self.navigationBar.alpha = 0.0f;
+                    } completion:^(BOOL finished) {
+                        toVC.view.frame = fromVC.view.frame;
+                        self.cell.hidden = NO;
+                        self.cell.frame = CGRectMake(0.0f, CGRectGetHeight(UIScreen.mainScreen.bounds) / 2.0f - CGRectGetHeight(self.cell.bounds), CGRectGetWidth(self.cell.bounds), CGRectGetHeight(self.cell.bounds));
+                        [toVC.view addSubview:self.cell];
+                        [container addSubview:toVC.view];
+                        [move removeFromSuperview];
+                        [transitionContext completeTransition:YES];
+                    }];
                 }
             }];
         }
@@ -66,13 +69,13 @@
             
         case TransitionModeDismiss: {
             CGFloat y = 0.f;
-            y = self.touchRect.origin.y >= toVC.view.frame.size.height ? self.touchRect.origin.y - self.collectionView.contentOffset.y : self.touchRect.origin.y + NAVIGATION_BAR_HEIGHT;
+            y = self.touchRect.origin.y >= toVC.view.frame.size.height ? self.touchRect.origin.y - self.collectionView.contentOffset.y : self.touchRect.origin.y +  NAVIGATION_BAR_HEIGHT;
             
             [UIView animateWithDuration:0.6f delay:0.0f usingSpringWithDamping:1.5f initialSpringVelocity:2.0f options:UIViewAnimationOptionCurveEaseInOut animations:^{
                 self.cell.frame = CGRectMake(self.touchRect.origin.x, y, self.touchRect.size.width, self.touchRect.size.height);
                 self.dimView.alpha = 0.f;
-                self.collectionView.alpha = 1.f;
-                self.navigationBar.tintColor = UIColor.lightOrangeColor;
+                self.collectionView.alpha = 1.0f;
+                self.navigationBar.alpha = 1.0f;
             } completion:^(BOOL finished) {
                 self.cell.frame = self.touchRect;
                 [fromVC.view removeFromSuperview];
