@@ -20,16 +20,9 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import <UIKit/UIKit.h>
-#import "UIDefines.h"
-#import "ScriptCollectionViewController.h"
 
-@class SpriteObject;
+#import "BaseTransition.h"
 
-@interface BricksCollectionViewController : UICollectionViewController
-
-@property (strong, nonatomic) SpriteObject *object;
-@property (nonatomic) kBrickCategoryType brickCategoryType;
-@property (strong, nonatomic) ScriptCollectionViewController *scriptCollectionViewController;
+@interface BrickSelectModalTransition : BaseTransition
 
 @end

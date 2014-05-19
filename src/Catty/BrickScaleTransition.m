@@ -26,7 +26,8 @@
 
 @implementation BrickScaleTransition
 
-- (void)animateTransition:(id<UIViewControllerContextTransitioning>)transitionContext {
+- (void)animateTransition:(id<UIViewControllerContextTransitioning>)transitionContext
+{
     UIView *container = transitionContext.containerView;
     
     UIViewController *fromVC = [transitionContext viewControllerForKey:UITransitionContextFromViewControllerKey];
@@ -40,7 +41,7 @@
     switch (self.transitionMode) {
         case TransitionModePresent: {
             move = [self.cell snapshotViewAfterScreenUpdates:YES];
-            move.frame =beginFrame;
+            move.frame = beginFrame;
             [container addSubview:move];
             self.cell.hidden = YES;
             self.dimView.hidden = NO;

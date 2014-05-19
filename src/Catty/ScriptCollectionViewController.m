@@ -42,11 +42,13 @@
 #import "UIColor+CatrobatUIColorExtensions.h"
 #import "AHKActionSheet.h"
 #import "BricksCollectionViewController.h"
+#import "BrickSelectModalTransition.h"
 
 @interface ScriptCollectionViewController () <UICollectionViewDelegate, LXReorderableCollectionViewDelegateFlowLayout, LXReorderableCollectionViewDataSource, UIViewControllerTransitioningDelegate>
 @property (nonatomic, strong) NSDictionary *classNameBrickNameMap;
 @property (nonatomic, weak) IBOutlet UICollectionView *collectionView;
 @property (nonatomic, strong) BrickScaleTransition *brickScaleTransition;
+@property (nonatomic, strong) BrickSelectModalTransition *brickSelectModelTransition;
 @property (nonatomic, strong) FXBlurView *dimView;
 @property (nonatomic, strong) PlaceHolderView *placeHolderView;
 @property (nonatomic, strong) NSIndexPath *addedIndexPath;
@@ -143,6 +145,10 @@
     brickCategoryCVC = (BricksCollectionViewController*)[storyboard instantiateViewControllerWithIdentifier:@"BricksDetailViewCollectionViewController"];
     brickCategoryCVC.brickCategoryType = type;
     brickCategoryCVC.object = self.object;
+    brickCategoryCVC.scriptCollectionViewController = self;
+    brickCategoryCVC.transitioningDelegate = self;
+    brickCategoryCVC.modalPresentationStyle = UIModalPresentationCustom;
+    
     [self presentViewController:brickCategoryCVC animated:YES
                                               completion:NULL];
 }
@@ -187,6 +193,7 @@
     self.placeHolderView.hidden = self.object.scriptList.count ? YES : NO;
     
     self.brickScaleTransition = [BrickScaleTransition new];
+    self.brickSelectModelTransition = [BrickSelectModalTransition new];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -215,14 +222,32 @@
 #pragma mark - UIViewControllerAnimatedTransitioning delegate
 - (id<UIViewControllerAnimatedTransitioning>)animationControllerForPresentedController:(UIViewController *)presented
                                                                   presentingController:(UIViewController *)presenting
-                                                                      sourceController:(UIViewController *)source {
-    self.brickScaleTransition.transitionMode = TransitionModePresent;
-    return self.brickScaleTransition;
+                                                                      sourceController:(UIViewController *)source
+{
+    if ([presented isKindOfClass:[BrickDetailViewController class]]) {
+         self.brickScaleTransition.transitionMode = TransitionModePresent;
+        return self.brickScaleTransition;
+    } else {
+        if ([presented isKindOfClass:[BricksCollectionViewController class]]) {
+            self.brickSelectModelTransition.transitionMode = TransitionModePresent;
+            return self.brickSelectModelTransition;
+        }
+    }
+    return nil;
 }
 
-- (id<UIViewControllerAnimatedTransitioning>)animationControllerForDismissedController:(UIViewController *)dismissed {
-    self.brickScaleTransition.transitionMode = TransitionModeDismiss;
-    return self.brickScaleTransition;
+- (id<UIViewControllerAnimatedTransitioning>)animationControllerForDismissedController:(UIViewController *)dismissed
+{
+    if ([dismissed isKindOfClass:[BrickDetailViewController class]]) {
+        self.brickScaleTransition.transitionMode = TransitionModeDismiss;
+        return self.brickScaleTransition;
+    } else {
+        if ([dismissed isKindOfClass:[BricksCollectionViewController class]]) {
+            self.brickSelectModelTransition.transitionMode = TransitionModeDismiss;
+            return self.brickSelectModelTransition;
+        }
+    }
+    return nil;
 }
 
 #pragma mark - actions

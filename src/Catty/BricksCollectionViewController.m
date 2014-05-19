@@ -27,10 +27,13 @@
 #import "ScriptCollectionViewController.h"
 #import "SpriteObject.h"
 #import "LXReorderableCollectionViewFlowLayout.h"
+#import "FXBlurView.h"
 
-@interface BricksCollectionViewController () <LXReorderableCollectionViewDelegateFlowLayout, LXReorderableCollectionViewDataSource>
+@interface BricksCollectionViewController () <LXReorderableCollectionViewDelegateFlowLayout, LXReorderableCollectionViewDataSource, UIScrollViewDelegate>
 @property (nonatomic, strong) NSMutableArray *selectableBricksSortedIndexes;
 @property (nonatomic, strong) NSDictionary *selectableBricks;
+@property (nonatomic, strong) FXBlurView *blurbackgroundView;
+
 @end
 
 @implementation BricksCollectionViewController
@@ -38,10 +41,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [self initCollectionView];
-    self.collectionView.alwaysBounceVertical = YES;
-    self.collectionView.delaysContentTouches = NO;
-    
+    [self setupCollectionView];
+
     // register brick cells for current brick category
     NSDictionary *selectableBricks = self.selectableBricks;
     for (NSNumber *brickType in selectableBricks) {
@@ -49,6 +50,31 @@
         [self.collectionView registerClass:NSClassFromString([brickTypeName stringByAppendingString:@"Cell"])
                 forCellWithReuseIdentifier:brickTypeName];
     }
+}
+
+- (void)viewDidDisappear:(BOOL)animated
+{
+    [super viewDidDisappear:animated];
+    self.scriptCollectionViewController = nil;
+}
+
+- (void)setupCollectionView
+{
+    self.collectionView.delegate = self;
+    self.collectionView.dataSource = self;
+    self.collectionView.backgroundColor = UIColor.clearColor;
+    self.view.backgroundColor = UIColor.clearColor;
+    
+    self.collectionView.alwaysBounceVertical = YES;
+    self.collectionView.delaysContentTouches = NO;
+    
+    self.blurbackgroundView = [[FXBlurView alloc]initWithFrame:self.view.bounds];
+    self.blurbackgroundView.tintColor = [UIColor clearColor];
+    self.blurbackgroundView.blurRadius = 20.f;
+    self.blurbackgroundView.updateInterval = 0.1f;
+    self.blurbackgroundView.underlyingView = self.scriptCollectionViewController.collectionView;
+    [self.view addSubview:self.blurbackgroundView];
+    [self.view sendSubviewToBack:self.blurbackgroundView];
 }
 
 #pragma mark - getters and setters
@@ -100,15 +126,6 @@
     self.title = title;
     self.navigationItem.title = title;
 }
-
-#pragma mark - initialization
-- (void)initCollectionView
-{
-    self.collectionView.delegate = self;
-    self.collectionView.dataSource = self;
-    self.collectionView.backgroundColor = UIColor.darkBlueColor;
-}
-
 
 #pragma mark - application events
 - (void)didReceiveMemoryWarning
@@ -171,7 +188,7 @@
 {
     UIEdgeInsets insets = UIEdgeInsetsZero;
     
-    return insets = section == 0 ?  UIEdgeInsetsMake(30.f, 0.0f, 0.0f, 0.0f) : UIEdgeInsetsMake(0.f, 0.0f, 0.0f, 0.0f);
+    return insets = section == 0 ?  UIEdgeInsetsMake(35.0f, 0.0f, 0.0f, 0.0f) : UIEdgeInsetsMake(0.0f, 0.0f, 0.0f, 0.0f);
 }
 
 - (CGSize)collectionView:(UICollectionView*)collectionView
