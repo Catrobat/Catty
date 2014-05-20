@@ -62,11 +62,6 @@
     return YES;
 }
 
-- (kBrickShapeType)brickShapeType
-{
-    return kBrickShapeNormal;
-}
-
 - (NSString*)description
 {
     return @"Brick (NO SPECIFIC DESCRIPTION GIVEN! OVERRIDE THE DESCRIPTION METHOD!";

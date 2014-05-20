@@ -30,6 +30,11 @@
 
 @implementation WhenScriptCell
 
+- (kBrickShapeType)brickShapeType
+{
+    return kBrickShapeRoundedSmall;
+}
+
 - (void)hookUpSubViews:(NSArray *)inlineViewSubViews
 {
     self.textLabel = inlineViewSubViews[0];

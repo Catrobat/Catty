@@ -29,6 +29,5 @@
 @property (nonatomic, readonly) kBrickType brickType;
 @property (nonatomic, strong, readonly) NSString *brickTitle;
 - (BOOL)isSelectableForObject;
-- (kBrickShapeType)brickShapeType;
 
 @end

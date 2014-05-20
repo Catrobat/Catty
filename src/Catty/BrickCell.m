@@ -168,7 +168,7 @@
 - (void)setupInlineView
 {
     CGFloat inlineViewHeight = [BrickCell brickCellHeightForBrickType:self.brickType];
-    kBrickShapeType brickShapeType = self.brick.brickShapeType;
+    kBrickShapeType brickShapeType = [self brickShapeType];
     CGFloat inlineViewOffsetY = 0.0f;
     if (brickShapeType == kBrickShapeNormal) {
         inlineViewHeight -= kBrickShapeNormalMarginHeightDeduction;
@@ -593,6 +593,12 @@
     }
     NSError(@"unknown brick category type given");
     abort();
+}
+
+// BrickCells that do not have default shape type have to override this method in their corresponding subclass
+- (kBrickShapeType)brickShapeType
+{
+    return kBrickShapeNormal;
 }
 
 #pragma mark - cell editing

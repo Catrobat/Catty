@@ -29,11 +29,6 @@
     return kBrickCellControlTitleWhenIReceive;
 }
 
-- (kBrickShapeType)brickShapeType
-{
-    return kBrickShapeRoundedBig;
-}
-
 -(NSString*)description
 {
     NSMutableString *ret = [[NSMutableString alloc] initWithString:@"BroadcastScript: "];

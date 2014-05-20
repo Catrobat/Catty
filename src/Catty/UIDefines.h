@@ -188,52 +188,13 @@ typedef NS_ENUM(NSUInteger, kBrickType) {
     @"ChangeVariableBrick"       : @(kChangeVariableBrick)\
 }
 
-// ----------------- REFACTOR BEGIN -------------------
 typedef NS_ENUM(NSInteger, kBrickShapeType) {
     kBrickShapeNormal = 0,
     kBrickShapeRoundedSmall = 1,
     kBrickShapeRoundedBig = 2
 };
 
-// brick subview const values
-#define kBrickInlineViewOffsetX 54.0f
-#define kBrickShapeNormalInlineViewOffsetY 3.0f
-#define kBrickShapeRoundedSmallInlineViewOffsetY 22.0f
-#define kBrickShapeRoundedBigInlineViewOffsetY 22.0f
-#define kBrickShapeNormalMarginHeightDeduction 9.0f
-#define kBrickShapeRoundedSmallMarginHeightDeduction 28.0f
-#define kBrickShapeRoundedBigMarginHeightDeduction 28.0f
-#define kBrickPatternImageViewOffsetX 0.0f
-#define kBrickPatternImageViewOffsetY 0.0f
-#define kBrickPatternBackgroundImageViewOffsetX 54.0f
-#define kBrickPatternBackgroundImageViewOffsetY 0.0f
-#define kBrickLabelOffsetX 0.0f
-#define kBrickLabelOffsetY 0.0f
-#define kBrickInlineViewCanvasOffsetX 0.0f
-#define kBrickInlineViewCanvasOffsetY 0.0f
-#define kBrickBackgroundImageNameSuffix @"_bg"
-
-// brick heights
-#define kBrickHeight1h @44
-#define kBrickHeight2h @71
-#define kBrickHeight3h @94
-#define kBrickHeightControl1h @62
-#define kBrickHeightControl2h @88
-
-#define kBrickLabelFontSize 16.0f
-#define kBrickTextFieldFontSize 15.0f
-#define kBrickInputFieldHeight 28.0f
-#define kBrickInputFieldMinWidth 60.0f
-#define kBrickComboBoxWidth 210.0f
-#define kBrickInputFieldTopMargin 4.0f
-#define kBrickInputFieldBottomMargin 5.0f
-#define kBrickInputFieldLeftMargin 4.0f
-#define kBrickInputFieldRightMargin 4.0f
-#define kBrickInputFieldMinRowHeight (kBrickInputFieldHeight + 4.0f)
-#define kDefaultImageCellBorderWidth 1.0f
-
-// delete button bricks
-#define kBrickDeleteButtonSize 22.0f
+// ----------------- REFACTOR BEGIN -------------------
 
 // Note:
 // -----------------------------------------------------------------------------------------------------------
@@ -436,6 +397,46 @@ typedef NS_ENUM(NSInteger, kBrickShapeType) {
     kBrickHeight3h,        /* set variable    */\
     kBrickHeight3h         /* change variable */\
 ]
+
+// brick subview const values
+#define kBrickInlineViewOffsetX 54.0f
+#define kBrickShapeNormalInlineViewOffsetY 3.0f
+#define kBrickShapeRoundedSmallInlineViewOffsetY 22.0f
+#define kBrickShapeRoundedBigInlineViewOffsetY 22.0f
+#define kBrickShapeNormalMarginHeightDeduction 9.0f
+#define kBrickShapeRoundedSmallMarginHeightDeduction 28.0f
+#define kBrickShapeRoundedBigMarginHeightDeduction 28.0f
+#define kBrickPatternImageViewOffsetX 0.0f
+#define kBrickPatternImageViewOffsetY 0.0f
+#define kBrickPatternBackgroundImageViewOffsetX 54.0f
+#define kBrickPatternBackgroundImageViewOffsetY 0.0f
+#define kBrickLabelOffsetX 0.0f
+#define kBrickLabelOffsetY 0.0f
+#define kBrickInlineViewCanvasOffsetX 0.0f
+#define kBrickInlineViewCanvasOffsetY 0.0f
+#define kBrickBackgroundImageNameSuffix @"_bg"
+
+// brick heights
+#define kBrickHeight1h @44
+#define kBrickHeight2h @71
+#define kBrickHeight3h @94
+#define kBrickHeightControl1h @62
+#define kBrickHeightControl2h @88
+
+#define kBrickLabelFontSize 16.0f
+#define kBrickTextFieldFontSize 15.0f
+#define kBrickInputFieldHeight 28.0f
+#define kBrickInputFieldMinWidth 60.0f
+#define kBrickComboBoxWidth 210.0f
+#define kBrickInputFieldTopMargin 4.0f
+#define kBrickInputFieldBottomMargin 5.0f
+#define kBrickInputFieldLeftMargin 4.0f
+#define kBrickInputFieldRightMargin 4.0f
+#define kBrickInputFieldMinRowHeight (kBrickInputFieldHeight + 4.0f)
+#define kDefaultImageCellBorderWidth 1.0f
+
+// delete button bricks
+#define kBrickDeleteButtonSize 22.0f
 
 // ----------------- REFACTOR END -------------------
 

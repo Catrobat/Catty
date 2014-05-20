@@ -30,6 +30,11 @@
 
 @implementation BroadcastScriptCell
 
+- (kBrickShapeType)brickShapeType
+{
+    return kBrickShapeRoundedBig;
+}
+
 - (void)hookUpSubViews:(NSArray *)inlineViewSubViews
 {
     self.textLabel = inlineViewSubViews[0];

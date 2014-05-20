@@ -20,32 +20,15 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import <UIKit/UIKit.h>
-#import "ProgramDefines.h"
-#import "UIDefines.h"
-#import "ScriptDeleteButton.h"
-#import "BrickCellProtocol.h"
+#import <Foundation/Foundation.h>
 
-@class Brick;
-@class BrickCellInlineView;
 @protocol BrickProtocol;
 
-@interface BrickCell : UICollectionViewCell<BrickCellProtocol>
+@protocol BrickCellProtocol <NSObject>
 
+@required
 @property (nonatomic, strong) id<BrickProtocol> brick;
 @property (nonatomic) BOOL enabled;
 - (kBrickShapeType)brickShapeType;
-
-@property (nonatomic, strong) ScriptDeleteButton *deleteButton;
-@property (nonatomic, assign) BOOL hideDeleteButton;
-
-- (void)renderSubViews;
-- (void)hookUpSubViews:(NSArray *)inlineViewSubViews; // abstract (only called internally)
-
-+ (CGFloat)brickCellHeightForBrickType:(NSUInteger)brickType;
-+ (NSString*)brickPatternImageNameForBrickType:(NSUInteger)brickType;
-+ (void)clearImageCache;
-
-- (void)setBrickEditing:(BOOL)editing;
 
 @end
