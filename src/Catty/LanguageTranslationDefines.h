@@ -118,7 +118,7 @@
 
 /*
  * -----------------------------------------------------------------------------------------------------------
- * UIViewController placeholder defines
+ * UIViewController menu title and NavigationBar defines
  * -----------------------------------------------------------------------------------------------------------
  */
 
@@ -133,6 +133,8 @@
 #define kUITableViewControllerMenuTitleBackgrounds kUIViewControllerPlaceholderTitleBackgrounds
 #define kUITableViewControllerMenuTitleLooks kUIViewControllerPlaceholderTitleLooks
 #define kUITableViewControllerMenuTitleSounds kUIViewControllerPlaceholderTitleSounds
+
+#define kUINavigationItemTitleEditMenu NSLocalizedString(@"Edit Mode", nil)
 
 /*
  * -----------------------------------------------------------------------------------------------------------

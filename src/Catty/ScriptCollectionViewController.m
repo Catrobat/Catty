@@ -41,7 +41,11 @@
 #import "PlaceHolderView.h"
 #import "BroadcastScriptCell.h"
 
-@interface ScriptCollectionViewController () <UICollectionViewDelegate, LXReorderableCollectionViewDelegateFlowLayout, LXReorderableCollectionViewDataSource, UIViewControllerTransitioningDelegate>
+@interface ScriptCollectionViewController () <UICollectionViewDelegate,
+                                              LXReorderableCollectionViewDelegateFlowLayout,
+                                              LXReorderableCollectionViewDataSource,
+                                              UIViewControllerTransitioningDelegate>
+
 @property (nonatomic, weak) IBOutlet UICollectionView *collectionView;
 @property (nonatomic, strong) BrickScaleTransition *brickScaleTransition;
 @property (nonatomic, strong) FXBlurView *dimView;
@@ -186,11 +190,10 @@
     [self.navigationController setToolbarHidden:NO animated:YES];
     self.navigationController.navigationBar.userInteractionEnabled = YES;
     [self.collectionView reloadData];
-    
+
     if  ([notification.userInfo[@"brickDeleted"] boolValue]) {
         [notification.userInfo[@"isScript"] boolValue] ? [self removeScriptSectionWithIndexPath:self.selectedIndexPath] :
                                                          [self removeBrickFromScriptCollectionViewFromIndex:self.selectedIndexPath];
-        
     } else {
         BOOL copy = [notification.userInfo[@"copy"] boolValue];
         if (copy && [notification.userInfo[@"copiedCell"] isKindOfClass:BrickCell.class]) {
@@ -239,12 +242,6 @@
         // overridden values, needs refactoring later
         brickCell.alpha = 1.0f;
         brickCell.userInteractionEnabled = YES;
-
-        @try {
-            NSLog(@"ScriptTitle: %@", script.brickTitle);
-        } @catch (NSException *exception) {
-            NSLog(@"ScriptTitle: n.a., Exception: %@", [exception description]);
-        }
     } else {
         // case it's a normal brick
         Brick *brick = [script.brickList objectAtIndex:(indexPath.row - 1)];
@@ -253,12 +250,6 @@
         brickCell.brick = brick;
         [brickCell setBrickEditing:self.isEditing];
         brickCell.hideDeleteButton = YES;
-
-        @try {
-            NSLog(@"BrickTitle: %@", brick.brickTitle);
-        } @catch (NSException *exception) {
-            NSLog(@"BrickTitle: n.a., Exception: %@", [exception description]);
-        }
     }
     brickCell.enabled = YES;
     [brickCell renderSubViews];
@@ -290,13 +281,12 @@
     }
 
     CGFloat height = [brickCellClass cellHeight];
-    // TODO: outsource all consts
-    height -= 4.0f; // reduce height for overlapping
+    height -= kBrickOverlapHeight; // reduce height for overlapping
 
-    // if last brick in last section => no overlapping and no height deduction!
+    // last brick in last section has no overlapping at the bottom
     if (indexPath.section == ([self.object.scriptList count] - 1)) {
-        if (indexPath.row == [script.brickList count]) { // there are ([brickList count]+1) cells!!
-            height += 4.0f;
+        if (indexPath.row == [script.brickList count]) { // there are ([brickList count]+1) cells
+            height += kBrickOverlapHeight;
         }
     }
     return CGSizeMake(width, height);
@@ -312,13 +302,14 @@
     return UIEdgeInsetsMake(10, 0, 5, 0);
 }
 
-- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
+{
     BrickCell *cell = (BrickCell*)[self.collectionView cellForItemAtIndexPath:indexPath];
     self.selectedIndexPath =  indexPath;
     NSLog(@"selected cell = %@", cell);
 
-    // TODO handle bricks which can be edited
-    if (!self.isEditing) {
+    // TODO: handle bricks which can be edited
+    if (! self.isEditing) {
         BrickDetailViewController *brickDetailViewcontroller = [[BrickDetailViewController alloc]initWithNibName:@"BrickDetailViewController" bundle:nil];
         brickDetailViewcontroller.scriptCollectionViewControllerToolbar = self.navigationController.toolbar;
 
@@ -343,12 +334,14 @@
     } 
 }
 
-- (void)collectionView:(UICollectionView *)collectionView didHighlightItemAtIndexPath:(NSIndexPath *)indexPath {
+- (void)collectionView:(UICollectionView *)collectionView didHighlightItemAtIndexPath:(NSIndexPath *)indexPath
+{
     BrickCell *cell = (BrickCell*)[self.collectionView cellForItemAtIndexPath:indexPath];
     cell.alpha = .7f;
 }
 
-- (void)collectionView:(UICollectionView *)collectionView didUnhighlightItemAtIndexPath:(NSIndexPath *)indexPath {
+- (void)collectionView:(UICollectionView *)collectionView didUnhighlightItemAtIndexPath:(NSIndexPath *)indexPath
+{
     BrickCell *cell = (BrickCell*)[self.collectionView cellForItemAtIndexPath:indexPath];
     cell.alpha = 1.f;
 }
@@ -435,7 +428,8 @@
                          flexItem, flexItem, invisibleButton, play, invisibleButton, flexItem, nil];
 }
 
-- (void)removeBrickFromScriptCollectionViewFromIndex:(NSIndexPath *)indexPath {
+- (void)removeBrickFromScriptCollectionViewFromIndex:(NSIndexPath *)indexPath
+{
     if (indexPath) {
         Script *script = [self.object.scriptList objectAtIndex:indexPath.section];
         if (script.brickList.count) {
@@ -449,7 +443,8 @@
     }
 }
 
-- (void)removeScriptSectionWithIndexPath:(NSIndexPath *)indexPath {
+- (void)removeScriptSectionWithIndexPath:(NSIndexPath *)indexPath
+{
     if (indexPath.section <= self.collectionView.numberOfSections) {
         Script *script = [self.object.scriptList objectAtIndex:indexPath.section];
         [self.collectionView performBatchUpdates:^{
@@ -506,7 +501,8 @@
 }
 
 
-- (void)scrollToLastbrickinCollectionView:(UICollectionView *)collectionView {
+- (void)scrollToLastbrickinCollectionView:(UICollectionView *)collectionView
+{
     NSUInteger sectionCount = self.object.scriptList.count;
     Script *script = [self.object.scriptList objectAtIndex:sectionCount - 1];
     NSUInteger brickCountInSection = script.brickList.count;
@@ -515,11 +511,12 @@
 }
 
 #pragma mark - Editing
--(void)setEditing:(BOOL)editing animated:(BOOL)animated {
+- (void)setEditing:(BOOL)editing animated:(BOOL)animated
+{
     [super setEditing:editing animated:animated];
 
     if (self.isEditing) {
-        self.navigationItem.title = NSLocalizedString(@"Edit Mode", nil);
+        self.navigationItem.title = kUINavigationItemTitleEditMenu;
          __block NSInteger section = 0;;
         for (NSUInteger idx = 0; idx < self.collectionView.numberOfSections; idx++) {
             BrickCell *controlBrickCell = (BrickCell *)[self.collectionView cellForItemAtIndexPath:[NSIndexPath indexPathForItem:0 inSection:section]];
@@ -537,14 +534,13 @@
             }];
             section++;
         }
-        
     } else {
-           self.navigationItem.title = NSLocalizedString(@"Scripts", nil);
-         __block NSInteger section = 0;
+        self.navigationItem.title = kUITableViewControllerMenuTitleScripts;
+        __block NSInteger section = 0;
         for (NSUInteger idx = 0; idx < self.collectionView.numberOfSections; idx++) {
             BrickCell *controlBrickCell = (BrickCell *)[self.collectionView cellForItemAtIndexPath:[NSIndexPath indexPathForItem:0 inSection:section]];
             [self animateStataCellDeleteButton:controlBrickCell];
-            
+
             Script *script = [self.object.scriptList objectAtIndex:idx];
             [script.brickList enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
                 *stop = section > self.collectionView.numberOfSections ? YES : NO;
@@ -553,7 +549,6 @@
                 [UIView animateWithDuration:0.25f delay:0.0f usingSpringWithDamping:0.5f initialSpringVelocity:2.0f options:UIViewAnimationOptionCurveEaseInOut animations:^{
                     cell.alpha = 1.0;
                     //   cell.transform = CGAffineTransformIdentity; // TODO dont work right at the moment with the bacghround image. fix later
-
                 } completion:NULL];
             }];
             section++;
@@ -595,7 +590,5 @@
                      }];
     
 }
-
-
 
 @end
