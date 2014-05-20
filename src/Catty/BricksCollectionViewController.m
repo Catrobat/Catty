@@ -129,11 +129,9 @@
                   layout:(UICollectionViewLayout*)collectionViewLayout
   sizeForItemAtIndexPath:(NSIndexPath*)indexPath
 {
-    CGFloat width = self.view.frame.size.width;
-    kBrickType brickType = [[BrickManager sharedBrickManager] brickTypeForCategoryType:self.brickCategoryType
-                                                                         andBrickIndex:indexPath.section];
-    CGFloat height = [BrickCell brickCellHeightForBrickType:brickType];
-    return CGSizeMake(width, height);
+    id brick = [self.selectableBricks objectAtIndex:indexPath.section];
+    NSString *brickCellName = [NSStringFromClass([brick class]) stringByAppendingString:@"Cell"];
+    return CGSizeMake(self.view.frame.size.width, [NSClassFromString(brickCellName) cellHeight]);
 }
 
 - (UICollectionViewCell*)collectionView:(UICollectionView*)collectionView

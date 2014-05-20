@@ -35,17 +35,17 @@
 @property (nonatomic, strong) id<BrickProtocol> brick;
 @property (nonatomic) BOOL enabled;
 - (kBrickShapeType)brickShapeType;
++ (CGFloat)cellHeight;
 
-@property (nonatomic, strong) ScriptDeleteButton *deleteButton;
-@property (nonatomic, assign) BOOL hideDeleteButton;
-
+- (void)hookUpSubViews:(NSArray *)inlineViewSubViews; // abstract
 - (void)renderSubViews;
-- (void)hookUpSubViews:(NSArray *)inlineViewSubViews; // abstract (only called internally)
 
-+ (CGFloat)brickCellHeightForBrickType:(NSUInteger)brickType;
 + (NSString*)brickPatternImageNameForBrickType:(NSUInteger)brickType;
 + (void)clearImageCache;
 
+// TODO: review that
+@property (nonatomic, strong) ScriptDeleteButton *deleteButton;
+@property (nonatomic, assign) BOOL hideDeleteButton;
 - (void)setBrickEditing:(BOOL)editing;
 
 @end

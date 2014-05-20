@@ -272,38 +272,31 @@
   sizeForItemAtIndexPath:(NSIndexPath*)indexPath
 {
     CGFloat width = self.view.frame.size.width;
-    kBrickCategoryType categoryType = kControlBrick;
-    NSInteger brickType = kProgramStartedBrick;
     Script *script = [self.object.scriptList objectAtIndex:indexPath.section];
     if (! script) {
         NSError(@"This should never happen");
         abort();
     }
 
-    BrickManager *brickManager = [BrickManager sharedBrickManager];
+    Class brickCellClass = NULL;
     if (indexPath.row == 0) {
         // case it's a script brick
-        categoryType = kControlBrick;
-        brickType = [brickManager brickTypeForClassName:NSStringFromClass([script class])];
+        NSString *scriptSubClassName = [NSStringFromClass([script class]) stringByAppendingString:@"Cell"];
+        brickCellClass = NSClassFromString(scriptSubClassName);
     } else {
         // case it's a normal brick
         Brick *brick = [script.brickList objectAtIndex:(indexPath.row - 1)];
-        brickType = [brickManager brickTypeForClassName:NSStringFromClass([brick class])];
-        categoryType = [brickManager brickCategoryTypeForBrickType:brickType];
+        NSString *brickSubClassName = [NSStringFromClass([brick class]) stringByAppendingString:@"Cell"];
+        brickCellClass = NSClassFromString(brickSubClassName);
     }
-    CGFloat height = [BrickCell brickCellHeightForBrickType:brickType];
 
+    CGFloat height = [brickCellClass cellHeight];
     // TODO: outsource all consts
     height -= 4.0f; // reduce height for overlapping
 
     // if last brick in last section => no overlapping and no height deduction!
     if (indexPath.section == ([self.object.scriptList count] - 1)) {
-        Script *script = [self.object.scriptList objectAtIndex:indexPath.section];
-        if (! script) {
-            NSError(@"This should never happen");
-            abort();
-        }
-        if (indexPath.row == [script.brickList count]) { // NOTE: there are ([brickList count]+1) cells!!
+        if (indexPath.row == [script.brickList count]) { // there are ([brickList count]+1) cells!!
             height += 4.0f;
         }
     }
@@ -324,17 +317,17 @@
     BrickCell *cell = (BrickCell*)[self.collectionView cellForItemAtIndexPath:indexPath];
     self.selectedIndexPath =  indexPath;
     NSLog(@"selected cell = %@", cell);
-    
-    // TDOD handle bricks which can be edited
+
+    // TODO handle bricks which can be edited
     if (!self.isEditing) {
         BrickDetailViewController *brickDetailViewcontroller = [[BrickDetailViewController alloc]initWithNibName:@"BrickDetailViewController" bundle:nil];
         brickDetailViewcontroller.scriptCollectionViewControllerToolbar = self.navigationController.toolbar;
-        
+
         NSString *brickName =  NSStringFromClass(cell.class);
         if (brickName.length) {
             brickName = [brickName substringToIndex:brickName.length - 4];
         }
-        
+
         brickDetailViewcontroller.brickName = brickName;
         brickDetailViewcontroller.brickCell = cell;
         self.brickScaleTransition.cell = cell;

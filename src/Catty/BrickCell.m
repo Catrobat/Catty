@@ -161,13 +161,13 @@
 - (void)setupView
 {
     CGRect frame = self.frame;
-    frame.size.height = [BrickCell brickCellHeightForBrickType:self.brickType];
+    frame.size.height = [[self class] cellHeight];
     self.frame = frame;
 }
 
 - (void)setupInlineView
 {
-    CGFloat inlineViewHeight = [BrickCell brickCellHeightForBrickType:self.brickType];
+    CGFloat inlineViewHeight = [[self class] cellHeight];
     kBrickShapeType brickShapeType = [self brickShapeType];
     CGFloat inlineViewOffsetY = 0.0f;
     if (brickShapeType == kBrickShapeNormal) {
@@ -555,50 +555,15 @@
 }
 
 #pragma mark - helpers
-+ (CGFloat)brickCellHeightForBrickType:(NSUInteger)brickType
-{
-    BrickManager *brickManager = [BrickManager sharedBrickManager];
-    kBrickCategoryType categoryType = [brickManager brickCategoryTypeForBrickType:brickType];
-    NSUInteger brickTypeIndex = [brickManager brickIndexForBrickType:brickType];
-    if (categoryType == kControlBrick) {
-        if (brickTypeIndex >= [kControlBrickHeights count]) {
-            NSError(@"unknown brick type given");
-            abort();
-        }
-        return [kControlBrickHeights[brickTypeIndex] floatValue];
-    } else if (categoryType == kMotionBrick) {
-        if (brickTypeIndex >= [kMotionBrickHeights count]) {
-            NSError(@"unknown brick type given");
-            abort();
-        }
-        return [kMotionBrickHeights[brickTypeIndex] floatValue];
-    } else if (categoryType == kSoundBrick) {
-        if (brickTypeIndex >= [kSoundBrickHeights count]) {
-            NSError(@"unknown brick type given");
-            abort();
-        }
-        return [kSoundBrickHeights[brickTypeIndex] floatValue];
-    } else if (categoryType == kLookBrick) {
-        if (brickTypeIndex >= [kLookBrickHeights count]) {
-            NSError(@"unknown brick type given");
-            abort();
-        }
-        return [kLookBrickHeights[brickTypeIndex] floatValue];
-    } else if (categoryType == kVariableBrick) {
-        if (brickTypeIndex >= [kVariableBrickHeights count]) {
-            NSError(@"unknown brick type given");
-            abort();
-        }
-        return [kVariableBrickHeights[brickTypeIndex] floatValue];
-    }
-    NSError(@"unknown brick category type given");
-    abort();
-}
-
 // BrickCells that do not have default shape type have to override this method in their corresponding subclass
 - (kBrickShapeType)brickShapeType
 {
     return kBrickShapeNormal;
+}
+
++ (CGFloat)cellHeight
+{
+    return kBrickHeight1h;
 }
 
 #pragma mark - cell editing

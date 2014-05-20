@@ -194,6 +194,13 @@ typedef NS_ENUM(NSInteger, kBrickShapeType) {
     kBrickShapeRoundedBig = 2
 };
 
+// brick heights
+#define kBrickHeight1h 44.0f
+#define kBrickHeight2h 71.0f
+#define kBrickHeight3h 94.0f
+#define kBrickHeightControl1h 62.0f
+#define kBrickHeightControl2h 88.0f
+
 // ----------------- REFACTOR BEGIN -------------------
 
 // Note:
@@ -246,22 +253,6 @@ typedef NS_ENUM(NSInteger, kBrickShapeType) {
     @"brick_orange_1h"     /* loop end        */\
 ]
 
-#define kControlBrickHeights @[\
-    kBrickHeightControl1h, /* program started */\
-    kBrickHeightControl1h, /* tapped          */\
-    kBrickHeight1h,        /* wait            */\
-    kBrickHeightControl2h, /* receive         */\
-    kBrickHeight2h,        /* broadcast       */\
-    kBrickHeight2h,        /* broadcast wait  */\
-    kBrickHeight2h,        /* note            */\
-    kBrickHeight1h,        /* forever         */\
-    kBrickHeight1h,        /* if              */\
-    kBrickHeight1h,        /* else            */\
-    kBrickHeight1h,        /* if end          */\
-    kBrickHeight1h,        /* repeat          */\
-    kBrickHeight1h         /* loop end        */\
-]
-
 // motion bricks
 #define kMotionBrickNameParams @[\
     @[@"{FLOAT;range=(-inf,inf)}", @"{FLOAT;range=(-inf,inf)}"], /* place at           */\
@@ -297,23 +288,6 @@ typedef NS_ENUM(NSInteger, kBrickShapeType) {
     @"brick_blue_1h"       /* come to front      */\
 ]
 
-#define kMotionBrickHeights @[\
-    kBrickHeight2h,        /* place at           */\
-    kBrickHeight1h,        /* set X              */\
-    kBrickHeight1h,        /* set Y              */\
-    kBrickHeight1h,        /* change X by N      */\
-    kBrickHeight1h,        /* change Y by N      */\
-    kBrickHeight1h,        /* if on edge bounce  */\
-    kBrickHeight1h,        /* move N steps       */\
-    kBrickHeight1h,        /* turn left          */\
-    kBrickHeight1h,        /* turn right         */\
-    kBrickHeight1h,        /* point in direction */\
-    kBrickHeight2h,        /* point to brick     */\
-    kBrickHeight3h,        /* glide to brick     */\
-    kBrickHeight1h,        /* go N steps back    */\
-    kBrickHeight1h         /* come to front      */\
-]
-
 // sound bricks
 #define kSoundBrickNameParams @[\
     @"{SOUND}",                     /* play sound         */\
@@ -329,14 +303,6 @@ typedef NS_ENUM(NSInteger, kBrickShapeType) {
     @"brick_violet_1h",    /* set volume to      */\
     @"brick_violet_1h",    /* change volume to   */\
     @"brick_violet_2h"     /* speak              */\
-]
-
-#define kSoundBrickHeights @[\
-    kBrickHeight2h,        /* play sound         */\
-    kBrickHeight1h,        /* stop all sounds    */\
-    kBrickHeight1h,        /* set volume to      */\
-    kBrickHeight1h,        /* change volume to   */\
-    kBrickHeight2h         /* speak              */\
 ]
 
 // look bricks
@@ -368,20 +334,6 @@ typedef NS_ENUM(NSInteger, kBrickShapeType) {
     @"brick_green_1h"      /* clear graphic effect     */\
 ]
 
-#define kLookBrickHeights @[\
-    kBrickHeight2h,        /* set background           */\
-    kBrickHeight1h,        /* next background          */\
-    kBrickHeight1h,        /* set size to              */\
-    kBrickHeight1h,        /* change size by N         */\
-    kBrickHeight1h,        /* hide                     */\
-    kBrickHeight1h,        /* show                     */\
-    kBrickHeight2h,        /* set ghost effect         */\
-    kBrickHeight2h,        /* change ghost effect by N */\
-    kBrickHeight2h,        /* set brightness           */\
-    kBrickHeight2h,        /* change brightness by N   */\
-    kBrickHeight1h         /* clear graphic effect     */\
-]
-
 // variable bricks
 #define kVariableBrickNameParams @[\
     @[@"{VARIABLE}",@"{FLOAT;range=(-inf,inf)}"],    /* set size to              */\
@@ -391,11 +343,6 @@ typedef NS_ENUM(NSInteger, kBrickShapeType) {
 #define kVariableBrickImageNames @[\
     @"brick_red_3h",       /* set variable    */\
     @"brick_red_3h"        /* change variable */\
-]
-
-#define kVariableBrickHeights @[\
-    kBrickHeight3h,        /* set variable    */\
-    kBrickHeight3h         /* change variable */\
 ]
 
 // brick subview const values
@@ -415,13 +362,6 @@ typedef NS_ENUM(NSInteger, kBrickShapeType) {
 #define kBrickInlineViewCanvasOffsetX 0.0f
 #define kBrickInlineViewCanvasOffsetY 0.0f
 #define kBrickBackgroundImageNameSuffix @"_bg"
-
-// brick heights
-#define kBrickHeight1h @44
-#define kBrickHeight2h @71
-#define kBrickHeight3h @94
-#define kBrickHeightControl1h @62
-#define kBrickHeightControl2h @88
 
 #define kBrickLabelFontSize 16.0f
 #define kBrickTextFieldFontSize 15.0f

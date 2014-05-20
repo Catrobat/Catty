@@ -35,6 +35,11 @@
     return kBrickShapeRoundedSmall;
 }
 
++ (CGFloat)cellHeight
+{
+    return kBrickHeightControl1h;
+}
+
 - (void)hookUpSubViews:(NSArray *)inlineViewSubViews
 {
     self.textLabel = inlineViewSubViews[0];

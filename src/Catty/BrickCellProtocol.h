@@ -30,5 +30,6 @@
 @property (nonatomic, strong) id<BrickProtocol> brick;
 @property (nonatomic) BOOL enabled;
 - (kBrickShapeType)brickShapeType;
++ (CGFloat)cellHeight;
 
 @end
