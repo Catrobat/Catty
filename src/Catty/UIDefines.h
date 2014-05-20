@@ -22,8 +22,8 @@
 
 #import "LanguageTranslationDefines.h"
 
-// TODO: which characters in program, object, image names do we have to support?
-#define kTextFieldAllowedCharacters @"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz_- 1234567890"
+// which characters in program, object, image names do we have to support?
+#define kTextFieldAllowedCharacters @"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyzäöü_#?!()=+-.:&%$€ 1234567890"
 
 #define kMenuImageNameContinue @"continue"
 #define kMenuImageNameNew @"new"
@@ -39,6 +39,20 @@
 #define kIphone5ScreenHeight 568.0f
 #define kIphone4ScreenHeight 480.0f
 #define kAddScriptCategoryTableViewBottomMargin 15.0f
+
+// delete button bricks
+#define kBrickDeleteButtonSize 22.0f
+#define kDeleteButtonOffset 1.0f
+
+// Notifications
+static NSString *const kBrickCellAddedNotification = @"BrickCellAddedNotification";
+static NSString *const kSoundAddedNotification = @"SoundAddedNotification";
+static NSString *const kBrickDetailViewDismissed = @"kBrickDetailViewDismissed";
+
+// Notification keys
+static NSString *const kUserInfoKeyBrickCell = @"UserInfoKeyBrickCell";
+static NSString *const kUserInfoSpriteObject = @"UserInfoSpriteObject";
+static NSString *const kUserInfoSound = @"UserInfoSound";
 
 // ---------------------- BRICK CONFIG ---------------------------------------
 // brick categories
@@ -230,100 +244,3 @@ typedef NS_ENUM(NSInteger, kBrickShapeType) {
 #define kBrickInputFieldRightMargin 4.0f
 #define kBrickInputFieldMinRowHeight (kBrickInputFieldHeight + 4.0f)
 #define kDefaultImageCellBorderWidth 1.0f
-
-// delete button bricks
-#define kBrickDeleteButtonSize 22.0f
-
-// ----------------- REFACTOR BEGIN -------------------
-
-// Note:
-// -----------------------------------------------------------------------------------------------------------
-// \n                  ... NewLine
-// {INT;range=(X,Y)}   ... UITextField (NSInteger), inf ... infinite
-// {FLOAT;range=(X,Y)} ... UITextField (float), inf ... infinite
-// {MESSAGE}           ... UIPicker (select message)
-// {OBJECT}            ... UIPicker (select object)
-// {SOUND}             ... UIPicker (select sound)
-// {LOOK}              ... UIPicker (select sound)
-// {VARIABLE}          ... UIPicker (select variable)
-// {TEXT}              ... UITextField (NSString)
-// Examples for possible ranges:
-// {FLOAT;range=(inf, 0.0f]} ... All negative float numbers including (!) zero
-// {FLOAT;range=(inf, 0.0f)} ... All negative float numbers excluding (!) zero
-// {INT;range=(0, 11]}       ... All positive integer numbers 1-11
-// {INT;range=[0, 11)}       ... All positive integer numbers 0-10
-#define kControlBrickNameParams @[\
-    @[],                            /* program started */\
-    @[],                            /* tapped          */\
-    @"{FLOAT;range=(0.0f,inf)}",    /* wait            */\
-    @"{MESSAGE}",                   /* receive         */\
-    @"{MESSAGE}",                   /* broadcast       */\
-    @"{MESSAGE}",                   /* broadcast wait  */\
-    @"{TEXT}",                      /* note            */\
-    @[],                            /* forever         */\
-    @"{FLOAT;range=(-inf,inf)}",    /* if              */\
-    @[],                            /* else            */\
-    @[],                            /* if end          */\
-    @"{INT;range=[0,inf)}",         /* repeat          */\
-    @[]                             /* loop end        */\
-]
-
-// motion bricks
-#define kMotionBrickNameParams @[\
-    @[@"{FLOAT;range=(-inf,inf)}", @"{FLOAT;range=(-inf,inf)}"], /* place at           */\
-    @"{FLOAT;range=(-inf,inf)}",                                 /* set X              */\
-    @"{FLOAT;range=(-inf,inf)}",                                 /* set Y              */\
-    @"{FLOAT;range=(-inf,inf)}",                                 /* change X by N      */\
-    @"{FLOAT;range=(-inf,inf)}",                                 /* change Y by N      */\
-    @[],                                                         /* if on edge bounce  */\
-    @"{INT;range=[0,inf)}",                                      /* move N steps       */\
-    @"{FLOAT;range=(-inf,inf)}",                                 /* turn left          */\
-    @"{FLOAT;range=(-inf,inf)}",                                 /* turn right         */\
-    @"{FLOAT;range=(-inf,inf)}",                                 /* point in direction */\
-    @"{OBJECT}",                                                 /* point to brick     */\
-    @[@"{FLOAT;range=(0,inf)}", @"{FLOAT;range=(-inf,inf)}", @"{FLOAT;range=(-inf,inf)}"], /* glide to brick     */\
-    @"{INT;range=[0,inf)}",                                      /* go N steps back    */\
-    @[]                                                          /* come to front      */\
-]
-
-// sound bricks
-#define kSoundBrickNameParams @[\
-    @"{SOUND}",                     /* play sound         */\
-    @[],                            /* stop all sounds    */\
-    @"{FLOAT;range=(-inf,inf)}",    /* set volume to      */\
-    @"{FLOAT;range=(-inf,inf)}",    /* change volume to   */\
-    @"{TEXT}"                       /* speak              */\
-]
-
-// look bricks
-#define kLookBrickNameParams @[\
-    @"{LOOK}",                      /* set background           */\
-    @[],                            /* next background          */\
-    @"{FLOAT;range=(-inf,inf)}",    /* set size to              */\
-    @"{FLOAT;range=(-inf,inf)}",    /* change size by N         */\
-    @[],                            /* hide                     */\
-    @[],                            /* show                     */\
-    @"{FLOAT;range=(-inf,inf)}",    /* set ghost effect         */\
-    @"{FLOAT;range=(-inf,inf)}",    /* change ghost effect by N */\
-    @"{FLOAT;range=(-inf,inf)}",    /* set brightness           */\
-    @"{FLOAT;range=(-inf,inf)}",    /* change brightness by N   */\
-    @[]                             /* clear graphic effect     */\
-]
-
-// variable bricks
-#define kVariableBrickNameParams @[\
-    @[@"{VARIABLE}",@"{FLOAT;range=(-inf,inf)}"],    /* set size to              */\
-    @[@"{VARIABLE}",@"{FLOAT;range=(-inf,inf)}"]     /* change size by N         */\
-]
-
-// ----------------- REFACTOR END -------------------
-
-// Notifications
-static NSString *const kBrickCellAddedNotification = @"BrickCellAddedNotification";
-static NSString *const kSoundAddedNotification = @"SoundAddedNotification";
-static NSString *const kBrickDetailViewDismissed = @"kBrickDetailViewDismissed";
-
-// Notification keys
-static NSString *const kUserInfoKeyBrickCell = @"UserInfoKeyBrickCell";
-static NSString *const kUserInfoSpriteObject = @"UserInfoSpriteObject";
-static NSString *const kUserInfoSound = @"UserInfoSound";
