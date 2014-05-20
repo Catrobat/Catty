@@ -38,6 +38,9 @@
 
 @end
 
+#define kCollectionViewHeight 245.0f
+#define kCollectionViewYOffset 35.0f
+
 @implementation BricksCollectionViewController
 
 - (void)viewDidLoad
@@ -69,14 +72,20 @@
     
     self.collectionView.alwaysBounceVertical = YES;
     self.collectionView.delaysContentTouches = NO;
+    self.collectionView.frame = CGRectMake(0.0f, kCollectionViewYOffset, self.view.bounds.size.width, kCollectionViewHeight);
     
     self.blurbackgroundView = [[FXBlurView alloc]initWithFrame:self.view.bounds];
     self.blurbackgroundView.tintColor = [UIColor colorWithRed:0.0f green:0.0f blue:0.0f alpha:1.0f];
     self.blurbackgroundView.blurRadius = 40.f;
-    self.blurbackgroundView.updateInterval = 0.1f;
+    self.blurbackgroundView.updateInterval = 0.3f;
     self.blurbackgroundView.underlyingView = self.scriptCollectionViewController.collectionView;
     [self.view addSubview:self.blurbackgroundView];
     [self.view sendSubviewToBack:self.blurbackgroundView];
+    
+    CALayer *overlayLayer = [CALayer layer];
+    overlayLayer.frame = self.blurbackgroundView.bounds;
+    overlayLayer.backgroundColor = [UIColor colorWithWhite:0.0 alpha:0.7f].CGColor;
+    [self.blurbackgroundView.superview.layer insertSublayer:overlayLayer atIndex:1];
     
     self.handleView = [[UIView alloc]initWithFrame:CGRectMake((CGRectGetWidth(self.view.bounds) / 2.0f) - (kHandleImageWidth / 2.0f), 10.0f, kHandleImageWidth, kHandleImageHeight)];
     UIImage *handleImage = [UIImage imageNamed:@"handle_image"];
@@ -93,6 +102,7 @@
 }
 
 #pragma mark - getters and setters
+
 - (NSArray*)selectableBricksSortedIndexes
 {
     if (! _selectableBricksSortedIndexes) {
@@ -201,9 +211,7 @@
                         layout:(UICollectionViewLayout *)collectionViewLayout
         insetForSectionAtIndex:(NSInteger)section
 {
-    UIEdgeInsets insets = UIEdgeInsetsZero;
-    
-    return insets = section == 0 ?  UIEdgeInsetsMake(40.0f, 0.0f, 0.0f, 0.0f) : UIEdgeInsetsMake(0.0f, 0.0f, 0.0f, 0.0f);
+    return UIEdgeInsetsMake(0.0f, 0.0f, 0.0f, 0.0f);
 }
 
 - (CGSize)collectionView:(UICollectionView*)collectionView

@@ -45,13 +45,12 @@
            
             beginFrame = toVC.view.frame;
             beginFrame.origin.y = CGRectGetHeight(toVC.view.frame);
-            endFrame.origin.y += 350.0f;
+            endFrame.origin.y += fromVC.view.bounds.size.height / 2.0f;
 
             toVC.view.frame = beginFrame;
-        
-            [UIView animateWithDuration:0.7f delay:0.0f usingSpringWithDamping:0.5f initialSpringVelocity:1.0f options:UIViewAnimationOptionCurveEaseInOut animations:^{
+            
+            [UIView animateWithDuration:0.6f delay:0.0f usingSpringWithDamping:0.6f initialSpringVelocity:20.0f options:UIViewAnimationOptionCurveEaseInOut animations:^{
                 toVC.view.frame = endFrame;
-                
             } completion:^(BOOL finished) {
                 [transitionContext completeTransition:YES];
             }];

@@ -54,7 +54,8 @@
 @property (nonatomic, strong) NSIndexPath *addedIndexPath;
 @property (nonatomic, strong) NSIndexPath *selectedIndexPath;
 @property (nonatomic, strong) AHKActionSheet *brickSelectionMenu;
-
+@property (nonatomic, weak) BricksCollectionViewController *bricksCollectionViewController;
+@property (nonatomic, assign) BOOL brickSelectionActive;
 
 @end
 
@@ -72,6 +73,33 @@
     for (NSString *brickTypeName in allCategoriesAndBrickTypes) {
         [self.collectionView registerClass:NSClassFromString([brickTypeName stringByAppendingString:@"Cell"]) forCellWithReuseIdentifier:brickTypeName];
     }
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    NSNotificationCenter *dnc = [NSNotificationCenter defaultCenter];
+    [dnc addObserver:self selector:@selector(brickAdded:) name:kBrickCellAddedNotification object:nil];
+    [dnc addObserver:self selector:@selector(brickDetailViewDismissed:) name:kBrickDetailViewDismissed object:nil];
+}
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    NSNotificationCenter *dnc = [NSNotificationCenter defaultCenter];
+    [dnc removeObserver:self name:kBrickCellAddedNotification object:nil];
+    [dnc removeObserver:self name:kBrickDetailViewDismissed object:nil];
+    
+    if (!self.bricksCollectionViewController.isBeingDismissed) {
+        [self.bricksCollectionViewController dismissViewControllerAnimated:YES completion:NULL];
+    }
+}
+
+
+- (void)didReceiveMemoryWarning
+{
+    [super didReceiveMemoryWarning];
+    [BrickCell clearImageCache];
 }
 
 #pragma mark - Getters and Setters
@@ -140,17 +168,11 @@
 
 - (void)showBrickCategoryCVC:(kBrickCategoryType)type
 {
-    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"iPhone" bundle:nil];
-    BricksCollectionViewController *brickCategoryCVC;
-    brickCategoryCVC = (BricksCollectionViewController*)[storyboard instantiateViewControllerWithIdentifier:@"BricksDetailViewCollectionViewController"];
-    brickCategoryCVC.brickCategoryType = type;
-    brickCategoryCVC.object = self.object;
-    brickCategoryCVC.scriptCollectionViewController = self;
-    brickCategoryCVC.transitioningDelegate = self;
-    brickCategoryCVC.modalPresentationStyle = UIModalPresentationCustom;
-    
-    [self presentViewController:brickCategoryCVC animated:YES
-                                              completion:NULL];
+    [self setBricksCollectionViewControllerCategoryTyp:type];
+    [self presentViewController:self.bricksCollectionViewController animated:YES completion:^{
+        self.brickSelectionActive = YES;
+        [self.navigationController setNavigationBarHidden:YES animated:YES];
+    }];
 }
 
 
@@ -173,6 +195,8 @@
     return _dimView;
 }
 
+
+
 #pragma mark - initialization
 - (void)setupCollectionView
 {
@@ -194,30 +218,30 @@
     
     self.brickScaleTransition = [BrickScaleTransition new];
     self.brickSelectModelTransition = [BrickSelectModalTransition new];
+    
+    self.brickSelectionActive = NO;
 }
 
-- (void)viewWillAppear:(BOOL)animated
+- (BricksCollectionViewController *)bricksCollectionViewController
 {
-    [super viewWillAppear:animated];
-    NSNotificationCenter *dnc = [NSNotificationCenter defaultCenter];
-    [dnc addObserver:self selector:@selector(brickAdded:) name:kBrickCellAddedNotification object:nil];
-    [dnc addObserver:self selector:@selector(brickDetailViewDismissed:) name:kBrickDetailViewDismissed object:nil];
+    if (!_bricksCollectionViewController) {
+        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"iPhone" bundle:nil];
+        _bricksCollectionViewController = (BricksCollectionViewController*)[storyboard      instantiateViewControllerWithIdentifier:@"BricksDetailViewCollectionViewController"];
+        _bricksCollectionViewController.scriptCollectionViewController = self;
+        _bricksCollectionViewController.transitioningDelegate = self;
+        _bricksCollectionViewController.modalPresentationStyle = UIModalPresentationCustom;
+    }
+    return _bricksCollectionViewController;
 }
 
-- (void)viewWillDisappear:(BOOL)animated
+- (void)setBricksCollectionViewControllerCategoryTyp:(kBrickCategoryType)type
 {
-    [super viewWillDisappear:animated];
-    NSNotificationCenter *dnc = [NSNotificationCenter defaultCenter];
-    [dnc removeObserver:self name:kBrickCellAddedNotification object:nil];
-    [dnc removeObserver:self name:kBrickDetailViewDismissed object:nil];
+    if (self.bricksCollectionViewController) {
+        self.bricksCollectionViewController.brickCategoryType = type;
+        self.bricksCollectionViewController.object = self.object;
+    }
 }
 
-
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    [BrickCell clearImageCache];
-}
 
 #pragma mark - UIViewControllerAnimatedTransitioning delegate
 - (id<UIViewControllerAnimatedTransitioning>)animationControllerForPresentedController:(UIViewController *)presented
@@ -243,6 +267,7 @@
         return self.brickScaleTransition;
     } else {
         if ([dismissed isKindOfClass:[BricksCollectionViewController class]]) {
+            self.brickSelectionActive = NO;
             self.brickSelectModelTransition.transitionMode = TransitionModeDismiss;
             return self.brickSelectModelTransition;
         }
@@ -284,6 +309,9 @@
             [self addBrickCellAction:notification.userInfo[kUserInfoKeyBrickCell] copyBrick:NO completionBlock:^{
                 dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
                     [weakself scrollToLastbrickinCollectionView:weakCollectionView completion:NULL];
+                    if (weakself.navigationController.navigationBar.hidden) {
+                         [weakself.navigationController setNavigationBarHidden:NO animated:YES];
+                    }
                 });
             }];
         }
@@ -431,7 +459,7 @@
 //    NSLog(@"selected cell = %@", cell);
     
     // TDOD handle bricks which can be edited
-    if (!self.isEditing) {
+    if (!self.isEditing && !self.brickSelectionActive) {
         BrickDetailViewController *brickDetailViewcontroller = [[BrickDetailViewController alloc]initWithNibName:@"BrickDetailViewController" bundle:nil];
                 
         brickDetailViewcontroller.brickCell = cell;
