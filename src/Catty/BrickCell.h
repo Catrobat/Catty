@@ -39,8 +39,6 @@
 
 - (void)hookUpSubViews:(NSArray *)inlineViewSubViews; // abstract
 - (void)renderSubViews;
-
-+ (NSString*)brickPatternImageNameForBrickType:(NSUInteger)brickType;
 + (void)clearImageCache;
 
 // TODO: review that

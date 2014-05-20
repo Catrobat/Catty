@@ -42,7 +42,7 @@
 
 // ---------------------- BRICK CONFIG ---------------------------------------
 // brick categories
-typedef NS_ENUM(NSInteger, kBrickCategoryType) {
+typedef NS_ENUM(NSUInteger, kBrickCategoryType) {
     kControlBrick              = 0,
     kMotionBrick               = 1,
     kSoundBrick                = 2,
@@ -201,150 +201,6 @@ typedef NS_ENUM(NSInteger, kBrickShapeType) {
 #define kBrickHeightControl1h 62.0f
 #define kBrickHeightControl2h 88.0f
 
-// ----------------- REFACTOR BEGIN -------------------
-
-// Note:
-// -----------------------------------------------------------------------------------------------------------
-// \n                  ... NewLine
-// {INT;range=(X,Y)}   ... UITextField (NSInteger), inf ... infinite
-// {FLOAT;range=(X,Y)} ... UITextField (float), inf ... infinite
-// {MESSAGE}           ... UIPicker (select message)
-// {OBJECT}            ... UIPicker (select object)
-// {SOUND}             ... UIPicker (select sound)
-// {LOOK}              ... UIPicker (select sound)
-// {VARIABLE}          ... UIPicker (select variable)
-// {TEXT}              ... UITextField (NSString)
-
-// Examples for possible ranges:
-// {FLOAT;range=(inf, 0.0f]} ... All negative float numbers including (!) zero
-// {FLOAT;range=(inf, 0.0f)} ... All negative float numbers excluding (!) zero
-// {INT;range=(0, 11]}       ... All positive integer numbers 1-11
-// {INT;range=[0, 11)}       ... All positive integer numbers 0-10
-
-#define kControlBrickNameParams @[\
-    @[],                            /* program started */\
-    @[],                            /* tapped          */\
-    @"{FLOAT;range=(0.0f,inf)}",    /* wait            */\
-    @"{MESSAGE}",                   /* receive         */\
-    @"{MESSAGE}",                   /* broadcast       */\
-    @"{MESSAGE}",                   /* broadcast wait  */\
-    @"{TEXT}",                      /* note            */\
-    @[],                            /* forever         */\
-    @"{FLOAT;range=(-inf,inf)}",    /* if              */\
-    @[],                            /* else            */\
-    @[],                            /* if end          */\
-    @"{INT;range=[0,inf)}",         /* repeat          */\
-    @[]                             /* loop end        */\
-]
-
-#define kControlBrickImageNames @[\
-    @"brick_control_1h",   /* program started */\
-    @"brick_control_1h",   /* tapped          */\
-    @"brick_orange_1h",    /* wait            */\
-    @"brick_control_2h",   /* receive         */\
-    @"brick_orange_2h",    /* broadcast       */\
-    @"brick_orange_2h",    /* broadcast wait  */\
-    @"brick_orange_2h",    /* note            */\
-    @"brick_orange_1h",    /* forever         */\
-    @"brick_orange_1h",    /* if              */\
-    @"brick_orange_1h",    /* else            */\
-    @"brick_orange_1h",    /* if end          */\
-    @"brick_orange_1h",    /* repeat          */\
-    @"brick_orange_1h"     /* loop end        */\
-]
-
-// motion bricks
-#define kMotionBrickNameParams @[\
-    @[@"{FLOAT;range=(-inf,inf)}", @"{FLOAT;range=(-inf,inf)}"], /* place at           */\
-    @"{FLOAT;range=(-inf,inf)}",                                 /* set X              */\
-    @"{FLOAT;range=(-inf,inf)}",                                 /* set Y              */\
-    @"{FLOAT;range=(-inf,inf)}",                                 /* change X by N      */\
-    @"{FLOAT;range=(-inf,inf)}",                                 /* change Y by N      */\
-    @[],                                                         /* if on edge bounce  */\
-    @"{INT;range=[0,inf)}",                                      /* move N steps       */\
-    @"{FLOAT;range=(-inf,inf)}",                                 /* turn left          */\
-    @"{FLOAT;range=(-inf,inf)}",                                 /* turn right         */\
-    @"{FLOAT;range=(-inf,inf)}",                                 /* point in direction */\
-    @"{OBJECT}",                                                 /* point to brick     */\
-    @[@"{FLOAT;range=(0,inf)}", @"{FLOAT;range=(-inf,inf)}", @"{FLOAT;range=(-inf,inf)}"], /* glide to brick     */\
-    @"{INT;range=[0,inf)}",                                      /* go N steps back    */\
-    @[]                                                          /* come to front      */\
-]
-
-#define kMotionBrickImageNames @[\
-    @"brick_blue_2h",      /* place at           */\
-    @"brick_blue_1h",      /* set X              */\
-    @"brick_blue_1h",      /* set Y              */\
-    @"brick_blue_1h",      /* change X by N      */\
-    @"brick_blue_1h",      /* change Y by N      */\
-    @"brick_blue_1h",      /* if on edge bounce  */\
-    @"brick_blue_1h",      /* move N steps       */\
-    @"brick_blue_1h",      /* turn left          */\
-    @"brick_blue_1h",      /* turn right         */\
-    @"brick_blue_1h",      /* point in direction */\
-    @"brick_blue_2h",      /* point to brick     */\
-    @"brick_blue_3h",      /* glide to brick     */\
-    @"brick_blue_1h",      /* go N steps back    */\
-    @"brick_blue_1h"       /* come to front      */\
-]
-
-// sound bricks
-#define kSoundBrickNameParams @[\
-    @"{SOUND}",                     /* play sound         */\
-    @[],                            /* stop all sounds    */\
-    @"{FLOAT;range=(-inf,inf)}",    /* set volume to      */\
-    @"{FLOAT;range=(-inf,inf)}",    /* change volume to   */\
-    @"{TEXT}"                       /* speak              */\
-]
-
-#define kSoundBrickImageNames @[\
-    @"brick_violet_2h",    /* play sound         */\
-    @"brick_violet_1h",    /* stop all sounds    */\
-    @"brick_violet_1h",    /* set volume to      */\
-    @"brick_violet_1h",    /* change volume to   */\
-    @"brick_violet_2h"     /* speak              */\
-]
-
-// look bricks
-#define kLookBrickNameParams @[\
-    @"{LOOK}",                      /* set background           */\
-    @[],                            /* next background          */\
-    @"{FLOAT;range=(-inf,inf)}",    /* set size to              */\
-    @"{FLOAT;range=(-inf,inf)}",    /* change size by N         */\
-    @[],                            /* hide                     */\
-    @[],                            /* show                     */\
-    @"{FLOAT;range=(-inf,inf)}",    /* set ghost effect         */\
-    @"{FLOAT;range=(-inf,inf)}",    /* change ghost effect by N */\
-    @"{FLOAT;range=(-inf,inf)}",    /* set brightness           */\
-    @"{FLOAT;range=(-inf,inf)}",    /* change brightness by N   */\
-    @[]                             /* clear graphic effect     */\
-]
-
-#define kLookBrickImageNames @[\
-    @"brick_green_2h",     /* set background           */\
-    @"brick_green_1h",     /* next background          */\
-    @"brick_green_1h",     /* set size to              */\
-    @"brick_green_1h",     /* change size by N         */\
-    @"brick_green_1h",     /* hide                     */\
-    @"brick_green_1h",     /* show                     */\
-    @"brick_green_2h",     /* set ghost effect         */\
-    @"brick_green_2h",     /* change ghost effect by N */\
-    @"brick_green_2h",     /* set brightness           */\
-    @"brick_green_2h",     /* change brightness by N   */\
-    @"brick_green_1h"      /* clear graphic effect     */\
-]
-
-// variable bricks
-#define kVariableBrickNameParams @[\
-    @[@"{VARIABLE}",@"{FLOAT;range=(-inf,inf)}"],    /* set size to              */\
-    @[@"{VARIABLE}",@"{FLOAT;range=(-inf,inf)}"]     /* change size by N         */\
-]
-
-#define kVariableBrickImageNames @[\
-    @"brick_red_3h",       /* set variable    */\
-    @"brick_red_3h"        /* change variable */\
-]
-
 // brick subview const values
 #define kBrickInlineViewOffsetX 54.0f
 #define kBrickShapeNormalInlineViewOffsetY 3.0f
@@ -377,6 +233,88 @@ typedef NS_ENUM(NSInteger, kBrickShapeType) {
 
 // delete button bricks
 #define kBrickDeleteButtonSize 22.0f
+
+// ----------------- REFACTOR BEGIN -------------------
+
+// Note:
+// -----------------------------------------------------------------------------------------------------------
+// \n                  ... NewLine
+// {INT;range=(X,Y)}   ... UITextField (NSInteger), inf ... infinite
+// {FLOAT;range=(X,Y)} ... UITextField (float), inf ... infinite
+// {MESSAGE}           ... UIPicker (select message)
+// {OBJECT}            ... UIPicker (select object)
+// {SOUND}             ... UIPicker (select sound)
+// {LOOK}              ... UIPicker (select sound)
+// {VARIABLE}          ... UIPicker (select variable)
+// {TEXT}              ... UITextField (NSString)
+// Examples for possible ranges:
+// {FLOAT;range=(inf, 0.0f]} ... All negative float numbers including (!) zero
+// {FLOAT;range=(inf, 0.0f)} ... All negative float numbers excluding (!) zero
+// {INT;range=(0, 11]}       ... All positive integer numbers 1-11
+// {INT;range=[0, 11)}       ... All positive integer numbers 0-10
+#define kControlBrickNameParams @[\
+    @[],                            /* program started */\
+    @[],                            /* tapped          */\
+    @"{FLOAT;range=(0.0f,inf)}",    /* wait            */\
+    @"{MESSAGE}",                   /* receive         */\
+    @"{MESSAGE}",                   /* broadcast       */\
+    @"{MESSAGE}",                   /* broadcast wait  */\
+    @"{TEXT}",                      /* note            */\
+    @[],                            /* forever         */\
+    @"{FLOAT;range=(-inf,inf)}",    /* if              */\
+    @[],                            /* else            */\
+    @[],                            /* if end          */\
+    @"{INT;range=[0,inf)}",         /* repeat          */\
+    @[]                             /* loop end        */\
+]
+
+// motion bricks
+#define kMotionBrickNameParams @[\
+    @[@"{FLOAT;range=(-inf,inf)}", @"{FLOAT;range=(-inf,inf)}"], /* place at           */\
+    @"{FLOAT;range=(-inf,inf)}",                                 /* set X              */\
+    @"{FLOAT;range=(-inf,inf)}",                                 /* set Y              */\
+    @"{FLOAT;range=(-inf,inf)}",                                 /* change X by N      */\
+    @"{FLOAT;range=(-inf,inf)}",                                 /* change Y by N      */\
+    @[],                                                         /* if on edge bounce  */\
+    @"{INT;range=[0,inf)}",                                      /* move N steps       */\
+    @"{FLOAT;range=(-inf,inf)}",                                 /* turn left          */\
+    @"{FLOAT;range=(-inf,inf)}",                                 /* turn right         */\
+    @"{FLOAT;range=(-inf,inf)}",                                 /* point in direction */\
+    @"{OBJECT}",                                                 /* point to brick     */\
+    @[@"{FLOAT;range=(0,inf)}", @"{FLOAT;range=(-inf,inf)}", @"{FLOAT;range=(-inf,inf)}"], /* glide to brick     */\
+    @"{INT;range=[0,inf)}",                                      /* go N steps back    */\
+    @[]                                                          /* come to front      */\
+]
+
+// sound bricks
+#define kSoundBrickNameParams @[\
+    @"{SOUND}",                     /* play sound         */\
+    @[],                            /* stop all sounds    */\
+    @"{FLOAT;range=(-inf,inf)}",    /* set volume to      */\
+    @"{FLOAT;range=(-inf,inf)}",    /* change volume to   */\
+    @"{TEXT}"                       /* speak              */\
+]
+
+// look bricks
+#define kLookBrickNameParams @[\
+    @"{LOOK}",                      /* set background           */\
+    @[],                            /* next background          */\
+    @"{FLOAT;range=(-inf,inf)}",    /* set size to              */\
+    @"{FLOAT;range=(-inf,inf)}",    /* change size by N         */\
+    @[],                            /* hide                     */\
+    @[],                            /* show                     */\
+    @"{FLOAT;range=(-inf,inf)}",    /* set ghost effect         */\
+    @"{FLOAT;range=(-inf,inf)}",    /* change ghost effect by N */\
+    @"{FLOAT;range=(-inf,inf)}",    /* set brightness           */\
+    @"{FLOAT;range=(-inf,inf)}",    /* change brightness by N   */\
+    @[]                             /* clear graphic effect     */\
+]
+
+// variable bricks
+#define kVariableBrickNameParams @[\
+    @[@"{VARIABLE}",@"{FLOAT;range=(-inf,inf)}"],    /* set size to              */\
+    @[@"{VARIABLE}",@"{FLOAT;range=(-inf,inf)}"]     /* change size by N         */\
+]
 
 // ----------------- REFACTOR END -------------------
 

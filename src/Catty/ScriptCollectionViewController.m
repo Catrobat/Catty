@@ -236,7 +236,7 @@
         [brickCell.deleteButton addTarget:self action:@selector(scriptDeleteButtonAction:) forControlEvents:UIControlEventTouchUpInside];
         [brickCell setBrickEditing:self.isEditing];
 
-        // overwriten values, needs refactoring later
+        // overridden values, needs refactoring later
         brickCell.alpha = 1.0f;
         brickCell.userInteractionEnabled = YES;
 
@@ -262,7 +262,6 @@
     }
     brickCell.enabled = YES;
     [brickCell renderSubViews];
-
     return brickCell;
 }
 

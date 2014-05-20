@@ -32,6 +32,7 @@
 #import "VariableComboBoxView.h"
 #import "BrickManager.h"
 #import "BrickProtocol.h"
+#import "Script.h"
 
 // uncomment this to get special log outputs, etc...
 //#define LAYOUT_DEBUG 0
@@ -212,7 +213,7 @@
 - (void)setupBrickPatternImage
 {
     NSMutableDictionary *imageCache = [BrickCell imageCache];
-    NSString *imageName = [BrickCell brickPatternImageNameForBrickType:self.brickType];
+    NSString *imageName = [self brickImageName];
     UIImage *brickPatternImage = [imageCache objectForKey:imageName];
     if (! brickPatternImage) {
         brickPatternImage = [UIImage imageNamed:imageName];
@@ -229,8 +230,7 @@
 - (void)setupBrickPatternBackgroundImage
 {
     NSMutableDictionary *imageCache = [BrickCell imageCache];
-    NSString *imageName = [[BrickCell brickPatternImageNameForBrickType:self.brickType]
-                           stringByAppendingString:kBrickBackgroundImageNameSuffix];
+    NSString *imageName = [[self brickImageName] stringByAppendingString:kBrickBackgroundImageNameSuffix];
     UIImage *brickBackgroundPatternImage = [imageCache objectForKey:imageName];
     if (! brickBackgroundPatternImage) {
         brickBackgroundPatternImage = [UIImage imageNamed:imageName];
@@ -514,46 +514,6 @@
     return subviews;
 }
 
-+ (NSString*)brickPatternImageNameForBrickType:(NSUInteger)brickType
-{
-    BrickManager *brickManager = [BrickManager sharedBrickManager];
-    kBrickCategoryType categoryType = [brickManager brickCategoryTypeForBrickType:brickType];
-    NSUInteger brickTypeIndex = [brickManager brickIndexForBrickType:brickType];
-    if (categoryType == kControlBrick) {
-        if (brickTypeIndex >= [kControlBrickImageNames count]) {
-            NSError(@"unknown brick type given");
-            abort();
-        }
-        return kControlBrickImageNames[brickTypeIndex];
-    } else if (categoryType == kMotionBrick) {
-        if (brickTypeIndex >= [kMotionBrickImageNames count]) {
-            NSError(@"unknown brick type given");
-            abort();
-        }
-        return kMotionBrickImageNames[brickTypeIndex];
-    } else if (categoryType == kSoundBrick) {
-        if (brickTypeIndex >= [kSoundBrickImageNames count]) {
-            NSError(@"unknown brick type given");
-            abort();
-        }
-        return kSoundBrickImageNames[brickTypeIndex];
-    } else if (categoryType == kLookBrick) {
-        if (brickTypeIndex >= [kLookBrickImageNames count]) {
-            NSError(@"unknown brick type given");
-            abort();
-        }
-        return kLookBrickImageNames[brickTypeIndex];
-    } else if (categoryType == kVariableBrick) {
-        if (brickTypeIndex >= [kVariableBrickImageNames count]) {
-            NSError(@"unknown brick type given");
-            abort();
-        }
-        return kVariableBrickImageNames[brickTypeIndex];
-    }
-    NSError(@"unknown brick category type given");
-    abort();
-}
-
 #pragma mark - helpers
 // BrickCells that do not have default shape type have to override this method in their corresponding subclass
 - (kBrickShapeType)brickShapeType
@@ -561,9 +521,33 @@
     return kBrickShapeNormal;
 }
 
+// TODO: this method will be removed via issue#114
+- (NSString*)brickImageName
+{
+    // determine right brick image name
+    CGFloat cellHeight = [[self class] cellHeight];
+    NSUInteger imageType = 0;
+    if ((cellHeight == kBrickHeight1h) || (cellHeight == kBrickHeightControl1h)) {
+        imageType = 1;
+    } else if ((cellHeight == kBrickHeight2h) || (cellHeight == kBrickHeightControl2h)) {
+        imageType = 2;
+    } else if (cellHeight == kBrickHeight3h) {
+        imageType = 3;
+    }
+    return [NSString stringWithFormat:@"%lu_%@%luh",
+            (unsigned long)self.brick.brickCategoryType,
+            ([self isScriptBrick] ? @"script_" : @""),
+            (unsigned long)imageType];
+}
+
 + (CGFloat)cellHeight
 {
     return kBrickHeight1h;
+}
+
+- (BOOL)isScriptBrick
+{
+    return [self.brick isKindOfClass:[Script class]];
 }
 
 #pragma mark - cell editing
