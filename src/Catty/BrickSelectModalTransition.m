@@ -23,7 +23,6 @@
 
 #import "BrickSelectModalTransition.h"
 #import "UIDefines.h"
-#import "BricksCollectionViewController.h"
 
 @implementation BrickSelectModalTransition
 
@@ -34,45 +33,41 @@
     UIViewController *fromVC = [transitionContext viewControllerForKey:UITransitionContextFromViewControllerKey];
     UIViewController *toVC = [transitionContext viewControllerForKey:UITransitionContextToViewControllerKey];
     
-    UIView *move = nil;
-    CGRect endFrame = CGRectZero;
+    __block CGRect endFrame = CGRectZero;
+     __block CGRect beginFrame = CGRectZero;
     
     switch (self.transitionMode) {
         case TransitionModePresent: {
-            BricksCollectionViewController *bricksCollectionViewController = (BricksCollectionViewController *)toVC;
-            move = [bricksCollectionViewController.view snapshotViewAfterScreenUpdates:YES];
-            move.frame = CGRectMake(0.0f, CGRectGetHeight(UIScreen.mainScreen.bounds), CGRectGetWidth(fromVC.view.bounds), CGRectGetHeight(fromVC.view.bounds));
-    
-            endFrame = CGRectMake(0.0f, CGRectGetHeight(fromVC.view.bounds) / 2.0f + NAVIGATION_BAR_HEIGHT, CGRectGetWidth(fromVC.view.bounds), CGRectGetHeight(fromVC.view.bounds));
-            [container addSubview:move];
+            [container addSubview:fromVC.view];
+            [container addSubview:toVC.view];
             
-            
-            [UIView animateWithDuration:0.7f delay:0.0f usingSpringWithDamping:0.5f initialSpringVelocity:1.0f options:UIViewAnimationOptionCurveEaseInOut animations:^{
+            endFrame = toVC.view.frame;
+           
+            beginFrame = toVC.view.frame;
+            beginFrame.origin.y = CGRectGetHeight(toVC.view.frame);
+            endFrame.origin.y += 350.0f;
 
-                move.frame = endFrame;
+            toVC.view.frame = beginFrame;
+        
+            [UIView animateWithDuration:0.7f delay:0.0f usingSpringWithDamping:0.5f initialSpringVelocity:1.0f options:UIViewAnimationOptionCurveEaseInOut animations:^{
+                toVC.view.frame = endFrame;
                 
             } completion:^(BOOL finished) {
-                bricksCollectionViewController.view.frame = endFrame;
-                [container addSubview:bricksCollectionViewController.view];
-                [move removeFromSuperview];
                 [transitionContext completeTransition:YES];
             }];
         }
             break;
         
         case TransitionModeDismiss: {
-            move = [fromVC.view snapshotViewAfterScreenUpdates:YES];
-            move.frame = fromVC.view.frame;
-            endFrame = CGRectMake(0.0f, CGRectGetHeight(toVC.view.bounds), CGRectGetWidth(fromVC.view.bounds), CGRectGetHeight(fromVC.view.bounds));
-            fromVC.view.frame = endFrame;
-
-            [container addSubview:move];
+            [container addSubview:fromVC.view];
+            
+            endFrame = toVC.view.frame;
+            endFrame.origin.y = CGRectGetHeight(toVC.view.frame);
             
             [UIView animateWithDuration:0.5f delay:0.0f usingSpringWithDamping:1.0f initialSpringVelocity:0.8f options:UIViewAnimationOptionCurveEaseInOut animations:^{
-                move.frame = endFrame;
+                 fromVC.view.frame = endFrame;
                 
             } completion:^(BOOL finished) {
-                [move removeFromSuperview];
                 [transitionContext completeTransition:YES];
             }];
         }

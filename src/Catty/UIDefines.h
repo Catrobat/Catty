@@ -591,5 +591,7 @@ static NSString *const kUserInfoSound = @"UserInfoSound";
 // UI Elements
 #define NAVIGATION_BAR_HEIGHT 64
 #define STATUS_BAR_HEIGHT 10
+#define kHandleImageHeight 15.0f
+#define kHandleImageWidth 40.0f
 
 static NSString *const kSelectionMenuTitle = @"Select Brick Category";

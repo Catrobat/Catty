@@ -165,7 +165,7 @@
         _dimView.blurEnabled = YES;
         _dimView.blurRadius = 20.f;
         _dimView.dynamic = YES;
-        _dimView.updateInterval = 1.0f;
+        _dimView.updateInterval = 0.1f;
         _dimView.alpha = 0.f;
         _dimView.hidden = YES;
         [self.view addSubview:self.dimView];

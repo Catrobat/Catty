@@ -22,17 +22,19 @@
 
 #import "BricksCollectionViewController.h"
 #import "UIColor+CatrobatUIColorExtensions.h"
-#import "SegueDefines.h"
 #import "BrickCell.h"
 #import "ScriptCollectionViewController.h"
 #import "SpriteObject.h"
 #import "LXReorderableCollectionViewFlowLayout.h"
 #import "FXBlurView.h"
+#import "UIDefines.h"
 
 @interface BricksCollectionViewController () <LXReorderableCollectionViewDelegateFlowLayout, LXReorderableCollectionViewDataSource, UIScrollViewDelegate>
 @property (nonatomic, strong) NSMutableArray *selectableBricksSortedIndexes;
 @property (nonatomic, strong) NSDictionary *selectableBricks;
 @property (nonatomic, strong) FXBlurView *blurbackgroundView;
+@property (nonatomic, strong) UIView *handleView;
+@property (nonatomic, strong) UILabel *titleLabel;
 
 @end
 
@@ -69,12 +71,25 @@
     self.collectionView.delaysContentTouches = NO;
     
     self.blurbackgroundView = [[FXBlurView alloc]initWithFrame:self.view.bounds];
-    self.blurbackgroundView.tintColor = [UIColor clearColor];
-    self.blurbackgroundView.blurRadius = 20.f;
+    self.blurbackgroundView.tintColor = [UIColor colorWithRed:0.0f green:0.0f blue:0.0f alpha:1.0f];
+    self.blurbackgroundView.blurRadius = 40.f;
     self.blurbackgroundView.updateInterval = 0.1f;
     self.blurbackgroundView.underlyingView = self.scriptCollectionViewController.collectionView;
     [self.view addSubview:self.blurbackgroundView];
     [self.view sendSubviewToBack:self.blurbackgroundView];
+    
+    self.handleView = [[UIView alloc]initWithFrame:CGRectMake((CGRectGetWidth(self.view.bounds) / 2.0f) - (kHandleImageWidth / 2.0f), 10.0f, kHandleImageWidth, kHandleImageHeight)];
+    UIImage *handleImage = [UIImage imageNamed:@"handle_image"];
+    self.handleView.layer.contents = (__bridge id)handleImage.CGImage;
+    [self.view insertSubview:self.handleView aboveSubview:self.collectionView];
+    
+    self.titleLabel = [[UILabel alloc]initWithFrame:CGRectMake(5.0f, 10.0f, 80.0f, 15.0f)];
+    self.titleLabel.text = [kBrickCategoryNames objectAtIndex:self.brickCategoryType];
+    self.titleLabel.font = [UIFont systemFontOfSize:16.0f];
+    self.titleLabel.textAlignment = NSTextAlignmentLeft;
+//    self.titleLabel.textColor = [kBrickCategoryColors objectAtIndex:self.brickCategoryType];
+    self.titleLabel.textColor = UIColor.skyBlueColor;
+    [self.view insertSubview:self.titleLabel aboveSubview:self.collectionView];
 }
 
 #pragma mark - getters and setters
@@ -188,7 +203,7 @@
 {
     UIEdgeInsets insets = UIEdgeInsetsZero;
     
-    return insets = section == 0 ?  UIEdgeInsetsMake(35.0f, 0.0f, 0.0f, 0.0f) : UIEdgeInsetsMake(0.0f, 0.0f, 0.0f, 0.0f);
+    return insets = section == 0 ?  UIEdgeInsetsMake(40.0f, 0.0f, 0.0f, 0.0f) : UIEdgeInsetsMake(0.0f, 0.0f, 0.0f, 0.0f);
 }
 
 - (CGSize)collectionView:(UICollectionView*)collectionView
