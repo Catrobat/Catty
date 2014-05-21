@@ -43,6 +43,7 @@
 #import "AHKActionSheet.h"
 #import "BricksCollectionViewController.h"
 #import "BrickSelectModalTransition.h"
+#import "BrickSelectionSwipe.h"
 
 @interface ScriptCollectionViewController () <UICollectionViewDelegate, LXReorderableCollectionViewDelegateFlowLayout, LXReorderableCollectionViewDataSource, UIViewControllerTransitioningDelegate>
 @property (nonatomic, strong) NSDictionary *classNameBrickNameMap;
@@ -54,12 +55,14 @@
 @property (nonatomic, strong) NSIndexPath *addedIndexPath;
 @property (nonatomic, strong) NSIndexPath *selectedIndexPath;
 @property (nonatomic, strong) AHKActionSheet *brickSelectionMenu;
-@property (nonatomic, weak) BricksCollectionViewController *bricksCollectionViewController;
-@property (nonatomic, assign) BOOL brickSelectionActive;
+//@property (nonatomic, assign) BOOL brickSelectionActive;
+@property (nonatomic, strong) BrickSelectionSwipe *interactiveSwipeDismiss;
 
 @end
 
-@implementation ScriptCollectionViewController
+@implementation ScriptCollectionViewController {
+    BOOL _brickSelectionActive;
+}
 
 #pragma mark - events
 - (void)viewDidLoad
@@ -90,9 +93,9 @@
     [dnc removeObserver:self name:kBrickCellAddedNotification object:nil];
     [dnc removeObserver:self name:kBrickDetailViewDismissed object:nil];
     
-    if (!self.bricksCollectionViewController.isBeingDismissed) {
-        [self.bricksCollectionViewController dismissViewControllerAnimated:YES completion:NULL];
-    }
+//    if (!self.bricksCollectionViewController.isBeingDismissed) {
+//        [self.bricksCollectionViewController dismissViewControllerAnimated:YES completion:NULL];
+//    }
 }
 
 
@@ -168,9 +171,16 @@
 
 - (void)showBrickCategoryCVC:(kBrickCategoryType)type
 {
-    [self setBricksCollectionViewControllerCategoryTyp:type];
-    [self presentViewController:self.bricksCollectionViewController animated:YES completion:^{
-        self.brickSelectionActive = YES;
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"iPhone" bundle:nil];
+    BricksCollectionViewController *bricksCollectionViewController = (BricksCollectionViewController*)[storyboard      instantiateViewControllerWithIdentifier:@"BricksDetailViewCollectionViewController"];
+    bricksCollectionViewController.scriptCollectionViewController = self;
+    bricksCollectionViewController.transitioningDelegate = self;
+    bricksCollectionViewController.modalPresentationStyle = UIModalPresentationCustom;
+    bricksCollectionViewController.brickCategoryType = type;
+    bricksCollectionViewController.object = self.object;
+    _brickSelectionActive = YES;
+    
+    [self presentViewController:bricksCollectionViewController animated:YES completion:^{
         [self.navigationController setNavigationBarHidden:YES animated:YES];
     }];
 }
@@ -218,30 +228,7 @@
     
     self.brickScaleTransition = [BrickScaleTransition new];
     self.brickSelectModelTransition = [BrickSelectModalTransition new];
-    
-    self.brickSelectionActive = NO;
 }
-
-- (BricksCollectionViewController *)bricksCollectionViewController
-{
-    if (!_bricksCollectionViewController) {
-        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"iPhone" bundle:nil];
-        _bricksCollectionViewController = (BricksCollectionViewController*)[storyboard      instantiateViewControllerWithIdentifier:@"BricksDetailViewCollectionViewController"];
-        _bricksCollectionViewController.scriptCollectionViewController = self;
-        _bricksCollectionViewController.transitioningDelegate = self;
-        _bricksCollectionViewController.modalPresentationStyle = UIModalPresentationCustom;
-    }
-    return _bricksCollectionViewController;
-}
-
-- (void)setBricksCollectionViewControllerCategoryTyp:(kBrickCategoryType)type
-{
-    if (self.bricksCollectionViewController) {
-        self.bricksCollectionViewController.brickCategoryType = type;
-        self.bricksCollectionViewController.object = self.object;
-    }
-}
-
 
 #pragma mark - UIViewControllerAnimatedTransitioning delegate
 - (id<UIViewControllerAnimatedTransitioning>)animationControllerForPresentedController:(UIViewController *)presented
@@ -267,10 +254,21 @@
         return self.brickScaleTransition;
     } else {
         if ([dismissed isKindOfClass:[BricksCollectionViewController class]]) {
-            self.brickSelectionActive = NO;
+            _brickSelectionActive = NO;
             self.brickSelectModelTransition.transitionMode = TransitionModeDismiss;
             return self.brickSelectModelTransition;
         }
+    }
+    return nil;
+}
+
+- (id<UIViewControllerInteractiveTransitioning>)interactionControllerForDismissal:(id<UIViewControllerAnimatedTransitioning>)animator
+{
+    if ([animator isKindOfClass:[BrickSelectModalTransition class]]) {
+        if (!self.interactiveSwipeDismiss) {
+            self.interactiveSwipeDismiss = [BrickSelectionSwipe new];
+        }
+        return self.interactiveSwipeDismiss;
     }
     return nil;
 }
@@ -459,7 +457,7 @@
 //    NSLog(@"selected cell = %@", cell);
     
     // TDOD handle bricks which can be edited
-    if (!self.isEditing && !self.brickSelectionActive) {
+    if (!self.isEditing && !_brickSelectionActive) {
         BrickDetailViewController *brickDetailViewcontroller = [[BrickDetailViewController alloc]initWithNibName:@"BrickDetailViewController" bundle:nil];
                 
         brickDetailViewcontroller.brickCell = cell;

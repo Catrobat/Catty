@@ -26,15 +26,17 @@
 #import "ScriptCollectionViewController.h"
 #import "SpriteObject.h"
 #import "LXReorderableCollectionViewFlowLayout.h"
-#import "FXBlurView.h"
 #import "UIDefines.h"
+#import "BrickSelectionSwipe.h"
+#import "FXBlurView.h"
+
 
 @interface BricksCollectionViewController () <LXReorderableCollectionViewDelegateFlowLayout, LXReorderableCollectionViewDataSource, UIScrollViewDelegate>
 @property (nonatomic, strong) NSMutableArray *selectableBricksSortedIndexes;
 @property (nonatomic, strong) NSDictionary *selectableBricks;
-@property (nonatomic, strong) FXBlurView *blurbackgroundView;
 @property (nonatomic, strong) UIView *handleView;
 @property (nonatomic, strong) UILabel *titleLabel;
+@property (nonatomic, strong) FXBlurView *blurbackgroundView;
 
 @end
 
@@ -55,6 +57,12 @@
         [self.collectionView registerClass:NSClassFromString([brickTypeName stringByAppendingString:@"Cell"])
                 forCellWithReuseIdentifier:brickTypeName];
     }
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    [self addInteractiveAnimator];
 }
 
 - (void)viewDidDisappear:(BOOL)animated
@@ -94,11 +102,21 @@
     
     self.titleLabel = [[UILabel alloc]initWithFrame:CGRectMake(5.0f, 10.0f, 80.0f, 15.0f)];
     self.titleLabel.text = [kBrickCategoryNames objectAtIndex:self.brickCategoryType];
-    self.titleLabel.font = [UIFont systemFontOfSize:16.0f];
+    self.titleLabel.font = [UIFont systemFontOfSize:13.0f];
     self.titleLabel.textAlignment = NSTextAlignmentLeft;
 //    self.titleLabel.textColor = [kBrickCategoryColors objectAtIndex:self.brickCategoryType];
     self.titleLabel.textColor = UIColor.skyBlueColor;
     [self.view insertSubview:self.titleLabel aboveSubview:self.collectionView];
+}
+
+- (void)addInteractiveAnimator
+{
+    id animator = [self.transitioningDelegate animationControllerForDismissedController:self];
+    id interactor = [self.transitioningDelegate interactionControllerForDismissal:animator];
+    
+    if ([interactor respondsToSelector:@selector(attachToViewController:)]) {
+        [interactor attachToViewController:self];
+    }
 }
 
 #pragma mark - getters and setters

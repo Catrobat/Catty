@@ -33,12 +33,11 @@
     UIViewController *fromVC = [transitionContext viewControllerForKey:UITransitionContextFromViewControllerKey];
     UIViewController *toVC = [transitionContext viewControllerForKey:UITransitionContextToViewControllerKey];
     
-    __block CGRect endFrame = CGRectZero;
-     __block CGRect beginFrame = CGRectZero;
+    CGRect endFrame;
+    CGRect beginFrame;
     
     switch (self.transitionMode) {
         case TransitionModePresent: {
-            [container addSubview:fromVC.view];
             [container addSubview:toVC.view];
             
             endFrame = toVC.view.frame;
@@ -49,28 +48,31 @@
 
             toVC.view.frame = beginFrame;
             
-            [UIView animateWithDuration:0.6f delay:0.0f usingSpringWithDamping:0.6f initialSpringVelocity:20.0f options:UIViewAnimationOptionCurveEaseInOut animations:^{
+            [UIView animateWithDuration:0.6f delay:0.0f usingSpringWithDamping:0.8f initialSpringVelocity:20.0f options:UIViewAnimationOptionCurveEaseIn animations:^{
                 toVC.view.frame = endFrame;
             } completion:^(BOOL finished) {
                 [transitionContext completeTransition:YES];
             }];
-        }
             break;
+        }
         
         case TransitionModeDismiss: {
-            [container addSubview:fromVC.view];
-            
             endFrame = toVC.view.frame;
             endFrame.origin.y = CGRectGetHeight(toVC.view.frame);
             
-            [UIView animateWithDuration:0.5f delay:0.0f usingSpringWithDamping:1.0f initialSpringVelocity:0.8f options:UIViewAnimationOptionCurveEaseInOut animations:^{
+            [UIView animateWithDuration:0.3f delay:0.0f options:UIViewAnimationOptionCurveEaseIn animations:^{
                  fromVC.view.frame = endFrame;
                 
             } completion:^(BOOL finished) {
-                [transitionContext completeTransition:YES];
+                if ([transitionContext transitionWasCancelled]) {
+                    [transitionContext completeTransition:NO];
+                } else {
+                    [fromVC.view removeFromSuperview];
+                    [transitionContext completeTransition:YES];
+                }
             }];
-        }
             break;
+        }
             
         default:
             break;
