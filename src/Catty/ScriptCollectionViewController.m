@@ -411,16 +411,6 @@
     }
 }
 
-#pragma mark - Getters and Setters
-- (NSDictionary*)classNameBrickNameMap
-{
-    static NSDictionary *classNameBrickNameMap = nil;
-    if (classNameBrickNameMap == nil) {
-        classNameBrickNameMap = kClassNameBrickNameMap;
-    }
-    return classNameBrickNameMap;
-}
-
 #pragma mark - helpers
 - (void)setupToolBar
 {
