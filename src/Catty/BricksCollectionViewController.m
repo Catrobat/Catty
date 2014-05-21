@@ -207,20 +207,19 @@
     brickCell.backgroundBrickCell = self.object.isBackground;
     brickCell.enabled = NO;
     [brickCell renderSubViews];
-//    NSLog(@"frame = %@", NSStringFromCGRect(brickCell.bounds));
     return brickCell;
 }
 
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath*)indexPath
 {
-    BrickCell *brickCell = (BrickCell*)[collectionView cellForItemAtIndexPath:indexPath];
-    [self.presentingViewController dismissViewControllerAnimated:YES completion:^{
-        [NSNotificationCenter.defaultCenter postNotificationName:kBrickCellAddedNotification
-                                                          object:nil
-                                                        userInfo:@{ kUserInfoKeyBrickCell : brickCell,
-                                                                    kUserInfoSpriteObject : self.object }];
-    }];
+//    BrickCell *brickCell = (BrickCell*)[collectionView cellForItemAtIndexPath:indexPath];
+//    [self.presentingViewController dismissViewControllerAnimated:YES completion:^{
+//        [NSNotificationCenter.defaultCenter postNotificationName:kBrickCellAddedNotification
+//                                                          object:nil
+//                                                        userInfo:@{ kUserInfoKeyBrickCell : brickCell,
+//                                                                    kUserInfoSpriteObject : self.object }];
+//    }];
 }
 
 #pragma mark - CollectionView FlowLayout
@@ -253,16 +252,6 @@
     id object = [self.selectableBricksSortedIndexes objectAtIndex:fromIndexPath.section];
     [self.selectableBricksSortedIndexes removeObjectAtIndex:fromIndexPath.section];
     [self.selectableBricksSortedIndexes insertObject:object atIndex:toIndexPath.section];
-    
-//    id toTyp = [self.selectableBricksSortedIndexes objectAtIndex:toIndexPath.section];
-//    id fromTyp = [self.selectableBricksSortedIndexes objectAtIndex:fromIndexPath.section];
-//    
-//    [self.selectableBricksSortedIndexes removeObjectAtIndex:toIndexPath.section];
-//    [self.selectableBricksSortedIndexes insertObject:fromTyp atIndex:toIndexPath.section];
-    
-//    [self.selectableBricksSortedIndexes removeObjectAtIndex:fromIndexPath.section];
-//    [self.selectableBricksSortedIndexes insertObject:toTyp atIndex:fromIndexPath.section];
-    
 }
 
 @end

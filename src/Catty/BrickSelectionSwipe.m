@@ -23,7 +23,6 @@
 {
     NSAssert(self.viewController != nil, @"view controller not set");
     CGPoint translation = [recognizer translationInView:recognizer.view.superview];
-    NSLog(@"point = %@", NSStringFromCGPoint(translation));
     
     CGFloat percent = 0.0f;
     
@@ -34,12 +33,12 @@
             
         case UIGestureRecognizerStateChanged: {
             const CGFloat DragAmount = 400.0f;
-            const CGFloat Treshold = 0.5f;
+            const CGFloat Treshold = 0.06f;
             percent = translation.y / DragAmount;
             percent = fmaxf(percent, 0.0f);
             percent = fminf(percent, 0.99999f);
             [self updateInteractiveTransition:percent];
-            NSLog(@"percent = %f", percent);
+//            NSLog(@"percent = %f", percent);
             
             if (percent >= Treshold) {
                 _complete = YES;
@@ -74,7 +73,7 @@
 
 - (CGFloat)completionSpeed
 {
-    return 1 - self.percentComplete;
+    return 5 - self.percentComplete;
 }
 
 @end

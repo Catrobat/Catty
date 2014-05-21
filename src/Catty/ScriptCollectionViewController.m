@@ -445,9 +445,6 @@
                         layout:(UICollectionViewLayout*)collectionViewLayout
         insetForSectionAtIndex:(NSInteger)section
 {
-    // !!! PLEASE DO NOT COMMENT THESE LINES OUT !!!
-    // margin between CVC-sections as you can see in Catroid's PocketCode version
-    // TODO: outsource all consts
     return UIEdgeInsetsMake(10, 0, 5, 0);
 }
 
@@ -457,7 +454,7 @@
 //    NSLog(@"selected cell = %@", cell);
     
     // TDOD handle bricks which can be edited
-    if (!self.isEditing && !_brickSelectionActive) {
+    if (!self.isEditing && ! [self.presentedViewController isKindOfClass:BricksCollectionViewController.class]) {
         BrickDetailViewController *brickDetailViewcontroller = [[BrickDetailViewController alloc]initWithNibName:@"BrickDetailViewController" bundle:nil];
                 
         brickDetailViewcontroller.brickCell = cell;
