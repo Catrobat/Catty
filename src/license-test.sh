@@ -9,6 +9,6 @@ do
         echo -e $file:1: error : No valid License Header found! 1>&2 
         ERROR_COUNT=1
     fi
-done < <(find . -type d \( -name "TTTAttributedLabel" -o -name "minizip" -o -name "SSZipArchive" -o -name "GDataXMLNode" -o name "FBShimmeringView" -o name "FBShimmeringLayer" -o name "FBShimmering" -o name "LXReorderableCollectionViewFlowLayout"  \) -prune -o -type f \( -name "*.m" -o -name "*.h" -o -name "*.pch" \) -print)
+done < <(find . -type d \( -name "TTTAttributedLabel" -o -name "minizip" -o -name "SSZipArchive" -o -name "GDataXMLNode" -o name "FBShimmeringView" -o name "FBShimmeringLayer" -o name "FBShimmering" -o name "LXReorderableCollectionViewFlowLayout"  -o name "AHKActionSheet" - name "AHKActionSheetViewController" -o name "AHKAdditions" -o name "IBActionSheet" \) -prune -o -type f \( -name "*.m" -o -name "*.h" -o -name "*.pch" \) -print)
 
 exit $ERROR_COUNT

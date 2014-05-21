@@ -54,6 +54,10 @@ static NSString *const kUserInfoKeyBrickCell = @"UserInfoKeyBrickCell";
 static NSString *const kUserInfoSpriteObject = @"UserInfoSpriteObject";
 static NSString *const kUserInfoSound = @"UserInfoSound";
 
+// UI Elements
+#define NAVIGATION_BAR_HEIGHT 64
+#define STATUS_BAR_HEIGHT 10
+
 // ---------------------- BRICK CONFIG ---------------------------------------
 // brick categories
 typedef NS_ENUM(NSUInteger, kBrickCategoryType) {

@@ -22,11 +22,9 @@
 
 #import "BrickScaleTransition.h"
 #import "UIColor+CatrobatUIColorExtensions.h"
-
+#import "UIDefines.h"
 
 @implementation BrickScaleTransition
-
-#define NAVIGATION_BAR_HEIGHT 64
 
 - (void)animateTransition:(id<UIViewControllerContextTransitioning>)transitionContext {
     UIView *container = transitionContext.containerView;
@@ -47,16 +45,16 @@
             self.cell.hidden = YES;
             self.dimView.hidden = NO;
             
-            [UIView animateWithDuration:.9f delay:0.f usingSpringWithDamping:0.6f initialSpringVelocity:1.3f options:UIViewAnimationOptionCurveEaseInOut animations:^{
+            [UIView animateWithDuration:0.7f delay:0.f usingSpringWithDamping:0.5f initialSpringVelocity:2.0f options:UIViewAnimationOptionCurveEaseIn animations:^{
                 move.frame = endFrame;
                 self.dimView.alpha = 1.f;
-                self.collectionView.alpha = .2f;
+                self.collectionView.alpha = .3f;
                 self.navigationBar.tintColor = UIColor.brightGrayColor;
             } completion:^(BOOL finished) {
                 if (finished) {
-                    toVC.view.frame = endFrame;
+                    toVC.view.frame = fromVC.view.frame;
                     self.cell.hidden = NO;
-                    self.cell.frame = CGRectMake(0.f, 0.f, CGRectGetWidth(self.cell.bounds), CGRectGetHeight(self.cell.bounds));
+                    self.cell.frame = CGRectMake(0.f, NAVIGATION_BAR_HEIGHT, CGRectGetWidth(self.cell.bounds), CGRectGetHeight(self.cell.bounds));
                     [toVC.view addSubview:self.cell];
                     [container addSubview:toVC.view];
                     [move removeFromSuperview];
@@ -68,25 +66,20 @@
             
         case TransitionModeDismiss: {
             CGFloat y = 0.f;
-            y = self.touchRect.origin.y >= toVC.view.frame.size.height ? self.touchRect.origin.y - self.collectionView.contentOffset.y - NAVIGATION_BAR_HEIGHT: self.touchRect.origin.y;
+            y = self.touchRect.origin.y >= toVC.view.frame.size.height ? self.touchRect.origin.y - self.collectionView.contentOffset.y : self.touchRect.origin.y + NAVIGATION_BAR_HEIGHT;
             
-            [UIView animateKeyframesWithDuration:.4f
-                                           delay:0.f
-                                         options:UIViewKeyframeAnimationOptionBeginFromCurrentState
-                                      animations:^{
-                                          self.cell.frame = CGRectMake(self.touchRect.origin.x, y, self.touchRect.size.width, self.touchRect.size.height);
-                                          self.dimView.alpha = 0.f;
-                                          self.collectionView.alpha = 1.f;
-                                          self.navigationBar.tintColor = UIColor.lightOrangeColor;
-                                      } completion:^(BOOL finished) {
-                                          if (finished) {
-                                              self.cell.frame = self.touchRect;
-                                              [fromVC.view removeFromSuperview];
-                                              self.dimView.hidden = YES;
-                                              [move removeFromSuperview];
-                                              [transitionContext completeTransition:YES];
-                                          }
-                                      }];
+            [UIView animateWithDuration:0.6f delay:0.0f usingSpringWithDamping:1.5f initialSpringVelocity:2.0f options:UIViewAnimationOptionCurveEaseInOut animations:^{
+                self.cell.frame = CGRectMake(self.touchRect.origin.x, y, self.touchRect.size.width, self.touchRect.size.height);
+                self.dimView.alpha = 0.f;
+                self.collectionView.alpha = 1.f;
+                self.navigationBar.tintColor = UIColor.lightOrangeColor;
+            } completion:^(BOOL finished) {
+                self.cell.frame = self.touchRect;
+                [fromVC.view removeFromSuperview];
+                self.dimView.hidden = YES;
+                [move removeFromSuperview];
+                [transitionContext completeTransition:YES];
+            }];
         }
             break;
             

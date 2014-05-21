@@ -82,7 +82,6 @@
     self.navigationController.title = self.title = kUIViewControllerTitlePrograms;
     [self loadPrograms];
     [self initNavigationBar];
-    [super initTableView];
 
     self.dataCache = nil;
     self.defaultProgram = nil;

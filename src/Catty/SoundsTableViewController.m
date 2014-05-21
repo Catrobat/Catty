@@ -53,6 +53,7 @@
 @property (nonatomic, strong) NSMutableDictionary* addSoundActionSheetBtnIndexes;
 @property (atomic, strong) Sound *currentPlayingSong;
 @property (atomic, weak) UITableViewCell<CatrobatImageCell> *currentPlayingSongCell;
+
 @end
 
 @implementation SoundsTableViewController
@@ -80,18 +81,11 @@
     NSNumber *showDetailsSoundsValue = (NSNumber*)[showDetails objectForKey:kUserDetailsShowDetailsSoundsKey];
     self.useDetailCells = [showDetailsSoundsValue boolValue];
     self.navigationController.title = self.title = kUIViewControllerTitleSounds;
-    //    self.title = self.object.name;
-    //    self.navigationItem.title = self.object.name;
     [self initNavigationBar];
     self.currentPlayingSong = nil;
     self.currentPlayingSongCell = nil;
-
-    [super initTableView];
-    [super initPlaceHolder];
-    [super setPlaceHolderTitle:kUIViewControllerPlaceholderTitleSounds
-                   Description:[NSString stringWithFormat:kUIViewControllerPlaceholderDescriptionStandard,
-                                kUIViewControllerPlaceholderTitleSounds]];
-    [super showPlaceHolder:(! (BOOL)[self.object.soundList count])];
+    self.placeHolderView.title = kUIViewControllerPlaceholderTitleSounds;
+    [self showPlaceHolder:(! (BOOL)[self.object.soundList count])];
     [self setupToolBar];
 }
 
@@ -108,10 +102,6 @@
     [super viewWillDisappear:animated];
     NSNotificationCenter *dnc = [NSNotificationCenter defaultCenter];
     [dnc removeObserver:self name:kSoundAddedNotification object:nil];
-}
-
-- (void)dealloc
-{
     self.currentPlayingSongCell = nil;
     [self stopAllSounds];
 }

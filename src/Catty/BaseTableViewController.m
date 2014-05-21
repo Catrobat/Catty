@@ -27,6 +27,7 @@
 #import "Util.h"
 #import "ActionSheetAlertViewTags.h"
 #import "LanguageTranslationDefines.h"
+#import <tgmath.h>
 
 // identifiers
 #define kTableHeaderIdentifier @"Header"
@@ -38,9 +39,6 @@
 @interface BaseTableViewController () <UIAlertViewDelegate>
 @property (nonatomic, strong) UIBarButtonItem *selectAllRowsButtonItem;
 @property (nonatomic, strong) UIBarButtonItem *normalModeRightBarButtonItem;
-@property (nonatomic, strong) UIView *placeholder;
-@property (nonatomic, strong) UILabel *placeholderTitleLabel;
-@property (nonatomic, strong) UILabel *placeholderDescriptionLabel;
 
 @property (nonatomic) SEL confirmedAction;
 @property (nonatomic) SEL canceledAction;
@@ -50,13 +48,35 @@
 
 @implementation BaseTableViewController
 
-#pragma mark - getters and setters
-- (NSMutableDictionary*)imageCache
+
+#pragma mark - init
+- (void)viewDidLoad
 {
-    if (! _imageCache) {
-        _imageCache = [NSMutableDictionary dictionary];
+    [super viewDidLoad];
+    self.editing = NO;
+    self.editableSections = nil;
+    self.tableView.delegate = self;
+    self.tableView.dataSource = self;
+    [self.tableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
+    self.tableView.backgroundColor = UIColor.darkBlueColor;
+}
+
+#pragma mark - getters and setters
+
+- (PlaceHolderView *)placeHolderView
+{
+    if (!_placeHolderView) {
+        CGFloat height = __tg_ceil(CGRectGetHeight(self.view.bounds) / 4.0f);
+        _placeHolderView = [[PlaceHolderView alloc] initWithFrame:CGRectMake(0.0f, CGRectGetHeight(UIScreen.mainScreen.bounds) / 2.0f - height, CGRectGetWidth(self.view.bounds), height)];
+        [self.view addSubview:_placeHolderView];
+        _placeHolderView.hidden = YES;
     }
-    return _imageCache;
+    return _placeHolderView;
+}
+
+- (void)showPlaceHolder:(BOOL)show
+{
+    self.tableView.alwaysBounceVertical = self.placeHolderView.hidden = (! show);
 }
 
 - (UIBarButtonItem*)selectAllRowsButtonItem
@@ -70,81 +90,12 @@
     return _selectAllRowsButtonItem;
 }
 
-#pragma mark - init
-- (void)viewDidLoad
+- (NSMutableDictionary*)imageCache
 {
-    self.editing = NO;
-    self.editableSections = nil;
-}
-
-- (void)initPlaceHolder
-{
-    self.placeholder = [[UIView alloc] initWithFrame:self.tableView.bounds];
-    self.placeholder.tag = kPlaceHolderTag;
-
-    // setup title label
-    self.placeholderTitleLabel = [[UILabel alloc] init];
-    self.placeholderTitleLabel.textAlignment = NSTextAlignmentCenter;
-    self.placeholderTitleLabel.backgroundColor = [UIColor clearColor];
-    self.placeholderTitleLabel.textColor = [UIColor skyBlueColor];
-    self.placeholderTitleLabel.font = [self.placeholderTitleLabel.font fontWithSize:45];
-
-    // setup description label
-    self.placeholderDescriptionLabel = [[UILabel alloc] init];
-    self.placeholderDescriptionLabel.textAlignment = NSTextAlignmentCenter;
-    self.placeholderDescriptionLabel.backgroundColor = [UIColor clearColor];
-    self.placeholderDescriptionLabel.textColor = [UIColor skyBlueColor];
-    [self.placeholder addSubview:self.placeholderTitleLabel];
-    [self.placeholder addSubview:self.placeholderDescriptionLabel];
-    [self.tableView addSubview:self.placeholder];
-    self.tableView.alwaysBounceVertical = self.placeholder.hidden = YES;
-}
-
-- (void)initTableView
-{
-    self.tableView.delegate = self;
-    self.tableView.dataSource = self;
-    [self.tableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
-    UIColor *backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"darkblue"]];
-    self.tableView.backgroundColor = backgroundColor;
-    UITableViewHeaderFooterView *headerViewTemplate = [[UITableViewHeaderFooterView alloc] initWithReuseIdentifier:kTableHeaderIdentifier];
-    headerViewTemplate.contentView.backgroundColor = backgroundColor;
-    [self.tableView addSubview:headerViewTemplate];
-}
-
-#pragma mark - getters and setters
-- (void)setPlaceHolderTitle:(NSString*)title Description:(NSString*)description
-{
-    // title label
-    self.placeholderTitleLabel.text = title;
-    [self.placeholderTitleLabel sizeToFit];
-
-    // description label
-    self.placeholderDescriptionLabel.text = description;
-    [self.placeholderDescriptionLabel sizeToFit];
-
-    // set alignemnt: middle center
-    CGRect frameTitle = self.placeholderTitleLabel.frame;
-    CGRect frameDescription = self.placeholderDescriptionLabel.frame;
-    CGFloat totalHeight = frameTitle.size.height + frameDescription.size.height;
-    NSUInteger offsetY;
-
-    // this sets vertical alignment of the placeholder to the center of table view
-//    offsetY = (self.navigationController.toolbar.frame.origin.y - self.navigationController.navigationBar.frame.size.height - totalHeight)/2.0f;
-    // this sets vertical alignment of the placeholder to the center of whole screen
-    offsetY = (self.navigationController.toolbar.frame.origin.y - totalHeight)/2.0f - self.navigationController.navigationBar.frame.size.height;
-    frameTitle.origin.y = offsetY;
-    frameTitle.origin.x = frameDescription.origin.x = 0.0f;
-    frameTitle.size.width = frameDescription.size.width = self.view.frame.size.width;
-    self.placeholderTitleLabel.frame = frameTitle;
-
-    frameDescription.origin.y = offsetY + frameTitle.size.height;
-    self.placeholderDescriptionLabel.frame = frameDescription;
-}
-
-- (void)showPlaceHolder:(BOOL)show
-{
-    self.tableView.alwaysBounceVertical = self.placeholder.hidden = (! show);
+    if (! _imageCache) {
+        _imageCache = [NSMutableDictionary dictionary];
+    }
+    return _imageCache;
 }
 
 #pragma mark - table view delegates
