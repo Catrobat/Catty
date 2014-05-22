@@ -45,6 +45,7 @@
     self.title = self.object.name;
     self.navigationItem.title = self.object.name;
     [self setupToolBar];
+    self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
 }
 
 - (void)didReceiveMemoryWarning

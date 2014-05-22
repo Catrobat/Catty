@@ -85,8 +85,14 @@
     [self initSegmentedControl];
     [self initFooterView];
     self.previousSelectedIndex = 0;
-    self.edgesForExtendedLayout = UIRectEdgeAll;
-    self.tableView.contentInset = UIEdgeInsetsMake(0., 0., CGRectGetHeight(self.tabBarController.tabBar.frame)+44, 0);
+    self.tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
+    self.tableView.separatorColor = UIColor.skyBlueColor;
+    self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
+
+    // XXX: someone has removed that in another branch, therefore this caused a merge conflict.
+    //      not sure if we really need this. therefore I have readded these lines here.
+//    self.edgesForExtendedLayout = UIRectEdgeAll;
+//    self.tableView.contentInset = UIEdgeInsetsMake(0., 0., CGRectGetHeight(self.tabBarController.tabBar.frame)+44, 0);
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -237,9 +243,6 @@
 
         [self loadImage:project.screenshotSmall forCell:imageCell atIndexPath:indexPath];
         NSDebug(@"Normal Cell");
-
-        imageCell.accessoryView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"accessory"]];
-
         //        }
     }
     return cell;

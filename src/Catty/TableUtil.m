@@ -62,14 +62,14 @@
     return editButton;
 }
 
-+ (void)addSeperatorForCell:(CatrobatBaseCell*)cell{
-    if(cell.seperatorView == nil) {
-        UIImageView *seperator = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"cellseperator"]];
-        seperator.frame = CGRectMake(0.0f, 0.0f, cell.bounds.size.width, 4.0f);
-        [cell.contentView addSubview:seperator];
-        cell.seperatorView = seperator;
-    }
-}
+//+ (void)addSeperatorForCell:(CatrobatBaseCell*)cell{
+//    if(cell.seperatorView == nil) {
+//        UIImageView *seperator = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"cellseperator"]];
+//        seperator.frame = CGRectMake(0.0f, 0.0f, cell.bounds.size.width, 4.0f);
+//        [cell.contentView addSubview:seperator];
+//        cell.seperatorView = seperator;
+//    }
+//}
 
 #pragma mark Helper
 + (UIBarButtonItem*)createBackButtonWithTarget:(id)target{

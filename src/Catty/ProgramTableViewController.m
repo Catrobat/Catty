@@ -47,6 +47,7 @@
 #import "CellTagDefines.h"
 #import "AppDelegate.h"
 #import "LanguageTranslationDefines.h"
+#import "ProgramTableHeaderView.h"
 
 // TODO: outsource...
 #define kUserDetailsShowDetailsKey @"showDetails"
@@ -113,7 +114,9 @@ UINavigationBarDelegate>
     NSNumber *showDetailsObjectsValue = (NSNumber*)[showDetails objectForKey:kUserDetailsShowDetailsObjectsKey];
     self.useDetailCells = [showDetailsObjectsValue boolValue];
     [self initNavigationBar];
-
+    [self.tableView registerClass:[ProgramTableHeaderView class] forHeaderFooterViewReuseIdentifier:@"Header"];
+    self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
+    
     self.editableSections = @[@(kObjectSectionIndex)];
     if (self.program.header.programName) {
         self.navigationItem.title = self.program.header.programName;
@@ -345,9 +348,9 @@ UINavigationBarDelegate>
     return [TableUtil getHeightForImageCell];
 }
 
+#pragma mark - Header View
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
-    // TODO: outsource to TableUtil
     switch (section) {
         case 0:
             return 45.0;
@@ -360,38 +363,25 @@ UINavigationBarDelegate>
 
 - (UIView*)tableView:(UITableView*)tableView viewForHeaderInSection:(NSInteger)section
 {
-    // TODO: outsource to TableUtil
-    //UITableViewHeaderFooterView *headerView = [tableView dequeueReusableHeaderFooterViewWithIdentifier:kTableHeaderIdentifier];
-    // FIXME: HACK do not alloc init there. Use ReuseIdentifier instead!! But does lead to several issues...
-    UITableViewHeaderFooterView *headerView = [[UITableViewHeaderFooterView alloc] init];
-    headerView.contentView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"darkblue"]];
-
-    CGFloat height = [self tableView:self.tableView heightForHeaderInSection:section]-10.0;
-    UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(13.0f, 0.0f, 265.0f, height)];
-
-    CALayer *layer = titleLabel.layer;
-    CALayer *bottomBorder = [CALayer layer];
-    bottomBorder.borderColor = [UIColor airForceBlueColor].CGColor;
-    bottomBorder.borderWidth = 1;
-    bottomBorder.frame = CGRectMake(0, layer.frame.size.height-1, layer.frame.size.width, 1);
-    [bottomBorder setBorderColor:[UIColor airForceBlueColor].CGColor];
-    [layer addSublayer:bottomBorder];
-
-    titleLabel.textColor = [UIColor whiteColor];
-    titleLabel.tag = 1;
-    titleLabel.font = [UIFont systemFontOfSize:14.0f];
+    ProgramTableHeaderView *headerView = (ProgramTableHeaderView *)[self.tableView dequeueReusableHeaderFooterViewWithIdentifier:@"Header"];
+    
     if (section == 0) {
-        titleLabel.text = [kUILabelTextBackground uppercaseString];
+        headerView.textLabel.text = [kUILabelTextBackground uppercaseString];
     } else {
-        titleLabel.text = (([self.program numberOfNormalObjects] != 1)
-                        ? [kUILabelTextObjectPlural uppercaseString]
-                        : [kUILabelTextObjectSingular uppercaseString]);
+        headerView.textLabel.text = (([self.program numberOfNormalObjects] != 1)
+                                                    ? [kUILabelTextObjectPlural uppercaseString]
+                                                    : [kUILabelTextObjectSingular uppercaseString]);
     }
-    titleLabel.text = [NSString stringWithFormat:@"  %@", titleLabel.text];
-    [headerView.contentView addSubview:titleLabel];
     return headerView;
 }
 
+- (void)tableView:(UITableView *)tableView willDisplayHeaderView:(UIView *)view forSection:(NSInteger)section
+{
+    ProgramTableHeaderView *headerView = (ProgramTableHeaderView *)view;
+    headerView.textLabel.textColor = UIColor.headerTextColor;
+}
+
+#pragma mark editing
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
 {
     return ((indexPath.section == kObjectSectionIndex)

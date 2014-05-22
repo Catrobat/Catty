@@ -28,41 +28,17 @@
 
 @implementation DarkBlueGradientCell
 
-- (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
-{
-    self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
-    if (self) {
-        // Initialization code
-    }
-    return self;
-}
 
 -(id)initWithCoder:(NSCoder *)aDecoder {
     if(self = [super initWithCoder:aDecoder]) {
         [self configure];
-    }
-    
+    }    
     return self;
-}
-
-- (void)setSelected:(BOOL)selected animated:(BOOL)animated
-{
-    [super setSelected:selected animated:animated];
-
-    // Configure the view for the selected state
 }
 
 -(void)configure
 {
-    self.backgroundView = [[UIImageView alloc] initWithImage:[[UIImage imageNamed:@"darkBlueGradient"] resizableImageWithCapInsets:UIEdgeInsetsZero]];
-    self.backgroundColor = [UIColor darkBlueColor];
-}
-
--(CAGradientLayer*)getBackgroundLayerForFrame:(CGRect)frame
-{
-    CAGradientLayer *grad = [BackgroundLayer darkBlueGradient];
-    grad.frame = frame;
-    return grad;
+    self.backgroundColor = UIColor.darkBlueColor;
 }
 
 @end
