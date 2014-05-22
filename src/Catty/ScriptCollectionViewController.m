@@ -53,7 +53,6 @@
 @property (nonatomic, strong) NSIndexPath *addedIndexPath;
 @property (nonatomic, strong) NSIndexPath *selectedIndexPath;
 
-
 @end
 
 @implementation ScriptCollectionViewController
@@ -108,14 +107,13 @@
     [dnc removeObserver:self name:kBrickDetailViewDismissed object:nil];
 }
 
-
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     [BrickCell clearImageCache];
 }
 
-- (FXBlurView *)dimView
+- (FXBlurView*)dimView
 {
     if (! _dimView) {
         _dimView = [[FXBlurView alloc] initWithFrame:self.view.bounds];
@@ -136,12 +134,14 @@
 #pragma mark - UIViewControllerAnimatedTransitioning delegate
 - (id<UIViewControllerAnimatedTransitioning>)animationControllerForPresentedController:(UIViewController *)presented
                                                                   presentingController:(UIViewController *)presenting
-                                                                      sourceController:(UIViewController *)source {
+                                                                      sourceController:(UIViewController *)source
+{
     self.brickScaleTransition.transitionMode = TransitionModePresent;
     return self.brickScaleTransition;
 }
 
-- (id<UIViewControllerAnimatedTransitioning>)animationControllerForDismissedController:(UIViewController *)dismissed {
+- (id<UIViewControllerAnimatedTransitioning>)animationControllerForDismissedController:(UIViewController *)dismissed
+{
     self.brickScaleTransition.transitionMode = TransitionModeDismiss;
     return self.brickScaleTransition;
 }
@@ -201,8 +201,8 @@
     [self.collectionView reloadData];
 
     if  ([notification.userInfo[@"brickDeleted"] boolValue]) {
-        [notification.userInfo[@"isScript"] boolValue] ? [self removeScriptSectionWithIndexPath:self.selectedIndexPath] :
-                                                         [self removeBrickFromScriptCollectionViewFromIndex:self.selectedIndexPath];
+        [notification.userInfo[@"isScript"] boolValue] ? [self removeScriptSectionWithIndexPath:self.selectedIndexPath]
+                                                       : [self removeBrickFromScriptCollectionViewFromIndex:self.selectedIndexPath];
     } else {
         BOOL copy = [notification.userInfo[@"copy"] boolValue];
         if (copy && [notification.userInfo[@"copiedCell"] isKindOfClass:BrickCell.class]) {
@@ -377,20 +377,19 @@
     }
 }
 
-- (void)collectionView:(UICollectionView *)collectionView itemAtIndexPath:(NSIndexPath *)fromIndexPath didMoveToIndexPath:(NSIndexPath *)toIndexPath {
+- (void)collectionView:(UICollectionView *)collectionView itemAtIndexPath:(NSIndexPath *)fromIndexPath didMoveToIndexPath:(NSIndexPath *)toIndexPath
+{
     [self.collectionView reloadData];
 }
 
-- (BOOL)collectionView:(UICollectionView *)collectionView itemAtIndexPath:(NSIndexPath *)fromIndexPath canMoveToIndexPath:(NSIndexPath *)toIndexPath {
-    return toIndexPath.item == 0 ? NO : YES;
+- (BOOL)collectionView:(UICollectionView *)collectionView itemAtIndexPath:(NSIndexPath *)fromIndexPath canMoveToIndexPath:(NSIndexPath *)toIndexPath
+{
+    return (toIndexPath.item != 0);
 }
 
-- (BOOL)collectionView:(UICollectionView *)collectionView canMoveItemAtIndexPath:(NSIndexPath *)indexPath {
-    if (self.isEditing || indexPath.item == 0) {
-        return NO;
-    }
-    
-    return YES;
+- (BOOL)collectionView:(UICollectionView *)collectionView canMoveItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    return ((self.isEditing || indexPath.item == 0) ? NO : YES);
 }
 
 #pragma mark - segue handling
@@ -465,15 +464,19 @@
 
 - (void)addBrickCellAction:(BrickCell*)brickCell copyBrick:(BOOL)copy completionBlock:(void(^)())completionBlock
 {
-    if (!brickCell) {
+    if (! brickCell) {
         return;
     }
-    
+
     // convert brickCell to brick
     NSString *brickCellClassName = NSStringFromClass([brickCell class]);
     NSString *brickOrScriptClassName = [brickCellClassName stringByReplacingOccurrencesOfString:@"Cell" withString:@""];
     id brickOrScript = [[NSClassFromString(brickOrScriptClassName) alloc] init];
-    
+    if (! [brickOrScript conformsToProtocol:@protocol(BrickProtocol)]) {
+        NSError(@"Given object does not implement BrickProtocol...");
+        abort();
+    }
+
     if ([brickOrScript isKindOfClass:[Brick class]]) {
         Script *script = nil;
         // automatically create new script if the object does not contain any of them
@@ -499,7 +502,9 @@
     }
     self.placeHolderView.hidden = self.object.scriptList.count ? YES : NO;
     [self.collectionView reloadData];
-    if (completionBlock) completionBlock();
+    if (completionBlock) {
+        completionBlock();
+    }
 }
 
 - (Script *)firstVisibleScriptOnScreen:(BOOL)copy
@@ -512,7 +517,7 @@
         NSMutableArray *scriptCells = [NSMutableArray array];
         if (self.collectionView.visibleCells.count) {
             for (BrickCell *cell in self.collectionView.visibleCells) {
-                if ([self isScriptCell:cell]) {
+                if ([cell isScriptBrick]) {
                     [scriptCells addObject:cell];
                 }
             }
@@ -544,16 +549,6 @@
         self.addedIndexPath = [self.collectionView indexPathForCell:cell];
     }
     return script;
-}
-
-- (BOOL)isScriptCell:(BrickCell *)cell
-{
-    if ([cell isKindOfClass:StartScriptCell.class] ||
-        [cell isKindOfClass:WhenScriptCell.class] ||
-        [cell isKindOfClass:BroadcastScriptCell.class]) {
-        return YES;
-    }
-    return NO;
 }
 
 - (void)insertBrick:(Brick *)brick intoScriptList:(Script *)script copy:(BOOL)copy

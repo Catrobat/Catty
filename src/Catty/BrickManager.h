@@ -35,8 +35,6 @@
 - (kBrickType)brickTypeForClassName:(NSString*)className;
 - (kBrickCategoryType)brickCategoryTypeForBrickType:(kBrickType)brickType;
 - (NSString*)classNameForBrickType:(kBrickType)brickType;
-//- (NSUInteger)numberOfAvailableBricksForCategoryType:(kBrickCategoryType)categoryType;
-- (BOOL)isScriptBrickForBrickType:(kBrickType)brickType;
 - (kBrickType)brickTypeForCategoryType:(kBrickCategoryType)categoryType andBrickIndex:(NSUInteger)index;
 - (NSUInteger)brickIndexForBrickType:(kBrickType)brickType;
 

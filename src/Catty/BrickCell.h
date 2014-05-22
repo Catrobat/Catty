@@ -39,6 +39,7 @@
 
 - (void)hookUpSubViews:(NSArray *)inlineViewSubViews; // abstract
 - (void)renderSubViews;
+- (BOOL)isScriptBrick;
 + (void)clearImageCache;
 
 // TODO: review that

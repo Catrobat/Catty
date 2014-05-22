@@ -146,41 +146,6 @@ static BrickManager *sharedBrickManager = nil;
     return [selectableBricksForCategoryMutable copy];
 }
 
-//- (NSUInteger)numberOfAvailableBricksForCategoryType:(kBrickCategoryType)categoryType
-//{
-//    switch (categoryType) {
-//        case kControlBrick:
-//            return [kControlBrickHeights count];
-//        case kMotionBrick:
-//            return [kMotionBrickHeights count];
-//        case kSoundBrick:
-//            return [kSoundBrickHeights count];
-//        case kLookBrick:
-//            return [kLookBrickHeights count];
-//        case kVariableBrick:
-//            return [kVariableBrickHeights count];
-//        default:
-//            break;
-//    }
-//    return 0;
-//}
-
-- (BOOL)isScriptBrickForBrickType:(kBrickType)brickType
-{
-    kBrickCategoryType categoryType = (kBrickCategoryType)(((NSUInteger)brickType) / 100);
-    if (categoryType == kControlBrick) {
-        switch (brickType) {
-            case kProgramStartedBrick:
-            case kTappedBrick:
-            case kReceiveBrick:
-                return YES;
-            default:
-                break;
-        }
-    }
-    return NO;
-}
-
 - (kBrickType)brickTypeForCategoryType:(kBrickCategoryType)categoryType andBrickIndex:(NSUInteger)index
 {
     return (kBrickType)(categoryType * 100 + index);

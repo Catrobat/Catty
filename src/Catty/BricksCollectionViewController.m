@@ -27,6 +27,8 @@
 #import "ScriptCollectionViewController.h"
 #import "SpriteObject.h"
 #import "BrickManager.h"
+#import "BrickProtocol.h"
+#import "Script.h"
 
 @interface BricksCollectionViewController ()
 @property (nonatomic, strong) NSArray *selectableBricks;
@@ -76,7 +78,7 @@
 
     // register brick cells for current brick category
     NSArray *selectableBricks = self.selectableBricks;
-    for (id brick in selectableBricks) {
+    for (id<BrickProtocol> brick in selectableBricks) {
         NSString *brickTypeName = NSStringFromClass([brick class]);
         [self.collectionView registerClass:NSClassFromString([brickTypeName stringByAppendingString:@"Cell"])
                 forCellWithReuseIdentifier:brickTypeName];
@@ -129,7 +131,7 @@
                   layout:(UICollectionViewLayout*)collectionViewLayout
   sizeForItemAtIndexPath:(NSIndexPath*)indexPath
 {
-    id brick = [self.selectableBricks objectAtIndex:indexPath.section];
+    id<BrickProtocol> brick = [self.selectableBricks objectAtIndex:indexPath.section];
     NSString *brickCellName = [NSStringFromClass([brick class]) stringByAppendingString:@"Cell"];
     return CGSizeMake(self.view.frame.size.width, [NSClassFromString(brickCellName) cellHeight]);
 }
@@ -137,7 +139,7 @@
 - (UICollectionViewCell*)collectionView:(UICollectionView*)collectionView
                  cellForItemAtIndexPath:(NSIndexPath*)indexPath
 {
-    id brick = [self.selectableBricks objectAtIndex:indexPath.section];
+    id<BrickProtocol> brick = [self.selectableBricks objectAtIndex:indexPath.section];
     NSString *brickTypeName = NSStringFromClass([brick class]);
     BrickCell *brickCell = [collectionView dequeueReusableCellWithReuseIdentifier:brickTypeName
                                                                      forIndexPath:indexPath];
@@ -152,11 +154,9 @@
         insetForSectionAtIndex:(NSInteger)section
 {
     UIEdgeInsets insets = UIEdgeInsetsMake(0.0f, 0.0f, 0.0f, 0.0f);
-    BrickManager *brickManager = [BrickManager sharedBrickManager];
-    // TODO: outsource this line as helper method to BrickManager
-    kBrickType brickType = [[BrickManager sharedBrickManager] brickTypeForCategoryType:self.brickCategoryType
-                                                                         andBrickIndex:section];
-    if ([brickManager isScriptBrickForBrickType:brickType]) {
+
+    id<BrickProtocol> brick = [self.selectableBricks objectAtIndex:section];
+    if ([brick isKindOfClass:[Script class]]) {
         insets.top += 10.0f;
     }
     return insets;
