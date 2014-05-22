@@ -20,18 +20,13 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import <UIKit/UIKit.h>
-#import "BaseTableViewController.h"
+#import "ProgramTableViewController.h"
 
-@class ProgramLoadingInfo;
-@class Program;
-@protocol ProgramUpdateDelegate;
+@class SWTableViewCell;
 
-@interface ProgramTableViewController : BaseTableViewController
+@interface ProgramTableViewController (UnitTestingExtensions)
 
-@property (weak, nonatomic) id<ProgramUpdateDelegate> delegate;
-@property (strong, nonatomic) Program *program;
-// TODO: remove this after persisting programs feature is fully implemented...
-@property (nonatomic) BOOL isNewProgram;
+// Needed for unit testing
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex;
 
 @end
