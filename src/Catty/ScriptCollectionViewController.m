@@ -97,8 +97,10 @@
     self.placeHolderView.hidden = self.object.scriptList.count ? YES : NO;
     
     self.brickScaleTransition = [BrickScaleTransition new];
+    self.brickSelectModelTransition = [BrickSelectModalTransition new];
 }
 
+#pragma mark - view events
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
@@ -224,31 +226,6 @@
         [self.view addSubview:self.dimView];
     }
     return _dimView;
-}
-
-
-
-#pragma mark - initialization
-- (void)setupCollectionView
-{
-    self.collectionView.delegate = self;
-    self.collectionView.dataSource = self;
-    self.collectionView.backgroundColor = UIColor.darkBlueColor;
-    self.view.backgroundColor = UIColor.darkBlueColor;
-    self.collectionView.alwaysBounceVertical = YES;
-    self.collectionView.scrollEnabled = YES;
-    self.collectionView.delegate = self;
-    self.collectionView.dataSource = self;
-    
-    self.navigationItem.rightBarButtonItems = @[self.editButtonItem];
-    
-    self.placeHolderView = [[PlaceHolderView alloc]initWithTitle:kUIViewControllerPlaceholderTitleScripts];
-    self.placeHolderView.frame = self.collectionView.bounds;
-    [self.view addSubview:self.placeHolderView];
-    self.placeHolderView.hidden = self.object.scriptList.count ? YES : NO;
-    
-    self.brickScaleTransition = [BrickScaleTransition new];
-    self.brickSelectModelTransition = [BrickSelectModalTransition new];
 }
 
 #pragma mark - UIViewControllerAnimatedTransitioning delegate
@@ -560,16 +537,6 @@
             }
         }
     }
-}
-
-#pragma mark - Getters and Setters
-- (NSDictionary*)classNameBrickNameMap
-{
-    static NSDictionary *classNameBrickNameMap = nil;
-    if (classNameBrickNameMap == nil) {
-        classNameBrickNameMap = kClassNameBrickNameMap;
-    }
-    return classNameBrickNameMap;
 }
 
 #pragma mark - helpers
