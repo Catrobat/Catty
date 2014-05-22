@@ -228,6 +228,8 @@
     [appDelegate.fileManager downloadScreenshotFromURL:screenshotSmallUrl andBaseUrl:url andName:self.project.name];
     self.project.isdownloading = YES;
     [self.projects setObject:self.project forKey:url];
+    EVCircularProgressView* pbutton = (EVCircularProgressView*)[self.view viewWithTag:kStopLoadingTag];
+    [pbutton setProgress:0.00001f animated:YES];
 }
 
 - (void)downloadButtonPressed:(id)sender
@@ -239,11 +241,11 @@
 - (void) downloadFinishedWithURL:(NSURL*)url
 {
     NSLog(@"Download Finished!!!!!!");
-//    [self.projectView viewWithTag:kDownloadButtonTag].hidden = YES;
-    [self.projectView viewWithTag:kStopLoadingTag].hidden = YES;
-    [self.projectView viewWithTag:kPlayButtonTag].hidden = NO;
     self.project.isdownloading = NO;
     [self.projects removeObjectForKey:url];
+    [self.projectView viewWithTag:kDownloadButtonTag].hidden = YES;
+    [self.projectView viewWithTag:kStopLoadingTag].hidden = YES;
+    [self.projectView viewWithTag:kPlayButtonTag].hidden = NO;
     [self reloadWithProject:self.project];
 }
 
@@ -291,6 +293,7 @@
     UIButton * button =(UIButton*)[self.projectView viewWithTag:kDownloadButtonTag];
     button.enabled = YES;
     [self hideLoadingView];
+    [self.view setNeedsDisplay];
 }
 
 #pragma mark - loading view
@@ -332,11 +335,11 @@
     [self loadingIndicator:NO];
     
 }
--(void)updateProgress:(float)progress
+-(void)updateProgress:(double)progress
 {
-    NSDebug(@"updateProgress:%f",(progress));
+    NSDebug(@"updateProgress:%f",((float)progress));
     EVCircularProgressView* button = (EVCircularProgressView*)[self.view viewWithTag:kStopLoadingTag];
-    [button setProgress:(progress) animated:YES];
+    [button setProgress:progress animated:NO];
 }
 
 -(void)setBackDownloadStatus
