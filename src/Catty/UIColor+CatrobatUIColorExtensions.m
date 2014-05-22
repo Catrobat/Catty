@@ -70,22 +70,22 @@
     return [UIColor colorWithRed:0 green:37.0f/255.0f blue:52.0f/255.0f alpha:1.0f];
 }
 
-+ (UIColor*) lightOrangeColor
++ (UIColor*)lightOrangeColor
 {
     return [UIColor colorWithRed:232.0/255.0 green:146.0f/255.0f blue:6.0f/255.0f alpha:1.0f];
 }
 
-+ (UIColor *)lightBlueColor;
++ (UIColor*)lightBlueColor;
 {
   return [UIColor colorWithRed:132.0f / 255.0f green:207.0f / 255.0f blue:218.0f / 255.0f alpha:1.0f];
 }
 
-+ (UIColor *)lightRedColor
++ (UIColor*)lightRedColor
 {
 	return [self colorWithHex: 0xF26C4F];
 }
 
-+ (UIColor *)violetColor
++ (UIColor*)violetColor
 {
 	return [self colorWithHex: 0xEE82EE];
 }
@@ -94,4 +94,15 @@
 {
     return [UIColor colorWithRed:0 green:37.0f/255.0f blue:52.0f/255.0f alpha:0.85f];
 }
+
++ (UIColor*)backgroundBlueColor
+{
+     return [UIColor colorWithRed:16.0f/255.0f green:33.0f/255.0f blue:45.0f/255.0f alpha:1.0f];
+}
+
++ (UIColor*)headerTextColor
+{
+    return [UIColor colorWithRed:133.0f/255.0f green:163.0f/255.0f blue:180.0f/255.0f alpha:1.0f];
+}
+
 @end
