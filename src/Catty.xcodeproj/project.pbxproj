@@ -35,7 +35,6 @@
 		817B544018F03C0D00AF6BFE /* BaseTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = 817B543F18F03C0D00AF6BFE /* BaseTransition.m */; };
 		817B544318F03D4C00AF6BFE /* BrickScaleTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = 817B544218F03D4C00AF6BFE /* BrickScaleTransition.m */; };
 		817B544C18F0520800AF6BFE /* BrickDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 817B544A18F0520800AF6BFE /* BrickDetailViewController.m */; };
-		817B544D18F0520800AF6BFE /* BrickDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 817B544B18F0520800AF6BFE /* BrickDetailViewController.xib */; };
 		817B545118F0AAE600AF6BFE /* FXBlurView.m in Sources */ = {isa = PBXBuildFile; fileRef = 817B545018F0AAE600AF6BFE /* FXBlurView.m */; };
 		8193CD99192BEFB700AD44A3 /* BrickSelectionSwipe.m in Sources */ = {isa = PBXBuildFile; fileRef = 8193CD98192BEFB700AD44A3 /* BrickSelectionSwipe.m */; };
 		81A5B4D7192964170082B2B8 /* CellMotionEffect.m in Sources */ = {isa = PBXBuildFile; fileRef = 81A5B4D6192964170082B2B8 /* CellMotionEffect.m */; };
@@ -77,9 +76,7 @@
 		92C37A521856276D00547C1E /* SetBrightnessBrickTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 92C37A511856276D00547C1E /* SetBrightnessBrickTests.m */; };
 		92C37A541856279600547C1E /* MoveNStepsBrickTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 92C37A531856279600547C1E /* MoveNStepsBrickTests.m */; };
 		92C37A56185627A300547C1E /* ClearGrafficEffectBrickTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 92C37A55185627A300547C1E /* ClearGrafficEffectBrickTests.m */; };
-		92E3351C18FBB5850056C390 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 92E3351B18FBB5850056C390 /* Reachability.m */; };
 		92E3351E18FBB6750056C390 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 92E3351D18FBB6750056C390 /* SystemConfiguration.framework */; };
-		92F13A79190BD66700A6EBDE /* RoundBorderedButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 92F13A78190BD66700A6EBDE /* RoundBorderedButton.m */; };
 		B402288217329FEB004C4942 /* IfLogicBeginBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = B402288117329FEB004C4942 /* IfLogicBeginBrick.m */; };
 		B40228911732A541004C4942 /* IfLogicElseBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = B40228901732A540004C4942 /* IfLogicElseBrick.m */; };
 		B40228961732A58E004C4942 /* IfLogicEndBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = B40228951732A58E004C4942 /* IfLogicEndBrick.m */; };
@@ -328,7 +325,6 @@
 		817B544218F03D4C00AF6BFE /* BrickScaleTransition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BrickScaleTransition.m; sourceTree = "<group>"; };
 		817B544918F0520800AF6BFE /* BrickDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BrickDetailViewController.h; sourceTree = "<group>"; };
 		817B544A18F0520800AF6BFE /* BrickDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BrickDetailViewController.m; sourceTree = "<group>"; };
-		817B544B18F0520800AF6BFE /* BrickDetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BrickDetailViewController.xib; sourceTree = "<group>"; };
 		817B544F18F0AAE600AF6BFE /* FXBlurView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FXBlurView.h; sourceTree = "<group>"; };
 		817B545018F0AAE600AF6BFE /* FXBlurView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FXBlurView.m; sourceTree = "<group>"; };
 		8193CD97192BEFB700AD44A3 /* BrickSelectionSwipe.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BrickSelectionSwipe.h; sourceTree = "<group>"; };
@@ -424,11 +420,7 @@
 		92C37A511856276D00547C1E /* SetBrightnessBrickTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SetBrightnessBrickTests.m; sourceTree = "<group>"; };
 		92C37A531856279600547C1E /* MoveNStepsBrickTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MoveNStepsBrickTests.m; sourceTree = "<group>"; };
 		92C37A55185627A300547C1E /* ClearGrafficEffectBrickTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ClearGrafficEffectBrickTests.m; sourceTree = "<group>"; };
-		92E3351A18FBB5850056C390 /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Reachability.h; path = ../Reachability.h; sourceTree = "<group>"; };
-		92E3351B18FBB5850056C390 /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Reachability.m; path = ../Reachability.m; sourceTree = "<group>"; };
 		92E3351D18FBB6750056C390 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
-		92F13A77190BD66700A6EBDE /* RoundBorderedButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RoundBorderedButton.h; sourceTree = "<group>"; };
-		92F13A78190BD66700A6EBDE /* RoundBorderedButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RoundBorderedButton.m; sourceTree = "<group>"; };
 		B4003030170EB50A00396DB7 /* CatrobatTableViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CatrobatTableViewController.h; sourceTree = "<group>"; };
 		B4003031170EB50A00396DB7 /* CatrobatTableViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CatrobatTableViewController.m; sourceTree = "<group>"; };
 		B402288017329FEB004C4942 /* IfLogicBeginBrick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IfLogicBeginBrick.h; sourceTree = "<group>"; };
@@ -2196,7 +2188,6 @@
 		CD0CCE37170C9F9300B70036 /* Storyboard & XIBs */ = {
 			isa = PBXGroup;
 			children = (
-				817B544B18F0520800AF6BFE /* BrickDetailViewController.xib */,
 				C3F2950B1813C63200E37D61 /* iPhone.storyboard */,
 			);
 			name = "Storyboard & XIBs";
@@ -2753,7 +2744,6 @@
 			files = (
 				B43498501927A875002F9075 /* My First Program.catrobat in Resources */,
 				81C27426189EF94600827A95 /* Images.xcassets in Resources */,
-				817B544D18F0520800AF6BFE /* BrickDetailViewController.xib in Resources */,
 				C3F2950C1813C63200E37D61 /* iPhone.storyboard in Resources */,
 				92300D0B18B2196700F2B4DC /* Localizable.strings in Resources */,
 				B4365CE91758EBA900B4D0A6 /* LoggerProperties.plist in Resources */,
