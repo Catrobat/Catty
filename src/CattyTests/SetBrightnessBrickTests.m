@@ -22,6 +22,7 @@
 
 #import <XCTest/XCTest.h>
 #import "BrickTests.h"
+#import "Look.h"
 
 @interface SetBrightnessBrickTests : BrickTests
 
@@ -44,113 +45,178 @@
 
 -(void)testSetBrightnessBrickDarker
 {
-#warning Problem with texture -> don't have an image to test
-    //    SpriteObject* object = [[SpriteObject alloc] init];
-    //
-    //    SetBrightnessBrick* brick = [[SetBrightnessBrick alloc] init];
-    //    brick.object = object;
-    //    object.texture = [SKTexture textureWithImageNamed:@"icon"];
-    //
-    //
-    //    Formula* brightness = [[Formula alloc] init];
-    //    FormulaElement* formulaTree = [[FormulaElement alloc] init];
-    //    formulaTree.type = NUMBER;
-    //    formulaTree.value = @"30";
-    //    brightness.formulaTree = formulaTree;
-    //    brick.brightness = brightness;
-    //
-    //    dispatch_block_t action = [brick actionBlock];
-    //
-    //    action();
-    //
-    //    XCTAssertEqual([object currentLookBrightness], -70f, @"SetBrightnessBrick - Brightness not correct");
+    SpriteObject* object = [[SpriteObject alloc] init];
+    Program *program = [Program defaultProgramWithName:@"a"];
+    object.program = program;
+    
+    NSBundle *bundle = [NSBundle bundleForClass:[self class]];
+    NSString * filePath = [bundle pathForResource:@"test.png"
+                                           ofType:nil];
+    NSData *imageData = UIImagePNGRepresentation([UIImage imageWithContentsOfFile:filePath]);
+    Look* look = [[Look alloc] initWithName:@"test" andPath:@"test.png"];
+    [imageData writeToFile:[NSString stringWithFormat:@"%@images/%@", [object projectPath], @"test.png"]atomically:YES];
+
+    SetBrightnessBrick* brick = [[SetBrightnessBrick alloc] init];
+    brick.object = object;
+    [object.lookList addObject:look];
+    [object.lookList addObject:look];
+    object.currentLook = look;
+    object.currentUIImageLook = [UIImage imageWithContentsOfFile:filePath];
+    object.currentLookBrightness = 1.0f;
+    
+    Formula* brightness = [[Formula alloc] init];
+    FormulaElement* formulaTree = [[FormulaElement alloc] init];
+    formulaTree.type = NUMBER;
+    formulaTree.value = @"30";
+    brightness.formulaTree = formulaTree;
+    brick.brightness = brightness;
+    
+    dispatch_block_t action = [brick actionBlock];
+    
+    action();
+    XCTAssertEqualWithAccuracy([object brightness], -70.0f,0.1f, @"SetBrightnessBrick - Brightness not correct");
+    [Program removeProgramFromDiskWithProgramName:program.header.programName];
 }
 
 -(void)testSetBrightnessBrickBrighter
 {
+    SpriteObject* object = [[SpriteObject alloc] init];
+    Program *program = [Program defaultProgramWithName:@"a"];
+    object.program = program;
     
-    //    SpriteObject* object = [[SpriteObject alloc] init];
-    //
-    //
-    //    SetBrightnessBrick* brick = [[SetBrightnessBrick alloc] init];
-    //    brick.object = object;
-    //
-    //    Formula* brightness = [[Formula alloc] init];
-    //    FormulaElement* formulaTree = [[FormulaElement alloc] init];
-    //    formulaTree.type = NUMBER;
-    //    formulaTree.value = @"130";
-    //    brightness.formulaTree = formulaTree;
-    //    brick.brightness = brightness;
-    //
-    //    dispatch_block_t action = [brick actionBlock];
-    //
-    //    action();
-    //
-    //    XCTAssertEqual([object currentLookBrightness], 130f, @"SetBrightnessBrick - Brightness not correct");
+    NSBundle *bundle = [NSBundle bundleForClass:[self class]];
+    NSString * filePath = [bundle pathForResource:@"test.png"
+                                           ofType:nil];
+    NSData *imageData = UIImagePNGRepresentation([UIImage imageWithContentsOfFile:filePath]);
+    Look* look = [[Look alloc] initWithName:@"test" andPath:@"test.png"];
+    [imageData writeToFile:[NSString stringWithFormat:@"%@images/%@", [object projectPath], @"test.png"]atomically:YES];
+    
+    SetBrightnessBrick* brick = [[SetBrightnessBrick alloc] init];
+    brick.object = object;
+    [object.lookList addObject:look];
+    [object.lookList addObject:look];
+    object.currentLook = look;
+    object.currentUIImageLook = [UIImage imageWithContentsOfFile:filePath];
+    object.currentLookBrightness = 1.0f;
+    
+    Formula* brightness = [[Formula alloc] init];
+    FormulaElement* formulaTree = [[FormulaElement alloc] init];
+    formulaTree.type = NUMBER;
+    formulaTree.value = @"130";
+    brightness.formulaTree = formulaTree;
+    brick.brightness = brightness;
+    
+    dispatch_block_t action = [brick actionBlock];
+    
+    action();
+    XCTAssertEqualWithAccuracy([object brightness], 30.0f,0.1f ,@"SetBrightnessBrick - Brightness not correct");
+    [Program removeProgramFromDiskWithProgramName:program.header.programName];
+
 }
 -(void)testSetBrightnessBrickTooBright
 {
+    SpriteObject* object = [[SpriteObject alloc] init];
+    Program *program = [Program defaultProgramWithName:@"a"];
+    object.program = program;
     
-    //        SpriteObject* object = [[SpriteObject alloc] init];
-    //
-    //        SetBrightnessBrick* brick = [[SetBrightnessBrick alloc] init];
-    //        brick.object = object;
-    //
-    //        Formula* brightness = [[Formula alloc] init];
-    //        FormulaElement* formulaTree = [[FormulaElement alloc] init];
-    //        formulaTree.type = NUMBER;
-    //        formulaTree.value = @"-80";
-    //        brightness.formulaTree = formulaTree;
-    //        brick.brightness = brightness;
-    //
-    //    dispatch_block_t action = [brick actionBlock];
-    //
-    //    action();
-    //    XCTAssertEqual([object currentLookBrightness], -100f, @"SetBrightnessBrick - Brightness not correct");
+    NSBundle *bundle = [NSBundle bundleForClass:[self class]];
+    NSString * filePath = [bundle pathForResource:@"test.png"
+                                           ofType:nil];
+    NSData *imageData = UIImagePNGRepresentation([UIImage imageWithContentsOfFile:filePath]);
+    Look* look = [[Look alloc] initWithName:@"test" andPath:@"test.png"];
+    [imageData writeToFile:[NSString stringWithFormat:@"%@images/%@", [object projectPath], @"test.png"]atomically:YES];
+    
+    SetBrightnessBrick* brick = [[SetBrightnessBrick alloc] init];
+    brick.object = object;
+    [object.lookList addObject:look];
+    [object.lookList addObject:look];
+    object.currentLook = look;
+    object.currentUIImageLook = [UIImage imageWithContentsOfFile:filePath];
+    object.currentLookBrightness = 1.0f;
+    
+    Formula* brightness = [[Formula alloc] init];
+    FormulaElement* formulaTree = [[FormulaElement alloc] init];
+    formulaTree.type = NUMBER;
+    formulaTree.value = @"-80";
+    brightness.formulaTree = formulaTree;
+    brick.brightness = brightness;
+    
+    dispatch_block_t action = [brick actionBlock];
+    
+    action();
+    XCTAssertEqualWithAccuracy([object brightness], -100.0f,0.1f, @"SetBrightnessBrick - Brightness not correct");
+    [Program removeProgramFromDiskWithProgramName:program.header.programName];
+
 }
 -(void)testSetBrightnessBrickTooDark
 {
     
-    //    SpriteObject* object = [[SpriteObject alloc] init];
-    //
-    //
-    //    SetBrightnessBrick* brick = [[SetBrightnessBrick alloc] init];
-    //    brick.object = object;
-    //
-    //    Formula* brightness = [[Formula alloc] init];
-    //    FormulaElement* formulaTree = [[FormulaElement alloc] init];
-    //    formulaTree.type = NUMBER;
-    //    formulaTree.value = @"300";
-    //    brightness.formulaTree = formulaTree;
-    //    brick.brightness = brightness;
-    //
-    //    dispatch_block_t action = [brick actionBlock];
-    //
-    //    action();
-    //
-    //    XCTAssertEqual([object currentLookBrightness], 100f, @"SetBrightnessBrick - Brightness not correct");
+    SpriteObject* object = [[SpriteObject alloc] init];
+    Program *program = [Program defaultProgramWithName:@"a"];
+    object.program = program;
+    
+    NSBundle *bundle = [NSBundle bundleForClass:[self class]];
+    NSString * filePath = [bundle pathForResource:@"test.png"
+                                           ofType:nil];
+    NSData *imageData = UIImagePNGRepresentation([UIImage imageWithContentsOfFile:filePath]);
+    Look* look = [[Look alloc] initWithName:@"test" andPath:@"test.png"];
+    [imageData writeToFile:[NSString stringWithFormat:@"%@images/%@", [object projectPath], @"test.png"]atomically:YES];
+    
+    SetBrightnessBrick* brick = [[SetBrightnessBrick alloc] init];
+    brick.object = object;
+    [object.lookList addObject:look];
+    [object.lookList addObject:look];
+    object.currentLook = look;
+    object.currentUIImageLook = [UIImage imageWithContentsOfFile:filePath];
+    object.currentLookBrightness = 1.0f;
+    
+    Formula* brightness = [[Formula alloc] init];
+    FormulaElement* formulaTree = [[FormulaElement alloc] init];
+    formulaTree.type = NUMBER;
+    formulaTree.value = @"300";
+    brightness.formulaTree = formulaTree;
+    brick.brightness = brightness;
+    
+    dispatch_block_t action = [brick actionBlock];
+    
+    action();
+    XCTAssertEqualWithAccuracy([object brightness], 100.0f,0.1f, @"SetBrightnessBrick - Brightness not correct");
+    [Program removeProgramFromDiskWithProgramName:program.header.programName];
 }
 -(void)testSetBrightnessBrickWrongInput
 {
     
-    //    SpriteObject* object = [[SpriteObject alloc] init];
-    //
-    //
-    //    SetBrightnessBrick* brick = [[SetBrightnessBrick alloc] init];
-    //    brick.object = object;
-    //
-    //    Formula* brightness = [[Formula alloc] init];
-    //    FormulaElement* formulaTree = [[FormulaElement alloc] init];
-    //    formulaTree.type = NUMBER;
-    //    formulaTree.value = @"a";
-    //    brightness.formulaTree = formulaTree;
-    //    brick.brightness = brightness;
-    //
-    //    dispatch_block_t action = [brick actionBlock];
-    //
-    //    action();
-    //
-    //    XCTAssertEqual([object currentLookBrightness], 0.0f, @"SetBrightnessBrick - Brightness not correct");
+    SpriteObject* object = [[SpriteObject alloc] init];
+    Program *program = [Program defaultProgramWithName:@"a"];
+    object.program = program;
+    
+    NSBundle *bundle = [NSBundle bundleForClass:[self class]];
+    NSString * filePath = [bundle pathForResource:@"test.png"
+                                           ofType:nil];
+    NSData *imageData = UIImagePNGRepresentation([UIImage imageWithContentsOfFile:filePath]);
+    Look* look = [[Look alloc] initWithName:@"test" andPath:@"test.png"];
+    [imageData writeToFile:[NSString stringWithFormat:@"%@images/%@", [object projectPath], @"test.png"]atomically:YES];
+    
+    SetBrightnessBrick* brick = [[SetBrightnessBrick alloc] init];
+    brick.object = object;
+    [object.lookList addObject:look];
+    [object.lookList addObject:look];
+    object.currentLook = look;
+    object.currentUIImageLook = [UIImage imageWithContentsOfFile:filePath];
+    object.currentLookBrightness = 1.0f;
+    
+    Formula* brightness = [[Formula alloc] init];
+    FormulaElement* formulaTree = [[FormulaElement alloc] init];
+    formulaTree.type = NUMBER;
+    formulaTree.value = @"a";
+    brightness.formulaTree = formulaTree;
+    brick.brightness = brightness;
+    
+    dispatch_block_t action = [brick actionBlock];
+    
+    action();
+    XCTAssertEqualWithAccuracy([object brightness], -100.0f,0.1f, @"SetBrightnessBrick - Brightness not correct");
+    [Program removeProgramFromDiskWithProgramName:program.header.programName];
 }
 
 
