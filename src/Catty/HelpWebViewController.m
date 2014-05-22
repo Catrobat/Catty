@@ -89,9 +89,7 @@
 {
     self.navigationController.toolbar.frame = CGRectMake(self.navigationController.toolbar.frame.origin.x,self.originalToolbarFrameYPos,self.navigationController.toolbar.frame.size.width,self.navigationController.toolbar.frame.size.height);
     self.navigationController.navigationBar.frame = CGRectMake(self.navigationController.navigationBar.frame.origin.x,self.originalNavigationYPos,self.navigationController.navigationBar.frame.size.width,self.navigationController.navigationBar.frame.size.height);
-    [self.webView removeFromSuperview];
-    self.webView.delegate = nil;
-    self.webView = nil;
+
 }
 
 - (void)viewDidUnload
@@ -103,6 +101,9 @@
 {
     [self.loadingView removeFromSuperview];
     self.loadingView = nil;
+    [self.webView removeFromSuperview];
+    self.webView.delegate = nil;
+    self.webView = nil;
 }
 
 #pragma mark - loading view
