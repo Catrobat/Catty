@@ -53,7 +53,7 @@
 #define kUserDetailsShowDetailsObjectsKey @"detailsForObjects"
 
 @interface ProgramTableViewController () <UIActionSheetDelegate, UIAlertViewDelegate, UITextFieldDelegate,
-UINavigationBarDelegate>
+                                          UINavigationBarDelegate, SWTableViewCellDelegate>
 @property (nonatomic) BOOL useDetailCells;
 @property (strong, nonatomic) NSCharacterSet *blockedCharacterSet;
 @end
@@ -242,15 +242,25 @@ UINavigationBarDelegate>
         cell = [tableView dequeueReusableCellWithIdentifier:DetailCellIdentifier forIndexPath:indexPath];
     }
 
-    if (! [cell conformsToProtocol:@protocol(CatrobatImageCell)]) {
+    if (! [cell conformsToProtocol:@protocol(CatrobatImageCell)] || ! [cell isKindOfClass:[CatrobatBaseCell class]]) {
         return cell;
     }
 
-    UITableViewCell<CatrobatImageCell> *imageCell = (UITableViewCell<CatrobatImageCell>*)cell;
+    CatrobatBaseCell<CatrobatImageCell> *imageCell = (CatrobatBaseCell<CatrobatImageCell>*)cell;
     NSInteger index = (kBackgroundSectionIndex + indexPath.section + indexPath.row);
     SpriteObject *object = [self.program.objectList objectAtIndex:index];
     imageCell.iconImageView.image = nil;
     [imageCell.iconImageView setBorder:[UIColor skyBlueColor] Width:kDefaultImageCellBorderWidth];
+    if (indexPath.section == kObjectSectionIndex) {
+        imageCell.rightUtilityButtons = @[[Util slideViewButtonMore], [Util slideViewButtonDelete]];
+        imageCell.delegate = self;
+//    } else if (indexPath.section == kBackgroundSectionIndex) {
+//        imageCell.rightUtilityButtons = @[[Util slideViewButtonMore]];
+//        imageCell.delegate = self;
+    } else {
+        imageCell.rightUtilityButtons = nil;
+        imageCell.delegate = nil;
+    }
 
     if (self.useDetailCells && [cell isKindOfClass:[DarkBlueGradientImageDetailCell class]]) {
         DarkBlueGradientImageDetailCell *detailCell = (DarkBlueGradientImageDetailCell*)imageCell;
@@ -392,24 +402,14 @@ UINavigationBarDelegate>
     return headerView;
 }
 
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return ((indexPath.section == kObjectSectionIndex)
-            && ([self.program numberOfNormalObjects] > kMinNumOfObjects));
-}
-
-- (void)tableView:(UITableView*)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath*)indexPath
-{
-    if (indexPath.section == kObjectSectionIndex) {
-        if (editingStyle == UITableViewCellEditingStyleDelete) {
-            [self.tableView reloadRowsAtIndexPaths:@[indexPath]
-                                  withRowAnimation:UITableViewRowAnimationNone];
-            [self performActionOnConfirmation:@selector(deleteObjectForIndexPath:)
-                               canceledAction:nil
-                                   withObject:indexPath
-                                       target:self
-                                 confirmTitle:kUIAlertViewTitleDeleteSingleObject
-                               confirmMessage:kUIAlertViewMessageIrreversibleAction];
+    [super tableView:tableView didSelectRowAtIndexPath:indexPath];
+    static NSString *segueToObject = kSegueToObject;
+    if (! self.editing) {
+        UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+        if ([self shouldPerformSegueWithIdentifier:segueToObject sender:cell]) {
+            [self performSegueWithIdentifier:segueToObject sender:cell];
         }
     }
 }
@@ -418,15 +418,14 @@ UINavigationBarDelegate>
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     // Pass the selected object to the new view controller.
-    static NSString *toObjectSegue1ID = kSegueToObject1;
-    static NSString *toObjectSegue2ID = kSegueToObject2;
+    static NSString *toObjectSegueID = kSegueToObject;
     static NSString *toSceneSegueID = kSegueToScene;
 
     UIViewController *destController = segue.destinationViewController;
     if ([sender isKindOfClass:[UITableViewCell class]]) {
         UITableViewCell *cell = (UITableViewCell*) sender;
         NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
-        if ([segue.identifier isEqualToString:toObjectSegue1ID] || [segue.identifier isEqualToString:toObjectSegue2ID]) {
+        if ([segue.identifier isEqualToString:toObjectSegueID]) {
             if ([destController isKindOfClass:[ObjectTableViewController class]]) {
                 ObjectTableViewController *tvc = (ObjectTableViewController*) destController;
                 if ([tvc respondsToSelector:@selector(setObject:)]) {
@@ -446,6 +445,38 @@ UINavigationBarDelegate>
             }
         }
     }
+}
+
+#pragma mark - swipe delegates
+- (void)swipeableTableViewCell:(SWTableViewCell *)cell didTriggerRightUtilityButtonWithIndex:(NSInteger)index
+{
+    if (index == 0) {
+        // More button was pressed
+        UIAlertView *alertTest = [[UIAlertView alloc] initWithTitle:@"Hello"
+                                                            message:@"More more more"
+                                                           delegate:nil
+                                                  cancelButtonTitle:@"Cancel"
+                                                  otherButtonTitles:nil];
+        [alertTest show];
+        [cell hideUtilityButtonsAnimated:YES];
+    } else if (index == 1) {
+        // Delete button was pressed
+        NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
+        [cell hideUtilityButtonsAnimated:YES];
+        if (indexPath.section == kObjectSectionIndex) {
+            [self performActionOnConfirmation:@selector(deleteObjectForIndexPath:)
+                               canceledAction:nil
+                                   withObject:indexPath
+                                       target:self
+                                 confirmTitle:kUIAlertViewTitleDeleteSingleObject
+                               confirmMessage:kUIAlertViewMessageIrreversibleAction];
+        }
+    }
+}
+
+- (BOOL)swipeableTableViewCellShouldHideUtilityButtonsOnSwipe:(SWTableViewCell *)cell
+{
+    return YES;
 }
 
 #pragma mark - text field delegates

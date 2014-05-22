@@ -205,6 +205,8 @@
 #define kUIButtonTitlePlay NSLocalizedString(@"Play", nil)
 #define kUIButtonTitleDownload NSLocalizedString(@"Download", nil)
 #define kUIButtonTitleCancel kUIBarButtonItemTitleCancel
+#define kUIButtonTitleMore NSLocalizedString(@"More", nil)
+#define kUIButtonTitleDelete NSLocalizedString(@"Delete", nil)
 
 /*
  * -----------------------------------------------------------------------------------------------------------
