@@ -685,6 +685,7 @@
 		CA88202C192E581800E5D515 /* SWUtilityButtonTapGestureRecognizer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWUtilityButtonTapGestureRecognizer.m; sourceTree = "<group>"; };
 		CA88202D192E581800E5D515 /* SWUtilityButtonView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWUtilityButtonView.h; sourceTree = "<group>"; };
 		CA88202E192E581800E5D515 /* SWUtilityButtonView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWUtilityButtonView.m; sourceTree = "<group>"; };
+		CA882036192E76A300E5D515 /* ProgramTableViewController+UnitTestingExtensions.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ProgramTableViewController+UnitTestingExtensions.h"; sourceTree = "<group>"; };
 		CA8C247718CD053300314C2B /* ProgramTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProgramTests.m; sourceTree = "<group>"; };
 		CA8C247A18CD127C00314C2B /* ProgramTableViewControllerNewProgramTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProgramTableViewControllerNewProgramTests.m; sourceTree = "<group>"; };
 		CA8C247C18CD12C100314C2B /* ProgramTableViewControllerNewProgramTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProgramTableViewControllerNewProgramTests.h; sourceTree = "<group>"; };
@@ -1556,6 +1557,7 @@
 				B4D940C2170EC6A6003DDBFA /* UIColor+CatrobatUIColorExtensions */,
 				B4D940C5170EC6C6003DDBFA /* UIImage+CatrobatUIImageExtensions */,
 				CA43DD371809977A00F95B88 /* UIImageView+CatrobatUIImageViewExtensions */,
+				CA882037192E76AE00E5D515 /* ProgramTableViewController+UnitTestingExtensions */,
 				CACEF95C18452A8A00D199D8 /* Brick+UnitTestingExtensions */,
 				CAB3637218F599BD00AB8401 /* NSDate+CustomExtensions */,
 			);
@@ -2140,6 +2142,14 @@
 				CA750F8118A12CDE005FC0A0 /* Cell */,
 			);
 			name = CollectionView;
+			sourceTree = "<group>";
+		};
+		CA882037192E76AE00E5D515 /* ProgramTableViewController+UnitTestingExtensions */ = {
+			isa = PBXGroup;
+			children = (
+				CA882036192E76A300E5D515 /* ProgramTableViewController+UnitTestingExtensions.h */,
+			);
+			name = "ProgramTableViewController+UnitTestingExtensions";
 			sourceTree = "<group>";
 		};
 		CA8C247918CD06BA00314C2B /* ProgramTests */ = {
