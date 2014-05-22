@@ -42,10 +42,7 @@
 
 @end
 
-
 @implementation Script
-
-
 
 - (id)init
 {
