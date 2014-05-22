@@ -54,7 +54,21 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [self initTableView];
+    [self initSearchView];
+
+    self.searchDisplayController.displaysSearchBarInNavigationBar = NO;
+    self.searchDisplayController.searchBar.backgroundColor = [UIColor darkBlueColor];
+    self.tableView.backgroundView = [[UIImageView alloc] initWithImage:[UIImage imageWithColor:[UIColor darkBlueColor]]];
+    [self.searchDisplayController setActive:YES animated:YES];
+    [self.searchDisplayController.searchBar becomeFirstResponder];
+    self.searchDisplayController.searchBar.delegate = self;
+    self.checkSearch = YES;
+    self.searchDisplayController.searchBar.barTintColor = [UIColor darkBlueColor];
+    self.searchDisplayController.searchBar.barStyle = UISearchBarStyleMinimal;
+    self.tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
+    self.tableView.separatorColor = UIColor.skyBlueColor;
+    self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
+
     [self.searchBar becomeFirstResponder];
     self.view.backgroundColor = [UIColor darkBlueColor];
     [[UITextField appearanceWhenContainedIn:[UISearchBar class], nil] setTextColor:[UIColor lightOrangeColor]];

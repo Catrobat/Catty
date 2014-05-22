@@ -26,47 +26,21 @@
 #import "BrickCell.h"
 #import "ScriptCollectionViewController.h"
 #import "SpriteObject.h"
+#import "BrickManager.h"
+#import "BrickProtocol.h"
+#import "Script.h"
 
 @interface BricksCollectionViewController ()
-@property (nonatomic, strong) NSArray *selectableBricksSortedIndexes;
-@property (nonatomic, strong) NSDictionary *selectableBricks;
+@property (nonatomic, strong) NSArray *selectableBricks;
 @end
 
 @implementation BricksCollectionViewController
 
 #pragma mark - getters and setters
-- (NSArray*)selectableBricksSortedIndexes
-{
-    if (! _selectableBricksSortedIndexes) {
-        _selectableBricksSortedIndexes = [[self.selectableBricks allKeys] sortedArrayUsingSelector:@selector(compare:)];
-    }
-    return _selectableBricksSortedIndexes;
-}
-
-- (NSDictionary*)selectableBricks
+- (NSArray*)selectableBricks
 {
     if (! _selectableBricks) {
-        // hide unselectable bricks
-        NSArray *allUnselectableBricks = kUnselectableBricksObject;
-        if ([self.object isBackground]) {
-            allUnselectableBricks = kUnselectableBricksBackgroundObject;
-        }
-
-        NSArray *unselectableBricks = [allUnselectableBricks objectAtIndex:self.brickCategoryType];
-        NSDictionary *allCategoriesAndBrickTypes = kClassNameBrickNameMap;
-        NSInteger capacity = ([BrickCell numberOfAvailableBricksForCategoryType:self.brickCategoryType] - [unselectableBricks count]);
-        NSMutableDictionary *selectableBricks = [NSMutableDictionary dictionaryWithCapacity:capacity];
-        for (NSString *brickTypeName in allCategoriesAndBrickTypes) {
-            kBrickCategoryType categoryType = (kBrickCategoryType) [allCategoriesAndBrickTypes[brickTypeName][@"categoryType"] integerValue];
-            NSNumber *brickType = allCategoriesAndBrickTypes[brickTypeName][@"brickType"];
-            if ((categoryType != self.brickCategoryType) || [unselectableBricks containsObject:brickType]) {
-                continue;
-            }
-            [selectableBricks setObject:brickTypeName forKey:brickType];
-        }
-        _selectableBricks = [selectableBricks copy];
-        // selectableBricksSortedIndexes should refetch/update on next getter-call
-        self.selectableBricksSortedIndexes = nil;
+        _selectableBricks = [[BrickManager sharedBrickManager] selectableBricksForCategoryType:self.brickCategoryType];
     }
     return _selectableBricks;
 }
@@ -103,9 +77,9 @@
     self.collectionView.delaysContentTouches = NO;
 
     // register brick cells for current brick category
-    NSDictionary *selectableBricks = self.selectableBricks;
-    for (NSNumber *brickType in selectableBricks) {
-        NSString *brickTypeName = selectableBricks[brickType];
+    NSArray *selectableBricks = self.selectableBricks;
+    for (id<BrickProtocol> brick in selectableBricks) {
+        NSString *brickTypeName = NSStringFromClass([brick class]);
         [self.collectionView registerClass:NSClassFromString([brickTypeName stringByAppendingString:@"Cell"])
                 forCellWithReuseIdentifier:brickTypeName];
     }
@@ -157,18 +131,19 @@
                   layout:(UICollectionViewLayout*)collectionViewLayout
   sizeForItemAtIndexPath:(NSIndexPath*)indexPath
 {
-    CGFloat width = self.view.frame.size.width;
-    CGFloat height = [BrickCell brickCellHeightForCategoryType:self.brickCategoryType AndBrickType:indexPath.section];
-    return CGSizeMake(width, height);
+    id<BrickProtocol> brick = [self.selectableBricks objectAtIndex:indexPath.section];
+    NSString *brickCellName = [NSStringFromClass([brick class]) stringByAppendingString:@"Cell"];
+    return CGSizeMake(self.view.frame.size.width, [NSClassFromString(brickCellName) cellHeight]);
 }
 
 - (UICollectionViewCell*)collectionView:(UICollectionView*)collectionView
                  cellForItemAtIndexPath:(NSIndexPath*)indexPath
 {
-    NSNumber *brickType = [self.selectableBricksSortedIndexes objectAtIndex:indexPath.section];
-    NSString *brickTypeName = [self.selectableBricks objectForKey:brickType];
-    BrickCell *brickCell = [collectionView dequeueReusableCellWithReuseIdentifier:brickTypeName forIndexPath:indexPath];
-    brickCell.backgroundBrickCell = self.object.isBackground;
+    id<BrickProtocol> brick = [self.selectableBricks objectAtIndex:indexPath.section];
+    NSString *brickTypeName = NSStringFromClass([brick class]);
+    BrickCell *brickCell = [collectionView dequeueReusableCellWithReuseIdentifier:brickTypeName
+                                                                     forIndexPath:indexPath];
+    brickCell.brick = [self.selectableBricks objectAtIndex:indexPath.section];
     brickCell.enabled = NO;
     [brickCell renderSubViews];
     return brickCell;
@@ -179,7 +154,9 @@
         insetForSectionAtIndex:(NSInteger)section
 {
     UIEdgeInsets insets = UIEdgeInsetsMake(0.0f, 0.0f, 0.0f, 0.0f);
-    if ([BrickCell isScriptBrickCellForCategoryType:self.brickCategoryType AndBrickType:section]) {
+
+    id<BrickProtocol> brick = [self.selectableBricks objectAtIndex:section];
+    if ([brick isKindOfClass:[Script class]]) {
         insets.top += 10.0f;
     }
     return insets;

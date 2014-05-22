@@ -24,19 +24,23 @@
 #import <UIKit/UIKit.h>
 #import <SpriteKit/SpriteKit.h>
 #import "UIDefines.h"
+#import "LanguageTranslationDefines.h"
+#import "BrickProtocol.h"
 
 @class Brick;
 @class SpriteObject;
 
-@interface Script : SKNode
+@interface Script : SKNode <BrickProtocol>
+
+@property (nonatomic, readonly) kBrickCategoryType brickCategoryType;
+@property (nonatomic, readonly) kBrickType brickType;
+@property (nonatomic, strong, readonly) NSString *brickTitle;
+- (BOOL)isSelectableForObject;
 
 @property (nonatomic) BOOL allowRunNextAction;
 @property (nonatomic, weak) SpriteObject *object;
 @property (nonatomic, strong) NSString *action;
 @property (strong, nonatomic) NSMutableArray *brickList;
-
-// TODO: use protocol to define interfaces for Brick and Script class
-//@property (nonatomic) kBrickType brickType;
 
 - (void)startWithCompletion:(dispatch_block_t)block;
 

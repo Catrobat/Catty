@@ -28,13 +28,10 @@
 @protocol ProgramUpdateDelegate;
 
 @interface ProgramTableViewController : BaseTableViewController
-@property (nonatomic, strong) id<ProgramUpdateDelegate> delegate;
+
+@property (weak, nonatomic) id<ProgramUpdateDelegate> delegate;
 @property (strong, nonatomic) Program *program;
 // TODO: remove this after persisting programs feature is fully implemented...
 @property (nonatomic) BOOL isNewProgram;
-
-#ifdef CATTY_TESTS
-- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex;
-#endif
 
 @end

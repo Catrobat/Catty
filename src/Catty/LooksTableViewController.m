@@ -56,7 +56,7 @@
 
 @interface ObjectLooksTableViewController () <UIActionSheetDelegate, UIImagePickerControllerDelegate,
                                               UINavigationControllerDelegate, UIAlertViewDelegate,
-                                              UITextFieldDelegate>
+                                              UITextFieldDelegate, SWTableViewCellDelegate>
 @property (nonatomic) BOOL useDetailCells;
 @property (nonatomic, strong) Look *lookToAdd;
 @property (nonatomic, strong) LoadingView* loadingView;
@@ -78,6 +78,7 @@
     self.placeHolderView.title = kUIViewControllerPlaceholderTitleLooks;
     [self showPlaceHolder:(! (BOOL)[self.object.lookList count])];
     [self setupToolBar];
+    self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
 }
 
 - (void)didReceiveMemoryWarning
@@ -199,14 +200,17 @@
         cell = [tableView dequeueReusableCellWithIdentifier:DetailCellIdentifier forIndexPath:indexPath];
     }
 
-    if (! [cell conformsToProtocol:@protocol(CatrobatImageCell)]) {
+    if (! [cell conformsToProtocol:@protocol(CatrobatImageCell)] || ! [cell isKindOfClass:[CatrobatBaseCell class]]) {
         return cell;
     }
 
-    UITableViewCell <CatrobatImageCell>* imageCell = (UITableViewCell<CatrobatImageCell>*)cell;
+    CatrobatBaseCell<CatrobatImageCell>* imageCell = (CatrobatBaseCell<CatrobatImageCell>*)cell;
     Look *look = [self.object.lookList objectAtIndex:indexPath.row];
     imageCell.iconImageView.image = nil;
     [imageCell.iconImageView setBorder:[UIColor skyBlueColor] Width:kDefaultImageCellBorderWidth];
+    imageCell.rightUtilityButtons = @[[Util slideViewButtonMore], [Util slideViewButtonDelete]];
+    imageCell.delegate = self;
+
     NSString *previewImagePath = [self.object previewImagePathForLookAtIndex:indexPath.row];
     NSNumber *indexAsNumber = @(indexPath.row);
     UIImage *image = [self.imageCache objectForKey:indexAsNumber];
@@ -300,22 +304,15 @@
   return [TableUtil getHeightForImageCell];
 }
 
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return YES;
-}
-
-- (void)tableView:(UITableView*)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath*)indexPath
-{
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        [self.tableView reloadRowsAtIndexPaths:@[indexPath]
-                              withRowAnimation:UITableViewRowAnimationNone];
-        [self performActionOnConfirmation:@selector(deleteLookForIndexPath:)
-                           canceledAction:nil
-                               withObject:indexPath
-                                   target:self
-                             confirmTitle:kUIAlertViewTitleDeleteSingleLook
-                           confirmMessage:kUIAlertViewMessageIrreversibleAction];
+    [super tableView:tableView didSelectRowAtIndexPath:indexPath];
+    static NSString *segueToImage = kSegueToImage;
+    if (! self.editing) {
+        UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+        if ([self shouldPerformSegueWithIdentifier:segueToImage sender:cell]) {
+            [self performSegueWithIdentifier:segueToImage sender:cell];
+        }
     }
 }
 
@@ -323,8 +320,7 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     static NSString* segueToSceneIdentifier = kSegueToScene;
-    static NSString* segueToImage1Identifier = kSegueToImage1;
-    static NSString* segueToImage2Identifier = kSegueToImage2;
+    static NSString* segueToImageIdentifier = kSegueToImage;
     UIViewController* destController = segue.destinationViewController;
     if ([sender isKindOfClass:[UIBarButtonItem class]]) {
         if ([segue.identifier isEqualToString:segueToSceneIdentifier]) {
@@ -339,7 +335,7 @@
     } else if ([sender isKindOfClass:[UITableViewCell class]]) {
         UITableViewCell *cell = (UITableViewCell*)sender;
         NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
-        if ([segue.identifier isEqualToString:segueToImage1Identifier] || [segue.identifier isEqualToString:segueToImage2Identifier]) {
+        if ([segue.identifier isEqualToString:segueToImageIdentifier]) {
             if ([destController isKindOfClass:[LookImageViewController class]]) {
                 LookImageViewController *livc = (LookImageViewController*)destController;
                 if ([livc respondsToSelector:@selector(setImageName:)] && [livc respondsToSelector:@selector(setImagePath:)]) {
@@ -351,6 +347,36 @@
             }
         }
     }
+}
+
+#pragma mark - swipe delegates
+- (void)swipeableTableViewCell:(SWTableViewCell *)cell didTriggerRightUtilityButtonWithIndex:(NSInteger)index
+{
+    if (index == 0) {
+        // More button was pressed
+        UIAlertView *alertTest = [[UIAlertView alloc] initWithTitle:@"Hello"
+                                                            message:@"More more more"
+                                                           delegate:nil
+                                                  cancelButtonTitle:@"Cancel"
+                                                  otherButtonTitles:nil];
+        [alertTest show];
+        [cell hideUtilityButtonsAnimated:YES];
+    } else if (index == 1) {
+        // Delete button was pressed
+        NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
+        [cell hideUtilityButtonsAnimated:YES];
+        [self performActionOnConfirmation:@selector(deleteLookForIndexPath:)
+                           canceledAction:nil
+                               withObject:indexPath
+                                   target:self
+                             confirmTitle:kUIAlertViewTitleDeleteSingleLook
+                           confirmMessage:kUIAlertViewMessageIrreversibleAction];
+    }
+}
+
+- (BOOL)swipeableTableViewCellShouldHideUtilityButtonsOnSwipe:(SWTableViewCell *)cell
+{
+    return YES;
 }
 
 #pragma mark - UIImagePicker Handler

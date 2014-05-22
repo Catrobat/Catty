@@ -23,20 +23,19 @@
 #import "Changesizebynbrick.h"
 #import "Formula.h"
 
-
-
 @implementation ChangeSizeByNBrick
 
+- (NSString*)brickTitle
+{
+    return kBrickCellLookTitleChangeSizeByN;
+}
 
-
-
--(SKAction*)action
+- (SKAction*)action
 {
     return [SKAction runBlock:[self actionBlock]];
 }
 
-
--(dispatch_block_t)actionBlock
+- (dispatch_block_t)actionBlock
 {
     return ^{
         NSDebug(@"Performing: %@", self.description);
@@ -49,7 +48,6 @@
     };
 
 }
-
 
 #pragma mark - Description
 - (NSString*)description

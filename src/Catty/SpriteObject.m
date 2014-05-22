@@ -551,7 +551,7 @@
 
 -(CGFloat) brightness
 {
-    return [self brightness];
+    return 100 * self.currentLookBrightness;
 }
 
 

@@ -32,6 +32,6 @@
 
 + (UIBarButtonItem*)editButtonItemWithTarget:(id)target action:(SEL)action;
 
-+ (void)addSeperatorForCell:(CatrobatBaseCell*)cell;
+//+ (void)addSeperatorForCell:(CatrobatBaseCell*)cell;
 
 @end

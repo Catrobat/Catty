@@ -27,10 +27,14 @@
 @implementation PointToBrick
 
 #define kRotationDegreeOffset 90.0
+
+- (NSString*)brickTitle
+{
+    return kBrickCellMotionTitlePointTowards;
+}
+
 - (SKAction*)action
 {
-    
-    
     return [SKAction runBlock:^{
         CGPoint objectPosition = [self.object position];
         CGPoint pointedObjectPosition = [self.pointedObject position];

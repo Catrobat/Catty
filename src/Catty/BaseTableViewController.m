@@ -57,8 +57,9 @@
     self.editableSections = nil;
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
-    [self.tableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
-    self.tableView.backgroundColor = UIColor.darkBlueColor;
+    self.tableView.backgroundColor = UIColor.backgroundBlueColor;
+    self.tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
+    self.tableView.separatorColor = UIColor.skyBlueColor;
 }
 
 #pragma mark - getters and setters

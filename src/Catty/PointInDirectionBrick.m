@@ -29,6 +29,10 @@
 
 @implementation PointInDirectionBrick
 
+- (NSString*)brickTitle
+{
+    return kBrickCellMotionTitlePointInDirection;
+}
 
 -(SKAction*)action
 {

@@ -21,11 +21,16 @@
  */
 
 
-#import "Broadcastwaitbrick.h"
+#import "BroadcastWaitBrick.h"
 
 @implementation BroadcastWaitBrick
 
--(id)initWithMessage:(NSString *)message
+- (NSString*)brickTitle
+{
+    return kBrickCellControlTitleBroadcastAndWait;
+}
+
+- (id)initWithMessage:(NSString *)message
 {
     self = [super init];
     if (self)
@@ -35,7 +40,7 @@
     return self;
 }
 
--(void)performBroadcastWait
+- (void)performBroadcastWait
 {
     NSDebug(@"Performing: %@", self.description);
     [self.object broadcastAndWait:self.broadcastMessage];

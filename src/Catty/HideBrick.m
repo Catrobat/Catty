@@ -24,15 +24,19 @@
 
 @implementation HideBrick
 
+- (NSString*)brickTitle
+{
+    return kBrickCellLookTitleHide;
+}
 
--(SKAction*)action
+- (SKAction*)action
 {
     NSDebug(@"Performing: %@", self.description);
     return [SKAction runBlock:[self actionBlock]];
 
 }
 
--(dispatch_block_t)actionBlock
+- (dispatch_block_t)actionBlock
 {
     return ^{
         NSDebug(@"Performing: %@", self.description);
