@@ -640,13 +640,13 @@
 
     //image-data may not be complete at this point -> another call to
     //storeDownloadedImage in connectionDidFinishLoading
-//    if (self.imageArray.count > 0) {
-//        NSArray *temp = [self.imageArray allKeysForObject:name];
-//        if (temp) {
-//            NSURL *key = [temp objectAtIndex:0];
-//            [self storeDownloadedImage:programData andURL:key];
-//        }
-//    }
+    if (self.imageNameDict.count > 0) {
+        NSArray *temp = [self.imageNameDict allKeysForObject:name];
+        if (temp) {
+            NSURLSessionDownloadTask *key = [temp objectAtIndex:0];
+            [self storeDownloadedImage:programData andTask:key];
+        }
+    }
 }
 
 
@@ -731,6 +731,8 @@
         [self.imageNameDict removeObjectForKey:downloadTask];
 
     }
+    [downloadTask suspend];
+    
 
     UIApplication* app = [UIApplication sharedApplication];
     app.networkActivityIndicatorVisible = NO;
