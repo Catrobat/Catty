@@ -28,8 +28,12 @@
 
 @implementation ChangeVariableBrick
 
+- (NSString*)brickTitle
+{
+    return kBrickCellVariableTitleChangeVariable;
+}
 
--(SKAction*)action
+- (SKAction*)action
 {
     
     return [SKAction runBlock:^{

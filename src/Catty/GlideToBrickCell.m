@@ -31,6 +31,11 @@
 
 @implementation GlideToBrickCell
 
++ (CGFloat)cellHeight
+{
+    return kBrickHeight3h;
+}
+
 - (void)hookUpSubViews:(NSArray *)inlineViewSubViews
 {
     self.firstRowLeftLabel = inlineViewSubViews[0];

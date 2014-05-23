@@ -118,7 +118,7 @@
 
 /*
  * -----------------------------------------------------------------------------------------------------------
- * UIViewController placeholder defines
+ * UIViewController menu title and NavigationBar defines
  * -----------------------------------------------------------------------------------------------------------
  */
 
@@ -133,6 +133,8 @@
 #define kUITableViewControllerMenuTitleBackgrounds kUIViewControllerPlaceholderTitleBackgrounds
 #define kUITableViewControllerMenuTitleLooks kUIViewControllerPlaceholderTitleLooks
 #define kUITableViewControllerMenuTitleSounds kUIViewControllerPlaceholderTitleSounds
+
+#define kUINavigationItemTitleEditMenu NSLocalizedString(@"Edit Mode", nil)
 
 /*
  * -----------------------------------------------------------------------------------------------------------
@@ -203,6 +205,8 @@
 #define kUIButtonTitlePlay NSLocalizedString(@"Play", nil)
 #define kUIButtonTitleDownload NSLocalizedString(@"Download", nil)
 #define kUIButtonTitleCancel kUIBarButtonItemTitleCancel
+#define kUIButtonTitleMore NSLocalizedString(@"More", nil)
+#define kUIButtonTitleDelete NSLocalizedString(@"Delete", nil)
 
 /*
  * -----------------------------------------------------------------------------------------------------------

@@ -28,11 +28,15 @@
 
 @implementation PlaySoundBrickCell
 
++ (CGFloat)cellHeight
+{
+    return kBrickHeight2h;
+}
+
 - (void)hookUpSubViews:(NSArray *)inlineViewSubViews
 {
     self.textLabel = inlineViewSubViews[0];
     self.soundComboBoxView = inlineViewSubViews[1];
 }
-
 
 @end

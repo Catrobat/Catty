@@ -21,9 +21,21 @@
  */
 
 #import <Foundation/Foundation.h>
+#import "UIDefines.h"
 
 @interface BrickManager : NSObject
 
 + (BrickManager*)sharedBrickManager;
+
+// helpers
+- (NSDictionary*)classNameBrickTypeMap;
+- (NSDictionary*)brickTypeClassNameMap;
+- (NSArray*)selectableBricks;
+- (NSArray*)selectableBricksForCategoryType:(kBrickCategoryType)categoryType;
+- (kBrickType)brickTypeForClassName:(NSString*)className;
+- (kBrickCategoryType)brickCategoryTypeForBrickType:(kBrickType)brickType;
+- (NSString*)classNameForBrickType:(kBrickType)brickType;
+- (kBrickType)brickTypeForCategoryType:(kBrickCategoryType)categoryType andBrickIndex:(NSUInteger)index;
+- (NSUInteger)brickIndexForBrickType:(kBrickType)brickType;
 
 @end

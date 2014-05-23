@@ -26,13 +26,17 @@
 
 @implementation ClearGraphicEffectBrick
 
--(SKAction*)action
+- (NSString*)brickTitle
 {
-    
+    return kBrickCellLookTitleClearGraphicEffect;
+}
+
+- (SKAction*)action
+{
     return [SKAction runBlock:[self actionBlock]];
 }
 
--(dispatch_block_t)actionBlock
+- (dispatch_block_t)actionBlock
 {
     return ^{
         NSLog(@"performing");
@@ -63,8 +67,6 @@
 {
     return [NSString stringWithFormat:@"%@images/%@", [self.object projectPath], look.fileName];
 }
-
-
 
 #pragma mark - Description
 - (NSString*)description

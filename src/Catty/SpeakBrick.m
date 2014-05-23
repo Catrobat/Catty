@@ -32,8 +32,7 @@
 
 @implementation SpeakBrick
 
-
--(id)init
+- (id)init
 {
     self = [super init];
     if(self) {
@@ -41,8 +40,12 @@
     return self;
 }
 
+- (NSString*)brickTitle
+{
+    return kBrickCellSoundTitleSpeak;
+}
 
--(SKAction*)action
+- (SKAction*)action
 {
     NSDebug(@"Adding: %@", self.description);
     

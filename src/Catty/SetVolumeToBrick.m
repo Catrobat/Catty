@@ -28,8 +28,12 @@
 
 @implementation SetVolumeToBrick
 
+- (NSString*)brickTitle
+{
+    return kBrickCellSoundTitleSetVolumeTo;
+}
 
--(SKAction*)action
+- (SKAction*)action
 {
     NSDebug(@"Adding: %@", self.description);
     

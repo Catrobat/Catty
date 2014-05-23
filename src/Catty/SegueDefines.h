@@ -21,8 +21,7 @@
  */
 
 #define kSegueToContinue @"segueToContinue"
-#define kSegueToContinue1 @"segueToContinue1"
-#define kSegueToContinue2 @"segueToContinue2"
+#define kSegueToContinue @"segueToContinue"
 #define kSegueToNewProgram @"segueToNewProgram"
 #define kSegueToPrograms @"segueToPrograms"
 #define kSegueToHelp @"segueToHelp"
@@ -32,10 +31,8 @@
 
 #define kSegueToProgramDetail @"segueToProgramDetail"
 #define kSegueToScene @"segueToScene"
-#define kSegueToObject1 @"segueToObject1"
-#define kSegueToObject2 @"segueToObject2"
+#define kSegueToObject @"segueToObject"
 #define kSegueToScripts @"segueToScripts"
 #define kSegueToLooks @"segueToLooks"
 #define kSegueToSounds @"segueToSounds"
-#define kSegueToImage1 @"segueToImage1"
-#define kSegueToImage2 @"segueToImage2"
+#define kSegueToImage @"segueToImage"

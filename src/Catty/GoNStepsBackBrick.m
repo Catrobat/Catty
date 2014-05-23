@@ -27,6 +27,15 @@
 
 @synthesize steps = _steps;
 
+- (BOOL)isSelectableForObject
+{
+    return (! [self.object isBackground]);
+}
+
+- (NSString*)brickTitle
+{
+    return kBrickCellMotionTitleGoNStepsBack;
+}
 
 -(SKAction*)action
 {

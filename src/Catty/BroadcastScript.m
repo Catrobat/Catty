@@ -24,6 +24,10 @@
 
 @implementation BroadcastScript
 
+- (NSString*)brickTitle
+{
+    return kBrickCellControlTitleWhenIReceive;
+}
 
 -(NSString*)description
 {
