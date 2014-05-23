@@ -50,6 +50,68 @@ typedef NS_ENUM(NSInteger, kBrickCategoryType) {
 #define kIphone4ScreenHeight 480.0f
 #define kAddScriptCategoryTableViewBottomMargin 15.0f
 
+// brick type identifiers
+//typedef NS_ENUM(NSUInteger, kBrickType) {
+//
+//    // 1 control bricks
+//    kProgramStartedBrick = 100,
+//    kTappedBrick = 101,
+//    kWaitBrick = 102,
+//    kReceiveBrick = 103,
+//    kBroadcastBrick = 104,
+//    kBroadcastWaitBrick = 105,
+//    kNoteBrick = 106,
+//    kForeverBrick = 107,
+//    kIfBrick = 108,
+//    kIfElseBrick = 109,
+//    kIfEndBrick = 110,
+//    kRepeatBrick = 111,
+//    kLoopEndBrick = 112,
+//
+//    // 2 motion bricks
+//    kPlaceAtBrick = 200,
+//    kSetXBrick = 201,
+//    kSetYBrick = 202,
+//    kChangeXByNBrick = 203,
+//    kChangeYByNBrick = 204,
+//    kIfOnEdgeBounceBrick = 205,
+//    kMoveNStepsBrick = 206,
+//    kTurnLeftBrick = 207,
+//    kTurnRightBrick = 208,
+//    kPointInDirectionBrick = 209,
+//    kPointToBrick = 210,
+//    kGlideToBrick = 211,
+//    kGoNStepsBackBrick = 212,
+//    kComeToFrontBrick = 213,
+//
+//    // 3 sound bricks
+//    kPlaySoundBrick = 300,
+//    kStopAllSoundsBrick = 301,
+//    kSetVolumeToBrick = 302,
+//    kChangeVolumeByNBrick = 303,
+//    kSpeakBrick = 304,
+//
+//    // 4 look bricks
+//    kSetLookBrick = 400,
+//    kNextLookBrick = 401,
+//    kSetSizeToBrick = 402,
+//    kChangeSizeByNBrick = 403,
+//    kHideBrick = 404,
+//    kShowBrick = 405,
+//    kSetGhostEffectBrick = 406,
+//    kChangeGhostEffectByNBrick = 407,
+//    kSetBrightnessBrick = 408,
+//    kChangeBrightnessByNBrick = 409,
+//    kClearGraphicEffectBrick = 410,
+//
+//    // 5 variable bricks
+//    kSetVariableBrick = 500,
+//    kChangeVariableBrick = 501
+//
+//};
+
+// ----------------- REFACTOR BEGIN -------------------
+
 // brick categories
 #define kBrickCategoryNames @[\
     kBrickCellControlCategoryTitle,\
@@ -96,13 +158,16 @@ typedef NS_ENUM(NSInteger, kBrickCategoryType) {
 #define kBrickTextFieldFontSize 15.0f
 #define kBrickInputFieldHeight 28.0f
 #define kBrickInputFieldMinWidth 60.0f
-#define kBrickComboBoxWidth 250.0f
+#define kBrickComboBoxWidth 210.0f
 #define kBrickInputFieldTopMargin 4.0f
 #define kBrickInputFieldBottomMargin 5.0f
 #define kBrickInputFieldLeftMargin 4.0f
 #define kBrickInputFieldRightMargin 4.0f
 #define kBrickInputFieldMinRowHeight (kBrickInputFieldHeight + 4.0f)
 #define kDefaultImageCellBorderWidth 1.0f
+
+// delete button bricks
+#define kBrickDeleteButtonSize 22.0f
 
 // control bricks
 typedef NS_ENUM(NSInteger, kControlBrickType) {
@@ -511,6 +576,8 @@ typedef NS_ENUM(NSInteger, kBrickShapeType) {
     @"ChangeVariableBrick"       : @{@"categoryType" : @(kVariableBrick),@"brickType" : @(kChangeVariableBrick)}\
 }
 
+// ----------------- REFACTOR END -------------------
+
 // Notifications
 static NSString *const kBrickCellAddedNotification = @"BrickCellAddedNotification";
 static NSString *const kSoundAddedNotification = @"SoundAddedNotification";
@@ -520,3 +587,7 @@ static NSString *const kBrickDetailViewDismissed = @"kBrickDetailViewDismissed";
 static NSString *const kUserInfoKeyBrickCell = @"UserInfoKeyBrickCell";
 static NSString *const kUserInfoSpriteObject = @"UserInfoSpriteObject";
 static NSString *const kUserInfoSound = @"UserInfoSound";
+
+// UI Elements
+#define NAVIGATION_BAR_HEIGHT 64
+#define STATUS_BAR_HEIGHT 10

@@ -33,6 +33,7 @@
 
 // uncomment this to get special log outputs, etc...
 //#define LAYOUT_DEBUG 0
+#define kDeleteButtonOffset 1.0f
 
 @interface BrickCell ()
 @property (nonatomic, strong) NSDictionary *classNameBrickNameMap;
@@ -45,6 +46,9 @@
 @property (nonatomic, weak) BrickCellInlineView *inlineView;
 @property (nonatomic, weak) UIImageView *backgroundImageView;
 @property (nonatomic, weak) UIImageView *imageView;
+
+@property (nonatomic, assign) BOOL editing;
+
 @end
 
 @implementation BrickCell
@@ -142,11 +146,16 @@
     return _inlineView;
 }
 
-#pragma mark - layout
-- (void)layoutSubviews
+- (ScriptDeleteButton *)deleteButton
 {
-    [super layoutSubviews];
-    
+    if (!_deleteButton) {
+        _deleteButton = [[ScriptDeleteButton alloc]initWithFrame:CGRectIntegral(CGRectMake(self.bounds.origin.x + kDeleteButtonOffset,
+                                                                                           self.bounds.origin.y,
+                                                                                           kBrickDeleteButtonSize,
+                                                                                           kBrickDeleteButtonSize))];
+        _deleteButton.hidden = YES;
+    }
+    return _deleteButton;
 }
 
 - (NSArray*)brickCategoryColors
@@ -298,10 +307,8 @@
     [self setupBrickPatternImage];
     [self setupBrickPatternBackgroundImage];
     [self setupInlineView];
-
-    // just to test layout
-//    self.layer.borderWidth=1.0f;
-//    self.layer.borderColor=[UIColor whiteColor].CGColor;
+    
+    [self addSubview:self.deleteButton];
 }
 
 #pragma mark - init
@@ -309,6 +316,7 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
+        self.editing = NO;
         self.backgroundColor = [UIColor clearColor];
         self.contentMode = UIViewContentModeScaleToFill;
         self.clipsToBounds = NO;
@@ -323,6 +331,7 @@
 {
     self = [super init];
     if (self) {
+        self.editing = NO;
         self.backgroundColor = [UIColor clearColor];
         self.contentMode = UIViewContentModeScaleToFill;
         self.clipsToBounds = NO;
@@ -683,6 +692,29 @@
     }
     NSError(@"unknown brick category type given");
     abort();
+}
+
+#pragma mark - cell editing
+- (void)setBrickEditing:(BOOL)editing {
+    self.editing = editing;
+    
+    if (self.editing) {
+        //  self.transform = CGAffineTransformMakeScale(0.8f, 0.8f);
+        self.alpha = 0.2f;
+        self.userInteractionEnabled = NO;
+        self.hideDeleteButton = NO;
+    } else {
+        // self.transform = CGAffineTransformIdentity;
+        self.alpha = 1.0f;
+        self.userInteractionEnabled = YES;
+        self.hideDeleteButton = YES;
+    }
+}
+
+#pragma mark delete button
+- (void)setHideDeleteButton:(BOOL)hideDeleteButton {
+    _hideDeleteButton = hideDeleteButton;
+    self.deleteButton.hidden = hideDeleteButton;
 }
 
 @end

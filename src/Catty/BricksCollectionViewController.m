@@ -97,7 +97,6 @@
 {
     [super viewDidLoad];
     [self initCollectionView];
-    [super initPlaceHolder];
     [self setupNavigationBar];
     self.collectionView.scrollEnabled = YES;
     self.collectionView.alwaysBounceVertical = YES;

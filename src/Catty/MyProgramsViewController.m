@@ -82,12 +82,12 @@
     self.navigationController.title = self.title = kUIViewControllerTitlePrograms;
     [self loadPrograms];
     [self initNavigationBar];
-    [super initTableView];
 
     self.dataCache = nil;
     self.defaultProgram = nil;
     self.selectedProgram = nil;
     [self setupToolBar];
+    self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
 }
 
 - (void)viewWillAppear:(BOOL)animated

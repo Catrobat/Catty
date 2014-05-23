@@ -21,10 +21,10 @@
  */
 
 #import <UIKit/UIKit.h>
-#import "BaseCollectionViewController.h"
 
 @class SpriteObject;
 
-@interface ScriptCollectionViewController : BaseCollectionViewController
+@interface ScriptCollectionViewController : UICollectionViewController
 @property (strong, nonatomic) SpriteObject *object;
+
 @end

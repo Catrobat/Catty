@@ -114,7 +114,7 @@
 #define kUIViewControllerPlaceholderTitleLooks kUIViewControllerTitleLooks
 #define kUIViewControllerPlaceholderTitleSounds kUIViewControllerTitleSounds
 
-#define kUIViewControllerPlaceholderDescriptionStandard NSLocalizedString(@"Click \"+\" to add %@", nil)
+#define kUIViewControllerPlaceholderDescriptionStandard NSLocalizedString(@"Select \"+\" to add %@", nil)
 
 /*
  * -----------------------------------------------------------------------------------------------------------
@@ -168,6 +168,7 @@
 
 #define kUIActionSheetButtonTitleClose NSLocalizedString(@"Close", nil)
 #define kUIActionSheetButtonTitleDeleteBrick NSLocalizedString(@"Delete Brick", nil)
+#define kUIActionSheetButtonTitleDeleteScript NSLocalizedString(@"Delete Script", nil)
 #define kUIActionSheetButtonTitleHighlightScript NSLocalizedString(@"Highlight Script", nil)
 #define kUIActionSheetButtonTitleCopyBrick NSLocalizedString(@"Copy Brick", nil)
 #define kUIActionSheetButtonTitleEditFormula NSLocalizedString(@"Edit Formula", nil)

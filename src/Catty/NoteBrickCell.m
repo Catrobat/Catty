@@ -34,13 +34,5 @@
     self.noteTextField = inlineViewSubViews[1];
 }
 
-- (id)initWithFrame:(CGRect)frame
-{
-    self = [super initWithFrame:frame];
-    if (self) {
-        // Initialization code
-    }
-    return self;
-}
 
 @end

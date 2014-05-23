@@ -42,13 +42,4 @@
     self.yCoordTextField = inlineViewSubViews[6];
 }
 
-- (id)initWithFrame:(CGRect)frame
-{
-    self = [super initWithFrame:frame];
-    if (self) {
-        // Initialization code
-    }
-    return self;
-}
-
 @end

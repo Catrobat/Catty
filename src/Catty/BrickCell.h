@@ -23,6 +23,7 @@
 #import <UIKit/UIKit.h>
 #import "ProgramDefines.h"
 #import "UIDefines.h"
+#import "ScriptDeleteButton.h"
 
 @class Brick;
 @class BrickCellInlineView;
@@ -33,6 +34,8 @@
 @property (nonatomic, readonly) NSInteger brickType;
 @property (nonatomic, getter = isBackgroundBrickCell) BOOL backgroundBrickCell;
 @property (nonatomic) BOOL enabled;
+@property (strong, nonatomic) ScriptDeleteButton *deleteButton;
+@property (assign, nonatomic) BOOL hideDeleteButton;
 
 - (void)renderSubViews;
 - (void)hookUpSubViews:(NSArray *)inlineViewSubViews; // abstract (only called internally)
@@ -43,5 +46,7 @@
 + (BOOL)isScriptBrickCellForCategoryType:(kBrickCategoryType)categoryType AndBrickType:(NSInteger)brickType;
 + (NSString*)brickPatternImageNameForCategoryType:(kBrickCategoryType)categoryType AndBrickType:(NSInteger)brickType;
 + (void)clearImageCache;
+
+- (void)setBrickEditing:(BOOL)editing;
 
 @end

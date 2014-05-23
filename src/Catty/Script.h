@@ -22,8 +22,8 @@
 
 
 #import <UIKit/UIKit.h>
-//#import "enums.h"
 #import <SpriteKit/SpriteKit.h>
+#import "UIDefines.h"
 
 @class Brick;
 @class SpriteObject;
@@ -35,11 +35,13 @@
 @property (nonatomic, strong) NSString *action;
 @property (strong, nonatomic) NSMutableArray *brickList;
 
--(void)startWithCompletion:(dispatch_block_t)block;
+// TODO: use protocol to define interfaces for Brick and Script class
+//@property (nonatomic) kBrickType brickType;
 
--(void)stop;
+- (void)startWithCompletion:(dispatch_block_t)block;
 
--(NSString*)description;
+- (void)stop;
 
+- (NSString*)description;
 
 @end

@@ -42,4 +42,8 @@
 
 + (UIColor*) violetColor;
 
++ (UIColor *)backgroundBlueColor;
+
++ (UIColor *)headerTextColor;
+
 @end
