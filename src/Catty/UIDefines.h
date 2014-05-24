@@ -54,31 +54,16 @@ static NSString *const kUserInfoKeyBrickCell = @"UserInfoKeyBrickCell";
 static NSString *const kUserInfoSpriteObject = @"UserInfoSpriteObject";
 static NSString *const kUserInfoSound = @"UserInfoSound";
 
+// menu titles
+static NSString *const kSelectionMenuTitle = @"Select Brick Category";
+
 // UI Elements
 #define NAVIGATION_BAR_HEIGHT 64
 #define STATUS_BAR_HEIGHT 10
-
-
-// delete button bricks
-#define kBrickDeleteButtonSize 22.0f
-
-// Notifications
-static NSString *const kBrickCellAddedNotification = @"BrickCellAddedNotification";
-static NSString *const kSoundAddedNotification = @"SoundAddedNotification";
-static NSString *const kBrickDetailViewDismissed = @"kBrickDetailViewDismissed";
-
-// Notification keys
-static NSString *const kUserInfoKeyBrickCell = @"UserInfoKeyBrickCell";
-static NSString *const kUserInfoSpriteObject = @"UserInfoSpriteObject";
-static NSString *const kUserInfoSound = @"UserInfoSound";
-
-// UI Elements
 #define NAVIGATION_BAR_HEIGHT 64
 #define STATUS_BAR_HEIGHT 10
 #define kHandleImageHeight 15.0f
 #define kHandleImageWidth 40.0f
-
-static NSString *const kSelectionMenuTitle = @"Select Brick Category";
 
 // ---------------------- BRICK CONFIG ---------------------------------------
 // brick categories
