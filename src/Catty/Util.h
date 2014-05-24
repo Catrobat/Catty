@@ -73,6 +73,12 @@
                                    tag:(NSInteger)tag
                                   view:(UIView*)view;
 
++ (UIButton*)slideViewButtonWithTitle:(NSString*)title backgroundColor:(UIColor*)backgroundColor;
+
++ (UIButton*)slideViewButtonMore;
+
++ (UIButton*)slideViewButtonDelete;
+
 + (NSString*)getProjectName;
 
 + (NSString*)getProjectVersion;

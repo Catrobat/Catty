@@ -29,6 +29,11 @@
 
 @implementation ChangeVariableBrickCell
 
++ (CGFloat)cellHeight
+{
+    return kBrickHeight3h;
+}
+
 - (void)hookUpSubViews:(NSArray *)inlineViewSubViews
 {
     self.firstRowTextLabel = inlineViewSubViews[0];

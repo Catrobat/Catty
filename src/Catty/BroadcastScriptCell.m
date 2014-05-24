@@ -30,6 +30,16 @@
 
 @implementation BroadcastScriptCell
 
+- (kBrickShapeType)brickShapeType
+{
+    return kBrickShapeRoundedBig;
+}
+
++ (CGFloat)cellHeight
+{
+    return kBrickHeightControl2h;
+}
+
 - (void)hookUpSubViews:(NSArray *)inlineViewSubViews
 {
     self.textLabel = inlineViewSubViews[0];

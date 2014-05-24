@@ -25,6 +25,10 @@
 
 @implementation StopAllSoundsBrick
 
+- (NSString*)brickTitle
+{
+    return kBrickCellSoundTitleStopAllSounds;
+}
 
 -(SKAction*)action
 {    

@@ -29,11 +29,14 @@
 #import "UIDefines.h"
 #import "BrickSelectionSwipe.h"
 #import "FXBlurView.h"
-
+#import "BrickManager.h"
+#import "BrickProtocol.h"
+#import "Script.h"
 
 @interface BricksCollectionViewController () <LXReorderableCollectionViewDelegateFlowLayout, LXReorderableCollectionViewDataSource, UIScrollViewDelegate>
+
 @property (nonatomic, strong) NSMutableArray *selectableBricksSortedIndexes;
-@property (nonatomic, strong) NSDictionary *selectableBricks;
+@property (nonatomic, strong) NSArray *selectableBricks;
 @property (nonatomic, strong) UIView *handleView;
 @property (nonatomic, strong) UILabel *titleLabel;
 @property (nonatomic, strong) FXBlurView *blurbackgroundView;
@@ -120,7 +123,6 @@
 }
 
 #pragma mark - getters and setters
-
 - (NSArray*)selectableBricksSortedIndexes
 {
     if (! _selectableBricksSortedIndexes) {
@@ -129,30 +131,10 @@
     return _selectableBricksSortedIndexes;
 }
 
-- (NSDictionary*)selectableBricks
+- (NSArray*)selectableBricks
 {
     if (! _selectableBricks) {
-        // hide unselectable bricks
-        NSArray *allUnselectableBricks = kUnselectableBricksObject;
-        if ([self.object isBackground]) {
-            allUnselectableBricks = kUnselectableBricksBackgroundObject;
-        }
-
-        NSArray *unselectableBricks = [allUnselectableBricks objectAtIndex:self.brickCategoryType];
-        NSDictionary *allCategoriesAndBrickTypes = kClassNameBrickNameMap;
-        NSInteger capacity = ([BrickCell numberOfAvailableBricksForCategoryType:self.brickCategoryType] - [unselectableBricks count]);
-        NSMutableDictionary *selectableBricks = [NSMutableDictionary dictionaryWithCapacity:capacity];
-        for (NSString *brickTypeName in allCategoriesAndBrickTypes) {
-            kBrickCategoryType categoryType = (kBrickCategoryType) [allCategoriesAndBrickTypes[brickTypeName][@"categoryType"] integerValue];
-            NSNumber *brickType = allCategoriesAndBrickTypes[brickTypeName][@"brickType"];
-            if ((categoryType != self.brickCategoryType) || [unselectableBricks containsObject:brickType]) {
-                continue;
-            }
-            [selectableBricks setObject:brickTypeName forKey:brickType];
-        }
-        _selectableBricks = [selectableBricks copy];
-        // selectableBricksSortedIndexes should refetch/update on next getter-call
-        self.selectableBricksSortedIndexes = nil;
+        _selectableBricks = [[BrickManager sharedBrickManager] selectableBricksForCategoryType:self.brickCategoryType];
     }
     return _selectableBricks;
 }
@@ -170,6 +152,46 @@
     self.navigationItem.title = title;
 }
 
+#pragma mark - initialization
+- (void)initCollectionView
+{
+    self.collectionView.delegate = self;
+    self.collectionView.dataSource = self;
+    self.collectionView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"darkblue"]];
+}
+
+#pragma mark - view events
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
+    [self initCollectionView];
+    [self setupNavigationBar];
+    self.collectionView.scrollEnabled = YES;
+    self.collectionView.alwaysBounceVertical = YES;
+    self.collectionView.delaysContentTouches = NO;
+
+    // register brick cells for current brick category
+    NSArray *selectableBricks = self.selectableBricks;
+    for (id<BrickProtocol> brick in selectableBricks) {
+        NSString *brickTypeName = NSStringFromClass([brick class]);
+        [self.collectionView registerClass:NSClassFromString([brickTypeName stringByAppendingString:@"Cell"])
+                forCellWithReuseIdentifier:brickTypeName];
+    }
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [self.navigationController setToolbarHidden:YES];
+}
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    [self.navigationController setToolbarHidden:NO];
+}
+
+>>>>>>> c59c8adc43d8a2d40fa0e301bf09da68d9949b44
 #pragma mark - application events
 - (void)didReceiveMemoryWarning
 {
@@ -198,18 +220,27 @@
     return 1;
 }
 
+- (CGSize)collectionView:(UICollectionView*)collectionView
+                  layout:(UICollectionViewLayout*)collectionViewLayout
+  sizeForItemAtIndexPath:(NSIndexPath*)indexPath
+{
+    id<BrickProtocol> brick = [self.selectableBricks objectAtIndex:indexPath.section];
+    NSString *brickCellName = [NSStringFromClass([brick class]) stringByAppendingString:@"Cell"];
+    return CGSizeMake(self.view.frame.size.width, [NSClassFromString(brickCellName) cellHeight]);
+}
+
 - (UICollectionViewCell*)collectionView:(UICollectionView*)collectionView
                  cellForItemAtIndexPath:(NSIndexPath*)indexPath
 {
-    NSNumber *brickTypeID = [self.selectableBricksSortedIndexes objectAtIndex:indexPath.section];
-    NSString *brickTypeName = [self.selectableBricks objectForKey:brickTypeID];
-    BrickCell *brickCell = [collectionView dequeueReusableCellWithReuseIdentifier:brickTypeName forIndexPath:indexPath];
-    brickCell.backgroundBrickCell = self.object.isBackground;
+    id<BrickProtocol> brick = [self.selectableBricks objectAtIndex:indexPath.section];
+    NSString *brickTypeName = NSStringFromClass([brick class]);
+    BrickCell *brickCell = [collectionView dequeueReusableCellWithReuseIdentifier:brickTypeName
+                                                                     forIndexPath:indexPath];
+    brickCell.brick = [self.selectableBricks objectAtIndex:indexPath.section];
     brickCell.enabled = NO;
     [brickCell renderSubViews];
     return brickCell;
 }
-
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath*)indexPath
 {
@@ -223,12 +254,17 @@
 }
 
 #pragma mark - CollectionView FlowLayout
-
 - (UIEdgeInsets)collectionView:(UICollectionView *)collectionView
                         layout:(UICollectionViewLayout *)collectionViewLayout
         insetForSectionAtIndex:(NSInteger)section
 {
-    return UIEdgeInsetsMake(0.0f, 0.0f, 0.0f, 0.0f);
+    UIEdgeInsets insets = UIEdgeInsetsMake(0.0f, 0.0f, 0.0f, 0.0f);
+
+    id<BrickProtocol> brick = [self.selectableBricks objectAtIndex:section];
+    if ([brick isKindOfClass:[Script class]]) {
+        insets.top += 10.0f;
+    }
+    return insets;
 }
 
 - (CGSize)collectionView:(UICollectionView*)collectionView

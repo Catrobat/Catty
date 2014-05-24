@@ -28,14 +28,17 @@
 
 @synthesize changeGhostEffect = _changeGhostEffect;
 
+- (NSString*)brickTitle
+{
+    return kBrickCellLookTitleChangeGhostEffectByN;
+}
 
-
--(SKAction*)action
+- (SKAction*)action
 {
   return [SKAction runBlock:[self actionBlock]];
 }
 
--(dispatch_block_t)actionBlock
+- (dispatch_block_t)actionBlock
 {
   return ^{
     NSDebug(@"Performing: %@", self.description);

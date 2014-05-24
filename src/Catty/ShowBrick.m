@@ -21,25 +21,27 @@
  */
 
 
-#import "Showbrick.h"
+#import "ShowBrick.h"
 
 @implementation ShowBrick
 
+- (NSString*)brickTitle
+{
+    return kBrickCellLookTitleShow;
+}
 
--(SKAction*)action
+- (SKAction*)action
 {
   return [SKAction runBlock:[self actionBlock]];
 }
 
--(dispatch_block_t)actionBlock
+- (dispatch_block_t)actionBlock
 {
   return ^{
     NSDebug(@"Performing: %@", self.description);
     self.object.hidden = NO;
   };
 }
-
-
 
 #pragma mark - Description
 - (NSString*)description

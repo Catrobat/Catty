@@ -29,6 +29,11 @@
 
 @implementation SetBrightnessBrickCell
 
++ (CGFloat)cellHeight
+{
+    return kBrickHeight2h;
+}
+
 - (void)hookUpSubViews:(NSArray *)inlineViewSubViews
 {
     self.leftTextLabel = inlineViewSubViews[0];
