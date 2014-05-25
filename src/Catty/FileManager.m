@@ -539,14 +539,14 @@
         [self.programNameDict removeObjectForKey:downloadTask];
 
     }else{
-        url = [self.imageTaskDict objectForKey:downloadTask];
+        // TODO: value url is never read...
+//        url = [self.imageTaskDict objectForKey:downloadTask];
         [self storeDownloadedImage:[NSData dataWithContentsOfURL:location] andTask:downloadTask];
         [self.imageTaskDict removeObjectForKey:downloadTask];
         [self.imageNameDict removeObjectForKey:downloadTask];
 
     }
     [downloadTask suspend];
-    
 
     UIApplication* app = [UIApplication sharedApplication];
     app.networkActivityIndicatorVisible = NO;
