@@ -776,11 +776,11 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="ImageCell" rowHeight="123" id="EfC-3p-1xF" customClass="DarkBlueGradientImageCell">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="ImageCell" rowHeight="123" id="EfC-3p-1xF" customClass="DarkBlueGradientImageCell">
                                 <rect key="frame" x="0.0" y="86" width="320" height="123"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="EfC-3p-1xF" id="Jm9-AW-RhL">
-                                    <rect key="frame" x="0.0" y="0.0" width="320" height="122"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="287" height="122"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" tag="11" contentMode="scaleAspectFill" id="49q-B8-MBG">
@@ -790,7 +790,6 @@
                                 </tableViewCellContentView>
                                 <connections>
                                     <outlet property="iconImageView" destination="49q-B8-MBG" id="4pU-ee-LyV"/>
-                                    <segue destination="5oV-85-Xov" kind="push" identifier="segueToProgramDetail" id="aCr-hO-8vs"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -803,6 +802,9 @@
                     <navigationItem key="navigationItem" id="SWr-4D-2iK"/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <segue destination="5oV-85-Xov" kind="push" identifier="segueToProgramDetail" id="83p-dA-kpt"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Qpj-ch-Y40" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -885,7 +887,6 @@
                                         <connections>
                                             <outlet property="iconImageView" destination="Zp5-JU-A6T" id="XoN-Vf-aHj"/>
                                             <outlet property="titleLabel" destination="G9s-30-7Az" id="RLz-Z6-6oU"/>
-                                            <segue destination="5oV-85-Xov" kind="push" identifier="segueToProgramDetail" id="K4O-DO-I3f"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -898,6 +899,7 @@
                         <outlet property="downloadSegmentedControl" destination="jxg-mt-dvB" id="2Ib-94-qEx"/>
                         <outlet property="segmentedControlView" destination="7PH-x9-xjS" id="ltA-go-6KI"/>
                         <outlet property="tableView" destination="fJr-Rh-VKf" id="1cb-fm-aRb"/>
+                        <segue destination="5oV-85-Xov" kind="push" identifier="segueToProgramDetail" id="5UD-6W-Ykq"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7Ln-bV-RG1" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1005,7 +1007,7 @@
                     <connections>
                         <outlet property="searchBar" destination="MLz-GC-klF" id="ZoG-CW-6Hp"/>
                         <outlet property="tableView" destination="OJJ-Pc-e3v" id="pPS-1o-Yjn"/>
-                        <segue destination="5oV-85-Xov" kind="push" identifier="segueToProgramDetail" id="raV-as-guB"/>
+                        <segue destination="5oV-85-Xov" kind="push" identifier="segueToProgramDetail" id="GnV-Zh-HB0"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Uom-C2-pSA" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1022,8 +1024,8 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="Ynr-aF-UI3"/>
-        <segue reference="raV-as-guB"/>
+        <segue reference="mUB-CR-2KD"/>
+        <segue reference="5UD-6W-Ykq"/>
         <segue reference="OPb-jW-KHJ"/>
     </inferredMetricsTieBreakers>
 </document>

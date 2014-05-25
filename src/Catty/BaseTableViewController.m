@@ -117,6 +117,7 @@
 {
     if (! self.isEditing) {
         [tableView deselectRowAtIndexPath:indexPath animated:YES];
+        return;
     }
     // check if all rows are selected and if so, change SelectAll button to UnselectAll button
     NSArray *editableSections = self.editableSections;

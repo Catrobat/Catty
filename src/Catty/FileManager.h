@@ -26,16 +26,16 @@
 @protocol FileManagerDelegate <NSObject>
 
 - (void) downloadFinishedWithURL:(NSURL*)url;
-- (void) updateProgress:(float)progress;
+- (void) updateProgress:(double)progress;
 - (void) setBackDownloadStatus;
 
 @end
 
-@interface FileManager : NSObject <NSURLConnectionDataDelegate>
+@interface FileManager : NSObject <NSURLSessionDelegate,NSURLSessionDownloadDelegate>
 
 @property (nonatomic, weak) id delegate;
 @property (nonatomic, strong, readonly) NSString *documentsDirectory;
-@property (nonatomic, strong) NSURL* projectURL;
+@property (atomic, strong) NSURL* projectURL;
 
 - (void)createDirectory:(NSString*)path;
 - (void)deleteAllFilesInDocumentsDirectory;
