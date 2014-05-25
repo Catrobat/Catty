@@ -22,24 +22,30 @@
 
 
 #import <UIKit/UIKit.h>
-//#import "enums.h"
 #import <SpriteKit/SpriteKit.h>
+#import "UIDefines.h"
+#import "LanguageTranslationDefines.h"
+#import "BrickProtocol.h"
 
 @class Brick;
 @class SpriteObject;
 
-@interface Script : SKNode
+@interface Script : SKNode <BrickProtocol>
+
+@property (nonatomic, readonly) kBrickCategoryType brickCategoryType;
+@property (nonatomic, readonly) kBrickType brickType;
+@property (nonatomic, strong, readonly) NSString *brickTitle;
+- (BOOL)isSelectableForObject;
 
 @property (nonatomic) BOOL allowRunNextAction;
 @property (nonatomic, weak) SpriteObject *object;
 @property (nonatomic, strong) NSString *action;
 @property (strong, nonatomic) NSMutableArray *brickList;
 
--(void)startWithCompletion:(dispatch_block_t)block;
+- (void)startWithCompletion:(dispatch_block_t)block;
 
--(void)stop;
+- (void)stop;
 
--(NSString*)description;
-
+- (NSString*)description;
 
 @end

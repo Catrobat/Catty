@@ -28,8 +28,12 @@
 
 @synthesize sound = _sound;
 
+- (NSString*)brickTitle
+{
+    return kBrickCellSoundTitlePlaySound;
+}
 
--(SKAction*)action
+- (SKAction*)action
 {
     NSDebug(@"Adding: %@", self.description);
 

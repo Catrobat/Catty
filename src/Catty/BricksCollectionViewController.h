@@ -22,11 +22,10 @@
 
 #import <UIKit/UIKit.h>
 #import "UIDefines.h"
-#import "BaseCollectionViewController.h"
 
 @class SpriteObject;
 
-@interface BricksCollectionViewController : BaseCollectionViewController
+@interface BricksCollectionViewController : UICollectionViewController
 
 @property (strong, nonatomic) SpriteObject *object;
 @property (nonatomic) kBrickCategoryType brickCategoryType;

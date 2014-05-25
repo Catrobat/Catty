@@ -20,11 +20,14 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import <UIKit/UIKit.h>
+#import <Foundation/Foundation.h>
 
-@interface BaseCollectionViewController : UICollectionViewController
-- (void)setPlaceHolderTitle:(NSString*)title Description:(NSString*)description;
-- (void)showPlaceHolder:(BOOL)show;
-- (void)initPlaceHolder;
-- (void)setupToolBar;
+@protocol BrickProtocol <NSObject>
+
+@required
+@property (nonatomic, readonly) kBrickCategoryType brickCategoryType;
+@property (nonatomic, readonly) kBrickType brickType;
+@property (nonatomic, strong, readonly) NSString *brickTitle;
+- (BOOL)isSelectableForObject;
+
 @end

@@ -54,7 +54,21 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [self initTableView];
+    [self initSearchView];
+
+    self.searchDisplayController.displaysSearchBarInNavigationBar = NO;
+    self.searchDisplayController.searchBar.backgroundColor = [UIColor darkBlueColor];
+    self.tableView.backgroundView = [[UIImageView alloc] initWithImage:[UIImage imageWithColor:[UIColor darkBlueColor]]];
+    [self.searchDisplayController setActive:YES animated:YES];
+    [self.searchDisplayController.searchBar becomeFirstResponder];
+    self.searchDisplayController.searchBar.delegate = self;
+    self.checkSearch = YES;
+    self.searchDisplayController.searchBar.barTintColor = [UIColor darkBlueColor];
+    self.searchDisplayController.searchBar.barStyle = UISearchBarStyleMinimal;
+    self.tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
+    self.tableView.separatorColor = UIColor.skyBlueColor;
+    self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
+
     [self.searchBar becomeFirstResponder];
     self.view.backgroundColor = [UIColor darkBlueColor];
     [[UITextField appearanceWhenContainedIn:[UISearchBar class], nil] setTextColor:[UIColor lightOrangeColor]];
@@ -152,15 +166,19 @@
   return cell;
 }
 
-
 #pragma mark - Table view delegate
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-  CatrobatProject *catrobatProject = [self.searchResults objectAtIndex:indexPath.row];
-  [self performSegueWithIdentifier:kSegueToProgramDetail sender:catrobatProject];
+    CatrobatProject *catrobatProject = [self.searchResults objectAtIndex:indexPath.row];
+    static NSString *segueToProgramDetail = kSegueToProgramDetail;
+    if (! self.editing) {
+        if ([self shouldPerformSegueWithIdentifier:segueToProgramDetail sender:catrobatProject]) {
+            [self performSegueWithIdentifier:segueToProgramDetail sender:catrobatProject];
+        }
+    }
 }
 
--(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
   if([tableView isEqual:self.tableView]) {
     return [TableUtil getHeightForImageCell];
@@ -219,24 +237,28 @@
 }
 
 #pragma mark - Search display delegate
-- (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText {
-  [NSObject cancelPreviousPerformRequestsWithTarget:self];
-  if(![searchText isEqualToString:@""]) {
-    [self performSelector:@selector(queryServerForSearchString:) withObject:searchText afterDelay:0.2];
-  }
+- (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText
+{
+    [NSObject cancelPreviousPerformRequestsWithTarget:self];
+    if (! [searchText isEqualToString:@""]) {
+        [self performSelector:@selector(queryServerForSearchString:) withObject:searchText afterDelay:0.2];
+    }
 }
-- (BOOL)searchBarShouldBeginEditing:(UISearchBar*)searchBar {
+
+- (BOOL)searchBarShouldBeginEditing:(UISearchBar*)searchBar
+{
     self.searchBar.showsCancelButton = YES;
     return YES;
 }
 
--(BOOL)searchBarShouldEndEditing:(UISearchBar *)searchBar {
+- (BOOL)searchBarShouldEndEditing:(UISearchBar *)searchBar
+{
     self.searchBar.showsCancelButton = NO;
     return YES;
 }
 
-
-- (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar {
+- (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar
+{
     [searchBar resignFirstResponder];
     [self queryServerForSearchString:searchBar.text];
     self.tabBarController.tabBar.translucent = YES;

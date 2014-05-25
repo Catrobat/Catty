@@ -94,14 +94,8 @@ void uncaughtExceptionHandler(NSException *exception)
 
 - (void)initNavigationBar
 {
-    UIImage *navbarimage = [[UIImage imageNamed:@"darkblue"]
-                            resizableImageWithCapInsets:UIEdgeInsetsMake(0, 0, 0, 0)];
-    
-    [[UINavigationBar appearance] setBackgroundImage:navbarimage
-                                       forBarMetrics:UIBarMetricsDefault];
-    
-    self.window.tintColor = [UIColor lightOrangeColor];
-    
+    [UINavigationBar appearance].barTintColor = UIColor.darkBlueColor;
+    self.window.tintColor = UIColor.lightOrangeColor;
     [[UINavigationBar appearance] setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:
                                                           [UIColor skyBlueColor],
                                                           NSForegroundColorAttributeName, nil]];

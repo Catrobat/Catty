@@ -29,20 +29,16 @@
 
 @implementation ChangeBrightnessByNBrickCell
 
++ (CGFloat)cellHeight
+{
+    return kBrickHeight2h;
+}
+
 - (void)hookUpSubViews:(NSArray *)inlineViewSubViews
 {
     self.firstRowTextLabel = inlineViewSubViews[0];
     self.secondRowTextLabel = inlineViewSubViews[1];
     self.brightnessTextField = inlineViewSubViews[2];
-}
-
-- (id)initWithFrame:(CGRect)frame
-{
-    self = [super initWithFrame:frame];
-    if (self) {
-        // Initialization code
-    }
-    return self;
 }
 
 @end

@@ -21,13 +21,18 @@
  */
 
 
-#import "Broadcastbrick.h"
+#import "BroadcastBrick.h"
 
 @implementation BroadcastBrick
 
 @synthesize broadcastMessage = _message;
 
--(id)initWithMessage:(NSString *)message
+- (NSString*)brickTitle
+{
+    return kBrickCellControlTitleBroadcast;
+}
+
+- (id)initWithMessage:(NSString *)message
 {
     self = [super init];
     if (self)
@@ -38,7 +43,7 @@
 }
 
 
--(SKAction*)action
+- (SKAction*)action
 {
     return [SKAction runBlock:^{
         NSDebug(@"Performing: %@", self.description);

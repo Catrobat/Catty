@@ -30,6 +30,11 @@
 
 @implementation PlaceAtBrickCell
 
++ (CGFloat)cellHeight
+{
+    return kBrickHeight2h;
+}
+
 - (void)hookUpSubViews:(NSArray *)inlineViewSubViews
 {
     self.firstRowTextLabel = inlineViewSubViews[0];
@@ -37,15 +42,6 @@
     self.xCoordTextField = inlineViewSubViews[2];
     self.secondRowRightTextLabel = inlineViewSubViews[3];
     self.yCoordTextField = inlineViewSubViews[4];
-}
-
-- (id)initWithFrame:(CGRect)frame
-{
-    self = [super initWithFrame:frame];
-    if (self) {
-        // Initialization code
-    }
-    return self;
 }
 
 @end

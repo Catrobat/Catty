@@ -96,6 +96,10 @@
 
     self.reachability = [Reachability reachabilityForInternetConnection];
     [self.reachability startNotifier];
+    self.tableView.delaysContentTouches = NO;
+    self.tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
+    self.tableView.separatorColor = UIColor.skyBlueColor;
+    self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -133,7 +137,6 @@
 #pragma mark init
 - (void)initTableView
 {
-    [super initTableView];
     self.cells = [[NSArray alloc] initWithObjects:
                   kUITableViewControllerMenuTitleContinue,
                   kUITableViewControllerMenuTitleNew,
@@ -186,6 +189,7 @@
     if (indexPath.row == 0) {
         [self configureSubtitleLabelForCell:cell];
     }
+    
     return cell;
 }
 

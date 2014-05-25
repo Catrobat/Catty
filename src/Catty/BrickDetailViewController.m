@@ -24,18 +24,18 @@
 #import "UIDefines.h"
 #import "Brick.h"
 #import "LanguageTranslationDefines.h"
+#import "UIColor+CatrobatUIColorExtensions.h"
+#import "StartScriptCell.h"
+#import "WhenScriptCell.h"
+#import "BroadcastScriptCell.h"
+#import "IBActionSheet.h"
 
-@interface BrickDetailViewController () <UIActionSheetDelegate>
+@interface BrickDetailViewController () <IBActionSheetDelegate>
 @property (strong, nonatomic) UITapGestureRecognizer *recognizer;
-@property (strong, nonatomic) UIActionSheet *brickMenu;
-
-// TODO remove this methods and make delegates (or notfiications) for updating script datasource and bricks
-- (void)highlightScript;
-- (void)copyBrick:(Brick *)brick;
-- (void)deleteBrick:(Brick *)brick;
-- (void)editFormula;
-- (void)deleteScript:(Script *)script;
-
+@property (strong, nonatomic) IBActionSheet *brickMenu;
+@property (strong, nonatomic) NSNumber *deleteBrickOrScriptFlag;
+@property (strong, nonatomic) NSNumber *brickCopyFlag;
+@property (strong, nonatomic) NSString *brickName;
 @end
 
 @implementation BrickDetailViewController
@@ -44,107 +44,162 @@
 {
     [super viewDidLoad];
     self.view.backgroundColor = UIColor.clearColor;
-    self.brickMenu = [[UIActionSheet alloc] initWithTitle:nil
-                                                 delegate:self
-                                        cancelButtonTitle:kUIActionSheetButtonTitleClose
-                                   destructiveButtonTitle:kUIActionSheetButtonTitleDeleteBrick
-                                        otherButtonTitles:kUIActionSheetButtonTitleHighlightScript,
-                                                          kUIActionSheetButtonTitleCopyBrick,
-                                                          kUIActionSheetButtonTitleEditFormula, nil];
+    self.deleteBrickOrScriptFlag = [[NSNumber alloc]initWithBool:NO];
+    self.brickCopyFlag = [[NSNumber alloc]initWithBool:NO];
 }
 
-- (void)viewDidAppear:(BOOL)animated {
+#pragma mark - getters
+- (IBActionSheet *)brickMenu
+{
+    if (! _brickMenu) {
+        _brickMenu = [[IBActionSheet alloc] initWithTitle:self.brickName
+                                                     delegate:self
+                                            cancelButtonTitle:kUIActionSheetButtonTitleClose
+                                       destructiveButtonTitle:[self deleteMenuItemNameWithBrickCell:self.brickCell]
+                                            otherButtonTitles:[self secondMenuItemWithBrickCell:self.brickCell],
+                          [self editFormulaMenuItemWithVrickCell:self.brickCell], nil];
+        [_brickMenu setButtonBackgroundColor:UIColor.darkBlueColor];
+        [_brickMenu setButtonTextColor:UIColor.lightOrangeColor];
+        [_brickMenu setTitleTextColor:UIColor.skyBlueColor];
+        [_brickMenu setButtonTextColor:UIColor.redColor forButtonAtIndex:0];
+    }
+    return _brickMenu;
+}
+
+- (NSString *)brickName
+{
+    if (! _brickMenu) {
+        NSString *brickName =  NSStringFromClass(self.brickCell.class);
+        if (brickName.length) {
+            _brickName = [brickName substringToIndex:brickName.length - 4];
+        }
+    }
+    return _brickName;
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
     [super viewDidAppear:animated];
     self.recognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleTap:)];
     self.recognizer.numberOfTapsRequired = 1;
     self.recognizer.cancelsTouchesInView = NO;
     [self.view.window addGestureRecognizer:self.recognizer];
-
-//    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)),
-//                   dispatch_get_main_queue(), ^{
-//                       [self.brickMenu showInView:self.view];
-//    });
-      [self.brickMenu showInView:self.view];
-   
+    [self.brickMenu showInView:self.view];
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
-    
     if ([self.view.window.gestureRecognizers containsObject:self.recognizer]) {
         [self.view.window removeGestureRecognizer:self.recognizer];
     }
 }
 
-- (BOOL)prefersStatusBarHidden {
-    return YES;
-}
 
-- (void)handleTap:(UITapGestureRecognizer *)sender {
+- (void)handleTap:(UITapGestureRecognizer *)sender
+{
     if ([sender isKindOfClass:UITapGestureRecognizer.class]) {
         if (sender.state == UIGestureRecognizerStateEnded) {
             CGPoint location = [sender locationInView:nil];
             if (![self.view pointInside:[self.view convertPoint:location fromView:self.view.window] withEvent:nil]) {
-                [self dismissViewControllerAnimated:YES completion:^{
-                    [NSNotificationCenter.defaultCenter postNotificationName:kBrickDetailViewDismissed
-                                                                      object:NULL];
-                }];
+                [self dismissBrickDetailViewController];
             } else {
-                if (!self.brickMenu.hidden) {
-                    [self.brickMenu showInView:self.view];
-                }
+                [self.brickMenu showInView:self.view];
             }
         }
     }
 }
 
-#pragma Action Sheet Delegate
-- (void)dismissWithClickedButtonIndex:(NSInteger)buttonIndex animated:(BOOL)animated {
-    
-}
-
--(void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
+#pragma mark - Action Sheet Delegate
+- (void)actionSheet:(IBActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
+{
     switch (buttonIndex) {
-        case 0:
-
+        case 0: {
+            // delete brick or script
+            self.deleteBrickOrScriptFlag = [NSNumber numberWithBool:YES];
+            [self dismissBrickDetailViewController];
             break;
-        case 1:
+        }
             
+        case 1: {
+            // copy brick or highlight script
+            if (! [self isScript:self.brickCell]) {
+                self.brickCopyFlag = [NSNumber numberWithBool:YES];
+                [self dismissBrickDetailViewController];
+            } else {
+                // TDOD highlight script
+            }
             break;
-        case 2:
+        }
             
-             break;
-        case 3:
-
+        case 2: {
+            // edit formula or cancel if script
+            if ([self isScript:self.brickCell] ) {
+                [self dismissBrickDetailViewController];
+            } else {
+                // TODO edit formula mode
+            }
+            break;
+        }
+            
+        case 3: {
+            // cancel button
+            [self dismissBrickDetailViewController];
+            break;
+        }
+            
+        default:
             break;
     }
 }
 
-// TODO remove this methods and make delegates (or notfiications) for updating script datasource and bricks
-#pragma mark edit menu items
-
-- (void)moveBrick; {
-    NSLog(@"moveBrick");
+#pragma mark - helper methods
+- (void)dismissBrickDetailViewController
+{
+    if (! self.presentingViewController.isBeingDismissed) {
+        [self.brickMenu dismissWithClickedButtonIndex:-1 animated:YES];
+        [self.presentingViewController dismissViewControllerAnimated:YES completion:^{
+            [NSNotificationCenter.defaultCenter postNotificationName:kBrickDetailViewDismissed
+                                                              object:NULL
+                                                            userInfo:@{@"brickDeleted": self.deleteBrickOrScriptFlag,
+                                                                       @"isScript": @([self isScript:self.brickCell]),
+                                                                       @"copy": self.brickCopyFlag,
+                                                                       @"copiedCell": self.brickCell }];
+        }];
+    }
 }
 
-- (void)highlightScript {
-   NSLog(@"highlightScript");
+- (NSString *)deleteMenuItemNameWithBrickCell:(BrickCell *)cell
+{
+    if ([self isScript:cell]) {
+        return kUIActionSheetButtonTitleDeleteScript;
+    }
+    return kUIActionSheetButtonTitleDeleteBrick;
 }
 
-- (void)copyBrick:(Brick *)brick {
-    NSLog(@"copyBrick");
+- (NSString *)secondMenuItemWithBrickCell:(BrickCell *)cell
+{
+    if ([self isScript:cell]) {
+        return kUIActionSheetButtonTitleHighlightScript;
+    }
+    return kUIActionSheetButtonTitleCopyBrick;
 }
 
-- (void)deleteBrick:(Brick *)brick {
-    NSLog(@"deleteBrick");
+- (NSString *)editFormulaMenuItemWithVrickCell:(BrickCell *)cell
+{
+    if ([self isScript:cell]) {
+        return nil;
+    }
+    return kUIActionSheetButtonTitleEditFormula;
 }
 
-- (void)editFormula {
-    NSLog(@"editFormula");
-}
-
-- (void)deleteScript:(Script *)script {
-    NSLog(@"deleteScript");
+- (BOOL)isScript:(BrickCell *)brickcell
+{
+    if ([brickcell isKindOfClass:StartScriptCell.class] ||
+        [brickcell isKindOfClass:WhenScriptCell.class] ||
+        [brickcell isKindOfClass:BroadcastScriptCell.class]) {
+        return YES;
+    }
+    return NO;
 }
 
 @end

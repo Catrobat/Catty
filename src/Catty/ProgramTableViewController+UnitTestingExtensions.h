@@ -20,9 +20,13 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
+#import "ProgramTableViewController.h"
 
-#import <Foundation/Foundation.h>
+@class SWTableViewCell;
 
-@interface PullableView : NSObject
+@interface ProgramTableViewController (UnitTestingExtensions)
+
+// Needed for unit testing
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex;
 
 @end

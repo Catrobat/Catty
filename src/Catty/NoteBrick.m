@@ -24,7 +24,12 @@
 
 @implementation NoteBrick
 
--(SKAction*)action
+- (NSString*)brickTitle
+{
+    return kBrickCellControlTitleNote;
+}
+
+- (SKAction*)action
 {
     NSError(@"NoteBrick should not be executed!");
     return [SKAction runBlock:^{
@@ -34,7 +39,7 @@
 ;
 }
 
--(NSString*)description
+- (NSString*)description
 {
     return [NSString stringWithFormat:@"NoteBrick: %@", self.note];
 }

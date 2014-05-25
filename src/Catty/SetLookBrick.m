@@ -28,6 +28,10 @@
 
 @implementation SetLookBrick
 
+- (NSString*)brickTitle
+{
+    return ([self.object isBackground] ? kBrickCellLookTitleSetBackground : kBrickCellLookTitleSetLook);
+}
 
 -(SKAction*)action
 {

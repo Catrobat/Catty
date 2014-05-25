@@ -20,8 +20,16 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import "PullableView.h"
+#import <Foundation/Foundation.h>
 
-@implementation PullableView
+@protocol BrickProtocol;
+
+@protocol BrickCellProtocol <NSObject>
+
+@required
+@property (nonatomic, strong) id<BrickProtocol> brick;
+@property (nonatomic) BOOL enabled;
+- (kBrickShapeType)brickShapeType;
++ (CGFloat)cellHeight;
 
 @end

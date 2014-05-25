@@ -46,7 +46,8 @@
 #define kUserDetailsShowDetailsKey @"showDetails"
 #define kUserDetailsShowDetailsProgramsKey @"detailsForPrograms"
 
-@interface MyProgramsViewController () <ProgramUpdateDelegate, UIActionSheetDelegate, UIAlertViewDelegate, UITextFieldDelegate>
+@interface MyProgramsViewController () <ProgramUpdateDelegate, UIActionSheetDelegate, UIAlertViewDelegate,
+                                        UITextFieldDelegate, SWTableViewCellDelegate>
 @property (nonatomic) BOOL useDetailCells;
 @property (nonatomic, strong) NSMutableDictionary *dataCache;
 @property (nonatomic, strong) NSMutableArray *programLoadingInfos;
@@ -82,12 +83,12 @@
     self.navigationController.title = self.title = kUIViewControllerTitlePrograms;
     [self loadPrograms];
     [self initNavigationBar];
-    [super initTableView];
 
     self.dataCache = nil;
     self.defaultProgram = nil;
     self.selectedProgram = nil;
     [self setupToolBar];
+    self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -199,11 +200,11 @@
     } else {
         cell = [tableView dequeueReusableCellWithIdentifier:DetailCellIdentifier forIndexPath:indexPath];
     }
-    if (! [cell conformsToProtocol:@protocol(CatrobatImageCell)]) {
+    if (! [cell isKindOfClass:[CatrobatBaseCell class]] || ! [cell conformsToProtocol:@protocol(CatrobatImageCell)]) {
         return cell;
     }
 
-    UITableViewCell<CatrobatImageCell> *imageCell = (UITableViewCell<CatrobatImageCell>*)cell;
+    CatrobatBaseCell<CatrobatImageCell> *imageCell = (CatrobatBaseCell<CatrobatImageCell>*)cell;
     [self configureImageCell:imageCell atIndexPath:indexPath];
     if (self.useDetailCells && [cell isKindOfClass:[DarkBlueGradientImageDetailCell class]]) {
         DarkBlueGradientImageDetailCell *detailCell = (DarkBlueGradientImageDetailCell*)imageCell;
@@ -213,7 +214,7 @@
         detailCell.bottomLeftDetailLabel.textColor = [UIColor whiteColor];
         detailCell.bottomLeftDetailLabel.text = [NSString stringWithFormat:@"%@:", kUILabelTextSize];
         detailCell.bottomRightDetailLabel.textColor = [UIColor whiteColor];
-        
+
         ProgramLoadingInfo *info = [self.programLoadingInfos objectAtIndex:indexPath.row];
         NSNumber *programSize = [self.dataCache objectForKey:info.visibleName];
         AppDelegate *appDelegate = (AppDelegate*)[UIApplication sharedApplication].delegate;
@@ -237,34 +238,16 @@
     return [TableUtil getHeightForImageCell];
 }
 
-
-- (BOOL)tableView:(UITableView*)tableView canEditRowAtIndexPath:(NSIndexPath*)indexPath
-{
-    return YES;
-}
-
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        [self.tableView reloadRowsAtIndexPaths:@[indexPath]
-                              withRowAnimation:UITableViewRowAnimationNone];
-        [self performActionOnConfirmation:@selector(deleteProgramForIndexPath:)
-                           canceledAction:nil
-                               withObject:indexPath
-                                   target:self
-                             confirmTitle:kUIAlertViewTitleDeleteSingleProgram
-                           confirmMessage:kUIAlertViewMessageIrreversibleAction];
-    }
-}
-
 #pragma mark - table view helpers
-- (void)configureImageCell:(UITableViewCell<CatrobatImageCell>*)cell atIndexPath:(NSIndexPath*)indexPath
+- (void)configureImageCell:(CatrobatBaseCell<CatrobatImageCell>*)cell atIndexPath:(NSIndexPath*)indexPath
 {
     ProgramLoadingInfo *info = [self.programLoadingInfos objectAtIndex:indexPath.row];
     cell.titleLabel.text = info.visibleName;
     NSString* imagePath = [[NSString alloc] initWithFormat:@"%@/small_screenshot.png", info.basePath];
     UIImage* image = [self.imageCache objectForKey:imagePath];
     cell.iconImageView.contentMode = UIViewContentModeScaleAspectFit;
+    cell.rightUtilityButtons = @[[Util slideViewButtonMore], [Util slideViewButtonDelete]];
+    cell.delegate = self;
 
     if (! image) {
         cell.iconImageView.image = nil;
@@ -305,6 +288,7 @@
                     cell.iconImageView.image = image;
                     [cell setNeedsLayout];
                     [self.imageCache setObject:image forKey:imagePath];
+                    [self.tableView endUpdates];
                 }
             });
         });
@@ -312,40 +296,18 @@
         cell.iconImageView.image = image;
     }
     [cell.iconImageView setBorder:[UIColor skyBlueColor] Width:kDefaultImageCellBorderWidth];
+}
 
-//    dispatch_queue_t imageQueue = dispatch_queue_create("at.tugraz.ist.catrobat.ImageLoadingQueue", NULL);
-//    dispatch_async(imageQueue, ^{
-//        
-//        NSString* imagePath = [[NSString alloc] initWithFormat:@"%@/screenshot.png", info.basePath];
-//        
-//        UIImage* image = [UIImage imageWithContentsOfFile:imagePath];
-//        if(!image) {
-//            imagePath = [[NSString alloc] initWithFormat:@"%@/manual_screenshot.png", info.basePath];
-//            image = [UIImage imageWithContentsOfFile:imagePath];
-//        }
-//        if(!image) {
-//            image = [UIImage imageNamed:@"programs"];
-//        }
-//        
-//        
-//        CGSize imageSize = image.size;
-//        UIGraphicsBeginImageContext(imageSize);
-//        [image drawInRect:CGRectMake(0, 0, imageSize.width, imageSize.height)];
-//        image = UIGraphicsGetImageFromCurrentImageContext();
-//        UIGraphicsEndImageContext();
-//        
-//
-//        dispatch_async(dispatch_get_main_queue(), ^{
-//            [self.tableView beginUpdates];
-//            UITableViewCell <CatrobatImageCell>* cell = (UITableViewCell <CatrobatImageCell>*)[self.tableView cellForRowAtIndexPath:indexPath];
-//            if(cell) {
-//                cell.iconImageView.image = image;
-//            }
-//            [self.tableView endUpdates];
-//        });
-//        
-//    });
-
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    [super tableView:tableView didSelectRowAtIndexPath:indexPath];
+    static NSString *segueToContinue = kSegueToContinue;
+    if (! self.editing) {
+        UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+        if ([self shouldPerformSegueWithIdentifier:segueToContinue sender:cell]) {
+            [self performSegueWithIdentifier:segueToContinue sender:cell];
+        }
+    }
 }
 
 #pragma mark - segue handling
@@ -355,10 +317,9 @@
         return NO;
     }
 
-    static NSString *segueToContinue1 = kSegueToContinue1;
-    static NSString *segueToContinue2 = kSegueToContinue2;
+    static NSString *segueToContinue = kSegueToContinue;
     static NSString *segueToNewProgram = kSegueToNewProgram;
-    if ([identifier isEqualToString:segueToContinue1] || [identifier isEqualToString:segueToContinue2]) {
+    if ([identifier isEqualToString:segueToContinue]) {
         if ([sender isKindOfClass:[UITableViewCell class]]) {
             NSIndexPath *path = [self.tableView indexPathForCell:sender];
             // check if program loaded successfully -> not nil
@@ -390,10 +351,9 @@
 
 - (void)prepareForSegue:(UIStoryboardSegue*)segue sender:(id)sender
 {
-    static NSString *segueToContinue1 = kSegueToContinue1;
-    static NSString *segueToContinue2 = kSegueToContinue2;
+    static NSString *segueToContinue = kSegueToContinue;
     static NSString *segueToNewProgram = kSegueToNewProgram;
-    if ([segue.identifier isEqualToString:segueToContinue1] || [segue.identifier isEqualToString:segueToContinue2]) {
+    if ([segue.identifier isEqualToString:segueToContinue]) {
         if ([segue.destinationViewController isKindOfClass:[ProgramTableViewController class]]) {
             if ([sender isKindOfClass:[UITableViewCell class]]) {
                 [self.dataCache removeObjectForKey:self.selectedProgram.header.programName];
@@ -413,6 +373,36 @@
         // TODO: remove this after persisting programs feature is fully implemented...
         programTableViewController.isNewProgram = YES;
     }
+}
+
+#pragma mark - swipe delegates
+- (void)swipeableTableViewCell:(SWTableViewCell *)cell didTriggerRightUtilityButtonWithIndex:(NSInteger)index
+{
+    if (index == 0) {
+        // More button was pressed
+        UIAlertView *alertTest = [[UIAlertView alloc] initWithTitle:@"Hello"
+                                                            message:@"More more more"
+                                                           delegate:nil
+                                                  cancelButtonTitle:@"Cancel"
+                                                  otherButtonTitles:nil];
+        [alertTest show];
+        [cell hideUtilityButtonsAnimated:YES];
+    } else if (index == 1) {
+        // Delete button was pressed
+        NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
+        [cell hideUtilityButtonsAnimated:YES];
+        [self performActionOnConfirmation:@selector(deleteProgramForIndexPath:)
+                           canceledAction:nil
+                               withObject:indexPath
+                                   target:self
+                             confirmTitle:kUIAlertViewTitleDeleteSingleProgram
+                           confirmMessage:kUIAlertViewMessageIrreversibleAction];
+    }
+}
+
+- (BOOL)swipeableTableViewCellShouldHideUtilityButtonsOnSwipe:(SWTableViewCell *)cell
+{
+    return YES;
 }
 
 #pragma mark - text field delegates

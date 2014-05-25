@@ -27,11 +27,14 @@
 
 @implementation MoveNStepsBrick
 
--(void)performFromScript:(Script *)script
+- (NSString*)brickTitle
 {
-
+    return kBrickCellMotionTitleMoveNSteps;
 }
 
+-(void)performFromScript:(Script *)script
+{
+}
 
 -(SKAction*)action
 {

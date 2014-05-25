@@ -38,68 +38,58 @@
 #import "WhenScriptCell.h"
 #import "FXBlurView.h"
 #import "LanguageTranslationDefines.h"
+#import "PlaceHolderView.h"
+#import "BroadcastScriptCell.h"
+#import "UIColor+CatrobatUIColorExtensions.h"
 
-@interface ScriptCollectionViewController () <UICollectionViewDelegate, LXReorderableCollectionViewDelegateFlowLayout, LXReorderableCollectionViewDataSource, UIViewControllerTransitioningDelegate>
-@property (nonatomic, strong) NSDictionary *classNameBrickNameMap;
+@interface ScriptCollectionViewController () <UICollectionViewDelegate,
+                                              LXReorderableCollectionViewDelegateFlowLayout,
+                                              LXReorderableCollectionViewDataSource,
+                                              UIViewControllerTransitioningDelegate>
+
 @property (nonatomic, weak) IBOutlet UICollectionView *collectionView;
 @property (nonatomic, strong) BrickScaleTransition *brickScaleTransition;
 @property (nonatomic, strong) FXBlurView *dimView;
+@property (nonatomic, strong) PlaceHolderView *placeHolderView;
+@property (nonatomic, strong) NSIndexPath *addedIndexPath;
+@property (nonatomic, strong) NSIndexPath *selectedIndexPath;
+
 @end
 
 @implementation ScriptCollectionViewController
-
-#pragma mark - Getters and Setters
-- (NSDictionary*)classNameBrickNameMap
-{
-    static NSDictionary *classNameBrickNameMap = nil;
-    if (classNameBrickNameMap == nil) {
-        classNameBrickNameMap = kClassNameBrickNameMap;
-    }
-    return classNameBrickNameMap;
-}
-
-#pragma mark - initialization
-- (void)initCollectionView
-{
-    self.collectionView.delegate = self;
-    self.collectionView.dataSource = self;
-    self.collectionView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"darkblue"]];
-}
 
 #pragma mark - events
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [self initCollectionView];
-    [super initPlaceHolder];
-    [super setPlaceHolderTitle:kUIViewControllerPlaceholderTitleScripts
-                   Description:[NSString stringWithFormat:kUIViewControllerPlaceholderDescriptionStandard,
-                                kUIViewControllerPlaceholderTitleScripts]];
-    [super showPlaceHolder:(! (BOOL)[self.object.scriptList count])];
+    [self setupCollectionView];
     [self setupToolBar];
+
+    // register brick cells for current brick category
+    NSDictionary *allBrickTypes = [[BrickManager sharedBrickManager] classNameBrickTypeMap];
+    for (NSString *className in allBrickTypes) {
+        [self.collectionView registerClass:NSClassFromString([className stringByAppendingString:@"Cell"])
+                forCellWithReuseIdentifier:className];
+    }
+}
+
+#pragma mark - initialization
+- (void)setupCollectionView
+{
+    self.collectionView.delegate = self;
+    self.collectionView.dataSource = self;
+    self.collectionView.backgroundColor = UIColor.backgroundBlueColor;
     self.collectionView.alwaysBounceVertical = YES;
     self.collectionView.scrollEnabled = YES;
     self.collectionView.delegate = self;
     self.collectionView.dataSource = self;
 
+    self.navigationItem.rightBarButtonItems = @[self.editButtonItem];
+    self.placeHolderView = [[PlaceHolderView alloc]initWithTitle:kUIViewControllerPlaceholderTitleScripts];
+    self.placeHolderView.frame = self.collectionView.bounds;
+    [self.view addSubview:self.placeHolderView];
+    self.placeHolderView.hidden = self.object.scriptList.count ? YES : NO;
     self.brickScaleTransition = [BrickScaleTransition new];
-    self.dimView = [[FXBlurView alloc] initWithFrame:self.view.bounds];
-    self.dimView.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
-    self.dimView.userInteractionEnabled = NO;
-    self.dimView.tintColor = UIColor.clearColor;
-    self.dimView.underlyingView = self.collectionView;
-    self.dimView.blurEnabled = YES;
-    self.dimView.blurRadius = 10.f;
-    self.dimView.dynamic = YES;
-    self.dimView.alpha = 0.f;
-    self.dimView.hidden = YES;
-    [self.view addSubview:self.dimView];
-
-    // register brick cells for current brick category
-    NSDictionary *allCategoriesAndBrickTypes = self.classNameBrickNameMap;
-    for (NSString *brickTypeName in allCategoriesAndBrickTypes) {
-        [self.collectionView registerClass:NSClassFromString([brickTypeName stringByAppendingString:@"Cell"]) forCellWithReuseIdentifier:brickTypeName];
-    }
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -107,9 +97,7 @@
     [super viewWillAppear:animated];
     NSNotificationCenter *dnc = [NSNotificationCenter defaultCenter];
     [dnc addObserver:self selector:@selector(brickAdded:) name:kBrickCellAddedNotification object:nil];
-    // TODO constants
     [dnc addObserver:self selector:@selector(brickDetailViewDismissed:) name:kBrickDetailViewDismissed object:nil];
-    [self.navigationController setToolbarHidden:NO];
 }
 
 - (void)viewWillDisappear:(BOOL)animated
@@ -117,11 +105,7 @@
     [super viewWillDisappear:animated];
     NSNotificationCenter *dnc = [NSNotificationCenter defaultCenter];
     [dnc removeObserver:self name:kBrickCellAddedNotification object:nil];
-}
-
-- (void)viewDidAppear:(BOOL)animated {
-    [super viewDidAppear:animated];
-    [self.collectionView reloadData];
+    [dnc removeObserver:self name:kBrickDetailViewDismissed object:nil];
 }
 
 - (void)didReceiveMemoryWarning
@@ -130,20 +114,35 @@
     [BrickCell clearImageCache];
 }
 
-- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent*)event
+- (FXBlurView*)dimView
 {
-    [self.view endEditing:YES];
+    if (! _dimView) {
+        _dimView = [[FXBlurView alloc] initWithFrame:self.view.bounds];
+        _dimView.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
+        _dimView.userInteractionEnabled = NO;
+        _dimView.tintColor = UIColor.clearColor;
+        _dimView.underlyingView = self.collectionView;
+        _dimView.blurEnabled = YES;
+        _dimView.blurRadius = 10.f;
+        _dimView.dynamic = YES;
+        _dimView.alpha = 0.f;
+        _dimView.hidden = YES;
+        [self.view addSubview:self.dimView];
+    }
+    return _dimView;
 }
 
 #pragma mark - UIViewControllerAnimatedTransitioning delegate
 - (id<UIViewControllerAnimatedTransitioning>)animationControllerForPresentedController:(UIViewController *)presented
                                                                   presentingController:(UIViewController *)presenting
-                                                                      sourceController:(UIViewController *)source {
+                                                                      sourceController:(UIViewController *)source
+{
     self.brickScaleTransition.transitionMode = TransitionModePresent;
     return self.brickScaleTransition;
 }
 
-- (id<UIViewControllerAnimatedTransitioning>)animationControllerForDismissedController:(UIViewController *)dismissed {
+- (id<UIViewControllerAnimatedTransitioning>)animationControllerForDismissedController:(UIViewController *)dismissed
+{
     self.brickScaleTransition.transitionMode = TransitionModeDismiss;
     return self.brickScaleTransition;
 }
@@ -166,61 +165,51 @@
     [self performSegueWithIdentifier:kSegueToScene sender:sender];
 }
 
-- (void)addBrickCellAction:(BrickCell*)brickCell
+- (void)scriptDeleteButtonAction:(id)sender
 {
-    if (! brickCell) {
-        return;
-    }
-
-    // convert brickCell to brick
-    NSString *brickCellClassName = NSStringFromClass([brickCell class]);
-    NSString *brickOrScriptClassName = [brickCellClassName stringByReplacingOccurrencesOfString:@"Cell" withString:@""];
-    id brickOrScript = [[NSClassFromString(brickOrScriptClassName) alloc] init];
-    
-    if ([brickOrScript isKindOfClass:[Brick class]]) {
-        Script *script = nil;
-        // automatically create new script if the object does not contain any of them
-        if (! [self.object.scriptList count]) {
-            script = [[StartScript alloc] init];
-            script.allowRunNextAction = YES;
-            script.object = self.object;
-            [self.object.scriptList addObject:script];
-        } else {
-            // add brick to first script
-            script = [self.object.scriptList objectAtIndex:0];
+    if ([sender isKindOfClass:ScriptDeleteButton.class]) {
+        ScriptDeleteButton *button = (ScriptDeleteButton *)sender;
+        NSIndexPath *indexPath = [self.collectionView indexPathForItemAtPoint:[self.collectionView convertPoint:button.center fromView:button.superview]];
+        if (indexPath) {
+            [self removeScriptSectionWithIndexPath:indexPath];
         }
-        Brick *brick = (Brick*)brickOrScript;
-        brick.object = self.object;
-        [script.brickList addObject:brick];
-    } else if ([brickOrScript isKindOfClass:[Script class]]) {
-        Script *script = (Script*)brickOrScript;
-        script.object = self.object;
-        [self.object.scriptList addObject:script];
-    } else {
-        NSError(@"Unknown class type given...");
-        abort();
+
     }
-    [super showPlaceHolder:NO];
 }
 
-#pragma mark - notification
+#pragma mark - Notification
 - (void)brickAdded:(NSNotification*)notification
 {
     if (notification.userInfo) {
-        // NSLog(@"brickAdded notification received with userInfo: %@", [notification.userInfo description]);
-        [self addBrickCellAction:notification.userInfo[kUserInfoKeyBrickCell]];
+        __weak UICollectionView *weakCollectionView = self.collectionView;
+        __weak ScriptCollectionViewController *weakself = self;
+        if (self.object.scriptList) {
+            [self addBrickCellAction:notification.userInfo[kUserInfoKeyBrickCell] copyBrick:NO completionBlock:^{
+                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                    [weakself scrollToLastbrickinCollectionView:weakCollectionView completion:NULL];
+                    
+                });
+            }];
+        }
     }
 }
 
-- (void)brickDetailViewDismissed:(NSNotification *)notification {
+- (void)brickDetailViewDismissed:(NSNotification *)notification
+{
     self.collectionView.userInteractionEnabled = YES;
-    [UIApplication.sharedApplication setStatusBarHidden:NO withAnimation:UIStatusBarAnimationSlide];
-    
-    if (self.navigationController.toolbar.hidden && self.navigationController.navigationBar.hidden) {
-        [self.navigationController setToolbarHidden:NO animated:YES];
-        [self.navigationController setNavigationBarHidden:NO animated:YES];
-    }
+    [self.navigationController setToolbarHidden:NO animated:YES];
+    self.navigationController.navigationBar.userInteractionEnabled = YES;
     [self.collectionView reloadData];
+
+    if  ([notification.userInfo[@"brickDeleted"] boolValue]) {
+        [notification.userInfo[@"isScript"] boolValue] ? [self removeScriptSectionWithIndexPath:self.selectedIndexPath]
+                                                       : [self removeBrickFromScriptCollectionViewFromIndex:self.selectedIndexPath];
+    } else {
+        BOOL copy = [notification.userInfo[@"copy"] boolValue];
+        if (copy && [notification.userInfo[@"copiedCell"] isKindOfClass:BrickCell.class]) {
+            [self addBrickCellAction:notification.userInfo[@"copiedCell"] copyBrick:copy completionBlock:NULL];
+        }
+    }
 }
 
 #pragma mark - collection view datasource
@@ -253,68 +242,58 @@
         // case it's a script brick
         NSString *scriptSubClassName = NSStringFromClass([script class]);
         brickCell = [collectionView dequeueReusableCellWithReuseIdentifier:scriptSubClassName forIndexPath:indexPath];
+        brickCell.brick = script;
+        [brickCell.deleteButton addTarget:self action:@selector(scriptDeleteButtonAction:) forControlEvents:UIControlEventTouchUpInside];
+        [brickCell setBrickEditing:self.isEditing];
+
+        // overridden values, needs refactoring later
+        brickCell.alpha = 1.0f;
+        brickCell.userInteractionEnabled = YES;
     } else {
         // case it's a normal brick
         Brick *brick = [script.brickList objectAtIndex:(indexPath.row - 1)];
         NSString *brickSubClassName = NSStringFromClass([brick class]);
         brickCell = [collectionView dequeueReusableCellWithReuseIdentifier:brickSubClassName forIndexPath:indexPath];
+        brickCell.brick = brick;
+        [brickCell setBrickEditing:self.isEditing];
+        brickCell.hideDeleteButton = YES;
     }
-    brickCell.backgroundBrickCell = self.object.isBackground;
     brickCell.enabled = YES;
     [brickCell renderSubViews];
     return brickCell;
 }
 
+#pragma mark - CollectionView layout
 - (CGSize)collectionView:(UICollectionView*)collectionView
                   layout:(UICollectionViewLayout*)collectionViewLayout
   sizeForItemAtIndexPath:(NSIndexPath*)indexPath
 {
     CGFloat width = self.view.frame.size.width;
-    kBrickCategoryType categoryType = kControlBrick;
-    NSInteger brickType = kProgramStartedBrick;
     Script *script = [self.object.scriptList objectAtIndex:indexPath.section];
     if (! script) {
         NSError(@"This should never happen");
         abort();
     }
 
-    NSDictionary *allCategoriesAndBrickTypes = self.classNameBrickNameMap;
+    Class brickCellClass = NULL;
     if (indexPath.row == 0) {
         // case it's a script brick
-        categoryType = kControlBrick;
-        NSString *scriptSubClassName = NSStringFromClass([script class]);
-        for (NSString *brickTypeName in allCategoriesAndBrickTypes) {
-            if ([brickTypeName isEqualToString:scriptSubClassName]) {
-                brickType = [allCategoriesAndBrickTypes[brickTypeName][@"brickType"] integerValue];
-                break;
-            }
-        }
+        NSString *scriptSubClassName = [NSStringFromClass([script class]) stringByAppendingString:@"Cell"];
+        brickCellClass = NSClassFromString(scriptSubClassName);
     } else {
         // case it's a normal brick
         Brick *brick = [script.brickList objectAtIndex:(indexPath.row - 1)];
-        NSString *brickSubClassName = NSStringFromClass([brick class]);
-        for (NSString *brickTypeName in allCategoriesAndBrickTypes) {
-            if ([brickTypeName isEqualToString:brickSubClassName]) {
-                categoryType = (kBrickCategoryType)[allCategoriesAndBrickTypes[brickTypeName][@"categoryType"] integerValue];
-                brickType = [allCategoriesAndBrickTypes[brickTypeName][@"brickType"] integerValue];
-                break;
-            }
-        }
+        NSString *brickSubClassName = [NSStringFromClass([brick class]) stringByAppendingString:@"Cell"];
+        brickCellClass = NSClassFromString(brickSubClassName);
     }
-    CGFloat height = [BrickCell brickCellHeightForCategoryType:categoryType AndBrickType:brickType];
 
-    // TODO: outsource all consts
-    height -= 4.0f; // reduce height for overlapping
+    CGFloat height = [brickCellClass cellHeight];
+    height -= kBrickOverlapHeight; // reduce height for overlapping
 
-    // if last brick in last section => no overlapping and no height deduction!
+    // last brick in last section has no overlapping at the bottom
     if (indexPath.section == ([self.object.scriptList count] - 1)) {
-        Script *script = [self.object.scriptList objectAtIndex:indexPath.section];
-        if (! script) {
-            NSError(@"This should never happen");
-            abort();
-        }
-        if (indexPath.row == [script.brickList count]) { // NOTE: there are ([brickList count]+1) cells!!
-            height += 4.0f;
+        if (indexPath.row == [script.brickList count]) { // there are ([brickList count]+1) cells
+            height += kBrickOverlapHeight;
         }
     }
     return CGSizeMake(width, height);
@@ -330,34 +309,52 @@
     return UIEdgeInsetsMake(10, 0, 5, 0);
 }
 
-- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
+{
     BrickCell *cell = (BrickCell*)[self.collectionView cellForItemAtIndexPath:indexPath];
-    // NSLog(@"selected cell = %@", cell);
-    
-    BrickDetailViewController *controller = [[BrickDetailViewController alloc]initWithNibName:@"BrickDetailViewController" bundle:nil];
-    self.brickScaleTransition.cell = cell;
-    self.brickScaleTransition.touchRect = cell.frame;
-    self.brickScaleTransition.dimView = self.dimView;
-    controller.transitioningDelegate = self;
-    controller.modalPresentationStyle = UIModalPresentationCustom;
-    self.collectionView.userInteractionEnabled = NO;
-    [self.navigationController setNavigationBarHidden:YES animated:YES];
-    [self.navigationController setToolbarHidden:YES animated:YES];
-    [UIApplication.sharedApplication setStatusBarHidden:YES withAnimation:UIStatusBarAnimationSlide];
-    [self presentViewController:controller animated:YES completion:NULL];
+    self.selectedIndexPath =  indexPath;
+//    NSLog(@"selected cell = %@", cell);
+
+    // TODO: handle bricks which can be edited
+    if (! self.isEditing) {
+        BrickDetailViewController *brickDetailViewcontroller = [[BrickDetailViewController alloc]initWithNibName:@"BrickDetailViewController" bundle:nil];
+//        brickDetailViewcontroller.scriptCollectionViewControllerToolbar = self.navigationController.toolbar;
+//
+//        NSString *brickName =  NSStringFromClass(cell.class);
+//        if (brickName.length) {
+//            brickName = [brickName substringToIndex:brickName.length - 4];
+//        }
+//
+//        brickDetailViewcontroller.brickName = brickName;
+        brickDetailViewcontroller.brickCell = cell;
+        self.brickScaleTransition.cell = cell;
+        self.brickScaleTransition.navigationBar = self.navigationController.navigationBar;
+        self.brickScaleTransition.collectionView = self.collectionView;
+        self.brickScaleTransition.touchRect = cell.frame;
+        self.brickScaleTransition.dimView = self.dimView;
+        brickDetailViewcontroller.transitioningDelegate = self;
+        brickDetailViewcontroller.modalPresentationStyle = UIModalPresentationCustom;
+        self.collectionView.userInteractionEnabled = NO;
+        [self.navigationController setToolbarHidden:YES animated:YES];
+        [self presentViewController:brickDetailViewcontroller animated:YES completion:^{
+            self.navigationController.navigationBar.userInteractionEnabled = NO;
+        }];
+    } 
 }
 
-- (void)collectionView:(UICollectionView *)collectionView didHighlightItemAtIndexPath:(NSIndexPath *)indexPath {
+- (void)collectionView:(UICollectionView *)collectionView didHighlightItemAtIndexPath:(NSIndexPath *)indexPath
+{
     BrickCell *cell = (BrickCell*)[self.collectionView cellForItemAtIndexPath:indexPath];
     cell.alpha = .7f;
 }
 
-- (void)collectionView:(UICollectionView *)collectionView didUnhighlightItemAtIndexPath:(NSIndexPath *)indexPath {
+- (void)collectionView:(UICollectionView *)collectionView didUnhighlightItemAtIndexPath:(NSIndexPath *)indexPath
+{
     BrickCell *cell = (BrickCell*)[self.collectionView cellForItemAtIndexPath:indexPath];
     cell.alpha = 1.f;
 }
 
-#pragma mark LXReorderableCollectionViewDatasource
+#pragma mark - LXReorderableCollectionViewDatasource
 - (void)collectionView:(UICollectionView *)collectionView
        itemAtIndexPath:(NSIndexPath *)fromIndexPath
    willMoveToIndexPath:(NSIndexPath *)toIndexPath
@@ -381,23 +378,19 @@
     }
 }
 
-- (void)collectionView:(UICollectionView *)collectionView itemAtIndexPath:(NSIndexPath *)fromIndexPath didMoveToIndexPath:(NSIndexPath *)toIndexPath {
+- (void)collectionView:(UICollectionView *)collectionView itemAtIndexPath:(NSIndexPath *)fromIndexPath didMoveToIndexPath:(NSIndexPath *)toIndexPath
+{
     [self.collectionView reloadData];
 }
 
-- (BOOL)collectionView:(UICollectionView *)collectionView itemAtIndexPath:(NSIndexPath *)fromIndexPath canMoveToIndexPath:(NSIndexPath *)toIndexPath {
-    return toIndexPath.item == 0 ? NO : YES;
+- (BOOL)collectionView:(UICollectionView *)collectionView itemAtIndexPath:(NSIndexPath *)fromIndexPath canMoveToIndexPath:(NSIndexPath *)toIndexPath
+{
+    return (toIndexPath.item != 0);
 }
 
-- (BOOL)collectionView:(UICollectionView *)collectionView canMoveItemAtIndexPath:(NSIndexPath *)indexPath {
-    BrickCell *cell = (BrickCell *)[self.collectionView cellForItemAtIndexPath:indexPath];
-    
-    // dont move start script brick
-    if ([cell isKindOfClass:StartScriptCell.class] || indexPath.row == 0) {
-        return NO;
-    }
-    
-    return YES;
+- (BOOL)collectionView:(UICollectionView *)collectionView canMoveItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    return ((self.isEditing || indexPath.item == 0) ? NO : YES);
 }
 
 #pragma mark - segue handling
@@ -421,10 +414,6 @@
 #pragma mark - helpers
 - (void)setupToolBar
 {
-    // @INFO: Please do not modify or remove this code again, unless you don't know exactly what you are doing.
-
-    [super setupToolBar];
-    [self.navigationController setToolbarHidden:NO];
     self.navigationController.toolbar.barStyle = UIBarStyleBlack;
     self.navigationController.toolbar.tintColor = [UIColor orangeColor];
     self.navigationController.toolbar.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleTopMargin;
@@ -443,6 +432,250 @@
     UIBarButtonItem *invisibleButton = [[UIBarButtonItem alloc] initWithCustomView:imageView];
     self.toolbarItems = [NSArray arrayWithObjects:flexItem, invisibleButton, add, invisibleButton, flexItem,
                          flexItem, flexItem, invisibleButton, play, invisibleButton, flexItem, nil];
+}
+
+- (void)removeBrickFromScriptCollectionViewFromIndex:(NSIndexPath *)indexPath
+{
+    if (indexPath) {
+        Script *script = [self.object.scriptList objectAtIndex:indexPath.section];
+        if (script.brickList.count) {
+            [self.collectionView performBatchUpdates:^{
+                [script.brickList removeObjectAtIndex:indexPath.item - 1];
+                [self.collectionView deleteItemsAtIndexPaths:@[indexPath]];
+            } completion:^(BOOL finished) {
+                [self.collectionView reloadData];
+            }];
+        }
+    }
+}
+
+- (void)removeScriptSectionWithIndexPath:(NSIndexPath *)indexPath
+{
+    if (indexPath.section <= self.collectionView.numberOfSections) {
+        Script *script = [self.object.scriptList objectAtIndex:indexPath.section];
+        [self.collectionView performBatchUpdates:^{
+            [self.object.scriptList removeObject:script];
+            [self.collectionView deleteSections:[NSIndexSet indexSetWithIndex:indexPath.section]];
+        } completion:^(BOOL finished) {
+            [self.collectionView reloadData];
+            self.placeHolderView.hidden = self.object.scriptList.count ? YES : NO;
+        }];
+    }
+}
+
+- (void)addBrickCellAction:(BrickCell*)brickCell copyBrick:(BOOL)copy completionBlock:(void(^)())completionBlock
+{
+    if (! brickCell) {
+        return;
+    }
+
+    // convert brickCell to brick
+    NSString *brickCellClassName = NSStringFromClass([brickCell class]);
+    NSString *brickOrScriptClassName = [brickCellClassName stringByReplacingOccurrencesOfString:@"Cell" withString:@""];
+    id brickOrScript = [[NSClassFromString(brickOrScriptClassName) alloc] init];
+    if (! [brickOrScript conformsToProtocol:@protocol(BrickProtocol)]) {
+        NSError(@"Given object does not implement BrickProtocol...");
+        abort();
+    }
+
+    if ([brickOrScript isKindOfClass:[Brick class]]) {
+        Script *script = nil;
+        // automatically create new script if the object does not contain any of them
+        if (! [self.object.scriptList count]) {
+            script = [[StartScript alloc] init];
+            script.allowRunNextAction = YES;
+            script.object = self.object;
+            [self.object.scriptList addObject:script];
+        } else {
+           script = [self firstVisibleScriptOnScreen:copy];
+        }
+        Brick *brick = (Brick*)brickOrScript;
+        brick.object = self.object;
+        
+        [self insertBrick:brick intoScriptList:script copy:copy];
+    } else if ([brickOrScript isKindOfClass:[Script class]]) {
+        Script *script = (Script*)brickOrScript;
+        script.object = self.object;
+        [self.object.scriptList addObject:script];
+    } else {
+        NSError(@"Unknown class type given...");
+        abort();
+    }
+    self.placeHolderView.hidden = self.object.scriptList.count ? YES : NO;
+    [self.collectionView reloadData];
+    if (completionBlock) {
+        completionBlock();
+    }
+}
+
+- (Script *)firstVisibleScriptOnScreen:(BOOL)copy
+{
+    Script *script = nil;
+    if (copy) {
+        script = [self.object.scriptList objectAtIndex:self.selectedIndexPath.section];
+    } else {
+        // insert new brick in last visible script (section)
+        NSMutableArray *scriptCells = [NSMutableArray array];
+        if (self.collectionView.visibleCells.count) {
+            for (BrickCell *cell in self.collectionView.visibleCells) {
+                if ([cell isScriptBrick]) {
+                    [scriptCells addObject:cell];
+                }
+            }
+        }
+        if (scriptCells.count) {
+            [scriptCells sortUsingComparator:^(BrickCell *cell1, BrickCell *cell2) {
+                if (cell1.frame.origin.y > cell2.frame.origin.y) {
+                    return (NSComparisonResult)NSOrderedDescending;
+                }
+                
+                if (cell1.frame.origin.y < cell2.frame.origin.y) {
+                    return (NSComparisonResult)NSOrderedAscending;
+                }
+                return (NSComparisonResult)NSOrderedSame;
+            }];
+        }
+        
+        BOOL emtpyScript = NO;
+        for (BrickCell *scriptCell in scriptCells) {
+            script = [self.object.scriptList objectAtIndex:[self.collectionView indexPathForCell:scriptCell].section];
+            if (! script.brickList.count) {
+                emtpyScript = YES;
+                break;
+            }
+        }
+        
+        BrickCell *cell = scriptCells.count ? scriptCells.lastObject : [self.collectionView.visibleCells firstObject];
+        script = emtpyScript ? script : [self.object.scriptList objectAtIndex:[self.collectionView indexPathForCell:cell].section];
+        self.addedIndexPath = [self.collectionView indexPathForCell:cell];
+    }
+    return script;
+}
+
+- (void)insertBrick:(Brick *)brick intoScriptList:(Script *)script copy:(BOOL)copy
+{
+    if (copy) {
+        [self.collectionView performBatchUpdates:^{
+            [script.brickList insertObject:brick atIndex:self.selectedIndexPath.item];
+            [self.collectionView insertItemsAtIndexPaths:@[self.selectedIndexPath]];
+        } completion:^(BOOL finished) {
+            if (finished) {
+                [self.collectionView reloadData];
+            }
+        }];
+    } else {
+         __block NSIndexPath *indexPath = nil;
+        [self.collectionView performBatchUpdates:^{
+            if (! script.brickList.count) {
+                [script.brickList addObject:brick];
+                indexPath = [NSIndexPath indexPathForItem:script.brickList.count inSection:self.collectionView.numberOfSections - 1];
+                [self.collectionView insertItemsAtIndexPaths:@[indexPath]];
+            } else {
+                [script.brickList insertObject:brick atIndex:script.brickList.count];
+                 indexPath = [NSIndexPath indexPathForItem:script.brickList.count inSection:self.addedIndexPath.section];
+                [self.collectionView insertItemsAtIndexPaths:@[indexPath]];
+            }
+            
+        } completion:^(BOOL finished) {
+            if (finished) {
+                [self.collectionView reloadData];
+            }
+        }];
+    }
+}
+
+
+- (void)scrollToLastbrickinCollectionView:(UICollectionView *)collectionView completion:(void(^)(NSIndexPath *indexPath))completion
+{
+    Script *script = [self.object.scriptList objectAtIndex:self.addedIndexPath.section];
+    NSUInteger brickCountInSection = script.brickList.count;
+    NSIndexPath *lastIndexPath = [NSIndexPath indexPathForItem:brickCountInSection inSection:self.addedIndexPath.section];
+    [collectionView scrollToItemAtIndexPath:lastIndexPath atScrollPosition:UICollectionViewScrollPositionCenteredVertically animated:YES];
+
+    if (completion) {
+        completion(lastIndexPath);
+    }
+}
+
+#pragma mark - Editing
+- (void)setEditing:(BOOL)editing animated:(BOOL)animated
+{
+    [super setEditing:editing animated:animated];
+
+    if (self.isEditing) {
+        self.navigationItem.title = kUINavigationItemTitleEditMenu;
+         __block NSInteger section = 0;;
+        for (NSUInteger idx = 0; idx < self.collectionView.numberOfSections; idx++) {
+            BrickCell *controlBrickCell = (BrickCell *)[self.collectionView cellForItemAtIndexPath:[NSIndexPath indexPathForItem:0 inSection:section]];
+            [self animateStataCellDeleteButton:controlBrickCell];
+            
+            Script *script = [self.object.scriptList objectAtIndex:idx];
+            [script.brickList enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+                *stop = section > self.collectionView.numberOfSections ? YES : NO;
+                BrickCell *cell = (BrickCell *)[self.collectionView cellForItemAtIndexPath:[NSIndexPath indexPathForItem:idx + 1 inSection:section]];
+                cell.userInteractionEnabled = NO;
+                [UIView animateWithDuration:0.35f delay:0.0f usingSpringWithDamping:1.0f/*0.45f*/ initialSpringVelocity:5.0f/*2.0f*/ options:UIViewAnimationOptionCurveEaseInOut animations:^{
+                    cell.alpha = 0.2f;
+                    // cell.transform = CGAffineTransformMakeScale(0.8f, 0.8f);  // TODO dont work right at the moment with the bacghround image. fix later
+                } completion:NULL];
+            }];
+            section++;
+        }
+    } else {
+        self.navigationItem.title = kUITableViewControllerMenuTitleScripts;
+        __block NSInteger section = 0;
+        for (NSUInteger idx = 0; idx < self.collectionView.numberOfSections; idx++) {
+            BrickCell *controlBrickCell = (BrickCell *)[self.collectionView cellForItemAtIndexPath:[NSIndexPath indexPathForItem:0 inSection:section]];
+            [self animateStataCellDeleteButton:controlBrickCell];
+
+            Script *script = [self.object.scriptList objectAtIndex:idx];
+            [script.brickList enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+                *stop = section > self.collectionView.numberOfSections ? YES : NO;
+                BrickCell *cell = (BrickCell *)[self.collectionView cellForItemAtIndexPath:[NSIndexPath indexPathForItem:idx + 1 inSection:section]];
+                cell.userInteractionEnabled = YES;
+                [UIView animateWithDuration:0.25f delay:0.0f usingSpringWithDamping:0.5f initialSpringVelocity:2.0f options:UIViewAnimationOptionCurveEaseInOut animations:^{
+                    cell.alpha = 1.0;
+                    //   cell.transform = CGAffineTransformIdentity; // TODO dont work right at the moment with the bacghround image. fix later
+                } completion:NULL];
+            }];
+            section++;
+        }
+    }
+}
+
+- (void)animateStataCellDeleteButton:(BrickCell *)controlBrickCell
+{
+    CGFloat endAlpha;
+    CGAffineTransform transform;
+    BOOL start = NO;
+    
+    controlBrickCell.hideDeleteButton = NO;
+    if (self.isEditing) {
+        start = YES;
+        controlBrickCell.deleteButton.alpha = 0.0f;
+        endAlpha = 1.0f;
+        controlBrickCell.deleteButton.transform = CGAffineTransformMakeScale(0.1f, 0.1f);
+        transform = CGAffineTransformMakeScale(1.0f, 1.0f);
+    } else {
+        transform = CGAffineTransformMakeScale(1.0f, 1.0f);
+        endAlpha = 0.0f;
+    }
+    
+    [UIView animateWithDuration:0.35f
+                          delay:0
+         usingSpringWithDamping:1.0f
+          initialSpringVelocity:1.0f
+                        options:UIViewAnimationOptionCurveEaseOut
+                     animations:^{
+                         controlBrickCell.deleteButton.transform = transform;
+                         controlBrickCell.deleteButton.alpha = endAlpha;
+                     }
+                     completion:^(BOOL finished) {
+                         if (finished) {
+                             controlBrickCell.hideDeleteButton = !start;
+                         }
+                     }];
+    
 }
 
 @end

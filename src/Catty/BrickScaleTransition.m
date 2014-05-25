@@ -21,6 +21,9 @@
  */
 
 #import "BrickScaleTransition.h"
+#import "UIColor+CatrobatUIColorExtensions.h"
+#import "UIDefines.h"
+
 @implementation BrickScaleTransition
 
 - (void)animateTransition:(id<UIViewControllerContextTransitioning>)transitionContext {
@@ -28,101 +31,55 @@
     
     UIViewController *fromVC = [transitionContext viewControllerForKey:UITransitionContextFromViewControllerKey];
     UIViewController *toVC = [transitionContext viewControllerForKey:UITransitionContextToViewControllerKey];
-    UIView *fromView = fromVC.view;
-    UIView *toView = toVC.view;
-        
+    
     UIView *move = nil;
     CGRect beginFrame = [container convertRect:self.cell.bounds fromView:self.cell];
     
-    CGFloat width;
-    CGFloat height;
-    if (self.transitionMode == TransitionModePresent) {
-        width = toView.bounds.size.width;
-        height = CGRectGetHeight(self.cell.bounds);
-    } else {
-        width = fromView.bounds.size.width;
-        height = fromView.bounds.size.height;
-    }
-    
-    CGRect endFrame = CGRectMake(toView.frame.origin.x, toView.frame.origin.y, width, height);
+    CGRect endFrame = CGRectMake(0.f, NAVIGATION_BAR_HEIGHT, CGRectGetWidth(self.cell.bounds), CGRectGetHeight(self.cell.bounds));
     
     switch (self.transitionMode) {
         case TransitionModePresent: {
-            toView.frame = endFrame;
-            
             move = [self.cell snapshotViewAfterScreenUpdates:YES];
-            
-            move.frame = beginFrame;
+            move.frame =beginFrame;
             [container addSubview:move];
-            
-            self.dimView.hidden = NO;
             self.cell.hidden = YES;
+            self.dimView.hidden = NO;
             
-            [UIView animateKeyframesWithDuration:.4f
-                                           delay:0.f
-                                         options:UIViewKeyframeAnimationOptionBeginFromCurrentState
-                                      animations:^{
-                                          move.frame = endFrame;
-                                          self.dimView.alpha = 1.f;
-                                      } completion:^(BOOL finished) {
-                                          if (finished) {
-                                              if (finished) {
-                                                  self.cell.hidden = NO;
-                                                  self.cell.frame = toView.frame;
-                                                  [toVC.view addSubview:self.cell];
-                                                  toView.frame = endFrame;
-                                                  [container addSubview:toView];
-                                                  [move removeFromSuperview];
-                                                  [transitionContext completeTransition:YES];
-                                              }
-                                          }
-                                      }];
-
-//            [UIView animateWithDuration:.7f
-//                                  delay:0.f
-//                 usingSpringWithDamping:0.f
-//                  initialSpringVelocity:0.f
-//                                options:UIViewAnimationOptionCurveEaseInOut
-//                             animations:^{
-//                                 move.frame = endFrame;
-//                                 self.dimView.alpha = 1.f;
-//                                 //self.collectionView.transform = CGAffineTransformMakeScale(.90f, .90f);
-//                             }
-//                             completion:^(BOOL finished) {
-//                                 if (finished) {
-//                                     self.cell.hidden = NO;
-//                                     self.cell.frame = toView.frame;
-//                                     [toVC.view addSubview:self.cell];
-//                                     toView.frame = endFrame;
-//                                     [container addSubview:toView];
-//                                     [move removeFromSuperview];
-//                                     [transitionContext completeTransition:YES];
-//                                 }
-//                             }];
+            [UIView animateWithDuration:0.7f delay:0.f usingSpringWithDamping:0.5f initialSpringVelocity:2.0f options:UIViewAnimationOptionCurveEaseIn animations:^{
+                move.frame = endFrame;
+                self.dimView.alpha = 1.f;
+                self.collectionView.alpha = .3f;
+                self.navigationBar.tintColor = UIColor.brightGrayColor;
+            } completion:^(BOOL finished) {
+                if (finished) {
+                    toVC.view.frame = fromVC.view.frame;
+                    self.cell.hidden = NO;
+                    self.cell.frame = CGRectMake(0.f, NAVIGATION_BAR_HEIGHT, CGRectGetWidth(self.cell.bounds), CGRectGetHeight(self.cell.bounds));
+                    [toVC.view addSubview:self.cell];
+                    [container addSubview:toVC.view];
+                    [move removeFromSuperview];
+                    [transitionContext completeTransition:YES];
+                }
+            }];
         }
             break;
             
         case TransitionModeDismiss: {
-            move = [fromView snapshotViewAfterScreenUpdates:YES];
-            [fromView removeFromSuperview];
-            [container addSubview:move];
+            CGFloat y = 0.f;
+            y = self.touchRect.origin.y >= toVC.view.frame.size.height ? self.touchRect.origin.y - self.collectionView.contentOffset.y : self.touchRect.origin.y + NAVIGATION_BAR_HEIGHT;
             
-            [UIView animateKeyframesWithDuration:.4f
-                                           delay:0.f
-                                         options:UIViewKeyframeAnimationOptionBeginFromCurrentState
-                                      animations:^{
-                                          move.frame = self.touchRect;
-                                          self.cell.frame = self.touchRect;
-                                          self.dimView.alpha = 0.f;
-                                          
-                                      } completion:^(BOOL finished) {
-                                          if (finished) {
-//                                              NSLog(@"cell frame = %@", NSStringFromCGRect(self.cell.frame));
-                                              self.dimView.hidden = YES;
-                                              [move removeFromSuperview];
-                                              [transitionContext completeTransition:YES];
-                                          }
-                                      }];
+            [UIView animateWithDuration:0.6f delay:0.0f usingSpringWithDamping:1.5f initialSpringVelocity:2.0f options:UIViewAnimationOptionCurveEaseInOut animations:^{
+                self.cell.frame = CGRectMake(self.touchRect.origin.x, y, self.touchRect.size.width, self.touchRect.size.height);
+                self.dimView.alpha = 0.f;
+                self.collectionView.alpha = 1.f;
+                self.navigationBar.tintColor = UIColor.lightOrangeColor;
+            } completion:^(BOOL finished) {
+                self.cell.frame = self.touchRect;
+                [fromVC.view removeFromSuperview];
+                self.dimView.hidden = YES;
+                [move removeFromSuperview];
+                [transitionContext completeTransition:YES];
+            }];
         }
             break;
             

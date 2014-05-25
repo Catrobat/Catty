@@ -23,25 +23,28 @@
 #import <UIKit/UIKit.h>
 #import "ProgramDefines.h"
 #import "UIDefines.h"
+#import "ScriptDeleteButton.h"
+#import "BrickCellProtocol.h"
 
 @class Brick;
 @class BrickCellInlineView;
+@protocol BrickProtocol;
 
-@interface BrickCell : UICollectionViewCell
+@interface BrickCell : UICollectionViewCell<BrickCellProtocol>
 
-@property (nonatomic, readonly) kBrickCategoryType categoryType;
-@property (nonatomic, readonly) NSInteger brickType;
-@property (nonatomic, getter = isBackgroundBrickCell) BOOL backgroundBrickCell;
+@property (nonatomic, strong) id<BrickProtocol> brick;
 @property (nonatomic) BOOL enabled;
+- (kBrickShapeType)brickShapeType;
++ (CGFloat)cellHeight;
 
+- (void)hookUpSubViews:(NSArray *)inlineViewSubViews; // abstract
 - (void)renderSubViews;
-- (void)hookUpSubViews:(NSArray *)inlineViewSubViews; // abstract (only called internally)
-
-+ (NSInteger)numberOfAvailableBricksForCategoryType:(kBrickCategoryType)categoryType;
-+ (CGFloat) brickCellHeightForCategoryType:(kBrickCategoryType)categoryType AndBrickType:(NSInteger)brickType;
-+ (kBrickShapeType)shapeTypeForCategoryType:(kBrickCategoryType)categoryType AndBrickType:(NSInteger)brickType;
-+ (BOOL)isScriptBrickCellForCategoryType:(kBrickCategoryType)categoryType AndBrickType:(NSInteger)brickType;
-+ (NSString*)brickPatternImageNameForCategoryType:(kBrickCategoryType)categoryType AndBrickType:(NSInteger)brickType;
+- (BOOL)isScriptBrick;
 + (void)clearImageCache;
+
+// TODO: review that
+@property (nonatomic, strong) ScriptDeleteButton *deleteButton;
+@property (nonatomic, assign) BOOL hideDeleteButton;
+- (void)setBrickEditing:(BOOL)editing;
 
 @end

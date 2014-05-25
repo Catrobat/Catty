@@ -52,11 +52,10 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [super initTableView];
-    [super initPlaceHolder];
     [self setupNavigationBar];
     [super showPlaceHolder:NO];
     self.navigationController.toolbarHidden = YES;
+    self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
 }
 
 - (void)dealloc
@@ -93,9 +92,6 @@
     static NSString *CellIdentifier = @"SoundCell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
     Sound *sound = (Sound*)[self.playableSounds objectAtIndex:indexPath.row];
-    AppDelegate *appDelegate = (AppDelegate*)[UIApplication sharedApplication].delegate;
-    NSString *path = [NSString stringWithFormat:@"%@/%@", appDelegate.fileManager.documentsDirectory, sound.fileName];
-    CGFloat duration = [[AudioManager sharedAudioManager] durationOfSoundWithFilePath:path];
 
     if (! [cell conformsToProtocol:@protocol(CatrobatImageCell)]) {
         return cell;
@@ -121,7 +117,7 @@
     } else {
         imageCell.iconImageView.image = image;
     }
-    imageCell.titleLabel.text = [NSString stringWithFormat:@"(%.02f sec.) %@", (float)duration, sound.name];
+    imageCell.titleLabel.text = sound.name;
     imageCell.iconImageView.userInteractionEnabled = YES;
     UITapGestureRecognizer *tapped = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(playSound:)];
     tapped.numberOfTapsRequired = 1;
@@ -174,16 +170,6 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     return [TableUtil getHeightForImageCell];
-}
-
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        //[tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    } else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
