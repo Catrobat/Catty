@@ -606,7 +606,9 @@
     //[[NSNotificationCenter defaultCenter] postNotificationName:@"finishedloading" object:nil];
     NSURL* url = [self.programTaskDict objectForKey:task];
     if ([self.delegate respondsToSelector:@selector(downloadFinishedWithURL:)] && [self.projectURL isEqual:url]) {
-        [self.delegate downloadFinishedWithURL:url];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self.delegate downloadFinishedWithURL:url];
+        });
     }
 
 }
@@ -753,7 +755,10 @@
         [self stopLoading:downloadTask];
         [Util alertWithText:kUIAlertViewTitleNotEnoughFreeMemory];
         if ([self.delegate respondsToSelector:@selector(setBackDownloadStatus)]) {
-            [self.delegate setBackDownloadStatus];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self.delegate setBackDownloadStatus];
+            });
+
         }
         UIApplication* app = [UIApplication sharedApplication];
         app.networkActivityIndicatorVisible = NO;
@@ -762,7 +767,9 @@
         double progress = (double)totalBytesWritten/(double)totalBytesExpectedToWrite;
         if (url) {
             if ([self.delegate respondsToSelector:@selector(updateProgress:)] && [self.projectURL isEqual:url]) {
-                [self.delegate updateProgress:progress];
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    [self.delegate updateProgress:progress];
+                });
             }
 
         }

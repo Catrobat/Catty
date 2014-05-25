@@ -136,7 +136,7 @@
 {
     _progress = progress;
     
-    if (progress > 0) {
+    if (progress > 0 && progress < 0.98) {
         BOOL startingFromIndeterminateState = [self.shapeLayer animationForKey:@"indeterminateAnimation"] != nil;
         
         [self stopIndeterminateAnimation];
@@ -163,7 +163,12 @@
             self.shapeLayer.strokeEnd = progress;
             [CATransaction commit];
         }
-    } else {
+    } else if (progress >= 0.98){
+        // If progress is zero, then add the indeterminate animation
+        [self.shapeLayer removeAnimationForKey:@"animation"];
+        
+        [self startIndeterminateAnimation];
+    }else{
         // If progress is zero, then add the indeterminate animation
         [self.shapeLayer removeAnimationForKey:@"animation"];
         

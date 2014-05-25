@@ -228,8 +228,6 @@
     [appDelegate.fileManager downloadScreenshotFromURL:screenshotSmallUrl andBaseUrl:url andName:self.project.name];
     self.project.isdownloading = YES;
     [self.projects setObject:self.project forKey:url];
-    EVCircularProgressView* pbutton = (EVCircularProgressView*)[self.view viewWithTag:kStopLoadingTag];
-    [pbutton setProgress:0.00001f animated:YES];
 }
 
 - (void)downloadButtonPressed:(id)sender
@@ -243,10 +241,12 @@
     NSLog(@"Download Finished!!!!!!");
     self.project.isdownloading = NO;
     [self.projects removeObjectForKey:url];
-    [self.projectView viewWithTag:kDownloadButtonTag].hidden = YES;
-    [self.projectView viewWithTag:kStopLoadingTag].hidden = YES;
-    [self.projectView viewWithTag:kPlayButtonTag].hidden = NO;
-    [self reloadWithProject:self.project];
+    EVCircularProgressView* button = (EVCircularProgressView*)[self.view viewWithTag:kStopLoadingTag];
+    button.hidden = YES;
+    button.progress = 0;
+    [self.view viewWithTag:kPlayButtonTag].hidden = NO;
+    [self loadingIndicator:NO];
+  
 }
 
 #pragma mark - TTTAttributedLabelDelegate
@@ -339,7 +339,7 @@
 {
     NSDebug(@"updateProgress:%f",((float)progress));
     EVCircularProgressView* button = (EVCircularProgressView*)[self.view viewWithTag:kStopLoadingTag];
-    [button setProgress:progress animated:NO];
+    [button setProgress:progress animated:YES];
 }
 
 -(void)setBackDownloadStatus
