@@ -526,6 +526,13 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    static NSString *segueToProgramDetail = kSegueToProgramDetail;
+    if (! self.editing) {
+        UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+        if ([self shouldPerformSegueWithIdentifier:segueToProgramDetail sender:cell]) {
+            [self performSegueWithIdentifier:segueToProgramDetail sender:cell];
+        }
+    }
 }
 
 #pragma mark - NSURLConnection Delegates
