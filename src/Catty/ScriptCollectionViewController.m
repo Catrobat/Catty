@@ -53,7 +53,6 @@
 @property (nonatomic, weak) IBOutlet UICollectionView *collectionView;
 @property (nonatomic, strong) BrickScaleTransition *brickScaleTransition;
 @property (nonatomic, strong) BrickSelectModalTransition *brickSelectModelTransition;
-@property (nonatomic, strong) FXBlurView *dimView;
 @property (nonatomic, strong) PlaceHolderView *placeHolderView;
 @property (nonatomic, strong) NSIndexPath *addedIndexPath;
 @property (nonatomic, strong) NSIndexPath *selectedIndexPath;
@@ -425,20 +424,9 @@
     // TODO: handle bricks which can be edited
     if (! self.isEditing  && ! [self.presentedViewController isKindOfClass:BricksCollectionViewController.class]) {
         BrickDetailViewController *brickDetailViewcontroller = [[BrickDetailViewController alloc]initWithNibName:@"BrickDetailViewController" bundle:nil];
-//        brickDetailViewcontroller.scriptCollectionViewControllerToolbar = self.navigationController.toolbar;
-//
-//        NSString *brickName =  NSStringFromClass(cell.class);
-//        if (brickName.length) {
-//            brickName = [brickName substringToIndex:brickName.length - 4];
-//        }
-//
-//        brickDetailViewcontroller.brickName = brickName;
         brickDetailViewcontroller.brickCell = cell;
         self.brickScaleTransition.cell = cell;
-        self.brickScaleTransition.navigationBar = self.navigationController.navigationBar;
-        self.brickScaleTransition.collectionView = self.collectionView;
         self.brickScaleTransition.touchRect = cell.frame;
-        self.brickScaleTransition.dimView = self.dimView;
         brickDetailViewcontroller.transitioningDelegate = self;
         brickDetailViewcontroller.modalPresentationStyle = UIModalPresentationCustom;
         self.collectionView.userInteractionEnabled = NO;
@@ -483,11 +471,6 @@
         [toScript.brickList insertObject:fromBrick atIndex:toIndexPath.item - 1];
         [toScript.brickList insertObject:toBrick atIndex:toIndexPath.item];
     }
-}
-
-- (void)collectionView:(UICollectionView *)collectionView itemAtIndexPath:(NSIndexPath *)fromIndexPath didMoveToIndexPath:(NSIndexPath *)toIndexPath
-{
-    [self.collectionView reloadData];
 }
 
 - (BOOL)collectionView:(UICollectionView *)collectionView itemAtIndexPath:(NSIndexPath *)fromIndexPath canMoveToIndexPath:(NSIndexPath *)toIndexPath

@@ -21,10 +21,13 @@
  */
 
 #import "BrickScaleTransition.h"
-#import "UIColor+CatrobatUIColorExtensions.h"
-#import "UIDefines.h"
+#import "ScriptCollectionViewController.h"
+#import "FXBlurView.h"
 
-@implementation BrickScaleTransition
+@implementation BrickScaleTransition {
+    CGFloat _yOffset;
+    ScriptCollectionViewController *_scriptCollectionVC;
+}
 
 - (void)animateTransition:(id<UIViewControllerContextTransitioning>)transitionContext
 {
@@ -40,20 +43,27 @@
     
     switch (self.transitionMode) {
         case TransitionModePresent: {
+            for (UIViewController *controller in fromVC.childViewControllers) {
+                [controller isKindOfClass:ScriptCollectionViewController.class] ? _scriptCollectionVC = (ScriptCollectionViewController *)controller : nil;
+            }
+            NSAssert(_scriptCollectionVC, @"No ScriptCollectionViewController Class in ViewController Hierachie");
+            _yOffset = self.touchRect.origin.y - _scriptCollectionVC.collectionView.contentOffset.y;
+            
             move = [self.cell snapshotViewAfterScreenUpdates:YES];
             move.frame = beginFrame;
             [container addSubview:move];
             self.cell.hidden = YES;
-            self.dimView.hidden = NO;
+            _scriptCollectionVC.dimView.hidden = NO;
             
             [UIView animateWithDuration:0.6f delay:0.0f usingSpringWithDamping:0.6f initialSpringVelocity:1.5f options:UIViewAnimationOptionCurveEaseIn animations:^{
                 move.frame = endFrame;
-                self.dimView.alpha = 1.f;
-                self.collectionView.alpha = .5;
+                _scriptCollectionVC.dimView.alpha = 1.0f;
+                _scriptCollectionVC.collectionView.alpha = 0.5f;
             } completion:^(BOOL finished) {
                 if (finished) {
-                    [UIView animateWithDuration:0.25f animations:^{
-                        self.navigationBar.alpha = 0.0f;
+                    [UIView animateWithDuration:0.05f animations:^{
+                        _scriptCollectionVC.navigationController.navigationBar.alpha = 0.0f;
+
                     } completion:^(BOOL finished) {
                         toVC.view.frame = fromVC.view.frame;
                         self.cell.hidden = NO;
@@ -70,15 +80,15 @@
             
         case TransitionModeDismiss: {
             [UIView animateWithDuration:0.3f delay:0.0f usingSpringWithDamping:1.7f initialSpringVelocity:2.0f options:UIViewAnimationOptionCurveEaseInOut animations:^{
-                self.cell.frame = CGRectMake(0.0f, self.touchRect.origin.y - self.collectionView.contentOffset.y, self.touchRect.size.width, self.touchRect.size.height);
-                self.dimView.alpha = 0.0f;
-                self.collectionView.alpha = 1.0f;
-                self.navigationBar.alpha = 1.0f;
+                self.cell.frame = CGRectMake(0.0f, _yOffset, self.touchRect.size.width, self.touchRect.size.height);
+                _scriptCollectionVC.dimView.alpha = 0.0f;
+                _scriptCollectionVC.collectionView.alpha = 1.0f;
+                _scriptCollectionVC.navigationController.navigationBar.alpha = 1.0f;
             } completion:^(BOOL finished) {
                 if (finished) {
                     self.cell.frame = self.touchRect;
                     [fromVC.view removeFromSuperview];
-                    self.dimView.hidden = YES;
+                    _scriptCollectionVC.dimView.hidden = YES;
                     [move removeFromSuperview];
                     [transitionContext completeTransition:YES];
                 }

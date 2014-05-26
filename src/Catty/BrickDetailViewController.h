@@ -23,8 +23,10 @@
 #import <UIKit/UIKit.h>
 #import "ScriptCollectionViewController.h"
 #import "BrickCell.h"
+#import "IBActionSheet.h"
 
 @interface BrickDetailViewController : UIViewController
 @property (strong, nonatomic) BrickCell *brickCell;
+@property (strong, nonatomic) IBActionSheet *brickMenu;
 
 @end

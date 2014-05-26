@@ -28,7 +28,6 @@
 #import "StartScriptCell.h"
 #import "WhenScriptCell.h"
 #import "BroadcastScriptCell.h"
-#import "IBActionSheet.h"
 #import "CellMotionEffect.h"
 
 NS_ENUM(NSInteger, ButtonIndex) {
@@ -40,7 +39,6 @@ NS_ENUM(NSInteger, ButtonIndex) {
 
 @interface BrickDetailViewController () <IBActionSheetDelegate>
 @property (strong, nonatomic) UITapGestureRecognizer *recognizer;
-@property (strong, nonatomic) IBActionSheet *brickMenu;
 @property (strong, nonatomic) NSNumber *deleteBrickOrScriptFlag;
 @property (strong, nonatomic) NSNumber *brickCopyFlag;
 @property (strong, nonatomic) NSString *brickName;
@@ -58,15 +56,14 @@ NS_ENUM(NSInteger, ButtonIndex) {
     [CellMotionEffect addMotionEffectForView:self.brickCell withDepthX:0.0f withDepthY:25.0f withMotionEffectGroup:self.motionEffects];
 }
 
-
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
+    [self.brickMenu showInView:self.view];
     self.recognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleTap:)];
     self.recognizer.numberOfTapsRequired = 1;
     self.recognizer.cancelsTouchesInView = NO;
     [self.view.window addGestureRecognizer:self.recognizer];
-    [self.brickMenu showInView:self.view];
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
