@@ -85,7 +85,7 @@
 {
     self.collectionView.delegate = self;
     self.collectionView.dataSource = self;
-    self.collectionView.backgroundColor = UIColor.backgroundBlueColor;
+    self.collectionView.backgroundColor = UIColor.darkBlueColor;
     self.collectionView.alwaysBounceVertical = YES;
     self.collectionView.scrollEnabled = YES;
     self.collectionView.delegate = self;

@@ -38,8 +38,6 @@
 {
     self.selectedBackgroundView = [self createSelectedBackground];
 
-    // IMPORTANT: needed to dynamically hide/show indicator via cellForRowAtIndexPath method
-    //            in TableViewController class (do not remove this any more!!)
     UIImage *accessoryImage = nil;
     switch (self.accessoryType) {
         case UITableViewCellAccessoryDisclosureIndicator:

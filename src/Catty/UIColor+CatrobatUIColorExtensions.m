@@ -41,6 +41,11 @@
 	return color;
 }
 
++ (UIColor*)navBarColor
+{
+    return [UIColor colorWithRed:0 green:37.0f/255.0f blue:52.0f/255.0f alpha:1.0f];
+}
+
 + (UIColor *)skyBlueColor
 {    
     return [UIColor colorWithRed:168.0f/255.0f green:223.0f/255.0f blue:244/255.0f alpha:1.0f];
@@ -95,14 +100,14 @@
     return [UIColor colorWithRed:0 green:37.0f/255.0f blue:52.0f/255.0f alpha:0.85f];
 }
 
-+ (UIColor*)backgroundBlueColor
-{
-     return [UIColor colorWithRed:16.0f/255.0f green:33.0f/255.0f blue:45.0f/255.0f alpha:1.0f];
-}
-
 + (UIColor*)headerTextColor
 {
     return [UIColor colorWithRed:133.0f/255.0f green:163.0f/255.0f blue:180.0f/255.0f alpha:1.0f];
+}
+
++ (UIColor*)cellBlueColor
+{
+    return [UIColor colorWithRed:3.0f/255.0f green:70.0f/255.0f blue:93.0f/255.0f alpha:1.0f];
 }
 
 @end

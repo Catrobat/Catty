@@ -44,8 +44,10 @@
 
 + (UIColor*)menuDarkBlueColor;
 
-+ (UIColor*)backgroundBlueColor;
-
 + (UIColor*)headerTextColor;
+
++ (UIColor*)cellBlueColor;
+
++ (UIColor*)navBarColor;
 
 @end

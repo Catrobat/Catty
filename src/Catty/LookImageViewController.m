@@ -21,6 +21,7 @@
  */
 
 #import "LookImageViewController.h"
+#import "UIColor+CatrobatUIColorExtensions.h"
 
 @interface LookImageViewController () <UIScrollViewDelegate>
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
@@ -77,7 +78,7 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    UIColor *backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"darkblue"]];
+    UIColor *backgroundColor = [UIColor darkBlueColor];
     self.view.backgroundColor = backgroundColor;
     self.imageView.backgroundColor = backgroundColor;
     self.navigationController.toolbar.hidden = YES;

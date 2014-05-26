@@ -44,9 +44,7 @@
     
     switch (self.transitionMode) {
         case TransitionModePresent: {
-            for (UIViewController *controller in fromVC.childViewControllers) {
-                [controller isKindOfClass:ScriptCollectionViewController.class] ? _scriptCollectionVC = (ScriptCollectionViewController *)controller : nil;
-            }
+            _scriptCollectionVC = (ScriptCollectionViewController *)fromVC.childViewControllers.lastObject;
             NSAssert(_scriptCollectionVC != nil, @"No ScriptCollectionViewController Class in ViewController Hierachie");
             _yOffset = self.touchRect.origin.y - _scriptCollectionVC.collectionView.contentOffset.y;
             
