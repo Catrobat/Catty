@@ -21,17 +21,45 @@
  */
 #import "Brick.h"
 #import "Script.h"
+#import "BrickManager.h"
+
+@interface Brick()
+
+@property (nonatomic, readwrite) kBrickCategoryType brickCategoryType;
+@property (nonatomic, readwrite) kBrickType brickType;
+
+@end
 
 @implementation Brick
+
+- (id)init
+{
+    self = [super init];
+    if (self) {
+        NSString *subclassName = NSStringFromClass([self class]);
+        BrickManager *brickManager = [BrickManager sharedBrickManager];
+        self.brickType = [brickManager brickTypeForClassName:subclassName];
+        self.brickCategoryType = [brickManager brickCategoryTypeForBrickType:self.brickType];
+    }
+    return self;
+}
 
 - (id)initWithSprite:(SpriteObject *)sprite
 {
     self = [super init];
-    if (self)
-    {
+    if (self) {
+        NSString *subclassName = NSStringFromClass([self class]);
+        BrickManager *brickManager = [BrickManager sharedBrickManager];
+        self.brickType = [brickManager brickTypeForClassName:subclassName];
+        self.brickCategoryType = [brickManager brickCategoryTypeForBrickType:self.brickType];
         self.object = sprite;
     }
     return self;
+}
+
+- (BOOL)isSelectableForObject
+{
+    return YES;
 }
 
 - (NSString*)description

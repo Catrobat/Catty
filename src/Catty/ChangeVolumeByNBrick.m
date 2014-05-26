@@ -27,11 +27,14 @@
 
 @implementation ChangeVolumeByNBrick
 
-
 @synthesize volume  = _volume;
 
+- (NSString*)brickTitle
+{
+    return kBrickCellSoundTitleChangeVolumeByN;
+}
 
--(SKAction*)action
+- (SKAction*)action
 {
     NSDebug(@"Adding: %@", self.description);
     return [SKAction runBlock:^{

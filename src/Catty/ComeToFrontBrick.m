@@ -23,9 +23,17 @@
 #import "Cometofrontbrick.h"
 #import "Scene.h"
 
-
 @implementation ComeToFrontBrick
 
+- (BOOL)isSelectableForObject
+{
+    return (! [self.object isBackground]);
+}
+
+- (NSString*)brickTitle
+{
+    return kBrickCellMotionTitleComeToFront;
+}
 
 -(SKAction*)action
 {

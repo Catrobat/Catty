@@ -132,7 +132,7 @@
 
 #pragma mark - Accessors
 
-- (void)setProgress:(float)progress animated:(BOOL)animated
+- (void)setProgress:(double)progress animated:(BOOL)animated
 {
     _progress = progress;
     
@@ -153,7 +153,7 @@
             CABasicAnimation *animation = [CABasicAnimation animationWithKeyPath:@"strokeEnd"];
             animation.fromValue = (startingFromIndeterminateState) ? @0 : nil;
             animation.toValue = [NSNumber numberWithFloat:progress];
-            animation.duration = 1;
+            animation.duration = 0.1;
             self.shapeLayer.strokeEnd = progress;
             
             [self.shapeLayer addAnimation:animation forKey:@"animation"];
@@ -163,7 +163,7 @@
             self.shapeLayer.strokeEnd = progress;
             [CATransaction commit];
         }
-    } else {
+    }else{
         // If progress is zero, then add the indeterminate animation
         [self.shapeLayer removeAnimationForKey:@"animation"];
         
@@ -171,7 +171,7 @@
     }
 }
 
-- (void)setProgress:(float)progress
+- (void)setProgress:(double)progress
 {
     [self setProgress:progress animated:NO];
 }

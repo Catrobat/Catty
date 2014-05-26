@@ -33,10 +33,12 @@
 #import "NSString+CatrobatNSStringExtensions.h"
 #import <objc/runtime.h>
 #import "BroadcastWaitBrick.h"
-
+#import "BrickManager.h"
 
 @interface Script()
 
+@property (nonatomic, readwrite) kBrickCategoryType brickCategoryType;
+@property (nonatomic, readwrite) kBrickType brickType;
 @property (nonatomic, assign) NSUInteger currentBrickIndex;
 @property (copy) dispatch_block_t completion;
 
@@ -46,22 +48,38 @@
 
 - (id)init
 {
-    if (self = [super init])
-    {
+    if (self = [super init]) {
+        NSString *subclassName = NSStringFromClass([self class]);
+        BrickManager *brickManager = [BrickManager sharedBrickManager];
+        self.brickType = [brickManager brickTypeForClassName:subclassName];
+        self.brickCategoryType = [brickManager brickCategoryTypeForBrickType:self.brickType];
         self.currentBrickIndex = 0;
     }
     return self;
 }
 
 #pragma mark - Custom getter and setter
--(NSMutableArray*)brickList
+- (BOOL)isSelectableForObject
+{
+    return YES;
+}
+
+- (NSString*)brickTitle
+{
+    @throw [NSException exceptionWithName:NSInternalInconsistencyException
+                                   reason:[NSString stringWithFormat:@"You must override %@ in the subclass %@",
+                                           NSStringFromSelector(_cmd), NSStringFromClass([self class])]
+                                 userInfo:nil];
+}
+
+- (NSMutableArray*)brickList
 {
     if (! _brickList)
         _brickList = [NSMutableArray array];
     return _brickList;
 }
 
--(void)reset
+- (void)reset
 {
     NSDebug(@"Reset");
     for(Brick* brick in self.brickList) {
@@ -73,20 +91,20 @@
     self.completion = NULL;
 }
 
--(void)stop
+- (void)stop
 {
     [self removeAllActions];
     self.currentBrickIndex = NSNotFound;
 }
 
 
--(void)dealloc
+- (void)dealloc
 {
     NSDebug(@"Dealloc %@ %@", [self class], self.parent);
     
 }
 
--(void)startWithCompletion:(dispatch_block_t)completion
+- (void)startWithCompletion:(dispatch_block_t)completion
 {
     NSDebug(@"Starting: %@", self.description);
     [self reset];
@@ -105,7 +123,7 @@
 }
 
 
--(void)runNextAction
+- (void)runNextAction
 {
     if (! self.allowRunNextAction)
         return;
@@ -200,7 +218,7 @@
     
 }
 
--(void) nextAction
+- (void) nextAction
 {
     // Needs to be async because of recursion!
     dispatch_async(dispatch_get_main_queue(), ^{
@@ -210,7 +228,7 @@
 
 
 
--(void)runWithAction:(SKAction*)action
+- (void)runWithAction:(SKAction*)action
 {
     
     
@@ -491,7 +509,7 @@
 
 
 #pragma mark - Description
--(NSString*)description
+- (NSString*)description
 {
     NSMutableString *ret = [[NSMutableString alloc] initWithString:@"Script"];
     [ret appendFormat:@"(%@)", self.object.name ];

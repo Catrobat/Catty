@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5056" systemVersion="13C1021" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="62e-MX-z1C">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5056" systemVersion="13D65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="62e-MX-z1C">
     <dependencies>
         <deployment defaultVersion="1792" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
@@ -35,7 +35,6 @@
                                 <connections>
                                     <outlet property="iconImageView" destination="nsC-LQ-yHN" id="t4g-it-tws"/>
                                     <outlet property="titleLabel" destination="UZk-4d-EUO" id="tnZ-rf-Oab"/>
-                                    <segue destination="DpO-xp-0fW" kind="push" identifier="segueToObject1" id="z5I-OA-Ekf"/>
                                 </connections>
                             </tableViewCell>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="DetailImageCell" rowHeight="79" id="ePg-N5-867" customClass="DarkBlueGradientImageDetailCell">
@@ -91,7 +90,6 @@
                                     <outlet property="titleLabel" destination="wSQ-tB-9sE" id="d7l-R9-1MB"/>
                                     <outlet property="topLeftDetailLabel" destination="zQW-3h-lht" id="3Ji-hS-Gpn"/>
                                     <outlet property="topRightDetailLabel" destination="fa5-fY-eIM" id="ssb-UP-TWx"/>
-                                    <segue destination="DpO-xp-0fW" kind="push" identifier="segueToObject2" id="tS5-pA-EEz"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -105,6 +103,7 @@
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <segue destination="lLN-Ii-gwh" kind="push" identifier="segueToScene" id="dSt-wf-R4M"/>
+                        <segue destination="DpO-xp-0fW" kind="push" identifier="segueToObject" id="S4X-8v-yA3"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8T7-WP-UB7" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -435,7 +434,6 @@
                                 <connections>
                                     <outlet property="iconImageView" destination="W7k-AC-SEG" id="dFl-RA-f53"/>
                                     <outlet property="titleLabel" destination="5lQ-d4-Tva" id="hsY-p6-Fwv"/>
-                                    <segue destination="zk9-PV-gNO" kind="push" identifier="segueToImage1" id="eCm-KK-N1F"/>
                                 </connections>
                             </tableViewCell>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="DetailImageCell" rowHeight="79" id="35a-94-dzm" customClass="DarkBlueGradientImageDetailCell">
@@ -491,7 +489,6 @@
                                     <outlet property="titleLabel" destination="FLK-MB-nOh" id="isZ-oe-0Dd"/>
                                     <outlet property="topLeftDetailLabel" destination="z5H-wL-6Lz" id="w5v-VN-kVW"/>
                                     <outlet property="topRightDetailLabel" destination="CNt-Vd-miC" id="tNR-7V-IEC"/>
-                                    <segue destination="zk9-PV-gNO" kind="push" identifier="segueToImage2" id="Mul-oO-Qtl"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -505,6 +502,7 @@
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <segue destination="lLN-Ii-gwh" kind="push" identifier="segueToScene" id="OPb-jW-KHJ"/>
+                        <segue destination="zk9-PV-gNO" kind="push" identifier="segueToImage" id="yId-Nh-XF4"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bi4-BT-YqP" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -541,7 +539,6 @@
                                 <connections>
                                     <outlet property="iconImageView" destination="642-Kc-jVe" id="SsN-uJ-caO"/>
                                     <outlet property="titleLabel" destination="7VV-Cs-K8i" id="dum-xb-EpA"/>
-                                    <segue destination="BYa-g9-OiT" kind="push" identifier="segueToContinue1" id="y1P-mf-Wvq"/>
                                 </connections>
                             </tableViewCell>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="DetailImageCell" rowHeight="79" id="i0U-sQ-Apc" customClass="DarkBlueGradientImageDetailCell">
@@ -597,7 +594,6 @@
                                     <outlet property="titleLabel" destination="fMf-8f-vof" id="3eB-kz-IOg"/>
                                     <outlet property="topLeftDetailLabel" destination="MOw-Zb-ZrB" id="gxa-HJ-U2c"/>
                                     <outlet property="topRightDetailLabel" destination="hKH-2X-bUN" id="Zym-GY-aef"/>
-                                    <segue destination="BYa-g9-OiT" kind="push" identifier="segueToContinue2" id="Cek-Kf-HCk"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -611,6 +607,7 @@
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <segue destination="BYa-g9-OiT" kind="push" identifier="segueToNewProgram" id="Ynr-aF-UI3"/>
+                        <segue destination="BYa-g9-OiT" kind="push" identifier="segueToContinue" id="9ao-Sd-kbH"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ysn-tw-Bdd" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -779,11 +776,11 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="ImageCell" rowHeight="123" id="EfC-3p-1xF" customClass="DarkBlueGradientImageCell">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="ImageCell" rowHeight="123" id="EfC-3p-1xF" customClass="DarkBlueGradientImageCell">
                                 <rect key="frame" x="0.0" y="86" width="320" height="123"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="EfC-3p-1xF" id="Jm9-AW-RhL">
-                                    <rect key="frame" x="0.0" y="0.0" width="320" height="122"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="287" height="122"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" tag="11" contentMode="scaleAspectFill" id="49q-B8-MBG">
@@ -793,7 +790,6 @@
                                 </tableViewCellContentView>
                                 <connections>
                                     <outlet property="iconImageView" destination="49q-B8-MBG" id="4pU-ee-LyV"/>
-                                    <segue destination="5oV-85-Xov" kind="push" identifier="segueToProgramDetail" id="aCr-hO-8vs"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -806,6 +802,9 @@
                     <navigationItem key="navigationItem" id="SWr-4D-2iK"/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <segue destination="5oV-85-Xov" kind="push" identifier="segueToProgramDetail" id="83p-dA-kpt"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Qpj-ch-Y40" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -888,7 +887,6 @@
                                         <connections>
                                             <outlet property="iconImageView" destination="Zp5-JU-A6T" id="XoN-Vf-aHj"/>
                                             <outlet property="titleLabel" destination="G9s-30-7Az" id="RLz-Z6-6oU"/>
-                                            <segue destination="5oV-85-Xov" kind="push" identifier="segueToProgramDetail" id="K4O-DO-I3f"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -901,6 +899,7 @@
                         <outlet property="downloadSegmentedControl" destination="jxg-mt-dvB" id="2Ib-94-qEx"/>
                         <outlet property="segmentedControlView" destination="7PH-x9-xjS" id="ltA-go-6KI"/>
                         <outlet property="tableView" destination="fJr-Rh-VKf" id="1cb-fm-aRb"/>
+                        <segue destination="5oV-85-Xov" kind="push" identifier="segueToProgramDetail" id="5UD-6W-Ykq"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7Ln-bV-RG1" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1008,7 +1007,7 @@
                     <connections>
                         <outlet property="searchBar" destination="MLz-GC-klF" id="ZoG-CW-6Hp"/>
                         <outlet property="tableView" destination="OJJ-Pc-e3v" id="pPS-1o-Yjn"/>
-                        <segue destination="5oV-85-Xov" kind="push" identifier="segueToProgramDetail" id="raV-as-guB"/>
+                        <segue destination="5oV-85-Xov" kind="push" identifier="segueToProgramDetail" id="GnV-Zh-HB0"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Uom-C2-pSA" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1025,11 +1024,8 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="y1P-mf-Wvq"/>
-        <segue reference="raV-as-guB"/>
-        <segue reference="tS5-pA-EEz"/>
-        <segue reference="Mul-oO-Qtl"/>
+        <segue reference="mUB-CR-2KD"/>
+        <segue reference="5UD-6W-Ykq"/>
         <segue reference="OPb-jW-KHJ"/>
-        <segue reference="raV-as-guB"/>
     </inferredMetricsTieBreakers>
 </document>

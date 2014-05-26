@@ -27,6 +27,7 @@
 @property (nonatomic, strong) NSMutableDictionary *imageCache;
 @property (nonatomic, strong) NSArray *editableSections;
 @property (nonatomic, strong, readonly) UIBarButtonItem *selectAllRowsButtonItem;
+@property (nonatomic, strong) PlaceHolderView *placeHolderView;
 - (void)showPlaceHolder:(BOOL)show;
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath;
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath*)indexPath;
@@ -44,7 +45,5 @@
                      confirmMessage:(NSString*)confirmMessage;
 - (void)performActionOnConfirmation:(SEL)confirmedAction canceledAction:(SEL)canceledAction target:(id)target
                        confirmTitle:(NSString*)confirmTitle confirmMessage:(NSString*)confirmMessage;
-
-@property (nonatomic, strong) PlaceHolderView *placeHolderView;
 
 @end

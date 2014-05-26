@@ -25,10 +25,14 @@
 #import "Look.h"
 #import "UIImage+CatrobatUIImageExtensions.h"
 
-
 @implementation ChangeBrightnessByNBrick
 
--(SKAction*)action
+- (NSString*)brickTitle
+{
+    return kBrickCellLookTitleChangeBrightnessByN;
+}
+
+- (SKAction*)action
 {
     NSDebug(@"Adding: %@", self.description);
     return [SKAction runBlock:^{
@@ -84,12 +88,14 @@
 
         }];
 }
+
 #pragma mark - Description
 - (NSString*)description
 {
     return [NSString stringWithFormat:@"ChangeBrightnessByN (%f%%)", [self.changeBrightness interpretDoubleForSprite:self.object]];
 }
--(NSString*)pathForLook:(Look*)look
+
+- (NSString*)pathForLook:(Look*)look
 {
     return [NSString stringWithFormat:@"%@images/%@", [self.object projectPath], look.fileName];
 }

@@ -31,8 +31,12 @@
 
 @implementation RepeatBrick
 
+- (NSString*)brickTitle
+{
+    return kBrickCellControlTitleRepeat;
+}
 
--(BOOL) checkCondition
+- (BOOL)checkCondition
 {
     NSDebug(@"Loop Count: %d", self.loopCount);
     int timesToRepeat = [self.timesToRepeat interpretIntegerForSprite:self.object];
@@ -40,7 +44,7 @@
 }
 
 
--(void)reset
+- (void)reset
 {
     self.loopCount = 0;
 }

@@ -20,19 +20,21 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-
 #import <UIKit/UIKit.h>
 #import "SpriteObject.h"
 #import "UIDefines.h"
+#import "BrickProtocol.h"
 
 @class Script;
 
-@interface Brick : NSObject
+@interface Brick : NSObject <BrickProtocol>
+
+@property (nonatomic, readonly) kBrickCategoryType brickCategoryType;
+@property (nonatomic, readonly) kBrickType brickType;
+@property (nonatomic, strong, readonly) NSString *brickTitle;
+- (BOOL)isSelectableForObject;
 
 @property (nonatomic, weak) SpriteObject *object;
-
-// TODO: use protocol to define interfaces for Brick and Script class
-//@property (nonatomic) kBrickType brickType;
 
 - (id)initWithSprite:(SpriteObject*)sprite;
 

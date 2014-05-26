@@ -28,15 +28,17 @@
 
 @synthesize degrees = _degrees;
 
-
--(SKAction*)action
+- (NSString*)brickTitle
 {
-
-    return [SKAction runBlock: [self actionBlock]];
-
+    return kBrickCellMotionTitleTurnLeft;
 }
 
--(dispatch_block_t)actionBlock
+- (SKAction*)action
+{
+    return [SKAction runBlock: [self actionBlock]];
+}
+
+- (dispatch_block_t)actionBlock
 {
     return ^{
         NSDebug(@"Performing: %@", self.description);
