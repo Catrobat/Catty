@@ -57,7 +57,6 @@
 @property (nonatomic, strong) NSIndexPath *addedIndexPath;
 @property (nonatomic, strong) NSIndexPath *selectedIndexPath;
 @property (nonatomic, strong) AHKActionSheet *brickSelectionMenu;
-//@property (nonatomic, assign) BOOL brickSelectionActive;
 @property (nonatomic, strong) BrickSelectionSwipe *interactiveSwipeDismiss;
 
 @end
@@ -138,7 +137,7 @@
         _brickSelectionMenu.titleTextAttributes = @{NSFontAttributeName : [UIFont systemFontOfSize:14.0f] ,
                                                     NSForegroundColorAttributeName : UIColor.skyBlueColor};
         _brickSelectionMenu.cancelButtonTextAttributes = @{NSForegroundColorAttributeName : UIColor.lightOrangeColor};
-        _brickSelectionMenu.buttonTextAttributes = @{NSForegroundColorAttributeName : UIColor.whiteColor};
+        _brickSelectionMenu.buttonTextAttributes = @{NSForegroundColorAttributeName : UIColor.lightOrangeColor};
         _brickSelectionMenu.selectedBackgroundColor = [UIColor colorWithWhite:0.0f alpha:0.3f];
         _brickSelectionMenu.automaticallyTintButtonImages = NO;
 
@@ -307,7 +306,6 @@
 - (void)brickDetailViewDismissed:(NSNotification *)notification
 {
     self.collectionView.userInteractionEnabled = YES;
-    [self.navigationController setToolbarHidden:NO animated:YES];
     self.navigationController.navigationBar.userInteractionEnabled = YES;
     [self.collectionView reloadData];
 
@@ -430,7 +428,6 @@
         brickDetailViewcontroller.transitioningDelegate = self;
         brickDetailViewcontroller.modalPresentationStyle = UIModalPresentationCustom;
         self.collectionView.userInteractionEnabled = NO;
-        [self.navigationController setToolbarHidden:YES animated:YES];
         [self presentViewController:brickDetailViewcontroller animated:YES completion:^{
             self.navigationController.navigationBar.userInteractionEnabled = NO;
         }];

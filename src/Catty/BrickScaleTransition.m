@@ -23,6 +23,7 @@
 #import "BrickScaleTransition.h"
 #import "ScriptCollectionViewController.h"
 #import "FXBlurView.h"
+#import "UIColor+CatrobatUIColorExtensions.h"
 
 @implementation BrickScaleTransition {
     CGFloat _yOffset;
@@ -46,7 +47,7 @@
             for (UIViewController *controller in fromVC.childViewControllers) {
                 [controller isKindOfClass:ScriptCollectionViewController.class] ? _scriptCollectionVC = (ScriptCollectionViewController *)controller : nil;
             }
-            NSAssert(_scriptCollectionVC, @"No ScriptCollectionViewController Class in ViewController Hierachie");
+            NSAssert(_scriptCollectionVC != nil, @"No ScriptCollectionViewController Class in ViewController Hierachie");
             _yOffset = self.touchRect.origin.y - _scriptCollectionVC.collectionView.contentOffset.y;
             
             move = [self.cell snapshotViewAfterScreenUpdates:YES];
@@ -59,21 +60,17 @@
                 move.frame = endFrame;
                 _scriptCollectionVC.dimView.alpha = 1.0f;
                 _scriptCollectionVC.collectionView.alpha = 0.5f;
+                _scriptCollectionVC.navigationController.navigationBar.alpha = 0.01f;
+                _scriptCollectionVC.navigationController.navigationBar.tintColor = UIColor.lightGrayColor;
+                _scriptCollectionVC.navigationController.toolbar.alpha = 0.01f;
             } completion:^(BOOL finished) {
-                if (finished) {
-                    [UIView animateWithDuration:0.05f animations:^{
-                        _scriptCollectionVC.navigationController.navigationBar.alpha = 0.0f;
-
-                    } completion:^(BOOL finished) {
-                        toVC.view.frame = fromVC.view.frame;
-                        self.cell.hidden = NO;
-                        self.cell.frame = CGRectMake(0.0f, CGRectGetHeight(UIScreen.mainScreen.bounds) / 2.0f - CGRectGetHeight(self.cell.bounds), CGRectGetWidth(self.cell.bounds), CGRectGetHeight(self.cell.bounds));
-                        [toVC.view addSubview:self.cell];
-                        [container addSubview:toVC.view];
-                        [move removeFromSuperview];
-                        [transitionContext completeTransition:YES];
-                    }];
-                }
+                toVC.view.frame = fromVC.view.frame;
+                self.cell.hidden = NO;
+                self.cell.frame = CGRectMake(0.0f, CGRectGetHeight(UIScreen.mainScreen.bounds) / 2.0f - CGRectGetHeight(self.cell.bounds), CGRectGetWidth(self.cell.bounds), CGRectGetHeight(self.cell.bounds));
+                [toVC.view addSubview:self.cell];
+                [container addSubview:toVC.view];
+                [move removeFromSuperview];
+                [transitionContext completeTransition:YES];
             }];
         }
             break;
@@ -84,6 +81,8 @@
                 _scriptCollectionVC.dimView.alpha = 0.0f;
                 _scriptCollectionVC.collectionView.alpha = 1.0f;
                 _scriptCollectionVC.navigationController.navigationBar.alpha = 1.0f;
+                _scriptCollectionVC.navigationController.navigationBar.tintColor = UIColor.lightOrangeColor;
+                _scriptCollectionVC.navigationController.toolbar.alpha = 1.0f;
             } completion:^(BOOL finished) {
                 if (finished) {
                     self.cell.frame = self.touchRect;
