@@ -72,13 +72,6 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    [self.navigationController setToolbarHidden:YES];
-}
-
-- (void)viewWillDisappear:(BOOL)animated
-{
-    [super viewWillDisappear:animated];
-    [self.navigationController setToolbarHidden:NO];
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -90,6 +83,7 @@
 - (void)viewDidDisappear:(BOOL)animated
 {
     [super viewDidDisappear:animated];
+    [self.scriptCollectionViewController.navigationController setNavigationBarHidden:NO animated:YES];
     self.scriptCollectionViewController = nil;
 }
 

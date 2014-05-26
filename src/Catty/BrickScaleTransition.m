@@ -46,7 +46,7 @@
             self.cell.hidden = YES;
             self.dimView.hidden = NO;
             
-            [UIView animateWithDuration:0.7f delay:0.f usingSpringWithDamping:0.5f initialSpringVelocity:2.0f options:UIViewAnimationOptionCurveEaseIn animations:^{
+            [UIView animateWithDuration:0.6f delay:0.0f usingSpringWithDamping:0.6f initialSpringVelocity:1.5f options:UIViewAnimationOptionCurveEaseIn animations:^{
                 move.frame = endFrame;
                 self.dimView.alpha = 1.f;
                 self.collectionView.alpha = .5;
@@ -69,20 +69,19 @@
             break;
             
         case TransitionModeDismiss: {
-            CGFloat y = 0.f;
-            y = self.touchRect.origin.y >= toVC.view.frame.size.height ? self.touchRect.origin.y - self.collectionView.contentOffset.y : self.touchRect.origin.y +  NAVIGATION_BAR_HEIGHT;
-            
-            [UIView animateWithDuration:0.6f delay:0.0f usingSpringWithDamping:1.5f initialSpringVelocity:2.0f options:UIViewAnimationOptionCurveEaseInOut animations:^{
-                self.cell.frame = CGRectMake(self.touchRect.origin.x, y, self.touchRect.size.width, self.touchRect.size.height);
-                self.dimView.alpha = 0.f;
+            [UIView animateWithDuration:0.3f delay:0.0f usingSpringWithDamping:1.7f initialSpringVelocity:2.0f options:UIViewAnimationOptionCurveEaseInOut animations:^{
+                self.cell.frame = CGRectMake(0.0f, self.touchRect.origin.y - self.collectionView.contentOffset.y, self.touchRect.size.width, self.touchRect.size.height);
+                self.dimView.alpha = 0.0f;
                 self.collectionView.alpha = 1.0f;
                 self.navigationBar.alpha = 1.0f;
             } completion:^(BOOL finished) {
-                self.cell.frame = self.touchRect;
-                [fromVC.view removeFromSuperview];
-                self.dimView.hidden = YES;
-                [move removeFromSuperview];
-                [transitionContext completeTransition:YES];
+                if (finished) {
+                    self.cell.frame = self.touchRect;
+                    [fromVC.view removeFromSuperview];
+                    self.dimView.hidden = YES;
+                    [move removeFromSuperview];
+                    [transitionContext completeTransition:YES];
+                }
             }];
         }
             break;

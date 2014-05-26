@@ -31,6 +31,13 @@
 #import "IBActionSheet.h"
 #import "CellMotionEffect.h"
 
+NS_ENUM(NSInteger, ButtonIndex) {
+    kButtonIndexDelete = 0,
+    kButtonIndexCopyOrHighlight = 1,
+    kButtonIndexEditOrCancel = 2,
+    kButtonIndexCancel = 3
+};
+
 @interface BrickDetailViewController () <IBActionSheetDelegate>
 @property (strong, nonatomic) UITapGestureRecognizer *recognizer;
 @property (strong, nonatomic) IBActionSheet *brickMenu;
@@ -51,42 +58,6 @@
     [CellMotionEffect addMotionEffectForView:self.brickCell withDepthX:0.0f withDepthY:25.0f withMotionEffectGroup:self.motionEffects];
 }
 
-#pragma mark - getters
-- (IBActionSheet *)brickMenu
-{
-    if (! _brickMenu) {
-        _brickMenu = [[IBActionSheet alloc] initWithTitle:self.brickName
-                                                     delegate:self
-                                            cancelButtonTitle:kUIActionSheetButtonTitleClose
-                                       destructiveButtonTitle:[self deleteMenuItemNameWithBrickCell:self.brickCell]
-                                            otherButtonTitles:[self secondMenuItemWithBrickCell:self.brickCell],
-                          [self editFormulaMenuItemWithVrickCell:self.brickCell], nil];
-        [_brickMenu setButtonBackgroundColor:UIColor.menuDarkBlueColor];
-        [_brickMenu setButtonTextColor:UIColor.lightOrangeColor];
-        [_brickMenu setTitleTextColor:UIColor.skyBlueColor];
-        [_brickMenu setButtonTextColor:UIColor.redColor forButtonAtIndex:0];
-        _brickMenu.transparentView = nil;
-    }
-    return _brickMenu;
-}
-
-- (NSString *)brickName
-{
-    if (! _brickMenu) {
-        NSString *brickName =  NSStringFromClass(self.brickCell.class);
-        if (brickName.length) {
-            _brickName = [brickName substringToIndex:brickName.length - 4];
-        }
-    }
-    return _brickName;
-}
-
-- (UIMotionEffectGroup *)motionEffects {
-    if (!_motionEffects) {
-        _motionEffects = [UIMotionEffectGroup new];
-    }
-    return _motionEffects;
-}
 
 - (void)viewDidAppear:(BOOL)animated
 {
@@ -125,43 +96,67 @@
     }
 }
 
+#pragma mark - getters
+- (IBActionSheet *)brickMenu
+{
+    if (! _brickMenu) {
+        _brickMenu = [[IBActionSheet alloc] initWithTitle:self.brickName
+                                                 delegate:self
+                                        cancelButtonTitle:kUIActionSheetButtonTitleClose
+                                   destructiveButtonTitle:[self deleteMenuItemNameWithBrickCell:self.brickCell]
+                                        otherButtonTitles:[self secondMenuItemWithBrickCell:self.brickCell],
+                      [self editFormulaMenuItemWithVrickCell:self.brickCell], nil];
+        [_brickMenu setButtonBackgroundColor:UIColor.menuDarkBlueColor];
+        [_brickMenu setButtonTextColor:UIColor.lightOrangeColor];
+        [_brickMenu setTitleTextColor:UIColor.skyBlueColor];
+        [_brickMenu setButtonTextColor:UIColor.redColor forButtonAtIndex:0];
+        _brickMenu.transparentView = nil;
+    }
+    return _brickMenu;
+}
+
+- (NSString *)brickName
+{
+    if (! _brickMenu) {
+        NSString *brickName =  NSStringFromClass(self.brickCell.class);
+        if (brickName.length) {
+            _brickName = [brickName substringToIndex:brickName.length - 4];
+        }
+    }
+    return _brickName;
+}
+
+- (UIMotionEffectGroup *)motionEffects {
+    if (!_motionEffects) {
+        _motionEffects = [UIMotionEffectGroup new];
+    }
+    return _motionEffects;
+}
+
 #pragma mark - Action Sheet Delegate
 - (void)actionSheet:(IBActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
 {
     switch (buttonIndex) {
-        case 0: {
-            // delete brick or script
+        case kButtonIndexDelete: {
             self.deleteBrickOrScriptFlag = [NSNumber numberWithBool:YES];
             [self dismissBrickDetailViewController];
             break;
         }
             
-        case 1: {
-            // copy brick or highlight script
-            if (! [self isScript:self.brickCell]) {
-                self.brickCopyFlag = [NSNumber numberWithBool:YES];
-                [self dismissBrickDetailViewController];
-            } else {
-                // TDOD highlight script
-            }
-            break;
-        }
+        case kButtonIndexCopyOrHighlight:
+            self.brickCopyFlag = [NSNumber numberWithBool:![self isScript:self.brickCell]];
+            [self isScript:self.brickCell] ? NSLog(@"Highlight script...") : [self dismissBrickDetailViewController];
             
-        case 2: {
-            // edit formula or cancel if script
-            if ([self isScript:self.brickCell] ) {
-                [self dismissBrickDetailViewController];
-            } else {
-                // TODO edit formula mode
-            }
             break;
-        }
             
-        case 3: {
-            // cancel button
+        case kButtonIndexEditOrCancel:
+            [self isScript:self.brickCell] ? [self dismissBrickDetailViewController] : NSLog(@"Edit Brick...");
+            break;
+            
+            
+        case kButtonIndexCancel:
             [self dismissBrickDetailViewController];
             break;
-        }
             
         default:
             break;
