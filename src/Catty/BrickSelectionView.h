@@ -28,5 +28,6 @@
 @property (assign, nonatomic) CGFloat yOffset;
 
 - (void)showWithView:(UIView *)view fromViewController:(UIViewController *)viewController completion:(void(^)())completionBlock;
+- (BOOL)active;
 
 @end

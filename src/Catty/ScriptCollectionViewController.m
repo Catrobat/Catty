@@ -44,6 +44,7 @@
 #import "BricksCollectionViewController.h"
 #import "BrickSelectModalTransition.h"
 #import "BrickSelectionSwipe.h"
+#import "BrickSelectionView.h"
 
 @interface ScriptCollectionViewController () <UICollectionViewDelegate,
                                               LXReorderableCollectionViewDelegateFlowLayout,
@@ -58,8 +59,7 @@
 @property (nonatomic, strong) NSIndexPath *selectedIndexPath;
 @property (nonatomic, strong) AHKActionSheet *brickSelectionMenu;
 @property (nonatomic, strong) BrickSelectionSwipe *interactiveSwipeDismiss;
-
-@property (nonatomic, strong) UIView *testView;
+@property  (nonatomic, strong) BrickSelectionView *brickSelectionView;
 
 @end
 
@@ -185,6 +185,14 @@
     return _brickSelectionMenu;
 }
 
+- (BrickSelectionView *)brickSelectionView
+{
+    if (!_brickSelectionView) {
+        _brickSelectionView = [[BrickSelectionView alloc] initWithFrame:CGRectMake(0.0f, 0.0f, self.view.bounds.size.width, CGRectGetMidY(UIScreen.mainScreen.bounds))];
+    }
+    return _brickSelectionView;
+}
+
 #pragma mark - Brick Selection Menu Action
 
 - (void)showBrickCategoryCVC:(kBrickCategoryType)type
@@ -206,60 +214,12 @@
 
 - (void)showBrickSelectionView:(kBrickCategoryType)type
 {
-    
+    self.brickSelectionView.yOffset = 250.0f;
+    self.brickSelectionView.underlayingView = self.view;
+    [self.brickSelectionView showWithView:self.collectionView fromViewController:self completion:^{
+        [self setupToolBar];
+    }];
 }
-
-//- (void)showTestView
-//{
-//    if (!_testViewOnScreen) {
-//        _originalCollectionViewHeight = CGRectGetHeight(self.collectionView.bounds);
-//        _testView = [[UIView alloc]initWithFrame:CGRectMake(0.0f, UIScreen.mainScreen.bounds.size.height + 250.0f, self.view.bounds.size.width, UIScreen.mainScreen.bounds.size.height / 2.0f)];
-//        _testView.backgroundColor = UIColor.clearColor;
-//        _testView.alpha = 0.98f;
-//        
-//        FXBlurView *subBlurView = [[FXBlurView alloc] initWithFrame:_testView.bounds];
-//        subBlurView.tintColor = UIColor.clearColor;
-//        subBlurView.underlyingView = self.view;
-//        subBlurView.updateInterval = 0.1f;
-//        subBlurView.blurRadius = 20.f;
-//        
-//        CALayer *overlayLayer = CALayer.layer;
-//        overlayLayer.frame = subBlurView.bounds;
-//        overlayLayer.backgroundColor = [UIColor colorWithWhite:0.0f alpha:0.5f].CGColor;
-//        [_testView.layer insertSublayer:overlayLayer atIndex:1];
-//        
-//        [_testView insertSubview:subBlurView atIndex:0];
-//        
-//        UILabel *titleLabel = [[UILabel alloc]initWithFrame:CGRectMake(5.0f, 10.0f, 80.0f, 15.0f)];
-//        titleLabel.text = @"Brick Name";
-//        titleLabel.font = [UIFont systemFontOfSize:13.0f];
-//        titleLabel.textAlignment = NSTextAlignmentLeft;
-//        titleLabel.textColor = UIColor.skyBlueColor;
-//        [_testView addSubview:titleLabel];
-//        
-//        [self.view insertSubview:_testView aboveSubview:self.collectionView];
-//        
-//        [UIView animateWithDuration:0.6f delay:0.0f usingSpringWithDamping:0.7f initialSpringVelocity:2.0f options:UIViewAnimationOptionCurveEaseIn animations:^{
-//            _testView.frame = CGRectMake(0.0f, UIScreen.mainScreen.bounds.size.height - 250.0f, CGRectGetWidth(self.view.bounds), UIScreen.mainScreen.bounds.size.height / 2.0f);
-//            self.collectionView.frame = CGRectMake(0.0f, 0.0f, CGRectGetWidth(self.collectionView.bounds), UIScreen.mainScreen.bounds.size.height / 2.0f + NAVIGATION_BAR_HEIGHT);
-//            [self.navigationController setNavigationBarHidden:YES animated:YES];
-//        } completion:^(BOOL finished) {
-//            _testViewOnScreen = YES;
-//            [self setupToolBar];
-//            
-//        }];
-//    } else {
-//        [UIView animateWithDuration:0.4f delay:0.0f usingSpringWithDamping:0.8f initialSpringVelocity:1.0f options:UIViewAnimationOptionCurveEaseIn animations:^{
-//            _testView.frame = CGRectMake(0.0f, UIScreen.mainScreen.bounds.size.height + 250.0f, CGRectGetWidth(self.view.bounds), UIScreen.mainScreen.bounds.size.height / 2.0f);
-//            self.collectionView.frame = CGRectMake(0.0f, 0.0f, CGRectGetWidth(self.collectionView.bounds), _originalCollectionViewHeight);
-//            [self.navigationController setNavigationBarHidden:NO animated:YES];
-//
-//        } completion:^(BOOL finished) {
-//            _testViewOnScreen = NO;
-//            [self setupToolBar];
-//        }];
-//    }
-//}
 
 - (FXBlurView *)dimView
 {
@@ -570,7 +530,7 @@
     UIBarButtonItem *flexItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace
                                                                               target:nil
                                                                               action:nil];
-    if (!_testViewOnScreen) {
+    if (![self.brickSelectionView active]) {
         self.navigationController.toolbar.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleTopMargin;
 
         UIBarButtonItem *add = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd
@@ -586,7 +546,7 @@
         self.toolbarItems = [NSArray arrayWithObjects:flexItem, invisibleButton, add, invisibleButton, flexItem,
                              flexItem, flexItem, invisibleButton, play, invisibleButton, flexItem, nil];
     } else {
-        UIBarButtonItem *done = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Done", nil) style:UIBarButtonItemStyleDone target:self action:@selector(showTestView)];
+        UIBarButtonItem *done = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Done", nil) style:UIBarButtonItemStyleDone target:self action:@selector(showBrickSelectionView:)];
         self.toolbarItems = @[flexItem, done, flexItem];
     }
 }
