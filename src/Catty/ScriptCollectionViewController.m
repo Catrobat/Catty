@@ -59,6 +59,8 @@
 @property (nonatomic, strong) AHKActionSheet *brickSelectionMenu;
 @property (nonatomic, strong) BrickSelectionSwipe *interactiveSwipeDismiss;
 
+@property (nonatomic, strong) UIView *testView;
+
 @end
 
 @implementation ScriptCollectionViewController {
@@ -115,10 +117,6 @@
     NSNotificationCenter *dnc = [NSNotificationCenter defaultCenter];
     [dnc removeObserver:self name:kBrickCellAddedNotification object:nil];
     [dnc removeObserver:self name:kBrickDetailViewDismissed object:nil];
-    
-//    if (!self.bricksCollectionViewController.isBeingDismissed) {
-//        [self.bricksCollectionViewController dismissViewControllerAnimated:YES completion:NULL];
-//    }
 }
 
 - (void)didReceiveMemoryWarning
@@ -137,7 +135,7 @@
         _brickSelectionMenu.titleTextAttributes = @{NSFontAttributeName : [UIFont systemFontOfSize:14.0f] ,
                                                     NSForegroundColorAttributeName : UIColor.skyBlueColor};
         _brickSelectionMenu.cancelButtonTextAttributes = @{NSForegroundColorAttributeName : UIColor.lightOrangeColor};
-        _brickSelectionMenu.buttonTextAttributes = @{NSForegroundColorAttributeName : UIColor.lightOrangeColor};
+        _brickSelectionMenu.buttonTextAttributes = @{NSForegroundColorAttributeName : UIColor.whiteColor};
         _brickSelectionMenu.selectedBackgroundColor = [UIColor colorWithWhite:0.0f alpha:0.3f];
         _brickSelectionMenu.automaticallyTintButtonImages = NO;
 
@@ -176,6 +174,13 @@
                                         handler:^(AHKActionSheet *actionSheet) {
                                             [weakSelf showBrickCategoryCVC:kVariableBrick];
                                         }];
+        
+        [_brickSelectionMenu addButtonWithTitle:NSLocalizedString(@"Test Show View", nil)
+                                          image:nil
+                                           type:AHKActionSheetButtonTypeDefault
+                                        handler:^(AHKActionSheet *actionSheet) {
+                                            [weakSelf showBrickSelectionView:kControlBrick];
+                                        }];
     }
     return _brickSelectionMenu;
 }
@@ -197,6 +202,64 @@
         [self.navigationController setNavigationBarHidden:YES animated:YES];
     }];
 }
+
+
+- (void)showBrickSelectionView:(kBrickCategoryType)type
+{
+    
+}
+
+//- (void)showTestView
+//{
+//    if (!_testViewOnScreen) {
+//        _originalCollectionViewHeight = CGRectGetHeight(self.collectionView.bounds);
+//        _testView = [[UIView alloc]initWithFrame:CGRectMake(0.0f, UIScreen.mainScreen.bounds.size.height + 250.0f, self.view.bounds.size.width, UIScreen.mainScreen.bounds.size.height / 2.0f)];
+//        _testView.backgroundColor = UIColor.clearColor;
+//        _testView.alpha = 0.98f;
+//        
+//        FXBlurView *subBlurView = [[FXBlurView alloc] initWithFrame:_testView.bounds];
+//        subBlurView.tintColor = UIColor.clearColor;
+//        subBlurView.underlyingView = self.view;
+//        subBlurView.updateInterval = 0.1f;
+//        subBlurView.blurRadius = 20.f;
+//        
+//        CALayer *overlayLayer = CALayer.layer;
+//        overlayLayer.frame = subBlurView.bounds;
+//        overlayLayer.backgroundColor = [UIColor colorWithWhite:0.0f alpha:0.5f].CGColor;
+//        [_testView.layer insertSublayer:overlayLayer atIndex:1];
+//        
+//        [_testView insertSubview:subBlurView atIndex:0];
+//        
+//        UILabel *titleLabel = [[UILabel alloc]initWithFrame:CGRectMake(5.0f, 10.0f, 80.0f, 15.0f)];
+//        titleLabel.text = @"Brick Name";
+//        titleLabel.font = [UIFont systemFontOfSize:13.0f];
+//        titleLabel.textAlignment = NSTextAlignmentLeft;
+//        titleLabel.textColor = UIColor.skyBlueColor;
+//        [_testView addSubview:titleLabel];
+//        
+//        [self.view insertSubview:_testView aboveSubview:self.collectionView];
+//        
+//        [UIView animateWithDuration:0.6f delay:0.0f usingSpringWithDamping:0.7f initialSpringVelocity:2.0f options:UIViewAnimationOptionCurveEaseIn animations:^{
+//            _testView.frame = CGRectMake(0.0f, UIScreen.mainScreen.bounds.size.height - 250.0f, CGRectGetWidth(self.view.bounds), UIScreen.mainScreen.bounds.size.height / 2.0f);
+//            self.collectionView.frame = CGRectMake(0.0f, 0.0f, CGRectGetWidth(self.collectionView.bounds), UIScreen.mainScreen.bounds.size.height / 2.0f + NAVIGATION_BAR_HEIGHT);
+//            [self.navigationController setNavigationBarHidden:YES animated:YES];
+//        } completion:^(BOOL finished) {
+//            _testViewOnScreen = YES;
+//            [self setupToolBar];
+//            
+//        }];
+//    } else {
+//        [UIView animateWithDuration:0.4f delay:0.0f usingSpringWithDamping:0.8f initialSpringVelocity:1.0f options:UIViewAnimationOptionCurveEaseIn animations:^{
+//            _testView.frame = CGRectMake(0.0f, UIScreen.mainScreen.bounds.size.height + 250.0f, CGRectGetWidth(self.view.bounds), UIScreen.mainScreen.bounds.size.height / 2.0f);
+//            self.collectionView.frame = CGRectMake(0.0f, 0.0f, CGRectGetWidth(self.collectionView.bounds), _originalCollectionViewHeight);
+//            [self.navigationController setNavigationBarHidden:NO animated:YES];
+//
+//        } completion:^(BOOL finished) {
+//            _testViewOnScreen = NO;
+//            [self setupToolBar];
+//        }];
+//    }
+//}
 
 - (FXBlurView *)dimView
 {
@@ -503,22 +566,29 @@
 {
     self.navigationController.toolbar.barStyle = UIBarStyleBlack;
     self.navigationController.toolbar.tintColor = [UIColor orangeColor];
-    self.navigationController.toolbar.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleTopMargin;
+    
     UIBarButtonItem *flexItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace
                                                                               target:nil
                                                                               action:nil];
-    UIBarButtonItem *add = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd
-                                                                         target:self
-                                                                         action:@selector(addBrickAction:)];
-    UIBarButtonItem *play = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemPlay
-                                                                          target:self
-                                                                          action:@selector(playSceneAction:)];
-    // XXX: workaround for tap area problem:
-    // http://stackoverflow.com/questions/5113258/uitoolbar-unexpectedly-registers-taps-on-uibarbuttonitem-instances-even-when-tap
-    UIImageView *imageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"transparent1x1"]];
-    UIBarButtonItem *invisibleButton = [[UIBarButtonItem alloc] initWithCustomView:imageView];
-    self.toolbarItems = [NSArray arrayWithObjects:flexItem, invisibleButton, add, invisibleButton, flexItem,
-                         flexItem, flexItem, invisibleButton, play, invisibleButton, flexItem, nil];
+    if (!_testViewOnScreen) {
+        self.navigationController.toolbar.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleTopMargin;
+
+        UIBarButtonItem *add = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd
+                                                                             target:self
+                                                                             action:@selector(addBrickAction:)];
+        UIBarButtonItem *play = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemPlay
+                                                                              target:self
+                                                                              action:@selector(playSceneAction:)];
+        // XXX: workaround for tap area problem:
+        // http://stackoverflow.com/questions/5113258/uitoolbar-unexpectedly-registers-taps-on-uibarbuttonitem-instances-even-when-tap
+        UIImageView *imageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"transparent1x1"]];
+        UIBarButtonItem *invisibleButton = [[UIBarButtonItem alloc] initWithCustomView:imageView];
+        self.toolbarItems = [NSArray arrayWithObjects:flexItem, invisibleButton, add, invisibleButton, flexItem,
+                             flexItem, flexItem, invisibleButton, play, invisibleButton, flexItem, nil];
+    } else {
+        UIBarButtonItem *done = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Done", nil) style:UIBarButtonItemStyleDone target:self action:@selector(showTestView)];
+        self.toolbarItems = @[flexItem, done, flexItem];
+    }
 }
 
 - (void)removeBrickFromScriptCollectionViewFromIndex:(NSIndexPath *)indexPath
