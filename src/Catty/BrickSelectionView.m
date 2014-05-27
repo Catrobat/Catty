@@ -27,6 +27,7 @@
 
 @interface BrickSelectionView ()
 @property (strong, nonatomic) FXBlurView *blurView;
+@property (strong, nonatomic) CALayer *topBorder;
 @property (assign, nonatomic, getter = isOnScreen) BOOL onScreen;
 
 @end
@@ -43,6 +44,12 @@
         [self insertSubview:self.blurView atIndex:0];
         [self addSubview:self.brickCollectionView];
         [self addSubview:self.textLabel];
+        
+//        self.layer.shadowColor = UIColor.blackColor.CGColor;
+//        self.layer.shadowOffset = CGSizeMake(0.0f, -1.0f);
+//        self.layer.shadowRadius = 3.0f;
+//        self.layer.shadowOpacity = 0.3f;
+        
     }
     return self;
 }
@@ -57,6 +64,9 @@
         [viewController.view insertSubview:self aboveSubview:view];
         self.blurView.underlyingView = self.underlayingView;
         self.blurView.tintColor = self.blurTintColor;
+        self.textLabel.textColor = self.blurTintColor;
+        self.topBorder.backgroundColor = self.blurTintColor.CGColor;
+        [self.layer addSublayer:self.topBorder];
         
         [UIView animateWithDuration:0.6f delay:0.0f usingSpringWithDamping:0.7f initialSpringVelocity:2.0f options:UIViewAnimationOptionCurveEaseIn animations:^{
             self.frame = CGRectMake(0.0f, UIScreen.mainScreen.bounds.size.height - self.yOffset - CGRectGetHeight(viewController.navigationController.toolbar.bounds), CGRectGetWidth(self.bounds), CGRectGetMidY(UIScreen.mainScreen.bounds));
@@ -92,6 +102,11 @@
         _blurView.tintColor = UIColor.clearColor;
         _blurView.updateInterval = 0.1f;
         _blurView.blurRadius = 20.f;
+        
+        CALayer *overlayLayer = [CALayer layer];
+        overlayLayer.frame = _blurView.bounds;
+        overlayLayer.backgroundColor = self.blurTintColor.CGColor;
+        [_blurView.superview.layer insertSublayer:overlayLayer atIndex:1];
     }
     return _blurView;
 }
@@ -102,7 +117,6 @@
         _textLabel = [[UILabel alloc]initWithFrame:CGRectMake(5.0f, 2.5f, 80.0f, 15.0f)];
         _textLabel.font = [UIFont systemFontOfSize:13.0f];
         _textLabel.textAlignment = NSTextAlignmentLeft;
-        _textLabel.textColor = UIColor.skyBlueColor;
     }
     return _textLabel;
 }
@@ -112,9 +126,18 @@
     if (!_brickCollectionView) {
         UICollectionViewFlowLayout *layout = [UICollectionViewFlowLayout new];
         _brickCollectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0.0f, 20.0f, CGRectGetWidth(self.bounds), CGRectGetHeight(self.bounds)) collectionViewLayout:layout];
-        _brickCollectionView.backgroundColor = UIColor.darkBlueColor;
+        _brickCollectionView.backgroundColor = UIColor.brickSelectionBackgroundColor;
     }
     return _brickCollectionView;
+}
+
+- (CALayer *)topBorder
+{
+    if (!_topBorder) {
+        _topBorder = [CALayer new];
+        _topBorder.frame = CGRectMake(0.0f, 0.0f, CGRectGetWidth(self.bounds), 1.0f);
+    }
+    return _topBorder;
 }
 
 - (BOOL)active

@@ -41,10 +41,8 @@
 #import "BroadcastScriptCell.h"
 #import "UIColor+CatrobatUIColorExtensions.h"
 #import "AHKActionSheet.h"
-#import "BricksCollectionViewController.h"
-#import "BrickSelectModalTransition.h"
-#import "BrickSelectionSwipe.h"
 #import "BrickSelectionView.h"
+#import "BrickManager.h"
 
 @interface ScriptCollectionViewController () <UICollectionViewDelegate,
                                               LXReorderableCollectionViewDelegateFlowLayout,
@@ -58,12 +56,11 @@
 @property (nonatomic, strong) NSIndexPath *selectedIndexPath;
 @property (nonatomic, strong) AHKActionSheet *brickSelectionMenu;
 @property  (nonatomic, strong) BrickSelectionView *brickSelectionView;
+@property (nonatomic, strong) NSArray *selectableBricks;
 
 @end
 
-@implementation ScriptCollectionViewController {
-    BOOL _brickSelectionActive;
-}
+@implementation ScriptCollectionViewController
 
 #pragma mark - events
 - (void)viewDidLoad
@@ -223,10 +220,16 @@
 
 - (void)showBrickSelectionView:(kBrickCategoryType)type
 {
-    self.brickSelectionView.yOffset = kOffsetBrickSelectionView;
-    self.brickSelectionView.underlayingView = self.view;
-    self.brickSelectionView.brickCollectionView.delegate = self;
-    self.brickSelectionView.brickCollectionView.dataSource = self;
+    if (!self.brickSelectionView.active) {
+        self.brickSelectionView.yOffset = kOffsetBrickSelectionView;
+        self.brickSelectionView.underlayingView = self.view;
+        self.brickSelectionView.textLabel.text = kBrickCategoryNames[type];
+        self.brickSelectionView.blurTintColor = kBrickCategoryColors[type];
+        self.brickSelectionView.brickCollectionView.delegate = self;
+        self.brickSelectionView.brickCollectionView.dataSource = self;
+        self.selectableBricks = [BrickManager.sharedBrickManager selectableBricksForCategoryType:type];
+    }
+    
     [self.brickSelectionView showWithView:self.collectionView fromViewController:self completion:^{
         [self setupToolBar];
     }];
@@ -432,7 +435,7 @@
     self.selectedIndexPath =  indexPath;
 
     // TODO: handle bricks which can be edited
-    if (! self.isEditing  && ! [self.presentedViewController isKindOfClass:BricksCollectionViewController.class]) {
+    if (! self.isEditing) {
         BrickDetailViewController *brickDetailViewcontroller = [[BrickDetailViewController alloc]initWithNibName:@"BrickDetailViewController" bundle:nil];
         brickDetailViewcontroller.brickCell = cell;
         self.brickScaleTransition.cell = cell;
@@ -539,8 +542,12 @@
         self.toolbarItems = @[flexItem,invisibleButton, add, invisibleButton, flexItem,
                               flexItem, flexItem, invisibleButton, play, invisibleButton, flexItem];
     } else {
-        UIBarButtonItem *done = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"toolbar_close"] style:UIBarButtonItemStyleBordered target:self action:@selector(showBrickSelectionView:)];
-        UIBarButtonItem *list = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"toolbar_list"] style:UIBarButtonItemStyleBordered target:self action:@selector(showBrickSelectionMenu)];
+        UIBarButtonItem *done = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"toolbar_close"]
+                                                                 style:UIBarButtonItemStyleBordered target:self
+                                                                action:@selector(showBrickSelectionView:)];
+        UIBarButtonItem *list = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"toolbar_list"]
+                                                                 style:UIBarButtonItemStyleBordered target:self
+                                                                action:@selector(showBrickSelectionMenu)];
         
         self.toolbarItems = @[flexItem,invisibleButton, list, invisibleButton, flexItem,
                             flexItem, flexItem, invisibleButton, done, invisibleButton, flexItem];

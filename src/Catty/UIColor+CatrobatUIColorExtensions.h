@@ -50,4 +50,6 @@
 
 + (UIColor*)navBarColor;
 
++ (UIColor*)brickSelectionBackgroundColor;
+
 @end

@@ -110,4 +110,9 @@
     return [UIColor colorWithRed:3.0f/255.0f green:70.0f/255.0f blue:93.0f/255.0f alpha:1.0f];
 }
 
++ (UIColor*)brickSelectionBackgroundColor
+{
+    return [UIColor colorWithRed:13.0f/255.0f green:13.0f/255.0f blue:13.0f/255.0f alpha:1.0f];
+}
+
 @end
