@@ -53,12 +53,10 @@
 
 @property (nonatomic, weak) IBOutlet UICollectionView *collectionView;
 @property (nonatomic, strong) BrickScaleTransition *brickScaleTransition;
-@property (nonatomic, strong) BrickSelectModalTransition *brickSelectModelTransition;
 @property (nonatomic, strong) PlaceHolderView *placeHolderView;
 @property (nonatomic, strong) NSIndexPath *addedIndexPath;
 @property (nonatomic, strong) NSIndexPath *selectedIndexPath;
 @property (nonatomic, strong) AHKActionSheet *brickSelectionMenu;
-@property (nonatomic, strong) BrickSelectionSwipe *interactiveSwipeDismiss;
 @property  (nonatomic, strong) BrickSelectionView *brickSelectionView;
 
 @end
@@ -99,7 +97,6 @@
     [self.view addSubview:self.placeHolderView];
     self.placeHolderView.hidden = self.object.scriptList.count ? YES : NO;
     self.brickScaleTransition = [BrickScaleTransition new];
-    self.brickSelectModelTransition = [BrickSelectModalTransition new];
 }
 
 #pragma mark - view events
@@ -144,42 +141,35 @@
                                           image:[UIImage imageNamed:@"orange_indicator"]
                                    type:AHKActionSheetButtonTypeDefault
                                   handler:^(AHKActionSheet *actionSheet) {
-                                      [weakSelf showBrickCategoryCVC:kControlBrick];
+                                      [weakSelf showBrickSelectionView:kControlBrick];
                                   }];
         
         [_brickSelectionMenu addButtonWithTitle:NSLocalizedString(@"Motion", nil)
                                           image:[UIImage imageNamed:@"lightblue_indicator"]
                                            type:AHKActionSheetButtonTypeDefault
                                         handler:^(AHKActionSheet *actionSheet) {
-                                            [weakSelf showBrickCategoryCVC:kMotionBrick];
+                                            [weakSelf showBrickSelectionView:kMotionBrick];
                                         }];
         
         [_brickSelectionMenu addButtonWithTitle:NSLocalizedString(@"Sound", nil)
                                           image:[UIImage imageNamed:@"pink_indicator"]
                                            type:AHKActionSheetButtonTypeDefault
                                         handler:^(AHKActionSheet *actionSheet) {
-                                            [weakSelf showBrickCategoryCVC:kSoundBrick];
+                                            [weakSelf showBrickSelectionView:kSoundBrick];
                                         }];
         
         [_brickSelectionMenu addButtonWithTitle:NSLocalizedString(@"Looks", nil)
                                           image:[UIImage imageNamed:@"green_indicator"]
                                            type:AHKActionSheetButtonTypeDefault
                                         handler:^(AHKActionSheet *actionSheet) {
-                                            [weakSelf showBrickCategoryCVC:kLookBrick];
+                                            [weakSelf showBrickSelectionView:kLookBrick];
                                         }];
         
         [_brickSelectionMenu addButtonWithTitle:NSLocalizedString(@"Variables", nil)
                                           image:[UIImage imageNamed:@"red_indicator"]
                                            type:AHKActionSheetButtonTypeDefault
                                         handler:^(AHKActionSheet *actionSheet) {
-                                            [weakSelf showBrickCategoryCVC:kVariableBrick];
-                                        }];
-        
-        [_brickSelectionMenu addButtonWithTitle:NSLocalizedString(@"Test Show View", nil)
-                                          image:nil
-                                           type:AHKActionSheetButtonTypeDefault
-                                        handler:^(AHKActionSheet *actionSheet) {
-                                            [weakSelf showBrickSelectionView:kControlBrick];
+                                            [weakSelf showBrickSelectionView:kVariableBrick];
                                         }];
     }
     return _brickSelectionMenu;
@@ -191,34 +181,6 @@
         _brickSelectionView = [[BrickSelectionView alloc] initWithFrame:CGRectMake(0.0f, 0.0f, self.view.bounds.size.width, CGRectGetMidY(UIScreen.mainScreen.bounds))];
     }
     return _brickSelectionView;
-}
-
-#pragma mark - Brick Selection Menu Action
-
-- (void)showBrickCategoryCVC:(kBrickCategoryType)type
-{
-    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"iPhone" bundle:nil];
-    BricksCollectionViewController *bricksCollectionViewController = (BricksCollectionViewController*)[storyboard      instantiateViewControllerWithIdentifier:@"BricksDetailViewCollectionViewController"];
-    bricksCollectionViewController.scriptCollectionViewController = self;
-    bricksCollectionViewController.transitioningDelegate = self;
-    bricksCollectionViewController.modalPresentationStyle = UIModalPresentationCustom;
-    bricksCollectionViewController.brickCategoryType = type;
-    bricksCollectionViewController.object = self.object;
-    _brickSelectionActive = YES;
-    
-    [self presentViewController:bricksCollectionViewController animated:YES completion:^{
-        [self.navigationController setNavigationBarHidden:YES animated:YES];
-    }];
-}
-
-
-- (void)showBrickSelectionView:(kBrickCategoryType)type
-{
-    self.brickSelectionView.yOffset = 250.0f;
-    self.brickSelectionView.underlayingView = self.view;
-    [self.brickSelectionView showWithView:self.collectionView fromViewController:self completion:^{
-        [self setupToolBar];
-    }];
 }
 
 - (FXBlurView *)dimView
@@ -240,52 +202,37 @@
     return _dimView;
 }
 
-#pragma mark - UIViewControllerAnimatedTransitioning delegate
-- (id<UIViewControllerAnimatedTransitioning>)animationControllerForPresentedController:(UIViewController *)presented
-                                                                  presentingController:(UIViewController *)presenting
-                                                                      sourceController:(UIViewController *)source
+#pragma mark - Brick Selection / Play Action
+
+//- (void)showBrickCategoryCVC:(kBrickCategoryType)type
+//{
+//    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"iPhone" bundle:nil];
+//    BricksCollectionViewController *bricksCollectionViewController = (BricksCollectionViewController*)[storyboard      instantiateViewControllerWithIdentifier:@"BricksDetailViewCollectionViewController"];
+//    bricksCollectionViewController.scriptCollectionViewController = self;
+//    bricksCollectionViewController.transitioningDelegate = self;
+//    bricksCollectionViewController.modalPresentationStyle = UIModalPresentationCustom;
+//    bricksCollectionViewController.brickCategoryType = type;
+//    bricksCollectionViewController.object = self.object;
+//    _brickSelectionActive = YES;
+//    
+//    [self presentViewController:bricksCollectionViewController animated:YES completion:^{
+//        [self.navigationController setNavigationBarHidden:YES animated:YES];
+//    }];
+//}
+
+
+- (void)showBrickSelectionView:(kBrickCategoryType)type
 {
-    if ([presented isKindOfClass:[BrickDetailViewController class]]) {
-         self.brickScaleTransition.transitionMode = TransitionModePresent;
-        return self.brickScaleTransition;
-    } else {
-        if ([presented isKindOfClass:[BricksCollectionViewController class]]) {
-            self.brickSelectModelTransition.transitionMode = TransitionModePresent;
-            return self.brickSelectModelTransition;
-        }
-    }
-    return nil;
+    self.brickSelectionView.yOffset = kOffsetBrickSelectionView;
+    self.brickSelectionView.underlayingView = self.view;
+    [self.brickSelectionView showWithView:self.collectionView fromViewController:self completion:^{
+        [self setupToolBar];
+    }];
 }
 
-- (id<UIViewControllerAnimatedTransitioning>)animationControllerForDismissedController:(UIViewController *)dismissed
+- (void)showBrickSelectionMenu
 {
-    if ([dismissed isKindOfClass:[BrickDetailViewController class]]) {
-        self.brickScaleTransition.transitionMode = TransitionModeDismiss;
-        return self.brickScaleTransition;
-    } else {
-        if ([dismissed isKindOfClass:[BricksCollectionViewController class]]) {
-            _brickSelectionActive = NO;
-            self.brickSelectModelTransition.transitionMode = TransitionModeDismiss;
-            return self.brickSelectModelTransition;
-        }
-    }
-    return nil;
-}
-
-- (id<UIViewControllerInteractiveTransitioning>)interactionControllerForDismissal:(id<UIViewControllerAnimatedTransitioning>)animator
-{
-    if ([animator isKindOfClass:[BrickSelectModalTransition class]]) {
-        if (!self.interactiveSwipeDismiss) {
-            self.interactiveSwipeDismiss = [BrickSelectionSwipe new];
-        }
-        return self.interactiveSwipeDismiss;
-    }
-    return nil;
-}
-
-#pragma mark - actions
-- (void)addBrickAction:(id)sender
-{
+    [self.brickSelectionView dismissView:self withView:self.collectionView];
     [self.brickSelectionMenu show];
 }
 
@@ -303,28 +250,51 @@
         if (indexPath) {
             [self removeScriptSectionWithIndexPath:indexPath];
         }
-
+        
     }
+}
+
+#pragma mark - UIViewControllerAnimatedTransitioning delegate
+
+- (id<UIViewControllerAnimatedTransitioning>)animationControllerForPresentedController:(UIViewController *)presented
+                                                                  presentingController:(UIViewController *)presenting
+                                                                      sourceController:(UIViewController *)source
+{
+    if ([presented isKindOfClass:[BrickDetailViewController class]]) {
+         self.brickScaleTransition.transitionMode = TransitionModePresent;
+        return self.brickScaleTransition;
+    }
+    return nil;
+}
+
+- (id<UIViewControllerAnimatedTransitioning>)animationControllerForDismissedController:(UIViewController *)dismissed
+{
+    if ([dismissed isKindOfClass:[BrickDetailViewController class]]) {
+        self.brickScaleTransition.transitionMode = TransitionModeDismiss;
+        return self.brickScaleTransition;
+    }
+    return nil;
 }
 
 #pragma mark - Notification
-- (void)brickAdded:(NSNotification*)notification
-{
-    if (notification.userInfo) {
-        __weak typeof(UICollectionView) *weakCollectionView = self.collectionView;
-        __weak typeof(ScriptCollectionViewController) *weakself = self;
-        if (self.object.scriptList) {
-            [self addBrickCellAction:notification.userInfo[kUserInfoKeyBrickCell] copyBrick:NO completionBlock:^{
-                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                    [weakself scrollToLastbrickinCollectionView:weakCollectionView completion:NULL];
-                    if (weakself.navigationController.navigationBar.hidden) {
-                         [weakself.navigationController setNavigationBarHidden:NO animated:YES];
-                    }
-                });
-            }];
-        }
-    }
-}
+
+//- (void)brickAdded:(NSNotification*)notification
+//{
+//    if (notification.userInfo) {
+//        __weak typeof(UICollectionView) *weakCollectionView = self.collectionView;
+//        __weak typeof(ScriptCollectionViewController) *weakself = self;
+//        if (self.object.scriptList) {
+//            [self addBrickCellAction:notification.userInfo[kUserInfoKeyBrickCell] copyBrick:NO completionBlock:^{
+//                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+//                    [weakself scrollToLastbrickinCollectionView:weakCollectionView completion:NULL];
+//                    if (weakself.navigationController.navigationBar.hidden) {
+//                         [weakself.navigationController setNavigationBarHidden:NO animated:YES];
+//                    }
+//                });
+//            }];
+//        }
+//    }
+//}
 
 - (void)brickDetailViewDismissed:(NSNotification *)notification
 {
@@ -344,6 +314,7 @@
 }
 
 #pragma mark - collection view datasource
+
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView
 {
     return [self.object.scriptList count];
@@ -360,6 +331,7 @@
 }
 
 #pragma mark - collection view delegate
+
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
     Script *script = [self.object.scriptList objectAtIndex:indexPath.section];
@@ -395,6 +367,7 @@
 }
 
 #pragma mark - CollectionView layout
+
 - (CGSize)collectionView:(UICollectionView*)collectionView
                   layout:(UICollectionViewLayout*)collectionViewLayout
   sizeForItemAtIndexPath:(NSIndexPath*)indexPath
@@ -470,6 +443,7 @@
 }
 
 #pragma mark - LXReorderableCollectionViewDatasource
+
 - (void)collectionView:(UICollectionView *)collectionView
        itemAtIndexPath:(NSIndexPath *)fromIndexPath
    willMoveToIndexPath:(NSIndexPath *)toIndexPath
@@ -504,6 +478,7 @@
 }
 
 #pragma mark - segue handling
+
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     static NSString* toSceneSegueID = kSegueToScene;
@@ -522,6 +497,7 @@
 }
 
 #pragma mark - helpers
+
 - (void)setupToolBar
 {
     self.navigationController.toolbar.barStyle = UIBarStyleBlack;
@@ -530,24 +506,28 @@
     UIBarButtonItem *flexItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace
                                                                               target:nil
                                                                               action:nil];
+    UIImageView *imageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"transparent1x1"]];
+    UIBarButtonItem *invisibleButton = [[UIBarButtonItem alloc] initWithCustomView:imageView];
+    
     if (![self.brickSelectionView active]) {
         self.navigationController.toolbar.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleTopMargin;
 
         UIBarButtonItem *add = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd
                                                                              target:self
-                                                                             action:@selector(addBrickAction:)];
+                                                                             action:@selector(showBrickSelectionMenu)];
         UIBarButtonItem *play = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemPlay
                                                                               target:self
                                                                               action:@selector(playSceneAction:)];
         // XXX: workaround for tap area problem:
         // http://stackoverflow.com/questions/5113258/uitoolbar-unexpectedly-registers-taps-on-uibarbuttonitem-instances-even-when-tap
-        UIImageView *imageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"transparent1x1"]];
-        UIBarButtonItem *invisibleButton = [[UIBarButtonItem alloc] initWithCustomView:imageView];
-        self.toolbarItems = [NSArray arrayWithObjects:flexItem, invisibleButton, add, invisibleButton, flexItem,
-                             flexItem, flexItem, invisibleButton, play, invisibleButton, flexItem, nil];
+        self.toolbarItems = @[flexItem,invisibleButton, add, invisibleButton, flexItem,
+                              flexItem, flexItem, invisibleButton, play, invisibleButton, flexItem];
     } else {
-        UIBarButtonItem *done = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Done", nil) style:UIBarButtonItemStyleDone target:self action:@selector(showBrickSelectionView:)];
-        self.toolbarItems = @[flexItem, done, flexItem];
+        UIBarButtonItem *done = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"toolbar_close"] style:UIBarButtonItemStyleBordered target:self action:@selector(showBrickSelectionView:)];
+        UIBarButtonItem *list = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"toolbar_list"] style:UIBarButtonItemStyleBordered target:self action:@selector(showBrickSelectionMenu)];
+        
+        self.toolbarItems = @[flexItem,invisibleButton, list, invisibleButton, flexItem,
+                            flexItem, flexItem, invisibleButton, done, invisibleButton, flexItem];
     }
 }
 
@@ -702,19 +682,20 @@
 }
 
 
-- (void)scrollToLastbrickinCollectionView:(UICollectionView *)collectionView completion:(void(^)(NSIndexPath *indexPath))completion
-{
-    Script *script = [self.object.scriptList objectAtIndex:self.addedIndexPath.section];
-    NSUInteger brickCountInSection = script.brickList.count;
-    NSIndexPath *lastIndexPath = [NSIndexPath indexPathForItem:brickCountInSection inSection:self.addedIndexPath.section];
-    [collectionView scrollToItemAtIndexPath:lastIndexPath atScrollPosition:UICollectionViewScrollPositionCenteredVertically animated:YES];
-
-    if (completion) {
-        completion(lastIndexPath);
-    }
-}
+//- (void)scrollToLastbrickinCollectionView:(UICollectionView *)collectionView completion:(void(^)(NSIndexPath *indexPath))completion
+//{
+//    Script *script = [self.object.scriptList objectAtIndex:self.addedIndexPath.section];
+//    NSUInteger brickCountInSection = script.brickList.count;
+//    NSIndexPath *lastIndexPath = [NSIndexPath indexPathForItem:brickCountInSection inSection:self.addedIndexPath.section];
+//    [collectionView scrollToItemAtIndexPath:lastIndexPath atScrollPosition:UICollectionViewScrollPositionCenteredVertically animated:YES];
+//
+//    if (completion) {
+//        completion(lastIndexPath);
+//    }
+//}
 
 #pragma mark - Editing
+
 - (void)setEditing:(BOOL)editing animated:(BOOL)animated
 {
     [super setEditing:editing animated:animated];

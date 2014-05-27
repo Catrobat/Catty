@@ -64,6 +64,7 @@ static NSString *const kSelectionMenuTitle = @"Select Brick Category";
 #define STATUS_BAR_HEIGHT 10
 #define kHandleImageHeight 15.0f
 #define kHandleImageWidth 40.0f
+#define kOffsetBrickSelectionView 250.0f
 
 // ---------------------- BRICK CONFIG ---------------------------------------
 // brick categories

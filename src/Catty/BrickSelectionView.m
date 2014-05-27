@@ -40,6 +40,7 @@
     self = [super initWithFrame:frame];
     if (self) {
         self.backgroundColor = UIColor.clearColor;
+        self.blurTintColor = UIColor.clearColor;
         [self insertSubview:self.blurView atIndex:0];
         [self addSubview:self.brickCollectionView];
         [self addSubview:self.textLabel];
@@ -56,6 +57,7 @@
         self.frame = CGRectMake(0.0f, CGRectGetHeight(UIScreen.mainScreen.bounds) + self.yOffset, CGRectGetWidth(UIScreen.mainScreen.bounds), CGRectGetMidY(UIScreen.mainScreen.bounds));
         [viewController.view insertSubview:self aboveSubview:view];
         self.blurView.underlyingView = self.underlayingView;
+        self.blurView.tintColor = self.blurTintColor;
         
         [UIView animateWithDuration:0.6f delay:0.0f usingSpringWithDamping:0.7f initialSpringVelocity:2.0f options:UIViewAnimationOptionCurveEaseIn animations:^{
             self.frame = CGRectMake(0.0f, UIScreen.mainScreen.bounds.size.height - self.yOffset - CGRectGetHeight(viewController.navigationController.toolbar.bounds), CGRectGetWidth(self.bounds), CGRectGetMidY(UIScreen.mainScreen.bounds));
@@ -64,18 +66,26 @@
         } completion:NULL];
         
     } else {
-        self.onScreen = NO;
-        [UIView animateWithDuration:0.4f delay:0.0f usingSpringWithDamping:0.8f initialSpringVelocity:1.0f options:UIViewAnimationOptionCurveEaseIn animations:^{
-            self.frame = CGRectMake(0.0f, UIScreen.mainScreen.bounds.size.height + self.yOffset, CGRectGetWidth(self.bounds), CGRectGetMidY(UIScreen.mainScreen.bounds));
-            view.frame = CGRectMake(0.0f, 0.0f, CGRectGetWidth(view.bounds), _originalViewHeight);
-            [viewController.navigationController setNavigationBarHidden:NO animated:YES];
-        } completion:NULL];
+        [self dismissView:viewController withView:view];
     }
     
     if (completionBlock) completionBlock();
 }
 
+- (void)dismissView:(UIViewController *)fromViewController withView:(UIView *)view
+{
+    if (self.onScreen) {
+        self.onScreen = NO;
+        [UIView animateWithDuration:0.4f delay:0.0f usingSpringWithDamping:0.8f initialSpringVelocity:1.0f options:UIViewAnimationOptionCurveEaseIn animations:^{
+            self.frame = CGRectMake(0.0f, UIScreen.mainScreen.bounds.size.height + self.yOffset, CGRectGetWidth(self.bounds), CGRectGetMidY(UIScreen.mainScreen.bounds));
+            view.frame = CGRectMake(0.0f, 0.0f, CGRectGetWidth(view.bounds), _originalViewHeight);
+            [fromViewController.navigationController setNavigationBarHidden:NO animated:YES];
+        } completion:NULL];
+    }
+}
+
 #pragma mark - getter
+
 - (FXBlurView *)blurView
 {
     if (!_blurView) {
@@ -91,7 +101,6 @@
 {
     if (!_textLabel) {
         _textLabel = [[UILabel alloc]initWithFrame:CGRectMake(5.0f, 2.5f, 80.0f, 15.0f)];
-        _textLabel.text = @"Brick Name";
         _textLabel.font = [UIFont systemFontOfSize:13.0f];
         _textLabel.textAlignment = NSTextAlignmentLeft;
         _textLabel.textColor = UIColor.skyBlueColor;
@@ -102,7 +111,7 @@
 - (UICollectionView *)brickCollectionView
 {
     if (!_brickCollectionView) {
-        UICollectionViewLayout *layout = [UICollectionViewLayout new];
+        UICollectionViewFlowLayout *layout = [UICollectionViewFlowLayout new];
         _brickCollectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0.0f, 20.0f, CGRectGetWidth(self.bounds), CGRectGetHeight(self.bounds)) collectionViewLayout:layout];
         _brickCollectionView.backgroundColor = UIColor.darkBlueColor;
     }

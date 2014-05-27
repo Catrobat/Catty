@@ -26,8 +26,10 @@
 @property (strong, nonatomic) UIView *underlayingView;
 @property (strong, nonatomic) UILabel *textLabel;
 @property (assign, nonatomic) CGFloat yOffset;
+@property (strong, nonatomic) UIColor *blurTintColor;
 
 - (void)showWithView:(UIView *)view fromViewController:(UIViewController *)viewController completion:(void(^)())completionBlock;
+- (void)dismissView:(UIViewController *)fromViewController withView:(UIView *)view;
 - (BOOL)active;
 
 @end
