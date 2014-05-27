@@ -32,7 +32,7 @@
 @end
 
 @implementation BrickSelectionView {
-    CGFloat _originalViewHeight;
+    CGRect _fromViewFrame;
 }
 
 - (id)initWithFrame:(CGRect)frame
@@ -40,7 +40,6 @@
     self = [super initWithFrame:frame];
     if (self) {
         self.backgroundColor = UIColor.clearColor;
-        self.blurTintColor = UIColor.clearColor;
         [self insertSubview:self.blurView atIndex:0];
         [self addSubview:self.brickCollectionView];
         [self addSubview:self.textLabel];
@@ -53,7 +52,7 @@
     NSAssert(self.yOffset > 0.0f, @"no valid y offset value to show view");
     if (!self.isOnScreen) {
          self.onScreen = YES;
-        _originalViewHeight = CGRectGetHeight(view.bounds);
+        _fromViewFrame = view.bounds;
         self.frame = CGRectMake(0.0f, CGRectGetHeight(UIScreen.mainScreen.bounds) + self.yOffset, CGRectGetWidth(UIScreen.mainScreen.bounds), CGRectGetMidY(UIScreen.mainScreen.bounds));
         [viewController.view insertSubview:self aboveSubview:view];
         self.blurView.underlyingView = self.underlayingView;
@@ -78,7 +77,7 @@
         self.onScreen = NO;
         [UIView animateWithDuration:0.4f delay:0.0f usingSpringWithDamping:0.8f initialSpringVelocity:1.0f options:UIViewAnimationOptionCurveEaseIn animations:^{
             self.frame = CGRectMake(0.0f, UIScreen.mainScreen.bounds.size.height + self.yOffset, CGRectGetWidth(self.bounds), CGRectGetMidY(UIScreen.mainScreen.bounds));
-            view.frame = CGRectMake(0.0f, 0.0f, CGRectGetWidth(view.bounds), _originalViewHeight);
+            view.frame = CGRectMake(0.0f, 0.0f, CGRectGetWidth(self.bounds), CGRectGetHeight(_fromViewFrame));
             [fromViewController.navigationController setNavigationBarHidden:NO animated:YES];
         } completion:NULL];
     }

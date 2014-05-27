@@ -225,6 +225,8 @@
 {
     self.brickSelectionView.yOffset = kOffsetBrickSelectionView;
     self.brickSelectionView.underlayingView = self.view;
+    self.brickSelectionView.brickCollectionView.delegate = self;
+    self.brickSelectionView.brickCollectionView.dataSource = self;
     [self.brickSelectionView showWithView:self.collectionView fromViewController:self completion:^{
         [self setupToolBar];
     }];
@@ -233,6 +235,7 @@
 - (void)showBrickSelectionMenu
 {
     [self.brickSelectionView dismissView:self withView:self.collectionView];
+    [self setupToolBar];
     [self.brickSelectionMenu show];
 }
 
@@ -317,17 +320,30 @@
 
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView
 {
-    return [self.object.scriptList count];
+    NSInteger count = 0;
+    if (collectionView == self.collectionView) {
+        count =  [self.object.scriptList count];
+    } else {
+        if (collectionView == self.brickSelectionView.brickCollectionView) count = 0;
+    }
+    return count;
 }
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
-    Script *script = [self.object.scriptList objectAtIndex:section];
-    if (! script) {
-        NSError(@"This should never happen");
-        abort();
+    NSInteger count = 0;
+    
+    if (collectionView == self.collectionView) {
+        Script *script = [self.object.scriptList objectAtIndex:section];
+        if (! script) {
+            NSError(@"This should never happen");
+            abort();
+        }
+        count = ([script.brickList count] + 1); // because script itself is a brick in IDE too
+    } else {
+        if (collectionView == self.brickSelectionView.brickCollectionView) count = 1;
     }
-    return ([script.brickList count] + 1); // because script itself is a brick in IDE too
+    return count;
 }
 
 #pragma mark - collection view delegate
