@@ -44,12 +44,6 @@
         [self insertSubview:self.blurView atIndex:0];
         [self addSubview:self.brickCollectionView];
         [self addSubview:self.textLabel];
-        
-//        self.layer.shadowColor = UIColor.blackColor.CGColor;
-//        self.layer.shadowOffset = CGSizeMake(0.0f, -1.0f);
-//        self.layer.shadowRadius = 3.0f;
-//        self.layer.shadowOpacity = 0.3f;
-        
     }
     return self;
 }
@@ -68,7 +62,7 @@
         self.topBorder.backgroundColor = self.blurTintColor.CGColor;
         [self.layer addSublayer:self.topBorder];
         
-        [UIView animateWithDuration:0.6f delay:0.0f usingSpringWithDamping:0.7f initialSpringVelocity:2.0f options:UIViewAnimationOptionCurveEaseIn animations:^{
+        [UIView animateWithDuration:0.6f delay:0.0f usingSpringWithDamping:0.6f initialSpringVelocity:2.0f options:UIViewAnimationOptionCurveEaseIn animations:^{
             self.frame = CGRectMake(0.0f, UIScreen.mainScreen.bounds.size.height - self.yOffset - CGRectGetHeight(viewController.navigationController.toolbar.bounds), CGRectGetWidth(self.bounds), CGRectGetMidY(UIScreen.mainScreen.bounds));
             view.frame = CGRectMake(0.0f, 0.0f, CGRectGetWidth(view.bounds), CGRectGetMidY(UIScreen.mainScreen.bounds));
             [viewController.navigationController setNavigationBarHidden:YES animated:YES];
@@ -127,6 +121,9 @@
         UICollectionViewFlowLayout *layout = [UICollectionViewFlowLayout new];
         _brickCollectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0.0f, 20.0f, CGRectGetWidth(self.bounds), CGRectGetHeight(self.bounds)) collectionViewLayout:layout];
         _brickCollectionView.backgroundColor = UIColor.brickSelectionBackgroundColor;
+        _brickCollectionView.scrollEnabled = YES;
+        _brickCollectionView.bounces = YES;
+        _brickCollectionView.contentInset = UIEdgeInsetsMake(0.0f, 0.0f, 55.0f, 0.0f);
     }
     return _brickCollectionView;
 }
