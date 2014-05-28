@@ -979,13 +979,6 @@
 			name = SubViews;
 			sourceTree = "<group>";
 		};
-		816827E01935584000031E7C /* 3rdParty */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = 3rdParty;
-			sourceTree = "<group>";
-		};
 		817B543D18F03BC700AF6BFE /* ViewControllerTransitions */ = {
 			isa = PBXGroup;
 			children = (
@@ -1127,7 +1120,6 @@
 		B400302C170EB45200396DB7 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
-				816827E01935584000031E7C /* 3rdParty */,
 				CAFE18D7192813DC003AB961 /* NavigationController */,
 				CA688215180B46CB008A7C99 /* DataStructures */,
 				B44F32A71737BBB800BD97AC /* SensorHandler */,

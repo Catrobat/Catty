@@ -178,7 +178,7 @@
 - (BrickSelectionView *)brickSelectionView
 {
     if (!_brickSelectionView) {
-        _brickSelectionView = [[BrickSelectionView alloc] initWithFrame:CGRectMake(0.0f, 0.0f, self.view.bounds.size.width, CGRectGetMidY(UIScreen.mainScreen.bounds))];
+        _brickSelectionView = [[BrickSelectionView alloc] initWithFrame:CGRectMake(0.0f, 0.0f, CGRectGetWidth(self.view.bounds), CGRectGetHeight(UIScreen.mainScreen.bounds) - kOffsetTopBrickSelectionView)];
     }
     return _brickSelectionView;
 }
@@ -207,8 +207,7 @@
 - (void)showBrickSelectionView:(kBrickCategoryType)type
 {
     if (!self.brickSelectionView.active) {
-        self.brickSelectionView.yOffset = kOffsetBrickSelectionView;
-        self.brickSelectionView.underlayingView = self.view;
+        self.brickSelectionView.yOffset = kOffsetTopBrickSelectionView;
         self.brickSelectionView.textLabel.text = kBrickCategoryNames[type];
         self.brickSelectionView.tintColor = kBrickCategoryColors[type];
         self.brickSelectionView.brickCollectionView.delegate = self;
@@ -447,7 +446,7 @@
         insets = UIEdgeInsetsMake(10, 0, 5, 0);
     } else {
         if (collectionView == self.brickSelectionView.brickCollectionView) {
-            insets = UIEdgeInsetsMake(0.0f, 0.0f, 0.0f, 0.0f);
+            insets = UIEdgeInsetsMake(0.0f, 0.0f, 15.0f, 0.0f);
             
             id<BrickProtocol> brick = [self.selectableBricks objectAtIndex:section];
             if ([brick isKindOfClass:[Script class]]) {
@@ -462,8 +461,10 @@
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
+    BrickCell *cell = (BrickCell*)[collectionView cellForItemAtIndexPath:indexPath];
+    NSLog(@"Selected Cell = %@", cell);
+    
     if (collectionView == self.collectionView) {
-        BrickCell *cell = (BrickCell*)[self.collectionView cellForItemAtIndexPath:indexPath];
         self.selectedIndexPath =  indexPath;
         
         // TODO: handle bricks which can be edited
@@ -484,18 +485,14 @@
 
 - (void)collectionView:(UICollectionView *)collectionView didHighlightItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (collectionView == self.collectionView) {
-        BrickCell *cell = (BrickCell*)[self.collectionView cellForItemAtIndexPath:indexPath];
-        cell.alpha = .7f;
-    }
+    BrickCell *cell = (BrickCell*)[collectionView cellForItemAtIndexPath:indexPath];
+    cell.alpha = .7f;
 }
 
 - (void)collectionView:(UICollectionView *)collectionView didUnhighlightItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (collectionView == self.collectionView) {
-        BrickCell *cell = (BrickCell*)[self.collectionView cellForItemAtIndexPath:indexPath];
-        cell.alpha = 1.f;
-    }
+    BrickCell *cell = (BrickCell*)[collectionView cellForItemAtIndexPath:indexPath];
+    cell.alpha = 1.0f;
 }
 
 #pragma mark - LXReorderableCollectionViewDatasource

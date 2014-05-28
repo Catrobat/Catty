@@ -23,7 +23,6 @@
 
 @interface BrickSelectionView : UIView
 @property (strong, nonatomic) UICollectionView *brickCollectionView;
-@property (strong, nonatomic) UIView *underlayingView;
 @property (strong, nonatomic) UILabel *textLabel;
 @property (assign, nonatomic) CGFloat yOffset;
 @property (strong, nonatomic) UIColor *tintColor;
