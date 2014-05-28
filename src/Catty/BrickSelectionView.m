@@ -26,7 +26,6 @@
 #import "UIDefines.h"
 
 @interface BrickSelectionView ()
-@property (strong, nonatomic) FXBlurView *blurView;
 @property (strong, nonatomic) CALayer *topBorder;
 @property (assign, nonatomic, getter = isOnScreen) BOOL onScreen;
 
@@ -41,7 +40,6 @@
     self = [super initWithFrame:frame];
     if (self) {
         self.backgroundColor = UIColor.clearColor;
-        [self insertSubview:self.blurView atIndex:0];
         [self addSubview:self.brickCollectionView];
         [self addSubview:self.textLabel];
     }
@@ -56,17 +54,25 @@
         _fromViewFrame = view.bounds;
         self.frame = CGRectMake(0.0f, CGRectGetHeight(UIScreen.mainScreen.bounds) + self.yOffset, CGRectGetWidth(UIScreen.mainScreen.bounds), CGRectGetMidY(UIScreen.mainScreen.bounds));
         [viewController.view insertSubview:self aboveSubview:view];
-        self.blurView.underlyingView = self.underlayingView;
-        self.blurView.tintColor = self.blurTintColor;
-        self.textLabel.textColor = self.blurTintColor;
-        self.topBorder.backgroundColor = self.blurTintColor.CGColor;
+        self.textLabel.textColor = self.tintColor;
+        self.topBorder.backgroundColor = self.tintColor.CGColor;
         [self.layer addSublayer:self.topBorder];
+        self.textLabel.alpha = 1.0f;
         
         [UIView animateWithDuration:0.6f delay:0.0f usingSpringWithDamping:0.6f initialSpringVelocity:2.0f options:UIViewAnimationOptionCurveEaseIn animations:^{
             self.frame = CGRectMake(0.0f, UIScreen.mainScreen.bounds.size.height - self.yOffset - CGRectGetHeight(viewController.navigationController.toolbar.bounds), CGRectGetWidth(self.bounds), CGRectGetMidY(UIScreen.mainScreen.bounds));
             view.frame = CGRectMake(0.0f, 0.0f, CGRectGetWidth(view.bounds), CGRectGetMidY(UIScreen.mainScreen.bounds));
             [viewController.navigationController setNavigationBarHidden:YES animated:YES];
-        } completion:NULL];
+
+        } completion:^(BOOL finished) {
+            if (finished) {
+                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                    [UIView animateWithDuration:0.25f animations:^{
+                        self.textLabel.alpha = 0.0f;
+                    }];
+                });
+            }
+        }];
         
     } else {
         [self dismissView:viewController withView:view];
@@ -89,22 +95,6 @@
 
 #pragma mark - getter
 
-- (FXBlurView *)blurView
-{
-    if (!_blurView) {
-        _blurView = [[FXBlurView alloc] initWithFrame:CGRectMake(0.0f, 0.0f, CGRectGetWidth(self.bounds), 20.0f)];
-        _blurView.tintColor = UIColor.clearColor;
-        _blurView.updateInterval = 0.1f;
-        _blurView.blurRadius = 20.f;
-        
-        CALayer *overlayLayer = [CALayer layer];
-        overlayLayer.frame = _blurView.bounds;
-        overlayLayer.backgroundColor = self.blurTintColor.CGColor;
-        [_blurView.superview.layer insertSublayer:overlayLayer atIndex:1];
-    }
-    return _blurView;
-}
-
 - (UILabel *)textLabel
 {
     if (!_textLabel) {
@@ -119,11 +109,11 @@
 {
     if (!_brickCollectionView) {
         UICollectionViewFlowLayout *layout = [UICollectionViewFlowLayout new];
-        _brickCollectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0.0f, 20.0f, CGRectGetWidth(self.bounds), CGRectGetHeight(self.bounds)) collectionViewLayout:layout];
+        _brickCollectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0.0f, 0.0f, CGRectGetWidth(self.bounds), CGRectGetHeight(self.bounds)) collectionViewLayout:layout];
         _brickCollectionView.backgroundColor = UIColor.brickSelectionBackgroundColor;
         _brickCollectionView.scrollEnabled = YES;
         _brickCollectionView.bounces = YES;
-        _brickCollectionView.contentInset = UIEdgeInsetsMake(0.0f, 0.0f, 55.0f, 0.0f);
+        _brickCollectionView.contentInset = UIEdgeInsetsMake(20.0f, 0.0f, 55.0f, 0.0f);
     }
     return _brickCollectionView;
 }

@@ -210,7 +210,7 @@
         self.brickSelectionView.yOffset = kOffsetBrickSelectionView;
         self.brickSelectionView.underlayingView = self.view;
         self.brickSelectionView.textLabel.text = kBrickCategoryNames[type];
-        self.brickSelectionView.blurTintColor = kBrickCategoryColors[type];
+        self.brickSelectionView.tintColor = kBrickCategoryColors[type];
         self.brickSelectionView.brickCollectionView.delegate = self;
         self.brickSelectionView.brickCollectionView.dataSource = self;
         self.selectableBricks = [BrickManager.sharedBrickManager selectableBricksForCategoryType:type];
