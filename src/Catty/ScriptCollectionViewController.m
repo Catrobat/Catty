@@ -495,7 +495,7 @@
     cell.alpha = 1.0f;
 }
 
-#pragma mark - LXReorderableCollectionViewDatasource
+#pragma mark - Reorderable Cells Delegate
 
 - (void)collectionView:(UICollectionView *)collectionView
        itemAtIndexPath:(NSIndexPath *)fromIndexPath
@@ -693,7 +693,7 @@
         BOOL emtpyScript = NO;
         for (BrickCell *scriptCell in scriptCells) {
             script = [self.object.scriptList objectAtIndex:[self.collectionView indexPathForCell:scriptCell].section];
-            if (! script.brickList.count) {
+            if (!script.brickList.count) {
                 emtpyScript = YES;
                 break;
             }

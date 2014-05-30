@@ -31,6 +31,7 @@
 		815420DA191A51F200E628D2 /* FBShimmeringView.m in Sources */ = {isa = PBXBuildFile; fileRef = 815420D8191A51F200E628D2 /* FBShimmeringView.m */; };
 		815420DD191A5C1F00E628D2 /* PlaceHolderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 815420DC191A5C1F00E628D2 /* PlaceHolderView.m */; };
 		81649E10191D35090099AE7E /* ScriptDeleteButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 81649E0F191D35090099AE7E /* ScriptDeleteButton.m */; };
+		8165DC851938B2D000B6A306 /* SingleBrickSelectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8165DC841938B2D000B6A306 /* SingleBrickSelectionView.m */; };
 		816827D81934BB9B00031E7C /* BrickSelectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 816827D71934BB9B00031E7C /* BrickSelectionView.m */; };
 		816C788617D62B7C0029A4E6 /* ProgramTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 816C788517D62B7C0029A4E6 /* ProgramTableViewController.m */; };
 		817B544018F03C0D00AF6BFE /* BaseTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = 817B543F18F03C0D00AF6BFE /* BaseTransition.m */; };
@@ -323,6 +324,8 @@
 		815420DC191A5C1F00E628D2 /* PlaceHolderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlaceHolderView.m; sourceTree = "<group>"; };
 		81649E0E191D35090099AE7E /* ScriptDeleteButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScriptDeleteButton.h; sourceTree = "<group>"; };
 		81649E0F191D35090099AE7E /* ScriptDeleteButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScriptDeleteButton.m; sourceTree = "<group>"; };
+		8165DC831938B2D000B6A306 /* SingleBrickSelectionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SingleBrickSelectionView.h; sourceTree = "<group>"; };
+		8165DC841938B2D000B6A306 /* SingleBrickSelectionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SingleBrickSelectionView.m; sourceTree = "<group>"; };
 		816827D61934BB9B00031E7C /* BrickSelectionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BrickSelectionView.h; sourceTree = "<group>"; };
 		816827D71934BB9B00031E7C /* BrickSelectionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BrickSelectionView.m; sourceTree = "<group>"; };
 		816C788417D62B7C0029A4E6 /* ProgramTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProgramTableViewController.h; sourceTree = "<group>"; };
@@ -1844,6 +1847,8 @@
 				CA79A11D182DA47E00618283 /* BricksCollectionViewController.m */,
 				816827D61934BB9B00031E7C /* BrickSelectionView.h */,
 				816827D71934BB9B00031E7C /* BrickSelectionView.m */,
+				8165DC831938B2D000B6A306 /* SingleBrickSelectionView.h */,
+				8165DC841938B2D000B6A306 /* SingleBrickSelectionView.m */,
 			);
 			name = MaintainScript;
 			sourceTree = "<group>";
@@ -2979,6 +2984,7 @@
 				81506F4D18C3EE18000ED328 /* LXReorderableCollectionViewFlowLayout.m in Sources */,
 				CA75C29B18A9625C00FC8C2F /* SetBrightnessBrickCell.m in Sources */,
 				CD0CCFDA170CB39700B70036 /* Util.m in Sources */,
+				8165DC851938B2D000B6A306 /* SingleBrickSelectionView.m in Sources */,
 				CA2F7CAE18F61BA000A5C021 /* NSString+FastImageSize.m in Sources */,
 				CD0CCFDB170CB39700B70036 /* WaitBrick.m in Sources */,
 				CA75C24118A9616800FC8C2F /* IfLogicElseBrickCell.m in Sources */,
