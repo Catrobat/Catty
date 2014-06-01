@@ -27,7 +27,7 @@
 
 static ProgramManager *sharedProgramManager = nil;
 
-+ (ProgramManager*)sharedProgramManager
++ (instancetype)sharedProgramManager
 {
     @synchronized(self) {
         if (sharedProgramManager == nil) {

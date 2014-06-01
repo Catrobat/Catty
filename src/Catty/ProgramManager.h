@@ -29,6 +29,6 @@
 
 @property (nonatomic, weak) Program *program;
 
-+ (ProgramManager*)sharedProgramManager;
++ (instancetype)sharedProgramManager;
 
 @end

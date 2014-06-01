@@ -46,9 +46,9 @@
 - (void)setAsLastProgram;
 - (void)renameToProgramName:(NSString*)programName;
 
-+ (Program*)defaultProgramWithName:(NSString*)programName;
-+ (Program*)lastProgram;
-+ (Program*)programWithLoadingInfo:(ProgramLoadingInfo*)loadingInfo;
++ (instancetype)defaultProgramWithName:(NSString*)programName;
++ (instancetype)lastProgram;
++ (instancetype)programWithLoadingInfo:(ProgramLoadingInfo*)loadingInfo;
 + (BOOL)programExists:(NSString *)programName;
 + (kProgramNameValidationResult)validateProgramName:(NSString*)programName;
 + (void)removeProgramFromDiskWithProgramName:(NSString*)programName;

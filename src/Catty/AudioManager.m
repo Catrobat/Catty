@@ -39,14 +39,13 @@
 static AudioManager* sharedAudioManager = nil;
 
 
-+ (AudioManager*)sharedAudioManager {
-    
++ (instancetype)sharedAudioManager
+{
     @synchronized(self) {
         if (sharedAudioManager == nil) {
-            sharedAudioManager = [[AudioManager alloc] init];
+            sharedAudioManager = [[[self class] alloc] init];
         }
     }
-    
     return sharedAudioManager;
 }
 

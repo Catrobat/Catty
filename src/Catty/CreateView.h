@@ -22,7 +22,6 @@
 
 #import <Foundation/Foundation.h>
 
-
 @class CatrobatProject;
 
 @interface CreateView : NSObject
