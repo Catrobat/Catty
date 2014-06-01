@@ -24,7 +24,6 @@
 #import "PlaceHolderView.h"
 
 @interface BaseTableViewController : UITableViewController
-@property (nonatomic, strong) NSMutableDictionary *imageCache;
 @property (nonatomic, strong) NSArray *editableSections;
 @property (nonatomic, strong, readonly) UIBarButtonItem *selectAllRowsButtonItem;
 @property (nonatomic, strong) PlaceHolderView *placeHolderView;

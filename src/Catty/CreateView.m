@@ -33,6 +33,7 @@
 #import "EVCircularProgressView.h"
 #import "LanguageTranslationDefines.h"
 #import "RoundBorderedButton.h"
+#import "DownloadImageCache.h"
 
 #define kHTMLATagPattern @"(?i)<a([^>]+)>(.+?)</a>"
 #define kHTMLAHrefTagPattern @"href=\"(.*?)\""
@@ -127,19 +128,18 @@
 
 + (void)addThumbnailImageWithImageUrlString:(NSString*)imageUrlString toView:(UIView*)view
 {
-    UIImage* image = [[ImageCache sharedImageCache] getImageWithName:imageUrlString];
-    
+    UIImage* image = [[DownloadImageCache sharedImageCache] getImageWithName:imageUrlString];
+
     UIImageView *imageView = [[UIImageView alloc] initWithImage:image];
     imageView.contentMode = UIViewContentModeScaleAspectFill;
     imageView.frame = CGRectMake(20, 15, 65, 65);
-    
+
     imageView.layer.cornerRadius = 5.0;
     imageView.layer.masksToBounds = YES;
     imageView.layer.borderColor = [UIColor lightGrayColor].CGColor;
     imageView.layer.borderWidth = 1.0;
-    
+
     [view addSubview:imageView];
-    
 }
 
 + (void) addBigImageWithImageUrlString:(NSString*)imageUrlString toView:(UIView*)view

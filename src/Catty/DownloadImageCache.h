@@ -20,18 +20,12 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import <Foundation/Foundation.h>
+#import "ImageCache.h"
 
-@interface ImageCache : NSObject <NSCacheDelegate>
-
-@property (nonatomic, strong, readonly) dispatch_queue_t imageCacheQueue; // readonly access for subclasses
-
-+ (instancetype)sharedImageCache;
+@interface DownloadImageCache : ImageCache
 
 - (UIImage*)getImageWithName:(NSString*)imageName;
 
 - (void)addImage:(UIImage*)image withName:(NSString*)imageName;
-
-- (void)clearImageCache;
 
 @end
