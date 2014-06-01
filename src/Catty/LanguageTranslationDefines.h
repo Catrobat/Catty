@@ -223,6 +223,7 @@
 #define kUIAlertViewTitleScreenshotSavedToCameraRoll NSLocalizedString(@"Screenshot saved to Camera Roll", nil)
 #define kUIAlertViewTitleScreenshotSavedToProject NSLocalizedString(@"Screenshot saved to project", nil)
 #define kUIAlertViewTitleNewProgram NSLocalizedString(@"New program", nil)
+#define kUIAlertViewTitleDeleteProgram NSLocalizedString(@"Delete this program", nil)
 #define kUIAlertViewTitleDeleteMultipleObjects NSLocalizedString(@"Delete these objects", nil)
 #define kUIAlertViewTitleDeleteSingleObject NSLocalizedString(@"Delete this object", nil)
 #define kUIAlertViewTitleDeleteMultiplePrograms NSLocalizedString(@"Delete these programs", nil)
@@ -249,7 +250,7 @@
 #define kUIAlertViewMessageProgramNameAlreadyExists NSLocalizedString(@"A program with the same name already exists, try again.", nil)
 #define kUIAlertViewMessageInvalidObjectName NSLocalizedString(@"No or invalid object name entered, try again.", nil)
 #define kUIAlertViewMessageUnableToLoadProgram NSLocalizedString(@"Unable to load program!", nil)
-#define kUIAlertViewMessageIrreversibleAction NSLocalizedString(@"This can not be undone!", nil)
+#define kUIAlertViewMessageIrreversibleAction NSLocalizedString(@"This action can not be undone!", nil)
 #define kUIAlertViewMessageUnableToPlaySound NSLocalizedString(@"Unable to play that sound!\nMaybe this is no valid sound or the file is corrupt.", nil)
 
 // button defines

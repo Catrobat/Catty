@@ -216,6 +216,14 @@
                           withRowAnimation:UITableViewRowAnimationNone];
 }
 
+- (void)deleteProgramAction
+{
+    [self.delegate removeProgram:self.program.header.programName];
+    [self.program removeFromDisk];
+    self.program = nil;
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
 #pragma mark - table view data source
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
@@ -513,10 +521,11 @@
         [self.tableView reloadData];
     } else if (buttonIndex == actionSheet.destructiveButtonIndex) {
         // Delete Program button
-        [self.delegate removeProgram:self.program.header.programName];
-        [self.program removeFromDisk];
-        self.program = nil;
-        [self.navigationController popViewControllerAnimated:YES];
+        [self performActionOnConfirmation:@selector(deleteProgramAction)
+                           canceledAction:nil
+                                   target:self
+                             confirmTitle:kUIAlertViewTitleDeleteProgram
+                           confirmMessage:kUIAlertViewMessageIrreversibleAction];
     }
 }
 
