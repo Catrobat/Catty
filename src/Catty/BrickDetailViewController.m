@@ -41,8 +41,9 @@ NS_ENUM(NSInteger, ButtonIndex) {
 @property (strong, nonatomic) UITapGestureRecognizer *recognizer;
 @property (strong, nonatomic) NSNumber *deleteBrickOrScriptFlag;
 @property (strong, nonatomic) NSNumber *brickCopyFlag;
-@property (strong, nonatomic) NSString *brickName;
 @property (strong, nonatomic) UIMotionEffectGroup *motionEffects;
+@property (strong, nonatomic) IBActionSheet *brickMenu;
+
 @end
 
 @implementation BrickDetailViewController
@@ -97,7 +98,7 @@ NS_ENUM(NSInteger, ButtonIndex) {
 - (IBActionSheet *)brickMenu
 {
     if (! _brickMenu) {
-        _brickMenu = [[IBActionSheet alloc] initWithTitle:self.brickName
+        _brickMenu = [[IBActionSheet alloc] initWithTitle:nil
                                                  delegate:self
                                         cancelButtonTitle:kUIActionSheetButtonTitleClose
                                    destructiveButtonTitle:[self deleteMenuItemNameWithBrickCell:self.brickCell]
@@ -105,22 +106,10 @@ NS_ENUM(NSInteger, ButtonIndex) {
                       [self editFormulaMenuItemWithVrickCell:self.brickCell], nil];
         [_brickMenu setButtonBackgroundColor:UIColor.menuDarkBlueColor];
         [_brickMenu setButtonTextColor:UIColor.lightOrangeColor];
-        [_brickMenu setTitleTextColor:UIColor.skyBlueColor];
         [_brickMenu setButtonTextColor:UIColor.redColor forButtonAtIndex:0];
         _brickMenu.transparentView = nil;
     }
     return _brickMenu;
-}
-
-- (NSString *)brickName
-{
-    if (! _brickMenu) {
-        NSString *brickName =  NSStringFromClass(self.brickCell.class);
-        if (brickName.length) {
-            _brickName = [brickName substringToIndex:brickName.length - 4];
-        }
-    }
-    return _brickName;
 }
 
 - (UIMotionEffectGroup *)motionEffects {

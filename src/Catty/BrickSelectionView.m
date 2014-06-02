@@ -94,7 +94,9 @@
             [fromViewController.navigationController setNavigationBarHidden:NO animated:YES];
             view.alpha = 1.0f;
             view.transform = CGAffineTransformIdentity;
-        } completion:NULL];
+        } completion:^(BOOL finished) {
+            if (finished) [self removeFromSuperview];
+        }];
     }
 }
 

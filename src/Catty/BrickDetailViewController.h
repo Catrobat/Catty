@@ -27,6 +27,5 @@
 
 @interface BrickDetailViewController : UIViewController
 @property (strong, nonatomic) BrickCell *brickCell;
-@property (strong, nonatomic) IBActionSheet *brickMenu;
 
 @end

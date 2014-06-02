@@ -26,12 +26,14 @@
 
 @protocol SingleBrickSelectionViewDelegate <NSObject>
 
-- (void)singleBrickSelectionView:(SingleBrickSelectionView *)singleBrickSelectionView didSelectBrick:(BrickCell *)brickcell;
+- (void)singleBrickSelectionView:(SingleBrickSelectionView *)singleBrickSelectionView didSelectBrick:(BrickCell *)brickCell;
 
 @end
 
 @interface SingleBrickSelectionView : UIView
 
 @property (nonatomic, weak) id<SingleBrickSelectionViewDelegate> delegate;
+
++ (instancetype)singleBrickSelectionViewWithBrickCell:(BrickCell *)brickCell;
 
 @end

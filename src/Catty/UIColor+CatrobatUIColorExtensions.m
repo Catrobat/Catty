@@ -97,7 +97,7 @@
 
 + (UIColor*)menuDarkBlueColor
 {
-    return [UIColor colorWithRed:0 green:37.0f/255.0f blue:52.0f/255.0f alpha:0.85f];
+    return [UIColor colorWithRed:0 green:37.0f/255.0f blue:52.0f/255.0f alpha:1.0f];
 }
 
 + (UIColor*)headerTextColor

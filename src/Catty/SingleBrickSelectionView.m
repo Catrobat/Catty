@@ -21,18 +21,31 @@
  */
 
 #import "SingleBrickSelectionView.h"
+#import "BrickCell.h"
+#import "BrickManager.h"
 
 @interface SingleBrickSelectionView ()
 @property (strong, nonatomic) UIView *dimview;
+@property (nonatomic, strong) BrickCell *brickCell;
+@property (nonatomic, strong) UIView *brickViewPlaceHolder;
 
 @end
 
 @implementation SingleBrickSelectionView
 
-- (id)initWithFrame:(CGRect)frame
++ (instancetype)singleBrickSelectionViewWithBrickCell:(BrickCell *)brickCell
 {
-    self = [super initWithFrame:frame];
-    if (self) {
+    SingleBrickSelectionView *view = [self new];
+    view.frame = UIScreen.mainScreen.bounds;
+    view.brickCell = brickCell;
+    [view.brickViewPlaceHolder addSubview:view.brickCell];
+    return view;
+}
+
+- (id)init
+{
+    if (self = [super init]) {
+        self.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
         self.backgroundColor = UIColor.clearColor;
         [self addSubview:self.dimview];
     }
@@ -45,10 +58,20 @@
     if (!_dimview) {
         _dimview = [[UIView alloc] initWithFrame:self.bounds];
         _dimview.backgroundColor = UIColor.blackColor;
-        _dimview.alpha = 0.4f;
+        _dimview.alpha = 0.6f;
         _dimview.userInteractionEnabled = NO;
     }
     return _dimview;
+}
+
+- (UIView *)brickViewPlaceHolder
+{
+    if (!_brickViewPlaceHolder) {
+        _brickViewPlaceHolder = [[UIView alloc] initWithFrame:CGRectMake(0.0f, CGRectGetMidY(self.bounds), CGRectGetWidth(self.bounds), [self.brickCell.class cellHeight])];
+        _brickViewPlaceHolder.autoresizingMask = UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleBottomMargin;
+        self.backgroundColor = UIColor.clearColor;
+    }
+    return _brickViewPlaceHolder;
 }
 
 @end

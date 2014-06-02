@@ -40,7 +40,7 @@
     UIView *move = nil;
     CGRect beginFrame = [container convertRect:self.cell.bounds fromView:self.cell];
     
-    CGRect endFrame = CGRectMake(0.0f, CGRectGetHeight(UIScreen.mainScreen.bounds) / 2.0f - CGRectGetHeight(self.cell.bounds), CGRectGetWidth(self.cell.bounds), CGRectGetHeight(self.cell.bounds));
+    CGRect endFrame = CGRectMake(0.0f, CGRectGetMidY(UIScreen.mainScreen.bounds) - CGRectGetMidY(self.cell.bounds), CGRectGetWidth(self.cell.bounds), CGRectGetHeight(self.cell.bounds));
     
     switch (self.transitionMode) {
         case TransitionModePresent: {
@@ -62,9 +62,10 @@
                 _scriptCollectionVC.navigationController.navigationBar.tintColor = UIColor.lightGrayColor;
                 _scriptCollectionVC.navigationController.toolbar.alpha = 0.01f;
             } completion:^(BOOL finished) {
+                _scriptCollectionVC.dimView.dynamic = NO;
                 toVC.view.frame = fromVC.view.frame;
                 self.cell.hidden = NO;
-                self.cell.frame = CGRectMake(0.0f, CGRectGetHeight(UIScreen.mainScreen.bounds) / 2.0f - CGRectGetHeight(self.cell.bounds), CGRectGetWidth(self.cell.bounds), CGRectGetHeight(self.cell.bounds));
+                self.cell.frame = CGRectMake(0.0f, CGRectGetMidY(UIScreen.mainScreen.bounds) - CGRectGetMidY(self.cell.bounds), CGRectGetWidth(self.cell.bounds), CGRectGetHeight(self.cell.bounds));
                 [toVC.view addSubview:self.cell];
                 [container addSubview:toVC.view];
                 [move removeFromSuperview];
@@ -74,6 +75,7 @@
             break;
             
         case TransitionModeDismiss: {
+            _scriptCollectionVC.dimView.dynamic = YES;
             [UIView animateWithDuration:0.3f delay:0.0f usingSpringWithDamping:1.7f initialSpringVelocity:2.0f options:UIViewAnimationOptionCurveEaseInOut animations:^{
                 self.cell.frame = CGRectMake(0.0f, _yOffset, self.touchRect.size.width, self.touchRect.size.height);
                 _scriptCollectionVC.dimView.alpha = 0.0f;

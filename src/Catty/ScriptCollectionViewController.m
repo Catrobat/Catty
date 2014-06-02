@@ -43,11 +43,13 @@
 #import "AHKActionSheet.h"
 #import "BrickSelectionView.h"
 #import "BrickManager.h"
+#import "SingleBrickSelectionView.h"
 
 @interface ScriptCollectionViewController () <UICollectionViewDelegate,
                                               LXReorderableCollectionViewDelegateFlowLayout,
                                               LXReorderableCollectionViewDataSource,
-                                              UIViewControllerTransitioningDelegate>
+                                              UIViewControllerTransitioningDelegate,
+                                              SingleBrickSelectionViewDelegate>
 
 @property (nonatomic, weak) IBOutlet UICollectionView *collectionView;
 @property (nonatomic, strong) BrickScaleTransition *brickScaleTransition;
@@ -57,6 +59,7 @@
 @property (nonatomic, strong) AHKActionSheet *brickSelectionMenu;
 @property  (nonatomic, strong) BrickSelectionView *brickSelectionView;
 @property (nonatomic, strong) NSArray *selectableBricks;
+
 
 @end
 
@@ -395,14 +398,15 @@
     CGSize size = CGSizeZero;
     
     if (collectionView == self.collectionView) {
-        CGFloat width = self.view.frame.size.width;
+        CGFloat width = CGRectGetWidth(self.collectionView.bounds);
+        
         Script *script = [self.object.scriptList objectAtIndex:indexPath.section];
         if (! script) {
             NSError(@"This should never happen");
             abort();
         }
-        
-        Class brickCellClass = NULL;
+                
+        Class brickCellClass = nil;
         if (indexPath.row == 0) {
             // case it's a script brick
             NSString *scriptSubClassName = [NSStringFromClass([script class]) stringByAppendingString:@"Cell"];
@@ -480,6 +484,11 @@
                 self.navigationController.navigationBar.userInteractionEnabled = NO;
             }];
         }
+    } else {
+        if ([collectionView isKindOfClass:self.brickSelectionView.brickCollectionView.class]) {
+            SingleBrickSelectionView *singleBrickSelectionView = [SingleBrickSelectionView singleBrickSelectionViewWithBrickCell:cell];
+            singleBrickSelectionView.delegate = self;
+        }
     }
 }
 
@@ -493,6 +502,12 @@
 {
     BrickCell *cell = (BrickCell*)[collectionView cellForItemAtIndexPath:indexPath];
     cell.alpha = 1.0f;
+}
+
+#pragma mark - hover brick selection
+- (void)singleBrickSelectionView:(SingleBrickSelectionView *)singleBrickSelectionView didSelectBrick:(BrickCell *)brickCell
+{
+    NSLog(@"Selected BrickCell = %@", brickCell);
 }
 
 #pragma mark - Reorderable Cells Delegate
