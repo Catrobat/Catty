@@ -27,25 +27,41 @@
 @interface SingleBrickSelectionView ()
 @property (strong, nonatomic) UIView *dimview;
 @property (nonatomic, strong) BrickCell *brickCell;
-@property (nonatomic, strong) UIView *brickViewPlaceHolder;
 
 @end
 
 @implementation SingleBrickSelectionView
 
-+ (instancetype)singleBrickSelectionViewWithBrickCell:(BrickCell *)brickCell
+- (void)showSingleBrickSelectionViewWithBrickCell:(BrickCell *)brickCell fromView:(UIView *)fromView
+                                        belowView:(UIView *)belowView completion:(void(^)())completionBlock
 {
-    SingleBrickSelectionView *view = [self new];
-    view.frame = UIScreen.mainScreen.bounds;
-    view.brickCell = brickCell;
-    [view.brickViewPlaceHolder addSubview:view.brickCell];
-    return view;
+    self.brickCell = brickCell;
+    self.brickCell.center = self.center;
+    [self addSubview:self.brickCell];
+    
+    [fromView insertSubview:self aboveSubview:belowView];
+    
+    self.brickCell.clipsToBounds = NO;
+    self.brickCell.layer.shadowColor = UIColor.whiteColor.CGColor;
+    self.brickCell.layer.shadowOffset = CGSizeMake(0.0f, 0.0f);
+    self.brickCell.layer.shadowRadius = 7.0f;
+    self.brickCell.layer.shadowOpacity = 0.7f;
+    
+    
+    self.alpha = 0.0f;
+    self.brickCell.transform = CGAffineTransformMakeScale(0.1f, 0.1f);
+    
+    [UIView animateWithDuration:0.25f animations:^{
+        self.alpha = 1.0f;
+        self.brickCell.transform = CGAffineTransformMakeScale(0.98f, 0.98f);
+    } completion:^(BOOL finished) {
+        if (completionBlock) completionBlock();
+    }];
 }
 
-- (id)init
+- (id)initWithFrame:(CGRect)frame
 {
-    if (self = [super init]) {
-        self.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+    if (self = [super initWithFrame:frame]) {
         self.backgroundColor = UIColor.clearColor;
         [self addSubview:self.dimview];
     }
@@ -64,14 +80,11 @@
     return _dimview;
 }
 
-- (UIView *)brickViewPlaceHolder
+-(void)layoutSubviews
 {
-    if (!_brickViewPlaceHolder) {
-        _brickViewPlaceHolder = [[UIView alloc] initWithFrame:CGRectMake(0.0f, CGRectGetMidY(self.bounds), CGRectGetWidth(self.bounds), [self.brickCell.class cellHeight])];
-        _brickViewPlaceHolder.autoresizingMask = UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleBottomMargin;
-        self.backgroundColor = UIColor.clearColor;
-    }
-    return _brickViewPlaceHolder;
+    [super layoutSubviews];
+    self.layer.shadowPath = [UIBezierPath bezierPathWithRect:self.bounds].CGPath;
 }
+
 
 @end

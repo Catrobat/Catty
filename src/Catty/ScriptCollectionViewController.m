@@ -59,6 +59,7 @@
 @property (nonatomic, strong) AHKActionSheet *brickSelectionMenu;
 @property  (nonatomic, strong) BrickSelectionView *brickSelectionView;
 @property (nonatomic, strong) NSArray *selectableBricks;
+@property (nonatomic, strong) SingleBrickSelectionView *singleBrickSelectionView;
 
 
 @end
@@ -226,8 +227,10 @@
 
 - (void)showBrickSelectionMenu
 {
-    [self.brickSelectionView dismissView:self withView:self.collectionView];
-    [self setupToolBar];
+    [self.brickSelectionView dismissView:self withView:self.collectionView completion:^{
+        [self.brickSelectionView removeFromSuperview];
+        [self setupToolBar];
+    }];
     [self.brickSelectionMenu show];
 }
 
@@ -450,7 +453,7 @@
         insets = UIEdgeInsetsMake(10, 0, 5, 0);
     } else {
         if (collectionView == self.brickSelectionView.brickCollectionView) {
-            insets = UIEdgeInsetsMake(0.0f, 0.0f, 15.0f, 0.0f);
+            insets = UIEdgeInsetsMake(0.0f, 0.0f, 5.0f, 0.0f);
             
             id<BrickProtocol> brick = [self.selectableBricks objectAtIndex:section];
             if ([brick isKindOfClass:[Script class]]) {
@@ -471,7 +474,6 @@
     if (collectionView == self.collectionView) {
         self.selectedIndexPath =  indexPath;
         
-        // TODO: handle bricks which can be edited
         if (! self.isEditing) {
             BrickDetailViewController *brickDetailViewcontroller = [[BrickDetailViewController alloc]initWithNibName:@"BrickDetailViewController" bundle:nil];
             brickDetailViewcontroller.brickCell = cell;
@@ -486,8 +488,14 @@
         }
     } else {
         if ([collectionView isKindOfClass:self.brickSelectionView.brickCollectionView.class]) {
-            SingleBrickSelectionView *singleBrickSelectionView = [SingleBrickSelectionView singleBrickSelectionViewWithBrickCell:cell];
-            singleBrickSelectionView.delegate = self;
+            [self.brickSelectionView dismissView:self withView:self.collectionView completion:^{
+                [self.brickSelectionView removeFromSuperview];
+                [self setupToolBar];
+                
+                self.singleBrickSelectionView = [[SingleBrickSelectionView alloc] initWithFrame:self.view.bounds];
+                [self.singleBrickSelectionView showSingleBrickSelectionViewWithBrickCell:cell fromView:self.view
+                                                                               belowView:self.collectionView completion:NULL];
+            }];
         }
     }
 }

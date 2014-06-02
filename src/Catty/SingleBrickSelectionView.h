@@ -34,6 +34,7 @@
 
 @property (nonatomic, weak) id<SingleBrickSelectionViewDelegate> delegate;
 
-+ (instancetype)singleBrickSelectionViewWithBrickCell:(BrickCell *)brickCell;
+- (void)showSingleBrickSelectionViewWithBrickCell:(BrickCell *)brickCell fromView:(UIView *)fromView
+                                        belowView:(UIView *)belowView completion:(void(^)())completionBlock;
 
 @end

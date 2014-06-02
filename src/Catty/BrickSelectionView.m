@@ -60,6 +60,7 @@
         self.textLabel.transform = CGAffineTransformIdentity;
 
         [viewController.view insertSubview:self aboveSubview:view];
+        [self.brickCollectionView scrollToItemAtIndexPath:0 atScrollPosition:UICollectionViewScrollPositionTop animated:NO];
         
         [UIView animateWithDuration:0.6f delay:0.0f usingSpringWithDamping:0.8f initialSpringVelocity:2.0f options:UIViewAnimationOptionCurveEaseInOut animations:^{
             self.frame = CGRectMake(0.0f, UIScreen.mainScreen.bounds.origin.y + self.yOffset, CGRectGetWidth(self.bounds), CGRectGetHeight(self.bounds));
@@ -78,13 +79,13 @@
         }];
         
     } else {
-        [self dismissView:viewController withView:view];
+        [self dismissView:viewController withView:view completion:NULL];
     }
     
     if (completionBlock) completionBlock();
 }
 
-- (void)dismissView:(UIViewController *)fromViewController withView:(UIView *)view
+- (void)dismissView:(UIViewController *)fromViewController withView:(UIView *)view completion:(void (^)())completionBlock
 {
     if (self.onScreen) {
         self.onScreen = NO;
@@ -95,8 +96,10 @@
             view.alpha = 1.0f;
             view.transform = CGAffineTransformIdentity;
         } completion:^(BOOL finished) {
-            if (finished) [self removeFromSuperview];
+            if (completionBlock) completionBlock();
         }];
+        
+       
     }
 }
 
