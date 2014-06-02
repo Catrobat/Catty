@@ -25,7 +25,7 @@
 
 @interface BrickManager : NSObject
 
-+ (BrickManager*)sharedBrickManager;
++ (instancetype)sharedBrickManager;
 
 // helpers
 - (NSDictionary*)classNameBrickTypeMap;

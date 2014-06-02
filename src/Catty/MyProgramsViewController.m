@@ -41,10 +41,13 @@
 #import "DarkBlueGradientImageDetailCell.h"
 #import "NSDate+CustomExtensions.h"
 #import "LanguageTranslationDefines.h"
+#import "RuntimeImageCache.h"
+#import "NSString+CatrobatNSStringExtensions.h"
 
 // TODO: outsource...
 #define kUserDetailsShowDetailsKey @"showDetails"
 #define kUserDetailsShowDetailsProgramsKey @"detailsForPrograms"
+#define kScreenshotThumbnailPrefix @".thumb_"
 
 @interface MyProgramsViewController () <ProgramUpdateDelegate, UIActionSheetDelegate, UIAlertViewDelegate,
                                         UITextFieldDelegate, SWTableViewCellDelegate>
@@ -104,7 +107,6 @@
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
-    self.imageCache = nil;
     self.dataCache = nil;
 }
 
@@ -243,59 +245,65 @@
 {
     ProgramLoadingInfo *info = [self.programLoadingInfos objectAtIndex:indexPath.row];
     cell.titleLabel.text = info.visibleName;
-    NSString* imagePath = [[NSString alloc] initWithFormat:@"%@/small_screenshot.png", info.basePath];
-    UIImage* image = [self.imageCache objectForKey:imagePath];
     cell.iconImageView.contentMode = UIViewContentModeScaleAspectFit;
     cell.rightUtilityButtons = @[[Util slideViewButtonMore], [Util slideViewButtonDelete]];
     cell.delegate = self;
-
-    if (! image) {
-        cell.iconImageView.image = nil;
-        cell.indexPath = indexPath;
-        dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0ul);
-        dispatch_async(queue, ^{
-            UIImage *image = [[UIImage alloc] initWithContentsOfFile:imagePath];
-            NSString *newImagePath = nil;
-            //image = [UIImage imageWithContentsOfFile:imagePath];
-            if (! image) {
-                newImagePath = [[NSString alloc] initWithFormat:@"%@/screenshot.png", info.basePath];
-                image = [UIImage imageWithContentsOfFile:newImagePath];
-            }
-
-            if (! image) {
-                newImagePath = [[NSString alloc] initWithFormat:@"%@/manual_screenshot.png", info.basePath];
-                image = [UIImage imageWithContentsOfFile:newImagePath];
-            }
-
-            if (! image) {
-                newImagePath = [[NSString alloc] initWithFormat:@"%@/automatic_screenshot.png", info.basePath];
-                image = [UIImage imageWithContentsOfFile:newImagePath];
-            }
-
-            if (! image) {
-                image = [UIImage imageNamed:@"programs"];
-            }
-            //    CGSize imageSize = image.size;
-            //    UIGraphicsBeginImageContext(imageSize);
-            //    [image drawInRect:CGRectMake(0, 0, imageSize.width, imageSize.height)];
-            //    image = UIGraphicsGetImageFromCurrentImageContext();
-            //    UIGraphicsEndImageContext();
-
-            // perform UI stuff on main queue (UIKit is not thread safe!!)
-            dispatch_sync(dispatch_get_main_queue(), ^{
-                // check if cell still needed
-                if ([cell.indexPath isEqual:indexPath]) {
-                    cell.iconImageView.image = image;
-                    [cell setNeedsLayout];
-                    [self.imageCache setObject:image forKey:imagePath];
-                    [self.tableView endUpdates];
-                }
-            });
-        });
-    } else {
-        cell.iconImageView.image = image;
-    }
+    cell.iconImageView.image = nil;
+    cell.indexPath = indexPath;
     [cell.iconImageView setBorder:[UIColor skyBlueColor] Width:kDefaultImageCellBorderWidth];
+
+    // check if one of these screenshot files is available in memory
+    FileManager *fileManager = ((AppDelegate*)[UIApplication sharedApplication].delegate).fileManager;
+    NSArray *fallbackPaths = @[[[NSString alloc] initWithFormat:@"%@small_screenshot.png", info.basePath],
+                               [[NSString alloc] initWithFormat:@"%@screenshot.png", info.basePath],
+                               [[NSString alloc] initWithFormat:@"%@manual_screenshot.png", info.basePath],
+                               [[NSString alloc] initWithFormat:@"%@automatic_screenshot.png", info.basePath]];
+    RuntimeImageCache *imageCache = [RuntimeImageCache sharedImageCache];
+    for (NSString *fallbackPath in fallbackPaths) {
+        NSString *fileName = [fallbackPath lastPathComponent];
+        NSString *thumbnailPath = [NSString stringWithFormat:@"%@%@%@",
+                                   info.basePath, kScreenshotThumbnailPrefix, fileName];
+        UIImage *image = [imageCache cachedImageForPath:thumbnailPath];
+        if (image) {
+            cell.iconImageView.image = image;
+            return;
+        }
+    }
+
+    // no screenshot files in memory, check if one of these screenshot files exists on disk
+    // if a screenshot file is found, then load it from disk and cache it in memory for future access
+    dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0ul);
+    dispatch_async(queue, ^{
+        for (NSString *fallbackPath in fallbackPaths) {
+            if ([fileManager fileExists:fallbackPath]) {
+                NSString *fileName = [fallbackPath lastPathComponent];
+                NSString *thumbnailPath = [NSString stringWithFormat:@"%@%@%@",
+                                           info.basePath, kScreenshotThumbnailPrefix, fileName];
+                [imageCache loadThumbnailImageFromDiskWithThumbnailPath:thumbnailPath
+                                                              imagePath:fallbackPath
+                                                     thumbnailFrameSize:CGSizeMake(kPreviewImageWidth, kPreviewImageHeight)
+                                                           onCompletion:^(UIImage *image){
+                                                               // check if cell still needed
+                                                               if ([cell.indexPath isEqual:indexPath]) {
+                                                                   cell.iconImageView.image = image;
+                                                                   [cell setNeedsLayout];
+                                                                   [self.tableView endUpdates];
+                                                               }
+                                                           }];
+                return;
+            }
+        }
+
+        // no screenshot file available -> last fallback, show standard program icon instead
+        [imageCache loadImageWithName:@"programs" onCompletion:^(UIImage *image){
+            // check if cell still needed
+            if ([cell.indexPath isEqual:indexPath]) {
+                cell.iconImageView.image = image;
+                [cell setNeedsLayout];
+                [self.tableView endUpdates];
+            }
+        }];
+    });
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
@@ -538,6 +546,10 @@
             [self.programLoadingInfos removeObjectAtIndex:rowIndex];
             NSIndexPath *indexPath = [NSIndexPath indexPathForRow:rowIndex inSection:0];
             [self.tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+            // flush asset/image cache
+            self.dataCache = nil;
+            // needed to avoid unexpected behaviour when renaming programs
+            [[RuntimeImageCache sharedImageCache] clearImageCache];
             break;
         }
         ++rowIndex;
@@ -562,9 +574,10 @@
 
             // flush asset/image cache
             self.dataCache = nil;
-            self.imageCache = nil;
+            // needed to avoid unexpected behaviour when renaming programs
+            [[RuntimeImageCache sharedImageCache] clearImageCache];
 
-            // update table
+            // update table view
             NSIndexPath *indexPath = [NSIndexPath indexPathForRow:rowIndex inSection:0];
             [self.tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationNone];
             break;

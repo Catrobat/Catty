@@ -132,7 +132,7 @@
 		B4D940CF170EC9E6003DDBFA /* UIImage+CatrobatUIImageExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = B4D940C4170EC6BD003DDBFA /* UIImage+CatrobatUIImageExtensions.m */; };
 		B4D940D0170EC9E9003DDBFA /* UIColor+CatrobatUIColorExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = B4D940C1170EC69B003DDBFA /* UIColor+CatrobatUIColorExtensions.m */; };
 		B4D940D1170EC9ED003DDBFA /* NSString+CatrobatNSStringExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = B4D940BE170EC681003DDBFA /* NSString+CatrobatNSStringExtensions.m */; };
-		B4D940D4170ECA15003DDBFA /* ImageCache.m in Sources */ = {isa = PBXBuildFile; fileRef = B4D940D3170ECA15003DDBFA /* ImageCache.m */; };
+		B4D940D4170ECA15003DDBFA /* DownloadImageCache.m in Sources */ = {isa = PBXBuildFile; fileRef = B4D940D3170ECA15003DDBFA /* DownloadImageCache.m */; };
 		B4D940DC170ECB65003DDBFA /* ContinueImageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B4D940DB170ECB65003DDBFA /* ContinueImageCell.m */; };
 		B4D940E0170ECB8B003DDBFA /* DarkBlueGradientCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B4D940DF170ECB8B003DDBFA /* DarkBlueGradientCell.m */; };
 		B4DA23D1175E26550079B381 /* SensorManager.m in Sources */ = {isa = PBXBuildFile; fileRef = B4DA23D0175E26550079B381 /* SensorManager.m */; };
@@ -225,6 +225,8 @@
 		CABE07C818BAB94000BE26EF /* VariableComboBoxView.m in Sources */ = {isa = PBXBuildFile; fileRef = CABE07C718BAB94000BE26EF /* VariableComboBoxView.m */; };
 		CAC22DA41809D5730071CC5D /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CAC22DA31809D5730071CC5D /* MobileCoreServices.framework */; };
 		CAEDFB8117EF759500FDED0E /* ObjectTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CAEDFB8017EF759500FDED0E /* ObjectTableViewController.m */; };
+		CAF806D6193170640005E900 /* ImageCache.m in Sources */ = {isa = PBXBuildFile; fileRef = CAF806D5193170640005E900 /* ImageCache.m */; };
+		CAF806D9193181D50005E900 /* RuntimeImageCache.m in Sources */ = {isa = PBXBuildFile; fileRef = CAF806D8193181D50005E900 /* RuntimeImageCache.m */; };
 		CD0CCF51170CB39700B70036 /* BaseSprite.m in Sources */ = {isa = PBXBuildFile; fileRef = CD0CCE5E170CB39600B70036 /* BaseSprite.m */; };
 		CD0CCF52170CB39700B70036 /* Brick.m in Sources */ = {isa = PBXBuildFile; fileRef = CD0CCE60170CB39600B70036 /* Brick.m */; };
 		CD0CCF53170CB39700B70036 /* BroadcastBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = CD0CCE62170CB39600B70036 /* BroadcastBrick.m */; };
@@ -533,7 +535,7 @@
 		B4D940CC170EC903003DDBFA /* CatrobatBaseCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CatrobatBaseCell.h; sourceTree = "<group>"; };
 		B4D940CD170EC903003DDBFA /* CatrobatBaseCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CatrobatBaseCell.m; sourceTree = "<group>"; };
 		B4D940D2170ECA15003DDBFA /* ImageCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageCache.h; sourceTree = "<group>"; };
-		B4D940D3170ECA15003DDBFA /* ImageCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageCache.m; sourceTree = "<group>"; };
+		B4D940D3170ECA15003DDBFA /* DownloadImageCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DownloadImageCache.m; sourceTree = "<group>"; };
 		B4D940DA170ECB65003DDBFA /* ContinueImageCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContinueImageCell.h; sourceTree = "<group>"; };
 		B4D940DB170ECB65003DDBFA /* ContinueImageCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContinueImageCell.m; sourceTree = "<group>"; };
 		B4D940DE170ECB8B003DDBFA /* DarkBlueGradientCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DarkBlueGradientCell.h; sourceTree = "<group>"; };
@@ -722,6 +724,10 @@
 		CAEDFB8317EFC98E00FDED0E /* AppDefines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDefines.h; sourceTree = "<group>"; };
 		CAEDFB8417EFE00600FDED0E /* UIDefines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIDefines.h; sourceTree = "<group>"; };
 		CAF619B61809BE2100647BAA /* ButtonTags.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ButtonTags.h; sourceTree = "<group>"; };
+		CAF806D419316F350005E900 /* DownloadImageCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DownloadImageCache.h; sourceTree = "<group>"; };
+		CAF806D5193170640005E900 /* ImageCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageCache.m; sourceTree = "<group>"; };
+		CAF806D7193181C20005E900 /* RuntimeImageCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RuntimeImageCache.h; sourceTree = "<group>"; };
+		CAF806D8193181D50005E900 /* RuntimeImageCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RuntimeImageCache.m; sourceTree = "<group>"; };
 		CD0CCE5D170CB39600B70036 /* BaseSprite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseSprite.h; sourceTree = "<group>"; };
 		CD0CCE5E170CB39600B70036 /* BaseSprite.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseSprite.m; sourceTree = "<group>"; };
 		CD0CCE5F170CB39600B70036 /* Brick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Brick.h; sourceTree = "<group>"; };
@@ -1069,8 +1075,6 @@
 		81F10ED317CCD1F8000E4522 /* MaintainProgram */ = {
 			isa = PBXGroup;
 			children = (
-				8146A9B119279721002548A4 /* ProgramTableHeaderView.h */,
-				8146A9B219279721002548A4 /* ProgramTableHeaderView.m */,
 				816C788417D62B7C0029A4E6 /* ProgramTableViewController.h */,
 				816C788517D62B7C0029A4E6 /* ProgramTableViewController.m */,
 				CA160DB518A29D1B00E5190D /* MaintainObject */,
@@ -1618,7 +1622,11 @@
 			isa = PBXGroup;
 			children = (
 				B4D940D2170ECA15003DDBFA /* ImageCache.h */,
-				B4D940D3170ECA15003DDBFA /* ImageCache.m */,
+				CAF806D5193170640005E900 /* ImageCache.m */,
+				CAF806D419316F350005E900 /* DownloadImageCache.h */,
+				B4D940D3170ECA15003DDBFA /* DownloadImageCache.m */,
+				CAF806D7193181C20005E900 /* RuntimeImageCache.h */,
+				CAF806D8193181D50005E900 /* RuntimeImageCache.m */,
 			);
 			name = ImageCache;
 			sourceTree = "<group>";
@@ -1902,6 +1910,7 @@
 		CA6881FE180AEA85008A7C99 /* TableView */ = {
 			isa = PBXGroup;
 			children = (
+				CAF806D31931664B0005E900 /* Header */,
 				CA6881FF180AEBAD008A7C99 /* Cell */,
 			);
 			name = TableView;
@@ -2237,6 +2246,15 @@
 				9232B4FE18E54C4B00ED7AB1 /* EVCircularProgressView.m */,
 			);
 			name = EVCircularProgressView;
+			sourceTree = "<group>";
+		};
+		CAF806D31931664B0005E900 /* Header */ = {
+			isa = PBXGroup;
+			children = (
+				8146A9B119279721002548A4 /* ProgramTableHeaderView.h */,
+				8146A9B219279721002548A4 /* ProgramTableHeaderView.m */,
+			);
+			name = Header;
 			sourceTree = "<group>";
 		};
 		CAFE18D7192813DC003AB961 /* NavigationController */ = {
@@ -2912,6 +2930,7 @@
 				923453C0192D2A2D00464E6B /* Reachability.m in Sources */,
 				CD0CCFA4170CB39700B70036 /* NextLookBrick.m in Sources */,
 				925E22B618E3313C001A26A6 /* NavigationController.m in Sources */,
+				CAF806D9193181D50005E900 /* RuntimeImageCache.m in Sources */,
 				CD0CCFA6170CB39700B70036 /* Parser.m in Sources */,
 				CD0CCFA7170CB39700B70036 /* PlaceAtBrick.m in Sources */,
 				CD0CCFAA170CB39700B70036 /* PlaySoundBrick.m in Sources */,
@@ -2976,7 +2995,7 @@
 				CAA96AFE18E4B21F00763409 /* SoundPickerTableViewController.m in Sources */,
 				CA75C25318A9619400FC8C2F /* ChangeXByNBrickCell.m in Sources */,
 				B4D940B0170EC2B7003DDBFA /* zip.c in Sources */,
-				B4D940D4170ECA15003DDBFA /* ImageCache.m in Sources */,
+				B4D940D4170ECA15003DDBFA /* DownloadImageCache.m in Sources */,
 				CA75C23818A9614C00FC8C2F /* NoteBrickCell.m in Sources */,
 				B4D940DC170ECB65003DDBFA /* ContinueImageCell.m in Sources */,
 				81FAEE2F17E781AB0052BB2B /* ScriptCollectionViewController.m in Sources */,
@@ -2991,6 +3010,7 @@
 				81C64F8219264E2800199161 /* AHKActionSheetViewController.m in Sources */,
 				B4BCF407170ECFA2008EDF3A /* MyProgramsViewController.m in Sources */,
 				CA75C23E18A9616000FC8C2F /* IfLogicBeginBrickCell.m in Sources */,
+				CAF806D6193170640005E900 /* ImageCache.m in Sources */,
 				B4BCF414170ED1F2008EDF3A /* CatrobatInformation.m in Sources */,
 				81C64F8119264E2800199161 /* AHKActionSheet.m in Sources */,
 				B4BCF41B170ED300008EDF3A /* ProgramDetailStoreViewController.m in Sources */,

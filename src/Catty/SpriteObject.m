@@ -145,12 +145,7 @@
         return nil;
 
     NSString *imageDirPath = [[self projectPath] stringByAppendingString:kProgramImagesDirName];
-    NSString *previewImageFilePath = [NSString stringWithFormat:@"%@/%@", imageDirPath, [look previewImageFileName]];
-    AppDelegate *appDelegate = (AppDelegate*)[UIApplication sharedApplication].delegate;
-    if ([appDelegate.fileManager fileExists:previewImageFilePath])
-        return previewImageFilePath;
-
-    return nil;
+    return [NSString stringWithFormat:@"%@/%@", imageDirPath, [look previewImageFileName]];
 }
 
 - (NSString*)previewImagePath

@@ -28,11 +28,11 @@
 #pragma mark - construction methods
 static BrickManager *sharedBrickManager = nil;
 
-+ (BrickManager*)sharedBrickManager
++ (instancetype)sharedBrickManager
 {
     @synchronized(self) {
         if (sharedBrickManager == nil) {
-            sharedBrickManager = [[BrickManager alloc] init];
+            sharedBrickManager = [[[self class] alloc] init];
         }
     }
     return sharedBrickManager;

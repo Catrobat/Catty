@@ -20,21 +20,25 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
+#import "ImageCache.h"
 
-#import "ProgramManager.h"
+@interface RuntimeImageCache : ImageCache
 
-@implementation ProgramManager
+- (UIImage*)cachedImageForName:(NSString*)imageName;
 
-static ProgramManager *sharedProgramManager = nil;
+- (UIImage*)cachedImageForPath:(NSString*)path;
 
-+ (instancetype)sharedProgramManager
-{
-    @synchronized(self) {
-        if (sharedProgramManager == nil) {
-            sharedProgramManager = [[ProgramManager alloc] init];
-        }
-    }
-    return sharedProgramManager;
-}
+- (void)loadImageWithName:(NSString*)imageName
+             onCompletion:(void(^)(UIImage *image))completion;
+
+- (void)loadImageFromDiskWithPath:(NSString*)path
+                     onCompletion:(void(^)(UIImage *image))completion;
+
+- (void)loadThumbnailImageFromDiskWithThumbnailPath:(NSString*)thumbnailPath
+                                          imagePath:(NSString*)imagePath
+                                 thumbnailFrameSize:(CGSize)thumbnailFrameSize
+                                       onCompletion:(void(^)(UIImage *image))completion;
+
+- (void)clearImageCache;
 
 @end
