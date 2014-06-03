@@ -475,7 +475,7 @@
         self.selectedIndexPath =  indexPath;
         
         if (! self.isEditing) {
-            BrickDetailViewController *brickDetailViewcontroller = [[BrickDetailViewController alloc]initWithNibName:@"BrickDetailViewController" bundle:nil];
+            BrickDetailViewController *brickDetailViewcontroller = [BrickDetailViewController new];
             brickDetailViewcontroller.brickCell = cell;
             self.brickScaleTransition.cell = cell;
             self.brickScaleTransition.touchRect = cell.frame;

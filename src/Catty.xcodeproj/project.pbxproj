@@ -208,7 +208,6 @@
 		CA75C2A718A9627800FC8C2F /* ChangeVariableBrickCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CA75C2A618A9627800FC8C2F /* ChangeVariableBrickCell.m */; };
 		CA75C2B018A9A62B00FC8C2F /* LoopEndBrickCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CA75C2AF18A9A62B00FC8C2F /* LoopEndBrickCell.m */; };
 		CA79A11A182D8A4200618283 /* GDataXMLNode+PrettyFormatterExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = CA79A119182D8A4200618283 /* GDataXMLNode+PrettyFormatterExtensions.m */; };
-		CA79A11E182DA47E00618283 /* BricksCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA79A11D182DA47E00618283 /* BricksCollectionViewController.m */; };
 		CA88202F192E581800E5D515 /* SWCellScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = CA882026192E581800E5D515 /* SWCellScrollView.m */; };
 		CA882030192E581800E5D515 /* SWLongPressGestureRecognizer.m in Sources */ = {isa = PBXBuildFile; fileRef = CA882028192E581800E5D515 /* SWLongPressGestureRecognizer.m */; };
 		CA882031192E581800E5D515 /* SWTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CA88202A192E581800E5D515 /* SWTableViewCell.m */; };
@@ -686,8 +685,6 @@
 		CA75C2AF18A9A62B00FC8C2F /* LoopEndBrickCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoopEndBrickCell.m; sourceTree = "<group>"; };
 		CA79A118182D8A4200618283 /* GDataXMLNode+PrettyFormatterExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "GDataXMLNode+PrettyFormatterExtensions.h"; sourceTree = "<group>"; };
 		CA79A119182D8A4200618283 /* GDataXMLNode+PrettyFormatterExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "GDataXMLNode+PrettyFormatterExtensions.m"; sourceTree = "<group>"; };
-		CA79A11C182DA47E00618283 /* BricksCollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BricksCollectionViewController.h; sourceTree = "<group>"; };
-		CA79A11D182DA47E00618283 /* BricksCollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BricksCollectionViewController.m; sourceTree = "<group>"; };
 		CA882025192E581800E5D515 /* SWCellScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWCellScrollView.h; sourceTree = "<group>"; };
 		CA882026192E581800E5D515 /* SWCellScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWCellScrollView.m; sourceTree = "<group>"; };
 		CA882027192E581800E5D515 /* SWLongPressGestureRecognizer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWLongPressGestureRecognizer.h; sourceTree = "<group>"; };
@@ -1843,8 +1840,6 @@
 				817B544A18F0520800AF6BFE /* BrickDetailViewController.m */,
 				81FAEE2D17E781AB0052BB2B /* ScriptCollectionViewController.h */,
 				81FAEE2E17E781AB0052BB2B /* ScriptCollectionViewController.m */,
-				CA79A11C182DA47E00618283 /* BricksCollectionViewController.h */,
-				CA79A11D182DA47E00618283 /* BricksCollectionViewController.m */,
 				816827D61934BB9B00031E7C /* BrickSelectionView.h */,
 				816827D71934BB9B00031E7C /* BrickSelectionView.m */,
 				8165DC831938B2D000B6A306 /* SingleBrickSelectionView.h */,
@@ -3067,7 +3062,6 @@
 				B4B7BAC31738E216000BDC94 /* XMLObjectReference.m in Sources */,
 				B4826F78174D076800F57AE9 /* NoteBrick.m in Sources */,
 				B4826F83174D5BB100F57AE9 /* OrderedMapTable.m in Sources */,
-				CA79A11E182DA47E00618283 /* BricksCollectionViewController.m in Sources */,
 				B4840CA7174FAC3E002DEC53 /* MoveNStepsBrick.m in Sources */,
 				CA75C25918A961A300FC8C2F /* IfOnEdgeBounceBrickCell.m in Sources */,
 				B4365CE51758AF8F00B4D0A6 /* Logger.m in Sources */,

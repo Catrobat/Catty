@@ -7,7 +7,6 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "BricksCollectionViewController.h"
 
 @interface BrickSelectionSwipe : UIPercentDrivenInteractiveTransition
 @property (nonatomic, strong) UIViewController *viewController;
