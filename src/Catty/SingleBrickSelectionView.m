@@ -27,6 +27,7 @@
 @interface SingleBrickSelectionView ()
 @property (strong, nonatomic) UIView *dimview;
 @property (nonatomic, strong) BrickCell *brickCell;
+@property (strong, nonatomic) UITapGestureRecognizer *tapRecognizer;
 
 @end
 
@@ -47,13 +48,13 @@
     self.brickCell.layer.shadowRadius = 7.0f;
     self.brickCell.layer.shadowOpacity = 0.7f;
     
+    [self.brickCell addGestureRecognizer:self.tapRecognizer];
     
     self.alpha = 0.0f;
     self.brickCell.transform = CGAffineTransformMakeScale(0.1f, 0.1f);
-    
     [UIView animateWithDuration:0.25f animations:^{
         self.alpha = 1.0f;
-        self.brickCell.transform = CGAffineTransformMakeScale(0.98f, 0.98f);
+        self.brickCell.transform = CGAffineTransformMakeScale(0.95f, 0.95f);
     } completion:^(BOOL finished) {
         if (completionBlock) completionBlock();
     }];
@@ -64,6 +65,8 @@
     if (self = [super initWithFrame:frame]) {
         self.backgroundColor = UIColor.clearColor;
         [self addSubview:self.dimview];
+        self.tapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleTap:)];
+        self.tapRecognizer.numberOfTapsRequired = 1;
     }
     return self;
 }
@@ -86,5 +89,22 @@
     self.layer.shadowPath = [UIBezierPath bezierPathWithRect:self.bounds].CGPath;
 }
 
+#pragma mark - helpers
+
+- (void)handleTap:(UITapGestureRecognizer *)sender
+{
+    if ([sender isKindOfClass:UITapGestureRecognizer.class] && sender.state == UIGestureRecognizerStateEnded) {
+        [UIView animateWithDuration:0.25f delay:0.0f usingSpringWithDamping:0.4f initialSpringVelocity:1.0f options:UIViewAnimationOptionCurveEaseInOut animations:^{
+            self.brickCell.transform = CGAffineTransformIdentity;
+            self.dimview.alpha = 0.0f;
+        } completion:^(BOOL finished) {
+            self.dimview.hidden = YES;
+            
+            if (self.delegate) {
+                [self.delegate singleBrickSelectionView:self didSelectBrick:self.brickCell];
+            }
+        }];
+    }
+}
 
 @end

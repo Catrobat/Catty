@@ -73,6 +73,8 @@
                     [UIView animateWithDuration:0.25f animations:^{
                         self.textLabel.transform = CGAffineTransformMakeTranslation((-1) * self.textLabel.bounds.size.width, 0.0f);
                         self.textLabel.alpha = 0.0f;
+                    } completion:^(BOOL finished) {
+                        [self.textLabel removeFromSuperview];
                     }];
                 });
             }

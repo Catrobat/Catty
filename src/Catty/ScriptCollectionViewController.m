@@ -392,7 +392,7 @@
     return brickCell;
 }
 
-#pragma mark - CollectionView layout
+#pragma mark - UICollectionView Delegates
 
 - (CGSize)collectionView:(UICollectionView*)collectionView
                   layout:(UICollectionViewLayout*)collectionViewLayout
@@ -493,6 +493,7 @@
                 [self setupToolBar];
                 
                 self.singleBrickSelectionView = [[SingleBrickSelectionView alloc] initWithFrame:self.view.bounds];
+                self.singleBrickSelectionView.delegate = self;
                 [self.singleBrickSelectionView showSingleBrickSelectionViewWithBrickCell:cell fromView:self.view
                                                                                belowView:self.collectionView completion:NULL];
             }];
@@ -512,14 +513,7 @@
     cell.alpha = 1.0f;
 }
 
-#pragma mark - hover brick selection
-- (void)singleBrickSelectionView:(SingleBrickSelectionView *)singleBrickSelectionView didSelectBrick:(BrickCell *)brickCell
-{
-    NSLog(@"Selected BrickCell = %@", brickCell);
-}
-
 #pragma mark - Reorderable Cells Delegate
-
 - (void)collectionView:(UICollectionView *)collectionView
        itemAtIndexPath:(NSIndexPath *)fromIndexPath
    willMoveToIndexPath:(NSIndexPath *)toIndexPath
@@ -551,6 +545,13 @@
 - (BOOL)collectionView:(UICollectionView *)collectionView canMoveItemAtIndexPath:(NSIndexPath *)indexPath
 {
     return ((self.isEditing || indexPath.item == 0) ? NO : YES);
+}
+
+#pragma mark - Add brick Delegate
+- (void)singleBrickSelectionView:(SingleBrickSelectionView *)singleBrickSelectionView didSelectBrick:(BrickCell *)brickCell
+{
+    NSLog(@"Brick Add Delegate Called %@", brickCell);
+    [self.singleBrickSelectionView removeFromSuperview];
 }
 
 #pragma mark - segue handling
