@@ -28,7 +28,7 @@
 @property (strong, nonatomic) UIColor *tintColor;
 
 - (void)showWithView:(UIView *)view fromViewController:(UIViewController *)viewController completion:(void(^)())completionBlock;
-- (void)dismissView:(UIViewController *)fromViewController withView:(UIView *)view completion:(void(^)())completionBlock;
+- (void)dismissView:(UIViewController *)fromViewController withView:(UIView *)view fastDismiss:(BOOL)fastDimiss completion:(void(^)())completionBlock;
 - (BOOL)active;
 
 @end

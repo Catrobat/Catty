@@ -26,39 +26,13 @@
 
 @interface SingleBrickSelectionView ()
 @property (strong, nonatomic) UIView *dimview;
-@property (nonatomic, strong) BrickCell *brickCell;
+@property (weak, nonatomic) BrickCell *brickCell;
+@property (strong, nonatomic) UIView *brickCellViewCopy;
 @property (strong, nonatomic) UITapGestureRecognizer *tapRecognizer;
 
 @end
 
 @implementation SingleBrickSelectionView
-
-- (void)showSingleBrickSelectionViewWithBrickCell:(BrickCell *)brickCell fromView:(UIView *)fromView
-                                        belowView:(UIView *)belowView completion:(void(^)())completionBlock
-{
-    self.brickCell = brickCell;
-    self.brickCell.center = self.center;
-    [self addSubview:self.brickCell];
-    
-    [fromView insertSubview:self aboveSubview:belowView];
-    
-    self.brickCell.clipsToBounds = NO;
-    self.brickCell.layer.shadowColor = UIColor.whiteColor.CGColor;
-    self.brickCell.layer.shadowOffset = CGSizeMake(0.0f, 0.0f);
-    self.brickCell.layer.shadowRadius = 7.0f;
-    self.brickCell.layer.shadowOpacity = 0.7f;
-    
-    [self.brickCell addGestureRecognizer:self.tapRecognizer];
-    
-    self.alpha = 0.0f;
-    self.brickCell.transform = CGAffineTransformMakeScale(0.1f, 0.1f);
-    [UIView animateWithDuration:0.25f animations:^{
-        self.alpha = 1.0f;
-        self.brickCell.transform = CGAffineTransformMakeScale(0.95f, 0.95f);
-    } completion:^(BOOL finished) {
-        if (completionBlock) completionBlock();
-    }];
-}
 
 - (id)initWithFrame:(CGRect)frame
 {
@@ -69,6 +43,33 @@
         self.tapRecognizer.numberOfTapsRequired = 1;
     }
     return self;
+}
+
+- (void)showSingleBrickSelectionViewWithBrickCell:(BrickCell *)brickCell fromView:(UIView *)fromView
+                                        belowView:(UIView *)belowView completion:(void(^)())completionBlock
+{
+    self.brickCell = brickCell;
+    self.brickCellViewCopy = [self.brickCell snapshotViewAfterScreenUpdates:YES];
+    self.brickCellViewCopy.center = self.center;
+    [self addSubview:self.brickCellViewCopy];
+    
+    [fromView insertSubview:self aboveSubview:belowView];
+    
+    self.brickCellViewCopy.layer.shadowColor = UIColor.whiteColor.CGColor;
+    self.brickCellViewCopy.layer.shadowOffset = CGSizeMake(0.0f, 0.0f);
+    self.brickCellViewCopy.layer.shadowRadius = 7.0f;
+    self.brickCellViewCopy.layer.shadowOpacity = 0.7f;
+    
+    [self.brickCellViewCopy addGestureRecognizer:self.tapRecognizer];
+    
+    self.alpha = 0.0f;
+    self.brickCellViewCopy.transform = CGAffineTransformMakeScale(0.1f, 0.1f);
+    [UIView animateWithDuration:0.25f delay:0.0f usingSpringWithDamping:0.7f initialSpringVelocity:1.0f options:UIViewAnimationOptionCurveEaseInOut animations:^{
+        self.alpha = 1.0f;
+        self.brickCellViewCopy.transform = CGAffineTransformMakeScale(0.95f, 0.95f);
+    } completion:^(BOOL finished) {
+        if (completionBlock) completionBlock();
+    }];
 }
 
 #pragma mark - Getters
@@ -94,14 +95,14 @@
 - (void)handleTap:(UITapGestureRecognizer *)sender
 {
     if ([sender isKindOfClass:UITapGestureRecognizer.class] && sender.state == UIGestureRecognizerStateEnded) {
-        [UIView animateWithDuration:0.25f delay:0.0f usingSpringWithDamping:0.4f initialSpringVelocity:1.0f options:UIViewAnimationOptionCurveEaseInOut animations:^{
-            self.brickCell.transform = CGAffineTransformIdentity;
+        [UIView animateWithDuration:0.45f delay:0.0f usingSpringWithDamping:0.5f initialSpringVelocity:1.0f options:UIViewAnimationOptionCurveEaseInOut animations:^{
+            self.brickCellViewCopy.transform = CGAffineTransformIdentity;
             self.dimview.alpha = 0.0f;
         } completion:^(BOOL finished) {
             self.dimview.hidden = YES;
             
             if (self.delegate) {
-                [self.delegate singleBrickSelectionView:self didSelectBrick:self.brickCell];
+                [self.delegate singleBrickSelectionView:self didSelectBrick:self.brickCell.brick replicantBrickView:self.brickCellViewCopy];
             }
         }];
     }

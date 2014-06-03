@@ -338,22 +338,6 @@
     return self;
 }
 
-- (id)init
-{
-    self = [super init];
-    if (self) {
-        self.editing = NO;
-        self.backgroundColor = [UIColor clearColor];
-        self.contentMode = UIViewContentModeScaleToFill;
-        self.clipsToBounds = NO;
-        self.backgroundColor = [UIColor clearColor];
-        self.backgroundImageView.clipsToBounds = NO;
-        self.imageView.clipsToBounds = NO;
-        self.opaque = NO;
-    }
-    return self;
-}
-
 #pragma mark - helpers
 - (NSArray*)inlineViewSubviews
 {

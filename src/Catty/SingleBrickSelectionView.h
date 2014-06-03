@@ -21,12 +21,14 @@
  */
 
 #import <UIKit/UIKit.h>
+#import "BrickProtocol.h"
 
-@class BrickCell, SingleBrickSelectionView;
+@class BrickCell, SingleBrickSelectionView, BrickProtocol;
 
 @protocol SingleBrickSelectionViewDelegate <NSObject>
 
-- (void)singleBrickSelectionView:(SingleBrickSelectionView *)singleBrickSelectionView didSelectBrick:(BrickCell *)brickCell;
+- (void)singleBrickSelectionView:(SingleBrickSelectionView *)singleBrickSelectionView didSelectBrick:(id<BrickProtocol>)brick replicantBrickView:(UIView *)brickView;
+
 
 @end
 

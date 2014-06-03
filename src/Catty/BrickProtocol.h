@@ -21,6 +21,7 @@
  */
 
 #import <Foundation/Foundation.h>
+#import "UIDefines.h"
 
 @protocol BrickProtocol <NSObject>
 

@@ -60,6 +60,7 @@
         self.textLabel.transform = CGAffineTransformIdentity;
 
         [viewController.view insertSubview:self aboveSubview:view];
+        
         [self.brickCollectionView scrollToItemAtIndexPath:0 atScrollPosition:UICollectionViewScrollPositionTop animated:NO];
         
         [UIView animateWithDuration:0.6f delay:0.0f usingSpringWithDamping:0.8f initialSpringVelocity:2.0f options:UIViewAnimationOptionCurveEaseInOut animations:^{
@@ -81,18 +82,18 @@
         }];
         
     } else {
-        [self dismissView:viewController withView:view completion:NULL];
+        [self dismissView:viewController withView:view fastDismiss:NO completion:NULL];
     }
     
     if (completionBlock) completionBlock();
 }
 
-- (void)dismissView:(UIViewController *)fromViewController withView:(UIView *)view completion:(void (^)())completionBlock
+- (void)dismissView:(UIViewController *)fromViewController withView:(UIView *)view fastDismiss:(BOOL)fastDimiss completion:(void(^)())completionBlock
 {
     if (self.onScreen) {
         self.onScreen = NO;
         
-        [UIView animateWithDuration:0.4f delay:0.0f usingSpringWithDamping:0.8f initialSpringVelocity:1.0f options:UIViewAnimationOptionCurveEaseInOut animations:^{
+        [UIView animateWithDuration:fastDimiss ? 0.15f : 0.4f delay:0.0f usingSpringWithDamping:0.8f initialSpringVelocity:1.0f options:UIViewAnimationOptionCurveEaseInOut animations:^{
             self.frame = CGRectMake(0.0f, UIScreen.mainScreen.bounds.size.height, CGRectGetWidth(self.bounds), CGRectGetHeight(self.bounds));
             [fromViewController.navigationController setNavigationBarHidden:NO animated:YES];
             view.alpha = 1.0f;

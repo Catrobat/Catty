@@ -59,7 +59,6 @@
 @property (nonatomic, strong) AHKActionSheet *brickSelectionMenu;
 @property  (nonatomic, strong) BrickSelectionView *brickSelectionView;
 @property (nonatomic, strong) NSArray *selectableBricks;
-@property (nonatomic, strong) SingleBrickSelectionView *singleBrickSelectionView;
 
 
 @end
@@ -183,6 +182,8 @@
 {
     if (!_brickSelectionView) {
         _brickSelectionView = [[BrickSelectionView alloc] initWithFrame:CGRectMake(0.0f, 0.0f, CGRectGetWidth(self.view.bounds), CGRectGetHeight(UIScreen.mainScreen.bounds) - kOffsetTopBrickSelectionView)];
+        self.brickSelectionView.brickCollectionView.delegate = self;
+        self.brickSelectionView.brickCollectionView.dataSource = self;
     }
     return _brickSelectionView;
 }
@@ -214,8 +215,6 @@
         self.brickSelectionView.yOffset = kOffsetTopBrickSelectionView;
         self.brickSelectionView.textLabel.text = kBrickCategoryNames[type];
         self.brickSelectionView.tintColor = kBrickCategoryColors[type];
-        self.brickSelectionView.brickCollectionView.delegate = self;
-        self.brickSelectionView.brickCollectionView.dataSource = self;
         self.selectableBricks = [BrickManager.sharedBrickManager selectableBricksForCategoryType:type];
     }
     
@@ -227,10 +226,13 @@
 
 - (void)showBrickSelectionMenu
 {
-    [self.brickSelectionView dismissView:self withView:self.collectionView completion:^{
-        [self.brickSelectionView removeFromSuperview];
-        [self setupToolBar];
-    }];
+    if (self.brickSelectionView.active) {
+        [self.brickSelectionView dismissView:self withView:self.collectionView fastDismiss:NO completion:^{
+            [self.brickSelectionView removeFromSuperview];
+            [self setupToolBar];
+        }];
+    }
+
     [self.brickSelectionMenu show];
 }
 
@@ -341,7 +343,7 @@
     return count;
 }
 
-#pragma mark - collection view delegate
+#pragma mark - UICollectionView Delegates
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -354,7 +356,7 @@
             abort();
         }
         
-        if (indexPath.row == 0) {
+        if (indexPath.item == 0) {
             // case it's a script brick
             NSString *scriptSubClassName = NSStringFromClass([script class]);
             brickCell = [collectionView dequeueReusableCellWithReuseIdentifier:scriptSubClassName forIndexPath:indexPath];
@@ -363,7 +365,6 @@
             [brickCell setBrickEditing:self.isEditing];
             
             // overridden values, needs refactoring later
-            brickCell.alpha = 1.0f;
             brickCell.userInteractionEnabled = YES;
         } else {
             // case it's a normal brick
@@ -384,15 +385,13 @@
             brickCell = [collectionView dequeueReusableCellWithReuseIdentifier:brickTypeName
                                                                              forIndexPath:indexPath];
             brickCell.brick = [self.selectableBricks objectAtIndex:indexPath.section];
-            brickCell.enabled = NO;
             [brickCell renderSubViews];
+           brickCell.enabled = NO;
         }
     }
     
     return brickCell;
 }
-
-#pragma mark - UICollectionView Delegates
 
 - (CGSize)collectionView:(UICollectionView*)collectionView
                   layout:(UICollectionViewLayout*)collectionViewLayout
@@ -470,6 +469,7 @@
 {
     BrickCell *cell = (BrickCell*)[collectionView cellForItemAtIndexPath:indexPath];
     NSLog(@"Selected Cell = %@", cell);
+    NSLog(@"Selected indexpath = %@", indexPath);
     
     if (collectionView == self.collectionView) {
         self.selectedIndexPath =  indexPath;
@@ -488,13 +488,13 @@
         }
     } else {
         if ([collectionView isKindOfClass:self.brickSelectionView.brickCollectionView.class]) {
-            [self.brickSelectionView dismissView:self withView:self.collectionView completion:^{
+            [self.brickSelectionView dismissView:self withView:self.collectionView fastDismiss:YES completion:^{
                 [self.brickSelectionView removeFromSuperview];
                 [self setupToolBar];
                 
-                self.singleBrickSelectionView = [[SingleBrickSelectionView alloc] initWithFrame:self.view.bounds];
-                self.singleBrickSelectionView.delegate = self;
-                [self.singleBrickSelectionView showSingleBrickSelectionViewWithBrickCell:cell fromView:self.view
+                SingleBrickSelectionView *singleBrickSelectionView = [[SingleBrickSelectionView alloc] initWithFrame:self.view.bounds];
+                singleBrickSelectionView.delegate = self;
+                [singleBrickSelectionView showSingleBrickSelectionViewWithBrickCell:cell fromView:self.view
                                                                                belowView:self.collectionView completion:NULL];
             }];
         }
@@ -548,10 +548,24 @@
 }
 
 #pragma mark - Add brick Delegate
-- (void)singleBrickSelectionView:(SingleBrickSelectionView *)singleBrickSelectionView didSelectBrick:(BrickCell *)brickCell
+- (void)singleBrickSelectionView:(SingleBrickSelectionView *)singleBrickSelectionView didSelectBrick:(id<BrickProtocol>)brick replicantBrickView:(UIView *)brickView
 {
-    NSLog(@"Brick Add Delegate Called %@", brickCell);
-    [self.singleBrickSelectionView removeFromSuperview];
+    const NSInteger static minVisibleCells = 6;
+    
+    NSIndexPath *indexPath;
+    if (self.collectionView.visibleCells.count > minVisibleCells) {
+        indexPath = [self.collectionView indexPathForItemAtPoint:CGPointMake(CGRectGetMidX(brickView.bounds), CGRectGetMidY(self.collectionView.bounds))];
+        
+        if (indexPath.item == 0) {
+            indexPath = [NSIndexPath indexPathForRow:indexPath.item + 1 inSection:indexPath.section];
+        }
+        
+        
+    }
+    
+    NSLog(@"Added Brick = %@", brick);
+    NSLog(@"Added IndexPath = %@", indexPath);
+    [singleBrickSelectionView removeFromSuperview];
 }
 
 #pragma mark - segue handling
