@@ -26,6 +26,6 @@
 
 @interface ScriptCollectionViewController : UICollectionViewController
 @property (strong, nonatomic) SpriteObject *object;
-@property (nonatomic, strong) FXBlurView *dimView;
+@property (nonatomic, strong) FXBlurView *blurView;
 
 @end

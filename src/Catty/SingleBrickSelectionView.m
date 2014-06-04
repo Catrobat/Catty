@@ -98,7 +98,7 @@
         
         switch (sender.state) {
             case UIGestureRecognizerStateBegan: {
-                [UIView animateWithDuration:0.45f delay:0.0f usingSpringWithDamping:0.5f initialSpringVelocity:1.0f options:UIViewAnimationOptionCurveEaseInOut animations:^{
+                [UIView animateWithDuration:0.45f delay:0.0f usingSpringWithDamping:0.5f initialSpringVelocity:1.5f options:UIViewAnimationOptionCurveEaseInOut animations:^{
                     self.brickCellViewCopy.transform = CGAffineTransformIdentity;
                     self.dimview.alpha = 0.0f;
                 } completion:^(BOOL finished) {

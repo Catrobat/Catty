@@ -52,17 +52,17 @@
             move.frame = beginFrame;
             [container addSubview:move];
             self.cell.hidden = YES;
-            _scriptCollectionVC.dimView.hidden = NO;
+            _scriptCollectionVC.blurView.hidden = NO;
             
             [UIView animateWithDuration:0.6f delay:0.0f usingSpringWithDamping:0.6f initialSpringVelocity:1.5f options:UIViewAnimationOptionCurveEaseIn animations:^{
                 move.frame = endFrame;
-                _scriptCollectionVC.dimView.alpha = 1.0f;
+                _scriptCollectionVC.blurView.alpha = 1.0f;
                 _scriptCollectionVC.collectionView.alpha = 0.5f;
                 _scriptCollectionVC.navigationController.navigationBar.alpha = 0.01f;
                 _scriptCollectionVC.navigationController.navigationBar.tintColor = UIColor.lightGrayColor;
                 _scriptCollectionVC.navigationController.toolbar.alpha = 0.01f;
             } completion:^(BOOL finished) {
-                _scriptCollectionVC.dimView.dynamic = NO;
+                _scriptCollectionVC.blurView.dynamic = NO;
                 toVC.view.frame = fromVC.view.frame;
                 self.cell.hidden = NO;
                 self.cell.frame = CGRectMake(0.0f, CGRectGetMidY(UIScreen.mainScreen.bounds) - CGRectGetMidY(self.cell.bounds), CGRectGetWidth(self.cell.bounds), CGRectGetHeight(self.cell.bounds));
@@ -75,10 +75,10 @@
             break;
             
         case TransitionModeDismiss: {
-            _scriptCollectionVC.dimView.dynamic = YES;
+            _scriptCollectionVC.blurView.dynamic = YES;
             [UIView animateWithDuration:0.3f delay:0.0f usingSpringWithDamping:1.7f initialSpringVelocity:2.0f options:UIViewAnimationOptionCurveEaseInOut animations:^{
                 self.cell.frame = CGRectMake(0.0f, _yOffset, self.touchRect.size.width, self.touchRect.size.height);
-                _scriptCollectionVC.dimView.alpha = 0.0f;
+                _scriptCollectionVC.blurView.alpha = 0.0f;
                 _scriptCollectionVC.collectionView.alpha = 1.0f;
                 _scriptCollectionVC.navigationController.navigationBar.alpha = 1.0f;
                 _scriptCollectionVC.navigationController.navigationBar.tintColor = UIColor.lightOrangeColor;
@@ -87,7 +87,7 @@
                 if (finished) {
                     self.cell.frame = self.touchRect;
                     [fromVC.view removeFromSuperview];
-                    _scriptCollectionVC.dimView.hidden = YES;
+                    _scriptCollectionVC.blurView.hidden = YES;
                     [move removeFromSuperview];
                     [transitionContext completeTransition:YES];
                 }
