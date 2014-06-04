@@ -537,7 +537,8 @@
     }
 }
 
-- (BOOL)collectionView:(UICollectionView *)collectionView itemAtIndexPath:(NSIndexPath *)fromIndexPath canMoveToIndexPath:(NSIndexPath *)toIndexPath
+- (BOOL)collectionView:(UICollectionView *)collectionView itemAtIndexPath:(NSIndexPath *)fromIndexPath
+                                                          canMoveToIndexPath:(NSIndexPath *)toIndexPath
 {
     return (toIndexPath.item != 0);
 }
@@ -548,10 +549,12 @@
 }
 
 #pragma mark - Add brick Delegate
-- (void)singleBrickSelectionView:(SingleBrickSelectionView *)singleBrickSelectionView didSelectBrick:(id<BrickProtocol>)brick replicantBrickView:(UIView *)brickView
+- (void)singleBrickSelectionView:(SingleBrickSelectionView *)singleBrickSelectionView
+                  didSelectBrick:(id<BrickProtocol>)brick replicantBrickView:(UIView *)brickView
 {
     const NSInteger static minVisibleCells = 6;
     
+    // INFO just handle/add normal bricks for first start
     NSIndexPath *indexPath;
     if (self.collectionView.visibleCells.count > minVisibleCells) {
         indexPath = [self.collectionView indexPathForItemAtPoint:CGPointMake(CGRectGetMidX(brickView.bounds), CGRectGetMidY(self.collectionView.bounds))];
@@ -559,9 +562,12 @@
         if (indexPath.item == 0) {
             indexPath = [NSIndexPath indexPathForRow:indexPath.item + 1 inSection:indexPath.section];
         }
-        
-        
     }
+    
+    Script *script = [self.object.scriptList objectAtIndex:indexPath.section];
+    [self insertBrick:brick atIndexPath:indexPath intoScriptList:script copy:NO];
+    
+    
     
     NSLog(@"Added Brick = %@", brick);
     NSLog(@"Added IndexPath = %@", indexPath);
@@ -684,7 +690,8 @@
         Brick *brick = (Brick*)brickOrScript;
         brick.object = self.object;
         
-        [self insertBrick:brick intoScriptList:script copy:copy];
+        [self insertBrick:brick atIndexPath:self.selectedIndexPath intoScriptList:script copy:copy];
+        
     } else if ([brickOrScript isKindOfClass:[Script class]]) {
         Script *script = (Script*)brickOrScript;
         script.object = self.object;
@@ -695,9 +702,7 @@
     }
     self.placeHolderView.hidden = self.object.scriptList.count ? YES : NO;
     [self.collectionView reloadData];
-    if (completionBlock) {
-        completionBlock();
-    }
+    if (completionBlock) completionBlock();
 }
 
 - (Script *)firstVisibleScriptOnScreen:(BOOL)copy
@@ -744,7 +749,7 @@
     return script;
 }
 
-- (void)insertBrick:(Brick *)brick intoScriptList:(Script *)script copy:(BOOL)copy
+- (void)insertBrick:(Brick *)brick atIndexPath:(NSIndexPath *)indexPath intoScriptList:(Script *)script copy:(BOOL)copy
 {
     if (copy) {
         [self.collectionView performBatchUpdates:^{
@@ -756,15 +761,15 @@
             }
         }];
     } else {
-         __block NSIndexPath *indexPath = nil;
+//         __block NSIndexPath *indexPath = nil;
         [self.collectionView performBatchUpdates:^{
             if (! script.brickList.count) {
                 [script.brickList addObject:brick];
-                indexPath = [NSIndexPath indexPathForItem:script.brickList.count inSection:self.collectionView.numberOfSections - 1];
+//                indexPath = [NSIndexPath indexPathForItem:script.brickList.count inSection:self.collectionView.numberOfSections - 1];
                 [self.collectionView insertItemsAtIndexPaths:@[indexPath]];
             } else {
-                [script.brickList insertObject:brick atIndex:script.brickList.count];
-                 indexPath = [NSIndexPath indexPathForItem:script.brickList.count inSection:self.addedIndexPath.section];
+                [script.brickList insertObject:brick atIndex:indexPath.item];
+//                 indexPath = [NSIndexPath indexPathForItem:script.brickList.count inSection:self.addedIndexPath.section];
                 [self.collectionView insertItemsAtIndexPaths:@[indexPath]];
             }
             
