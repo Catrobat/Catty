@@ -28,7 +28,7 @@
 @property (strong, nonatomic) UIView *dimview;
 @property (weak, nonatomic) BrickCell *brickCell;
 @property (strong, nonatomic) UIView *brickCellViewCopy;
-@property (strong, nonatomic) UITapGestureRecognizer *tapRecognizer;
+@property (strong, nonatomic) UILongPressGestureRecognizer *longpressRecognizer;
 
 @end
 
@@ -39,8 +39,8 @@
     if (self = [super initWithFrame:frame]) {
         self.backgroundColor = UIColor.clearColor;
         [self addSubview:self.dimview];
-        self.tapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleTap:)];
-        self.tapRecognizer.numberOfTapsRequired = 1;
+        self.longpressRecognizer = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(handleLongPress:)];
+        self.longpressRecognizer.minimumPressDuration = 0.01;
     }
     return self;
 }
@@ -60,7 +60,7 @@
     self.brickCellViewCopy.layer.shadowRadius = 7.0f;
     self.brickCellViewCopy.layer.shadowOpacity = 0.7f;
     
-    [self.brickCellViewCopy addGestureRecognizer:self.tapRecognizer];
+    [self.brickCellViewCopy addGestureRecognizer:self.longpressRecognizer];
     
     self.alpha = 0.0f;
     self.brickCellViewCopy.transform = CGAffineTransformMakeScale(0.1f, 0.1f);
@@ -92,19 +92,31 @@
 
 #pragma mark - helpers
 
-- (void)handleTap:(UITapGestureRecognizer *)sender
+- (void)handleLongPress:(UILongPressGestureRecognizer *)sender
 {
-    if ([sender isKindOfClass:UITapGestureRecognizer.class] && sender.state == UIGestureRecognizerStateEnded) {
-        [UIView animateWithDuration:0.45f delay:0.0f usingSpringWithDamping:0.5f initialSpringVelocity:1.0f options:UIViewAnimationOptionCurveEaseInOut animations:^{
-            self.brickCellViewCopy.transform = CGAffineTransformIdentity;
-            self.dimview.alpha = 0.0f;
-        } completion:^(BOOL finished) {
-            self.dimview.hidden = YES;
-            
-            if (self.delegate) {
-                [self.delegate singleBrickSelectionView:self didSelectBrick:self.brickCell.brick replicantBrickView:self.brickCellViewCopy];
-            }
-        }];
+    if ([sender isKindOfClass:UILongPressGestureRecognizer.class]) {
+        
+        switch (sender.state) {
+            case UIGestureRecognizerStateBegan: {
+                [UIView animateWithDuration:0.45f delay:0.0f usingSpringWithDamping:0.5f initialSpringVelocity:1.0f options:UIViewAnimationOptionCurveEaseInOut animations:^{
+                    self.brickCellViewCopy.transform = CGAffineTransformIdentity;
+                    self.dimview.alpha = 0.0f;
+                } completion:^(BOOL finished) {
+                    self.dimview.hidden = YES;
+                    
+                    if (self.delegate) {
+                        [self.delegate singleBrickSelectionView:self didSelectBrick:self.brickCell.brick replicantBrickView:self.brickCellViewCopy];
+                    }
+                }];
+            } break;
+             
+            case UIGestureRecognizerStateCancelled:
+            case UIGestureRecognizerStateEnded:
+                break;
+                
+            default:
+                break;
+        }
     }
 }
 

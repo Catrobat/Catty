@@ -27,7 +27,8 @@
 
 @protocol SingleBrickSelectionViewDelegate <NSObject>
 
-- (void)singleBrickSelectionView:(SingleBrickSelectionView *)singleBrickSelectionView didSelectBrick:(id<BrickProtocol>)brick replicantBrickView:(UIView *)brickView;
+- (void)singleBrickSelectionView:(SingleBrickSelectionView *)singleBrickSelectionView
+                  didSelectBrick:(id<BrickProtocol>)brick replicantBrickView:(UIView *)brickView;
 
 
 @end

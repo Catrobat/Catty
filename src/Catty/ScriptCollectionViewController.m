@@ -569,9 +569,10 @@
     
     
     
+    
     NSLog(@"Added Brick = %@", brick);
     NSLog(@"Added IndexPath = %@", indexPath);
-    [singleBrickSelectionView removeFromSuperview];
+//    [singleBrickSelectionView removeFromSuperview];
 }
 
 #pragma mark - segue handling
