@@ -60,6 +60,7 @@
 #define kParserObjectTypeIfBeginBrick   @"T@\"IfLogicBeginBrick\""
 #define kParserObjectTypeElseBrick      @"T@\"ElseBrick\""
 #define kParserObjectTypeVariables      @"T@\"VariablesContainer\""
+#define kPropertyWeak                   @",W"
 
 
 @interface ProjectParser()
@@ -67,22 +68,26 @@
 - (id)parseNode:(GDataXMLElement*)node withParent:(XMLObjectReference*)parent;
 
 @property (nonatomic, strong) id currentActiveSprite;
-@property (nonatomic, strong) Program* program;
+@property (nonatomic, strong) Program *program;
+@property (nonatomic, strong) NSMutableArray *weakPropertyRetainer;
 
 @end
 
 @implementation ProjectParser   
 
 
+@synthesize weakPropertyRetainer = _weakPropertyRetainer;
 
-// -----------------------------------------------------------------------------
-// loadProject:
-// This method passes the root element of the XML document into the parseNode:
-// method, which in turn builds up the entire project 'tree' and returns it.
-// Then this method returns this 'tree' that is stored as a Project object to
-// the caller.
-// [in] xmlData: The XML file as NSData*
-// [out] This method returns the project 'tree' as Project object
+
+- (NSMutableArray *)weakPropertyRetainer {
+    if(_weakPropertyRetainer == nil) {
+        _weakPropertyRetainer = [[NSMutableArray alloc] init];
+    }
+    return _weakPropertyRetainer;
+}
+
+
+
 - (id)loadProject:(NSData*)xmlData {
     // sanity checks
     if (!xmlData) { return nil; }
@@ -152,11 +157,15 @@
 
     for (GDataXMLElement *child in node.children) {
         objc_property_t property = class_getProperty([object class], [child.name UTF8String]);
+
+        
         if (property) {
-            NSString *propertyType = [NSString stringWithUTF8String:property_getTypeString(property)];            
+            NSString *propertyType = [NSString stringWithUTF8String:property_getTypeString(property)];
+            
             if ([propertyType isEqualToString:kParserObjectTypeArray]) {
                 [NSException raise:@"WrongPropertyException" format:@"We need to keep the references at all time, please use NSMutableArray for property: %@", child.name];
             }
+            
             else if ([propertyType isEqualToString:kParserObjectTypeMutableArray]) {
                 NSMutableArray* arr = [object valueForKey:child.name];
                 if (!arr) {
@@ -180,6 +189,12 @@
             else { // NOT ARRAY
                 id value = [self getSingleValue:child ofType:propertyType withParent:ref];
                 [object setValue:value forKey:child.name];
+                NSString *attributes = [NSString stringWithUTF8String:property_getAttributes(property)];
+                attributes = [attributes stringByReplacingOccurrencesOfString:propertyType withString:@""];
+                
+                if(![propertyType isEqualToString:kParserObjectTypeSprite]&& [attributes hasPrefix:@",W"] && value != nil) {
+                    [self.weakPropertyRetainer addObject:value];
+                }
             }
         }
         else {
@@ -436,6 +451,7 @@
     
     if(lastComponent == nil) {
         NSWarn(@"LastComponent is nil: %@", refString);
+        NSWarn(@"Retain Store %@", self.weakPropertyRetainer);
     }
     
     return lastComponent;
