@@ -189,10 +189,8 @@
             else { // NOT ARRAY
                 id value = [self getSingleValue:child ofType:propertyType withParent:ref];
                 [object setValue:value forKey:child.name];
-                NSString *attributes = [NSString stringWithUTF8String:property_getAttributes(property)];
-                attributes = [attributes stringByReplacingOccurrencesOfString:propertyType withString:@""];
-                
-                if(![propertyType isEqualToString:kParserObjectTypeSprite]&& [attributes hasPrefix:@",W"] && value != nil) {
+          
+                if(![propertyType isEqualToString:kParserObjectTypeSprite] && [self isWeakProperty:property] && value != nil) {
                     [self.weakPropertyRetainer addObject:value];
                 }
             }
@@ -695,6 +693,14 @@ const char* property_getTypeString(objc_property_t property) {
         index = 0;
     }
     return index;
+}
+
+- (BOOL)isWeakProperty:(objc_property_t)property
+{
+    NSString *propertyType = [NSString stringWithUTF8String:property_getTypeString(property)];
+    NSString *attributes = [NSString stringWithUTF8String:property_getAttributes(property)];
+    attributes = [attributes stringByReplacingOccurrencesOfString:propertyType withString:@""];
+    return [attributes hasPrefix:kPropertyWeak];
 }
 
 @end
