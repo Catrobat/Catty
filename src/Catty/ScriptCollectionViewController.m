@@ -615,34 +615,24 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
             _addedCell = cell;
             
             CGFloat yOffset = weakCollectionView.contentOffset.y;
-            //            cell.center = CGPointMake(CGRectGetMidX(cell.bounds), CGRectGetMidY(UIScreen.mainScreen.bounds) + offset);
-            
-            NSLog(@"cell center = %@", NSStringFromCGPoint(cell.center));
-            NSLog(@"brickview center = %@", NSStringFromCGPoint(brickView.center));
-            
             cell.alpha = 0.0f;
-            cell.layer.shadowColor = UIColor.whiteColor.CGColor;
-            cell.layer.shadowOffset = CGSizeMake(0.0f, 0.0f);
-            cell.layer.shadowRadius = 7.0f;
-            cell.layer.shadowOpacity = 0.7f;
-            
             [UIView animateWithDuration:0.4f delay:0.0f usingSpringWithDamping:1.5f initialSpringVelocity:0.5f
                                 options:UIViewAnimationOptionCurveEaseIn
                              animations:^{
-                                 cell.transform = CGAffineTransformMakeScale(0.9f, 0.9f);
                                  brickView.center = CGPointMake(CGRectGetMidX(cell.bounds), cell.center.y - yOffset);
+                                 brickView.transform = CGAffineTransformIdentity;
                                  singleBrickSelectionView.dimview.alpha = 0.0f;
                              } completion:^(BOOL finished) {
                                  if (finished) {
                                      cell.alpha = 1.0f;
                                      
-                                     CABasicAnimation *animation = [CABasicAnimation animation];
-                                     animation.keyPath = @"transform.rotation";
-                                     animation.toValue = @0.0f;
-                                     animation.fromValue = @(M_PI/128.0f);
-                                     animation.duration = 0.1f;
+                                     CAKeyframeAnimation *animation = [CAKeyframeAnimation animation];
+                                     animation.keyPath = @"transform";
+                                     animation.values = @[ [NSValue valueWithCATransform3D:CATransform3DMakeRotation(M_PI/64.0f, 0.1f, 0.1f, 0.1f)],
+                                                           [NSValue valueWithCATransform3D:CATransform3DMakeRotation(M_PI/64.0f, -0.1f, -0.1f, -0.1f)] ];
+                                     animation.autoreverses = YES ;
                                      animation.repeatCount = HUGE_VAL;
-                                     animation.autoreverses = YES;
+                                     animation.duration = 0.1f ;
                                      [cell.layer addAnimation:animation forKey:@"whobble"];
                                      
                                      [singleBrickSelectionView removeFromSuperview];
