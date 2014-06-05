@@ -24,7 +24,7 @@
 #import "BrickCell.h"
 #import "BrickManager.h"
 
-@interface SingleBrickSelectionView ()
+@interface SingleBrickSelectionView () <UIGestureRecognizerDelegate>
 @property (strong, nonatomic) UIView *dimview;
 @property (weak, nonatomic) BrickCell *brickCell;
 @property (strong, nonatomic) UIView *brickCellViewCopy;
@@ -112,6 +112,7 @@
              
             case UIGestureRecognizerStateCancelled:
             case UIGestureRecognizerStateEnded:
+                NSLog(@"Long Press cancelled");
                 break;
                 
             default:

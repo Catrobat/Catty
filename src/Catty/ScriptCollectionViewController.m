@@ -97,6 +97,7 @@
     self.collectionView.scrollEnabled = YES;
     self.collectionView.delegate = self;
     self.collectionView.dataSource = self;
+    self.collectionView.collectionViewLayout = [LXReorderableCollectionViewFlowLayout new];
 
     self.navigationItem.rightBarButtonItems = @[self.editButtonItem];
     self.placeHolderView = [[PlaceHolderView alloc]initWithTitle:kUIViewControllerPlaceholderTitleScripts];
@@ -469,6 +470,13 @@
     return insets;
 }
 
+- (CGFloat)collectionView:(UICollectionView *)collectionView
+                   layout:(UICollectionViewLayout *)collectionViewLayout
+minimumLineSpacingForSectionAtIndex:(NSInteger)section
+{
+    return 0.0f;
+}
+
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
     BrickCell *cell = (BrickCell*)[collectionView cellForItemAtIndexPath:indexPath];
@@ -555,6 +563,33 @@
     return ((self.isEditing || indexPath.item == 0) ? NO : YES);
 }
 
+//- (void)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout
+//                                willBeginDraggingItemAtIndexPath:(NSIndexPath *)indexPath
+//{
+//    LXReorderableCollectionViewFlowLayout *layout = (LXReorderableCollectionViewFlowLayout *)collectionViewLayout;
+//
+//    BrickCell *cell = (BrickCell *)[collectionView cellForItemAtIndexPath:indexPath];
+//    CGRect startFrame;
+//    
+//    if (layout.longPressGestureRecognizer) {
+//        switch (layout.longPressGestureRecognizer.state) {
+//            case UIGestureRecognizerStateCancelled: {
+//                cell.frame = startFrame;
+//                NSLog(@"state cancelled");
+//            } break;
+//            
+//            case UIGestureRecognizerStateBegan: {
+//                NSLog(@"state began");
+//                cell.transform = CGAffineTransformIdentity;
+//            } break;
+//                
+//            default:
+//                break;
+//        }
+//        
+//    }
+//}
+
 #pragma mark - Add brick Delegate
 - (void)singleBrickSelectionView:(SingleBrickSelectionView *)singleBrickSelectionView
                   didSelectBrick:(id<BrickProtocol>)brick replicantBrickView:(UIView *)brickView
@@ -585,7 +620,11 @@
             CGFloat offset = weakCollectionView.contentOffset.y;
             
             cell.center = CGPointMake(CGRectGetMidX(cell.bounds), CGRectGetMidY(UIScreen.mainScreen.bounds) + offset);
-            [self.view bringSubviewToFront:cell];
+            [self.collectionView bringSubviewToFront:cell];
+            
+            [self.collectionView selectItemAtIndexPath:_addedIndexPath animated:NO scrollPosition:UICollectionViewScrollPositionNone];
+            
+            
             [singleBrickSelectionView removeFromSuperview];
       
         });
@@ -711,6 +750,7 @@
             [self.object.scriptList addObject:script];
         }
         
+        script = [self.object.scriptList objectAtIndex:self.selectedIndexPath.section];
         Brick *brick = (Brick*)brickOrScript;
         brick.object = self.object;
         
@@ -725,7 +765,7 @@
         abort();
     }
     self.placeHolderView.hidden = self.object.scriptList.count ? YES : NO;
-    [self.collectionView reloadData];
+
     if (completionBlock) completionBlock();
 }
 
@@ -777,12 +817,11 @@
 {
     if (copy) {
         [self.collectionView performBatchUpdates:^{
-            [script.brickList insertObject:brick atIndex:self.selectedIndexPath.item];
-            [self.collectionView insertItemsAtIndexPaths:@[self.selectedIndexPath]];
+            [script.brickList insertObject:brick atIndex:indexPath.item ];
+            [self.collectionView insertItemsAtIndexPaths:@[indexPath]];
         } completion:^(BOOL finished) {
             if (finished) {
                 [self.collectionView reloadData];
-                if (completionBlock) completionBlock();
             }
         }];
     } else {
@@ -803,19 +842,6 @@
         }];
     }
 }
-
-
-//- (void)scrollToLastbrickinCollectionView:(UICollectionView *)collectionView completion:(void(^)(NSIndexPath *indexPath))completion
-//{
-//    Script *script = [self.object.scriptList objectAtIndex:self.addedIndexPath.section];
-//    NSUInteger brickCountInSection = script.brickList.count;
-//    NSIndexPath *lastIndexPath = [NSIndexPath indexPathForItem:brickCountInSection inSection:self.addedIndexPath.section];
-//    [collectionView scrollToItemAtIndexPath:lastIndexPath atScrollPosition:UICollectionViewScrollPositionCenteredVertically animated:YES];
-//
-//    if (completion) {
-//        completion(lastIndexPath);
-//    }
-//}
 
 #pragma mark - Editing
 
