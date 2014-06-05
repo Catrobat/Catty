@@ -59,14 +59,9 @@
 @property  (nonatomic, strong) BrickSelectionView *brickSelectionView;
 @property (nonatomic, strong) NSArray *selectableBricks;
 
-
 @end
 
-@implementation ScriptCollectionViewController {
-    NSIndexPath *_addedIndexPath;
-    BrickCell *_addedCell;
-    BOOL _brickAdded;
-}
+@implementation ScriptCollectionViewController
 
 #pragma mark - events
 - (void)viewDidLoad
@@ -281,24 +276,6 @@
 }
 
 #pragma mark - Notification
-
-//- (void)brickAdded:(NSNotification*)notification
-//{
-//    if (notification.userInfo) {
-//        __weak typeof(UICollectionView) *weakCollectionView = self.collectionView;
-//        __weak typeof(ScriptCollectionViewController) *weakself = self;
-//        if (self.object.scriptList) {
-//            [self addBrickCellAction:notification.userInfo[kUserInfoKeyBrickCell] copyBrick:NO completionBlock:^{
-//                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-//                    [weakself scrollToLastbrickinCollectionView:weakCollectionView completion:NULL];
-//                    if (weakself.navigationController.navigationBar.hidden) {
-//                         [weakself.navigationController setNavigationBarHidden:NO animated:YES];
-//                    }
-//                });
-//            }];
-//        }
-//    }
-//}
 
 - (void)brickDetailViewDismissed:(NSNotification *)notification
 {
@@ -545,18 +522,6 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
     }
 }
 
-- (void)collectionView:(UICollectionView *)collectionView itemAtIndexPath:(NSIndexPath *)fromIndexPath
-                                                          didMoveToIndexPath:(NSIndexPath *)toIndexPath
-{
-    
-    if (_brickAdded) {
-        _addedCell.transform = CGAffineTransformIdentity;
-        _addedCell = nil;
-        _brickAdded = NO;
-        [self.collectionView reloadItemsAtIndexPaths:@[toIndexPath, fromIndexPath]];
-    }
-}
-
 - (BOOL)collectionView:(UICollectionView *)collectionView itemAtIndexPath:(NSIndexPath *)fromIndexPath
                                                           canMoveToIndexPath:(NSIndexPath *)toIndexPath
 {
@@ -566,18 +531,6 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
 - (BOOL)collectionView:(UICollectionView *)collectionView canMoveItemAtIndexPath:(NSIndexPath *)indexPath
 {
     return ((self.isEditing || indexPath.item == 0) ? NO : YES);
-}
-
-- (void)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout
-                                willBeginDraggingItemAtIndexPath:(NSIndexPath *)indexPath
-{
-    if (indexPath.item == _addedIndexPath.item && _brickAdded) {
-        _addedCell.transform = CGAffineTransformIdentity;
-        _addedCell.layer.shadowColor = nil;
-        _addedCell.layer.shadowOffset = CGSizeZero;
-        _addedCell.layer.shadowRadius =  0.0f;
-        _addedCell.layer.shadowOpacity = 0.0f;
-    }
 }
 
 #pragma mark - Add brick Delegate
@@ -591,9 +544,8 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
               replicantBrickView:(UIView *)brickView
 {
     static NSInteger const kMinVisibleCells = 1;
-    _brickAdded = YES;
     
-    // INFO just handle/add normal bricks for first start
+    // TODO just handle/add normal bricks at the moment
     NSIndexPath *indexPath;
     if (self.collectionView.visibleCells.count > kMinVisibleCells) {
         indexPath = [self.collectionView indexPathForItemAtPoint:CGPointMake(CGRectGetMidX(self.collectionView.bounds), CGRectGetMidY(self.collectionView.bounds))];
@@ -606,13 +558,10 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
     Script *script = [self.object.scriptList objectAtIndex:indexPath.section];
     
     __weak typeof(self.collectionView) weakCollectionView = self.collectionView;
-    _brickAdded = YES;
     [self insertBrick:brick atIndexPath:indexPath intoScriptList:script copy:NO completion:^{
         
         dispatch_async(dispatch_get_main_queue(), ^{
-            _addedIndexPath = [NSIndexPath indexPathForRow:indexPath.item + 1 inSection:indexPath.section];
-            BrickCell *cell = (BrickCell *)[weakCollectionView cellForItemAtIndexPath:_addedIndexPath];
-            _addedCell = cell;
+            BrickCell *cell = (BrickCell *)[weakCollectionView cellForItemAtIndexPath:[NSIndexPath indexPathForRow:indexPath.item + 1 inSection:indexPath.section]];
             
             CGFloat yOffset = weakCollectionView.contentOffset.y;
             cell.alpha = 0.0f;
@@ -772,50 +721,6 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
 
     if (completionBlock) completionBlock();
 }
-
-//- (Script *)firstVisibleScriptOnScreen:(BOOL)copy
-//{
-//    Script *script = nil;
-//    if (copy) {
-//        script = [self.object.scriptList objectAtIndex:self.selectedIndexPath.section];
-//    } else {
-//        // insert new brick in last visible script (section)
-//        NSMutableArray *scriptCells = [NSMutableArray array];
-//        if (self.collectionView.visibleCells.count) {
-//            for (BrickCell *cell in self.collectionView.visibleCells) {
-//                if ([cell isScriptBrick]) {
-//                    [scriptCells addObject:cell];
-//                }
-//            }
-//        }
-//        if (scriptCells.count) {
-//            [scriptCells sortUsingComparator:^(BrickCell *cell1, BrickCell *cell2) {
-//                if (cell1.frame.origin.y > cell2.frame.origin.y) {
-//                    return (NSComparisonResult)NSOrderedDescending;
-//                }
-//                
-//                if (cell1.frame.origin.y < cell2.frame.origin.y) {
-//                    return (NSComparisonResult)NSOrderedAscending;
-//                }
-//                return (NSComparisonResult)NSOrderedSame;
-//            }];
-//        }
-//        
-//        BOOL emtpyScript = NO;
-//        for (BrickCell *scriptCell in scriptCells) {
-//            script = [self.object.scriptList objectAtIndex:[self.collectionView indexPathForCell:scriptCell].section];
-//            if (!script.brickList.count) {
-//                emtpyScript = YES;
-//                break;
-//            }
-//        }
-//        
-//        BrickCell *cell = scriptCells.count ? scriptCells.lastObject : [self.collectionView.visibleCells firstObject];
-//        script = emtpyScript ? script : [self.object.scriptList objectAtIndex:[self.collectionView indexPathForCell:cell].section];
-//        _addedIndexPath = [self.collectionView indexPathForCell:cell];
-//    }
-//    return script;
-//}
 
 - (void)insertBrick:(Brick *)brick atIndexPath:(NSIndexPath *)indexPath intoScriptList:(Script *)script copy:(BOOL)copy completion:(void(^)())completionBlock
 {
