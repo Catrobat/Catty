@@ -25,7 +25,6 @@
 #import "BrickManager.h"
 
 @interface SingleBrickSelectionView () <UIGestureRecognizerDelegate>
-@property (strong, nonatomic) UIView *dimview;
 @property (weak, nonatomic) BrickCell *brickCell;
 @property (strong, nonatomic) UIView *brickCellViewCopy;
 @property (strong, nonatomic) UILongPressGestureRecognizer *longpressRecognizer;
@@ -68,6 +67,7 @@
         self.alpha = 1.0f;
         self.brickCellViewCopy.transform = CGAffineTransformMakeScale(0.95f, 0.95f);
     } completion:^(BOOL finished) {
+        [self.delegate singleBrickSelectionView:self didShowWithBrick:self.brickCell.brick replicantBrickView:self.brickCellViewCopy];
         if (completionBlock) completionBlock();
     }];
 }

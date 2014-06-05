@@ -63,7 +63,6 @@
 @end
 
 @implementation ScriptCollectionViewController {
-    CGRect _originalCellFrame;
     NSIndexPath *_addedIndexPath;
     BrickCell *_addedCell;
     BOOL _brickAdded;
@@ -391,10 +390,9 @@
                                                                              forIndexPath:indexPath];
             brickCell.brick = [self.selectableBricks objectAtIndex:indexPath.section];
             [brickCell renderSubViews];
-           brickCell.enabled = NO;
+            brickCell.enabled = NO;
         }
     }
-    
     return brickCell;
 }
 
@@ -528,11 +526,6 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
        itemAtIndexPath:(NSIndexPath *)fromIndexPath
    willMoveToIndexPath:(NSIndexPath *)toIndexPath
 {
-    if (fromIndexPath.item == _addedIndexPath.item && _brickAdded) {
-        _addedCell.frame = _originalCellFrame;
-        _brickAdded = NO;
-    }
-    
     if (fromIndexPath.section == toIndexPath.section) {
         Script *script = [self.object.scriptList objectAtIndex:fromIndexPath.section];
         Brick *toBrick = [script.brickList objectAtIndex:toIndexPath.item - 1];
@@ -552,6 +545,18 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
     }
 }
 
+- (void)collectionView:(UICollectionView *)collectionView itemAtIndexPath:(NSIndexPath *)fromIndexPath
+                                                          didMoveToIndexPath:(NSIndexPath *)toIndexPath
+{
+    
+    if (_brickAdded) {
+        _addedCell.transform = CGAffineTransformIdentity;
+        _addedCell = nil;
+        _brickAdded = NO;
+        [self.collectionView reloadItemsAtIndexPaths:@[toIndexPath, fromIndexPath]];
+    }
+}
+
 - (BOOL)collectionView:(UICollectionView *)collectionView itemAtIndexPath:(NSIndexPath *)fromIndexPath
                                                           canMoveToIndexPath:(NSIndexPath *)toIndexPath
 {
@@ -563,44 +568,35 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
     return ((self.isEditing || indexPath.item == 0) ? NO : YES);
 }
 
-//- (void)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout
-//                                willBeginDraggingItemAtIndexPath:(NSIndexPath *)indexPath
-//{
-//    LXReorderableCollectionViewFlowLayout *layout = (LXReorderableCollectionViewFlowLayout *)collectionViewLayout;
-//
-//    BrickCell *cell = (BrickCell *)[collectionView cellForItemAtIndexPath:indexPath];
-//    CGRect startFrame;
-//    
-//    if (layout.longPressGestureRecognizer) {
-//        switch (layout.longPressGestureRecognizer.state) {
-//            case UIGestureRecognizerStateCancelled: {
-//                cell.frame = startFrame;
-//                NSLog(@"state cancelled");
-//            } break;
-//            
-//            case UIGestureRecognizerStateBegan: {
-//                NSLog(@"state began");
-//                cell.transform = CGAffineTransformIdentity;
-//            } break;
-//                
-//            default:
-//                break;
-//        }
-//        
-//    }
-//}
+- (void)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout
+                                willBeginDraggingItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (indexPath.item == _addedIndexPath.item && _brickAdded) {
+        _addedCell.transform = CGAffineTransformIdentity;
+        _addedCell.layer.shadowColor = nil;
+        _addedCell.layer.shadowOffset = CGSizeZero;
+        _addedCell.layer.shadowRadius =  0.0f;
+        _addedCell.layer.shadowOpacity = 0.0f;
+    }
+}
 
 #pragma mark - Add brick Delegate
 - (void)singleBrickSelectionView:(SingleBrickSelectionView *)singleBrickSelectionView
                   didSelectBrick:(id<BrickProtocol>)brick replicantBrickView:(UIView *)brickView
 {
-    static NSInteger const kMinVisibleCells = 6;
+    NSLog(@"singleBrickSelectionView did select brick");
+}
+
+- (void)singleBrickSelectionView:(SingleBrickSelectionView *)singleBrickSelectionView didShowWithBrick:(id<BrickProtocol>)brick
+              replicantBrickView:(UIView *)brickView
+{
+    static NSInteger const kMinVisibleCells = 1;
     _brickAdded = YES;
     
     // INFO just handle/add normal bricks for first start
     NSIndexPath *indexPath;
     if (self.collectionView.visibleCells.count > kMinVisibleCells) {
-        indexPath = [self.collectionView indexPathForItemAtPoint:CGPointMake(CGRectGetMidX(brickView.bounds), CGRectGetMidY(self.collectionView.bounds))];
+        indexPath = [self.collectionView indexPathForItemAtPoint:CGPointMake(CGRectGetMidX(self.collectionView.bounds), CGRectGetMidY(self.collectionView.bounds))];
         
         if (indexPath.item == 0) {
             indexPath = [NSIndexPath indexPathForRow:indexPath.item + 1 inSection:indexPath.section];
@@ -610,32 +606,50 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
     Script *script = [self.object.scriptList objectAtIndex:indexPath.section];
     
     __weak typeof(self.collectionView) weakCollectionView = self.collectionView;
+    _brickAdded = YES;
     [self insertBrick:brick atIndexPath:indexPath intoScriptList:script copy:NO completion:^{
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
             _addedIndexPath = [NSIndexPath indexPathForRow:indexPath.item + 1 inSection:indexPath.section];
             BrickCell *cell = (BrickCell *)[weakCollectionView cellForItemAtIndexPath:_addedIndexPath];
             _addedCell = cell;
-            _originalCellFrame = cell.frame;
             
-            CGFloat offset = weakCollectionView.contentOffset.y;
+            CGFloat yOffset = weakCollectionView.contentOffset.y;
+            //            cell.center = CGPointMake(CGRectGetMidX(cell.bounds), CGRectGetMidY(UIScreen.mainScreen.bounds) + offset);
             
-            cell.center = CGPointMake(CGRectGetMidX(cell.bounds), CGRectGetMidY(UIScreen.mainScreen.bounds) + offset);
-            [self.collectionView bringSubviewToFront:cell];
+            NSLog(@"cell center = %@", NSStringFromCGPoint(cell.center));
+            NSLog(@"brickview center = %@", NSStringFromCGPoint(brickView.center));
             
-            [self.collectionView selectItemAtIndexPath:_addedIndexPath animated:NO scrollPosition:UICollectionViewScrollPositionNone];
+            cell.alpha = 0.0f;
+            cell.layer.shadowColor = UIColor.whiteColor.CGColor;
+            cell.layer.shadowOffset = CGSizeMake(0.0f, 0.0f);
+            cell.layer.shadowRadius = 7.0f;
+            cell.layer.shadowOpacity = 0.7f;
             
-            
-            [singleBrickSelectionView removeFromSuperview];
-      
+            [UIView animateWithDuration:0.4f delay:0.0f usingSpringWithDamping:1.5f initialSpringVelocity:0.5f
+                                options:UIViewAnimationOptionCurveEaseIn
+                             animations:^{
+                                 cell.transform = CGAffineTransformMakeScale(0.9f, 0.9f);
+                                 brickView.center = CGPointMake(CGRectGetMidX(cell.bounds), cell.center.y - yOffset);
+                                 singleBrickSelectionView.dimview.alpha = 0.0f;
+                             } completion:^(BOOL finished) {
+                                 if (finished) {
+                                     cell.alpha = 1.0f;
+                                     
+                                     CABasicAnimation *animation = [CABasicAnimation animation];
+                                     animation.keyPath = @"transform.rotation";
+                                     animation.toValue = @0.0f;
+                                     animation.fromValue = @(M_PI/128.0f);
+                                     animation.duration = 0.1f;
+                                     animation.repeatCount = HUGE_VAL;
+                                     animation.autoreverses = YES;
+                                     [cell.layer addAnimation:animation forKey:@"whobble"];
+                                     
+                                     [singleBrickSelectionView removeFromSuperview];
+                                 }
+                             }];
         });
-        
     }];
-    
-   
-    
-    
-    NSLog(@"Added Brick = %@", brick);
-    NSLog(@"Added IndexPath = %@", indexPath);
 }
 
 #pragma mark - segue handling
