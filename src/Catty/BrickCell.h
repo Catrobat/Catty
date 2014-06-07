@@ -46,5 +46,6 @@
 @property (nonatomic, strong) ScriptDeleteButton *deleteButton;
 @property (nonatomic, assign) BOOL hideDeleteButton;
 - (void)setBrickEditing:(BOOL)editing;
+- (void)animateBrick:(BOOL)animate;
 
 @end

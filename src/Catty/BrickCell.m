@@ -604,10 +604,28 @@
     }
 }
 
-#pragma mark delete button
+#pragma mark  - delete button
 - (void)setHideDeleteButton:(BOOL)hideDeleteButton {
     _hideDeleteButton = hideDeleteButton;
     self.deleteButton.hidden = hideDeleteButton;
 }
+
+#pragma mark - animations
+- (void)animateBrick:(BOOL)animate
+{
+    if (animate) {
+        CAKeyframeAnimation *animation = [CAKeyframeAnimation animation];
+        animation.keyPath = @"transform";
+        animation.values = @[ [NSValue valueWithCATransform3D:CATransform3DMakeRotation(M_PI/64.0f, 0.1f, 0.1f, 0.1f)],
+                              [NSValue valueWithCATransform3D:CATransform3DMakeRotation(M_PI/64.0f, -0.1f, -0.1f, -0.1f)] ];
+        animation.autoreverses = YES ;
+        animation.repeatCount = HUGE_VAL;
+        animation.duration = 0.1f ;
+        [self.layer addAnimation:animation forKey:@"whobble"];
+    } else {
+        [self.layer removeAllAnimations];
+    }
+}
+
 
 @end

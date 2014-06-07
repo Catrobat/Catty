@@ -499,9 +499,8 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
 }
 
 #pragma mark - Reorderable Cells Delegate
-- (void)collectionView:(UICollectionView *)collectionView
-       itemAtIndexPath:(NSIndexPath *)fromIndexPath
-   willMoveToIndexPath:(NSIndexPath *)toIndexPath
+- (void)collectionView:(UICollectionView *)collectionView itemAtIndexPath:(NSIndexPath *)fromIndexPath
+                                                      willMoveToIndexPath:(NSIndexPath *)toIndexPath
 {
     if (fromIndexPath.section == toIndexPath.section) {
         Script *script = [self.object.scriptList objectAtIndex:fromIndexPath.section];
@@ -522,6 +521,14 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
     }
 }
 
+- (void)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout
+                                willBeginDraggingItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    BrickCell *cell = (BrickCell *)[collectionView cellForItemAtIndexPath:indexPath];
+    [cell animateBrick:NO];
+}
+
+
 - (BOOL)collectionView:(UICollectionView *)collectionView itemAtIndexPath:(NSIndexPath *)fromIndexPath
                                                           canMoveToIndexPath:(NSIndexPath *)toIndexPath
 {
@@ -534,12 +541,6 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
 }
 
 #pragma mark - Add brick Delegate
-- (void)singleBrickSelectionView:(SingleBrickSelectionView *)singleBrickSelectionView
-                  didSelectBrick:(id<BrickProtocol>)brick replicantBrickView:(UIView *)brickView
-{
-    NSLog(@"singleBrickSelectionView did select brick");
-}
-
 - (void)singleBrickSelectionView:(SingleBrickSelectionView *)singleBrickSelectionView didShowWithBrick:(id<BrickProtocol>)brick
               replicantBrickView:(UIView *)brickView
 {
@@ -574,16 +575,7 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
                              } completion:^(BOOL finished) {
                                  if (finished) {
                                      cell.alpha = 1.0f;
-                                     
-                                     CAKeyframeAnimation *animation = [CAKeyframeAnimation animation];
-                                     animation.keyPath = @"transform";
-                                     animation.values = @[ [NSValue valueWithCATransform3D:CATransform3DMakeRotation(M_PI/64.0f, 0.1f, 0.1f, 0.1f)],
-                                                           [NSValue valueWithCATransform3D:CATransform3DMakeRotation(M_PI/64.0f, -0.1f, -0.1f, -0.1f)] ];
-                                     animation.autoreverses = YES ;
-                                     animation.repeatCount = HUGE_VAL;
-                                     animation.duration = 0.1f ;
-                                     [cell.layer addAnimation:animation forKey:@"whobble"];
-                                     
+                                     [cell animateBrick:YES];
                                      [singleBrickSelectionView removeFromSuperview];
                                  }
                              }];

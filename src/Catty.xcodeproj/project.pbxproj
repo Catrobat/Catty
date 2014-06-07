@@ -1031,7 +1031,7 @@
 			isa = PBXGroup;
 			children = (
 				81A5B4D4192963F00082B2B8 /* MotionEffect */,
-				CA882035192E59AF00E5D515 /* CollectionView */,
+				CA882035192E59AF00E5D515 /* CollectionViewCells */,
 				81B748771921432A00990E5F /* CreateView */,
 				81B7487619213CFB00990E5F /* PlaceHolderView */,
 				817B543D18F03BC700AF6BFE /* ViewControllerTransitions */,
@@ -1978,14 +1978,6 @@
 			name = "NSData+Hashes";
 			sourceTree = "<group>";
 		};
-		CA750F8118A12CDE005FC0A0 /* Cell */ = {
-			isa = PBXGroup;
-			children = (
-				CA750F8218A12CFA005FC0A0 /* BrickCells */,
-			);
-			name = Cell;
-			sourceTree = "<group>";
-		};
 		CA750F8218A12CFA005FC0A0 /* BrickCells */ = {
 			isa = PBXGroup;
 			children = (
@@ -2162,12 +2154,12 @@
 			name = SWTableViewCell;
 			sourceTree = "<group>";
 		};
-		CA882035192E59AF00E5D515 /* CollectionView */ = {
+		CA882035192E59AF00E5D515 /* CollectionViewCells */ = {
 			isa = PBXGroup;
 			children = (
-				CA750F8118A12CDE005FC0A0 /* Cell */,
+				CA750F8218A12CFA005FC0A0 /* BrickCells */,
 			);
-			name = CollectionView;
+			name = CollectionViewCells;
 			sourceTree = "<group>";
 		};
 		CA882037192E76AE00E5D515 /* ProgramTableViewController+UnitTestingExtensions */ = {
