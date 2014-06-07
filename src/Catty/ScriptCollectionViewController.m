@@ -84,8 +84,6 @@
 #pragma mark - initialization
 - (void)setupCollectionView
 {
-    self.collectionView.delegate = self;
-    self.collectionView.dataSource = self;
     self.collectionView.backgroundColor = UIColor.darkBlueColor;
     self.collectionView.alwaysBounceVertical = YES;
     self.collectionView.scrollEnabled = YES;
@@ -330,6 +328,8 @@
 {
     BrickCell *brickCell = nil;
     
+    NSLog(@"Cell for item add indexpath");
+    
     if (self.collectionView == collectionView) {
         Script *script = [self.object.scriptList objectAtIndex:indexPath.section];
         if (! script) {
@@ -486,40 +486,38 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
     }
 }
 
-- (void)collectionView:(UICollectionView *)collectionView didHighlightItemAtIndexPath:(NSIndexPath *)indexPath
-{
-    BrickCell *cell = (BrickCell*)[collectionView cellForItemAtIndexPath:indexPath];
-    cell.alpha = .7f;
-}
-
-- (void)collectionView:(UICollectionView *)collectionView didUnhighlightItemAtIndexPath:(NSIndexPath *)indexPath
-{
-    BrickCell *cell = (BrickCell*)[collectionView cellForItemAtIndexPath:indexPath];
-    cell.alpha = 1.0f;
-}
-
 #pragma mark - Reorderable Cells Delegate
 - (void)collectionView:(UICollectionView *)collectionView itemAtIndexPath:(NSIndexPath *)fromIndexPath
                                                       willMoveToIndexPath:(NSIndexPath *)toIndexPath
 {
-    if (fromIndexPath.section == toIndexPath.section) {
+    if ([@(fromIndexPath.section) isEqualToNumber:@(toIndexPath.section)]) {
         Script *script = [self.object.scriptList objectAtIndex:fromIndexPath.section];
         Brick *toBrick = [script.brickList objectAtIndex:toIndexPath.item - 1];
         [script.brickList removeObjectAtIndex:toIndexPath.item - 1];
         [script.brickList insertObject:toBrick atIndex:fromIndexPath.item - 1];
     } else {
-        Script *toScript = [self.object.scriptList objectAtIndex:toIndexPath.section];
-        Brick *toBrick = [toScript.brickList objectAtIndex:toIndexPath.item - 1];
-        
-        Script *fromScript = [self.object.scriptList objectAtIndex:fromIndexPath.section];
-        Brick *fromBrick = [fromScript.brickList objectAtIndex:fromIndexPath.item - 1];
-        
-        [toScript.brickList removeObjectAtIndex:toIndexPath.item -1];
-        [fromScript.brickList removeObjectAtIndex:fromIndexPath.item - 1];
-        [toScript.brickList insertObject:fromBrick atIndex:toIndexPath.item - 1];
-        [toScript.brickList insertObject:toBrick atIndex:toIndexPath.item];
+        if (![@(fromIndexPath.section) isEqualToNumber:@(toIndexPath.section)]) {
+            Script *toScript = [self.object.scriptList objectAtIndex:toIndexPath.section];
+            Brick *toBrick = [toScript.brickList objectAtIndex:toIndexPath.item - 1];
+            
+            Script *fromScript = [self.object.scriptList objectAtIndex:fromIndexPath.section];
+            Brick *fromBrick = [fromScript.brickList objectAtIndex:fromIndexPath.item - 1];
+            
+            [toScript.brickList removeObjectAtIndex:toIndexPath.item -1];
+            [fromScript.brickList removeObjectAtIndex:fromIndexPath.item - 1];
+            [toScript.brickList insertObject:fromBrick atIndex:toIndexPath.item - 1];
+            [toScript.brickList insertObject:toBrick atIndex:toIndexPath.item];
+        }
     }
 }
+
+//- (void)collectionView:(UICollectionView *)collectionView itemAtIndexPath:(NSIndexPath *)fromIndexPath
+//                                                     didMoveToIndexPath:(NSIndexPath *)toIndexPath
+//{
+//    [collectionView deselectItemAtIndexPath:toIndexPath animated:NO];
+//    [collectionView deselectItemAtIndexPath:fromIndexPath animated:NO];
+//}
+//
 
 - (void)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout
                                 willBeginDraggingItemAtIndexPath:(NSIndexPath *)indexPath

@@ -113,6 +113,14 @@
 
 @implementation BrickCell
 
+#pragma mark - UICollectionViewCellDelegate
+
+- (void)setHighlighted:(BOOL)highlighted
+{
+    [super setHighlighted:highlighted];
+    self.alpha = highlighted ? 0.7f : 1.0f;
+}
+
 #pragma mark - getters and setters
 - (kBrickCategoryType)categoryType
 {
