@@ -524,10 +524,27 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
 - (void)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout
                                 willBeginDraggingItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    BrickCell *cell = (BrickCell *)[collectionView cellForItemAtIndexPath:indexPath];
-    [cell animateBrick:NO];
+    [UIView animateWithDuration:0.25f animations:^{
+        self.navigationController.navigationBar.alpha = 0.01f;
+        self.navigationController.toolbar.alpha = 0.01f;
+    } completion:^(BOOL finished) {
+        collectionView.userInteractionEnabled = NO;
+        BrickCell *cell = (BrickCell *)[collectionView cellForItemAtIndexPath:indexPath];
+        [cell animateBrick:NO];
+    }];
 }
 
+- (void)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout
+                                   didEndDraggingItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    [UIView animateWithDuration:0.25f animations:^{
+         self.navigationController.navigationBar.alpha = 1.0f;
+         self.navigationController.toolbar.alpha = 1.0f;
+    } completion:^(BOOL finished) {
+        collectionView.userInteractionEnabled = YES;
+        [collectionView reloadItemsAtIndexPaths:@[indexPath]];
+    }];
+}
 
 - (BOOL)collectionView:(UICollectionView *)collectionView itemAtIndexPath:(NSIndexPath *)fromIndexPath
                                                           canMoveToIndexPath:(NSIndexPath *)toIndexPath
