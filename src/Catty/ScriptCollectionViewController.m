@@ -471,15 +471,18 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
         }
     } else {
         if ([collectionView isKindOfClass:self.brickSelectionView.brickCollectionView.class]) {
-            [self.brickSelectionView dismissView:self withView:self.collectionView fastDismiss:YES completion:^{
-                [self.brickSelectionView removeFromSuperview];
-                [self setupToolBar];
-                
-                SingleBrickSelectionView *singleBrickSelectionView = [[SingleBrickSelectionView alloc] initWithFrame:self.view.bounds];
-                singleBrickSelectionView.delegate = self;
-                [singleBrickSelectionView showSingleBrickSelectionViewWithBrickCell:cell fromView:self.view
-                                                                               belowView:self.collectionView completion:NULL];
-            }];
+               NSLog(@"cell = %@", cell);
+            
+            
+//            [self.brickSelectionView dismissView:self withView:self.collectionView fastDismiss:YES completion:^{
+//                [self.brickSelectionView removeFromSuperview];
+//                [self setupToolBar];
+//                
+//                SingleBrickSelectionView *singleBrickSelectionView = [[SingleBrickSelectionView alloc] initWithFrame:self.view.bounds];
+//                singleBrickSelectionView.delegate = self;
+//                [singleBrickSelectionView showSingleBrickSelectionViewWithBrickCell:cell fromView:self.view
+//                                                                               belowView:self.collectionView completion:NULL];
+//            }];
         }
     }
 }

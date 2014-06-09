@@ -28,6 +28,11 @@
 
 @implementation SpeakBrickCell
 
+- (void)drawRect:(CGRect)rect
+{
+    [BrickShapeFactory drawMediumSquareBrickShape:UIColor.whiteColor fillColor:UIColor.soundBrickVioletColor];
+}
+
 + (CGFloat)cellHeight
 {
     return kBrickHeight2h;

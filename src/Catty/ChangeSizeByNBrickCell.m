@@ -29,6 +29,11 @@
 
 @implementation ChangeSizeByNBrickCell
 
+- (void)drawRect:(CGRect)rect
+{
+    [BrickShapeFactory drawSmallSquareBrickShape:UIColor.whiteColor fillColor:UIColor.lookBrickGreenColor];
+}
+
 - (void)hookUpSubViews:(NSArray *)inlineViewSubViews
 {
     self.leftTextLabel = inlineViewSubViews[0];

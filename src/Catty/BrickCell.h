@@ -25,6 +25,8 @@
 #import "UIDefines.h"
 #import "ScriptDeleteButton.h"
 #import "BrickCellProtocol.h"
+#import "BrickShapeFactory.h"
+#import "UIColor+CatrobatUIColorExtensions.h"
 
 @class Brick;
 @class BrickCellInlineView;
@@ -33,6 +35,7 @@
 @interface BrickCell : UICollectionViewCell<BrickCellProtocol>
 
 @property (nonatomic, strong) id<BrickProtocol> brick;
+@property (nonatomic, strong) NSArray *brickCategoryColors;
 @property (nonatomic) BOOL enabled;
 - (kBrickShapeType)brickShapeType;
 + (CGFloat)cellHeight;

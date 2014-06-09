@@ -28,6 +28,11 @@
 
 @implementation SetLookBrickCell
 
+- (void)drawRect:(CGRect)rect
+{
+    [BrickShapeFactory drawMediumSquareBrickShape:UIColor.whiteColor fillColor:UIColor.lookBrickGreenColor];
+}
+
 + (CGFloat)cellHeight
 {
     return kBrickHeight2h;

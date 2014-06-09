@@ -1,33 +1,56 @@
-//
-//  BrickShapeFactory.m
-//  Catty
-//
-//  Created by luca on 09/06/14.
-//
-//
+/**
+ *  Copyright (C) 2010-2013 The Catrobat Team
+ *  (http://developer.catrobat.org/credits)
+ *
+ *  This program is free software: you can redistribute it and/or modify
+ *  it under the terms of the GNU Affero General Public License as
+ *  published by the Free Software Foundation, either version 3 of the
+ *  License, or (at your option) any later version.
+ *
+ *  An additional term exception under section 7 of the GNU Affero
+ *  General Public License, version 3, is available at
+ *  (http://developer.catrobat.org/license_additional_term)
+ *
+ *  This program is distributed in the hope that it will be useful,
+ *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ *  GNU Affero General Public License for more details.
+ *
+ *  You should have received a copy of the GNU Affero General Public License
+ *  along with this program.  If not, see http://www.gnu.org/licenses/.
+ */
 
 #import "BrickShapeFactory.h"
 
 @implementation BrickShapeFactory
 
++ (instancetype)sharedBrickShapeFactory
+{
+    static BrickShapeFactory *_sharedCattyBrickShapeFactory = nil;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{ _sharedCattyBrickShapeFactory = [BrickShapeFactory new]; });
+    return _sharedCattyBrickShapeFactory;
+}
+
+// shapes created with www.paintcodeapp.com
 + (void)drawSmallSquareBrickShape:(UIColor *)strokeColor fillColor:(UIColor *)fillColor
 {
     // brickShape Drawing
     UIBezierPath* brickShapePath = UIBezierPath.bezierPath;
-    [brickShapePath moveToPoint: CGPointMake(50, 0)];
-    [brickShapePath addCurveToPoint: CGPointMake(640, 0) controlPoint1: CGPointMake(50, -0) controlPoint2: CGPointMake(640, 0)];
-    [brickShapePath addLineToPoint: CGPointMake(640, 39.51)];
-    [brickShapePath addLineToPoint: CGPointMake(50, 39.51)];
-    [brickShapePath addCurveToPoint: CGPointMake(50, 44) controlPoint1: CGPointMake(50, 41.37) controlPoint2: CGPointMake(50, 44)];
-    [brickShapePath addLineToPoint: CGPointMake(15, 44)];
-    [brickShapePath addCurveToPoint: CGPointMake(15, 39.51) controlPoint1: CGPointMake(15, 44) controlPoint2: CGPointMake(15, 41.37)];
-    [brickShapePath addLineToPoint: CGPointMake(0, 39.51)];
-    [brickShapePath addLineToPoint: CGPointMake(0, 0)];
-    [brickShapePath addLineToPoint: CGPointMake(15, 0)];
-    [brickShapePath addCurveToPoint: CGPointMake(15, 4.49) controlPoint1: CGPointMake(15, 1.86) controlPoint2: CGPointMake(15, 4.49)];
-    [brickShapePath addLineToPoint: CGPointMake(50, 4.49)];
-    [brickShapePath addCurveToPoint: CGPointMake(50, 0) controlPoint1: CGPointMake(50, 4.49) controlPoint2: CGPointMake(50, 1.86)];
-    [brickShapePath addLineToPoint: CGPointMake(50, 0)];
+    [brickShapePath moveToPoint: CGPointMake(50.85, 1)];
+    [brickShapePath addCurveToPoint: CGPointMake(639, 1) controlPoint1: CGPointMake(50.84, 1) controlPoint2: CGPointMake(639, 1)];
+    [brickShapePath addLineToPoint: CGPointMake(639, 38.71)];
+    [brickShapePath addLineToPoint: CGPointMake(50.84, 38.71)];
+    [brickShapePath addCurveToPoint: CGPointMake(50.84, 43) controlPoint1: CGPointMake(50.84, 40.49) controlPoint2: CGPointMake(50.84, 43)];
+    [brickShapePath addLineToPoint: CGPointMake(15.95, 43)];
+    [brickShapePath addCurveToPoint: CGPointMake(15.95, 38.71) controlPoint1: CGPointMake(15.95, 43) controlPoint2: CGPointMake(15.95, 40.49)];
+    [brickShapePath addLineToPoint: CGPointMake(1, 38.71)];
+    [brickShapePath addLineToPoint: CGPointMake(1, 1)];
+    [brickShapePath addLineToPoint: CGPointMake(15.95, 1)];
+    [brickShapePath addCurveToPoint: CGPointMake(15.95, 5.29) controlPoint1: CGPointMake(15.95, 2.77) controlPoint2: CGPointMake(15.95, 5.29)];
+    [brickShapePath addLineToPoint: CGPointMake(50.84, 5.29)];
+    [brickShapePath addCurveToPoint: CGPointMake(50.84, 1) controlPoint1: CGPointMake(50.84, 5.29) controlPoint2: CGPointMake(50.84, 2.77)];
+    [brickShapePath addLineToPoint: CGPointMake(50.85, 1)];
     [brickShapePath closePath];
     [fillColor setFill];
     [brickShapePath fill];
@@ -35,18 +58,15 @@
     brickShapePath.lineWidth = 1;
     [brickShapePath stroke];
     
-    
     //// grip_line1 Drawing
     UIBezierPath* grip_line1Path = [UIBezierPath bezierPathWithRect: CGRectMake(15, 21, 35, 1)];
     [strokeColor setFill];
     [grip_line1Path fill];
     
-    
     //// grip_line2 Drawing
     UIBezierPath* grip_line2Path = [UIBezierPath bezierPathWithRect: CGRectMake(15, 15, 35, 1)];
     [strokeColor setFill];
     [grip_line2Path fill];
-    
     
     //// grip_line3 Drawing
     UIBezierPath* grip_line3Path = [UIBezierPath bezierPathWithRect: CGRectMake(15, 27, 35, 1)];
@@ -59,27 +79,27 @@
 {
     // brickShape Drawing
     UIBezierPath* brickShapePath = UIBezierPath.bezierPath;
-    [brickShapePath moveToPoint: CGPointMake(50, -0)];
-    [brickShapePath addCurveToPoint: CGPointMake(640, -0) controlPoint1: CGPointMake(50, -0) controlPoint2: CGPointMake(640, -0)];
-    [brickShapePath addLineToPoint: CGPointMake(640, 66.33)];
-    [brickShapePath addLineToPoint: CGPointMake(50, 66.33)];
-    [brickShapePath addCurveToPoint: CGPointMake(50, 71) controlPoint1: CGPointMake(50, 68.26) controlPoint2: CGPointMake(50, 71)];
-    [brickShapePath addLineToPoint: CGPointMake(15, 71)];
-    [brickShapePath addCurveToPoint: CGPointMake(15, 66.33) controlPoint1: CGPointMake(15, 71) controlPoint2: CGPointMake(15, 68.26)];
-    [brickShapePath addLineToPoint: CGPointMake(0, 66.33)];
-    [brickShapePath addLineToPoint: CGPointMake(0, -0)];
-    [brickShapePath addLineToPoint: CGPointMake(15, -0)];
-    [brickShapePath addCurveToPoint: CGPointMake(15, 4.67) controlPoint1: CGPointMake(15, 1.93) controlPoint2: CGPointMake(15, 4.67)];
-    [brickShapePath addLineToPoint: CGPointMake(50, 4.67)];
-    [brickShapePath addCurveToPoint: CGPointMake(50, -0) controlPoint1: CGPointMake(50, 4.67) controlPoint2: CGPointMake(50, 1.93)];
-    [brickShapePath addLineToPoint: CGPointMake(50, -0)];
+    [brickShapePath moveToPoint: CGPointMake(50.85, 1)];
+    [brickShapePath addCurveToPoint: CGPointMake(639, 1) controlPoint1: CGPointMake(50.84, 1) controlPoint2: CGPointMake(639, 1)];
+    [brickShapePath addLineToPoint: CGPointMake(639, 65.46)];
+    [brickShapePath addLineToPoint: CGPointMake(50.84, 65.46)];
+    [brickShapePath addCurveToPoint: CGPointMake(50.84, 70) controlPoint1: CGPointMake(50.84, 67.34) controlPoint2: CGPointMake(50.84, 70)];
+    [brickShapePath addLineToPoint: CGPointMake(15.95, 70)];
+    [brickShapePath addCurveToPoint: CGPointMake(15.95, 65.46) controlPoint1: CGPointMake(15.95, 70) controlPoint2: CGPointMake(15.95, 67.34)];
+    [brickShapePath addLineToPoint: CGPointMake(1, 65.46)];
+    [brickShapePath addLineToPoint: CGPointMake(1, 1)];
+    [brickShapePath addLineToPoint: CGPointMake(15.95, 1)];
+    [brickShapePath addCurveToPoint: CGPointMake(15.95, 5.54) controlPoint1: CGPointMake(15.95, 2.88) controlPoint2: CGPointMake(15.95, 5.54)];
+    [brickShapePath addLineToPoint: CGPointMake(50.84, 5.54)];
+    [brickShapePath addCurveToPoint: CGPointMake(50.84, 1) controlPoint1: CGPointMake(50.84, 5.54) controlPoint2: CGPointMake(50.84, 2.88)];
+    [brickShapePath addLineToPoint: CGPointMake(50.85, 1)];
     [brickShapePath closePath];
     [fillColor setFill];
     [brickShapePath fill];
     [strokeColor setStroke];
     brickShapePath.lineWidth = 1;
     [brickShapePath stroke];
-    
+
     
     //// grip_line1 Drawing
     UIBezierPath* grip_line1Path = [UIBezierPath bezierPathWithRect: CGRectMake(15, 35.5, 35, 1)];
@@ -103,26 +123,31 @@
     UIBezierPath* grip_line4Path = [UIBezierPath bezierPathWithRect: CGRectMake(15, 23.5, 35, 1)];
     [strokeColor setFill];
     [grip_line4Path fill];
+    
+    //// grip_line5 Drawing
+    UIBezierPath* grip_line5Path = [UIBezierPath bezierPathWithRect: CGRectMake(15, 47.5, 35, 1)];
+    [strokeColor setFill];
+    [grip_line5Path fill];
 }
 
 + (void)drawLargeSquareBrickShape:(UIColor *)strokeColor fillColor:(UIColor *)fillColor
 {
     // brickShape Drawing
     UIBezierPath* brickShapePath = UIBezierPath.bezierPath;
-    [brickShapePath moveToPoint: CGPointMake(50, 0)];
-    [brickShapePath addCurveToPoint: CGPointMake(640, 0) controlPoint1: CGPointMake(50, 0) controlPoint2: CGPointMake(640, 0)];
-    [brickShapePath addLineToPoint: CGPointMake(640, 89.25)];
-    [brickShapePath addLineToPoint: CGPointMake(50, 89.25)];
-    [brickShapePath addCurveToPoint: CGPointMake(50, 94) controlPoint1: CGPointMake(50, 91.22) controlPoint2: CGPointMake(50, 94)];
-    [brickShapePath addLineToPoint: CGPointMake(15, 94)];
-    [brickShapePath addCurveToPoint: CGPointMake(15, 89.25) controlPoint1: CGPointMake(15, 94) controlPoint2: CGPointMake(15, 91.22)];
-    [brickShapePath addLineToPoint: CGPointMake(0, 89.25)];
-    [brickShapePath addLineToPoint: CGPointMake(0, 0)];
-    [brickShapePath addLineToPoint: CGPointMake(15, 0)];
-    [brickShapePath addCurveToPoint: CGPointMake(15, 4.75) controlPoint1: CGPointMake(15, 1.96) controlPoint2: CGPointMake(15, 4.75)];
-    [brickShapePath addLineToPoint: CGPointMake(50, 4.75)];
-    [brickShapePath addCurveToPoint: CGPointMake(50, 0) controlPoint1: CGPointMake(50, 4.75) controlPoint2: CGPointMake(50, 1.96)];
-    [brickShapePath addLineToPoint: CGPointMake(50, 0)];
+    [brickShapePath moveToPoint: CGPointMake(50.85, 1)];
+    [brickShapePath addCurveToPoint: CGPointMake(639, 1) controlPoint1: CGPointMake(50.84, 1) controlPoint2: CGPointMake(639, 1)];
+    [brickShapePath addLineToPoint: CGPointMake(639, 88.35)];
+    [brickShapePath addLineToPoint: CGPointMake(50.84, 88.35)];
+    [brickShapePath addCurveToPoint: CGPointMake(50.84, 93) controlPoint1: CGPointMake(50.84, 90.28) controlPoint2: CGPointMake(50.84, 93)];
+    [brickShapePath addLineToPoint: CGPointMake(15.95, 93)];
+    [brickShapePath addCurveToPoint: CGPointMake(15.95, 88.35) controlPoint1: CGPointMake(15.95, 93) controlPoint2: CGPointMake(15.95, 90.28)];
+    [brickShapePath addLineToPoint: CGPointMake(1, 88.35)];
+    [brickShapePath addLineToPoint: CGPointMake(1, 1)];
+    [brickShapePath addLineToPoint: CGPointMake(15.95, 1)];
+    [brickShapePath addCurveToPoint: CGPointMake(15.95, 5.65) controlPoint1: CGPointMake(15.95, 2.92) controlPoint2: CGPointMake(15.95, 5.65)];
+    [brickShapePath addLineToPoint: CGPointMake(50.84, 5.65)];
+    [brickShapePath addCurveToPoint: CGPointMake(50.84, 1) controlPoint1: CGPointMake(50.84, 5.65) controlPoint2: CGPointMake(50.84, 2.92)];
+    [brickShapePath addLineToPoint: CGPointMake(50.85, 1)];
     [brickShapePath closePath];
     [fillColor setFill];
     [brickShapePath fill];
@@ -153,6 +178,18 @@
     UIBezierPath* grip_line4Path = [UIBezierPath bezierPathWithRect: CGRectMake(15, 35.5, 35, 1)];
     [strokeColor setFill];
     [grip_line4Path fill];
+    
+    UIBezierPath* grip_line5Path = [UIBezierPath bezierPathWithRect: CGRectMake(15, 29.5, 35, 1)];
+    [strokeColor setFill];
+    [grip_line5Path fill];
+    
+    UIBezierPath* grip_line6Path = [UIBezierPath bezierPathWithRect: CGRectMake(15, 59.5, 35, 1)];
+    [strokeColor setFill];
+    [grip_line6Path fill];
+    
+    UIBezierPath* grip_line7Path = [UIBezierPath bezierPathWithRect: CGRectMake(15, 65.5, 35, 1)];
+    [strokeColor setFill];
+    [grip_line7Path fill];
 }
 
 @end

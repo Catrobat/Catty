@@ -29,6 +29,11 @@
 
 @implementation ChangeVariableBrickCell
 
+- (void)drawRect:(CGRect)rect
+{
+    [BrickShapeFactory drawLargeSquareBrickShape:UIColor.whiteColor fillColor:UIColor.varibaleBrickRedColor];
+}
+
 + (CGFloat)cellHeight
 {
     return kBrickHeight3h;

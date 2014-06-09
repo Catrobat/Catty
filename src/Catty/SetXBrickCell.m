@@ -28,6 +28,11 @@
 
 @implementation SetXBrickCell
 
+- (void)drawRect:(CGRect)rect
+{
+    [BrickShapeFactory drawSmallSquareBrickShape:UIColor.whiteColor fillColor:UIColor.motionBrickBlueColor];
+}
+
 - (void)hookUpSubViews:(NSArray *)inlineViewSubViews
 {
     self.textLabel = inlineViewSubViews[0];

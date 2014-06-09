@@ -115,4 +115,29 @@
     return [UIColor colorWithRed:13.0f/255.0f green:13.0f/255.0f blue:13.0f/255.0f alpha:1.0f];
 }
 
++ (UIColor*)lookBrickGreenColor
+{
+    return [UIColor colorWithRed:119.0f/255.0f green:153.0f/255.0f blue:74.0f/255.0f alpha:1.0f];
+}
+
++ (UIColor*)motionBrickBlueColor
+{
+    return [UIColor colorWithRed:86.0f/255.0f green:133.0f/255.0f blue:193.0f/255.0f alpha:1.0f];
+}
+
++ (UIColor*)controlBrickOrangeColor
+{
+    return [UIColor colorWithRed:230.0f/255.0f green:144.0f/255.0f blue:97.0f/255.0f alpha:1.0f];
+}
+
++ (UIColor*)varibaleBrickRedColor
+{
+    return [UIColor colorWithRed:219.0f/255.0f green:92.0f/255.0f blue:86.0f/255.0f alpha:1.0f];
+}
+
++ (UIColor*)soundBrickVioletColor
+{
+    return [UIColor colorWithRed:128.0f/255.0f green:77.0f/255.0f blue:188.0f/255.0f alpha:1.0f];
+}
+
 @end

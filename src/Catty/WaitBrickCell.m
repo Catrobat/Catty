@@ -29,6 +29,11 @@
 
 @implementation WaitBrickCell
 
+- (void)drawRect:(CGRect)rect
+{
+    [BrickShapeFactory drawSmallSquareBrickShape:UIColor.whiteColor fillColor:UIColor.controlBrickOrangeColor];
+}
+
 - (void)hookUpSubViews:(NSArray *)inlineViewSubViews
 {
     self.LeftTextLabel = inlineViewSubViews[0];

@@ -100,12 +100,12 @@
 // ----------------- REFACTOR END -------------------
 
 @interface BrickCell ()
-@property (nonatomic, strong) NSArray *brickCategoryColors;
+
 
 // subviews
 @property (nonatomic, weak) BrickCellInlineView *inlineView;
-@property (nonatomic, weak) UIImageView *backgroundImageView;
-@property (nonatomic, weak) UIImageView *imageView;
+//@property (nonatomic, weak) UIImageView *backgroundImageView;
+//@property (nonatomic, weak) UIImageView *imageView;
 
 @property (nonatomic, assign) BOOL editing;
 
@@ -144,26 +144,26 @@
 }
 
 // lazy instantiation
-- (UIImageView*)backgroundImageView
-{
-    if (! _backgroundImageView) {
-        UIImageView *backgroundImageView = [[UIImageView alloc] initWithFrame:CGRectZero];
-        [self addSubview:backgroundImageView];
-        _backgroundImageView = backgroundImageView;
-    }
-    return _backgroundImageView;
-}
+//- (UIImageView*)backgroundImageView
+//{
+//    if (! _backgroundImageView) {
+//        UIImageView *backgroundImageView = [[UIImageView alloc] initWithFrame:CGRectZero];
+//        [self addSubview:backgroundImageView];
+//        _backgroundImageView = backgroundImageView;
+//    }
+//    return _backgroundImageView;
+//}
 
 // lazy instantiation
-- (UIImageView*)imageView
-{
-    if (! _imageView) {
-        UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectZero];
-        [self addSubview:imageView];
-        _imageView = imageView;
-    }
-    return _imageView;
-}
+//- (UIImageView*)imageView
+//{
+//    if (! _imageView) {
+//        UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectZero];
+//        [self addSubview:imageView];
+//        _imageView = imageView;
+//    }
+//    return _imageView;
+//}
 
 // lazy instantiation
 - (BrickCellInlineView*)inlineView
@@ -271,41 +271,41 @@
 //    self.inlineView.layer.borderColor=[UIColor whiteColor].CGColor;
 }
 
-- (void)setupBrickPatternImage
-{
-    NSMutableDictionary *imageCache = [BrickCell imageCache];
-    NSString *imageName = [self brickImageName];
-    UIImage *brickPatternImage = [imageCache objectForKey:imageName];
-    if (! brickPatternImage) {
-        brickPatternImage = [UIImage imageNamed:imageName];
-        [imageCache setObject:brickPatternImage forKey:imageName];
-    }
-    self.imageView.frame = CGRectMake(kBrickPatternImageViewOffsetX, kBrickPatternImageViewOffsetY, brickPatternImage.size.width, brickPatternImage.size.height);
-    self.imageView.image = brickPatternImage;
-//    self.imageView.backgroundColor = [UIColor clearColor];
-    // just to test layout
-//    self.imageView.layer.borderWidth=1.0f;
-//    self.imageView.layer.borderColor=[UIColor whiteColor].CGColor;
-}
+//- (void)setupBrickPatternImage
+//{
+//    NSMutableDictionary *imageCache = [BrickCell imageCache];
+//    NSString *imageName = [self brickImageName];
+//    UIImage *brickPatternImage = [imageCache objectForKey:imageName];
+//    if (! brickPatternImage) {
+//        brickPatternImage = [UIImage imageNamed:imageName];
+//        [imageCache setObject:brickPatternImage forKey:imageName];
+//    }
+//    self.imageView.frame = CGRectMake(kBrickPatternImageViewOffsetX, kBrickPatternImageViewOffsetY, brickPatternImage.size.width, brickPatternImage.size.height);
+//    self.imageView.image = brickPatternImage;
+////    self.imageView.backgroundColor = [UIColor clearColor];
+//    // just to test layout
+////    self.imageView.layer.borderWidth=1.0f;
+////    self.imageView.layer.borderColor=[UIColor whiteColor].CGColor;
+//}
 
-- (void)setupBrickPatternBackgroundImage
-{
-    NSMutableDictionary *imageCache = [BrickCell imageCache];
-    NSString *imageName = [[self brickImageName] stringByAppendingString:kBrickBackgroundImageNameSuffix];
-    UIImage *brickBackgroundPatternImage = [imageCache objectForKey:imageName];
-    if (! brickBackgroundPatternImage) {
-        brickBackgroundPatternImage = [UIImage imageNamed:imageName];
-        [imageCache setObject:brickBackgroundPatternImage forKey:imageName];
-    }
-    CGRect frame = CGRectMake(kBrickPatternBackgroundImageViewOffsetX, kBrickPatternBackgroundImageViewOffsetY, (self.frame.size.width-kBrickInlineViewOffsetX), brickBackgroundPatternImage.size.height);
-    self.backgroundImageView.frame = frame;
-    UIGraphicsBeginImageContext(self.backgroundImageView.frame.size);
-    [brickBackgroundPatternImage drawInRect:self.backgroundImageView.bounds];
-    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
-    UIGraphicsEndImageContext();
-    self.backgroundImageView.backgroundColor = [UIColor colorWithPatternImage:image];
-    [self sendSubviewToBack:self.backgroundImageView];
-}
+//- (void)setupBrickPatternBackgroundImage
+//{
+//    NSMutableDictionary *imageCache = [BrickCell imageCache];
+//    NSString *imageName = [[self brickImageName] stringByAppendingString:kBrickBackgroundImageNameSuffix];
+//    UIImage *brickBackgroundPatternImage = [imageCache objectForKey:imageName];
+//    if (! brickBackgroundPatternImage) {
+//        brickBackgroundPatternImage = [UIImage imageNamed:imageName];
+//        [imageCache setObject:brickBackgroundPatternImage forKey:imageName];
+//    }
+//    CGRect frame = CGRectMake(kBrickPatternBackgroundImageViewOffsetX, kBrickPatternBackgroundImageViewOffsetY, (self.frame.size.width-kBrickInlineViewOffsetX), brickBackgroundPatternImage.size.height);
+//    self.backgroundImageView.frame = frame;
+//    UIGraphicsBeginImageContext(self.backgroundImageView.frame.size);
+//    [brickBackgroundPatternImage drawInRect:self.backgroundImageView.bounds];
+//    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
+//    UIGraphicsEndImageContext();
+//    self.backgroundImageView.backgroundColor = [UIColor colorWithPatternImage:image];
+//    [self sendSubviewToBack:self.backgroundImageView];
+//}
 
 #pragma mark - setup methods
 - (void)hookUpSubViews:(NSArray *)inlineViewSubViews
@@ -317,15 +317,15 @@
 
 - (void)renderSubViews
 {
-    [self.backgroundImageView removeFromSuperview];
-    [self.imageView removeFromSuperview];
+//    [self.backgroundImageView removeFromSuperview];
+//    [self.imageView removeFromSuperview];
     [self.inlineView removeFromSuperview];
-    self.backgroundImageView = nil;
-    self.imageView = nil;
+//    self.backgroundImageView = nil;
+//    self.imageView = nil;
     self.inlineView = nil;
     [self setupView];
-    [self setupBrickPatternImage];
-    [self setupBrickPatternBackgroundImage];
+//    [self setupBrickPatternImage];
+//    [self setupBrickPatternBackgroundImage];
     [self setupInlineView];
     [self addSubview:self.deleteButton];
 }
@@ -339,8 +339,8 @@
         self.backgroundColor = [UIColor clearColor];
         self.contentMode = UIViewContentModeScaleToFill;
         self.clipsToBounds = NO;
-        self.backgroundImageView.clipsToBounds = NO;
-        self.imageView.clipsToBounds = NO;
+//        self.backgroundImageView.clipsToBounds = NO;
+//        self.imageView.clipsToBounds = NO;
         self.opaque = NO;
     }
     return self;
