@@ -509,14 +509,6 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
     }
 }
 
-//- (void)collectionView:(UICollectionView *)collectionView itemAtIndexPath:(NSIndexPath *)fromIndexPath
-//                                                     didMoveToIndexPath:(NSIndexPath *)toIndexPath
-//{
-//  //BUG need forced reload when scrolling out of screen height
-//    [collectionView reloadSections:[NSIndexSet indexSetWithIndex:toIndexPath.section]];
-//}
-
-
 - (void)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout
                                 willBeginDraggingItemAtIndexPath:(NSIndexPath *)indexPath
 {

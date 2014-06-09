@@ -282,7 +282,7 @@
     }
     self.imageView.frame = CGRectMake(kBrickPatternImageViewOffsetX, kBrickPatternImageViewOffsetY, brickPatternImage.size.width, brickPatternImage.size.height);
     self.imageView.image = brickPatternImage;
-    self.imageView.backgroundColor = [UIColor clearColor];
+//    self.imageView.backgroundColor = [UIColor clearColor];
     // just to test layout
 //    self.imageView.layer.borderWidth=1.0f;
 //    self.imageView.layer.borderColor=[UIColor whiteColor].CGColor;
