@@ -30,6 +30,11 @@
 
 @implementation WhenScriptCell
 
+- (void)drawRect:(CGRect)rect
+{
+    [BrickShapeFactory drawSmallRoundedControlBrickShape:UIColor.whiteColor fillColor:UIColor.controlBrickOrangeColor];
+}
+
 - (kBrickShapeType)brickShapeType
 {
     return kBrickShapeRoundedSmall;

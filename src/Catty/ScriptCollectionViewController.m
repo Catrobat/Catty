@@ -399,12 +399,12 @@
         }
         
         CGFloat height = [brickCellClass cellHeight];
-        height -= kBrickOverlapHeight; // reduce height for overlapping
+//        height -= kBrickOverlapHeight; // reduce height for overlapping
         
         // last brick in last section has no overlapping at the bottom
         if (indexPath.section == ([self.object.scriptList count] - 1)) {
             if (indexPath.row == [script.brickList count]) { // there are ([brickList count]+1) cells
-                height += kBrickOverlapHeight;
+//                height += kBrickOverlapHeight;
             }
         }
         size = CGSizeMake(width, height);

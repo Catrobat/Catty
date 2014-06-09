@@ -30,6 +30,11 @@
 
 @implementation BroadcastScriptCell
 
+- (void)drawRect:(CGRect)rect
+{
+    [BrickShapeFactory drawLargeRoundedControlBrickShape:UIColor.whiteColor fillColor:UIColor.controlBrickOrangeColor];
+}
+
 - (kBrickShapeType)brickShapeType
 {
     return kBrickShapeRoundedBig;
