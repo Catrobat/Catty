@@ -25,10 +25,12 @@
 #import "UIColor+CatrobatUIColorExtensions.h"
 #import "UIDefines.h"
 #import "ScriptCollectionViewController.h"
+#import "FXBlurView.h"
 
 @interface BrickSelectionView ()
 @property (strong, nonatomic) CALayer *topBorder;
 @property (assign, nonatomic, getter = isOnScreen) BOOL onScreen;
+@property (strong, nonatomic) FXBlurView *blurView;
 
 @end
 
@@ -38,7 +40,7 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
-        self.backgroundColor = UIColor.whiteColor;
+        self.backgroundColor = UIColor.clearColor;
         [self addSubview:self.brickCollectionView];
         [self addSubview:self.textLabel];
     }
@@ -52,6 +54,7 @@
          self.onScreen = YES;
         
         self.frame = CGRectMake(0.0f, CGRectGetHeight(UIScreen.mainScreen.bounds), CGRectGetWidth(self.bounds), CGRectGetHeight(self.bounds));
+        self.blurView.underlyingView = viewController.view;
         
         self.textLabel.textColor = self.tintColor;
         self.topBorder.backgroundColor = self.tintColor.CGColor;
@@ -70,10 +73,11 @@
             view.transform = CGAffineTransformScale(CGAffineTransformMakeTranslation(0.0f, -20.0f), 0.95f, 0.95f);
         } completion:^(BOOL finished) {
             if (finished) {
+                _blurView.dynamic = NO;
                 dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
                     [UIView animateWithDuration:0.25f animations:^{
-                        self.textLabel.transform = CGAffineTransformMakeTranslation((-1) * self.textLabel.bounds.size.width, 0.0f);
                         self.textLabel.alpha = 0.0f;
+                        self.textLabel.transform = CGAffineTransformMakeScale(0.1f, 0.1f);
                     } completion:NULL];
                 });
             }
@@ -109,9 +113,10 @@
 - (UILabel *)textLabel
 {
     if (!_textLabel) {
-        _textLabel = [[UILabel alloc]initWithFrame:CGRectMake(5.0f, 2.5f, 80.0f, 15.0f)];
+        _textLabel = [[UILabel alloc]initWithFrame:CGRectMake(0.0f, 0.0f, CGRectGetWidth(self.bounds), 16.0f)];
+        _textLabel.textAlignment = NSTextAlignmentCenter;
+        _textLabel.center = CGPointMake(self.center.x, _textLabel.center.y + 2.5f);
         _textLabel.font = [UIFont systemFontOfSize:13.0f];
-        _textLabel.textAlignment = NSTextAlignmentLeft;
     }
     return _textLabel;
 }
@@ -121,7 +126,7 @@
     if (!_brickCollectionView) {
         UICollectionViewFlowLayout *layout = [UICollectionViewFlowLayout new];
         _brickCollectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0.0f, 0.0f, CGRectGetWidth(self.bounds), CGRectGetHeight(self.bounds)) collectionViewLayout:layout];
-        _brickCollectionView.backgroundColor = UIColor.blackColor;
+        _brickCollectionView.backgroundColor = UIColor.clearColor;
         _brickCollectionView.scrollEnabled = YES;
         _brickCollectionView.bounces = YES;
         _brickCollectionView.delaysContentTouches = NO;
@@ -137,6 +142,22 @@
         _topBorder.frame = CGRectMake(0.0f, 0.0f, CGRectGetWidth(self.bounds), 1.0f);
     }
     return _topBorder;
+}
+
+- (FXBlurView *)blurView
+{
+    if (! _blurView) {
+        _blurView = [[FXBlurView alloc] initWithFrame:self.bounds];
+        _blurView.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
+        _blurView.userInteractionEnabled = NO;
+        _blurView.tintColor = UIColor.clearColor;
+        _blurView.blurRadius = 20.f;
+        _blurView.alpha = 0.9f;
+        [self addSubview:self.blurView];
+        [self sendSubviewToBack:_blurView];
+    }
+    _blurView.dynamic = YES;
+    return _blurView;
 }
 
 - (BOOL)active

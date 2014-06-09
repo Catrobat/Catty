@@ -328,8 +328,6 @@
 {
     BrickCell *brickCell = nil;
     
-    NSLog(@"Cell for item add indexpath");
-    
     if (self.collectionView == collectionView) {
         Script *script = [self.object.scriptList objectAtIndex:indexPath.section];
         if (! script) {
@@ -514,10 +512,10 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
 //- (void)collectionView:(UICollectionView *)collectionView itemAtIndexPath:(NSIndexPath *)fromIndexPath
 //                                                     didMoveToIndexPath:(NSIndexPath *)toIndexPath
 //{
-//    [collectionView deselectItemAtIndexPath:toIndexPath animated:NO];
-//    [collectionView deselectItemAtIndexPath:fromIndexPath animated:NO];
+//  //BUG need forced reload when scrolling out of screen height
+//    [collectionView reloadSections:[NSIndexSet indexSetWithIndex:toIndexPath.section]];
 //}
-//
+
 
 - (void)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout
                                 willBeginDraggingItemAtIndexPath:(NSIndexPath *)indexPath
@@ -559,11 +557,9 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
 - (void)singleBrickSelectionView:(SingleBrickSelectionView *)singleBrickSelectionView didShowWithBrick:(id<BrickProtocol>)brick
               replicantBrickView:(UIView *)brickView
 {
-    static NSInteger const kMinVisibleCells = 1;
-    
     // TODO just handle/add normal bricks at the moment
     NSIndexPath *indexPath;
-    if (self.collectionView.visibleCells.count > kMinVisibleCells) {
+    if (self.collectionView.visibleCells.count) {
         indexPath = [self.collectionView indexPathForItemAtPoint:CGPointMake(CGRectGetMidX(self.collectionView.bounds), CGRectGetMidY(self.collectionView.bounds))];
         
         if (indexPath.item == 0) {
@@ -575,23 +571,23 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
     
     __weak typeof(self.collectionView) weakCollectionView = self.collectionView;
     [self insertBrick:brick atIndexPath:indexPath intoScriptList:script copy:NO completion:^{
+        NSIndexPath *newCellIndexPath = [NSIndexPath indexPathForItem:indexPath.item + 1 inSection:indexPath.section];
         
-        dispatch_async(dispatch_get_main_queue(), ^{
-            BrickCell *cell = (BrickCell *)[weakCollectionView cellForItemAtIndexPath:[NSIndexPath indexPathForRow:indexPath.item + 1 inSection:indexPath.section]];
-            
-            CGFloat yOffset = weakCollectionView.contentOffset.y;
-            cell.alpha = 0.0f;
-            [UIView animateWithDuration:0.4f delay:0.0f usingSpringWithDamping:1.5f initialSpringVelocity:0.5f
-                                options:UIViewAnimationOptionCurveEaseIn
+        BrickCell *newCell = (BrickCell *)[weakCollectionView cellForItemAtIndexPath:newCellIndexPath];
+        CGFloat yOffset = weakCollectionView.contentOffset.y;
+        
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.3f * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            [UIView animateWithDuration:0.3f delay:0.0f usingSpringWithDamping:0.7f initialSpringVelocity:1.5f
+                                options:UIViewAnimationOptionCurveEaseInOut
                              animations:^{
-                                 brickView.center = CGPointMake(CGRectGetMidX(cell.bounds), cell.center.y - yOffset);
-                                 brickView.transform = CGAffineTransformIdentity;
+                                 brickView.center = CGPointMake(CGRectGetMidX(newCell.bounds), newCell.center.y - yOffset);
                                  singleBrickSelectionView.dimview.alpha = 0.0f;
+                                 brickView.layer.shadowOpacity = 0.0f;
                              } completion:^(BOOL finished) {
                                  if (finished) {
-                                     cell.alpha = 1.0f;
-                                     [cell animateBrick:YES];
+                                     newCell.alpha = 1.0f;
                                      [singleBrickSelectionView removeFromSuperview];
+                                     [newCell animateBrick:YES];
                                  }
                              }];
         });
@@ -731,6 +727,10 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
 
 - (void)insertBrick:(Brick *)brick atIndexPath:(NSIndexPath *)indexPath intoScriptList:(Script *)script copy:(BOOL)copy completion:(void(^)())completionBlock
 {
+    for (BrickCell *cell in self.collectionView.visibleCells) {
+        [cell animateBrick:NO];
+    }
+    
     if (copy) {
         [self.collectionView performBatchUpdates:^{
             [script.brickList insertObject:brick atIndex:indexPath.item ];
@@ -742,7 +742,7 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
         }];
     } else {
         [self.collectionView performBatchUpdates:^{
-            if (! script.brickList.count) {
+            if (!script.brickList.count) {
                 [script.brickList addObject:brick];
                 [self.collectionView insertItemsAtIndexPaths:@[indexPath]];
             } else {
@@ -752,7 +752,10 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
             
         } completion:^(BOOL finished) {
             if (finished) {
-                [self.collectionView reloadData];
+                NSIndexPath *newCellIndexPath = [NSIndexPath indexPathForItem:indexPath.item + 1 inSection:indexPath.section];
+                [self.collectionView reloadItemsAtIndexPaths:@[indexPath, newCellIndexPath]];
+                BrickCell *newCell = (BrickCell *)[self.collectionView cellForItemAtIndexPath:newCellIndexPath];
+                newCell.alpha = 0.0f;
                 if (completionBlock) completionBlock();
             }
         }];

@@ -56,16 +56,16 @@
     
     self.brickCellViewCopy.layer.shadowColor = UIColor.whiteColor.CGColor;
     self.brickCellViewCopy.layer.shadowOffset = CGSizeMake(0.0f, 0.0f);
-    self.brickCellViewCopy.layer.shadowRadius = 7.0f;
-    self.brickCellViewCopy.layer.shadowOpacity = 0.7f;
+    self.brickCellViewCopy.layer.shadowRadius = 15.0f;
+    self.brickCellViewCopy.layer.shadowOpacity = 0.4f;
     
     [self.brickCellViewCopy addGestureRecognizer:self.longpressRecognizer];
     
     self.alpha = 0.0f;
     self.brickCellViewCopy.transform = CGAffineTransformMakeScale(0.1f, 0.1f);
-    [UIView animateWithDuration:0.25f delay:0.0f usingSpringWithDamping:0.7f initialSpringVelocity:1.0f options:UIViewAnimationOptionCurveEaseInOut animations:^{
+    [UIView animateWithDuration:0.5f delay:0.0f usingSpringWithDamping:0.6f initialSpringVelocity:1.5f options:UIViewAnimationOptionCurveEaseInOut animations:^{
         self.alpha = 1.0f;
-        self.brickCellViewCopy.transform = CGAffineTransformMakeScale(0.95f, 0.95f);
+        self.brickCellViewCopy.transform = CGAffineTransformIdentity;
     } completion:^(BOOL finished) {
         [self.delegate singleBrickSelectionView:self didShowWithBrick:self.brickCell.brick replicantBrickView:self.brickCellViewCopy];
         if (completionBlock) completionBlock();

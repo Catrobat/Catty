@@ -624,8 +624,8 @@
     if (animate) {
         CAKeyframeAnimation *animation = [CAKeyframeAnimation animation];
         animation.keyPath = @"transform";
-        animation.values = @[ [NSValue valueWithCATransform3D:CATransform3DMakeRotation(M_PI/64.0f, 0.1f, 0.1f, 0.1f)],
-                              [NSValue valueWithCATransform3D:CATransform3DMakeRotation(M_PI/64.0f, -0.1f, -0.1f, -0.1f)] ];
+        animation.values = @[[NSValue valueWithCATransform3D:CATransform3DMakeRotation(M_PI/200.0f, 0.1f, 0.1f, 0.1f)],
+                              [NSValue valueWithCATransform3D:CATransform3DMakeRotation(M_PI/200.0f, -0.1f, -0.1f, -0.1f)]];
         animation.autoreverses = YES ;
         animation.repeatCount = HUGE_VAL;
         animation.duration = 0.1f ;
