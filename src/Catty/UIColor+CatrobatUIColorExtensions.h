@@ -54,11 +54,21 @@
 
 + (UIColor*)lookBrickGreenColor;
 
++ (UIColor*)lookBrickStrokeColor;
+
 + (UIColor*)motionBrickBlueColor;
+
++ (UIColor*)motionBrickStrokeColor;
 
 + (UIColor*)controlBrickOrangeColor;
 
++ (UIColor*)controlBrickStrokeColor;
+
 + (UIColor*)varibaleBrickRedColor;
 
++ (UIColor*)variableBrickStrokeColor;
+
 + (UIColor*)soundBrickVioletColor;
+
++ (UIColor*)soundBrickStrokeColor;
 @end

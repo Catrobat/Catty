@@ -120,9 +120,19 @@
     return [UIColor colorWithRed:119.0f/255.0f green:153.0f/255.0f blue:74.0f/255.0f alpha:1.0f];
 }
 
++ (UIColor*)lookBrickStrokeColor
+{
+    return [UIColor colorWithRed:185.0f/255.0f green:220.0f/255.0f blue:110.0f/255.0f alpha:1.0f];
+}
+
 + (UIColor*)motionBrickBlueColor
 {
     return [UIColor colorWithRed:86.0f/255.0f green:133.0f/255.0f blue:193.0f/255.0f alpha:1.0f];
+}
+
++ (UIColor*)motionBrickStrokeColor
+{
+    return [UIColor colorWithRed:179.0f/255.0f green:203.0f/255.0f blue:255.0f/255.0f alpha:1.0f];
 }
 
 + (UIColor*)controlBrickOrangeColor
@@ -130,14 +140,29 @@
     return [UIColor colorWithRed:230.0f/255.0f green:144.0f/255.0f blue:97.0f/255.0f alpha:1.0f];
 }
 
++ (UIColor*)controlBrickStrokeColor
+{
+    return [UIColor colorWithRed:247.0f/255.0f green:208.0f/255.0f blue:187.0f/255.0f alpha:1.0f];
+}
+
 + (UIColor*)varibaleBrickRedColor
 {
     return [UIColor colorWithRed:219.0f/255.0f green:92.0f/255.0f blue:86.0f/255.0f alpha:1.0f];
 }
 
++ (UIColor*)variableBrickStrokeColor
+{
+    return [UIColor colorWithRed:238.0f/255.0f green:149.0f/255.0f blue:149.0f/255.0f alpha:1.0f];
+}
+
 + (UIColor*)soundBrickVioletColor
 {
     return [UIColor colorWithRed:128.0f/255.0f green:77.0f/255.0f blue:188.0f/255.0f alpha:1.0f];
+}
+
++ (UIColor*)soundBrickStrokeColor
+{
+    return [UIColor colorWithRed:179.0f/255.0f green:137.0f/255.0f blue:255.0f/255.0f alpha:1.0f];
 }
 
 @end

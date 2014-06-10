@@ -31,7 +31,7 @@
 
 - (void)drawRect:(CGRect)rect
 {
-    [BrickShapeFactory drawSmallSquareBrickShape:UIColor.whiteColor fillColor:UIColor.soundBrickVioletColor];
+    [BrickShapeFactory drawSmallSquareBrickShape:UIColor.soundBrickStrokeColor fillColor:UIColor.soundBrickVioletColor];
 }
 
 - (void)hookUpSubViews:(NSArray *)inlineViewSubViews
