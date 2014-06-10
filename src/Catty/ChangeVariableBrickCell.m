@@ -31,7 +31,7 @@
 
 - (void)drawRect:(CGRect)rect
 {
-    [BrickShapeFactory drawLargeSquareBrickShape:UIColor.variableBrickStrokeColor fillColor:UIColor.varibaleBrickRedColor];
+    [BrickShapeFactory.sharedBrickShapeFactory drawLargeSquareBrickShape:UIColor.variableBrickStrokeColor fillColor:UIColor.varibaleBrickRedColor];
 }
 
 + (CGFloat)cellHeight

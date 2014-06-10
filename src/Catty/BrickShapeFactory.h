@@ -28,15 +28,15 @@
 
 // normal square bricks
 // 44px height
-+ (void)drawSmallSquareBrickShape:(UIColor *)strokeColor fillColor:(UIColor *)fillColor;
+- (void)drawSmallSquareBrickShape:(UIColor *)strokeColor fillColor:(UIColor *)fillColor;
 // 71px height
-+ (void)drawMediumSquareBrickShape:(UIColor *)strokeColor fillColor:(UIColor *)fillColor;
+- (void)drawMediumSquareBrickShape:(UIColor *)strokeColor fillColor:(UIColor *)fillColor;
 // 94px height
-+ (void)drawLargeSquareBrickShape:(UIColor *)strokeColor fillColor:(UIColor *)fillColor;
+- (void)drawLargeSquareBrickShape:(UIColor *)strokeColor fillColor:(UIColor *)fillColor;
 
 // control rounded bricks
-+ (void)drawSmallRoundedControlBrickShape:(UIColor *)strokeColor fillColor:(UIColor *)fillColor;
+- (void)drawSmallRoundedControlBrickShape:(UIColor *)strokeColor fillColor:(UIColor *)fillColor;
 
-+ (void)drawLargeRoundedControlBrickShape:(UIColor *)strokeColor fillColor:(UIColor *)fillColor;
+- (void)drawLargeRoundedControlBrickShape:(UIColor *)strokeColor fillColor:(UIColor *)fillColor;
 
 @end

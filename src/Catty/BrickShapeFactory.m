@@ -33,7 +33,7 @@
 }
 
 // shapes created with www.paintcodeapp.com
-+ (void)drawSmallSquareBrickShape:(UIColor *)strokeColor fillColor:(UIColor *)fillColor
+- (void)drawSmallSquareBrickShape:(UIColor *)strokeColor fillColor:(UIColor *)fillColor
 {
     // brickShape Drawing
     UIBezierPath* brickShapePath = UIBezierPath.bezierPath;
@@ -74,7 +74,7 @@
     
 }
 
-+ (void)drawMediumSquareBrickShape:(UIColor *)strokeColor fillColor:(UIColor *)fillColor
+- (void)drawMediumSquareBrickShape:(UIColor *)strokeColor fillColor:(UIColor *)fillColor
 {
     // brickShape Drawing
     UIBezierPath* brickShapePath = UIBezierPath.bezierPath;
@@ -129,7 +129,7 @@
     [grip_line5Path fill];
 }
 
-+ (void)drawLargeSquareBrickShape:(UIColor *)strokeColor fillColor:(UIColor *)fillColor
+- (void)drawLargeSquareBrickShape:(UIColor *)strokeColor fillColor:(UIColor *)fillColor
 {
     // brickShape Drawing
     UIBezierPath* brickShapePath = UIBezierPath.bezierPath;
@@ -191,7 +191,7 @@
     [grip_line7Path fill];
 }
 
-+ (void)drawSmallRoundedControlBrickShape:(UIColor *)strokeColor fillColor:(UIColor *)fillColor
+- (void)drawSmallRoundedControlBrickShape:(UIColor *)strokeColor fillColor:(UIColor *)fillColor
 {
     UIBezierPath* bezier2Path = UIBezierPath.bezierPath;
     [bezier2Path moveToPoint: CGPointMake(183.63, 22.73)];
@@ -236,7 +236,7 @@
     [grip_line3Path fill];
 }
 
-+ (void)drawLargeRoundedControlBrickShape:(UIColor *)strokeColor fillColor:(UIColor *)fillColor
+- (void)drawLargeRoundedControlBrickShape:(UIColor *)strokeColor fillColor:(UIColor *)fillColor
 {
     UIBezierPath* bezierPath = UIBezierPath.bezierPath;
     [bezierPath moveToPoint: CGPointMake(86.23, 2)];

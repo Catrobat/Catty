@@ -195,6 +195,7 @@
         _blurView.blurEnabled = YES;
         _blurView.blurRadius = 30.f;
         _blurView.dynamic = YES;
+        _blurView.updateInterval = 0.1f;
         _blurView.alpha = 0.f;
         _blurView.hidden = YES;
         [self.view addSubview:self.blurView];

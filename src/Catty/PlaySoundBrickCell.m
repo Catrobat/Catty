@@ -30,7 +30,7 @@
 
 -(void)drawRect:(CGRect)rect
 {
-    [BrickShapeFactory drawMediumSquareBrickShape:UIColor.soundBrickStrokeColor fillColor:UIColor.soundBrickVioletColor];
+    [BrickShapeFactory.sharedBrickShapeFactory drawMediumSquareBrickShape:UIColor.soundBrickStrokeColor fillColor:UIColor.soundBrickVioletColor];
 }
 
 + (CGFloat)cellHeight

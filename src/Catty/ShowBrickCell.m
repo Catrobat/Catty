@@ -30,7 +30,7 @@
 
 - (void)drawRect:(CGRect)rect
 {
-    [BrickShapeFactory drawSmallSquareBrickShape:UIColor.lookBrickStrokeColor fillColor:UIColor.lookBrickGreenColor];
+    [BrickShapeFactory.sharedBrickShapeFactory drawSmallSquareBrickShape:UIColor.lookBrickStrokeColor fillColor:UIColor.lookBrickGreenColor];
 }
 
 - (void)hookUpSubViews:(NSArray *)inlineViewSubViews
