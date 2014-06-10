@@ -239,7 +239,7 @@
         ScriptDeleteButton *button = (ScriptDeleteButton *)sender;
         NSIndexPath *indexPath = [self.collectionView indexPathForItemAtPoint:[self.collectionView convertPoint:button.center fromView:button.superview]];
         if (indexPath) {
-            [self removeScriptSectionWithIndexPath:indexPath];
+            [self removeBrickWithIndexPath:indexPath];
         }
         
     }
@@ -276,8 +276,7 @@
     [self.collectionView reloadData];
 
     if  ([notification.userInfo[@"brickDeleted"] boolValue]) {
-        [notification.userInfo[@"isScript"] boolValue] ? [self removeScriptSectionWithIndexPath:self.selectedIndexPath]
-                                                       : [self removeBrickFromScriptCollectionViewFromIndex:self.selectedIndexPath];
+        [self removeBrickWithIndexPath:self.selectedIndexPath];
     } else {
         BOOL copy = [notification.userInfo[@"copy"] boolValue];
         if (copy && [notification.userInfo[@"copiedCell"] isKindOfClass:BrickCell.class]) {
@@ -334,22 +333,15 @@
             NSString *scriptSubClassName = NSStringFromClass([script class]);
             brickCell = [collectionView dequeueReusableCellWithReuseIdentifier:scriptSubClassName forIndexPath:indexPath];
             brickCell.brick = script;
-            
-            // TODO refactor
-            [brickCell.deleteButton addTarget:self action:@selector(scriptDeleteButtonAction:) forControlEvents:UIControlEventTouchUpInside];
-
         } else {
             // case it's a normal brick
             Brick *brick = [script.brickList objectAtIndex:(indexPath.row - 1)];
             NSString *brickSubClassName = NSStringFromClass([brick class]);
             brickCell = [collectionView dequeueReusableCellWithReuseIdentifier:brickSubClassName forIndexPath:indexPath];
             brickCell.brick = brick;
-            
-            // TODO refactor
-            [brickCell.deleteButton addTarget:self action:@selector(scriptDeleteButtonAction:) forControlEvents:UIControlEventTouchUpInside];
-
         }
         brickCell.enabled = YES;
+        [brickCell.deleteButton addTarget:self action:@selector(scriptDeleteButtonAction:) forControlEvents:UIControlEventTouchUpInside];
 
     } else {
         if (collectionView == self.brickSelectionView.brickCollectionView) {
@@ -358,7 +350,6 @@
             brickCell = [collectionView dequeueReusableCellWithReuseIdentifier:brickTypeName
                                                                              forIndexPath:indexPath];
             brickCell.brick = [self.selectableBricks objectAtIndex:indexPath.section];
-            brickCell.enabled = NO;
         }
     }
     
@@ -450,30 +441,32 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
 {
     BrickCell *cell = (BrickCell*)[collectionView cellForItemAtIndexPath:indexPath];
     
-    if (collectionView == self.collectionView) {
-        self.selectedIndexPath =  indexPath;
-        BrickDetailViewController *brickDetailViewcontroller = [BrickDetailViewController new];
-        brickDetailViewcontroller.brickCell = cell;
-        self.brickScaleTransition.cell = cell;
-        self.brickScaleTransition.touchRect = cell.frame;
-        brickDetailViewcontroller.transitioningDelegate = self;
-        brickDetailViewcontroller.modalPresentationStyle = UIModalPresentationCustom;
-        self.collectionView.userInteractionEnabled = NO;
-        [self presentViewController:brickDetailViewcontroller animated:YES completion:^{
-            self.navigationController.navigationBar.userInteractionEnabled = NO;
-        }];
-    } else {
-    if ([collectionView isKindOfClass:self.brickSelectionView.brickCollectionView.class]) {
-        
-        [self.brickSelectionView dismissView:self withView:self.collectionView fastDismiss:YES completion:^{
-            [self.brickSelectionView removeFromSuperview];
-            [self setupToolBar];
-            
-            SingleBrickSelectionView *singleBrickSelectionView = [[SingleBrickSelectionView alloc] initWithFrame:self.view.bounds];
-            singleBrickSelectionView.delegate = self;
-                [singleBrickSelectionView showSingleBrickSelectionViewWithBrickCell:cell fromView:self.view
-                                                                               belowView:self.collectionView completion:NULL];
+    if (!self.isEditing) {
+        if (collectionView == self.collectionView) {
+            self.selectedIndexPath =  indexPath;
+            BrickDetailViewController *brickDetailViewcontroller = [BrickDetailViewController new];
+            brickDetailViewcontroller.brickCell = cell;
+            self.brickScaleTransition.cell = cell;
+            self.brickScaleTransition.touchRect = cell.frame;
+            brickDetailViewcontroller.transitioningDelegate = self;
+            brickDetailViewcontroller.modalPresentationStyle = UIModalPresentationCustom;
+            self.collectionView.userInteractionEnabled = NO;
+            [self presentViewController:brickDetailViewcontroller animated:YES completion:^{
+                self.navigationController.navigationBar.userInteractionEnabled = NO;
             }];
+        } else {
+            if ([collectionView isKindOfClass:self.brickSelectionView.brickCollectionView.class]) {
+                
+                [self.brickSelectionView dismissView:self withView:self.collectionView fastDismiss:YES completion:^{
+                    [self.brickSelectionView removeFromSuperview];
+                    [self setupToolBar];
+                    
+                    SingleBrickSelectionView *singleBrickSelectionView = [[SingleBrickSelectionView alloc] initWithFrame:self.view.bounds];
+                    singleBrickSelectionView.delegate = self;
+                    [singleBrickSelectionView showSingleBrickSelectionViewWithBrickCell:cell fromView:self.view
+                                                                              belowView:self.collectionView completion:NULL];
+                }];
+            }
         }
     }
 }
@@ -638,9 +631,9 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
     }
 }
 
-- (void)removeBrickFromScriptCollectionViewFromIndex:(NSIndexPath *)indexPath
+- (void)removeBrickWithIndexPath:(NSIndexPath *)indexPath
 {
-    if (indexPath) {
+    if (indexPath.item != 0) {
         Script *script = [self.object.scriptList objectAtIndex:indexPath.section];
         if (script.brickList.count) {
             [self.collectionView performBatchUpdates:^{
@@ -650,20 +643,17 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
                 [self.collectionView reloadData];
             }];
         }
-    }
-}
-
-- (void)removeScriptSectionWithIndexPath:(NSIndexPath *)indexPath
-{
-    if (indexPath.section <= self.collectionView.numberOfSections) {
-        Script *script = [self.object.scriptList objectAtIndex:indexPath.section];
-        [self.collectionView performBatchUpdates:^{
-            [self.object.scriptList removeObject:script];
-            [self.collectionView deleteSections:[NSIndexSet indexSetWithIndex:indexPath.section]];
-        } completion:^(BOOL finished) {
-            [self.collectionView reloadData];
-            self.placeHolderView.hidden = self.object.scriptList.count ? YES : NO;
-        }];
+    } else {
+        if (indexPath.section <= self.collectionView.numberOfSections) {
+            Script *script = [self.object.scriptList objectAtIndex:indexPath.section];
+            [self.collectionView performBatchUpdates:^{
+                [self.object.scriptList removeObject:script];
+                [self.collectionView deleteSections:[NSIndexSet indexSetWithIndex:indexPath.section]];
+            } completion:^(BOOL finished) {
+                [self.collectionView reloadData];
+                self.placeHolderView.hidden = self.object.scriptList.count ? YES : NO;
+            }];
+        }
     }
 }
 
@@ -758,9 +748,10 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
         self.navigationItem.title = kUINavigationItemTitleEditMenu;
         
         for (BrickCell *brickCell in self.collectionView.visibleCells) {
-            [UIView animateWithDuration:0.25f animations:^{
-                brickCell.center = CGPointMake(brickCell.center.x + kDeleteButtonTranslationOffset, brickCell.center.y);
-            }];
+            [UIView animateWithDuration:0.7f  delay:0.0f usingSpringWithDamping:0.6f initialSpringVelocity:1.5f options:UIViewAnimationOptionCurveEaseInOut animations:^{
+                brickCell.center = CGPointMake(brickCell.center.x + kDeleteButtonTranslationOffsetX, brickCell.center.y);
+                brickCell.deleteButton.alpha = 1.0f;
+                } completion:NULL];
         }
         
     } else {
@@ -768,6 +759,7 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
         for (BrickCell *brickCell in self.collectionView.visibleCells) {
             [UIView animateWithDuration:0.25f animations:^{
                 brickCell.center = CGPointMake(self.view.center.x, brickCell.center.y);
+                brickCell.deleteButton.alpha = 0.0f;
             }];
         }
     }

@@ -138,17 +138,33 @@
     
     if (brickcell.editing) {
         if (brickcell.frame.origin.x == 0.0f) {
-            brickcell.center = CGPointMake(self.center.x + kDeleteButtonTranslationOffset, self.center.y);
-            brickcell.userInteractionEnabled = NO;
+            brickcell.center = CGPointMake(self.center.x + kDeleteButtonTranslationOffsetX, self.center.y);
+            brickcell.deleteButton.alpha = 1.0f;
         }
     } else {
         if (brickcell.frame.origin.x > 0.0f) {
             brickcell.center = CGPointMake(CGRectGetMidX(UIScreen.mainScreen.bounds), brickcell.center.y);
-            brickcell.userInteractionEnabled = YES;
+            brickcell.deleteButton.alpha = 0.0f;
         }
     }
 }
 
+- (UIView *)hitTest:(CGPoint)point withEvent:(UIEvent *)event
+{
+    [super   hitTest:point withEvent:event];
+    CGPoint subPoint = [self.deleteButton convertPoint:point fromView:self];
+    UIView *result = [self.deleteButton hitTest:subPoint withEvent:event];
+    if (result != nil) {
+        return result;
+    }
+    
+    if (!self.clipsToBounds && !self.hidden && self.alpha > 0.01f) {
+        if (result != nil) {
+            return result;
+        }
+    }
+    return [super hitTest:point withEvent:event];
+}
 
 #pragma mark - getters and setters
 - (kBrickCategoryType)categoryType
@@ -188,8 +204,8 @@
     if (!_deleteButton) {
         _deleteButton = [[ScriptDeleteButton alloc] initWithFrame:CGRectMake(0.0f, 0.0f,
                         kBrickCellDeleteButtonWidthHeight, kBrickCellDeleteButtonWidthHeight)];
-        [self addSubview:self.deleteButton];
-//        _deleteButton.hidden = YES;
+        _deleteButton.alpha = 0.0f;
+        [self addSubview:_deleteButton];
     }
     return _deleteButton;
 }
