@@ -84,7 +84,6 @@
 		B40228911732A541004C4942 /* IfLogicElseBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = B40228901732A540004C4942 /* IfLogicElseBrick.m */; };
 		B40228961732A58E004C4942 /* IfLogicEndBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = B40228951732A58E004C4942 /* IfLogicEndBrick.m */; };
 		B40228A51732ADF4004C4942 /* PointToBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = B40228A41732ADF3004C4942 /* PointToBrick.m */; };
-		B40C306D170ECC1B000B872F /* BackgroundLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = B4D940B6170EC631003DDBFA /* BackgroundLayer.m */; };
 		B40C306E170ECC30000B872F /* CatrobatBaseCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B4D940CD170EC903003DDBFA /* CatrobatBaseCell.m */; };
 		B40C3071170ECC49000B872F /* DarkBlueGradientImageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B40C3070170ECC49000B872F /* DarkBlueGradientImageCell.m */; };
 		B43498501927A875002F9075 /* My First Program.catrobat in Resources */ = {isa = PBXBuildFile; fileRef = B434984F1927A863002F9075 /* My First Program.catrobat */; };
@@ -531,8 +530,6 @@
 		B4D940AB170EC2B7003DDBFA /* zip.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = zip.c; path = Catty/minizip/zip.c; sourceTree = SOURCE_ROOT; };
 		B4D940AC170EC2B7003DDBFA /* zip.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = zip.h; path = Catty/minizip/zip.h; sourceTree = SOURCE_ROOT; };
 		B4D940B4170EC600003DDBFA /* CellTagDefines.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CellTagDefines.h; sourceTree = "<group>"; };
-		B4D940B5170EC631003DDBFA /* BackgroundLayer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BackgroundLayer.h; sourceTree = "<group>"; };
-		B4D940B6170EC631003DDBFA /* BackgroundLayer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BackgroundLayer.m; sourceTree = "<group>"; };
 		B4D940B9170EC660003DDBFA /* TableUtil.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TableUtil.h; sourceTree = "<group>"; };
 		B4D940BA170EC660003DDBFA /* TableUtil.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TableUtil.m; sourceTree = "<group>"; };
 		B4D940BD170EC681003DDBFA /* NSString+CatrobatNSStringExtensions.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSString+CatrobatNSStringExtensions.h"; sourceTree = "<group>"; };
@@ -1040,7 +1037,6 @@
 				817B543D18F03BC700AF6BFE /* ViewControllerTransitions */,
 				CAC3141318BA84C700DAAB72 /* ComboBoxView */,
 				CA6881FE180AEA85008A7C99 /* TableView */,
-				B4D940B8170EC643003DDBFA /* BackgroundLayer */,
 				B4BCF438170ED5DB008EDF3A /* LoadingView */,
 			);
 			name = Custom;
@@ -1564,15 +1560,6 @@
 				CAEDFB8417EFE00600FDED0E /* UIDefines.h */,
 			);
 			name = Defines;
-			sourceTree = "<group>";
-		};
-		B4D940B8170EC643003DDBFA /* BackgroundLayer */ = {
-			isa = PBXGroup;
-			children = (
-				B4D940B5170EC631003DDBFA /* BackgroundLayer.h */,
-				B4D940B6170EC631003DDBFA /* BackgroundLayer.m */,
-			);
-			name = BackgroundLayer;
 			sourceTree = "<group>";
 		};
 		B4D940BB170EC664003DDBFA /* TableUtil */ = {
@@ -2880,7 +2867,6 @@
 				B40C306E170ECC30000B872F /* CatrobatBaseCell.m in Sources */,
 				CA75C24A18A9618000FC8C2F /* PlaceAtBrickCell.m in Sources */,
 				815420D9191A51F200E628D2 /* FBShimmeringLayer.m in Sources */,
-				B40C306D170ECC1B000B872F /* BackgroundLayer.m in Sources */,
 				B4D940D1170EC9ED003DDBFA /* NSString+CatrobatNSStringExtensions.m in Sources */,
 				81D3C9F61945E54200DB71E1 /* BrickShapeFactory.m in Sources */,
 				B4D940D0170EC9E9003DDBFA /* UIColor+CatrobatUIColorExtensions.m in Sources */,

@@ -21,7 +21,6 @@
  */
 
 #import "DarkBlueGradientCell.h"
-#import "BackgroundLayer.h"
 #import "Util.h"
 #import "TableUtil.h"
 #import "UIColor+CatrobatUIColorExtensions.h"
@@ -38,7 +37,7 @@
 
 -(void)configure
 {
-    self.backgroundColor = UIColor.cellBlueColor;
+    self.backgroundColor = UIColor.darkBlueColor;
 }
 
 @end

@@ -74,30 +74,28 @@
     }
 }
 
-#pragma mark - view events
+
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
+    self.view.backgroundColor = UIColor.backgroundColor;
+    self.imageView.backgroundColor =  UIColor.backgroundColor;
+    self.navigationController.toolbar.hidden = YES;
+    self.navigationController.title = self.title = self.imageName;
+}
+
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    UIColor *backgroundColor = [UIColor darkBlueColor];
-    self.view.backgroundColor = backgroundColor;
-    self.imageView.backgroundColor = backgroundColor;
-    self.navigationController.toolbar.hidden = YES;
     if ((! self.imageView.image) && self.imagePath) {
         [self loadImage];
     }
-    self.navigationController.title = self.title = self.imageName;
 }
 
 - (void)viewWillDisappear:(BOOL)animated
 {
     [super viewWillDisappear:animated];
     self.navigationController.toolbar.hidden = NO;
-}
-
-- (void)viewDidUnload
-{
-    self.imageView = nil;
-    [super viewDidUnload];
 }
 
 #pragma mark - scroll view delegates

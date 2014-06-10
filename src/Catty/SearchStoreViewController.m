@@ -57,20 +57,20 @@
     [self initSearchView];
 
     self.searchDisplayController.displaysSearchBarInNavigationBar = NO;
-    self.searchDisplayController.searchBar.backgroundColor = [UIColor darkBlueColor];
-    self.tableView.backgroundView = [[UIImageView alloc] initWithImage:[UIImage imageWithColor:[UIColor darkBlueColor]]];
+    self.searchDisplayController.searchBar.backgroundColor = UIColor.backgroundColor;
+    self.tableView.backgroundColor = UIColor.backgroundColor;
     [self.searchDisplayController setActive:YES animated:YES];
     [self.searchDisplayController.searchBar becomeFirstResponder];
     self.searchDisplayController.searchBar.delegate = self;
     self.checkSearch = YES;
-    self.searchDisplayController.searchBar.barTintColor = [UIColor darkBlueColor];
+    self.searchDisplayController.searchBar.barTintColor = UIColor.navBarColor;
     self.searchDisplayController.searchBar.barStyle = UISearchBarStyleMinimal;
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
     self.tableView.separatorColor = UIColor.skyBlueColor;
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
 
     [self.searchBar becomeFirstResponder];
-    self.view.backgroundColor = [UIColor darkBlueColor];
+    self.view.backgroundColor = UIColor.backgroundColor;
     [[UITextField appearanceWhenContainedIn:[UISearchBar class], nil] setTextColor:[UIColor lightOrangeColor]];
     self.edgesForExtendedLayout = UIRectEdgeAll;
     self.tableView.contentInset = UIEdgeInsetsMake(0., 0., CGRectGetHeight(self.tabBarController.tabBar.frame)+44, 0);

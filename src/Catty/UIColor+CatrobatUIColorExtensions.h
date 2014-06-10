@@ -71,4 +71,6 @@
 + (UIColor*)soundBrickVioletColor;
 
 + (UIColor*)soundBrickStrokeColor;
+
++ (UIColor*)backgroundColor;
 @end

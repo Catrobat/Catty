@@ -84,7 +84,7 @@
 #pragma mark - initialization
 - (void)setupCollectionView
 {
-    self.collectionView.backgroundColor = UIColor.darkBlueColor;
+    self.collectionView.backgroundColor = UIColor.backgroundColor;
     self.collectionView.alwaysBounceVertical = YES;
     self.collectionView.scrollEnabled = YES;
     self.collectionView.delegate = self;
@@ -193,9 +193,8 @@
         _blurView.tintColor = UIColor.clearColor;
         _blurView.underlyingView = self.collectionView;
         _blurView.blurEnabled = YES;
-        _blurView.blurRadius = 20.f;
+        _blurView.blurRadius = 30.f;
         _blurView.dynamic = YES;
-        _blurView.updateInterval = 0.1f;
         _blurView.alpha = 0.f;
         _blurView.hidden = YES;
         [self.view addSubview:self.blurView];

@@ -43,7 +43,15 @@
 
 + (UIColor*)navBarColor
 {
-    return [UIColor colorWithRed:0 green:37.0f/255.0f blue:52.0f/255.0f alpha:1.0f];
+//    return [UIColor colorWithRed:11.0f/255.0f green:34.0f/255.0f blue:46.0f/255.0f alpha:1.0f];
+    return [UIColor colorWithRed:0.0f green:0.0f blue:0.0f alpha:1.0f];
+
+}
+
++ (UIColor*)backgroundColor
+{
+    return [UIColor colorWithRed:18.0f/255.0f green:18.0f/255.0f blue:18.0f/255.0f alpha:1.0f];
+    
 }
 
 + (UIColor *)skyBlueColor

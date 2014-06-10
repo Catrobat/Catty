@@ -57,7 +57,7 @@
     self.editableSections = nil;
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
-    self.tableView.backgroundColor = UIColor.darkBlueColor;
+    self.tableView.backgroundColor = UIColor.backgroundColor;
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
     self.tableView.separatorColor = UIColor.skyBlueColor;
 }

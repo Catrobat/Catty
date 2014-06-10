@@ -104,7 +104,7 @@ NS_ENUM(NSInteger, ButtonIndex) {
                                    destructiveButtonTitle:[self deleteMenuItemNameWithBrickCell:self.brickCell]
                                         otherButtonTitles:[self secondMenuItemWithBrickCell:self.brickCell],
                       [self editFormulaMenuItemWithVrickCell:self.brickCell], nil];
-        [_brickMenu setButtonBackgroundColor:UIColor.menuDarkBlueColor];
+        [_brickMenu setButtonBackgroundColor:UIColor.backgroundColor];
         [_brickMenu setButtonTextColor:UIColor.lightOrangeColor];
         [_brickMenu setButtonTextColor:UIColor.redColor forButtonAtIndex:0];
         _brickMenu.transparentView = nil;
