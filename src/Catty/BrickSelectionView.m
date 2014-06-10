@@ -76,6 +76,7 @@
             view.transform = CGAffineTransformScale(CGAffineTransformMakeTranslation(0.0f, -20.0f), 0.95f, 0.95f);
         } completion:^(BOOL finished) {
             if (finished) {
+                 view.userInteractionEnabled = NO;
                 _blurView.dynamic = NO;
                 dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
                     [UIView animateWithDuration:0.25f animations:^{
@@ -104,6 +105,7 @@
             view.alpha = 1.0f;
             view.transform = CGAffineTransformIdentity;
         } completion:^(BOOL finished) {
+            view.userInteractionEnabled = YES;
             if (completionBlock) completionBlock();
         }];
         
