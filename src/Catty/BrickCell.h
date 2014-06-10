@@ -43,7 +43,6 @@
 - (void)hookUpSubViews:(NSArray *)inlineViewSubViews; // abstract
 - (void)renderSubViews;
 - (BOOL)isScriptBrick;
-+ (void)clearImageCache;
 
 // TODO: review that
 @property (nonatomic, strong) ScriptDeleteButton *deleteButton;

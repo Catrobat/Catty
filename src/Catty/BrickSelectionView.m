@@ -26,11 +26,13 @@
 #import "UIDefines.h"
 #import "ScriptCollectionViewController.h"
 #import "FXBlurView.h"
+#import "CellMotionEffect.h"
 
 @interface BrickSelectionView ()
 @property (strong, nonatomic) CALayer *topBorder;
 @property (assign, nonatomic, getter = isOnScreen) BOOL onScreen;
 @property (strong, nonatomic) FXBlurView *blurView;
+@property (strong, nonatomic) UIMotionEffectGroup *motionEffects;
 
 @end
 
@@ -43,6 +45,7 @@
         self.backgroundColor = UIColor.clearColor;
         [self addSubview:self.brickCollectionView];
         [self addSubview:self.textLabel];
+        [CellMotionEffect addMotionEffectForView:self withDepthX:0.0f withDepthY:30.0f withMotionEffectGroup:self.motionEffects];
     }
     return self;
 }
@@ -158,6 +161,13 @@
     }
     _blurView.dynamic = YES;
     return _blurView;
+}
+
+- (UIMotionEffectGroup *)motionEffects {
+    if (!_motionEffects) {
+        _motionEffects = [UIMotionEffectGroup new];
+    }
+    return _motionEffects;
 }
 
 - (BOOL)active

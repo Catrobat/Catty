@@ -116,11 +116,10 @@
     [dnc removeObserver:self name:kBrickDetailViewDismissed object:nil];
 }
 
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    [BrickCell clearImageCache];
-}
+//- (void)didReceiveMemoryWarning
+//{
+//    [super didReceiveMemoryWarning];
+//}
 
 #pragma mark - Getters and Setters
 - (AHKActionSheet *)brickSelectionMenu
@@ -471,18 +470,16 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
         }
     } else {
         if ([collectionView isKindOfClass:self.brickSelectionView.brickCollectionView.class]) {
-               NSLog(@"cell = %@", cell);
-            
-            
-//            [self.brickSelectionView dismissView:self withView:self.collectionView fastDismiss:YES completion:^{
-//                [self.brickSelectionView removeFromSuperview];
-//                [self setupToolBar];
-//                
-//                SingleBrickSelectionView *singleBrickSelectionView = [[SingleBrickSelectionView alloc] initWithFrame:self.view.bounds];
-//                singleBrickSelectionView.delegate = self;
-//                [singleBrickSelectionView showSingleBrickSelectionViewWithBrickCell:cell fromView:self.view
-//                                                                               belowView:self.collectionView completion:NULL];
-//            }];
+
+            [self.brickSelectionView dismissView:self withView:self.collectionView fastDismiss:YES completion:^{
+                [self.brickSelectionView removeFromSuperview];
+                [self setupToolBar];
+                
+                SingleBrickSelectionView *singleBrickSelectionView = [[SingleBrickSelectionView alloc] initWithFrame:self.view.bounds];
+                singleBrickSelectionView.delegate = self;
+                [singleBrickSelectionView showSingleBrickSelectionViewWithBrickCell:cell fromView:self.view
+                                                                               belowView:self.collectionView completion:NULL];
+            }];
         }
     }
 }
