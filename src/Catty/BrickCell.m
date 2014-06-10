@@ -101,7 +101,7 @@
 
 @interface BrickCell ()
 @property (nonatomic, weak) BrickCellInlineView *inlineView;
-@property (nonatomic, assign) BOOL editing;
+@property (nonatomic, assign, getter = isEditing) BOOL editing;
 
 @end
 
@@ -109,11 +109,46 @@
 
 #pragma mark - UICollectionViewCellDelegate
 
+- (id)initWithFrame:(CGRect)frame
+{
+    self = [super initWithFrame:frame];
+    if (self) {
+        self.backgroundColor = UIColor.clearColor;
+        self.opaque = NO;
+        self.clipsToBounds = NO;
+    }
+    return self;
+}
+
+- (void)layoutSubviews
+{
+    [super layoutSubviews];
+    self.deleteButton.center = CGPointMake(self.bounds.origin.x - kDeleteButtonOffset, CGRectGetMidY(self.bounds));
+}
+
 - (void)setHighlighted:(BOOL)highlighted
 {
     [super setHighlighted:highlighted];
     self.alpha = highlighted ? 0.7f : 1.0f;
 }
+
+- (void)setupBrickCell:(BrickCell *)brickcell
+{
+    [self renderSubViews];
+    
+    if (brickcell.editing) {
+        if (brickcell.frame.origin.x == 0.0f) {
+            brickcell.center = CGPointMake(self.center.x + kDeleteButtonTranslationOffset, self.center.y);
+            brickcell.userInteractionEnabled = NO;
+        }
+    } else {
+        if (brickcell.frame.origin.x > 0.0f) {
+            brickcell.center = CGPointMake(CGRectGetMidX(UIScreen.mainScreen.bounds), brickcell.center.y);
+            brickcell.userInteractionEnabled = YES;
+        }
+    }
+}
+
 
 #pragma mark - getters and setters
 - (kBrickCategoryType)categoryType
@@ -151,11 +186,10 @@
 - (ScriptDeleteButton *)deleteButton
 {
     if (!_deleteButton) {
-        _deleteButton = [[ScriptDeleteButton alloc]initWithFrame:CGRectIntegral(CGRectMake(self.bounds.origin.x + kDeleteButtonOffset,
-                                                                                           self.bounds.origin.y,
-                                                                                           kBrickDeleteButtonSize,
-                                                                                           kBrickDeleteButtonSize))];
-        _deleteButton.hidden = YES;
+        _deleteButton = [[ScriptDeleteButton alloc] initWithFrame:CGRectMake(0.0f, 0.0f,
+                        kBrickCellDeleteButtonWidthHeight, kBrickCellDeleteButtonWidthHeight)];
+        [self addSubview:self.deleteButton];
+//        _deleteButton.hidden = YES;
     }
     return _deleteButton;
 }
@@ -215,9 +249,6 @@
         [label sizeThatFits:frame.size];
         [self.inlineView addSubview:label];
     }
-    // just to test layout
-//    self.inlineView.layer.borderWidth=1.0f;
-//    self.inlineView.layer.borderColor=[UIColor whiteColor].CGColor;
 }
 
 #pragma mark - setup methods
@@ -230,33 +261,10 @@
 
 - (void)renderSubViews
 {
-//    [self.backgroundImageView removeFromSuperview];
-//    [self.imageView removeFromSuperview];
     [self.inlineView removeFromSuperview];
-//    self.backgroundImageView = nil;
-//    self.imageView = nil;
     self.inlineView = nil;
     [self setupView];
-//    [self setupBrickPatternImage];
-//    [self setupBrickPatternBackgroundImage];
     [self setupInlineView];
-    [self addSubview:self.deleteButton];
-}
-
-#pragma mark - init
-- (id)initWithFrame:(CGRect)frame
-{
-    self = [super initWithFrame:frame];
-    if (self) {
-        self.editing = NO;
-        self.backgroundColor = [UIColor clearColor];
-        self.contentMode = UIViewContentModeScaleToFill;
-        self.clipsToBounds = NO;
-//        self.backgroundImageView.clipsToBounds = NO;
-//        self.imageView.clipsToBounds = NO;
-        self.opaque = NO;
-    }
-    return self;
 }
 
 #pragma mark - helpers
@@ -479,25 +487,6 @@
     return kBrickShapeNormal;
 }
 
-// TODO: this method will be removed via issue#114
-- (NSString*)brickImageName
-{
-    // determine right brick image name
-    CGFloat cellHeight = [[self class] cellHeight];
-    NSUInteger imageType = 0;
-    if ((cellHeight == kBrickHeight1h) || (cellHeight == kBrickHeightControl1h)) {
-        imageType = 1;
-    } else if ((cellHeight == kBrickHeight2h) || (cellHeight == kBrickHeightControl2h)) {
-        imageType = 2;
-    } else if (cellHeight == kBrickHeight3h) {
-        imageType = 3;
-    }
-    return [NSString stringWithFormat:@"%lu_%@%luh",
-            (unsigned long)self.brick.brickCategoryType,
-            ([self isScriptBrick] ? @"script_" : @""),
-            (unsigned long)imageType];
-}
-
 + (CGFloat)cellHeight
 {
     return kBrickHeight1h;
@@ -509,26 +498,9 @@
 }
 
 #pragma mark - cell editing
-- (void)setBrickEditing:(BOOL)editing {
+- (void)editing:(BOOL)editing
+{
     self.editing = editing;
-
-    if (self.editing) {
-        //  self.transform = CGAffineTransformMakeScale(0.8f, 0.8f);
-        self.alpha = 0.2f;
-        self.userInteractionEnabled = NO;
-        self.hideDeleteButton = NO;
-    } else {
-        // self.transform = CGAffineTransformIdentity;
-        self.alpha = 1.0f;
-        self.userInteractionEnabled = YES;
-        self.hideDeleteButton = YES;
-    }
-}
-
-#pragma mark  - delete button
-- (void)setHideDeleteButton:(BOOL)hideDeleteButton {
-    _hideDeleteButton = hideDeleteButton;
-    self.deleteButton.hidden = hideDeleteButton;
 }
 
 #pragma mark - animations

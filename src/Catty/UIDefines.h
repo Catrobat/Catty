@@ -41,8 +41,12 @@
 #define kAddScriptCategoryTableViewBottomMargin 15.0f
 
 // delete button bricks
-#define kBrickDeleteButtonSize 22.0f
-#define kDeleteButtonOffset 1.0f
+#define kBrickCellDeleteButtonWidthHeight 22.0f
+#define kDeleteButtonOffset 19.0f
+#define kDeleteButtonTranslationOffset 38.0f
+
+#define kScriptCollectionViewTopInsets 10.0f
+#define kScriptCollectionViewBottomInsets 5.0f
 
 // Notifications
 static NSString *const kBrickCellAddedNotification = @"BrickCellAddedNotification";
@@ -225,7 +229,7 @@ typedef NS_ENUM(NSInteger, kBrickShapeType) {
 #define kBrickHeightControl1h 62.0f
 #define kBrickHeightControl2h 88.0f
 
-#define kBrickOverlapHeight 4.0f
+#define kBrickOverlapHeight 3.0f
 
 // brick subview const values
 #define kBrickInlineViewOffsetX 54.0f

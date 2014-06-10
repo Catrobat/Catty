@@ -116,11 +116,6 @@
     [dnc removeObserver:self name:kBrickDetailViewDismissed object:nil];
 }
 
-//- (void)didReceiveMemoryWarning
-//{
-//    [super didReceiveMemoryWarning];
-//}
-
 #pragma mark - Getters and Setters
 - (AHKActionSheet *)brickSelectionMenu
 {
@@ -339,23 +334,23 @@
             NSString *scriptSubClassName = NSStringFromClass([script class]);
             brickCell = [collectionView dequeueReusableCellWithReuseIdentifier:scriptSubClassName forIndexPath:indexPath];
             brickCell.brick = script;
-            [brickCell.deleteButton addTarget:self action:@selector(scriptDeleteButtonAction:) forControlEvents:UIControlEventTouchUpInside];
-            [brickCell setBrickEditing:self.isEditing];
             
-            // overridden values, needs refactoring later
-            brickCell.userInteractionEnabled = YES;
+            // TODO refactor
+            [brickCell.deleteButton addTarget:self action:@selector(scriptDeleteButtonAction:) forControlEvents:UIControlEventTouchUpInside];
+
         } else {
             // case it's a normal brick
             Brick *brick = [script.brickList objectAtIndex:(indexPath.row - 1)];
             NSString *brickSubClassName = NSStringFromClass([brick class]);
             brickCell = [collectionView dequeueReusableCellWithReuseIdentifier:brickSubClassName forIndexPath:indexPath];
             brickCell.brick = brick;
-            [brickCell setBrickEditing:self.isEditing];
-            brickCell.hideDeleteButton = YES;
+            
+            // TODO refactor
+            [brickCell.deleteButton addTarget:self action:@selector(scriptDeleteButtonAction:) forControlEvents:UIControlEventTouchUpInside];
+
         }
         brickCell.enabled = YES;
-        [brickCell renderSubViews];
-        
+
     } else {
         if (collectionView == self.brickSelectionView.brickCollectionView) {
             id<BrickProtocol> brick = [self.selectableBricks objectAtIndex:indexPath.section];
@@ -363,10 +358,12 @@
             brickCell = [collectionView dequeueReusableCellWithReuseIdentifier:brickTypeName
                                                                              forIndexPath:indexPath];
             brickCell.brick = [self.selectableBricks objectAtIndex:indexPath.section];
-            [brickCell renderSubViews];
             brickCell.enabled = NO;
         }
     }
+    
+    [brickCell editing:self.isEditing];
+    [brickCell setupBrickCell:brickCell];
     return brickCell;
 }
 
@@ -426,10 +423,10 @@
     UIEdgeInsets insets = UIEdgeInsetsZero;
     
     if (collectionView == self.collectionView) {
-        insets = UIEdgeInsetsMake(10, 0, 5, 0);
+        insets = UIEdgeInsetsMake(kScriptCollectionViewTopInsets, 0.0f, kScriptCollectionViewBottomInsets, 0.0f);
     } else {
         if (collectionView == self.brickSelectionView.brickCollectionView) {
-            insets = UIEdgeInsetsMake(0.0f, 0.0f, 5.0f, 0.0f);
+            insets = UIEdgeInsetsMake(0.0f, 0.0f, kScriptCollectionViewBottomInsets, 0.0f);
             
             id<BrickProtocol> brick = [self.selectableBricks objectAtIndex:section];
             if ([brick isKindOfClass:[Script class]]) {
@@ -455,28 +452,25 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
     
     if (collectionView == self.collectionView) {
         self.selectedIndexPath =  indexPath;
-        
-        if (! self.isEditing) {
-            BrickDetailViewController *brickDetailViewcontroller = [BrickDetailViewController new];
-            brickDetailViewcontroller.brickCell = cell;
-            self.brickScaleTransition.cell = cell;
-            self.brickScaleTransition.touchRect = cell.frame;
-            brickDetailViewcontroller.transitioningDelegate = self;
-            brickDetailViewcontroller.modalPresentationStyle = UIModalPresentationCustom;
-            self.collectionView.userInteractionEnabled = NO;
-            [self presentViewController:brickDetailViewcontroller animated:YES completion:^{
-                self.navigationController.navigationBar.userInteractionEnabled = NO;
-            }];
-        }
+        BrickDetailViewController *brickDetailViewcontroller = [BrickDetailViewController new];
+        brickDetailViewcontroller.brickCell = cell;
+        self.brickScaleTransition.cell = cell;
+        self.brickScaleTransition.touchRect = cell.frame;
+        brickDetailViewcontroller.transitioningDelegate = self;
+        brickDetailViewcontroller.modalPresentationStyle = UIModalPresentationCustom;
+        self.collectionView.userInteractionEnabled = NO;
+        [self presentViewController:brickDetailViewcontroller animated:YES completion:^{
+            self.navigationController.navigationBar.userInteractionEnabled = NO;
+        }];
     } else {
-        if ([collectionView isKindOfClass:self.brickSelectionView.brickCollectionView.class]) {
-
-            [self.brickSelectionView dismissView:self withView:self.collectionView fastDismiss:YES completion:^{
-                [self.brickSelectionView removeFromSuperview];
-                [self setupToolBar];
-                
-                SingleBrickSelectionView *singleBrickSelectionView = [[SingleBrickSelectionView alloc] initWithFrame:self.view.bounds];
-                singleBrickSelectionView.delegate = self;
+    if ([collectionView isKindOfClass:self.brickSelectionView.brickCollectionView.class]) {
+        
+        [self.brickSelectionView dismissView:self withView:self.collectionView fastDismiss:YES completion:^{
+            [self.brickSelectionView removeFromSuperview];
+            [self setupToolBar];
+            
+            SingleBrickSelectionView *singleBrickSelectionView = [[SingleBrickSelectionView alloc] initWithFrame:self.view.bounds];
+            singleBrickSelectionView.delegate = self;
                 [singleBrickSelectionView showSingleBrickSelectionViewWithBrickCell:cell fromView:self.view
                                                                                belowView:self.collectionView completion:NULL];
             }];
@@ -759,81 +753,24 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
 - (void)setEditing:(BOOL)editing animated:(BOOL)animated
 {
     [super setEditing:editing animated:animated];
-
+    
     if (self.isEditing) {
         self.navigationItem.title = kUINavigationItemTitleEditMenu;
-         __block NSInteger section = 0;;
-        for (NSUInteger idx = 0; idx < self.collectionView.numberOfSections; idx++) {
-            BrickCell *controlBrickCell = (BrickCell *)[self.collectionView cellForItemAtIndexPath:[NSIndexPath indexPathForItem:0 inSection:section]];
-            [self animateStataCellDeleteButton:controlBrickCell];
-            
-            Script *script = [self.object.scriptList objectAtIndex:idx];
-            [script.brickList enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
-                *stop = section > self.collectionView.numberOfSections ? YES : NO;
-                BrickCell *cell = (BrickCell *)[self.collectionView cellForItemAtIndexPath:[NSIndexPath indexPathForItem:idx + 1 inSection:section]];
-                cell.userInteractionEnabled = NO;
-                [UIView animateWithDuration:0.35f delay:0.0f usingSpringWithDamping:1.0f/*0.45f*/ initialSpringVelocity:5.0f/*2.0f*/ options:UIViewAnimationOptionCurveEaseInOut animations:^{
-                    cell.alpha = 0.2f;
-                    // cell.transform = CGAffineTransformMakeScale(0.8f, 0.8f);  // TODO dont work right at the moment with the bacghround image. fix later
-                } completion:NULL];
+        
+        for (BrickCell *brickCell in self.collectionView.visibleCells) {
+            [UIView animateWithDuration:0.25f animations:^{
+                brickCell.center = CGPointMake(brickCell.center.x + kDeleteButtonTranslationOffset, brickCell.center.y);
             }];
-            section++;
         }
+        
     } else {
         self.navigationItem.title = kUITableViewControllerMenuTitleScripts;
-        __block NSInteger section = 0;
-        for (NSUInteger idx = 0; idx < self.collectionView.numberOfSections; idx++) {
-            BrickCell *controlBrickCell = (BrickCell *)[self.collectionView cellForItemAtIndexPath:[NSIndexPath indexPathForItem:0 inSection:section]];
-            [self animateStataCellDeleteButton:controlBrickCell];
-
-            Script *script = [self.object.scriptList objectAtIndex:idx];
-            [script.brickList enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
-                *stop = section > self.collectionView.numberOfSections ? YES : NO;
-                BrickCell *cell = (BrickCell *)[self.collectionView cellForItemAtIndexPath:[NSIndexPath indexPathForItem:idx + 1 inSection:section]];
-                cell.userInteractionEnabled = YES;
-                [UIView animateWithDuration:0.25f delay:0.0f usingSpringWithDamping:0.5f initialSpringVelocity:2.0f options:UIViewAnimationOptionCurveEaseInOut animations:^{
-                    cell.alpha = 1.0;
-                    //   cell.transform = CGAffineTransformIdentity; // TODO dont work right at the moment with the bacghround image. fix later
-                } completion:NULL];
+        for (BrickCell *brickCell in self.collectionView.visibleCells) {
+            [UIView animateWithDuration:0.25f animations:^{
+                brickCell.center = CGPointMake(self.view.center.x, brickCell.center.y);
             }];
-            section++;
         }
     }
-}
-
-- (void)animateStataCellDeleteButton:(BrickCell *)controlBrickCell
-{
-    CGFloat endAlpha;
-    CGAffineTransform transform;
-    BOOL start = NO;
-    
-    controlBrickCell.hideDeleteButton = NO;
-    if (self.isEditing) {
-        start = YES;
-        controlBrickCell.deleteButton.alpha = 0.0f;
-        endAlpha = 1.0f;
-        controlBrickCell.deleteButton.transform = CGAffineTransformMakeScale(0.1f, 0.1f);
-        transform = CGAffineTransformMakeScale(1.0f, 1.0f);
-    } else {
-        transform = CGAffineTransformMakeScale(1.0f, 1.0f);
-        endAlpha = 0.0f;
-    }
-    
-    [UIView animateWithDuration:0.35f
-                          delay:0
-         usingSpringWithDamping:1.0f
-          initialSpringVelocity:1.0f
-                        options:UIViewAnimationOptionCurveEaseOut
-                     animations:^{
-                         controlBrickCell.deleteButton.transform = transform;
-                         controlBrickCell.deleteButton.alpha = endAlpha;
-                     }
-                     completion:^(BOOL finished) {
-                         if (finished) {
-                             controlBrickCell.hideDeleteButton = !start;
-                         }
-                     }];
-    
 }
 
 @end

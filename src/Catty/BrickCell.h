@@ -28,8 +28,7 @@
 #import "BrickShapeFactory.h"
 #import "UIColor+CatrobatUIColorExtensions.h"
 
-@class Brick;
-@class BrickCellInlineView;
+@class Brick, BrickCellInlineView;
 @protocol BrickProtocol;
 
 @interface BrickCell : UICollectionViewCell<BrickCellProtocol>
@@ -37,17 +36,15 @@
 @property (nonatomic, strong) id<BrickProtocol> brick;
 @property (nonatomic, strong) NSArray *brickCategoryColors;
 @property (nonatomic) BOOL enabled;
+@property (nonatomic, strong) ScriptDeleteButton *deleteButton;
+
 - (kBrickShapeType)brickShapeType;
 + (CGFloat)cellHeight;
 
 - (void)hookUpSubViews:(NSArray *)inlineViewSubViews; // abstract
-- (void)renderSubViews;
 - (BOOL)isScriptBrick;
-
-// TODO: review that
-@property (nonatomic, strong) ScriptDeleteButton *deleteButton;
-@property (nonatomic, assign) BOOL hideDeleteButton;
-- (void)setBrickEditing:(BOOL)editing;
+- (void)editing:(BOOL)editing;
 - (void)animateBrick:(BOOL)animate;
+- (void)setupBrickCell:(BrickCell *)brickcell;
 
 @end
