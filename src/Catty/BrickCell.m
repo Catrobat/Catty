@@ -132,19 +132,19 @@
     self.alpha = highlighted ? 0.7f : 1.0f;
 }
 
-- (void)setupBrickCell:(BrickCell *)brickcell
+- (void)setupBrickCell
 {
     [self renderSubViews];
     
-    if (brickcell.editing) {
-        if (brickcell.frame.origin.x == 0.0f) {
-            brickcell.center = CGPointMake(self.center.x + kDeleteButtonTranslationOffsetX, self.center.y);
-            brickcell.deleteButton.alpha = 1.0f;
+    if (self.editing) {
+        if (self.frame.origin.x == 0.0f) {
+            self.center = CGPointMake(self.center.x + kDeleteButtonTranslationOffsetX, self.center.y);
+            self.deleteButton.alpha = 1.0f;
         }
     } else {
-        if (brickcell.frame.origin.x > 0.0f) {
-            brickcell.center = CGPointMake(CGRectGetMidX(UIScreen.mainScreen.bounds), brickcell.center.y);
-            brickcell.deleteButton.alpha = 0.0f;
+        if (self.frame.origin.x > 0.0f) {
+            self.center = CGPointMake(CGRectGetMidX(UIScreen.mainScreen.bounds), self.center.y);
+            self.deleteButton.alpha = 0.0f;
         }
     }
 }
@@ -193,15 +193,23 @@
     return _inlineView;
 }
 
-- (ScriptDeleteButton *)deleteButton
+- (SelectButton *)deleteButton
 {
-    if (!_deleteButton) {
-        _deleteButton = [[ScriptDeleteButton alloc] initWithFrame:CGRectMake(0.0f, 0.0f,
+    if (!_selectButton) {
+        _selectButton = [[SelectButton alloc] initWithFrame:CGRectMake(0.0f, 0.0f,
                         kBrickCellDeleteButtonWidthHeight, kBrickCellDeleteButtonWidthHeight)];
-        _deleteButton.alpha = 0.0f;
-        [self addSubview:_deleteButton];
+        _selectButton.alpha = 0.0f;
+        [self addSubview:_selectButton];
+        [_selectButton addTarget:self action:@selector(selectButtonSelected:) forControlEvents:UIControlEventTouchUpInside];
     }
-    return _deleteButton;
+    return _selectButton;
+}
+
+- (void)selectButtonSelected:(id)sender
+{
+    if ([sender isKindOfClass:SelectButton.class]) {
+        self.selectButton.selected = YES;
+    }
 }
 
 - (NSArray*)brickCategoryColors

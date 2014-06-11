@@ -38,6 +38,7 @@
 		817B544C18F0520800AF6BFE /* BrickDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 817B544A18F0520800AF6BFE /* BrickDetailViewController.m */; };
 		817B545118F0AAE600AF6BFE /* FXBlurView.m in Sources */ = {isa = PBXBuildFile; fileRef = 817B545018F0AAE600AF6BFE /* FXBlurView.m */; };
 		8193CD99192BEFB700AD44A3 /* BrickSelectionSwipe.m in Sources */ = {isa = PBXBuildFile; fileRef = 8193CD98192BEFB700AD44A3 /* BrickSelectionSwipe.m */; };
+		819EFEA71948721900A1D591 /* SelectButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 819EFEA61948721900A1D591 /* SelectButton.m */; };
 		81A5B4D7192964170082B2B8 /* CellMotionEffect.m in Sources */ = {isa = PBXBuildFile; fileRef = 81A5B4D6192964170082B2B8 /* CellMotionEffect.m */; };
 		81B7487A1921433700990E5F /* CreateView.m in Sources */ = {isa = PBXBuildFile; fileRef = 81B748781921433700990E5F /* CreateView.m */; };
 		81B7487D192143AA00990E5F /* RoundBorderedButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 81B7487C192143AA00990E5F /* RoundBorderedButton.m */; };
@@ -337,6 +338,8 @@
 		817B545018F0AAE600AF6BFE /* FXBlurView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FXBlurView.m; sourceTree = "<group>"; };
 		8193CD97192BEFB700AD44A3 /* BrickSelectionSwipe.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BrickSelectionSwipe.h; sourceTree = "<group>"; };
 		8193CD98192BEFB700AD44A3 /* BrickSelectionSwipe.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BrickSelectionSwipe.m; sourceTree = "<group>"; };
+		819EFEA51948721900A1D591 /* SelectButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelectButton.h; sourceTree = "<group>"; };
+		819EFEA61948721900A1D591 /* SelectButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelectButton.m; sourceTree = "<group>"; };
 		81A5B4D5192964170082B2B8 /* CellMotionEffect.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CellMotionEffect.h; sourceTree = "<group>"; };
 		81A5B4D6192964170082B2B8 /* CellMotionEffect.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CellMotionEffect.m; sourceTree = "<group>"; };
 		81B748781921433700990E5F /* CreateView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreateView.m; sourceTree = "<group>"; };
@@ -970,13 +973,15 @@
 			path = FBShimmering;
 			sourceTree = "<group>";
 		};
-		81649E0D191D34E30099AE7E /* SubViews */ = {
+		81649E0D191D34E30099AE7E /* Buttons */ = {
 			isa = PBXGroup;
 			children = (
 				81649E0E191D35090099AE7E /* ScriptDeleteButton.h */,
 				81649E0F191D35090099AE7E /* ScriptDeleteButton.m */,
+				819EFEA51948721900A1D591 /* SelectButton.h */,
+				819EFEA61948721900A1D591 /* SelectButton.m */,
 			);
-			name = SubViews;
+			name = Buttons;
 			sourceTree = "<group>";
 		};
 		817B543D18F03BC700AF6BFE /* ViewControllerTransitions */ = {
@@ -1981,7 +1986,7 @@
 			isa = PBXGroup;
 			children = (
 				81D3C9F31945E35700DB71E1 /* BrickShapeFactory */,
-				81649E0D191D34E30099AE7E /* SubViews */,
+				81649E0D191D34E30099AE7E /* Buttons */,
 				81C27422189EE41700827A95 /* BrickCell.h */,
 				81C27423189EE41700827A95 /* BrickCell.m */,
 				CA5FED4E18B0070300A517B6 /* BrickCellInlineView.h */,
@@ -2979,6 +2984,7 @@
 				817B544318F03D4C00AF6BFE /* BrickScaleTransition.m in Sources */,
 				9232B4FF18E54C4B00ED7AB1 /* EVCircularProgressView.m in Sources */,
 				CAEDFB8117EF759500FDED0E /* ObjectTableViewController.m in Sources */,
+				819EFEA71948721900A1D591 /* SelectButton.m in Sources */,
 				CD639C7B170DF52600FA67DA /* SpriteObject.m in Sources */,
 				CA75C27A18A9621500FC8C2F /* SetVolumeToBrickCell.m in Sources */,
 				CA688212180B467B008A7C99 /* OrderedDictionary.m in Sources */,

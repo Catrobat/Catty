@@ -341,7 +341,7 @@
             brickCell.brick = brick;
         }
         brickCell.enabled = YES;
-        [brickCell.deleteButton addTarget:self action:@selector(scriptDeleteButtonAction:) forControlEvents:UIControlEventTouchUpInside];
+        [brickCell.selectButton addTarget:self action:@selector(scriptDeleteButtonAction:) forControlEvents:UIControlEventTouchUpInside];
 
     } else {
         if (collectionView == self.brickSelectionView.brickCollectionView) {
@@ -354,7 +354,7 @@
     }
     
     [brickCell editing:self.isEditing];
-    [brickCell setupBrickCell:brickCell];
+    [brickCell setupBrickCell];
     return brickCell;
 }
 
@@ -597,7 +597,7 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
 - (void)setupToolBar
 {
     self.navigationController.toolbar.barStyle = UIBarStyleBlack;
-    self.navigationController.toolbar.tintColor = [UIColor orangeColor];
+    self.navigationController.toolbar.tintColor = UIColor.orangeColor;
     
     UIBarButtonItem *flexItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace
                                                                               target:nil
@@ -605,30 +605,42 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
     UIImageView *imageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"transparent1x1"]];
     UIBarButtonItem *invisibleButton = [[UIBarButtonItem alloc] initWithCustomView:imageView];
     
-    if (![self.brickSelectionView active]) {
-        self.navigationController.toolbar.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleTopMargin;
+    if (!self.editing) {
+        if (![self.brickSelectionView active]) {
+            self.navigationController.toolbar.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleTopMargin;
+            
+            UIBarButtonItem *add = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd
+                                                                                 target:self
+                                                                                 action:@selector(showBrickSelectionMenu)];
+            UIBarButtonItem *play = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemPlay
+                                                                                  target:self
+                                                                                  action:@selector(playSceneAction:)];
 
-        UIBarButtonItem *add = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd
-                                                                             target:self
-                                                                             action:@selector(showBrickSelectionMenu)];
-        UIBarButtonItem *play = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemPlay
-                                                                              target:self
-                                                                              action:@selector(playSceneAction:)];
-        // XXX: workaround for tap area problem:
-        // http://stackoverflow.com/questions/5113258/uitoolbar-unexpectedly-registers-taps-on-uibarbuttonitem-instances-even-when-tap
-        self.toolbarItems = @[flexItem,invisibleButton, add, invisibleButton, flexItem,
-                              flexItem, flexItem, invisibleButton, play, invisibleButton, flexItem];
+            self.toolbarItems = @[flexItem,invisibleButton, add, invisibleButton, flexItem,
+                                  flexItem, flexItem, invisibleButton, play, invisibleButton, flexItem];
+        } else {
+            UIBarButtonItem *done = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"toolbar_close"]
+                                                                     style:UIBarButtonItemStyleBordered target:self
+                                                                    action:@selector(showBrickSelectionView:)];
+            UIBarButtonItem *list = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"toolbar_list"]
+                                                                     style:UIBarButtonItemStyleBordered target:self
+                                                                    action:@selector(showBrickSelectionMenu)];
+            
+            self.toolbarItems = @[flexItem,invisibleButton, list, invisibleButton, flexItem,
+                                  flexItem, flexItem, invisibleButton, done, invisibleButton, flexItem];
+        }
     } else {
-        UIBarButtonItem *done = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"toolbar_close"]
-                                                                 style:UIBarButtonItemStyleBordered target:self
-                                                                action:@selector(showBrickSelectionView:)];
-        UIBarButtonItem *list = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"toolbar_list"]
-                                                                 style:UIBarButtonItemStyleBordered target:self
-                                                                action:@selector(showBrickSelectionMenu)];
-        
-        self.toolbarItems = @[flexItem,invisibleButton, list, invisibleButton, flexItem,
-                            flexItem, flexItem, invisibleButton, done, invisibleButton, flexItem];
+        UIBarButtonItem *deleteButton = [[UIBarButtonItem alloc] initWithTitle:kUIBarButtonItemTitleDelete
+                                                                         style:0
+                                                                        target:self
+                                                                        action:@selector(removeSelectedeBricks::)];
+        UIBarButtonItem *selectAllButton = [[UIBarButtonItem alloc] initWithTitle:kUIBarButtonItemTitleSelectAllItems
+                                                                         style:0
+                                                                        target:self
+                                                                        action:@selector(selectAllBricks:)];
+        self.toolbarItems = @[selectAllButton, flexItem, deleteButton];
     }
+
 }
 
 - (void)removeBrickWithIndexPath:(NSIndexPath *)indexPath
@@ -655,6 +667,17 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
             }];
         }
     }
+}
+
+
+- (void)removeSelectedeBricks:(NSArray *)objects
+{
+    
+}
+
+- (void)selectAllBricks
+{
+    
 }
 
 - (void)addBrickCellAction:(BrickCell*)brickCell copyBrick:(BOOL)copy completionBlock:(void(^)())completionBlock
@@ -743,6 +766,7 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
 - (void)setEditing:(BOOL)editing animated:(BOOL)animated
 {
     [super setEditing:editing animated:animated];
+    [self setupToolBar];
     
     if (self.isEditing) {
         self.navigationItem.title = kUINavigationItemTitleEditMenu;
@@ -750,7 +774,7 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
         for (BrickCell *brickCell in self.collectionView.visibleCells) {
             [UIView animateWithDuration:0.7f  delay:0.0f usingSpringWithDamping:0.6f initialSpringVelocity:1.5f options:UIViewAnimationOptionCurveEaseInOut animations:^{
                 brickCell.center = CGPointMake(brickCell.center.x + kDeleteButtonTranslationOffsetX, brickCell.center.y);
-                brickCell.deleteButton.alpha = 1.0f;
+                brickCell.selectButton.alpha = 1.0f;
                 } completion:NULL];
         }
         
@@ -760,7 +784,7 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
             [UIView animateWithDuration:0.5 delay:0.0f usingSpringWithDamping:0.6f initialSpringVelocity:2.5f options:UIViewAnimationOptionCurveEaseInOut
                              animations:^{
                 brickCell.center = CGPointMake(self.view.center.x, brickCell.center.y);
-                brickCell.deleteButton.alpha = 0.0f;
+                brickCell.selectButton.alpha = 0.0f;
             } completion:NULL];
         }
     }

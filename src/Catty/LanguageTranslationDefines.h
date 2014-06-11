@@ -144,8 +144,8 @@
 
 #define kUIBarButtonItemTitleEdit NSLocalizedString(@"Edit", nil)
 #define kUIBarButtonItemTitleCancel NSLocalizedString(@"Cancel", nil)
-#define kUIBarButtonItemTitleSelectAllItems NSLocalizedString(@"Select all", nil)
-#define kUIBarButtonItemTitleUnselectAllItems NSLocalizedString(@"Unselect all", nil)
+#define kUIBarButtonItemTitleSelectAllItems NSLocalizedString(@"Select All", nil)
+#define kUIBarButtonItemTitleUnselectAllItems NSLocalizedString(@"Unselect All", nil)
 #define kUIBarButtonItemTitleDelete NSLocalizedString(@"Delete", nil)
 
 /*

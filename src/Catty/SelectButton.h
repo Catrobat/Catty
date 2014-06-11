@@ -20,32 +20,9 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
+
 #import <UIKit/UIKit.h>
-#import "ProgramDefines.h"
-#import "UIDefines.h"
-#import "ScriptDeleteButton.h"
-#import "BrickCellProtocol.h"
-#import "BrickShapeFactory.h"
-#import "UIColor+CatrobatUIColorExtensions.h"
-#import "SelectButton.h"
 
-@class Brick, BrickCellInlineView;
-@protocol BrickProtocol;
-
-@interface BrickCell : UICollectionViewCell<BrickCellProtocol>
-
-@property (nonatomic, strong) id<BrickProtocol> brick;
-@property (nonatomic, strong) NSArray *brickCategoryColors;
-@property (nonatomic) BOOL enabled;
-@property (nonatomic, strong) SelectButton *selectButton;
-
-- (kBrickShapeType)brickShapeType;
-+ (CGFloat)cellHeight;
-
-- (void)hookUpSubViews:(NSArray *)inlineViewSubViews; // abstract
-- (BOOL)isScriptBrick;
-- (void)editing:(BOOL)editing;
-- (void)animateBrick:(BOOL)animate;
-- (void)setupBrickCell;
+@interface SelectButton : UIButton
 
 @end
