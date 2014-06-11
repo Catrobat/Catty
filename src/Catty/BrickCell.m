@@ -151,17 +151,11 @@
 
 - (UIView *)hitTest:(CGPoint)point withEvent:(UIEvent *)event
 {
-    [super   hitTest:point withEvent:event];
+    [super hitTest:point withEvent:event];
     CGPoint subPoint = [self.deleteButton convertPoint:point fromView:self];
     UIView *result = [self.deleteButton hitTest:subPoint withEvent:event];
     if (result != nil) {
         return result;
-    }
-    
-    if (!self.clipsToBounds && !self.hidden && self.alpha > 0.01f) {
-        if (result != nil) {
-            return result;
-        }
     }
     return [super hitTest:point withEvent:event];
 }

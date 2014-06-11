@@ -757,10 +757,11 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
     } else {
         self.navigationItem.title = kUITableViewControllerMenuTitleScripts;
         for (BrickCell *brickCell in self.collectionView.visibleCells) {
-            [UIView animateWithDuration:0.25f animations:^{
+            [UIView animateWithDuration:0.5 delay:0.0f usingSpringWithDamping:0.6f initialSpringVelocity:2.5f options:UIViewAnimationOptionCurveEaseInOut
+                             animations:^{
                 brickCell.center = CGPointMake(self.view.center.x, brickCell.center.y);
                 brickCell.deleteButton.alpha = 0.0f;
-            }];
+            } completion:NULL];
         }
     }
 }
