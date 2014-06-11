@@ -516,8 +516,9 @@
 }
 
 #pragma mark - cell editing
-- (void)editing:(BOOL)editing
+- (void)selectedState:(BOOL)selected setEditingState:(BOOL)editing
 {
+    self.selectButton.selected = selected;
     self.editing = editing;
 }
 

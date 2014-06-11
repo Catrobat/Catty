@@ -59,7 +59,7 @@
 @property (nonatomic, strong) AHKActionSheet *brickSelectionMenu;
 @property  (nonatomic, strong) BrickSelectionView *brickSelectionView;
 @property (nonatomic, strong) NSArray *selectableBricks;
-@property (nonatomic, strong) NSMutableArray *selectedIndexPaths;
+@property (nonatomic, strong) NSMutableDictionary *selectedIndexPaths;
 
 @end
 
@@ -99,7 +99,7 @@
     [self.view addSubview:self.placeHolderView];
     self.placeHolderView.hidden = self.object.scriptList.count ? YES : NO;
     self.brickScaleTransition = [BrickScaleTransition new];
-    self.selectedIndexPaths = [NSMutableArray array];
+    self.selectedIndexPaths = [NSMutableDictionary dictionary];
 }
 
 #pragma mark - view events
@@ -236,23 +236,6 @@
     [self performSegueWithIdentifier:kSegueToScene sender:sender];
 }
 
-- (void)selectButtonAction:(id)sender
-{
-    if ([sender isKindOfClass:SelectButton.class]) {
-        SelectButton *selectButton = (SelectButton *)sender;
-        selectButton.selected = YES;
-        NSIndexPath *indexPath = [self.collectionView indexPathForItemAtPoint:
-                                  [self.collectionView convertPoint:selectButton.center fromView:selectButton.superview]];
-        if (indexPath) {
-            // TODO refactor later, maybe make NSSet
-            if (![self.selectedIndexPaths containsObject:indexPath]) {
-                [self.selectedIndexPaths addObject:indexPath];
-            }
-        }
-        
-    }
-}
-
 #pragma mark - UIViewControllerAnimatedTransitioning delegate
 
 - (id<UIViewControllerAnimatedTransitioning>)animationControllerForPresentedController:(UIViewController *)presented
@@ -358,8 +341,10 @@
             brickCell.brick = [self.selectableBricks objectAtIndex:indexPath.section];
         }
     }
-
-    [brickCell editing:self.isEditing];
+    
+    NSString *key = [NSString stringWithFormat:@"%@_%@", @(indexPath.section), @(indexPath.item)];
+    BOOL selected =  self.selectedIndexPaths[key];
+    [brickCell selectedState:selected setEditingState:self.editing];
     [brickCell setupBrickCell];
     brickCell.delegate = self;
     
@@ -585,6 +570,13 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
 - (void)BrickCell:(BrickCell *)brickCell didSelectBrickCellButton:(SelectButton *)selectButton
 {
     selectButton.selected = YES;
+    NSIndexPath *indexPath = [self.collectionView indexPathForItemAtPoint:
+                              [self.collectionView convertPoint:selectButton.center fromView:selectButton.superview]];
+    
+    if (indexPath) {
+        NSString *key = [NSString stringWithFormat:@"%@_%@", @(indexPath.section), @(indexPath.item)];
+        [self.selectedIndexPaths setObject:indexPath forKey:key];
+    }
 }
 
 #pragma mark - segue handling
