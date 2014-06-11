@@ -63,7 +63,9 @@
 
 @end
 
-@implementation ScriptCollectionViewController
+@implementation ScriptCollectionViewController {
+    BOOL _selectedAllCells;
+}
 
 #pragma mark - events
 - (void)viewDidLoad
@@ -342,9 +344,15 @@
         }
     }
     
-    NSString *key = [NSString stringWithFormat:@"%@_%@", @(indexPath.section), @(indexPath.item)];
-    BOOL selected =  self.selectedIndexPaths[key];
-    [brickCell selectedState:selected setEditingState:self.editing];
+    
+    if (_selectedAllCells) {
+         [brickCell selectedState:_selectedAllCells setEditingState:self.editing];
+    } else {
+        // TODO make helper method for generating key
+        NSString *key = [NSString stringWithFormat:@"%@_%@", @(indexPath.section), @(indexPath.item)];
+        BOOL selected =  self.selectedIndexPaths[key];
+        [brickCell selectedState:selected setEditingState:self.editing];
+    }
     [brickCell setupBrickCell];
     brickCell.delegate = self;
     
@@ -638,11 +646,11 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
         UIBarButtonItem *deleteButton = [[UIBarButtonItem alloc] initWithTitle:kUIBarButtonItemTitleDelete
                                                                          style:0
                                                                         target:self
-                                                                        action:@selector(removeSelectedeBricks::)];
+                                                                        action:@selector(removeSelectedBricks:)];
         UIBarButtonItem *selectAllButton = [[UIBarButtonItem alloc] initWithTitle:kUIBarButtonItemTitleSelectAllItems
                                                                          style:0
                                                                         target:self
-                                                                        action:@selector(selectAllBricks:)];
+                                                                        action:@selector(selectAllBricks)];
         self.toolbarItems = @[selectAllButton, flexItem, deleteButton];
     }
 
@@ -674,15 +682,45 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
     }
 }
 
-
-- (void)removeSelectedeBricks:(NSArray *)objects
+- (void)removeBricksWithIndexPaths:(NSArray *)indexPaths
 {
-    
+    [self.collectionView performBatchUpdates:^{
+        for (NSIndexPath *indexPath in indexPaths) {
+            if (indexPath.item == 0) {
+                Script *script = [self.object.scriptList objectAtIndex:indexPath.section];
+                [self.object.scriptList removeObject:script];
+                [self.collectionView deleteSections:[NSIndexSet indexSetWithIndex:indexPath.section]];
+            } else {
+                Script *script = [self.object.scriptList objectAtIndex:indexPath.section];
+                [script.brickList removeObjectAtIndex:indexPath.item - 1];
+                [self.collectionView deleteItemsAtIndexPaths:@[indexPath]];
+            }
+        }
+    } completion:^(BOOL finished) {
+        [self setEditing:NO animated:YES];
+        [self.selectedIndexPaths removeAllObjects];
+        [self.collectionView reloadData];
+        self.placeHolderView.hidden = self.object.scriptList.count ? YES : NO;
+    }];
+}
+
+- (void)removeSelectedBricks:(NSArray *)objects
+{
+    if (self.selectedIndexPaths.count) {
+        NSArray *allIndexPaths = [self.selectedIndexPaths allValues];
+        [self removeBricksWithIndexPaths:allIndexPaths];
+    }
 }
 
 - (void)selectAllBricks
 {
-    
+    _selectedAllCells = YES;
+    for (BrickCell *cell in self.collectionView.visibleCells) {
+        cell.selectButton.selected = YES;
+        NSIndexPath *indexPath = [self.collectionView indexPathForCell:cell];
+        NSString *key = [NSString stringWithFormat:@"%@_%@", @(indexPath.section), @(indexPath.item)];
+        [self.selectedIndexPaths setObject:indexPath forKey:key];
+    }
 }
 
 - (void)addBrickCellAction:(BrickCell*)brickCell copyBrick:(BOOL)copy completionBlock:(void(^)())completionBlock
