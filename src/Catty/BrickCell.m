@@ -208,7 +208,7 @@
 - (void)selectButtonSelected:(id)sender
 {
     if ([sender isKindOfClass:SelectButton.class]) {
-        self.selectButton.selected = YES;
+        [self.delegate BrickCell:self didSelectBrickCellButton:self.selectButton];
     }
 }
 

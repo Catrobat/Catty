@@ -49,7 +49,8 @@
                                               LXReorderableCollectionViewDelegateFlowLayout,
                                               LXReorderableCollectionViewDataSource,
                                               UIViewControllerTransitioningDelegate,
-                                              SingleBrickSelectionViewDelegate>
+                                              SingleBrickSelectionViewDelegate,
+                                              BrickCellDelegate>
 
 @property (nonatomic, weak) IBOutlet UICollectionView *collectionView;
 @property (nonatomic, strong) BrickScaleTransition *brickScaleTransition;
@@ -58,6 +59,7 @@
 @property (nonatomic, strong) AHKActionSheet *brickSelectionMenu;
 @property  (nonatomic, strong) BrickSelectionView *brickSelectionView;
 @property (nonatomic, strong) NSArray *selectableBricks;
+@property (nonatomic, strong) NSMutableArray *selectedIndexPaths;
 
 @end
 
@@ -97,6 +99,7 @@
     [self.view addSubview:self.placeHolderView];
     self.placeHolderView.hidden = self.object.scriptList.count ? YES : NO;
     self.brickScaleTransition = [BrickScaleTransition new];
+    self.selectedIndexPaths = [NSMutableArray array];
 }
 
 #pragma mark - view events
@@ -233,13 +236,18 @@
     [self performSegueWithIdentifier:kSegueToScene sender:sender];
 }
 
-- (void)scriptDeleteButtonAction:(id)sender
+- (void)selectButtonAction:(id)sender
 {
-    if ([sender isKindOfClass:ScriptDeleteButton.class]) {
-        ScriptDeleteButton *button = (ScriptDeleteButton *)sender;
-        NSIndexPath *indexPath = [self.collectionView indexPathForItemAtPoint:[self.collectionView convertPoint:button.center fromView:button.superview]];
+    if ([sender isKindOfClass:SelectButton.class]) {
+        SelectButton *selectButton = (SelectButton *)sender;
+        selectButton.selected = YES;
+        NSIndexPath *indexPath = [self.collectionView indexPathForItemAtPoint:
+                                  [self.collectionView convertPoint:selectButton.center fromView:selectButton.superview]];
         if (indexPath) {
-            [self removeBrickWithIndexPath:indexPath];
+            // TODO refactor later, maybe make NSSet
+            if (![self.selectedIndexPaths containsObject:indexPath]) {
+                [self.selectedIndexPaths addObject:indexPath];
+            }
         }
         
     }
@@ -341,8 +349,6 @@
             brickCell.brick = brick;
         }
         brickCell.enabled = YES;
-        [brickCell.selectButton addTarget:self action:@selector(scriptDeleteButtonAction:) forControlEvents:UIControlEventTouchUpInside];
-
     } else {
         if (collectionView == self.brickSelectionView.brickCollectionView) {
             id<BrickProtocol> brick = [self.selectableBricks objectAtIndex:indexPath.section];
@@ -352,9 +358,11 @@
             brickCell.brick = [self.selectableBricks objectAtIndex:indexPath.section];
         }
     }
-    
+
     [brickCell editing:self.isEditing];
     [brickCell setupBrickCell];
+    brickCell.delegate = self;
+    
     return brickCell;
 }
 
@@ -573,8 +581,13 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
     }];
 }
 
-#pragma mark - segue handling
+#pragma mark - Brick Cell Delegate
+- (void)BrickCell:(BrickCell *)brickCell didSelectBrickCellButton:(SelectButton *)selectButton
+{
+    selectButton.selected = YES;
+}
 
+#pragma mark - segue handling
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     static NSString* toSceneSegueID = kSegueToScene;

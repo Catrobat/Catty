@@ -29,11 +29,19 @@
 #import "UIColor+CatrobatUIColorExtensions.h"
 #import "SelectButton.h"
 
-@class Brick, BrickCellInlineView;
+@class Brick, BrickCellInlineView, BrickCell;
 @protocol BrickProtocol;
 
-@interface BrickCell : UICollectionViewCell<BrickCellProtocol>
 
+@protocol BrickCellDelegate <NSObject>
+
+@optional
+- (void)BrickCell:(BrickCell *)brickCell didSelectBrickCellButton:(SelectButton *)selectButton;
+
+@end
+
+@interface BrickCell : UICollectionViewCell<BrickCellProtocol>
+@property (nonatomic, weak) id<BrickCellDelegate> delegate;
 @property (nonatomic, strong) id<BrickProtocol> brick;
 @property (nonatomic, strong) NSArray *brickCategoryColors;
 @property (nonatomic) BOOL enabled;
