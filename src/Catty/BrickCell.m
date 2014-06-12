@@ -123,6 +123,7 @@
 - (void)layoutSubviews
 {
     [super layoutSubviews];
+    self.contentView.frame = CGRectIntegral(self.bounds);
     self.deleteButton.center = CGPointMake(self.bounds.origin.x - kDeleteButtonOffset, CGRectGetMidY(self.bounds));
 }
 
@@ -134,7 +135,7 @@
 
 - (void)setupBrickCell
 {
-    [self renderSubViews];
+    //   [self renderSubViews];
     
     if (self.editing) {
         if (self.frame.origin.x == 0.0f) {
@@ -233,7 +234,7 @@
     CGFloat inlineViewHeight = [[self class] cellHeight];
     kBrickShapeType brickShapeType = [self brickShapeType];
     CGFloat inlineViewOffsetY = 0.0f;
-    if (brickShapeType == kBrickShapeNormal) {
+    if (brickShapeType != kBrickShapeRoundedSmall || brickShapeType != kBrickShapeRoundedBig) {
         inlineViewHeight -= kBrickShapeNormalMarginHeightDeduction;
         inlineViewOffsetY = kBrickShapeNormalInlineViewOffsetY;
     } else if (brickShapeType == kBrickShapeRoundedSmall) {
@@ -502,12 +503,12 @@
 // BrickCells that do not have default shape type have to override this method in their corresponding subclass
 - (kBrickShapeType)brickShapeType
 {
-    return kBrickShapeNormal;
+    return kBrickShapeSquareSmall;
 }
 
 + (CGFloat)cellHeight
 {
-    return kBrickHeight1h;
+    return kBrickHeight1h;  // needs to be overwritten from subclasses
 }
 
 - (BOOL)isScriptBrick

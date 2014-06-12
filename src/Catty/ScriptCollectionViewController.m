@@ -350,7 +350,7 @@
     } else {
         // TODO make helper method for generating key
         NSString *key = [NSString stringWithFormat:@"%@_%@", @(indexPath.section), @(indexPath.item)];
-        BOOL selected =  self.selectedIndexPaths[key];
+        BOOL selected = indexPath == self.selectedIndexPaths[key];
         [brickCell selectedState:selected setEditingState:self.editing];
     }
     [brickCell setupBrickCell];
@@ -366,45 +366,16 @@
     CGSize size = CGSizeZero;
     
     if (collectionView == self.collectionView) {
-        CGFloat width = CGRectGetWidth(self.collectionView.bounds);
-        
         Script *script = [self.object.scriptList objectAtIndex:indexPath.section];
-        if (! script) {
-            NSError(@"This should never happen");
-            abort();
-        }
-                
-        Class brickCellClass = nil;
-        if (indexPath.row == 0) {
-            // case it's a script brick
-            NSString *scriptSubClassName = [NSStringFromClass([script class]) stringByAppendingString:@"Cell"];
-            brickCellClass = NSClassFromString(scriptSubClassName);
-        } else {
-            // case it's a normal brick
-            Brick *brick = [script.brickList objectAtIndex:(indexPath.row - 1)];
-            NSString *brickSubClassName = [NSStringFromClass([brick class]) stringByAppendingString:@"Cell"];
-            brickCellClass = NSClassFromString(brickSubClassName);
-        }
-        
-        CGFloat height = [brickCellClass cellHeight];
-//        height -= kBrickOverlapHeight; // reduce height for overlapping
-        
-        // last brick in last section has no overlapping at the bottom
-        if (indexPath.section == ([self.object.scriptList count] - 1)) {
-            if (indexPath.row == [script.brickList count]) { // there are ([brickList count]+1) cells
-//                height += kBrickOverlapHeight;
-            }
-        }
-        size = CGSizeMake(width, height);
-        
+        size = indexPath.item == 0 ? [BrickManager.sharedBrickManager sizeForBrick:NSStringFromClass(script.class)]
+        : [BrickManager.sharedBrickManager sizeForBrick:NSStringFromClass([[script.brickList objectAtIndex:indexPath.item - 1] class])];
+
     } else {
         if (collectionView == self.brickSelectionView.brickCollectionView) {
-            id<BrickProtocol> brick = [self.selectableBricks objectAtIndex:indexPath.section];
-            NSString *brickCellName = [NSStringFromClass([brick class]) stringByAppendingString:@"Cell"];
-            size = CGSizeMake(CGRectGetWidth(self.view.bounds), [NSClassFromString(brickCellName) cellHeight]);
+            Brick *brick = [self.selectableBricks objectAtIndex:indexPath.section];
+            size = [BrickManager.sharedBrickManager sizeForBrick:NSStringFromClass(brick.class)];
         }
     }
-
     return size;
 }
 
@@ -457,7 +428,6 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
             }];
         } else {
             if ([collectionView isKindOfClass:self.brickSelectionView.brickCollectionView.class]) {
-                
                 [self.brickSelectionView dismissView:self withView:self.collectionView fastDismiss:YES completion:^{
                     [self.brickSelectionView removeFromSuperview];
                     [self setupToolBar];
