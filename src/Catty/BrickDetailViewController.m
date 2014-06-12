@@ -76,6 +76,15 @@ NS_ENUM(NSInteger, ButtonIndex) {
     }
 }
 
+- (void)viewDidDisappear:(BOOL)animated
+{
+    [super viewDidDisappear:animated];
+    
+    if (self.delegate && [self.delegate respondsToSelector:@selector(brickDetailViewController:viewDidDisappear:withBrickCell:copyBrick:)]) {
+        [self.delegate brickDetailViewController:self viewDidDisappear:self.deleteBrickOrScriptFlag.boolValue
+                                   withBrickCell:self.brickCell copyBrick:self.brickCopyFlag.boolValue];
+    }
+}
 
 - (void)handleTap:(UITapGestureRecognizer *)sender
 {
@@ -104,10 +113,8 @@ NS_ENUM(NSInteger, ButtonIndex) {
                                    destructiveButtonTitle:[self deleteMenuItemNameWithBrickCell:self.brickCell]
                                         otherButtonTitles:[self secondMenuItemWithBrickCell:self.brickCell],
                       [self editFormulaMenuItemWithVrickCell:self.brickCell], nil];
-//        UIColor *color = self.brickCell.brickCategoryColors[self.brickCell.brick.brickCategoryType];
         [_brickMenu setButtonBackgroundColor:[UIColor colorWithWhite:0.0f alpha:0.6f]];
         [_brickMenu setButtonTextColor:UIColor.lightOrangeColor];
-//        [_brickMenu setButtonBackgroundColor:UIColor.redColor forButtonAtIndex:0];
         [_brickMenu setButtonTextColor:UIColor.redColor forButtonAtIndex:0];
         _brickMenu.transparentView = nil;
     }
@@ -156,14 +163,7 @@ NS_ENUM(NSInteger, ButtonIndex) {
 {
     if (! self.presentingViewController.isBeingDismissed) {
         [self.brickMenu dismissWithClickedButtonIndex:-1 animated:YES];
-        [self.presentingViewController dismissViewControllerAnimated:YES completion:^{
-            [NSNotificationCenter.defaultCenter postNotificationName:kBrickDetailViewDismissed
-                                                              object:NULL
-                                                            userInfo:@{@"brickDeleted": self.deleteBrickOrScriptFlag,
-                                                                       @"isScript": @([self isScript:self.brickCell]),
-                                                                       @"copy": self.brickCopyFlag,
-                                                                       @"copiedCell": self.brickCell }];
-        }];
+        [self.presentingViewController dismissViewControllerAnimated:YES completion:NULL];
     }
 }
 

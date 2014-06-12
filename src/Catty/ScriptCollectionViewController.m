@@ -50,7 +50,8 @@
                                               LXReorderableCollectionViewDataSource,
                                               UIViewControllerTransitioningDelegate,
                                               SingleBrickSelectionViewDelegate,
-                                              BrickCellDelegate>
+                                              BrickCellDelegate,
+                                              BrickDetailViewControllerDelegate>
 
 @property (nonatomic, weak) IBOutlet UICollectionView *collectionView;
 @property (nonatomic, strong) BrickScaleTransition *brickScaleTransition;
@@ -73,19 +74,9 @@
     [super viewDidLoad];
     [self setupCollectionView];
     [self setupToolBar];
-
-    // register brick cells for current brick category
-    NSDictionary *allBrickTypes = [[BrickManager sharedBrickManager] classNameBrickTypeMap];
-    for (NSString *className in allBrickTypes) {
-        [self.collectionView registerClass:NSClassFromString([className stringByAppendingString:@"Cell"])
-                forCellWithReuseIdentifier:className];
-        
-        [self.brickSelectionView.brickCollectionView registerClass:NSClassFromString([className stringByAppendingString:@"Cell"])
-                forCellWithReuseIdentifier:className];
-    }
 }
 
-#pragma mark - initialization
+#pragma mark - Setup Collection View
 - (void)setupCollectionView
 {
     self.collectionView.backgroundColor = UIColor.backgroundColor;
@@ -102,23 +93,16 @@
     self.placeHolderView.hidden = self.object.scriptList.count ? YES : NO;
     self.brickScaleTransition = [BrickScaleTransition new];
     self.selectedIndexPaths = [NSMutableDictionary dictionary];
-}
-
-#pragma mark - view events
-- (void)viewWillAppear:(BOOL)animated
-{
-    [super viewWillAppear:animated];
-    NSNotificationCenter *dnc = [NSNotificationCenter defaultCenter];
-    [dnc addObserver:self selector:@selector(brickAdded:) name:kBrickCellAddedNotification object:nil];
-    [dnc addObserver:self selector:@selector(brickDetailViewDismissed:) name:kBrickDetailViewDismissed object:nil];
-}
-
-- (void)viewWillDisappear:(BOOL)animated
-{
-    [super viewWillDisappear:animated];
-    NSNotificationCenter *dnc = [NSNotificationCenter defaultCenter];
-    [dnc removeObserver:self name:kBrickCellAddedNotification object:nil];
-    [dnc removeObserver:self name:kBrickDetailViewDismissed object:nil];
+    
+    // register brick cells for current brick category
+    NSDictionary *allBrickTypes = [[BrickManager sharedBrickManager] classNameBrickTypeMap];
+    for (NSString *className in allBrickTypes) {
+        [self.collectionView registerClass:NSClassFromString([className stringByAppendingString:@"Cell"])
+                forCellWithReuseIdentifier:className];
+        
+        [self.brickSelectionView.brickCollectionView registerClass:NSClassFromString([className stringByAppendingString:@"Cell"])
+                                        forCellWithReuseIdentifier:className];
+    }
 }
 
 #pragma mark - Getters and Setters
@@ -260,20 +244,20 @@
     return nil;
 }
 
-#pragma mark - Notification
+#pragma mark BrickDetailViewController Delegate
 
-- (void)brickDetailViewDismissed:(NSNotification *)notification
+- (void)brickDetailViewController:(BrickDetailViewController *)brickDetailViewController
+                 viewDidDisappear:(BOOL)deleteBrick withBrickCell:(BrickCell *)brickCell copyBrick:(BOOL)copyBrick
 {
     self.collectionView.userInteractionEnabled = YES;
     self.navigationController.navigationBar.userInteractionEnabled = YES;
     [self.collectionView reloadData];
-
-    if  ([notification.userInfo[@"brickDeleted"] boolValue]) {
+    
+    if (deleteBrick) {
         [self removeBrickWithIndexPath:self.selectedIndexPath];
     } else {
-        BOOL copy = [notification.userInfo[@"copy"] boolValue];
-        if (copy && [notification.userInfo[@"copiedCell"] isKindOfClass:BrickCell.class]) {
-            [self addBrickCellAction:notification.userInfo[@"copiedCell"] copyBrick:copy completionBlock:NULL];
+        if (copyBrick) {
+            [self addBrickCellAction:brickCell copyBrick:copyBrick completionBlock:NULL];
         }
     }
 }
@@ -343,7 +327,6 @@
             brickCell.brick = [self.selectableBricks objectAtIndex:indexPath.section];
         }
     }
-    
     
     if (_selectedAllCells) {
          [brickCell selectedState:_selectedAllCells setEditingState:self.editing];
@@ -417,6 +400,7 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
         if (collectionView == self.collectionView) {
             self.selectedIndexPath =  indexPath;
             BrickDetailViewController *brickDetailViewcontroller = [BrickDetailViewController new];
+            brickDetailViewcontroller.delegate = self;
             brickDetailViewcontroller.brickCell = cell;
             self.brickScaleTransition.cell = cell;
             self.brickScaleTransition.touchRect = cell.frame;
@@ -788,17 +772,16 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
             [UIView animateWithDuration:0.7f  delay:0.0f usingSpringWithDamping:0.6f initialSpringVelocity:1.5f options:UIViewAnimationOptionCurveEaseInOut animations:^{
                 brickCell.center = CGPointMake(brickCell.center.x + kDeleteButtonTranslationOffsetX, brickCell.center.y);
                 brickCell.selectButton.alpha = 1.0f;
-                } completion:NULL];
+            } completion:NULL];
         }
-        
     } else {
         self.navigationItem.title = kUITableViewControllerMenuTitleScripts;
         for (BrickCell *brickCell in self.collectionView.visibleCells) {
             [UIView animateWithDuration:0.5 delay:0.0f usingSpringWithDamping:0.6f initialSpringVelocity:2.5f options:UIViewAnimationOptionCurveEaseInOut
                              animations:^{
-                brickCell.center = CGPointMake(self.view.center.x, brickCell.center.y);
-                brickCell.selectButton.alpha = 0.0f;
-            } completion:NULL];
+                                 brickCell.center = CGPointMake(self.view.center.x, brickCell.center.y);
+                                 brickCell.selectButton.alpha = 0.0f;
+                             } completion:NULL];
         }
     }
 }
