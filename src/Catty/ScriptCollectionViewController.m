@@ -262,7 +262,7 @@
     }
 }
 
-#pragma mark - collection view datasource
+#pragma mark - Collection View Datasource
 
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView
 {
@@ -430,13 +430,13 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
 - (void)collectionView:(UICollectionView *)collectionView itemAtIndexPath:(NSIndexPath *)fromIndexPath
                                                       willMoveToIndexPath:(NSIndexPath *)toIndexPath
 {
-    if ([@(fromIndexPath.section) isEqualToNumber:@(toIndexPath.section)]) {
+    if (fromIndexPath.section == toIndexPath.section) {
         Script *script = [self.object.scriptList objectAtIndex:fromIndexPath.section];
         Brick *toBrick = [script.brickList objectAtIndex:toIndexPath.item - 1];
         [script.brickList removeObjectAtIndex:toIndexPath.item - 1];
         [script.brickList insertObject:toBrick atIndex:fromIndexPath.item - 1];
     } else {
-        if (![@(fromIndexPath.section) isEqualToNumber:@(toIndexPath.section)]) {
+        if (!fromIndexPath.section == toIndexPath.section) {
             Script *toScript = [self.object.scriptList objectAtIndex:toIndexPath.section];
             Brick *toBrick = [toScript.brickList objectAtIndex:toIndexPath.item - 1];
             
@@ -479,7 +479,7 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
 - (BOOL)collectionView:(UICollectionView *)collectionView itemAtIndexPath:(NSIndexPath *)fromIndexPath
                                                           canMoveToIndexPath:(NSIndexPath *)toIndexPath
 {
-    return (toIndexPath.item != 0);
+   return (toIndexPath.item != 0);
 }
 
 - (BOOL)collectionView:(UICollectionView *)collectionView canMoveItemAtIndexPath:(NSIndexPath *)indexPath

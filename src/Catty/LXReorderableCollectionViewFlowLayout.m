@@ -78,7 +78,7 @@ static NSString * const kLXCollectionViewKeyPath = @"collectionView";
 
 - (void)setDefaults {
     _scrollingSpeed = 400.0f;
-    _scrollingTriggerEdgeInsets = UIEdgeInsetsMake(50.0f, 500.0f, 20.0f, 500.0f);
+    _scrollingTriggerEdgeInsets = UIEdgeInsetsMake(160.0f, 50.0f, 160.0f, 50.0f);
 }
 
 - (void)setupCollectionView {
@@ -143,39 +143,50 @@ static NSString * const kLXCollectionViewKeyPath = @"collectionView";
     return (id<LXReorderableCollectionViewDelegateFlowLayout>)self.collectionView.delegate;
 }
 
-- (void)invalidateLayoutIfNecessary {
+- (void)invalidateLayoutIfNecessary
+{
+    NSIndexPath *newIndexPath       = [self.collectionView indexPathForItemAtPoint: self.currentView.center];
+    NSIndexPath *previousIndexPath  = self.selectedItemIndexPath;
     
-    NSIndexPath *newIndexPath = [self.collectionView indexPathForItemAtPoint:self.currentView.center];
-    NSIndexPath *previousIndexPath = self.selectedItemIndexPath;
-    
-    if ((newIndexPath == nil) || [newIndexPath isEqual:previousIndexPath]) {
+    if ((newIndexPath == nil) ||
+        [newIndexPath isEqual: previousIndexPath]) {
         return;
     }
     
-    if ([self.dataSource respondsToSelector:@selector(collectionView:itemAtIndexPath:canMoveToIndexPath:)] &&
-        ![self.dataSource collectionView:self.collectionView itemAtIndexPath:previousIndexPath canMoveToIndexPath:newIndexPath]) {
-        return;
+    if ( [self.dataSource respondsToSelector: @selector(collectionView:itemAtIndexPath:canMoveToIndexPath:)]) {
+        if (![self.dataSource collectionView: self.collectionView
+                             itemAtIndexPath: previousIndexPath
+                          canMoveToIndexPath: newIndexPath])
+        {
+            return;
+        }
     }
     
     self.selectedItemIndexPath = newIndexPath;
     
-    if ([self.dataSource respondsToSelector:@selector(collectionView:itemAtIndexPath:willMoveToIndexPath:)]) {
-        [self.dataSource collectionView:self.collectionView itemAtIndexPath:previousIndexPath willMoveToIndexPath:newIndexPath];
+    if ([self.dataSource respondsToSelector: @selector(collectionView:itemAtIndexPath:willMoveToIndexPath:)]) {
+        [self.dataSource collectionView: self.collectionView
+                        itemAtIndexPath: previousIndexPath
+                    willMoveToIndexPath: newIndexPath];
     }
-
+    
     __weak typeof(self) weakSelf = self;
-    [self.collectionView performBatchUpdates:^{
+    [self.collectionView performBatchUpdates: ^{
         __strong typeof(self) strongSelf = weakSelf;
         if (strongSelf) {
-            [strongSelf.collectionView deleteItemsAtIndexPaths:@[ previousIndexPath ]];
-            [strongSelf.collectionView insertItemsAtIndexPaths:@[ newIndexPath ]];
+            [strongSelf.collectionView moveItemAtIndexPath:previousIndexPath
+                                               toIndexPath:newIndexPath];
         }
-    } completion:^(BOOL finished) {
+    } completion: ^(BOOL finished) {
         __strong typeof(self) strongSelf = weakSelf;
-        if ([strongSelf.dataSource respondsToSelector:@selector(collectionView:itemAtIndexPath:didMoveToIndexPath:)]) {
-            [strongSelf.dataSource collectionView:strongSelf.collectionView itemAtIndexPath:previousIndexPath didMoveToIndexPath:newIndexPath];
+        if ([strongSelf.dataSource respondsToSelector: @selector(collectionView:itemAtIndexPath:didMoveToIndexPath:)]) {
+            [strongSelf.dataSource collectionView: strongSelf.collectionView
+                                  itemAtIndexPath: previousIndexPath
+                               didMoveToIndexPath: newIndexPath];
         }
     }];
+    
+    [self invalidateLayout];
 }
 
 - (void)invalidatesScrollTimer {
@@ -314,7 +325,7 @@ static NSString * const kLXCollectionViewKeyPath = @"collectionView";
              animations:^{
                  __strong typeof(self) strongSelf = weakSelf;
                  if (strongSelf) {
-                     strongSelf.currentView.transform = CGAffineTransformMakeScale(1.02f, 1.02f);
+//                     strongSelf.currentView.transform = CGAffineTransformMakeScale(1.02f, 1.02f);
                      highlightedImageView.alpha = 0.0f;
                      imageView.alpha = 1.0f;
                  }
@@ -354,7 +365,7 @@ static NSString * const kLXCollectionViewKeyPath = @"collectionView";
                  animations:^{
                      __strong typeof(self) strongSelf = weakSelf;
                      if (strongSelf) {
-                         strongSelf.currentView.transform = CGAffineTransformMakeScale(1.0f, 1.0f);
+//                         strongSelf.currentView.transform = CGAffineTransformIdentity;
                          strongSelf.currentView.center = layoutAttributes.center;
                      }
                  }
