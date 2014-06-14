@@ -279,7 +279,7 @@
             return NO;
         }
         return YES;
-    } else if([identifier isEqualToString:kSegueToExplore]){
+    } else if([identifier isEqualToString:kSegueToExplore]||[identifier isEqualToString:kSegueToHelp]){
         NetworkStatus remoteHostStatus = [self.reachability currentReachabilityStatus];
         
         if(remoteHostStatus == NotReachable) {
