@@ -69,7 +69,7 @@
         
         [self.brickCollectionView scrollToItemAtIndexPath:0 atScrollPosition:UICollectionViewScrollPositionTop animated:NO];
         
-        [UIView animateWithDuration:0.6f delay:0.0f usingSpringWithDamping:0.8f initialSpringVelocity:2.0f options:UIViewAnimationOptionCurveEaseInOut animations:^{
+        [UIView animateWithDuration:0.5f delay:0.0f usingSpringWithDamping:10.0f initialSpringVelocity:0.0f options:UIViewAnimationOptionCurveEaseInOut animations:^{
             self.frame = CGRectMake(0.0f, UIScreen.mainScreen.bounds.origin.y + self.yOffset, CGRectGetWidth(self.bounds), CGRectGetHeight(self.bounds));
             [viewController.navigationController setNavigationBarHidden:YES animated:YES];
             view.alpha = 0.2f;

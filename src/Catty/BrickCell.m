@@ -135,7 +135,7 @@
 
 - (void)setupBrickCell
 {
-    //   [self renderSubViews];
+    [self renderSubViews];
     
     if (self.editing) {
         if (self.frame.origin.x == 0.0f) {

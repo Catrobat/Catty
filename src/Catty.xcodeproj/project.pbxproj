@@ -29,6 +29,7 @@
 		815420D9191A51F200E628D2 /* FBShimmeringLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 815420D6191A51F200E628D2 /* FBShimmeringLayer.m */; };
 		815420DA191A51F200E628D2 /* FBShimmeringView.m in Sources */ = {isa = PBXBuildFile; fileRef = 815420D8191A51F200E628D2 /* FBShimmeringView.m */; };
 		815420DD191A5C1F00E628D2 /* PlaceHolderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 815420DC191A5C1F00E628D2 /* PlaceHolderView.m */; };
+		815C865F194E36C200C40F60 /* LXReorderableCollectionViewFlowLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 815C865E194E36C200C40F60 /* LXReorderableCollectionViewFlowLayout.m */; };
 		81649E10191D35090099AE7E /* ScriptDeleteButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 81649E0F191D35090099AE7E /* ScriptDeleteButton.m */; };
 		8165DC851938B2D000B6A306 /* SingleBrickSelectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8165DC841938B2D000B6A306 /* SingleBrickSelectionView.m */; };
 		816827D81934BB9B00031E7C /* BrickSelectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 816827D71934BB9B00031E7C /* BrickSelectionView.m */; };
@@ -37,7 +38,6 @@
 		817B544318F03D4C00AF6BFE /* BrickScaleTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = 817B544218F03D4C00AF6BFE /* BrickScaleTransition.m */; };
 		817B544C18F0520800AF6BFE /* BrickDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 817B544A18F0520800AF6BFE /* BrickDetailViewController.m */; };
 		817B545118F0AAE600AF6BFE /* FXBlurView.m in Sources */ = {isa = PBXBuildFile; fileRef = 817B545018F0AAE600AF6BFE /* FXBlurView.m */; };
-		8193CD99192BEFB700AD44A3 /* BrickSelectionSwipe.m in Sources */ = {isa = PBXBuildFile; fileRef = 8193CD98192BEFB700AD44A3 /* BrickSelectionSwipe.m */; };
 		819EFEA71948721900A1D591 /* SelectButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 819EFEA61948721900A1D591 /* SelectButton.m */; };
 		81A5B4D7192964170082B2B8 /* CellMotionEffect.m in Sources */ = {isa = PBXBuildFile; fileRef = 81A5B4D6192964170082B2B8 /* CellMotionEffect.m */; };
 		81B7487A1921433700990E5F /* CreateView.m in Sources */ = {isa = PBXBuildFile; fileRef = 81B748781921433700990E5F /* CreateView.m */; };
@@ -50,7 +50,6 @@
 		81C64F8419264E2800199161 /* UIWindow+AHKAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 81C64F8019264E2800199161 /* UIWindow+AHKAdditions.m */; };
 		81C64F8819268DF000199161 /* IBActionSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = 81C64F8719268DF000199161 /* IBActionSheet.m */; };
 		81CA97D4192A900C00C99DCB /* BrickSelectModalTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = 81CA97D3192A900C00C99DCB /* BrickSelectModalTransition.m */; };
-		81D3C9F219437F3A00DB71E1 /* LXReorderableCollectionViewFlowLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 81D3C9F119437F3A00DB71E1 /* LXReorderableCollectionViewFlowLayout.m */; };
 		81D3C9F61945E54200DB71E1 /* BrickShapeFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 81D3C9F51945E54200DB71E1 /* BrickShapeFactory.m */; };
 		81FAEE2F17E781AB0052BB2B /* ScriptCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 81FAEE2E17E781AB0052BB2B /* ScriptCollectionViewController.m */; };
 		81FAEE3217E782140052BB2B /* LooksTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 81FAEE3117E782140052BB2B /* LooksTableViewController.m */; };
@@ -320,6 +319,8 @@
 		815420D8191A51F200E628D2 /* FBShimmeringView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FBShimmeringView.m; sourceTree = "<group>"; };
 		815420DB191A5C1F00E628D2 /* PlaceHolderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlaceHolderView.h; sourceTree = "<group>"; };
 		815420DC191A5C1F00E628D2 /* PlaceHolderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlaceHolderView.m; sourceTree = "<group>"; };
+		815C865D194E36C200C40F60 /* LXReorderableCollectionViewFlowLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LXReorderableCollectionViewFlowLayout.h; sourceTree = "<group>"; };
+		815C865E194E36C200C40F60 /* LXReorderableCollectionViewFlowLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LXReorderableCollectionViewFlowLayout.m; sourceTree = "<group>"; };
 		81649E0E191D35090099AE7E /* ScriptDeleteButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScriptDeleteButton.h; sourceTree = "<group>"; };
 		81649E0F191D35090099AE7E /* ScriptDeleteButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScriptDeleteButton.m; sourceTree = "<group>"; };
 		8165DC831938B2D000B6A306 /* SingleBrickSelectionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SingleBrickSelectionView.h; sourceTree = "<group>"; };
@@ -336,8 +337,6 @@
 		817B544A18F0520800AF6BFE /* BrickDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BrickDetailViewController.m; sourceTree = "<group>"; };
 		817B544F18F0AAE600AF6BFE /* FXBlurView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FXBlurView.h; sourceTree = "<group>"; };
 		817B545018F0AAE600AF6BFE /* FXBlurView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FXBlurView.m; sourceTree = "<group>"; };
-		8193CD97192BEFB700AD44A3 /* BrickSelectionSwipe.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BrickSelectionSwipe.h; sourceTree = "<group>"; };
-		8193CD98192BEFB700AD44A3 /* BrickSelectionSwipe.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BrickSelectionSwipe.m; sourceTree = "<group>"; };
 		819EFEA51948721900A1D591 /* SelectButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelectButton.h; sourceTree = "<group>"; };
 		819EFEA61948721900A1D591 /* SelectButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelectButton.m; sourceTree = "<group>"; };
 		81A5B4D5192964170082B2B8 /* CellMotionEffect.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CellMotionEffect.h; sourceTree = "<group>"; };
@@ -361,8 +360,6 @@
 		81C64F8719268DF000199161 /* IBActionSheet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IBActionSheet.m; sourceTree = "<group>"; };
 		81CA97D2192A900C00C99DCB /* BrickSelectModalTransition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BrickSelectModalTransition.h; sourceTree = "<group>"; };
 		81CA97D3192A900C00C99DCB /* BrickSelectModalTransition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BrickSelectModalTransition.m; sourceTree = "<group>"; };
-		81D3C9F019437F3A00DB71E1 /* LXReorderableCollectionViewFlowLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LXReorderableCollectionViewFlowLayout.h; sourceTree = "<group>"; };
-		81D3C9F119437F3A00DB71E1 /* LXReorderableCollectionViewFlowLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LXReorderableCollectionViewFlowLayout.m; sourceTree = "<group>"; };
 		81D3C9F41945E54200DB71E1 /* BrickShapeFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BrickShapeFactory.h; sourceTree = "<group>"; };
 		81D3C9F51945E54200DB71E1 /* BrickShapeFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BrickShapeFactory.m; sourceTree = "<group>"; };
 		81FAEE2D17E781AB0052BB2B /* ScriptCollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScriptCollectionViewController.h; sourceTree = "<group>"; };
@@ -954,8 +951,8 @@
 		81506F4A18C3EDDC000ED328 /* LXReorderableCollectionViewFlowLayout */ = {
 			isa = PBXGroup;
 			children = (
-				81D3C9F019437F3A00DB71E1 /* LXReorderableCollectionViewFlowLayout.h */,
-				81D3C9F119437F3A00DB71E1 /* LXReorderableCollectionViewFlowLayout.m */,
+				815C865D194E36C200C40F60 /* LXReorderableCollectionViewFlowLayout.h */,
+				815C865E194E36C200C40F60 /* LXReorderableCollectionViewFlowLayout.m */,
 			);
 			name = LXReorderableCollectionViewFlowLayout;
 			sourceTree = "<group>";
@@ -993,8 +990,6 @@
 				817B544218F03D4C00AF6BFE /* BrickScaleTransition.m */,
 				81CA97D2192A900C00C99DCB /* BrickSelectModalTransition.h */,
 				81CA97D3192A900C00C99DCB /* BrickSelectModalTransition.m */,
-				8193CD97192BEFB700AD44A3 /* BrickSelectionSwipe.h */,
-				8193CD98192BEFB700AD44A3 /* BrickSelectionSwipe.m */,
 			);
 			name = ViewControllerTransitions;
 			sourceTree = "<group>";
@@ -2915,6 +2910,7 @@
 				CD0CCF61170CB39700B70036 /* ChangeXByNBrick.m in Sources */,
 				CD0CCF62170CB39700B70036 /* ChangeYByNBrick.m in Sources */,
 				CA75C27418A9620800FC8C2F /* PlaySoundBrickCell.m in Sources */,
+				815C865F194E36C200C40F60 /* LXReorderableCollectionViewFlowLayout.m in Sources */,
 				CD0CCF64170CB39700B70036 /* ComeToFrontBrick.m in Sources */,
 				CD0CCF71170CB39700B70036 /* FileManager.m in Sources */,
 				CD0CCF72170CB39700B70036 /* ForeverBrick.m in Sources */,
@@ -2944,7 +2940,6 @@
 				CD0CCFBC170CB39700B70036 /* Script.m in Sources */,
 				CA75C25F18A961B200FC8C2F /* TurnLeftBrickCell.m in Sources */,
 				CD0CCFBD170CB39700B70036 /* SetBrightnessBrick.m in Sources */,
-				8193CD99192BEFB700AD44A3 /* BrickSelectionSwipe.m in Sources */,
 				CABE07BC18BAB8B200BE26EF /* MessageComboBoxView.m in Sources */,
 				CA75C25018A9618D00FC8C2F /* SetYBrickCell.m in Sources */,
 				CD0CCFBE170CB39700B70036 /* SetGhostEffectBrick.m in Sources */,
@@ -3051,7 +3046,6 @@
 				B402288217329FEB004C4942 /* IfLogicBeginBrick.m in Sources */,
 				B40228911732A541004C4942 /* IfLogicElseBrick.m in Sources */,
 				B40228961732A58E004C4942 /* IfLogicEndBrick.m in Sources */,
-				81D3C9F219437F3A00DB71E1 /* LXReorderableCollectionViewFlowLayout.m in Sources */,
 				B40228A51732ADF4004C4942 /* PointToBrick.m in Sources */,
 				B470688A1733BA9600EC880D /* VariablesContainer.m in Sources */,
 				CA75C24418A9617100FC8C2F /* IfLogicEndBrickCell.m in Sources */,
