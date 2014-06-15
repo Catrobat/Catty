@@ -662,12 +662,6 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
 - (void)deleteSelectedBricks
 {
     [self setEditing:NO animated:YES];
-    
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        if (self.selectedIndexPaths.count) {
-            [self removeBricksWithIndexPaths:[self.selectedIndexPaths allValues]];
-        }
-    });
 }
 
 - (void)selectAllBricks
@@ -768,25 +762,31 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
 {
     [super setEditing:editing animated:animated];
     [self setupToolBar];
- 
+    
     if (self.isEditing) {
         self.navigationItem.title = kUINavigationItemTitleEditMenu;
         
-        for (BrickCell *brickCell in self.collectionView.visibleCells) {
-            [UIView animateWithDuration:animated ? 0.7f : 0.0f  delay:0.0f usingSpringWithDamping:0.6f initialSpringVelocity:1.5f options:UIViewAnimationOptionCurveEaseInOut animations:^{
+        [UIView animateWithDuration:animated ? 0.5f : 0.0f  delay:0.0f usingSpringWithDamping:0.6f initialSpringVelocity:1.5f options:UIViewAnimationOptionCurveEaseInOut animations:^{
+            for (BrickCell *brickCell in self.collectionView.visibleCells) {
                 brickCell.center = CGPointMake(brickCell.center.x + kDeleteButtonTranslationOffsetX, brickCell.center.y);
                 brickCell.selectButton.alpha = 1.0f;
-            } completion:NULL];
-        }
+            }
+        } completion:NULL];
     } else {
         self.navigationItem.title = kUITableViewControllerMenuTitleScripts;
-        for (BrickCell *brickCell in self.collectionView.visibleCells) {
-            [UIView animateWithDuration:animated ? 0.7f : 0.0f delay:0.0f usingSpringWithDamping:0.6f initialSpringVelocity:2.5f options:UIViewAnimationOptionCurveEaseInOut
-                             animations:^{
+        
+        [UIView animateWithDuration:animated ? 0.3f : 0.0f delay:0.0f usingSpringWithDamping:0.6f initialSpringVelocity:2.5f options:UIViewAnimationOptionCurveEaseInOut
+                         animations:^{
+                             for (BrickCell *brickCell in self.collectionView.visibleCells) {
                                  brickCell.center = CGPointMake(self.view.center.x, brickCell.center.y);
                                  brickCell.selectButton.alpha = 0.0f;
-                             } completion:NULL];
-        }
+                             }
+                         } completion:^(BOOL finished) {
+                             if (self.selectedIndexPaths.count) {
+                                 [self removeBricksWithIndexPaths:[self.selectedIndexPaths allValues]];
+                             }
+                             
+                         }];
     }
 }
 
