@@ -28,6 +28,11 @@
 
 @implementation PointToBrickCell
 
+- (void)drawRect:(CGRect)rect
+{
+    [BrickShapeFactory.sharedBrickShapeFactory drawMediumSquareBrickShape:UIColor.motionBrickStrokeColor fillColor:UIColor.motionBrickBlueColor];
+}
+
 + (CGFloat)cellHeight
 {
     return kBrickHeight2h;

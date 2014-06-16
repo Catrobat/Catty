@@ -144,8 +144,8 @@
 
 #define kUIBarButtonItemTitleEdit NSLocalizedString(@"Edit", nil)
 #define kUIBarButtonItemTitleCancel NSLocalizedString(@"Cancel", nil)
-#define kUIBarButtonItemTitleSelectAllItems NSLocalizedString(@"Select all", nil)
-#define kUIBarButtonItemTitleUnselectAllItems NSLocalizedString(@"Unselect all", nil)
+#define kUIBarButtonItemTitleSelectAllItems NSLocalizedString(@"Select All", nil)
+#define kUIBarButtonItemTitleUnselectAllItems NSLocalizedString(@"Unselect All", nil)
 #define kUIBarButtonItemTitleDelete NSLocalizedString(@"Delete", nil)
 
 /*
@@ -171,7 +171,7 @@
 #define kUIActionSheetButtonTitleClose NSLocalizedString(@"Close", nil)
 #define kUIActionSheetButtonTitleDeleteBrick NSLocalizedString(@"Delete Brick", nil)
 #define kUIActionSheetButtonTitleDeleteScript NSLocalizedString(@"Delete Script", nil)
-#define kUIActionSheetButtonTitleHighlightScript NSLocalizedString(@"Highlight Script", nil)
+#define kUIActionSheetButtonTitleAnimateBricks NSLocalizedString(@"Animate Brick", nil)
 #define kUIActionSheetButtonTitleCopyBrick NSLocalizedString(@"Copy Brick", nil)
 #define kUIActionSheetButtonTitleEditFormula NSLocalizedString(@"Edit Formula", nil)
 

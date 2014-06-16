@@ -21,7 +21,6 @@
  */
 
 #import <Foundation/Foundation.h>
-
 @protocol BrickProtocol;
 
 @protocol BrickCellProtocol <NSObject>

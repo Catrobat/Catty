@@ -21,7 +21,6 @@
  */
 
 #import "DarkBlueGradientCell.h"
-#import "BackgroundLayer.h"
 #import "Util.h"
 #import "TableUtil.h"
 #import "UIColor+CatrobatUIColorExtensions.h"

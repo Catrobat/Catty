@@ -22,7 +22,7 @@
 
 - (void)setupView
 {
-    self.contentView.backgroundColor = UIColor.backgroundBlueColor;
+    self.contentView.backgroundColor = UIColor.backgroundColor;
 }
 
 @end

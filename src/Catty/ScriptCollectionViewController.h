@@ -22,9 +22,10 @@
 
 #import <UIKit/UIKit.h>
 
-@class SpriteObject;
+@class SpriteObject, FXBlurView;
 
 @interface ScriptCollectionViewController : UICollectionViewController
 @property (strong, nonatomic) SpriteObject *object;
+@property (nonatomic, strong) FXBlurView *blurView;
 
 @end

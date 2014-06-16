@@ -23,19 +23,26 @@
 #import "BrickManager.h"
 #import "BrickProtocol.h"
 
-@implementation BrickManager
+@implementation BrickManager {
+    NSDictionary *_brickHeightDictionary;
+}
 
 #pragma mark - construction methods
-static BrickManager *sharedBrickManager = nil;
-
-+ (BrickManager*)sharedBrickManager
++ (instancetype)sharedBrickManager
 {
-    @synchronized(self) {
-        if (sharedBrickManager == nil) {
-            sharedBrickManager = [[BrickManager alloc] init];
-        }
+    static BrickManager *_sharedCattyBrickManager = nil;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{ _sharedCattyBrickManager = [BrickManager new]; });
+    return _sharedCattyBrickManager;
+}
+
+- (id)init
+{
+    self = [super init];
+    if (self) {
+        _brickHeightDictionary = kBrickHeightMap;
     }
-    return sharedBrickManager;
+    return self;
 }
 
 #pragma mark - helpers
@@ -154,6 +161,16 @@ static BrickManager *sharedBrickManager = nil;
 - (NSUInteger)brickIndexForBrickType:(kBrickType)brickType
 {
     return (brickType % 100);
+}
+
+- (CGSize)sizeForBrick:(NSString *)brickName
+{
+    CGSize size = CGSizeZero;
+    if (IsIPhone5() || IsIPhone()) {
+        NSNumber *height = [_brickHeightDictionary objectForKey:brickName];
+        size = CGSizeMake(UIScreen.mainScreen.bounds.size.width, [height floatValue]);
+    }
+    return size;
 }
 
 @end

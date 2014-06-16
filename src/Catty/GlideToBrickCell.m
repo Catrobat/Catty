@@ -31,6 +31,11 @@
 
 @implementation GlideToBrickCell
 
+- (void)drawRect:(CGRect)rect
+{
+    [BrickShapeFactory.sharedBrickShapeFactory drawLargeSquareBrickShape:UIColor.motionBrickStrokeColor fillColor:UIColor.motionBrickBlueColor];
+}
+
 + (CGFloat)cellHeight
 {
     return kBrickHeight3h;

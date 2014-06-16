@@ -29,6 +29,11 @@
 
 @implementation ChangeBrightnessByNBrickCell
 
+- (void)drawRect:(CGRect)rect
+{
+    [BrickShapeFactory.sharedBrickShapeFactory drawMediumSquareBrickShape:UIColor.lookBrickStrokeColor fillColor:UIColor.lookBrickGreenColor];
+}
+
 + (CGFloat)cellHeight
 {
     return kBrickHeight2h;

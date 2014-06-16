@@ -23,28 +23,36 @@
 #import <UIKit/UIKit.h>
 #import "ProgramDefines.h"
 #import "UIDefines.h"
-#import "ScriptDeleteButton.h"
 #import "BrickCellProtocol.h"
+#import "BrickShapeFactory.h"
+#import "UIColor+CatrobatUIColorExtensions.h"
+#import "SelectButton.h"
 
-@class Brick;
-@class BrickCellInlineView;
+@class Brick, BrickCellInlineView, BrickCell;
 @protocol BrickProtocol;
 
-@interface BrickCell : UICollectionViewCell<BrickCellProtocol>
 
+@protocol BrickCellDelegate <NSObject>
+
+@optional
+- (void)BrickCell:(BrickCell *)brickCell didSelectBrickCellButton:(SelectButton *)selectButton;
+
+@end
+
+@interface BrickCell : UICollectionViewCell<BrickCellProtocol>
+@property (nonatomic, weak) id<BrickCellDelegate> delegate;
 @property (nonatomic, strong) id<BrickProtocol> brick;
+@property (nonatomic, strong) NSArray *brickCategoryColors;
 @property (nonatomic) BOOL enabled;
+@property (nonatomic, strong) SelectButton *selectButton;
+
 - (kBrickShapeType)brickShapeType;
 + (CGFloat)cellHeight;
 
 - (void)hookUpSubViews:(NSArray *)inlineViewSubViews; // abstract
-- (void)renderSubViews;
 - (BOOL)isScriptBrick;
-+ (void)clearImageCache;
-
-// TODO: review that
-@property (nonatomic, strong) ScriptDeleteButton *deleteButton;
-@property (nonatomic, assign) BOOL hideDeleteButton;
-- (void)setBrickEditing:(BOOL)editing;
+- (void)selectedState:(BOOL)selected setEditingState:(BOOL)editing;
+- (void)animateBrick:(BOOL)animate;
+- (void)setupBrickCell;
 
 @end

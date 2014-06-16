@@ -57,7 +57,7 @@
     self.editableSections = nil;
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
-    self.tableView.backgroundColor = UIColor.backgroundBlueColor;
+    self.tableView.backgroundColor = UIColor.backgroundColor;
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
     self.tableView.separatorColor = UIColor.skyBlueColor;
 }
@@ -117,6 +117,7 @@
 {
     if (! self.isEditing) {
         [tableView deselectRowAtIndexPath:indexPath animated:YES];
+        return;
     }
     // check if all rows are selected and if so, change SelectAll button to UnselectAll button
     NSArray *editableSections = self.editableSections;
