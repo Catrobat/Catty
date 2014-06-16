@@ -171,7 +171,7 @@
 #define kUIActionSheetButtonTitleClose NSLocalizedString(@"Close", nil)
 #define kUIActionSheetButtonTitleDeleteBrick NSLocalizedString(@"Delete Brick", nil)
 #define kUIActionSheetButtonTitleDeleteScript NSLocalizedString(@"Delete Script", nil)
-#define kUIActionSheetButtonTitleHighlightScript NSLocalizedString(@"Highlight Script", nil)
+#define kUIActionSheetButtonTitleAnimateBricks NSLocalizedString(@"Animate Brick", nil)
 #define kUIActionSheetButtonTitleCopyBrick NSLocalizedString(@"Copy Brick", nil)
 #define kUIActionSheetButtonTitleEditFormula NSLocalizedString(@"Edit Formula", nil)
 
