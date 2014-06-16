@@ -28,7 +28,7 @@
 @interface SensorHandler : NSObject <AVAudioRecorderDelegate,AVAudioPlayerDelegate>
 
 
-+ (SensorHandler*) sharedSensorHandler;
++ (instancetype)sharedSensorHandler;
 
 - (CMRotationRate) rotationRate;
 - (CMAcceleration) acceleration;

@@ -188,13 +188,6 @@
         NSData *data = [NSData dataWithContentsOfFile:oldPath];
         [data writeToFile:newPath atomically:YES];
     }
-
-//    NSURL *oldURL = [NSURL fileURLWithPath:oldPath];
-//    NSURL *newURL = [NSURL fileURLWithPath:newPath];
-//    NSError *error = nil;
-//    if ([[NSFileManager defaultManager] copyItemAtURL:oldURL toURL:newURL error:&error] != YES)
-//        NSLog(@"Unable to copy file: %@", [error localizedDescription]);
-//    NSLogError(error);
 }
 
 - (void)copyExistingDirectoryAtPath:(NSString*)oldPath toPath:(NSString*)newPath
@@ -202,7 +195,7 @@
     if (! [self directoryExists:oldPath])
         return;
 
-    // Attempt the copy
+    // Attempt to copy
     NSURL *oldURL = [NSURL fileURLWithPath:oldPath];
     NSURL *newURL = [NSURL fileURLWithPath:newPath];
     NSError *error = nil;
@@ -213,7 +206,7 @@
 
 - (void)moveExistingFileAtPath:(NSString*)oldPath toPath:(NSString*)newPath
 {
-    if (! [self fileExists:oldPath])
+    if (! [self fileExists:oldPath] || [oldPath isEqualToString:newPath])
         return;
 
     // Attempt the move
@@ -539,14 +532,14 @@
         [self.programNameDict removeObjectForKey:downloadTask];
 
     }else{
-        url = [self.imageTaskDict objectForKey:downloadTask];
+        // TODO: value url is never read...
+//        url = [self.imageTaskDict objectForKey:downloadTask];
         [self storeDownloadedImage:[NSData dataWithContentsOfURL:location] andTask:downloadTask];
         [self.imageTaskDict removeObjectForKey:downloadTask];
         [self.imageNameDict removeObjectForKey:downloadTask];
 
     }
     [downloadTask suspend];
-    
 
     UIApplication* app = [UIApplication sharedApplication];
     app.networkActivityIndicatorVisible = NO;

@@ -91,14 +91,6 @@
     return _selectAllRowsButtonItem;
 }
 
-- (NSMutableDictionary*)imageCache
-{
-    if (! _imageCache) {
-        _imageCache = [NSMutableDictionary dictionary];
-    }
-    return _imageCache;
-}
-
 #pragma mark - table view delegates
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
 {

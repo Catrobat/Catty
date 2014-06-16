@@ -24,12 +24,14 @@
 
 @interface ImageCache : NSObject <NSCacheDelegate>
 
+@property (nonatomic, strong, readonly) dispatch_queue_t imageCacheQueue; // readonly access for subclasses
 
-+(ImageCache *)sharedImageCache;
++ (instancetype)sharedImageCache;
 
--(UIImage*) getImageWithName:(NSString*)imageName;
+- (UIImage*)getImageWithName:(NSString*)imageName;
 
--(void)addImage:(UIImage *)image withName:(NSString *)imageName persist:(BOOL)persist;
+- (void)addImage:(UIImage*)image withName:(NSString*)imageName;
 
+- (void)clearImageCache;
 
 @end

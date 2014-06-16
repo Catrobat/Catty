@@ -20,21 +20,12 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
+#import "ImageCache.h"
 
-#import "ProgramManager.h"
+@interface DownloadImageCache : ImageCache
 
-@implementation ProgramManager
+- (UIImage*)getImageWithName:(NSString*)imageName;
 
-static ProgramManager *sharedProgramManager = nil;
-
-+ (instancetype)sharedProgramManager
-{
-    @synchronized(self) {
-        if (sharedProgramManager == nil) {
-            sharedProgramManager = [[ProgramManager alloc] init];
-        }
-    }
-    return sharedProgramManager;
-}
+- (void)addImage:(UIImage*)image withName:(NSString*)imageName;
 
 @end

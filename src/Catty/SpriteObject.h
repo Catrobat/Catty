@@ -65,7 +65,7 @@
 
 @property (nonatomic) CGFloat currentLookBrightness;
 
-@property (nonatomic,strong) Program* program;
+@property (nonatomic,weak) Program *program;
 
 @property (nonatomic)NSInteger numberOfObjectsWithoutBackground;
 

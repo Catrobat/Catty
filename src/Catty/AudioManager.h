@@ -26,7 +26,7 @@
 
 @interface AudioManager : NSObject
 
-+ (AudioManager*) sharedAudioManager;
++ (instancetype)sharedAudioManager;
 
 - (BOOL)playSoundWithFileName:(NSString*)fileName
                        andKey:(NSString*)key

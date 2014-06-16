@@ -40,6 +40,7 @@
 #import "NSData+Hashes.h"
 #import <AVFoundation/AVFoundation.h>
 #import "LanguageTranslationDefines.h"
+#import "RuntimeImageCache.h"
 
 // TODO: outsource...
 #define kUserDetailsShowDetailsKey @"showDetails"
@@ -105,12 +106,6 @@
     [dnc removeObserver:self name:kSoundAddedNotification object:nil];
     self.currentPlayingSongCell = nil;
     [self stopAllSounds];
-}
-
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    self.imageCache = nil;
 }
 
 #pragma mark - notification
@@ -252,20 +247,17 @@
         }
     }
 
-    UIImage *image = [self.imageCache objectForKey:rightIconName];
+    RuntimeImageCache *imageCache = [RuntimeImageCache sharedImageCache];
+    UIImage *image = [imageCache cachedImageForName:rightIconName];
     if (! image) {
-        dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0ul);
-        dispatch_async(queue, ^{
-            UIImage *image = [UIImage imageNamed:rightIconName];
-            [self.imageCache setObject:image forKey:rightIconName];
-            dispatch_sync(dispatch_get_main_queue(), ^{
-                // check if cell still needed
-                if ([imageCell.indexPath isEqual:indexPath]) {
-                    imageCell.iconImageView.image = image;
-                    [imageCell setNeedsLayout];
-                }
-            });
-        });
+        [imageCache loadImageWithName:rightIconName
+                         onCompletion:^(UIImage *image){
+                             // check if cell still needed
+                             if ([imageCell.indexPath isEqual:indexPath]) {
+                                 imageCell.iconImageView.image = image;
+                                 [imageCell setNeedsLayout];
+                             }
+                         }];
     } else {
         imageCell.iconImageView.image = image;
     }
@@ -399,22 +391,19 @@
         self.currentPlayingSongCell = nil;
 
         static NSString *playIconName = @"ic_media_play";
-        UIImage *image = [self.imageCache objectForKey:playIconName];
+        RuntimeImageCache *imageCache = [RuntimeImageCache sharedImageCache];
+        UIImage *image = [imageCache cachedImageForName:playIconName];
 
         if (! image) {
-            dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0ul);
-            dispatch_async(queue, ^{
-                UIImage *image = [UIImage imageNamed:playIconName];
-                [self.imageCache setObject:image forKey:playIconName];
-                dispatch_sync(dispatch_get_main_queue(), ^{
-                    // check if user tapped again on this song in the meantime...
-                    @synchronized(self) {
-                        if ((currentPlayingSong != self.currentPlayingSong) && (currentPlayingSongCell != self.currentPlayingSongCell)) {
-                            currentPlayingSongCell.iconImageView.image = image;
-                        }
-                    }
-                });
-            });
+            [imageCache loadImageWithName:playIconName
+                             onCompletion:^(UIImage *image){
+                                 // check if user tapped again on this song in the meantime...
+                                 @synchronized(self) {
+                                     if ((currentPlayingSong != self.currentPlayingSong) && (currentPlayingSongCell != self.currentPlayingSongCell)) {
+                                         currentPlayingSongCell.iconImageView.image = image;
+                                     }
+                                 }
+                             }];
         } else {
             currentPlayingSongCell.iconImageView.image = image;
         }

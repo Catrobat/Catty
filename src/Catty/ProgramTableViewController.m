@@ -48,6 +48,7 @@
 #import "AppDelegate.h"
 #import "LanguageTranslationDefines.h"
 #import "ProgramTableHeaderView.h"
+#import "RuntimeImageCache.h"
 
 // TODO: outsource...
 #define kUserDetailsShowDetailsKey @"showDetails"
@@ -125,13 +126,6 @@
     [self setupToolBar];
 }
 
-#pragma mark - application events
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    self.imageCache = nil;
-}
-
 #pragma mark - actions
 - (void)addObjectAction:(id)sender
 {
@@ -196,7 +190,6 @@
             continue;
         }
         SpriteObject *object = (SpriteObject*)[self.program.objectList objectAtIndex:(kObjectSectionIndex + selectedRowIndexPath.row)];
-        [self.imageCache removeObjectForKey:object.name];
         [objectsToRemove addObject:object];
     }
     for (SpriteObject *objectToRemove in objectsToRemove) {
@@ -210,10 +203,17 @@
 {
     NSUInteger index = (kBackgroundObjects + indexPath.row);
     SpriteObject *object = (SpriteObject*)[self.program.objectList objectAtIndex:index];
-    [self.imageCache removeObjectForKey:object.name];
     [self.program removeObject:object];
     [self.tableView deleteRowsAtIndexPaths:@[indexPath]
                           withRowAnimation:UITableViewRowAnimationNone];
+}
+
+- (void)deleteProgramAction
+{
+    [self.delegate removeProgram:self.program.header.programName];
+    [self.program removeFromDisk];
+    self.program = nil;
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 #pragma mark - table view data source
@@ -286,66 +286,25 @@
         return imageCell;
     }
 
-    NSString *previewImagePath = [object previewImagePath];
-    UIImage *image = [self.imageCache objectForKey:object.name];
     imageCell.iconImageView.contentMode = UIViewContentModeScaleAspectFit;
+    RuntimeImageCache *imageCache = [RuntimeImageCache sharedImageCache];
+    NSString *previewImagePath = [object previewImagePath];
+    NSString *imagePath = [object pathForLook:[object.lookList firstObject]];
+    imageCell.iconImageView.image = nil;
+    imageCell.indexPath = indexPath;
+
+    UIImage *image = [imageCache cachedImageForPath:previewImagePath];
     if (! image) {
-        imageCell.iconImageView.image = nil;
-        imageCell.indexPath = indexPath;
-        if (previewImagePath) {
-            dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0ul);
-            dispatch_async(queue, ^{
-                UIImage *image = [[UIImage alloc] initWithContentsOfFile:previewImagePath];
-                // perform UI stuff on main queue (UIKit is not thread safe!!)
-                dispatch_sync(dispatch_get_main_queue(), ^{
-                    // check if cell still needed
-                    if ([imageCell.indexPath isEqual:indexPath]) {
-                        imageCell.iconImageView.image = image;
-                        [imageCell setNeedsLayout];
-                        [self.imageCache setObject:image forKey:object.name];
-                    }
-                });
-            });
-        } else {
-            // fallback
-            dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0ul);
-            dispatch_async(queue, ^{
-                // TODO: outsource this "thumbnail generation code" to helper class
-                Look* look = [object.lookList objectAtIndex:kBackgroundObjectIndex];
-                NSString *newPreviewImagePath = [NSString stringWithFormat:@"%@%@/%@",
-                                                 [object projectPath], kProgramImagesDirName,
-                                                 [look previewImageFileName]];
-
-                NSString *imagePath = [NSString stringWithFormat:@"%@%@/%@",
-                                       [object projectPath], kProgramImagesDirName,
-                                       look.fileName];
-                UIImage *image = [UIImage imageWithContentsOfFile:imagePath];
-
-                // generate thumbnail image (retina)
-                CGSize previewImageSize = CGSizeMake(kPreviewImageWidth, kPreviewImageHeight);
-                // determine aspect ratio
-                if (image.size.height > image.size.width)
-                    previewImageSize.width = (image.size.width*previewImageSize.width)/image.size.height;
-                else
-                    previewImageSize.height = (image.size.height*previewImageSize.height)/image.size.width;
-                
-                UIGraphicsBeginImageContext(previewImageSize);
-                UIImage *previewImage = [image copy];
-                [previewImage drawInRect:CGRectMake(0, 0, previewImageSize.width, previewImageSize.height)];
-                previewImage = UIGraphicsGetImageFromCurrentImageContext();
-                UIGraphicsEndImageContext();
-                [UIImagePNGRepresentation(previewImage) writeToFile:newPreviewImagePath atomically:YES];
-
-                dispatch_sync(dispatch_get_main_queue(), ^{
-                    // check if cell still needed
-                    if ([imageCell.indexPath isEqual:indexPath]) {
-                        imageCell.iconImageView.image = previewImage;
-                        [imageCell setNeedsLayout];
-                        [self.imageCache setObject:previewImage forKey:object.name];
-                    }
-                });
-            });
-        }
+        [imageCache loadThumbnailImageFromDiskWithThumbnailPath:previewImagePath
+                                                      imagePath:imagePath
+                                             thumbnailFrameSize:CGSizeMake(kPreviewImageWidth, kPreviewImageHeight)
+                                                   onCompletion:^(UIImage *image){
+                                                       // check if cell still needed
+                                                       if ([imageCell.indexPath isEqual:indexPath]) {
+                                                           imageCell.iconImageView.image = image;
+                                                           [imageCell setNeedsLayout];
+                                                       }
+                                                   }];
     } else {
         imageCell.iconImageView.image = image;
     }
@@ -373,7 +332,7 @@
 
 - (UIView*)tableView:(UITableView*)tableView viewForHeaderInSection:(NSInteger)section
 {
-    ProgramTableHeaderView *headerView = (ProgramTableHeaderView *)[self.tableView dequeueReusableHeaderFooterViewWithIdentifier:@"Header"];
+    ProgramTableHeaderView *headerView = (ProgramTableHeaderView*)[self.tableView dequeueReusableHeaderFooterViewWithIdentifier:@"Header"];
     
     if (section == 0) {
         headerView.textLabel.text = [kUILabelTextBackground uppercaseString];
@@ -399,7 +358,7 @@
 
 - (void)tableView:(UITableView *)tableView willDisplayHeaderView:(UIView *)view forSection:(NSInteger)section
 {
-    ProgramTableHeaderView *headerView = (ProgramTableHeaderView *)view;
+    ProgramTableHeaderView *headerView = (ProgramTableHeaderView*)view;
     headerView.textLabel.textColor = UIColor.headerTextColor;
 }
 
@@ -513,10 +472,11 @@
         [self.tableView reloadData];
     } else if (buttonIndex == actionSheet.destructiveButtonIndex) {
         // Delete Program button
-        [self.delegate removeProgram:self.program.header.programName];
-        [self.program removeFromDisk];
-        self.program = nil;
-        [self.navigationController popViewControllerAnimated:YES];
+        [self performActionOnConfirmation:@selector(deleteProgramAction)
+                           canceledAction:nil
+                                   target:self
+                             confirmTitle:kUIAlertViewTitleDeleteProgram
+                           confirmMessage:kUIAlertViewMessageIrreversibleAction];
     }
 }
 
