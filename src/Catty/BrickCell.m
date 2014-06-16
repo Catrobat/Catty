@@ -124,7 +124,7 @@
 {
     [super layoutSubviews];
     self.contentView.frame = CGRectIntegral(self.bounds);
-    self.deleteButton.center = CGPointMake(self.bounds.origin.x - kDeleteButtonOffset, CGRectGetMidY(self.bounds));
+    self.selectButton.center = CGPointMake(self.bounds.origin.x - kSelectButtonnOffset, CGRectGetMidY(self.bounds));
 }
 
 - (void)setHighlighted:(BOOL)highlighted
@@ -139,13 +139,13 @@
     
     if (self.editing) {
         if (self.frame.origin.x == 0.0f) {
-            self.center = CGPointMake(self.center.x + kDeleteButtonTranslationOffsetX, self.center.y);
-            self.deleteButton.alpha = 1.0f;
+            self.center = CGPointMake(self.center.x + kSelectButtonTranslationOffsetX, self.center.y);
+            self.selectButton.alpha = 1.0f;
         }
     } else {
         if (self.frame.origin.x > 0.0f) {
             self.center = CGPointMake(CGRectGetMidX(UIScreen.mainScreen.bounds), self.center.y);
-            self.deleteButton.alpha = 0.0f;
+            self.selectButton.alpha = 0.0f;
         }
     }
 }
@@ -153,8 +153,8 @@
 - (UIView *)hitTest:(CGPoint)point withEvent:(UIEvent *)event
 {
     [super hitTest:point withEvent:event];
-    CGPoint subPoint = [self.deleteButton convertPoint:point fromView:self];
-    UIView *result = [self.deleteButton hitTest:subPoint withEvent:event];
+    CGPoint subPoint = [self.selectButton convertPoint:point fromView:self];
+    UIView *result = [self.selectButton hitTest:subPoint withEvent:event];
     if (result != nil) {
         return result;
     }
@@ -194,7 +194,7 @@
     return _inlineView;
 }
 
-- (SelectButton *)deleteButton
+- (SelectButton *)selectButton
 {
     if (!_selectButton) {
         _selectButton = [[SelectButton alloc] initWithFrame:CGRectMake(0.0f, 0.0f,

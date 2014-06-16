@@ -46,8 +46,8 @@
 
 // delete button bricks
 #define kBrickCellDeleteButtonWidthHeight 22.0f
-#define kDeleteButtonOffset 30.0f
-#define kDeleteButtonTranslationOffsetX 60.0f
+#define kSelectButtonnOffset 30.0f
+#define kSelectButtonTranslationOffsetX 60.0f
 
 #define kScriptCollectionViewTopInsets 10.0f
 #define kScriptCollectionViewBottomInsets 5.0f

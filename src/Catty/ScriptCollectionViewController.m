@@ -310,6 +310,7 @@
             NSString *scriptSubClassName = NSStringFromClass([script class]);
             brickCell = [collectionView dequeueReusableCellWithReuseIdentifier:scriptSubClassName forIndexPath:indexPath];
             brickCell.brick = script;
+            brickCell.selectButton.hidden = YES;
         } else {
             // case it's a normal brick
             Brick *brick = [script.brickList objectAtIndex:(indexPath.row - 1)];
@@ -331,8 +332,7 @@
     if (_selectedAllCells) {
          [brickCell selectedState:_selectedAllCells setEditingState:self.editing];
     } else {
-        // TODO make helper method for generating key
-        NSString *key = [NSString stringWithFormat:@"%@_%@", @(indexPath.section), @(indexPath.item)];
+        NSString *key = [self keyWithSelectIndexPath:indexPath];
         BOOL selected = indexPath == self.selectedIndexPaths[key];
         [brickCell selectedState:selected setEditingState:self.editing];
     }
@@ -530,13 +530,17 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
 #pragma mark - Brick Cell Delegate
 - (void)BrickCell:(BrickCell *)brickCell didSelectBrickCellButton:(SelectButton *)selectButton
 {
-    selectButton.selected = YES;
     NSIndexPath *indexPath = [self.collectionView indexPathForItemAtPoint:
                               [self.collectionView convertPoint:selectButton.center fromView:selectButton.superview]];
     
     if (indexPath) {
-        NSString *key = [NSString stringWithFormat:@"%@_%@", @(indexPath.section), @(indexPath.item)];
-        [self.selectedIndexPaths setObject:indexPath forKey:key];
+        if (!selectButton.selected) {
+            selectButton.selected = selectButton.touchInside;
+            [self.selectedIndexPaths setObject:indexPath forKey:[self keyWithSelectIndexPath:indexPath]];
+        } else {
+            selectButton.selected = NO;
+            [self.selectedIndexPaths removeObjectForKey:[self keyWithSelectIndexPath:indexPath]];
+        }
     }
 }
 
@@ -564,6 +568,7 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
 {
     self.navigationController.toolbar.barStyle = UIBarStyleBlack;
     self.navigationController.toolbar.tintColor = UIColor.orangeColor;
+
     
     UIBarButtonItem *flexItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace
                                                                               target:nil
@@ -571,16 +576,20 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
     UIImageView *imageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"transparent1x1"]];
     UIBarButtonItem *invisibleButton = [[UIBarButtonItem alloc] initWithCustomView:imageView];
     
-    if (!self.editing) {
         if (![self.brickSelectionView active]) {
             self.navigationController.toolbar.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleTopMargin;
             
             UIBarButtonItem *add = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd
                                                                                  target:self
                                                                                  action:@selector(showBrickSelectionMenu)];
+            
+            add.enabled = !self.editing;
+            
             UIBarButtonItem *play = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemPlay
                                                                                   target:self
                                                                                   action:@selector(playSceneAction:)];
+            
+            play.enabled = !self.editing;
 
             self.toolbarItems = @[flexItem,invisibleButton, add, invisibleButton, flexItem,
                                   flexItem, flexItem, invisibleButton, play, invisibleButton, flexItem];
@@ -594,18 +603,19 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
             
             self.toolbarItems = @[flexItem,invisibleButton, list, invisibleButton, flexItem,
                                   flexItem, flexItem, invisibleButton, done, invisibleButton, flexItem];
+    
         }
-    } else {
-        UIBarButtonItem *deleteButton = [[UIBarButtonItem alloc] initWithTitle:kUIBarButtonItemTitleDelete
-                                                                         style:0
-                                                                        target:self
-                                                                        action:@selector(deleteSelectedBricks)];
-        UIBarButtonItem *selectAllButton = [[UIBarButtonItem alloc] initWithTitle:kUIBarButtonItemTitleSelectAllItems
-                                                                         style:0
-                                                                        target:self
-                                                                        action:@selector(selectAllBricks)];
-        self.toolbarItems = @[selectAllButton, flexItem, deleteButton];
-    }
+
+//
+//        UIBarButtonItem *deleteButton = [[UIBarButtonItem alloc] initWithTitle:kUIBarButtonItemTitleDelete
+//                                                                         style:0
+//                                                                        target:self
+//                                                                        action:@selector(deleteSelectedBricks)];
+//        UIBarButtonItem *selectAllButton = [[UIBarButtonItem alloc] initWithTitle:kUIBarButtonItemTitleSelectAllItems
+//                                                                         style:0
+//                                                                        target:self
+//                                                                        action:@selector(selectAllBricks)];
+//        self.toolbarItems = @[/*selectAllButton, */flexItem, deleteButton];
 
 }
 
@@ -670,8 +680,7 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
     for (BrickCell *cell in self.collectionView.visibleCells) {
         cell.selectButton.selected = YES;
         NSIndexPath *indexPath = [self.collectionView indexPathForCell:cell];
-        NSString *key = [NSString stringWithFormat:@"%@_%@", @(indexPath.section), @(indexPath.item)];
-        [self.selectedIndexPaths setObject:indexPath forKey:key];
+        [self.selectedIndexPaths setObject:indexPath forKey:[self keyWithSelectIndexPath:indexPath]];
     }
 }
 
@@ -756,8 +765,13 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
     }
 }
 
-#pragma mark - Editing
 
+- (NSString *)keyWithSelectIndexPath:(NSIndexPath *)indexPath
+{
+    return [NSString stringWithFormat:@"%@_%@", @(indexPath.section), @(indexPath.item)];
+}
+
+#pragma mark - Editing
 - (void)setEditing:(BOOL)editing animated:(BOOL)animated
 {
     [super setEditing:editing animated:animated];
@@ -765,27 +779,30 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
     
     if (self.isEditing) {
         self.navigationItem.title = kUINavigationItemTitleEditMenu;
+        self.navigationItem.rightBarButtonItem.title = kUIBarButtonItemTitleDelete;
+        self.navigationItem.rightBarButtonItem.tintColor = UIColor.redColor;
         
         [UIView animateWithDuration:animated ? 0.5f : 0.0f  delay:0.0f usingSpringWithDamping:0.6f initialSpringVelocity:1.5f options:UIViewAnimationOptionCurveEaseInOut animations:^{
             for (BrickCell *brickCell in self.collectionView.visibleCells) {
-                brickCell.center = CGPointMake(brickCell.center.x + kDeleteButtonTranslationOffsetX, brickCell.center.y);
+                brickCell.center = CGPointMake(brickCell.center.x + kSelectButtonTranslationOffsetX, brickCell.center.y);
                 brickCell.selectButton.alpha = 1.0f;
             }
         } completion:NULL];
     } else {
         self.navigationItem.title = kUITableViewControllerMenuTitleScripts;
+        self.navigationItem.rightBarButtonItem.tintColor = UIColor.lightOrangeColor;
         
-        [UIView animateWithDuration:animated ? 0.3f : 0.0f delay:0.0f usingSpringWithDamping:0.6f initialSpringVelocity:2.5f options:UIViewAnimationOptionCurveEaseInOut
+        [UIView animateWithDuration:animated ? 0.3f : 0.0f delay:0.0f usingSpringWithDamping:0.65f initialSpringVelocity:0.5f options:UIViewAnimationOptionCurveEaseInOut
                          animations:^{
                              for (BrickCell *brickCell in self.collectionView.visibleCells) {
                                  brickCell.center = CGPointMake(self.view.center.x, brickCell.center.y);
                                  brickCell.selectButton.alpha = 0.0f;
                              }
                          } completion:^(BOOL finished) {
-                             if (self.selectedIndexPaths.count) {
+                             if (self.selectedIndexPaths.count && finished) {
                                  [self removeBricksWithIndexPaths:[self.selectedIndexPaths allValues]];
+                                 _selectedAllCells = NO;
                              }
-                             
                          }];
     }
 }

@@ -23,7 +23,6 @@
 #import <UIKit/UIKit.h>
 #import "ProgramDefines.h"
 #import "UIDefines.h"
-#import "ScriptDeleteButton.h"
 #import "BrickCellProtocol.h"
 #import "BrickShapeFactory.h"
 #import "UIColor+CatrobatUIColorExtensions.h"

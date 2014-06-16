@@ -38,7 +38,7 @@
         [self setBackgroundImage:unselectedImage forState:UIControlStateNormal];
         [self setBackgroundImage:selectedImage forState:UIControlStateSelected];
         
-        self.tintColor = UIColor.lightOrangeColor;
+        self.tintColor = UIColor.redColor;
     }
     return self;
 }
