@@ -290,8 +290,6 @@
 
 #define kUILabelTextBack NSLocalizedString(@"Back", nil)
 #define kUILabelTextRestart NSLocalizedString(@"Restart", nil)
-#define kUILabelTextBack NSLocalizedString(@"Back", nil)
-#define kUILabelTextBack NSLocalizedString(@"Back", nil)
 #define kUILabelTextContinue NSLocalizedString(@"Continue", nil)
 #define kUILabelTextScreenshot NSLocalizedString(@"Screenshot", nil)
 #define kUILabelTextGrid NSLocalizedString(@"Grid", nil)
