@@ -28,6 +28,11 @@
 
 @implementation BroadcastWaitBrickCell
 
+- (void)drawRect:(CGRect)rect
+{
+    [BrickShapeFactory.sharedBrickShapeFactory drawMediumSquareBrickShape:UIColor.controlBrickStrokeColor fillColor:UIColor.controlBrickOrangeColor];
+}
+
 + (CGFloat)cellHeight
 {
     return kBrickHeight2h;

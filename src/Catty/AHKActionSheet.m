@@ -380,7 +380,6 @@ static const CGFloat kCancelButtonShadowHeightRatio = 0.333f;
     [self insertSubview:tableView aboveSubview:self.blurredBackgroundView];
     // move the content below the screen, ready to be animated in -show
     tableView.contentInset = UIEdgeInsetsMake(CGRectGetHeight(self.bounds), 0, 0, 0);
-
     self.tableView = tableView;
 
     [self setUpTableViewHeader];

@@ -27,15 +27,30 @@
 #import "UIColor+CatrobatUIColorExtensions.h"
 #import "StartScriptCell.h"
 #import "WhenScriptCell.h"
+#import "IfLogicElseBrickCell.h"
+#import "IfLogicEndBrickCell.h"
+#import "ForeverBrickCell.h"
+#import "IfLogicBeginBrickCell.h"
+#import "RepeatBrickCell.h"
 #import "BroadcastScriptCell.h"
-#import "IBActionSheet.h"
+#import "CellMotionEffect.h"
+
+
+NS_ENUM(NSInteger, ButtonIndex) {
+    kButtonIndexDelete = 0,
+    kButtonIndexCopyOrCancel = 1,
+    kButtonIndexAnimate = 2,
+    kButtonIndexEdit = 3,
+    kButtonIndexCancel = 4,
+};
 
 @interface BrickDetailViewController () <IBActionSheetDelegate>
 @property (strong, nonatomic) UITapGestureRecognizer *recognizer;
-@property (strong, nonatomic) IBActionSheet *brickMenu;
 @property (strong, nonatomic) NSNumber *deleteBrickOrScriptFlag;
 @property (strong, nonatomic) NSNumber *brickCopyFlag;
-@property (strong, nonatomic) NSString *brickName;
+@property (strong, nonatomic) UIMotionEffectGroup *motionEffects;
+@property (strong, nonatomic) IBActionSheet *brickMenu;
+
 @end
 
 @implementation BrickDetailViewController
@@ -46,106 +61,119 @@
     self.view.backgroundColor = UIColor.clearColor;
     self.deleteBrickOrScriptFlag = [[NSNumber alloc]initWithBool:NO];
     self.brickCopyFlag = [[NSNumber alloc]initWithBool:NO];
-}
-
-#pragma mark - getters
-- (IBActionSheet *)brickMenu
-{
-    if (! _brickMenu) {
-        _brickMenu = [[IBActionSheet alloc] initWithTitle:self.brickName
-                                                     delegate:self
-                                            cancelButtonTitle:kUIActionSheetButtonTitleClose
-                                       destructiveButtonTitle:[self deleteMenuItemNameWithBrickCell:self.brickCell]
-                                            otherButtonTitles:[self secondMenuItemWithBrickCell:self.brickCell],
-                          [self editFormulaMenuItemWithVrickCell:self.brickCell], nil];
-        [_brickMenu setButtonBackgroundColor:UIColor.darkBlueColor];
-        [_brickMenu setButtonTextColor:UIColor.lightOrangeColor];
-        [_brickMenu setTitleTextColor:UIColor.skyBlueColor];
-        [_brickMenu setButtonTextColor:UIColor.redColor forButtonAtIndex:0];
-    }
-    return _brickMenu;
-}
-
-- (NSString *)brickName
-{
-    if (! _brickMenu) {
-        NSString *brickName =  NSStringFromClass(self.brickCell.class);
-        if (brickName.length) {
-            _brickName = [brickName substringToIndex:brickName.length - 4];
-        }
-    }
-    return _brickName;
+    [CellMotionEffect addMotionEffectForView:self.brickCell withDepthX:0.0f withDepthY:25.0f withMotionEffectGroup:self.motionEffects];
 }
 
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
+    [self.brickMenu showInView:self.view];
     self.recognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleTap:)];
     self.recognizer.numberOfTapsRequired = 1;
     self.recognizer.cancelsTouchesInView = NO;
     [self.view.window addGestureRecognizer:self.recognizer];
-    [self.brickMenu showInView:self.view];
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
+    [CellMotionEffect removeMotionEffect:self.motionEffects fromView:self.brickCell];
+    self.motionEffects = nil;
     if ([self.view.window.gestureRecognizers containsObject:self.recognizer]) {
         [self.view.window removeGestureRecognizer:self.recognizer];
     }
 }
 
+- (void)viewDidDisappear:(BOOL)animated
+{
+    [super viewDidDisappear:animated];
+    
+    if (self.delegate && [self.delegate respondsToSelector:@selector(brickDetailViewController:viewDidDisappear:withBrickCell:copyBrick:)]) {
+        [self.delegate brickDetailViewController:self viewDidDisappear:self.deleteBrickOrScriptFlag.boolValue
+                                   withBrickCell:self.brickCell copyBrick:self.brickCopyFlag.boolValue];
+    }
+}
 
 - (void)handleTap:(UITapGestureRecognizer *)sender
 {
     if ([sender isKindOfClass:UITapGestureRecognizer.class]) {
         if (sender.state == UIGestureRecognizerStateEnded) {
             CGPoint location = [sender locationInView:nil];
-            if (![self.view pointInside:[self.view convertPoint:location fromView:self.view.window] withEvent:nil]) {
+            if (![self.brickCell pointInside:[self.brickCell convertPoint:location fromView:self.view] withEvent:nil] &&
+                ![self.brickMenu pointInside:[self.brickMenu convertPoint:location fromView:self.view] withEvent:nil]) {
                 [self dismissBrickDetailViewController];
             } else {
-                [self.brickMenu showInView:self.view];
+                if (!self.brickMenu.visible) {
+                    [self.brickMenu showInView:self.view];
+                }
             }
         }
     }
+}
+
+#pragma mark - getters
+- (IBActionSheet *)brickMenu
+{
+    if (! _brickMenu) {
+        if ([self isAnimateableBrick:self.brickCell]) {
+            _brickMenu = [[IBActionSheet alloc] initWithTitle:nil
+                                                     delegate:self
+                                            cancelButtonTitle:kUIActionSheetButtonTitleClose
+                                       destructiveButtonTitle:[self deleteMenuItemNameWithBrickCell:self.brickCell]
+                                            otherButtonTitles:[self secondMenuItemWithBrickCell:self.brickCell],
+                                                              [self animateMenuItemWithBrickCell:self.brickCell],
+                                                              [self editFormulaMenuItemWithBrickCell:self.brickCell] ,nil];
+        } else {
+            _brickMenu = [[IBActionSheet alloc] initWithTitle:nil
+                                                     delegate:self
+                                            cancelButtonTitle:kUIActionSheetButtonTitleClose
+                                       destructiveButtonTitle:[self deleteMenuItemNameWithBrickCell:self.brickCell]
+                                            otherButtonTitles:[self secondMenuItemWithBrickCell:self.brickCell],
+                                                              [self editFormulaMenuItemWithBrickCell:self.brickCell] ,nil];
+        }
+
+        [_brickMenu setButtonBackgroundColor:[UIColor colorWithWhite:0.0f alpha:0.6f]];
+        [_brickMenu setButtonTextColor:UIColor.lightOrangeColor];
+        [_brickMenu setButtonTextColor:UIColor.redColor forButtonAtIndex:0];
+        _brickMenu.transparentView = nil;
+    }
+    return _brickMenu;
+}
+
+- (UIMotionEffectGroup *)motionEffects {
+    if (!_motionEffects) {
+        _motionEffects = [UIMotionEffectGroup new];
+    }
+    return _motionEffects;
 }
 
 #pragma mark - Action Sheet Delegate
 - (void)actionSheet:(IBActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
 {
     switch (buttonIndex) {
-        case 0: {
-            // delete brick or script
+        case kButtonIndexDelete: {
             self.deleteBrickOrScriptFlag = [NSNumber numberWithBool:YES];
             [self dismissBrickDetailViewController];
             break;
         }
             
-        case 1: {
-            // copy brick or highlight script
-            if (! [self isScript:self.brickCell]) {
-                self.brickCopyFlag = [NSNumber numberWithBool:YES];
-                [self dismissBrickDetailViewController];
-            } else {
-                // TDOD highlight script
+        case kButtonIndexCopyOrCancel:
+            if (![self isScript:self.brickCell]) {
+                self.brickCopyFlag = [NSNumber numberWithBool:![self isScript:self.brickCell]];
             }
-            break;
-        }
-            
-        case 2: {
-            // edit formula or cancel if script
-            if ([self isScript:self.brickCell] ) {
-                [self dismissBrickDetailViewController];
-            } else {
-                // TODO edit formula mode
-            }
-            break;
-        }
-            
-        case 3: {
-            // cancel button
             [self dismissBrickDetailViewController];
             break;
-        }
+            
+        case kButtonIndexAnimate:
+           
+            break;
+            
+        case kButtonIndexEdit:
+            
+            break;
+            
+        case kButtonIndexCancel:
+            [self dismissBrickDetailViewController];
+            break;
             
         default:
             break;
@@ -157,14 +185,7 @@
 {
     if (! self.presentingViewController.isBeingDismissed) {
         [self.brickMenu dismissWithClickedButtonIndex:-1 animated:YES];
-        [self.presentingViewController dismissViewControllerAnimated:YES completion:^{
-            [NSNotificationCenter.defaultCenter postNotificationName:kBrickDetailViewDismissed
-                                                              object:NULL
-                                                            userInfo:@{@"brickDeleted": self.deleteBrickOrScriptFlag,
-                                                                       @"isScript": @([self isScript:self.brickCell]),
-                                                                       @"copy": self.brickCopyFlag,
-                                                                       @"copiedCell": self.brickCell }];
-        }];
+        [self.presentingViewController dismissViewControllerAnimated:YES completion:NULL];
     }
 }
 
@@ -179,12 +200,20 @@
 - (NSString *)secondMenuItemWithBrickCell:(BrickCell *)cell
 {
     if ([self isScript:cell]) {
-        return kUIActionSheetButtonTitleHighlightScript;
+        return nil;
     }
     return kUIActionSheetButtonTitleCopyBrick;
 }
 
-- (NSString *)editFormulaMenuItemWithVrickCell:(BrickCell *)cell
+- (NSString *)animateMenuItemWithBrickCell:(BrickCell *)cell
+{
+    if ([self isScript:cell] || ![self isAnimateableBrick:cell]) {
+        return nil;
+    }
+    return kUIActionSheetButtonTitleAnimateBricks;
+}
+
+- (NSString *)editFormulaMenuItemWithBrickCell:(BrickCell *)cell
 {
     if ([self isScript:cell]) {
         return nil;
@@ -192,11 +221,25 @@
     return kUIActionSheetButtonTitleEditFormula;
 }
 
+//TODO refactor later
 - (BOOL)isScript:(BrickCell *)brickcell
 {
     if ([brickcell isKindOfClass:StartScriptCell.class] ||
         [brickcell isKindOfClass:WhenScriptCell.class] ||
         [brickcell isKindOfClass:BroadcastScriptCell.class]) {
+        return YES;
+    }
+    return NO;
+}
+
+//TODO refactor later
+- (bool)isAnimateableBrick:(BrickCell *)brickCell
+{
+    if ([brickCell isKindOfClass:IfLogicElseBrickCell.class] ||
+        [brickCell isKindOfClass:IfLogicEndBrickCell.class] ||
+        [brickCell isKindOfClass:ForeverBrickCell.class] ||
+        [brickCell isKindOfClass:IfLogicBeginBrickCell.class] ||
+        [brickCell isKindOfClass:RepeatBrickCell.class]) {
         return YES;
     }
     return NO;

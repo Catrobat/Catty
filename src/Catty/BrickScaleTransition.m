@@ -21,12 +21,17 @@
  */
 
 #import "BrickScaleTransition.h"
+#import "ScriptCollectionViewController.h"
+#import "FXBlurView.h"
 #import "UIColor+CatrobatUIColorExtensions.h"
-#import "UIDefines.h"
 
-@implementation BrickScaleTransition
+@implementation BrickScaleTransition {
+    CGFloat _yOffset;
+    ScriptCollectionViewController *_scriptCollectionVC;
+}
 
-- (void)animateTransition:(id<UIViewControllerContextTransitioning>)transitionContext {
+- (void)animateTransition:(id<UIViewControllerContextTransitioning>)transitionContext
+{
     UIView *container = transitionContext.containerView;
     
     UIViewController *fromVC = [transitionContext viewControllerForKey:UITransitionContextFromViewControllerKey];
@@ -35,50 +40,55 @@
     UIView *move = nil;
     CGRect beginFrame = [container convertRect:self.cell.bounds fromView:self.cell];
     
-    CGRect endFrame = CGRectMake(0.f, NAVIGATION_BAR_HEIGHT, CGRectGetWidth(self.cell.bounds), CGRectGetHeight(self.cell.bounds));
-    
     switch (self.transitionMode) {
         case TransitionModePresent: {
+            _scriptCollectionVC = (ScriptCollectionViewController *)fromVC.childViewControllers.lastObject;
+            NSAssert(_scriptCollectionVC != nil, @"No ScriptCollectionViewController");
+            _yOffset = self.touchRect.origin.y - _scriptCollectionVC.collectionView.contentOffset.y;
+            
             move = [self.cell snapshotViewAfterScreenUpdates:YES];
-            move.frame =beginFrame;
+            move.frame = beginFrame;
             [container addSubview:move];
             self.cell.hidden = YES;
-            self.dimView.hidden = NO;
+            _scriptCollectionVC.blurView.hidden = NO;
             
-            [UIView animateWithDuration:0.7f delay:0.f usingSpringWithDamping:0.5f initialSpringVelocity:2.0f options:UIViewAnimationOptionCurveEaseIn animations:^{
-                move.frame = endFrame;
-                self.dimView.alpha = 1.f;
-                self.collectionView.alpha = .3f;
-                self.navigationBar.tintColor = UIColor.brightGrayColor;
+            [UIView animateWithDuration:0.5f delay:0.0f usingSpringWithDamping:10.0f initialSpringVelocity:0.0f options:UIViewAnimationOptionCurveEaseInOut animations:^{
+                move.center = toVC.view.center;
+                _scriptCollectionVC.blurView.alpha = 1.0f;
+                _scriptCollectionVC.collectionView.alpha = 0.5f;
+                _scriptCollectionVC.navigationController.navigationBar.alpha = 0.01f;
+                _scriptCollectionVC.navigationController.navigationBar.tintColor = UIColor.lightGrayColor;
+                _scriptCollectionVC.navigationController.toolbar.alpha = 0.01f;
             } completion:^(BOOL finished) {
-                if (finished) {
-                    toVC.view.frame = fromVC.view.frame;
-                    self.cell.hidden = NO;
-                    self.cell.frame = CGRectMake(0.f, NAVIGATION_BAR_HEIGHT, CGRectGetWidth(self.cell.bounds), CGRectGetHeight(self.cell.bounds));
-                    [toVC.view addSubview:self.cell];
-                    [container addSubview:toVC.view];
-                    [move removeFromSuperview];
-                    [transitionContext completeTransition:YES];
-                }
+                _scriptCollectionVC.blurView.dynamic = NO;
+                toVC.view.frame = fromVC.view.frame;
+                self.cell.hidden = NO;
+                self.cell.center = toVC.view.center;
+                [toVC.view addSubview:self.cell];
+                [container addSubview:toVC.view];
+                [move removeFromSuperview];
+                [transitionContext completeTransition:YES];
             }];
         }
             break;
             
         case TransitionModeDismiss: {
-            CGFloat y = 0.f;
-            y = self.touchRect.origin.y >= toVC.view.frame.size.height ? self.touchRect.origin.y - self.collectionView.contentOffset.y : self.touchRect.origin.y + NAVIGATION_BAR_HEIGHT;
-            
-            [UIView animateWithDuration:0.6f delay:0.0f usingSpringWithDamping:1.5f initialSpringVelocity:2.0f options:UIViewAnimationOptionCurveEaseInOut animations:^{
-                self.cell.frame = CGRectMake(self.touchRect.origin.x, y, self.touchRect.size.width, self.touchRect.size.height);
-                self.dimView.alpha = 0.f;
-                self.collectionView.alpha = 1.f;
-                self.navigationBar.tintColor = UIColor.lightOrangeColor;
+            _scriptCollectionVC.blurView.dynamic = YES;
+            [UIView animateWithDuration:0.3f delay:0.0f usingSpringWithDamping:10.0f initialSpringVelocity:0.0f options:UIViewAnimationOptionCurveEaseInOut animations:^{
+                self.cell.frame = CGRectMake(0.0f, _yOffset, self.touchRect.size.width, self.touchRect.size.height);
+                _scriptCollectionVC.blurView.alpha = 0.0f;
+                _scriptCollectionVC.collectionView.alpha = 1.0f;
+                _scriptCollectionVC.navigationController.navigationBar.alpha = 1.0f;
+                _scriptCollectionVC.navigationController.navigationBar.tintColor = UIColor.lightOrangeColor;
+                _scriptCollectionVC.navigationController.toolbar.alpha = 1.0f;
             } completion:^(BOOL finished) {
-                self.cell.frame = self.touchRect;
-                [fromVC.view removeFromSuperview];
-                self.dimView.hidden = YES;
-                [move removeFromSuperview];
-                [transitionContext completeTransition:YES];
+                if (finished) {
+                    self.cell.frame = self.touchRect;
+                    [fromVC.view removeFromSuperview];
+                    _scriptCollectionVC.blurView.hidden = YES;
+                    [move removeFromSuperview];
+                    [transitionContext completeTransition:YES];
+                }
             }];
         }
             break;

@@ -28,6 +28,11 @@
 
 @implementation PlaySoundBrickCell
 
+-(void)drawRect:(CGRect)rect
+{
+    [BrickShapeFactory.sharedBrickShapeFactory drawMediumSquareBrickShape:UIColor.soundBrickStrokeColor fillColor:UIColor.soundBrickVioletColor];
+}
+
 + (CGFloat)cellHeight
 {
     return kBrickHeight2h;

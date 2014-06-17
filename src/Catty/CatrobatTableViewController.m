@@ -23,7 +23,6 @@
 
 #import "CatrobatTableViewController.h"
 #import "CellTagDefines.h"
-#import "BackgroundLayer.h"
 #import "TableUtil.h"
 #import "UIColor+CatrobatUIColorExtensions.h"
 #import "AppDelegate.h"

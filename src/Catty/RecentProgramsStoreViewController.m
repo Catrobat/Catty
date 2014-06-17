@@ -81,7 +81,7 @@
     [super viewDidLoad];
     [self loadProjectsWithIndicator:0];
     [self initTableView];
-    self.view.backgroundColor = [UIColor darkBlueColor];
+    self.view.backgroundColor = UIColor.backgroundColor;
     [self initSegmentedControl];
     [self initFooterView];
     self.previousSelectedIndex = 0;
@@ -164,7 +164,7 @@
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     [self.tableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
-    self.tableView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"darkblue"]];
+    self.tableView.backgroundColor = UIColor.backgroundColor;
     CGFloat navigationBarHeight = self.navigationController.navigationBar.frame.size.height;
     CGFloat segmentedcontrolHeight = self.segmentedControlView.frame.size.height;
     self.tableView.frame = CGRectMake(0, navigationBarHeight+segmentedcontrolHeight+[UIApplication sharedApplication].statusBarFrame.size.height, self.tableView.frame.size.width, [Util getScreenHeight]-(navigationBarHeight+segmentedcontrolHeight));
@@ -179,10 +179,10 @@
     [self.downloadSegmentedControl setTitle:kUISegmentedControlTitleNewest forSegmentAtIndex:2];
 
     CGFloat navigationBarHeight = self.navigationController.navigationBar.frame.size.height;
-    self.downloadSegmentedControl.backgroundColor = [UIColor darkBlueColor];
+    self.downloadSegmentedControl.backgroundColor = UIColor.backgroundColor;
     self.downloadSegmentedControl.tintColor = [UIColor lightOrangeColor];
     self.segmentedControlView.frame = CGRectMake(0, navigationBarHeight+[UIApplication sharedApplication].statusBarFrame.size.height, self.segmentedControlView.frame.size.width, self.segmentedControlView.frame.size.height);
-    self.segmentedControlView.backgroundColor = [UIColor darkBlueColor];
+    self.segmentedControlView.backgroundColor = UIColor.backgroundColor;
     
 }
 -(void)initFooterView
