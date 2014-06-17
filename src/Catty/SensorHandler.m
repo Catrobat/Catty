@@ -51,14 +51,13 @@
 
 static SensorHandler* sharedSensorHandler = nil;
 
-
-+ (SensorHandler *) sharedSensorHandler {
++ (instancetype)sharedSensorHandler
+{
     @synchronized(self) {
         if (sharedSensorHandler == nil) {
-            sharedSensorHandler = [[SensorHandler alloc] init];
+            sharedSensorHandler = [[[self class] alloc] init];
         }
     }
-        
     return sharedSensorHandler;
 }
 

@@ -47,13 +47,15 @@
 #import "CellTagDefines.h"
 #import "AppDelegate.h"
 #import "LanguageTranslationDefines.h"
+#import "ProgramTableHeaderView.h"
+#import "RuntimeImageCache.h"
 
 // TODO: outsource...
 #define kUserDetailsShowDetailsKey @"showDetails"
 #define kUserDetailsShowDetailsObjectsKey @"detailsForObjects"
 
 @interface ProgramTableViewController () <UIActionSheetDelegate, UIAlertViewDelegate, UITextFieldDelegate,
-UINavigationBarDelegate>
+                                          UINavigationBarDelegate, SWTableViewCellDelegate>
 @property (nonatomic) BOOL useDetailCells;
 @property (strong, nonatomic) NSCharacterSet *blockedCharacterSet;
 @end
@@ -113,21 +115,15 @@ UINavigationBarDelegate>
     NSNumber *showDetailsObjectsValue = (NSNumber*)[showDetails objectForKey:kUserDetailsShowDetailsObjectsKey];
     self.useDetailCells = [showDetailsObjectsValue boolValue];
     [self initNavigationBar];
-    [super initTableView];
-
+    [self.tableView registerClass:[ProgramTableHeaderView class] forHeaderFooterViewReuseIdentifier:@"Header"];
+    self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
+    
     self.editableSections = @[@(kObjectSectionIndex)];
     if (self.program.header.programName) {
         self.navigationItem.title = self.program.header.programName;
         self.title = self.program.header.programName;
     }
     [self setupToolBar];
-}
-
-#pragma mark - application events
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    self.imageCache = nil;
 }
 
 #pragma mark - actions
@@ -194,7 +190,6 @@ UINavigationBarDelegate>
             continue;
         }
         SpriteObject *object = (SpriteObject*)[self.program.objectList objectAtIndex:(kObjectSectionIndex + selectedRowIndexPath.row)];
-        [self.imageCache removeObjectForKey:object.name];
         [objectsToRemove addObject:object];
     }
     for (SpriteObject *objectToRemove in objectsToRemove) {
@@ -208,10 +203,17 @@ UINavigationBarDelegate>
 {
     NSUInteger index = (kBackgroundObjects + indexPath.row);
     SpriteObject *object = (SpriteObject*)[self.program.objectList objectAtIndex:index];
-    [self.imageCache removeObjectForKey:object.name];
     [self.program removeObject:object];
     [self.tableView deleteRowsAtIndexPaths:@[indexPath]
                           withRowAnimation:UITableViewRowAnimationNone];
+}
+
+- (void)deleteProgramAction
+{
+    [self.delegate removeProgram:self.program.header.programName];
+    [self.program removeFromDisk];
+    self.program = nil;
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 #pragma mark - table view data source
@@ -243,88 +245,27 @@ UINavigationBarDelegate>
         cell = [tableView dequeueReusableCellWithIdentifier:DetailCellIdentifier forIndexPath:indexPath];
     }
 
-    if (! [cell conformsToProtocol:@protocol(CatrobatImageCell)]) {
+    if (! [cell conformsToProtocol:@protocol(CatrobatImageCell)] || ! [cell isKindOfClass:[CatrobatBaseCell class]]) {
         return cell;
     }
 
-    UITableViewCell<CatrobatImageCell> *imageCell = (UITableViewCell<CatrobatImageCell>*)cell;
+    CatrobatBaseCell<CatrobatImageCell> *imageCell = (CatrobatBaseCell<CatrobatImageCell>*)cell;
     NSInteger index = (kBackgroundSectionIndex + indexPath.section + indexPath.row);
     SpriteObject *object = [self.program.objectList objectAtIndex:index];
     imageCell.iconImageView.image = nil;
     [imageCell.iconImageView setBorder:[UIColor skyBlueColor] Width:kDefaultImageCellBorderWidth];
-
-    if (! [object.lookList count]) {
-        imageCell.titleLabel.text = object.name;
-        return imageCell;
-    }
-
-    NSString *previewImagePath = [object previewImagePath];
-    UIImage *image = [self.imageCache objectForKey:object.name];
-    imageCell.iconImageView.contentMode = UIViewContentModeScaleAspectFit;
-    if (! image) {
-        imageCell.iconImageView.image = nil;
-        imageCell.indexPath = indexPath;
-        if (previewImagePath) {
-            dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0ul);
-            dispatch_async(queue, ^{
-                UIImage *image = [[UIImage alloc] initWithContentsOfFile:previewImagePath];
-                // perform UI stuff on main queue (UIKit is not thread safe!!)
-                dispatch_sync(dispatch_get_main_queue(), ^{
-                    // check if cell still needed
-                    if ([imageCell.indexPath isEqual:indexPath]) {
-                        imageCell.iconImageView.image = image;
-                        [imageCell setNeedsLayout];
-                        [self.imageCache setObject:image forKey:object.name];
-                    }
-                });
-            });
-        } else {
-            // fallback
-            dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0ul);
-            dispatch_async(queue, ^{
-                // TODO: outsource this "thumbnail generation code" to helper class
-                Look* look = [object.lookList objectAtIndex:kBackgroundObjectIndex];
-                NSString *newPreviewImagePath = [NSString stringWithFormat:@"%@%@/%@",
-                                                 [object projectPath], kProgramImagesDirName,
-                                                 [look previewImageFileName]];
-
-                NSString *imagePath = [NSString stringWithFormat:@"%@%@/%@",
-                                       [object projectPath], kProgramImagesDirName,
-                                       look.fileName];
-                UIImage *image = [UIImage imageWithContentsOfFile:imagePath];
-
-                // generate thumbnail image (retina)
-                CGSize previewImageSize = CGSizeMake(kPreviewImageWidth, kPreviewImageHeight);
-                // determine aspect ratio
-                if (image.size.height > image.size.width)
-                    previewImageSize.width = (image.size.width*previewImageSize.width)/image.size.height;
-                else
-                    previewImageSize.height = (image.size.height*previewImageSize.height)/image.size.width;
-                
-                UIGraphicsBeginImageContext(previewImageSize);
-                UIImage *previewImage = [image copy];
-                [previewImage drawInRect:CGRectMake(0, 0, previewImageSize.width, previewImageSize.height)];
-                previewImage = UIGraphicsGetImageFromCurrentImageContext();
-                UIGraphicsEndImageContext();
-                [UIImagePNGRepresentation(previewImage) writeToFile:newPreviewImagePath atomically:YES];
-
-                dispatch_sync(dispatch_get_main_queue(), ^{
-                    // check if cell still needed
-                    if ([imageCell.indexPath isEqual:indexPath]) {
-                        imageCell.iconImageView.image = previewImage;
-                        [imageCell setNeedsLayout];
-                        [self.imageCache setObject:previewImage forKey:object.name];
-                    }
-                });
-            });
-        }
+    if (indexPath.section == kObjectSectionIndex) {
+        imageCell.rightUtilityButtons = @[[Util slideViewButtonMore], [Util slideViewButtonDelete]];
+        imageCell.delegate = self;
+//    } else if (indexPath.section == kBackgroundSectionIndex) {
+//        imageCell.rightUtilityButtons = @[[Util slideViewButtonMore]];
+//        imageCell.delegate = self;
     } else {
-        imageCell.iconImageView.image = image;
+        imageCell.rightUtilityButtons = nil;
+        imageCell.delegate = nil;
     }
 
-    imageCell.titleLabel.text = object.name;
-
-    if (self.useDetailCells && [imageCell isKindOfClass:[DarkBlueGradientImageDetailCell class]]) {
+    if (self.useDetailCells && [cell isKindOfClass:[DarkBlueGradientImageDetailCell class]]) {
         DarkBlueGradientImageDetailCell *detailCell = (DarkBlueGradientImageDetailCell*)imageCell;
         detailCell.topLeftDetailLabel.textColor = [UIColor whiteColor];
         detailCell.topLeftDetailLabel.text = [NSString stringWithFormat:@"%@: %lu", kUILabelTextScripts,
@@ -338,8 +279,36 @@ UINavigationBarDelegate>
         detailCell.bottomRightDetailLabel.textColor = [UIColor whiteColor];
         detailCell.bottomRightDetailLabel.text = [NSString stringWithFormat:@"%@: %lu", kUILabelTextSounds,
                                                   (unsigned long)[object numberOfSounds]];
-        return detailCell;
     }
+
+    if (! [object.lookList count]) {
+        imageCell.titleLabel.text = object.name;
+        return imageCell;
+    }
+
+    imageCell.iconImageView.contentMode = UIViewContentModeScaleAspectFit;
+    RuntimeImageCache *imageCache = [RuntimeImageCache sharedImageCache];
+    NSString *previewImagePath = [object previewImagePath];
+    NSString *imagePath = [object pathForLook:[object.lookList firstObject]];
+    imageCell.iconImageView.image = nil;
+    imageCell.indexPath = indexPath;
+
+    UIImage *image = [imageCache cachedImageForPath:previewImagePath];
+    if (! image) {
+        [imageCache loadThumbnailImageFromDiskWithThumbnailPath:previewImagePath
+                                                      imagePath:imagePath
+                                             thumbnailFrameSize:CGSizeMake(kPreviewImageWidth, kPreviewImageHeight)
+                                                   onCompletion:^(UIImage *image){
+                                                       // check if cell still needed
+                                                       if ([imageCell.indexPath isEqual:indexPath]) {
+                                                           imageCell.iconImageView.image = image;
+                                                           [imageCell setNeedsLayout];
+                                                       }
+                                                   }];
+    } else {
+        imageCell.iconImageView.image = image;
+    }
+    imageCell.titleLabel.text = object.name;
     return imageCell;
 }
 
@@ -348,9 +317,9 @@ UINavigationBarDelegate>
     return [TableUtil getHeightForImageCell];
 }
 
+#pragma mark - Header View
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
-    // TODO: outsource to TableUtil
     switch (section) {
         case 0:
             return 45.0;
@@ -363,73 +332,48 @@ UINavigationBarDelegate>
 
 - (UIView*)tableView:(UITableView*)tableView viewForHeaderInSection:(NSInteger)section
 {
-    // TODO: outsource to TableUtil
-    //UITableViewHeaderFooterView *headerView = [tableView dequeueReusableHeaderFooterViewWithIdentifier:kTableHeaderIdentifier];
-    // FIXME: HACK do not alloc init there. Use ReuseIdentifier instead!! But does lead to several issues...
-    UITableViewHeaderFooterView *headerView = [[UITableViewHeaderFooterView alloc] init];
-    headerView.contentView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"darkblue"]];
-
-    CGFloat height = [self tableView:self.tableView heightForHeaderInSection:section]-10.0;
-    UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(13.0f, 0.0f, 265.0f, height)];
-
-    CALayer *layer = titleLabel.layer;
-    CALayer *bottomBorder = [CALayer layer];
-    bottomBorder.borderColor = [UIColor airForceBlueColor].CGColor;
-    bottomBorder.borderWidth = 1;
-    bottomBorder.frame = CGRectMake(0, layer.frame.size.height-1, layer.frame.size.width, 1);
-    [bottomBorder setBorderColor:[UIColor airForceBlueColor].CGColor];
-    [layer addSublayer:bottomBorder];
-
-    titleLabel.textColor = [UIColor whiteColor];
-    titleLabel.tag = 1;
-    titleLabel.font = [UIFont systemFontOfSize:14.0f];
+    ProgramTableHeaderView *headerView = (ProgramTableHeaderView*)[self.tableView dequeueReusableHeaderFooterViewWithIdentifier:@"Header"];
+    
     if (section == 0) {
-        titleLabel.text = [kUILabelTextBackground uppercaseString];
+        headerView.textLabel.text = [kUILabelTextBackground uppercaseString];
     } else {
-        titleLabel.text = (([self.program numberOfNormalObjects] != 1)
-                        ? [kUILabelTextObjectPlural uppercaseString]
-                        : [kUILabelTextObjectSingular uppercaseString]);
+        headerView.textLabel.text = (([self.program numberOfNormalObjects] != 1)
+                                                    ? [kUILabelTextObjectPlural uppercaseString]
+                                                    : [kUILabelTextObjectSingular uppercaseString]);
     }
-    titleLabel.text = [NSString stringWithFormat:@"  %@", titleLabel.text];
-    [headerView.contentView addSubview:titleLabel];
     return headerView;
 }
 
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return ((indexPath.section == kObjectSectionIndex)
-            && ([self.program numberOfNormalObjects] > kMinNumOfObjects));
-}
-
-- (void)tableView:(UITableView*)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath*)indexPath
-{
-    if (indexPath.section == kObjectSectionIndex) {
-        if (editingStyle == UITableViewCellEditingStyleDelete) {
-            [self.tableView reloadRowsAtIndexPaths:@[indexPath]
-                                  withRowAnimation:UITableViewRowAnimationNone];
-            [self performActionOnConfirmation:@selector(deleteObjectForIndexPath:)
-                               canceledAction:nil
-                                   withObject:indexPath
-                                       target:self
-                                 confirmTitle:kUIAlertViewTitleDeleteSingleObject
-                               confirmMessage:kUIAlertViewMessageIrreversibleAction];
+    [super tableView:tableView didSelectRowAtIndexPath:indexPath];
+    static NSString *segueToObject = kSegueToObject;
+    if (! self.editing) {
+        UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+        if ([self shouldPerformSegueWithIdentifier:segueToObject sender:cell]) {
+            [self performSegueWithIdentifier:segueToObject sender:cell];
         }
     }
+}
+
+- (void)tableView:(UITableView *)tableView willDisplayHeaderView:(UIView *)view forSection:(NSInteger)section
+{
+    ProgramTableHeaderView *headerView = (ProgramTableHeaderView*)view;
+    headerView.textLabel.textColor = UIColor.headerTextColor;
 }
 
 #pragma mark - segue handler
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     // Pass the selected object to the new view controller.
-    static NSString *toObjectSegue1ID = kSegueToObject1;
-    static NSString *toObjectSegue2ID = kSegueToObject2;
+    static NSString *toObjectSegueID = kSegueToObject;
     static NSString *toSceneSegueID = kSegueToScene;
 
     UIViewController *destController = segue.destinationViewController;
     if ([sender isKindOfClass:[UITableViewCell class]]) {
         UITableViewCell *cell = (UITableViewCell*) sender;
         NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
-        if ([segue.identifier isEqualToString:toObjectSegue1ID] || [segue.identifier isEqualToString:toObjectSegue2ID]) {
+        if ([segue.identifier isEqualToString:toObjectSegueID]) {
             if ([destController isKindOfClass:[ObjectTableViewController class]]) {
                 ObjectTableViewController *tvc = (ObjectTableViewController*) destController;
                 if ([tvc respondsToSelector:@selector(setObject:)]) {
@@ -449,6 +393,38 @@ UINavigationBarDelegate>
             }
         }
     }
+}
+
+#pragma mark - swipe delegates
+- (void)swipeableTableViewCell:(SWTableViewCell *)cell didTriggerRightUtilityButtonWithIndex:(NSInteger)index
+{
+    if (index == 0) {
+        // More button was pressed
+        UIAlertView *alertTest = [[UIAlertView alloc] initWithTitle:@"Hello"
+                                                            message:@"More more more"
+                                                           delegate:nil
+                                                  cancelButtonTitle:@"Cancel"
+                                                  otherButtonTitles:nil];
+        [alertTest show];
+        [cell hideUtilityButtonsAnimated:YES];
+    } else if (index == 1) {
+        // Delete button was pressed
+        NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
+        [cell hideUtilityButtonsAnimated:YES];
+        if (indexPath.section == kObjectSectionIndex) {
+            [self performActionOnConfirmation:@selector(deleteObjectForIndexPath:)
+                               canceledAction:nil
+                                   withObject:indexPath
+                                       target:self
+                                 confirmTitle:kUIAlertViewTitleDeleteSingleObject
+                               confirmMessage:kUIAlertViewMessageIrreversibleAction];
+        }
+    }
+}
+
+- (BOOL)swipeableTableViewCellShouldHideUtilityButtonsOnSwipe:(SWTableViewCell *)cell
+{
+    return YES;
 }
 
 #pragma mark - text field delegates
@@ -496,10 +472,11 @@ UINavigationBarDelegate>
         [self.tableView reloadData];
     } else if (buttonIndex == actionSheet.destructiveButtonIndex) {
         // Delete Program button
-        [self.delegate removeProgram:self.program.header.programName];
-        [self.program removeFromDisk];
-        self.program = nil;
-        [self.navigationController popViewControllerAnimated:YES];
+        [self performActionOnConfirmation:@selector(deleteProgramAction)
+                           canceledAction:nil
+                                   target:self
+                             confirmTitle:kUIAlertViewTitleDeleteProgram
+                           confirmMessage:kUIAlertViewMessageIrreversibleAction];
     }
 }
 

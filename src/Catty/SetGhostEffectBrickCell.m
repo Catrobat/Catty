@@ -30,21 +30,22 @@
 
 @implementation SetGhostEffectBrickCell
 
+- (void)drawRect:(CGRect)rect
+{
+    [BrickShapeFactory.sharedBrickShapeFactory drawMediumSquareBrickShape:UIColor.lookBrickStrokeColor fillColor:UIColor.lookBrickGreenColor];
+}
+
++ (CGFloat)cellHeight
+{
+    return kBrickHeight2h;
+}
+
 - (void)hookUpSubViews:(NSArray *)inlineViewSubViews
 {
     self.firstRowTextLabel = inlineViewSubViews[0];
     self.secondRowLeftTextLabel = inlineViewSubViews[1];
     self.transparencyTextField = inlineViewSubViews[2];
     self.secondRowRightTextLabel = inlineViewSubViews[3];
-}
-
-- (id)initWithFrame:(CGRect)frame
-{
-    self = [super initWithFrame:frame];
-    if (self) {
-        // Initialization code
-    }
-    return self;
 }
 
 @end

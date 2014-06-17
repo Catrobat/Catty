@@ -40,6 +40,7 @@
 #import "NSData+Hashes.h"
 #import <AVFoundation/AVFoundation.h>
 #import "LanguageTranslationDefines.h"
+#import "RuntimeImageCache.h"
 
 // TODO: outsource...
 #define kUserDetailsShowDetailsKey @"showDetails"
@@ -48,11 +49,12 @@
 #define kPocketCodeRecorderActionSheetButton @"pocketCodeRecorder"
 #define kSelectMusicTrackActionSheetButton @"selectMusicTrack"
 
-@interface SoundsTableViewController () <UIActionSheetDelegate, AVAudioPlayerDelegate>
+@interface SoundsTableViewController () <UIActionSheetDelegate, AVAudioPlayerDelegate, SWTableViewCellDelegate>
 @property (nonatomic) BOOL useDetailCells;
 @property (nonatomic, strong) NSMutableDictionary* addSoundActionSheetBtnIndexes;
 @property (atomic, strong) Sound *currentPlayingSong;
 @property (atomic, weak) UITableViewCell<CatrobatImageCell> *currentPlayingSongCell;
+
 @end
 
 @implementation SoundsTableViewController
@@ -80,19 +82,13 @@
     NSNumber *showDetailsSoundsValue = (NSNumber*)[showDetails objectForKey:kUserDetailsShowDetailsSoundsKey];
     self.useDetailCells = [showDetailsSoundsValue boolValue];
     self.navigationController.title = self.title = kUIViewControllerTitleSounds;
-    //    self.title = self.object.name;
-    //    self.navigationItem.title = self.object.name;
     [self initNavigationBar];
     self.currentPlayingSong = nil;
     self.currentPlayingSongCell = nil;
-
-    [super initTableView];
-    [super initPlaceHolder];
-    [super setPlaceHolderTitle:kUIViewControllerPlaceholderTitleSounds
-                   Description:[NSString stringWithFormat:kUIViewControllerPlaceholderDescriptionStandard,
-                                kUIViewControllerPlaceholderTitleSounds]];
-    [super showPlaceHolder:(! (BOOL)[self.object.soundList count])];
+    self.placeHolderView.title = kUIViewControllerPlaceholderTitleSounds;
+    [self showPlaceHolder:(! (BOOL)[self.object.soundList count])];
     [self setupToolBar];
+    self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -108,18 +104,8 @@
     [super viewWillDisappear:animated];
     NSNotificationCenter *dnc = [NSNotificationCenter defaultCenter];
     [dnc removeObserver:self name:kSoundAddedNotification object:nil];
-}
-
-- (void)dealloc
-{
     self.currentPlayingSongCell = nil;
     [self stopAllSounds];
-}
-
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    self.imageCache = nil;
 }
 
 #pragma mark - notification
@@ -242,10 +228,12 @@
     }
 
     Sound *sound = (Sound*)[self.object.soundList objectAtIndex:indexPath.row];
-    if (! [cell conformsToProtocol:@protocol(CatrobatImageCell)]) {
+    if (! [cell conformsToProtocol:@protocol(CatrobatImageCell)] || ! [cell isKindOfClass:[CatrobatBaseCell class]]) {
         return cell;
     }
-    UITableViewCell <CatrobatImageCell>* imageCell = (UITableViewCell<CatrobatImageCell>*)cell;
+    CatrobatBaseCell<CatrobatImageCell>* imageCell = (CatrobatBaseCell<CatrobatImageCell>*)cell;
+    imageCell.rightUtilityButtons = @[[Util slideViewButtonMore], [Util slideViewButtonDelete]];
+    imageCell.delegate = self;
     imageCell.indexPath = indexPath;
 
     static NSString *playIconName = @"ic_media_play";
@@ -259,20 +247,17 @@
         }
     }
 
-    UIImage *image = [self.imageCache objectForKey:rightIconName];
+    RuntimeImageCache *imageCache = [RuntimeImageCache sharedImageCache];
+    UIImage *image = [imageCache cachedImageForName:rightIconName];
     if (! image) {
-        dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0ul);
-        dispatch_async(queue, ^{
-            UIImage *image = [UIImage imageNamed:rightIconName];
-            [self.imageCache setObject:image forKey:rightIconName];
-            dispatch_sync(dispatch_get_main_queue(), ^{
-                // check if cell still needed
-                if ([imageCell.indexPath isEqual:indexPath]) {
-                    imageCell.iconImageView.image = image;
-                    [imageCell setNeedsLayout];
-                }
-            });
-        });
+        [imageCache loadImageWithName:rightIconName
+                         onCompletion:^(UIImage *image){
+                             // check if cell still needed
+                             if ([imageCell.indexPath isEqual:indexPath]) {
+                                 imageCell.iconImageView.image = image;
+                                 [imageCell setNeedsLayout];
+                             }
+                         }];
     } else {
         imageCell.iconImageView.image = image;
     }
@@ -361,16 +346,22 @@
     return [TableUtil getHeightForImageCell];
 }
 
-- (BOOL)tableView:(UITableView*)tableView canEditRowAtIndexPath:(NSIndexPath*)indexPath
+#pragma mark - swipe delegates
+- (void)swipeableTableViewCell:(SWTableViewCell *)cell didTriggerRightUtilityButtonWithIndex:(NSInteger)index
 {
-    return YES;
-}
-
-- (void)tableView:(UITableView*)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath*)indexPath
-{
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        [self.tableView reloadRowsAtIndexPaths:@[indexPath]
-                              withRowAnimation:UITableViewRowAnimationNone];
+    if (index == 0) {
+        // More button was pressed
+        UIAlertView *alertTest = [[UIAlertView alloc] initWithTitle:@"Hello"
+                                                            message:@"More more more"
+                                                           delegate:nil
+                                                  cancelButtonTitle:@"Cancel"
+                                                  otherButtonTitles:nil];
+        [alertTest show];
+        [cell hideUtilityButtonsAnimated:YES];
+    } else if (index == 1) {
+        // Delete button was pressed
+        NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
+        [cell hideUtilityButtonsAnimated:YES];
         [self performActionOnConfirmation:@selector(deleteSoundForIndexPath:)
                            canceledAction:nil
                                withObject:indexPath
@@ -378,6 +369,11 @@
                              confirmTitle:kUIAlertViewTitleDeleteSingleSound
                            confirmMessage:kUIAlertViewMessageIrreversibleAction];
     }
+}
+
+- (BOOL)swipeableTableViewCellShouldHideUtilityButtonsOnSwipe:(SWTableViewCell *)cell
+{
+    return YES;
 }
 
 #pragma audio delegate methods
@@ -395,22 +391,19 @@
         self.currentPlayingSongCell = nil;
 
         static NSString *playIconName = @"ic_media_play";
-        UIImage *image = [self.imageCache objectForKey:playIconName];
+        RuntimeImageCache *imageCache = [RuntimeImageCache sharedImageCache];
+        UIImage *image = [imageCache cachedImageForName:playIconName];
 
         if (! image) {
-            dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0ul);
-            dispatch_async(queue, ^{
-                UIImage *image = [UIImage imageNamed:playIconName];
-                [self.imageCache setObject:image forKey:playIconName];
-                dispatch_sync(dispatch_get_main_queue(), ^{
-                    // check if user tapped again on this song in the meantime...
-                    @synchronized(self) {
-                        if ((currentPlayingSong != self.currentPlayingSong) && (currentPlayingSongCell != self.currentPlayingSongCell)) {
-                            currentPlayingSongCell.iconImageView.image = image;
-                        }
-                    }
-                });
-            });
+            [imageCache loadImageWithName:playIconName
+                             onCompletion:^(UIImage *image){
+                                 // check if user tapped again on this song in the meantime...
+                                 @synchronized(self) {
+                                     if ((currentPlayingSong != self.currentPlayingSong) && (currentPlayingSongCell != self.currentPlayingSongCell)) {
+                                         currentPlayingSongCell.iconImageView.image = image;
+                                     }
+                                 }
+                             }];
         } else {
             currentPlayingSongCell.iconImageView.image = image;
         }

@@ -29,20 +29,21 @@
 
 @implementation SetBrightnessBrickCell
 
+- (void)drawRect:(CGRect)rect
+{
+    [BrickShapeFactory.sharedBrickShapeFactory drawMediumSquareBrickShape:UIColor.lookBrickStrokeColor fillColor:UIColor.lookBrickGreenColor];
+}
+
++ (CGFloat)cellHeight
+{
+    return kBrickHeight2h;
+}
+
 - (void)hookUpSubViews:(NSArray *)inlineViewSubViews
 {
     self.leftTextLabel = inlineViewSubViews[0];
     self.brightnessTextField = inlineViewSubViews[1];
     self.rightTextLabel = inlineViewSubViews[2];
-}
-
-- (id)initWithFrame:(CGRect)frame
-{
-    self = [super initWithFrame:frame];
-    if (self) {
-        // Initialization code
-    }
-    return self;
 }
 
 @end

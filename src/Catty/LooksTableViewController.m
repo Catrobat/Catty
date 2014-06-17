@@ -45,6 +45,7 @@
 #import "AppDelegate.h"
 #import "LoadingView.h"
 #import "LanguageTranslationDefines.h"
+#import "RuntimeImageCache.h"
 
 // TODO: outsource...
 #define kUserDetailsShowDetailsKey @"showDetails"
@@ -56,7 +57,7 @@
 
 @interface ObjectLooksTableViewController () <UIActionSheetDelegate, UIImagePickerControllerDelegate,
                                               UINavigationControllerDelegate, UIAlertViewDelegate,
-                                              UITextFieldDelegate>
+                                              UITextFieldDelegate, SWTableViewCellDelegate>
 @property (nonatomic) BOOL useDetailCells;
 @property (nonatomic, strong) Look *lookToAdd;
 @property (nonatomic, strong) LoadingView* loadingView;
@@ -64,6 +65,22 @@
 @end
 
 @implementation ObjectLooksTableViewController
+
+#pragma - events
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
+    self.lookToAdd = nil;
+    NSDictionary *showDetails = [[NSUserDefaults standardUserDefaults] objectForKey:kUserDetailsShowDetailsKey];
+    NSNumber *showDetailsProgramsValue = (NSNumber*)[showDetails objectForKey:kUserDetailsShowDetailsLooksKey];
+    self.useDetailCells = [showDetailsProgramsValue boolValue];
+    self.title = self.navigationItem.title = kUIViewControllerTitleLooks;
+    [self initNavigationBar];
+    self.placeHolderView.title = kUIViewControllerPlaceholderTitleLooks;
+    [self showPlaceHolder:(! (BOOL)[self.object.lookList count])];
+    [self setupToolBar];
+    self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
+}
 
 #pragma getters and setters
 - (NSMutableDictionary*)addLookActionSheetBtnIndexes
@@ -79,36 +96,6 @@
 {
     UIBarButtonItem *editButtonItem = [TableUtil editButtonItemWithTarget:self action:@selector(editAction:)];
     self.navigationItem.rightBarButtonItem = editButtonItem;
-}
-
-#pragma - events
-- (void)viewDidLoad
-{
-    [super viewDidLoad];
-    self.lookToAdd = nil;
-    NSDictionary *showDetails = [[NSUserDefaults standardUserDefaults] objectForKey:kUserDetailsShowDetailsKey];
-    NSNumber *showDetailsProgramsValue = (NSNumber*)[showDetails objectForKey:kUserDetailsShowDetailsLooksKey];
-    self.useDetailCells = [showDetailsProgramsValue boolValue];
-    self.title = self.navigationItem.title = kUIViewControllerTitleLooks;
-    [self initNavigationBar];
-    [super initTableView];
-    [super initPlaceHolder];
-
-    [super setPlaceHolderTitle:([self.object isBackground]
-                                ? kUIViewControllerPlaceholderTitleBackgrounds
-                                : kUIViewControllerPlaceholderTitleLooks)
-                   Description:[NSString stringWithFormat:kUIViewControllerPlaceholderDescriptionStandard,
-                                ([self.object isBackground]
-                                 ? kUIViewControllerPlaceholderTitleBackgrounds
-                                 : kUIViewControllerPlaceholderTitleLooks)]];
-    [super showPlaceHolder:(! (BOOL)[self.object.lookList count])];
-    [self setupToolBar];
-}
-
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    self.imageCache = nil;
 }
 
 #pragma mark - actions
@@ -170,20 +157,18 @@
     for (Look *lookToRemove in looksToRemove) {
         [self.object removeLook:lookToRemove];
     }
-    self.imageCache = nil;
     [super exitEditingMode];
     [self.tableView deleteRowsAtIndexPaths:selectedRowsIndexPaths withRowAnimation:UITableViewRowAnimationNone];
-    [super showPlaceHolder:(! (BOOL)[self.object.lookList count])];
+    [self showPlaceHolder:(! (BOOL)[self.object.lookList count])];
 }
 
 - (void)deleteLookForIndexPath:(NSIndexPath*)indexPath
 {
     Look *look = (Look*)[self.object.lookList objectAtIndex:indexPath.row];
-    [self.imageCache removeObjectForKey:@(indexPath.row)];
     [self.object removeLook:look];
     [self.tableView deleteRowsAtIndexPaths:@[indexPath]
                           withRowAnimation:UITableViewRowAnimationNone];
-    [super showPlaceHolder:(! (BOOL)[self.object.lookList count])];
+    [self showPlaceHolder:(! (BOOL)[self.object.lookList count])];
 }
 
 #pragma mark - Table view data source
@@ -208,78 +193,39 @@
         cell = [tableView dequeueReusableCellWithIdentifier:DetailCellIdentifier forIndexPath:indexPath];
     }
 
-    if (! [cell conformsToProtocol:@protocol(CatrobatImageCell)]) {
+    if (! [cell conformsToProtocol:@protocol(CatrobatImageCell)] || ! [cell isKindOfClass:[CatrobatBaseCell class]]) {
         return cell;
     }
 
-    UITableViewCell <CatrobatImageCell>* imageCell = (UITableViewCell<CatrobatImageCell>*)cell;
+    CatrobatBaseCell<CatrobatImageCell>* imageCell = (CatrobatBaseCell<CatrobatImageCell>*)cell;
     Look *look = [self.object.lookList objectAtIndex:indexPath.row];
     imageCell.iconImageView.image = nil;
     [imageCell.iconImageView setBorder:[UIColor skyBlueColor] Width:kDefaultImageCellBorderWidth];
-    NSString *previewImagePath = [self.object previewImagePathForLookAtIndex:indexPath.row];
-    NSNumber *indexAsNumber = @(indexPath.row);
-    UIImage *image = [self.imageCache objectForKey:indexAsNumber];
+    imageCell.rightUtilityButtons = @[[Util slideViewButtonMore], [Util slideViewButtonDelete]];
+    imageCell.delegate = self;
+
     imageCell.iconImageView.contentMode = UIViewContentModeScaleAspectFit;
+    RuntimeImageCache *imageCache = [RuntimeImageCache sharedImageCache];
+    NSString *previewImagePath = [self.object previewImagePathForLookAtIndex:indexPath.row];
+    NSString *imagePath = [self.object pathForLook:look];
+    imageCell.iconImageView.image = nil;
+    imageCell.indexPath = indexPath;
+
+    UIImage *image = [imageCache cachedImageForPath:previewImagePath];
     if (! image) {
-        imageCell.iconImageView.image = nil;
-        imageCell.indexPath = indexPath;
-        if (previewImagePath) {
-            dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0ul);
-            dispatch_async(queue, ^{
-                UIImage *image = [[UIImage alloc] initWithContentsOfFile:previewImagePath];
-                // perform UI stuff on main queue (UIKit is not thread safe!!)
-                dispatch_sync(dispatch_get_main_queue(), ^{
-                    // check if cell still needed
-                    if ([imageCell.indexPath isEqual:indexPath]) {
-                        imageCell.iconImageView.image = image;
-                        [imageCell setNeedsLayout];
-                        [self.imageCache setObject:image forKey:indexAsNumber];
-                    }
-                });
-            });
-        } else {
-            // fallback
-            dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0ul);
-            dispatch_async(queue, ^{
-                // TODO: outsource this "thumbnail generation code" to helper class
-                NSString *newPreviewImagePath = [NSString stringWithFormat:@"%@%@/%@",
-                                                 [self.object projectPath], kProgramImagesDirName,
-                                                 [look previewImageFileName]];
-
-                NSString *imagePath = [NSString stringWithFormat:@"%@%@/%@",
-                                       [self.object projectPath], kProgramImagesDirName,
-                                       look.fileName];
-                UIImage *image = [UIImage imageWithContentsOfFile:imagePath];
-
-                // generate thumbnail image (retina)
-                CGSize previewImageSize = CGSizeMake(kPreviewImageWidth, kPreviewImageHeight);
-                // determine aspect ratio
-                if (image.size.height > image.size.width)
-                    previewImageSize.width = (image.size.width*previewImageSize.width)/image.size.height;
-                else
-                    previewImageSize.height = (image.size.height*previewImageSize.height)/image.size.width;
-
-                UIGraphicsBeginImageContext(previewImageSize);
-                UIImage *previewImage = [image copy];
-                [previewImage drawInRect:CGRectMake(0, 0, previewImageSize.width, previewImageSize.height)];
-                previewImage = UIGraphicsGetImageFromCurrentImageContext();
-                UIGraphicsEndImageContext();
-                [UIImagePNGRepresentation(previewImage) writeToFile:newPreviewImagePath atomically:YES];
-
-                dispatch_sync(dispatch_get_main_queue(), ^{
-                    // check if cell still needed
-                    if ([imageCell.indexPath isEqual:indexPath]) {
-                        imageCell.iconImageView.image = previewImage;
-                        [imageCell setNeedsLayout];
-                        [self.imageCache setObject:previewImage forKey:indexAsNumber];
-                    }
-                });
-            });
-        }
+        [imageCache loadThumbnailImageFromDiskWithThumbnailPath:previewImagePath
+                                                      imagePath:imagePath
+                                                  thumbnailFrameSize:CGSizeMake(kPreviewImageWidth, kPreviewImageHeight)
+                                                   onCompletion:^(UIImage *image){
+                                                       // check if cell still needed
+                                                       if ([imageCell.indexPath isEqual:indexPath]) {
+                                                           imageCell.iconImageView.image = image;
+                                                           [imageCell setNeedsLayout];
+                                                       }
+                                                   }];
     } else {
         imageCell.iconImageView.image = image;
     }
-
     imageCell.titleLabel.text = look.name;
 
     if (self.useDetailCells && [cell isKindOfClass:[DarkBlueGradientImageDetailCell class]]) {
@@ -309,22 +255,15 @@
   return [TableUtil getHeightForImageCell];
 }
 
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return YES;
-}
-
-- (void)tableView:(UITableView*)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath*)indexPath
-{
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        [self.tableView reloadRowsAtIndexPaths:@[indexPath]
-                              withRowAnimation:UITableViewRowAnimationNone];
-        [self performActionOnConfirmation:@selector(deleteLookForIndexPath:)
-                           canceledAction:nil
-                               withObject:indexPath
-                                   target:self
-                             confirmTitle:kUIAlertViewTitleDeleteSingleLook
-                           confirmMessage:kUIAlertViewMessageIrreversibleAction];
+    [super tableView:tableView didSelectRowAtIndexPath:indexPath];
+    static NSString *segueToImage = kSegueToImage;
+    if (! self.editing) {
+        UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+        if ([self shouldPerformSegueWithIdentifier:segueToImage sender:cell]) {
+            [self performSegueWithIdentifier:segueToImage sender:cell];
+        }
     }
 }
 
@@ -332,8 +271,7 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     static NSString* segueToSceneIdentifier = kSegueToScene;
-    static NSString* segueToImage1Identifier = kSegueToImage1;
-    static NSString* segueToImage2Identifier = kSegueToImage2;
+    static NSString* segueToImageIdentifier = kSegueToImage;
     UIViewController* destController = segue.destinationViewController;
     if ([sender isKindOfClass:[UIBarButtonItem class]]) {
         if ([segue.identifier isEqualToString:segueToSceneIdentifier]) {
@@ -348,7 +286,7 @@
     } else if ([sender isKindOfClass:[UITableViewCell class]]) {
         UITableViewCell *cell = (UITableViewCell*)sender;
         NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
-        if ([segue.identifier isEqualToString:segueToImage1Identifier] || [segue.identifier isEqualToString:segueToImage2Identifier]) {
+        if ([segue.identifier isEqualToString:segueToImageIdentifier]) {
             if ([destController isKindOfClass:[LookImageViewController class]]) {
                 LookImageViewController *livc = (LookImageViewController*)destController;
                 if ([livc respondsToSelector:@selector(setImageName:)] && [livc respondsToSelector:@selector(setImagePath:)]) {
@@ -360,6 +298,36 @@
             }
         }
     }
+}
+
+#pragma mark - swipe delegates
+- (void)swipeableTableViewCell:(SWTableViewCell *)cell didTriggerRightUtilityButtonWithIndex:(NSInteger)index
+{
+    if (index == 0) {
+        // More button was pressed
+        UIAlertView *alertTest = [[UIAlertView alloc] initWithTitle:@"Hello"
+                                                            message:@"More more more"
+                                                           delegate:nil
+                                                  cancelButtonTitle:@"Cancel"
+                                                  otherButtonTitles:nil];
+        [alertTest show];
+        [cell hideUtilityButtonsAnimated:YES];
+    } else if (index == 1) {
+        // Delete button was pressed
+        NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
+        [cell hideUtilityButtonsAnimated:YES];
+        [self performActionOnConfirmation:@selector(deleteLookForIndexPath:)
+                           canceledAction:nil
+                               withObject:indexPath
+                                   target:self
+                             confirmTitle:kUIAlertViewTitleDeleteSingleLook
+                           confirmMessage:kUIAlertViewMessageIrreversibleAction];
+    }
+}
+
+- (BOOL)swipeableTableViewCellShouldHideUtilityButtonsOnSwipe:(SWTableViewCell *)cell
+{
+    return YES;
 }
 
 #pragma mark - UIImagePicker Handler
@@ -428,8 +396,8 @@
         for (Look *look in self.object.lookList) {
             [lookNames addObject:look.name];
         }
-        Look *look = [[Look alloc] initWithName:[Util uniqueName:lookName existingNames:lookNames] andPath:newImageFileName];
-        NSLog(@"FilePath: %@", newImageFileName);
+        Look *look = [[Look alloc] initWithName:[Util uniqueName:lookName existingNames:lookNames]
+                                        andPath:newImageFileName];
 
         // TODO: outsource this to FileManager
         NSString *newImagePath = [NSString stringWithFormat:@"%@%@/%@",
@@ -538,16 +506,15 @@
     [super alertView:alertView clickedButtonAtIndex:buttonIndex];
     if (alertView.tag == kNewImageAlertViewTag) {
         NSString *input = [alertView textFieldAtIndex:0].text;
-        [self.object.lookList addObject:self.lookToAdd];
 
         if (! input) {
-            [self.object removeLook:self.lookToAdd];
             self.lookToAdd = nil;
             return;
         }
 
         if (buttonIndex == kAlertViewButtonOK) {
-            [super showPlaceHolder:NO];
+            [self showPlaceHolder:NO];
+            [self.object.lookList addObject:self.lookToAdd];
             AppDelegate *appDelegate = (AppDelegate*)[UIApplication sharedApplication].delegate;
             NSString *oldPath = [self.object pathForLook:self.lookToAdd];
             self.lookToAdd.name = input;
@@ -562,9 +529,6 @@
             [self.tableView insertRowsAtIndexPaths:@[indexPath]
                                   withRowAnimation:UITableViewRowAnimationFade];
             // TODO: update program on disk (run async on another queue)...
-        } else {
-            // cancel button clicked, remove look!
-            [self.object removeLook:self.lookToAdd];
         }
         self.lookToAdd = nil;
     }

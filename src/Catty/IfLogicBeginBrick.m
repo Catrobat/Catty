@@ -26,6 +26,10 @@
 
 @implementation IfLogicBeginBrick
 
+- (NSString*)brickTitle
+{
+    return kBrickCellControlTitleIf;
+}
 
 -(BOOL)checkCondition
 {

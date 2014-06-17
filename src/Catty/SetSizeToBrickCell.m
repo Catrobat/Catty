@@ -29,20 +29,16 @@
 
 @implementation SetSizeToBrickCell
 
+- (void)drawRect:(CGRect)rect
+{
+    [BrickShapeFactory.sharedBrickShapeFactory drawSmallSquareBrickShape:UIColor.lookBrickStrokeColor fillColor:UIColor.lookBrickGreenColor];
+}
+
 - (void)hookUpSubViews:(NSArray *)inlineViewSubViews
 {
     self.leftTextLabel = inlineViewSubViews[0];
     self.sizeTextField = inlineViewSubViews[1];
     self.rightTextLabel = inlineViewSubViews[2];
-}
-
-- (id)initWithFrame:(CGRect)frame
-{
-    self = [super initWithFrame:frame];
-    if (self) {
-        // Initialization code
-    }
-    return self;
 }
 
 @end

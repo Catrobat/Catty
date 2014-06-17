@@ -28,19 +28,20 @@
 
 @implementation BroadcastWaitBrickCell
 
+- (void)drawRect:(CGRect)rect
+{
+    [BrickShapeFactory.sharedBrickShapeFactory drawMediumSquareBrickShape:UIColor.controlBrickStrokeColor fillColor:UIColor.controlBrickOrangeColor];
+}
+
++ (CGFloat)cellHeight
+{
+    return kBrickHeight2h;
+}
+
 - (void)hookUpSubViews:(NSArray *)inlineViewSubViews
 {
     self.textLabel = inlineViewSubViews[0];
     self.messageComboBoxView = inlineViewSubViews[1];
-}
-
-- (id)initWithFrame:(CGRect)frame
-{
-    self = [super initWithFrame:frame];
-    if (self) {
-        // Initialization code
-    }
-    return self;
 }
 
 @end

@@ -64,10 +64,10 @@
 {
     [super viewDidLoad];
     [self loadFeaturedProjects];
-    [super initTableView];
     self.navigationItem.title = kUIViewControllerTitleFeaturedPrograms;
     //  CGFloat navigationBarHeight = self.navigationController.navigationBar.frame.size.height;
     //  self.tableView.contentInset = UIEdgeInsetsMake(navigationBarHeight, 0, 0, 0);
+    self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -109,13 +109,12 @@
     
     UITableViewCell* cell = nil;
     cell = [self cellForProjectsTableView:tableView atIndexPath:indexPath];
-    
     return cell;
 }
 
 #pragma mark - Helper
--(UITableViewCell*)cellForProjectsTableView:(UITableView*)tableView atIndexPath:(NSIndexPath*)indexPath {
-    
+- (UITableViewCell*)cellForProjectsTableView:(UITableView*)tableView atIndexPath:(NSIndexPath*)indexPath
+{
     static NSString *CellIdentifier = kImageCell;
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
     
@@ -280,15 +279,22 @@
 
 
 #pragma mark - Table view delegate
-
--(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
     return [TableUtil getHeightForImageCell];
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    [super tableView:tableView didSelectRowAtIndexPath:indexPath];
+    static NSString *segueToProgramDetail = kSegueToProgramDetail;
+    if (! self.editing) {
+        UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+        if ([self shouldPerformSegueWithIdentifier:segueToProgramDetail sender:cell]) {
+            [self performSegueWithIdentifier:segueToProgramDetail sender:cell];
+        }
+    }
 }
-
 
 #pragma mark - NSURLConnection Delegates
 //- (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data {
@@ -336,7 +342,7 @@
 # pragma mark - Segue delegate
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    if([[segue identifier] isEqualToString:kSegueToProgramDetail]) {
+    if ([[segue identifier] isEqualToString:kSegueToProgramDetail]) {
         NSIndexPath *selectedRowIndexPath = self.tableView.indexPathForSelectedRow;
         CatrobatProject *catrobatProject = [self.projects objectAtIndex:selectedRowIndexPath.row];
         ProgramDetailStoreViewController* programDetailViewController = (ProgramDetailStoreViewController*)[segue destinationViewController];

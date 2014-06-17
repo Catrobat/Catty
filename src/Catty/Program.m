@@ -24,7 +24,6 @@
 #import "Program.h"
 #import "VariablesContainer.h"
 #import "Util.h"
-#import "OrderedMapTable.h"
 #import "AppDefines.h"
 #import "SpriteObject.h"
 #import "AppDelegate.h"
@@ -47,7 +46,7 @@
 }
 
 # pragma mark - factories
-+ (Program*)defaultProgramWithName:(NSString*)programName
++ (instancetype)defaultProgramWithName:(NSString*)programName
 {
     Program* program = [[Program alloc] init];
     program.header = [[Header alloc] init];
@@ -95,7 +94,7 @@
     return program;
 }
 
-+ (Program*)programWithLoadingInfo:(ProgramLoadingInfo*)loadingInfo;
++ (instancetype)programWithLoadingInfo:(ProgramLoadingInfo*)loadingInfo;
 {
     NSDebug(@"Try to load project '%@'", loadingInfo.visibleName);
     NSDebug(@"Path: %@", loadingInfo.basePath);
@@ -128,7 +127,7 @@
     return program;
 }
 
-+ (Program*)lastProgram
++ (instancetype)lastProgram
 {
     NSString *lastProgramName = [Util lastProgram];
     ProgramLoadingInfo *loadingInfo = [Util programLoadingInfoForProgramWithName:lastProgramName];

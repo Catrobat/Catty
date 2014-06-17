@@ -114,11 +114,11 @@
 #define kUIViewControllerPlaceholderTitleLooks kUIViewControllerTitleLooks
 #define kUIViewControllerPlaceholderTitleSounds kUIViewControllerTitleSounds
 
-#define kUIViewControllerPlaceholderDescriptionStandard NSLocalizedString(@"Click \"+\" to add %@", nil)
+#define kUIViewControllerPlaceholderDescriptionStandard NSLocalizedString(@"Select \"+\" to add %@", nil)
 
 /*
  * -----------------------------------------------------------------------------------------------------------
- * UIViewController placeholder defines
+ * UIViewController menu title and NavigationBar defines
  * -----------------------------------------------------------------------------------------------------------
  */
 
@@ -134,6 +134,8 @@
 #define kUITableViewControllerMenuTitleLooks kUIViewControllerPlaceholderTitleLooks
 #define kUITableViewControllerMenuTitleSounds kUIViewControllerPlaceholderTitleSounds
 
+#define kUINavigationItemTitleEditMenu NSLocalizedString(@"Edit Mode", nil)
+
 /*
  * -----------------------------------------------------------------------------------------------------------
  * UIBarButtonItem title defines
@@ -142,8 +144,8 @@
 
 #define kUIBarButtonItemTitleEdit NSLocalizedString(@"Edit", nil)
 #define kUIBarButtonItemTitleCancel NSLocalizedString(@"Cancel", nil)
-#define kUIBarButtonItemTitleSelectAllItems NSLocalizedString(@"Select all", nil)
-#define kUIBarButtonItemTitleUnselectAllItems NSLocalizedString(@"Unselect all", nil)
+#define kUIBarButtonItemTitleSelectAllItems NSLocalizedString(@"Select All", nil)
+#define kUIBarButtonItemTitleUnselectAllItems NSLocalizedString(@"Unselect All", nil)
 #define kUIBarButtonItemTitleDelete NSLocalizedString(@"Delete", nil)
 
 /*
@@ -168,7 +170,8 @@
 
 #define kUIActionSheetButtonTitleClose NSLocalizedString(@"Close", nil)
 #define kUIActionSheetButtonTitleDeleteBrick NSLocalizedString(@"Delete Brick", nil)
-#define kUIActionSheetButtonTitleHighlightScript NSLocalizedString(@"Highlight Script", nil)
+#define kUIActionSheetButtonTitleDeleteScript NSLocalizedString(@"Delete Script", nil)
+#define kUIActionSheetButtonTitleAnimateBricks NSLocalizedString(@"Animate Brick", nil)
 #define kUIActionSheetButtonTitleCopyBrick NSLocalizedString(@"Copy Brick", nil)
 #define kUIActionSheetButtonTitleEditFormula NSLocalizedString(@"Edit Formula", nil)
 
@@ -202,6 +205,8 @@
 #define kUIButtonTitlePlay NSLocalizedString(@"Play", nil)
 #define kUIButtonTitleDownload NSLocalizedString(@"Download", nil)
 #define kUIButtonTitleCancel kUIBarButtonItemTitleCancel
+#define kUIButtonTitleMore NSLocalizedString(@"More", nil)
+#define kUIButtonTitleDelete NSLocalizedString(@"Delete", nil)
 
 /*
  * -----------------------------------------------------------------------------------------------------------
@@ -218,6 +223,7 @@
 #define kUIAlertViewTitleScreenshotSavedToCameraRoll NSLocalizedString(@"Screenshot saved to Camera Roll", nil)
 #define kUIAlertViewTitleScreenshotSavedToProject NSLocalizedString(@"Screenshot saved to project", nil)
 #define kUIAlertViewTitleNewProgram NSLocalizedString(@"New program", nil)
+#define kUIAlertViewTitleDeleteProgram NSLocalizedString(@"Delete this program", nil)
 #define kUIAlertViewTitleDeleteMultipleObjects NSLocalizedString(@"Delete these objects", nil)
 #define kUIAlertViewTitleDeleteSingleObject NSLocalizedString(@"Delete this object", nil)
 #define kUIAlertViewTitleDeleteMultiplePrograms NSLocalizedString(@"Delete these programs", nil)
@@ -244,7 +250,7 @@
 #define kUIAlertViewMessageProgramNameAlreadyExists NSLocalizedString(@"A program with the same name already exists, try again.", nil)
 #define kUIAlertViewMessageInvalidObjectName NSLocalizedString(@"No or invalid object name entered, try again.", nil)
 #define kUIAlertViewMessageUnableToLoadProgram NSLocalizedString(@"Unable to load program!", nil)
-#define kUIAlertViewMessageIrreversibleAction NSLocalizedString(@"This can not be undone!", nil)
+#define kUIAlertViewMessageIrreversibleAction NSLocalizedString(@"This action can not be undone!", nil)
 #define kUIAlertViewMessageUnableToPlaySound NSLocalizedString(@"Unable to play that sound!\nMaybe this is no valid sound or the file is corrupt.", nil)
 
 // button defines

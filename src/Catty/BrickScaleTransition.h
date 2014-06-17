@@ -22,10 +22,8 @@
 
 #import "BaseTransition.h"
 #import "BrickCell.h"
-#import "FXBlurView.h"
 
 @interface BrickScaleTransition : BaseTransition
-@property (nonatomic, strong) FXBlurView *dimView;
 @property (nonatomic, strong) BrickCell *cell;
 @property (nonatomic, assign) CGRect touchRect;
 

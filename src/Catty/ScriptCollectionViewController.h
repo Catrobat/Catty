@@ -21,10 +21,11 @@
  */
 
 #import <UIKit/UIKit.h>
-#import "BaseCollectionViewController.h"
 
-@class SpriteObject;
+@class SpriteObject, FXBlurView;
 
-@interface ScriptCollectionViewController : BaseCollectionViewController
+@interface ScriptCollectionViewController : UICollectionViewController
 @property (strong, nonatomic) SpriteObject *object;
+@property (nonatomic, strong) FXBlurView *blurView;
+
 @end

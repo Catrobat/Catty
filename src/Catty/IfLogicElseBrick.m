@@ -24,6 +24,16 @@
 
 @implementation IfLogicElseBrick
 
+- (BOOL)isSelectableForObject
+{
+    return NO;
+}
+
+- (NSString*)brickTitle
+{
+    return kBrickCellControlTitleElse;
+}
+
 - (void)performFromScript:(Script*)script
 {
     NSDebug(@"Performing: %@", self.description);

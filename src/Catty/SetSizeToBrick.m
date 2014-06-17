@@ -26,8 +26,12 @@
 
 @implementation SetSizeToBrick
 
+- (NSString*)brickTitle
+{
+    return kBrickCellLookTitleSetSizeTo;
+}
 
--(SKAction*)action
+- (SKAction*)action
 {
     return [SKAction runBlock:[self actionBlock]];
 }

@@ -30,6 +30,7 @@
 #import "UIDefines.h"
 #import <AVFoundation/AVFoundation.h>
 #import "LanguageTranslationDefines.h"
+#import "RuntimeImageCache.h"
 
 @interface SoundPickerTableViewController () <AVAudioPlayerDelegate>
 @property (atomic, strong) Sound *currentPlayingSong;
@@ -52,11 +53,10 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [super initTableView];
-    [super initPlaceHolder];
     [self setupNavigationBar];
     [super showPlaceHolder:NO];
     self.navigationController.toolbarHidden = YES;
+    self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
 }
 
 - (void)dealloc
@@ -93,9 +93,6 @@
     static NSString *CellIdentifier = @"SoundCell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
     Sound *sound = (Sound*)[self.playableSounds objectAtIndex:indexPath.row];
-    AppDelegate *appDelegate = (AppDelegate*)[UIApplication sharedApplication].delegate;
-    NSString *path = [NSString stringWithFormat:@"%@/%@", appDelegate.fileManager.documentsDirectory, sound.fileName];
-    CGFloat duration = [[AudioManager sharedAudioManager] durationOfSoundWithFilePath:path];
 
     if (! [cell conformsToProtocol:@protocol(CatrobatImageCell)]) {
         return cell;
@@ -104,24 +101,31 @@
     imageCell.indexPath = indexPath;
 
     static NSString *playIconName = @"ic_media_play";
-    UIImage *image = [self.imageCache objectForKey:playIconName];
+    static NSString *stopIconName = @"ic_media_pause";
+
+    // determine right icon, therefore check if this song is played currently
+    NSString *rightIconName = playIconName;
+    @synchronized(self) {
+        if (sound.isPlaying && [self.currentPlayingSong.name isEqual:sound.name]) {
+            rightIconName = stopIconName;
+        }
+    }
+
+    RuntimeImageCache *imageCache = [RuntimeImageCache sharedImageCache];
+    UIImage *image = [imageCache cachedImageForName:rightIconName];
     if (! image) {
-        dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0ul);
-        dispatch_async(queue, ^{
-            UIImage *image = [UIImage imageNamed:playIconName];
-            [self.imageCache setObject:image forKey:playIconName];
-            dispatch_sync(dispatch_get_main_queue(), ^{
-                // check if cell still needed
-                if ([imageCell.indexPath isEqual:indexPath]) {
-                    imageCell.iconImageView.image = image;
-                    [imageCell setNeedsLayout];
-                }
-            });
-        });
+        [imageCache loadImageWithName:rightIconName
+                         onCompletion:^(UIImage *image){
+                             // check if cell still needed
+                             if ([imageCell.indexPath isEqual:indexPath]) {
+                                 imageCell.iconImageView.image = image;
+                                 [imageCell setNeedsLayout];
+                             }
+                         }];
     } else {
         imageCell.iconImageView.image = image;
     }
-    imageCell.titleLabel.text = [NSString stringWithFormat:@"(%.02f sec.) %@", (float)duration, sound.name];
+    imageCell.titleLabel.text = sound.name;
     imageCell.iconImageView.userInteractionEnabled = YES;
     UITapGestureRecognizer *tapped = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(playSound:)];
     tapped.numberOfTapsRequired = 1;
@@ -176,16 +180,6 @@
     return [TableUtil getHeightForImageCell];
 }
 
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        //[tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    } else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }
-}
-
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
@@ -215,22 +209,19 @@
         self.currentPlayingSongCell = nil;
 
         static NSString *playIconName = @"ic_media_play";
-        UIImage *image = [self.imageCache objectForKey:playIconName];
-
+        RuntimeImageCache *imageCache = [RuntimeImageCache sharedImageCache];
+        UIImage *image = [imageCache cachedImageForName:playIconName];
+        
         if (! image) {
-            dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0ul);
-            dispatch_async(queue, ^{
-                UIImage *image = [UIImage imageNamed:playIconName];
-                [self.imageCache setObject:image forKey:playIconName];
-                dispatch_sync(dispatch_get_main_queue(), ^{
-                    // check if user tapped again on this song in the meantime...
-                    @synchronized(self) {
-                        if ((currentPlayingSong != self.currentPlayingSong) && (currentPlayingSongCell != self.currentPlayingSongCell)) {
-                            currentPlayingSongCell.iconImageView.image = image;
-                        }
-                    }
-                });
-            });
+            [imageCache loadImageWithName:playIconName
+                             onCompletion:^(UIImage *image){
+                                 // check if user tapped again on this song in the meantime...
+                                 @synchronized(self) {
+                                     if ((currentPlayingSong != self.currentPlayingSong) && (currentPlayingSongCell != self.currentPlayingSongCell)) {
+                                         currentPlayingSongCell.iconImageView.image = image;
+                                     }
+                                 }
+                             }];
         } else {
             currentPlayingSongCell.iconImageView.image = image;
         }

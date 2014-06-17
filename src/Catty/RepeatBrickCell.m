@@ -29,20 +29,16 @@
 
 @implementation RepeatBrickCell
 
+- (void)drawRect:(CGRect)rect
+{
+    [BrickShapeFactory.sharedBrickShapeFactory drawSmallSquareBrickShape:UIColor.controlBrickStrokeColor fillColor:UIColor.controlBrickOrangeColor];
+}
+
 - (void)hookUpSubViews:(NSArray *)inlineViewSubViews
 {
     self.leftTextLabel = inlineViewSubViews[0];
     self.numberOfLoopsTextField = inlineViewSubViews[1];
     self.rightTextLabel = inlineViewSubViews[2];
-}
-
-- (id)initWithFrame:(CGRect)frame
-{
-    self = [super initWithFrame:frame];
-    if (self) {
-        // Initialization code
-    }
-    return self;
 }
 
 @end

@@ -21,7 +21,26 @@
  */
 
 #import <UIKit/UIKit.h>
+#import "ScriptCollectionViewController.h"
+#import "BrickCell.h"
+#import "IBActionSheet.h"
+
+@class BrickDetailViewController;
+
+@protocol BrickDetailViewControllerDelegate <NSObject>
+
+@optional
+- (void)brickDetailViewController:(BrickDetailViewController *)brickDetailViewController
+                 viewDidDisappear:(BOOL)deleteBrick
+                    withBrickCell:(BrickCell *)brickCell
+                        copyBrick:(BOOL)copyBrick;
+
+@end
 
 @interface BrickDetailViewController : UIViewController
+@property (weak, nonatomic) id<BrickDetailViewControllerDelegate> delegate;
+@property (strong, nonatomic) BrickCell *brickCell;
+
+
 
 @end

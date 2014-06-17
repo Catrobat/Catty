@@ -21,7 +21,7 @@
  */
 
 #import "UIImage+CatrobatUIImageExtensions.h"
-#import "ImageCache.h"
+#import "DownloadImageCache.h"
 #import <CoreImage/CoreImage.h>
 
 #define kImageDownloadQueue "at.tugraz.ist.catrobat.ImageDownloadQueue"
@@ -61,38 +61,35 @@
                          errorImage:(UIImage*)errorImage
                        onCompletion:(void (^)(UIImage *image))completion;
 {
-    UIImage* image = [[ImageCache sharedImageCache] getImageWithName:[imageURL absoluteString]];
-    
+    UIImage* image = [[DownloadImageCache sharedImageCache] getImageWithName:[imageURL absoluteString]];
+
     if(image)
         return image;
-    
+
     dispatch_queue_t imageQueue = dispatch_queue_create(kImageDownloadQueue, NULL);
     dispatch_async(imageQueue, ^{
-        
-        UIImage* image = [[ImageCache sharedImageCache] getImageWithName:[imageURL absoluteString]];
-        
+
+        UIImage* image = [[DownloadImageCache sharedImageCache] getImageWithName:[imageURL absoluteString]];
+
         if(!image) {
             NSData *imageData = [NSData dataWithContentsOfURL:imageURL];
             image =[[UIImage alloc] initWithData:imageData];
         }
-        
+
         if(!image && !errorImage) {
             image = placeholderImage;
         }
         if(!image && errorImage) {
             image = errorImage;
         }
-        [[ImageCache sharedImageCache] addImage:image withName:[imageURL absoluteString] persist:YES];
-        
+        [[DownloadImageCache sharedImageCache] addImage:image withName:[imageURL absoluteString]];
+
         completion(image);
-        
+
     });
-    
+
     return placeholderImage;
-    
 }
-
-
 
 + (UIImage*) setImage:(UIImage*)uiImage WithBrightness:(CGFloat)brightness {
   

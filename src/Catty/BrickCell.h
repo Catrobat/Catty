@@ -23,25 +23,36 @@
 #import <UIKit/UIKit.h>
 #import "ProgramDefines.h"
 #import "UIDefines.h"
+#import "BrickCellProtocol.h"
+#import "BrickShapeFactory.h"
+#import "UIColor+CatrobatUIColorExtensions.h"
+#import "SelectButton.h"
 
-@class Brick;
-@class BrickCellInlineView;
+@class Brick, BrickCellInlineView, BrickCell;
+@protocol BrickProtocol;
 
-@interface BrickCell : UICollectionViewCell
 
-@property (nonatomic, readonly) kBrickCategoryType categoryType;
-@property (nonatomic, readonly) NSInteger brickType;
-@property (nonatomic, getter = isBackgroundBrickCell) BOOL backgroundBrickCell;
+@protocol BrickCellDelegate <NSObject>
+
+@optional
+- (void)BrickCell:(BrickCell *)brickCell didSelectBrickCellButton:(SelectButton *)selectButton;
+
+@end
+
+@interface BrickCell : UICollectionViewCell<BrickCellProtocol>
+@property (nonatomic, weak) id<BrickCellDelegate> delegate;
+@property (nonatomic, strong) id<BrickProtocol> brick;
+@property (nonatomic, strong) NSArray *brickCategoryColors;
 @property (nonatomic) BOOL enabled;
+@property (nonatomic, strong) SelectButton *selectButton;
 
-- (void)renderSubViews;
-- (void)hookUpSubViews:(NSArray *)inlineViewSubViews; // abstract (only called internally)
+- (kBrickShapeType)brickShapeType;
++ (CGFloat)cellHeight;
 
-+ (NSInteger)numberOfAvailableBricksForCategoryType:(kBrickCategoryType)categoryType;
-+ (CGFloat) brickCellHeightForCategoryType:(kBrickCategoryType)categoryType AndBrickType:(NSInteger)brickType;
-+ (kBrickShapeType)shapeTypeForCategoryType:(kBrickCategoryType)categoryType AndBrickType:(NSInteger)brickType;
-+ (BOOL)isScriptBrickCellForCategoryType:(kBrickCategoryType)categoryType AndBrickType:(NSInteger)brickType;
-+ (NSString*)brickPatternImageNameForCategoryType:(kBrickCategoryType)categoryType AndBrickType:(NSInteger)brickType;
-+ (void)clearImageCache;
+- (void)hookUpSubViews:(NSArray *)inlineViewSubViews; // abstract
+- (BOOL)isScriptBrick;
+- (void)selectedState:(BOOL)selected setEditingState:(BOOL)editing;
+- (void)animateBrick:(BOOL)animate;
+- (void)setupBrickCell;
 
 @end

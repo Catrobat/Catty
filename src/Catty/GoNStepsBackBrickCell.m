@@ -28,19 +28,15 @@
 
 @implementation GoNStepsBackBrickCell
 
+- (void)drawRect:(CGRect)rect
+{
+    [BrickShapeFactory.sharedBrickShapeFactory drawSmallSquareBrickShape:UIColor.motionBrickStrokeColor fillColor:UIColor.motionBrickBlueColor];
+}
+
 - (void)hookUpSubViews:(NSArray *)inlineViewSubViews
 {
     self.textLabel = inlineViewSubViews[0];
     self.stepsTextField = inlineViewSubViews[1];
-}
-
-- (id)initWithFrame:(CGRect)frame
-{
-    self = [super initWithFrame:frame];
-    if (self) {
-        // Initialization code
-    }
-    return self;
 }
 
 @end

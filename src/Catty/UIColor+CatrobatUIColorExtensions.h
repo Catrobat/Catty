@@ -42,4 +42,35 @@
 
 + (UIColor*) violetColor;
 
++ (UIColor*)menuDarkBlueColor;
+
++ (UIColor*)headerTextColor;
+
++ (UIColor*)cellBlueColor;
+
++ (UIColor*)navBarColor;
+
++ (UIColor*)brickSelectionBackgroundColor;
+
++ (UIColor*)lookBrickGreenColor;
+
++ (UIColor*)lookBrickStrokeColor;
+
++ (UIColor*)motionBrickBlueColor;
+
++ (UIColor*)motionBrickStrokeColor;
+
++ (UIColor*)controlBrickOrangeColor;
+
++ (UIColor*)controlBrickStrokeColor;
+
++ (UIColor*)varibaleBrickRedColor;
+
++ (UIColor*)variableBrickStrokeColor;
+
++ (UIColor*)soundBrickVioletColor;
+
++ (UIColor*)soundBrickStrokeColor;
+
++ (UIColor*)backgroundColor;
 @end

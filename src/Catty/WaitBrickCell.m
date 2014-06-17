@@ -29,6 +29,11 @@
 
 @implementation WaitBrickCell
 
+- (void)drawRect:(CGRect)rect
+{
+    [BrickShapeFactory.sharedBrickShapeFactory drawSmallSquareBrickShape:UIColor.controlBrickStrokeColor fillColor:UIColor.controlBrickOrangeColor];
+}
+
 - (void)hookUpSubViews:(NSArray *)inlineViewSubViews
 {
     self.LeftTextLabel = inlineViewSubViews[0];
@@ -36,13 +41,5 @@
     self.rightTextLabel = inlineViewSubViews[1];
 }
 
-- (id)initWithFrame:(CGRect)frame
-{
-    self = [super initWithFrame:frame];
-    if (self) {
-        // Initialization code
-    }
-    return self;
-}
 
 @end

@@ -25,6 +25,16 @@
 
 @implementation IfLogicEndBrick
 
+- (BOOL)isSelectableForObject
+{
+    return NO;
+}
+
+- (NSString*)brickTitle
+{
+    return kBrickCellControlTitleEndIf;
+}
+
 - (void)performFromScript:(Script*)script
 {
     

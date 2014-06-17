@@ -81,12 +81,18 @@
     [super viewDidLoad];
     [self loadProjectsWithIndicator:0];
     [self initTableView];
-    self.view.backgroundColor = [UIColor darkBlueColor];
+    self.view.backgroundColor = UIColor.backgroundColor;
     [self initSegmentedControl];
     [self initFooterView];
     self.previousSelectedIndex = 0;
-    self.edgesForExtendedLayout = UIRectEdgeAll;
-    self.tableView.contentInset = UIEdgeInsetsMake(0., 0., CGRectGetHeight(self.tabBarController.tabBar.frame)+44, 0);
+    self.tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
+    self.tableView.separatorColor = UIColor.skyBlueColor;
+    self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
+
+    // XXX: someone has removed that in another branch, therefore this caused a merge conflict.
+    //      not sure if we really need this. therefore I have readded these lines here.
+//    self.edgesForExtendedLayout = UIRectEdgeAll;
+//    self.tableView.contentInset = UIEdgeInsetsMake(0., 0., CGRectGetHeight(self.tabBarController.tabBar.frame)+44, 0);
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -158,7 +164,7 @@
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     [self.tableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
-    self.tableView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"darkblue"]];
+    self.tableView.backgroundColor = UIColor.backgroundColor;
     CGFloat navigationBarHeight = self.navigationController.navigationBar.frame.size.height;
     CGFloat segmentedcontrolHeight = self.segmentedControlView.frame.size.height;
     self.tableView.frame = CGRectMake(0, navigationBarHeight+segmentedcontrolHeight+[UIApplication sharedApplication].statusBarFrame.size.height, self.tableView.frame.size.width, [Util getScreenHeight]-(navigationBarHeight+segmentedcontrolHeight));
@@ -173,10 +179,10 @@
     [self.downloadSegmentedControl setTitle:kUISegmentedControlTitleNewest forSegmentAtIndex:2];
 
     CGFloat navigationBarHeight = self.navigationController.navigationBar.frame.size.height;
-    self.downloadSegmentedControl.backgroundColor = [UIColor darkBlueColor];
+    self.downloadSegmentedControl.backgroundColor = UIColor.backgroundColor;
     self.downloadSegmentedControl.tintColor = [UIColor lightOrangeColor];
     self.segmentedControlView.frame = CGRectMake(0, navigationBarHeight+[UIApplication sharedApplication].statusBarFrame.size.height, self.segmentedControlView.frame.size.width, self.segmentedControlView.frame.size.height);
-    self.segmentedControlView.backgroundColor = [UIColor darkBlueColor];
+    self.segmentedControlView.backgroundColor = UIColor.backgroundColor;
     
 }
 -(void)initFooterView
@@ -237,9 +243,6 @@
 
         [self loadImage:project.screenshotSmall forCell:imageCell atIndexPath:indexPath];
         NSDebug(@"Normal Cell");
-
-        imageCell.accessoryView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"accessory"]];
-
         //        }
     }
     return cell;
@@ -523,6 +526,13 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    static NSString *segueToProgramDetail = kSegueToProgramDetail;
+    if (! self.editing) {
+        UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+        if ([self shouldPerformSegueWithIdentifier:segueToProgramDetail sender:cell]) {
+            [self performSegueWithIdentifier:segueToProgramDetail sender:cell];
+        }
+    }
 }
 
 #pragma mark - NSURLConnection Delegates

@@ -22,7 +22,6 @@
 
 #import "ProgramDetailStoreViewController.h"
 #import "CatrobatProject.h"
-#import "CreateView.h"
 #import "AppDelegate.h"
 #import "TableUtil.h"
 #import "ButtonTags.h"
@@ -36,6 +35,7 @@
 #import "LoadingView.h"
 #import "EVCircularProgressView.h"
 #import "LanguageTranslationDefines.h"
+#import "CreateView.h"
 #import "ProgramUpdateDelegate.h"
 
 #define kUIBarHeight 49
@@ -83,7 +83,7 @@
     [self initNavigationBar];
     self.hidesBottomBarWhenPushed = YES;
     
-    self.view.backgroundColor = [UIColor darkBlueColor];
+    self.view.backgroundColor = UIColor.backgroundColor;
     self.navigationItem.title = kUIViewControllerTitleInfo;
     NSDebug(@"%@",self.project.author);
     self.projectView = [self createViewForProject:self.project];
@@ -239,12 +239,14 @@
 - (void) downloadFinishedWithURL:(NSURL*)url
 {
     NSLog(@"Download Finished!!!!!!");
-//    [self.projectView viewWithTag:kDownloadButtonTag].hidden = YES;
-    [self.projectView viewWithTag:kStopLoadingTag].hidden = YES;
-    [self.projectView viewWithTag:kPlayButtonTag].hidden = NO;
     self.project.isdownloading = NO;
     [self.projects removeObjectForKey:url];
-    [self reloadWithProject:self.project];
+    EVCircularProgressView* button = (EVCircularProgressView*)[self.view viewWithTag:kStopLoadingTag];
+    button.hidden = YES;
+    button.progress = 0;
+    [self.view viewWithTag:kPlayButtonTag].hidden = NO;
+    [self loadingIndicator:NO];
+  
 }
 
 #pragma mark - TTTAttributedLabelDelegate
@@ -291,6 +293,7 @@
     UIButton * button =(UIButton*)[self.projectView viewWithTag:kDownloadButtonTag];
     button.enabled = YES;
     [self hideLoadingView];
+    [self.view setNeedsDisplay];
 }
 
 #pragma mark - loading view
@@ -332,11 +335,11 @@
     [self loadingIndicator:NO];
     
 }
--(void)updateProgress:(float)progress
+-(void)updateProgress:(double)progress
 {
-    NSDebug(@"updateProgress:%f",(progress));
+    NSDebug(@"updateProgress:%f",((float)progress));
     EVCircularProgressView* button = (EVCircularProgressView*)[self.view viewWithTag:kStopLoadingTag];
-    [button setProgress:(progress) animated:YES];
+    [button setProgress:progress animated:YES];
 }
 
 -(void)setBackDownloadStatus

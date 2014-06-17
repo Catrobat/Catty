@@ -30,6 +30,21 @@
 
 @implementation WhenScriptCell
 
+- (void)drawRect:(CGRect)rect
+{
+    [BrickShapeFactory.sharedBrickShapeFactory drawSmallRoundedControlBrickShape:UIColor.controlBrickStrokeColor fillColor:UIColor.controlBrickOrangeColor];
+}
+
+- (kBrickShapeType)brickShapeType
+{
+    return kBrickShapeRoundedSmall;
+}
+
++ (CGFloat)cellHeight
+{
+    return kBrickHeightControl1h;
+}
+
 - (void)hookUpSubViews:(NSArray *)inlineViewSubViews
 {
     self.textLabel = inlineViewSubViews[0];

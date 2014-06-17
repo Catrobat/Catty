@@ -31,6 +31,16 @@
 
 @implementation GlideToBrickCell
 
+- (void)drawRect:(CGRect)rect
+{
+    [BrickShapeFactory.sharedBrickShapeFactory drawLargeSquareBrickShape:UIColor.motionBrickStrokeColor fillColor:UIColor.motionBrickBlueColor];
+}
+
++ (CGFloat)cellHeight
+{
+    return kBrickHeight3h;
+}
+
 - (void)hookUpSubViews:(NSArray *)inlineViewSubViews
 {
     self.firstRowLeftLabel = inlineViewSubViews[0];
@@ -40,15 +50,6 @@
     self.xCoordTextField = inlineViewSubViews[4];
     self.secondRowRightLabel = inlineViewSubViews[5];
     self.yCoordTextField = inlineViewSubViews[6];
-}
-
-- (id)initWithFrame:(CGRect)frame
-{
-    self = [super initWithFrame:frame];
-    if (self) {
-        // Initialization code
-    }
-    return self;
 }
 
 @end

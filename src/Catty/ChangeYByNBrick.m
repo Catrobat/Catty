@@ -27,6 +27,10 @@
 
 @synthesize yMovement = _yMovement;
 
+- (NSString*)brickTitle
+{
+    return kBrickCellMotionTitleChangeY;
+}
 
 -(SKAction*)action
 {    
