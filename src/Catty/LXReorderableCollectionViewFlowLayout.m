@@ -4,8 +4,6 @@
 //  Created by Stan Chang Khin Boon on 1/10/12.
 //  Copyright (c) 2012 d--buzz. All rights reserved.
 //
-// LXReorderableCollectionViewFlowLayout is available under the MIT license.
-// https://github.com/lxcid/LXReorderableCollectionViewFlowLayout
 
 #import "LXReorderableCollectionViewFlowLayout.h"
 #import <QuartzCore/QuartzCore.h>
@@ -215,6 +213,7 @@ static NSString * const kLXCollectionViewKeyPath = @"collectionView";
     CGSize frameSize = self.collectionView.bounds.size;
     CGSize contentSize = self.collectionView.contentSize;
     CGPoint contentOffset = self.collectionView.contentOffset;
+    UIEdgeInsets contentInset = self.collectionView.contentInset;
     // Important to have an integer `distance` as the `contentOffset` property automatically gets rounded
     // and it would diverge from the view's center resulting in a "cell is slipping away under finger"-bug.
     CGFloat distance = rint(self.scrollingSpeed / LX_FRAMES_PER_SECOND);
@@ -223,16 +222,16 @@ static NSString * const kLXCollectionViewKeyPath = @"collectionView";
     switch(direction) {
         case LXScrollingDirectionUp: {
             distance = -distance;
-            CGFloat minY = 0.0f;
+            CGFloat minY = 0.0f - contentInset.top;
             
             if ((contentOffset.y + distance) <= minY) {
-                distance = -contentOffset.y;
+                distance = -contentOffset.y - contentInset.top;
             }
             
             translation = CGPointMake(0.0f, distance);
         } break;
         case LXScrollingDirectionDown: {
-            CGFloat maxY = MAX(contentSize.height, frameSize.height) - frameSize.height;
+            CGFloat maxY = MAX(contentSize.height, frameSize.height) - frameSize.height + contentInset.bottom;
             
             if ((contentOffset.y + distance) >= maxY) {
                 distance = maxY - contentOffset.y;
@@ -242,16 +241,16 @@ static NSString * const kLXCollectionViewKeyPath = @"collectionView";
         } break;
         case LXScrollingDirectionLeft: {
             distance = -distance;
-            CGFloat minX = 0.0f;
+            CGFloat minX = 0.0f - contentInset.left;
             
             if ((contentOffset.x + distance) <= minX) {
-                distance = -contentOffset.x;
+                distance = -contentOffset.x - contentInset.left;
             }
             
             translation = CGPointMake(distance, 0.0f);
         } break;
         case LXScrollingDirectionRight: {
-            CGFloat maxX = MAX(contentSize.width, frameSize.width) - frameSize.width;
+            CGFloat maxX = MAX(contentSize.width, frameSize.width) - frameSize.width + contentInset.right;
             
             if ((contentOffset.x + distance) >= maxX) {
                 distance = maxX - contentOffset.x;
@@ -290,12 +289,9 @@ static NSString * const kLXCollectionViewKeyPath = @"collectionView";
             
             self.currentView = [[UIView alloc] initWithFrame:collectionViewCell.frame];
             
-            collectionViewCell.highlighted = YES;
             UIImageView *highlightedImageView = [[UIImageView alloc] initWithImage:[collectionViewCell LX_rasterizedImage]];
             highlightedImageView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
-            highlightedImageView.alpha = 1.0f;
             
-            collectionViewCell.highlighted = NO;
             UIImageView *imageView = [[UIImageView alloc] initWithImage:[collectionViewCell LX_rasterizedImage]];
             imageView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
             imageView.alpha = 0.0f;
@@ -314,7 +310,6 @@ static NSString * const kLXCollectionViewKeyPath = @"collectionView";
              animations:^{
                  __strong typeof(self) strongSelf = weakSelf;
                  if (strongSelf) {
-                     strongSelf.currentView.transform = CGAffineTransformMakeScale(1.1f, 1.1f);
                      highlightedImageView.alpha = 0.0f;
                      imageView.alpha = 1.0f;
                  }
@@ -347,29 +342,42 @@ static NSString * const kLXCollectionViewKeyPath = @"collectionView";
                 UICollectionViewLayoutAttributes *layoutAttributes = [self layoutAttributesForItemAtIndexPath:currentIndexPath];
                 
                 __weak typeof(self) weakSelf = self;
-                [UIView
-                 animateWithDuration:0.3
-                 delay:0.0
-                 options:UIViewAnimationOptionBeginFromCurrentState
-                 animations:^{
-                     __strong typeof(self) strongSelf = weakSelf;
-                     if (strongSelf) {
-                         strongSelf.currentView.transform = CGAffineTransformMakeScale(1.0f, 1.0f);
-                         strongSelf.currentView.center = layoutAttributes.center;
-                     }
-                 }
-                 completion:^(BOOL finished) {
-                     __strong typeof(self) strongSelf = weakSelf;
-                     if (strongSelf) {
-                         [strongSelf.currentView removeFromSuperview];
-                         strongSelf.currentView = nil;
-                         [strongSelf invalidateLayout];
-                         
-                         if ([strongSelf.delegate respondsToSelector:@selector(collectionView:layout:didEndDraggingItemAtIndexPath:)]) {
-                             [strongSelf.delegate collectionView:strongSelf.collectionView layout:strongSelf didEndDraggingItemAtIndexPath:currentIndexPath];
+                
+                if (layoutAttributes.frame.origin.y > 0.0f) {
+                    [UIView
+                     animateWithDuration:0.3f
+                     delay:0.0f
+                     options:UIViewAnimationOptionBeginFromCurrentState
+                     animations:^{
+                         __strong typeof(self) strongSelf = weakSelf;
+                         if (strongSelf) {
+                             strongSelf.currentView.center = layoutAttributes.center;
                          }
                      }
-                 }];
+                     completion:^(BOOL finished) {
+                         __strong typeof(self) strongSelf = weakSelf;
+                         if (strongSelf) {
+                             [strongSelf.currentView removeFromSuperview];
+                             strongSelf.currentView = nil;
+                             [strongSelf invalidateLayout];
+                             
+                             if ([strongSelf.delegate respondsToSelector:@selector(collectionView:layout:didEndDraggingItemAtIndexPath:)]) {
+                                 [strongSelf.delegate collectionView:strongSelf.collectionView layout:strongSelf didEndDraggingItemAtIndexPath:currentIndexPath];
+                             }
+                         }
+                     }];
+                } else {
+                    __strong typeof(self) strongSelf = weakSelf;
+                    if (strongSelf) {
+                        [strongSelf.currentView removeFromSuperview];
+                        strongSelf.currentView = nil;
+                        [strongSelf invalidateLayout];
+                        
+                        if ([strongSelf.delegate respondsToSelector:@selector(collectionView:layout:didEndDraggingItemAtIndexPath:)]) {
+                            [strongSelf.delegate collectionView:strongSelf.collectionView layout:strongSelf didEndDraggingItemAtIndexPath:currentIndexPath];
+                        }
+                    }
+                }
             }
         } break;
             

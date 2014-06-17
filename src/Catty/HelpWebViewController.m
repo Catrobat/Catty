@@ -56,8 +56,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.webView.backgroundColor = [UIColor darkBlueColor];
-    self.view.backgroundColor = [UIColor darkBlueColor];
+    self.webView.backgroundColor = UIColor.backgroundColor;
+    self.view.backgroundColor = UIColor.backgroundColor;
     [self.webView setOpaque:NO];
     [self.view setOpaque:NO];
     

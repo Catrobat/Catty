@@ -25,6 +25,10 @@
 // which characters in program, object, image names do we have to support?
 #define kTextFieldAllowedCharacters @"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyzäöü_#?!()=+-.:&%$€ 1234567890"
 
+#define IsIPad() UIDevice.currentDevice.userInterfaceIdiom == UIUserInterfaceIdiomPad
+#define IsIPhone() UIDevice.currentDevice.userInterfaceIdiom == UIUserInterfaceIdiomPhone
+#define IsIPhone5() ((UIScreen.mainScreen.bounds.size.height - 568) ? NO : YES)
+
 #define kMenuImageNameContinue @"continue"
 #define kMenuImageNameNew @"new"
 #define kMenuImageNamePrograms @"programs"
@@ -41,8 +45,12 @@
 #define kAddScriptCategoryTableViewBottomMargin 15.0f
 
 // delete button bricks
-#define kBrickDeleteButtonSize 22.0f
-#define kDeleteButtonOffset 1.0f
+#define kBrickCellDeleteButtonWidthHeight 22.0f
+#define kSelectButtonnOffset 30.0f
+#define kSelectButtonTranslationOffsetX 60.0f
+
+#define kScriptCollectionViewTopInsets 10.0f
+#define kScriptCollectionViewBottomInsets 5.0f
 
 // Notifications
 static NSString *const kBrickCellAddedNotification = @"BrickCellAddedNotification";
@@ -54,9 +62,15 @@ static NSString *const kUserInfoKeyBrickCell = @"UserInfoKeyBrickCell";
 static NSString *const kUserInfoSpriteObject = @"UserInfoSpriteObject";
 static NSString *const kUserInfoSound = @"UserInfoSound";
 
+// menu titles
+static NSString *const kSelectionMenuTitle = @"Select Brick Category";
+
 // UI Elements
-#define NAVIGATION_BAR_HEIGHT 64
-#define STATUS_BAR_HEIGHT 10
+#define NAVIGATION_BAR_HEIGHT 64.0f
+#define STATUS_BAR_HEIGHT 10.0f
+#define kHandleImageHeight 15.0f
+#define kHandleImageWidth 40.0f
+#define kOffsetTopBrickSelectionView 70.0f
 
 // ---------------------- BRICK CONFIG ---------------------------------------
 // brick categories
@@ -140,11 +154,11 @@ typedef NS_ENUM(NSUInteger, kBrickType) {
 ]
 
 #define kBrickCategoryColors @[\
-    [UIColor orangeColor],\
-    [UIColor lightBlueColor],\
-    [UIColor violetColor],\
-    [UIColor greenColor],\
-    [UIColor lightRedColor]\
+    [UIColor controlBrickOrangeColor],\
+    [UIColor motionBrickBlueColor],\
+    [UIColor soundBrickVioletColor],\
+    [UIColor lookBrickGreenColor],\
+    [UIColor varibaleBrickRedColor]\
 ]
 
 // map brick classes to corresponding brick type identifiers
@@ -207,10 +221,71 @@ typedef NS_ENUM(NSUInteger, kBrickType) {
 }
 
 typedef NS_ENUM(NSInteger, kBrickShapeType) {
-    kBrickShapeNormal = 0,
-    kBrickShapeRoundedSmall = 1,
-    kBrickShapeRoundedBig = 2
+    kBrickShapeSquareSmall = 0,
+    kBrickShapeSquareMedium,
+    kBrickShapeSquareBig,
+    kBrickShapeRoundedSmall,
+    kBrickShapeRoundedBig
 };
+
+
+#define kBrickHeightMap @{\
+\
+/* control bricks */\
+@"StartScript"               : @(kBrickHeightControl1h),\
+@"WhenScript"                : @(kBrickHeightControl1h),\
+@"WaitBrick"                 : @(kBrickHeight1h),\
+@"BroadcastScript"           : @(kBrickHeightControl2h),\
+@"BroadcastBrick"            : @(kBrickHeight2h),\
+@"BroadcastWaitBrick"        : @(kBrickHeight2h),\
+@"NoteBrick"                 : @(kBrickHeight2h),\
+@"ForeverBrick"              : @(kBrickHeight1h),\
+@"IfLogicBeginBrick"         : @(kBrickHeight1h),\
+@"IfLogicElseBrick"          : @(kBrickHeight1h),\
+@"IfLogicEndBrick"           : @(kBrickHeight1h),\
+@"RepeatBrick"               : @(kBrickHeight1h),\
+@"LoopEndBrick"              : @(kBrickHeight1h),\
+\
+/* motion bricks */\
+@"PlaceAtBrick"              : @(kBrickHeight2h),\
+@"SetXBrick"                 : @(kBrickHeight1h),\
+@"SetYBrick"                 : @(kBrickHeight1h),\
+@"ChangeXByNBrick"           : @(kBrickHeight1h),\
+@"ChangeYByNBrick"           : @(kBrickHeight1h),\
+@"IfOnEdgeBounceBrick"       : @(kBrickHeight1h),\
+@"MoveNStepsBrick"           : @(kBrickHeight1h),\
+@"TurnLeftBrick"             : @(kBrickHeight1h),\
+@"TurnRightBrick"            : @(kBrickHeight1h),\
+@"PointInDirectionBrick"     : @(kBrickHeight1h),\
+@"PointToBrick"              : @(kBrickHeight2h),\
+@"GlideToBrick"              : @(kBrickHeight3h),\
+@"GoNStepsBackBrick"         : @(kBrickHeight1h),\
+@"ComeToFrontBrick"          : @(kBrickHeight1h),\
+\
+/* sound bricks */\
+@"PlaySoundBrick"            : @(kBrickHeight2h),\
+@"StopAllSoundsBrick"        : @(kBrickHeight1h),\
+@"SetVolumeToBrick"          : @(kBrickHeight1h),\
+@"ChangeVolumeByNBrick"      : @(kBrickHeight1h),\
+@"SpeakBrick"                : @(kBrickHeight2h),\
+\
+/* look bricks */\
+@"SetLookBrick"              : @(kBrickHeight2h),\
+@"NextLookBrick"             : @(kBrickHeight1h),\
+@"SetSizeToBrick"            : @(kBrickHeight1h),\
+@"ChangeSizeByNBrick"        : @(kBrickHeight1h),\
+@"HideBrick"                 : @(kBrickHeight1h),\
+@"ShowBrick"                 : @(kBrickHeight1h),\
+@"SetGhostEffectBrick"       : @(kBrickHeight2h),\
+@"ChangeGhostEffectByNBrick" : @(kBrickHeight2h),\
+@"SetBrightnessBrick"        : @(kBrickHeight2h),\
+@"ChangeBrightnessByNBrick"  : @(kBrickHeight2h),\
+@"ClearGraphicEffectBrick"   : @(kBrickHeight1h),\
+\
+/* variable bricks */\
+@"SetVariableBrick"          : @(kBrickHeight3h),\
+@"ChangeVariableBrick"       : @(kBrickHeight3h)\
+}
 
 // brick heights
 #define kBrickHeight1h 44.0f

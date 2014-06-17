@@ -29,6 +29,11 @@
 
 @implementation SetVolumeToBrickCell
 
+- (void)drawRect:(CGRect)rect
+{
+    [BrickShapeFactory.sharedBrickShapeFactory drawSmallSquareBrickShape:UIColor.soundBrickStrokeColor fillColor:UIColor.soundBrickVioletColor];
+}
+
 - (void)hookUpSubViews:(NSArray *)inlineViewSubViews
 {
     self.leftTextLabel = inlineViewSubViews[0];

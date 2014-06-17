@@ -25,24 +25,6 @@
 
 @implementation ContinueImageCell
 
-- (id)initWithFrame:(CGRect)frame
-{
-    self = [super initWithFrame:frame];
-    if (self) {
-        // Initialization code
-    }
-    return self;
-}
-
-
--(id)initWithCoder:(NSCoder *)aDecoder
-{
-    if(self = [super initWithCoder:aDecoder]) {
-    }
-    
-    return self;
-}
-
 -(void)awakeFromNib
 {
     [self configureImageCell];
@@ -50,7 +32,7 @@
 
 -(void)configureImageCell
 {
-    self.titleLabel.textColor = [UIColor skyBlueColor];
+    self.titleLabel.textColor = UIColor.skyBlueColor;
 }
 
 @end

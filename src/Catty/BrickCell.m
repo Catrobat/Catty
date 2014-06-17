@@ -100,18 +100,66 @@
 // ----------------- REFACTOR END -------------------
 
 @interface BrickCell ()
-@property (nonatomic, strong) NSArray *brickCategoryColors;
-
-// subviews
 @property (nonatomic, weak) BrickCellInlineView *inlineView;
-@property (nonatomic, weak) UIImageView *backgroundImageView;
-@property (nonatomic, weak) UIImageView *imageView;
-
-@property (nonatomic, assign) BOOL editing;
+@property (nonatomic, assign, getter = isEditing) BOOL editing;
 
 @end
 
 @implementation BrickCell
+
+#pragma mark - UICollectionViewCellDelegate
+
+- (id)initWithFrame:(CGRect)frame
+{
+    self = [super initWithFrame:frame];
+    if (self) {
+        self.backgroundColor = UIColor.clearColor;
+        self.opaque = NO;
+        self.clipsToBounds = NO;
+    }
+    return self;
+}
+
+- (void)layoutSubviews
+{
+    [super layoutSubviews];
+    self.contentView.frame = CGRectIntegral(self.bounds);
+    self.selectButton.center = CGPointMake(self.bounds.origin.x - kSelectButtonnOffset, CGRectGetMidY(self.bounds));
+}
+
+- (void)setHighlighted:(BOOL)highlighted
+{
+    [super setHighlighted:highlighted];
+    self.alpha = highlighted ? 0.7f : 1.0f;
+}
+
+- (void)setupBrickCell
+{
+    [self renderSubViews];
+    
+    if (self.editing) {
+        if (self.frame.origin.x == 0.0f) {
+            self.center = CGPointMake(self.center.x + kSelectButtonTranslationOffsetX, self.center.y);
+            self.selectButton.alpha = 1.0f;
+        }
+    } else {
+        if (self.frame.origin.x > 0.0f) {
+            self.center = CGPointMake(CGRectGetMidX(UIScreen.mainScreen.bounds), self.center.y);
+            self.selectButton.alpha = 0.0f;
+        }
+    }
+}
+
+- (UIView *)hitTest:(CGPoint)point withEvent:(UIEvent *)event
+{
+    [super hitTest:point withEvent:event];
+    CGPoint subPoint = [self.selectButton convertPoint:point fromView:self];
+    UIView *result = [self.selectButton hitTest:subPoint withEvent:event];
+    if (result != nil) {
+        return result;
+    }
+    return [super hitTest:point withEvent:event];
+}
 
 #pragma mark - getters and setters
 - (kBrickCategoryType)categoryType
@@ -136,28 +184,6 @@
 }
 
 // lazy instantiation
-- (UIImageView*)backgroundImageView
-{
-    if (! _backgroundImageView) {
-        UIImageView *backgroundImageView = [[UIImageView alloc] initWithFrame:CGRectZero];
-        [self addSubview:backgroundImageView];
-        _backgroundImageView = backgroundImageView;
-    }
-    return _backgroundImageView;
-}
-
-// lazy instantiation
-- (UIImageView*)imageView
-{
-    if (! _imageView) {
-        UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectZero];
-        [self addSubview:imageView];
-        _imageView = imageView;
-    }
-    return _imageView;
-}
-
-// lazy instantiation
 - (BrickCellInlineView*)inlineView
 {
     if (! _inlineView) {
@@ -168,16 +194,23 @@
     return _inlineView;
 }
 
-- (ScriptDeleteButton *)deleteButton
+- (SelectButton *)selectButton
 {
-    if (!_deleteButton) {
-        _deleteButton = [[ScriptDeleteButton alloc]initWithFrame:CGRectIntegral(CGRectMake(self.bounds.origin.x + kDeleteButtonOffset,
-                                                                                           self.bounds.origin.y,
-                                                                                           kBrickDeleteButtonSize,
-                                                                                           kBrickDeleteButtonSize))];
-        _deleteButton.hidden = YES;
+    if (!_selectButton) {
+        _selectButton = [[SelectButton alloc] initWithFrame:CGRectMake(0.0f, 0.0f,
+                        kBrickCellDeleteButtonWidthHeight, kBrickCellDeleteButtonWidthHeight)];
+        _selectButton.alpha = 0.0f;
+        [self addSubview:_selectButton];
+        [_selectButton addTarget:self action:@selector(selectButtonSelected:) forControlEvents:UIControlEventTouchUpInside];
     }
-    return _deleteButton;
+    return _selectButton;
+}
+
+- (void)selectButtonSelected:(id)sender
+{
+    if ([sender isKindOfClass:SelectButton.class]) {
+        [self.delegate BrickCell:self didSelectBrickCellButton:self.selectButton];
+    }
 }
 
 - (NSArray*)brickCategoryColors
@@ -186,29 +219,6 @@
         _brickCategoryColors = kBrickCategoryColors;
     }
     return _brickCategoryColors;
-}
-
-#pragma mark - static getters and setters
-+ (NSMutableDictionary*)imageCacheAndClear:(BOOL)clear
-{
-    static NSMutableDictionary *imageCache = nil;
-    if (! imageCache) {
-        imageCache = [NSMutableDictionary dictionary];
-    }
-    if (clear) {
-        imageCache = nil;
-    }
-    return imageCache;
-}
-
-+ (NSMutableDictionary*)imageCache
-{
-    return [BrickCell imageCacheAndClear:NO];
-}
-
-+ (void)clearImageCache
-{
-    [BrickCell imageCacheAndClear:YES];
 }
 
 #pragma mark - setup for subviews
@@ -224,7 +234,7 @@
     CGFloat inlineViewHeight = [[self class] cellHeight];
     kBrickShapeType brickShapeType = [self brickShapeType];
     CGFloat inlineViewOffsetY = 0.0f;
-    if (brickShapeType == kBrickShapeNormal) {
+    if (brickShapeType != kBrickShapeRoundedSmall || brickShapeType != kBrickShapeRoundedBig) {
         inlineViewHeight -= kBrickShapeNormalMarginHeightDeduction;
         inlineViewOffsetY = kBrickShapeNormalInlineViewOffsetY;
     } else if (brickShapeType == kBrickShapeRoundedSmall) {
@@ -258,45 +268,6 @@
         [label sizeThatFits:frame.size];
         [self.inlineView addSubview:label];
     }
-    // just to test layout
-//    self.inlineView.layer.borderWidth=1.0f;
-//    self.inlineView.layer.borderColor=[UIColor whiteColor].CGColor;
-}
-
-- (void)setupBrickPatternImage
-{
-    NSMutableDictionary *imageCache = [BrickCell imageCache];
-    NSString *imageName = [self brickImageName];
-    UIImage *brickPatternImage = [imageCache objectForKey:imageName];
-    if (! brickPatternImage) {
-        brickPatternImage = [UIImage imageNamed:imageName];
-        [imageCache setObject:brickPatternImage forKey:imageName];
-    }
-    self.imageView.frame = CGRectMake(kBrickPatternImageViewOffsetX, kBrickPatternImageViewOffsetY, brickPatternImage.size.width, brickPatternImage.size.height);
-    self.imageView.image = brickPatternImage;
-    self.imageView.backgroundColor = [UIColor clearColor];
-    // just to test layout
-//    self.imageView.layer.borderWidth=1.0f;
-//    self.imageView.layer.borderColor=[UIColor whiteColor].CGColor;
-}
-
-- (void)setupBrickPatternBackgroundImage
-{
-    NSMutableDictionary *imageCache = [BrickCell imageCache];
-    NSString *imageName = [[self brickImageName] stringByAppendingString:kBrickBackgroundImageNameSuffix];
-    UIImage *brickBackgroundPatternImage = [imageCache objectForKey:imageName];
-    if (! brickBackgroundPatternImage) {
-        brickBackgroundPatternImage = [UIImage imageNamed:imageName];
-        [imageCache setObject:brickBackgroundPatternImage forKey:imageName];
-    }
-    CGRect frame = CGRectMake(kBrickPatternBackgroundImageViewOffsetX, kBrickPatternBackgroundImageViewOffsetY, (self.frame.size.width-kBrickInlineViewOffsetX), brickBackgroundPatternImage.size.height);
-    self.backgroundImageView.frame = frame;
-    UIGraphicsBeginImageContext(self.backgroundImageView.frame.size);
-    [brickBackgroundPatternImage drawInRect:self.backgroundImageView.bounds];
-    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
-    UIGraphicsEndImageContext();
-    self.backgroundImageView.backgroundColor = [UIColor colorWithPatternImage:image];
-    [self sendSubviewToBack:self.backgroundImageView];
 }
 
 #pragma mark - setup methods
@@ -309,49 +280,10 @@
 
 - (void)renderSubViews
 {
-    [self.backgroundImageView removeFromSuperview];
-    [self.imageView removeFromSuperview];
     [self.inlineView removeFromSuperview];
-    self.backgroundImageView = nil;
-    self.imageView = nil;
     self.inlineView = nil;
     [self setupView];
-    [self setupBrickPatternImage];
-    [self setupBrickPatternBackgroundImage];
     [self setupInlineView];
-    [self addSubview:self.deleteButton];
-}
-
-#pragma mark - init
-- (id)initWithFrame:(CGRect)frame
-{
-    self = [super initWithFrame:frame];
-    if (self) {
-        self.editing = NO;
-        self.backgroundColor = [UIColor clearColor];
-        self.contentMode = UIViewContentModeScaleToFill;
-        self.clipsToBounds = NO;
-        self.backgroundImageView.clipsToBounds = NO;
-        self.imageView.clipsToBounds = NO;
-        self.opaque = NO;
-    }
-    return self;
-}
-
-- (id)init
-{
-    self = [super init];
-    if (self) {
-        self.editing = NO;
-        self.backgroundColor = [UIColor clearColor];
-        self.contentMode = UIViewContentModeScaleToFill;
-        self.clipsToBounds = NO;
-        self.backgroundColor = [UIColor clearColor];
-        self.backgroundImageView.clipsToBounds = NO;
-        self.imageView.clipsToBounds = NO;
-        self.opaque = NO;
-    }
-    return self;
 }
 
 #pragma mark - helpers
@@ -571,31 +503,12 @@
 // BrickCells that do not have default shape type have to override this method in their corresponding subclass
 - (kBrickShapeType)brickShapeType
 {
-    return kBrickShapeNormal;
-}
-
-// TODO: this method will be removed via issue#114
-- (NSString*)brickImageName
-{
-    // determine right brick image name
-    CGFloat cellHeight = [[self class] cellHeight];
-    NSUInteger imageType = 0;
-    if ((cellHeight == kBrickHeight1h) || (cellHeight == kBrickHeightControl1h)) {
-        imageType = 1;
-    } else if ((cellHeight == kBrickHeight2h) || (cellHeight == kBrickHeightControl2h)) {
-        imageType = 2;
-    } else if (cellHeight == kBrickHeight3h) {
-        imageType = 3;
-    }
-    return [NSString stringWithFormat:@"%lu_%@%luh",
-            (unsigned long)self.brick.brickCategoryType,
-            ([self isScriptBrick] ? @"script_" : @""),
-            (unsigned long)imageType];
+    return kBrickShapeSquareSmall;
 }
 
 + (CGFloat)cellHeight
 {
-    return kBrickHeight1h;
+    return kBrickHeight1h;  // needs to be overwritten from subclasses
 }
 
 - (BOOL)isScriptBrick
@@ -604,26 +517,28 @@
 }
 
 #pragma mark - cell editing
-- (void)setBrickEditing:(BOOL)editing {
+- (void)selectedState:(BOOL)selected setEditingState:(BOOL)editing
+{
+    self.selectButton.selected = selected;
     self.editing = editing;
+}
 
-    if (self.editing) {
-        //  self.transform = CGAffineTransformMakeScale(0.8f, 0.8f);
-        self.alpha = 0.2f;
-        self.userInteractionEnabled = NO;
-        self.hideDeleteButton = NO;
+#pragma mark - animations
+- (void)animateBrick:(BOOL)animate
+{
+    if (animate) {
+        CAKeyframeAnimation *animation = [CAKeyframeAnimation animation];
+        animation.keyPath = @"transform";
+        animation.values = @[[NSValue valueWithCATransform3D:CATransform3DMakeRotation(M_PI/200.0f, 0.1f, 0.1f, 0.1f)],
+                              [NSValue valueWithCATransform3D:CATransform3DMakeRotation(M_PI/200.0f, -0.1f, -0.1f, -0.1f)]];
+        animation.autoreverses = YES ;
+        animation.repeatCount = HUGE_VAL;
+        animation.duration = 0.1f ;
+        [self.layer addAnimation:animation forKey:@"whobble"];
     } else {
-        // self.transform = CGAffineTransformIdentity;
-        self.alpha = 1.0f;
-        self.userInteractionEnabled = YES;
-        self.hideDeleteButton = YES;
+        [self.layer removeAllAnimations];
     }
 }
 
-#pragma mark delete button
-- (void)setHideDeleteButton:(BOOL)hideDeleteButton {
-    _hideDeleteButton = hideDeleteButton;
-    self.deleteButton.hidden = hideDeleteButton;
-}
 
 @end

@@ -23,6 +23,7 @@
 #import <Foundation/Foundation.h>
 #import "UIDefines.h"
 
+
 @interface BrickManager : NSObject
 
 + (instancetype)sharedBrickManager;
@@ -37,5 +38,6 @@
 - (NSString*)classNameForBrickType:(kBrickType)brickType;
 - (kBrickType)brickTypeForCategoryType:(kBrickCategoryType)categoryType andBrickIndex:(NSUInteger)index;
 - (NSUInteger)brickIndexForBrickType:(kBrickType)brickType;
+- (CGSize)sizeForBrick:(NSString *)brickName;
 
 @end
