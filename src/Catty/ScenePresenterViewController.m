@@ -258,6 +258,7 @@
     self.menuScreenshotButton = [UIButton buttonWithType:UIButtonTypeCustom];
     self.menuRestartButton = [UIButton buttonWithType:UIButtonTypeCustom];
     self.menuAxisButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    self.menuAspectRatioButton = [UIButton buttonWithType:UIButtonTypeCustom];
     
     [self setupButtonWithButton:self.menuBackButton
                 ImageNameNormal:[UIImage imageNamed:@"stage_dialog_button_back"]
@@ -288,6 +289,12 @@
         andImageNameHighlighted:[UIImage imageNamed:@"stage_dialog_button_toggle_axis_pressed"]
                     andSelector:@selector(showHideAxis:)
      ];
+    
+    [self setupButtonWithButton:self.menuAspectRatioButton
+                ImageNameNormal:[UIImage imageNamed:@"stage_dialog_button_aspect_ratio"]
+        andImageNameHighlighted:[UIImage imageNamed:@"stage_dialog_button_aspect_ratio_pressed"]
+                    andSelector:@selector(manageAspectRatio:)
+     ];
 }
 
 - (void)setupButtonWithButton:(UIButton*)button ImageNameNormal:(UIImage*)stateNormal andImageNameHighlighted:(UIImage*)stateHighlighted andSelector:(SEL)myAction
@@ -307,6 +314,7 @@
 
 - (void)setUpMenuFrames
 {
+    self.menuAspectRatioButton.frame = CGRectMake(10,10, kMenuButtonSize-20, kMenuButtonSize-20);
     ///StartPosition
     if ([Util getScreenHeight]==kIphone4ScreenHeight) {
         self.menuBackButton.frame = CGRectMake(kPlaceOfButtons+((kContinueButtonSize-kMenuButtonSize)/2),(kIphone4ScreenHeight/2)-(kContinueButtonSize/2)-(kMenuIPhone4GapSize)-(2*kMenuButtonSize)-kMenuIPhone4ContinueGapSize, kMenuButtonSize, kMenuButtonSize);
@@ -393,7 +401,7 @@
   CGSize programSize = CGSizeMake(self.program.header.screenWidth.floatValue, self.program.header.screenHeight.floatValue);
   Scene* scene = [[Scene alloc] initWithSize:programSize andProgram:self.program];
   self.scene = scene;
-  self.scene.scaleMode = SKSceneScaleModeAspectFit;
+  self.scene.scaleMode = SKSceneScaleModeFill;
   [skView presentScene:self.scene];
   [[ProgramManager sharedProgramManager] setProgram:self.program];
 }
@@ -552,6 +560,13 @@
     
 }
 
+- (void)manageAspectRatio:(UIButton *)sender
+{
+
+    self.scene.scaleMode = self.scene.scaleMode==SKSceneScaleModeAspectFit ? SKSceneScaleModeFill : SKSceneScaleModeAspectFit;
+    [self.skView setNeedsLayout];
+    
+}
 
 - (void)takeScreenshot:(UIButton *)sender
 {
