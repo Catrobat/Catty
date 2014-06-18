@@ -32,12 +32,14 @@
 #import "SegueDefines.h"
 #import "ProgramDetailStoreViewController.h"
 #import "Util.h"
+#import "LanguageTranslationDefines.h"
 
 @interface SearchStoreViewController ()
 
 @property (nonatomic, strong) NSMutableArray *searchResults;
 @property (nonatomic, strong) NSMutableData *data;
 @property (nonatomic, strong) NSURLConnection *connection;
+@property (nonatomic, strong) UILabel *noSearchResultsLabel;
 
 @end
 
@@ -55,6 +57,8 @@
 {
     [super viewDidLoad];
     [self initSearchView];
+    [self initTableView];
+    [self initNoSearchResultsLabel];
 
     self.searchDisplayController.displaysSearchBarInNavigationBar = NO;
     self.searchDisplayController.searchBar.backgroundColor = UIColor.backgroundColor;
@@ -280,7 +284,18 @@
     self.tableView.dataSource = self;
     [self.tableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
     self.tableView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"darkblue"]];
+}
 
+- (void)initNoSearchResultsLabel
+{
+    self.noSearchResultsLabel = [[UILabel alloc] init];
+    self.noSearchResultsLabel.text = kUILabelNoSearchResults;
+    self.noSearchResultsLabel.textAlignment = NSTextAlignmentCenter;
+    self.noSearchResultsLabel.textColor = [UIColor lightOrangeColor];
+    self.noSearchResultsLabel.tintColor = [UIColor lightOrangeColor];
+    self.noSearchResultsLabel.frame = self.view.frame;
+    self.noSearchResultsLabel.hidden = YES;
+    [self.view addSubview:self.noSearchResultsLabel];
 }
 
 -(void)initSearchView
@@ -333,7 +348,9 @@
 - (void)update
 {
 //  [self.searchDisplayController.searchResultsTableView reloadData];
-  [self.tableView reloadData];
+    
+    self.noSearchResultsLabel.hidden = [self.searchResults count] == 0 ? NO : YES;
+    [self.tableView reloadData];
 }
 
 - (UITableViewCell*)cellForProjectsTableView:(UITableView*)tableView atIndexPath:(NSIndexPath*)indexPath

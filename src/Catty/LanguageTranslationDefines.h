@@ -296,6 +296,8 @@
 #define kUILabelTextScreenshot NSLocalizedString(@"Screenshot", nil)
 #define kUILabelTextGrid NSLocalizedString(@"Grid", nil)
 
+#define kUILabelNoSearchResults NSLocalizedString(@"No search results", nil)
+
 /*
  * -----------------------------------------------------------------------------------------------------------
  * UISegmentedControl title defines
