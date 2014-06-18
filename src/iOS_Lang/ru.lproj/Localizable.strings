@@ -18,32 +18,448 @@
  *
  *  You should have received a copy of the GNU Affero General Public License
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
- */
-"ExampleEntry" = "ExampleTranslation";
+*/
+"ExampleEntry" = "ExampleEntry";
+
+"New Program" = "New Program";
+
+"Background" = "Фон";
+
+"My Object" = "названиеобъекта";
+
+"Today" = "Today";
+
+"Yesterday" = "Yesterday";
+
+"Sunday" = "Sunday";
+
+"Monday" = "Monday";
+
+"Tuesday" = "Tuesday";
+
+"Wednesday" = "Wednesday";
+
+"Thursday" = "Thursday";
+
+"Friday" = "Friday";
+
+"Saturday" = "Saturday";
+
+"Su" = "Su";
+
+"Mo" = "Mo";
+
+"Tu" = "Tu";
+
+"We" = "We";
+
+"Th" = "Th";
+
+"Fr" = "Fr";
+
+"Sa" = "Sa";
+
+"January" = "&#x42F;&#x43D;&#x432;&#x430;&#x440;&#x44C;";
+
+"February" = "&#x424;&#x435;&#x432;&#x440;&#x430;&#x43B;&#x44C;";
+
+"March" = "&#x41C;&#x430;&#x440;&#x442;";
+
+"April" = "&#x410;&#x43F;&#x440;&#x435;&#x43B;&#x44C;";
+
+"May" = "&#x41C;&#x430;&#x439;";
+
+"June" = "&#x418;&#x44E;&#x43D;&#x44C;";
+
+"July" = "&#x418;&#x44E;&#x43B;&#x44C;";
+
+"August" = "&#x410;&#x432;&#x433;&#x443;&#x441;&#x442;";
+
+"September" = "&#x421;&#x435;&#x43D;&#x442;&#x44F;&#x431;&#x440;&#x44C;";
+
+"October" = "&#x41E;&#x43A;&#x442;&#x44F;&#x431;&#x440;&#x44C;";
+
+"November" = "&#x41D;&#x43E;&#x44F;&#x431;&#x440;&#x44C;";
+
+"December" = "&#x414;&#x435;&#x43A;&#x430;&#x431;&#x440;&#x44C;";
+
+"Jan" = "Jan";
+
+"Feb" = "Feb";
+
+"Mar" = "Mar";
+
+"Apr" = "Apr";
+
+"May" = "&#x41C;&#x430;&#x439;";
+
+"Jun" = "Jun";
+
+"Jul" = "Jul";
+
+"Aug" = "Aug";
+
+"Sep" = "Sep";
+
+"Oct" = "Oct";
+
+"Nov" = "Nov";
+
+"Dec" = "Dec";
+
+"Pocket Code" = "Pocket Code";
+
+"Categories" = "Categories";
+
+"Explore" = "Explore";
+
+"Help" = "Help";
+
+"Info" = "Info";
+
+"Looks" = "Выглядит";
+
+"Sounds" = "Звуки";
+
+"Choose sound" = "Choose sound";
+
+"Programs" = "Programs";
+
+"Featured Programs" = "Featured Programs";
+
+"Scripts" = "Скрипты";
+
+"Backgrounds" = "Backgrounds";
+
+"Tap \"+\" to add %@" = "Tap \"+\" to add %@";
+
+"Continue" = "Continue";
 
 "New" = "New";
 
 "Programs" = "Programs";
 
-"Continue" = "Continue";
-
-"Download" = "Download";
+"Explore" = "Explore";
 
 "Upload" = "Загрузить";
 
-"Forum" = "Forum";
+"Help" = "Help";
+
+"Edit Mode" = "Edit Mode";
+
+"Edit" = "Edit";
+
+"Cancel" = "Отмена";
+
+"Select All" = "Select All";
+
+"Unselect All" = "Unselect All";
+
+"Delete" = "Удалить";
+
+"Edit Sounds" = "Edit Sounds";
+
+"Edit Looks" = "Edit Looks";
+
+"Add look" = "Add look";
+
+"Edit Program" = "Edit Program";
+
+"Edit Programs" = "Edit Programs";
+
+"Add sound" = "Add sound";
+
+"Save Screenshot to" = "Save Screenshot to";
+
+"Close" = "Закрыть";
+
+"Delete Brick" = "Delete Brick";
+
+"Delete Script" = "Delete Script";
+
+"Animate Brick" = "Animate Brick";
+
+"Copy Brick" = "Copy Brick";
+
+"Edit Formula" = "Edit Formula";
+
+"Delete Sounds" = "Delete Sounds";
+
+"Hide Details" = "Hide Details";
+
+"Show Details" = "Show Details";
+
+"Delete Looks" = "Delete Looks";
+
+"From Camera" = "Камера";
+
+"Choose image" = "Из галереи";
+
+"Draw new image" = "Камера";
+
+"Rename" = "Переименовать";
+
+"Delete Objects" = "Delete Objects";
+
+"Delete Programs" = "Delete Programs";
+
+"Pocket Code Recorder" = "Pocket Code Recorder";
+
+"Choose sound" = "Choose sound";
+
+"Camera Roll" = "Camera Roll";
+
+"Project" = "Project";
+
+"Cancel" = "Отмена";
+
+"Delete" = "Удалить";
+
+"Play" = "Play";
+
+"Download" = "Download";
+
+"More" = "More";
+
+"Delete" = "Удалить";
+
+"Pocket Code" = "Pocket Code";
+
+"Add object" = "Add object";
+
+"Add image" = "Add image";
+
+"Rename program" = "Rename program";
+
+"Can't restart program!" = "Can't restart program!";
+
+"Screenshot saved to Camera Roll" = "Screenshot saved to Camera Roll";
+
+"Screenshot saved to project" = "Screenshot saved to project";
+
+"New program" = "Название нового проекта";
+
+"Delete this program" = "Delete this program";
+
+"Delete these objects" = "Delete these objects";
+
+"Delete this object" = "Delete this object";
+
+"Delete these programs" = "Delete these programs";
+
+"Delete this program" = "Delete this program";
+
+"Delete these looks" = "Delete these looks";
+
+"Delete this look" = "Delete this look";
+
+"Delete these sounds" = "Delete these sounds";
+
+"Delete this sound" = "Delete this sound";
+
+"Not enough free memory to download this program. Please delete some of your programs" = "Not enough free memory to download this program. Please delete some of your programs";
+
+"Enter your program name here..." = "Enter your program name here...";
+
+"Enter your object name here..." = "Enter your object name here...";
+
+"Enter your image name here..." = "Enter your image name here...";
 
 "This feature is coming soon!" = "This feature is coming soon!";
 
 "Pocket Code for iOS" = "Pocket Code for iOS";
 
+"Program name" = "Program name";
+
+"Object name" = "Object name";
+
+"Image name" = "Image name";
+
+"No imported sounds found. Please connect your iPhone to your PC/Mac and use iTunes FileSharing to import sound files into the PocketCode app." = "No imported sounds found. Please connect your iPhone to your PC/Mac and use iTunes FileSharing to import sound files into the PocketCode app.";
+
+"No or invalid program name entered, try again." = "No or invalid program name entered, try again.";
+
+"A program with the same name already exists, try again." = "A program with the same name already exists, try again.";
+
+"No or invalid object name entered, try again." = "No or invalid object name entered, try again.";
+
+"Unable to load program!" = "Unable to load program!";
+
+"This action can not be undone!" = "This action can not be undone!";
+
+"Unable to play that sound!\nMaybe this is no valid sound or the file is corrupt." = "Unable to play that sound!\nMaybe this is no valid sound or the file is corrupt.";
+
+"OK" = "OK";
+
+"Cancel" = "Отмена";
+
+"Yes" = "Да";
+
+"No" = "Нет";
+
+"Delete" = "Удалить";
+
+"Loading" = "Loading";
+
 "Description" = "Description";
+
+"No Description available" = "No Description available";
 
 "Author" = "Author";
 
+"Downloads" = "Downloads";
+
 "Uploaded" = "Uploaded";
 
+"Version" = "Version";
+
+"Information" = "Information";
+
 "Views" = "Views";
+
+"Measure" = "Measure";
+
+"Size" = "Size";
+
+"Background" = "Фон";
+
+"Object" = "объект";
+
+"Objects" = "Objects";
+
+"Scripts" = "Скрипты";
+
+"Bricks" = "Bricks";
+
+"Looks" = "Выглядит";
+
+"Sounds" = "Звуки";
+
+"Last access" = "Last access";
+
+"Size" = "Size";
+
+"Length" = "Length";
+
+"Back" = "Back";
+
+"Restart" = "Restart";
+
+"Continue" = "Continue";
+
+"Screenshot" = "Screenshot";
+
+"Grid" = "Grid";
+
+"Most Downloaded" = "&#x41D;&#x43E;&#x432;&#x435;&#x439;&#x448;&#x438;&#x435; &#x43F;&#x440;&#x43E;&#x435;&#x43A;&#x442;&#x44B;";
+
+"Most Viewed" = "Most Viewed";
+
+"Newest" = "&#x441;&#x43A;&#x430;&#x447;&#x438;&#x432;&#x430;&#x43D;&#x438;&#x439;";
+
+"Control" = "Управление";
+
+"Motion" = "Движение";
+
+"Sound" = "Звук";
+
+"Looks" = "Выглядит";
+
+"Variables" = "Variables";
+
+"When program started" = "При старте";
+
+"When tapped" = "Когда";
+
+"Wait %@ second(s)" = "Wait %@ second(s)";
+
+"When I receive\n%@" = "When I receive\n%@";
+
+"Broadcast\n%@" = "Broadcast\n%@";
+
+"Broadcast and wait\n%@" = "Broadcast and wait\n%@";
+
+"Note %@" = "Note %@";
+
+"Forever" = "Вечно";
+
+"If %@ is true then" = "If %@ is true then";
+
+"Else" = "Else";
+
+"If End" = "If End";
+
+"Repeat %@ times" = "Repeat %@ times";
+
+"End of Loop" = "End of Loop";
+
+"Place at\nX: %@ Y: %@" = "Place at\nX: %@ Y: %@";
+
+"Set X to %@" = "Set X to %@";
+
+"Set Y to %@" = "Set Y to %@";
+
+"Change X by %@" = "Change X by %@";
+
+"Change Y by %@" = "Change Y by %@";
+
+"If on edge, bounce" = "Отскочить если на краю";
+
+"Move %@ step(s)" = "Move %@ step(s)";
+
+"Turn left %@°" = "Turn left %@°";
+
+"Turn right %@°" = "Turn right %@°";
+
+"Point in direction %@°" = "Point in direction %@°";
+
+"Point towards\n%@" = "Point towards\n%@";
+
+"Glide %@ second(s)\nto X: %@ Y: %@" = "Glide %@ second(s)\nto X: %@ Y: %@";
+
+"Go back %@ layer(s)" = "Go back %@ layer(s)";
+
+"Go to front" = "Прийти на перед";
+
+"Switch to look\n%@" = "Switch to look\n%@";
+
+"Set background\n%@" = "Set background\n%@";
+
+"Next look" = "Next look";
+
+"Next background" = "Next background";
+
+"Set size to %@\%" = "Set size to %@\\%";
+
+"Change size by %@\%" = "Change size by %@\\%";
+
+"Hide" = "Спрятать";
+
+"Show" = "Показать";
+
+"Set transparency\nto %@\%" = "Set transparency\nto %@\\%";
+
+"Change transparency\nby %@\%" = "Change transparency\nby %@\\%";
+
+"Set brightness to %@\%" = "Set brightness to %@\\%";
+
+"Change brightness\nby %@\%" = "Change brightness\nby %@\\%";
+
+"Clear graphic effects" = "Очистить графические эффекты";
+
+"Start sound\n%@" = "Start sound\n%@";
+
+"Stop all sounds" = "Остановить все звуки";
+
+"Set volume to %@\%" = "Set volume to %@\\%";
+
+"Change volume by %@" = "Change volume by %@";
+
+"Speak %@" = "Speak %@";
+
+"Set variable\n%@\nto %@" = "Set variable\n%@\nto %@";
+
+"Change variable\n%@\nby %@" = "Change variable\n%@\nby %@";
 
 "Play" = "Play";
 

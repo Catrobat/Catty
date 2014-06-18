@@ -18,34 +18,450 @@
  *
  *  You should have received a copy of the GNU Affero General Public License
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
- */
-"ExampleEntry" = "ExampleTranslation";
+*/
+"ExampleEntry" = "ExampleEntry";
+
+"New Program" = "New Program";
+
+"Background" = "Background";
+
+"My Object" = "My Object";
+
+"Today" = "Today";
+
+"Yesterday" = "Yesterday";
+
+"Sunday" = "Sunday";
+
+"Monday" = "Monday";
+
+"Tuesday" = "Tuesday";
+
+"Wednesday" = "Wednesday";
+
+"Thursday" = "Thursday";
+
+"Friday" = "Friday";
+
+"Saturday" = "Saturday";
+
+"Su" = "Su";
+
+"Mo" = "Mo";
+
+"Tu" = "Tu";
+
+"We" = "We";
+
+"Th" = "Th";
+
+"Fr" = "Fr";
+
+"Sa" = "Sa";
+
+"January" = "January";
+
+"February" = "February";
+
+"March" = "March";
+
+"April" = "April";
+
+"May" = "May";
+
+"June" = "June";
+
+"July" = "July";
+
+"August" = "August";
+
+"September" = "September";
+
+"October" = "October";
+
+"November" = "November";
+
+"December" = "December";
+
+"Jan" = "Jan";
+
+"Feb" = "Feb";
+
+"Mar" = "Mar";
+
+"Apr" = "Apr";
+
+"May" = "May";
+
+"Jun" = "Jun";
+
+"Jul" = "Jul";
+
+"Aug" = "Aug";
+
+"Sep" = "Sep";
+
+"Oct" = "Oct";
+
+"Nov" = "Nov";
+
+"Dec" = "Dec";
+
+"Pocket Code" = "Pocket Code";
+
+"Categories" = "Categories";
+
+"Explore" = "Explore";
+
+"Help" = "Help";
+
+"Info" = "Info";
+
+"Looks" = "Looks";
+
+"Sounds" = "Sounds";
+
+"Choose sound" = "Choose sound";
+
+"Programs" = "Programmes";
+
+"Featured Programs" = "Featured Programs";
+
+"Scripts" = "Scripts";
+
+"Backgrounds" = "Backgrounds";
+
+"Tap \"+\" to add %@" = "Tap \"+\" to add %@";
+
+"Continue" = "Continuer";
 
 "New" = "Nouveau";
 
 "Programs" = "Programmes";
 
-"Continue" = "Continuer";
-
-"Download" = "Download";
+"Explore" = "Explore";
 
 "Upload" = "Upload";
 
-"Forum" = "Forum";
+"Help" = "Help";
 
-"This feature is coming soon!" = "Cette fonctionnalité sera bientôt disponible !";
+"Edit Mode" = "Edit Mode";
+
+"Edit" = "Edit";
+
+"Cancel" = "Annuler";
+
+"Select All" = "Select All";
+
+"Unselect All" = "Unselect All";
+
+"Delete" = "Delete";
+
+"Edit Sounds" = "Edit Sounds";
+
+"Edit Looks" = "Edit Looks";
+
+"Add look" = "Add look";
+
+"Edit Program" = "Edit Program";
+
+"Edit Programs" = "Edit Programs";
+
+"Add sound" = "Add sound";
+
+"Save Screenshot to" = "Save Screenshot to";
+
+"Close" = "Close";
+
+"Delete Brick" = "Delete Brick";
+
+"Delete Script" = "Delete Script";
+
+"Animate Brick" = "Animate Brick";
+
+"Copy Brick" = "Copy Brick";
+
+"Edit Formula" = "Edit Formula";
+
+"Delete Sounds" = "Delete Sounds";
+
+"Hide Details" = "Hide Details";
+
+"Show Details" = "Show Details";
+
+"Delete Looks" = "Delete Looks";
+
+"From Camera" = "From Camera";
+
+"Choose image" = "Choose image";
+
+"Draw new image" = "Draw new image";
+
+"Rename" = "Rename";
+
+"Delete Objects" = "Delete Objects";
+
+"Delete Programs" = "Delete Programs";
+
+"Pocket Code Recorder" = "Pocket Code Recorder";
+
+"Choose sound" = "Choose sound";
+
+"Camera Roll" = "Camera Roll";
+
+"Project" = "Project";
+
+"Cancel" = "Annuler";
+
+"Delete" = "Delete";
+
+"Play" = "Play";
+
+"Download" = "Download";
+
+"More" = "More";
+
+"Delete" = "Delete";
+
+"Pocket Code" = "Pocket Code";
+
+"Add object" = "Add object";
+
+"Add image" = "Add image";
+
+"Rename program" = "Rename program";
+
+"Can't restart program!" = "Can't restart program!";
+
+"Screenshot saved to Camera Roll" = "Screenshot saved to Camera Roll";
+
+"Screenshot saved to project" = "Screenshot saved to project";
+
+"New program" = "New program";
+
+"Delete this program" = "Delete this program";
+
+"Delete these objects" = "Delete these objects";
+
+"Delete this object" = "Delete this object";
+
+"Delete these programs" = "Delete these programs";
+
+"Delete this program" = "Delete this program";
+
+"Delete these looks" = "Delete these looks";
+
+"Delete this look" = "Delete this look";
+
+"Delete these sounds" = "Delete these sounds";
+
+"Delete this sound" = "Delete this sound";
+
+"Not enough free memory to download this program. Please delete some of your programs" = "Not enough free memory to download this program. Please delete some of your programs";
+
+"Enter your program name here..." = "Enter your program name here...";
+
+"Enter your object name here..." = "Enter your object name here...";
+
+"Enter your image name here..." = "Enter your image name here...";
+
+"This feature is coming soon!" = "This feature is coming soon!";
 
 "Pocket Code for iOS" = "Pocket Code pour iOS";
 
+"Program name" = "Program name";
+
+"Object name" = "Object name";
+
+"Image name" = "Image name";
+
+"No imported sounds found. Please connect your iPhone to your PC/Mac and use iTunes FileSharing to import sound files into the PocketCode app." = "No imported sounds found. Please connect your iPhone to your PC/Mac and use iTunes FileSharing to import sound files into the PocketCode app.";
+
+"No or invalid program name entered, try again." = "No or invalid program name entered, try again.";
+
+"A program with the same name already exists, try again." = "A program with the same name already exists, try again.";
+
+"No or invalid object name entered, try again." = "No or invalid object name entered, try again.";
+
+"Unable to load program!" = "Unable to load program!";
+
+"This action can not be undone!" = "This action can not be undone!";
+
+"Unable to play that sound!\nMaybe this is no valid sound or the file is corrupt." = "Unable to play that sound!\nMaybe this is no valid sound or the file is corrupt.";
+
+"OK" = "OK";
+
+"Cancel" = "Annuler";
+
+"Yes" = "Yes";
+
+"No" = "No";
+
+"Delete" = "Delete";
+
+"Loading" = "Loading";
+
 "Description" = "Description";
 
-"Author" = "Auteur";
+"No Description available" = "No Description available";
+
+"Author" = "Author";
+
+"Downloads" = "Downloads";
 
 "Uploaded" = "Uploaded";
 
-"Views" = "Vues";
+"Version" = "Version";
 
-"Play" = "Jouer";
+"Information" = "Information";
+
+"Views" = "Views";
+
+"Measure" = "Measure";
+
+"Size" = "Size";
+
+"Background" = "Background";
+
+"Object" = "Object";
+
+"Objects" = "Objects";
+
+"Scripts" = "Scripts";
+
+"Bricks" = "Bricks";
+
+"Looks" = "Looks";
+
+"Sounds" = "Sounds";
+
+"Last access" = "Last access";
+
+"Size" = "Size";
+
+"Length" = "Length";
+
+"Back" = "Back";
+
+"Restart" = "Restart";
+
+"Continue" = "Continuer";
+
+"Screenshot" = "Screenshot";
+
+"Grid" = "Grid";
+
+"Most Downloaded" = "Most Downloaded";
+
+"Most Viewed" = "Most Viewed";
+
+"Newest" = "Newest";
+
+"Control" = "Control";
+
+"Motion" = "Motion";
+
+"Sound" = "Sound";
+
+"Looks" = "Looks";
+
+"Variables" = "Variables";
+
+"When program started" = "When program started";
+
+"When tapped" = "When tapped";
+
+"Wait %@ second(s)" = "Wait %@ second(s)";
+
+"When I receive\n%@" = "When I receive\n%@";
+
+"Broadcast\n%@" = "Broadcast\n%@";
+
+"Broadcast and wait\n%@" = "Broadcast and wait\n%@";
+
+"Note %@" = "Note %@";
+
+"Forever" = "Forever";
+
+"If %@ is true then" = "If %@ is true then";
+
+"Else" = "Else";
+
+"If End" = "If End";
+
+"Repeat %@ times" = "Repeat %@ times";
+
+"End of Loop" = "End of Loop";
+
+"Place at\nX: %@ Y: %@" = "Place at\nX: %@ Y: %@";
+
+"Set X to %@" = "Set X to %@";
+
+"Set Y to %@" = "Set Y to %@";
+
+"Change X by %@" = "Change X by %@";
+
+"Change Y by %@" = "Change Y by %@";
+
+"If on edge, bounce" = "If on edge, bounce";
+
+"Move %@ step(s)" = "Move %@ step(s)";
+
+"Turn left %@°" = "Turn left %@°";
+
+"Turn right %@°" = "Turn right %@°";
+
+"Point in direction %@°" = "Point in direction %@°";
+
+"Point towards\n%@" = "Point towards\n%@";
+
+"Glide %@ second(s)\nto X: %@ Y: %@" = "Glide %@ second(s)\nto X: %@ Y: %@";
+
+"Go back %@ layer(s)" = "Go back %@ layer(s)";
+
+"Go to front" = "Go to front";
+
+"Switch to look\n%@" = "Switch to look\n%@";
+
+"Set background\n%@" = "Set background\n%@";
+
+"Next look" = "Next look";
+
+"Next background" = "Next background";
+
+"Set size to %@\%" = "Set size to %@\\%";
+
+"Change size by %@\%" = "Change size by %@\\%";
+
+"Hide" = "Hide";
+
+"Show" = "Show";
+
+"Set transparency\nto %@\%" = "Set transparency\nto %@\\%";
+
+"Change transparency\nby %@\%" = "Change transparency\nby %@\\%";
+
+"Set brightness to %@\%" = "Set brightness to %@\\%";
+
+"Change brightness\nby %@\%" = "Change brightness\nby %@\\%";
+
+"Clear graphic effects" = "Clear graphic effects";
+
+"Start sound\n%@" = "Start sound\n%@";
+
+"Stop all sounds" = "Stop all sounds";
+
+"Set volume to %@\%" = "Set volume to %@\\%";
+
+"Change volume by %@" = "Change volume by %@";
+
+"Speak %@" = "Speak %@";
+
+"Set variable\n%@\nto %@" = "Set variable\n%@\nto %@";
+
+"Change variable\n%@\nby %@" = "Change variable\n%@\nby %@";
+
+"Play" = "Play";
 
 "Recents" = "Récent";
 
@@ -73,7 +489,7 @@
 
 "Delete" = "Delete";
 
-"Cancel" = "Cancel";
+"Cancel" = "Annuler";
 
 "Add Object" = "Add Object";
 

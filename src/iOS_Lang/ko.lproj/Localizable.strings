@@ -18,32 +18,448 @@
  *
  *  You should have received a copy of the GNU Affero General Public License
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
- */
-"ExampleEntry" = "ExampleTranslation";
+*/
+"ExampleEntry" = "ExampleEntry";
+
+"New Program" = "New Program";
+
+"Background" = "배경";
+
+"My Object" = "내 스프라이트";
+
+"Today" = "Today";
+
+"Yesterday" = "Yesterday";
+
+"Sunday" = "Sunday";
+
+"Monday" = "Monday";
+
+"Tuesday" = "Tuesday";
+
+"Wednesday" = "Wednesday";
+
+"Thursday" = "Thursday";
+
+"Friday" = "Friday";
+
+"Saturday" = "Saturday";
+
+"Su" = "Su";
+
+"Mo" = "Mo";
+
+"Tu" = "Tu";
+
+"We" = "We";
+
+"Th" = "Th";
+
+"Fr" = "Fr";
+
+"Sa" = "Sa";
+
+"January" = "January";
+
+"February" = "February";
+
+"March" = "March";
+
+"April" = "April";
+
+"May" = "May";
+
+"June" = "June";
+
+"July" = "July";
+
+"August" = "August";
+
+"September" = "September";
+
+"October" = "October";
+
+"November" = "November";
+
+"December" = "December";
+
+"Jan" = "Jan";
+
+"Feb" = "Feb";
+
+"Mar" = "Mar";
+
+"Apr" = "Apr";
+
+"May" = "May";
+
+"Jun" = "Jun";
+
+"Jul" = "Jul";
+
+"Aug" = "Aug";
+
+"Sep" = "Sep";
+
+"Oct" = "Oct";
+
+"Nov" = "Nov";
+
+"Dec" = "Dec";
+
+"Pocket Code" = "Pocket Code";
+
+"Categories" = "카테고리";
+
+"Explore" = "Explore";
+
+"Help" = "Help";
+
+"Info" = "Info";
+
+"Looks" = "형태";
+
+"Sounds" = "소리";
+
+"Choose sound" = "Choose sound";
+
+"Programs" = "Programs";
+
+"Featured Programs" = "Featured Programs";
+
+"Scripts" = "스크립트";
+
+"Backgrounds" = "배경";
+
+"Tap \"+\" to add %@" = "Tap \"+\" to add %@";
+
+"Continue" = "Continue";
 
 "New" = "New";
 
 "Programs" = "Programs";
 
-"Continue" = "Continue";
-
-"Download" = "Download";
+"Explore" = "Explore";
 
 "Upload" = "업로드";
 
-"Forum" = "Forum";
+"Help" = "Help";
+
+"Edit Mode" = "Edit Mode";
+
+"Edit" = "Edit";
+
+"Cancel" = "취소";
+
+"Select All" = "Select All";
+
+"Unselect All" = "Unselect All";
+
+"Delete" = "삭제";
+
+"Edit Sounds" = "Edit Sounds";
+
+"Edit Looks" = "Edit Looks";
+
+"Add look" = "Add look";
+
+"Edit Program" = "Edit Program";
+
+"Edit Programs" = "Edit Programs";
+
+"Add sound" = "Add sound";
+
+"Save Screenshot to" = "Save Screenshot to";
+
+"Close" = "닫기";
+
+"Delete Brick" = "블록 삭제";
+
+"Delete Script" = "Delete Script";
+
+"Animate Brick" = "Animate Brick";
+
+"Copy Brick" = "Copy Brick";
+
+"Edit Formula" = "Edit Formula";
+
+"Delete Sounds" = "Delete Sounds";
+
+"Hide Details" = "Hide Details";
+
+"Show Details" = "Show Details";
+
+"Delete Looks" = "Delete Looks";
+
+"From Camera" = "카메라에서 가져오기";
+
+"Choose image" = "갤러리에서 가져오기";
+
+"Draw new image" = "카메라에서 가져오기";
+
+"Rename" = "이름 바꾸기";
+
+"Delete Objects" = "Delete Objects";
+
+"Delete Programs" = "Delete Programs";
+
+"Pocket Code Recorder" = "Catroid 녹음기";
+
+"Choose sound" = "Choose sound";
+
+"Camera Roll" = "Camera Roll";
+
+"Project" = "Project";
+
+"Cancel" = "취소";
+
+"Delete" = "삭제";
+
+"Play" = "Play";
+
+"Download" = "Download";
+
+"More" = "More";
+
+"Delete" = "삭제";
+
+"Pocket Code" = "Pocket Code";
+
+"Add object" = "Add object";
+
+"Add image" = "Add image";
+
+"Rename program" = "Rename program";
+
+"Can't restart program!" = "Can't restart program!";
+
+"Screenshot saved to Camera Roll" = "Screenshot saved to Camera Roll";
+
+"Screenshot saved to project" = "Screenshot saved to project";
+
+"New program" = "새 프로젝트";
+
+"Delete this program" = "Delete this program";
+
+"Delete these objects" = "Delete these objects";
+
+"Delete this object" = "Delete this object";
+
+"Delete these programs" = "Delete these programs";
+
+"Delete this program" = "Delete this program";
+
+"Delete these looks" = "Delete these looks";
+
+"Delete this look" = "Delete this look";
+
+"Delete these sounds" = "Delete these sounds";
+
+"Delete this sound" = "Delete this sound";
+
+"Not enough free memory to download this program. Please delete some of your programs" = "Not enough free memory to download this program. Please delete some of your programs";
+
+"Enter your program name here..." = "Enter your program name here...";
+
+"Enter your object name here..." = "Enter your object name here...";
+
+"Enter your image name here..." = "Enter your image name here...";
 
 "This feature is coming soon!" = "This feature is coming soon!";
 
 "Pocket Code for iOS" = "Pocket Code for iOS";
 
+"Program name" = "Program name";
+
+"Object name" = "Object name";
+
+"Image name" = "Image name";
+
+"No imported sounds found. Please connect your iPhone to your PC/Mac and use iTunes FileSharing to import sound files into the PocketCode app." = "No imported sounds found. Please connect your iPhone to your PC/Mac and use iTunes FileSharing to import sound files into the PocketCode app.";
+
+"No or invalid program name entered, try again." = "No or invalid program name entered, try again.";
+
+"A program with the same name already exists, try again." = "A program with the same name already exists, try again.";
+
+"No or invalid object name entered, try again." = "No or invalid object name entered, try again.";
+
+"Unable to load program!" = "Unable to load program!";
+
+"This action can not be undone!" = "This action can not be undone!";
+
+"Unable to play that sound!\nMaybe this is no valid sound or the file is corrupt." = "Unable to play that sound!\nMaybe this is no valid sound or the file is corrupt.";
+
+"OK" = "확인";
+
+"Cancel" = "취소";
+
+"Yes" = "예";
+
+"No" = "아니오";
+
+"Delete" = "삭제";
+
+"Loading" = "Loading";
+
 "Description" = "Description";
+
+"No Description available" = "No Description available";
 
 "Author" = "Author";
 
+"Downloads" = "Downloads";
+
 "Uploaded" = "Uploaded";
 
+"Version" = "Version";
+
+"Information" = "Information";
+
 "Views" = "Views";
+
+"Measure" = "Measure";
+
+"Size" = "Size";
+
+"Background" = "배경";
+
+"Object" = "스프라이트";
+
+"Objects" = "Objects";
+
+"Scripts" = "스크립트";
+
+"Bricks" = "Bricks";
+
+"Looks" = "형태";
+
+"Sounds" = "소리";
+
+"Last access" = "Last access";
+
+"Size" = "Size";
+
+"Length" = "Length";
+
+"Back" = "Back";
+
+"Restart" = "Restart";
+
+"Continue" = "Continue";
+
+"Screenshot" = "Screenshot";
+
+"Grid" = "Grid";
+
+"Most Downloaded" = "Most Downloaded";
+
+"Most Viewed" = "Most Viewed";
+
+"Newest" = "Newest";
+
+"Control" = "제어";
+
+"Motion" = "동작";
+
+"Sound" = "소리";
+
+"Looks" = "형태";
+
+"Variables" = "Variables";
+
+"When program started" = "프로젝트를 시작할 때";
+
+"When tapped" = "할 때";
+
+"Wait %@ second(s)" = "Wait %@ second(s)";
+
+"When I receive\n%@" = "When I receive\n%@";
+
+"Broadcast\n%@" = "Broadcast\n%@";
+
+"Broadcast and wait\n%@" = "Broadcast and wait\n%@";
+
+"Note %@" = "Note %@";
+
+"Forever" = "무한 반복";
+
+"If %@ is true then" = "If %@ is true then";
+
+"Else" = "Else";
+
+"If End" = "If End";
+
+"Repeat %@ times" = "Repeat %@ times";
+
+"End of Loop" = "End of Loop";
+
+"Place at\nX: %@ Y: %@" = "Place at\nX: %@ Y: %@";
+
+"Set X to %@" = "Set X to %@";
+
+"Set Y to %@" = "Set Y to %@";
+
+"Change X by %@" = "Change X by %@";
+
+"Change Y by %@" = "Change Y by %@";
+
+"If on edge, bounce" = "벽에 닿으면 튕기기";
+
+"Move %@ step(s)" = "Move %@ step(s)";
+
+"Turn left %@°" = "Turn left %@°";
+
+"Turn right %@°" = "Turn right %@°";
+
+"Point in direction %@°" = "Point in direction %@°";
+
+"Point towards\n%@" = "Point towards\n%@";
+
+"Glide %@ second(s)\nto X: %@ Y: %@" = "Glide %@ second(s)\nto X: %@ Y: %@";
+
+"Go back %@ layer(s)" = "Go back %@ layer(s)";
+
+"Go to front" = "앞쪽으로 이동";
+
+"Switch to look\n%@" = "Switch to look\n%@";
+
+"Set background\n%@" = "Set background\n%@";
+
+"Next look" = "다음 형태";
+
+"Next background" = "다음 배경";
+
+"Set size to %@\%" = "Set size to %@\\%";
+
+"Change size by %@\%" = "Change size by %@\\%";
+
+"Hide" = "숨기기";
+
+"Show" = "보이기";
+
+"Set transparency\nto %@\%" = "Set transparency\nto %@\\%";
+
+"Change transparency\nby %@\%" = "Change transparency\nby %@\\%";
+
+"Set brightness to %@\%" = "Set brightness to %@\\%";
+
+"Change brightness\nby %@\%" = "Change brightness\nby %@\\%";
+
+"Clear graphic effects" = "그래픽 효과 지우기";
+
+"Start sound\n%@" = "Start sound\n%@";
+
+"Stop all sounds" = "모든 소리 멈추기";
+
+"Set volume to %@\%" = "Set volume to %@\\%";
+
+"Change volume by %@" = "Change volume by %@";
+
+"Speak %@" = "Speak %@";
+
+"Set variable\n%@\nto %@" = "Set variable\n%@\nto %@";
+
+"Change variable\n%@\nby %@" = "Change variable\n%@\nby %@";
 
 "Play" = "Play";
 

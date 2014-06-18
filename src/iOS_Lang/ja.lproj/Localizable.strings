@@ -18,32 +18,448 @@
  *
  *  You should have received a copy of the GNU Affero General Public License
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
- */
-"ExampleEntry" = "ExampleTranslation";
+*/
+"ExampleEntry" = "ExampleEntry";
 
-"New" = "New";
+"New Program" = "New Program";
 
-"Programs" = "Programs";
+"Background" = "背景";
 
-"Continue" = "Continue";
+"My Object" = "私のスプライト";
 
-"Download" = "Download";
+"Today" = "今日";
+
+"Yesterday" = "昨日";
+
+"Sunday" = "Sunday";
+
+"Monday" = "Monday";
+
+"Tuesday" = "Tuesday";
+
+"Wednesday" = "Wednesday";
+
+"Thursday" = "Thursday";
+
+"Friday" = "Friday";
+
+"Saturday" = "Saturday";
+
+"Su" = "Su";
+
+"Mo" = "Mo";
+
+"Tu" = "Tu";
+
+"We" = "We";
+
+"Th" = "Th";
+
+"Fr" = "Fr";
+
+"Sa" = "Sa";
+
+"January" = "&#x4E00;&#x6708;";
+
+"February" = "&#x4E8C;&#x6708;";
+
+"March" = "&#x4E09;&#x6708;";
+
+"April" = "&#x56DB;&#x6708;";
+
+"May" = "&#x4E94;&#x6708;";
+
+"June" = "&#x516D;&#x6708;";
+
+"July" = "&#x4E03;&#x6708;";
+
+"August" = "&#x516B;&#x6708;";
+
+"September" = "&#x4E5D;&#x6708;";
+
+"October" = "&#x5341;&#x6708;";
+
+"November" = "&#x5341;&#x4E00;&#x6708;";
+
+"December" = "&#x5341;&#x4E8C;&#x6708;";
+
+"Jan" = "Jan";
+
+"Feb" = "Feb";
+
+"Mar" = "Mar";
+
+"Apr" = "Apr";
+
+"May" = "&#x4E94;&#x6708;";
+
+"Jun" = "Jun";
+
+"Jul" = "Jul";
+
+"Aug" = "Aug";
+
+"Sep" = "Sep";
+
+"Oct" = "Oct";
+
+"Nov" = "Nov";
+
+"Dec" = "Dec";
+
+"Pocket Code" = "ポケット\nコード";
+
+"Categories" = "範囲";
+
+"Explore" = "探索";
+
+"Help" = "ヘルプ";
+
+"Info" = "Info";
+
+"Looks" = "外見";
+
+"Sounds" = "サウンド";
+
+"Choose sound" = "Choose sound";
+
+"Programs" = "プログラム";
+
+"Featured Programs" = "Featured Programs";
+
+"Scripts" = "スクリプト";
+
+"Backgrounds" = "背景";
+
+"Tap \"+\" to add %@" = "Tap \"+\" to add %@";
+
+"Continue" = "続行";
+
+"New" = "新しい";
+
+"Programs" = "プログラム";
+
+"Explore" = "探索";
 
 "Upload" = "アップロード";
 
-"Forum" = "Forum";
+"Help" = "ヘルプ";
+
+"Edit Mode" = "Edit Mode";
+
+"Edit" = "Edit";
+
+"Cancel" = "キャンセル";
+
+"Select All" = "Select All";
+
+"Unselect All" = "Unselect All";
+
+"Delete" = "削除";
+
+"Edit Sounds" = "Edit Sounds";
+
+"Edit Looks" = "Edit Looks";
+
+"Add look" = "Add look";
+
+"Edit Program" = "Edit Program";
+
+"Edit Programs" = "Edit Programs";
+
+"Add sound" = "Add sound";
+
+"Save Screenshot to" = "Save Screenshot to";
+
+"Close" = "閉じる";
+
+"Delete Brick" = "ブロックを削除します。";
+
+"Delete Script" = "スクリプトを削除します。";
+
+"Animate Brick" = "Animate Brick";
+
+"Copy Brick" = "ブロックをコピーします。";
+
+"Edit Formula" = "数式を編集します。";
+
+"Delete Sounds" = "Delete Sounds";
+
+"Hide Details" = "詳細を隠す";
+
+"Show Details" = "詳細を表示";
+
+"Delete Looks" = "Delete Looks";
+
+"From Camera" = "カメラから";
+
+"Choose image" = "画像を選択";
+
+"Draw new image" = "新しい画像を描画します。";
+
+"Rename" = "名前の変更";
+
+"Delete Objects" = "Delete Objects";
+
+"Delete Programs" = "Delete Programs";
+
+"Pocket Code Recorder" = "ポケットコードのサウンドレコーダー";
+
+"Choose sound" = "Choose sound";
+
+"Camera Roll" = "Camera Roll";
+
+"Project" = "Project";
+
+"Cancel" = "キャンセル";
+
+"Delete" = "削除";
+
+"Play" = "Play";
+
+"Download" = "ダウンロード";
+
+"More" = "もっと";
+
+"Delete" = "削除";
+
+"Pocket Code" = "ポケット\nコード";
+
+"Add object" = "Add object";
+
+"Add image" = "Add image";
+
+"Rename program" = "Rename program";
+
+"Can't restart program!" = "Can't restart program!";
+
+"Screenshot saved to Camera Roll" = "Screenshot saved to Camera Roll";
+
+"Screenshot saved to project" = "Screenshot saved to project";
+
+"New program" = "新規プログラムの名前";
+
+"Delete this program" = "Delete this program";
+
+"Delete these objects" = "Delete these objects";
+
+"Delete this object" = "Delete this object";
+
+"Delete these programs" = "Delete these programs";
+
+"Delete this program" = "Delete this program";
+
+"Delete these looks" = "Delete these looks";
+
+"Delete this look" = "Delete this look";
+
+"Delete these sounds" = "Delete these sounds";
+
+"Delete this sound" = "Delete this sound";
+
+"Not enough free memory to download this program. Please delete some of your programs" = "Not enough free memory to download this program. Please delete some of your programs";
+
+"Enter your program name here..." = "Enter your program name here...";
+
+"Enter your object name here..." = "Enter your object name here...";
+
+"Enter your image name here..." = "Enter your image name here...";
 
 "This feature is coming soon!" = "This feature is coming soon!";
 
 "Pocket Code for iOS" = "Pocket Code for iOS";
 
-"Description" = "Description";
+"Program name" = "Program name";
+
+"Object name" = "オブジェクト名";
+
+"Image name" = "Image name";
+
+"No imported sounds found. Please connect your iPhone to your PC/Mac and use iTunes FileSharing to import sound files into the PocketCode app." = "No imported sounds found. Please connect your iPhone to your PC/Mac and use iTunes FileSharing to import sound files into the PocketCode app.";
+
+"No or invalid program name entered, try again." = "No or invalid program name entered, try again.";
+
+"A program with the same name already exists, try again." = "A program with the same name already exists, try again.";
+
+"No or invalid object name entered, try again." = "No or invalid object name entered, try again.";
+
+"Unable to load program!" = "Unable to load program!";
+
+"This action can not be undone!" = "This action can not be undone!";
+
+"Unable to play that sound!\nMaybe this is no valid sound or the file is corrupt." = "Unable to play that sound!\nMaybe this is no valid sound or the file is corrupt.";
+
+"OK" = "わかりました";
+
+"Cancel" = "キャンセル";
+
+"Yes" = "はい";
+
+"No" = "いいえ";
+
+"Delete" = "削除";
+
+"Loading" = "Loading";
+
+"Description" = "説明";
+
+"No Description available" = "No Description available";
 
 "Author" = "Author";
 
+"Downloads" = "Downloads";
+
 "Uploaded" = "Uploaded";
 
+"Version" = "Version";
+
+"Information" = "Information";
+
 "Views" = "Views";
+
+"Measure" = "Measure";
+
+"Size" = "Size";
+
+"Background" = "背景";
+
+"Object" = "スプライト";
+
+"Objects" = "オブジェクト";
+
+"Scripts" = "スクリプト";
+
+"Bricks" = "Bricks";
+
+"Looks" = "外見";
+
+"Sounds" = "サウンド";
+
+"Last access" = "Last access";
+
+"Size" = "Size";
+
+"Length" = "Length";
+
+"Back" = "戻る";
+
+"Restart" = "再スタート";
+
+"Continue" = "続行";
+
+"Screenshot" = "スクリーンショット";
+
+"Grid" = "Grid";
+
+"Most Downloaded" = "最もダウンロードされた";
+
+"Most Viewed" = "よく見られている";
+
+"Newest" = "最新";
+
+"Control" = "制御";
+
+"Motion" = "動き";
+
+"Sound" = "音";
+
+"Looks" = "外見";
+
+"Variables" = "変数";
+
+"When program started" = "プログラムがはじまると";
+
+"When tapped" = "オブジェクトがタップされている";
+
+"Wait %@ second(s)" = "Wait %@ second(s)";
+
+"When I receive\n%@" = "When I receive\n%@";
+
+"Broadcast\n%@" = "Broadcast\n%@";
+
+"Broadcast and wait\n%@" = "Broadcast and wait\n%@";
+
+"Note %@" = "Note %@";
+
+"Forever" = "ずっと";
+
+"If %@ is true then" = "If %@ is true then";
+
+"Else" = "そうではなかったら、";
+
+"If End" = "If End";
+
+"Repeat %@ times" = "Repeat %@ times";
+
+"End of Loop" = "End of Loop";
+
+"Place at\nX: %@ Y: %@" = "Place at\nX: %@ Y: %@";
+
+"Set X to %@" = "Set X to %@";
+
+"Set Y to %@" = "Set Y to %@";
+
+"Change X by %@" = "Change X by %@";
+
+"Change Y by %@" = "Change Y by %@";
+
+"If on edge, bounce" = "端に当たったら、跳ね返る";
+
+"Move %@ step(s)" = "Move %@ step(s)";
+
+"Turn left %@°" = "Turn left %@°";
+
+"Turn right %@°" = "Turn right %@°";
+
+"Point in direction %@°" = "Point in direction %@°";
+
+"Point towards\n%@" = "Point towards\n%@";
+
+"Glide %@ second(s)\nto X: %@ Y: %@" = "Glide %@ second(s)\nto X: %@ Y: %@";
+
+"Go back %@ layer(s)" = "Go back %@ layer(s)";
+
+"Go to front" = "前に出す";
+
+"Switch to look\n%@" = "Switch to look\n%@";
+
+"Set background\n%@" = "Set background\n%@";
+
+"Next look" = "次の外見";
+
+"Next background" = "次の背景";
+
+"Set size to %@\%" = "Set size to %@\\%";
+
+"Change size by %@\%" = "Change size by %@\\%";
+
+"Hide" = "隠す";
+
+"Show" = "表示する";
+
+"Set transparency\nto %@\%" = "Set transparency\nto %@\\%";
+
+"Change transparency\nby %@\%" = "Change transparency\nby %@\\%";
+
+"Set brightness to %@\%" = "Set brightness to %@\\%";
+
+"Change brightness\nby %@\%" = "Change brightness\nby %@\\%";
+
+"Clear graphic effects" = "画像効果をなくす";
+
+"Start sound\n%@" = "Start sound\n%@";
+
+"Stop all sounds" = "すべてのサウンドを停止";
+
+"Set volume to %@\%" = "Set volume to %@\\%";
+
+"Change volume by %@" = "Change volume by %@";
+
+"Speak %@" = "Speak %@";
+
+"Set variable\n%@\nto %@" = "Set variable\n%@\nto %@";
+
+"Change variable\n%@\nby %@" = "Change variable\n%@\nby %@";
 
 "Play" = "Play";
 
@@ -53,11 +469,11 @@
 
 "Search" = "Search";
 
-"Screenshot" = "Screenshot";
+"Screenshot" = "スクリーンショット";
 
-"Back" = "Back";
+"Back" = "戻る";
 
-"Restart" = "Restart";
+"Restart" = "再スタート";
 
 "Grid" = "Grid";
 
@@ -65,7 +481,7 @@
 
 "Background" = "背景";
 
-"Objects" = "Objects";
+"Objects" = "オブジェクト";
 
 "Object" = "スプライト";
 
@@ -77,7 +493,7 @@
 
 "Add Object" = "Add Object";
 
-"Object name:" = "Object name:";
+"Object name:" = "オブジェクト名:";
 
 "Save Screenshot to:" = "Save Screenshot to:";
 
