@@ -114,7 +114,7 @@
 #define kUIViewControllerPlaceholderTitleLooks kUIViewControllerTitleLooks
 #define kUIViewControllerPlaceholderTitleSounds kUIViewControllerTitleSounds
 
-#define kUIViewControllerPlaceholderDescriptionStandard NSLocalizedString(@"Select \"+\" to add %@", nil)
+#define kUIViewControllerPlaceholderDescriptionStandard NSLocalizedString(@"Tap \"+\" to add %@", nil)
 
 /*
  * -----------------------------------------------------------------------------------------------------------
@@ -295,6 +295,8 @@
 #define kUILabelTextContinue NSLocalizedString(@"Continue", nil)
 #define kUILabelTextScreenshot NSLocalizedString(@"Screenshot", nil)
 #define kUILabelTextGrid NSLocalizedString(@"Grid", nil)
+
+#define kUILabelNoSearchResults NSLocalizedString(@"No search results", nil)
 
 /*
  * -----------------------------------------------------------------------------------------------------------

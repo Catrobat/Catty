@@ -35,7 +35,12 @@
 
 - (SKAction*)action
 {
-    return [SKAction runBlock:^{
+    return [SKAction runBlock:[self actionBlock]];        
+}
+
+- (dispatch_block_t)actionBlock
+{
+    return ^{
         CGPoint objectPosition = [self.object position];
         CGPoint pointedObjectPosition = [self.pointedObject position];
         
@@ -88,10 +93,12 @@
         
         rotationDegrees = [((Scene*)self.object.scene) convertDegreesToScene:rotationDegrees] + kRotationDegreeOffset;
         
+        if (rotationDegrees > 360.0f) {
+            rotationDegrees -= 360.0f;
+        }
+        
         self.object.zRotation = [Util degreeToRadians:rotationDegrees];
-        
-    }];
-        
+    };
 }
 
 #pragma mark - Description

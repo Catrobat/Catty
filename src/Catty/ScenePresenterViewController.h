@@ -44,6 +44,7 @@
 @property (strong,nonatomic) UIButton *menuScreenshotButton;
 @property (strong,nonatomic) UIButton *menuRestartButton;
 @property (strong,nonatomic) UIButton *menuAxisButton;
+@property (strong,nonatomic) UIButton *menuAspectRatioButton;
 @property (strong,nonatomic) UILabel *menuBackLabel;
 @property (strong,nonatomic) UILabel *menuContinueLabel;
 @property (strong,nonatomic) UILabel *menuScreenshotLabel;
