@@ -36,9 +36,9 @@
 @property (nonatomic, weak) IBOutlet UIView* skView;
 @property (strong,nonatomic) UIButton* menuBtn;
 @property (nonatomic,weak) UITableViewController* controller;
-@property (nonatomic,strong) UIButton* backButton;
+@property (nonatomic, weak) UIButton* backButton;
 
-@property (nonatomic,strong) IBOutlet UIView* menuView;
+@property (nonatomic, weak) IBOutlet UIView* menuView;
 @property (strong,nonatomic) UIButton *menuBackButton;
 @property (strong,nonatomic) UIButton *menuContinueButton;
 @property (strong,nonatomic) UIButton *menuScreenshotButton;

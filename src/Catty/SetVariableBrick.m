@@ -46,7 +46,7 @@
     
     double result = [self.variableFormula interpretDoubleForSprite:self.object];
     
-    Program* program = [ProgramManager sharedProgramManager].program;
+    Program* program = [ProgramManager.sharedProgramManager lastProgram];
     VariablesContainer* variables = program.variables;
     
     [variables setUserVariable:self.userVariable toValue:result];

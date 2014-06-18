@@ -41,14 +41,11 @@ static AudioManager* sharedAudioManager = nil;
 
 + (instancetype)sharedAudioManager
 {
-    @synchronized(self) {
-        if (sharedAudioManager == nil) {
-            sharedAudioManager = [[[self class] alloc] init];
-        }
-    }
-    return sharedAudioManager;
+    static AudioManager *_sharedCattyAudioManager = nil;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{ _sharedCattyAudioManager = [AudioManager new]; });
+    return _sharedCattyAudioManager;
 }
-
 
 - (id)init
 {

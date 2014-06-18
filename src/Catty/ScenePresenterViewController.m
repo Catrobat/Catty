@@ -65,10 +65,6 @@
 #define kDontResumeSounds 4
 
 @interface ScenePresenterViewController ()<UIActionSheetDelegate>
-//{
-//    BOOL menuOpen;
-//    Scene *scene;
-//}
 
 @property (nonatomic) BOOL menuOpen;
 @property (nonatomic, strong) Scene *scene;
@@ -80,14 +76,6 @@
 @end
 
 @implementation ScenePresenterViewController
-// only needed for iVars...
-//@synthesize program = _program;
-//@synthesize skView = _skView;
-//@synthesize menuBtn;
-//@synthesize menuContinueButton = _menuContinueButton;
-//@synthesize menuScreenshotButton = _menuScreenshotButton;
-//@synthesize menuRestartButton =_menuRestartButton;
-//@synthesize menuAxisButton = _menuAxisButton;
 
 # pragma getters and setters
 - (BroadcastWaitHandler*)broadcastWaitHandler
@@ -114,7 +102,7 @@
     // setting effect
     for (SpriteObject *sprite in program.objectList)
     {
-        //sprite.spriteManagerDelegate = self;
+//        sprite.spriteManagerDelegate = self;
         sprite.broadcastWaitDelegate = self.broadcastWaitHandler;
         
         // NOTE: if there are still some runNextAction tasks in a queue
@@ -134,15 +122,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-
-    [[UIApplication sharedApplication] setStatusBarHidden:YES];
-
-    //    ///MENU_BUTTON:::Button before Sliding Menu!!!
-    //    self.menuBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    //    menuBtn.frame = CGRectMake(8.0f, 10.0f, 34.0f, 24.0f);
-    //    [menuBtn setBackgroundImage:[UIImage imageNamed:@"menuButton"] forState:UIControlStateNormal];
-    //    [menuBtn addTarget:self action:@selector(revealMenu:) forControlEvents:UIControlEventTouchUpInside];
-    //    [self.view addSubview:self.menuBtn];
+    [self.navigationController setNavigationBarHidden:YES animated:YES];
     
     [self.view addGestureRecognizer:[[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(handlePan:)]];
     [self setUpMenuButtons];
@@ -164,12 +144,7 @@
         newBackgroundImage = UIGraphicsGetImageFromCurrentImageContext();
         UIGraphicsEndImageContext();
     }
-    //newBackgroundImage = [self brightnessBackground:newBackgroundImage];
-
-    UIColor *background = [[UIColor alloc] initWithPatternImage:newBackgroundImage];
-
-    //UIColor *background =[UIColor darkBlueColor];
-    self.menuView.backgroundColor = background;
+    self.menuView.backgroundColor = [[UIColor alloc] initWithPatternImage:newBackgroundImage];
 
     [self setUpMenuFrames];
     [self setUpLabels];
@@ -502,8 +477,6 @@
     [self.navigationController popViewControllerAnimated:YES];
 }
 
-
-
 #pragma button functions
 - (void)stopProgram:(UIButton *)sender
 {
@@ -513,7 +486,6 @@
     
     [self.controller.navigationController setToolbarHidden:NO];
     [self.controller.navigationController setNavigationBarHidden:NO];
-    
 }
 
 - (void)continueProgram:(UIButton *)sender withDuration:(float)duration
@@ -568,25 +540,32 @@
 - (void)restartProgram:(UIButton*)sender
 {
     // reset scene
-    self.scene = nil;
+    for (UIView *view in self.view.subviews) {
+        if ([view isKindOfClass:SKView.class]) {
+            [view removeFromSuperview];
+        }
+    }
+    
+    self.program = [Program lastProgram];
+    CGSize programSize = CGSizeMake(self.program.header.screenWidth.floatValue, self.program.header.screenHeight.floatValue);
+    self.scene = [[Scene alloc] initWithSize:programSize andProgram:self.program];
     self.scene.scaleMode = SKSceneScaleModeAspectFit;
-    SKView * view= (SKView*)self.skView;
-    view.paused=NO;
-    self.program = [Program programWithLoadingInfo:[Util programLoadingInfoForProgramWithName:[Util lastProgram]]];
-    [Util setLastProgram:self.program.header.programName];
+    SKView *skView = (SKView*)self.skView;
+    skView.paused = NO;
+    [self.view addSubview:skView];
 
-    if (! self.program) {
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:kUIAlertViewTitleCantRestartProgram
+    if (!self.program) {
+        [[[UIAlertView alloc] initWithTitle:kUIAlertViewTitleCantRestartProgram
                                                         message:nil
                                                        delegate:self.menuView
                                               cancelButtonTitle:kUIAlertViewButtonTitleOK
-                                              otherButtonTitles:nil];
-        [alert show];
+                                              otherButtonTitles:nil] show];
         return;
     }
-    [view presentScene:self.scene];
-    [self configureScene];
-    [self continueProgram:nil withDuration:kDontResumeSounds];
+    
+    [skView presentScene:self.scene];
+    [[ProgramManager sharedProgramManager] setProgram:self.program];
+   [self continueProgram:nil withDuration:kDontResumeSounds];
 }
 
 - (void)showHideAxis:(UIButton *)sender
@@ -919,16 +898,16 @@
 
 -(void)pause
 {
-    SKView * view= (SKView*)_skView;
-    view.paused=YES;
+    SKView * view= (SKView*)self.skView;
+    view.paused = YES;
     [[AVAudioSession sharedInstance] setActive:NO error:nil];
     [[AudioManager sharedAudioManager] pauseAllSounds];
 }
 
 -(void)resume
 {
-    SKView * view= (SKView*)_skView;
-    view.paused=NO;
+    SKView * view= (SKView*)self.skView;
+    view.paused = NO;
     [[AVAudioSession sharedInstance] setActive:YES error:nil];
     [[AudioManager sharedAudioManager] resumeAllSounds];
 }
