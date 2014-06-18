@@ -35,41 +35,46 @@
 - (SKAction*)action
 {
 
-    return [SKAction runBlock:^{
-        NSDebug(@"Performing: %@", self.description);
-        Look* look = [self.object nextLook];
-        UIImage* image = [UIImage imageWithContentsOfFile:[self pathForLook:look]];
-        SKTexture* texture= nil;
-        if ([self.object isBackground]) {
-            texture = [SKTexture textureWithImage:image];
-            self.object.currentUIImageLook = image;
-        }
-        else{
-//            CGRect newRect = [image cropRectForImage:image];
-//            CGImageRef imageRef = CGImageCreateWithImageInRect(image.CGImage, newRect);
-//            UIImage *newImage = [UIImage imageWithCGImage:imageRef];
-//            CGImageRelease(imageRef);
-            texture = [SKTexture textureWithImage:image];
-            self.object.currentUIImageLook = image;
-        }
-        self.object.currentUIImageLook = image;
-        self.object.currentLookBrightness = 0;
-        double xScale = self.object.xScale;
-        double yScale = self.object.yScale;
-        self.object.xScale = 1.0;
-        self.object.yScale = 1.0;
-        self.object.size = texture.size;
-        self.object.texture = texture;
-        self.object.currentLook = look;
-        if(xScale != 1.0) {
-            self.object.xScale = xScale;
-        }
-        if(yScale != 1.0) {
-            self.object.yScale = yScale;
-        }
-
-    }];
+    return [SKAction runBlock:[self actionBlock]];
 }
+
+-(dispatch_block_t)actionBlock
+{
+return ^{
+    NSDebug(@"Performing: %@", self.description);
+    Look* look = [self.object nextLook];
+    UIImage* image = [UIImage imageWithContentsOfFile:[self pathForLook:look]];
+    SKTexture* texture= nil;
+    if ([self.object isBackground]) {
+        texture = [SKTexture textureWithImage:image];
+        self.object.currentUIImageLook = image;
+    }
+    else{
+        //            CGRect newRect = [image cropRectForImage:image];
+        //            CGImageRef imageRef = CGImageCreateWithImageInRect(image.CGImage, newRect);
+        //            UIImage *newImage = [UIImage imageWithCGImage:imageRef];
+        //            CGImageRelease(imageRef);
+        texture = [SKTexture textureWithImage:image];
+        self.object.currentUIImageLook = image;
+    }
+    self.object.currentUIImageLook = image;
+    self.object.currentLookBrightness = 0;
+    double xScale = self.object.xScale;
+    double yScale = self.object.yScale;
+    self.object.xScale = 1.0;
+    self.object.yScale = 1.0;
+    self.object.size = texture.size;
+    self.object.texture = texture;
+    self.object.currentLook = look;
+    if(xScale != 1.0) {
+        self.object.xScale = xScale;
+    }
+    if(yScale != 1.0) {
+        self.object.yScale = yScale;
+    }
+    };
+}
+
 
 -(NSString*)pathForLook:(Look*)look
 {

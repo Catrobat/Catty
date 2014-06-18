@@ -35,9 +35,15 @@
 - (SKAction*)action
 {
     NSDebug(@"Adding: %@", self.description);
-    return [SKAction runBlock:^{
-        NSDebug(@"Performing: %@", self.description);
+    return [SKAction runBlock:[self actionBlock]];
+}
 
+-(dispatch_block_t)actionBlock
+{
+    return ^{
+        
+        NSDebug(@"Performing: %@", self.description);
+        
         CGFloat brightness = [self.changeBrightness interpretDoubleForSprite:self.object]/100;
         brightness += self.object.currentLookBrightness;
         if (brightness > 2) {
@@ -46,7 +52,7 @@
         else if (brightness < 0){
             brightness = -1;
         }
-
+        
         Look* look = [self.object currentLook];
         UIImage* lookImage = [UIImage imageWithContentsOfFile:[self pathForLook:look]];
         
@@ -85,9 +91,10 @@
         // 4
         CGImageRelease(cgimg);
         
-
-        }];
+           };
 }
+
+
 
 #pragma mark - Description
 - (NSString*)description

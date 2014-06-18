@@ -35,6 +35,11 @@
 
 -(SKAction*)action
 {
+
+    return [SKAction runBlock:[self actionBlock]];
+}
+-(dispatch_block_t)actionBlock
+{
     UIImage* image = [UIImage imageWithContentsOfFile:[self pathForLook]];
     SKTexture* texture= nil;
     if ([self.object isBackground]) {
@@ -42,16 +47,15 @@
         self.object.currentUIImageLook = image;
     }
     else{
-//        CGRect newRect = [image cropRectForImage:image];
-//        CGImageRef imageRef = CGImageCreateWithImageInRect(image.CGImage, newRect);
-//        UIImage *newImage = [UIImage imageWithCGImage:imageRef];
-//        CGImageRelease(imageRef);
+        //        CGRect newRect = [image cropRectForImage:image];
+        //        CGImageRef imageRef = CGImageCreateWithImageInRect(image.CGImage, newRect);
+        //        UIImage *newImage = [UIImage imageWithCGImage:imageRef];
+        //        CGImageRelease(imageRef);
         texture = [SKTexture textureWithImage:image];
         self.object.currentUIImageLook = image;
     }
     self.object.currentLookBrightness = 0;
-
-    return [SKAction runBlock:^{
+    return ^{
         NSDebug(@"Performing: %@", self.description);
         double xScale = self.object.xScale;
         double yScale = self.object.yScale;
@@ -66,9 +70,8 @@
         if(yScale != 1.0) {
             self.object.yScale = yScale;
         }
-    }];
+    };
 }
-
 
 -(NSString*)pathForLook
 {

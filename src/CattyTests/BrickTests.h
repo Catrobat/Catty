@@ -71,6 +71,8 @@
 #import "SetBrightnessBrick.h"
 #import "MoveNStepsBrick.h"
 #import "ClearGraphicEffectBrick.h"
+#import "ChangeBrightnessByNBrick.h"
+#import "NextLookBrick.h"
 
 @interface BrickTests : XCTestCase
 
