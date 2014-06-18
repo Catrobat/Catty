@@ -25,7 +25,6 @@
 #import "Program.h"
 
 @interface ProgramManager ()
-@property (nonatomic, strong) Program *program;
 
 @end
 
@@ -37,19 +36,6 @@
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{ _sharedCattyProgramManager = [ProgramManager new]; });
     return _sharedCattyProgramManager;
-}
-
-- (void)setProgram:(Program *)program
-{
-    if (_program) {
-        _program = nil;
-    }
-    _program = program;
-}
-
-- (Program *)lastProgram
-{
-    return self.program;
 }
 
 @end

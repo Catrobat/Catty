@@ -203,9 +203,10 @@
 #pragma mark - Custom getter and setter
 - (NSMutableArray*)objectList
 {
-    // lazy instantiation
-    if (! _objectList)
-        _objectList = [[NSMutableArray alloc] init];
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        _objectList = [NSMutableArray array];
+    });
     return _objectList;
 }
 

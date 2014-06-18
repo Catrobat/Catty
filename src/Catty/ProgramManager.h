@@ -26,10 +26,8 @@
 @class Program;
 
 @interface ProgramManager : NSObject
+@property (nonatomic, strong) Program *program;
 
 + (instancetype)sharedProgramManager;
-
-- (void)setProgram:(Program *)program;
-- (Program *)lastProgram;
 
 @end

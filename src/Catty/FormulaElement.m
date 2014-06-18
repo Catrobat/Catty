@@ -81,7 +81,7 @@
             
         case USER_VARIABLE: {
             //NSDebug(@"User Variable");
-            Program* program = [ProgramManager.sharedProgramManager lastProgram];
+            Program* program = ProgramManager.sharedProgramManager.program;
             UserVariable* var = [program.variables getUserVariableNamed:self.value forSpriteObject:sprite];
             result = [var.value doubleValue];
             break;

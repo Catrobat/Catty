@@ -120,10 +120,33 @@
     _program = program;
 }
 
+- (SKView *)skView
+{
+    if (!_skView) {
+        _skView = [[SKView alloc] initWithFrame:self.view.bounds];
+        _skView.paused = NO;
+#ifdef DEBUG
+        _skView.showsFPS = YES;
+        _skView.showsNodeCount = YES;
+#endif
+        [self.view addSubview:_skView];
+    }
+    return _skView;
+}
+
+- (Scene *)scene
+{
+    if (!_scene) {
+        CGSize programSize = CGSizeMake(self.program.header.screenWidth.floatValue, self.program.header.screenHeight.floatValue);
+        _scene = [[Scene alloc] initWithSize:programSize andProgram:self.program];
+        _scene.scaleMode = SKSceneScaleModeAspectFit;
+    }
+    return _scene;
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [self.navigationController setNavigationBarHidden:YES animated:YES];
     
     [self.view addGestureRecognizer:[[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(handlePan:)]];
     [self setUpMenuButtons];
@@ -356,7 +379,7 @@
     negativeHeight.textColor = [UIColor redColor];
     [self.gridView addSubview:negativeHeight];
     
-    [self.skView addSubview:self.gridView];
+    [self.view insertSubview:self.gridView aboveSubview:self.skView];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -377,19 +400,9 @@
 
 - (void)configureScene
 {
-  SKView *skView = (SKView*) self.skView;
-  [self.view addSubview:skView];
-#ifdef DEBUG
-  skView.showsFPS = YES;
-  skView.showsNodeCount = YES;
-#endif
-
-  CGSize programSize = CGSizeMake(self.program.header.screenWidth.floatValue, self.program.header.screenHeight.floatValue);
-  Scene* scene = [[Scene alloc] initWithSize:programSize andProgram:self.program];
-  self.scene = scene;
-  self.scene.scaleMode = SKSceneScaleModeFill;
-  [skView presentScene:self.scene];
-  [[ProgramManager sharedProgramManager] setProgram:self.program];
+    self.skView.paused = NO;
+    [self.skView presentScene:self.scene];
+    [[ProgramManager sharedProgramManager] setProgram:self.program];
 }
 
 
@@ -448,8 +461,8 @@
     [[AVAudioSession sharedInstance] setActive:NO error:nil];
     [[AudioManager sharedAudioManager] pauseAllSounds];
     
-    [UIView animateWithDuration:1
-                          delay:0.5
+    [UIView animateWithDuration:1.0f
+                          delay:0.5f
                         options: UIViewAnimationOptionTransitionFlipFromLeft
                      animations:^{[self revealAnimation];}
                      completion:^(BOOL finished){
@@ -482,7 +495,7 @@
 - (void)continueProgram:(UIButton *)sender withDuration:(float)duration
 {
     [[AVAudioSession sharedInstance] setActive:YES error:nil];
-    float animateDuration;
+    CGFloat animateDuration;
     if (duration != kfirstSwipeDuration) {
         animateDuration= 0.5;
     }
@@ -496,8 +509,9 @@
                      completion:^(BOOL finished){
                          self.menuOpen = NO;
                      }];
-    SKView *view = (SKView*)self.skView;
-    view.paused = NO;
+    
+    self.skView.paused = NO;
+   
     if (duration != kDontResumeSounds) {
         [[AudioManager sharedAudioManager] resumeAllSounds];
     }
@@ -510,33 +524,19 @@
 
 - (void)restartProgram:(UIButton*)sender
 {
-    // reset scene
-    for (UIView *view in self.view.subviews) {
-        if ([view isKindOfClass:SKView.class]) {
-            [view removeFromSuperview];
-        }
-    }
-    
-    self.program = [Program lastProgram];
-    CGSize programSize = CGSizeMake(self.program.header.screenWidth.floatValue, self.program.header.screenHeight.floatValue);
-    self.scene = [[Scene alloc] initWithSize:programSize andProgram:self.program];
-    self.scene.scaleMode = SKSceneScaleModeAspectFit;
-    SKView *skView = (SKView*)self.skView;
-    skView.paused = NO;
-    [self.view addSubview:skView];
-
     if (!self.program) {
         [[[UIAlertView alloc] initWithTitle:kUIAlertViewTitleCantRestartProgram
-                                                        message:nil
-                                                       delegate:self.menuView
-                                              cancelButtonTitle:kUIAlertViewButtonTitleOK
-                                              otherButtonTitles:nil] show];
+                                    message:nil
+                                   delegate:self.menuView
+                          cancelButtonTitle:kUIAlertViewButtonTitleOK
+                          otherButtonTitles:nil] show];
         return;
     }
     
-    [skView presentScene:self.scene];
-    [[ProgramManager sharedProgramManager] setProgram:self.program];
-   [self continueProgram:nil withDuration:kDontResumeSounds];
+    [self.scene resetScene:^{
+        [self configureScene];
+        [self continueProgram:nil withDuration:kDontResumeSounds];
+    }];
 }
 
 - (void)showHideAxis:(UIButton *)sender
@@ -554,9 +554,8 @@
 - (void)manageAspectRatio:(UIButton *)sender
 {
 
-    self.scene.scaleMode = self.scene.scaleMode==SKSceneScaleModeAspectFit ? SKSceneScaleModeFill : SKSceneScaleModeAspectFit;
+    self.scene.scaleMode = self.scene.scaleMode == SKSceneScaleModeAspectFit ? SKSceneScaleModeFill : SKSceneScaleModeAspectFit;
     [self.skView setNeedsLayout];
-    
 }
 
 - (void)takeScreenshot:(UIButton *)sender
@@ -810,16 +809,14 @@
 
 -(void)pause
 {
-    SKView * view= (SKView*)self.skView;
-    view.paused = YES;
+    self.skView.paused = YES;
     [[AVAudioSession sharedInstance] setActive:NO error:nil];
     [[AudioManager sharedAudioManager] pauseAllSounds];
 }
 
 -(void)resume
 {
-    SKView * view= (SKView*)self.skView;
-    view.paused = NO;
+    self.skView.paused = NO;
     [[AVAudioSession sharedInstance] setActive:YES error:nil];
     [[AudioManager sharedAudioManager] resumeAllSounds];
 }

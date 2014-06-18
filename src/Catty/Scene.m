@@ -33,10 +33,9 @@
 
 @end
 
-
 @implementation Scene
 
-- (id)initWithSize:(CGSize)size andProgram:(Program *)program
+-(id)initWithSize:(CGSize)size andProgram:(Program *)program
 {
     if (self = [super initWithSize:size]) {
         self.program = program;
@@ -52,13 +51,17 @@
     NSDebug(@"Dealloc Scene");
 }
 
--(void)startProgram
+- (void)startProgram
 {
     CGFloat zPosition = 1;
 
+    if (self.children.count) {
+        [self resetScene:NULL];
+    }
+    
     for (SpriteObject *obj in self.program.objectList) {
         [self addChild:obj];
-         NSDebug(@"%f",zPosition);
+        NSDebug(@"%f",zPosition);
         [obj start:zPosition];
         [obj setLook];
         [obj setProgram:self.program];
@@ -71,8 +74,19 @@
     for (SpriteObject *obj in self.program.objectList) {
         obj.numberOfObjectsWithoutBackground = self.numberOfObjectsWithoutBackground;
     }
+}
 
+- (void)resetScene:(void (^)())completionBlock
+{
+    for (SKNode *node in self.children) {
+        [node removeFromParent];
+#ifdef DEBUG
+        NSLog(@"removing node: %@", node);
+#endif
+    }
     
+    [self startProgram];
+    if (completionBlock) completionBlock();
 }
 
 -(CGPoint)convertPointToScene:(CGPoint)point
