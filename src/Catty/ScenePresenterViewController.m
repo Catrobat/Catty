@@ -92,7 +92,7 @@
 {
     // lazy instantiation
     if (! _gridView) {
-        _gridView = [[UIView alloc]initWithFrame:CGRectMake(0,0,[Util getScreenWidth],[Util getScreenHeight])];
+        _gridView = [[UIView alloc]initWithFrame:self.view.bounds];
         _gridView.hidden = YES;
     }
     return _gridView;
@@ -176,7 +176,21 @@
     [self revealMenu:nil];
     [self configureScene];
     [self continueProgram:nil withDuration:kfirstSwipeDuration];
-    [self.view bringSubviewToFront:self.menuView];
+//    [self.view bringSubviewToFront:self.menuView];
+    
+    ///////
+    self.menuView.hidden = YES;
+    
+    UIButton *resetButton = [[UIButton alloc] initWithFrame:CGRectMake(0.0f, 15.0f, 100.0f, 40.0f)];
+    resetButton.titleLabel.text = @"Reset";
+    resetButton.titleLabel.textColor = UIColor.whiteColor;
+    resetButton.backgroundColor = UIColor.redColor;
+    [self.view addSubview:resetButton];
+    [self.view bringSubviewToFront:resetButton];
+    
+    [resetButton addTarget:self action:@selector(restartProgram:) forControlEvents:UIControlEventTouchUpInside];
+    
+    ///////
 }
 
 - (UIImage*)brightnessBackground:(UIImage*)startImage
@@ -398,6 +412,12 @@
   [[UIApplication sharedApplication] setStatusBarHidden:NO];
 }
 
+- (void)viewWillLayoutSubviews
+{
+    [super viewWillLayoutSubviews];
+    self.skView.bounds = self.view.bounds;
+}
+
 - (void)configureScene
 {
     self.skView.paused = NO;
@@ -533,10 +553,8 @@
         return;
     }
     
-    [self.scene resetScene:^{
-        [self configureScene];
-        [self continueProgram:nil withDuration:kDontResumeSounds];
-    }];
+    [self.skView presentScene:self.scene transition:[SKTransition fadeWithDuration:0.5f]];
+    [self continueProgram:nil withDuration:0.25f];
 }
 
 - (void)showHideAxis:(UIButton *)sender
@@ -570,18 +588,6 @@
 }
 - (void)showSaveScreenshotActionSheet
 {
-    //  NSString *actionSheetTitle = [NSString stringWithFormat:@"%@:", kUIActionSheetTitleSaveScreenshot];
-    //  NSString *buttonSaveToCameraRoll = kUIActionSheetButtonTitleCameraRoll;
-    //  NSString *buttonSaveToProject = kUIActionSheetButtonTitleProject;
-    //  NSString *cancelTitle = kUIActionSheetButtonTitleCancel;
-    //  UIActionSheet *actionSheet = [[UIActionSheet alloc]
-    //                                initWithTitle:actionSheetTitle
-    //                                delegate:self
-    //                                cancelButtonTitle:cancelTitle
-    //                                destructiveButtonTitle:nil
-    //                                otherButtonTitles:buttonSaveToCameraRoll, buttonSaveToProject,  nil];
-    //  [actionSheet showInView:self.menuView];
-
     UIImage *imageToShare = self.snapshotImage;
     NSString* path = [self.program projectPath];
     NSArray *itemsToShare = @[imageToShare];
@@ -599,36 +605,7 @@
                                          UIActivityTypeMail]; //or whichever you don't need
     [self presentViewController:activityVC animated:YES completion:nil];
 }
-// Now we have an activity view -> just in case we need change back to the action sheet
-//- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
-//{
-//  NSString *buttonTitle = [actionSheet buttonTitleAtIndex:buttonIndex];
-//  if ([buttonTitle isEqualToString:kUIActionSheetButtonTitleCameraRoll]) {
-//    /// Write to Camera Roll
-//    UIImageWriteToSavedPhotosAlbum(self.snapshotImage, nil, nil, nil);
-//    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:kUIAlertViewTitleScreenshotSavedToCameraRoll
-//                                                    message:nil
-//                                                   delegate:self.menuView
-//                                          cancelButtonTitle:kUIAlertViewButtonTitleOK
-//                                          otherButtonTitles:nil];
-//    [alert show];
-//  }
-//
-//  if ([buttonTitle isEqualToString:kUIActionSheetButtonTitleProject]) {
-//    NSString* path = [self.program projectPath];
-//    NSString *pngFilePath = [NSString stringWithFormat:@"%@/manual_screenshot.png",path];
-//    NSData *data = [NSData dataWithData:UIImagePNGRepresentation(self.snapshotImage)];
-//    [data writeToFile:pngFilePath atomically:YES];
-//    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:kUIAlertViewTitleScreenshotSavedToProject
-//                                                    message:nil
-//                                                   delegate:self.menuView
-//                                          cancelButtonTitle:kUIAlertViewButtonTitleOK
-//                                          otherButtonTitles:nil];
-//    [alert show];
-//
-//  }
-//
-//}
+
 
 #pragma PanGestureHandler
 - (void)handlePan:(UIPanGestureRecognizer *)gesture

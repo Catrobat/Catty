@@ -30,6 +30,7 @@
 
 @interface Scene()
 @property (nonatomic) NSTimeInterval lastUpdateTimeInterval;
+@property (nonatomic, assign) BOOL contentCreated;
 
 @end
 
@@ -41,7 +42,6 @@
         self.program = program;
         self.backgroundColor = [UIColor whiteColor];
         self.numberOfObjectsWithoutBackground = 0;
-        [self startProgram];
     }
     return self;
 }
@@ -51,41 +51,47 @@
     NSDebug(@"Dealloc Scene");
 }
 
+//- (void)willMoveFromView:(SKView *)view
+//{
+//    [self removeFromParent];
+//    [self removeAllActions];
+//    [self removeAllChildren];
+//}
+
+- (void)didMoveToView:(SKView *)view
+{
+    [self startProgram];
+}
+
 - (void)startProgram
 {
-    CGFloat zPosition = 1;
+    __block CGFloat zPosition = 1.0f;
 
-    if (self.children.count) {
-        [self resetScene:NULL];
-    }
-    
-    for (SpriteObject *obj in self.program.objectList) {
-        [self addChild:obj];
-        NSDebug(@"%f",zPosition);
-        [obj start:zPosition];
-        [obj setLook];
-        [obj setProgram:self.program];
-        [obj setUserInteractionEnabled:YES];
-        if (!([obj isBackground])) {
-            zPosition++;
-            self.numberOfObjectsWithoutBackground++;
-        }
-    }
-    for (SpriteObject *obj in self.program.objectList) {
-        obj.numberOfObjectsWithoutBackground = self.numberOfObjectsWithoutBackground;
-    }
+     [self resetScene:^{
+         for (SpriteObject *obj in self.program.objectList) {
+             [self addChild:obj];
+             NSDebug(@"%f",zPosition);
+             [obj start:zPosition];
+             [obj setLook];
+             [obj setProgram:self.program];
+             [obj setUserInteractionEnabled:YES];
+             if (!([obj isBackground])) {
+                 zPosition++;
+                 self.numberOfObjectsWithoutBackground++;
+             }
+         }
+         
+         for (SpriteObject *obj in self.program.objectList) {
+             obj.numberOfObjectsWithoutBackground = self.numberOfObjectsWithoutBackground;
+         }
+     }];
 }
 
 - (void)resetScene:(void (^)())completionBlock
 {
-    for (SKNode *node in self.children) {
-        [node removeFromParent];
-#ifdef DEBUG
-        NSLog(@"removing node: %@", node);
-#endif
-    }
+    [self removeAllChildren];
+    [self removeAllActions];
     
-    [self startProgram];
     if (completionBlock) completionBlock();
 }
 
@@ -176,8 +182,5 @@
     return YES;
 
 }
-
-
-
 
 @end

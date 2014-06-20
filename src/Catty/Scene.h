@@ -43,6 +43,4 @@
 
 -(BOOL)touchedwith:(NSSet*)touches withX:(CGFloat) x andY:(CGFloat) y;
 
-- (void)resetScene:(void(^)())completionBlock;
-
 @end
