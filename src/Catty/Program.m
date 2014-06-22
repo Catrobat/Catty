@@ -203,10 +203,9 @@
 #pragma mark - Custom getter and setter
 - (NSMutableArray*)objectList
 {
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        _objectList = [NSMutableArray array];
-    });
+    if (!_objectList) {
+         _objectList = [NSMutableArray array];
+    }
     return _objectList;
 }
 

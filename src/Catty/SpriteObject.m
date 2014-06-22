@@ -199,9 +199,7 @@
     }else{
         self.zPosition = zPosition;
     }
-        
     
-
     for (Script *script in self.scriptList)
     {
         if ([script isKindOfClass:[StartScript class]]) {

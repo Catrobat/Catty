@@ -32,7 +32,7 @@
 @interface Program : NSObject
 
 @property (nonatomic, strong) Header *header;
-@property (nonatomic, copy) NSMutableArray *objectList;
+@property (nonatomic, strong) NSMutableArray *objectList;
 @property (nonatomic, strong) VariablesContainer *variables;
 - (NSInteger)numberOfTotalObjects;
 - (NSInteger)numberOfBackgroundObjects;

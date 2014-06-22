@@ -26,14 +26,6 @@
 #import "Script.h"
 #import "WhenScript.h"
 
-
-
-@interface Scene()
-@property (nonatomic) NSTimeInterval lastUpdateTimeInterval;
-@property (nonatomic, assign) BOOL contentCreated;
-
-@end
-
 @implementation Scene
 
 -(id)initWithSize:(CGSize)size andProgram:(Program *)program
@@ -51,12 +43,20 @@
     NSDebug(@"Dealloc Scene");
 }
 
-//- (void)willMoveFromView:(SKView *)view
-//{
-//    [self removeFromParent];
-//    [self removeAllActions];
-//    [self removeAllChildren];
-//}
+- (void)willMoveFromView:(SKView *)view
+{
+    NSLog(@"willMoveFromView");
+}
+
+- (void)didChangeSize:(CGSize)oldSize
+{
+    NSLog(@"didChangeSize, old size %@", NSStringFromCGSize(oldSize));
+}
+
+ - (void)didEvaluateActions
+{
+//    NSLog(@"didEvaluateActions");
+}
 
 - (void)didMoveToView:(SKView *)view
 {
@@ -65,26 +65,26 @@
 
 - (void)startProgram
 {
-    __block CGFloat zPosition = 1.0f;
-
-     [self resetScene:^{
-         for (SpriteObject *obj in self.program.objectList) {
-             [self addChild:obj];
-             NSDebug(@"%f",zPosition);
-             [obj start:zPosition];
-             [obj setLook];
-             [obj setProgram:self.program];
-             [obj setUserInteractionEnabled:YES];
-             if (!([obj isBackground])) {
-                 zPosition++;
-                 self.numberOfObjectsWithoutBackground++;
-             }
-         }
-         
-         for (SpriteObject *obj in self.program.objectList) {
-             obj.numberOfObjectsWithoutBackground = self.numberOfObjectsWithoutBackground;
-         }
-     }];
+    __block CGFloat zPosition = 0.1f;
+    
+    [self resetScene:^{
+        for (SpriteObject *obj in self.program.objectList) {
+            [self addChild:obj];
+            NSDebug(@"%f",zPosition);
+            [obj start:zPosition];
+            [obj setLook];
+            [obj setProgram:self.program];
+            [obj setUserInteractionEnabled:YES];
+            if (!([obj isBackground])) {
+                zPosition++;
+                self.numberOfObjectsWithoutBackground++;
+            }
+        }
+        
+        for (SpriteObject *obj in self.program.objectList) {
+            obj.numberOfObjectsWithoutBackground = self.numberOfObjectsWithoutBackground;
+        }
+    }];
 }
 
 - (void)resetScene:(void (^)())completionBlock
