@@ -27,7 +27,7 @@
 #import "UIColor+CatrobatUIColorExtensions.h"
 #import "LanguageTranslationDefines.h"
 
-#define kForumURL @"https://pocketcode.org/tutorial"
+#define kForumURL @""
 #define kBarsHeight 44
 
 @interface HelpWebViewController ()

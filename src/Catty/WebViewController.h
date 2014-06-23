@@ -20,20 +20,16 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#define kConnectionTimeout 30
-#define kConnectionHost @"https://pocketcode.org/api/projects"
-#define kBaseUrl @"https://pocketcode.org/"
-#define kForumURL @"https://pocketcode.org/tutorial"
+#import <UIKit/UIKit.h>
 
-#define kConnectionSearch @"search.json"
-#define kConnectionRecent @"recentIDs.json"
-#define kConnectionRecentFull @"recent.json"
-#define kConnectionFeatured @"featured.json"
-#define kConnectionMostDownloaded @"mostDownloadedIDs.json"
-#define kConnectionMostDownloadedFull @"mostDownloaded.json"
-#define kConnectionMostViewed @"mostViewedIDs.json"
-#define kConnectionMostViewedFull @"mostViewed.json"
-#define kConnectionIDQuery @"getInfoById.json"
+@interface WebViewController : UIViewController <UIWebViewDelegate>
+@property (nonatomic, strong, readonly) UIWebView *webView;
 
-#define kProgramsOffset @"offset="
-#define kProgramsLimit @"limit="
+- (id)initWithURL:(NSURL *)url;
+
+- (void)goBack:(id)sender;
+- (void)goForward:(id)sender;
+- (void)refresh:(id)sender;
+- (void)stop:(id)sender;
+
+@end
