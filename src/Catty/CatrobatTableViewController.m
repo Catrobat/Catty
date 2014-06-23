@@ -220,6 +220,7 @@ NS_ENUM(NSInteger, ViewControllerIndex) {
                 
             case kHelpVC: {
                 WebViewController *webVC = [[WebViewController alloc] initWithURL:[NSURL URLWithString:kForumURL]];
+                webVC.title = kUIViewControllerTitleHelp;
                 [self.navigationController pushViewController:webVC animated:YES];
             }
                 break;

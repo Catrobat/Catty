@@ -29,11 +29,13 @@
 @property (nonatomic, strong) NSURL *url;
 @property (nonatomic, strong) NSString *toolbarTitle;
 @property (nonatomic, strong) UILabel *toolBarTitleLabel;
+@property (nonatomic, strong) UIActivityIndicatorView *spinner;
 
 @end
 
 @implementation WebViewController {
     BOOL _errorLoadingURL;
+    BOOL _doneLoadingURL;
     UIBarButtonItem *_forwardButton;
     UIBarButtonItem *_backButton;
     UIBarButtonItem *_refreshButton;
@@ -53,13 +55,13 @@
     [super viewDidLoad];
     
     _forwardButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"webview_arrow_right"] style:0 target:self action:@selector(goForward:)];
-    _backButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"webview_arrow_left"] style:0 target:self action:@selector(goBack)];
+    _backButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"webview_arrow_left"] style:0 target:self action:@selector(goBack:)];
     _refreshButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh target:self action:@selector(refresh:)];
     _stopButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemStop target:self action:@selector(stop:)];
     
+    self.spinner = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite];
     
     self.navigationController.toolbar.barStyle = UIBarStyleBlack;
-    self.navigationController.toolbar.tintColor = UIColor.orangeColor;
     self.navigationController.toolbar.hidden = NO;
 }
 
@@ -68,22 +70,31 @@
     if (self.url) {
         [self.webView loadRequest:[NSURLRequest requestWithURL:self.url]];
     }
-    self.view = self.webView;
+    UIView *view = [[UIView alloc] initWithFrame:UIScreen.mainScreen.bounds];
+    view.backgroundColor = UIColor.backgroundColor;
+    [view addSubview:self.webView];
+    self.view = view;
 }
 
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
     
+    [self.navigationController setToolbarHidden:NO];
     [self setupToolbarItems];
     [self.navigationController.navigationBar addSubview:self.progressView];
+    [self.navigationController.toolbar addSubview:self.toolBarTitleLabel];
+    [self.view addSubview:self.spinner];
+    [self.spinner startAnimating];
+    [self setProgress:0.2f];
 }
 
 - (void)viewWillLayoutSubviews
 {
     [super viewWillLayoutSubviews];
-    [self setupToolbarItems];
+//    [self setupToolbarItems];
     self.toolBarTitleLabel.text = self.toolbarTitle;
+    self.spinner.center = self.view.center;
 }
 
 - (void)viewDidLayoutSubviews
@@ -109,6 +120,7 @@
         _webView.allowsInlineMediaPlayback = YES;
         _webView.scalesPageToFit = YES;
         _webView.backgroundColor = UIColor.backgroundColor;
+        _webView.alpha = 0.0f;
     }
     return _webView;
 }
@@ -117,8 +129,9 @@
 {
     if (!_progressView) {
         _progressView = [[UIProgressView alloc] initWithProgressViewStyle:UIProgressViewStyleBar];
-        _progressView.frame = CGRectMake(0, CGRectGetHeight(self.navigationController.navigationBar.bounds) - 2.0f, CGRectGetWidth(self.navigationController.navigationBar.bounds), 2.0f);
-        _progressView.tintColor = UIColor.lightBlueColor;
+        CGFloat height = 2.0f;
+        _progressView.frame = CGRectMake(0, CGRectGetHeight(self.navigationController.navigationBar.bounds) - height, CGRectGetWidth(self.navigationController.navigationBar.bounds), height);
+        _progressView.tintColor = UIColor.lightOrangeColor;
         
     }
     return _progressView;
@@ -127,9 +140,11 @@
 - (UILabel *)toolBarTitleLabel
 {
     if (!_toolBarTitleLabel) {
-        _toolBarTitleLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 80.0f, 25.0f)];
-        _toolBarTitleLabel.center = self.navigationController.toolbar.center;
+        _toolBarTitleLabel = [[UILabel alloc] initWithFrame:CGRectMake(CGRectGetMidX(UIScreen.mainScreen.bounds) - 65.0f, 0.0f, 130.0f, 44.0f)];
         _toolBarTitleLabel.backgroundColor = UIColor.clearColor;
+        _toolBarTitleLabel.font = [UIFont systemFontOfSize:13.0f];
+        _toolBarTitleLabel.textColor = UIColor.skyBlueColor;
+        _toolBarTitleLabel.textAlignment = NSTextAlignmentCenter;
     }
     return _toolBarTitleLabel;
 }
@@ -146,12 +161,17 @@
 - (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error
 {
     [self setupToolbarItems];
-    [[[UIAlertView alloc] initWithTitle:@"Loading Help Info"
-                                message:error.localizedDescription
-                               delegate:self
-                      cancelButtonTitle:@"OK"
-                      otherButtonTitles:nil] show];
     _errorLoadingURL = YES;
+    _doneLoadingURL = NO;
+    [self setProgress:0.0f];
+    
+    if (error.code != -999) {
+        [[[UIAlertView alloc] initWithTitle:@"Loading Help Info"
+                                    message:error.localizedDescription
+                                   delegate:self
+                          cancelButtonTitle:@"OK"
+                          otherButtonTitles:nil] show];
+    }
 }
 
 //- (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType
@@ -161,12 +181,20 @@
 
 - (void)webViewDidFinishLoad:(UIWebView *)webView
 {
-    [self setupToolbarItems];
+   [self setupToolbarItems];
     _errorLoadingURL = NO;
+    _doneLoadingURL = YES;
+    
+    [self setProgress:1.0f];
+    if (self.spinner.isAnimating) [self.spinner stopAnimating];
+    [UIView animateWithDuration:0.25f animations:^{ self.webView.alpha = 1.0f; }];
 }
 
 - (void)webViewDidStartLoad:(UIWebView *)webView
 {
+    _doneLoadingURL = NO;
+    
+    [self setProgress:0.2f];
     [self setupToolbarItems];
 }
 
@@ -213,13 +241,24 @@
 {
     UIBarButtonItem *refreshOrStopButton = self.webView.loading ? _stopButton : _refreshButton;
     UIBarButtonItem *fixedSpace = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:nil action:nil];
-    fixedSpace.width = 105.0f;
+    fixedSpace.width = 40.0f;
     UIBarButtonItem *flexibleSpace = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
+    
+    self.toolBarTitleLabel.text = self.toolbarTitle;
     
     _forwardButton.enabled = self.webView.canGoForward;
     _backButton.enabled = self.webView.canGoBack;
     
-    self.navigationController.toolbar.items = @[_backButton, fixedSpace, _forwardButton, flexibleSpace, refreshOrStopButton];
+    
+    self.toolbarItems = @[_backButton, fixedSpace, _forwardButton, flexibleSpace, refreshOrStopButton];
+}
+
+- (void)setProgress:(CGFloat)progress
+{
+    self.progressView.progress = progress;
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.2f * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        self.progressView.hidden = _doneLoadingURL;
+    });
 }
 
 @end
