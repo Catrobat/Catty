@@ -66,8 +66,8 @@ static NSString *const kUserInfoSound = @"UserInfoSound";
 static NSString *const kSelectionMenuTitle = @"Select Brick Category";
 
 // UI Elements
-#define NAVIGATION_BAR_HEIGHT 64.0f
-#define STATUS_BAR_HEIGHT 10.0f
+#define kNavigationbarHeight 64.0f
+#define kToolbarHeight 44.0f
 #define kHandleImageHeight 15.0f
 #define kHandleImageWidth 40.0f
 #define kOffsetTopBrickSelectionView 70.0f

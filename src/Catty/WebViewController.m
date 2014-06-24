@@ -21,6 +21,7 @@
  */
 
 #import "WebViewController.h"
+#import "UIDefines.h"
 #import "UIColor+CatrobatUIColorExtensions.h"
 
 @interface WebViewController ()
@@ -33,10 +34,14 @@
 
 @end
 
+#define kPullThreshold 0.0f
+
 @implementation WebViewController {
     BOOL _errorLoadingURL;
     BOOL _doneLoadingURL;
     BOOL _showActivityIndicator;
+    BOOL _stopUpdateTransalation;
+    BOOL _deceleratingBackToZero;
     CGFloat _URLViewHeight;
     UIBarButtonItem *_forwardButton;
     UIBarButtonItem *_backButton;
@@ -69,6 +74,8 @@
     
     self.navigationController.toolbar.barStyle = UIBarStyleBlack;
     self.navigationController.toolbar.hidden = NO;
+    
+    self.webView.scrollView.delegate = self;
 }
 
 - (void)loadView
@@ -95,6 +102,13 @@
     [self.spinner startAnimating];
 }
 
+- (void) viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    self.navigationController.toolbar.transform = CGAffineTransformIdentity;
+    [self.webView stopLoading];
+}
+
 - (void)viewWillLayoutSubviews
 {
     [super viewWillLayoutSubviews];
@@ -103,14 +117,8 @@
     self.URLView.frame = CGRectMake(0.0f, CGRectGetHeight(self.navigationController.navigationBar.bounds) + _URLViewHeight, CGRectGetWidth(self.navigationController.navigationBar.bounds), _URLViewHeight);
 }
 
-- (void)viewDidLayoutSubviews
-{
-    [super viewDidLayoutSubviews];
-}
-
 - (void)dealloc
 {
-    [self.webView stopLoading];
     [self.progressView removeFromSuperview];
     self.URL = nil;
     self.webView.delegate = nil;
@@ -182,13 +190,13 @@
     _doneLoadingURL = YES;
     
     [self setProgress:1.0f];
-    
     if (self.spinner.isAnimating) [self.spinner stopAnimating];
     
     self.URLView.transform = CGAffineTransformMakeTranslation(0.0f, -_URLViewHeight);
+    self.navigationController.toolbar.transform = CGAffineTransformIdentity;
     [UIView animateWithDuration:0.25f animations:^{
         self.webView.alpha = 1.0f;
-        self.URLView.alpha = 0.6f;
+        self.URLView.alpha = 0.3f;
         self.URLView.transform = CGAffineTransformMakeTranslation(0.0f, _URLViewHeight);
     }];
 }
@@ -197,15 +205,60 @@
 {
     [self setEnableActivityIndicator:YES];
     _doneLoadingURL = NO;
-    
-    [UIView animateWithDuration:0.25f animations:^{
-        self.URLView.alpha = 0.0f;
-    }];
-    
+   [UIView animateWithDuration:0.2f animations:^{ self.URLView.alpha = 0.0f; }];
     [self setProgress:0.2f];
     [self setupToolbarItems];
 }
 
+#pragma mark - UIScrollViewDelegate
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView
+{
+    CGFloat offsetY = MAX(0.0f, scrollView.contentOffset.y);
+//    NSLog(@"y = %f", offsetY);
+    
+    if (offsetY <= kToolbarHeight && !_stopUpdateTransalation) {
+        self.navigationController.toolbar.transform = CGAffineTransformMakeTranslation(0.0f, offsetY);
+    }
+}
+
+- (void)scrollViewWillEndDragging:(UIScrollView *)scrollView
+                     withVelocity:(CGPoint)velocity
+              targetContentOffset:(inout CGPoint *)targetContentOffset
+{
+    CGFloat offsetY = MAX(0.0f, scrollView.contentOffset.y);
+    
+    if (offsetY >= kPullThreshold && (*targetContentOffset).y != 0.0f) {
+        [UIView animateWithDuration:0.2f animations:^{
+            self.navigationController.toolbar.transform = CGAffineTransformMakeTranslation(0.0f, kToolbarHeight);
+            self.URLView.alpha = 0.0f;
+        }];
+        _stopUpdateTransalation = YES;
+    } else {
+        _stopUpdateTransalation = NO;
+        _deceleratingBackToZero = NO;
+    }
+}
+
+- (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate
+{
+    if (!decelerate) {
+        if (scrollView.contentOffset.y == scrollView.contentSize.height - CGRectGetHeight(scrollView.bounds) + kNavigationbarHeight - _URLViewHeight) {
+            
+        }
+    }
+}
+
+- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
+{
+    if (scrollView.contentOffset.y == scrollView.contentSize.height - CGRectGetHeight(scrollView.bounds) + kNavigationbarHeight - _URLViewHeight) {
+
+    }
+}
+
+- (void)scrollingEnded
+{
+    _stopUpdateTransalation = NO;
+}
 
 #pragma mark - Webview Navigation
 - (void)goBack:(id)sender

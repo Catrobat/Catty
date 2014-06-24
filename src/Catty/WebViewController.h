@@ -22,7 +22,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface WebViewController : UIViewController <UIWebViewDelegate>
+@interface WebViewController : UIViewController <UIWebViewDelegate, UIScrollViewDelegate>
 @property (nonatomic, strong, readonly) UIWebView *webView;
 
 - (id)initWithURL:(NSURL *)URL;
