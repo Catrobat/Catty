@@ -25,7 +25,7 @@
 @interface WebViewController : UIViewController <UIWebViewDelegate>
 @property (nonatomic, strong, readonly) UIWebView *webView;
 
-- (id)initWithURL:(NSURL *)url;
+- (id)initWithURL:(NSURL *)URL;
 
 - (void)goBack:(id)sender;
 - (void)goForward:(id)sender;

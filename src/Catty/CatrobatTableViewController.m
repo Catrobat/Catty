@@ -44,7 +44,7 @@
 #import "ActionSheetAlertViewTags.h"
 #import "Reachability.h"
 #import "LanguageTranslationDefines.h"
-#import "WebViewController.h"
+#import "HelpWebViewController.h"
 #import "NetworkDefines.h"
 
 NS_ENUM(NSInteger, ViewControllerIndex) {
@@ -219,8 +219,7 @@ NS_ENUM(NSInteger, ViewControllerIndex) {
                 break;
                 
             case kHelpVC: {
-                WebViewController *webVC = [[WebViewController alloc] initWithURL:[NSURL URLWithString:kForumURL]];
-                webVC.title = kUIViewControllerTitleHelp;
+                HelpWebViewController *webVC = [[HelpWebViewController alloc] initWithURL:[NSURL URLWithString:kForumURL]];
                 [self.navigationController pushViewController:webVC animated:YES];
             }
                 break;
