@@ -30,6 +30,8 @@
 @property (nonatomic, strong) NSURL *URL;
 @property (nonatomic, strong) UILabel *urlTitleLabel;
 @property (nonatomic, strong) UIActivityIndicatorView *spinner;
+@property (nonatomic, strong) UIView *touchHelperView;
+@property (strong, nonatomic) UITapGestureRecognizer *tapGesture;
 
 @end
 
@@ -43,7 +45,6 @@
     BOOL _decelerateBackToZero;
     BOOL _updateAnimations;
     CGFloat _tempTranslateValue;
-    CGPoint _originToolBar;
     CGFloat _tempYOffset;
     CGFloat _URLViewHeight;
     UIBarButtonItem *_forwardButton;
@@ -71,6 +72,9 @@
     _URLViewHeight = UIApplication.sharedApplication.statusBarFrame.size.height;
     
     self.spinner = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite];
+    self.touchHelperView = [[UIView alloc] initWithFrame:CGRectZero];
+    self.touchHelperView.backgroundColor = UIColor.clearColor;
+    self.tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleTap:)];
     
     self.navigationController.toolbar.barStyle = UIBarStyleBlack;
     self.navigationController.toolbar.hidden = NO;
@@ -84,6 +88,7 @@
     if (self.URL) {
         [self.webView loadRequest:[NSURLRequest requestWithURL:self.URL]];
     }
+    
     UIView *view = [[UIView alloc] initWithFrame:UIScreen.mainScreen.bounds];
     view.backgroundColor = UIColor.backgroundColor;
     [view addSubview:self.webView];
@@ -98,6 +103,8 @@
     [self setupToolbarItems];
     [self.navigationController.navigationBar addSubview:self.progressView];
     [self.view insertSubview:self.urlTitleLabel aboveSubview:self.webView];
+    [self.view insertSubview:self.touchHelperView aboveSubview:self.webView];
+    [self.touchHelperView addGestureRecognizer:self.tapGesture];
     [self.view addSubview:self.spinner];
     [self.spinner startAnimating];
 }
@@ -105,7 +112,6 @@
 - (void) viewWillDisappear:(BOOL)animated
 {
     [super viewWillDisappear:animated];
-    self.navigationController.toolbar.transform = CGAffineTransformIdentity;
     [self.webView stopLoading];
 }
 
@@ -113,7 +119,7 @@
 {
     [super viewWillLayoutSubviews];
     self.spinner.center = self.view.center;
-    _originToolBar = self.navigationController.toolbar.frame.origin;
+    self.touchHelperView.frame = CGRectMake(0.0f, CGRectGetHeight(self.view.bounds) - kToolbarHeight, CGRectGetWidth(self.view.bounds), kToolbarHeight);
 }
 
 - (void)dealloc
@@ -333,5 +339,24 @@
     }
 }
 
+- (void)showControls
+{
+    [UIView animateWithDuration:0.25f animations:^{
+        self.navigationController.navigationBar.transform = CGAffineTransformIdentity;
+        self.webView.transform = CGAffineTransformIdentity;
+        self.navigationController.toolbar.transform = CGAffineTransformIdentity;
+        self.urlTitleLabel.transform = CGAffineTransformIdentity;
+    }];
+    
+}
+
+- (void)handleTap:(UITapGestureRecognizer *)sender
+{
+    if ([sender isKindOfClass:UITapGestureRecognizer.class]) {
+        if (sender.state == UIGestureRecognizerStateEnded) {
+            [self showControls];
+        }
+    }
+}
 
 @end
