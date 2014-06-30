@@ -28,20 +28,23 @@
 @property (nonatomic, strong) UIWebView *webView;
 @property (nonatomic, strong) UIProgressView *progressView;
 @property (nonatomic, strong) NSURL *URL;
-@property (nonatomic, strong) UILabel *toolBarTitleLabel;
+@property (nonatomic, strong) UILabel *urlTitleLabel;
 @property (nonatomic, strong) UIActivityIndicatorView *spinner;
-@property (nonatomic, strong) UIView *URLView;
 
 @end
 
-#define kPullThreshold 0.0f
+#define kScrollDownThreshold 44.0f
 
 @implementation WebViewController {
     BOOL _errorLoadingURL;
     BOOL _doneLoadingURL;
     BOOL _showActivityIndicator;
     BOOL _stopUpdateTransalation;
-    BOOL _deceleratingBackToZero;
+    BOOL _decelerateBackToZero;
+    BOOL _updateAnimations;
+    CGFloat _tempTranslateValue;
+    CGPoint _originToolBar;
+    CGFloat _tempYOffset;
     CGFloat _URLViewHeight;
     UIBarButtonItem *_forwardButton;
     UIBarButtonItem *_backButton;
@@ -68,14 +71,12 @@
     _URLViewHeight = UIApplication.sharedApplication.statusBarFrame.size.height;
     
     self.spinner = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite];
-    self.URLView = [[UIView alloc] initWithFrame:CGRectZero];
-    self.URLView.backgroundColor = UIColor.navBarColor;
-    self.URLView.alpha = 0.0f;
     
     self.navigationController.toolbar.barStyle = UIBarStyleBlack;
     self.navigationController.toolbar.hidden = NO;
     
     self.webView.scrollView.delegate = self;
+    _updateAnimations = YES;
 }
 
 - (void)loadView
@@ -96,8 +97,7 @@
     [self.navigationController setToolbarHidden:NO];
     [self setupToolbarItems];
     [self.navigationController.navigationBar addSubview:self.progressView];
-    [self.view insertSubview:self.URLView aboveSubview:self.webView];
-    [self.URLView addSubview:self.toolBarTitleLabel];
+    [self.view insertSubview:self.urlTitleLabel aboveSubview:self.webView];
     [self.view addSubview:self.spinner];
     [self.spinner startAnimating];
 }
@@ -113,8 +113,7 @@
 {
     [super viewWillLayoutSubviews];
     self.spinner.center = self.view.center;
-    
-    self.URLView.frame = CGRectMake(0.0f, CGRectGetHeight(self.navigationController.navigationBar.bounds) + _URLViewHeight, CGRectGetWidth(self.navigationController.navigationBar.bounds), _URLViewHeight);
+    _originToolBar = self.navigationController.toolbar.frame.origin;
 }
 
 - (void)dealloc
@@ -151,16 +150,17 @@
     return _progressView;
 }
 
-- (UILabel *)toolBarTitleLabel
+- (UILabel *)urlTitleLabel
 {
-    if (!_toolBarTitleLabel) {
-        _toolBarTitleLabel = [[UILabel alloc] initWithFrame:CGRectMake(0.0f, 0.0f, CGRectGetWidth(UIScreen.mainScreen.bounds), _URLViewHeight)];
-        _toolBarTitleLabel.backgroundColor = UIColor.clearColor;
-        _toolBarTitleLabel.font = [UIFont systemFontOfSize:12.0f];
-        _toolBarTitleLabel.textColor = UIColor.skyBlueColor;
-        _toolBarTitleLabel.textAlignment = NSTextAlignmentCenter;
+    if (!_urlTitleLabel) {
+        _urlTitleLabel = [[UILabel alloc] initWithFrame:CGRectMake(0.0f, CGRectGetHeight(self.navigationController.navigationBar.bounds) + _URLViewHeight, CGRectGetWidth(UIScreen.mainScreen.bounds), _URLViewHeight)];
+        _urlTitleLabel.backgroundColor = UIColor.backgroundColor;
+        _urlTitleLabel.font = [UIFont systemFontOfSize:13.0f];
+        _urlTitleLabel.textColor = UIColor.lightBlueColor;
+        _urlTitleLabel.textAlignment = NSTextAlignmentCenter;
+        _urlTitleLabel.layer.opacity = 0.7f;
     }
-    return _toolBarTitleLabel;
+    return _urlTitleLabel;
 }
 
 #pragma mark - WebViewDelegate
@@ -192,12 +192,9 @@
     [self setProgress:1.0f];
     if (self.spinner.isAnimating) [self.spinner stopAnimating];
     
-    self.URLView.transform = CGAffineTransformMakeTranslation(0.0f, -_URLViewHeight);
-    self.navigationController.toolbar.transform = CGAffineTransformIdentity;
+//    self.URLView.transform = CGAffineTransformMakeTranslation(0.0f, -_URLViewHeight);
     [UIView animateWithDuration:0.25f animations:^{
         self.webView.alpha = 1.0f;
-        self.URLView.alpha = 0.3f;
-        self.URLView.transform = CGAffineTransformMakeTranslation(0.0f, _URLViewHeight);
     }];
 }
 
@@ -205,7 +202,7 @@
 {
     [self setEnableActivityIndicator:YES];
     _doneLoadingURL = NO;
-   [UIView animateWithDuration:0.2f animations:^{ self.URLView.alpha = 0.0f; }];
+//   [UIView animateWithDuration:0.2f animations:^{ self.URLView.alpha = 0.0f; }];
     [self setProgress:0.2f];
     [self setupToolbarItems];
 }
@@ -213,51 +210,55 @@
 #pragma mark - UIScrollViewDelegate
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView
 {
-    CGFloat offsetY = MAX(0.0f, scrollView.contentOffset.y);
-//    NSLog(@"y = %f", offsetY);
+    CGFloat offsetY = MAX(0.0f, scrollView.contentOffset.y + kNavigationbarHeight);    
+    CGFloat translateValueToolBar = MIN(kToolbarHeight, offsetY);
+    CGFloat translateValueNavBar = MIN(kNavigationbarHeight - 2.0f, offsetY);
+    CGFloat translateUrlTitleLabel = MIN(_URLViewHeight * 2.0f, offsetY);
     
-    if (offsetY <= kToolbarHeight && !_stopUpdateTransalation) {
-        self.navigationController.toolbar.transform = CGAffineTransformMakeTranslation(0.0f, offsetY);
-    }
+    self.navigationController.navigationBar.transform = CGAffineTransformMakeTranslation(0.0f, -translateValueNavBar);
+    self.webView.transform = CGAffineTransformMakeTranslation(0.0f, translateValueToolBar);
+    self.navigationController.toolbar.transform = CGAffineTransformMakeTranslation(0.0f, translateValueToolBar);
+    self.urlTitleLabel.transform = CGAffineTransformMakeTranslation(0.0f, -translateUrlTitleLabel);
 }
 
 - (void)scrollViewWillEndDragging:(UIScrollView *)scrollView
                      withVelocity:(CGPoint)velocity
               targetContentOffset:(inout CGPoint *)targetContentOffset
 {
-    CGFloat offsetY = MAX(0.0f, scrollView.contentOffset.y);
     
-    if (offsetY >= kPullThreshold && (*targetContentOffset).y != 0.0f) {
-        [UIView animateWithDuration:0.2f animations:^{
-            self.navigationController.toolbar.transform = CGAffineTransformMakeTranslation(0.0f, kToolbarHeight);
-            self.URLView.alpha = 0.0f;
-        }];
-        _stopUpdateTransalation = YES;
+    if ((*targetContentOffset).y + kNavigationbarHeight >= _tempYOffset) {
+        _decelerateBackToZero = NO;
     } else {
-        _stopUpdateTransalation = NO;
-        _deceleratingBackToZero = NO;
+        _decelerateBackToZero = YES;
     }
+    
+    _tempYOffset = MAX(0.0f, scrollView.contentOffset.y + kNavigationbarHeight);
 }
 
 - (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate
 {
     if (!decelerate) {
-        if (scrollView.contentOffset.y == scrollView.contentSize.height - CGRectGetHeight(scrollView.bounds) + kNavigationbarHeight - _URLViewHeight) {
-            
-        }
+        [self endScrollingWithOffset:MAX(0.0f, scrollView.contentOffset.y + kNavigationbarHeight)];
     }
 }
 
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
 {
-    if (scrollView.contentOffset.y == scrollView.contentSize.height - CGRectGetHeight(scrollView.bounds) + kNavigationbarHeight - _URLViewHeight) {
-
-    }
+    [self endScrollingWithOffset:MAX(0.0f, scrollView.contentOffset.y + kNavigationbarHeight)];
 }
 
-- (void)scrollingEnded
+
+- (void)endScrollingWithOffset:(CGFloat)offsetY
 {
-    _stopUpdateTransalation = NO;
+    if (offsetY < kScrollDownThreshold && offsetY != 0.0f) {
+        [UIView animateWithDuration:0.15f animations:^{
+            self.navigationController.navigationBar.transform = CGAffineTransformIdentity;
+            self.webView.transform = CGAffineTransformIdentity;
+            self.navigationController.toolbar.transform = CGAffineTransformIdentity;
+            self.urlTitleLabel.transform = CGAffineTransformIdentity;
+            self.webView.scrollView.contentOffset = CGPointMake(0.0f, -CGRectGetHeight(self.navigationController.navigationBar.bounds) - _URLViewHeight);
+        }];
+    }
 }
 
 #pragma mark - Webview Navigation
@@ -305,7 +306,7 @@
     fixedSpace.width = 50.0f;
     UIBarButtonItem *flexibleSpace = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
     
-    self.toolBarTitleLabel.text = [NSString stringWithFormat:@"%@%@", [self.URL host], [self.URL relativePath]];
+    self.urlTitleLabel.text = [NSString stringWithFormat:@"%@%@", [self.URL host], [self.URL relativePath]];
     
     _forwardButton.enabled = self.webView.canGoForward;
     _backButton.enabled = self.webView.canGoBack;
