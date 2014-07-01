@@ -44,6 +44,7 @@
 #import "ActionSheetAlertViewTags.h"
 #import "Reachability.h"
 #import "LanguageTranslationDefines.h"
+#import "HelpWebViewController.h"
 
 @interface CatrobatTableViewController () <UIAlertViewDelegate, UITextFieldDelegate>
 
@@ -278,7 +279,7 @@
             return NO;
         }
         return YES;
-    } else if([identifier isEqualToString:kSegueToExplore]){
+    } else if([identifier isEqualToString:kSegueToExplore]||[identifier isEqualToString:kSegueToHelp]){
         NetworkStatus remoteHostStatus = [self.reachability currentReachabilityStatus];
         
         if(remoteHostStatus == NotReachable) {
@@ -382,7 +383,8 @@
     NetworkStatus remoteHostStatus = [self.reachability currentReachabilityStatus];
     if(remoteHostStatus == NotReachable) {
         if ([self.navigationController.topViewController isKindOfClass:[DownloadTabBarController class]] ||
-            [self.navigationController.topViewController isKindOfClass:[ProgramDetailStoreViewController class]]) {
+            [self.navigationController.topViewController isKindOfClass:[ProgramDetailStoreViewController class]] ||
+            [self.navigationController.topViewController isKindOfClass:[HelpWebViewController class]] ) {
             [Util alertWithText:@"No Internet Connection!"];
             [self.navigationController popToRootViewControllerAnimated:YES];
         }
@@ -393,7 +395,8 @@
         }else{
             NSDebug(@"reachable via wifi but no data");
             if ([self.navigationController.topViewController isKindOfClass:[DownloadTabBarController class]] ||
-                [self.navigationController.topViewController isKindOfClass:[ProgramDetailStoreViewController class]]) {
+                [self.navigationController.topViewController isKindOfClass:[ProgramDetailStoreViewController class]]||
+                [self.navigationController.topViewController isKindOfClass:[HelpWebViewController class]]) {
                 [Util alertWithText:@"No Internet Connection!"];
                 [self.navigationController popToRootViewControllerAnimated:YES];
             }
@@ -404,7 +407,8 @@
         }else{
            NSDebug(@"reachable via cellular but no data");
             if ([self.navigationController.topViewController isKindOfClass:[DownloadTabBarController class]] ||
-                [self.navigationController.topViewController isKindOfClass:[ProgramDetailStoreViewController class]]) {
+                [self.navigationController.topViewController isKindOfClass:[ProgramDetailStoreViewController class]]||
+                [self.navigationController.topViewController isKindOfClass:[HelpWebViewController class]]) {
                 [Util alertWithText:@"No Internet Connection!"];
                 [self.navigationController popToRootViewControllerAnimated:YES];
             }
