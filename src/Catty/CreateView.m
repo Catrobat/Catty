@@ -110,7 +110,7 @@
     UILabel* nameLabel = [[UILabel alloc] initWithFrame:CGRectMake(view.frame.size.width/2-10,height*0.05, 155, 25)];
     nameLabel.text = projectName;
     nameLabel.lineBreakMode = NSLineBreakByWordWrapping;
-    nameLabel.numberOfLines = 0;
+    nameLabel.numberOfLines = 2;
     [self configureTitleLabel:nameLabel andHeight: height];
     [nameLabel sizeToFit];
     [self setMaxHeightIfGreaterForView:view withHeight:height*0.1+nameLabel.frame.size.height];
