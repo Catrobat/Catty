@@ -23,6 +23,7 @@
 #import "WebViewController.h"
 #import "UIDefines.h"
 #import "UIColor+CatrobatUIColorExtensions.h"
+#import <tgmath.h>
 
 @interface WebViewController ()
 @property (nonatomic, strong) UIWebView *webView;
@@ -41,11 +42,6 @@
     BOOL _errorLoadingURL;
     BOOL _doneLoadingURL;
     BOOL _showActivityIndicator;
-    BOOL _stopUpdateTransalation;
-    BOOL _decelerateBackToZero;
-    BOOL _updateAnimations;
-    CGFloat _tempTranslateValue;
-    CGFloat _tempYOffset;
     CGFloat _URLViewHeight;
     UIBarButtonItem *_forwardButton;
     UIBarButtonItem *_backButton;
@@ -80,7 +76,6 @@
     self.navigationController.toolbar.hidden = NO;
     
     self.webView.scrollView.delegate = self;
-    _updateAnimations = YES;
 }
 
 - (void)loadView
@@ -113,6 +108,10 @@
 {
     [super viewWillDisappear:animated];
     [self.webView stopLoading];
+    
+    if ([self.view.window.gestureRecognizers containsObject:self.tapGesture]) {
+        [self.view.window removeGestureRecognizer:self.tapGesture];
+    }
 }
 
 - (void)viewWillLayoutSubviews
@@ -164,7 +163,7 @@
         _urlTitleLabel.font = [UIFont systemFontOfSize:13.0f];
         _urlTitleLabel.textColor = UIColor.lightBlueColor;
         _urlTitleLabel.textAlignment = NSTextAlignmentCenter;
-        _urlTitleLabel.layer.opacity = 0.7f;
+        _urlTitleLabel.alpha = 0.6f;
     }
     return _urlTitleLabel;
 }
@@ -187,6 +186,7 @@
     }
 }
 
+
 - (void)webViewDidFinishLoad:(UIWebView *)webView
 {
     [self setEnableActivityIndicator:NO];
@@ -196,19 +196,15 @@
     _doneLoadingURL = YES;
     
     [self setProgress:1.0f];
+    [UIView animateWithDuration:0.25f animations:^{ self.webView.alpha = 1.0f; }];
     if (self.spinner.isAnimating) [self.spinner stopAnimating];
-    
-//    self.URLView.transform = CGAffineTransformMakeTranslation(0.0f, -_URLViewHeight);
-    [UIView animateWithDuration:0.25f animations:^{
-        self.webView.alpha = 1.0f;
-    }];
 }
 
 - (void)webViewDidStartLoad:(UIWebView *)webView
 {
+    [self showControls];
     [self setEnableActivityIndicator:YES];
     _doneLoadingURL = NO;
-//   [UIView animateWithDuration:0.2f animations:^{ self.URLView.alpha = 0.0f; }];
     [self setProgress:0.2f];
     [self setupToolbarItems];
 }
@@ -216,29 +212,30 @@
 #pragma mark - UIScrollViewDelegate
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView
 {
-    CGFloat offsetY = MAX(0.0f, scrollView.contentOffset.y + kNavigationbarHeight);    
-    CGFloat translateValueToolBar = MIN(kToolbarHeight, offsetY);
-    CGFloat translateValueNavBar = MIN(kNavigationbarHeight - 2.0f, offsetY);
-    CGFloat translateUrlTitleLabel = MIN(_URLViewHeight * 2.0f, offsetY);
+    CGFloat offsetY;
+    CGFloat translateValueToolBar;
+    CGFloat translateValueNavBar;
+    CGFloat translateUrlTitleLabel;
+    CGFloat alphaURLLabel;
+    CGFloat alphaNavBar;
     
-    self.navigationController.navigationBar.transform = CGAffineTransformMakeTranslation(0.0f, -translateValueNavBar);
-    self.webView.transform = CGAffineTransformMakeTranslation(0.0f, translateValueToolBar);
-    self.navigationController.toolbar.transform = CGAffineTransformMakeTranslation(0.0f, translateValueToolBar);
-    self.urlTitleLabel.transform = CGAffineTransformMakeTranslation(0.0f, -translateUrlTitleLabel);
-}
-
-- (void)scrollViewWillEndDragging:(UIScrollView *)scrollView
-                     withVelocity:(CGPoint)velocity
-              targetContentOffset:(inout CGPoint *)targetContentOffset
-{
-    
-    if ((*targetContentOffset).y + kNavigationbarHeight >= _tempYOffset) {
-        _decelerateBackToZero = NO;
-    } else {
-        _decelerateBackToZero = YES;
+    if (_doneLoadingURL) {
+        offsetY = MAX(0.0f, scrollView.contentOffset.y + kNavigationbarHeight);
+        
+        translateValueToolBar = MIN(kToolbarHeight + 1.0f, offsetY);
+        translateValueNavBar = MIN(kNavigationbarHeight, offsetY);
+        translateUrlTitleLabel = MIN(_URLViewHeight * 2.0f, offsetY);
+        alphaURLLabel = 0.6f + offsetY * 0.01f;
+        alphaNavBar = 1.0f - offsetY * 0.08f;
+        
+        self.urlTitleLabel.alpha = alphaURLLabel;
+        self.navigationController.navigationBar.tintColor = [self.navigationController.navigationBar.tintColor colorWithAlphaComponent: alphaNavBar];
+        self.navigationController.navigationBar.transform = CGAffineTransformMakeTranslation(0.0f, -translateValueNavBar);
+        self.webView.transform = CGAffineTransformMakeTranslation(0.0f, translateValueToolBar);
+        self.navigationController.toolbar.transform = CGAffineTransformMakeTranslation(0.0f, translateValueToolBar);
+        self.urlTitleLabel.transform = CGAffineTransformMakeTranslation(0.0f, -translateUrlTitleLabel);
     }
     
-    _tempYOffset = MAX(0.0f, scrollView.contentOffset.y + kNavigationbarHeight);
 }
 
 - (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate
@@ -263,6 +260,8 @@
             self.navigationController.toolbar.transform = CGAffineTransformIdentity;
             self.urlTitleLabel.transform = CGAffineTransformIdentity;
             self.webView.scrollView.contentOffset = CGPointMake(0.0f, -CGRectGetHeight(self.navigationController.navigationBar.bounds) - _URLViewHeight);
+            self.navigationController.navigationBar.tintColor = [self.navigationController.navigationBar.tintColor colorWithAlphaComponent:1.0f];
+            self.urlTitleLabel.alpha = 0.6f;
         }];
     }
 }
@@ -295,6 +294,7 @@
             [self.webView loadRequest:[NSURLRequest requestWithURL:self.URL]];
         }
     }
+    self.webView.scrollView.contentOffset = CGPointMake(0.0f, -CGRectGetHeight(self.navigationController.navigationBar.bounds) - _URLViewHeight);
 }
 
 - (void)stop:(id)sender
@@ -345,7 +345,13 @@
         self.navigationController.navigationBar.transform = CGAffineTransformIdentity;
         self.webView.transform = CGAffineTransformIdentity;
         self.navigationController.toolbar.transform = CGAffineTransformIdentity;
-        self.urlTitleLabel.transform = CGAffineTransformIdentity;
+        self.navigationController.navigationBar.tintColor = [self.navigationController.navigationBar.tintColor colorWithAlphaComponent:1.0f];
+        self.urlTitleLabel.alpha = 0.6f;
+    } completion:^(BOOL finished) {
+        if (finished)
+            [UIView animateWithDuration:0.3f delay:0.0f usingSpringWithDamping:1.0f initialSpringVelocity:0.0f options:UIViewAnimationOptionCurveEaseIn animations:^{
+                self.urlTitleLabel.transform = CGAffineTransformIdentity;
+            } completion:NULL];
     }];
     
 }
