@@ -24,10 +24,6 @@
 #import "WebViewController.h"
 
 @interface HelpWebViewController : WebViewController
-//@property (strong, nonatomic) IBOutlet UIWebView *webView;
-//@property (weak, nonatomic) IBOutlet UIProgressView *progressView;
-//
-//- (IBAction)previousPage:(id)sender;
-//- (IBAction)nextPage:(id)sender;
+
 
 @end

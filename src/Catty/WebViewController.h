@@ -24,6 +24,7 @@
 
 @interface WebViewController : UIViewController <UIWebViewDelegate, UIScrollViewDelegate>
 @property (nonatomic, strong, readonly) UIWebView *webView;
+@property (nonatomic, strong) UIColor *tintColor;
 
 - (id)initWithURL:(NSURL *)URL;
 
