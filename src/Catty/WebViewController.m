@@ -33,18 +33,21 @@
 @property (nonatomic, strong) UIActivityIndicatorView *spinner;
 @property (nonatomic, strong) UIView *touchHelperView;
 @property (strong, nonatomic) UITapGestureRecognizer *tapGesture;
+@property (strong, nonatomic) UIView *forwardButtonBackGroundView;
+@property (strong, nonatomic) UIView *backButtonBackGroundView;
 
 @end
 
-#define kScrollDownThreshold 44.0f
+#define kTranslateYNavigationBar 40.0f
+#define kScrollDownThreshold 30.0f
+#define kURLViewHeight 20.0f
 
 @implementation WebViewController {
     BOOL _errorLoadingURL;
     BOOL _doneLoadingURL;
     BOOL _showActivityIndicator;
-    CGFloat _URLViewHeight;
-    UIBarButtonItem *_forwardButton;
-    UIBarButtonItem *_backButton;
+    UIButton *_forwardButton;
+    UIButton *_backButton;
     UIBarButtonItem *_refreshButton;
     UIBarButtonItem *_stopButton;
 }
@@ -61,19 +64,26 @@
 {
     [super viewDidLoad];
     
-    _forwardButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"webview_arrow_right"] style:0 target:self action:@selector(goForward:)];
-    _backButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"webview_arrow_left"] style:0 target:self action:@selector(goBack:)];
+    UIImage *forwardButtonImage = [UIImage imageNamed:@"webview_arrow_right"];
+    UIImage *backButtonImage = [UIImage imageNamed:@"webview_arrow_left"];
+    forwardButtonImage = [forwardButtonImage imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
+    backButtonImage = [backButtonImage imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
+    
+    _forwardButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    [_forwardButton setBackgroundImage:forwardButtonImage forState:UIControlStateNormal];
+    _forwardButton.tintColor = UIColor.lightOrangeColor;
+    [_forwardButton addTarget:self action:@selector(goForward:) forControlEvents:UIControlEventTouchUpInside];
+    
+    _backButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    [_backButton setBackgroundImage:backButtonImage forState:UIControlStateNormal];
+    _backButton.tintColor = UIColor.lightOrangeColor;
+    [_backButton addTarget:self action:@selector(goBack:) forControlEvents:UIControlEventTouchUpInside];
+    
     _refreshButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh target:self action:@selector(refresh:)];
     _stopButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemStop target:self action:@selector(stop:)];
-    _URLViewHeight = UIApplication.sharedApplication.statusBarFrame.size.height;
     
     self.spinner = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite];
-    self.touchHelperView = [[UIView alloc] initWithFrame:CGRectZero];
-    self.touchHelperView.backgroundColor = UIColor.clearColor;
     self.tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleTap:)];
-    
-    self.navigationController.toolbar.barStyle = UIBarStyleBlack;
-    self.navigationController.toolbar.hidden = NO;
     
     self.webView.scrollView.delegate = self;
 }
@@ -88,17 +98,35 @@
     view.backgroundColor = UIColor.backgroundColor;
     [view addSubview:self.webView];
     self.view = view;
+    
+    self.touchHelperView = [[UIView alloc] initWithFrame:CGRectZero];
+    self.touchHelperView.backgroundColor = UIColor.clearColor;
+    
+    self.backButtonBackGroundView = [[UIView alloc] initWithFrame:CGRectMake(0.0f, 0.0f, 44.0f, 44.0f)];
+    self.forwardButtonBackGroundView = [[UIView alloc] initWithFrame:CGRectMake(0.0f, 0.0f, 44.0f, 44.0f)];
+    self.backButtonBackGroundView.backgroundColor = UIColor.backgroundColor;
+    self.forwardButtonBackGroundView.backgroundColor = UIColor.backgroundColor;
+    self.backButtonBackGroundView.layer.cornerRadius = 22.0f;
+    self.forwardButtonBackGroundView.layer.cornerRadius = 22.0f;
+    self.backButtonBackGroundView.alpha = 0.95f;
+    self.forwardButtonBackGroundView.alpha = 0.95f;
 }
 
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
     
-    [self.navigationController setToolbarHidden:NO];
     [self setupToolbarItems];
     [self.navigationController.navigationBar addSubview:self.progressView];
     [self.view insertSubview:self.urlTitleLabel aboveSubview:self.webView];
     [self.view insertSubview:self.touchHelperView aboveSubview:self.webView];
+    
+    [self.view insertSubview:self.backButtonBackGroundView aboveSubview:self.touchHelperView];
+    [self.view insertSubview:self.forwardButtonBackGroundView aboveSubview:self.touchHelperView];
+    
+    [self.forwardButtonBackGroundView addSubview:_forwardButton];
+    [self.backButtonBackGroundView addSubview:_backButton];
+
     [self.touchHelperView addGestureRecognizer:self.tapGesture];
     [self.view addSubview:self.spinner];
     [self.spinner startAnimating];
@@ -108,6 +136,10 @@
 {
     [super viewWillDisappear:animated];
     [self.webView stopLoading];
+    
+    [self.backButtonBackGroundView removeFromSuperview];
+    [self.forwardButtonBackGroundView removeFromSuperview];
+    [self.progressView removeFromSuperview];
     
     if ([self.view.window.gestureRecognizers containsObject:self.tapGesture]) {
         [self.view.window removeGestureRecognizer:self.tapGesture];
@@ -119,11 +151,16 @@
     [super viewWillLayoutSubviews];
     self.spinner.center = self.view.center;
     self.touchHelperView.frame = CGRectMake(0.0f, CGRectGetHeight(self.view.bounds) - kToolbarHeight, CGRectGetWidth(self.view.bounds), kToolbarHeight);
+    
+    self.forwardButtonBackGroundView.center = CGPointMake(CGRectGetWidth(self.view.bounds) - CGRectGetMidX(self.backButtonBackGroundView.bounds) - 5.0f, CGRectGetHeight(self.view.bounds) - CGRectGetMidY(self.backButtonBackGroundView.bounds) - 5.0f);
+    self.backButtonBackGroundView.center = CGPointMake(5.0f + CGRectGetMidX(self.backButtonBackGroundView.bounds), CGRectGetHeight(self.view.bounds) - CGRectGetMidY(self.forwardButtonBackGroundView.bounds) - 5.0f);
+    
+    _forwardButton.frame = CGRectMake(CGRectGetMidX(self.forwardButtonBackGroundView.bounds) - 5.0f, CGRectGetMidY(self.forwardButtonBackGroundView.bounds) - 11.0f, 11.5f, 22.0f);
+    _backButton.frame = CGRectMake(CGRectGetMidX(self.backButtonBackGroundView.bounds) - 8.0f, CGRectGetMidY(self.backButtonBackGroundView.bounds) - 11.0f, 11.5f, 22.0f);
 }
 
 - (void)dealloc
 {
-    [self.progressView removeFromSuperview];
     self.URL = nil;
     self.webView.delegate = nil;
     self.webView = nil;
@@ -158,7 +195,7 @@
 - (UILabel *)urlTitleLabel
 {
     if (!_urlTitleLabel) {
-        _urlTitleLabel = [[UILabel alloc] initWithFrame:CGRectMake(0.0f, CGRectGetHeight(self.navigationController.navigationBar.bounds) + _URLViewHeight, CGRectGetWidth(UIScreen.mainScreen.bounds), _URLViewHeight)];
+        _urlTitleLabel = [[UILabel alloc] initWithFrame:CGRectMake(0.0f, CGRectGetHeight(self.navigationController.navigationBar.bounds) + kURLViewHeight, CGRectGetWidth(UIScreen.mainScreen.bounds), kURLViewHeight)];
         _urlTitleLabel.backgroundColor = UIColor.backgroundColor;
         _urlTitleLabel.font = [UIFont systemFontOfSize:13.0f];
         _urlTitleLabel.textColor = UIColor.lightBlueColor;
@@ -191,11 +228,12 @@
 {
     [self setEnableActivityIndicator:NO];
     self.URL = webView.request.URL;
-   [self setupToolbarItems];
+    [self setupToolbarItems];
     _errorLoadingURL = NO;
     _doneLoadingURL = YES;
     
     [self setProgress:1.0f];
+    [self showNavigationButtons];
     [UIView animateWithDuration:0.25f animations:^{ self.webView.alpha = 1.0f; }];
     if (self.spinner.isAnimating) [self.spinner stopAnimating];
 }
@@ -213,35 +251,42 @@
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView
 {
     CGFloat offsetY;
-    CGFloat translateValueToolBar;
     CGFloat translateValueNavBar;
     CGFloat translateUrlTitleLabel;
     CGFloat alphaURLLabel;
     CGFloat alphaNavBar;
+
+    offsetY = MAX(0.0f, scrollView.contentOffset.y + kNavigationbarHeight);
     
-    if (_doneLoadingURL) {
-        offsetY = MAX(0.0f, scrollView.contentOffset.y + kNavigationbarHeight);
-        
-        translateValueToolBar = MIN(kToolbarHeight + 1.0f, offsetY);
-        translateValueNavBar = MIN(kNavigationbarHeight, offsetY);
-        translateUrlTitleLabel = MIN(_URLViewHeight * 2.0f, offsetY);
-        alphaURLLabel = 0.6f + offsetY * 0.01f;
-        alphaNavBar = 1.0f - offsetY * 0.08f;
+    if (_doneLoadingURL < kNavigationbarHeight + kToolbarHeight) {
+        translateValueNavBar = MIN(kTranslateYNavigationBar, offsetY);
+        translateUrlTitleLabel = MIN(kURLViewHeight * 2.0f, offsetY);
+        alphaURLLabel = 0.6f + MIN(0.25f, offsetY * 0.01f);
+        alphaNavBar = self.navigationController.navigationBar.alpha - offsetY * 0.08f;
         
         self.urlTitleLabel.alpha = alphaURLLabel;
+        self.navigationController.navigationBar.titleTextAttributes = @{ NSForegroundColorAttributeName : [UIColor.skyBlueColor colorWithAlphaComponent:alphaNavBar] };
         self.navigationController.navigationBar.tintColor = [self.navigationController.navigationBar.tintColor colorWithAlphaComponent: alphaNavBar];
         self.navigationController.navigationBar.transform = CGAffineTransformMakeTranslation(0.0f, -translateValueNavBar);
-        self.webView.transform = CGAffineTransformMakeTranslation(0.0f, translateValueToolBar);
-        self.navigationController.toolbar.transform = CGAffineTransformMakeTranslation(0.0f, translateValueToolBar);
         self.urlTitleLabel.transform = CGAffineTransformMakeTranslation(0.0f, -translateUrlTitleLabel);
+        
     }
-    
+}
+
+- (void)scrollViewWillEndDragging:(UIScrollView *)scrollView withVelocity:(CGPoint)velocity targetContentOffset:(inout CGPoint *)targetContentOffset
+{
+    if (velocity.y == 0.0f) {
+        [self hideNavigationButtonsWithDelay];
+    } else {
+        [self showNavigationButtons];
+    }
 }
 
 - (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate
 {
     if (!decelerate) {
         [self endScrollingWithOffset:MAX(0.0f, scrollView.contentOffset.y + kNavigationbarHeight)];
+        
     }
 }
 
@@ -253,23 +298,15 @@
 
 - (void)endScrollingWithOffset:(CGFloat)offsetY
 {
-    if (offsetY < kScrollDownThreshold && offsetY != 0.0f) {
-        [UIView animateWithDuration:0.15f animations:^{
-            self.navigationController.navigationBar.transform = CGAffineTransformIdentity;
-            self.webView.transform = CGAffineTransformIdentity;
-            self.navigationController.toolbar.transform = CGAffineTransformIdentity;
-            self.urlTitleLabel.transform = CGAffineTransformIdentity;
-            self.webView.scrollView.contentOffset = CGPointMake(0.0f, -CGRectGetHeight(self.navigationController.navigationBar.bounds) - _URLViewHeight);
-            self.navigationController.navigationBar.tintColor = [self.navigationController.navigationBar.tintColor colorWithAlphaComponent:1.0f];
-            self.urlTitleLabel.alpha = 0.6f;
-        }];
+    if (offsetY <= kScrollDownThreshold && offsetY != 0.0f) {
+        [self showControls];
     }
 }
 
 #pragma mark - Webview Navigation
 - (void)goBack:(id)sender
 {
-    if ([sender isKindOfClass:UIBarButtonItem.class]) {
+    if ([sender isKindOfClass:UIButton.class]) {
         if (self.webView.canGoBack) {
             [self.webView goBack];
         }
@@ -278,7 +315,7 @@
 
 - (void)goForward:(id)sender
 {
-    if ([sender isKindOfClass:UIBarButtonItem.class]) {
+    if ([sender isKindOfClass:UIButton.class]) {
         if (self.webView.canGoForward) {
             [self.webView goForward];
         }
@@ -294,7 +331,6 @@
             [self.webView loadRequest:[NSURLRequest requestWithURL:self.URL]];
         }
     }
-    self.webView.scrollView.contentOffset = CGPointMake(0.0f, -CGRectGetHeight(self.navigationController.navigationBar.bounds) - _URLViewHeight);
 }
 
 - (void)stop:(id)sender
@@ -308,16 +344,16 @@
 - (void)setupToolbarItems
 {
     UIBarButtonItem *refreshOrStopButton = self.webView.loading ? _stopButton : _refreshButton;
-    UIBarButtonItem *fixedSpace = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:nil action:nil];
-    fixedSpace.width = 50.0f;
-    UIBarButtonItem *flexibleSpace = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
     
     self.urlTitleLabel.text = [NSString stringWithFormat:@"%@%@", [self.URL host], [self.URL relativePath]];
     
     _forwardButton.enabled = self.webView.canGoForward;
     _backButton.enabled = self.webView.canGoBack;
     
-    self.toolbarItems = @[_backButton, fixedSpace, _forwardButton, flexibleSpace, refreshOrStopButton];
+    _backButtonBackGroundView.alpha = self.webView.canGoBack ? 0.95f : 0.5f;
+    _forwardButtonBackGroundView.alpha = self.webView.canGoForward ? 0.95f : 0.5f;
+    
+    self.navigationItem.rightBarButtonItems = @[refreshOrStopButton];
 }
 
 - (void)setProgress:(CGFloat)progress
@@ -341,19 +377,37 @@
 
 - (void)showControls
 {
-    [UIView animateWithDuration:0.25f animations:^{
+    [UIView animateWithDuration:0.2f animations:^{
         self.navigationController.navigationBar.transform = CGAffineTransformIdentity;
-        self.webView.transform = CGAffineTransformIdentity;
         self.navigationController.toolbar.transform = CGAffineTransformIdentity;
         self.navigationController.navigationBar.tintColor = [self.navigationController.navigationBar.tintColor colorWithAlphaComponent:1.0f];
+        self.navigationController.navigationBar.titleTextAttributes = @{ NSForegroundColorAttributeName : [UIColor.skyBlueColor colorWithAlphaComponent:1.0f] };
         self.urlTitleLabel.alpha = 0.6f;
     } completion:^(BOOL finished) {
         if (finished)
-            [UIView animateWithDuration:0.3f delay:0.0f usingSpringWithDamping:1.0f initialSpringVelocity:0.0f options:UIViewAnimationOptionCurveEaseIn animations:^{
+            [UIView animateWithDuration:0.2f delay:0.0f usingSpringWithDamping:1.0f initialSpringVelocity:0.0f options:UIViewAnimationOptionCurveEaseIn animations:^{
                 self.urlTitleLabel.transform = CGAffineTransformIdentity;
             } completion:NULL];
     }];
-    
+}
+
+- (void)hideNavigationButtonsWithDelay
+{
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.5f * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [UIView animateWithDuration:0.4f delay:0.0 usingSpringWithDamping:1.0f initialSpringVelocity:0.0f options:UIViewAnimationOptionCurveEaseIn animations:^{
+            self.forwardButtonBackGroundView.transform = CGAffineTransformMakeTranslation(70.0f, 0.0f);
+            self.backButtonBackGroundView.transform = CGAffineTransformMakeTranslation(-70.0f, 0.0f);
+        } completion:NULL];
+    });
+}
+
+- (void)showNavigationButtons
+{
+    [self setupToolbarItems];
+    [UIView animateWithDuration:0.4f delay:0.0 usingSpringWithDamping:1.0f initialSpringVelocity:0.0f options:UIViewAnimationOptionCurveEaseIn animations:^{
+        self.forwardButtonBackGroundView.transform = CGAffineTransformIdentity;
+        self.backButtonBackGroundView.transform = CGAffineTransformIdentity;
+    } completion:NULL];
 }
 
 - (void)handleTap:(UITapGestureRecognizer *)sender
