@@ -41,7 +41,7 @@ NS_ENUM(NSInteger, ButtonIndex) {
     kButtonIndexCopyOrCancel = 1,
     kButtonIndexAnimate = 2,
     kButtonIndexEdit = 3,
-    kButtonIndexCancel = 4,
+    kButtonIndexCancel = 4
 };
 
 @interface BrickDetailViewController () <IBActionSheetDelegate>
