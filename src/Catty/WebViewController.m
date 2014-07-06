@@ -236,8 +236,12 @@
     
     [self setProgress:1.0f];
     [self showNavigationButtons];
+    
     [UIView animateWithDuration:0.25f animations:^{ self.webView.alpha = 1.0f; }];
-    if (self.spinner.isAnimating) [self.spinner stopAnimating];
+    
+    if (self.spinner.isAnimating) {
+        [self.spinner stopAnimating];
+    }
 }
 
 - (void)webViewDidStartLoad:(UIWebView *)webView
@@ -246,22 +250,24 @@
     _doneLoadingURL = NO;
     [self setProgress:0.2f];
     [self setupToolbarItems];
-    
-    if (_controlsHidden) {
-        self.webView.scrollView.contentInset = UIEdgeInsetsMake(kTranslateYNavigationBar, 0.0f, 0.0f, 0.0f);
-    }
 }
 
 #pragma mark - UIScrollViewDelegate
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView
 {
+    _controlsHidden = self.webView.scrollView.contentOffset.y >= 0.0f ? YES : NO;
+    
+    if (_controlsHidden) {
+        return;
+    }
+    
     CGFloat offsetY = MAX(0.0f, scrollView.contentOffset.y + kScrollOffset);
     CGFloat translateValueNavBar;
     CGFloat translateUrlTitleLabel;
     CGFloat alphaURLLabel;
     CGFloat alphaNavBar;
     
-    if (_doneLoadingURL && offsetY < kScrollOffset) {
+    if (!_controlsHidden && offsetY < kScrollOffset) {
         translateValueNavBar = MIN(kTranslateYNavigationBar, offsetY);
         translateUrlTitleLabel = MIN(kURLViewHeight * 2.0f, offsetY);
         alphaURLLabel = 0.6f + MIN(0.25f, offsetY * 0.01f);
@@ -272,20 +278,16 @@
         self.navigationController.navigationBar.tintColor = [self.navigationController.navigationBar.tintColor colorWithAlphaComponent: alphaNavBar];
         self.navigationController.navigationBar.transform = CGAffineTransformMakeTranslation(0.0f, -translateValueNavBar);
         self.urlTitleLabel.transform = CGAffineTransformMakeTranslation(0.0f, -translateUrlTitleLabel);
-        
-        _controlsHidden = YES;
     }
 }
 
 - (void)scrollViewWillEndDragging:(UIScrollView *)scrollView withVelocity:(CGPoint)velocity targetContentOffset:(inout CGPoint *)targetContentOffset
 {
-    if (velocity.y == 0.0f) {
-        [self hideNavigationButtonsWithDelay];
+    if (velocity.y >= 0.0f) {
+        [self hideNavigationButtons];
     } else {
         [self showNavigationButtons];
     }
-    
-    self.webView.scrollView.contentInset = UIEdgeInsetsMake(kScrollOffset, 0.0f, 0.0f, 0.0f);
 }
 
 - (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate
@@ -304,7 +306,7 @@
 
 - (void)endScrollingWithOffset:(CGFloat)offsetY
 {
-    if (offsetY <= kScrollDownThreshold && offsetY != 0.0f) {
+    if (offsetY <= kScrollDownThreshold) {
         [self showControls];
     }
 }
@@ -381,8 +383,6 @@
 
 - (void)showControls
 {
-    _controlsHidden = NO;
-    
     [UIView animateWithDuration:0.2f animations:^{
         self.navigationController.navigationBar.transform = CGAffineTransformIdentity;
         self.navigationController.toolbar.transform = CGAffineTransformIdentity;
@@ -397,20 +397,18 @@
     }];
 }
 
-- (void)hideNavigationButtonsWithDelay
+- (void)hideNavigationButtons
 {
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.5f * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        [UIView animateWithDuration:0.4f delay:0.0 usingSpringWithDamping:1.0f initialSpringVelocity:0.0f options:UIViewAnimationOptionCurveEaseIn animations:^{
-            self.forwardButtonBackGroundView.transform = CGAffineTransformMakeTranslation(CGRectGetWidth(self.forwardButtonBackGroundView.bounds) * 2.0f, 0.0f);
-            self.backButtonBackGroundView.transform = CGAffineTransformMakeTranslation(-CGRectGetWidth(self.backButtonBackGroundView.bounds) * 2.0f, 0.0f);
-        } completion:NULL];
-    });
+    [UIView animateWithDuration:0.4f delay:0.0 usingSpringWithDamping:1.0f initialSpringVelocity:0.0f options:UIViewAnimationOptionCurveEaseIn animations:^{
+        self.forwardButtonBackGroundView.transform = CGAffineTransformMakeTranslation(0.0f, CGRectGetWidth(self.forwardButtonBackGroundView.bounds) * 2.0f);
+        self.backButtonBackGroundView.transform = CGAffineTransformMakeTranslation(0.0f, CGRectGetWidth(self.backButtonBackGroundView.bounds) * 2.0f);
+    } completion:NULL];
 }
 
 - (void)showNavigationButtons
 {
     [self setupToolbarItems];
-    [UIView animateWithDuration:0.4f delay:0.0 usingSpringWithDamping:1.0f initialSpringVelocity:0.0f options:UIViewAnimationOptionCurveEaseIn animations:^{
+    [UIView animateWithDuration:0.4f delay:0.0 usingSpringWithDamping:0.6f initialSpringVelocity:0.0f options:UIViewAnimationOptionCurveEaseIn animations:^{
         self.forwardButtonBackGroundView.transform = CGAffineTransformIdentity;
         self.backButtonBackGroundView.transform = CGAffineTransformIdentity;
     } completion:NULL];
