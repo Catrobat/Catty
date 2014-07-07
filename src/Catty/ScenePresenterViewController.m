@@ -128,21 +128,11 @@
         _skView.showsNodeCount = YES;
         _skView.showsDrawCount = YES;
 #endif
-        [self.view addSubview:_skView];
+        [self.view insertSubview:_skView atIndex:1];
     }
     _skView.paused = NO;
     return _skView;
 }
-
-//- (Scene *)scene
-//{
-//    if (!_scene) {
-//        CGSize programSize = CGSizeMake(self.program.header.screenWidth.floatValue, self.program.header.screenHeight.floatValue);
-//        _scene = [[Scene alloc] initWithSize:programSize andProgram:self.program];
-//        _scene.scaleMode = SKSceneScaleModeAspectFit;
-//    }
-//    return _scene;
-//}
 
 - (void)viewDidLoad
 {
@@ -400,10 +390,16 @@
 
 - (void)viewWillDisappear:(BOOL)animated
 {
-  [super viewWillDisappear:animated];
-  [self.navigationController setNavigationBarHidden:NO animated:animated];
-  [[UIApplication sharedApplication] setIdleTimerDisabled:NO];
-  [[UIApplication sharedApplication] setStatusBarHidden:NO];
+    [super viewWillDisappear:animated];
+    [self.navigationController setNavigationBarHidden:NO animated:animated];
+    [[UIApplication sharedApplication] setIdleTimerDisabled:NO];
+    [[UIApplication sharedApplication] setStatusBarHidden:NO];
+}
+
+- (void)viewDidDisappear:(BOOL)animated
+{
+    [super viewDidDisappear:animated];
+    [self.skView removeFromSuperview];
 }
 
 - (void)viewWillLayoutSubviews
@@ -417,18 +413,18 @@
     CGSize programSize = CGSizeMake(self.program.header.screenWidth.floatValue, self.program.header.screenHeight.floatValue);
     Scene *scene = [[Scene alloc] initWithSize:programSize andProgram:self.program];
     scene.name = self.program.header.programName;
+    scene.scaleMode = SKSceneScaleModeFill;
+    self.skView.paused = NO;
     [self.skView presentScene:scene];
     [[ProgramManager sharedProgramManager] setProgram:self.program];
 }
-
 
 - (BOOL)prefersStatusBarHidden
 {
     return YES;
 }
 
-
--(void)dealloc
+- (void)dealloc
 {
     [[AudioManager sharedAudioManager] stopAllSounds];
     [[SensorHandler sharedSensorHandler] stopSensors];
@@ -538,6 +534,12 @@
 
 - (void)restartProgram:(UIButton*)sender
 {
+    Scene *previousScene = (Scene *)self.skView.scene;
+    
+    self.program = [Program programWithLoadingInfo:[Util programLoadingInfoForProgramWithName:[Util lastProgram]]];
+    [Util setLastProgram:self.program.header.programName];
+    previousScene.program = self.program;
+    
     if (!self.program) {
         [[[UIAlertView alloc] initWithTitle:kUIAlertViewTitleCantRestartProgram
                                     message:nil
@@ -546,15 +548,9 @@
                           otherButtonTitles:nil] show];
         return;
     }
-
-    Scene *previousScene = (Scene *)self.skView.scene;
     
-    if ([previousScene.name isEqualToString:self.program.header.programName]) {
-        [previousScene resetScene:^{
-            [self.skView presentScene:previousScene transition:[SKTransition doorwayWithDuration:0.5f]];
-            [self continueProgram:nil withDuration:0.25f];
-        }];
-    }
+    [self.skView presentScene:previousScene];
+    [self continueProgram:nil withDuration:0.25f];
 }
 
 - (void)showHideAxis:(UIButton *)sender
@@ -566,9 +562,7 @@
     else{
         self.gridView.hidden = NO;
     }
-    
 }
-
 
 - (void)manageAspectRatio:(UIButton *)sender
 {

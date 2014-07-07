@@ -35,11 +35,13 @@
 
 -(SKAction*)action
 {
-
     return [SKAction runBlock:[self actionBlock]];
 }
 -(dispatch_block_t)actionBlock
 {
+    
+    // FIXME crash at restarting
+    
     UIImage* image = [UIImage imageWithContentsOfFile:[self pathForLook]];
     SKTexture* texture= nil;
     if ([self.object isBackground]) {

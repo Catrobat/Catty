@@ -191,11 +191,12 @@
 
 - (void)start:(CGFloat)zPosition
 {
-    self.position = CGPointMake(0, 0);
-    self.zRotation = 0;
-    self.currentLookBrightness = 0;
+    self.position = CGPointZero;
+    self.zRotation = 0.0f;
+    self.currentLookBrightness = 0.0f;
+    
     if ([self isBackground]){
-        self.zPosition = 0;
+        self.zPosition = 0.0f;
     }else{
         self.zPosition = zPosition;
     }
@@ -356,29 +357,9 @@
 {
     UIImage* image = [UIImage imageWithContentsOfFile:[self pathForLook:look]];
     SKTexture* texture = nil;
-    if ([self isBackground]) {
-        texture = [SKTexture textureWithImage:image];
-        self.currentUIImageLook = image;
-    } else {
-// We do not need cropping if touch through transparent pixel is possible!!!!
-        
-//        CGRect newRect = [image cropRectForImage:image];
-        
-//        if ((newRect.size.height <= image.size.height - 50 && newRect.size.height <= image.size.height - 50)) {
-//            CGImageRef imageRef = CGImageCreateWithImageInRect(image.CGImage, newRect);
-//            UIImage *newImage = [UIImage imageWithCGImage:imageRef];
-////            NSLog(@"%f,%f,%f,%f",newRect.origin.x,newRect.origin.y,newRect.size.width,newRect.size.height);
-//            [self setPositionForCropping:CGPointMake(newRect.origin.x+newRect.size.width/2,self.scene.size.height-newRect.origin.y-newRect.size.height/2)];
-//            CGImageRelease(imageRef);
-//            texture = [SKTexture textureWithImage:newImage];
-//            self.currentUIImageLook = newImage;
-//        }
-//        else{
-            texture = [SKTexture textureWithImage:image];
-            self.currentUIImageLook = image;
-//        }
-    }
-
+    texture = [SKTexture textureWithImage:image];
+    self.currentUIImageLook = image;
+    
     double xScale = self.xScale;
     double yScale = self.yScale;
     self.xScale = 1.0;

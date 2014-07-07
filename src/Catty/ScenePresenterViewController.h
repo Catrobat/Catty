@@ -33,7 +33,6 @@
 
 //@property (nonatomic, strong) ProgramLoadingInfo* programLoadingInfo;
 @property (nonatomic, strong) Program* program; // has to be set to get this view controller working
-//@property (nonatomic, weak) IBOutlet UIView* skView;
 @property (nonatomic, strong) SKView *skView;
 @property (strong,nonatomic) UIButton* menuBtn;
 @property (nonatomic,weak) UITableViewController* controller;

@@ -45,17 +45,14 @@
 
 - (void)willMoveFromView:(SKView *)view
 {
-    NSLog(@"willMoveFromView");
-}
-
-- (void)didChangeSize:(CGSize)oldSize
-{
-    NSLog(@"didChangeSize, old size %@", NSStringFromCGSize(oldSize));
-}
-
- - (void)didEvaluateActions
-{
-//    NSLog(@"didEvaluateActions");
+    self.numberOfObjectsWithoutBackground = 0;
+    
+    for (SpriteObject *obj in self.program.objectList) {
+        [self cleanScene:obj];
+    }
+    
+    [self removeAllChildren];
+    [self removeAllActions];
 }
 
 - (void)didMoveToView:(SKView *)view
@@ -63,36 +60,34 @@
     [self startProgram];
 }
 
+- (void)cleanScene:(SpriteObject *)obj
+{
+    [obj removeFromParent];
+    obj.numberOfObjectsWithoutBackground = 0;
+    obj.currentUIImageLook = nil;
+    obj.currentLook = nil;
+    obj.currentLookBrightness = 0.0f;
+}
+
 - (void)startProgram
 {
     __block CGFloat zPosition = 0.1f;
-    
-    [self resetScene:^{
-        for (SpriteObject *obj in self.program.objectList) {
-            [self addChild:obj];
-            NSDebug(@"%f",zPosition);
-            [obj start:zPosition];
-            [obj setLook];
-            [obj setProgram:self.program];
-            [obj setUserInteractionEnabled:YES];
-            if (!([obj isBackground])) {
-                zPosition++;
-                self.numberOfObjectsWithoutBackground++;
-            }
+    for (SpriteObject *obj in self.program.objectList) {
+        [self addChild:obj];
+        NSDebug(@"%f",zPosition);
+        [obj start:zPosition];
+        [obj setLook];
+        [obj setProgram:self.program];
+        [obj setUserInteractionEnabled:YES];
+        if (!([obj isBackground])) {
+            zPosition += 0.1f;
+            self.numberOfObjectsWithoutBackground++;
         }
-        
-        for (SpriteObject *obj in self.program.objectList) {
-            obj.numberOfObjectsWithoutBackground = self.numberOfObjectsWithoutBackground;
-        }
-    }];
-}
-
-- (void)resetScene:(void (^)())completionBlock
-{
-    [self removeAllChildren];
-    [self removeAllActions];
+    }
     
-    if (completionBlock) completionBlock();
+    for (SpriteObject *obj in self.program.objectList) {
+        obj.numberOfObjectsWithoutBackground = self.numberOfObjectsWithoutBackground;
+    }
 }
 
 -(CGPoint)convertPointToScene:(CGPoint)point
