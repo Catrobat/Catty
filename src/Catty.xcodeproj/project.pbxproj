@@ -39,6 +39,7 @@
 		817B544318F03D4C00AF6BFE /* BrickScaleTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = 817B544218F03D4C00AF6BFE /* BrickScaleTransition.m */; };
 		817B544C18F0520800AF6BFE /* BrickDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 817B544A18F0520800AF6BFE /* BrickDetailViewController.m */; };
 		817B545118F0AAE600AF6BFE /* FXBlurView.m in Sources */ = {isa = PBXBuildFile; fileRef = 817B545018F0AAE600AF6BFE /* FXBlurView.m */; };
+		819AA18619587CA7003010BB /* WebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 819AA18519587CA7003010BB /* WebViewController.m */; };
 		819EFEA71948721900A1D591 /* SelectButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 819EFEA61948721900A1D591 /* SelectButton.m */; };
 		81A5B4D7192964170082B2B8 /* CellMotionEffect.m in Sources */ = {isa = PBXBuildFile; fileRef = 81A5B4D6192964170082B2B8 /* CellMotionEffect.m */; };
 		81B7487A1921433700990E5F /* CreateView.m in Sources */ = {isa = PBXBuildFile; fileRef = 81B748781921433700990E5F /* CreateView.m */; };
@@ -345,6 +346,8 @@
 		817B544A18F0520800AF6BFE /* BrickDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BrickDetailViewController.m; sourceTree = "<group>"; };
 		817B544F18F0AAE600AF6BFE /* FXBlurView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FXBlurView.h; sourceTree = "<group>"; };
 		817B545018F0AAE600AF6BFE /* FXBlurView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FXBlurView.m; sourceTree = "<group>"; };
+		819AA18419587CA7003010BB /* WebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebViewController.h; sourceTree = "<group>"; };
+		819AA18519587CA7003010BB /* WebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebViewController.m; sourceTree = "<group>"; };
 		819EFEA51948721900A1D591 /* SelectButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelectButton.h; sourceTree = "<group>"; };
 		819EFEA61948721900A1D591 /* SelectButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelectButton.m; sourceTree = "<group>"; };
 		81A5B4D5192964170082B2B8 /* CellMotionEffect.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CellMotionEffect.h; sourceTree = "<group>"; };
@@ -1753,9 +1756,7 @@
 				92C37A431856264700547C1E /* ChangeGhostEffectByNBrickTests.m */,
 				92C37A49185626DB00547C1E /* ChangeSizeByNBrickTests.m */,
 				92C37A55185627A300547C1E /* ClearGrafficEffectBrickTests.m */,
-				92C37A371856253B00547C1E /* ComeToFrontBrickTests.m */,
 				92C37A4F1856274700547C1E /* GoNStepsBackBrickTests.m */,
-				92C37A3F185625E700547C1E /* HideBrickTests.m */,
 				92C37A531856279600547C1E /* MoveNStepsBrickTests.m */,
 				92345638192E2E8000464E6B /* NextLookBrickTests.m */,
 				92C37A47185626B600547C1E /* PlaceAtBrickTests.m */,
@@ -1763,9 +1764,6 @@
 				92C37A511856276D00547C1E /* SetBrightnessBrickTests.m */,
 				92C37A411856262700547C1E /* SetGhostEffectBrickTests.m */,
 				92345636192E2E6C00464E6B /* SetLookBrickTests.m */,
-				92C37A32185621FF00547C1E /* SetSizeToBrickTests.m */,
-				92C37A391856257300547C1E /* SetXBrickTests.m */,
-				92C37A3B185625A700547C1E /* SetYBrickTests.m */,
 				92C37A3D185625D900547C1E /* ShowBrickTests.m */,
 				92C37A3F185625E700547C1E /* HideBrickTests.m */,
 				92C37A3B185625A700547C1E /* SetYBrickTests.m */,
@@ -1819,13 +1817,15 @@
 			name = Download;
 			sourceTree = "<group>";
 		};
-		CA05A194182826E40025421A /* BaseClasses */ = {
+		CA05A194182826E40025421A /* BaseViewController */ = {
 			isa = PBXGroup;
 			children = (
 				CA688200180AEEC2008A7C99 /* BaseTableViewController.h */,
 				CA688204180B0148008A7C99 /* BaseTableViewController.m */,
+				819AA18419587CA7003010BB /* WebViewController.h */,
+				819AA18519587CA7003010BB /* WebViewController.m */,
 			);
-			name = BaseClasses;
+			name = BaseViewController;
 			sourceTree = "<group>";
 		};
 		CA05A195182826FE0025421A /* Help */ = {
@@ -2312,7 +2312,7 @@
 			isa = PBXGroup;
 			children = (
 				CA05A193182826950025421A /* Download */,
-				CA05A194182826E40025421A /* BaseClasses */,
+				CA05A194182826E40025421A /* BaseViewController */,
 				B4003032170EB51000396DB7 /* CatrobatTableViewController */,
 				CA04EDA317E7D1610063EB25 /* Continue & New */,
 				CA05A1961828275B0025421A /* Programs */,
@@ -3072,6 +3072,7 @@
 				CA75C26B18A961CE00FC8C2F /* GlideToBrickCell.m in Sources */,
 				817B545118F0AAE600AF6BFE /* FXBlurView.m in Sources */,
 				CD8CC8BC1724346200239EBF /* HelpWebViewController.m in Sources */,
+				819AA18619587CA7003010BB /* WebViewController.m in Sources */,
 				81C64F8419264E2800199161 /* UIWindow+AHKAdditions.m in Sources */,
 				CA75C28018A9622100FC8C2F /* SpeakBrickCell.m in Sources */,
 				CA75C2A118A9626B00FC8C2F /* ClearGraphicEffectBrickCell.m in Sources */,
