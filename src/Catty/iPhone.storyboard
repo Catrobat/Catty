@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6154.21" systemVersion="13D65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="62e-MX-z1C">
     <dependencies>
+        <deployment defaultVersion="1792" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6153.13"/>
     </dependencies>
     <scenes>
@@ -21,13 +22,13 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" tag="12" contentMode="left" text="Title" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="UZk-4d-EUO">
-                                            <rect key="frame" x="95" y="30" width="185" height="22"/>
+                                            <rect key="frame" x="95" y="30.5" width="185" height="22"/>
                                             <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                             <color key="highlightedColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         </label>
                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" tag="11" contentMode="scaleAspectFill" id="nsC-LQ-yHN">
-                                            <rect key="frame" x="20" y="16" width="50" height="50"/>
+                                            <rect key="frame" x="20" y="16.5" width="50" height="50"/>
                                         </imageView>
                                     </subviews>
                                 </tableViewCellContentView>
@@ -50,7 +51,7 @@
                                             <color key="highlightedColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         </label>
                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" tag="11" contentMode="scaleAspectFill" id="dOe-sH-pTd">
-                                            <rect key="frame" x="20" y="16" width="50" height="50"/>
+                                            <rect key="frame" x="20" y="16.5" width="50" height="50"/>
                                         </imageView>
                                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="zQW-3h-lht">
                                             <rect key="frame" x="95" y="32" width="96" height="21"/>
@@ -126,10 +127,10 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" tag="11" contentMode="scaleAspectFill" id="D7s-RZ-us6">
-                                            <rect key="frame" x="20" y="16" width="50" height="50"/>
+                                            <rect key="frame" x="20" y="16.5" width="50" height="50"/>
                                         </imageView>
                                         <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" tag="12" contentMode="left" text="Title" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="ZSC-lf-PGR">
-                                            <rect key="frame" x="95" y="30" width="185" height="22"/>
+                                            <rect key="frame" x="95" y="30.5" width="185" height="22"/>
                                             <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                             <color key="highlightedColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -211,10 +212,10 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" tag="11" contentMode="scaleAspectFill" id="Fls-ML-24K">
-                                            <rect key="frame" x="20" y="16" width="50" height="50"/>
+                                            <rect key="frame" x="20" y="16.5" width="50" height="50"/>
                                         </imageView>
                                         <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" tag="12" contentMode="left" text="Title" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="92Y-4x-v3Y">
-                                            <rect key="frame" x="95" y="30" width="185" height="22"/>
+                                            <rect key="frame" x="95" y="30.5" width="185" height="22"/>
                                             <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                             <color key="highlightedColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -240,7 +241,7 @@
                                             <color key="highlightedColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         </label>
                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" tag="11" contentMode="scaleAspectFill" id="gyB-g0-bdJ">
-                                            <rect key="frame" x="20" y="16" width="50" height="50"/>
+                                            <rect key="frame" x="20" y="16.5" width="50" height="50"/>
                                         </imageView>
                                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="w1e-yc-Yi0">
                                             <rect key="frame" x="95" y="32" width="96" height="21"/>
@@ -371,7 +372,6 @@
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <segue destination="s37-PF-3iN" kind="push" identifier="segueToPrograms" id="d1c-M4-4gJ"/>
-                        <segue destination="IIx-6w-DVK" kind="push" identifier="segueToHelp" id="rdV-gZ-8F0"/>
                         <segue destination="BYa-g9-OiT" kind="push" identifier="segueToNewProgram" id="aum-BR-x1G"/>
                         <segue destination="BYa-g9-OiT" kind="push" identifier="segueToContinue" id="1kj-7D-Va7"/>
                         <segue destination="39D-hJ-FD1" kind="push" identifier="segueToExplore" id="7JT-6F-5d1"/>
@@ -398,10 +398,10 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" tag="11" contentMode="scaleAspectFill" id="W7k-AC-SEG">
-                                            <rect key="frame" x="20" y="16" width="50" height="50"/>
+                                            <rect key="frame" x="20" y="16.5" width="50" height="50"/>
                                         </imageView>
                                         <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" tag="12" contentMode="left" text="Title" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="5lQ-d4-Tva">
-                                            <rect key="frame" x="95" y="30" width="185" height="22"/>
+                                            <rect key="frame" x="95" y="30.5" width="185" height="22"/>
                                             <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                             <color key="highlightedColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -427,7 +427,7 @@
                                             <color key="highlightedColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         </label>
                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" tag="11" contentMode="scaleAspectFill" id="qbn-c1-uDt">
-                                            <rect key="frame" x="20" y="16" width="50" height="50"/>
+                                            <rect key="frame" x="20" y="16.5" width="50" height="50"/>
                                         </imageView>
                                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="z5H-wL-6Lz">
                                             <rect key="frame" x="95" y="32" width="96" height="21"/>
@@ -503,13 +503,13 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" tag="12" contentMode="left" text="Title" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="7VV-Cs-K8i">
-                                            <rect key="frame" x="95" y="30" width="185" height="22"/>
+                                            <rect key="frame" x="95" y="30.5" width="185" height="22"/>
                                             <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                             <color key="highlightedColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         </label>
                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" tag="11" contentMode="scaleAspectFill" id="642-Kc-jVe">
-                                            <rect key="frame" x="20" y="16" width="50" height="50"/>
+                                            <rect key="frame" x="20" y="16.5" width="50" height="50"/>
                                         </imageView>
                                     </subviews>
                                 </tableViewCellContentView>
@@ -532,7 +532,7 @@
                                             <color key="highlightedColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         </label>
                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" tag="11" contentMode="scaleAspectFill" id="JH2-I8-7aq">
-                                            <rect key="frame" x="20" y="16" width="50" height="50"/>
+                                            <rect key="frame" x="20" y="16.5" width="50" height="50"/>
                                         </imageView>
                                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="MOw-Zb-ZrB">
                                             <rect key="frame" x="95" y="32" width="96" height="21"/>
@@ -621,6 +621,10 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
+                            <view contentMode="scaleToFill" id="ERF-Fp-qlJ" customClass="SKView">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                            </view>
                             <view opaque="NO" contentMode="scaleToFill" id="xIj-pz-OEX">
                                 <rect key="frame" x="0.0" y="0.0" width="150" height="568"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -636,6 +640,7 @@
                     <nil key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="menuView" destination="xIj-pz-OEX" id="Jh1-Lt-1se"/>
+                        <outlet property="skView" destination="ERF-Fp-qlJ" id="ZdE-cp-Rnf"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="v8z-cj-VwN" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -707,37 +712,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Vo3-81-KnQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-2434" y="-1422"/>
-        </scene>
-        <!--Help Web View Controller - Forum-->
-        <scene sceneID="fip-Bj-Leu">
-            <objects>
-                <viewController title="Forum" id="IIx-6w-DVK" customClass="HelpWebViewController" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="s6X-pF-Bnn">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <subviews>
-                            <webView contentMode="scaleToFill" id="YEh-ma-7Vk">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                            </webView>
-                            <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progress="0.5" id="CzM-Q6-tFW">
-                                <rect key="frame" x="0.0" y="64" width="320" height="2"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            </progressView>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                    </view>
-                    <navigationItem key="navigationItem" title="Forum" id="FwJ-XT-rqC"/>
-                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
-                    <connections>
-                        <outlet property="progressView" destination="CzM-Q6-tFW" id="8eu-x3-zvw"/>
-                        <outlet property="webView" destination="YEh-ma-7Vk" id="Q7G-V6-pWl"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="LFY-Ow-B1T" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-2416" y="-748"/>
         </scene>
         <!--Featured Programs Store View Controller-->
         <scene sceneID="lCH-B5-MNk">
@@ -846,13 +820,13 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" tag="12" contentMode="left" text="Title" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="G9s-30-7Az">
-                                                    <rect key="frame" x="95" y="30" width="185" height="22"/>
+                                                    <rect key="frame" x="95" y="30.5" width="185" height="22"/>
                                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <color key="highlightedColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                 </label>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" tag="11" contentMode="scaleAspectFill" id="Zp5-JU-A6T">
-                                                    <rect key="frame" x="20" y="16" width="50" height="50"/>
+                                                    <rect key="frame" x="20" y="16.5" width="50" height="50"/>
                                                 </imageView>
                                             </subviews>
                                         </tableViewCellContentView>

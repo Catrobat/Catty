@@ -44,6 +44,18 @@
 #import "ActionSheetAlertViewTags.h"
 #import "Reachability.h"
 #import "LanguageTranslationDefines.h"
+#import "HelpWebViewController.h"
+#import "NetworkDefines.h"
+
+NS_ENUM(NSInteger, ViewControllerIndex) {
+    kContinueProgramVC = 0,
+    kNewProgramVC,
+    kLocalProgramsVC,
+    kHelpVC,
+    kExploreVC,
+    kUploadVC
+};
+
 
 @interface CatrobatTableViewController () <UIAlertViewDelegate, UITextFieldDelegate>
 
@@ -196,16 +208,32 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath*)indexPath
 {
     NSString* identifier = [self.identifiers objectAtIndex:indexPath.row];
-    // TODO: the if statement should be removed once everything has been implemented...
-    if ([identifier isEqualToString:kSegueToExplore] || [identifier isEqualToString:kSegueToPrograms] ||
-        [identifier isEqualToString:kSegueToHelp] || [identifier isEqualToString:kSegueToContinue] ||
-        [identifier isEqualToString:kSegueToNewProgram]) {
-        if ([self shouldPerformSegueWithIdentifier:identifier sender:self]) {
-            [self performSegueWithIdentifier:identifier sender:self];
+    
+    if ([self shouldPerformSegueWithIdentifier:identifier sender:self]) {
+        
+        switch (indexPath.row) {
+            case kContinueProgramVC:
+            case kNewProgramVC:
+            case kLocalProgramsVC:
+            case kExploreVC:
+                [self performSegueWithIdentifier:identifier sender:self];
+                break;
+                
+            case kHelpVC: {
+                HelpWebViewController *webVC = [[HelpWebViewController alloc] initWithURL:[NSURL URLWithString:kForumURL]];
+                [self.navigationController pushViewController:webVC animated:YES];
+            }
+                break;
+                
+            case kUploadVC:
+                [Util showComingSoonAlertView];
+                break;
+                
+            default:
+                break;
         }
-    } else {
-        [Util showComingSoonAlertView];
     }
+    
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
@@ -278,7 +306,7 @@
             return NO;
         }
         return YES;
-    } else if([identifier isEqualToString:kSegueToExplore]){
+    } else if([identifier isEqualToString:kSegueToExplore]||[identifier isEqualToString:kSegueToHelp]){
         NetworkStatus remoteHostStatus = [self.reachability currentReachabilityStatus];
         
         if(remoteHostStatus == NotReachable) {
@@ -382,7 +410,8 @@
     NetworkStatus remoteHostStatus = [self.reachability currentReachabilityStatus];
     if(remoteHostStatus == NotReachable) {
         if ([self.navigationController.topViewController isKindOfClass:[DownloadTabBarController class]] ||
-            [self.navigationController.topViewController isKindOfClass:[ProgramDetailStoreViewController class]]) {
+            [self.navigationController.topViewController isKindOfClass:[ProgramDetailStoreViewController class]] ||
+            [self.navigationController.topViewController isKindOfClass:[HelpWebViewController class]] ) {
             [Util alertWithText:@"No Internet Connection!"];
             [self.navigationController popToRootViewControllerAnimated:YES];
         }
@@ -393,7 +422,8 @@
         }else{
             NSDebug(@"reachable via wifi but no data");
             if ([self.navigationController.topViewController isKindOfClass:[DownloadTabBarController class]] ||
-                [self.navigationController.topViewController isKindOfClass:[ProgramDetailStoreViewController class]]) {
+                [self.navigationController.topViewController isKindOfClass:[ProgramDetailStoreViewController class]]||
+                [self.navigationController.topViewController isKindOfClass:[HelpWebViewController class]]) {
                 [Util alertWithText:@"No Internet Connection!"];
                 [self.navigationController popToRootViewControllerAnimated:YES];
             }
@@ -404,7 +434,8 @@
         }else{
            NSDebug(@"reachable via cellular but no data");
             if ([self.navigationController.topViewController isKindOfClass:[DownloadTabBarController class]] ||
-                [self.navigationController.topViewController isKindOfClass:[ProgramDetailStoreViewController class]]) {
+                [self.navigationController.topViewController isKindOfClass:[ProgramDetailStoreViewController class]]||
+                [self.navigationController.topViewController isKindOfClass:[HelpWebViewController class]]) {
                 [Util alertWithText:@"No Internet Connection!"];
                 [self.navigationController popToRootViewControllerAnimated:YES];
             }
