@@ -20,4 +20,12 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#define kCatrobatLanguageVersion @"0.6"
+#define kCatrobatApplicationBuildNumber @"0"
+#define kCatrobatApplicationName @"Pocket Code (Catty iOS)"
+#define kCatrobatLanguageVersion @"0.8"
+#define kCatrobatMediaLicense @"http://developer.catrobat.org/ccbysa_v3"
+#define kCatrobatProgramLicense @"http://developer.catrobat.org/agpl_v3"
+
+#define kCatrobatScreenModeMaximize @"MAXIMIZE"
+#define kCatrobatScreenModeStretch @"STRETCH"
+#define kCatrobatProgramScreenshotDefaultValue @"false"

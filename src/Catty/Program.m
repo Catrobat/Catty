@@ -50,28 +50,26 @@
 {
     Program* program = [[Program alloc] init];
     program.header = [[Header alloc] init];
-
-    // TODO: check all constants for this default header properties after Webteam has updated code.xml (remove refs, etc.)...
     program.header.applicationBuildName = nil;
-    program.header.applicationBuildNumber = @"0";
+    program.header.applicationBuildNumber = kCatrobatApplicationBuildNumber;
     program.header.applicationName = [Util getProjectName];
     program.header.applicationVersion = [Util getProjectVersion];
     program.header.catrobatLanguageVersion = kCatrobatLanguageVersion;
     program.header.dateTimeUpload = nil;
-    program.header.description = @"XStream kompatibel";
+    program.header.description = @"********** TODO: CHANGE THIS **********"; // TODO: has to be changed
     program.header.deviceName = [Util getDeviceName];
-    program.header.mediaLicense = nil;
+    program.header.mediaLicense = kCatrobatMediaLicense;
     program.header.platform = [Util getPlatformName];
     program.header.platformVersion = [Util getPlatformVersion];
-    program.header.programLicense = nil;
+    program.header.programLicense = kCatrobatProgramLicense;
     program.header.programName = programName;
-    program.header.remixOf = nil;
+    program.header.remixOf = nil; // no remix
     program.header.screenHeight = @([Util getScreenHeight]);
     program.header.screenWidth = @([Util getScreenWidth]);
-    program.header.screenMode = @"STRETCH";
+    program.header.screenMode = kCatrobatScreenModeStretch;
     program.header.url = nil;
     program.header.userHandle = nil;
-    program.header.programScreenshotManuallyTaken = (YES ? @"true" : @"false");
+    program.header.programScreenshotManuallyTaken = kCatrobatProgramScreenshotDefaultValue;
     program.header.tags = nil;
 
     FileManager *fileManager = [[FileManager alloc] init];
