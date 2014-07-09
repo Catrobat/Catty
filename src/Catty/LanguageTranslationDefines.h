@@ -138,6 +138,15 @@
 
 /*
  * -----------------------------------------------------------------------------------------------------------
+ * UIInfoPopupViewController
+ * -----------------------------------------------------------------------------------------------------------
+ */
+#define kUIInfoPopupViewAboutPocketCode NSLocalizedString(@"About Pocket Code", nil)//
+#define kUIInfoPopupViewBack NSLocalizedString(@"Back", nil)//
+#define kUIInfoPopupViewAboutPocketCodeBody NSLocalizedString(@"Pocket Code is a programming environment for iOS for the visual programming language Catrobat. The code of Pocket Code is mostly under GNU AGPL v3 licence. For further information to te licence please visit following links:", nil)//
+
+/*
+ * -----------------------------------------------------------------------------------------------------------
  * UIBarButtonItem title defines
  * -----------------------------------------------------------------------------------------------------------
  */

@@ -20,11 +20,24 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-
 #import <UIKit/UIKit.h>
-#import "BaseTableViewController.h"
-#import "UIViewController+CWPopup.h"
 
-@interface CatrobatTableViewController : BaseTableViewController <DismissPopupDelegate>
+
+@protocol DismissPopupDelegate <NSObject>
+
+- (void)dismissPopup;
+
+@end
+
+
+
+
+
+@interface UIViewController (CWPopup)
+
+@property (nonatomic, readwrite) UIViewController *popupViewController;
+
+-(void)presentPopupViewController:(UIViewController *)viewControllerToPresent;
+-(void)dismissPopupViewController;
 
 @end
