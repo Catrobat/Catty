@@ -396,16 +396,19 @@
     [[UIApplication sharedApplication] setStatusBarHidden:NO];
 }
 
-- (void)viewDidDisappear:(BOOL)animated
-{
-    [super viewDidDisappear:animated];
-    [self.skView removeFromSuperview];
-}
-
 - (void)viewWillLayoutSubviews
 {
     [super viewWillLayoutSubviews];
     self.skView.bounds = self.view.bounds;
+}
+
+- (void)viewDidDisappear:(BOOL)animated
+{
+    [super viewDidDisappear:animated];
+    [self.skView removeFromSuperview];
+    self.skView = nil;
+    self.program = nil;
+    self.controller = nil;
 }
 
 - (void)configureScene
