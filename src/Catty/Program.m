@@ -89,6 +89,7 @@
 
     [program addNewObjectWithName:kGeneralBackgroundObjectName];
     [program addNewObjectWithName:kGeneralDefaultObjectName];
+    NSLog(@"%@", [program description]);
     return program;
 }
 
@@ -103,14 +104,11 @@
     if (! program)
         return nil;
 
+    NSLog(@"%@", [program description]);
     NSDebug(@"ProjectResolution: width/height:  %f / %f", program.header.screenWidth.floatValue, program.header.screenHeight.floatValue);
 
     // setting effect
     for (SpriteObject *sprite in program.objectList) {
-        //sprite.spriteManagerDelegate = self;
-        //sprite.broadcastWaitDelegate = self.broadcastWaitHandler;
-
-        // TODO: change!
         for (Script *script in sprite.scriptList) {
             for (Brick *brick in script.brickList) {
                 brick.object = sprite;
@@ -273,7 +271,7 @@
 {
     GDataXMLElement *rootXMLElement = [GDataXMLNode elementWithName:@"program"];
     [rootXMLElement addChild:[self.header toXML]];
-    
+
     GDataXMLElement *objectListXMLElement = [GDataXMLNode elementWithName:@"objectList"];
     for (id object in self.objectList) {
         if ([object isKindOfClass:[SpriteObject class]])
@@ -354,8 +352,7 @@
     [ret appendFormat:@"Sprite List: %@\n", self.objectList];
     [ret appendFormat:@"URL: %@\n", self.header.url];
     [ret appendFormat:@"User Handle: %@\n", self.header.userHandle];
-    [ret appendFormat:@"----------------------------------------------\n"];
-    
+    [ret appendFormat:@"------------------------------------------------\n"];
     return [NSString stringWithString:ret];
 }
 

@@ -34,6 +34,7 @@
 #import <objc/runtime.h>
 #import "BroadcastWaitBrick.h"
 #import "BrickManager.h"
+#import "GDataXMLNode.h"
 
 @interface Script()
 
@@ -507,6 +508,26 @@
 //    }
 //}
 
+- (GDataXMLElement*)toXML
+{
+    GDataXMLElement *scriptXMLElement = [GDataXMLNode elementWithName:[self xmlTagName]];
+    GDataXMLElement *brickListXMLElement = [GDataXMLNode elementWithName:@"brickList"];
+    for (id brick in self.brickList) {
+        if ([brick isKindOfClass:[Brick class]]) {
+            [brickListXMLElement addChild:[((Brick*) brick) toXML]];
+        }
+    }
+    [scriptXMLElement addChild:brickListXMLElement];
+    GDataXMLElement *scriptToObjectReferenceXMLElement = [GDataXMLNode elementWithName:@"object"];
+    [scriptToObjectReferenceXMLElement addAttribute:[GDataXMLNode elementWithName:@"reference" stringValue:@"../../.."]];
+    [scriptXMLElement addChild:scriptToObjectReferenceXMLElement];
+    return scriptXMLElement;
+}
+
+- (NSString*)xmlTagName
+{
+    return [NSStringFromClass([self class]) firstCharacterLowercaseString];
+}
 
 #pragma mark - Description
 - (NSString*)description

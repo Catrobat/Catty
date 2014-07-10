@@ -98,9 +98,9 @@
 
 - (void)viewWillDisappear:(BOOL)animated
 {
-    if (self.isNewProgram) {
+//    if (self.isNewProgram) {
         [self.program saveToDisk];
-    }
+//    }
 }
 
 - (void)viewDidAppear:(BOOL)animated

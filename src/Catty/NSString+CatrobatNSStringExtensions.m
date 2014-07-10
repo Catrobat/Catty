@@ -68,12 +68,15 @@ NSMutableString* resultString;
     return result;
 }
 
-
-- (NSString*) firstCharacterUppercaseString
+- (NSString*)firstCharacterUppercaseString
 {
     return [[[self substringToIndex:1] uppercaseString] stringByAppendingString:[self substringFromIndex:1]];
 }
 
+- (NSString*)firstCharacterLowercaseString
+{
+    return [[[self substringToIndex:1] lowercaseString] stringByAppendingString:[self substringFromIndex:1]];
+}
 
 + (NSString *)uuid
 {

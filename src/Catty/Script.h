@@ -29,6 +29,7 @@
 
 @class Brick;
 @class SpriteObject;
+@class GDataXMLElement;
 
 @interface Script : SKNode <BrickProtocol>
 
@@ -45,6 +46,8 @@
 - (void)startWithCompletion:(dispatch_block_t)block;
 
 - (void)stop;
+
+- (GDataXMLElement*)toXML;
 
 - (NSString*)description;
 

@@ -65,7 +65,7 @@
   [headerXMLElement addChild:[GDataXMLNode elementWithName:@"platformVersion" stringValue:self.platformVersion]];
   [headerXMLElement addChild:[GDataXMLNode elementWithName:@"programLicense" stringValue:(self.programLicense ? self.programLicense : @"")]];
   [headerXMLElement addChild:[GDataXMLNode elementWithName:@"programName" stringValue:self.programName]];
-  [headerXMLElement addChild:[GDataXMLNode elementWithName:@"programScreenshotManuallyTaken" stringValue:(self.programScreenshotManuallyTaken ? @"true" : @"false")]];
+//  [headerXMLElement addChild:[GDataXMLNode elementWithName:@"programScreenshotManuallyTaken" stringValue:self.programScreenshotManuallyTaken]];
   [headerXMLElement addChild:[GDataXMLNode elementWithName:@"remixOf" stringValue:(self.remixOf ? self.remixOf : @"")]];
   [headerXMLElement addChild:[GDataXMLNode elementWithName:@"screenHeight" stringValue:[self.screenHeight stringValue]]];
   [headerXMLElement addChild:[GDataXMLNode elementWithName:@"screenWidth" stringValue:[self.screenWidth stringValue]]];

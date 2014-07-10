@@ -38,6 +38,8 @@
 
 - (id)initWithSprite:(SpriteObject*)sprite;
 
+- (GDataXMLElement*)toXML;
+
 - (NSString*)description;
 
 - (SKAction*)action;
