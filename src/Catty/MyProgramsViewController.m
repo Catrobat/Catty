@@ -43,6 +43,7 @@
 #import "LanguageTranslationDefines.h"
 #import "RuntimeImageCache.h"
 #import "NSString+CatrobatNSStringExtensions.h"
+#import "UIDefines.h"
 
 // TODO: outsource...
 #define kUserDetailsShowDetailsKey @"showDetails"
@@ -59,6 +60,7 @@
 @end
 
 @implementation MyProgramsViewController
+
 
 #pragma mark - getters and setters
 - (NSMutableDictionary*)dataCache
@@ -92,6 +94,10 @@
     self.selectedProgram = nil;
     [self setupToolBar];
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(downloadFinished:)
+                                                 name:kProgramDownloadedNotification
+                                               object:nil];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -115,6 +121,7 @@
     self.tableView.dataSource = nil;
     self.tableView.delegate = nil;
     self.programLoadingInfos = nil;
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 #pragma mark - actions
@@ -615,6 +622,17 @@
     UIBarButtonItem *invisibleButton = [[UIBarButtonItem alloc] initWithCustomView:imageView];
     self.toolbarItems = [NSArray arrayWithObjects:self.selectAllRowsButtonItem, invisibleButton, flexItem,
                          invisibleButton, deleteButton, nil];
+}
+
+#pragma mark Filemanager notification
+
+- (void) downloadFinished:(NSNotification *) notification
+{
+    if ([[notification name] isEqualToString:kProgramDownloadedNotification]){
+        [self loadPrograms];
+        [self.tableView reloadData];
+    }
+
 }
 
 @end
