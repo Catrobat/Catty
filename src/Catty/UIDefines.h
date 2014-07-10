@@ -62,9 +62,6 @@ static NSString *const kUserInfoKeyBrickCell = @"UserInfoKeyBrickCell";
 static NSString *const kUserInfoSpriteObject = @"UserInfoSpriteObject";
 static NSString *const kUserInfoSound = @"UserInfoSound";
 
-// menu titles
-static NSString *const kSelectionMenuTitle = @"Select Brick Category";
-
 // UI Elements
 #define kNavigationbarHeight 64.0f
 #define kToolbarHeight 44.0f

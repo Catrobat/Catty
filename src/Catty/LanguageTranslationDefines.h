@@ -161,6 +161,7 @@
 #define kUIActionSheetTitleEditProgramPlural NSLocalizedString(@"Edit Programs", nil)
 #define kUIActionSheetTitleAddSound NSLocalizedString(@"Add sound", @"Action sheet menu title")
 #define kUIActionSheetTitleSaveScreenshot NSLocalizedString(@"Save Screenshot to", @"Action sheet menu title")
+#define kUIActionSheetTitleSelectBrickCategory NSLocalizedString(@"Select Brick Category", nil)
 
 /*
  * -----------------------------------------------------------------------------------------------------------
@@ -195,6 +196,12 @@
 #define kUIActionSheetButtonTitleProject NSLocalizedString(@"Project", nil)
 #define kUIActionSheetButtonTitleCancel NSLocalizedString(@"Cancel", nil)
 #define kUIActionSheetButtonTitleDelete NSLocalizedString(@"Delete", nil)
+
+#define kUIActionSheetButtonTitleControl NSLocalizedString(@"Control", nil)
+#define kUIActionSheetButtonTitleMotion NSLocalizedString(@"Motion", nil)
+#define kUIActionSheetButtonTitleSound NSLocalizedString(@"Sound", nil)
+#define kUIActionSheetButtonTitleLooks NSLocalizedString(@"Looks", nil)
+#define kUIActionSheetButtonTitleVariables NSLocalizedString(@"Variables", nil)
 
 /*
  * -----------------------------------------------------------------------------------------------------------
