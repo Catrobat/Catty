@@ -45,7 +45,7 @@
 {
     [super viewDidLoad];
     self.view.frame = CGRectMake(0,0, 280.0f, 280.0f);
-    self.view.backgroundColor = [UIColor darkBlueColor];
+    self.view.backgroundColor = [UIColor backgroundColor];
     [self initAboutPocketCodeButton];
     
 }
@@ -78,14 +78,13 @@
     self.aboutPocketCodeView.backgroundColor = [UIColor backgroundColor];
     self.aboutPocketCodeView.layer.cornerRadius = 15;
     self.aboutPocketCodeView.layer.masksToBounds = YES;
-    [self.view addSubview:self.aboutPocketCodeView];
     
     //init header
     UILabel *aboutPocketCodeLabel = [[UILabel alloc] initWithFrame:CGRectMake(self.view.frame.size.width / 2, 10, self.view.frame.size.width, 40)];
     [aboutPocketCodeLabel setTextColor:[UIColor skyBlueColor]];
     [aboutPocketCodeLabel setText:kUIInfoPopupViewAboutPocketCode];
     [aboutPocketCodeLabel sizeToFit];
-    aboutPocketCodeLabel.frame =CGRectMake(self.view.frame.size.width / 2 - aboutPocketCodeLabel.frame.size.width / 2, 20, aboutPocketCodeLabel.frame.size.width, aboutPocketCodeLabel.frame.size.height);
+    aboutPocketCodeLabel.frame =CGRectMake(self.view.frame.size.width / 2 - aboutPocketCodeLabel.frame.size.width / 2, 10, aboutPocketCodeLabel.frame.size.width, aboutPocketCodeLabel.frame.size.height);
     aboutPocketCodeLabel.textAlignment = NSTextAlignmentCenter;
     [self.aboutPocketCodeView addSubview:aboutPocketCodeLabel];
     
@@ -108,6 +107,7 @@
     bodyTextView.frame = CGRectMake(20, 45, self.view.frame.size.width - 40, bodyTextView.frame.size.height);
     bodyTextView.textColor = [UIColor lightOrangeColor];
     bodyTextView.backgroundColor = [UIColor backgroundColor];
+    bodyTextView.editable = NO;
     
     [self.aboutPocketCodeView addSubview:bodyTextView];
     
@@ -120,17 +120,31 @@
     UIButton *backButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
     [backButton setTitle:kUIInfoPopupViewBack forState:UIControlStateNormal];
     [backButton addTarget:self
-                        action:@selector(backAction)
-              forControlEvents:UIControlEventTouchUpInside];
+                   action:@selector(backAction)
+         forControlEvents:UIControlEventTouchUpInside];
     [backButton sizeToFit];
     backButton.frame = CGRectMake(self.aboutPocketCodeView.frame.size.width / 2 - backButton.frame.size.width / 2, self.aboutPocketCodeView.frame.size.height - backButton.frame.size.height, backButton.frame.size.width, backButton.frame.size.height);
     [self.aboutPocketCodeView addSubview:backButton];
     
+    
+    //Animation to add the main subview -> aboutPocketCodeView
+    self.aboutPocketCodeView.alpha = 0.0f;
+    [self.view addSubview:self.aboutPocketCodeView];
+    [UIView animateWithDuration:0.5f
+                     animations:^{
+                         self.aboutPocketCodeView.alpha = 1.0f;
+                                }];
 }
 
 - (void)backAction
 {
-    [self.aboutPocketCodeView removeFromSuperview];
+    [UIView animateWithDuration:0.5f
+                     animations:^{
+                                self.aboutPocketCodeView.alpha = 0.0f;
+                                }
+                     completion:^(BOOL finished){
+                                [self.aboutPocketCodeView removeFromSuperview];
+                                }];    
     //TODO also remove other views if there are any (Termsofuse view..)
 }
 

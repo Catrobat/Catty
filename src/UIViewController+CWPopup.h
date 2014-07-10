@@ -37,7 +37,7 @@
 
 @property (nonatomic, readwrite) UIViewController *popupViewController;
 
--(void)presentPopupViewController:(UIViewController *)viewControllerToPresent;
+-(void)presentPopupViewController:(UIViewController *)viewControllerToPresent WithFrame:(CGRect)frame;
 -(void)dismissPopupViewController;
 
 @end

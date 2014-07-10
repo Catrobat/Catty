@@ -175,7 +175,7 @@ NS_ENUM(NSInteger, ViewControllerIndex) {
     if (self.popupViewController == nil) {
         InfoPopupViewController *popupViewController = [[InfoPopupViewController alloc] init];
         popupViewController.delegate = self;
-        [self presentPopupViewController:popupViewController];
+        [self presentPopupViewController:popupViewController WithFrame:self.tableView.frame];
     } else {
         [self dismissPopup];
     }

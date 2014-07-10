@@ -138,9 +138,9 @@ NSString const *CWPopupViewOffset = @"CWPopupViewOffset";
 
 #pragma mark - blur view methods
 
-- (UIImage *)getScreenImage {
+- (UIImage *)getScreenImageWithFrame:(CGRect)frame{
     // frame without status bar
-    CGRect frame = CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height);
+   // CGRect frame = CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height);
     // begin image context
     UIGraphicsBeginImageContext(frame.size);
     // get current context
@@ -156,10 +156,10 @@ NSString const *CWPopupViewOffset = @"CWPopupViewOffset";
     return screenshot;
 }
 
-- (void)addBlurView {
+- (void)addBlurViewWithFrame:(CGRect)frame {
     UIImageView *blurView = [UIImageView new];
-    blurView.frame = CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height);
-    blurView.image = [[self getScreenImage] applyBlurWithRadius:5.0f];
+    blurView.frame = frame;//CGRectMake(0, 0, frame.size.width, frame.size.height);
+    blurView.image = [[self getScreenImageWithFrame:frame] applyBlurWithRadius:15.0f];
     [self.view addSubview:blurView];
     [self.view bringSubviewToFront:self.popupViewController.view];
     objc_setAssociatedObject(self, &CWBlurViewKey, blurView, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
@@ -167,7 +167,7 @@ NSString const *CWPopupViewOffset = @"CWPopupViewOffset";
 
 #pragma mark - present/dismiss
 
-- (void)presentPopupViewController:(UIViewController *)viewControllerToPresent
+- (void)presentPopupViewController:(UIViewController *)viewControllerToPresent WithFrame:(CGRect)frame
 {
     if (self.popupViewController == nil) {
         // initial setup
@@ -182,7 +182,7 @@ NSString const *CWPopupViewOffset = @"CWPopupViewOffset";
         viewControllerToPresent.view.layer.borderColor = [UIColor skyBlueColor].CGColor;
         
         // blurview
-        [self addBlurView];
+        [self addBlurViewWithFrame:frame];
         UIView *blurView = objc_getAssociatedObject(self, &CWBlurViewKey);
 
         
