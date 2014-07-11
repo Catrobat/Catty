@@ -27,6 +27,8 @@
 
 "My Object" = "Mein Objekt";
 
+"My Image" = "Mein Foto";
+
 "Today" = "Heute";
 
 "Yesterday" = "Gestern";
@@ -163,13 +165,15 @@
 
 "Add look" = "Hinzufügen von neuem Aussehen";
 
-"Edit Program" = "Program bearbeiten";
+"Edit Program" = "Programm bearbeiten";
 
 "Edit Programs" = "Programme bearbeiten";
 
 "Add sound" = "Sound hinzufügen";
 
 "Save Screenshot to" = "Screenshot abspeichern in";
+
+"Save to PocketCode" = "Abspeichern in PocketCode";
 
 "Close" = "Schließen";
 
@@ -183,7 +187,7 @@
 
 "Edit Formula" = "Bearbeite Formel";
 
-"Delete Sounds" = "Delete Sounds";
+"Delete Sounds" = "Sounds löschen";
 
 "Hide Details" = "Details verbergen";
 
@@ -199,9 +203,9 @@
 
 "Rename" = "Umbenennen";
 
-"Delete Objects" = "Delete Objects";
+"Delete Objects" = "Objekte löschen";
 
-"Delete Programs" = "Delete Programs";
+"Delete Programs" = "Programme löschen";
 
 "Pocket Code Recorder" = "Pocket Code Recorder";
 
@@ -269,11 +273,13 @@
 
 "Pocket Code for iOS" = "Pocket Code für iOS";
 
-"Program name" = "Program name";
+"Program name" = "Programmname";
 
-"Object name" = "Objekt Name";
+"Object name" = "Objektname";
 
-"Image name" = "Bild Name";
+"Image name" = "Bildname";
+
+"No search results" = "Keine Ergebnisse gefunden";
 
 "No imported sounds found. Please connect your iPhone to your PC/Mac and use iTunes FileSharing to import sound files into the PocketCode app." = "Es wurden keine über iTunes FileSharing importierten Sounds gefunden. Bitte verbinden Sie Ihr Gerät mit Ihrem PC oder Mac und importieren Sie über iTunes FileSharing neue Sounddateien in die PocketCode App.";
 
@@ -317,9 +323,9 @@
 
 "Views" = "Aufrufe";
 
-"Measure" = "Measure";
+"Measure" = "Auflösung";
 
-"Size" = "Größe";
+"Size" = "Dateigröße";
 
 "Background" = "Hintergrund";
 
@@ -351,11 +357,13 @@
 
 "Grid" = "Raster";
 
-"Most Downloaded" = "Neueste";
+"Most Downloaded" = "Download-Hits";
 
-"Most Viewed" = "mal heruntergeladen";
+"Most Viewed" = "Meist gesehen";
 
-"Newest" = "Meist Gesehen";
+"Newest" = "Neueste";
+
+"Select Brick Category" = "Brick-Kategorie auswählen";
 
 "Control" = "Steuerung";
 

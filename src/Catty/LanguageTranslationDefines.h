@@ -29,6 +29,7 @@
 #define kGeneralNewDefaultProgramName NSLocalizedString(@"New Program", @"Default name for new programs")
 #define kGeneralBackgroundObjectName NSLocalizedString(@"Background", @"Title for background object")
 #define kGeneralDefaultObjectName NSLocalizedString(@"My Object", @"Title for first (default) object")
+#define kDefaultImportedImageName NSLocalizedString(@"My Image", @"Default title of imported photo from camera (taken by camera)")
 
 /*
  * -----------------------------------------------------------------------------------------------------------
@@ -147,6 +148,14 @@
 #define kUIBarButtonItemTitleSelectAllItems NSLocalizedString(@"Select All", nil)
 #define kUIBarButtonItemTitleUnselectAllItems NSLocalizedString(@"Unselect All", nil)
 #define kUIBarButtonItemTitleDelete NSLocalizedString(@"Delete", nil)
+
+/*
+ * -----------------------------------------------------------------------------------------------------------
+ * UIActivity title defines
+ * -----------------------------------------------------------------------------------------------------------
+ */
+
+#define kUIActivityTitleSaveToProject NSLocalizedString(@"Save to PocketCode", nil)
 
 /*
  * -----------------------------------------------------------------------------------------------------------
