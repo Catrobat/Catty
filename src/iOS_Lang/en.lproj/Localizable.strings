@@ -18,7 +18,7 @@
  *
  *  You should have received a copy of the GNU Affero General Public License
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
-*/
+ */
 "ExampleEntry" = "ExampleEntry";
 
 "New Program" = "New Program";
@@ -26,6 +26,8 @@
 "Background" = "Background";
 
 "My Object" = "My Object";
+
+"My Image" = "My Image";
 
 "Today" = "Today";
 
@@ -171,6 +173,8 @@
 
 "Save Screenshot to" = "Save Screenshot to";
 
+"Save to PocketCode" = "Save to PocketCode";
+
 "Close" = "Close";
 
 "Delete Brick" = "Delete Brick";
@@ -279,6 +283,8 @@
 
 "Image name" = "Image name";
 
+"No search results" = "No search results";
+
 "No imported sounds found. Please connect your iPhone to your PC/Mac and use iTunes FileSharing to import sound files into the PocketCode app." = "No imported sounds found. Please connect your iPhone to your PC/Mac and use iTunes FileSharing to import sound files into the PocketCode app.";
 
 "No or invalid program name entered, try again." = "No or invalid program name entered, try again.";
@@ -360,6 +366,8 @@
 "Most Viewed" = "Most Viewed";
 
 "Newest" = "Newest";
+
+"Select Brick Category" = "Select Brick Category";
 
 "Control" = "Control";
 
