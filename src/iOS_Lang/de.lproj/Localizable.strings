@@ -27,6 +27,8 @@
 
 "My Object" = "Mein Objekt";
 
+"My Image" = "Mein Foto";
+
 "Today" = "Heute";
 
 "Yesterday" = "Gestern";
@@ -91,7 +93,7 @@
 
 "Apr" = "Apr";
 
-"May" = "Hebr&#xE4;isch";
+"May" = "Mai";
 
 "Jun" = "Jun";
 
@@ -121,7 +123,7 @@
 
 "Sounds" = "Klänge";
 
-"Choose sound" = "Choose sound";
+"Choose sound" = "Sound auswählen";
 
 "Programs" = "Programme";
 
@@ -145,7 +147,7 @@
 
 "Help" = "Hilfe";
 
-"Edit Mode" = "Edit Mode";
+"Edit Mode" = "Bearbeitungsmodus";
 
 "Edit" = "Bearbeiten";
 
@@ -157,19 +159,21 @@
 
 "Delete" = "Löschen";
 
-"Edit Sounds" = "Edit Sounds";
+"Edit Sounds" = "Bearbeite Sounds";
 
-"Edit Looks" = "Edit Looks";
+"Edit Looks" = "Bearbeite Aussehen";
 
-"Add look" = "Add look";
+"Add look" = "Hinzufügen von neuem Aussehen";
 
-"Edit Program" = "Edit Program";
+"Edit Program" = "Programm bearbeiten";
 
-"Edit Programs" = "Edit Programs";
+"Edit Programs" = "Programme bearbeiten";
 
-"Add sound" = "Add sound";
+"Add sound" = "Sound hinzufügen";
 
-"Save Screenshot to" = "Save Screenshot to";
+"Save Screenshot to" = "Screenshot abspeichern in";
+
+"Save to PocketCode" = "Abspeichern in PocketCode";
 
 "Close" = "Schließen";
 
@@ -183,13 +187,13 @@
 
 "Edit Formula" = "Bearbeite Formel";
 
-"Delete Sounds" = "Delete Sounds";
+"Delete Sounds" = "Sounds löschen";
 
 "Hide Details" = "Details verbergen";
 
 "Show Details" = "Details anzeigen";
 
-"Delete Looks" = "Delete Looks";
+"Delete Looks" = "Lösche Aussehen";
 
 "From Camera" = "Von Kamera";
 
@@ -199,13 +203,13 @@
 
 "Rename" = "Umbenennen";
 
-"Delete Objects" = "Delete Objects";
+"Delete Objects" = "Objekte löschen";
 
-"Delete Programs" = "Delete Programs";
+"Delete Programs" = "Programme löschen";
 
 "Pocket Code Recorder" = "Pocket Code Recorder";
 
-"Choose sound" = "Choose sound";
+"Choose sound" = "Sound auswählen";
 
 "Camera Roll" = "Fotoalbum";
 
@@ -219,7 +223,7 @@
 
 "Download" = "Download";
 
-"More" = "More";
+"More" = "Mehr";
 
 "Delete" = "Löschen";
 
@@ -231,41 +235,41 @@
 
 "Rename program" = "Programm umbenennen";
 
-"Can't restart program!" = "Can't restart program!";
+"Can't restart program!" = "Program kann nicht neugestartet werden!";
 
-"Screenshot saved to Camera Roll" = "Screenshot saved to Camera Roll";
+"Screenshot saved to Camera Roll" = "Screenshot wurde in der Bilderbibliothek abgelegt";
 
-"Screenshot saved to project" = "Screenshot saved to project";
+"Screenshot saved to project" = "Screenshot wurde im Programm abgelegt";
 
 "New program" = "Neues Programm";
 
-"Delete this program" = "Delete this program";
+"Delete this program" = "Soll dieses Programm wirklich gelöscht werden?";
 
-"Delete these objects" = "Delete these objects";
+"Delete these objects" = "Sollen diese Objekte wirklich gelöscht werden?";
 
-"Delete this object" = "Delete this object";
+"Delete this object" = "Soll dieses Objekt wirklich gelöscht werden?";
 
-"Delete these programs" = "Delete these programs";
+"Delete these programs" = "Sollen diese Programme wirklich gelöscht werden?";
 
-"Delete this program" = "Delete this program";
+"Delete this program" = "Soll dieses Programm wirklich gelöscht werden?";
 
-"Delete these looks" = "Delete these looks";
+"Delete these looks" = "Sollen diese Bilder wirklich gelöscht werden?";
 
-"Delete this look" = "Delete this look";
+"Delete this look" = "Soll dieses Bild wirklich gelöscht werden?";
 
-"Delete these sounds" = "Delete these sounds";
+"Delete these sounds" = "Lösche diese Sounddateien";
 
-"Delete this sound" = "Delete this sound";
+"Delete this sound" = "Lösche diese Sounddatei";
 
-"Not enough free memory to download this program. Please delete some of your programs" = "Not enough free memory to download this program. Please delete some of your programs";
+"Not enough free memory to download this program. Please delete some of your programs" = "Es ist nicht genug freier Speicher auf Ihrem Gerät verfügbar um das Programm herunterladen zu können. Bitte geben Sie Speicher frei und versuchen Sie es erneut.";
 
-"Enter your program name here..." = "Enter your program name here...";
+"Enter your program name here..." = "Geben Sie hier den Namen für das Programm ein...";
 
-"Enter your object name here..." = "Enter your object name here...";
+"Enter your object name here..." = "Geben Sie hier den Namen für das Objekt ein...";
 
-"Enter your image name here..." = "Enter your image name here...";
+"Enter your image name here..." = "Geben Sie hier den Namen für das Bild ein...";
 
-"This feature is coming soon!" = "This feature is coming soon!";
+"This feature is coming soon!" = "Diese Funktion ist demnächst verfügbar!";
 
 "Pocket Code for iOS" = "Pocket Code für iOS";
 
@@ -273,25 +277,27 @@
 
 "Unable to play the selected sound. Your device is in silent mode. Please turn off silent mode by toggling the switch on the right side of your iPad and tap on play again." = "Die ausgewählte Sounddatei kann nicht wiedergegeben werden. Ihr Gerät befindet sich derzeit im Lautlosmodus. Bitte schalten Sie den Lautlosmodus wieder ab in dem Sie den Schalter auf der rechten Seite Ihres iPads nach oben schieben und versuchen Sie es erneut.";
 
-"Program name" = "Program name";
+"Program name" = "Programmname";
 
-"Object name" = "Objekt Name";
+"Object name" = "Objektname";
 
-"Image name" = "Image name";
+"Image name" = "Bildname";
 
-"No imported sounds found. Please connect your iPhone to your PC/Mac and use iTunes FileSharing to import sound files into the PocketCode app." = "No imported sounds found. Please connect your iPhone to your PC/Mac and use iTunes FileSharing to import sound files into the PocketCode app.";
+"No search results" = "Keine Ergebnisse gefunden";
 
-"No or invalid program name entered, try again." = "No or invalid program name entered, try again.";
+"No imported sounds found. Please connect your iPhone to your PC/Mac and use iTunes FileSharing to import sound files into the PocketCode app." = "Es wurden keine über iTunes FileSharing importierten Sounds gefunden. Bitte verbinden Sie Ihr Gerät mit Ihrem PC oder Mac und importieren Sie über iTunes FileSharing neue Sounddateien in die PocketCode App.";
 
-"A program with the same name already exists, try again." = "A program with the same name already exists, try again.";
+"No or invalid program name entered, try again." = "Sie haben keinen oder einen ungültigen Programmnamen eingegeben. Bitte versuchen Sie es erneut.";
 
-"No or invalid object name entered, try again." = "No or invalid object name entered, try again.";
+"A program with the same name already exists, try again." = "Ein Programm mit dem selben Namen existiert bereits. Bitte wählen Sie einen anderen Programmnamen.";
 
-"Unable to load program!" = "Unable to load program!";
+"No or invalid object name entered, try again." = "Es wurde kein oder ein ungültiger Objektname eingegeben. Bitte versuchen Sie es erneut.";
 
-"This action can not be undone!" = "This action can not be undone!";
+"Unable to load program!" = "Fehler: Programm kann nicht geladen werden!";
 
-"Unable to play that sound!\nMaybe this is no valid sound or the file is corrupt." = "Unable to play that sound!\nMaybe this is no valid sound or the file is corrupt.";
+"This action can not be undone!" = "Diese Aktion ist nicht rückgängig machbar!";
+
+"Unable to play that sound!\nMaybe this is no valid sound or the file is corrupt." = "Sound kann nicht wiedergegeben werden!\nDie Sounddatei ist entweder ungültig oder korrupt.";
 
 "OK" = "OK";
 
@@ -321,9 +327,9 @@
 
 "Views" = "Aufrufe";
 
-"Measure" = "Measure";
+"Measure" = "Auflösung";
 
-"Size" = "Größe";
+"Size" = "Dateigröße";
 
 "Background" = "Hintergrund";
 
@@ -355,11 +361,13 @@
 
 "Grid" = "Raster";
 
-"Most Downloaded" = "Neueste";
+"Most Downloaded" = "Download-Hits";
 
-"Most Viewed" = "mal heruntergeladen";
+"Most Viewed" = "Meist gesehen";
 
-"Newest" = "Meist Gesehen";
+"Newest" = "Neueste";
+
+"Select Brick Category" = "Brick-Kategorie auswählen";
 
 "Control" = "Steuerung";
 
