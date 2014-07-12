@@ -24,6 +24,9 @@
 #import <Foundation/Foundation.h>
 #import <QuartzCore/QuartzCore.h>
 
+#define IS_IPAD (UI_USER_INTERFACE_IDIOM()==UIUserInterfaceIdiomPad)
+#define IS_IPHONE (UI_USER_INTERFACE_IDIOM()==UIUserInterfaceIdiomPhone)
+#define IS_IPHONE5 ((UIScreen.mainScreen.bounds.size.height - 568) ? NO : YES)
 
 #define TIMEOUT 30.0f
 

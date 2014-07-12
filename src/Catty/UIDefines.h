@@ -25,10 +25,6 @@
 // which characters in program, object, image names do we have to support?
 #define kTextFieldAllowedCharacters @"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyzäöü_#?!()=+-.:&%$€ 1234567890"
 
-#define IsIPad() UIDevice.currentDevice.userInterfaceIdiom == UIUserInterfaceIdiomPad
-#define IsIPhone() UIDevice.currentDevice.userInterfaceIdiom == UIUserInterfaceIdiomPhone
-#define IsIPhone5() ((UIScreen.mainScreen.bounds.size.height - 568) ? NO : YES)
-
 #define kMenuImageNameContinue @"continue"
 #define kMenuImageNameNew @"new"
 #define kMenuImageNamePrograms @"programs"
