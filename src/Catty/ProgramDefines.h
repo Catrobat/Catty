@@ -34,6 +34,10 @@
 #define kMinNumOfObjects 0
 #define kDefaultNumOfObjects 1
 #define kBackgroundObjects 1
+#define kMaxNumOfProgramNameCharacters 20
+#define kMaxNumOfObjectNameCharacters 20
+#define kMaxNumOfLookNameCharacters 20
+#define kMaxNumOfSoundNameCharacters 20
 
 #define kDefaultProgramName @"My First Program"
 
