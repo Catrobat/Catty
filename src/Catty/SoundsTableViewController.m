@@ -41,6 +41,7 @@
 #import <AVFoundation/AVFoundation.h>
 #import "LanguageTranslationDefines.h"
 #import "RuntimeImageCache.h"
+#import "SharkfoodMuteSwitchDetector.h"
 
 // TODO: outsource...
 #define kUserDetailsShowDetailsKey @"showDetails"
@@ -54,6 +55,7 @@
 @property (nonatomic, strong) NSMutableDictionary* addSoundActionSheetBtnIndexes;
 @property (atomic, strong) Sound *currentPlayingSong;
 @property (atomic, weak) UITableViewCell<CatrobatImageCell> *currentPlayingSongCell;
+@property (nonatomic, strong) SharkfoodMuteSwitchDetector *silentDetector;
 
 @end
 
@@ -78,6 +80,19 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+
+    // automatically stop current playing sound after the user turns
+    // on the silent switcher on the iPhone/iPad (device is in silent state)
+    self.silentDetector = [SharkfoodMuteSwitchDetector shared];
+    // must be weak (!!) since SoundsTableViewController is holding the SharkfoodMuteSwitchDetector
+    // instance strongly!
+    __weak SoundsTableViewController *soundsTableViewController = self;
+    self.silentDetector.silentNotify = ^(BOOL silent){
+        if (silent) {
+            [soundsTableViewController stopAllSounds];
+        }
+    };
+
     NSDictionary *showDetails = [[NSUserDefaults standardUserDefaults] objectForKey:kUserDetailsShowDetailsKey];
     NSNumber *showDetailsSoundsValue = (NSNumber*)[showDetails objectForKey:kUserDetailsShowDetailsSoundsKey];
     self.useDetailCells = [showDetailsSoundsValue boolValue];
@@ -288,8 +303,10 @@
     return imageCell;
 }
 
+#pragma mark - player actions
 - (void)playSound:(id)sender
 {
+    // TODO: too many nested codeblocks...
     UITapGestureRecognizer *gesture = (UITapGestureRecognizer*)sender;
     if ([gesture.view isKindOfClass:[UIImageView class]]) {
         UIImageView *imageView = (UIImageView*)gesture.view;
@@ -301,6 +318,11 @@
             if (indexPath.row < [self.object.soundList count]) {
                 // acquire lock
                 @synchronized(self) {
+                    if (self.silentDetector.isMute) {
+                        [Util alertWithText:(IS_IPHONE ? kUIAlertViewMessageDeviceIsInMutedStateIPhone
+                                                       : kUIAlertViewMessageDeviceIsInMutedStateIPad)];
+                        return;
+                    }
                     Sound *sound = (Sound*)[self.object.soundList objectAtIndex:indexPath.row];
                     BOOL isPlaying = sound.isPlaying;
                     if (self.currentPlayingSong && self.currentPlayingSongCell) {

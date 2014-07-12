@@ -24,6 +24,8 @@
 #import <Foundation/Foundation.h>
 #import <QuartzCore/QuartzCore.h>
 
+#define IS_IPHONE  (UI_USER_INTERFACE_IDIOM()==UIUserInterfaceIdiomPhone)
+#define IS_IPAD  (UI_USER_INTERFACE_IDIOM()==UIUserInterfaceIdiomPad)
 
 #define TIMEOUT 30.0f
 
