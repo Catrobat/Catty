@@ -22,7 +22,7 @@
 
 
 #import "Header.h"
-#import "GDataXMLNode.h"
+#import "GDataXMLNode+PrettyFormatterExtensions.h"
 
 @implementation Header
 
@@ -51,29 +51,48 @@
 
 - (GDataXMLElement*)toXML
 {
-  GDataXMLElement *headerXMLElement = [GDataXMLNode elementWithName:@"header"];
-  [headerXMLElement addChild:[GDataXMLNode elementWithName:@"applicationBuildName" stringValue:(self.applicationBuildName ? self.applicationBuildName : @"")]];
-  [headerXMLElement addChild:[GDataXMLNode elementWithName:@"applicationBuildNumber" stringValue:self.applicationBuildNumber]];
-  [headerXMLElement addChild:[GDataXMLNode elementWithName:@"applicationName" stringValue:self.applicationName]];
-  [headerXMLElement addChild:[GDataXMLNode elementWithName:@"applicationVersion" stringValue:self.applicationVersion]];
-  [headerXMLElement addChild:[GDataXMLNode elementWithName:@"catrobatLanguageVersion" stringValue:self.catrobatLanguageVersion]];
-  [headerXMLElement addChild:[GDataXMLNode elementWithName:@"dateTimeUpload" stringValue:@""]]; // FIXME which date format??!!
-  [headerXMLElement addChild:[GDataXMLNode elementWithName:@"description" stringValue:self.description]];
-  [headerXMLElement addChild:[GDataXMLNode elementWithName:@"deviceName" stringValue:self.deviceName]];
-  [headerXMLElement addChild:[GDataXMLNode elementWithName:@"mediaLicense" stringValue:(self.mediaLicense ? self.mediaLicense : @"")]];
-  [headerXMLElement addChild:[GDataXMLNode elementWithName:@"platform" stringValue:self.platform]];
-  [headerXMLElement addChild:[GDataXMLNode elementWithName:@"platformVersion" stringValue:self.platformVersion]];
-  [headerXMLElement addChild:[GDataXMLNode elementWithName:@"programLicense" stringValue:(self.programLicense ? self.programLicense : @"")]];
-  [headerXMLElement addChild:[GDataXMLNode elementWithName:@"programName" stringValue:self.programName]];
-//  [headerXMLElement addChild:[GDataXMLNode elementWithName:@"programScreenshotManuallyTaken" stringValue:self.programScreenshotManuallyTaken]];
-  [headerXMLElement addChild:[GDataXMLNode elementWithName:@"remixOf" stringValue:(self.remixOf ? self.remixOf : @"")]];
-  [headerXMLElement addChild:[GDataXMLNode elementWithName:@"screenHeight" stringValue:[self.screenHeight stringValue]]];
-  [headerXMLElement addChild:[GDataXMLNode elementWithName:@"screenWidth" stringValue:[self.screenWidth stringValue]]];
-  [headerXMLElement addChild:[GDataXMLNode elementWithName:@"screenMode" stringValue:self.screenMode]];
-  [headerXMLElement addChild:[GDataXMLNode elementWithName:@"tags" stringValue:(self.tags ? self.tags : @"")]];
-  [headerXMLElement addChild:[GDataXMLNode elementWithName:@"url" stringValue:(self.url ? self.url : @"")]];
-  [headerXMLElement addChild:[GDataXMLNode elementWithName:@"userHandle" stringValue:(self.userHandle ? self.userHandle : @"")]];
-  return headerXMLElement;
+    GDataXMLElement *headerXMLElement = [GDataXMLNode elementWithName:@"header"];
+    [headerXMLElement addChild:[GDataXMLNode elementWithName:@"applicationBuildName"
+                                         optionalStringValue:self.applicationBuildName]];
+    [headerXMLElement addChild:[GDataXMLNode elementWithName:@"applicationBuildNumber"
+                                         optionalStringValue:self.applicationBuildNumber]];
+    [headerXMLElement addChild:[GDataXMLNode elementWithName:@"applicationName"
+                                         optionalStringValue:self.applicationName]];
+    [headerXMLElement addChild:[GDataXMLNode elementWithName:@"applicationVersion"
+                                         optionalStringValue:self.applicationVersion]];
+    [headerXMLElement addChild:[GDataXMLNode elementWithName:@"catrobatLanguageVersion"
+                                         optionalStringValue:self.catrobatLanguageVersion]];
+    [headerXMLElement addChild:[GDataXMLNode elementWithName:@"dateTimeUpload"
+                                         optionalStringValue:nil/*self.dateTimeUpload*/]]; // FIXME: which dateTimeUpload format?? catroid on Android seems to ignore this field even after (!) the upload has been finished
+    [headerXMLElement addChild:[GDataXMLNode elementWithName:@"description"
+                                         optionalStringValue:self.description]];
+    [headerXMLElement addChild:[GDataXMLNode elementWithName:@"deviceName"
+                                         optionalStringValue:self.deviceName]];
+    [headerXMLElement addChild:[GDataXMLNode elementWithName:@"mediaLicense"
+                                         optionalStringValue:self.mediaLicense]];
+    [headerXMLElement addChild:[GDataXMLNode elementWithName:@"platform"
+                                         optionalStringValue:self.platform]];
+    [headerXMLElement addChild:[GDataXMLNode elementWithName:@"platformVersion"
+                                         optionalStringValue:self.platformVersion]];
+    [headerXMLElement addChild:[GDataXMLNode elementWithName:@"programLicense"
+                                         optionalStringValue:self.programLicense]];
+    [headerXMLElement addChild:[GDataXMLNode elementWithName:@"programName"
+                                         optionalStringValue:self.programName]];
+    [headerXMLElement addChild:[GDataXMLNode elementWithName:@"remixOf"
+                                         optionalStringValue:self.remixOf]];
+    [headerXMLElement addChild:[GDataXMLNode elementWithName:@"screenHeight"
+                                         optionalStringValue:[self.screenHeight stringValue]]];
+    [headerXMLElement addChild:[GDataXMLNode elementWithName:@"screenWidth"
+                                         optionalStringValue:[self.screenWidth stringValue]]];
+    [headerXMLElement addChild:[GDataXMLNode elementWithName:@"screenMode"
+                                         optionalStringValue:self.screenMode]];
+    [headerXMLElement addChild:[GDataXMLNode elementWithName:@"tags"
+                                         optionalStringValue:self.tags]];
+    [headerXMLElement addChild:[GDataXMLNode elementWithName:@"url"
+                                         optionalStringValue:self.url]];
+    [headerXMLElement addChild:[GDataXMLNode elementWithName:@"userHandle"
+                                         optionalStringValue:self.userHandle]];
+    return headerXMLElement;
 }
 
 @end

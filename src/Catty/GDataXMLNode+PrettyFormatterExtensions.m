@@ -57,4 +57,12 @@
   return trimmed;
 }
 
++ (GDataXMLElement *)elementWithName:(NSString *)name optionalStringValue:(NSString *)value;
+{
+    if (value && [value length]) {
+        return [[self class] elementWithName:name stringValue:value];
+    }
+    return [[self class] elementWithName:name];
+}
+
 @end
