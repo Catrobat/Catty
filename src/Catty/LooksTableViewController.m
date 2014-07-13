@@ -76,12 +76,24 @@
     return _blockedCharacterSet;
 }
 
+#pragma mark - getters and setters
 - (NSMutableDictionary*)addLookActionSheetBtnIndexes
 {
     // lazy instantiation
     if (_addLookActionSheetBtnIndexes == nil)
         _addLookActionSheetBtnIndexes = [NSMutableDictionary dictionaryWithCapacity:3];
     return _addLookActionSheetBtnIndexes;
+}
+
+#pragma mark - data helpers
+- (NSArray*)existantLookNames
+{
+    // get all look names of that object
+    NSMutableArray *lookNames = [NSMutableArray arrayWithCapacity:[self.object.lookList count]];
+    for (Look *look in self.object.lookList) {
+        [lookNames addObject:look.name];
+    }
+    return [lookNames copy];
 }
 
 #pragma mark - initialization
@@ -395,17 +407,13 @@
         }
 
         NSData *imageData = UIImagePNGRepresentation(image);
-        NSString *fileNamePrefix = [[[imageData md5] stringByReplacingOccurrencesOfString:@"-" withString:@""] uppercaseString];
         NSString *lookName = imageFileName;
-        NSString *newImageFileName = [NSString stringWithFormat:@"%@%@%@.%@", fileNamePrefix,
-                                      kResourceFileNameSeparator, imageFileName, imageFileNameExtension];
-
-        // get all look names of that object
-        NSMutableArray *lookNames = [NSMutableArray arrayWithCapacity:[self.object.lookList count]];
-        for (Look *look in self.object.lookList) {
-            [lookNames addObject:look.name];
-        }
-        Look *look = [[Look alloc] initWithName:[Util uniqueName:lookName existingNames:lookNames]
+        // use temporary filename, will be renamed by user afterwards
+        NSString *newImageFileName = [NSString stringWithFormat:@"temp_%@.%@",
+                                      [[[imageData md5] stringByReplacingOccurrencesOfString:@"-" withString:@""] uppercaseString],
+                                      imageFileNameExtension];
+        Look *look = [[Look alloc] initWithName:[Util uniqueName:lookName
+                                                   existingNames:[self existantLookNames]]
                                         andPath:newImageFileName];
 
         // TODO: outsource this to FileManager
@@ -525,16 +533,21 @@
 
         if (buttonIndex == kAlertViewButtonOK) {
             [self showPlaceHolder:NO];
+            NSArray *existantNames = [self existantLookNames];
             [self.object.lookList addObject:self.lookToAdd];
             AppDelegate *appDelegate = (AppDelegate*)[UIApplication sharedApplication].delegate;
             NSString *oldPath = [self.object pathForLook:self.lookToAdd];
-            self.lookToAdd.name = input;
+            self.lookToAdd.name = [Util uniqueName:input existingNames:existantNames];
+
+            // rename temporary file name (example: "temp_D41D8CD98F00B204E9800998ECF8427E.png") as well
             NSArray *fileNameParts = [self.lookToAdd.fileName componentsSeparatedByString:@"."];
-            NSString *hash = [[[fileNameParts firstObject] componentsSeparatedByString:@"_"] firstObject];
+            NSString *hash = [[[fileNameParts firstObject] componentsSeparatedByString:kResourceFileNameSeparator] lastObject];
             NSString *fileExtension = [fileNameParts lastObject];
-            self.lookToAdd.fileName = [NSString stringWithFormat:@"%@_%@.%@", hash, input, fileExtension];
+            self.lookToAdd.fileName = [NSString stringWithFormat:@"%@%@%@.%@",
+                                       hash, kResourceFileNameSeparator,
+                                       self.lookToAdd.name, fileExtension];
             NSString *newPath = [self.object pathForLook:self.lookToAdd];
-            [appDelegate.fileManager moveExistingFileAtPath:oldPath toPath:newPath];
+            [appDelegate.fileManager moveExistingFileAtPath:oldPath toPath:newPath overwrite:YES];
             NSInteger numberOfRowsInLastSection = [self tableView:self.tableView numberOfRowsInSection:0];
             NSIndexPath *indexPath = [NSIndexPath indexPathForRow:(numberOfRowsInLastSection - 1) inSection:0];
             [self.tableView insertRowsAtIndexPaths:@[indexPath]
@@ -570,7 +583,7 @@
     [sheet showInView:self.view];
 }
 
-#pragma mark - helpers
+#pragma mark - view helpers
 - (void)setupToolBar
 {
     [super setupToolBar];

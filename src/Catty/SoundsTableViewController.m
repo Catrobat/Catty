@@ -41,6 +41,7 @@
 #import <AVFoundation/AVFoundation.h>
 #import "LanguageTranslationDefines.h"
 #import "RuntimeImageCache.h"
+#import "SharkfoodMuteSwitchDetector.h"
 
 // TODO: outsource...
 #define kUserDetailsShowDetailsKey @"showDetails"
@@ -54,6 +55,7 @@
 @property (nonatomic, strong) NSMutableDictionary* addSoundActionSheetBtnIndexes;
 @property (atomic, strong) Sound *currentPlayingSong;
 @property (atomic, weak) UITableViewCell<CatrobatImageCell> *currentPlayingSongCell;
+@property (nonatomic, strong) SharkfoodMuteSwitchDetector *silentDetector;
 
 @end
 
@@ -78,6 +80,19 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+
+    // automatically stop current playing sound after the user turns
+    // on the silent switcher on the iPhone/iPad (device is in silent state)
+    self.silentDetector = [SharkfoodMuteSwitchDetector shared];
+    // must be weak (!!) since SoundsTableViewController is holding the SharkfoodMuteSwitchDetector
+    // instance strongly!
+    __weak SoundsTableViewController *soundsTableViewController = self;
+    self.silentDetector.silentNotify = ^(BOOL silent){
+        if (silent) {
+            [soundsTableViewController stopAllSounds];
+        }
+    };
+
     NSDictionary *showDetails = [[NSUserDefaults standardUserDefaults] objectForKey:kUserDetailsShowDetailsKey];
     NSNumber *showDetailsSoundsValue = (NSNumber*)[showDetails objectForKey:kUserDetailsShowDetailsSoundsKey];
     self.useDetailCells = [showDetailsSoundsValue boolValue];
@@ -150,8 +165,11 @@
     AppDelegate *delegate = (AppDelegate*)[UIApplication sharedApplication].delegate;
     NSString *oldPath = [NSString stringWithFormat:@"%@/%@", delegate.fileManager.documentsDirectory, sound.fileName];
     NSData *data = [NSData dataWithContentsOfFile:oldPath];
-    NSString *newFileName = [NSString stringWithFormat:@"%@%@%@", [data md5], kResourceFileNameSeparator, sound.fileName];
-    sound.fileName = newFileName;
+    NSString *fileExtension = [[sound.fileName componentsSeparatedByString:@"."] lastObject];
+    sound.fileName = [NSString stringWithFormat:@"%@%@%@.%@",
+                      [[[data md5] stringByReplacingOccurrencesOfString:@"-" withString:@""] uppercaseString],
+                      kResourceFileNameSeparator,
+                      sound.name, fileExtension];
     NSString *newPath = [self.object pathForSound:sound];
     [delegate.fileManager copyExistingFileAtPath:oldPath toPath:newPath overwrite:YES];
     [self.object.soundList addObject:sound];
@@ -159,6 +177,7 @@
     [self showPlaceHolder:NO];
     NSIndexPath *indexPath = [NSIndexPath indexPathForRow:(numberOfRowsInLastSection - 1) inSection:0];
     [self.tableView insertRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationNone];
+    // TODO: save to disk (async)...
 }
 
 - (void)confirmDeleteSelectedSoundsAction:(id)sender
@@ -288,8 +307,10 @@
     return imageCell;
 }
 
+#pragma mark - player actions
 - (void)playSound:(id)sender
 {
+    // TODO: too many nested codeblocks...
     UITapGestureRecognizer *gesture = (UITapGestureRecognizer*)sender;
     if ([gesture.view isKindOfClass:[UIImageView class]]) {
         UIImageView *imageView = (UIImageView*)gesture.view;
@@ -301,6 +322,11 @@
             if (indexPath.row < [self.object.soundList count]) {
                 // acquire lock
                 @synchronized(self) {
+                    if (self.silentDetector.isMute) {
+                        [Util alertWithText:(IS_IPHONE ? kUIAlertViewMessageDeviceIsInMutedStateIPhone
+                                                       : kUIAlertViewMessageDeviceIsInMutedStateIPad)];
+                        return;
+                    }
                     Sound *sound = (Sound*)[self.object.soundList objectAtIndex:indexPath.row];
                     BOOL isPlaying = sound.isPlaying;
                     if (self.currentPlayingSong && self.currentPlayingSongCell) {

@@ -159,6 +159,8 @@
 		CA047EC418C782550078BE08 /* BrickManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CA047EC318C782550078BE08 /* BrickManager.m */; };
 		CA05A19C18282B2C0025421A /* SearchStoreViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA05A19B18282B2C0025421A /* SearchStoreViewController.m */; };
 		CA05A19E18286CDA0025421A /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA05A19D18286CDA0025421A /* AssetsLibrary.framework */; };
+		CA1B80291971AA1700D8E79B /* SharkfoodMuteSwitchDetector.m in Sources */ = {isa = PBXBuildFile; fileRef = CA1B80281971AA1700D8E79B /* SharkfoodMuteSwitchDetector.m */; };
+		CA1B802C1971ADBB00D8E79B /* IMPORTANT.caf in Resources */ = {isa = PBXBuildFile; fileRef = CA1B802B1971ACE300D8E79B /* IMPORTANT.caf */; };
 		CA2F7CAE18F61BA000A5C021 /* NSString+FastImageSize.m in Sources */ = {isa = PBXBuildFile; fileRef = CA2F7CAD18F61BA000A5C021 /* NSString+FastImageSize.m */; };
 		CA43DD361809976900F95B88 /* UIImageView+CatrobatUIImageViewExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = CA43DD351809976900F95B88 /* UIImageView+CatrobatUIImageViewExtensions.m */; };
 		CA52403618AD782600052914 /* ProgramTableViewControllerExistingProgramsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = CA52403518AD782600052914 /* ProgramTableViewControllerExistingProgramsTests.m */; };
@@ -590,6 +592,9 @@
 		CA05A19B18282B2C0025421A /* SearchStoreViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchStoreViewController.m; sourceTree = "<group>"; };
 		CA05A19D18286CDA0025421A /* AssetsLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AssetsLibrary.framework; path = System/Library/Frameworks/AssetsLibrary.framework; sourceTree = SDKROOT; };
 		CA1B7A1D18E1D9B700452234 /* ProgramUpdateDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ProgramUpdateDelegate.h; sourceTree = "<group>"; };
+		CA1B80271971AA1700D8E79B /* SharkfoodMuteSwitchDetector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SharkfoodMuteSwitchDetector.h; sourceTree = "<group>"; };
+		CA1B80281971AA1700D8E79B /* SharkfoodMuteSwitchDetector.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SharkfoodMuteSwitchDetector.m; sourceTree = "<group>"; };
+		CA1B802B1971ACE300D8E79B /* IMPORTANT.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = IMPORTANT.caf; sourceTree = "<group>"; };
 		CA2F7CAC18F61BA000A5C021 /* NSString+FastImageSize.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+FastImageSize.h"; sourceTree = "<group>"; };
 		CA2F7CAD18F61BA000A5C021 /* NSString+FastImageSize.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+FastImageSize.m"; sourceTree = "<group>"; };
 		CA43DD341809976900F95B88 /* UIImageView+CatrobatUIImageViewExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImageView+CatrobatUIImageViewExtensions.h"; sourceTree = "<group>"; };
@@ -1155,6 +1160,7 @@
 				CD0CD004170CBFEE00B70036 /* minizip */,
 				CA047EC118C782320078BE08 /* BrickManager */,
 				B44F32A21737AC3100BD97AC /* ProgramManager */,
+				CA1B802A1971AA1C00D8E79B /* SharkfoodMuteSwitchDetector */,
 				B400302D170EB46A00396DB7 /* SSZipArchive */,
 				CA5FED5118B0199100A517B6 /* UIUtil */,
 				B4D940BB170EC664003DDBFA /* TableUtil */,
@@ -1907,6 +1913,16 @@
 				CA160DB418A29CD600E5190D /* MaintainSounds */,
 			);
 			name = MaintainObject;
+			sourceTree = "<group>";
+		};
+		CA1B802A1971AA1C00D8E79B /* SharkfoodMuteSwitchDetector */ = {
+			isa = PBXGroup;
+			children = (
+				CA1B80271971AA1700D8E79B /* SharkfoodMuteSwitchDetector.h */,
+				CA1B80281971AA1700D8E79B /* SharkfoodMuteSwitchDetector.m */,
+				CA1B802B1971ACE300D8E79B /* IMPORTANT.caf */,
+			);
+			name = SharkfoodMuteSwitchDetector;
 			sourceTree = "<group>";
 		};
 		CA2F7CAF18F61C0100A5C021 /* NSString+FastImageSize */ = {
@@ -2857,6 +2873,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CA1B802C1971ADBB00D8E79B /* IMPORTANT.caf in Resources */,
 				B43498501927A875002F9075 /* My First Program.catrobat in Resources */,
 				81C27426189EF94600827A95 /* Images.xcassets in Resources */,
 				C3F2950C1813C63200E37D61 /* iPhone.storyboard in Resources */,
@@ -3066,6 +3083,7 @@
 				CA75C26818A961C700FC8C2F /* PointToBrickCell.m in Sources */,
 				815420DA191A51F200E628D2 /* FBShimmeringView.m in Sources */,
 				CA75C25C18A961AB00FC8C2F /* MoveNStepsBrickCell.m in Sources */,
+				CA1B80291971AA1700D8E79B /* SharkfoodMuteSwitchDetector.m in Sources */,
 				B4DEFC90170F464200DD1939 /* TestParser.m in Sources */,
 				B4D4DD4317156A8500EEE3F8 /* PointInDirectionBrick.m in Sources */,
 				CA75C26518A961C000FC8C2F /* PointInDirectionBrickCell.m in Sources */,
