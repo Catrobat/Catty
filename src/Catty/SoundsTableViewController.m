@@ -165,8 +165,11 @@
     AppDelegate *delegate = (AppDelegate*)[UIApplication sharedApplication].delegate;
     NSString *oldPath = [NSString stringWithFormat:@"%@/%@", delegate.fileManager.documentsDirectory, sound.fileName];
     NSData *data = [NSData dataWithContentsOfFile:oldPath];
-    NSString *newFileName = [NSString stringWithFormat:@"%@%@%@", [data md5], kResourceFileNameSeparator, sound.fileName];
-    sound.fileName = newFileName;
+    NSString *fileExtension = [[sound.fileName componentsSeparatedByString:@"."] lastObject];
+    sound.fileName = [NSString stringWithFormat:@"%@%@%@.%@",
+                      [[[data md5] stringByReplacingOccurrencesOfString:@"-" withString:@""] uppercaseString],
+                      kResourceFileNameSeparator,
+                      sound.name, fileExtension];
     NSString *newPath = [self.object pathForSound:sound];
     [delegate.fileManager copyExistingFileAtPath:oldPath toPath:newPath overwrite:YES];
     [self.object.soundList addObject:sound];
@@ -174,6 +177,7 @@
     [self showPlaceHolder:NO];
     NSIndexPath *indexPath = [NSIndexPath indexPathForRow:(numberOfRowsInLastSection - 1) inSection:0];
     [self.tableView insertRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationNone];
+    // TODO: save to disk (async)...
 }
 
 - (void)confirmDeleteSelectedSoundsAction:(id)sender

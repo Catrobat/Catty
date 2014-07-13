@@ -123,7 +123,7 @@
         if (isPlayable) {
             Sound *sound = [[Sound alloc] init];
             NSArray *fileParts = [fileName componentsSeparatedByString:@"."];
-            NSString *fileNameWithoutExtension = ([fileParts count] ? [fileParts objectAtIndex:0] : fileName);
+            NSString *fileNameWithoutExtension = ([fileParts count] ? [fileParts firstObject] : fileName);
             sound.fileName = fileName;
             sound.name = fileNameWithoutExtension;
             sound.playing = NO;
@@ -184,10 +184,16 @@
     if (! [self fileExists:oldPath])
         return;
 
-    if ((! [self fileExists:newPath]) || overwrite) {
-        NSData *data = [NSData dataWithContentsOfFile:oldPath];
-        [data writeToFile:newPath atomically:YES];
+    if ([self fileExists:newPath]) {
+        if (overwrite) {
+            [self deleteFile:newPath];
+        } else {
+            return;
+        }
     }
+
+    NSData *data = [NSData dataWithContentsOfFile:oldPath];
+    [data writeToFile:newPath atomically:YES];
 }
 
 - (void)copyExistingDirectoryAtPath:(NSString*)oldPath toPath:(NSString*)newPath
@@ -204,10 +210,18 @@
     NSLogError(error);
 }
 
-- (void)moveExistingFileAtPath:(NSString*)oldPath toPath:(NSString*)newPath
+- (void)moveExistingFileAtPath:(NSString*)oldPath toPath:(NSString*)newPath overwrite:(BOOL)overwrite
 {
     if (! [self fileExists:oldPath] || [oldPath isEqualToString:newPath])
         return;
+
+    if ([self fileExists:newPath]) {
+        if (overwrite) {
+            [self deleteFile:newPath];
+        } else {
+            return;
+        }
+    }
 
     // Attempt the move
     NSURL *oldURL = [NSURL fileURLWithPath:oldPath];
@@ -232,10 +246,17 @@
     NSLogError(error);
 }
 
+- (void)deleteFile:(NSString*)path
+{
+    NSError *error = nil;
+    [[NSFileManager defaultManager] removeItemAtPath:path error:&error];
+    NSLogError(error);
+}
+
 - (void)deleteDirectory:(NSString *)path
 {
     NSError *error = nil;
-    [[NSFileManager defaultManager]removeItemAtPath:path error:&error];
+    [[NSFileManager defaultManager] removeItemAtPath:path error:&error];
     NSLogError(error);
 }
 
