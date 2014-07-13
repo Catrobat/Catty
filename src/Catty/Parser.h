@@ -23,8 +23,13 @@
 #import <Foundation/Foundation.h>
 #import "XMLParserProtocol.h"
 
+@class GDataXMLDocument;
+
 @interface Parser : NSObject <XMLParserProtocol>
 
 - (Program*)generateObjectForProgramWithPath:(NSString*)path;
+
+// FIXME: remove that after serialization works
+@property (strong, nonatomic) GDataXMLDocument *XMLdocument;
 
 @end

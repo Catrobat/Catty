@@ -35,6 +35,8 @@
 #import "Script.h"
 #import "Brick.h"
 #import "LanguageTranslationDefines.h"
+#import "UserVariable.h"
+#import "OrderedMapTable.h"
 
 @implementation Program
 
@@ -99,7 +101,9 @@
     NSDebug(@"Path: %@", loadingInfo.basePath);
     NSString *xmlPath = [NSString stringWithFormat:@"%@%@", loadingInfo.basePath, kProgramCodeFileName];
     NSDebug(@"XML-Path: %@", xmlPath);
-    Program *program = [[[Parser alloc] init] generateObjectForProgramWithPath:xmlPath];
+    Parser *parser = [[Parser alloc] init];
+    Program *program = [parser generateObjectForProgramWithPath:xmlPath];
+    program.XMLdocument = parser.XMLdocument;
 
     if (! program)
         return nil;
@@ -278,8 +282,25 @@
             [objectListXMLElement addChild:[((SpriteObject*) object) toXML]];
     }
     [rootXMLElement addChild:objectListXMLElement];
-    // TODO: uncomment this after VariablesContainer implements the toXML method
-    //  [rootXMLElement addChild:[self.variables toXML]];
+
+    GDataXMLElement *variablesXMLElement = [GDataXMLNode elementWithName:@"variables"];
+    VariablesContainer *variables = self.variables;
+    GDataXMLElement *objectVariableListXMLElement = [GDataXMLNode elementWithName:@"objectVariableList"];
+    // TODO: uncomment this after toXML methods are implemented
+    for (NSUInteger index = 0; index < [variables.objectVariableList count]; ++index) {
+//        id variable = [variables.objectVariableList objectAtIndex:index];
+//        if ([variable isKindOfClass:[UserVariable class]])
+//            [objectVariableListXMLElement addChild:[((UserVariable*) variable) toXML]];
+    }
+    [variablesXMLElement addChild:objectVariableListXMLElement];
+    GDataXMLElement *programVariableListXMLElement = [GDataXMLNode elementWithName:@"programVariableList"];
+    // TODO: uncomment this after toXML methods are implemented
+    for (id variable in variables.programVariableList) {
+        if ([variable isKindOfClass:[UserVariable class]])
+            [programVariableListXMLElement addChild:[((UserVariable*) variable) toXMLAsProgramVariable]];
+    }
+    [variablesXMLElement addChild:programVariableListXMLElement];
+    [rootXMLElement addChild:variablesXMLElement];
     return rootXMLElement;
 }
 
@@ -290,14 +311,17 @@
         // background thread
         GDataXMLDocument *document = [[GDataXMLDocument alloc] initWithRootElement:[self toXML]];
         //    NSData *xmlData = document.XMLData;
-        NSString *xmlString = [document.rootElement XMLStringPrettyPrinted:YES];
+        NSString *xmlString = [NSString stringWithFormat:@"%@\n%@",
+                               kCatrobatXMLDeclaration,
+                               [document.rootElement XMLStringPrettyPrinted:YES]];
         // TODO: outsource this to file manager
         NSString *xmlPath = [NSString stringWithFormat:@"%@%@", [self projectPath], kProgramCodeFileName];
-        //    [xmlData writeToFile:filePath atomically:YES];
         NSError *error = nil;
-        [xmlString writeToFile:xmlPath atomically:YES encoding:NSUTF8StringEncoding error:&error];
+        NSLog(@"Reference XML-Document:\n\n%@\n\n", [self.XMLdocument.rootElement XMLStringPrettyPrinted:YES]);
+        NSLog(@"XML-Document:\n\n%@\n\n", xmlString);
+//        [xmlString writeToFile:xmlPath atomically:YES encoding:NSUTF8StringEncoding error:&error];
         NSLogError(error);
-        // maybe later call some functions back here, that should update the UI on main thread...
+        // maybe call some functions later here, that should update the UI on main thread...
         //    dispatch_async(dispatch_get_main_queue(), ^{});
 
         // update last access time

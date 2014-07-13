@@ -20,6 +20,7 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
+#define kCatrobatXMLDeclaration @"<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\" ?>"
 #define kCatrobatApplicationBuildNumber @"0"
 #define kCatrobatApplicationName @"Pocket Code (Catty iOS)"
 #define kCatrobatLanguageVersion @"0.8"

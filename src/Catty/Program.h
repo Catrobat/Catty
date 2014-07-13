@@ -28,12 +28,17 @@
 @class VariablesContainer;
 @class SpriteObject;
 @class ProgramLoadingInfo;
+@class GDataXMLDocument;
 
 @interface Program : NSObject
 
 @property (nonatomic, strong) Header *header;
 @property (nonatomic, strong) NSMutableArray *objectList;
 @property (nonatomic, strong) VariablesContainer *variables;
+
+// FIXME: remove this property after serialization works
+@property (nonatomic, strong) GDataXMLDocument *XMLdocument;
+
 - (NSInteger)numberOfTotalObjects;
 - (NSInteger)numberOfBackgroundObjects;
 - (NSInteger)numberOfNormalObjects;

@@ -96,6 +96,8 @@
     GDataXMLDocument *doc = [[GDataXMLDocument alloc] initWithData:xmlData 
                                                            options:0
                                                             error:&error];
+    self.XMLdocument = doc;
+
     // sanity checks
     if (error || !doc) { return nil; }
 
