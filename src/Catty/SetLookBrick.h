@@ -26,7 +26,8 @@
 
 @interface SetLookBrick : Brick
 
-
 @property (nonatomic, strong) Look *look;
+
+- (GDataXMLElement*)toXML;
 
 @end

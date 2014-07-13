@@ -26,6 +26,7 @@
 #import "ProgramManager.h"
 #import "Program.h"
 #import "VariablesContainer.h"
+#import "GDataXMLNode.h"
 
 @implementation SetVariableBrick
 
@@ -53,8 +54,6 @@
   };
 }
 
-
-
 #pragma mark - Description
 - (NSString*)description
 {
@@ -62,5 +61,14 @@
     return [NSString stringWithFormat:@"Set Variable Brick: Uservariable: %@, to: %f", self.userVariable, result];
 }
 
+- (GDataXMLElement*)toXML
+{
+    GDataXMLElement *brickXMLElement = [super toXML];
+    [brickXMLElement addChild:[self.userVariable toXMLAsObjectVariable]];
+    GDataXMLElement *variableFormulaXMLElement = [GDataXMLNode elementWithName:@"variableFormula"];
+    [variableFormulaXMLElement addChild:[self.variableFormula toXML]];
+    [brickXMLElement addChild:variableFormulaXMLElement];
+    return brickXMLElement;
+}
 
 @end

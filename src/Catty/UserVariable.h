@@ -22,9 +22,14 @@
 
 #import <Foundation/Foundation.h>
 
+@class GDataXMLElement;
+
 @interface UserVariable : NSObject
 
 @property (nonatomic, strong) NSString* name;
 @property (nonatomic, strong) NSNumber* value;
+
+- (GDataXMLElement*)toXMLAsObjectVariable;
+- (GDataXMLElement*)toXMLAsProgramVariable;
 
 @end

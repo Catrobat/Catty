@@ -96,5 +96,6 @@ typedef enum {
 
 -(double) interpretRecursiveForSprite:(SpriteObject*)sprite;
 
+- (NSArray*)XMLChildElements;
 
 @end

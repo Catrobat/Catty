@@ -70,7 +70,11 @@
 
 - (GDataXMLElement*)toXML
 {
-    return [GDataXMLNode elementWithName:[self xmlTagName]];
+    GDataXMLElement *brickXMLElement = [GDataXMLNode elementWithName:[self xmlTagName]];
+    GDataXMLElement *brickToObjectReferenceXMLElement = [GDataXMLNode elementWithName:@"object"];
+    [brickToObjectReferenceXMLElement addAttribute:[GDataXMLNode elementWithName:@"reference" stringValue:@"../../../../.."]];
+    [brickXMLElement addChild:brickToObjectReferenceXMLElement];
+    return brickXMLElement;
 }
 
 - (NSString*)xmlTagName

@@ -21,12 +21,29 @@
  */
 
 #import "UserVariable.h"
+#import "GDataXMLNode.h"
 
 @implementation UserVariable
 
 -(NSString*)description
 {
     return [NSString stringWithFormat:@"UserVariable: Name: %@, Value: %@", self.name, self.value ];
+}
+
+- (GDataXMLElement*)toXMLAsObjectVariable
+{
+    GDataXMLElement *userVariableXMLElement = [GDataXMLNode elementWithName:@"userVariable"];
+    GDataXMLElement *nameXMLElement = [GDataXMLNode elementWithName:@"name" stringValue:self.name];
+    [userVariableXMLElement addChild:nameXMLElement];
+    return userVariableXMLElement;
+}
+
+- (GDataXMLElement*)toXMLAsProgramVariable
+{
+    GDataXMLElement *userVariableXMLElement = [GDataXMLNode elementWithName:@"userVariable"];
+    GDataXMLElement *nameXMLElement = [GDataXMLNode elementWithName:@"name" stringValue:self.name];
+    [userVariableXMLElement addChild:nameXMLElement];
+    return userVariableXMLElement;
 }
 
 @end
