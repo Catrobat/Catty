@@ -58,6 +58,7 @@
 @interface ObjectLooksTableViewController () <UIActionSheetDelegate, UIImagePickerControllerDelegate,
                                               UINavigationControllerDelegate, UIAlertViewDelegate,
                                               UITextFieldDelegate, SWTableViewCellDelegate>
+@property (nonatomic, strong) NSCharacterSet *blockedCharacterSet;
 @property (nonatomic) BOOL useDetailCells;
 @property (nonatomic, strong) Look *lookToAdd;
 @property (nonatomic, strong) LoadingView* loadingView;
@@ -66,20 +67,13 @@
 
 @implementation ObjectLooksTableViewController
 
-#pragma - events
-- (void)viewDidLoad
+#pragma getters and setters
+- (NSCharacterSet*)blockedCharacterSet
 {
-    [super viewDidLoad];
-    self.lookToAdd = nil;
-    NSDictionary *showDetails = [[NSUserDefaults standardUserDefaults] objectForKey:kUserDetailsShowDetailsKey];
-    NSNumber *showDetailsProgramsValue = (NSNumber*)[showDetails objectForKey:kUserDetailsShowDetailsLooksKey];
-    self.useDetailCells = [showDetailsProgramsValue boolValue];
-    self.title = self.navigationItem.title = kUIViewControllerTitleLooks;
-    [self initNavigationBar];
-    self.placeHolderView.title = kUIViewControllerPlaceholderTitleLooks;
-    [self showPlaceHolder:(! (BOOL)[self.object.lookList count])];
-    [self setupToolBar];
-    self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
+    if (! _blockedCharacterSet) {
+        _blockedCharacterSet = [[NSCharacterSet characterSetWithCharactersInString:kTextFieldAllowedCharacters] invertedSet];
+    }
+    return _blockedCharacterSet;
 }
 
 #pragma mark - getters and setters
@@ -107,6 +101,22 @@
 {
     UIBarButtonItem *editButtonItem = [TableUtil editButtonItemWithTarget:self action:@selector(editAction:)];
     self.navigationItem.rightBarButtonItem = editButtonItem;
+}
+
+#pragma - view events
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
+    self.lookToAdd = nil;
+    NSDictionary *showDetails = [[NSUserDefaults standardUserDefaults] objectForKey:kUserDetailsShowDetailsKey];
+    NSNumber *showDetailsProgramsValue = (NSNumber*)[showDetails objectForKey:kUserDetailsShowDetailsLooksKey];
+    self.useDetailCells = [showDetailsProgramsValue boolValue];
+    self.title = self.navigationItem.title = kUIViewControllerTitleLooks;
+    [self initNavigationBar];
+    self.placeHolderView.title = kUIViewControllerPlaceholderTitleLooks;
+    [self showPlaceHolder:(! (BOOL)[self.object.lookList count])];
+    [self setupToolBar];
+    self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
 }
 
 #pragma mark - actions
@@ -450,8 +460,10 @@
 #pragma mark - text field delegates
 - (BOOL)textField:(UITextField*)field shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString*)characters
 {
-    NSCharacterSet *blockedCharacters = [[NSCharacterSet characterSetWithCharactersInString:kTextFieldAllowedCharacters] invertedSet];
-    return ([characters rangeOfCharacterFromSet:blockedCharacters].location == NSNotFound);
+    if ([characters length] > kMaxNumOfLookNameCharacters) {
+        return false;
+    }
+    return ([characters rangeOfCharacterFromSet:self.blockedCharacterSet].location == NSNotFound);
 }
 
 #pragma mark - action sheet delegates

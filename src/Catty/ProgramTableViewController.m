@@ -430,6 +430,9 @@
 #pragma mark - text field delegates
 - (BOOL)textField:(UITextField *)field shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)characters
 {
+    if ([characters length] > kMaxNumOfObjectNameCharacters) {
+        return false;
+    }
     return ([characters rangeOfCharacterFromSet:self.blockedCharacterSet].location == NSNotFound);
 }
 

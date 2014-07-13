@@ -125,7 +125,9 @@
             NSArray *fileParts = [fileName componentsSeparatedByString:@"."];
             NSString *fileNameWithoutExtension = ([fileParts count] ? [fileParts firstObject] : fileName);
             sound.fileName = fileName;
-            sound.name = fileNameWithoutExtension;
+            NSRange stringRange = {0, MIN([fileNameWithoutExtension length], kMaxNumOfSoundNameCharacters)};
+            stringRange = [fileNameWithoutExtension rangeOfComposedCharacterSequencesForRange:stringRange];
+            sound.name = [fileNameWithoutExtension substringWithRange:stringRange];
             sound.playing = NO;
             [sounds addObject:sound];
         }

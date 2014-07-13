@@ -22,6 +22,7 @@
 
 #import "BrickManager.h"
 #import "BrickProtocol.h"
+#import "Util.h"
 
 @implementation BrickManager {
     NSDictionary *_brickHeightDictionary;
@@ -166,7 +167,7 @@
 - (CGSize)sizeForBrick:(NSString *)brickName
 {
     CGSize size = CGSizeZero;
-    if (IsIPhone5() || IsIPhone()) {
+    if (IS_IPHONE5 || IS_IPHONE) {
         NSNumber *height = [_brickHeightDictionary objectForKey:brickName];
         size = CGSizeMake(UIScreen.mainScreen.bounds.size.width, [height floatValue]);
     }

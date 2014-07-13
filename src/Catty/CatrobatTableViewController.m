@@ -59,7 +59,7 @@ NS_ENUM(NSInteger, ViewControllerIndex) {
 
 @interface CatrobatTableViewController () <UIAlertViewDelegate, UITextFieldDelegate>
 
-@property (strong, nonatomic) NSCharacterSet *blockedCharacterSet;
+@property (nonatomic, strong) NSCharacterSet *blockedCharacterSet;
 @property (nonatomic, strong) NSArray *cells;
 @property (nonatomic, strong) NSArray *imageNames;
 @property (nonatomic, strong) NSArray *identifiers;
@@ -368,6 +368,9 @@ NS_ENUM(NSInteger, ViewControllerIndex) {
 #pragma mark - text field delegates
 - (BOOL)textField:(UITextField*)field shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString*)characters
 {
+    if ([characters length] > kMaxNumOfProgramNameCharacters) {
+        return false;
+    }
     return ([characters rangeOfCharacterFromSet:self.blockedCharacterSet].location == NSNotFound);
 }
 
