@@ -24,6 +24,7 @@
 #import "Formula.h"
 #import "Util.h"
 #import "Scene.h"
+#import "GDataXMLNode.h"
 
 @implementation MoveNStepsBrick
 
@@ -57,11 +58,18 @@
     };
 }
 
-
-
 -(NSString*)description
 {
     return [NSString stringWithFormat:@"MoveNStepsBrick: %f steps", [self.steps interpretDoubleForSprite:self.object] ];
+}
+
+- (GDataXMLElement*)toXML
+{
+    GDataXMLElement *brickXMLElement = [super toXML];
+    GDataXMLElement *stepsXMLElement = [GDataXMLNode elementWithName:@"steps"];
+    [stepsXMLElement addChild:[self.steps toXML]];
+    [brickXMLElement addChild:stepsXMLElement];
+    return brickXMLElement;
 }
 
 @end

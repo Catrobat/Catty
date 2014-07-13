@@ -20,8 +20,8 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-
 #import "IfLogicEndBrick.h"
+#import "GDataXMLNode.h"
 
 @implementation IfLogicEndBrick
 
@@ -44,6 +44,14 @@
 - (NSString*)description
 {
     return [NSString stringWithFormat:@"If Logic End Brick"];
+}
+
+- (GDataXMLElement*)toXML
+{
+    GDataXMLElement *brickXMLElement = [GDataXMLNode elementWithName:@"ifLogicEndBrick"];
+    // TODO: determine right reference path...
+    [brickXMLElement addAttribute:[GDataXMLNode elementWithName:@"reference" stringValue:@"../ifLogicBeginBrick[2]/ifElseBrick/ifEndBrick"]];
+    return brickXMLElement;
 }
 
 @end

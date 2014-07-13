@@ -21,6 +21,7 @@
  */
 
 #import "Loopendbrick.h"
+#import "GDataXMLNode.h"
 
 @implementation LoopEndBrick
 
@@ -43,6 +44,14 @@
 - (NSString*)description
 {
     return [NSString stringWithFormat:@"EndLoop"];
+}
+
+- (GDataXMLElement*)toXML
+{
+    GDataXMLElement *brickXMLElement = [super toXML];
+    // remove object reference
+    [brickXMLElement removeChild:[[brickXMLElement children] firstObject]];
+    return brickXMLElement;
 }
 
 @end

@@ -87,10 +87,15 @@
 - (GDataXMLElement*)toXML
 {
     GDataXMLElement *brickXMLElement = [super toXML];
-    GDataXMLElement *brickToObjectReferenceXMLElement = [GDataXMLNode elementWithName:@"look"];
-    // TODO: determine right index in object's array
-    [brickToObjectReferenceXMLElement addAttribute:[GDataXMLNode elementWithName:@"reference" stringValue:@"../../../../../lookList/look"]];
-    [brickXMLElement addChild:brickToObjectReferenceXMLElement];
+    if (self.look) {
+        GDataXMLElement *brickToObjectReferenceXMLElement = [GDataXMLNode elementWithName:@"look"];
+        // TODO: determine right index in object's array
+        [brickToObjectReferenceXMLElement addAttribute:[GDataXMLNode elementWithName:@"reference" stringValue:@"../../../../../lookList/look"]];
+        [brickXMLElement addChild:brickToObjectReferenceXMLElement];
+    } else {
+        // remove object reference
+        [brickXMLElement removeChild:[[brickXMLElement children] firstObject]];
+    }
     return brickXMLElement;
 }
 

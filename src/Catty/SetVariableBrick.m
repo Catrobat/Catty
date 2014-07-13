@@ -64,10 +64,15 @@
 - (GDataXMLElement*)toXML
 {
     GDataXMLElement *brickXMLElement = [super toXML];
-    [brickXMLElement addChild:[self.userVariable toXMLAsObjectVariable]];
-    GDataXMLElement *variableFormulaXMLElement = [GDataXMLNode elementWithName:@"variableFormula"];
-    [variableFormulaXMLElement addChild:[self.variableFormula toXML]];
-    [brickXMLElement addChild:variableFormulaXMLElement];
+    if (self.userVariable && self.variableFormula) {
+        [brickXMLElement addChild:[self.userVariable toXMLAsObjectVariable]];
+        GDataXMLElement *variableFormulaXMLElement = [GDataXMLNode elementWithName:@"variableFormula"];
+        [variableFormulaXMLElement addChild:[self.variableFormula toXML]];
+        [brickXMLElement addChild:variableFormulaXMLElement];
+    } else {
+        // remove object reference
+        [brickXMLElement removeChild:[[brickXMLElement children] firstObject]];
+    }
     return brickXMLElement;
 }
 

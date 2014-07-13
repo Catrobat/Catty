@@ -21,6 +21,7 @@
  */
 
 #import "Hidebrick.h"
+#import "GDataXMLNode.h"
 
 @implementation HideBrick
 
@@ -44,11 +45,18 @@
     };
 }
 
-
 #pragma mark - Description
 - (NSString*)description
 {
     return [NSString stringWithFormat:@"Hidebrick"];
+}
+
+- (GDataXMLElement*)toXML
+{
+    GDataXMLElement *brickXMLElement = [super toXML];
+    // remove object reference
+    [brickXMLElement removeChild:[[brickXMLElement children] firstObject]];
+    return brickXMLElement;
 }
 
 @end

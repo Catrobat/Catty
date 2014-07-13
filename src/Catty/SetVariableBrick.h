@@ -31,6 +31,4 @@
 @property (nonatomic, strong) UserVariable *userVariable;
 @property (nonatomic, strong) Formula *variableFormula;
 
-- (GDataXMLElement*)toXML;
-
 @end

@@ -21,12 +21,23 @@
  */
 
 #import "WhenScript.h"
+#import "GDataXMLNode.h"
 
 @implementation WhenScript
 
 - (NSString*)brickTitle
 {
     return kBrickCellControlTitleWhenTapped;
+}
+
+- (GDataXMLElement*)toXML
+{
+    GDataXMLElement *scriptXMLElement = [super toXML];
+    if (self.action) {
+        GDataXMLElement *actionXMLElement = [GDataXMLNode elementWithName:@"action" stringValue:self.action];
+        [scriptXMLElement addChild:actionXMLElement];
+    }
+    return scriptXMLElement;
 }
 
 @end

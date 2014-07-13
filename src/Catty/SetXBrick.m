@@ -24,6 +24,7 @@
 #import "Setxbrick.h"
 #import "Formula.h"
 #import "Logger.h"
+#import "GDataXMLNode.h"
 
 @implementation SetXBrick
 
@@ -53,6 +54,15 @@
 - (NSString*)description
 {
     return [NSString stringWithFormat:@"SetXBrick (x-Pos:%f)", [self.xPosition interpretDoubleForSprite:self.object]];
+}
+
+- (GDataXMLElement*)toXML
+{
+    GDataXMLElement *brickXMLElement = [super toXML];
+    GDataXMLElement *xPositionFormulaXMLElement = [GDataXMLNode elementWithName:@"xPosition"];
+    [xPositionFormulaXMLElement addChild:[self.xPosition toXML]];
+    [brickXMLElement addChild:xPositionFormulaXMLElement];
+    return brickXMLElement;
 }
 
 @end

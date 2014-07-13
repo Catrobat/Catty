@@ -591,10 +591,14 @@
 
     GDataXMLElement *typeXMLElement = [GDataXMLNode elementWithName:@"type"
                                                         stringValue:[self stringForElementType:self.type]];
-    GDataXMLElement *valueXMLElement = [GDataXMLNode elementWithName:@"value"
-                                                         stringValue:self.value];
     [childs addObject:typeXMLElement];
-    [childs addObject:valueXMLElement];
+
+    if (self.value) {
+        GDataXMLElement *valueXMLElement = [GDataXMLNode elementWithName:@"value"
+                                                             stringValue:self.value];
+        [childs addObject:valueXMLElement];
+    }
+
     return [childs copy];
 }
 

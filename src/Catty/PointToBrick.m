@@ -107,5 +107,4 @@
     return [NSString stringWithFormat:@"Point To Brick: %@", self.pointedObject];
 }
 
-
 @end

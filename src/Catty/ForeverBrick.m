@@ -21,6 +21,7 @@
  */
 
 #import "Foreverbrick.h"
+#import "GDataXMLNode.h"
 
 @implementation ForeverBrick
 
@@ -41,6 +42,24 @@
     return [NSString stringWithFormat:@"ForeverLoop"];
 }
 
+- (GDataXMLElement*)toXML
+{
+    GDataXMLElement *brickXMLElement = [super toXML];
+    GDataXMLElement *loopEndBrickXMLElement = [GDataXMLNode elementWithName:@"loopEndBrick"];
+    [loopEndBrickXMLElement addAttribute:[GDataXMLNode elementWithName:@"class"
+                                                           stringValue:@"loopEndlessBrick"]];
 
+    GDataXMLElement *objectBrickXMLElement = [GDataXMLNode elementWithName:@"object"];
+    [objectBrickXMLElement addAttribute:[GDataXMLNode elementWithName:@"reference" stringValue:@"../../../../../.."]];
+    [loopEndBrickXMLElement addChild:objectBrickXMLElement];
+
+    GDataXMLElement *loopBeginBrickXMLElement = [GDataXMLNode elementWithName:@"loopBeginBrick"];
+    [loopBeginBrickXMLElement addAttribute:[GDataXMLNode elementWithName:@"class"
+                                                             stringValue:@"foreverBrick"]];
+    [loopBeginBrickXMLElement addAttribute:[GDataXMLNode elementWithName:@"reference" stringValue:@"../.."]];
+    [loopEndBrickXMLElement addChild:loopBeginBrickXMLElement];
+    [brickXMLElement addChild:loopEndBrickXMLElement];
+    return brickXMLElement;
+}
 
 @end

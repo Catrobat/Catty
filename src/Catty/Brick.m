@@ -83,20 +83,8 @@
     if ([self isKindOfClass:[SpriteObject class]]) {
         tagName = @"object";
         // TODO: how to detect "pointedObject" from SpriteObject class??
-    } else if ([self isKindOfClass:[IfLogicElseBrick class]]) {
-        tagName = @"ifElseBrick";
-    } else if ([self isKindOfClass:[IfLogicBeginBrick class]]) {
-        tagName = @"ifBeginBrick";
-//        [className isEqualToString:@"IfBeginBrick"] || [className isEqualToString:@"BeginBrick"]
-    } else if ([self isKindOfClass:[IfLogicEndBrick class]]) {
-        tagName = @"ifEndBrick";
-        //[className isEqualToString:@"IfEndBrick"]
     } else if ([self isKindOfClass:[LoopEndBrick class]]) {
         tagName = @"loopEndBrick";
-        //[className isEqualToString:@"LoopEndlessBrick"]
-    } else if ([self isKindOfClass:[IfLogicElseBrick class]]) {
-        tagName = @"ifElseBrick";
-//        [className isEqualToString:@"IfElseBrick"] || [className isEqualToString:@"ElseBrick"]
     }
     return tagName;
 }

@@ -21,6 +21,7 @@
  */
 
 #import "Broadcastscript.h"
+#import "GDataXMLNode.h"
 
 @implementation BroadcastScript
 
@@ -50,5 +51,12 @@
     return ret;
 }
 
+- (GDataXMLElement*)toXML
+{
+    GDataXMLElement *scriptXMLElement = [super toXML];
+    GDataXMLElement *receivedMessageXMLElement = [GDataXMLNode elementWithName:@"receivedMessage" stringValue:self.receivedMessage];
+    [scriptXMLElement addChild:receivedMessageXMLElement];
+    return scriptXMLElement;
+}
 
 @end

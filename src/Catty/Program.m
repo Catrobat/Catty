@@ -283,26 +283,43 @@
     }
     [rootXMLElement addChild:objectListXMLElement];
 
-    GDataXMLElement *variablesXMLElement = [GDataXMLNode elementWithName:@"variables"];
-    VariablesContainer *variables = self.variables;
-    GDataXMLElement *objectVariableListXMLElement = [GDataXMLNode elementWithName:@"objectVariableList"];
-    // TODO: uncomment this after toXML methods are implemented
-    for (NSUInteger index = 0; index < [variables.objectVariableList count]; ++index) {
-//        id variable = [variables.objectVariableList objectAtIndex:index];
-//        if ([variable isKindOfClass:[UserVariable class]])
-//            [objectVariableListXMLElement addChild:[((UserVariable*) variable) toXML]];
+    if (self.variables) {
+        GDataXMLElement *variablesXMLElement = [GDataXMLNode elementWithName:@"variables"];
+        VariablesContainer *variables = self.variables;
+
+        GDataXMLElement *objectVariableListXMLElement = [GDataXMLNode elementWithName:@"objectVariableList"];
+        // TODO: uncomment this after toXML methods are implemented
+        NSUInteger totalNumOfObjectVariables = [variables.objectVariableList count];
+//        NSUInteger totalNumOfProgramVariables = [variables.programVariableList count];
+        for (NSUInteger index = 0; index < totalNumOfObjectVariables; ++index) {
+    //        id variable = [variables.objectVariableList objectAtIndex:index];
+    //        if ([variable isKindOfClass:[UserVariable class]])
+    //            [objectVariableListXMLElement addChild:[((UserVariable*) variable) toXML]];
+        }
+//        if (totalNumOfObjectVariables) {
+            [variablesXMLElement addChild:objectVariableListXMLElement];
+//        }
+
+        GDataXMLElement *programVariableListXMLElement = [GDataXMLNode elementWithName:@"programVariableList"];
+        // TODO: uncomment this after toXML methods are implemented
+        for (id variable in variables.programVariableList) {
+            if ([variable isKindOfClass:[UserVariable class]])
+                [programVariableListXMLElement addChild:[((UserVariable*) variable) toXMLAsProgramVariable]];
+        }
+//        if (totalNumOfProgramVariables) {
+            [variablesXMLElement addChild:programVariableListXMLElement];
+//        }
+
+//        if (totalNumOfObjectVariables || totalNumOfProgramVariables) {
+            [rootXMLElement addChild:variablesXMLElement];
+//        }
     }
-    [variablesXMLElement addChild:objectVariableListXMLElement];
-    GDataXMLElement *programVariableListXMLElement = [GDataXMLNode elementWithName:@"programVariableList"];
-    // TODO: uncomment this after toXML methods are implemented
-    for (id variable in variables.programVariableList) {
-        if ([variable isKindOfClass:[UserVariable class]])
-            [programVariableListXMLElement addChild:[((UserVariable*) variable) toXMLAsProgramVariable]];
-    }
-    [variablesXMLElement addChild:programVariableListXMLElement];
-    [rootXMLElement addChild:variablesXMLElement];
+
     return rootXMLElement;
 }
+
+#define SIMULATOR_DEBUGGING_ENABLED 1
+#define SIMULATOR_DEBUGGING_BASE_PATH @"/Users/ralph/Desktop/diff"
 
 - (void)saveToDisk
 {
@@ -317,9 +334,35 @@
         // TODO: outsource this to file manager
         NSString *xmlPath = [NSString stringWithFormat:@"%@%@", [self projectPath], kProgramCodeFileName];
         NSError *error = nil;
-        NSLog(@"Reference XML-Document:\n\n%@\n\n", [self.XMLdocument.rootElement XMLStringPrettyPrinted:YES]);
-        NSLog(@"XML-Document:\n\n%@\n\n", xmlString);
-//        [xmlString writeToFile:xmlPath atomically:YES encoding:NSUTF8StringEncoding error:&error];
+#ifdef DEBUG
+        NSString *referenceXmlString = [NSString stringWithFormat:@"%@\n%@",
+                                        kCatrobatXMLDeclaration,
+                                        [self.XMLdocument.rootElement XMLStringPrettyPrinted:YES]];
+//        NSLog(@"Reference XML-Document:\n\n%@\n\n", referenceXmlString);
+//        NSLog(@"XML-Document:\n\n%@\n\n", xmlString);
+        NSString *referenceXmlPath = [NSString stringWithFormat:@"%@/reference.xml", SIMULATOR_DEBUGGING_BASE_PATH];
+        NSString *generatedXmlPath = [NSString stringWithFormat:@"%@/generated.xml", SIMULATOR_DEBUGGING_BASE_PATH];
+        [referenceXmlString writeToFile:referenceXmlPath
+                             atomically:YES
+                               encoding:NSUTF8StringEncoding
+                                  error:&error];
+        [xmlString writeToFile:generatedXmlPath
+                    atomically:YES
+                      encoding:NSUTF8StringEncoding
+                         error:&error];
+
+//#import <Foundation/NSTask.h> // debugging for OSX
+//        NSTask *task = [[NSTask alloc] init];
+//        [task setLaunchPath:@"/usr/bin/diff"];
+//        [task setArguments:[NSArray arrayWithObjects:referenceXmlPath, generatedXmlPath, nil]];
+//        [task setStandardOutput:[NSPipe pipe]];
+//        [task setStandardInput:[NSPipe pipe]]; // piping to NSLog-tty (terminal emulator)
+//        [task launch];
+//        [task release];
+
+#else
+        [xmlString writeToFile:xmlPath atomically:YES encoding:NSUTF8StringEncoding error:&error];
+#endif
         NSLogError(error);
         // maybe call some functions later here, that should update the UI on main thread...
         //    dispatch_async(dispatch_get_main_queue(), ^{});

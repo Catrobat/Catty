@@ -23,6 +23,7 @@
 #import "Glidetobrick.h"
 #import "Script.h"
 #import "Formula.h"
+#import "GDataXMLNode.h"
 
 @interface GlideToBrick()
 
@@ -93,6 +94,35 @@
     double durationInSeconds = [self.durationInSeconds interpretDoubleForSprite:self.object];
     
     return [NSString stringWithFormat:@"GlideTo (Position: %f/%f; duration: %f s)", xDestination, yDestination, durationInSeconds];
+}
+
+- (GDataXMLElement*)toXML
+{
+    GDataXMLElement *brickXMLElement = [super toXML];
+
+    if (self.durationInSeconds) {
+        GDataXMLElement *durationInSecondsXMLElement = [GDataXMLNode elementWithName:@"durationInSeconds"];
+        [durationInSecondsXMLElement addChild:[self.durationInSeconds toXML]];
+        [brickXMLElement addChild:durationInSecondsXMLElement];
+    }
+
+    if (self.xDestination) {
+        GDataXMLElement *xDestinationXMLElement = [GDataXMLNode elementWithName:@"xDestination"];
+        [xDestinationXMLElement addChild:[self.xDestination toXML]];
+        [brickXMLElement addChild:xDestinationXMLElement];
+    }
+
+    if (self.yDestination) {
+        GDataXMLElement *yDestinationXMLElement = [GDataXMLNode elementWithName:@"yDestination"];
+        [yDestinationXMLElement addChild:[self.yDestination toXML]];
+        [brickXMLElement addChild:yDestinationXMLElement];
+    }
+
+    if (! self.durationInSeconds && ! self.xDestination && ! self.yDestination) {
+        // remove object reference
+        [brickXMLElement removeChild:[[brickXMLElement children] firstObject]];
+    }
+    return brickXMLElement;
 }
 
 @end
