@@ -554,7 +554,6 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
             if ([destController isKindOfClass:[ScenePresenterViewController class]]) {
                 ScenePresenterViewController* scvc = (ScenePresenterViewController*) destController;
                 if ([scvc respondsToSelector:@selector(setProgram:)]) {
-                    [scvc setController:(UITableViewController *)self];
                     [scvc performSelector:@selector(setProgram:) withObject:self.object.program];
                 }
             }

@@ -28,7 +28,7 @@
 
 @implementation Scene
 
--(id)initWithSize:(CGSize)size andProgram:(Program *)program
+- (id)initWithSize:(CGSize)size andProgram:(Program *)program
 {
     if (self = [super initWithSize:size]) {
         self.program = program;
@@ -51,8 +51,12 @@
         [self cleanScene:obj];
     }
     
+    [self.children enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+        SKNode *node = obj;
+        [node removeAllActions];
+    }];
+    
     [self removeAllChildren];
-    [self removeAllActions];
 }
 
 - (void)didMoveToView:(SKView *)view

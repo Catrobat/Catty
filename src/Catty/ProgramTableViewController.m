@@ -87,27 +87,7 @@
     self.navigationItem.rightBarButtonItem = editButton;
 }
 
-#pragma mark - view events
-- (void)viewWillAppear:(BOOL)animated
-{
-    [super viewWillAppear:YES];
-    [self.tableView reloadData];
-    [self.navigationController setNavigationBarHidden:NO];
-    [self.navigationController setToolbarHidden:NO];
-}
-
-- (void)viewWillDisappear:(BOOL)animated
-{
-    if (self.isNewProgram) {
-        [self.program saveToDisk];
-    }
-}
-
-- (void)viewDidAppear:(BOOL)animated
-{
-    [super viewDidAppear:YES];
-}
-
+#pragma mark - ViewController Delegates
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -126,6 +106,21 @@
     [self setupToolBar];
 }
 
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:YES];
+    [self.tableView reloadData];
+    [self.navigationController setNavigationBarHidden:NO];
+    [self.navigationController setToolbarHidden:NO];
+}
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+    if (self.isNewProgram) {
+        [self.program saveToDisk];
+    }
+}
+
 #pragma mark - actions
 - (void)addObjectAction:(id)sender
 {
@@ -139,7 +134,7 @@
 
 - (void)playSceneAction:(id)sender
 {
-    [self.navigationController setToolbarHidden:YES];
+    [self.navigationController setToolbarHidden:YES animated:YES];
     [self performSegueWithIdentifier:kSegueToScene sender:sender];
 }
 
@@ -387,7 +382,6 @@
             if ([destController isKindOfClass:[ScenePresenterViewController class]]) {
                 ScenePresenterViewController* scvc = (ScenePresenterViewController*) destController;
                 if ([scvc respondsToSelector:@selector(setProgram:)]) {
-                    [scvc setController:(UITableViewController *)self];
                     [scvc performSelector:@selector(setProgram:) withObject:self.program];
                 }
             }

@@ -36,9 +36,6 @@
 
 @implementation AudioManager
 
-static AudioManager* sharedAudioManager = nil;
-
-
 + (instancetype)sharedAudioManager
 {
     static AudioManager *_sharedCattyAudioManager = nil;
@@ -151,7 +148,6 @@ static AudioManager* sharedAudioManager = nil;
     }
     [self.sounds removeAllObjects];
     self.sounds = nil;
-    sharedAudioManager = nil;
 }
 
 - (void)pauseAllSounds

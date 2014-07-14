@@ -77,6 +77,79 @@
 
 @implementation ScenePresenterViewController
 
+#pragma mark - ViewController Delegates
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
+    
+    [self.view addGestureRecognizer:[[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(handlePan:)]];
+    [self setUpMenuButtons];
+    
+    /// MenuImageBackground
+    UIImage *menuBackgroundImage = [UIImage imageNamed:@"stage_dialog_background_middle_1"];
+    UIImage *newBackgroundImage;
+    
+    if ([Util getScreenHeight] == kIphone4ScreenHeight) {
+        CGSize size = CGSizeMake(kWidthSlideMenu+kBounceEffect, kIphone4ScreenHeight);
+        UIGraphicsBeginImageContextWithOptions(size, NO, 0.0);
+        [menuBackgroundImage drawInRect:CGRectMake(0, 0, size.width, size.height)];
+        newBackgroundImage = UIGraphicsGetImageFromCurrentImageContext();
+        UIGraphicsEndImageContext();
+    } else {
+        CGSize size = CGSizeMake(kWidthSlideMenu+kBounceEffect, kIphone5ScreenHeight);
+        UIGraphicsBeginImageContextWithOptions(size, NO, 0.0);
+        [menuBackgroundImage drawInRect:CGRectMake(0, 0, size.width, size.height)];
+        newBackgroundImage = UIGraphicsGetImageFromCurrentImageContext();
+        UIGraphicsEndImageContext();
+    }
+    self.menuView.backgroundColor = [[UIColor alloc] initWithPatternImage:newBackgroundImage];
+    
+    [self setUpMenuFrames];
+    [self setUpLabels];
+    [self setUpGridView];
+    [self revealMenu:nil];
+    [self continueProgram:nil withDuration:kfirstSwipeDuration];
+    //    [self.view bringSubviewToFront:self.menuView];
+    
+    ///////
+    self.menuView.hidden = YES;
+    [self.menuView removeFromSuperview];
+    
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Reset Scene" style:UIBarButtonItemStylePlain target:self action:@selector(restartProgram:)];
+    
+    ///////
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [self.navigationController setNavigationBarHidden:NO animated:animated];
+    self.menuOpen = NO;
+    [[UIApplication sharedApplication] setIdleTimerDisabled:YES];
+    [self configureScene];
+}
+
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    [self.navigationController setNavigationBarHidden:NO animated:animated];
+    [[UIApplication sharedApplication] setIdleTimerDisabled:NO];
+    [[UIApplication sharedApplication] setStatusBarHidden:NO];
+}
+
+- (void)viewWillLayoutSubviews
+{
+    [super viewWillLayoutSubviews];
+    self.skView.bounds = self.view.bounds;
+}
+
+- (void)viewDidDisappear:(BOOL)animated
+{
+    [super viewDidDisappear:animated];
+    self.program = nil;
+}
+
 # pragma getters and setters
 - (BroadcastWaitHandler*)broadcastWaitHandler
 {
@@ -128,54 +201,12 @@
         _skView.showsNodeCount = YES;
         _skView.showsDrawCount = YES;
 #endif
-        [self.view insertSubview:_skView atIndex:1];
+        [self.view addSubview:_skView];
     }
     _skView.paused = NO;
     return _skView;
 }
 
-- (void)viewDidLoad
-{
-    [super viewDidLoad];
-    
-    [self.view addGestureRecognizer:[[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(handlePan:)]];
-    [self setUpMenuButtons];
-
-    /// MenuImageBackground
-    UIImage *menuBackgroundImage = [UIImage imageNamed:@"stage_dialog_background_middle_1"];
-    UIImage *newBackgroundImage;
-
-    if ([Util getScreenHeight] == kIphone4ScreenHeight) {
-        CGSize size = CGSizeMake(kWidthSlideMenu+kBounceEffect, kIphone4ScreenHeight);
-        UIGraphicsBeginImageContextWithOptions(size, NO, 0.0);
-        [menuBackgroundImage drawInRect:CGRectMake(0, 0, size.width, size.height)];
-        newBackgroundImage = UIGraphicsGetImageFromCurrentImageContext();
-        UIGraphicsEndImageContext();
-    } else {
-        CGSize size = CGSizeMake(kWidthSlideMenu+kBounceEffect, kIphone5ScreenHeight);
-        UIGraphicsBeginImageContextWithOptions(size, NO, 0.0);
-        [menuBackgroundImage drawInRect:CGRectMake(0, 0, size.width, size.height)];
-        newBackgroundImage = UIGraphicsGetImageFromCurrentImageContext();
-        UIGraphicsEndImageContext();
-    }
-    self.menuView.backgroundColor = [[UIColor alloc] initWithPatternImage:newBackgroundImage];
-
-    [self setUpMenuFrames];
-    [self setUpLabels];
-    [self setUpGridView];
-    [self revealMenu:nil];
-    [self configureScene];
-    [self continueProgram:nil withDuration:kfirstSwipeDuration];
-//    [self.view bringSubviewToFront:self.menuView];
-    
-    ///////
-    self.menuView.hidden = YES;
-    [self.menuView removeFromSuperview];
-    
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Reset Scene" style:UIBarButtonItemStylePlain target:self action:@selector(restartProgram:)];
-    
-    ///////
-}
 
 //- (UIImage*)brightnessBackground:(UIImage*)startImage
 //{
@@ -380,37 +411,6 @@
 //    [self.view insertSubview:self.gridView aboveSubview:self.skView];
 }
 
-- (void)viewWillAppear:(BOOL)animated
-{
-    [super viewWillAppear:animated];
-    [self.navigationController setNavigationBarHidden:NO animated:animated];
-    self.menuOpen = NO;
-    [[UIApplication sharedApplication] setIdleTimerDisabled:YES];
-}
-
-- (void)viewWillDisappear:(BOOL)animated
-{
-    [super viewWillDisappear:animated];
-    [self.navigationController setNavigationBarHidden:NO animated:animated];
-    [[UIApplication sharedApplication] setIdleTimerDisabled:NO];
-    [[UIApplication sharedApplication] setStatusBarHidden:NO];
-}
-
-- (void)viewWillLayoutSubviews
-{
-    [super viewWillLayoutSubviews];
-    self.skView.bounds = self.view.bounds;
-}
-
-- (void)viewDidDisappear:(BOOL)animated
-{
-    [super viewDidDisappear:animated];
-    [self.skView removeFromSuperview];
-    self.skView = nil;
-    self.program = nil;
-    self.controller = nil;
-}
-
 - (void)configureScene
 {
     CGSize programSize = CGSizeMake(self.program.header.screenWidth.floatValue, self.program.header.screenHeight.floatValue);
@@ -499,15 +499,14 @@
 #pragma mark - button functions
 - (void)stopProgram:(UIButton *)sender
 {
-    [self.navigationController setToolbarHidden:NO];
+    [self.parentViewController.navigationController setToolbarHidden:NO];
+    [self.parentViewController.navigationController setNavigationBarHidden:NO];
     [self.navigationController popViewControllerAnimated:YES];
-    [self.controller.navigationController setToolbarHidden:NO];
-    [self.controller.navigationController setNavigationBarHidden:NO];
 }
 
 - (void)continueProgram:(UIButton *)sender withDuration:(float)duration
 {
-//    [[AVAudioSession sharedInstance] setActive:YES error:nil];
+    [[AVAudioSession sharedInstance] setActive:YES error:nil];
 //    CGFloat animateDuration;
 //    if (duration != kfirstSwipeDuration) {
 //        animateDuration= 0.5;
@@ -524,10 +523,10 @@
 //                     }];
 //    
 //    self.skView.paused = NO;
-//   
-//    if (duration != kDontResumeSounds) {
-//        [[AudioManager sharedAudioManager] resumeAllSounds];
-//    }
+   
+    if (duration != kDontResumeSounds) {
+        [[AudioManager sharedAudioManager] resumeAllSounds];
+    }
 }
 
 - (void)continueAnimation
