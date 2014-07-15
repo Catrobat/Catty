@@ -141,9 +141,15 @@
  * UIInfoPopupViewController
  * -----------------------------------------------------------------------------------------------------------
  */
-#define kUIInfoPopupViewAboutPocketCode NSLocalizedString(@"About Pocket Code", nil)//
-#define kUIInfoPopupViewBack NSLocalizedString(@"Back", nil)//
-#define kUIInfoPopupViewAboutPocketCodeBody NSLocalizedString(@"Pocket Code is a programming environment for iOS for the visual programming language Catrobat. The code of Pocket Code is mostly under GNU AGPL v3 licence. For further information to te licence please visit following links:", nil)//
+#define kUIInfoPopupViewAboutPocketCode NSLocalizedString(@"About Pocket Code", nil)
+#define kUIInfoPopupViewTermsOfUse NSLocalizedString(@"Terms of Use", nil)
+#define kUIInfoPopupViewRateUs NSLocalizedString(@"Rate Us", nil)
+#define kUIInfoPopupViewVersionLabel NSLocalizedString(@"v", nil)
+#define kUIInfoPopupViewBack NSLocalizedString(@"Back", nil)
+#define kUIInfoPopupViewSourceCodeLicenseButtonLabel NSLocalizedString(@"Pocket Code Source Code License", nil)
+#define kUIInfoPopupViewAboutCatrobatButtonLabel NSLocalizedString(@"About Catrobat", nil)
+#define kUIInfoPopupViewAboutPocketCodeBody NSLocalizedString(@"Pocket Code is a programming environment for iOS for the visual programming language Catrobat. The code of Pocket Code is mostly under GNU AGPL v3 licence. For further information to the licence please visit following links:", nil)
+#define kUIInfoPopupViewTermsOfUseBody NSLocalizedString(@"In order to be allowed to use Pocket Code and other executables offered by the Catrobat project, you must agree to our Terms of Use and strictly follow them when you use Pocket Code and our other executables. Please see the link below for their precise formulation.", nil)
 
 /*
  * -----------------------------------------------------------------------------------------------------------

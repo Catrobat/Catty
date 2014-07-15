@@ -21,6 +21,7 @@
  */
 
 #import <UIKit/UIKit.h>
+#import "NetworkDefines.h"
 #import "UIViewController+CWPopup.h"
 
 @interface InfoPopupViewController : UIViewController
