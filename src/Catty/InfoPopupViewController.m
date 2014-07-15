@@ -147,6 +147,13 @@ const int BUTTON_MARGIN_BOTTOM = 15;
     [self.view.layer addSublayer:shapeLayer];
 }
 
+- (void)addLinkButton:(UIButton *)button
+{
+    [button setTitleColor:[UIColor skyBlueColor] forState:UIControlStateNormal];
+    [button addTarget:self action:@selector(openURLAction:) forControlEvents:UIControlEventTouchUpInside];
+    [self.contentView insertSubview:button belowSubview:self.bodyTextView];
+}
+
 - (void)initContentView:(NSString *)headerTitle withText:(NSString *)bodyText
 {
     self.contentView.backgroundColor = [UIColor backgroundColor];
@@ -234,15 +241,13 @@ const int BUTTON_MARGIN_BOTTOM = 15;
     [sourceCodeLicenseButton setTitle:kUIInfoPopupViewSourceCodeLicenseButtonLabel forState:UIControlStateNormal];
     [sourceCodeLicenseButton sizeToFit];
     sourceCodeLicenseButton.frame = CGRectMake(self.contentView.frame.size.width / 2 - sourceCodeLicenseButton.frame.size.width / 2, self.bodyTextView.frame.origin.y + self.bodyTextView.frame.size.height + BUTTON_MARGIN_BOTTOM, sourceCodeLicenseButton.frame.size.width, sourceCodeLicenseButton.frame.size.height);
-    [sourceCodeLicenseButton addTarget:self action:@selector(openURLAction:) forControlEvents:UIControlEventTouchUpInside];
-    [self.contentView insertSubview:sourceCodeLicenseButton belowSubview:self.bodyTextView];
+    [self addLinkButton:sourceCodeLicenseButton];
     
     UIButton *aboutCatrobatButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
     [aboutCatrobatButton setTitle:kUIInfoPopupViewAboutCatrobatButtonLabel forState:UIControlStateNormal];
     [aboutCatrobatButton sizeToFit];
     aboutCatrobatButton.frame = CGRectMake(self.contentView.frame.size.width / 2 - aboutCatrobatButton.frame.size.width / 2, sourceCodeLicenseButton.frame.origin.y + sourceCodeLicenseButton.frame.size.height, aboutCatrobatButton.frame.size.width, aboutCatrobatButton.frame.size.height);
-    [aboutCatrobatButton addTarget:self action:@selector(openURLAction:) forControlEvents:UIControlEventTouchUpInside];
-    [self.contentView insertSubview:aboutCatrobatButton belowSubview:self.bodyTextView];
+    [self addLinkButton:aboutCatrobatButton];
     
     //Animation to add the main subview
     [self showContentView];
@@ -258,8 +263,7 @@ const int BUTTON_MARGIN_BOTTOM = 15;
     [sourceCodeLicenseButton setTitle:kUIInfoPopupViewTermsOfUse forState:UIControlStateNormal];
     [sourceCodeLicenseButton sizeToFit];
     sourceCodeLicenseButton.frame = CGRectMake(self.contentView.frame.size.width / 2 - sourceCodeLicenseButton.frame.size.width / 2, self.bodyTextView.frame.origin.y + self.bodyTextView.frame.size.height + BUTTON_MARGIN_BOTTOM, sourceCodeLicenseButton.frame.size.width, sourceCodeLicenseButton.frame.size.height);
-    [sourceCodeLicenseButton addTarget:self action:@selector(openURLAction:) forControlEvents:UIControlEventTouchUpInside];
-    [self.contentView insertSubview:sourceCodeLicenseButton belowSubview:self.bodyTextView];
+    [self addLinkButton:sourceCodeLicenseButton];
     
     //Animation to add the main subview
     [self showContentView];
