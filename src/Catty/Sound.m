@@ -25,7 +25,7 @@
 
 @implementation Sound
 
-- (GDataXMLElement*)toXML
+- (GDataXMLElement*)toXMLforObject:(SpriteObject*)spriteObject
 {
   GDataXMLElement *soundXMLElement = [GDataXMLNode elementWithName:@"sound"];
   [soundXMLElement addAttribute:[GDataXMLNode attributeWithName:@"reference" stringValue:@"../../scriptList/startScript/brickList/playSoundBrick/sound"]];

@@ -67,9 +67,9 @@
     return [NSString stringWithFormat:@"Speak: %@", self.text];
 }
 
-- (GDataXMLElement*)toXML
+- (GDataXMLElement*)toXMLforObject:(SpriteObject *)spriteObject
 {
-    GDataXMLElement *brickXMLElement = [super toXML];
+    GDataXMLElement *brickXMLElement = [super toXMLforObject:spriteObject];
     if (self.text) {
         GDataXMLElement *textXMLElement = [GDataXMLNode elementWithName:@"text" stringValue:self.text];
         [brickXMLElement addChild:textXMLElement];

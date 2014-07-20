@@ -508,13 +508,13 @@
 //    }
 //}
 
-- (GDataXMLElement*)toXML
+- (GDataXMLElement*)toXMLforObject:(SpriteObject*)spriteObject
 {
     GDataXMLElement *scriptXMLElement = [GDataXMLNode elementWithName:[self xmlTagName]];
     GDataXMLElement *brickListXMLElement = [GDataXMLNode elementWithName:@"brickList"];
     for (id brick in self.brickList) {
         if ([brick isKindOfClass:[Brick class]]) {
-            [brickListXMLElement addChild:[((Brick*) brick) toXML]];
+            [brickListXMLElement addChild:[((Brick*) brick) toXMLforObject:spriteObject]];
         }
     }
     [scriptXMLElement addChild:brickListXMLElement];
@@ -550,8 +550,5 @@
     
     return ret;
 }
-
-
-
 
 @end

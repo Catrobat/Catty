@@ -47,7 +47,7 @@
 
 - (void)stop;
 
-- (GDataXMLElement*)toXML;
+- (GDataXMLElement*)toXMLforObject:(SpriteObject*)spriteObject;
 
 - (NSString*)description;
 

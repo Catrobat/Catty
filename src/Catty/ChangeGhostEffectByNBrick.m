@@ -64,12 +64,12 @@
     return [NSString stringWithFormat:@"ChangeGhostEffect by (%f)", [self.changeGhostEffect interpretDoubleForSprite:self.object]];
 }
 
-- (GDataXMLElement*)toXML
+- (GDataXMLElement*)toXMLforObject:(SpriteObject*)spriteObject
 {
-    GDataXMLElement *brickXMLElement = [super toXML];
+    GDataXMLElement *brickXMLElement = [super toXMLforObject:spriteObject];
     if (self.changeGhostEffect) {
         GDataXMLElement *changeGhostEffectXMLElement = [GDataXMLNode elementWithName:@"changeGhostEffect"];
-        [changeGhostEffectXMLElement addChild:[self.changeGhostEffect toXML]];
+        [changeGhostEffectXMLElement addChild:[self.changeGhostEffect toXMLforObject:spriteObject]];
         [brickXMLElement addChild:changeGhostEffectXMLElement];
     }
     return brickXMLElement;

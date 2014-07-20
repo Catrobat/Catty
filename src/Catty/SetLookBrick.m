@@ -84,9 +84,9 @@
     return [NSString stringWithFormat:@"SetLookBrick (Look: %@)", self.look.name];
 }
 
-- (GDataXMLElement*)toXML
+- (GDataXMLElement*)toXMLforObject:(SpriteObject*)spriteObject
 {
-    GDataXMLElement *brickXMLElement = [super toXML];
+    GDataXMLElement *brickXMLElement = [super toXMLforObject:spriteObject];
     if (self.look) {
         GDataXMLElement *brickToObjectReferenceXMLElement = [GDataXMLNode elementWithName:@"look"];
         // TODO: determine right index in object's array

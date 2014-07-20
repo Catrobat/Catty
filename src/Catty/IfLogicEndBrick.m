@@ -46,7 +46,7 @@
     return [NSString stringWithFormat:@"If Logic End Brick"];
 }
 
-- (GDataXMLElement*)toXML
+- (GDataXMLElement*)toXMLforObject:(SpriteObject*)spriteObject
 {
     GDataXMLElement *brickXMLElement = [GDataXMLNode elementWithName:@"ifLogicEndBrick"];
     // TODO: determine right reference path...

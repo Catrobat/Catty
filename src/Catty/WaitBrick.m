@@ -48,12 +48,12 @@
     return [NSString stringWithFormat:@"WaitBrick (%f Seconds)", [self.timeToWaitInSeconds interpretDoubleForSprite:self.object]];
 }
 
-- (GDataXMLElement*)toXML
+- (GDataXMLElement*)toXMLforObject:(SpriteObject*)spriteObject
 {
-    GDataXMLElement *brickXMLElement = [super toXML];
+    GDataXMLElement *brickXMLElement = [super toXMLforObject:spriteObject];
     if (self.timeToWaitInSeconds) {
         GDataXMLElement *timeToWaitInSecondsXMLElement = [GDataXMLNode elementWithName:@"timeToWaitInSeconds"];
-        [timeToWaitInSecondsXMLElement addChild:[self.timeToWaitInSeconds toXML]];
+        [timeToWaitInSecondsXMLElement addChild:[self.timeToWaitInSeconds toXMLforObject:spriteObject]];
         [brickXMLElement addChild:timeToWaitInSecondsXMLElement];
     } else {
         // remove object reference

@@ -56,12 +56,12 @@
     return [NSString stringWithFormat:@"ChangeYBy (%f)", xMov];
 }
 
-- (GDataXMLElement*)toXML
+- (GDataXMLElement*)toXMLforObject:(SpriteObject*)spriteObject
 {
-    GDataXMLElement *brickXMLElement = [super toXML];
+    GDataXMLElement *brickXMLElement = [super toXMLforObject:spriteObject];
     if (self.yMovement) {
         GDataXMLElement *yMovementXMLElement = [GDataXMLNode elementWithName:@"yMovement"];
-        [yMovementXMLElement addChild:[self.yMovement toXML]];
+        [yMovementXMLElement addChild:[self.yMovement toXMLforObject:spriteObject]];
         [brickXMLElement addChild:yMovementXMLElement];
     } else {
         // remove object reference

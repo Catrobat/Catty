@@ -38,7 +38,7 @@
 
 - (id)initWithSprite:(SpriteObject*)sprite;
 
-- (GDataXMLElement*)toXML;
+- (GDataXMLElement*)toXMLforObject:(SpriteObject*)spriteObject;
 
 - (NSString*)description;
 

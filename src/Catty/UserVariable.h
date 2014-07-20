@@ -23,13 +23,15 @@
 #import <Foundation/Foundation.h>
 
 @class GDataXMLElement;
+@class SpriteObject;
+@class Program;
 
 @interface UserVariable : NSObject
 
 @property (nonatomic, strong) NSString* name;
 @property (nonatomic, strong) NSNumber* value;
 
-- (GDataXMLElement*)toXML;
-- (GDataXMLElement*)toXMLAsProgramVariable;
+- (GDataXMLElement*)toXMLforObject:(SpriteObject*)spriteObject;
+- (GDataXMLElement*)toXMLforProgram:(Program*)program;
 
 @end

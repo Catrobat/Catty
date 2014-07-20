@@ -61,13 +61,13 @@
     return [NSString stringWithFormat:@"Set Variable Brick: Uservariable: %@, to: %f", self.userVariable, result];
 }
 
-- (GDataXMLElement*)toXML
+- (GDataXMLElement*)toXMLforObject:(SpriteObject*)spriteObject
 {
-    GDataXMLElement *brickXMLElement = [super toXML];
+    GDataXMLElement *brickXMLElement = [super toXMLforObject:spriteObject];
     if (self.userVariable && self.variableFormula) {
-        [brickXMLElement addChild:[self.userVariable toXML]];
+        [brickXMLElement addChild:[self.userVariable toXMLforObject:spriteObject]];
         GDataXMLElement *variableFormulaXMLElement = [GDataXMLNode elementWithName:@"variableFormula"];
-        [variableFormulaXMLElement addChild:[self.variableFormula toXML]];
+        [variableFormulaXMLElement addChild:[self.variableFormula toXMLforObject:spriteObject]];
         [brickXMLElement addChild:variableFormulaXMLElement];
     } else {
         // remove object reference

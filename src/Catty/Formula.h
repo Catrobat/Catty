@@ -34,6 +34,6 @@
 - (int)interpretIntegerForSprite:(SpriteObject*)sprite;
 - (BOOL)interpretBOOLForSprite:(SpriteObject*)sprite;
 
-- (GDataXMLElement*)toXML;
+- (GDataXMLElement*)toXMLforObject:(SpriteObject*)spriteObject;
 
 @end

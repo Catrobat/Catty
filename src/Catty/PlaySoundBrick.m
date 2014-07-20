@@ -50,9 +50,9 @@
     return [NSString stringWithFormat:@"PlaySound (File Name: %@)", self.sound.fileName];
 }
 
-- (GDataXMLElement*)toXML
+- (GDataXMLElement*)toXMLforObject:(SpriteObject*)spriteObject
 {
-    GDataXMLElement *brickXMLElement = [super toXML];
+    GDataXMLElement *brickXMLElement = [super toXMLforObject:spriteObject];
 
     if (self.sound) {
         GDataXMLElement *soundXMLElement = [GDataXMLNode elementWithName:@"sound"];

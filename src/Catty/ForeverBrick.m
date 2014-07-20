@@ -42,9 +42,9 @@
     return [NSString stringWithFormat:@"ForeverLoop"];
 }
 
-- (GDataXMLElement*)toXML
+- (GDataXMLElement*)toXMLforObject:(SpriteObject*)spriteObject
 {
-    GDataXMLElement *brickXMLElement = [super toXML];
+    GDataXMLElement *brickXMLElement = [super toXMLforObject:spriteObject];
     GDataXMLElement *loopEndBrickXMLElement = [GDataXMLNode elementWithName:@"loopEndBrick"];
     [loopEndBrickXMLElement addAttribute:[GDataXMLNode elementWithName:@"class"
                                                            stringValue:@"loopEndlessBrick"]];

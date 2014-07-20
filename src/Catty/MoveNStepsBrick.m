@@ -63,11 +63,11 @@
     return [NSString stringWithFormat:@"MoveNStepsBrick: %f steps", [self.steps interpretDoubleForSprite:self.object] ];
 }
 
-- (GDataXMLElement*)toXML
+- (GDataXMLElement*)toXMLforObject:(SpriteObject*)spriteObject
 {
-    GDataXMLElement *brickXMLElement = [super toXML];
+    GDataXMLElement *brickXMLElement = [super toXMLforObject:spriteObject];
     GDataXMLElement *stepsXMLElement = [GDataXMLNode elementWithName:@"steps"];
-    [stepsXMLElement addChild:[self.steps toXML]];
+    [stepsXMLElement addChild:[self.steps toXMLforObject:spriteObject]];
     [brickXMLElement addChild:stepsXMLElement];
     return brickXMLElement;
 }

@@ -44,13 +44,13 @@
     return [NSString stringWithFormat:@"If Logic Begin Brick"];
 }
 
-- (GDataXMLElement*)toXML
+- (GDataXMLElement*)toXMLforObject:(SpriteObject*)spriteObject
 {
-    GDataXMLElement *brickXMLElement = [super toXML];
+    GDataXMLElement *brickXMLElement = [super toXMLforObject:spriteObject];
 
     // ifCondition
     GDataXMLElement *ifConditionXMLElement = [GDataXMLNode elementWithName:@"ifCondition"];
-    [ifConditionXMLElement addChild:[self.ifCondition toXML]];
+    [ifConditionXMLElement addChild:[self.ifCondition toXMLforObject:spriteObject]];
     [brickXMLElement addChild:ifConditionXMLElement];
 
     // ifElseBrick

@@ -44,9 +44,9 @@
     return [NSString stringWithFormat:@"NoteBrick: %@", self.note];
 }
 
-- (GDataXMLElement*)toXML
+- (GDataXMLElement*)toXMLforObject:(SpriteObject*)spriteObject
 {
-    GDataXMLElement *brickXMLElement = [super toXML];
+    GDataXMLElement *brickXMLElement = [super toXMLforObject:spriteObject];
     if (self.note) {
         GDataXMLElement *noteXMLElement = [GDataXMLNode elementWithName:@"note" stringValue:self.note];
         [brickXMLElement addChild:noteXMLElement];

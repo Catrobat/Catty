@@ -68,7 +68,7 @@
     return YES;
 }
 
-- (GDataXMLElement*)toXML
+- (GDataXMLElement*)toXMLforObject:(SpriteObject*)spriteObject
 {
     GDataXMLElement *brickXMLElement = [GDataXMLNode elementWithName:[self xmlTagName]];
     GDataXMLElement *brickToObjectReferenceXMLElement = [GDataXMLNode elementWithName:@"object"];
@@ -114,6 +114,5 @@
         NSError(@"%@ (NO SPECIFIC Action GIVEN! OVERRIDE THE actionBlock METHOD!", self.class);
     };
 }
-
 
 @end

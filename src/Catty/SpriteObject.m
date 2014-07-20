@@ -166,7 +166,7 @@
     GDataXMLElement *lookListXMLElement = [GDataXMLNode elementWithName:@"lookList"];
     for (id look in self.lookList) {
         if ([look isKindOfClass:[Look class]])
-            [lookListXMLElement addChild:[((Look*) look) toXML]];
+            [lookListXMLElement addChild:[((Look*) look) toXMLforObject:self]];
     }
     [objectXMLElement addChild:lookListXMLElement];
     [objectXMLElement addChild:[GDataXMLElement elementWithName:@"name" stringValue:self.name]];
@@ -174,14 +174,14 @@
     GDataXMLElement *scriptListXMLElement = [GDataXMLNode elementWithName:@"scriptList"];
     for (id script in self.scriptList) {
         if ([script isKindOfClass:[Script class]])
-            [scriptListXMLElement addChild:[((Script*) script) toXML]];
+            [scriptListXMLElement addChild:[((Script*) script) toXMLforObject:self]];
     }
     [objectXMLElement addChild:scriptListXMLElement];
 
     GDataXMLElement *soundListXMLElement = [GDataXMLNode elementWithName:@"soundList"];
     for (id sound in self.soundList) {
         if ([sound isKindOfClass:[Sound class]])
-            [soundListXMLElement addChild:[((Sound*) sound) toXML]];
+            [soundListXMLElement addChild:[((Sound*) sound) toXMLforObject:self]];
     }
     [objectXMLElement addChild:soundListXMLElement];
     return objectXMLElement;

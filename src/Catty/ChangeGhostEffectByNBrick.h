@@ -29,5 +29,4 @@
 
 @property (nonatomic, strong) Formula *changeGhostEffect;
 
-
 @end

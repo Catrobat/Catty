@@ -22,6 +22,7 @@
 
 #import "UserVariable.h"
 #import "GDataXMLNode.h"
+#import "Program.h"
 
 @implementation UserVariable
 
@@ -30,7 +31,7 @@
     return [NSString stringWithFormat:@"UserVariable: Name: %@, Value: %@", self.name, self.value ];
 }
 
-- (GDataXMLElement*)toXML
+- (GDataXMLElement*)toXMLforObject:(SpriteObject*)spriteObject
 {
     GDataXMLElement *userVariableXMLElement = [GDataXMLNode elementWithName:@"userVariable"];
     GDataXMLElement *nameXMLElement = [GDataXMLNode elementWithName:@"name" stringValue:self.name];
@@ -38,11 +39,11 @@
     return userVariableXMLElement;
 }
 
-- (GDataXMLElement*)toXMLAsProgramVariable
+- (GDataXMLElement*)toXMLforProgram:(Program*)program
 {
     GDataXMLElement *userVariableXMLElement = [GDataXMLNode elementWithName:@"userVariable"];
-    GDataXMLElement *nameXMLElement = [GDataXMLNode elementWithName:@"name" stringValue:self.name];
-    [userVariableXMLElement addChild:nameXMLElement];
+    [userVariableXMLElement addAttribute:[GDataXMLNode elementWithName:@"reference"
+                                                           stringValue:@"../../../../../objectList/object[10]/scriptList/startScript/brickList/setVariableBrick[2]/userVariable"]];
     return userVariableXMLElement;
 }
 

@@ -299,7 +299,8 @@
             [entryXMLElement addChild:entryToObjectReferenceXMLElement];
             GDataXMLElement *listXMLElement = [GDataXMLNode elementWithName:@"list"];
             for (id variable in variables) {
-                GDataXMLElement *temp = [GDataXMLNode elementWithName:@"list"];
+                if ([variable isKindOfClass:[UserVariable class]])
+                    [listXMLElement addChild:[((UserVariable*)variable) toXMLforProgram:self]];
             }
             [entryXMLElement addChild:listXMLElement];
             [objectVariableListXMLElement addChild:entryXMLElement];
@@ -309,11 +310,10 @@
 //        }
 
         GDataXMLElement *programVariableListXMLElement = [GDataXMLNode elementWithName:@"programVariableList"];
-        // TODO: uncomment this after toXML methods are implemented
-//        for (id variable in variables.programVariableList) {
-//            if ([variable isKindOfClass:[UserVariable class]])
-//                [programVariableListXMLElement addChild:[((UserVariable*) variable) toXMLAsProgramVariable]];
-//        }
+        for (id variable in variableLists.programVariableList) {
+            if ([variable isKindOfClass:[UserVariable class]])
+                [programVariableListXMLElement addChild:[((UserVariable*) variable) toXMLforProgram:self]];
+        }
 //        if (totalNumOfProgramVariables) {
             [variablesXMLElement addChild:programVariableListXMLElement];
 //        }
@@ -342,7 +342,7 @@
         // TODO: outsource this to file manager
         NSString *xmlPath = [NSString stringWithFormat:@"%@%@", [self projectPath], kProgramCodeFileName];
         NSError *error = nil;
-#ifdef DEBUG
+#ifdef SIMULATOR_DEBUGGING_ENABLED
         NSString *referenceXmlString = [NSString stringWithFormat:@"%@\n%@",
                                         kCatrobatXMLDeclaration,
                                         [self.XMLdocument.rootElement XMLStringPrettyPrinted:YES]];

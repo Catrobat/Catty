@@ -26,7 +26,6 @@
 
 @implementation Formula
 
-
 - (double)interpretDoubleForSprite:(SpriteObject*)sprite
 {
     return [self.formulaTree interpretRecursiveForSprite:sprite];
@@ -43,7 +42,7 @@
     return result != 0 ? true : false;
 }
 
-- (GDataXMLElement*)toXML
+- (GDataXMLElement*)toXMLforObject:(SpriteObject*)spriteObject
 {
     GDataXMLElement *formulaTreeXMLElement = [GDataXMLNode elementWithName:@"formulaTree"];
     for (GDataXMLElement *childElement in [self.formulaTree XMLChildElements]) {

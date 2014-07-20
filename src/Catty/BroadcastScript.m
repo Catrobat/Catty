@@ -51,9 +51,9 @@
     return ret;
 }
 
-- (GDataXMLElement*)toXML
+- (GDataXMLElement*)toXMLforObject:(SpriteObject *)spriteObject
 {
-    GDataXMLElement *scriptXMLElement = [super toXML];
+    GDataXMLElement *scriptXMLElement = [super toXMLforObject:spriteObject];
     GDataXMLElement *receivedMessageXMLElement = [GDataXMLNode elementWithName:@"receivedMessage" stringValue:self.receivedMessage];
     [scriptXMLElement addChild:receivedMessageXMLElement];
     return scriptXMLElement;

@@ -68,12 +68,12 @@
     return [NSString stringWithFormat:@"GoNStepsBack (%d)", [self.steps interpretIntegerForSprite:self.object]];
 }
 
-- (GDataXMLElement*)toXML
+- (GDataXMLElement*)toXMLforObject:(SpriteObject*)spriteObject
 {
-    GDataXMLElement *brickXMLElement = [super toXML];
+    GDataXMLElement *brickXMLElement = [super toXMLforObject:spriteObject];
     if (self.steps) {
         GDataXMLElement *stepsXMLElement = [GDataXMLNode elementWithName:@"steps"];
-        [stepsXMLElement addChild:[self.steps toXML]];
+        [stepsXMLElement addChild:[self.steps toXMLforObject:spriteObject]];
         [brickXMLElement addChild:stepsXMLElement];
     }
     return brickXMLElement;

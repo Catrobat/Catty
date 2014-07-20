@@ -63,12 +63,12 @@
     return [NSString stringWithFormat:@"SetGhostEffect (%f%%)", [self.transparency interpretDoubleForSprite:self.object]];
 }
 
-- (GDataXMLElement*)toXML
+- (GDataXMLElement*)toXMLforObject:(SpriteObject*)spriteObject
 {
-    GDataXMLElement *brickXMLElement = [super toXML];
+    GDataXMLElement *brickXMLElement = [super toXMLforObject:spriteObject];
     if (self.transparency) {
         GDataXMLElement *transparencyXMLElement = [GDataXMLNode elementWithName:@"transparency"];
-        [transparencyXMLElement addChild:[self.transparency toXML]];
+        [transparencyXMLElement addChild:[self.transparency toXMLforObject:spriteObject]];
         [brickXMLElement addChild:transparencyXMLElement];
     }
     return brickXMLElement;

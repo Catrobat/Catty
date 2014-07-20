@@ -56,11 +56,11 @@
     return [NSString stringWithFormat:@"SetXBrick (x-Pos:%f)", [self.xPosition interpretDoubleForSprite:self.object]];
 }
 
-- (GDataXMLElement*)toXML
+- (GDataXMLElement*)toXMLforObject:(SpriteObject*)spriteObject
 {
-    GDataXMLElement *brickXMLElement = [super toXML];
+    GDataXMLElement *brickXMLElement = [super toXMLforObject:spriteObject];
     GDataXMLElement *xPositionFormulaXMLElement = [GDataXMLNode elementWithName:@"xPosition"];
-    [xPositionFormulaXMLElement addChild:[self.xPosition toXML]];
+    [xPositionFormulaXMLElement addChild:[self.xPosition toXMLforObject:spriteObject]];
     [brickXMLElement addChild:xPositionFormulaXMLElement];
     return brickXMLElement;
 }

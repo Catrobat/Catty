@@ -54,9 +54,9 @@
     return [NSString stringWithFormat:@"BroadcastWait (Msg: %@)", self.broadcastMessage];
 }
 
-- (GDataXMLElement*)toXML
+- (GDataXMLElement*)toXMLforObject:(SpriteObject *)spriteObject
 {
-    GDataXMLElement *brickXMLElement = [super toXML];
+    GDataXMLElement *brickXMLElement = [super toXMLforObject:spriteObject];
     if (self.broadcastMessage) {
         GDataXMLElement *broadcastMessage = [GDataXMLNode elementWithName:@"broadcastMessage"
                                                               stringValue:self.broadcastMessage];

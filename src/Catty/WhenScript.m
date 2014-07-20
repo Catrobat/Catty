@@ -30,9 +30,9 @@
     return kBrickCellControlTitleWhenTapped;
 }
 
-- (GDataXMLElement*)toXML
+- (GDataXMLElement*)toXMLforObject:(SpriteObject *)spriteObject
 {
-    GDataXMLElement *scriptXMLElement = [super toXML];
+    GDataXMLElement *scriptXMLElement = [super toXMLforObject:spriteObject];
     if (self.action) {
         GDataXMLElement *actionXMLElement = [GDataXMLNode elementWithName:@"action" stringValue:self.action];
         [scriptXMLElement addChild:actionXMLElement];

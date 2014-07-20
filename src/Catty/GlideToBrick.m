@@ -96,25 +96,25 @@
     return [NSString stringWithFormat:@"GlideTo (Position: %f/%f; duration: %f s)", xDestination, yDestination, durationInSeconds];
 }
 
-- (GDataXMLElement*)toXML
+- (GDataXMLElement*)toXMLforObject:(SpriteObject*)spriteObject
 {
-    GDataXMLElement *brickXMLElement = [super toXML];
+    GDataXMLElement *brickXMLElement = [super toXMLforObject:spriteObject];
 
     if (self.durationInSeconds) {
         GDataXMLElement *durationInSecondsXMLElement = [GDataXMLNode elementWithName:@"durationInSeconds"];
-        [durationInSecondsXMLElement addChild:[self.durationInSeconds toXML]];
+        [durationInSecondsXMLElement addChild:[self.durationInSeconds toXMLforObject:spriteObject]];
         [brickXMLElement addChild:durationInSecondsXMLElement];
     }
 
     if (self.xDestination) {
         GDataXMLElement *xDestinationXMLElement = [GDataXMLNode elementWithName:@"xDestination"];
-        [xDestinationXMLElement addChild:[self.xDestination toXML]];
+        [xDestinationXMLElement addChild:[self.xDestination toXMLforObject:spriteObject]];
         [brickXMLElement addChild:xDestinationXMLElement];
     }
 
     if (self.yDestination) {
         GDataXMLElement *yDestinationXMLElement = [GDataXMLNode elementWithName:@"yDestination"];
-        [yDestinationXMLElement addChild:[self.yDestination toXML]];
+        [yDestinationXMLElement addChild:[self.yDestination toXMLforObject:spriteObject]];
         [brickXMLElement addChild:yDestinationXMLElement];
     }
 

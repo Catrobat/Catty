@@ -51,9 +51,9 @@
     return [NSString stringWithFormat:@"Hidebrick"];
 }
 
-- (GDataXMLElement*)toXML
+- (GDataXMLElement*)toXMLforObject:(SpriteObject*)spriteObject
 {
-    GDataXMLElement *brickXMLElement = [super toXML];
+    GDataXMLElement *brickXMLElement = [super toXMLforObject:spriteObject];
     // remove object reference
     [brickXMLElement removeChild:[[brickXMLElement children] firstObject]];
     return brickXMLElement;

@@ -23,6 +23,7 @@
 #import <UIKit/UIKit.h>
 
 @class GDataXMLElement;
+@class SpriteObject;
 
 @interface Look : NSObject
 
@@ -32,7 +33,7 @@
 - (id)initWithPath:(NSString*)filePath;
 - (id)initWithName:(NSString*)name andPath:(NSString*)filePath;
 - (NSString*)previewImageFileName;
-- (GDataXMLElement*)toXML;
+- (GDataXMLElement*)toXMLforObject:(SpriteObject*)spriteObject;
 - (NSString*)description;
 
 @end

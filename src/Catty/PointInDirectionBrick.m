@@ -60,13 +60,13 @@
     return [NSString stringWithFormat:@"PointInDirection: %f", deg];
 }
 
-- (GDataXMLElement*)toXML
+- (GDataXMLElement*)toXMLforObject:(SpriteObject*)spriteObject
 {
-    GDataXMLElement *brickXMLElement = [super toXML];
+    GDataXMLElement *brickXMLElement = [super toXMLforObject:spriteObject];
 
     if (self.degrees) {
         GDataXMLElement *degreesXMLElement = [GDataXMLNode elementWithName:@"degrees"];
-        [degreesXMLElement addChild:[self.degrees toXML]];
+        [degreesXMLElement addChild:[self.degrees toXMLforObject:spriteObject]];
         [brickXMLElement addChild:degreesXMLElement];
     } else {
         // remove object reference

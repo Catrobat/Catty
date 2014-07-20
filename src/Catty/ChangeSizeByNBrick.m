@@ -56,12 +56,12 @@
     return [NSString stringWithFormat:@"ChangeSizeByN (%f%%)", [self.size interpretDoubleForSprite:self.object]];
 }
 
-- (GDataXMLElement*)toXML
+- (GDataXMLElement*)toXMLforObject:(SpriteObject*)spriteObject
 {
-    GDataXMLElement *brickXMLElement = [super toXML];
+    GDataXMLElement *brickXMLElement = [super toXMLforObject:spriteObject];
     if (self.size) {
         GDataXMLElement *sizeXMLElement = [GDataXMLNode elementWithName:@"size"];
-        [sizeXMLElement addChild:[self.size toXML]];
+        [sizeXMLElement addChild:[self.size toXMLforObject:spriteObject]];
         [brickXMLElement addChild:sizeXMLElement];
     }
     return brickXMLElement;

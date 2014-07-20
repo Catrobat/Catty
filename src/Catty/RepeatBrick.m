@@ -56,9 +56,9 @@
     return [NSString stringWithFormat:@"RepeatLoop with %d iterations", [self.timesToRepeat interpretIntegerForSprite:self.object]];
 }
 
-- (GDataXMLElement*)toXML
+- (GDataXMLElement*)toXMLforObject:(SpriteObject*)spriteObject
 {
-    GDataXMLElement *brickXMLElement = [super toXML];
+    GDataXMLElement *brickXMLElement = [super toXMLforObject:spriteObject];
 
     GDataXMLElement *loopEndBrickXMLElement = [GDataXMLNode elementWithName:@"loopEndBrick"];
     GDataXMLElement *brickToObjectReferenceXMLElement = [GDataXMLNode elementWithName:@"object"];
@@ -71,7 +71,7 @@
     [brickXMLElement addChild:loopEndBrickXMLElement];
 
     GDataXMLElement *timesToRepeatBrickXMLElement = [GDataXMLNode elementWithName:@"timesToRepeat"];
-    [timesToRepeatBrickXMLElement addChild:[self.timesToRepeat toXML]];
+    [timesToRepeatBrickXMLElement addChild:[self.timesToRepeat toXMLforObject:spriteObject]];
     [brickXMLElement addChild:timesToRepeatBrickXMLElement];
     return brickXMLElement;
 }
