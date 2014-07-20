@@ -40,6 +40,8 @@
 
 - (GDataXMLElement*)toXMLforObject:(SpriteObject*)spriteObject;
 
+- (NSString*)xmlTagName;
+
 - (NSString*)description;
 
 - (SKAction*)action;

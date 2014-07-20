@@ -25,12 +25,9 @@
 @class IfLogicBeginBrick;
 @class IfLogicElseBrick;
 
-
 @interface IfLogicEndBrick : Brick
-
 
 @property (nonatomic, weak) IfLogicBeginBrick* ifBeginBrick;
 @property (nonatomic, weak) IfLogicElseBrick* ifElseBrick;
-
 
 @end

@@ -89,8 +89,8 @@
     GDataXMLElement *brickXMLElement = [super toXMLforObject:spriteObject];
     if (self.look) {
         GDataXMLElement *brickToObjectReferenceXMLElement = [GDataXMLNode elementWithName:@"look"];
-        // TODO: determine right index in object's array
-        [brickToObjectReferenceXMLElement addAttribute:[GDataXMLNode elementWithName:@"reference" stringValue:@"../../../../../lookList/look"]];
+        NSString *referencePath = [spriteObject xmlReferencePathForDestinationLook:self.look];
+        [brickToObjectReferenceXMLElement addAttribute:[GDataXMLNode elementWithName:@"reference" stringValue:referencePath]];
         [brickXMLElement addChild:brickToObjectReferenceXMLElement];
     } else {
         // remove object reference
