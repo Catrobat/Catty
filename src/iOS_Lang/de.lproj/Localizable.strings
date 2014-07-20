@@ -159,9 +159,9 @@
 
 "Delete" = "Löschen";
 
-"Edit Sounds" = "Bearbeite Sounds";
+"Edit Sounds" = "Sounds bearbeiten";
 
-"Edit Looks" = "Bearbeite Aussehen";
+"Edit Looks" = "Aussehen bearbeiten";
 
 "Add look" = "Hinzufügen von neuem Aussehen";
 
@@ -193,7 +193,7 @@
 
 "Show Details" = "Details anzeigen";
 
-"Delete Looks" = "Lösche Aussehen";
+"Delete Looks" = "Lösche Bilder";
 
 "From Camera" = "Von Kamera";
 
@@ -327,7 +327,7 @@
 
 "Views" = "Aufrufe";
 
-"Measure" = "Auflösung";
+"Measure" = "Abmessung";
 
 "Size" = "Dateigröße";
 
