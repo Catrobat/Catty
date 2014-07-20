@@ -30,7 +30,7 @@
 #import "SpriteObject.h"
 #import "NSString+CatrobatNSStringExtensions.h"
 #import "Util.h"
-#import "GDataXMLNode.h"
+#import "GDataXMLNode+PrettyFormatterExtensions.h"
 
 #define ARC4RANDOM_MAX 0x100000000
 
@@ -595,7 +595,7 @@
 
     if (self.value) {
         GDataXMLElement *valueXMLElement = [GDataXMLNode elementWithName:@"value"
-                                                             stringValue:self.value];
+                                                     optionalStringValue:self.value];
         [childs addObject:valueXMLElement];
     }
 

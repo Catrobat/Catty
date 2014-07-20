@@ -22,6 +22,7 @@
 
 #import "ChangeYByNBrick.h"
 #import "Formula.h"
+#import "GDataXMLNode.h"
 
 @implementation ChangeYByNBrick
 
@@ -53,6 +54,20 @@
 {
     double xMov = [self.yMovement interpretDoubleForSprite:self.object];
     return [NSString stringWithFormat:@"ChangeYBy (%f)", xMov];
+}
+
+- (GDataXMLElement*)toXML
+{
+    GDataXMLElement *brickXMLElement = [super toXML];
+    if (self.yMovement) {
+        GDataXMLElement *yMovementXMLElement = [GDataXMLNode elementWithName:@"yMovement"];
+        [yMovementXMLElement addChild:[self.yMovement toXML]];
+        [brickXMLElement addChild:yMovementXMLElement];
+    } else {
+        // remove object reference
+        [brickXMLElement removeChild:[[brickXMLElement children] firstObject]];
+    }
+    return brickXMLElement;
 }
 
 @end

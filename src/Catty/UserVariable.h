@@ -29,7 +29,7 @@
 @property (nonatomic, strong) NSString* name;
 @property (nonatomic, strong) NSNumber* value;
 
-- (GDataXMLElement*)toXMLAsObjectVariable;
+- (GDataXMLElement*)toXML;
 - (GDataXMLElement*)toXMLAsProgramVariable;
 
 @end

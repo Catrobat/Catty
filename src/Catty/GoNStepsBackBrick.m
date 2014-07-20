@@ -22,6 +22,7 @@
 
 #import "Gonstepsbackbrick.h"
 #import "Formula.h"
+#import "GDataXMLNode.h"
 
 @implementation GoNStepsBackBrick
 
@@ -61,12 +62,21 @@
     
 }
 
-
 #pragma mark - Description
 - (NSString*)description
 {
     return [NSString stringWithFormat:@"GoNStepsBack (%d)", [self.steps interpretIntegerForSprite:self.object]];
 }
 
+- (GDataXMLElement*)toXML
+{
+    GDataXMLElement *brickXMLElement = [super toXML];
+    if (self.steps) {
+        GDataXMLElement *stepsXMLElement = [GDataXMLNode elementWithName:@"steps"];
+        [stepsXMLElement addChild:[self.steps toXML]];
+        [brickXMLElement addChild:stepsXMLElement];
+    }
+    return brickXMLElement;
+}
 
 @end

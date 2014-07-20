@@ -30,7 +30,7 @@
     return [NSString stringWithFormat:@"UserVariable: Name: %@, Value: %@", self.name, self.value ];
 }
 
-- (GDataXMLElement*)toXMLAsObjectVariable
+- (GDataXMLElement*)toXML
 {
     GDataXMLElement *userVariableXMLElement = [GDataXMLNode elementWithName:@"userVariable"];
     GDataXMLElement *nameXMLElement = [GDataXMLNode elementWithName:@"name" stringValue:self.name];

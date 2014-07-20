@@ -65,7 +65,7 @@
 {
     GDataXMLElement *brickXMLElement = [super toXML];
     if (self.userVariable && self.variableFormula) {
-        [brickXMLElement addChild:[self.userVariable toXMLAsObjectVariable]];
+        [brickXMLElement addChild:[self.userVariable toXML]];
         GDataXMLElement *variableFormulaXMLElement = [GDataXMLNode elementWithName:@"variableFormula"];
         [variableFormulaXMLElement addChild:[self.variableFormula toXML]];
         [brickXMLElement addChild:variableFormulaXMLElement];

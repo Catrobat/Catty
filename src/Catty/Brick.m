@@ -84,7 +84,7 @@
         tagName = @"object";
         // TODO: how to detect "pointedObject" from SpriteObject class??
     } else if ([self isKindOfClass:[LoopEndBrick class]]) {
-        tagName = @"loopEndBrick";
+        tagName = @"loopEndlessBrick";
     }
     return tagName;
 }

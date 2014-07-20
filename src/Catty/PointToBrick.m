@@ -23,6 +23,7 @@
 #import "PointToBrick.h"
 #import "Util.h"
 #import "Scene.h"
+#import "GDataXMLNode.h"
 
 @implementation PointToBrick
 
@@ -105,6 +106,17 @@
 - (NSString*)description
 {
     return [NSString stringWithFormat:@"Point To Brick: %@", self.pointedObject];
+}
+
+- (GDataXMLElement*)toXML
+{
+    GDataXMLElement *brickXMLElement = [super toXML];
+    if (self.pointedObject) {
+        GDataXMLElement *pointedObjectXMLElement = [GDataXMLNode elementWithName:@"pointedObject"];
+        [pointedObjectXMLElement addAttribute:[GDataXMLNode elementWithName:@"reference" stringValue:@"../../../../../../object[2]/scriptList/broadcastScript[2]/brickList/pointToBrick/pointedObject"]];
+        [brickXMLElement addChild:pointedObjectXMLElement];
+    }
+    return brickXMLElement;
 }
 
 @end

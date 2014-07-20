@@ -285,16 +285,24 @@
 
     if (self.variables) {
         GDataXMLElement *variablesXMLElement = [GDataXMLNode elementWithName:@"variables"];
-        VariablesContainer *variables = self.variables;
+        VariablesContainer *variableLists = self.variables;
 
         GDataXMLElement *objectVariableListXMLElement = [GDataXMLNode elementWithName:@"objectVariableList"];
         // TODO: uncomment this after toXML methods are implemented
-        NSUInteger totalNumOfObjectVariables = [variables.objectVariableList count];
-//        NSUInteger totalNumOfProgramVariables = [variables.programVariableList count];
+        NSUInteger totalNumOfObjectVariables = [variableLists.objectVariableList count];
+//        NSUInteger totalNumOfProgramVariables = [variableLists.programVariableList count];
         for (NSUInteger index = 0; index < totalNumOfObjectVariables; ++index) {
-    //        id variable = [variables.objectVariableList objectAtIndex:index];
-    //        if ([variable isKindOfClass:[UserVariable class]])
-    //            [objectVariableListXMLElement addChild:[((UserVariable*) variable) toXML]];
+            NSArray *variables = [variableLists.objectVariableList objectAtIndex:index];
+            GDataXMLElement *entryXMLElement = [GDataXMLNode elementWithName:@"entry"];
+            GDataXMLElement *entryToObjectReferenceXMLElement = [GDataXMLNode elementWithName:@"object"];
+            [entryToObjectReferenceXMLElement addAttribute:[GDataXMLNode elementWithName:@"reference" stringValue:@"../../../../objectList/object[6]"]];
+            [entryXMLElement addChild:entryToObjectReferenceXMLElement];
+            GDataXMLElement *listXMLElement = [GDataXMLNode elementWithName:@"list"];
+            for (id variable in variables) {
+                GDataXMLElement *temp = [GDataXMLNode elementWithName:@"list"];
+            }
+            [entryXMLElement addChild:listXMLElement];
+            [objectVariableListXMLElement addChild:entryXMLElement];
         }
 //        if (totalNumOfObjectVariables) {
             [variablesXMLElement addChild:objectVariableListXMLElement];
@@ -302,10 +310,10 @@
 
         GDataXMLElement *programVariableListXMLElement = [GDataXMLNode elementWithName:@"programVariableList"];
         // TODO: uncomment this after toXML methods are implemented
-        for (id variable in variables.programVariableList) {
-            if ([variable isKindOfClass:[UserVariable class]])
-                [programVariableListXMLElement addChild:[((UserVariable*) variable) toXMLAsProgramVariable]];
-        }
+//        for (id variable in variables.programVariableList) {
+//            if ([variable isKindOfClass:[UserVariable class]])
+//                [programVariableListXMLElement addChild:[((UserVariable*) variable) toXMLAsProgramVariable]];
+//        }
 //        if (totalNumOfProgramVariables) {
             [variablesXMLElement addChild:programVariableListXMLElement];
 //        }
