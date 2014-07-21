@@ -274,7 +274,7 @@
 #define kUIAlertViewMessageUnableToPlaySound NSLocalizedString(@"Unable to play that sound!\nMaybe this is no valid sound or the file is corrupt.", nil)
 #define kUIAlertViewMessageDeviceIsInMutedStateIPhone NSLocalizedString(@"Unable to play the selected sound. Your device is in silent mode. Please turn off silent mode by toggling the switch on the left side of your iPhone and tap on play again.", nil)
 #define kUIAlertViewMessageDeviceIsInMutedStateIPad NSLocalizedString(@"Unable to play the selected sound. Your device is in silent mode. Please turn off silent mode by toggling the switch on the right side of your iPad and tap on play again.", nil)
-#define kUIAlertViewMessageNoInternetConnection NSLocalizedString(@"No internet connection available", nil)
+#define kUIAlertViewMessageNoInternetConnection NSLocalizedString(@"No internet connection available.", nil)
 
 // button defines
 #define kUIAlertViewButtonTitleOK NSLocalizedString(@"OK", nil)
