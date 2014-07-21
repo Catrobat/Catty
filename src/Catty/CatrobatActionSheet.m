@@ -70,11 +70,17 @@ destructiveButtonTitle:(NSString*)destructiveTitle
         }
         va_end(args);
     }
-    return [self initWithTitle:title
-                      delegate:delegate
-             cancelButtonTitle:cancelTitle
-        destructiveButtonTitle:destructiveTitle
-        otherButtonTitlesArray:titles];
+    CatrobatActionSheet *actionSheet = [self initWithTitle:title
+                                                  delegate:delegate
+                                         cancelButtonTitle:cancelTitle
+                                    destructiveButtonTitle:destructiveTitle
+                                    otherButtonTitlesArray:titles];
+    if (actionSheet.hasCancelButton) {
+        actionSheet.cancelButtonIndex = ([actionSheet.buttons count] - 1);
+    } else {
+        actionSheet.cancelButtonIndex = NSIntegerMin;
+    }
+    return actionSheet;
 }
 
 - (id)initWithTitle:(NSString *)title
@@ -83,11 +89,17 @@ destructiveButtonTitle:(NSString*)destructiveTitle
 destructiveButtonTitle:(NSString *)destructiveTitle
 otherButtonTitlesArray:(NSArray *)otherTitlesArray
 {
-    return [super initWithTitle:title
-                       delegate:(id<IBActionSheetDelegate>)delegate
-              cancelButtonTitle:cancelTitle
-         destructiveButtonTitle:destructiveTitle
-         otherButtonTitlesArray:otherTitlesArray];
+    CatrobatActionSheet *actionSheet = [super initWithTitle:title
+                                                   delegate:(id<IBActionSheetDelegate>)delegate
+                                          cancelButtonTitle:cancelTitle
+                                     destructiveButtonTitle:destructiveTitle
+                                     otherButtonTitlesArray:otherTitlesArray];
+    if (actionSheet.hasCancelButton) {
+        actionSheet.cancelButtonIndex = ([actionSheet.buttons count] - 1);
+    } else {
+        actionSheet.cancelButtonIndex = NSIntegerMin;
+    }
+    return actionSheet;
 }
 
 @end
