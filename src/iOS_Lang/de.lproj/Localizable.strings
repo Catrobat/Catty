@@ -305,6 +305,8 @@
 
 "Unable to play that sound!\nMaybe this is no valid sound or the file is corrupt." = "Sound kann nicht wiedergegeben werden!\nDie Sounddatei ist entweder ungültig oder korrupt.";
 
+"No internet connection available." = "Keine Internetverbindung verfügbar.";
+
 "OK" = "OK";
 
 "Cancel" = "Abbrechen";

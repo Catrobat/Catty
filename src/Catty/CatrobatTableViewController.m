@@ -219,13 +219,11 @@ NS_ENUM(NSInteger, ViewControllerIndex) {
             case kExploreVC:
                 [self performSegueWithIdentifier:identifier sender:self];
                 break;
-                
             case kHelpVC: {
-                HelpWebViewController *webVC = [[HelpWebViewController alloc] initWithURL:[NSURL URLWithString:kForumURL]];
-                [self.navigationController pushViewController:webVC animated:YES];
-            }
+                    HelpWebViewController *webVC = [[HelpWebViewController alloc] initWithURL:[NSURL URLWithString:kForumURL]];
+                    [self.navigationController pushViewController:webVC animated:YES];
+                }
                 break;
-                
             case kUploadVC:
                 [Util showComingSoonAlertView];
                 break;
@@ -311,7 +309,7 @@ NS_ENUM(NSInteger, ViewControllerIndex) {
         NetworkStatus remoteHostStatus = [self.reachability currentReachabilityStatus];
         
         if(remoteHostStatus == NotReachable) {
-            [Util alertWithText:@"No Internet Connection!"];
+            [Util alertWithText:kUIAlertViewMessageNoInternetConnection];
             NSDebug(@"not reachable");
             return NO;
         } else if (remoteHostStatus == ReachableViaWiFi) {
@@ -322,7 +320,7 @@ NS_ENUM(NSInteger, ViewControllerIndex) {
                 NSDebug(@"reachable via wifi but no data");
                 if ([self.navigationController.topViewController isKindOfClass:[DownloadTabBarController class]] ||
                     [self.navigationController.topViewController isKindOfClass:[ProgramDetailStoreViewController class]]) {
-                    [Util alertWithText:@"No Internet Connection!"];
+                    [Util alertWithText:kUIAlertViewMessageNoInternetConnection];
                     [self.navigationController popToRootViewControllerAnimated:YES];
                     return NO;
                 }
@@ -334,7 +332,7 @@ NS_ENUM(NSInteger, ViewControllerIndex) {
                 return YES;
             }else{
                 NSDebug(@" not reachable via celullar");
-                [Util alertWithText:@"No Internet Connection!"];
+                [Util alertWithText:kUIAlertViewMessageNoInternetConnection];
                 return NO;
             }
             return YES;
@@ -386,9 +384,13 @@ NS_ENUM(NSInteger, ViewControllerIndex) {
         }
         kProgramNameValidationResult validationResult = [Program validateProgramName:input];
         if (validationResult == kProgramNameValidationResultInvalid) {
-            [Util alertWithText:kUIAlertViewMessageInvalidProgramName delegate:self tag:kInvalidProgramNameWarningAlertViewTag];
+            [Util alertWithText:kUIAlertViewMessageInvalidProgramName
+                       delegate:self
+                            tag:kInvalidProgramNameWarningAlertViewTag];
         } else if (validationResult == kProgramNameValidationResultAlreadyExists) {
-            [Util alertWithText:kUIAlertViewMessageProgramNameAlreadyExists delegate:self tag:kInvalidProgramNameWarningAlertViewTag];
+            [Util alertWithText:kUIAlertViewMessageProgramNameAlreadyExists
+                       delegate:self
+                            tag:kInvalidProgramNameWarningAlertViewTag];
         } else if (validationResult == kProgramNameValidationResultOK) {
             self.defaultProgram = [Program defaultProgramWithName:input];
             if ([self shouldPerformSegueWithIdentifier:segueToNewProgramIdentifier sender:self]) {
@@ -416,7 +418,7 @@ NS_ENUM(NSInteger, ViewControllerIndex) {
         if ([self.navigationController.topViewController isKindOfClass:[DownloadTabBarController class]] ||
             [self.navigationController.topViewController isKindOfClass:[ProgramDetailStoreViewController class]] ||
             [self.navigationController.topViewController isKindOfClass:[HelpWebViewController class]] ) {
-            [Util alertWithText:@"No Internet Connection!"];
+            [Util alertWithText:kUIAlertViewMessageNoInternetConnection];
             [self.navigationController popToRootViewControllerAnimated:YES];
         }
         NSDebug(@"not reachable");
@@ -428,19 +430,19 @@ NS_ENUM(NSInteger, ViewControllerIndex) {
             if ([self.navigationController.topViewController isKindOfClass:[DownloadTabBarController class]] ||
                 [self.navigationController.topViewController isKindOfClass:[ProgramDetailStoreViewController class]]||
                 [self.navigationController.topViewController isKindOfClass:[HelpWebViewController class]]) {
-                [Util alertWithText:@"No Internet Connection!"];
+                [Util alertWithText:kUIAlertViewMessageNoInternetConnection];
                 [self.navigationController popToRootViewControllerAnimated:YES];
             }
         }
     }  else if (remoteHostStatus == ReachableViaWWAN){
-        if (!self.reachability.connectionRequired) {
+        if (! self.reachability.connectionRequired) {
             NSDebug(@"celluar data ok");
-        }else{
+        } else {
            NSDebug(@"reachable via cellular but no data");
             if ([self.navigationController.topViewController isKindOfClass:[DownloadTabBarController class]] ||
                 [self.navigationController.topViewController isKindOfClass:[ProgramDetailStoreViewController class]]||
                 [self.navigationController.topViewController isKindOfClass:[HelpWebViewController class]]) {
-                [Util alertWithText:@"No Internet Connection!"];
+                [Util alertWithText:kUIAlertViewMessageNoInternetConnection];
                 [self.navigationController popToRootViewControllerAnimated:YES];
             }
         }

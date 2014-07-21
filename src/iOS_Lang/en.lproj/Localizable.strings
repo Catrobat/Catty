@@ -305,6 +305,8 @@
 
 "Unable to play that sound!\nMaybe this is no valid sound or the file is corrupt." = "Unable to play that sound!\nMaybe this is no valid sound or the file is corrupt.";
 
+"No internet connection available." = "No internet connection available.";
+
 "OK" = "OK";
 
 "Cancel" = "Cancel";

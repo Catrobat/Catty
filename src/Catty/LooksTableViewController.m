@@ -509,11 +509,11 @@
         } else if (buttonIndex == chooseImageIndex) {
             // choose picture from camera roll
             [self presentImagePicker:UIImagePickerControllerSourceTypeSavedPhotosAlbum];
-        } else if (buttonIndex != actionSheet.cancelButtonIndex) {
-            // TODO: implement this after Pocket Paint is fully integrated
-            // draw new image
-            NSLog(@"Draw new image");
-            [Util showComingSoonAlertView];
+//        } else if (buttonIndex != actionSheet.cancelButtonIndex) {
+//            // TODO: implement this after Pocket Paint is fully integrated
+//            // draw new image
+//            NSLog(@"Draw new image");
+//            [Util showComingSoonAlertView];
         }
     }
 }
