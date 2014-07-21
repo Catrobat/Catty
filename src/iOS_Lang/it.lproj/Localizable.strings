@@ -199,13 +199,19 @@
 
 "Rename" = "Rinomina";
 
-"Delete Objects" = "Delete Objects";
+"Copy" = "Copiare";
 
-"Delete Programs" = "Delete Programs";
+"Description" = "Descrizione";
+
+"Upload" = "Upload";
+
+"Delete Objects" = "Eliminare gli oggetti";
+
+"Delete Programs" = "Eliminare i programmi";
 
 "Pocket Code Recorder" = "Registratore di Pocket Code";
 
-"Choose sound" = "Choose sound";
+"Choose sound" = "Selezionare il sound";
 
 "Camera Roll" = "Rullino fotografico";
 

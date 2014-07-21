@@ -203,6 +203,12 @@
 
 "Rename" = "Umbenennen";
 
+"Copy" = "Kopieren";
+
+"Description" = "Beschreibung";
+
+"Upload" = "Hochladen";
+
 "Delete Objects" = "Objekte löschen";
 
 "Delete Programs" = "Programme löschen";

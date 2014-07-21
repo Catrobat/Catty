@@ -196,6 +196,9 @@
 #define kUIActionSheetButtonTitleDrawNewImage NSLocalizedString(@"Draw new image", nil)
 
 #define kUIActionSheetButtonTitleRename NSLocalizedString(@"Rename", nil)
+#define kUIActionSheetButtonTitleCopy NSLocalizedString(@"Copy", nil)
+#define kUIActionSheetButtonTitleDescription NSLocalizedString(@"Description", nil)
+#define kUIActionSheetButtonTitleUpload NSLocalizedString(@"Upload", nil)
 #define kUIActionSheetButtonTitleDeleteObjects NSLocalizedString(@"Delete Objects", nil)
 #define kUIActionSheetButtonTitleDeletePrograms NSLocalizedString(@"Delete Programs", nil)
 #define kUIActionSheetButtonTitlePocketCodeRecorder NSLocalizedString(@"Pocket Code Recorder", nil)
