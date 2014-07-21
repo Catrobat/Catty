@@ -33,9 +33,10 @@
 #define kNewObjectAlertViewTag 101
 #define kNewImageAlertViewTag 102
 #define kNewProgramAlertViewTag 103
-#define kInvalidProgramNameWarningAlertViewTag 104
-#define kInvalidObjectNameWarningAlertViewTag 105
-#define kNoInternetConnection 106
+#define kCopyProgramAlertViewTag 104
+#define kInvalidProgramNameWarningAlertViewTag 105
+#define kInvalidObjectNameWarningAlertViewTag 106
+#define kNoInternetConnection 107
 
 #define kConfirmAlertViewTag 200
 

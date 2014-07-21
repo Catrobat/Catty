@@ -48,9 +48,6 @@
 #define kUserDetailsShowDetailsKey @"showDetails"
 #define kUserDetailsShowDetailsSoundsKey @"detailsForSounds"
 
-#define kPocketCodeRecorderActionSheetButton @"pocketCodeRecorder"
-#define kSelectMusicTrackActionSheetButton @"selectMusicTrack"
-
 @interface SoundsTableViewController () <CatrobatActionSheetDelegate, AVAudioPlayerDelegate,
                                          SWTableViewCellDelegate>
 @property (nonatomic) BOOL useDetailCells;
@@ -447,7 +444,7 @@
     }
 }
 
-#pragma mark - UIActionSheetDelegate Handlers
+#pragma mark - action sheet handlers
 - (void)actionSheet:(CatrobatActionSheet*)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
 {
     if (actionSheet.tag == kEditSoundsActionSheetTag) {

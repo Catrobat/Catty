@@ -26,6 +26,7 @@
 #import "ProgramLoadingInfo.h"
 #import "UIDefines.h"
 #import "LanguageTranslationDefines.h"
+#import "CatrobatAlertView.h"
 #import "CatrobatActionSheet.h"
 #import "UIColor+CatrobatUIColorExtensions.h"
 
@@ -61,18 +62,20 @@
     }
 }
 
-+ (UIAlertView*)alertWithText:(NSString*)text
++ (CatrobatAlertView*)alertWithText:(NSString*)text
 {
     return [self alertWithText:text delegate:nil tag:0];
 }
 
-+ (UIAlertView*)alertWithText:(NSString*)text delegate:(id<UIAlertViewDelegate>)delegate tag:(NSInteger)tag
++ (CatrobatAlertView*)alertWithText:(NSString*)text
+                           delegate:(id<CatrobatAlertViewDelegate>)delegate
+                                tag:(NSInteger)tag
 {
-    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:kUIAlertViewTitleStandard
-                                                        message:text
-                                                       delegate:delegate
-                                              cancelButtonTitle:kUIAlertViewButtonTitleOK
-                                              otherButtonTitles:nil];
+    CatrobatAlertView *alertView = [[CatrobatAlertView alloc] initWithTitle:kUIAlertViewTitleStandard
+                                                                    message:text
+                                                                   delegate:delegate
+                                                          cancelButtonTitle:kUIAlertViewButtonTitleOK
+                                                          otherButtonTitles:nil];
     alertView.tag = tag;
     if (! [self activateTestMode:NO]) {
         [alertView show];
@@ -80,16 +83,16 @@
     return alertView;
 }
 
-+ (UIAlertView*)confirmAlertWithTitle:(NSString*)title
-                              message:(NSString*)message
-                             delegate:(id<UIAlertViewDelegate>)delegate
-                                  tag:(NSInteger)tag
++ (CatrobatAlertView*)confirmAlertWithTitle:(NSString*)title
+                                    message:(NSString*)message
+                                   delegate:(id<CatrobatAlertViewDelegate>)delegate
+                                        tag:(NSInteger)tag
 {
-    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:title
-                                                        message:message
-                                                       delegate:delegate
-                                              cancelButtonTitle:kUIAlertViewButtonTitleNo
-                                              otherButtonTitles:nil];
+    CatrobatAlertView *alertView = [[CatrobatAlertView alloc] initWithTitle:title
+                                                                    message:message
+                                                                   delegate:delegate
+                                                          cancelButtonTitle:kUIAlertViewButtonTitleNo
+                                                          otherButtonTitles:nil];
     [alertView addButtonWithTitle:kUIAlertViewButtonTitleYes];
     alertView.tag = tag;
     if (! [self activateTestMode:NO]) {
@@ -98,12 +101,12 @@
     return alertView;
 }
 
-+ (UIAlertView*)promptWithTitle:(NSString*)title
-                message:(NSString*)message
-               delegate:(id<UIAlertViewDelegate>)delegate
-            placeholder:(NSString*)placeholder
-                    tag:(NSInteger)tag
-      textFieldDelegate:(id<UITextFieldDelegate>)textFieldDelegate
++ (CatrobatAlertView*)promptWithTitle:(NSString*)title
+                              message:(NSString*)message
+                             delegate:(id<CatrobatAlertViewDelegate>)delegate
+                          placeholder:(NSString*)placeholder
+                                  tag:(NSInteger)tag
+                    textFieldDelegate:(id<UITextFieldDelegate>)textFieldDelegate
 {
     return [Util promptWithTitle:title
                          message:message
@@ -114,19 +117,19 @@
                textFieldDelegate:textFieldDelegate];
 }
 
-+ (UIAlertView*)promptWithTitle:(NSString*)title
-                        message:(NSString*)message
-                       delegate:(id<UIAlertViewDelegate>)delegate
-                    placeholder:(NSString*)placeholder
-                            tag:(NSInteger)tag
-                          value:(NSString*)value
-              textFieldDelegate:(id<UITextFieldDelegate>)textFieldDelegate
++ (CatrobatAlertView*)promptWithTitle:(NSString*)title
+                              message:(NSString*)message
+                             delegate:(id<CatrobatAlertViewDelegate>)delegate
+                          placeholder:(NSString*)placeholder
+                                  tag:(NSInteger)tag
+                                value:(NSString*)value
+                    textFieldDelegate:(id<UITextFieldDelegate>)textFieldDelegate
 {
-    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:title
-                                                        message:message
-                                                       delegate:delegate
-                                              cancelButtonTitle:kUIAlertViewButtonTitleCancel
-                                              otherButtonTitles:kUIAlertViewButtonTitleOK, nil];
+    CatrobatAlertView *alertView = [[CatrobatAlertView alloc] initWithTitle:title
+                                                                    message:message
+                                                                   delegate:delegate
+                                                          cancelButtonTitle:kUIAlertViewButtonTitleCancel
+                                                          otherButtonTitles:kUIAlertViewButtonTitleOK, nil];
     alertView.tag = tag;
     alertView.alertViewStyle = UIAlertViewStylePlainTextInput;
     UITextField *textField = [alertView textFieldAtIndex:0];

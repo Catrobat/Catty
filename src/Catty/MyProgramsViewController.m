@@ -44,6 +44,7 @@
 #import "RuntimeImageCache.h"
 #import "NSString+CatrobatNSStringExtensions.h"
 #import "CatrobatActionSheet.h"
+#import "CatrobatAlertView.h"
 
 // TODO: outsource...
 #define kUserDetailsShowDetailsKey @"showDetails"
@@ -51,7 +52,8 @@
 #define kScreenshotThumbnailPrefix @".thumb_"
 
 @interface MyProgramsViewController () <CatrobatActionSheetDelegate, ProgramUpdateDelegate,
-                                        UIAlertViewDelegate, UITextFieldDelegate, SWTableViewCellDelegate>
+                                        CatrobatAlertViewDelegate, UITextFieldDelegate,
+                                        SWTableViewCellDelegate>
 @property (nonatomic, strong) NSCharacterSet *blockedCharacterSet;
 @property (nonatomic) BOOL useDetailCells;
 @property (nonatomic, strong) NSMutableDictionary *dataCache;
@@ -401,12 +403,14 @@
         // More button was pressed
         NSArray *options = @[kUIActionSheetButtonTitleCopy, kUIActionSheetButtonTitleRename,
                              kUIActionSheetButtonTitleDescription, kUIActionSheetButtonTitleUpload];
-        [Util actionSheetWithTitle:kUIActionSheetTitleEditProgramSingular
-                          delegate:self
-            destructiveButtonTitle:nil
-                 otherButtonTitles:options
-                               tag:kEditProgramActionSheetTag
-                              view:self.navigationController.view];
+        CatrobatActionSheet *actionSheet = [Util actionSheetWithTitle:kUIActionSheetTitleEditProgramSingular
+                                                             delegate:self
+                                               destructiveButtonTitle:nil
+                                                    otherButtonTitles:options
+                                                                  tag:kEditProgramActionSheetTag
+                                                                 view:self.navigationController.view];
+        NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
+        actionSheet.dataTransferObject = [self.programLoadingInfos objectAtIndex:indexPath.row];
     } else if (index == 1) {
         // Delete button was pressed
         NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
@@ -461,7 +465,17 @@
     } else if (actionSheet.tag == kEditProgramActionSheetTag) {
         if (buttonIndex == 0) {
             // Copy button
-            
+            if (! [actionSheet.dataTransferObject isKindOfClass:[ProgramLoadingInfo class]]) {
+                return;
+            }
+            ProgramLoadingInfo *info = (ProgramLoadingInfo*)actionSheet.dataTransferObject;
+            [Util promptWithTitle:kUIAlertViewTitleCopyProgram
+                          message:kUIAlertViewMessageProgramName
+                         delegate:self
+                      placeholder:kUIAlertViewPlaceholderEnterProgramName
+                              tag:kCopyProgramAlertViewTag
+                            value:info.visibleName
+                textFieldDelegate:self];
         } else if (buttonIndex == 1) {
             // Rename button
         } else if (buttonIndex == 2) {
@@ -473,7 +487,7 @@
 }
 
 #pragma mark - alert view handlers
-- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+- (void)alertView:(CatrobatAlertView*)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
     static NSString *segueToNewProgramIdentifier = kSegueToNewProgram;
     if (alertView.tag == kNewProgramAlertViewTag) {
@@ -507,6 +521,11 @@
                               tag:kNewProgramAlertViewTag
                 textFieldDelegate:self];
         }
+    } else if (alertView.tag == kCopyProgramAlertViewTag) {
+        if ((buttonIndex == alertView.cancelButtonIndex) || (buttonIndex != kAlertViewButtonOK)) {
+            return;
+        }
+//        NSString *input = [alertView textFieldAtIndex:0].text;
     } else {
         [super alertView:alertView clickedButtonAtIndex:buttonIndex];
     }

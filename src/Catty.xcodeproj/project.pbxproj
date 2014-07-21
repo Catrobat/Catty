@@ -235,6 +235,7 @@
 		CABE07C818BAB94000BE26EF /* VariableComboBoxView.m in Sources */ = {isa = PBXBuildFile; fileRef = CABE07C718BAB94000BE26EF /* VariableComboBoxView.m */; };
 		CAC22DA41809D5730071CC5D /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CAC22DA31809D5730071CC5D /* MobileCoreServices.framework */; };
 		CAE9A2BC197D20A7008F7C9A /* CatrobatActionSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = CAE9A2BB197D20A7008F7C9A /* CatrobatActionSheet.m */; };
+		CAE9A2C0197D52AF008F7C9A /* CatrobatAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = CAE9A2BF197D52AF008F7C9A /* CatrobatAlertView.m */; };
 		CAEDFB8117EF759500FDED0E /* ObjectTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CAEDFB8017EF759500FDED0E /* ObjectTableViewController.m */; };
 		CAF806D6193170640005E900 /* ImageCache.m in Sources */ = {isa = PBXBuildFile; fileRef = CAF806D5193170640005E900 /* ImageCache.m */; };
 		CAF806D9193181D50005E900 /* RuntimeImageCache.m in Sources */ = {isa = PBXBuildFile; fileRef = CAF806D8193181D50005E900 /* RuntimeImageCache.m */; };
@@ -747,6 +748,8 @@
 		CACEF959184529AC00D199D8 /* Brick+UnitTestingExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Brick+UnitTestingExtensions.h"; sourceTree = "<group>"; };
 		CAE9A2BA197D20A7008F7C9A /* CatrobatActionSheet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CatrobatActionSheet.h; sourceTree = "<group>"; };
 		CAE9A2BB197D20A7008F7C9A /* CatrobatActionSheet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CatrobatActionSheet.m; sourceTree = "<group>"; };
+		CAE9A2BE197D52AF008F7C9A /* CatrobatAlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CatrobatAlertView.h; sourceTree = "<group>"; };
+		CAE9A2BF197D52AF008F7C9A /* CatrobatAlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CatrobatAlertView.m; sourceTree = "<group>"; };
 		CAEDFB7F17EF759500FDED0E /* ObjectTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ObjectTableViewController.h; sourceTree = "<group>"; };
 		CAEDFB8017EF759500FDED0E /* ObjectTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ObjectTableViewController.m; sourceTree = "<group>"; };
 		CAEDFB8317EFC98E00FDED0E /* AppDefines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDefines.h; sourceTree = "<group>"; };
@@ -1057,6 +1060,7 @@
 		81B7487519213CE900990E5F /* Custom */ = {
 			isa = PBXGroup;
 			children = (
+				CAE9A2BD197D5296008F7C9A /* CatrobatAlertView */,
 				CAE9A2B9197D2086008F7C9A /* CatrobatActionSheet */,
 				81A5B4D4192963F00082B2B8 /* MotionEffect */,
 				CA882035192E59AF00E5D515 /* CollectionViewCells */,
@@ -2301,6 +2305,15 @@
 			name = CatrobatActionSheet;
 			sourceTree = "<group>";
 		};
+		CAE9A2BD197D5296008F7C9A /* CatrobatAlertView */ = {
+			isa = PBXGroup;
+			children = (
+				CAE9A2BE197D52AF008F7C9A /* CatrobatAlertView.h */,
+				CAE9A2BF197D52AF008F7C9A /* CatrobatAlertView.m */,
+			);
+			name = CatrobatAlertView;
+			sourceTree = "<group>";
+		};
 		CAEBC91918E5A1D800554CA2 /* EVCircularProgressView */ = {
 			isa = PBXGroup;
 			children = (
@@ -2997,6 +3010,7 @@
 				CD0CCFA4170CB39700B70036 /* NextLookBrick.m in Sources */,
 				925E22B618E3313C001A26A6 /* NavigationController.m in Sources */,
 				CAF806D9193181D50005E900 /* RuntimeImageCache.m in Sources */,
+				CAE9A2C0197D52AF008F7C9A /* CatrobatAlertView.m in Sources */,
 				CD0CCFA6170CB39700B70036 /* Parser.m in Sources */,
 				CD0CCFA7170CB39700B70036 /* PlaceAtBrick.m in Sources */,
 				CD0CCFAA170CB39700B70036 /* PlaySoundBrick.m in Sources */,

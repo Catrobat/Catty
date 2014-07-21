@@ -46,6 +46,7 @@
 #import "LanguageTranslationDefines.h"
 #import "HelpWebViewController.h"
 #import "NetworkDefines.h"
+#import "CatrobatAlertView.h"
 
 NS_ENUM(NSInteger, ViewControllerIndex) {
     kContinueProgramVC = 0,
@@ -57,7 +58,7 @@ NS_ENUM(NSInteger, ViewControllerIndex) {
 };
 
 
-@interface CatrobatTableViewController () <UIAlertViewDelegate, UITextFieldDelegate>
+@interface CatrobatTableViewController () <CatrobatAlertViewDelegate, UITextFieldDelegate>
 
 @property (nonatomic, strong) NSCharacterSet *blockedCharacterSet;
 @property (nonatomic, strong) NSArray *cells;
@@ -375,7 +376,7 @@ NS_ENUM(NSInteger, ViewControllerIndex) {
 }
 
 #pragma mark - alert view handlers
-- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+- (void)alertView:(CatrobatAlertView*)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
     static NSString *segueToNewProgramIdentifier = kSegueToNewProgram;;
     if (alertView.tag == kNewProgramAlertViewTag) {

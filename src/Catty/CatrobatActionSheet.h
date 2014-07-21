@@ -25,7 +25,7 @@
 @class CatrobatActionSheet;
 
 // Protocol needed to receive notifications from the IBActionSheet (Will receive UIActionSheet notifications as well)
-@protocol CatrobatActionSheetDelegate <IBActionSheetDelegate>
+@protocol CatrobatActionSheetDelegate <NSObject>
 
 - (void)actionSheet:(CatrobatActionSheet*)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex;
 
@@ -39,5 +39,15 @@
 
 - (void)addDestructiveButtonWithTitle:(NSString*)destructiveTitle;
 - (void)addCancelButtonWithTitle:(NSString*)cancelTitle;
+- (id)initWithTitle:(NSString*)title
+           delegate:(id<CatrobatActionSheetDelegate>)delegate
+  cancelButtonTitle:(NSString*)cancelTitle
+destructiveButtonTitle:(NSString*)destructiveTitle
+  otherButtonTitles:(NSString*)otherTitles, ... NS_REQUIRES_NIL_TERMINATION;
+- (id)initWithTitle:(NSString *)title
+           delegate:(id<CatrobatActionSheetDelegate>)delegate
+  cancelButtonTitle:(NSString *)cancelTitle
+destructiveButtonTitle:(NSString *)destructiveTitle
+otherButtonTitlesArray:(NSArray *)otherTitlesArray;
 
 @end

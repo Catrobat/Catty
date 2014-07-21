@@ -50,12 +50,13 @@
 #import "ProgramTableHeaderView.h"
 #import "RuntimeImageCache.h"
 #import "CatrobatActionSheet.h"
+#import "CatrobatAlertView.h"
 
 // TODO: outsource...
 #define kUserDetailsShowDetailsKey @"showDetails"
 #define kUserDetailsShowDetailsObjectsKey @"detailsForObjects"
 
-@interface ProgramTableViewController () <CatrobatActionSheetDelegate, UIAlertViewDelegate,
+@interface ProgramTableViewController () <CatrobatActionSheetDelegate, CatrobatAlertViewDelegate,
                                           UITextFieldDelegate, UINavigationBarDelegate,
                                           SWTableViewCellDelegate>
 @property (nonatomic) BOOL useDetailCells;
@@ -486,7 +487,7 @@
 }
 
 #pragma mark - alert view delegate handlers
-- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+- (void)alertView:(CatrobatAlertView*)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
     [super alertView:alertView clickedButtonAtIndex:buttonIndex];
     if (alertView.tag == kRenameAlertViewTag) {

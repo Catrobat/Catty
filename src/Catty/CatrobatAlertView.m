@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2013 The Catrobat Team
+ *  Copyright (C) 2010-2014 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -20,13 +20,21 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import "ProgramTableViewController.h"
+#import "CatrobatAlertView.h"
 
-@class SWTableViewCell;
+@implementation CatrobatAlertView
 
-@interface ProgramTableViewController (UnitTestingExtensions)
-
-// Needed for unit testing
-- (void)alertView:(CatrobatAlertView*)alertView clickedButtonAtIndex:(NSInteger)buttonIndex;
+- (id)initWithTitle:(NSString *)title
+            message:(NSString *)message
+           delegate:(id<CatrobatAlertViewDelegate>)delegate
+  cancelButtonTitle:(NSString *)cancelButtonTitle
+  otherButtonTitles:(NSString *)otherButtonTitles, ... NS_REQUIRES_NIL_TERMINATION
+{
+    return [super initWithTitle:title
+                        message:message
+                       delegate:(id<UIAlertViewDelegate>)delegate
+              cancelButtonTitle:cancelButtonTitle
+              otherButtonTitles:otherButtonTitles, nil];
+}
 
 @end

@@ -30,10 +30,10 @@
 
 #define TIMEOUT 30.0f
 
-@protocol UIAlertViewDelegate;
-
 @class SceneViewController;
 @class ProgramLoadingInfo;
+@class CatrobatAlertView;
+@protocol CatrobatAlertViewDelegate;
 @class CatrobatActionSheet;
 @protocol CatrobatActionSheetDelegate;
 
@@ -47,29 +47,31 @@
 
 + (void)showComingSoonAlertView;
 
-+ (UIAlertView*)alertWithText:(NSString*)text;
++ (CatrobatAlertView*)alertWithText:(NSString*)text;
 
-+ (UIAlertView*)alertWithText:(NSString*)text delegate:(id<UIAlertViewDelegate>)delegate tag:(NSInteger)tag;
++ (CatrobatAlertView*)alertWithText:(NSString*)text
+                           delegate:(id<CatrobatAlertViewDelegate>)delegate
+                                tag:(NSInteger)tag;
 
-+ (UIAlertView*)confirmAlertWithTitle:(NSString*)title
++ (CatrobatAlertView*)confirmAlertWithTitle:(NSString*)title
+                                    message:(NSString*)message
+                                   delegate:(id<CatrobatAlertViewDelegate>)delegate
+                                        tag:(NSInteger)tag;
+
++ (CatrobatAlertView*)promptWithTitle:(NSString*)title
                               message:(NSString*)message
-                             delegate:(id<UIAlertViewDelegate>)delegate
-                                  tag:(NSInteger)tag;
+                             delegate:(id<CatrobatAlertViewDelegate>)delegate
+                          placeholder:(NSString*)placeholder
+                                  tag:(NSInteger)tag
+                    textFieldDelegate:(id<UITextFieldDelegate>)textFieldDelegate;
 
-+ (UIAlertView*)promptWithTitle:(NSString*)title
-                        message:(NSString*)message
-                       delegate:(id<UIAlertViewDelegate>)delegate
-                    placeholder:(NSString*)placeholder
-                            tag:(NSInteger)tag
-              textFieldDelegate:(id<UITextFieldDelegate>)textFieldDelegate;
-
-+ (UIAlertView*)promptWithTitle:(NSString*)title
-                        message:(NSString*)message
-                       delegate:(id<UIAlertViewDelegate>)delegate
-                    placeholder:(NSString*)placeholder
-                            tag:(NSInteger)tag
-                          value:(NSString*)value
-              textFieldDelegate:(id<UITextFieldDelegate>)textFieldDelegate;
++ (CatrobatAlertView*)promptWithTitle:(NSString*)title
+                              message:(NSString*)message
+                             delegate:(id<CatrobatAlertViewDelegate>)delegate
+                          placeholder:(NSString*)placeholder
+                                  tag:(NSInteger)tag
+                                value:(NSString*)value
+                    textFieldDelegate:(id<UITextFieldDelegate>)textFieldDelegate;
 
 + (CatrobatActionSheet*)actionSheetWithTitle:(NSString*)title
                                     delegate:(id<CatrobatActionSheetDelegate>)delegate

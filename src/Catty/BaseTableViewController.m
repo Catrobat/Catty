@@ -28,6 +28,7 @@
 #import "ActionSheetAlertViewTags.h"
 #import "LanguageTranslationDefines.h"
 #import <tgmath.h>
+#import "CatrobatAlertView.h"
 
 // identifiers
 #define kTableHeaderIdentifier @"Header"
@@ -36,7 +37,7 @@
 #define kSelectAllItemsTag 0
 #define kUnselectAllItemsTag 1
 
-@interface BaseTableViewController () <UIAlertViewDelegate>
+@interface BaseTableViewController () <CatrobatAlertViewDelegate>
 @property (nonatomic, strong) UIBarButtonItem *selectAllRowsButtonItem;
 @property (nonatomic, strong) UIBarButtonItem *normalModeRightBarButtonItem;
 
@@ -47,7 +48,6 @@
 @end
 
 @implementation BaseTableViewController
-
 
 #pragma mark - init
 - (void)viewDidLoad
@@ -310,7 +310,7 @@
 }
 
 #pragma mark - alert view delegate handlers
-- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+- (void)alertView:(CatrobatAlertView*)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
     if (alertView.tag == kConfirmAlertViewTag) {
         // check if user agreed

@@ -55,12 +55,11 @@
 }
 
 #pragma mark - initialization
-
 - (id)initWithTitle:(NSString*)title
            delegate:(id<CatrobatActionSheetDelegate>)delegate
   cancelButtonTitle:(NSString*)cancelTitle
 destructiveButtonTitle:(NSString*)destructiveTitle
-  otherButtonTitles:(NSString*)otherTitles, ...
+  otherButtonTitles:(NSString*)otherTitles, ... NS_REQUIRES_NIL_TERMINATION
 {
     NSMutableArray *titles = [[NSMutableArray alloc] init];
     if (otherTitles) {
