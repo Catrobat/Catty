@@ -23,6 +23,7 @@
 #import <UIKit/UIKit.h>
 
 @class CatrobatAlertView;
+@class DataTransferMessage;
 
 // Protocol needed to receive notifications from the IBActionSheet (Will receive UIActionSheet notifications as well)
 @protocol CatrobatAlertViewDelegate <NSObject>
@@ -42,7 +43,7 @@
 
 @interface CatrobatAlertView : UIAlertView
 
-@property (nonatomic, strong) id dataTransferObject; // DTO design pattern
+@property (nonatomic, strong) DataTransferMessage *dataTransferMessage; // DTO design pattern
 
 - (id)initWithTitle:(NSString *)title
             message:(NSString *)message

@@ -23,6 +23,7 @@
 #import "IBActionSheet.h"
 
 @class CatrobatActionSheet;
+@class DataTransferMessage;
 
 // Protocol needed to receive notifications from the IBActionSheet (Will receive UIActionSheet notifications as well)
 @protocol CatrobatActionSheetDelegate <NSObject>
@@ -33,7 +34,7 @@
 
 @interface CatrobatActionSheet : IBActionSheet
 
-@property (nonatomic, strong) id dataTransferObject; // DTO design pattern
+@property (nonatomic, strong) DataTransferMessage *dataTransferMessage; // DTO design pattern
 @property (nonatomic) NSInteger destructiveButtonIndex;        // sets destructive (red) button. -1 means none set. default is -1. ignored if only one button
 @property (nonatomic) NSInteger cancelButtonIndex;      // if the delegate does not implement -actionSheetCancel:, we pretend this button was clicked on. default is -1
 

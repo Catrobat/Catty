@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2013 The Catrobat Team
+ *  Copyright (C) 2010-2014 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -20,16 +20,15 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-@protocol ProgramUpdateDelegate <NSObject>
+#import <Foundation/Foundation.h>
+#import "ProgramDefines.h"
 
-@optional
+@interface DataTransferMessage : NSObject
 
-- (ProgramLoadingInfo*)addProgram:(NSString*)programName;
+@property (nonatomic, readonly) kDataTransferMessageActionType actionType;
+@property (nonatomic, strong, readonly) id payload;
 
-@required
-
-- (void)removeProgram:(NSString*)programName;
-
-- (void)renameOldProgramName:(NSString*)oldProgramName ToNewProgramName:(NSString*)newProgramName;
++ (DataTransferMessage*)messageForActionType:(kDataTransferMessageActionType)actionType
+                                 withPayload:(id)payload;
 
 @end

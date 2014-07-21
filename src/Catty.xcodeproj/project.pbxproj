@@ -236,6 +236,7 @@
 		CAC22DA41809D5730071CC5D /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CAC22DA31809D5730071CC5D /* MobileCoreServices.framework */; };
 		CAE9A2BC197D20A7008F7C9A /* CatrobatActionSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = CAE9A2BB197D20A7008F7C9A /* CatrobatActionSheet.m */; };
 		CAE9A2C0197D52AF008F7C9A /* CatrobatAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = CAE9A2BF197D52AF008F7C9A /* CatrobatAlertView.m */; };
+		CAE9A2C4197D8964008F7C9A /* DataTransferMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = CAE9A2C3197D8964008F7C9A /* DataTransferMessage.m */; };
 		CAEDFB8117EF759500FDED0E /* ObjectTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CAEDFB8017EF759500FDED0E /* ObjectTableViewController.m */; };
 		CAF806D6193170640005E900 /* ImageCache.m in Sources */ = {isa = PBXBuildFile; fileRef = CAF806D5193170640005E900 /* ImageCache.m */; };
 		CAF806D9193181D50005E900 /* RuntimeImageCache.m in Sources */ = {isa = PBXBuildFile; fileRef = CAF806D8193181D50005E900 /* RuntimeImageCache.m */; };
@@ -750,6 +751,8 @@
 		CAE9A2BB197D20A7008F7C9A /* CatrobatActionSheet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CatrobatActionSheet.m; sourceTree = "<group>"; };
 		CAE9A2BE197D52AF008F7C9A /* CatrobatAlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CatrobatAlertView.h; sourceTree = "<group>"; };
 		CAE9A2BF197D52AF008F7C9A /* CatrobatAlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CatrobatAlertView.m; sourceTree = "<group>"; };
+		CAE9A2C2197D8964008F7C9A /* DataTransferMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataTransferMessage.h; sourceTree = "<group>"; };
+		CAE9A2C3197D8964008F7C9A /* DataTransferMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataTransferMessage.m; sourceTree = "<group>"; };
 		CAEDFB7F17EF759500FDED0E /* ObjectTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ObjectTableViewController.h; sourceTree = "<group>"; };
 		CAEDFB8017EF759500FDED0E /* ObjectTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ObjectTableViewController.m; sourceTree = "<group>"; };
 		CAEDFB8317EFC98E00FDED0E /* AppDefines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDefines.h; sourceTree = "<group>"; };
@@ -2314,6 +2317,15 @@
 			name = CatrobatAlertView;
 			sourceTree = "<group>";
 		};
+		CAE9A2C1197D8948008F7C9A /* DataTransferMessage */ = {
+			isa = PBXGroup;
+			children = (
+				CAE9A2C2197D8964008F7C9A /* DataTransferMessage.h */,
+				CAE9A2C3197D8964008F7C9A /* DataTransferMessage.m */,
+			);
+			name = DataTransferMessage;
+			sourceTree = "<group>";
+		};
 		CAEBC91918E5A1D800554CA2 /* EVCircularProgressView */ = {
 			isa = PBXGroup;
 			children = (
@@ -2638,6 +2650,7 @@
 				CD0CCFFE170CBAA700B70036 /* Look */,
 				CD0CCFF8170CB91000B70036 /* Program */,
 				B4D940C9170EC74B003DDBFA /* ProgramLoadingInfo */,
+				CAE9A2C1197D8948008F7C9A /* DataTransferMessage */,
 				CD0CCFFA170CB92D00B70036 /* Scripts */,
 				CD0CCFFB170CB97000B70036 /* Sound */,
 				CD0CCFF6170CB89E00B70036 /* Sprite */,
@@ -3128,6 +3141,7 @@
 				81C64F8319264E2800199161 /* UIImage+AHKAdditions.m in Sources */,
 				B45A5827173253E5000E038F /* SetVariableBrick.m in Sources */,
 				B45A582C17325442000E038F /* UserVariable.m in Sources */,
+				CAE9A2C4197D8964008F7C9A /* DataTransferMessage.m in Sources */,
 				B45A583117327887000E038F /* Formula.m in Sources */,
 				CA75C29218A9624900FC8C2F /* ShowBrickCell.m in Sources */,
 				B45A583617327BBE000E038F /* FormulaElement.m in Sources */,

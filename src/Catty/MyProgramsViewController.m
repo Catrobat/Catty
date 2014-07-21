@@ -45,6 +45,7 @@
 #import "NSString+CatrobatNSStringExtensions.h"
 #import "CatrobatActionSheet.h"
 #import "CatrobatAlertView.h"
+#import "DataTransferMessage.h"
 
 // TODO: outsource...
 #define kUserDetailsShowDetailsKey @"showDetails"
@@ -410,7 +411,9 @@
                                                                   tag:kEditProgramActionSheetTag
                                                                  view:self.navigationController.view];
         NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
-        actionSheet.dataTransferObject = [self.programLoadingInfos objectAtIndex:indexPath.row];
+        DataTransferMessage *message = [DataTransferMessage messageForActionType:kDataTransferMessageActionCopy
+                                                                     withPayload:[self.programLoadingInfos objectAtIndex:indexPath.row]];
+        actionSheet.dataTransferMessage = message;
     } else if (index == 1) {
         // Delete button was pressed
         NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
@@ -469,13 +472,14 @@
                 return;
             }
             ProgramLoadingInfo *info = (ProgramLoadingInfo*)actionSheet.dataTransferObject;
-            [Util promptWithTitle:kUIAlertViewTitleCopyProgram
-                          message:kUIAlertViewMessageProgramName
-                         delegate:self
-                      placeholder:kUIAlertViewPlaceholderEnterProgramName
-                              tag:kCopyProgramAlertViewTag
-                            value:info.visibleName
-                textFieldDelegate:self];
+            CatrobatAlertView *actionSheet = [Util promptWithTitle:kUIAlertViewTitleCopyProgram
+                                                           message:kUIAlertViewMessageProgramName
+                                                          delegate:self
+                                                       placeholder:kUIAlertViewPlaceholderEnterProgramName
+                                                               tag:kCopyProgramAlertViewTag
+                                                             value:info.visibleName
+                                                 textFieldDelegate:self];
+            actionSheet.dataTransferObject = info;
         } else if (buttonIndex == 1) {
             // Rename button
         } else if (buttonIndex == 2) {
@@ -514,18 +518,50 @@
     } else if (alertView.tag == kInvalidProgramNameWarningAlertViewTag) {
         // title of cancel button is "OK"
         if (buttonIndex == alertView.cancelButtonIndex) {
-            [Util promptWithTitle:kUIAlertViewTitleNewProgram
-                          message:kUIAlertViewMessageProgramName
-                         delegate:self
-                      placeholder:kUIAlertViewPlaceholderEnterProgramName
-                              tag:kNewProgramAlertViewTag
-                textFieldDelegate:self];
+            // determine whether name conflict with new program or copied program occured
+            // => therefore check if the alertView object contains a valid dataTransferObject
+            // ( = source program to copy)
+            if ([alertView.dataTransferObject isKindOfClass:[ProgramLoadingInfo class]]) {
+                CatrobatAlertView *newAlertView = [Util promptWithTitle:kUIAlertViewTitleCopyProgram
+                                                                message:kUIAlertViewMessageProgramName
+                                                               delegate:self
+                                                            placeholder:kUIAlertViewPlaceholderEnterProgramName
+                                                                    tag:kCopyProgramAlertViewTag
+                                                                  value:
+                                                      textFieldDelegate:self];
+                newAlertView.dataTransferObject = alertView.dataTransferObject;
+            } else {
+                [Util promptWithTitle:kUIAlertViewTitleNewProgram
+                              message:kUIAlertViewMessageProgramName
+                             delegate:self
+                          placeholder:kUIAlertViewPlaceholderEnterProgramName
+                                  tag:kNewProgramAlertViewTag
+                    textFieldDelegate:self];
+            }
         }
     } else if (alertView.tag == kCopyProgramAlertViewTag) {
         if ((buttonIndex == alertView.cancelButtonIndex) || (buttonIndex != kAlertViewButtonOK)) {
             return;
         }
-//        NSString *input = [alertView textFieldAtIndex:0].text;
+        NSString *input = [alertView textFieldAtIndex:0].text;
+        kProgramNameValidationResult validationResult = [Program validateProgramName:input];
+        if (validationResult == kProgramNameValidationResultInvalid) {
+            CatrobatAlertView *newAlertView = [Util alertWithText:kUIAlertViewMessageInvalidProgramName
+                                                         delegate:self
+                                                              tag:kInvalidProgramNameWarningAlertViewTag];
+            newAlertView.dataTransferObject = alertView.dataTransferObject;
+        } else if (validationResult == kProgramNameValidationResultAlreadyExists) {
+            CatrobatAlertView *newAlertView = [Util alertWithText:kUIAlertViewMessageProgramNameAlreadyExists
+                                                         delegate:self
+                                                              tag:kInvalidProgramNameWarningAlertViewTag];
+            newAlertView.dataTransferObject = @{ kActionType : ,
+                                                 kSelectedProgramLoadingInfo : alertView.dataTransferObject };
+        } else if (validationResult == kProgramNameValidationResultOK) {
+            if (! [alertView.dataTransferObject isKindOfClass:[ProgramLoadingInfo class]]) {
+                return;
+            }
+            [self copyProgram:input sourceProgramLoadingInfo:(ProgramLoadingInfo*)alertView.dataTransferObject];
+        }
     } else {
         [super alertView:alertView clickedButtonAtIndex:buttonIndex];
     }
@@ -553,7 +589,7 @@
     }
 }
 
-- (void)addProgram:(NSString*)programName
+- (ProgramLoadingInfo*)addProgram:(NSString*)programName
 {
     NSString *basePath = [Program basePath];
 
@@ -563,9 +599,12 @@
         if ([programLoadingInfo.visibleName isEqualToString:programName])
             exists = YES;
     }
+
+    ProgramLoadingInfo *programLoadingInfo = nil;
+
     // add if not exists
     if (! exists) {
-        ProgramLoadingInfo *programLoadingInfo = [[ProgramLoadingInfo alloc] init];
+        programLoadingInfo = [[ProgramLoadingInfo alloc] init];
         programLoadingInfo.basePath = [NSString stringWithFormat:@"%@%@/", basePath, programName];
         programLoadingInfo.visibleName = programName;
         NSLog(@"Adding program: %@", programLoadingInfo.basePath);
@@ -576,6 +615,20 @@
         NSIndexPath *indexPath = [NSIndexPath indexPathForRow:(numberOfRowsInLastSection - 1) inSection:0];
         [self.tableView insertRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationNone];
     }
+    return programLoadingInfo;
+}
+
+- (ProgramLoadingInfo*)copyProgram:(NSString*)newProgramName
+          sourceProgramLoadingInfo:(ProgramLoadingInfo*)sourceProgramLoadingInfo
+{
+    ProgramLoadingInfo *destinationProgramLoadingInfo = [self addProgram:newProgramName];
+    if (! destinationProgramLoadingInfo) {
+        return nil;
+    }
+    AppDelegate *appDelegate = (AppDelegate*)[UIApplication sharedApplication].delegate;
+    [appDelegate.fileManager copyExistingDirectoryAtPath:sourceProgramLoadingInfo.basePath
+                                                  toPath:destinationProgramLoadingInfo.basePath];
+    return destinationProgramLoadingInfo;
 }
 
 - (void)removeProgram:(NSString*)programName

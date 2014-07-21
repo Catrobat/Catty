@@ -53,3 +53,8 @@ typedef NS_ENUM(NSUInteger, kProgramNameValidationResult) {
     kProgramNameValidationResultInvalid = 1,
     kProgramNameValidationResultAlreadyExists = 2
 };
+
+typedef NS_ENUM(NSUInteger, kDataTransferMessageActionType) {
+    kDataTransferMessageActionCopy = 0
+};
+

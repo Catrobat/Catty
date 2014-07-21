@@ -52,11 +52,11 @@
 
 + (void)showComingSoonAlertView
 {
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:kUIAlertViewTitleStandard
-                                                    message:kUIAlertViewMessageFeatureComingSoon
-                                                   delegate:nil
-                                          cancelButtonTitle:kUIAlertViewButtonTitleOK
-                                          otherButtonTitles:nil];
+    CatrobatAlertView *alert = [[CatrobatAlertView alloc] initWithTitle:kUIAlertViewTitleStandard
+                                                                message:kUIAlertViewMessageFeatureComingSoon
+                                                               delegate:nil
+                                                      cancelButtonTitle:kUIAlertViewButtonTitleOK
+                                                      otherButtonTitles:nil];
     if (! [self activateTestMode:NO]) {
         [alert show];
     }
