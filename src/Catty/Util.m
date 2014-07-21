@@ -26,6 +26,8 @@
 #import "ProgramLoadingInfo.h"
 #import "UIDefines.h"
 #import "LanguageTranslationDefines.h"
+#import "CatrobatActionSheet.h"
+#import "UIColor+CatrobatUIColorExtensions.h"
 
 @implementation Util
 
@@ -138,31 +140,34 @@
     return alertView;
 }
 
-+ (UIActionSheet*)actionSheetWithTitle:(NSString*)title
-                              delegate:(id<UIActionSheetDelegate>)delegate
-                destructiveButtonTitle:(NSString*)destructiveButtonTitle
-                     otherButtonTitles:(NSArray*)otherButtonTitles
-                                   tag:(NSInteger)tag
-                                  view:(UIView*)view
++ (CatrobatActionSheet*)actionSheetWithTitle:(NSString*)title
+                                    delegate:(id<CatrobatActionSheetDelegate>)delegate
+                      destructiveButtonTitle:(NSString*)destructiveButtonTitle
+                           otherButtonTitles:(NSArray*)otherButtonTitles
+                                         tag:(NSInteger)tag
+                                        view:(UIView*)view
 {
-    UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:title
-                                                             delegate:delegate
-                                                    cancelButtonTitle:nil
-                                               destructiveButtonTitle:nil
-                                                    otherButtonTitles:nil];
-    actionSheet.title = title;
-    actionSheet.delegate = delegate;
-    if (destructiveButtonTitle) {
-        actionSheet.destructiveButtonIndex = [actionSheet addButtonWithTitle:destructiveButtonTitle];
-    }
-    for (id otherButtonTitle in otherButtonTitles) {
-        if ([otherButtonTitle isKindOfClass:[NSString class]]) {
-            [actionSheet addButtonWithTitle:otherButtonTitle];
-        }
-    }
-    actionSheet.cancelButtonIndex = [actionSheet addButtonWithTitle:kUIActionSheetButtonTitleCancel];
+    CatrobatActionSheet *actionSheet = [[CatrobatActionSheet alloc] initWithTitle:title
+                                                                         delegate:delegate
+                                                                cancelButtonTitle:kUIActionSheetButtonTitleCancel
+                                                           destructiveButtonTitle:destructiveButtonTitle
+                                                           otherButtonTitlesArray:otherButtonTitles];
+//    [actionSheet setButtonBackgroundColor:[UIColor colorWithWhite:0.0f alpha:1.0f]];
+//    [actionSheet setButtonTextColor:[UIColor lightOrangeColor]];
+//    [actionSheet setButtonTextColor:[UIColor redColor] forButtonAtIndex:0];
+    actionSheet.transparentView.alpha = 1.0f;
+
+//    if (destructiveButtonTitle) {
+//        [actionSheet addDestructiveButtonWithTitle:destructiveButtonTitle];
+//    }
+//    for (id otherButtonTitle in otherButtonTitles) {
+//        if ([otherButtonTitle isKindOfClass:[NSString class]]) {
+//            [actionSheet addButtonWithTitle:otherButtonTitle];
+//        }
+//    }
+//    [actionSheet addCancelButtonWithTitle:kUIActionSheetButtonTitleCancel];
+
     actionSheet.tag = tag;
-    actionSheet.actionSheetStyle = UIActionSheetStyleDefault;
     if (! [self activateTestMode:NO]) {
         [actionSheet showInView:view];
     }

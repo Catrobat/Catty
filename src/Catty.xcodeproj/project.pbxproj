@@ -234,6 +234,7 @@
 		CABE07C518BAB91F00BE26EF /* LookComboBoxView.m in Sources */ = {isa = PBXBuildFile; fileRef = CABE07C418BAB91F00BE26EF /* LookComboBoxView.m */; };
 		CABE07C818BAB94000BE26EF /* VariableComboBoxView.m in Sources */ = {isa = PBXBuildFile; fileRef = CABE07C718BAB94000BE26EF /* VariableComboBoxView.m */; };
 		CAC22DA41809D5730071CC5D /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CAC22DA31809D5730071CC5D /* MobileCoreServices.framework */; };
+		CAE9A2BC197D20A7008F7C9A /* CatrobatActionSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = CAE9A2BB197D20A7008F7C9A /* CatrobatActionSheet.m */; };
 		CAEDFB8117EF759500FDED0E /* ObjectTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CAEDFB8017EF759500FDED0E /* ObjectTableViewController.m */; };
 		CAF806D6193170640005E900 /* ImageCache.m in Sources */ = {isa = PBXBuildFile; fileRef = CAF806D5193170640005E900 /* ImageCache.m */; };
 		CAF806D9193181D50005E900 /* RuntimeImageCache.m in Sources */ = {isa = PBXBuildFile; fileRef = CAF806D8193181D50005E900 /* RuntimeImageCache.m */; };
@@ -744,6 +745,8 @@
 		CABE07C718BAB94000BE26EF /* VariableComboBoxView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VariableComboBoxView.m; sourceTree = "<group>"; };
 		CAC22DA31809D5730071CC5D /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		CACEF959184529AC00D199D8 /* Brick+UnitTestingExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Brick+UnitTestingExtensions.h"; sourceTree = "<group>"; };
+		CAE9A2BA197D20A7008F7C9A /* CatrobatActionSheet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CatrobatActionSheet.h; sourceTree = "<group>"; };
+		CAE9A2BB197D20A7008F7C9A /* CatrobatActionSheet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CatrobatActionSheet.m; sourceTree = "<group>"; };
 		CAEDFB7F17EF759500FDED0E /* ObjectTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ObjectTableViewController.h; sourceTree = "<group>"; };
 		CAEDFB8017EF759500FDED0E /* ObjectTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ObjectTableViewController.m; sourceTree = "<group>"; };
 		CAEDFB8317EFC98E00FDED0E /* AppDefines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDefines.h; sourceTree = "<group>"; };
@@ -1054,6 +1057,7 @@
 		81B7487519213CE900990E5F /* Custom */ = {
 			isa = PBXGroup;
 			children = (
+				CAE9A2B9197D2086008F7C9A /* CatrobatActionSheet */,
 				81A5B4D4192963F00082B2B8 /* MotionEffect */,
 				CA882035192E59AF00E5D515 /* CollectionViewCells */,
 				81B748771921432A00990E5F /* CreateView */,
@@ -2288,6 +2292,15 @@
 			name = "Brick+UnitTestingExtensions";
 			sourceTree = "<group>";
 		};
+		CAE9A2B9197D2086008F7C9A /* CatrobatActionSheet */ = {
+			isa = PBXGroup;
+			children = (
+				CAE9A2BA197D20A7008F7C9A /* CatrobatActionSheet.h */,
+				CAE9A2BB197D20A7008F7C9A /* CatrobatActionSheet.m */,
+			);
+			name = CatrobatActionSheet;
+			sourceTree = "<group>";
+		};
 		CAEBC91918E5A1D800554CA2 /* EVCircularProgressView */ = {
 			isa = PBXGroup;
 			children = (
@@ -3007,6 +3020,7 @@
 				CD0CCFC3170CB39700B70036 /* SetVolumeToBrick.m in Sources */,
 				CA75C28918A9623500FC8C2F /* SetSizeToBrickCell.m in Sources */,
 				CA75C22618A9603400FC8C2F /* StartScriptCell.m in Sources */,
+				CAE9A2BC197D20A7008F7C9A /* CatrobatActionSheet.m in Sources */,
 				CD0CCFC4170CB39700B70036 /* SetXBrick.m in Sources */,
 				CA75C2A418A9627200FC8C2F /* SetVariableBrickCell.m in Sources */,
 				CD0CCFC5170CB39700B70036 /* SetYBrick.m in Sources */,

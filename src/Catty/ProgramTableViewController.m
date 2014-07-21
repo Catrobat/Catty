@@ -49,13 +49,15 @@
 #import "LanguageTranslationDefines.h"
 #import "ProgramTableHeaderView.h"
 #import "RuntimeImageCache.h"
+#import "CatrobatActionSheet.h"
 
 // TODO: outsource...
 #define kUserDetailsShowDetailsKey @"showDetails"
 #define kUserDetailsShowDetailsObjectsKey @"detailsForObjects"
 
-@interface ProgramTableViewController () <UIActionSheetDelegate, UIAlertViewDelegate, UITextFieldDelegate,
-                                          UINavigationBarDelegate, SWTableViewCellDelegate>
+@interface ProgramTableViewController () <CatrobatActionSheetDelegate, UIAlertViewDelegate,
+                                          UITextFieldDelegate, UINavigationBarDelegate,
+                                          SWTableViewCellDelegate>
 @property (nonatomic) BOOL useDetailCells;
 @property (strong, nonatomic) NSCharacterSet *blockedCharacterSet;
 @end
@@ -160,7 +162,7 @@
         destructiveButtonTitle:kUIActionSheetButtonTitleDelete
              otherButtonTitles:options
                            tag:kEditProgramActionSheetTag
-                          view:self.view];
+                          view:self.navigationController.view];
 }
 
 - (void)confirmDeleteSelectedObjectsAction:(id)sender
@@ -437,7 +439,7 @@
 }
 
 #pragma mark - action sheet delegates
-- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
+- (void)actionSheet:(CatrobatActionSheet*)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
 {
     if (actionSheet.tag != kEditProgramActionSheetTag) {
         return;

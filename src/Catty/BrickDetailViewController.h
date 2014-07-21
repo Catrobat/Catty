@@ -23,7 +23,7 @@
 #import <UIKit/UIKit.h>
 #import "ScriptCollectionViewController.h"
 #import "BrickCell.h"
-#import "IBActionSheet.h"
+#import "CatrobatActionSheet.h"
 
 @class BrickDetailViewController;
 

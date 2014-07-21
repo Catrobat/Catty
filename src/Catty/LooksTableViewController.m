@@ -46,6 +46,7 @@
 #import "LoadingView.h"
 #import "LanguageTranslationDefines.h"
 #import "RuntimeImageCache.h"
+#import "CatrobatActionSheet.h"
 
 // TODO: outsource...
 #define kUserDetailsShowDetailsKey @"showDetails"
@@ -55,7 +56,7 @@
 #define kChooseImageActionSheetButton @"chooseImage"
 #define kDrawNewImageActionSheetButton @"drawNewImage"
 
-@interface ObjectLooksTableViewController () <UIActionSheetDelegate, UIImagePickerControllerDelegate,
+@interface ObjectLooksTableViewController () <CatrobatActionSheetDelegate, UIImagePickerControllerDelegate,
                                               UINavigationControllerDelegate, UIAlertViewDelegate,
                                               UITextFieldDelegate, SWTableViewCellDelegate>
 @property (nonatomic, strong) NSCharacterSet *blockedCharacterSet;
@@ -136,7 +137,7 @@
         destructiveButtonTitle:nil
              otherButtonTitles:options
                            tag:kEditLooksActionSheetTag
-                          view:self.view];
+                          view:self.navigationController.view];
 }
 
 - (void)addLookAction:(id)sender
@@ -467,7 +468,7 @@
 }
 
 #pragma mark - action sheet delegates
-- (void)actionSheet:(UIActionSheet*)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
+- (void)actionSheet:(CatrobatActionSheet*)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
 {
     if (actionSheet.tag == kEditLooksActionSheetTag) {
         BOOL showHideSelected = NO;

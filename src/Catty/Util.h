@@ -34,6 +34,8 @@
 
 @class SceneViewController;
 @class ProgramLoadingInfo;
+@class CatrobatActionSheet;
+@protocol CatrobatActionSheetDelegate;
 
 @interface Util : NSObject
 
@@ -69,12 +71,12 @@
                           value:(NSString*)value
               textFieldDelegate:(id<UITextFieldDelegate>)textFieldDelegate;
 
-+ (UIActionSheet*)actionSheetWithTitle:(NSString*)title
-                              delegate:(id<UIActionSheetDelegate>)delegate
-                destructiveButtonTitle:(NSString*)destructiveButtonTitle
-                     otherButtonTitles:(NSArray*)otherButtonTitles
-                                   tag:(NSInteger)tag
-                                  view:(UIView*)view;
++ (CatrobatActionSheet*)actionSheetWithTitle:(NSString*)title
+                                    delegate:(id<CatrobatActionSheetDelegate>)delegate
+                      destructiveButtonTitle:(NSString*)destructiveButtonTitle
+                           otherButtonTitles:(NSArray*)otherButtonTitles
+                                         tag:(NSInteger)tag
+                                        view:(UIView*)view;
 
 + (UIButton*)slideViewButtonWithTitle:(NSString*)title backgroundColor:(UIColor*)backgroundColor;
 

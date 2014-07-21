@@ -43,14 +43,15 @@
 #import "LanguageTranslationDefines.h"
 #import "RuntimeImageCache.h"
 #import "NSString+CatrobatNSStringExtensions.h"
+#import "CatrobatActionSheet.h"
 
 // TODO: outsource...
 #define kUserDetailsShowDetailsKey @"showDetails"
 #define kUserDetailsShowDetailsProgramsKey @"detailsForPrograms"
 #define kScreenshotThumbnailPrefix @".thumb_"
 
-@interface MyProgramsViewController () <ProgramUpdateDelegate, UIActionSheetDelegate, UIAlertViewDelegate,
-                                        UITextFieldDelegate, SWTableViewCellDelegate>
+@interface MyProgramsViewController () <CatrobatActionSheetDelegate, ProgramUpdateDelegate,
+                                        UIAlertViewDelegate, UITextFieldDelegate, SWTableViewCellDelegate>
 @property (nonatomic, strong) NSCharacterSet *blockedCharacterSet;
 @property (nonatomic) BOOL useDetailCells;
 @property (nonatomic, strong) NSMutableDictionary *dataCache;
@@ -143,7 +144,7 @@
         destructiveButtonTitle:nil
              otherButtonTitles:options
                            tag:kEditProgramsActionSheetTag
-                          view:self.view];
+                          view:self.navigationController.view];
 }
 
 - (void)addProgramAction:(id)sender
@@ -395,19 +396,20 @@
 #pragma mark - swipe delegates
 - (void)swipeableTableViewCell:(SWTableViewCell *)cell didTriggerRightUtilityButtonWithIndex:(NSInteger)index
 {
+    [cell hideUtilityButtonsAnimated:YES];
     if (index == 0) {
         // More button was pressed
-        UIAlertView *alertTest = [[UIAlertView alloc] initWithTitle:@"Hello"
-                                                            message:@"More more more"
-                                                           delegate:nil
-                                                  cancelButtonTitle:kUIAlertViewButtonTitleCancel
-                                                  otherButtonTitles:nil];
-        [alertTest show];
-        [cell hideUtilityButtonsAnimated:YES];
+        NSArray *options = @[kUIActionSheetButtonTitleCopy, kUIActionSheetButtonTitleRename,
+                             kUIActionSheetButtonTitleDescription, kUIActionSheetButtonTitleUpload];
+        [Util actionSheetWithTitle:kUIActionSheetTitleEditProgramSingular
+                          delegate:self
+            destructiveButtonTitle:nil
+                 otherButtonTitles:options
+                               tag:kEditProgramActionSheetTag
+                              view:self.navigationController.view];
     } else if (index == 1) {
         // Delete button was pressed
         NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
-        [cell hideUtilityButtonsAnimated:YES];
         [self performActionOnConfirmation:@selector(deleteProgramForIndexPath:)
                            canceledAction:nil
                                withObject:indexPath
@@ -432,32 +434,41 @@
 }
 
 #pragma mark - action sheet delegates
-- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
+- (void)actionSheet:(CatrobatActionSheet*)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
 {
-    if (actionSheet.tag != kEditProgramsActionSheetTag) {
-        return;
-    }
-
-    if (buttonIndex == 0) {
-        // Show/Hide Details button
-        self.useDetailCells = (! self.useDetailCells);
-        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-        NSDictionary *showDetails = [defaults objectForKey:kUserDetailsShowDetailsKey];
-        NSMutableDictionary *showDetailsMutable = nil;
-        if (! showDetails) {
-            showDetailsMutable = [NSMutableDictionary dictionary];
-        } else {
-            showDetailsMutable = [showDetails mutableCopy];
+    if (actionSheet.tag == kEditProgramsActionSheetTag) {
+        if (buttonIndex == 0) {
+            // Show/Hide Details button
+            self.useDetailCells = (! self.useDetailCells);
+            NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+            NSDictionary *showDetails = [defaults objectForKey:kUserDetailsShowDetailsKey];
+            NSMutableDictionary *showDetailsMutable = nil;
+            if (! showDetails) {
+                showDetailsMutable = [NSMutableDictionary dictionary];
+            } else {
+                showDetailsMutable = [showDetails mutableCopy];
+            }
+            [showDetailsMutable setObject:[NSNumber numberWithBool:self.useDetailCells]
+                                   forKey:kUserDetailsShowDetailsProgramsKey];
+            [defaults setObject:showDetailsMutable forKey:kUserDetailsShowDetailsKey];
+            [defaults synchronize];
+            [self.tableView reloadData];
+        } else if ((buttonIndex == 1) && [self.programLoadingInfos count]) {
+            // Delete Programs button
+            [self setupEditingToolBar];
+            [super changeToEditingMode:actionSheet];
         }
-        [showDetailsMutable setObject:[NSNumber numberWithBool:self.useDetailCells]
-                               forKey:kUserDetailsShowDetailsProgramsKey];
-        [defaults setObject:showDetailsMutable forKey:kUserDetailsShowDetailsKey];
-        [defaults synchronize];
-        [self.tableView reloadData];
-    } else if ((buttonIndex == 1) && [self.programLoadingInfos count]) {
-        // Delete Programs button
-        [self setupEditingToolBar];
-        [super changeToEditingMode:actionSheet];
+    } else if (actionSheet.tag == kEditProgramActionSheetTag) {
+        if (buttonIndex == 0) {
+            // Copy button
+            
+        } else if (buttonIndex == 1) {
+            // Rename button
+        } else if (buttonIndex == 2) {
+            // Description button
+        } else if (buttonIndex == 3) {
+            // Upload button
+        }
     }
 }
 

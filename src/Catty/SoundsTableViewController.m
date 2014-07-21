@@ -42,6 +42,7 @@
 #import "LanguageTranslationDefines.h"
 #import "RuntimeImageCache.h"
 #import "SharkfoodMuteSwitchDetector.h"
+#import "CatrobatActionSheet.h"
 
 // TODO: outsource...
 #define kUserDetailsShowDetailsKey @"showDetails"
@@ -50,9 +51,9 @@
 #define kPocketCodeRecorderActionSheetButton @"pocketCodeRecorder"
 #define kSelectMusicTrackActionSheetButton @"selectMusicTrack"
 
-@interface SoundsTableViewController () <UIActionSheetDelegate, AVAudioPlayerDelegate, SWTableViewCellDelegate>
+@interface SoundsTableViewController () <CatrobatActionSheetDelegate, AVAudioPlayerDelegate,
+                                         SWTableViewCellDelegate>
 @property (nonatomic) BOOL useDetailCells;
-@property (nonatomic, strong) NSMutableDictionary* addSoundActionSheetBtnIndexes;
 @property (atomic, strong) Sound *currentPlayingSong;
 @property (atomic, weak) UITableViewCell<CatrobatImageCell> *currentPlayingSongCell;
 @property (nonatomic, strong) SharkfoodMuteSwitchDetector *silentDetector;
@@ -60,14 +61,6 @@
 @end
 
 @implementation SoundsTableViewController
-
-#pragma mark - getters and setters
-- (NSMutableDictionary*)addSoundActionSheetBtnIndexes
-{
-    if (_addSoundActionSheetBtnIndexes == nil)
-        _addSoundActionSheetBtnIndexes = [NSMutableDictionary dictionaryWithCapacity:3];
-    return _addSoundActionSheetBtnIndexes;
-}
 
 #pragma mark - initialization
 - (void)initNavigationBar
@@ -152,7 +145,7 @@
         destructiveButtonTitle:nil
              otherButtonTitles:options
                            tag:kEditSoundsActionSheetTag
-                          view:self.view];
+                          view:self.navigationController.view];
 }
 
 - (void)addSoundToObjectAction:(Sound*)sound
@@ -455,7 +448,7 @@
 }
 
 #pragma mark - UIActionSheetDelegate Handlers
-- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
+- (void)actionSheet:(CatrobatActionSheet*)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
 {
     if (actionSheet.tag == kEditSoundsActionSheetTag) {
         BOOL showHideSelected = NO;
@@ -489,13 +482,7 @@
             [self.tableView reloadData];
         }
     } else if (actionSheet.tag == kAddSoundActionSheetTag) {
-        NSString *action = self.addSoundActionSheetBtnIndexes[@(buttonIndex)];
-        if ([action isEqualToString:kPocketCodeRecorderActionSheetButton]) {
-            // TODO: implement this, when Pocket Code Recorder will be implemented...
-            // Pocket Code Recorder
-            NSLog(@"Pocket Code Recorder");
-            [Util showComingSoonAlertView];
-        } else if ([action isEqualToString:kSelectMusicTrackActionSheetButton]) {
+        if (buttonIndex == 0) {
             // Select music track
             NSLog(@"Select music track");
             AppDelegate *delegate = (AppDelegate*)[UIApplication sharedApplication].delegate;
@@ -516,20 +503,6 @@
     }
 }
 
-#pragma mark - UIActionSheet Views
-- (void)showAddSoundActionSheet
-{
-    UIActionSheet *sheet = [[UIActionSheet alloc] init];
-    sheet.title = kUIActionSheetTitleAddSound;
-    sheet.delegate = self;
-//    self.addSoundActionSheetBtnIndexes[@([sheet addButtonWithTitle:kUIActionSheetButtonTitlePocketCodeRecorder])] = kPocketCodeRecorderActionSheetButton;
-    self.addSoundActionSheetBtnIndexes[@([sheet addButtonWithTitle:kUIActionSheetButtonTitleChooseSound])] = kSelectMusicTrackActionSheetButton;
-    sheet.cancelButtonIndex = [sheet addButtonWithTitle:kUIActionSheetButtonTitleCancel];
-    sheet.tag = kAddSoundActionSheetTag;
-    sheet.actionSheetStyle = UIActionSheetStyleDefault;
-    [sheet showInView:self.view];
-}
-
 #pragma mark - Helper Methods
 - (void)stopAllSounds
 {
@@ -544,7 +517,12 @@
 
 - (void)addSoundAction:(id)sender
 {
-    [self showAddSoundActionSheet];
+    [Util actionSheetWithTitle:kUIActionSheetTitleAddSound
+                      delegate:self
+        destructiveButtonTitle:nil
+             otherButtonTitles:@[/*kUIActionSheetButtonTitlePocketCodeRecorder, */kUIActionSheetButtonTitleChooseSound]
+                           tag:kAddSoundActionSheetTag
+                          view:self.navigationController.view];
 }
 
 - (void)playSceneAction:(id)sender
