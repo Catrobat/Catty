@@ -75,6 +75,7 @@ destructiveButtonTitle:(NSString*)destructiveTitle
                                          cancelButtonTitle:cancelTitle
                                     destructiveButtonTitle:destructiveTitle
                                     otherButtonTitlesArray:titles];
+    actionSheet.dataTransferMessage = nil;
     if (actionSheet.hasCancelButton) {
         actionSheet.cancelButtonIndex = ([actionSheet.buttons count] - 1);
     } else {
@@ -94,6 +95,7 @@ otherButtonTitlesArray:(NSArray *)otherTitlesArray
                                           cancelButtonTitle:cancelTitle
                                      destructiveButtonTitle:destructiveTitle
                                      otherButtonTitlesArray:otherTitlesArray];
+    actionSheet.dataTransferMessage = nil;
     if (actionSheet.hasCancelButton) {
         actionSheet.cancelButtonIndex = ([actionSheet.buttons count] - 1);
     } else {

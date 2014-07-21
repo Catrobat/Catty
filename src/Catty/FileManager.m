@@ -410,8 +410,6 @@
     NSLogError(error);
 }
 
-
-
 - (NSString*)getFullPathForProgram:(NSString *)programName
 {
     NSString *path = [NSString stringWithFormat:@"%@/%@", self.programsDirectory, programName];

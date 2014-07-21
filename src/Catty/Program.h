@@ -48,6 +48,7 @@
 
 + (instancetype)defaultProgramWithName:(NSString*)programName;
 + (instancetype)lastProgram;
++ (void)updateLastModificationTimeForProgramWithName:(NSString*)programName;
 + (instancetype)programWithLoadingInfo:(ProgramLoadingInfo*)loadingInfo;
 + (BOOL)programExists:(NSString *)programName;
 + (kProgramNameValidationResult)validateProgramName:(NSString*)programName;

@@ -30,11 +30,13 @@
   cancelButtonTitle:(NSString *)cancelButtonTitle
   otherButtonTitles:(NSString *)otherButtonTitles, ... NS_REQUIRES_NIL_TERMINATION
 {
-    return [super initWithTitle:title
-                        message:message
-                       delegate:(id<UIAlertViewDelegate>)delegate
-              cancelButtonTitle:cancelButtonTitle
-              otherButtonTitles:otherButtonTitles, nil];
+    CatrobatAlertView *alertView = [super initWithTitle:title
+                                                message:message
+                                               delegate:(id<UIAlertViewDelegate>)delegate
+                                      cancelButtonTitle:cancelButtonTitle
+                                      otherButtonTitles:otherButtonTitles, nil];
+    alertView.dataTransferMessage = nil;
+    return alertView;
 }
 
 @end

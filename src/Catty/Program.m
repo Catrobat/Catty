@@ -120,10 +120,7 @@
         }
     }
 
-    // update last modification time
-    AppDelegate *appDelegate = (AppDelegate*)[UIApplication sharedApplication].delegate;
-    [appDelegate.fileManager changeModificationDate:[NSDate date]
-                                      forFileAtPath:xmlPath];
+    [self updateLastModificationTimeForProgramWithName:loadingInfo.visibleName];
     return program;
 }
 
@@ -132,6 +129,17 @@
     NSString *lastProgramName = [Util lastProgram];
     ProgramLoadingInfo *loadingInfo = [Util programLoadingInfoForProgramWithName:lastProgramName];
     return [Program programWithLoadingInfo:loadingInfo];
+}
+
++ (void)updateLastModificationTimeForProgramWithName:(NSString*)programName
+{
+    NSString *xmlPath = [NSString stringWithFormat:@"%@%@",
+                         [self projectPathForProgramWithName:programName],
+                         kProgramCodeFileName];
+
+    AppDelegate *appDelegate = (AppDelegate*)[UIApplication sharedApplication].delegate;
+    [appDelegate.fileManager changeModificationDate:[NSDate date]
+                                      forFileAtPath:xmlPath];
 }
 
 - (NSInteger)numberOfTotalObjects
@@ -305,8 +313,7 @@
         //    dispatch_async(dispatch_get_main_queue(), ^{});
 
         // update last access time
-        AppDelegate *appDelegate = (AppDelegate*)[UIApplication sharedApplication].delegate;
-        [appDelegate.fileManager changeModificationDate:[NSDate date] forFileAtPath:xmlPath];
+        [[self class] updateLastModificationTimeForProgramWithName:self.header.programName];
     });
 }
 

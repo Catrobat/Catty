@@ -58,3 +58,5 @@ typedef NS_ENUM(NSUInteger, kDataTransferMessageActionType) {
     kDataTransferMessageActionCopy = 0
 };
 
+#define kDataTransferPayloadProgramLoadingInfo @"payloadProgramLoadingInfo"
+#define kDataTransferPayloadNewProgramName @"newProgramName"
