@@ -48,7 +48,7 @@
     
     [self addNameLabelWithProjectName:project.projectName toView:view];
     [self addAuthorLabelWithAuthor:project.author toView:view];
-    [self addProgramDescriptionLabelWithDescription:project.description toView:view target:target];
+    [self addProgramDescriptionLabelWithDescription:project.projectDescription toView:view target:target];
     [self addThumbnailImageWithImageUrlString:project.screenshotSmall toView:view];
     [self addBigImageWithImageUrlString:project.screenshotBig toView:view];
     [self addDownloadButtonToView:view withTarget:target];
