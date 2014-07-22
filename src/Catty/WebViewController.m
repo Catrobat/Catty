@@ -24,6 +24,7 @@
 #import "UIDefines.h"
 #import "UIColor+CatrobatUIColorExtensions.h"
 #import <tgmath.h>
+#import "AppDelegate.h"
 
 @interface WebViewController ()
 @property (nonatomic, strong) UIWebView *webView;
@@ -252,6 +253,70 @@
     [self setupToolbarItems];
 }
 
+- (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType
+{
+    NSLog(@"%@",request.URL.absoluteString);
+    if ([request.URL.absoluteString rangeOfString:@"https://pocketcode.org/download/"].location != NSNotFound) {
+        //        [[UIApplication sharedApplication] openURL:url];
+        //        return NO;
+        NSLog(@"Download");
+        NSString *param = nil;
+        NSArray *myArray = [request.URL.absoluteString componentsSeparatedByCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@"?"]];
+        param = myArray[0];
+        AppDelegate *appDelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
+        NSURL *url = [NSURL URLWithString:param];
+        appDelegate.fileManager.delegate = self;
+        param = nil;
+        NSRange start = [request.URL.absoluteString rangeOfString:@"="];
+        if (start.location != NSNotFound)
+        {
+            param = [request.URL.absoluteString substringFromIndex:start.location + start.length];
+            NSRange end = [param rangeOfString:@"+"];
+            if (end.location != NSNotFound)
+            {
+                param = [param substringToIndex:end.location];
+                NSRange start = [request.URL.absoluteString rangeOfString:@"+"];
+                if (start.location != NSNotFound)
+                {
+                    NSString *secondParam = [request.URL.absoluteString substringFromIndex:start.location + start.length];
+                    NSRange end = [secondParam rangeOfString:@"+"];
+                    if (end.location != NSNotFound)
+                    {
+                        secondParam = [secondParam substringToIndex:end.location];
+                    }
+                    param = [NSString stringWithFormat:@"%@ %@",param,secondParam];
+                }
+            }
+        }
+        
+
+        [appDelegate.fileManager downloadFileFromURL:url withName:param];
+        param = nil;
+        start = [request.URL.absoluteString rangeOfString:@"download/"];
+        if (start.location != NSNotFound)
+        {
+            param = [request.URL.absoluteString substringFromIndex:start.location + start.length];
+            NSRange end = [param rangeOfString:@"."];
+            if (end.location != NSNotFound)
+            {
+                param = [param substringToIndex:end.location];
+            }
+        }
+        
+        NSString *urlString = [NSString stringWithFormat:@"https://pocketcode.org/resources/thumbnails/%@_small.png",param];
+       
+        NSDebug(@"screenshot url is: %@", urlString);
+        
+        NSURL *screenshotSmallUrl = [NSURL URLWithString:urlString];
+        [appDelegate.fileManager downloadScreenshotFromURL:screenshotSmallUrl andBaseUrl:url andName:param];
+        return NO;
+    }
+    else {
+        return YES;
+    }
+    return YES;
+}
+
 #pragma mark - UIScrollViewDelegate
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView
 {
@@ -424,4 +489,19 @@
     }
 }
 
+
+- (void)downloadFinishedWithURL:(NSURL *)url
+{
+    NSLog(@"Finished");
+}
+
+- (void)setBackDownloadStatus
+{
+    
+}
+
+- (void)updateProgress:(double)progress
+{
+    
+}
 @end
