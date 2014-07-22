@@ -271,22 +271,7 @@
         if (start.location != NSNotFound)
         {
             param = [request.URL.absoluteString substringFromIndex:start.location + start.length];
-            NSRange end = [param rangeOfString:@"+"];
-            if (end.location != NSNotFound)
-            {
-                param = [param substringToIndex:end.location];
-                NSRange start = [request.URL.absoluteString rangeOfString:@"+"];
-                if (start.location != NSNotFound)
-                {
-                    NSString *secondParam = [request.URL.absoluteString substringFromIndex:start.location + start.length];
-                    NSRange end = [secondParam rangeOfString:@"+"];
-                    if (end.location != NSNotFound)
-                    {
-                        secondParam = [secondParam substringToIndex:end.location];
-                    }
-                    param = [NSString stringWithFormat:@"%@ %@",param,secondParam];
-                }
-            }
+            param = [param stringByReplacingOccurrencesOfString:@"+" withString:@" "];
         }
         
 
