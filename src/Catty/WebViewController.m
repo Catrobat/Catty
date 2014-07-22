@@ -255,7 +255,6 @@
 
 - (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType
 {
-    NSLog(@"%@",request.URL.absoluteString);
     if ([request.URL.absoluteString rangeOfString:@"https://pocketcode.org/download/"].location != NSNotFound) {
         //        [[UIApplication sharedApplication] openURL:url];
         //        return NO;
@@ -477,7 +476,7 @@
 
 - (void)downloadFinishedWithURL:(NSURL *)url
 {
-    NSLog(@"Finished");
+    NSDebug(@"Finished");
 }
 
 - (void)setBackDownloadStatus
