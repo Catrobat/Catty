@@ -147,7 +147,7 @@
 - (void)playSceneAction:(id)sender
 {
     [self.navigationController setToolbarHidden:YES animated:YES];
-    ScenePresenterViewController *vc =[[ScenePresenterViewController alloc] initWithProgram:self.object.program];
+    ScenePresenterViewController *vc =[[ScenePresenterViewController alloc] initWithProgram:[Program programWithLoadingInfo:[Util programLoadingInfoForProgramWithName:[Util lastProgram]]]];
     [self.navigationController pushViewController:vc animated:YES];
 }
 

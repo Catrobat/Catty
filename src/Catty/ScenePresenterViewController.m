@@ -535,6 +535,32 @@
 
 - (void)restartProgram:(UIButton*)sender
 {
+    for (SpriteObject *sprite in self.program.objectList) {
+        sprite.broadcastWaitDelegate = nil;
+        sprite.spriteManagerDelegate = nil;
+        
+        for (Script *script in sprite.scriptList) {
+            script.allowRunNextAction = NO;
+            for (Brick *brick in script.brickList) {
+                brick.object = nil;
+            }
+        }
+    }
+    self.program = nil;
+    self.program = [Program programWithLoadingInfo:[Util programLoadingInfoForProgramWithName:[Util lastProgram]]];
+    
+    for (SpriteObject *sprite in self.program.objectList)
+    {
+        sprite.broadcastWaitDelegate = self.broadcastWaitHandler;
+        
+        for (Script *script in sprite.scriptList) {
+            script.allowRunNextAction = YES;
+            for (Brick *brick in script.brickList) {
+                brick.object = sprite;
+            }
+        }
+    }
+
     Scene *previousScene = (Scene *)self.skView.scene;
     previousScene.program = self.program;
     
