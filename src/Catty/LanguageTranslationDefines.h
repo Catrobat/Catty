@@ -29,6 +29,7 @@
 #define kGeneralNewDefaultProgramName NSLocalizedString(@"New Program", @"Default name for new programs")
 #define kGeneralBackgroundObjectName NSLocalizedString(@"Background", @"Title for background object")
 #define kGeneralDefaultObjectName NSLocalizedString(@"My Object", @"Title for first (default) object")
+#define kDefaultImportedImageName NSLocalizedString(@"My Image", @"Default title of imported photo from camera (taken by camera)")
 
 /*
  * -----------------------------------------------------------------------------------------------------------
@@ -150,6 +151,14 @@
 
 /*
  * -----------------------------------------------------------------------------------------------------------
+ * UIActivity title defines
+ * -----------------------------------------------------------------------------------------------------------
+ */
+
+#define kUIActivityTitleSaveToProject NSLocalizedString(@"Save to PocketCode", nil)
+
+/*
+ * -----------------------------------------------------------------------------------------------------------
  * UIActionSheet title defines
  * -----------------------------------------------------------------------------------------------------------
  */
@@ -161,6 +170,7 @@
 #define kUIActionSheetTitleEditProgramPlural NSLocalizedString(@"Edit Programs", nil)
 #define kUIActionSheetTitleAddSound NSLocalizedString(@"Add sound", @"Action sheet menu title")
 #define kUIActionSheetTitleSaveScreenshot NSLocalizedString(@"Save Screenshot to", @"Action sheet menu title")
+#define kUIActionSheetTitleSelectBrickCategory NSLocalizedString(@"Select Brick Category", nil)
 
 /*
  * -----------------------------------------------------------------------------------------------------------
@@ -195,6 +205,12 @@
 #define kUIActionSheetButtonTitleProject NSLocalizedString(@"Project", nil)
 #define kUIActionSheetButtonTitleCancel NSLocalizedString(@"Cancel", nil)
 #define kUIActionSheetButtonTitleDelete NSLocalizedString(@"Delete", nil)
+
+#define kUIActionSheetButtonTitleControl NSLocalizedString(@"Control", nil)
+#define kUIActionSheetButtonTitleMotion NSLocalizedString(@"Motion", nil)
+#define kUIActionSheetButtonTitleSound NSLocalizedString(@"Sound", nil)
+#define kUIActionSheetButtonTitleLooks NSLocalizedString(@"Looks", nil)
+#define kUIActionSheetButtonTitleVariables NSLocalizedString(@"Variables", nil)
 
 /*
  * -----------------------------------------------------------------------------------------------------------
@@ -252,6 +268,9 @@
 #define kUIAlertViewMessageUnableToLoadProgram NSLocalizedString(@"Unable to load program!", nil)
 #define kUIAlertViewMessageIrreversibleAction NSLocalizedString(@"This action can not be undone!", nil)
 #define kUIAlertViewMessageUnableToPlaySound NSLocalizedString(@"Unable to play that sound!\nMaybe this is no valid sound or the file is corrupt.", nil)
+
+#define kUIAlertViewMessageDeviceIsInMutedStateIPhone NSLocalizedString(@"Unable to play the selected sound. Your device is in silent mode. Please turn off silent mode by toggling the switch on the left side of your iPhone and tap on play again.", nil)
+#define kUIAlertViewMessageDeviceIsInMutedStateIPad NSLocalizedString(@"Unable to play the selected sound. Your device is in silent mode. Please turn off silent mode by toggling the switch on the right side of your iPad and tap on play again.", nil)
 
 // button defines
 #define kUIAlertViewButtonTitleOK NSLocalizedString(@"OK", nil)

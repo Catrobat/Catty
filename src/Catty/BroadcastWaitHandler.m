@@ -24,17 +24,17 @@
 #import "SpriteObject.h"
 
 @interface BroadcastWaitHandler()
-@property (strong, nonatomic) NSMutableDictionary *spritesForMessages; // key: (NSString*)msg   value: (NSArray*)sprites
+@property (strong, nonatomic) NSMapTable *spritesForMessages; // key: (NSString*)msg   value: (NSArray*)sprites
 @property (strong, nonatomic) NSLock *lock;
 @end
 
 
 @implementation BroadcastWaitHandler
 
-- (NSMutableDictionary *)spritesForMessages
+- (NSMapTable *)spritesForMessages
 {
   if (!_spritesForMessages)
-      _spritesForMessages = [[NSMutableDictionary alloc]init];
+      _spritesForMessages = [NSMapTable strongToWeakObjectsMapTable];
   return _spritesForMessages;
 }
 

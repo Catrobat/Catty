@@ -51,6 +51,7 @@
 
 @interface MyProgramsViewController () <ProgramUpdateDelegate, UIActionSheetDelegate, UIAlertViewDelegate,
                                         UITextFieldDelegate, SWTableViewCellDelegate>
+@property (nonatomic, strong) NSCharacterSet *blockedCharacterSet;
 @property (nonatomic) BOOL useDetailCells;
 @property (nonatomic, strong) NSMutableDictionary *dataCache;
 @property (nonatomic, strong) NSMutableArray *programLoadingInfos;
@@ -61,6 +62,14 @@
 @implementation MyProgramsViewController
 
 #pragma mark - getters and setters
+- (NSCharacterSet*)blockedCharacterSet
+{
+    if (! _blockedCharacterSet) {
+        _blockedCharacterSet = [[NSCharacterSet characterSetWithCharactersInString:kTextFieldAllowedCharacters] invertedSet];
+    }
+    return _blockedCharacterSet;
+}
+
 - (NSMutableDictionary*)dataCache
 {
     if (! _dataCache) {
@@ -391,7 +400,7 @@
         UIAlertView *alertTest = [[UIAlertView alloc] initWithTitle:@"Hello"
                                                             message:@"More more more"
                                                            delegate:nil
-                                                  cancelButtonTitle:@"Cancel"
+                                                  cancelButtonTitle:kUIAlertViewButtonTitleCancel
                                                   otherButtonTitles:nil];
         [alertTest show];
         [cell hideUtilityButtonsAnimated:YES];
@@ -416,8 +425,10 @@
 #pragma mark - text field delegates
 - (BOOL)textField:(UITextField*)field shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString*)characters
 {
-    NSCharacterSet *blockedCharacters = [[NSCharacterSet characterSetWithCharactersInString:kTextFieldAllowedCharacters] invertedSet];
-    return ([characters rangeOfCharacterFromSet:blockedCharacters].location == NSNotFound);
+    if ([characters length] > kMaxNumOfProgramNameCharacters) {
+        return false;
+    }
+    return ([characters rangeOfCharacterFromSet:self.blockedCharacterSet].location == NSNotFound);
 }
 
 #pragma mark - action sheet delegates

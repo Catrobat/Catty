@@ -31,11 +31,14 @@
 #import <AVFoundation/AVFoundation.h>
 #import "LanguageTranslationDefines.h"
 #import "RuntimeImageCache.h"
+#import "Util.h"
+#import "SharkfoodMuteSwitchDetector.h"
 
 @interface SoundPickerTableViewController () <AVAudioPlayerDelegate>
 @property (atomic, strong) Sound *currentPlayingSong;
 @property (atomic, weak) UITableViewCell<CatrobatImageCell> *currentPlayingSongCell;
 @property (nonatomic, strong) NSArray *playableSounds;
+@property (nonatomic, strong) SharkfoodMuteSwitchDetector *silentDetector;
 @end
 
 @implementation SoundPickerTableViewController
@@ -53,18 +56,30 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+
+    // automatically stop current playing sound after the user turns
+    // on the silent switcher on the iPhone/iPad (device is in silent state)
+    self.silentDetector = [SharkfoodMuteSwitchDetector shared];
+    // must be weak (!!) since SoundsTableViewController is holding the SharkfoodMuteSwitchDetector
+    // instance strongly!
+    __weak SoundPickerTableViewController *soundPickerTableViewController = self;
+    self.silentDetector.silentNotify = ^(BOOL silent){
+        if (silent) {
+            [soundPickerTableViewController stopAllSounds];
+        }
+    };
+
     [self setupNavigationBar];
     [super showPlaceHolder:NO];
     self.navigationController.toolbarHidden = YES;
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
 }
 
-- (void)dealloc
+- (void)viewWillDisappear:(BOOL)animated
 {
-    [[AudioManager sharedAudioManager] stopAllSounds];
-    self.currentPlayingSong.playing = NO;
-    self.currentPlayingSong = nil;
+    [super viewWillDisappear:animated];
     self.currentPlayingSongCell = nil;
+    [self stopAllSounds];
 }
 
 #pragma mark - actions
@@ -133,6 +148,26 @@
     return imageCell;
 }
 
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return [TableUtil getHeightForImageCell];
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+    if ([cell conformsToProtocol:@protocol(CatrobatImageCell)]) {
+        [self.presentingViewController dismissViewControllerAnimated:YES completion:^{
+            NSNotificationCenter *dnc = [NSNotificationCenter defaultCenter];
+            [dnc postNotificationName:kSoundAddedNotification
+                               object:nil
+                             userInfo:@{ kUserInfoSound : [self.playableSounds objectAtIndex:indexPath.row] }];
+        }];
+    }
+}
+
+#pragma mark - player actions
 - (void)playSound:(id)sender
 {
     UITapGestureRecognizer *gesture = (UITapGestureRecognizer*)sender;
@@ -144,6 +179,12 @@
         if ([cell conformsToProtocol:@protocol(CatrobatImageCell)]) {
             UITableViewCell<CatrobatImageCell> *imageCell = (UITableViewCell<CatrobatImageCell>*)cell;
             if (indexPath.row < [self.playableSounds count]) {
+                // acquire lock
+                if (self.silentDetector.isMute) {
+                    [Util alertWithText:(IS_IPHONE ? kUIAlertViewMessageDeviceIsInMutedStateIPhone
+                                         : kUIAlertViewMessageDeviceIsInMutedStateIPad)];
+                    return;
+                }
                 @synchronized(self) {
                     Sound *sound = (Sound*)[self.playableSounds objectAtIndex:indexPath.row];
                     BOOL isPlaying = sound.isPlaying;
@@ -175,23 +216,15 @@
     }
 }
 
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+- (void)stopAllSounds
 {
-    return [TableUtil getHeightForImageCell];
-}
-
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
-    if ([cell conformsToProtocol:@protocol(CatrobatImageCell)]) {
-        [self.presentingViewController dismissViewControllerAnimated:YES completion:^{
-            NSNotificationCenter *dnc = [NSNotificationCenter defaultCenter];
-            [dnc postNotificationName:kSoundAddedNotification
-                               object:nil
-                             userInfo:@{ kUserInfoSound : [self.playableSounds objectAtIndex:indexPath.row] }];
-        }];
+    [[AudioManager sharedAudioManager] stopAllSounds];
+    if (self.currentPlayingSongCell) {
+        self.currentPlayingSongCell.iconImageView.image = [UIImage imageNamed:@"ic_media_play"];
     }
+    self.currentPlayingSong.playing = NO;
+    self.currentPlayingSong = nil;
+    self.currentPlayingSongCell = nil;
 }
 
 #pragma audio delegate methods

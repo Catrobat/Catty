@@ -86,10 +86,9 @@
     UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:title
                                                         message:message
                                                        delegate:delegate
-                                              cancelButtonTitle:nil
+                                              cancelButtonTitle:kUIAlertViewButtonTitleNo
                                               otherButtonTitles:nil];
     [alertView addButtonWithTitle:kUIAlertViewButtonTitleYes];
-    alertView.cancelButtonIndex = [alertView addButtonWithTitle:kUIAlertViewButtonTitleNo];
     alertView.tag = tag;
     if (! [self activateTestMode:NO]) {
         [alertView show];

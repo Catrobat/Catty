@@ -28,13 +28,16 @@
 #define kProgramsFolder @".programs"
 #define kResourceFileNameSeparator @"_" // [md5]_[fileName] e.g. D32285BE8042D8D8071FAF0A33054DD0_music.mp3                                      //         or for images: 34A109A82231694B6FE09C216B390570_normalCat
 #define kPreviewImageNamePrefix @"small_" // [md5]_small_[fileName] e.g. 34A109A82231694B6FE09C216B390570_small_normalCat
-#define kDefaultImportedImageName @"default"
 #define kDefaultImportedImageNameExtension @"png"
 #define kPreviewImageWidth 160
 #define kPreviewImageHeight 160
 #define kMinNumOfObjects 0
 #define kDefaultNumOfObjects 1
 #define kBackgroundObjects 1
+#define kMaxNumOfProgramNameCharacters 20
+#define kMaxNumOfObjectNameCharacters 20
+#define kMaxNumOfLookNameCharacters 20
+#define kMaxNumOfSoundNameCharacters 20
 
 #define kDefaultProgramName @"My First Program"
 
