@@ -144,12 +144,6 @@
     self.skView.bounds = self.view.bounds;
 }
 
-- (void)viewDidDisappear:(BOOL)animated
-{
-    [super viewDidDisappear:animated];
-    self.program = nil;
-}
-
 # pragma getters and setters
 - (BroadcastWaitHandler*)broadcastWaitHandler
 {
@@ -175,7 +169,7 @@
     // setting effect
     for (SpriteObject *sprite in program.objectList)
     {
-//        sprite.spriteManagerDelegate = self;
+        //        sprite.spriteManagerDelegate = self;
         sprite.broadcastWaitDelegate = self.broadcastWaitHandler;
         
         // NOTE: if there are still some runNextAction tasks in a queue
@@ -431,11 +425,12 @@
 {
     [[AudioManager sharedAudioManager] stopAllSounds];
     [[SensorHandler sharedSensorHandler] stopSensors];
-        
+    
     // NOTE: if there are still some runNextAction tasks in a queue
     // then these actions must not be executed because the Scene is not available any more.
     // This problem caused the app to crash sometimes in the past.
     // Now these lines fix this issue.
+    
     for (SpriteObject *sprite in self.program.objectList)
     {
         sprite.broadcastWaitDelegate = nil;
@@ -446,9 +441,9 @@
     
     //Delete sound rec for loudness sensor
     NSError *error;
-
+    
     NSFileManager *fileMgr = [NSFileManager defaultManager];
-
+    
     NSString* documentsPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
     NSString* soundfile = [documentsPath stringByAppendingPathComponent:@"loudness_handler.m4a"];
     if ([fileMgr removeItemAtPath:soundfile error:&error] != YES)
@@ -539,7 +534,6 @@
     Scene *previousScene = (Scene *)self.skView.scene;
     
     self.program = [Program programWithLoadingInfo:[Util programLoadingInfoForProgramWithName:[Util lastProgram]]];
-    [Util setLastProgram:self.program.header.programName];
     previousScene.program = self.program;
     
     if (!self.program) {
