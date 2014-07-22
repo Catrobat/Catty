@@ -259,7 +259,7 @@
     if ([request.URL.absoluteString rangeOfString:@"https://pocketcode.org/download/"].location != NSNotFound) {
         //        [[UIApplication sharedApplication] openURL:url];
         //        return NO;
-        NSLog(@"Download");
+        NSDebug(@"Download");
         NSString *param = nil;
         NSArray *myArray = [request.URL.absoluteString componentsSeparatedByCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@"?"]];
         param = myArray[0];
