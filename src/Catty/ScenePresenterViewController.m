@@ -72,10 +72,35 @@
 @property (nonatomic) CGPoint firstGestureTouchPoint;
 @property (nonatomic) UIImage *snapshotImage;
 @property (nonatomic,strong) UIView *gridView;
+@property (nonatomic, strong) Program* program;
 
 @end
 
 @implementation ScenePresenterViewController
+
+- (id)initWithProgram:(Program *)program
+{
+    if (self = [super init]) {
+        for (SpriteObject *sprite in program.objectList)
+        {
+            //        sprite.spriteManagerDelegate = self;
+            sprite.broadcastWaitDelegate = self.broadcastWaitHandler;
+            
+            // NOTE: if there are still some runNextAction tasks in a queue
+            // then these actions must not be executed because the Scene is not available any more.
+            // This problem caused the app to crash sometimes in the past.
+            // Now these lines fix this issue.
+            for (Script *script in sprite.scriptList) {
+                script.allowRunNextAction = YES;
+                for (Brick *brick in script.brickList) {
+                    brick.object = sprite;
+                }
+            }
+        }
+        _program = program;
+    }
+    return  self;
+}
 
 #pragma mark - ViewController Delegates
 - (void)viewDidLoad
@@ -123,7 +148,7 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    [self.navigationController setNavigationBarHidden:NO animated:animated];
+    self.navigationController.navigationBar.hidden = NO;
     self.menuOpen = NO;
     [[UIApplication sharedApplication] setIdleTimerDisabled:YES];
     [self configureScene];
@@ -134,6 +159,7 @@
 {
     [super viewWillDisappear:animated];
     [self.navigationController setNavigationBarHidden:NO animated:animated];
+    [self.navigationController setToolbarHidden:NO animated:NO];
     [[UIApplication sharedApplication] setIdleTimerDisabled:NO];
     [[UIApplication sharedApplication] setStatusBarHidden:NO];
 }
@@ -162,28 +188,6 @@
         _gridView.hidden = YES;
     }
     return _gridView;
-}
-
-- (void)setProgram:(Program*)program
-{
-    // setting effect
-    for (SpriteObject *sprite in program.objectList)
-    {
-        //        sprite.spriteManagerDelegate = self;
-        sprite.broadcastWaitDelegate = self.broadcastWaitHandler;
-        
-        // NOTE: if there are still some runNextAction tasks in a queue
-        // then these actions must not be executed because the Scene is not available any more.
-        // This problem caused the app to crash sometimes in the past.
-        // Now these lines fix this issue.
-        for (Script *script in sprite.scriptList) {
-            script.allowRunNextAction = YES;
-            for (Brick *brick in script.brickList) {
-                brick.object = sprite;
-            }
-        }
-    }
-    _program = program;
 }
 
 - (SKView *)skView
@@ -405,17 +409,6 @@
 //    [self.view insertSubview:self.gridView aboveSubview:self.skView];
 }
 
-- (void)configureScene
-{
-    CGSize programSize = CGSizeMake(self.program.header.screenWidth.floatValue, self.program.header.screenHeight.floatValue);
-    Scene *scene = [[Scene alloc] initWithSize:programSize andProgram:self.program];
-    scene.name = self.program.header.programName;
-    scene.scaleMode = SKSceneScaleModeFill;
-    self.skView.paused = NO;
-    [self.skView presentScene:scene];
-    [[ProgramManager sharedProgramManager] setProgram:self.program];
-}
-
 - (BOOL)prefersStatusBarHidden
 {
     return YES;
@@ -529,11 +522,20 @@
     self.menuView.frame = CGRectMake(-kWidthSlideMenu-kBounceEffect, 0, self.menuView.frame.size.width, self.menuView.frame.size.height);
 }
 
+- (void)configureScene
+{
+    CGSize programSize = CGSizeMake(self.program.header.screenWidth.floatValue, self.program.header.screenHeight.floatValue);
+    Scene *scene = [[Scene alloc] initWithSize:programSize andProgram:self.program];
+    scene.name = self.program.header.programName;
+    scene.scaleMode = SKSceneScaleModeFill;
+    self.skView.paused = NO;
+    [self.skView presentScene:scene];
+    [[ProgramManager sharedProgramManager] setProgram:self.program];
+}
+
 - (void)restartProgram:(UIButton*)sender
 {
     Scene *previousScene = (Scene *)self.skView.scene;
-    
-    self.program = [Program programWithLoadingInfo:[Util programLoadingInfoForProgramWithName:[Util lastProgram]]];
     previousScene.program = self.program;
     
     if (!self.program) {
@@ -546,7 +548,7 @@
     }
     
     [self.skView presentScene:previousScene];
-    [self continueProgram:nil withDuration:0.25f];
+//    [self continueProgram:nil withDuration:0.25f];
 }
 
 - (void)showHideAxis:(UIButton *)sender

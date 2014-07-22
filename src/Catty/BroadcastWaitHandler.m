@@ -65,7 +65,7 @@
     dispatch_semaphore_t sema;
     sema = dispatch_semaphore_create(sprites.count);
     for (SpriteObject *sprite in sprites) {
-      if ([sprite isKindOfClass:[SpriteObject class]] == NO) {
+      if (![sprite isKindOfClass:[SpriteObject class]]) {
         NSError(@"sprite is not a SpriteObject...abort()");
         } else {
             dispatch_async(broadcastWaitQueue, ^{

@@ -68,7 +68,6 @@ void uncaughtExceptionHandler(NSException *exception)
     if([vc.topViewController isKindOfClass:[ScenePresenterViewController class]]){
         ScenePresenterViewController* spvc = (ScenePresenterViewController*)vc.topViewController;
         [spvc pause];
-        
     }
 }
 

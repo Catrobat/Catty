@@ -218,8 +218,9 @@
 
 - (void)playSceneAction:(id)sender
 {
-    [self.navigationController setToolbarHidden:YES];
-    [self performSegueWithIdentifier:kSegueToScene sender:sender];
+    [self.navigationController setToolbarHidden:YES animated:YES];
+    ScenePresenterViewController *vc =[[ScenePresenterViewController alloc] initWithProgram:self.object.program];
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 #pragma mark - UIViewControllerAnimatedTransitioning delegate
@@ -540,23 +541,6 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
         } else {
             selectButton.selected = NO;
             [self.selectedIndexPaths removeObjectForKey:[self keyWithSelectIndexPath:indexPath]];
-        }
-    }
-}
-
-#pragma mark - segue handling
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    static NSString* toSceneSegueID = kSegueToScene;
-    UIViewController* destController = segue.destinationViewController;
-    if ([sender isKindOfClass:[UIBarButtonItem class]]) {
-        if ([segue.identifier isEqualToString:toSceneSegueID]) {
-            if ([destController isKindOfClass:[ScenePresenterViewController class]]) {
-                ScenePresenterViewController* scvc = (ScenePresenterViewController*) destController;
-                if ([scvc respondsToSelector:@selector(setProgram:)]) {
-                    [scvc performSelector:@selector(setProgram:) withObject:self.object.program];
-                }
-            }
         }
     }
 }

@@ -135,7 +135,8 @@
 - (void)playSceneAction:(id)sender
 {
     [self.navigationController setToolbarHidden:YES animated:YES];
-    [self performSegueWithIdentifier:kSegueToScene sender:sender];
+    ScenePresenterViewController *vc =[[ScenePresenterViewController alloc] initWithProgram:self.program];
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 - (void)editAction:(id)sender
@@ -362,7 +363,6 @@
 {
     // Pass the selected object to the new view controller.
     static NSString *toObjectSegueID = kSegueToObject;
-    static NSString *toSceneSegueID = kSegueToScene;
 
     UIViewController *destController = segue.destinationViewController;
     if ([sender isKindOfClass:[UITableViewCell class]]) {
@@ -374,15 +374,6 @@
                 if ([tvc respondsToSelector:@selector(setObject:)]) {
                     SpriteObject* object = [self.program.objectList objectAtIndex:(kBackgroundObjectIndex + indexPath.section + indexPath.row)];
                     [destController performSelector:@selector(setObject:) withObject:object];
-                }
-            }
-        }
-    } else if ([sender isKindOfClass:[UIBarButtonItem class]]) {
-        if ([segue.identifier isEqualToString:toSceneSegueID]) {
-            if ([destController isKindOfClass:[ScenePresenterViewController class]]) {
-                ScenePresenterViewController* scvc = (ScenePresenterViewController*) destController;
-                if ([scvc respondsToSelector:@selector(setProgram:)]) {
-                    [scvc performSelector:@selector(setProgram:) withObject:self.program];
                 }
             }
         }

@@ -46,17 +46,8 @@
 - (void)willMoveFromView:(SKView *)view
 {
     self.numberOfObjectsWithoutBackground = 0;
-    
-    for (SpriteObject *obj in self.program.objectList) {
-        [self cleanScene:obj];
-    }
-    
-    [self.children enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
-        SKNode *node = obj;
-        [node removeAllActions];
-    }];
-    
     [self removeAllChildren];
+    [self removeAllActions];
 }
 
 - (void)didMoveToView:(SKView *)view
