@@ -20,23 +20,23 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-// Action sheet
-#define kEditProgramsActionSheetTag 1
-#define kEditProgramActionSheetTag 2
-#define kAddLookActionSheetTag 3
-#define kEditLooksActionSheetTag 4
-#define kAddSoundActionSheetTag 5
-#define kEditSoundsActionSheetTag 6
+#import "NSMutableArray+CustomExtensions.h"
 
-// Alert view tags
-#define kAskUserForUniqueNameAlertViewTag 100
-#define kInvalidNameWarningAlertViewTag 101
-#define kNewObjectAlertViewTag 102
-#define kNewImageAlertViewTag 103
-#define kInvalidObjectNameWarningAlertViewTag 104
-#define kNoInternetConnection 105
+@implementation NSMutableArray (CustomExtensions)
 
-#define kConfirmAlertViewTag 200
+- (void)removeString:(NSString*)string
+{
+    NSMutableArray *stringsToRemove = [NSMutableArray array];
+    for (id stringObject in self) {
+        if (! [stringObject isKindOfClass:[NSString class]]) {
+            continue;
+        }
+        NSString *compareString = (NSString*)stringObject;
+        if ([compareString isEqualToString:string]) {
+            [stringsToRemove addObject:compareString];
+        }
+    }
+    [self removeObjectsInArray:stringsToRemove];
+}
 
-// Alert view button indexes
-#define kAlertViewButtonOK 1
+@end

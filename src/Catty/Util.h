@@ -102,11 +102,34 @@
 
 + (CATransition*)getPushCATransition;
 
-+ (ProgramLoadingInfo*) programLoadingInfoForProgramWithName:(NSString*)program;
++ (ProgramLoadingInfo*)programLoadingInfoForProgramWithName:(NSString*)program;
 
 + (NSString*)lastProgram;
 
 + (void)setLastProgram:(NSString*)visibleName;
+
++ (void)askUserForUniqueNameAndPerformAction:(SEL)action
+                                      target:(id)target
+                                 promptTitle:(NSString*)title
+                               promptMessage:(NSString*)message
+                                 promptValue:(NSString*)value
+                           promptPlaceholder:(NSString*)placeholder
+                              maxInputLength:(NSUInteger)maxInputLength
+                         blockedCharacterSet:(NSCharacterSet*)blockedCharacterSet
+                    invalidInputAlertMessage:(NSString*)invalidInputAlertMessage
+                               existingNames:(NSArray*)existingNames;
+
++ (void)askUserForUniqueNameAndPerformAction:(SEL)action
+                                      target:(id)target
+                                  withObject:(id)passingObject
+                                 promptTitle:(NSString*)title
+                               promptMessage:(NSString*)message
+                                 promptValue:(NSString*)value
+                           promptPlaceholder:(NSString*)placeholder
+                              maxInputLength:(NSUInteger)maxInputLength
+                         blockedCharacterSet:(NSCharacterSet*)blockedCharacterSet
+                    invalidInputAlertMessage:(NSString*)invalidInputAlertMessage
+                               existingNames:(NSArray*)existingNames;
 
 + (NSString*)uniqueName:(NSString*)nameToCheck existingNames:(NSArray*)existingNames;
 

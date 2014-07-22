@@ -25,10 +25,9 @@
 
 @interface DataTransferMessage : NSObject
 
-@property (nonatomic, readonly) kDataTransferMessageActionType actionType;
+@property (nonatomic, readonly) kDTMActionType actionType;
 @property (nonatomic, strong, readonly) id payload;
 
-+ (DataTransferMessage*)messageForActionType:(kDataTransferMessageActionType)actionType
-                                 withPayload:(id)payload;
++ (DataTransferMessage*)messageForActionType:(kDTMActionType)actionType withPayload:(id)payload;
 
 @end

@@ -51,10 +51,11 @@
 + (void)updateLastModificationTimeForProgramWithName:(NSString*)programName;
 + (instancetype)programWithLoadingInfo:(ProgramLoadingInfo*)loadingInfo;
 + (BOOL)programExists:(NSString *)programName;
-+ (kProgramNameValidationResult)validateProgramName:(NSString*)programName;
 + (void)removeProgramFromDiskWithProgramName:(NSString*)programName;
 + (BOOL)isLastProgram:(NSString*)programName;
 + (void)setLastProgram:(Program*)program;
 + (NSString*)basePath;
++ (NSArray*)allProgramNames;
++ (NSArray*)allProgramLoadingInfos;
 
 @end

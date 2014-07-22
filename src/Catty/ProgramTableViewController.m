@@ -51,6 +51,8 @@
 #import "RuntimeImageCache.h"
 #import "CatrobatActionSheet.h"
 #import "CatrobatAlertView.h"
+#import "DataTransferMessage.h"
+#import "NSMutableArray+CustomExtensions.h"
 
 // TODO: outsource...
 #define kUserDetailsShowDetailsKey @"showDetails"
@@ -138,6 +140,18 @@
               placeholder:kUIAlertViewPlaceholderEnterObjectName
                       tag:kNewObjectAlertViewTag
         textFieldDelegate:self];
+}
+
+- (void)renameProgramActionForProgramWithName:(NSString*)programName
+{
+    if ([programName isEqualToString:self.program.header.programName])
+        return;
+    
+    NSString *oldProgramName = self.program.header.programName;
+    [self.program renameToProgramName:programName];
+    [self.delegate renameOldProgramName:oldProgramName ToNewProgramName:programName];
+    [self.program setAsLastProgram];
+    self.navigationItem.title = self.title = programName;
 }
 
 - (void)playSceneAction:(id)sender
@@ -448,14 +462,19 @@
 
     if (buttonIndex == 1) {
         // Rename button
-        [Util promptWithTitle:kUIAlertViewTitleRenameProgram
-                      message:[NSString stringWithFormat:@"%@:", kUIAlertViewMessageProgramName]
-                     delegate:self
-                  placeholder:kUIAlertViewPlaceholderEnterProgramName
-                          tag:kRenameAlertViewTag
-                        value:((! [self.program.header.programName isEqualToString:kGeneralNewDefaultProgramName])
-                               ? self.program.header.programName : nil)
-            textFieldDelegate:self];
+        NSMutableArray *unavailableNames = [[Program allProgramNames] mutableCopy];
+        [unavailableNames removeString:self.program.header.programName];
+        [Util askUserForUniqueNameAndPerformAction:@selector(renameProgramActionForProgramWithName:)
+                                            target:self
+                                       promptTitle:kUIAlertViewTitleRenameProgram
+                                     promptMessage:[NSString stringWithFormat:@"%@:", kUIAlertViewMessageProgramName]
+                                       promptValue:((! [self.program.header.programName isEqualToString:kGeneralNewDefaultProgramName])
+                                                    ? self.program.header.programName : nil)
+                                 promptPlaceholder:kUIAlertViewPlaceholderEnterProgramName
+                                    maxInputLength:kMaxNumOfProgramNameCharacters
+                               blockedCharacterSet:[self blockedCharacterSet]
+                          invalidInputAlertMessage:kUIAlertViewMessageProgramNameAlreadyExists
+                                     existingNames:unavailableNames];
     } else if (buttonIndex == 2 && [self.program numberOfNormalObjects]) {
         // Delete Objects button
         [self setupEditingToolBar];
@@ -490,30 +509,6 @@
 - (void)alertView:(CatrobatAlertView*)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
     [super alertView:alertView clickedButtonAtIndex:buttonIndex];
-    if (alertView.tag == kRenameAlertViewTag) {
-        NSString *input = [alertView textFieldAtIndex:0].text;
-        if (buttonIndex == kAlertViewButtonOK) {
-            if ([input isEqualToString:self.program.header.programName])
-                return;
-
-            kProgramNameValidationResult validationResult = [Program validateProgramName:input];
-            if (validationResult == kProgramNameValidationResultInvalid) {
-                [Util alertWithText:kUIAlertViewMessageInvalidProgramName
-                           delegate:self
-                                tag:kInvalidProgramNameWarningAlertViewTag];
-            } else if (validationResult == kProgramNameValidationResultAlreadyExists) {
-                [Util alertWithText:kUIAlertViewMessageProgramNameAlreadyExists
-                           delegate:self
-                                tag:kInvalidProgramNameWarningAlertViewTag];
-            } else if (validationResult == kProgramNameValidationResultOK) {
-                NSString *oldProgramName = self.program.header.programName;
-                [self.program renameToProgramName:input];
-                [self.delegate renameOldProgramName:oldProgramName ToNewProgramName:input];
-                [self.program setAsLastProgram];
-                self.navigationItem.title = self.title = input;
-            }
-        }
-    }
     if (alertView.tag == kNewObjectAlertViewTag) {
         NSString* input = [alertView textFieldAtIndex:0].text;
         if (buttonIndex != kAlertViewButtonOK) {
@@ -528,19 +523,6 @@
         [self.program addNewObjectWithName:input];
         [self.tableView reloadSections:[NSIndexSet indexSetWithIndexesInRange:NSMakeRange(1, 1)]
                       withRowAnimation:UITableViewRowAnimationNone];
-    }
-    if (alertView.tag == kInvalidProgramNameWarningAlertViewTag) {
-        // title of cancel button is "OK"
-        if (buttonIndex == 0) {
-            [Util promptWithTitle:kUIAlertViewTitleRenameProgram
-                          message:[NSString stringWithFormat:@"%@:", kUIAlertViewMessageProgramName]
-                         delegate:self
-                      placeholder:kUIAlertViewPlaceholderEnterProgramName
-                              tag:kRenameAlertViewTag
-                            value:((! [self.program.header.programName isEqualToString:kGeneralNewDefaultProgramName])
-                                   ? self.program.header.programName : nil)
-                textFieldDelegate:self];
-        }
     }
 }
 

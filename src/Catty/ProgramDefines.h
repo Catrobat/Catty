@@ -48,15 +48,19 @@
 #define kObjectSectionIndex 1
 #define kObjectIndex 0
 
-typedef NS_ENUM(NSUInteger, kProgramNameValidationResult) {
-    kProgramNameValidationResultOK = 0,
-    kProgramNameValidationResultInvalid = 1,
-    kProgramNameValidationResultAlreadyExists = 2
+typedef NS_ENUM(NSUInteger, kDTMActionType) {
+    kDTMActionAskUserForUniqueName = 0,
+    kDTMActionCopyProgram = 0,
+    kDTMActionNewProgram = 1
 };
 
-typedef NS_ENUM(NSUInteger, kDataTransferMessageActionType) {
-    kDataTransferMessageActionCopy = 0
-};
-
-#define kDataTransferPayloadProgramLoadingInfo @"payloadProgramLoadingInfo"
-#define kDataTransferPayloadNewProgramName @"newProgramName"
+#define kDTPayloadProgramLoadingInfo @"DTPayloadProgramLoadingInfo"
+#define kDTPayloadAskUserAction @"DTPayloadAskUserAction"
+#define kDTPayloadAskUserTarget @"DTPayloadAskUserTarget"
+#define kDTPayloadAskUserObject @"DTPayloadAskUserObject"
+#define kDTPayloadAskUserPromptTitle @"DTPayloadAskUserPromptTitle"
+#define kDTPayloadAskUserPromptMessage @"DTPayloadAskUserPromptMessage"
+#define kDTPayloadAskUserPromptValue @"DTPayloadAskUserPromptValue"
+#define kDTPayloadAskUserPromptPlaceholder @"DTPayloadAskUserPromptPlaceholder"
+#define kDTPayloadAskUserInvalidInputAlertMessage @"DTPayloadAskUserInvalidInputAlertMessage"
+#define kDTPayloadAskUserExistingNames @"DTPayloadAskUserExistingNames"

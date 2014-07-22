@@ -46,6 +46,7 @@
 #import "CatrobatActionSheet.h"
 #import "CatrobatAlertView.h"
 #import "DataTransferMessage.h"
+#import "NSMutableArray+CustomExtensions.h"
 
 // TODO: outsource...
 #define kUserDetailsShowDetailsKey @"showDetails"
@@ -55,7 +56,6 @@
 @interface MyProgramsViewController () <CatrobatActionSheetDelegate, ProgramUpdateDelegate,
                                         CatrobatAlertViewDelegate, UITextFieldDelegate,
                                         SWTableViewCellDelegate>
-@property (nonatomic, strong) NSCharacterSet *blockedCharacterSet;
 @property (nonatomic) BOOL useDetailCells;
 @property (nonatomic, strong) NSMutableDictionary *dataCache;
 @property (nonatomic, strong) NSMutableArray *programLoadingInfos;
@@ -66,14 +66,6 @@
 @implementation MyProgramsViewController
 
 #pragma mark - getters and setters
-- (NSCharacterSet*)blockedCharacterSet
-{
-    if (! _blockedCharacterSet) {
-        _blockedCharacterSet = [[NSCharacterSet characterSetWithCharactersInString:kTextFieldAllowedCharacters] invertedSet];
-    }
-    return _blockedCharacterSet;
-}
-
 - (NSMutableDictionary*)dataCache
 {
     if (! _dataCache) {
@@ -97,7 +89,7 @@
     NSNumber *showDetailsProgramsValue = (NSNumber*)[showDetails objectForKey:kUserDetailsShowDetailsProgramsKey];
     self.useDetailCells = [showDetailsProgramsValue boolValue];
     self.navigationController.title = self.title = kUIViewControllerTitlePrograms;
-    [self loadPrograms];
+    self.programLoadingInfos = [[Program allProgramLoadingInfos] mutableCopy];
     [self initNavigationBar];
 
     self.dataCache = nil;
@@ -152,9 +144,25 @@
 
 - (void)addProgramAction:(id)sender
 {
-    static NSString *segueToNewProgram = kSegueToNewProgram;
-    if ([self shouldPerformSegueWithIdentifier:segueToNewProgram sender:self]) {
-        [self performSegueWithIdentifier:segueToNewProgram sender:sender];
+    [Util askUserForUniqueNameAndPerformAction:@selector(addProgramAndSegueToItActionForProgramWithName:)
+                                        target:self
+                                   promptTitle:kUIAlertViewTitleNewProgram
+                                 promptMessage:[NSString stringWithFormat:@"%@:", kUIAlertViewMessageProgramName]
+                                   promptValue:nil
+                             promptPlaceholder:kUIAlertViewPlaceholderEnterProgramName
+                                maxInputLength:kMaxNumOfProgramNameCharacters
+                           blockedCharacterSet:[self blockedCharacterSet]
+                      invalidInputAlertMessage:kUIAlertViewMessageProgramNameAlreadyExists
+                                 existingNames:[Program allProgramNames]];
+}
+
+- (void)addProgramAndSegueToItActionForProgramWithName:(NSString*)programName
+{
+    static NSString *segueToNewProgramIdentifier = kSegueToNewProgram;
+    self.defaultProgram = [Program defaultProgramWithName:programName];
+    if ([self shouldPerformSegueWithIdentifier:segueToNewProgramIdentifier sender:self]) {
+        [self addProgram:programName];
+        [self performSegueWithIdentifier:segueToNewProgramIdentifier sender:self];
     }
 }
 
@@ -354,15 +362,7 @@
             return NO;
         }
     } else if ([identifier isEqualToString:segueToNewProgram]) {
-        // if there is no program name, abort performing this segue and ask user for program name
-        // after user entered a valid program name this segue will be called again and accepted
         if (! self.defaultProgram) {
-            [Util promptWithTitle:kUIAlertViewTitleNewProgram
-                          message:[NSString stringWithFormat:@"%@:", kUIAlertViewMessageProgramName]
-                         delegate:self
-                      placeholder:kUIAlertViewPlaceholderEnterProgramName
-                              tag:kNewProgramAlertViewTag
-                textFieldDelegate:self];
             return NO;
         }
         return YES;
@@ -411,11 +411,9 @@
                                                                   tag:kEditProgramActionSheetTag
                                                                  view:self.navigationController.view];
         NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
-        NSMutableDictionary *payload = [NSMutableDictionary dictionary];
-        [payload setObject:[self.programLoadingInfos objectAtIndex:indexPath.row]
-                    forKey:kDataTransferPayloadProgramLoadingInfo];
-        DataTransferMessage *message = [DataTransferMessage messageForActionType:kDataTransferMessageActionCopy
-                                                                     withPayload:payload];
+        NSDictionary *payload = @{ kDTPayloadProgramLoadingInfo : [self.programLoadingInfos objectAtIndex:indexPath.row] };
+        DataTransferMessage *message = [DataTransferMessage messageForActionType:kDTMActionCopyProgram
+                                                                     withPayload:[payload mutableCopy]];
         actionSheet.dataTransferMessage = message;
     } else if (index == 1) {
         // Delete button was pressed
@@ -432,15 +430,6 @@
 - (BOOL)swipeableTableViewCellShouldHideUtilityButtonsOnSwipe:(SWTableViewCell *)cell
 {
     return YES;
-}
-
-#pragma mark - text field delegates
-- (BOOL)textField:(UITextField*)field shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString*)characters
-{
-    if ([characters length] > kMaxNumOfProgramNameCharacters) {
-        return false;
-    }
-    return ([characters rangeOfCharacterFromSet:self.blockedCharacterSet].location == NSNotFound);
 }
 
 #pragma mark - action sheet delegates
@@ -471,21 +460,36 @@
     } else if (actionSheet.tag == kEditProgramActionSheetTag) {
         if (buttonIndex == 0) {
             // Copy button
-            if (! actionSheet.dataTransferMessage) {
-                return;
-            }
             NSDictionary *payload = (NSDictionary*)actionSheet.dataTransferMessage.payload;
-            ProgramLoadingInfo *info = (ProgramLoadingInfo*)payload[kDataTransferPayloadProgramLoadingInfo];
-            CatrobatAlertView *alertView = [Util promptWithTitle:kUIAlertViewTitleCopyProgram
-                                                              message:kUIAlertViewMessageProgramName
-                                                             delegate:self
-                                                          placeholder:kUIAlertViewPlaceholderEnterProgramName
-                                                                  tag:kCopyProgramAlertViewTag
-                                                                value:info.visibleName
-                                                    textFieldDelegate:self];
-            alertView.dataTransferMessage = actionSheet.dataTransferMessage;
+            ProgramLoadingInfo *info = (ProgramLoadingInfo*)payload[kDTPayloadProgramLoadingInfo];
+            [Util askUserForUniqueNameAndPerformAction:@selector(copyProgramActionForProgramWithName:sourceProgramLoadingInfo:)
+                                                target:self
+                                            withObject:info
+                                           promptTitle:kUIAlertViewTitleCopyProgram
+                                         promptMessage:[NSString stringWithFormat:@"%@:", kUIAlertViewMessageProgramName]
+                                           promptValue:info.visibleName
+                                     promptPlaceholder:kUIAlertViewPlaceholderEnterProgramName
+                                        maxInputLength:kMaxNumOfProgramNameCharacters
+                                   blockedCharacterSet:[self blockedCharacterSet]
+                              invalidInputAlertMessage:kUIAlertViewMessageProgramNameAlreadyExists
+                                         existingNames:[Program allProgramNames]];
         } else if (buttonIndex == 1) {
             // Rename button
+            NSDictionary *payload = (NSDictionary*)actionSheet.dataTransferMessage.payload;
+            ProgramLoadingInfo *info = (ProgramLoadingInfo*)payload[kDTPayloadProgramLoadingInfo];
+            NSMutableArray *unavailableNames = [[Program allProgramNames] mutableCopy];
+            [unavailableNames removeString:info.visibleName];
+            [Util askUserForUniqueNameAndPerformAction:@selector(renameProgramActionForProgramWithName:sourceProgramLoadingInfo:)
+                                                target:self
+                                            withObject:info
+                                           promptTitle:kUIAlertViewTitleRenameProgram
+                                         promptMessage:[NSString stringWithFormat:@"%@:", kUIAlertViewMessageProgramName]
+                                           promptValue:info.visibleName
+                                     promptPlaceholder:kUIAlertViewPlaceholderEnterProgramName
+                                        maxInputLength:kMaxNumOfProgramNameCharacters
+                                   blockedCharacterSet:[self blockedCharacterSet]
+                              invalidInputAlertMessage:kUIAlertViewMessageProgramNameAlreadyExists
+                                         existingNames:unavailableNames];
         } else if (buttonIndex == 2) {
             // Description button
         } else if (buttonIndex == 3) {
@@ -494,109 +498,30 @@
     }
 }
 
-#pragma mark - alert view handlers
-- (void)alertView:(CatrobatAlertView*)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+- (void)copyProgramActionForProgramWithName:(NSString*)programName
+                   sourceProgramLoadingInfo:(ProgramLoadingInfo*)sourceProgramLoadingInfo
 {
-    static NSString *segueToNewProgramIdentifier = kSegueToNewProgram;
-    if (alertView.tag == kNewProgramAlertViewTag) {
-        NSString *input = [alertView textFieldAtIndex:0].text;
-        if ((buttonIndex == alertView.cancelButtonIndex) || (buttonIndex != kAlertViewButtonOK)) {
-            return;
-        }
-        kProgramNameValidationResult validationResult = [Program validateProgramName:input];
-        if (validationResult == kProgramNameValidationResultInvalid) {
-            [Util alertWithText:kUIAlertViewMessageInvalidProgramName
-                       delegate:self
-                            tag:kInvalidProgramNameWarningAlertViewTag];
-        } else if (validationResult == kProgramNameValidationResultAlreadyExists) {
-            [Util alertWithText:kUIAlertViewMessageProgramNameAlreadyExists
-                       delegate:self
-                            tag:kInvalidProgramNameWarningAlertViewTag];
-        } else if (validationResult == kProgramNameValidationResultOK) {
-            self.defaultProgram = [Program defaultProgramWithName:input];
-            if ([self shouldPerformSegueWithIdentifier:segueToNewProgramIdentifier sender:self]) {
-                [self addProgram:input];
-                [self performSegueWithIdentifier:segueToNewProgramIdentifier sender:self];
-            }
-        }
-    } else if (alertView.tag == kInvalidProgramNameWarningAlertViewTag) {
-        // title of cancel button is "OK"
-        if (buttonIndex == alertView.cancelButtonIndex) {
-            // determine whether name conflict with new program or copied program occured
-            // => therefore check if the alertView object contains a valid dataTransferMessage
-            if (! alertView.dataTransferMessage) {
-                [Util promptWithTitle:kUIAlertViewTitleNewProgram
-                              message:kUIAlertViewMessageProgramName
-                             delegate:self
-                          placeholder:kUIAlertViewPlaceholderEnterProgramName
-                                  tag:kNewProgramAlertViewTag
-                    textFieldDelegate:self];
-            } else {
-                CatrobatAlertView *newAlertView = [Util promptWithTitle:kUIAlertViewTitleCopyProgram
-                                                                message:kUIAlertViewMessageProgramName
-                                                               delegate:self
-                                                            placeholder:kUIAlertViewPlaceholderEnterProgramName
-                                                                    tag:kCopyProgramAlertViewTag
-                                                                  value:((NSDictionary*)alertView.dataTransferMessage.payload)[kDataTransferPayloadNewProgramName]
-                                                      textFieldDelegate:self];
-                newAlertView.dataTransferMessage = alertView.dataTransferMessage;
-            }
-        }
-    } else if (alertView.tag == kCopyProgramAlertViewTag) {
-        if ((buttonIndex == alertView.cancelButtonIndex) || (buttonIndex != kAlertViewButtonOK)) {
-            return;
-        }
-        NSString *input = [alertView textFieldAtIndex:0].text;
-        kProgramNameValidationResult validationResult = [Program validateProgramName:input];
-        if (validationResult == kProgramNameValidationResultInvalid) {
-            CatrobatAlertView *newAlertView = [Util alertWithText:kUIAlertViewMessageInvalidProgramName
-                                                         delegate:self
-                                                              tag:kInvalidProgramNameWarningAlertViewTag];
-            NSMutableDictionary *payload = (NSMutableDictionary*)alertView.dataTransferMessage.payload;
-            [payload setObject:input forKey:kDataTransferPayloadNewProgramName];
-            newAlertView.dataTransferMessage = alertView.dataTransferMessage;
-        } else if (validationResult == kProgramNameValidationResultAlreadyExists) {
-            CatrobatAlertView *newAlertView = [Util alertWithText:kUIAlertViewMessageProgramNameAlreadyExists
-                                                         delegate:self
-                                                              tag:kInvalidProgramNameWarningAlertViewTag];
-            NSMutableDictionary *payload = (NSMutableDictionary*)alertView.dataTransferMessage.payload;
-            [payload setObject:input forKey:kDataTransferPayloadNewProgramName];
-            newAlertView.dataTransferMessage = alertView.dataTransferMessage;
-        } else if (validationResult == kProgramNameValidationResultOK) {
-            if (! alertView.dataTransferMessage.payload) {
-                return;
-            }
-            NSDictionary *payload = (NSDictionary*)alertView.dataTransferMessage.payload;
-            ProgramLoadingInfo *sourceProgramLoadingInfo = (ProgramLoadingInfo*)payload[kDataTransferPayloadProgramLoadingInfo];
-            [self copyProgram:input sourceProgramLoadingInfo:sourceProgramLoadingInfo];
-        }
-    } else {
-        [super alertView:alertView clickedButtonAtIndex:buttonIndex];
+    ProgramLoadingInfo *destinationProgramLoadingInfo = [self addProgram:programName];
+    if (! destinationProgramLoadingInfo) {
+        return;
     }
+    AppDelegate *appDelegate = (AppDelegate*)[UIApplication sharedApplication].delegate;
+    [appDelegate.fileManager copyExistingDirectoryAtPath:sourceProgramLoadingInfo.basePath
+                                                  toPath:destinationProgramLoadingInfo.basePath];
+    [self.dataCache removeObjectForKey:destinationProgramLoadingInfo.visibleName];
+    Program *program = [Program programWithLoadingInfo:destinationProgramLoadingInfo];
+    program.header.programName = destinationProgramLoadingInfo.visibleName;
+    [program saveToDisk];
+    [self.tableView reloadData];
+}
+
+- (void)renameProgramActionForProgramWithName:(NSString*)programName
+                     sourceProgramLoadingInfo:(ProgramLoadingInfo*)programLoadingInfo
+{
+    [self renameOldProgramName:programLoadingInfo.visibleName ToNewProgramName:programName];
 }
 
 #pragma mark - program handling
-- (void)loadPrograms
-{
-    NSString *basePath = [Program basePath];
-    NSError *error;
-    NSArray *programLoadingInfos = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:basePath error:&error];
-    NSLogError(error);
-
-    self.programLoadingInfos = [[NSMutableArray alloc] initWithCapacity:[programLoadingInfos count]];
-    for (NSString *programLoadingInfo in programLoadingInfos) {
-        // exclude .DS_Store folder on MACOSX simulator
-        if ([programLoadingInfo isEqualToString:@".DS_Store"])
-            continue;
-
-        ProgramLoadingInfo *info = [[ProgramLoadingInfo alloc] init];
-        info.basePath = [NSString stringWithFormat:@"%@%@/", basePath, programLoadingInfo];
-        info.visibleName = programLoadingInfo;
-        NSDebug(@"Adding loaded program: %@", info.basePath);
-        [self.programLoadingInfos addObject:info];
-    }
-}
-
 - (ProgramLoadingInfo*)addProgram:(NSString*)programName
 {
     NSString *basePath = [Program basePath];
@@ -626,24 +551,6 @@
     return programLoadingInfo;
 }
 
-- (ProgramLoadingInfo*)copyProgram:(NSString*)newProgramName
-          sourceProgramLoadingInfo:(ProgramLoadingInfo*)sourceProgramLoadingInfo
-{
-    ProgramLoadingInfo *destinationProgramLoadingInfo = [self addProgram:newProgramName];
-    if (! destinationProgramLoadingInfo) {
-        return nil;
-    }
-    AppDelegate *appDelegate = (AppDelegate*)[UIApplication sharedApplication].delegate;
-    [appDelegate.fileManager copyExistingDirectoryAtPath:sourceProgramLoadingInfo.basePath
-                                                  toPath:destinationProgramLoadingInfo.basePath];
-    [self.dataCache removeObjectForKey:destinationProgramLoadingInfo.visibleName];
-    Program *program = [Program programWithLoadingInfo:destinationProgramLoadingInfo];
-    program.header.programName = destinationProgramLoadingInfo.visibleName;
-    [program saveToDisk];
-    [self.tableView reloadData];
-    return destinationProgramLoadingInfo;
-}
-
 - (void)removeProgram:(NSString*)programName
 {
     NSInteger rowIndex = 0;
@@ -664,7 +571,7 @@
     // if last program was removed [programLoadingInfos count] returns 0,
     // then default program was automatically recreated, therefore reload
     if (! [self.programLoadingInfos count]) {
-        [self loadPrograms];
+        self.programLoadingInfos = [[Program allProgramLoadingInfos] mutableCopy];
         [self.tableView reloadData];
     }
 }
@@ -694,6 +601,16 @@
 }
 
 #pragma mark - helpers
+static NSCharacterSet *blockedCharacterSet = nil;
+- (NSCharacterSet*)blockedCharacterSet
+{
+    if (! blockedCharacterSet) {
+        blockedCharacterSet = [[NSCharacterSet characterSetWithCharactersInString:kTextFieldAllowedCharacters]
+                               invertedSet];
+    }
+    return blockedCharacterSet;
+}
+
 - (void)setupToolBar
 {
     [super setupToolBar];

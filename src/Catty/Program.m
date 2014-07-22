@@ -384,21 +384,48 @@
     [Util setLastProgram:program.header.programName];
 }
 
-+ (kProgramNameValidationResult)validateProgramName:(NSString *)programName
-{
-    // TODO: check, filter and validate program name...
-    if (! [programName length]) {
-        return kProgramNameValidationResultInvalid;
-    }
-    if ([Program programExists:programName]) {
-        return kProgramNameValidationResultAlreadyExists;
-    }
-    return kProgramNameValidationResultOK;
-}
-
 + (NSString*)basePath
 {
     return [NSString stringWithFormat:@"%@/%@/", [Util applicationDocumentsDirectory], kProgramsFolder];
+}
+
++ (NSArray*)allProgramNames
+{
+    NSString *basePath = [Program basePath];
+    NSError *error;
+    NSArray *subdirectoryNames = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:basePath error:&error];
+    NSLogError(error);
+
+    NSMutableArray *programNames = [[NSMutableArray alloc] initWithCapacity:[subdirectoryNames count]];
+    for (NSString *subdirectoryName in subdirectoryNames) {
+        // exclude .DS_Store folder on MACOSX simulator
+        if ([subdirectoryName isEqualToString:@".DS_Store"])
+            continue;
+        [programNames addObject:subdirectoryName];
+    }
+    return [programNames copy];
+}
+
++ (NSArray*)allProgramLoadingInfos
+{
+    NSString *basePath = [Program basePath];
+    NSError *error;
+    NSArray *subdirectoryNames = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:basePath error:&error];
+    NSLogError(error);
+
+    NSMutableArray *programLoadingInfos = [[NSMutableArray alloc] initWithCapacity:[subdirectoryNames count]];
+    for (NSString *subdirectoryName in subdirectoryNames) {
+        // exclude .DS_Store folder on MACOSX simulator
+        if ([subdirectoryName isEqualToString:@".DS_Store"])
+            continue;
+
+        ProgramLoadingInfo *info = [[ProgramLoadingInfo alloc] init];
+        info.basePath = [NSString stringWithFormat:@"%@%@/", basePath, subdirectoryName];
+        info.visibleName = subdirectoryName;
+        NSDebug(@"Adding loaded program: %@", info.basePath);
+        [programLoadingInfos addObject:info];
+    }
+    return [programLoadingInfos copy];
 }
 
 @end

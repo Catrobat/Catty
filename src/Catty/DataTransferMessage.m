@@ -24,15 +24,14 @@
 
 @interface DataTransferMessage ()
 
-@property (nonatomic, readwrite) kDataTransferMessageActionType actionType;
+@property (nonatomic, readwrite) kDTMActionType actionType;
 @property (nonatomic, strong, readwrite) id payload;
 
 @end
 
 @implementation DataTransferMessage
 
-+ (DataTransferMessage*)messageForActionType:(kDataTransferMessageActionType)actionType
-                                 withPayload:(id)payload
++ (DataTransferMessage*)messageForActionType:(kDTMActionType)actionType withPayload:(id)payload
 {
     DataTransferMessage *dataTransferMessage = [[DataTransferMessage alloc] init];
     dataTransferMessage.actionType = actionType;

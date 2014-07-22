@@ -162,6 +162,7 @@
 		CA1B80291971AA1700D8E79B /* SharkfoodMuteSwitchDetector.m in Sources */ = {isa = PBXBuildFile; fileRef = CA1B80281971AA1700D8E79B /* SharkfoodMuteSwitchDetector.m */; };
 		CA1B802C1971ADBB00D8E79B /* IMPORTANT.caf in Resources */ = {isa = PBXBuildFile; fileRef = CA1B802B1971ACE300D8E79B /* IMPORTANT.caf */; };
 		CA2F7CAE18F61BA000A5C021 /* NSString+FastImageSize.m in Sources */ = {isa = PBXBuildFile; fileRef = CA2F7CAD18F61BA000A5C021 /* NSString+FastImageSize.m */; };
+		CA3BFA5C197F0DD300DA86C9 /* NSMutableArray+CustomExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = CA3BFA5B197F0DD300DA86C9 /* NSMutableArray+CustomExtensions.m */; };
 		CA43DD361809976900F95B88 /* UIImageView+CatrobatUIImageViewExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = CA43DD351809976900F95B88 /* UIImageView+CatrobatUIImageViewExtensions.m */; };
 		CA52403618AD782600052914 /* ProgramTableViewControllerExistingProgramsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = CA52403518AD782600052914 /* ProgramTableViewControllerExistingProgramsTests.m */; };
 		CA5FED5018B0070300A517B6 /* BrickCellInlineView.m in Sources */ = {isa = PBXBuildFile; fileRef = CA5FED4F18B0070300A517B6 /* BrickCellInlineView.m */; };
@@ -600,6 +601,8 @@
 		CA1B802B1971ACE300D8E79B /* IMPORTANT.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = IMPORTANT.caf; sourceTree = "<group>"; };
 		CA2F7CAC18F61BA000A5C021 /* NSString+FastImageSize.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+FastImageSize.h"; sourceTree = "<group>"; };
 		CA2F7CAD18F61BA000A5C021 /* NSString+FastImageSize.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+FastImageSize.m"; sourceTree = "<group>"; };
+		CA3BFA5A197F0D0900DA86C9 /* NSMutableArray+CustomExtensions.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSMutableArray+CustomExtensions.h"; sourceTree = "<group>"; };
+		CA3BFA5B197F0DD300DA86C9 /* NSMutableArray+CustomExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableArray+CustomExtensions.m"; sourceTree = "<group>"; };
 		CA43DD341809976900F95B88 /* UIImageView+CatrobatUIImageViewExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImageView+CatrobatUIImageViewExtensions.h"; sourceTree = "<group>"; };
 		CA43DD351809976900F95B88 /* UIImageView+CatrobatUIImageViewExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+CatrobatUIImageViewExtensions.m"; sourceTree = "<group>"; };
 		CA52403518AD782600052914 /* ProgramTableViewControllerExistingProgramsTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProgramTableViewControllerExistingProgramsTests.m; sourceTree = "<group>"; };
@@ -1608,6 +1611,7 @@
 		B4D940BC170EC670003DDBFA /* CustomExtensions */ = {
 			isa = PBXGroup;
 			children = (
+				CA3BFA59197F0CDD00DA86C9 /* NSMutableArray+CustomExtensions */,
 				CA727B3C18DF46AA00D1EE13 /* NSData+Hashes */,
 				CA79A11B182D8A4E00618283 /* GDataXMLNode+PrettyFormatterExtensions */,
 				B4BCF429170ED448008EDF3A /* CAGradientLayer+CatrobatCAGradientExtensions */,
@@ -1943,6 +1947,15 @@
 				CA2F7CAD18F61BA000A5C021 /* NSString+FastImageSize.m */,
 			);
 			name = "NSString+FastImageSize";
+			sourceTree = "<group>";
+		};
+		CA3BFA59197F0CDD00DA86C9 /* NSMutableArray+CustomExtensions */ = {
+			isa = PBXGroup;
+			children = (
+				CA3BFA5A197F0D0900DA86C9 /* NSMutableArray+CustomExtensions.h */,
+				CA3BFA5B197F0DD300DA86C9 /* NSMutableArray+CustomExtensions.m */,
+			);
+			name = "NSMutableArray+CustomExtensions";
 			sourceTree = "<group>";
 		};
 		CA43DD371809977A00F95B88 /* UIImageView+CatrobatUIImageViewExtensions */ = {
@@ -3061,6 +3074,7 @@
 				CA75C28318A9622700FC8C2F /* SetLookBrickCell.m in Sources */,
 				CA68820E180B39D0008A7C99 /* ColoredCell.m in Sources */,
 				CA88202F192E581800E5D515 /* SWCellScrollView.m in Sources */,
+				CA3BFA5C197F0DD300DA86C9 /* NSMutableArray+CustomExtensions.m in Sources */,
 				CD0CCFD1170CB39700B70036 /* StopAllSoundsBrick.m in Sources */,
 				CA75C29518A9624F00FC8C2F /* SetGhostEffectBrickCell.m in Sources */,
 				CA75C23218A9613A00FC8C2F /* BroadcastBrickCell.m in Sources */,

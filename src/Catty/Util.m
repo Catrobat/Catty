@@ -29,6 +29,12 @@
 #import "CatrobatAlertView.h"
 #import "CatrobatActionSheet.h"
 #import "UIColor+CatrobatUIColorExtensions.h"
+#import "ActionSheetAlertViewTags.h"
+#import "DataTransferMessage.h"
+
+@interface Util () <CatrobatAlertViewDelegate, UITextFieldDelegate>
+
+@end
 
 @implementation Util
 
@@ -276,6 +282,67 @@
     [userDefaults synchronize];
 }
 
++ (void)askUserForUniqueNameAndPerformAction:(SEL)action
+                                      target:(id)target
+                                 promptTitle:(NSString*)title
+                               promptMessage:(NSString*)message
+                                 promptValue:(NSString*)value
+                           promptPlaceholder:(NSString*)placeholder
+                              maxInputLength:(NSUInteger)maxInputLength
+                         blockedCharacterSet:(NSCharacterSet*)blockedCharacterSet
+                    invalidInputAlertMessage:(NSString*)invalidInputAlertMessage
+                               existingNames:(NSArray*)existingNames
+{
+    [self askUserForUniqueNameAndPerformAction:action
+                                        target:target
+                                    withObject:nil
+                                   promptTitle:title
+                                 promptMessage:message
+                                   promptValue:value
+                             promptPlaceholder:placeholder
+                                maxInputLength:maxInputLength
+                           blockedCharacterSet:blockedCharacterSet
+                      invalidInputAlertMessage:invalidInputAlertMessage
+                                 existingNames:existingNames];
+}
+
++ (void)askUserForUniqueNameAndPerformAction:(SEL)action
+                                      target:(id)target
+                                  withObject:(id)passingObject
+                                 promptTitle:(NSString*)title
+                               promptMessage:(NSString*)message
+                                 promptValue:(NSString*)value
+                           promptPlaceholder:(NSString*)placeholder
+                              maxInputLength:(NSUInteger)maxInputLength
+                         blockedCharacterSet:(NSCharacterSet*)blockedCharacterSet
+                    invalidInputAlertMessage:(NSString*)invalidInputAlertMessage
+                               existingNames:(NSArray*)existingNames;
+{
+    textFieldMaxInputLength = maxInputLength;
+    textFieldBlockedCharacterSet = blockedCharacterSet;
+
+    NSDictionary *payload = @{
+        kDTPayloadAskUserAction : [NSValue valueWithPointer:action],
+        kDTPayloadAskUserTarget : target,
+        kDTPayloadAskUserObject : (passingObject ? passingObject : [NSNull null]),
+        kDTPayloadAskUserPromptTitle : title,
+        kDTPayloadAskUserPromptMessage : message,
+        kDTPayloadAskUserPromptValue : (value ? value : [NSNull null]),
+        kDTPayloadAskUserPromptPlaceholder : placeholder,
+        kDTPayloadAskUserInvalidInputAlertMessage : invalidInputAlertMessage,
+        kDTPayloadAskUserExistingNames : existingNames
+    };
+    CatrobatAlertView *alertView = [[self class] promptWithTitle:title
+                                                         message:message
+                                                        delegate:(id<CatrobatAlertViewDelegate>)self
+                                                     placeholder:kUIAlertViewPlaceholderEnterProgramName
+                                                             tag:kAskUserForUniqueNameAlertViewTag
+                                                           value:value
+                                               textFieldDelegate:(id<UITextFieldDelegate>)self];
+    alertView.dataTransferMessage = [DataTransferMessage messageForActionType:kDTMActionAskUserForUniqueName
+                                                                  withPayload:[payload mutableCopy]];
+}
+
 + (NSString*)uniqueName:(NSString*)nameToCheck existingNames:(NSArray*)existingNames
 {
     NSString *uniqueName = nameToCheck;
@@ -302,6 +369,87 @@
 + (double)degreeToRadians:(float)deg
 {
     return deg * M_PI / 180.0;
+}
+
+#pragma mark - text field delegates
+static NSCharacterSet *textFieldBlockedCharacterSet = nil;
++ (NSCharacterSet*)textFieldBlockedCharacterSet
+{
+    return textFieldBlockedCharacterSet;
+}
+
+static NSUInteger textFieldMaxInputLength = 0;
++ (NSUInteger)textFieldMaxInputLength
+{
+    return textFieldMaxInputLength;
+}
+
++ (BOOL)textField:(UITextField*)field shouldChangeCharactersInRange:(NSRange)range
+replacementString:(NSString*)characters
+{
+    if ([characters length] > [[self class] textFieldMaxInputLength]) {
+        return false;
+    }
+    return ([characters rangeOfCharacterFromSet:[[self class] textFieldBlockedCharacterSet]].location == NSNotFound);
+}
+
+#pragma mark - alert view delegates
++ (void)alertView:(CatrobatAlertView*)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    NSMutableDictionary *payload = (NSMutableDictionary*)alertView.dataTransferMessage.payload;
+    if (alertView.tag == kAskUserForUniqueNameAlertViewTag) {
+        if ((buttonIndex == alertView.cancelButtonIndex) || (buttonIndex != kAlertViewButtonOK)) {
+            return;
+        }
+
+        NSString *input = [alertView textFieldAtIndex:0].text;
+        NSArray *existingNames = payload[kDTPayloadAskUserExistingNames];
+        BOOL nameAlreadyExists = NO;
+        for (NSString *existingName in existingNames) {
+            if ([existingName isEqualToString:input]) {
+                nameAlreadyExists = YES;
+            }
+        }
+
+        if (nameAlreadyExists) {
+            CatrobatAlertView *newAlertView = [Util alertWithText:payload[kDTPayloadAskUserInvalidInputAlertMessage]
+                                                         delegate:(id<CatrobatAlertViewDelegate>)self
+                                                              tag:kInvalidNameWarningAlertViewTag];
+            payload[kDTPayloadAskUserPromptValue] = input;
+            newAlertView.dataTransferMessage = alertView.dataTransferMessage;
+        } else {
+            // no name duplicate => call action on target
+            SEL action = [((NSValue*)payload[kDTPayloadAskUserAction]) pointerValue];
+            id target = payload[kDTPayloadAskUserTarget];
+            id passingObject = payload[kDTPayloadAskUserObject];
+            if ((! passingObject) || [passingObject isKindOfClass:[NSNull class]]) {
+                if (action) {
+                    IMP imp = [target methodForSelector:action];
+                    void (*func)(id, SEL, id) = (void *)imp;
+                    func(target, action, input);
+                }
+            } else {
+                if (action) {
+                    IMP imp = [target methodForSelector:action];
+                    void (*func)(id, SEL, id, id) = (void *)imp;
+                    func(target, action, input, passingObject);
+                }
+            }
+        }
+    } else if (alertView.tag == kInvalidNameWarningAlertViewTag) {
+        // title of cancel button is "OK"
+        if (buttonIndex == alertView.cancelButtonIndex) {
+            id value = payload[kDTPayloadAskUserPromptValue];
+            CatrobatAlertView *newAlertView = [Util promptWithTitle:payload[kDTPayloadAskUserPromptTitle]
+                                                            message:payload[kDTPayloadAskUserPromptMessage]
+                                                           delegate:(id<CatrobatAlertViewDelegate>)self
+                                                        placeholder:payload[kDTPayloadAskUserPromptPlaceholder]
+                                                                tag:kAskUserForUniqueNameAlertViewTag
+                                                              value:([value isKindOfClass:[NSString class]] ? value : nil)
+                                                  textFieldDelegate:(id<UITextFieldDelegate>)self];
+            newAlertView.dataTransferMessage = alertView.dataTransferMessage;
+        }
+    }
 }
 
 @end

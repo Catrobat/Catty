@@ -253,6 +253,7 @@
 #define kUIAlertViewTitleDeleteSingleSound NSLocalizedString(@"Delete this sound", nil)
 #define kUIAlertViewTitleNotEnoughFreeMemory NSLocalizedString(@"Not enough free memory to download this program. Please delete some of your programs", nil)
 #define kUIAlertViewTitleCopyProgram NSLocalizedString(@"Copy program", nil)
+#define kUIAlertViewTitleRenameProgram NSLocalizedString(@"Rename program", nil)
 
 // placeholder defines
 #define kUIAlertViewPlaceholderEnterProgramName NSLocalizedString(@"Enter your program name here...", @"Placeholder for program-name input field")
