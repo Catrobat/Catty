@@ -41,6 +41,7 @@
         self.uploaded        = [dict valueForKey:@"Uploaded"];
         self.version         = [dict valueForKey:@"Version"];
         self.views           = [dict valueForKey:@"Views"];
+//        self.size            = [dict valueForKey:@"Size"];
         
     }
     
