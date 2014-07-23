@@ -34,9 +34,13 @@
 #define kMinNumOfObjects 0
 #define kDefaultNumOfObjects 1
 #define kBackgroundObjects 1
+#define kMinNumOfProgramNameCharacters 1
 #define kMaxNumOfProgramNameCharacters 20
+#define kMinNumOfObjectNameCharacters 1
 #define kMaxNumOfObjectNameCharacters 20
+#define kMinNumOfLookNameCharacters 1
 #define kMaxNumOfLookNameCharacters 20
+#define kMinNumOfSoundNameCharacters 1
 #define kMaxNumOfSoundNameCharacters 20
 
 #define kDefaultProgramName @"My First Program"
@@ -62,5 +66,6 @@ typedef NS_ENUM(NSUInteger, kDTMActionType) {
 #define kDTPayloadAskUserPromptMessage @"DTPayloadAskUserPromptMessage"
 #define kDTPayloadAskUserPromptValue @"DTPayloadAskUserPromptValue"
 #define kDTPayloadAskUserPromptPlaceholder @"DTPayloadAskUserPromptPlaceholder"
+#define kDTPayloadAskUserMinInputLength @"DTPayloadAskUserMinInputLength"
 #define kDTPayloadAskUserInvalidInputAlertMessage @"DTPayloadAskUserInvalidInputAlertMessage"
 #define kDTPayloadAskUserExistingNames @"DTPayloadAskUserExistingNames"

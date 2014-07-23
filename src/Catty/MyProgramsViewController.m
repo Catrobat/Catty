@@ -150,6 +150,7 @@
                                  promptMessage:[NSString stringWithFormat:@"%@:", kUIAlertViewMessageProgramName]
                                    promptValue:nil
                              promptPlaceholder:kUIAlertViewPlaceholderEnterProgramName
+                                minInputLength:kMinNumOfProgramNameCharacters
                                 maxInputLength:kMaxNumOfProgramNameCharacters
                            blockedCharacterSet:[self blockedCharacterSet]
                       invalidInputAlertMessage:kUIAlertViewMessageProgramNameAlreadyExists
@@ -403,7 +404,7 @@
     if (index == 0) {
         // More button was pressed
         NSArray *options = @[kUIActionSheetButtonTitleCopy, kUIActionSheetButtonTitleRename,
-                             kUIActionSheetButtonTitleDescription, kUIActionSheetButtonTitleUpload];
+                             kUIActionSheetButtonTitleDescription/*, kUIActionSheetButtonTitleUpload*/];
         CatrobatActionSheet *actionSheet = [Util actionSheetWithTitle:kUIActionSheetTitleEditProgramSingular
                                                              delegate:self
                                                destructiveButtonTitle:nil
@@ -469,6 +470,7 @@
                                          promptMessage:[NSString stringWithFormat:@"%@:", kUIAlertViewMessageProgramName]
                                            promptValue:info.visibleName
                                      promptPlaceholder:kUIAlertViewPlaceholderEnterProgramName
+                                        minInputLength:kMinNumOfProgramNameCharacters
                                         maxInputLength:kMaxNumOfProgramNameCharacters
                                    blockedCharacterSet:[self blockedCharacterSet]
                               invalidInputAlertMessage:kUIAlertViewMessageProgramNameAlreadyExists
@@ -486,14 +488,27 @@
                                          promptMessage:[NSString stringWithFormat:@"%@:", kUIAlertViewMessageProgramName]
                                            promptValue:info.visibleName
                                      promptPlaceholder:kUIAlertViewPlaceholderEnterProgramName
+                                        minInputLength:kMinNumOfProgramNameCharacters
                                         maxInputLength:kMaxNumOfProgramNameCharacters
                                    blockedCharacterSet:[self blockedCharacterSet]
                               invalidInputAlertMessage:kUIAlertViewMessageProgramNameAlreadyExists
                                          existingNames:unavailableNames];
         } else if (buttonIndex == 2) {
             // Description button
-        } else if (buttonIndex == 3) {
-            // Upload button
+            NSDictionary *payload = (NSDictionary*)actionSheet.dataTransferMessage.payload;
+            ProgramLoadingInfo *info = (ProgramLoadingInfo*)payload[kDTPayloadProgramLoadingInfo];
+            Program *program = [Program programWithLoadingInfo:info];
+            CatrobatAlertView *alertView = [Util promptWithTitle:kUIAlertViewTitleDescriptionProgram
+                                                         message:kUIAlertViewMessageDescriptionProgram
+                                                        delegate:self
+                                                     placeholder:kUIAlertViewPlaceholderEnterProgramName
+                                                             tag:kAskUserForUniqueNameAlertViewTag
+                                                           value:program.header.description
+                                               textFieldDelegate:self];
+            alertView.dataTransferMessage = [DataTransferMessage messageForActionType:kDTMActionAskUserForUniqueName
+                                                                          withPayload:[payload mutableCopy]];
+//        } else if (buttonIndex == 3) {
+//            // Upload button
         }
     }
 }
@@ -505,20 +520,21 @@
     if (! destinationProgramLoadingInfo) {
         return;
     }
-    AppDelegate *appDelegate = (AppDelegate*)[UIApplication sharedApplication].delegate;
-    [appDelegate.fileManager copyExistingDirectoryAtPath:sourceProgramLoadingInfo.basePath
-                                                  toPath:destinationProgramLoadingInfo.basePath];
+
+    [Program copyProgramWithName:sourceProgramLoadingInfo.visibleName destinationProgramName:programName];
     [self.dataCache removeObjectForKey:destinationProgramLoadingInfo.visibleName];
-    Program *program = [Program programWithLoadingInfo:destinationProgramLoadingInfo];
-    program.header.programName = destinationProgramLoadingInfo.visibleName;
-    [program saveToDisk];
     [self.tableView reloadData];
 }
 
 - (void)renameProgramActionForProgramWithName:(NSString*)programName
                      sourceProgramLoadingInfo:(ProgramLoadingInfo*)programLoadingInfo
 {
-    [self renameOldProgramName:programLoadingInfo.visibleName ToNewProgramName:programName];
+    if ([programName isEqualToString:programLoadingInfo.visibleName])
+        return;
+
+    Program *program = [Program programWithLoadingInfo:programLoadingInfo];
+    [program renameToProgramName:programName];
+    [self renameOldProgramName:programLoadingInfo.visibleName toNewProgramName:programName];
 }
 
 #pragma mark - program handling
@@ -576,7 +592,7 @@
     }
 }
 
-- (void)renameOldProgramName:(NSString*)oldProgramName ToNewProgramName:(NSString*)newProgramName
+- (void)renameOldProgramName:(NSString*)oldProgramName toNewProgramName:(NSString*)newProgramName
 {
     NSInteger rowIndex = 0;
     for (ProgramLoadingInfo *info in self.programLoadingInfos) {

@@ -114,6 +114,7 @@
                                promptMessage:(NSString*)message
                                  promptValue:(NSString*)value
                            promptPlaceholder:(NSString*)placeholder
+                              minInputLength:(NSUInteger)minInputLength
                               maxInputLength:(NSUInteger)maxInputLength
                          blockedCharacterSet:(NSCharacterSet*)blockedCharacterSet
                     invalidInputAlertMessage:(NSString*)invalidInputAlertMessage
@@ -126,6 +127,7 @@
                                promptMessage:(NSString*)message
                                  promptValue:(NSString*)value
                            promptPlaceholder:(NSString*)placeholder
+                              minInputLength:(NSUInteger)minInputLength
                               maxInputLength:(NSUInteger)maxInputLength
                          blockedCharacterSet:(NSCharacterSet*)blockedCharacterSet
                     invalidInputAlertMessage:(NSString*)invalidInputAlertMessage

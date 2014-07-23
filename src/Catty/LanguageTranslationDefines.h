@@ -254,6 +254,7 @@
 #define kUIAlertViewTitleNotEnoughFreeMemory NSLocalizedString(@"Not enough free memory to download this program. Please delete some of your programs", nil)
 #define kUIAlertViewTitleCopyProgram NSLocalizedString(@"Copy program", nil)
 #define kUIAlertViewTitleRenameProgram NSLocalizedString(@"Rename program", nil)
+#define kUIAlertViewTitleDescriptionProgram NSLocalizedString(@"Set description", nil)
 
 // placeholder defines
 #define kUIAlertViewPlaceholderEnterProgramName NSLocalizedString(@"Enter your program name here...", @"Placeholder for program-name input field")
@@ -264,10 +265,11 @@
 #define kUIAlertViewMessageInfoForPocketCode NSLocalizedString(@"Pocket Code for iOS", nil)
 #define kUIAlertViewMessageFeatureComingSoon NSLocalizedString(@"This feature is coming soon!", nil)
 #define kUIAlertViewMessageProgramName NSLocalizedString(@"Program name", nil)
+#define kUIAlertViewMessageDescriptionProgram NSLocalizedString(@"Description", nil)
 #define kUIAlertViewMessageObjectName NSLocalizedString(@"Object name", nil)
 #define kUIAlertViewMessageImageName NSLocalizedString(@"Image name", nil)
 #define kUIAlertViewMessageNoImportedSoundsFound NSLocalizedString(@"No imported sounds found. Please connect your iPhone to your PC/Mac and use iTunes FileSharing to import sound files into the PocketCode app.", nil)
-#define kUIAlertViewMessageInvalidProgramName NSLocalizedString(@"No or invalid program name entered, try again.", nil)
+#define kUIAlertViewMessageInputTooShortMessage NSLocalizedString(@"No input or the input is too short. Please enter at least %lu character(s).", nil)
 #define kUIAlertViewMessageProgramNameAlreadyExists NSLocalizedString(@"A program with the same name already exists, try again.", nil)
 #define kUIAlertViewMessageInvalidObjectName NSLocalizedString(@"No or invalid object name entered, try again.", nil)
 #define kUIAlertViewMessageUnableToLoadProgram NSLocalizedString(@"Unable to load program!", nil)

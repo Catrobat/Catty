@@ -51,6 +51,8 @@
 + (void)updateLastModificationTimeForProgramWithName:(NSString*)programName;
 + (instancetype)programWithLoadingInfo:(ProgramLoadingInfo*)loadingInfo;
 + (BOOL)programExists:(NSString *)programName;
++ (void)copyProgramWithName:(NSString*)sourceProgramName
+     destinationProgramName:(NSString*)destinationProgramName;
 + (void)removeProgramFromDiskWithProgramName:(NSString*)programName;
 + (BOOL)isLastProgram:(NSString*)programName;
 + (void)setLastProgram:(Program*)program;

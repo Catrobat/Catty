@@ -288,6 +288,7 @@
                                promptMessage:(NSString*)message
                                  promptValue:(NSString*)value
                            promptPlaceholder:(NSString*)placeholder
+                              minInputLength:(NSUInteger)minInputLength
                               maxInputLength:(NSUInteger)maxInputLength
                          blockedCharacterSet:(NSCharacterSet*)blockedCharacterSet
                     invalidInputAlertMessage:(NSString*)invalidInputAlertMessage
@@ -300,6 +301,7 @@
                                  promptMessage:message
                                    promptValue:value
                              promptPlaceholder:placeholder
+                                minInputLength:minInputLength
                                 maxInputLength:maxInputLength
                            blockedCharacterSet:blockedCharacterSet
                       invalidInputAlertMessage:invalidInputAlertMessage
@@ -313,6 +315,7 @@
                                promptMessage:(NSString*)message
                                  promptValue:(NSString*)value
                            promptPlaceholder:(NSString*)placeholder
+                              minInputLength:(NSUInteger)minInputLength
                               maxInputLength:(NSUInteger)maxInputLength
                          blockedCharacterSet:(NSCharacterSet*)blockedCharacterSet
                     invalidInputAlertMessage:(NSString*)invalidInputAlertMessage
@@ -329,6 +332,7 @@
         kDTPayloadAskUserPromptMessage : message,
         kDTPayloadAskUserPromptValue : (value ? value : [NSNull null]),
         kDTPayloadAskUserPromptPlaceholder : placeholder,
+        kDTPayloadAskUserMinInputLength : @(minInputLength),
         kDTPayloadAskUserInvalidInputAlertMessage : invalidInputAlertMessage,
         kDTPayloadAskUserExistingNames : existingNames
     };
@@ -411,8 +415,19 @@ replacementString:(NSString*)characters
             }
         }
 
+        NSUInteger textFieldMinInputLength = [payload[kDTPayloadAskUserMinInputLength] unsignedIntegerValue];
         if (nameAlreadyExists) {
             CatrobatAlertView *newAlertView = [Util alertWithText:payload[kDTPayloadAskUserInvalidInputAlertMessage]
+                                                         delegate:(id<CatrobatAlertViewDelegate>)self
+                                                              tag:kInvalidNameWarningAlertViewTag];
+            payload[kDTPayloadAskUserPromptValue] = input;
+            newAlertView.dataTransferMessage = alertView.dataTransferMessage;
+        } else if ([input length] < textFieldMinInputLength) {
+            NSString *alertText = [NSString stringWithFormat:kUIAlertViewMessageInputTooShortMessage,
+                                   textFieldMinInputLength];
+            alertText = ((textFieldMinInputLength != 1) ? [[self class] pluralString:alertText]
+                                                        : [[self class] singularString:alertText]);
+            CatrobatAlertView *newAlertView = [Util alertWithText:alertText
                                                          delegate:(id<CatrobatAlertViewDelegate>)self
                                                               tag:kInvalidNameWarningAlertViewTag];
             payload[kDTPayloadAskUserPromptValue] = input;
@@ -450,6 +465,28 @@ replacementString:(NSString*)characters
             newAlertView.dataTransferMessage = alertView.dataTransferMessage;
         }
     }
+}
+
++ (NSString*)singularString:(NSString*)string
+{
+    NSMutableString *mutableString = [string mutableCopy];
+    NSRegularExpression *regex = [NSRegularExpression
+                                  regularExpressionWithPattern:@"\\(.+?\\)"
+                                  options:NSRegularExpressionCaseInsensitive
+                                  error:NULL];
+    [regex replaceMatchesInString:mutableString
+                          options:0
+                            range:NSMakeRange(0, [mutableString length])
+                     withTemplate:@""];
+    return [[self class] pluralString:mutableString];
+}
+
++ (NSString*)pluralString:(NSString*)string
+{
+    NSMutableString *mutableString = [string mutableCopy];
+    [mutableString stringByReplacingOccurrencesOfString:@"(" withString:@""];
+    [mutableString stringByReplacingOccurrencesOfString:@")" withString:@""];
+    return [mutableString copy];
 }
 
 @end

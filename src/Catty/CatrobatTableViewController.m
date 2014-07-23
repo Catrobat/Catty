@@ -225,6 +225,7 @@ NS_ENUM(NSInteger, ViewControllerIndex) {
                                          promptMessage:[NSString stringWithFormat:@"%@:", kUIAlertViewMessageProgramName]
                                            promptValue:nil
                                      promptPlaceholder:kUIAlertViewPlaceholderEnterProgramName
+                                        minInputLength:kMinNumOfProgramNameCharacters
                                         maxInputLength:kMaxNumOfProgramNameCharacters
                                    blockedCharacterSet:[self blockedCharacterSet]
                               invalidInputAlertMessage:kUIAlertViewMessageProgramNameAlreadyExists

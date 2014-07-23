@@ -195,7 +195,7 @@
     [self showPlayButton];
 }
 
-- (void)renameOldProgramName:(NSString *)oldProgramName ToNewProgramName:(NSString *)newProgramName
+- (void)renameOldProgramName:(NSString *)oldProgramName toNewProgramName:(NSString *)newProgramName
 {
     [self showPlayButton];
 }

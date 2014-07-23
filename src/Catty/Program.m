@@ -58,7 +58,7 @@
     program.header.applicationVersion = [Util getProjectVersion];
     program.header.catrobatLanguageVersion = kCatrobatLanguageVersion;
     program.header.dateTimeUpload = nil;
-    program.header.description = @"XStream kompatibel";
+    program.header.description = nil;
     program.header.deviceName = [Util getDeviceName];
     program.header.mediaLicense = nil;
     program.header.platform = [Util getPlatformName];
@@ -247,6 +247,22 @@
 - (void)removeFromDisk
 {
     [Program removeProgramFromDiskWithProgramName:self.header.programName];
+}
+
++ (void)copyProgramWithName:(NSString*)sourceProgramName
+     destinationProgramName:(NSString*)destinationProgramName
+{
+    NSString *sourceProgramPath = [[self class] projectPathForProgramWithName:sourceProgramName];
+    NSString *destinationProgramPath = [[self class] projectPathForProgramWithName:destinationProgramName];
+
+    AppDelegate *appDelegate = (AppDelegate*)[UIApplication sharedApplication].delegate;
+    [appDelegate.fileManager copyExistingDirectoryAtPath:sourceProgramPath toPath:destinationProgramPath];
+    ProgramLoadingInfo *destinationProgramLoadingInfo = [[ProgramLoadingInfo alloc] init];
+    destinationProgramLoadingInfo.basePath = destinationProgramPath;
+    destinationProgramLoadingInfo.visibleName = destinationProgramName;
+    Program *program = [Program programWithLoadingInfo:destinationProgramLoadingInfo];
+    program.header.programName = destinationProgramLoadingInfo.visibleName;
+    [program saveToDisk];
 }
 
 + (void)removeProgramFromDiskWithProgramName:(NSString*)programName

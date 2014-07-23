@@ -146,10 +146,10 @@
 {
     if ([programName isEqualToString:self.program.header.programName])
         return;
-    
+
     NSString *oldProgramName = self.program.header.programName;
     [self.program renameToProgramName:programName];
-    [self.delegate renameOldProgramName:oldProgramName ToNewProgramName:programName];
+    [self.delegate renameOldProgramName:oldProgramName toNewProgramName:programName];
     [self.program setAsLastProgram];
     self.navigationItem.title = self.title = programName;
 }
@@ -471,6 +471,7 @@
                                        promptValue:((! [self.program.header.programName isEqualToString:kGeneralNewDefaultProgramName])
                                                     ? self.program.header.programName : nil)
                                  promptPlaceholder:kUIAlertViewPlaceholderEnterProgramName
+                                    minInputLength:kMinNumOfProgramNameCharacters
                                     maxInputLength:kMaxNumOfProgramNameCharacters
                                blockedCharacterSet:[self blockedCharacterSet]
                           invalidInputAlertMessage:kUIAlertViewMessageProgramNameAlreadyExists

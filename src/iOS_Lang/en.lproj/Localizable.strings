@@ -293,6 +293,8 @@
 
 "No imported sounds found. Please connect your iPhone to your PC/Mac and use iTunes FileSharing to import sound files into the PocketCode app." = "No imported sounds found. Please connect your iPhone to your PC/Mac and use iTunes FileSharing to import sound files into the PocketCode app.";
 
+"No input or the input is too short. Please enter at least %lu characters." = "No input or the input is too short. Please enter at least %lu characters.";
+
 "No or invalid program name entered, try again." = "No or invalid program name entered, try again.";
 
 "A program with the same name already exists, try again." = "A program with the same name already exists, try again.";
