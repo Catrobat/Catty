@@ -354,6 +354,12 @@
     [self saveToDisk];
 }
 
+- (void)updateDescriptionWithText:(NSString *)descriptionText
+{
+    self.header.description = descriptionText;
+    [self saveToDisk];
+}
+
 #pragma mark - helpers
 - (NSString*)description
 {

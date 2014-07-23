@@ -241,6 +241,10 @@
 
 "Rename program" = "Programm umbenennen";
 
+"Set description" = "Beschreibung";
+
+"Enter your program description here..." = "Geben Sie hier die Beschreibung für das Programm ein...";
+
 "Can't restart program!" = "Program kann nicht neugestartet werden!";
 
 "Screenshot saved to Camera Roll" = "Screenshot wurde in der Bilderbibliothek abgelegt";

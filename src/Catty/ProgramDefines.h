@@ -36,6 +36,8 @@
 #define kBackgroundObjects 1
 #define kMinNumOfProgramNameCharacters 1
 #define kMaxNumOfProgramNameCharacters 20
+#define kMinNumOfProgramDescriptionCharacters 1
+#define kMaxNumOfProgramDescriptionCharacters 400
 #define kMinNumOfObjectNameCharacters 1
 #define kMaxNumOfObjectNameCharacters 20
 #define kMinNumOfLookNameCharacters 1

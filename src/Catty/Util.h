@@ -133,6 +133,29 @@
                     invalidInputAlertMessage:(NSString*)invalidInputAlertMessage
                                existingNames:(NSArray*)existingNames;
 
++ (void)askUserForTextAndPerformAction:(SEL)action
+                                target:(id)target
+                           promptTitle:(NSString*)title
+                         promptMessage:(NSString*)message
+                           promptValue:(NSString*)value
+                     promptPlaceholder:(NSString*)placeholder
+                        minInputLength:(NSUInteger)minInputLength
+                        maxInputLength:(NSUInteger)maxInputLength
+                   blockedCharacterSet:(NSCharacterSet*)blockedCharacterSet
+              invalidInputAlertMessage:(NSString*)invalidInputAlertMessage;
+
++ (void)askUserForTextAndPerformAction:(SEL)action
+                                target:(id)target
+                            withObject:(id)passingObject
+                           promptTitle:(NSString*)title
+                         promptMessage:(NSString*)message
+                           promptValue:(NSString*)value
+                     promptPlaceholder:(NSString*)placeholder
+                        minInputLength:(NSUInteger)minInputLength
+                        maxInputLength:(NSUInteger)maxInputLength
+                   blockedCharacterSet:(NSCharacterSet*)blockedCharacterSet
+              invalidInputAlertMessage:(NSString*)invalidInputAlertMessage;
+
 + (NSString*)uniqueName:(NSString*)nameToCheck existingNames:(NSArray*)existingNames;
 
 + (double)radiansToDegree:(float)rad;

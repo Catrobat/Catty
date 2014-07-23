@@ -237,6 +237,10 @@
 
 "Rename program" = "Rename program";
 
+"Set description" = "Set description";
+
+"Enter your program description here..." = "Enter your program description here...";
+
 "Can't restart program!" = "Can't restart program!";
 
 "Screenshot saved to Camera Roll" = "Screenshot saved to Camera Roll";

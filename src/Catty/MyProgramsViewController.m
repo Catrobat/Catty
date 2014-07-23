@@ -498,15 +498,17 @@
             NSDictionary *payload = (NSDictionary*)actionSheet.dataTransferMessage.payload;
             ProgramLoadingInfo *info = (ProgramLoadingInfo*)payload[kDTPayloadProgramLoadingInfo];
             Program *program = [Program programWithLoadingInfo:info];
-            CatrobatAlertView *alertView = [Util promptWithTitle:kUIAlertViewTitleDescriptionProgram
-                                                         message:kUIAlertViewMessageDescriptionProgram
-                                                        delegate:self
-                                                     placeholder:kUIAlertViewPlaceholderEnterProgramName
-                                                             tag:kAskUserForUniqueNameAlertViewTag
-                                                           value:program.header.description
-                                               textFieldDelegate:self];
-            alertView.dataTransferMessage = [DataTransferMessage messageForActionType:kDTMActionAskUserForUniqueName
-                                                                          withPayload:[payload mutableCopy]];
+            [Util askUserForTextAndPerformAction:@selector(updateProgramDescriptionActionWithText:sourceProgram:)
+                                          target:self
+                                      withObject:program
+                                     promptTitle:kUIAlertViewTitleDescriptionProgram
+                                   promptMessage:[NSString stringWithFormat:@"%@:", kUIAlertViewMessageDescriptionProgram]
+                                     promptValue:program.header.description
+                               promptPlaceholder:kUIAlertViewPlaceholderEnterProgramDescription
+                                  minInputLength:kMinNumOfProgramDescriptionCharacters
+                                  maxInputLength:kMaxNumOfProgramDescriptionCharacters
+                             blockedCharacterSet:[self blockedCharacterSet]
+                        invalidInputAlertMessage:kUIAlertViewMessageInvalidProgramDescription];
 //        } else if (buttonIndex == 3) {
 //            // Upload button
         }
@@ -535,6 +537,12 @@
     Program *program = [Program programWithLoadingInfo:programLoadingInfo];
     [program renameToProgramName:programName];
     [self renameOldProgramName:programLoadingInfo.visibleName toNewProgramName:programName];
+}
+
+- (void)updateProgramDescriptionActionWithText:(NSString*)descriptionText
+                                 sourceProgram:(Program*)program
+{
+    [program updateDescriptionWithText:descriptionText];
 }
 
 #pragma mark - program handling

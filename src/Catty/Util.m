@@ -334,7 +334,7 @@
         kDTPayloadAskUserPromptPlaceholder : placeholder,
         kDTPayloadAskUserMinInputLength : @(minInputLength),
         kDTPayloadAskUserInvalidInputAlertMessage : invalidInputAlertMessage,
-        kDTPayloadAskUserExistingNames : existingNames
+        kDTPayloadAskUserExistingNames : (existingNames ? existingNames : [NSNull null])
     };
     CatrobatAlertView *alertView = [[self class] promptWithTitle:title
                                                          message:message
@@ -345,6 +345,56 @@
                                                textFieldDelegate:(id<UITextFieldDelegate>)self];
     alertView.dataTransferMessage = [DataTransferMessage messageForActionType:kDTMActionAskUserForUniqueName
                                                                   withPayload:[payload mutableCopy]];
+}
+
++ (void)askUserForTextAndPerformAction:(SEL)action
+                                target:(id)target
+                           promptTitle:(NSString*)title
+                         promptMessage:(NSString*)message
+                           promptValue:(NSString*)value
+                     promptPlaceholder:(NSString*)placeholder
+                        minInputLength:(NSUInteger)minInputLength
+                        maxInputLength:(NSUInteger)maxInputLength
+                   blockedCharacterSet:(NSCharacterSet*)blockedCharacterSet
+              invalidInputAlertMessage:(NSString*)invalidInputAlertMessage
+{
+    [self askUserForTextAndPerformAction:action
+                                  target:target
+                              withObject:nil
+                             promptTitle:title
+                           promptMessage:message
+                             promptValue:value
+                       promptPlaceholder:placeholder
+                          minInputLength:minInputLength
+                          maxInputLength:maxInputLength
+                     blockedCharacterSet:blockedCharacterSet
+                invalidInputAlertMessage:invalidInputAlertMessage];
+}
+
++ (void)askUserForTextAndPerformAction:(SEL)action
+                                target:(id)target
+                            withObject:(id)passingObject
+                           promptTitle:(NSString*)title
+                         promptMessage:(NSString*)message
+                           promptValue:(NSString*)value
+                     promptPlaceholder:(NSString*)placeholder
+                        minInputLength:(NSUInteger)minInputLength
+                        maxInputLength:(NSUInteger)maxInputLength
+                   blockedCharacterSet:(NSCharacterSet*)blockedCharacterSet
+              invalidInputAlertMessage:(NSString*)invalidInputAlertMessage
+{
+    [self askUserForUniqueNameAndPerformAction:action
+                                        target:target
+                                    withObject:passingObject
+                                   promptTitle:title
+                                 promptMessage:message
+                                   promptValue:value
+                             promptPlaceholder:placeholder
+                                minInputLength:minInputLength
+                                maxInputLength:maxInputLength
+                           blockedCharacterSet:blockedCharacterSet
+                      invalidInputAlertMessage:invalidInputAlertMessage
+                                 existingNames:nil];
 }
 
 + (NSString*)uniqueName:(NSString*)nameToCheck existingNames:(NSArray*)existingNames
@@ -407,11 +457,14 @@ replacementString:(NSString*)characters
         }
 
         NSString *input = [alertView textFieldAtIndex:0].text;
-        NSArray *existingNames = payload[kDTPayloadAskUserExistingNames];
+        id existingNamesObject = payload[kDTPayloadAskUserExistingNames];
         BOOL nameAlreadyExists = NO;
-        for (NSString *existingName in existingNames) {
-            if ([existingName isEqualToString:input]) {
-                nameAlreadyExists = YES;
+        if ([existingNamesObject isKindOfClass:[NSArray class]]) {
+            NSArray *existingNames = (NSArray*)existingNamesObject;
+            for (NSString *existingName in existingNames) {
+                if ([existingName isEqualToString:input]) {
+                    nameAlreadyExists = YES;
+                }
             }
         }
 

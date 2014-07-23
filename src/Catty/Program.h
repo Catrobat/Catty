@@ -45,6 +45,7 @@
 - (BOOL)isLastProgram;
 - (void)setAsLastProgram;
 - (void)renameToProgramName:(NSString*)programName;
+- (void)updateDescriptionWithText:(NSString*)descriptionText;
 
 + (instancetype)defaultProgramWithName:(NSString*)programName;
 + (instancetype)lastProgram;

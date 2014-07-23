@@ -258,6 +258,7 @@
 
 // placeholder defines
 #define kUIAlertViewPlaceholderEnterProgramName NSLocalizedString(@"Enter your program name here...", @"Placeholder for program-name input field")
+#define kUIAlertViewPlaceholderEnterProgramDescription NSLocalizedString(@"Enter your program description here...", @"Placeholder for program-description input field")
 #define kUIAlertViewPlaceholderEnterObjectName NSLocalizedString(@"Enter your object name here...", @"Placeholder for add object-name input field")
 #define kUIAlertViewPlaceholderEnterImageName NSLocalizedString(@"Enter your image name here...", @"Placeholder for add image-name input field")
 
@@ -271,6 +272,7 @@
 #define kUIAlertViewMessageNoImportedSoundsFound NSLocalizedString(@"No imported sounds found. Please connect your iPhone to your PC/Mac and use iTunes FileSharing to import sound files into the PocketCode app.", nil)
 #define kUIAlertViewMessageInputTooShortMessage NSLocalizedString(@"No input or the input is too short. Please enter at least %lu character(s).", nil)
 #define kUIAlertViewMessageProgramNameAlreadyExists NSLocalizedString(@"A program with the same name already exists, try again.", nil)
+#define kUIAlertViewMessageInvalidProgramDescription NSLocalizedString(@"The description contains invalid characters, try again.", nil)
 #define kUIAlertViewMessageInvalidObjectName NSLocalizedString(@"No or invalid object name entered, try again.", nil)
 #define kUIAlertViewMessageUnableToLoadProgram NSLocalizedString(@"Unable to load program!", nil)
 #define kUIAlertViewMessageIrreversibleAction NSLocalizedString(@"This action can not be undone!", nil)
