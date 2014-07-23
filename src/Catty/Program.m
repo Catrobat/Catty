@@ -360,6 +360,35 @@
     [self saveToDisk];
 }
 
+- (NSArray*)allObjectNames
+{
+    NSMutableArray *objectNames = [NSMutableArray arrayWithCapacity:[self.objectList count]];
+    for (id spriteObject in self.objectList) {
+        if ([spriteObject isKindOfClass:[SpriteObject class]]) {
+            [objectNames addObject:((SpriteObject*)spriteObject).name];
+        }
+    }
+    return [objectNames copy];
+}
+
+- (BOOL)hasObject:(SpriteObject *)object
+{
+    return [self.objectList containsObject:object];
+}
+
+- (SpriteObject*)copyObject:(SpriteObject*)sourceObject
+    withNameForCopiedObject:(NSString *)nameOfCopiedObject
+{
+    if (! [self hasObject:sourceObject]) {
+        return nil;
+    }
+    SpriteObject *copiedObject = [sourceObject deepCopy];
+    copiedObject.name = nameOfCopiedObject;
+    [self.objectList addObject:copiedObject];
+    [self saveToDisk];
+    return copiedObject;
+}
+
 #pragma mark - helpers
 - (NSString*)description
 {

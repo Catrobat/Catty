@@ -82,6 +82,14 @@
     ];
 }
 
+- (instancetype)deepCopy
+{
+    Look *copiedLook = [[Look alloc] init];
+    copiedLook.fileName = [NSString stringWithString:self.fileName];
+    copiedLook.name = [NSString stringWithString:self.name];
+    return copiedLook;
+}
+
 - (GDataXMLElement*)toXML
 {
     GDataXMLElement *lookXMLElement = [GDataXMLNode elementWithName:@"look"];

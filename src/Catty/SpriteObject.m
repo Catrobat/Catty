@@ -41,20 +41,20 @@
 
 @interface SpriteObject()
 
-@property (nonatomic, strong) NSMutableArray *activeScripts;
-@property (nonatomic, strong) NSMutableDictionary *sounds;
+//@property (nonatomic, strong) NSMutableArray *activeScripts; // not in use at the moment
+//@property (nonatomic, strong) NSMutableDictionary *sounds; // not in use at the moment
 
 @end
 
 @implementation SpriteObject
 
-- (id)init
-{
-    if (self = [super init]) {
-        self.activeScripts = [[NSMutableArray alloc] initWithCapacity:self.scriptList.count];
-    }
-    return self;
-}
+//- (id)init
+//{
+//    if (self = [super init]) {
+//        self.activeScripts = [[NSMutableArray alloc] initWithCapacity:self.scriptList.count]; // not in use at the moment
+//    }
+//    return self;
+//}
 
 -(NSMutableArray*)lookList
 {
@@ -158,6 +158,40 @@
   if (self.program && [self.program.objectList count])
     return ([self.program.objectList objectAtIndex:0] == self);
   return NO;
+}
+
+- (instancetype)deepCopy
+{
+    // get shallow copy
+    SpriteObject *newObject = (SpriteObject*)[self copy];
+
+    // reset (just to ensure)
+    newObject.spriteManagerDelegate = nil;
+    newObject.broadcastWaitDelegate = nil;
+    newObject.currentLook = nil;
+    newObject.currentUIImageLook = nil;
+    newObject.numberOfObjectsWithoutBackground = 0;
+
+    // deep copy
+    newObject.lookList = [NSMutableArray arrayWithCapacity:[self.lookList count]];
+    for (id lookObject in self.lookList) {
+        if ([lookObject isKindOfClass:[Look class]]) {
+            [newObject.lookList addObject:[((Look*)lookObject) deepCopy]];
+        }
+    }
+    newObject.soundList = [NSMutableArray arrayWithCapacity:[self.soundList count]];
+    for (id soundObject in self.soundList) {
+        if ([soundObject isKindOfClass:[Sound class]]) {
+            [newObject.soundList addObject:[((Sound*)soundObject) deepCopy]];
+        }
+    }
+    newObject.scriptList = [NSMutableArray arrayWithCapacity:[self.scriptList count]];
+    for (id scriptObject in self.scriptList) {
+        if ([scriptObject isKindOfClass:[Script class]]) {
+            [newObject.scriptList addObject:[((Script*)scriptObject) deepCopy]];
+        }
+    }
+    return newObject;
 }
 
 - (GDataXMLElement*)toXML

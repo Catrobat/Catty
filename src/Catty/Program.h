@@ -46,6 +46,10 @@
 - (void)setAsLastProgram;
 - (void)renameToProgramName:(NSString*)programName;
 - (void)updateDescriptionWithText:(NSString*)descriptionText;
+- (NSArray*)allObjectNames;
+- (BOOL)hasObject:(SpriteObject*)object;
+- (SpriteObject*)copyObject:(SpriteObject*)sourceObject
+    withNameForCopiedObject:(NSString*)nameOfCopiedObject;
 
 + (instancetype)defaultProgramWithName:(NSString*)programName;
 + (instancetype)lastProgram;

@@ -167,6 +167,36 @@
     }
 }
 
+- (void)copyProgramActionForProgramWithName:(NSString*)programName
+                   sourceProgramLoadingInfo:(ProgramLoadingInfo*)sourceProgramLoadingInfo
+{
+    ProgramLoadingInfo *destinationProgramLoadingInfo = [self addProgram:programName];
+    if (! destinationProgramLoadingInfo) {
+        return;
+    }
+
+    [Program copyProgramWithName:sourceProgramLoadingInfo.visibleName destinationProgramName:programName];
+    [self.dataCache removeObjectForKey:destinationProgramLoadingInfo.visibleName];
+    [self.tableView reloadData];
+}
+
+- (void)renameProgramActionForProgramWithName:(NSString*)programName
+                     sourceProgramLoadingInfo:(ProgramLoadingInfo*)programLoadingInfo
+{
+    if ([programName isEqualToString:programLoadingInfo.visibleName])
+        return;
+    
+    Program *program = [Program programWithLoadingInfo:programLoadingInfo];
+    [program renameToProgramName:programName];
+    [self renameOldProgramName:programLoadingInfo.visibleName toNewProgramName:programName];
+}
+
+- (void)updateProgramDescriptionActionWithText:(NSString*)descriptionText
+                                 sourceProgram:(Program*)program
+{
+    [program updateDescriptionWithText:descriptionText];
+}
+
 - (void)confirmDeleteSelectedProgramsAction:(id)sender
 {
     NSArray *selectedRowsIndexPaths = [self.tableView indexPathsForSelectedRows];
@@ -413,7 +443,7 @@
                                                                  view:self.navigationController.view];
         NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
         NSDictionary *payload = @{ kDTPayloadProgramLoadingInfo : [self.programLoadingInfos objectAtIndex:indexPath.row] };
-        DataTransferMessage *message = [DataTransferMessage messageForActionType:kDTMActionCopyProgram
+        DataTransferMessage *message = [DataTransferMessage messageForActionType:kDTMActionEditProgram
                                                                      withPayload:[payload mutableCopy]];
         actionSheet.dataTransferMessage = message;
     } else if (index == 1) {
@@ -513,36 +543,6 @@
 //            // Upload button
         }
     }
-}
-
-- (void)copyProgramActionForProgramWithName:(NSString*)programName
-                   sourceProgramLoadingInfo:(ProgramLoadingInfo*)sourceProgramLoadingInfo
-{
-    ProgramLoadingInfo *destinationProgramLoadingInfo = [self addProgram:programName];
-    if (! destinationProgramLoadingInfo) {
-        return;
-    }
-
-    [Program copyProgramWithName:sourceProgramLoadingInfo.visibleName destinationProgramName:programName];
-    [self.dataCache removeObjectForKey:destinationProgramLoadingInfo.visibleName];
-    [self.tableView reloadData];
-}
-
-- (void)renameProgramActionForProgramWithName:(NSString*)programName
-                     sourceProgramLoadingInfo:(ProgramLoadingInfo*)programLoadingInfo
-{
-    if ([programName isEqualToString:programLoadingInfo.visibleName])
-        return;
-
-    Program *program = [Program programWithLoadingInfo:programLoadingInfo];
-    [program renameToProgramName:programName];
-    [self renameOldProgramName:programLoadingInfo.visibleName toNewProgramName:programName];
-}
-
-- (void)updateProgramDescriptionActionWithText:(NSString*)descriptionText
-                                 sourceProgram:(Program*)program
-{
-    [program updateDescriptionWithText:descriptionText];
 }
 
 #pragma mark - program handling

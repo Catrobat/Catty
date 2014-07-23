@@ -81,6 +81,8 @@
 
 - (BOOL)isBackground;
 
+- (instancetype)deepCopy;
+
 - (GDataXMLElement*)toXML;
 
 // events

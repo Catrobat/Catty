@@ -29,6 +29,7 @@
 @property (strong, nonatomic) NSString* fileName;
 @property (atomic, getter = isPlaying) BOOL playing; // atomic in case of multithreading
 
+- (instancetype)deepCopy;
 - (GDataXMLElement*)toXML;
 
 @end

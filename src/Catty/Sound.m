@@ -25,6 +25,15 @@
 
 @implementation Sound
 
+- (instancetype)deepCopy
+{
+    Sound *copiedSound = [[Sound alloc] init];
+    copiedSound.fileName = [NSString stringWithString:self.fileName];
+    copiedSound.name = [NSString stringWithString:self.name];
+    copiedSound.playing = NO;
+    return copiedSound;
+}
+
 - (GDataXMLElement*)toXML
 {
   GDataXMLElement *soundXMLElement = [GDataXMLNode elementWithName:@"sound"];

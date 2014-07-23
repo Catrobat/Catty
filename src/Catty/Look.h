@@ -32,6 +32,7 @@
 - (id)initWithPath:(NSString*)filePath;
 - (id)initWithName:(NSString*)name andPath:(NSString*)filePath;
 - (NSString*)previewImageFileName;
+- (instancetype)deepCopy;
 - (GDataXMLElement*)toXML;
 - (NSString*)description;
 
