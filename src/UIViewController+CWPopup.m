@@ -188,7 +188,7 @@ NSString const *CWPopupViewOffset = @"CWPopupViewOffset";
         
 
         // animate
-        viewControllerToPresent.view.center = CGPointMake(self.view.center.x,self.view.frame.size.height*0.1f);
+        viewControllerToPresent.view.center = CGPointMake(self.view.center.x,self.view.frame.size.height);
         viewControllerToPresent.view.alpha = 0.4f;
         blurView.alpha = 0.4f;
         
@@ -219,7 +219,7 @@ NSString const *CWPopupViewOffset = @"CWPopupViewOffset";
                           delay:0
                         options:UIViewAnimationOptionCurveEaseIn
                      animations:^{
-                         self.popupViewController.view.center = CGPointMake(self.view.center.x,self.view.frame.size.height*0.1f);
+                         self.popupViewController.view.center = CGPointMake(self.view.center.x,self.view.frame.size.height);
                          self.popupViewController.view.alpha = 0.0f;
                          blurView.alpha = 0.0f;
     } completion:^(BOOL finished) {
