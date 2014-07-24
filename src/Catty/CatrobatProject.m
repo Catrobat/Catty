@@ -27,22 +27,20 @@
 - (id)initWithDict:(NSDictionary*)dict andBaseUrl:(NSString*)baseUrl {
     self = [super init];
     if (self) {
-        self.name            = [dict valueForKey:@"ProjectName"];
-        self.author          = [dict valueForKey:@"Author"];
-        self.description     = [dict valueForKey:@"Description"];
-        self.downloadUrl     = [NSString stringWithFormat:@"%@%@", baseUrl,[dict valueForKey:@"DownloadUrl"]];
-        self.downloads       = [dict valueForKey:@"Downloads"];
-        self.projectID       = [dict valueForKey:@"ProjectId"];
-        self.projectName     = [dict valueForKey:@"ProjectName"];
-        self.projectUrl      = [dict valueForKey:@"ProjectUrl"];
-        self.screenshotBig   = [NSString stringWithFormat:@"%@%@", baseUrl,[dict valueForKey:@"ScreenshotBig"]];
-        self.screenshotSmall = [NSString stringWithFormat:@"%@%@", baseUrl,[dict valueForKey:@"ScreenshotSmall"]];
-        self.featuredImage   = [NSString stringWithFormat:@"%@%@", baseUrl,[dict valueForKey:@"FeaturedImage"]];
-        self.uploaded        = [dict valueForKey:@"Uploaded"];
-        self.version         = [dict valueForKey:@"Version"];
-        self.views           = [dict valueForKey:@"Views"];
-//        self.size            = [dict valueForKey:@"Size"];
-        
+        self.name               = [dict valueForKey:@"ProjectName"];
+        self.author             = [dict valueForKey:@"Author"];
+        self.projectDescription = [dict valueForKey:@"Description"];
+        self.downloadUrl        = [NSString stringWithFormat:@"%@%@", baseUrl,[dict valueForKey:@"DownloadUrl"]];
+        self.downloads          = [dict valueForKey:@"Downloads"];
+        self.projectID          = [dict valueForKey:@"ProjectId"];
+        self.projectName        = [dict valueForKey:@"ProjectName"];
+        self.projectUrl         = [dict valueForKey:@"ProjectUrl"];
+        self.screenshotBig      = [NSString stringWithFormat:@"%@%@", baseUrl,[dict valueForKey:@"ScreenshotBig"]];
+        self.screenshotSmall    = [NSString stringWithFormat:@"%@%@", baseUrl,[dict valueForKey:@"ScreenshotSmall"]];
+        self.featuredImage      = [NSString stringWithFormat:@"%@%@", baseUrl,[dict valueForKey:@"FeaturedImage"]];
+        self.uploaded           = [dict valueForKey:@"Uploaded"];
+        self.version            = [dict valueForKey:@"Version"];
+        self.views              = [dict valueForKey:@"Views"];
     }
     
     return self;

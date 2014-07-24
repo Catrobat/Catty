@@ -48,8 +48,8 @@
     return [Util getScreenHeight];
 }
 
-+ (UIView*)createProgramDetailView:(CatrobatProject*)project target:(id)target {
-    
++ (UIView*)createProgramDetailView:(CatrobatProject*)project target:(id)target
+{
     if([self height] == kIphone4ScreenHeight || [self height] == kIphone5ScreenHeight)
     {
         UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 0)];
@@ -101,7 +101,6 @@
         [self addInformationLabelToView:view withAuthor:project.author downloads:project.downloads uploaded:uploaded version:project.version views:project.views];
         return view;
     }
-    
 }
 
 + (void)addNameLabelWithProjectName:(NSString*)projectName toView:(UIView*)view
@@ -159,7 +158,6 @@
     [self setMaxHeightIfGreaterForView:view withHeight:downloadsLabel.frame.origin.y+downloadsLabel.frame.size.height];
     
 }
-
 
 + (CGFloat)addProgramDescriptionLabelWithDescription:(NSString*)description toView:(UIView*)view target:(id)target
 {

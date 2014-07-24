@@ -21,8 +21,9 @@
  */
 
 #import <UIKit/UIKit.h>
+#import "FileManager.h"
 
-@interface WebViewController : UIViewController <UIWebViewDelegate, UIScrollViewDelegate>
+@interface WebViewController : UIViewController <UIWebViewDelegate, UIScrollViewDelegate, FileManagerDelegate>
 @property (nonatomic, strong, readonly) UIWebView *webView;
 @property (nonatomic, strong) UIColor *tintColor;
 

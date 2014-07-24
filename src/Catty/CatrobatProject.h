@@ -28,7 +28,7 @@
 
 @property (nonatomic, strong) NSString *name;
 @property (nonatomic, strong) NSString *author;
-@property (nonatomic, strong) NSString *description;
+@property (nonatomic, strong) NSString *projectDescription;
 @property (nonatomic, strong) NSString *downloadUrl;
 @property (nonatomic, strong) NSNumber *downloads;
 @property (nonatomic, strong) NSString *projectID;
