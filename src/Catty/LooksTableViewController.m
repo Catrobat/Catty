@@ -158,13 +158,7 @@
         [super exitEditingMode];
         return;
     }
-    [self performActionOnConfirmation:@selector(deleteSelectedLooksAction)
-                       canceledAction:@selector(exitEditingMode)
-                               target:self
-                         confirmTitle:(([selectedRowsIndexPaths count] != 1)
-                                       ? kUIAlertViewTitleDeleteMultipleLooks
-                                       : kUIAlertViewTitleDeleteSingleLook)
-                       confirmMessage:kUIAlertViewMessageIrreversibleAction];
+    [self deleteSelectedLooksAction];
 }
 
 - (void)deleteSelectedLooksAction
