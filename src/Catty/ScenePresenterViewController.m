@@ -546,7 +546,7 @@
             }
         }
     }
-    self.program = nil;
+    
     self.program = [Program programWithLoadingInfo:[Util programLoadingInfoForProgramWithName:[Util lastProgram]]];
     
     for (SpriteObject *sprite in self.program.objectList)
@@ -560,7 +560,7 @@
             }
         }
     }
-
+    
     Scene *previousScene = (Scene *)self.skView.scene;
     previousScene.program = self.program;
     

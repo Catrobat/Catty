@@ -23,8 +23,6 @@
 #import "Scene.h"
 #import "Program.h"
 #import "SpriteObject.h"
-#import "Script.h"
-#import "WhenScript.h"
 
 @implementation Scene
 
@@ -55,28 +53,21 @@
     [self startProgram];
 }
 
-- (void)cleanScene:(SpriteObject *)obj
-{
-    [obj removeFromParent];
-    obj.numberOfObjectsWithoutBackground = 0;
-    obj.currentUIImageLook = nil;
-    obj.currentLook = nil;
-    obj.currentLookBrightness = 0.0f;
-}
-
 - (void)startProgram
 {
     __block CGFloat zPosition = 0.1f;
-    for (SpriteObject *obj in self.program.objectList) {
-        [self addChild:obj];
-        NSDebug(@"%f",zPosition);
-        [obj start:zPosition];
-        [obj setLook];
-        [obj setProgram:self.program];
-        [obj setUserInteractionEnabled:YES];
-        if (!([obj isBackground])) {
-            zPosition += 0.1f;
-            self.numberOfObjectsWithoutBackground++;
+    @autoreleasepool {
+        for (SpriteObject *obj in self.program.objectList) {
+            [self addChild:obj];
+            NSDebug(@"%f",zPosition);
+            [obj start:zPosition];
+            [obj setLook];
+            [obj setProgram:self.program];
+            [obj setUserInteractionEnabled:YES];
+            if (!([obj isBackground])) {
+                zPosition += 0.1f;
+                self.numberOfObjectsWithoutBackground++;
+            }
         }
     }
     

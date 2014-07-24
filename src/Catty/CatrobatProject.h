@@ -25,7 +25,6 @@
 #import <Foundation/Foundation.h>
 
 @interface CatrobatProject : NSObject
-
 @property (nonatomic, strong) NSString *name;
 @property (nonatomic, strong) NSString *author;
 @property (nonatomic, strong) NSString *description;

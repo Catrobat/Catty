@@ -70,7 +70,10 @@ NSString *DescriptionForObject(NSObject *object, id locale, NSUInteger indent)
 
 - (id)init
 {
-	return [self initWithCapacity:0];
+    if (self = [super initWithCapacity:0]) {
+        return self;
+    }
+    return nil;
 }
 
 - (id)initWithCapacity:(NSUInteger)capacity

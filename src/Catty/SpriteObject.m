@@ -217,7 +217,6 @@
                 NSLog(@"ERROR: BroadcastWaitDelegate not set! abort()");
                 abort();
             }
-            NSLog(@"received message name = %@", ((BroadcastScript*)script).receivedMessage);
             [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(performBroadcastScript:) name:((BroadcastScript*)script).receivedMessage object:nil];
         }
     }
