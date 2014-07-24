@@ -31,6 +31,7 @@
 #import "Program.h"
 #import <MobileCoreServices/MobileCoreServices.h>
 #import "LanguageTranslationDefines.h"
+#import "UIDefines.h"
 
 @interface FileManager()
 
@@ -563,6 +564,10 @@
 
     }
     [downloadTask suspend];
+    // Notification for reloading MyProgramViewController
+    [[NSNotificationCenter defaultCenter]
+     postNotificationName:kProgramDownloadedNotification
+     object:self];
 
     UIApplication* app = [UIApplication sharedApplication];
     app.networkActivityIndicatorVisible = NO;

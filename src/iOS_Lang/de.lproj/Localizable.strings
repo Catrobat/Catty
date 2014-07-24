@@ -19,7 +19,7 @@
  *  You should have received a copy of the GNU Affero General Public License
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
 */
-"ExampleEntry" = "ExampleEntry";
+"ExampleEntry" = "Test Eintrag";
 
 "New Program" = "Neues Programm";
 
@@ -181,7 +181,7 @@
 
 "Delete Script" = "Lösche Skript";
 
-"Animate Brick" = "Animate Brick";
+"Animate Brick" = "Brick animieren";
 
 "Copy Brick" = "Kopiere Baustein";
 
@@ -207,7 +207,7 @@
 
 "Delete Programs" = "Programme löschen";
 
-"Pocket Code Recorder" = "Pocket Code Recorder";
+"Pocket Code Recorder" = "Pocket Code Aufnahme";
 
 "Choose sound" = "Sound auswählen";
 
@@ -339,7 +339,7 @@
 
 "Scripts" = "Skripte";
 
-"Bricks" = "Bricks";
+"Bricks" = "Bausteine";
 
 "Looks" = "Aussehen";
 
@@ -347,7 +347,7 @@
 
 "Last access" = "Letzter Zugriff";
 
-"Size" = "Größe";
+"Size" = "Dateigröße";
 
 "Length" = "Länge";
 
