@@ -24,6 +24,10 @@
 #define kConnectionHost @"https://pocketcode.org/api/projects"
 #define kBaseUrl @"https://pocketcode.org/"
 #define kForumURL @"https://pocketcode.org/tutorial"
+#define kSourceCodeLicenseURL @"http://developer.catrobat.org/licenses"
+#define kAboutCatrobatURL @"http://www.catrobat.org"
+#define kTermsOfUseURL @"https://www.pocketcode.org/termsOfUse"
+#define kAppStoreURL @"itms-apps://itunes.apple.com/app/CATTY_APP_ID"
 
 #define kConnectionSearch @"search.json"
 #define kConnectionRecent @"recentIDs.json"

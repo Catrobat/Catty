@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2014 The Catrobat Team
+ *  Copyright (C) 2010-2013 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -20,11 +20,11 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-
 #import <UIKit/UIKit.h>
-#import "BaseTableViewController.h"
+#import "NetworkDefines.h"
 #import "UIViewController+CWPopup.h"
 
-@interface CatrobatTableViewController : BaseTableViewController <DismissPopupDelegate>
+@interface InfoPopupViewController : UIViewController
+@property (nonatomic, weak) id<DismissPopupDelegate> delegate;
 
 @end
