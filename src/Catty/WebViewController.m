@@ -25,6 +25,8 @@
 #import "UIColor+CatrobatUIColorExtensions.h"
 #import <tgmath.h>
 #import "AppDelegate.h"
+#import "Util.h"
+#import "ProgramDefines.h"
 
 @interface WebViewController ()
 @property (nonatomic, strong) UIWebView *webView;
@@ -272,27 +274,39 @@
             param = [request.URL.absoluteString substringFromIndex:start.location + start.length];
             param = [param stringByReplacingOccurrencesOfString:@"+" withString:@" "];
         }
-        
-
-        [appDelegate.fileManager downloadFileFromURL:url withName:param];
-        param = nil;
-        start = [request.URL.absoluteString rangeOfString:@"download/"];
-        if (start.location != NSNotFound)
-        {
-            param = [request.URL.absoluteString substringFromIndex:start.location + start.length];
-            NSRange end = [param rangeOfString:@"."];
-            if (end.location != NSNotFound)
-            {
-                param = [param substringToIndex:end.location];
+        NSFileManager *fileManager = [[NSFileManager alloc] init];
+        BOOL isDir;
+        NSString *path = [[NSString alloc] initWithFormat:@"%@/%@/%@", [Util applicationDocumentsDirectory], kProgramsFolder,param];
+        BOOL exists = [fileManager fileExistsAtPath:path isDirectory:&isDir];
+        if (exists) {
+            /* file exists */
+            if (isDir) {
+                /* file is a directory */
+                NSLog(@"already downloaded");
+                // Please add here the code with alert view -> Program exists!
             }
+        } else {
+            [appDelegate.fileManager downloadFileFromURL:url withName:param];
+            
+            param = nil;
+            start = [request.URL.absoluteString rangeOfString:@"download/"];
+            if (start.location != NSNotFound)
+            {
+                param = [request.URL.absoluteString substringFromIndex:start.location + start.length];
+                NSRange end = [param rangeOfString:@"."];
+                if (end.location != NSNotFound)
+                {
+                    param = [param substringToIndex:end.location];
+                }
+            }
+            
+            NSString *urlString = [NSString stringWithFormat:@"https://pocketcode.org/resources/thumbnails/%@_small.png",param];
+            
+            NSDebug(@"screenshot url is: %@", urlString);
+            NSURL *screenshotSmallUrl = [NSURL URLWithString:urlString];
+            [appDelegate.fileManager downloadScreenshotFromURL:screenshotSmallUrl andBaseUrl:url andName:param];
         }
-        
-        NSString *urlString = [NSString stringWithFormat:@"https://pocketcode.org/resources/thumbnails/%@_small.png",param];
-       
-        NSDebug(@"screenshot url is: %@", urlString);
-        
-        NSURL *screenshotSmallUrl = [NSURL URLWithString:urlString];
-        [appDelegate.fileManager downloadScreenshotFromURL:screenshotSmallUrl andBaseUrl:url andName:param];
+        // Please add here the code with alert view -> Program is downloading!
         return NO;
     }
     else {
@@ -476,7 +490,7 @@
 
 - (void)downloadFinishedWithURL:(NSURL *)url
 {
-    NSDebug(@"Finished");
+    
 }
 
 - (void)setBackDownloadStatus
