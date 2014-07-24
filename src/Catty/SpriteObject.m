@@ -82,7 +82,7 @@
 
 - (CGPoint)position
 {
-    return [(Scene*)self.scene convertSceneCoordinateToPoint:super.position];
+    return [((Scene*)self.scene) convertSceneCoordinateToPoint:super.position];
 }
 
 - (void)setPosition:(CGPoint)position
@@ -98,7 +98,7 @@
 - (void)dealloc
 {
     NSDebug(@"Dealloc: %@", self);
-    [NSNotificationCenter.defaultCenter removeObserver:self];
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 - (NSUInteger)numberOfScripts
@@ -191,22 +191,23 @@
 
 - (void)start:(CGFloat)zPosition
 {
-    self.position = CGPointZero;
-    self.zRotation = 0.0f;
-    self.currentLookBrightness = 0.0f;
-    
+    self.position = CGPointMake(0, 0);
+    self.zRotation = 0;
+    self.currentLookBrightness = 0;
     if ([self isBackground]){
-        self.zPosition = 0.0f;
+        self.zPosition = 0;
     }else{
         self.zPosition = zPosition;
     }
+        
     
+
     for (Script *script in self.scriptList)
     {
         if ([script isKindOfClass:[StartScript class]]) {
-            __weak SpriteObject *weakself = self;
+            __weak typeof(self) weakSelf = self;
             [self startAndAddScript:script completion:^{
-                [weakself scriptFinished:script];
+                [weakSelf scriptFinished:script];
             }];
         }
 
@@ -229,35 +230,38 @@
 
 - (BOOL)touchedwith:(NSSet *)touches withX:(CGFloat)x andY:(CGFloat)y
 {
-    
+
     for (UITouch *touch in touches) {
         CGPoint touchedPoint = [touch locationInNode:self];
         NSDebug(@"x:%f,y:%f",touchedPoint.x,touchedPoint.y);
-        //NSLog(@"test touch, %@",self.name);
-        //        UIGraphicsBeginImageContextWithOptions(self.frame.size, NO, [UIScreen mainScreen].scale);
-        //        [self.scene.view drawViewHierarchyInRect:self.frame afterScreenUpdates:NO];
-        //        UIImage *snapshotImage = UIGraphicsGetImageFromCurrentImageContext();
-        //        UIGraphicsEndImageContext();
+         //NSLog(@"test touch, %@",self.name);
+//        UIGraphicsBeginImageContextWithOptions(self.frame.size, NO, [UIScreen mainScreen].scale);
+//        [self.scene.view drawViewHierarchyInRect:self.frame afterScreenUpdates:NO];
+//        UIImage *snapshotImage = UIGraphicsGetImageFromCurrentImageContext();
+//        UIGraphicsEndImageContext();
         NSDebug(@"image : x:%f,y:%f",self.currentUIImageLook.size.width,self.currentUIImageLook.size.height);
         
         BOOL isTransparent = [self.currentUIImageLook isTransparentPixel:self.currentUIImageLook withX:touchedPoint.x andY:touchedPoint.y];
         if (isTransparent == NO) {
-            for (Script *script in self.scriptList)
-            {
-                if ([script isKindOfClass:[WhenScript class]]) {
-                    __weak SpriteObject *weakself = self;
-                    [self startAndAddScript:script completion:^{
-                        [weakself scriptFinished:script];
-                    }];
-                }
+        for (Script *script in self.scriptList)
+        {
+            if ([script isKindOfClass:[WhenScript class]]) {
+                
+                __weak typeof(self) weakSelf = self;
+                [self startAndAddScript:script completion:^{
+                    [weakSelf scriptFinished:script];
+                }];
+                
             }
+           
+        }
             return YES;
-            
+
         } else {
             NSDebug(@"I'm transparent at this point");
             return NO;
-        }
-        
+    }
+
     }
     return YES;
 }
@@ -302,6 +306,7 @@
     }
 
     [script startWithCompletion:completion];
+
 }
 
 
@@ -354,9 +359,29 @@
 {
     UIImage* image = [UIImage imageWithContentsOfFile:[self pathForLook:look]];
     SKTexture* texture = nil;
-    texture = [SKTexture textureWithImage:image];
-    self.currentUIImageLook = image;
-    
+    if ([self isBackground]) {
+        texture = [SKTexture textureWithImage:image];
+        self.currentUIImageLook = image;
+    } else {
+// We do not need cropping if touch through transparent pixel is possible!!!!
+        
+//        CGRect newRect = [image cropRectForImage:image];
+        
+//        if ((newRect.size.height <= image.size.height - 50 && newRect.size.height <= image.size.height - 50)) {
+//            CGImageRef imageRef = CGImageCreateWithImageInRect(image.CGImage, newRect);
+//            UIImage *newImage = [UIImage imageWithCGImage:imageRef];
+////            NSLog(@"%f,%f,%f,%f",newRect.origin.x,newRect.origin.y,newRect.size.width,newRect.size.height);
+//            [self setPositionForCropping:CGPointMake(newRect.origin.x+newRect.size.width/2,self.scene.size.height-newRect.origin.y-newRect.size.height/2)];
+//            CGImageRelease(imageRef);
+//            texture = [SKTexture textureWithImage:newImage];
+//            self.currentUIImageLook = newImage;
+//        }
+//        else{
+            texture = [SKTexture textureWithImage:image];
+            self.currentUIImageLook = image;
+//        }
+    }
+
     double xScale = self.xScale;
     double yScale = self.yScale;
     self.xScale = 1.0;
@@ -459,9 +484,10 @@
         if ([script isKindOfClass:[BroadcastScript class]]) {
             BroadcastScript *broadcastScript = (BroadcastScript*)script;
             if ([broadcastScript.receivedMessage isEqualToString:notification.name]) {
-                __weak SpriteObject *weakself = self;
+                
+                __weak typeof(self) weakSelf = self;
                 [self startAndAddScript:broadcastScript completion:^{
-                    [weakself scriptFinished:broadcastScript];
+                    [weakSelf scriptFinished:broadcastScript];
                     NSDebug(@"FINISHED");
                 }];
             }
@@ -497,14 +523,16 @@
 
 -(void)performBroadcastWaitScriptWithMessage:(NSString *)message with:(dispatch_semaphore_t)sema1
 {
+
     for (Script *script in self.scriptList) {
         if ([script isKindOfClass:[BroadcastScript class]]) {
             BroadcastScript* broadcastScript = (BroadcastScript*)script;
             if ([broadcastScript.receivedMessage isEqualToString:message]) {
                 dispatch_semaphore_t sema = dispatch_semaphore_create(0);
-                __weak SpriteObject *weakself = self;
+                
+                __weak typeof(self) weakSelf = self;
                 [self startAndAddScript:broadcastScript completion:^{
-                    [weakself scriptFinished:broadcastScript];
+                    [weakSelf scriptFinished:broadcastScript];
                     dispatch_semaphore_signal(sema);
                 }];
                 dispatch_semaphore_wait(sema, DISPATCH_TIME_FOREVER);
@@ -520,6 +548,7 @@
 {
     return [NSString stringWithFormat:@"Object: %@\r", self.name];
 }
+
 
 
 #pragma mark - Formula Protocol
@@ -559,15 +588,5 @@
 {
     return [self yScale]*100;
 }
-
-
-//- (void)updateWithTimeSinceLastUpdate:(CFTimeInterval)interval
-//{
-//
-//    for(Script* script in self.activeScripts) {
-//        [script updateWithTimeSinceLastUpdate:interval];
-//    }
-//    
-//}
 
 @end
