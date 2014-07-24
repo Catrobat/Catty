@@ -34,6 +34,6 @@ do
         echo -e $file:1: error : No valid License Header found! 1>&2 
         ERROR_COUNT=1
     fi
-done < <(eval "find . -type d \( $EXCLUDED_DIRS_STR \) -prune -o -type f \( $EXCLUDED_FILES_STR \) -prune -o -type f \( -name "*.m" -o -name "*.h" -o -name "*.pch" \) -print")
+done < <(eval "find . -type d \( $EXCLUDED_DIRS_STR \) -prune -o -type f \( $EXCLUDED_FILES_STR \) -prune -o -type f \( -name \"*.m\" -o -name \"*.h\" -o -name \"*.pch\" \) -print")
 
 exit $ERROR_COUNT
