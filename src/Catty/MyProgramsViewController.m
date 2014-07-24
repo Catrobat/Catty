@@ -369,18 +369,12 @@
                 ProgramTableViewController *programTableViewController = (ProgramTableViewController*)segue.destinationViewController;
                 programTableViewController.delegate = self;
                 programTableViewController.program = self.selectedProgram;
-
-                // TODO: remove this after persisting programs feature is fully implemented...
-                programTableViewController.isNewProgram = NO;
             }
         }
     } else if ([segue.identifier isEqualToString:segueToNewProgram]) {
         ProgramTableViewController *programTableViewController = (ProgramTableViewController*)segue.destinationViewController;
         programTableViewController.delegate = self;
         programTableViewController.program = self.defaultProgram;
-
-        // TODO: remove this after persisting programs feature is fully implemented...
-        programTableViewController.isNewProgram = YES;
     }
 }
 

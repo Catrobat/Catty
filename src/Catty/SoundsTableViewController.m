@@ -465,7 +465,6 @@
     } else if (actionSheet.tag == kAddSoundActionSheetTag) {
         NSString *action = self.addSoundActionSheetBtnIndexes[@(buttonIndex)];
         if ([action isEqualToString:kPocketCodeRecorderActionSheetButton]) {
-            // TODO: implement this, when Pocket Code Recorder will be implemented...
             // Pocket Code Recorder
             NSLog(@"Pocket Code Recorder");
             [Util showComingSoonAlertView];

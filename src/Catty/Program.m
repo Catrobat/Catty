@@ -397,8 +397,6 @@
     self.header.programName = programName;
     NSString *newPath = [self projectPath];
     [[[FileManager alloc] init] moveExistingDirectoryAtPath:oldPath toPath:newPath];
-
-    // TODO: update header in code.xml...
     [self saveToDisk];
 }
 

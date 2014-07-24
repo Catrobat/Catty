@@ -182,9 +182,6 @@
             ProgramTableViewController *programTableViewController = (ProgramTableViewController*)segue.destinationViewController;
             programTableViewController.program = [Program programWithLoadingInfo:[Util programLoadingInfoForProgramWithName:self.project.name]];
             programTableViewController.delegate = self;
-
-            // TODO: remove this after persisting programs feature is fully implemented...
-            programTableViewController.isNewProgram = NO;
         }
     }
 }
