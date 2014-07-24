@@ -23,7 +23,8 @@
 
 #import <UIKit/UIKit.h>
 #import "BaseTableViewController.h"
+#import "UIViewController+CWPopup.h"
 
-@interface CatrobatTableViewController : BaseTableViewController
+@interface CatrobatTableViewController : BaseTableViewController <DismissPopupDelegate>
 
 @end

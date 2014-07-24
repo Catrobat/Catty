@@ -169,13 +169,7 @@
         [super exitEditingMode];
         return;
     }
-    [self performActionOnConfirmation:@selector(deleteSelectedProgramsAction)
-                       canceledAction:@selector(exitEditingMode)
-                               target:self
-                         confirmTitle:(([selectedRowsIndexPaths count] != 1)
-                                       ? kUIAlertViewTitleDeleteMultiplePrograms
-                                       : kUIAlertViewTitleDeleteSingleProgram)
-                       confirmMessage:kUIAlertViewMessageIrreversibleAction];
+    [self deleteSelectedProgramsAction];
 }
 
 - (void)deleteSelectedProgramsAction

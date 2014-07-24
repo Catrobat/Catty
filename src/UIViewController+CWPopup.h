@@ -20,11 +20,24 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import "FBShimmeringView.h"
+#import <UIKit/UIKit.h>
 
-@interface PlaceHolderView : FBShimmeringView
-- (id)initWithTitle:(NSString *)tile;
 
-@property (nonatomic, strong) NSString *title;
+@protocol DismissPopupDelegate <NSObject>
+
+- (void)dismissPopup;
+
+@end
+
+
+
+
+
+@interface UIViewController (CWPopup)
+
+@property (nonatomic, readwrite) UIViewController *popupViewController;
+
+-(void)presentPopupViewController:(UIViewController *)viewControllerToPresent WithFrame:(CGRect)frame;
+-(void)dismissPopupViewController;
 
 @end

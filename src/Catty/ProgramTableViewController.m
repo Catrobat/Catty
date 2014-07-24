@@ -171,13 +171,7 @@
         [super exitEditingMode];
         return;
     }
-    [self performActionOnConfirmation:@selector(deleteSelectedObjectsAction)
-                       canceledAction:@selector(exitEditingMode)
-                               target:self
-                         confirmTitle:(([selectedRowsIndexPaths count] != 1)
-                                       ? kUIAlertViewTitleDeleteMultipleObjects
-                                       : kUIAlertViewTitleDeleteSingleObject)
-                       confirmMessage:kUIAlertViewMessageIrreversibleAction];
+    [self deleteSelectedObjectsAction];
 }
 
 - (void)deleteSelectedObjectsAction
