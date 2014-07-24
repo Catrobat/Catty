@@ -44,6 +44,7 @@
 
 
 @property (nonatomic, strong) NSString *projectName;
+@property (nonatomic, strong) NSURLSession *downloadSession;
 
 
 @end
@@ -359,16 +360,19 @@
 {
     self.projectName = name;
 
-    NSURLSessionConfiguration *sessionConfig =
-    [NSURLSessionConfiguration defaultSessionConfiguration];
+
     
-    NSURLSession *session =
-    [NSURLSession sessionWithConfiguration:sessionConfig
-                                  delegate:self
-                             delegateQueue:nil];
+    if (!self.downloadSession) {
+        NSURLSessionConfiguration *sessionConfig =
+        [NSURLSessionConfiguration backgroundSessionConfiguration:@"at.tugraz"];
+        self.downloadSession = [NSURLSession sessionWithConfiguration:sessionConfig
+                                                             delegate:self
+                                                        delegateQueue:nil];
+    }
+
 
     NSURLSessionDownloadTask *getProgramTask =
-    [session downloadTaskWithURL:url];
+    [self.downloadSession downloadTaskWithURL:url];
     
     [self.programTaskDict setObject:url forKey:getProgramTask];
     [self.programNameDict setObject:name forKey:getProgramTask];
@@ -378,18 +382,17 @@
 
 - (void)downloadScreenshotFromURL:(NSURL*)url andBaseUrl:(NSURL*)baseurl andName:(NSString*) name
 {
-
     
-    NSURLSessionConfiguration *sessionConfig =
-    [NSURLSessionConfiguration defaultSessionConfiguration];
-    
-    NSURLSession *session =
-    [NSURLSession sessionWithConfiguration:sessionConfig
-                                  delegate:self
-                             delegateQueue:nil];
+    if (!self.downloadSession) {
+        NSURLSessionConfiguration *sessionConfig =
+        [NSURLSessionConfiguration backgroundSessionConfiguration:@"at.tugraz"];
+        self.downloadSession = [NSURLSession sessionWithConfiguration:sessionConfig
+                                                             delegate:self
+                                                        delegateQueue:nil];
+    }
     
     NSURLSessionDownloadTask *getImageTask =
-    [session downloadTaskWithURL:url];
+    [self.downloadSession downloadTaskWithURL:url];
     
     [self.imageTaskDict setObject:url forKey:getImageTask];
     [self.imageNameDict setObject:name forKey:getImageTask];
@@ -563,11 +566,7 @@
         [self.imageNameDict removeObjectForKey:downloadTask];
 
     }
-    [downloadTask suspend];
-    // Notification for reloading MyProgramViewController
-    [[NSNotificationCenter defaultCenter]
-     postNotificationName:kProgramDownloadedNotification
-     object:self];
+//    [downloadTask suspend];
 
     UIApplication* app = [UIApplication sharedApplication];
     app.networkActivityIndicatorVisible = NO;

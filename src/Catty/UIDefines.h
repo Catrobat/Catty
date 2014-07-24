@@ -38,6 +38,7 @@
 
 #define kIphone5ScreenHeight 568.0f
 #define kIphone4ScreenHeight 480.0f
+#define kIpadScreenHeight 1028.0f
 #define kAddScriptCategoryTableViewBottomMargin 15.0f
 
 // delete button bricks
