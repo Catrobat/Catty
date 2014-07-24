@@ -27,6 +27,8 @@
 
 "My Object" = "Mein Objekt";
 
+"My Image" = "Mein Foto";
+
 "Today" = "Heute";
 
 "Yesterday" = "Gestern";
@@ -171,6 +173,8 @@
 
 "Save Screenshot to" = "Screenshot abspeichern in";
 
+"Save to PocketCode" = "Abspeichern in PocketCode";
+
 "Close" = "Schließen";
 
 "Delete Brick" = "Lösche Baustein";
@@ -269,11 +273,17 @@
 
 "Pocket Code for iOS" = "Pocket Code für iOS";
 
+"Unable to play the selected sound. Your device is in silent mode. Please turn off silent mode by toggling the switch on the left side of your iPhone and tap on play again." = "Die ausgewählte Sounddatei kann nicht wiedergegeben werden. Ihr Gerät befindet sich derzeit im Lautlosmodus. Bitte schalten Sie den Lautlosmodus wieder ab in dem Sie den Schalter auf der linken Seite Ihres iPhones nach oben schieben und versuchen Sie es erneut.";
+
+"Unable to play the selected sound. Your device is in silent mode. Please turn off silent mode by toggling the switch on the right side of your iPad and tap on play again." = "Die ausgewählte Sounddatei kann nicht wiedergegeben werden. Ihr Gerät befindet sich derzeit im Lautlosmodus. Bitte schalten Sie den Lautlosmodus wieder ab in dem Sie den Schalter auf der rechten Seite Ihres iPads nach oben schieben und versuchen Sie es erneut.";
+
 "Program name" = "Programmname";
 
 "Object name" = "Objektname";
 
 "Image name" = "Bildname";
+
+"No search results" = "Keine Ergebnisse gefunden";
 
 "No imported sounds found. Please connect your iPhone to your PC/Mac and use iTunes FileSharing to import sound files into the PocketCode app." = "Es wurden keine über iTunes FileSharing importierten Sounds gefunden. Bitte verbinden Sie Ihr Gerät mit Ihrem PC oder Mac und importieren Sie über iTunes FileSharing neue Sounddateien in die PocketCode App.";
 
@@ -356,6 +366,8 @@
 "Most Viewed" = "Meist gesehen";
 
 "Newest" = "Neueste";
+
+"Select Brick Category" = "Brick-Kategorie auswählen";
 
 "Control" = "Steuerung";
 

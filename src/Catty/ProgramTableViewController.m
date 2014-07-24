@@ -403,7 +403,7 @@
         UIAlertView *alertTest = [[UIAlertView alloc] initWithTitle:@"Hello"
                                                             message:@"More more more"
                                                            delegate:nil
-                                                  cancelButtonTitle:@"Cancel"
+                                                  cancelButtonTitle:kUIAlertViewButtonTitleCancel
                                                   otherButtonTitles:nil];
         [alertTest show];
         [cell hideUtilityButtonsAnimated:YES];
@@ -430,6 +430,9 @@
 #pragma mark - text field delegates
 - (BOOL)textField:(UITextField *)field shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)characters
 {
+    if ([characters length] > kMaxNumOfObjectNameCharacters) {
+        return false;
+    }
     return ([characters rangeOfCharacterFromSet:self.blockedCharacterSet].location == NSNotFound);
 }
 

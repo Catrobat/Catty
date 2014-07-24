@@ -22,8 +22,7 @@
 
 #import "SaveToProjectActivity.h"
 #import "Program.h"
-
-
+#import "LanguageTranslationDefines.h"
 
 @implementation SaveToProjectActivity
 
@@ -42,7 +41,7 @@
 }
 
 - (NSString *)activityTitle {
-    return @"Save to Project";
+    return kUIActivityTitleSaveToProject;
 }
 
 - (UIImage *)activityImage
