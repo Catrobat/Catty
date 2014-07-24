@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2013 The Catrobat Team
+ *  Copyright (C) 2010-2014 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -158,13 +158,7 @@
         [super exitEditingMode];
         return;
     }
-    [self performActionOnConfirmation:@selector(deleteSelectedLooksAction)
-                       canceledAction:@selector(exitEditingMode)
-                               target:self
-                         confirmTitle:(([selectedRowsIndexPaths count] != 1)
-                                       ? kUIAlertViewTitleDeleteMultipleLooks
-                                       : kUIAlertViewTitleDeleteSingleLook)
-                       confirmMessage:kUIAlertViewMessageIrreversibleAction];
+    [self deleteSelectedLooksAction];
 }
 
 - (void)deleteSelectedLooksAction
