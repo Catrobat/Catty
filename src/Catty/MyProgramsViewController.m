@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2013 The Catrobat Team
+ *  Copyright (C) 2010-2014 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -43,6 +43,7 @@
 #import "LanguageTranslationDefines.h"
 #import "RuntimeImageCache.h"
 #import "NSString+CatrobatNSStringExtensions.h"
+#import "UIDefines.h"
 
 // TODO: outsource...
 #define kUserDetailsShowDetailsKey @"showDetails"
@@ -51,6 +52,7 @@
 
 @interface MyProgramsViewController () <ProgramUpdateDelegate, UIActionSheetDelegate, UIAlertViewDelegate,
                                         UITextFieldDelegate, SWTableViewCellDelegate>
+@property (nonatomic, strong) NSCharacterSet *blockedCharacterSet;
 @property (nonatomic) BOOL useDetailCells;
 @property (nonatomic, strong) NSMutableDictionary *dataCache;
 @property (nonatomic, strong) NSMutableArray *programLoadingInfos;
@@ -60,7 +62,16 @@
 
 @implementation MyProgramsViewController
 
+
 #pragma mark - getters and setters
+- (NSCharacterSet*)blockedCharacterSet
+{
+    if (! _blockedCharacterSet) {
+        _blockedCharacterSet = [[NSCharacterSet characterSetWithCharactersInString:kTextFieldAllowedCharacters] invertedSet];
+    }
+    return _blockedCharacterSet;
+}
+
 - (NSMutableDictionary*)dataCache
 {
     if (! _dataCache) {
@@ -92,6 +103,10 @@
     self.selectedProgram = nil;
     [self setupToolBar];
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(downloadFinished:)
+                                                 name:kProgramDownloadedNotification
+                                               object:nil];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -115,6 +130,7 @@
     self.tableView.dataSource = nil;
     self.tableView.delegate = nil;
     self.programLoadingInfos = nil;
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 #pragma mark - actions
@@ -153,13 +169,7 @@
         [super exitEditingMode];
         return;
     }
-    [self performActionOnConfirmation:@selector(deleteSelectedProgramsAction)
-                       canceledAction:@selector(exitEditingMode)
-                               target:self
-                         confirmTitle:(([selectedRowsIndexPaths count] != 1)
-                                       ? kUIAlertViewTitleDeleteMultiplePrograms
-                                       : kUIAlertViewTitleDeleteSingleProgram)
-                       confirmMessage:kUIAlertViewMessageIrreversibleAction];
+    [self deleteSelectedProgramsAction];
 }
 
 - (void)deleteSelectedProgramsAction
@@ -391,7 +401,7 @@
         UIAlertView *alertTest = [[UIAlertView alloc] initWithTitle:@"Hello"
                                                             message:@"More more more"
                                                            delegate:nil
-                                                  cancelButtonTitle:@"Cancel"
+                                                  cancelButtonTitle:kUIAlertViewButtonTitleCancel
                                                   otherButtonTitles:nil];
         [alertTest show];
         [cell hideUtilityButtonsAnimated:YES];
@@ -416,8 +426,10 @@
 #pragma mark - text field delegates
 - (BOOL)textField:(UITextField*)field shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString*)characters
 {
-    NSCharacterSet *blockedCharacters = [[NSCharacterSet characterSetWithCharactersInString:kTextFieldAllowedCharacters] invertedSet];
-    return ([characters rangeOfCharacterFromSet:blockedCharacters].location == NSNotFound);
+    if ([characters length] > kMaxNumOfProgramNameCharacters) {
+        return false;
+    }
+    return ([characters rangeOfCharacterFromSet:self.blockedCharacterSet].location == NSNotFound);
 }
 
 #pragma mark - action sheet delegates
@@ -615,6 +627,17 @@
     UIBarButtonItem *invisibleButton = [[UIBarButtonItem alloc] initWithCustomView:imageView];
     self.toolbarItems = [NSArray arrayWithObjects:self.selectAllRowsButtonItem, invisibleButton, flexItem,
                          invisibleButton, deleteButton, nil];
+}
+
+#pragma mark Filemanager notification
+
+- (void) downloadFinished:(NSNotification *) notification
+{
+    if ([[notification name] isEqualToString:kProgramDownloadedNotification]){
+        [self loadPrograms];
+        [self.tableView reloadData];
+    }
+
 }
 
 @end

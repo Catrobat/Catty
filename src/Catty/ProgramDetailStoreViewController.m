@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2013 The Catrobat Team
+ *  Copyright (C) 2010-2014 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -36,6 +36,7 @@
 #import "EVCircularProgressView.h"
 #import "LanguageTranslationDefines.h"
 #import "CreateView.h"
+#import "Reachability.h"
 #import "ProgramUpdateDelegate.h"
 
 #define kUIBarHeight 49
@@ -152,6 +153,12 @@
 {
     [self.navigationController setToolbarHidden:YES];
     self.searchStoreController.checkSearch = NO;
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    [[NSNotificationCenter defaultCenter] postNotificationName:kReachabilityChangedNotification
+                                                        object:self];
 }
 
 - (void)back

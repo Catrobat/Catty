@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2013 The Catrobat Team
+ *  Copyright (C) 2010-2014 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -171,13 +171,7 @@
         [super exitEditingMode];
         return;
     }
-    [self performActionOnConfirmation:@selector(deleteSelectedObjectsAction)
-                       canceledAction:@selector(exitEditingMode)
-                               target:self
-                         confirmTitle:(([selectedRowsIndexPaths count] != 1)
-                                       ? kUIAlertViewTitleDeleteMultipleObjects
-                                       : kUIAlertViewTitleDeleteSingleObject)
-                       confirmMessage:kUIAlertViewMessageIrreversibleAction];
+    [self deleteSelectedObjectsAction];
 }
 
 - (void)deleteSelectedObjectsAction
@@ -403,7 +397,7 @@
         UIAlertView *alertTest = [[UIAlertView alloc] initWithTitle:@"Hello"
                                                             message:@"More more more"
                                                            delegate:nil
-                                                  cancelButtonTitle:@"Cancel"
+                                                  cancelButtonTitle:kUIAlertViewButtonTitleCancel
                                                   otherButtonTitles:nil];
         [alertTest show];
         [cell hideUtilityButtonsAnimated:YES];
@@ -430,6 +424,9 @@
 #pragma mark - text field delegates
 - (BOOL)textField:(UITextField *)field shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)characters
 {
+    if ([characters length] > kMaxNumOfObjectNameCharacters) {
+        return false;
+    }
     return ([characters rangeOfCharacterFromSet:self.blockedCharacterSet].location == NSNotFound);
 }
 

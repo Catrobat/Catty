@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2013 The Catrobat Team
+ *  Copyright (C) 2010-2014 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -58,6 +58,7 @@
 @interface ObjectLooksTableViewController () <UIActionSheetDelegate, UIImagePickerControllerDelegate,
                                               UINavigationControllerDelegate, UIAlertViewDelegate,
                                               UITextFieldDelegate, SWTableViewCellDelegate>
+@property (nonatomic, strong) NSCharacterSet *blockedCharacterSet;
 @property (nonatomic) BOOL useDetailCells;
 @property (nonatomic, strong) Look *lookToAdd;
 @property (nonatomic, strong) LoadingView* loadingView;
@@ -66,7 +67,43 @@
 
 @implementation ObjectLooksTableViewController
 
-#pragma - events
+#pragma getters and setters
+- (NSCharacterSet*)blockedCharacterSet
+{
+    if (! _blockedCharacterSet) {
+        _blockedCharacterSet = [[NSCharacterSet characterSetWithCharactersInString:kTextFieldAllowedCharacters] invertedSet];
+    }
+    return _blockedCharacterSet;
+}
+
+#pragma mark - getters and setters
+- (NSMutableDictionary*)addLookActionSheetBtnIndexes
+{
+    // lazy instantiation
+    if (_addLookActionSheetBtnIndexes == nil)
+        _addLookActionSheetBtnIndexes = [NSMutableDictionary dictionaryWithCapacity:3];
+    return _addLookActionSheetBtnIndexes;
+}
+
+#pragma mark - data helpers
+- (NSArray*)existantLookNames
+{
+    // get all look names of that object
+    NSMutableArray *lookNames = [NSMutableArray arrayWithCapacity:[self.object.lookList count]];
+    for (Look *look in self.object.lookList) {
+        [lookNames addObject:look.name];
+    }
+    return [lookNames copy];
+}
+
+#pragma mark - initialization
+- (void)initNavigationBar
+{
+    UIBarButtonItem *editButtonItem = [TableUtil editButtonItemWithTarget:self action:@selector(editAction:)];
+    self.navigationItem.rightBarButtonItem = editButtonItem;
+}
+
+#pragma - view events
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -80,22 +117,6 @@
     [self showPlaceHolder:(! (BOOL)[self.object.lookList count])];
     [self setupToolBar];
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
-}
-
-#pragma getters and setters
-- (NSMutableDictionary*)addLookActionSheetBtnIndexes
-{
-    // lazy instantiation
-    if (_addLookActionSheetBtnIndexes == nil)
-        _addLookActionSheetBtnIndexes = [NSMutableDictionary dictionaryWithCapacity:3];
-    return _addLookActionSheetBtnIndexes;
-}
-
-#pragma mark - initialization
-- (void)initNavigationBar
-{
-    UIBarButtonItem *editButtonItem = [TableUtil editButtonItemWithTarget:self action:@selector(editAction:)];
-    self.navigationItem.rightBarButtonItem = editButtonItem;
 }
 
 #pragma mark - actions
@@ -137,13 +158,7 @@
         [super exitEditingMode];
         return;
     }
-    [self performActionOnConfirmation:@selector(deleteSelectedLooksAction)
-                       canceledAction:@selector(exitEditingMode)
-                               target:self
-                         confirmTitle:(([selectedRowsIndexPaths count] != 1)
-                                       ? kUIAlertViewTitleDeleteMultipleLooks
-                                       : kUIAlertViewTitleDeleteSingleLook)
-                       confirmMessage:kUIAlertViewMessageIrreversibleAction];
+    [self deleteSelectedLooksAction];
 }
 
 - (void)deleteSelectedLooksAction
@@ -308,7 +323,7 @@
         UIAlertView *alertTest = [[UIAlertView alloc] initWithTitle:@"Hello"
                                                             message:@"More more more"
                                                            delegate:nil
-                                                  cancelButtonTitle:@"Cancel"
+                                                  cancelButtonTitle:kUIAlertViewButtonTitleCancel
                                                   otherButtonTitles:nil];
         [alertTest show];
         [cell hideUtilityButtonsAnimated:YES];
@@ -386,17 +401,13 @@
         }
 
         NSData *imageData = UIImagePNGRepresentation(image);
-        NSString *fileNamePrefix = [[[imageData md5] stringByReplacingOccurrencesOfString:@"-" withString:@""] uppercaseString];
         NSString *lookName = imageFileName;
-        NSString *newImageFileName = [NSString stringWithFormat:@"%@%@%@.%@", fileNamePrefix,
-                                      kResourceFileNameSeparator, imageFileName, imageFileNameExtension];
-
-        // get all look names of that object
-        NSMutableArray *lookNames = [NSMutableArray arrayWithCapacity:[self.object.lookList count]];
-        for (Look *look in self.object.lookList) {
-            [lookNames addObject:look.name];
-        }
-        Look *look = [[Look alloc] initWithName:[Util uniqueName:lookName existingNames:lookNames]
+        // use temporary filename, will be renamed by user afterwards
+        NSString *newImageFileName = [NSString stringWithFormat:@"temp_%@.%@",
+                                      [[[imageData md5] stringByReplacingOccurrencesOfString:@"-" withString:@""] uppercaseString],
+                                      imageFileNameExtension];
+        Look *look = [[Look alloc] initWithName:[Util uniqueName:lookName
+                                                   existingNames:[self existantLookNames]]
                                         andPath:newImageFileName];
 
         // TODO: outsource this to FileManager
@@ -443,8 +454,10 @@
 #pragma mark - text field delegates
 - (BOOL)textField:(UITextField*)field shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString*)characters
 {
-    NSCharacterSet *blockedCharacters = [[NSCharacterSet characterSetWithCharactersInString:kTextFieldAllowedCharacters] invertedSet];
-    return ([characters rangeOfCharacterFromSet:blockedCharacters].location == NSNotFound);
+    if ([characters length] > kMaxNumOfLookNameCharacters) {
+        return false;
+    }
+    return ([characters rangeOfCharacterFromSet:self.blockedCharacterSet].location == NSNotFound);
 }
 
 #pragma mark - action sheet delegates
@@ -514,16 +527,21 @@
 
         if (buttonIndex == kAlertViewButtonOK) {
             [self showPlaceHolder:NO];
+            NSArray *existantNames = [self existantLookNames];
             [self.object.lookList addObject:self.lookToAdd];
             AppDelegate *appDelegate = (AppDelegate*)[UIApplication sharedApplication].delegate;
             NSString *oldPath = [self.object pathForLook:self.lookToAdd];
-            self.lookToAdd.name = input;
+            self.lookToAdd.name = [Util uniqueName:input existingNames:existantNames];
+
+            // rename temporary file name (example: "temp_D41D8CD98F00B204E9800998ECF8427E.png") as well
             NSArray *fileNameParts = [self.lookToAdd.fileName componentsSeparatedByString:@"."];
-            NSString *hash = [[[fileNameParts firstObject] componentsSeparatedByString:@"_"] firstObject];
+            NSString *hash = [[[fileNameParts firstObject] componentsSeparatedByString:kResourceFileNameSeparator] lastObject];
             NSString *fileExtension = [fileNameParts lastObject];
-            self.lookToAdd.fileName = [NSString stringWithFormat:@"%@_%@.%@", hash, input, fileExtension];
+            self.lookToAdd.fileName = [NSString stringWithFormat:@"%@%@%@.%@",
+                                       hash, kResourceFileNameSeparator,
+                                       self.lookToAdd.name, fileExtension];
             NSString *newPath = [self.object pathForLook:self.lookToAdd];
-            [appDelegate.fileManager moveExistingFileAtPath:oldPath toPath:newPath];
+            [appDelegate.fileManager moveExistingFileAtPath:oldPath toPath:newPath overwrite:YES];
             NSInteger numberOfRowsInLastSection = [self tableView:self.tableView numberOfRowsInSection:0];
             NSIndexPath *indexPath = [NSIndexPath indexPathForRow:(numberOfRowsInLastSection - 1) inSection:0];
             [self.tableView insertRowsAtIndexPaths:@[indexPath]
@@ -559,7 +577,7 @@
     [sheet showInView:self.view];
 }
 
-#pragma mark - helpers
+#pragma mark - view helpers
 - (void)setupToolBar
 {
     [super setupToolBar];

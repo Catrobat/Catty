@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2013 The Catrobat Team
+ *  Copyright (C) 2010-2014 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -29,6 +29,7 @@
 #define kGeneralNewDefaultProgramName NSLocalizedString(@"New Program", @"Default name for new programs")
 #define kGeneralBackgroundObjectName NSLocalizedString(@"Background", @"Title for background object")
 #define kGeneralDefaultObjectName NSLocalizedString(@"My Object", @"Title for first (default) object")
+#define kDefaultImportedImageName NSLocalizedString(@"My Image", @"Default title of imported photo from camera (taken by camera)")
 
 /*
  * -----------------------------------------------------------------------------------------------------------
@@ -138,6 +139,21 @@
 
 /*
  * -----------------------------------------------------------------------------------------------------------
+ * UIInfoPopupViewController
+ * -----------------------------------------------------------------------------------------------------------
+ */
+#define kUIInfoPopupViewAboutPocketCode NSLocalizedString(@"About Pocket Code", nil)
+#define kUIInfoPopupViewTermsOfUse NSLocalizedString(@"Terms of Use", nil)
+#define kUIInfoPopupViewRateUs NSLocalizedString(@"Rate Us", nil)
+#define kUIInfoPopupViewVersionLabel NSLocalizedString(@"v", nil)
+#define kUIInfoPopupViewBack NSLocalizedString(@"Back", nil)
+#define kUIInfoPopupViewSourceCodeLicenseButtonLabel NSLocalizedString(@"Pocket Code Source Code License", nil)
+#define kUIInfoPopupViewAboutCatrobatButtonLabel NSLocalizedString(@"About Catrobat", nil)
+#define kUIInfoPopupViewAboutPocketCodeBody NSLocalizedString(@"Pocket Code is a programming environment for iOS for the visual programming language Catrobat. The code of Pocket Code is mostly under GNU AGPL v3 licence. For further information to the licence please visit following links:", nil)
+#define kUIInfoPopupViewTermsOfUseBody NSLocalizedString(@"In order to be allowed to use Pocket Code and other executables offered by the Catrobat project, you must agree to our Terms of Use and strictly follow them when you use Pocket Code and our other executables. Please see the link below for their precise formulation.", nil)
+
+/*
+ * -----------------------------------------------------------------------------------------------------------
  * UIBarButtonItem title defines
  * -----------------------------------------------------------------------------------------------------------
  */
@@ -147,6 +163,14 @@
 #define kUIBarButtonItemTitleSelectAllItems NSLocalizedString(@"Select All", nil)
 #define kUIBarButtonItemTitleUnselectAllItems NSLocalizedString(@"Unselect All", nil)
 #define kUIBarButtonItemTitleDelete NSLocalizedString(@"Delete", nil)
+
+/*
+ * -----------------------------------------------------------------------------------------------------------
+ * UIActivity title defines
+ * -----------------------------------------------------------------------------------------------------------
+ */
+
+#define kUIActivityTitleSaveToProject NSLocalizedString(@"Save to PocketCode", nil)
 
 /*
  * -----------------------------------------------------------------------------------------------------------
@@ -161,6 +185,7 @@
 #define kUIActionSheetTitleEditProgramPlural NSLocalizedString(@"Edit Programs", nil)
 #define kUIActionSheetTitleAddSound NSLocalizedString(@"Add sound", @"Action sheet menu title")
 #define kUIActionSheetTitleSaveScreenshot NSLocalizedString(@"Save Screenshot to", @"Action sheet menu title")
+#define kUIActionSheetTitleSelectBrickCategory NSLocalizedString(@"Select Brick Category", nil)
 
 /*
  * -----------------------------------------------------------------------------------------------------------
@@ -196,6 +221,12 @@
 #define kUIActionSheetButtonTitleCancel NSLocalizedString(@"Cancel", nil)
 #define kUIActionSheetButtonTitleDelete NSLocalizedString(@"Delete", nil)
 
+#define kUIActionSheetButtonTitleControl NSLocalizedString(@"Control", nil)
+#define kUIActionSheetButtonTitleMotion NSLocalizedString(@"Motion", nil)
+#define kUIActionSheetButtonTitleSound NSLocalizedString(@"Sound", nil)
+#define kUIActionSheetButtonTitleLooks NSLocalizedString(@"Looks", nil)
+#define kUIActionSheetButtonTitleVariables NSLocalizedString(@"Variables", nil)
+
 /*
  * -----------------------------------------------------------------------------------------------------------
  * UIButton title defines
@@ -224,13 +255,13 @@
 #define kUIAlertViewTitleScreenshotSavedToProject NSLocalizedString(@"Screenshot saved to project", nil)
 #define kUIAlertViewTitleNewProgram NSLocalizedString(@"New program", nil)
 #define kUIAlertViewTitleDeleteProgram NSLocalizedString(@"Delete this program", nil)
-#define kUIAlertViewTitleDeleteMultipleObjects NSLocalizedString(@"Delete these objects", nil)
+#define kUIAlertViewTitleDeleteMultipleObjects NSLocalizedString(@"Delete these objects", nil) // deprecated
 #define kUIAlertViewTitleDeleteSingleObject NSLocalizedString(@"Delete this object", nil)
-#define kUIAlertViewTitleDeleteMultiplePrograms NSLocalizedString(@"Delete these programs", nil)
+#define kUIAlertViewTitleDeleteMultiplePrograms NSLocalizedString(@"Delete these programs", nil) // deprecated
 #define kUIAlertViewTitleDeleteSingleProgram NSLocalizedString(@"Delete this program", nil)
-#define kUIAlertViewTitleDeleteMultipleLooks NSLocalizedString(@"Delete these looks", nil)
+#define kUIAlertViewTitleDeleteMultipleLooks NSLocalizedString(@"Delete these looks", nil) // deprecated
 #define kUIAlertViewTitleDeleteSingleLook NSLocalizedString(@"Delete this look", nil)
-#define kUIAlertViewTitleDeleteMultipleSounds NSLocalizedString(@"Delete these sounds", nil)
+#define kUIAlertViewTitleDeleteMultipleSounds NSLocalizedString(@"Delete these sounds", nil) // deprecated
 #define kUIAlertViewTitleDeleteSingleSound NSLocalizedString(@"Delete this sound", nil)
 #define kUIAlertViewTitleNotEnoughFreeMemory NSLocalizedString(@"Not enough free memory to download this program. Please delete some of your programs", nil)
 
@@ -252,6 +283,9 @@
 #define kUIAlertViewMessageUnableToLoadProgram NSLocalizedString(@"Unable to load program!", nil)
 #define kUIAlertViewMessageIrreversibleAction NSLocalizedString(@"This action can not be undone!", nil)
 #define kUIAlertViewMessageUnableToPlaySound NSLocalizedString(@"Unable to play that sound!\nMaybe this is no valid sound or the file is corrupt.", nil)
+
+#define kUIAlertViewMessageDeviceIsInMutedStateIPhone NSLocalizedString(@"Unable to play the selected sound. Your device is in silent mode. Please turn off silent mode by toggling the switch on the left side of your iPhone and tap on play again.", nil)
+#define kUIAlertViewMessageDeviceIsInMutedStateIPad NSLocalizedString(@"Unable to play the selected sound. Your device is in silent mode. Please turn off silent mode by toggling the switch on the right side of your iPad and tap on play again.", nil)
 
 // button defines
 #define kUIAlertViewButtonTitleOK NSLocalizedString(@"OK", nil)

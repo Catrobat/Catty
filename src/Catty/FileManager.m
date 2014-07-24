@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2013 The Catrobat Team
+ *  Copyright (C) 2010-2014 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -31,6 +31,7 @@
 #import "Program.h"
 #import <MobileCoreServices/MobileCoreServices.h>
 #import "LanguageTranslationDefines.h"
+#import "UIDefines.h"
 
 @interface FileManager()
 
@@ -124,9 +125,11 @@
         if (isPlayable) {
             Sound *sound = [[Sound alloc] init];
             NSArray *fileParts = [fileName componentsSeparatedByString:@"."];
-            NSString *fileNameWithoutExtension = ([fileParts count] ? [fileParts objectAtIndex:0] : fileName);
+            NSString *fileNameWithoutExtension = ([fileParts count] ? [fileParts firstObject] : fileName);
             sound.fileName = fileName;
-            sound.name = fileNameWithoutExtension;
+            NSRange stringRange = {0, MIN([fileNameWithoutExtension length], kMaxNumOfSoundNameCharacters)};
+            stringRange = [fileNameWithoutExtension rangeOfComposedCharacterSequencesForRange:stringRange];
+            sound.name = [fileNameWithoutExtension substringWithRange:stringRange];
             sound.playing = NO;
             [sounds addObject:sound];
         }
@@ -185,10 +188,16 @@
     if (! [self fileExists:oldPath])
         return;
 
-    if ((! [self fileExists:newPath]) || overwrite) {
-        NSData *data = [NSData dataWithContentsOfFile:oldPath];
-        [data writeToFile:newPath atomically:YES];
+    if ([self fileExists:newPath]) {
+        if (overwrite) {
+            [self deleteFile:newPath];
+        } else {
+            return;
+        }
     }
+
+    NSData *data = [NSData dataWithContentsOfFile:oldPath];
+    [data writeToFile:newPath atomically:YES];
 }
 
 - (void)copyExistingDirectoryAtPath:(NSString*)oldPath toPath:(NSString*)newPath
@@ -205,10 +214,18 @@
     NSLogError(error);
 }
 
-- (void)moveExistingFileAtPath:(NSString*)oldPath toPath:(NSString*)newPath
+- (void)moveExistingFileAtPath:(NSString*)oldPath toPath:(NSString*)newPath overwrite:(BOOL)overwrite
 {
     if (! [self fileExists:oldPath] || [oldPath isEqualToString:newPath])
         return;
+
+    if ([self fileExists:newPath]) {
+        if (overwrite) {
+            [self deleteFile:newPath];
+        } else {
+            return;
+        }
+    }
 
     // Attempt the move
     NSURL *oldURL = [NSURL fileURLWithPath:oldPath];
@@ -233,10 +250,17 @@
     NSLogError(error);
 }
 
+- (void)deleteFile:(NSString*)path
+{
+    NSError *error = nil;
+    [[NSFileManager defaultManager] removeItemAtPath:path error:&error];
+    NSLogError(error);
+}
+
 - (void)deleteDirectory:(NSString *)path
 {
     NSError *error = nil;
-    [[NSFileManager defaultManager]removeItemAtPath:path error:&error];
+    [[NSFileManager defaultManager] removeItemAtPath:path error:&error];
     NSLogError(error);
 }
 

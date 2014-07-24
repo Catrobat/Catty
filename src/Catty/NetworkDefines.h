@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2013 The Catrobat Team
+ *  Copyright (C) 2010-2014 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -23,6 +23,11 @@
 #define kConnectionTimeout 30
 #define kConnectionHost @"https://pocketcode.org/api/projects"
 #define kBaseUrl @"https://pocketcode.org/"
+#define kForumURL @"https://pocketcode.org/tutorial"
+#define kSourceCodeLicenseURL @"http://developer.catrobat.org/licenses"
+#define kAboutCatrobatURL @"http://www.catrobat.org"
+#define kTermsOfUseURL @"https://www.pocketcode.org/termsOfUse"
+#define kAppStoreURL @"itms-apps://itunes.apple.com/app/CATTY_APP_ID"
 
 #define kConnectionSearch @"search.json"
 #define kConnectionRecent @"recentIDs.json"

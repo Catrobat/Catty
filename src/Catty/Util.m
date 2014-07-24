@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2013 The Catrobat Team
+ *  Copyright (C) 2010-2014 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -86,10 +86,9 @@
     UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:title
                                                         message:message
                                                        delegate:delegate
-                                              cancelButtonTitle:nil
+                                              cancelButtonTitle:kUIAlertViewButtonTitleNo
                                               otherButtonTitles:nil];
     [alertView addButtonWithTitle:kUIAlertViewButtonTitleYes];
-    alertView.cancelButtonIndex = [alertView addButtonWithTitle:kUIAlertViewButtonTitleNo];
     alertView.tag = tag;
     if (! [self activateTestMode:NO]) {
         [alertView show];

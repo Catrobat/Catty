@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2013 The Catrobat Team
+ *  Copyright (C) 2010-2014 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -23,11 +23,7 @@
 #import "LanguageTranslationDefines.h"
 
 // which characters in program, object, image names do we have to support?
-#define kTextFieldAllowedCharacters @"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyzäöü_#?!()=+-.:&%$€ 1234567890"
-
-#define IsIPad() UIDevice.currentDevice.userInterfaceIdiom == UIUserInterfaceIdiomPad
-#define IsIPhone() UIDevice.currentDevice.userInterfaceIdiom == UIUserInterfaceIdiomPhone
-#define IsIPhone5() ((UIScreen.mainScreen.bounds.size.height - 568) ? NO : YES)
+#define kTextFieldAllowedCharacters @"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyzäöü_#?!()[]{}^*|~<>£¥=+-_.,:;\"'&@%$€ 1234567890"
 
 #define kMenuImageNameContinue @"continue"
 #define kMenuImageNameNew @"new"
@@ -57,18 +53,16 @@
 static NSString *const kBrickCellAddedNotification = @"BrickCellAddedNotification";
 static NSString *const kSoundAddedNotification = @"SoundAddedNotification";
 static NSString *const kBrickDetailViewDismissed = @"kBrickDetailViewDismissed";
+static NSString *const kProgramDownloadedNotification = @"kProgramDownloadedNotification";
 
 // Notification keys
 static NSString *const kUserInfoKeyBrickCell = @"UserInfoKeyBrickCell";
 static NSString *const kUserInfoSpriteObject = @"UserInfoSpriteObject";
 static NSString *const kUserInfoSound = @"UserInfoSound";
 
-// menu titles
-static NSString *const kSelectionMenuTitle = @"Select Brick Category";
-
 // UI Elements
-#define NAVIGATION_BAR_HEIGHT 64.0f
-#define STATUS_BAR_HEIGHT 10.0f
+#define kNavigationbarHeight 64.0f
+#define kToolbarHeight 44.0f
 #define kHandleImageHeight 15.0f
 #define kHandleImageWidth 40.0f
 #define kOffsetTopBrickSelectionView 70.0f

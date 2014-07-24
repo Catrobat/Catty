@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2013 The Catrobat Team
+ *  Copyright (C) 2010-2014 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -412,13 +412,28 @@
     // => if isEqual is overriden this would lead to wrong results
     NSUInteger index = 0;
     for (Look *currentLook in self.lookList) {
-        if (currentLook == look) {
-            // TODO: remove image from disk that is not needed any more...
-            //       check if image is used by other look-object in that or in other object...
-            [self.lookList removeObjectAtIndex:index];
-            break;
+        if (currentLook != look) {
+            ++index;
+            continue;
         }
-        ++index;
+
+        // count references in all object of that look image
+        NSUInteger lookImageReferenceCounter = 0;
+        for (SpriteObject *object in self.program.objectList) {
+            for (Look *lookToCheck in object.lookList) {
+                if ([lookToCheck.fileName isEqualToString:look.fileName]) {
+                    ++lookImageReferenceCounter;
+                }
+            }
+        }
+        // if image is not used by other objects, delete it
+        if (lookImageReferenceCounter <= 1) {
+            AppDelegate *appDelegate = (AppDelegate*)[UIApplication sharedApplication].delegate;
+            [appDelegate.fileManager deleteFile:[self previewImagePathForLookAtIndex:index]];
+            [appDelegate.fileManager deleteFile:[self pathForLook:look]];
+        }
+        [self.lookList removeObjectAtIndex:index];
+        break;
     }
 }
 
@@ -428,13 +443,27 @@
     // => if isEqual is overriden this would lead to wrong results
     NSUInteger index = 0;
     for (Sound *currentSound in self.soundList) {
-        if (currentSound == sound) {
-            // TODO: remove sound from disk that is not needed any more...
-            //       check if sound is used by other sound-object in that or in other object...
-            [self.soundList removeObjectAtIndex:index];
-            break;
+        if (currentSound != sound) {
+            ++index;
+            continue;
         }
-        ++index;
+
+        // count references in all object of that sound file
+        NSUInteger soundReferenceCounter = 0;
+        for (SpriteObject *object in self.program.objectList) {
+            for (Sound *soundToCheck in object.soundList) {
+                if ([soundToCheck.fileName isEqualToString:sound.fileName]) {
+                    ++soundReferenceCounter;
+                }
+            }
+        }
+        // if sound is not used by other objects, delete it
+        if (soundReferenceCounter <= 1) {
+            AppDelegate *appDelegate = (AppDelegate*)[UIApplication sharedApplication].delegate;
+            [appDelegate.fileManager deleteFile:[self pathForSound:sound]];
+        }
+        [self.soundList removeObjectAtIndex:index];
+        break;
     }
 }
 

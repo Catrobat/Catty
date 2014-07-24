@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2013 The Catrobat Team
+ *  Copyright (C) 2010-2014 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -24,6 +24,9 @@
 #import <Foundation/Foundation.h>
 #import <QuartzCore/QuartzCore.h>
 
+#define IS_IPAD (UI_USER_INTERFACE_IDIOM()==UIUserInterfaceIdiomPad)
+#define IS_IPHONE (UI_USER_INTERFACE_IDIOM()==UIUserInterfaceIdiomPhone)
+#define IS_IPHONE5 ((UIScreen.mainScreen.bounds.size.height - 568) ? NO : YES)
 
 #define TIMEOUT 30.0f
 
