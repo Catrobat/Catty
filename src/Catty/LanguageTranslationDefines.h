@@ -240,13 +240,13 @@
 #define kUIAlertViewTitleScreenshotSavedToProject NSLocalizedString(@"Screenshot saved to project", nil)
 #define kUIAlertViewTitleNewProgram NSLocalizedString(@"New program", nil)
 #define kUIAlertViewTitleDeleteProgram NSLocalizedString(@"Delete this program", nil)
-#define kUIAlertViewTitleDeleteMultipleObjects NSLocalizedString(@"Delete these objects", nil)
+#define kUIAlertViewTitleDeleteMultipleObjects NSLocalizedString(@"Delete these objects", nil) // deprecated
 #define kUIAlertViewTitleDeleteSingleObject NSLocalizedString(@"Delete this object", nil)
-#define kUIAlertViewTitleDeleteMultiplePrograms NSLocalizedString(@"Delete these programs", nil)
+#define kUIAlertViewTitleDeleteMultiplePrograms NSLocalizedString(@"Delete these programs", nil) // deprecated
 #define kUIAlertViewTitleDeleteSingleProgram NSLocalizedString(@"Delete this program", nil)
-#define kUIAlertViewTitleDeleteMultipleLooks NSLocalizedString(@"Delete these looks", nil)
+#define kUIAlertViewTitleDeleteMultipleLooks NSLocalizedString(@"Delete these looks", nil) // deprecated
 #define kUIAlertViewTitleDeleteSingleLook NSLocalizedString(@"Delete this look", nil)
-#define kUIAlertViewTitleDeleteMultipleSounds NSLocalizedString(@"Delete these sounds", nil)
+#define kUIAlertViewTitleDeleteMultipleSounds NSLocalizedString(@"Delete these sounds", nil) // deprecated
 #define kUIAlertViewTitleDeleteSingleSound NSLocalizedString(@"Delete this sound", nil)
 #define kUIAlertViewTitleNotEnoughFreeMemory NSLocalizedString(@"Not enough free memory to download this program. Please delete some of your programs", nil)
 

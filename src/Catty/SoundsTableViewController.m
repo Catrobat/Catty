@@ -188,13 +188,7 @@
         [super exitEditingMode];
         return;
     }
-    [self performActionOnConfirmation:@selector(deleteSelectedSoundsAction)
-                       canceledAction:@selector(exitEditingMode)
-                               target:self
-                         confirmTitle:(([selectedRowsIndexPaths count] != 1)
-                                       ? kUIAlertViewTitleDeleteMultipleSounds
-                                       : kUIAlertViewTitleDeleteSingleSound)
-                       confirmMessage:kUIAlertViewMessageIrreversibleAction];
+    [self deleteSelectedSoundsAction];
 }
 
 - (void)deleteSelectedSoundsAction
