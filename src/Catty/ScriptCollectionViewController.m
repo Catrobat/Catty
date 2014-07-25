@@ -62,12 +62,11 @@
 @property  (nonatomic, strong) BrickSelectionView *brickSelectionView;
 @property (nonatomic, strong) NSArray *selectableBricks;
 @property (nonatomic, strong) NSMutableDictionary *selectedIndexPaths;
+@property (nonatomic, assign) BOOL selectedAllCells;
 
 @end
 
-@implementation ScriptCollectionViewController {
-    BOOL _selectedAllCells;
-}
+@implementation ScriptCollectionViewController
 
 #pragma mark - events
 - (void)viewDidLoad
@@ -331,8 +330,8 @@
         }
     }
     
-    if (_selectedAllCells) {
-         [brickCell selectedState:_selectedAllCells setEditingState:self.editing];
+    if (self.selectedAllCells) {
+         [brickCell selectedState:self.selectedAllCells setEditingState:self.editing];
     } else {
         NSString *key = [self keyWithSelectIndexPath:indexPath];
         BOOL selected = indexPath == self.selectedIndexPaths[key];
@@ -660,7 +659,7 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
 
 - (void)selectAllBricks
 {
-    _selectedAllCells = YES;
+    self.selectedAllCells = YES;
     for (BrickCell *cell in self.collectionView.visibleCells) {
         cell.selectButton.selected = YES;
         NSIndexPath *indexPath = [self.collectionView indexPathForCell:cell];
@@ -775,7 +774,7 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
     } else {
         self.navigationItem.title = kUITableViewControllerMenuTitleScripts;
         self.navigationItem.rightBarButtonItem.tintColor = UIColor.lightOrangeColor;
-        
+        __weak ScriptCollectionViewController *weakself = self;
         [UIView animateWithDuration:animated ? 0.3f : 0.0f delay:0.0f usingSpringWithDamping:0.65f initialSpringVelocity:0.5f options:UIViewAnimationOptionCurveEaseInOut
                          animations:^{
                              for (BrickCell *brickCell in self.collectionView.visibleCells) {
@@ -784,8 +783,8 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
                              }
                          } completion:^(BOOL finished) {
                              if (self.selectedIndexPaths.count && finished) {
-                                 [self removeBricksWithIndexPaths:[self.selectedIndexPaths allValues]];
-                                 _selectedAllCells = NO;
+                                 [weakself removeBricksWithIndexPaths:[self.selectedIndexPaths allValues]];
+                                 weakself.selectedAllCells = NO;
                              }
                          }];
     }

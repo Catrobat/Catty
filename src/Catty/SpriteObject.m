@@ -204,9 +204,9 @@
     for (Script *script in self.scriptList)
     {
         if ([script isKindOfClass:[StartScript class]]) {
-            __block __typeof__(self) _self = self;
+            __weak SpriteObject *weakself = self;
             [self startAndAddScript:script completion:^{
-                [_self scriptFinished:script];
+                [weakself scriptFinished:script];
             }];
         }
 
@@ -229,37 +229,35 @@
 
 - (BOOL)touchedwith:(NSSet *)touches withX:(CGFloat)x andY:(CGFloat)y
 {
-
+    
     for (UITouch *touch in touches) {
         CGPoint touchedPoint = [touch locationInNode:self];
         NSDebug(@"x:%f,y:%f",touchedPoint.x,touchedPoint.y);
-         //NSLog(@"test touch, %@",self.name);
-//        UIGraphicsBeginImageContextWithOptions(self.frame.size, NO, [UIScreen mainScreen].scale);
-//        [self.scene.view drawViewHierarchyInRect:self.frame afterScreenUpdates:NO];
-//        UIImage *snapshotImage = UIGraphicsGetImageFromCurrentImageContext();
-//        UIGraphicsEndImageContext();
+        //NSLog(@"test touch, %@",self.name);
+        //        UIGraphicsBeginImageContextWithOptions(self.frame.size, NO, [UIScreen mainScreen].scale);
+        //        [self.scene.view drawViewHierarchyInRect:self.frame afterScreenUpdates:NO];
+        //        UIImage *snapshotImage = UIGraphicsGetImageFromCurrentImageContext();
+        //        UIGraphicsEndImageContext();
         NSDebug(@"image : x:%f,y:%f",self.currentUIImageLook.size.width,self.currentUIImageLook.size.height);
         
         BOOL isTransparent = [self.currentUIImageLook isTransparentPixel:self.currentUIImageLook withX:touchedPoint.x andY:touchedPoint.y];
         if (isTransparent == NO) {
-        for (Script *script in self.scriptList)
-        {
-            if ([script isKindOfClass:[WhenScript class]]) {
-                
-                [self startAndAddScript:script completion:^{
-                    [self scriptFinished:script];
-                }];
-                
+            for (Script *script in self.scriptList)
+            {
+                if ([script isKindOfClass:[WhenScript class]]) {
+                    __weak SpriteObject *weakself = self;
+                    [self startAndAddScript:script completion:^{
+                        [weakself scriptFinished:script];
+                    }];
+                }
             }
-           
-        }
             return YES;
-
+            
         } else {
             NSDebug(@"I'm transparent at this point");
             return NO;
-    }
-
+        }
+        
     }
     return YES;
 }
@@ -461,8 +459,9 @@
         if ([script isKindOfClass:[BroadcastScript class]]) {
             BroadcastScript *broadcastScript = (BroadcastScript*)script;
             if ([broadcastScript.receivedMessage isEqualToString:notification.name]) {
+                __weak SpriteObject *weakself = self;
                 [self startAndAddScript:broadcastScript completion:^{
-                    [self scriptFinished:broadcastScript];
+                    [weakself scriptFinished:broadcastScript];
                     NSDebug(@"FINISHED");
                 }];
             }
@@ -498,15 +497,14 @@
 
 -(void)performBroadcastWaitScriptWithMessage:(NSString *)message with:(dispatch_semaphore_t)sema1
 {
-
     for (Script *script in self.scriptList) {
         if ([script isKindOfClass:[BroadcastScript class]]) {
             BroadcastScript* broadcastScript = (BroadcastScript*)script;
             if ([broadcastScript.receivedMessage isEqualToString:message]) {
                 dispatch_semaphore_t sema = dispatch_semaphore_create(0);
-                
+                __weak SpriteObject *weakself = self;
                 [self startAndAddScript:broadcastScript completion:^{
-                    [self scriptFinished:broadcastScript];
+                    [weakself scriptFinished:broadcastScript];
                     dispatch_semaphore_signal(sema);
                 }];
                 dispatch_semaphore_wait(sema, DISPATCH_TIME_FOREVER);
@@ -522,7 +520,6 @@
 {
     return [NSString stringWithFormat:@"Object: %@\r", self.name];
 }
-
 
 
 #pragma mark - Formula Protocol
