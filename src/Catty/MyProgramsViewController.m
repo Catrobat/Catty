@@ -180,12 +180,12 @@
     [self.tableView reloadData];
 }
 
-- (void)renameProgramActionForProgramWithName:(NSString*)programName
-                     sourceProgramLoadingInfo:(ProgramLoadingInfo*)programLoadingInfo
+- (void)renameProgramActionToName:(NSString*)programName
+         sourceProgramLoadingInfo:(ProgramLoadingInfo*)programLoadingInfo
 {
     if ([programName isEqualToString:programLoadingInfo.visibleName])
         return;
-    
+
     Program *program = [Program programWithLoadingInfo:programLoadingInfo];
     [program renameToProgramName:programName];
     [self renameOldProgramName:programLoadingInfo.visibleName toNewProgramName:programName];
@@ -511,7 +511,7 @@
             ProgramLoadingInfo *info = (ProgramLoadingInfo*)payload[kDTPayloadProgramLoadingInfo];
             NSMutableArray *unavailableNames = [[Program allProgramNames] mutableCopy];
             [unavailableNames removeString:info.visibleName];
-            [Util askUserForUniqueNameAndPerformAction:@selector(renameProgramActionForProgramWithName:sourceProgramLoadingInfo:)
+            [Util askUserForUniqueNameAndPerformAction:@selector(renameProgramActionToName:sourceProgramLoadingInfo:)
                                                 target:self
                                             withObject:info
                                            promptTitle:kUIAlertViewTitleRenameProgram

@@ -349,8 +349,15 @@
     self.header.programName = programName;
     NSString *newPath = [self projectPath];
     [[[FileManager alloc] init] moveExistingDirectoryAtPath:oldPath toPath:newPath];
+    [self saveToDisk];
+}
 
-    // TODO: update header in code.xml...
+- (void)renameObject:(SpriteObject*)object toName:(NSString*)newObjectName
+{
+    if (! [self hasObject:object]) {
+        return;
+    }
+    object.name = newObjectName;
     [self saveToDisk];
 }
 

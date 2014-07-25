@@ -154,6 +154,39 @@
     self.navigationItem.title = self.title = programName;
 }
 
+- (void)copyObjectActionWithSourceObject:(SpriteObject*)sourceObject
+{
+    NSString *nameOfCopiedObject = [Util uniqueName:sourceObject.name
+                                      existingNames:[self.program allObjectNames]];
+    [self.program copyObject:sourceObject withNameForCopiedObject:nameOfCopiedObject];
+    
+    //    // create new cell
+    //    NSInteger numberOfRowsInLastSection = [self tableView:self.tableView numberOfRowsInSection:kObjectSectionIndex];
+    //    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:(numberOfRowsInLastSection - 1) inSection:kObjectSectionIndex];
+    //    [self.tableView insertRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationNone];
+    // TODO: scroll to bottom or show notification to user!
+    
+    // TODO: issue #308 - deep copy for SpriteObjects
+    // ####### WORKAROUND BEGIN: UGLY HACK !!!
+    
+    ProgramLoadingInfo *info = [[ProgramLoadingInfo alloc] init];
+    info.basePath = [NSString stringWithFormat:@"%@%@/", [Program basePath], self.program.header.programName];
+    info.visibleName = self.program.header.programName;
+    self.program = [Program programWithLoadingInfo:info];
+    [self.tableView reloadData];
+    
+    // ####### WORKAROUND END
+}
+
+- (void)renameObjectActionToName:(NSString*)newSpriteObjectName spriteObject:(SpriteObject*)spriteObject
+{
+    [self.program renameObject:spriteObject toName:newSpriteObjectName];
+    NSUInteger spriteObjectIndex = [self.program.objectList indexOfObject:spriteObject];
+    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:(spriteObjectIndex - kBackgroundObjects)
+                                                inSection:kObjectSectionIndex];
+    [self.tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationNone];
+}
+
 - (void)playSceneAction:(id)sender
 {
     [self.navigationController setToolbarHidden:YES];
@@ -519,7 +552,7 @@
             SpriteObject *spriteObject = (SpriteObject*)payload[kDTPayloadSpriteObject];
             NSMutableArray *unavailableNames = [[self.program allObjectNames] mutableCopy];
             [unavailableNames removeString:spriteObject.name];
-            [Util askUserForUniqueNameAndPerformAction:@selector(renameObjectActionWithName:spriteObject:)
+            [Util askUserForUniqueNameAndPerformAction:@selector(renameObjectActionToName:spriteObject:)
                                                 target:self
                                             withObject:spriteObject
                                            promptTitle:kUIAlertViewTitleRenameObject
@@ -533,30 +566,6 @@
                                          existingNames:unavailableNames];
         }
     }
-}
-
-- (void)copyObjectActionWithSourceObject:(SpriteObject*)sourceObject
-{
-    NSString *nameOfCopiedObject = [Util uniqueName:sourceObject.name
-                                      existingNames:[self.program allObjectNames]];
-    [self.program copyObject:sourceObject withNameForCopiedObject:nameOfCopiedObject];
-
-//    // create new cell
-//    NSInteger numberOfRowsInLastSection = [self tableView:self.tableView numberOfRowsInSection:kObjectSectionIndex];
-//    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:(numberOfRowsInLastSection - 1) inSection:kObjectSectionIndex];
-//    [self.tableView insertRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationNone];
-// TODO: scroll to bottom or show notification to user!
-
-    // TODO: issue #308 - deep copy for SpriteObjects
-    // ####### WORKAROUND BEGIN: UGLY HACK !!!
-
-    ProgramLoadingInfo *info = [[ProgramLoadingInfo alloc] init];
-    info.basePath = [NSString stringWithFormat:@"%@%@/", [Program basePath], self.program.header.programName];
-    info.visibleName = self.program.header.programName;
-    self.program = [Program programWithLoadingInfo:info];
-    [self.tableView reloadData];
-
-    // ####### WORKAROUND END
 }
 
 #pragma mark - alert view delegate handlers
