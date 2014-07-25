@@ -521,7 +521,7 @@
     copiedScript.brickList = [NSMutableArray arrayWithCapacity:[self.brickList count]];
     for (id brick in self.brickList) {
         if ([brick isKindOfClass:[Brick class]]) {
-            [copiedScript.brickList addObject:[brick copy]]; // TODO: there are some bricks that refer to other sound, look, sprite objects...
+            [copiedScript.brickList addObject:[brick copy]]; // FIXME:/TODO: there are some bricks that refer to other sound, look, sprite objects...
         }
     }
     return copiedScript;

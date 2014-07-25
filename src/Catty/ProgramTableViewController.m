@@ -541,12 +541,22 @@
                                       existingNames:[self.program allObjectNames]];
     [self.program copyObject:sourceObject withNameForCopiedObject:nameOfCopiedObject];
 
-    // create new cell
-    NSInteger numberOfRowsInLastSection = [self tableView:self.tableView numberOfRowsInSection:kObjectSectionIndex];
-    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:(numberOfRowsInLastSection - 1) inSection:kObjectSectionIndex];
-    [self.tableView insertRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationNone];
+//    // create new cell
+//    NSInteger numberOfRowsInLastSection = [self tableView:self.tableView numberOfRowsInSection:kObjectSectionIndex];
+//    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:(numberOfRowsInLastSection - 1) inSection:kObjectSectionIndex];
+//    [self.tableView insertRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationNone];
+// TODO: scroll to bottom or show notification to user!
 
-    // TODO: scroll to bottom or show notification to user!
+    // TODO: issue #308 - deep copy for SpriteObjects
+    // ####### WORKAROUND BEGIN: UGLY HACK !!!
+
+    ProgramLoadingInfo *info = [[ProgramLoadingInfo alloc] init];
+    info.basePath = [NSString stringWithFormat:@"%@%@/", [Program basePath], self.program.header.programName];
+    info.visibleName = self.program.header.programName;
+    self.program = [Program programWithLoadingInfo:info];
+    [self.tableView reloadData];
+
+    // ####### WORKAROUND END
 }
 
 #pragma mark - alert view delegate handlers

@@ -382,7 +382,9 @@
     if (! [self hasObject:sourceObject]) {
         return nil;
     }
-    SpriteObject *copiedObject = [sourceObject deepCopy];
+    // TODO: issue #308 - deep copy for SpriteObjects
+//    SpriteObject *copiedObject = [sourceObject deepCopy];
+    SpriteObject *copiedObject = [sourceObject copy]; // shallow copy
     copiedObject.name = nameOfCopiedObject;
     [self.objectList addObject:copiedObject];
     [self saveToDisk];

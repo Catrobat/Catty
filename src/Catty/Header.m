@@ -57,7 +57,7 @@
   [headerXMLElement addChild:[GDataXMLNode elementWithName:@"applicationName" stringValue:self.applicationName]];
   [headerXMLElement addChild:[GDataXMLNode elementWithName:@"applicationVersion" stringValue:self.applicationVersion]];
   [headerXMLElement addChild:[GDataXMLNode elementWithName:@"catrobatLanguageVersion" stringValue:self.catrobatLanguageVersion]];
-  [headerXMLElement addChild:[GDataXMLNode elementWithName:@"dateTimeUpload" stringValue:@""]]; // FIXME which date format??!!
+  [headerXMLElement addChild:[GDataXMLNode elementWithName:@"dateTimeUpload" stringValue:@""]]; // FIXME: which date format??!!
   [headerXMLElement addChild:[GDataXMLNode elementWithName:@"description" stringValue:self.description]];
   [headerXMLElement addChild:[GDataXMLNode elementWithName:@"deviceName" stringValue:self.deviceName]];
   [headerXMLElement addChild:[GDataXMLNode elementWithName:@"mediaLicense" stringValue:(self.mediaLicense ? self.mediaLicense : @"")]];
