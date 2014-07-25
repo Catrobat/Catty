@@ -239,6 +239,7 @@
 #define kUIAlertViewTitleAddObject NSLocalizedString(@"Add object", nil)
 #define kUIAlertViewTitleAddImage NSLocalizedString(@"Add image", nil)
 #define kUIAlertViewTitleRenameObject NSLocalizedString(@"Rename object", nil) // TODO: translate!
+#define kUIAlertViewTitleRenameImage NSLocalizedString(@"Rename image", nil) // TODO: translate!
 #define kUIAlertViewTitleCantRestartProgram NSLocalizedString(@"Can't restart program!", nil)
 #define kUIAlertViewTitleScreenshotSavedToCameraRoll NSLocalizedString(@"Screenshot saved to Camera Roll", nil)
 #define kUIAlertViewTitleScreenshotSavedToProject NSLocalizedString(@"Screenshot saved to project", nil)
@@ -276,6 +277,7 @@
 #define kUIAlertViewMessageInvalidProgramDescription NSLocalizedString(@"The description contains invalid characters, try again.", nil)
 #define kUIAlertViewMessageObjectNameAlreadyExists NSLocalizedString(@"An object with the same name already exists, try again.", nil) // TODO: translate!
 #define kUIAlertViewMessageInvalidObjectName NSLocalizedString(@"No or invalid object name entered, try again.", nil) // deprecated
+#define kUIAlertViewMessageInvalidImageName NSLocalizedString(@"No or invalid image name entered, try again.", nil) // TODO: translate
 #define kUIAlertViewMessageImageNameAlreadyExists NSLocalizedString(@"An image with the same name already exists, try again.", nil) // TODO: translate!
 #define kUIAlertViewMessageUnableToLoadProgram NSLocalizedString(@"Unable to load program!", nil)
 #define kUIAlertViewMessageIrreversibleAction NSLocalizedString(@"This action can not be undone!", nil)

@@ -557,13 +557,30 @@
     return copiedSound;
 }
 
+- (void)renameLook:(Look*)look toName:(NSString*)newLookName
+{
+    if (! [self hasLook:look] || [look.name isEqualToString:newLookName]) {
+        return;
+    }
+    look.name = [Util uniqueName:newLookName existingNames:[self allLookNames]];
+    [self.program saveToDisk];
+}
+
+- (void)renameSound:(Sound*)sound toName:(NSString*)newSoundName
+{
+    if (! [self hasSound:sound] || [sound.name isEqualToString:newSoundName]) {
+        return;
+    }
+    sound.name = [Util uniqueName:newSoundName existingNames:[self allSoundNames]];
+    [self.program saveToDisk];
+}
+
 #pragma mark - Broadcast
--(void)broadcast:(NSString *)message
+- (void)broadcast:(NSString*)message
 {
     NSDebug(@"Broadcast: %@, Object: %@", message, self.name);
     [[NSNotificationCenter defaultCenter] postNotificationName:message object:self];
 }
-
 
 - (void)performBroadcastScript:(NSNotification*)notification
 {
@@ -580,13 +597,10 @@
             }
         }
     }
-    
     //dispatch_release(group);
-
 }
 
-
--(void)broadcastAndWait:(NSString *)message
+- (void)broadcastAndWait:(NSString*)message
 {
     if ([[NSThread currentThread] isMainThread]) {
         NSLog(@" ");
@@ -608,7 +622,7 @@
 
 }
 
--(void)performBroadcastWaitScriptWithMessage:(NSString *)message with:(dispatch_semaphore_t)sema1
+- (void)performBroadcastWaitScriptWithMessage:(NSString*)message with:(dispatch_semaphore_t)sema1
 {
 
     for (Script *script in self.scriptList) {

@@ -115,6 +115,8 @@
 - (void)setLook;
 - (void)removeLook:(Look*)look;
 - (void)removeSound:(Sound*)sound;
+- (void)renameLook:(Look*)look toName:(NSString*)newLookName;
+- (void)renameSound:(Sound*)sound toName:(NSString*)newSoundName;
 - (BOOL)hasLook:(Look*)look;
 - (BOOL)hasSound:(Sound*)sound;
 - (Look*)copyLook:(Look*)sourceLook withNameForCopiedLook:(NSString*)nameOfCopiedLook;

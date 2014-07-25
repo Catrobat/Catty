@@ -138,6 +138,18 @@
     [self.tableView insertRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationBottom];
 }
 
+- (void)renameLookActionToName:(NSString*)newLookName look:(Look*)look
+{
+    if ([newLookName isEqualToString:look.name])
+        return;
+
+    newLookName = [Util uniqueName:newLookName existingNames:[self.object allLookNames]];
+    [self.object renameLook:look toName:newLookName];
+    NSUInteger lookIndex = [self.object.lookList indexOfObject:look];
+    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:lookIndex inSection:0];
+    [self.tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationNone];
+}
+
 - (void)confirmDeleteSelectedLooksAction:(id)sender
 {
     NSArray *selectedRowsIndexPaths = [self.tableView indexPathsForSelectedRows];
@@ -495,27 +507,24 @@
         }
     } else if (actionSheet.tag == kEditLookActionSheetTag) {
         if (buttonIndex == 0) {
-            // Copy button
+            // Copy look button
             NSDictionary *payload = (NSDictionary*)actionSheet.dataTransferMessage.payload;
             [self copyLookActionWithSourceLook:(Look*)payload[kDTPayloadLook]];
         } else if (buttonIndex == 1) {
-            // Rename button
-//            NSDictionary *payload = (NSDictionary*)actionSheet.dataTransferMessage.payload;
-//            ProgramLoadingInfo *info = (ProgramLoadingInfo*)payload[kDTPayloadProgramLoadingInfo];
-//            NSMutableArray *unavailableNames = [[Program allProgramNames] mutableCopy];
-//            [unavailableNames removeString:info.visibleName];
-//            [Util askUserForUniqueNameAndPerformAction:@selector(renameProgramActionToName:sourceProgramLoadingInfo:)
-//                                                target:self
-//                                            withObject:info
-//                                           promptTitle:kUIAlertViewTitleRenameProgram
-//                                         promptMessage:[NSString stringWithFormat:@"%@:", kUIAlertViewMessageProgramName]
-//                                           promptValue:info.visibleName
-//                                     promptPlaceholder:kUIAlertViewPlaceholderEnterProgramName
-//                                        minInputLength:kMinNumOfProgramNameCharacters
-//                                        maxInputLength:kMaxNumOfProgramNameCharacters
-//                                   blockedCharacterSet:[self blockedCharacterSet]
-//                              invalidInputAlertMessage:kUIAlertViewMessageProgramNameAlreadyExists
-//                                         existingNames:unavailableNames];
+            // Rename look button
+            NSDictionary *payload = (NSDictionary*)actionSheet.dataTransferMessage.payload;
+            Look *look = (Look*)payload[kDTPayloadLook];
+            [Util askUserForTextAndPerformAction:@selector(renameLookActionToName:look:)
+                                          target:self
+                                      withObject:look
+                                     promptTitle:kUIAlertViewTitleRenameImage
+                                   promptMessage:[NSString stringWithFormat:@"%@:", kUIAlertViewMessageImageName]
+                                     promptValue:look.name
+                               promptPlaceholder:kUIAlertViewPlaceholderEnterImageName
+                                  minInputLength:kMinNumOfLookNameCharacters
+                                  maxInputLength:kMaxNumOfLookNameCharacters
+                             blockedCharacterSet:[self blockedCharacterSet]
+                        invalidInputAlertMessage:kUIAlertViewMessageInvalidProgramDescription];
         }
     } else if (actionSheet.tag == kAddLookActionSheetTag) {
         NSInteger importFromCameraIndex = NSIntegerMin;
