@@ -388,6 +388,28 @@
     return [[AudioManager sharedAudioManager] durationOfSoundWithFilePath:path];
 }
 
+- (NSArray*)allLookNames
+{
+    NSMutableArray *lookNames = [NSMutableArray arrayWithCapacity:[self.lookList count]];
+    for (id look in self.lookList) {
+        if ([look isKindOfClass:[Look class]]) {
+            [lookNames addObject:((Look*)look).name];
+        }
+    }
+    return [lookNames copy];
+}
+
+- (NSArray*)allSoundNames
+{
+    NSMutableArray *soundNames = [NSMutableArray arrayWithCapacity:[self.soundList count]];
+    for (id sound in self.soundList) {
+        if ([sound isKindOfClass:[Sound class]]) {
+            [soundNames addObject:((Sound*)sound).name];
+        }
+    }
+    return [soundNames copy];
+}
+
 - (void)changeLook:(Look *)look
 {
     UIImage* image = [UIImage imageWithContentsOfFile:[self pathForLook:look]];
@@ -499,6 +521,40 @@
         [self.soundList removeObjectAtIndex:index];
         break;
     }
+}
+
+- (BOOL)hasLook:(Look*)look
+{
+    return [self.lookList containsObject:look];
+}
+
+- (BOOL)hasSound:(Sound*)sound
+{
+    return [self.soundList containsObject:sound];
+}
+
+- (Look*)copyLook:(Look*)sourceLook withNameForCopiedLook:(NSString*)nameOfCopiedLook
+{
+    if (! [self hasLook:sourceLook]) {
+        return nil;
+    }
+    Look *copiedLook = [sourceLook deepCopy];
+    copiedLook.name = [Util uniqueName:nameOfCopiedLook existingNames:[self allLookNames]];
+    [self.lookList addObject:copiedLook];
+    [self.program saveToDisk];
+    return copiedLook;
+}
+
+- (Sound*)copySound:(Sound*)sourceSound withNameForCopiedSound:(NSString*)nameOfCopiedSound
+{
+    if (! [self hasSound:sourceSound]) {
+        return nil;
+    }
+    Sound *copiedSound = [sourceSound deepCopy];
+    copiedSound.name = [Util uniqueName:nameOfCopiedSound existingNames:[self allSoundNames]];
+    [self.soundList addObject:copiedSound];
+    [self.program saveToDisk];
+    return copiedSound;
 }
 
 #pragma mark - Broadcast

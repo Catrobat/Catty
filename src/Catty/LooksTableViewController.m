@@ -129,8 +129,10 @@
     [self performSegueWithIdentifier:kSegueToScene sender:sender];
 }
 
-- (void)copyLookActionForLookWithName:(NSString*)lookName sourceLook:(Look*)look
+- (void)copyLookActionWithSourceLook:(Look*)sourceLook
 {
+    NSString *nameOfCopiedLook = [Util uniqueName:sourceLook.name existingNames:[self.object allLookNames]];
+    [self.object copyLook:sourceLook withNameForCopiedLook:nameOfCopiedLook];
     NSInteger numberOfRowsInLastSection = [self tableView:self.tableView numberOfRowsInSection:0];
     NSIndexPath *indexPath = [NSIndexPath indexPathForRow:(numberOfRowsInLastSection - 1) inSection:0];
     [self.tableView insertRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationBottom];
@@ -495,18 +497,7 @@
         if (buttonIndex == 0) {
             // Copy button
             NSDictionary *payload = (NSDictionary*)actionSheet.dataTransferMessage.payload;
-            Look *look = (Look*)payload[kDTPayloadLook];
-            [Util askUserForTextAndPerformAction:@selector(copyLookActionForLookWithName:sourceLook:)
-                                          target:self
-                                      withObject:look
-                                     promptTitle:kUIAlertViewTitleCopyLook
-                                   promptMessage:[NSString stringWithFormat:@"%@:", kUIAlertViewMessageImageName]
-                                     promptValue:look.name
-                               promptPlaceholder:kUIAlertViewPlaceholderEnterImageName
-                                  minInputLength:kMinNumOfLookNameCharacters
-                                  maxInputLength:kMaxNumOfLookNameCharacters
-                             blockedCharacterSet:[self blockedCharacterSet]
-                        invalidInputAlertMessage:kUIAlertViewMessageImageNameAlreadyExists];
+            [self copyLookActionWithSourceLook:(Look*)payload[kDTPayloadLook]];
         } else if (buttonIndex == 1) {
             // Rename button
 //            NSDictionary *payload = (NSDictionary*)actionSheet.dataTransferMessage.payload;

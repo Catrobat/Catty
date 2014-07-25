@@ -160,9 +160,10 @@
 - (void)addProgramAndSegueToItActionForProgramWithName:(NSString*)programName
 {
     static NSString *segueToNewProgramIdentifier = kSegueToNewProgram;
+    programName = [Util uniqueName:programName existingNames:[Program allProgramNames]];
     self.defaultProgram = [Program defaultProgramWithName:programName];
     if ([self shouldPerformSegueWithIdentifier:segueToNewProgramIdentifier sender:self]) {
-        [self addProgram:programName];
+        [self addProgram:self.defaultProgram.header.programName];
         [self performSegueWithIdentifier:segueToNewProgramIdentifier sender:self];
     }
 }
@@ -170,6 +171,7 @@
 - (void)copyProgramActionForProgramWithName:(NSString*)programName
                    sourceProgramLoadingInfo:(ProgramLoadingInfo*)sourceProgramLoadingInfo
 {
+    programName = [Util uniqueName:programName existingNames:[Program allProgramNames]];
     ProgramLoadingInfo *destinationProgramLoadingInfo = [self addProgram:programName];
     if (! destinationProgramLoadingInfo) {
         return;
@@ -182,15 +184,16 @@
     [self.tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationBottom];
 }
 
-- (void)renameProgramActionToName:(NSString*)programName
+- (void)renameProgramActionToName:(NSString*)newProgramName
          sourceProgramLoadingInfo:(ProgramLoadingInfo*)programLoadingInfo
 {
-    if ([programName isEqualToString:programLoadingInfo.visibleName])
+    if ([newProgramName isEqualToString:programLoadingInfo.visibleName])
         return;
 
     Program *program = [Program programWithLoadingInfo:programLoadingInfo];
-    [program renameToProgramName:programName];
-    [self renameOldProgramName:programLoadingInfo.visibleName toNewProgramName:programName];
+    newProgramName = [Util uniqueName:newProgramName existingNames:[Program allProgramNames]];
+    [program renameToProgramName:newProgramName];
+    [self renameOldProgramName:programLoadingInfo.visibleName toNewProgramName:program.header.programName];
 }
 
 - (void)updateProgramDescriptionActionWithText:(NSString*)descriptionText

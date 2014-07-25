@@ -143,6 +143,8 @@
     [textField setClearButtonMode:UITextFieldViewModeWhileEditing];
     textField.text = value;
     textField.delegate = textFieldDelegate;
+    textField.returnKeyType = UIReturnKeyDone;
+    catrobatAlertView = alertView;
     if (! [self activateTestMode:NO]) {
         [alertView show];
     }
@@ -427,24 +429,26 @@
 
 #pragma mark - text field delegates
 static NSCharacterSet *textFieldBlockedCharacterSet = nil;
-+ (NSCharacterSet*)textFieldBlockedCharacterSet
-{
-    return textFieldBlockedCharacterSet;
-}
 
 static NSUInteger textFieldMaxInputLength = 0;
-+ (NSUInteger)textFieldMaxInputLength
-{
-    return textFieldMaxInputLength;
-}
+
+static CatrobatAlertView *catrobatAlertView = nil;
 
 + (BOOL)textField:(UITextField*)field shouldChangeCharactersInRange:(NSRange)range
 replacementString:(NSString*)characters
 {
-    if ([characters length] > [[self class] textFieldMaxInputLength]) {
+    if ([characters length] > textFieldMaxInputLength) {
         return false;
     }
-    return ([characters rangeOfCharacterFromSet:[[self class] textFieldBlockedCharacterSet]].location == NSNotFound);
+    return ([characters rangeOfCharacterFromSet:textFieldBlockedCharacterSet].location == NSNotFound);
+}
+
++ (BOOL)textFieldShouldReturn:(UITextField*)textField
+{
+    [catrobatAlertView dismissWithClickedButtonIndex:0 animated:YES];
+    [textField resignFirstResponder]; // dismiss the keyboard
+    [[self class] alertView:catrobatAlertView clickedButtonAtIndex:kAlertViewButtonOK];
+    return YES;
 }
 
 #pragma mark - alert view delegates

@@ -254,7 +254,6 @@
 #define kUIAlertViewTitleDeleteSingleSound NSLocalizedString(@"Delete this sound", nil)
 #define kUIAlertViewTitleNotEnoughFreeMemory NSLocalizedString(@"Not enough free memory to download this program. Please delete some of your programs", nil)
 #define kUIAlertViewTitleCopyProgram NSLocalizedString(@"Copy program", nil)
-#define kUIAlertViewTitleCopyLook NSLocalizedString(@"Copy look", nil)
 #define kUIAlertViewTitleRenameProgram NSLocalizedString(@"Rename program", nil)
 #define kUIAlertViewTitleDescriptionProgram NSLocalizedString(@"Set description", nil)
 

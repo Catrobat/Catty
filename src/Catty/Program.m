@@ -48,6 +48,7 @@
 # pragma mark - factories
 + (instancetype)defaultProgramWithName:(NSString*)programName
 {
+    programName = [Util uniqueName:programName existingNames:[[self class] allProgramNames]];
     Program* program = [[Program alloc] init];
     program.header = [[Header alloc] init];
 
@@ -75,7 +76,7 @@
     program.header.tags = nil;
 
     FileManager *fileManager = [[FileManager alloc] init];
-    if (! [self programExists:programName]) {
+    if (! [fileManager directoryExists:programName]) {
         [fileManager createDirectory:[program projectPath]];
     }
 
@@ -249,6 +250,7 @@
      destinationProgramName:(NSString*)destinationProgramName
 {
     NSString *sourceProgramPath = [[self class] projectPathForProgramWithName:sourceProgramName];
+    destinationProgramName = [Util uniqueName:destinationProgramName existingNames:[self allProgramNames]];
     NSString *destinationProgramPath = [[self class] projectPathForProgramWithName:destinationProgramName];
 
     AppDelegate *appDelegate = (AppDelegate*)[UIApplication sharedApplication].delegate;
@@ -341,9 +343,12 @@
 
 - (void)renameToProgramName:(NSString *)programName
 {
+    if ([self.header.programName isEqualToString:programName]) {
+        return;
+    }
     BOOL isLastProgram = [self isLastProgram];
     NSString *oldPath = [self projectPath];
-    self.header.programName = programName;
+    self.header.programName = [Util uniqueName:programName existingNames:[[self class] allProgramNames]];
     NSString *newPath = [self projectPath];
     [[[FileManager alloc] init] moveExistingDirectoryAtPath:oldPath toPath:newPath];
     if (isLastProgram) {
@@ -354,10 +359,10 @@
 
 - (void)renameObject:(SpriteObject*)object toName:(NSString*)newObjectName
 {
-    if (! [self hasObject:object]) {
+    if (! [self hasObject:object] || [object.name isEqualToString:newObjectName]) {
         return;
     }
-    object.name = newObjectName;
+    object.name = [Util uniqueName:newObjectName existingNames:[self allObjectNames]];
     [self saveToDisk];
 }
 
@@ -392,7 +397,7 @@
     // TODO: issue #308 - deep copy for SpriteObjects
 //    SpriteObject *copiedObject = [sourceObject deepCopy];
     SpriteObject *copiedObject = [sourceObject copy]; // shallow copy
-    copiedObject.name = nameOfCopiedObject;
+    copiedObject.name = [Util uniqueName:nameOfCopiedObject existingNames:[self allObjectNames]];
     [self.objectList addObject:copiedObject];
     [self saveToDisk];
     return copiedObject;

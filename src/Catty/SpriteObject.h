@@ -107,12 +107,18 @@
 - (CGSize)dimensionsOfLook:(Look*)look;
 - (NSUInteger)fileSizeOfSound:(Sound*)sound;
 - (CGFloat)durationOfSound:(Sound*)sound;
+- (NSArray*)allLookNames;
+- (NSArray*)allSoundNames;
 
 // actions
 - (void)changeLook:(Look*)look;
 - (void)setLook;
 - (void)removeLook:(Look*)look;
 - (void)removeSound:(Sound*)sound;
+- (BOOL)hasLook:(Look*)look;
+- (BOOL)hasSound:(Sound*)sound;
+- (Look*)copyLook:(Look*)sourceLook withNameForCopiedLook:(NSString*)nameOfCopiedLook;
+- (Sound*)copySound:(Sound*)sourceSound withNameForCopiedSound:(NSString*)nameOfCopiedSound;
 
 //- (void)glideToPosition:(CGPoint)position withDurationInSeconds:(float)durationInSeconds fromScript:(Script*)script;
 //- (void)hide;

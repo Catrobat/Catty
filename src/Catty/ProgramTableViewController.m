@@ -137,50 +137,54 @@
 
 - (void)addObjectActionWithName:(NSString*)objectName
 {
-    [self.program addObjectWithName:objectName];
+    [self.program addObjectWithName:[Util uniqueName:objectName existingNames:[self.program allObjectNames]]];
     NSInteger numberOfRowsInLastSection = [self tableView:self.tableView numberOfRowsInSection:kObjectSectionIndex];
     NSIndexPath *indexPath = [NSIndexPath indexPathForRow:(numberOfRowsInLastSection - 1) inSection:kObjectSectionIndex];
     [self.tableView insertRowsAtIndexPaths:@[indexPath]
                           withRowAnimation:(([self.program numberOfNormalObjects] == 1) ? UITableViewRowAnimationFade : UITableViewRowAnimationBottom)];
 }
 
-- (void)renameProgramActionForProgramWithName:(NSString*)programName
+- (void)renameProgramActionForProgramWithName:(NSString*)newProgramName
 {
-    if ([programName isEqualToString:self.program.header.programName])
+    if ([newProgramName isEqualToString:self.program.header.programName])
         return;
 
     NSString *oldProgramName = self.program.header.programName;
-    [self.program renameToProgramName:programName];
-    [self.delegate renameOldProgramName:oldProgramName toNewProgramName:programName];
-    self.navigationItem.title = self.title = programName;
+    newProgramName = [Util uniqueName:newProgramName existingNames:[Program allProgramNames]];
+    [self.program renameToProgramName:newProgramName];
+    [self.delegate renameOldProgramName:oldProgramName toNewProgramName:self.program.header.programName];
+    self.navigationItem.title = self.title = self.program.header.programName;
 }
 
 - (void)copyObjectActionWithSourceObject:(SpriteObject*)sourceObject
 {
-    NSString *nameOfCopiedObject = [Util uniqueName:sourceObject.name
-                                      existingNames:[self.program allObjectNames]];
+    NSString *nameOfCopiedObject = [Util uniqueName:sourceObject.name existingNames:[self.program allObjectNames]];
     [self.program copyObject:sourceObject withNameForCopiedObject:nameOfCopiedObject];
-    
+
     //    // create new cell
     //    NSInteger numberOfRowsInLastSection = [self tableView:self.tableView numberOfRowsInSection:kObjectSectionIndex];
     //    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:(numberOfRowsInLastSection - 1) inSection:kObjectSectionIndex];
     //    [self.tableView insertRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationBottom];
     // TODO: scroll to bottom or show notification to user!
-    
+
     // TODO: issue #308 - deep copy for SpriteObjects
-    // ####### WORKAROUND BEGIN: UGLY HACK !!!
-    
+    // ####### WORKAROUND BEGIN: QUICK&DIRTY UGLY HACK !!!
+
     ProgramLoadingInfo *info = [[ProgramLoadingInfo alloc] init];
     info.basePath = [NSString stringWithFormat:@"%@%@/", [Program basePath], self.program.header.programName];
     info.visibleName = self.program.header.programName;
     self.program = [Program programWithLoadingInfo:info];
     [self.tableView reloadData];
-    
+
     // ####### WORKAROUND END
 }
 
 - (void)renameObjectActionToName:(NSString*)newObjectName spriteObject:(SpriteObject*)spriteObject
 {
+    if ([newObjectName isEqualToString:spriteObject.name])
+        return;
+
+    newObjectName = [Util uniqueName:newObjectName existingNames:[self.program allObjectNames]];
     [self.program renameObject:spriteObject toName:newObjectName];
     NSUInteger spriteObjectIndex = [self.program.objectList indexOfObject:spriteObject];
     NSIndexPath *indexPath = [NSIndexPath indexPathForRow:(spriteObjectIndex - kBackgroundObjects)
