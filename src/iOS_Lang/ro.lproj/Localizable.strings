@@ -239,6 +239,24 @@
 
 "Set description" = "Set description";
 
+"Rename object" = "Rename object";
+
+"Rename image" = "Rename image";
+
+"Rename sound" = "Rename sound";
+
+"Enter your sound name here..." = "Enter your sound name here...";
+
+"Sound name" = "Sound name";
+
+"An object with the same name already exists, try again." = "An object with the same name already exists, try again.";
+
+"No or invalid image name entered, try again." = "No or invalid image name entered, try again.";
+
+"No or invalid sound name entered, try again." = "No or invalid sound name entered, try again.";
+
+"An image with the same name already exists, try again." = "An image with the same name already exists, try again.";
+
 "Enter your program description here..." = "Enter your program description here...";
 
 "Can't restart program!" = "Can't restart program!";

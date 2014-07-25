@@ -43,6 +43,7 @@
 #import "RuntimeImageCache.h"
 #import "SharkfoodMuteSwitchDetector.h"
 #import "CatrobatActionSheet.h"
+#import "DataTransferMessage.h"
 
 // TODO: outsource...
 #define kUserDetailsShowDetailsKey @"showDetails"
@@ -58,6 +59,17 @@
 @end
 
 @implementation SoundsTableViewController
+
+#pragma mark - data helpers
+static NSCharacterSet *blockedCharacterSet = nil;
+- (NSCharacterSet*)blockedCharacterSet
+{
+    if (! blockedCharacterSet) {
+        blockedCharacterSet = [[NSCharacterSet characterSetWithCharactersInString:kTextFieldAllowedCharacters]
+                               invertedSet];
+    }
+    return blockedCharacterSet;
+}
 
 #pragma mark - initialization
 - (void)initNavigationBar
@@ -168,6 +180,27 @@
     NSIndexPath *indexPath = [NSIndexPath indexPathForRow:(numberOfRowsInLastSection - 1) inSection:0];
     [self.tableView insertRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationNone];
     // TODO: save to disk (async)...
+}
+
+- (void)copySoundActionWithSourceSound:(Sound*)sourceSound
+{
+    NSString *nameOfCopiedSound = [Util uniqueName:sourceSound.name existingNames:[self.object allSoundNames]];
+    [self.object copySound:sourceSound withNameForCopiedSound:nameOfCopiedSound];
+    NSInteger numberOfRowsInLastSection = [self tableView:self.tableView numberOfRowsInSection:0];
+    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:(numberOfRowsInLastSection - 1) inSection:0];
+    [self.tableView insertRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationBottom];
+}
+
+- (void)renameSoundActionToName:(NSString*)newSoundName sound:(Sound*)sound
+{
+    if ([newSoundName isEqualToString:sound.name])
+        return;
+
+    newSoundName = [Util uniqueName:newSoundName existingNames:[self.object allSoundNames]];
+    [self.object renameSound:sound toName:newSoundName];
+    NSUInteger soundIndex = [self.object.soundList indexOfObject:sound];
+    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:soundIndex inSection:0];
+    [self.tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationNone];
 }
 
 - (void)confirmDeleteSelectedSoundsAction:(id)sender
@@ -365,19 +398,24 @@
 #pragma mark - swipe delegates
 - (void)swipeableTableViewCell:(SWTableViewCell *)cell didTriggerRightUtilityButtonWithIndex:(NSInteger)index
 {
+    [cell hideUtilityButtonsAnimated:YES];
     if (index == 0) {
         // More button was pressed
-        UIAlertView *alertTest = [[UIAlertView alloc] initWithTitle:@"Hello"
-                                                            message:@"More more more"
-                                                           delegate:nil
-                                                  cancelButtonTitle:kUIAlertViewButtonTitleCancel
-                                                  otherButtonTitles:nil];
-        [alertTest show];
-        [cell hideUtilityButtonsAnimated:YES];
+        NSArray *options = @[kUIActionSheetButtonTitleCopy, kUIActionSheetButtonTitleRename];
+        CatrobatActionSheet *actionSheet = [Util actionSheetWithTitle:kUIActionSheetTitleEditSound
+                                                             delegate:self
+                                               destructiveButtonTitle:nil
+                                                    otherButtonTitles:options
+                                                                  tag:kEditSoundActionSheetTag
+                                                                 view:self.navigationController.view];
+        NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
+        NSDictionary *payload = @{ kDTPayloadSound : [self.object.soundList objectAtIndex:indexPath.row] };
+        DataTransferMessage *message = [DataTransferMessage messageForActionType:kDTMActionEditSound
+                                                                     withPayload:[payload mutableCopy]];
+        actionSheet.dataTransferMessage = message;
     } else if (index == 1) {
         // Delete button was pressed
         NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
-        [cell hideUtilityButtonsAnimated:YES];
         [self performActionOnConfirmation:@selector(deleteSoundForIndexPath:)
                            canceledAction:nil
                                withObject:indexPath
@@ -477,6 +515,27 @@
             [defaults synchronize];
             [self stopAllSounds];
             [self.tableView reloadData];
+        }
+    } else if (actionSheet.tag == kEditSoundActionSheetTag) {
+        if (buttonIndex == 0) {
+            // Copy sound button
+            NSDictionary *payload = (NSDictionary*)actionSheet.dataTransferMessage.payload;
+            [self copySoundActionWithSourceSound:(Sound*)payload[kDTPayloadSound]];
+        } else if (buttonIndex == 1) {
+            // Rename look button
+            NSDictionary *payload = (NSDictionary*)actionSheet.dataTransferMessage.payload;
+            Sound *sound = (Sound*)payload[kDTPayloadSound];
+            [Util askUserForTextAndPerformAction:@selector(renameSoundActionToName:sound:)
+                                          target:self
+                                      withObject:sound
+                                     promptTitle:kUIAlertViewTitleRenameSound
+                                   promptMessage:[NSString stringWithFormat:@"%@:", kUIAlertViewMessageSoundName]
+                                     promptValue:sound.name
+                               promptPlaceholder:kUIAlertViewPlaceholderEnterSoundName
+                                  minInputLength:kMinNumOfSoundNameCharacters
+                                  maxInputLength:kMaxNumOfSoundNameCharacters
+                             blockedCharacterSet:[self blockedCharacterSet]
+                        invalidInputAlertMessage:kUIAlertViewMessageInvalidSoundName];
         }
     } else if (actionSheet.tag == kAddSoundActionSheetTag) {
         if (buttonIndex == 0) {

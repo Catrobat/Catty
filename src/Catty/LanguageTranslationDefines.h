@@ -164,6 +164,7 @@
  */
 
 #define kUIActionSheetTitleEditSounds NSLocalizedString(@"Edit Sounds",@"Action sheet menu title")
+#define kUIActionSheetTitleEditSound NSLocalizedString(@"Edit Sound",@"Action sheet menu title")
 #define kUIActionSheetTitleEditLooks NSLocalizedString(@"Edit Looks", @"Action sheet menu title")
 #define kUIActionSheetTitleEditLook NSLocalizedString(@"Edit Look", @"Action sheet menu title")
 #define kUIActionSheetTitleAddLook NSLocalizedString(@"Add look", @"Action sheet menu title")
@@ -238,8 +239,9 @@
 #define kUIAlertViewTitleStandard NSLocalizedString(@"Pocket Code", nil)
 #define kUIAlertViewTitleAddObject NSLocalizedString(@"Add object", nil)
 #define kUIAlertViewTitleAddImage NSLocalizedString(@"Add image", nil)
-#define kUIAlertViewTitleRenameObject NSLocalizedString(@"Rename object", nil) // TODO: translate!
-#define kUIAlertViewTitleRenameImage NSLocalizedString(@"Rename image", nil) // TODO: translate!
+#define kUIAlertViewTitleRenameObject NSLocalizedString(@"Rename object", nil)
+#define kUIAlertViewTitleRenameImage NSLocalizedString(@"Rename image", nil)
+#define kUIAlertViewTitleRenameSound NSLocalizedString(@"Rename sound", nil)
 #define kUIAlertViewTitleCantRestartProgram NSLocalizedString(@"Can't restart program!", nil)
 #define kUIAlertViewTitleScreenshotSavedToCameraRoll NSLocalizedString(@"Screenshot saved to Camera Roll", nil)
 #define kUIAlertViewTitleScreenshotSavedToProject NSLocalizedString(@"Screenshot saved to project", nil)
@@ -263,6 +265,7 @@
 #define kUIAlertViewPlaceholderEnterProgramDescription NSLocalizedString(@"Enter your program description here...", @"Placeholder for program-description input field")
 #define kUIAlertViewPlaceholderEnterObjectName NSLocalizedString(@"Enter your object name here...", @"Placeholder for add object-name input field")
 #define kUIAlertViewPlaceholderEnterImageName NSLocalizedString(@"Enter your image name here...", @"Placeholder for add image-name input field")
+#define kUIAlertViewPlaceholderEnterSoundName NSLocalizedString(@"Enter your sound name here...", @"Placeholder for add sound-name input field")
 
 // text defines
 #define kUIAlertViewMessageInfoForPocketCode NSLocalizedString(@"Pocket Code for iOS", nil)
@@ -271,14 +274,16 @@
 #define kUIAlertViewMessageDescriptionProgram NSLocalizedString(@"Description", nil)
 #define kUIAlertViewMessageObjectName NSLocalizedString(@"Object name", nil)
 #define kUIAlertViewMessageImageName NSLocalizedString(@"Image name", nil)
+#define kUIAlertViewMessageSoundName NSLocalizedString(@"Sound name", nil)
 #define kUIAlertViewMessageNoImportedSoundsFound NSLocalizedString(@"No imported sounds found. Please connect your iPhone to your PC/Mac and use iTunes FileSharing to import sound files into the PocketCode app.", nil)
 #define kUIAlertViewMessageInputTooShortMessage NSLocalizedString(@"No input or the input is too short. Please enter at least %lu character(s).", nil)
 #define kUIAlertViewMessageProgramNameAlreadyExists NSLocalizedString(@"A program with the same name already exists, try again.", nil)
 #define kUIAlertViewMessageInvalidProgramDescription NSLocalizedString(@"The description contains invalid characters, try again.", nil)
-#define kUIAlertViewMessageObjectNameAlreadyExists NSLocalizedString(@"An object with the same name already exists, try again.", nil) // TODO: translate!
+#define kUIAlertViewMessageObjectNameAlreadyExists NSLocalizedString(@"An object with the same name already exists, try again.", nil)
 #define kUIAlertViewMessageInvalidObjectName NSLocalizedString(@"No or invalid object name entered, try again.", nil) // deprecated
-#define kUIAlertViewMessageInvalidImageName NSLocalizedString(@"No or invalid image name entered, try again.", nil) // TODO: translate
-#define kUIAlertViewMessageImageNameAlreadyExists NSLocalizedString(@"An image with the same name already exists, try again.", nil) // TODO: translate!
+#define kUIAlertViewMessageInvalidImageName NSLocalizedString(@"No or invalid image name entered, try again.", nil)
+#define kUIAlertViewMessageInvalidSoundName NSLocalizedString(@"No or invalid sound name entered, try again.", nil)
+#define kUIAlertViewMessageImageNameAlreadyExists NSLocalizedString(@"An image with the same name already exists, try again.", nil)
 #define kUIAlertViewMessageUnableToLoadProgram NSLocalizedString(@"Unable to load program!", nil)
 #define kUIAlertViewMessageIrreversibleAction NSLocalizedString(@"This action can not be undone!", nil)
 #define kUIAlertViewMessageUnableToPlaySound NSLocalizedString(@"Unable to play that sound!\nMaybe this is no valid sound or the file is corrupt.", nil)

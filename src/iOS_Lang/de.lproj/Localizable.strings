@@ -243,6 +243,24 @@
 
 "Set description" = "Beschreibung";
 
+"Rename object" = "Objekt umbenennen";
+
+"Rename image" = "Bild umbenennen";
+
+"Rename sound" = "Sound umbenennen";
+
+"Enter your sound name here..." = "Geben Sie hier den Namen für den Sound ein...";
+
+"Sound name" = "Soundname";
+
+"An object with the same name already exists, try again." = "Ein Objekt mit dem selben Namen existiert bereits. Bitte wählen Sie einen anderen Objektnamen.";
+
+"No or invalid image name entered, try again." = "Sie haben keinen oder einen ungültigen Bildnamen eingegeben. Bitte versuchen Sie es erneut.";
+
+"No or invalid sound name entered, try again." = "Sie haben keinen oder einen ungültigen Soundnamen eingegeben. Bitte versuchen Sie es erneut.";
+
+"An image with the same name already exists, try again." = "Ein Bild mit dem selben Namen existiert bereits. Bitte wählen Sie einen anderen Bildnamen.";
+
 "Enter your program description here..." = "Geben Sie hier die Beschreibung für das Programm ein...";
 
 "Can't restart program!" = "Program kann nicht neugestartet werden!";

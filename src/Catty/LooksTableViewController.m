@@ -54,17 +54,27 @@
 #define kUserDetailsShowDetailsKey @"showDetails"
 #define kUserDetailsShowDetailsLooksKey @"detailsForLooks"
 
-@interface ObjectLooksTableViewController () <CatrobatActionSheetDelegate, UIImagePickerControllerDelegate,
-                                              UINavigationControllerDelegate, CatrobatAlertViewDelegate,
-                                              UITextFieldDelegate, SWTableViewCellDelegate>
+@interface LooksTableViewController () <CatrobatActionSheetDelegate, UIImagePickerControllerDelegate,
+                                        UINavigationControllerDelegate, CatrobatAlertViewDelegate,
+                                        UITextFieldDelegate, SWTableViewCellDelegate>
 @property (nonatomic) BOOL useDetailCells;
 @property (nonatomic, strong) Look *lookToAdd;
 @property (nonatomic, strong) LoadingView* loadingView;
 @end
 
-@implementation ObjectLooksTableViewController
+@implementation LooksTableViewController
 
 #pragma mark - data helpers
+static NSCharacterSet *blockedCharacterSet = nil;
+- (NSCharacterSet*)blockedCharacterSet
+{
+    if (! blockedCharacterSet) {
+        blockedCharacterSet = [[NSCharacterSet characterSetWithCharactersInString:kTextFieldAllowedCharacters]
+                               invertedSet];
+    }
+    return blockedCharacterSet;
+}
+
 - (NSArray*)existantLookNames
 {
     // get all look names of that object
@@ -524,7 +534,7 @@
                                   minInputLength:kMinNumOfLookNameCharacters
                                   maxInputLength:kMaxNumOfLookNameCharacters
                              blockedCharacterSet:[self blockedCharacterSet]
-                        invalidInputAlertMessage:kUIAlertViewMessageInvalidProgramDescription];
+                        invalidInputAlertMessage:kUIAlertViewMessageInvalidImageName];
         }
     } else if (actionSheet.tag == kAddLookActionSheetTag) {
         NSInteger importFromCameraIndex = NSIntegerMin;
@@ -589,7 +599,7 @@
             NSInteger numberOfRowsInLastSection = [self tableView:self.tableView numberOfRowsInSection:0];
             NSIndexPath *indexPath = [NSIndexPath indexPathForRow:(numberOfRowsInLastSection - 1) inSection:0];
             [self.tableView insertRowsAtIndexPaths:@[indexPath]
-                                  withRowAnimation:UITableViewRowAnimationFade];
+                                  withRowAnimation:UITableViewRowAnimationBottom];
             // TODO: update program on disk...
 //            [self.object.program saveToDisk];
         }
@@ -624,16 +634,6 @@
 }
 
 #pragma mark - helpers
-static NSCharacterSet *blockedCharacterSet = nil;
-- (NSCharacterSet*)blockedCharacterSet
-{
-    if (! blockedCharacterSet) {
-        blockedCharacterSet = [[NSCharacterSet characterSetWithCharactersInString:kTextFieldAllowedCharacters]
-                               invertedSet];
-    }
-    return blockedCharacterSet;
-}
-
 - (void)setupToolBar
 {
     [super setupToolBar];

@@ -63,6 +63,17 @@
 
 @implementation ProgramTableViewController
 
+#pragma mark - data helpers
+static NSCharacterSet *blockedCharacterSet = nil;
+- (NSCharacterSet*)blockedCharacterSet
+{
+    if (! blockedCharacterSet) {
+        blockedCharacterSet = [[NSCharacterSet characterSetWithCharactersInString:kTextFieldAllowedCharacters]
+                               invertedSet];
+    }
+    return blockedCharacterSet;
+}
+
 #pragma mark - getter and setters
 - (void)setProgram:(Program *)program
 {
@@ -561,16 +572,6 @@
 }
 
 #pragma mark - helpers
-static NSCharacterSet *blockedCharacterSet = nil;
-- (NSCharacterSet*)blockedCharacterSet
-{
-    if (! blockedCharacterSet) {
-        blockedCharacterSet = [[NSCharacterSet characterSetWithCharactersInString:kTextFieldAllowedCharacters]
-                               invertedSet];
-    }
-    return blockedCharacterSet;
-}
-
 - (void)setupToolBar
 {
     [super setupToolBar];

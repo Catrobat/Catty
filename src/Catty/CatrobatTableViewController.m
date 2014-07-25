@@ -69,6 +69,17 @@ NS_ENUM(NSInteger, ViewControllerIndex) {
 
 @implementation CatrobatTableViewController
 
+#pragma mark - data helpers
+static NSCharacterSet *blockedCharacterSet = nil;
+- (NSCharacterSet*)blockedCharacterSet
+{
+    if (! blockedCharacterSet) {
+        blockedCharacterSet = [[NSCharacterSet characterSetWithCharactersInString:kTextFieldAllowedCharacters]
+                               invertedSet];
+    }
+    return blockedCharacterSet;
+}
+
 #pragma mark - getters and setters
 - (Program*)lastProgram
 {
@@ -407,17 +418,6 @@ NS_ENUM(NSInteger, ViewControllerIndex) {
 - (void)dealloc
 {
     [[NSNotificationCenter defaultCenter] removeObserver:self name:kReachabilityChangedNotification object:nil];
-}
-
-#pragma mark - helpers
-static NSCharacterSet *blockedCharacterSet = nil;
-- (NSCharacterSet*)blockedCharacterSet
-{
-    if (! blockedCharacterSet) {
-        blockedCharacterSet = [[NSCharacterSet characterSetWithCharactersInString:kTextFieldAllowedCharacters]
-                               invertedSet];
-    }
-    return blockedCharacterSet;
 }
 
 @end
