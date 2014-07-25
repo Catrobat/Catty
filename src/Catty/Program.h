@@ -37,7 +37,7 @@
 - (NSInteger)numberOfTotalObjects;
 - (NSInteger)numberOfBackgroundObjects;
 - (NSInteger)numberOfNormalObjects;
-- (SpriteObject*)addNewObjectWithName:(NSString*)objectName;
+- (SpriteObject*)addObjectWithName:(NSString*)objectName;
 - (void)removeObject:(SpriteObject*)object;
 - (NSString*)projectPath;
 - (void)removeFromDisk;

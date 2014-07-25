@@ -20,7 +20,6 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-
 #import "CatrobatTableViewController.h"
 #import "CellTagDefines.h"
 #import "TableUtil.h"
@@ -59,7 +58,6 @@ NS_ENUM(NSInteger, ViewControllerIndex) {
 
 @interface CatrobatTableViewController () <UITextFieldDelegate>
 
-@property (nonatomic, strong) NSCharacterSet *blockedCharacterSet;
 @property (nonatomic, strong) NSArray *cells;
 @property (nonatomic, strong) NSArray *imageNames;
 @property (nonatomic, strong) NSArray *identifiers;
@@ -72,14 +70,6 @@ NS_ENUM(NSInteger, ViewControllerIndex) {
 @implementation CatrobatTableViewController
 
 #pragma mark - getters and setters
-- (NSCharacterSet*)blockedCharacterSet
-{
-    if (! _blockedCharacterSet) {
-        _blockedCharacterSet = [[NSCharacterSet characterSetWithCharactersInString:kTextFieldAllowedCharacters] invertedSet];
-    }
-    return _blockedCharacterSet;
-}
-
 - (Program*)lastProgram
 {
     if (! _lastProgram) {
@@ -376,18 +366,8 @@ NS_ENUM(NSInteger, ViewControllerIndex) {
     }
 }
 
-#pragma mark - text field delegates
-- (BOOL)textField:(UITextField*)field shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString*)characters
-{
-    if ([characters length] > kMaxNumOfProgramNameCharacters) {
-        return false;
-    }
-    return ([characters rangeOfCharacterFromSet:self.blockedCharacterSet].location == NSNotFound);
-}
-
 - (void)networkStatusChanged:(NSNotification *)notification
 {
-    
     NetworkStatus remoteHostStatus = [self.reachability currentReachabilityStatus];
     if(remoteHostStatus == NotReachable) {
         if ([self.navigationController.topViewController isKindOfClass:[DownloadTabBarController class]] ||
@@ -427,6 +407,17 @@ NS_ENUM(NSInteger, ViewControllerIndex) {
 - (void)dealloc
 {
     [[NSNotificationCenter defaultCenter] removeObserver:self name:kReachabilityChangedNotification object:nil];
+}
+
+#pragma mark - helpers
+static NSCharacterSet *blockedCharacterSet = nil;
+- (NSCharacterSet*)blockedCharacterSet
+{
+    if (! blockedCharacterSet) {
+        blockedCharacterSet = [[NSCharacterSet characterSetWithCharactersInString:kTextFieldAllowedCharacters]
+                               invertedSet];
+    }
+    return blockedCharacterSet;
 }
 
 @end

@@ -89,8 +89,8 @@
         [fileManager createDirectory:soundsDirName];
     }
 
-    [program addNewObjectWithName:kGeneralBackgroundObjectName];
-    [program addNewObjectWithName:kGeneralDefaultObjectName];
+    [program addObjectWithName:kGeneralBackgroundObjectName];
+    [program addObjectWithName:kGeneralDefaultObjectName];
     return program;
 }
 
@@ -165,7 +165,7 @@
     return 0;
 }
 
-- (SpriteObject*)addNewObjectWithName:(NSString*)objectName
+- (SpriteObject*)addObjectWithName:(NSString*)objectName
 {
     SpriteObject* object = [[SpriteObject alloc] init];
     //object.originalSize;
@@ -173,11 +173,7 @@
     //object.broadcastWaitDelegate = self.broadcastWaitHandler;
     object.currentLook = nil;
 
-    NSMutableArray *objectNames = [NSMutableArray arrayWithCapacity:[self.objectList count]];
-    for (SpriteObject *currentObject in self.objectList) {
-        [objectNames addObject:currentObject.name];
-    }
-    object.name = [Util uniqueName:objectName existingNames:objectNames];
+    object.name = [Util uniqueName:objectName existingNames:[self allObjectNames]];
     object.program = self;
     [self.objectList addObject:object];
     return object;

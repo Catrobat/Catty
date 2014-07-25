@@ -32,10 +32,8 @@
 // Alert view tags
 #define kAskUserForUniqueNameAlertViewTag 100
 #define kInvalidNameWarningAlertViewTag 101
-#define kNewObjectAlertViewTag 102
-#define kNewImageAlertViewTag 103
-#define kInvalidObjectNameWarningAlertViewTag 104
-#define kNoInternetConnection 105
+#define kNewImageAlertViewTag 102
+#define kNoInternetConnection 103
 
 #define kConfirmAlertViewTag 200
 
