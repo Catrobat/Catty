@@ -26,7 +26,4 @@
 
 @interface ProgramTableViewController (UnitTestingExtensions)
 
-// Needed for unit testing
-- (void)alertView:(CatrobatAlertView*)alertView clickedButtonAtIndex:(NSInteger)buttonIndex;
-
 @end
