@@ -286,6 +286,7 @@
 
 #define kUIAlertViewMessageDeviceIsInMutedStateIPhone NSLocalizedString(@"Unable to play the selected sound. Your device is in silent mode. Please turn off silent mode by toggling the switch on the left side of your iPhone and tap on play again.", nil)
 #define kUIAlertViewMessageDeviceIsInMutedStateIPad NSLocalizedString(@"Unable to play the selected sound. Your device is in silent mode. Please turn off silent mode by toggling the switch on the right side of your iPad and tap on play again.", nil)
+#define kProgramAlreadyDownloaded NSLocalizedString(@"You have already downloaded this program!", nil)
 
 // button defines
 #define kUIAlertViewButtonTitleOK NSLocalizedString(@"OK", nil)

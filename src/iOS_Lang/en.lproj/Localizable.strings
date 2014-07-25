@@ -277,6 +277,8 @@
 
 "Unable to play the selected sound. Your device is in silent mode. Please turn off silent mode by toggling the switch on the right side of your iPad and tap on play again." = "Unable to play the selected sound. Your device is in silent mode. Please turn off silent mode by toggling the switch on the right side of your iPad and tap on play again.";
 
+"You have already downloaded this program!" = "You have already downloaded this program!";
+
 "Program name" = "Program name";
 
 "Object name" = "Object name";

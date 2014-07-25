@@ -282,7 +282,8 @@
             /* file exists */
             if (isDir) {
                 /* file is a directory */
-                NSLog(@"already downloaded");
+//                NSLog(@"already downloaded");
+                [Util alertWithText:kProgramAlreadyDownloaded];
                 // Please add here the code with alert view -> Program exists!
             }
         } else {
@@ -490,7 +491,7 @@
 
 - (void)downloadFinishedWithURL:(NSURL *)url
 {
-    
+    NSLog(@"finished");
 }
 
 - (void)setBackDownloadStatus
@@ -500,6 +501,6 @@
 
 - (void)updateProgress:(double)progress
 {
-    
+    [self setProgress:(float)progress];
 }
 @end
