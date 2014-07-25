@@ -57,8 +57,7 @@
 #define kUserDetailsShowDetailsKey @"showDetails"
 #define kUserDetailsShowDetailsObjectsKey @"detailsForObjects"
 
-@interface ProgramTableViewController () <CatrobatActionSheetDelegate, UITextFieldDelegate,
-                                          UINavigationBarDelegate, SWTableViewCellDelegate>
+@interface ProgramTableViewController () <CatrobatActionSheetDelegate, UINavigationBarDelegate, SWTableViewCellDelegate>
 @property (nonatomic) BOOL useDetailCells;
 @property (strong, nonatomic) NSCharacterSet *blockedCharacterSet;
 @end
@@ -490,15 +489,6 @@
 - (BOOL)swipeableTableViewCellShouldHideUtilityButtonsOnSwipe:(SWTableViewCell *)cell
 {
     return YES;
-}
-
-#pragma mark - text field delegates
-- (BOOL)textField:(UITextField *)field shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)characters
-{
-    if ([characters length] > kMaxNumOfObjectNameCharacters) {
-        return false;
-    }
-    return ([characters rangeOfCharacterFromSet:self.blockedCharacterSet].location == NSNotFound);
 }
 
 #pragma mark - action sheet delegates
