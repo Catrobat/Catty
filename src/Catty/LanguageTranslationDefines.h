@@ -165,9 +165,10 @@
 
 #define kUIActionSheetTitleEditSounds NSLocalizedString(@"Edit Sounds",@"Action sheet menu title")
 #define kUIActionSheetTitleEditLooks NSLocalizedString(@"Edit Looks", @"Action sheet menu title")
+#define kUIActionSheetTitleEditLook NSLocalizedString(@"Edit Look", @"Action sheet menu title")
 #define kUIActionSheetTitleAddLook NSLocalizedString(@"Add look", @"Action sheet menu title")
-#define kUIActionSheetTitleEditProgramSingular NSLocalizedString(@"Edit Program", nil)
-#define kUIActionSheetTitleEditProgramPlural NSLocalizedString(@"Edit Programs", nil)
+#define kUIActionSheetTitleEditProgram NSLocalizedString(@"Edit Program", nil)
+#define kUIActionSheetTitleEditPrograms NSLocalizedString(@"Edit Programs", nil)
 #define kUIActionSheetTitleAddSound NSLocalizedString(@"Add sound", @"Action sheet menu title")
 #define kUIActionSheetTitleSaveScreenshot NSLocalizedString(@"Save Screenshot to", @"Action sheet menu title")
 #define kUIActionSheetTitleSelectBrickCategory NSLocalizedString(@"Select Brick Category", nil)
@@ -253,6 +254,7 @@
 #define kUIAlertViewTitleDeleteSingleSound NSLocalizedString(@"Delete this sound", nil)
 #define kUIAlertViewTitleNotEnoughFreeMemory NSLocalizedString(@"Not enough free memory to download this program. Please delete some of your programs", nil)
 #define kUIAlertViewTitleCopyProgram NSLocalizedString(@"Copy program", nil)
+#define kUIAlertViewTitleCopyLook NSLocalizedString(@"Copy look", nil)
 #define kUIAlertViewTitleRenameProgram NSLocalizedString(@"Rename program", nil)
 #define kUIAlertViewTitleDescriptionProgram NSLocalizedString(@"Set description", nil)
 
@@ -275,6 +277,7 @@
 #define kUIAlertViewMessageInvalidProgramDescription NSLocalizedString(@"The description contains invalid characters, try again.", nil)
 #define kUIAlertViewMessageObjectNameAlreadyExists NSLocalizedString(@"An object with the same name already exists, try again.", nil) // TODO: translate!
 #define kUIAlertViewMessageInvalidObjectName NSLocalizedString(@"No or invalid object name entered, try again.", nil) // deprecated
+#define kUIAlertViewMessageImageNameAlreadyExists NSLocalizedString(@"An image with the same name already exists, try again.", nil) // TODO: translate!
 #define kUIAlertViewMessageUnableToLoadProgram NSLocalizedString(@"Unable to load program!", nil)
 #define kUIAlertViewMessageIrreversibleAction NSLocalizedString(@"This action can not be undone!", nil)
 #define kUIAlertViewMessageUnableToPlaySound NSLocalizedString(@"Unable to play that sound!\nMaybe this is no valid sound or the file is corrupt.", nil)

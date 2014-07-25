@@ -134,7 +134,7 @@
     if ([self.programLoadingInfos count]) {
         [options addObject:kUIActionSheetButtonTitleDeletePrograms];
     }
-    [Util actionSheetWithTitle:kUIActionSheetTitleEditProgramPlural
+    [Util actionSheetWithTitle:kUIActionSheetTitleEditPrograms
                       delegate:self
         destructiveButtonTitle:nil
              otherButtonTitles:options
@@ -177,7 +177,9 @@
 
     [Program copyProgramWithName:sourceProgramLoadingInfo.visibleName destinationProgramName:programName];
     [self.dataCache removeObjectForKey:destinationProgramLoadingInfo.visibleName];
-    [self.tableView reloadData];
+    NSInteger numberOfRowsInLastSection = [self tableView:self.tableView numberOfRowsInSection:0];
+    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:(numberOfRowsInLastSection - 1) inSection:0];
+    [self.tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationBottom];
 }
 
 - (void)renameProgramActionToName:(NSString*)programName
@@ -435,7 +437,7 @@
         // More button was pressed
         NSArray *options = @[kUIActionSheetButtonTitleCopy, kUIActionSheetButtonTitleRename,
                              kUIActionSheetButtonTitleDescription/*, kUIActionSheetButtonTitleUpload*/];
-        CatrobatActionSheet *actionSheet = [Util actionSheetWithTitle:kUIActionSheetTitleEditProgramSingular
+        CatrobatActionSheet *actionSheet = [Util actionSheetWithTitle:kUIActionSheetTitleEditProgram
                                                              delegate:self
                                                destructiveButtonTitle:nil
                                                     otherButtonTitles:options
@@ -570,7 +572,7 @@
         // create new cell
         NSInteger numberOfRowsInLastSection = [self tableView:self.tableView numberOfRowsInSection:0];
         NSIndexPath *indexPath = [NSIndexPath indexPathForRow:(numberOfRowsInLastSection - 1) inSection:0];
-        [self.tableView insertRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationNone];
+        [self.tableView insertRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationBottom];
     }
     return programLoadingInfo;
 }
@@ -583,7 +585,7 @@
             [Program removeProgramFromDiskWithProgramName:programName];
             [self.programLoadingInfos removeObjectAtIndex:rowIndex];
             NSIndexPath *indexPath = [NSIndexPath indexPathForRow:rowIndex inSection:0];
-            [self.tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+            [self.tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationTop];
             // flush asset/image cache
             self.dataCache = nil;
             // needed to avoid unexpected behaviour when renaming programs

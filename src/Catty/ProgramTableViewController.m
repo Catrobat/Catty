@@ -140,7 +140,8 @@
     [self.program addObjectWithName:objectName];
     NSInteger numberOfRowsInLastSection = [self tableView:self.tableView numberOfRowsInSection:kObjectSectionIndex];
     NSIndexPath *indexPath = [NSIndexPath indexPathForRow:(numberOfRowsInLastSection - 1) inSection:kObjectSectionIndex];
-    [self.tableView insertRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationNone];
+    [self.tableView insertRowsAtIndexPaths:@[indexPath]
+                          withRowAnimation:(([self.program numberOfNormalObjects] == 1) ? UITableViewRowAnimationFade : UITableViewRowAnimationBottom)];
 }
 
 - (void)renameProgramActionForProgramWithName:(NSString*)programName
@@ -163,7 +164,7 @@
     //    // create new cell
     //    NSInteger numberOfRowsInLastSection = [self tableView:self.tableView numberOfRowsInSection:kObjectSectionIndex];
     //    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:(numberOfRowsInLastSection - 1) inSection:kObjectSectionIndex];
-    //    [self.tableView insertRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationNone];
+    //    [self.tableView insertRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationBottom];
     // TODO: scroll to bottom or show notification to user!
     
     // TODO: issue #308 - deep copy for SpriteObjects
@@ -205,7 +206,7 @@
     } else {
         [options addObject:kUIActionSheetButtonTitleShowDetails];
     }
-    [Util actionSheetWithTitle:kUIActionSheetTitleEditProgramSingular
+    [Util actionSheetWithTitle:kUIActionSheetTitleEditProgram
                       delegate:self
         destructiveButtonTitle:kUIActionSheetButtonTitleDelete
              otherButtonTitles:options
@@ -246,7 +247,7 @@
         [self.program removeObject:objectToRemove];
     }
     [super exitEditingMode];
-    [self.tableView deleteRowsAtIndexPaths:selectedRowsIndexPaths withRowAnimation:UITableViewRowAnimationNone];
+    [self.tableView deleteRowsAtIndexPaths:selectedRowsIndexPaths withRowAnimation:(([self.program numberOfNormalObjects] != 0) ? UITableViewRowAnimationTop : UITableViewRowAnimationFade)];
 }
 
 - (void)deleteObjectForIndexPath:(NSIndexPath*)indexPath
@@ -254,8 +255,7 @@
     NSUInteger index = (kBackgroundObjects + indexPath.row);
     SpriteObject *object = (SpriteObject*)[self.program.objectList objectAtIndex:index];
     [self.program removeObject:object];
-    [self.tableView deleteRowsAtIndexPaths:@[indexPath]
-                          withRowAnimation:UITableViewRowAnimationNone];
+    [self.tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:((indexPath.row != 0) ? UITableViewRowAnimationTop : UITableViewRowAnimationFade)];
 }
 
 - (void)deleteProgramAction
@@ -449,7 +449,7 @@
     if (index == 0) {
         // More button was pressed
         NSArray *options = @[kUIActionSheetButtonTitleCopy, kUIActionSheetButtonTitleRename];
-        CatrobatActionSheet *actionSheet = [Util actionSheetWithTitle:kUIActionSheetTitleEditProgramSingular
+        CatrobatActionSheet *actionSheet = [Util actionSheetWithTitle:kUIActionSheetTitleEditProgram
                                                              delegate:self
                                                destructiveButtonTitle:nil
                                                     otherButtonTitles:options

@@ -48,6 +48,7 @@
 #import "RuntimeImageCache.h"
 #import "CatrobatActionSheet.h"
 #import "CatrobatAlertView.h"
+#import "DataTransferMessage.h"
 
 // TODO: outsource...
 #define kUserDetailsShowDetailsKey @"showDetails"
@@ -126,6 +127,13 @@
 {
     [self.navigationController setToolbarHidden:YES];
     [self performSegueWithIdentifier:kSegueToScene sender:sender];
+}
+
+- (void)copyLookActionForLookWithName:(NSString*)lookName sourceLook:(Look*)look
+{
+    NSInteger numberOfRowsInLastSection = [self tableView:self.tableView numberOfRowsInSection:0];
+    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:(numberOfRowsInLastSection - 1) inSection:0];
+    [self.tableView insertRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationBottom];
 }
 
 - (void)confirmDeleteSelectedLooksAction:(id)sender
@@ -302,15 +310,21 @@
 #pragma mark - swipe delegates
 - (void)swipeableTableViewCell:(SWTableViewCell *)cell didTriggerRightUtilityButtonWithIndex:(NSInteger)index
 {
+    [cell hideUtilityButtonsAnimated:YES];
     if (index == 0) {
         // More button was pressed
-        UIAlertView *alertTest = [[UIAlertView alloc] initWithTitle:@"Hello"
-                                                            message:@"More more more"
-                                                           delegate:nil
-                                                  cancelButtonTitle:kUIAlertViewButtonTitleCancel
-                                                  otherButtonTitles:nil];
-        [alertTest show];
-        [cell hideUtilityButtonsAnimated:YES];
+        NSArray *options = @[kUIActionSheetButtonTitleCopy, kUIActionSheetButtonTitleRename];
+        CatrobatActionSheet *actionSheet = [Util actionSheetWithTitle:kUIActionSheetTitleEditLook
+                                                             delegate:self
+                                               destructiveButtonTitle:nil
+                                                    otherButtonTitles:options
+                                                                  tag:kEditLookActionSheetTag
+                                                                 view:self.navigationController.view];
+        NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
+        NSDictionary *payload = @{ kDTPayloadLook : [self.object.lookList objectAtIndex:indexPath.row] };
+        DataTransferMessage *message = [DataTransferMessage messageForActionType:kDTMActionEditLook
+                                                                     withPayload:[payload mutableCopy]];
+        actionSheet.dataTransferMessage = message;
     } else if (index == 1) {
         // Delete button was pressed
         NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
@@ -477,6 +491,41 @@
             [defaults synchronize];
             [self.tableView reloadData];
         }
+    } else if (actionSheet.tag == kEditLookActionSheetTag) {
+        if (buttonIndex == 0) {
+            // Copy button
+            NSDictionary *payload = (NSDictionary*)actionSheet.dataTransferMessage.payload;
+            Look *look = (Look*)payload[kDTPayloadLook];
+            [Util askUserForTextAndPerformAction:@selector(copyLookActionForLookWithName:sourceLook:)
+                                          target:self
+                                      withObject:look
+                                     promptTitle:kUIAlertViewTitleCopyLook
+                                   promptMessage:[NSString stringWithFormat:@"%@:", kUIAlertViewMessageImageName]
+                                     promptValue:look.name
+                               promptPlaceholder:kUIAlertViewPlaceholderEnterImageName
+                                  minInputLength:kMinNumOfLookNameCharacters
+                                  maxInputLength:kMaxNumOfLookNameCharacters
+                             blockedCharacterSet:[self blockedCharacterSet]
+                        invalidInputAlertMessage:kUIAlertViewMessageImageNameAlreadyExists];
+        } else if (buttonIndex == 1) {
+            // Rename button
+//            NSDictionary *payload = (NSDictionary*)actionSheet.dataTransferMessage.payload;
+//            ProgramLoadingInfo *info = (ProgramLoadingInfo*)payload[kDTPayloadProgramLoadingInfo];
+//            NSMutableArray *unavailableNames = [[Program allProgramNames] mutableCopy];
+//            [unavailableNames removeString:info.visibleName];
+//            [Util askUserForUniqueNameAndPerformAction:@selector(renameProgramActionToName:sourceProgramLoadingInfo:)
+//                                                target:self
+//                                            withObject:info
+//                                           promptTitle:kUIAlertViewTitleRenameProgram
+//                                         promptMessage:[NSString stringWithFormat:@"%@:", kUIAlertViewMessageProgramName]
+//                                           promptValue:info.visibleName
+//                                     promptPlaceholder:kUIAlertViewPlaceholderEnterProgramName
+//                                        minInputLength:kMinNumOfProgramNameCharacters
+//                                        maxInputLength:kMaxNumOfProgramNameCharacters
+//                                   blockedCharacterSet:[self blockedCharacterSet]
+//                              invalidInputAlertMessage:kUIAlertViewMessageProgramNameAlreadyExists
+//                                         existingNames:unavailableNames];
+        }
     } else if (actionSheet.tag == kAddLookActionSheetTag) {
         NSInteger importFromCameraIndex = NSIntegerMin;
         NSInteger chooseImageIndex = NSIntegerMin;
@@ -541,7 +590,8 @@
             NSIndexPath *indexPath = [NSIndexPath indexPathForRow:(numberOfRowsInLastSection - 1) inSection:0];
             [self.tableView insertRowsAtIndexPaths:@[indexPath]
                                   withRowAnimation:UITableViewRowAnimationFade];
-            // TODO: update program on disk (run async on another queue)...
+            // TODO: update program on disk...
+//            [self.object.program saveToDisk];
         }
         self.lookToAdd = nil;
     }
