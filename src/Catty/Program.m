@@ -341,10 +341,14 @@
 
 - (void)renameToProgramName:(NSString *)programName
 {
+    BOOL isLastProgram = [self isLastProgram];
     NSString *oldPath = [self projectPath];
     self.header.programName = programName;
     NSString *newPath = [self projectPath];
     [[[FileManager alloc] init] moveExistingDirectoryAtPath:oldPath toPath:newPath];
+    if (isLastProgram) {
+        [Util setLastProgram:self.header.programName];
+    }
     [self saveToDisk];
 }
 

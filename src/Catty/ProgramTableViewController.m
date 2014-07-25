@@ -59,20 +59,11 @@
 
 @interface ProgramTableViewController () <CatrobatActionSheetDelegate, UINavigationBarDelegate, SWTableViewCellDelegate>
 @property (nonatomic) BOOL useDetailCells;
-@property (strong, nonatomic) NSCharacterSet *blockedCharacterSet;
 @end
 
 @implementation ProgramTableViewController
 
 #pragma mark - getter and setters
-- (NSCharacterSet*)blockedCharacterSet
-{
-    if (! _blockedCharacterSet) {
-        _blockedCharacterSet = [[NSCharacterSet characterSetWithCharactersInString:kTextFieldAllowedCharacters] invertedSet];
-    }
-    return _blockedCharacterSet;
-}
-
 - (void)setProgram:(Program *)program
 {
     [program setAsLastProgram];
@@ -160,7 +151,6 @@
     NSString *oldProgramName = self.program.header.programName;
     [self.program renameToProgramName:programName];
     [self.delegate renameOldProgramName:oldProgramName toNewProgramName:programName];
-    [self.program setAsLastProgram];
     self.navigationItem.title = self.title = programName;
 }
 
@@ -567,6 +557,16 @@
 }
 
 #pragma mark - helpers
+static NSCharacterSet *blockedCharacterSet = nil;
+- (NSCharacterSet*)blockedCharacterSet
+{
+    if (! blockedCharacterSet) {
+        blockedCharacterSet = [[NSCharacterSet characterSetWithCharactersInString:kTextFieldAllowedCharacters]
+                               invertedSet];
+    }
+    return blockedCharacterSet;
+}
+
 - (void)setupToolBar
 {
     [super setupToolBar];

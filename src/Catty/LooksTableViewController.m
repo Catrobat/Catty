@@ -56,22 +56,12 @@
 @interface ObjectLooksTableViewController () <CatrobatActionSheetDelegate, UIImagePickerControllerDelegate,
                                               UINavigationControllerDelegate, CatrobatAlertViewDelegate,
                                               UITextFieldDelegate, SWTableViewCellDelegate>
-@property (nonatomic, strong) NSCharacterSet *blockedCharacterSet;
 @property (nonatomic) BOOL useDetailCells;
 @property (nonatomic, strong) Look *lookToAdd;
 @property (nonatomic, strong) LoadingView* loadingView;
 @end
 
 @implementation ObjectLooksTableViewController
-
-#pragma mark - getters and setters
-- (NSCharacterSet*)blockedCharacterSet
-{
-    if (! _blockedCharacterSet) {
-        _blockedCharacterSet = [[NSCharacterSet characterSetWithCharactersInString:kTextFieldAllowedCharacters] invertedSet];
-    }
-    return _blockedCharacterSet;
-}
 
 #pragma mark - data helpers
 - (NSArray*)existantLookNames
@@ -583,7 +573,17 @@
                           view:self.navigationController.view];
 }
 
-#pragma mark - view helpers
+#pragma mark - helpers
+static NSCharacterSet *blockedCharacterSet = nil;
+- (NSCharacterSet*)blockedCharacterSet
+{
+    if (! blockedCharacterSet) {
+        blockedCharacterSet = [[NSCharacterSet characterSetWithCharactersInString:kTextFieldAllowedCharacters]
+                               invertedSet];
+    }
+    return blockedCharacterSet;
+}
+
 - (void)setupToolBar
 {
     [super setupToolBar];
