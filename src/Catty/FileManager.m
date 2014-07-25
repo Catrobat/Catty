@@ -32,6 +32,7 @@
 #import <MobileCoreServices/MobileCoreServices.h>
 #import "LanguageTranslationDefines.h"
 #import "UIDefines.h"
+#import "ProgramLoadingInfo.h"
 
 @interface FileManager()
 
@@ -332,7 +333,12 @@
         break;
     }
     if (! areAnyProgramsLeft) {
-        [self addBundleProgramWithName:kDefaultProgramName];
+        [self addBundleProgramWithName:kDefaultProgramBundleName];
+        ProgramLoadingInfo *loadingInfo = [[ProgramLoadingInfo alloc] init];
+        loadingInfo.basePath = [NSString stringWithFormat:@"%@%@/", [Program basePath], kDefaultProgramBundleName];
+        loadingInfo.visibleName = kDefaultProgramBundleName;
+        Program *program = [Program programWithLoadingInfo:loadingInfo];
+        [program renameToProgramName:kDefaultProgramName];
         [Util lastProgram];
     }
 }
