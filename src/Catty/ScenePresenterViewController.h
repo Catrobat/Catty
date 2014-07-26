@@ -31,7 +31,6 @@
 
 - (id)initWithProgram:(Program *)program;
 
-//@property (nonatomic, strong) ProgramLoadingInfo* programLoadingInfo;
 @property (nonatomic, strong) SKView *skView;
 @property (strong,nonatomic) UIButton* menuBtn;
 @property (nonatomic, weak) UIButton* backButton;

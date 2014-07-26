@@ -63,7 +63,7 @@
 #define kPlaceofLabels (kPlaceOfButtons-29)
 #define kPlaceofContinueLabel (kPlaceOfButtons)
 #define kDontResumeSounds 4
-#define kfirstSwipeDuration 2.5f
+#define kfirstSwipeDuration 0.8f
 
 @interface ScenePresenterViewController ()<UIActionSheetDelegate>
 
@@ -165,7 +165,7 @@
     self.navigationController.navigationBar.hidden = NO;
     self.navigationController.toolbar.hidden = NO;
     UIApplication.sharedApplication.statusBarHidden = NO;
-    [[UIApplication sharedApplication] setIdleTimerDisabled:NO];
+    UIApplication.sharedApplication.idleTimerDisabled = NO;
 }
 
 - (void)viewWillLayoutSubviews
@@ -291,7 +291,6 @@
 
 - (void)setUpMenuButtons
 {
-
     self.menuBackButton = [UIButton buttonWithType:UIButtonTypeCustom];
     self.menuContinueButton = [UIButton buttonWithType:UIButtonTypeCustom];
     self.menuScreenshotButton = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -434,12 +433,9 @@
         NSDebug(@"No Sound file available or unable to delete file: %@", [error localizedDescription]);
 }
 
--(void) alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
-    
+- (void) alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
     if (buttonIndex == 0) {
-        
         [self.navigationController popViewControllerAnimated:YES];
-        
     }
 }
 
@@ -483,18 +479,15 @@
     [self.navigationController popViewControllerAnimated:YES];
 }
 
-- (void)continueProgram:(UIButton *)sender withDuration:(float)duration
+- (void)continueProgram:(UIButton *)sender withDuration:(CGFloat)duration
 {
     [[AVAudioSession sharedInstance] setActive:YES error:nil];
-    CGFloat animateDuration;
-    if (duration != kfirstSwipeDuration) {
-        animateDuration= 0.5;
-    }
-    else{
-        animateDuration = duration;
-    }
+    
+    CGFloat animateDuration = 0.0f;
+    animateDuration = duration > 0.0001f ? duration : 0.35f;
+    
     [UIView animateWithDuration:animateDuration
-                          delay:0.1
+                          delay:0.0f
                         options: UIViewAnimationOptionTransitionFlipFromRight
                      animations:^{[self continueAnimation];}
                      completion:^(BOOL finished){
@@ -554,7 +547,7 @@
     }
     
     [self.skView presentScene:previousScene];
-//    [self continueProgram:nil withDuration:0.25f];
+    [self continueProgram:nil withDuration:0.0f];
 }
 
 - (void)resetSpriteObjects
@@ -574,11 +567,10 @@
 
 - (void)showHideAxis:(UIButton *)sender
 {
-    if(self.gridView.hidden == NO)
-    {
+    if(self.gridView.hidden == NO) {
         self.gridView.hidden = YES;
     }
-    else{
+    else {
         self.gridView.hidden = NO;
     }
 }
@@ -769,6 +761,7 @@
     self.menuView.frame = CGRectMake(-kWidthSlideMenu-kBounceEffect, 0, self.menuView.frame.size.width, self.menuView.frame.size.height);
     self.menuBtn.hidden=NO;
 }
+
 -(void)bounce
 {
     CABasicAnimation * animation = [CABasicAnimation animationWithKeyPath:@"position.x"];
@@ -801,14 +794,12 @@
 
 -(void)pause
 {
-//    self.skView.paused = YES;
     [[AVAudioSession sharedInstance] setActive:NO error:nil];
     [[AudioManager sharedAudioManager] pauseAllSounds];
 }
 
 -(void)resume
 {
-//    self.skView.paused = NO;
     [[AVAudioSession sharedInstance] setActive:YES error:nil];
     [[AudioManager sharedAudioManager] resumeAllSounds];
 }
