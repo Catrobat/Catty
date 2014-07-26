@@ -93,13 +93,13 @@
     self.placeHolderView.hidden = self.object.scriptList.count ? YES : NO;
     self.brickScaleTransition = [BrickScaleTransition new];
     self.selectedIndexPaths = [NSMutableDictionary dictionary];
-    
+
     // register brick cells for current brick category
     NSDictionary *allBrickTypes = [[BrickManager sharedBrickManager] classNameBrickTypeMap];
     for (NSString *className in allBrickTypes) {
         [self.collectionView registerClass:NSClassFromString([className stringByAppendingString:@"Cell"])
                 forCellWithReuseIdentifier:className];
-        
+
         [self.brickSelectionView.brickCollectionView registerClass:NSClassFromString([className stringByAppendingString:@"Cell"])
                                         forCellWithReuseIdentifier:className];
     }

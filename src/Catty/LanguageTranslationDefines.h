@@ -356,59 +356,122 @@
 #define kBrickCellLooksCategoryTitle NSLocalizedString(@"Looks", nil)
 #define kBrickCellVariablesCategoryTitle NSLocalizedString(@"Variables", nil)
 
+//// control bricks
+//#define kBrickCellControlTitleWhenProgramStarted NSLocalizedString(@"When program started", nil)
+//#define kBrickCellControlTitleWhenTapped NSLocalizedString(@"When tapped", nil)
+//#define kBrickCellControlTitleWait NSLocalizedString(@"Wait %@ second(s)", nil)
+//#define kBrickCellControlTitleWhenIReceive NSLocalizedString(@"When I receive\n%@", nil)
+//#define kBrickCellControlTitleBroadcast NSLocalizedString(@"Broadcast\n%@", nil)
+//#define kBrickCellControlTitleBroadcastAndWait NSLocalizedString(@"Broadcast and wait\n%@", nil)
+//#define kBrickCellControlTitleNote NSLocalizedString(@"Note %@", nil)
+//#define kBrickCellControlTitleForever NSLocalizedString(@"Forever", nil)
+//#define kBrickCellControlTitleIf NSLocalizedString(@"If %@ is true then", nil)
+//#define kBrickCellControlTitleElse NSLocalizedString(@"Else", nil)
+//#define kBrickCellControlTitleEndIf NSLocalizedString(@"If End", nil)
+//#define kBrickCellControlTitleRepeat NSLocalizedString(@"Repeat %@ times", nil)
+//#define kBrickCellControlTitleEndOfLoop NSLocalizedString(@"End of Loop", nil)
+//
+//// motion bricks
+//#define kBrickCellMotionTitlePlaceAt NSLocalizedString(@"Place at\nX: %@ Y: %@", nil)
+//#define kBrickCellMotionTitleSetX NSLocalizedString(@"Set X to %@", nil)
+//#define kBrickCellMotionTitleSetY NSLocalizedString(@"Set Y to %@", nil)
+//#define kBrickCellMotionTitleChangeX NSLocalizedString(@"Change X by %@", nil)
+//#define kBrickCellMotionTitleChangeY NSLocalizedString(@"Change Y by %@", nil)
+//#define kBrickCellMotionTitleIfOnEdgeBounce NSLocalizedString(@"If on edge, bounce", nil)
+//#define kBrickCellMotionTitleMoveNSteps NSLocalizedString(@"Move %@ step(s)", nil)
+//#define kBrickCellMotionTitleTurnLeft NSLocalizedString(@"Turn left %@°", nil)
+//#define kBrickCellMotionTitleTurnRight NSLocalizedString(@"Turn right %@°", nil)
+//#define kBrickCellMotionTitlePointInDirection NSLocalizedString(@"Point in direction %@°", nil)
+//#define kBrickCellMotionTitlePointTowards NSLocalizedString(@"Point towards\n%@", nil)
+//#define kBrickCellMotionTitleGlideTo NSLocalizedString(@"Glide %@ second(s)\nto X: %@ Y: %@", nil)
+//#define kBrickCellMotionTitleGoNStepsBack NSLocalizedString(@"Go back %@ layer(s)", nil)
+//#define kBrickCellMotionTitleComeToFront NSLocalizedString(@"Go to front", nil)
+//
+//// look bricks
+//#define kBrickCellLookTitleSetLook NSLocalizedString(@"Switch to look\n%@", nil)
+//#define kBrickCellLookTitleSetBackground NSLocalizedString(@"Set background\n%@", nil)
+//#define kBrickCellLookTitleNextLook NSLocalizedString(@"Next look", nil)
+//#define kBrickCellLookTitleNextBackground NSLocalizedString(@"Next background", nil)
+//#define kBrickCellLookTitleSetSizeTo NSLocalizedString(@"Set size to %@\%", nil)
+//#define kBrickCellLookTitleChangeSizeByN NSLocalizedString(@"Change size by %@\%", nil)
+//#define kBrickCellLookTitleHide NSLocalizedString(@"Hide", nil)
+//#define kBrickCellLookTitleShow NSLocalizedString(@"Show", nil)
+//#define kBrickCellLookTitleSetGhostEffect NSLocalizedString(@"Set transparency\nto %@\%", nil)
+//#define kBrickCellLookTitleChangeGhostEffectByN NSLocalizedString(@"Change transparency\nby %@\%", nil)
+//#define kBrickCellLookTitleSetBrightness NSLocalizedString(@"Set brightness to %@\%", nil)
+//#define kBrickCellLookTitleChangeBrightnessByN NSLocalizedString(@"Change brightness\nby %@\%", nil)
+//#define kBrickCellLookTitleClearGraphicEffect NSLocalizedString(@"Clear graphic effects", nil)
+//
+//// sound bricks
+//#define kBrickCellSoundTitlePlaySound NSLocalizedString(@"Start sound\n%@", nil)
+//#define kBrickCellSoundTitleStopAllSounds NSLocalizedString(@"Stop all sounds", nil)
+//#define kBrickCellSoundTitleSetVolumeTo NSLocalizedString(@"Set volume to %@\%", nil)
+//#define kBrickCellSoundTitleChangeVolumeByN NSLocalizedString(@"Change volume by %@", nil)
+//#define kBrickCellSoundTitleSpeak NSLocalizedString(@"Speak %@", nil)
+//
+//// variable bricks
+//#define kBrickCellVariableTitleSetVariable NSLocalizedString(@"Set variable\n%@\nto %@", nil)
+//#define kBrickCellVariableTitleChangeVariable NSLocalizedString(@"Change variable\n%@\nby %@", nil)
+
+//------------------------------------------------------------------------------------------------------------
+// TODO: in our first release we do not use translated strings in the script-editor because the translated
+//       strings can vary in their length compared to the english version. This would lead to graphical issues
+//       since the BrickCells are not able to handle the word wrapping of their titles correctly at this
+//       stage.
+
 // control bricks
-#define kBrickCellControlTitleWhenProgramStarted NSLocalizedString(@"When program started", nil)
-#define kBrickCellControlTitleWhenTapped NSLocalizedString(@"When tapped", nil)
-#define kBrickCellControlTitleWait NSLocalizedString(@"Wait %@ second(s)", nil)
-#define kBrickCellControlTitleWhenIReceive NSLocalizedString(@"When I receive\n%@", nil)
-#define kBrickCellControlTitleBroadcast NSLocalizedString(@"Broadcast\n%@", nil)
-#define kBrickCellControlTitleBroadcastAndWait NSLocalizedString(@"Broadcast and wait\n%@", nil)
-#define kBrickCellControlTitleNote NSLocalizedString(@"Note %@", nil)
-#define kBrickCellControlTitleForever NSLocalizedString(@"Forever", nil)
-#define kBrickCellControlTitleIf NSLocalizedString(@"If %@ is true then", nil)
-#define kBrickCellControlTitleElse NSLocalizedString(@"Else", nil)
-#define kBrickCellControlTitleEndIf NSLocalizedString(@"If End", nil)
-#define kBrickCellControlTitleRepeat NSLocalizedString(@"Repeat %@ times", nil)
-#define kBrickCellControlTitleEndOfLoop NSLocalizedString(@"End of Loop", nil)
+#define kBrickCellControlTitleWhenProgramStarted @"When program started"
+#define kBrickCellControlTitleWhenTapped @"When tapped"
+#define kBrickCellControlTitleWait @"Wait %@ second(s)"
+#define kBrickCellControlTitleWhenIReceive @"When I receive\n%@"
+#define kBrickCellControlTitleBroadcast @"Broadcast\n%@"
+#define kBrickCellControlTitleBroadcastAndWait @"Broadcast and wait\n%@"
+#define kBrickCellControlTitleNote @"Note %@"
+#define kBrickCellControlTitleForever @"Forever"
+#define kBrickCellControlTitleIf @"If %@ is true then"
+#define kBrickCellControlTitleElse @"Else"
+#define kBrickCellControlTitleEndIf @"If End"
+#define kBrickCellControlTitleRepeat @"Repeat %@ times"
+#define kBrickCellControlTitleEndOfLoop @"End of Loop"
 
 // motion bricks
-#define kBrickCellMotionTitlePlaceAt NSLocalizedString(@"Place at\nX: %@ Y: %@", nil)
-#define kBrickCellMotionTitleSetX NSLocalizedString(@"Set X to %@", nil)
-#define kBrickCellMotionTitleSetY NSLocalizedString(@"Set Y to %@", nil)
-#define kBrickCellMotionTitleChangeX NSLocalizedString(@"Change X by %@", nil)
-#define kBrickCellMotionTitleChangeY NSLocalizedString(@"Change Y by %@", nil)
-#define kBrickCellMotionTitleIfOnEdgeBounce NSLocalizedString(@"If on edge, bounce", nil)
-#define kBrickCellMotionTitleMoveNSteps NSLocalizedString(@"Move %@ step(s)", nil)
-#define kBrickCellMotionTitleTurnLeft NSLocalizedString(@"Turn left %@°", nil)
-#define kBrickCellMotionTitleTurnRight NSLocalizedString(@"Turn right %@°", nil)
-#define kBrickCellMotionTitlePointInDirection NSLocalizedString(@"Point in direction %@°", nil)
-#define kBrickCellMotionTitlePointTowards NSLocalizedString(@"Point towards\n%@", nil)
-#define kBrickCellMotionTitleGlideTo NSLocalizedString(@"Glide %@ second(s)\nto X: %@ Y: %@", nil)
-#define kBrickCellMotionTitleGoNStepsBack NSLocalizedString(@"Go back %@ layer(s)", nil)
-#define kBrickCellMotionTitleComeToFront NSLocalizedString(@"Go to front", nil)
+#define kBrickCellMotionTitlePlaceAt @"Place at\nX: %@ Y: %@"
+#define kBrickCellMotionTitleSetX @"Set X to %@"
+#define kBrickCellMotionTitleSetY @"Set Y to %@"
+#define kBrickCellMotionTitleChangeX @"Change X by %@"
+#define kBrickCellMotionTitleChangeY @"Change Y by %@"
+#define kBrickCellMotionTitleIfOnEdgeBounce @"If on edge, bounce"
+#define kBrickCellMotionTitleMoveNSteps @"Move %@ step(s)"
+#define kBrickCellMotionTitleTurnLeft @"Turn left %@°"
+#define kBrickCellMotionTitleTurnRight @"Turn right %@°"
+#define kBrickCellMotionTitlePointInDirection @"Point in direction %@°"
+#define kBrickCellMotionTitlePointTowards @"Point towards\n%@"
+#define kBrickCellMotionTitleGlideTo @"Glide %@ second(s)\nto X: %@ Y: %@"
+#define kBrickCellMotionTitleGoNStepsBack @"Go back %@ layer(s)"
+#define kBrickCellMotionTitleComeToFront @"Go to front"
 
 // look bricks
-#define kBrickCellLookTitleSetLook NSLocalizedString(@"Switch to look\n%@", nil)
-#define kBrickCellLookTitleSetBackground NSLocalizedString(@"Set background\n%@", nil)
-#define kBrickCellLookTitleNextLook NSLocalizedString(@"Next look", nil)
-#define kBrickCellLookTitleNextBackground NSLocalizedString(@"Next background", nil)
-#define kBrickCellLookTitleSetSizeTo NSLocalizedString(@"Set size to %@\%", nil)
-#define kBrickCellLookTitleChangeSizeByN NSLocalizedString(@"Change size by %@\%", nil)
-#define kBrickCellLookTitleHide NSLocalizedString(@"Hide", nil)
-#define kBrickCellLookTitleShow NSLocalizedString(@"Show", nil)
-#define kBrickCellLookTitleSetGhostEffect NSLocalizedString(@"Set transparency\nto %@\%", nil)
-#define kBrickCellLookTitleChangeGhostEffectByN NSLocalizedString(@"Change transparency\nby %@\%", nil)
-#define kBrickCellLookTitleSetBrightness NSLocalizedString(@"Set brightness to %@\%", nil)
-#define kBrickCellLookTitleChangeBrightnessByN NSLocalizedString(@"Change brightness\nby %@\%", nil)
-#define kBrickCellLookTitleClearGraphicEffect NSLocalizedString(@"Clear graphic effects", nil)
+#define kBrickCellLookTitleSetLook @"Switch to look\n%@"
+#define kBrickCellLookTitleSetBackground @"Set background\n%@"
+#define kBrickCellLookTitleNextLook @"Next look"
+#define kBrickCellLookTitleNextBackground @"Next background"
+#define kBrickCellLookTitleSetSizeTo @"Set size to %@\%"
+#define kBrickCellLookTitleChangeSizeByN @"Change size by %@\%"
+#define kBrickCellLookTitleHide @"Hide"
+#define kBrickCellLookTitleShow @"Show"
+#define kBrickCellLookTitleSetGhostEffect @"Set transparency\nto %@\%"
+#define kBrickCellLookTitleChangeGhostEffectByN @"Change transparency\nby %@\%"
+#define kBrickCellLookTitleSetBrightness @"Set brightness to %@\%"
+#define kBrickCellLookTitleChangeBrightnessByN @"Change brightness\nby %@\%"
+#define kBrickCellLookTitleClearGraphicEffect @"Clear graphic effects"
 
 // sound bricks
-#define kBrickCellSoundTitlePlaySound NSLocalizedString(@"Start sound\n%@", nil)
-#define kBrickCellSoundTitleStopAllSounds NSLocalizedString(@"Stop all sounds", nil)
-#define kBrickCellSoundTitleSetVolumeTo NSLocalizedString(@"Set volume to %@\%", nil)
-#define kBrickCellSoundTitleChangeVolumeByN NSLocalizedString(@"Change volume by %@", nil)
-#define kBrickCellSoundTitleSpeak NSLocalizedString(@"Speak %@", nil)
+#define kBrickCellSoundTitlePlaySound @"Start sound\n%@"
+#define kBrickCellSoundTitleStopAllSounds @"Stop all sounds"
+#define kBrickCellSoundTitleSetVolumeTo @"Set volume to %@\%"
+#define kBrickCellSoundTitleChangeVolumeByN @"Change volume by %@"
+#define kBrickCellSoundTitleSpeak @"Speak %@"
 
 // variable bricks
-#define kBrickCellVariableTitleSetVariable NSLocalizedString(@"Set variable\n%@\nto %@", nil)
-#define kBrickCellVariableTitleChangeVariable NSLocalizedString(@"Change variable\n%@\nby %@", nil)
+#define kBrickCellVariableTitleSetVariable @"Set variable\n%@\nto %@"
+#define kBrickCellVariableTitleChangeVariable @"Change variable\n%@\nby %@"
