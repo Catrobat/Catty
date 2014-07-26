@@ -277,6 +277,10 @@
 
 "Unable to play the selected sound. Your device is in silent mode. Please turn off silent mode by toggling the switch on the right side of your iPad and tap on play again." = "Unable to play the selected sound. Your device is in silent mode. Please turn off silent mode by toggling the switch on the right side of your iPad and tap on play again.";
 
+"No Internet Connection!" = "No Internet Connection!";
+
+"Slow Internet Connection!" = "Slow Internet Connection!";
+
 "Program name" = "Program name";
 
 "Object name" = "Object name";

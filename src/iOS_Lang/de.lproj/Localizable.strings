@@ -277,6 +277,10 @@
 
 "Unable to play the selected sound. Your device is in silent mode. Please turn off silent mode by toggling the switch on the right side of your iPad and tap on play again." = "Die ausgewählte Sounddatei kann nicht wiedergegeben werden. Ihr Gerät befindet sich derzeit im Lautlosmodus. Bitte schalten Sie den Lautlosmodus wieder ab in dem Sie den Schalter auf der rechten Seite Ihres iPads nach oben schieben und versuchen Sie es erneut.";
 
+"No Internet Connection!" = "Keine Internetverbindung!";
+
+"Slow Internet Connection!" = "Langsame Internetverbindung!";
+
 "Program name" = "Programmname";
 
 "Object name" = "Objektname";
