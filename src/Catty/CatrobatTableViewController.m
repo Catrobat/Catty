@@ -306,7 +306,64 @@ static NSCharacterSet *blockedCharacterSet = nil;
 #pragma mark - segue handling
 - (BOOL)shouldPerformSegueWithIdentifier:(NSString*)identifier sender:(id)sender
 {
-
+    if (self.popupViewController != nil) {
+        [self dismissPopupViewController];
+        return NO;
+    }
+    if ([identifier isEqualToString:kSegueToContinue]) {
+        // check if program loaded successfully -> not nil
+        if (self.lastProgram) {
+            return YES;
+        }
+        
+        // program failed loading...
+        // update continue cell
+        [Util setLastProgram:nil];
+        NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:0];
+        [self.tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationNone];
+        [Util alertWithText:kUIAlertViewMessageUnableToLoadProgram];
+        return NO;
+    } else if ([identifier isEqualToString:kSegueToNewProgram]) {
+        // if there is no program name, abort performing this segue and ask user for program name
+        // after user entered a valid program name this segue will be called again and accepted
+        if (! self.defaultProgram) {
+            return NO;
+        }
+        return YES;
+    } else if([identifier isEqualToString:kSegueToExplore]||[identifier isEqualToString:kSegueToHelp]){
+        NetworkStatus remoteHostStatus = [self.reachability currentReachabilityStatus];
+        
+        if(remoteHostStatus == NotReachable) {
+            [Util alertWithText:kUIAlertViewMessageNoInternetConnection];
+            NSDebug(@"not reachable");
+            return NO;
+        } else if (remoteHostStatus == ReachableViaWiFi) {
+            if (!self.reachability.connectionRequired) {
+                NSDebug(@"reachable via Wifi");
+                return YES;
+            }else{
+                NSDebug(@"reachable via wifi but no data");
+                if ([self.navigationController.topViewController isKindOfClass:[DownloadTabBarController class]] ||
+                    [self.navigationController.topViewController isKindOfClass:[ProgramDetailStoreViewController class]]) {
+                    [Util alertWithText:kUIAlertViewMessageNoInternetConnection];
+                    [self.navigationController popToRootViewControllerAnimated:YES];
+                    return NO;
+                }
+            }
+            return YES;
+        } else if (remoteHostStatus == ReachableViaWWAN){
+            if (!self.reachability.connectionRequired) {
+                NSDebug(@"reachable via celullar");
+                return YES;
+            }else{
+                NSDebug(@" not reachable via celullar");
+                [Util alertWithText:kUIAlertViewMessageNoInternetConnection];
+                return NO;
+            }
+            return YES;
+        }
+    }
+    return [super shouldPerformSegueWithIdentifier:identifier sender:sender];
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
