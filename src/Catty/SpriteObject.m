@@ -306,7 +306,6 @@
     }
 
     [script startWithCompletion:completion];
-
 }
 
 
