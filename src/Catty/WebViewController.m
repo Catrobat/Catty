@@ -54,6 +54,7 @@
     UIButton *_backButton;
     UIBarButtonItem *_refreshButton;
     UIBarButtonItem *_stopButton;
+    UIViewController *_topViewController;
 }
 
 - (id)initWithURL:(NSURL *)URL
@@ -129,12 +130,13 @@
     
     [self.forwardButtonBackGroundView addSubview:_forwardButton];
     [self.backButtonBackGroundView addSubview:_backButton];
-
+    
     [self.touchHelperView addGestureRecognizer:self.tapGesture];
-
+    
+    [self.webView.scrollView.delegate scrollViewDidScroll:self.webView.scrollView];
 }
 
-- (void) viewWillDisappear:(BOOL)animated
+- (void)viewWillDisappear:(BOOL)animated
 {
     [super viewWillDisappear:animated];
     [self.webView stopLoading];
@@ -146,12 +148,22 @@
     if ([self.view.window.gestureRecognizers containsObject:self.tapGesture]) {
         [self.view.window removeGestureRecognizer:self.tapGesture];
     }
+    
+     _topViewController = self.navigationController.topViewController;
+}
+
+- (void)viewDidDisappear:(BOOL)animated
+{
+    [super viewDidDisappear:animated];
+    _topViewController.navigationController.navigationBar.titleTextAttributes = @{ NSForegroundColorAttributeName : UIColor.skyBlueColor };
+    _topViewController.navigationController.navigationBar.tintColor = [UIColor lightOrangeColor];
+    _topViewController.navigationController.navigationBar.transform = CGAffineTransformIdentity;
 }
 
 - (void)viewWillLayoutSubviews
 {
     [super viewWillLayoutSubviews];
-
+    
     self.touchHelperView.frame = CGRectMake(0.0f, CGRectGetHeight(self.view.bounds) - kToolbarHeight, CGRectGetWidth(self.view.bounds), kToolbarHeight);
     
     self.forwardButtonBackGroundView.center = CGPointMake(CGRectGetWidth(self.view.bounds) - CGRectGetMidX(self.backButtonBackGroundView.bounds) - 5.0f, CGRectGetHeight(self.view.bounds) - CGRectGetMidY(self.backButtonBackGroundView.bounds) - 5.0f);
@@ -276,7 +288,7 @@
             /* file exists */
             if (isDir) {
                 /* file is a directory */
-//                NSLog(@"already downloaded");
+                //                NSLog(@"already downloaded");
                 [Util alertWithText:kProgramAlreadyDownloaded];
                 // Please add here the code with alert view -> Program exists!
             }
@@ -422,10 +434,11 @@
 
 - (void)setProgress:(CGFloat)progress
 {
-    [self.progressView setProgress:progress animated:NO];
-    [self.progressView setNeedsDisplay];
+    self.progressView.progress = progress;
+    BOOL doneLoadingURL = _doneLoadingURL;
+    __weak WebViewController *weakself = self;
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.2f * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        self.progressView.hidden = _doneLoadingURL;
+        weakself.progressView.hidden = doneLoadingURL;
     });
 }
 
@@ -502,6 +515,6 @@
         _doneLoadingURL = YES;
     }
     [self setProgress:progress];
-
+    
 }
 @end
