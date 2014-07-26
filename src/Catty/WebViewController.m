@@ -429,6 +429,7 @@
 - (void)setProgress:(CGFloat)progress
 {
     self.progressView.progress = progress;
+    [self.progressView setNeedsDisplay];
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.2f * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         self.progressView.hidden = _doneLoadingURL;
     });
@@ -491,7 +492,7 @@
 
 - (void)downloadFinishedWithURL:(NSURL *)url
 {
-    NSLog(@"finished");
+    
 }
 
 - (void)setBackDownloadStatus
@@ -501,6 +502,6 @@
 
 - (void)updateProgress:(double)progress
 {
-    [self setProgress:(float)progress];
+    [self setProgress:progress];
 }
 @end

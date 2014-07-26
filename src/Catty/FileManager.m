@@ -479,7 +479,7 @@
     //storeDownloadedImage in connectionDidFinishLoading
     if (self.imageNameDict.count > 0) {
         NSArray *temp = [self.imageNameDict allKeysForObject:name];
-        if (temp) {
+        if (temp.count > 0) {
             NSURLSessionDownloadTask *key = [temp objectAtIndex:0];
             [self storeDownloadedImage:programData andTask:key];
         }
