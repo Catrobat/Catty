@@ -213,6 +213,7 @@
 
         if([script isKindOfClass:[BroadcastScript class]]) {
             if ([self.broadcastWaitDelegate respondsToSelector:@selector(registerSprite:forMessage:)]) {
+                
                 [self.broadcastWaitDelegate registerSprite:self forMessage:((BroadcastScript*)script).receivedMessage];
             } else {
                 NSLog(@"ERROR: BroadcastWaitDelegate not set! abort()");

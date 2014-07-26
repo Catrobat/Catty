@@ -127,6 +127,7 @@
         UIGraphicsEndImageContext();
     }
     
+    self.skView.backgroundColor = UIColor.backgroundColor;
     self.menuView = [[UIView alloc]initWithFrame:CGRectMake(0.0f, 0.0f, kWidthSlideMenu + kBounceEffect, CGRectGetHeight(UIScreen.mainScreen.bounds))];
     self.menuView.backgroundColor = [[UIColor alloc] initWithPatternImage:newBackgroundImage];
     

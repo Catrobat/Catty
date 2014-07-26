@@ -24,36 +24,38 @@
 #import "SpriteObject.h"
 
 @interface BroadcastWaitHandler()
-@property (strong, nonatomic) NSMapTable *spritesForMessages; // key: (NSString*)msg   value: (NSArray*)sprites
+@property (strong, nonatomic) NSMutableDictionary *spritesForMessages;
 @property (strong, nonatomic) NSLock *lock;
 @end
 
 
 @implementation BroadcastWaitHandler
 
-- (NSMapTable *)spritesForMessages
+- (NSMutableDictionary *)spritesForMessages
 {
-  if (!_spritesForMessages)
-      _spritesForMessages = [NSMapTable strongToWeakObjectsMapTable];
-  return _spritesForMessages;
+    if (!_spritesForMessages) {
+        _spritesForMessages = [NSMutableDictionary dictionary];
+    }
+    return _spritesForMessages;
 }
 
 - (void)registerSprite:(SpriteObject *)sprite forMessage:(NSString *)message
 {
-  [self.lock lock];
-  NSArray *sprites = [self.spritesForMessages objectForKey:message];
-  [self.spritesForMessages removeObjectForKey:message];
-  if (sprites == nil) {
-      sprites = [NSArray arrayWithObject:sprite];
-  } else {
-      sprites = [sprites arrayByAddingObject:sprite];
-  }
-  [self.spritesForMessages setObject:sprites forKey:message];
-  [self.lock unlock];
+    [self.lock lock];
+    NSArray *sprites = [self.spritesForMessages objectForKey:message];
+    [self.spritesForMessages removeObjectForKey:message];
+    if (sprites == nil) {
+        sprites = [NSArray arrayWithObject:sprite];
+    } else {
+        sprites = [sprites arrayByAddingObject:sprite];
+    }
+    [self.spritesForMessages setObject:sprites forKey:message];
+    [self.lock unlock];
 }
 
 - (void)dealloc
 {
+    [self.spritesForMessages removeAllObjects];
 }
 
 - (void)performBroadcastWaitForMessage:(NSString*)message
