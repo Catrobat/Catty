@@ -33,7 +33,6 @@
 @property (nonatomic, strong) UIProgressView *progressView;
 @property (nonatomic, strong) NSURL *URL;
 @property (nonatomic, strong) UILabel *urlTitleLabel;
-@property (nonatomic, strong) UIActivityIndicatorView *spinner;
 @property (nonatomic, strong) UIView *touchHelperView;
 @property (strong, nonatomic) UITapGestureRecognizer *tapGesture;
 @property (strong, nonatomic) UIView *forwardButtonBackGroundView;
@@ -87,7 +86,6 @@
     _refreshButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh target:self action:@selector(refresh:)];
     _stopButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemStop target:self action:@selector(stop:)];
     
-    self.spinner = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite];
     self.tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleTap:)];
     
     self.webView.scrollView.delegate = self;
@@ -133,8 +131,7 @@
     [self.backButtonBackGroundView addSubview:_backButton];
 
     [self.touchHelperView addGestureRecognizer:self.tapGesture];
-    [self.view addSubview:self.spinner];
-    [self.spinner startAnimating];
+
 }
 
 - (void) viewWillDisappear:(BOOL)animated
@@ -154,7 +151,7 @@
 - (void)viewWillLayoutSubviews
 {
     [super viewWillLayoutSubviews];
-    self.spinner.center = self.view.center;
+
     self.touchHelperView.frame = CGRectMake(0.0f, CGRectGetHeight(self.view.bounds) - kToolbarHeight, CGRectGetWidth(self.view.bounds), kToolbarHeight);
     
     self.forwardButtonBackGroundView.center = CGPointMake(CGRectGetWidth(self.view.bounds) - CGRectGetMidX(self.backButtonBackGroundView.bounds) - 5.0f, CGRectGetHeight(self.view.bounds) - CGRectGetMidY(self.backButtonBackGroundView.bounds) - 5.0f);
@@ -242,9 +239,6 @@
     
     [UIView animateWithDuration:0.25f animations:^{ self.webView.alpha = 1.0f; }];
     
-    if (self.spinner.isAnimating) {
-        [self.spinner stopAnimating];
-    }
 }
 
 - (void)webViewDidStartLoad:(UIWebView *)webView
@@ -282,7 +276,8 @@
             /* file exists */
             if (isDir) {
                 /* file is a directory */
-                NSLog(@"already downloaded");
+//                NSLog(@"already downloaded");
+                [Util alertWithText:kProgramAlreadyDownloaded];
                 // Please add here the code with alert view -> Program exists!
             }
         } else {
@@ -427,7 +422,8 @@
 
 - (void)setProgress:(CGFloat)progress
 {
-    self.progressView.progress = progress;
+    [self.progressView setProgress:progress animated:NO];
+    [self.progressView setNeedsDisplay];
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.2f * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         self.progressView.hidden = _doneLoadingURL;
     });
@@ -500,6 +496,12 @@
 
 - (void)updateProgress:(double)progress
 {
-    
+    if (progress < 1.0f) {
+        _doneLoadingURL = NO;
+    }else{
+        _doneLoadingURL = YES;
+    }
+    [self setProgress:progress];
+
 }
 @end

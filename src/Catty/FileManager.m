@@ -32,6 +32,7 @@
 #import <MobileCoreServices/MobileCoreServices.h>
 #import "LanguageTranslationDefines.h"
 #import "UIDefines.h"
+#import "WebViewController.h"
 #import "ProgramLoadingInfo.h"
 
 @interface FileManager()
@@ -447,6 +448,8 @@
         dispatch_async(dispatch_get_main_queue(), ^{
             [self.delegate downloadFinishedWithURL:url];
         });
+    }else if ([self.delegate respondsToSelector:@selector(downloadFinishedWithURL:)] && [self.delegate isKindOfClass:[WebViewController class]]){
+        [self.delegate downloadFinishedWithURL:url];
     }
 
 }
@@ -482,7 +485,7 @@
     //storeDownloadedImage in connectionDidFinishLoading
     if (self.imageNameDict.count > 0) {
         NSArray *temp = [self.imageNameDict allKeysForObject:name];
-        if (temp) {
+        if (temp.count > 0) {
             NSURLSessionDownloadTask *key = [temp objectAtIndex:0];
             [self storeDownloadedImage:programData andTask:key];
         }
@@ -608,6 +611,8 @@
                 dispatch_async(dispatch_get_main_queue(), ^{
                     [self.delegate updateProgress:progress];
                 });
+            }else if ([self.delegate respondsToSelector:@selector(updateProgress:)] && [self.delegate isKindOfClass:[WebViewController class]]){
+                [self.delegate updateProgress:progress];
             }
 
         }

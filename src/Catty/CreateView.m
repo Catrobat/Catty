@@ -61,7 +61,7 @@
         [self addNumberOfDownloadsImagetoView:view];
         [self addNumberOfDownloadsWithDownloads:project.downloads toView:view];
         
-        [self addProgramDescriptionLabelWithDescription:project.description toView:view target:target];
+        [self addProgramDescriptionLabelWithDescription:project.projectDescription toView:view target:target];
         [self addThumbnailImageWithImageUrlString:project.screenshotSmall toView:view];
         //[self addBigImageWithImageUrlString:project.screenshotBig toView:view];
         [self addDownloadButtonToView:view withTarget:target];
@@ -87,7 +87,7 @@
         [self addNumberOfDownloadsImagetoView:view];
         [self addNumberOfDownloadsWithDownloads:project.downloads toView:view];
         [self addThumbnailImageWithImageUrlString:project.screenshotSmall toView:view];
-        [self addProgramDescriptionLabelWithDescription:project.description toView:view target:target];
+        [self addProgramDescriptionLabelWithDescription:project.projectDescription toView:view target:target];
         //        [self addBigImageWithImageUrlString:project.screenshotBig toView:view];
         [self addDownloadButtonToView:view withTarget:target];
         [self addLoadingButtonToView:view withTarget:target];
