@@ -673,13 +673,12 @@ static NSCharacterSet *blockedCharacterSet = nil;
 
 #pragma mark Filemanager notification
 
-- (void) downloadFinished:(NSNotification *) notification
+- (void)downloadFinished:(NSNotification*)notification
 {
     if ([[notification name] isEqualToString:kProgramDownloadedNotification]){
-        [self loadPrograms];
+        self.programLoadingInfos = [[Program allProgramLoadingInfos] mutableCopy];
         [self.tableView reloadData];
     }
-
 }
 
 @end
