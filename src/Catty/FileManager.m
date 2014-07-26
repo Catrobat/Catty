@@ -574,7 +574,9 @@
 
     }
 //    [downloadTask suspend];
-
+    // Notification for reloading MyProgramViewController
+    [[NSNotificationCenter defaultCenter] postNotificationName:kProgramDownloadedNotification
+                                                        object:self];
     UIApplication* app = [UIApplication sharedApplication];
     app.networkActivityIndicatorVisible = NO;
 }
