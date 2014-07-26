@@ -21,11 +21,9 @@
  */
 
 #import <UIKit/UIKit.h>
-#import "ScriptCollectionViewController.h"
-#import "BrickCell.h"
-#import "IBActionSheet.h"
 
 @class BrickDetailViewController;
+@class BrickCell;
 
 @protocol BrickDetailViewControllerDelegate <NSObject>
 

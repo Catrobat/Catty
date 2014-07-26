@@ -429,21 +429,21 @@
 
 "Next background" = "다음 배경";
 
-"Set size to %@\%" = "Set size to %@\\%";
+"Set size to %@\%" = "Set size to %@\%";
 
-"Change size by %@\%" = "Change size by %@\\%";
+"Change size by %@\%" = "Change size by %@\%";
 
 "Hide" = "숨기기";
 
 "Show" = "보이기";
 
-"Set transparency\nto %@\%" = "Set transparency\nto %@\\%";
+"Set transparency\nto %@\%" = "Set transparency\nto %@\%";
 
-"Change transparency\nby %@\%" = "Change transparency\nby %@\\%";
+"Change transparency\nby %@\%" = "Change transparency\nby %@\%";
 
-"Set brightness to %@\%" = "Set brightness to %@\\%";
+"Set brightness to %@\%" = "Set brightness to %@\%";
 
-"Change brightness\nby %@\%" = "Change brightness\nby %@\\%";
+"Change brightness\nby %@\%" = "Change brightness\nby %@\%";
 
 "Clear graphic effects" = "그래픽 효과 지우기";
 
@@ -451,7 +451,7 @@
 
 "Stop all sounds" = "모든 소리 멈추기";
 
-"Set volume to %@\%" = "Set volume to %@\\%";
+"Set volume to %@\%" = "Set volume to %@\%";
 
 "Change volume by %@" = "Change volume by %@";
 

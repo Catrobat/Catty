@@ -429,21 +429,21 @@
 
 "Next background" = "Next background";
 
-"Set size to %@\%" = "Set size to %@\\%";
+"Set size to %@\%" = "Set size to %@\%";
 
-"Change size by %@\%" = "Change size by %@\\%";
+"Change size by %@\%" = "Change size by %@\%";
 
 "Hide" = "Hide";
 
 "Show" = "Show";
 
-"Set transparency\nto %@\%" = "Set transparency\nto %@\\%";
+"Set transparency\nto %@\%" = "Set transparency\nto %@\%";
 
-"Change transparency\nby %@\%" = "Change transparency\nby %@\\%";
+"Change transparency\nby %@\%" = "Change transparency\nby %@\%";
 
-"Set brightness to %@\%" = "Set brightness to %@\\%";
+"Set brightness to %@\%" = "Set brightness to %@\%";
 
-"Change brightness\nby %@\%" = "Change brightness\nby %@\\%";
+"Change brightness\nby %@\%" = "Change brightness\nby %@\%";
 
 "Clear graphic effects" = "Clear graphic effects";
 
@@ -451,7 +451,7 @@
 
 "Stop all sounds" = "Stop all sounds";
 
-"Set volume to %@\%" = "Set volume to %@\\%";
+"Set volume to %@\%" = "Set volume to %@\%";
 
 "Change volume by %@" = "Change volume by %@";
 

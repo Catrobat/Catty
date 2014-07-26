@@ -429,21 +429,21 @@
 
 "Next background" = "次の背景";
 
-"Set size to %@\%" = "Set size to %@\\%";
+"Set size to %@\%" = "Set size to %@\%";
 
-"Change size by %@\%" = "Change size by %@\\%";
+"Change size by %@\%" = "Change size by %@\%";
 
 "Hide" = "隠す";
 
 "Show" = "表示する";
 
-"Set transparency\nto %@\%" = "Set transparency\nto %@\\%";
+"Set transparency\nto %@\%" = "Set transparency\nto %@\%";
 
-"Change transparency\nby %@\%" = "Change transparency\nby %@\\%";
+"Change transparency\nby %@\%" = "Change transparency\nby %@\%";
 
-"Set brightness to %@\%" = "Set brightness to %@\\%";
+"Set brightness to %@\%" = "Set brightness to %@\%";
 
-"Change brightness\nby %@\%" = "Change brightness\nby %@\\%";
+"Change brightness\nby %@\%" = "Change brightness\nby %@\%";
 
 "Clear graphic effects" = "画像効果をなくす";
 
@@ -451,7 +451,7 @@
 
 "Stop all sounds" = "すべてのサウンドを停止";
 
-"Set volume to %@\%" = "Set volume to %@\\%";
+"Set volume to %@\%" = "Set volume to %@\%";
 
 "Change volume by %@" = "Change volume by %@";
 
