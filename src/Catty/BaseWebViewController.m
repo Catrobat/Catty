@@ -20,7 +20,7 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import "WebViewController.h"
+#import "BaseWebViewController.h"
 #import "UIDefines.h"
 #import "UIColor+CatrobatUIColorExtensions.h"
 #import <tgmath.h>
@@ -28,7 +28,7 @@
 #import "Util.h"
 #import "ProgramDefines.h"
 
-@interface WebViewController ()
+@interface BaseWebViewController ()
 @property (nonatomic, strong) UIWebView *webView;
 @property (nonatomic, strong) UIProgressView *progressView;
 @property (nonatomic, strong) NSURL *URL;
@@ -45,7 +45,7 @@
 #define kURLViewHeight 20.0f
 #define kScrollOffset 64.0f
 
-@implementation WebViewController {
+@implementation BaseWebViewController {
     BOOL _errorLoadingURL;
     BOOL _doneLoadingURL;
     BOOL _showActivityIndicator;
@@ -436,7 +436,7 @@
 {
     self.progressView.progress = progress;
     BOOL doneLoadingURL = _doneLoadingURL;
-    __weak WebViewController *weakself = self;
+    __weak BaseWebViewController *weakself = self;
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.2f * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         weakself.progressView.hidden = doneLoadingURL;
     });
