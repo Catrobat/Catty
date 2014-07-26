@@ -31,7 +31,7 @@
     self = [super init];
     if (self)
     {
-        self.path =path;
+        self.path = path;
     }
     return self;
 }

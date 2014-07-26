@@ -24,17 +24,17 @@
 #import "SpriteObject.h"
 
 @interface BroadcastWaitHandler()
-@property (strong, nonatomic) NSMutableDictionary *spritesForMessages; // key: (NSString*)msg   value: (NSArray*)sprites
+@property (strong, nonatomic) NSMapTable *spritesForMessages; // key: (NSString*)msg   value: (NSArray*)sprites
 @property (strong, nonatomic) NSLock *lock;
 @end
 
 
 @implementation BroadcastWaitHandler
 
-- (NSMutableDictionary *)spritesForMessages
+- (NSMapTable *)spritesForMessages
 {
   if (!_spritesForMessages)
-      _spritesForMessages = [[NSMutableDictionary alloc]init];
+      _spritesForMessages = [NSMapTable strongToWeakObjectsMapTable];
   return _spritesForMessages;
 }
 
@@ -65,7 +65,7 @@
     dispatch_semaphore_t sema;
     sema = dispatch_semaphore_create(sprites.count);
     for (SpriteObject *sprite in sprites) {
-      if ([sprite isKindOfClass:[SpriteObject class]] == NO) {
+      if (![sprite isKindOfClass:[SpriteObject class]]) {
         NSError(@"sprite is not a SpriteObject...abort()");
         } else {
             dispatch_async(broadcastWaitQueue, ^{

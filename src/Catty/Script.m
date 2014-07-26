@@ -116,10 +116,6 @@
     else {
         [self runNextAction];
     }
-    
-
-
-    
 }
 
 
@@ -214,19 +210,15 @@
             self.completion();
         }
     }
-    
-    
 }
 
-- (void) nextAction
+- (void)nextAction
 {
     // Needs to be async because of recursion!
     dispatch_async(dispatch_get_main_queue(), ^{
         [self runNextAction];
     });
 }
-
-
 
 - (void)runWithAction:(SKAction*)action
 {

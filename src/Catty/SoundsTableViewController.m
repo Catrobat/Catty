@@ -430,24 +430,6 @@
     }
 }
 
-#pragma mark - Navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    static NSString *toSceneSegueID = kSegueToScene;
-    UIViewController *destController = segue.destinationViewController;
-    if ([sender isKindOfClass:[UIBarButtonItem class]]) {
-        if ([segue.identifier isEqualToString:toSceneSegueID]) {
-            if ([destController isKindOfClass:[ScenePresenterViewController class]]) {
-                ScenePresenterViewController* scvc = (ScenePresenterViewController*) destController;
-                if ([scvc respondsToSelector:@selector(setProgram:)]) {
-                    [scvc setController:(UITableViewController *)self];
-                    [scvc performSelector:@selector(setProgram:) withObject:self.object.program];
-                }
-            }
-        }
-    }
-}
-
 #pragma mark - UIActionSheetDelegate Handlers
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
 {
@@ -544,8 +526,9 @@
 - (void)playSceneAction:(id)sender
 {
     [self stopAllSounds];
-    [self.navigationController setToolbarHidden:YES];
-    [self performSegueWithIdentifier:kSegueToScene sender:sender];
+    [self.navigationController setToolbarHidden:YES animated:YES];
+    ScenePresenterViewController *vc =[[ScenePresenterViewController alloc] initWithProgram:[Program programWithLoadingInfo:[Util programLoadingInfoForProgramWithName:[Util lastProgram]]]];
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 - (void)setupToolBar

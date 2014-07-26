@@ -146,8 +146,9 @@
 
 - (void)playSceneAction:(id)sender
 {
-    [self.navigationController setToolbarHidden:YES];
-    [self performSegueWithIdentifier:kSegueToScene sender:sender];
+    [self.navigationController setToolbarHidden:YES animated:YES];
+    ScenePresenterViewController *vc =[[ScenePresenterViewController alloc] initWithProgram:[Program programWithLoadingInfo:[Util programLoadingInfoForProgramWithName:[Util lastProgram]]]];
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 - (void)confirmDeleteSelectedLooksAction:(id)sender
@@ -285,20 +286,10 @@
 #pragma mark - Navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    static NSString* segueToSceneIdentifier = kSegueToScene;
     static NSString* segueToImageIdentifier = kSegueToImage;
     UIViewController* destController = segue.destinationViewController;
-    if ([sender isKindOfClass:[UIBarButtonItem class]]) {
-        if ([segue.identifier isEqualToString:segueToSceneIdentifier]) {
-            if ([destController isKindOfClass:[ScenePresenterViewController class]]) {
-                ScenePresenterViewController *scvc = (ScenePresenterViewController*)destController;
-                if ([scvc respondsToSelector:@selector(setProgram:)]) {
-                    [scvc setController:(UITableViewController*)self];
-                    [scvc performSelector:@selector(setProgram:) withObject:self.object.program];
-                }
-            }
-        }
-    } else if ([sender isKindOfClass:[UITableViewCell class]]) {
+
+    if ([sender isKindOfClass:[UITableViewCell class]]) {
         UITableViewCell *cell = (UITableViewCell*)sender;
         NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
         if ([segue.identifier isEqualToString:segueToImageIdentifier]) {
