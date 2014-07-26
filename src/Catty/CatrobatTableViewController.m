@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2013 The Catrobat Team
+ *  Copyright (C) 2010-2014 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -46,6 +46,7 @@
 #import "HelpWebViewController.h"
 #import "NetworkDefines.h"
 #import "DataTransferMessage.h"
+#import "InfoPopupViewController.h"
 
 NS_ENUM(NSInteger, ViewControllerIndex) {
     kContinueProgramVC = 0,
@@ -172,7 +173,14 @@ static NSCharacterSet *blockedCharacterSet = nil;
 #pragma mark - actions
 - (void)infoPressed:(id)sender
 {
-    [Util alertWithText:kUIAlertViewMessageInfoForPocketCode];
+    if (self.popupViewController == nil) {
+        InfoPopupViewController *popupViewController = [[InfoPopupViewController alloc] init];
+        popupViewController.delegate = self;
+        [self presentPopupViewController:popupViewController WithFrame:self.tableView.frame];
+    } else {
+        [self dismissPopup];
+    }
+
 }
 
 - (void)addProgramAndSegueToItActionForProgramWithName:(NSString*)programName
@@ -298,60 +306,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
 #pragma mark - segue handling
 - (BOOL)shouldPerformSegueWithIdentifier:(NSString*)identifier sender:(id)sender
 {
-    if ([identifier isEqualToString:kSegueToContinue]) {
-        // check if program loaded successfully -> not nil
-        if (self.lastProgram) {
-            return YES;
-        }
 
-        // program failed loading...
-        // update continue cell
-        [Util setLastProgram:nil];
-        NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:0];
-        [self.tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationNone];
-        [Util alertWithText:kUIAlertViewMessageUnableToLoadProgram];
-        return NO;
-    } else if ([identifier isEqualToString:kSegueToNewProgram]) {
-        // if there is no program name, abort performing this segue and ask user for program name
-        // after user entered a valid program name this segue will be called again and accepted
-        if (! self.defaultProgram) {
-            return NO;
-        }
-        return YES;
-    } else if ([identifier isEqualToString:kSegueToExplore]||[identifier isEqualToString:kSegueToHelp]) {
-        NetworkStatus remoteHostStatus = [self.reachability currentReachabilityStatus];
-
-        if (remoteHostStatus == NotReachable) {
-            [Util alertWithText:kUIAlertViewMessageNoInternetConnection];
-            NSDebug(@"not reachable");
-            return NO;
-        } else if (remoteHostStatus == ReachableViaWiFi) {
-            if (!self.reachability.connectionRequired) {
-                NSDebug(@"reachable via Wifi");
-                return YES;
-            } else {
-                NSDebug(@"reachable via wifi but no data");
-                if ([self.navigationController.topViewController isKindOfClass:[DownloadTabBarController class]] ||
-                    [self.navigationController.topViewController isKindOfClass:[ProgramDetailStoreViewController class]]) {
-                    [Util alertWithText:kUIAlertViewMessageNoInternetConnection];
-                    [self.navigationController popToRootViewControllerAnimated:YES];
-                    return NO;
-                }
-            }
-            return YES;
-        } else if (remoteHostStatus == ReachableViaWWAN){
-            if (!self.reachability.connectionRequired) {
-                NSDebug(@"reachable via celullar");
-                return YES;
-            } else {
-                NSDebug(@" not reachable via celullar");
-                [Util alertWithText:kUIAlertViewMessageNoInternetConnection];
-                return NO;
-            }
-            return YES;
-        }
-    }
-    return [super shouldPerformSegueWithIdentifier:identifier sender:sender];
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
@@ -418,6 +373,14 @@ static NSCharacterSet *blockedCharacterSet = nil;
 - (void)dealloc
 {
     [[NSNotificationCenter defaultCenter] removeObserver:self name:kReachabilityChangedNotification object:nil];
+}
+
+#pragma mark popup delegate
+
+-(void)dismissPopup {
+    if (self.popupViewController != nil) {
+        [self dismissPopupViewController];
+    }
 }
 
 @end

@@ -19,9 +19,11 @@
  *  You should have received a copy of the GNU Affero General Public License
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
 */
-"ExampleEntry" = "ExampleEntry";
+"ExampleEntry" = "Test Eintrag";
 
 "New Program" = "Neues Programm";
+
+"My First Program" = "Mein erstes Programm";
 
 "Background" = "Hintergrund";
 
@@ -159,9 +161,9 @@
 
 "Delete" = "Löschen";
 
-"Edit Sounds" = "Bearbeite Sounds";
+"Edit Sounds" = "Sounds bearbeiten";
 
-"Edit Looks" = "Bearbeite Aussehen";
+"Edit Looks" = "Aussehen bearbeiten";
 
 "Add look" = "Hinzufügen von neuem Aussehen";
 
@@ -181,7 +183,7 @@
 
 "Delete Script" = "Lösche Skript";
 
-"Animate Brick" = "Animate Brick";
+"Animate Brick" = "Brick animieren";
 
 "Copy Brick" = "Kopiere Baustein";
 
@@ -193,7 +195,7 @@
 
 "Show Details" = "Details anzeigen";
 
-"Delete Looks" = "Lösche Aussehen";
+"Delete Looks" = "Lösche Bilder";
 
 "From Camera" = "Von Kamera";
 
@@ -213,7 +215,7 @@
 
 "Delete Programs" = "Programme löschen";
 
-"Pocket Code Recorder" = "Pocket Code Recorder";
+"Pocket Code Recorder" = "Pocket Code Aufnahme";
 
 "Choose sound" = "Sound auswählen";
 
@@ -305,6 +307,10 @@
 
 "Unable to play the selected sound. Your device is in silent mode. Please turn off silent mode by toggling the switch on the right side of your iPad and tap on play again." = "Die ausgewählte Sounddatei kann nicht wiedergegeben werden. Ihr Gerät befindet sich derzeit im Lautlosmodus. Bitte schalten Sie den Lautlosmodus wieder ab in dem Sie den Schalter auf der rechten Seite Ihres iPads nach oben schieben und versuchen Sie es erneut.";
 
+"Slow Internet Connection!" = "Langsame Internetverbindung!";
+
+"You have already downloaded this program!" = "Das Programm wurde bereits heruntergeladen!";
+
 "Program name" = "Programmname";
 
 "Object name" = "Objektname";
@@ -359,7 +365,7 @@
 
 "Views" = "Aufrufe";
 
-"Measure" = "Auflösung";
+"Measure" = "Abmessung";
 
 "Size" = "Dateigröße";
 
@@ -371,7 +377,7 @@
 
 "Scripts" = "Skripte";
 
-"Bricks" = "Bricks";
+"Bricks" = "Bausteine";
 
 "Looks" = "Aussehen";
 
@@ -379,7 +385,7 @@
 
 "Last access" = "Letzter Zugriff";
 
-"Size" = "Größe";
+"Size" = "Dateigröße";
 
 "Length" = "Länge";
 
