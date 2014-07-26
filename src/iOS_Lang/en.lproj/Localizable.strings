@@ -23,6 +23,8 @@
 
 "New Program" = "New Program";
 
+"My First Program" = "My First Program";
+
 "Background" = "Background";
 
 "My Object" = "My Object";
@@ -280,6 +282,8 @@
 "No Internet Connection!" = "No Internet Connection!";
 
 "Slow Internet Connection!" = "Slow Internet Connection!";
+
+"You have already downloaded this program!" = "You have already downloaded this program!";
 
 "Program name" = "Program name";
 

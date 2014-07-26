@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2013 The Catrobat Team
+ *  Copyright (C) 2010-2014 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -24,13 +24,15 @@
 #import "UIDefines.h"
 #import "UIColor+CatrobatUIColorExtensions.h"
 #import <tgmath.h>
+#import "AppDelegate.h"
+#import "Util.h"
+#import "ProgramDefines.h"
 
 @interface WebViewController ()
 @property (nonatomic, strong) UIWebView *webView;
 @property (nonatomic, strong) UIProgressView *progressView;
 @property (nonatomic, strong) NSURL *URL;
 @property (nonatomic, strong) UILabel *urlTitleLabel;
-@property (nonatomic, strong) UIActivityIndicatorView *spinner;
 @property (nonatomic, strong) UIView *touchHelperView;
 @property (strong, nonatomic) UITapGestureRecognizer *tapGesture;
 @property (strong, nonatomic) UIView *forwardButtonBackGroundView;
@@ -84,7 +86,6 @@
     _refreshButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh target:self action:@selector(refresh:)];
     _stopButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemStop target:self action:@selector(stop:)];
     
-    self.spinner = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite];
     self.tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleTap:)];
     
     self.webView.scrollView.delegate = self;
@@ -130,8 +131,7 @@
     [self.backButtonBackGroundView addSubview:_backButton];
 
     [self.touchHelperView addGestureRecognizer:self.tapGesture];
-    [self.view addSubview:self.spinner];
-    [self.spinner startAnimating];
+
 }
 
 - (void) viewWillDisappear:(BOOL)animated
@@ -151,7 +151,7 @@
 - (void)viewWillLayoutSubviews
 {
     [super viewWillLayoutSubviews];
-    self.spinner.center = self.view.center;
+
     self.touchHelperView.frame = CGRectMake(0.0f, CGRectGetHeight(self.view.bounds) - kToolbarHeight, CGRectGetWidth(self.view.bounds), kToolbarHeight);
     
     self.forwardButtonBackGroundView.center = CGPointMake(CGRectGetWidth(self.view.bounds) - CGRectGetMidX(self.backButtonBackGroundView.bounds) - 5.0f, CGRectGetHeight(self.view.bounds) - CGRectGetMidY(self.backButtonBackGroundView.bounds) - 5.0f);
@@ -239,9 +239,6 @@
     
     [UIView animateWithDuration:0.25f animations:^{ self.webView.alpha = 1.0f; }];
     
-    if (self.spinner.isAnimating) {
-        [self.spinner stopAnimating];
-    }
 }
 
 - (void)webViewDidStartLoad:(UIWebView *)webView
@@ -250,6 +247,67 @@
     _doneLoadingURL = NO;
     [self setProgress:0.2f];
     [self setupToolbarItems];
+}
+
+- (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType
+{
+    if ([request.URL.absoluteString rangeOfString:@"https://pocketcode.org/download/"].location != NSNotFound) {
+        //        [[UIApplication sharedApplication] openURL:url];
+        //        return NO;
+        NSDebug(@"Download");
+        NSString *param = nil;
+        NSArray *myArray = [request.URL.absoluteString componentsSeparatedByCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@"?"]];
+        param = myArray[0];
+        AppDelegate *appDelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
+        NSURL *url = [NSURL URLWithString:param];
+        appDelegate.fileManager.delegate = self;
+        param = nil;
+        NSRange start = [request.URL.absoluteString rangeOfString:@"="];
+        if (start.location != NSNotFound)
+        {
+            param = [request.URL.absoluteString substringFromIndex:start.location + start.length];
+            param = [param stringByReplacingOccurrencesOfString:@"+" withString:@" "];
+        }
+        NSFileManager *fileManager = [[NSFileManager alloc] init];
+        BOOL isDir;
+        NSString *path = [[NSString alloc] initWithFormat:@"%@/%@/%@", [Util applicationDocumentsDirectory], kProgramsFolder,param];
+        BOOL exists = [fileManager fileExistsAtPath:path isDirectory:&isDir];
+        if (exists) {
+            /* file exists */
+            if (isDir) {
+                /* file is a directory */
+//                NSLog(@"already downloaded");
+                [Util alertWithText:kProgramAlreadyDownloaded];
+                // Please add here the code with alert view -> Program exists!
+            }
+        } else {
+            [appDelegate.fileManager downloadFileFromURL:url withName:param];
+            
+            param = nil;
+            start = [request.URL.absoluteString rangeOfString:@"download/"];
+            if (start.location != NSNotFound)
+            {
+                param = [request.URL.absoluteString substringFromIndex:start.location + start.length];
+                NSRange end = [param rangeOfString:@"."];
+                if (end.location != NSNotFound)
+                {
+                    param = [param substringToIndex:end.location];
+                }
+            }
+            
+            NSString *urlString = [NSString stringWithFormat:@"https://pocketcode.org/resources/thumbnails/%@_small.png",param];
+            
+            NSDebug(@"screenshot url is: %@", urlString);
+            NSURL *screenshotSmallUrl = [NSURL URLWithString:urlString];
+            [appDelegate.fileManager downloadScreenshotFromURL:screenshotSmallUrl andBaseUrl:url andName:param];
+        }
+        // Please add here the code with alert view -> Program is downloading!
+        return NO;
+    }
+    else {
+        return YES;
+    }
+    return YES;
 }
 
 #pragma mark - UIScrollViewDelegate
@@ -364,7 +422,8 @@
 
 - (void)setProgress:(CGFloat)progress
 {
-    self.progressView.progress = progress;
+    [self.progressView setProgress:progress animated:NO];
+    [self.progressView setNeedsDisplay];
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.2f * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         self.progressView.hidden = _doneLoadingURL;
     });
@@ -424,4 +483,25 @@
     }
 }
 
+
+- (void)downloadFinishedWithURL:(NSURL *)url
+{
+    
+}
+
+- (void)setBackDownloadStatus
+{
+    
+}
+
+- (void)updateProgress:(double)progress
+{
+    if (progress < 1.0f) {
+        _doneLoadingURL = NO;
+    }else{
+        _doneLoadingURL = YES;
+    }
+    [self setProgress:progress];
+
+}
 @end
