@@ -43,6 +43,7 @@
 @property (nonatomic, strong) NSURLConnection *connection;
 @property (nonatomic, strong) NSMutableArray *projects;
 @property (nonatomic, strong) LoadingView* loadingView;
+@property (nonatomic) BOOL shouldShowAlert;
 
 @end
 
@@ -68,6 +69,7 @@
     //  CGFloat navigationBarHeight = self.navigationController.navigationBar.frame.size.height;
     //  self.tableView.contentInset = UIEdgeInsetsMake(navigationBarHeight, 0, 0, 0);
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
+    self.shouldShowAlert = YES;
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -178,6 +180,19 @@
 
 -(void)loadIDsWith:(NSData*)data andResponse:(NSURLResponse*)response
 {
+    if (data == nil) {
+        if (self.shouldShowAlert) {
+            self.shouldShowAlert = NO;
+            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:kUIAlertViewTitleStandard
+                                                                message:kUIAlertViewMessageSlowInternetConnection
+                                                               delegate:self.navigationController.visibleViewController
+                                                      cancelButtonTitle:kUIAlertViewButtonTitleOK
+                                                      otherButtonTitles:nil];
+            [alertView show];
+        }
+        return;
+    }
+
     NSError *error = nil;
     id jsonObject = [NSJSONSerialization JSONObjectWithData:data
                                                     options:NSJSONReadingMutableContainers
@@ -219,6 +234,19 @@
 }
 -(void)loadInfosWith:(NSData*)data andResponse:(NSURLResponse*)response
 {
+    if (data == nil) {
+        if (self.shouldShowAlert) {
+            self.shouldShowAlert = NO;
+            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:kUIAlertViewTitleStandard
+                                                                message:kUIAlertViewMessageSlowInternetConnection
+                                                               delegate:self.navigationController.visibleViewController
+                                                      cancelButtonTitle:kUIAlertViewButtonTitleOK
+                                                      otherButtonTitles:nil];
+            [alertView show];
+        }
+        return;
+    }
+
     NSError *error = nil;
     id jsonObject = [NSJSONSerialization JSONObjectWithData:data
                                                     options:NSJSONReadingMutableContainers

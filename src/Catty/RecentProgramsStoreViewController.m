@@ -53,6 +53,7 @@
 @property (assign)            int mostViewedprogramListOffset;
 @property (assign)            int mostRecentprogramListOffset;
 @property (nonatomic, strong) ProgramDetailStoreViewController* controller;
+@property (nonatomic) BOOL shouldShowAlert;
 
 @end
 
@@ -88,6 +89,7 @@
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
     self.tableView.separatorColor = UIColor.skyBlueColor;
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
+    self.shouldShowAlert = YES;
 
     // XXX: someone has removed that in another branch, therefore this caused a merge conflict.
     //      not sure if we really need this. therefore I have readded these lines here.
@@ -309,6 +311,18 @@
 
 -(void)loadIDsWith:(NSData*)data andResponse:(NSURLResponse*)response
 {
+    if (data == nil) {
+        if (self.shouldShowAlert) {
+            self.shouldShowAlert = NO;
+            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:kUIAlertViewTitleStandard
+                                                                message:kUIAlertViewMessageSlowInternetConnection
+                                                               delegate:self.navigationController.visibleViewController
+                                                      cancelButtonTitle:kUIAlertViewButtonTitleOK
+                                                      otherButtonTitles:nil];
+            [alertView show];
+        }
+        return;
+    }
     NSError *error = nil;
     id jsonObject = [NSJSONSerialization JSONObjectWithData:data
                                                     options:NSJSONReadingMutableContainers
@@ -424,6 +438,18 @@
 
 -(void)loadInfosWith:(NSData*)data andResponse:(NSURLResponse*)response
 {
+    if (data == nil) {
+        if (self.shouldShowAlert) {
+            self.shouldShowAlert = NO;
+            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:kUIAlertViewTitleStandard
+                                                                message:kUIAlertViewMessageSlowInternetConnection
+                                                               delegate:self.navigationController.visibleViewController
+                                                      cancelButtonTitle:kUIAlertViewButtonTitleOK
+                                                      otherButtonTitles:nil];
+            [alertView show];
+        }
+        return;
+    }
     NSError *error = nil;
     id jsonObject = [NSJSONSerialization JSONObjectWithData:data
                                                     options:NSJSONReadingMutableContainers
