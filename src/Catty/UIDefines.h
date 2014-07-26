@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2013 The Catrobat Team
+ *  Copyright (C) 2010-2014 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -38,6 +38,7 @@
 
 #define kIphone5ScreenHeight 568.0f
 #define kIphone4ScreenHeight 480.0f
+#define kIpadScreenHeight 1028.0f
 #define kAddScriptCategoryTableViewBottomMargin 15.0f
 
 // delete button bricks
@@ -52,6 +53,7 @@
 static NSString *const kBrickCellAddedNotification = @"BrickCellAddedNotification";
 static NSString *const kSoundAddedNotification = @"SoundAddedNotification";
 static NSString *const kBrickDetailViewDismissed = @"kBrickDetailViewDismissed";
+static NSString *const kProgramDownloadedNotification = @"kProgramDownloadedNotification";
 
 // Notification keys
 static NSString *const kUserInfoKeyBrickCell = @"UserInfoKeyBrickCell";

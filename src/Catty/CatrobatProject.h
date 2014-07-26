@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2013 The Catrobat Team
+ *  Copyright (C) 2010-2014 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -27,7 +27,7 @@
 @interface CatrobatProject : NSObject
 @property (nonatomic, strong) NSString *name;
 @property (nonatomic, strong) NSString *author;
-@property (nonatomic, strong) NSString *description;
+@property (nonatomic, strong) NSString *projectDescription;
 @property (nonatomic, strong) NSString *downloadUrl;
 @property (nonatomic, strong) NSNumber *downloads;
 @property (nonatomic, strong) NSString *projectID;
@@ -39,6 +39,7 @@
 @property (nonatomic, strong) NSString *uploaded;
 @property (nonatomic, strong) NSString *version;
 @property (nonatomic, strong) NSNumber *views;
+@property (nonatomic, strong) NSNumber *size;
 @property (nonatomic) BOOL isdownloading;
 
 - (id)initWithDict:(NSDictionary*)dict andBaseUrl:(NSString*)baseUrl;

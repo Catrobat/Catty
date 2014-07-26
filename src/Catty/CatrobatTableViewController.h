@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2013 The Catrobat Team
+ *  Copyright (C) 2010-2014 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -23,7 +23,8 @@
 
 #import <UIKit/UIKit.h>
 #import "BaseTableViewController.h"
+#import "UIViewController+CWPopup.h"
 
-@interface CatrobatTableViewController : BaseTableViewController
+@interface CatrobatTableViewController : BaseTableViewController <DismissPopupDelegate>
 
 @end

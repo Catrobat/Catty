@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2013 The Catrobat Team
+ *  Copyright (C) 2010-2014 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -36,12 +36,20 @@
 {
     if (self = [super init]) {
         _title = tile;
-        [self setupPlaceHolderView];
+        [self initPlaceHolderView];
     }
     return self;
 }
 
-- (void)setupPlaceHolderView
+- (id)initWithFrame:(CGRect)frame
+{
+    if (self = [super initWithFrame:frame]) {
+        [self initPlaceHolderView];
+    }
+    return self;
+}
+
+- (void)initPlaceHolderView
 {
     self.userInteractionEnabled = NO;
     _placeholderDescriptionLabel = [UILabel new];

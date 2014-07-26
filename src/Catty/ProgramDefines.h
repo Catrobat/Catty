@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2013 The Catrobat Team
+ *  Copyright (C) 2010-2014 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -39,7 +39,8 @@
 #define kMaxNumOfLookNameCharacters 20
 #define kMaxNumOfSoundNameCharacters 20
 
-#define kDefaultProgramName @"My First Program"
+#define kDefaultProgramBundleName @"My First Program"
+#define kDefaultProgramName NSLocalizedString(@"My First Program", @"Name of the default catrobat program")
 
 // indexes
 #define kNumberOfSectionsInProgramTableViewController 2
