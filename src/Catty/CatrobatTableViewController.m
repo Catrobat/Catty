@@ -186,8 +186,10 @@ static NSCharacterSet *blockedCharacterSet = nil;
 - (void)addProgramAndSegueToItActionForProgramWithName:(NSString*)programName
 {
     static NSString *segueToNewProgramIdentifier = kSegueToNewProgram;
+    [self showLoadingView];
     self.defaultProgram = [Program defaultProgramWithName:programName];
     if ([self shouldPerformSegueWithIdentifier:segueToNewProgramIdentifier sender:self]) {
+        [self hideLoadingView];
         [self performSegueWithIdentifier:segueToNewProgramIdentifier sender:self];
     }
 }

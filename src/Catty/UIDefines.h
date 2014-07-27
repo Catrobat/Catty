@@ -52,8 +52,9 @@
 // Notifications
 static NSString *const kBrickCellAddedNotification = @"BrickCellAddedNotification";
 static NSString *const kSoundAddedNotification = @"SoundAddedNotification";
-static NSString *const kBrickDetailViewDismissed = @"kBrickDetailViewDismissed";
-static NSString *const kProgramDownloadedNotification = @"kProgramDownloadedNotification";
+static NSString *const kBrickDetailViewDismissed = @"BrickDetailViewDismissed";
+static NSString *const kProgramDownloadedNotification = @"ProgramDownloadedNotification";
+static NSString *const kHideLoadingViewNotification = @"HideLoadingViewNotification";
 
 // Notification keys
 static NSString *const kUserInfoKeyBrickCell = @"UserInfoKeyBrickCell";

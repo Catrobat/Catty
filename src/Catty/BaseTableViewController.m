@@ -29,6 +29,7 @@
 #import "LanguageTranslationDefines.h"
 #import <tgmath.h>
 #import "CatrobatAlertView.h"
+#import "LoadingView.h"
 
 // identifiers
 #define kTableHeaderIdentifier @"Header"
@@ -38,6 +39,7 @@
 #define kUnselectAllItemsTag 1
 
 @interface BaseTableViewController () <CatrobatAlertViewDelegate>
+@property (nonatomic, strong) LoadingView* loadingView;
 @property (nonatomic, strong) UIBarButtonItem *selectAllRowsButtonItem;
 @property (nonatomic, strong) UIBarButtonItem *normalModeRightBarButtonItem;
 
@@ -60,10 +62,13 @@
     self.tableView.backgroundColor = UIColor.backgroundColor;
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
     self.tableView.separatorColor = UIColor.skyBlueColor;
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(hideLoadingView)
+                                                 name:kHideLoadingViewNotification
+                                               object:nil];
 }
 
 #pragma mark - getters and setters
-
 - (PlaceHolderView *)placeHolderView
 {
     if (!_placeHolderView) {
@@ -337,6 +342,35 @@
             }
         }
     }
+}
+
+- (void)showLoadingView
+{
+    if (! self.loadingView) {
+        self.loadingView = [[LoadingView alloc] init];
+        [self.view addSubview:self.loadingView];
+    }
+    self.loadingView.backgroundColor = [UIColor whiteColor];
+    self.loadingView.alpha = 1.0;
+    CGPoint top = CGPointMake(0, -self.navigationController.navigationBar.frame.size.height);
+    [self.tableView setContentOffset:top animated:NO];
+    self.tableView.scrollEnabled = NO;
+    self.tableView.userInteractionEnabled = NO;
+    self.navigationController.navigationBar.userInteractionEnabled = NO;
+    self.navigationController.toolbar.userInteractionEnabled = NO;
+    self.navigationController.interactivePopGestureRecognizer.enabled = NO;
+    [self showPlaceHolder:NO];
+    [self.loadingView show];
+}
+
+- (void)hideLoadingView
+{
+    self.tableView.scrollEnabled = YES;
+    self.tableView.userInteractionEnabled = YES;
+    self.navigationController.navigationBar.userInteractionEnabled = YES;
+    self.navigationController.toolbar.userInteractionEnabled = YES;
+    self.navigationController.interactivePopGestureRecognizer.enabled = YES;
+    [self.loadingView hide];
 }
 
 @end

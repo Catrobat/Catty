@@ -190,10 +190,10 @@ static NSCharacterSet *blockedCharacterSet = nil;
 {
     programName = [Util uniqueName:programName existingNames:[Program allProgramNames]];
     ProgramLoadingInfo *destinationProgramLoadingInfo = [self addProgram:programName];
-    if (! destinationProgramLoadingInfo) {
+    if (! destinationProgramLoadingInfo)
         return;
-    }
 
+    [self showLoadingView];
     [Program copyProgramWithName:sourceProgramLoadingInfo.visibleName destinationProgramName:programName];
     [self.dataCache removeObjectForKey:destinationProgramLoadingInfo.visibleName];
     NSInteger numberOfRowsInLastSection = [self tableView:self.tableView numberOfRowsInSection:0];
@@ -207,6 +207,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
     if ([newProgramName isEqualToString:programLoadingInfo.visibleName])
         return;
 
+    [self showLoadingView];
     Program *program = [Program programWithLoadingInfo:programLoadingInfo];
     newProgramName = [Util uniqueName:newProgramName existingNames:[Program allProgramNames]];
     [program renameToProgramName:newProgramName];
@@ -216,6 +217,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
 - (void)updateProgramDescriptionActionWithText:(NSString*)descriptionText
                                  sourceProgram:(Program*)program
 {
+    [self showLoadingView];
     [program updateDescriptionWithText:descriptionText];
 }
 
@@ -232,6 +234,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
 
 - (void)deleteSelectedProgramsAction
 {
+    [self showLoadingView];
     NSArray *selectedRowsIndexPaths = [self.tableView indexPathsForSelectedRows];
     NSMutableArray *programNamesToRemove = [NSMutableArray arrayWithCapacity:[selectedRowsIndexPaths count]];
     for (NSIndexPath *selectedRowIndexPath in selectedRowsIndexPaths) {
@@ -241,17 +244,21 @@ static NSCharacterSet *blockedCharacterSet = nil;
     for (NSString *programNameToRemove in programNamesToRemove) {
         [self removeProgram:programNameToRemove];
     }
+    [self hideLoadingView];
     [super exitEditingMode];
 }
 
 - (void)deleteProgramForIndexPath:(NSIndexPath*)indexPath
 {
+    [self showLoadingView];
     ProgramLoadingInfo *programLoadingInfo = [self.programLoadingInfos objectAtIndex:indexPath.row];
     [self removeProgram:programLoadingInfo.visibleName];
+    [self hideLoadingView];
 }
 
 #pragma mark - table view data source
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
     return 1;
 }
 
@@ -672,7 +679,6 @@ static NSCharacterSet *blockedCharacterSet = nil;
 }
 
 #pragma mark Filemanager notification
-
 - (void)downloadFinished:(NSNotification*)notification
 {
     if ([[notification name] isEqualToString:kProgramDownloadedNotification]){

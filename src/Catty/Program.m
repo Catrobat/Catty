@@ -177,10 +177,11 @@
     object.name = [Util uniqueName:objectName existingNames:[self allObjectNames]];
     object.program = self;
     [self.objectList addObject:object];
+    [self saveToDisk];
     return object;
 }
 
-- (void)removeObject:(SpriteObject*)object
+- (void)removeObjectFromList:(SpriteObject*)object
 {
     // do not use NSArray's removeObject here
     // => if isEqual is overriden this would lead to wrong results
@@ -193,6 +194,22 @@
         }
         ++index;
     }
+}
+
+- (void)removeObject:(SpriteObject*)object
+{
+    [self removeObjectFromList:object];
+    [self saveToDisk];
+}
+
+- (void)removeObjects:(NSArray*)objects
+{
+    for (id object in objects) {
+        if ([object isKindOfClass:[SpriteObject class]]) {
+            [self removeObject:((SpriteObject*)object)];
+        }
+    }
+    [self saveToDisk];
 }
 
 - (BOOL)objectExistsWithName:(NSString*)objectName
@@ -323,11 +340,18 @@
         NSError *error = nil;
         [xmlString writeToFile:xmlPath atomically:YES encoding:NSUTF8StringEncoding error:&error];
         NSLogError(error);
-        // maybe later call some functions back here, that should update the UI on main thread...
-        //    dispatch_async(dispatch_get_main_queue(), ^{});
 
         // update last access time
         [[self class] updateLastModificationTimeForProgramWithName:self.header.programName];
+
+        // maybe later call some functions back here, that should update the UI on main thread...
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [[NSNotificationCenter defaultCenter] postNotificationName:kHideLoadingViewNotification object:self];
+        });
+//        // execute 2 seconds later => just for testing purposes
+//        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 2 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
+//            [[NSNotificationCenter defaultCenter] postNotificationName:kHideLoadingViewNotification object:self];
+//        });
     });
 }
 

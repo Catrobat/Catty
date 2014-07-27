@@ -113,7 +113,9 @@
 // actions
 - (void)changeLook:(Look*)look;
 - (void)setLook;
+- (void)removeLooks:(NSArray*)looks;
 - (void)removeLook:(Look*)look;
+- (void)removeSounds:(NSArray*)sounds;
 - (void)removeSound:(Sound*)sound;
 - (void)renameLook:(Look*)look toName:(NSString*)newLookName;
 - (void)renameSound:(Sound*)sound toName:(NSString*)newSoundName;

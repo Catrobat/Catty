@@ -462,7 +462,7 @@
     
 }
 
-- (void)removeLook:(Look*)look
+- (void)removeLookFromList:(Look*)look
 {
     // do not use NSArray's removeObject here
     // => if isEqual is overriden this would lead to wrong results
@@ -493,7 +493,23 @@
     }
 }
 
-- (void)removeSound:(Sound*)sound
+- (void)removeLooks:(NSArray*)looks
+{
+    for (id look in looks) {
+        if ([look isKindOfClass:[Look class]]) {
+            [self removeLookFromList:look];
+        }
+    }
+    [self.program saveToDisk];
+}
+
+- (void)removeLook:(Look*)look
+{
+    [self removeLookFromList:look];
+    [self.program saveToDisk];
+}
+
+- (void)removeSoundFromList:(Sound*)sound
 {
     // do not use NSArray's removeObject here
     // => if isEqual is overriden this would lead to wrong results
@@ -503,7 +519,7 @@
             ++index;
             continue;
         }
-
+        
         // count references in all object of that sound file
         NSUInteger soundReferenceCounter = 0;
         for (SpriteObject *object in self.program.objectList) {
@@ -521,6 +537,22 @@
         [self.soundList removeObjectAtIndex:index];
         break;
     }
+}
+
+- (void)removeSounds:(NSArray*)sounds
+{
+    for (id sound in sounds) {
+        if ([sound isKindOfClass:[Sound class]]) {
+            [self removeSoundFromList:sound];
+        }
+    }
+    [self.program saveToDisk];
+}
+
+- (void)removeSound:(Sound*)sound
+{
+    [self removeSoundFromList:sound];
+    [self.program saveToDisk];
 }
 
 - (BOOL)hasLook:(Look*)look

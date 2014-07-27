@@ -43,7 +43,6 @@
 #import "UIImageView+CatrobatUIImageViewExtensions.h"
 #import "NSData+Hashes.h"
 #import "AppDelegate.h"
-#import "LoadingView.h"
 #import "LanguageTranslationDefines.h"
 #import "RuntimeImageCache.h"
 #import "CatrobatActionSheet.h"
@@ -59,7 +58,6 @@
                                         UITextFieldDelegate, SWTableViewCellDelegate>
 @property (nonatomic) BOOL useDetailCells;
 @property (nonatomic, strong) Look *lookToAdd;
-@property (nonatomic, strong) LoadingView* loadingView;
 @end
 
 @implementation LooksTableViewController
@@ -141,6 +139,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
 
 - (void)copyLookActionWithSourceLook:(Look*)sourceLook
 {
+    [self showLoadingView];
     NSString *nameOfCopiedLook = [Util uniqueName:sourceLook.name existingNames:[self.object allLookNames]];
     [self.object copyLook:sourceLook withNameForCopiedLook:nameOfCopiedLook];
     NSInteger numberOfRowsInLastSection = [self tableView:self.tableView numberOfRowsInSection:0];
@@ -153,6 +152,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
     if ([newLookName isEqualToString:look.name])
         return;
 
+    [self showLoadingView];
     newLookName = [Util uniqueName:newLookName existingNames:[self.object allLookNames]];
     [self.object renameLook:look toName:newLookName];
     NSUInteger lookIndex = [self.object.lookList indexOfObject:look];
@@ -173,15 +173,14 @@ static NSCharacterSet *blockedCharacterSet = nil;
 
 - (void)deleteSelectedLooksAction
 {
+    [self showLoadingView];
     NSArray *selectedRowsIndexPaths = [self.tableView indexPathsForSelectedRows];
     NSMutableArray *looksToRemove = [NSMutableArray arrayWithCapacity:[selectedRowsIndexPaths count]];
     for (NSIndexPath *selectedRowIndexPath in selectedRowsIndexPaths) {
         Look *look = (Look*)[self.object.lookList objectAtIndex:selectedRowIndexPath.row];
         [looksToRemove addObject:look];
     }
-    for (Look *lookToRemove in looksToRemove) {
-        [self.object removeLook:lookToRemove];
-    }
+    [self.object removeLooks:looksToRemove];
     [super exitEditingMode];
     [self.tableView deleteRowsAtIndexPaths:selectedRowsIndexPaths withRowAnimation:UITableViewRowAnimationNone];
     [self showPlaceHolder:(! (BOOL)[self.object.lookList count])];
@@ -189,6 +188,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
 
 - (void)deleteLookForIndexPath:(NSIndexPath*)indexPath
 {
+    [self showLoadingView];
     Look *look = (Look*)[self.object.lookList objectAtIndex:indexPath.row];
     [self.object removeLook:look];
     [self.tableView deleteRowsAtIndexPaths:@[indexPath]
@@ -444,6 +444,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
                 // execute this on the main queue
                 [[NSOperationQueue mainQueue] addOperationWithBlock:^{
                     [self hideLoadingView];
+                    [self showPlaceHolder:([self.object.lookList count] == 0)];
 
                     // ask user for image name
                     self.lookToAdd = look;
@@ -664,34 +665,6 @@ static NSCharacterSet *blockedCharacterSet = nil;
     UIBarButtonItem *invisibleButton = [[UIBarButtonItem alloc] initWithCustomView:imageView];
     self.toolbarItems = [NSArray arrayWithObjects:self.selectAllRowsButtonItem, invisibleButton, flexItem,
                          invisibleButton, deleteButton, nil];
-}
-
-- (void)showLoadingView
-{
-    if (! self.loadingView) {
-        self.loadingView = [[LoadingView alloc] init];
-        [self.view addSubview:self.loadingView];
-    }
-    self.loadingView.backgroundColor = [UIColor whiteColor];
-    self.loadingView.alpha = 1.0;
-    CGPoint top = CGPointMake(0, -self.navigationController.navigationBar.frame.size.height);
-    [self.tableView setContentOffset:top animated:NO];
-    self.tableView.scrollEnabled = NO;
-    self.tableView.userInteractionEnabled = NO;
-    [self.navigationController.navigationBar setUserInteractionEnabled:NO];
-    [self.navigationController.toolbar setUserInteractionEnabled:NO];
-    [self showPlaceHolder:NO];
-    [self.loadingView show];
-}
-
-- (void)hideLoadingView
-{
-    [self showPlaceHolder:([self.object.lookList count] == 0)];
-    self.tableView.scrollEnabled = YES;
-    self.tableView.userInteractionEnabled = YES;
-    [self.navigationController.navigationBar setUserInteractionEnabled:YES];
-    [self.navigationController.toolbar setUserInteractionEnabled:YES];
-    [self.loadingView hide];
 }
 
 @end

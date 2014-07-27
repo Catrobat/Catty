@@ -52,5 +52,7 @@
                              target:(id)target
                        confirmTitle:(NSString*)confirmTitle
                      confirmMessage:(NSString*)confirmMessage;
+- (void)showLoadingView;
+- (void)hideLoadingView;
 
 @end

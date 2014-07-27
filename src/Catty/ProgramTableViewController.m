@@ -148,6 +148,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
 
 - (void)addObjectActionWithName:(NSString*)objectName
 {
+    [self showLoadingView];
     [self.program addObjectWithName:[Util uniqueName:objectName existingNames:[self.program allObjectNames]]];
     NSInteger numberOfRowsInLastSection = [self tableView:self.tableView numberOfRowsInSection:kObjectSectionIndex];
     NSIndexPath *indexPath = [NSIndexPath indexPathForRow:(numberOfRowsInLastSection - 1) inSection:kObjectSectionIndex];
@@ -160,6 +161,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
     if ([newProgramName isEqualToString:self.program.header.programName])
         return;
 
+    [self showLoadingView];
     NSString *oldProgramName = self.program.header.programName;
     newProgramName = [Util uniqueName:newProgramName existingNames:[Program allProgramNames]];
     [self.program renameToProgramName:newProgramName];
@@ -169,6 +171,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
 
 - (void)copyObjectActionWithSourceObject:(SpriteObject*)sourceObject
 {
+    [self showLoadingView];
     NSString *nameOfCopiedObject = [Util uniqueName:sourceObject.name existingNames:[self.program allObjectNames]];
     [self.program copyObject:sourceObject withNameForCopiedObject:nameOfCopiedObject];
 
@@ -195,6 +198,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
     if ([newObjectName isEqualToString:spriteObject.name])
         return;
 
+    [self showLoadingView];
     newObjectName = [Util uniqueName:newObjectName existingNames:[self.program allObjectNames]];
     [self.program renameObject:spriteObject toName:newObjectName];
     NSUInteger spriteObjectIndex = [self.program.objectList indexOfObject:spriteObject];
@@ -242,6 +246,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
 
 - (void)deleteSelectedObjectsAction
 {
+    [self showLoadingView];
     NSArray *selectedRowsIndexPaths = [self.tableView indexPathsForSelectedRows];
     NSMutableArray *objectsToRemove = [NSMutableArray arrayWithCapacity:[selectedRowsIndexPaths count]];
     for (NSIndexPath *selectedRowIndexPath in selectedRowsIndexPaths) {
@@ -252,18 +257,18 @@ static NSCharacterSet *blockedCharacterSet = nil;
         SpriteObject *object = (SpriteObject*)[self.program.objectList objectAtIndex:(kObjectSectionIndex + selectedRowIndexPath.row)];
         [objectsToRemove addObject:object];
     }
-    for (SpriteObject *objectToRemove in objectsToRemove) {
-        [self.program removeObject:objectToRemove];
-    }
+    [self.program removeObjects:objectsToRemove];
     [super exitEditingMode];
     [self.tableView deleteRowsAtIndexPaths:selectedRowsIndexPaths withRowAnimation:(([self.program numberOfNormalObjects] != 0) ? UITableViewRowAnimationTop : UITableViewRowAnimationFade)];
 }
 
 - (void)deleteObjectForIndexPath:(NSIndexPath*)indexPath
 {
+    [self showLoadingView];
     NSUInteger index = (kBackgroundObjects + indexPath.row);
     SpriteObject *object = (SpriteObject*)[self.program.objectList objectAtIndex:index];
     [self.program removeObject:object];
+    [self.program saveToDisk];
     [self.tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:((indexPath.row != 0) ? UITableViewRowAnimationTop : UITableViewRowAnimationFade)];
 }
 

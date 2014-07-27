@@ -184,6 +184,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
 
 - (void)copySoundActionWithSourceSound:(Sound*)sourceSound
 {
+    [self showLoadingView];
     NSString *nameOfCopiedSound = [Util uniqueName:sourceSound.name existingNames:[self.object allSoundNames]];
     [self.object copySound:sourceSound withNameForCopiedSound:nameOfCopiedSound];
     NSInteger numberOfRowsInLastSection = [self tableView:self.tableView numberOfRowsInSection:0];
@@ -196,6 +197,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
     if ([newSoundName isEqualToString:sound.name])
         return;
 
+    [self showLoadingView];
     newSoundName = [Util uniqueName:newSoundName existingNames:[self.object allSoundNames]];
     [self.object renameSound:sound toName:newSoundName];
     NSUInteger soundIndex = [self.object.soundList indexOfObject:sound];
@@ -216,6 +218,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
 
 - (void)deleteSelectedSoundsAction
 {
+    [self showLoadingView];
     [self stopAllSounds];
     NSArray *selectedRowsIndexPaths = [self.tableView indexPathsForSelectedRows];
     NSMutableArray *soundsToRemove = [NSMutableArray arrayWithCapacity:[selectedRowsIndexPaths count]];
@@ -223,9 +226,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
         Sound *sound = (Sound*)[self.object.soundList objectAtIndex:selectedRowIndexPath.row];
         [soundsToRemove addObject:sound];
     }
-    for (Sound *soundToRemove in soundsToRemove) {
-        [self.object removeSound:soundToRemove];
-    }
+    [self.object removeSounds:soundsToRemove];
     [super exitEditingMode];
     [self.tableView deleteRowsAtIndexPaths:selectedRowsIndexPaths withRowAnimation:UITableViewRowAnimationNone];
     [super showPlaceHolder:(! (BOOL)[self.object.soundList count])];
@@ -233,6 +234,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
 
 - (void)deleteSoundForIndexPath:(NSIndexPath*)indexPath
 {
+    [self showLoadingView];
     [self stopAllSounds];
     Sound *sound = (Sound*)[self.object.soundList objectAtIndex:indexPath.row];
     [self.object removeSound:sound];
