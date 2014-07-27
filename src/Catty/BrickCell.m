@@ -253,7 +253,6 @@
     NSArray *inlineViewSubViews = [self inlineViewSubviews];
 
     // call corresponding subclass method, specific implementation (overridden method)
-    // TODO: remove this "try-catch-check" later
     @try {
         [self hookUpSubViews:inlineViewSubViews];
     } @catch (NSException *exception) {
@@ -423,8 +422,8 @@
         if (counter < totalNumberOfParams) {
 
             // -----------------------------------
-            // TODO: This is only code used for testing purposes. TO BE REFACTORED...
-            // TODO: Pickers, Pluralization, Hook Ups only for inputFields ...
+            // TODO: * This is only code used for testing purposes. TO BE REFACTORED...
+            //       * Pickers, Pluralization, Hook Ups only for inputFields ...
 
             CGRect inputViewFrame = remainingFrame;
 //            inputViewFrame.origin.y += kBrickInputFieldTopMargin;

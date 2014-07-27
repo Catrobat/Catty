@@ -25,6 +25,6 @@
 
 @class SpriteObject;
 
-@interface ObjectLooksTableViewController : BaseTableViewController
+@interface LooksTableViewController : BaseTableViewController
 @property (strong, nonatomic) SpriteObject *object;
 @end

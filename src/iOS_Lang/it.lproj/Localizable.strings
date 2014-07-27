@@ -199,6 +199,20 @@
 
 "Rename" = "Rinomina";
 
+"Copy" = "Copiare";
+
+"Description" = "Descrizione";
+
+"Upload" = "Upload";
+
+"Delete Objects" = "Eliminare gli oggetti";
+
+"Delete Programs" = "Eliminare i programmi";
+
+"Pocket Code Recorder" = "Registratore di Pocket Code";
+
+"Choose sound" = "Selezionare il sound";
+
 "Delete Objects" = "Elimina oggetti";
 
 "Delete Programs" = "Elimina programmi";
@@ -231,7 +245,33 @@
 
 "Rename program" = "Rinomina il programma";
 
+<<<<<<< HEAD
+"Set description" = "Set description";
+
+"Rename object" = "Rename object";
+
+"Rename image" = "Rename image";
+
+"Rename sound" = "Rename sound";
+
+"Enter your sound name here..." = "Enter your sound name here...";
+
+"Sound name" = "Sound name";
+
+"An object with the same name already exists, try again." = "An object with the same name already exists, try again.";
+
+"No or invalid image name entered, try again." = "No or invalid image name entered, try again.";
+
+"No or invalid sound name entered, try again." = "No or invalid sound name entered, try again.";
+
+"An image with the same name already exists, try again." = "An image with the same name already exists, try again.";
+
+"Enter your program description here..." = "Enter your program description here...";
+
+"Can't restart program!" = "Can't restart program!";
+=======
 "Can't restart program!" = "Non è possibile riavviare il programma!";
+>>>>>>> 8518fcf69e96ffd6072a7a21f370ff134d98d8a6
 
 "Screenshot saved to Camera Roll" = "Screenshot salvato sul rullino";
 
@@ -277,7 +317,13 @@
 
 "No imported sounds found. Please connect your iPhone to your PC/Mac and use iTunes FileSharing to import sound files into the PocketCode app." = "Non è stati trovato alcun suono importato. Collega il tuo iPhone al PC/Mac e usa iTunes FileSharing per importare file audio dentro l'app PocketCode.";
 
+<<<<<<< HEAD
+"No input or the input is too short. Please enter at least %lu characters." = "No input or the input is too short. Please enter at least %lu characters.";
+
+"No or invalid program name entered, try again." = "No or invalid program name entered, try again.";
+=======
 "No or invalid program name entered, try again." = "Nessun nome o nome non valido inserito per il programma; riprova.";
+>>>>>>> 8518fcf69e96ffd6072a7a21f370ff134d98d8a6
 
 "A program with the same name already exists, try again." = "Esiste già un programma con lo stesso nome, riprovare.";
 
@@ -288,6 +334,8 @@
 "This action can not be undone!" = "Questa azione non può essere annullata!";
 
 "Unable to play that sound!\nMaybe this is no valid sound or the file is corrupt." = "Impossibile riprodurre il suono!\nForse il formato non è valido oppure il file è danneggiato.";
+
+"No internet connection available." = "Nessuna connessione internet disponibile.";
 
 "OK" = "Va bene";
 

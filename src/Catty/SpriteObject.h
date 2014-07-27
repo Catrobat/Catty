@@ -81,6 +81,8 @@
 
 - (BOOL)isBackground;
 
+- (instancetype)deepCopy;
+
 - (GDataXMLElement*)toXML;
 
 // events
@@ -105,12 +107,22 @@
 - (CGSize)dimensionsOfLook:(Look*)look;
 - (NSUInteger)fileSizeOfSound:(Sound*)sound;
 - (CGFloat)durationOfSound:(Sound*)sound;
+- (NSArray*)allLookNames;
+- (NSArray*)allSoundNames;
 
 // actions
 - (void)changeLook:(Look*)look;
 - (void)setLook;
+- (void)removeLooks:(NSArray*)looks;
 - (void)removeLook:(Look*)look;
+- (void)removeSounds:(NSArray*)sounds;
 - (void)removeSound:(Sound*)sound;
+- (void)renameLook:(Look*)look toName:(NSString*)newLookName;
+- (void)renameSound:(Sound*)sound toName:(NSString*)newSoundName;
+- (BOOL)hasLook:(Look*)look;
+- (BOOL)hasSound:(Sound*)sound;
+- (Look*)copyLook:(Look*)sourceLook withNameForCopiedLook:(NSString*)nameOfCopiedLook;
+- (Sound*)copySound:(Sound*)sourceSound withNameForCopiedSound:(NSString*)nameOfCopiedSound;
 
 //- (void)glideToPosition:(CGPoint)position withDurationInSeconds:(float)durationInSeconds fromScript:(Script*)script;
 //- (void)hide;

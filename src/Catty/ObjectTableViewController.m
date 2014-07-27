@@ -33,7 +33,7 @@
 #import "ScenePresenterViewController.h"
 #import "LanguageTranslationDefines.h"
 
-@interface ObjectTableViewController () <UIActionSheetDelegate>
+@interface ObjectTableViewController ()
 
 @end
 

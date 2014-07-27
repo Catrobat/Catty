@@ -39,7 +39,7 @@
 		817B544318F03D4C00AF6BFE /* BrickScaleTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = 817B544218F03D4C00AF6BFE /* BrickScaleTransition.m */; };
 		817B544C18F0520800AF6BFE /* BrickDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 817B544A18F0520800AF6BFE /* BrickDetailViewController.m */; };
 		817B545118F0AAE600AF6BFE /* FXBlurView.m in Sources */ = {isa = PBXBuildFile; fileRef = 817B545018F0AAE600AF6BFE /* FXBlurView.m */; };
-		819AA18619587CA7003010BB /* WebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 819AA18519587CA7003010BB /* WebViewController.m */; };
+		819AA18619587CA7003010BB /* BaseWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 819AA18519587CA7003010BB /* BaseWebViewController.m */; };
 		819EFEA71948721900A1D591 /* SelectButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 819EFEA61948721900A1D591 /* SelectButton.m */; };
 		81A5B4D7192964170082B2B8 /* CellMotionEffect.m in Sources */ = {isa = PBXBuildFile; fileRef = 81A5B4D6192964170082B2B8 /* CellMotionEffect.m */; };
 		81B7487A1921433700990E5F /* CreateView.m in Sources */ = {isa = PBXBuildFile; fileRef = 81B748781921433700990E5F /* CreateView.m */; };
@@ -164,7 +164,9 @@
 		CA1B80291971AA1700D8E79B /* SharkfoodMuteSwitchDetector.m in Sources */ = {isa = PBXBuildFile; fileRef = CA1B80281971AA1700D8E79B /* SharkfoodMuteSwitchDetector.m */; };
 		CA1B802C1971ADBB00D8E79B /* IMPORTANT.caf in Resources */ = {isa = PBXBuildFile; fileRef = CA1B802B1971ACE300D8E79B /* IMPORTANT.caf */; };
 		CA2F7CAE18F61BA000A5C021 /* NSString+FastImageSize.m in Sources */ = {isa = PBXBuildFile; fileRef = CA2F7CAD18F61BA000A5C021 /* NSString+FastImageSize.m */; };
+		CA3BFA5C197F0DD300DA86C9 /* NSMutableArray+CustomExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = CA3BFA5B197F0DD300DA86C9 /* NSMutableArray+CustomExtensions.m */; };
 		CA43DD361809976900F95B88 /* UIImageView+CatrobatUIImageViewExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = CA43DD351809976900F95B88 /* UIImageView+CatrobatUIImageViewExtensions.m */; };
+		CA51A55E198481ED00FFCB45 /* BDKNotifyHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = CA51A55D198481ED00FFCB45 /* BDKNotifyHUD.m */; };
 		CA52403618AD782600052914 /* ProgramTableViewControllerExistingProgramsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = CA52403518AD782600052914 /* ProgramTableViewControllerExistingProgramsTests.m */; };
 		CA5FED5018B0070300A517B6 /* BrickCellInlineView.m in Sources */ = {isa = PBXBuildFile; fileRef = CA5FED4F18B0070300A517B6 /* BrickCellInlineView.m */; };
 		CA5FED5418B019B200A517B6 /* UIUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = CA5FED5318B019B200A517B6 /* UIUtil.m */; };
@@ -236,6 +238,9 @@
 		CABE07C518BAB91F00BE26EF /* LookComboBoxView.m in Sources */ = {isa = PBXBuildFile; fileRef = CABE07C418BAB91F00BE26EF /* LookComboBoxView.m */; };
 		CABE07C818BAB94000BE26EF /* VariableComboBoxView.m in Sources */ = {isa = PBXBuildFile; fileRef = CABE07C718BAB94000BE26EF /* VariableComboBoxView.m */; };
 		CAC22DA41809D5730071CC5D /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CAC22DA31809D5730071CC5D /* MobileCoreServices.framework */; };
+		CAE9A2BC197D20A7008F7C9A /* CatrobatActionSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = CAE9A2BB197D20A7008F7C9A /* CatrobatActionSheet.m */; };
+		CAE9A2C0197D52AF008F7C9A /* CatrobatAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = CAE9A2BF197D52AF008F7C9A /* CatrobatAlertView.m */; };
+		CAE9A2C4197D8964008F7C9A /* DataTransferMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = CAE9A2C3197D8964008F7C9A /* DataTransferMessage.m */; };
 		CAEDFB8117EF759500FDED0E /* ObjectTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CAEDFB8017EF759500FDED0E /* ObjectTableViewController.m */; };
 		CAF806D6193170640005E900 /* ImageCache.m in Sources */ = {isa = PBXBuildFile; fileRef = CAF806D5193170640005E900 /* ImageCache.m */; };
 		CAF806D9193181D50005E900 /* RuntimeImageCache.m in Sources */ = {isa = PBXBuildFile; fileRef = CAF806D8193181D50005E900 /* RuntimeImageCache.m */; };
@@ -350,8 +355,8 @@
 		817B544A18F0520800AF6BFE /* BrickDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BrickDetailViewController.m; sourceTree = "<group>"; };
 		817B544F18F0AAE600AF6BFE /* FXBlurView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FXBlurView.h; sourceTree = "<group>"; };
 		817B545018F0AAE600AF6BFE /* FXBlurView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FXBlurView.m; sourceTree = "<group>"; };
-		819AA18419587CA7003010BB /* WebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebViewController.h; sourceTree = "<group>"; };
-		819AA18519587CA7003010BB /* WebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebViewController.m; sourceTree = "<group>"; };
+		819AA18419587CA7003010BB /* BaseWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseWebViewController.h; sourceTree = "<group>"; };
+		819AA18519587CA7003010BB /* BaseWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseWebViewController.m; sourceTree = "<group>"; };
 		819EFEA51948721900A1D591 /* SelectButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelectButton.h; sourceTree = "<group>"; };
 		819EFEA61948721900A1D591 /* SelectButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelectButton.m; sourceTree = "<group>"; };
 		81A5B4D5192964170082B2B8 /* CellMotionEffect.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CellMotionEffect.h; sourceTree = "<group>"; };
@@ -603,8 +608,12 @@
 		CA1B802B1971ACE300D8E79B /* IMPORTANT.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = IMPORTANT.caf; sourceTree = "<group>"; };
 		CA2F7CAC18F61BA000A5C021 /* NSString+FastImageSize.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+FastImageSize.h"; sourceTree = "<group>"; };
 		CA2F7CAD18F61BA000A5C021 /* NSString+FastImageSize.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+FastImageSize.m"; sourceTree = "<group>"; };
+		CA3BFA5A197F0D0900DA86C9 /* NSMutableArray+CustomExtensions.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSMutableArray+CustomExtensions.h"; sourceTree = "<group>"; };
+		CA3BFA5B197F0DD300DA86C9 /* NSMutableArray+CustomExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableArray+CustomExtensions.m"; sourceTree = "<group>"; };
 		CA43DD341809976900F95B88 /* UIImageView+CatrobatUIImageViewExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImageView+CatrobatUIImageViewExtensions.h"; sourceTree = "<group>"; };
 		CA43DD351809976900F95B88 /* UIImageView+CatrobatUIImageViewExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+CatrobatUIImageViewExtensions.m"; sourceTree = "<group>"; };
+		CA51A55C198481ED00FFCB45 /* BDKNotifyHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BDKNotifyHUD.h; path = BDKNotifyHUD/BDKNotifyHUD.h; sourceTree = "<group>"; };
+		CA51A55D198481ED00FFCB45 /* BDKNotifyHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BDKNotifyHUD.m; path = BDKNotifyHUD/BDKNotifyHUD.m; sourceTree = "<group>"; };
 		CA52403518AD782600052914 /* ProgramTableViewControllerExistingProgramsTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProgramTableViewControllerExistingProgramsTests.m; sourceTree = "<group>"; };
 		CA52403718AD786200052914 /* ProgramTableViewControllerExistingProgramsTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ProgramTableViewControllerExistingProgramsTests.h; sourceTree = "<group>"; };
 		CA5FED4E18B0070300A517B6 /* BrickCellInlineView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BrickCellInlineView.h; sourceTree = "<group>"; };
@@ -750,6 +759,12 @@
 		CABE07C718BAB94000BE26EF /* VariableComboBoxView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VariableComboBoxView.m; sourceTree = "<group>"; };
 		CAC22DA31809D5730071CC5D /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		CACEF959184529AC00D199D8 /* Brick+UnitTestingExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Brick+UnitTestingExtensions.h"; sourceTree = "<group>"; };
+		CAE9A2BA197D20A7008F7C9A /* CatrobatActionSheet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CatrobatActionSheet.h; sourceTree = "<group>"; };
+		CAE9A2BB197D20A7008F7C9A /* CatrobatActionSheet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CatrobatActionSheet.m; sourceTree = "<group>"; };
+		CAE9A2BE197D52AF008F7C9A /* CatrobatAlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CatrobatAlertView.h; sourceTree = "<group>"; };
+		CAE9A2BF197D52AF008F7C9A /* CatrobatAlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CatrobatAlertView.m; sourceTree = "<group>"; };
+		CAE9A2C2197D8964008F7C9A /* DataTransferMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataTransferMessage.h; sourceTree = "<group>"; };
+		CAE9A2C3197D8964008F7C9A /* DataTransferMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataTransferMessage.m; sourceTree = "<group>"; };
 		CAEDFB7F17EF759500FDED0E /* ObjectTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ObjectTableViewController.h; sourceTree = "<group>"; };
 		CAEDFB8017EF759500FDED0E /* ObjectTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ObjectTableViewController.m; sourceTree = "<group>"; };
 		CAEDFB8317EFC98E00FDED0E /* AppDefines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDefines.h; sourceTree = "<group>"; };
@@ -1045,6 +1060,7 @@
 		81B7487419213C3800990E5F /* 3rdParty */ = {
 			isa = PBXGroup;
 			children = (
+				CA51A55B19847FEA00FFCB45 /* BDKNotifyHUD */,
 				CA882034192E581C00E5D515 /* SWTableViewCell */,
 				81C64F8519268DDF00199161 /* IBActionSheet */,
 				81C64F7819264E1A00199161 /* AHKActionSheet */,
@@ -1060,6 +1076,8 @@
 		81B7487519213CE900990E5F /* Custom */ = {
 			isa = PBXGroup;
 			children = (
+				CAE9A2BD197D5296008F7C9A /* CatrobatAlertView */,
+				CAE9A2B9197D2086008F7C9A /* CatrobatActionSheet */,
 				81A5B4D4192963F00082B2B8 /* MotionEffect */,
 				CA882035192E59AF00E5D515 /* CollectionViewCells */,
 				81B748771921432A00990E5F /* CreateView */,
@@ -1614,6 +1632,7 @@
 		B4D940BC170EC670003DDBFA /* CustomExtensions */ = {
 			isa = PBXGroup;
 			children = (
+				CA3BFA59197F0CDD00DA86C9 /* NSMutableArray+CustomExtensions */,
 				92DFE976196D787000F491EC /* UIViewController+Popup */,
 				CA727B3C18DF46AA00D1EE13 /* NSData+Hashes */,
 				CA79A11B182D8A4E00618283 /* GDataXMLNode+PrettyFormatterExtensions */,
@@ -1846,8 +1865,8 @@
 			children = (
 				CA688200180AEEC2008A7C99 /* BaseTableViewController.h */,
 				CA688204180B0148008A7C99 /* BaseTableViewController.m */,
-				819AA18419587CA7003010BB /* WebViewController.h */,
-				819AA18519587CA7003010BB /* WebViewController.m */,
+				819AA18419587CA7003010BB /* BaseWebViewController.h */,
+				819AA18519587CA7003010BB /* BaseWebViewController.m */,
 			);
 			name = BaseViewController;
 			sourceTree = "<group>";
@@ -1952,6 +1971,15 @@
 			name = "NSString+FastImageSize";
 			sourceTree = "<group>";
 		};
+		CA3BFA59197F0CDD00DA86C9 /* NSMutableArray+CustomExtensions */ = {
+			isa = PBXGroup;
+			children = (
+				CA3BFA5A197F0D0900DA86C9 /* NSMutableArray+CustomExtensions.h */,
+				CA3BFA5B197F0DD300DA86C9 /* NSMutableArray+CustomExtensions.m */,
+			);
+			name = "NSMutableArray+CustomExtensions";
+			sourceTree = "<group>";
+		};
 		CA43DD371809977A00F95B88 /* UIImageView+CatrobatUIImageViewExtensions */ = {
 			isa = PBXGroup;
 			children = (
@@ -1959,6 +1987,15 @@
 				CA43DD351809976900F95B88 /* UIImageView+CatrobatUIImageViewExtensions.m */,
 			);
 			name = "UIImageView+CatrobatUIImageViewExtensions";
+			sourceTree = "<group>";
+		};
+		CA51A55B19847FEA00FFCB45 /* BDKNotifyHUD */ = {
+			isa = PBXGroup;
+			children = (
+				CA51A55C198481ED00FFCB45 /* BDKNotifyHUD.h */,
+				CA51A55D198481ED00FFCB45 /* BDKNotifyHUD.m */,
+			);
+			name = BDKNotifyHUD;
 			sourceTree = "<group>";
 		};
 		CA52403418AD77DB00052914 /* ProgramTableViewControllerTests */ = {
@@ -2306,6 +2343,33 @@
 			name = "Brick+UnitTestingExtensions";
 			sourceTree = "<group>";
 		};
+		CAE9A2B9197D2086008F7C9A /* CatrobatActionSheet */ = {
+			isa = PBXGroup;
+			children = (
+				CAE9A2BA197D20A7008F7C9A /* CatrobatActionSheet.h */,
+				CAE9A2BB197D20A7008F7C9A /* CatrobatActionSheet.m */,
+			);
+			name = CatrobatActionSheet;
+			sourceTree = "<group>";
+		};
+		CAE9A2BD197D5296008F7C9A /* CatrobatAlertView */ = {
+			isa = PBXGroup;
+			children = (
+				CAE9A2BE197D52AF008F7C9A /* CatrobatAlertView.h */,
+				CAE9A2BF197D52AF008F7C9A /* CatrobatAlertView.m */,
+			);
+			name = CatrobatAlertView;
+			sourceTree = "<group>";
+		};
+		CAE9A2C1197D8948008F7C9A /* DataTransferMessage */ = {
+			isa = PBXGroup;
+			children = (
+				CAE9A2C2197D8964008F7C9A /* DataTransferMessage.h */,
+				CAE9A2C3197D8964008F7C9A /* DataTransferMessage.m */,
+			);
+			name = DataTransferMessage;
+			sourceTree = "<group>";
+		};
 		CAEBC91918E5A1D800554CA2 /* EVCircularProgressView */ = {
 			isa = PBXGroup;
 			children = (
@@ -2630,6 +2694,7 @@
 				CD0CCFFE170CBAA700B70036 /* Look */,
 				CD0CCFF8170CB91000B70036 /* Program */,
 				B4D940C9170EC74B003DDBFA /* ProgramLoadingInfo */,
+				CAE9A2C1197D8948008F7C9A /* DataTransferMessage */,
 				CD0CCFFA170CB92D00B70036 /* Scripts */,
 				CD0CCFFB170CB97000B70036 /* Sound */,
 				CD0CCFF6170CB89E00B70036 /* Sprite */,
@@ -2976,6 +3041,7 @@
 				CA882033192E581800E5D515 /* SWUtilityButtonView.m in Sources */,
 				CA75C29E18A9626400FC8C2F /* ChangeBrightnessByNBrickCell.m in Sources */,
 				B46475301770F60500CD277F /* AudioManager.m in Sources */,
+				CA51A55E198481ED00FFCB45 /* BDKNotifyHUD.m in Sources */,
 				9294EEFE198191F0001FD3DB /* UIViewController+CWPopup.m in Sources */,
 				CD0CCF56170CB39700B70036 /* BroadcastWaitHandler.m in Sources */,
 				CD0CCF59170CB39700B70036 /* CatrobatProject.m in Sources */,
@@ -3003,6 +3069,7 @@
 				CD0CCFA4170CB39700B70036 /* NextLookBrick.m in Sources */,
 				925E22B618E3313C001A26A6 /* NavigationController.m in Sources */,
 				CAF806D9193181D50005E900 /* RuntimeImageCache.m in Sources */,
+				CAE9A2C0197D52AF008F7C9A /* CatrobatAlertView.m in Sources */,
 				CD0CCFA6170CB39700B70036 /* Parser.m in Sources */,
 				CD0CCFA7170CB39700B70036 /* PlaceAtBrick.m in Sources */,
 				CD0CCFAA170CB39700B70036 /* PlaySoundBrick.m in Sources */,
@@ -3026,6 +3093,7 @@
 				CD0CCFC3170CB39700B70036 /* SetVolumeToBrick.m in Sources */,
 				CA75C28918A9623500FC8C2F /* SetSizeToBrickCell.m in Sources */,
 				CA75C22618A9603400FC8C2F /* StartScriptCell.m in Sources */,
+				CAE9A2BC197D20A7008F7C9A /* CatrobatActionSheet.m in Sources */,
 				CD0CCFC4170CB39700B70036 /* SetXBrick.m in Sources */,
 				CA75C2A418A9627200FC8C2F /* SetVariableBrickCell.m in Sources */,
 				CD0CCFC5170CB39700B70036 /* SetYBrick.m in Sources */,
@@ -3039,6 +3107,7 @@
 				CA75C28318A9622700FC8C2F /* SetLookBrickCell.m in Sources */,
 				CA68820E180B39D0008A7C99 /* ColoredCell.m in Sources */,
 				CA88202F192E581800E5D515 /* SWCellScrollView.m in Sources */,
+				CA3BFA5C197F0DD300DA86C9 /* NSMutableArray+CustomExtensions.m in Sources */,
 				CD0CCFD1170CB39700B70036 /* StopAllSoundsBrick.m in Sources */,
 				CA75C29518A9624F00FC8C2F /* SetGhostEffectBrickCell.m in Sources */,
 				CA75C23218A9613A00FC8C2F /* BroadcastBrickCell.m in Sources */,
@@ -3110,7 +3179,7 @@
 				CA75C26B18A961CE00FC8C2F /* GlideToBrickCell.m in Sources */,
 				817B545118F0AAE600AF6BFE /* FXBlurView.m in Sources */,
 				CD8CC8BC1724346200239EBF /* HelpWebViewController.m in Sources */,
-				819AA18619587CA7003010BB /* WebViewController.m in Sources */,
+				819AA18619587CA7003010BB /* BaseWebViewController.m in Sources */,
 				81C64F8419264E2800199161 /* UIWindow+AHKAdditions.m in Sources */,
 				CA75C28018A9622100FC8C2F /* SpeakBrickCell.m in Sources */,
 				CA75C2A118A9626B00FC8C2F /* ClearGraphicEffectBrickCell.m in Sources */,
@@ -3120,6 +3189,7 @@
 				81C64F8319264E2800199161 /* UIImage+AHKAdditions.m in Sources */,
 				B45A5827173253E5000E038F /* SetVariableBrick.m in Sources */,
 				B45A582C17325442000E038F /* UserVariable.m in Sources */,
+				CAE9A2C4197D8964008F7C9A /* DataTransferMessage.m in Sources */,
 				B45A583117327887000E038F /* Formula.m in Sources */,
 				CA75C29218A9624900FC8C2F /* ShowBrickCell.m in Sources */,
 				B45A583617327BBE000E038F /* FormulaElement.m in Sources */,

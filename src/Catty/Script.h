@@ -46,6 +46,8 @@
 
 - (void)stop;
 
+- (instancetype)deepCopy;
+
 - (NSString*)description;
 
 @end

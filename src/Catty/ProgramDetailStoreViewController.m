@@ -151,6 +151,7 @@
 
 - (void)viewWillAppear:(BOOL)animated
 {
+    [super viewWillAppear:animated];
     [self.navigationController setToolbarHidden:YES];
     self.searchStoreController.checkSearch = NO;
 }
@@ -195,7 +196,7 @@
     [self showPlayButton];
 }
 
-- (void)renameOldProgramName:(NSString *)oldProgramName ToNewProgramName:(NSString *)newProgramName
+- (void)renameOldProgramName:(NSString *)oldProgramName toNewProgramName:(NSString *)newProgramName
 {
     [self showPlayButton];
 }

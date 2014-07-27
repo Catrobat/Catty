@@ -32,7 +32,7 @@
 #import <MobileCoreServices/MobileCoreServices.h>
 #import "LanguageTranslationDefines.h"
 #import "UIDefines.h"
-#import "WebViewController.h"
+#import "BaseWebViewController.h"
 #import "ProgramLoadingInfo.h"
 
 @interface FileManager()
@@ -421,8 +421,6 @@
     NSLogError(error);
 }
 
-
-
 - (NSString*)getFullPathForProgram:(NSString *)programName
 {
     NSString *path = [NSString stringWithFormat:@"%@/%@", self.programsDirectory, programName];
@@ -448,7 +446,7 @@
         dispatch_async(dispatch_get_main_queue(), ^{
             [self.delegate downloadFinishedWithURL:url];
         });
-    }else if ([self.delegate respondsToSelector:@selector(downloadFinishedWithURL:)] && [self.delegate isKindOfClass:[WebViewController class]]){
+    }else if ([self.delegate respondsToSelector:@selector(downloadFinishedWithURL:)] && [self.delegate isKindOfClass:[BaseWebViewController class]]){
         [self.delegate downloadFinishedWithURL:url];
     }
 
@@ -576,7 +574,9 @@
 
     }
 //    [downloadTask suspend];
-
+    // Notification for reloading MyProgramViewController
+    [[NSNotificationCenter defaultCenter] postNotificationName:kProgramDownloadedNotification
+                                                        object:self];
     UIApplication* app = [UIApplication sharedApplication];
     app.networkActivityIndicatorVisible = NO;
 }
@@ -611,7 +611,7 @@
                 dispatch_async(dispatch_get_main_queue(), ^{
                     [self.delegate updateProgress:progress];
                 });
-            }else if ([self.delegate respondsToSelector:@selector(updateProgress:)] && [self.delegate isKindOfClass:[WebViewController class]]){
+            }else if ([self.delegate respondsToSelector:@selector(updateProgress:)] && [self.delegate isKindOfClass:[BaseWebViewController class]]){
                 [self.delegate updateProgress:progress];
             }
 

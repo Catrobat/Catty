@@ -20,24 +20,23 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-// Action sheet
-#define kEditProgramsActionSheetTag 1
-#define kEditProgramActionSheetTag 2
-#define kEditObjectActionSheetTag 3
-#define kAddLookActionSheetTag 4
-#define kEditLooksActionSheetTag 5
-#define kEditLookActionSheetTag 6
-#define kAddSoundActionSheetTag 7
-#define kEditSoundsActionSheetTag 8
-#define kEditSoundActionSheetTag 9
+#import "CatrobatAlertView.h"
 
-// Alert view tags
-#define kAskUserForUniqueNameAlertViewTag 100
-#define kInvalidNameWarningAlertViewTag 101
-#define kNewImageAlertViewTag 102
-#define kNoInternetConnection 103
+@implementation CatrobatAlertView
 
-#define kConfirmAlertViewTag 200
+- (id)initWithTitle:(NSString *)title
+            message:(NSString *)message
+           delegate:(id<CatrobatAlertViewDelegate>)delegate
+  cancelButtonTitle:(NSString *)cancelButtonTitle
+  otherButtonTitles:(NSString *)otherButtonTitles, ... NS_REQUIRES_NIL_TERMINATION
+{
+    CatrobatAlertView *alertView = [super initWithTitle:title
+                                                message:message
+                                               delegate:(id<UIAlertViewDelegate>)delegate
+                                      cancelButtonTitle:cancelButtonTitle
+                                      otherButtonTitles:otherButtonTitles, nil];
+    alertView.dataTransferMessage = nil;
+    return alertView;
+}
 
-// Alert view button indexes
-#define kAlertViewButtonOK 1
+@end
