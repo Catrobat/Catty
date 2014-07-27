@@ -166,6 +166,7 @@
 		CA2F7CAE18F61BA000A5C021 /* NSString+FastImageSize.m in Sources */ = {isa = PBXBuildFile; fileRef = CA2F7CAD18F61BA000A5C021 /* NSString+FastImageSize.m */; };
 		CA3BFA5C197F0DD300DA86C9 /* NSMutableArray+CustomExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = CA3BFA5B197F0DD300DA86C9 /* NSMutableArray+CustomExtensions.m */; };
 		CA43DD361809976900F95B88 /* UIImageView+CatrobatUIImageViewExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = CA43DD351809976900F95B88 /* UIImageView+CatrobatUIImageViewExtensions.m */; };
+		CA51A55E198481ED00FFCB45 /* BDKNotifyHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = CA51A55D198481ED00FFCB45 /* BDKNotifyHUD.m */; };
 		CA52403618AD782600052914 /* ProgramTableViewControllerExistingProgramsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = CA52403518AD782600052914 /* ProgramTableViewControllerExistingProgramsTests.m */; };
 		CA5FED5018B0070300A517B6 /* BrickCellInlineView.m in Sources */ = {isa = PBXBuildFile; fileRef = CA5FED4F18B0070300A517B6 /* BrickCellInlineView.m */; };
 		CA5FED5418B019B200A517B6 /* UIUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = CA5FED5318B019B200A517B6 /* UIUtil.m */; };
@@ -611,6 +612,8 @@
 		CA3BFA5B197F0DD300DA86C9 /* NSMutableArray+CustomExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableArray+CustomExtensions.m"; sourceTree = "<group>"; };
 		CA43DD341809976900F95B88 /* UIImageView+CatrobatUIImageViewExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImageView+CatrobatUIImageViewExtensions.h"; sourceTree = "<group>"; };
 		CA43DD351809976900F95B88 /* UIImageView+CatrobatUIImageViewExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+CatrobatUIImageViewExtensions.m"; sourceTree = "<group>"; };
+		CA51A55C198481ED00FFCB45 /* BDKNotifyHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BDKNotifyHUD.h; path = BDKNotifyHUD/BDKNotifyHUD.h; sourceTree = "<group>"; };
+		CA51A55D198481ED00FFCB45 /* BDKNotifyHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BDKNotifyHUD.m; path = BDKNotifyHUD/BDKNotifyHUD.m; sourceTree = "<group>"; };
 		CA52403518AD782600052914 /* ProgramTableViewControllerExistingProgramsTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProgramTableViewControllerExistingProgramsTests.m; sourceTree = "<group>"; };
 		CA52403718AD786200052914 /* ProgramTableViewControllerExistingProgramsTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ProgramTableViewControllerExistingProgramsTests.h; sourceTree = "<group>"; };
 		CA5FED4E18B0070300A517B6 /* BrickCellInlineView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BrickCellInlineView.h; sourceTree = "<group>"; };
@@ -1057,6 +1060,7 @@
 		81B7487419213C3800990E5F /* 3rdParty */ = {
 			isa = PBXGroup;
 			children = (
+				CA51A55B19847FEA00FFCB45 /* BDKNotifyHUD */,
 				CA882034192E581C00E5D515 /* SWTableViewCell */,
 				81C64F8519268DDF00199161 /* IBActionSheet */,
 				81C64F7819264E1A00199161 /* AHKActionSheet */,
@@ -1985,6 +1989,15 @@
 			name = "UIImageView+CatrobatUIImageViewExtensions";
 			sourceTree = "<group>";
 		};
+		CA51A55B19847FEA00FFCB45 /* BDKNotifyHUD */ = {
+			isa = PBXGroup;
+			children = (
+				CA51A55C198481ED00FFCB45 /* BDKNotifyHUD.h */,
+				CA51A55D198481ED00FFCB45 /* BDKNotifyHUD.m */,
+			);
+			name = BDKNotifyHUD;
+			sourceTree = "<group>";
+		};
 		CA52403418AD77DB00052914 /* ProgramTableViewControllerTests */ = {
 			isa = PBXGroup;
 			children = (
@@ -2872,7 +2885,7 @@
 				LastUpgradeCheck = 0500;
 				TargetAttributes = {
 					1D6058900D05DD3D006BFB54 = {
-						DevelopmentTeam = 4V6T7BCGGR;
+						DevelopmentTeam = 9NJ4SV439Q;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
 								enabled = 0;
@@ -3028,6 +3041,7 @@
 				CA882033192E581800E5D515 /* SWUtilityButtonView.m in Sources */,
 				CA75C29E18A9626400FC8C2F /* ChangeBrightnessByNBrickCell.m in Sources */,
 				B46475301770F60500CD277F /* AudioManager.m in Sources */,
+				CA51A55E198481ED00FFCB45 /* BDKNotifyHUD.m in Sources */,
 				9294EEFE198191F0001FD3DB /* UIViewController+CWPopup.m in Sources */,
 				CD0CCF56170CB39700B70036 /* BroadcastWaitHandler.m in Sources */,
 				CD0CCF59170CB39700B70036 /* CatrobatProject.m in Sources */,

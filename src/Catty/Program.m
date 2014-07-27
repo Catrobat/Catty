@@ -346,7 +346,9 @@
 
         // maybe later call some functions back here, that should update the UI on main thread...
         dispatch_async(dispatch_get_main_queue(), ^{
-            [[NSNotificationCenter defaultCenter] postNotificationName:kHideLoadingViewNotification object:self];
+            NSNotificationCenter *notificationCenter = [NSNotificationCenter defaultCenter];
+            [notificationCenter postNotificationName:kHideLoadingViewNotification object:self];
+            [notificationCenter postNotificationName:kShowSavedViewNotification object:self];
         });
 //        // execute 2 seconds later => just for testing purposes
 //        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 2 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{

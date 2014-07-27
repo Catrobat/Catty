@@ -250,7 +250,6 @@
     [self showNavigationButtons];
     
     [UIView animateWithDuration:0.25f animations:^{ self.webView.alpha = 1.0f; }];
-    
 }
 
 - (void)webViewDidStartLoad:(UIWebView *)webView

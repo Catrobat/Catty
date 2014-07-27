@@ -117,6 +117,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
 
 - (void)viewWillAppear:(BOOL)animated
 {
+    [super viewWillAppear:animated];
     self.defaultProgram = nil;
     self.selectedProgram = nil;
     [self.navigationController setNavigationBarHidden:NO];

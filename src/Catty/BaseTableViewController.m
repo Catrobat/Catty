@@ -30,6 +30,7 @@
 #import <tgmath.h>
 #import "CatrobatAlertView.h"
 #import "LoadingView.h"
+#import "BDKNotifyHUD.h"
 
 // identifiers
 #define kTableHeaderIdentifier @"Header"
@@ -62,10 +63,24 @@
     self.tableView.backgroundColor = UIColor.backgroundColor;
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
     self.tableView.separatorColor = UIColor.skyBlueColor;
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(hideLoadingView)
-                                                 name:kHideLoadingViewNotification
-                                               object:nil];
+    NSNotificationCenter *notificationCenter = [NSNotificationCenter defaultCenter];
+    [notificationCenter addObserver:self
+                           selector:@selector(hideLoadingView)
+                               name:kHideLoadingViewNotification
+                             object:nil];
+    [notificationCenter addObserver:self
+                           selector:@selector(showSavedView)
+                               name:kShowSavedViewNotification
+                             object:nil];
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    for (UIView *view in self.view.subviews) {
+        if (view.tag == kSavedViewTag)
+            [view removeFromSuperview];
+    }
 }
 
 #pragma mark - getters and setters
@@ -371,6 +386,20 @@
     self.navigationController.toolbar.userInteractionEnabled = YES;
     self.navigationController.interactivePopGestureRecognizer.enabled = YES;
     [self.loadingView hide];
+}
+
+
+- (void)showSavedView
+{
+    BDKNotifyHUD *hud = [BDKNotifyHUD notifyHUDWithImage:[UIImage imageNamed:@"checkmark.png"]
+                                                    text:kUILabelTextSaved];
+    hud.destinationOpacity = 0.30f;
+    hud.center = CGPointMake(self.view.center.x, self.view.center.y - 20);
+    hud.tag = kSavedViewTag;
+    [self.view addSubview:hud];
+    [hud presentWithDuration:0.5f speed:0.1f inView:self.view completion:^{
+        [hud removeFromSuperview];
+    }];
 }
 
 @end

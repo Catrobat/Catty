@@ -322,6 +322,7 @@
  */
 
 #define kUILabelTextLoading NSLocalizedString(@"Loading", nil)
+#define kUILabelTextSaved NSLocalizedString(@"Saved", nil)
 #define kUILabelTextDescription NSLocalizedString(@"Description", nil)
 #define kUILabelTextNoDescriptionAvailable NSLocalizedString(@"No Description available", nil)
 #define kUILabelTextAuthor NSLocalizedString(@"Author", nil)

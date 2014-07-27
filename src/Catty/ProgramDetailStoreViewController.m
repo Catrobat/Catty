@@ -151,6 +151,7 @@
 
 - (void)viewWillAppear:(BOOL)animated
 {
+    [super viewWillAppear:animated];
     [self.navigationController setToolbarHidden:YES];
     self.searchStoreController.checkSearch = NO;
 }
