@@ -2885,7 +2885,7 @@
 				LastUpgradeCheck = 0500;
 				TargetAttributes = {
 					1D6058900D05DD3D006BFB54 = {
-						DevelopmentTeam = 9NJ4SV439Q;
+						DevelopmentTeam = 4V6T7BCGGR;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
 								enabled = 0;
