@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2013 The Catrobat Team
+ *  Copyright (C) 2010-2014 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -142,65 +142,6 @@
     [self.programTableViewController viewWillAppear:NO];
     NSInteger numberOfObjectRows = [self.programTableViewController tableView:self.programTableViewController.tableView numberOfRowsInSection:kObjectSectionIndex];
     XCTAssertEqual(numberOfObjectRows, kDefaultNumOfObjects, @"Wrong number of object rows in ProgramTableViewController");
-}
-
-- (void)testNewProgramRenameProgramName
-{
-    [self setupForNewProgram];
-    NSString *newProgramName = @"This is a test program";
-    [ProgramTableViewControllerNewProgramTests removeProject:[NSString stringWithFormat:@"%@%@", [Program basePath], newProgramName]];
-    [self.programTableViewController viewDidLoad];
-    [self.programTableViewController viewWillAppear:NO];
-    UIAlertView *alertView = [[UIAlertView alloc] init];
-    alertView.tag = kRenameAlertViewTag;
-    alertView.alertViewStyle = UIAlertViewStylePlainTextInput;
-    UITextField *textField = [alertView textFieldAtIndex:0];
-    textField.text = newProgramName;
-    XCTAssertNoThrow([self.programTableViewController alertView:alertView clickedButtonAtIndex:kAlertViewButtonOK], @"Could not rename program");
-
-    Program *program = self.programTableViewController.program;
-    XCTAssertNotNil(program.header.programName, @"Name of renamed program is nil, testing an empty string...");
-    XCTAssertTrue([program.header.programName isEqualToString:newProgramName], @"Name of renamed program is %@, but should be %@ ProgramTableViewController", program.header.programName, newProgramName);
-    [ProgramTableViewControllerNewProgramTests removeProject:[NSString stringWithFormat:@"%@%@", [Program basePath], newProgramName]];
-}
-
-- (void)testNewProgramRenameProgramNameDelegateTest
-{
-    [self setupForNewProgram];
-    NSString *newProgramName = @"This is a test program";
-    [ProgramTableViewControllerNewProgramTests removeProject:[NSString stringWithFormat:@"%@%@", [Program basePath], newProgramName]];
-    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"iPhone" bundle:[NSBundle mainBundle]];
-    MyProgramsViewController<ProgramUpdateDelegate> *myProgramsViewController = [storyboard instantiateViewControllerWithIdentifier:@"MyProgramsViewController"];
-    [myProgramsViewController performSelectorOnMainThread:@selector(view) withObject:nil waitUntilDone:YES];
-    self.programTableViewController.delegate = myProgramsViewController;
-    [self.programTableViewController viewDidLoad];
-    [self.programTableViewController viewWillAppear:NO];
-    UIAlertView *alertView = [[UIAlertView alloc] init];
-    alertView.tag = kRenameAlertViewTag;
-    alertView.alertViewStyle = UIAlertViewStylePlainTextInput;
-    UITextField *textField = [alertView textFieldAtIndex:0];
-    textField.text = newProgramName;
-    XCTAssertNoThrow([self.programTableViewController alertView:alertView clickedButtonAtIndex:kAlertViewButtonOK], @"Could not rename program");
-
-    NSInteger numberOfRows = [myProgramsViewController tableView:myProgramsViewController.tableView numberOfRowsInSection:0];
-    NSInteger matchNewNameCounter = 0;
-    for (NSInteger counter = 0; counter < numberOfRows; ++counter) {
-        NSIndexPath *indexPath = [NSIndexPath indexPathForRow:counter inSection:0];
-        UITableViewCell *cell = [myProgramsViewController tableView:myProgramsViewController.tableView cellForRowAtIndexPath:indexPath];
-        NSString *programName = nil;
-        if ([cell conformsToProtocol:@protocol(CatrobatImageCell)]) {
-            UITableViewCell <CatrobatImageCell>* imageCell = (UITableViewCell <CatrobatImageCell>*)cell;
-            programName = imageCell.titleLabel.text;
-        }
-        NSLog(@"Name of program is: %@", programName);
-        XCTAssertNotNil(programName, @"Name of renamed program is nil, testing an empty string...");
-        XCTAssertFalse([programName isEqualToString:kNewProgramName], @"Did not rename program in delegate");
-        if ([programName isEqualToString:newProgramName]) {
-            ++matchNewNameCounter;
-        }
-    }
-    XCTAssertEqual(matchNewNameCounter, 1, @"Did not rename program of delegate correctly. Number of renamed programs: %ld", (long)matchNewNameCounter);
-    [ProgramTableViewControllerNewProgramTests removeProject:[NSString stringWithFormat:@"%@%@", [Program basePath], newProgramName]];
 }
 
 #pragma mark - getters and setters

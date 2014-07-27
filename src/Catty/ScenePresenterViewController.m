@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2013 The Catrobat Team
+ *  Copyright (C) 2010-2014 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -65,8 +65,7 @@
 #define kDontResumeSounds 4
 #define kfirstSwipeDuration 2.5f
 
-@interface ScenePresenterViewController ()<UIActionSheetDelegate>
-
+@interface ScenePresenterViewController ()
 
 @property (nonatomic) BOOL menuOpen;
 @property (nonatomic, strong) Scene *scene;
@@ -610,7 +609,7 @@
     [self presentViewController:activityVC animated:YES completion:nil];
 }
 // Now we have an activity view -> just in case we need change back to the action sheet
-//- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
+//- (void)actionSheet:(CatrobatActionSheet*)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
 //{
 //  NSString *buttonTitle = [actionSheet buttonTitleAtIndex:buttonIndex];
 //  if ([buttonTitle isEqualToString:kUIActionSheetButtonTitleCameraRoll]) {

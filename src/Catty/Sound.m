@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2013 The Catrobat Team
+ *  Copyright (C) 2010-2014 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -27,9 +27,18 @@
 
 - (GDataXMLElement*)toXMLforObject:(SpriteObject*)spriteObject
 {
-  GDataXMLElement *soundXMLElement = [GDataXMLNode elementWithName:@"sound"];
-  [soundXMLElement addAttribute:[GDataXMLNode attributeWithName:@"reference" stringValue:@"../../scriptList/startScript/brickList/playSoundBrick/sound"]];
-  return soundXMLElement;
+    GDataXMLElement *soundXMLElement = [GDataXMLNode elementWithName:@"sound"];
+    [soundXMLElement addAttribute:[GDataXMLNode attributeWithName:@"reference" stringValue:@"../../scriptList/startScript/brickList/playSoundBrick/sound"]];
+    return soundXMLElement;
+}
+
+- (instancetype)deepCopy
+{
+    Sound *copiedSound = [[Sound alloc] init];
+    copiedSound.fileName = [NSString stringWithString:self.fileName];
+    copiedSound.name = [NSString stringWithString:self.name];
+    copiedSound.playing = NO;
+    return copiedSound;
 }
 
 @end

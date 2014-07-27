@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2013 The Catrobat Team
+ *  Copyright (C) 2010-2014 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -42,7 +42,8 @@
 - (NSInteger)numberOfTotalObjects;
 - (NSInteger)numberOfBackgroundObjects;
 - (NSInteger)numberOfNormalObjects;
-- (SpriteObject*)addNewObjectWithName:(NSString*)objectName;
+- (SpriteObject*)addObjectWithName:(NSString*)objectName;
+- (void)removeObjects:(NSArray*)objects;
 - (void)removeObject:(SpriteObject*)object;
 - (NSString*)projectPath;
 - (void)removeFromDisk;
@@ -50,15 +51,25 @@
 - (BOOL)isLastProgram;
 - (void)setAsLastProgram;
 - (void)renameToProgramName:(NSString*)programName;
+- (void)renameObject:(SpriteObject*)object toName:(NSString*)newObjectName;
+- (void)updateDescriptionWithText:(NSString*)descriptionText;
+- (NSArray*)allObjectNames;
+- (BOOL)hasObject:(SpriteObject*)object;
+- (SpriteObject*)copyObject:(SpriteObject*)sourceObject
+    withNameForCopiedObject:(NSString*)nameOfCopiedObject;
 
 + (instancetype)defaultProgramWithName:(NSString*)programName;
 + (instancetype)lastProgram;
++ (void)updateLastModificationTimeForProgramWithName:(NSString*)programName;
 + (instancetype)programWithLoadingInfo:(ProgramLoadingInfo*)loadingInfo;
 + (BOOL)programExists:(NSString *)programName;
-+ (kProgramNameValidationResult)validateProgramName:(NSString*)programName;
++ (void)copyProgramWithName:(NSString*)sourceProgramName
+     destinationProgramName:(NSString*)destinationProgramName;
 + (void)removeProgramFromDiskWithProgramName:(NSString*)programName;
 + (BOOL)isLastProgram:(NSString*)programName;
 + (void)setLastProgram:(Program*)program;
 + (NSString*)basePath;
++ (NSArray*)allProgramNames;
++ (NSArray*)allProgramLoadingInfos;
 
 @end

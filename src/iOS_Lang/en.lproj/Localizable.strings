@@ -18,14 +18,18 @@
  *
  *  You should have received a copy of the GNU Affero General Public License
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
-*/
+ */
 "ExampleEntry" = "ExampleEntry";
 
 "New Program" = "New Program";
 
+"My First Program" = "My First Program";
+
 "Background" = "Background";
 
 "My Object" = "My Object";
+
+"My Image" = "My Image";
 
 "Today" = "Today";
 
@@ -171,6 +175,8 @@
 
 "Save Screenshot to" = "Save Screenshot to";
 
+"Save to PocketCode" = "Save to PocketCode";
+
 "Close" = "Close";
 
 "Delete Brick" = "Delete Brick";
@@ -198,6 +204,12 @@
 "Draw new image" = "Draw new image";
 
 "Rename" = "Rename";
+
+"Copy" = "Copy";
+
+"Description" = "Description";
+
+"Upload" = "Upload";
 
 "Delete Objects" = "Delete Objects";
 
@@ -230,6 +242,28 @@
 "Add image" = "Add image";
 
 "Rename program" = "Rename program";
+
+"Set description" = "Set description";
+
+"Rename object" = "Rename object";
+
+"Rename image" = "Rename image";
+
+"Rename sound" = "Rename sound";
+
+"Enter your sound name here..." = "Enter your sound name here...";
+
+"Sound name" = "Sound name";
+
+"An object with the same name already exists, try again." = "An object with the same name already exists, try again.";
+
+"No or invalid image name entered, try again." = "No or invalid image name entered, try again.";
+
+"No or invalid sound name entered, try again." = "No or invalid sound name entered, try again.";
+
+"An image with the same name already exists, try again." = "An image with the same name already exists, try again.";
+
+"Enter your program description here..." = "Enter your program description here...";
 
 "Can't restart program!" = "Can't restart program!";
 
@@ -269,13 +303,25 @@
 
 "Pocket Code for iOS" = "Pocket Code for iOS";
 
+"Unable to play the selected sound. Your device is in silent mode. Please turn off silent mode by toggling the switch on the left side of your iPhone and tap on play again." = "Unable to play the selected sound. Your device is in silent mode. Please turn off silent mode by toggling the switch on the left side of your iPhone and tap on play again.";
+
+"Unable to play the selected sound. Your device is in silent mode. Please turn off silent mode by toggling the switch on the right side of your iPad and tap on play again." = "Unable to play the selected sound. Your device is in silent mode. Please turn off silent mode by toggling the switch on the right side of your iPad and tap on play again.";
+
+"Slow Internet Connection!" = "Slow Internet Connection!";
+
+"You have already downloaded this program!" = "You have already downloaded this program!";
+
 "Program name" = "Program name";
 
 "Object name" = "Object name";
 
 "Image name" = "Image name";
 
+"No search results" = "No search results";
+
 "No imported sounds found. Please connect your iPhone to your PC/Mac and use iTunes FileSharing to import sound files into the PocketCode app." = "No imported sounds found. Please connect your iPhone to your PC/Mac and use iTunes FileSharing to import sound files into the PocketCode app.";
+
+"No input or the input is too short. Please enter at least %lu characters." = "No input or the input is too short. Please enter at least %lu characters.";
 
 "No or invalid program name entered, try again." = "No or invalid program name entered, try again.";
 
@@ -289,6 +335,8 @@
 
 "Unable to play that sound!\nMaybe this is no valid sound or the file is corrupt." = "Unable to play that sound!\nMaybe this is no valid sound or the file is corrupt.";
 
+"No internet connection available." = "No internet connection available.";
+
 "OK" = "OK";
 
 "Cancel" = "Cancel";
@@ -300,6 +348,8 @@
 "Delete" = "Delete";
 
 "Loading" = "Loading";
+
+"Saved" = "Saved";
 
 "Description" = "Description";
 
@@ -356,6 +406,8 @@
 "Most Viewed" = "Most Viewed";
 
 "Newest" = "Newest";
+
+"Select Brick Category" = "Select Brick Category";
 
 "Control" = "Control";
 

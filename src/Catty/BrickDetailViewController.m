@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2013 The Catrobat Team
+ *  Copyright (C) 2010-2014 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -34,7 +34,7 @@
 #import "RepeatBrickCell.h"
 #import "BroadcastScriptCell.h"
 #import "CellMotionEffect.h"
-
+#import "CatrobatActionSheet.h"
 
 NS_ENUM(NSInteger, ButtonIndex) {
     kButtonIndexDelete = 0,
@@ -44,12 +44,12 @@ NS_ENUM(NSInteger, ButtonIndex) {
     kButtonIndexCancel = 4
 };
 
-@interface BrickDetailViewController () <IBActionSheetDelegate>
+@interface BrickDetailViewController () <CatrobatActionSheetDelegate>
 @property (strong, nonatomic) UITapGestureRecognizer *recognizer;
 @property (strong, nonatomic) NSNumber *deleteBrickOrScriptFlag;
 @property (strong, nonatomic) NSNumber *brickCopyFlag;
 @property (strong, nonatomic) UIMotionEffectGroup *motionEffects;
-@property (strong, nonatomic) IBActionSheet *brickMenu;
+@property (strong, nonatomic) CatrobatActionSheet *brickMenu;
 
 @end
 
@@ -111,26 +111,25 @@ NS_ENUM(NSInteger, ButtonIndex) {
 }
 
 #pragma mark - getters
-- (IBActionSheet *)brickMenu
+- (CatrobatActionSheet*)brickMenu
 {
     if (! _brickMenu) {
         if ([self isAnimateableBrick:self.brickCell]) {
-            _brickMenu = [[IBActionSheet alloc] initWithTitle:nil
-                                                     delegate:self
-                                            cancelButtonTitle:kUIActionSheetButtonTitleClose
-                                       destructiveButtonTitle:[self deleteMenuItemNameWithBrickCell:self.brickCell]
-                                            otherButtonTitles:[self secondMenuItemWithBrickCell:self.brickCell],
-                                                              [self animateMenuItemWithBrickCell:self.brickCell],
-                                                              [self editFormulaMenuItemWithBrickCell:self.brickCell] ,nil];
+            _brickMenu = [[CatrobatActionSheet alloc] initWithTitle:nil
+                                                           delegate:self
+                                                  cancelButtonTitle:kUIActionSheetButtonTitleClose
+                                             destructiveButtonTitle:[self deleteMenuItemNameWithBrickCell:self.brickCell]
+                                                  otherButtonTitles:[self secondMenuItemWithBrickCell:self.brickCell],
+                                                                    [self animateMenuItemWithBrickCell:self.brickCell],
+                                                                    [self editFormulaMenuItemWithBrickCell:self.brickCell], nil];
         } else {
-            _brickMenu = [[IBActionSheet alloc] initWithTitle:nil
-                                                     delegate:self
-                                            cancelButtonTitle:kUIActionSheetButtonTitleClose
-                                       destructiveButtonTitle:[self deleteMenuItemNameWithBrickCell:self.brickCell]
-                                            otherButtonTitles:[self secondMenuItemWithBrickCell:self.brickCell],
-                                                              [self editFormulaMenuItemWithBrickCell:self.brickCell] ,nil];
+            _brickMenu = [[CatrobatActionSheet alloc] initWithTitle:nil
+                                                           delegate:self
+                                                  cancelButtonTitle:kUIActionSheetButtonTitleClose
+                                             destructiveButtonTitle:[self deleteMenuItemNameWithBrickCell:self.brickCell]
+                                                  otherButtonTitles:[self secondMenuItemWithBrickCell:self.brickCell],
+                                                                    [self editFormulaMenuItemWithBrickCell:self.brickCell], nil];
         }
-
         [_brickMenu setButtonBackgroundColor:[UIColor colorWithWhite:0.0f alpha:0.6f]];
         [_brickMenu setButtonTextColor:UIColor.lightOrangeColor];
         [_brickMenu setButtonTextColor:UIColor.redColor forButtonAtIndex:0];
@@ -147,7 +146,7 @@ NS_ENUM(NSInteger, ButtonIndex) {
 }
 
 #pragma mark - Action Sheet Delegate
-- (void)actionSheet:(IBActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
+- (void)actionSheet:(CatrobatActionSheet*)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
 {
     switch (buttonIndex) {
         case kButtonIndexDelete: {

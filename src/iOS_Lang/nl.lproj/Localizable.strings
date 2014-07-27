@@ -199,6 +199,12 @@
 
 "Rename" = "Hernoemen";
 
+"Copy" = "Copy";
+
+"Description" = "Description";
+
+"Upload" = "Upload";
+
 "Delete Objects" = "Delete Objects";
 
 "Delete Programs" = "Delete Programs";
@@ -230,6 +236,28 @@
 "Add image" = "Add image";
 
 "Rename program" = "Rename program";
+
+"Set description" = "Set description";
+
+"Rename object" = "Rename object";
+
+"Rename image" = "Rename image";
+
+"Rename sound" = "Rename sound";
+
+"Enter your sound name here..." = "Enter your sound name here...";
+
+"Sound name" = "Sound name";
+
+"An object with the same name already exists, try again." = "An object with the same name already exists, try again.";
+
+"No or invalid image name entered, try again." = "No or invalid image name entered, try again.";
+
+"No or invalid sound name entered, try again." = "No or invalid sound name entered, try again.";
+
+"An image with the same name already exists, try again." = "An image with the same name already exists, try again.";
+
+"Enter your program description here..." = "Enter your program description here...";
 
 "Can't restart program!" = "Can't restart program!";
 
@@ -277,6 +305,8 @@
 
 "No imported sounds found. Please connect your iPhone to your PC/Mac and use iTunes FileSharing to import sound files into the PocketCode app." = "No imported sounds found. Please connect your iPhone to your PC/Mac and use iTunes FileSharing to import sound files into the PocketCode app.";
 
+"No input or the input is too short. Please enter at least %lu characters." = "No input or the input is too short. Please enter at least %lu characters.";
+
 "No or invalid program name entered, try again." = "No or invalid program name entered, try again.";
 
 "A program with the same name already exists, try again." = "A program with the same name already exists, try again.";
@@ -288,6 +318,8 @@
 "This action can not be undone!" = "This action can not be undone!";
 
 "Unable to play that sound!\nMaybe this is no valid sound or the file is corrupt." = "Unable to play that sound!\nMaybe this is no valid sound or the file is corrupt.";
+
+"No internet connection available." = "No internet connection available.";
 
 "OK" = "OK";
 

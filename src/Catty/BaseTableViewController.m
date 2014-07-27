@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2013 The Catrobat Team
+ *  Copyright (C) 2010-2014 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -28,6 +28,9 @@
 #import "ActionSheetAlertViewTags.h"
 #import "LanguageTranslationDefines.h"
 #import <tgmath.h>
+#import "CatrobatAlertView.h"
+#import "LoadingView.h"
+#import "BDKNotifyHUD.h"
 
 // identifiers
 #define kTableHeaderIdentifier @"Header"
@@ -36,7 +39,8 @@
 #define kSelectAllItemsTag 0
 #define kUnselectAllItemsTag 1
 
-@interface BaseTableViewController () <UIAlertViewDelegate>
+@interface BaseTableViewController () <CatrobatAlertViewDelegate>
+@property (nonatomic, strong) LoadingView* loadingView;
 @property (nonatomic, strong) UIBarButtonItem *selectAllRowsButtonItem;
 @property (nonatomic, strong) UIBarButtonItem *normalModeRightBarButtonItem;
 
@@ -47,7 +51,6 @@
 @end
 
 @implementation BaseTableViewController
-
 
 #pragma mark - init
 - (void)viewDidLoad
@@ -60,10 +63,27 @@
     self.tableView.backgroundColor = UIColor.backgroundColor;
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
     self.tableView.separatorColor = UIColor.skyBlueColor;
+    NSNotificationCenter *notificationCenter = [NSNotificationCenter defaultCenter];
+    [notificationCenter addObserver:self
+                           selector:@selector(hideLoadingView)
+                               name:kHideLoadingViewNotification
+                             object:nil];
+    [notificationCenter addObserver:self
+                           selector:@selector(showSavedView)
+                               name:kShowSavedViewNotification
+                             object:nil];
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    for (UIView *view in self.view.subviews) {
+        if (view.tag == kSavedViewTag)
+            [view removeFromSuperview];
+    }
 }
 
 #pragma mark - getters and setters
-
 - (PlaceHolderView *)placeHolderView
 {
     if (!_placeHolderView) {
@@ -310,7 +330,7 @@
 }
 
 #pragma mark - alert view delegate handlers
-- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+- (void)alertView:(CatrobatAlertView*)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
     if (alertView.tag == kConfirmAlertViewTag) {
         // check if user agreed
@@ -337,6 +357,49 @@
             }
         }
     }
+}
+
+- (void)showLoadingView
+{
+    if (! self.loadingView) {
+        self.loadingView = [[LoadingView alloc] init];
+        [self.view addSubview:self.loadingView];
+    }
+    self.loadingView.backgroundColor = [UIColor whiteColor];
+    self.loadingView.alpha = 1.0;
+    CGPoint top = CGPointMake(0, -self.navigationController.navigationBar.frame.size.height);
+    [self.tableView setContentOffset:top animated:NO];
+    self.tableView.scrollEnabled = NO;
+    self.tableView.userInteractionEnabled = NO;
+    self.navigationController.navigationBar.userInteractionEnabled = NO;
+    self.navigationController.toolbar.userInteractionEnabled = NO;
+    self.navigationController.interactivePopGestureRecognizer.enabled = NO;
+    [self showPlaceHolder:NO];
+    [self.loadingView show];
+}
+
+- (void)hideLoadingView
+{
+    self.tableView.scrollEnabled = YES;
+    self.tableView.userInteractionEnabled = YES;
+    self.navigationController.navigationBar.userInteractionEnabled = YES;
+    self.navigationController.toolbar.userInteractionEnabled = YES;
+    self.navigationController.interactivePopGestureRecognizer.enabled = YES;
+    [self.loadingView hide];
+}
+
+
+- (void)showSavedView
+{
+    BDKNotifyHUD *hud = [BDKNotifyHUD notifyHUDWithImage:[UIImage imageNamed:@"checkmark.png"]
+                                                    text:kUILabelTextSaved];
+    hud.destinationOpacity = 0.30f;
+    hud.center = CGPointMake(self.view.center.x, self.view.center.y - 20);
+    hud.tag = kSavedViewTag;
+    [self.view addSubview:hud];
+    [hud presentWithDuration:0.5f speed:0.1f inView:self.view completion:^{
+        [hud removeFromSuperview];
+    }];
 }
 
 @end

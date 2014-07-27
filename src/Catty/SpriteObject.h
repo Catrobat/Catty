@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2013 The Catrobat Team
+ *  Copyright (C) 2010-2014 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -86,6 +86,8 @@
 
 - (NSString*)xmlReferencePathForDestinationLook:(Look*)destinationLook;
 
+- (instancetype)deepCopy;
+
 - (GDataXMLElement*)toXML;
 
 // events
@@ -110,12 +112,22 @@
 - (CGSize)dimensionsOfLook:(Look*)look;
 - (NSUInteger)fileSizeOfSound:(Sound*)sound;
 - (CGFloat)durationOfSound:(Sound*)sound;
+- (NSArray*)allLookNames;
+- (NSArray*)allSoundNames;
 
 // actions
 - (void)changeLook:(Look*)look;
 - (void)setLook;
+- (void)removeLooks:(NSArray*)looks;
 - (void)removeLook:(Look*)look;
+- (void)removeSounds:(NSArray*)sounds;
 - (void)removeSound:(Sound*)sound;
+- (void)renameLook:(Look*)look toName:(NSString*)newLookName;
+- (void)renameSound:(Sound*)sound toName:(NSString*)newSoundName;
+- (BOOL)hasLook:(Look*)look;
+- (BOOL)hasSound:(Sound*)sound;
+- (Look*)copyLook:(Look*)sourceLook withNameForCopiedLook:(NSString*)nameOfCopiedLook;
+- (Sound*)copySound:(Sound*)sourceSound withNameForCopiedSound:(NSString*)nameOfCopiedSound;
 
 //- (void)glideToPosition:(CGPoint)position withDurationInSeconds:(float)durationInSeconds fromScript:(Script*)script;
 //- (void)hide;

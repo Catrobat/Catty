@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2013 The Catrobat Team
+ *  Copyright (C) 2010-2014 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -41,20 +41,20 @@
 
 @interface SpriteObject()
 
-@property (nonatomic, strong) NSMutableArray *activeScripts;
-@property (nonatomic, strong) NSMutableDictionary *sounds;
+//@property (nonatomic, strong) NSMutableArray *activeScripts; // not in use at the moment
+//@property (nonatomic, strong) NSMutableDictionary *sounds; // not in use at the moment
 
 @end
 
 @implementation SpriteObject
 
-- (id)init
-{
-    if (self = [super init]) {
-        self.activeScripts = [[NSMutableArray alloc] initWithCapacity:self.scriptList.count];
-    }
-    return self;
-}
+//- (id)init
+//{
+//    if (self = [super init]) {
+//        self.activeScripts = [[NSMutableArray alloc] initWithCapacity:self.scriptList.count]; // not in use at the moment
+//    }
+//    return self;
+//}
 
 -(NSMutableArray*)lookList
 {
@@ -243,6 +243,40 @@
         indexSuffix = [NSString stringWithFormat:@"[%lu]", (unsigned long)(lookIndex + 1)];
     }
     return [NSString stringWithFormat:@"../../../../../lookList/look%@", indexSuffix];
+}
+
+- (instancetype)deepCopy
+{
+    // get shallow copy
+    SpriteObject *newObject = (SpriteObject*)[self copy];
+
+    // reset (just to ensure)
+    newObject.spriteManagerDelegate = nil;
+    newObject.broadcastWaitDelegate = nil;
+    newObject.currentLook = nil;
+    newObject.currentUIImageLook = nil;
+    newObject.numberOfObjectsWithoutBackground = 0;
+
+    // deep copy
+    newObject.lookList = [NSMutableArray arrayWithCapacity:[self.lookList count]];
+    for (id lookObject in self.lookList) {
+        if ([lookObject isKindOfClass:[Look class]]) {
+            [newObject.lookList addObject:[((Look*)lookObject) deepCopy]];
+        }
+    }
+    newObject.soundList = [NSMutableArray arrayWithCapacity:[self.soundList count]];
+    for (id soundObject in self.soundList) {
+        if ([soundObject isKindOfClass:[Sound class]]) {
+            [newObject.soundList addObject:[((Sound*)soundObject) deepCopy]];
+        }
+    }
+    newObject.scriptList = [NSMutableArray arrayWithCapacity:[self.scriptList count]];
+    for (id scriptObject in self.scriptList) {
+        if ([scriptObject isKindOfClass:[Script class]]) {
+            [newObject.scriptList addObject:[((Script*)scriptObject) deepCopy]];
+        }
+    }
+    return newObject;
 }
 
 - (GDataXMLElement*)toXML
@@ -437,6 +471,28 @@
     return [[AudioManager sharedAudioManager] durationOfSoundWithFilePath:path];
 }
 
+- (NSArray*)allLookNames
+{
+    NSMutableArray *lookNames = [NSMutableArray arrayWithCapacity:[self.lookList count]];
+    for (id look in self.lookList) {
+        if ([look isKindOfClass:[Look class]]) {
+            [lookNames addObject:((Look*)look).name];
+        }
+    }
+    return [lookNames copy];
+}
+
+- (NSArray*)allSoundNames
+{
+    NSMutableArray *soundNames = [NSMutableArray arrayWithCapacity:[self.soundList count]];
+    for (id sound in self.soundList) {
+        if ([sound isKindOfClass:[Sound class]]) {
+            [soundNames addObject:((Sound*)sound).name];
+        }
+    }
+    return [soundNames copy];
+}
+
 - (void)changeLook:(Look *)look
 {
     UIImage* image = [UIImage imageWithContentsOfFile:[self pathForLook:look]];
@@ -489,45 +545,157 @@
     
 }
 
-- (void)removeLook:(Look*)look
+- (void)removeLookFromList:(Look*)look
 {
     // do not use NSArray's removeObject here
     // => if isEqual is overriden this would lead to wrong results
     NSUInteger index = 0;
     for (Look *currentLook in self.lookList) {
-        if (currentLook == look) {
-            // TODO: remove image from disk that is not needed any more...
-            //       check if image is used by other look-object in that or in other object...
-            [self.lookList removeObjectAtIndex:index];
-            break;
+        if (currentLook != look) {
+            ++index;
+            continue;
         }
-        ++index;
+
+        // count references in all object of that look image
+        NSUInteger lookImageReferenceCounter = 0;
+        for (SpriteObject *object in self.program.objectList) {
+            for (Look *lookToCheck in object.lookList) {
+                if ([lookToCheck.fileName isEqualToString:look.fileName]) {
+                    ++lookImageReferenceCounter;
+                }
+            }
+        }
+        // if image is not used by other objects, delete it
+        if (lookImageReferenceCounter <= 1) {
+            AppDelegate *appDelegate = (AppDelegate*)[UIApplication sharedApplication].delegate;
+            [appDelegate.fileManager deleteFile:[self previewImagePathForLookAtIndex:index]];
+            [appDelegate.fileManager deleteFile:[self pathForLook:look]];
+        }
+        [self.lookList removeObjectAtIndex:index];
+        break;
     }
 }
 
-- (void)removeSound:(Sound*)sound
+- (void)removeLooks:(NSArray*)looks
+{
+    for (id look in looks) {
+        if ([look isKindOfClass:[Look class]]) {
+            [self removeLookFromList:look];
+        }
+    }
+    [self.program saveToDisk];
+}
+
+- (void)removeLook:(Look*)look
+{
+    [self removeLookFromList:look];
+    [self.program saveToDisk];
+}
+
+- (void)removeSoundFromList:(Sound*)sound
 {
     // do not use NSArray's removeObject here
     // => if isEqual is overriden this would lead to wrong results
     NSUInteger index = 0;
     for (Sound *currentSound in self.soundList) {
-        if (currentSound == sound) {
-            // TODO: remove sound from disk that is not needed any more...
-            //       check if sound is used by other sound-object in that or in other object...
-            [self.soundList removeObjectAtIndex:index];
-            break;
+        if (currentSound != sound) {
+            ++index;
+            continue;
         }
-        ++index;
+        
+        // count references in all object of that sound file
+        NSUInteger soundReferenceCounter = 0;
+        for (SpriteObject *object in self.program.objectList) {
+            for (Sound *soundToCheck in object.soundList) {
+                if ([soundToCheck.fileName isEqualToString:sound.fileName]) {
+                    ++soundReferenceCounter;
+                }
+            }
+        }
+        // if sound is not used by other objects, delete it
+        if (soundReferenceCounter <= 1) {
+            AppDelegate *appDelegate = (AppDelegate*)[UIApplication sharedApplication].delegate;
+            [appDelegate.fileManager deleteFile:[self pathForSound:sound]];
+        }
+        [self.soundList removeObjectAtIndex:index];
+        break;
     }
 }
 
+- (void)removeSounds:(NSArray*)sounds
+{
+    for (id sound in sounds) {
+        if ([sound isKindOfClass:[Sound class]]) {
+            [self removeSoundFromList:sound];
+        }
+    }
+    [self.program saveToDisk];
+}
+
+- (void)removeSound:(Sound*)sound
+{
+    [self removeSoundFromList:sound];
+    [self.program saveToDisk];
+}
+
+- (BOOL)hasLook:(Look*)look
+{
+    return [self.lookList containsObject:look];
+}
+
+- (BOOL)hasSound:(Sound*)sound
+{
+    return [self.soundList containsObject:sound];
+}
+
+- (Look*)copyLook:(Look*)sourceLook withNameForCopiedLook:(NSString*)nameOfCopiedLook
+{
+    if (! [self hasLook:sourceLook]) {
+        return nil;
+    }
+    Look *copiedLook = [sourceLook deepCopy];
+    copiedLook.name = [Util uniqueName:nameOfCopiedLook existingNames:[self allLookNames]];
+    [self.lookList addObject:copiedLook];
+    [self.program saveToDisk];
+    return copiedLook;
+}
+
+- (Sound*)copySound:(Sound*)sourceSound withNameForCopiedSound:(NSString*)nameOfCopiedSound
+{
+    if (! [self hasSound:sourceSound]) {
+        return nil;
+    }
+    Sound *copiedSound = [sourceSound deepCopy];
+    copiedSound.name = [Util uniqueName:nameOfCopiedSound existingNames:[self allSoundNames]];
+    [self.soundList addObject:copiedSound];
+    [self.program saveToDisk];
+    return copiedSound;
+}
+
+- (void)renameLook:(Look*)look toName:(NSString*)newLookName
+{
+    if (! [self hasLook:look] || [look.name isEqualToString:newLookName]) {
+        return;
+    }
+    look.name = [Util uniqueName:newLookName existingNames:[self allLookNames]];
+    [self.program saveToDisk];
+}
+
+- (void)renameSound:(Sound*)sound toName:(NSString*)newSoundName
+{
+    if (! [self hasSound:sound] || [sound.name isEqualToString:newSoundName]) {
+        return;
+    }
+    sound.name = [Util uniqueName:newSoundName existingNames:[self allSoundNames]];
+    [self.program saveToDisk];
+}
+
 #pragma mark - Broadcast
--(void)broadcast:(NSString *)message
+- (void)broadcast:(NSString*)message
 {
     NSDebug(@"Broadcast: %@, Object: %@", message, self.name);
     [[NSNotificationCenter defaultCenter] postNotificationName:message object:self];
 }
-
 
 - (void)performBroadcastScript:(NSNotification*)notification
 {
@@ -544,13 +712,10 @@
             }
         }
     }
-    
     //dispatch_release(group);
-
 }
 
-
--(void)broadcastAndWait:(NSString *)message
+- (void)broadcastAndWait:(NSString*)message
 {
     if ([[NSThread currentThread] isMainThread]) {
         NSLog(@" ");
@@ -572,7 +737,7 @@
 
 }
 
--(void)performBroadcastWaitScriptWithMessage:(NSString *)message with:(dispatch_semaphore_t)sema1
+- (void)performBroadcastWaitScriptWithMessage:(NSString*)message with:(dispatch_semaphore_t)sema1
 {
 
     for (Script *script in self.scriptList) {

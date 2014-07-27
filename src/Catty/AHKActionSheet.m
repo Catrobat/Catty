@@ -5,13 +5,17 @@
 //  Created by Arkadiusz on 08-04-14.
 //  Copyright (c) 2014 Arkadiusz Holko. All rights reserved.
 //
+//  Modified by Catrobat Team
+//
 
 #import <QuartzCore/QuartzCore.h>
 #import "AHKActionSheet.h"
 #import "AHKActionSheetViewController.h"
 #import "UIImage+AHKAdditions.h"
 #import "UIWindow+AHKAdditions.h"
-
+// *** CATROBAT-TEAM MODIFICATION BEGIN ***
+#import "LanguageTranslationDefines.h"
+// *** CATROBAT-TEAM MODIFICATION END ***
 
 static const NSTimeInterval kDefaultAnimationDuration = 0.5f;
 // Length of the range at which the blurred background is being hidden when the user scrolls the tableView to the top.
@@ -85,7 +89,10 @@ static const CGFloat kCancelButtonShadowHeightRatio = 0.333f;
 
     if (self) {
         _title = [title copy];
-        _cancelButtonTitle = @"Cancel";
+        // *** CATROBAT-TEAM MODIFICATION BEGIN ***
+//        _cancelButtonTitle = @"Cancel"; // before
+        _cancelButtonTitle = kUIActionSheetButtonTitleCancel; // after
+        // *** CATROBAT-TEAM MODIFICATION END ***
     }
 
     return self;

@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2013 The Catrobat Team
+ *  Copyright (C) 2010-2014 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -21,9 +21,9 @@
  */
 
 #import <UIKit/UIKit.h>
-#import "WebViewController.h"
+#import "BaseWebViewController.h"
 
-@interface HelpWebViewController : WebViewController
+@interface HelpWebViewController : BaseWebViewController
 
 
 @end

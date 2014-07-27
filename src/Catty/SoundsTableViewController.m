@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2013 The Catrobat Team
+ *  Copyright (C) 2010-2014 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -41,30 +41,34 @@
 #import <AVFoundation/AVFoundation.h>
 #import "LanguageTranslationDefines.h"
 #import "RuntimeImageCache.h"
+#import "SharkfoodMuteSwitchDetector.h"
+#import "CatrobatActionSheet.h"
+#import "DataTransferMessage.h"
 
 // TODO: outsource...
 #define kUserDetailsShowDetailsKey @"showDetails"
 #define kUserDetailsShowDetailsSoundsKey @"detailsForSounds"
 
-#define kPocketCodeRecorderActionSheetButton @"pocketCodeRecorder"
-#define kSelectMusicTrackActionSheetButton @"selectMusicTrack"
-
-@interface SoundsTableViewController () <UIActionSheetDelegate, AVAudioPlayerDelegate, SWTableViewCellDelegate>
+@interface SoundsTableViewController () <CatrobatActionSheetDelegate, AVAudioPlayerDelegate,
+                                         SWTableViewCellDelegate>
 @property (nonatomic) BOOL useDetailCells;
-@property (nonatomic, strong) NSMutableDictionary* addSoundActionSheetBtnIndexes;
 @property (atomic, strong) Sound *currentPlayingSong;
 @property (atomic, weak) UITableViewCell<CatrobatImageCell> *currentPlayingSongCell;
+@property (nonatomic, strong) SharkfoodMuteSwitchDetector *silentDetector;
 
 @end
 
 @implementation SoundsTableViewController
 
-#pragma mark - getters and setters
-- (NSMutableDictionary*)addSoundActionSheetBtnIndexes
+#pragma mark - data helpers
+static NSCharacterSet *blockedCharacterSet = nil;
+- (NSCharacterSet*)blockedCharacterSet
 {
-    if (_addSoundActionSheetBtnIndexes == nil)
-        _addSoundActionSheetBtnIndexes = [NSMutableDictionary dictionaryWithCapacity:3];
-    return _addSoundActionSheetBtnIndexes;
+    if (! blockedCharacterSet) {
+        blockedCharacterSet = [[NSCharacterSet characterSetWithCharactersInString:kTextFieldAllowedCharacters]
+                               invertedSet];
+    }
+    return blockedCharacterSet;
 }
 
 #pragma mark - initialization
@@ -78,6 +82,19 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+
+    // automatically stop current playing sound after the user turns
+    // on the silent switcher on the iPhone/iPad (device is in silent state)
+    self.silentDetector = [SharkfoodMuteSwitchDetector shared];
+    // must be weak (!!) since SoundsTableViewController is holding the SharkfoodMuteSwitchDetector
+    // instance strongly!
+    __weak SoundsTableViewController *soundsTableViewController = self;
+    self.silentDetector.silentNotify = ^(BOOL silent){
+        if (silent) {
+            [soundsTableViewController stopAllSounds];
+        }
+    };
+
     NSDictionary *showDetails = [[NSUserDefaults standardUserDefaults] objectForKey:kUserDetailsShowDetailsKey];
     NSNumber *showDetailsSoundsValue = (NSNumber*)[showDetails objectForKey:kUserDetailsShowDetailsSoundsKey];
     self.useDetailCells = [showDetailsSoundsValue boolValue];
@@ -137,7 +154,7 @@
         destructiveButtonTitle:nil
              otherButtonTitles:options
                            tag:kEditSoundsActionSheetTag
-                          view:self.view];
+                          view:self.navigationController.view];
 }
 
 - (void)addSoundToObjectAction:(Sound*)sound
@@ -150,8 +167,11 @@
     AppDelegate *delegate = (AppDelegate*)[UIApplication sharedApplication].delegate;
     NSString *oldPath = [NSString stringWithFormat:@"%@/%@", delegate.fileManager.documentsDirectory, sound.fileName];
     NSData *data = [NSData dataWithContentsOfFile:oldPath];
-    NSString *newFileName = [NSString stringWithFormat:@"%@%@%@", [data md5], kResourceFileNameSeparator, sound.fileName];
-    sound.fileName = newFileName;
+    NSString *fileExtension = [[sound.fileName componentsSeparatedByString:@"."] lastObject];
+    sound.fileName = [NSString stringWithFormat:@"%@%@%@.%@",
+                      [[[data md5] stringByReplacingOccurrencesOfString:@"-" withString:@""] uppercaseString],
+                      kResourceFileNameSeparator,
+                      sound.name, fileExtension];
     NSString *newPath = [self.object pathForSound:sound];
     [delegate.fileManager copyExistingFileAtPath:oldPath toPath:newPath overwrite:YES];
     [self.object.soundList addObject:sound];
@@ -159,6 +179,30 @@
     [self showPlaceHolder:NO];
     NSIndexPath *indexPath = [NSIndexPath indexPathForRow:(numberOfRowsInLastSection - 1) inSection:0];
     [self.tableView insertRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationNone];
+    // TODO: save to disk (async)...
+}
+
+- (void)copySoundActionWithSourceSound:(Sound*)sourceSound
+{
+    [self showLoadingView];
+    NSString *nameOfCopiedSound = [Util uniqueName:sourceSound.name existingNames:[self.object allSoundNames]];
+    [self.object copySound:sourceSound withNameForCopiedSound:nameOfCopiedSound];
+    NSInteger numberOfRowsInLastSection = [self tableView:self.tableView numberOfRowsInSection:0];
+    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:(numberOfRowsInLastSection - 1) inSection:0];
+    [self.tableView insertRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationBottom];
+}
+
+- (void)renameSoundActionToName:(NSString*)newSoundName sound:(Sound*)sound
+{
+    if ([newSoundName isEqualToString:sound.name])
+        return;
+
+    [self showLoadingView];
+    newSoundName = [Util uniqueName:newSoundName existingNames:[self.object allSoundNames]];
+    [self.object renameSound:sound toName:newSoundName];
+    NSUInteger soundIndex = [self.object.soundList indexOfObject:sound];
+    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:soundIndex inSection:0];
+    [self.tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationNone];
 }
 
 - (void)confirmDeleteSelectedSoundsAction:(id)sender
@@ -169,17 +213,12 @@
         [super exitEditingMode];
         return;
     }
-    [self performActionOnConfirmation:@selector(deleteSelectedSoundsAction)
-                       canceledAction:@selector(exitEditingMode)
-                               target:self
-                         confirmTitle:(([selectedRowsIndexPaths count] != 1)
-                                       ? kUIAlertViewTitleDeleteMultipleSounds
-                                       : kUIAlertViewTitleDeleteSingleSound)
-                       confirmMessage:kUIAlertViewMessageIrreversibleAction];
+    [self deleteSelectedSoundsAction];
 }
 
 - (void)deleteSelectedSoundsAction
 {
+    [self showLoadingView];
     [self stopAllSounds];
     NSArray *selectedRowsIndexPaths = [self.tableView indexPathsForSelectedRows];
     NSMutableArray *soundsToRemove = [NSMutableArray arrayWithCapacity:[selectedRowsIndexPaths count]];
@@ -187,9 +226,7 @@
         Sound *sound = (Sound*)[self.object.soundList objectAtIndex:selectedRowIndexPath.row];
         [soundsToRemove addObject:sound];
     }
-    for (Sound *soundToRemove in soundsToRemove) {
-        [self.object removeSound:soundToRemove];
-    }
+    [self.object removeSounds:soundsToRemove];
     [super exitEditingMode];
     [self.tableView deleteRowsAtIndexPaths:selectedRowsIndexPaths withRowAnimation:UITableViewRowAnimationNone];
     [super showPlaceHolder:(! (BOOL)[self.object.soundList count])];
@@ -197,6 +234,7 @@
 
 - (void)deleteSoundForIndexPath:(NSIndexPath*)indexPath
 {
+    [self showLoadingView];
     [self stopAllSounds];
     Sound *sound = (Sound*)[self.object.soundList objectAtIndex:indexPath.row];
     [self.object removeSound:sound];
@@ -288,8 +326,10 @@
     return imageCell;
 }
 
+#pragma mark - player actions
 - (void)playSound:(id)sender
 {
+    // TODO: too many nested codeblocks...
     UITapGestureRecognizer *gesture = (UITapGestureRecognizer*)sender;
     if ([gesture.view isKindOfClass:[UIImageView class]]) {
         UIImageView *imageView = (UIImageView*)gesture.view;
@@ -301,6 +341,11 @@
             if (indexPath.row < [self.object.soundList count]) {
                 // acquire lock
                 @synchronized(self) {
+                    if (self.silentDetector.isMute) {
+                        [Util alertWithText:(IS_IPHONE ? kUIAlertViewMessageDeviceIsInMutedStateIPhone
+                                                       : kUIAlertViewMessageDeviceIsInMutedStateIPad)];
+                        return;
+                    }
                     Sound *sound = (Sound*)[self.object.soundList objectAtIndex:indexPath.row];
                     BOOL isPlaying = sound.isPlaying;
                     if (self.currentPlayingSong && self.currentPlayingSongCell) {
@@ -349,19 +394,24 @@
 #pragma mark - swipe delegates
 - (void)swipeableTableViewCell:(SWTableViewCell *)cell didTriggerRightUtilityButtonWithIndex:(NSInteger)index
 {
+    [cell hideUtilityButtonsAnimated:YES];
     if (index == 0) {
         // More button was pressed
-        UIAlertView *alertTest = [[UIAlertView alloc] initWithTitle:@"Hello"
-                                                            message:@"More more more"
-                                                           delegate:nil
-                                                  cancelButtonTitle:@"Cancel"
-                                                  otherButtonTitles:nil];
-        [alertTest show];
-        [cell hideUtilityButtonsAnimated:YES];
+        NSArray *options = @[kUIActionSheetButtonTitleCopy, kUIActionSheetButtonTitleRename];
+        CatrobatActionSheet *actionSheet = [Util actionSheetWithTitle:kUIActionSheetTitleEditSound
+                                                             delegate:self
+                                               destructiveButtonTitle:nil
+                                                    otherButtonTitles:options
+                                                                  tag:kEditSoundActionSheetTag
+                                                                 view:self.navigationController.view];
+        NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
+        NSDictionary *payload = @{ kDTPayloadSound : [self.object.soundList objectAtIndex:indexPath.row] };
+        DataTransferMessage *message = [DataTransferMessage messageForActionType:kDTMActionEditSound
+                                                                     withPayload:[payload mutableCopy]];
+        actionSheet.dataTransferMessage = message;
     } else if (index == 1) {
         // Delete button was pressed
         NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
-        [cell hideUtilityButtonsAnimated:YES];
         [self performActionOnConfirmation:@selector(deleteSoundForIndexPath:)
                            canceledAction:nil
                                withObject:indexPath
@@ -428,8 +478,8 @@
     }
 }
 
-#pragma mark - UIActionSheetDelegate Handlers
-- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
+#pragma mark - action sheet handlers
+- (void)actionSheet:(CatrobatActionSheet*)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
 {
     if (actionSheet.tag == kEditSoundsActionSheetTag) {
         BOOL showHideSelected = NO;
@@ -462,13 +512,29 @@
             [self stopAllSounds];
             [self.tableView reloadData];
         }
+    } else if (actionSheet.tag == kEditSoundActionSheetTag) {
+        if (buttonIndex == 0) {
+            // Copy sound button
+            NSDictionary *payload = (NSDictionary*)actionSheet.dataTransferMessage.payload;
+            [self copySoundActionWithSourceSound:(Sound*)payload[kDTPayloadSound]];
+        } else if (buttonIndex == 1) {
+            // Rename look button
+            NSDictionary *payload = (NSDictionary*)actionSheet.dataTransferMessage.payload;
+            Sound *sound = (Sound*)payload[kDTPayloadSound];
+            [Util askUserForTextAndPerformAction:@selector(renameSoundActionToName:sound:)
+                                          target:self
+                                      withObject:sound
+                                     promptTitle:kUIAlertViewTitleRenameSound
+                                   promptMessage:[NSString stringWithFormat:@"%@:", kUIAlertViewMessageSoundName]
+                                     promptValue:sound.name
+                               promptPlaceholder:kUIAlertViewPlaceholderEnterSoundName
+                                  minInputLength:kMinNumOfSoundNameCharacters
+                                  maxInputLength:kMaxNumOfSoundNameCharacters
+                             blockedCharacterSet:[self blockedCharacterSet]
+                        invalidInputAlertMessage:kUIAlertViewMessageInvalidSoundName];
+        }
     } else if (actionSheet.tag == kAddSoundActionSheetTag) {
-        NSString *action = self.addSoundActionSheetBtnIndexes[@(buttonIndex)];
-        if ([action isEqualToString:kPocketCodeRecorderActionSheetButton]) {
-            // Pocket Code Recorder
-            NSLog(@"Pocket Code Recorder");
-            [Util showComingSoonAlertView];
-        } else if ([action isEqualToString:kSelectMusicTrackActionSheetButton]) {
+        if (buttonIndex == 0) {
             // Select music track
             NSLog(@"Select music track");
             AppDelegate *delegate = (AppDelegate*)[UIApplication sharedApplication].delegate;
@@ -489,20 +555,6 @@
     }
 }
 
-#pragma mark - UIActionSheet Views
-- (void)showAddSoundActionSheet
-{
-    UIActionSheet *sheet = [[UIActionSheet alloc] init];
-    sheet.title = kUIActionSheetTitleAddSound;
-    sheet.delegate = self;
-//    self.addSoundActionSheetBtnIndexes[@([sheet addButtonWithTitle:kUIActionSheetButtonTitlePocketCodeRecorder])] = kPocketCodeRecorderActionSheetButton;
-    self.addSoundActionSheetBtnIndexes[@([sheet addButtonWithTitle:kUIActionSheetButtonTitleChooseSound])] = kSelectMusicTrackActionSheetButton;
-    sheet.cancelButtonIndex = [sheet addButtonWithTitle:kUIActionSheetButtonTitleCancel];
-    sheet.tag = kAddSoundActionSheetTag;
-    sheet.actionSheetStyle = UIActionSheetStyleDefault;
-    [sheet showInView:self.view];
-}
-
 #pragma mark - Helper Methods
 - (void)stopAllSounds
 {
@@ -517,7 +569,12 @@
 
 - (void)addSoundAction:(id)sender
 {
-    [self showAddSoundActionSheet];
+    [Util actionSheetWithTitle:kUIActionSheetTitleAddSound
+                      delegate:self
+        destructiveButtonTitle:nil
+             otherButtonTitles:@[/*kUIActionSheetButtonTitlePocketCodeRecorder, */kUIActionSheetButtonTitleChooseSound]
+                           tag:kAddSoundActionSheetTag
+                          view:self.navigationController.view];
 }
 
 - (void)playSceneAction:(id)sender

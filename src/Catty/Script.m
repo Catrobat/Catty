@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2013 The Catrobat Team
+ *  Copyright (C) 2010-2014 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -529,22 +529,37 @@
     return [NSStringFromClass([self class]) firstCharacterLowercaseString];
 }
 
+- (instancetype)deepCopy
+{
+    // shallow copy
+    Script *copiedScript = [self copy];
+
+    // reset (just to ensure)
+    copiedScript.currentBrickIndex = 0;
+    copiedScript.allowRunNextAction = YES;
+    copiedScript.action = nil;
+
+    // deep copy
+    copiedScript.brickList = [NSMutableArray arrayWithCapacity:[self.brickList count]];
+    for (id brick in self.brickList) {
+        if ([brick isKindOfClass:[Brick class]]) {
+            [copiedScript.brickList addObject:[brick copy]]; // FIXME:/TODO: there are some bricks that refer to other sound, look, sprite objects...
+        }
+    }
+    return copiedScript;
+}
+
 #pragma mark - Description
 - (NSString*)description
 {
     NSMutableString *ret = [[NSMutableString alloc] initWithString:@"Script"];
-    [ret appendFormat:@"(%@)", self.object.name ];
-    
-    if ([self.brickList count] > 0)
-    {
+    [ret appendFormat:@"(%@)", self.object.name];
+    if ([self.brickList count] > 0) {
         [ret appendString:@"Bricks: \r"];
-        for (Brick *brick in self.brickList)
-        {
+        for (Brick *brick in self.brickList) {
             [ret appendFormat:@"%@\r", brick];
         }
-    }
-    else 
-    {
+    } else {
         [ret appendString:@"Bricks array empty!\r"];
     }
     

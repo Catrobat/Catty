@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2013 The Catrobat Team
+ *  Copyright (C) 2010-2014 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -31,6 +31,9 @@
 #import "Program.h"
 #import <MobileCoreServices/MobileCoreServices.h>
 #import "LanguageTranslationDefines.h"
+#import "UIDefines.h"
+#import "BaseWebViewController.h"
+#import "ProgramLoadingInfo.h"
 
 @interface FileManager()
 
@@ -43,6 +46,7 @@
 
 
 @property (nonatomic, strong) NSString *projectName;
+@property (nonatomic, strong) NSURLSession *downloadSession;
 
 
 @end
@@ -123,9 +127,11 @@
         if (isPlayable) {
             Sound *sound = [[Sound alloc] init];
             NSArray *fileParts = [fileName componentsSeparatedByString:@"."];
-            NSString *fileNameWithoutExtension = ([fileParts count] ? [fileParts objectAtIndex:0] : fileName);
+            NSString *fileNameWithoutExtension = ([fileParts count] ? [fileParts firstObject] : fileName);
             sound.fileName = fileName;
-            sound.name = fileNameWithoutExtension;
+            NSRange stringRange = {0, MIN([fileNameWithoutExtension length], kMaxNumOfSoundNameCharacters)};
+            stringRange = [fileNameWithoutExtension rangeOfComposedCharacterSequencesForRange:stringRange];
+            sound.name = [fileNameWithoutExtension substringWithRange:stringRange];
             sound.playing = NO;
             [sounds addObject:sound];
         }
@@ -184,10 +190,16 @@
     if (! [self fileExists:oldPath])
         return;
 
-    if ((! [self fileExists:newPath]) || overwrite) {
-        NSData *data = [NSData dataWithContentsOfFile:oldPath];
-        [data writeToFile:newPath atomically:YES];
+    if ([self fileExists:newPath]) {
+        if (overwrite) {
+            [self deleteFile:newPath];
+        } else {
+            return;
+        }
     }
+
+    NSData *data = [NSData dataWithContentsOfFile:oldPath];
+    [data writeToFile:newPath atomically:YES];
 }
 
 - (void)copyExistingDirectoryAtPath:(NSString*)oldPath toPath:(NSString*)newPath
@@ -204,10 +216,18 @@
     NSLogError(error);
 }
 
-- (void)moveExistingFileAtPath:(NSString*)oldPath toPath:(NSString*)newPath
+- (void)moveExistingFileAtPath:(NSString*)oldPath toPath:(NSString*)newPath overwrite:(BOOL)overwrite
 {
     if (! [self fileExists:oldPath] || [oldPath isEqualToString:newPath])
         return;
+
+    if ([self fileExists:newPath]) {
+        if (overwrite) {
+            [self deleteFile:newPath];
+        } else {
+            return;
+        }
+    }
 
     // Attempt the move
     NSURL *oldURL = [NSURL fileURLWithPath:oldPath];
@@ -232,10 +252,17 @@
     NSLogError(error);
 }
 
+- (void)deleteFile:(NSString*)path
+{
+    NSError *error = nil;
+    [[NSFileManager defaultManager] removeItemAtPath:path error:&error];
+    NSLogError(error);
+}
+
 - (void)deleteDirectory:(NSString *)path
 {
     NSError *error = nil;
-    [[NSFileManager defaultManager]removeItemAtPath:path error:&error];
+    [[NSFileManager defaultManager] removeItemAtPath:path error:&error];
     NSLogError(error);
 }
 
@@ -307,7 +334,12 @@
         break;
     }
     if (! areAnyProgramsLeft) {
-        [self addBundleProgramWithName:kDefaultProgramName];
+        [self addBundleProgramWithName:kDefaultProgramBundleName];
+        ProgramLoadingInfo *loadingInfo = [[ProgramLoadingInfo alloc] init];
+        loadingInfo.basePath = [NSString stringWithFormat:@"%@%@/", [Program basePath], kDefaultProgramBundleName];
+        loadingInfo.visibleName = kDefaultProgramBundleName;
+        Program *program = [Program programWithLoadingInfo:loadingInfo];
+        [program renameToProgramName:kDefaultProgramName];
         [Util lastProgram];
     }
 }
@@ -335,16 +367,19 @@
 {
     self.projectName = name;
 
-    NSURLSessionConfiguration *sessionConfig =
-    [NSURLSessionConfiguration defaultSessionConfiguration];
+
     
-    NSURLSession *session =
-    [NSURLSession sessionWithConfiguration:sessionConfig
-                                  delegate:self
-                             delegateQueue:nil];
+    if (!self.downloadSession) {
+        NSURLSessionConfiguration *sessionConfig =
+        [NSURLSessionConfiguration backgroundSessionConfiguration:@"at.tugraz"];
+        self.downloadSession = [NSURLSession sessionWithConfiguration:sessionConfig
+                                                             delegate:self
+                                                        delegateQueue:nil];
+    }
+
 
     NSURLSessionDownloadTask *getProgramTask =
-    [session downloadTaskWithURL:url];
+    [self.downloadSession downloadTaskWithURL:url];
     
     [self.programTaskDict setObject:url forKey:getProgramTask];
     [self.programNameDict setObject:name forKey:getProgramTask];
@@ -354,18 +389,17 @@
 
 - (void)downloadScreenshotFromURL:(NSURL*)url andBaseUrl:(NSURL*)baseurl andName:(NSString*) name
 {
-
     
-    NSURLSessionConfiguration *sessionConfig =
-    [NSURLSessionConfiguration defaultSessionConfiguration];
-    
-    NSURLSession *session =
-    [NSURLSession sessionWithConfiguration:sessionConfig
-                                  delegate:self
-                             delegateQueue:nil];
+    if (!self.downloadSession) {
+        NSURLSessionConfiguration *sessionConfig =
+        [NSURLSessionConfiguration backgroundSessionConfiguration:@"at.tugraz"];
+        self.downloadSession = [NSURLSession sessionWithConfiguration:sessionConfig
+                                                             delegate:self
+                                                        delegateQueue:nil];
+    }
     
     NSURLSessionDownloadTask *getImageTask =
-    [session downloadTaskWithURL:url];
+    [self.downloadSession downloadTaskWithURL:url];
     
     [self.imageTaskDict setObject:url forKey:getImageTask];
     [self.imageNameDict setObject:name forKey:getImageTask];
@@ -386,8 +420,6 @@
     [fileManager setAttributes:attributes ofItemAtPath:path error:&error];
     NSLogError(error);
 }
-
-
 
 - (NSString*)getFullPathForProgram:(NSString *)programName
 {
@@ -414,6 +446,8 @@
         dispatch_async(dispatch_get_main_queue(), ^{
             [self.delegate downloadFinishedWithURL:url];
         });
+    }else if ([self.delegate respondsToSelector:@selector(downloadFinishedWithURL:)] && [self.delegate isKindOfClass:[BaseWebViewController class]]){
+        [self.delegate downloadFinishedWithURL:url];
     }
 
 }
@@ -449,7 +483,7 @@
     //storeDownloadedImage in connectionDidFinishLoading
     if (self.imageNameDict.count > 0) {
         NSArray *temp = [self.imageNameDict allKeysForObject:name];
-        if (temp) {
+        if (temp.count > 0) {
             NSURLSessionDownloadTask *key = [temp objectAtIndex:0];
             [self storeDownloadedImage:programData andTask:key];
         }
@@ -535,8 +569,10 @@
         [self.imageNameDict removeObjectForKey:downloadTask];
 
     }
-    [downloadTask suspend];
-
+//    [downloadTask suspend];
+    // Notification for reloading MyProgramViewController
+    [[NSNotificationCenter defaultCenter] postNotificationName:kProgramDownloadedNotification
+                                                        object:self];
     UIApplication* app = [UIApplication sharedApplication];
     app.networkActivityIndicatorVisible = NO;
 }
@@ -571,6 +607,8 @@
                 dispatch_async(dispatch_get_main_queue(), ^{
                     [self.delegate updateProgress:progress];
                 });
+            }else if ([self.delegate respondsToSelector:@selector(updateProgress:)] && [self.delegate isKindOfClass:[BaseWebViewController class]]){
+                [self.delegate updateProgress:progress];
             }
 
         }

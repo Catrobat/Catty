@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2013 The Catrobat Team
+ *  Copyright (C) 2010-2014 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -44,8 +44,9 @@
 - (BOOL)directoryExists:(NSString*)path;
 - (void)copyExistingFileAtPath:(NSString*)oldPath toPath:(NSString*)newPath overwrite:(BOOL)overwrite;
 - (void)copyExistingDirectoryAtPath:(NSString*)oldPath toPath:(NSString*)newPath;
-- (void)moveExistingFileAtPath:(NSString*)oldPath toPath:(NSString*)newPath;
+- (void)moveExistingFileAtPath:(NSString*)oldPath toPath:(NSString*)newPath overwrite:(BOOL)overwrite;
 - (void)moveExistingDirectoryAtPath:(NSString*)oldPath toPath:(NSString*)newPath;
+- (void)deleteFile:(NSString*)path;
 - (void)deleteDirectory:(NSString*)path;
 - (NSUInteger)sizeOfDirectoryAtPath:(NSString*)path;
 - (NSUInteger)sizeOfFileAtPath:(NSString*)path;

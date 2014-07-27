@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2013 The Catrobat Team
+ *  Copyright (C) 2010-2014 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -109,7 +109,7 @@
 - (AHKActionSheet *)brickSelectionMenu
 {
     if (!_brickSelectionMenu) {
-        _brickSelectionMenu = [[AHKActionSheet alloc]initWithTitle:NSLocalizedString(kSelectionMenuTitle, nil)];
+        _brickSelectionMenu = [[AHKActionSheet alloc]initWithTitle:kUIActionSheetTitleSelectBrickCategory];
         _brickSelectionMenu.blurTintColor = [UIColor colorWithWhite:0.0f alpha:0.7f];
         _brickSelectionMenu.separatorColor = UIColor.skyBlueColor;
         _brickSelectionMenu.titleTextAttributes = @{NSFontAttributeName : [UIFont systemFontOfSize:14.0f] ,
@@ -120,35 +120,35 @@
         _brickSelectionMenu.automaticallyTintButtonImages = NO;
 
         __weak typeof(self) weakSelf = self;
-        [_brickSelectionMenu addButtonWithTitle:NSLocalizedString(@"Control", nil)
+        [_brickSelectionMenu addButtonWithTitle:kUIActionSheetButtonTitleControl
                                           image:[UIImage imageNamed:@"orange_indicator"]
                                    type:AHKActionSheetButtonTypeDefault
                                   handler:^(AHKActionSheet *actionSheet) {
                                       [weakSelf showBrickSelectionView:kControlBrick];
                                   }];
         
-        [_brickSelectionMenu addButtonWithTitle:NSLocalizedString(@"Motion", nil)
+        [_brickSelectionMenu addButtonWithTitle:kUIActionSheetButtonTitleMotion
                                           image:[UIImage imageNamed:@"lightblue_indicator"]
                                            type:AHKActionSheetButtonTypeDefault
                                         handler:^(AHKActionSheet *actionSheet) {
                                             [weakSelf showBrickSelectionView:kMotionBrick];
                                         }];
         
-        [_brickSelectionMenu addButtonWithTitle:NSLocalizedString(@"Sound", nil)
+        [_brickSelectionMenu addButtonWithTitle:kUIActionSheetButtonTitleSound
                                           image:[UIImage imageNamed:@"pink_indicator"]
                                            type:AHKActionSheetButtonTypeDefault
                                         handler:^(AHKActionSheet *actionSheet) {
                                             [weakSelf showBrickSelectionView:kSoundBrick];
                                         }];
         
-        [_brickSelectionMenu addButtonWithTitle:NSLocalizedString(@"Looks", nil)
+        [_brickSelectionMenu addButtonWithTitle:kUIActionSheetButtonTitleLooks
                                           image:[UIImage imageNamed:@"green_indicator"]
                                            type:AHKActionSheetButtonTypeDefault
                                         handler:^(AHKActionSheet *actionSheet) {
                                             [weakSelf showBrickSelectionView:kLookBrick];
                                         }];
         
-        [_brickSelectionMenu addButtonWithTitle:NSLocalizedString(@"Variables", nil)
+        [_brickSelectionMenu addButtonWithTitle:kUIActionSheetButtonTitleVariables
                                           image:[UIImage imageNamed:@"red_indicator"]
                                            type:AHKActionSheetButtonTypeDefault
                                         handler:^(AHKActionSheet *actionSheet) {
