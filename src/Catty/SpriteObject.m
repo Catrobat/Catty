@@ -247,10 +247,7 @@
 
 - (instancetype)deepCopy
 {
-    // get shallow copy
-    SpriteObject *newObject = (SpriteObject*)[self copy];
-
-    // reset (just to ensure)
+    SpriteObject *newObject = [[SpriteObject alloc] init];
     newObject.spriteManagerDelegate = nil;
     newObject.broadcastWaitDelegate = nil;
     newObject.currentLook = nil;

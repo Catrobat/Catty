@@ -380,6 +380,9 @@
                                [document.rootElement XMLStringPrettyPrinted:YES]];
         // TODO: outsource this to file manager
         NSError *error = nil;
+        NSString *xmlPath = [NSString stringWithFormat:@"%@%@", [self projectPath], kProgramCodeFileName];
+        [xmlString writeToFile:xmlPath atomically:YES encoding:NSUTF8StringEncoding error:&error];
+        NSLogError(error);
 #ifdef SIMULATOR_DEBUGGING_ENABLED
         NSString *referenceXmlString = [NSString stringWithFormat:@"%@\n%@",
                                         kCatrobatXMLDeclaration,
@@ -405,12 +408,7 @@
 //        [task setStandardInput:[NSPipe pipe]]; // piping to NSLog-tty (terminal emulator)
 //        [task launch];
 //        [task release];
-
-#else
-        NSString *xmlPath = [NSString stringWithFormat:@"%@%@", [self projectPath], kProgramCodeFileName];
-        [xmlString writeToFile:xmlPath atomically:YES encoding:NSUTF8StringEncoding error:&error];
 #endif
-        NSLogError(error);
 
         // update last access time
         [[self class] updateLastModificationTimeForProgramWithName:self.header.programName];
@@ -491,9 +489,7 @@
     if (! [self hasObject:sourceObject]) {
         return nil;
     }
-    // TODO: issue #308 - deep copy for SpriteObjects
-//    SpriteObject *copiedObject = [sourceObject deepCopy];
-    SpriteObject *copiedObject = [sourceObject copy]; // shallow copy
+    SpriteObject *copiedObject = [sourceObject deepCopy];
     copiedObject.name = [Util uniqueName:nameOfCopiedObject existingNames:[self allObjectNames]];
     [self.objectList addObject:copiedObject];
     [self saveToDisk];

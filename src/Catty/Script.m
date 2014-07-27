@@ -543,7 +543,8 @@
     copiedScript.brickList = [NSMutableArray arrayWithCapacity:[self.brickList count]];
     for (id brick in self.brickList) {
         if ([brick isKindOfClass:[Brick class]]) {
-            [copiedScript.brickList addObject:[brick copy]]; // FIXME:/TODO: there are some bricks that refer to other sound, look, sprite objects...
+            // TODO: issue #308 - implement deep copy for all bricks here!!
+            [copiedScript.brickList addObject:brick]; // FIXME:/TODO: there are some bricks that refer to other sound, look, sprite objects...
         }
     }
     return copiedScript;
