@@ -116,6 +116,7 @@
 - (NSArray*)allSoundNames;
 
 // actions
+- (void)addLook:(Look*)look;
 - (void)changeLook:(Look*)look;
 - (void)setLook;
 - (void)removeLooks:(NSArray*)looks;

@@ -493,6 +493,17 @@
     return [soundNames copy];
 }
 
+- (void)addLook:(Look*)look
+{
+    if ([self hasLook:look]) {
+        return;
+    }
+    look.name = [Util uniqueName:look.name existingNames:[self allLookNames]];
+    [self.lookList addObject:look];
+    [self.program saveToDisk];
+    return;
+}
+
 - (void)changeLook:(Look *)look
 {
     UIImage* image = [UIImage imageWithContentsOfFile:[self pathForLook:look]];
