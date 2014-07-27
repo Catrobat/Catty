@@ -401,20 +401,63 @@
 
 + (NSString*)uniqueName:(NSString*)nameToCheck existingNames:(NSArray*)existingNames
 {
-    NSString *uniqueName = nameToCheck;
+    NSMutableString *uniqueName = [nameToCheck mutableCopy];
+    unichar lastChar = [uniqueName characterAtIndex:([uniqueName length] - 1)];
+    if (lastChar == 0x20) {
+        [uniqueName deleteCharactersInRange:NSMakeRange(([uniqueName length] - 1), 1)];
+    }
+
     NSUInteger counter = 0;
+    NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@"\\(\\d\\)"
+                                                                           options:NSRegularExpressionCaseInsensitive
+                                                                             error:NULL];
+    NSArray *results = [regex matchesInString:uniqueName
+                                      options:0
+                                        range:NSMakeRange(0, [uniqueName length])];
+    if ([results count]) {
+        BOOL duplicate = NO;
+        for (NSString *existingName in existingNames) {
+            if ([existingName isEqualToString:uniqueName]) {
+                duplicate = YES;
+                break;
+            }
+        }
+        if (! duplicate) {
+            return [uniqueName copy];
+        }
+        NSTextCheckingResult *lastOccurenceResult = [results lastObject];
+        NSMutableString *lastOccurence = [(NSString*)[uniqueName substringWithRange:lastOccurenceResult.range] mutableCopy];
+        [uniqueName replaceOccurrencesOfString:lastOccurence
+                                    withString:@""
+                                       options:NSCaseInsensitiveSearch
+                                         range:NSMakeRange(0, [uniqueName length])];
+        unichar lastChar = [uniqueName characterAtIndex:([uniqueName length] - 1)];
+        if (lastChar == 0x20) {
+            [uniqueName deleteCharactersInRange:NSMakeRange(([uniqueName length] - 1), 1)];
+        }
+        [lastOccurence replaceOccurrencesOfString:@"("
+                                       withString:@""
+                                          options:NSCaseInsensitiveSearch
+                                            range:NSMakeRange(0, [lastOccurence length])];
+        [lastOccurence replaceOccurrencesOfString:@")"
+                                       withString:@""
+                                          options:NSCaseInsensitiveSearch
+                                            range:NSMakeRange(0, [lastOccurence length])];
+        counter = [lastOccurence integerValue];
+    }
+    NSString *uniqueFinalName = [uniqueName copy];
     BOOL duplicate;
     do {
         duplicate = NO;
         for (NSString *existingName in existingNames) {
-            if ([existingName isEqualToString:uniqueName]) {
-                uniqueName = [NSString stringWithFormat:@"%@ (%lu)", nameToCheck, (unsigned long)++counter];
+            if ([existingName isEqualToString:uniqueFinalName]) {
+                uniqueFinalName = [NSString stringWithFormat:@"%@ (%lu)", uniqueName, (unsigned long)++counter];
                 duplicate = YES;
                 break;
             }
         }
     } while (duplicate);
-    return uniqueName;
+    return uniqueFinalName;
 }
 
 + (double)radiansToDegree:(float)rad
