@@ -64,7 +64,7 @@
         [self.layer addSublayer:self.topBorder];
         self.textLabel.alpha = 1.0f;
         self.textLabel.transform = CGAffineTransformIdentity;
-
+        
         [viewController.view insertSubview:self aboveSubview:view];
         
         [self.brickCollectionView scrollToItemAtIndexPath:0 atScrollPosition:UICollectionViewScrollPositionTop animated:NO];
@@ -76,7 +76,7 @@
             view.transform = CGAffineTransformScale(CGAffineTransformMakeTranslation(0.0f, -20.0f), 0.95f, 0.95f);
         } completion:^(BOOL finished) {
             if (finished) {
-                 view.userInteractionEnabled = NO;
+                view.userInteractionEnabled = NO;
                 _blurView.dynamic = NO;
                 dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
                     [UIView animateWithDuration:0.25f animations:^{
@@ -86,12 +86,11 @@
                 });
             }
         }];
-        
+        if (completionBlock) completionBlock();
     } else {
         [self dismissView:viewController withView:view fastDismiss:NO completion:NULL];
+         if (completionBlock) completionBlock();
     }
-    
-    if (completionBlock) completionBlock();
 }
 
 - (void)dismissView:(UIViewController *)fromViewController withView:(UIView *)view fastDismiss:(BOOL)fastDimiss completion:(void(^)())completionBlock
