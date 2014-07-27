@@ -32,9 +32,10 @@
 #define kMenuImageNameExplore @"explore"
 #define kMenuImageNameUpload @"upload"
 
-// placeholder texts
-#define kPlaceHolderTag 99998
-#define kLoadingViewTag 99999
+// view tags
+#define kPlaceHolderTag 99997
+#define kLoadingViewTag 99998
+#define kSavedViewTag   99999
 
 #define kIphone5ScreenHeight 568.0f
 #define kIphone4ScreenHeight 480.0f
@@ -52,8 +53,10 @@
 // Notifications
 static NSString *const kBrickCellAddedNotification = @"BrickCellAddedNotification";
 static NSString *const kSoundAddedNotification = @"SoundAddedNotification";
-static NSString *const kBrickDetailViewDismissed = @"kBrickDetailViewDismissed";
-static NSString *const kProgramDownloadedNotification = @"kProgramDownloadedNotification";
+static NSString *const kBrickDetailViewDismissed = @"BrickDetailViewDismissed";
+static NSString *const kProgramDownloadedNotification = @"ProgramDownloadedNotification";
+static NSString *const kHideLoadingViewNotification = @"HideLoadingViewNotification";
+static NSString *const kShowSavedViewNotification = @"ShowSavedViewNotification";
 
 // Notification keys
 static NSString *const kUserInfoKeyBrickCell = @"UserInfoKeyBrickCell";

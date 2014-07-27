@@ -205,6 +205,12 @@
 
 "Rename" = "Umbenennen";
 
+"Copy" = "Kopieren";
+
+"Description" = "Beschreibung";
+
+"Upload" = "Hochladen";
+
 "Delete Objects" = "Objekte löschen";
 
 "Delete Programs" = "Programme löschen";
@@ -236,6 +242,28 @@
 "Add image" = "Bild hinzufügen";
 
 "Rename program" = "Programm umbenennen";
+
+"Set description" = "Beschreibung";
+
+"Rename object" = "Objekt umbenennen";
+
+"Rename image" = "Bild umbenennen";
+
+"Rename sound" = "Sound umbenennen";
+
+"Enter your sound name here..." = "Geben Sie hier den Namen für den Sound ein...";
+
+"Sound name" = "Soundname";
+
+"An object with the same name already exists, try again." = "Ein Objekt mit dem selben Namen existiert bereits. Bitte wählen Sie einen anderen Objektnamen.";
+
+"No or invalid image name entered, try again." = "Sie haben keinen oder einen ungültigen Bildnamen eingegeben. Bitte versuchen Sie es erneut.";
+
+"No or invalid sound name entered, try again." = "Sie haben keinen oder einen ungültigen Soundnamen eingegeben. Bitte versuchen Sie es erneut.";
+
+"An image with the same name already exists, try again." = "Ein Bild mit dem selben Namen existiert bereits. Bitte wählen Sie einen anderen Bildnamen.";
+
+"Enter your program description here..." = "Geben Sie hier die Beschreibung für das Programm ein...";
 
 "Can't restart program!" = "Program kann nicht neugestartet werden!";
 
@@ -279,8 +307,6 @@
 
 "Unable to play the selected sound. Your device is in silent mode. Please turn off silent mode by toggling the switch on the right side of your iPad and tap on play again." = "Die ausgewählte Sounddatei kann nicht wiedergegeben werden. Ihr Gerät befindet sich derzeit im Lautlosmodus. Bitte schalten Sie den Lautlosmodus wieder ab in dem Sie den Schalter auf der rechten Seite Ihres iPads nach oben schieben und versuchen Sie es erneut.";
 
-"No Internet Connection!" = "Keine Internetverbindung!";
-
 "Slow Internet Connection!" = "Langsame Internetverbindung!";
 
 "You have already downloaded this program!" = "Das Programm wurde bereits heruntergeladen!";
@@ -295,6 +321,8 @@
 
 "No imported sounds found. Please connect your iPhone to your PC/Mac and use iTunes FileSharing to import sound files into the PocketCode app." = "Es wurden keine über iTunes FileSharing importierten Sounds gefunden. Bitte verbinden Sie Ihr Gerät mit Ihrem PC oder Mac und importieren Sie über iTunes FileSharing neue Sounddateien in die PocketCode App.";
 
+"No input or the input is too short. Please enter at least %lu characters." = "Die Eingabe ist zu kurz. Die Eingabe muss mindestens %lu Zeichen enthalten.";
+
 "No or invalid program name entered, try again." = "Sie haben keinen oder einen ungültigen Programmnamen eingegeben. Bitte versuchen Sie es erneut.";
 
 "A program with the same name already exists, try again." = "Ein Programm mit dem selben Namen existiert bereits. Bitte wählen Sie einen anderen Programmnamen.";
@@ -307,6 +335,8 @@
 
 "Unable to play that sound!\nMaybe this is no valid sound or the file is corrupt." = "Sound kann nicht wiedergegeben werden!\nDie Sounddatei ist entweder ungültig oder korrupt.";
 
+"No internet connection available." = "Keine Internetverbindung verfügbar.";
+
 "OK" = "OK";
 
 "Cancel" = "Abbrechen";
@@ -318,6 +348,8 @@
 "Delete" = "Löschen";
 
 "Loading" = "Wird geladen";
+
+"Saved" = "Gespeichert";
 
 "Description" = "Beschreibung";
 

@@ -24,12 +24,12 @@
 
 @optional
 
-- (void)addProgram:(NSString*)programName;
+- (ProgramLoadingInfo*)addProgram:(NSString*)programName;
 
 @required
 
 - (void)removeProgram:(NSString*)programName;
 
-- (void)renameOldProgramName:(NSString*)oldProgramName ToNewProgramName:(NSString*)newProgramName;
+- (void)renameOldProgramName:(NSString*)oldProgramName toNewProgramName:(NSString*)newProgramName;
 
 @end

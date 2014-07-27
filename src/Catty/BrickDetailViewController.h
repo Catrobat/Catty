@@ -39,6 +39,4 @@
 @property (weak, nonatomic) id<BrickDetailViewControllerDelegate> delegate;
 @property (strong, nonatomic) BrickCell *brickCell;
 
-
-
 @end

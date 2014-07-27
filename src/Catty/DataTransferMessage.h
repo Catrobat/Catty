@@ -20,24 +20,14 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-// Action sheet
-#define kEditProgramsActionSheetTag 1
-#define kEditProgramActionSheetTag 2
-#define kEditObjectActionSheetTag 3
-#define kAddLookActionSheetTag 4
-#define kEditLooksActionSheetTag 5
-#define kEditLookActionSheetTag 6
-#define kAddSoundActionSheetTag 7
-#define kEditSoundsActionSheetTag 8
-#define kEditSoundActionSheetTag 9
+#import <Foundation/Foundation.h>
+#import "ProgramDefines.h"
 
-// Alert view tags
-#define kAskUserForUniqueNameAlertViewTag 100
-#define kInvalidNameWarningAlertViewTag 101
-#define kNewImageAlertViewTag 102
-#define kNoInternetConnection 103
+@interface DataTransferMessage : NSObject
 
-#define kConfirmAlertViewTag 200
+@property (nonatomic, readonly) kDTMActionType actionType;
+@property (nonatomic, strong, readonly) id payload;
 
-// Alert view button indexes
-#define kAlertViewButtonOK 1
++ (DataTransferMessage*)messageForActionType:(kDTMActionType)actionType withPayload:(id)payload;
+
+@end

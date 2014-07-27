@@ -20,24 +20,32 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-// Action sheet
-#define kEditProgramsActionSheetTag 1
-#define kEditProgramActionSheetTag 2
-#define kEditObjectActionSheetTag 3
-#define kAddLookActionSheetTag 4
-#define kEditLooksActionSheetTag 5
-#define kEditLookActionSheetTag 6
-#define kAddSoundActionSheetTag 7
-#define kEditSoundsActionSheetTag 8
-#define kEditSoundActionSheetTag 9
+// FIXME: remove license header!!!
 
-// Alert view tags
-#define kAskUserForUniqueNameAlertViewTag 100
-#define kInvalidNameWarningAlertViewTag 101
-#define kNewImageAlertViewTag 102
-#define kNoInternetConnection 103
+#import <UIKit/UIKit.h>
 
-#define kConfirmAlertViewTag 200
+#define kBDKNotifyHUDDefaultWidth 130.0f
+#define kBDKNotifyHUDDefaultHeight 100.0f
 
-// Alert view button indexes
-#define kAlertViewButtonOK 1
+@interface BDKNotifyHUD : UIView
+
+@property (nonatomic) CGFloat destinationOpacity;
+@property (nonatomic) CGFloat currentOpacity;
+@property (nonatomic) UIView *iconView;
+@property (nonatomic) CGFloat roundness;
+@property (nonatomic) BOOL bordered;
+@property (nonatomic) BOOL isAnimating;
+
+@property (strong, nonatomic) UIColor *borderColor;
+@property (strong, nonatomic) NSString *text;
+
++ (id)notifyHUDWithView:(UIView *)view text:(NSString *)text;
++ (id)notifyHUDWithImage:(UIImage *)image text:(NSString *)text;
+
+- (id)initWithView:(UIView *)view text:(NSString *)text;
+- (id)initWithImage:(UIImage *)image text:(NSString *)text;
+
+- (void)setImage:(UIImage *)image;
+- (void)presentWithDuration:(CGFloat)duration speed:(CGFloat)speed inView:(UIView *)view completion:(void (^)(void))completion;
+
+@end

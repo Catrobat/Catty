@@ -293,7 +293,7 @@
     [self loadingIndicator:YES];
 }
 
-- (void) hideLoadingView
+- (void)hideLoadingView
 {
     [self.loadingView hide];
     [self loadingIndicator:NO];

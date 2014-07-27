@@ -49,28 +49,32 @@
 #import "LanguageTranslationDefines.h"
 #import "ProgramTableHeaderView.h"
 #import "RuntimeImageCache.h"
+#import "CatrobatActionSheet.h"
+#import "DataTransferMessage.h"
+#import "NSMutableArray+CustomExtensions.h"
 
 // TODO: outsource...
 #define kUserDetailsShowDetailsKey @"showDetails"
 #define kUserDetailsShowDetailsObjectsKey @"detailsForObjects"
 
-@interface ProgramTableViewController () <UIActionSheetDelegate, UIAlertViewDelegate, UITextFieldDelegate,
-                                          UINavigationBarDelegate, SWTableViewCellDelegate>
+@interface ProgramTableViewController () <CatrobatActionSheetDelegate, UINavigationBarDelegate, SWTableViewCellDelegate>
 @property (nonatomic) BOOL useDetailCells;
-@property (strong, nonatomic) NSCharacterSet *blockedCharacterSet;
 @end
 
 @implementation ProgramTableViewController
 
-#pragma mark - getter and setters
+#pragma mark - data helpers
+static NSCharacterSet *blockedCharacterSet = nil;
 - (NSCharacterSet*)blockedCharacterSet
 {
-    if (! _blockedCharacterSet) {
-        _blockedCharacterSet = [[NSCharacterSet characterSetWithCharactersInString:kTextFieldAllowedCharacters] invertedSet];
+    if (! blockedCharacterSet) {
+        blockedCharacterSet = [[NSCharacterSet characterSetWithCharactersInString:kTextFieldAllowedCharacters]
+                               invertedSet];
     }
-    return _blockedCharacterSet;
+    return blockedCharacterSet;
 }
 
+#pragma mark - getter and setters
 - (void)setProgram:(Program *)program
 {
     [program setAsLastProgram];
@@ -129,12 +133,78 @@
 #pragma mark - actions
 - (void)addObjectAction:(id)sender
 {
-    [Util promptWithTitle:kUIAlertViewTitleAddObject
-                  message:[NSString stringWithFormat:@"%@:", kUIAlertViewMessageObjectName]
-                 delegate:self
-              placeholder:kUIAlertViewPlaceholderEnterObjectName
-                      tag:kNewObjectAlertViewTag
-        textFieldDelegate:self];
+    [Util askUserForUniqueNameAndPerformAction:@selector(addObjectActionWithName:)
+                                        target:self
+                                   promptTitle:kUIAlertViewTitleAddObject
+                                 promptMessage:[NSString stringWithFormat:@"%@:", kUIAlertViewMessageObjectName]
+                                   promptValue:nil
+                             promptPlaceholder:kUIAlertViewPlaceholderEnterObjectName
+                                minInputLength:kMinNumOfObjectNameCharacters
+                                maxInputLength:kMaxNumOfObjectNameCharacters
+                           blockedCharacterSet:[self blockedCharacterSet]
+                      invalidInputAlertMessage:kUIAlertViewMessageObjectNameAlreadyExists
+                                 existingNames:[[self.program allObjectNames] mutableCopy]];
+}
+
+- (void)addObjectActionWithName:(NSString*)objectName
+{
+    [self showLoadingView];
+    [self.program addObjectWithName:[Util uniqueName:objectName existingNames:[self.program allObjectNames]]];
+    NSInteger numberOfRowsInLastSection = [self tableView:self.tableView numberOfRowsInSection:kObjectSectionIndex];
+    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:(numberOfRowsInLastSection - 1) inSection:kObjectSectionIndex];
+    [self.tableView insertRowsAtIndexPaths:@[indexPath]
+                          withRowAnimation:(([self.program numberOfNormalObjects] == 1) ? UITableViewRowAnimationFade : UITableViewRowAnimationBottom)];
+}
+
+- (void)renameProgramActionForProgramWithName:(NSString*)newProgramName
+{
+    if ([newProgramName isEqualToString:self.program.header.programName])
+        return;
+
+    [self showLoadingView];
+    NSString *oldProgramName = self.program.header.programName;
+    newProgramName = [Util uniqueName:newProgramName existingNames:[Program allProgramNames]];
+    [self.program renameToProgramName:newProgramName];
+    [self.delegate renameOldProgramName:oldProgramName toNewProgramName:self.program.header.programName];
+    self.navigationItem.title = self.title = self.program.header.programName;
+}
+
+- (void)copyObjectActionWithSourceObject:(SpriteObject*)sourceObject
+{
+    [self showLoadingView];
+    NSString *nameOfCopiedObject = [Util uniqueName:sourceObject.name existingNames:[self.program allObjectNames]];
+    [self.program copyObject:sourceObject withNameForCopiedObject:nameOfCopiedObject];
+
+    //    // create new cell
+    //    NSInteger numberOfRowsInLastSection = [self tableView:self.tableView numberOfRowsInSection:kObjectSectionIndex];
+    //    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:(numberOfRowsInLastSection - 1) inSection:kObjectSectionIndex];
+    //    [self.tableView insertRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationBottom];
+    // TODO: scroll to bottom or show notification to user!
+
+    // TODO: issue #308 - deep copy for SpriteObjects
+    // ####### WORKAROUND BEGIN: QUICK&DIRTY UGLY HACK !!!
+
+    ProgramLoadingInfo *info = [[ProgramLoadingInfo alloc] init];
+    info.basePath = [NSString stringWithFormat:@"%@%@/", [Program basePath], self.program.header.programName];
+    info.visibleName = self.program.header.programName;
+    self.program = [Program programWithLoadingInfo:info];
+    [self.tableView reloadData];
+
+    // ####### WORKAROUND END
+}
+
+- (void)renameObjectActionToName:(NSString*)newObjectName spriteObject:(SpriteObject*)spriteObject
+{
+    if ([newObjectName isEqualToString:spriteObject.name])
+        return;
+
+    [self showLoadingView];
+    newObjectName = [Util uniqueName:newObjectName existingNames:[self.program allObjectNames]];
+    [self.program renameObject:spriteObject toName:newObjectName];
+    NSUInteger spriteObjectIndex = [self.program.objectList indexOfObject:spriteObject];
+    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:(spriteObjectIndex - kBackgroundObjects)
+                                                inSection:kObjectSectionIndex];
+    [self.tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationNone];
 }
 
 - (void)playSceneAction:(id)sender
@@ -155,12 +225,12 @@
     } else {
         [options addObject:kUIActionSheetButtonTitleShowDetails];
     }
-    [Util actionSheetWithTitle:kUIActionSheetTitleEditProgramSingular
+    [Util actionSheetWithTitle:kUIActionSheetTitleEditProgram
                       delegate:self
         destructiveButtonTitle:kUIActionSheetButtonTitleDelete
              otherButtonTitles:options
                            tag:kEditProgramActionSheetTag
-                          view:self.view];
+                          view:self.navigationController.view];
 }
 
 - (void)confirmDeleteSelectedObjectsAction:(id)sender
@@ -176,6 +246,7 @@
 
 - (void)deleteSelectedObjectsAction
 {
+    [self showLoadingView];
     NSArray *selectedRowsIndexPaths = [self.tableView indexPathsForSelectedRows];
     NSMutableArray *objectsToRemove = [NSMutableArray arrayWithCapacity:[selectedRowsIndexPaths count]];
     for (NSIndexPath *selectedRowIndexPath in selectedRowsIndexPaths) {
@@ -186,20 +257,19 @@
         SpriteObject *object = (SpriteObject*)[self.program.objectList objectAtIndex:(kObjectSectionIndex + selectedRowIndexPath.row)];
         [objectsToRemove addObject:object];
     }
-    for (SpriteObject *objectToRemove in objectsToRemove) {
-        [self.program removeObject:objectToRemove];
-    }
+    [self.program removeObjects:objectsToRemove];
     [super exitEditingMode];
-    [self.tableView deleteRowsAtIndexPaths:selectedRowsIndexPaths withRowAnimation:UITableViewRowAnimationNone];
+    [self.tableView deleteRowsAtIndexPaths:selectedRowsIndexPaths withRowAnimation:(([self.program numberOfNormalObjects] != 0) ? UITableViewRowAnimationTop : UITableViewRowAnimationFade)];
 }
 
 - (void)deleteObjectForIndexPath:(NSIndexPath*)indexPath
 {
+    [self showLoadingView];
     NSUInteger index = (kBackgroundObjects + indexPath.row);
     SpriteObject *object = (SpriteObject*)[self.program.objectList objectAtIndex:index];
     [self.program removeObject:object];
-    [self.tableView deleteRowsAtIndexPaths:@[indexPath]
-                          withRowAnimation:UITableViewRowAnimationNone];
+    [self.program saveToDisk];
+    [self.tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:((indexPath.row != 0) ? UITableViewRowAnimationTop : UITableViewRowAnimationFade)];
 }
 
 - (void)deleteProgramAction
@@ -251,9 +321,6 @@
     if (indexPath.section == kObjectSectionIndex) {
         imageCell.rightUtilityButtons = @[[Util slideViewButtonMore], [Util slideViewButtonDelete]];
         imageCell.delegate = self;
-//    } else if (indexPath.section == kBackgroundSectionIndex) {
-//        imageCell.rightUtilityButtons = @[[Util slideViewButtonMore]];
-//        imageCell.delegate = self;
     } else {
         imageCell.rightUtilityButtons = nil;
         imageCell.delegate = nil;
@@ -392,15 +459,22 @@
 #pragma mark - swipe delegates
 - (void)swipeableTableViewCell:(SWTableViewCell *)cell didTriggerRightUtilityButtonWithIndex:(NSInteger)index
 {
+    [cell hideUtilityButtonsAnimated:YES];
     if (index == 0) {
         // More button was pressed
-        UIAlertView *alertTest = [[UIAlertView alloc] initWithTitle:@"Hello"
-                                                            message:@"More more more"
-                                                           delegate:nil
-                                                  cancelButtonTitle:kUIAlertViewButtonTitleCancel
-                                                  otherButtonTitles:nil];
-        [alertTest show];
-        [cell hideUtilityButtonsAnimated:YES];
+        NSArray *options = @[kUIActionSheetButtonTitleCopy, kUIActionSheetButtonTitleRename];
+        CatrobatActionSheet *actionSheet = [Util actionSheetWithTitle:kUIActionSheetTitleEditProgram
+                                                             delegate:self
+                                               destructiveButtonTitle:nil
+                                                    otherButtonTitles:options
+                                                                  tag:kEditObjectActionSheetTag
+                                                                 view:self.navigationController.view];
+        NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
+        NSInteger spriteObjectIndex = (kBackgroundSectionIndex + indexPath.section + indexPath.row);
+        NSDictionary *payload = @{ kDTPayloadSpriteObject : [self.program.objectList objectAtIndex:spriteObjectIndex] };
+        DataTransferMessage *message = [DataTransferMessage messageForActionType:kDTMActionEditObject
+                                                                     withPayload:[payload mutableCopy]];
+        actionSheet.dataTransferMessage = message;
     } else if (index == 1) {
         // Delete button was pressed
         NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
@@ -421,116 +495,77 @@
     return YES;
 }
 
-#pragma mark - text field delegates
-- (BOOL)textField:(UITextField *)field shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)characters
-{
-    if ([characters length] > kMaxNumOfObjectNameCharacters) {
-        return false;
-    }
-    return ([characters rangeOfCharacterFromSet:self.blockedCharacterSet].location == NSNotFound);
-}
-
 #pragma mark - action sheet delegates
-- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
+- (void)actionSheet:(CatrobatActionSheet*)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
 {
-    if (actionSheet.tag != kEditProgramActionSheetTag) {
-        return;
-    }
-
-    if (buttonIndex == 1) {
-        // Rename button
-        [Util promptWithTitle:kUIAlertViewTitleRenameProgram
-                      message:[NSString stringWithFormat:@"%@:", kUIAlertViewMessageProgramName]
-                     delegate:self
-                  placeholder:kUIAlertViewPlaceholderEnterProgramName
-                          tag:kRenameAlertViewTag
-                        value:((! [self.program.header.programName isEqualToString:kGeneralNewDefaultProgramName])
-                               ? self.program.header.programName : nil)
-            textFieldDelegate:self];
-    } else if (buttonIndex == 2 && [self.program numberOfNormalObjects]) {
-        // Delete Objects button
-        [self setupEditingToolBar];
-        [super changeToEditingMode:actionSheet];
-    } else if (buttonIndex == 3 || ((buttonIndex == 2) && (! [self.program numberOfNormalObjects]))) {
-        // Show/Hide Details button
-        self.useDetailCells = (! self.useDetailCells);
-        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-        NSDictionary *showDetails = [defaults objectForKey:kUserDetailsShowDetailsKey];
-        NSMutableDictionary *showDetailsMutable = nil;
-        if (! showDetails) {
-            showDetailsMutable = [NSMutableDictionary dictionary];
-        } else {
-            showDetailsMutable = [showDetails mutableCopy];
-        }
-        [showDetailsMutable setObject:[NSNumber numberWithBool:self.useDetailCells]
-                               forKey:kUserDetailsShowDetailsObjectsKey];
-        [defaults setObject:showDetailsMutable forKey:kUserDetailsShowDetailsKey];
-        [defaults synchronize];
-        [self.tableView reloadData];
-    } else if (buttonIndex == actionSheet.destructiveButtonIndex) {
-        // Delete Program button
-        [self performActionOnConfirmation:@selector(deleteProgramAction)
-                           canceledAction:nil
-                                   target:self
-                             confirmTitle:kUIAlertViewTitleDeleteProgram
-                           confirmMessage:kUIAlertViewMessageIrreversibleAction];
-    }
-}
-
-#pragma mark - alert view delegate handlers
-- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
-{
-    [super alertView:alertView clickedButtonAtIndex:buttonIndex];
-    if (alertView.tag == kRenameAlertViewTag) {
-        NSString *input = [alertView textFieldAtIndex:0].text;
-        if (buttonIndex == kAlertViewButtonOK) {
-            if ([input isEqualToString:self.program.header.programName])
-                return;
-
-            kProgramNameValidationResult validationResult = [Program validateProgramName:input];
-            if (validationResult == kProgramNameValidationResultInvalid) {
-                [Util alertWithText:kUIAlertViewMessageInvalidProgramName
-                           delegate:self
-                                tag:kInvalidProgramNameWarningAlertViewTag];
-            } else if (validationResult == kProgramNameValidationResultAlreadyExists) {
-                [Util alertWithText:kUIAlertViewMessageProgramNameAlreadyExists
-                           delegate:self
-                                tag:kInvalidProgramNameWarningAlertViewTag];
-            } else if (validationResult == kProgramNameValidationResultOK) {
-                NSString *oldProgramName = self.program.header.programName;
-                [self.program renameToProgramName:input];
-                [self.delegate renameOldProgramName:oldProgramName ToNewProgramName:input];
-                [self.program setAsLastProgram];
-                self.navigationItem.title = self.title = input;
+    if (actionSheet.tag == kEditProgramActionSheetTag) {
+        if (buttonIndex == 1) {
+            // Rename program button
+            NSMutableArray *unavailableNames = [[Program allProgramNames] mutableCopy];
+            [unavailableNames removeString:self.program.header.programName];
+            [Util askUserForUniqueNameAndPerformAction:@selector(renameProgramActionForProgramWithName:)
+                                                target:self
+                                           promptTitle:kUIAlertViewTitleRenameProgram
+                                         promptMessage:[NSString stringWithFormat:@"%@:", kUIAlertViewMessageProgramName]
+                                           promptValue:((! [self.program.header.programName isEqualToString:kGeneralNewDefaultProgramName])
+                                                        ? self.program.header.programName : nil)
+                                     promptPlaceholder:kUIAlertViewPlaceholderEnterProgramName
+                                        minInputLength:kMinNumOfProgramNameCharacters
+                                        maxInputLength:kMaxNumOfProgramNameCharacters
+                                   blockedCharacterSet:[self blockedCharacterSet]
+                              invalidInputAlertMessage:kUIAlertViewMessageProgramNameAlreadyExists
+                                         existingNames:unavailableNames];
+        } else if (buttonIndex == 2 && [self.program numberOfNormalObjects]) {
+            // Delete objects button
+            [self setupEditingToolBar];
+            [super changeToEditingMode:actionSheet];
+        } else if (buttonIndex == 3 || ((buttonIndex == 2) && (! [self.program numberOfNormalObjects]))) {
+            // Show/Hide details button
+            self.useDetailCells = (! self.useDetailCells);
+            NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+            NSDictionary *showDetails = [defaults objectForKey:kUserDetailsShowDetailsKey];
+            NSMutableDictionary *showDetailsMutable = nil;
+            if (! showDetails) {
+                showDetailsMutable = [NSMutableDictionary dictionary];
+            } else {
+                showDetailsMutable = [showDetails mutableCopy];
             }
+            [showDetailsMutable setObject:[NSNumber numberWithBool:self.useDetailCells]
+                                   forKey:kUserDetailsShowDetailsObjectsKey];
+            [defaults setObject:showDetailsMutable forKey:kUserDetailsShowDetailsKey];
+            [defaults synchronize];
+            [self.tableView reloadData];
+        } else if (buttonIndex == actionSheet.destructiveButtonIndex) {
+            // Delete program button
+            [self performActionOnConfirmation:@selector(deleteProgramAction)
+                               canceledAction:nil
+                                       target:self
+                                 confirmTitle:kUIAlertViewTitleDeleteProgram
+                               confirmMessage:kUIAlertViewMessageIrreversibleAction];
         }
-    }
-    if (alertView.tag == kNewObjectAlertViewTag) {
-        NSString* input = [alertView textFieldAtIndex:0].text;
-        if (buttonIndex != kAlertViewButtonOK) {
-            return;
-        }
-        if (! [input length]) {
-            [Util alertWithText:kUIAlertViewMessageInvalidObjectName
-                       delegate:self
-                            tag:kInvalidObjectNameWarningAlertViewTag];
-            return;
-        }
-        [self.program addNewObjectWithName:input];
-        [self.tableView reloadSections:[NSIndexSet indexSetWithIndexesInRange:NSMakeRange(1, 1)]
-                      withRowAnimation:UITableViewRowAnimationNone];
-    }
-    if (alertView.tag == kInvalidProgramNameWarningAlertViewTag) {
-        // title of cancel button is "OK"
+    } else if (actionSheet.tag == kEditObjectActionSheetTag) {
         if (buttonIndex == 0) {
-            [Util promptWithTitle:kUIAlertViewTitleRenameProgram
-                          message:[NSString stringWithFormat:@"%@:", kUIAlertViewMessageProgramName]
-                         delegate:self
-                      placeholder:kUIAlertViewPlaceholderEnterProgramName
-                              tag:kRenameAlertViewTag
-                            value:((! [self.program.header.programName isEqualToString:kGeneralNewDefaultProgramName])
-                                   ? self.program.header.programName : nil)
-                textFieldDelegate:self];
+            // Copy object button
+            NSDictionary *payload = (NSDictionary*)actionSheet.dataTransferMessage.payload;
+            [self copyObjectActionWithSourceObject:(SpriteObject*)payload[kDTPayloadSpriteObject]];
+        } else if (buttonIndex == 1) {
+            // Rename object button
+            NSDictionary *payload = (NSDictionary*)actionSheet.dataTransferMessage.payload;
+            SpriteObject *spriteObject = (SpriteObject*)payload[kDTPayloadSpriteObject];
+            NSMutableArray *unavailableNames = [[self.program allObjectNames] mutableCopy];
+            [unavailableNames removeString:spriteObject.name];
+            [Util askUserForUniqueNameAndPerformAction:@selector(renameObjectActionToName:spriteObject:)
+                                                target:self
+                                            withObject:spriteObject
+                                           promptTitle:kUIAlertViewTitleRenameObject
+                                         promptMessage:[NSString stringWithFormat:@"%@:", kUIAlertViewMessageObjectName]
+                                           promptValue:spriteObject.name
+                                     promptPlaceholder:kUIAlertViewPlaceholderEnterObjectName
+                                        minInputLength:kMinNumOfObjectNameCharacters
+                                        maxInputLength:kMaxNumOfObjectNameCharacters
+                                   blockedCharacterSet:[self blockedCharacterSet]
+                              invalidInputAlertMessage:kUIAlertViewMessageObjectNameAlreadyExists
+                                         existingNames:unavailableNames];
         }
     }
 }

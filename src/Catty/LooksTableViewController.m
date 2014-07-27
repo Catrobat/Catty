@@ -43,49 +43,36 @@
 #import "UIImageView+CatrobatUIImageViewExtensions.h"
 #import "NSData+Hashes.h"
 #import "AppDelegate.h"
-#import "LoadingView.h"
 #import "LanguageTranslationDefines.h"
 #import "RuntimeImageCache.h"
+#import "CatrobatActionSheet.h"
+#import "CatrobatAlertView.h"
+#import "DataTransferMessage.h"
 
 // TODO: outsource...
 #define kUserDetailsShowDetailsKey @"showDetails"
 #define kUserDetailsShowDetailsLooksKey @"detailsForLooks"
 
-#define kFromCameraActionSheetButton @"camera"
-#define kChooseImageActionSheetButton @"chooseImage"
-#define kDrawNewImageActionSheetButton @"drawNewImage"
-
-@interface ObjectLooksTableViewController () <UIActionSheetDelegate, UIImagePickerControllerDelegate,
-                                              UINavigationControllerDelegate, UIAlertViewDelegate,
-                                              UITextFieldDelegate, SWTableViewCellDelegate>
-@property (nonatomic, strong) NSCharacterSet *blockedCharacterSet;
+@interface LooksTableViewController () <CatrobatActionSheetDelegate, UIImagePickerControllerDelegate,
+                                        UINavigationControllerDelegate, CatrobatAlertViewDelegate,
+                                        UITextFieldDelegate, SWTableViewCellDelegate>
 @property (nonatomic) BOOL useDetailCells;
 @property (nonatomic, strong) Look *lookToAdd;
-@property (nonatomic, strong) LoadingView* loadingView;
-@property (nonatomic, strong) NSMutableDictionary* addLookActionSheetBtnIndexes;
 @end
 
-@implementation ObjectLooksTableViewController
-
-#pragma getters and setters
-- (NSCharacterSet*)blockedCharacterSet
-{
-    if (! _blockedCharacterSet) {
-        _blockedCharacterSet = [[NSCharacterSet characterSetWithCharactersInString:kTextFieldAllowedCharacters] invertedSet];
-    }
-    return _blockedCharacterSet;
-}
-
-#pragma mark - getters and setters
-- (NSMutableDictionary*)addLookActionSheetBtnIndexes
-{
-    // lazy instantiation
-    if (_addLookActionSheetBtnIndexes == nil)
-        _addLookActionSheetBtnIndexes = [NSMutableDictionary dictionaryWithCapacity:3];
-    return _addLookActionSheetBtnIndexes;
-}
+@implementation LooksTableViewController
 
 #pragma mark - data helpers
+static NSCharacterSet *blockedCharacterSet = nil;
+- (NSCharacterSet*)blockedCharacterSet
+{
+    if (! blockedCharacterSet) {
+        blockedCharacterSet = [[NSCharacterSet characterSetWithCharactersInString:kTextFieldAllowedCharacters]
+                               invertedSet];
+    }
+    return blockedCharacterSet;
+}
+
 - (NSArray*)existantLookNames
 {
     // get all look names of that object
@@ -136,7 +123,7 @@
         destructiveButtonTitle:nil
              otherButtonTitles:options
                            tag:kEditLooksActionSheetTag
-                          view:self.view];
+                          view:self.navigationController.view];
 }
 
 - (void)addLookAction:(id)sender
@@ -148,6 +135,29 @@
 {
     [self.navigationController setToolbarHidden:YES];
     [self performSegueWithIdentifier:kSegueToScene sender:sender];
+}
+
+- (void)copyLookActionWithSourceLook:(Look*)sourceLook
+{
+    [self showLoadingView];
+    NSString *nameOfCopiedLook = [Util uniqueName:sourceLook.name existingNames:[self.object allLookNames]];
+    [self.object copyLook:sourceLook withNameForCopiedLook:nameOfCopiedLook];
+    NSInteger numberOfRowsInLastSection = [self tableView:self.tableView numberOfRowsInSection:0];
+    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:(numberOfRowsInLastSection - 1) inSection:0];
+    [self.tableView insertRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationBottom];
+}
+
+- (void)renameLookActionToName:(NSString*)newLookName look:(Look*)look
+{
+    if ([newLookName isEqualToString:look.name])
+        return;
+
+    [self showLoadingView];
+    newLookName = [Util uniqueName:newLookName existingNames:[self.object allLookNames]];
+    [self.object renameLook:look toName:newLookName];
+    NSUInteger lookIndex = [self.object.lookList indexOfObject:look];
+    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:lookIndex inSection:0];
+    [self.tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationNone];
 }
 
 - (void)confirmDeleteSelectedLooksAction:(id)sender
@@ -163,15 +173,14 @@
 
 - (void)deleteSelectedLooksAction
 {
+    [self showLoadingView];
     NSArray *selectedRowsIndexPaths = [self.tableView indexPathsForSelectedRows];
     NSMutableArray *looksToRemove = [NSMutableArray arrayWithCapacity:[selectedRowsIndexPaths count]];
     for (NSIndexPath *selectedRowIndexPath in selectedRowsIndexPaths) {
         Look *look = (Look*)[self.object.lookList objectAtIndex:selectedRowIndexPath.row];
         [looksToRemove addObject:look];
     }
-    for (Look *lookToRemove in looksToRemove) {
-        [self.object removeLook:lookToRemove];
-    }
+    [self.object removeLooks:looksToRemove];
     [super exitEditingMode];
     [self.tableView deleteRowsAtIndexPaths:selectedRowsIndexPaths withRowAnimation:UITableViewRowAnimationNone];
     [self showPlaceHolder:(! (BOOL)[self.object.lookList count])];
@@ -179,6 +188,7 @@
 
 - (void)deleteLookForIndexPath:(NSIndexPath*)indexPath
 {
+    [self showLoadingView];
     Look *look = (Look*)[self.object.lookList objectAtIndex:indexPath.row];
     [self.object removeLook:look];
     [self.tableView deleteRowsAtIndexPaths:@[indexPath]
@@ -318,15 +328,21 @@
 #pragma mark - swipe delegates
 - (void)swipeableTableViewCell:(SWTableViewCell *)cell didTriggerRightUtilityButtonWithIndex:(NSInteger)index
 {
+    [cell hideUtilityButtonsAnimated:YES];
     if (index == 0) {
         // More button was pressed
-        UIAlertView *alertTest = [[UIAlertView alloc] initWithTitle:@"Hello"
-                                                            message:@"More more more"
-                                                           delegate:nil
-                                                  cancelButtonTitle:kUIAlertViewButtonTitleCancel
-                                                  otherButtonTitles:nil];
-        [alertTest show];
-        [cell hideUtilityButtonsAnimated:YES];
+        NSArray *options = @[kUIActionSheetButtonTitleCopy, kUIActionSheetButtonTitleRename];
+        CatrobatActionSheet *actionSheet = [Util actionSheetWithTitle:kUIActionSheetTitleEditLook
+                                                             delegate:self
+                                               destructiveButtonTitle:nil
+                                                    otherButtonTitles:options
+                                                                  tag:kEditLookActionSheetTag
+                                                                 view:self.navigationController.view];
+        NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
+        NSDictionary *payload = @{ kDTPayloadLook : [self.object.lookList objectAtIndex:indexPath.row] };
+        DataTransferMessage *message = [DataTransferMessage messageForActionType:kDTMActionEditLook
+                                                                     withPayload:[payload mutableCopy]];
+        actionSheet.dataTransferMessage = message;
     } else if (index == 1) {
         // Delete button was pressed
         NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
@@ -428,15 +444,16 @@
                 // execute this on the main queue
                 [[NSOperationQueue mainQueue] addOperationWithBlock:^{
                     [self hideLoadingView];
+                    [self showPlaceHolder:([self.object.lookList count] == 0)];
 
                     // ask user for image name
                     self.lookToAdd = look;
-                    UIAlertView *alertView = [Util promptWithTitle:kUIAlertViewTitleAddImage
-                                                           message:[NSString stringWithFormat:@"%@:", kUIAlertViewMessageImageName]
-                                                          delegate:self
-                                                       placeholder:kUIAlertViewPlaceholderEnterImageName
-                                                               tag:kNewImageAlertViewTag
-                                                 textFieldDelegate:self];
+                    CatrobatAlertView *alertView = [Util promptWithTitle:kUIAlertViewTitleAddImage
+                                                                 message:[NSString stringWithFormat:@"%@:", kUIAlertViewMessageImageName]
+                                                                delegate:self
+                                                             placeholder:kUIAlertViewPlaceholderEnterImageName
+                                                                     tag:kNewImageAlertViewTag
+                                                       textFieldDelegate:self];
                     UITextField *textField = [alertView textFieldAtIndex:0];
                     textField.text = look.name;
                 }];
@@ -461,7 +478,7 @@
 }
 
 #pragma mark - action sheet delegates
-- (void)actionSheet:(UIActionSheet*)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
+- (void)actionSheet:(CatrobatActionSheet*)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
 {
     if (actionSheet.tag == kEditLooksActionSheetTag) {
         BOOL showHideSelected = NO;
@@ -493,19 +510,51 @@
             [defaults synchronize];
             [self.tableView reloadData];
         }
+    } else if (actionSheet.tag == kEditLookActionSheetTag) {
+        if (buttonIndex == 0) {
+            // Copy look button
+            NSDictionary *payload = (NSDictionary*)actionSheet.dataTransferMessage.payload;
+            [self copyLookActionWithSourceLook:(Look*)payload[kDTPayloadLook]];
+        } else if (buttonIndex == 1) {
+            // Rename look button
+            NSDictionary *payload = (NSDictionary*)actionSheet.dataTransferMessage.payload;
+            Look *look = (Look*)payload[kDTPayloadLook];
+            [Util askUserForTextAndPerformAction:@selector(renameLookActionToName:look:)
+                                          target:self
+                                      withObject:look
+                                     promptTitle:kUIAlertViewTitleRenameImage
+                                   promptMessage:[NSString stringWithFormat:@"%@:", kUIAlertViewMessageImageName]
+                                     promptValue:look.name
+                               promptPlaceholder:kUIAlertViewPlaceholderEnterImageName
+                                  minInputLength:kMinNumOfLookNameCharacters
+                                  maxInputLength:kMaxNumOfLookNameCharacters
+                             blockedCharacterSet:[self blockedCharacterSet]
+                        invalidInputAlertMessage:kUIAlertViewMessageInvalidImageName];
+        }
     } else if (actionSheet.tag == kAddLookActionSheetTag) {
-        NSString *action = self.addLookActionSheetBtnIndexes[@(buttonIndex)];
-        if ([action isEqualToString:kFromCameraActionSheetButton]) {
-            // take picture from camera
-            NSLog(@"Accessing camera");
-            [self presentImagePicker:UIImagePickerControllerSourceTypeCamera];
-        } else if ([action isEqualToString:kChooseImageActionSheetButton]) {
-            // choose picture from camera roll
-            NSLog(@"Choose image from camera roll");
-            [self presentImagePicker:UIImagePickerControllerSourceTypeSavedPhotosAlbum];
+        NSInteger importFromCameraIndex = NSIntegerMin;
+        NSInteger chooseImageIndex = NSIntegerMin;
+        if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
+            NSArray *availableMediaTypes = [UIImagePickerController availableMediaTypesForSourceType:UIImagePickerControllerSourceTypeCamera];
+            if ([availableMediaTypes containsObject:(NSString *)kUTTypeImage]) {
+                importFromCameraIndex = 0;
+            }
+        }
+        if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeSavedPhotosAlbum]) {
+            NSArray *availableMediaTypes = [UIImagePickerController availableMediaTypesForSourceType:UIImagePickerControllerSourceTypeSavedPhotosAlbum];
+            if ([availableMediaTypes containsObject:(NSString *)kUTTypeImage]) {
+                chooseImageIndex = ((importFromCameraIndex == 0) ? 1 : 0);
+            }
+        }
 
-            // TODO: implement this after Pocket Paint is fully integrated
-//        } else if ([action isEqualToString:kDrawNewImageActionSheetButton]) {
+        if (buttonIndex == importFromCameraIndex) {
+            // take picture from camera
+            [self presentImagePicker:UIImagePickerControllerSourceTypeCamera];
+        } else if (buttonIndex == chooseImageIndex) {
+            // choose picture from camera roll
+            [self presentImagePicker:UIImagePickerControllerSourceTypeSavedPhotosAlbum];
+//        } else if (buttonIndex != actionSheet.cancelButtonIndex) {
+//            // TODO: implement this after Pocket Paint is fully integrated
 //            // draw new image
 //            NSLog(@"Draw new image");
 //            [Util showComingSoonAlertView];
@@ -514,7 +563,7 @@
 }
 
 #pragma mark - alert view delegate handlers
-- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+- (void)alertView:(CatrobatAlertView*)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
     [super alertView:alertView clickedButtonAtIndex:buttonIndex];
     if (alertView.tag == kNewImageAlertViewTag) {
@@ -545,39 +594,41 @@
             NSInteger numberOfRowsInLastSection = [self tableView:self.tableView numberOfRowsInSection:0];
             NSIndexPath *indexPath = [NSIndexPath indexPathForRow:(numberOfRowsInLastSection - 1) inSection:0];
             [self.tableView insertRowsAtIndexPaths:@[indexPath]
-                                  withRowAnimation:UITableViewRowAnimationFade];
-            // TODO: update program on disk (run async on another queue)...
+                                  withRowAnimation:UITableViewRowAnimationBottom];
+            // TODO: update program on disk...
+//            [self.object.program saveToDisk];
         }
         self.lookToAdd = nil;
     }
 }
 
-#pragma mark - UIActionSheet Views
+#pragma mark - action sheet
 - (void)showAddLookActionSheet
 {
-    UIActionSheet *sheet = [[UIActionSheet alloc] init];
-    sheet.title = kUIActionSheetTitleAddLook;
-    sheet.delegate = self;
-
+    NSMutableArray *buttonTitles = [NSMutableArray array];
     if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
         NSArray *availableMediaTypes = [UIImagePickerController availableMediaTypesForSourceType:UIImagePickerControllerSourceTypeCamera];
-        if ([availableMediaTypes containsObject:(NSString *)kUTTypeImage])
-            self.addLookActionSheetBtnIndexes[@([sheet addButtonWithTitle:kUIActionSheetButtonTitleFromCamera])] = kFromCameraActionSheetButton;
+        if ([availableMediaTypes containsObject:(NSString *)kUTTypeImage]) {
+            [buttonTitles addObject:kUIActionSheetButtonTitleFromCamera];
+        }
     }
     if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeSavedPhotosAlbum]) {
         NSArray *availableMediaTypes = [UIImagePickerController availableMediaTypesForSourceType:UIImagePickerControllerSourceTypeSavedPhotosAlbum];
-        if ([availableMediaTypes containsObject:(NSString *)kUTTypeImage])
-            self.addLookActionSheetBtnIndexes[@([sheet addButtonWithTitle:kUIActionSheetButtonTitleChooseImage])] = kChooseImageActionSheetButton;
+        if ([availableMediaTypes containsObject:(NSString *)kUTTypeImage]) {
+            [buttonTitles addObject:kUIActionSheetButtonTitleChooseImage];
+        }
     }
+//    [buttonTitles addObject:kUIActionSheetButtonTitleDrawNewImage];
 
-//    self.addLookActionSheetBtnIndexes[@([sheet addButtonWithTitle:kUIActionSheetButtonTitleDrawNewImage])] = kDrawNewImageActionSheetButton;
-    sheet.cancelButtonIndex = [sheet addButtonWithTitle:kUIActionSheetButtonTitleCancel];
-    sheet.tag = kAddLookActionSheetTag;
-    sheet.actionSheetStyle = UIActionSheetStyleDefault;
-    [sheet showInView:self.view];
+    [Util actionSheetWithTitle:kUIActionSheetTitleAddLook
+                      delegate:self
+        destructiveButtonTitle:nil
+             otherButtonTitles:buttonTitles
+                           tag:kAddLookActionSheetTag
+                          view:self.navigationController.view];
 }
 
-#pragma mark - view helpers
+#pragma mark - helpers
 - (void)setupToolBar
 {
     [super setupToolBar];
@@ -614,34 +665,6 @@
     UIBarButtonItem *invisibleButton = [[UIBarButtonItem alloc] initWithCustomView:imageView];
     self.toolbarItems = [NSArray arrayWithObjects:self.selectAllRowsButtonItem, invisibleButton, flexItem,
                          invisibleButton, deleteButton, nil];
-}
-
-- (void)showLoadingView
-{
-    if (! self.loadingView) {
-        self.loadingView = [[LoadingView alloc] init];
-        [self.view addSubview:self.loadingView];
-    }
-    self.loadingView.backgroundColor = [UIColor whiteColor];
-    self.loadingView.alpha = 1.0;
-    CGPoint top = CGPointMake(0, -self.navigationController.navigationBar.frame.size.height);
-    [self.tableView setContentOffset:top animated:NO];
-    self.tableView.scrollEnabled = NO;
-    self.tableView.userInteractionEnabled = NO;
-    [self.navigationController.navigationBar setUserInteractionEnabled:NO];
-    [self.navigationController.toolbar setUserInteractionEnabled:NO];
-    [self showPlaceHolder:NO];
-    [self.loadingView show];
-}
-
-- (void)hideLoadingView
-{
-    [self showPlaceHolder:([self.object.lookList count] == 0)];
-    self.tableView.scrollEnabled = YES;
-    self.tableView.userInteractionEnabled = YES;
-    [self.navigationController.navigationBar setUserInteractionEnabled:YES];
-    [self.navigationController.toolbar setUserInteractionEnabled:YES];
-    [self.loadingView hide];
 }
 
 @end

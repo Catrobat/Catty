@@ -21,9 +21,9 @@
  */
 
 #import <UIKit/UIKit.h>
-#import "WebViewController.h"
+#import "BaseWebViewController.h"
 
-@interface HelpWebViewController : WebViewController
+@interface HelpWebViewController : BaseWebViewController
 
 
 @end

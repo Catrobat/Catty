@@ -507,6 +507,25 @@
 //    }
 //}
 
+- (instancetype)deepCopy
+{
+    // shallow copy
+    Script *copiedScript = [self copy];
+
+    // reset (just to ensure)
+    copiedScript.currentBrickIndex = 0;
+    copiedScript.allowRunNextAction = YES;
+    copiedScript.action = nil;
+
+    // deep copy
+    copiedScript.brickList = [NSMutableArray arrayWithCapacity:[self.brickList count]];
+    for (id brick in self.brickList) {
+        if ([brick isKindOfClass:[Brick class]]) {
+            [copiedScript.brickList addObject:[brick copy]]; // FIXME:/TODO: there are some bricks that refer to other sound, look, sprite objects...
+        }
+    }
+    return copiedScript;
+}
 
 #pragma mark - Description
 - (NSString*)description

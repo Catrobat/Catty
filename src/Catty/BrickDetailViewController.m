@@ -35,8 +35,8 @@
 #import "BroadcastScriptCell.h"
 #import "CellMotionEffect.h"
 #import "BrickCell.h"
-#import "IBActionSheet.h"
 #import "LanguageTranslationDefines.h"
+#import "CatrobatActionSheet.h"
 
 NS_ENUM(NSInteger, ButtonIndex) {
     kButtonIndexDelete = 0,
@@ -46,12 +46,12 @@ NS_ENUM(NSInteger, ButtonIndex) {
     kButtonIndexCancel = 4
 };
 
-@interface BrickDetailViewController () <IBActionSheetDelegate>
+@interface BrickDetailViewController () <CatrobatActionSheetDelegate>
 @property (strong, nonatomic) UITapGestureRecognizer *recognizer;
 @property (strong, nonatomic) NSNumber *deleteBrickOrScriptFlag;
 @property (strong, nonatomic) NSNumber *brickCopyFlag;
 @property (strong, nonatomic) UIMotionEffectGroup *motionEffects;
-@property (strong, nonatomic) IBActionSheet *brickMenu;
+@property (strong, nonatomic) CatrobatActionSheet *brickMenu;
 
 @end
 
@@ -113,42 +113,42 @@ NS_ENUM(NSInteger, ButtonIndex) {
 }
 
 #pragma mark - getters
-- (IBActionSheet*)brickMenu
+- (CatrobatActionSheet*)brickMenu
 {
     if (! _brickMenu) {
         if ([self isAnimateableBrick:self.brickCell]) {
 #if kIsFirstRelease // kIsFirstRelease
-            _brickMenu = [[IBActionSheet alloc] initWithTitle:kUIAlertViewMessageFeatureComingSoon
-                                                     delegate:self
-                                            cancelButtonTitle:kUIActionSheetButtonTitleClose
-                                       destructiveButtonTitle:[self deleteMenuItemNameWithBrickCell:self.brickCell]
-                                            otherButtonTitles:[self secondMenuItemWithBrickCell:self.brickCell],
-                                                              [self animateMenuItemWithBrickCell:self.brickCell],
-                                                              [self editFormulaMenuItemWithBrickCell:self.brickCell], nil];
+            _brickMenu = [[CatrobatActionSheet alloc] initWithTitle:kUIAlertViewMessageFeatureComingSoon
+                                                           delegate:self
+                                                  cancelButtonTitle:kUIActionSheetButtonTitleClose
+                                             destructiveButtonTitle:[self deleteMenuItemNameWithBrickCell:self.brickCell]
+                                                  otherButtonTitles:[self secondMenuItemWithBrickCell:self.brickCell],
+                                                                    [self animateMenuItemWithBrickCell:self.brickCell],
+                                                                    [self editFormulaMenuItemWithBrickCell:self.brickCell], nil];
 #else // kIsFirstRelease
-            _brickMenu = [[IBActionSheet alloc] initWithTitle:nil
-                                                     delegate:self
-                                            cancelButtonTitle:kUIActionSheetButtonTitleClose
-                                       destructiveButtonTitle:[self deleteMenuItemNameWithBrickCell:self.brickCell]
-                                            otherButtonTitles:[self secondMenuItemWithBrickCell:self.brickCell],
-                                                              [self animateMenuItemWithBrickCell:self.brickCell],
-                                                              [self editFormulaMenuItemWithBrickCell:self.brickCell], nil];
+            _brickMenu = [[CatrobatActionSheet alloc] initWithTitle:nil
+                                                           delegate:self
+                                                  cancelButtonTitle:kUIActionSheetButtonTitleClose
+                                             destructiveButtonTitle:[self deleteMenuItemNameWithBrickCell:self.brickCell]
+                                                  otherButtonTitles:[self secondMenuItemWithBrickCell:self.brickCell],
+                                                                    [self animateMenuItemWithBrickCell:self.brickCell],
+                                                                    [self editFormulaMenuItemWithBrickCell:self.brickCell], nil];
 #endif // kIsFirstRelease
         } else {
 #if kIsFirstRelease // kIsFirstRelease
-            _brickMenu = [[IBActionSheet alloc] initWithTitle:kUIAlertViewMessageFeatureComingSoon
-                                                     delegate:self
-                                            cancelButtonTitle:kUIActionSheetButtonTitleClose
-                                       destructiveButtonTitle:[self deleteMenuItemNameWithBrickCell:self.brickCell]
-                                            otherButtonTitles:[self secondMenuItemWithBrickCell:self.brickCell],
-                                                              [self editFormulaMenuItemWithBrickCell:self.brickCell], nil];
+            _brickMenu = [[CatrobatActionSheet alloc] initWithTitle:kUIAlertViewMessageFeatureComingSoon
+                                                           delegate:self
+                                                  cancelButtonTitle:kUIActionSheetButtonTitleClose
+                                             destructiveButtonTitle:[self deleteMenuItemNameWithBrickCell:self.brickCell]
+                                                  otherButtonTitles:[self secondMenuItemWithBrickCell:self.brickCell],
+                                                                    [self editFormulaMenuItemWithBrickCell:self.brickCell], nil];
 #else // kIsFirstRelease
-            _brickMenu = [[IBActionSheet alloc] initWithTitle:nil
-                                                     delegate:self
-                                            cancelButtonTitle:kUIActionSheetButtonTitleClose
-                                       destructiveButtonTitle:[self deleteMenuItemNameWithBrickCell:self.brickCell]
-                                            otherButtonTitles:[self secondMenuItemWithBrickCell:self.brickCell],
-                                                              [self editFormulaMenuItemWithBrickCell:self.brickCell], nil];
+            _brickMenu = [[CatrobatActionSheet alloc] initWithTitle:nil
+                                                           delegate:self
+                                                  cancelButtonTitle:kUIActionSheetButtonTitleClose
+                                             destructiveButtonTitle:[self deleteMenuItemNameWithBrickCell:self.brickCell]
+                                                  otherButtonTitles:[self secondMenuItemWithBrickCell:self.brickCell],
+                                                                    [self editFormulaMenuItemWithBrickCell:self.brickCell], nil];
 #endif // kIsFirstRelease
         }
 #if kIsFirstRelease // kIsFirstRelease
@@ -179,7 +179,7 @@ NS_ENUM(NSInteger, ButtonIndex) {
 }
 
 #pragma mark - Action Sheet Delegate
-- (void)actionSheet:(IBActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
+- (void)actionSheet:(CatrobatActionSheet*)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
 {
 #if kIsFirstRelease // kIsFirstRelease
     [self.presentingViewController dismissViewControllerAnimated:YES completion:NULL];

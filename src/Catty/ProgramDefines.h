@@ -34,9 +34,15 @@
 #define kMinNumOfObjects 0
 #define kDefaultNumOfObjects 1
 #define kBackgroundObjects 1
+#define kMinNumOfProgramNameCharacters 1
 #define kMaxNumOfProgramNameCharacters 20
+#define kMinNumOfProgramDescriptionCharacters 1
+#define kMaxNumOfProgramDescriptionCharacters 400
+#define kMinNumOfObjectNameCharacters 1
 #define kMaxNumOfObjectNameCharacters 20
+#define kMinNumOfLookNameCharacters 1
 #define kMaxNumOfLookNameCharacters 20
+#define kMinNumOfSoundNameCharacters 1
 #define kMaxNumOfSoundNameCharacters 20
 
 #define kDefaultProgramBundleName @"My First Program"
@@ -49,8 +55,25 @@
 #define kObjectSectionIndex 1
 #define kObjectIndex 0
 
-typedef NS_ENUM(NSUInteger, kProgramNameValidationResult) {
-    kProgramNameValidationResultOK = 0,
-    kProgramNameValidationResultInvalid = 1,
-    kProgramNameValidationResultAlreadyExists = 2
+typedef NS_ENUM(NSUInteger, kDTMActionType) {
+    kDTMActionAskUserForUniqueName = 0,
+    kDTMActionEditProgram = 1,
+    kDTMActionEditObject = 2,
+    kDTMActionEditLook = 3,
+    kDTMActionEditSound = 4
 };
+
+#define kDTPayloadProgramLoadingInfo @"DTPayloadProgramLoadingInfo"
+#define kDTPayloadSpriteObject @"DTPayloadSpriteObject"
+#define kDTPayloadLook @"DTPayloadLook"
+#define kDTPayloadSound @"DTPayloadSound"
+#define kDTPayloadAskUserAction @"DTPayloadAskUserAction"
+#define kDTPayloadAskUserTarget @"DTPayloadAskUserTarget"
+#define kDTPayloadAskUserObject @"DTPayloadAskUserObject"
+#define kDTPayloadAskUserPromptTitle @"DTPayloadAskUserPromptTitle"
+#define kDTPayloadAskUserPromptMessage @"DTPayloadAskUserPromptMessage"
+#define kDTPayloadAskUserPromptValue @"DTPayloadAskUserPromptValue"
+#define kDTPayloadAskUserPromptPlaceholder @"DTPayloadAskUserPromptPlaceholder"
+#define kDTPayloadAskUserMinInputLength @"DTPayloadAskUserMinInputLength"
+#define kDTPayloadAskUserInvalidInputAlertMessage @"DTPayloadAskUserInvalidInputAlertMessage"
+#define kDTPayloadAskUserExistingNames @"DTPayloadAskUserExistingNames"
