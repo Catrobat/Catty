@@ -238,7 +238,7 @@
 //        if(self.currentBrickIndex < [self.brickList count]) {
 //            Brick* brick = [self.brickList objectAtIndex:self.currentBrickIndex++];
 //
-//            // TODO: IF/REPEAT/FOREVER
+//            // old TO-DO: IF/REPEAT/FOREVER
 //            SKAction* action = [brick action];
 //            [self runWithAction:action];
 //        }
@@ -395,7 +395,7 @@
 //#warning remove!
 //-(void)runScript
 //{
-//    //TODO: check loop-condition BEFORE first iteration
+//    // old TO-DO: check loop-condition BEFORE first iteration
 //    if (self.currentBrickIndex < 0)
 //        self.currentBrickIndex = 0;
 //    while (!self.stop && self.currentBrickIndex < [self.brickList count]) {
@@ -544,7 +544,7 @@
     for (id brick in self.brickList) {
         if ([brick isKindOfClass:[Brick class]]) {
             // TODO: issue #308 - implement deep copy for all bricks here!!
-            [copiedScript.brickList addObject:brick]; // FIXME:/TODO: there are some bricks that refer to other sound, look, sprite objects...
+            [copiedScript.brickList addObject:brick]; // there are some bricks that refer to other sound, look, sprite objects...
         }
     }
     return copiedScript;

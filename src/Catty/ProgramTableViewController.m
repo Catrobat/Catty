@@ -53,10 +53,6 @@
 #import "DataTransferMessage.h"
 #import "NSMutableArray+CustomExtensions.h"
 
-// TODO: outsource...
-#define kUserDetailsShowDetailsKey @"showDetails"
-#define kUserDetailsShowDetailsObjectsKey @"detailsForObjects"
-
 @interface ProgramTableViewController () <CatrobatActionSheetDelegate, UINavigationBarDelegate, SWTableViewCellDelegate>
 @property (nonatomic) BOOL useDetailCells;
 @end

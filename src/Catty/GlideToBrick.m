@@ -33,14 +33,13 @@
 
 @end
 
-
 @implementation GlideToBrick
 
 @synthesize durationInSeconds = _durationInSeconds;
 @synthesize xDestination = _xDestination;
 @synthesize yDestination = _yDestination;
 
--(id)init
+- (id)init
 {
     if(self = [super init]) {
         self.isInitialized = NO;
@@ -54,15 +53,13 @@
 }
 
 #pragma mark - override
-
--(SKAction*)action
+- (SKAction*)action
 {
-    
     double durationInSeconds = [self.durationInSeconds interpretDoubleForSprite:self.object];
     double xDestination = [self.xDestination interpretDoubleForSprite:self.object];
     double yDestination = [self.yDestination interpretDoubleForSprite:self.object];
     self.isInitialized = NO;
-    
+
     return [SKAction customActionWithDuration:durationInSeconds actionBlock:^(SKNode *node, CGFloat elapsedTime) {
         NSDebug(@"Performing: %@", self.description);
         
@@ -71,28 +68,20 @@
             self.currentPoint = self.object.position;
             self.startingPoint = self.currentPoint;
         }
-        
         // TODO: handle extreme movemenets and set currentPoint accordingly
         CGFloat percent = elapsedTime / durationInSeconds;
-        
         CGFloat xPoint = self.startingPoint.x + (xDestination - self.startingPoint.x) * percent;
         CGFloat yPoint = self.startingPoint.y + (yDestination - self.startingPoint.y) * percent;
-        
         self.object.position = self.currentPoint = CGPointMake(xPoint, yPoint);
-
-
     }];
 }
 
 #pragma mark - Description
 - (NSString*)description
 {
-    
     double xDestination = [self.xDestination interpretDoubleForSprite:self.object];
     double yDestination = [self.yDestination interpretDoubleForSprite:self.object];
-    
     double durationInSeconds = [self.durationInSeconds interpretDoubleForSprite:self.object];
-    
     return [NSString stringWithFormat:@"GlideTo (Position: %f/%f; duration: %f s)", xDestination, yDestination, durationInSeconds];
 }
 

@@ -77,3 +77,10 @@ typedef NS_ENUM(NSUInteger, kDTMActionType) {
 #define kDTPayloadAskUserMinInputLength @"DTPayloadAskUserMinInputLength"
 #define kDTPayloadAskUserInvalidInputAlertMessage @"DTPayloadAskUserInvalidInputAlertMessage"
 #define kDTPayloadAskUserExistingNames @"DTPayloadAskUserExistingNames"
+
+#define kUserDetailsShowDetailsKey @"showDetails"
+#define kUserDetailsShowDetailsObjectsKey @"detailsForObjects"
+#define kUserDetailsShowDetailsLooksKey @"detailsForLooks"
+#define kUserDetailsShowDetailsSoundsKey @"detailsForSounds"
+#define kUserDetailsShowDetailsProgramsKey @"detailsForPrograms"
+#define kScreenshotThumbnailPrefix @".thumb_"

@@ -45,10 +45,6 @@
 #import "CatrobatActionSheet.h"
 #import "DataTransferMessage.h"
 
-// TODO: outsource...
-#define kUserDetailsShowDetailsKey @"showDetails"
-#define kUserDetailsShowDetailsSoundsKey @"detailsForSounds"
-
 @interface SoundsTableViewController () <CatrobatActionSheetDelegate, AVAudioPlayerDelegate,
                                          SWTableViewCellDelegate>
 @property (nonatomic) BOOL useDetailCells;
@@ -179,7 +175,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
     [self showPlaceHolder:NO];
     NSIndexPath *indexPath = [NSIndexPath indexPathForRow:(numberOfRowsInLastSection - 1) inSection:0];
     [self.tableView insertRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationNone];
-    // TODO: save to disk (async)...
+    [self.object.program saveToDisk];
 }
 
 - (void)copySoundActionWithSourceSound:(Sound*)sourceSound
@@ -307,13 +303,21 @@ static NSCharacterSet *blockedCharacterSet = nil;
     [imageCell.iconImageView addGestureRecognizer:tapped];
 
     if (self.useDetailCells && [cell isKindOfClass:[DarkBlueGradientImageDetailCell class]]) {
-        // TODO: enhancement: use data cache for this later...
         DarkBlueGradientImageDetailCell *detailCell = (DarkBlueGradientImageDetailCell*)imageCell;
         detailCell.topLeftDetailLabel.textColor = [UIColor whiteColor];
         detailCell.topLeftDetailLabel.text = [NSString stringWithFormat:@"%@:", kUILabelTextLength];
         detailCell.topRightDetailLabel.textColor = [UIColor whiteColor];
-        detailCell.topRightDetailLabel.text = [NSString stringWithFormat:@"%.02fs",
-                                               (float)[self.object durationOfSound:sound]];
+
+        NSNumber *number = [self.dataCache objectForKey:sound.fileName];
+        CGFloat duration;
+        if (! number) {
+            duration = [self.object durationOfSound:sound];
+            [self.dataCache setObject:[NSNumber numberWithFloat:duration] forKey:sound.fileName];
+        } else {
+            duration = [number floatValue];
+        }
+
+        detailCell.topRightDetailLabel.text = [NSString stringWithFormat:@"%.02fs", (float)duration];
         detailCell.bottomLeftDetailLabel.textColor = [UIColor whiteColor];
         detailCell.bottomLeftDetailLabel.text = [NSString stringWithFormat:@"%@:", kUILabelTextSize];
         detailCell.bottomRightDetailLabel.textColor = [UIColor whiteColor];

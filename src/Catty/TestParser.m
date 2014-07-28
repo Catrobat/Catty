@@ -74,7 +74,7 @@
 ////- (Project*)generateObjectForProgram:(NSString*)path
 ////{
 ////    self.zIndex = 0;
-////    /// TODO: call xml-parser instead of following lines... I know, wrong place...doesn't matter...
+////    /// old TO-DO: call xml-parser instead of following lines... I know, wrong place...doesn't matter...
 ////    
 ////    NSMutableArray *startScriptsMutable = [[NSMutableArray alloc] init];
 ////    NSMutableArray *whenScriptsMutable = [[NSMutableArray alloc] init];
@@ -127,7 +127,7 @@
 ////    
 ////    //creating cat brick
 ////    newBrick = [[SetLookBrick alloc]init];
-////    newBrick.look = look1; // TODO: define init-costume...
+////    newBrick.look = look1; // old TO-DO: define init-costume...
 ////    
 //////    newBrick.sprite = sprite2;
 //////    newStartScript.bricksArray = [[NSMutableArray alloc]initWithObjects:newBrick, nil];

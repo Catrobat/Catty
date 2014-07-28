@@ -189,6 +189,9 @@
     for (SpriteObject *currentObject in self.objectList) {
         if (currentObject == object) {
             // TODO: remove all sounds, images from disk that are not needed any more...
+//            currentObject.program = nil;
+//            [currentObject removeSounds:currentObject.soundList];
+//            [currentObject removeLooks:currentObject.lookList];
             [self.objectList removeObjectAtIndex:index];
             break;
         }
@@ -361,7 +364,6 @@
             [rootXMLElement addChild:variablesXMLElement];
 //        }
     }
-
     return rootXMLElement;
 }
 

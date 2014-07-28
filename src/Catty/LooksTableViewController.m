@@ -49,10 +49,6 @@
 #import "CatrobatAlertView.h"
 #import "DataTransferMessage.h"
 
-// TODO: outsource...
-#define kUserDetailsShowDetailsKey @"showDetails"
-#define kUserDetailsShowDetailsLooksKey @"detailsForLooks"
-
 @interface LooksTableViewController () <CatrobatActionSheetDelegate, UIImagePickerControllerDelegate,
                                         UINavigationControllerDelegate, CatrobatAlertViewDelegate,
                                         UITextFieldDelegate, SWTableViewCellDelegate>
@@ -138,6 +134,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
                      look.name, fileExtension];
     NSString *newPath = [self.object pathForLook:look];
     [appDelegate.fileManager moveExistingFileAtPath:oldPath toPath:newPath overwrite:YES];
+    [self.dataCache removeObjectForKey:look.fileName]; // just to ensure
     [self.object addLook:look];
 
     [self showPlaceHolder:NO];
@@ -189,6 +186,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
     for (NSIndexPath *selectedRowIndexPath in selectedRowsIndexPaths) {
         Look *look = (Look*)[self.object.lookList objectAtIndex:selectedRowIndexPath.row];
         [looksToRemove addObject:look];
+        [self.dataCache removeObjectForKey:look.fileName];
     }
     [self.object removeLooks:looksToRemove];
     [super exitEditingMode];
@@ -200,6 +198,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
 {
     [self showLoadingView];
     Look *look = (Look*)[self.object.lookList objectAtIndex:indexPath.row];
+    [self.dataCache removeObjectForKey:look.fileName];
     [self.object removeLook:look];
     [self.tableView deleteRowsAtIndexPaths:@[indexPath]
                           withRowAnimation:UITableViewRowAnimationNone];
@@ -264,12 +263,19 @@ static NSCharacterSet *blockedCharacterSet = nil;
     imageCell.titleLabel.text = look.name;
 
     if (self.useDetailCells && [cell isKindOfClass:[DarkBlueGradientImageDetailCell class]]) {
-        // TODO: enhancement: use data cache for this later...
         DarkBlueGradientImageDetailCell *detailCell = (DarkBlueGradientImageDetailCell*)imageCell;
         detailCell.topLeftDetailLabel.textColor = [UIColor whiteColor];
         detailCell.topLeftDetailLabel.text = [NSString stringWithFormat:@"%@:", kUILabelTextMeasure];
         detailCell.topRightDetailLabel.textColor = [UIColor whiteColor];
-        CGSize dimensions = [self.object dimensionsOfLook:look];
+
+        NSValue *value = [self.dataCache objectForKey:look.fileName];
+        CGSize dimensions;
+        if (! value) {
+            dimensions = [self.object dimensionsOfLook:look];
+            [self.dataCache setObject:[NSValue valueWithCGSize:dimensions] forKey:look.fileName];
+        } else {
+            dimensions = [value CGSizeValue];
+        }
         detailCell.topRightDetailLabel.text = [NSString stringWithFormat:@"%lux%lu",
                                                (unsigned long)dimensions.width,
                                                (unsigned long)dimensions.height];
@@ -438,10 +444,8 @@ static NSCharacterSet *blockedCharacterSet = nil;
 
         // TODO: outsource this to FileManager
         NSString *newImagePath = [NSString stringWithFormat:@"%@%@/%@",
-                                  [self.object projectPath], kProgramImagesDirName,
-                                  newImageFileName];
+                                  [self.object projectPath], kProgramImagesDirName, newImageFileName];
         NSString *mediaType = info[UIImagePickerControllerMediaType];
-
         NSLog(@"Writing file to disk");
         if ([mediaType isEqualToString:@"public.image"]) {
             // leaving the main queue here!
@@ -566,7 +570,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
             // choose picture from camera roll
             [self presentImagePicker:UIImagePickerControllerSourceTypeSavedPhotosAlbum];
 //        } else if (buttonIndex != actionSheet.cancelButtonIndex) {
-//            // TODO: implement this after Pocket Paint is fully integrated
+//            // implement this after Pocket Paint is fully integrated
 //            // draw new image
 //            NSLog(@"Draw new image");
 //            [Util showComingSoonAlertView];

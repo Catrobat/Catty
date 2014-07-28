@@ -154,26 +154,19 @@ NS_ENUM(NSInteger, ButtonIndex) {
             [self dismissBrickDetailViewController];
             break;
         }
-            
         case kButtonIndexCopyOrCancel:
-            if (![self isScript:self.brickCell]) {
-                self.brickCopyFlag = [NSNumber numberWithBool:![self isScript:self.brickCell]];
+            if (! [self.brickCell isScriptBrick]) {
+                self.brickCopyFlag = [NSNumber numberWithBool:(! [self.brickCell isScriptBrick])];
             }
             [self dismissBrickDetailViewController];
             break;
-            
         case kButtonIndexAnimate:
-           
             break;
-            
         case kButtonIndexEdit:
-            
             break;
-            
         case kButtonIndexCancel:
             [self dismissBrickDetailViewController];
             break;
-            
         default:
             break;
     }
@@ -190,7 +183,7 @@ NS_ENUM(NSInteger, ButtonIndex) {
 
 - (NSString *)deleteMenuItemNameWithBrickCell:(BrickCell *)cell
 {
-    if ([self isScript:cell]) {
+    if ([cell isScriptBrick]) {
         return kUIActionSheetButtonTitleDeleteScript;
     }
     return kUIActionSheetButtonTitleDeleteBrick;
@@ -198,7 +191,7 @@ NS_ENUM(NSInteger, ButtonIndex) {
 
 - (NSString *)secondMenuItemWithBrickCell:(BrickCell *)cell
 {
-    if ([self isScript:cell]) {
+    if ([cell isScriptBrick]) {
         return nil;
     }
     return kUIActionSheetButtonTitleCopyBrick;
@@ -206,7 +199,7 @@ NS_ENUM(NSInteger, ButtonIndex) {
 
 - (NSString *)animateMenuItemWithBrickCell:(BrickCell *)cell
 {
-    if ([self isScript:cell] || ![self isAnimateableBrick:cell]) {
+    if ([cell isScriptBrick] || (! [self isAnimateableBrick:cell])) {
         return nil;
     }
     return kUIActionSheetButtonTitleAnimateBricks;
@@ -214,24 +207,13 @@ NS_ENUM(NSInteger, ButtonIndex) {
 
 - (NSString *)editFormulaMenuItemWithBrickCell:(BrickCell *)cell
 {
-    if ([self isScript:cell]) {
+    if ([cell isScriptBrick]) {
         return nil;
     }
     return kUIActionSheetButtonTitleEditFormula;
 }
 
-//TODO refactor later
-- (BOOL)isScript:(BrickCell *)brickcell
-{
-    if ([brickcell isKindOfClass:StartScriptCell.class] ||
-        [brickcell isKindOfClass:WhenScriptCell.class] ||
-        [brickcell isKindOfClass:BroadcastScriptCell.class]) {
-        return YES;
-    }
-    return NO;
-}
-
-//TODO refactor later
+// TODO: refactor later => use property for this...
 - (bool)isAnimateableBrick:(BrickCell *)brickCell
 {
     if ([brickCell isKindOfClass:IfLogicElseBrickCell.class] ||

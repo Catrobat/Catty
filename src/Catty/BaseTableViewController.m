@@ -56,6 +56,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.dataCache = nil;
     self.editing = NO;
     self.editableSections = nil;
     self.tableView.delegate = self;
@@ -83,7 +84,22 @@
     }
 }
 
+#pragma mark - system events
+- (void)didReceiveMemoryWarning
+{
+    [super didReceiveMemoryWarning];
+    self.dataCache = nil;
+}
+
 #pragma mark - getters and setters
+- (NSMutableDictionary*)dataCache
+{
+    if (! _dataCache) {
+        _dataCache = [NSMutableDictionary dictionary];
+    }
+    return _dataCache;
+}
+
 - (PlaceHolderView *)placeHolderView
 {
     if (!_placeHolderView) {

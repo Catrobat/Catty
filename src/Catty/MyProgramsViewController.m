@@ -49,16 +49,10 @@
 #import "NSMutableArray+CustomExtensions.h"
 #import "UIDefines.h"
 
-// TODO: outsource...
-#define kUserDetailsShowDetailsKey @"showDetails"
-#define kUserDetailsShowDetailsProgramsKey @"detailsForPrograms"
-#define kScreenshotThumbnailPrefix @".thumb_"
-
 @interface MyProgramsViewController () <CatrobatActionSheetDelegate, ProgramUpdateDelegate,
                                         CatrobatAlertViewDelegate, UITextFieldDelegate,
                                         SWTableViewCellDelegate>
 @property (nonatomic) BOOL useDetailCells;
-@property (nonatomic, strong) NSMutableDictionary *dataCache;
 @property (nonatomic, strong) NSMutableArray *programLoadingInfos;
 @property (nonatomic, strong) Program *selectedProgram;
 @property (nonatomic, strong) Program *defaultProgram;
@@ -75,15 +69,6 @@ static NSCharacterSet *blockedCharacterSet = nil;
                                invertedSet];
     }
     return blockedCharacterSet;
-}
-
-#pragma mark - getters and setters
-- (NSMutableDictionary*)dataCache
-{
-    if (! _dataCache) {
-        _dataCache = [NSMutableDictionary dictionaryWithCapacity:[self.programLoadingInfos count]];
-    }
-    return _dataCache;
 }
 
 #pragma mark - initialization
@@ -104,7 +89,6 @@ static NSCharacterSet *blockedCharacterSet = nil;
     self.programLoadingInfos = [[Program allProgramLoadingInfos] mutableCopy];
     [self initNavigationBar];
 
-    self.dataCache = nil;
     self.defaultProgram = nil;
     self.selectedProgram = nil;
     [self setupToolBar];
@@ -126,12 +110,6 @@ static NSCharacterSet *blockedCharacterSet = nil;
 }
 
 #pragma mark - system events
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    self.dataCache = nil;
-}
-
 - (void)dealloc
 {
     self.tableView.dataSource = nil;

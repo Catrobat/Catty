@@ -422,9 +422,8 @@
         if (counter < totalNumberOfParams) {
 
             // -----------------------------------
-            // TODO: * This is only code used for testing purposes. TO BE REFACTORED...
+            // NOTE: * This is only code used for testing purposes. TO BE REFACTORED...
             //       * Pickers, Pluralization, Hook Ups only for inputFields ...
-
             CGRect inputViewFrame = remainingFrame;
 //            inputViewFrame.origin.y += kBrickInputFieldTopMargin;
 //            inputViewFrame.size.height -= (kBrickInputFieldTopMargin + kBrickInputFieldBottomMargin);

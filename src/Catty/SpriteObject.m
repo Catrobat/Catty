@@ -1248,7 +1248,7 @@
 //{
 //    if ([[NSThread currentThread] isMainThread]) {
 //        
-//        //TODO
+//        //old TO-DO
 //        
 //        NSLog(@" ");
 //        NSLog(@"!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
@@ -1271,7 +1271,7 @@
 //    
 ////    [[NSNotificationCenter defaultCenter]postNotificationName:message object:self userInfo:[NSDictionary dictionaryWithObject:responseID forKey:@"responseID"]];
 ////    
-////    // TODO: busy waiting...
+////    // old TO-DO: busy waiting...
 ////    while ([self.broadcastWaitDelegate polling4testing__didAllObserversFinishForResponseID:responseID] == NO);
 //    
 //    
