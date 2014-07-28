@@ -20,20 +20,9 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import <Foundation/Foundation.h>
+#import "DarkBlueGradientCell.h"
 
-@class CatrobatBaseCell;
-
-@interface TableUtil : NSObject
-
-+ (CGFloat)getHeightForContinueCell;
-
-+ (CGFloat)getHeightForImageCell;
-
-+ (CGFloat)getHeightForFeaturedCell;
-
-+ (UIBarButtonItem*)editButtonItemWithTarget:(id)target action:(SEL)action;
-
-//+ (void)addSeperatorForCell:(CatrobatBaseCell*)cell;
+@interface DarkBlueGradientFeaturedCell : DarkBlueGradientCell
+@property (weak, nonatomic) IBOutlet UIImageView *featuredImage;
 
 @end
