@@ -20,20 +20,36 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import <Foundation/Foundation.h>
+#import "DarkBlueGradientFeaturedCell.h"
+#import "Util.h"
+#import "UIColor+CatrobatUIColorExtensions.h"
 
-@class CatrobatBaseCell;
+@implementation DarkBlueGradientFeaturedCell
 
-@interface TableUtil : NSObject
+- (void)awakeFromNib
+{
+    [self configureImageCell];
+}
 
-+ (CGFloat)getHeightForContinueCell;
+- (void)configureImageCell
+{
+//    self.titleLabel.textColor = UIColor.skyBlueColor;
+    self.accessoryView.hidden = YES;
+//    self.featuredImage.frame = self.frame;
+    self.backgroundColor = [UIColor backgroundColor];
+}
 
-+ (CGFloat)getHeightForImageCell;
+- (void)layoutSubviews {
+    [super layoutSubviews];
+}
 
-+ (CGFloat)getHeightForFeaturedCell;
-
-+ (UIBarButtonItem*)editButtonItemWithTarget:(id)target action:(SEL)action;
-
-//+ (void)addSeperatorForCell:(CatrobatBaseCell*)cell;
+/*
+// Only override drawRect: if you perform custom drawing.
+// An empty implementation adversely affects performance during animation.
+- (void)drawRect:(CGRect)rect
+{
+    // Drawing code
+}
+*/
 
 @end

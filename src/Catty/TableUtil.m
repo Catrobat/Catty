@@ -30,6 +30,7 @@
 #define kIphone4ScreenHeight 480.0f
 #define kContinueCellHeight  120.0f
 #define kImageCellHeight     75.0f
+#define kFeaturedCellHeight  125.0f
 
 @implementation TableUtil
 
@@ -51,6 +52,10 @@
     } else {
         return (kImageCellHeight*screenHeight)/kIphone4ScreenHeight;
     }
+}
++ (CGFloat)getHeightForFeaturedCell
+{
+    return kFeaturedCellHeight;
 }
 
 + (UIBarButtonItem*)editButtonItemWithTarget:(id)target action:(SEL)action

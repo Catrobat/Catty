@@ -22,6 +22,7 @@
 
 #define kContinueCell    @"ContinueCell"
 #define kImageCell       @"ImageCell"
+#define kFeaturedCell    @"FeaturedCell"
 #define kDetailImageCell @"DetailImageCell"
 #define kSearchCell      @"SearchCell"
 #define kObjectCell      @"ObjectCell"
