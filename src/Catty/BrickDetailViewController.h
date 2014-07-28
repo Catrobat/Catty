@@ -21,11 +21,9 @@
  */
 
 #import <UIKit/UIKit.h>
-#import "ScriptCollectionViewController.h"
-#import "BrickCell.h"
-#import "CatrobatActionSheet.h"
 
 @class BrickDetailViewController;
+@class BrickCell;
 
 @protocol BrickDetailViewControllerDelegate <NSObject>
 
@@ -40,7 +38,5 @@
 @interface BrickDetailViewController : UIViewController
 @property (weak, nonatomic) id<BrickDetailViewControllerDelegate> delegate;
 @property (strong, nonatomic) BrickCell *brickCell;
-
-
 
 @end

@@ -30,6 +30,8 @@
 
 + (CGFloat)getHeightForImageCell;
 
++ (CGFloat)getHeightForFeaturedCell;
+
 + (UIBarButtonItem*)editButtonItemWithTarget:(id)target action:(SEL)action;
 
 //+ (void)addSeperatorForCell:(CatrobatBaseCell*)cell;

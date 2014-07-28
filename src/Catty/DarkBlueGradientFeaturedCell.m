@@ -20,14 +20,36 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#define kCatrobatXMLDeclaration @"<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\" ?>"
-#define kCatrobatApplicationBuildNumber @"0"
-#define kCatrobatApplicationName @"Pocket Code (Catty iOS)"
-#define kCatrobatLanguageVersion @"0.8"
-#define kCatrobatMediaLicense @"http://developer.catrobat.org/ccbysa_v3"
-#define kCatrobatProgramLicense @"http://developer.catrobat.org/agpl_v3"
+#import "DarkBlueGradientFeaturedCell.h"
+#import "Util.h"
+#import "UIColor+CatrobatUIColorExtensions.h"
 
-#define kCatrobatScreenModeMaximize @"MAXIMIZE"
-#define kCatrobatScreenModeStretch @"STRETCH"
-#define kCatrobatProgramScreenshotDefaultValue @"false"
-#define kIsFirstRelease 1
+@implementation DarkBlueGradientFeaturedCell
+
+- (void)awakeFromNib
+{
+    [self configureImageCell];
+}
+
+- (void)configureImageCell
+{
+//    self.titleLabel.textColor = UIColor.skyBlueColor;
+    self.accessoryView.hidden = YES;
+//    self.featuredImage.frame = self.frame;
+    self.backgroundColor = [UIColor backgroundColor];
+}
+
+- (void)layoutSubviews {
+    [super layoutSubviews];
+}
+
+/*
+// Only override drawRect: if you perform custom drawing.
+// An empty implementation adversely affects performance during animation.
+- (void)drawRect:(CGRect)rect
+{
+    // Drawing code
+}
+*/
+
+@end

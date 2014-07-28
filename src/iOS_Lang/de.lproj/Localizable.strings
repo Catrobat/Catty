@@ -489,13 +489,13 @@
 
 "Show" = "Zeige dich";
 
-"Set transparency\nto %@\%" = "Setze Transparenz auf %@\\%";
+"Set transparency\nto %@\%" = "Setze Transparenz auf %@\%";
 
-"Change transparency\nby %@\%" = "Ändere Transparenz um %@\\%";
+"Change transparency\nby %@\%" = "Ändere Transparenz um %@\%";
 
-"Set brightness to %@\%" = "Setze Helligkeit auf %@\\%";
+"Set brightness to %@\%" = "Setze Helligkeit auf %@\%";
 
-"Change brightness\nby %@\%" = "Ändern Sie Helligkeit um %@\\%";
+"Change brightness\nby %@\%" = "Ändern Sie Helligkeit um %@\%";
 
 "Clear graphic effects" = "Schalte Grafikeffekte aus";
 
@@ -503,7 +503,7 @@
 
 "Stop all sounds" = "Stoppe alle Klänge";
 
-"Set volume to %@\%" = "Setze Lautstärke auf %@\\%";
+"Set volume to %@\%" = "Setze Lautstärke auf %@\%";
 
 "Change volume by %@" = "Ändere Lautstärke um %@";
 

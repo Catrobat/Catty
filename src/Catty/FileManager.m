@@ -366,8 +366,6 @@
 - (void)downloadFileFromURL:(NSURL*)url withName:(NSString*)name
 {
     self.projectName = name;
-
-
     
     if (!self.downloadSession) {
         NSURLSessionConfiguration *sessionConfig =
@@ -376,7 +374,6 @@
                                                              delegate:self
                                                         delegateQueue:nil];
     }
-
 
     NSURLSessionDownloadTask *getProgramTask =
     [self.downloadSession downloadTaskWithURL:url];
@@ -469,7 +466,7 @@
     NSString *tempPath = [NSString stringWithFormat:@"%@temp.zip", NSTemporaryDirectory()];
     [programData writeToFile:tempPath atomically:YES];
     NSString *storePath = [NSString stringWithFormat:@"%@/%@", self.programsDirectory, name];
-
+    
     NSDebug(@"Starting unzip");
     [SSZipArchive unzipFileAtPath:tempPath toDestination:storePath];
     NSDebug(@"Unzip finished");
@@ -488,6 +485,8 @@
             [self storeDownloadedImage:programData andTask:key];
         }
     }
+    
+    [self addSkipBackupAttributeToItemAtURL:storePath];
 }
 
 
@@ -643,6 +642,20 @@
         app.networkActivityIndicatorVisible = NO;
 
     }
+}
+
+#pragma mark - exclude file from iCloud Backup
+- (BOOL)addSkipBackupAttributeToItemAtURL:(NSString *)URL
+{
+    NSURL *localFileURL = [NSURL fileURLWithPath:URL];
+    assert([NSFileManager.defaultManager fileExistsAtPath:URL]);
+    
+    NSError *error = nil;
+    BOOL success = [localFileURL setResourceValue:@YES forKey:NSURLIsExcludedFromBackupKey error:&error];
+    if (!success) {
+        NSLog(@"Error excluding %@ from backup %@", URL.lastPathComponent, error);
+    }
+    return success;
 }
 
 @end

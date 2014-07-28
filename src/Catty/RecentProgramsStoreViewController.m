@@ -636,7 +636,6 @@
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    
     if([[segue identifier] isEqualToString:kSegueToProgramDetail]) {
         NSIndexPath *selectedRowIndexPath = self.tableView.indexPathForSelectedRow;
         CatrobatProject *catrobatProject;

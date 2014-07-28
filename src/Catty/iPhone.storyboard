@@ -9,13 +9,13 @@
         <scene sceneID="zhR-1R-Y6s">
             <objects>
                 <tableViewController storyboardIdentifier="ProgramTableViewController" id="BYa-g9-OiT" customClass="ProgramTableViewController" sceneMemberID="viewController">
-                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="Obr-NN-w03">
+                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="Obr-NN-w03">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
                             <tableViewCell contentMode="scaleAspectFit" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="ImageCell" rowHeight="79" id="4dE-Mc-fH1" customClass="DarkBlueGradientImageCell">
-                                <rect key="frame" x="0.0" y="119" width="320" height="79"/>
+                                <rect key="frame" x="0.0" y="86" width="320" height="79"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="4dE-Mc-fH1" id="IxA-QY-Kgo">
                                     <rect key="frame" x="0.0" y="0.0" width="287" height="78"/>
@@ -37,8 +37,8 @@
                                     <outlet property="titleLabel" destination="UZk-4d-EUO" id="tnZ-rf-Oab"/>
                                 </connections>
                             </tableViewCell>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="DetailImageCell" rowHeight="79" id="ePg-N5-867" customClass="DarkBlueGradientImageDetailCell">
-                                <rect key="frame" x="0.0" y="198" width="320" height="79"/>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="none" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="DetailImageCell" rowHeight="79" id="ePg-N5-867" customClass="DarkBlueGradientImageDetailCell">
+                                <rect key="frame" x="0.0" y="165" width="320" height="79"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="ePg-N5-867" id="B0W-Dk-5Hd">
                                     <rect key="frame" x="0.0" y="0.0" width="287" height="78"/>
@@ -722,20 +722,20 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="ImageCell" rowHeight="123" id="EfC-3p-1xF" customClass="DarkBlueGradientImageCell">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="FeaturedCell" rowHeight="123" id="EfC-3p-1xF" customClass="DarkBlueGradientFeaturedCell">
                                 <rect key="frame" x="0.0" y="86" width="320" height="123"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="EfC-3p-1xF" id="Jm9-AW-RhL">
-                                    <rect key="frame" x="0.0" y="0.0" width="287" height="122"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="122"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" tag="11" contentMode="scaleAspectFill" id="49q-B8-MBG">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="123"/>
+                                            <rect key="frame" x="135" y="36" width="50" height="50"/>
                                         </imageView>
                                     </subviews>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <outlet property="iconImageView" destination="49q-B8-MBG" id="4pU-ee-LyV"/>
+                                    <outlet property="featuredImage" destination="49q-B8-MBG" id="h2g-uy-T4E"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -970,8 +970,8 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="aum-BR-x1G"/>
-        <segue reference="5UD-6W-Ykq"/>
-        <segue reference="OPb-jW-KHJ"/>
+        <segue reference="Ynr-aF-UI3"/>
+        <segue reference="dSt-wf-R4M"/>
+        <segue reference="83p-dA-kpt"/>
     </inferredMetricsTieBreakers>
 </document>

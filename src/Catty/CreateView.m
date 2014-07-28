@@ -216,6 +216,7 @@
 {
     UIImageView *imageView = [[UIImageView alloc] init];
     UIImage* errorImage = [UIImage imageNamed:@"thumbnail_large"];
+    imageView.frame = CGRectMake(view.frame.size.width/15, view.frame.size.height*0.1, view.frame.size.width/3, [Util getScreenHeight]/4.5f);
     imageView.image = [UIImage imageWithContentsOfURL:[NSURL URLWithString:imageUrlString]
                                      placeholderImage:nil
                                            errorImage:errorImage
@@ -235,9 +236,6 @@
     }
 
     imageView.contentMode = UIViewContentModeScaleAspectFill;
-
-    imageView.frame = CGRectMake(view.frame.size.width/15, view.frame.size.height*0.1, view.frame.size.width/3, [Util getScreenHeight]/4.5f);
-    
     imageView.layer.cornerRadius = 8.0;
     imageView.layer.masksToBounds = YES;
     imageView.layer.borderColor = [UIColor whiteColor].CGColor;

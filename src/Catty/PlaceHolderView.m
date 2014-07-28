@@ -63,6 +63,7 @@
                                              _title];
     _placeholderDescriptionLabel.backgroundColor = UIColor.clearColor;
     _placeholderDescriptionLabel.textColor = UIColor.skyBlueColor;
+    _placeholderDescriptionLabel.numberOfLines = 0;
     self.contentView = _placeholderDescriptionLabel;
     self.shimmering = YES;
 }
