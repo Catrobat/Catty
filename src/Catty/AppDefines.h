@@ -21,3 +21,5 @@
  */
 
 #define kCatrobatLanguageVersion @"0.6"
+
+#define kIsFirstRelease 1

@@ -25,6 +25,8 @@
 #import "FXBlurView.h"
 #import "UIColor+CatrobatUIColorExtensions.h"
 
+#define kTopAnimationOffset 40.0f
+
 @implementation BrickScaleTransition {
     CGFloat _yOffset;
     ScriptCollectionViewController *_scriptCollectionVC;
@@ -53,7 +55,8 @@
             _scriptCollectionVC.blurView.hidden = NO;
             
             [UIView animateWithDuration:0.5f delay:0.0f usingSpringWithDamping:10.0f initialSpringVelocity:0.0f options:UIViewAnimationOptionCurveEaseInOut animations:^{
-                move.center = toVC.view.center;
+//                move.center = toVC.view.center;
+                move.layer.position = CGPointMake(CGRectGetMidX(toVC.view.bounds), CGRectGetMidY(move.bounds) + kTopAnimationOffset);
                 _scriptCollectionVC.blurView.alpha = 1.0f;
                 _scriptCollectionVC.collectionView.alpha = 0.5f;
                 _scriptCollectionVC.navigationController.navigationBar.alpha = 0.01f;
@@ -63,7 +66,8 @@
                 _scriptCollectionVC.blurView.dynamic = NO;
                 toVC.view.frame = fromVC.view.frame;
                 self.cell.hidden = NO;
-                self.cell.center = toVC.view.center;
+//                self.cell.center = toVC.view.center;
+                self.cell.layer.position = CGPointMake(CGRectGetMidX(toVC.view.bounds), CGRectGetMidY(move.bounds) + kTopAnimationOffset);
                 [toVC.view addSubview:self.cell];
                 [container addSubview:toVC.view];
                 [move removeFromSuperview];
