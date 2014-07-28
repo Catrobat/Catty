@@ -133,6 +133,8 @@
         CatrobatProject *project = [self.projects objectAtIndex:indexPath.row];
         
         DarkBlueGradientFeaturedCell *imageCell = (DarkBlueGradientFeaturedCell *)cell;
+        imageCell.featuredImage.frame = cell.frame;
+        imageCell.featuredImage.frame = CGRectMake(0, 0, imageCell.featuredImage.frame.size.width, imageCell.featuredImage.frame.size.height);
         [self loadImage:project.featuredImage forCell:imageCell atIndexPath:indexPath];
     }
     
@@ -316,7 +318,7 @@
         NSNumber* width = self.featuredSize[0];
         NSNumber* height = self.featuredSize[1];
         
-        CGFloat factor = width.floatValue / 320.0f;
+        CGFloat factor = width.floatValue / [Util getScreenWidth];
         return height.floatValue/factor;
     }
     
