@@ -133,9 +133,12 @@
         CatrobatProject *project = [self.projects objectAtIndex:indexPath.row];
         
         DarkBlueGradientFeaturedCell *imageCell = (DarkBlueGradientFeaturedCell *)cell;
-        imageCell.featuredImage.frame = cell.frame;
-        imageCell.featuredImage.frame = CGRectMake(0, 0, imageCell.featuredImage.frame.size.width, imageCell.featuredImage.frame.size.height);
         [self loadImage:project.featuredImage forCell:imageCell atIndexPath:indexPath];
+        if (![imageCell.featuredImage.image isEqual:[UIImage imageNamed:@"programs"]]) {
+            imageCell.featuredImage.frame = cell.frame;
+            imageCell.featuredImage.frame = CGRectMake(0, 0, imageCell.featuredImage.frame.size.width, imageCell.featuredImage.frame.size.height);
+            [self loadingIndicator:NO];
+        }
     }
     
     return cell;
@@ -146,6 +149,7 @@
 -(void)loadImage:(NSString*)imageURLString forCell:(DarkBlueGradientFeaturedCell *) imageCell atIndexPath:(NSIndexPath*)indexPath
 {
     
+    [self loadingIndicator:YES];
     UIImage* image = [UIImage imageWithContentsOfURL:[NSURL URLWithString:imageURLString]
                                     placeholderImage:[UIImage imageNamed:@"programs"]
                                         onCompletion:^(UIImage *image) {
@@ -154,13 +158,14 @@
                                                 DarkBlueGradientFeaturedCell *cell = (DarkBlueGradientFeaturedCell*)[self.tableView cellForRowAtIndexPath:indexPath];
                                                 if(cell) {
                                                     cell.featuredImage.image = image;
-                                                    cell.frame = CGRectMake(cell.frame.origin.x, cell.frame.origin.y, cell.frame.size.width, cell.featuredImage.frame.size.height);
+                                                    cell.featuredImage.frame = cell.frame;
+                                                    cell.featuredImage.frame = CGRectMake(0, 0, cell.featuredImage.frame.size.width, cell.featuredImage.frame.size.height);
                                                     self.featuredSize = @[[NSNumber numberWithFloat:image.size.width],[NSNumber numberWithFloat:image.size.height]];
+                                                    [self loadingIndicator:NO];
                                                 }
                                                 [self.tableView endUpdates];
                                             });
                                         }];
-    self.featuredSize = @[[NSNumber numberWithFloat:image.size.width],[NSNumber numberWithFloat:image.size.height]];
     imageCell.featuredImage.image = image;
     imageCell.featuredImage.contentMode = UIViewContentModeScaleAspectFit;
 }

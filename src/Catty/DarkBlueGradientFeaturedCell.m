@@ -35,7 +35,7 @@
 {
 //    self.titleLabel.textColor = UIColor.skyBlueColor;
     self.accessoryView.hidden = YES;
-    self.featuredImage.frame = self.frame;
+//    self.featuredImage.frame = self.frame;
     self.backgroundColor = [UIColor backgroundColor];
 }
 
