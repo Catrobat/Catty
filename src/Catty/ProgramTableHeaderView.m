@@ -23,6 +23,11 @@
 #import "ProgramTableHeaderView.h"
 #import "UIColor+CatrobatUIColorExtensions.h"
 
+@interface ProgramTableHeaderView ()
+@property (strong, nonatomic) CALayer *bottomBoarder;
+
+@end
+
 @implementation ProgramTableHeaderView
 
 - (id)initWithFrame:(CGRect)frame
@@ -37,6 +42,23 @@
 - (void)setupView
 {
     self.contentView.backgroundColor = UIColor.backgroundColor;
+    self.bottomBoarder.backgroundColor = UIColor.skyBlueColor.CGColor;
+    [self.contentView.layer addSublayer:self.bottomBoarder];
+}
+
+- (void)layoutSubviews
+{
+    [super layoutSubviews];
+    self.bottomBoarder.frame = CGRectMake(0.0f, CGRectGetHeight(self.bounds) - 0.5f, CGRectGetWidth(self.bounds), 0.5f);
+}
+
+- (CALayer *)bottomBoarder
+{
+    if (!_bottomBoarder) {
+        _bottomBoarder = [CALayer new];
+        _bottomBoarder.frame = CGRectZero;
+    }
+    return _bottomBoarder;
 }
 
 @end

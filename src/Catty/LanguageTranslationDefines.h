@@ -20,6 +20,8 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
+#import "AppDefines.h"
+
 /*
  * -----------------------------------------------------------------------------------------------------------
  * General defines
@@ -375,6 +377,73 @@
 #define kBrickCellLooksCategoryTitle NSLocalizedString(@"Looks", nil)
 #define kBrickCellVariablesCategoryTitle NSLocalizedString(@"Variables", nil)
 
+#if kIsFirstRelease // kIsFirstRelease
+//------------------------------------------------------------------------------------------------------------
+// TODO: in our first release we do not use translated strings in the script-editor because the translated
+//       strings can vary in their length compared to the english version. This would lead to graphical issues
+//       since the BrickCells are not able to handle the word wrapping of their titles correctly at this
+//       stage.
+
+// control bricks
+#define kBrickCellControlTitleWhenProgramStarted @"When program started"
+#define kBrickCellControlTitleWhenTapped @"When tapped"
+#define kBrickCellControlTitleWait @"Wait %@ second(s)"
+#define kBrickCellControlTitleWhenIReceive @"When I receive\n%@"
+#define kBrickCellControlTitleBroadcast @"Broadcast\n%@"
+#define kBrickCellControlTitleBroadcastAndWait @"Broadcast and wait\n%@"
+#define kBrickCellControlTitleNote @"Note %@"
+#define kBrickCellControlTitleForever @"Forever"
+#define kBrickCellControlTitleIf @"If %@ is true then"
+#define kBrickCellControlTitleElse @"Else"
+#define kBrickCellControlTitleEndIf @"If End"
+#define kBrickCellControlTitleRepeat @"Repeat %@ times"
+#define kBrickCellControlTitleEndOfLoop @"End of Loop"
+
+// motion bricks
+#define kBrickCellMotionTitlePlaceAt @"Place at\nX: %@ Y: %@"
+#define kBrickCellMotionTitleSetX @"Set X to %@"
+#define kBrickCellMotionTitleSetY @"Set Y to %@"
+#define kBrickCellMotionTitleChangeX @"Change X by %@"
+#define kBrickCellMotionTitleChangeY @"Change Y by %@"
+#define kBrickCellMotionTitleIfOnEdgeBounce @"If on edge, bounce"
+#define kBrickCellMotionTitleMoveNSteps @"Move %@ step(s)"
+#define kBrickCellMotionTitleTurnLeft @"Turn left %@°"
+#define kBrickCellMotionTitleTurnRight @"Turn right %@°"
+#define kBrickCellMotionTitlePointInDirection @"Point in direction %@°"
+#define kBrickCellMotionTitlePointTowards @"Point towards\n%@"
+#define kBrickCellMotionTitleGlideTo @"Glide %@ second(s)\nto X: %@ Y: %@"
+#define kBrickCellMotionTitleGoNStepsBack @"Go back %@ layer(s)"
+#define kBrickCellMotionTitleComeToFront @"Go to front"
+
+// look bricks
+#define kBrickCellLookTitleSetLook @"Switch to look\n%@"
+#define kBrickCellLookTitleSetBackground @"Set background\n%@"
+#define kBrickCellLookTitleNextLook @"Next look"
+#define kBrickCellLookTitleNextBackground @"Next background"
+#define kBrickCellLookTitleSetSizeTo @"Set size to %@\%"
+#define kBrickCellLookTitleChangeSizeByN @"Change size by %@\%"
+#define kBrickCellLookTitleHide @"Hide"
+#define kBrickCellLookTitleShow @"Show"
+#define kBrickCellLookTitleSetGhostEffect @"Set transparency\nto %@\%"
+#define kBrickCellLookTitleChangeGhostEffectByN @"Change transparency\nby %@\%"
+#define kBrickCellLookTitleSetBrightness @"Set brightness to %@\%"
+#define kBrickCellLookTitleChangeBrightnessByN @"Change brightness\nby %@\%"
+#define kBrickCellLookTitleClearGraphicEffect @"Clear graphic effects"
+
+// sound bricks
+#define kBrickCellSoundTitlePlaySound @"Start sound\n%@"
+#define kBrickCellSoundTitleStopAllSounds @"Stop all sounds"
+#define kBrickCellSoundTitleSetVolumeTo @"Set volume to %@\%"
+#define kBrickCellSoundTitleChangeVolumeByN @"Change volume by %@"
+#define kBrickCellSoundTitleSpeak @"Speak %@"
+
+// variable bricks
+#define kBrickCellVariableTitleSetVariable @"Set variable\n%@\nto %@"
+#define kBrickCellVariableTitleChangeVariable @"Change variable\n%@\nby %@"
+
+#else // kIsFirstRelease
+
+
 // control bricks
 #define kBrickCellControlTitleWhenProgramStarted NSLocalizedString(@"When program started", nil)
 #define kBrickCellControlTitleWhenTapped NSLocalizedString(@"When tapped", nil)
@@ -431,3 +500,5 @@
 // variable bricks
 #define kBrickCellVariableTitleSetVariable NSLocalizedString(@"Set variable\n%@\nto %@", nil)
 #define kBrickCellVariableTitleChangeVariable NSLocalizedString(@"Change variable\n%@\nby %@", nil)
+
+#endif // kIsFirstRelease

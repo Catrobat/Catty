@@ -107,11 +107,6 @@ static NSCharacterSet *blockedCharacterSet = nil;
     }
 }
 
-- (void)viewDidAppear:(BOOL)animated
-{
-    [super viewDidAppear:YES];
-}
-
 - (void)viewDidLoad
 {
     [super viewDidLoad];
