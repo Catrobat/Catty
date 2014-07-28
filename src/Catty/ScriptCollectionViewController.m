@@ -76,6 +76,13 @@
     [self setupToolBar];
 }
 
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    self.placeHolderView.frame = self.collectionView.bounds;
+    [self.view insertSubview:self.placeHolderView aboveSubview:self.collectionView];
+}
+
 #pragma mark - Setup Collection View
 - (void)setupCollectionView
 {
@@ -91,8 +98,6 @@
     self.navigationItem.rightBarButtonItem.enabled = NO;
 #endif // kIsFirstRelease
     self.placeHolderView = [[PlaceHolderView alloc]initWithTitle:kUIViewControllerPlaceholderTitleScripts];
-    self.placeHolderView.frame = self.collectionView.bounds;
-    [self.view addSubview:self.placeHolderView];
     self.placeHolderView.hidden = self.object.scriptList.count ? YES : NO;
     self.brickScaleTransition = [BrickScaleTransition new];
     self.selectedIndexPaths = [NSMutableDictionary dictionary];
@@ -195,8 +200,8 @@
         self.brickSelectionView.tintColor = kBrickCategoryColors[type];
         self.selectableBricks = [BrickManager.sharedBrickManager selectableBricksForCategoryType:type];
     }
-
-    [self.brickSelectionView showWithView:self.collectionView fromViewController:self completion:^{
+    
+    [self.brickSelectionView showWithView:self.placeHolderView fromViewController:self completion:^{
         [self setupToolBar];
         [self.brickSelectionView.brickCollectionView reloadData];
     }];
