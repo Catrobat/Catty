@@ -339,7 +339,7 @@
         loadingInfo.basePath = [NSString stringWithFormat:@"%@%@/", [Program basePath], kDefaultProgramBundleName];
         loadingInfo.visibleName = kDefaultProgramBundleName;
         Program *program = [Program programWithLoadingInfo:loadingInfo];
-        [program renameToProgramName:kDefaultProgramName];
+        [program translateDefaultProgram];
         [Util lastProgram];
     }
 }
