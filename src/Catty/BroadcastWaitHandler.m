@@ -24,7 +24,7 @@
 #import "SpriteObject.h"
 
 @interface BroadcastWaitHandler()
-@property (strong, nonatomic) NSMutableDictionary *spritesForMessages; // key: (NSString*)msg   value: (NSArray*)sprites
+@property (strong, nonatomic) NSMutableDictionary *spritesForMessages;
 @property (strong, nonatomic) NSLock *lock;
 @end
 
@@ -33,27 +33,29 @@
 
 - (NSMutableDictionary *)spritesForMessages
 {
-  if (!_spritesForMessages)
-      _spritesForMessages = [[NSMutableDictionary alloc]init];
-  return _spritesForMessages;
+    if (!_spritesForMessages) {
+        _spritesForMessages = [NSMutableDictionary dictionary];
+    }
+    return _spritesForMessages;
 }
 
 - (void)registerSprite:(SpriteObject *)sprite forMessage:(NSString *)message
 {
-  [self.lock lock];
-  NSArray *sprites = [self.spritesForMessages objectForKey:message];
-  [self.spritesForMessages removeObjectForKey:message];
-  if (sprites == nil) {
-      sprites = [NSArray arrayWithObject:sprite];
-  } else {
-      sprites = [sprites arrayByAddingObject:sprite];
-  }
-  [self.spritesForMessages setObject:sprites forKey:message];
-  [self.lock unlock];
+    [self.lock lock];
+    NSArray *sprites = [self.spritesForMessages objectForKey:message];
+    [self.spritesForMessages removeObjectForKey:message];
+    if (sprites == nil) {
+        sprites = [NSArray arrayWithObject:sprite];
+    } else {
+        sprites = [sprites arrayByAddingObject:sprite];
+    }
+    [self.spritesForMessages setObject:sprites forKey:message];
+    [self.lock unlock];
 }
 
 - (void)dealloc
 {
+    [self.spritesForMessages removeAllObjects];
 }
 
 - (void)performBroadcastWaitForMessage:(NSString*)message
@@ -65,7 +67,7 @@
     dispatch_semaphore_t sema;
     sema = dispatch_semaphore_create(sprites.count);
     for (SpriteObject *sprite in sprites) {
-      if ([sprite isKindOfClass:[SpriteObject class]] == NO) {
+      if (![sprite isKindOfClass:[SpriteObject class]]) {
         NSError(@"sprite is not a SpriteObject...abort()");
         } else {
             dispatch_async(broadcastWaitQueue, ^{

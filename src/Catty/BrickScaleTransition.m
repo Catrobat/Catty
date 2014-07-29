@@ -53,17 +53,17 @@
             [container addSubview:move];
             self.cell.hidden = YES;
             _scriptCollectionVC.blurView.hidden = NO;
-            
+            __weak ScriptCollectionViewController *weakScriptCollectionVC = _scriptCollectionVC;
             [UIView animateWithDuration:0.5f delay:0.0f usingSpringWithDamping:10.0f initialSpringVelocity:0.0f options:UIViewAnimationOptionCurveEaseInOut animations:^{
 //                move.center = toVC.view.center;
                 move.layer.position = CGPointMake(CGRectGetMidX(toVC.view.bounds), CGRectGetMidY(move.bounds) + kTopAnimationOffset);
-                _scriptCollectionVC.blurView.alpha = 1.0f;
-                _scriptCollectionVC.collectionView.alpha = 0.5f;
-                _scriptCollectionVC.navigationController.navigationBar.alpha = 0.01f;
-                _scriptCollectionVC.navigationController.navigationBar.tintColor = UIColor.lightGrayColor;
-                _scriptCollectionVC.navigationController.toolbar.alpha = 0.01f;
+                weakScriptCollectionVC.blurView.alpha = 1.0f;
+                weakScriptCollectionVC.collectionView.alpha = 0.5f;
+                weakScriptCollectionVC.navigationController.navigationBar.alpha = 0.01f;
+                weakScriptCollectionVC.navigationController.navigationBar.tintColor = UIColor.lightGrayColor;
+                weakScriptCollectionVC.navigationController.toolbar.alpha = 0.01f;
             } completion:^(BOOL finished) {
-                _scriptCollectionVC.blurView.dynamic = NO;
+                weakScriptCollectionVC.blurView.dynamic = NO;
                 toVC.view.frame = fromVC.view.frame;
                 self.cell.hidden = NO;
 //                self.cell.center = toVC.view.center;
@@ -78,18 +78,21 @@
             
         case TransitionModeDismiss: {
             _scriptCollectionVC.blurView.dynamic = YES;
+            __weak ScriptCollectionViewController *weakScriptCollectionVC = _scriptCollectionVC;
+            __weak BrickScaleTransition *weakself = self;
+            CGFloat yOffset = _yOffset;
             [UIView animateWithDuration:0.3f delay:0.0f usingSpringWithDamping:10.0f initialSpringVelocity:0.0f options:UIViewAnimationOptionCurveEaseInOut animations:^{
-                self.cell.frame = CGRectMake(0.0f, _yOffset, self.touchRect.size.width, self.touchRect.size.height);
-                _scriptCollectionVC.blurView.alpha = 0.0f;
-                _scriptCollectionVC.collectionView.alpha = 1.0f;
-                _scriptCollectionVC.navigationController.navigationBar.alpha = 1.0f;
-                _scriptCollectionVC.navigationController.navigationBar.tintColor = UIColor.lightOrangeColor;
-                _scriptCollectionVC.navigationController.toolbar.alpha = 1.0f;
+                weakself.cell.frame = CGRectMake(0.0f, yOffset, self.touchRect.size.width, self.touchRect.size.height);
+                weakScriptCollectionVC.blurView.alpha = 0.0f;
+                weakScriptCollectionVC.collectionView.alpha = 1.0f;
+                weakScriptCollectionVC.navigationController.navigationBar.alpha = 1.0f;
+                weakScriptCollectionVC.navigationController.navigationBar.tintColor = UIColor.lightOrangeColor;
+                weakScriptCollectionVC.navigationController.toolbar.alpha = 1.0f;
             } completion:^(BOOL finished) {
                 if (finished) {
                     self.cell.frame = self.touchRect;
                     [fromVC.view removeFromSuperview];
-                    _scriptCollectionVC.blurView.hidden = YES;
+                    weakScriptCollectionVC.blurView.hidden = YES;
                     [move removeFromSuperview];
                     [transitionContext completeTransition:YES];
                 }

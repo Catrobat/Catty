@@ -68,7 +68,7 @@
         [viewController.view insertSubview:self aboveSubview:view];
         
         [self.brickCollectionView scrollToItemAtIndexPath:0 atScrollPosition:UICollectionViewScrollPositionTop animated:NO];
-        
+        __weak BrickSelectionView *weakself = self;
         [UIView animateWithDuration:0.5f delay:0.0f usingSpringWithDamping:10.0f initialSpringVelocity:0.0f options:UIViewAnimationOptionCurveEaseInOut animations:^{
             self.frame = CGRectMake(0.0f, UIScreen.mainScreen.bounds.origin.y + self.yOffset, CGRectGetWidth(self.bounds), CGRectGetHeight(self.bounds));
             [viewController.navigationController setNavigationBarHidden:YES animated:YES];
@@ -77,7 +77,7 @@
         } completion:^(BOOL finished) {
             if (finished) {
                 view.userInteractionEnabled = NO;
-                _blurView.dynamic = NO;
+                weakself.blurView.dynamic = NO;
                 dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
                     [UIView animateWithDuration:0.25f animations:^{
                         self.textLabel.alpha = 0.0f;
@@ -89,7 +89,7 @@
         if (completionBlock) completionBlock();
     } else {
         [self dismissView:viewController withView:view fastDismiss:NO completion:NULL];
-         if (completionBlock) completionBlock();
+        if (completionBlock) completionBlock();
     }
 }
 
