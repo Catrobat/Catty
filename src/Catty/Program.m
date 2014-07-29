@@ -367,6 +367,13 @@
     [Program setLastProgram:self];
 }
 
+- (void)translateDefaultProgram
+{
+    SpriteObject *backgroundObject = [self.objectList objectAtIndex:kBackgroundObjectIndex];
+    backgroundObject.name = kGeneralBackgroundObjectName;
+    [self renameToProgramName:kDefaultProgramName];
+}
+
 - (void)renameToProgramName:(NSString *)programName
 {
     if ([self.header.programName isEqualToString:programName]) {

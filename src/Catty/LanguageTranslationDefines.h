@@ -32,6 +32,7 @@
 #define kGeneralBackgroundObjectName NSLocalizedString(@"Background", @"Title for background object")
 #define kGeneralDefaultObjectName NSLocalizedString(@"My Object", @"Title for first (default) object")
 #define kDefaultImportedImageName NSLocalizedString(@"My Image", @"Default title of imported photo from camera (taken by camera)")
+#define kDefaultProgramName NSLocalizedString(@"My First Program", @"Name of the default catrobat program")
 
 /*
  * -----------------------------------------------------------------------------------------------------------
