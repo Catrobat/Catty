@@ -92,6 +92,23 @@ static NSCharacterSet *blockedCharacterSet = nil;
 }
 
 #pragma mark - view events
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
+    NSDictionary *showDetails = [[NSUserDefaults standardUserDefaults] objectForKey:kUserDetailsShowDetailsKey];
+    NSNumber *showDetailsObjectsValue = (NSNumber*)[showDetails objectForKey:kUserDetailsShowDetailsObjectsKey];
+    self.useDetailCells = [showDetailsObjectsValue boolValue];
+    [self initNavigationBar];
+    [self.tableView registerClass:[ProgramTableHeaderView class] forHeaderFooterViewReuseIdentifier:@"Header"];
+    
+    self.editableSections = @[@(kObjectSectionIndex)];
+    if (self.program.header.programName) {
+        self.navigationItem.title = self.program.header.programName;
+        self.title = self.program.header.programName;
+    }
+    [self setupToolBar];
+}
+
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:YES];
@@ -105,24 +122,6 @@ static NSCharacterSet *blockedCharacterSet = nil;
     if (self.isNewProgram) {
         [self.program saveToDisk];
     }
-}
-
-- (void)viewDidLoad
-{
-    [super viewDidLoad];
-    NSDictionary *showDetails = [[NSUserDefaults standardUserDefaults] objectForKey:kUserDetailsShowDetailsKey];
-    NSNumber *showDetailsObjectsValue = (NSNumber*)[showDetails objectForKey:kUserDetailsShowDetailsObjectsKey];
-    self.useDetailCells = [showDetailsObjectsValue boolValue];
-    [self initNavigationBar];
-    [self.tableView registerClass:[ProgramTableHeaderView class] forHeaderFooterViewReuseIdentifier:@"Header"];
-    self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
-    
-    self.editableSections = @[@(kObjectSectionIndex)];
-    if (self.program.header.programName) {
-        self.navigationItem.title = self.program.header.programName;
-        self.title = self.program.header.programName;
-    }
-    [self setupToolBar];
 }
 
 #pragma mark - actions
