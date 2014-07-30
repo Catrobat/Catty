@@ -22,19 +22,20 @@
 
 
 #import "ProgramManager.h"
+#import "Program.h"
+
+@interface ProgramManager ()
+
+@end
 
 @implementation ProgramManager
 
-static ProgramManager *sharedProgramManager = nil;
-
 + (instancetype)sharedProgramManager
 {
-    @synchronized(self) {
-        if (sharedProgramManager == nil) {
-            sharedProgramManager = [[ProgramManager alloc] init];
-        }
-    }
-    return sharedProgramManager;
+    static ProgramManager *_sharedCattyProgramManager = nil;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{ _sharedCattyProgramManager = [ProgramManager new]; });
+    return _sharedCattyProgramManager;
 }
 
 @end
