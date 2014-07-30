@@ -25,7 +25,7 @@
 
 @protocol DismissPopupDelegate <NSObject>
 
-- (void)dismissPopup;
+- (BOOL)dismissPopup;
 
 @end
 
