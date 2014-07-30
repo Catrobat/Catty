@@ -28,5 +28,5 @@
 #define kObjectCell      @"ObjectCell"
 
 #define kImageLabelTag     11
-#define kTitleLabelTag     12
+//#define kTitleLabelTag     12
 #define kSubtitleLabelTag  13

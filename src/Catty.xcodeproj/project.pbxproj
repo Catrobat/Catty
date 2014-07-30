@@ -245,6 +245,11 @@
 		CAEDFB8117EF759500FDED0E /* ObjectTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CAEDFB8017EF759500FDED0E /* ObjectTableViewController.m */; };
 		CAF806D6193170640005E900 /* ImageCache.m in Sources */ = {isa = PBXBuildFile; fileRef = CAF806D5193170640005E900 /* ImageCache.m */; };
 		CAF806D9193181D50005E900 /* RuntimeImageCache.m in Sources */ = {isa = PBXBuildFile; fileRef = CAF806D8193181D50005E900 /* RuntimeImageCache.m */; };
+		CAFBCB3319885258000304BF /* EAIntroPage.m in Sources */ = {isa = PBXBuildFile; fileRef = CAFBCB3019885258000304BF /* EAIntroPage.m */; };
+		CAFBCB3419885258000304BF /* EAIntroView.m in Sources */ = {isa = PBXBuildFile; fileRef = CAFBCB3219885258000304BF /* EAIntroView.m */; };
+		CAFBCB3B1988529D000304BF /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = CAFBCB371988529D000304BF /* LICENSE */; };
+		CAFBCB3C1988529D000304BF /* readme.md in Resources */ = {isa = PBXBuildFile; fileRef = CAFBCB381988529D000304BF /* readme.md */; };
+		CAFBCB3D1988529D000304BF /* SMPageControl.m in Sources */ = {isa = PBXBuildFile; fileRef = CAFBCB3A1988529D000304BF /* SMPageControl.m */; };
 		CD0CCF51170CB39700B70036 /* BaseSprite.m in Sources */ = {isa = PBXBuildFile; fileRef = CD0CCE5E170CB39600B70036 /* BaseSprite.m */; };
 		CD0CCF52170CB39700B70036 /* Brick.m in Sources */ = {isa = PBXBuildFile; fileRef = CD0CCE60170CB39600B70036 /* Brick.m */; };
 		CD0CCF53170CB39700B70036 /* BroadcastBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = CD0CCE62170CB39600B70036 /* BroadcastBrick.m */; };
@@ -777,6 +782,14 @@
 		CAF806D5193170640005E900 /* ImageCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageCache.m; sourceTree = "<group>"; };
 		CAF806D7193181C20005E900 /* RuntimeImageCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RuntimeImageCache.h; sourceTree = "<group>"; };
 		CAF806D8193181D50005E900 /* RuntimeImageCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RuntimeImageCache.m; sourceTree = "<group>"; };
+		CAFBCB2F19885258000304BF /* EAIntroPage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EAIntroPage.h; sourceTree = "<group>"; };
+		CAFBCB3019885258000304BF /* EAIntroPage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EAIntroPage.m; sourceTree = "<group>"; };
+		CAFBCB3119885258000304BF /* EAIntroView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EAIntroView.h; sourceTree = "<group>"; };
+		CAFBCB3219885258000304BF /* EAIntroView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EAIntroView.m; sourceTree = "<group>"; };
+		CAFBCB371988529D000304BF /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
+		CAFBCB381988529D000304BF /* readme.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = readme.md; sourceTree = "<group>"; };
+		CAFBCB391988529D000304BF /* SMPageControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMPageControl.h; sourceTree = "<group>"; };
+		CAFBCB3A1988529D000304BF /* SMPageControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMPageControl.m; sourceTree = "<group>"; };
 		CD0CCE5D170CB39600B70036 /* BaseSprite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseSprite.h; sourceTree = "<group>"; };
 		CD0CCE5E170CB39600B70036 /* BaseSprite.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseSprite.m; sourceTree = "<group>"; };
 		CD0CCE5F170CB39600B70036 /* Brick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Brick.h; sourceTree = "<group>"; };
@@ -1063,6 +1076,7 @@
 		81B7487419213C3800990E5F /* 3rdParty */ = {
 			isa = PBXGroup;
 			children = (
+				CAFBCB351988526B000304BF /* EAIntroView */,
 				CA51A55B19847FEA00FFCB45 /* BDKNotifyHUD */,
 				CA882034192E581C00E5D515 /* SWTableViewCell */,
 				81C64F8519268DDF00199161 /* IBActionSheet */,
@@ -2402,6 +2416,29 @@
 			name = Header;
 			sourceTree = "<group>";
 		};
+		CAFBCB351988526B000304BF /* EAIntroView */ = {
+			isa = PBXGroup;
+			children = (
+				CAFBCB361988527D000304BF /* SMPageControl */,
+				CAFBCB2F19885258000304BF /* EAIntroPage.h */,
+				CAFBCB3019885258000304BF /* EAIntroPage.m */,
+				CAFBCB3119885258000304BF /* EAIntroView.h */,
+				CAFBCB3219885258000304BF /* EAIntroView.m */,
+			);
+			name = EAIntroView;
+			sourceTree = "<group>";
+		};
+		CAFBCB361988527D000304BF /* SMPageControl */ = {
+			isa = PBXGroup;
+			children = (
+				CAFBCB371988529D000304BF /* LICENSE */,
+				CAFBCB381988529D000304BF /* readme.md */,
+				CAFBCB391988529D000304BF /* SMPageControl.h */,
+				CAFBCB3A1988529D000304BF /* SMPageControl.m */,
+			);
+			name = SMPageControl;
+			sourceTree = "<group>";
+		};
 		CAFE18D7192813DC003AB961 /* NavigationController */ = {
 			isa = PBXGroup;
 			children = (
@@ -2899,7 +2936,7 @@
 				LastUpgradeCheck = 0500;
 				TargetAttributes = {
 					1D6058900D05DD3D006BFB54 = {
-						DevelopmentTeam = 4V6T7BCGGR;
+						DevelopmentTeam = 9NJ4SV439Q;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
 								enabled = 0;
@@ -2973,8 +3010,10 @@
 				CA1B802C1971ADBB00D8E79B /* IMPORTANT.caf in Resources */,
 				B43498501927A875002F9075 /* My First Program.catrobat in Resources */,
 				81C27426189EF94600827A95 /* Images.xcassets in Resources */,
+				CAFBCB3B1988529D000304BF /* LICENSE in Resources */,
 				C3F2950C1813C63200E37D61 /* iPhone.storyboard in Resources */,
 				92300D0B18B2196700F2B4DC /* Localizable.strings in Resources */,
+				CAFBCB3C1988529D000304BF /* readme.md in Resources */,
 				B4365CE91758EBA900B4D0A6 /* LoggerProperties.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -3108,6 +3147,7 @@
 				CA75C28918A9623500FC8C2F /* SetSizeToBrickCell.m in Sources */,
 				CA75C22618A9603400FC8C2F /* StartScriptCell.m in Sources */,
 				CAE9A2BC197D20A7008F7C9A /* CatrobatActionSheet.m in Sources */,
+				CAFBCB3319885258000304BF /* EAIntroPage.m in Sources */,
 				CD0CCFC4170CB39700B70036 /* SetXBrick.m in Sources */,
 				CA75C2A418A9627200FC8C2F /* SetVariableBrickCell.m in Sources */,
 				CD0CCFC5170CB39700B70036 /* SetYBrick.m in Sources */,
@@ -3128,6 +3168,7 @@
 				C34B44F417F1D2C700624730 /* ClearGraphicEffectBrick.m in Sources */,
 				CD0CCFD7170CB39700B70036 /* TurnLeftBrick.m in Sources */,
 				CD0CCFD8170CB39700B70036 /* TurnRightBrick.m in Sources */,
+				CAFBCB3D1988529D000304BF /* SMPageControl.m in Sources */,
 				CA75C29B18A9625C00FC8C2F /* SetBrightnessBrickCell.m in Sources */,
 				92DFE97C196D795900F491EC /* InfoPopupViewController.m in Sources */,
 				CD0CCFDA170CB39700B70036 /* Util.m in Sources */,
@@ -3232,6 +3273,7 @@
 				B4A92DD2175FD4B800608667 /* GDataXMLNode.m in Sources */,
 				CA75C22F18A9612300FC8C2F /* WaitBrickCell.m in Sources */,
 				81B7487D192143AA00990E5F /* RoundBorderedButton.m in Sources */,
+				CAFBCB3419885258000304BF /* EAIntroView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

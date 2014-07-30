@@ -79,6 +79,7 @@ typedef NS_ENUM(NSUInteger, kDTMActionType) {
 #define kDTPayloadAskUserExistingNames @"DTPayloadAskUserExistingNames"
 
 #define kUserDetailsShowDetailsKey @"showDetails"
+#define kUserIsFirstAppLaunch @"isFirstAppLaunch"
 #define kUserDetailsShowDetailsObjectsKey @"detailsForObjects"
 #define kUserDetailsShowDetailsLooksKey @"detailsForLooks"
 #define kUserDetailsShowDetailsSoundsKey @"detailsForSounds"

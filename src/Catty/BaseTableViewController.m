@@ -61,8 +61,9 @@
     self.editableSections = nil;
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
-    self.tableView.backgroundColor = UIColor.backgroundColor;
-    self.tableView.separatorColor = UIColor.skyBlueColor;
+    self.tableView.backgroundColor = [UIColor backgroundColor];
+    self.tableView.separatorColor = [UIColor skyBlueColor];
+    self.view.backgroundColor = [UIColor darkBlueColor];
     NSNotificationCenter *notificationCenter = [NSNotificationCenter defaultCenter];
     [notificationCenter addObserver:self
                            selector:@selector(hideLoadingView)
