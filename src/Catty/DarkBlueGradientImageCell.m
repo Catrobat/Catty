@@ -35,4 +35,11 @@
     self.titleLabel.textColor = UIColor.skyBlueColor;
 }
 
+- (void)layoutSubviews
+{
+    [super layoutSubviews];
+    self.iconImageView.center = CGPointMake(self.iconImageView.center.x, self.contentView.center.y);
+    self.titleLabel.center = CGPointMake(self.titleLabel.center.x, self.contentView.center.y);
+}
+
 @end
