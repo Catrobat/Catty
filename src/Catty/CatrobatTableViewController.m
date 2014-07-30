@@ -96,7 +96,6 @@ static NSCharacterSet *blockedCharacterSet = nil;
 {
     [super viewDidLoad];
     [self initTableView];
-    [self initNavigationBar];
 
     self.lastProgram = nil;
     self.defaultProgram = nil;
@@ -115,18 +114,16 @@ static NSCharacterSet *blockedCharacterSet = nil;
     self.tableView.separatorColor = UIColor.skyBlueColor;
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
 
-//    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-//    id isFirstAppLaunch = [defaults objectForKey:kUserIsFirstAppLaunch];
-//    if (! isFirstAppLaunch) {
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    if (! [defaults objectForKey:kUserIsFirstAppLaunch]) {
         self.tableView.scrollEnabled = NO;
-        self.navigationItem.leftBarButtonItem = nil;
         [Util showIntroductionScreenInView:self.view delegate:self];
-//        [Util showIntroductionScreenInView:self.navigationController.view delegate:self];
-//        [defaults setObject:[NSNumber numberWithBool:YES] forKey:kUserIsFirstAppLaunch];
-//        [defaults synchronize];
-//    } else {
-//    self.tableView.scrollEnabled = YES;
-//    }
+        [defaults setObject:[NSNumber numberWithBool:YES] forKey:kUserIsFirstAppLaunch];
+        [defaults synchronize];
+    } else {
+        self.tableView.scrollEnabled = YES;
+        [self initNavigationBar];
+    }
 }
 
 - (void)viewWillAppear:(BOOL)animated
