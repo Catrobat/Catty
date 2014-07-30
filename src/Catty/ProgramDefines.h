@@ -46,7 +46,6 @@
 #define kMaxNumOfSoundNameCharacters 20
 
 #define kDefaultProgramBundleName @"My First Program"
-#define kDefaultProgramName NSLocalizedString(@"My First Program", @"Name of the default catrobat program")
 
 // indexes
 #define kNumberOfSectionsInProgramTableViewController 2

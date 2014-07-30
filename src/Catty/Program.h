@@ -50,6 +50,7 @@
 - (void)saveToDisk;
 - (BOOL)isLastProgram;
 - (void)setAsLastProgram;
+- (void)translateDefaultProgram;
 - (void)renameToProgramName:(NSString*)programName;
 - (void)renameObject:(SpriteObject*)object toName:(NSString*)newObjectName;
 - (void)updateDescriptionWithText:(NSString*)descriptionText;

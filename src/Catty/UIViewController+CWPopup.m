@@ -185,8 +185,6 @@ NSString const *CWPopupViewOffset = @"CWPopupViewOffset";
         [self addBlurViewWithFrame:frame];
         UIView *blurView = objc_getAssociatedObject(self, &CWBlurViewKey);
 
-        
-
         // animate
         viewControllerToPresent.view.center = CGPointMake(self.view.center.x,self.view.frame.size.height);
         viewControllerToPresent.view.alpha = 0.4f;
@@ -200,7 +198,7 @@ NSString const *CWPopupViewOffset = @"CWPopupViewOffset";
                          animations:^{
                              blurView.alpha = 1.0f;
                              viewControllerToPresent.view.alpha = 1.0f;
-                             viewControllerToPresent.view.center = CGPointMake(self.view.center.x,viewControllerToPresent.view.frame.size.height/2);
+                             viewControllerToPresent.view.center = CGPointMake(self.view.center.x, self.view.center.y - (self.navigationController.navigationBar.frame.size.height + [UIApplication sharedApplication].statusBarFrame.size.height) / 2);
         } completion:^(BOOL finished) {
             [self.popupViewController didMoveToParentViewController:self];
             [self.popupViewController endAppearanceTransition];

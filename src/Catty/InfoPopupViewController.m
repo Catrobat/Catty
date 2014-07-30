@@ -34,6 +34,7 @@
 
 const int FRAME_PADDING_HORIZONTAL = 20;
 const CGFloat FRAME_HEIGHT = 280.0f;
+const CGFloat FRAME_WIDTH = 280.0f;
 
 const int HEADER_PADDING_TOP = 10;
 const int HEADER_LABEL_HEIGHT = 40;
@@ -53,7 +54,7 @@ const int BUTTON_MARGIN_BOTTOM = 15;
 
 - (UIView *)contentView
 {
-    if(!_contentView) _contentView = [[UIView alloc] initWithFrame:CGRectMake(self.view.frame.origin.x - FRAME_PADDING_HORIZONTAL, self.view.frame.origin.y, self.view.frame.size.width, self.view.frame.size.height)];
+    if(!_contentView) _contentView = [[UIView alloc] initWithFrame:CGRectMake(self.view.frame.origin.x - FRAME_PADDING_HORIZONTAL, 0, self.view.frame.size.width, self.view.frame.size.height)];
     return _contentView;
 }
 
@@ -69,7 +70,7 @@ const int BUTTON_MARGIN_BOTTOM = 15;
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.view.frame = CGRectMake(0,0, FRAME_HEIGHT, FRAME_HEIGHT);
+    self.view.frame = CGRectMake(0,0, FRAME_WIDTH, FRAME_HEIGHT);
     self.view.backgroundColor = [UIColor backgroundColor];
     [self initAboutPocketCodeButton];
     [self initTermsOfUseButton];

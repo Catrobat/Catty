@@ -277,6 +277,11 @@ static NSCharacterSet *blockedCharacterSet = nil;
 #pragma mark - table view delegate
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath*)indexPath
 {
+    if ([self dismissPopup]) {
+        [tableView deselectRowAtIndexPath:indexPath animated:NO];
+        return;
+    }
+    
     NSString* identifier = [self.identifiers objectAtIndex:indexPath.row];
     switch (indexPath.row) {
         case kNewProgramVC:
@@ -358,8 +363,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
 #pragma mark - segue handling
 - (BOOL)shouldPerformSegueWithIdentifier:(NSString*)identifier sender:(id)sender
 {
-    if (self.popupViewController != nil) {
-        [self dismissPopupViewController];
+    if ([self dismissPopup]) {
         return NO;
     }
     if ([identifier isEqualToString:kSegueToContinue]) {
@@ -480,10 +484,13 @@ static NSCharacterSet *blockedCharacterSet = nil;
 
 #pragma mark popup delegate
 
--(void)dismissPopup {
+- (BOOL)dismissPopup
+{
     if (self.popupViewController != nil) {
         [self dismissPopupViewController];
+        return YES;
     }
+    return NO;
 }
 
 @end
