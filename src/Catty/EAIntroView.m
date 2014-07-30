@@ -27,6 +27,8 @@
 //
 //  Copyright (c) 2013-2014 Evgeny Aleksandrov. License: MIT.
 
+#define DEFAULT_DESCRIPTION_LABEL_X_PADDING 20.0f
+
 #import "EAIntroView.h"
 
 @interface EAIntroView()
@@ -314,9 +316,9 @@
         if(page.descWidth != 0) {
             descLabelFrame = CGRectMake((self.frame.size.width - page.descWidth)/2, self.frame.size.height - page.descPositionY, page.descWidth, 500);
         } else {
-            descLabelFrame = CGRectMake(0, self.frame.size.height - page.descPositionY, self.scrollView.frame.size.width, 500);
+            descLabelFrame = CGRectMake(DEFAULT_DESCRIPTION_LABEL_X_PADDING, self.frame.size.height - page.descPositionY, self.scrollView.frame.size.width-2.0f*DEFAULT_DESCRIPTION_LABEL_X_PADDING, 500);
         }
-        
+
         UITextView *descLabel = [[UITextView alloc] initWithFrame:descLabelFrame];
         descLabel.text = page.desc;
         descLabel.scrollEnabled = NO;

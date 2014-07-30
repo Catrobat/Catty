@@ -118,11 +118,10 @@ static NSCharacterSet *blockedCharacterSet = nil;
 //    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
 //    id isFirstAppLaunch = [defaults objectForKey:kUserIsFirstAppLaunch];
 //    if (! isFirstAppLaunch) {
-//    NSLog();
         self.tableView.scrollEnabled = NO;
         self.navigationItem.leftBarButtonItem = nil;
         [Util showIntroductionScreenInView:self.view delegate:self];
-////        [Util showIntroductionScreenInView:self.navigationController.view delegate:self];
+//        [Util showIntroductionScreenInView:self.navigationController.view delegate:self];
 //        [defaults setObject:[NSNumber numberWithBool:YES] forKey:kUserIsFirstAppLaunch];
 //        [defaults synchronize];
 //    } else {
