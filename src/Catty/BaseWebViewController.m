@@ -114,6 +114,11 @@
     self.forwardButtonBackGroundView.layer.cornerRadius = 22.0f;
     self.backButtonBackGroundView.alpha = 0.95f;
     self.forwardButtonBackGroundView.alpha = 0.95f;
+    
+    UITapGestureRecognizer *backButtonTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(goBack:)];
+    UITapGestureRecognizer *forwardButtonTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(goForward:)];
+    [self.backButtonBackGroundView addGestureRecognizer:backButtonTap];
+    [self.forwardButtonBackGroundView addGestureRecognizer:forwardButtonTap];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -383,7 +388,7 @@
 #pragma mark - Webview Navigation
 - (void)goBack:(id)sender
 {
-    if ([sender isKindOfClass:UIButton.class]) {
+    if ([sender isKindOfClass:UIButton.class] || [sender isKindOfClass:UITapGestureRecognizer.class]) {
         if (self.webView.canGoBack) {
             [self.webView goBack];
         }
@@ -392,7 +397,7 @@
 
 - (void)goForward:(id)sender
 {
-    if ([sender isKindOfClass:UIButton.class]) {
+    if ([sender isKindOfClass:UIButton.class] || [sender isKindOfClass:UITapGestureRecognizer.class]) {
         if (self.webView.canGoForward) {
             [self.webView goForward];
         }
