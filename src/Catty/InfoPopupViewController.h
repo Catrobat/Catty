@@ -25,6 +25,7 @@
 #import "UIViewController+CWPopup.h"
 
 @interface InfoPopupViewController : UIViewController
+
 @property (nonatomic, weak) id<DismissPopupDelegate> delegate;
 
 @end

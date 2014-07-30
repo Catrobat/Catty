@@ -164,8 +164,8 @@
 {
     NSUInteger sourceScriptCounter = 0;
     NSUInteger destinationScriptCounter = 0;
-    NSUInteger sourceBrickCounter = 0;
-    NSUInteger destinationBrickCounter = 0;
+//    NSUInteger sourceBrickCounter = 0;
+//    NSUInteger destinationBrickCounter = 0;
 
     NSUInteger scriptCounter = 0;
     for (Script *script in self.scriptList) {
@@ -173,7 +173,7 @@
         for (Brick *brick in script.brickList) {
             if (sourceBrick == brick) {
                 sourceScriptCounter = scriptCounter;
-                sourceBrickCounter = brickCounter;
+//                sourceBrickCounter = brickCounter;
                 break;
             }
             ++brickCounter;
@@ -187,7 +187,7 @@
         for (Brick *brick in script.brickList) {
             if (destinationBrick == brick) {
                 destinationScriptCounter = scriptCounter;
-                destinationBrickCounter = brickCounter;
+//                destinationBrickCounter = brickCounter;
                 break;
             }
             ++brickCounter;

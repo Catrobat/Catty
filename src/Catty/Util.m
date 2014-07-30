@@ -31,6 +31,8 @@
 #import "UIColor+CatrobatUIColorExtensions.h"
 #import "ActionSheetAlertViewTags.h"
 #import "DataTransferMessage.h"
+#import "UIImage+CatrobatUIImageExtensions.h"
+#import "EAIntroView.h"
 
 @interface Util () <CatrobatAlertViewDelegate, UITextFieldDelegate>
 
@@ -66,6 +68,53 @@
     if (! [self activateTestMode:NO]) {
         [alert show];
     }
+}
+
++ (void)showIntroductionScreenInView:(UIView *)view delegate:(id<EAIntroDelegate>)delegate
+{
+    UIImage *bgImage = [UIImage imageWithColor:[UIColor darkBlueColor]];
+    EAIntroPage *page1 = [EAIntroPage page];
+    page1.title = kIntroViewTitleFirstPage;
+    page1.desc = kIntroViewDescriptionFirstPage;
+    page1.bgImage = bgImage;
+    page1.titleIconView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"cat"]];
+    CGRect frame = page1.titleIconView.frame;
+    frame.size.height *= 1.6f;
+    frame.size.width *= 1.6f;
+    page1.titleIconView.frame = frame;
+
+    EAIntroPage *page2 = [EAIntroPage page];
+    page2.title = kIntroViewTitleSecondPage;
+    page2.desc = kIntroViewDescriptionSecondPage;
+    page2.bgImage = bgImage;
+    page2.titleIconView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"intro_explore"]];
+    frame = page2.titleIconView.frame;
+    frame.size.height /= 3.0f;
+    frame.size.width /= 3.0f;
+    page2.titleIconView.frame = frame;
+
+    EAIntroPage *page3 = [EAIntroPage page];
+    page3.title = kIntroViewTitleThirdPage;
+    page3.desc = kIntroViewDescriptionThirdPage;
+    page3.bgImage = bgImage;
+    page3.titleIconView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"info"]];
+    frame = page3.titleIconView.frame;
+    frame.size.height /= 3.0f;
+    frame.size.width /= 3.0f;
+    page3.titleIconView.frame = frame;
+
+    frame = view.frame;
+    if ([Util getScreenHeight] == kIphone4ScreenHeight) {
+        frame.size.height -= 65.0f;
+    } else if ([Util getScreenHeight] == kIphone5ScreenHeight) {
+        frame.size.height -= 70.0f;
+    } else {
+        NSLog(@"ERROR: unsupported screen height for introduction screen!!!");
+        abort();
+    }
+    EAIntroView *intro = [[EAIntroView alloc] initWithFrame:frame andPages:@[page1, page2, page3]];
+    intro.delegate = delegate;
+    [intro showInView:view animateDuration:0.3];
 }
 
 + (CatrobatAlertView*)alertWithText:(NSString*)text

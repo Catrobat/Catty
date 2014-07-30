@@ -47,9 +47,7 @@
 #import "NetworkDefines.h"
 #import "DataTransferMessage.h"
 #import "InfoPopupViewController.h"
-#import "EAIntroPage.h"
 #import "EAIntroView.h"
-#import "UIImage+CatrobatUIImageExtensions.h"
 
 NS_ENUM(NSInteger, ViewControllerIndex) {
     kContinueProgramVC = 0,
@@ -120,49 +118,16 @@ static NSCharacterSet *blockedCharacterSet = nil;
 //    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
 //    id isFirstAppLaunch = [defaults objectForKey:kUserIsFirstAppLaunch];
 //    if (! isFirstAppLaunch) {
-        [self showIntroductionScreen];
+//    NSLog();
+        self.tableView.scrollEnabled = NO;
+        self.navigationItem.leftBarButtonItem = nil;
+        [Util showIntroductionScreenInView:self.view delegate:self];
+////        [Util showIntroductionScreenInView:self.navigationController.view delegate:self];
 //        [defaults setObject:[NSNumber numberWithBool:YES] forKey:kUserIsFirstAppLaunch];
 //        [defaults synchronize];
+//    } else {
+//    self.tableView.scrollEnabled = YES;
 //    }
-}
-
-- (void)showIntroductionScreen
-{
-    UIImage *bgImage = [UIImage imageWithColor:[UIColor darkBlueColor]];
-    EAIntroPage *page1 = [EAIntroPage page];
-    page1.title = kIntroViewTitleFirstPage;
-    page1.desc = kIntroViewDescriptionFirstPage;
-    page1.bgImage = bgImage;
-    page1.titleIconView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"cat"]];
-    CGRect frame = page1.titleIconView.frame;
-    frame.size.height *= 1.6f;
-    frame.size.width *= 1.6f;
-    page1.titleIconView.frame = frame;
-
-    EAIntroPage *page2 = [EAIntroPage page];
-    page2.title = kIntroViewTitleSecondPage;
-    page2.desc = kIntroViewDescriptionSecondPage;
-    page2.bgImage = bgImage;
-    page2.titleIconView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"intro_explore"]];
-    frame = page2.titleIconView.frame;
-    frame.size.height /= 3.0f;
-    frame.size.width /= 3.0f;
-    page2.titleIconView.frame = frame;
-
-    EAIntroPage *page3 = [EAIntroPage page];
-    page3.title = kIntroViewTitleThirdPage;
-    page3.desc = kIntroViewDescriptionThirdPage;
-    page3.bgImage = bgImage;
-    page3.titleIconView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"info"]];
-    frame = page3.titleIconView.frame;
-    frame.size.height /= 3.0f;
-    frame.size.width /= 3.0f;
-    page3.titleIconView.frame = frame;
-
-    EAIntroView *intro = [[EAIntroView alloc] initWithFrame:self.view.bounds andPages:@[page1, page2, page3]];
-    [intro setDelegate:self];
-//    [intro showInView:self.navigationController.view animateDuration:0.3];
-    [intro showInView:self.view animateDuration:0.3];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -194,7 +159,6 @@ static NSCharacterSet *blockedCharacterSet = nil;
     [self.tableView reloadRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationNone];
     [self.tableView endUpdates];
     self.tableView.alwaysBounceVertical = NO;
-    self.tableView.scrollEnabled = YES;
 }
 
 #pragma mark init
@@ -217,7 +181,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
     UIButton *button = [UIButton buttonWithType:UIButtonTypeInfoLight];
     [button addTarget:self action:@selector(infoPressed:) forControlEvents:UIControlEventTouchUpInside];
     UIBarButtonItem *infoItem = [[UIBarButtonItem alloc] initWithCustomView:button];
-    [self.navigationItem setLeftBarButtonItem:infoItem];
+    self.navigationItem.leftBarButtonItem = infoItem;
 }
 
 #pragma mark - actions
@@ -482,8 +446,14 @@ static NSCharacterSet *blockedCharacterSet = nil;
     [[NSNotificationCenter defaultCenter] removeObserver:self name:kReachabilityChangedNotification object:nil];
 }
 
-#pragma mark popup delegate
+#pragma mark - EAIntroView delegates
+- (void)introDidFinish:(EAIntroView*)introView
+{
+    [self initNavigationBar];
+    self.tableView.scrollEnabled = YES;
+}
 
+#pragma mark - popup delegate
 - (BOOL)dismissPopup
 {
     if (self.popupViewController != nil) {
