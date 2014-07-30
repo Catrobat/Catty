@@ -367,11 +367,14 @@
     return rootXMLElement;
 }
 
-#define SIMULATOR_DEBUGGING_ENABLED 1
-#define SIMULATOR_DEBUGGING_BASE_PATH @"/Users/ralph/Desktop/diff"
+//#define SIMULATOR_DEBUGGING_ENABLED 1
+//#define SIMULATOR_DEBUGGING_BASE_PATH @"/Users/ralph/Desktop/diff"
 
 - (void)saveToDisk
 {
+#if kIsFirstRelease
+    return;
+#else
     dispatch_queue_t saveToDiskQ = dispatch_queue_create("save to disk", NULL);
     dispatch_async(saveToDiskQ, ^{
         // background thread
@@ -385,32 +388,33 @@
         NSString *xmlPath = [NSString stringWithFormat:@"%@%@", [self projectPath], kProgramCodeFileName];
         [xmlString writeToFile:xmlPath atomically:YES encoding:NSUTF8StringEncoding error:&error];
         NSLogError(error);
-#ifdef SIMULATOR_DEBUGGING_ENABLED
-        NSString *referenceXmlString = [NSString stringWithFormat:@"%@\n%@",
-                                        kCatrobatXMLDeclaration,
-                                        [self.XMLdocument.rootElement XMLStringPrettyPrinted:YES]];
-//        NSLog(@"Reference XML-Document:\n\n%@\n\n", referenceXmlString);
-//        NSLog(@"XML-Document:\n\n%@\n\n", xmlString);
-        NSString *referenceXmlPath = [NSString stringWithFormat:@"%@/reference.xml", SIMULATOR_DEBUGGING_BASE_PATH];
-        NSString *generatedXmlPath = [NSString stringWithFormat:@"%@/generated.xml", SIMULATOR_DEBUGGING_BASE_PATH];
-        [referenceXmlString writeToFile:referenceXmlPath
-                             atomically:YES
-                               encoding:NSUTF8StringEncoding
-                                  error:&error];
-        [xmlString writeToFile:generatedXmlPath
-                    atomically:YES
-                      encoding:NSUTF8StringEncoding
-                         error:&error];
 
-//#import <Foundation/NSTask.h> // debugging for OSX
-//        NSTask *task = [[NSTask alloc] init];
-//        [task setLaunchPath:@"/usr/bin/diff"];
-//        [task setArguments:[NSArray arrayWithObjects:referenceXmlPath, generatedXmlPath, nil]];
-//        [task setStandardOutput:[NSPipe pipe]];
-//        [task setStandardInput:[NSPipe pipe]]; // piping to NSLog-tty (terminal emulator)
-//        [task launch];
-//        [task release];
-#endif
+//#ifdef SIMULATOR_DEBUGGING_ENABLED
+//        NSString *referenceXmlString = [NSString stringWithFormat:@"%@\n%@",
+//                                        kCatrobatXMLDeclaration,
+//                                        [self.XMLdocument.rootElement XMLStringPrettyPrinted:YES]];
+////        NSLog(@"Reference XML-Document:\n\n%@\n\n", referenceXmlString);
+////        NSLog(@"XML-Document:\n\n%@\n\n", xmlString);
+//        NSString *referenceXmlPath = [NSString stringWithFormat:@"%@/reference.xml", SIMULATOR_DEBUGGING_BASE_PATH];
+//        NSString *generatedXmlPath = [NSString stringWithFormat:@"%@/generated.xml", SIMULATOR_DEBUGGING_BASE_PATH];
+//        [referenceXmlString writeToFile:referenceXmlPath
+//                             atomically:YES
+//                               encoding:NSUTF8StringEncoding
+//                                  error:&error];
+//        [xmlString writeToFile:generatedXmlPath
+//                    atomically:YES
+//                      encoding:NSUTF8StringEncoding
+//                         error:&error];
+//
+////#import <Foundation/NSTask.h> // debugging for OSX
+////        NSTask *task = [[NSTask alloc] init];
+////        [task setLaunchPath:@"/usr/bin/diff"];
+////        [task setArguments:[NSArray arrayWithObjects:referenceXmlPath, generatedXmlPath, nil]];
+////        [task setStandardOutput:[NSPipe pipe]];
+////        [task setStandardInput:[NSPipe pipe]]; // piping to NSLog-tty (terminal emulator)
+////        [task launch];
+////        [task release];
+//#endif
 
         // update last access time
         [[self class] updateLastModificationTimeForProgramWithName:self.header.programName];
@@ -426,6 +430,7 @@
 //            [[NSNotificationCenter defaultCenter] postNotificationName:kHideLoadingViewNotification object:self];
 //        });
     });
+#endif
 }
 
 - (BOOL)isLastProgram
