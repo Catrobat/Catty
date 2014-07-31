@@ -32,6 +32,7 @@
 #import "CatrobatImageCell.h"
 #import "ScenePresenterViewController.h"
 #import "LanguageTranslationDefines.h"
+#import "Util.h"
 
 @interface ObjectTableViewController ()
 
@@ -56,8 +57,9 @@
 #pragma mark - actions
 - (void)playSceneAction:(id)sender
 {
-    [self.navigationController setToolbarHidden:YES];
-    [self performSegueWithIdentifier:kSegueToScene sender:sender];
+    [self.navigationController setToolbarHidden:YES animated:YES];
+    ScenePresenterViewController *vc =[[ScenePresenterViewController alloc] initWithProgram:[Program programWithLoadingInfo:[Util programLoadingInfoForProgramWithName:[Util lastProgram]]]];
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 #pragma mark - Table view data source
@@ -129,7 +131,6 @@
     static NSString *toScriptsSegueID = kSegueToScripts;
     static NSString *toLooksSegueID = kSegueToLooks;
     static NSString *toSoundsSegueID = kSegueToSounds;
-    static NSString *toSceneSegueID = kSegueToScene;
 
     UIViewController* destController = segue.destinationViewController;
     if ([sender isKindOfClass:[UITableViewCell class]]) {
@@ -138,16 +139,6 @@
              [segue.identifier isEqualToString:toSoundsSegueID]) &&
             [destController respondsToSelector:@selector(setObject:)]) {
             [destController performSelector:@selector(setObject:) withObject:self.object];
-        }
-    } else if ([sender isKindOfClass:[UIBarButtonItem class]]) {
-        if ([segue.identifier isEqualToString:toSceneSegueID]) {
-            if ([destController isKindOfClass:[ScenePresenterViewController class]]) {
-                ScenePresenterViewController* scvc = (ScenePresenterViewController*) destController;
-                if ([scvc respondsToSelector:@selector(setProgram:)]) {
-                    [scvc setController:(UITableViewController *)self];
-                    [scvc performSelector:@selector(setProgram:) withObject:self.object.program];
-                }
-            }
         }
     }
 }
