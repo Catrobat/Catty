@@ -84,7 +84,7 @@
     [self initNavigationBar];
     self.hidesBottomBarWhenPushed = YES;
     
-    self.view.backgroundColor = UIColor.backgroundColor;
+    self.view.backgroundColor = [UIColor darkBlueColor];
     self.navigationItem.title = @"";//kUIViewControllerTitleInfo;
     NSDebug(@"%@",self.project.author);
     self.projectView = [self createViewForProject:self.project];
