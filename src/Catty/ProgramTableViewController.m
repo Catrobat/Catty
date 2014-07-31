@@ -113,13 +113,6 @@ static NSCharacterSet *blockedCharacterSet = nil;
     [self setupToolBar];
 }
 
-- (void)viewWillDisappear:(BOOL)animated
-{
-    if (self.isNewProgram) {
-        [self.program saveToDisk];
-    }
-}
-
 #pragma mark - actions
 - (void)addObjectAction:(id)sender
 {
