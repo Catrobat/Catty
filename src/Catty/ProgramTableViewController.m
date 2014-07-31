@@ -102,7 +102,6 @@ static NSCharacterSet *blockedCharacterSet = nil;
     [self initNavigationBar];
     [self.tableView registerClass:[ProgramTableHeaderView class] forHeaderFooterViewReuseIdentifier:@"Header"];
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
-    
     self.editableSections = @[@(kObjectSectionIndex)];
     if (self.program.header.programName) {
         self.navigationItem.title = self.program.header.programName;
@@ -222,12 +221,30 @@ static NSCharacterSet *blockedCharacterSet = nil;
     } else {
         [options addObject:kUIActionSheetButtonTitleShowDetails];
     }
+#if kIsFirstRelease // kIsFirstRelease
+    CatrobatActionSheet *actionSheet = [Util actionSheetWithTitle:kUIAlertViewMessageFeatureComingSoon
+                                                         delegate:self
+                                           destructiveButtonTitle:kUIActionSheetButtonTitleDelete
+                                                otherButtonTitles:options
+                                                              tag:kEditProgramActionSheetTag
+                                                             view:self.navigationController.view];
+    // disable all buttons except delete + hide/show details + cancel button
+    // (index of cancel button: ([actionSheet.buttons count] - 1))
+    for (IBActionSheetButton *button in actionSheet.buttons) {
+        if ((button.index != 0) && (button.index != ([actionSheet.buttons count] - 2))
+            && (button.index != ([actionSheet.buttons count] - 1))) {
+            button.enabled = NO;
+            [actionSheet setButtonTextColor:[UIColor grayColor] forButtonAtIndex:button.index];
+        }
+    }
+#else // kIsFirstRelease
     [Util actionSheetWithTitle:kUIActionSheetTitleEditProgram
                       delegate:self
         destructiveButtonTitle:kUIActionSheetButtonTitleDelete
              otherButtonTitles:options
                            tag:kEditProgramActionSheetTag
                           view:self.navigationController.view];
+#endif // kIsFirstRelease
 }
 
 - (void)confirmDeleteSelectedObjectsAction:(id)sender
@@ -449,12 +466,28 @@ static NSCharacterSet *blockedCharacterSet = nil;
     if (index == 0) {
         // More button was pressed
         NSArray *options = @[kUIActionSheetButtonTitleCopy, kUIActionSheetButtonTitleRename];
-        CatrobatActionSheet *actionSheet = [Util actionSheetWithTitle:kUIActionSheetTitleEditProgram
+#if kIsFirstRelease // kIsFirstRelease
+        CatrobatActionSheet *actionSheet = [Util actionSheetWithTitle:kUIAlertViewMessageFeatureComingSoon
                                                              delegate:self
                                                destructiveButtonTitle:nil
                                                     otherButtonTitles:options
                                                                   tag:kEditObjectActionSheetTag
                                                                  view:self.navigationController.view];
+        // disable all buttons except cancel button (index of cancel button: ([actionSheet.buttons count] - 1))
+        for (IBActionSheetButton *button in actionSheet.buttons) {
+            if (button.index != ([actionSheet.buttons count] - 1)) {
+                button.enabled = NO;
+                [actionSheet setButtonTextColor:[UIColor grayColor] forButtonAtIndex:button.index];
+            }
+        }
+#else // kIsFirstRelease
+        CatrobatActionSheet *actionSheet = [Util actionSheetWithTitle:kUIActionSheetTitleEditObject
+                                                             delegate:self
+                                               destructiveButtonTitle:nil
+                                                    otherButtonTitles:options
+                                                                  tag:kEditObjectActionSheetTag
+                                                                 view:self.navigationController.view];
+#endif // kIsFirstRelease
         NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
         NSInteger spriteObjectIndex = (kBackgroundSectionIndex + indexPath.section + indexPath.row);
         NSDictionary *payload = @{ kDTPayloadSpriteObject : [self.program.objectList objectAtIndex:spriteObjectIndex] };
@@ -463,6 +496,9 @@ static NSCharacterSet *blockedCharacterSet = nil;
         actionSheet.dataTransferMessage = message;
     } else if (index == 1) {
         // Delete button was pressed
+#if kIsFirstRelease // kIsFirstRelease
+        [Util showComingSoonAlertView];
+#else // kIsFirstRelease
         NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
         [cell hideUtilityButtonsAnimated:YES];
         if (indexPath.section == kObjectSectionIndex) {
@@ -473,6 +509,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
                                  confirmTitle:kUIAlertViewTitleDeleteSingleObject
                                confirmMessage:kUIAlertViewMessageIrreversibleAction];
         }
+#endif // kIsFirstRelease
     }
 }
 
@@ -566,6 +603,9 @@ static NSCharacterSet *blockedCharacterSet = nil;
     UIBarButtonItem *add = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd
                                                                          target:self
                                                                          action:@selector(addObjectAction:)];
+#if kIsFirstRelease // kIsFirstRelease
+    add.enabled = NO;
+#endif // kIsFirstRelease
     UIBarButtonItem *play = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemPlay
                                                                           target:self
                                                                           action:@selector(playSceneAction:)];
