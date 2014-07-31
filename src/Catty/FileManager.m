@@ -401,22 +401,18 @@
 - (void)downloadFileFromURL:(NSURL*)url withName:(NSString*)name
 {
     self.projectName = name;
-    
-    if (!self.downloadSession) {
-        NSURLSessionConfiguration *sessionConfig =
-        [NSURLSessionConfiguration backgroundSessionConfiguration:@"at.tugraz"];
+    if (! self.downloadSession) {
+        NSURLSessionConfiguration *sessionConfig = [NSURLSessionConfiguration backgroundSessionConfiguration:@"at.tugraz"];
         self.downloadSession = [NSURLSession sessionWithConfiguration:sessionConfig
                                                              delegate:self
                                                         delegateQueue:nil];
     }
-
-    NSURLSessionDownloadTask *getProgramTask =
-    [self.downloadSession downloadTaskWithURL:url];
-    
-    [self.programTaskDict setObject:url forKey:getProgramTask];
-    [self.programNameDict setObject:name forKey:getProgramTask];
-    [getProgramTask resume];
-
+    NSURLSessionDownloadTask *getProgramTask = [self.downloadSession downloadTaskWithURL:url];
+    if (getProgramTask) {
+        [self.programTaskDict setObject:url forKey:getProgramTask];
+        [self.programNameDict setObject:name forKey:getProgramTask];
+        [getProgramTask resume];
+    }
 }
 
 - (void)downloadScreenshotFromURL:(NSURL*)url andBaseUrl:(NSURL*)baseurl andName:(NSString*) name
@@ -429,16 +425,12 @@
                                                              delegate:self
                                                         delegateQueue:nil];
     }
-    
-    NSURLSessionDownloadTask *getImageTask =
-    [self.downloadSession downloadTaskWithURL:url];
-    
-    [self.imageTaskDict setObject:url forKey:getImageTask];
-    [self.imageNameDict setObject:name forKey:getImageTask];
-    [getImageTask resume];
-    
-    
-    
+    NSURLSessionDownloadTask *getImageTask = [self.downloadSession downloadTaskWithURL:url];
+    if (getImageTask) {
+        [self.imageTaskDict setObject:url forKey:getImageTask];
+        [self.imageNameDict setObject:name forKey:getImageTask];
+        [getImageTask resume];
+    }
 }
 
 - (void)changeModificationDate:(NSDate*)date forFileAtPath:(NSString*)path
