@@ -28,6 +28,7 @@
  * -----------------------------------------------------------------------------------------------------------
  */
 
+#define kIntroViewButtonTitleSkip NSLocalizedString(@"Skip", nil)
 #define kIntroViewTitleFirstPage NSLocalizedString(@"Welcome to Pocket Code", nil)
 #define kIntroViewTitleSecondPage NSLocalizedString(@"Explore apps", nil)
 #define kIntroViewTitleThirdPage NSLocalizedString(@"Upcoming version", nil)

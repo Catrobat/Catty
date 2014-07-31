@@ -72,42 +72,31 @@
 
 + (void)showIntroductionScreenInView:(UIView *)view delegate:(id<EAIntroDelegate>)delegate
 {
+#define kTempHeight 140.0f
     UIImage *bgImage = [UIImage imageWithColor:[UIColor darkBlueColor]];
     EAIntroPage *page1 = [EAIntroPage page];
     page1.title = kIntroViewTitleFirstPage;
     page1.desc = kIntroViewDescriptionFirstPage;
     page1.bgImage = bgImage;
-    page1.titleIconView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"cat"]];
-    CGRect frame = page1.titleIconView.frame;
-    frame.size.height *= 1.6f;
-    frame.size.width *= 1.6f;
-    page1.titleIconView.frame = frame;
+    page1.titleIconView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"page1_logo"]];
 
     EAIntroPage *page2 = [EAIntroPage page];
     page2.title = kIntroViewTitleSecondPage;
     page2.desc = kIntroViewDescriptionSecondPage;
     page2.bgImage = bgImage;
-    page2.titleIconView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"intro_explore"]];
-    frame = page2.titleIconView.frame;
-    frame.size.height /= 3.0f;
-    frame.size.width /= 3.0f;
-    page2.titleIconView.frame = frame;
+    page2.titleIconView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"page2_explore"]];
 
     EAIntroPage *page3 = [EAIntroPage page];
     page3.title = kIntroViewTitleThirdPage;
     page3.desc = kIntroViewDescriptionThirdPage;
     page3.bgImage = bgImage;
-    page3.titleIconView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"info"]];
-    frame = page3.titleIconView.frame;
-    frame.size.height /= 3.0f;
-    frame.size.width /= 3.0f;
-    page3.titleIconView.frame = frame;
+    page3.titleIconView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"page3_info"]];
 
-    frame = view.frame;
+    CGRect frame = view.frame;
     if ([Util getScreenHeight] == kIphone4ScreenHeight) {
-        frame.size.height -= 65.0f;
+        frame.size.height -= 64.0f;
     } else if ([Util getScreenHeight] == kIphone5ScreenHeight) {
-        frame.size.height -= 70.0f;
+        frame.size.height -= 64.0f;
     } else {
         NSLog(@"ERROR: unsupported screen height for introduction screen!!!");
         abort();
