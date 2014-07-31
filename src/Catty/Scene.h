@@ -27,21 +27,20 @@
 @interface Scene : SKScene
 
 
-@property(nonatomic, strong) Program* program;
+@property(nonatomic, weak) Program* program;
 @property(nonatomic) NSInteger numberOfObjectsWithoutBackground;
 
 
--(id) initWithSize:(CGSize)size andProgram:(Program*)program;
+-(id)initWithSize:(CGSize)size andProgram:(Program*)program;
 
 -(CGPoint)convertPointToScene:(CGPoint)point;
--(float)convertYCoordinateToScene:(float)y;
--(float)convertXCoordinateToScene:(float)x;
+-(CGFloat)convertYCoordinateToScene:(CGFloat)y;
+-(CGFloat)convertXCoordinateToScene:(CGFloat)x;
 -(CGFloat)convertDegreesToScene:(CGFloat)degrees;
 
 -(CGPoint)convertSceneCoordinateToPoint:(CGPoint)point;
 -(CGFloat)convertSceneToDegrees:(CGFloat)degrees;
 
 -(BOOL)touchedwith:(NSSet*)touches withX:(CGFloat) x andY:(CGFloat) y;
-
 
 @end

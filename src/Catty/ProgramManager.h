@@ -26,8 +26,7 @@
 @class Program;
 
 @interface ProgramManager : NSObject
-
-@property (nonatomic, weak) Program *program;
+@property (nonatomic, strong) Program *program;
 
 + (instancetype)sharedProgramManager;
 

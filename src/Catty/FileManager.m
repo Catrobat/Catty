@@ -335,11 +335,46 @@
     }
     if (! areAnyProgramsLeft) {
         [self addBundleProgramWithName:kDefaultProgramBundleName];
+#if kIsFirstRelease // kIsFirstRelease
+#define kDefaultProgramBundleBackgroundName @"Background"
+#define kDefaultProgramBundleOtherObjectsNamePrefix @"Mole"
+        // XXX: HACK serialization-workaround
+        if (! [kDefaultProgramBundleName isEqualToString:kDefaultProgramName]) {
+            // SYNC and NOT ASYNC here because the UI must wait!!
+            dispatch_queue_t translateBundleQ = dispatch_queue_create("translate bundle", NULL);
+            dispatch_sync(translateBundleQ, ^{
+                NSString *xmlPath = [[Program projectPathForProgramWithName:kDefaultProgramBundleName]
+                                     stringByAppendingString:kProgramCodeFileName];
+                NSError *error = nil;
+                NSMutableString *xmlString = [NSMutableString stringWithContentsOfFile:xmlPath
+                                                                              encoding:NSUTF8StringEncoding
+                                                                                 error:&error];
+                NSLogError(error);
+                [xmlString replaceOccurrencesOfString:[NSString stringWithFormat:@"<programName>%@</programName>", kDefaultProgramBundleName]
+                                           withString:[NSString stringWithFormat:@"<programName>%@</programName>", kDefaultProgramName]
+                                              options:NSCaseInsensitiveSearch
+                                                range:NSMakeRange(0, [xmlString length])];
+                [xmlString replaceOccurrencesOfString:[NSString stringWithFormat:@"<name>%@</name>", kDefaultProgramBundleBackgroundName]
+                                           withString:[NSString stringWithFormat:@"<name>%@</name>", kGeneralBackgroundObjectName]
+                                              options:NSCaseInsensitiveSearch
+                                                range:NSMakeRange(0, [xmlString length])];
+                [xmlString replaceOccurrencesOfString:[NSString stringWithFormat:@"<name>%@", kDefaultProgramBundleOtherObjectsNamePrefix]
+                                           withString:[NSString stringWithFormat:@"<name>%@", kDefaultProgramOtherObjectsNamePrefix]
+                                              options:NSCaseInsensitiveSearch
+                                                range:NSMakeRange(0, [xmlString length])];
+                [xmlString writeToFile:xmlPath atomically:YES encoding:NSUTF8StringEncoding error:&error];
+                NSLogError(error);
+                [self moveExistingDirectoryAtPath:[Program projectPathForProgramWithName:kDefaultProgramBundleName]
+                                           toPath:[Program projectPathForProgramWithName:kDefaultProgramName]];
+            });
+        }
+#else // kIsFirstRelease
         ProgramLoadingInfo *loadingInfo = [[ProgramLoadingInfo alloc] init];
         loadingInfo.basePath = [NSString stringWithFormat:@"%@%@/", [Program basePath], kDefaultProgramBundleName];
         loadingInfo.visibleName = kDefaultProgramBundleName;
         Program *program = [Program programWithLoadingInfo:loadingInfo];
         [program translateDefaultProgram];
+#endif // kIsFirstRelease
         [Util lastProgram];
     }
 }

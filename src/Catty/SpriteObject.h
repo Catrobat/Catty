@@ -130,27 +130,5 @@
 - (Look*)copyLook:(Look*)sourceLook withNameForCopiedLook:(NSString*)nameOfCopiedLook;
 - (Sound*)copySound:(Sound*)sourceSound withNameForCopiedSound:(NSString*)nameOfCopiedSound;
 
-//- (void)glideToPosition:(CGPoint)position withDurationInSeconds:(float)durationInSeconds fromScript:(Script*)script;
-//- (void)hide;
-//- (void)show;
-//- (void)comeToFront;
-//- (void)changeSizeByNInPercent:(float)sizePercentageRate;
-//- (void)changeXBy:(float)x;
-//- (void)changeYBy:(float)y;
-//- (void)stopAllSounds;
-//- (void)setSizeToPercentage:(float)sizeInPercentage;
-//- (void)goNStepsBack:(int)n;
-//- (void)setTransparencyInPercent:(float)transparencyInPercent;
-//- (void)changeTransparencyInPercent:(float)increaseInPercent;
-//- (void)playSound:(Sound*)sound;
-//- (void)speakSound:(Sound*)sound;
-//- (void)setVolumeToInPercent:(float)volumeInPercent;
-//- (void)changeVolumeInPercent:(float)volumeInPercent;
-//- (void)turnLeft:(float)degrees;
-//- (void)turnRight:(float)degrees;
-//- (void)pointInDirection:(float)degrees;
-//- (void)changeBrightness:(float)factor;
-//- (void)moveNSteps:(float)steps;
-//- (void)ifOnEdgeBounce;
 
 @end

@@ -24,6 +24,6 @@
 #import "BroadcastWaitDelegate.h"
 
 @interface BroadcastWaitHandler : NSObject <BroadcastWaitDelegate>
-
+- (void)removeSpriteMessages;
 
 @end
