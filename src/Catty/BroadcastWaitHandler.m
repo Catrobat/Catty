@@ -55,7 +55,7 @@
 
 - (void)dealloc
 {
-    [self.spritesForMessages removeAllObjects];
+    [self removeSpriteMessages];
 }
 
 - (void)performBroadcastWaitForMessage:(NSString*)message
@@ -86,6 +86,13 @@
         dispatch_semaphore_signal(sema);
     }
  // Block until we're ready
+}
+
+- (void)removeSpriteMessages
+{
+    if (self.spritesForMessages.count)
+        [self.spritesForMessages removeAllObjects];
+        
 }
 
 @end

@@ -55,19 +55,17 @@
 
 - (void)startProgram
 {
-    __block CGFloat zPosition = 0.1f;
-    @autoreleasepool {
-        for (SpriteObject *obj in self.program.objectList) {
-            [self addChild:obj];
-            NSDebug(@"%f",zPosition);
-            [obj start:zPosition];
-            [obj setLook];
-            [obj setProgram:self.program];
-            [obj setUserInteractionEnabled:YES];
-            if (!([obj isBackground])) {
-                zPosition += 0.1f;
-                self.numberOfObjectsWithoutBackground++;
-            }
+    CGFloat zPosition = 1.0f;
+    for (SpriteObject *obj in self.program.objectList) {
+        [self addChild:obj];
+        NSDebug(@"%f",zPosition);
+        [obj start:zPosition];
+        [obj setLook];
+        [obj setProgram:self.program];
+        [obj setUserInteractionEnabled:YES];
+        if (!([obj isBackground])) {
+            zPosition++;
+            self.numberOfObjectsWithoutBackground++;
         }
     }
     

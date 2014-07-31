@@ -537,6 +537,8 @@
         }
     }
     
+    [self.broadcastWaitHandler removeSpriteMessages];
+    
     Scene *previousScene = (Scene *)self.skView.scene;
     previousScene.program = self.program;
     
