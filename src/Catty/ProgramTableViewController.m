@@ -91,7 +91,8 @@ static NSCharacterSet *blockedCharacterSet = nil;
     self.navigationItem.rightBarButtonItem = editButton;
 }
 
-#pragma mark - view events
+
+#pragma mark - ViewController Delegates
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -203,8 +204,9 @@ static NSCharacterSet *blockedCharacterSet = nil;
 
 - (void)playSceneAction:(id)sender
 {
-    [self.navigationController setToolbarHidden:YES];
-    [self performSegueWithIdentifier:kSegueToScene sender:sender];
+    [self.navigationController setToolbarHidden:YES animated:YES];
+    ScenePresenterViewController *vc =[[ScenePresenterViewController alloc] initWithProgram:[Program programWithLoadingInfo:[Util programLoadingInfoForProgramWithName:[Util lastProgram]]]];
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 - (void)editAction:(id)sender
@@ -422,7 +424,6 @@ static NSCharacterSet *blockedCharacterSet = nil;
 {
     // Pass the selected object to the new view controller.
     static NSString *toObjectSegueID = kSegueToObject;
-    static NSString *toSceneSegueID = kSegueToScene;
 
     UIViewController *destController = segue.destinationViewController;
     if ([sender isKindOfClass:[UITableViewCell class]]) {
@@ -434,16 +435,6 @@ static NSCharacterSet *blockedCharacterSet = nil;
                 if ([tvc respondsToSelector:@selector(setObject:)]) {
                     SpriteObject* object = [self.program.objectList objectAtIndex:(kBackgroundObjectIndex + indexPath.section + indexPath.row)];
                     [destController performSelector:@selector(setObject:) withObject:object];
-                }
-            }
-        }
-    } else if ([sender isKindOfClass:[UIBarButtonItem class]]) {
-        if ([segue.identifier isEqualToString:toSceneSegueID]) {
-            if ([destController isKindOfClass:[ScenePresenterViewController class]]) {
-                ScenePresenterViewController* scvc = (ScenePresenterViewController*) destController;
-                if ([scvc respondsToSelector:@selector(setProgram:)]) {
-                    [scvc setController:(UITableViewController *)self];
-                    [scvc performSelector:@selector(setProgram:) withObject:self.program];
                 }
             }
         }

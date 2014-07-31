@@ -37,7 +37,7 @@
                                     <outlet property="titleLabel" destination="UZk-4d-EUO" id="tnZ-rf-Oab"/>
                                 </connections>
                             </tableViewCell>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="none" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="DetailImageCell" rowHeight="79" id="ePg-N5-867" customClass="DarkBlueGradientImageDetailCell">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="DetailImageCell" rowHeight="79" id="ePg-N5-867" customClass="DarkBlueGradientImageDetailCell">
                                 <rect key="frame" x="0.0" y="198" width="320" height="79"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="ePg-N5-867" id="B0W-Dk-5Hd">

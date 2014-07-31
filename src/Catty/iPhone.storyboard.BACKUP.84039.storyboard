@@ -37,7 +37,11 @@
                                     <outlet property="titleLabel" destination="UZk-4d-EUO" id="tnZ-rf-Oab"/>
                                 </connections>
                             </tableViewCell>
+<<<<<<< HEAD
                             <tableViewCell contentMode="scaleToFill" selectionStyle="none" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="DetailImageCell" rowHeight="79" id="ePg-N5-867" customClass="DarkBlueGradientImageDetailCell">
+=======
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="DetailImageCell" rowHeight="79" id="ePg-N5-867" customClass="DarkBlueGradientImageDetailCell">
+>>>>>>> master
                                 <rect key="frame" x="0.0" y="198" width="320" height="79"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="ePg-N5-867" id="B0W-Dk-5Hd">
@@ -496,13 +500,21 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" tag="12" contentMode="left" text="Title" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="7VV-Cs-K8i">
+<<<<<<< HEAD
+                                            <rect key="frame" x="96" y="28" width="185" height="22"/>
+=======
                                             <rect key="frame" x="95" y="30.5" width="185" height="22"/>
+>>>>>>> master
                                             <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                             <color key="highlightedColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         </label>
                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" tag="11" contentMode="scaleAspectFill" id="642-Kc-jVe">
+<<<<<<< HEAD
+                                            <rect key="frame" x="20" y="14" width="50" height="50"/>
+=======
                                             <rect key="frame" x="20" y="16.5" width="50" height="50"/>
+>>>>>>> master
                                         </imageView>
                                     </subviews>
                                 </tableViewCellContentView>
@@ -525,7 +537,11 @@
                                             <color key="highlightedColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         </label>
                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" tag="11" contentMode="scaleAspectFill" id="JH2-I8-7aq">
+<<<<<<< HEAD
+                                            <rect key="frame" x="20" y="14" width="50" height="50"/>
+=======
                                             <rect key="frame" x="20" y="16.5" width="50" height="50"/>
+>>>>>>> master
                                         </imageView>
                                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="MOw-Zb-ZrB">
                                             <rect key="frame" x="95" y="32" width="96" height="21"/>
@@ -944,7 +960,13 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
+<<<<<<< HEAD
+        <segue reference="Ynr-aF-UI3"/>
+        <segue reference="83p-dA-kpt"/>
+        <segue reference="dSt-wf-R4M"/>
+=======
         <segue reference="aum-BR-x1G"/>
         <segue reference="5UD-6W-Ykq"/>
+>>>>>>> master
     </inferredMetricsTieBreakers>
 </document>

@@ -116,10 +116,6 @@
     else {
         [self runNextAction];
     }
-    
-
-
-    
 }
 
 
@@ -157,10 +153,11 @@
             
             NSDebug(@"broadcast wait");
         
+            __weak Script* weakself = self;
             dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
                 [((BroadcastWaitBrick*)brick) performBroadcastWait];
 
-                [self nextAction];
+                [weakself nextAction];
             });
             
         }
@@ -203,9 +200,11 @@
             if(!action || ! actionArray || ! sequence) {
                 abort();
             }
+            
+            __weak Script* weakself = self;
             [self runAction:sequence completion:^{
                 NSDebug(@"Finished: %@", sequence);
-                [self runNextAction];
+                [weakself runNextAction];
             }];
         }
     } else {
@@ -214,19 +213,16 @@
             self.completion();
         }
     }
-    
-    
 }
 
-- (void) nextAction
+- (void)nextAction
 {
     // Needs to be async because of recursion!
+    __weak Script* weakself = self;
     dispatch_async(dispatch_get_main_queue(), ^{
-        [self runNextAction];
+        [weakself runNextAction];
     });
 }
-
-
 
 - (void)runWithAction:(SKAction*)action
 {
