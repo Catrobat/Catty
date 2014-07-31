@@ -49,7 +49,7 @@
 - (void)layoutSubviews
 {
     [super layoutSubviews];
-    self.bottomBoarder.frame = CGRectMake(0.0f, CGRectGetHeight(self.bounds) - 0.5f, CGRectGetWidth(self.bounds), 0.5f);
+    self.bottomBoarder.frame = CGRectMake(0.0f, CGRectGetHeight(self.bounds), CGRectGetWidth(self.bounds), 0.5f);
 }
 
 - (CALayer *)bottomBoarder

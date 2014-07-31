@@ -24,12 +24,12 @@
 
 @implementation UIImageView (CatrobatUIImageViewExtensions)
 
-- (void) setBorder:(UIColor*)color Width:(CGFloat)width
+- (void)setBorder:(UIColor*)color Width:(CGFloat)width
 {
   [self setRoundedBorder:color Width:width CornerRadius:0.0f];
 }
 
-- (void) setRoundedBorder:(UIColor*)color Width:(CGFloat)width CornerRadius:(CGFloat)radius
+- (void)setRoundedBorder:(UIColor*)color Width:(CGFloat)width CornerRadius:(CGFloat)radius
 {
   CALayer *borderLayer = [CALayer layer];
   CGRect borderFrame = CGRectMake(0, 0, (self.frame.size.width), (self.frame.size.height));
