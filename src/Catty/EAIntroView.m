@@ -97,8 +97,9 @@
 }
 
 - (void)makePanelVisibleAtIndex:(NSInteger)panelIndex{
+    __weak EAIntroView *mySelf = self;
     [UIView animateWithDuration:0.3 animations:^{
-        for (int idx = 0; idx < _pages.count; idx++) {
+        for (int idx = 0; idx < mySelf.pages.count; idx++) {
             if (idx == panelIndex) {
                 [[self viewForPageIndex:idx] setAlpha:1];
             } else {
@@ -659,14 +660,15 @@ float easeOutValue(float value) {
     self.scrollView.contentOffset = CGPointZero;
     [view addSubview:self];
     
+    __weak EAIntroView *mySelf = self;
     [UIView animateWithDuration:duration animations:^{
         self.alpha = 1;
     } completion:^(BOOL finished) {
-        EAIntroPage* currentPage = _pages[self.currentPageIndex];
+        EAIntroPage* currentPage = mySelf.pages[self.currentPageIndex];
         if(currentPage.onPageDidAppear) currentPage.onPageDidAppear();
         
         if ([(id)self.delegate respondsToSelector:@selector(intro:pageAppeared:withIndex:)]) {
-            [self.delegate intro:self pageAppeared:_pages[self.currentPageIndex] withIndex:self.currentPageIndex];
+            [self.delegate intro:self pageAppeared:mySelf.pages[self.currentPageIndex] withIndex:self.currentPageIndex];
         }
     }];
 }
