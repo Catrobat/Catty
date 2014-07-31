@@ -626,7 +626,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
             [self.tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationTop];
             // flush asset/image cache
             self.dataCache = nil;
-            // needed to avoid unexpected behaviour when renaming programs
+            // needed to avoid unexpected behaviour when programs are renamed
             [[RuntimeImageCache sharedImageCache] clearImageCache];
             break;
         }

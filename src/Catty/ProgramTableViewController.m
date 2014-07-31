@@ -226,10 +226,11 @@ static NSCharacterSet *blockedCharacterSet = nil;
                                                 otherButtonTitles:options
                                                               tag:kEditProgramActionSheetTag
                                                              view:self.navigationController.view];
-    // disable all buttons except hide/show details + cancel button
+    // disable all buttons except delete + hide/show details + cancel button
     // (index of cancel button: ([actionSheet.buttons count] - 1))
     for (IBActionSheetButton *button in actionSheet.buttons) {
-        if ((button.index != ([actionSheet.buttons count] - 2)) && (button.index != ([actionSheet.buttons count] - 1))) {
+        if ((button.index != 0) && (button.index != ([actionSheet.buttons count] - 2))
+            && (button.index != ([actionSheet.buttons count] - 1))) {
             button.enabled = NO;
             [actionSheet setButtonTextColor:[UIColor grayColor] forButtonAtIndex:button.index];
         }
