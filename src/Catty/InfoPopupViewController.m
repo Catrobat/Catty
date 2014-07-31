@@ -23,7 +23,6 @@
 #import "InfoPopupViewController.h"
 #import "UIColor+CatrobatUIColorExtensions.h"
 #import "LanguageTranslationDefines.h"
-#import "Util.h"
 #import <QuartzCore/QuartzCore.h>
 
 @interface InfoPopupViewController ()
@@ -92,18 +91,6 @@ const int BUTTON_MARGIN_BOTTOM = 15;
     aboutPocketCodeButton.frame = CGRectMake(self.view.frame.size.width / 2 - aboutPocketCodeButton.frame.size.width / 2, MENU_BUTTON_MARGIN_HORIZONTAL, aboutPocketCodeButton.frame.size.width, BUTTON_HEIGHT);
     
     [self addMenuButton:aboutPocketCodeButton];
-}
-
-- (void)initAppInfoButton
-{
-    UIButton *appInfoButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    [appInfoButton setTitle:kUIInfoPopupViewAppInfo forState:UIControlStateNormal];
-    [appInfoButton addTarget:self
-                      action:@selector(appInfo)
-            forControlEvents:UIControlEventTouchUpInside];
-    [appInfoButton sizeToFit];
-    appInfoButton.frame = CGRectMake(self.view.frame.size.width / 2 - appInfoButton.frame.size.width / 2, 3 * MENU_BUTTON_MARGIN_HORIZONTAL + BUTTON_HEIGHT, appInfoButton.frame.size.width, BUTTON_HEIGHT);
-    [self addMenuButton:appInfoButton];
 }
 
 - (void)initTermsOfUseButton
@@ -265,11 +252,6 @@ const int BUTTON_MARGIN_BOTTOM = 15;
     
     //Animation to add the main subview
     [self showContentView];
-}
-
-- (void)appInfo
-{
-    [Util showIntroductionScreenInView:self.view delegate:nil];
 }
 
 - (void)termsOfUse

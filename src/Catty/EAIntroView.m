@@ -30,6 +30,7 @@
 #define DEFAULT_DESCRIPTION_LABEL_X_PADDING 20.0f
 
 #import "EAIntroView.h"
+#import "UIColor+CatrobatUIColorExtensions.h"
 #import "LanguageTranslationDefines.h"
 
 @interface EAIntroView()
@@ -214,6 +215,7 @@
     [self buildScrollView];
     
     [self buildFooterView];
+    self.skipButton.titleLabel.textColor = [UIColor lightOrangeColor];
     
     self.bgImageView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
     self.pageControl.autoresizingMask = UIViewAutoresizingFlexibleWidth;

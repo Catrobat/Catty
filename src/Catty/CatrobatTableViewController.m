@@ -114,16 +114,14 @@ static NSCharacterSet *blockedCharacterSet = nil;
     self.tableView.separatorColor = UIColor.skyBlueColor;
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
 
-//    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-//    if (! [defaults objectForKey:kUserIsFirstAppLaunch]) {
-//        self.tableView.scrollEnabled = NO;
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    if (! [defaults objectForKey:kUserIsFirstAppLaunch]) {
+        self.tableView.scrollEnabled = NO;
         [Util showIntroductionScreenInView:self.view delegate:self];
-//        [defaults setObject:[NSNumber numberWithBool:YES] forKey:kUserIsFirstAppLaunch];
-//        [defaults synchronize];
-//    } else {
-//        self.tableView.scrollEnabled = YES;
-//        [self initNavigationBar];
-//    }
+    } else {
+        self.tableView.scrollEnabled = YES;
+        [self initNavigationBar];
+    }
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -451,6 +449,9 @@ static NSCharacterSet *blockedCharacterSet = nil;
 {
     [self initNavigationBar];
     self.tableView.scrollEnabled = YES;
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    [defaults setObject:[NSNumber numberWithBool:YES] forKey:kUserIsFirstAppLaunch];
+    [defaults synchronize];
 }
 
 #pragma mark - popup delegate
