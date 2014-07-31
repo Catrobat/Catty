@@ -459,12 +459,28 @@ static NSCharacterSet *blockedCharacterSet = nil;
         // More button was pressed
         NSArray *options = @[kUIActionSheetButtonTitleCopy, kUIActionSheetButtonTitleRename,
                              kUIActionSheetButtonTitleDescription/*, kUIActionSheetButtonTitleUpload*/];
+#if kIsFirstRelease // kIsFirstRelease
+        CatrobatActionSheet *actionSheet = [Util actionSheetWithTitle:kUIAlertViewMessageFeatureComingSoon
+                                                             delegate:self
+                                               destructiveButtonTitle:nil
+                                                    otherButtonTitles:options
+                                                                  tag:kEditProgramActionSheetTag
+                                                                 view:self.navigationController.view];
+        // disable all buttons except cancel button (index of cancel button: ([actionSheet.buttons count] - 1))
+        for (IBActionSheetButton *button in actionSheet.buttons) {
+            if (button.index != ([actionSheet.buttons count] - 1)) {
+                button.enabled = NO;
+                [actionSheet setButtonTextColor:[UIColor grayColor] forButtonAtIndex:button.index];
+            }
+        }
+#else // kIsFirstRelease
         CatrobatActionSheet *actionSheet = [Util actionSheetWithTitle:kUIActionSheetTitleEditProgram
                                                              delegate:self
                                                destructiveButtonTitle:nil
                                                     otherButtonTitles:options
                                                                   tag:kEditProgramActionSheetTag
                                                                  view:self.navigationController.view];
+#endif // kIsFirstRelease
         NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
         NSDictionary *payload = @{ kDTPayloadProgramLoadingInfo : [self.programLoadingInfos objectAtIndex:indexPath.row] };
         DataTransferMessage *message = [DataTransferMessage messageForActionType:kDTMActionEditProgram
@@ -610,7 +626,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
             [self.tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationTop];
             // flush asset/image cache
             self.dataCache = nil;
-            // needed to avoid unexpected behaviour when renaming programs
+            // needed to avoid unexpected behaviour when programs are renamed
             [[RuntimeImageCache sharedImageCache] clearImageCache];
             break;
         }
@@ -658,6 +674,9 @@ static NSCharacterSet *blockedCharacterSet = nil;
     UIBarButtonItem *add = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd
                                                                          target:self
                                                                          action:@selector(addProgramAction:)];
+#if kIsFirstRelease // kIsFirstRelease
+    add.enabled = NO;
+#endif // kIsFirstRelease
     self.toolbarItems = @[flexItem, add, flexItem];
 }
 

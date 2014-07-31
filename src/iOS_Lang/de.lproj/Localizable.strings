@@ -25,6 +25,8 @@
 
 "My First Program" = "Mein erstes Programm";
 
+"Mole" = "Maulwurf";
+
 "Background" = "Hintergrund";
 
 "My Object" = "Mein Objekt";
@@ -170,6 +172,8 @@
 "Edit Program" = "Programm bearbeiten";
 
 "Edit Programs" = "Programme bearbeiten";
+
+"Edit Object" = "Objekt bearbeiten";
 
 "Add sound" = "Sound hinzufügen";
 

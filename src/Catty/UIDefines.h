@@ -322,4 +322,4 @@ typedef NS_ENUM(NSInteger, kBrickShapeType) {
 #define kBrickInputFieldLeftMargin 4.0f
 #define kBrickInputFieldRightMargin 4.0f
 #define kBrickInputFieldMinRowHeight (kBrickInputFieldHeight + 4.0f)
-#define kDefaultImageCellBorderWidth 1.0f
+#define kDefaultImageCellBorderWidth 0.5f
