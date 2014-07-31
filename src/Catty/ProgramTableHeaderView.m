@@ -41,7 +41,7 @@
 
 - (void)setupView
 {
-    self.contentView.backgroundColor = UIColor.backgroundColor;
+    self.contentView.backgroundColor = UIColor.darkBlueColor;
     self.bottomBoarder.backgroundColor = UIColor.skyBlueColor.CGColor;
     [self.contentView.layer addSublayer:self.bottomBoarder];
 }
