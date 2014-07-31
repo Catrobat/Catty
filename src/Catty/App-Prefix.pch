@@ -30,6 +30,7 @@
 #import "AppDefines.h"
 
 #if kIsFirstRelease
+#undef DEBUG
 
 // UNCOMMENT ALL LOG AND DEBUG MESSAGES IN FIRST RELEASE VERSION
 #define NSLog(...) /* suppress NSLog when in release mode */
