@@ -97,22 +97,19 @@ static Logger* instance;
 }
 
 
--(void) logAtLevel:(LogLevel)level withFormat:(NSString*)format arguments:(va_list)args
+-(void)logAtLevel:(LogLevel)level withFormat:(NSString*)format arguments:(va_list)args
 {
     if(level >= self.logLevel) {
         NSString* callerClass = [self classNameForCaller];
-        if([self loggingEnabledForClass:callerClass logLevel:level]) {
-            NSString* log = [[NSString alloc] initWithFormat:format arguments:args];
-            NSLog(@"[%@] %@: %@" ,[self stringForLogLevel:level], callerClass, log);
+        if ([self loggingEnabledForClass:callerClass logLevel:level]) {
+            NSLog(@"[%@] %@: %@" ,[self stringForLogLevel:level], callerClass, [[NSString alloc] initWithFormat:format arguments:args]);
         }
-        
         if(level == error && kAbortAtError) {
             NSDebug(@"----------FAIILLL------------");
             //abort();
         }
     }
 }
-
 
 -(BOOL)loggingEnabledForClass:(NSString*)className logLevel:(LogLevel)level
 {    
@@ -183,9 +180,5 @@ static Logger* instance;
 {
     return [block hasPrefix:@"__"] ? YES : NO;
 }
-
-
-
-
 
 @end

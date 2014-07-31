@@ -222,13 +222,10 @@
     NSURL *url = [NSURL URLWithString:self.project.downloadUrl];
     appDelegate.fileManager.delegate = self;
     [appDelegate.fileManager downloadFileFromURL:url withName:self.project.projectName];
-   
-    
-    NSDebug(@"url screenshot is %@", self.project.screenshotSmall)
+
+    NSDebug(@"url screenshot is %@", self.project.screenshotSmall);
     NSString *urlString = self.project.screenshotSmall;
-    
     NSDebug(@"screenshot url is: %@", urlString);
-    
     NSURL *screenshotSmallUrl = [NSURL URLWithString:urlString];
     [appDelegate.fileManager downloadScreenshotFromURL:screenshotSmallUrl andBaseUrl:url andName:self.project.name];
     self.project.isdownloading = YES;

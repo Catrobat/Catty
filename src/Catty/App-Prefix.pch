@@ -27,6 +27,19 @@
 #import <UIKit/UIKit.h>
 
 #import "Logger.h"
+#import "AppDefines.h"
+
+#if kIsFirstRelease
+
+// UNCOMMENT ALL LOG AND DEBUG MESSAGES IN FIRST RELEASE VERSION
+#define NSLog(...) /* suppress NSLog when in release mode */
+#define NSDebug(...) /* suppress NSLog when in release mode */
+#define NSInfo(...) /* suppress NSLog when in release mode */
+#define NSLogError(...) /* suppress NSLog when in release mode */
+#define NSWarn(...) /* suppress NSLog when in release mode */
+#define NSError(...) /* suppress NSLog when in release mode */
+
+#else // kIsFirstRelease
 
 #ifdef DEBUG
 //#define NSDebug(...) [Logger debug:__VA_ARGS__];
@@ -43,3 +56,4 @@
 #define NSLogError(error) [Logger logError:error];
 
 #endif
+#endif // kIsFirstRelease
