@@ -210,13 +210,13 @@
 
 - (void)buildUI {
     self.backgroundColor = [UIColor blackColor];
-    
+
     [self buildBackgroundImage];
     [self buildScrollView];
-    
+
     [self buildFooterView];
-    self.skipButton.titleLabel.textColor = [UIColor lightOrangeColor];
-    
+    [self.skipButton setTitleColor:[UIColor lightOrangeColor] forState:UIControlStateNormal];
+
     self.bgImageView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
     self.pageControl.autoresizingMask = UIViewAutoresizingFlexibleWidth;
     self.skipButton.autoresizingMask = UIViewAutoresizingFlexibleWidth;

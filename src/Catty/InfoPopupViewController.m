@@ -150,7 +150,7 @@ const int BUTTON_MARGIN_BOTTOM = 15;
 
 - (void)addLinkButton:(UIButton *)button
 {
-    [button setTitleColor:[UIColor skyBlueColor] forState:UIControlStateNormal];
+    [button setTitleColor:[UIColor lightOrangeColor] forState:UIControlStateNormal];
     [button addTarget:self action:@selector(openURLAction:) forControlEvents:UIControlEventTouchUpInside];
     [self.contentView insertSubview:button belowSubview:self.bodyTextView];
 }
@@ -186,7 +186,7 @@ const int BUTTON_MARGIN_BOTTOM = 15;
     self.bodyTextView.textAlignment = NSTextAlignmentCenter;
     [self.bodyTextView sizeToFit];
     self.bodyTextView.frame = CGRectMake(FRAME_PADDING_HORIZONTAL, HEADER_LABEL_HEIGHT + BODY_PADDING_TOP, self.view.frame.size.width - 2 * FRAME_PADDING_HORIZONTAL, self.bodyTextView.frame.size.height);
-    self.bodyTextView.textColor = [UIColor lightOrangeColor];
+    self.bodyTextView.textColor = [UIColor skyBlueColor];
     self.bodyTextView.backgroundColor = [UIColor backgroundColor];
     self.bodyTextView.editable = NO;
     [self.contentView addSubview:self.bodyTextView];
