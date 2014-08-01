@@ -116,7 +116,7 @@
 #define kUIViewControllerTitleCategories NSLocalizedString(@"Categories", nil)
 #define kUIViewControllerTitleExplore NSLocalizedString(@"Explore", nil)
 #define kUIViewControllerTitleHelp NSLocalizedString(@"Help", nil)
-#define kUIViewControllerTitleInfo NSLocalizedString(@"Info", nil)
+#define kUIViewControllerTitleDetails NSLocalizedString(@"Details", nil)
 #define kUIViewControllerTitleLooks NSLocalizedString(@"Looks", nil)
 #define kUIViewControllerTitleSounds NSLocalizedString(@"Sounds", nil)
 #define kUIViewControllerTitleChooseSound NSLocalizedString(@"Choose sound", nil)

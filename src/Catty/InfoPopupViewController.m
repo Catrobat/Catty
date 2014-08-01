@@ -160,7 +160,7 @@ const int BUTTON_MARGIN_BOTTOM = 15;
     self.contentView.backgroundColor = [UIColor backgroundColor];
     self.contentView.layer.cornerRadius = 15;
     self.contentView.layer.masksToBounds = YES;
-    
+
     //init header
     UILabel *aboutPocketCodeLabel = [[UILabel alloc] initWithFrame:CGRectMake(self.view.frame.size.width / 2, HEADER_PADDING_TOP, self.view.frame.size.width, HEADER_LABEL_HEIGHT)];
     [aboutPocketCodeLabel setTextColor:[UIColor skyBlueColor]];
@@ -169,7 +169,7 @@ const int BUTTON_MARGIN_BOTTOM = 15;
     aboutPocketCodeLabel.frame = CGRectMake(self.view.frame.size.width / 2 - aboutPocketCodeLabel.frame.size.width / 2, HEADER_PADDING_TOP, aboutPocketCodeLabel.frame.size.width, aboutPocketCodeLabel.frame.size.height);
     aboutPocketCodeLabel.textAlignment = NSTextAlignmentCenter;
     [self.contentView addSubview:aboutPocketCodeLabel];
-    
+
     UIBezierPath *path = [UIBezierPath bezierPath];
     [path moveToPoint:CGPointMake(0.0, HEADER_LABEL_HEIGHT)];
     [path addLineToPoint:CGPointMake(self.contentView.frame.size.width, HEADER_LABEL_HEIGHT)];
@@ -179,7 +179,7 @@ const int BUTTON_MARGIN_BOTTOM = 15;
     shapeLayer.lineWidth = 2.0;
     shapeLayer.fillColor = [[UIColor clearColor] CGColor];
     [self.contentView.layer addSublayer:shapeLayer];
-    
+
     //init body
     self.bodyTextView.frame = CGRectMake(FRAME_PADDING_HORIZONTAL, HEADER_LABEL_HEIGHT + BODY_PADDING_TOP, self.view.frame.size.width - 2 * FRAME_PADDING_HORIZONTAL, 50);
     self.bodyTextView.text = bodyText;
@@ -190,7 +190,7 @@ const int BUTTON_MARGIN_BOTTOM = 15;
     self.bodyTextView.backgroundColor = [UIColor backgroundColor];
     self.bodyTextView.editable = NO;
     [self.contentView addSubview:self.bodyTextView];
-    
+
     //initBackbutton
     UIButton *backButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
     [backButton setTitle:kUIInfoPopupViewBack forState:UIControlStateNormal];
@@ -200,7 +200,7 @@ const int BUTTON_MARGIN_BOTTOM = 15;
     [backButton sizeToFit];
     backButton.frame = CGRectMake(self.contentView.frame.size.width / 2 - backButton.frame.size.width / 2, self.contentView.frame.size.height - backButton.frame.size.height - BODY_PADDING_BOTTOM, backButton.frame.size.width, backButton.frame.size.height);
     [self.contentView addSubview:backButton];
-    
+
     UIBezierPath *backPath = [UIBezierPath bezierPath];
     [backPath moveToPoint:CGPointMake(0.0, backButton.frame.origin.y - BODY_PADDING_BOTTOM / 2)];
     [backPath addLineToPoint:CGPointMake(self.contentView.frame.size.width, backButton.frame.origin.y - BODY_PADDING_BOTTOM / 2)];
