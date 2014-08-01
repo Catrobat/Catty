@@ -655,6 +655,16 @@
         if (error.code != -1009) {
             [task suspend];
         }
+        if (error.code == -1003) {
+            if ([self.delegate respondsToSelector:@selector(setBackDownloadStatus)]) {
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    [self.delegate setBackDownloadStatus];
+                });
+            }
+            UIApplication* app = [UIApplication sharedApplication];
+            app.networkActivityIndicatorVisible = NO;
+            return;
+        }
         NSURL* url = [self.programTaskDict objectForKey:task];
         if (url) {
             [self.programTaskDict removeObjectForKey:task];
@@ -671,7 +681,6 @@
             dispatch_async(dispatch_get_main_queue(), ^{
                 [self.delegate setBackDownloadStatus];
             });
-            
         }
         UIApplication* app = [UIApplication sharedApplication];
         app.networkActivityIndicatorVisible = NO;
