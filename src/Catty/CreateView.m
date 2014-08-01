@@ -60,7 +60,6 @@
         [self addAuthorImageToView:view];
         [self addNumberOfDownloadsImagetoView:view];
         [self addNumberOfDownloadsWithDownloads:project.downloads toView:view];
-        
         [self addProgramDescriptionLabelWithDescription:project.description toView:view target:target];
         [self addThumbnailImageWithImageUrlString:project.screenshotSmall toView:view];
         //[self addBigImageWithImageUrlString:project.screenshotBig toView:view];
@@ -74,7 +73,7 @@
         [dateFormatter setDateStyle:NSDateFormatterMediumStyle];
         
         NSString *uploaded = [dateFormatter stringFromDate:projectDate];
-        [self addInformationLabelToView:view withAuthor:project.author downloads:project.downloads uploaded:uploaded version:project.version views:project.views];
+        [self addInformationLabelToView:view withAuthor:project.author downloads:project.downloads uploaded:uploaded version:project.size views:project.views];
         
         return view;
     }else{
@@ -98,7 +97,7 @@
         [dateFormatter setDateStyle:NSDateFormatterMediumStyle];
         
         NSString *uploaded = [dateFormatter stringFromDate:projectDate];
-        [self addInformationLabelToView:view withAuthor:project.author downloads:project.downloads uploaded:uploaded version:project.version views:project.views];
+        [self addInformationLabelToView:view withAuthor:project.author downloads:project.downloads uploaded:uploaded version:project.size views:project.views];
         return view;
     }
     
@@ -218,6 +217,8 @@
 {
     UIImageView *imageView = [[UIImageView alloc] init];
     UIImage* errorImage = [UIImage imageNamed:@"thumbnail_large"];
+    
+    imageView.frame = CGRectMake(view.frame.size.width/15, view.frame.size.height*0.1, view.frame.size.width/3, [Util getScreenHeight]/4.5f);
     imageView.image = [UIImage imageWithContentsOfURL:[NSURL URLWithString:imageUrlString]
                                      placeholderImage:nil
                                            errorImage:errorImage
@@ -238,7 +239,7 @@
 
     imageView.contentMode = UIViewContentModeScaleAspectFill;
 
-    imageView.frame = CGRectMake(view.frame.size.width/15, view.frame.size.height*0.1, view.frame.size.width/3, [Util getScreenHeight]/4.5f);
+
     
     imageView.layer.cornerRadius = 8.0;
     imageView.layer.masksToBounds = YES;
@@ -346,7 +347,10 @@
     [self configureTitleLabel:informationLabel andHeight:height];
     [view addSubview:informationLabel];
     offset += height*0.075;
-    
+        
+    version = [version stringByReplacingOccurrencesOfString:@"&lt;" withString:@""];
+    version = [version stringByAppendingString:@" MB"];
+
     NSArray* informationArray = [[NSArray alloc] initWithObjects:views, uploaded, version, nil];
     NSArray* informationTitleArray = [[NSArray alloc] initWithObjects:
                                       [UIImage imageNamed:@"viewsIcon"],

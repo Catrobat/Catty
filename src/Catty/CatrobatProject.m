@@ -41,8 +41,16 @@
         self.uploaded        = [dict valueForKey:@"Uploaded"];
         self.version         = [dict valueForKey:@"Version"];
         self.views           = [dict valueForKey:@"Views"];
-//        self.size            = [dict valueForKey:@"Size"];
-        
+       
+        if ([[dict valueForKey:@"FileSize"] isKindOfClass:[NSString class]]){
+             self.size  = [dict valueForKey:@"FileSize"];
+        } else {
+            NSNumber * size = [dict valueForKey:@"FileSize"];
+            self.size = [NSString stringWithFormat:@"%.*f",1,size.floatValue];
+        }
+        if (!self.size) {
+            self.size = @"?";
+        }
     }
     
     return self;
