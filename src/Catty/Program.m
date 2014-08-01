@@ -35,6 +35,8 @@
 #import "Script.h"
 #import "Brick.h"
 #import "LanguageTranslationDefines.h"
+#import "UserVariable.h"
+#import "OrderedMapTable.h"
 
 @implementation Program
 
@@ -51,28 +53,26 @@
     programName = [Util uniqueName:programName existingNames:[[self class] allProgramNames]];
     Program* program = [[Program alloc] init];
     program.header = [[Header alloc] init];
-
-    // TODO: check all constants for this default header properties after Webteam has updated code.xml (remove refs, etc.)...
     program.header.applicationBuildName = nil;
-    program.header.applicationBuildNumber = @"0";
+    program.header.applicationBuildNumber = kCatrobatApplicationBuildNumber;
     program.header.applicationName = [Util getProjectName];
     program.header.applicationVersion = [Util getProjectVersion];
     program.header.catrobatLanguageVersion = kCatrobatLanguageVersion;
     program.header.dateTimeUpload = nil;
-    program.header.description = nil;
+    program.header.description = @"********** TODO: CHANGE THIS **********"; // TODO: has to be changed
     program.header.deviceName = [Util getDeviceName];
-    program.header.mediaLicense = nil;
+    program.header.mediaLicense = kCatrobatMediaLicense;
     program.header.platform = [Util getPlatformName];
     program.header.platformVersion = [Util getPlatformVersion];
-    program.header.programLicense = nil;
+    program.header.programLicense = kCatrobatProgramLicense;
     program.header.programName = programName;
-    program.header.remixOf = nil;
+    program.header.remixOf = nil; // no remix
     program.header.screenHeight = @([Util getScreenHeight]);
     program.header.screenWidth = @([Util getScreenWidth]);
-    program.header.screenMode = @"STRETCH";
+    program.header.screenMode = kCatrobatScreenModeStretch;
     program.header.url = nil;
     program.header.userHandle = nil;
-    program.header.programScreenshotManuallyTaken = (YES ? @"true" : @"false");
+    program.header.programScreenshotManuallyTaken = kCatrobatProgramScreenshotDefaultValue;
     program.header.tags = nil;
 
     FileManager *fileManager = [[FileManager alloc] init];
@@ -92,6 +92,7 @@
 
     [program addObjectWithName:kGeneralBackgroundObjectName];
     [program addObjectWithName:kGeneralDefaultObjectName];
+    NSLog(@"%@", [program description]);
     return program;
 }
 
@@ -101,19 +102,18 @@
     NSDebug(@"Path: %@", loadingInfo.basePath);
     NSString *xmlPath = [NSString stringWithFormat:@"%@%@", loadingInfo.basePath, kProgramCodeFileName];
     NSDebug(@"XML-Path: %@", xmlPath);
-    Program *program = [[[Parser alloc] init] generateObjectForProgramWithPath:xmlPath];
+    Parser *parser = [[Parser alloc] init];
+    Program *program = [parser generateObjectForProgramWithPath:xmlPath];
+    program.XMLdocument = parser.XMLdocument;
 
     if (! program)
         return nil;
 
+    NSLog(@"%@", [program description]);
     NSDebug(@"ProjectResolution: width/height:  %f / %f", program.header.screenWidth.floatValue, program.header.screenHeight.floatValue);
 
     // setting effect
     for (SpriteObject *sprite in program.objectList) {
-        //sprite.spriteManagerDelegate = self;
-        //sprite.broadcastWaitDelegate = self.broadcastWaitHandler;
-
-        // TODO: change!
         for (Script *script in sprite.scriptList) {
             for (Brick *brick in script.brickList) {
                 brick.object = sprite;
@@ -189,6 +189,9 @@
     for (SpriteObject *currentObject in self.objectList) {
         if (currentObject == object) {
             // TODO: remove all sounds, images from disk that are not needed any more...
+//            currentObject.program = nil;
+//            [currentObject removeSounds:currentObject.soundList];
+//            [currentObject removeLooks:currentObject.lookList];
             [self.objectList removeObjectAtIndex:index];
             break;
         }
@@ -314,32 +317,104 @@
 {
     GDataXMLElement *rootXMLElement = [GDataXMLNode elementWithName:@"program"];
     [rootXMLElement addChild:[self.header toXML]];
-    
+
     GDataXMLElement *objectListXMLElement = [GDataXMLNode elementWithName:@"objectList"];
     for (id object in self.objectList) {
         if ([object isKindOfClass:[SpriteObject class]])
             [objectListXMLElement addChild:[((SpriteObject*) object) toXML]];
     }
     [rootXMLElement addChild:objectListXMLElement];
-    // TODO: uncomment this after VariablesContainer implements the toXML method
-    //  [rootXMLElement addChild:[self.variables toXML]];
+
+    if (self.variables) {
+        GDataXMLElement *variablesXMLElement = [GDataXMLNode elementWithName:@"variables"];
+        VariablesContainer *variableLists = self.variables;
+
+        GDataXMLElement *objectVariableListXMLElement = [GDataXMLNode elementWithName:@"objectVariableList"];
+        // TODO: uncomment this after toXML methods are implemented
+        NSUInteger totalNumOfObjectVariables = [variableLists.objectVariableList count];
+//        NSUInteger totalNumOfProgramVariables = [variableLists.programVariableList count];
+        for (NSUInteger index = 0; index < totalNumOfObjectVariables; ++index) {
+            NSArray *variables = [variableLists.objectVariableList objectAtIndex:index];
+            GDataXMLElement *entryXMLElement = [GDataXMLNode elementWithName:@"entry"];
+            GDataXMLElement *entryToObjectReferenceXMLElement = [GDataXMLNode elementWithName:@"object"];
+            [entryToObjectReferenceXMLElement addAttribute:[GDataXMLNode elementWithName:@"reference" stringValue:@"../../../../objectList/object[6]"]];
+            [entryXMLElement addChild:entryToObjectReferenceXMLElement];
+            GDataXMLElement *listXMLElement = [GDataXMLNode elementWithName:@"list"];
+            for (id variable in variables) {
+                if ([variable isKindOfClass:[UserVariable class]])
+                    [listXMLElement addChild:[((UserVariable*)variable) toXMLforProgram:self]];
+            }
+            [entryXMLElement addChild:listXMLElement];
+            [objectVariableListXMLElement addChild:entryXMLElement];
+        }
+//        if (totalNumOfObjectVariables) {
+            [variablesXMLElement addChild:objectVariableListXMLElement];
+//        }
+
+        GDataXMLElement *programVariableListXMLElement = [GDataXMLNode elementWithName:@"programVariableList"];
+        for (id variable in variableLists.programVariableList) {
+            if ([variable isKindOfClass:[UserVariable class]])
+                [programVariableListXMLElement addChild:[((UserVariable*) variable) toXMLforProgram:self]];
+        }
+//        if (totalNumOfProgramVariables) {
+            [variablesXMLElement addChild:programVariableListXMLElement];
+//        }
+
+//        if (totalNumOfObjectVariables || totalNumOfProgramVariables) {
+            [rootXMLElement addChild:variablesXMLElement];
+//        }
+    }
     return rootXMLElement;
 }
 
+//#define SIMULATOR_DEBUGGING_ENABLED 1
+//#define SIMULATOR_DEBUGGING_BASE_PATH @"/Users/ralph/Desktop/diff"
+
 - (void)saveToDisk
 {
+#if kIsFirstRelease
+    return;
+#else
     dispatch_queue_t saveToDiskQ = dispatch_queue_create("save to disk", NULL);
     dispatch_async(saveToDiskQ, ^{
         // background thread
         GDataXMLDocument *document = [[GDataXMLDocument alloc] initWithRootElement:[self toXML]];
         //    NSData *xmlData = document.XMLData;
-        NSString *xmlString = [document.rootElement XMLStringPrettyPrinted:YES];
+        NSString *xmlString = [NSString stringWithFormat:@"%@\n%@",
+                               kCatrobatXMLDeclaration,
+                               [document.rootElement XMLStringPrettyPrinted:YES]];
         // TODO: outsource this to file manager
-        NSString *xmlPath = [NSString stringWithFormat:@"%@%@", [self projectPath], kProgramCodeFileName];
-        //    [xmlData writeToFile:filePath atomically:YES];
         NSError *error = nil;
+        NSString *xmlPath = [NSString stringWithFormat:@"%@%@", [self projectPath], kProgramCodeFileName];
         [xmlString writeToFile:xmlPath atomically:YES encoding:NSUTF8StringEncoding error:&error];
         NSLogError(error);
+
+//#ifdef SIMULATOR_DEBUGGING_ENABLED
+//        NSString *referenceXmlString = [NSString stringWithFormat:@"%@\n%@",
+//                                        kCatrobatXMLDeclaration,
+//                                        [self.XMLdocument.rootElement XMLStringPrettyPrinted:YES]];
+////        NSLog(@"Reference XML-Document:\n\n%@\n\n", referenceXmlString);
+////        NSLog(@"XML-Document:\n\n%@\n\n", xmlString);
+//        NSString *referenceXmlPath = [NSString stringWithFormat:@"%@/reference.xml", SIMULATOR_DEBUGGING_BASE_PATH];
+//        NSString *generatedXmlPath = [NSString stringWithFormat:@"%@/generated.xml", SIMULATOR_DEBUGGING_BASE_PATH];
+//        [referenceXmlString writeToFile:referenceXmlPath
+//                             atomically:YES
+//                               encoding:NSUTF8StringEncoding
+//                                  error:&error];
+//        [xmlString writeToFile:generatedXmlPath
+//                    atomically:YES
+//                      encoding:NSUTF8StringEncoding
+//                         error:&error];
+//
+////#import <Foundation/NSTask.h> // debugging for OSX
+////        NSTask *task = [[NSTask alloc] init];
+////        [task setLaunchPath:@"/usr/bin/diff"];
+////        [task setArguments:[NSArray arrayWithObjects:referenceXmlPath, generatedXmlPath, nil]];
+////        [task setStandardOutput:[NSPipe pipe]];
+////        [task setStandardInput:[NSPipe pipe]]; // piping to NSLog-tty (terminal emulator)
+////        [task launch];
+////        [task release];
+//#endif
 
         // update last access time
         [[self class] updateLastModificationTimeForProgramWithName:self.header.programName];
@@ -355,6 +430,7 @@
 //            [[NSNotificationCenter defaultCenter] postNotificationName:kHideLoadingViewNotification object:self];
 //        });
     });
+#endif
 }
 
 - (BOOL)isLastProgram
@@ -427,9 +503,7 @@
     if (! [self hasObject:sourceObject]) {
         return nil;
     }
-    // TODO: issue #308 - deep copy for SpriteObjects
-//    SpriteObject *copiedObject = [sourceObject deepCopy];
-    SpriteObject *copiedObject = [sourceObject copy]; // shallow copy
+    SpriteObject *copiedObject = [sourceObject deepCopy];
     copiedObject.name = [Util uniqueName:nameOfCopiedObject existingNames:[self allObjectNames]];
     [self.objectList addObject:copiedObject];
     [self saveToDisk];
@@ -461,8 +535,7 @@
     [ret appendFormat:@"Sprite List: %@\n", self.objectList];
     [ret appendFormat:@"URL: %@\n", self.header.url];
     [ret appendFormat:@"User Handle: %@\n", self.header.userHandle];
-    [ret appendFormat:@"----------------------------------------------\n"];
-    
+    [ret appendFormat:@"------------------------------------------------\n"];
     return [NSString stringWithString:ret];
 }
 

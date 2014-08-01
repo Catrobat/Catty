@@ -236,7 +236,7 @@ NS_ENUM(NSInteger, ButtonIndex) {
 
 - (NSString *)animateMenuItemWithBrickCell:(BrickCell *)cell
 {
-    if ([cell isScriptBrick] || ![self isAnimateableBrick:cell]) {
+    if ([cell isScriptBrick] || (! [self isAnimateableBrick:cell])) {
         return nil;
     }
     return kUIActionSheetButtonTitleAnimateBricks;

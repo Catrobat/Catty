@@ -20,8 +20,8 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-
 #import "ShowBrick.h"
+#import "GDataXMLNode.h"
 
 @implementation ShowBrick
 
@@ -32,21 +32,29 @@
 
 - (SKAction*)action
 {
-  return [SKAction runBlock:[self actionBlock]];
+    return [SKAction runBlock:[self actionBlock]];
 }
 
 - (dispatch_block_t)actionBlock
 {
-  return ^{
-    NSDebug(@"Performing: %@", self.description);
-    self.object.hidden = NO;
-  };
+    return ^{
+        NSDebug(@"Performing: %@", self.description);
+        self.object.hidden = NO;
+    };
 }
 
 #pragma mark - Description
 - (NSString*)description
 {
     return [NSString stringWithFormat:@"ShowBrick on: %@", self.object.name];
+}
+
+- (GDataXMLElement*)toXMLforObject:(SpriteObject*)spriteObject
+{
+    GDataXMLElement *brickXMLElement = [super toXMLforObject:spriteObject];
+    // remove object reference
+    [brickXMLElement removeChild:[[brickXMLElement children] firstObject]];
+    return brickXMLElement;
 }
 
 @end

@@ -166,7 +166,7 @@
     [super viewWillDisappear:animated];
     [self.menuView removeFromSuperview];
     self.navigationController.navigationBar.hidden = NO;
-    self.navigationController.toolbar.hidden = NO;
+    [self.navigationController setToolbarHidden:NO animated:NO];
     UIApplication.sharedApplication.statusBarHidden = NO;
     UIApplication.sharedApplication.idleTimerDisabled = NO;
 }

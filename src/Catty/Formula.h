@@ -24,17 +24,16 @@
 
 @class FormulaElement;
 @class SpriteObject;
+@class GDataXMLElement;
 
 @interface Formula : NSObject
 
 @property (nonatomic, strong) FormulaElement* formulaTree;
 
+- (double)interpretDoubleForSprite:(SpriteObject*)sprite;
+- (int)interpretIntegerForSprite:(SpriteObject*)sprite;
+- (BOOL)interpretBOOLForSprite:(SpriteObject*)sprite;
 
--(double) interpretDoubleForSprite:(SpriteObject*)sprite;
--(int) interpretIntegerForSprite:(SpriteObject*)sprite;
--(BOOL) interpretBOOLForSprite:(SpriteObject*)sprite;
-
-
-
+- (GDataXMLElement*)toXMLforObject:(SpriteObject*)spriteObject;
 
 @end

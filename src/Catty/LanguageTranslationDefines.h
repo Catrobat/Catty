@@ -24,6 +24,21 @@
 
 /*
  * -----------------------------------------------------------------------------------------------------------
+ * Introduction view
+ * -----------------------------------------------------------------------------------------------------------
+ */
+
+#define kIntroViewButtonTitleSkip NSLocalizedString(@"Skip", nil)
+#define kIntroViewTitleFirstPage NSLocalizedString(@"Welcome to Pocket Code", nil)
+#define kIntroViewTitleSecondPage NSLocalizedString(@"Explore apps", nil)
+#define kIntroViewTitleThirdPage NSLocalizedString(@"Upcoming version", nil)
+
+#define kIntroViewDescriptionFirstPage NSLocalizedString(@"Pocket Code let's you play great games and run other fantastic apps like for instance presentations, quizzes and so on.", nil)
+#define kIntroViewDescriptionSecondPage NSLocalizedString(@"By switching to the section \"Explore\" you can discover much more interesting stuff.", nil)
+#define kIntroViewDescriptionThirdPage NSLocalizedString(@"In the next version of Pocket Code, you will be able to build your own apps, edit and share them with your friends and other exciting people.", nil)
+
+/*
+ * -----------------------------------------------------------------------------------------------------------
  * General defines
  * -----------------------------------------------------------------------------------------------------------
  */
@@ -147,6 +162,7 @@
  * -----------------------------------------------------------------------------------------------------------
  */
 #define kUIInfoPopupViewAboutPocketCode NSLocalizedString(@"About Pocket Code", nil)
+#define kUIInfoPopupViewAppInfo NSLocalizedString(@"App info", nil)
 #define kUIInfoPopupViewTermsOfUse NSLocalizedString(@"Terms of Use", nil)
 #define kUIInfoPopupViewRateUs NSLocalizedString(@"Rate Us", nil)
 #define kUIInfoPopupViewVersionLabel NSLocalizedString(@"v", nil)

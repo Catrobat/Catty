@@ -84,7 +84,7 @@
     [self initNavigationBar];
     self.hidesBottomBarWhenPushed = YES;
     
-    self.view.backgroundColor = UIColor.backgroundColor;
+    self.view.backgroundColor = [UIColor darkBlueColor];
     self.navigationItem.title = @"";//kUIViewControllerTitleInfo;
     NSDebug(@"%@",self.project.author);
     self.projectView = [self createViewForProject:self.project];
@@ -183,9 +183,6 @@
             ProgramTableViewController *programTableViewController = (ProgramTableViewController*)segue.destinationViewController;
             programTableViewController.program = [Program programWithLoadingInfo:[Util programLoadingInfoForProgramWithName:self.project.name]];
             programTableViewController.delegate = self;
-
-            // TODO: remove this after persisting programs feature is fully implemented...
-            programTableViewController.isNewProgram = NO;
         }
     }
 }
@@ -225,7 +222,7 @@
     NSURL *url = [NSURL URLWithString:self.project.downloadUrl];
     appDelegate.fileManager.delegate = self;
     [appDelegate.fileManager downloadFileFromURL:url withName:self.project.projectName];
-    NSDebug(@"url screenshot is %@", self.project.screenshotSmall)
+    NSDebug(@"url screenshot is %@", self.project.screenshotSmall);
     NSString *urlString = self.project.screenshotSmall;
     NSDebug(@"screenshot url is: %@", urlString);
     NSURL *screenshotSmallUrl = [NSURL URLWithString:urlString];

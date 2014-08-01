@@ -49,15 +49,10 @@
 #import "CatrobatAlertView.h"
 #import "DataTransferMessage.h"
 
-// TODO: outsource...
-#define kUserDetailsShowDetailsKey @"showDetails"
-#define kUserDetailsShowDetailsLooksKey @"detailsForLooks"
-
 @interface LooksTableViewController () <CatrobatActionSheetDelegate, UIImagePickerControllerDelegate,
                                         UINavigationControllerDelegate, CatrobatAlertViewDelegate,
                                         UITextFieldDelegate, SWTableViewCellDelegate>
 @property (nonatomic) BOOL useDetailCells;
-@property (nonatomic, strong) Look *lookToAdd;
 @end
 
 @implementation LooksTableViewController
@@ -73,16 +68,6 @@ static NSCharacterSet *blockedCharacterSet = nil;
     return blockedCharacterSet;
 }
 
-- (NSArray*)existantLookNames
-{
-    // get all look names of that object
-    NSMutableArray *lookNames = [NSMutableArray arrayWithCapacity:[self.object.lookList count]];
-    for (Look *look in self.object.lookList) {
-        [lookNames addObject:look.name];
-    }
-    return [lookNames copy];
-}
-
 #pragma mark - initialization
 - (void)initNavigationBar
 {
@@ -94,7 +79,6 @@ static NSCharacterSet *blockedCharacterSet = nil;
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.lookToAdd = nil;
     NSDictionary *showDetails = [[NSUserDefaults standardUserDefaults] objectForKey:kUserDetailsShowDetailsKey];
     NSNumber *showDetailsProgramsValue = (NSNumber*)[showDetails objectForKey:kUserDetailsShowDetailsLooksKey];
     self.useDetailCells = [showDetailsProgramsValue boolValue];
@@ -155,6 +139,29 @@ static NSCharacterSet *blockedCharacterSet = nil;
     [self.navigationController pushViewController:vc animated:YES];
 }
 
+- (void)addLookActionWithName:(NSString*)lookName look:(Look*)look
+{
+    look.name = [Util uniqueName:lookName existingNames:[self.object allLookNames]];
+    // rename temporary file name (example: "temp_D41D8CD98F00B204E9800998ECF8427E.png") as well
+    AppDelegate *appDelegate = (AppDelegate*)[UIApplication sharedApplication].delegate;
+    NSString *oldPath = [self.object pathForLook:look];
+    NSArray *fileNameParts = [look.fileName componentsSeparatedByString:@"."];
+    NSString *hash = [[[fileNameParts firstObject] componentsSeparatedByString:kResourceFileNameSeparator] lastObject];
+    NSString *fileExtension = [fileNameParts lastObject];
+    look.fileName = [NSString stringWithFormat:@"%@%@%@.%@", hash, kResourceFileNameSeparator,
+                     look.name, fileExtension];
+    NSString *newPath = [self.object pathForLook:look];
+    [appDelegate.fileManager moveExistingFileAtPath:oldPath toPath:newPath overwrite:YES];
+    [self.dataCache removeObjectForKey:look.fileName]; // just to ensure
+    [self.object addLook:look];
+
+    [self showPlaceHolder:NO];
+    NSInteger numberOfRowsInLastSection = [self tableView:self.tableView numberOfRowsInSection:0];
+    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:(numberOfRowsInLastSection - 1) inSection:0];
+    [self.tableView insertRowsAtIndexPaths:@[indexPath]
+                          withRowAnimation:UITableViewRowAnimationBottom];
+}
+
 - (void)copyLookActionWithSourceLook:(Look*)sourceLook
 {
     [self showLoadingView];
@@ -197,6 +204,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
     for (NSIndexPath *selectedRowIndexPath in selectedRowsIndexPaths) {
         Look *look = (Look*)[self.object.lookList objectAtIndex:selectedRowIndexPath.row];
         [looksToRemove addObject:look];
+        [self.dataCache removeObjectForKey:look.fileName];
     }
     [self.object removeLooks:looksToRemove];
     [super exitEditingMode];
@@ -208,6 +216,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
 {
     [self showLoadingView];
     Look *look = (Look*)[self.object.lookList objectAtIndex:indexPath.row];
+    [self.dataCache removeObjectForKey:look.fileName];
     [self.object removeLook:look];
     [self.tableView deleteRowsAtIndexPaths:@[indexPath]
                           withRowAnimation:UITableViewRowAnimationNone];
@@ -272,12 +281,19 @@ static NSCharacterSet *blockedCharacterSet = nil;
     imageCell.titleLabel.text = look.name;
 
     if (self.useDetailCells && [cell isKindOfClass:[DarkBlueGradientImageDetailCell class]]) {
-        // TODO: enhancement: use data cache for this later...
         DarkBlueGradientImageDetailCell *detailCell = (DarkBlueGradientImageDetailCell*)imageCell;
         detailCell.topLeftDetailLabel.textColor = [UIColor whiteColor];
         detailCell.topLeftDetailLabel.text = [NSString stringWithFormat:@"%@:", kUILabelTextMeasure];
         detailCell.topRightDetailLabel.textColor = [UIColor whiteColor];
-        CGSize dimensions = [self.object dimensionsOfLook:look];
+
+        NSValue *value = [self.dataCache objectForKey:look.fileName];
+        CGSize dimensions;
+        if (! value) {
+            dimensions = [self.object dimensionsOfLook:look];
+            [self.dataCache setObject:[NSValue valueWithCGSize:dimensions] forKey:look.fileName];
+        } else {
+            dimensions = [value CGSizeValue];
+        }
         detailCell.topRightDetailLabel.text = [NSString stringWithFormat:@"%lux%lu",
                                                (unsigned long)dimensions.width,
                                                (unsigned long)dimensions.height];
@@ -451,15 +467,13 @@ static NSCharacterSet *blockedCharacterSet = nil;
                                       [[[imageData md5] stringByReplacingOccurrencesOfString:@"-" withString:@""] uppercaseString],
                                       imageFileNameExtension];
         Look *look = [[Look alloc] initWithName:[Util uniqueName:lookName
-                                                   existingNames:[self existantLookNames]]
+                                                   existingNames:[self.object allLookNames]]
                                         andPath:newImageFileName];
 
         // TODO: outsource this to FileManager
         NSString *newImagePath = [NSString stringWithFormat:@"%@%@/%@",
-                                  [self.object projectPath], kProgramImagesDirName,
-                                  newImageFileName];
+                                  [self.object projectPath], kProgramImagesDirName, newImageFileName];
         NSString *mediaType = info[UIImagePickerControllerMediaType];
-
         NSLog(@"Writing file to disk");
         if ([mediaType isEqualToString:@"public.image"]) {
             // leaving the main queue here!
@@ -475,15 +489,17 @@ static NSCharacterSet *blockedCharacterSet = nil;
                     [self showPlaceHolder:([self.object.lookList count] == 0)];
 
                     // ask user for image name
-                    self.lookToAdd = look;
-                    CatrobatAlertView *alertView = [Util promptWithTitle:kUIAlertViewTitleAddImage
-                                                                 message:[NSString stringWithFormat:@"%@:", kUIAlertViewMessageImageName]
-                                                                delegate:self
-                                                             placeholder:kUIAlertViewPlaceholderEnterImageName
-                                                                     tag:kNewImageAlertViewTag
-                                                       textFieldDelegate:self];
-                    UITextField *textField = [alertView textFieldAtIndex:0];
-                    textField.text = look.name;
+                    [Util askUserForTextAndPerformAction:@selector(addLookActionWithName:look:)
+                                                  target:self
+                                              withObject:look
+                                             promptTitle:kUIAlertViewTitleAddImage
+                                           promptMessage:[NSString stringWithFormat:@"%@:", kUIAlertViewMessageImageName]
+                                             promptValue:look.name
+                                       promptPlaceholder:kUIAlertViewPlaceholderEnterImageName
+                                          minInputLength:kMinNumOfLookNameCharacters
+                                          maxInputLength:kMaxNumOfLookNameCharacters
+                                     blockedCharacterSet:[self blockedCharacterSet]
+                                invalidInputAlertMessage:kUIAlertViewMessageInvalidImageName];
                 }];
             }];
             NSOperationQueue *queue = [[NSOperationQueue alloc] init];
@@ -582,51 +598,11 @@ static NSCharacterSet *blockedCharacterSet = nil;
             // choose picture from camera roll
             [self presentImagePicker:UIImagePickerControllerSourceTypeSavedPhotosAlbum];
 //        } else if (buttonIndex != actionSheet.cancelButtonIndex) {
-//            // TODO: implement this after Pocket Paint is fully integrated
+//            // implement this after Pocket Paint is fully integrated
 //            // draw new image
 //            NSLog(@"Draw new image");
 //            [Util showComingSoonAlertView];
         }
-    }
-}
-
-#pragma mark - alert view delegate handlers
-- (void)alertView:(CatrobatAlertView*)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
-{
-    [super alertView:alertView clickedButtonAtIndex:buttonIndex];
-    if (alertView.tag == kNewImageAlertViewTag) {
-        NSString *input = [alertView textFieldAtIndex:0].text;
-
-        if (! input) {
-            self.lookToAdd = nil;
-            return;
-        }
-
-        if (buttonIndex == kAlertViewButtonOK) {
-            [self showPlaceHolder:NO];
-            NSArray *existantNames = [self existantLookNames];
-            [self.object.lookList addObject:self.lookToAdd];
-            AppDelegate *appDelegate = (AppDelegate*)[UIApplication sharedApplication].delegate;
-            NSString *oldPath = [self.object pathForLook:self.lookToAdd];
-            self.lookToAdd.name = [Util uniqueName:input existingNames:existantNames];
-
-            // rename temporary file name (example: "temp_D41D8CD98F00B204E9800998ECF8427E.png") as well
-            NSArray *fileNameParts = [self.lookToAdd.fileName componentsSeparatedByString:@"."];
-            NSString *hash = [[[fileNameParts firstObject] componentsSeparatedByString:kResourceFileNameSeparator] lastObject];
-            NSString *fileExtension = [fileNameParts lastObject];
-            self.lookToAdd.fileName = [NSString stringWithFormat:@"%@%@%@.%@",
-                                       hash, kResourceFileNameSeparator,
-                                       self.lookToAdd.name, fileExtension];
-            NSString *newPath = [self.object pathForLook:self.lookToAdd];
-            [appDelegate.fileManager moveExistingFileAtPath:oldPath toPath:newPath overwrite:YES];
-            NSInteger numberOfRowsInLastSection = [self tableView:self.tableView numberOfRowsInSection:0];
-            NSIndexPath *indexPath = [NSIndexPath indexPathForRow:(numberOfRowsInLastSection - 1) inSection:0];
-            [self.tableView insertRowsAtIndexPaths:@[indexPath]
-                                  withRowAnimation:UITableViewRowAnimationBottom];
-            // TODO: update program on disk...
-//            [self.object.program saveToDisk];
-        }
-        self.lookToAdd = nil;
     }
 }
 

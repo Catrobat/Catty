@@ -78,8 +78,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.view.backgroundColor = UIColor.backgroundColor;
-    self.imageView.backgroundColor =  UIColor.backgroundColor;
+    self.view.backgroundColor = [UIColor darkBlueColor];
+    self.imageView.backgroundColor = [UIColor darkBlueColor];
     self.navigationController.toolbar.hidden = YES;
     self.navigationController.title = self.title = self.imageName;
 }

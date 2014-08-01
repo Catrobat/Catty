@@ -19,8 +19,10 @@
  *  You should have received a copy of the GNU Affero General Public License
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
+
 #import "Setghosteffectbrick.h"
 #import "Formula.h"
+#import "GDataXMLNode.h"
 
 @implementation SetGhostEffectBrick
 
@@ -55,14 +57,21 @@
       };
 }
 
-
-
 #pragma mark - Description
 - (NSString*)description
 {
     return [NSString stringWithFormat:@"SetGhostEffect (%f%%)", [self.transparency interpretDoubleForSprite:self.object]];
 }
 
+- (GDataXMLElement*)toXMLforObject:(SpriteObject*)spriteObject
+{
+    GDataXMLElement *brickXMLElement = [super toXMLforObject:spriteObject];
+    if (self.transparency) {
+        GDataXMLElement *transparencyXMLElement = [GDataXMLNode elementWithName:@"transparency"];
+        [transparencyXMLElement addChild:[self.transparency toXMLforObject:spriteObject]];
+        [brickXMLElement addChild:transparencyXMLElement];
+    }
+    return brickXMLElement;
+}
+
 @end
-
-

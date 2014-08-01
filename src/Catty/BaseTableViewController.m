@@ -56,12 +56,14 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.dataCache = nil;
     self.editing = NO;
     self.editableSections = nil;
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
-    self.tableView.backgroundColor = UIColor.backgroundColor;
-    self.tableView.separatorColor = UIColor.skyBlueColor;
+    self.tableView.backgroundColor = [UIColor backgroundColor];
+    self.tableView.separatorColor = [UIColor skyBlueColor];
+    self.view.backgroundColor = [UIColor darkBlueColor];
     NSNotificationCenter *notificationCenter = [NSNotificationCenter defaultCenter];
     [notificationCenter addObserver:self
                            selector:@selector(hideLoadingView)
@@ -82,7 +84,22 @@
     }
 }
 
+#pragma mark - system events
+- (void)didReceiveMemoryWarning
+{
+    [super didReceiveMemoryWarning];
+    self.dataCache = nil;
+}
+
 #pragma mark - getters and setters
+- (NSMutableDictionary*)dataCache
+{
+    if (! _dataCache) {
+        _dataCache = [NSMutableDictionary dictionary];
+    }
+    return _dataCache;
+}
+
 - (PlaceHolderView *)placeHolderView
 {
     if (!_placeHolderView) {
@@ -375,6 +392,13 @@
     self.navigationController.interactivePopGestureRecognizer.enabled = NO;
     [self showPlaceHolder:NO];
     [self.loadingView show];
+
+#if kIsFirstRelease
+    __weak id mySelf = self;
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 1 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
+        [mySelf hideLoadingView];
+    });
+#endif
 }
 
 - (void)hideLoadingView

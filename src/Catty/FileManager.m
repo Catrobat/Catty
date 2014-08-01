@@ -587,13 +587,9 @@
     
     if (url) {
         [self storeDownloadedProgram:[NSData dataWithContentsOfURL:location] andTask:downloadTask];
-        
         [self.programTaskDict removeObjectForKey:downloadTask];
         [self.programNameDict removeObjectForKey:downloadTask];
-
-    }else{
-        // TODO: value url is never read...
-//        url = [self.imageTaskDict objectForKey:downloadTask];
+    } else {
         [self storeDownloadedImage:[NSData dataWithContentsOfURL:location] andTask:downloadTask];
         [self.imageTaskDict removeObjectForKey:downloadTask];
         [self.imageNameDict removeObjectForKey:downloadTask];

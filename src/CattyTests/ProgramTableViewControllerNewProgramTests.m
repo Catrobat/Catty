@@ -45,8 +45,6 @@
 
 #define kNewProgramName @"My new program"
 
-// TODO: use mock objects for dependencies and constructor dependency injection, but XCTest does not seem to support this at the moment
-
 @interface ProgramTableViewControllerNewProgramTests ()
 @property (nonatomic, strong) ProgramTableViewController *programTableViewController;
 @property (nonatomic, strong) FileManager *fileManager;
@@ -182,8 +180,6 @@
     {
         //sprite.spriteManagerDelegate = self;
         //sprite.broadcastWaitDelegate = self.broadcastWaitHandler;
-
-        // TODO: change!
         for (Script *script in sprite.scriptList) {
             for (Brick *brick in script.brickList) {
                 brick.object = sprite;

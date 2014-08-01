@@ -31,6 +31,8 @@
 #import "UIColor+CatrobatUIColorExtensions.h"
 #import "ActionSheetAlertViewTags.h"
 #import "DataTransferMessage.h"
+#import "UIImage+CatrobatUIImageExtensions.h"
+#import "EAIntroView.h"
 
 @interface Util () <CatrobatAlertViewDelegate, UITextFieldDelegate>
 
@@ -66,6 +68,42 @@
     if (! [self activateTestMode:NO]) {
         [alert show];
     }
+}
+
++ (void)showIntroductionScreenInView:(UIView *)view delegate:(id<EAIntroDelegate>)delegate
+{
+#define kTempHeight 140.0f
+    UIImage *bgImage = [UIImage imageWithColor:[UIColor darkBlueColor]];
+    EAIntroPage *page1 = [EAIntroPage page];
+    page1.title = kIntroViewTitleFirstPage;
+    page1.desc = kIntroViewDescriptionFirstPage;
+    page1.bgImage = bgImage;
+    page1.titleIconView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"page1_logo"]];
+
+    EAIntroPage *page2 = [EAIntroPage page];
+    page2.title = kIntroViewTitleSecondPage;
+    page2.desc = kIntroViewDescriptionSecondPage;
+    page2.bgImage = bgImage;
+    page2.titleIconView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"page2_explore"]];
+
+    EAIntroPage *page3 = [EAIntroPage page];
+    page3.title = kIntroViewTitleThirdPage;
+    page3.desc = kIntroViewDescriptionThirdPage;
+    page3.bgImage = bgImage;
+    page3.titleIconView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"page3_info"]];
+
+    CGRect frame = view.frame;
+    if ([Util getScreenHeight] == kIphone4ScreenHeight) {
+        frame.size.height -= 64.0f;
+    } else if ([Util getScreenHeight] == kIphone5ScreenHeight) {
+        frame.size.height -= 64.0f;
+    } else {
+        NSLog(@"ERROR: unsupported screen height for introduction screen!!!");
+        abort();
+    }
+    EAIntroView *intro = [[EAIntroView alloc] initWithFrame:frame andPages:@[page1, page2, page3]];
+    intro.delegate = delegate;
+    [intro showInView:view animateDuration:0.3];
 }
 
 + (CatrobatAlertView*)alertWithText:(NSString*)text
@@ -401,20 +439,63 @@
 
 + (NSString*)uniqueName:(NSString*)nameToCheck existingNames:(NSArray*)existingNames
 {
-    NSString *uniqueName = nameToCheck;
+    NSMutableString *uniqueName = [nameToCheck mutableCopy];
+    unichar lastChar = [uniqueName characterAtIndex:([uniqueName length] - 1)];
+    if (lastChar == 0x20) {
+        [uniqueName deleteCharactersInRange:NSMakeRange(([uniqueName length] - 1), 1)];
+    }
+
     NSUInteger counter = 0;
+    NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@"\\(\\d\\)"
+                                                                           options:NSRegularExpressionCaseInsensitive
+                                                                             error:NULL];
+    NSArray *results = [regex matchesInString:uniqueName
+                                      options:0
+                                        range:NSMakeRange(0, [uniqueName length])];
+    if ([results count]) {
+        BOOL duplicate = NO;
+        for (NSString *existingName in existingNames) {
+            if ([existingName isEqualToString:uniqueName]) {
+                duplicate = YES;
+                break;
+            }
+        }
+        if (! duplicate) {
+            return [uniqueName copy];
+        }
+        NSTextCheckingResult *lastOccurenceResult = [results lastObject];
+        NSMutableString *lastOccurence = [(NSString*)[uniqueName substringWithRange:lastOccurenceResult.range] mutableCopy];
+        [uniqueName replaceOccurrencesOfString:lastOccurence
+                                    withString:@""
+                                       options:NSCaseInsensitiveSearch
+                                         range:NSMakeRange(0, [uniqueName length])];
+        unichar lastChar = [uniqueName characterAtIndex:([uniqueName length] - 1)];
+        if (lastChar == 0x20) {
+            [uniqueName deleteCharactersInRange:NSMakeRange(([uniqueName length] - 1), 1)];
+        }
+        [lastOccurence replaceOccurrencesOfString:@"("
+                                       withString:@""
+                                          options:NSCaseInsensitiveSearch
+                                            range:NSMakeRange(0, [lastOccurence length])];
+        [lastOccurence replaceOccurrencesOfString:@")"
+                                       withString:@""
+                                          options:NSCaseInsensitiveSearch
+                                            range:NSMakeRange(0, [lastOccurence length])];
+        counter = [lastOccurence integerValue];
+    }
+    NSString *uniqueFinalName = [uniqueName copy];
     BOOL duplicate;
     do {
         duplicate = NO;
         for (NSString *existingName in existingNames) {
-            if ([existingName isEqualToString:uniqueName]) {
-                uniqueName = [NSString stringWithFormat:@"%@ (%lu)", nameToCheck, (unsigned long)++counter];
+            if ([existingName isEqualToString:uniqueFinalName]) {
+                uniqueFinalName = [NSString stringWithFormat:@"%@ (%lu)", uniqueName, (unsigned long)++counter];
                 duplicate = YES;
                 break;
             }
         }
     } while (duplicate);
-    return uniqueName;
+    return uniqueFinalName;
 }
 
 + (double)radiansToDegree:(float)rad
