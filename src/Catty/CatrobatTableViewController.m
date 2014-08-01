@@ -184,6 +184,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
     if (self.popupViewController == nil) {
         InfoPopupViewController *popupViewController = [[InfoPopupViewController alloc] init];
         popupViewController.delegate = self;
+        self.tableView.scrollEnabled = NO;
         [self presentPopupViewController:popupViewController WithFrame:self.tableView.frame];
     } else {
         [self dismissPopup];
@@ -458,6 +459,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
 - (BOOL)dismissPopup
 {
     if (self.popupViewController != nil) {
+        self.tableView.scrollEnabled = YES;
         [self dismissPopupViewController];
         return YES;
     }
