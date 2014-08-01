@@ -22,6 +22,7 @@
 
 #import "Setybrick.h"
 #import "Formula.h"
+#import "GDataXMLNode.h"
 
 @implementation SetYBrick
 
@@ -52,5 +53,13 @@
     return [NSString stringWithFormat:@"SetYBrick (y-Pos:%f)", [self.yPosition interpretDoubleForSprite:self.object]];
 }
 
+- (GDataXMLElement*)toXMLforObject:(SpriteObject*)spriteObject
+{
+    GDataXMLElement *brickXMLElement = [super toXMLforObject:spriteObject];
+    GDataXMLElement *yPositionFormulaXMLElement = [GDataXMLNode elementWithName:@"yPosition"];
+    [yPositionFormulaXMLElement addChild:[self.yPosition toXMLforObject:spriteObject]];
+    [brickXMLElement addChild:yPositionFormulaXMLElement];
+    return brickXMLElement;
+}
 
 @end

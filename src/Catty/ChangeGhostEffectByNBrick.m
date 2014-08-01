@@ -23,6 +23,7 @@
 
 #import "ChangeGhostEffectByNBrick.h"
 #import "Formula.h"
+#import "GDataXMLNode.h"
 
 @implementation ChangeGhostEffectByNBrick
 
@@ -61,6 +62,17 @@
 - (NSString*)description
 {
     return [NSString stringWithFormat:@"ChangeGhostEffect by (%f)", [self.changeGhostEffect interpretDoubleForSprite:self.object]];
+}
+
+- (GDataXMLElement*)toXMLforObject:(SpriteObject*)spriteObject
+{
+    GDataXMLElement *brickXMLElement = [super toXMLforObject:spriteObject];
+    if (self.changeGhostEffect) {
+        GDataXMLElement *changeGhostEffectXMLElement = [GDataXMLNode elementWithName:@"changeGhostEffect"];
+        [changeGhostEffectXMLElement addChild:[self.changeGhostEffect toXMLforObject:spriteObject]];
+        [brickXMLElement addChild:changeGhostEffectXMLElement];
+    }
+    return brickXMLElement;
 }
 
 @end

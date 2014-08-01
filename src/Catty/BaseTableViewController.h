@@ -25,6 +25,7 @@
 @class CatrobatAlertView;
 
 @interface BaseTableViewController : UITableViewController
+@property (nonatomic, strong) NSMutableDictionary *dataCache;
 @property (nonatomic, strong) NSArray *editableSections;
 @property (nonatomic, strong, readonly) UIBarButtonItem *selectAllRowsButtonItem;
 @property (nonatomic, strong) PlaceHolderView *placeHolderView;

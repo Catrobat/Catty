@@ -22,7 +22,7 @@
 
 #import "IfLogicBeginBrick.h"
 #import "Formula.h"
-
+#import "GDataXMLNode.h"
 
 @implementation IfLogicBeginBrick
 
@@ -44,6 +44,43 @@
     return [NSString stringWithFormat:@"If Logic Begin Brick"];
 }
 
+- (GDataXMLElement*)toXMLforObject:(SpriteObject*)spriteObject
+{
+    GDataXMLElement *brickXMLElement = [super toXMLforObject:spriteObject];
 
+    // ifCondition
+    GDataXMLElement *ifConditionXMLElement = [GDataXMLNode elementWithName:@"ifCondition"];
+    [ifConditionXMLElement addChild:[self.ifCondition toXMLforObject:spriteObject]];
+    [brickXMLElement addChild:ifConditionXMLElement];
+
+    // ifElseBrick
+    GDataXMLElement *ifElseBrickXMLElement = [GDataXMLNode elementWithName:@"ifElseBrick"];
+    GDataXMLElement *brickToObjectReferenceXMLElement = [GDataXMLNode elementWithName:@"object"];
+    [brickToObjectReferenceXMLElement addAttribute:[GDataXMLNode elementWithName:@"reference" stringValue:@"../../../../../.."]];
+    [ifElseBrickXMLElement addChild:brickToObjectReferenceXMLElement];
+    GDataXMLElement *ifBeginBrickXMLElement = [GDataXMLNode elementWithName:@"ifBeginBrick"];
+    [ifBeginBrickXMLElement addAttribute:[GDataXMLNode elementWithName:@"reference" stringValue:@"../.."]];
+    [ifElseBrickXMLElement addChild:ifBeginBrickXMLElement];
+    GDataXMLElement *ifInnerEndBrickXMLElement = [GDataXMLNode elementWithName:@"ifEndBrick"];
+//    [ifEndBrickXMLElement addAttribute:[GDataXMLNode elementWithName:@"reference" stringValue:@"../.."]];
+    brickToObjectReferenceXMLElement = [GDataXMLNode elementWithName:@"object"];
+    [brickToObjectReferenceXMLElement addAttribute:[GDataXMLNode elementWithName:@"reference" stringValue:@"../../../../../../.."]];
+    [ifInnerEndBrickXMLElement addChild:brickToObjectReferenceXMLElement];
+    ifBeginBrickXMLElement = [GDataXMLNode elementWithName:@"ifBeginBrick"];
+    [ifBeginBrickXMLElement addAttribute:[GDataXMLNode elementWithName:@"reference" stringValue:@"../../.."]];
+    [ifInnerEndBrickXMLElement addChild:ifBeginBrickXMLElement];
+    GDataXMLElement *ifInnerElseBrickXMLElement = [GDataXMLNode elementWithName:@"ifElseBrick"];
+    [ifInnerElseBrickXMLElement addAttribute:[GDataXMLNode elementWithName:@"reference" stringValue:@"../.."]];
+    [ifInnerEndBrickXMLElement addChild:ifInnerElseBrickXMLElement];
+    [ifElseBrickXMLElement addChild:ifInnerEndBrickXMLElement];
+    [brickXMLElement addChild:ifElseBrickXMLElement];
+
+    // ifEndBrick
+    GDataXMLElement *ifEndBrickXMLElement = [GDataXMLNode elementWithName:@"ifEndBrick"];
+    [ifEndBrickXMLElement addAttribute:[GDataXMLNode elementWithName:@"reference" stringValue:@"../ifElseBrick/ifEndBrick"]];
+    [brickXMLElement addChild:ifEndBrickXMLElement];
+
+    return brickXMLElement;
+}
 
 @end

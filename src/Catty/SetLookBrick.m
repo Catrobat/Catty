@@ -25,6 +25,7 @@
 #import "ProgramDefines.h"
 #import <SpriteKit/SpriteKit.h>
 #import "UIImage+CatrobatUIImageExtensions.h"
+#import "GDataXMLNode.h"
 
 @implementation SetLookBrick
 
@@ -33,19 +34,19 @@
     return ([self.object isBackground] ? kBrickCellLookTitleSetBackground : kBrickCellLookTitleSetLook);
 }
 
--(SKAction*)action
+- (SKAction*)action
 {
     return [SKAction runBlock:[self actionBlock]];
 }
--(dispatch_block_t)actionBlock
+
+- (dispatch_block_t)actionBlock
 {
     UIImage* image = [UIImage imageWithContentsOfFile:[self pathForLook]];
     SKTexture* texture= nil;
     if ([self.object isBackground]) {
         texture = [SKTexture textureWithImage:image];
         self.object.currentUIImageLook = image;
-    }
-    else{
+    } else {
         //        CGRect newRect = [image cropRectForImage:image];
         //        CGImageRef imageRef = CGImageCreateWithImageInRect(image.CGImage, newRect);
         //        UIImage *newImage = [UIImage imageWithCGImage:imageRef];
@@ -72,15 +73,30 @@
     };
 }
 
--(NSString*)pathForLook
+- (NSString*)pathForLook
 {
-  return [NSString stringWithFormat:@"%@%@/%@", [self.object projectPath], kProgramImagesDirName, self.look.fileName];
+    return [NSString stringWithFormat:@"%@%@/%@", [self.object projectPath], kProgramImagesDirName, self.look.fileName];
 }
 
 #pragma mark - Description
 - (NSString*)description
 {
-  return [NSString stringWithFormat:@"SetLookBrick (Look: %@)", self.look.name];
+    return [NSString stringWithFormat:@"SetLookBrick (Look: %@)", self.look.name];
+}
+
+- (GDataXMLElement*)toXMLforObject:(SpriteObject*)spriteObject
+{
+    GDataXMLElement *brickXMLElement = [super toXMLforObject:spriteObject];
+    if (self.look) {
+        GDataXMLElement *brickToObjectReferenceXMLElement = [GDataXMLNode elementWithName:@"look"];
+        NSString *referencePath = [spriteObject xmlReferencePathForDestinationLook:self.look];
+        [brickToObjectReferenceXMLElement addAttribute:[GDataXMLNode elementWithName:@"reference" stringValue:referencePath]];
+        [brickXMLElement addChild:brickToObjectReferenceXMLElement];
+    } else {
+        // remove object reference
+        [brickXMLElement removeChild:[[brickXMLElement children] firstObject]];
+    }
+    return brickXMLElement;
 }
 
 @end

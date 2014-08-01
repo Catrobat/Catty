@@ -35,10 +35,10 @@
 // List<UserVariable> projectVariables;
 @property (nonatomic, strong) NSMutableArray* programVariableList;
 
--(UserVariable*) getUserVariableNamed:(NSString*) name forSpriteObject:(SpriteObject*) sprite;
+- (UserVariable*)getUserVariableNamed:(NSString*)name forSpriteObject:(SpriteObject*)sprite;
 
--(void) setUserVariable:(UserVariable*)userVariable toValue:(double)value;
+- (void)setUserVariable:(UserVariable*)userVariable toValue:(double)value;
 
--(void) changeVariable:(UserVariable*)userVariable byValue:(double)value;
+- (void)changeVariable:(UserVariable*)userVariable byValue:(double)value;
 
 @end

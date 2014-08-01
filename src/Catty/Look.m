@@ -82,20 +82,20 @@
     ];
 }
 
+- (GDataXMLElement*)toXMLforObject:(SpriteObject*)spriteObject
+{
+    GDataXMLElement *lookXMLElement = [GDataXMLNode elementWithName:@"look"];
+    [lookXMLElement addChild:[GDataXMLElement elementWithName:@"fileName" stringValue:self.fileName]];
+    [lookXMLElement addChild:[GDataXMLElement elementWithName:@"name" stringValue:self.name]];
+    return lookXMLElement;
+}
+
 - (instancetype)deepCopy
 {
     Look *copiedLook = [[Look alloc] init];
     copiedLook.fileName = [NSString stringWithString:self.fileName];
     copiedLook.name = [NSString stringWithString:self.name];
     return copiedLook;
-}
-
-- (GDataXMLElement*)toXML
-{
-    GDataXMLElement *lookXMLElement = [GDataXMLNode elementWithName:@"look"];
-    [lookXMLElement addChild:[GDataXMLElement elementWithName:@"fileName" stringValue:self.fileName]];
-    [lookXMLElement addChild:[GDataXMLElement elementWithName:@"name" stringValue:self.name]];
-    return lookXMLElement;
 }
 
 #pragma mark - description

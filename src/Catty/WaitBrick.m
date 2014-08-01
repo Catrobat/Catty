@@ -24,6 +24,7 @@
 #import "WaitBrick.h"
 #import "Script.h"
 #import "Formula.h"
+#import "GDataXMLNode.h"
 
 @implementation WaitBrick
 
@@ -41,11 +42,24 @@
     return [SKAction waitForDuration:[self.timeToWaitInSeconds interpretDoubleForSprite:self.object]];
 }
 
-
 #pragma mark - Description
 - (NSString*)description
 {
     return [NSString stringWithFormat:@"WaitBrick (%f Seconds)", [self.timeToWaitInSeconds interpretDoubleForSprite:self.object]];
+}
+
+- (GDataXMLElement*)toXMLforObject:(SpriteObject*)spriteObject
+{
+    GDataXMLElement *brickXMLElement = [super toXMLforObject:spriteObject];
+    if (self.timeToWaitInSeconds) {
+        GDataXMLElement *timeToWaitInSecondsXMLElement = [GDataXMLNode elementWithName:@"timeToWaitInSeconds"];
+        [timeToWaitInSecondsXMLElement addChild:[self.timeToWaitInSeconds toXMLforObject:spriteObject]];
+        [brickXMLElement addChild:timeToWaitInSecondsXMLElement];
+    } else {
+        // remove object reference
+        [brickXMLElement removeChild:[[brickXMLElement children] firstObject]];
+    }
+    return brickXMLElement;
 }
 
 @end

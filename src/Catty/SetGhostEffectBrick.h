@@ -28,5 +28,4 @@
 
 @property (nonatomic, strong) Formula *transparency;
 
-
 @end

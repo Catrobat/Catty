@@ -22,6 +22,7 @@
 
 #import "Placeatbrick.h"
 #import "Formula.h"
+#import "GDataXMLNode.h"
 
 @implementation PlaceAtBrick
 
@@ -51,6 +52,30 @@
     double xPosition = [self.xPosition interpretDoubleForSprite:self.object];
     double yPosition = [self.yPosition interpretDoubleForSprite:self.object];
     return [NSString stringWithFormat:@"PlaceAt (Position: %f/%f)", xPosition, yPosition];
+}
+
+- (GDataXMLElement*)toXMLforObject:(SpriteObject*)spriteObject
+{
+    GDataXMLElement *brickXMLElement = [super toXMLforObject:spriteObject];
+
+    if (self.xPosition) {
+        GDataXMLElement *xPositionXMLElement = [GDataXMLNode elementWithName:@"xPosition"];
+        [xPositionXMLElement addChild:[self.xPosition toXMLforObject:spriteObject]];
+        [brickXMLElement addChild:xPositionXMLElement];
+    }
+
+    if (self.yPosition) {
+        GDataXMLElement *yPositionXMLElement = [GDataXMLNode elementWithName:@"yPosition"];
+        [yPositionXMLElement addChild:[self.yPosition toXMLforObject:spriteObject]];
+        [brickXMLElement addChild:yPositionXMLElement];
+    }
+
+    if ((! self.xPosition) && (! self.yPosition)) {
+        // remove object reference
+        [brickXMLElement removeChild:[[brickXMLElement children] firstObject]];
+    }
+
+    return brickXMLElement;
 }
 
 @end

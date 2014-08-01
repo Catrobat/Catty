@@ -47,7 +47,9 @@
     ProjectParser *parser = [[ProjectParser alloc] init];
 
     // return Project object
-    return [parser loadProject:xmlData];
+    Program *program = [parser loadProject:xmlData];
+    self.XMLdocument = parser.XMLdocument;
+    return program;
 }
 
 @end

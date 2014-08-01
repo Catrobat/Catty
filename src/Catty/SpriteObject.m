@@ -160,12 +160,94 @@
   return NO;
 }
 
+- (NSString*)xmlReferencePathForDestinationBrick:(Brick*)destinationBrick sourceBrick:(Brick*)sourceBrick
+{
+    NSUInteger sourceScriptCounter = 0;
+    NSUInteger destinationScriptCounter = 0;
+//    NSUInteger sourceBrickCounter = 0;
+//    NSUInteger destinationBrickCounter = 0;
+
+    NSUInteger scriptCounter = 0;
+    for (Script *script in self.scriptList) {
+        NSInteger brickCounter = 0;
+        for (Brick *brick in script.brickList) {
+            if (sourceBrick == brick) {
+                sourceScriptCounter = scriptCounter;
+//                sourceBrickCounter = brickCounter;
+                break;
+            }
+            ++brickCounter;
+        }
+        ++scriptCounter;
+    }
+
+    scriptCounter = 0;
+    for (Script *script in self.scriptList) {
+        NSInteger brickCounter = 0;
+        for (Brick *brick in script.brickList) {
+            if (destinationBrick == brick) {
+                destinationScriptCounter = scriptCounter;
+//                destinationBrickCounter = brickCounter;
+                break;
+            }
+            ++brickCounter;
+        }
+        ++scriptCounter;
+    }
+
+    // build reference path
+    NSMutableString *referencePath = [NSMutableString stringWithString:@"../"];
+    if (sourceScriptCounter != destinationScriptCounter) {
+        [referencePath appendString:@"../"];
+    }
+    [referencePath appendString:[destinationBrick xmlTagName]];
+
+    scriptCounter = 0;
+    Class destinationBrickClass = [destinationBrick class];
+    NSUInteger sameBrickClassIndex = 0;
+    NSUInteger totalSameBrickClassCounter = 0;
+    for (Script *script in self.scriptList) {
+        if (scriptCounter != destinationScriptCounter) {
+            ++scriptCounter;
+            continue;
+        }
+        for (Brick *brick in script.brickList) {
+            if ([brick isKindOfClass:destinationBrickClass]) {
+                if (brick == destinationBrick) {
+                    sameBrickClassIndex = totalSameBrickClassCounter;
+                }
+                ++totalSameBrickClassCounter;
+            }
+        }
+        ++scriptCounter;
+    }
+    if (sameBrickClassIndex > 0) {
+        [referencePath appendString:[NSString stringWithFormat:@"[%lu]", (unsigned long)(sameBrickClassIndex + 1)]];
+    }
+    return [referencePath copy];
+}
+
+- (NSString*)xmlReferencePathForDestinationLook:(Look*)destinationLook
+{
+    NSUInteger lookIndex = 0;
+    for (Look *look in self.lookList) {
+        if (look == destinationLook) {
+            break;
+        }
+        ++lookIndex;
+    }
+
+    // build reference path
+    NSString *indexSuffix = @"";
+    if (lookIndex > 0) {
+        indexSuffix = [NSString stringWithFormat:@"[%lu]", (unsigned long)(lookIndex + 1)];
+    }
+    return [NSString stringWithFormat:@"../../../../../lookList/look%@", indexSuffix];
+}
+
 - (instancetype)deepCopy
 {
-    // get shallow copy
-    SpriteObject *newObject = (SpriteObject*)[self copy];
-
-    // reset (just to ensure)
+    SpriteObject *newObject = [[SpriteObject alloc] init];
     newObject.spriteManagerDelegate = nil;
     newObject.broadcastWaitDelegate = nil;
     newObject.currentLook = nil;
@@ -196,31 +278,29 @@
 
 - (GDataXMLElement*)toXML
 {
-  GDataXMLElement *objectXMLElement = [GDataXMLNode elementWithName:@"object"];
-  GDataXMLElement *lookListXMLElement = [GDataXMLNode elementWithName:@"lookList"];
-  for (id look in self.lookList) {
-    if ([look isKindOfClass:[Look class]])
-      [lookListXMLElement addChild:[((Look*) look) toXML]];
-  }
-  [objectXMLElement addChild:lookListXMLElement];
+    GDataXMLElement *objectXMLElement = [GDataXMLNode elementWithName:@"object"];
+    GDataXMLElement *lookListXMLElement = [GDataXMLNode elementWithName:@"lookList"];
+    for (id look in self.lookList) {
+        if ([look isKindOfClass:[Look class]])
+            [lookListXMLElement addChild:[((Look*) look) toXMLforObject:self]];
+    }
+    [objectXMLElement addChild:lookListXMLElement];
+    [objectXMLElement addChild:[GDataXMLElement elementWithName:@"name" stringValue:self.name]];
 
-  [objectXMLElement addChild:[GDataXMLElement elementWithName:@"name" stringValue:self.name]];
+    GDataXMLElement *scriptListXMLElement = [GDataXMLNode elementWithName:@"scriptList"];
+    for (id script in self.scriptList) {
+        if ([script isKindOfClass:[Script class]])
+            [scriptListXMLElement addChild:[((Script*) script) toXMLforObject:self]];
+    }
+    [objectXMLElement addChild:scriptListXMLElement];
 
-  GDataXMLElement *scriptListXMLElement = [GDataXMLNode elementWithName:@"scriptList"];
-  // TODO: uncomment this after toXML-method in all Script-subclasses has been completely implemented
-//  for (id script in self.scriptList) {
-//    if ([script isKindOfClass:[Script class]])
-//      [scriptListXMLElement addChild:[((Script*) script) toXML]];
-//  }
-  [objectXMLElement addChild:scriptListXMLElement];
-
-  GDataXMLElement *soundListXMLElement = [GDataXMLNode elementWithName:@"soundList"];
-  for (id sound in self.soundList) {
-    if ([sound isKindOfClass:[Sound class]])
-      [soundListXMLElement addChild:[((Sound*) sound) toXML]];
-  }
-  [objectXMLElement addChild:soundListXMLElement];
-  return objectXMLElement;
+    GDataXMLElement *soundListXMLElement = [GDataXMLNode elementWithName:@"soundList"];
+    for (id sound in self.soundList) {
+        if ([sound isKindOfClass:[Sound class]])
+            [soundListXMLElement addChild:[((Sound*) sound) toXMLforObject:self]];
+    }
+    [objectXMLElement addChild:soundListXMLElement];
+    return objectXMLElement;
 }
 
 - (void)start:(CGFloat)zPosition
@@ -409,6 +489,17 @@
         }
     }
     return [soundNames copy];
+}
+
+- (void)addLook:(Look*)look
+{
+    if ([self hasLook:look]) {
+        return;
+    }
+    look.name = [Util uniqueName:look.name existingNames:[self allLookNames]];
+    [self.lookList addObject:look];
+    [self.program saveToDisk];
+    return;
 }
 
 - (void)changeLook:(Look *)look

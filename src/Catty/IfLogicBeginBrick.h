@@ -34,7 +34,6 @@
 @property (nonatomic, weak) IfLogicElseBrick* ifElseBrick;
 @property (nonatomic, weak) IfLogicEndBrick* ifEndBrick;
 
-
 -(BOOL)checkCondition;
 
 @end

@@ -86,7 +86,7 @@
 #pragma mark - Setup Collection View
 - (void)setupCollectionView
 {
-    self.collectionView.backgroundColor = UIColor.backgroundColor;
+    self.collectionView.backgroundColor = [UIColor darkBlueColor];
     self.collectionView.alwaysBounceVertical = YES;
     self.collectionView.scrollEnabled = YES;
     self.collectionView.delegate = self;

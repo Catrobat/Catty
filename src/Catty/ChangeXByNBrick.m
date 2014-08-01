@@ -22,6 +22,7 @@
 
 #import "ChangeXByNBrick.h"
 #import "Formula.h"
+#import "GDataXMLNode.h"
 
 @implementation ChangeXByNBrick
 
@@ -52,6 +53,20 @@
 {
     double xMov = [self.xMovement interpretDoubleForSprite:self.object];
     return [NSString stringWithFormat:@"ChangeXBy (%f)", xMov];
+}
+
+- (GDataXMLElement*)toXMLforObject:(SpriteObject*)spriteObject
+{
+    GDataXMLElement *brickXMLElement = [super toXMLforObject:spriteObject];
+    if (self.xMovement) {
+        GDataXMLElement *xMovementXMLElement = [GDataXMLNode elementWithName:@"xMovement"];
+        [xMovementXMLElement addChild:[self.xMovement toXMLforObject:spriteObject]];
+        [brickXMLElement addChild:xMovementXMLElement];
+    } else {
+        // remove object reference
+        [brickXMLElement removeChild:[[brickXMLElement children] firstObject]];
+    }
+    return brickXMLElement;
 }
 
 @end

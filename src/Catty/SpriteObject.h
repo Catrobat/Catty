@@ -29,6 +29,7 @@
 @class Look;
 @class Sound;
 @class GDataXMLElement;
+@class Brick;
 @protocol SpriteManagerDelegate;
 @protocol BroadcastWaitDelegate;
 
@@ -81,6 +82,10 @@
 
 - (BOOL)isBackground;
 
+- (NSString*)xmlReferencePathForDestinationBrick:(Brick*)destinationBrick sourceBrick:(Brick*)sourceBrick;
+
+- (NSString*)xmlReferencePathForDestinationLook:(Look*)destinationLook;
+
 - (instancetype)deepCopy;
 
 - (GDataXMLElement*)toXML;
@@ -111,6 +116,7 @@
 - (NSArray*)allSoundNames;
 
 // actions
+- (void)addLook:(Look*)look;
 - (void)changeLook:(Look*)look;
 - (void)setLook;
 - (void)removeLooks:(NSArray*)looks;

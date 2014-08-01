@@ -34,6 +34,7 @@
 #import <objc/runtime.h>
 #import "BroadcastWaitBrick.h"
 #import "BrickManager.h"
+#import "GDataXMLNode.h"
 
 @interface Script()
 
@@ -233,7 +234,7 @@
 //        if(self.currentBrickIndex < [self.brickList count]) {
 //            Brick* brick = [self.brickList objectAtIndex:self.currentBrickIndex++];
 //
-//            // TODO: IF/REPEAT/FOREVER
+//            // old TO-DO: IF/REPEAT/FOREVER
 //            SKAction* action = [brick action];
 //            [self runWithAction:action];
 //        }
@@ -390,7 +391,7 @@
 //#warning remove!
 //-(void)runScript
 //{
-//    //TODO: check loop-condition BEFORE first iteration
+//    // old TO-DO: check loop-condition BEFORE first iteration
 //    if (self.currentBrickIndex < 0)
 //        self.currentBrickIndex = 0;
 //    while (!self.stop && self.currentBrickIndex < [self.brickList count]) {
@@ -503,6 +504,27 @@
 //    }
 //}
 
+- (GDataXMLElement*)toXMLforObject:(SpriteObject*)spriteObject
+{
+    GDataXMLElement *scriptXMLElement = [GDataXMLNode elementWithName:[self xmlTagName]];
+    GDataXMLElement *brickListXMLElement = [GDataXMLNode elementWithName:@"brickList"];
+    for (id brick in self.brickList) {
+        if ([brick isKindOfClass:[Brick class]]) {
+            [brickListXMLElement addChild:[((Brick*) brick) toXMLforObject:spriteObject]];
+        }
+    }
+    [scriptXMLElement addChild:brickListXMLElement];
+    GDataXMLElement *scriptToObjectReferenceXMLElement = [GDataXMLNode elementWithName:@"object"];
+    [scriptToObjectReferenceXMLElement addAttribute:[GDataXMLNode elementWithName:@"reference" stringValue:@"../../.."]];
+    [scriptXMLElement addChild:scriptToObjectReferenceXMLElement];
+    return scriptXMLElement;
+}
+
+- (NSString*)xmlTagName
+{
+    return [NSStringFromClass([self class]) firstCharacterLowercaseString];
+}
+
 - (instancetype)deepCopy
 {
     // shallow copy
@@ -517,7 +539,8 @@
     copiedScript.brickList = [NSMutableArray arrayWithCapacity:[self.brickList count]];
     for (id brick in self.brickList) {
         if ([brick isKindOfClass:[Brick class]]) {
-            [copiedScript.brickList addObject:[brick copy]]; // FIXME:/TODO: there are some bricks that refer to other sound, look, sprite objects...
+            // TODO: issue #308 - implement deep copy for all bricks here!!
+            [copiedScript.brickList addObject:brick]; // there are some bricks that refer to other sound, look, sprite objects...
         }
     }
     return copiedScript;
@@ -527,25 +550,17 @@
 - (NSString*)description
 {
     NSMutableString *ret = [[NSMutableString alloc] initWithString:@"Script"];
-    [ret appendFormat:@"(%@)", self.object.name ];
-    
-    if ([self.brickList count] > 0)
-    {
+    [ret appendFormat:@"(%@)", self.object.name];
+    if ([self.brickList count] > 0) {
         [ret appendString:@"Bricks: \r"];
-        for (Brick *brick in self.brickList)
-        {
+        for (Brick *brick in self.brickList) {
             [ret appendFormat:@"%@\r", brick];
         }
-    }
-    else 
-    {
+    } else {
         [ret appendString:@"Bricks array empty!\r"];
     }
     
     return ret;
 }
-
-
-
 
 @end

@@ -23,9 +23,13 @@
 #import <Foundation/Foundation.h>
 
 @class Program;
+@class GDataXMLDocument;
 
 @interface ProjectParser : NSObject
 
 - (id)loadProject:(NSData*)xmlData;
+
+// FIXME: remove this after serialization works
+@property (strong, nonatomic) GDataXMLDocument *XMLdocument;
 
 @end

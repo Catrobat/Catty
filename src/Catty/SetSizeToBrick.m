@@ -23,6 +23,7 @@
 
 #import "SetSizeToBrick.h"
 #import "Formula.h"
+#import "GDataXMLNode.h"
 
 @implementation SetSizeToBrick
 
@@ -50,11 +51,24 @@
     
 }
 
-
 #pragma mark - Description
 - (NSString*)description
 {
     return [NSString stringWithFormat:@"SetSizeTo (%f%%)", [self.size interpretDoubleForSprite:self.object]];
+}
+
+- (GDataXMLElement*)toXMLforObject:(SpriteObject*)spriteObject
+{
+    GDataXMLElement *brickXMLElement = [super toXMLforObject:spriteObject];
+    if (self.size) {
+        GDataXMLElement *sizeXMLElement = [GDataXMLNode elementWithName:@"size"];
+        [sizeXMLElement addChild:[self.size toXMLforObject:spriteObject]];
+        [brickXMLElement addChild:sizeXMLElement];
+    } else {
+        // remove object reference
+        [brickXMLElement removeChild:[[brickXMLElement children] firstObject]];
+    }
+    return brickXMLElement;
 }
 
 @end

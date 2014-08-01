@@ -53,10 +53,6 @@
 #import "DataTransferMessage.h"
 #import "NSMutableArray+CustomExtensions.h"
 
-// TODO: outsource...
-#define kUserDetailsShowDetailsKey @"showDetails"
-#define kUserDetailsShowDetailsObjectsKey @"detailsForObjects"
-
 @interface ProgramTableViewController () <CatrobatActionSheetDelegate, UINavigationBarDelegate, SWTableViewCellDelegate>
 @property (nonatomic) BOOL useDetailCells;
 @end
@@ -91,8 +87,15 @@ static NSCharacterSet *blockedCharacterSet = nil;
     self.navigationItem.rightBarButtonItem = editButton;
 }
 
+#pragma mark - view events
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:YES];
+    [self.tableView reloadData];
+    [self.navigationController setNavigationBarHidden:NO];
+    [self.navigationController setToolbarHidden:NO];
+}
 
-#pragma mark - ViewController Delegates
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -108,21 +111,6 @@ static NSCharacterSet *blockedCharacterSet = nil;
         self.title = self.program.header.programName;
     }
     [self setupToolBar];
-}
-
-- (void)viewWillAppear:(BOOL)animated
-{
-    [super viewWillAppear:YES];
-    [self.tableView reloadData];
-    [self.navigationController setNavigationBarHidden:NO];
-    [self.navigationController setToolbarHidden:NO];
-}
-
-- (void)viewWillDisappear:(BOOL)animated
-{
-    if (self.isNewProgram) {
-        [self.program saveToDisk];
-    }
 }
 
 #pragma mark - actions
@@ -179,12 +167,21 @@ static NSCharacterSet *blockedCharacterSet = nil;
     // TODO: issue #308 - deep copy for SpriteObjects
     // ####### WORKAROUND BEGIN: QUICK&DIRTY UGLY HACK !!!
 
-    ProgramLoadingInfo *info = [[ProgramLoadingInfo alloc] init];
-    info.basePath = [NSString stringWithFormat:@"%@%@/", [Program basePath], self.program.header.programName];
-    info.visibleName = self.program.header.programName;
-    self.program = [Program programWithLoadingInfo:info];
-    [self.tableView reloadData];
-
+    // execute 2 seconds later => just for testing purposes
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 2 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
+        [self showLoadingView];
+        dispatch_queue_t reloadQ = dispatch_queue_create("reload program", NULL);
+        dispatch_async(reloadQ, ^{
+            ProgramLoadingInfo *info = [[ProgramLoadingInfo alloc] init];
+            info.basePath = [NSString stringWithFormat:@"%@%@/", [Program basePath], self.program.header.programName];
+            info.visibleName = self.program.header.programName;
+            self.program = [Program programWithLoadingInfo:info];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self.tableView reloadData];
+                [self hideLoadingView];
+            });
+        });
+    });
     // ####### WORKAROUND END
 }
 

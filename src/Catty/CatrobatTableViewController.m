@@ -47,6 +47,7 @@
 #import "NetworkDefines.h"
 #import "DataTransferMessage.h"
 #import "InfoPopupViewController.h"
+#import "EAIntroView.h"
 
 NS_ENUM(NSInteger, ViewControllerIndex) {
     kContinueProgramVC = 0,
@@ -57,7 +58,7 @@ NS_ENUM(NSInteger, ViewControllerIndex) {
     kUploadVC
 };
 
-@interface CatrobatTableViewController () <UITextFieldDelegate>
+@interface CatrobatTableViewController () <UITextFieldDelegate, EAIntroDelegate>
 
 @property (nonatomic, strong) NSArray *cells;
 @property (nonatomic, strong) NSArray *imageNames;
@@ -95,7 +96,6 @@ static NSCharacterSet *blockedCharacterSet = nil;
 {
     [super viewDidLoad];
     [self initTableView];
-    [self initNavigationBar];
 
     self.lastProgram = nil;
     self.defaultProgram = nil;
@@ -113,6 +113,15 @@ static NSCharacterSet *blockedCharacterSet = nil;
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
     self.tableView.separatorColor = UIColor.skyBlueColor;
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
+
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    if (! [defaults objectForKey:kUserIsFirstAppLaunch]) {
+        self.tableView.scrollEnabled = NO;
+        [Util showIntroductionScreenInView:self.view delegate:self];
+    } else {
+        self.tableView.scrollEnabled = YES;
+        [self initNavigationBar];
+    }
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -144,7 +153,6 @@ static NSCharacterSet *blockedCharacterSet = nil;
     [self.tableView reloadRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationNone];
     [self.tableView endUpdates];
     self.tableView.alwaysBounceVertical = NO;
-    self.tableView.scrollEnabled = YES;
 }
 
 #pragma mark init
@@ -167,7 +175,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
     UIButton *button = [UIButton buttonWithType:UIButtonTypeInfoLight];
     [button addTarget:self action:@selector(infoPressed:) forControlEvents:UIControlEventTouchUpInside];
     UIBarButtonItem *infoItem = [[UIBarButtonItem alloc] initWithCustomView:button];
-    [self.navigationItem setLeftBarButtonItem:infoItem];
+    self.navigationItem.leftBarButtonItem = infoItem;
 }
 
 #pragma mark - actions
@@ -383,18 +391,12 @@ static NSCharacterSet *blockedCharacterSet = nil;
             ProgramTableViewController *programTableViewController = (ProgramTableViewController*)segue.destinationViewController;
             programTableViewController.program = self.lastProgram;
             self.lastProgram = nil;
-
-            // TODO: remove this after persisting programs feature is fully implemented...
-            programTableViewController.isNewProgram = NO;
         }
     } else if ([segue.identifier isEqualToString:kSegueToNewProgram]) {
         if ([segue.destinationViewController isKindOfClass:[ProgramTableViewController class]]) {
             ProgramTableViewController *programTableViewController = (ProgramTableViewController*)segue.destinationViewController;
             programTableViewController.program = self.defaultProgram;
             self.defaultProgram = nil;
-
-            // TODO: remove this after persisting programs feature is fully implemented...
-            programTableViewController.isNewProgram = YES;
         }
     }
 }
@@ -442,8 +444,17 @@ static NSCharacterSet *blockedCharacterSet = nil;
     [[NSNotificationCenter defaultCenter] removeObserver:self name:kReachabilityChangedNotification object:nil];
 }
 
-#pragma mark popup delegate
+#pragma mark - EAIntroView delegates
+- (void)introDidFinish:(EAIntroView*)introView
+{
+    [self initNavigationBar];
+    self.tableView.scrollEnabled = YES;
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    [defaults setObject:[NSNumber numberWithBool:YES] forKey:kUserIsFirstAppLaunch];
+    [defaults synchronize];
+}
 
+#pragma mark - popup delegate
 - (BOOL)dismissPopup
 {
     if (self.popupViewController != nil) {

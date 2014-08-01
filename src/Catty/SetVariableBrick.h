@@ -28,8 +28,7 @@
 
 @interface SetVariableBrick : Brick
 
-@property (nonatomic, strong) UserVariable* userVariable;
-@property (nonatomic, strong) Formula* variableFormula;
-
+@property (nonatomic, strong) UserVariable *userVariable;
+@property (nonatomic, strong) Formula *variableFormula;
 
 @end

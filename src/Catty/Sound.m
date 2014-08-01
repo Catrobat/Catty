@@ -25,6 +25,13 @@
 
 @implementation Sound
 
+- (GDataXMLElement*)toXMLforObject:(SpriteObject*)spriteObject
+{
+    GDataXMLElement *soundXMLElement = [GDataXMLNode elementWithName:@"sound"];
+    [soundXMLElement addAttribute:[GDataXMLNode attributeWithName:@"reference" stringValue:@"../../scriptList/startScript/brickList/playSoundBrick/sound"]];
+    return soundXMLElement;
+}
+
 - (instancetype)deepCopy
 {
     Sound *copiedSound = [[Sound alloc] init];
@@ -32,16 +39,6 @@
     copiedSound.name = [NSString stringWithString:self.name];
     copiedSound.playing = NO;
     return copiedSound;
-}
-
-- (GDataXMLElement*)toXML
-{
-  GDataXMLElement *soundXMLElement = [GDataXMLNode elementWithName:@"sound"];
-
-  // Example: <sound reference="../../scriptList/broadcastScript/brickList/playSoundBrick/sound"/>
-  NSString *reference = @""; // TODO: determine path for reference...
-  [soundXMLElement addAttribute:[GDataXMLNode attributeWithName:@"reference" stringValue:reference]];
-  return soundXMLElement;
 }
 
 @end

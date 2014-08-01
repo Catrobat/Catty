@@ -23,6 +23,7 @@
 #import "PlaySoundBrick.h"
 #import "Sound.h"
 #import "AudioManager.h"
+#import "GDataXMLNode.h"
 
 @implementation PlaySoundBrick
 
@@ -47,6 +48,23 @@
 - (NSString*)description
 {
     return [NSString stringWithFormat:@"PlaySound (File Name: %@)", self.sound.fileName];
+}
+
+- (GDataXMLElement*)toXMLforObject:(SpriteObject*)spriteObject
+{
+    GDataXMLElement *brickXMLElement = [super toXMLforObject:spriteObject];
+
+    if (self.sound) {
+        GDataXMLElement *soundXMLElement = [GDataXMLNode elementWithName:@"sound"];
+        [soundXMLElement addChild:[GDataXMLNode elementWithName:@"fileName" stringValue:self.sound.fileName]];
+        [soundXMLElement addChild:[GDataXMLNode elementWithName:@"name" stringValue:self.sound.name]];
+        [brickXMLElement addChild:soundXMLElement];
+    } else {
+        // remove object reference
+        [brickXMLElement removeChild:[[brickXMLElement children] firstObject]];
+    }
+
+    return brickXMLElement;
 }
 
 @end

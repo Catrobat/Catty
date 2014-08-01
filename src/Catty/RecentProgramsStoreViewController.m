@@ -82,7 +82,7 @@
     [super viewDidLoad];
     [self loadProjectsWithIndicator:0];
     [self initTableView];
-    self.view.backgroundColor = UIColor.backgroundColor;
+    self.view.backgroundColor = [UIColor darkBlueColor];
     [self initSegmentedControl];
     [self initFooterView];
     self.previousSelectedIndex = 0;
@@ -166,7 +166,7 @@
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     [self.tableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
-    self.tableView.backgroundColor = UIColor.backgroundColor;
+    self.tableView.backgroundColor = [UIColor darkBlueColor];
     CGFloat navigationBarHeight = self.navigationController.navigationBar.frame.size.height;
     CGFloat segmentedcontrolHeight = self.segmentedControlView.frame.size.height;
     self.tableView.frame = CGRectMake(0, navigationBarHeight+segmentedcontrolHeight+[UIApplication sharedApplication].statusBarFrame.size.height, self.tableView.frame.size.width, [Util getScreenHeight]-(navigationBarHeight+segmentedcontrolHeight));
@@ -181,10 +181,10 @@
     [self.downloadSegmentedControl setTitle:kUISegmentedControlTitleNewest forSegmentAtIndex:2];
 
     CGFloat navigationBarHeight = self.navigationController.navigationBar.frame.size.height;
-    self.downloadSegmentedControl.backgroundColor = UIColor.backgroundColor;
+    self.downloadSegmentedControl.backgroundColor = [UIColor darkBlueColor];
     self.downloadSegmentedControl.tintColor = [UIColor lightOrangeColor];
     self.segmentedControlView.frame = CGRectMake(0, navigationBarHeight+[UIApplication sharedApplication].statusBarFrame.size.height, self.segmentedControlView.frame.size.width, self.segmentedControlView.frame.size.height);
-    self.segmentedControlView.backgroundColor = UIColor.backgroundColor;
+    self.segmentedControlView.backgroundColor = [UIColor darkBlueColor];
     
 }
 -(void)initFooterView
@@ -759,18 +759,14 @@
         default:
             break;
     }
-    
     self.previousSelectedIndex = self.downloadSegmentedControl.selectedSegmentIndex;
-    
     [self update];
-    
+
     // TODO: Add Support that tableView will scroll to the top after changing
     //self.tableView.contentOffset = CGPointMake(0, 0);
-    
-    
 }
 
--(void)loadingIndicator:(BOOL)value
+- (void)loadingIndicator:(BOOL)value
 {
     UIApplication* app = [UIApplication sharedApplication];
     app.networkActivityIndicatorVisible = value;
