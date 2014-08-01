@@ -60,8 +60,12 @@
         [self addAuthorImageToView:view];
         [self addNumberOfDownloadsImagetoView:view];
         [self addNumberOfDownloadsWithDownloads:project.downloads toView:view];
+<<<<<<< HEAD
+        [self addProgramDescriptionLabelWithDescription:project.description toView:view target:target];
+=======
         
         [self addProgramDescriptionLabelWithDescription:project.projectDescription toView:view target:target];
+>>>>>>> master
         [self addThumbnailImageWithImageUrlString:project.screenshotSmall toView:view];
         //[self addBigImageWithImageUrlString:project.screenshotBig toView:view];
         [self addDownloadButtonToView:view withTarget:target];
@@ -216,6 +220,10 @@
 {
     UIImageView *imageView = [[UIImageView alloc] init];
     UIImage* errorImage = [UIImage imageNamed:@"thumbnail_large"];
+<<<<<<< HEAD
+    
+=======
+>>>>>>> master
     imageView.frame = CGRectMake(view.frame.size.width/15, view.frame.size.height*0.1, view.frame.size.width/3, [Util getScreenHeight]/4.5f);
     imageView.image = [UIImage imageWithContentsOfURL:[NSURL URLWithString:imageUrlString]
                                      placeholderImage:nil
@@ -236,6 +244,12 @@
     }
 
     imageView.contentMode = UIViewContentModeScaleAspectFill;
+<<<<<<< HEAD
+
+
+    
+=======
+>>>>>>> master
     imageView.layer.cornerRadius = 8.0;
     imageView.layer.masksToBounds = YES;
     imageView.layer.borderColor = [UIColor whiteColor].CGColor;

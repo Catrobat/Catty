@@ -48,8 +48,8 @@
     return [Util getScreenHeight];
 }
 
-+ (UIView*)createProgramDetailView:(CatrobatProject*)project target:(id)target
-{
++ (UIView*)createProgramDetailView:(CatrobatProject*)project target:(id)target {
+    
     if([self height] == kIphone4ScreenHeight || [self height] == kIphone5ScreenHeight)
     {
         UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 0)];
@@ -61,7 +61,7 @@
         [self addNumberOfDownloadsImagetoView:view];
         [self addNumberOfDownloadsWithDownloads:project.downloads toView:view];
         
-        [self addProgramDescriptionLabelWithDescription:project.projectDescription toView:view target:target];
+        [self addProgramDescriptionLabelWithDescription:project.description toView:view target:target];
         [self addThumbnailImageWithImageUrlString:project.screenshotSmall toView:view];
         //[self addBigImageWithImageUrlString:project.screenshotBig toView:view];
         [self addDownloadButtonToView:view withTarget:target];
@@ -74,7 +74,7 @@
         [dateFormatter setDateStyle:NSDateFormatterMediumStyle];
         
         NSString *uploaded = [dateFormatter stringFromDate:projectDate];
-        [self addInformationLabelToView:view withAuthor:project.author downloads:project.downloads uploaded:uploaded version:project.size views:project.views];
+        [self addInformationLabelToView:view withAuthor:project.author downloads:project.downloads uploaded:uploaded version:project.version views:project.views];
         
         return view;
     }else{
@@ -87,7 +87,7 @@
         [self addNumberOfDownloadsImagetoView:view];
         [self addNumberOfDownloadsWithDownloads:project.downloads toView:view];
         [self addThumbnailImageWithImageUrlString:project.screenshotSmall toView:view];
-        [self addProgramDescriptionLabelWithDescription:project.projectDescription toView:view target:target];
+        [self addProgramDescriptionLabelWithDescription:project.description toView:view target:target];
         //        [self addBigImageWithImageUrlString:project.screenshotBig toView:view];
         [self addDownloadButtonToView:view withTarget:target];
         [self addLoadingButtonToView:view withTarget:target];
@@ -98,9 +98,10 @@
         [dateFormatter setDateStyle:NSDateFormatterMediumStyle];
         
         NSString *uploaded = [dateFormatter stringFromDate:projectDate];
-        [self addInformationLabelToView:view withAuthor:project.author downloads:project.downloads uploaded:uploaded version:project.size views:project.views];
+        [self addInformationLabelToView:view withAuthor:project.author downloads:project.downloads uploaded:uploaded version:project.version views:project.views];
         return view;
     }
+    
 }
 
 + (void)addNameLabelWithProjectName:(NSString*)projectName toView:(UIView*)view
@@ -159,6 +160,7 @@
     
 }
 
+
 + (CGFloat)addProgramDescriptionLabelWithDescription:(NSString*)description toView:(UIView*)view target:(id)target
 {
     CGFloat height = [self height];
@@ -216,7 +218,6 @@
 {
     UIImageView *imageView = [[UIImageView alloc] init];
     UIImage* errorImage = [UIImage imageNamed:@"thumbnail_large"];
-    imageView.frame = CGRectMake(view.frame.size.width/15, view.frame.size.height*0.1, view.frame.size.width/3, [Util getScreenHeight]/4.5f);
     imageView.image = [UIImage imageWithContentsOfURL:[NSURL URLWithString:imageUrlString]
                                      placeholderImage:nil
                                            errorImage:errorImage
@@ -236,6 +237,9 @@
     }
 
     imageView.contentMode = UIViewContentModeScaleAspectFill;
+
+    imageView.frame = CGRectMake(view.frame.size.width/15, view.frame.size.height*0.1, view.frame.size.width/3, [Util getScreenHeight]/4.5f);
+    
     imageView.layer.cornerRadius = 8.0;
     imageView.layer.masksToBounds = YES;
     imageView.layer.borderColor = [UIColor whiteColor].CGColor;
@@ -342,10 +346,7 @@
     [self configureTitleLabel:informationLabel andHeight:height];
     [view addSubview:informationLabel];
     offset += height*0.075;
-        
-    version = [version stringByReplacingOccurrencesOfString:@"&lt;" withString:@""];
-    version = [version stringByAppendingString:@" MB"];
-
+    
     NSArray* informationArray = [[NSArray alloc] initWithObjects:views, uploaded, version, nil];
     NSArray* informationTitleArray = [[NSArray alloc] initWithObjects:
                                       [UIImage imageNamed:@"viewsIcon"],

@@ -39,7 +39,7 @@
 @property (nonatomic, strong) NSString *uploaded;
 @property (nonatomic, strong) NSString *version;
 @property (nonatomic, strong) NSNumber *views;
-@property (nonatomic, strong) NSNumber *size;
+@property (nonatomic, strong) NSString *size;
 @property (nonatomic) BOOL isdownloading;
 
 - (id)initWithDict:(NSDictionary*)dict andBaseUrl:(NSString*)baseUrl;

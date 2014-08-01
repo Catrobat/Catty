@@ -74,7 +74,7 @@
         [dateFormatter setDateStyle:NSDateFormatterMediumStyle];
         
         NSString *uploaded = [dateFormatter stringFromDate:projectDate];
-        [self addInformationLabelToView:view withAuthor:project.author downloads:project.downloads uploaded:uploaded version:project.size views:project.views];
+        [self addInformationLabelToView:view withAuthor:project.author downloads:project.downloads uploaded:uploaded version:project.version views:project.views];
         
         return view;
     }else{
@@ -98,7 +98,7 @@
         [dateFormatter setDateStyle:NSDateFormatterMediumStyle];
         
         NSString *uploaded = [dateFormatter stringFromDate:projectDate];
-        [self addInformationLabelToView:view withAuthor:project.author downloads:project.downloads uploaded:uploaded version:project.size views:project.views];
+        [self addInformationLabelToView:view withAuthor:project.author downloads:project.downloads uploaded:uploaded version:project.version views:project.views];
         return view;
     }
 }
@@ -342,10 +342,7 @@
     [self configureTitleLabel:informationLabel andHeight:height];
     [view addSubview:informationLabel];
     offset += height*0.075;
-        
-    version = [version stringByReplacingOccurrencesOfString:@"&lt;" withString:@""];
-    version = [version stringByAppendingString:@" MB"];
-
+    
     NSArray* informationArray = [[NSArray alloc] initWithObjects:views, uploaded, version, nil];
     NSArray* informationTitleArray = [[NSArray alloc] initWithObjects:
                                       [UIImage imageNamed:@"viewsIcon"],
