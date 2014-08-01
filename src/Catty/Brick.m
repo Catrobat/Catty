@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2013 The Catrobat Team
+ *  Copyright (C) 2010-2014 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -22,6 +22,13 @@
 #import "Brick.h"
 #import "Script.h"
 #import "BrickManager.h"
+#import "GDataXMLNode.h"
+#import "NSString+CatrobatNSStringExtensions.h"
+#import "IfLogicElseBrick.h"
+#import "IfLogicBeginBrick.h"
+#import "IfLogicEndBrick.h"
+#import "LoopEndBrick.h"
+#import "RepeatBrick.h"
 
 @interface Brick()
 
@@ -62,6 +69,31 @@
     return YES;
 }
 
+- (GDataXMLElement*)toXMLforObject:(SpriteObject*)spriteObject
+{
+    GDataXMLElement *brickXMLElement = [GDataXMLNode elementWithName:[self xmlTagName]];
+    GDataXMLElement *brickToObjectReferenceXMLElement = [GDataXMLNode elementWithName:@"object"];
+    [brickToObjectReferenceXMLElement addAttribute:[GDataXMLNode elementWithName:@"reference" stringValue:@"../../../../.."]];
+    [brickXMLElement addChild:brickToObjectReferenceXMLElement];
+    return brickXMLElement;
+}
+
+- (NSString*)xmlTagName
+{
+    NSString *tagName = [NSStringFromClass([self class]) firstCharacterLowercaseString];
+    if ([self isKindOfClass:[SpriteObject class]]) {
+        tagName = @"object";
+        // TODO: how to detect "pointedObject" from SpriteObject class??
+    } else if ([self isKindOfClass:[LoopEndBrick class]]) {
+        LoopEndBrick *endBrick = (LoopEndBrick*)self;
+        tagName = @"loopEndlessBrick";
+        if ([endBrick.loopBeginBrick isKindOfClass:[RepeatBrick class]]) {
+            tagName = @"loopEndBrick";
+        }
+    }
+    return tagName;
+}
+
 - (NSString*)description
 {
     return @"Brick (NO SPECIFIC DESCRIPTION GIVEN! OVERRIDE THE DESCRIPTION METHOD!";
@@ -87,6 +119,5 @@
         NSError(@"%@ (NO SPECIFIC Action GIVEN! OVERRIDE THE actionBlock METHOD!", self.class);
     };
 }
-
 
 @end

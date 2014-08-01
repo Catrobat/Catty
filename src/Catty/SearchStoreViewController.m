@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2013 The Catrobat Team
+ *  Copyright (C) 2010-2014 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -61,8 +61,8 @@
     [self initNoSearchResultsLabel];
 
     self.searchDisplayController.displaysSearchBarInNavigationBar = NO;
-    self.searchDisplayController.searchBar.backgroundColor = UIColor.backgroundColor;
-    self.tableView.backgroundColor = UIColor.backgroundColor;
+    self.searchDisplayController.searchBar.backgroundColor = [UIColor darkBlueColor];
+    self.tableView.backgroundColor = [UIColor darkBlueColor];
     [self.searchDisplayController setActive:YES animated:YES];
     [self.searchDisplayController.searchBar becomeFirstResponder];
     self.searchDisplayController.searchBar.delegate = self;
@@ -74,7 +74,7 @@
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
 
     [self.searchBar becomeFirstResponder];
-    self.view.backgroundColor = UIColor.backgroundColor;
+    self.view.backgroundColor = [UIColor darkBlueColor];
     [[UITextField appearanceWhenContainedIn:[UISearchBar class], nil] setTextColor:[UIColor lightOrangeColor]];
     self.edgesForExtendedLayout = UIRectEdgeAll;
     self.tableView.contentInset = UIEdgeInsetsMake(0., 0., CGRectGetHeight(self.tabBarController.tabBar.frame)+44, 0);
@@ -283,7 +283,7 @@
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     [self.tableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
-    self.tableView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"darkblue"]];
+    self.tableView.backgroundColor = [UIColor darkBlueColor];
 }
 
 - (void)initNoSearchResultsLabel

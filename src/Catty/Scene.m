@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2013 The Catrobat Team
+ *  Copyright (C) 2010-2014 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -23,27 +23,15 @@
 #import "Scene.h"
 #import "Program.h"
 #import "SpriteObject.h"
-#import "Script.h"
-#import "WhenScript.h"
-
-
-
-@interface Scene()
-
-@property (nonatomic) NSTimeInterval lastUpdateTimeInterval;
-
-@end
-
 
 @implementation Scene
 
-- (id) initWithSize:(CGSize)size andProgram:(Program *)program
+- (id)initWithSize:(CGSize)size andProgram:(Program *)program
 {
     if (self = [super initWithSize:size]) {
         self.program = program;
         self.backgroundColor = [UIColor whiteColor];
         self.numberOfObjectsWithoutBackground = 0;
-        [self startProgram];
     }
     return self;
 }
@@ -53,13 +41,24 @@
     NSDebug(@"Dealloc Scene");
 }
 
--(void)startProgram
+- (void)willMoveFromView:(SKView *)view
 {
-    CGFloat zPosition = 1;
+    self.numberOfObjectsWithoutBackground = 0;
+    [self removeAllChildren];
+    [self removeAllActions];
+}
 
+- (void)didMoveToView:(SKView *)view
+{
+    [self startProgram];
+}
+
+- (void)startProgram
+{
+    CGFloat zPosition = 1.0f;
     for (SpriteObject *obj in self.program.objectList) {
         [self addChild:obj];
-         NSDebug(@"%f",zPosition);
+        NSDebug(@"%f",zPosition);
         [obj start:zPosition];
         [obj setLook];
         [obj setProgram:self.program];
@@ -69,11 +68,10 @@
             self.numberOfObjectsWithoutBackground++;
         }
     }
+    
     for (SpriteObject *obj in self.program.objectList) {
         obj.numberOfObjectsWithoutBackground = self.numberOfObjectsWithoutBackground;
     }
-
-    
 }
 
 -(CGPoint)convertPointToScene:(CGPoint)point
@@ -85,31 +83,34 @@
     return scenePoint;
 }
 
--(float)convertYCoordinateToScene:(float)y {
+-(CGFloat)convertYCoordinateToScene:(CGFloat)y
+{
     return (self.size.height/2.0f + y);
 }
 
--(float)convertXCoordinateToScene:(float)x {
+-(CGFloat)convertXCoordinateToScene:(CGFloat)x
+{
     return (self.scene.size.width/2.0f + x);
 }
 
 -(CGPoint)convertSceneCoordinateToPoint:(CGPoint)point
 {
-    float x = point.x - self.scene.size.width/2.0f;
-    float y = point.y - self.scene.size.height/2.0f;
+    CGFloat x = point.x - self.scene.size.width/2.0f;
+    CGFloat y = point.y - self.scene.size.height/2.0f;
     return CGPointMake(x, y);
 }
 
 -(CGFloat) convertDegreesToScene:(CGFloat)degrees
 {
-    return 360.0 - degrees;
+    return 360.0f - degrees;
 }
 
 -(CGFloat) convertSceneToDegrees:(CGFloat)degrees
 {
-    return 360.0 + degrees;
+    return 360.0f + degrees;
 }
--(BOOL)touchedwith:(NSSet*)touches withX:(CGFloat) x andY:(CGFloat) y
+
+-(BOOL)touchedwith:(NSSet*)touches withX:(CGFloat)x andY:(CGFloat)y
 {
     NSDebug(@"StartTouchofScene");
     UITouch *touch = [touches anyObject];
@@ -160,8 +161,5 @@
     return YES;
 
 }
-
-
-
 
 @end

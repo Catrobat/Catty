@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2013 The Catrobat Team
+ *  Copyright (C) 2010-2014 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -44,6 +44,7 @@
 #import "BrickSelectionView.h"
 #import "BrickManager.h"
 #import "SingleBrickSelectionView.h"
+#import "Util.h"
 
 @interface ScriptCollectionViewController () <UICollectionViewDelegate,
                                               LXReorderableCollectionViewDelegateFlowLayout,
@@ -61,12 +62,11 @@
 @property  (nonatomic, strong) BrickSelectionView *brickSelectionView;
 @property (nonatomic, strong) NSArray *selectableBricks;
 @property (nonatomic, strong) NSMutableDictionary *selectedIndexPaths;
+@property (nonatomic, assign) BOOL selectedAllCells;
 
 @end
 
-@implementation ScriptCollectionViewController {
-    BOOL _selectedAllCells;
-}
+@implementation ScriptCollectionViewController
 
 #pragma mark - events
 - (void)viewDidLoad
@@ -76,10 +76,17 @@
     [self setupToolBar];
 }
 
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    self.placeHolderView.frame = self.collectionView.bounds;
+    [self.view insertSubview:self.placeHolderView aboveSubview:self.collectionView];
+}
+
 #pragma mark - Setup Collection View
 - (void)setupCollectionView
 {
-    self.collectionView.backgroundColor = UIColor.backgroundColor;
+    self.collectionView.backgroundColor = [UIColor darkBlueColor];
     self.collectionView.alwaysBounceVertical = YES;
     self.collectionView.scrollEnabled = YES;
     self.collectionView.delegate = self;
@@ -87,19 +94,19 @@
     self.collectionView.collectionViewLayout = [LXReorderableCollectionViewFlowLayout new];
 
     self.navigationItem.rightBarButtonItems = @[self.editButtonItem];
+#if kIsFirstRelease // kIsFirstRelease
+    self.navigationItem.rightBarButtonItem.enabled = NO;
+#endif // kIsFirstRelease
     self.placeHolderView = [[PlaceHolderView alloc]initWithTitle:kUIViewControllerPlaceholderTitleScripts];
-    self.placeHolderView.frame = self.collectionView.bounds;
-    [self.view addSubview:self.placeHolderView];
     self.placeHolderView.hidden = self.object.scriptList.count ? YES : NO;
     self.brickScaleTransition = [BrickScaleTransition new];
     self.selectedIndexPaths = [NSMutableDictionary dictionary];
-    
+
     // register brick cells for current brick category
     NSDictionary *allBrickTypes = [[BrickManager sharedBrickManager] classNameBrickTypeMap];
     for (NSString *className in allBrickTypes) {
         [self.collectionView registerClass:NSClassFromString([className stringByAppendingString:@"Cell"])
                 forCellWithReuseIdentifier:className];
-        
         [self.brickSelectionView.brickCollectionView registerClass:NSClassFromString([className stringByAppendingString:@"Cell"])
                                         forCellWithReuseIdentifier:className];
     }
@@ -109,7 +116,7 @@
 - (AHKActionSheet *)brickSelectionMenu
 {
     if (!_brickSelectionMenu) {
-        _brickSelectionMenu = [[AHKActionSheet alloc]initWithTitle:NSLocalizedString(kSelectionMenuTitle, nil)];
+        _brickSelectionMenu = [[AHKActionSheet alloc]initWithTitle:kUIActionSheetTitleSelectBrickCategory];
         _brickSelectionMenu.blurTintColor = [UIColor colorWithWhite:0.0f alpha:0.7f];
         _brickSelectionMenu.separatorColor = UIColor.skyBlueColor;
         _brickSelectionMenu.titleTextAttributes = @{NSFontAttributeName : [UIFont systemFontOfSize:14.0f] ,
@@ -120,35 +127,31 @@
         _brickSelectionMenu.automaticallyTintButtonImages = NO;
 
         __weak typeof(self) weakSelf = self;
-        [_brickSelectionMenu addButtonWithTitle:NSLocalizedString(@"Control", nil)
+        [_brickSelectionMenu addButtonWithTitle:kUIActionSheetButtonTitleControl
                                           image:[UIImage imageNamed:@"orange_indicator"]
                                    type:AHKActionSheetButtonTypeDefault
                                   handler:^(AHKActionSheet *actionSheet) {
                                       [weakSelf showBrickSelectionView:kControlBrick];
                                   }];
-        
-        [_brickSelectionMenu addButtonWithTitle:NSLocalizedString(@"Motion", nil)
+        [_brickSelectionMenu addButtonWithTitle:kUIActionSheetButtonTitleMotion
                                           image:[UIImage imageNamed:@"lightblue_indicator"]
                                            type:AHKActionSheetButtonTypeDefault
                                         handler:^(AHKActionSheet *actionSheet) {
                                             [weakSelf showBrickSelectionView:kMotionBrick];
                                         }];
-        
-        [_brickSelectionMenu addButtonWithTitle:NSLocalizedString(@"Sound", nil)
+        [_brickSelectionMenu addButtonWithTitle:kUIActionSheetButtonTitleSound
                                           image:[UIImage imageNamed:@"pink_indicator"]
                                            type:AHKActionSheetButtonTypeDefault
                                         handler:^(AHKActionSheet *actionSheet) {
                                             [weakSelf showBrickSelectionView:kSoundBrick];
                                         }];
-        
-        [_brickSelectionMenu addButtonWithTitle:NSLocalizedString(@"Looks", nil)
+        [_brickSelectionMenu addButtonWithTitle:kUIActionSheetButtonTitleLooks
                                           image:[UIImage imageNamed:@"green_indicator"]
                                            type:AHKActionSheetButtonTypeDefault
                                         handler:^(AHKActionSheet *actionSheet) {
                                             [weakSelf showBrickSelectionView:kLookBrick];
                                         }];
-        
-        [_brickSelectionMenu addButtonWithTitle:NSLocalizedString(@"Variables", nil)
+        [_brickSelectionMenu addButtonWithTitle:kUIActionSheetButtonTitleVariables
                                           image:[UIImage imageNamed:@"red_indicator"]
                                            type:AHKActionSheetButtonTypeDefault
                                         handler:^(AHKActionSheet *actionSheet) {
@@ -198,7 +201,7 @@
         self.selectableBricks = [BrickManager.sharedBrickManager selectableBricksForCategoryType:type];
     }
     
-    [self.brickSelectionView showWithView:self.collectionView fromViewController:self completion:^{
+    [self.brickSelectionView showWithView:self.placeHolderView fromViewController:self completion:^{
         [self setupToolBar];
         [self.brickSelectionView.brickCollectionView reloadData];
     }];
@@ -212,14 +215,14 @@
             [self setupToolBar];
         }];
     }
-
     [self.brickSelectionMenu show];
 }
 
 - (void)playSceneAction:(id)sender
 {
-    [self.navigationController setToolbarHidden:YES];
-    [self performSegueWithIdentifier:kSegueToScene sender:sender];
+    [self.navigationController setToolbarHidden:YES animated:YES];
+    ScenePresenterViewController *vc =[[ScenePresenterViewController alloc] initWithProgram:[Program programWithLoadingInfo:[Util programLoadingInfoForProgramWithName:[Util lastProgram]]]];
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 #pragma mark - UIViewControllerAnimatedTransitioning delegate
@@ -245,14 +248,13 @@
 }
 
 #pragma mark BrickDetailViewController Delegate
-
 - (void)brickDetailViewController:(BrickDetailViewController *)brickDetailViewController
                  viewDidDisappear:(BOOL)deleteBrick withBrickCell:(BrickCell *)brickCell copyBrick:(BOOL)copyBrick
 {
     self.collectionView.userInteractionEnabled = YES;
     self.navigationController.navigationBar.userInteractionEnabled = YES;
     [self.collectionView reloadData];
-    
+
     if (deleteBrick) {
         [self removeBrickWithIndexPath:self.selectedIndexPath];
     } else {
@@ -263,7 +265,6 @@
 }
 
 #pragma mark - Collection View Datasource
-
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView
 {
     NSInteger count = 0;
@@ -287,24 +288,21 @@
         }
         count = ([script.brickList count] + 1); // because script itself is a brick in IDE too
     } else {
-        if (collectionView == self.brickSelectionView.brickCollectionView) count = 1;
+        count = ((collectionView == self.brickSelectionView.brickCollectionView) ? 1 : 0);
     }
     return count;
 }
 
 #pragma mark - UICollectionView Delegates
-
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
     BrickCell *brickCell = nil;
-    
     if (self.collectionView == collectionView) {
         Script *script = [self.object.scriptList objectAtIndex:indexPath.section];
         if (! script) {
             NSError(@"This should never happen");
             abort();
         }
-        
         if (indexPath.item == 0) {
             // case it's a script brick
             NSString *scriptSubClassName = NSStringFromClass([script class]);
@@ -324,13 +322,12 @@
             id<BrickProtocol> brick = [self.selectableBricks objectAtIndex:indexPath.section];
             NSString *brickTypeName = NSStringFromClass([brick class]);
             brickCell = [collectionView dequeueReusableCellWithReuseIdentifier:brickTypeName
-                                                                             forIndexPath:indexPath];
+                                                                  forIndexPath:indexPath];
             brickCell.brick = [self.selectableBricks objectAtIndex:indexPath.section];
         }
     }
-    
-    if (_selectedAllCells) {
-         [brickCell selectedState:_selectedAllCells setEditingState:self.editing];
+    if (self.selectedAllCells) {
+        [brickCell selectedState:self.selectedAllCells setEditingState:self.editing];
     } else {
         NSString *key = [self keyWithSelectIndexPath:indexPath];
         BOOL selected = indexPath == self.selectedIndexPaths[key];
@@ -338,7 +335,9 @@
     }
     [brickCell setupBrickCell];
     brickCell.delegate = self;
-    
+#if kIsFirstRelease // kIsFirstRelease
+    brickCell.enabled = NO;
+#endif // kIsFirstRelease
     return brickCell;
 }
 
@@ -395,8 +394,7 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
     BrickCell *cell = (BrickCell*)[collectionView cellForItemAtIndexPath:indexPath];
-    
-    if (!self.isEditing) {
+    if (! self.isEditing) {
         if (collectionView == self.collectionView) {
             self.selectedIndexPath =  indexPath;
             BrickDetailViewController *brickDetailViewcontroller = [BrickDetailViewController new];
@@ -415,7 +413,6 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
                 [self.brickSelectionView dismissView:self withView:self.collectionView fastDismiss:YES completion:^{
                     [self.brickSelectionView removeFromSuperview];
                     [self setupToolBar];
-                    
                     SingleBrickSelectionView *singleBrickSelectionView = [[SingleBrickSelectionView alloc] initWithFrame:self.view.bounds];
                     singleBrickSelectionView.delegate = self;
                     [singleBrickSelectionView showSingleBrickSelectionViewWithBrickCell:cell fromView:self.view
@@ -483,7 +480,11 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
 
 - (BOOL)collectionView:(UICollectionView *)collectionView canMoveItemAtIndexPath:(NSIndexPath *)indexPath
 {
+#if kIsFirstRelease // kIsFirstRelease
+    return NO;
+#else // kIsFirstRelease
     return ((self.isEditing || indexPath.item == 0) ? NO : YES);
+#endif // kIsFirstRelease
 }
 
 #pragma mark - Add brick Delegate
@@ -544,24 +545,6 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
     }
 }
 
-#pragma mark - segue handling
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    static NSString* toSceneSegueID = kSegueToScene;
-    UIViewController* destController = segue.destinationViewController;
-    if ([sender isKindOfClass:[UIBarButtonItem class]]) {
-        if ([segue.identifier isEqualToString:toSceneSegueID]) {
-            if ([destController isKindOfClass:[ScenePresenterViewController class]]) {
-                ScenePresenterViewController* scvc = (ScenePresenterViewController*) destController;
-                if ([scvc respondsToSelector:@selector(setProgram:)]) {
-                    [scvc setController:(UITableViewController *)self];
-                    [scvc performSelector:@selector(setProgram:) withObject:self.object.program];
-                }
-            }
-        }
-    }
-}
-
 #pragma mark - helpers
 
 - (void)setupToolBar
@@ -569,7 +552,6 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
     self.navigationController.toolbar.barStyle = UIBarStyleBlack;
     self.navigationController.toolbar.tintColor = UIColor.orangeColor;
 
-    
     UIBarButtonItem *flexItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace
                                                                               target:nil
                                                                               action:nil];
@@ -578,19 +560,19 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
     
         if (![self.brickSelectionView active]) {
             self.navigationController.toolbar.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleTopMargin;
-            
+
             UIBarButtonItem *add = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd
                                                                                  target:self
                                                                                  action:@selector(showBrickSelectionMenu)];
-            
+#if kIsFirstRelease // kIsFirstRelease
+            add.enabled = NO;
+#else // kIsFirstRelease
             add.enabled = !self.editing;
-            
+#endif // kIsFirstRelease
             UIBarButtonItem *play = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemPlay
                                                                                   target:self
                                                                                   action:@selector(playSceneAction:)];
-            
             play.enabled = !self.editing;
-
             self.toolbarItems = @[flexItem,invisibleButton, add, invisibleButton, flexItem,
                                   flexItem, flexItem, invisibleButton, play, invisibleButton, flexItem];
         } else {
@@ -676,7 +658,7 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
 
 - (void)selectAllBricks
 {
-    _selectedAllCells = YES;
+    self.selectedAllCells = YES;
     for (BrickCell *cell in self.collectionView.visibleCells) {
         cell.selectButton.selected = YES;
         NSIndexPath *indexPath = [self.collectionView indexPathForCell:cell];
@@ -733,7 +715,7 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
     for (BrickCell *cell in self.collectionView.visibleCells) {
         [cell animateBrick:NO];
     }
-    
+
     if (copy) {
         [self.collectionView performBatchUpdates:^{
             [script.brickList insertObject:brick atIndex:indexPath.item ];
@@ -752,7 +734,6 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
                 [script.brickList insertObject:brick atIndex:indexPath.item];
                 [self.collectionView insertItemsAtIndexPaths:@[indexPath]];
             }
-            
         } completion:^(BOOL finished) {
             if (finished) {
                 NSIndexPath *newCellIndexPath = [NSIndexPath indexPathForItem:indexPath.item + 1 inSection:indexPath.section];
@@ -776,12 +757,11 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
 {
     [super setEditing:editing animated:animated];
     [self setupToolBar];
-    
+
     if (self.isEditing) {
         self.navigationItem.title = kUINavigationItemTitleEditMenu;
         self.navigationItem.rightBarButtonItem.title = kUIBarButtonItemTitleDelete;
         self.navigationItem.rightBarButtonItem.tintColor = UIColor.redColor;
-        
         [UIView animateWithDuration:animated ? 0.5f : 0.0f  delay:0.0f usingSpringWithDamping:0.6f initialSpringVelocity:1.5f options:UIViewAnimationOptionCurveEaseInOut animations:^{
             for (BrickCell *brickCell in self.collectionView.visibleCells) {
                 brickCell.center = CGPointMake(brickCell.center.x + kSelectButtonTranslationOffsetX, brickCell.center.y);
@@ -792,6 +772,7 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
         self.navigationItem.title = kUITableViewControllerMenuTitleScripts;
         self.navigationItem.rightBarButtonItem.tintColor = UIColor.lightOrangeColor;
         
+        __weak ScriptCollectionViewController *weakself = self;
         [UIView animateWithDuration:animated ? 0.3f : 0.0f delay:0.0f usingSpringWithDamping:0.65f initialSpringVelocity:0.5f options:UIViewAnimationOptionCurveEaseInOut
                          animations:^{
                              for (BrickCell *brickCell in self.collectionView.visibleCells) {
@@ -800,8 +781,8 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
                              }
                          } completion:^(BOOL finished) {
                              if (self.selectedIndexPaths.count && finished) {
-                                 [self removeBricksWithIndexPaths:[self.selectedIndexPaths allValues]];
-                                 _selectedAllCells = NO;
+                                 [weakself removeBricksWithIndexPaths:[self.selectedIndexPaths allValues]];
+                                 weakself.selectedAllCells = NO;
                              }
                          }];
     }

@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2013 The Catrobat Team
+ *  Copyright (C) 2010-2014 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -68,12 +68,15 @@ NSMutableString* resultString;
     return result;
 }
 
-
-- (NSString*) firstCharacterUppercaseString
+- (NSString*)firstCharacterUppercaseString
 {
     return [[[self substringToIndex:1] uppercaseString] stringByAppendingString:[self substringFromIndex:1]];
 }
 
+- (NSString*)firstCharacterLowercaseString
+{
+    return [[[self substringToIndex:1] lowercaseString] stringByAppendingString:[self substringFromIndex:1]];
+}
 
 + (NSString *)uuid
 {

@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2013 The Catrobat Team
+ *  Copyright (C) 2010-2014 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -36,19 +36,13 @@
 
 @implementation AudioManager
 
-static AudioManager* sharedAudioManager = nil;
-
-
 + (instancetype)sharedAudioManager
 {
-    @synchronized(self) {
-        if (sharedAudioManager == nil) {
-            sharedAudioManager = [[[self class] alloc] init];
-        }
-    }
-    return sharedAudioManager;
+    static AudioManager *_sharedCattyAudioManager = nil;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{ _sharedCattyAudioManager = [AudioManager new]; });
+    return _sharedCattyAudioManager;
 }
-
 
 - (id)init
 {
@@ -154,7 +148,6 @@ static AudioManager* sharedAudioManager = nil;
     }
     [self.sounds removeAllObjects];
     self.sounds = nil;
-    sharedAudioManager = nil;
 }
 
 - (void)pauseAllSounds

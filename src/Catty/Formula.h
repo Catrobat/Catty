@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2013 The Catrobat Team
+ *  Copyright (C) 2010-2014 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -24,17 +24,16 @@
 
 @class FormulaElement;
 @class SpriteObject;
+@class GDataXMLElement;
 
 @interface Formula : NSObject
 
 @property (nonatomic, strong) FormulaElement* formulaTree;
 
+- (double)interpretDoubleForSprite:(SpriteObject*)sprite;
+- (int)interpretIntegerForSprite:(SpriteObject*)sprite;
+- (BOOL)interpretBOOLForSprite:(SpriteObject*)sprite;
 
--(double) interpretDoubleForSprite:(SpriteObject*)sprite;
--(int) interpretIntegerForSprite:(SpriteObject*)sprite;
--(BOOL) interpretBOOLForSprite:(SpriteObject*)sprite;
-
-
-
+- (GDataXMLElement*)toXMLforObject:(SpriteObject*)spriteObject;
 
 @end

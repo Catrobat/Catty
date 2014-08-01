@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2013 The Catrobat Team
+ *  Copyright (C) 2010-2014 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -32,6 +32,7 @@
 #import "NetworkDefines.h"
 #import "SegueDefines.h"
 #import "ProgramDetailStoreViewController.h"
+#import "DarkBlueGradientFeaturedCell.h"
 
 #import "UIImage+CatrobatUIImageExtensions.h"
 #import "UIColor+CatrobatUIColorExtensions.h"
@@ -42,7 +43,9 @@
 @property (nonatomic, strong) NSMutableData *data;
 @property (nonatomic, strong) NSURLConnection *connection;
 @property (nonatomic, strong) NSMutableArray *projects;
+@property (nonatomic, strong) NSArray *featuredSize;
 @property (nonatomic, strong) LoadingView* loadingView;
+@property (nonatomic) BOOL shouldShowAlert;
 
 @end
 
@@ -68,6 +71,9 @@
     //  CGFloat navigationBarHeight = self.navigationController.navigationBar.frame.size.height;
     //  self.tableView.contentInset = UIEdgeInsetsMake(navigationBarHeight, 0, 0, 0);
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
+    self.tableView.rowHeight = UITableViewAutomaticDimension;
+    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    self.shouldShowAlert = YES;
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -115,7 +121,7 @@
 #pragma mark - Helper
 - (UITableViewCell*)cellForProjectsTableView:(UITableView*)tableView atIndexPath:(NSIndexPath*)indexPath
 {
-    static NSString *CellIdentifier = kImageCell;
+    static NSString *CellIdentifier = kFeaturedCell;
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
     
     if (!cell) {
@@ -123,39 +129,45 @@
         abort();
     }
 
-    if([cell conformsToProtocol:@protocol(CatrobatImageCell)]) {
+    if([cell isKindOfClass:[DarkBlueGradientFeaturedCell class]]) {
         CatrobatProject *project = [self.projects objectAtIndex:indexPath.row];
         
-        UITableViewCell <CatrobatImageCell>* imageCell = (UITableViewCell <CatrobatImageCell>*)cell;
-        imageCell.titleLabel.text = project.projectName;
-        
+        DarkBlueGradientFeaturedCell *imageCell = (DarkBlueGradientFeaturedCell *)cell;
         [self loadImage:project.featuredImage forCell:imageCell atIndexPath:indexPath];
+        if (![imageCell.featuredImage.image isEqual:[UIImage imageNamed:@"programs"]]) {
+            imageCell.featuredImage.frame = cell.frame;
+            imageCell.featuredImage.frame = CGRectMake(0, 0, imageCell.featuredImage.frame.size.width, imageCell.featuredImage.frame.size.height);
+            [self loadingIndicator:NO];
+        }
     }
     
     return cell;
 }
 
 
--(void)loadImage:(NSString*)imageURLString forCell:(UITableViewCell <CatrobatImageCell>*) imageCell atIndexPath:(NSIndexPath*)indexPath
+
+-(void)loadImage:(NSString*)imageURLString forCell:(DarkBlueGradientFeaturedCell *) imageCell atIndexPath:(NSIndexPath*)indexPath
 {
     
-    imageCell.iconImageView.image =
-    [UIImage imageWithContentsOfURL:[NSURL URLWithString:imageURLString]
-                   placeholderImage:[UIImage imageNamed:@"programs"]
-                       onCompletion:^(UIImage *image) {
-                           dispatch_async(dispatch_get_main_queue(), ^{
-                               [self.tableView beginUpdates];
-                               UITableViewCell <CatrobatImageCell>* cell = (UITableViewCell <CatrobatImageCell>*)[self.tableView cellForRowAtIndexPath:indexPath];
-                               if(cell) {
-                                   cell.iconImageView.image = image;
-                               }
-                               [self.tableView endUpdates];
-                           });
-                       }];
-    
-    
-    
-    imageCell.iconImageView.contentMode = UIViewContentModeScaleAspectFit;
+    [self loadingIndicator:YES];
+    UIImage* image = [UIImage imageWithContentsOfURL:[NSURL URLWithString:imageURLString]
+                                    placeholderImage:[UIImage imageNamed:@"programs"]
+                                        onCompletion:^(UIImage *image) {
+                                            dispatch_async(dispatch_get_main_queue(), ^{
+                                                [self.tableView beginUpdates];
+                                                DarkBlueGradientFeaturedCell *cell = (DarkBlueGradientFeaturedCell*)[self.tableView cellForRowAtIndexPath:indexPath];
+                                                if(cell) {
+                                                    cell.featuredImage.image = image;
+                                                    cell.featuredImage.frame = cell.frame;
+                                                    cell.featuredImage.frame = CGRectMake(0, 0, cell.featuredImage.frame.size.width, cell.featuredImage.frame.size.height);
+                                                    self.featuredSize = @[[NSNumber numberWithFloat:image.size.width],[NSNumber numberWithFloat:image.size.height]];
+                                                    [self loadingIndicator:NO];
+                                                }
+                                                [self.tableView endUpdates];
+                                            });
+                                        }];
+    imageCell.featuredImage.image = image;
+    imageCell.featuredImage.contentMode = UIViewContentModeScaleAspectFit;
 }
 
 
@@ -178,6 +190,19 @@
 
 -(void)loadIDsWith:(NSData*)data andResponse:(NSURLResponse*)response
 {
+    if (data == nil) {
+        if (self.shouldShowAlert) {
+            self.shouldShowAlert = NO;
+            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:kUIAlertViewTitleStandard
+                                                                message:kUIAlertViewMessageSlowInternetConnection
+                                                               delegate:self.navigationController.visibleViewController
+                                                      cancelButtonTitle:kUIAlertViewButtonTitleOK
+                                                      otherButtonTitles:nil];
+            [alertView show];
+        }
+        return;
+    }
+
     NSError *error = nil;
     id jsonObject = [NSJSONSerialization JSONObjectWithData:data
                                                     options:NSJSONReadingMutableContainers
@@ -219,6 +244,19 @@
 }
 -(void)loadInfosWith:(NSData*)data andResponse:(NSURLResponse*)response
 {
+    if (data == nil) {
+        if (self.shouldShowAlert) {
+            self.shouldShowAlert = NO;
+            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:kUIAlertViewTitleStandard
+                                                                message:kUIAlertViewMessageSlowInternetConnection
+                                                               delegate:self.navigationController.visibleViewController
+                                                      cancelButtonTitle:kUIAlertViewButtonTitleOK
+                                                      otherButtonTitles:nil];
+            [alertView show];
+        }
+        return;
+    }
+
     NSError *error = nil;
     id jsonObject = [NSJSONSerialization JSONObjectWithData:data
                                                     options:NSJSONReadingMutableContainers
@@ -265,7 +303,7 @@
     [self loadingIndicator:YES];
 }
 
-- (void) hideLoadingView
+- (void)hideLoadingView
 {
     [self.loadingView hide];
     [self loadingIndicator:NO];
@@ -281,17 +319,25 @@
 #pragma mark - Table view delegate
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return [TableUtil getHeightForImageCell];
+    if(self.featuredSize){
+        NSNumber* width = self.featuredSize[0];
+        NSNumber* height = self.featuredSize[1];
+        
+        CGFloat factor = width.floatValue / [Util getScreenWidth];
+        return height.floatValue/factor;
+    }
+    
+    return [TableUtil getHeightForFeaturedCell];
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    [super tableView:tableView didSelectRowAtIndexPath:indexPath];
     static NSString *segueToProgramDetail = kSegueToProgramDetail;
-    if (! self.editing) {
+    if (!self.editing) {
         UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
         if ([self shouldPerformSegueWithIdentifier:segueToProgramDetail sender:cell]) {
             [self performSegueWithIdentifier:segueToProgramDetail sender:cell];
+            
         }
     }
 }

@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2013 The Catrobat Team
+ *  Copyright (C) 2010-2014 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -35,6 +35,8 @@
 #import "Script.h"
 #import "Brick.h"
 #import "LanguageTranslationDefines.h"
+#import "UserVariable.h"
+#import "OrderedMapTable.h"
 
 @implementation Program
 
@@ -48,34 +50,33 @@
 # pragma mark - factories
 + (instancetype)defaultProgramWithName:(NSString*)programName
 {
+    programName = [Util uniqueName:programName existingNames:[[self class] allProgramNames]];
     Program* program = [[Program alloc] init];
     program.header = [[Header alloc] init];
-
-    // TODO: check all constants for this default header properties after Webteam has updated code.xml (remove refs, etc.)...
     program.header.applicationBuildName = nil;
-    program.header.applicationBuildNumber = @"0";
+    program.header.applicationBuildNumber = kCatrobatApplicationBuildNumber;
     program.header.applicationName = [Util getProjectName];
     program.header.applicationVersion = [Util getProjectVersion];
     program.header.catrobatLanguageVersion = kCatrobatLanguageVersion;
     program.header.dateTimeUpload = nil;
-    program.header.description = @"XStream kompatibel";
+    program.header.description = @"********** TODO: CHANGE THIS **********"; // TODO: has to be changed
     program.header.deviceName = [Util getDeviceName];
-    program.header.mediaLicense = nil;
+    program.header.mediaLicense = kCatrobatMediaLicense;
     program.header.platform = [Util getPlatformName];
     program.header.platformVersion = [Util getPlatformVersion];
-    program.header.programLicense = nil;
+    program.header.programLicense = kCatrobatProgramLicense;
     program.header.programName = programName;
-    program.header.remixOf = nil;
+    program.header.remixOf = nil; // no remix
     program.header.screenHeight = @([Util getScreenHeight]);
     program.header.screenWidth = @([Util getScreenWidth]);
-    program.header.screenMode = @"STRETCH";
+    program.header.screenMode = kCatrobatScreenModeStretch;
     program.header.url = nil;
     program.header.userHandle = nil;
-    program.header.programScreenshotManuallyTaken = (YES ? @"true" : @"false");
+    program.header.programScreenshotManuallyTaken = kCatrobatProgramScreenshotDefaultValue;
     program.header.tags = nil;
 
     FileManager *fileManager = [[FileManager alloc] init];
-    if (! [self programExists:programName]) {
+    if (! [fileManager directoryExists:programName]) {
         [fileManager createDirectory:[program projectPath]];
     }
 
@@ -89,8 +90,9 @@
         [fileManager createDirectory:soundsDirName];
     }
 
-    [program addNewObjectWithName:kGeneralBackgroundObjectName];
-    [program addNewObjectWithName:kGeneralDefaultObjectName];
+    [program addObjectWithName:kGeneralBackgroundObjectName];
+    [program addObjectWithName:kGeneralDefaultObjectName];
+    NSLog(@"%@", [program description]);
     return program;
 }
 
@@ -100,19 +102,18 @@
     NSDebug(@"Path: %@", loadingInfo.basePath);
     NSString *xmlPath = [NSString stringWithFormat:@"%@%@", loadingInfo.basePath, kProgramCodeFileName];
     NSDebug(@"XML-Path: %@", xmlPath);
-    Program *program = [[[Parser alloc] init] generateObjectForProgramWithPath:xmlPath];
+    Parser *parser = [[Parser alloc] init];
+    Program *program = [parser generateObjectForProgramWithPath:xmlPath];
+    program.XMLdocument = parser.XMLdocument;
 
     if (! program)
         return nil;
 
+    NSLog(@"%@", [program description]);
     NSDebug(@"ProjectResolution: width/height:  %f / %f", program.header.screenWidth.floatValue, program.header.screenHeight.floatValue);
 
     // setting effect
     for (SpriteObject *sprite in program.objectList) {
-        //sprite.spriteManagerDelegate = self;
-        //sprite.broadcastWaitDelegate = self.broadcastWaitHandler;
-
-        // TODO: change!
         for (Script *script in sprite.scriptList) {
             for (Brick *brick in script.brickList) {
                 brick.object = sprite;
@@ -120,10 +121,7 @@
         }
     }
 
-    // update last modification time
-    AppDelegate *appDelegate = (AppDelegate*)[UIApplication sharedApplication].delegate;
-    [appDelegate.fileManager changeModificationDate:[NSDate date]
-                                      forFileAtPath:xmlPath];
+    [self updateLastModificationTimeForProgramWithName:loadingInfo.visibleName];
     return program;
 }
 
@@ -132,6 +130,17 @@
     NSString *lastProgramName = [Util lastProgram];
     ProgramLoadingInfo *loadingInfo = [Util programLoadingInfoForProgramWithName:lastProgramName];
     return [Program programWithLoadingInfo:loadingInfo];
+}
+
++ (void)updateLastModificationTimeForProgramWithName:(NSString*)programName
+{
+    NSString *xmlPath = [NSString stringWithFormat:@"%@%@",
+                         [self projectPathForProgramWithName:programName],
+                         kProgramCodeFileName];
+
+    AppDelegate *appDelegate = (AppDelegate*)[UIApplication sharedApplication].delegate;
+    [appDelegate.fileManager changeModificationDate:[NSDate date]
+                                      forFileAtPath:xmlPath];
 }
 
 - (NSInteger)numberOfTotalObjects
@@ -157,7 +166,7 @@
     return 0;
 }
 
-- (SpriteObject*)addNewObjectWithName:(NSString*)objectName
+- (SpriteObject*)addObjectWithName:(NSString*)objectName
 {
     SpriteObject* object = [[SpriteObject alloc] init];
     //object.originalSize;
@@ -165,17 +174,14 @@
     //object.broadcastWaitDelegate = self.broadcastWaitHandler;
     object.currentLook = nil;
 
-    NSMutableArray *objectNames = [NSMutableArray arrayWithCapacity:[self.objectList count]];
-    for (SpriteObject *currentObject in self.objectList) {
-        [objectNames addObject:currentObject.name];
-    }
-    object.name = [Util uniqueName:objectName existingNames:objectNames];
+    object.name = [Util uniqueName:objectName existingNames:[self allObjectNames]];
     object.program = self;
     [self.objectList addObject:object];
+    [self saveToDisk];
     return object;
 }
 
-- (void)removeObject:(SpriteObject*)object
+- (void)removeObjectFromList:(SpriteObject*)object
 {
     // do not use NSArray's removeObject here
     // => if isEqual is overriden this would lead to wrong results
@@ -183,11 +189,30 @@
     for (SpriteObject *currentObject in self.objectList) {
         if (currentObject == object) {
             // TODO: remove all sounds, images from disk that are not needed any more...
+//            currentObject.program = nil;
+//            [currentObject removeSounds:currentObject.soundList];
+//            [currentObject removeLooks:currentObject.lookList];
             [self.objectList removeObjectAtIndex:index];
             break;
         }
         ++index;
     }
+}
+
+- (void)removeObject:(SpriteObject*)object
+{
+    [self removeObjectFromList:object];
+    [self saveToDisk];
+}
+
+- (void)removeObjects:(NSArray*)objects
+{
+    for (id object in objects) {
+        if ([object isKindOfClass:[SpriteObject class]]) {
+            [self removeObject:((SpriteObject*)object)];
+        }
+    }
+    [self saveToDisk];
 }
 
 - (BOOL)objectExistsWithName:(NSString*)objectName
@@ -203,9 +228,9 @@
 #pragma mark - Custom getter and setter
 - (NSMutableArray*)objectList
 {
-    // lazy instantiation
-    if (! _objectList)
-        _objectList = [[NSMutableArray alloc] init];
+    if (!_objectList) {
+         _objectList = [NSMutableArray array];
+    }
     return _objectList;
 }
 
@@ -239,6 +264,23 @@
 - (void)removeFromDisk
 {
     [Program removeProgramFromDiskWithProgramName:self.header.programName];
+}
+
++ (void)copyProgramWithName:(NSString*)sourceProgramName
+     destinationProgramName:(NSString*)destinationProgramName
+{
+    NSString *sourceProgramPath = [[self class] projectPathForProgramWithName:sourceProgramName];
+    destinationProgramName = [Util uniqueName:destinationProgramName existingNames:[self allProgramNames]];
+    NSString *destinationProgramPath = [[self class] projectPathForProgramWithName:destinationProgramName];
+
+    AppDelegate *appDelegate = (AppDelegate*)[UIApplication sharedApplication].delegate;
+    [appDelegate.fileManager copyExistingDirectoryAtPath:sourceProgramPath toPath:destinationProgramPath];
+    ProgramLoadingInfo *destinationProgramLoadingInfo = [[ProgramLoadingInfo alloc] init];
+    destinationProgramLoadingInfo.basePath = destinationProgramPath;
+    destinationProgramLoadingInfo.visibleName = destinationProgramName;
+    Program *program = [Program programWithLoadingInfo:destinationProgramLoadingInfo];
+    program.header.programName = destinationProgramLoadingInfo.visibleName;
+    [program saveToDisk];
 }
 
 + (void)removeProgramFromDiskWithProgramName:(NSString*)programName
@@ -275,39 +317,120 @@
 {
     GDataXMLElement *rootXMLElement = [GDataXMLNode elementWithName:@"program"];
     [rootXMLElement addChild:[self.header toXML]];
-    
+
     GDataXMLElement *objectListXMLElement = [GDataXMLNode elementWithName:@"objectList"];
     for (id object in self.objectList) {
         if ([object isKindOfClass:[SpriteObject class]])
             [objectListXMLElement addChild:[((SpriteObject*) object) toXML]];
     }
     [rootXMLElement addChild:objectListXMLElement];
-    // TODO: uncomment this after VariablesContainer implements the toXML method
-    //  [rootXMLElement addChild:[self.variables toXML]];
+
+    if (self.variables) {
+        GDataXMLElement *variablesXMLElement = [GDataXMLNode elementWithName:@"variables"];
+        VariablesContainer *variableLists = self.variables;
+
+        GDataXMLElement *objectVariableListXMLElement = [GDataXMLNode elementWithName:@"objectVariableList"];
+        // TODO: uncomment this after toXML methods are implemented
+        NSUInteger totalNumOfObjectVariables = [variableLists.objectVariableList count];
+//        NSUInteger totalNumOfProgramVariables = [variableLists.programVariableList count];
+        for (NSUInteger index = 0; index < totalNumOfObjectVariables; ++index) {
+            NSArray *variables = [variableLists.objectVariableList objectAtIndex:index];
+            GDataXMLElement *entryXMLElement = [GDataXMLNode elementWithName:@"entry"];
+            GDataXMLElement *entryToObjectReferenceXMLElement = [GDataXMLNode elementWithName:@"object"];
+            [entryToObjectReferenceXMLElement addAttribute:[GDataXMLNode elementWithName:@"reference" stringValue:@"../../../../objectList/object[6]"]];
+            [entryXMLElement addChild:entryToObjectReferenceXMLElement];
+            GDataXMLElement *listXMLElement = [GDataXMLNode elementWithName:@"list"];
+            for (id variable in variables) {
+                if ([variable isKindOfClass:[UserVariable class]])
+                    [listXMLElement addChild:[((UserVariable*)variable) toXMLforProgram:self]];
+            }
+            [entryXMLElement addChild:listXMLElement];
+            [objectVariableListXMLElement addChild:entryXMLElement];
+        }
+//        if (totalNumOfObjectVariables) {
+            [variablesXMLElement addChild:objectVariableListXMLElement];
+//        }
+
+        GDataXMLElement *programVariableListXMLElement = [GDataXMLNode elementWithName:@"programVariableList"];
+        for (id variable in variableLists.programVariableList) {
+            if ([variable isKindOfClass:[UserVariable class]])
+                [programVariableListXMLElement addChild:[((UserVariable*) variable) toXMLforProgram:self]];
+        }
+//        if (totalNumOfProgramVariables) {
+            [variablesXMLElement addChild:programVariableListXMLElement];
+//        }
+
+//        if (totalNumOfObjectVariables || totalNumOfProgramVariables) {
+            [rootXMLElement addChild:variablesXMLElement];
+//        }
+    }
     return rootXMLElement;
 }
 
+//#define SIMULATOR_DEBUGGING_ENABLED 1
+//#define SIMULATOR_DEBUGGING_BASE_PATH @"/Users/ralph/Desktop/diff"
+
 - (void)saveToDisk
 {
+#if kIsFirstRelease
+    return;
+#else
     dispatch_queue_t saveToDiskQ = dispatch_queue_create("save to disk", NULL);
     dispatch_async(saveToDiskQ, ^{
         // background thread
         GDataXMLDocument *document = [[GDataXMLDocument alloc] initWithRootElement:[self toXML]];
         //    NSData *xmlData = document.XMLData;
-        NSString *xmlString = [document.rootElement XMLStringPrettyPrinted:YES];
+        NSString *xmlString = [NSString stringWithFormat:@"%@\n%@",
+                               kCatrobatXMLDeclaration,
+                               [document.rootElement XMLStringPrettyPrinted:YES]];
         // TODO: outsource this to file manager
-        NSString *xmlPath = [NSString stringWithFormat:@"%@%@", [self projectPath], kProgramCodeFileName];
-        //    [xmlData writeToFile:filePath atomically:YES];
         NSError *error = nil;
+        NSString *xmlPath = [NSString stringWithFormat:@"%@%@", [self projectPath], kProgramCodeFileName];
         [xmlString writeToFile:xmlPath atomically:YES encoding:NSUTF8StringEncoding error:&error];
         NSLogError(error);
-        // maybe later call some functions back here, that should update the UI on main thread...
-        //    dispatch_async(dispatch_get_main_queue(), ^{});
+
+//#ifdef SIMULATOR_DEBUGGING_ENABLED
+//        NSString *referenceXmlString = [NSString stringWithFormat:@"%@\n%@",
+//                                        kCatrobatXMLDeclaration,
+//                                        [self.XMLdocument.rootElement XMLStringPrettyPrinted:YES]];
+////        NSLog(@"Reference XML-Document:\n\n%@\n\n", referenceXmlString);
+////        NSLog(@"XML-Document:\n\n%@\n\n", xmlString);
+//        NSString *referenceXmlPath = [NSString stringWithFormat:@"%@/reference.xml", SIMULATOR_DEBUGGING_BASE_PATH];
+//        NSString *generatedXmlPath = [NSString stringWithFormat:@"%@/generated.xml", SIMULATOR_DEBUGGING_BASE_PATH];
+//        [referenceXmlString writeToFile:referenceXmlPath
+//                             atomically:YES
+//                               encoding:NSUTF8StringEncoding
+//                                  error:&error];
+//        [xmlString writeToFile:generatedXmlPath
+//                    atomically:YES
+//                      encoding:NSUTF8StringEncoding
+//                         error:&error];
+//
+////#import <Foundation/NSTask.h> // debugging for OSX
+////        NSTask *task = [[NSTask alloc] init];
+////        [task setLaunchPath:@"/usr/bin/diff"];
+////        [task setArguments:[NSArray arrayWithObjects:referenceXmlPath, generatedXmlPath, nil]];
+////        [task setStandardOutput:[NSPipe pipe]];
+////        [task setStandardInput:[NSPipe pipe]]; // piping to NSLog-tty (terminal emulator)
+////        [task launch];
+////        [task release];
+//#endif
 
         // update last access time
-        AppDelegate *appDelegate = (AppDelegate*)[UIApplication sharedApplication].delegate;
-        [appDelegate.fileManager changeModificationDate:[NSDate date] forFileAtPath:xmlPath];
+        [[self class] updateLastModificationTimeForProgramWithName:self.header.programName];
+
+        // maybe later call some functions back here, that should update the UI on main thread...
+        dispatch_async(dispatch_get_main_queue(), ^{
+            NSNotificationCenter *notificationCenter = [NSNotificationCenter defaultCenter];
+            [notificationCenter postNotificationName:kHideLoadingViewNotification object:self];
+            [notificationCenter postNotificationName:kShowSavedViewNotification object:self];
+        });
+//        // execute 2 seconds later => just for testing purposes
+//        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 2 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
+//            [[NSNotificationCenter defaultCenter] postNotificationName:kHideLoadingViewNotification object:self];
+//        });
     });
+#endif
 }
 
 - (BOOL)isLastProgram
@@ -320,15 +443,71 @@
     [Program setLastProgram:self];
 }
 
+- (void)translateDefaultProgram
+{
+    SpriteObject *backgroundObject = [self.objectList objectAtIndex:kBackgroundObjectIndex];
+    backgroundObject.name = kGeneralBackgroundObjectName;
+    [self renameToProgramName:kDefaultProgramName];
+}
+
 - (void)renameToProgramName:(NSString *)programName
 {
+    if ([self.header.programName isEqualToString:programName]) {
+        return;
+    }
+    BOOL isLastProgram = [self isLastProgram];
     NSString *oldPath = [self projectPath];
-    self.header.programName = programName;
+    self.header.programName = [Util uniqueName:programName existingNames:[[self class] allProgramNames]];
     NSString *newPath = [self projectPath];
     [[[FileManager alloc] init] moveExistingDirectoryAtPath:oldPath toPath:newPath];
-
-    // TODO: update header in code.xml...
+    if (isLastProgram) {
+        [Util setLastProgram:self.header.programName];
+    }
     [self saveToDisk];
+}
+
+- (void)renameObject:(SpriteObject*)object toName:(NSString*)newObjectName
+{
+    if (! [self hasObject:object] || [object.name isEqualToString:newObjectName]) {
+        return;
+    }
+    object.name = [Util uniqueName:newObjectName existingNames:[self allObjectNames]];
+    [self saveToDisk];
+}
+
+- (void)updateDescriptionWithText:(NSString *)descriptionText
+{
+    self.header.description = descriptionText;
+    [self saveToDisk];
+}
+
+- (NSArray*)allObjectNames
+{
+    NSMutableArray *objectNames = [NSMutableArray arrayWithCapacity:[self.objectList count]];
+    for (id spriteObject in self.objectList) {
+        if ([spriteObject isKindOfClass:[SpriteObject class]]) {
+            [objectNames addObject:((SpriteObject*)spriteObject).name];
+        }
+    }
+    return [objectNames copy];
+}
+
+- (BOOL)hasObject:(SpriteObject *)object
+{
+    return [self.objectList containsObject:object];
+}
+
+- (SpriteObject*)copyObject:(SpriteObject*)sourceObject
+    withNameForCopiedObject:(NSString *)nameOfCopiedObject
+{
+    if (! [self hasObject:sourceObject]) {
+        return nil;
+    }
+    SpriteObject *copiedObject = [sourceObject deepCopy];
+    copiedObject.name = [Util uniqueName:nameOfCopiedObject existingNames:[self allObjectNames]];
+    [self.objectList addObject:copiedObject];
+    [self saveToDisk];
+    return copiedObject;
 }
 
 #pragma mark - helpers
@@ -356,8 +535,7 @@
     [ret appendFormat:@"Sprite List: %@\n", self.objectList];
     [ret appendFormat:@"URL: %@\n", self.header.url];
     [ret appendFormat:@"User Handle: %@\n", self.header.userHandle];
-    [ret appendFormat:@"----------------------------------------------\n"];
-    
+    [ret appendFormat:@"------------------------------------------------\n"];
     return [NSString stringWithString:ret];
 }
 
@@ -377,21 +555,48 @@
     [Util setLastProgram:program.header.programName];
 }
 
-+ (kProgramNameValidationResult)validateProgramName:(NSString *)programName
-{
-    // TODO: check, filter and validate program name...
-    if (! [programName length]) {
-        return kProgramNameValidationResultInvalid;
-    }
-    if ([Program programExists:programName]) {
-        return kProgramNameValidationResultAlreadyExists;
-    }
-    return kProgramNameValidationResultOK;
-}
-
 + (NSString*)basePath
 {
     return [NSString stringWithFormat:@"%@/%@/", [Util applicationDocumentsDirectory], kProgramsFolder];
+}
+
++ (NSArray*)allProgramNames
+{
+    NSString *basePath = [Program basePath];
+    NSError *error;
+    NSArray *subdirectoryNames = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:basePath error:&error];
+    NSLogError(error);
+
+    NSMutableArray *programNames = [[NSMutableArray alloc] initWithCapacity:[subdirectoryNames count]];
+    for (NSString *subdirectoryName in subdirectoryNames) {
+        // exclude .DS_Store folder on MACOSX simulator
+        if ([subdirectoryName isEqualToString:@".DS_Store"])
+            continue;
+        [programNames addObject:subdirectoryName];
+    }
+    return [programNames copy];
+}
+
++ (NSArray*)allProgramLoadingInfos
+{
+    NSString *basePath = [Program basePath];
+    NSError *error;
+    NSArray *subdirectoryNames = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:basePath error:&error];
+    NSLogError(error);
+
+    NSMutableArray *programLoadingInfos = [[NSMutableArray alloc] initWithCapacity:[subdirectoryNames count]];
+    for (NSString *subdirectoryName in subdirectoryNames) {
+        // exclude .DS_Store folder on MACOSX simulator
+        if ([subdirectoryName isEqualToString:@".DS_Store"])
+            continue;
+
+        ProgramLoadingInfo *info = [[ProgramLoadingInfo alloc] init];
+        info.basePath = [NSString stringWithFormat:@"%@%@/", basePath, subdirectoryName];
+        info.visibleName = subdirectoryName;
+        NSDebug(@"Adding loaded program: %@", info.basePath);
+        [programLoadingInfos addObject:info];
+    }
+    return [programLoadingInfos copy];
 }
 
 @end

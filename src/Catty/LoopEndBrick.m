@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2013 The Catrobat Team
+ *  Copyright (C) 2010-2014 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -20,7 +20,9 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import "Loopendbrick.h"
+#import "LoopEndbrick.h"
+#import "GDataXMLNode.h"
+#import "LoopBeginBrick.h"
 
 @implementation LoopEndBrick
 
@@ -43,6 +45,20 @@
 - (NSString*)description
 {
     return [NSString stringWithFormat:@"EndLoop"];
+}
+
+- (GDataXMLElement*)toXMLforObject:(SpriteObject*)spriteObject
+{
+    GDataXMLElement *brickXMLElement = [super toXMLforObject:spriteObject];
+
+    // remove object reference
+    [brickXMLElement removeChild:[[brickXMLElement children] firstObject]];
+
+    NSString *referencePath = [NSString stringWithFormat:@"%@/loopEndBrick",
+                               [spriteObject xmlReferencePathForDestinationBrick:self.loopBeginBrick
+                                                                     sourceBrick:self]];
+    [brickXMLElement addAttribute:[GDataXMLNode elementWithName:@"reference" stringValue:referencePath]];
+    return brickXMLElement;
 }
 
 @end

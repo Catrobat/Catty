@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2013 The Catrobat Team
+ *  Copyright (C) 2010-2014 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -23,19 +23,18 @@
 // Action sheet
 #define kEditProgramsActionSheetTag 1
 #define kEditProgramActionSheetTag 2
-#define kAddLookActionSheetTag 3
-#define kEditLooksActionSheetTag 4
-#define kAddSoundActionSheetTag 5
-#define kEditSoundsActionSheetTag 6
+#define kEditObjectActionSheetTag 3
+#define kAddLookActionSheetTag 4
+#define kEditLooksActionSheetTag 5
+#define kEditLookActionSheetTag 6
+#define kAddSoundActionSheetTag 7
+#define kEditSoundsActionSheetTag 8
+#define kEditSoundActionSheetTag 9
 
 // Alert view tags
-#define kRenameAlertViewTag 100
-#define kNewObjectAlertViewTag 101
-#define kNewImageAlertViewTag 102
-#define kNewProgramAlertViewTag 103
-#define kInvalidProgramNameWarningAlertViewTag 104
-#define kInvalidObjectNameWarningAlertViewTag 105
-#define kNoInternetConnection 106
+#define kAskUserForUniqueNameAlertViewTag 100
+#define kInvalidNameWarningAlertViewTag 101
+#define kNoInternetConnection 102
 
 #define kConfirmAlertViewTag 200
 

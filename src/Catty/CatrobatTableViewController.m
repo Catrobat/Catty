@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2013 The Catrobat Team
+ *  Copyright (C) 2010-2014 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -19,7 +19,6 @@
  *  You should have received a copy of the GNU Affero General Public License
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
-
 
 #import "CatrobatTableViewController.h"
 #import "CellTagDefines.h"
@@ -44,10 +43,23 @@
 #import "ActionSheetAlertViewTags.h"
 #import "Reachability.h"
 #import "LanguageTranslationDefines.h"
+#import "HelpWebViewController.h"
+#import "NetworkDefines.h"
+#import "DataTransferMessage.h"
+#import "InfoPopupViewController.h"
+#import "EAIntroView.h"
 
-@interface CatrobatTableViewController () <UIAlertViewDelegate, UITextFieldDelegate>
+NS_ENUM(NSInteger, ViewControllerIndex) {
+    kContinueProgramVC = 0,
+    kNewProgramVC,
+    kLocalProgramsVC,
+    kHelpVC,
+    kExploreVC,
+    kUploadVC
+};
 
-@property (strong, nonatomic) NSCharacterSet *blockedCharacterSet;
+@interface CatrobatTableViewController () <UITextFieldDelegate, EAIntroDelegate>
+
 @property (nonatomic, strong) NSArray *cells;
 @property (nonatomic, strong) NSArray *imageNames;
 @property (nonatomic, strong) NSArray *identifiers;
@@ -59,15 +71,18 @@
 
 @implementation CatrobatTableViewController
 
-#pragma mark - getters and setters
+#pragma mark - data helpers
+static NSCharacterSet *blockedCharacterSet = nil;
 - (NSCharacterSet*)blockedCharacterSet
 {
-    if (! _blockedCharacterSet) {
-        _blockedCharacterSet = [[NSCharacterSet characterSetWithCharactersInString:kTextFieldAllowedCharacters] invertedSet];
+    if (! blockedCharacterSet) {
+        blockedCharacterSet = [[NSCharacterSet characterSetWithCharactersInString:kTextFieldAllowedCharacters]
+                               invertedSet];
     }
-    return _blockedCharacterSet;
+    return blockedCharacterSet;
 }
 
+#pragma mark - getters and setters
 - (Program*)lastProgram
 {
     if (! _lastProgram) {
@@ -81,7 +96,6 @@
 {
     [super viewDidLoad];
     [self initTableView];
-    [self initNavigationBar];
 
     self.lastProgram = nil;
     self.defaultProgram = nil;
@@ -99,6 +113,15 @@
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
     self.tableView.separatorColor = UIColor.skyBlueColor;
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
+
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    if (! [defaults objectForKey:kUserIsFirstAppLaunch]) {
+        self.tableView.scrollEnabled = NO;
+        [Util showIntroductionScreenInView:self.view delegate:self];
+    } else {
+        self.tableView.scrollEnabled = YES;
+        [self initNavigationBar];
+    }
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -130,7 +153,6 @@
     [self.tableView reloadRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationNone];
     [self.tableView endUpdates];
     self.tableView.alwaysBounceVertical = NO;
-    self.tableView.scrollEnabled = YES;
 }
 
 #pragma mark init
@@ -153,13 +175,31 @@
     UIButton *button = [UIButton buttonWithType:UIButtonTypeInfoLight];
     [button addTarget:self action:@selector(infoPressed:) forControlEvents:UIControlEventTouchUpInside];
     UIBarButtonItem *infoItem = [[UIBarButtonItem alloc] initWithCustomView:button];
-    [self.navigationItem setLeftBarButtonItem:infoItem];
+    self.navigationItem.leftBarButtonItem = infoItem;
 }
 
 #pragma mark - actions
 - (void)infoPressed:(id)sender
 {
-    [Util alertWithText:kUIAlertViewMessageInfoForPocketCode];
+    if (self.popupViewController == nil) {
+        InfoPopupViewController *popupViewController = [[InfoPopupViewController alloc] init];
+        popupViewController.delegate = self;
+        [self presentPopupViewController:popupViewController WithFrame:self.tableView.frame];
+    } else {
+        [self dismissPopup];
+    }
+
+}
+
+- (void)addProgramAndSegueToItActionForProgramWithName:(NSString*)programName
+{
+    static NSString *segueToNewProgramIdentifier = kSegueToNewProgram;
+    [self showLoadingView];
+    self.defaultProgram = [Program defaultProgramWithName:programName];
+    if ([self shouldPerformSegueWithIdentifier:segueToNewProgramIdentifier sender:self]) {
+        [self hideLoadingView];
+        [self performSegueWithIdentifier:segueToNewProgramIdentifier sender:self];
+    }
 }
 
 #pragma mark - table view data source
@@ -195,16 +235,49 @@
 #pragma mark - table view delegate
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath*)indexPath
 {
+    if ([self dismissPopup]) {
+        [tableView deselectRowAtIndexPath:indexPath animated:NO];
+        return;
+    }
+    
     NSString* identifier = [self.identifiers objectAtIndex:indexPath.row];
-    // TODO: the if statement should be removed once everything has been implemented...
-    if ([identifier isEqualToString:kSegueToExplore] || [identifier isEqualToString:kSegueToPrograms] ||
-        [identifier isEqualToString:kSegueToHelp] || [identifier isEqualToString:kSegueToContinue] ||
-        [identifier isEqualToString:kSegueToNewProgram]) {
-        if ([self shouldPerformSegueWithIdentifier:identifier sender:self]) {
-            [self performSegueWithIdentifier:identifier sender:self];
-        }
-    } else {
-        [Util showComingSoonAlertView];
+    switch (indexPath.row) {
+        case kNewProgramVC:
+#if kIsFirstRelease // kIsFirstRelease
+            [Util showComingSoonAlertView];
+#else // kIsFirstRelease
+            [Util askUserForUniqueNameAndPerformAction:@selector(addProgramAndSegueToItActionForProgramWithName:)
+                                                target:self
+                                           promptTitle:kUIAlertViewTitleNewProgram
+                                         promptMessage:[NSString stringWithFormat:@"%@:", kUIAlertViewMessageProgramName]
+                                           promptValue:nil
+                                     promptPlaceholder:kUIAlertViewPlaceholderEnterProgramName
+                                        minInputLength:kMinNumOfProgramNameCharacters
+                                        maxInputLength:kMaxNumOfProgramNameCharacters
+                                   blockedCharacterSet:[self blockedCharacterSet]
+                              invalidInputAlertMessage:kUIAlertViewMessageProgramNameAlreadyExists
+                                         existingNames:[Program allProgramNames]];
+#endif // kIsFirstRelease
+            break;
+        case kContinueProgramVC:
+        case kLocalProgramsVC:
+        case kExploreVC:
+            if ([self shouldPerformSegueWithIdentifier:identifier sender:self]) {
+                [self performSegueWithIdentifier:identifier sender:self];
+            }
+            break;
+        case kHelpVC:
+            if ([self shouldPerformSegueWithIdentifier:identifier sender:self]) {
+                HelpWebViewController *webVC = [[HelpWebViewController alloc] initWithURL:[NSURL URLWithString:kForumURL]];
+                [self.navigationController pushViewController:webVC animated:YES];
+            }
+            break;
+        case kUploadVC:
+            [Util showComingSoonAlertView];
+            break;
+            
+        default:
+            break;
     }
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
@@ -252,12 +325,15 @@
 #pragma mark - segue handling
 - (BOOL)shouldPerformSegueWithIdentifier:(NSString*)identifier sender:(id)sender
 {
+    if ([self dismissPopup]) {
+        return NO;
+    }
     if ([identifier isEqualToString:kSegueToContinue]) {
         // check if program loaded successfully -> not nil
         if (self.lastProgram) {
             return YES;
         }
-
+        
         // program failed loading...
         // update continue cell
         [Util setLastProgram:nil];
@@ -269,20 +345,14 @@
         // if there is no program name, abort performing this segue and ask user for program name
         // after user entered a valid program name this segue will be called again and accepted
         if (! self.defaultProgram) {
-            [Util promptWithTitle:kUIAlertViewTitleNewProgram
-                          message:[NSString stringWithFormat:@"%@:", kUIAlertViewMessageProgramName]
-                         delegate:self
-                      placeholder:kUIAlertViewPlaceholderEnterProgramName
-                              tag:kNewProgramAlertViewTag
-                textFieldDelegate:self];
             return NO;
         }
         return YES;
-    } else if([identifier isEqualToString:kSegueToExplore]){
+    } else if([identifier isEqualToString:kSegueToExplore]||[identifier isEqualToString:kSegueToHelp]){
         NetworkStatus remoteHostStatus = [self.reachability currentReachabilityStatus];
         
         if(remoteHostStatus == NotReachable) {
-            [Util alertWithText:@"No Internet Connection!"];
+            [Util alertWithText:kUIAlertViewMessageNoInternetConnection];
             NSDebug(@"not reachable");
             return NO;
         } else if (remoteHostStatus == ReachableViaWiFi) {
@@ -293,7 +363,7 @@
                 NSDebug(@"reachable via wifi but no data");
                 if ([self.navigationController.topViewController isKindOfClass:[DownloadTabBarController class]] ||
                     [self.navigationController.topViewController isKindOfClass:[ProgramDetailStoreViewController class]]) {
-                    [Util alertWithText:@"No Internet Connection!"];
+                    [Util alertWithText:kUIAlertViewMessageNoInternetConnection];
                     [self.navigationController popToRootViewControllerAnimated:YES];
                     return NO;
                 }
@@ -305,7 +375,7 @@
                 return YES;
             }else{
                 NSDebug(@" not reachable via celullar");
-                [Util alertWithText:@"No Internet Connection!"];
+                [Util alertWithText:kUIAlertViewMessageNoInternetConnection];
                 return NO;
             }
             return YES;
@@ -321,69 +391,24 @@
             ProgramTableViewController *programTableViewController = (ProgramTableViewController*)segue.destinationViewController;
             programTableViewController.program = self.lastProgram;
             self.lastProgram = nil;
-
-            // TODO: remove this after persisting programs feature is fully implemented...
-            programTableViewController.isNewProgram = NO;
         }
     } else if ([segue.identifier isEqualToString:kSegueToNewProgram]) {
         if ([segue.destinationViewController isKindOfClass:[ProgramTableViewController class]]) {
             ProgramTableViewController *programTableViewController = (ProgramTableViewController*)segue.destinationViewController;
             programTableViewController.program = self.defaultProgram;
             self.defaultProgram = nil;
-
-            // TODO: remove this after persisting programs feature is fully implemented...
-            programTableViewController.isNewProgram = YES;
-        }
-    }
-}
-
-#pragma mark - text field delegates
-- (BOOL)textField:(UITextField*)field shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString*)characters
-{
-    return ([characters rangeOfCharacterFromSet:self.blockedCharacterSet].location == NSNotFound);
-}
-
-#pragma mark - alert view handlers
-- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
-{
-    static NSString *segueToNewProgramIdentifier = kSegueToNewProgram;;
-    if (alertView.tag == kNewProgramAlertViewTag) {
-        NSString *input = [alertView textFieldAtIndex:0].text;
-        if ((buttonIndex == alertView.cancelButtonIndex) || (buttonIndex != kAlertViewButtonOK)) {
-            return;
-        }
-        kProgramNameValidationResult validationResult = [Program validateProgramName:input];
-        if (validationResult == kProgramNameValidationResultInvalid) {
-            [Util alertWithText:kUIAlertViewMessageInvalidProgramName delegate:self tag:kInvalidProgramNameWarningAlertViewTag];
-        } else if (validationResult == kProgramNameValidationResultAlreadyExists) {
-            [Util alertWithText:kUIAlertViewMessageProgramNameAlreadyExists delegate:self tag:kInvalidProgramNameWarningAlertViewTag];
-        } else if (validationResult == kProgramNameValidationResultOK) {
-            self.defaultProgram = [Program defaultProgramWithName:input];
-            if ([self shouldPerformSegueWithIdentifier:segueToNewProgramIdentifier sender:self]) {
-                [self performSegueWithIdentifier:segueToNewProgramIdentifier sender:self];
-            }
-        }
-    } else if (alertView.tag == kInvalidProgramNameWarningAlertViewTag) {
-        // title of cancel button is "OK"
-        if (buttonIndex == alertView.cancelButtonIndex) {
-            [Util promptWithTitle:kUIAlertViewTitleNewProgram
-                          message:[NSString stringWithFormat:@"%@:", kUIAlertViewMessageProgramName]
-                         delegate:self
-                      placeholder:kUIAlertViewPlaceholderEnterProgramName
-                              tag:kNewProgramAlertViewTag
-                textFieldDelegate:self];
         }
     }
 }
 
 - (void)networkStatusChanged:(NSNotification *)notification
 {
-    
     NetworkStatus remoteHostStatus = [self.reachability currentReachabilityStatus];
     if(remoteHostStatus == NotReachable) {
         if ([self.navigationController.topViewController isKindOfClass:[DownloadTabBarController class]] ||
-            [self.navigationController.topViewController isKindOfClass:[ProgramDetailStoreViewController class]]) {
-            [Util alertWithText:@"No Internet Connection!"];
+            [self.navigationController.topViewController isKindOfClass:[ProgramDetailStoreViewController class]] ||
+            [self.navigationController.topViewController isKindOfClass:[HelpWebViewController class]] ) {
+            [Util alertWithText:kUIAlertViewMessageNoInternetConnection];
             [self.navigationController popToRootViewControllerAnimated:YES];
         }
         NSDebug(@"not reachable");
@@ -393,19 +418,21 @@
         }else{
             NSDebug(@"reachable via wifi but no data");
             if ([self.navigationController.topViewController isKindOfClass:[DownloadTabBarController class]] ||
-                [self.navigationController.topViewController isKindOfClass:[ProgramDetailStoreViewController class]]) {
-                [Util alertWithText:@"No Internet Connection!"];
+                [self.navigationController.topViewController isKindOfClass:[ProgramDetailStoreViewController class]]||
+                [self.navigationController.topViewController isKindOfClass:[HelpWebViewController class]]) {
+                [Util alertWithText:kUIAlertViewMessageNoInternetConnection];
                 [self.navigationController popToRootViewControllerAnimated:YES];
             }
         }
     }  else if (remoteHostStatus == ReachableViaWWAN){
-        if (!self.reachability.connectionRequired) {
+        if (! self.reachability.connectionRequired) {
             NSDebug(@"celluar data ok");
-        }else{
+        } else {
            NSDebug(@"reachable via cellular but no data");
             if ([self.navigationController.topViewController isKindOfClass:[DownloadTabBarController class]] ||
-                [self.navigationController.topViewController isKindOfClass:[ProgramDetailStoreViewController class]]) {
-                [Util alertWithText:@"No Internet Connection!"];
+                [self.navigationController.topViewController isKindOfClass:[ProgramDetailStoreViewController class]]||
+                [self.navigationController.topViewController isKindOfClass:[HelpWebViewController class]]) {
+                [Util alertWithText:kUIAlertViewMessageNoInternetConnection];
                 [self.navigationController popToRootViewControllerAnimated:YES];
             }
         }
@@ -415,6 +442,26 @@
 - (void)dealloc
 {
     [[NSNotificationCenter defaultCenter] removeObserver:self name:kReachabilityChangedNotification object:nil];
+}
+
+#pragma mark - EAIntroView delegates
+- (void)introDidFinish:(EAIntroView*)introView
+{
+    [self initNavigationBar];
+    self.tableView.scrollEnabled = YES;
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    [defaults setObject:[NSNumber numberWithBool:YES] forKey:kUserIsFirstAppLaunch];
+    [defaults synchronize];
+}
+
+#pragma mark - popup delegate
+- (BOOL)dismissPopup
+{
+    if (self.popupViewController != nil) {
+        [self dismissPopupViewController];
+        return YES;
+    }
+    return NO;
 }
 
 @end

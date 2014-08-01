@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2013 The Catrobat Team
+ *  Copyright (C) 2010-2014 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -21,6 +21,8 @@
  */
 
 #import "IfLogicElseBrick.h"
+#import "GDataXMLNode.h"
+#import "IfLogicBeginBrick.h"
 
 @implementation IfLogicElseBrick
 
@@ -43,6 +45,16 @@
 - (NSString*)description
 {
     return [NSString stringWithFormat:@"If Logic Else Brick"];
+}
+
+- (GDataXMLElement*)toXMLforObject:(SpriteObject*)spriteObject
+{
+    GDataXMLElement *brickXMLElement = [GDataXMLNode elementWithName:@"ifLogicElseBrick"];
+    NSString *referencePath = [NSString stringWithFormat:@"%@/ifElseBrick",
+                               [spriteObject xmlReferencePathForDestinationBrick:self.ifBeginBrick
+                                                                     sourceBrick:self]];
+    [brickXMLElement addAttribute:[GDataXMLNode elementWithName:@"reference" stringValue:referencePath]];
+    return brickXMLElement;
 }
 
 @end

@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2013 The Catrobat Team
+ *  Copyright (C) 2010-2014 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -31,7 +31,5 @@
 
 @property (weak, nonatomic) id<ProgramUpdateDelegate> delegate;
 @property (strong, nonatomic) Program *program;
-// TODO: remove this after persisting programs feature is fully implemented...
-@property (nonatomic) BOOL isNewProgram;
 
 @end

@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2013 The Catrobat Team
+ *  Copyright (C) 2010-2014 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -27,6 +27,20 @@
 #import <UIKit/UIKit.h>
 
 #import "Logger.h"
+#import "AppDefines.h"
+
+#if kIsFirstRelease
+#undef DEBUG
+
+// UNCOMMENT ALL LOG AND DEBUG MESSAGES IN FIRST RELEASE VERSION
+#define NSLog(...) /* suppress NSLog when in release mode */
+#define NSDebug(...) /* suppress NSLog when in release mode */
+#define NSInfo(...) /* suppress NSLog when in release mode */
+#define NSLogError(...) /* suppress NSLog when in release mode */
+#define NSWarn(...) /* suppress NSLog when in release mode */
+#define NSError(...) /* suppress NSLog when in release mode */
+
+#else // kIsFirstRelease
 
 #ifdef DEBUG
 //#define NSDebug(...) [Logger debug:__VA_ARGS__];
@@ -43,3 +57,4 @@
 #define NSLogError(error) [Logger logError:error];
 
 #endif
+#endif // kIsFirstRelease

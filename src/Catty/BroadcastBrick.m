@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2013 The Catrobat Team
+ *  Copyright (C) 2010-2014 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -20,8 +20,8 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-
 #import "BroadcastBrick.h"
+#import "GDataXMLNode.h"
 
 @implementation BroadcastBrick
 
@@ -42,7 +42,6 @@
     return self;
 }
 
-
 - (SKAction*)action
 {
     return [SKAction runBlock:^{
@@ -55,6 +54,20 @@
 - (NSString*)description
 {
     return [NSString stringWithFormat:@"Broadcast (Msg: %@)", self.broadcastMessage];
+}
+
+- (GDataXMLElement*)toXMLforObject:(SpriteObject*)spriteObject
+{
+    GDataXMLElement *brickXMLElement = [super toXMLforObject:spriteObject];
+    if (self.broadcastMessage) {
+        GDataXMLElement *broadcastMessage = [GDataXMLNode elementWithName:@"broadcastMessage"
+                                                              stringValue:self.broadcastMessage];
+        [brickXMLElement addChild:broadcastMessage];
+    } else {
+        // remove object reference
+        [brickXMLElement removeChild:[[brickXMLElement children] firstObject]];
+    }
+    return brickXMLElement;
 }
 
 @end

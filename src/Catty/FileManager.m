@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2013 The Catrobat Team
+ *  Copyright (C) 2010-2014 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -31,6 +31,9 @@
 #import "Program.h"
 #import <MobileCoreServices/MobileCoreServices.h>
 #import "LanguageTranslationDefines.h"
+#import "UIDefines.h"
+#import "BaseWebViewController.h"
+#import "ProgramLoadingInfo.h"
 
 @interface FileManager()
 
@@ -124,9 +127,11 @@
         if (isPlayable) {
             Sound *sound = [[Sound alloc] init];
             NSArray *fileParts = [fileName componentsSeparatedByString:@"."];
-            NSString *fileNameWithoutExtension = ([fileParts count] ? [fileParts objectAtIndex:0] : fileName);
+            NSString *fileNameWithoutExtension = ([fileParts count] ? [fileParts firstObject] : fileName);
             sound.fileName = fileName;
-            sound.name = fileNameWithoutExtension;
+            NSRange stringRange = {0, MIN([fileNameWithoutExtension length], kMaxNumOfSoundNameCharacters)};
+            stringRange = [fileNameWithoutExtension rangeOfComposedCharacterSequencesForRange:stringRange];
+            sound.name = [fileNameWithoutExtension substringWithRange:stringRange];
             sound.playing = NO;
             [sounds addObject:sound];
         }
@@ -185,10 +190,16 @@
     if (! [self fileExists:oldPath])
         return;
 
-    if ((! [self fileExists:newPath]) || overwrite) {
-        NSData *data = [NSData dataWithContentsOfFile:oldPath];
-        [data writeToFile:newPath atomically:YES];
+    if ([self fileExists:newPath]) {
+        if (overwrite) {
+            [self deleteFile:newPath];
+        } else {
+            return;
+        }
     }
+
+    NSData *data = [NSData dataWithContentsOfFile:oldPath];
+    [data writeToFile:newPath atomically:YES];
 }
 
 - (void)copyExistingDirectoryAtPath:(NSString*)oldPath toPath:(NSString*)newPath
@@ -205,10 +216,18 @@
     NSLogError(error);
 }
 
-- (void)moveExistingFileAtPath:(NSString*)oldPath toPath:(NSString*)newPath
+- (void)moveExistingFileAtPath:(NSString*)oldPath toPath:(NSString*)newPath overwrite:(BOOL)overwrite
 {
     if (! [self fileExists:oldPath] || [oldPath isEqualToString:newPath])
         return;
+
+    if ([self fileExists:newPath]) {
+        if (overwrite) {
+            [self deleteFile:newPath];
+        } else {
+            return;
+        }
+    }
 
     // Attempt the move
     NSURL *oldURL = [NSURL fileURLWithPath:oldPath];
@@ -233,10 +252,17 @@
     NSLogError(error);
 }
 
+- (void)deleteFile:(NSString*)path
+{
+    NSError *error = nil;
+    [[NSFileManager defaultManager] removeItemAtPath:path error:&error];
+    NSLogError(error);
+}
+
 - (void)deleteDirectory:(NSString *)path
 {
     NSError *error = nil;
-    [[NSFileManager defaultManager]removeItemAtPath:path error:&error];
+    [[NSFileManager defaultManager] removeItemAtPath:path error:&error];
     NSLogError(error);
 }
 
@@ -308,7 +334,47 @@
         break;
     }
     if (! areAnyProgramsLeft) {
-        [self addBundleProgramWithName:kDefaultProgramName];
+        [self addBundleProgramWithName:kDefaultProgramBundleName];
+#if kIsFirstRelease // kIsFirstRelease
+#define kDefaultProgramBundleBackgroundName @"Background"
+#define kDefaultProgramBundleOtherObjectsNamePrefix @"Mole"
+        // XXX: HACK serialization-workaround
+        if (! [kDefaultProgramBundleName isEqualToString:kDefaultProgramName]) {
+            // SYNC and NOT ASYNC here because the UI must wait!!
+            dispatch_queue_t translateBundleQ = dispatch_queue_create("translate bundle", NULL);
+            dispatch_sync(translateBundleQ, ^{
+                NSString *xmlPath = [[Program projectPathForProgramWithName:kDefaultProgramBundleName]
+                                     stringByAppendingString:kProgramCodeFileName];
+                NSError *error = nil;
+                NSMutableString *xmlString = [NSMutableString stringWithContentsOfFile:xmlPath
+                                                                              encoding:NSUTF8StringEncoding
+                                                                                 error:&error];
+                NSLogError(error);
+                [xmlString replaceOccurrencesOfString:[NSString stringWithFormat:@"<programName>%@</programName>", kDefaultProgramBundleName]
+                                           withString:[NSString stringWithFormat:@"<programName>%@</programName>", kDefaultProgramName]
+                                              options:NSCaseInsensitiveSearch
+                                                range:NSMakeRange(0, [xmlString length])];
+                [xmlString replaceOccurrencesOfString:[NSString stringWithFormat:@"<name>%@</name>", kDefaultProgramBundleBackgroundName]
+                                           withString:[NSString stringWithFormat:@"<name>%@</name>", kGeneralBackgroundObjectName]
+                                              options:NSCaseInsensitiveSearch
+                                                range:NSMakeRange(0, [xmlString length])];
+                [xmlString replaceOccurrencesOfString:[NSString stringWithFormat:@"<name>%@", kDefaultProgramBundleOtherObjectsNamePrefix]
+                                           withString:[NSString stringWithFormat:@"<name>%@", kDefaultProgramOtherObjectsNamePrefix]
+                                              options:NSCaseInsensitiveSearch
+                                                range:NSMakeRange(0, [xmlString length])];
+                [xmlString writeToFile:xmlPath atomically:YES encoding:NSUTF8StringEncoding error:&error];
+                NSLogError(error);
+                [self moveExistingDirectoryAtPath:[Program projectPathForProgramWithName:kDefaultProgramBundleName]
+                                           toPath:[Program projectPathForProgramWithName:kDefaultProgramName]];
+            });
+        }
+#else // kIsFirstRelease
+        ProgramLoadingInfo *loadingInfo = [[ProgramLoadingInfo alloc] init];
+        loadingInfo.basePath = [NSString stringWithFormat:@"%@%@/", [Program basePath], kDefaultProgramBundleName];
+        loadingInfo.visibleName = kDefaultProgramBundleName;
+        Program *program = [Program programWithLoadingInfo:loadingInfo];
+        [program translateDefaultProgram];
+#endif // kIsFirstRelease
         [Util lastProgram];
     }
 }
@@ -335,8 +401,6 @@
 - (void)downloadFileFromURL:(NSURL*)url withName:(NSString*)name
 {
     self.projectName = name;
-
-
     
     if (!self.downloadSession) {
         NSURLSessionConfiguration *sessionConfig =
@@ -345,7 +409,6 @@
                                                              delegate:self
                                                         delegateQueue:nil];
     }
-
 
     NSURLSessionDownloadTask *getProgramTask =
     [self.downloadSession downloadTaskWithURL:url];
@@ -390,8 +453,6 @@
     NSLogError(error);
 }
 
-
-
 - (NSString*)getFullPathForProgram:(NSString *)programName
 {
     NSString *path = [NSString stringWithFormat:@"%@/%@", self.programsDirectory, programName];
@@ -417,6 +478,8 @@
         dispatch_async(dispatch_get_main_queue(), ^{
             [self.delegate downloadFinishedWithURL:url];
         });
+    }else if ([self.delegate respondsToSelector:@selector(downloadFinishedWithURL:)] && [self.delegate isKindOfClass:[BaseWebViewController class]]){
+        [self.delegate downloadFinishedWithURL:url];
     }
 
 }
@@ -438,7 +501,7 @@
     NSString *tempPath = [NSString stringWithFormat:@"%@temp.zip", NSTemporaryDirectory()];
     [programData writeToFile:tempPath atomically:YES];
     NSString *storePath = [NSString stringWithFormat:@"%@/%@", self.programsDirectory, name];
-
+    
     NSDebug(@"Starting unzip");
     [SSZipArchive unzipFileAtPath:tempPath toDestination:storePath];
     NSDebug(@"Unzip finished");
@@ -452,11 +515,13 @@
     //storeDownloadedImage in connectionDidFinishLoading
     if (self.imageNameDict.count > 0) {
         NSArray *temp = [self.imageNameDict allKeysForObject:name];
-        if (temp) {
+        if (temp.count > 0) {
             NSURLSessionDownloadTask *key = [temp objectAtIndex:0];
             [self storeDownloadedImage:programData andTask:key];
         }
     }
+    
+    [self addSkipBackupAttributeToItemAtURL:storePath];
 }
 
 
@@ -530,20 +595,18 @@
     
     if (url) {
         [self storeDownloadedProgram:[NSData dataWithContentsOfURL:location] andTask:downloadTask];
-        
         [self.programTaskDict removeObjectForKey:downloadTask];
         [self.programNameDict removeObjectForKey:downloadTask];
-
-    }else{
-        // TODO: value url is never read...
-//        url = [self.imageTaskDict objectForKey:downloadTask];
+    } else {
         [self storeDownloadedImage:[NSData dataWithContentsOfURL:location] andTask:downloadTask];
         [self.imageTaskDict removeObjectForKey:downloadTask];
         [self.imageNameDict removeObjectForKey:downloadTask];
 
     }
 //    [downloadTask suspend];
-
+    // Notification for reloading MyProgramViewController
+    [[NSNotificationCenter defaultCenter] postNotificationName:kProgramDownloadedNotification
+                                                        object:self];
     UIApplication* app = [UIApplication sharedApplication];
     app.networkActivityIndicatorVisible = NO;
 }
@@ -578,6 +641,8 @@
                 dispatch_async(dispatch_get_main_queue(), ^{
                     [self.delegate updateProgress:progress];
                 });
+            }else if ([self.delegate respondsToSelector:@selector(updateProgress:)] && [self.delegate isKindOfClass:[BaseWebViewController class]]){
+                [self.delegate updateProgress:progress];
             }
 
         }
@@ -612,6 +677,20 @@
         app.networkActivityIndicatorVisible = NO;
 
     }
+}
+
+#pragma mark - exclude file from iCloud Backup
+- (BOOL)addSkipBackupAttributeToItemAtURL:(NSString *)URL
+{
+    NSURL *localFileURL = [NSURL fileURLWithPath:URL];
+    assert([NSFileManager.defaultManager fileExistsAtPath:URL]);
+    
+    NSError *error = nil;
+    BOOL success = [localFileURL setResourceValue:@YES forKey:NSURLIsExcludedFromBackupKey error:&error];
+    if (!success) {
+        NSLog(@"Error excluding %@ from backup %@", URL.lastPathComponent, error);
+    }
+    return success;
 }
 
 @end

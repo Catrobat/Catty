@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2013 The Catrobat Team
+ *  Copyright (C) 2010-2014 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -35,10 +35,10 @@
 // List<UserVariable> projectVariables;
 @property (nonatomic, strong) NSMutableArray* programVariableList;
 
--(UserVariable*) getUserVariableNamed:(NSString*) name forSpriteObject:(SpriteObject*) sprite;
+- (UserVariable*)getUserVariableNamed:(NSString*)name forSpriteObject:(SpriteObject*)sprite;
 
--(void) setUserVariable:(UserVariable*)userVariable toValue:(double)value;
+- (void)setUserVariable:(UserVariable*)userVariable toValue:(double)value;
 
--(void) changeVariable:(UserVariable*)userVariable byValue:(double)value;
+- (void)changeVariable:(UserVariable*)userVariable byValue:(double)value;
 
 @end

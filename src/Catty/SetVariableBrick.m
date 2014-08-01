@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2013 The Catrobat Team
+ *  Copyright (C) 2010-2014 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -26,6 +26,7 @@
 #import "ProgramManager.h"
 #import "Program.h"
 #import "VariablesContainer.h"
+#import "GDataXMLNode.h"
 
 @implementation SetVariableBrick
 
@@ -46,14 +47,12 @@
     
     double result = [self.variableFormula interpretDoubleForSprite:self.object];
     
-    Program* program = [ProgramManager sharedProgramManager].program;
+    Program* program = ProgramManager.sharedProgramManager.program;
     VariablesContainer* variables = program.variables;
     
     [variables setUserVariable:self.userVariable toValue:result];
   };
 }
-
-
 
 #pragma mark - Description
 - (NSString*)description
@@ -62,5 +61,19 @@
     return [NSString stringWithFormat:@"Set Variable Brick: Uservariable: %@, to: %f", self.userVariable, result];
 }
 
+- (GDataXMLElement*)toXMLforObject:(SpriteObject*)spriteObject
+{
+    GDataXMLElement *brickXMLElement = [super toXMLforObject:spriteObject];
+    if (self.userVariable && self.variableFormula) {
+        [brickXMLElement addChild:[self.userVariable toXMLforObject:spriteObject]];
+        GDataXMLElement *variableFormulaXMLElement = [GDataXMLNode elementWithName:@"variableFormula"];
+        [variableFormulaXMLElement addChild:[self.variableFormula toXMLforObject:spriteObject]];
+        [brickXMLElement addChild:variableFormulaXMLElement];
+    } else {
+        // remove object reference
+        [brickXMLElement removeChild:[[brickXMLElement children] firstObject]];
+    }
+    return brickXMLElement;
+}
 
 @end

@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2013 The Catrobat Team
+ *  Copyright (C) 2010-2014 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -96,6 +96,8 @@
     GDataXMLDocument *doc = [[GDataXMLDocument alloc] initWithData:xmlData 
                                                            options:0
                                                             error:&error];
+    self.XMLdocument = doc;
+
     // sanity checks
     if (error || !doc) { return nil; }
 
@@ -580,7 +582,7 @@ const char* property_getTypeString(objc_property_t property) {
 	return buffer;
 }
 
-
+// TODO: use map to handle these cases. Also needed in toXML methods for serialization
 -(NSString*) classNameForString:(NSString*)classString
 {
     NSString* className = [classString firstCharacterUppercaseString];

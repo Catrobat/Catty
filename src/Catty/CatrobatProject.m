@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2013 The Catrobat Team
+ *  Copyright (C) 2010-2014 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -29,7 +29,7 @@
     if (self) {
         self.name            = [dict valueForKey:@"ProjectName"];
         self.author          = [dict valueForKey:@"Author"];
-        self.description     = [dict valueForKey:@"Description"];
+        self.projectDescription  = [dict valueForKey:@"Description"];
         self.downloadUrl     = [NSString stringWithFormat:@"%@%@", baseUrl,[dict valueForKey:@"DownloadUrl"]];
         self.downloads       = [dict valueForKey:@"Downloads"];
         self.projectID       = [dict valueForKey:@"ProjectId"];

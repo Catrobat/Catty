@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2013 The Catrobat Team
+ *  Copyright (C) 2010-2014 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -82,12 +82,20 @@
     ];
 }
 
-- (GDataXMLElement*)toXML
+- (GDataXMLElement*)toXMLforObject:(SpriteObject*)spriteObject
 {
     GDataXMLElement *lookXMLElement = [GDataXMLNode elementWithName:@"look"];
     [lookXMLElement addChild:[GDataXMLElement elementWithName:@"fileName" stringValue:self.fileName]];
     [lookXMLElement addChild:[GDataXMLElement elementWithName:@"name" stringValue:self.name]];
     return lookXMLElement;
+}
+
+- (instancetype)deepCopy
+{
+    Look *copiedLook = [[Look alloc] init];
+    copiedLook.fileName = [NSString stringWithString:self.fileName];
+    copiedLook.name = [NSString stringWithString:self.name];
+    return copiedLook;
 }
 
 #pragma mark - description

@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2013 The Catrobat Team
+ *  Copyright (C) 2010-2014 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -21,12 +21,9 @@
  */
 
 #import <UIKit/UIKit.h>
+#import "BaseWebViewController.h"
 
-@interface HelpWebViewController : UIViewController<UIWebViewDelegate, UIScrollViewDelegate>
-@property (strong, nonatomic) IBOutlet UIWebView *webView;
-@property (weak, nonatomic) IBOutlet UIProgressView *progressView;
+@interface HelpWebViewController : BaseWebViewController
 
-- (IBAction)previousPage:(id)sender;
-- (IBAction)nextPage:(id)sender;
 
 @end

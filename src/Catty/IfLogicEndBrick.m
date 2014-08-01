@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2013 The Catrobat Team
+ *  Copyright (C) 2010-2014 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -20,8 +20,9 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-
 #import "IfLogicEndBrick.h"
+#import "GDataXMLNode.h"
+#import "IfLogicBeginBrick.h"
 
 @implementation IfLogicEndBrick
 
@@ -44,6 +45,16 @@
 - (NSString*)description
 {
     return [NSString stringWithFormat:@"If Logic End Brick"];
+}
+
+- (GDataXMLElement*)toXMLforObject:(SpriteObject*)spriteObject
+{
+    GDataXMLElement *brickXMLElement = [GDataXMLNode elementWithName:@"ifLogicEndBrick"];
+    NSString *referencePath = [NSString stringWithFormat:@"%@/ifElseBrick/ifEndBrick",
+                               [spriteObject xmlReferencePathForDestinationBrick:self.ifBeginBrick
+                                                                     sourceBrick:self]];
+    [brickXMLElement addAttribute:[GDataXMLNode elementWithName:@"reference" stringValue:referencePath]];
+    return brickXMLElement;
 }
 
 @end

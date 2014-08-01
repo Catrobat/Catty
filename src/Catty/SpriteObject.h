@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2013 The Catrobat Team
+ *  Copyright (C) 2010-2014 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -29,6 +29,7 @@
 @class Look;
 @class Sound;
 @class GDataXMLElement;
+@class Brick;
 @protocol SpriteManagerDelegate;
 @protocol BroadcastWaitDelegate;
 
@@ -81,6 +82,12 @@
 
 - (BOOL)isBackground;
 
+- (NSString*)xmlReferencePathForDestinationBrick:(Brick*)destinationBrick sourceBrick:(Brick*)sourceBrick;
+
+- (NSString*)xmlReferencePathForDestinationLook:(Look*)destinationLook;
+
+- (instancetype)deepCopy;
+
 - (GDataXMLElement*)toXML;
 
 // events
@@ -105,34 +112,23 @@
 - (CGSize)dimensionsOfLook:(Look*)look;
 - (NSUInteger)fileSizeOfSound:(Sound*)sound;
 - (CGFloat)durationOfSound:(Sound*)sound;
+- (NSArray*)allLookNames;
+- (NSArray*)allSoundNames;
 
 // actions
+- (void)addLook:(Look*)look;
 - (void)changeLook:(Look*)look;
 - (void)setLook;
+- (void)removeLooks:(NSArray*)looks;
 - (void)removeLook:(Look*)look;
+- (void)removeSounds:(NSArray*)sounds;
 - (void)removeSound:(Sound*)sound;
+- (void)renameLook:(Look*)look toName:(NSString*)newLookName;
+- (void)renameSound:(Sound*)sound toName:(NSString*)newSoundName;
+- (BOOL)hasLook:(Look*)look;
+- (BOOL)hasSound:(Sound*)sound;
+- (Look*)copyLook:(Look*)sourceLook withNameForCopiedLook:(NSString*)nameOfCopiedLook;
+- (Sound*)copySound:(Sound*)sourceSound withNameForCopiedSound:(NSString*)nameOfCopiedSound;
 
-//- (void)glideToPosition:(CGPoint)position withDurationInSeconds:(float)durationInSeconds fromScript:(Script*)script;
-//- (void)hide;
-//- (void)show;
-//- (void)comeToFront;
-//- (void)changeSizeByNInPercent:(float)sizePercentageRate;
-//- (void)changeXBy:(float)x;
-//- (void)changeYBy:(float)y;
-//- (void)stopAllSounds;
-//- (void)setSizeToPercentage:(float)sizeInPercentage;
-//- (void)goNStepsBack:(int)n;
-//- (void)setTransparencyInPercent:(float)transparencyInPercent;
-//- (void)changeTransparencyInPercent:(float)increaseInPercent;
-//- (void)playSound:(Sound*)sound;
-//- (void)speakSound:(Sound*)sound;
-//- (void)setVolumeToInPercent:(float)volumeInPercent;
-//- (void)changeVolumeInPercent:(float)volumeInPercent;
-//- (void)turnLeft:(float)degrees;
-//- (void)turnRight:(float)degrees;
-//- (void)pointInDirection:(float)degrees;
-//- (void)changeBrightness:(float)factor;
-//- (void)moveNSteps:(float)steps;
-//- (void)ifOnEdgeBounce;
 
 @end

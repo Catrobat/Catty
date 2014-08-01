@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2013 The Catrobat Team
+ *  Copyright (C) 2010-2014 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -23,6 +23,11 @@
 #import "ProgramTableHeaderView.h"
 #import "UIColor+CatrobatUIColorExtensions.h"
 
+@interface ProgramTableHeaderView ()
+@property (strong, nonatomic) CALayer *bottomBoarder;
+
+@end
+
 @implementation ProgramTableHeaderView
 
 - (id)initWithFrame:(CGRect)frame
@@ -36,7 +41,24 @@
 
 - (void)setupView
 {
-    self.contentView.backgroundColor = UIColor.backgroundColor;
+    self.contentView.backgroundColor = UIColor.darkBlueColor;
+    self.bottomBoarder.backgroundColor = UIColor.skyBlueColor.CGColor;
+    [self.contentView.layer addSublayer:self.bottomBoarder];
+}
+
+- (void)layoutSubviews
+{
+    [super layoutSubviews];
+    self.bottomBoarder.frame = CGRectMake(0.0f, CGRectGetHeight(self.bounds), CGRectGetWidth(self.bounds), 0.5f);
+}
+
+- (CALayer *)bottomBoarder
+{
+    if (!_bottomBoarder) {
+        _bottomBoarder = [CALayer new];
+        _bottomBoarder.frame = CGRectZero;
+    }
+    return _bottomBoarder;
 }
 
 @end

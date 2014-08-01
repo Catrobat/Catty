@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2013 The Catrobat Team
+ *  Copyright (C) 2010-2014 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -22,10 +22,11 @@
 
 #define kContinueCell    @"ContinueCell"
 #define kImageCell       @"ImageCell"
+#define kFeaturedCell    @"FeaturedCell"
 #define kDetailImageCell @"DetailImageCell"
 #define kSearchCell      @"SearchCell"
 #define kObjectCell      @"ObjectCell"
 
 #define kImageLabelTag     11
-#define kTitleLabelTag     12
+//#define kTitleLabelTag     12
 #define kSubtitleLabelTag  13

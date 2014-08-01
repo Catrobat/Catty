@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2013 The Catrobat Team
+ *  Copyright (C) 2010-2014 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -21,6 +21,7 @@
  */
 
 #import "Foreverbrick.h"
+#import "GDataXMLNode.h"
 
 @implementation ForeverBrick
 
@@ -41,6 +42,24 @@
     return [NSString stringWithFormat:@"ForeverLoop"];
 }
 
+- (GDataXMLElement*)toXMLforObject:(SpriteObject*)spriteObject
+{
+    GDataXMLElement *brickXMLElement = [super toXMLforObject:spriteObject];
+    GDataXMLElement *loopEndBrickXMLElement = [GDataXMLNode elementWithName:@"loopEndBrick"];
+    [loopEndBrickXMLElement addAttribute:[GDataXMLNode elementWithName:@"class"
+                                                           stringValue:@"loopEndlessBrick"]];
 
+    GDataXMLElement *objectBrickXMLElement = [GDataXMLNode elementWithName:@"object"];
+    [objectBrickXMLElement addAttribute:[GDataXMLNode elementWithName:@"reference" stringValue:@"../../../../../.."]];
+    [loopEndBrickXMLElement addChild:objectBrickXMLElement];
+
+    GDataXMLElement *loopBeginBrickXMLElement = [GDataXMLNode elementWithName:@"loopBeginBrick"];
+    [loopBeginBrickXMLElement addAttribute:[GDataXMLNode elementWithName:@"class"
+                                                             stringValue:@"foreverBrick"]];
+    [loopBeginBrickXMLElement addAttribute:[GDataXMLNode elementWithName:@"reference" stringValue:@"../.."]];
+    [loopEndBrickXMLElement addChild:loopBeginBrickXMLElement];
+    [brickXMLElement addChild:loopEndBrickXMLElement];
+    return brickXMLElement;
+}
 
 @end

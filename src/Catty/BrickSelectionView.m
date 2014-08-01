@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2013 The Catrobat Team
+ *  Copyright (C) 2010-2014 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -64,11 +64,11 @@
         [self.layer addSublayer:self.topBorder];
         self.textLabel.alpha = 1.0f;
         self.textLabel.transform = CGAffineTransformIdentity;
-
+        
         [viewController.view insertSubview:self aboveSubview:view];
         
         [self.brickCollectionView scrollToItemAtIndexPath:0 atScrollPosition:UICollectionViewScrollPositionTop animated:NO];
-        
+        __weak BrickSelectionView *weakself = self;
         [UIView animateWithDuration:0.5f delay:0.0f usingSpringWithDamping:10.0f initialSpringVelocity:0.0f options:UIViewAnimationOptionCurveEaseInOut animations:^{
             self.frame = CGRectMake(0.0f, UIScreen.mainScreen.bounds.origin.y + self.yOffset, CGRectGetWidth(self.bounds), CGRectGetHeight(self.bounds));
             [viewController.navigationController setNavigationBarHidden:YES animated:YES];
@@ -76,8 +76,8 @@
             view.transform = CGAffineTransformScale(CGAffineTransformMakeTranslation(0.0f, -20.0f), 0.95f, 0.95f);
         } completion:^(BOOL finished) {
             if (finished) {
-                 view.userInteractionEnabled = NO;
-                _blurView.dynamic = NO;
+                view.userInteractionEnabled = NO;
+                weakself.blurView.dynamic = NO;
                 dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
                     [UIView animateWithDuration:0.25f animations:^{
                         self.textLabel.alpha = 0.0f;
@@ -86,12 +86,11 @@
                 });
             }
         }];
-        
+        if (completionBlock) completionBlock();
     } else {
         [self dismissView:viewController withView:view fastDismiss:NO completion:NULL];
+        if (completionBlock) completionBlock();
     }
-    
-    if (completionBlock) completionBlock();
 }
 
 - (void)dismissView:(UIViewController *)fromViewController withView:(UIView *)view fastDismiss:(BOOL)fastDimiss completion:(void(^)())completionBlock

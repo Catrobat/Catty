@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2013 The Catrobat Team
+ *  Copyright (C) 2010-2014 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -22,6 +22,7 @@
 
 #import "Gonstepsbackbrick.h"
 #import "Formula.h"
+#import "GDataXMLNode.h"
 
 @implementation GoNStepsBackBrick
 
@@ -61,12 +62,21 @@
     
 }
 
-
 #pragma mark - Description
 - (NSString*)description
 {
     return [NSString stringWithFormat:@"GoNStepsBack (%d)", [self.steps interpretIntegerForSprite:self.object]];
 }
 
+- (GDataXMLElement*)toXMLforObject:(SpriteObject*)spriteObject
+{
+    GDataXMLElement *brickXMLElement = [super toXMLforObject:spriteObject];
+    if (self.steps) {
+        GDataXMLElement *stepsXMLElement = [GDataXMLNode elementWithName:@"steps"];
+        [stepsXMLElement addChild:[self.steps toXMLforObject:spriteObject]];
+        [brickXMLElement addChild:stepsXMLElement];
+    }
+    return brickXMLElement;
+}
 
 @end

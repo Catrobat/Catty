@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2013 The Catrobat Team
+ *  Copyright (C) 2010-2014 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -21,6 +21,7 @@
  */
 
 #import "Broadcastscript.h"
+#import "GDataXMLNode.h"
 
 @implementation BroadcastScript
 
@@ -50,5 +51,12 @@
     return ret;
 }
 
+- (GDataXMLElement*)toXMLforObject:(SpriteObject *)spriteObject
+{
+    GDataXMLElement *scriptXMLElement = [super toXMLforObject:spriteObject];
+    GDataXMLElement *receivedMessageXMLElement = [GDataXMLNode elementWithName:@"receivedMessage" stringValue:self.receivedMessage];
+    [scriptXMLElement addChild:receivedMessageXMLElement];
+    return scriptXMLElement;
+}
 
 @end

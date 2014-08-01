@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2013 The Catrobat Team
+ *  Copyright (C) 2010-2014 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -23,9 +23,13 @@
 #import <Foundation/Foundation.h>
 
 @class Program;
+@class GDataXMLDocument;
 
 @interface ProjectParser : NSObject
 
 - (id)loadProject:(NSData*)xmlData;
+
+// FIXME: remove this after serialization works
+@property (strong, nonatomic) GDataXMLDocument *XMLdocument;
 
 @end

@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2013 The Catrobat Team
+ *  Copyright (C) 2010-2014 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -22,6 +22,7 @@
 
 #import "Repeatbrick.h"
 #import "Formula.h"
+#import "GDataXMLNode.h"
 
 @interface RepeatBrick()
 
@@ -53,6 +54,26 @@
 - (NSString*)description
 {
     return [NSString stringWithFormat:@"RepeatLoop with %d iterations", [self.timesToRepeat interpretIntegerForSprite:self.object]];
+}
+
+- (GDataXMLElement*)toXMLforObject:(SpriteObject*)spriteObject
+{
+    GDataXMLElement *brickXMLElement = [super toXMLforObject:spriteObject];
+
+    GDataXMLElement *loopEndBrickXMLElement = [GDataXMLNode elementWithName:@"loopEndBrick"];
+    GDataXMLElement *brickToObjectReferenceXMLElement = [GDataXMLNode elementWithName:@"object"];
+    [brickToObjectReferenceXMLElement addAttribute:[GDataXMLNode elementWithName:@"reference" stringValue:@"../../../../../.."]];
+    [loopEndBrickXMLElement addChild:brickToObjectReferenceXMLElement];
+    GDataXMLElement *loopBeginBrickXMLElement = [GDataXMLNode elementWithName:@"loopBeginBrick"];
+    [loopBeginBrickXMLElement addAttribute:[GDataXMLNode elementWithName:@"class" stringValue:@"repeatBrick"]];
+    [loopBeginBrickXMLElement addAttribute:[GDataXMLNode elementWithName:@"reference" stringValue:@"../.."]];
+    [loopEndBrickXMLElement addChild:loopBeginBrickXMLElement];
+    [brickXMLElement addChild:loopEndBrickXMLElement];
+
+    GDataXMLElement *timesToRepeatBrickXMLElement = [GDataXMLNode elementWithName:@"timesToRepeat"];
+    [timesToRepeatBrickXMLElement addChild:[self.timesToRepeat toXMLforObject:spriteObject]];
+    [brickXMLElement addChild:timesToRepeatBrickXMLElement];
+    return brickXMLElement;
 }
 
 @end

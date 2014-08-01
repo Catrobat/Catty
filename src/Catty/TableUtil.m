@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2013 The Catrobat Team
+ *  Copyright (C) 2010-2014 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -30,6 +30,7 @@
 #define kIphone4ScreenHeight 480.0f
 #define kContinueCellHeight  120.0f
 #define kImageCellHeight     75.0f
+#define kFeaturedCellHeight  125.0f
 
 @implementation TableUtil
 
@@ -51,6 +52,10 @@
     } else {
         return (kImageCellHeight*screenHeight)/kIphone4ScreenHeight;
     }
+}
++ (CGFloat)getHeightForFeaturedCell
+{
+    return kFeaturedCellHeight;
 }
 
 + (UIBarButtonItem*)editButtonItemWithTarget:(id)target action:(SEL)action

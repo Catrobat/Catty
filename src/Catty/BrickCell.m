@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2013 The Catrobat Team
+ *  Copyright (C) 2010-2014 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -253,7 +253,6 @@
     NSArray *inlineViewSubViews = [self inlineViewSubviews];
 
     // call corresponding subclass method, specific implementation (overridden method)
-    // TODO: remove this "try-catch-check" later
     @try {
         [self hookUpSubViews:inlineViewSubViews];
     } @catch (NSException *exception) {
@@ -423,9 +422,8 @@
         if (counter < totalNumberOfParams) {
 
             // -----------------------------------
-            // TODO: This is only code used for testing purposes. TO BE REFACTORED...
-            // TODO: Pickers, Pluralization, Hook Ups only for inputFields ...
-
+            // NOTE: * This is only code used for testing purposes. TO BE REFACTORED...
+            //       * Pickers, Pluralization, Hook Ups only for inputFields ...
             CGRect inputViewFrame = remainingFrame;
 //            inputViewFrame.origin.y += kBrickInputFieldTopMargin;
 //            inputViewFrame.size.height -= (kBrickInputFieldTopMargin + kBrickInputFieldBottomMargin);

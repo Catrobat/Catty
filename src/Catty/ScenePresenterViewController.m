@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2013 The Catrobat Team
+ *  Copyright (C) 2010-2014 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -63,21 +63,119 @@
 #define kPlaceofLabels (kPlaceOfButtons-29)
 #define kPlaceofContinueLabel (kPlaceOfButtons)
 #define kDontResumeSounds 4
-#define kfirstSwipeDuration 2.5f
+#define kfirstSwipeDuration 0.8f
+
 
 @interface ScenePresenterViewController ()<UIActionSheetDelegate>
 
-
 @property (nonatomic) BOOL menuOpen;
-@property (nonatomic, strong) Scene *scene;
 @property (nonatomic, strong) BroadcastWaitHandler *broadcastWaitHandler;
 @property (nonatomic) CGPoint firstGestureTouchPoint;
 @property (nonatomic) UIImage *snapshotImage;
 @property (nonatomic,strong) UIView *gridView;
+@property (nonatomic, strong) Program* program;
+@property (nonatomic, strong) SKView *skView;
 
 @end
 
 @implementation ScenePresenterViewController
+
+- (id)initWithProgram:(Program *)program
+{
+    if (self = [super init]) {
+        for (SpriteObject *sprite in program.objectList)
+        {
+            //        sprite.spriteManagerDelegate = self;
+            sprite.broadcastWaitDelegate = self.broadcastWaitHandler;
+            
+            // NOTE: if there are still some runNextAction tasks in a queue
+            // then these actions must not be executed because the Scene is not available any more.
+            // This problem caused the app to crash sometimes in the past.
+            // Now these lines fix this issue.
+            for (Script *script in sprite.scriptList) {
+                script.allowRunNextAction = YES;
+                for (Brick *brick in script.brickList) {
+                    brick.object = sprite;
+                }
+            }
+        }
+        _program = program;
+    }
+    return  self;
+}
+
+#pragma mark - ViewController Delegates
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
+    
+    [self.view addGestureRecognizer:[[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(handlePan:)]];
+    
+    /// MenuImageBackground
+    UIImage *menuBackgroundImage = [UIImage imageNamed:@"stage_dialog_background_middle_1"];
+    UIImage *newBackgroundImage;
+    
+    if ([Util getScreenHeight] == kIphone4ScreenHeight) {
+        CGSize size = CGSizeMake(kWidthSlideMenu+kBounceEffect, kIphone4ScreenHeight);
+        UIGraphicsBeginImageContextWithOptions(size, NO, 0.0);
+        [menuBackgroundImage drawInRect:CGRectMake(0, 0, size.width, size.height)];
+        newBackgroundImage = UIGraphicsGetImageFromCurrentImageContext();
+        UIGraphicsEndImageContext();
+    } else {
+        CGSize size = CGSizeMake(kWidthSlideMenu+kBounceEffect, kIphone5ScreenHeight);
+        UIGraphicsBeginImageContextWithOptions(size, NO, 0.0);
+        [menuBackgroundImage drawInRect:CGRectMake(0, 0, size.width, size.height)];
+        newBackgroundImage = UIGraphicsGetImageFromCurrentImageContext();
+        UIGraphicsEndImageContext();
+    }
+    
+    self.skView.backgroundColor = UIColor.backgroundColor;
+    self.menuView = [[UIView alloc]initWithFrame:CGRectMake(0.0f, 0.0f, kWidthSlideMenu + kBounceEffect, CGRectGetHeight(UIScreen.mainScreen.bounds))];
+    self.menuView.backgroundColor = [[UIColor alloc] initWithPatternImage:newBackgroundImage];
+    
+    // disable swipe back gesture
+    if ([self.navigationController respondsToSelector:@selector(interactivePopGestureRecognizer)]) {
+        self.navigationController.interactivePopGestureRecognizer.enabled = NO;
+    }
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [self configureScene];
+    UIApplication.sharedApplication.idleTimerDisabled = YES;
+    UIApplication.sharedApplication.statusBarHidden = YES;
+    self.navigationController.navigationBar.hidden = YES;
+    self.menuOpen = NO;
+    [self.view addSubview:self.skView];
+    [self.view insertSubview:self.menuView aboveSubview:self.skView];
+    [self setUpMenuButtons];
+    [self setUpMenuFrames];
+    [self setUpLabels];
+    [self setUpGridView];
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    [self continueProgram:nil withDuration:kfirstSwipeDuration];
+}
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    [self.menuView removeFromSuperview];
+    self.navigationController.navigationBar.hidden = NO;
+    [self.navigationController setToolbarHidden:NO animated:NO];
+    UIApplication.sharedApplication.statusBarHidden = NO;
+    UIApplication.sharedApplication.idleTimerDisabled = NO;
+}
+
+- (void)viewWillLayoutSubviews
+{
+    [super viewWillLayoutSubviews];
+    self.skView.bounds = self.view.bounds;
+}
 
 # pragma getters and setters
 - (BroadcastWaitHandler*)broadcastWaitHandler
@@ -93,82 +191,26 @@
 {
     // lazy instantiation
     if (! _gridView) {
-        _gridView = [[UIView alloc]initWithFrame:CGRectMake(0,0,[Util getScreenWidth],[Util getScreenHeight])];
+        _gridView = [[UIView alloc]initWithFrame:self.view.bounds];
         _gridView.hidden = YES;
     }
     return _gridView;
 }
 
-- (void)setProgram:(Program*)program
+- (SKView *)skView
 {
-    // setting effect
-    for (SpriteObject *sprite in program.objectList)
-    {
-        //sprite.spriteManagerDelegate = self;
-        sprite.broadcastWaitDelegate = self.broadcastWaitHandler;
-        
-        // NOTE: if there are still some runNextAction tasks in a queue
-        // then these actions must not be executed because the Scene is not available any more.
-        // This problem caused the app to crash sometimes in the past.
-        // Now these lines fix this issue.
-        for (Script *script in sprite.scriptList) {
-            script.allowRunNextAction = YES;
-            for (Brick *brick in script.brickList) {
-                brick.object = sprite;
-            }
-        }
+    if (!_skView) {
+        _skView = [[SKView alloc] initWithFrame:self.view.bounds];
+#ifdef DEBUG
+        _skView.showsFPS = YES;
+        _skView.showsNodeCount = YES;
+        _skView.showsDrawCount = YES;
+#endif
     }
-    _program = program;
+    _skView.paused = NO;
+    return _skView;
 }
 
-- (void)viewDidLoad
-{
-    [super viewDidLoad];
-
-    [[UIApplication sharedApplication] setStatusBarHidden:YES];
-
-    //    ///MENU_BUTTON:::Button before Sliding Menu!!!
-    //    self.menuBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    //    menuBtn.frame = CGRectMake(8.0f, 10.0f, 34.0f, 24.0f);
-    //    [menuBtn setBackgroundImage:[UIImage imageNamed:@"menuButton"] forState:UIControlStateNormal];
-    //    [menuBtn addTarget:self action:@selector(revealMenu:) forControlEvents:UIControlEventTouchUpInside];
-    //    [self.view addSubview:self.menuBtn];
-    
-    [self.view addGestureRecognizer:[[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(handlePan:)]];
-    [self setUpMenuButtons];
-
-    /// MenuImageBackground
-    UIImage *menuBackgroundImage = [UIImage imageNamed:@"stage_dialog_background_middle_1"];
-    UIImage *newBackgroundImage;
-
-    if ([Util getScreenHeight] == kIphone4ScreenHeight) {
-        CGSize size = CGSizeMake(kWidthSlideMenu+kBounceEffect, kIphone4ScreenHeight);
-        UIGraphicsBeginImageContextWithOptions(size, NO, 0.0);
-        [menuBackgroundImage drawInRect:CGRectMake(0, 0, size.width, size.height)];
-        newBackgroundImage = UIGraphicsGetImageFromCurrentImageContext();
-        UIGraphicsEndImageContext();
-    } else {
-        CGSize size = CGSizeMake(kWidthSlideMenu+kBounceEffect, kIphone5ScreenHeight);
-        UIGraphicsBeginImageContextWithOptions(size, NO, 0.0);
-        [menuBackgroundImage drawInRect:CGRectMake(0, 0, size.width, size.height)];
-        newBackgroundImage = UIGraphicsGetImageFromCurrentImageContext();
-        UIGraphicsEndImageContext();
-    }
-    //newBackgroundImage = [self brightnessBackground:newBackgroundImage];
-
-    UIColor *background = [[UIColor alloc] initWithPatternImage:newBackgroundImage];
-
-    //UIColor *background =[UIColor darkBlueColor];
-    self.menuView.backgroundColor = background;
-
-    [self setUpMenuFrames];
-    [self setUpLabels];
-    [self setUpGridView];
-    [self revealMenu:nil];
-    [self configureScene];
-    [self continueProgram:nil withDuration:kfirstSwipeDuration];
-    [self.view bringSubviewToFront:self.menuView];
-}
 
 - (UIImage*)brightnessBackground:(UIImage*)startImage
 {
@@ -252,7 +294,6 @@
 
 - (void)setUpMenuButtons
 {
-
     self.menuBackButton = [UIButton buttonWithType:UIButtonTypeCustom];
     self.menuContinueButton = [UIButton buttonWithType:UIButtonTypeCustom];
     self.menuScreenshotButton = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -331,8 +372,7 @@
         self.menuScreenshotButton.frame = CGRectMake(kPlaceOfButtons+((kContinueButtonSize-kMenuButtonSize)/2),(kIphone5ScreenHeight/2)+(kContinueButtonSize/2)+kMenuIPhone5ContinueGapSize,  kMenuButtonSize, kMenuButtonSize);
         self.menuAxisButton.frame = CGRectMake(kPlaceOfButtons+((kContinueButtonSize-kMenuButtonSize)/2),(kIphone5ScreenHeight/2)+(kContinueButtonSize/2)+(KMenuIPhone5GapSize)+kMenuIPhone5ContinueGapSize+(kMenuButtonSize),  kMenuButtonSize, kMenuButtonSize);
     }
-    //NSLog(@"Width: %f",self.menuView.frame.size.width);
-    self.menuView.frame = CGRectMake(0, 0, kWidthSlideMenu+kBounceEffect, self.menuView.frame.size.height);
+//    //NSLog(@"Width: %f",self.menuView.frame.size.width);
 }
 
 - (void)setUpGridView
@@ -370,83 +410,35 @@
     negativeHeight.textColor = [UIColor redColor];
     [self.gridView addSubview:negativeHeight];
     
-    [self.skView addSubview:self.gridView];
+    [self.view insertSubview:self.gridView aboveSubview:self.skView];
 }
-
-- (void)viewWillAppear:(BOOL)animated
-{
-    [super viewWillAppear:animated];
-    [self.navigationController setNavigationBarHidden:YES animated:animated];
-    self.menuOpen = NO;
-    [[UIApplication sharedApplication] setIdleTimerDisabled:YES];
-}
-
-- (void)viewWillDisappear:(BOOL)animated
-{
-  [super viewWillDisappear:animated];
-  [self.navigationController setNavigationBarHidden:NO animated:animated];
-  [[UIApplication sharedApplication] setIdleTimerDisabled:NO];
-  [[UIApplication sharedApplication] setStatusBarHidden:NO];
-}
-
-- (void)configureScene
-{
-  SKView *skView = (SKView*) self.skView;
-  [self.view addSubview:skView];
-#ifdef DEBUG
-  skView.showsFPS = YES;
-  skView.showsNodeCount = YES;
-#endif
-
-  CGSize programSize = CGSizeMake(self.program.header.screenWidth.floatValue, self.program.header.screenHeight.floatValue);
-  Scene* scene = [[Scene alloc] initWithSize:programSize andProgram:self.program];
-  self.scene = scene;
-  self.scene.scaleMode = SKSceneScaleModeFill;
-  [skView presentScene:self.scene];
-  [[ProgramManager sharedProgramManager] setProgram:self.program];
-}
-
 
 - (BOOL)prefersStatusBarHidden
 {
     return YES;
 }
 
-
--(void)dealloc
+- (void)dealloc
 {
     [[AudioManager sharedAudioManager] stopAllSounds];
     [[SensorHandler sharedSensorHandler] stopSensors];
     
-    // NOTE: if there are still some runNextAction tasks in a queue
-    // then these actions must not be executed because the Scene is not available any more.
-    // This problem caused the app to crash sometimes in the past.
-    // Now these lines fix this issue.
-    for (SpriteObject *sprite in self.program.objectList)
-    {
-        sprite.broadcastWaitDelegate = nil;
-        for (Script *script in sprite.scriptList) {
-            script.allowRunNextAction = NO;
-        }
-    }
+    [self resetSpriteObjects];
     
     //Delete sound rec for loudness sensor
     NSError *error;
-
+    
     NSFileManager *fileMgr = [NSFileManager defaultManager];
-
+    
     NSString* documentsPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
     NSString* soundfile = [documentsPath stringByAppendingPathComponent:@"loudness_handler.m4a"];
     if ([fileMgr removeItemAtPath:soundfile error:&error] != YES)
         NSDebug(@"No Sound file available or unable to delete file: %@", [error localizedDescription]);
 }
 
--(void) alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
-    
+- (void) alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
     if (buttonIndex == 0) {
-        
         [self.navigationController popViewControllerAnimated:YES];
-        
     }
 }
 
@@ -457,13 +449,12 @@
 
 -(void)revealMenu:(UIButton*)sender
 {
-    SKView * view= (SKView*)_skView;
-    view.paused=YES;
+    self.skView.paused = YES;
     [[AVAudioSession sharedInstance] setActive:NO error:nil];
     [[AudioManager sharedAudioManager] pauseAllSounds];
     
-    [UIView animateWithDuration:1
-                          delay:0.5
+    [UIView animateWithDuration:1.0f
+                          delay:0.5f
                         options: UIViewAnimationOptionTransitionFlipFromLeft
                      animations:^{[self revealAnimation];}
                      completion:^(BOOL finished){
@@ -483,37 +474,31 @@
     [self.navigationController popViewControllerAnimated:YES];
 }
 
-
-
-#pragma button functions
+#pragma mark - button functions
 - (void)stopProgram:(UIButton *)sender
 {
-    self.skView = nil;
-    [self.navigationController setToolbarHidden:NO];
+    [self.parentViewController.navigationController setToolbarHidden:NO];
+    [self.parentViewController.navigationController setNavigationBarHidden:NO];
     [self.navigationController popViewControllerAnimated:YES];
-    [self.controller.navigationController setToolbarHidden:NO];
-    [self.controller.navigationController setNavigationBarHidden:NO];
 }
 
-- (void)continueProgram:(UIButton *)sender withDuration:(float)duration
+- (void)continueProgram:(UIButton *)sender withDuration:(CGFloat)duration
 {
     [[AVAudioSession sharedInstance] setActive:YES error:nil];
-    float animateDuration;
-    if (duration != kfirstSwipeDuration) {
-        animateDuration= 0.5;
-    }
-    else{
-        animateDuration = duration;
-    }
+    
+    CGFloat animateDuration = 0.0f;
+    animateDuration = duration > 0.0001f ? duration : 0.35f;
+    
     [UIView animateWithDuration:animateDuration
-                          delay:0.1
+                          delay:0.0f
                         options: UIViewAnimationOptionTransitionFlipFromRight
                      animations:^{[self continueAnimation];}
                      completion:^(BOOL finished){
                          self.menuOpen = NO;
                      }];
-    SKView *view = (SKView*)self.skView;
-    view.paused = NO;
+    
+    self.skView.paused = NO;
+   
     if (duration != kDontResumeSounds) {
         [[AudioManager sharedAudioManager] resumeAllSounds];
     }
@@ -524,48 +509,81 @@
     self.menuView.frame = CGRectMake(-kWidthSlideMenu-kBounceEffect, 0, self.menuView.frame.size.width, self.menuView.frame.size.height);
 }
 
+- (void)configureScene
+{
+    CGSize programSize = CGSizeMake(self.program.header.screenWidth.floatValue, self.program.header.screenHeight.floatValue);
+    Scene *scene = [[Scene alloc] initWithSize:programSize andProgram:self.program];
+    scene.name = self.program.header.programName;
+    scene.scaleMode = SKSceneScaleModeFill;
+    self.skView.paused = NO;
+    [self.skView presentScene:scene];
+    [[ProgramManager sharedProgramManager] setProgram:self.program];
+}
+
 - (void)restartProgram:(UIButton*)sender
 {
-    // reset scene
-    self.scene = nil;
-    self.scene.scaleMode = SKSceneScaleModeAspectFit;
-    SKView * view= (SKView*)self.skView;
-    view.paused=NO;
+    [self resetSpriteObjects];
     self.program = [Program programWithLoadingInfo:[Util programLoadingInfoForProgramWithName:[Util lastProgram]]];
-    [Util setLastProgram:self.program.header.programName];
-
-    if (! self.program) {
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:kUIAlertViewTitleCantRestartProgram
-                                                        message:nil
-                                                       delegate:self.menuView
-                                              cancelButtonTitle:kUIAlertViewButtonTitleOK
-                                              otherButtonTitles:nil];
-        [alert show];
+    
+    for (SpriteObject *sprite in self.program.objectList)
+    {
+        sprite.broadcastWaitDelegate = self.broadcastWaitHandler;
+        
+        for (Script *script in sprite.scriptList) {
+            script.allowRunNextAction = YES;
+            for (Brick *brick in script.brickList) {
+                brick.object = sprite;
+            }
+        }
+    }
+    
+    [self.broadcastWaitHandler removeSpriteMessages];
+    
+    Scene *previousScene = (Scene *)self.skView.scene;
+    previousScene.program = self.program;
+    
+    if (!self.program) {
+        [[[UIAlertView alloc] initWithTitle:kUIAlertViewTitleCantRestartProgram
+                                    message:nil
+                                   delegate:self.menuView
+                          cancelButtonTitle:kUIAlertViewButtonTitleOK
+                          otherButtonTitles:nil] show];
         return;
     }
-    [view presentScene:self.scene];
-    [self configureScene];
-    [self continueProgram:nil withDuration:kDontResumeSounds];
+    
+    [self.skView presentScene:previousScene];
+    [self continueProgram:nil withDuration:0.0f];
+}
+
+- (void)resetSpriteObjects
+{
+    for (SpriteObject *sprite in self.program.objectList) {
+        sprite.broadcastWaitDelegate = nil;
+        sprite.spriteManagerDelegate = nil;
+        
+        for (Script *script in sprite.scriptList) {
+            script.allowRunNextAction = NO;
+            for (Brick *brick in script.brickList) {
+                brick.object = nil;
+            }
+        }
+    }
 }
 
 - (void)showHideAxis:(UIButton *)sender
 {
-    if(self.gridView.hidden == NO)
-    {
+    if(self.gridView.hidden == NO) {
         self.gridView.hidden = YES;
     }
-    else{
+    else {
         self.gridView.hidden = NO;
     }
-    
 }
 
 - (void)manageAspectRatio:(UIButton *)sender
 {
-
-    self.scene.scaleMode = self.scene.scaleMode==SKSceneScaleModeAspectFit ? SKSceneScaleModeFill : SKSceneScaleModeAspectFit;
+    self.skView.scene.scaleMode = self.skView.scene.scaleMode == SKSceneScaleModeAspectFit ? SKSceneScaleModeFill : SKSceneScaleModeAspectFit;
     [self.skView setNeedsLayout];
-    
 }
 
 - (void)takeScreenshot:(UIButton *)sender
@@ -580,18 +598,6 @@
 }
 - (void)showSaveScreenshotActionSheet
 {
-    //  NSString *actionSheetTitle = [NSString stringWithFormat:@"%@:", kUIActionSheetTitleSaveScreenshot];
-    //  NSString *buttonSaveToCameraRoll = kUIActionSheetButtonTitleCameraRoll;
-    //  NSString *buttonSaveToProject = kUIActionSheetButtonTitleProject;
-    //  NSString *cancelTitle = kUIActionSheetButtonTitleCancel;
-    //  UIActionSheet *actionSheet = [[UIActionSheet alloc]
-    //                                initWithTitle:actionSheetTitle
-    //                                delegate:self
-    //                                cancelButtonTitle:cancelTitle
-    //                                destructiveButtonTitle:nil
-    //                                otherButtonTitles:buttonSaveToCameraRoll, buttonSaveToProject,  nil];
-    //  [actionSheet showInView:self.menuView];
-
     UIImage *imageToShare = self.snapshotImage;
     NSString* path = [self.program projectPath];
     NSArray *itemsToShare = @[imageToShare];
@@ -609,8 +615,9 @@
                                          UIActivityTypeMail]; //or whichever you don't need
     [self presentViewController:activityVC animated:YES completion:nil];
 }
+
 // Now we have an activity view -> just in case we need change back to the action sheet
-//- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
+//- (void)actionSheet:(CatrobatActionSheet*)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
 //{
 //  NSString *buttonTitle = [actionSheet buttonTitleAtIndex:buttonIndex];
 //  if ([buttonTitle isEqualToString:kUIActionSheetButtonTitleCameraRoll]) {
@@ -693,7 +700,7 @@
                              completion:^(BOOL finished) {
                                  self.menuOpen = YES;
                                  //pause Scene
-                                 SKView * view= (SKView*)_skView;
+                                 SKView * view= self.skView;
                                  view.paused=YES;
                                  //view.userInteractionEnabled = NO;
                                  [[AudioManager sharedAudioManager] pauseAllSounds];
@@ -710,7 +717,7 @@
                                 options:UIViewAnimationOptionCurveEaseOut
                              animations:^{[self handleCancelledNegative:translate];}
                              completion:^(BOOL finished) {
-                                 SKView * view= (SKView*)_skView;
+                                 SKView * view = self.skView;
                                  view.paused=NO;
                                  //view.userInteractionEnabled = YES;
                                  self.menuOpen= NO;
@@ -725,7 +732,7 @@
                                 options:UIViewAnimationOptionCurveEaseOut
                              animations:^{[self handleCancelledNegative:translate];}
                              completion:^(BOOL finished) {
-                                 SKView * view= (SKView*)_skView;
+                                 SKView * view = self.skView;
                                  view.paused=NO;
                                  //view.userInteractionEnabled = YES;
                                  self.menuOpen= NO;
@@ -741,7 +748,7 @@
                              completion:^(BOOL finished) {
                                  self.menuOpen = YES;
                                  //pause Scene
-                                 SKView * view= (SKView*)_skView;
+                                 SKView * view= self.skView;
                                  view.paused=YES;
                                  //view.userInteractionEnabled = NO;
                                  [[AudioManager sharedAudioManager] pauseAllSounds];
@@ -789,6 +796,7 @@
     self.menuView.frame = CGRectMake(-kWidthSlideMenu-kBounceEffect, 0, self.menuView.frame.size.width, self.menuView.frame.size.height);
     self.menuBtn.hidden=NO;
 }
+
 -(void)bounce
 {
     CABasicAnimation * animation = [CABasicAnimation animationWithKeyPath:@"position.x"];
@@ -809,26 +817,24 @@
         for (UITouch* touch in touches) {
             CGPoint location = [touch locationInView:self.skView];
             NSDebug(@"StartTouchinScenePresenter");
-            if ([self.scene touchedwith:touches withX:location.x andY:location.y]) {
+            
+            Scene *scene = (Scene *)self.skView.scene;
+            if ([scene touchedwith:touches withX:location.x andY:location.y]) {
                 break;
             }
         }
     }
-    
+
 }
 
 -(void)pause
 {
-    SKView * view= (SKView*)_skView;
-    view.paused=YES;
     [[AVAudioSession sharedInstance] setActive:NO error:nil];
     [[AudioManager sharedAudioManager] pauseAllSounds];
 }
 
 -(void)resume
 {
-    SKView * view= (SKView*)_skView;
-    view.paused=NO;
     [[AVAudioSession sharedInstance] setActive:YES error:nil];
     [[AudioManager sharedAudioManager] resumeAllSounds];
 }

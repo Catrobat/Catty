@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2013 The Catrobat Team
+ *  Copyright (C) 2010-2014 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -22,6 +22,7 @@
 
 #import "Setybrick.h"
 #import "Formula.h"
+#import "GDataXMLNode.h"
 
 @implementation SetYBrick
 
@@ -52,5 +53,13 @@
     return [NSString stringWithFormat:@"SetYBrick (y-Pos:%f)", [self.yPosition interpretDoubleForSprite:self.object]];
 }
 
+- (GDataXMLElement*)toXMLforObject:(SpriteObject*)spriteObject
+{
+    GDataXMLElement *brickXMLElement = [super toXMLforObject:spriteObject];
+    GDataXMLElement *yPositionFormulaXMLElement = [GDataXMLNode elementWithName:@"yPosition"];
+    [yPositionFormulaXMLElement addChild:[self.yPosition toXMLforObject:spriteObject]];
+    [brickXMLElement addChild:yPositionFormulaXMLElement];
+    return brickXMLElement;
+}
 
 @end

@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2013 The Catrobat Team
+ *  Copyright (C) 2010-2014 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -22,6 +22,7 @@
 
 #import "ChangeYByNBrick.h"
 #import "Formula.h"
+#import "GDataXMLNode.h"
 
 @implementation ChangeYByNBrick
 
@@ -53,6 +54,20 @@
 {
     double xMov = [self.yMovement interpretDoubleForSprite:self.object];
     return [NSString stringWithFormat:@"ChangeYBy (%f)", xMov];
+}
+
+- (GDataXMLElement*)toXMLforObject:(SpriteObject*)spriteObject
+{
+    GDataXMLElement *brickXMLElement = [super toXMLforObject:spriteObject];
+    if (self.yMovement) {
+        GDataXMLElement *yMovementXMLElement = [GDataXMLNode elementWithName:@"yMovement"];
+        [yMovementXMLElement addChild:[self.yMovement toXMLforObject:spriteObject]];
+        [brickXMLElement addChild:yMovementXMLElement];
+    } else {
+        // remove object reference
+        [brickXMLElement removeChild:[[brickXMLElement children] firstObject]];
+    }
+    return brickXMLElement;
 }
 
 @end

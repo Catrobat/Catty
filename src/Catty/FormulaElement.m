@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2013 The Catrobat Team
+ *  Copyright (C) 2010-2014 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -30,6 +30,7 @@
 #import "SpriteObject.h"
 #import "NSString+CatrobatNSStringExtensions.h"
 #import "Util.h"
+#import "GDataXMLNode+PrettyFormatterExtensions.h"
 
 #define ARC4RANDOM_MAX 0x100000000
 
@@ -81,8 +82,7 @@
             
         case USER_VARIABLE: {
             //NSDebug(@"User Variable");
-            ProgramManager* manager = [ProgramManager sharedProgramManager];
-            Program* program = [manager program];
+            Program* program = ProgramManager.sharedProgramManager.program;
             UserVariable* var = [program.variables getUserVariableNamed:self.value forSpriteObject:sprite];
             result = [var.value doubleValue];
             break;
@@ -507,10 +507,9 @@
     return -1;
 }
 
-
--(ElementType)elementTypeForString:(NSString*)type
+// TODO: use map for this...
+- (ElementType)elementTypeForString:(NSString*)type
 {
-    
     if([type isEqualToString:@"OPERATOR"]) {
         return OPERATOR;
     }
@@ -529,15 +528,33 @@
     if([type isEqualToString:@"BRACKET"]) {
         return BRACKET;
     }
-    
     NSError(@"Unknown Type: %@", type);
-    
-    
-    
     return -1;
-    
 }
 
+- (NSString*)stringForElementType:(ElementType)type
+{
+    if (type == OPERATOR) {
+        return @"OPERATOR";
+    }
+    if (type == FUNCTION) {
+        return @"FUNCTION";
+    }
+    if (type == NUMBER) {
+        return @"NUMBER";
+    }
+    if (type == SENSOR) {
+        return @"SENSOR";
+    }
+    if (type == USER_VARIABLE) {
+        return @"USER_VARIABLE";
+    }
+    if (type == BRACKET) {
+        return @"BRACKET";
+    }
+    NSError(@"Unknown Type: %@", type);
+    return nil;
+}
 
 -(NSString*)description
 {
@@ -553,6 +570,35 @@
     return NO;
 }
 
+- (NSArray*)XMLChildElements
+{
+    NSMutableArray *childs = [NSMutableArray array];
+    if (self.leftChild) {
+        GDataXMLElement *leftChildXMLElement = [GDataXMLNode elementWithName:@"leftChild"];
+        for (GDataXMLElement *childElement in [self.leftChild XMLChildElements]) {
+            [leftChildXMLElement addChild:childElement];
+        }
+        [childs addObject:leftChildXMLElement];
+    }
+    if (self.rightChild) {
+        GDataXMLElement *rightChildXMLElement = [GDataXMLNode elementWithName:@"rightChild"];
+        for (GDataXMLElement *childElement in [self.rightChild XMLChildElements]) {
+            [rightChildXMLElement addChild:childElement];
+        }
+        [childs addObject:rightChildXMLElement];
+    }
 
+    GDataXMLElement *typeXMLElement = [GDataXMLNode elementWithName:@"type"
+                                                        stringValue:[self stringForElementType:self.type]];
+    [childs addObject:typeXMLElement];
+
+    if (self.value) {
+        GDataXMLElement *valueXMLElement = [GDataXMLNode elementWithName:@"value"
+                                                     optionalStringValue:self.value];
+        [childs addObject:valueXMLElement];
+    }
+
+    return [childs copy];
+}
 
 @end

@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2013 The Catrobat Team
+ *  Copyright (C) 2010-2014 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -26,6 +26,17 @@
 #import "ProgramLoadingInfo.h"
 #import "UIDefines.h"
 #import "LanguageTranslationDefines.h"
+#import "CatrobatAlertView.h"
+#import "CatrobatActionSheet.h"
+#import "UIColor+CatrobatUIColorExtensions.h"
+#import "ActionSheetAlertViewTags.h"
+#import "DataTransferMessage.h"
+#import "UIImage+CatrobatUIImageExtensions.h"
+#import "EAIntroView.h"
+
+@interface Util () <CatrobatAlertViewDelegate, UITextFieldDelegate>
+
+@end
 
 @implementation Util
 
@@ -49,28 +60,66 @@
 
 + (void)showComingSoonAlertView
 {
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:kUIAlertViewTitleStandard
-                                                    message:kUIAlertViewMessageFeatureComingSoon
-                                                   delegate:nil
-                                          cancelButtonTitle:kUIAlertViewButtonTitleOK
-                                          otherButtonTitles:nil];
+    CatrobatAlertView *alert = [[CatrobatAlertView alloc] initWithTitle:kUIAlertViewTitleStandard
+                                                                message:kUIAlertViewMessageFeatureComingSoon
+                                                               delegate:nil
+                                                      cancelButtonTitle:kUIAlertViewButtonTitleOK
+                                                      otherButtonTitles:nil];
     if (! [self activateTestMode:NO]) {
         [alert show];
     }
 }
 
-+ (UIAlertView*)alertWithText:(NSString*)text
++ (void)showIntroductionScreenInView:(UIView *)view delegate:(id<EAIntroDelegate>)delegate
+{
+#define kTempHeight 140.0f
+    UIImage *bgImage = [UIImage imageWithColor:[UIColor darkBlueColor]];
+    EAIntroPage *page1 = [EAIntroPage page];
+    page1.title = kIntroViewTitleFirstPage;
+    page1.desc = kIntroViewDescriptionFirstPage;
+    page1.bgImage = bgImage;
+    page1.titleIconView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"page1_logo"]];
+
+    EAIntroPage *page2 = [EAIntroPage page];
+    page2.title = kIntroViewTitleSecondPage;
+    page2.desc = kIntroViewDescriptionSecondPage;
+    page2.bgImage = bgImage;
+    page2.titleIconView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"page2_explore"]];
+
+    EAIntroPage *page3 = [EAIntroPage page];
+    page3.title = kIntroViewTitleThirdPage;
+    page3.desc = kIntroViewDescriptionThirdPage;
+    page3.bgImage = bgImage;
+    page3.titleIconView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"page3_info"]];
+
+    CGRect frame = view.frame;
+    if ([Util getScreenHeight] == kIphone4ScreenHeight) {
+        frame.size.height -= 64.0f;
+    } else if ([Util getScreenHeight] == kIphone5ScreenHeight) {
+        frame.size.height -= 64.0f;
+    } else {
+        NSLog(@"ERROR: unsupported screen height for introduction screen!!!");
+        abort();
+    }
+    EAIntroView *intro = [[EAIntroView alloc] initWithFrame:frame andPages:@[page1, page2, page3]];
+    intro.delegate = delegate;
+    [intro showInView:view animateDuration:0.3];
+}
+
++ (CatrobatAlertView*)alertWithText:(NSString*)text
 {
     return [self alertWithText:text delegate:nil tag:0];
 }
 
-+ (UIAlertView*)alertWithText:(NSString*)text delegate:(id<UIAlertViewDelegate>)delegate tag:(NSInteger)tag
++ (CatrobatAlertView*)alertWithText:(NSString*)text
+                           delegate:(id<CatrobatAlertViewDelegate>)delegate
+                                tag:(NSInteger)tag
 {
-    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:kUIAlertViewTitleStandard
-                                                        message:text
-                                                       delegate:delegate
-                                              cancelButtonTitle:kUIAlertViewButtonTitleOK
-                                              otherButtonTitles:nil];
+    CatrobatAlertView *alertView = [[CatrobatAlertView alloc] initWithTitle:kUIAlertViewTitleStandard
+                                                                    message:text
+                                                                   delegate:delegate
+                                                          cancelButtonTitle:kUIAlertViewButtonTitleOK
+                                                          otherButtonTitles:nil];
     alertView.tag = tag;
     if (! [self activateTestMode:NO]) {
         [alertView show];
@@ -78,18 +127,17 @@
     return alertView;
 }
 
-+ (UIAlertView*)confirmAlertWithTitle:(NSString*)title
-                              message:(NSString*)message
-                             delegate:(id<UIAlertViewDelegate>)delegate
-                                  tag:(NSInteger)tag
++ (CatrobatAlertView*)confirmAlertWithTitle:(NSString*)title
+                                    message:(NSString*)message
+                                   delegate:(id<CatrobatAlertViewDelegate>)delegate
+                                        tag:(NSInteger)tag
 {
-    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:title
-                                                        message:message
-                                                       delegate:delegate
-                                              cancelButtonTitle:nil
-                                              otherButtonTitles:nil];
+    CatrobatAlertView *alertView = [[CatrobatAlertView alloc] initWithTitle:title
+                                                                    message:message
+                                                                   delegate:delegate
+                                                          cancelButtonTitle:kUIAlertViewButtonTitleNo
+                                                          otherButtonTitles:nil];
     [alertView addButtonWithTitle:kUIAlertViewButtonTitleYes];
-    alertView.cancelButtonIndex = [alertView addButtonWithTitle:kUIAlertViewButtonTitleNo];
     alertView.tag = tag;
     if (! [self activateTestMode:NO]) {
         [alertView show];
@@ -97,12 +145,12 @@
     return alertView;
 }
 
-+ (UIAlertView*)promptWithTitle:(NSString*)title
-                message:(NSString*)message
-               delegate:(id<UIAlertViewDelegate>)delegate
-            placeholder:(NSString*)placeholder
-                    tag:(NSInteger)tag
-      textFieldDelegate:(id<UITextFieldDelegate>)textFieldDelegate
++ (CatrobatAlertView*)promptWithTitle:(NSString*)title
+                              message:(NSString*)message
+                             delegate:(id<CatrobatAlertViewDelegate>)delegate
+                          placeholder:(NSString*)placeholder
+                                  tag:(NSInteger)tag
+                    textFieldDelegate:(id<UITextFieldDelegate>)textFieldDelegate
 {
     return [Util promptWithTitle:title
                          message:message
@@ -113,19 +161,19 @@
                textFieldDelegate:textFieldDelegate];
 }
 
-+ (UIAlertView*)promptWithTitle:(NSString*)title
-                        message:(NSString*)message
-                       delegate:(id<UIAlertViewDelegate>)delegate
-                    placeholder:(NSString*)placeholder
-                            tag:(NSInteger)tag
-                          value:(NSString*)value
-              textFieldDelegate:(id<UITextFieldDelegate>)textFieldDelegate
++ (CatrobatAlertView*)promptWithTitle:(NSString*)title
+                              message:(NSString*)message
+                             delegate:(id<CatrobatAlertViewDelegate>)delegate
+                          placeholder:(NSString*)placeholder
+                                  tag:(NSInteger)tag
+                                value:(NSString*)value
+                    textFieldDelegate:(id<UITextFieldDelegate>)textFieldDelegate
 {
-    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:title
-                                                        message:message
-                                                       delegate:delegate
-                                              cancelButtonTitle:kUIAlertViewButtonTitleCancel
-                                              otherButtonTitles:kUIAlertViewButtonTitleOK, nil];
+    CatrobatAlertView *alertView = [[CatrobatAlertView alloc] initWithTitle:title
+                                                                    message:message
+                                                                   delegate:delegate
+                                                          cancelButtonTitle:kUIAlertViewButtonTitleCancel
+                                                          otherButtonTitles:kUIAlertViewButtonTitleOK, nil];
     alertView.tag = tag;
     alertView.alertViewStyle = UIAlertViewStylePlainTextInput;
     UITextField *textField = [alertView textFieldAtIndex:0];
@@ -133,37 +181,42 @@
     [textField setClearButtonMode:UITextFieldViewModeWhileEditing];
     textField.text = value;
     textField.delegate = textFieldDelegate;
+    textField.returnKeyType = UIReturnKeyDone;
+    catrobatAlertView = alertView;
     if (! [self activateTestMode:NO]) {
         [alertView show];
     }
     return alertView;
 }
 
-+ (UIActionSheet*)actionSheetWithTitle:(NSString*)title
-                              delegate:(id<UIActionSheetDelegate>)delegate
-                destructiveButtonTitle:(NSString*)destructiveButtonTitle
-                     otherButtonTitles:(NSArray*)otherButtonTitles
-                                   tag:(NSInteger)tag
-                                  view:(UIView*)view
++ (CatrobatActionSheet*)actionSheetWithTitle:(NSString*)title
+                                    delegate:(id<CatrobatActionSheetDelegate>)delegate
+                      destructiveButtonTitle:(NSString*)destructiveButtonTitle
+                           otherButtonTitles:(NSArray*)otherButtonTitles
+                                         tag:(NSInteger)tag
+                                        view:(UIView*)view
 {
-    UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:title
-                                                             delegate:delegate
-                                                    cancelButtonTitle:nil
-                                               destructiveButtonTitle:nil
-                                                    otherButtonTitles:nil];
-    actionSheet.title = title;
-    actionSheet.delegate = delegate;
-    if (destructiveButtonTitle) {
-        actionSheet.destructiveButtonIndex = [actionSheet addButtonWithTitle:destructiveButtonTitle];
-    }
-    for (id otherButtonTitle in otherButtonTitles) {
-        if ([otherButtonTitle isKindOfClass:[NSString class]]) {
-            [actionSheet addButtonWithTitle:otherButtonTitle];
-        }
-    }
-    actionSheet.cancelButtonIndex = [actionSheet addButtonWithTitle:kUIActionSheetButtonTitleCancel];
+    CatrobatActionSheet *actionSheet = [[CatrobatActionSheet alloc] initWithTitle:title
+                                                                         delegate:delegate
+                                                                cancelButtonTitle:kUIActionSheetButtonTitleCancel
+                                                           destructiveButtonTitle:destructiveButtonTitle
+                                                           otherButtonTitlesArray:otherButtonTitles];
+//    [actionSheet setButtonBackgroundColor:[UIColor colorWithWhite:0.0f alpha:1.0f]];
+//    [actionSheet setButtonTextColor:[UIColor lightOrangeColor]];
+//    [actionSheet setButtonTextColor:[UIColor redColor] forButtonAtIndex:0];
+    actionSheet.transparentView.alpha = 1.0f;
+
+//    if (destructiveButtonTitle) {
+//        [actionSheet addDestructiveButtonWithTitle:destructiveButtonTitle];
+//    }
+//    for (id otherButtonTitle in otherButtonTitles) {
+//        if ([otherButtonTitle isKindOfClass:[NSString class]]) {
+//            [actionSheet addButtonWithTitle:otherButtonTitle];
+//        }
+//    }
+//    [actionSheet addCancelButtonWithTitle:kUIActionSheetButtonTitleCancel];
+
     actionSheet.tag = tag;
-    actionSheet.actionSheetStyle = UIActionSheetStyleDefault;
     if (! [self activateTestMode:NO]) {
         [actionSheet showInView:view];
     }
@@ -269,22 +322,180 @@
     [userDefaults synchronize];
 }
 
++ (void)askUserForUniqueNameAndPerformAction:(SEL)action
+                                      target:(id)target
+                                 promptTitle:(NSString*)title
+                               promptMessage:(NSString*)message
+                                 promptValue:(NSString*)value
+                           promptPlaceholder:(NSString*)placeholder
+                              minInputLength:(NSUInteger)minInputLength
+                              maxInputLength:(NSUInteger)maxInputLength
+                         blockedCharacterSet:(NSCharacterSet*)blockedCharacterSet
+                    invalidInputAlertMessage:(NSString*)invalidInputAlertMessage
+                               existingNames:(NSArray*)existingNames
+{
+    [self askUserForUniqueNameAndPerformAction:action
+                                        target:target
+                                    withObject:nil
+                                   promptTitle:title
+                                 promptMessage:message
+                                   promptValue:value
+                             promptPlaceholder:placeholder
+                                minInputLength:minInputLength
+                                maxInputLength:maxInputLength
+                           blockedCharacterSet:blockedCharacterSet
+                      invalidInputAlertMessage:invalidInputAlertMessage
+                                 existingNames:existingNames];
+}
+
++ (void)askUserForUniqueNameAndPerformAction:(SEL)action
+                                      target:(id)target
+                                  withObject:(id)passingObject
+                                 promptTitle:(NSString*)title
+                               promptMessage:(NSString*)message
+                                 promptValue:(NSString*)value
+                           promptPlaceholder:(NSString*)placeholder
+                              minInputLength:(NSUInteger)minInputLength
+                              maxInputLength:(NSUInteger)maxInputLength
+                         blockedCharacterSet:(NSCharacterSet*)blockedCharacterSet
+                    invalidInputAlertMessage:(NSString*)invalidInputAlertMessage
+                               existingNames:(NSArray*)existingNames;
+{
+    textFieldMaxInputLength = maxInputLength;
+    textFieldBlockedCharacterSet = blockedCharacterSet;
+
+    NSDictionary *payload = @{
+        kDTPayloadAskUserAction : [NSValue valueWithPointer:action],
+        kDTPayloadAskUserTarget : target,
+        kDTPayloadAskUserObject : (passingObject ? passingObject : [NSNull null]),
+        kDTPayloadAskUserPromptTitle : title,
+        kDTPayloadAskUserPromptMessage : message,
+        kDTPayloadAskUserPromptValue : (value ? value : [NSNull null]),
+        kDTPayloadAskUserPromptPlaceholder : placeholder,
+        kDTPayloadAskUserMinInputLength : @(minInputLength),
+        kDTPayloadAskUserInvalidInputAlertMessage : invalidInputAlertMessage,
+        kDTPayloadAskUserExistingNames : (existingNames ? existingNames : [NSNull null])
+    };
+    CatrobatAlertView *alertView = [[self class] promptWithTitle:title
+                                                         message:message
+                                                        delegate:(id<CatrobatAlertViewDelegate>)self
+                                                     placeholder:kUIAlertViewPlaceholderEnterProgramName
+                                                             tag:kAskUserForUniqueNameAlertViewTag
+                                                           value:value
+                                               textFieldDelegate:(id<UITextFieldDelegate>)self];
+    alertView.dataTransferMessage = [DataTransferMessage messageForActionType:kDTMActionAskUserForUniqueName
+                                                                  withPayload:[payload mutableCopy]];
+}
+
++ (void)askUserForTextAndPerformAction:(SEL)action
+                                target:(id)target
+                           promptTitle:(NSString*)title
+                         promptMessage:(NSString*)message
+                           promptValue:(NSString*)value
+                     promptPlaceholder:(NSString*)placeholder
+                        minInputLength:(NSUInteger)minInputLength
+                        maxInputLength:(NSUInteger)maxInputLength
+                   blockedCharacterSet:(NSCharacterSet*)blockedCharacterSet
+              invalidInputAlertMessage:(NSString*)invalidInputAlertMessage
+{
+    [self askUserForTextAndPerformAction:action
+                                  target:target
+                              withObject:nil
+                             promptTitle:title
+                           promptMessage:message
+                             promptValue:value
+                       promptPlaceholder:placeholder
+                          minInputLength:minInputLength
+                          maxInputLength:maxInputLength
+                     blockedCharacterSet:blockedCharacterSet
+                invalidInputAlertMessage:invalidInputAlertMessage];
+}
+
++ (void)askUserForTextAndPerformAction:(SEL)action
+                                target:(id)target
+                            withObject:(id)passingObject
+                           promptTitle:(NSString*)title
+                         promptMessage:(NSString*)message
+                           promptValue:(NSString*)value
+                     promptPlaceholder:(NSString*)placeholder
+                        minInputLength:(NSUInteger)minInputLength
+                        maxInputLength:(NSUInteger)maxInputLength
+                   blockedCharacterSet:(NSCharacterSet*)blockedCharacterSet
+              invalidInputAlertMessage:(NSString*)invalidInputAlertMessage
+{
+    [self askUserForUniqueNameAndPerformAction:action
+                                        target:target
+                                    withObject:passingObject
+                                   promptTitle:title
+                                 promptMessage:message
+                                   promptValue:value
+                             promptPlaceholder:placeholder
+                                minInputLength:minInputLength
+                                maxInputLength:maxInputLength
+                           blockedCharacterSet:blockedCharacterSet
+                      invalidInputAlertMessage:invalidInputAlertMessage
+                                 existingNames:nil];
+}
+
 + (NSString*)uniqueName:(NSString*)nameToCheck existingNames:(NSArray*)existingNames
 {
-    NSString *uniqueName = nameToCheck;
+    NSMutableString *uniqueName = [nameToCheck mutableCopy];
+    unichar lastChar = [uniqueName characterAtIndex:([uniqueName length] - 1)];
+    if (lastChar == 0x20) {
+        [uniqueName deleteCharactersInRange:NSMakeRange(([uniqueName length] - 1), 1)];
+    }
+
     NSUInteger counter = 0;
+    NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@"\\(\\d\\)"
+                                                                           options:NSRegularExpressionCaseInsensitive
+                                                                             error:NULL];
+    NSArray *results = [regex matchesInString:uniqueName
+                                      options:0
+                                        range:NSMakeRange(0, [uniqueName length])];
+    if ([results count]) {
+        BOOL duplicate = NO;
+        for (NSString *existingName in existingNames) {
+            if ([existingName isEqualToString:uniqueName]) {
+                duplicate = YES;
+                break;
+            }
+        }
+        if (! duplicate) {
+            return [uniqueName copy];
+        }
+        NSTextCheckingResult *lastOccurenceResult = [results lastObject];
+        NSMutableString *lastOccurence = [(NSString*)[uniqueName substringWithRange:lastOccurenceResult.range] mutableCopy];
+        [uniqueName replaceOccurrencesOfString:lastOccurence
+                                    withString:@""
+                                       options:NSCaseInsensitiveSearch
+                                         range:NSMakeRange(0, [uniqueName length])];
+        unichar lastChar = [uniqueName characterAtIndex:([uniqueName length] - 1)];
+        if (lastChar == 0x20) {
+            [uniqueName deleteCharactersInRange:NSMakeRange(([uniqueName length] - 1), 1)];
+        }
+        [lastOccurence replaceOccurrencesOfString:@"("
+                                       withString:@""
+                                          options:NSCaseInsensitiveSearch
+                                            range:NSMakeRange(0, [lastOccurence length])];
+        [lastOccurence replaceOccurrencesOfString:@")"
+                                       withString:@""
+                                          options:NSCaseInsensitiveSearch
+                                            range:NSMakeRange(0, [lastOccurence length])];
+        counter = [lastOccurence integerValue];
+    }
+    NSString *uniqueFinalName = [uniqueName copy];
     BOOL duplicate;
     do {
         duplicate = NO;
         for (NSString *existingName in existingNames) {
-            if ([existingName isEqualToString:uniqueName]) {
-                uniqueName = [NSString stringWithFormat:@"%@ (%lu)", nameToCheck, (unsigned long)++counter];
+            if ([existingName isEqualToString:uniqueFinalName]) {
+                uniqueFinalName = [NSString stringWithFormat:@"%@ (%lu)", uniqueName, (unsigned long)++counter];
                 duplicate = YES;
                 break;
             }
         }
     } while (duplicate);
-    return uniqueName;
+    return uniqueFinalName;
 }
 
 + (double)radiansToDegree:(float)rad
@@ -295,6 +506,125 @@
 + (double)degreeToRadians:(float)deg
 {
     return deg * M_PI / 180.0;
+}
+
+#pragma mark - text field delegates
+static NSCharacterSet *textFieldBlockedCharacterSet = nil;
+
+static NSUInteger textFieldMaxInputLength = 0;
+
+static CatrobatAlertView *catrobatAlertView = nil;
+
++ (BOOL)textField:(UITextField*)field shouldChangeCharactersInRange:(NSRange)range
+replacementString:(NSString*)characters
+{
+    if ([characters length] > textFieldMaxInputLength) {
+        return false;
+    }
+    return ([characters rangeOfCharacterFromSet:textFieldBlockedCharacterSet].location == NSNotFound);
+}
+
++ (BOOL)textFieldShouldReturn:(UITextField*)textField
+{
+    [catrobatAlertView dismissWithClickedButtonIndex:0 animated:YES];
+    [textField resignFirstResponder]; // dismiss the keyboard
+    [[self class] alertView:catrobatAlertView clickedButtonAtIndex:kAlertViewButtonOK];
+    return YES;
+}
+
+#pragma mark - alert view delegates
++ (void)alertView:(CatrobatAlertView*)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    NSMutableDictionary *payload = (NSMutableDictionary*)alertView.dataTransferMessage.payload;
+    if (alertView.tag == kAskUserForUniqueNameAlertViewTag) {
+        if ((buttonIndex == alertView.cancelButtonIndex) || (buttonIndex != kAlertViewButtonOK)) {
+            return;
+        }
+
+        NSString *input = [alertView textFieldAtIndex:0].text;
+        id existingNamesObject = payload[kDTPayloadAskUserExistingNames];
+        BOOL nameAlreadyExists = NO;
+        if ([existingNamesObject isKindOfClass:[NSArray class]]) {
+            NSArray *existingNames = (NSArray*)existingNamesObject;
+            for (NSString *existingName in existingNames) {
+                if ([existingName isEqualToString:input]) {
+                    nameAlreadyExists = YES;
+                }
+            }
+        }
+
+        NSUInteger textFieldMinInputLength = [payload[kDTPayloadAskUserMinInputLength] unsignedIntegerValue];
+        if (nameAlreadyExists) {
+            CatrobatAlertView *newAlertView = [Util alertWithText:payload[kDTPayloadAskUserInvalidInputAlertMessage]
+                                                         delegate:(id<CatrobatAlertViewDelegate>)self
+                                                              tag:kInvalidNameWarningAlertViewTag];
+            payload[kDTPayloadAskUserPromptValue] = input;
+            newAlertView.dataTransferMessage = alertView.dataTransferMessage;
+        } else if ([input length] < textFieldMinInputLength) {
+            NSString *alertText = [NSString stringWithFormat:kUIAlertViewMessageInputTooShortMessage,
+                                   textFieldMinInputLength];
+            alertText = ((textFieldMinInputLength != 1) ? [[self class] pluralString:alertText]
+                                                        : [[self class] singularString:alertText]);
+            CatrobatAlertView *newAlertView = [Util alertWithText:alertText
+                                                         delegate:(id<CatrobatAlertViewDelegate>)self
+                                                              tag:kInvalidNameWarningAlertViewTag];
+            payload[kDTPayloadAskUserPromptValue] = input;
+            newAlertView.dataTransferMessage = alertView.dataTransferMessage;
+        } else {
+            // no name duplicate => call action on target
+            SEL action = [((NSValue*)payload[kDTPayloadAskUserAction]) pointerValue];
+            id target = payload[kDTPayloadAskUserTarget];
+            id passingObject = payload[kDTPayloadAskUserObject];
+            if ((! passingObject) || [passingObject isKindOfClass:[NSNull class]]) {
+                if (action) {
+                    IMP imp = [target methodForSelector:action];
+                    void (*func)(id, SEL, id) = (void *)imp;
+                    func(target, action, input);
+                }
+            } else {
+                if (action) {
+                    IMP imp = [target methodForSelector:action];
+                    void (*func)(id, SEL, id, id) = (void *)imp;
+                    func(target, action, input, passingObject);
+                }
+            }
+        }
+    } else if (alertView.tag == kInvalidNameWarningAlertViewTag) {
+        // title of cancel button is "OK"
+        if (buttonIndex == alertView.cancelButtonIndex) {
+            id value = payload[kDTPayloadAskUserPromptValue];
+            CatrobatAlertView *newAlertView = [Util promptWithTitle:payload[kDTPayloadAskUserPromptTitle]
+                                                            message:payload[kDTPayloadAskUserPromptMessage]
+                                                           delegate:(id<CatrobatAlertViewDelegate>)self
+                                                        placeholder:payload[kDTPayloadAskUserPromptPlaceholder]
+                                                                tag:kAskUserForUniqueNameAlertViewTag
+                                                              value:([value isKindOfClass:[NSString class]] ? value : nil)
+                                                  textFieldDelegate:(id<UITextFieldDelegate>)self];
+            newAlertView.dataTransferMessage = alertView.dataTransferMessage;
+        }
+    }
+}
+
++ (NSString*)singularString:(NSString*)string
+{
+    NSMutableString *mutableString = [string mutableCopy];
+    NSRegularExpression *regex = [NSRegularExpression
+                                  regularExpressionWithPattern:@"\\(.+?\\)"
+                                  options:NSRegularExpressionCaseInsensitive
+                                  error:NULL];
+    [regex replaceMatchesInString:mutableString
+                          options:0
+                            range:NSMakeRange(0, [mutableString length])
+                     withTemplate:@""];
+    return [[self class] pluralString:mutableString];
+}
+
++ (NSString*)pluralString:(NSString*)string
+{
+    NSMutableString *mutableString = [string mutableCopy];
+    [mutableString stringByReplacingOccurrencesOfString:@"(" withString:@""];
+    [mutableString stringByReplacingOccurrencesOfString:@")" withString:@""];
+    return [mutableString copy];
 }
 
 @end

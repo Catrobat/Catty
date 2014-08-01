@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2013 The Catrobat Team
+ *  Copyright (C) 2010-2014 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -22,23 +22,18 @@
 
 #import <UIKit/UIKit.h>
 #import <SpriteKit/SpriteKit.h>
+#import "Program.h"
 
 
 @protocol SpriteManagerDelegate;
 
-//@class ProgramLoadingInfo;
-@class Program;
-
 @interface ScenePresenterViewController : UIViewController
 
-//@property (nonatomic, strong) ProgramLoadingInfo* programLoadingInfo;
-@property (nonatomic, strong) Program* program; // has to be set to get this view controller working
-@property (nonatomic, weak) IBOutlet UIView* skView;
+- (id)initWithProgram:(Program *)program;
 @property (strong,nonatomic) UIButton* menuBtn;
-@property (nonatomic,weak) UITableViewController* controller;
-@property (nonatomic,strong) UIButton* backButton;
+@property (nonatomic, weak) UIButton* backButton;
 
-@property (nonatomic,strong) IBOutlet UIView* menuView;
+@property (nonatomic, strong) UIView *menuView;
 @property (strong,nonatomic) UIButton *menuBackButton;
 @property (strong,nonatomic) UIButton *menuContinueButton;
 @property (strong,nonatomic) UIButton *menuScreenshotButton;

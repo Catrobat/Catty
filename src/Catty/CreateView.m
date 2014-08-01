@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2013 The Catrobat Team
+ *  Copyright (C) 2010-2014 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -48,8 +48,8 @@
     return [Util getScreenHeight];
 }
 
-+ (UIView*)createProgramDetailView:(CatrobatProject*)project target:(id)target {
-    
++ (UIView*)createProgramDetailView:(CatrobatProject*)project target:(id)target
+{
     if([self height] == kIphone4ScreenHeight || [self height] == kIphone5ScreenHeight)
     {
         UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 0)];
@@ -60,7 +60,8 @@
         [self addAuthorImageToView:view];
         [self addNumberOfDownloadsImagetoView:view];
         [self addNumberOfDownloadsWithDownloads:project.downloads toView:view];
-        [self addProgramDescriptionLabelWithDescription:project.description toView:view target:target];
+        
+        [self addProgramDescriptionLabelWithDescription:project.projectDescription toView:view target:target];
         [self addThumbnailImageWithImageUrlString:project.screenshotSmall toView:view];
         //[self addBigImageWithImageUrlString:project.screenshotBig toView:view];
         [self addDownloadButtonToView:view withTarget:target];
@@ -86,7 +87,7 @@
         [self addNumberOfDownloadsImagetoView:view];
         [self addNumberOfDownloadsWithDownloads:project.downloads toView:view];
         [self addThumbnailImageWithImageUrlString:project.screenshotSmall toView:view];
-        [self addProgramDescriptionLabelWithDescription:project.description toView:view target:target];
+        [self addProgramDescriptionLabelWithDescription:project.projectDescription toView:view target:target];
         //        [self addBigImageWithImageUrlString:project.screenshotBig toView:view];
         [self addDownloadButtonToView:view withTarget:target];
         [self addLoadingButtonToView:view withTarget:target];
@@ -100,7 +101,6 @@
         [self addInformationLabelToView:view withAuthor:project.author downloads:project.downloads uploaded:uploaded version:project.size views:project.views];
         return view;
     }
-    
 }
 
 + (void)addNameLabelWithProjectName:(NSString*)projectName toView:(UIView*)view
@@ -159,7 +159,6 @@
     
 }
 
-
 + (CGFloat)addProgramDescriptionLabelWithDescription:(NSString*)description toView:(UIView*)view target:(id)target
 {
     CGFloat height = [self height];
@@ -217,7 +216,6 @@
 {
     UIImageView *imageView = [[UIImageView alloc] init];
     UIImage* errorImage = [UIImage imageNamed:@"thumbnail_large"];
-    
     imageView.frame = CGRectMake(view.frame.size.width/15, view.frame.size.height*0.1, view.frame.size.width/3, [Util getScreenHeight]/4.5f);
     imageView.image = [UIImage imageWithContentsOfURL:[NSURL URLWithString:imageUrlString]
                                      placeholderImage:nil
@@ -238,9 +236,6 @@
     }
 
     imageView.contentMode = UIViewContentModeScaleAspectFill;
-
-
-    
     imageView.layer.cornerRadius = 8.0;
     imageView.layer.masksToBounds = YES;
     imageView.layer.borderColor = [UIColor whiteColor].CGColor;

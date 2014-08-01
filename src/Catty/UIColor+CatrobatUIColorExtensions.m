@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2013 The Catrobat Team
+ *  Copyright (C) 2010-2014 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -43,9 +43,9 @@
 
 + (UIColor*)navBarColor
 {
-//    return [UIColor colorWithRed:11.0f/255.0f green:34.0f/255.0f blue:46.0f/255.0f alpha:1.0f];
-    return [UIColor colorWithRed:0.0f green:0.0f blue:0.0f alpha:1.0f];
-
+    return [UIColor colorWithRed:11.0f/255.0f green:34.0f/255.0f blue:46.0f/255.0f alpha:1.0f];
+//    return [UIColor colorWithRed:0.0f green:0.0f blue:0.0f alpha:1.0f];
+//    return [UIColor colorWithRed:0.0f green:70.0f blue:93.0f alpha:1.0f];
 }
 
 + (UIColor*)backgroundColor

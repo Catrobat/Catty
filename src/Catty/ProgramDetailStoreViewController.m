@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2013 The Catrobat Team
+ *  Copyright (C) 2010-2014 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -36,6 +36,7 @@
 #import "EVCircularProgressView.h"
 #import "LanguageTranslationDefines.h"
 #import "CreateView.h"
+#import "Reachability.h"
 #import "ProgramUpdateDelegate.h"
 
 #define kUIBarHeight 49
@@ -83,7 +84,7 @@
     [self initNavigationBar];
     self.hidesBottomBarWhenPushed = YES;
     
-    self.view.backgroundColor = UIColor.backgroundColor;
+    self.view.backgroundColor = [UIColor darkBlueColor];
     self.navigationItem.title = @"";//kUIViewControllerTitleInfo;
     NSDebug(@"%@",self.project.author);
     self.projectView = [self createViewForProject:self.project];
@@ -150,8 +151,15 @@
 
 - (void)viewWillAppear:(BOOL)animated
 {
+    [super viewWillAppear:animated];
     [self.navigationController setToolbarHidden:YES];
     self.searchStoreController.checkSearch = NO;
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    [[NSNotificationCenter defaultCenter] postNotificationName:kReachabilityChangedNotification
+                                                        object:self];
 }
 
 - (void)back
@@ -175,9 +183,6 @@
             ProgramTableViewController *programTableViewController = (ProgramTableViewController*)segue.destinationViewController;
             programTableViewController.program = [Program programWithLoadingInfo:[Util programLoadingInfoForProgramWithName:self.project.name]];
             programTableViewController.delegate = self;
-
-            // TODO: remove this after persisting programs feature is fully implemented...
-            programTableViewController.isNewProgram = NO;
         }
     }
 }
@@ -188,7 +193,7 @@
     [self showPlayButton];
 }
 
-- (void)renameOldProgramName:(NSString *)oldProgramName ToNewProgramName:(NSString *)newProgramName
+- (void)renameOldProgramName:(NSString *)oldProgramName toNewProgramName:(NSString *)newProgramName
 {
     [self showPlayButton];
 }
@@ -217,13 +222,10 @@
     NSURL *url = [NSURL URLWithString:self.project.downloadUrl];
     appDelegate.fileManager.delegate = self;
     [appDelegate.fileManager downloadFileFromURL:url withName:self.project.projectName];
-   
-    
-    NSDebug(@"url screenshot is %@", self.project.screenshotSmall)
+
+    NSDebug(@"url screenshot is %@", self.project.screenshotSmall);
     NSString *urlString = self.project.screenshotSmall;
-    
     NSDebug(@"screenshot url is: %@", urlString);
-    
     NSURL *screenshotSmallUrl = [NSURL URLWithString:urlString];
     [appDelegate.fileManager downloadScreenshotFromURL:screenshotSmallUrl andBaseUrl:url andName:self.project.name];
     self.project.isdownloading = YES;

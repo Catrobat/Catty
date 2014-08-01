@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2013 The Catrobat Team
+ *  Copyright (C) 2010-2014 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -34,6 +34,7 @@
 #import <objc/runtime.h>
 #import "BroadcastWaitBrick.h"
 #import "BrickManager.h"
+#import "GDataXMLNode.h"
 
 @interface Script()
 
@@ -116,10 +117,6 @@
     else {
         [self runNextAction];
     }
-    
-
-
-    
 }
 
 
@@ -157,10 +154,11 @@
             
             NSDebug(@"broadcast wait");
         
+            __weak Script* weakself = self;
             dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
                 [((BroadcastWaitBrick*)brick) performBroadcastWait];
 
-                [self nextAction];
+                [weakself nextAction];
             });
             
         }
@@ -203,9 +201,11 @@
             if(!action || ! actionArray || ! sequence) {
                 abort();
             }
+            
+            __weak Script* weakself = self;
             [self runAction:sequence completion:^{
                 NSDebug(@"Finished: %@", sequence);
-                [self runNextAction];
+                [weakself runNextAction];
             }];
         }
     } else {
@@ -214,19 +214,16 @@
             self.completion();
         }
     }
-    
-    
 }
 
-- (void) nextAction
+- (void)nextAction
 {
     // Needs to be async because of recursion!
+    __weak Script* weakself = self;
     dispatch_async(dispatch_get_main_queue(), ^{
-        [self runNextAction];
+        [weakself runNextAction];
     });
 }
-
-
 
 - (void)runWithAction:(SKAction*)action
 {
@@ -237,7 +234,7 @@
 //        if(self.currentBrickIndex < [self.brickList count]) {
 //            Brick* brick = [self.brickList objectAtIndex:self.currentBrickIndex++];
 //
-//            // TODO: IF/REPEAT/FOREVER
+//            // old TO-DO: IF/REPEAT/FOREVER
 //            SKAction* action = [brick action];
 //            [self runWithAction:action];
 //        }
@@ -394,7 +391,7 @@
 //#warning remove!
 //-(void)runScript
 //{
-//    //TODO: check loop-condition BEFORE first iteration
+//    // old TO-DO: check loop-condition BEFORE first iteration
 //    if (self.currentBrickIndex < 0)
 //        self.currentBrickIndex = 0;
 //    while (!self.stop && self.currentBrickIndex < [self.brickList count]) {
@@ -507,30 +504,63 @@
 //    }
 //}
 
+- (GDataXMLElement*)toXMLforObject:(SpriteObject*)spriteObject
+{
+    GDataXMLElement *scriptXMLElement = [GDataXMLNode elementWithName:[self xmlTagName]];
+    GDataXMLElement *brickListXMLElement = [GDataXMLNode elementWithName:@"brickList"];
+    for (id brick in self.brickList) {
+        if ([brick isKindOfClass:[Brick class]]) {
+            [brickListXMLElement addChild:[((Brick*) brick) toXMLforObject:spriteObject]];
+        }
+    }
+    [scriptXMLElement addChild:brickListXMLElement];
+    GDataXMLElement *scriptToObjectReferenceXMLElement = [GDataXMLNode elementWithName:@"object"];
+    [scriptToObjectReferenceXMLElement addAttribute:[GDataXMLNode elementWithName:@"reference" stringValue:@"../../.."]];
+    [scriptXMLElement addChild:scriptToObjectReferenceXMLElement];
+    return scriptXMLElement;
+}
+
+- (NSString*)xmlTagName
+{
+    return [NSStringFromClass([self class]) firstCharacterLowercaseString];
+}
+
+- (instancetype)deepCopy
+{
+    // shallow copy
+    Script *copiedScript = [self copy];
+
+    // reset (just to ensure)
+    copiedScript.currentBrickIndex = 0;
+    copiedScript.allowRunNextAction = YES;
+    copiedScript.action = nil;
+
+    // deep copy
+    copiedScript.brickList = [NSMutableArray arrayWithCapacity:[self.brickList count]];
+    for (id brick in self.brickList) {
+        if ([brick isKindOfClass:[Brick class]]) {
+            // TODO: issue #308 - implement deep copy for all bricks here!!
+            [copiedScript.brickList addObject:brick]; // there are some bricks that refer to other sound, look, sprite objects...
+        }
+    }
+    return copiedScript;
+}
 
 #pragma mark - Description
 - (NSString*)description
 {
     NSMutableString *ret = [[NSMutableString alloc] initWithString:@"Script"];
-    [ret appendFormat:@"(%@)", self.object.name ];
-    
-    if ([self.brickList count] > 0)
-    {
+    [ret appendFormat:@"(%@)", self.object.name];
+    if ([self.brickList count] > 0) {
         [ret appendString:@"Bricks: \r"];
-        for (Brick *brick in self.brickList)
-        {
+        for (Brick *brick in self.brickList) {
             [ret appendFormat:@"%@\r", brick];
         }
-    }
-    else 
-    {
+    } else {
         [ret appendString:@"Bricks array empty!\r"];
     }
     
     return ret;
 }
-
-
-
 
 @end

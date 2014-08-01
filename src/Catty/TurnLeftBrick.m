@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2013 The Catrobat Team
+ *  Copyright (C) 2010-2014 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -23,6 +23,7 @@
 #import "TurnLeftBrick.h"
 #import "Formula.h"
 #import "Util.h"
+#import "GDataXMLNode.h"
 
 @implementation TurnLeftBrick
 
@@ -58,6 +59,17 @@
 - (NSString*)description
 {
     return [NSString stringWithFormat:@"TurnLeft (%f degrees)", [self.degrees interpretDoubleForSprite:self.object]];
+}
+
+- (GDataXMLElement*)toXMLforObject:(SpriteObject*)spriteObject
+{
+    GDataXMLElement *brickXMLElement = [super toXMLforObject:spriteObject];
+    if (self.degrees) {
+        GDataXMLElement *degreesXMLElement = [GDataXMLNode elementWithName:@"degrees"];
+        [degreesXMLElement addChild:[self.degrees toXMLforObject:spriteObject]];
+        [brickXMLElement addChild:degreesXMLElement];
+    }
+    return brickXMLElement;
 }
 
 @end

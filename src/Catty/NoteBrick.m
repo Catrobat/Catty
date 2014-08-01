@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2013 The Catrobat Team
+ *  Copyright (C) 2010-2014 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -21,6 +21,7 @@
  */
 
 #import "NoteBrick.h"
+#import "GDataXMLNode.h"
 
 @implementation NoteBrick
 
@@ -36,11 +37,24 @@
         NSDebug(@"Performing: %@", self.description);
         
     }];
-;
 }
 
 - (NSString*)description
 {
     return [NSString stringWithFormat:@"NoteBrick: %@", self.note];
 }
+
+- (GDataXMLElement*)toXMLforObject:(SpriteObject*)spriteObject
+{
+    GDataXMLElement *brickXMLElement = [super toXMLforObject:spriteObject];
+    if (self.note) {
+        GDataXMLElement *noteXMLElement = [GDataXMLNode elementWithName:@"note" stringValue:self.note];
+        [brickXMLElement addChild:noteXMLElement];
+    } else {
+        // remove object reference
+        [brickXMLElement removeChild:[[brickXMLElement children] firstObject]];
+    }
+    return brickXMLElement;
+}
+
 @end

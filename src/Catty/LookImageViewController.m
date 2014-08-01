@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2013 The Catrobat Team
+ *  Copyright (C) 2010-2014 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -78,8 +78,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.view.backgroundColor = UIColor.backgroundColor;
-    self.imageView.backgroundColor =  UIColor.backgroundColor;
+    self.view.backgroundColor = [UIColor darkBlueColor];
+    self.imageView.backgroundColor = [UIColor darkBlueColor];
     self.navigationController.toolbar.hidden = YES;
     self.navigationController.title = self.title = self.imageName;
 }

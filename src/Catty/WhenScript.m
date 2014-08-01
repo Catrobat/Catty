@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2013 The Catrobat Team
+ *  Copyright (C) 2010-2014 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -21,12 +21,23 @@
  */
 
 #import "WhenScript.h"
+#import "GDataXMLNode.h"
 
 @implementation WhenScript
 
 - (NSString*)brickTitle
 {
     return kBrickCellControlTitleWhenTapped;
+}
+
+- (GDataXMLElement*)toXMLforObject:(SpriteObject *)spriteObject
+{
+    GDataXMLElement *scriptXMLElement = [super toXMLforObject:spriteObject];
+    if (self.action) {
+        GDataXMLElement *actionXMLElement = [GDataXMLNode elementWithName:@"action" stringValue:self.action];
+        [scriptXMLElement addChild:actionXMLElement];
+    }
+    return scriptXMLElement;
 }
 
 @end

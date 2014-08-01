@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2013 The Catrobat Team
+ *  Copyright (C) 2010-2014 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -22,28 +22,33 @@
 
 #import "Formula.h"
 #import "FormulaElement.h"
+#import "GDataXMLNode.h"
 
 @implementation Formula
 
-
--(double) interpretDoubleForSprite:(SpriteObject*)sprite
+- (double)interpretDoubleForSprite:(SpriteObject*)sprite
 {
     return [self.formulaTree interpretRecursiveForSprite:sprite];
 }
 
--(int) interpretIntegerForSprite:(SpriteObject*)sprite
+- (int)interpretIntegerForSprite:(SpriteObject*)sprite
 {
     return (int)[self.formulaTree interpretRecursiveForSprite:sprite];    
 }
 
--(BOOL) interpretBOOLForSprite:(SpriteObject*)sprite
+- (BOOL)interpretBOOLForSprite:(SpriteObject*)sprite
 {
     int result = [self interpretIntegerForSprite:sprite];
-    
     return result != 0 ? true : false;
 }
 
-
-
+- (GDataXMLElement*)toXMLforObject:(SpriteObject*)spriteObject
+{
+    GDataXMLElement *formulaTreeXMLElement = [GDataXMLNode elementWithName:@"formulaTree"];
+    for (GDataXMLElement *childElement in [self.formulaTree XMLChildElements]) {
+        [formulaTreeXMLElement addChild:childElement];
+    }
+    return formulaTreeXMLElement;
+}
 
 @end

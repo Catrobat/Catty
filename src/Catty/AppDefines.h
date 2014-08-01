@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2013 The Catrobat Team
+ *  Copyright (C) 2010-2014 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -20,4 +20,18 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#define kCatrobatLanguageVersion @"0.6"
+#define kCatrobatXMLDeclaration @"<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\" ?>"
+#define kCatrobatApplicationBuildNumber @"0"
+#define kCatrobatApplicationName @"Pocket Code (Catty iOS)"
+#define kCatrobatLanguageVersion @"0.8"
+#define kCatrobatMediaLicense @"http://developer.catrobat.org/ccbysa_v3"
+#define kCatrobatProgramLicense @"http://developer.catrobat.org/agpl_v3"
+
+#define kCatrobatScreenModeMaximize @"MAXIMIZE"
+#define kCatrobatScreenModeStretch @"STRETCH"
+#define kCatrobatProgramScreenshotDefaultValue @"false"
+#define kIsFirstRelease 1
+
+#if kIsFirstRelease
+  #undef DEBUG
+#endif

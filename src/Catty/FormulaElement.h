@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2013 The Catrobat Team
+ *  Copyright (C) 2010-2014 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -33,7 +33,6 @@ typedef enum {
     BRACKET
 } ElementType;
 
-
 typedef enum {
 	SIN,
     COS,
@@ -56,8 +55,6 @@ typedef enum {
     FALSE_F
 } Function;
 
-
-
 typedef enum {
     LOGICAL_AND,
     LOGICAL_OR,
@@ -74,18 +71,13 @@ typedef enum {
     LOGICAL_NOT,
 } Operator;
 
-
 @interface FormulaElement : NSObject
-
-
-
 
 @property (nonatomic, assign) ElementType type;
 @property (nonatomic, strong) NSString* value;
 @property (nonatomic, strong) FormulaElement* leftChild;
 @property (nonatomic, strong) FormulaElement* rightChild;
 @property (nonatomic, weak) FormulaElement* parent;
-
 
 - (id)initWithType:(NSString*)type
              value:(NSString*)value
@@ -94,7 +86,8 @@ typedef enum {
             parent:(FormulaElement*)parent;
 
 
--(double) interpretRecursiveForSprite:(SpriteObject*)sprite;
+- (double)interpretRecursiveForSprite:(SpriteObject*)sprite;
 
+- (NSArray*)XMLChildElements;
 
 @end

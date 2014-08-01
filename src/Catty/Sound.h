@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2013 The Catrobat Team
+ *  Copyright (C) 2010-2014 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -23,12 +23,14 @@
 #import <UIKit/UIKit.h>
 
 @class GDataXMLElement;
+@class SpriteObject;
 
 @interface Sound : NSObject
 @property (strong, nonatomic) NSString* name;
 @property (strong, nonatomic) NSString* fileName;
 @property (atomic, getter = isPlaying) BOOL playing; // atomic in case of multithreading
 
-- (GDataXMLElement*)toXML;
+- (GDataXMLElement*)toXMLforObject:(SpriteObject*)spriteObject;
+- (instancetype)deepCopy;
 
 @end

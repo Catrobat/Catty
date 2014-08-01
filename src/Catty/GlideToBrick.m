@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2013 The Catrobat Team
+ *  Copyright (C) 2010-2014 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -23,6 +23,7 @@
 #import "Glidetobrick.h"
 #import "Script.h"
 #import "Formula.h"
+#import "GDataXMLNode.h"
 
 @interface GlideToBrick()
 
@@ -32,14 +33,13 @@
 
 @end
 
-
 @implementation GlideToBrick
 
 @synthesize durationInSeconds = _durationInSeconds;
 @synthesize xDestination = _xDestination;
 @synthesize yDestination = _yDestination;
 
--(id)init
+- (id)init
 {
     if(self = [super init]) {
         self.isInitialized = NO;
@@ -53,15 +53,13 @@
 }
 
 #pragma mark - override
-
--(SKAction*)action
+- (SKAction*)action
 {
-    
     double durationInSeconds = [self.durationInSeconds interpretDoubleForSprite:self.object];
     double xDestination = [self.xDestination interpretDoubleForSprite:self.object];
     double yDestination = [self.yDestination interpretDoubleForSprite:self.object];
     self.isInitialized = NO;
-    
+
     return [SKAction customActionWithDuration:durationInSeconds actionBlock:^(SKNode *node, CGFloat elapsedTime) {
         NSDebug(@"Performing: %@", self.description);
         
@@ -70,29 +68,50 @@
             self.currentPoint = self.object.position;
             self.startingPoint = self.currentPoint;
         }
-        
         // TODO: handle extreme movemenets and set currentPoint accordingly
         CGFloat percent = elapsedTime / durationInSeconds;
-        
         CGFloat xPoint = self.startingPoint.x + (xDestination - self.startingPoint.x) * percent;
         CGFloat yPoint = self.startingPoint.y + (yDestination - self.startingPoint.y) * percent;
-        
         self.object.position = self.currentPoint = CGPointMake(xPoint, yPoint);
-
-
     }];
 }
 
 #pragma mark - Description
 - (NSString*)description
 {
-    
     double xDestination = [self.xDestination interpretDoubleForSprite:self.object];
     double yDestination = [self.yDestination interpretDoubleForSprite:self.object];
-    
     double durationInSeconds = [self.durationInSeconds interpretDoubleForSprite:self.object];
-    
     return [NSString stringWithFormat:@"GlideTo (Position: %f/%f; duration: %f s)", xDestination, yDestination, durationInSeconds];
+}
+
+- (GDataXMLElement*)toXMLforObject:(SpriteObject*)spriteObject
+{
+    GDataXMLElement *brickXMLElement = [super toXMLforObject:spriteObject];
+
+    if (self.durationInSeconds) {
+        GDataXMLElement *durationInSecondsXMLElement = [GDataXMLNode elementWithName:@"durationInSeconds"];
+        [durationInSecondsXMLElement addChild:[self.durationInSeconds toXMLforObject:spriteObject]];
+        [brickXMLElement addChild:durationInSecondsXMLElement];
+    }
+
+    if (self.xDestination) {
+        GDataXMLElement *xDestinationXMLElement = [GDataXMLNode elementWithName:@"xDestination"];
+        [xDestinationXMLElement addChild:[self.xDestination toXMLforObject:spriteObject]];
+        [brickXMLElement addChild:xDestinationXMLElement];
+    }
+
+    if (self.yDestination) {
+        GDataXMLElement *yDestinationXMLElement = [GDataXMLNode elementWithName:@"yDestination"];
+        [yDestinationXMLElement addChild:[self.yDestination toXMLforObject:spriteObject]];
+        [brickXMLElement addChild:yDestinationXMLElement];
+    }
+
+    if (! self.durationInSeconds && ! self.xDestination && ! self.yDestination) {
+        // remove object reference
+        [brickXMLElement removeChild:[[brickXMLElement children] firstObject]];
+    }
+    return brickXMLElement;
 }
 
 @end
