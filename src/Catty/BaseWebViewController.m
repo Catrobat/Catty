@@ -150,9 +150,6 @@
         [self.view addSubview:self.loadingView];
     }
     [self.loadingView show];
-    NSLog(@"show once");
-    
-    
     
 }
 
@@ -268,7 +265,6 @@
     [self setupToolbarItems];
     _errorLoadingURL = NO;
     _doneLoadingURL = YES;
-    NSLog(@"hide once");
     [self.loadingView hide];
     [self setProgress:1.0f];
     [self showNavigationButtons];
