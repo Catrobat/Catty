@@ -132,7 +132,7 @@
     self.skView.backgroundColor = UIColor.backgroundColor;
     self.menuView = [[UIView alloc]initWithFrame:CGRectMake(0.0f, 0.0f, kWidthSlideMenu + kBounceEffect, CGRectGetHeight(UIScreen.mainScreen.bounds))];
     self.menuView.backgroundColor = [[UIColor alloc] initWithPatternImage:newBackgroundImage];
-    
+
     // disable swipe back gesture
     if ([self.navigationController respondsToSelector:@selector(interactivePopGestureRecognizer)]) {
         self.navigationController.interactivePopGestureRecognizer.enabled = NO;
@@ -169,6 +169,11 @@
     [self.navigationController setToolbarHidden:NO animated:NO];
     UIApplication.sharedApplication.statusBarHidden = NO;
     UIApplication.sharedApplication.idleTimerDisabled = NO;
+
+    // reenable swipe back gesture
+    if ([self.navigationController respondsToSelector:@selector(interactivePopGestureRecognizer)]) {
+        self.navigationController.interactivePopGestureRecognizer.enabled = YES;
+    }
 }
 
 - (void)viewWillLayoutSubviews
