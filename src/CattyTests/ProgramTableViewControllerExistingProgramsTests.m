@@ -43,8 +43,6 @@
 #import "MyProgramsViewController.h"
 #import "LanguageTranslationDefines.h"
 
-#define kNewProgramName @"My new program"
-
 @interface ProgramTableViewControllerExistingProgramsTests ()
 @property (nonatomic, strong) ProgramTableViewController *programTableViewController;
 @property (nonatomic, strong) FileManager *fileManager;
@@ -80,7 +78,7 @@
 
     for (NSString *programName in programNames) {
         // exclude .DS_Store folder on MACOSX simulator and new program
-        if ([programName isEqualToString:@".DS_Store"] || [programName isEqualToString:kNewProgramName])
+        if ([programName isEqualToString:@".DS_Store"] || [programName isEqualToString:kGeneralNewDefaultProgramName])
             continue;
 
         ProgramLoadingInfo *loadingInfo = [[ProgramLoadingInfo alloc] init];
@@ -105,7 +103,7 @@
 
     for (NSString *programName in programNames) {
         // exclude .DS_Store folder on MACOSX simulator and new program
-        if ([programName isEqualToString:@".DS_Store"] || [programName isEqualToString:kNewProgramName])
+        if ([programName isEqualToString:@".DS_Store"] || [programName isEqualToString:kGeneralNewDefaultProgramName])
             continue;
 
         ProgramLoadingInfo *loadingInfo = [[ProgramLoadingInfo alloc] init];
@@ -172,7 +170,7 @@
 
     for (NSString *programName in programNames) {
         // exclude .DS_Store folder on MACOSX simulator and new program
-        if ([programName isEqualToString:@".DS_Store"] || [programName isEqualToString:kNewProgramName])
+        if ([programName isEqualToString:@".DS_Store"] || [programName isEqualToString:kGeneralNewDefaultProgramName])
             continue;
 
         ProgramLoadingInfo *loadingInfo = [[ProgramLoadingInfo alloc] init];
@@ -201,7 +199,7 @@
 
     for (NSString *programName in programNames) {
         // exclude .DS_Store folder on MACOSX simulator and new program
-        if ([programName isEqualToString:@".DS_Store"] || [programName isEqualToString:kNewProgramName])
+        if ([programName isEqualToString:@".DS_Store"] || [programName isEqualToString:kGeneralNewDefaultProgramName])
             continue;
 
         ProgramLoadingInfo *loadingInfo = [[ProgramLoadingInfo alloc] init];
@@ -230,7 +228,7 @@
 
     for (NSString *programName in programNames) {
         // exclude .DS_Store folder on MACOSX simulator and new program
-        if ([programName isEqualToString:@".DS_Store"] || [programName isEqualToString:kNewProgramName])
+        if ([programName isEqualToString:@".DS_Store"] || [programName isEqualToString:kGeneralNewDefaultProgramName])
             continue;
 
         ProgramLoadingInfo *loadingInfo = [[ProgramLoadingInfo alloc] init];
@@ -265,7 +263,7 @@
 
     for (NSString *programName in programNames) {
         // exclude .DS_Store folder on MACOSX simulator and new program
-        if ([programName isEqualToString:@".DS_Store"] || [programName isEqualToString:kNewProgramName])
+        if ([programName isEqualToString:@".DS_Store"] || [programName isEqualToString:kGeneralNewDefaultProgramName])
             continue;
 
         ProgramLoadingInfo *loadingInfo = [[ProgramLoadingInfo alloc] init];

@@ -43,8 +43,6 @@
 #import "MyProgramsViewController.h"
 #import "LanguageTranslationDefines.h"
 
-#define kNewProgramName @"My new program"
-
 @interface ProgramTableViewControllerNewProgramTests ()
 @property (nonatomic, strong) ProgramTableViewController *programTableViewController;
 @property (nonatomic, strong) FileManager *fileManager;
@@ -68,9 +66,8 @@
 
 - (void)setupForNewProgram
 {
-    self.defaultProgram = [Program defaultProgramWithName:kNewProgramName];
+    self.defaultProgram = [Program defaultProgramWithName:kGeneralNewDefaultProgramName];
     self.programTableViewController.program = self.defaultProgram;
-    self.programTableViewController.isNewProgram = YES;
 }
 
 - (void)tearDown
