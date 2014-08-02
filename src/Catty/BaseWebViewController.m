@@ -27,6 +27,7 @@
 #import "AppDelegate.h"
 #import "Util.h"
 #import "ProgramDefines.h"
+#import "LoadingView.h"
 
 @interface BaseWebViewController ()
 @property (nonatomic, strong) UIWebView *webView;
@@ -37,6 +38,7 @@
 @property (strong, nonatomic) UITapGestureRecognizer *tapGesture;
 @property (strong, nonatomic) UIView *forwardButtonBackGroundView;
 @property (strong, nonatomic) UIView *backButtonBackGroundView;
+@property (strong, nonatomic) LoadingView *loadingView;
 
 @end
 
@@ -87,9 +89,12 @@
     _refreshButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh target:self action:@selector(refresh:)];
     _stopButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemStop target:self action:@selector(stop:)];
     
+    
+    
     self.tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleTap:)];
     
     self.webView.scrollView.delegate = self;
+    
 }
 
 - (void)loadView
@@ -139,6 +144,13 @@
     [self.touchHelperView addGestureRecognizer:self.tapGesture];
     
     [self.webView.scrollView.delegate scrollViewDidScroll:self.webView.scrollView];
+    if (!_loadingView) {
+        _loadingView = [[LoadingView alloc] init];
+        _loadingView.backgroundColor = [UIColor blackColor];
+        [self.view addSubview:self.loadingView];
+    }
+    [self.loadingView show];
+    
 }
 
 - (void)viewWillDisappear:(BOOL)animated
@@ -232,13 +244,16 @@
     _errorLoadingURL = YES;
     _doneLoadingURL = NO;
     [self setProgress:0.0f];
-    
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self.loadingView hide];
+    });
     if (error.code != -999) {
         [[[UIAlertView alloc] initWithTitle:@"Info"
                                     message:error.localizedDescription
                                    delegate:self
                           cancelButtonTitle:@"OK"
                           otherButtonTitles:nil] show];
+        
     }
 }
 
@@ -250,11 +265,12 @@
     [self setupToolbarItems];
     _errorLoadingURL = NO;
     _doneLoadingURL = YES;
-    
+    [self.loadingView hide];
     [self setProgress:1.0f];
     [self showNavigationButtons];
     
     [UIView animateWithDuration:0.25f animations:^{ self.webView.alpha = 1.0f; }];
+    
 }
 
 - (void)webViewDidStartLoad:(UIWebView *)webView
@@ -263,10 +279,12 @@
     _doneLoadingURL = NO;
     [self setProgress:0.2f];
     [self setupToolbarItems];
+   
 }
 
 - (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType
 {
+    
     if ([request.URL.absoluteString rangeOfString:@"https://pocketcode.org/download/"].location != NSNotFound) {
         //        [[UIApplication sharedApplication] openURL:url];
         //        return NO;
@@ -316,7 +334,9 @@
             NSDebug(@"screenshot url is: %@", urlString);
             NSURL *screenshotSmallUrl = [NSURL URLWithString:urlString];
             [appDelegate.fileManager downloadScreenshotFromURL:screenshotSmallUrl andBaseUrl:url andName:param];
+            [self.loadingView show];
         }
+        
         // Please add here the code with alert view -> Program is downloading!
         return NO;
     }
@@ -504,7 +524,9 @@
 
 - (void)downloadFinishedWithURL:(NSURL *)url
 {
-    
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self.loadingView hide];
+    });
 }
 
 - (void)setBackDownloadStatus
