@@ -33,7 +33,7 @@
 #undef DEBUG
 
 // UNCOMMENT ALL LOG AND DEBUG MESSAGES IN FIRST RELEASE VERSION
-#define NSLog(...) /* suppress NSLog when in release mode */
+//	#define NSLog(...) /* suppress NSLog when in release mode */
 #define NSDebug(...) /* suppress NSLog when in release mode */
 #define NSInfo(...) /* suppress NSLog when in release mode */
 #define NSLogError(...) /* suppress NSLog when in release mode */
