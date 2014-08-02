@@ -89,16 +89,12 @@
     _refreshButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh target:self action:@selector(refresh:)];
     _stopButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemStop target:self action:@selector(stop:)];
     
-    if (!_loadingView) {
-        _loadingView = [[LoadingView alloc] init];
-        [self.view addSubview:self.loadingView];
-        [self.loadingView hide];
-    }
-    NSLog(@"test");
+    
     
     self.tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleTap:)];
     
     self.webView.scrollView.delegate = self;
+    
 }
 
 - (void)loadView
@@ -148,6 +144,12 @@
     [self.touchHelperView addGestureRecognizer:self.tapGesture];
     
     [self.webView.scrollView.delegate scrollViewDidScroll:self.webView.scrollView];
+    if (!_loadingView) {
+        _loadingView = [[LoadingView alloc] init];
+        [self.view addSubview:self.loadingView];
+    }
+    [self.loadingView show];
+    NSLog(@"show once");
     
     
     
@@ -244,7 +246,9 @@
     _errorLoadingURL = YES;
     _doneLoadingURL = NO;
     [self setProgress:0.0f];
-    [self.loadingView hide];
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self.loadingView hide];
+    });
     if (error.code != -999) {
         [[[UIAlertView alloc] initWithTitle:@"Info"
                                     message:error.localizedDescription
@@ -258,14 +262,13 @@
 
 - (void)webViewDidFinishLoad:(UIWebView *)webView
 {
-    NSLog(@"hide!");
-    [self.loadingView hide];
     [self setEnableActivityIndicator:NO];
     self.URL = webView.request.URL;
     [self setupToolbarItems];
     _errorLoadingURL = NO;
     _doneLoadingURL = YES;
-    
+    NSLog(@"hide once");
+    [self.loadingView hide];
     [self setProgress:1.0f];
     [self showNavigationButtons];
     
@@ -275,8 +278,6 @@
 
 - (void)webViewDidStartLoad:(UIWebView *)webView
 {
-    NSLog(@"Started download!");
-    [self.loadingView show];
     [self setEnableActivityIndicator:YES];
     _doneLoadingURL = NO;
     [self setProgress:0.2f];
@@ -286,7 +287,6 @@
 
 - (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType
 {
-    NSLog(@"test");
     
     if ([request.URL.absoluteString rangeOfString:@"https://pocketcode.org/download/"].location != NSNotFound) {
         //        [[UIApplication sharedApplication] openURL:url];
@@ -337,8 +337,9 @@
             NSDebug(@"screenshot url is: %@", urlString);
             NSURL *screenshotSmallUrl = [NSURL URLWithString:urlString];
             [appDelegate.fileManager downloadScreenshotFromURL:screenshotSmallUrl andBaseUrl:url andName:param];
+            [self.loadingView show];
         }
-        [self.loadingView show];
+        
         // Please add here the code with alert view -> Program is downloading!
         return NO;
     }
@@ -526,7 +527,9 @@
 
 - (void)downloadFinishedWithURL:(NSURL *)url
 {
-    [self.loadingView hide];	
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self.loadingView hide];
+    });
 }
 
 - (void)setBackDownloadStatus
