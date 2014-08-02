@@ -146,6 +146,7 @@
     [self.webView.scrollView.delegate scrollViewDidScroll:self.webView.scrollView];
     if (!_loadingView) {
         _loadingView = [[LoadingView alloc] init];
+        _loadingView.backgroundColor = [UIColor blackColor];
         [self.view addSubview:self.loadingView];
     }
     [self.loadingView show];
