@@ -25,8 +25,7 @@
 #import "FileManager.h"
 #import "AppDelegate.h"
 #import "Util.h"
-
-#define kNewProgramName @"My new program"
+#import "LanguageTranslationDefines.h"
 
 @interface ProgramTests : XCTestCase
 
@@ -57,7 +56,7 @@
 
 - (void)setupForNewProgram
 {
-    self.program = [Program defaultProgramWithName:kNewProgramName];
+    self.program = [Program defaultProgramWithName:kGeneralNewDefaultProgramName];
 }
 
 - (void)testNewProgramIfProjectFolderExists
