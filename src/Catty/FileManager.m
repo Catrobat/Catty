@@ -651,13 +651,25 @@
 -(void)URLSession:(NSURLSession *)session task:(NSURLSessionTask *)task didCompleteWithError:(NSError *)error
 {
     if (error) {
-        [task suspend];
-        
+        // XXX: hack: workaround for app crash issue...
+        if (error.code != -1009) {
+            [task suspend];
+        }
+        if (error.code == -1003) {
+            if ([self.delegate respondsToSelector:@selector(setBackDownloadStatus)]) {
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    [self.delegate setBackDownloadStatus];
+                });
+            }
+            UIApplication* app = [UIApplication sharedApplication];
+            app.networkActivityIndicatorVisible = NO;
+            return;
+        }
         NSURL* url = [self.programTaskDict objectForKey:task];
         if (url) {
             [self.programTaskDict removeObjectForKey:task];
             [self.programNameDict removeObjectForKey:task];
-        }else{
+        } else {
            url = [self.imageTaskDict objectForKey:task];
             if (url) {
                 [self.imageTaskDict removeObjectForKey:task];
@@ -665,9 +677,13 @@
             }
             
         }
+        if ([self.delegate respondsToSelector:@selector(setBackDownloadStatus)]) {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self.delegate setBackDownloadStatus];
+            });
+        }
         UIApplication* app = [UIApplication sharedApplication];
         app.networkActivityIndicatorVisible = NO;
-
     }
 }
 
