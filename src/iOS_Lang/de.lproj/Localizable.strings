@@ -167,6 +167,24 @@
 
 "Edit Mode" = "Bearbeitungsmodus";
 
+"About Pocket Code" = "Über Pocket Code";
+
+"Terms of Use" = "Nutzungsbedingungen";
+
+"Rate Us" = "Bewerten Sie uns";
+
+"v" = "v";
+
+"Back" = "Zurück";
+
+"Pocket Code Source Code License" = "Pocket Code Source Code Lizenz";
+
+"About Catrobat" = "Über Catrobat";
+
+"Pocket Code is a programming environment for iOS for the visual programming language Catrobat. The code of Pocket Code is mostly under GNU AGPL v3 licence. For further information to the licence please visit following links:" = "Pocket Code ist eine Entwicklungsumgebung für die visuelle Programmiersprache Catrobat. Der Quelltext von Pocket Code unterliegt hauptsächlich der GNU AGPL v3 Lizenz. Um weitere Information über die verwendeten Lizenzen zu erhalten, besuchen Sie bitte einen der folgenden Links:";
+
+"In order to be allowed to use Pocket Code and other executables offered by the Catrobat project, you must agree to our Terms of Use and strictly follow them when you use Pocket Code and our other executables. Please see the link below for their precise formulation." = "Um Pocket Code und andere vom Catrobat Projekt zur Verfügung gestellte ausführbare Programme verwenden zu dürfen, müssen Sie den Nutzungsbedingungen zustimmen und diese strikt während der Benutzung befolgen. Bitte rufen Sie den unten angeführten Link auf um eine ausführliche Beschreibung der Nutzungsbedingungen zu erhalten.";
+
 "Edit" = "Bearbeiten";
 
 "Cancel" = "Abbrechen";

@@ -162,7 +162,6 @@
  * -----------------------------------------------------------------------------------------------------------
  */
 #define kUIInfoPopupViewAboutPocketCode NSLocalizedString(@"About Pocket Code", nil)
-#define kUIInfoPopupViewAppInfo NSLocalizedString(@"App info", nil)
 #define kUIInfoPopupViewTermsOfUse NSLocalizedString(@"Terms of Use", nil)
 #define kUIInfoPopupViewRateUs NSLocalizedString(@"Rate Us", nil)
 #define kUIInfoPopupViewVersionLabel NSLocalizedString(@"v", nil)

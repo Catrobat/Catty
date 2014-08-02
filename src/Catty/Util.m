@@ -72,7 +72,6 @@
 
 + (void)showIntroductionScreenInView:(UIView *)view delegate:(id<EAIntroDelegate>)delegate
 {
-#define kTempHeight 140.0f
     UIImage *bgImage = [UIImage imageWithColor:[UIColor darkBlueColor]];
     EAIntroPage *page1 = [EAIntroPage page];
     page1.title = kIntroViewTitleFirstPage;
@@ -93,14 +92,7 @@
     page3.titleIconView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"page3_info"]];
 
     CGRect frame = view.frame;
-    if ([Util getScreenHeight] == kIphone4ScreenHeight) {
-        frame.size.height -= 64.0f;
-    } else if ([Util getScreenHeight] == kIphone5ScreenHeight) {
-        frame.size.height -= 64.0f;
-    } else {
-        NSLog(@"ERROR: unsupported screen height for introduction screen!!!");
-        abort();
-    }
+    frame.size.height -= 64.0f;
     EAIntroView *intro = [[EAIntroView alloc] initWithFrame:frame andPages:@[page1, page2, page3]];
     intro.delegate = delegate;
     [intro showInView:view animateDuration:0.3];

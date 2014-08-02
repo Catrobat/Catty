@@ -33,7 +33,8 @@
 @implementation InfoPopupViewController
 
 const int FRAME_PADDING_HORIZONTAL = 20;
-const CGFloat FRAME_HEIGHT = 280.0f;
+const CGFloat FRAME_HEIGHT = 220.0f;
+const CGFloat FRAME_CONTENT_HEIGHT = 300.0f;
 const CGFloat FRAME_WIDTH = 280.0f;
 
 const int HEADER_PADDING_TOP = 10;
@@ -42,7 +43,7 @@ const int HEADER_LABEL_HEIGHT = 40;
 const int BODY_PADDING_TOP = 5;
 const int BODY_PADDING_BOTTOM = 5;
 
-const int MENU_BUTTON_MARGIN_HORIZONTAL = 20;
+const int MENU_BUTTON_MARGIN_HORIZONTAL = 11;
 const int BUTTON_HEIGHT = 30;
 const int BUTTON_MARGIN_BOTTOM = 15;
 
@@ -150,7 +151,7 @@ const int BUTTON_MARGIN_BOTTOM = 15;
 
 - (void)addLinkButton:(UIButton *)button
 {
-    [button setTitleColor:[UIColor skyBlueColor] forState:UIControlStateNormal];
+    [button setTitleColor:[UIColor lightOrangeColor] forState:UIControlStateNormal];
     [button addTarget:self action:@selector(openURLAction:) forControlEvents:UIControlEventTouchUpInside];
     [self.contentView insertSubview:button belowSubview:self.bodyTextView];
 }
@@ -160,7 +161,7 @@ const int BUTTON_MARGIN_BOTTOM = 15;
     self.contentView.backgroundColor = [UIColor backgroundColor];
     self.contentView.layer.cornerRadius = 15;
     self.contentView.layer.masksToBounds = YES;
-    
+
     //init header
     UILabel *aboutPocketCodeLabel = [[UILabel alloc] initWithFrame:CGRectMake(self.view.frame.size.width / 2, HEADER_PADDING_TOP, self.view.frame.size.width, HEADER_LABEL_HEIGHT)];
     [aboutPocketCodeLabel setTextColor:[UIColor skyBlueColor]];
@@ -169,7 +170,7 @@ const int BUTTON_MARGIN_BOTTOM = 15;
     aboutPocketCodeLabel.frame = CGRectMake(self.view.frame.size.width / 2 - aboutPocketCodeLabel.frame.size.width / 2, HEADER_PADDING_TOP, aboutPocketCodeLabel.frame.size.width, aboutPocketCodeLabel.frame.size.height);
     aboutPocketCodeLabel.textAlignment = NSTextAlignmentCenter;
     [self.contentView addSubview:aboutPocketCodeLabel];
-    
+
     UIBezierPath *path = [UIBezierPath bezierPath];
     [path moveToPoint:CGPointMake(0.0, HEADER_LABEL_HEIGHT)];
     [path addLineToPoint:CGPointMake(self.contentView.frame.size.width, HEADER_LABEL_HEIGHT)];
@@ -179,18 +180,18 @@ const int BUTTON_MARGIN_BOTTOM = 15;
     shapeLayer.lineWidth = 2.0;
     shapeLayer.fillColor = [[UIColor clearColor] CGColor];
     [self.contentView.layer addSublayer:shapeLayer];
-    
+
     //init body
     self.bodyTextView.frame = CGRectMake(FRAME_PADDING_HORIZONTAL, HEADER_LABEL_HEIGHT + BODY_PADDING_TOP, self.view.frame.size.width - 2 * FRAME_PADDING_HORIZONTAL, 50);
     self.bodyTextView.text = bodyText;
     self.bodyTextView.textAlignment = NSTextAlignmentCenter;
     [self.bodyTextView sizeToFit];
     self.bodyTextView.frame = CGRectMake(FRAME_PADDING_HORIZONTAL, HEADER_LABEL_HEIGHT + BODY_PADDING_TOP, self.view.frame.size.width - 2 * FRAME_PADDING_HORIZONTAL, self.bodyTextView.frame.size.height);
-    self.bodyTextView.textColor = [UIColor lightOrangeColor];
+    self.bodyTextView.textColor = [UIColor skyBlueColor];
     self.bodyTextView.backgroundColor = [UIColor backgroundColor];
     self.bodyTextView.editable = NO;
     [self.contentView addSubview:self.bodyTextView];
-    
+
     //initBackbutton
     UIButton *backButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
     [backButton setTitle:kUIInfoPopupViewBack forState:UIControlStateNormal];
@@ -198,9 +199,9 @@ const int BUTTON_MARGIN_BOTTOM = 15;
                    action:@selector(backAction)
          forControlEvents:UIControlEventTouchUpInside];
     [backButton sizeToFit];
-    backButton.frame = CGRectMake(self.contentView.frame.size.width / 2 - backButton.frame.size.width / 2, self.contentView.frame.size.height - backButton.frame.size.height - BODY_PADDING_BOTTOM, backButton.frame.size.width, backButton.frame.size.height);
+    backButton.frame = CGRectMake(self.contentView.frame.size.width / 2 - backButton.frame.size.width / 2, self.contentView.frame.size.height - backButton.frame.size.height - BODY_PADDING_BOTTOM+102.0f, backButton.frame.size.width, backButton.frame.size.height);
     [self.contentView addSubview:backButton];
-    
+
     UIBezierPath *backPath = [UIBezierPath bezierPath];
     [backPath moveToPoint:CGPointMake(0.0, backButton.frame.origin.y - BODY_PADDING_BOTTOM / 2)];
     [backPath addLineToPoint:CGPointMake(self.contentView.frame.size.width, backButton.frame.origin.y - BODY_PADDING_BOTTOM / 2)];
@@ -217,39 +218,38 @@ const int BUTTON_MARGIN_BOTTOM = 15;
 {
     self.contentView.alpha = 0.0f;
     [self.view addSubview:self.contentView];
-    [UIView animateWithDuration:0.5f
+    [UIView animateWithDuration:0.2f
                      animations:^{
+                         CGRect frame = self.contentView.frame;
+                         frame.size.height += 100.0f;
+                         self.contentView.frame = frame;
+                         frame = self.view.frame;
+                         frame.size.height += 100.0f;
+                         frame.origin.y -= 50.0f;
+                         self.view.frame = frame;
                          self.contentView.alpha = 1.0f;
                      }];
 }
 
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
-
-#pragma mark Button actions
-
+#pragma mark - button actions
 - (void)aboutPocketCode
 {
     //init OverlayView
     [self initContentView:kUIInfoPopupViewAboutPocketCode withText:kUIInfoPopupViewAboutPocketCodeBody];
-    
+
     //init buttons
     UIButton *sourceCodeLicenseButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
     [sourceCodeLicenseButton setTitle:kUIInfoPopupViewSourceCodeLicenseButtonLabel forState:UIControlStateNormal];
     [sourceCodeLicenseButton sizeToFit];
     sourceCodeLicenseButton.frame = CGRectMake(self.contentView.frame.size.width / 2 - sourceCodeLicenseButton.frame.size.width / 2, self.bodyTextView.frame.origin.y + self.bodyTextView.frame.size.height + BUTTON_MARGIN_BOTTOM, sourceCodeLicenseButton.frame.size.width, sourceCodeLicenseButton.frame.size.height);
     [self addLinkButton:sourceCodeLicenseButton];
-    
+
     UIButton *aboutCatrobatButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
     [aboutCatrobatButton setTitle:kUIInfoPopupViewAboutCatrobatButtonLabel forState:UIControlStateNormal];
     [aboutCatrobatButton sizeToFit];
     aboutCatrobatButton.frame = CGRectMake(self.contentView.frame.size.width / 2 - aboutCatrobatButton.frame.size.width / 2, sourceCodeLicenseButton.frame.origin.y + sourceCodeLicenseButton.frame.size.height, aboutCatrobatButton.frame.size.width, aboutCatrobatButton.frame.size.height);
     [self addLinkButton:aboutCatrobatButton];
-    
+
     //Animation to add the main subview
     [self showContentView];
 }
@@ -258,33 +258,39 @@ const int BUTTON_MARGIN_BOTTOM = 15;
 {
     //init OverlayView
     [self initContentView:kUIInfoPopupViewTermsOfUse withText:kUIInfoPopupViewTermsOfUseBody];
-    
+
     //init buttons
     UIButton *sourceCodeLicenseButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
     [sourceCodeLicenseButton setTitle:kUIInfoPopupViewTermsOfUse forState:UIControlStateNormal];
     [sourceCodeLicenseButton sizeToFit];
     sourceCodeLicenseButton.frame = CGRectMake(self.contentView.frame.size.width / 2 - sourceCodeLicenseButton.frame.size.width / 2, self.bodyTextView.frame.origin.y + self.bodyTextView.frame.size.height + BUTTON_MARGIN_BOTTOM, sourceCodeLicenseButton.frame.size.width, sourceCodeLicenseButton.frame.size.height);
     [self addLinkButton:sourceCodeLicenseButton];
-    
+
     //Animation to add the main subview
     [self showContentView];
 }
 
 - (void)backAction
 {
-    [UIView animateWithDuration:0.5f
+    [UIView animateWithDuration:0.2f
                      animations:^{
-                                    self.contentView.alpha = 0.0f;
-                                }
+                         CGRect frame = self.contentView.frame;
+                         frame.size.height -= 100.0f;
+                         self.contentView.frame = frame;
+                         frame = self.view.frame;
+                         frame.size.height = FRAME_HEIGHT;
+                         frame.origin.y += 50.0f;
+                         self.view.frame = frame;
+                         self.contentView.alpha = 0.0f;
+                     }
                      completion:^(BOOL finished){
-                                    [[self.contentView subviews] makeObjectsPerformSelector:@selector(removeFromSuperview)];
-                                }];
+                         [[self.contentView subviews] makeObjectsPerformSelector:@selector(removeFromSuperview)];
+                     }];
 }
 
 - (void)openURLAction:(id)sender
 {
     NSString *url = nil;
-    
     UIButton *button = (UIButton *)sender;
     if([button.currentTitle isEqualToString:kUIInfoPopupViewSourceCodeLicenseButtonLabel])
         url = kSourceCodeLicenseURL;
@@ -295,20 +301,7 @@ const int BUTTON_MARGIN_BOTTOM = 15;
     else if([button.currentTitle isEqualToString:kUIInfoPopupViewRateUs]) {
         url = kAppStoreURL;
     }
-    
     [[UIApplication sharedApplication] openURL:[NSURL URLWithString:url]];
 }
-
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end
