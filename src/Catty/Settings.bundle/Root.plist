@@ -8,7 +8,7 @@
 			<key>Key</key>
 			<string></string>
 			<key>Title</key>
-			<string>Tutorial</string>
+			<string>Introduction</string>
 			<key>Type</key>
 			<string>PSGroupSpecifier</string>
 		</dict>
@@ -16,9 +16,9 @@
 			<key>DefaultValue</key>
 			<false/>
 			<key>Key</key>
-			<string>showTutorialOnLaunch</string>
+			<string>showIntroductionOnLaunch</string>
 			<key>Title</key>
-			<string>Show tutorial on launch</string>
+			<string>Show introduction on launch</string>
 			<key>Type</key>
 			<string>PSToggleSwitchSpecifier</string>
 		</dict>
