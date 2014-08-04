@@ -115,7 +115,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
 
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    if (! [defaults objectForKey:kUserIsFirstAppLaunch] || [defaults boolForKey:kUserShowTutorialOnLaunch]) {
+    if (! [defaults objectForKey:kUserIsFirstAppLaunch] || [defaults boolForKey:kUserShowIntroductionOnLaunch]) {
         self.tableView.scrollEnabled = NO;
         [Util showIntroductionScreenInView:self.view delegate:self];
     } else {
