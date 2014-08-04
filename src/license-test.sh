@@ -4,7 +4,7 @@ SEARCH_STRING=" \\*  Copyright \\(C\\) 2010-2014 The Catrobat Team| \\*  \\(http
 
 EXCLUDED_DIRS=( "TTTAttributedLabel" "minizip" "SSZipArchive" "GDataXMLNode" "FBShimmering" "LXReorderableCollectionViewFlowLayout" "AHKActionSheetViewController" "AHKAdditions" "IBActionSheet" "SWCellScrollView" "SWLongPressGestureRecognizer" "SWTableViewCell" "FXBlurView" "BDKNotifyHUD" "EVCircularProgressView" "NSString+FastImageSize" "UIViewController+CWPopup" "OrderedDictionary" )
 
-EXCLUDED_FILES=( "AHKActionSheet.[mh]" "AHKActionSheetViewController.[mh]" "LXReorderableCollectionViewFlowLayout.[mh]" "IBActionSheet.[mh]" "Reachability.[mh]" "SharkfoodMuteSwitchDetector.[mh]" "SWCellScrollView.[mh]" "SWUtilityButtonView.[mh]" "UIImage+AHKAdditions.[mh]" "UIWindow+AHKAdditions.[mh]" "SWLongPressGestureRecognizer.[mh]" "SWTableViewCell.[mh]" "SWUtilityButtonTapGestureRecognizer.[mh]" )
+EXCLUDED_FILES=( "AHKActionSheet.[mh]" "AHKActionSheetViewController.[mh]" "LXReorderableCollectionViewFlowLayout.[mh]" "IBActionSheet.[mh]" "Reachability.[mh]" "SharkfoodMuteSwitchDetector.[mh]" "SWCellScrollView.[mh]" "SWUtilityButtonView.[mh]" "UIImage+AHKAdditions.[mh]" "UIWindow+AHKAdditions.[mh]" "SWLongPressGestureRecognizer.[mh]" "SWTableViewCell.[mh]" "SWUtilityButtonTapGestureRecognizer.[mh]" "SMPageControl.[mh]" "EAIntroPage.[mh]" "EAIntroView.[mh]" )
 
 
 
