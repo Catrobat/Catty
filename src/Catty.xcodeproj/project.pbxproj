@@ -26,6 +26,26 @@
 		1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
 		288765FD0DF74451002DB57D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 288765FC0DF74451002DB57D /* CoreGraphics.framework */; };
 		4C107ADD194F156F00D9D7ED /* PointToBrickTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C107ADC194F156F00D9D7ED /* PointToBrickTests.m */; };
+		4C3AEF2F198E7EDD00604ABF /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 4C3AEF2E198E7EDD00604ABF /* Settings.bundle */; };
+		4C9E2D1F198EA6B600455B77 /* SMPageControl.license in Resources */ = {isa = PBXBuildFile; fileRef = 4C9E2D1E198EA6B600455B77 /* SMPageControl.license */; };
+		4C9E2D21198EACE200455B77 /* EAIntroView.license in Resources */ = {isa = PBXBuildFile; fileRef = 4C9E2D20198EACE200455B77 /* EAIntroView.license */; };
+		4C9E2D23198EAD1800455B77 /* BDKNotifyHUD.license in Resources */ = {isa = PBXBuildFile; fileRef = 4C9E2D22198EAD1800455B77 /* BDKNotifyHUD.license */; };
+		4C9E2D25198F62A600455B77 /* SWTableViewCell.license in Resources */ = {isa = PBXBuildFile; fileRef = 4C9E2D24198F62A600455B77 /* SWTableViewCell.license */; };
+		4C9E2D27198F62D800455B77 /* IBActionSheet.license in Resources */ = {isa = PBXBuildFile; fileRef = 4C9E2D26198F62D800455B77 /* IBActionSheet.license */; };
+		4C9E2D29198F635B00455B77 /* AHKActionSheet.license in Resources */ = {isa = PBXBuildFile; fileRef = 4C9E2D28198F635B00455B77 /* AHKActionSheet.license */; };
+		4C9E2D2B198F638C00455B77 /* LXReorderableCollectionViewFlowLayout.license in Resources */ = {isa = PBXBuildFile; fileRef = 4C9E2D2A198F638C00455B77 /* LXReorderableCollectionViewFlowLayout.license */; };
+		4C9E2D2D198F63B400455B77 /* TTTAttributedLabel.license in Resources */ = {isa = PBXBuildFile; fileRef = 4C9E2D2C198F63B400455B77 /* TTTAttributedLabel.license */; };
+		4C9E2D2F198F63FB00455B77 /* FBShimmering.license in Resources */ = {isa = PBXBuildFile; fileRef = 4C9E2D2E198F63FB00455B77 /* FBShimmering.license */; };
+		4C9E2D31198F645400455B77 /* FXBlurView.license in Resources */ = {isa = PBXBuildFile; fileRef = 4C9E2D30198F645400455B77 /* FXBlurView.license */; };
+		4C9E2D33198F648B00455B77 /* EVCircularProgressView.license in Resources */ = {isa = PBXBuildFile; fileRef = 4C9E2D32198F648B00455B77 /* EVCircularProgressView.license */; };
+		4C9E2D35198F657500455B77 /* SharkfoodMuteSwitchDetector.license in Resources */ = {isa = PBXBuildFile; fileRef = 4C9E2D34198F657500455B77 /* SharkfoodMuteSwitchDetector.license */; };
+		4C9E2D37198F65D500455B77 /* Reachability.license in Resources */ = {isa = PBXBuildFile; fileRef = 4C9E2D36198F65D500455B77 /* Reachability.license */; };
+		4C9E2D39198F67FB00455B77 /* minizip.license in Resources */ = {isa = PBXBuildFile; fileRef = 4C9E2D38198F67FB00455B77 /* minizip.license */; };
+		4C9E2D3B198F685D00455B77 /* SSZipArchive.license in Resources */ = {isa = PBXBuildFile; fileRef = 4C9E2D3A198F685D00455B77 /* SSZipArchive.license */; };
+		4C9E2D3D198F68F400455B77 /* GDataXMLNode.license in Resources */ = {isa = PBXBuildFile; fileRef = 4C9E2D3C198F68F400455B77 /* GDataXMLNode.license */; };
+		4C9E2D3F198F698100455B77 /* NSString+FastImageSize.license in Resources */ = {isa = PBXBuildFile; fileRef = 4C9E2D3E198F698100455B77 /* NSString+FastImageSize.license */; };
+		4C9E2D41198F6A2300455B77 /* UIViewController+CWPopup.license in Resources */ = {isa = PBXBuildFile; fileRef = 4C9E2D40198F6A2300455B77 /* UIViewController+CWPopup.license */; };
+		4C9E2D43198F6A8800455B77 /* OrderedDictionary.license in Resources */ = {isa = PBXBuildFile; fileRef = 4C9E2D42198F6A8800455B77 /* OrderedDictionary.license */; };
 		8146A9B319279721002548A4 /* ProgramTableHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8146A9B219279721002548A4 /* ProgramTableHeaderView.m */; };
 		815420D9191A51F200E628D2 /* FBShimmeringLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 815420D6191A51F200E628D2 /* FBShimmeringLayer.m */; };
 		815420DA191A51F200E628D2 /* FBShimmeringView.m in Sources */ = {isa = PBXBuildFile; fileRef = 815420D8191A51F200E628D2 /* FBShimmeringView.m */; };
@@ -344,6 +364,26 @@
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		32CA4F630368D1EE00C91783 /* App-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "App-Prefix.pch"; sourceTree = "<group>"; };
 		4C107ADC194F156F00D9D7ED /* PointToBrickTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PointToBrickTests.m; sourceTree = "<group>"; };
+		4C3AEF2E198E7EDD00604ABF /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
+		4C9E2D1E198EA6B600455B77 /* SMPageControl.license */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = SMPageControl.license; sourceTree = "<group>"; };
+		4C9E2D20198EACE200455B77 /* EAIntroView.license */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = EAIntroView.license; sourceTree = "<group>"; };
+		4C9E2D22198EAD1800455B77 /* BDKNotifyHUD.license */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = BDKNotifyHUD.license; sourceTree = "<group>"; };
+		4C9E2D24198F62A600455B77 /* SWTableViewCell.license */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = SWTableViewCell.license; sourceTree = "<group>"; };
+		4C9E2D26198F62D800455B77 /* IBActionSheet.license */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = IBActionSheet.license; sourceTree = "<group>"; };
+		4C9E2D28198F635B00455B77 /* AHKActionSheet.license */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = AHKActionSheet.license; sourceTree = "<group>"; };
+		4C9E2D2A198F638C00455B77 /* LXReorderableCollectionViewFlowLayout.license */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LXReorderableCollectionViewFlowLayout.license; sourceTree = "<group>"; };
+		4C9E2D2C198F63B400455B77 /* TTTAttributedLabel.license */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = TTTAttributedLabel.license; sourceTree = "<group>"; };
+		4C9E2D2E198F63FB00455B77 /* FBShimmering.license */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = FBShimmering.license; sourceTree = "<group>"; };
+		4C9E2D30198F645400455B77 /* FXBlurView.license */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = FXBlurView.license; sourceTree = "<group>"; };
+		4C9E2D32198F648B00455B77 /* EVCircularProgressView.license */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = EVCircularProgressView.license; sourceTree = "<group>"; };
+		4C9E2D34198F657500455B77 /* SharkfoodMuteSwitchDetector.license */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = SharkfoodMuteSwitchDetector.license; sourceTree = "<group>"; };
+		4C9E2D36198F65D500455B77 /* Reachability.license */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Reachability.license; sourceTree = "<group>"; };
+		4C9E2D38198F67FB00455B77 /* minizip.license */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = minizip.license; sourceTree = "<group>"; };
+		4C9E2D3A198F685D00455B77 /* SSZipArchive.license */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = SSZipArchive.license; sourceTree = "<group>"; };
+		4C9E2D3C198F68F400455B77 /* GDataXMLNode.license */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = GDataXMLNode.license; sourceTree = "<group>"; };
+		4C9E2D3E198F698100455B77 /* NSString+FastImageSize.license */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "NSString+FastImageSize.license"; sourceTree = "<group>"; };
+		4C9E2D40198F6A2300455B77 /* UIViewController+CWPopup.license */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "UIViewController+CWPopup.license"; sourceTree = "<group>"; };
+		4C9E2D42198F6A8800455B77 /* OrderedDictionary.license */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = OrderedDictionary.license; sourceTree = "<group>"; };
 		8146A9B119279721002548A4 /* ProgramTableHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProgramTableHeaderView.h; sourceTree = "<group>"; };
 		8146A9B219279721002548A4 /* ProgramTableHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProgramTableHeaderView.m; sourceTree = "<group>"; };
 		815420D3191A51F200E628D2 /* FBShimmering-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "FBShimmering-Prefix.pch"; sourceTree = "<group>"; };
@@ -1029,6 +1069,33 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		4C9E2D1D198EA6B600455B77 /* Licenses */ = {
+			isa = PBXGroup;
+			children = (
+				4C9E2D20198EACE200455B77 /* EAIntroView.license */,
+				4C9E2D1E198EA6B600455B77 /* SMPageControl.license */,
+				4C9E2D22198EAD1800455B77 /* BDKNotifyHUD.license */,
+				4C9E2D24198F62A600455B77 /* SWTableViewCell.license */,
+				4C9E2D26198F62D800455B77 /* IBActionSheet.license */,
+				4C9E2D28198F635B00455B77 /* AHKActionSheet.license */,
+				4C9E2D2A198F638C00455B77 /* LXReorderableCollectionViewFlowLayout.license */,
+				4C9E2D2C198F63B400455B77 /* TTTAttributedLabel.license */,
+				4C9E2D2E198F63FB00455B77 /* FBShimmering.license */,
+				4C9E2D30198F645400455B77 /* FXBlurView.license */,
+				4C9E2D32198F648B00455B77 /* EVCircularProgressView.license */,
+				4C9E2D34198F657500455B77 /* SharkfoodMuteSwitchDetector.license */,
+				4C9E2D36198F65D500455B77 /* Reachability.license */,
+				4C9E2D38198F67FB00455B77 /* minizip.license */,
+				4C9E2D3A198F685D00455B77 /* SSZipArchive.license */,
+				4C9E2D3C198F68F400455B77 /* GDataXMLNode.license */,
+				4C9E2D3E198F698100455B77 /* NSString+FastImageSize.license */,
+				4C9E2D40198F6A2300455B77 /* UIViewController+CWPopup.license */,
+				4C9E2D42198F6A8800455B77 /* OrderedDictionary.license */,
+			);
+			name = Licenses;
+			path = Resources/Licenses;
+			sourceTree = "<group>";
+		};
 		81506F4A18C3EDDC000ED328 /* LXReorderableCollectionViewFlowLayout */ = {
 			isa = PBXGroup;
 			children = (
@@ -1353,6 +1420,7 @@
 		B43498471927A3AB002F9075 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				4C9E2D1D198EA6B600455B77 /* Licenses */,
 				B434984F1927A863002F9075 /* My First Program.catrobat */,
 			);
 			name = Resources;
@@ -2515,6 +2583,7 @@
 				B4E7D258176EF23200EC8AD8 /* Scene */,
 				B4D940B2170EC5D5003DDBFA /* Views */,
 				CD0CCE3B170CA00F00B70036 /* ViewController */,
+				4C3AEF2E198E7EDD00604ABF /* Settings.bundle */,
 			);
 			path = Catty;
 			sourceTree = "<group>";
@@ -2923,6 +2992,8 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 1D6058960D05DD3E006BFB54 /* Build configuration list for PBXNativeTarget "Catty" */;
 			buildPhases = (
+				4C3AEF30198E848B00604ABF /* Add Version Number To Root.plist */,
+				4C9E2D1C198EA5F900455B77 /* Add Licenses To Acknowledgements.plist */,
 				1D60588D0D05DD3D006BFB54 /* Resources */,
 				1D60588E0D05DD3D006BFB54 /* Sources */,
 				1D60588F0D05DD3D006BFB54 /* Frameworks */,
@@ -3035,25 +3106,45 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4C9E2D3B198F685D00455B77 /* SSZipArchive.license in Resources */,
+				4C9E2D23198EAD1800455B77 /* BDKNotifyHUD.license in Resources */,
 				CA1B802C1971ADBB00D8E79B /* IMPORTANT.caf in Resources */,
 				B43498501927A875002F9075 /* My First Program.catrobat in Resources */,
 				CAE4B83C198A79040054ABEC /* LICENSE_FBShimmering in Resources */,
+				4C9E2D43198F6A8800455B77 /* OrderedDictionary.license in Resources */,
+				4C9E2D29198F635B00455B77 /* AHKActionSheet.license in Resources */,
+				4C9E2D1F198EA6B600455B77 /* SMPageControl.license in Resources */,
 				CAE4B832198A77390054ABEC /* LICENSE_SWTableViewCell in Resources */,
 				CAE4B83E198A7A210054ABEC /* PATENTS_FBShimmering in Resources */,
 				81C27426189EF94600827A95 /* Images.xcassets in Resources */,
+				4C9E2D39198F67FB00455B77 /* minizip.license in Resources */,
+				4C9E2D21198EACE200455B77 /* EAIntroView.license in Resources */,
+				4C9E2D2D198F63B400455B77 /* TTTAttributedLabel.license in Resources */,
+				4C9E2D2B198F638C00455B77 /* LXReorderableCollectionViewFlowLayout.license in Resources */,
+				4C9E2D31198F645400455B77 /* FXBlurView.license in Resources */,
 				CAFBCB3B1988529D000304BF /* LICENSE in Resources */,
+				4C9E2D27198F62D800455B77 /* IBActionSheet.license in Resources */,
+				4C9E2D33198F648B00455B77 /* EVCircularProgressView.license in Resources */,
 				CAE4B846198A7B4F0054ABEC /* LICENSE_NSString+FastImageSize in Resources */,
+				4C9E2D35198F657500455B77 /* SharkfoodMuteSwitchDetector.license in Resources */,
 				CAE4B836198A78770054ABEC /* LICENSE_AHKActionSheet in Resources */,
 				CAE4B838198A78AE0054ABEC /* LICENSE_LXReorderableCollectionViewFlowLayout in Resources */,
+				4C9E2D37198F65D500455B77 /* Reachability.license in Resources */,
 				CAE4B844198A7AEE0054ABEC /* LICENSE_UIViewController+Popup in Resources */,
 				CAE4B83A198A78E60054ABEC /* LICENSE_TTTAttributedLabel in Resources */,
 				CAE4B840198A7A530054ABEC /* LICENSE_FXBlurView in Resources */,
+				4C3AEF2F198E7EDD00604ABF /* Settings.bundle in Resources */,
 				CAE4B842198A7A8E0054ABEC /* LICENSE_EVCircularProgressView in Resources */,
+				4C9E2D3F198F698100455B77 /* NSString+FastImageSize.license in Resources */,
 				CA1498521989C2C80069A21E /* LICENSE_BDKNotifyHUD in Resources */,
+				4C9E2D41198F6A2300455B77 /* UIViewController+CWPopup.license in Resources */,
 				C3F2950C1813C63200E37D61 /* iPhone.storyboard in Resources */,
+				4C9E2D3D198F68F400455B77 /* GDataXMLNode.license in Resources */,
 				CAE4B834198A781B0054ABEC /* LICENSE_IBActionSheet in Resources */,
 				92300D0B18B2196700F2B4DC /* Localizable.strings in Resources */,
+				4C9E2D25198F62A600455B77 /* SWTableViewCell.license in Resources */,
 				CAFBCB3C1988529D000304BF /* readme.md in Resources */,
+				4C9E2D2F198F63FB00455B77 /* FBShimmering.license in Resources */,
 				B4365CE91758EBA900B4D0A6 /* LoggerProperties.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -3071,6 +3162,34 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		4C3AEF30198E848B00604ABF /* Add Version Number To Root.plist */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Add Version Number To Root.plist";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "CFBundleShortVersionString=`/usr/libexec/PlistBuddy -c \"Print :CFBundleShortVersionString\" ${SRCROOT}/Catty/App-Info.plist`\n/usr/libexec/PlistBuddy \"$SRCROOT/Catty/Settings.bundle/Root.plist\" -c \"set PreferenceSpecifiers:0:DefaultValue $CFBundleShortVersionString\"";
+		};
+		4C9E2D1C198EA5F900455B77 /* Add Licenses To Acknowledgements.plist */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Add Licenses To Acknowledgements.plist";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = "/usr/bin/perl -w";
+			shellScript = "use strict;\n\nmy $ACKNOWLEDGEMENTS_HEADER = \"PORTIONS OF THE APPLICATION MAY UTILIZE THE FOLLOWING COPYRIGHTED MATERIAL, THE USE OF WHICH IS HEREBY ACKNOWLEDGED:\";\n\nmy $out = \"Catty/Settings.bundle/en.lproj/Acknowledgements.strings\";\nmy $plistout = \"Catty/Settings.bundle/Acknowledgements.plist\";\n\nunlink $out;\n\nopen(my $outfh, '>', $out) or die $!;\nopen(my $plistfh, '>', $plistout) or die $!;\n\nprint $plistfh <<'EOD';\n<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<!DOCTYPE plist PUBLIC \"-//Apple//DTD PLIST 1.0//EN\" \"http://www.apple.com/DTDs/PropertyList-1.0.dtd\">\n<plist version=\"1.0\">\n<dict>\n    <key>StringsTable</key>\n    <string>Acknowledgements</string>\n    <key>PreferenceSpecifiers</key>\n        <array>\nEOD\n\nprint $plistfh <<\"EOD\";\n            <dict>\n                <key>Type</key>\n                <string>PSGroupSpecifier</string>\n                <key>FooterText</key>\n                <string>AcknowledgementHeader</string>\n            </dict>\nEOD\n\nprint $outfh \"\\\"AcknowledgementHeader\\\" = \\\"$ACKNOWLEDGEMENTS_HEADER\\\";\\n\";\n\nfor my $i (sort glob(\"Catty/Resources/Licenses/*.license\"))\n{\n    my $value=`cat $i`;\n    $value =~ s/\\r//g;\n    $value =~ s/\\n/\\r/g;\n    $value =~ s/[ \\t]+\\r/\\r/g;\n    $value =~ s/\\\"/\\'/g;\n    my $key=$i;\n    $key =~ s/\\.license$//;\n    \n    print $plistfh <<\"EOD\";\n            <dict>\n                <key>Type</key>\n                <string>PSGroupSpecifier</string>\n                <key>FooterText</key>\n                <string>$key</string>\n            </dict>\nEOD\n    \n    print $outfh \"\\\"$key\\\" = \\\"$value\\\";\\n\";\n}\n\nprint $plistfh <<'EOD';\n        </array>\n</dict>\n</plist>\nEOD\n\nclose($outfh);\nclose($plistfh);";
+		};
 		B4A92DC8175F537500608667 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
