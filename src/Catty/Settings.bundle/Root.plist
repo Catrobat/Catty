@@ -5,10 +5,34 @@
 	<key>PreferenceSpecifiers</key>
 	<array>
 		<dict>
+			<key>Key</key>
+			<string></string>
+			<key>Title</key>
+			<string>Tutorial</string>
+			<key>Type</key>
+			<string>PSGroupSpecifier</string>
+		</dict>
+		<dict>
+			<key>DefaultValue</key>
+			<false/>
+			<key>Key</key>
+			<string>showTutorialOnLaunch</string>
+			<key>Title</key>
+			<string>Show tutorial on launch</string>
+			<key>Type</key>
+			<string>PSToggleSwitchSpecifier</string>
+		</dict>
+		<dict>
+			<key>Title</key>
+			<string></string>
+			<key>Type</key>
+			<string>PSGroupSpecifier</string>
+		</dict>
+		<dict>
 			<key>DefaultValue</key>
 			<string>0.2</string>
 			<key>Key</key>
-			<string>version_number_preference</string>
+			<string>versionNumberSettings</string>
 			<key>Title</key>
 			<string>Version</string>
 			<key>Type</key>
