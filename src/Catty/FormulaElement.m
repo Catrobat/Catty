@@ -178,10 +178,7 @@
                 && !(self.rightChild.type == NUMBER && [self.rightChild.value containsString:@"."])
                 && !(self.rightChild.type == NUMBER && [self.rightChild.value containsString:@"."])) {
                 
-                result = (int)result;
-                if ((fabs(result) - (int) fabs(result)) >= 0.5) {
-                    result +=1;
-                }
+                result = (int)round(result);
             }
 
             break;
