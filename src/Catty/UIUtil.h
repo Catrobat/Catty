@@ -27,12 +27,15 @@
 @class SoundComboBoxView;
 @class LookComboBoxView;
 @class VariableComboBoxView;
+@class FormulaEditorTextField;
+@class BrickCell;
 
 @interface UIUtil : NSObject
 
 + (UILabel*)newDefaultBrickLabelWithFrame:(CGRect)frame;
 + (UILabel*)newDefaultBrickLabelWithFrame:(CGRect)frame AndText:(NSString*)text;
 + (UITextField*)newDefaultBrickTextFieldWithFrame:(CGRect)frame;
++ (UIButton*)newDefaultBrickFormulaEditorWithFrame:(CGRect)frame ForBrickCell:(BrickCell*)brickCell;
 
 + (MessageComboBoxView*)newDefaultBrickMessageComboBoxWithFrame:(CGRect)frame AndItems:(NSArray*)items;
 + (ObjectComboBoxView*)newDefaultBrickObjectComboBoxWithFrame:(CGRect)frame AndItems:(NSArray*)items;

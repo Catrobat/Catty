@@ -45,6 +45,8 @@
 #import "BrickManager.h"
 #import "SingleBrickSelectionView.h"
 #import "Util.h"
+#import "FormulaEditorButton.h"
+#import "FormulaEditorViewController.h"
 
 @interface ScriptCollectionViewController () <UICollectionViewDelegate,
                                               LXReorderableCollectionViewDelegateFlowLayout,
@@ -52,7 +54,8 @@
                                               UIViewControllerTransitioningDelegate,
                                               SingleBrickSelectionViewDelegate,
                                               BrickCellDelegate,
-                                              BrickDetailViewControllerDelegate>
+                                              BrickDetailViewControllerDelegate,
+                                              FormulaEditorViewControllerDelegate>
 
 @property (nonatomic, weak) IBOutlet UICollectionView *collectionView;
 @property (nonatomic, strong) BrickScaleTransition *brickScaleTransition;
@@ -231,7 +234,7 @@
                                                                   presentingController:(UIViewController *)presenting
                                                                       sourceController:(UIViewController *)source
 {
-    if ([presented isKindOfClass:[BrickDetailViewController class]]) {
+    if ([presented isKindOfClass:[BrickDetailViewController class]] || [presented isKindOfClass:[FormulaEditorViewController class]]) {
          self.brickScaleTransition.transitionMode = TransitionModePresent;
         return self.brickScaleTransition;
     }
@@ -240,7 +243,7 @@
 
 - (id<UIViewControllerAnimatedTransitioning>)animationControllerForDismissedController:(UIViewController *)dismissed
 {
-    if ([dismissed isKindOfClass:[BrickDetailViewController class]]) {
+    if ([dismissed isKindOfClass:[BrickDetailViewController class]] || [dismissed isKindOfClass:[FormulaEditorViewController class]]) {
         self.brickScaleTransition.transitionMode = TransitionModeDismiss;
         return self.brickScaleTransition;
     }
@@ -262,6 +265,15 @@
             [self addBrickCellAction:brickCell copyBrick:copyBrick completionBlock:NULL];
         }
     }
+}
+
+#pragma mark FormulaEditorViewController Delegate
+- (void)formulaEditorViewController:(FormulaEditorViewController *)formulaEditorViewController
+                withBrickCell:(BrickCell *)brickCell
+{
+    self.collectionView.userInteractionEnabled = YES;
+    self.navigationController.navigationBar.userInteractionEnabled = YES;
+    [self.collectionView reloadData];
 }
 
 #pragma mark - Collection View Datasource
@@ -786,6 +798,25 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
                              }
                          }];
     }
+}
+
+#pragma mark - Formula Editor test
+
+- (void)openFormulaEditor:(id)sender
+{
+    FormulaEditorButton *button = (FormulaEditorButton*)sender;
+    
+    FormulaEditorViewController *formulaEditorViewController = [FormulaEditorViewController new];
+    formulaEditorViewController.delegate = self;
+    formulaEditorViewController.brickCell = button.brickCell;
+    self.brickScaleTransition.cell = button.brickCell;
+    self.brickScaleTransition.touchRect = button.brickCell.frame;
+    formulaEditorViewController.transitioningDelegate = self;
+    formulaEditorViewController.modalPresentationStyle = UIModalPresentationCustom;
+    self.collectionView.userInteractionEnabled = NO;
+    [self presentViewController:formulaEditorViewController animated:YES completion:^{
+        self.navigationController.navigationBar.userInteractionEnabled = NO;
+    }];
 }
 
 @end

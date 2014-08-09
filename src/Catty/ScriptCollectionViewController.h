@@ -21,11 +21,14 @@
  */
 
 #import <UIKit/UIKit.h>
+#import "BrickCell.h"
 
 @class SpriteObject, FXBlurView;
 
 @interface ScriptCollectionViewController : UICollectionViewController
 @property (strong, nonatomic) SpriteObject *object;
 @property (nonatomic, strong) FXBlurView *blurView;
+
+- (void) openFormulaEditor:(BrickCell*)brickCell;
 
 @end

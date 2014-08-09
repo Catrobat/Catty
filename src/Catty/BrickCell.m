@@ -33,6 +33,7 @@
 #import "BrickManager.h"
 #import "BrickProtocol.h"
 #import "Script.h"
+#import "FormulaEditorTextField.h"
 
 // uncomment this to get special log outputs, etc...
 //#define LAYOUT_DEBUG 0
@@ -433,11 +434,13 @@
             NSString *afterLabelParam = [params objectAtIndex:counter];
             UIView *inputField = nil;
             if ([afterLabelParam rangeOfString:@"FLOAT"].location != NSNotFound) {
-                UITextField *textField = [UIUtil newDefaultBrickTextFieldWithFrame:inputViewFrame];
-                inputField = (UIView*)textField;
+                UIButton *formulaEditor = [UIUtil newDefaultBrickFormulaEditorWithFrame:inputViewFrame ForBrickCell:self];
+                //formulaEditor.cell = self;
+                inputField = (UIView*)formulaEditor;
             } else if ([afterLabelParam rangeOfString:@"INT"].location != NSNotFound) {
-                UITextField *textField = [UIUtil newDefaultBrickTextFieldWithFrame:inputViewFrame];
-                inputField = (UIView*)textField;
+                UIButton *formulaEditor = [UIUtil newDefaultBrickFormulaEditorWithFrame:inputViewFrame ForBrickCell:self];
+                //formulaEditor.cell = self;
+                inputField = (UIView*)formulaEditor;
             } else if ([afterLabelParam rangeOfString:@"TEXT"].location != NSNotFound) {
 //                inputViewFrame.origin.y = (remainingFrame.size.height - kBrickInputFieldHeight)/2.0f+(kBrickInputFieldTopMargin - kBrickInputFieldBottomMargin);
 //                inputViewFrame.size.height = kBrickInputFieldHeight;
@@ -537,6 +540,5 @@
         [self.layer removeAllAnimations];
     }
 }
-
 
 @end

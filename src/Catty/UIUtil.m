@@ -27,6 +27,9 @@
 #import "SoundComboBoxView.h"
 #import "LookComboBoxView.h"
 #import "VariableComboBoxView.h"
+#import "FormulaEditorButton.h"
+#import "BrickDetailViewController.h"
+#import "ScriptCollectionViewController.h"
 
 @implementation UIUtil
 
@@ -62,6 +65,28 @@
     textField.clearButtonMode = UITextFieldViewModeWhileEditing;
     textField.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
     return textField;
+}
+
++ (UIButton*)newDefaultBrickFormulaEditorWithFrame:(CGRect)frame ForBrickCell:(BrickCell*)brickCell
+{
+    NSString *text = @"test";
+    
+    FormulaEditorButton *button = [[FormulaEditorButton alloc] initWithFrame:frame];
+    button.titleLabel.textColor = [UIColor whiteColor];
+    button.titleLabel.font = [UIFont systemFontOfSize:kBrickTextFieldFontSize];
+    if (text) {
+        [button setTitle:text forState:UIControlStateNormal];
+        // adapt size to fit text
+        [button sizeToFit];
+        CGRect labelFrame = button.frame;
+        labelFrame.size.height = frame.size.height;
+        button.frame = labelFrame;
+    }
+    
+    button.brickCell = brickCell;
+    [button addTarget:brickCell.delegate action:@selector(openFormulaEditor:) forControlEvents:UIControlEventTouchDown];
+    
+    return button;
 }
 
 + (MessageComboBoxView*)newDefaultBrickMessageComboBoxWithFrame:(CGRect)frame AndItems:(NSArray*)items

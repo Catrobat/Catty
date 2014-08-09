@@ -20,18 +20,22 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#define kCatrobatXMLDeclaration @"<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\" ?>"
-#define kCatrobatApplicationBuildNumber @"0"
-#define kCatrobatApplicationName @"Pocket Code (Catty iOS)"
-#define kCatrobatLanguageVersion @"0.8"
-#define kCatrobatMediaLicense @"http://developer.catrobat.org/ccbysa_v3"
-#define kCatrobatProgramLicense @"http://developer.catrobat.org/agpl_v3"
+#import <UIKit/UIKit.h>
 
-#define kCatrobatScreenModeMaximize @"MAXIMIZE"
-#define kCatrobatScreenModeStretch @"STRETCH"
-#define kCatrobatProgramScreenshotDefaultValue @"false"
-#define kIsFirstRelease 0
+@class FormulaEditorViewController;
+@class BrickCell;
 
-#if kIsFirstRelease
-  #undef DEBUG
-#endif
+@protocol FormulaEditorViewControllerDelegate <NSObject>
+
+@optional
+- (void)formulaEditorViewController:(FormulaEditorViewController *)formulaEditorViewController
+                      withBrickCell:(BrickCell *)brickCell;
+@end
+
+@interface FormulaEditorViewController : UIViewController <UITextFieldDelegate>
+@property (weak, nonatomic) id<FormulaEditorViewControllerDelegate> delegate;
+@property (strong, nonatomic) BrickCell *brickCell;
+
+- (void)updateUI;
+
+@end

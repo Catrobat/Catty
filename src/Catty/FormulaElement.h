@@ -90,4 +90,10 @@ typedef enum {
 
 - (NSArray*)XMLChildElements;
 
+- (FormulaElement*) getRoot;
+- (void)replaceElement:(FormulaElement*)current;
+- (void)replaceElement:(ElementType)type value:(NSString*)value;
+- (void)replaceWithSubElement:(NSString*) operator rightChild:(FormulaElement*)rightChild;
+
+
 @end

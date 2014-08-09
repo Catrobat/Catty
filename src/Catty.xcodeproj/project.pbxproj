@@ -26,7 +26,12 @@
 		1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
 		288765FD0DF74451002DB57D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 288765FC0DF74451002DB57D /* CoreGraphics.framework */; };
 		4C107ADD194F156F00D9D7ED /* PointToBrickTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C107ADC194F156F00D9D7ED /* PointToBrickTests.m */; };
+		4C25A4A71992106E00844295 /* FormulaEditorTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C25A4A61992106E00844295 /* FormulaEditorTest.m */; };
+		4C25A4AA1992301400844295 /* FormulaEditorButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C25A4A91992301400844295 /* FormulaEditorButton.m */; };
 		4C3AEF2F198E7EDD00604ABF /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 4C3AEF2E198E7EDD00604ABF /* Settings.bundle */; };
+		4C8CBE5019964A970097159E /* InternToken.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C8CBE4F19964A970097159E /* InternToken.m */; };
+		4C8CBE56199650840097159E /* Operators.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C8CBE55199650840097159E /* Operators.m */; };
+		4C8CBE59199668CE0097159E /* InternFormulaParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C8CBE58199668CE0097159E /* InternFormulaParser.m */; };
 		4C9E2D1F198EA6B600455B77 /* SMPageControl.license in Resources */ = {isa = PBXBuildFile; fileRef = 4C9E2D1E198EA6B600455B77 /* SMPageControl.license */; };
 		4C9E2D21198EACE200455B77 /* EAIntroView.license in Resources */ = {isa = PBXBuildFile; fileRef = 4C9E2D20198EACE200455B77 /* EAIntroView.license */; };
 		4C9E2D23198EAD1800455B77 /* BDKNotifyHUD.license in Resources */ = {isa = PBXBuildFile; fileRef = 4C9E2D22198EAD1800455B77 /* BDKNotifyHUD.license */; };
@@ -46,6 +51,9 @@
 		4C9E2D3F198F698100455B77 /* NSString+FastImageSize.license in Resources */ = {isa = PBXBuildFile; fileRef = 4C9E2D3E198F698100455B77 /* NSString+FastImageSize.license */; };
 		4C9E2D41198F6A2300455B77 /* UIViewController+CWPopup.license in Resources */ = {isa = PBXBuildFile; fileRef = 4C9E2D40198F6A2300455B77 /* UIViewController+CWPopup.license */; };
 		4C9E2D43198F6A8800455B77 /* OrderedDictionary.license in Resources */ = {isa = PBXBuildFile; fileRef = 4C9E2D42198F6A8800455B77 /* OrderedDictionary.license */; };
+		4CAB57071991071D00350DE6 /* FormulaEditorTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CAB57061991071D00350DE6 /* FormulaEditorTextField.m */; };
+		4CAB5713199131EA00350DE6 /* FormulaEditorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CAB5711199131EA00350DE6 /* FormulaEditorViewController.m */; };
+		4CAB5714199131EA00350DE6 /* FormulaEditor.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4CAB5712199131EA00350DE6 /* FormulaEditor.xib */; };
 		8146A9B319279721002548A4 /* ProgramTableHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8146A9B219279721002548A4 /* ProgramTableHeaderView.m */; };
 		815420D9191A51F200E628D2 /* FBShimmeringLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 815420D6191A51F200E628D2 /* FBShimmeringLayer.m */; };
 		815420DA191A51F200E628D2 /* FBShimmeringView.m in Sources */ = {isa = PBXBuildFile; fileRef = 815420D8191A51F200E628D2 /* FBShimmeringView.m */; };
@@ -364,7 +372,16 @@
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		32CA4F630368D1EE00C91783 /* App-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "App-Prefix.pch"; sourceTree = "<group>"; };
 		4C107ADC194F156F00D9D7ED /* PointToBrickTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PointToBrickTests.m; sourceTree = "<group>"; };
+		4C25A4A61992106E00844295 /* FormulaEditorTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FormulaEditorTest.m; sourceTree = "<group>"; };
+		4C25A4A81992301400844295 /* FormulaEditorButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FormulaEditorButton.h; sourceTree = "<group>"; };
+		4C25A4A91992301400844295 /* FormulaEditorButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FormulaEditorButton.m; sourceTree = "<group>"; };
 		4C3AEF2E198E7EDD00604ABF /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
+		4C8CBE4E19964A970097159E /* InternToken.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InternToken.h; sourceTree = "<group>"; };
+		4C8CBE4F19964A970097159E /* InternToken.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InternToken.m; sourceTree = "<group>"; };
+		4C8CBE54199650840097159E /* Operators.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Operators.h; sourceTree = "<group>"; };
+		4C8CBE55199650840097159E /* Operators.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Operators.m; sourceTree = "<group>"; };
+		4C8CBE57199668CE0097159E /* InternFormulaParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InternFormulaParser.h; sourceTree = "<group>"; };
+		4C8CBE58199668CE0097159E /* InternFormulaParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InternFormulaParser.m; sourceTree = "<group>"; };
 		4C9E2D1E198EA6B600455B77 /* SMPageControl.license */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = SMPageControl.license; sourceTree = "<group>"; };
 		4C9E2D20198EACE200455B77 /* EAIntroView.license */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = EAIntroView.license; sourceTree = "<group>"; };
 		4C9E2D22198EAD1800455B77 /* BDKNotifyHUD.license */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = BDKNotifyHUD.license; sourceTree = "<group>"; };
@@ -384,6 +401,11 @@
 		4C9E2D3E198F698100455B77 /* NSString+FastImageSize.license */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "NSString+FastImageSize.license"; sourceTree = "<group>"; };
 		4C9E2D40198F6A2300455B77 /* UIViewController+CWPopup.license */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "UIViewController+CWPopup.license"; sourceTree = "<group>"; };
 		4C9E2D42198F6A8800455B77 /* OrderedDictionary.license */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = OrderedDictionary.license; sourceTree = "<group>"; };
+		4CAB57051991071D00350DE6 /* FormulaEditorTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FormulaEditorTextField.h; sourceTree = "<group>"; };
+		4CAB57061991071D00350DE6 /* FormulaEditorTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FormulaEditorTextField.m; sourceTree = "<group>"; };
+		4CAB5710199131EA00350DE6 /* FormulaEditorViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FormulaEditorViewController.h; sourceTree = "<group>"; };
+		4CAB5711199131EA00350DE6 /* FormulaEditorViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FormulaEditorViewController.m; sourceTree = "<group>"; };
+		4CAB5712199131EA00350DE6 /* FormulaEditor.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FormulaEditor.xib; sourceTree = "<group>"; };
 		8146A9B119279721002548A4 /* ProgramTableHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProgramTableHeaderView.h; sourceTree = "<group>"; };
 		8146A9B219279721002548A4 /* ProgramTableHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProgramTableHeaderView.m; sourceTree = "<group>"; };
 		815420D3191A51F200E628D2 /* FBShimmering-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "FBShimmering-Prefix.pch"; sourceTree = "<group>"; };
@@ -1069,6 +1091,27 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		4C25A4A51992105300844295 /* FormulaEditorTests */ = {
+			isa = PBXGroup;
+			children = (
+				4C25A4A61992106E00844295 /* FormulaEditorTest.m */,
+			);
+			name = FormulaEditorTests;
+			sourceTree = "<group>";
+		};
+		4C8CBE4D19964A6B0097159E /* Helper */ = {
+			isa = PBXGroup;
+			children = (
+				4C8CBE54199650840097159E /* Operators.h */,
+				4C8CBE55199650840097159E /* Operators.m */,
+				4C8CBE4E19964A970097159E /* InternToken.h */,
+				4C8CBE4F19964A970097159E /* InternToken.m */,
+				4C8CBE57199668CE0097159E /* InternFormulaParser.h */,
+				4C8CBE58199668CE0097159E /* InternFormulaParser.m */,
+			);
+			name = Helper;
+			sourceTree = "<group>";
+		};
 		4C9E2D1D198EA6B600455B77 /* Licenses */ = {
 			isa = PBXGroup;
 			children = (
@@ -1094,6 +1137,20 @@
 			);
 			name = Licenses;
 			path = Resources/Licenses;
+			sourceTree = "<group>";
+		};
+		4CAB5704199106F700350DE6 /* FormulaEditor */ = {
+			isa = PBXGroup;
+			children = (
+				4C8CBE4D19964A6B0097159E /* Helper */,
+				4CAB57051991071D00350DE6 /* FormulaEditorTextField.h */,
+				4CAB57061991071D00350DE6 /* FormulaEditorTextField.m */,
+				4CAB5710199131EA00350DE6 /* FormulaEditorViewController.h */,
+				4CAB5711199131EA00350DE6 /* FormulaEditorViewController.m */,
+				4C25A4A81992301400844295 /* FormulaEditorButton.h */,
+				4C25A4A91992301400844295 /* FormulaEditorButton.m */,
+			);
+			name = FormulaEditor;
 			sourceTree = "<group>";
 		};
 		81506F4A18C3EDDC000ED328 /* LXReorderableCollectionViewFlowLayout */ = {
@@ -1184,6 +1241,7 @@
 		81B7487519213CE900990E5F /* Custom */ = {
 			isa = PBXGroup;
 			children = (
+				4CAB5704199106F700350DE6 /* FormulaEditor */,
 				CAE9A2BD197D5296008F7C9A /* CatrobatAlertView */,
 				CAE9A2B9197D2086008F7C9A /* CatrobatActionSheet */,
 				81A5B4D4192963F00082B2B8 /* MotionEffect */,
@@ -1507,6 +1565,7 @@
 		B46B270317703F9400172837 /* CattyTests */ = {
 			isa = PBXGroup;
 			children = (
+				4C25A4A51992105300844295 /* FormulaEditorTests */,
 				B46B270917703F9400172837 /* CattyTests.m */,
 				C34B44FB17F3403400624730 /* ExtensionTests */,
 				CA8C247918CD06BA00314C2B /* ProgramTests */,
@@ -2551,6 +2610,7 @@
 		CD0CCE37170C9F9300B70036 /* Storyboard & XIBs */ = {
 			isa = PBXGroup;
 			children = (
+				4CAB5712199131EA00350DE6 /* FormulaEditor.xib */,
 				C3F2950B1813C63200E37D61 /* iPhone.storyboard */,
 			);
 			name = "Storyboard & XIBs";
@@ -3135,6 +3195,7 @@
 				CAE4B840198A7A530054ABEC /* LICENSE_FXBlurView in Resources */,
 				4C3AEF2F198E7EDD00604ABF /* Settings.bundle in Resources */,
 				CAE4B842198A7A8E0054ABEC /* LICENSE_EVCircularProgressView in Resources */,
+				4CAB5714199131EA00350DE6 /* FormulaEditor.xib in Resources */,
 				4C9E2D3F198F698100455B77 /* NSString+FastImageSize.license in Resources */,
 				CA1498521989C2C80069A21E /* LICENSE_BDKNotifyHUD in Resources */,
 				4C9E2D41198F6A2300455B77 /* UIViewController+CWPopup.license in Resources */,
@@ -3211,6 +3272,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				CAA24DE818F46B7C00197AE3 /* DarkBlueGradientImageDetailCell.m in Sources */,
+				4C8CBE5019964A970097159E /* InternToken.m in Sources */,
 				B4E7D257176EF20F00EC8AD8 /* Scene.m in Sources */,
 				81CA97D4192A900C00C99DCB /* BrickSelectModalTransition.m in Sources */,
 				CA75C23B18A9615600FC8C2F /* ForeverBrickCell.m in Sources */,
@@ -3294,6 +3356,7 @@
 				CA75C25F18A961B200FC8C2F /* TurnLeftBrickCell.m in Sources */,
 				CD0CCFBD170CB39700B70036 /* SetBrightnessBrick.m in Sources */,
 				CABE07BC18BAB8B200BE26EF /* MessageComboBoxView.m in Sources */,
+				4CAB5713199131EA00350DE6 /* FormulaEditorViewController.m in Sources */,
 				CA75C25018A9618D00FC8C2F /* SetYBrickCell.m in Sources */,
 				CD0CCFBE170CB39700B70036 /* SetGhostEffectBrick.m in Sources */,
 				9200F006182E3CA0008BF678 /* CatrobatAudioPlayer.m in Sources */,
@@ -3336,8 +3399,10 @@
 				CA75C24118A9616800FC8C2F /* IfLogicElseBrickCell.m in Sources */,
 				CD0CCFDC170CB39700B70036 /* WhenScript.m in Sources */,
 				817B544318F03D4C00AF6BFE /* BrickScaleTransition.m in Sources */,
+				4CAB57071991071D00350DE6 /* FormulaEditorTextField.m in Sources */,
 				CAEDFB8117EF759500FDED0E /* ObjectTableViewController.m in Sources */,
 				819EFEA71948721900A1D591 /* SelectButton.m in Sources */,
+				4C8CBE59199668CE0097159E /* InternFormulaParser.m in Sources */,
 				CD639C7B170DF52600FA67DA /* SpriteObject.m in Sources */,
 				CA75C27A18A9621500FC8C2F /* SetVolumeToBrickCell.m in Sources */,
 				816827D81934BB9B00031E7C /* BrickSelectionView.m in Sources */,
@@ -3386,6 +3451,7 @@
 				CA75C25C18A961AB00FC8C2F /* MoveNStepsBrickCell.m in Sources */,
 				B4DEFC90170F464200DD1939 /* TestParser.m in Sources */,
 				B4D4DD4317156A8500EEE3F8 /* PointInDirectionBrick.m in Sources */,
+				4C25A4AA1992301400844295 /* FormulaEditorButton.m in Sources */,
 				CA75C26518A961C000FC8C2F /* PointInDirectionBrickCell.m in Sources */,
 				CA75C26B18A961CE00FC8C2F /* GlideToBrickCell.m in Sources */,
 				CA1498701989CA160069A21E /* AHKActionSheet.m in Sources */,
@@ -3410,6 +3476,7 @@
 				B40228A51732ADF4004C4942 /* PointToBrick.m in Sources */,
 				B470688A1733BA9600EC880D /* VariablesContainer.m in Sources */,
 				CA75C24418A9617100FC8C2F /* IfLogicEndBrickCell.m in Sources */,
+				4C8CBE56199650840097159E /* Operators.m in Sources */,
 				B470688F1733D6CC00EC880D /* ChangeVariableBrick.m in Sources */,
 				B44F32A01737AC2E00BD97AC /* ProgramManager.m in Sources */,
 				B44F32A51737BBB100BD97AC /* SensorHandler.m in Sources */,
@@ -3466,6 +3533,7 @@
 				92345637192E2E6C00464E6B /* SetLookBrickTests.m in Sources */,
 				92C37A4C1856270500547C1E /* TurnLeftBrickTests.m in Sources */,
 				92C37A541856279600547C1E /* MoveNStepsBrickTests.m in Sources */,
+				4C25A4A71992106E00844295 /* FormulaEditorTest.m in Sources */,
 				B46B270A17703F9400172837 /* CattyTests.m in Sources */,
 				4C107ADD194F156F00D9D7ED /* PointToBrickTests.m in Sources */,
 			);

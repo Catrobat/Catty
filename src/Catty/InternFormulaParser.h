@@ -20,18 +20,32 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#define kCatrobatXMLDeclaration @"<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\" ?>"
-#define kCatrobatApplicationBuildNumber @"0"
-#define kCatrobatApplicationName @"Pocket Code (Catty iOS)"
-#define kCatrobatLanguageVersion @"0.8"
-#define kCatrobatMediaLicense @"http://developer.catrobat.org/ccbysa_v3"
-#define kCatrobatProgramLicense @"http://developer.catrobat.org/agpl_v3"
+#import <Foundation/Foundation.h>
+#import "InternToken.h"
+#import "FormulaElement.h"
 
-#define kCatrobatScreenModeMaximize @"MAXIMIZE"
-#define kCatrobatScreenModeStretch @"STRETCH"
-#define kCatrobatProgramScreenshotDefaultValue @"false"
-#define kIsFirstRelease 0
+typedef enum {
+    FORMULA_PARSER_OK = -1,
+    FORMULA_PARSER_STACK_OVERFLOW = -2,
+    FORMULA_PARSER_INPUT_SYNTAX_ERROR = -3,
+    FORMULA_PARSER_NO_INPUT = -4
+} FormulaParserStatus;
 
-#if kIsFirstRelease
-  #undef DEBUG
-#endif
+@interface InternFormulaParserException : NSException
+@end
+
+@interface InternFormulaParserEmptyStackException : NSException
+@end
+
+@interface InternFormulaParser : NSObject 
+
+@property (nonatomic, strong) NSMutableArray* internTokensToParse; // of InternToken
+@property (nonatomic) int currentTokenParseIndex;
+@property (nonatomic) int errorTokenIndex;
+@property (nonatomic, weak) InternToken* currentToken;
+
+- (id)initWithTokens:(NSArray*)tokens;
+- (void)handleOperator:(NSString*) operator WithCurrentElement:(FormulaElement*) currentElement AndNewElement: (FormulaElement*) newElement;
+- (FormulaElement*) parseFormula;
+
+@end

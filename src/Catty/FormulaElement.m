@@ -601,4 +601,43 @@
     return [childs copy];
 }
 
+- (FormulaElement*) getRoot
+{
+    FormulaElement *root = self;
+    while (root.parent != nil) {
+        root = root.parent;
+    }
+    return root;
+}
+
+- (void)replaceElement:(FormulaElement*)current
+{
+    self.parent = current.parent;
+    self.leftChild = current.leftChild;
+    self.rightChild = current.rightChild;
+    self.value = current.value;
+    self.type = current.type;
+    
+    if (self.leftChild != nil) {
+        self.leftChild.parent = self;
+    }
+    if (self.rightChild != nil) {
+        self.rightChild.parent = self;
+    }
+}
+
+- (void)replaceElement:(ElementType)type value:(NSString*)value
+{
+    self.type = type;
+    self.value = value;
+}
+
+- (void)replaceWithSubElement:(NSString*) operator rightChild:(FormulaElement*)rightChild
+{
+    FormulaElement *cloneThis = [[FormulaElement alloc] initWithType:@"OPERATOR" value:operator leftChild:self.parent rightChild:self parent:self.rightChild];
+    
+    cloneThis.parent.rightChild = cloneThis;
+}
+
+
 @end
