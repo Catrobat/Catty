@@ -1421,6 +1421,7 @@
 			isa = PBXGroup;
 			children = (
 				4C9E2D1D198EA6B600455B77 /* Licenses */,
+				4C3AEF2E198E7EDD00604ABF /* Settings.bundle */,
 				B434984F1927A863002F9075 /* My First Program.catrobat */,
 			);
 			name = Resources;
@@ -2583,7 +2584,6 @@
 				B4E7D258176EF23200EC8AD8 /* Scene */,
 				B4D940B2170EC5D5003DDBFA /* Views */,
 				CD0CCE3B170CA00F00B70036 /* ViewController */,
-				4C3AEF2E198E7EDD00604ABF /* Settings.bundle */,
 			);
 			path = Catty;
 			sourceTree = "<group>";
