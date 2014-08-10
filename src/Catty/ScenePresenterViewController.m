@@ -589,6 +589,12 @@
 {
     self.skView.scene.scaleMode = self.skView.scene.scaleMode == SKSceneScaleModeAspectFit ? SKSceneScaleModeFill : SKSceneScaleModeAspectFit;
     [self.skView setNeedsLayout];
+    self.menuOpen = YES;
+    //pause Scene
+    SKView * view= self.skView;
+    view.paused=YES;
+    //view.userInteractionEnabled = NO;
+    [[AudioManager sharedAudioManager] pauseAllSounds];
 }
 
 - (void)takeScreenshot:(UIButton *)sender
