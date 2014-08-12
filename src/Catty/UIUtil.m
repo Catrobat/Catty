@@ -69,7 +69,7 @@
 
 + (UIButton*)newDefaultBrickFormulaEditorWithFrame:(CGRect)frame ForBrickCell:(BrickCell*)brickCell
 {
-    NSString *text = @"test";
+    NSString *text = @"formula";
     
     FormulaEditorButton *button = [[FormulaEditorButton alloc] initWithFrame:frame];
     button.titleLabel.textColor = [UIColor whiteColor];

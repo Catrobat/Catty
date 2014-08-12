@@ -160,29 +160,8 @@ const float TEXT_FIELD_HEIGHT = 45;
     if([sender isKindOfClass:[UIButton class]]) {
         UIButton *button = (UIButton *)sender;
         NSString *number = button.titleLabel.text;
-        
-        Formula *formula = [[Formula alloc] init];
-        
-        FormulaElement *formulaTree = [[FormulaElement alloc] init];
-        formulaTree.type = OPERATOR;
-        formulaTree.value = @"PLUS";
-        formula.formulaTree = formulaTree;
-        
-        FormulaElement *formulaTreeLeft = [[FormulaElement alloc] init];
-        formulaTreeLeft.type = NUMBER;
-        formulaTreeLeft.value = @"3";
-        formulaTree.leftChild = formulaTreeLeft;
-        
-        FormulaElement *formulaTreeRight = [[FormulaElement alloc] init];
-        formulaTreeRight.type = NUMBER;
-        formulaTreeRight.value = @"3";
-        formulaTree.rightChild = formulaTreeRight;
-        
-        NSLog(@"computed=%f", [formula interpretDoubleForSprite:nil]);
-        
         self.formulaEditorTextField.text = [self.formulaEditorTextField.text stringByAppendingString:number];
         [self inputDidChange:self.formulaEditorTextField];
-        NSLog(@"tfbutton %@ tapped", number);
     }
 }
 
@@ -228,7 +207,7 @@ const float TEXT_FIELD_HEIGHT = 45;
     [self.view addSubview:formulaEditorTextField];
     
     for(int i = 0; i < [self.buttons count]; i++) {
-        [[self.buttons objectAtIndex:i] setBackgroundColor:UIColor.lightOrangeColor];
+        [[self.buttons objectAtIndex:i] setTitleColor:UIColor.lightOrangeColor forState:UIControlStateNormal];
     }
     
     [self updateUI];
