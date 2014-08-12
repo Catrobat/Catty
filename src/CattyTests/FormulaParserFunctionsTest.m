@@ -94,6 +94,13 @@ const double DELTA = 0.01;
     XCTAssertEqual(10, [parseTree interpretRecursiveForSprite:nil], @"Formula interpretation is not as expected");
 }
 
+- (void) testExp
+{
+    FormulaElement *parseTree = [self getFormulaElement:EXP value:@"3"];
+    XCTAssertNotNil(parseTree, @"Formula is not parsed correctly: exp(0)");
+    XCTAssertEqualWithAccuracy(20.08f, [parseTree interpretRecursiveForSprite:nil], 0.1f, @"Formula interpretation is not as expected");
+}
+
 - (void) testRandomNaturalNumbers
 {
     NSMutableArray *internTokenList = [[NSMutableArray alloc] init];

@@ -41,7 +41,8 @@ typedef enum {
     TRUE_F,
     FALSE_F,
     MOD,
-    POW
+    POW,
+    EXP
 } Function;
 
 @interface Functions : NSObject

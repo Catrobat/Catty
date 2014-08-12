@@ -272,6 +272,10 @@
             result = 0.0;
             break;
         }
+        case EXP: {
+            result = exp(left);
+            break;
+        }
         default:
             //abort();
             [InternFormulaParserException raise:@"Unknown Function" format:@"Unknown Function: %d", function];

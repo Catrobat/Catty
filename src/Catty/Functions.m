@@ -75,6 +75,8 @@
         return MOD;
     if([value isEqualToString:@"POW"])
         return POW;
+    if([value isEqualToString:@"EXP"])
+        return EXP;
     
     [InternFormulaParserException raise:@"Invalid Function Name" format:@"Invalid Function Name: %@", value];
     return -1;
@@ -139,6 +141,9 @@
             break;
         case PI_F:
             return @"PI_F";
+            break;
+        case EXP:
+            return @"EXP";
             break;
 
         default:
