@@ -30,6 +30,8 @@
 
 @property (nonatomic, strong) FormulaElement* formulaTree;
 
+
+
 - (double)interpretDoubleForSprite:(SpriteObject*)sprite;
 - (int)interpretIntegerForSprite:(SpriteObject*)sprite;
 - (BOOL)interpretBOOLForSprite:(SpriteObject*)sprite;

@@ -21,8 +21,12 @@
  */
 
 #import "InternFormulaParser.h"
+#import "InternFormulaUtils.h"
 #import "Operators.h"
+#import "Functions.h"
 #import "SensorManager.h"
+#import "InternFormulaParserException.h"
+#import "InternFormulaParserEmptyStackException.h"
 
 @implementation InternFormulaParser
 
@@ -32,7 +36,7 @@ const int MAXIMUM_TOKENS_TO_PARSE = 1000;
 {
     self = [super init];
     if(self) {
-        self.internTokensToParse = [[NSMutableArray alloc] initWithObjects:tokens, nil];
+        self.internTokensToParse = [[NSMutableArray alloc] initWithArray:tokens];
     }
     return self;
 }
@@ -40,7 +44,8 @@ const int MAXIMUM_TOKENS_TO_PARSE = 1000;
 - (void)handleOperator:(NSString*) operator WithCurrentElement:(FormulaElement*) currentElement AndNewElement: (FormulaElement*) newElement
 {
     if (currentElement.parent == nil) {
-        FormulaElement *formulaElement = [[FormulaElement alloc] initWithType:OPERATOR value:operator leftChild:NULL rightChild:currentElement parent:newElement];
+        FormulaElement *formulaElement = [[FormulaElement alloc] initWithElementType:OPERATOR value:operator leftChild:currentElement rightChild:newElement parent:nil];
+        formulaElement.type = formulaElement.type;
         return;
     }
     
@@ -56,7 +61,8 @@ const int MAXIMUM_TOKENS_TO_PARSE = 1000;
         if (newParent != nil) {
             [newLeftChild replaceWithSubElement:operator rightChild:newElement];
         } else {
-            FormulaElement *formulaElement = [[FormulaElement alloc] initWithType:OPERATOR value:operator leftChild:NULL rightChild:newLeftChild parent:newElement];
+            FormulaElement *formulaElement = [[FormulaElement alloc] initWithElementType:OPERATOR value:operator leftChild:newLeftChild rightChild:newElement parent:nil];
+            formulaElement.type = formulaElement.type;
         }
     } else {
         [currentElement replaceWithSubElement:operator rightChild:newElement];
@@ -79,8 +85,8 @@ const int MAXIMUM_TOKENS_TO_PARSE = 1000;
     }
     
     @try {
-        NSArray *copyInternTokensToParse = [[NSArray alloc] initWithObjects:copyInternTokensToParse, nil];
-        if (InternFormulaUtils.applyBracketCorrection(copyInternTokensToParse)) {
+        NSMutableArray *copyInternTokensToParse = [[NSMutableArray alloc] initWithArray:self.internTokensToParse];
+        if ([InternFormulaUtils applyBracketCorrection:copyInternTokensToParse]) {
             NSDebug(@"applyBracketCorrection-> TRUE");
             [self.internTokensToParse removeAllObjects];
             [self.internTokensToParse addObjectsFromArray:copyInternTokensToParse];
@@ -105,7 +111,6 @@ const int MAXIMUM_TOKENS_TO_PARSE = 1000;
 
 - (FormulaElement*)findLowerOrEqualPriorityFormulaElement:(Operator)currentOperator element:(FormulaElement*)currentElement
 {
-    
     FormulaElement *returnElement = currentElement.parent;
     FormulaElement *notNullElement = currentElement;
     bool condition = true;
@@ -150,7 +155,8 @@ const int MAXIMUM_TOKENS_TO_PARSE = 1000;
     @throw exception;
 }
      
-- (FormulaElement*) termList {
+- (FormulaElement*) termList
+{
     FormulaElement *currentElement = [self term];
     FormulaElement *loopTermTree;
     NSString *operatorStringValue;
@@ -167,18 +173,17 @@ const int MAXIMUM_TOKENS_TO_PARSE = 1000;
      
 - (FormulaElement*) term
 {
-         
-    FormulaElement *termTree = [[FormulaElement alloc] initWithType:@"NUMBER" value:nil leftChild:nil rightChild:nil parent:nil];
+    FormulaElement *termTree = [[FormulaElement alloc] initWithElementType:NUMBER value:nil leftChild:nil rightChild:nil parent:nil];
     FormulaElement *currentElement = termTree;
          
     if ([self.currentToken isOperator] && [self.currentToken.tokenStringValue isEqualToString:[Operators getName:MINUS]]) {
-        currentElement = [[FormulaElement alloc]initWithType:@"NUMBER" value:nil leftChild:termTree rightChild:nil parent:nil];
-        FormulaElement *newFormulaElement = [[FormulaElement alloc] initWithType:@"OPERATOR" value:[Operators getName:MINUS] leftChild:nil rightChild:nil parent:currentElement];
+        currentElement = [[FormulaElement alloc]initWithElementType:NUMBER value:nil leftChild:nil rightChild:nil parent:termTree];
+        FormulaElement *newFormulaElement = [[FormulaElement alloc] initWithElementType:OPERATOR value:[Operators getName:MINUS] leftChild:nil rightChild:currentElement parent:nil];
         [termTree replaceElement:newFormulaElement];
         [self getNextToken];
     } else if ([self.currentToken isOperator] && [self.currentToken.tokenStringValue isEqualToString:[Operators getName:LOGICAL_NOT]]) {
-        currentElement = [[FormulaElement alloc]initWithType:@"NUMBER" value:nil leftChild:termTree rightChild:nil parent:nil];
-        FormulaElement *newFormulaElement = [[FormulaElement alloc] initWithType:@"OPERATOR" value:[Operators getName:LOGICAL_NOT] leftChild:nil rightChild:nil parent:currentElement];
+        currentElement = [[FormulaElement alloc]initWithElementType:NUMBER value:nil leftChild:nil rightChild:nil parent:termTree];
+        FormulaElement *newFormulaElement = [[FormulaElement alloc] initWithElementType:OPERATOR value:[Operators getName:LOGICAL_NOT] leftChild:nil rightChild:currentElement parent:nil];
         [termTree replaceElement:newFormulaElement];
         [self getNextToken];
     }
@@ -191,7 +196,7 @@ const int MAXIMUM_TOKENS_TO_PARSE = 1000;
          
         case TOKEN_TYPE_BRACKET_OPEN: {
             [self getNextToken];
-            FormulaElement *newFormulaElement = [[FormulaElement alloc] initWithType:@"BRACKET" value:nil leftChild:nil rightChild:nil parent:[self termList]];
+            FormulaElement *newFormulaElement = [[FormulaElement alloc] initWithElementType:BRACKET value:nil leftChild:nil rightChild:[self termList] parent:nil];
             [currentElement replaceElement:newFormulaElement];
             
             if (![self.currentToken isBracketClose]) {
@@ -235,10 +240,30 @@ const int MAXIMUM_TOKENS_TO_PARSE = 1000;
 
 - (FormulaElement*)function
 {
-    InternFormulaParserException *exception = [[InternFormulaParserException alloc] initWithName:@"Not implemented yet" reason:nil userInfo:nil];
-    @throw exception;
+    FormulaElement *functionTree = [[FormulaElement alloc] initWithElementType:FUNCTION value:nil leftChild:nil rightChild:nil parent:nil];
     
-    return nil;
+    if (![Functions isFunction:self.currentToken.tokenStringValue]) {
+        [InternFormulaParserException raise:@"Parse Error" format:nil];
+    }
+    
+    functionTree = [[FormulaElement alloc] initWithElementType:FUNCTION value:self.currentToken.tokenStringValue leftChild:nil rightChild:nil parent:nil];
+
+    [self getNextToken];
+    
+    if ([self.currentToken isFunctionParameterBracketOpen]) {
+        [self getNextToken];
+        
+        functionTree.leftChild = [self termList];
+        if ([self.currentToken isFunctionParameterDelimiter]) {
+            [self getNextToken];
+            functionTree.rightChild = [self termList];
+        }
+        if (![self.currentToken isFunctionParameterBracketClose]) {
+            [InternFormulaParserException raise:@"Parse Error" format:nil];
+        }
+        [self getNextToken];
+    }
+    return functionTree;
 }
 
 - (FormulaElement*)sensor
@@ -247,7 +272,7 @@ const int MAXIMUM_TOKENS_TO_PARSE = 1000;
         [InternFormulaParserException raise:@"Parse Error" format:nil];
     }
          
-    FormulaElement *sensorTree = [[FormulaElement alloc] initWithType:@"SENSOR" value:self.currentToken.tokenStringValue leftChild:nil rightChild:nil parent:nil];
+    FormulaElement *sensorTree = [[FormulaElement alloc] initWithElementType:SENSOR value:self.currentToken.tokenStringValue leftChild:nil rightChild:nil parent:nil];
     [self getNextToken];
     return sensorTree;
 }
@@ -256,7 +281,7 @@ const int MAXIMUM_TOKENS_TO_PARSE = 1000;
 - (NSString*)number
 {
     NSString* numberToCheck = self.currentToken.tokenStringValue;
-    NSRange range = [numberToCheck rangeOfString:@"(\\d)+(\\.(\\d)+)?" options:NSRegularExpressionSearch];
+    NSRange range = [numberToCheck rangeOfString:@"^(\\d)+(\\.(\\d)+)?$" options:NSRegularExpressionSearch];
     if (range.location == NSNotFound) {
         [InternFormulaParserException raise:@"Parse Error" format:nil];
     }

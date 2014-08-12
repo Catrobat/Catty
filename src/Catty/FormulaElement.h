@@ -21,6 +21,8 @@
  */
 
 #import <Foundation/Foundation.h>
+#import "Operators.h"
+#import "Functions.h"
 
 @class SpriteObject;
 
@@ -33,51 +35,13 @@ typedef enum {
     BRACKET
 } ElementType;
 
-typedef enum {
-	SIN,
-    COS,
-    TAN,
-    LN,
-    LOG,
-    SQRT,
-    RAND,
-    ROUND,
-    ABS,
-    PI_F,
-    MOD,
-    POW,
-    ARCSIN,
-    ARCCOS,
-    ARCTAN,
-    MAX,
-    MIN,
-    TRUE_F,
-    FALSE_F
-} Function;
-
-typedef enum {
-    LOGICAL_AND,
-    LOGICAL_OR,
-    EQUAL,
-    NOT_EQUAL,
-    SMALLER_OR_EQUAL,
-    GREATER_OR_EQUAL,
-    SMALLER_THAN,
-    GREATER_THAN,
-    PLUS,
-    MINUS,
-    MULT,
-    DIVIDE,
-    LOGICAL_NOT,
-} Operator;
-
 @interface FormulaElement : NSObject
 
 @property (nonatomic, assign) ElementType type;
 @property (nonatomic, strong) NSString* value;
 @property (nonatomic, strong) FormulaElement* leftChild;
 @property (nonatomic, strong) FormulaElement* rightChild;
-@property (nonatomic, weak) FormulaElement* parent;
+@property (nonatomic, strong) FormulaElement* parent;
 
 - (id)initWithType:(NSString*)type
              value:(NSString*)value
@@ -85,15 +49,30 @@ typedef enum {
         rightChild:(FormulaElement*)rightChild
             parent:(FormulaElement*)parent;
 
+- (id)initWithElementType:(ElementType)type
+             value:(NSString*)value
+         leftChild:(FormulaElement*)leftChild
+        rightChild:(FormulaElement*)rightChild
+            parent:(FormulaElement*)parent;
 
 - (double)interpretRecursiveForSprite:(SpriteObject*)sprite;
 
 - (NSArray*)XMLChildElements;
 
 - (FormulaElement*) getRoot;
+
 - (void)replaceElement:(FormulaElement*)current;
+
 - (void)replaceElement:(ElementType)type value:(NSString*)value;
+
 - (void)replaceWithSubElement:(NSString*) operator rightChild:(FormulaElement*)rightChild;
 
+- (NSMutableArray*)getInternTokenList;
+
+- (BOOL)isLogicalOperator;
+
+- (BOOL)containsElement:(ElementType)elementType;
+
+- (FormulaElement*)clone;
 
 @end

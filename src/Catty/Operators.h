@@ -21,7 +21,22 @@
  */
 
 #import <Foundation/Foundation.h>
-#import "FormulaElement.h"
+
+typedef enum {
+    LOGICAL_AND = 300,
+    LOGICAL_OR,
+    EQUAL,
+    NOT_EQUAL,
+    SMALLER_OR_EQUAL,
+    GREATER_OR_EQUAL,
+    SMALLER_THAN,
+    GREATER_THAN,
+    PLUS,
+    MINUS,
+    MULT,
+    DIVIDE,
+    LOGICAL_NOT
+} Operator;
 
 @interface Operators : NSObject
 

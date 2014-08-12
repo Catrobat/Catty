@@ -71,5 +71,6 @@ typedef enum {
 - (BOOL)isUserVariable;
 - (void)appendToTokenStringValue:(NSString*)stringToAppend;
 - (void)appendToTokenStringValueWithArray:(NSArray*)internTokensToAppend;
+- (BOOL)isEqualTo:(InternToken*)token;
 
 @end

@@ -21,25 +21,33 @@
  */
 
 #import <Foundation/Foundation.h>
-#import "InternToken.h"
-#import "FormulaElement.h"
 
 typedef enum {
-    FORMULA_PARSER_OK = -1,
-    FORMULA_PARSER_STACK_OVERFLOW = -2,
-    FORMULA_PARSER_INPUT_SYNTAX_ERROR = -3,
-    FORMULA_PARSER_NO_INPUT = -4
-} FormulaParserStatus;
+	SIN = 400,
+    COS,
+    TAN,
+    LN,
+    LOG,
+    SQRT,
+    RAND,
+    ROUND,
+    ABS,
+    PI_F,
+    ARCSIN,
+    ARCCOS,
+    ARCTAN,
+    MAX,
+    MIN,
+    TRUE_F,
+    FALSE_F,
+    MOD,
+    POW
+} Function;
 
-@interface InternFormulaParser : NSObject
+@interface Functions : NSObject
 
-@property (nonatomic, strong) NSMutableArray* internTokensToParse; // of InternToken
-@property (nonatomic) int currentTokenParseIndex;
-@property (nonatomic) int errorTokenIndex;
-@property (nonatomic, weak) InternToken* currentToken;
-
-- (id)initWithTokens:(NSArray*)tokens; // of InternToken
-- (void)handleOperator:(NSString*) operator WithCurrentElement:(FormulaElement*) currentElement AndNewElement: (FormulaElement*) newElement;
-- (FormulaElement*) parseFormula;
++ (BOOL)isFunction:(NSString*)value;
++ (Function)getFunctionByValue:(NSString*)value;
++ (NSString*)getName:(Function)function;
 
 @end

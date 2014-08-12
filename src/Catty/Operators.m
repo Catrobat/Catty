@@ -223,7 +223,6 @@
     }
     
     NSError(@"Unknown Operator: %@", name);
-    
     return -1;
 }
 

@@ -45,57 +45,57 @@
 
 - (BOOL)isNumber
 {
-    return self.internTokenType == NUMBER;
+    return self.internTokenType == TOKEN_TYPE_NUMBER;
 }
 
 - (BOOL)isOperator
 {
-    return self.internTokenType == OPERATOR && [Operators isLogicalOperator:[Operators getOperatorByValue:self.tokenStringValue]];
+    return self.internTokenType == TOKEN_TYPE_OPERATOR && (int)[Operators getOperatorByValue:self.tokenStringValue] != -1;
 }
 
 - (BOOL)isBracketOpen
 {
-    return (NSInteger)self.internTokenType == (NSInteger)BRACKET_OPEN;
+    return (NSInteger)self.internTokenType == (NSInteger)TOKEN_TYPE_BRACKET_OPEN;
 }
 
 - (BOOL)isBracketClose
 {
-    return (NSInteger)self.internTokenType == (NSInteger)BRACKET_CLOSE;
+    return (NSInteger)self.internTokenType == (NSInteger)TOKEN_TYPE_BRACKET_CLOSE;
 }
 
 - (BOOL)isFunctionParameterBracketOpen
 {
-    return (NSInteger)self.internTokenType == (NSInteger)FUNCTION_PARAMETERS_BRACKET_OPEN;
+    return (NSInteger)self.internTokenType == (NSInteger)TOKEN_TYPE_FUNCTION_PARAMETERS_BRACKET_OPEN;
 }
 
 - (BOOL)isFunctionParameterBracketClose
 {
-    return (NSInteger)self.internTokenType == (NSInteger)FUNCTION_PARAMETERS_BRACKET_CLOSE;
+    return (NSInteger)self.internTokenType == (NSInteger)TOKEN_TYPE_FUNCTION_PARAMETERS_BRACKET_CLOSE;
 }
 
 - (BOOL)isFunctionParameterDelimiter
 {
-    return (NSInteger)self.internTokenType == (NSInteger)FUNCTION_PARAMETER_DELIMITER;
+    return (NSInteger)self.internTokenType == (NSInteger)TOKEN_TYPE_FUNCTION_PARAMETER_DELIMITER;
 }
 
 - (BOOL)isFunctionName
 {
-    return (NSInteger)self.internTokenType == (NSInteger)FUNCTION_NAME;
+    return (NSInteger)self.internTokenType == (NSInteger)TOKEN_TYPE_FUNCTION_NAME;
 }
 
 - (BOOL)isEndOfFileToken
 {
-    return (NSInteger)self.internTokenType == (NSInteger)PARSER_END_OF_FILE;
+    return (NSInteger)self.internTokenType == (NSInteger)TOKEN_TYPE_PARSER_END_OF_FILE;
 }
 
 - (BOOL)isSensor
 {
-    return self.internTokenType == SENSOR;
+    return self.internTokenType == TOKEN_TYPE_SENSOR;
 }
 
 - (BOOL)isUserVariable
 {
-    return self.internTokenType == USER_VARIABLE;
+    return self.internTokenType == TOKEN_TYPE_USER_VARIABLE;
 }
 
 - (void)appendToTokenStringValue:(NSString*)stringToAppend
@@ -109,6 +109,11 @@
         InternToken *internToken = (InternToken*)[internTokensToAppend objectAtIndex:i];
         self.tokenStringValue = [[NSString alloc] initWithFormat:@"%@%@", self.tokenStringValue, internToken.tokenStringValue];
     }
+}
+
+- (BOOL)isEqualTo:(InternToken*)token
+{
+    return self.internTokenType == token.internTokenType && ((self.tokenStringValue == nil && token.tokenStringValue == nil) || [self.tokenStringValue isEqualToString:token.tokenStringValue]);
 }
 
 @end

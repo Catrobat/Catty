@@ -21,25 +21,9 @@
  */
 
 #import <Foundation/Foundation.h>
-#import "InternToken.h"
-#import "FormulaElement.h"
 
-typedef enum {
-    FORMULA_PARSER_OK = -1,
-    FORMULA_PARSER_STACK_OVERFLOW = -2,
-    FORMULA_PARSER_INPUT_SYNTAX_ERROR = -3,
-    FORMULA_PARSER_NO_INPUT = -4
-} FormulaParserStatus;
+@interface NSMutableArray (Reverse)
 
-@interface InternFormulaParser : NSObject
-
-@property (nonatomic, strong) NSMutableArray* internTokensToParse; // of InternToken
-@property (nonatomic) int currentTokenParseIndex;
-@property (nonatomic) int errorTokenIndex;
-@property (nonatomic, weak) InternToken* currentToken;
-
-- (id)initWithTokens:(NSArray*)tokens; // of InternToken
-- (void)handleOperator:(NSString*) operator WithCurrentElement:(FormulaElement*) currentElement AndNewElement: (FormulaElement*) newElement;
-- (FormulaElement*) parseFormula;
+- (void)reverse;
 
 @end
