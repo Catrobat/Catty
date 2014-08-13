@@ -55,21 +55,21 @@
         return ROUND;
     if([value isEqualToString:@"ABS"])
         return ABS;
-    if([value isEqualToString:@"PI_F"])
+    if([value isEqualToString:@"PI"])
         return PI_F;
-    if([value isEqualToString:@"ARCSIN"])
+    if([value isEqualToString:@"ASIN"])
         return ARCSIN;
-    if([value isEqualToString:@"ARCCOS"])
+    if([value isEqualToString:@"ACOS"])
         return ARCCOS;
-    if([value isEqualToString:@"ARCTAN"])
+    if([value isEqualToString:@"ATAN"])
         return ARCTAN;
     if([value isEqualToString:@"MAX"])
         return MAX;
     if([value isEqualToString:@"MIN"])
         return MIN;
-    if([value isEqualToString:@"TRUE_F"])
+    if([value isEqualToString:@"TRUE"])
         return TRUE_F;
-    if([value isEqualToString:@"FALSE_F"])
+    if([value isEqualToString:@"FALSE"])
         return FALSE_F;
     if([value isEqualToString:@"MOD"])
         return MOD;
@@ -113,13 +113,13 @@
             return @"ABS";
             break;
         case ARCSIN:
-            return @"ARCSIN";
+            return @"ASIN";
             break;
         case ARCCOS:
-            return @"ARCCOS";
+            return @"ACOS";
             break;
         case ARCTAN:
-            return @"ARCTAN";
+            return @"ATAN";
             break;
         case MAX:
             return @"MAX";
@@ -128,10 +128,10 @@
             return @"MIN";
             break;
         case TRUE_F:
-            return @"TRUE_F";
+            return @"TRUE";
             break;
         case FALSE_F:
-            return @"FALSE_F";
+            return @"FALSE";
             break;
         case MOD:
             return @"MOD";
@@ -140,7 +140,7 @@
             return @"POW";
             break;
         case PI_F:
-            return @"PI_F";
+            return @"PI";
             break;
         case EXP:
             return @"EXP";

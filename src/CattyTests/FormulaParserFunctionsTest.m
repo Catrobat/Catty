@@ -38,7 +38,7 @@
 
 @implementation FormulaParserFunctionsTest
 
-const double DELTA = 0.01;
+#define DELTA 0.01
 
 - (void) testSin
 {
@@ -263,23 +263,23 @@ const double DELTA = 0.01;
 
 - (void) testArcsin
 {
-    FormulaElement *parseTree = [self getFormulaElement:ARCSIN value:[NSString stringWithFormat:@"%f", [Util radiansToDegree:1 - DELTA/1000]]];
+    FormulaElement *parseTree = [self getFormulaElement:ARCSIN value:@"1"];
     XCTAssertNotNil(parseTree, @"Formula is not parsed correctly: arcsin(1)");
-    XCTAssertEqualWithAccuracy([Util degreeToRadians:90], [parseTree interpretRecursiveForSprite:nil], DELTA, @"Formula interpretation is not as expected");
+    XCTAssertEqualWithAccuracy(90, [parseTree interpretRecursiveForSprite:nil], DELTA, @"Formula interpretation is not as expected");
 }
 
 - (void) testArccos
 {
-    FormulaElement *parseTree = [self getFormulaElement:ARCCOS value:[NSString stringWithFormat:@"%f", [Util radiansToDegree:0]]];
+    FormulaElement *parseTree = [self getFormulaElement:ARCCOS value:@"0"];
     XCTAssertNotNil(parseTree, @"Formula is not parsed correctly: arccos(0)");
-    XCTAssertEqualWithAccuracy([Util degreeToRadians:90], [parseTree interpretRecursiveForSprite:nil], DELTA, @"Formula interpretation is not as expected");
+    XCTAssertEqualWithAccuracy(90, [parseTree interpretRecursiveForSprite:nil], DELTA, @"Formula interpretation is not as expected");
 }
 
 - (void) testArctan
 {
-    FormulaElement *parseTree = [self getFormulaElement:ARCTAN value:[NSString stringWithFormat:@"%f", [Util radiansToDegree:1]]];
+    FormulaElement *parseTree = [self getFormulaElement:ARCTAN value:@"1"];
     XCTAssertNotNil(parseTree, @"Formula is not parsed correctly: arctan(1)");
-    XCTAssertEqualWithAccuracy([Util degreeToRadians:45], [parseTree interpretRecursiveForSprite:nil], DELTA, @"Formula interpretation is not as expected");
+    XCTAssertEqualWithAccuracy(45, [parseTree interpretRecursiveForSprite:nil], DELTA, @"Formula interpretation is not as expected");
 }
 
 - (void) testMax

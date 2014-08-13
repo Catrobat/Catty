@@ -240,15 +240,18 @@
             break;
         }
         case ARCSIN: {
-            result = asin([Util degreeToRadians:left]);
+            double radians = asin(left);
+            result = [Util radiansToDegree:radians];
             break;
         }
         case ARCCOS: {
-            result = acos([Util degreeToRadians:left]);
+            double radians = acos(left);
+            result = [Util radiansToDegree:radians];
             break;
         }
         case ARCTAN: {
-            result = atan([Util degreeToRadians:left]);
+            double radians = atan(left);
+            result = [Util radiansToDegree:radians];
             break;
         }
         case POW: {
