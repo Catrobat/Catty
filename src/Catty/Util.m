@@ -490,12 +490,12 @@
     return uniqueFinalName;
 }
 
-+ (double)radiansToDegree:(float)rad
++ (double)radiansToDegree:(double)rad
 {
     return rad * 180.0 / M_PI;
 }
 
-+ (double)degreeToRadians:(float)deg
++ (double)degreeToRadians:(double)deg
 {
     return deg * M_PI / 180.0;
 }

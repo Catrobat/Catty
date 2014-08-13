@@ -30,6 +30,8 @@
 #import "SpriteObject.h"
 #import "NSString+CatrobatNSStringExtensions.h"
 #import "Util.h"
+#import "Operators.h"
+#import "Functions.h"
 #import "GDataXMLNode+PrettyFormatterExtensions.h"
 
 #define ARC4RANDOM_MAX 0x100000000
@@ -68,14 +70,14 @@
             
         case OPERATOR: {
             //NSDebug(@"OPERATOR");
-            Operator operator = [self operatorForString:self.value];
+            Operator operator = [Operators getOperatorByValue:self.value];
             result = [self interpretOperator:operator forSprite:sprite];
             break;
         }
             
         case FUNCTION: {
             //NSDebug(@"FUNCTION");
-            Function function = [self functionForString:self.value];
+            Function function = [Functions getFunctionByValue:self.value];
             result = [self interpretFunction:function forSprite:sprite];
             break;
         }
@@ -207,15 +209,18 @@
             break;
         }
         case ARCSIN: {
-            result = asin([Util degreeToRadians:left]);
+            double radians = asin(left);
+            result = [Util radiansToDegree:radians];
             break;
         }
         case ARCCOS: {
-            result = acos([Util degreeToRadians:left]);
+            double radians = acos(left);
+            result = [Util radiansToDegree:radians];
             break;
         }
         case ARCTAN: {
-            result = atan([Util degreeToRadians:left]);
+            double radians = atan(left);
+            result = [Util radiansToDegree:radians];
             break;
         }
         case POW: {
@@ -386,122 +391,6 @@
     
     return result;
 
-}
-
-- (Function) functionForString:(NSString*)function
-{
-    
-    if([function isEqualToString:@"SIN"]) {
-        return SIN;
-    }
-    if([function isEqualToString:@"COS"]) {
-        return COS;
-    }
-    if([function isEqualToString:@"TAN"]) {
-        return TAN;
-    }
-    if([function isEqualToString:@"LN"]) {
-        return LN;
-    }
-    if([function isEqualToString:@"LOG"]) {
-        return LOG;
-    }
-    if([function isEqualToString:@"SQRT"]) {
-        return SQRT;
-    }
-    if([function isEqualToString:@"RAND"]) {
-        return RAND;
-    }
-    if([function isEqualToString:@"ROUND"]) {
-        return ROUND;
-    }
-    if([function isEqualToString:@"ABS"]) {
-        return ABS;
-    }
-    if([function isEqualToString:@"LN"]) {
-        return LN;
-    }
-    if([function isEqualToString:@"PI"]) {
-        return PI_F;
-    }
-    if([function isEqualToString:@"MIN"]) {
-        return MIN;
-    }
-    if([function isEqualToString:@"MAX"]) {
-        return MAX;
-    }
-    if([function isEqualToString:@"MOD"]) {
-        return MOD;
-    }
-    if([function isEqualToString:@"POW"]) {
-        return POW;
-    }
-    if([function isEqualToString:@"FALSE"]) {
-        return FALSE_F;
-    }
-    if([function isEqualToString:@"TRUE"]) {
-        return TRUE_F;
-    }
-    if([function isEqualToString:@"ACOS"]) {
-        return ARCCOS;
-    }
-    if([function isEqualToString:@"ASIN"]) {
-        return ARCSIN;
-    }
-    if([function isEqualToString:@"ATAN"]) {
-        return ARCTAN;
-    }
-
-    
-    NSError(@"Unknown Function: %@", function);
-    return -1;
-}
-
--(Operator) operatorForString:(NSString*)operator
-{
-    if([operator isEqualToString:@"LOGICAL_AND"]) {
-        return LOGICAL_AND;
-    }
-    if([operator isEqualToString:@"LOGICAL_OR"]) {
-        return LOGICAL_OR;
-    }
-    if([operator isEqualToString:@"EQUAL"]) {
-        return EQUAL;
-    }
-    if([operator isEqualToString:@"NOT_EQUAL"]) {
-        return NOT_EQUAL;
-    }
-    if([operator isEqualToString:@"SMALLER_OR_EQUAL"]) {
-        return SMALLER_OR_EQUAL;
-    }
-    if([operator isEqualToString:@"GREATER_OR_EQUAL"]) {
-        return GREATER_OR_EQUAL;
-    }
-    if([operator isEqualToString:@"SMALLER_THAN"]) {
-        return SMALLER_THAN;
-    }
-    if([operator isEqualToString:@"GREATER_THAN"]) {
-        return GREATER_THAN;
-    }
-    if([operator isEqualToString:@"PLUS"]) {
-        return PLUS;
-    }
-    if([operator isEqualToString:@"MINUS"]) {
-        return MINUS;
-    }
-    if([operator isEqualToString:@"MULT"]) {
-        return MULT;
-    }
-    if([operator isEqualToString:@"DIVIDE"]) {
-        return DIVIDE;
-    }
-    if([operator isEqualToString:@"LOGICAL_NOT"]) {
-        return LOGICAL_NOT;
-    }
-    
-    NSError(@"Unknown Operator: %@", operator);
-    
-    return -1;
 }
 
 // TODO: use map for this...
