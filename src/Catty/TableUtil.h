@@ -26,11 +26,11 @@
 
 @interface TableUtil : NSObject
 
-+ (CGFloat)getHeightForContinueCell;
++ (CGFloat)heightForContinueCell;
 
-+ (CGFloat)getHeightForImageCell;
++ (CGFloat)heightForImageCell;
 
-+ (CGFloat)getHeightForFeaturedCell;
++ (CGFloat)heightForFeaturedCell;
 
 + (UIBarButtonItem*)editButtonItemWithTarget:(id)target action:(SEL)action;
 

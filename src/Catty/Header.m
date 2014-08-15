@@ -22,8 +22,36 @@
 
 #import "Header.h"
 #import "GDataXMLNode+PrettyFormatterExtensions.h"
+#import "Util.h"
 
 @implementation Header
+
++ (instancetype)defaultHeader
+{
+    Header *header = [[[self class] alloc] init];
+    header.applicationBuildName = [Util appBuildName];
+    header.applicationBuildNumber = [Util appBuildVersion];
+    header.applicationName = [Util appName];
+    header.applicationVersion = [Util appVersion];
+    header.catrobatLanguageVersion = [Util catrobatLanguageVersion];
+    header.dateTimeUpload = nil;
+    header.programDescription = nil;
+    header.deviceName = [Util deviceName];
+    header.mediaLicense = [Util catrobatMediaLicense];
+    header.platform = [Util platformName];
+    header.platformVersion = [Util platformVersion];
+    header.programLicense = [Util catrobatProgramLicense];
+    header.programName = nil;
+    header.remixOf = nil;
+    header.screenHeight = @([Util screenHeight]);
+    header.screenWidth = @([Util screenWidth]);
+    header.screenMode = kCatrobatScreenModeStretch;
+    header.url = nil;
+    header.userHandle = nil;
+    header.programScreenshotManuallyTaken = kCatrobatProgramScreenshotDefaultValue;
+    header.tags = nil;
+    return header;
+}
 
 - (GDataXMLElement*)toXML
 {

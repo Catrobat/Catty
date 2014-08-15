@@ -209,7 +209,7 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return [TableUtil getHeightForImageCell];
+    return [TableUtil heightForImageCell];
 }
 
 #pragma mark - segue handlers

@@ -182,20 +182,20 @@
     }
 }
 
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+- (CGFloat)tableView:(UITableView*)tableView heightForRowAtIndexPath:(NSIndexPath*)indexPath
 {
-  if([tableView isEqual:self.tableView]) {
-    return [TableUtil getHeightForImageCell];
-  }
-  return self.tableView.rowHeight;
+    if ([tableView isEqual:self.tableView]) {
+        return [TableUtil heightForImageCell];
+    }
+    return self.tableView.rowHeight;
 }
 
 #pragma mark - NSURLConnection Delegates
 - (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data
 {
-  if (self.connection == connection) {
-    [self.data appendData:data];
-  }
+    if (self.connection == connection) {
+        [self.data appendData:data];
+    }
 }
 
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection

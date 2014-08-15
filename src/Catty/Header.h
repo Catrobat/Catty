@@ -35,7 +35,7 @@
 @property (nonatomic, strong) NSString *applicationVersion;
 @property (nonatomic, strong) NSString *catrobatLanguageVersion;
 @property (nonatomic, strong) NSDate   *dateTimeUpload;
-@property (nonatomic, strong) NSString *description;
+@property (nonatomic, strong) NSString *programDescription;
 @property (nonatomic, strong) NSString *deviceName;
 @property (nonatomic, strong) NSString *mediaLicense;
 @property (nonatomic, strong) NSString *platform;
@@ -51,6 +51,8 @@
 @property (nonatomic, strong) NSString *userHandle;
 @property (nonatomic, strong) NSString *programScreenshotManuallyTaken;
 @property (nonatomic, strong) NSString *tags;
+
++ (instancetype)defaultHeader;
 
 - (GDataXMLElement*)toXML;
 

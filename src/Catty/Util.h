@@ -89,19 +89,29 @@
 
 + (UIButton*)slideViewButtonDelete;
 
-+ (NSString*)getProjectName;
++ (NSString*)appName;
 
-+ (NSString*)getProjectVersion;
++ (NSString*)appVersion;
 
-+ (NSString*)getDeviceName;
++ (NSString*)appBuildName;
 
-+ (NSString*)getPlatformName;
++ (NSString*)appBuildVersion;
 
-+ (NSString*)getPlatformVersion;
++ (NSString*)catrobatLanguageVersion;
 
-+ (CGFloat)getScreenHeight;
++ (NSString*)catrobatMediaLicense;
 
-+ (CGFloat)getScreenWidth;
++ (NSString*)catrobatProgramLicense;
+
++ (NSString*)deviceName;
+
++ (NSString*)platformName;
+
++ (NSString*)platformVersion;
+
++ (CGFloat)screenHeight;
+
++ (CGFloat)screenWidth;
 
 + (CATransition*)getPushCATransition;
 

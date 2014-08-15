@@ -236,40 +236,63 @@
                           backgroundColor:[UIColor colorWithRed:1.0f green:0.231f blue:0.188 alpha:1.0f]];
 }
 
-+ (NSString*)getProjectName
++ (NSString*)appName
 {
-  NSDictionary *info = [[NSBundle mainBundle] infoDictionary];
-  return [NSString stringWithFormat:@"%@", [info objectForKey:@"CFBundleDisplayName"]];
+  return [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleDisplayName"];
 }
 
-+ (NSString*)getProjectVersion
++ (NSString*)appVersion
 {
-  NSDictionary *info = [[NSBundle mainBundle] infoDictionary];
-  return [NSString stringWithFormat:@"%@", [info objectForKey:@"CFBundleVersion"]];
+  return [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"];
 }
 
-+ (NSString*)getDeviceName
++ (NSString*)appBuildName
+{
+    return [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CatrobatBuildName"];
+}
+
++ (NSString*)appBuildVersion
+{
+    return [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleVersion"];
+}
+
++ (NSString*)catrobatLanguageVersion
+{
+    return [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CatrobatLanguageVersion"];
+}
+
++ (NSString*)catrobatMediaLicense
+{
+    return [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CatrobatMediaLicense"];
+}
+
++ (NSString*)catrobatProgramLicense
+{
+    return [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CatrobatProgramLicense"];
+}
+
++ (NSString*)deviceName
 {
   return [[UIDevice currentDevice] model];
 }
 
-+ (NSString*)getPlatformName
++ (NSString*)platformName
 {
   return [[UIDevice currentDevice] systemName];
 }
 
-+ (NSString*)getPlatformVersion
++ (NSString*)platformVersion
 {
   return [[UIDevice currentDevice] systemVersion];
 }
 
-+ (CGFloat)getScreenHeight
++ (CGFloat)screenHeight
 {
     CGRect screenRect = [[UIScreen mainScreen] bounds];
     return screenRect.size.height;
 }
 
-+ (CGFloat)getScreenWidth
++ (CGFloat)screenWidth
 {
   CGRect screenRect = [[UIScreen mainScreen] bounds];
   return screenRect.size.width;

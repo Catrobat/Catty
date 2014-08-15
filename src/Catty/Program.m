@@ -51,29 +51,9 @@
 + (instancetype)defaultProgramWithName:(NSString*)programName
 {
     programName = [Util uniqueName:programName existingNames:[[self class] allProgramNames]];
-    Program* program = [[Program alloc] init];
-    program.header = [[Header alloc] init];
-    program.header.applicationBuildName = nil;
-    program.header.applicationBuildNumber = kCatrobatApplicationBuildNumber;
-    program.header.applicationName = [Util getProjectName];
-    program.header.applicationVersion = [Util getProjectVersion];
-    program.header.catrobatLanguageVersion = kCatrobatLanguageVersion;
-    program.header.dateTimeUpload = nil;
-    program.header.description = @"********** TODO: CHANGE THIS **********"; // TODO: has to be changed
-    program.header.deviceName = [Util getDeviceName];
-    program.header.mediaLicense = kCatrobatMediaLicense;
-    program.header.platform = [Util getPlatformName];
-    program.header.platformVersion = [Util getPlatformVersion];
-    program.header.programLicense = kCatrobatProgramLicense;
+    Program *program = [[Program alloc] init];
+    program.header = [Header defaultHeader];
     program.header.programName = programName;
-    program.header.remixOf = nil; // no remix
-    program.header.screenHeight = @([Util getScreenHeight]);
-    program.header.screenWidth = @([Util getScreenWidth]);
-    program.header.screenMode = kCatrobatScreenModeStretch;
-    program.header.url = nil;
-    program.header.userHandle = nil;
-    program.header.programScreenshotManuallyTaken = kCatrobatProgramScreenshotDefaultValue;
-    program.header.tags = nil;
 
     FileManager *fileManager = [[FileManager alloc] init];
     if (! [fileManager directoryExists:programName]) {
@@ -475,9 +455,9 @@
     [self saveToDisk];
 }
 
-- (void)updateDescriptionWithText:(NSString *)descriptionText
+- (void)updateDescriptionWithText:(NSString*)descriptionText
 {
-    self.header.description = descriptionText;
+    self.header.programDescription = descriptionText;
     [self saveToDisk];
 }
 
