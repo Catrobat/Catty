@@ -161,8 +161,8 @@
 
 + (NSString*)uniqueName:(NSString*)nameToCheck existingNames:(NSArray*)existingNames;
 
-+ (double)radiansToDegree:(float)rad;
++ (double)radiansToDegree:(double)rad;
 
-+ (double)degreeToRadians:(float)deg;
++ (double)degreeToRadians:(double)deg;
 
 @end
