@@ -335,7 +335,8 @@
     }
     if (! areAnyProgramsLeft) {
         [self addBundleProgramWithName:kDefaultProgramBundleName];
-#if kIsFirstRelease // kIsFirstRelease
+
+//#if kIsFirstRelease // kIsFirstRelease
 #define kDefaultProgramBundleBackgroundName @"Background"
 #define kDefaultProgramBundleOtherObjectsNamePrefix @"Mole"
         // XXX: HACK serialization-workaround
@@ -368,13 +369,13 @@
                                            toPath:[Program projectPathForProgramWithName:kDefaultProgramName]];
             });
         }
-#else // kIsFirstRelease
-        ProgramLoadingInfo *loadingInfo = [[ProgramLoadingInfo alloc] init];
-        loadingInfo.basePath = [NSString stringWithFormat:@"%@%@/", [Program basePath], kDefaultProgramBundleName];
-        loadingInfo.visibleName = kDefaultProgramBundleName;
-        Program *program = [Program programWithLoadingInfo:loadingInfo];
-        [program translateDefaultProgram];
-#endif // kIsFirstRelease
+//#else // kIsFirstRelease
+//        ProgramLoadingInfo *loadingInfo = [[ProgramLoadingInfo alloc] init];
+//        loadingInfo.basePath = [NSString stringWithFormat:@"%@%@/", [Program basePath], kDefaultProgramBundleName];
+//        loadingInfo.visibleName = kDefaultProgramBundleName;
+//        Program *program = [Program programWithLoadingInfo:loadingInfo];
+//        [program translateDefaultProgram];
+//#endif // kIsFirstRelease
         [Util lastProgram];
     }
 }

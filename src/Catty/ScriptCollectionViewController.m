@@ -94,9 +94,6 @@
     self.collectionView.collectionViewLayout = [LXReorderableCollectionViewFlowLayout new];
 
     self.navigationItem.rightBarButtonItems = @[self.editButtonItem];
-#if kIsFirstRelease // kIsFirstRelease
-    self.navigationItem.rightBarButtonItem.enabled = NO;
-#endif // kIsFirstRelease
     self.placeHolderView = [[PlaceHolderView alloc]initWithTitle:kUIViewControllerPlaceholderTitleScripts];
     self.placeHolderView.hidden = self.object.scriptList.count ? YES : NO;
     self.brickScaleTransition = [BrickScaleTransition new];
@@ -335,9 +332,6 @@
     }
     [brickCell setupBrickCell];
     brickCell.delegate = self;
-#if kIsFirstRelease // kIsFirstRelease
-    brickCell.enabled = NO;
-#endif // kIsFirstRelease
     return brickCell;
 }
 
@@ -480,11 +474,7 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
 
 - (BOOL)collectionView:(UICollectionView *)collectionView canMoveItemAtIndexPath:(NSIndexPath *)indexPath
 {
-#if kIsFirstRelease // kIsFirstRelease
-    return NO;
-#else // kIsFirstRelease
     return ((self.isEditing || indexPath.item == 0) ? NO : YES);
-#endif // kIsFirstRelease
 }
 
 #pragma mark - Add brick Delegate
@@ -564,11 +554,7 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
             UIBarButtonItem *add = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd
                                                                                  target:self
                                                                                  action:@selector(showBrickSelectionMenu)];
-#if kIsFirstRelease // kIsFirstRelease
-            add.enabled = NO;
-#else // kIsFirstRelease
-            add.enabled = !self.editing;
-#endif // kIsFirstRelease
+            add.enabled = (! self.editing);
             UIBarButtonItem *play = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemPlay
                                                                                   target:self
                                                                                   action:@selector(playSceneAction:)];

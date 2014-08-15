@@ -352,9 +352,6 @@
 
 - (void)saveToDisk
 {
-#if kIsFirstRelease
-    return;
-#else
     dispatch_queue_t saveToDiskQ = dispatch_queue_create("save to disk", NULL);
     dispatch_async(saveToDiskQ, ^{
         // background thread
@@ -410,7 +407,6 @@
 //            [[NSNotificationCenter defaultCenter] postNotificationName:kHideLoadingViewNotification object:self];
 //        });
     });
-#endif
 }
 
 - (BOOL)isLastProgram

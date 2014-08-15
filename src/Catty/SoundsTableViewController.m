@@ -145,30 +145,12 @@ static NSCharacterSet *blockedCharacterSet = nil;
     } else {
         [options addObject:kUIActionSheetButtonTitleShowDetails];
     }
-#if kIsFirstRelease // kIsFirstRelease
-    CatrobatActionSheet *actionSheet = [Util actionSheetWithTitle:kUIAlertViewMessageFeatureComingSoon
-                                                         delegate:self
-                                           destructiveButtonTitle:nil
-                                                otherButtonTitles:options
-                                                              tag:kEditSoundsActionSheetTag
-                                                             view:self.navigationController.view];
-
-    // disable all buttons except hide/show details + cancel button
-    // (index of cancel button: ([actionSheet.buttons count] - 1))
-    for (IBActionSheetButton *button in actionSheet.buttons) {
-        if ((button.index != ([actionSheet.buttons count] - 2)) && (button.index != ([actionSheet.buttons count] - 1))) {
-            button.enabled = NO;
-            [actionSheet setButtonTextColor:[UIColor grayColor] forButtonAtIndex:button.index];
-        }
-    }
-#else // kIsFirstRelease
     [Util actionSheetWithTitle:kUIActionSheetTitleEditSounds
                       delegate:self
         destructiveButtonTitle:nil
              otherButtonTitles:options
                            tag:kEditSoundsActionSheetTag
                           view:self.navigationController.view];
-#endif // kIsFirstRelease
 }
 
 - (void)addSoundToObjectAction:(Sound*)sound
@@ -420,29 +402,12 @@ static NSCharacterSet *blockedCharacterSet = nil;
     if (index == 0) {
         // More button was pressed
         NSArray *options = @[kUIActionSheetButtonTitleCopy, kUIActionSheetButtonTitleRename];
-
-#if kIsFirstRelease // kIsFirstRelease
-        CatrobatActionSheet *actionSheet = [Util actionSheetWithTitle:kUIAlertViewMessageFeatureComingSoon
-                                                             delegate:self
-                                               destructiveButtonTitle:nil
-                                                    otherButtonTitles:options
-                                                                  tag:kEditSoundActionSheetTag
-                                                                 view:self.navigationController.view];
-        // disable all buttons except cancel button (index of cancel button: ([actionSheet.buttons count] - 1))
-        for (IBActionSheetButton *button in actionSheet.buttons) {
-            if (button.index != ([actionSheet.buttons count] - 1)) {
-                button.enabled = NO;
-                [actionSheet setButtonTextColor:[UIColor grayColor] forButtonAtIndex:button.index];
-            }
-        }
-#else // kIsFirstRelease
         CatrobatActionSheet *actionSheet = [Util actionSheetWithTitle:kUIActionSheetTitleEditSound
                                                              delegate:self
                                                destructiveButtonTitle:nil
                                                     otherButtonTitles:options
                                                                   tag:kEditSoundActionSheetTag
                                                                  view:self.navigationController.view];
-#endif // kIsFirstRelease
         NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
         NSDictionary *payload = @{ kDTPayloadSound : [self.object.soundList objectAtIndex:indexPath.row] };
         DataTransferMessage *message = [DataTransferMessage messageForActionType:kDTMActionEditSound
@@ -450,9 +415,6 @@ static NSCharacterSet *blockedCharacterSet = nil;
         actionSheet.dataTransferMessage = message;
     } else if (index == 1) {
         // Delete button was pressed
-#if kIsFirstRelease // kIsFirstRelease
-        [Util showComingSoonAlertView];
-#else // kIsFirstRelease
         NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
         [self performActionOnConfirmation:@selector(deleteSoundForIndexPath:)
                            canceledAction:nil
@@ -460,7 +422,6 @@ static NSCharacterSet *blockedCharacterSet = nil;
                                    target:self
                              confirmTitle:kUIAlertViewTitleDeleteSingleSound
                            confirmMessage:kUIAlertViewMessageIrreversibleAction];
-#endif // kIsFirstRelease
     }
 }
 
@@ -620,9 +581,6 @@ static NSCharacterSet *blockedCharacterSet = nil;
     UIBarButtonItem *add = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd
                                                                          target:self
                                                                          action:@selector(addSoundAction:)];
-#if kIsFirstRelease // kIsFirstRelease
-    add.enabled = NO;
-#endif // kIsFirstRelease
     UIBarButtonItem *play = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemPlay
                                                                           target:self
                                                                           action:@selector(playSceneAction:)];

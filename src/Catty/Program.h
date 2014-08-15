@@ -73,10 +73,10 @@
 + (NSArray*)allProgramNames;
 + (NSArray*)allProgramLoadingInfos;
 
-// remove this signature after first release
+// FIXME: remove this signature after first release
 #import "AppDefines.h"
-#if kIsFirstRelease
+//#if kIsFirstRelease
 + (NSString*)projectPathForProgramWithName:(NSString*)programName;
-#endif
+//#endif
 
 @end
