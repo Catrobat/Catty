@@ -20,38 +20,8 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import <Foundation/Foundation.h>
-#import "Functions.h"
-#import "Operators.h"
+#import "InternFormulaParserException.h"
 
-@class SpriteObject;
-
-typedef enum {
-    OPERATOR,
-    FUNCTION,
-    NUMBER,
-    SENSOR,
-    USER_VARIABLE,
-    BRACKET
-} ElementType;
-
-@interface FormulaElement : NSObject
-
-@property (nonatomic, assign) ElementType type;
-@property (nonatomic, strong) NSString* value;
-@property (nonatomic, strong) FormulaElement* leftChild;
-@property (nonatomic, strong) FormulaElement* rightChild;
-@property (nonatomic, weak) FormulaElement* parent;
-
-- (id)initWithType:(NSString*)type
-             value:(NSString*)value
-         leftChild:(FormulaElement*)leftChild
-        rightChild:(FormulaElement*)rightChild
-            parent:(FormulaElement*)parent;
-
-
-- (double)interpretRecursiveForSprite:(SpriteObject*)sprite;
-
-- (NSArray*)XMLChildElements;
+@implementation InternFormulaParserException
 
 @end
