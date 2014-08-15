@@ -55,6 +55,10 @@
 
 - (GDataXMLElement*)toXML
 {
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setTimeZone:[NSTimeZone systemTimeZone]];
+    [dateFormatter setDateFormat:@"yyyy-MM-ddHH:mm:ss"];
+
     GDataXMLElement *headerXMLElement = [GDataXMLNode elementWithName:@"header"];
     [headerXMLElement addChild:[GDataXMLNode elementWithName:@"applicationBuildName"
                                          optionalStringValue:self.applicationBuildName]];
@@ -67,7 +71,7 @@
     [headerXMLElement addChild:[GDataXMLNode elementWithName:@"catrobatLanguageVersion"
                                          optionalStringValue:self.catrobatLanguageVersion]];
     [headerXMLElement addChild:[GDataXMLNode elementWithName:@"dateTimeUpload"
-                                         optionalStringValue:nil/*self.dateTimeUpload*/]]; // FIXME: which dateTimeUpload format?? catroid on Android seems to ignore this field even after (!) the upload has been finished
+                                         optionalStringValue:(self.dateTimeUpload ? [dateFormatter stringFromDate:self.dateTimeUpload] : nil)]];
     [headerXMLElement addChild:[GDataXMLNode elementWithName:@"description"
                                          optionalStringValue:self.description]];
     [headerXMLElement addChild:[GDataXMLNode elementWithName:@"deviceName"
