@@ -538,10 +538,10 @@
     self.currentLook = look;
 
     if (xScale != 1.0) {
-        self.xScale = xScale;
+        self.xScale = (CGFloat)xScale;
     }
     if (yScale != 1.0) {
-        self.yScale = yScale;
+        self.yScale = (CGFloat)yScale;
     }
 
 }
@@ -792,7 +792,7 @@
 
 -(CGFloat)rotation
 {
-    return [Util radiansToDegree:self.zRotation];
+    return (CGFloat)[Util radiansToDegree:self.zRotation];
 }
 
 -(CGFloat) zIndex

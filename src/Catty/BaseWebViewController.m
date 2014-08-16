@@ -541,7 +541,7 @@
     }else{
         _doneLoadingURL = YES;
     }
-    [self setProgress:progress];
+    [self setProgress:(CGFloat)progress];
     
 }
 @end

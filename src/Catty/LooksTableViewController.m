@@ -68,14 +68,14 @@ static NSCharacterSet *blockedCharacterSet = nil;
     return blockedCharacterSet;
 }
 
-#pragma mark - initialization
+#pragma mark initialization
 - (void)initNavigationBar
 {
     UIBarButtonItem *editButtonItem = [TableUtil editButtonItemWithTarget:self action:@selector(editAction:)];
     self.navigationItem.rightBarButtonItem = editButtonItem;
 }
 
-#pragma - view events
+#pragma mark viewloaded
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -268,10 +268,10 @@ static NSCharacterSet *blockedCharacterSet = nil;
         [imageCache loadThumbnailImageFromDiskWithThumbnailPath:previewImagePath
                                                       imagePath:imagePath
                                                   thumbnailFrameSize:CGSizeMake(kPreviewImageWidth, kPreviewImageHeight)
-                                                   onCompletion:^(UIImage *image){
+                                                   onCompletion:^(UIImage *img){
                                                        // check if cell still needed
                                                        if ([imageCell.indexPath isEqual:indexPath]) {
-                                                           imageCell.iconImageView.image = image;
+                                                           imageCell.iconImageView.image = img;
                                                            [imageCell setNeedsLayout];
                                                        }
                                                    }];

@@ -69,22 +69,22 @@
     dispatch_queue_t imageQueue = dispatch_queue_create(kImageDownloadQueue, NULL);
     dispatch_async(imageQueue, ^{
 
-        UIImage* image = [[DownloadImageCache sharedImageCache] getImageWithName:[imageURL absoluteString]];
+        UIImage* img = [[DownloadImageCache sharedImageCache] getImageWithName:[imageURL absoluteString]];
 
-        if(!image) {
+        if(!img) {
             NSData *imageData = [NSData dataWithContentsOfURL:imageURL];
-            image =[[UIImage alloc] initWithData:imageData];
+            img =[[UIImage alloc] initWithData:imageData];
         }
 
-        if(!image && !errorImage) {
-            image = placeholderImage;
+        if(!img && !errorImage) {
+            img = placeholderImage;
         }
-        if(!image && errorImage) {
-            image = errorImage;
+        if(!img && errorImage) {
+            img = errorImage;
         }
-        [[DownloadImageCache sharedImageCache] addImage:image withName:[imageURL absoluteString]];
+        [[DownloadImageCache sharedImageCache] addImage:img withName:[imageURL absoluteString]];
 
-        completion(image);
+        completion(img);
 
     });
 
@@ -244,11 +244,11 @@
     //    free(data);
     //    CGContextRelease(context);
     //    return NO;
-    NSInteger pointX = x;
-    NSInteger pointY = y;
+    NSInteger pointX = (NSInteger)x;
+    NSInteger pointY = (NSInteger)y;
     CGImageRef cgImage = image.CGImage;
-    NSUInteger width = image.size.width;
-    NSUInteger height = image.size.height;
+    NSUInteger width = (NSUInteger)image.size.width;
+    NSUInteger height = (NSUInteger)image.size.height;
     CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceRGB();
     int bytesPerPixel = 4;
     int bytesPerRow = bytesPerPixel * 1;

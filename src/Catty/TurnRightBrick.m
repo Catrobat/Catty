@@ -49,7 +49,7 @@
         else if (newRad <= (- 2*M_PI)) {
             newRad += 2*M_PI;
         }
-        [self.object setZRotation:newRad];
+        [self.object setZRotation:(CGFloat)newRad];
     };
 }
 

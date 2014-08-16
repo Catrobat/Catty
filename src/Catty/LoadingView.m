@@ -52,7 +52,7 @@
   if (self = [super initWithFrame:CGRectMake(25, 130, kLoadingBackgroundWidth, kLoadingBackgroundHeight)]) {
     self.tag = kLoadingViewTag;
     self.backgroundColor = [UIColor clearColor];
-    self.alpha = 0.80;
+    self.alpha = 0.80f;
     self.layer.cornerRadius = 5;
     [self initLoadingLabel];
     [self initActivityIndicator];
@@ -71,7 +71,7 @@
   [self.activityIndicator startAnimating];
   self.hidden = NO;
   [self.superview bringSubviewToFront:self];
-  CGFloat height = (self.superview.bounds.size.height / 2) - (kLoadingBackgroundHeight/2.0);
+  CGFloat height = (self.superview.bounds.size.height / 2) - (kLoadingBackgroundHeight/2.0f);
   CGFloat width = self.superview.bounds.size.width / 2;
   self.center = CGPointMake(width, height);
 }

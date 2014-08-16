@@ -163,8 +163,8 @@
     [self setUpTheActions];
     
     if (destructiveTitle) {
-        [[self.buttons objectAtIndex:0] setTextColor:[UIColor colorWithRed:1.000 green:0.229 blue:0.000 alpha:1.000]];
-        [[self.buttons objectAtIndex:0] setOriginalTextColor:[UIColor colorWithRed:1.000 green:0.229 blue:0.000 alpha:1.000]];
+        [[self.buttons objectAtIndex:0] setTextColor:[UIColor colorWithRed:1.000f green:0.229f blue:0.000f alpha:1.000f]];
+        [[self.buttons objectAtIndex:0] setOriginalTextColor:[UIColor colorWithRed:1.000f green:0.229f blue:0.000f alpha:1.000f]];
     }
     
     for (int i = 0; i < self.buttons.count; ++i) {
@@ -215,7 +215,7 @@
         self.frame = CGRectMake(0, 0, width, height);
         [self.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
         
-        CGPoint pointOfReference = CGPointMake(CGRectGetWidth(self.frame) / 2.0, CGRectGetHeight(self.frame) - 30);
+        CGPoint pointOfReference = CGPointMake(CGRectGetWidth(self.frame) / 2.0f, CGRectGetHeight(self.frame) - 30);
         
         NSUInteger whereToStop;
         if (self.hasCancelButton) {
@@ -232,12 +232,12 @@
         
         for (NSUInteger i = 0, j = whereToStop; i <= whereToStop; ++i, --j) {
             [self addSubview:[self.buttons objectAtIndex:i]];
-            [[self.buttons objectAtIndex:i] setCenter:CGPointMake(pointOfReference.x, pointOfReference.y - (44.5 * j))];
+            [[self.buttons objectAtIndex:i] setCenter:CGPointMake(pointOfReference.x, pointOfReference.y - (44.5f * j))];
         }
         
         if (self.titleView) {
             [self addSubview:self.titleView];
-            self.titleView.center = CGPointMake(self.center.x, CGRectGetHeight(self.titleView.frame) / 2.0);
+            self.titleView.center = CGPointMake(self.center.x, CGRectGetHeight(self.titleView.frame) / 2.0f);
         }
         
     } else {
@@ -260,7 +260,7 @@
         self.frame = CGRectMake(0, 0, width, height);
         [self.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
         
-        CGPoint pointOfReference = CGPointMake(CGRectGetWidth(self.frame) / 2.0, CGRectGetHeight(self.frame) - 30);
+        CGPoint pointOfReference = CGPointMake(CGRectGetWidth(self.frame) / 2.0f, CGRectGetHeight(self.frame) - 30);
         
         NSUInteger whereToStop;
         if (self.hasCancelButton) {
@@ -282,7 +282,7 @@
         
         if (self.titleView) {
             [self addSubview:self.titleView];
-            self.titleView.center = CGPointMake(self.center.x, CGRectGetHeight(self.titleView.frame) / 2.0);
+            self.titleView.center = CGPointMake(self.center.x, CGRectGetHeight(self.titleView.frame) / 2.0f);
         }
     }
     
@@ -307,7 +307,7 @@
                          if (self.buttonResponse == IBActionSheetButtonResponseFadesOnPress) {
                              button.alpha = .80f;
                          } else if (self.buttonResponse == IBActionSheetButtonResponseShrinksOnPress) {
-                             button.transform = CGAffineTransformMakeScale(.98, .95);
+                             button.transform = CGAffineTransformMakeScale(.98f, .95f);
                          } else if (self.buttonResponse == IBActionSheetButtonResponseHighlightsOnPress) {
                              button.backgroundColor = button.highlightBackgroundColor;
                              [button setTitleColor:button.highlightTextColor forState:UIControlStateAll];
@@ -490,16 +490,16 @@
     
     if (UIInterfaceOrientationIsPortrait([[UIApplication sharedApplication] statusBarOrientation])) {
         height = CGRectGetHeight(theScreenRect);
-        x = CGRectGetWidth(theView.frame) / 2.0;
+        x = CGRectGetWidth(theView.frame) / 2.0f;
         self.transparentView.frame = CGRectMake(self.transparentView.center.x, self.transparentView.center.y, CGRectGetWidth(theScreenRect), CGRectGetHeight(theScreenRect));
     } else {
         height = CGRectGetWidth(theScreenRect);
-        x = CGRectGetHeight(theView.frame) / 2.0;
+        x = CGRectGetHeight(theView.frame) / 2.0f;
         self.transparentView.frame = CGRectMake(self.transparentView.center.x, self.transparentView.center.y, CGRectGetHeight(theScreenRect), CGRectGetWidth(theScreenRect));
     }
     
-    self.center = CGPointMake(x, height + CGRectGetHeight(self.frame) / 2.0);
-    self.transparentView.center = CGPointMake(x, height / 2.0);
+    self.center = CGPointMake(x, height + CGRectGetHeight(self.frame) / 2.0f);
+    self.transparentView.center = CGPointMake(x, height / 2.0f);
     
     
     if (SYSTEM_VERSION_LESS_THAN(@"7.0")) {
@@ -510,7 +510,7 @@
                             options:UIViewAnimationOptionCurveEaseOut
                          animations:^() {
                              self.transparentView.alpha = 0.4f;
-                             self.center = CGPointMake(x, (height - 20) - CGRectGetHeight(self.frame) / 2.0);
+                             self.center = CGPointMake(x, (height - 20) - CGRectGetHeight(self.frame) / 2.0f);
                              
                          } completion:^(BOOL finished) {
                              self.visible = YES;
@@ -524,7 +524,7 @@
                             options:UIViewAnimationOptionCurveLinear
                          animations:^{
                              self.transparentView.alpha = 0.4f;
-                             self.center = CGPointMake(x, height - CGRectGetHeight(self.frame) / 2.0);
+                             self.center = CGPointMake(x, height - CGRectGetHeight(self.frame) / 2.0f);
                              
                          } completion:^(BOOL finished) {
                              self.visible = YES;
@@ -544,7 +544,7 @@
                                 options:UIViewAnimationOptionCurveEaseOut
                              animations:^() {
                                  self.transparentView.alpha = 0.0f;
-                                 self.center = CGPointMake(CGRectGetWidth(self.frame) / 2.0, CGRectGetHeight([UIScreen mainScreen].bounds) + CGRectGetHeight(self.frame) / 2.0);
+                                 self.center = CGPointMake(CGRectGetWidth(self.frame) / 2.0f, CGRectGetHeight([UIScreen mainScreen].bounds) + CGRectGetHeight(self.frame) / 2.0f);
                                  
                              } completion:^(BOOL finished) {
                                  [self.transparentView removeFromSuperview];
@@ -560,7 +560,7 @@
                                 options:UIViewAnimationOptionCurveLinear
                              animations:^{
                                  self.transparentView.alpha = 0.0f;
-                                 self.center = CGPointMake(CGRectGetWidth(self.frame) / 2.0, CGRectGetHeight([UIScreen mainScreen].bounds) + CGRectGetHeight(self.frame) / 2.0);
+                                 self.center = CGPointMake(CGRectGetWidth(self.frame) / 2.0f, CGRectGetHeight([UIScreen mainScreen].bounds) + CGRectGetHeight(self.frame) / 2.0f);
                                  
                              } completion:^(BOOL finished) {
                                  [self.transparentView removeFromSuperview];
@@ -611,8 +611,8 @@
     }
     
     self.transparentView.frame = CGRectMake(0, 0, width, height);
-    self.transparentView.center = CGPointMake(width / 2.0, height / 2.0);
-    self.center = self.center = CGPointMake(width / 2.0, height - CGRectGetHeight(self.frame) / 2.0);
+    self.transparentView.center = CGPointMake(width / 2.0f, height / 2.0f);
+    self.center = self.center = CGPointMake(width / 2.0f, height - CGRectGetHeight(self.frame) / 2.0f);
     
 }
 
@@ -876,7 +876,7 @@
     self.alpha = .95f;
     self.backgroundColor = [UIColor whiteColor];
     self.titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, width - labelBuffer, 44)];
-    self.titleLabel.textColor = [UIColor colorWithWhite:0.564 alpha:1.000];
+    self.titleLabel.textColor = [UIColor colorWithWhite:0.564f alpha:1.000f];
     self.titleLabel.textAlignment = NSTextAlignmentCenter;
     self.titleLabel.numberOfLines = 0;
     self.titleLabel.text = title;

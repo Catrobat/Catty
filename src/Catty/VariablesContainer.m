@@ -48,7 +48,8 @@ static pthread_mutex_t variablesLock;
     pthread_mutex_destroy(&variablesLock);
 }
 
-#pragma - custom getters and setters
+#pragma mark custom getters and setters
+
 -(OrderedMapTable*) objectVariableList
 {
   // lazy instantiation
@@ -105,7 +106,7 @@ static pthread_mutex_t variablesLock;
 -(void) changeVariable:(UserVariable*)userVariable byValue:(double)value
 {
     pthread_mutex_lock(&variablesLock);
-    userVariable.value = [NSNumber numberWithFloat:([userVariable.value doubleValue] + value)];
+    userVariable.value = [NSNumber numberWithFloat:(CGFloat)(([userVariable.value doubleValue] + value))];
     pthread_mutex_unlock(&variablesLock);
 }
 

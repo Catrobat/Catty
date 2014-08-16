@@ -682,7 +682,7 @@
 
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
 {
-    float checkPoint = scrollView.contentSize.height * 0.7;
+    float checkPoint = scrollView.contentSize.height * 0.7f;
     float currentViewBottomEdge = scrollView.contentOffset.y + scrollView.frame.size.height;
     switch (self.downloadSegmentedControl.selectedSegmentIndex) {
         case 0:

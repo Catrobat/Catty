@@ -82,7 +82,7 @@ static CABasicAnimation *shimmer_slide_animation(id delegate, CFTimeInterval dur
   FBShimmeringLayerAnimationApplyDragCoefficient(animation);
   if (direction == FBShimmerDirectionLeft ||
       direction == FBShimmerDirectionUp) {
-    animation.speed = -abs(animation.speed);
+    animation.speed = -fabsf(animation.speed);
   }
   return animation;
 }
@@ -93,7 +93,7 @@ static CAAnimation *shimmer_slide_repeat(CAAnimation *a, CFTimeInterval duration
   CAAnimation *anim = [a copy];
   anim.repeatCount = HUGE_VALF;
   anim.duration = duration;
-  anim.speed = (direction == FBShimmerDirectionRight || direction == FBShimmerDirectionDown) ? abs(anim.speed) : -abs(anim.speed);
+  anim.speed = (direction == FBShimmerDirectionRight || direction == FBShimmerDirectionDown) ? fabsf(anim.speed) : -fabsf(anim.speed);
   return anim;
 }
 
@@ -313,14 +313,14 @@ static CAAnimation *shimmer_slide_finish(CAAnimation *a)
   }
 
   // extra distance for the gradient to travel during the pause.
-  CGFloat extraDistance = length + _shimmeringSpeed * _shimmeringPauseDuration;
+  CGFloat extraDistance = (CGFloat)(length + _shimmeringSpeed * _shimmeringPauseDuration);
 
   // compute how far the shimmering goes
   CGFloat fullShimmerLength = length * 3.0f + extraDistance;
   CGFloat travelDistance = length * 2.0f + extraDistance;
   
   // position the gradient for the desired width
-  CGFloat highlightOutsideLength = (1.0 - _shimmeringHighlightLength) / 2.0;
+  CGFloat highlightOutsideLength = (CGFloat)((1.0 - _shimmeringHighlightLength) / 2.0);
   _maskLayer.locations = @[@(highlightOutsideLength),
                            @(0.5),
                            @(1.0 - highlightOutsideLength)];
@@ -387,7 +387,7 @@ static CAAnimation *shimmer_slide_finish(CAAnimation *a)
       }
 
       // fade in text at slideEndTime
-      CABasicAnimation *fadeInAnimation = shimmer_end_fade_animation(self, _maskLayer.fadeLayer, 1.0, _shimmeringEndFadeDuration);
+      CABasicAnimation *fadeInAnimation = shimmer_end_fade_animation(self, _maskLayer.fadeLayer, 1.0f, (CGFloat)_shimmeringEndFadeDuration);
       fadeInAnimation.beginTime = slideEndTime;
       [_maskLayer.fadeLayer addAnimation:fadeInAnimation forKey:kFBFadeAnimationKey];
 
@@ -398,16 +398,16 @@ static CAAnimation *shimmer_slide_finish(CAAnimation *a)
     // fade out text, optionally animated
     CABasicAnimation *fadeOutAnimation = nil;
     if (_shimmeringBeginFadeDuration > 0.0 && !disableActions) {
-      fadeOutAnimation = shimmer_begin_fade_animation(self, _maskLayer.fadeLayer, 0.0, _shimmeringBeginFadeDuration);
+      fadeOutAnimation = shimmer_begin_fade_animation(self, _maskLayer.fadeLayer, 0.0f, (CGFloat)_shimmeringBeginFadeDuration);
       [_maskLayer.fadeLayer addAnimation:fadeOutAnimation forKey:kFBFadeAnimationKey];
     } else {
-      BOOL disableActions = [CATransaction disableActions];
+      BOOL actionsDisabled = [CATransaction disableActions];
       [CATransaction setDisableActions:YES];
 
       _maskLayer.fadeLayer.opacity = 0.0;
       [_maskLayer.fadeLayer removeAllAnimations];
       
-      [CATransaction setDisableActions:disableActions];
+      [CATransaction setDisableActions:actionsDisabled];
     }
 
     // begin slide animation

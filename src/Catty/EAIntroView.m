@@ -107,7 +107,7 @@
 }
 
 - (void)checkIndexForScrollView:(UIScrollView *)scrollView {
-    NSInteger newPageIndex = (scrollView.contentOffset.x + scrollView.bounds.size.width/2)/self.scrollView.frame.size.width;
+    NSInteger newPageIndex = (NSInteger)((scrollView.contentOffset.x + scrollView.bounds.size.width/2)/self.scrollView.frame.size.width);
     [self notifyDelegateWithPreviousPage:self.currentPageIndex andCurrentPage:newPageIndex];
     _currentPageIndex = newPageIndex;
     
@@ -138,7 +138,7 @@
 }
 
 - (void)skipIntroduction {
-    [self hideWithFadeOutDuration:0.3];
+    [self hideWithFadeOutDuration:0.3f];
 }
 
 #pragma mark - Properties
@@ -385,7 +385,7 @@
 }
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
-    self.visiblePageIndex = (scrollView.contentOffset.x + scrollView.bounds.size.width/2)/self.scrollView.frame.size.width;
+    self.visiblePageIndex = (NSInteger)((scrollView.contentOffset.x + scrollView.bounds.size.width/2)/self.scrollView.frame.size.width);
     
     float offset = scrollView.contentOffset.x / self.scrollView.frame.size.width;
     NSInteger page = (NSInteger)(offset);
@@ -404,8 +404,8 @@
 }
 
 float easeOutValue(float value) {
-    float inverse = value - 1.0;
-    return 1.0 + inverse * inverse * inverse;
+    float inverse = value - 1.0f;
+    return 1.0f + inverse * inverse * inverse;
 }
 
 - (void)crossDissolveForOffset:(float)offset {
@@ -680,7 +680,7 @@ float easeOutValue(float value) {
         return;
     }
     if(self.currentPageIndex + 1 >= [self.pages count]) {
-        [self hideWithFadeOutDuration:0.3];
+        [self hideWithFadeOutDuration:0.3f];
     } else {
         [self setCurrentPageIndex:self.currentPageIndex + 1 animated:YES];
     }

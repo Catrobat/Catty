@@ -44,7 +44,7 @@
         
         NSDebug(@"Performing: %@", self.description);
         
-        CGFloat brightness = [self.changeBrightness interpretDoubleForSprite:self.object]/100;
+        CGFloat brightness = (CGFloat)[self.changeBrightness interpretDoubleForSprite:self.object] / 100.0f;
         brightness += self.object.currentLookBrightness;
         if (brightness > 2) {
             brightness = 1;
@@ -75,8 +75,8 @@
         self.object.currentUIImageLook = newImage;
         self.object.texture = [SKTexture textureWithImage:newImage];
         self.object.currentLookBrightness = brightness;
-        double xScale = self.object.xScale;
-        double yScale = self.object.yScale;
+        CGFloat xScale = self.object.xScale;
+        CGFloat yScale = self.object.yScale;
         self.object.xScale = 1.0;
         self.object.yScale = 1.0;
         self.object.size = self.object.texture.size;
