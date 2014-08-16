@@ -196,6 +196,7 @@
 		CA1498821989CC0E0069A21E /* OrderedDictionary.m in Sources */ = {isa = PBXBuildFile; fileRef = CA1498811989CC0E0069A21E /* OrderedDictionary.m */; };
 		CA1498851989D1A60069A21E /* UIViewController+CWPopup.m in Sources */ = {isa = PBXBuildFile; fileRef = CA1498841989D1A60069A21E /* UIViewController+CWPopup.m */; };
 		CA1B802C1971ADBB00D8E79B /* IMPORTANT.caf in Resources */ = {isa = PBXBuildFile; fileRef = CA1B802B1971ACE300D8E79B /* IMPORTANT.caf */; };
+		CA2D0C3A199FBB81003BD4CF /* schema.xsd in Resources */ = {isa = PBXBuildFile; fileRef = CA2D0C39199FBB81003BD4CF /* schema.xsd */; };
 		CA3BFA5C197F0DD300DA86C9 /* NSMutableArray+CustomExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = CA3BFA5B197F0DD300DA86C9 /* NSMutableArray+CustomExtensions.m */; };
 		CA43DD361809976900F95B88 /* UIImageView+CatrobatUIImageViewExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = CA43DD351809976900F95B88 /* UIImageView+CatrobatUIImageViewExtensions.m */; };
 		CA51A55E198481ED00FFCB45 /* BDKNotifyHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = CA51A55D198481ED00FFCB45 /* BDKNotifyHUD.m */; };
@@ -690,6 +691,7 @@
 		CA1498841989D1A60069A21E /* UIViewController+CWPopup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIViewController+CWPopup.m"; path = "UIViewController+CWPopup/UIViewController+CWPopup.m"; sourceTree = "<group>"; };
 		CA1B7A1D18E1D9B700452234 /* ProgramUpdateDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ProgramUpdateDelegate.h; sourceTree = "<group>"; };
 		CA1B802B1971ACE300D8E79B /* IMPORTANT.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = IMPORTANT.caf; sourceTree = "<group>"; };
+		CA2D0C39199FBB81003BD4CF /* schema.xsd */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = schema.xsd; sourceTree = "<group>"; };
 		CA3BFA5A197F0D0900DA86C9 /* NSMutableArray+CustomExtensions.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSMutableArray+CustomExtensions.h"; sourceTree = "<group>"; };
 		CA3BFA5B197F0DD300DA86C9 /* NSMutableArray+CustomExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableArray+CustomExtensions.m"; sourceTree = "<group>"; };
 		CA43DD341809976900F95B88 /* UIImageView+CatrobatUIImageViewExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImageView+CatrobatUIImageViewExtensions.h"; sourceTree = "<group>"; };
@@ -1463,6 +1465,7 @@
 				4C9E2D1D198EA6B600455B77 /* Licenses */,
 				4C3AEF2E198E7EDD00604ABF /* Settings.bundle */,
 				B434984F1927A863002F9075 /* My First Program.catrobat */,
+				CA2D0C39199FBB81003BD4CF /* schema.xsd */,
 			);
 			name = Resources;
 			path = Catty;
@@ -3160,6 +3163,7 @@
 				CAE4B83E198A7A210054ABEC /* PATENTS_FBShimmering in Resources */,
 				81C27426189EF94600827A95 /* Images.xcassets in Resources */,
 				4C9E2D39198F67FB00455B77 /* minizip.license in Resources */,
+				CA2D0C3A199FBB81003BD4CF /* schema.xsd in Resources */,
 				4C9E2D21198EACE200455B77 /* EAIntroView.license in Resources */,
 				4C9E2D2D198F63B400455B77 /* TTTAttributedLabel.license in Resources */,
 				4C9E2D2B198F638C00455B77 /* LXReorderableCollectionViewFlowLayout.license in Resources */,
