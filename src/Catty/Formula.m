@@ -23,8 +23,61 @@
 #import "Formula.h"
 #import "FormulaElement.h"
 #import "GDataXMLNode.h"
+#import "Operators.h"
 
 @implementation Formula
+
+- (id)initWithInteger:(int)value
+{
+    self = [super init];
+    
+    if(self) {
+        if(value < 0) {
+            int absValue = abs(value);
+            self.formulaTree = [[FormulaElement alloc] initWithElementType:OPERATOR value:[Operators getName:MINUS] leftChild:nil rightChild:nil parent:nil];
+            FormulaElement *rightChild = [[FormulaElement alloc] initWithElementType:NUMBER value:[NSString stringWithFormat:@"%d", absValue] leftChild:nil rightChild:nil parent:self.formulaTree];
+            self.formulaTree.rightChild = rightChild;
+        } else {
+            self.formulaTree = [[FormulaElement alloc] initWithElementType:NUMBER value:[NSString stringWithFormat:@"%d", value] leftChild:nil rightChild:nil parent:nil];
+            
+        }
+    }
+    
+    return self;
+}
+
+- (id)initWithDouble:(double)value
+{
+    self = [super init];
+    
+    if(self) {
+        if(value < 0) {
+            double absValue = fabs(value);
+            self.formulaTree = [[FormulaElement alloc] initWithElementType:OPERATOR value:[Operators getName:MINUS] leftChild:nil rightChild:nil parent:nil];
+            FormulaElement *rightChild = [[FormulaElement alloc] initWithElementType:NUMBER value:[NSString stringWithFormat:@"%f", absValue] leftChild:nil rightChild:nil parent:self.formulaTree];
+            self.formulaTree.rightChild = rightChild;
+        } else {
+            self.formulaTree = [[FormulaElement alloc] initWithElementType:NUMBER value:[NSString stringWithFormat:@"%f", value] leftChild:nil rightChild:nil parent:nil];
+            
+        }
+    }
+    
+    return self;
+}
+
+- (id)initWithFloat:(float)value
+{
+    return [self initWithDouble:value];
+}
+
+- (id)initWithFormulaElement:(FormulaElement*)formulaTree
+{
+    self = [super init];
+    if(self) {
+        self.formulaTree = formulaTree;
+    }
+    return self;
+}
 
 - (double)interpretDoubleForSprite:(SpriteObject*)sprite
 {
@@ -40,6 +93,11 @@
 {
     int result = [self interpretIntegerForSprite:sprite];
     return result != 0 ? true : false;
+}
+
+- (BOOL)isSingleNumberFormula
+{
+    return [self.formulaTree isSingleNumberFormula];
 }
 
 - (GDataXMLElement*)toXMLforObject:(SpriteObject*)spriteObject

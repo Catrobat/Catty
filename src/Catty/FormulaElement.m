@@ -623,6 +623,20 @@
     return false;
 }
 
+- (BOOL)isSingleNumberFormula
+{
+    if (self.type == OPERATOR) {
+        Operator operator = [Operators getOperatorByValue:self.value];
+        if (operator == MINUS && self.leftChild == nil) {
+            return [self.rightChild isSingleNumberFormula];
+        }
+        return false;
+    } else if (self.type == NUMBER) {
+        return true;
+    }
+    return false;
+}
+
 - (BOOL)containsElement:(ElementType)elementType
 {
     if (self.type == elementType
