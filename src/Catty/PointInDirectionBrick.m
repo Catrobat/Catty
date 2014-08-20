@@ -44,10 +44,10 @@
 {
   return ^{
     NSDebug(@"Performing: %@", self.description);
-    float degrees = [self.degrees interpretDoubleForSprite:self.object] - kRotationDegreeOffset;
-    degrees = [((Scene*)self.object.scene) convertDegreesToScene:degrees];
-    float rad = [Util degreeToRadians:degrees];
-    self.object.zRotation = rad;
+    double degrees = [self.degrees interpretDoubleForSprite:self.object] - kRotationDegreeOffset;
+    degrees = [((Scene*)self.object.scene) convertDegreesToScene:(CGFloat)degrees];
+    double rad = [Util degreeToRadians:degrees];
+    self.object.zRotation = (CGFloat)rad;
   };
 }
 
@@ -56,7 +56,7 @@
 #pragma mark - Description
 - (NSString*)description
 {
-    float deg = [self.degrees interpretDoubleForSprite:self.object];
+    double deg = [self.degrees interpretDoubleForSprite:self.object];
     return [NSString stringWithFormat:@"PointInDirection: %f", deg];
 }
 

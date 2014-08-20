@@ -59,7 +59,7 @@
     program.header.applicationVersion = [Util getProjectVersion];
     program.header.catrobatLanguageVersion = kCatrobatLanguageVersion;
     program.header.dateTimeUpload = nil;
-    program.header.description = @"********** TODO: CHANGE THIS **********"; // TODO: has to be changed
+    program.header.programDescription = @"********** TODO: CHANGE THIS **********"; // TODO: has to be changed
     program.header.deviceName = [Util getDeviceName];
     program.header.mediaLicense = kCatrobatMediaLicense;
     program.header.platform = [Util getPlatformName];
@@ -477,7 +477,7 @@
 
 - (void)updateDescriptionWithText:(NSString *)descriptionText
 {
-    self.header.description = descriptionText;
+    self.header.programDescription = descriptionText;
     [self saveToDisk];
 }
 

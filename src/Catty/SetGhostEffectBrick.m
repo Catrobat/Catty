@@ -52,7 +52,7 @@
           self.object.alpha = 1;
       }
       else{
-          self.object.alpha = alpha;
+          self.object.alpha = (CGFloat)alpha;
       }
       };
 }

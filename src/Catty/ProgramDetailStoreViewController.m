@@ -166,10 +166,9 @@
     [self.navigationController popViewControllerAnimated:YES];
 }
 
-- (void)viewDidUnload
+- (void)dealloc
 {
     [self setScrollViewOutlet:nil];
-    [super viewDidUnload];
 }
 
 #pragma mark - Segue

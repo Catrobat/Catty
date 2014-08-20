@@ -41,11 +41,11 @@
     return ^{
         NSDebug(@"Performing: %@", self.description);
         double sizeInPercent = [self.size interpretDoubleForSprite:self.object];
-        [self.object setXScale:self.object.xScale + sizeInPercent/100.0];
-        [self.object setYScale:self.object.yScale + sizeInPercent/100.0];
+        [self.object setXScale:(CGFloat)(self.object.xScale + sizeInPercent/100.0)];
+        [self.object setYScale:(CGFloat)(self.object.yScale + sizeInPercent/100.0)];
         //for touch issue
         CGImageRef image = [self.object.currentUIImageLook CGImage];
-        self.object.currentUIImageLook = [UIImage imageWithCGImage:image scale:self.object.xScale + 1/(sizeInPercent/100.0) orientation:UIImageOrientationUp];
+        self.object.currentUIImageLook = [UIImage imageWithCGImage:image scale:(CGFloat)(self.object.xScale + 1.0f/(sizeInPercent/100.0f)) orientation:UIImageOrientationUp];
     };
 
 }

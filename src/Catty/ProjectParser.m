@@ -158,6 +158,12 @@
     XMLObjectReference* ref = [[XMLObjectReference alloc] initWithParent:parent andObject:object];
 
     for (GDataXMLElement *child in node.children) {
+        NSLog(@"%@" ,[child XMLStringPrettyPrinted:YES]);
+        // FIXME: workaround for description property in Header class!!
+        if ([object isKindOfClass:[Header class]] && [child.name isEqualToString:@"description"]) {
+            ((Header*)object).programDescription = child.stringValue;
+            continue;
+        }
         objc_property_t property = class_getProperty([object class], [child.name UTF8String]);
 
         

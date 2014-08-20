@@ -124,22 +124,22 @@
         
         self.shapeLayer.path = [UIBezierPath bezierPathWithArcCenter:CGPointMake(CGRectGetMidX(self.bounds), CGRectGetMidY(self.bounds))
                                                               radius:self.bounds.size.width/2 - 2
-                                                          startAngle:3*M_PI_2
-                                                            endAngle:3*M_PI_2 + 2*M_PI
+                                                          startAngle:(CGFloat)(3.0f*M_PI_2)
+                                                            endAngle:(CGFloat)(3.0f*M_PI_2 + 2*M_PI)
                                                            clockwise:YES].CGPath;
         
         if (animated) {
             CABasicAnimation *animation = [CABasicAnimation animationWithKeyPath:@"strokeEnd"];
             animation.fromValue = (startingFromIndeterminateState) ? @0 : nil;
-            animation.toValue = [NSNumber numberWithFloat:progress];
+            animation.toValue = [NSNumber numberWithFloat:(CGFloat)progress];
             animation.duration = 0.1;
-            self.shapeLayer.strokeEnd = progress;
+            self.shapeLayer.strokeEnd = (CGFloat)progress;
             
             [self.shapeLayer addAnimation:animation forKey:@"animation"];
         } else {
             [CATransaction begin];
             [CATransaction setDisableActions:YES];
-            self.shapeLayer.strokeEnd = progress;
+            self.shapeLayer.strokeEnd = (CGFloat)progress;
             [CATransaction commit];
         }
     }else{
@@ -203,8 +203,8 @@
     self.shapeLayer.lineWidth = 1;
     self.shapeLayer.path = [UIBezierPath bezierPathWithArcCenter:CGPointMake(CGRectGetMidX(self.bounds), CGRectGetMidY(self.bounds))
                                                           radius:self.bounds.size.width/2 - 1
-                                                      startAngle:DEGREES_TO_RADIANS(348)
-                                                        endAngle:DEGREES_TO_RADIANS(12)
+                                                      startAngle:(CGFloat)(DEGREES_TO_RADIANS(348))
+                                                        endAngle:(CGFloat)(DEGREES_TO_RADIANS(12))
                                                        clockwise:NO].CGPath;
     self.shapeLayer.strokeEnd = 1;
     
@@ -212,7 +212,7 @@
     
     CABasicAnimation *rotationAnimation = [CABasicAnimation animationWithKeyPath:@"transform.rotation.z"];
     rotationAnimation.fromValue = [NSNumber numberWithFloat:0.0f];
-    rotationAnimation.toValue = [NSNumber numberWithFloat:2*M_PI];
+    rotationAnimation.toValue = [NSNumber numberWithFloat:(CGFloat)(2.0f*M_PI)];
     rotationAnimation.duration = 1.0;
     rotationAnimation.repeatCount = HUGE_VALF;
     

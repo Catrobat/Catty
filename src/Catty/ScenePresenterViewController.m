@@ -182,7 +182,7 @@
     self.skView.bounds = self.view.bounds;
 }
 
-# pragma getters and setters
+#pragma mark getters and setters
 - (BroadcastWaitHandler*)broadcastWaitHandler
 {
     // lazy instantiation
@@ -658,7 +658,7 @@
 //
 //}
 
-#pragma PanGestureHandler
+#pragma mark PanGestureHandler
 - (void)handlePan:(UIPanGestureRecognizer *)gesture
 {
     CGPoint translate = [gesture translationInView:gesture.view];
@@ -814,7 +814,7 @@
     [animation setFromValue:[NSNumber numberWithFloat:kWidthSlideMenu/2]];
     [animation setToValue:[NSNumber numberWithFloat:(kWidthSlideMenu/2)+(kBounceEffect/2)]];
     [animation setDuration:.3];
-    [animation setTimingFunction:[CAMediaTimingFunction functionWithControlPoints:.5 :1.8 :1 :1]];
+    [animation setTimingFunction:[CAMediaTimingFunction functionWithControlPoints:.5f :1.8f :1 :1]];
     [self.menuView.layer addAnimation:animation forKey:@"somekey"];
 }
 

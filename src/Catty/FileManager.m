@@ -294,7 +294,7 @@
     NSError *error = nil;
     NSDictionary *fileDictionary = [fileManager attributesOfItemAtPath:path error:&error];
     NSLogError(error);
-    return [fileDictionary fileSize];
+    return (NSUInteger)[fileDictionary fileSize];
 }
 
 - (NSDate*)lastModificationTimeOfFile:(NSString*)path
@@ -345,11 +345,11 @@
             dispatch_sync(translateBundleQ, ^{
                 NSString *xmlPath = [[Program projectPathForProgramWithName:kDefaultProgramBundleName]
                                      stringByAppendingString:kProgramCodeFileName];
-                NSError *error = nil;
+                NSError *nserror = nil;
                 NSMutableString *xmlString = [NSMutableString stringWithContentsOfFile:xmlPath
                                                                               encoding:NSUTF8StringEncoding
-                                                                                 error:&error];
-                NSLogError(error);
+                                                                                 error:&nserror];
+                NSLogError(nserror);
                 [xmlString replaceOccurrencesOfString:[NSString stringWithFormat:@"<programName>%@</programName>", kDefaultProgramBundleName]
                                            withString:[NSString stringWithFormat:@"<programName>%@</programName>", kDefaultProgramName]
                                               options:NSCaseInsensitiveSearch
@@ -362,8 +362,8 @@
                                            withString:[NSString stringWithFormat:@"<name>%@", kDefaultProgramOtherObjectsNamePrefix]
                                               options:NSCaseInsensitiveSearch
                                                 range:NSMakeRange(0, [xmlString length])];
-                [xmlString writeToFile:xmlPath atomically:YES encoding:NSUTF8StringEncoding error:&error];
-                NSLogError(error);
+                [xmlString writeToFile:xmlPath atomically:YES encoding:NSUTF8StringEncoding error:&nserror];
+                NSLogError(nserror);
                 [self moveExistingDirectoryAtPath:[Program projectPathForProgramWithName:kDefaultProgramBundleName]
                                            toPath:[Program projectPathForProgramWithName:kDefaultProgramName]];
             });

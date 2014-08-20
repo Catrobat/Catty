@@ -205,7 +205,7 @@
             while (left < 0) {
                 left += right;
             }
-            result = fmodf(left, right);
+            result = fmod(left, right);
             break;
         }
         case ARCSIN: {

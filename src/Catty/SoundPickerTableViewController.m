@@ -130,10 +130,10 @@
     UIImage *image = [imageCache cachedImageForName:rightIconName];
     if (! image) {
         [imageCache loadImageWithName:rightIconName
-                         onCompletion:^(UIImage *image){
+                         onCompletion:^(UIImage *img){
                              // check if cell still needed
                              if ([imageCell.indexPath isEqual:indexPath]) {
-                                 imageCell.iconImageView.image = image;
+                                 imageCell.iconImageView.image = img;
                                  [imageCell setNeedsLayout];
                              }
                          }];
@@ -227,7 +227,7 @@
     self.currentPlayingSongCell = nil;
 }
 
-#pragma audio delegate methods
+#pragma mark audio delegate methods
 - (void)audioPlayerDidFinishPlaying:(AVAudioPlayer *)player successfully:(BOOL)flag
 {
     if ((! flag) || (! self.currentPlayingSong) || (! self.currentPlayingSongCell)) {
@@ -247,11 +247,11 @@
         
         if (! image) {
             [imageCache loadImageWithName:playIconName
-                             onCompletion:^(UIImage *image){
+                             onCompletion:^(UIImage *img){
                                  // check if user tapped again on this song in the meantime...
                                  @synchronized(self) {
                                      if ((currentPlayingSong != self.currentPlayingSong) && (currentPlayingSongCell != self.currentPlayingSongCell)) {
-                                         currentPlayingSongCell.iconImageView.image = image;
+                                         currentPlayingSongCell.iconImageView.image = img;
                                      }
                                  }
                              }];

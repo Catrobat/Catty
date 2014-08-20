@@ -11,6 +11,7 @@
 #import "SWCellScrollView.h"
 #import "SWLongPressGestureRecognizer.h"
 #import "SWUtilityButtonTapGestureRecognizer.h"
+#import "NSMutableArray+SWUtilityButtons.h"
 
 @class SWTableViewCell;
 
@@ -29,6 +30,7 @@ typedef NS_ENUM(NSInteger, SWCellState)
 - (void)swipeableTableViewCell:(SWTableViewCell *)cell scrollingToState:(SWCellState)state;
 - (BOOL)swipeableTableViewCellShouldHideUtilityButtonsOnSwipe:(SWTableViewCell *)cell;
 - (BOOL)swipeableTableViewCell:(SWTableViewCell *)cell canSwipeToState:(SWCellState)state;
+- (void)swipeableTableViewCellDidEndScrolling:(SWTableViewCell *)cell;
 
 @end
 
@@ -36,8 +38,15 @@ typedef NS_ENUM(NSInteger, SWCellState)
 
 @property (nonatomic, copy) NSArray *leftUtilityButtons;
 @property (nonatomic, copy) NSArray *rightUtilityButtons;
+
 @property (nonatomic, weak) id <SWTableViewCellDelegate> delegate;
 
+- (void)setRightUtilityButtons:(NSArray *)rightUtilityButtons WithButtonWidth:(CGFloat) width;
+- (void)setLeftUtilityButtons:(NSArray *)leftUtilityButtons WithButtonWidth:(CGFloat) width;
 - (void)hideUtilityButtonsAnimated:(BOOL)animated;
+- (void)showLeftUtilityButtonsAnimated:(BOOL)animated;
+- (void)showRightUtilityButtonsAnimated:(BOOL)animated;
+
+- (BOOL)isUtilityButtonsHidden;
 
 @end

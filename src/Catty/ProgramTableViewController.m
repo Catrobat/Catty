@@ -370,10 +370,10 @@ static NSCharacterSet *blockedCharacterSet = nil;
         [imageCache loadThumbnailImageFromDiskWithThumbnailPath:previewImagePath
                                                       imagePath:imagePath
                                              thumbnailFrameSize:CGSizeMake(kPreviewImageWidth, kPreviewImageHeight)
-                                                   onCompletion:^(UIImage *image){
+                                                   onCompletion:^(UIImage *img){
                                                        // check if cell still needed
                                                        if ([imageCell.indexPath isEqual:indexPath]) {
-                                                           imageCell.iconImageView.image = image;
+                                                           imageCell.iconImageView.image = img;
                                                            [imageCell setNeedsLayout];
                                                        }
                                                    }];

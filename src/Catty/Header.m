@@ -41,7 +41,7 @@
     [headerXMLElement addChild:[GDataXMLNode elementWithName:@"dateTimeUpload"
                                          optionalStringValue:nil/*self.dateTimeUpload*/]]; // FIXME: which dateTimeUpload format?? catroid on Android seems to ignore this field even after (!) the upload has been finished
     [headerXMLElement addChild:[GDataXMLNode elementWithName:@"description"
-                                         optionalStringValue:self.description]];
+                                         optionalStringValue:self.programDescription]];
     [headerXMLElement addChild:[GDataXMLNode elementWithName:@"deviceName"
                                          optionalStringValue:self.deviceName]];
     [headerXMLElement addChild:[GDataXMLNode elementWithName:@"mediaLicense"

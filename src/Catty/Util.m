@@ -95,7 +95,7 @@
     frame.size.height -= 64.0f;
     EAIntroView *intro = [[EAIntroView alloc] initWithFrame:frame andPages:@[page1, page2, page3]];
     intro.delegate = delegate;
-    [intro showInView:view animateDuration:0.3];
+    [intro showInView:view animateDuration:0.3f];
 }
 
 + (CatrobatAlertView*)alertWithText:(NSString*)text
@@ -233,7 +233,7 @@
 + (UIButton*)slideViewButtonDelete
 {
     return [Util slideViewButtonWithTitle:kUIButtonTitleDelete
-                          backgroundColor:[UIColor colorWithRed:1.0f green:0.231f blue:0.188 alpha:1.0f]];
+                          backgroundColor:[UIColor colorWithRed:1.0f green:0.231f blue:0.188f alpha:1.0f]];
 }
 
 + (NSString*)getProjectName
@@ -492,12 +492,12 @@
 
 + (double)radiansToDegree:(double)rad
 {
-    return rad * 180.0 / M_PI;
+    return rad * 180.0f / M_PI;
 }
 
 + (double)degreeToRadians:(double)deg
 {
-    return deg * M_PI / 180.0;
+    return deg * M_PI / 180.0f;
 }
 
 #pragma mark - text field delegates
