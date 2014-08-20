@@ -577,10 +577,10 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
                                   flexItem, flexItem, invisibleButton, play, invisibleButton, flexItem];
         } else {
             UIBarButtonItem *done = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"toolbar_close"]
-                                                                     style:UIBarButtonItemStyleBordered target:self
+                                                                     style:UIBarButtonItemStylePlain target:self
                                                                     action:@selector(showBrickSelectionView:)];
             UIBarButtonItem *list = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"toolbar_list"]
-                                                                     style:UIBarButtonItemStyleBordered target:self
+                                                                     style:UIBarButtonItemStylePlain target:self
                                                                     action:@selector(showBrickSelectionMenu)];
             
             self.toolbarItems = @[flexItem,invisibleButton, list, invisibleButton, flexItem,

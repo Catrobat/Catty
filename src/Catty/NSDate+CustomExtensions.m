@@ -111,7 +111,7 @@
 - (NSString*)weekdayName:(BOOL)shortName
 {
     NSCalendar *calendar = [NSCalendar currentCalendar];
-    NSDateComponents *components = [calendar components:NSWeekdayCalendarUnit fromDate:self];
+    NSDateComponents *components = [calendar components:NSCalendarUnitWeekday fromDate:self];
     return [(shortName ? kWeekdayNamesShort : kWeekdayNames) objectAtIndex:([components weekday] - 1)];
 }
 
