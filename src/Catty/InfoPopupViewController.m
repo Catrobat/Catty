@@ -260,11 +260,11 @@ const int BUTTON_MARGIN_BOTTOM = 15;
     [self initContentView:kUIInfoPopupViewTermsOfUse withText:kUIInfoPopupViewTermsOfUseBody];
 
     //init buttons
-    UIButton *sourceCodeLicenseButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    [sourceCodeLicenseButton setTitle:kUIInfoPopupViewTermsOfUse forState:UIControlStateNormal];
-    [sourceCodeLicenseButton sizeToFit];
-    sourceCodeLicenseButton.frame = CGRectMake(self.contentView.frame.size.width / 2 - sourceCodeLicenseButton.frame.size.width / 2, self.bodyTextView.frame.origin.y + self.bodyTextView.frame.size.height + BUTTON_MARGIN_BOTTOM, sourceCodeLicenseButton.frame.size.width, sourceCodeLicenseButton.frame.size.height);
-    [self addLinkButton:sourceCodeLicenseButton];
+    UIButton *termsOfUseButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    [termsOfUseButton setTitle:kUIInfoPopupViewTermsOfUse forState:UIControlStateNormal];
+    [termsOfUseButton sizeToFit];
+    termsOfUseButton.frame = CGRectMake(self.contentView.frame.size.width / 2 - termsOfUseButton.frame.size.width / 2, self.bodyTextView.frame.origin.y + self.bodyTextView.frame.size.height + BUTTON_MARGIN_BOTTOM, termsOfUseButton.frame.size.width, termsOfUseButton.frame.size.height);
+    [self addLinkButton:termsOfUseButton];
 
     //Animation to add the main subview
     [self showContentView];
@@ -297,7 +297,7 @@ const int BUTTON_MARGIN_BOTTOM = 15;
     else if([button.currentTitle isEqualToString:kUIInfoPopupViewAboutCatrobatButtonLabel])
         url = kAboutCatrobatURL;
     else if([button.currentTitle isEqualToString:kUIInfoPopupViewTermsOfUse])
-        url = kAboutCatrobatURL;
+        url = kTermsOfUseURL;
     else if([button.currentTitle isEqualToString:kUIInfoPopupViewRateUs]) {
         url = kAppStoreURL;
     }

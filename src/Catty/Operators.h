@@ -21,37 +21,29 @@
  */
 
 #import <Foundation/Foundation.h>
-#import "Functions.h"
-#import "Operators.h"
-
-@class SpriteObject;
 
 typedef enum {
-    OPERATOR,
-    FUNCTION,
-    NUMBER,
-    SENSOR,
-    USER_VARIABLE,
-    BRACKET
-} ElementType;
+    LOGICAL_AND = 300,
+    LOGICAL_OR,
+    EQUAL,
+    NOT_EQUAL,
+    SMALLER_OR_EQUAL,
+    GREATER_OR_EQUAL,
+    SMALLER_THAN,
+    GREATER_THAN,
+    PLUS,
+    MINUS,
+    MULT,
+    DIVIDE,
+    LOGICAL_NOT
+} Operator;
 
-@interface FormulaElement : NSObject
+@interface Operators : NSObject
 
-@property (nonatomic, assign) ElementType type;
-@property (nonatomic, strong) NSString* value;
-@property (nonatomic, strong) FormulaElement* leftChild;
-@property (nonatomic, strong) FormulaElement* rightChild;
-@property (nonatomic, weak) FormulaElement* parent;
-
-- (id)initWithType:(NSString*)type
-             value:(NSString*)value
-         leftChild:(FormulaElement*)leftChild
-        rightChild:(FormulaElement*)rightChild
-            parent:(FormulaElement*)parent;
-
-
-- (double)interpretRecursiveForSprite:(SpriteObject*)sprite;
-
-- (NSArray*)XMLChildElements;
++ (NSString*)getName:(Operator)operator;
++ (Operator)getOperatorByValue:(NSString*)name;
++ (int)getPriority:(Operator)operator;
++ (BOOL)isLogicalOperator:(Operator)operator;
++ (int)compareOperator:(Operator)firstOperator WithOperator:(Operator)secondOperator;
 
 @end
