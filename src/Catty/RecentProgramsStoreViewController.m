@@ -59,13 +59,6 @@
 
 @implementation RecentProgramsStoreViewController
 
-@synthesize data              = _data;
-@synthesize connection        = _connection;
-@synthesize projects          = _projects;
-@synthesize programListOffset = _programListOffset;
-@synthesize programListLimit  = _programListLimit;
-
-
 - (id)init
 {
     self = [super init];
@@ -125,7 +118,6 @@
 }
 
 #pragma mark - Table view data source
-
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     return 1;
@@ -662,9 +654,11 @@
 - (void)update
 {
     [self.tableView reloadData];
+#if __IPHONE_OS_VERSION_MAX_ALLOWED < 80000
+    // iOS7 specific stuff
     [self.searchDisplayController setActive:NO animated:YES];
+#endif
 }
-
 
 #pragma mark - BackButtonDelegate
 - (void)back

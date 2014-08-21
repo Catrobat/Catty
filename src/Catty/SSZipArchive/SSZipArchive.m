@@ -396,12 +396,16 @@
 	static const UInt32 kMinuteMask = 0x7E0;
 	static const UInt32 kSecondMask = 0x1F;
 
-    // only on iOS7
+#if __IPHONE_OS_VERSION_MAX_ALLOWED >= 80000
+    // iOS8 specific stuff
+    NSCalendar *gregorian = [[NSCalendar alloc] initWithCalendarIdentifier:NSCalendarIdentifierGregorian];
+#else
+    // iOS7 specific stuff
     NSCalendar *gregorian = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
+#endif
     NSDateComponents *components = [[NSDateComponents alloc] init];
 
     NSAssert(0xFFFFFFFF == (kYearMask | kMonthMask | kDayMask | kHourMask | kMinuteMask | kSecondMask), @"[SSZipArchive] MSDOS date masks don't add up");
-	    
     [components setYear:1980 + ((msdosDateTime & kYearMask) >> 25)];
     [components setMonth:(msdosDateTime & kMonthMask) >> 21];
     [components setDay:(msdosDateTime & kDayMask) >> 16];
@@ -415,7 +419,7 @@
 	[gregorian release];
 	[components release];
 #endif
-	
+
 	return date;
 }
 

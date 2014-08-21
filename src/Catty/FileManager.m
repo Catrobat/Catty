@@ -402,7 +402,13 @@
 {
     self.projectName = name;
     if (! self.downloadSession) {
+#if __IPHONE_OS_VERSION_MAX_ALLOWED >= 80000
+        // iOS8 specific stuff
+        NSURLSessionConfiguration *sessionConfig = [NSURLSessionConfiguration backgroundSessionConfigurationWithIdentifier:@"at.tugraz"];
+#else
+        // iOS7 specific stuff
         NSURLSessionConfiguration *sessionConfig = [NSURLSessionConfiguration backgroundSessionConfiguration:@"at.tugraz"];
+#endif
         self.downloadSession = [NSURLSession sessionWithConfiguration:sessionConfig
                                                              delegate:self
                                                         delegateQueue:nil];
@@ -419,8 +425,13 @@
 {
     
     if (!self.downloadSession) {
-        NSURLSessionConfiguration *sessionConfig =
-        [NSURLSessionConfiguration backgroundSessionConfiguration:@"at.tugraz"];
+#if __IPHONE_OS_VERSION_MAX_ALLOWED >= 80000
+        // iOS8 specific stuff
+        NSURLSessionConfiguration *sessionConfig = [NSURLSessionConfiguration backgroundSessionConfigurationWithIdentifier:@"at.tugraz"];
+#else
+        // iOS7 specific stuff
+        NSURLSessionConfiguration *sessionConfig = [NSURLSessionConfiguration backgroundSessionConfiguration:@"at.tugraz"];
+#endif
         self.downloadSession = [NSURLSession sessionWithConfiguration:sessionConfig
                                                              delegate:self
                                                         delegateQueue:nil];

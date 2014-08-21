@@ -148,6 +148,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
 
 - (void)viewDidAppear:(BOOL)animated
 {
+    [super viewDidAppear:animated];
     NSIndexPath* indexPath = [NSIndexPath indexPathForRow:0 inSection:0];
     [self.tableView beginUpdates];
     [self.tableView reloadRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationNone];
