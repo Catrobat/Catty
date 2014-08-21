@@ -144,11 +144,11 @@ typedef NS_ENUM(NSUInteger, kBrickType) {
 
 // brick categories
 #define kBrickCategoryNames @[\
-    kBrickCellControlCategoryTitle,\
-    kBrickCellMotionCategoryTitle,\
-    kBrickCellSoundCategoryTitle,\
-    kBrickCellLooksCategoryTitle,\
-    kBrickCellVariablesCategoryTitle\
+    kLocalizedControl,\
+    kLocalizedMotion,\
+    kLocalizedSound,\
+    kLocalizedLooks,\
+    kLocalizedVariables\
 ]
 
 #define kBrickCategoryColors @[\

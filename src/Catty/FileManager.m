@@ -339,7 +339,7 @@
 #define kDefaultProgramBundleBackgroundName @"Background"
 #define kDefaultProgramBundleOtherObjectsNamePrefix @"Mole"
         // XXX: HACK serialization-workaround
-        if (! [kDefaultProgramBundleName isEqualToString:kDefaultProgramName]) {
+        if (! [kDefaultProgramBundleName isEqualToString:kLocalizedMyFirstProgram]) {
             // SYNC and NOT ASYNC here because the UI must wait!!
             dispatch_queue_t translateBundleQ = dispatch_queue_create("translate bundle", NULL);
             dispatch_sync(translateBundleQ, ^{
@@ -351,21 +351,21 @@
                                                                                  error:&nserror];
                 NSLogError(nserror);
                 [xmlString replaceOccurrencesOfString:[NSString stringWithFormat:@"<programName>%@</programName>", kDefaultProgramBundleName]
-                                           withString:[NSString stringWithFormat:@"<programName>%@</programName>", kDefaultProgramName]
+                                           withString:[NSString stringWithFormat:@"<programName>%@</programName>", kLocalizedMyFirstProgram]
                                               options:NSCaseInsensitiveSearch
                                                 range:NSMakeRange(0, [xmlString length])];
                 [xmlString replaceOccurrencesOfString:[NSString stringWithFormat:@"<name>%@</name>", kDefaultProgramBundleBackgroundName]
-                                           withString:[NSString stringWithFormat:@"<name>%@</name>", kGeneralBackgroundObjectName]
+                                           withString:[NSString stringWithFormat:@"<name>%@</name>", kLocalizedBackground]
                                               options:NSCaseInsensitiveSearch
                                                 range:NSMakeRange(0, [xmlString length])];
                 [xmlString replaceOccurrencesOfString:[NSString stringWithFormat:@"<name>%@", kDefaultProgramBundleOtherObjectsNamePrefix]
-                                           withString:[NSString stringWithFormat:@"<name>%@", kDefaultProgramOtherObjectsNamePrefix]
+                                           withString:[NSString stringWithFormat:@"<name>%@", kLocalizedMole]
                                               options:NSCaseInsensitiveSearch
                                                 range:NSMakeRange(0, [xmlString length])];
                 [xmlString writeToFile:xmlPath atomically:YES encoding:NSUTF8StringEncoding error:&nserror];
                 NSLogError(nserror);
                 [self moveExistingDirectoryAtPath:[Program projectPathForProgramWithName:kDefaultProgramBundleName]
-                                           toPath:[Program projectPathForProgramWithName:kDefaultProgramName]];
+                                           toPath:[Program projectPathForProgramWithName:kLocalizedMyFirstProgram]];
             });
         }
 #else // kIsFirstRelease
@@ -616,7 +616,7 @@
     }
     if ([self getFreeDiskspace] < totalBytesExpectedToWrite) {
         [self stopLoading:downloadTask];
-        [Util alertWithText:kUIAlertViewTitleNotEnoughFreeMemory];
+        [Util alertWithText:kLocalizedNotEnoughFreeMemoryDescription];
         if ([self.delegate respondsToSelector:@selector(setBackDownloadStatus)]) {
             dispatch_async(dispatch_get_main_queue(), ^{
                 [self.delegate setBackDownloadStatus];

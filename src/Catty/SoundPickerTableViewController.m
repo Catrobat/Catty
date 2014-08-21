@@ -181,8 +181,8 @@
             if (indexPath.row < [self.playableSounds count]) {
                 // acquire lock
                 if (self.silentDetector.isMute) {
-                    [Util alertWithText:(IS_IPHONE ? kUIAlertViewMessageDeviceIsInMutedStateIPhone
-                                         : kUIAlertViewMessageDeviceIsInMutedStateIPad)];
+                    [Util alertWithText:(IS_IPHONE ? kLocalizedDeviceIsInMutedStateIPhoneDescription
+                                         : kLocalizedDeviceIsInMutedStateIPadDescription)];
                     return;
                 }
                 @synchronized(self) {
@@ -264,7 +264,7 @@
 #pragma mark - helpers
 - (void)setupNavigationBar
 {
-    self.navigationItem.title = self.title = kUIViewControllerTitleChooseSound;
+    self.navigationItem.title = self.title = kLocalizedChooseSound;
     UIBarButtonItem *closeButton;
     closeButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone
                                                                 target:self

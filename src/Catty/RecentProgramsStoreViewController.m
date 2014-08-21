@@ -176,9 +176,9 @@
 - (void)initSegmentedControl
 {
     [self.downloadSegmentedControl addTarget:self action:@selector(changeView) forControlEvents:UIControlEventValueChanged];
-    [self.downloadSegmentedControl setTitle:kUISegmentedControlTitleMostDownloaded forSegmentAtIndex:0];
-    [self.downloadSegmentedControl setTitle:kUISegmentedControlTitleMostViewed forSegmentAtIndex:1];
-    [self.downloadSegmentedControl setTitle:kUISegmentedControlTitleNewest forSegmentAtIndex:2];
+    [self.downloadSegmentedControl setTitle:kLocalizedMostDownloaded forSegmentAtIndex:0];
+    [self.downloadSegmentedControl setTitle:kLocalizedMostViewed forSegmentAtIndex:1];
+    [self.downloadSegmentedControl setTitle:kLocalizedNewest forSegmentAtIndex:2];
 
     CGFloat navigationBarHeight = self.navigationController.navigationBar.frame.size.height;
     self.downloadSegmentedControl.backgroundColor = [UIColor darkBlueColor];
@@ -314,10 +314,10 @@
     if (data == nil) {
         if (self.shouldShowAlert) {
             self.shouldShowAlert = NO;
-            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:kUIAlertViewTitleStandard
-                                                                message:kUIAlertViewMessageSlowInternetConnection
+            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:kLocalizedPocketCode
+                                                                message:kLocalizedSlowInternetConnection
                                                                delegate:self.navigationController.visibleViewController
-                                                      cancelButtonTitle:kUIAlertViewButtonTitleOK
+                                                      cancelButtonTitle:kLocalizedOK
                                                       otherButtonTitles:nil];
             [alertView show];
         }
@@ -441,10 +441,10 @@
     if (data == nil) {
         if (self.shouldShowAlert) {
             self.shouldShowAlert = NO;
-            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:kUIAlertViewTitleStandard
-                                                                message:kUIAlertViewMessageSlowInternetConnection
+            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:kLocalizedPocketCode
+                                                                message:kLocalizedSlowInternetConnection
                                                                delegate:self.navigationController.visibleViewController
-                                                      cancelButtonTitle:kUIAlertViewButtonTitleOK
+                                                      cancelButtonTitle:kLocalizedOK
                                                       otherButtonTitles:nil];
             [alertView show];
         }

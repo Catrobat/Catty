@@ -29,7 +29,7 @@
 
 - (NSString*)brickTitle
 {
-    return kBrickCellMotionTitleTurnRight;
+    return kLocalizedTurnRight;
 }
 
 -(SKAction*)action

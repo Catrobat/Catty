@@ -78,7 +78,7 @@
 
     for (NSString *programName in programNames) {
         // exclude .DS_Store folder on MACOSX simulator and new program
-        if ([programName isEqualToString:@".DS_Store"] || [programName isEqualToString:kGeneralNewDefaultProgramName])
+        if ([programName isEqualToString:@".DS_Store"] || [programName isEqualToString:kLocalizedNewProgram])
             continue;
 
         ProgramLoadingInfo *loadingInfo = [[ProgramLoadingInfo alloc] init];
@@ -103,7 +103,7 @@
 
     for (NSString *programName in programNames) {
         // exclude .DS_Store folder on MACOSX simulator and new program
-        if ([programName isEqualToString:@".DS_Store"] || [programName isEqualToString:kGeneralNewDefaultProgramName])
+        if ([programName isEqualToString:@".DS_Store"] || [programName isEqualToString:kLocalizedNewProgram])
             continue;
 
         ProgramLoadingInfo *loadingInfo = [[ProgramLoadingInfo alloc] init];
@@ -131,7 +131,7 @@
             UITableViewCell <CatrobatImageCell>* imageCell = (UITableViewCell <CatrobatImageCell>*)cell;
             backgroundObjectCellTitle = imageCell.titleLabel.text;
         }
-        XCTAssertTrue(([backgroundObjectCellTitle isEqualToString:kUILabelTextBackground]
+        XCTAssertTrue(([backgroundObjectCellTitle isEqualToString:kLocalizedBackground]
                        || [backgroundObjectCellTitle isEqualToString:@"Background"]),
                       @"The ProgramTableViewController did not create the background object cell correctly.");
 
@@ -170,7 +170,7 @@
 
     for (NSString *programName in programNames) {
         // exclude .DS_Store folder on MACOSX simulator and new program
-        if ([programName isEqualToString:@".DS_Store"] || [programName isEqualToString:kGeneralNewDefaultProgramName])
+        if ([programName isEqualToString:@".DS_Store"] || [programName isEqualToString:kLocalizedNewProgram])
             continue;
 
         ProgramLoadingInfo *loadingInfo = [[ProgramLoadingInfo alloc] init];
@@ -199,7 +199,7 @@
 
     for (NSString *programName in programNames) {
         // exclude .DS_Store folder on MACOSX simulator and new program
-        if ([programName isEqualToString:@".DS_Store"] || [programName isEqualToString:kGeneralNewDefaultProgramName])
+        if ([programName isEqualToString:@".DS_Store"] || [programName isEqualToString:kLocalizedNewProgram])
             continue;
 
         ProgramLoadingInfo *loadingInfo = [[ProgramLoadingInfo alloc] init];
@@ -228,7 +228,7 @@
 
     for (NSString *programName in programNames) {
         // exclude .DS_Store folder on MACOSX simulator and new program
-        if ([programName isEqualToString:@".DS_Store"] || [programName isEqualToString:kGeneralNewDefaultProgramName])
+        if ([programName isEqualToString:@".DS_Store"] || [programName isEqualToString:kLocalizedNewProgram])
             continue;
 
         ProgramLoadingInfo *loadingInfo = [[ProgramLoadingInfo alloc] init];
@@ -263,7 +263,7 @@
 
     for (NSString *programName in programNames) {
         // exclude .DS_Store folder on MACOSX simulator and new program
-        if ([programName isEqualToString:@".DS_Store"] || [programName isEqualToString:kGeneralNewDefaultProgramName])
+        if ([programName isEqualToString:@".DS_Store"] || [programName isEqualToString:kLocalizedNewProgram])
             continue;
 
         ProgramLoadingInfo *loadingInfo = [[ProgramLoadingInfo alloc] init];

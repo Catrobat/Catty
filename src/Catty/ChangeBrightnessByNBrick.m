@@ -29,7 +29,7 @@
 
 - (NSString*)brickTitle
 {
-    return kBrickCellLookTitleChangeBrightnessByN;
+    return kLocalizedChangeBrightnessByN;
 }
 
 - (SKAction*)action

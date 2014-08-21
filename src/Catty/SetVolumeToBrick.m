@@ -30,7 +30,7 @@
 
 - (NSString*)brickTitle
 {
-    return kBrickCellSoundTitleSetVolumeTo;
+    return kLocalizedSetVolumeTo;
 }
 
 - (SKAction*)action

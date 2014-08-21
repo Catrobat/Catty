@@ -32,7 +32,7 @@
 
 - (NSString*)brickTitle
 {
-    return kBrickCellMotionTitleComeToFront;
+    return kLocalizedComeToFront;
 }
 
 -(SKAction*)action

@@ -27,7 +27,7 @@
 
 - (NSString*)brickTitle
 {
-    return kBrickCellSoundTitleStopAllSounds;
+    return kLocalizedStopAllSounds;
 }
 
 -(SKAction*)action

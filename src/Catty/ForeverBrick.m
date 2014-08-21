@@ -27,7 +27,7 @@
 
 - (NSString*)brickTitle
 {
-    return kBrickCellControlTitleForever;
+    return kLocalizedForever;
 }
 
 -(BOOL)checkCondition

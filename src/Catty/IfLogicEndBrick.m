@@ -33,7 +33,7 @@
 
 - (NSString*)brickTitle
 {
-    return kBrickCellControlTitleEndIf;
+    return kLocalizedIfEnd;
 }
 
 - (void)performFromScript:(Script*)script
