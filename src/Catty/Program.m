@@ -535,8 +535,9 @@
     [ret appendFormat:@"Sprite List: %@\n", self.objectList];
     [ret appendFormat:@"URL: %@\n", self.header.url];
     [ret appendFormat:@"User Handle: %@\n", self.header.userHandle];
+    [ret appendFormat:@"Variables: %@\n", self.variables];
     [ret appendFormat:@"------------------------------------------------\n"];
-    return [NSString stringWithString:ret];
+    return [ret copy];
 }
 
 + (BOOL)programExists:(NSString*)programName

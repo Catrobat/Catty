@@ -30,7 +30,7 @@
 #define kCatrobatScreenModeMaximize @"MAXIMIZE"
 #define kCatrobatScreenModeStretch @"STRETCH"
 #define kCatrobatProgramScreenshotDefaultValue @"false"
-#define kIsFirstRelease 1
+#define kIsFirstRelease 0
 
 #if kIsFirstRelease
   #undef DEBUG

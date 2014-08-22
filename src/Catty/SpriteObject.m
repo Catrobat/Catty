@@ -773,13 +773,14 @@
 
 - (NSString*)description
 {
-    return [NSString stringWithFormat:@"Object: %@\r", self.name];
+    NSMutableString *mutableString = [NSMutableString string];
+    [mutableString appendFormat:@"Scripts: %@\r", self.scriptList];
+    [mutableString appendFormat:@"Looks: %@\r", self.lookList];
+    [mutableString appendFormat:@"Sounds: %@\r", self.soundList];
+    return [mutableString copy];
 }
 
-
-
 #pragma mark - Formula Protocol
-
 -(CGFloat)xPosition
 {
     return self.position.x;

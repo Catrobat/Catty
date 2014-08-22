@@ -83,11 +83,6 @@
     self.tableView.separatorColor = UIColor.skyBlueColor;
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
     self.shouldShowAlert = YES;
-
-    // XXX: someone has removed that in another branch, therefore this caused a merge conflict.
-    //      not sure if we really need this. therefore I have readded these lines here.
-//    self.edgesForExtendedLayout = UIRectEdgeAll;
-//    self.tableView.contentInset = UIEdgeInsetsMake(0., 0., CGRectGetHeight(self.tabBarController.tabBar.frame)+44, 0);
 }
 
 - (void)viewWillAppear:(BOOL)animated

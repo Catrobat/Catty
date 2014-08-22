@@ -34,24 +34,41 @@
 #import "Util.h"
 #import "LanguageTranslationDefines.h"
 
-@interface SearchStoreViewController ()
+#if __IPHONE_OS_VERSION_MAX_ALLOWED >= 80000
+// iOS8 specific stuff
+@interface SearchStoreViewController () <UISearchResultsUpdating, UISearchBarDelegate, UITableViewDelegate, UITableViewDataSource, UIScrollViewDelegate>
+#else
+// iOS7 specific stuff
+@interface SearchStoreViewController () <UISearchBarDelegate, UITableViewDelegate, UITableViewDataSource, UIScrollViewDelegate>
+#endif
 
 @property (nonatomic, strong) NSMutableArray *searchResults;
 @property (nonatomic, strong) NSMutableData *data;
 @property (nonatomic, strong) NSURLConnection *connection;
 @property (nonatomic, strong) UILabel *noSearchResultsLabel;
 
+@property (nonatomic, weak) IBOutlet UITableView *tableView;
+@property (nonatomic, weak) IBOutlet UISearchBar *searchBar;
+
+#if __IPHONE_OS_VERSION_MAX_ALLOWED >= 80000
+// iOS8 specific stuff
+@property (nonatomic, strong) UISearchController *searchController;
+#endif
+
 @end
 
 @implementation SearchStoreViewController
 
-- (id)init
+#if __IPHONE_OS_VERSION_MAX_ALLOWED >= 80000
+#pragma mark - getters and setters
+- (UISearchController*)searchController
 {
-  self = [super init];
-  if (self) {
-  }
-  return self;
+    if (! _searchController) {
+        _searchController = [[UISearchController alloc] initWithSearchResultsController:self];
+    }
+    return _searchController;
 }
+#endif
 
 - (void)viewDidLoad
 {
@@ -60,25 +77,65 @@
     [self initTableView];
     [self initNoSearchResultsLabel];
 
-    self.searchDisplayController.displaysSearchBarInNavigationBar = NO;
-    self.searchDisplayController.searchBar.backgroundColor = [UIColor darkBlueColor];
+#if __IPHONE_OS_VERSION_MAX_ALLOWED >= 80000
+    if (IS_OS_8_OR_LATER) {
+        // iOS8 specific stuff
+        // XXX: HACK!!
+        UISearchBar *searchBar = self.searchBar;
+        self.searchController.searchBar.frame = searchBar.frame;
+        [searchBar removeFromSuperview];
+        self.searchBar = self.searchController.searchBar;
+        self.searchController.searchResultsUpdater = self;
+    //    self.tableView.tableHeaderView = self.searchController.searchBar;
+        self.searchController.searchBar.backgroundColor = [UIColor darkBlueColor];
+        [self.searchController setActive:YES];
+        [self.searchController.searchBar becomeFirstResponder];
+        self.searchController.searchBar.delegate = self;
+        self.searchController.searchBar.barTintColor = UIColor.navBarColor;
+        self.searchController.searchBar.barStyle = UISearchBarStyleMinimal;
+        [self.searchController.searchBar becomeFirstResponder];
+        self.definesPresentationContext = YES;
+    } else {
+#endif
+        // iOS7 specific stuff
+        self.searchDisplayController.displaysSearchBarInNavigationBar = NO;
+        self.searchDisplayController.searchBar.backgroundColor = [UIColor darkBlueColor];
+        [self.searchDisplayController setActive:YES animated:YES];
+        [self.searchDisplayController.searchBar becomeFirstResponder];
+        self.searchDisplayController.searchBar.delegate = self;
+        self.searchDisplayController.searchBar.barTintColor = UIColor.navBarColor;
+        self.searchDisplayController.searchBar.barStyle = UISearchBarStyleMinimal;
+        [self.searchBar becomeFirstResponder];
+#if __IPHONE_OS_VERSION_MAX_ALLOWED >= 80000
+    }
+#endif
     self.tableView.backgroundColor = [UIColor darkBlueColor];
-    [self.searchDisplayController setActive:YES animated:YES];
-    [self.searchDisplayController.searchBar becomeFirstResponder];
-    self.searchDisplayController.searchBar.delegate = self;
     self.checkSearch = YES;
-    self.searchDisplayController.searchBar.barTintColor = UIColor.navBarColor;
-    self.searchDisplayController.searchBar.barStyle = UISearchBarStyleMinimal;
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
     self.tableView.separatorColor = UIColor.skyBlueColor;
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
 
-    [self.searchBar becomeFirstResponder];
     self.view.backgroundColor = [UIColor darkBlueColor];
     [[UITextField appearanceWhenContainedIn:[UISearchBar class], nil] setTextColor:[UIColor lightOrangeColor]];
     self.edgesForExtendedLayout = UIRectEdgeAll;
     self.tableView.contentInset = UIEdgeInsetsMake(0., 0., CGRectGetHeight(self.tabBarController.tabBar.frame)+44, 0);
 }
+
+#pragma mark - UISearchResultsUpdating
+#if __IPHONE_OS_VERSION_MAX_ALLOWED >= 80000
+// iOS8 specific stuff
+- (void)updateSearchResultsForSearchController:(UISearchController *)searchController
+{
+//    NSString *searchString = [self.searchController.searchBar text];
+//    NSString *scope = nil;
+    NSInteger selectedScopeButtonIndex = [self.searchController.searchBar selectedScopeButtonIndex];
+    if (selectedScopeButtonIndex > 0) {
+//        scope = [[TPSProduct deviceTypeNames] objectAtIndex:(selectedScopeButtonIndex - 1)];
+    }
+//    [self updateFilteredContentForProductName:searchString type:scope];
+    [self.tableView reloadData];
+}
+#endif
 
 - (void)viewWillAppear:(BOOL)animated
 {
@@ -90,11 +147,6 @@
     self.searchBar.tintColor = [UIColor lightOrangeColor];
     self.searchBar.translucent = YES;
 
-}
-
-- (void)viewWillDisappear:(BOOL)animated
-{
-    [super viewWillDisappear:animated];
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -112,7 +164,6 @@
 
 - (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView
 {
-    
     ///Hack for translucency
 //    if (!self.checkSearch) {
 //        CGRect frame = self.tableView.frame;
@@ -125,12 +176,6 @@
 //        self.navigationController.navigationBar.translucent = YES;
 //        
 //    }
-
-}
-
-- (void)didReceiveMemoryWarning
-{
-  [super didReceiveMemoryWarning];
 }
 
 #pragma mark - Table view data source
@@ -255,13 +300,13 @@
     return YES;
 }
 
-- (BOOL)searchBarShouldEndEditing:(UISearchBar *)searchBar
+- (BOOL)searchBarShouldEndEditing:(UISearchBar*)searchBar
 {
     self.searchBar.showsCancelButton = NO;
     return YES;
 }
 
-- (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar
+- (void)searchBarSearchButtonClicked:(UISearchBar*)searchBar
 {
     [searchBar resignFirstResponder];
     [self queryServerForSearchString:searchBar.text];
@@ -270,7 +315,7 @@
     [self loadingIndicator:YES];
 }
 
-- (void)searchBarCancelButtonClicked:(UISearchBar *)searchBar
+- (void)searchBarCancelButtonClicked:(UISearchBar*)searchBar
 {
     [self update];
     self.searchBar.showsCancelButton = NO;
@@ -300,22 +345,34 @@
 
 -(void)initSearchView
 {
-  self.searchResults = [[NSMutableArray alloc] init];
-
-  for (UIView *subView in self.searchDisplayController.searchBar.subviews) {
-    if([subView isKindOfClass: [UITextField class]]) {
-      [(UITextField *)subView setKeyboardAppearance: UIKeyboardAppearanceAlert];
+    self.searchResults = [[NSMutableArray alloc] init];
+#if __IPHONE_OS_VERSION_MAX_ALLOWED >= 80000
+    // iOS8 specific stuff
+    NSArray *subviews = self.searchController.searchBar.subviews;
+#else
+    // iOS7 specific stuff
+    NSArray *subviews = self.searchDisplayController.searchBar.subviews;
+#endif
+    for (UIView *subView in subviews) {
+        if ([subView isKindOfClass:[UITextField class]]) {
+            [(UITextField *)subView setKeyboardAppearance: UIKeyboardAppearanceAlert];
+        }
     }
-  }
-
+    
 }
 
 #pragma mark - Segue
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-  [self.searchDisplayController setActive:NO animated:YES];
+#if __IPHONE_OS_VERSION_MAX_ALLOWED >= 80000
+    // iOS8 specific stuff
+    [self.searchController setActive:NO];
+#else
+    // iOS7 specific stuff
+    [self.searchDisplayController setActive:NO animated:YES];
+#endif
   [self update];
-  if([[segue identifier] isEqualToString:kSegueToProgramDetail]) {
+  if ([[segue identifier] isEqualToString:kSegueToProgramDetail]) {
     if([sender isKindOfClass:[CatrobatProject class]]) {
       ProgramDetailStoreViewController* programDetailViewController = (ProgramDetailStoreViewController*)[segue destinationViewController];
       programDetailViewController.project = sender;
@@ -348,7 +405,6 @@
 - (void)update
 {
 //  [self.searchDisplayController.searchResultsTableView reloadData];
-    
     self.noSearchResultsLabel.hidden = [self.searchResults count] == 0 ? NO : YES;
     [self.tableView reloadData];
 }

@@ -36,6 +36,8 @@
 #import "BrickManager.h"
 #import "GDataXMLNode.h"
 
+#import "WhenScript.h"
+
 @interface Script()
 
 @property (nonatomic, readwrite) kBrickCategoryType brickCategoryType;
@@ -107,14 +109,14 @@
 
 - (void)startWithCompletion:(dispatch_block_t)completion
 {
-    NSDebug(@"Starting: %@", self.description);
+//    NSDebug(@"Starting: %@", NSStringFromClass([self class]));
+    NSLog(@"Starting: %@", NSStringFromClass([self class]));
     [self reset];
     self.completion = completion;
-    
-    if(self.hasActions) {
+
+    if ([self hasActions]) {
         [self removeAllActions];
-    }
-    else {
+    } else {
         [self runNextAction];
     }
 }
@@ -201,16 +203,20 @@
             if(!action || ! actionArray || ! sequence) {
                 abort();
             }
-            
+
             __weak Script* weakself = self;
+            __weak Brick* weakbrick = brick;
             [self runAction:sequence completion:^{
                 NSDebug(@"Finished: %@", sequence);
+//                if ([NSStringFromClass([weakself class]) isEqualToString:NSStringFromClass([WhenScript class])]) {
+                    NSLog(@"%@ calling runNextAction", NSStringFromClass([weakbrick class]));
+//                }
                 [weakself runNextAction];
             }];
         }
     } else {
         NSDebug(@"Finished Script: %@", [self class]);
-        if(self.completion) {
+        if (self.completion) {
             self.completion();
         }
     }
@@ -549,7 +555,7 @@
 #pragma mark - Description
 - (NSString*)description
 {
-    NSMutableString *ret = [[NSMutableString alloc] initWithString:@"Script"];
+    NSMutableString *ret = [[NSMutableString alloc] initWithString:NSStringFromClass([self class])];
     [ret appendFormat:@"(%@)", self.object.name];
     if ([self.brickList count] > 0) {
         [ret appendString:@"Bricks: \r"];
@@ -559,7 +565,6 @@
     } else {
         [ret appendString:@"Bricks array empty!\r"];
     }
-    
     return ret;
 }
 

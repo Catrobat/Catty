@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5056" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="62e-MX-z1C">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5056" systemVersion="14A329f" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="62e-MX-z1C">
     <dependencies>
-        <deployment defaultVersion="1792" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
     </dependencies>
     <scenes>
@@ -310,7 +309,7 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" tag="12" contentMode="left" text="Title" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Dv1-wv-zOc">
-                                            <rect key="frame" x="95" y="43" width="185" height="22"/>
+                                            <rect key="frame" x="95" y="43" width="185" height="21.5"/>
                                             <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                             <color key="highlightedColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -339,13 +338,13 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" tag="12" contentMode="left" text="Title" lineBreakMode="tailTruncation" numberOfLines="0" adjustsFontSizeToFit="NO" id="Oyd-DV-hcJ">
-                                            <rect key="frame" x="95" y="30" width="185" height="22"/>
+                                            <rect key="frame" x="95" y="30" width="185" height="21.5"/>
                                             <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                             <color key="highlightedColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         </label>
                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" tag="11" contentMode="scaleToFill" id="dd5-sU-Ffl">
-                                            <rect key="frame" x="20" y="16" width="50" height="50"/>
+                                            <rect key="frame" x="20" y="15.5" width="50" height="50.5"/>
                                         </imageView>
                                     </subviews>
                                 </tableViewCellContentView>
@@ -876,57 +875,47 @@
         <scene sceneID="wjs-h1-QeF">
             <objects>
                 <viewController id="TbK-7p-L88" customClass="SearchStoreViewController" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="Xq9-mZ-Ebc">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="njN-r5-saQ">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="519"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <subviews>
-                            <searchBar contentMode="redraw" text="" id="MLz-GC-klF">
-                                <rect key="frame" x="0.0" y="65" width="320" height="44"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                                <textInputTraits key="textInputTraits"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <searchBar key="tableHeaderView" contentMode="redraw" id="FI3-Xh-KKB">
+                            <rect key="frame" x="0.0" y="64" width="320" height="44"/>
+                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                            <textInputTraits key="textInputTraits"/>
+                        </searchBar>
+                        <prototypes>
+                            <tableViewCell appearanceType="aqua" contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="loadingCell" rowHeight="79" id="EB1-F1-c4E" customClass="DarkBlueGradientImageCell">
+                                <rect key="frame" x="0.0" y="130" width="320" height="79"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="EB1-F1-c4E" id="b8n-e6-Knx">
+                                    <rect key="frame" x="0.0" y="0.0" width="287" height="78"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" tag="12" contentMode="left" text="Title" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="oQJ-oI-4kc">
+                                            <rect key="frame" x="95" y="31" width="185" height="22"/>
+                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <color key="highlightedColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        </label>
+                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" tag="11" contentMode="scaleAspectFill" id="xPA-1X-jhY">
+                                            <rect key="frame" x="20" y="17" width="50" height="50"/>
+                                        </imageView>
+                                    </subviews>
+                                </tableViewCellContentView>
                                 <connections>
-                                    <outlet property="delegate" destination="TbK-7p-L88" id="PdD-Zr-MQk"/>
+                                    <outlet property="iconImageView" destination="xPA-1X-jhY" id="0AH-xw-tkb"/>
+                                    <outlet property="titleLabel" destination="oQJ-oI-4kc" id="t0c-ER-7ze"/>
                                 </connections>
-                            </searchBar>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="OJJ-Pc-e3v">
-                                <rect key="frame" x="0.0" y="109" width="320" height="458"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <prototypes>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="ImageCell" rowHeight="79" id="3vk-xD-kKL" customClass="DarkBlueGradientImageCell">
-                                        <rect key="frame" x="0.0" y="22" width="320" height="79"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="3vk-xD-kKL" id="Sm7-Ky-FOs">
-                                            <rect key="frame" x="0.0" y="0.0" width="287" height="78"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" tag="12" contentMode="left" text="Title" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="62B-tX-Guz">
-                                                    <rect key="frame" x="95" y="30" width="185" height="22"/>
-                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                                    <color key="highlightedColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                                </label>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" tag="11" contentMode="scaleAspectFill" id="93R-XB-pH8">
-                                                    <rect key="frame" x="20" y="16" width="50" height="50"/>
-                                                </imageView>
-                                            </subviews>
-                                        </tableViewCellContentView>
-                                        <connections>
-                                            <outlet property="iconImageView" destination="93R-XB-pH8" id="u69-bk-QFD"/>
-                                            <outlet property="titleLabel" destination="62B-tX-Guz" id="8qb-jp-7Pc"/>
-                                        </connections>
-                                    </tableViewCell>
-                                </prototypes>
-                            </tableView>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                    </view>
+                            </tableViewCell>
+                        </prototypes>
+                    </tableView>
                     <extendedEdge key="edgesForExtendedLayout" top="YES"/>
                     <tabBarItem key="tabBarItem" systemItem="search" id="AC0-7x-HPh"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics" barStyle="black"/>
                     <connections>
-                        <outlet property="searchBar" destination="MLz-GC-klF" id="ZoG-CW-6Hp"/>
-                        <outlet property="tableView" destination="OJJ-Pc-e3v" id="pPS-1o-Yjn"/>
+                        <outlet property="searchBar" destination="FI3-Xh-KKB" id="W7i-Sn-JfU"/>
+                        <outlet property="tableView" destination="njN-r5-saQ" id="7MF-lX-d2P"/>
                         <segue destination="5oV-85-Xov" kind="push" identifier="segueToProgramDetail" id="GnV-Zh-HB0"/>
                     </connections>
                 </viewController>
@@ -945,6 +934,6 @@
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
         <segue reference="aum-BR-x1G"/>
-        <segue reference="83p-dA-kpt"/>
+        <segue reference="GnV-Zh-HB0"/>
     </inferredMetricsTieBreakers>
 </document>
