@@ -275,11 +275,11 @@
         self.menuAxisLabel  = label;
     }
     NSArray* labelTextArray = [[NSArray alloc] initWithObjects:
-                               kUILabelTextBack,
-                               kUILabelTextRestart,
-                               kUILabelTextContinue,
-                               kUILabelTextScreenshot,
-                               kUILabelTextGrid, nil];
+                               kLocalizedBack,
+                               kLocalizedRestart,
+                               kLocalizedContinue,
+                               kLocalizedScreenshot,
+                               kLocalizedGrid, nil];
     NSArray* labelArray = [[NSArray alloc] initWithObjects:self.menuBackLabel,self.menuRestartLabel,self.menuContinueLabel, self.menuScreenshotLabel, self.menuAxisLabel,nil];
     for (int i = 0; i < [labelTextArray count]; ++i) {
         [self setupLabel:labelTextArray[i]
@@ -548,10 +548,10 @@
     previousScene.program = self.program;
     
     if (!self.program) {
-        [[[UIAlertView alloc] initWithTitle:kUIAlertViewTitleCantRestartProgram
+        [[[UIAlertView alloc] initWithTitle:kLocalizedCantRestartProgram
                                     message:nil
                                    delegate:self.menuView
-                          cancelButtonTitle:kUIAlertViewButtonTitleOK
+                          cancelButtonTitle:kLocalizedOK
                           otherButtonTitles:nil] show];
         return;
     }
@@ -631,26 +631,26 @@
 //- (void)actionSheet:(CatrobatActionSheet*)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
 //{
 //  NSString *buttonTitle = [actionSheet buttonTitleAtIndex:buttonIndex];
-//  if ([buttonTitle isEqualToString:kUIActionSheetButtonTitleCameraRoll]) {
+//  if ([buttonTitle isEqualToString:kLocalizedCameraRoll]) {
 //    /// Write to Camera Roll
 //    UIImageWriteToSavedPhotosAlbum(self.snapshotImage, nil, nil, nil);
-//    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:kUIAlertViewTitleScreenshotSavedToCameraRoll
+//    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:kLocalizedScreenshotSavedToCameraRoll
 //                                                    message:nil
 //                                                   delegate:self.menuView
-//                                          cancelButtonTitle:kUIAlertViewButtonTitleOK
+//                                          cancelButtonTitle:kLocalizedOK
 //                                          otherButtonTitles:nil];
 //    [alert show];
 //  }
 //
-//  if ([buttonTitle isEqualToString:kUIActionSheetButtonTitleProject]) {
+//  if ([buttonTitle isEqualToString:kLocalizedProject]) {
 //    NSString* path = [self.program projectPath];
 //    NSString *pngFilePath = [NSString stringWithFormat:@"%@/manual_screenshot.png",path];
 //    NSData *data = [NSData dataWithData:UIImagePNGRepresentation(self.snapshotImage)];
 //    [data writeToFile:pngFilePath atomically:YES];
-//    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:kUIAlertViewTitleScreenshotSavedToProject
+//    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:kLocalizedScreenshotSavedToProject
 //                                                    message:nil
 //                                                   delegate:self.menuView
-//                                          cancelButtonTitle:kUIAlertViewButtonTitleOK
+//                                          cancelButtonTitle:kLocalizedOK
 //                                          otherButtonTitles:nil];
 //    [alert show];
 //

@@ -31,7 +31,7 @@
 
 - (NSString*)brickTitle
 {
-    return kBrickCellSoundTitlePlaySound;
+    return kLocalizedPlaySound;
 }
 
 - (SKAction*)action

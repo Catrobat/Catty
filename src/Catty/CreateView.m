@@ -164,7 +164,7 @@
     CGFloat height = [self height];
     UILabel* descriptionTitleLabel = [[UILabel alloc] initWithFrame:CGRectMake(view.frame.size.width/15, height*0.35f, 155, 25)];
     [self configureTitleLabel:descriptionTitleLabel andHeight:height];
-    descriptionTitleLabel.text = kUILabelTextDescription;
+    descriptionTitleLabel.text = kLocalizedDescription;
     [view addSubview:descriptionTitleLabel];
     
     description = [description stringByReplacingOccurrencesOfString:@"<br>" withString:@""];
@@ -172,7 +172,7 @@
     
     
     if ((! description) || [description isEqualToString:@""]) {
-        description = kUILabelTextNoDescriptionAvailable;
+        description = kLocalizedNoDescriptionAvailable;
         
     }
     
@@ -291,7 +291,7 @@
     UIButton *downloadButton = [[RoundBorderedButton alloc] initWithFrame:CGRectMake(2*view.frame.size.width/3-10,view.frame.size.height*0.1f+[Util getScreenHeight]/4.5f-25, 105, 25)];
     downloadButton.tag = kDownloadButtonTag;
     downloadButton.titleLabel.font = [UIFont boldSystemFontOfSize:14];
-    [downloadButton setTitle:kUIButtonTitleDownload forState:UIControlStateNormal];
+    [downloadButton setTitle:kLocalizedDownload forState:UIControlStateNormal];
     [downloadButton setTintColor:[UIColor lightOrangeColor]];
     
     [downloadButton addTarget:target action:@selector(downloadButtonPressed) forControlEvents:UIControlEventTouchUpInside];
@@ -311,7 +311,7 @@
     playButton.tag = kPlayButtonTag;
     playButton.hidden = YES;
     playButton.titleLabel.font = [UIFont boldSystemFontOfSize:14];
-    [playButton setTitle:kUIButtonTitlePlay forState:UIControlStateNormal];
+    [playButton setTitle:kLocalizedPlay forState:UIControlStateNormal];
     [playButton addTarget:target action:@selector(playButtonPressed) forControlEvents:UIControlEventTouchUpInside];
     [playButton setTintColor:[UIColor lightOrangeColor]];
     
@@ -338,7 +338,7 @@
     CGFloat height = [self height];
     CGFloat offset = view.frame.size.height + height*0.05f;
     UILabel* informationLabel = [[UILabel alloc] initWithFrame:CGRectMake(view.frame.size.width/15, offset, 155, 25)];
-    informationLabel.text = kUILabelTextInformation;
+    informationLabel.text = kLocalizedInformation;
     [self configureTitleLabel:informationLabel andHeight:height];
     [view addSubview:informationLabel];
     offset += height*0.075;

@@ -67,7 +67,7 @@
 {
     [super viewDidLoad];
     [self loadFeaturedProjects];
-    self.navigationItem.title = kUIViewControllerTitleFeaturedPrograms;
+    self.navigationItem.title = kLocalizedFeaturedPrograms;
     //  CGFloat navigationBarHeight = self.navigationController.navigationBar.frame.size.height;
     //  self.tableView.contentInset = UIEdgeInsetsMake(navigationBarHeight, 0, 0, 0);
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
@@ -193,10 +193,10 @@
     if (data == nil) {
         if (self.shouldShowAlert) {
             self.shouldShowAlert = NO;
-            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:kUIAlertViewTitleStandard
-                                                                message:kUIAlertViewMessageSlowInternetConnection
+            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:kLocalizedPocketCode
+                                                                message:kLocalizedSlowInternetConnection
                                                                delegate:self.navigationController.visibleViewController
-                                                      cancelButtonTitle:kUIAlertViewButtonTitleOK
+                                                      cancelButtonTitle:kLocalizedOK
                                                       otherButtonTitles:nil];
             [alertView show];
         }
@@ -247,10 +247,10 @@
     if (data == nil) {
         if (self.shouldShowAlert) {
             self.shouldShowAlert = NO;
-            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:kUIAlertViewTitleStandard
-                                                                message:kUIAlertViewMessageSlowInternetConnection
+            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:kLocalizedPocketCode
+                                                                message:kLocalizedSlowInternetConnection
                                                                delegate:self.navigationController.visibleViewController
-                                                      cancelButtonTitle:kUIAlertViewButtonTitleOK
+                                                      cancelButtonTitle:kLocalizedOK
                                                       otherButtonTitles:nil];
             [alertView show];
         }

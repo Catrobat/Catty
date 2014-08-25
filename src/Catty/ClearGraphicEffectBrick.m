@@ -28,7 +28,7 @@
 
 - (NSString*)brickTitle
 {
-    return kBrickCellLookTitleClearGraphicEffect;
+    return kLocalizedClearGraphicEffect;
 }
 
 - (SKAction*)action

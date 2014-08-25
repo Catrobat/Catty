@@ -30,7 +30,7 @@
 
 - (NSString*)brickTitle
 {
-    return kBrickCellMotionTitleMoveNSteps;
+    return kLocalizedMoveNSteps;
 }
 
 -(void)performFromScript:(Script *)script

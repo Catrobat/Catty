@@ -351,7 +351,7 @@
     [self addSubview:self.pageControl];
     
     self.skipButton = [[UIButton alloc] initWithFrame:CGRectMake(self.scrollView.frame.size.width - 80, self.pageControl.frame.origin.y - ((30 - self.pageControl.frame.size.height)/2), 80, 30)];
-    [self.skipButton setTitle:kIntroViewButtonTitleSkip forState:UIControlStateNormal];
+    [self.skipButton setTitle:kLocalizedSkip forState:UIControlStateNormal];
     [self.skipButton addTarget:self action:@selector(skipIntroduction) forControlEvents:UIControlEventTouchUpInside];
     [self addSubview:self.skipButton];
     

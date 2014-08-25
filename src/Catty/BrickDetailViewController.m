@@ -118,9 +118,9 @@ NS_ENUM(NSInteger, ButtonIndex) {
     if (! _brickMenu) {
         if ([self isAnimateableBrick:self.brickCell]) {
 #if kIsFirstRelease // kIsFirstRelease
-            _brickMenu = [[CatrobatActionSheet alloc] initWithTitle:kUIAlertViewMessageFeatureComingSoon
+            _brickMenu = [[CatrobatActionSheet alloc] initWithTitle:kLocalizedThisFeatureIsComingSoon
                                                            delegate:self
-                                                  cancelButtonTitle:kUIActionSheetButtonTitleClose
+                                                  cancelButtonTitle:kLocalizedClose
                                              destructiveButtonTitle:[self deleteMenuItemNameWithBrickCell:self.brickCell]
                                                   otherButtonTitles:[self secondMenuItemWithBrickCell:self.brickCell],
                                                                     [self animateMenuItemWithBrickCell:self.brickCell],
@@ -128,7 +128,7 @@ NS_ENUM(NSInteger, ButtonIndex) {
 #else // kIsFirstRelease
             _brickMenu = [[CatrobatActionSheet alloc] initWithTitle:nil
                                                            delegate:self
-                                                  cancelButtonTitle:kUIActionSheetButtonTitleClose
+                                                  cancelButtonTitle:kLocalizedClose
                                              destructiveButtonTitle:[self deleteMenuItemNameWithBrickCell:self.brickCell]
                                                   otherButtonTitles:[self secondMenuItemWithBrickCell:self.brickCell],
                                                                     [self animateMenuItemWithBrickCell:self.brickCell],
@@ -136,16 +136,16 @@ NS_ENUM(NSInteger, ButtonIndex) {
 #endif // kIsFirstRelease
         } else {
 #if kIsFirstRelease // kIsFirstRelease
-            _brickMenu = [[CatrobatActionSheet alloc] initWithTitle:kUIAlertViewMessageFeatureComingSoon
+            _brickMenu = [[CatrobatActionSheet alloc] initWithTitle:kLocalizedThisFeatureIsComingSoon
                                                            delegate:self
-                                                  cancelButtonTitle:kUIActionSheetButtonTitleClose
+                                                  cancelButtonTitle:kLocalizedClose
                                              destructiveButtonTitle:[self deleteMenuItemNameWithBrickCell:self.brickCell]
                                                   otherButtonTitles:[self secondMenuItemWithBrickCell:self.brickCell],
                                                                     [self editFormulaMenuItemWithBrickCell:self.brickCell], nil];
 #else // kIsFirstRelease
             _brickMenu = [[CatrobatActionSheet alloc] initWithTitle:nil
                                                            delegate:self
-                                                  cancelButtonTitle:kUIActionSheetButtonTitleClose
+                                                  cancelButtonTitle:kLocalizedClose
                                              destructiveButtonTitle:[self deleteMenuItemNameWithBrickCell:self.brickCell]
                                                   otherButtonTitles:[self secondMenuItemWithBrickCell:self.brickCell],
                                                                     [self editFormulaMenuItemWithBrickCell:self.brickCell], nil];
@@ -221,9 +221,9 @@ NS_ENUM(NSInteger, ButtonIndex) {
 - (NSString *)deleteMenuItemNameWithBrickCell:(BrickCell *)cell
 {
     if ([cell isScriptBrick]) {
-        return kUIActionSheetButtonTitleDeleteScript;
+        return kLocalizedDeleteScript;
     }
-    return kUIActionSheetButtonTitleDeleteBrick;
+    return kLocalizedDeleteBrick;
 }
 
 - (NSString *)secondMenuItemWithBrickCell:(BrickCell *)cell
@@ -231,7 +231,7 @@ NS_ENUM(NSInteger, ButtonIndex) {
     if ([cell isScriptBrick]) {
         return nil;
     }
-    return kUIActionSheetButtonTitleCopyBrick;
+    return kLocalizedCopyBrick;
 }
 
 - (NSString *)animateMenuItemWithBrickCell:(BrickCell *)cell
@@ -239,7 +239,7 @@ NS_ENUM(NSInteger, ButtonIndex) {
     if ([cell isScriptBrick] || (! [self isAnimateableBrick:cell])) {
         return nil;
     }
-    return kUIActionSheetButtonTitleAnimateBricks;
+    return kLocalizedAnimateBricks;
 }
 
 - (NSString *)editFormulaMenuItemWithBrickCell:(BrickCell *)cell
@@ -247,7 +247,7 @@ NS_ENUM(NSInteger, ButtonIndex) {
     if ([cell isScriptBrick]) {
         return nil;
     }
-    return kUIActionSheetButtonTitleEditFormula;
+    return kLocalizedEditFormula;
 }
 
 // TODO: refactor later => use property in brick class for this...

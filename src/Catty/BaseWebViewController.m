@@ -28,6 +28,7 @@
 #import "Util.h"
 #import "ProgramDefines.h"
 #import "LoadingView.h"
+#import "Program.h"
 
 @interface BaseWebViewController ()
 @property (nonatomic, strong) UIWebView *webView;
@@ -285,65 +286,43 @@
 - (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType
 {
     
-    if ([request.URL.absoluteString rangeOfString:@"https://pocketcode.org/download/"].location != NSNotFound) {
-        //        [[UIApplication sharedApplication] openURL:url];
-        //        return NO;
-        NSDebug(@"Download");
-        NSString *param = nil;
-        NSArray *myArray = [request.URL.absoluteString componentsSeparatedByCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@"?"]];
-        param = myArray[0];
-        AppDelegate *appDelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
-        NSURL *url = [NSURL URLWithString:param];
-        appDelegate.fileManager.delegate = self;
-        param = nil;
-        NSRange start = [request.URL.absoluteString rangeOfString:@"="];
-        if (start.location != NSNotFound)
-        {
-            param = [request.URL.absoluteString substringFromIndex:start.location + start.length];
-            param = [param stringByReplacingOccurrencesOfString:@"+" withString:@" "];
-        }
-        NSFileManager *fileManager = [[NSFileManager alloc] init];
-        BOOL isDir;
-        NSString *path = [[NSString alloc] initWithFormat:@"%@/%@/%@", [Util applicationDocumentsDirectory], kProgramsFolder,param];
-        BOOL exists = [fileManager fileExistsAtPath:path isDirectory:&isDir];
-        if (exists) {
-            /* file exists */
-            if (isDir) {
-                /* file is a directory */
-                //                NSLog(@"already downloaded");
-                [Util alertWithText:kProgramAlreadyDownloaded];
-                // Please add here the code with alert view -> Program exists!
-            }
-        } else {
-            [appDelegate.fileManager downloadFileFromURL:url withName:param];
-            
-            param = nil;
-            start = [request.URL.absoluteString rangeOfString:@"download/"];
-            if (start.location != NSNotFound)
-            {
-                param = [request.URL.absoluteString substringFromIndex:start.location + start.length];
-                NSRange end = [param rangeOfString:@"."];
-                if (end.location != NSNotFound)
-                {
-                    param = [param substringToIndex:end.location];
-                }
-            }
-            
-            NSString *urlString = [NSString stringWithFormat:@"https://pocketcode.org/resources/thumbnails/%@_small.png",param];
-            
-            NSDebug(@"screenshot url is: %@", urlString);
-            NSURL *screenshotSmallUrl = [NSURL URLWithString:urlString];
-            [appDelegate.fileManager downloadScreenshotFromURL:screenshotSmallUrl andBaseUrl:url andName:param];
-            [self.loadingView show];
-        }
-        
-        // Please add here the code with alert view -> Program is downloading!
-        return NO;
-    }
-    else {
+    if ([request.URL.absoluteString rangeOfString:@"https://pocketcode.org/download/"].location == NSNotFound) {
         return YES;
     }
-    return YES;
+    NSDebug(@"Download");
+    NSString *param = nil;
+    NSArray *myArray = [request.URL.absoluteString componentsSeparatedByCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@"?"]];
+    param = myArray[0];
+    AppDelegate *appDelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
+    NSURL *url = [NSURL URLWithString:param];
+    appDelegate.fileManager.delegate = self;
+    param = nil;
+    NSRange start = [request.URL.absoluteString rangeOfString:@"="];
+    if (start.location != NSNotFound) {
+        param = [request.URL.absoluteString substringFromIndex:start.location + start.length];
+        param = [param stringByReplacingOccurrencesOfString:@"+" withString:@" "];
+    }
+    if ([Program programExists:param]) {
+        [Util alertWithText:kLocalizedProgramAlreadyDownloadedDescription];
+        return NO;
+    }
+    FileManager *fileManager = appDelegate.fileManager;
+    [fileManager downloadFileFromURL:url withName:param];
+    param = nil;
+    start = [request.URL.absoluteString rangeOfString:@"download/"];
+    if (start.location != NSNotFound) {
+        param = [request.URL.absoluteString substringFromIndex:start.location + start.length];
+        NSRange end = [param rangeOfString:@"."];
+        if (end.location != NSNotFound) {
+            param = [param substringToIndex:end.location];
+        }
+    }
+    NSString *urlString = [NSString stringWithFormat:@"https://pocketcode.org/resources/thumbnails/%@_small.png",param];
+    NSDebug(@"screenshot url is: %@", urlString);
+    NSURL *screenshotSmallUrl = [NSURL URLWithString:urlString];
+    [fileManager downloadScreenshotFromURL:screenshotSmallUrl andBaseUrl:url andName:param];
+    [self.loadingView show];
+    return NO;
 }
 
 #pragma mark - UIScrollViewDelegate

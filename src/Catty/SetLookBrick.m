@@ -31,7 +31,7 @@
 
 - (NSString*)brickTitle
 {
-    return ([self.object isBackground] ? kBrickCellLookTitleSetBackground : kBrickCellLookTitleSetLook);
+    return ([self.object isBackground] ? kLocalizedSetBackground : kLocalizedSetLook);
 }
 
 - (SKAction*)action

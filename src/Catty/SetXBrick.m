@@ -32,7 +32,7 @@
 
 - (NSString*)brickTitle
 {
-    return kBrickCellMotionTitleSetX;
+    return kLocalizedSetX;
 }
 
 - (SKAction*)action

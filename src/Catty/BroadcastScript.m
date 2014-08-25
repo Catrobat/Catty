@@ -27,7 +27,7 @@
 
 - (NSString*)brickTitle
 {
-    return kBrickCellControlTitleWhenIReceive;
+    return kLocalizedWhenIReceive;
 }
 
 -(NSString*)description

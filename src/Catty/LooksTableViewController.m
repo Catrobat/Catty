@@ -82,9 +82,9 @@ static NSCharacterSet *blockedCharacterSet = nil;
     NSDictionary *showDetails = [[NSUserDefaults standardUserDefaults] objectForKey:kUserDetailsShowDetailsKey];
     NSNumber *showDetailsProgramsValue = (NSNumber*)[showDetails objectForKey:kUserDetailsShowDetailsLooksKey];
     self.useDetailCells = [showDetailsProgramsValue boolValue];
-    self.title = self.navigationItem.title = kUIViewControllerTitleLooks;
+    self.title = self.navigationItem.title = kLocalizedLooks;
     [self initNavigationBar];
-    self.placeHolderView.title = kUIViewControllerPlaceholderTitleLooks;
+    self.placeHolderView.title = kLocalizedLooks;
     [self showPlaceHolder:(! (BOOL)[self.object.lookList count])];
     [self setupToolBar];
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
@@ -95,15 +95,15 @@ static NSCharacterSet *blockedCharacterSet = nil;
 {
     NSMutableArray *options = [NSMutableArray array];
     if ([self.object.lookList count]) {
-        [options addObject:kUIActionSheetButtonTitleDeleteLooks];
+        [options addObject:kLocalizedDeleteLooks];
     }
     if (self.useDetailCells) {
-        [options addObject:kUIActionSheetButtonTitleHideDetails];
+        [options addObject:kLocalizedHideDetails];
     } else {
-        [options addObject:kUIActionSheetButtonTitleShowDetails];
+        [options addObject:kLocalizedShowDetails];
     }
 #if kIsFirstRelease // kIsFirstRelease
-    CatrobatActionSheet *actionSheet = [Util actionSheetWithTitle:kUIAlertViewMessageFeatureComingSoon
+    CatrobatActionSheet *actionSheet = [Util actionSheetWithTitle:kLocalizedThisFeatureIsComingSoon
                                                          delegate:self
                                            destructiveButtonTitle:nil
                                                 otherButtonTitles:options
@@ -118,7 +118,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
         }
     }
 #else // kIsFirstRelease
-    [Util actionSheetWithTitle:kUIActionSheetTitleEditLooks
+    [Util actionSheetWithTitle:kLocalizedEditLooks
                       delegate:self
         destructiveButtonTitle:nil
              otherButtonTitles:options
@@ -283,7 +283,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
     if (self.useDetailCells && [cell isKindOfClass:[DarkBlueGradientImageDetailCell class]]) {
         DarkBlueGradientImageDetailCell *detailCell = (DarkBlueGradientImageDetailCell*)imageCell;
         detailCell.topLeftDetailLabel.textColor = [UIColor whiteColor];
-        detailCell.topLeftDetailLabel.text = [NSString stringWithFormat:@"%@:", kUILabelTextMeasure];
+        detailCell.topLeftDetailLabel.text = [NSString stringWithFormat:@"%@:", kLocalizedMeasure];
         detailCell.topRightDetailLabel.textColor = [UIColor whiteColor];
 
         NSValue *value = [self.dataCache objectForKey:look.fileName];
@@ -298,7 +298,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
                                                (unsigned long)dimensions.width,
                                                (unsigned long)dimensions.height];
         detailCell.bottomLeftDetailLabel.textColor = [UIColor whiteColor];
-        detailCell.bottomLeftDetailLabel.text = [NSString stringWithFormat:@"%@:", kUILabelTextSize];
+        detailCell.bottomLeftDetailLabel.text = [NSString stringWithFormat:@"%@:", kLocalizedSize];
         detailCell.bottomRightDetailLabel.textColor = [UIColor whiteColor];
         NSUInteger resultSize = [self.object fileSizeOfLook:look];
         NSNumber *sizeOfSound = [NSNumber numberWithUnsignedInteger:resultSize];
@@ -355,9 +355,9 @@ static NSCharacterSet *blockedCharacterSet = nil;
     [cell hideUtilityButtonsAnimated:YES];
     if (index == 0) {
         // More button was pressed
-        NSArray *options = @[kUIActionSheetButtonTitleCopy, kUIActionSheetButtonTitleRename];
+        NSArray *options = @[kLocalizedCopy, kLocalizedRename];
 #if kIsFirstRelease // kIsFirstRelease
-        CatrobatActionSheet *actionSheet = [Util actionSheetWithTitle:kUIAlertViewMessageFeatureComingSoon
+        CatrobatActionSheet *actionSheet = [Util actionSheetWithTitle:kLocalizedThisFeatureIsComingSoon
                                                              delegate:self
                                                destructiveButtonTitle:nil
                                                     otherButtonTitles:options
@@ -371,7 +371,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
             }
         }
 #else // kIsFirstRelease
-        CatrobatActionSheet *actionSheet = [Util actionSheetWithTitle:kUIActionSheetTitleEditLook
+        CatrobatActionSheet *actionSheet = [Util actionSheetWithTitle:kLocalizedEditLook
                                                              delegate:self
                                                destructiveButtonTitle:nil
                                                     otherButtonTitles:options
@@ -394,8 +394,8 @@ static NSCharacterSet *blockedCharacterSet = nil;
                            canceledAction:nil
                                withObject:indexPath
                                    target:self
-                             confirmTitle:kUIAlertViewTitleDeleteSingleLook
-                           confirmMessage:kUIAlertViewMessageIrreversibleAction];
+                             confirmTitle:kLocalizedDeleteThisLook
+                           confirmMessage:kLocalizedIrreversibleAction];
 #endif // kIsFirstRelease
     }
 }
@@ -456,8 +456,8 @@ static NSCharacterSet *blockedCharacterSet = nil;
         imageFileName = [imageFileNameParts firstObject];
         NSString *imageFileNameExtension = [imageFileNameParts lastObject];
         if ((! [imageFileName length]) || (! [imageFileNameExtension length])) {
-            imageFileName = kDefaultImportedImageName;
-            imageFileNameExtension = kDefaultImportedImageNameExtension;
+            imageFileName = kLocalizedMyImage;
+            imageFileNameExtension = kLocalizedMyImageExtension;
         }
 
         NSData *imageData = UIImagePNGRepresentation(image);
@@ -492,14 +492,14 @@ static NSCharacterSet *blockedCharacterSet = nil;
                     [Util askUserForTextAndPerformAction:@selector(addLookActionWithName:look:)
                                                   target:self
                                               withObject:look
-                                             promptTitle:kUIAlertViewTitleAddImage
-                                           promptMessage:[NSString stringWithFormat:@"%@:", kUIAlertViewMessageImageName]
+                                             promptTitle:kLocalizedAddImage
+                                           promptMessage:[NSString stringWithFormat:@"%@:", kLocalizedImageName]
                                              promptValue:look.name
-                                       promptPlaceholder:kUIAlertViewPlaceholderEnterImageName
+                                       promptPlaceholder:kLocalizedEnterYourImageNameHere
                                           minInputLength:kMinNumOfLookNameCharacters
                                           maxInputLength:kMaxNumOfLookNameCharacters
                                      blockedCharacterSet:[self blockedCharacterSet]
-                                invalidInputAlertMessage:kUIAlertViewMessageInvalidImageName];
+                                invalidInputAlertMessage:kLocalizedInvalidImageNameDescription];
                 }];
             }];
             NSOperationQueue *queue = [[NSOperationQueue alloc] init];
@@ -566,14 +566,14 @@ static NSCharacterSet *blockedCharacterSet = nil;
             [Util askUserForTextAndPerformAction:@selector(renameLookActionToName:look:)
                                           target:self
                                       withObject:look
-                                     promptTitle:kUIAlertViewTitleRenameImage
-                                   promptMessage:[NSString stringWithFormat:@"%@:", kUIAlertViewMessageImageName]
+                                     promptTitle:kLocalizedRenameImage
+                                   promptMessage:[NSString stringWithFormat:@"%@:", kLocalizedImageName]
                                      promptValue:look.name
-                               promptPlaceholder:kUIAlertViewPlaceholderEnterImageName
+                               promptPlaceholder:kLocalizedEnterYourImageNameHere
                                   minInputLength:kMinNumOfLookNameCharacters
                                   maxInputLength:kMaxNumOfLookNameCharacters
                              blockedCharacterSet:[self blockedCharacterSet]
-                        invalidInputAlertMessage:kUIAlertViewMessageInvalidImageName];
+                        invalidInputAlertMessage:kLocalizedInvalidImageNameDescription];
         }
     } else if (actionSheet.tag == kAddLookActionSheetTag) {
         NSInteger importFromCameraIndex = NSIntegerMin;
@@ -613,18 +613,18 @@ static NSCharacterSet *blockedCharacterSet = nil;
     if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
         NSArray *availableMediaTypes = [UIImagePickerController availableMediaTypesForSourceType:UIImagePickerControllerSourceTypeCamera];
         if ([availableMediaTypes containsObject:(NSString *)kUTTypeImage]) {
-            [buttonTitles addObject:kUIActionSheetButtonTitleFromCamera];
+            [buttonTitles addObject:kLocalizedFromCamera];
         }
     }
     if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeSavedPhotosAlbum]) {
         NSArray *availableMediaTypes = [UIImagePickerController availableMediaTypesForSourceType:UIImagePickerControllerSourceTypeSavedPhotosAlbum];
         if ([availableMediaTypes containsObject:(NSString *)kUTTypeImage]) {
-            [buttonTitles addObject:kUIActionSheetButtonTitleChooseImage];
+            [buttonTitles addObject:kLocalizedChooseImage];
         }
     }
-//    [buttonTitles addObject:kUIActionSheetButtonTitleDrawNewImage];
+//    [buttonTitles addObject:kLocalizedDrawNewImage];
 
-    [Util actionSheetWithTitle:kUIActionSheetTitleAddLook
+    [Util actionSheetWithTitle:kLocalizedAddLook
                       delegate:self
         destructiveButtonTitle:nil
              otherButtonTitles:buttonTitles
@@ -662,7 +662,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
     UIBarButtonItem *flexItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace
                                                                               target:nil
                                                                               action:nil];
-    UIBarButtonItem *deleteButton = [[UIBarButtonItem alloc] initWithTitle:kUIBarButtonItemTitleDelete
+    UIBarButtonItem *deleteButton = [[UIBarButtonItem alloc] initWithTitle:kLocalizedDelete
                                                                      style:UIBarButtonItemStylePlain
                                                                     target:self
                                                                     action:@selector(confirmDeleteSelectedLooksAction:)];

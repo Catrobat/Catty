@@ -31,7 +31,7 @@
 
 - (NSString*)brickTitle
 {
-    return kBrickCellLookTitleChangeGhostEffectByN;
+    return kLocalizedChangeGhostEffectByN;
 }
 
 - (SKAction*)action
