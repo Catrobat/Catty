@@ -27,7 +27,7 @@
 
 - (NSString*)brickTitle
 {
-    return kBrickCellControlTitleWhenTapped;
+    return kLocalizedWhenTapped;
 }
 
 - (GDataXMLElement*)toXMLforObject:(SpriteObject *)spriteObject

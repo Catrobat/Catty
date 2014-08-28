@@ -59,7 +59,7 @@
                                                         UIViewAutoresizingFlexibleBottomMargin;
     _placeholderDescriptionLabel.textAlignment = NSTextAlignmentCenter;
     [_placeholderDescriptionLabel setFont:[UIFont systemFontOfSize:25]];
-    _placeholderDescriptionLabel.text = [NSString stringWithFormat:kUIViewControllerPlaceholderDescriptionStandard,
+    _placeholderDescriptionLabel.text = [NSString stringWithFormat:kLocalizedTapPlusToAdd,
                                              _title];
     _placeholderDescriptionLabel.backgroundColor = UIColor.clearColor;
     _placeholderDescriptionLabel.textColor = UIColor.skyBlueColor;
@@ -71,7 +71,7 @@
 - (void)setTitle:(NSString *)title
 {
     if (title.length) {
-        self.placeholderDescriptionLabel.text = [NSString stringWithFormat:kUIViewControllerPlaceholderDescriptionStandard,
+        self.placeholderDescriptionLabel.text = [NSString stringWithFormat:kLocalizedTapPlusToAdd,
                                                  title];
     }
 }

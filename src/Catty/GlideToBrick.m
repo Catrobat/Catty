@@ -49,7 +49,7 @@
 
 - (NSString*)brickTitle
 {
-    return kBrickCellMotionTitleGlideTo;
+    return kLocalizedGlideTo;
 }
 
 #pragma mark - override

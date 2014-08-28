@@ -28,7 +28,7 @@
 
 - (NSString*)brickTitle
 {
-    return kBrickCellMotionTitlePlaceAt;
+    return kLocalizedPlaceAt;
 }
 
 - (SKAction*)action

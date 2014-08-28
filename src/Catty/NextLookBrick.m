@@ -29,7 +29,7 @@
 
 - (NSString*)brickTitle
 {
-    return ([self.object isBackground] ? kBrickCellLookTitleNextBackground : kBrickCellLookTitleNextLook);
+    return ([self.object isBackground] ? kLocalizedNextBackground : kLocalizedNextLook);
 }
 
 - (SKAction*)action

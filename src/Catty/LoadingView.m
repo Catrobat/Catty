@@ -90,7 +90,7 @@
   self.loadingLabel = [[UILabel alloc] initWithFrame:CGRectMake(15, 65, 240, 20)];
   self.loadingLabel.backgroundColor = [UIColor clearColor];
   self.loadingLabel.textColor = [UIColor blueGrayColor];
-  NSString* loadingText = [[NSString alloc] initWithFormat:@"%@...", kUILabelTextLoading];
+  NSString* loadingText = [[NSString alloc] initWithFormat:@"%@...", kLocalizedLoading];
   self.loadingLabel.text = loadingText;
   self.loadingLabel.textAlignment = NSTextAlignmentCenter;
   self.loadingLabel.font = [UIFont boldSystemFontOfSize:16];

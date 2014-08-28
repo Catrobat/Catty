@@ -28,7 +28,7 @@
 
 - (NSString*)brickTitle
 {
-    return kBrickCellLookTitleChangeSizeByN;
+    return kLocalizedChangeSizeByN;
 }
 
 - (SKAction*)action

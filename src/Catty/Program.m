@@ -90,8 +90,8 @@
         [fileManager createDirectory:soundsDirName];
     }
 
-    [program addObjectWithName:kGeneralBackgroundObjectName];
-    [program addObjectWithName:kGeneralDefaultObjectName];
+    [program addObjectWithName:kLocalizedBackground];
+    [program addObjectWithName:kLocalizedMyObject];
     NSLog(@"%@", [program description]);
     return program;
 }
@@ -446,8 +446,8 @@
 - (void)translateDefaultProgram
 {
     SpriteObject *backgroundObject = [self.objectList objectAtIndex:kBackgroundObjectIndex];
-    backgroundObject.name = kGeneralBackgroundObjectName;
-    [self renameToProgramName:kDefaultProgramName];
+    backgroundObject.name = kLocalizedBackground;
+    [self renameToProgramName:kLocalizedMyFirstProgram];
 }
 
 - (void)renameToProgramName:(NSString *)programName

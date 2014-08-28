@@ -27,7 +27,7 @@
 
 - (NSString*)brickTitle
 {
-    return kBrickCellLookTitleHide;
+    return kLocalizedHide;
 }
 
 - (SKAction*)action

@@ -117,7 +117,7 @@
 
 - (void)initNavigationBar
 {
-    self.title = self.navigationItem.title = kUIViewControllerTitleDetails;
+    self.title = self.navigationItem.title = kLocalizedDetails;
 }
 
 - (void)viewWillDisappear:(BOOL)animated

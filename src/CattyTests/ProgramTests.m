@@ -56,7 +56,7 @@
 
 - (void)setupForNewProgram
 {
-    self.program = [Program defaultProgramWithName:kGeneralNewDefaultProgramName];
+    self.program = [Program defaultProgramWithName:kLocalizedNewProgram];
 }
 
 - (void)testNewProgramIfProjectFolderExists

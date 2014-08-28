@@ -32,7 +32,7 @@
 
 - (NSString*)brickTitle
 {
-    return kBrickCellMotionTitleIfOnEdgeBounce;
+    return kLocalizedIfIsTrueThenOnEdgeBounce;
 }
 
 - (void)performFromScript:(Script*)script;

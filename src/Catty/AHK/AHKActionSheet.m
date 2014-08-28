@@ -91,7 +91,7 @@ static const CGFloat kCancelButtonShadowHeightRatio = 0.333f;
         _title = [title copy];
         // *** CATROBAT-TEAM MODIFICATION BEGIN ***
 //        _cancelButtonTitle = @"Cancel"; // before
-        _cancelButtonTitle = kUIActionSheetButtonTitleCancel; // after
+        _cancelButtonTitle = kLocalizedCancel; // after
         // *** CATROBAT-TEAM MODIFICATION END ***
     }
 

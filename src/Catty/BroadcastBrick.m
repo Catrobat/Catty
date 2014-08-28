@@ -29,7 +29,7 @@
 
 - (NSString*)brickTitle
 {
-    return kBrickCellControlTitleBroadcast;
+    return kLocalizedBroadcast;
 }
 
 - (id)initWithMessage:(NSString *)message

@@ -334,7 +334,7 @@
 - (void)initNoSearchResultsLabel
 {
     self.noSearchResultsLabel = [[UILabel alloc] init];
-    self.noSearchResultsLabel.text = kUILabelNoSearchResults;
+    self.noSearchResultsLabel.text = kLocalizedNoSearchResults;
     self.noSearchResultsLabel.textAlignment = NSTextAlignmentCenter;
     self.noSearchResultsLabel.textColor = [UIColor lightOrangeColor];
     self.noSearchResultsLabel.tintColor = [UIColor lightOrangeColor];
