@@ -21,34 +21,33 @@
  */
 
 #import <Foundation/Foundation.h>
+#import "ExternInternRepresentationMapping.h"
+#import "InternFormulaTokenSelection.h"
+#import "InternToken.h"
+#import "InternFormulaParser.h"
+#import "InternFormulaUtils.h"
+#import "InternFormulaKeyboardAdapter.h"
 
 typedef enum {
-	SIN = 500,
-    COS,
-    TAN,
-    LN,
-    LOG,
-    SQRT,
-    RAND,
-    ROUND,
-    ABS,
-    PI_F,
-    ARCSIN,
-    ARCCOS,
-    ARCTAN,
-    MAX,
-    MIN,
-    TRUE_F,
-    FALSE_F,
-    MOD,
-    POW,
-    EXP
-} Function;
+    LEFT = 600,
+    MIDDLE,
+    RIGHT
+    
+}CursorTokenPosition;
 
-@interface Functions : NSObject
+typedef enum{
+    AM_LEFT = 700,
+    AM_RIGHT,
+    SELECT,
+    DO_NOT_MODIFY
+}CursorTokenPropertiesAfterModification;
 
-+ (BOOL)isFunction:(NSString*)value;
-+ (Function)getFunctionByValue:(NSString*)value;
-+ (NSString*)getName:(Function)function;
+typedef enum TokenSelectionType{
+    USER_SELECTION = 800,
+    PARSER_ERROR_SELECTION
+}TokenSelectionType;
+
+
+@interface InternFormula : NSObject
 
 @end

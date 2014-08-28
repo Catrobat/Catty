@@ -20,35 +20,38 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import <Foundation/Foundation.h>
+#import "ExternToken.h"
 
-typedef enum {
-	SIN = 500,
-    COS,
-    TAN,
-    LN,
-    LOG,
-    SQRT,
-    RAND,
-    ROUND,
-    ABS,
-    PI_F,
-    ARCSIN,
-    ARCCOS,
-    ARCTAN,
-    MAX,
-    MIN,
-    TRUE_F,
-    FALSE_F,
-    MOD,
-    POW,
-    EXP
-} Function;
+@interface ExternToken ()
 
-@interface Functions : NSObject
+@property (nonatomic) int startIndex;
+@property (nonatomic) int endIndex;
 
-+ (BOOL)isFunction:(NSString*)value;
-+ (Function)getFunctionByValue:(NSString*)value;
-+ (NSString*)getName:(Function)function;
+@end
+
+@implementation ExternToken
+
+-(ExternToken *)initWithIndex:(int)startIndex andEndIndex:(int)endIndex
+{
+    self = [super init];
+    if(self)
+    {
+        self.startIndex = startIndex;
+        self.endIndex = endIndex;
+    }
+    
+    return self;
+    
+}
+
+-(int)getStartIndex
+{
+    return self.startIndex;
+}
+
+-(int)getEndIndex
+{
+    return self.endIndex;
+}
 
 @end

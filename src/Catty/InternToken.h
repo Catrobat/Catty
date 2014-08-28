@@ -36,7 +36,7 @@ typedef enum {
 } ParserDelimiters;
 
 typedef enum {
-	TOKEN_TYPE_NUMBER,
+	TOKEN_TYPE_NUMBER = 300,
     TOKEN_TYPE_OPERATOR,
     TOKEN_TYPE_FUNCTION_NAME,
     TOKEN_TYPE_BRACKET_OPEN,
@@ -47,9 +47,28 @@ typedef enum {
     TOKEN_TYPE_FUNCTION_PARAMETER_DELIMITER,
     TOKEN_TYPE_PERIOD,
     TOKEN_TYPE_USER_VARIABLE,
+    TOKEN_TYPE_STRING,
     TOKEN_TYPE_PARSER_END_OF_FILE
 } InternTokenType;
 
+typedef enum KeyboardButtonTypes
+{
+    CLEAR = 400
+}KeyboardButtonTypes;
+
+typedef enum KeyboardNumbers
+{
+    TOKEN_TYPE_NUMBER_0 = 1,
+    TOKEN_TYPE_NUMBER_1,
+    TOKEN_TYPE_NUMBER_2,
+    TOKEN_TYPE_NUMBER_3,
+    TOKEN_TYPE_NUMBER_4,
+    TOKEN_TYPE_NUMBER_5,
+    TOKEN_TYPE_NUMBER_6,
+    TOKEN_TYPE_NUMBER_7,
+    TOKEN_TYPE_NUMBER_8,
+    TOKEN_TYPE_NUMBER_9,
+}KeyboardNumbers;
 
 @interface InternToken : NSObject
 
@@ -69,8 +88,11 @@ typedef enum {
 - (BOOL)isSensor;
 - (BOOL)isEndOfFileToken;
 - (BOOL)isUserVariable;
+- (BOOL)isString;
 - (void)appendToTokenStringValue:(NSString*)stringToAppend;
 - (void)appendToTokenStringValueWithArray:(NSArray*)internTokensToAppend;
 - (BOOL)isEqualTo:(InternToken*)token;
+- (InternTokenType)getInternTokenType;
+- (NSString *)getTokenStringValue;
 
 @end

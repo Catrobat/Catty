@@ -22,33 +22,10 @@
 
 #import <Foundation/Foundation.h>
 
-typedef enum {
-	SIN = 500,
-    COS,
-    TAN,
-    LN,
-    LOG,
-    SQRT,
-    RAND,
-    ROUND,
-    ABS,
-    PI_F,
-    ARCSIN,
-    ARCCOS,
-    ARCTAN,
-    MAX,
-    MIN,
-    TRUE_F,
-    FALSE_F,
-    MOD,
-    POW,
-    EXP
-} Function;
+@interface ExternToken : NSObject
 
-@interface Functions : NSObject
-
-+ (BOOL)isFunction:(NSString*)value;
-+ (Function)getFunctionByValue:(NSString*)value;
-+ (NSString*)getName:(Function)function;
+-(ExternToken *)initWithIndex:(int)startIndex andEndIndex:(int)endIndex;
+-(int)getStartIndex;
+-(int)getEndIndex;
 
 @end

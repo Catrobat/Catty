@@ -19,36 +19,23 @@
  *  You should have received a copy of the GNU Affero General Public License
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
-
 #import <Foundation/Foundation.h>
 
-typedef enum {
-	SIN = 500,
-    COS,
-    TAN,
-    LN,
-    LOG,
-    SQRT,
-    RAND,
-    ROUND,
-    ABS,
-    PI_F,
-    ARCSIN,
-    ARCCOS,
-    ARCTAN,
-    MAX,
-    MIN,
-    TRUE_F,
-    FALSE_F,
-    MOD,
-    POW,
-    EXP
-} Function;
+@interface ExternInternRepresentationMapping : NSObject
 
-@interface Functions : NSObject
+-(ExternInternRepresentationMapping *)init;
+-(void)putMappingWithStart:(int)externStringStartIndex
+                    andEnd:(int)externStringEndIndex
+        andInternListIndex:(int)internListIndex;
 
-+ (BOOL)isFunction:(NSString*)value;
-+ (Function)getFunctionByValue:(NSString*)value;
-+ (NSString*)getName:(Function)function;
+-(int)getExternTokenStartIndex:(int)internIndex;
+
+-(int)getExternTokenEndIndex:(int)internIndex;
+
+-(int)getInternTokenByExternIndex:(int)externIndex;
+
+-(int)getExternTokenStartOffset:(int)externIndex
+             withInternOffsetTo:(int)internOffsetTo;
+
 
 @end

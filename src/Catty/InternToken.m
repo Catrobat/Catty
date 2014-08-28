@@ -98,6 +98,11 @@
     return self.internTokenType == TOKEN_TYPE_USER_VARIABLE;
 }
 
+- (BOOL)isString
+{
+    return self.internTokenType == TOKEN_TYPE_STRING;
+}
+
 - (void)appendToTokenStringValue:(NSString*)stringToAppend
 {
     self.tokenStringValue = [[NSString alloc] initWithFormat:@"%@%@", self.tokenStringValue, stringToAppend];
@@ -114,6 +119,16 @@
 - (BOOL)isEqualTo:(InternToken*)token
 {
     return self.internTokenType == token.internTokenType && ((self.tokenStringValue == nil && token.tokenStringValue == nil) || [self.tokenStringValue isEqualToString:token.tokenStringValue]);
+}
+
+-(InternTokenType)getInternTokenType
+{
+    return self.internTokenType;
+}
+
+-(NSString *)getTokenStringValue
+{
+    return self.tokenStringValue;
 }
 
 @end

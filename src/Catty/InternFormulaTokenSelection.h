@@ -21,34 +21,16 @@
  */
 
 #import <Foundation/Foundation.h>
+#import <InternFormula.h>
 
-typedef enum {
-	SIN = 500,
-    COS,
-    TAN,
-    LN,
-    LOG,
-    SQRT,
-    RAND,
-    ROUND,
-    ABS,
-    PI_F,
-    ARCSIN,
-    ARCCOS,
-    ARCTAN,
-    MAX,
-    MIN,
-    TRUE_F,
-    FALSE_F,
-    MOD,
-    POW,
-    EXP
-} Function;
+@interface InternFormulaTokenSelection : NSObject
 
-@interface Functions : NSObject
-
-+ (BOOL)isFunction:(NSString*)value;
-+ (Function)getFunctionByValue:(NSString*)value;
-+ (NSString*)getName:(Function)function;
+-(BOOL)equals:(id)objectToCompare;
+-(NSInteger)getStartIndex;
+-(NSInteger)getEndIndex;
+-(enum TokenSelectionType)getToketSelectionType;
+-(InternFormulaTokenSelection *)initWithTokenSelectionType:(enum TokenSelectionType)tokenSelectionType
+                                 internTokenSelectionStart:(NSInteger)internTokenSelectionStart
+                                   internTokenSelectionEnd:(NSInteger)internTokenSelectionEnd;
 
 @end

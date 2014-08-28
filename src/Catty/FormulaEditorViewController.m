@@ -162,6 +162,13 @@ const float TEXT_FIELD_HEIGHT = 45;
         NSString *number = button.titleLabel.text;
         self.formulaEditorTextField.text = [self.formulaEditorTextField.text stringByAppendingString:number];
         [self inputDidChange:self.formulaEditorTextField];
+        if(PLUS == [sender tag])
+        {
+            NSLog(@"Plus: %ld", (long)[sender tag]);
+        }else{
+            NSLog(@"Beschreibung: %ld", (long)[sender tag]);
+        }
+        
     }
 }
 
