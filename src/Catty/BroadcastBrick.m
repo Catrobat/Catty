@@ -25,8 +25,6 @@
 
 @implementation BroadcastBrick
 
-@synthesize broadcastMessage = _message;
-
 - (NSString*)brickTitle
 {
     return kLocalizedBroadcast;
@@ -44,9 +42,12 @@
 
 - (SKAction*)action
 {
+    __weak SpriteObject *weakObject = self.object;
+    __weak NSString *weakBroadcastMessage = self.broadcastMessage;
+    __weak BroadcastBrick *weakSelf = self;
     return [SKAction runBlock:^{
-        NSDebug(@"Performing: %@", self.description);
-        [self.object broadcast:self.broadcastMessage];
+        NSDebug(@"Performing: %@", [weakSelf description]);
+        [weakObject broadcast:weakBroadcastMessage];
     }];
 }
 

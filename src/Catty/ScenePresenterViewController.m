@@ -524,7 +524,7 @@
 
 - (void)restartProgram:(UIButton*)sender
 {
-//    [self resetSpriteObjects]; <- XXX: this call should not be needed any more... in next line the program is completely loaded from disk again!
+    [self resetSpriteObjects];
     self.program = [Program programWithLoadingInfo:[Util programLoadingInfoForProgramWithName:[Util lastProgram]]];
     for (SpriteObject *sprite in self.program.objectList) {
         sprite.broadcastWaitDelegate = self.broadcastWaitHandler;
