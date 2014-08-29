@@ -316,18 +316,10 @@
         return nil;
 
     NSDebug(@"ProjectResolution: width/height:  %f / %f", program.header.screenWidth.floatValue, program.header.screenHeight.floatValue);
-
-    // setting effect
-    for (SpriteObject *sprite in program.objectList)
-    {
-        //sprite.spriteManagerDelegate = self;
-        //sprite.broadcastWaitDelegate = self.broadcastWaitHandler;
-        for (Script *script in sprite.scriptList) {
-            for (Brick *brick in script.brickList) {
-                brick.object = sprite;
-            }
-        }
-    }
+//    for (SpriteObject *sprite in program.objectList) {
+//        sprite.spriteManagerDelegate = self;
+//        sprite.broadcastWaitDelegate = self.broadcastWaitHandler;
+//    }
     [Util setLastProgram:program.header.programName];
     return program;
 }

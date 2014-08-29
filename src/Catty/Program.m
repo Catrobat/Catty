@@ -111,16 +111,6 @@
 
     NSLog(@"%@", [program description]);
     NSDebug(@"ProjectResolution: width/height:  %f / %f", program.header.screenWidth.floatValue, program.header.screenHeight.floatValue);
-
-    // setting effect
-    for (SpriteObject *sprite in program.objectList) {
-        for (Script *script in sprite.scriptList) {
-            for (Brick *brick in script.brickList) {
-                brick.object = sprite;
-            }
-        }
-    }
-
     [self updateLastModificationTimeForProgramWithName:loadingInfo.visibleName];
     return program;
 }
