@@ -27,6 +27,8 @@
 #import "InternFormulaParser.h"
 #import "InternFormulaUtils.h"
 #import "InternFormulaKeyboardAdapter.h"
+#import "InternToExternGenerator.h"
+#import "InternFormulaState.h"
 
 typedef enum {
     LEFT = 600,
@@ -49,5 +51,7 @@ typedef enum TokenSelectionType{
 
 
 @interface InternFormula : NSObject
-
+-(InternFormula *)initWithInternTokenList:(NSMutableArray *)internTokenList
+              internFormulaTokenSelection:(InternFormulaTokenSelection *)internFormulaTokenSelection
+                     externCursorPosition:(int)externCursorPosition;
 @end

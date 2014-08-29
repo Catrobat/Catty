@@ -94,5 +94,6 @@ typedef enum KeyboardNumbers
 - (BOOL)isEqualTo:(InternToken*)token;
 - (InternTokenType)getInternTokenType;
 - (NSString *)getTokenStringValue;
+- (InternToken *)deepCopy;
 
 @end

@@ -117,6 +117,8 @@
 		92C37A56185627A300547C1E /* ClearGrafficEffectBrickTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 92C37A55185627A300547C1E /* ClearGrafficEffectBrickTests.m */; };
 		92DFE97C196D795900F491EC /* InfoPopupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 92DFE97B196D795900F491EC /* InfoPopupViewController.m */; };
 		92E3351E18FBB6750056C390 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 92E3351D18FBB6750056C390 /* SystemConfiguration.framework */; };
+		AAB23A6219B08D5F0057A302 /* InternToExternGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = AAB23A6119B08D5F0057A302 /* InternToExternGenerator.m */; };
+		AAB23A6519B0F1E10057A302 /* InternFormulaState.m in Sources */ = {isa = PBXBuildFile; fileRef = AAB23A6419B0F1E10057A302 /* InternFormulaState.m */; };
 		AAC6046E19A8963400501CAE /* ExternToken.m in Sources */ = {isa = PBXBuildFile; fileRef = AAC6046D19A8963400501CAE /* ExternToken.m */; };
 		AAC6047119A89A8500501CAE /* ExternInternRepresentationMapping.m in Sources */ = {isa = PBXBuildFile; fileRef = AAC6047019A89A8500501CAE /* ExternInternRepresentationMapping.m */; };
 		AAC6047419AA0ACB00501CAE /* InternFormula.m in Sources */ = {isa = PBXBuildFile; fileRef = AAC6047319AA0ACB00501CAE /* InternFormula.m */; };
@@ -552,6 +554,10 @@
 		92DFE97A196D795900F491EC /* InfoPopupViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InfoPopupViewController.h; sourceTree = "<group>"; };
 		92DFE97B196D795900F491EC /* InfoPopupViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InfoPopupViewController.m; sourceTree = "<group>"; };
 		92E3351D18FBB6750056C390 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		AAB23A6019B08D5F0057A302 /* InternToExternGenerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InternToExternGenerator.h; sourceTree = "<group>"; };
+		AAB23A6119B08D5F0057A302 /* InternToExternGenerator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InternToExternGenerator.m; sourceTree = "<group>"; };
+		AAB23A6319B0F1E10057A302 /* InternFormulaState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InternFormulaState.h; sourceTree = "<group>"; };
+		AAB23A6419B0F1E10057A302 /* InternFormulaState.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InternFormulaState.m; sourceTree = "<group>"; };
 		AAC6046C19A8963400501CAE /* ExternToken.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExternToken.h; sourceTree = "<group>"; };
 		AAC6046D19A8963400501CAE /* ExternToken.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExternToken.m; sourceTree = "<group>"; };
 		AAC6046F19A89A8500501CAE /* ExternInternRepresentationMapping.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExternInternRepresentationMapping.h; sourceTree = "<group>"; };
@@ -1213,6 +1219,10 @@
 				AAC6047619AA125600501CAE /* InternFormulaTokenSelection.m */,
 				AAFEB96E19ADD8A6002ABE22 /* InternFormulaKeyboardAdapter.h */,
 				AAFEB96F19ADD8A6002ABE22 /* InternFormulaKeyboardAdapter.m */,
+				AAB23A6019B08D5F0057A302 /* InternToExternGenerator.h */,
+				AAB23A6119B08D5F0057A302 /* InternToExternGenerator.m */,
+				AAB23A6319B0F1E10057A302 /* InternFormulaState.h */,
+				AAB23A6419B0F1E10057A302 /* InternFormulaState.m */,
 				4CBB2A53199A457500F40B73 /* Exceptions */,
 			);
 			name = FormulaEditor;
@@ -3387,6 +3397,7 @@
 				CA1498601989C9B10069A21E /* SWCellScrollView.m in Sources */,
 				CD0CCF54170CB39700B70036 /* BroadcastScript.m in Sources */,
 				4C5BF0BE1998E85D0096DBFE /* InternFormulaParserException.m in Sources */,
+				AAB23A6519B0F1E10057A302 /* InternFormulaState.m in Sources */,
 				816C788617D62B7C0029A4E6 /* ProgramTableViewController.m in Sources */,
 				CA1498821989CC0E0069A21E /* OrderedDictionary.m in Sources */,
 				CD0CCF55170CB39700B70036 /* BroadcastWaitBrick.m in Sources */,
@@ -3534,6 +3545,7 @@
 				815420DA191A51F200E628D2 /* FBShimmeringView.m in Sources */,
 				4CBB2A4C1999EC2800F40B73 /* Functions.m in Sources */,
 				CA1498711989CA160069A21E /* AHKActionSheetViewController.m in Sources */,
+				AAB23A6219B08D5F0057A302 /* InternToExternGenerator.m in Sources */,
 				CA75C25C18A961AB00FC8C2F /* MoveNStepsBrickCell.m in Sources */,
 				B4DEFC90170F464200DD1939 /* TestParser.m in Sources */,
 				B4D4DD4317156A8500EEE3F8 /* PointInDirectionBrick.m in Sources */,

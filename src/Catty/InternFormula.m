@@ -109,6 +109,113 @@ static int MAPPING_NOT_FOUND = INT_MIN;
     {
         cursorTokenPropertiesAfterInput = [self insertRightToCurrentToken:keyInputInternTokenList];
     }
+    else{
+        switch (self.cursorTokenPosition) {
+            case LEFT:
+                cursorTokenPropertiesAfterInput = [self insertLeftToCurrentToken:keyInputInternTokenList];
+                break;
+            case MIDDLE:
+                cursorTokenPropertiesAfterInput = [self replaceCursorPositionInternTokenByTokenList:keyInputInternTokenList];
+                break;
+            case RIGHT:
+                cursorTokenPropertiesAfterInput = [self insertRightToCurrentToken:keyInputInternTokenList];
+                break;
+            default:
+                break;
+        }
+    }
+    
+    [self generateExternFormulaStringAndInternExternMapping];
+    [self updateExternCursorPosition:cursorTokenPropertiesAfterInput];
+    [self updateInternCursorPosition];
+    
+}
+
+-(void)generateExternFormulaStringAndInternExternMapping
+{
+    InternToExternGenerator *internToExternGenerator = [[InternToExternGenerator alloc]init];
+    [internToExternGenerator generateExternStringAndMapping:self.internTokenFormulaList];
+    self.externFormulaString = [internToExternGenerator getGeneratedExternFormulaString];
+    self.externInternRepresentationMapping = [internToExternGenerator getGeneratedExternIternRepresentationMapping];
+}
+
+-(void)updateExternCursorPosition:(CursorTokenPropertiesAfterModification)cursorTakenPropertiesAfterInput
+{
+    switch (cursorTakenPropertiesAfterInput) {
+        case AM_LEFT:
+            [self setExternCursorPositionLeftTo:self.cursorPositionInternTokenIndex];
+            break;
+        case AM_RIGHT:
+            [self setExternCursorPositionRightTo:self.cursorPositionInternTokenIndex];
+            break;
+        default:
+            break;
+    }
+}
+
+-(CursorTokenPropertiesAfterModification)insertLeftToCurrentToken:(NSMutableArray *)internTokensToInsert
+{
+    InternToken *firstLeftInternToken = nil;
+    if(self.cursorPositionInternTokenIndex > 0)
+    {
+        firstLeftInternToken = [self.internTokenFormulaList objectAtIndex:self.cursorPositionInternTokenIndex - 1];
+    }
+    
+    if([self.cursorPositionInternToken isNumber] && [InternFormulaUtils isNumberToken:internTokensToInsert])
+    {
+        NSString *numberToInsert = [[internTokensToInsert objectAtIndex:0] getTokenStringValue];
+        [InternFormulaUtils insertIntoNumberToken:self.cursorPositionInternToken numberOffset:0 number:numberToInsert];
+        self.externCursorPosition++;
+        
+        return DO_NOT_MODIFY;
+    }
+    
+    if([self.cursorPositionInternToken isNumber] && [InternFormulaUtils isPeriodToken:internTokensToInsert])
+    {
+        NSString *numberToInsert = [[internTokensToInsert objectAtIndex:0] getTokenStringValue];
+        NSCharacterSet *cset = [NSCharacterSet characterSetWithCharactersInString:@"."];
+        if([numberToInsert rangeOfCharacterFromSet:cset].location != NSNotFound)
+        {
+            return DO_NOT_MODIFY;
+        }
+        
+        [InternFormulaUtils insertIntoNumberToken:self.cursorPositionInternToken numberOffset:0 number:@"0."];
+        self.externCursorPosition += 2;
+        return DO_NOT_MODIFY;
+    }
+    
+    if(firstLeftInternToken != nil && [firstLeftInternToken isNumber] && [InternFormulaUtils isNumberToken:internTokensToInsert])
+    {
+        [firstLeftInternToken appendToTokenStringValueWithArray:internTokensToInsert];
+        return DO_NOT_MODIFY;
+    }
+    
+    if(firstLeftInternToken != nil && [firstLeftInternToken isNumber] && [InternFormulaUtils isPeriodToken:internTokensToInsert])
+    {
+        NSString *numberString = [firstLeftInternToken getTokenStringValue];
+        NSCharacterSet *cset = [NSCharacterSet characterSetWithCharactersInString:@"."];
+        if([numberString rangeOfCharacterFromSet:cset].location != NSNotFound)
+        {
+            return DO_NOT_MODIFY;
+        }
+        
+        [firstLeftInternToken appendToTokenStringValue:@"."];
+        return DO_NOT_MODIFY;
+    }
+    
+    if([InternFormulaUtils isPeriodToken:internTokensToInsert])
+    {
+        [self.internTokenFormulaList insertObject:[[InternToken alloc]initWithType:TOKEN_TYPE_NUMBER AndValue:@"0."]
+                                          atIndex:self.cursorPositionInternTokenIndex];
+        self.cursorPositionInternToken = nil;
+        return AM_RIGHT;
+    }
+    
+    [self addSourceArray:internTokensToInsert
+                toTarget:self.internTokenFormulaList
+                 atIndex:self.cursorPositionInternTokenIndex];
+    
+    return [self setCursorPositionAndSelectionAfterInput:self.cursorPositionInternTokenIndex];
     
 }
 
@@ -123,7 +230,7 @@ static int MAPPING_NOT_FOUND = INT_MIN;
             [internTokensToInsert addObject:[[InternToken alloc]initWithType:TOKEN_TYPE_NUMBER AndValue:@"0."]];
         }
         
-        [self.internTokenFormulaList insertObject:internTokensToInsert atIndex:0];
+        [self addSourceArray:internTokensToInsert toTarget:self.internTokenFormulaList atIndex:0];
         
         return [self setCursorPositionAndSelectionAfterInput:0];
     }
@@ -161,8 +268,9 @@ static int MAPPING_NOT_FOUND = INT_MIN;
         return AM_RIGHT;
     
     }
+    [self addSourceArray:internTokensToInsert toTarget:self.internTokenFormulaList atIndex:self.cursorPositionInternTokenIndex + 1];
     
-    [self.internTokenFormulaList insertObject:internTokensToInsert atIndex:self.cursorPositionInternTokenIndex + 1];
+    
     return [self setCursorPositionAndSelectionAfterInput:self.cursorPositionInternTokenIndex +1];
     
 }
@@ -415,7 +523,7 @@ static int MAPPING_NOT_FOUND = INT_MIN;
         
         
     }
-    [self.internTokenFormulaList insertObject:tokenListToInsert atIndex:start];
+    [self addSourceArray:tokenListToInsert toTarget:self.internTokenFormulaList atIndex:start];
 }
 
 -(void)selectCursorPositionInternToken:(TokenSelectionType)internTokenSelectionType
@@ -803,6 +911,165 @@ static int MAPPING_NOT_FOUND = INT_MIN;
     
     
 }
+
+-(void)addSourceArray:(NSArray *)source toTarget:(NSMutableArray *)target atIndex:(int)index
+{
+    for(int i = (int)[source count]-1; i >= 0; i--)
+    {
+        [target insertObject:[source objectAtIndex:i]  atIndex:index];
+    }
+}
+
+-(int)getExternCursorPosition
+{
+    return self.externCursorPosition;
+}
+
+-(InternFormulaParser *)getInternFormulaParser
+{
+    self.internTokenFormulaParser = [[InternFormulaParser alloc]initWithTokens:self.internTokenFormulaList];
+    return self.internTokenFormulaParser;
+}
+
+-(TokenSelectionType)getExternSelectionType
+{
+    if(![self isTokenSelected])
+    {
+        return 0;
+    }
+    return [self.internFormulaTokenSelection getToketSelectionType];
+}
+
+-(void)selectWholeFormula
+{
+    if([self.internTokenFormulaList count] == 0)
+    {
+        return;
+    }
+    
+    self.internFormulaTokenSelection = [[InternFormulaTokenSelection alloc]initWithTokenSelectionType:USER_SELECTION internTokenSelectionStart:0 internTokenSelectionEnd:[self.internTokenFormulaList count]-1];
+}
+
+-(NSString *)getExternFormulaString
+{
+    return self.externFormulaString;
+}
+
+-(InternFormulaTokenSelection *)getSelection
+{
+    return self.internFormulaTokenSelection;
+}
+
+-(void)selectParseErrorTokenAndSetCursor
+{
+    if(self.internTokenFormulaParser == nil || [self.internTokenFormulaList count] == 0)
+    {
+        return;
+    }
+    
+    int internErrorTokenIndex = [self.internTokenFormulaParser getErrorTokenIndex];
+    
+    if(internErrorTokenIndex < 0)
+    {
+        return;
+    }
+    
+    if(internErrorTokenIndex >= [self.internTokenFormulaList count])
+    {
+        internErrorTokenIndex = (int)[self.internTokenFormulaList count] - 1;
+    }
+    
+    [self setExternCursorPositionRightTo:internErrorTokenIndex];
+    self.cursorPositionInternTokenIndex = internErrorTokenIndex;
+    self.cursorPositionInternToken = [self.internTokenFormulaList objectAtIndex:self.cursorPositionInternTokenIndex];
+    [self selectCursorPositionInternToken:PARSER_ERROR_SELECTION];
+    
+    
+}
+
+-(BOOL)isThereSomethingToDelete
+{
+    if(self.internFormulaTokenSelection != nil)
+    {
+        return YES;
+    }
+    if(self.cursorTokenPosition == 0
+       || (self.cursorTokenPosition == LEFT && [self getFirstLeftInternToken:self.externCursorPosition - 1]== nil))
+    {
+        return NO;
+    }
+    
+    return YES;
+}
+
+-(int)getExternSelectionStartIndex
+{
+    if(self.internFormulaTokenSelection == nil)
+    {
+        return -1;
+    }
+    
+    int externSelectionStartIndex = [self.externInternRepresentationMapping getExternTokenStartIndex:(int)[self.internFormulaTokenSelection getStartIndex]];
+    
+    if(externSelectionStartIndex == MAPPING_NOT_FOUND)
+    {
+        return -1;
+    }
+    
+    return externSelectionStartIndex;
+}
+
+-(int)getExternSelectionEndIndex
+{
+    if(self.internFormulaTokenSelection == nil)
+    {
+        return -1;
+    }
+    
+    int externSelectionEndIndex = [self.externInternRepresentationMapping getExternTokenEndIndex:(int)[self.internFormulaTokenSelection getEndIndex]];
+    
+    if(externSelectionEndIndex == MAPPING_NOT_FOUND)
+    {
+        return -1;
+    }
+    
+    return externSelectionEndIndex;
+}
+
+-(InternFormulaState *)getInternFormulaState
+{
+    NSMutableArray *deepCopyOfInternTokenFormula = [[NSMutableArray alloc]init];
+    
+    for(InternToken *tokenToCopy in self.internTokenFormulaList)
+    {
+        [deepCopyOfInternTokenFormula addObject:[tokenToCopy deepCopy]];
+    }
+    
+    InternFormulaTokenSelection *deepCopyOfInternFormulaTokenSelection = [[InternFormulaTokenSelection alloc]init];
+    
+    if([self isTokenSelected])
+    {
+        deepCopyOfInternFormulaTokenSelection = [self.internFormulaTokenSelection deepCopy];
+    }
+    
+    return [[InternFormulaState alloc]initWithList:deepCopyOfInternTokenFormula
+                                         selection:deepCopyOfInternFormulaTokenSelection
+                           andExternCursorPosition:self.externCursorPosition];
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 @end

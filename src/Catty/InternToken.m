@@ -131,4 +131,9 @@
     return self.tokenStringValue;
 }
 
+-(InternToken *)deepCopy
+{
+    return [[InternToken alloc]initWithType:self.internTokenType AndValue:self.tokenStringValue];
+}
+
 @end

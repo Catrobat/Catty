@@ -90,5 +90,11 @@
 }
 
 
+-(InternFormulaTokenSelection *)deepCopy
+{
+    return [[InternFormulaTokenSelection alloc]initWithTokenSelectionType:self.tokenSelectionType internTokenSelectionStart:self.internTokenSelectionStart internTokenSelectionEnd:self.internTokenSelectionEnd];
+}
+
+
 
 @end

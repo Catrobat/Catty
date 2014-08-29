@@ -35,7 +35,8 @@ typedef enum {
     MINUS,
     MULT,
     DIVIDE,
-    LOGICAL_NOT
+    LOGICAL_NOT,
+    DECIMAL_MARK
 } Operator;
 
 @interface Operators : NSObject

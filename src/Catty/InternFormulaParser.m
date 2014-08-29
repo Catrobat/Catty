@@ -296,4 +296,9 @@ const int MAXIMUM_TOKENS_TO_PARSE = 1000;
     self.currentToken = [self.internTokensToParse objectAtIndex:self.currentTokenParseIndex];
 }
 
+-(int)getErrorTokenIndex
+{
+    return self.errorTokenIndex;
+}
+
 @end
