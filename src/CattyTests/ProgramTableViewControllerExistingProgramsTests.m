@@ -132,7 +132,8 @@
             backgroundObjectCellTitle = imageCell.titleLabel.text;
         }
         XCTAssertTrue(([backgroundObjectCellTitle isEqualToString:kLocalizedBackground]
-                       || [backgroundObjectCellTitle isEqualToString:@"Background"]),
+                       || [backgroundObjectCellTitle isEqualToString:@"Background"]
+                       || [backgroundObjectCellTitle isEqualToString:@"Hintergrund"]),
                       @"The ProgramTableViewController did not create the background object cell correctly.");
 
         NSUInteger objectCounter = 0;
