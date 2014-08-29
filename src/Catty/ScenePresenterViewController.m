@@ -72,8 +72,8 @@
 @property (nonatomic, strong) BroadcastWaitHandler *broadcastWaitHandler;
 @property (nonatomic) CGPoint firstGestureTouchPoint;
 @property (nonatomic) UIImage *snapshotImage;
-@property (nonatomic,strong) UIView *gridView;
-@property (nonatomic, strong) Program* program;
+@property (nonatomic, strong) UIView *gridView;
+@property (nonatomic, strong) Program *program;
 @property (nonatomic, strong) SKView *skView;
 
 @end
@@ -525,6 +525,7 @@
 - (void)restartProgram:(UIButton*)sender
 {
     [self resetSpriteObjects];
+    self.program = nil;
     self.program = [Program programWithLoadingInfo:[Util programLoadingInfoForProgramWithName:[Util lastProgram]]];
     for (SpriteObject *sprite in self.program.objectList) {
         sprite.broadcastWaitDelegate = self.broadcastWaitHandler;
@@ -563,6 +564,7 @@
                 brick.object = nil;
             }
         }
+        sprite.program = nil;
     }
 }
 
