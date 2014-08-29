@@ -102,7 +102,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
     } else {
         [options addObject:kLocalizedShowDetails];
     }
-#if kIsFirstRelease // kIsFirstRelease
+#if kIsRelease // kIsRelease
     CatrobatActionSheet *actionSheet = [Util actionSheetWithTitle:kLocalizedThisFeatureIsComingSoon
                                                          delegate:self
                                            destructiveButtonTitle:nil
@@ -117,14 +117,14 @@ static NSCharacterSet *blockedCharacterSet = nil;
             [actionSheet setButtonTextColor:[UIColor grayColor] forButtonAtIndex:button.index];
         }
     }
-#else // kIsFirstRelease
+#else // kIsRelease
     [Util actionSheetWithTitle:kLocalizedEditLooks
                       delegate:self
         destructiveButtonTitle:nil
              otherButtonTitles:options
                            tag:kEditLooksActionSheetTag
                           view:self.navigationController.view];
-#endif // kIsFirstRelease
+#endif // kIsRelease
 }
 
 - (void)addLookAction:(id)sender
@@ -356,7 +356,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
     if (index == 0) {
         // More button was pressed
         NSArray *options = @[kLocalizedCopy, kLocalizedRename];
-#if kIsFirstRelease // kIsFirstRelease
+#if kIsRelease // kIsRelease
         CatrobatActionSheet *actionSheet = [Util actionSheetWithTitle:kLocalizedThisFeatureIsComingSoon
                                                              delegate:self
                                                destructiveButtonTitle:nil
@@ -370,14 +370,14 @@ static NSCharacterSet *blockedCharacterSet = nil;
                 [actionSheet setButtonTextColor:[UIColor grayColor] forButtonAtIndex:button.index];
             }
         }
-#else // kIsFirstRelease
+#else // kIsRelease
         CatrobatActionSheet *actionSheet = [Util actionSheetWithTitle:kLocalizedEditLook
                                                              delegate:self
                                                destructiveButtonTitle:nil
                                                     otherButtonTitles:options
                                                                   tag:kEditLookActionSheetTag
                                                                  view:self.navigationController.view];
-#endif // kIsFirstRelease
+#endif // kIsRelease
         NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
         NSDictionary *payload = @{ kDTPayloadLook : [self.object.lookList objectAtIndex:indexPath.row] };
         DataTransferMessage *message = [DataTransferMessage messageForActionType:kDTMActionEditLook
@@ -385,9 +385,9 @@ static NSCharacterSet *blockedCharacterSet = nil;
         actionSheet.dataTransferMessage = message;
     } else if (index == 1) {
         // Delete button was pressed
-#if kIsFirstRelease // kIsFirstRelease
+#if kIsRelease // kIsRelease
         [Util showComingSoonAlertView];
-#else // kIsFirstRelease
+#else // kIsRelease
         NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
         [cell hideUtilityButtonsAnimated:YES];
         [self performActionOnConfirmation:@selector(deleteLookForIndexPath:)
@@ -396,7 +396,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
                                    target:self
                              confirmTitle:kLocalizedDeleteThisLook
                            confirmMessage:kLocalizedThisActionCannotBeUndone];
-#endif // kIsFirstRelease
+#endif // kIsRelease
     }
 }
 
@@ -642,9 +642,9 @@ static NSCharacterSet *blockedCharacterSet = nil;
     UIBarButtonItem *add = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd
                                                                          target:self
                                                                          action:@selector(addLookAction:)];
-#if kIsFirstRelease // kIsFirstRelease
+#if kIsRelease // kIsRelease
     add.enabled = NO;
-#endif // kIsFirstRelease
+#endif // kIsRelease
     UIBarButtonItem *play = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemPlay
                                                                           target:self
                                                                           action:@selector(playSceneAction:)];

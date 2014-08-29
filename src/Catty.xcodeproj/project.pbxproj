@@ -1179,7 +1179,7 @@
 		CABE07C718BAB94000BE26EF /* VariableComboBoxView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VariableComboBoxView.m; sourceTree = "<group>"; };
 		CAC22DA31809D5730071CC5D /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		CACEF959184529AC00D199D8 /* Brick+UnitTestingExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Brick+UnitTestingExtensions.h"; sourceTree = "<group>"; };
-		CADBD7FB19B0E8C200C62836 /* Catty_iOS7.1 copy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Catty_iOS7.1 copy.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		CADBD7FB19B0E8C200C62836 /* Pocket Code.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Pocket Code.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CAE4B831198A77390054ABEC /* LICENSE_SWTableViewCell */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = LICENSE_SWTableViewCell; path = SWTableViewCell/LICENSE_SWTableViewCell; sourceTree = "<group>"; };
 		CAE4B833198A781B0054ABEC /* LICENSE_IBActionSheet */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = LICENSE_IBActionSheet; path = IBActionSheet/LICENSE_IBActionSheet; sourceTree = "<group>"; };
 		CAE4B835198A78770054ABEC /* LICENSE_AHKActionSheet */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = LICENSE_AHKActionSheet; path = AHK/LICENSE_AHKActionSheet; sourceTree = "<group>"; };
@@ -1403,7 +1403,7 @@
 			children = (
 				1D6058910D05DD3D006BFB54 /* Pocket Code.app */,
 				B46B26FF17703F9400172837 /* CattyTests_iOS7.1.xctest */,
-				CADBD7FB19B0E8C200C62836 /* Catty_iOS7.1 copy.app */,
+				CADBD7FB19B0E8C200C62836 /* Pocket Code.app */,
 				CA538ECE19B0EA09008240AB /* CattyTests_iOS8.0.xctest */,
 			);
 			name = Products;
@@ -3494,7 +3494,7 @@
 			);
 			name = Catty_iOS8.0;
 			productName = AppScaffold;
-			productReference = CADBD7FB19B0E8C200C62836 /* Catty_iOS7.1 copy.app */;
+			productReference = CADBD7FB19B0E8C200C62836 /* Pocket Code.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -4748,7 +4748,7 @@
 					"-all_load",
 					"-lxml2",
 				);
-				PRODUCT_NAME = "Catty_iOS7.1 copy";
+				PRODUCT_NAME = "Pocket Code";
 				PROVISIONING_PROFILE = "";
 				SDKROOT = iphoneos8.0;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -4777,7 +4777,7 @@
 					"-all_load",
 					"-lxml2",
 				);
-				PRODUCT_NAME = "Catty_iOS7.1 copy";
+				PRODUCT_NAME = "Pocket Code";
 				PROVISIONING_PROFILE = "";
 				SDKROOT = iphoneos8.0;
 				TARGETED_DEVICE_FAMILY = 1;

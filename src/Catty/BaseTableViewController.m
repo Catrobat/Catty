@@ -393,7 +393,7 @@
     [self showPlaceHolder:NO];
     [self.loadingView show];
 
-#if kIsFirstRelease
+#if kIsRelease
     __weak id mySelf = self;
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 1 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
         [mySelf hideLoadingView];

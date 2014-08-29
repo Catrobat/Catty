@@ -245,9 +245,9 @@ static NSCharacterSet *blockedCharacterSet = nil;
     NSString* identifier = [self.identifiers objectAtIndex:indexPath.row];
     switch (indexPath.row) {
         case kNewProgramVC:
-#if kIsFirstRelease // kIsFirstRelease
+#if kIsRelease // kIsRelease
             [Util showComingSoonAlertView];
-#else // kIsFirstRelease
+#else // kIsRelease
             [Util askUserForUniqueNameAndPerformAction:@selector(addProgramAndSegueToItActionForProgramWithName:)
                                                 target:self
                                            promptTitle:kLocalizedNewProgram
@@ -259,7 +259,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
                                    blockedCharacterSet:[self blockedCharacterSet]
                               invalidInputAlertMessage:kLocalizedProgramNameAlreadyExistsDescription
                                          existingNames:[Program allProgramNames]];
-#endif // kIsFirstRelease
+#endif // kIsRelease
             break;
         case kContinueProgramVC:
         case kLocalProgramsVC:

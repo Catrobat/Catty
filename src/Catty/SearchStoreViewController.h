@@ -23,8 +23,10 @@
 #import <UIKit/UIKit.h>
 #import "BaseTableViewController.h"
 
-@interface SearchStoreViewController : UITableViewController
+@interface SearchStoreViewController : UIViewController<UISearchBarDelegate,UITableViewDelegate, UITableViewDataSource,UIScrollViewDelegate>
 
 @property (nonatomic) BOOL checkSearch;
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
+@property (weak, nonatomic) IBOutlet UISearchBar *searchBar;
 
 @end
