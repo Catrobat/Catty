@@ -395,7 +395,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
                                withObject:indexPath
                                    target:self
                              confirmTitle:kLocalizedDeleteThisLook
-                           confirmMessage:kLocalizedIrreversibleAction];
+                           confirmMessage:kLocalizedThisActionCannotBeUndone];
 #endif // kIsFirstRelease
     }
 }
