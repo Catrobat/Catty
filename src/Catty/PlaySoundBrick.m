@@ -35,10 +35,7 @@
 - (SKAction*)action
 {
     NSDebug(@"Adding: %@", self.description);
-    NSLog(@"Test: %@", [self.object description]);
-    if (self.object) {
-        NSLog(@"Object[%lu]: %@", [self.object.program.objectList indexOfObject:self.object], self.object.name);
-    }
+    NSDebug(@"Test: %@", [self.object description]);
     return [SKAction runBlock:^{
         NSDebug(@"Performing: %@", self.description);
         [[AudioManager sharedAudioManager] playSoundWithFileName:self.sound.fileName andKey:self.object.name atFilePath:[NSString stringWithFormat:@"%@%@", [self.object projectPath], kProgramSoundsDirName]];
