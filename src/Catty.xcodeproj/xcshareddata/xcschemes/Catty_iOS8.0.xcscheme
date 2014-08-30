@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "CADBD6D319B0E8C200C62836"
-               BuildableName = "Catty_iOS7.1 copy.app"
+               BuildableName = "Pocket Code.app"
                BlueprintName = "Catty_iOS8.0"
                ReferencedContainer = "container:Catty.xcodeproj">
             </BuildableReference>
@@ -43,7 +43,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "CADBD6D319B0E8C200C62836"
-            BuildableName = "Catty_iOS7.1 copy.app"
+            BuildableName = "Pocket Code.app"
             BlueprintName = "Catty_iOS8.0"
             ReferencedContainer = "container:Catty.xcodeproj">
          </BuildableReference>
@@ -62,7 +62,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "CADBD6D319B0E8C200C62836"
-            BuildableName = "Catty_iOS7.1 copy.app"
+            BuildableName = "Pocket Code.app"
             BlueprintName = "Catty_iOS8.0"
             ReferencedContainer = "container:Catty.xcodeproj">
          </BuildableReference>
@@ -80,7 +80,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "CADBD6D319B0E8C200C62836"
-            BuildableName = "Catty_iOS7.1 copy.app"
+            BuildableName = "Pocket Code.app"
             BlueprintName = "Catty_iOS8.0"
             ReferencedContainer = "container:Catty.xcodeproj">
          </BuildableReference>
