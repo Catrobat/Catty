@@ -59,13 +59,6 @@
 
 @implementation RecentProgramsStoreViewController
 
-@synthesize data              = _data;
-@synthesize connection        = _connection;
-@synthesize projects          = _projects;
-@synthesize programListOffset = _programListOffset;
-@synthesize programListLimit  = _programListLimit;
-
-
 - (id)init
 {
     self = [super init];
@@ -90,11 +83,6 @@
     self.tableView.separatorColor = UIColor.skyBlueColor;
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
     self.shouldShowAlert = YES;
-
-    // XXX: someone has removed that in another branch, therefore this caused a merge conflict.
-    //      not sure if we really need this. therefore I have readded these lines here.
-//    self.edgesForExtendedLayout = UIRectEdgeAll;
-//    self.tableView.contentInset = UIEdgeInsetsMake(0., 0., CGRectGetHeight(self.tabBarController.tabBar.frame)+44, 0);
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -125,7 +113,6 @@
 }
 
 #pragma mark - Table view data source
-
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     return 1;
@@ -662,9 +649,11 @@
 - (void)update
 {
     [self.tableView reloadData];
+#if __IPHONE_OS_VERSION_MAX_ALLOWED < 80000
+    // iOS7 specific stuff
     [self.searchDisplayController setActive:NO animated:YES];
+#endif
 }
-
 
 #pragma mark - BackButtonDelegate
 - (void)back

@@ -94,9 +94,9 @@
     self.collectionView.collectionViewLayout = [LXReorderableCollectionViewFlowLayout new];
 
     self.navigationItem.rightBarButtonItems = @[self.editButtonItem];
-#if kIsFirstRelease // kIsFirstRelease
+#if kIsRelease // kIsRelease
     self.navigationItem.rightBarButtonItem.enabled = NO;
-#endif // kIsFirstRelease
+#endif // kIsRelease
     self.placeHolderView = [[PlaceHolderView alloc]initWithTitle:kLocalizedScripts];
     self.placeHolderView.hidden = self.object.scriptList.count ? YES : NO;
     self.brickScaleTransition = [BrickScaleTransition new];
@@ -335,9 +335,9 @@
     }
     [brickCell setupBrickCell];
     brickCell.delegate = self;
-#if kIsFirstRelease // kIsFirstRelease
+#if kIsRelease // kIsRelease
     brickCell.enabled = NO;
-#endif // kIsFirstRelease
+#endif // kIsRelease
     return brickCell;
 }
 
@@ -480,11 +480,11 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
 
 - (BOOL)collectionView:(UICollectionView *)collectionView canMoveItemAtIndexPath:(NSIndexPath *)indexPath
 {
-#if kIsFirstRelease // kIsFirstRelease
+#if kIsRelease // kIsRelease
     return NO;
-#else // kIsFirstRelease
+#else // kIsRelease
     return ((self.isEditing || indexPath.item == 0) ? NO : YES);
-#endif // kIsFirstRelease
+#endif // kIsRelease
 }
 
 #pragma mark - Add brick Delegate
@@ -564,11 +564,11 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
             UIBarButtonItem *add = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd
                                                                                  target:self
                                                                                  action:@selector(showBrickSelectionMenu)];
-#if kIsFirstRelease // kIsFirstRelease
+#if kIsRelease // kIsRelease
             add.enabled = NO;
-#else // kIsFirstRelease
+#else // kIsRelease
             add.enabled = !self.editing;
-#endif // kIsFirstRelease
+#endif // kIsRelease
             UIBarButtonItem *play = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemPlay
                                                                                   target:self
                                                                                   action:@selector(playSceneAction:)];

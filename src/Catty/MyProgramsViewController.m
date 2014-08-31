@@ -431,7 +431,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
         // More button was pressed
         NSArray *options = @[kLocalizedCopy, kLocalizedRename,
                              kLocalizedDescription/*, kLocalizedUpload*/];
-#if kIsFirstRelease // kIsFirstRelease
+#if kIsRelease // kIsRelease
         CatrobatActionSheet *actionSheet = [Util actionSheetWithTitle:kLocalizedThisFeatureIsComingSoon
                                                              delegate:self
                                                destructiveButtonTitle:nil
@@ -445,14 +445,14 @@ static NSCharacterSet *blockedCharacterSet = nil;
                 [actionSheet setButtonTextColor:[UIColor grayColor] forButtonAtIndex:button.index];
             }
         }
-#else // kIsFirstRelease
+#else // kIsRelease
         CatrobatActionSheet *actionSheet = [Util actionSheetWithTitle:kLocalizedEditProgram
                                                              delegate:self
                                                destructiveButtonTitle:nil
                                                     otherButtonTitles:options
                                                                   tag:kEditProgramActionSheetTag
                                                                  view:self.navigationController.view];
-#endif // kIsFirstRelease
+#endif // kIsRelease
         NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
         NSDictionary *payload = @{ kDTPayloadProgramLoadingInfo : [self.programLoadingInfos objectAtIndex:indexPath.row] };
         DataTransferMessage *message = [DataTransferMessage messageForActionType:kDTMActionEditProgram
@@ -646,9 +646,9 @@ static NSCharacterSet *blockedCharacterSet = nil;
     UIBarButtonItem *add = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd
                                                                          target:self
                                                                          action:@selector(addProgramAction:)];
-#if kIsFirstRelease // kIsFirstRelease
+#if kIsRelease // kIsRelease
     add.enabled = NO;
-#endif // kIsFirstRelease
+#endif // kIsRelease
     self.toolbarItems = @[flexItem, add, flexItem];
 }
 

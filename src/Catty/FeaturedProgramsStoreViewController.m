@@ -51,10 +51,6 @@
 
 @implementation FeaturedProgramsStoreViewController
 
-@synthesize data          = _data;
-@synthesize connection    = _connection;
-@synthesize projects      = _projects;
-
 - (id)initWithStyle:(UITableViewStyle)style
 {
     self = [super initWithStyle:style];
@@ -400,9 +396,11 @@
 #pragma mark - update
 - (void)update {
     [self.tableView reloadData];
+#if __IPHONE_OS_VERSION_MAX_ALLOWED < 80000
+    // iOS7 specific stuff
     [self.searchDisplayController setActive:NO animated:YES];
+#endif
 }
-
 
 #pragma mark - BackButtonDelegate
 -(void)back {

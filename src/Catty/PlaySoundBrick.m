@@ -27,8 +27,6 @@
 
 @implementation PlaySoundBrick
 
-@synthesize sound = _sound;
-
 - (NSString*)brickTitle
 {
     return kLocalizedPlaySound;
@@ -37,7 +35,7 @@
 - (SKAction*)action
 {
     NSDebug(@"Adding: %@", self.description);
-
+    NSDebug(@"Test: %@", [self.object description]);
     return [SKAction runBlock:^{
         NSDebug(@"Performing: %@", self.description);
         [[AudioManager sharedAudioManager] playSoundWithFileName:self.sound.fileName andKey:self.object.name atFilePath:[NSString stringWithFormat:@"%@%@", [self.object projectPath], kProgramSoundsDirName]];

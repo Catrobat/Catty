@@ -39,7 +39,6 @@
 - (dispatch_block_t)actionBlock
 {
     return ^{
-        NSLog(@"performing");
         NSDebug(@"Performing: %@", self.description);
         Look* look = [self.object currentLook];
         UIImage* image = [UIImage imageWithContentsOfFile:[self pathForLook:look]];

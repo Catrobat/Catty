@@ -72,8 +72,8 @@
 @property (nonatomic, strong) BroadcastWaitHandler *broadcastWaitHandler;
 @property (nonatomic) CGPoint firstGestureTouchPoint;
 @property (nonatomic) UIImage *snapshotImage;
-@property (nonatomic,strong) UIView *gridView;
-@property (nonatomic, strong) Program* program;
+@property (nonatomic, strong) UIView *gridView;
+@property (nonatomic, strong) Program *program;
 @property (nonatomic, strong) SKView *skView;
 
 @end
@@ -87,21 +87,18 @@
         {
             //        sprite.spriteManagerDelegate = self;
             sprite.broadcastWaitDelegate = self.broadcastWaitHandler;
-            
+
             // NOTE: if there are still some runNextAction tasks in a queue
             // then these actions must not be executed because the Scene is not available any more.
             // This problem caused the app to crash sometimes in the past.
             // Now these lines fix this issue.
             for (Script *script in sprite.scriptList) {
                 script.allowRunNextAction = YES;
-                for (Brick *brick in script.brickList) {
-                    brick.object = sprite;
-                }
             }
         }
         _program = program;
     }
-    return  self;
+    return self;
 }
 
 #pragma mark - ViewController Delegates
@@ -528,12 +525,10 @@
 - (void)restartProgram:(UIButton*)sender
 {
     [self resetSpriteObjects];
+    self.program = nil;
     self.program = [Program programWithLoadingInfo:[Util programLoadingInfoForProgramWithName:[Util lastProgram]]];
-    
-    for (SpriteObject *sprite in self.program.objectList)
-    {
+    for (SpriteObject *sprite in self.program.objectList) {
         sprite.broadcastWaitDelegate = self.broadcastWaitHandler;
-        
         for (Script *script in sprite.scriptList) {
             script.allowRunNextAction = YES;
             for (Brick *brick in script.brickList) {
@@ -541,13 +536,12 @@
             }
         }
     }
-    
+
     [self.broadcastWaitHandler removeSpriteMessages];
-    
-    Scene *previousScene = (Scene *)self.skView.scene;
+    Scene *previousScene = (Scene*)self.skView.scene;
     previousScene.program = self.program;
-    
-    if (!self.program) {
+
+    if (! self.program) {
         [[[UIAlertView alloc] initWithTitle:kLocalizedCantRestartProgram
                                     message:nil
                                    delegate:self.menuView
@@ -555,7 +549,6 @@
                           otherButtonTitles:nil] show];
         return;
     }
-    
     [self.skView presentScene:previousScene];
     [self continueProgram:nil withDuration:0.0f];
 }
@@ -565,13 +558,13 @@
     for (SpriteObject *sprite in self.program.objectList) {
         sprite.broadcastWaitDelegate = nil;
         sprite.spriteManagerDelegate = nil;
-        
         for (Script *script in sprite.scriptList) {
             script.allowRunNextAction = NO;
             for (Brick *brick in script.brickList) {
                 brick.object = nil;
             }
         }
+        sprite.program = nil;
     }
 }
 

@@ -262,8 +262,8 @@
 //*******************************       BRICK TITLE TRANSLATIONS      ****************************************
 //************************************************************************************************************
 
-#import "AppDefines.h" // needed for kIsFirstRelease-constant <= TODO: remove this line later
-#if kIsFirstRelease // kIsFirstRelease
+#import "AppDefines.h" // needed for kIsRelease-constant <= TODO: remove this line later
+#if kIsRelease // kIsRelease
 //------------------------------------------------------------------------------------------------------------
 // TODO: in our first release we do not use translated strings in the script-editor because the translated
 //       strings can vary in their length compared to the english version. This would lead to graphical issues
@@ -327,7 +327,7 @@
 #define kLocalizedSetVariable @"Set variable\n%@\nto %@"
 #define kLocalizedChangeVariable @"Change variable\n%@\nby %@"
 
-#else // kIsFirstRelease
+#else // kIsRelease
 
 
 // control bricks
@@ -387,4 +387,4 @@
 #define kLocalizedSetVariable NSLocalizedString(@"Set variable\n%@\nto %@", nil)
 #define kLocalizedChangeVariable NSLocalizedString(@"Change variable\n%@\nby %@", nil)
 
-#endif // kIsFirstRelease
+#endif // kIsRelease

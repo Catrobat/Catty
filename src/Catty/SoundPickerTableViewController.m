@@ -157,14 +157,19 @@
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
-    if ([cell conformsToProtocol:@protocol(CatrobatImageCell)]) {
-        [self.presentingViewController dismissViewControllerAnimated:YES completion:^{
-            NSNotificationCenter *dnc = [NSNotificationCenter defaultCenter];
-            [dnc postNotificationName:kSoundAddedNotification
-                               object:nil
-                             userInfo:@{ kUserInfoSound : [self.playableSounds objectAtIndex:indexPath.row] }];
-        }];
+    if (! [cell conformsToProtocol:@protocol(CatrobatImageCell)]) {
+        return;
     }
+    [self.presentingViewController dismissViewControllerAnimated:YES completion:^{
+        Sound *sound = [self.playableSounds objectAtIndex:indexPath.row];
+        if (! sound) {
+            return;
+        }
+        NSNotificationCenter *dnc = [NSNotificationCenter defaultCenter];
+        [dnc postNotificationName:kSoundAddedNotification
+                           object:nil
+                         userInfo:@{ kUserInfoSound : sound}];
+    }];
 }
 
 #pragma mark - player actions

@@ -111,16 +111,6 @@
 
     NSLog(@"%@", [program description]);
     NSDebug(@"ProjectResolution: width/height:  %f / %f", program.header.screenWidth.floatValue, program.header.screenHeight.floatValue);
-
-    // setting effect
-    for (SpriteObject *sprite in program.objectList) {
-        for (Script *script in sprite.scriptList) {
-            for (Brick *brick in script.brickList) {
-                brick.object = sprite;
-            }
-        }
-    }
-
     [self updateLastModificationTimeForProgramWithName:loadingInfo.visibleName];
     return program;
 }
@@ -372,7 +362,7 @@
 
 - (void)saveToDisk
 {
-#if kIsFirstRelease
+#if kIsRelease
     return;
 #else
     dispatch_queue_t saveToDiskQ = dispatch_queue_create("save to disk", NULL);
@@ -535,8 +525,9 @@
     [ret appendFormat:@"Sprite List: %@\n", self.objectList];
     [ret appendFormat:@"URL: %@\n", self.header.url];
     [ret appendFormat:@"User Handle: %@\n", self.header.userHandle];
+    [ret appendFormat:@"Variables: %@\n", self.variables];
     [ret appendFormat:@"------------------------------------------------\n"];
-    return [NSString stringWithString:ret];
+    return [ret copy];
 }
 
 + (BOOL)programExists:(NSString*)programName

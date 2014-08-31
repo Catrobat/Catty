@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "0500"
+   LastUpgradeVersion = "0600"
    version = "1.3">
    <BuildAction
       parallelizeBuildables = "YES"
@@ -14,9 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "1D6058900D05DD3D006BFB54"
+               BlueprintIdentifier = "CADBD6D319B0E8C200C62836"
                BuildableName = "Pocket Code.app"
-               BlueprintName = "Catty"
+               BlueprintName = "Catty_iOS8.0"
                ReferencedContainer = "container:Catty.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -32,9 +32,9 @@
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "B46B26FE17703F9400172837"
-               BuildableName = "CattyTests.xctest"
-               BlueprintName = "CattyTests"
+               BlueprintIdentifier = "CA538EA119B0EA09008240AB"
+               BuildableName = "CattyTests_iOS8.0.xctest"
+               BlueprintName = "CattyTests_iOS8.0"
                ReferencedContainer = "container:Catty.xcodeproj">
             </BuildableReference>
          </TestableReference>
@@ -42,9 +42,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "1D6058900D05DD3D006BFB54"
+            BlueprintIdentifier = "CADBD6D319B0E8C200C62836"
             BuildableName = "Pocket Code.app"
-            BlueprintName = "Catty"
+            BlueprintName = "Catty_iOS8.0"
             ReferencedContainer = "container:Catty.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -61,18 +61,12 @@
       <BuildableProductRunnable>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "1D6058900D05DD3D006BFB54"
+            BlueprintIdentifier = "CADBD6D319B0E8C200C62836"
             BuildableName = "Pocket Code.app"
-            BlueprintName = "Catty"
+            BlueprintName = "Catty_iOS8.0"
             ReferencedContainer = "container:Catty.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
-      <CommandLineArguments>
-         <CommandLineArgument
-            argument = "-AppleLanguages (de)"
-            isEnabled = "NO">
-         </CommandLineArgument>
-      </CommandLineArguments>
       <AdditionalOptions>
       </AdditionalOptions>
    </LaunchAction>
@@ -85,9 +79,9 @@
       <BuildableProductRunnable>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "1D6058900D05DD3D006BFB54"
+            BlueprintIdentifier = "CADBD6D319B0E8C200C62836"
             BuildableName = "Pocket Code.app"
-            BlueprintName = "Catty"
+            BlueprintName = "Catty_iOS8.0"
             ReferencedContainer = "container:Catty.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>

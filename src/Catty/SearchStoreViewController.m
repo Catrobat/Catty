@@ -47,10 +47,10 @@
 
 - (id)init
 {
-  self = [super init];
-  if (self) {
-  }
-  return self;
+    self = [super init];
+    if (self) {
+    }
+    return self;
 }
 
 - (void)viewDidLoad
@@ -60,19 +60,24 @@
     [self initTableView];
     [self initNoSearchResultsLabel];
 
+    // TODO: UISearchDisplayController is deprecated!
+    //       Should be replaced with UISearchController when iOS7 support is not needed any more!
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdeprecated-declarations"
     self.searchDisplayController.displaysSearchBarInNavigationBar = NO;
     self.searchDisplayController.searchBar.backgroundColor = [UIColor darkBlueColor];
-    self.tableView.backgroundColor = [UIColor darkBlueColor];
     [self.searchDisplayController setActive:YES animated:YES];
     [self.searchDisplayController.searchBar becomeFirstResponder];
     self.searchDisplayController.searchBar.delegate = self;
-    self.checkSearch = YES;
     self.searchDisplayController.searchBar.barTintColor = UIColor.navBarColor;
     self.searchDisplayController.searchBar.barStyle = UISearchBarStyleMinimal;
+#pragma clang diagnostic pop
+    self.tableView.backgroundColor = [UIColor darkBlueColor];
+    self.checkSearch = YES;
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
     self.tableView.separatorColor = UIColor.skyBlueColor;
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
-
+    
     [self.searchBar becomeFirstResponder];
     self.view.backgroundColor = [UIColor darkBlueColor];
     [[UITextField appearanceWhenContainedIn:[UISearchBar class], nil] setTextColor:[UIColor lightOrangeColor]];
@@ -85,11 +90,11 @@
     [super viewWillAppear:animated];
     self.tabBarController.tabBar.translucent = YES;
     self.navigationController.navigationBar.translucent =YES;
-//    self.edgesForExtendedLayout = UIRectEdgeNone;
+    //    self.edgesForExtendedLayout = UIRectEdgeNone;
     self.searchBar.searchBarStyle = UISearchBarStyleMinimal;
     self.searchBar.tintColor = [UIColor lightOrangeColor];
     self.searchBar.translucent = YES;
-
+    
 }
 
 - (void)viewWillDisappear:(BOOL)animated
@@ -101,73 +106,73 @@
 {
     [super viewDidAppear:animated];
     ///Hack for translucency
-//    CGRect frame = self.tableView.frame;
-//    frame.origin.y = self.navigationController.navigationBar.frame.size.height;
-//    frame.size.height = (frame.size.height - frame.origin.y);
-//    self.tableView.frame = frame;
-//    self.searchDisplayController.displaysSearchBarInNavigationBar = NO;
-//    self.searchDisplayController.searchBar.frame = CGRectMake(0,65,self.searchDisplayController.searchBar.frame.size.width,self.searchDisplayController.searchBar.frame.size.height);
-//    self.navigationController.navigationBar.translucent = YES;
+    //    CGRect frame = self.tableView.frame;
+    //    frame.origin.y = self.navigationController.navigationBar.frame.size.height;
+    //    frame.size.height = (frame.size.height - frame.origin.y);
+    //    self.tableView.frame = frame;
+    //    self.searchDisplayController.displaysSearchBarInNavigationBar = NO;
+    //    self.searchDisplayController.searchBar.frame = CGRectMake(0,65,self.searchDisplayController.searchBar.frame.size.width,self.searchDisplayController.searchBar.frame.size.height);
+    //    self.navigationController.navigationBar.translucent = YES;
 }
 
 - (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView
 {
     
     ///Hack for translucency
-//    if (!self.checkSearch) {
-//        CGRect frame = self.tableView.frame;
-//        frame.origin.y = 65;
-//        frame.size.height = (frame.size.height - frame.origin.y);
-//        self.tableView.frame = frame;
-//        self.searchDisplayController.displaysSearchBarInNavigationBar = NO;
-//        self.searchDisplayController.searchBar.frame = CGRectMake(0,65,self.searchDisplayController.searchBar.frame.size.width,self.searchDisplayController.searchBar.frame.size.height);
-//        self.checkSearch=YES;
-//        self.navigationController.navigationBar.translucent = YES;
-//        
-//    }
-
+    //    if (!self.checkSearch) {
+    //        CGRect frame = self.tableView.frame;
+    //        frame.origin.y = 65;
+    //        frame.size.height = (frame.size.height - frame.origin.y);
+    //        self.tableView.frame = frame;
+    //        self.searchDisplayController.displaysSearchBarInNavigationBar = NO;
+    //        self.searchDisplayController.searchBar.frame = CGRectMake(0,65,self.searchDisplayController.searchBar.frame.size.width,self.searchDisplayController.searchBar.frame.size.height);
+    //        self.checkSearch=YES;
+    //        self.navigationController.navigationBar.translucent = YES;
+    //
+    //    }
+    
 }
 
 - (void)didReceiveMemoryWarning
 {
-  [super didReceiveMemoryWarning];
+    [super didReceiveMemoryWarning];
 }
 
 #pragma mark - Table view data source
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-  return 1;
+    return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-  //return MAX(1, self.searchResults.count);
-  return self.searchResults.count;
+    //return MAX(1, self.searchResults.count);
+    return self.searchResults.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-  UITableViewCell *cell = nil;
-  if (self.searchResults.count == 0) {
-    static NSString *loadingCellIdentifier = @"loadingCell";
-    cell = [tableView dequeueReusableCellWithIdentifier:loadingCellIdentifier forIndexPath:indexPath];
-    if (cell == nil) {
-      cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:loadingCellIdentifier];
-      cell.textLabel.textColor = [UIColor blueGrayColor];
-      cell.textLabel.text = @"";
+    UITableViewCell *cell = nil;
+    if (self.searchResults.count == 0) {
+        static NSString *loadingCellIdentifier = @"loadingCell";
+        cell = [tableView dequeueReusableCellWithIdentifier:loadingCellIdentifier forIndexPath:indexPath];
+        if (cell == nil) {
+            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:loadingCellIdentifier];
+            cell.textLabel.textColor = [UIColor blueGrayColor];
+            cell.textLabel.text = @"";
+        }
     }
-  }
-  else if([tableView isEqual:self.tableView]) {
-    cell = [self cellForProjectsTableView:tableView atIndexPath:indexPath];
-  }
-//  else if([tableView isEqual:self.searchDisplayController.searchResultsTableView]) {
-//    cell = [self cellForSearchResultsTableView:tableView atIndexPath:indexPath];
-//  }
-  if (! cell) {
-    NSLog(@"Why?! Should not happen!");
-    abort();
-  }
-  return cell;
+    else if([tableView isEqual:self.tableView]) {
+        cell = [self cellForProjectsTableView:tableView atIndexPath:indexPath];
+    }
+    //  else if([tableView isEqual:self.searchDisplayController.searchResultsTableView]) {
+    //    cell = [self cellForSearchResultsTableView:tableView atIndexPath:indexPath];
+    //  }
+    if (! cell) {
+        NSLog(@"Why?! Should not happen!");
+        abort();
+    }
+    return cell;
 }
 
 #pragma mark - Table view delegate
@@ -184,54 +189,54 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-  if([tableView isEqual:self.tableView]) {
-    return [TableUtil getHeightForImageCell];
-  }
-  return self.tableView.rowHeight;
+    if([tableView isEqual:self.tableView]) {
+        return [TableUtil getHeightForImageCell];
+    }
+    return self.tableView.rowHeight;
 }
 
 #pragma mark - NSURLConnection Delegates
 - (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data
 {
-  if (self.connection == connection) {
-    [self.data appendData:data];
-  }
+    if (self.connection == connection) {
+        [self.data appendData:data];
+    }
 }
 
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection
 {
-  if (self.connection == connection) {
-    NSDebug(@"Finished");
-
-    self.searchResults = nil;
-    self.searchResults = [[NSMutableArray alloc] init];
-
-    NSError *error = nil;
-    id jsonObject = [NSJSONSerialization JSONObjectWithData:self.data
-                                                    options:NSJSONReadingMutableContainers
-                                                      error:&error];
-
-    NSDebug(@"array: %@", jsonObject);
-
-    if ([jsonObject isKindOfClass:[NSDictionary class]]) {
-      NSDictionary *catrobatInformation = [jsonObject valueForKey:@"CatrobatInformation"];
-      
-      CatrobatInformation *information = [[CatrobatInformation alloc] initWithDict:catrobatInformation];
-      
-      NSArray *catrobatProjects = [jsonObject valueForKey:@"CatrobatProjects"];
-      
-      self.searchResults = [[NSMutableArray alloc] initWithCapacity:[catrobatProjects count]];
-      
-      for (NSDictionary *projectDict in catrobatProjects) {
-        CatrobatProject *project = [[CatrobatProject alloc] initWithDict:projectDict andBaseUrl:information.baseURL];
-        [self.searchResults addObject:project];
-      }
+    if (self.connection == connection) {
+        NSDebug(@"Finished");
+        
+        self.searchResults = nil;
+        self.searchResults = [[NSMutableArray alloc] init];
+        
+        NSError *error = nil;
+        id jsonObject = [NSJSONSerialization JSONObjectWithData:self.data
+                                                        options:NSJSONReadingMutableContainers
+                                                          error:&error];
+        
+        NSDebug(@"array: %@", jsonObject);
+        
+        if ([jsonObject isKindOfClass:[NSDictionary class]]) {
+            NSDictionary *catrobatInformation = [jsonObject valueForKey:@"CatrobatInformation"];
+            
+            CatrobatInformation *information = [[CatrobatInformation alloc] initWithDict:catrobatInformation];
+            
+            NSArray *catrobatProjects = [jsonObject valueForKey:@"CatrobatProjects"];
+            
+            self.searchResults = [[NSMutableArray alloc] initWithCapacity:[catrobatProjects count]];
+            
+            for (NSDictionary *projectDict in catrobatProjects) {
+                CatrobatProject *project = [[CatrobatProject alloc] initWithDict:projectDict andBaseUrl:information.baseURL];
+                [self.searchResults addObject:project];
+            }
+        }
+        self.data = nil;
+        self.connection = nil;
+        [self update];
+        [self loadingIndicator:NO];
     }
-    self.data = nil;
-    self.connection = nil;
-    [self update];
-    [self loadingIndicator:NO];
-  }
 }
 
 -(void)loadingIndicator:(BOOL)value
@@ -300,54 +305,63 @@
 
 -(void)initSearchView
 {
-  self.searchResults = [[NSMutableArray alloc] init];
+    self.searchResults = [[NSMutableArray alloc] init];
 
-  for (UIView *subView in self.searchDisplayController.searchBar.subviews) {
-    if([subView isKindOfClass: [UITextField class]]) {
-      [(UITextField *)subView setKeyboardAppearance: UIKeyboardAppearanceAlert];
+    // TODO: UISearchDisplayController is deprecated!
+    //       Should be replaced with UISearchController when iOS7 support is not needed any more!
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdeprecated-declarations"
+    for (UIView *subView in self.searchDisplayController.searchBar.subviews) {
+#pragma clang diagnostic pop
+        if([subView isKindOfClass: [UITextField class]]) {
+            [(UITextField *)subView setKeyboardAppearance: UIKeyboardAppearanceAlert];
+        }
     }
-  }
-
 }
 
 #pragma mark - Segue
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-  [self.searchDisplayController setActive:NO animated:YES];
-  [self update];
-  if([[segue identifier] isEqualToString:kSegueToProgramDetail]) {
-    if([sender isKindOfClass:[CatrobatProject class]]) {
-      ProgramDetailStoreViewController* programDetailViewController = (ProgramDetailStoreViewController*)[segue destinationViewController];
-      programDetailViewController.project = sender;
-        programDetailViewController.searchStoreController = self;
+    // UISearchDisplayController is deprecated!
+    // Should be replaced with UISearchController when iOS7 support is not needed any more!
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdeprecated-declarations"
+    [self.searchDisplayController setActive:NO animated:YES];
+#pragma clang diagnostic pop
+    [self update];
+    if ([[segue identifier] isEqualToString:kSegueToProgramDetail]) {
+        if ([sender isKindOfClass:[CatrobatProject class]]) {
+            ProgramDetailStoreViewController* programDetailViewController = (ProgramDetailStoreViewController*)[segue destinationViewController];
+            programDetailViewController.project = sender;
+            programDetailViewController.searchStoreController = self;
+        }
     }
-  }
 }
 
 #pragma mark - Helper
 -(void)queryServerForSearchString:(NSString*)searchString
 {
-  NSDebug(@"Begin custom query to server");
-  // reset data
-  self.data = nil; // cleanup
-  self.data = [[NSMutableData alloc] init];
-  
-  NSString *queryString = [NSString stringWithFormat:@"%@/%@?offset=0&query=%@", kConnectionHost, kConnectionSearch, searchString];
-  NSDebug(@"Query string: %@", queryString);
-  
-  NSURL *url = [NSURL URLWithString:queryString];
-  
-  NSURLRequest *request = [NSURLRequest requestWithURL:url cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:kConnectionTimeout];
-  
-  NSURLConnection *connection = [[NSURLConnection alloc] initWithRequest:request delegate:self];
-  self.connection = connection;
-  
-  NSDebug(@"Finished custom query to server");
+    NSDebug(@"Begin custom query to server");
+    // reset data
+    self.data = nil; // cleanup
+    self.data = [[NSMutableData alloc] init];
+    
+    NSString *queryString = [NSString stringWithFormat:@"%@/%@?offset=0&query=%@", kConnectionHost, kConnectionSearch, searchString];
+    NSDebug(@"Query string: %@", queryString);
+    
+    NSURL *url = [NSURL URLWithString:queryString];
+    
+    NSURLRequest *request = [NSURLRequest requestWithURL:url cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:kConnectionTimeout];
+    
+    NSURLConnection *connection = [[NSURLConnection alloc] initWithRequest:request delegate:self];
+    self.connection = connection;
+    
+    NSDebug(@"Finished custom query to server");
 }
 
 - (void)update
 {
-//  [self.searchDisplayController.searchResultsTableView reloadData];
+    //  [self.searchDisplayController.searchResultsTableView reloadData];
     
     self.noSearchResultsLabel.hidden = [self.searchResults count] == 0 ? NO : YES;
     [self.tableView reloadData];
@@ -355,41 +369,40 @@
 
 - (UITableViewCell*)cellForProjectsTableView:(UITableView*)tableView atIndexPath:(NSIndexPath*)indexPath
 {
-  static NSString *CellIdentifier = kImageCell;
-  UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
+    static NSString *CellIdentifier = kImageCell;
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
 
-  if (!cell) {
-    NSLog(@"Should Never happen - since iOS5 Storyboard *always* instantiates our cell!");
-    abort();
-  }
+    if (!cell) {
+        NSLog(@"Should Never happen - since iOS5 Storyboard *always* instantiates our cell!");
+        abort();
+    }
 
-  if ([cell conformsToProtocol:@protocol(CatrobatImageCell)]) {
-    CatrobatProject *project = [self.searchResults objectAtIndex:indexPath.row];
-    
-    UITableViewCell <CatrobatImageCell>* imageCell = (UITableViewCell <CatrobatImageCell>*)cell;
-    imageCell.titleLabel.text = project.projectName;
-    
-    [self loadImage:project.screenshotSmall forCell:imageCell atIndexPath:indexPath];
-  }
-  return cell;
+    if ([cell conformsToProtocol:@protocol(CatrobatImageCell)]) {
+        CatrobatProject *project = [self.searchResults objectAtIndex:indexPath.row];
+        
+        UITableViewCell <CatrobatImageCell>* imageCell = (UITableViewCell <CatrobatImageCell>*)cell;
+        imageCell.titleLabel.text = project.projectName;
+        
+        [self loadImage:project.screenshotSmall forCell:imageCell atIndexPath:indexPath];
+    }
+    return cell;
 }
-
 
 - (void)loadImage:(NSString*)imageURLString forCell:(UITableViewCell <CatrobatImageCell>*) imageCell atIndexPath:(NSIndexPath*)indexPath
 {
-  imageCell.iconImageView.image =
-  [UIImage imageWithContentsOfURL:[NSURL URLWithString:imageURLString]
-                 placeholderImage:[UIImage imageNamed:@"programs"]
-                     onCompletion:^(UIImage *image) {
-                       dispatch_async(dispatch_get_main_queue(), ^{
-                         [self.tableView beginUpdates];
-                         UITableViewCell <CatrobatImageCell>* cell = (UITableViewCell <CatrobatImageCell>*)[self.tableView cellForRowAtIndexPath:indexPath];
-                         if(cell) {
-                           cell.iconImageView.image = image;
-                         }
-                         [self.tableView endUpdates];
-                       });
-                     }];
+    imageCell.iconImageView.image =
+    [UIImage imageWithContentsOfURL:[NSURL URLWithString:imageURLString]
+                   placeholderImage:[UIImage imageNamed:@"programs"]
+                       onCompletion:^(UIImage *image) {
+                           dispatch_async(dispatch_get_main_queue(), ^{
+                               [self.tableView beginUpdates];
+                               UITableViewCell <CatrobatImageCell>* cell = (UITableViewCell <CatrobatImageCell>*)[self.tableView cellForRowAtIndexPath:indexPath];
+                               if(cell) {
+                                   cell.iconImageView.image = image;
+                               }
+                               [self.tableView endUpdates];
+                           });
+                       }];
 }
 
 @end

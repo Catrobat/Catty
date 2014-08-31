@@ -132,7 +132,8 @@
             backgroundObjectCellTitle = imageCell.titleLabel.text;
         }
         XCTAssertTrue(([backgroundObjectCellTitle isEqualToString:kLocalizedBackground]
-                       || [backgroundObjectCellTitle isEqualToString:@"Background"]),
+                       || [backgroundObjectCellTitle isEqualToString:@"Background"]
+                       || [backgroundObjectCellTitle isEqualToString:@"Hintergrund"]),
                       @"The ProgramTableViewController did not create the background object cell correctly.");
 
         NSUInteger objectCounter = 0;
@@ -316,18 +317,10 @@
         return nil;
 
     NSDebug(@"ProjectResolution: width/height:  %f / %f", program.header.screenWidth.floatValue, program.header.screenHeight.floatValue);
-
-    // setting effect
-    for (SpriteObject *sprite in program.objectList)
-    {
-        //sprite.spriteManagerDelegate = self;
-        //sprite.broadcastWaitDelegate = self.broadcastWaitHandler;
-        for (Script *script in sprite.scriptList) {
-            for (Brick *brick in script.brickList) {
-                brick.object = sprite;
-            }
-        }
-    }
+//    for (SpriteObject *sprite in program.objectList) {
+//        sprite.spriteManagerDelegate = self;
+//        sprite.broadcastWaitDelegate = self.broadcastWaitHandler;
+//    }
     [Util setLastProgram:program.header.programName];
     return program;
 }

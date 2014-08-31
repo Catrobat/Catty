@@ -345,7 +345,6 @@
 
 - (BOOL)touchedwith:(NSSet *)touches withX:(CGFloat)x andY:(CGFloat)y
 {
-
     for (UITouch *touch in touches) {
         CGPoint touchedPoint = [touch locationInNode:self];
         NSDebug(@"x:%f,y:%f",touchedPoint.x,touchedPoint.y);
@@ -355,28 +354,20 @@
 //        UIImage *snapshotImage = UIGraphicsGetImageFromCurrentImageContext();
 //        UIGraphicsEndImageContext();
         NSDebug(@"image : x:%f,y:%f",self.currentUIImageLook.size.width,self.currentUIImageLook.size.height);
-        
         BOOL isTransparent = [self.currentUIImageLook isTransparentPixel:self.currentUIImageLook withX:touchedPoint.x andY:touchedPoint.y];
-        if (isTransparent == NO) {
-        for (Script *script in self.scriptList)
-        {
+        if (isTransparent) {
+            NSDebug(@"I'm transparent at this point");
+            return NO;
+        }
+            for (Script *script in self.scriptList) {
             if ([script isKindOfClass:[WhenScript class]]) {
-                
                 __weak typeof(self) weakSelf = self;
                 [self startAndAddScript:script completion:^{
                     [weakSelf scriptFinished:script];
                 }];
-                
             }
-           
         }
-            return YES;
-
-        } else {
-            NSDebug(@"I'm transparent at this point");
-            return NO;
-    }
-
+        return YES;
     }
     return YES;
 }
@@ -416,13 +407,13 @@
 
 - (void)startAndAddScript:(Script*)script completion:(dispatch_block_t)completion
 {
-    if([[self children] indexOfObject:script] == NSNotFound) {
+//    if ([[self children] indexOfObject:script] == NSNotFound) { <== does not work any more under iOS8!!
+    if (! [script inParentHierarchy:self]) {
+        [script removeFromParent]; // just to ensure
         [self addChild:script];
     }
-
     [script startWithCompletion:completion];
 }
-
 
 - (Look*)nextLook
 {
@@ -773,13 +764,14 @@
 
 - (NSString*)description
 {
-    return [NSString stringWithFormat:@"Object: %@\r", self.name];
+    NSMutableString *mutableString = [NSMutableString string];
+    [mutableString appendFormat:@"Scripts: %@\r", self.scriptList];
+    [mutableString appendFormat:@"Looks: %@\r", self.lookList];
+    [mutableString appendFormat:@"Sounds: %@\r", self.soundList];
+    return [mutableString copy];
 }
 
-
-
 #pragma mark - Formula Protocol
-
 -(CGFloat)xPosition
 {
     return self.position.x;

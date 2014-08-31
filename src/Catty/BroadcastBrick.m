@@ -25,8 +25,6 @@
 
 @implementation BroadcastBrick
 
-@synthesize broadcastMessage = _message;
-
 - (NSString*)brickTitle
 {
     return kLocalizedBroadcast;
@@ -45,7 +43,7 @@
 - (SKAction*)action
 {
     return [SKAction runBlock:^{
-        NSDebug(@"Performing: %@", self.description);
+        NSDebug(@"Performing: %@", [self description]);
         [self.object broadcast:self.broadcastMessage];
     }];
 }

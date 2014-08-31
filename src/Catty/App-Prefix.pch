@@ -29,7 +29,7 @@
 #import "Logger.h"
 #import "AppDefines.h"
 
-#if kIsFirstRelease
+#if kIsRelease
 #undef DEBUG
 
 // UNCOMMENT ALL LOG AND DEBUG MESSAGES IN FIRST RELEASE VERSION
@@ -40,7 +40,7 @@
 #define NSWarn(...) /* suppress NSLog when in release mode */
 #define NSError(...) /* suppress NSLog when in release mode */
 
-#else // kIsFirstRelease
+#else // kIsRelease
 
 #ifdef DEBUG
 //#define NSDebug(...) [Logger debug:__VA_ARGS__];
@@ -57,4 +57,4 @@
 #define NSLogError(error) [Logger logError:error];
 
 #endif
-#endif // kIsFirstRelease
+#endif // kIsRelease
