@@ -24,13 +24,32 @@
 
 @interface InternToExternGenerator ()
 
-@property (nonatomic, weak)NSString *generatedExternFormulaString;
+@property (nonatomic, strong)NSString *generatedExternFormulaString;
 @property (nonatomic, strong)ExternInternRepresentationMapping *generatedExternInternRepresentationMapping;
 @property (nonatomic, strong)NSMutableDictionary *INTERN_EXTERN_LANGUAGE_CONVERTER_MAP;
 
 @end
 
 @implementation InternToExternGenerator
+
+-(ExternInternRepresentationMapping *)generatedExternInternRepresentationMapping
+{
+    if(!_generatedExternInternRepresentationMapping)
+    {
+        _generatedExternInternRepresentationMapping = [[ExternInternRepresentationMapping alloc]init];
+    }
+    return _generatedExternInternRepresentationMapping;
+}
+
+-(NSString *)generatedExternFormulaString
+{
+    if(!_generatedExternFormulaString)
+    {
+        _generatedExternFormulaString = [[NSString alloc]init];;
+    }
+    return _generatedExternFormulaString;
+        
+}
 
 -(InternToExternGenerator *)init
 {
@@ -39,7 +58,6 @@
     {
         self.INTERN_EXTERN_LANGUAGE_CONVERTER_MAP = [[NSMutableDictionary alloc]init];
         self.generatedExternFormulaString = [NSString stringWithFormat:@""];
-        self.generatedExternInternRepresentationMapping = [[ExternInternRepresentationMapping alloc]init];
         
         [self.INTERN_EXTERN_LANGUAGE_CONVERTER_MAP setObject:[Operators getName:DIVIDE] forKey:[NSNumber numberWithInt:DIVIDE]];
         [self.INTERN_EXTERN_LANGUAGE_CONVERTER_MAP setObject:[Operators getName:MINUS] forKey:[NSNumber numberWithInt:MINUS]];
@@ -110,8 +128,6 @@
         [internTokenList addObject:internToken];
     }
     
-    
-    self.generatedExternInternRepresentationMapping = [[ExternInternRepresentationMapping alloc]init];
     self.generatedExternFormulaString = [NSString stringWithFormat:@""];
     
     InternToken *currentToken = nil;

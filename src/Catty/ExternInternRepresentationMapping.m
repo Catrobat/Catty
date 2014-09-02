@@ -74,6 +74,7 @@ static int MAPPING_NOT_FOUND = INT_MIN;
 
 -(id)getItemfromList:(NSMutableDictionary *)list withKey:(int)key
 {
+//    NSLog(@"get Value %@ from list!", [list objectForKey:[NSNumber numberWithInt:key]]);
     return [list objectForKey:[NSNumber numberWithInt:key]];
 }
 
@@ -127,8 +128,17 @@ static int MAPPING_NOT_FOUND = INT_MIN;
     {
         return MAPPING_NOT_FOUND;
     }
+    
     int searchDownInternToken  = [self searchDownIn:self.externInternMapping withBeginIndex:externIndex-1];
-    int currentInternToken = (int)[self getItemfromList:self.externInternMapping withKey:externIndex];
+    int currentInternToken;
+    if([self getItemfromList:self.externInternMapping withKey:externIndex]!=nil)
+    {
+        currentInternToken = [[self getItemfromList:self.externInternMapping withKey:externIndex]intValue];
+    }else
+    {
+        currentInternToken = MAPPING_NOT_FOUND;
+    }
+    
     int searchUpInternToken = [self searchUpIn:self.externInternMapping withBeginIndex:externIndex +1];
     
     if(currentInternToken != MAPPING_NOT_FOUND)
@@ -149,7 +159,7 @@ static int MAPPING_NOT_FOUND = INT_MIN;
 {
     for(int searchIndex = externIndex; searchIndex >=0; searchIndex--)
     {
-        if([self getItemfromList:self.externInternMapping withKey:searchIndex] != nil && (int)[self getItemfromList:self.externInternMapping withKey:searchIndex] == internOffsetTo)
+        if([self getItemfromList:self.externInternMapping withKey:searchIndex] != nil && [[self getItemfromList:self.externInternMapping withKey:searchIndex]intValue] == internOffsetTo)
         {
             int rightEdgeSelectionToken = [self getExternTokenStartOffset:searchIndex-1 withInternOffsetTo:internOffsetTo];
             if(rightEdgeSelectionToken == -1)
@@ -169,7 +179,8 @@ static int MAPPING_NOT_FOUND = INT_MIN;
     {
         if([self getItemfromList:mapping withKey:searchIndex] != nil)
         {
-            return (int)[self getItemfromList:mapping withKey:searchIndex];
+            NSDebug(@"SearchDown found Value: %d", [[self getItemfromList:mapping withKey:searchIndex]intValue]);
+            return [[self getItemfromList:mapping withKey:searchIndex]intValue];
         }
     }
     
@@ -182,7 +193,7 @@ static int MAPPING_NOT_FOUND = INT_MIN;
     {
         if([self getItemfromList:mapping withKey:searchIndex] != nil)
         {
-            return (int)[self getItemfromList:mapping withKey:searchIndex];
+            return [[self getItemfromList:mapping withKey:searchIndex]intValue];
         }
     }
     

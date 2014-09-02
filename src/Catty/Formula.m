@@ -24,7 +24,27 @@
 #import "FormulaElement.h"
 #import "GDataXMLNode.h"
 
+@interface Formula ()
+
+@property (nonatomic, strong)NSString *displayText;
+
+@end
+
 @implementation Formula
+
+-(Formula *)initWithFormulaElement:(FormulaElement *)formulaElement
+{
+    self = [super init];
+    if(self)
+    {
+        self.formulaTree = formulaElement;
+        self.internFormula = [[InternFormula alloc]initWithInternTokenList:[self.formulaTree getInternTokenList]];
+    }
+    return self;
+}
+
+
+
 
 - (double)interpretDoubleForSprite:(SpriteObject*)sprite
 {

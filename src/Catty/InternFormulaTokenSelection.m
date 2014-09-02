@@ -21,6 +21,7 @@
  */
 
 #import "InternFormulaTokenSelection.h"
+#import "InternFormula.h"
 
 @interface InternFormulaTokenSelection ()
 
@@ -76,17 +77,6 @@
         return YES;
     }
     return NO;
-}
-
--(NSInteger)hashCode
-{
-    NSInteger result = 31;
-    NSInteger prime = 41;
-    
-    result = prime * result + self.internTokenSelectionStart;
-    result = prime * result + self.internTokenSelectionEnd;
-    
-    return result;
 }
 
 

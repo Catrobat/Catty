@@ -21,6 +21,8 @@
  */
 
 #import "InternFormulaState.h"
+#import "InternToken.h"
+#import "InternFormula.h"
 
 @interface InternFormulaState ()
 

@@ -39,6 +39,7 @@
 #import "Formula.h"
 #import "FormulaElement.h"
 #import "LanguageTranslationDefines.h"
+#import "InternFormula.h"
 
 NS_ENUM(NSInteger, ButtonIndex) {
     kButtonIndexDelete = 0,
@@ -56,6 +57,8 @@ NS_ENUM(NSInteger, ButtonIndex) {
 @property (strong, nonatomic) UITapGestureRecognizer *recognizer;
 @property (strong, nonatomic) UIMotionEffectGroup *motionEffects;
 @property (strong, nonatomic) FormulaEditorTextField *formulaEditorTextField;
+@property (strong, nonatomic) InternFormula *internFormula;
+
 
 @property (strong, nonatomic) IBOutletCollection(UIButton) NSArray *buttons;
 @property (weak, nonatomic) IBOutlet UIButton *undoButton;
@@ -65,6 +68,7 @@ NS_ENUM(NSInteger, ButtonIndex) {
 @property (weak, nonatomic) IBOutlet UIButton *substractionButton;
 @property (weak, nonatomic) IBOutlet UIButton *additionButton;
 
+
 @end
 
 @implementation FormulaEditorViewController
@@ -72,6 +76,15 @@ NS_ENUM(NSInteger, ButtonIndex) {
 @synthesize formulaEditorTextField;
 
 const float TEXT_FIELD_HEIGHT = 45;
+
+- (InternFormula *)internFormula
+{
+    if(!_internFormula)
+    {
+        _internFormula = [[InternFormula alloc]init];
+    }
+    return _internFormula;
+}
 
 - (void)viewDidLoad
 {
@@ -159,15 +172,21 @@ const float TEXT_FIELD_HEIGHT = 45;
 {
     if([sender isKindOfClass:[UIButton class]]) {
         UIButton *button = (UIButton *)sender;
-        NSString *number = button.titleLabel.text;
-        self.formulaEditorTextField.text = [self.formulaEditorTextField.text stringByAppendingString:number];
+        NSString *title = button.titleLabel.text;
+//        self.formulaEditorTextField.text = [self.formulaEditorTextField.text stringByAppendingString:number];
         [self inputDidChange:self.formulaEditorTextField];
         if(PLUS == [sender tag])
         {
-            NSLog(@"Plus: %ld", (long)[sender tag]);
+            NSLog(@"Plus: %@", title);
         }else{
             NSLog(@"Beschreibung: %ld", (long)[sender tag]);
         }
+        
+        
+        [self.internFormula handleKeyInputWithName:title butttonType:(int)[sender tag]];
+        NSLog(@"InternFormulaString: %@",[self.internFormula getExternFormulaString]);
+        self.formulaEditorTextField.text = [self.internFormula getExternFormulaString];
+        
         
     }
 }

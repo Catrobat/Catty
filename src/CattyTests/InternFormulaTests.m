@@ -20,24 +20,28 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import <Foundation/Foundation.h>
+#import <XCTest/XCTest.h>
 #import "InternFormula.h"
+#import "InternToken.h"
+#import "Operators.h"
 
-@class FormulaElement;
-@class SpriteObject;
-@class GDataXMLElement;
+@interface InternFormulaTests : XCTestCase
 
-@interface Formula : NSObject
+@end
 
-@property (nonatomic, strong) FormulaElement* formulaTree;
-@property (nonatomic, strong) InternFormula *internFormula;
+@implementation InternFormulaTests
 
-
-
-- (double)interpretDoubleForSprite:(SpriteObject*)sprite;
-- (int)interpretIntegerForSprite:(SpriteObject*)sprite;
-- (BOOL)interpretBOOLForSprite:(SpriteObject*)sprite;
-
-- (GDataXMLElement*)toXMLforObject:(SpriteObject*)spriteObject;
+//-(void)testInsertRightToCurrentToken
+//{
+//    NSMutableArray *internTokens = [[NSMutableArray alloc]init];
+//    [internTokens addObject:[[InternToken alloc]initWithType:TOKEN_TYPE_OPERATOR AndValue:[Operators getName:PLUS]]];
+//    InternFormula *internFormula = [[InternFormula alloc]initWithInternTokenList:internTokens];
+//    [internFormula generateExternFormulaStringAndInternExternMapping];
+//    [internFormula setCursorAndSelection:0 selected:NO];
+//    [internFormula handleKeyInputWithName:nil butttonType:DECIMAL_MARK];
+//    
+//    XCTAssertTrue([[[internTokens objectAtIndex:0]getTokenStringValue]isEqualToString:@"0."]
+//                  , @"Enter decimal mark error");
+//}
 
 @end

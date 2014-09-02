@@ -41,6 +41,33 @@ static int MAPPING_NOT_FOUND = INT_MIN;
 
 @implementation InternFormula
 
+-(ExternInternRepresentationMapping *)externInternRepresentationMapping
+{
+    if(!_externInternRepresentationMapping)
+    {
+        _externInternRepresentationMapping = [[ExternInternRepresentationMapping alloc]init];
+    }
+    
+    return _externInternRepresentationMapping;
+}
+
+-(NSMutableArray *)internTokenFormulaList
+{
+    if (!_internTokenFormulaList) {
+        _internTokenFormulaList = [[NSMutableArray alloc]init];
+    }
+    return _internTokenFormulaList;
+}
+
+-(NSString *)externFormulaString
+{
+    if(!_externFormulaString)
+    {
+        _externFormulaString = [[NSString alloc]init];
+    }
+    return _externFormulaString;
+}
+
 -(InternFormula *)initWithInternTokenList:(NSMutableArray *)internTokenList
 {
     self = [super init];
@@ -48,7 +75,6 @@ static int MAPPING_NOT_FOUND = INT_MIN;
     {
         self.internTokenFormulaList = internTokenList;
         self.externFormulaString = nil;
-        self.externInternRepresentationMapping = [[ExternInternRepresentationMapping alloc]init];
         self.internFormulaTokenSelection = nil;
         self.externCursorPosition = 0;
         self.cursorPositionInternTokenIndex = 0;
@@ -65,7 +91,6 @@ static int MAPPING_NOT_FOUND = INT_MIN;
     {
         self.internTokenFormulaList = internTokenList;
         self.externFormulaString = nil;
-        self.externInternRepresentationMapping = [[ExternInternRepresentationMapping alloc]init];
         self.internFormulaTokenSelection = internFormulaTokenSelection;
         self.externCursorPosition = externCursorPosition;
         
@@ -677,9 +702,10 @@ static int MAPPING_NOT_FOUND = INT_MIN;
 -(void)updateInternCursorPosition
 {
     int cursorPositionTokenIndex = [self.externInternRepresentationMapping getInternTokenByExternIndex:self.externCursorPosition];
-//    int leftCursorPositionTokenIndex = [self.externInternRepresentationMapping getInternTokenByExternIndex:self.externCursorPosition-1];
-    int leftCursorPositionTokenIndex = cursorPositionTokenIndex-1;
-    int leftleftCursorPositionTokenIndex = cursorPositionTokenIndex-2;
+    int leftCursorPositionTokenIndex = [self.externInternRepresentationMapping getInternTokenByExternIndex:self.externCursorPosition-1];
+    int leftleftCursorPositionTokenIndex = [self.externInternRepresentationMapping getInternTokenByExternIndex:self.externCursorPosition-2];
+//    int leftCursorPositionTokenIndex = cursorPositionTokenIndex-1;
+//    int leftleftCursorPositionTokenIndex = cursorPositionTokenIndex-2;
     
     if (cursorPositionTokenIndex != MAPPING_NOT_FOUND) {
         

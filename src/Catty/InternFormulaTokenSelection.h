@@ -21,7 +21,7 @@
  */
 
 #import <Foundation/Foundation.h>
-#import <InternFormula.h>
+
 
 @interface InternFormulaTokenSelection : NSObject
 
@@ -33,4 +33,5 @@
                                  internTokenSelectionStart:(NSInteger)internTokenSelectionStart
                                    internTokenSelectionEnd:(NSInteger)internTokenSelectionEnd;
 -(InternFormulaTokenSelection *)deepCopy;
+
 @end
