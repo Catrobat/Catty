@@ -81,7 +81,7 @@
     self = [super init];
     if(self)
     {
-        self.formulaTree = formulaElement;
+        self.formulaTree = formulaTree;
         self.internFormula = [[InternFormula alloc]initWithInternTokenList:[self.formulaTree getInternTokenList]];
     }
     return self;
