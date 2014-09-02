@@ -30,6 +30,7 @@
 		4C25A4AA1992301400844295 /* FormulaEditorButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C25A4A91992301400844295 /* FormulaEditorButton.m */; };
 		4C3AEF2F198E7EDD00604ABF /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 4C3AEF2E198E7EDD00604ABF /* Settings.bundle */; };
 		4C3C040B199BC08F0004F594 /* FormulaFunctionsTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C3C040A199BC08F0004F594 /* FormulaFunctionsTest.m */; };
+		4C508D7919A353F800F22F21 /* FormulaTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C508D7819A353F800F22F21 /* FormulaTest.m */; };
 		4C5BF0B11998D42F0096DBFE /* InternFormulaUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C5BF0B01998D42F0096DBFE /* InternFormulaUtils.m */; };
 		4C5BF0B41998D7190096DBFE /* NSMutableArray+Reverse.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C5BF0B31998D7190096DBFE /* NSMutableArray+Reverse.m */; };
 		4C5BF0BD1998E85D0096DBFE /* InternFormulaParserEmptyStackException.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C5BF0BB1998E85D0096DBFE /* InternFormulaParserEmptyStackException.m */; };
@@ -386,6 +387,7 @@
 		4C25A4A91992301400844295 /* FormulaEditorButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FormulaEditorButton.m; sourceTree = "<group>"; };
 		4C3AEF2E198E7EDD00604ABF /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		4C3C040A199BC08F0004F594 /* FormulaFunctionsTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FormulaFunctionsTest.m; sourceTree = "<group>"; };
+		4C508D7819A353F800F22F21 /* FormulaTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FormulaTest.m; sourceTree = "<group>"; };
 		4C5BF0AF1998D42F0096DBFE /* InternFormulaUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InternFormulaUtils.h; sourceTree = "<group>"; };
 		4C5BF0B01998D42F0096DBFE /* InternFormulaUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InternFormulaUtils.m; sourceTree = "<group>"; };
 		4C5BF0B21998D7190096DBFE /* NSMutableArray+Reverse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableArray+Reverse.h"; sourceTree = "<group>"; };
@@ -1122,6 +1124,7 @@
 				4CBB2A4D199A1AD600F40B73 /* FormulaParserErrorDetectionTest.m */,
 				4C5BF0C1199919060096DBFE /* FormulaParserTest.m */,
 				4C25A4A61992106E00844295 /* FormulaElementTest.m */,
+				4C508D7819A353F800F22F21 /* FormulaTest.m */,
 			);
 			name = FormulaEditorTests;
 			sourceTree = "<group>";
@@ -3584,6 +3587,7 @@
 				CA8C247B18CD127C00314C2B /* ProgramTableViewControllerNewProgramTests.m in Sources */,
 				B46B271317703FB700172837 /* SensorHandlerTests.m in Sources */,
 				92C37A56185627A300547C1E /* ClearGrafficEffectBrickTests.m in Sources */,
+				4C508D7919A353F800F22F21 /* FormulaTest.m in Sources */,
 				92C37A4A185626DB00547C1E /* ChangeSizeByNBrickTests.m in Sources */,
 				4C5BF0C2199919060096DBFE /* FormulaParserTest.m in Sources */,
 				92C37A4E1856271100547C1E /* TurnRightBrickTests.m in Sources */,

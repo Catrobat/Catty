@@ -30,11 +30,16 @@
 
 @property (nonatomic, strong) FormulaElement* formulaTree;
 
-
+- (id)initWithInteger:(int)value;
+- (id)initWithDouble:(double)value;
+- (id)initWithFloat:(float)value;
+- (id)initWithFormulaElement:(FormulaElement*)formulaTree;
 
 - (double)interpretDoubleForSprite:(SpriteObject*)sprite;
 - (int)interpretIntegerForSprite:(SpriteObject*)sprite;
 - (BOOL)interpretBOOLForSprite:(SpriteObject*)sprite;
+
+- (BOOL)isSingleNumberFormula;
 
 - (GDataXMLElement*)toXMLforObject:(SpriteObject*)spriteObject;
 
