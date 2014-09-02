@@ -23,7 +23,7 @@
 #import <Foundation/Foundation.h>
 
 typedef enum {
-    LOGICAL_AND = 300,
+    LOGICAL_AND = 400,
     LOGICAL_OR,
     EQUAL,
     NOT_EQUAL,
@@ -35,7 +35,8 @@ typedef enum {
     MINUS,
     MULT,
     DIVIDE,
-    LOGICAL_NOT
+    LOGICAL_NOT,
+    DECIMAL_MARK
 } Operator;
 
 @interface Operators : NSObject

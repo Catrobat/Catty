@@ -21,6 +21,7 @@
  */
 
 #import <Foundation/Foundation.h>
+#import "InternFormula.h"
 
 @class FormulaElement;
 @class SpriteObject;
@@ -29,6 +30,7 @@
 @interface Formula : NSObject
 
 @property (nonatomic, strong) FormulaElement* formulaTree;
+@property (nonatomic, strong) InternFormula *internFormula;
 
 - (id)initWithInteger:(int)value;
 - (id)initWithDouble:(double)value;

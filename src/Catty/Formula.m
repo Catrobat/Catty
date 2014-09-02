@@ -25,6 +25,12 @@
 #import "GDataXMLNode.h"
 #import "Operators.h"
 
+@interface Formula ()
+
+@property (nonatomic, strong)NSString *displayText;
+
+@end
+
 @implementation Formula
 
 - (id)initWithInteger:(int)value
@@ -73,8 +79,10 @@
 - (id)initWithFormulaElement:(FormulaElement*)formulaTree
 {
     self = [super init];
-    if(self) {
-        self.formulaTree = formulaTree;
+    if(self)
+    {
+        self.formulaTree = formulaElement;
+        self.internFormula = [[InternFormula alloc]initWithInternTokenList:[self.formulaTree getInternTokenList]];
     }
     return self;
 }

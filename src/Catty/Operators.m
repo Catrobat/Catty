@@ -171,6 +171,9 @@
         case DIVIDE:
             name = @"DIVIDE";
             break;
+        case DECIMAL_MARK:
+            name = @".";
+            break;
             
         default:
             NSDebug(@"Invalid operator");

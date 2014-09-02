@@ -23,7 +23,7 @@
 #import <Foundation/Foundation.h>
 
 typedef enum {
-	SIN = 400,
+	SIN = 500,
     COS,
     TAN,
     LN,

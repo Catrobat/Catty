@@ -118,6 +118,16 @@
 		92C37A56185627A300547C1E /* ClearGrafficEffectBrickTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 92C37A55185627A300547C1E /* ClearGrafficEffectBrickTests.m */; };
 		92DFE97C196D795900F491EC /* InfoPopupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 92DFE97B196D795900F491EC /* InfoPopupViewController.m */; };
 		92E3351E18FBB6750056C390 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 92E3351D18FBB6750056C390 /* SystemConfiguration.framework */; };
+		AAB23A6219B08D5F0057A302 /* InternToExternGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = AAB23A6119B08D5F0057A302 /* InternToExternGenerator.m */; };
+		AAB23A6519B0F1E10057A302 /* InternFormulaState.m in Sources */ = {isa = PBXBuildFile; fileRef = AAB23A6419B0F1E10057A302 /* InternFormulaState.m */; };
+		AAB23A6719B1DFEE0057A302 /* ExternInternRepresentationMappingTest.m in Sources */ = {isa = PBXBuildFile; fileRef = AAB23A6619B1DFEE0057A302 /* ExternInternRepresentationMappingTest.m */; };
+		AAB23A6919B1EF5F0057A302 /* FormulaEditorUtilTests.m in Sources */ = {isa = PBXBuildFile; fileRef = AAB23A6819B1EF5F0057A302 /* FormulaEditorUtilTests.m */; };
+		AAB23A6B19B5E5C00057A302 /* InternFormulaTests.m in Sources */ = {isa = PBXBuildFile; fileRef = AAB23A6A19B5E5C00057A302 /* InternFormulaTests.m */; };
+		AAC6046E19A8963400501CAE /* ExternToken.m in Sources */ = {isa = PBXBuildFile; fileRef = AAC6046D19A8963400501CAE /* ExternToken.m */; };
+		AAC6047119A89A8500501CAE /* ExternInternRepresentationMapping.m in Sources */ = {isa = PBXBuildFile; fileRef = AAC6047019A89A8500501CAE /* ExternInternRepresentationMapping.m */; };
+		AAC6047419AA0ACB00501CAE /* InternFormula.m in Sources */ = {isa = PBXBuildFile; fileRef = AAC6047319AA0ACB00501CAE /* InternFormula.m */; };
+		AAC6047719AA125600501CAE /* InternFormulaTokenSelection.m in Sources */ = {isa = PBXBuildFile; fileRef = AAC6047619AA125600501CAE /* InternFormulaTokenSelection.m */; };
+		AAFEB97019ADD8A6002ABE22 /* InternFormulaKeyboardAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = AAFEB96F19ADD8A6002ABE22 /* InternFormulaKeyboardAdapter.m */; };
 		B402288217329FEB004C4942 /* IfLogicBeginBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = B402288117329FEB004C4942 /* IfLogicBeginBrick.m */; };
 		B40228911732A541004C4942 /* IfLogicElseBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = B40228901732A540004C4942 /* IfLogicElseBrick.m */; };
 		B40228961732A58E004C4942 /* IfLogicEndBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = B40228951732A58E004C4942 /* IfLogicEndBrick.m */; };
@@ -549,6 +559,23 @@
 		92DFE97A196D795900F491EC /* InfoPopupViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InfoPopupViewController.h; sourceTree = "<group>"; };
 		92DFE97B196D795900F491EC /* InfoPopupViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InfoPopupViewController.m; sourceTree = "<group>"; };
 		92E3351D18FBB6750056C390 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		AAB23A6019B08D5F0057A302 /* InternToExternGenerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InternToExternGenerator.h; sourceTree = "<group>"; };
+		AAB23A6119B08D5F0057A302 /* InternToExternGenerator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InternToExternGenerator.m; sourceTree = "<group>"; };
+		AAB23A6319B0F1E10057A302 /* InternFormulaState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InternFormulaState.h; sourceTree = "<group>"; };
+		AAB23A6419B0F1E10057A302 /* InternFormulaState.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InternFormulaState.m; sourceTree = "<group>"; };
+		AAB23A6619B1DFEE0057A302 /* ExternInternRepresentationMappingTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExternInternRepresentationMappingTest.m; sourceTree = "<group>"; };
+		AAB23A6819B1EF5F0057A302 /* FormulaEditorUtilTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FormulaEditorUtilTests.m; sourceTree = "<group>"; };
+		AAB23A6A19B5E5C00057A302 /* InternFormulaTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InternFormulaTests.m; sourceTree = "<group>"; };
+		AAC6046C19A8963400501CAE /* ExternToken.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExternToken.h; sourceTree = "<group>"; };
+		AAC6046D19A8963400501CAE /* ExternToken.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExternToken.m; sourceTree = "<group>"; };
+		AAC6046F19A89A8500501CAE /* ExternInternRepresentationMapping.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExternInternRepresentationMapping.h; sourceTree = "<group>"; };
+		AAC6047019A89A8500501CAE /* ExternInternRepresentationMapping.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExternInternRepresentationMapping.m; sourceTree = "<group>"; };
+		AAC6047219AA0ACB00501CAE /* InternFormula.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InternFormula.h; sourceTree = "<group>"; };
+		AAC6047319AA0ACB00501CAE /* InternFormula.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InternFormula.m; sourceTree = "<group>"; };
+		AAC6047519AA125600501CAE /* InternFormulaTokenSelection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InternFormulaTokenSelection.h; sourceTree = "<group>"; };
+		AAC6047619AA125600501CAE /* InternFormulaTokenSelection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InternFormulaTokenSelection.m; sourceTree = "<group>"; };
+		AAFEB96E19ADD8A6002ABE22 /* InternFormulaKeyboardAdapter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InternFormulaKeyboardAdapter.h; sourceTree = "<group>"; };
+		AAFEB96F19ADD8A6002ABE22 /* InternFormulaKeyboardAdapter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InternFormulaKeyboardAdapter.m; sourceTree = "<group>"; };
 		B4003030170EB50A00396DB7 /* CatrobatTableViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CatrobatTableViewController.h; sourceTree = "<group>"; };
 		B4003031170EB50A00396DB7 /* CatrobatTableViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CatrobatTableViewController.m; sourceTree = "<group>"; };
 		B402288017329FEB004C4942 /* IfLogicBeginBrick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IfLogicBeginBrick.h; sourceTree = "<group>"; };
@@ -1125,6 +1152,9 @@
 				4C5BF0C1199919060096DBFE /* FormulaParserTest.m */,
 				4C25A4A61992106E00844295 /* FormulaElementTest.m */,
 				4C508D7819A353F800F22F21 /* FormulaTest.m */,
+				AAB23A6619B1DFEE0057A302 /* ExternInternRepresentationMappingTest.m */,
+				AAB23A6819B1EF5F0057A302 /* FormulaEditorUtilTests.m */,
+				AAB23A6A19B5E5C00057A302 /* InternFormulaTests.m */,
 			);
 			name = FormulaEditorTests;
 			sourceTree = "<group>";
@@ -1181,6 +1211,8 @@
 		4CBB2A52199A455000F40B73 /* FormulaEditor */ = {
 			isa = PBXGroup;
 			children = (
+				AAC6046C19A8963400501CAE /* ExternToken.h */,
+				AAC6046D19A8963400501CAE /* ExternToken.m */,
 				4C8CBE54199650840097159E /* Operators.h */,
 				4C8CBE55199650840097159E /* Operators.m */,
 				4C8CBE4E19964A970097159E /* InternToken.h */,
@@ -1191,6 +1223,18 @@
 				4C5BF0B31998D7190096DBFE /* NSMutableArray+Reverse.m */,
 				4CBB2A4A1999EC2800F40B73 /* Functions.h */,
 				4CBB2A4B1999EC2800F40B73 /* Functions.m */,
+				AAC6046F19A89A8500501CAE /* ExternInternRepresentationMapping.h */,
+				AAC6047019A89A8500501CAE /* ExternInternRepresentationMapping.m */,
+				AAC6047219AA0ACB00501CAE /* InternFormula.h */,
+				AAC6047319AA0ACB00501CAE /* InternFormula.m */,
+				AAC6047519AA125600501CAE /* InternFormulaTokenSelection.h */,
+				AAC6047619AA125600501CAE /* InternFormulaTokenSelection.m */,
+				AAFEB96E19ADD8A6002ABE22 /* InternFormulaKeyboardAdapter.h */,
+				AAFEB96F19ADD8A6002ABE22 /* InternFormulaKeyboardAdapter.m */,
+				AAB23A6019B08D5F0057A302 /* InternToExternGenerator.h */,
+				AAB23A6119B08D5F0057A302 /* InternToExternGenerator.m */,
+				AAB23A6319B0F1E10057A302 /* InternFormulaState.h */,
+				AAB23A6419B0F1E10057A302 /* InternFormulaState.m */,
 				4CBB2A53199A457500F40B73 /* Exceptions */,
 			);
 			name = FormulaEditor;
@@ -3336,6 +3380,7 @@
 				B40C306E170ECC30000B872F /* CatrobatBaseCell.m in Sources */,
 				CA75C24A18A9618000FC8C2F /* PlaceAtBrickCell.m in Sources */,
 				815420D9191A51F200E628D2 /* FBShimmeringLayer.m in Sources */,
+				AAC6047119A89A8500501CAE /* ExternInternRepresentationMapping.m in Sources */,
 				B4D940D1170EC9ED003DDBFA /* NSString+CatrobatNSStringExtensions.m in Sources */,
 				81D3C9F61945E54200DB71E1 /* BrickShapeFactory.m in Sources */,
 				B4D940D0170EC9E9003DDBFA /* UIColor+CatrobatUIColorExtensions.m in Sources */,
@@ -3343,6 +3388,7 @@
 				B4D940CB170EC8DA003DDBFA /* TableUtil.m in Sources */,
 				B4D940CA170EC8C4003DDBFA /* ProgramLoadingInfo.m in Sources */,
 				CA047EC418C782550078BE08 /* BrickManager.m in Sources */,
+				AAFEB97019ADD8A6002ABE22 /* InternFormulaKeyboardAdapter.m in Sources */,
 				CA68B67718BAA80A007042E4 /* ComboBoxView.m in Sources */,
 				CA75C27718A9620E00FC8C2F /* StopAllSoundsBrickCell.m in Sources */,
 				81A5B4D7192964170082B2B8 /* CellMotionEffect.m in Sources */,
@@ -3363,6 +3409,7 @@
 				CA1498601989C9B10069A21E /* SWCellScrollView.m in Sources */,
 				CD0CCF54170CB39700B70036 /* BroadcastScript.m in Sources */,
 				4C5BF0BE1998E85D0096DBFE /* InternFormulaParserException.m in Sources */,
+				AAB23A6519B0F1E10057A302 /* InternFormulaState.m in Sources */,
 				816C788617D62B7C0029A4E6 /* ProgramTableViewController.m in Sources */,
 				CA1498821989CC0E0069A21E /* OrderedDictionary.m in Sources */,
 				CD0CCF55170CB39700B70036 /* BroadcastWaitBrick.m in Sources */,
@@ -3411,8 +3458,11 @@
 				CA43DD361809976900F95B88 /* UIImageView+CatrobatUIImageViewExtensions.m in Sources */,
 				CD0CCFBC170CB39700B70036 /* Script.m in Sources */,
 				CA75C25F18A961B200FC8C2F /* TurnLeftBrickCell.m in Sources */,
+				AAC6047719AA125600501CAE /* InternFormulaTokenSelection.m in Sources */,
 				CD0CCFBD170CB39700B70036 /* SetBrightnessBrick.m in Sources */,
+				AAC6046E19A8963400501CAE /* ExternToken.m in Sources */,
 				CABE07BC18BAB8B200BE26EF /* MessageComboBoxView.m in Sources */,
+				AAC6047419AA0ACB00501CAE /* InternFormula.m in Sources */,
 				4CAB5713199131EA00350DE6 /* FormulaEditorViewController.m in Sources */,
 				CA75C25018A9618D00FC8C2F /* SetYBrickCell.m in Sources */,
 				CD0CCFBE170CB39700B70036 /* SetGhostEffectBrick.m in Sources */,
@@ -3507,6 +3557,7 @@
 				815420DA191A51F200E628D2 /* FBShimmeringView.m in Sources */,
 				4CBB2A4C1999EC2800F40B73 /* Functions.m in Sources */,
 				CA1498711989CA160069A21E /* AHKActionSheetViewController.m in Sources */,
+				AAB23A6219B08D5F0057A302 /* InternToExternGenerator.m in Sources */,
 				CA75C25C18A961AB00FC8C2F /* MoveNStepsBrickCell.m in Sources */,
 				B4DEFC90170F464200DD1939 /* TestParser.m in Sources */,
 				B4D4DD4317156A8500EEE3F8 /* PointInDirectionBrick.m in Sources */,
@@ -3581,6 +3632,7 @@
 				92345635192E2A1B00464E6B /* ChangeBrightnessByNBrickTests.m in Sources */,
 				92C37A381856253B00547C1E /* ComeToFrontBrickTests.m in Sources */,
 				C34B44ED17F079F500624730 /* CustomExtensionsTests.m in Sources */,
+				AAB23A6B19B5E5C00057A302 /* InternFormulaTests.m in Sources */,
 				92345639192E2E8000464E6B /* NextLookBrickTests.m in Sources */,
 				92C37A501856274700547C1E /* GoNStepsBackBrickTests.m in Sources */,
 				92C37A461856269100547C1E /* PointInDirectionBrickTests.m in Sources */,
@@ -3594,12 +3646,14 @@
 				92C37A521856276D00547C1E /* SetBrightnessBrickTests.m in Sources */,
 				92C37A3A1856257300547C1E /* SetXBrickTests.m in Sources */,
 				4CBB2A4E199A1AD600F40B73 /* FormulaParserErrorDetectionTest.m in Sources */,
+				AAB23A6719B1DFEE0057A302 /* ExternInternRepresentationMappingTest.m in Sources */,
 				4C3C040B199BC08F0004F594 /* FormulaFunctionsTest.m in Sources */,
 				92C37A33185621FF00547C1E /* SetSizeToBrickTests.m in Sources */,
 				92345637192E2E6C00464E6B /* SetLookBrickTests.m in Sources */,
 				92C37A4C1856270500547C1E /* TurnLeftBrickTests.m in Sources */,
 				92C37A541856279600547C1E /* MoveNStepsBrickTests.m in Sources */,
 				4C25A4A71992106E00844295 /* FormulaElementTest.m in Sources */,
+				AAB23A6919B1EF5F0057A302 /* FormulaEditorUtilTests.m in Sources */,
 				B46B270A17703F9400172837 /* CattyTests.m in Sources */,
 				4C107ADD194F156F00D9D7ED /* PointToBrickTests.m in Sources */,
 			);
