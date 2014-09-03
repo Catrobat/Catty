@@ -28,6 +28,11 @@
 
 @synthesize yMovement = _yMovement;
 
+- (Formula*)getFormulaForLineNumber:(NSInteger)lineNumber AndParameterNumber:(NSInteger)paramNumber
+{
+    return self.yMovement;
+}
+
 - (NSString*)brickTitle
 {
     return kBrickCellMotionTitleChangeY;

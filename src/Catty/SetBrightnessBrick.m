@@ -30,6 +30,11 @@
 
 @implementation SetBrightnessBrick
 
+- (Formula*)getFormulaForLineNumber:(NSInteger)lineNumber AndParameterNumber:(NSInteger)paramNumber
+{
+    return self.brightness;
+}
+
 - (NSString*)brickTitle
 {
     return kBrickCellLookTitleSetBrightness;

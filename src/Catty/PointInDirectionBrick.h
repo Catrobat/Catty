@@ -21,10 +21,11 @@
  */
 
 #import "Brick.h"
+#import "BrickFormulaProtocol.h"
 
 @class Formula;
 
-@interface PointInDirectionBrick : Brick
+@interface PointInDirectionBrick : Brick<BrickFormulaProtocol>
 
 @property (nonatomic, strong) Formula* degrees;
 

@@ -28,6 +28,11 @@
 
 @implementation SetVolumeToBrick
 
+- (Formula*)getFormulaForLineNumber:(NSInteger)lineNumber AndParameterNumber:(NSInteger)paramNumber
+{
+    return self.volume;
+}
+
 - (NSString*)brickTitle
 {
     return kBrickCellSoundTitleSetVolumeTo;

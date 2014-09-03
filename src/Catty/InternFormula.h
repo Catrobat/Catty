@@ -51,6 +51,7 @@ typedef enum TokenSelectionType{
 
 
 @interface InternFormula : NSObject
+
 -(InternFormula *)initWithInternTokenList:(NSMutableArray *)internTokenList;
 -(InternFormula *)initWithInternTokenList:(NSMutableArray *)internTokenList
               internFormulaTokenSelection:(InternFormulaTokenSelection *)internFormulaTokenSelection
@@ -60,4 +61,9 @@ typedef enum TokenSelectionType{
 -(void)generateExternFormulaStringAndInternExternMapping;
 -(void)setCursorAndSelection:(int)externCursorPosition
                     selected:(BOOL)isSelected;
+-(InternFormulaState*)getInternFormulaState;
+-(InternFormulaParser *)getInternFormulaParser;
+-(void)setExternCursorPositionRightTo:(int)internTokenIndex;
+-(void)updateInternCursorPosition;
+
 @end

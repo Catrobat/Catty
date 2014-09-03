@@ -26,6 +26,16 @@
 
 @implementation PlaceAtBrick
 
+- (Formula*)getFormulaForLineNumber:(NSInteger)lineNumber AndParameterNumber:(NSInteger)paramNumber
+{
+    if(paramNumber == 0)
+        return self.xPosition;
+    else if(paramNumber == 1)
+        return self.yPosition;
+    
+    return nil;
+}
+
 - (NSString*)brickTitle
 {
     return kBrickCellMotionTitlePlaceAt;

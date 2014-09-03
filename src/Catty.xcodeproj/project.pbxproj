@@ -441,6 +441,7 @@
 		4CBB2A4B1999EC2800F40B73 /* Functions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Functions.m; sourceTree = "<group>"; };
 		4CBB2A4D199A1AD600F40B73 /* FormulaParserErrorDetectionTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FormulaParserErrorDetectionTest.m; sourceTree = "<group>"; };
 		4CBB2A4F199A1E9600F40B73 /* FormulaParserFunctionsTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FormulaParserFunctionsTest.m; sourceTree = "<group>"; };
+		4CE710B019B71EFA00B0DE19 /* BrickFormulaProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BrickFormulaProtocol.h; sourceTree = "<group>"; };
 		8146A9B119279721002548A4 /* ProgramTableHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProgramTableHeaderView.h; sourceTree = "<group>"; };
 		8146A9B219279721002548A4 /* ProgramTableHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProgramTableHeaderView.m; sourceTree = "<group>"; };
 		815420D3191A51F200E628D2 /* FBShimmering-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "FBShimmering-Prefix.pch"; sourceTree = "<group>"; };
@@ -2579,6 +2580,7 @@
 			children = (
 				CAA443B3192410D00076BA35 /* BrickProtocol.h */,
 				CA8C7252192BB9A100167ECD /* BrickCellProtocol.h */,
+				4CE710B019B71EFA00B0DE19 /* BrickFormulaProtocol.h */,
 			);
 			name = Protocols;
 			sourceTree = "<group>";

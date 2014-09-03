@@ -21,8 +21,40 @@
  */
 
 #import "FormulaEditorButton.h"
+#import "Formula.h"
+#import "BrickFormulaProtocol.h"
 
 @implementation FormulaEditorButton
+
+- (id)initWithFrame:(CGRect)frame AndBrickCell:(BrickCell*)brickCell AndLineNumber:(NSInteger)lineNumber AndParameterNumber:(NSInteger)paramNumber;
+{
+    self = [super initWithFrame:frame];
+    
+    if(self) {
+        self.brickCell = brickCell;
+        
+        if([brickCell.brick respondsToSelector:@selector(getFormulaForLineNumber: AndParameterNumber:)]) {
+            Brick<BrickFormulaProtocol> *formulaBrick = (Brick<BrickFormulaProtocol> *)brickCell.brick;
+            Formula *formula = [formulaBrick getFormulaForLineNumber:lineNumber AndParameterNumber:paramNumber];
+            [self setTitle:[formula getDisplayString] forState:UIControlStateNormal];
+        } else {
+            [self setTitle:@"error occurred" forState:UIControlStateNormal];
+        }
+        
+        [self sizeToFit];
+        CGRect labelFrame = self.frame;
+        labelFrame.size.height = frame.size.height;
+        self.frame = labelFrame;
+        
+        self.titleLabel.textColor = [UIColor whiteColor];
+        self.titleLabel.font = [UIFont systemFontOfSize:kBrickTextFieldFontSize];
+        [self addTarget:brickCell.delegate action:@selector(openFormulaEditor:) forControlEvents:UIControlEventTouchDown];
+
+    }
+    
+    return self;
+}
+
 
 
 @end

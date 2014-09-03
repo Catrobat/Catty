@@ -30,6 +30,11 @@
 
 @implementation SetVariableBrick
 
+- (Formula*)getFormulaForLineNumber:(NSInteger)lineNumber AndParameterNumber:(NSInteger)paramNumber
+{
+    return self.variableFormula;
+}
+
 - (NSString*)brickTitle
 {
     return kBrickCellVariableTitleSetVariable;

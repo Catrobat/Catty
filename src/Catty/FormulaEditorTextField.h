@@ -27,4 +27,5 @@
 @interface FormulaEditorTextField : UITextField <UITextFieldDelegate>
 
 - (id)initWithFrame:(CGRect)frame AndFormulaEditorViewController:(FormulaEditorViewController*)formulaEditorViewController;
+
 @end

@@ -28,6 +28,11 @@
 
 @synthesize transparency = _transparency;
 
+- (Formula*)getFormulaForLineNumber:(NSInteger)lineNumber AndParameterNumber:(NSInteger)paramNumber
+{
+    return self.transparency;
+}
+
 - (NSString*)brickTitle
 {
     return kBrickCellLookTitleSetGhostEffect;

@@ -39,7 +39,6 @@
 #import "Formula.h"
 #import "FormulaElement.h"
 #import "LanguageTranslationDefines.h"
-#import "InternFormula.h"
 
 NS_ENUM(NSInteger, ButtonIndex) {
     kButtonIndexDelete = 0,
@@ -57,12 +56,11 @@ NS_ENUM(NSInteger, ButtonIndex) {
 @property (strong, nonatomic) UITapGestureRecognizer *recognizer;
 @property (strong, nonatomic) UIMotionEffectGroup *motionEffects;
 @property (strong, nonatomic) FormulaEditorTextField *formulaEditorTextField;
-@property (strong, nonatomic) InternFormula *internFormula;
-
 
 @property (strong, nonatomic) IBOutletCollection(UIButton) NSArray *buttons;
 @property (weak, nonatomic) IBOutlet UIButton *undoButton;
 @property (weak, nonatomic) IBOutlet UIButton *redoButton;
+@property (weak, nonatomic) IBOutlet UIButton *computeButton;
 @property (weak, nonatomic) IBOutlet UIButton *divisionButton;
 @property (weak, nonatomic) IBOutlet UIButton *multiplicationButton;
 @property (weak, nonatomic) IBOutlet UIButton *substractionButton;
@@ -219,6 +217,18 @@ const float TEXT_FIELD_HEIGHT = 45;
 {
     [self dismissFormulaEditorViewController];
 }
+
+- (IBAction)compute:(id)sender {
+    float result = [[[self.internFormula getInternFormulaParser] parseFormula] interpretRecursiveForSprite:nil];
+    NSString *computedString = [NSString stringWithFormat:@"Computed result is %f", result];
+    UIAlertView *alert = [[UIAlertView alloc]initWithTitle: @"Result"
+                                                   message: computedString
+                                                  delegate: self
+                                         cancelButtonTitle:@"OK"
+                                         otherButtonTitles:nil,nil];
+    [alert show];
+}
+
 
 #pragma mark - UI
 - (void)showFormulaEditor

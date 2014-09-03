@@ -28,6 +28,11 @@
 
 @synthesize steps = _steps;
 
+- (Formula*)getFormulaForLineNumber:(NSInteger)lineNumber AndParameterNumber:(NSInteger)paramNumber
+{
+    return self.steps;
+}
+
 - (BOOL)isSelectableForObject
 {
     return (! [self.object isBackground]);

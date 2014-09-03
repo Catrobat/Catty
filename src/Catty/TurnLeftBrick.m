@@ -29,6 +29,11 @@
 
 @synthesize degrees = _degrees;
 
+- (Formula*)getFormulaForLineNumber:(NSInteger)lineNumber AndParameterNumber:(NSInteger)paramNumber
+{
+    return self.degrees;
+}
+
 - (NSString*)brickTitle
 {
     return kBrickCellMotionTitleTurnLeft;

@@ -28,6 +28,11 @@
 
 @implementation MoveNStepsBrick
 
+- (Formula*)getFormulaForLineNumber:(NSInteger)lineNumber AndParameterNumber:(NSInteger)paramNumber
+{
+    return self.steps;
+}
+
 - (NSString*)brickTitle
 {
     return kBrickCellMotionTitleMoveNSteps;

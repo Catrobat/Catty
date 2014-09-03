@@ -29,6 +29,11 @@
 
 @synthesize changeGhostEffect = _changeGhostEffect;
 
+- (Formula*)getFormulaForLineNumber:(NSInteger)lineNumber AndParameterNumber:(NSInteger)paramNumber
+{
+    return self.changeGhostEffect;
+}
+
 - (NSString*)brickTitle
 {
     return kBrickCellLookTitleChangeGhostEffectByN;

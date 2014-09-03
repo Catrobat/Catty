@@ -27,4 +27,6 @@
 
 @property (nonatomic, weak) BrickCell *brickCell;
 
+- (id)initWithFrame:(CGRect)frame AndBrickCell:(BrickCell*)brickCell AndLineNumber:(NSInteger)lineNumber AndParameterNumber:(NSInteger)paramNumber;
+
 @end

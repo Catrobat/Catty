@@ -22,6 +22,7 @@
 
 #import <Foundation/Foundation.h>
 #import "InternFormula.h"
+#import "InternFormulaState.h"
 
 @class FormulaElement;
 @class SpriteObject;
@@ -30,7 +31,6 @@
 @interface Formula : NSObject
 
 @property (nonatomic, strong) FormulaElement* formulaTree;
-@property (nonatomic, strong) InternFormula *internFormula;
 
 - (id)initWithInteger:(int)value;
 - (id)initWithDouble:(double)value;
@@ -38,11 +38,16 @@
 - (id)initWithFormulaElement:(FormulaElement*)formulaTree;
 
 - (double)interpretDoubleForSprite:(SpriteObject*)sprite;
+- (float)interpretFloatForSprite:(SpriteObject*)sprite;
 - (int)interpretIntegerForSprite:(SpriteObject*)sprite;
 - (BOOL)interpretBOOLForSprite:(SpriteObject*)sprite;
 
 - (BOOL)isSingleNumberFormula;
 
 - (GDataXMLElement*)toXMLforObject:(SpriteObject*)spriteObject;
+
+- (void)setRoot:(FormulaElement*)formulaTree;
+- (InternFormulaState*)getInternFormulaState;
+- (NSString*)getDisplayString;
 
 @end

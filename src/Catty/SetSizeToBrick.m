@@ -27,6 +27,11 @@
 
 @implementation SetSizeToBrick
 
+- (Formula*)getFormulaForLineNumber:(NSInteger)lineNumber AndParameterNumber:(NSInteger)paramNumber
+{
+    return self.size;
+}
+
 - (NSString*)brickTitle
 {
     return kBrickCellLookTitleSetSizeTo;

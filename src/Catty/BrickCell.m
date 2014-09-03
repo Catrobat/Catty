@@ -368,12 +368,12 @@
             frame.origin.y = yOffset;
             frame.size.height = ([params count] ? heightForLineWithParams : heightForLineWithNoParams);
             yOffset += frame.size.height;
-            [allLinesSubviews addObjectsFromArray:[self inlineViewSubviewsOfLabel:line WithParams:params WithFrame:frame]];
+            [allLinesSubviews addObjectsFromArray:[self inlineViewSubviewsOfLabel:line WithParams:params WithFrame:frame ForLineNumber:lineIndex]];
         }
         subviews = [allLinesSubviews copy]; // makes immutable copy of (NSMutableArray*) => returns (NSArray*)
     } else {
         // case: one line
-        subviews = [[self inlineViewSubviewsOfLabel:brickTitle WithParams:brickParams WithFrame:canvasFrame] copy]; // makes immutable copy of (NSMutableArray*) => returns (NSArray*)
+        subviews = [[self inlineViewSubviewsOfLabel:brickTitle WithParams:brickParams WithFrame:canvasFrame ForLineNumber:0] copy]; // makes immutable copy of (NSMutableArray*) => returns (NSArray*)
     }
     // finally add all subviews to the inline view
     for (UIView* subview in subviews) {
@@ -382,7 +382,7 @@
     return subviews;
 }
 
-- (NSMutableArray*)inlineViewSubviewsOfLabel:(NSString*)labelTitle WithParams:(NSArray*)params WithFrame:(CGRect)frame
+- (NSMutableArray*)inlineViewSubviewsOfLabel:(NSString*)labelTitle WithParams:(NSArray*)params WithFrame:(CGRect)frame ForLineNumber:(NSInteger)lineNumber
 {
     CGRect remainingFrame = frame;
     NSUInteger totalNumberOfParams = [params count];
@@ -434,11 +434,11 @@
             NSString *afterLabelParam = [params objectAtIndex:counter];
             UIView *inputField = nil;
             if ([afterLabelParam rangeOfString:@"FLOAT"].location != NSNotFound) {
-                UIButton *formulaEditor = [UIUtil newDefaultBrickFormulaEditorWithFrame:inputViewFrame ForBrickCell:self];
+                UIButton *formulaEditor = [UIUtil newDefaultBrickFormulaEditorWithFrame:inputViewFrame ForBrickCell:self AndLineNumber: lineNumber AndParameterNumber: counter];
                 //formulaEditor.cell = self;
                 inputField = (UIView*)formulaEditor;
             } else if ([afterLabelParam rangeOfString:@"INT"].location != NSNotFound) {
-                UIButton *formulaEditor = [UIUtil newDefaultBrickFormulaEditorWithFrame:inputViewFrame ForBrickCell:self];
+                UIButton *formulaEditor = [UIUtil newDefaultBrickFormulaEditorWithFrame:inputViewFrame ForBrickCell:self AndLineNumber: lineNumber AndParameterNumber: counter];
                 //formulaEditor.cell = self;
                 inputField = (UIView*)formulaEditor;
             } else if ([afterLabelParam rangeOfString:@"TEXT"].location != NSNotFound) {

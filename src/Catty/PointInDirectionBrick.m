@@ -30,6 +30,11 @@
 
 @implementation PointInDirectionBrick
 
+- (Formula*)getFormulaForLineNumber:(NSInteger)lineNumber AndParameterNumber:(NSInteger)paramNumber
+{
+    return self.degrees;
+}
+
 - (NSString*)brickTitle
 {
     return kBrickCellMotionTitlePointInDirection;

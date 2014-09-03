@@ -30,6 +30,11 @@
 
 @synthesize timeToWaitInSeconds = _timeToWaitInSeconds;
 
+- (Formula*)getFormulaForLineNumber:(NSInteger)lineNumber AndParameterNumber:(NSInteger)paramNumber
+{
+    return self.timeToWaitInSeconds;
+}
+
 - (NSString*)brickTitle
 {
     return kBrickCellControlTitleWait;

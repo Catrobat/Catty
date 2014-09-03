@@ -27,6 +27,11 @@
 
 @implementation ChangeBrightnessByNBrick
 
+- (Formula*)getFormulaForLineNumber:(NSInteger)lineNumber AndParameterNumber:(NSInteger)paramNumber
+{
+    return self.changeBrightness;
+}
+
 - (NSString*)brickTitle
 {
     return kBrickCellLookTitleChangeBrightnessByN;

@@ -23,6 +23,9 @@
 #import "FormulaEditorTextField.h"
 #import "FormulaEditorViewController.h"
 #import "UIColor+CatrobatUIColorExtensions.h"
+#import "BrickCell.h"
+#import "BrickFormulaProtocol.h"
+#import "Formula.h"
 #import <UIKit/UIKit.h>
 
 @interface FormulaEditorTextField ()
@@ -44,6 +47,16 @@
         [self addTarget:self.formulaEditorViewController
                       action:@selector(inputDidChange:)
             forControlEvents:UIControlEventEditingChanged];
+        
+        id<BrickFormulaProtocol> brick = (id<BrickFormulaProtocol>) formulaEditorViewController.brickCell.brick;
+        Formula *formula = [brick getFormulaForLineNumber:0 AndParameterNumber:0];
+        
+        formulaEditorViewController.internFormula = [[InternFormula alloc] initWithInternTokenList:[formula.formulaTree getInternTokenList]];
+        
+        [self.formulaEditorViewController.internFormula generateExternFormulaStringAndInternExternMapping];
+        [self.formulaEditorViewController.internFormula setExternCursorPositionRightTo:(int)[[formula.formulaTree getInternTokenList] count]];
+        [self.formulaEditorViewController.internFormula updateInternCursorPosition];
+        self.text = [self.formulaEditorViewController.internFormula getExternFormulaString];
     }
     return self;
 }

@@ -39,6 +39,18 @@
 @synthesize xDestination = _xDestination;
 @synthesize yDestination = _yDestination;
 
+- (Formula*)getFormulaForLineNumber:(NSInteger)lineNumber AndParameterNumber:(NSInteger)paramNumber
+{
+    if(lineNumber == 0 && paramNumber == 0)
+        return self.durationInSeconds;
+    else if(lineNumber == 1 && paramNumber == 0)
+        return self.xDestination;
+    else if(lineNumber == 1 && paramNumber == 1)
+        return self.yDestination;
+    
+    return nil;
+}
+
 - (id)init
 {
     if(self = [super init]) {

@@ -30,6 +30,11 @@
 
 @synthesize xPosition = _xPosition;
 
+- (Formula*)getFormulaForLineNumber:(NSInteger)lineNumber AndParameterNumber:(NSInteger)paramNumber
+{
+    return self.xPosition;
+}
+
 - (NSString*)brickTitle
 {
     return kBrickCellMotionTitleSetX;

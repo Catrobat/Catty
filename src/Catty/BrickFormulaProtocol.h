@@ -20,15 +20,12 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-
+#import <Foundation/Foundation.h>
 #import "Brick.h"
-#import "BrickFormulaProtocol.h"
+#import "Formula.h"
 
-@class Formula;
+@protocol BrickFormulaProtocol <NSObject>
 
-@interface ChangeSizeByNBrick : Brick<BrickFormulaProtocol>
-
-@property (nonatomic, strong) Formula *size;
-
+- (Formula*)getFormulaForLineNumber:(NSInteger)lineNumber AndParameterNumber:(NSInteger)paramNumber;
 
 @end

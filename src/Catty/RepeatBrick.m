@@ -32,6 +32,11 @@
 
 @implementation RepeatBrick
 
+- (Formula*)getFormulaForLineNumber:(NSInteger)lineNumber AndParameterNumber:(NSInteger)paramNumber
+{
+    return self.timesToRepeat;
+}
+
 - (NSString*)brickTitle
 {
     return kBrickCellControlTitleRepeat;

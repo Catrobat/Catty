@@ -25,12 +25,6 @@
 #import "GDataXMLNode.h"
 #import "Operators.h"
 
-@interface Formula ()
-
-@property (nonatomic, strong)NSString *displayText;
-
-@end
-
 @implementation Formula
 
 - (id)initWithInteger:(int)value
@@ -82,7 +76,6 @@
     if(self)
     {
         self.formulaTree = formulaTree;
-        self.internFormula = [[InternFormula alloc]initWithInternTokenList:[self.formulaTree getInternTokenList]];
     }
     return self;
 }
@@ -92,9 +85,14 @@
     return [self.formulaTree interpretRecursiveForSprite:sprite];
 }
 
+- (float)interpretFloatForSprite:(SpriteObject*)sprite
+{
+    return (float)[self interpretDoubleForSprite:sprite];
+}
+
 - (int)interpretIntegerForSprite:(SpriteObject*)sprite
 {
-    return (int)[self.formulaTree interpretRecursiveForSprite:sprite];    
+    return (int)[self.formulaTree interpretRecursiveForSprite:sprite];
 }
 
 - (BOOL)interpretBOOLForSprite:(SpriteObject*)sprite
@@ -115,6 +113,29 @@
         [formulaTreeXMLElement addChild:childElement];
     }
     return formulaTreeXMLElement;
+}
+
+- (void)setRoot:(FormulaElement*)formulaTree
+{
+    self.formulaTree = formulaTree;
+}
+
+- (InternFormulaState*)getInternFormulaState
+{
+    return [[self getInternFormula] getInternFormulaState];
+}
+
+- (InternFormula*)getInternFormula
+{
+    InternFormula *internFormula = [[InternFormula alloc]initWithInternTokenList:[self.formulaTree getInternTokenList]];
+    return internFormula;
+}
+
+- (NSString*)getDisplayString
+{
+    InternFormula *internFormula = [self getInternFormula];
+    [internFormula generateExternFormulaStringAndInternExternMapping];
+    return [internFormula getExternFormulaString];
 }
 
 @end

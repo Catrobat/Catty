@@ -22,10 +22,11 @@
 
 
 #import "Brick.h"
+#import "BrickFormulaProtocol.h"
 
 @class Formula;
 
-@interface ChangeVolumeByNBrick : Brick
+@interface ChangeVolumeByNBrick : Brick<BrickFormulaProtocol>
 
 @property (nonatomic, nonatomic) Formula* volume;
 

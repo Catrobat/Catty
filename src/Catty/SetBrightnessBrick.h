@@ -21,10 +21,11 @@
  */
 
 #import "Brick.h"
+#import "BrickFormulaProtocol.h"
 
 @class Formula;
 
-@interface SetBrightnessBrick : Brick
+@interface SetBrightnessBrick : Brick<BrickFormulaProtocol>
 
 @property (nonatomic, strong) Formula *brightness;
 

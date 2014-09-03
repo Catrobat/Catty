@@ -22,8 +22,9 @@
 
 #import "Brick.h"
 #import "Formula.h"
+#import "BrickFormulaProtocol.h"
 
-@interface MoveNStepsBrick : Brick
+@interface MoveNStepsBrick : Brick<BrickFormulaProtocol>
 
 @property (nonatomic, strong) Formula* steps;
 

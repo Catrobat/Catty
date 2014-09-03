@@ -67,25 +67,9 @@
     return textField;
 }
 
-+ (UIButton*)newDefaultBrickFormulaEditorWithFrame:(CGRect)frame ForBrickCell:(BrickCell*)brickCell
++ (UIButton*)newDefaultBrickFormulaEditorWithFrame:(CGRect)frame ForBrickCell:(BrickCell*)brickCell AndLineNumber:(NSInteger)lineNumber AndParameterNumber:(NSInteger)paramNumber
 {
-    NSString *text = @"formula";
-    
-    FormulaEditorButton *button = [[FormulaEditorButton alloc] initWithFrame:frame];
-    button.titleLabel.textColor = [UIColor whiteColor];
-    button.titleLabel.font = [UIFont systemFontOfSize:kBrickTextFieldFontSize];
-    if (text) {
-        [button setTitle:text forState:UIControlStateNormal];
-        // adapt size to fit text
-        [button sizeToFit];
-        CGRect labelFrame = button.frame;
-        labelFrame.size.height = frame.size.height;
-        button.frame = labelFrame;
-    }
-    
-    button.brickCell = brickCell;
-    [button addTarget:brickCell.delegate action:@selector(openFormulaEditor:) forControlEvents:UIControlEventTouchDown];
-    
+    FormulaEditorButton *button = [[FormulaEditorButton alloc] initWithFrame:frame AndBrickCell:brickCell AndLineNumber:lineNumber AndParameterNumber:paramNumber];
     return button;
 }
 

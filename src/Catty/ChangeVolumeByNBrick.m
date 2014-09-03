@@ -29,6 +29,11 @@
 
 @synthesize volume  = _volume;
 
+- (Formula*)getFormulaForLineNumber:(NSInteger)lineNumber AndParameterNumber:(NSInteger)paramNumber
+{
+    return self.volume;
+}
+
 - (NSString*)brickTitle
 {
     return kBrickCellSoundTitleChangeVolumeByN;

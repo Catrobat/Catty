@@ -21,11 +21,12 @@
  */
 
 #import "Brick.h"
+#import "BrickFormulaProtocol.h"
 
 @class UserVariable;
 @class Formula;
 
-@interface ChangeVariableBrick : Brick
+@interface ChangeVariableBrick : Brick<BrickFormulaProtocol>
 
 @property (nonatomic, strong) UserVariable* userVariable;
 @property (nonatomic, strong) Formula* variableFormula;

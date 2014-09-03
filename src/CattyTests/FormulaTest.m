@@ -36,6 +36,7 @@
 - (void) testIsSingleNumberFormula
 {
     Formula *formula = [[Formula alloc] initWithInteger:1];
+    NSDebug(@"Formula display string %@", [formula getDisplayString]);
     XCTAssertTrue([formula isSingleNumberFormula], @"Formula should be single number formula");
 
     formula = [[Formula alloc] initWithDouble:1.0];

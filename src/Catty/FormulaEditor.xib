@@ -7,6 +7,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="FormulaEditorViewController">
             <connections>
                 <outlet property="additionButton" destination="3DA-2p-zn4" id="CAM-4y-0og"/>
+                <outlet property="computeButton" destination="oQN-vf-ZdE" id="dbs-ff-alX"/>
                 <outlet property="divisionButton" destination="Rkk-tV-mbQ" id="0AJ-qO-Hmv"/>
                 <outlet property="multiplicationButton" destination="huL-az-i7Z" id="G1R-jS-RWu"/>
                 <outlet property="redoButton" destination="Wxl-Bw-XuK" id="TtX-Jm-zHa"/>
@@ -30,6 +31,7 @@
                 <outletCollection property="buttons" destination="3NS-4e-r3K" id="78K-rb-Sd4"/>
                 <outletCollection property="buttons" destination="3DA-2p-zn4" id="A9r-UA-HeM"/>
                 <outletCollection property="buttons" destination="Nml-kI-n9u" id="sfq-4A-qKD"/>
+                <outletCollection property="buttons" destination="oQN-vf-ZdE" id="U0n-Iv-hyC"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
@@ -145,6 +147,16 @@
                     </state>
                     <connections>
                         <action selector="done:" destination="-1" eventType="touchUpInside" id="grj-f4-CKi"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oQN-vf-ZdE">
+                    <rect key="frame" x="171" y="-1" width="64" height="30"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <state key="normal" title="Compute">
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <connections>
+                        <action selector="compute:" destination="-1" eventType="touchUpInside" id="qfx-j6-umy"/>
                     </connections>
                 </button>
                 <button opaque="NO" tag="700" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Nml-kI-n9u">

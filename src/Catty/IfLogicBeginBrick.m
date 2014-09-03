@@ -26,6 +26,11 @@
 
 @implementation IfLogicBeginBrick
 
+- (Formula*)getFormulaForLineNumber:(NSInteger)lineNumber AndParameterNumber:(NSInteger)paramNumber
+{
+    return self.ifCondition;
+}
+
 - (NSString*)brickTitle
 {
     return kBrickCellControlTitleIf;
