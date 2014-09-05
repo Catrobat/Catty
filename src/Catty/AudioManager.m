@@ -79,6 +79,7 @@
         NSURL *path = [NSURL fileURLWithPath:[NSString stringWithFormat:@"%@/%@", filePath, fileName]];
         NSError *error = nil;
         player = [[CatrobatAudioPlayer alloc] initWithContentsOfURL:path error:&error];
+        player.delegate = self;
         if (error != nil) {
             NSError(@"Can't read that audio-file");
             return NO;
@@ -90,6 +91,7 @@
         NSURL *path = [NSURL fileURLWithPath:[NSString stringWithFormat:@"%@/%@", filePath, fileName]];
         NSError *error = nil;
         player = [[CatrobatAudioPlayer alloc] initWithContentsOfURL:path error:&error];
+        player.delegate = self;
         if (error != nil) {
             NSError(@"Can't read that audio-file");
             return NO;
