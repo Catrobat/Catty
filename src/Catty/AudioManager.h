@@ -21,10 +21,11 @@
  */
 
 #import <Foundation/Foundation.h>
+#import <AVFoundation/AVFoundation.h>
 
-@protocol AVAudioPlayerDelegate;
+//@protocol AVAudioPlayerDelegate;
 
-@interface AudioManager : NSObject
+@interface AudioManager : NSObject <AVAudioPlayerDelegate>
 
 + (instancetype)sharedAudioManager;
 

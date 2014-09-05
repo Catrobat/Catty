@@ -536,6 +536,7 @@
             }
         }
     }
+    [[AudioManager sharedAudioManager] stopAllSounds];
 
     [self.broadcastWaitHandler removeSpriteMessages];
     Scene *previousScene = (Scene*)self.skView.scene;
