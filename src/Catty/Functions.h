@@ -50,5 +50,6 @@ typedef enum {
 + (BOOL)isFunction:(NSString*)value;
 + (Function)getFunctionByValue:(NSString*)value;
 + (NSString*)getName:(Function)function;
++ (NSString*)getExternName:(NSString *)value;
 
 @end

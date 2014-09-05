@@ -154,4 +154,76 @@
     return nil;
 }
 
++ (NSString*)getExternName:(NSString *)value
+{
+    Function function = [self getFunctionByValue:value];
+    
+    switch (function) {
+        case SIN:
+            return @"sin";
+            break;
+        case COS:
+            return @"cos";
+            break;
+        case TAN:
+            return @"tan";
+            break;
+        case LN:
+            return @"ln";
+            break;
+        case LOG:
+            return @"log";
+            break;
+        case SQRT:
+            return [NSString stringWithFormat:NSLocalizedString([self getName:function], nil)];
+            break;
+        case RAND:
+            return @"rand";
+            break;
+        case ROUND:
+            return @"round";
+            break;
+        case ABS:
+            return @"abs";
+            break;
+        case ARCSIN:
+            return @"arcsin";
+            break;
+        case ARCCOS:
+            return @"arccos";
+            break;
+        case ARCTAN:
+            return @"arctan";
+            break;
+        case MAX:
+            return @"max";
+            break;
+        case MIN:
+            return @"min";
+            break;
+        case TRUE_F:
+            return [NSString stringWithFormat:NSLocalizedString([self getName:function], nil)];
+            break;
+        case FALSE_F:
+            return [NSString stringWithFormat:NSLocalizedString([self getName:function], nil)];
+            break;
+        case MOD:
+            return @"mod";
+            break;
+        case POW:
+            return @"pow";
+            break;
+        case PI_F:
+            return @"pi";
+            break;
+        case EXP:
+            return @"exp";
+            break;
+            
+        default:
+            break;
+    }
+}
+
+
 @end

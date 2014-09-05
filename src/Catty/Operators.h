@@ -42,6 +42,7 @@ typedef enum {
 @interface Operators : NSObject
 
 + (NSString*)getName:(Operator)operator;
++ (NSString*)getExternName:(NSString *)value;
 + (Operator)getOperatorByValue:(NSString*)name;
 + (int)getPriority:(Operator)operator;
 + (BOOL)isLogicalOperator:(Operator)operator;

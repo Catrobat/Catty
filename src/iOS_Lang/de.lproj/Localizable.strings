@@ -589,3 +589,14 @@
 
 "Project" = "Projekt";
 
+"SQRT" = "wurzel";
+
+"TRUE" = "WAHR";
+
+"FALSE" = "FALSCH";
+
+"LOGICAL_NOT" = "NICHT";
+
+"LOGICAL_OR" = "ODER";
+
+"LOGICAL_AND" = "UND";
