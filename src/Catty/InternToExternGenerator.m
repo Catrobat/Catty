@@ -56,55 +56,7 @@
     self = [super init];
     if(self)
     {
-        self.INTERN_EXTERN_LANGUAGE_CONVERTER_MAP = [[NSMutableDictionary alloc]init];
-        self.generatedExternFormulaString = [NSString stringWithFormat:@""];
-        
-        [self.INTERN_EXTERN_LANGUAGE_CONVERTER_MAP setObject:[Operators getName:DIVIDE] forKey:[NSNumber numberWithInt:DIVIDE]];
-        [self.INTERN_EXTERN_LANGUAGE_CONVERTER_MAP setObject:[Operators getName:MINUS] forKey:[NSNumber numberWithInt:MINUS]];
-        [self.INTERN_EXTERN_LANGUAGE_CONVERTER_MAP setObject:[Operators getName:PLUS] forKey:[NSNumber numberWithInt:PLUS]];
-        [self.INTERN_EXTERN_LANGUAGE_CONVERTER_MAP setObject:[Operators getName:MULT] forKey:[NSNumber numberWithInt:MULT]];
-        
-        [self.INTERN_EXTERN_LANGUAGE_CONVERTER_MAP setObject:[Operators getName:DECIMAL_MARK] forKey:[NSNumber numberWithInt:DECIMAL_MARK]];
-        
-        
-        [self.INTERN_EXTERN_LANGUAGE_CONVERTER_MAP setObject:[Functions getName:SIN] forKey:[NSNumber numberWithInt:SIN]];
-        [self.INTERN_EXTERN_LANGUAGE_CONVERTER_MAP setObject:[Functions getName:COS] forKey:[NSNumber numberWithInt:COS]];
-        [self.INTERN_EXTERN_LANGUAGE_CONVERTER_MAP setObject:[Functions getName:TAN] forKey:[NSNumber numberWithInt:TAN]];
-        
-        [self.INTERN_EXTERN_LANGUAGE_CONVERTER_MAP setObject:[Functions getName:LN] forKey:[NSNumber numberWithInt:LN]];
-        [self.INTERN_EXTERN_LANGUAGE_CONVERTER_MAP setObject:[Functions getName:LOG] forKey:[NSNumber numberWithInt:LOG]];
-        
-        [self.INTERN_EXTERN_LANGUAGE_CONVERTER_MAP setObject:[Functions getName:PI_F] forKey:[NSNumber numberWithInt:PI_F]];
-        [self.INTERN_EXTERN_LANGUAGE_CONVERTER_MAP setObject:[Functions getName:SQRT] forKey:[NSNumber numberWithInt:SQRT]];
-        [self.INTERN_EXTERN_LANGUAGE_CONVERTER_MAP setObject:[Functions getName:RAND] forKey:[NSNumber numberWithInt:RAND]];
-        [self.INTERN_EXTERN_LANGUAGE_CONVERTER_MAP setObject:[Functions getName:ABS] forKey:[NSNumber numberWithInt:ABS]];
-        [self.INTERN_EXTERN_LANGUAGE_CONVERTER_MAP setObject:[Functions getName:ROUND] forKey:[NSNumber numberWithInt:ROUND]];
-        [self.INTERN_EXTERN_LANGUAGE_CONVERTER_MAP setObject:[Functions getName:MOD] forKey:[NSNumber numberWithInt:MOD]];
-        
-        [self.INTERN_EXTERN_LANGUAGE_CONVERTER_MAP setObject:[Functions getName:ARCSIN] forKey:[NSNumber numberWithInt:ARCSIN]];
-        [self.INTERN_EXTERN_LANGUAGE_CONVERTER_MAP setObject:[Functions getName:ARCCOS] forKey:[NSNumber numberWithInt:ARCCOS]];
-        [self.INTERN_EXTERN_LANGUAGE_CONVERTER_MAP setObject:[Functions getName:ARCTAN] forKey:[NSNumber numberWithInt:ARCTAN]];
-        
-        [self.INTERN_EXTERN_LANGUAGE_CONVERTER_MAP setObject:[Functions getName:EXP] forKey:[NSNumber numberWithInt:EXP]];
-        
-        [self.INTERN_EXTERN_LANGUAGE_CONVERTER_MAP setObject:[Functions getName:MAX] forKey:[NSNumber numberWithInt:MAX]];
-        [self.INTERN_EXTERN_LANGUAGE_CONVERTER_MAP setObject:[Functions getName:MIN] forKey:[NSNumber numberWithInt:MIN]];
-        
-        [self.INTERN_EXTERN_LANGUAGE_CONVERTER_MAP setObject:[Functions getName:TRUE_F] forKey:[NSNumber numberWithInt:TRUE_F]];
-        [self.INTERN_EXTERN_LANGUAGE_CONVERTER_MAP setObject:[Functions getName:FALSE_F] forKey:[NSNumber numberWithInt:FALSE_F]];
-        
-        
-        [self.INTERN_EXTERN_LANGUAGE_CONVERTER_MAP setObject:[Operators getName:LOGICAL_NOT] forKey:[NSNumber numberWithInt:LOGICAL_NOT]];
-        [self.INTERN_EXTERN_LANGUAGE_CONVERTER_MAP setObject:[Operators getName:LOGICAL_OR] forKey:[NSNumber numberWithInt:LOGICAL_OR]];
-        [self.INTERN_EXTERN_LANGUAGE_CONVERTER_MAP setObject:[Operators getName:LOGICAL_AND] forKey:[NSNumber numberWithInt:LOGICAL_AND]];
-        [self.INTERN_EXTERN_LANGUAGE_CONVERTER_MAP setObject:[Operators getName:NOT_EQUAL] forKey:[NSNumber numberWithInt:NOT_EQUAL]];
-        [self.INTERN_EXTERN_LANGUAGE_CONVERTER_MAP setObject:[Operators getName:EQUAL] forKey:[NSNumber numberWithInt:EQUAL]];
-        [self.INTERN_EXTERN_LANGUAGE_CONVERTER_MAP setObject:[Operators getName:GREATER_THAN] forKey:[NSNumber numberWithInt:GREATER_THAN]];
-        [self.INTERN_EXTERN_LANGUAGE_CONVERTER_MAP setObject:[Operators getName:GREATER_OR_EQUAL] forKey:[NSNumber numberWithInt:GREATER_OR_EQUAL]];
-        [self.INTERN_EXTERN_LANGUAGE_CONVERTER_MAP setObject:[Operators getName:SMALLER_OR_EQUAL] forKey:[NSNumber numberWithInt:SMALLER_OR_EQUAL]];
-        [self.INTERN_EXTERN_LANGUAGE_CONVERTER_MAP setObject:[Operators getName:SMALLER_THAN] forKey:[NSNumber numberWithInt:SMALLER_THAN]];
-        
-        
+      
     }
     
     return self;
@@ -179,9 +131,14 @@
             break;
             
         case TOKEN_TYPE_OPERATOR:
-            return [internToken getTokenStringValue];
+            return [Operators getExternName:[internToken getTokenStringValue]];
             
             break;
+            
+        case TOKEN_TYPE_FUNCTION_NAME:
+            return [Functions getExternName:[internToken getTokenStringValue]];
+            break;
+            
         case TOKEN_TYPE_BRACKET_OPEN:
         case TOKEN_TYPE_FUNCTION_PARAMETERS_BRACKET_OPEN:
             return @"(";
@@ -217,11 +174,6 @@
     }
 }
 
--(NSString *)getExternStringForInternTokenValue:(NSString *)internTokenValue
-{
-    //to interpret some intern texts (PLUS, MINUS, MULT for extern view)
-    return @"";
-}
 
 -(BOOL)appendWithWhitespace:(InternToken *)currenToken andNextToken:(InternToken *)nextToken
 {

@@ -183,6 +183,64 @@
     return name;
 }
 
++ (NSString*)getExternName:(NSString *)value
+{
+    NSString* name;
+    Operator operator = [self getOperatorByValue:value];
+    
+    switch (operator) {
+        case LOGICAL_AND:
+            name = [NSString stringWithFormat:NSLocalizedString([self getName:operator], nil)];
+            break;
+        case LOGICAL_OR:
+            name = [NSString stringWithFormat:NSLocalizedString([self getName:operator], nil)];
+            break;
+        case LOGICAL_NOT:
+            name = [NSString stringWithFormat:NSLocalizedString([self getName:operator], nil)];
+            break;
+        case EQUAL:
+            name = @"=";
+            break;
+        case NOT_EQUAL:
+            name = @"≠";
+            break;
+        case SMALLER_OR_EQUAL:
+            name = @"≤";
+            break;
+        case GREATER_OR_EQUAL:
+            name = @"≥";
+            break;
+        case SMALLER_THAN:
+            name = @"<";
+            break;
+        case GREATER_THAN:
+            name = @">";
+            break;
+        case PLUS:
+            name = @"+";
+            break;
+        case MINUS:
+            name = @"-";
+            break;
+        case MULT:
+            name = @"*";
+            break;
+        case DIVIDE:
+            name = @"/";
+            break;
+        case DECIMAL_MARK:
+            name = @".";
+            break;
+            
+        default:
+            NSDebug(@"Invalid operator");
+            break;
+    }
+    
+    return name;
+}
+
+
 + (Operator)getOperatorByValue:(NSString*)name
 {
     if([name isEqualToString:@"LOGICAL_AND"]) {

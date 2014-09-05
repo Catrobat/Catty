@@ -589,3 +589,15 @@
 
 "Project" = "Project";
 
+"SQRT" = "sqrt";
+
+"TRUE" = "TRUE";
+
+"FALSE" = "FALSE";
+
+"LOGICAL_NOT" = "NOT";
+
+"LOGICAL_OR" = "OR";
+
+"LOGICAL_AND" = "AND";
+

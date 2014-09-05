@@ -30,3 +30,7 @@ Pods
 Mockup/*
 
 *.yaml
+
+src/Catty/FormulaEditorViewController.m
+
+src/iOS_Lang/zh.lproj/Localizable.strings

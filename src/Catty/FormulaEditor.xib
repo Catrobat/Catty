@@ -147,7 +147,7 @@
                         <action selector="done:" destination="-1" eventType="touchUpInside" id="grj-f4-CKi"/>
                     </connections>
                 </button>
-                <button opaque="NO" tag="700" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Nml-kI-n9u">
+                <button opaque="NO" tag="400" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Nml-kI-n9u">
                     <rect key="frame" x="273" y="177" width="37" height="30"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <state key="normal" title="Clear">
