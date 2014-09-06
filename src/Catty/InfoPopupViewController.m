@@ -84,7 +84,7 @@ const int BUTTON_MARGIN_BOTTOM = 15;
 - (void)initAboutPocketCodeButton
 {
     UIButton *aboutPocketCodeButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    [aboutPocketCodeButton setTitle:kUIInfoPopupViewAboutPocketCode forState:UIControlStateNormal];
+    [aboutPocketCodeButton setTitle:kLocalizedAboutPocketCode forState:UIControlStateNormal];
     [aboutPocketCodeButton addTarget:self
                         action:@selector(aboutPocketCode)
               forControlEvents:UIControlEventTouchUpInside];
@@ -97,7 +97,7 @@ const int BUTTON_MARGIN_BOTTOM = 15;
 - (void)initTermsOfUseButton
 {
     UIButton *termsOfUseButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    [termsOfUseButton setTitle:kUIInfoPopupViewTermsOfUse forState:UIControlStateNormal];
+    [termsOfUseButton setTitle:kLocalizedTermsOfUse forState:UIControlStateNormal];
     [termsOfUseButton addTarget:self
                         action:@selector(termsOfUse)
               forControlEvents:UIControlEventTouchUpInside];
@@ -110,7 +110,7 @@ const int BUTTON_MARGIN_BOTTOM = 15;
 - (void)initRateUsButton
 {
     UIButton *rateUsButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    [rateUsButton setTitle:kUIInfoPopupViewRateUs forState:UIControlStateNormal];
+    [rateUsButton setTitle:kLocalizedRateUs forState:UIControlStateNormal];
     [rateUsButton addTarget:self
                               action:@selector(openURLAction:)
                     forControlEvents:UIControlEventTouchUpInside];
@@ -122,7 +122,7 @@ const int BUTTON_MARGIN_BOTTOM = 15;
 
 - (void)initProgramVersion
 {
-    NSString *version = [[NSString alloc] initWithFormat:@"%@%@", kUIInfoPopupViewVersionLabel, [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"]];
+    NSString *version = [[NSString alloc] initWithFormat:@"%@%@", kLocalizedVersionLabel, [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"]];
     
     UILabel *versionLabel = [[UILabel alloc] initWithFrame:CGRectMake(self.view.frame.size.width / 2, HEADER_PADDING_TOP, self.view.frame.size.width, HEADER_LABEL_HEIGHT)];
     [versionLabel setTextColor:[UIColor skyBlueColor]];
@@ -194,7 +194,7 @@ const int BUTTON_MARGIN_BOTTOM = 15;
 
     //initBackbutton
     UIButton *backButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    [backButton setTitle:kUIInfoPopupViewBack forState:UIControlStateNormal];
+    [backButton setTitle:kLocalizedBack forState:UIControlStateNormal];
     [backButton addTarget:self
                    action:@selector(backAction)
          forControlEvents:UIControlEventTouchUpInside];
@@ -235,17 +235,17 @@ const int BUTTON_MARGIN_BOTTOM = 15;
 - (void)aboutPocketCode
 {
     //init OverlayView
-    [self initContentView:kUIInfoPopupViewAboutPocketCode withText:kUIInfoPopupViewAboutPocketCodeBody];
+    [self initContentView:kLocalizedAboutPocketCode withText:kLocalizedAboutPocketCodeDescription];
 
     //init buttons
     UIButton *sourceCodeLicenseButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    [sourceCodeLicenseButton setTitle:kUIInfoPopupViewSourceCodeLicenseButtonLabel forState:UIControlStateNormal];
+    [sourceCodeLicenseButton setTitle:kLocalizedSourceCodeLicenseButtonLabel forState:UIControlStateNormal];
     [sourceCodeLicenseButton sizeToFit];
     sourceCodeLicenseButton.frame = CGRectMake(self.contentView.frame.size.width / 2 - sourceCodeLicenseButton.frame.size.width / 2, self.bodyTextView.frame.origin.y + self.bodyTextView.frame.size.height + BUTTON_MARGIN_BOTTOM, sourceCodeLicenseButton.frame.size.width, sourceCodeLicenseButton.frame.size.height);
     [self addLinkButton:sourceCodeLicenseButton];
 
     UIButton *aboutCatrobatButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    [aboutCatrobatButton setTitle:kUIInfoPopupViewAboutCatrobatButtonLabel forState:UIControlStateNormal];
+    [aboutCatrobatButton setTitle:kLocalizedAboutCatrobatButtonLabel forState:UIControlStateNormal];
     [aboutCatrobatButton sizeToFit];
     aboutCatrobatButton.frame = CGRectMake(self.contentView.frame.size.width / 2 - aboutCatrobatButton.frame.size.width / 2, sourceCodeLicenseButton.frame.origin.y + sourceCodeLicenseButton.frame.size.height, aboutCatrobatButton.frame.size.width, aboutCatrobatButton.frame.size.height);
     [self addLinkButton:aboutCatrobatButton];
@@ -257,14 +257,14 @@ const int BUTTON_MARGIN_BOTTOM = 15;
 - (void)termsOfUse
 {
     //init OverlayView
-    [self initContentView:kUIInfoPopupViewTermsOfUse withText:kUIInfoPopupViewTermsOfUseBody];
+    [self initContentView:kLocalizedTermsOfUse withText:kLocalizedTermsOfUseDescription];
 
     //init buttons
-    UIButton *sourceCodeLicenseButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    [sourceCodeLicenseButton setTitle:kUIInfoPopupViewTermsOfUse forState:UIControlStateNormal];
-    [sourceCodeLicenseButton sizeToFit];
-    sourceCodeLicenseButton.frame = CGRectMake(self.contentView.frame.size.width / 2 - sourceCodeLicenseButton.frame.size.width / 2, self.bodyTextView.frame.origin.y + self.bodyTextView.frame.size.height + BUTTON_MARGIN_BOTTOM, sourceCodeLicenseButton.frame.size.width, sourceCodeLicenseButton.frame.size.height);
-    [self addLinkButton:sourceCodeLicenseButton];
+    UIButton *termsOfUseButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    [termsOfUseButton setTitle:kLocalizedTermsOfUse forState:UIControlStateNormal];
+    [termsOfUseButton sizeToFit];
+    termsOfUseButton.frame = CGRectMake(self.contentView.frame.size.width / 2 - termsOfUseButton.frame.size.width / 2, self.bodyTextView.frame.origin.y + self.bodyTextView.frame.size.height + BUTTON_MARGIN_BOTTOM, termsOfUseButton.frame.size.width, termsOfUseButton.frame.size.height);
+    [self addLinkButton:termsOfUseButton];
 
     //Animation to add the main subview
     [self showContentView];
@@ -292,13 +292,13 @@ const int BUTTON_MARGIN_BOTTOM = 15;
 {
     NSString *url = nil;
     UIButton *button = (UIButton *)sender;
-    if([button.currentTitle isEqualToString:kUIInfoPopupViewSourceCodeLicenseButtonLabel])
+    if([button.currentTitle isEqualToString:kLocalizedSourceCodeLicenseButtonLabel])
         url = kSourceCodeLicenseURL;
-    else if([button.currentTitle isEqualToString:kUIInfoPopupViewAboutCatrobatButtonLabel])
+    else if([button.currentTitle isEqualToString:kLocalizedAboutCatrobatButtonLabel])
         url = kAboutCatrobatURL;
-    else if([button.currentTitle isEqualToString:kUIInfoPopupViewTermsOfUse])
-        url = kAboutCatrobatURL;
-    else if([button.currentTitle isEqualToString:kUIInfoPopupViewRateUs]) {
+    else if([button.currentTitle isEqualToString:kLocalizedTermsOfUse])
+        url = kTermsOfUseURL;
+    else if([button.currentTitle isEqualToString:kLocalizedRateUs]) {
         url = kAppStoreURL;
     }
     [[UIApplication sharedApplication] openURL:[NSURL URLWithString:url]];

@@ -31,7 +31,7 @@
 
 - (NSString*)brickTitle
 {
-    return kBrickCellMotionTitleTurnLeft;
+    return kLocalizedTurnLeft;
 }
 
 - (SKAction*)action
@@ -51,7 +51,7 @@
         else if (newRad <= (- 2*M_PI)) {
             newRad += 2*M_PI;
         }
-        self.object.zRotation = newRad;
+        self.object.zRotation = (CGFloat)newRad;
     };
 }
 

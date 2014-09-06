@@ -60,7 +60,7 @@
 
 + (UIBarButtonItem*)editButtonItemWithTarget:(id)target action:(SEL)action
 {
-    UIBarButtonItem *editButton = [[UIBarButtonItem alloc] initWithTitle:kUIBarButtonItemTitleEdit
+    UIBarButtonItem *editButton = [[UIBarButtonItem alloc] initWithTitle:kLocalizedEdit
                                                                    style:UIBarButtonItemStylePlain
                                                                   target:target
                                                                   action:action];

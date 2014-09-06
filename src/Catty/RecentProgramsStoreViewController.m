@@ -59,13 +59,6 @@
 
 @implementation RecentProgramsStoreViewController
 
-@synthesize data              = _data;
-@synthesize connection        = _connection;
-@synthesize projects          = _projects;
-@synthesize programListOffset = _programListOffset;
-@synthesize programListLimit  = _programListLimit;
-
-
 - (id)init
 {
     self = [super init];
@@ -90,11 +83,6 @@
     self.tableView.separatorColor = UIColor.skyBlueColor;
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
     self.shouldShowAlert = YES;
-
-    // XXX: someone has removed that in another branch, therefore this caused a merge conflict.
-    //      not sure if we really need this. therefore I have readded these lines here.
-//    self.edgesForExtendedLayout = UIRectEdgeAll;
-//    self.tableView.contentInset = UIEdgeInsetsMake(0., 0., CGRectGetHeight(self.tabBarController.tabBar.frame)+44, 0);
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -125,7 +113,6 @@
 }
 
 #pragma mark - Table view data source
-
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     return 1;
@@ -176,9 +163,9 @@
 - (void)initSegmentedControl
 {
     [self.downloadSegmentedControl addTarget:self action:@selector(changeView) forControlEvents:UIControlEventValueChanged];
-    [self.downloadSegmentedControl setTitle:kUISegmentedControlTitleMostDownloaded forSegmentAtIndex:0];
-    [self.downloadSegmentedControl setTitle:kUISegmentedControlTitleMostViewed forSegmentAtIndex:1];
-    [self.downloadSegmentedControl setTitle:kUISegmentedControlTitleNewest forSegmentAtIndex:2];
+    [self.downloadSegmentedControl setTitle:kLocalizedMostDownloaded forSegmentAtIndex:0];
+    [self.downloadSegmentedControl setTitle:kLocalizedMostViewed forSegmentAtIndex:1];
+    [self.downloadSegmentedControl setTitle:kLocalizedNewest forSegmentAtIndex:2];
 
     CGFloat navigationBarHeight = self.navigationController.navigationBar.frame.size.height;
     self.downloadSegmentedControl.backgroundColor = [UIColor darkBlueColor];
@@ -314,10 +301,10 @@
     if (data == nil) {
         if (self.shouldShowAlert) {
             self.shouldShowAlert = NO;
-            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:kUIAlertViewTitleStandard
-                                                                message:kUIAlertViewMessageSlowInternetConnection
+            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:kLocalizedPocketCode
+                                                                message:kLocalizedSlowInternetConnection
                                                                delegate:self.navigationController.visibleViewController
-                                                      cancelButtonTitle:kUIAlertViewButtonTitleOK
+                                                      cancelButtonTitle:kLocalizedOK
                                                       otherButtonTitles:nil];
             [alertView show];
         }
@@ -441,10 +428,10 @@
     if (data == nil) {
         if (self.shouldShowAlert) {
             self.shouldShowAlert = NO;
-            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:kUIAlertViewTitleStandard
-                                                                message:kUIAlertViewMessageSlowInternetConnection
+            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:kLocalizedPocketCode
+                                                                message:kLocalizedSlowInternetConnection
                                                                delegate:self.navigationController.visibleViewController
-                                                      cancelButtonTitle:kUIAlertViewButtonTitleOK
+                                                      cancelButtonTitle:kLocalizedOK
                                                       otherButtonTitles:nil];
             [alertView show];
         }
@@ -663,9 +650,11 @@
 - (void)update
 {
     [self.tableView reloadData];
+#if __IPHONE_OS_VERSION_MAX_ALLOWED < 80000
+    // iOS7 specific stuff
     [self.searchDisplayController setActive:NO animated:YES];
+#endif
 }
-
 
 #pragma mark - BackButtonDelegate
 - (void)back
@@ -683,7 +672,7 @@
 
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
 {
-    float checkPoint = scrollView.contentSize.height * 0.7;
+    float checkPoint = scrollView.contentSize.height * 0.7f;
     float currentViewBottomEdge = scrollView.contentOffset.y + scrollView.frame.size.height;
     switch (self.downloadSegmentedControl.selectedSegmentIndex) {
         case 0:

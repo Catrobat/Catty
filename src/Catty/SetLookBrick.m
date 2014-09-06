@@ -31,7 +31,7 @@
 
 - (NSString*)brickTitle
 {
-    return ([self.object isBackground] ? kBrickCellLookTitleSetBackground : kBrickCellLookTitleSetLook);
+    return ([self.object isBackground] ? kLocalizedSetBackground : kLocalizedSetLook);
 }
 
 - (SKAction*)action
@@ -65,10 +65,10 @@
         self.object.texture = texture;
         self.object.currentLook = self.look;
         if(xScale != 1.0) {
-            self.object.xScale = xScale;
+            self.object.xScale = (CGFloat)xScale;
         }
         if(yScale != 1.0) {
-            self.object.yScale = yScale;
+            self.object.yScale = (CGFloat)yScale;
         }
     };
 }

@@ -31,10 +31,11 @@
 
 @end
 
-@interface RecentProgramsStoreViewController : UIViewController<NSURLConnectionDataDelegate,UITableViewDelegate, UITableViewDataSource,UIScrollViewDelegate>
+@interface RecentProgramsStoreViewController : UIViewController<NSURLConnectionDataDelegate, UITableViewDelegate,
+                                                                UITableViewDataSource,UIScrollViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UISegmentedControl *downloadSegmentedControl;
-@property (strong, nonatomic)UIView * footerView;
+@property (strong, nonatomic) UIView *footerView;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) IBOutlet UIView *segmentedControlView;
 @property (weak, nonatomic) id<RecentProgramsStoreDelegate>delegate;

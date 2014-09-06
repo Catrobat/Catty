@@ -83,17 +83,17 @@
         switch (indexPath.row) {
             case 0:
                 imageCell.iconImageView.image = [UIImage imageNamed:@"ic_scripts"];
-                imageCell.titleLabel.text = kUITableViewControllerMenuTitleScripts;
+                imageCell.titleLabel.text = kLocalizedScripts;
                 break;
             case 1:
                 imageCell.iconImageView.image = [UIImage imageNamed:@"ic_looks"];
                 imageCell.titleLabel.text = (self.object.isBackground
-                                          ? kUITableViewControllerMenuTitleBackgrounds
-                                          : kUITableViewControllerMenuTitleLooks);
+                                          ? kLocalizedBackgrounds
+                                          : kLocalizedLooks);
                 break;
             case 2:
                 imageCell.iconImageView.image = [UIImage imageNamed:@"ic_sounds"];
-                imageCell.titleLabel.text = kUITableViewControllerMenuTitleSounds;
+                imageCell.titleLabel.text = kLocalizedSounds;
                 break;
         }
     }

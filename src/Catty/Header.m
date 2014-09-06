@@ -73,7 +73,7 @@
     [headerXMLElement addChild:[GDataXMLNode elementWithName:@"dateTimeUpload"
                                          optionalStringValue:(self.dateTimeUpload ? [dateFormatter stringFromDate:self.dateTimeUpload] : nil)]];
     [headerXMLElement addChild:[GDataXMLNode elementWithName:@"description"
-                                         optionalStringValue:self.description]];
+                                         optionalStringValue:self.programDescription]];
     [headerXMLElement addChild:[GDataXMLNode elementWithName:@"deviceName"
                                          optionalStringValue:self.deviceName]];
     [headerXMLElement addChild:[GDataXMLNode elementWithName:@"mediaLicense"

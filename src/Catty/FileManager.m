@@ -294,7 +294,7 @@
     NSError *error = nil;
     NSDictionary *fileDictionary = [fileManager attributesOfItemAtPath:path error:&error];
     NSLogError(error);
-    return [fileDictionary fileSize];
+    return (NSUInteger)[fileDictionary fileSize];
 }
 
 - (NSDate*)lastModificationTimeOfFile:(NSString*)path
@@ -335,24 +335,23 @@
     }
     if (! areAnyProgramsLeft) {
         [self addBundleProgramWithName:kDefaultProgramBundleName];
-
-//#if kIsFirstRelease // kIsFirstRelease
+#if kIsRelease // kIsRelease
 #define kDefaultProgramBundleBackgroundName @"Background"
 #define kDefaultProgramBundleOtherObjectsNamePrefix @"Mole"
         // XXX: HACK serialization-workaround
-        if (! [kDefaultProgramBundleName isEqualToString:kDefaultProgramName]) {
+        if (! [kDefaultProgramBundleName isEqualToString:kLocalizedMyFirstProgram]) {
             // SYNC and NOT ASYNC here because the UI must wait!!
             dispatch_queue_t translateBundleQ = dispatch_queue_create("translate bundle", NULL);
             dispatch_sync(translateBundleQ, ^{
                 NSString *xmlPath = [[Program projectPathForProgramWithName:kDefaultProgramBundleName]
                                      stringByAppendingString:kProgramCodeFileName];
-                NSError *error = nil;
+                NSError *nserror = nil;
                 NSMutableString *xmlString = [NSMutableString stringWithContentsOfFile:xmlPath
                                                                               encoding:NSUTF8StringEncoding
-                                                                                 error:&error];
-                NSLogError(error);
+                                                                                 error:&nserror];
+                NSLogError(nserror);
                 [xmlString replaceOccurrencesOfString:[NSString stringWithFormat:@"<programName>%@</programName>", kDefaultProgramBundleName]
-                                           withString:[NSString stringWithFormat:@"<programName>%@</programName>", kDefaultProgramName]
+                                           withString:[NSString stringWithFormat:@"<programName>%@</programName>", kLocalizedMyFirstProgram]
                                               options:NSCaseInsensitiveSearch
                                                 range:NSMakeRange(0, [xmlString length])];
                 [xmlString replaceOccurrencesOfString:[NSString stringWithFormat:@"<object name=\"%@\">", kDefaultProgramBundleBackgroundName]
@@ -363,10 +362,10 @@
                                            withString:[NSString stringWithFormat:@"<object name=\"%@\">", kDefaultProgramOtherObjectsNamePrefix]
                                               options:NSCaseInsensitiveSearch
                                                 range:NSMakeRange(0, [xmlString length])];
-                [xmlString writeToFile:xmlPath atomically:YES encoding:NSUTF8StringEncoding error:&error];
-                NSLogError(error);
+                [xmlString writeToFile:xmlPath atomically:YES encoding:NSUTF8StringEncoding error:&nserror];
+                NSLogError(nserror);
                 [self moveExistingDirectoryAtPath:[Program projectPathForProgramWithName:kDefaultProgramBundleName]
-                                           toPath:[Program projectPathForProgramWithName:kDefaultProgramName]];
+                                           toPath:[Program projectPathForProgramWithName:kLocalizedMyFirstProgram]];
             });
         }
 //#else // kIsFirstRelease
@@ -376,6 +375,13 @@
 //        Program *program = [Program programWithLoadingInfo:loadingInfo];
 //        [program translateDefaultProgram];
 //#endif // kIsFirstRelease
+#else // kIsRelease
+        ProgramLoadingInfo *loadingInfo = [[ProgramLoadingInfo alloc] init];
+        loadingInfo.basePath = [NSString stringWithFormat:@"%@%@/", [Program basePath], kDefaultProgramBundleName];
+        loadingInfo.visibleName = kDefaultProgramBundleName;
+        Program *program = [Program programWithLoadingInfo:loadingInfo];
+        [program translateDefaultProgram];
+#endif // kIsRelease
         [Util lastProgram];
     }
 }
@@ -403,7 +409,13 @@
 {
     self.projectName = name;
     if (! self.downloadSession) {
+#if __IPHONE_OS_VERSION_MAX_ALLOWED >= 80000
+        // iOS8 specific stuff
+        NSURLSessionConfiguration *sessionConfig = [NSURLSessionConfiguration backgroundSessionConfigurationWithIdentifier:@"at.tugraz"];
+#else
+        // iOS7 specific stuff
         NSURLSessionConfiguration *sessionConfig = [NSURLSessionConfiguration backgroundSessionConfiguration:@"at.tugraz"];
+#endif
         self.downloadSession = [NSURLSession sessionWithConfiguration:sessionConfig
                                                              delegate:self
                                                         delegateQueue:nil];
@@ -420,8 +432,13 @@
 {
     
     if (!self.downloadSession) {
-        NSURLSessionConfiguration *sessionConfig =
-        [NSURLSessionConfiguration backgroundSessionConfiguration:@"at.tugraz"];
+#if __IPHONE_OS_VERSION_MAX_ALLOWED >= 80000
+        // iOS8 specific stuff
+        NSURLSessionConfiguration *sessionConfig = [NSURLSessionConfiguration backgroundSessionConfigurationWithIdentifier:@"at.tugraz"];
+#else
+        // iOS7 specific stuff
+        NSURLSessionConfiguration *sessionConfig = [NSURLSessionConfiguration backgroundSessionConfiguration:@"at.tugraz"];
+#endif
         self.downloadSession = [NSURLSession sessionWithConfiguration:sessionConfig
                                                              delegate:self
                                                         delegateQueue:nil];
@@ -617,7 +634,7 @@
     }
     if ([self getFreeDiskspace] < totalBytesExpectedToWrite) {
         [self stopLoading:downloadTask];
-        [Util alertWithText:kUIAlertViewTitleNotEnoughFreeMemory];
+        [Util alertWithText:kLocalizedNotEnoughFreeMemoryDescription];
         if ([self.delegate respondsToSelector:@selector(setBackDownloadStatus)]) {
             dispatch_async(dispatch_get_main_queue(), ^{
                 [self.delegate setBackDownloadStatus];

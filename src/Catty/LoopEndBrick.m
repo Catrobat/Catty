@@ -33,7 +33,7 @@
 
 - (NSString*)brickTitle
 {
-    return kBrickCellControlTitleEndOfLoop;
+    return kLocalizedEndOfLoop;
 }
 
 - (void)performFromScript:(Script*)script

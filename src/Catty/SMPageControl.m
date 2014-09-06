@@ -419,8 +419,8 @@ static SMPageControlStyleDefaults _defaultStyleForSystemVersion;
 
 - (CGImageRef)createMaskForImage:(UIImage *)image CF_RETURNS_RETAINED
 {
-	size_t pixelsWide = image.size.width * image.scale;
-	size_t pixelsHigh = image.size.height * image.scale;
+	size_t pixelsWide = (size_t)(image.size.width * image.scale);
+	size_t pixelsHigh = (size_t)(image.size.height * image.scale);
 	size_t bitmapBytesPerRow = (pixelsWide * 1);
 	CGContextRef context = CGBitmapContextCreate(NULL, pixelsWide, pixelsHigh, CGImageGetBitsPerComponent(image.CGImage), bitmapBytesPerRow, NULL, (CGBitmapInfo)kCGImageAlphaOnly);
 	CGContextTranslateCTM(context, 0.f, pixelsHigh);

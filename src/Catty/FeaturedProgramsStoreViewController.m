@@ -51,10 +51,6 @@
 
 @implementation FeaturedProgramsStoreViewController
 
-@synthesize data          = _data;
-@synthesize connection    = _connection;
-@synthesize projects      = _projects;
-
 - (id)initWithStyle:(UITableViewStyle)style
 {
     self = [super initWithStyle:style];
@@ -67,7 +63,7 @@
 {
     [super viewDidLoad];
     [self loadFeaturedProjects];
-    self.navigationItem.title = kUIViewControllerTitleFeaturedPrograms;
+    self.navigationItem.title = kLocalizedFeaturedPrograms;
     //  CGFloat navigationBarHeight = self.navigationController.navigationBar.frame.size.height;
     //  self.tableView.contentInset = UIEdgeInsetsMake(navigationBarHeight, 0, 0, 0);
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
@@ -152,15 +148,15 @@
     [self loadingIndicator:YES];
     UIImage* image = [UIImage imageWithContentsOfURL:[NSURL URLWithString:imageURLString]
                                     placeholderImage:[UIImage imageNamed:@"programs"]
-                                        onCompletion:^(UIImage *image) {
+                                        onCompletion:^(UIImage *img) {
                                             dispatch_async(dispatch_get_main_queue(), ^{
                                                 [self.tableView beginUpdates];
                                                 DarkBlueGradientFeaturedCell *cell = (DarkBlueGradientFeaturedCell*)[self.tableView cellForRowAtIndexPath:indexPath];
                                                 if(cell) {
-                                                    cell.featuredImage.image = image;
+                                                    cell.featuredImage.image = img;
                                                     cell.featuredImage.frame = cell.frame;
                                                     cell.featuredImage.frame = CGRectMake(0, 0, cell.featuredImage.frame.size.width, cell.featuredImage.frame.size.height);
-                                                    self.featuredSize = @[[NSNumber numberWithFloat:image.size.width],[NSNumber numberWithFloat:image.size.height]];
+                                                    self.featuredSize = @[[NSNumber numberWithFloat:img.size.width],[NSNumber numberWithFloat:img.size.height]];
                                                     [self loadingIndicator:NO];
                                                 }
                                                 [self.tableView endUpdates];
@@ -193,10 +189,10 @@
     if (data == nil) {
         if (self.shouldShowAlert) {
             self.shouldShowAlert = NO;
-            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:kUIAlertViewTitleStandard
-                                                                message:kUIAlertViewMessageSlowInternetConnection
+            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:kLocalizedPocketCode
+                                                                message:kLocalizedSlowInternetConnection
                                                                delegate:self.navigationController.visibleViewController
-                                                      cancelButtonTitle:kUIAlertViewButtonTitleOK
+                                                      cancelButtonTitle:kLocalizedOK
                                                       otherButtonTitles:nil];
             [alertView show];
         }
@@ -236,8 +232,8 @@
         
         [NSURLConnection sendAsynchronousRequest:request
                                            queue:[NSOperationQueue mainQueue]
-                               completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
-                                   [self loadInfosWith:data andResponse:response];}];
+                               completionHandler:^(NSURLResponse *completionResponse, NSData *completionData, NSError *completionError) {
+                                   [self loadInfosWith:completionData andResponse:completionResponse];}];
     }
     [self showLoadingView];
   
@@ -247,10 +243,10 @@
     if (data == nil) {
         if (self.shouldShowAlert) {
             self.shouldShowAlert = NO;
-            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:kUIAlertViewTitleStandard
-                                                                message:kUIAlertViewMessageSlowInternetConnection
+            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:kLocalizedPocketCode
+                                                                message:kLocalizedSlowInternetConnection
                                                                delegate:self.navigationController.visibleViewController
-                                                      cancelButtonTitle:kUIAlertViewButtonTitleOK
+                                                      cancelButtonTitle:kLocalizedOK
                                                       otherButtonTitles:nil];
             [alertView show];
         }
@@ -399,9 +395,11 @@
 #pragma mark - update
 - (void)update {
     [self.tableView reloadData];
+#if __IPHONE_OS_VERSION_MAX_ALLOWED < 80000
+    // iOS7 specific stuff
     [self.searchDisplayController setActive:NO animated:YES];
+#endif
 }
-
 
 #pragma mark - BackButtonDelegate
 -(void)back {

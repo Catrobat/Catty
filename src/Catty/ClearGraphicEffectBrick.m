@@ -28,7 +28,7 @@
 
 - (NSString*)brickTitle
 {
-    return kBrickCellLookTitleClearGraphicEffect;
+    return kLocalizedClearGraphicEffect;
 }
 
 - (SKAction*)action
@@ -39,7 +39,6 @@
 - (dispatch_block_t)actionBlock
 {
     return ^{
-        NSLog(@"performing");
         NSDebug(@"Performing: %@", self.description);
         Look* look = [self.object currentLook];
         UIImage* image = [UIImage imageWithContentsOfFile:[self pathForLook:look]];
@@ -55,10 +54,10 @@
         self.object.texture = texture;
         self.object.currentLook = look;
         if(xScale != 1.0) {
-            self.object.xScale = xScale;
+            self.object.xScale = (CGFloat)xScale;
         }
         if(yScale != 1.0) {
-            self.object.yScale = yScale;
+            self.object.yScale = (CGFloat)yScale;
         }
         
     };

@@ -44,7 +44,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.navigationItem.title = kUIViewControllerTitleExplore;
+    self.navigationItem.title = kLocalizedExplore;
     //self.tabBar.backgroundImage =  [[UIImage imageNamed:@"darkblue"] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 0, 0, 0)];
     //self.tabBar.selectionIndicatorImage = [UIImage imageWithColor:[UIColor clearColor]];
     //self.tabBar.barTintColor = [UIColor darkBlueColor];

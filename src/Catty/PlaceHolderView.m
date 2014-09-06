@@ -32,10 +32,10 @@
 
 @implementation PlaceHolderView
 
-- (id)initWithTitle:(NSString *)tile
+- (id)initWithTitle:(NSString *)title
 {
     if (self = [super init]) {
-        _title = tile;
+        self.title = title;
         [self initPlaceHolderView];
     }
     return self;
@@ -52,26 +52,25 @@
 - (void)initPlaceHolderView
 {
     self.userInteractionEnabled = NO;
-    _placeholderDescriptionLabel = [UILabel new];
-    _placeholderDescriptionLabel.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin |
+    self.placeholderDescriptionLabel = [UILabel new];
+    self.placeholderDescriptionLabel.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin |
                                                         UIViewAutoresizingFlexibleRightMargin |
                                                         UIViewAutoresizingFlexibleTopMargin |
                                                         UIViewAutoresizingFlexibleBottomMargin;
-    _placeholderDescriptionLabel.textAlignment = NSTextAlignmentCenter;
-    [_placeholderDescriptionLabel setFont:[UIFont systemFontOfSize:25]];
-    _placeholderDescriptionLabel.text = [NSString stringWithFormat:kUIViewControllerPlaceholderDescriptionStandard,
-                                             _title];
-    _placeholderDescriptionLabel.backgroundColor = UIColor.clearColor;
-    _placeholderDescriptionLabel.textColor = UIColor.skyBlueColor;
-    _placeholderDescriptionLabel.numberOfLines = 0;
-    self.contentView = _placeholderDescriptionLabel;
+    self.placeholderDescriptionLabel.textAlignment = NSTextAlignmentCenter;
+    [self.placeholderDescriptionLabel setFont:[UIFont systemFontOfSize:25]];
+    self.placeholderDescriptionLabel.text = [NSString stringWithFormat:kLocalizedTapPlusToAdd, self.title];
+    self.placeholderDescriptionLabel.backgroundColor = UIColor.clearColor;
+    self.placeholderDescriptionLabel.textColor = UIColor.skyBlueColor;
+    self.placeholderDescriptionLabel.numberOfLines = 0;
+    self.contentView = self.placeholderDescriptionLabel;
     self.shimmering = YES;
 }
 
 - (void)setTitle:(NSString *)title
 {
     if (title.length) {
-        self.placeholderDescriptionLabel.text = [NSString stringWithFormat:kUIViewControllerPlaceholderDescriptionStandard,
+        self.placeholderDescriptionLabel.text = [NSString stringWithFormat:kLocalizedTapPlusToAdd,
                                                  title];
     }
 }

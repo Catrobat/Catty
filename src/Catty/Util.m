@@ -60,10 +60,10 @@
 
 + (void)showComingSoonAlertView
 {
-    CatrobatAlertView *alert = [[CatrobatAlertView alloc] initWithTitle:kUIAlertViewTitleStandard
-                                                                message:kUIAlertViewMessageFeatureComingSoon
+    CatrobatAlertView *alert = [[CatrobatAlertView alloc] initWithTitle:kLocalizedPocketCode
+                                                                message:kLocalizedThisFeatureIsComingSoon
                                                                delegate:nil
-                                                      cancelButtonTitle:kUIAlertViewButtonTitleOK
+                                                      cancelButtonTitle:kLocalizedOK
                                                       otherButtonTitles:nil];
     if (! [self activateTestMode:NO]) {
         [alert show];
@@ -74,20 +74,20 @@
 {
     UIImage *bgImage = [UIImage imageWithColor:[UIColor darkBlueColor]];
     EAIntroPage *page1 = [EAIntroPage page];
-    page1.title = kIntroViewTitleFirstPage;
-    page1.desc = kIntroViewDescriptionFirstPage;
+    page1.title = kLocalizedWelcomeToPocketCode;
+    page1.desc = kLocalizedWelcomeDescription;
     page1.bgImage = bgImage;
     page1.titleIconView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"page1_logo"]];
 
     EAIntroPage *page2 = [EAIntroPage page];
-    page2.title = kIntroViewTitleSecondPage;
-    page2.desc = kIntroViewDescriptionSecondPage;
+    page2.title = kLocalizedExploreApps;
+    page2.desc = kLocalizedExploreDescription;
     page2.bgImage = bgImage;
     page2.titleIconView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"page2_explore"]];
 
     EAIntroPage *page3 = [EAIntroPage page];
-    page3.title = kIntroViewTitleThirdPage;
-    page3.desc = kIntroViewDescriptionThirdPage;
+    page3.title = kLocalizedUpcomingVersion;
+    page3.desc = kLocalizedUpcomingVersionDescription;
     page3.bgImage = bgImage;
     page3.titleIconView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"page3_info"]];
 
@@ -95,7 +95,7 @@
     frame.size.height -= 64.0f;
     EAIntroView *intro = [[EAIntroView alloc] initWithFrame:frame andPages:@[page1, page2, page3]];
     intro.delegate = delegate;
-    [intro showInView:view animateDuration:0.3];
+    [intro showInView:view animateDuration:0.3f];
 }
 
 + (CatrobatAlertView*)alertWithText:(NSString*)text
@@ -107,10 +107,10 @@
                            delegate:(id<CatrobatAlertViewDelegate>)delegate
                                 tag:(NSInteger)tag
 {
-    CatrobatAlertView *alertView = [[CatrobatAlertView alloc] initWithTitle:kUIAlertViewTitleStandard
+    CatrobatAlertView *alertView = [[CatrobatAlertView alloc] initWithTitle:kLocalizedPocketCode
                                                                     message:text
                                                                    delegate:delegate
-                                                          cancelButtonTitle:kUIAlertViewButtonTitleOK
+                                                          cancelButtonTitle:kLocalizedOK
                                                           otherButtonTitles:nil];
     alertView.tag = tag;
     if (! [self activateTestMode:NO]) {
@@ -127,9 +127,9 @@
     CatrobatAlertView *alertView = [[CatrobatAlertView alloc] initWithTitle:title
                                                                     message:message
                                                                    delegate:delegate
-                                                          cancelButtonTitle:kUIAlertViewButtonTitleNo
+                                                          cancelButtonTitle:kLocalizedNo
                                                           otherButtonTitles:nil];
-    [alertView addButtonWithTitle:kUIAlertViewButtonTitleYes];
+    [alertView addButtonWithTitle:kLocalizedYes];
     alertView.tag = tag;
     if (! [self activateTestMode:NO]) {
         [alertView show];
@@ -164,8 +164,8 @@
     CatrobatAlertView *alertView = [[CatrobatAlertView alloc] initWithTitle:title
                                                                     message:message
                                                                    delegate:delegate
-                                                          cancelButtonTitle:kUIAlertViewButtonTitleCancel
-                                                          otherButtonTitles:kUIAlertViewButtonTitleOK, nil];
+                                                          cancelButtonTitle:kLocalizedCancel
+                                                          otherButtonTitles:kLocalizedOK, nil];
     alertView.tag = tag;
     alertView.alertViewStyle = UIAlertViewStylePlainTextInput;
     UITextField *textField = [alertView textFieldAtIndex:0];
@@ -190,7 +190,7 @@
 {
     CatrobatActionSheet *actionSheet = [[CatrobatActionSheet alloc] initWithTitle:title
                                                                          delegate:delegate
-                                                                cancelButtonTitle:kUIActionSheetButtonTitleCancel
+                                                                cancelButtonTitle:kLocalizedCancel
                                                            destructiveButtonTitle:destructiveButtonTitle
                                                            otherButtonTitlesArray:otherButtonTitles];
 //    [actionSheet setButtonBackgroundColor:[UIColor colorWithWhite:0.0f alpha:1.0f]];
@@ -206,7 +206,7 @@
 //            [actionSheet addButtonWithTitle:otherButtonTitle];
 //        }
 //    }
-//    [actionSheet addCancelButtonWithTitle:kUIActionSheetButtonTitleCancel];
+//    [actionSheet addCancelButtonWithTitle:kLocalizedCancel];
 
     actionSheet.tag = tag;
     if (! [self activateTestMode:NO]) {
@@ -226,14 +226,14 @@
 
 + (UIButton*)slideViewButtonMore
 {
-    return [Util slideViewButtonWithTitle:kUIButtonTitleMore
+    return [Util slideViewButtonWithTitle:kLocalizedMore
                           backgroundColor:[UIColor colorWithRed:0.78f green:0.78f blue:0.8f alpha:1.0]];
 }
 
 + (UIButton*)slideViewButtonDelete
 {
-    return [Util slideViewButtonWithTitle:kUIButtonTitleDelete
-                          backgroundColor:[UIColor colorWithRed:1.0f green:0.231f blue:0.188 alpha:1.0f]];
+    return [Util slideViewButtonWithTitle:kLocalizedDelete
+                          backgroundColor:[UIColor colorWithRed:1.0f green:0.231f blue:0.188f alpha:1.0f]];
 }
 
 + (NSString*)appName
@@ -323,9 +323,9 @@
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
     NSString* lastProgram = [userDefaults objectForKey:kLastProgram];
     if (! lastProgram) {
-        [userDefaults setObject:kDefaultProgramName forKey:kLastProgram];
+        [userDefaults setObject:kLocalizedMyFirstProgram forKey:kLastProgram];
         [userDefaults synchronize];
-        lastProgram = kDefaultProgramName;
+        lastProgram = kLocalizedMyFirstProgram;
     }
     return lastProgram;
 }
@@ -394,7 +394,7 @@
     CatrobatAlertView *alertView = [[self class] promptWithTitle:title
                                                          message:message
                                                         delegate:(id<CatrobatAlertViewDelegate>)self
-                                                     placeholder:kUIAlertViewPlaceholderEnterProgramName
+                                                     placeholder:kLocalizedEnterYourProgramNameHere
                                                              tag:kAskUserForUniqueNameAlertViewTag
                                                            value:value
                                                textFieldDelegate:(id<UITextFieldDelegate>)self];
@@ -515,12 +515,12 @@
 
 + (double)radiansToDegree:(double)rad
 {
-    return rad * 180.0 / M_PI;
+    return rad * 180.0f / M_PI;
 }
 
 + (double)degreeToRadians:(double)deg
 {
-    return deg * M_PI / 180.0;
+    return deg * M_PI / 180.0f;
 }
 
 #pragma mark - text field delegates
@@ -576,7 +576,7 @@ replacementString:(NSString*)characters
             payload[kDTPayloadAskUserPromptValue] = input;
             newAlertView.dataTransferMessage = alertView.dataTransferMessage;
         } else if ([input length] < textFieldMinInputLength) {
-            NSString *alertText = [NSString stringWithFormat:kUIAlertViewMessageInputTooShortMessage,
+            NSString *alertText = [NSString stringWithFormat:kLocalizedNoOrTooShortInputDescription,
                                    textFieldMinInputLength];
             alertText = ((textFieldMinInputLength != 1) ? [[self class] pluralString:alertText]
                                                         : [[self class] singularString:alertText]);

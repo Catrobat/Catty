@@ -30,7 +30,7 @@
 
 - (NSString*)brickTitle
 {
-    return kBrickCellSoundTitleSetVolumeTo;
+    return kLocalizedSetVolumeTo;
 }
 
 - (SKAction*)action
@@ -40,7 +40,7 @@
     return [SKAction runBlock:^{
         NSDebug(@"Performing: %@", self.description);
         double volume = [self.volume interpretDoubleForSprite:self.object];
-        [[AudioManager sharedAudioManager] setVolumeToPercent:volume forKey:self.object.name];
+        [[AudioManager sharedAudioManager] setVolumeToPercent:(CGFloat)volume forKey:self.object.name];
         
     }];
 }

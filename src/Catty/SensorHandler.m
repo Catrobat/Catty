@@ -287,7 +287,7 @@ static SensorHandler* sharedSensorHandler = nil;
 {
     // http://stackoverflow.com/questions/1512131/iphone-avaudioplayer-convert-decibel-level-into-percent
 //    CGFloat percent = pow (10, (0.05 * decibel));
-    CGFloat percent = pow (10, decibel / 20);
+    CGFloat percent = (CGFloat)pow (10, decibel / 20.0f);
     return percent * 100.0f;
 }
 

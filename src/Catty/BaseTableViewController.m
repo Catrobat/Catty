@@ -119,7 +119,7 @@
 - (UIBarButtonItem*)selectAllRowsButtonItem
 {
     if (! _selectAllRowsButtonItem) {
-        _selectAllRowsButtonItem = [[UIBarButtonItem alloc] initWithTitle:kUIBarButtonItemTitleSelectAllItems
+        _selectAllRowsButtonItem = [[UIBarButtonItem alloc] initWithTitle:kLocalizedSelectAllItems
                                                                     style:UIBarButtonItemStylePlain
                                                                    target:self
                                                                    action:@selector(selectAllRows:)];
@@ -172,10 +172,10 @@
     }
     if (allItemsInAllSectionsSelected) {
         self.selectAllRowsButtonItem.tag = kUnselectAllItemsTag;
-        self.selectAllRowsButtonItem.title = kUIBarButtonItemTitleUnselectAllItems;
+        self.selectAllRowsButtonItem.title = kLocalizedUnselectAllItems;
     } else {
         self.selectAllRowsButtonItem.tag = kSelectAllItemsTag;
-        self.selectAllRowsButtonItem.title = kUIBarButtonItemTitleSelectAllItems;
+        self.selectAllRowsButtonItem.title = kLocalizedSelectAllItems;
     }
 }
 
@@ -200,10 +200,10 @@
     }
     if (allItemsInAllSectionsSelected) {
         self.selectAllRowsButtonItem.tag = kUnselectAllItemsTag;
-        self.selectAllRowsButtonItem.title = kUIBarButtonItemTitleUnselectAllItems;
+        self.selectAllRowsButtonItem.title = kLocalizedUnselectAllItems;
     } else {
         self.selectAllRowsButtonItem.tag = kSelectAllItemsTag;
-        self.selectAllRowsButtonItem.title = kUIBarButtonItemTitleSelectAllItems;
+        self.selectAllRowsButtonItem.title = kLocalizedSelectAllItems;
     }
 }
 
@@ -256,7 +256,7 @@
 
 - (void)changeToEditingMode:(id)sender
 {
-    UIBarButtonItem *cancelButton = [[UIBarButtonItem alloc] initWithTitle:kUIBarButtonItemTitleCancel
+    UIBarButtonItem *cancelButton = [[UIBarButtonItem alloc] initWithTitle:kLocalizedCancel
                                                                      style:UIBarButtonItemStylePlain
                                                                     target:self
                                                                     action:@selector(exitEditingMode)];
@@ -286,11 +286,11 @@
         if (button.tag == kSelectAllItemsTag) {
             button.tag = kUnselectAllItemsTag;
             selectAll = YES;
-            button.title = kUIBarButtonItemTitleUnselectAllItems;
+            button.title = kLocalizedUnselectAllItems;
         } else {
             button.tag = kSelectAllItemsTag;
             selectAll = NO;
-            button.title = kUIBarButtonItemTitleSelectAllItems;
+            button.title = kLocalizedSelectAllItems;
         }
     }
     NSArray *editableSections = self.editableSections;
@@ -408,7 +408,7 @@
 - (void)showSavedView
 {
     BDKNotifyHUD *hud = [BDKNotifyHUD notifyHUDWithImage:[UIImage imageNamed:@"checkmark.png"]
-                                                    text:kUILabelTextSaved];
+                                                    text:kLocalizedSaved];
     hud.destinationOpacity = 0.30f;
     hud.center = CGPointMake(self.view.center.x, self.view.center.y - 20);
     hud.tag = kSavedViewTag;

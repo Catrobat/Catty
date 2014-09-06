@@ -75,8 +75,8 @@
 
 // FIXME: remove this signature after first release
 #import "AppDefines.h"
-//#if kIsFirstRelease
+#if kIsRelease
 + (NSString*)projectPathForProgramWithName:(NSString*)programName;
-//#endif
+#endif // kIsRelease
 
 @end

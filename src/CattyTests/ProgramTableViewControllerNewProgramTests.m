@@ -66,7 +66,7 @@
 
 - (void)setupForNewProgram
 {
-    self.defaultProgram = [Program defaultProgramWithName:kGeneralNewDefaultProgramName];
+    self.defaultProgram = [Program defaultProgramWithName:kLocalizedNewProgram];
     self.programTableViewController.program = self.defaultProgram;
 }
 
@@ -94,7 +94,7 @@
         backgroundCellTitle = imageCell.titleLabel.text;
     }
 
-    XCTAssertTrue([backgroundCellTitle isEqualToString:kGeneralBackgroundObjectName], @"The ProgramTableViewController did not create the background cell correctly.");
+    XCTAssertTrue([backgroundCellTitle isEqualToString:kLocalizedBackground], @"The ProgramTableViewController did not create the background cell correctly.");
 }
 
 - (void)testNewProgramObjectCellTitles
@@ -109,7 +109,7 @@
         UITableViewCell <CatrobatImageCell>* imageCell = (UITableViewCell <CatrobatImageCell>*)cell;
         firstObjectCellTitle = imageCell.titleLabel.text;
     }
-    XCTAssertTrue([firstObjectCellTitle isEqualToString:kGeneralDefaultObjectName], @"The ProgramTableViewController did not create the first object cell correctly.");
+    XCTAssertTrue([firstObjectCellTitle isEqualToString:kLocalizedMyObject], @"The ProgramTableViewController did not create the first object cell correctly.");
 }
 
 - (void)testNewProgramNumberOfSections
@@ -172,17 +172,10 @@
 
     NSDebug(@"ProjectResolution: width/height:  %f / %f", program.header.screenWidth.floatValue, program.header.screenHeight.floatValue);
 
-    // setting effect
-    for (SpriteObject *sprite in program.objectList)
-    {
-        //sprite.spriteManagerDelegate = self;
-        //sprite.broadcastWaitDelegate = self.broadcastWaitHandler;
-        for (Script *script in sprite.scriptList) {
-            for (Brick *brick in script.brickList) {
-                brick.object = sprite;
-            }
-        }
-    }
+//    for (SpriteObject *sprite in program.objectList) {
+//        sprite.spriteManagerDelegate = self;
+//        sprite.broadcastWaitDelegate = self.broadcastWaitHandler;
+//    }
     [Util setLastProgram:program.header.programName];
     return program;
 }

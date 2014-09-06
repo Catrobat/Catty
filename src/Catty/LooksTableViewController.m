@@ -68,23 +68,23 @@ static NSCharacterSet *blockedCharacterSet = nil;
     return blockedCharacterSet;
 }
 
-#pragma mark - initialization
+#pragma mark initialization
 - (void)initNavigationBar
 {
     UIBarButtonItem *editButtonItem = [TableUtil editButtonItemWithTarget:self action:@selector(editAction:)];
     self.navigationItem.rightBarButtonItem = editButtonItem;
 }
 
-#pragma - view events
+#pragma mark viewloaded
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     NSDictionary *showDetails = [[NSUserDefaults standardUserDefaults] objectForKey:kUserDetailsShowDetailsKey];
     NSNumber *showDetailsProgramsValue = (NSNumber*)[showDetails objectForKey:kUserDetailsShowDetailsLooksKey];
     self.useDetailCells = [showDetailsProgramsValue boolValue];
-    self.title = self.navigationItem.title = kUIViewControllerTitleLooks;
+    self.title = self.navigationItem.title = kLocalizedLooks;
     [self initNavigationBar];
-    self.placeHolderView.title = kUIViewControllerPlaceholderTitleLooks;
+    self.placeHolderView.title = kLocalizedLooks;
     [self showPlaceHolder:(! (BOOL)[self.object.lookList count])];
     [self setupToolBar];
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
@@ -95,19 +95,36 @@ static NSCharacterSet *blockedCharacterSet = nil;
 {
     NSMutableArray *options = [NSMutableArray array];
     if ([self.object.lookList count]) {
-        [options addObject:kUIActionSheetButtonTitleDeleteLooks];
+        [options addObject:kLocalizedDeleteLooks];
     }
     if (self.useDetailCells) {
-        [options addObject:kUIActionSheetButtonTitleHideDetails];
+        [options addObject:kLocalizedHideDetails];
     } else {
-        [options addObject:kUIActionSheetButtonTitleShowDetails];
+        [options addObject:kLocalizedShowDetails];
     }
-    [Util actionSheetWithTitle:kUIActionSheetTitleEditLooks
+#if kIsRelease // kIsRelease
+    CatrobatActionSheet *actionSheet = [Util actionSheetWithTitle:kLocalizedThisFeatureIsComingSoon
+                                                         delegate:self
+                                           destructiveButtonTitle:nil
+                                                otherButtonTitles:options
+                                                              tag:kEditLooksActionSheetTag
+                                                             view:self.navigationController.view];
+    // disable all buttons except hide/show details + cancel button
+    // (index of cancel button: ([actionSheet.buttons count] - 1))
+    for (IBActionSheetButton *button in actionSheet.buttons) {
+        if ((button.index != ([actionSheet.buttons count] - 2)) && (button.index != ([actionSheet.buttons count] - 1))) {
+            button.enabled = NO;
+            [actionSheet setButtonTextColor:[UIColor grayColor] forButtonAtIndex:button.index];
+        }
+    }
+#else // kIsRelease
+    [Util actionSheetWithTitle:kLocalizedEditLooks
                       delegate:self
         destructiveButtonTitle:nil
              otherButtonTitles:options
                            tag:kEditLooksActionSheetTag
                           view:self.navigationController.view];
+#endif // kIsRelease
 }
 
 - (void)addLookAction:(id)sender
@@ -251,10 +268,10 @@ static NSCharacterSet *blockedCharacterSet = nil;
         [imageCache loadThumbnailImageFromDiskWithThumbnailPath:previewImagePath
                                                       imagePath:imagePath
                                                   thumbnailFrameSize:CGSizeMake(kPreviewImageWidth, kPreviewImageHeight)
-                                                   onCompletion:^(UIImage *image){
+                                                   onCompletion:^(UIImage *img){
                                                        // check if cell still needed
                                                        if ([imageCell.indexPath isEqual:indexPath]) {
-                                                           imageCell.iconImageView.image = image;
+                                                           imageCell.iconImageView.image = img;
                                                            [imageCell setNeedsLayout];
                                                        }
                                                    }];
@@ -266,7 +283,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
     if (self.useDetailCells && [cell isKindOfClass:[DarkBlueGradientImageDetailCell class]]) {
         DarkBlueGradientImageDetailCell *detailCell = (DarkBlueGradientImageDetailCell*)imageCell;
         detailCell.topLeftDetailLabel.textColor = [UIColor whiteColor];
-        detailCell.topLeftDetailLabel.text = [NSString stringWithFormat:@"%@:", kUILabelTextMeasure];
+        detailCell.topLeftDetailLabel.text = [NSString stringWithFormat:@"%@:", kLocalizedMeasure];
         detailCell.topRightDetailLabel.textColor = [UIColor whiteColor];
 
         NSValue *value = [self.dataCache objectForKey:look.fileName];
@@ -281,7 +298,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
                                                (unsigned long)dimensions.width,
                                                (unsigned long)dimensions.height];
         detailCell.bottomLeftDetailLabel.textColor = [UIColor whiteColor];
-        detailCell.bottomLeftDetailLabel.text = [NSString stringWithFormat:@"%@:", kUILabelTextSize];
+        detailCell.bottomLeftDetailLabel.text = [NSString stringWithFormat:@"%@:", kLocalizedSize];
         detailCell.bottomRightDetailLabel.textColor = [UIColor whiteColor];
         NSUInteger resultSize = [self.object fileSizeOfLook:look];
         NSNumber *sizeOfSound = [NSNumber numberWithUnsignedInteger:resultSize];
@@ -338,13 +355,29 @@ static NSCharacterSet *blockedCharacterSet = nil;
     [cell hideUtilityButtonsAnimated:YES];
     if (index == 0) {
         // More button was pressed
-        NSArray *options = @[kUIActionSheetButtonTitleCopy, kUIActionSheetButtonTitleRename];
-        CatrobatActionSheet *actionSheet = [Util actionSheetWithTitle:kUIActionSheetTitleEditLook
+        NSArray *options = @[kLocalizedCopy, kLocalizedRename];
+#if kIsRelease // kIsRelease
+        CatrobatActionSheet *actionSheet = [Util actionSheetWithTitle:kLocalizedThisFeatureIsComingSoon
                                                              delegate:self
                                                destructiveButtonTitle:nil
                                                     otherButtonTitles:options
                                                                   tag:kEditLookActionSheetTag
                                                                  view:self.navigationController.view];
+        // disable all buttons except cancel button (index of cancel button: ([actionSheet.buttons count] - 1))
+        for (IBActionSheetButton *button in actionSheet.buttons) {
+            if (button.index != ([actionSheet.buttons count] - 1)) {
+                button.enabled = NO;
+                [actionSheet setButtonTextColor:[UIColor grayColor] forButtonAtIndex:button.index];
+            }
+        }
+#else // kIsRelease
+        CatrobatActionSheet *actionSheet = [Util actionSheetWithTitle:kLocalizedEditLook
+                                                             delegate:self
+                                               destructiveButtonTitle:nil
+                                                    otherButtonTitles:options
+                                                                  tag:kEditLookActionSheetTag
+                                                                 view:self.navigationController.view];
+#endif // kIsRelease
         NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
         NSDictionary *payload = @{ kDTPayloadLook : [self.object.lookList objectAtIndex:indexPath.row] };
         DataTransferMessage *message = [DataTransferMessage messageForActionType:kDTMActionEditLook
@@ -352,14 +385,18 @@ static NSCharacterSet *blockedCharacterSet = nil;
         actionSheet.dataTransferMessage = message;
     } else if (index == 1) {
         // Delete button was pressed
+#if kIsRelease // kIsRelease
+        [Util showComingSoonAlertView];
+#else // kIsRelease
         NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
         [cell hideUtilityButtonsAnimated:YES];
         [self performActionOnConfirmation:@selector(deleteLookForIndexPath:)
                            canceledAction:nil
                                withObject:indexPath
                                    target:self
-                             confirmTitle:kUIAlertViewTitleDeleteSingleLook
-                           confirmMessage:kUIAlertViewMessageIrreversibleAction];
+                             confirmTitle:kLocalizedDeleteThisLook
+                           confirmMessage:kLocalizedThisActionCannotBeUndone];
+#endif // kIsRelease
     }
 }
 
@@ -419,8 +456,8 @@ static NSCharacterSet *blockedCharacterSet = nil;
         imageFileName = [imageFileNameParts firstObject];
         NSString *imageFileNameExtension = [imageFileNameParts lastObject];
         if ((! [imageFileName length]) || (! [imageFileNameExtension length])) {
-            imageFileName = kDefaultImportedImageName;
-            imageFileNameExtension = kDefaultImportedImageNameExtension;
+            imageFileName = kLocalizedMyImage;
+            imageFileNameExtension = kLocalizedMyImageExtension;
         }
 
         NSData *imageData = UIImagePNGRepresentation(image);
@@ -455,14 +492,14 @@ static NSCharacterSet *blockedCharacterSet = nil;
                     [Util askUserForTextAndPerformAction:@selector(addLookActionWithName:look:)
                                                   target:self
                                               withObject:look
-                                             promptTitle:kUIAlertViewTitleAddImage
-                                           promptMessage:[NSString stringWithFormat:@"%@:", kUIAlertViewMessageImageName]
+                                             promptTitle:kLocalizedAddImage
+                                           promptMessage:[NSString stringWithFormat:@"%@:", kLocalizedImageName]
                                              promptValue:look.name
-                                       promptPlaceholder:kUIAlertViewPlaceholderEnterImageName
+                                       promptPlaceholder:kLocalizedEnterYourImageNameHere
                                           minInputLength:kMinNumOfLookNameCharacters
                                           maxInputLength:kMaxNumOfLookNameCharacters
                                      blockedCharacterSet:[self blockedCharacterSet]
-                                invalidInputAlertMessage:kUIAlertViewMessageInvalidImageName];
+                                invalidInputAlertMessage:kLocalizedInvalidImageNameDescription];
                 }];
             }];
             NSOperationQueue *queue = [[NSOperationQueue alloc] init];
@@ -529,14 +566,14 @@ static NSCharacterSet *blockedCharacterSet = nil;
             [Util askUserForTextAndPerformAction:@selector(renameLookActionToName:look:)
                                           target:self
                                       withObject:look
-                                     promptTitle:kUIAlertViewTitleRenameImage
-                                   promptMessage:[NSString stringWithFormat:@"%@:", kUIAlertViewMessageImageName]
+                                     promptTitle:kLocalizedRenameImage
+                                   promptMessage:[NSString stringWithFormat:@"%@:", kLocalizedImageName]
                                      promptValue:look.name
-                               promptPlaceholder:kUIAlertViewPlaceholderEnterImageName
+                               promptPlaceholder:kLocalizedEnterYourImageNameHere
                                   minInputLength:kMinNumOfLookNameCharacters
                                   maxInputLength:kMaxNumOfLookNameCharacters
                              blockedCharacterSet:[self blockedCharacterSet]
-                        invalidInputAlertMessage:kUIAlertViewMessageInvalidImageName];
+                        invalidInputAlertMessage:kLocalizedInvalidImageNameDescription];
         }
     } else if (actionSheet.tag == kAddLookActionSheetTag) {
         NSInteger importFromCameraIndex = NSIntegerMin;
@@ -576,18 +613,18 @@ static NSCharacterSet *blockedCharacterSet = nil;
     if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
         NSArray *availableMediaTypes = [UIImagePickerController availableMediaTypesForSourceType:UIImagePickerControllerSourceTypeCamera];
         if ([availableMediaTypes containsObject:(NSString *)kUTTypeImage]) {
-            [buttonTitles addObject:kUIActionSheetButtonTitleFromCamera];
+            [buttonTitles addObject:kLocalizedFromCamera];
         }
     }
     if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeSavedPhotosAlbum]) {
         NSArray *availableMediaTypes = [UIImagePickerController availableMediaTypesForSourceType:UIImagePickerControllerSourceTypeSavedPhotosAlbum];
         if ([availableMediaTypes containsObject:(NSString *)kUTTypeImage]) {
-            [buttonTitles addObject:kUIActionSheetButtonTitleChooseImage];
+            [buttonTitles addObject:kLocalizedChooseImage];
         }
     }
-//    [buttonTitles addObject:kUIActionSheetButtonTitleDrawNewImage];
+//    [buttonTitles addObject:kLocalizedDrawNewImage];
 
-    [Util actionSheetWithTitle:kUIActionSheetTitleAddLook
+    [Util actionSheetWithTitle:kLocalizedAddLook
                       delegate:self
         destructiveButtonTitle:nil
              otherButtonTitles:buttonTitles
@@ -605,6 +642,9 @@ static NSCharacterSet *blockedCharacterSet = nil;
     UIBarButtonItem *add = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd
                                                                          target:self
                                                                          action:@selector(addLookAction:)];
+#if kIsRelease // kIsRelease
+    add.enabled = NO;
+#endif // kIsRelease
     UIBarButtonItem *play = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemPlay
                                                                           target:self
                                                                           action:@selector(playSceneAction:)];
@@ -622,7 +662,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
     UIBarButtonItem *flexItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace
                                                                               target:nil
                                                                               action:nil];
-    UIBarButtonItem *deleteButton = [[UIBarButtonItem alloc] initWithTitle:kUIBarButtonItemTitleDelete
+    UIBarButtonItem *deleteButton = [[UIBarButtonItem alloc] initWithTitle:kLocalizedDelete
                                                                      style:UIBarButtonItemStylePlain
                                                                     target:self
                                                                     action:@selector(confirmDeleteSelectedLooksAction:)];

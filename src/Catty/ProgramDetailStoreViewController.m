@@ -117,11 +117,12 @@
 
 - (void)initNavigationBar
 {
-    self.title = self.navigationItem.title = kUIViewControllerTitleDetails;
+    self.title = self.navigationItem.title = kLocalizedDetails;
 }
 
-- (void) viewWillDisappear:(BOOL)animated
+- (void)viewWillDisappear:(BOOL)animated
 {
+    [super viewWillDisappear:animated];
     self.hidesBottomBarWhenPushed = NO;
 }
 
@@ -157,6 +158,7 @@
 
 - (void)viewDidAppear:(BOOL)animated
 {
+    [super viewDidAppear:animated];
     [[NSNotificationCenter defaultCenter] postNotificationName:kReachabilityChangedNotification
                                                         object:self];
 }
@@ -166,10 +168,9 @@
     [self.navigationController popViewControllerAnimated:YES];
 }
 
-- (void)viewDidUnload
+- (void)dealloc
 {
     [self setScrollViewOutlet:nil];
-    [super viewDidUnload];
 }
 
 #pragma mark - Segue

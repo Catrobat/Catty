@@ -24,38 +24,38 @@
 #import "LanguageTranslationDefines.h"
 
 #define kWeekdayNamesShort @[\
-    kNSDateTitleWeekdayShortNameSunday,\
-    kNSDateTitleWeekdayShortNameMonday,\
-    kNSDateTitleWeekdayShortNameTuesday,\
-    kNSDateTitleWeekdayShortNameWednesday,\
-    kNSDateTitleWeekdayShortNameThursday,\
-    kNSDateTitleWeekdayShortNameFriday,\
-    kNSDateTitleWeekdayShortNameSaturday\
+    kLocalizedSu,\
+    kLocalizedMo,\
+    kLocalizedTu,\
+    kLocalizedWe,\
+    kLocalizedTh,\
+    kLocalizedFr,\
+    kLocalizedSa\
 ]
 
 #define kWeekdayNames @[\
-    kNSDateTitleWeekdayNameSunday,\
-    kNSDateTitleWeekdayNameMonday,\
-    kNSDateTitleWeekdayNameTuesday,\
-    kNSDateTitleWeekdayNameWednesday,\
-    kNSDateTitleWeekdayNameThursday,\
-    kNSDateTitleWeekdayNameFriday,\
-    kNSDateTitleWeekdayNameSaturday\
+    kLocalizedSunday,\
+    kLocalizedMonday,\
+    kLocalizedTuesday,\
+    kLocalizedWednesday,\
+    kLocalizedThursday,\
+    kLocalizedFriday,\
+    kLocalizedSaturday\
 ]
 
 #define kMonthNamesShort @[\
-    kNSDateTitleMonthShortNameJanuary,\
-    kNSDateTitleMonthShortNameFebruary,\
-    kNSDateTitleMonthShortNameMarch,\
-    kNSDateTitleMonthShortNameApril,\
-    kNSDateTitleMonthShortNameMay,\
-    kNSDateTitleMonthShortNameJune,\
-    kNSDateTitleMonthShortNameJuly,\
-    kNSDateTitleMonthShortNameAugust,\
-    kNSDateTitleMonthShortNameSeptember,\
-    kNSDateTitleMonthShortNameOctober,\
-    kNSDateTitleMonthShortNameNovember,\
-    kNSDateTitleMonthShortNameDecember\
+    kLocalizedJan,\
+    kLocalizedFeb,\
+    kLocalizedMar,\
+    kLocalizedApr,\
+    kLocalizedMay,\
+    kLocalizedJun,\
+    kLocalizedJul,\
+    kLocalizedAug,\
+    kLocalizedSep,\
+    kLocalizedOct,\
+    kLocalizedNov,\
+    kLocalizedDec\
 ]
 
 @implementation NSDate (CustomExtensions)
@@ -111,7 +111,7 @@
 - (NSString*)weekdayName:(BOOL)shortName
 {
     NSCalendar *calendar = [NSCalendar currentCalendar];
-    NSDateComponents *components = [calendar components:NSWeekdayCalendarUnit fromDate:self];
+    NSDateComponents *components = [calendar components:NSCalendarUnitWeekday fromDate:self];
     return [(shortName ? kWeekdayNamesShort : kWeekdayNames) objectAtIndex:([components weekday] - 1)];
 }
 
@@ -120,9 +120,9 @@
     if ([self isToday]) {
         NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
         [dateFormatter setDateFormat:@"HH:mm"];
-        return [NSString stringWithFormat:@"%@ %@", kNSDateTitleNameToday, [dateFormatter stringFromDate:self]];
+        return [NSString stringWithFormat:@"%@ %@", kLocalizedToday, [dateFormatter stringFromDate:self]];
     } else if ([self isYesterday]) {
-        return kNSDateTitleNameYesterday;
+        return kLocalizedYesterday;
     }
     NSCalendar *calendar = [NSCalendar currentCalendar];
     NSCalendarUnit options = (NSCalendarUnitDay | NSCalendarUnitMonth | NSCalendarUnitYear);

@@ -78,7 +78,7 @@
 
     for (NSString *programName in programNames) {
         // exclude .DS_Store folder on MACOSX simulator and new program
-        if ([programName isEqualToString:@".DS_Store"] || [programName isEqualToString:kGeneralNewDefaultProgramName])
+        if ([programName isEqualToString:@".DS_Store"] || [programName isEqualToString:kLocalizedNewProgram])
             continue;
 
         ProgramLoadingInfo *loadingInfo = [[ProgramLoadingInfo alloc] init];
@@ -103,7 +103,7 @@
 
     for (NSString *programName in programNames) {
         // exclude .DS_Store folder on MACOSX simulator and new program
-        if ([programName isEqualToString:@".DS_Store"] || [programName isEqualToString:kGeneralNewDefaultProgramName])
+        if ([programName isEqualToString:@".DS_Store"] || [programName isEqualToString:kLocalizedNewProgram])
             continue;
 
         ProgramLoadingInfo *loadingInfo = [[ProgramLoadingInfo alloc] init];
@@ -131,8 +131,9 @@
             UITableViewCell <CatrobatImageCell>* imageCell = (UITableViewCell <CatrobatImageCell>*)cell;
             backgroundObjectCellTitle = imageCell.titleLabel.text;
         }
-        XCTAssertTrue(([backgroundObjectCellTitle isEqualToString:kUILabelTextBackground]
-                       || [backgroundObjectCellTitle isEqualToString:@"Background"]),
+        XCTAssertTrue(([backgroundObjectCellTitle isEqualToString:kLocalizedBackground]
+                       || [backgroundObjectCellTitle isEqualToString:@"Background"]
+                       || [backgroundObjectCellTitle isEqualToString:@"Hintergrund"]),
                       @"The ProgramTableViewController did not create the background object cell correctly.");
 
         NSUInteger objectCounter = 0;
@@ -170,7 +171,7 @@
 
     for (NSString *programName in programNames) {
         // exclude .DS_Store folder on MACOSX simulator and new program
-        if ([programName isEqualToString:@".DS_Store"] || [programName isEqualToString:kGeneralNewDefaultProgramName])
+        if ([programName isEqualToString:@".DS_Store"] || [programName isEqualToString:kLocalizedNewProgram])
             continue;
 
         ProgramLoadingInfo *loadingInfo = [[ProgramLoadingInfo alloc] init];
@@ -199,7 +200,7 @@
 
     for (NSString *programName in programNames) {
         // exclude .DS_Store folder on MACOSX simulator and new program
-        if ([programName isEqualToString:@".DS_Store"] || [programName isEqualToString:kGeneralNewDefaultProgramName])
+        if ([programName isEqualToString:@".DS_Store"] || [programName isEqualToString:kLocalizedNewProgram])
             continue;
 
         ProgramLoadingInfo *loadingInfo = [[ProgramLoadingInfo alloc] init];
@@ -228,7 +229,7 @@
 
     for (NSString *programName in programNames) {
         // exclude .DS_Store folder on MACOSX simulator and new program
-        if ([programName isEqualToString:@".DS_Store"] || [programName isEqualToString:kGeneralNewDefaultProgramName])
+        if ([programName isEqualToString:@".DS_Store"] || [programName isEqualToString:kLocalizedNewProgram])
             continue;
 
         ProgramLoadingInfo *loadingInfo = [[ProgramLoadingInfo alloc] init];
@@ -263,7 +264,7 @@
 
     for (NSString *programName in programNames) {
         // exclude .DS_Store folder on MACOSX simulator and new program
-        if ([programName isEqualToString:@".DS_Store"] || [programName isEqualToString:kGeneralNewDefaultProgramName])
+        if ([programName isEqualToString:@".DS_Store"] || [programName isEqualToString:kLocalizedNewProgram])
             continue;
 
         ProgramLoadingInfo *loadingInfo = [[ProgramLoadingInfo alloc] init];
@@ -316,18 +317,10 @@
         return nil;
 
     NSDebug(@"ProjectResolution: width/height:  %f / %f", program.header.screenWidth.floatValue, program.header.screenHeight.floatValue);
-
-    // setting effect
-    for (SpriteObject *sprite in program.objectList)
-    {
-        //sprite.spriteManagerDelegate = self;
-        //sprite.broadcastWaitDelegate = self.broadcastWaitHandler;
-        for (Script *script in sprite.scriptList) {
-            for (Brick *brick in script.brickList) {
-                brick.object = sprite;
-            }
-        }
-    }
+//    for (SpriteObject *sprite in program.objectList) {
+//        sprite.spriteManagerDelegate = self;
+//        sprite.broadcastWaitDelegate = self.broadcastWaitHandler;
+//    }
     [Util setLastProgram:program.header.programName];
     return program;
 }

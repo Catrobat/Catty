@@ -148,6 +148,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
 
 - (void)viewDidAppear:(BOOL)animated
 {
+    [super viewDidAppear:animated];
     NSIndexPath* indexPath = [NSIndexPath indexPathForRow:0 inSection:0];
     [self.tableView beginUpdates];
     [self.tableView reloadRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationNone];
@@ -159,19 +160,19 @@ static NSCharacterSet *blockedCharacterSet = nil;
 - (void)initTableView
 {
     self.cells = [[NSArray alloc] initWithObjects:
-                  kUITableViewControllerMenuTitleContinue,
-                  kUITableViewControllerMenuTitleNew,
-                  kUITableViewControllerMenuTitlePrograms,
-                  kUITableViewControllerMenuTitleHelp,
-                  kUITableViewControllerMenuTitleExplore,
-                  kUITableViewControllerMenuTitleUpload, nil];
+                  kLocalizedContinue,
+                  kLocalizedNew,
+                  kLocalizedPrograms,
+                  kLocalizedHelp,
+                  kLocalizedExplore,
+                  kLocalizedUpload, nil];
     self.imageNames = [[NSArray alloc] initWithObjects:kMenuImageNameContinue, kMenuImageNameNew, kMenuImageNamePrograms, kMenuImageNameHelp, kMenuImageNameExplore, kMenuImageNameUpload, nil];
     self.identifiers = [[NSArray alloc] initWithObjects:kSegueToContinue, kSegueToNewProgram, kSegueToPrograms, kSegueToHelp, kSegueToExplore, kSegueToUpload, nil];
 }
 
 - (void)initNavigationBar
 {
-    self.navigationItem.title = kUIViewControllerTitlePocketCode;
+    self.navigationItem.title = kLocalizedPocketCode;
     UIButton *button = [UIButton buttonWithType:UIButtonTypeInfoLight];
     [button addTarget:self action:@selector(infoPressed:) forControlEvents:UIControlEventTouchUpInside];
     UIBarButtonItem *infoItem = [[UIBarButtonItem alloc] initWithCustomView:button];
@@ -244,17 +245,21 @@ static NSCharacterSet *blockedCharacterSet = nil;
     NSString* identifier = [self.identifiers objectAtIndex:indexPath.row];
     switch (indexPath.row) {
         case kNewProgramVC:
+#if kIsRelease // kIsRelease
+            [Util showComingSoonAlertView];
+#else // kIsRelease
             [Util askUserForUniqueNameAndPerformAction:@selector(addProgramAndSegueToItActionForProgramWithName:)
                                                 target:self
-                                           promptTitle:kUIAlertViewTitleNewProgram
-                                         promptMessage:[NSString stringWithFormat:@"%@:", kUIAlertViewMessageProgramName]
+                                           promptTitle:kLocalizedNewProgram
+                                         promptMessage:[NSString stringWithFormat:@"%@:", kLocalizedProgramName]
                                            promptValue:nil
-                                     promptPlaceholder:kUIAlertViewPlaceholderEnterProgramName
+                                     promptPlaceholder:kLocalizedEnterYourProgramNameHere
                                         minInputLength:kMinNumOfProgramNameCharacters
                                         maxInputLength:kMaxNumOfProgramNameCharacters
                                    blockedCharacterSet:[self blockedCharacterSet]
-                              invalidInputAlertMessage:kUIAlertViewMessageProgramNameAlreadyExists
+                              invalidInputAlertMessage:kLocalizedProgramNameAlreadyExistsDescription
                                          existingNames:[Program allProgramNames]];
+#endif // kIsRelease
             break;
         case kContinueProgramVC:
         case kLocalProgramsVC:
@@ -335,7 +340,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
         [Util setLastProgram:nil];
         NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:0];
         [self.tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationNone];
-        [Util alertWithText:kUIAlertViewMessageUnableToLoadProgram];
+        [Util alertWithText:kLocalizedUnableToLoadProgram];
         return NO;
     } else if ([identifier isEqualToString:kSegueToNewProgram]) {
         // if there is no program name, abort performing this segue and ask user for program name
@@ -348,7 +353,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
         NetworkStatus remoteHostStatus = [self.reachability currentReachabilityStatus];
         
         if(remoteHostStatus == NotReachable) {
-            [Util alertWithText:kUIAlertViewMessageNoInternetConnection];
+            [Util alertWithText:kLocalizedNoInternetConnectionAvailable];
             NSDebug(@"not reachable");
             return NO;
         } else if (remoteHostStatus == ReachableViaWiFi) {
@@ -359,7 +364,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
                 NSDebug(@"reachable via wifi but no data");
                 if ([self.navigationController.topViewController isKindOfClass:[DownloadTabBarController class]] ||
                     [self.navigationController.topViewController isKindOfClass:[ProgramDetailStoreViewController class]]) {
-                    [Util alertWithText:kUIAlertViewMessageNoInternetConnection];
+                    [Util alertWithText:kLocalizedNoInternetConnectionAvailable];
                     [self.navigationController popToRootViewControllerAnimated:YES];
                     return NO;
                 }
@@ -371,7 +376,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
                 return YES;
             }else{
                 NSDebug(@" not reachable via celullar");
-                [Util alertWithText:kUIAlertViewMessageNoInternetConnection];
+                [Util alertWithText:kLocalizedNoInternetConnectionAvailable];
                 return NO;
             }
             return YES;
@@ -404,7 +409,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
         if ([self.navigationController.topViewController isKindOfClass:[DownloadTabBarController class]] ||
             [self.navigationController.topViewController isKindOfClass:[ProgramDetailStoreViewController class]] ||
             [self.navigationController.topViewController isKindOfClass:[HelpWebViewController class]] ) {
-            [Util alertWithText:kUIAlertViewMessageNoInternetConnection];
+            [Util alertWithText:kLocalizedNoInternetConnectionAvailable];
             [self.navigationController popToRootViewControllerAnimated:YES];
         }
         NSDebug(@"not reachable");
@@ -416,7 +421,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
             if ([self.navigationController.topViewController isKindOfClass:[DownloadTabBarController class]] ||
                 [self.navigationController.topViewController isKindOfClass:[ProgramDetailStoreViewController class]]||
                 [self.navigationController.topViewController isKindOfClass:[HelpWebViewController class]]) {
-                [Util alertWithText:kUIAlertViewMessageNoInternetConnection];
+                [Util alertWithText:kLocalizedNoInternetConnectionAvailable];
                 [self.navigationController popToRootViewControllerAnimated:YES];
             }
         }
@@ -428,7 +433,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
             if ([self.navigationController.topViewController isKindOfClass:[DownloadTabBarController class]] ||
                 [self.navigationController.topViewController isKindOfClass:[ProgramDetailStoreViewController class]]||
                 [self.navigationController.topViewController isKindOfClass:[HelpWebViewController class]]) {
-                [Util alertWithText:kUIAlertViewMessageNoInternetConnection];
+                [Util alertWithText:kLocalizedNoInternetConnectionAvailable];
                 [self.navigationController popToRootViewControllerAnimated:YES];
             }
         }

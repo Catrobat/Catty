@@ -27,14 +27,13 @@
 
 - (NSString*)brickTitle
 {
-    return kBrickCellLookTitleHide;
+    return kLocalizedHide;
 }
 
 - (SKAction*)action
 {
     NSDebug(@"Performing: %@", self.description);
     return [SKAction runBlock:[self actionBlock]];
-
 }
 
 - (dispatch_block_t)actionBlock

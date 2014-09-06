@@ -30,7 +30,7 @@
 
 - (NSString*)brickTitle
 {
-    return kBrickCellMotionTitleChangeY;
+    return kLocalizedChangeY;
 }
 
 -(SKAction*)action
