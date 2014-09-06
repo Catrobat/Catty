@@ -48,6 +48,7 @@
 #import "DataTransferMessage.h"
 #import "InfoPopupViewController.h"
 #import "EAIntroView.h"
+#import <ObjectiveGit/ObjectiveGit.h>
 
 NS_ENUM(NSInteger, ViewControllerIndex) {
     kContinueProgramVC = 0,

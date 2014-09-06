@@ -207,6 +207,8 @@
 		CA14987F1989CBD50069A21E /* NSString+FastImageSize.m in Sources */ = {isa = PBXBuildFile; fileRef = CA14987E1989CBD50069A21E /* NSString+FastImageSize.m */; };
 		CA1498821989CC0E0069A21E /* OrderedDictionary.m in Sources */ = {isa = PBXBuildFile; fileRef = CA1498811989CC0E0069A21E /* OrderedDictionary.m */; };
 		CA1498851989D1A60069A21E /* UIViewController+CWPopup.m in Sources */ = {isa = PBXBuildFile; fileRef = CA1498841989D1A60069A21E /* UIViewController+CWPopup.m */; };
+		CA16F07B19BB8F7800D97268 /* libObjectiveGit-iOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CA16F07619BB8F4800D97268 /* libObjectiveGit-iOS.a */; };
+		CA16F07D19BB8F8D00D97268 /* libiconv.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = CA16F07C19BB8F8D00D97268 /* libiconv.dylib */; };
 		CA1B802C1971ADBB00D8E79B /* IMPORTANT.caf in Resources */ = {isa = PBXBuildFile; fileRef = CA1B802B1971ACE300D8E79B /* IMPORTANT.caf */; };
 		CA3BFA5C197F0DD300DA86C9 /* NSMutableArray+CustomExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = CA3BFA5B197F0DD300DA86C9 /* NSMutableArray+CustomExtensions.m */; };
 		CA43DD361809976900F95B88 /* UIImageView+CatrobatUIImageViewExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = CA43DD351809976900F95B88 /* UIImageView+CatrobatUIImageViewExtensions.m */; };
@@ -253,6 +255,8 @@
 		CA688205180B0148008A7C99 /* BaseTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA688204180B0148008A7C99 /* BaseTableViewController.m */; };
 		CA68820E180B39D0008A7C99 /* ColoredCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CA68820D180B39D0008A7C99 /* ColoredCell.m */; };
 		CA68B67718BAA80A007042E4 /* ComboBoxView.m in Sources */ = {isa = PBXBuildFile; fileRef = CA68B67518BAA80A007042E4 /* ComboBoxView.m */; };
+		CA6E958819BB9106000A7E25 /* libObjectiveGit-iOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CA16F07619BB8F4800D97268 /* libObjectiveGit-iOS.a */; };
+		CA6E958919BB9117000A7E25 /* libiconv.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = CA16F07C19BB8F8D00D97268 /* libiconv.dylib */; };
 		CA75C22618A9603400FC8C2F /* StartScriptCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CA75C22518A9603400FC8C2F /* StartScriptCell.m */; };
 		CA75C22918A9605D00FC8C2F /* WhenScriptCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CA75C22818A9605D00FC8C2F /* WhenScriptCell.m */; };
 		CA75C22C18A9606D00FC8C2F /* BroadcastScriptCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CA75C22B18A9606D00FC8C2F /* BroadcastScriptCell.m */; };
@@ -691,12 +695,47 @@
 			remoteGlobalIDString = B4A92DC3175F535300608667;
 			remoteInfo = LicenseTest;
 		};
+		CA16F07319BB8F4800D97268 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = CA16F06919BB8F4800D97268 /* ObjectiveGitFramework.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 8DC2EF5B0486A6940098B216;
+			remoteInfo = ObjectiveGit;
+		};
+		CA16F07519BB8F4800D97268 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = CA16F06919BB8F4800D97268 /* ObjectiveGitFramework.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 04DB4645133AB57600D9C624;
+			remoteInfo = "ObjectiveGit-iOS";
+		};
+		CA16F07719BB8F4800D97268 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = CA16F06919BB8F4800D97268 /* ObjectiveGitFramework.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 88F05A6B16011E5400B7AD1D;
+			remoteInfo = ObjectiveGitTests;
+		};
+		CA16F07919BB8F6900D97268 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = CA16F06919BB8F4800D97268 /* ObjectiveGitFramework.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 04DB4644133AB57600D9C624;
+			remoteInfo = "ObjectiveGit-iOS";
+		};
 		CA538ED019B0EA2F008240AB /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = CADBD6D319B0E8C200C62836;
 			remoteInfo = Catty_iOS8.0;
+		};
+		CA6E958619BB9100000A7E25 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = CA16F06919BB8F4800D97268 /* ObjectiveGitFramework.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 04DB4644133AB57600D9C624;
+			remoteInfo = "ObjectiveGit-iOS";
 		};
 		CADBD6D519B0E8C200C62836 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -1037,6 +1076,8 @@
 		CA1498811989CC0E0069A21E /* OrderedDictionary.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OrderedDictionary.m; path = OrderedDictionary/OrderedDictionary.m; sourceTree = "<group>"; };
 		CA1498831989D1A60069A21E /* UIViewController+CWPopup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIViewController+CWPopup.h"; path = "UIViewController+CWPopup/UIViewController+CWPopup.h"; sourceTree = "<group>"; };
 		CA1498841989D1A60069A21E /* UIViewController+CWPopup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIViewController+CWPopup.m"; path = "UIViewController+CWPopup/UIViewController+CWPopup.m"; sourceTree = "<group>"; };
+		CA16F06919BB8F4800D97268 /* ObjectiveGitFramework.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ObjectiveGitFramework.xcodeproj; path = ObjectiveGit/ObjectiveGitFramework.xcodeproj; sourceTree = "<group>"; };
+		CA16F07C19BB8F8D00D97268 /* libiconv.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libiconv.dylib; path = usr/lib/libiconv.dylib; sourceTree = SDKROOT; };
 		CA1B7A1D18E1D9B700452234 /* ProgramUpdateDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ProgramUpdateDelegate.h; sourceTree = "<group>"; };
 		CA1B802B1971ACE300D8E79B /* IMPORTANT.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = IMPORTANT.caf; sourceTree = "<group>"; };
 		CA3BFA5A197F0D0900DA86C9 /* NSMutableArray+CustomExtensions.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSMutableArray+CustomExtensions.h"; sourceTree = "<group>"; };
@@ -1327,6 +1368,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CA16F07D19BB8F8D00D97268 /* libiconv.dylib in Frameworks */,
+				DE5C4E6E138ED109004892CA /* libz.dylib in Frameworks */,
+				CA16F07B19BB8F7800D97268 /* libObjectiveGit-iOS.a in Frameworks */,
 				92E3351E18FBB6750056C390 /* SystemConfiguration.framework in Frameworks */,
 				921FE2FA182F8122001D7CF6 /* CoreImage.framework in Frameworks */,
 				CA05A19E18286CDA0025421A /* AssetsLibrary.framework in Frameworks */,
@@ -1336,7 +1380,6 @@
 				B4AF798D174A9A340041555A /* CoreLocation.framework in Frameworks */,
 				B44F32AD1737BCC000BD97AC /* CoreMotion.framework in Frameworks */,
 				B4BCF42C170ED548008EDF3A /* CoreText.framework in Frameworks */,
-				DE5C4E6E138ED109004892CA /* libz.dylib in Frameworks */,
 				DEAAF3DF16BC114D004EB9D5 /* GLKit.framework in Frameworks */,
 				1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */,
 				1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */,
@@ -1373,6 +1416,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CA6E958919BB9117000A7E25 /* libiconv.dylib in Frameworks */,
+				CA6E958819BB9106000A7E25 /* libObjectiveGit-iOS.a in Frameworks */,
 				CADBD7E519B0E8C200C62836 /* SystemConfiguration.framework in Frameworks */,
 				CADBD7E619B0E8C200C62836 /* CoreImage.framework in Frameworks */,
 				CADBD7E719B0E8C200C62836 /* AssetsLibrary.framework in Frameworks */,
@@ -1420,6 +1465,7 @@
 				B46B270317703F9400172837 /* CattyTests */,
 				29B97323FDCFA39411CA2CEA /* Frameworks */,
 				19C28FACFE9D520D11CA2CBB /* Products */,
+				CA16F06919BB8F4800D97268 /* ObjectiveGitFramework.xcodeproj */,
 			);
 			indentWidth = 4;
 			name = CustomTemplate;
@@ -1443,6 +1489,7 @@
 		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				CA16F07C19BB8F8D00D97268 /* libiconv.dylib */,
 				92E3351D18FBB6750056C390 /* SystemConfiguration.framework */,
 				921FE2F9182F8122001D7CF6 /* CoreImage.framework */,
 				CA05A19D18286CDA0025421A /* AssetsLibrary.framework */,
@@ -2506,6 +2553,16 @@
 			name = MaintainObject;
 			sourceTree = "<group>";
 		};
+		CA16F06A19BB8F4800D97268 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				CA16F07419BB8F4800D97268 /* ObjectiveGit.framework */,
+				CA16F07619BB8F4800D97268 /* libObjectiveGit-iOS.a */,
+				CA16F07819BB8F4800D97268 /* ObjectiveGitTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		CA1B802A1971AA1C00D8E79B /* SharkfoodMuteSwitchDetector */ = {
 			isa = PBXGroup;
 			children = (
@@ -3434,6 +3491,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				CA16F07A19BB8F6900D97268 /* PBXTargetDependency */,
 				B4A92DCF175F8EE800608667 /* PBXTargetDependency */,
 			);
 			name = Catty_iOS7.1;
@@ -3490,6 +3548,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				CA6E958719BB9100000A7E25 /* PBXTargetDependency */,
 				CADBD6D419B0E8C200C62836 /* PBXTargetDependency */,
 			);
 			name = Catty_iOS8.0;
@@ -3569,6 +3628,12 @@
 			);
 			mainGroup = 29B97314FDCFA39411CA2CEA /* CustomTemplate */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = CA16F06A19BB8F4800D97268 /* Products */;
+					ProjectRef = CA16F06919BB8F4800D97268 /* ObjectiveGitFramework.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				1D6058900D05DD3D006BFB54 /* Catty_iOS7.1 */,
@@ -3580,6 +3645,30 @@
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		CA16F07419BB8F4800D97268 /* ObjectiveGit.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = ObjectiveGit.framework;
+			remoteRef = CA16F07319BB8F4800D97268 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		CA16F07619BB8F4800D97268 /* libObjectiveGit-iOS.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = "libObjectiveGit-iOS.a";
+			remoteRef = CA16F07519BB8F4800D97268 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		CA16F07819BB8F4800D97268 /* ObjectiveGitTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = ObjectiveGitTests.xctest;
+			remoteRef = CA16F07719BB8F4800D97268 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		1D60588D0D05DD3D006BFB54 /* Resources */ = {
@@ -4338,10 +4427,20 @@
 			target = B4A92DC3175F535300608667 /* LicenseTest_iOS7.1 */;
 			targetProxy = B4A92DCE175F8EE800608667 /* PBXContainerItemProxy */;
 		};
+		CA16F07A19BB8F6900D97268 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "ObjectiveGit-iOS";
+			targetProxy = CA16F07919BB8F6900D97268 /* PBXContainerItemProxy */;
+		};
 		CA538ED119B0EA2F008240AB /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = CADBD6D319B0E8C200C62836 /* Catty_iOS8.0 */;
 			targetProxy = CA538ED019B0EA2F008240AB /* PBXContainerItemProxy */;
+		};
+		CA6E958719BB9100000A7E25 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "ObjectiveGit-iOS";
+			targetProxy = CA6E958619BB9100000A7E25 /* PBXContainerItemProxy */;
 		};
 		CADBD6D419B0E8C200C62836 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -4427,7 +4526,7 @@
 				PROVISIONING_PROFILE = "";
 				SDKROOT = iphoneos7.1;
 				TARGETED_DEVICE_FAMILY = 1;
-				USER_HEADER_SEARCH_PATHS = "${SPARROW_SRC}";
+				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/ObjectiveGit/External/libgit2/include $(BUILT_PRODUCTS_DIR)/usr/local/include";
 			};
 			name = Debug;
 		};
@@ -4456,7 +4555,7 @@
 				PROVISIONING_PROFILE = "";
 				SDKROOT = iphoneos7.1;
 				TARGETED_DEVICE_FAMILY = 1;
-				USER_HEADER_SEARCH_PATHS = "${SPARROW_SRC}";
+				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/ObjectiveGit/External/libgit2/include $(BUILT_PRODUCTS_DIR)/usr/local/include";
 			};
 			name = Release;
 		};
@@ -4752,7 +4851,7 @@
 				PROVISIONING_PROFILE = "";
 				SDKROOT = iphoneos8.0;
 				TARGETED_DEVICE_FAMILY = 1;
-				USER_HEADER_SEARCH_PATHS = "${SPARROW_SRC}";
+				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/ObjectiveGit/External/libgit2/include $(BUILT_PRODUCTS_DIR)/usr/local/include";
 			};
 			name = Debug;
 		};
@@ -4781,7 +4880,7 @@
 				PROVISIONING_PROFILE = "";
 				SDKROOT = iphoneos8.0;
 				TARGETED_DEVICE_FAMILY = 1;
-				USER_HEADER_SEARCH_PATHS = "${SPARROW_SRC}";
+				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/ObjectiveGit/External/libgit2/include $(BUILT_PRODUCTS_DIR)/usr/local/include";
 			};
 			name = Release;
 		};
