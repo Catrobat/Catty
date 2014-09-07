@@ -22,6 +22,7 @@
 
 #import <UIKit/UIKit.h>
 #import "InternFormula.h"
+#import "Formula.h"
 
 @class FormulaEditorViewController;
 @class BrickCell;
@@ -34,10 +35,13 @@
 @end
 
 @interface FormulaEditorViewController : UIViewController <UITextFieldDelegate>
+
 @property (weak, nonatomic) id<FormulaEditorViewControllerDelegate> delegate;
 @property (strong, nonatomic) BrickCell *brickCell;
 @property (strong, nonatomic) InternFormula *internFormula;
 
+- (id)initWithBrickCell:(BrickCell*)brickCell AndFormula:(Formula*)formula;
+- (void)updateFormula:(Formula*)formula;
 - (void)updateUI;
 
 @end
