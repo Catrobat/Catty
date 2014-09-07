@@ -36,7 +36,6 @@
 #import "BroadcastScriptCell.h"
 #import "CellMotionEffect.h"
 #import "BrickCell.h"
-#import "Formula.h"
 #import "FormulaElement.h"
 #import "LanguageTranslationDefines.h"
 
@@ -75,10 +74,27 @@ NS_ENUM(NSInteger, ButtonIndex) {
 
 const float TEXT_FIELD_HEIGHT = 45;
 
+- (id)initWithBrickCell:(BrickCell*)brickCell AndFormula:(Formula*)formula
+{
+    self = [super init];
+    
+    if(self) {
+        self.brickCell = brickCell;
+        self.internFormula = [[InternFormula alloc] initWithInternTokenList:[formula.formulaTree getInternTokenList]];
+    }
+    
+    return self;
+}
+
+- (void)updateFormula:(Formula*)formula
+{
+    self.internFormula = [[InternFormula alloc] initWithInternTokenList:[formula.formulaTree getInternTokenList]];
+    [self updateUI];
+}
+
 - (InternFormula *)internFormula
 {
-    if(!_internFormula)
-    {
+    if(!_internFormula) {
         _internFormula = [[InternFormula alloc]init];
     }
     return _internFormula;
@@ -115,7 +131,7 @@ const float TEXT_FIELD_HEIGHT = 45;
 {
     [super viewDidDisappear:animated];
     
-    if (self.delegate && [self.delegate respondsToSelector:@selector(brickDetailViewController:viewDidDisappear:withBrickCell:copyBrick:)]) {
+    if (self.delegate && [self.delegate respondsToSelector:@selector(formulaEditorViewController:withBrickCell:)]) {
         [self.delegate formulaEditorViewController:self withBrickCell:self.brickCell];
     }
 }
@@ -138,6 +154,7 @@ const float TEXT_FIELD_HEIGHT = 45;
 - (void)dismissFormulaEditorViewController
 {
     if (! self.presentingViewController.isBeingDismissed) {
+        [self.formulaEditorTextField removeFromSuperview];
         [self.presentingViewController dismissViewControllerAnimated:YES completion:NULL];
     }
 }
@@ -229,29 +246,29 @@ const float TEXT_FIELD_HEIGHT = 45;
     [alert show];
 }
 
-
 #pragma mark - UI
 - (void)showFormulaEditor
 {
     UIView *textFieldPadding = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 5, TEXT_FIELD_HEIGHT)];
     
-    formulaEditorTextField = [[FormulaEditorTextField alloc] initWithFrame: CGRectMake(1, self.brickCell.frame.size.height + 50, self.view.frame.size.width - 2, TEXT_FIELD_HEIGHT) AndFormulaEditorViewController:self];
-    [formulaEditorTextField setAutocorrectionType:UITextAutocorrectionTypeNo];
-    [formulaEditorTextField setLeftViewMode:UITextFieldViewModeAlways];
-    [formulaEditorTextField setLeftView:textFieldPadding];
-    formulaEditorTextField.backgroundColor = [UIColor whiteColor];
-    [self.view addSubview:formulaEditorTextField];
+    self.formulaEditorTextField = [[FormulaEditorTextField alloc] initWithFrame: CGRectMake(1, self.brickCell.frame.size.height + 50, self.view.frame.size.width - 2, TEXT_FIELD_HEIGHT) AndFormulaEditorViewController:self];
+    [self.formulaEditorTextField setAutocorrectionType:UITextAutocorrectionTypeNo];
+    [self.formulaEditorTextField setLeftViewMode:UITextFieldViewModeAlways];
+    [self.formulaEditorTextField setLeftView:textFieldPadding];
+    self.formulaEditorTextField.backgroundColor = [UIColor whiteColor];
+    [self.view addSubview:self.formulaEditorTextField];
     
     for(int i = 0; i < [self.buttons count]; i++) {
         [[self.buttons objectAtIndex:i] setTitleColor:UIColor.lightOrangeColor forState:UIControlStateNormal];
     }
     
     [self updateUI];
-    [formulaEditorTextField becomeFirstResponder];
+    [self.formulaEditorTextField becomeFirstResponder];
 }
 
 - (void)updateUI
 {
+    [self.formulaEditorTextField update];
     [self.undoButton setEnabled:[self canUndo]];
     [self.redoButton setEnabled:[self canRedo]];
 }

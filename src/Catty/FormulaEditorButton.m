@@ -24,6 +24,14 @@
 #import "Formula.h"
 #import "BrickFormulaProtocol.h"
 
+@interface FormulaEditorButton ()
+
+@property (nonatomic) NSInteger formulaAtLineNumber;
+@property (nonatomic) NSInteger formulaAtParamNumber;
+@property (strong, nonatomic) UITapGestureRecognizer *recognizer;
+
+@end
+
 @implementation FormulaEditorButton
 
 - (id)initWithFrame:(CGRect)frame AndBrickCell:(BrickCell*)brickCell AndLineNumber:(NSInteger)lineNumber AndParameterNumber:(NSInteger)paramNumber;
@@ -32,13 +40,13 @@
     
     if(self) {
         self.brickCell = brickCell;
+        self.formulaAtParamNumber = paramNumber;
+        self.formulaAtLineNumber = lineNumber;
         
         if([brickCell.brick respondsToSelector:@selector(getFormulaForLineNumber: AndParameterNumber:)]) {
-            Brick<BrickFormulaProtocol> *formulaBrick = (Brick<BrickFormulaProtocol> *)brickCell.brick;
-            Formula *formula = [formulaBrick getFormulaForLineNumber:lineNumber AndParameterNumber:paramNumber];
-            [self setTitle:[formula getDisplayString] forState:UIControlStateNormal];
+            [self setTitle:[[self getFormula] getDisplayString] forState:UIControlStateNormal];
         } else {
-            [self setTitle:@"error occurred" forState:UIControlStateNormal];
+            [self setTitle:@"error" forState:UIControlStateNormal];
         }
         
         [self sizeToFit];
@@ -48,13 +56,18 @@
         
         self.titleLabel.textColor = [UIColor whiteColor];
         self.titleLabel.font = [UIFont systemFontOfSize:kBrickTextFieldFontSize];
-        [self addTarget:brickCell.delegate action:@selector(openFormulaEditor:) forControlEvents:UIControlEventTouchDown];
-
+        
+        [self addTarget:brickCell.delegate action:@selector(openFormulaEditor:) forControlEvents:UIControlEventTouchUpInside];
     }
     
     return self;
 }
 
+- (Formula*)getFormula
+{
+    Brick<BrickFormulaProtocol> *formulaBrick = (Brick<BrickFormulaProtocol> *)self.brickCell.brick;
+    return [formulaBrick getFormulaForLineNumber:self.formulaAtLineNumber AndParameterNumber:self.formulaAtParamNumber];
+}
 
 
 @end

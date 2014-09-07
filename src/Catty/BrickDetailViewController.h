@@ -31,7 +31,8 @@
 - (void)brickDetailViewController:(BrickDetailViewController *)brickDetailViewController
                  viewDidDisappear:(BOOL)deleteBrick
                     withBrickCell:(BrickCell *)brickCell
-                        copyBrick:(BOOL)copyBrick;
+                        copyBrick:(BOOL)copyBrick
+                            openFormulaEditor:(BOOL)openFormulaEditor;
 
 @end
 

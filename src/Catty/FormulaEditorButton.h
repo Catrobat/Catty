@@ -22,11 +22,14 @@
 
 #import <UIKit/UIKit.h>
 #import "BrickCell.h"
+#import "Formula.h"
 
 @interface FormulaEditorButton : UIButton
 
 @property (nonatomic, weak) BrickCell *brickCell;
 
 - (id)initWithFrame:(CGRect)frame AndBrickCell:(BrickCell*)brickCell AndLineNumber:(NSInteger)lineNumber AndParameterNumber:(NSInteger)paramNumber;
+
+- (Formula*)getFormula;
 
 @end

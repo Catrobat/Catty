@@ -45,6 +45,7 @@
 #import "BrickManager.h"
 #import "SingleBrickSelectionView.h"
 #import "Util.h"
+#import "UIUtil.h"
 #import "FormulaEditorButton.h"
 #import "FormulaEditorViewController.h"
 
@@ -253,6 +254,7 @@
 #pragma mark BrickDetailViewController Delegate
 - (void)brickDetailViewController:(BrickDetailViewController *)brickDetailViewController
                  viewDidDisappear:(BOOL)deleteBrick withBrickCell:(BrickCell *)brickCell copyBrick:(BOOL)copyBrick
+                openFormulaEditor:(BOOL)openFormulaEditor
 {
     self.collectionView.userInteractionEnabled = YES;
     self.navigationController.navigationBar.userInteractionEnabled = YES;
@@ -260,10 +262,11 @@
 
     if (deleteBrick) {
         [self removeBrickWithIndexPath:self.selectedIndexPath];
-    } else {
-        if (copyBrick) {
-            [self addBrickCellAction:brickCell copyBrick:copyBrick completionBlock:NULL];
-        }
+    } else if (copyBrick) {
+        [self addBrickCellAction:brickCell copyBrick:copyBrick completionBlock:NULL];
+    } else if (openFormulaEditor) {
+        UIButton *formulaEditorButton = [UIUtil newDefaultBrickFormulaEditorWithFrame:CGRectMake(0, 0, 0, 0) ForBrickCell:brickCell AndLineNumber: 0 AndParameterNumber: 0];
+        [self performSelectorOnMainThread:@selector(openFormulaEditor:) withObject:(id)formulaEditorButton waitUntilDone:NO];
     }
 }
 
@@ -797,26 +800,38 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
                                  weakself.selectedAllCells = NO;
                              }
                          }];
-    }
+    } 
 }
 
-#pragma mark - Formula Editor test
+#pragma mark - Formula Editor delegate
 
 - (void)openFormulaEditor:(id)sender
 {
     FormulaEditorButton *button = (FormulaEditorButton*)sender;
     
-    FormulaEditorViewController *formulaEditorViewController = [FormulaEditorViewController new];
-    formulaEditorViewController.delegate = self;
-    formulaEditorViewController.brickCell = button.brickCell;
-    self.brickScaleTransition.cell = button.brickCell;
-    self.brickScaleTransition.touchRect = button.brickCell.frame;
-    formulaEditorViewController.transitioningDelegate = self;
-    formulaEditorViewController.modalPresentationStyle = UIModalPresentationCustom;
-    self.collectionView.userInteractionEnabled = NO;
-    [self presentViewController:formulaEditorViewController animated:YES completion:^{
-        self.navigationController.navigationBar.userInteractionEnabled = NO;
-    }];
+    if([self.presentedViewController isKindOfClass:[FormulaEditorViewController class]]) {
+
+        FormulaEditorViewController *formulaEditorViewController = (FormulaEditorViewController*)self.presentedViewController;
+        [formulaEditorViewController updateFormula:[button getFormula]];
+        
+    } else {
+        
+        [self.collectionView reloadData];
+        
+        FormulaEditorViewController *formulaEditorViewController = [[FormulaEditorViewController alloc] initWithBrickCell:  button.brickCell AndFormula:[button getFormula]];
+        formulaEditorViewController.delegate = self;
+    
+        self.brickScaleTransition.cell = button.brickCell;
+        self.brickScaleTransition.touchRect = button.brickCell.frame;
+        formulaEditorViewController.transitioningDelegate = self;
+        formulaEditorViewController.modalPresentationStyle = UIModalPresentationCustom;
+        self.collectionView.userInteractionEnabled = NO;
+        
+        [self presentViewController:formulaEditorViewController animated:YES completion:^{
+            self.navigationController.navigationBar.userInteractionEnabled = NO;
+        }];
+        
+    }
 }
 
 @end
