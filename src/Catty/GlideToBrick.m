@@ -51,6 +51,16 @@
     return nil;
 }
 
+- (void)setFormula:(Formula*)formula ForLineNumber:(NSInteger)lineNumber AndParameterNumber:(NSInteger)paramNumber
+{
+    if(lineNumber == 0 && paramNumber == 0)
+        self.durationInSeconds = formula;
+    else if(lineNumber == 1 && paramNumber == 0)
+        self.xDestination = formula;
+    else if(lineNumber == 1 && paramNumber == 1)
+        self.yDestination = formula;
+}
+
 - (id)init
 {
     if(self = [super init]) {

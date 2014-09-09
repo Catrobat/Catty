@@ -31,6 +31,11 @@
     return self.ifCondition;
 }
 
+- (void)setFormula:(Formula*)formula ForLineNumber:(NSInteger)lineNumber AndParameterNumber:(NSInteger)paramNumber
+{
+    self.ifCondition = formula;
+}
+
 - (NSString*)brickTitle
 {
     return kBrickCellControlTitleIf;

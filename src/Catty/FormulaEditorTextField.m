@@ -43,9 +43,7 @@
         self.inputView = [[[NSBundle mainBundle] loadNibNamed:@"FormulaEditor" owner:self.formulaEditorViewController options:nil] lastObject];
         self.inputView.backgroundColor = UIColor.airForceBlueColor;
         self.userInteractionEnabled = YES;
-        [self addTarget:self.formulaEditorViewController
-                      action:@selector(inputDidChange:)
-            forControlEvents:UIControlEventEditingChanged];
+        [self addTarget:self.formulaEditorViewController action:@selector(inputDidChange:) forControlEvents:UIControlEventEditingChanged];
         
         [self update];
     }

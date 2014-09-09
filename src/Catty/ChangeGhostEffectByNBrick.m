@@ -34,6 +34,11 @@
     return self.changeGhostEffect;
 }
 
+- (void)setFormula:(Formula*)formula ForLineNumber:(NSInteger)lineNumber AndParameterNumber:(NSInteger)paramNumber
+{
+    self.changeGhostEffect = formula;
+}
+
 - (NSString*)brickTitle
 {
     return kBrickCellLookTitleChangeGhostEffectByN;

@@ -28,7 +28,6 @@
 
 @property (nonatomic) NSInteger formulaAtLineNumber;
 @property (nonatomic) NSInteger formulaAtParamNumber;
-@property (strong, nonatomic) UITapGestureRecognizer *recognizer;
 
 @end
 
@@ -43,7 +42,10 @@
         self.formulaAtParamNumber = paramNumber;
         self.formulaAtLineNumber = lineNumber;
         
-        if([brickCell.brick respondsToSelector:@selector(getFormulaForLineNumber: AndParameterNumber:)]) {
+        self.titleLabel.textColor = [UIColor whiteColor];
+        self.titleLabel.font = [UIFont systemFontOfSize:kBrickTextFieldFontSize];
+        
+        if([self.brickCell.brick respondsToSelector:@selector(getFormulaForLineNumber: AndParameterNumber:)]) {
             [self setTitle:[[self getFormula] getDisplayString] forState:UIControlStateNormal];
         } else {
             [self setTitle:@"error" forState:UIControlStateNormal];
@@ -51,11 +53,8 @@
         
         [self sizeToFit];
         CGRect labelFrame = self.frame;
-        labelFrame.size.height = frame.size.height;
+        labelFrame.size.height = self.frame.size.height;
         self.frame = labelFrame;
-        
-        self.titleLabel.textColor = [UIColor whiteColor];
-        self.titleLabel.font = [UIFont systemFontOfSize:kBrickTextFieldFontSize];
         
         [self addTarget:brickCell.delegate action:@selector(openFormulaEditor:) forControlEvents:UIControlEventTouchUpInside];
     }
@@ -69,5 +68,18 @@
     return [formulaBrick getFormulaForLineNumber:self.formulaAtLineNumber AndParameterNumber:self.formulaAtParamNumber];
 }
 
+- (void)updateFormula:(InternFormula*)internFormula
+{
+    if(internFormula != nil) {
+        InternFormulaParser *internFormulaParser = [internFormula getInternFormulaParser];
+        Formula *formula = [[Formula alloc] initWithFormulaElement:[internFormulaParser parseFormula]];
+        
+        if([internFormulaParser getErrorTokenIndex] == FORMULA_PARSER_OK) {
+            BrickCell<BrickFormulaProtocol> *formulaBrickCell = (BrickCell<BrickFormulaProtocol>*) self.brickCell.brick;
+            [formulaBrickCell setFormula:formula ForLineNumber:self.formulaAtLineNumber AndParameterNumber:self.formulaAtParamNumber];
+            [self.brickCell setupBrickCell];
+        }
+    }
+}
 
 @end

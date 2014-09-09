@@ -33,6 +33,11 @@
     return self.transparency;
 }
 
+- (void)setFormula:(Formula*)formula ForLineNumber:(NSInteger)lineNumber AndParameterNumber:(NSInteger)paramNumber
+{
+    self.transparency = formula;
+}
+
 - (NSString*)brickTitle
 {
     return kBrickCellLookTitleSetGhostEffect;

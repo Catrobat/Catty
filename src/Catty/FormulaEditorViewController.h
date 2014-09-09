@@ -23,6 +23,7 @@
 #import <UIKit/UIKit.h>
 #import "InternFormula.h"
 #import "Formula.h"
+#import "FormulaEditorButton.h"
 
 @class FormulaEditorViewController;
 @class BrickCell;
@@ -39,9 +40,10 @@
 @property (weak, nonatomic) id<FormulaEditorViewControllerDelegate> delegate;
 @property (strong, nonatomic) BrickCell *brickCell;
 @property (strong, nonatomic) InternFormula *internFormula;
+@property (strong, nonatomic) FormulaEditorButton *formulaEditorButton;
 
-- (id)initWithBrickCell:(BrickCell*)brickCell AndFormula:(Formula*)formula;
-- (void)updateFormula:(Formula*)formula;
-- (void)updateUI;
+- (id)initWithBrickCell:(BrickCell*)brickCell AndFormulaButton:(FormulaEditorButton*)formulaButton;
+- (void)updateFormulaButton:(FormulaEditorButton*)formulaButton;
+- (void)update;
 
 @end

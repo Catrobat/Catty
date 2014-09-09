@@ -23,6 +23,7 @@
 #import <UIKit/UIKit.h>
 #import "BrickCell.h"
 #import "Formula.h"
+#import "InternFormula.h"
 
 @interface FormulaEditorButton : UIButton
 
@@ -31,5 +32,6 @@
 - (id)initWithFrame:(CGRect)frame AndBrickCell:(BrickCell*)brickCell AndLineNumber:(NSInteger)lineNumber AndParameterNumber:(NSInteger)paramNumber;
 
 - (Formula*)getFormula;
+- (void)updateFormula:(InternFormula*)internFormula;
 
 @end

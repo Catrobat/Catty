@@ -74,22 +74,24 @@ NS_ENUM(NSInteger, ButtonIndex) {
 
 const float TEXT_FIELD_HEIGHT = 45;
 
-- (id)initWithBrickCell:(BrickCell*)brickCell AndFormula:(Formula*)formula
+- (id)initWithBrickCell:(BrickCell*)brickCell AndFormulaButton:(FormulaEditorButton*)formulaButton
 {
     self = [super init];
     
     if(self) {
         self.brickCell = brickCell;
-        self.internFormula = [[InternFormula alloc] initWithInternTokenList:[formula.formulaTree getInternTokenList]];
+        self.formulaEditorButton = formulaButton;
+        self.internFormula = [[InternFormula alloc] initWithInternTokenList:[[formulaButton getFormula].formulaTree getInternTokenList]];
     }
     
     return self;
 }
 
-- (void)updateFormula:(Formula*)formula
+- (void)updateFormulaButton:(FormulaEditorButton*)formulaButton
 {
-    self.internFormula = [[InternFormula alloc] initWithInternTokenList:[formula.formulaTree getInternTokenList]];
-    [self updateUI];
+    self.formulaEditorButton = formulaButton;
+    self.internFormula = [[InternFormula alloc] initWithInternTokenList:[[formulaButton getFormula].formulaTree getInternTokenList]];
+    [self update];
 }
 
 - (InternFormula *)internFormula
@@ -200,7 +202,7 @@ const float TEXT_FIELD_HEIGHT = 45;
         
         [self.internFormula handleKeyInputWithName:title butttonType:(int)[sender tag]];
         NSLog(@"InternFormulaString: %@",[self.internFormula getExternFormulaString]);
-        self.formulaEditorTextField.text = [self.internFormula getExternFormulaString];
+        [self update];
         
         
     }
@@ -211,7 +213,7 @@ const float TEXT_FIELD_HEIGHT = 45;
     FormulaEditorTextField *textField = (FormulaEditorTextField*)sender;
     [self.undoStack addObject:textField.text];
     [self.redoStack removeAllObjects];
-    [self updateUI];
+    [self update];
 }
 
 - (IBAction)undo:(id)sender
@@ -219,7 +221,7 @@ const float TEXT_FIELD_HEIGHT = 45;
     [self.redoStack addObject:[self.undoStack lastObject]];
     [self.undoStack removeLastObject];
     self.formulaEditorTextField.text = [self.undoStack lastObject];
-    [self updateUI];
+    [self update];
 }
 
 - (IBAction)redo:(id)sender
@@ -227,7 +229,7 @@ const float TEXT_FIELD_HEIGHT = 45;
     [self.undoStack addObject:[self.redoStack lastObject]];
     self.formulaEditorTextField.text = [self.redoStack lastObject];
     [self.redoStack removeLastObject];
-    [self updateUI];
+    [self update];
 }
 
 - (IBAction)done:(id)sender
@@ -262,13 +264,14 @@ const float TEXT_FIELD_HEIGHT = 45;
         [[self.buttons objectAtIndex:i] setTitleColor:UIColor.lightOrangeColor forState:UIControlStateNormal];
     }
     
-    [self updateUI];
+    [self update];
     [self.formulaEditorTextField becomeFirstResponder];
 }
 
-- (void)updateUI
+- (void)update
 {
     [self.formulaEditorTextField update];
+    [self.formulaEditorButton updateFormula:self.internFormula];
     [self.undoButton setEnabled:[self canUndo]];
     [self.redoButton setEnabled:[self canRedo]];
 }

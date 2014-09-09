@@ -32,6 +32,11 @@
     return self.size;
 }
 
+- (void)setFormula:(Formula*)formula ForLineNumber:(NSInteger)lineNumber AndParameterNumber:(NSInteger)paramNumber
+{
+    self.size = formula;
+}
+
 - (NSString*)brickTitle
 {
     return kBrickCellLookTitleSetSizeTo;

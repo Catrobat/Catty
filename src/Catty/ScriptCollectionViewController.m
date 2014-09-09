@@ -805,32 +805,33 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
 
 #pragma mark - Formula Editor delegate
 
-- (void)openFormulaEditor:(id)sender
+- (void)openFormulaEditor:(FormulaEditorButton*)sender
 {
-    FormulaEditorButton *button = (FormulaEditorButton*)sender;
-    
-    if([self.presentedViewController isKindOfClass:[FormulaEditorViewController class]]) {
+    if([sender isKindOfClass:[FormulaEditorButton class]]) {
+        
+        FormulaEditorButton *button = (FormulaEditorButton*)sender;
+        
+        if([self.presentedViewController isKindOfClass:[FormulaEditorViewController class]]) {
 
-        FormulaEditorViewController *formulaEditorViewController = (FormulaEditorViewController*)self.presentedViewController;
-        [formulaEditorViewController updateFormula:[button getFormula]];
+            FormulaEditorViewController *formulaEditorViewController = (FormulaEditorViewController*)self.presentedViewController;
+            [formulaEditorViewController updateFormulaButton:button];
+            
+        } else {
+            
+            FormulaEditorViewController *formulaEditorViewController = [[FormulaEditorViewController alloc] initWithBrickCell:  button.brickCell AndFormulaButton:button];
+            formulaEditorViewController.delegate = self;
         
-    } else {
-        
-        [self.collectionView reloadData];
-        
-        FormulaEditorViewController *formulaEditorViewController = [[FormulaEditorViewController alloc] initWithBrickCell:  button.brickCell AndFormula:[button getFormula]];
-        formulaEditorViewController.delegate = self;
-    
-        self.brickScaleTransition.cell = button.brickCell;
-        self.brickScaleTransition.touchRect = button.brickCell.frame;
-        formulaEditorViewController.transitioningDelegate = self;
-        formulaEditorViewController.modalPresentationStyle = UIModalPresentationCustom;
-        self.collectionView.userInteractionEnabled = NO;
-        
-        [self presentViewController:formulaEditorViewController animated:YES completion:^{
-            self.navigationController.navigationBar.userInteractionEnabled = NO;
-        }];
-        
+            self.brickScaleTransition.cell = button.brickCell;
+            self.brickScaleTransition.touchRect = button.brickCell.frame;
+            formulaEditorViewController.transitioningDelegate = self;
+            formulaEditorViewController.modalPresentationStyle = UIModalPresentationCustom;
+            self.collectionView.userInteractionEnabled = NO;
+            
+            [self presentViewController:formulaEditorViewController animated:YES completion:^{
+                self.navigationController.navigationBar.userInteractionEnabled = NO;
+            }];
+            
+        }
     }
 }
 
