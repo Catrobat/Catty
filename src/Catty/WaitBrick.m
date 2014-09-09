@@ -35,6 +35,11 @@
     return self.timeToWaitInSeconds;
 }
 
+- (void)setFormula:(Formula*)formula ForLineNumber:(NSInteger)lineNumber AndParameterNumber:(NSInteger)paramNumber
+{
+    self.timeToWaitInSeconds = formula;
+}
+
 - (NSString*)brickTitle
 {
     return kBrickCellControlTitleWait;

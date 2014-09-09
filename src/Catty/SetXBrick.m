@@ -35,6 +35,11 @@
     return self.xPosition;
 }
 
+- (void)setFormula:(Formula*)formula ForLineNumber:(NSInteger)lineNumber AndParameterNumber:(NSInteger)paramNumber
+{
+    self.xPosition = formula;
+}
+
 - (NSString*)brickTitle
 {
     return kBrickCellMotionTitleSetX;

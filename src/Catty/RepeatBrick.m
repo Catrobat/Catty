@@ -37,6 +37,11 @@
     return self.timesToRepeat;
 }
 
+- (void)setFormula:(Formula*)formula ForLineNumber:(NSInteger)lineNumber AndParameterNumber:(NSInteger)paramNumber
+{
+    self.timesToRepeat = formula;
+}
+
 - (NSString*)brickTitle
 {
     return kBrickCellControlTitleRepeat;

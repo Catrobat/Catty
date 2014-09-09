@@ -121,7 +121,9 @@ NS_ENUM(NSInteger, ButtonIndex) {
     if (! _brickMenu) {
         NSMutableArray *otherButtonTitles = [[NSMutableArray alloc] init];
         
-        [otherButtonTitles addObject:[self secondMenuItemWithBrickCell:self.brickCell]];
+        NSString *secondMenuItem = [self secondMenuItemWithBrickCell:self.brickCell];
+        if(secondMenuItem != nil)
+            [otherButtonTitles addObject:secondMenuItem];
         
         if ([self isAnimateableBrick:self.brickCell])
             [otherButtonTitles addObject:[self animateMenuItemWithBrickCell:self.brickCell]];

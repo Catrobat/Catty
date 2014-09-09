@@ -27,5 +27,6 @@
 @protocol BrickFormulaProtocol <NSObject>
 
 - (Formula*)getFormulaForLineNumber:(NSInteger)lineNumber AndParameterNumber:(NSInteger)paramNumber;
+- (void)setFormula:(Formula*)formula ForLineNumber:(NSInteger)lineNumber AndParameterNumber:(NSInteger)paramNumber;
 
 @end

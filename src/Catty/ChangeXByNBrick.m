@@ -33,6 +33,11 @@
     return self.xMovement;
 }
 
+- (void)setFormula:(Formula*)formula ForLineNumber:(NSInteger)lineNumber AndParameterNumber:(NSInteger)paramNumber
+{
+    self.xMovement = formula;
+}
+
 - (NSString*)brickTitle
 {
     return kBrickCellMotionTitleChangeX;
