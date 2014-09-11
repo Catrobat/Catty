@@ -61,6 +61,7 @@
 		4CAB57071991071D00350DE6 /* FormulaEditorTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CAB57061991071D00350DE6 /* FormulaEditorTextField.m */; };
 		4CAB5713199131EA00350DE6 /* FormulaEditorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CAB5711199131EA00350DE6 /* FormulaEditorViewController.m */; };
 		4CAB5714199131EA00350DE6 /* FormulaEditor.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4CAB5712199131EA00350DE6 /* FormulaEditor.xib */; };
+		4CABC06719C19E7D009A990F /* FormulaEditorHistory.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CABC06619C19E7D009A990F /* FormulaEditorHistory.m */; };
 		4CBB2A4C1999EC2800F40B73 /* Functions.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CBB2A4B1999EC2800F40B73 /* Functions.m */; };
 		4CBB2A4E199A1AD600F40B73 /* FormulaParserErrorDetectionTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CBB2A4D199A1AD600F40B73 /* FormulaParserErrorDetectionTest.m */; };
 		4CBB2A50199A1E9600F40B73 /* FormulaParserFunctionsTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CBB2A4F199A1E9600F40B73 /* FormulaParserFunctionsTest.m */; };
@@ -437,6 +438,8 @@
 		4CAB5710199131EA00350DE6 /* FormulaEditorViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FormulaEditorViewController.h; sourceTree = "<group>"; };
 		4CAB5711199131EA00350DE6 /* FormulaEditorViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FormulaEditorViewController.m; sourceTree = "<group>"; };
 		4CAB5712199131EA00350DE6 /* FormulaEditor.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FormulaEditor.xib; sourceTree = "<group>"; };
+		4CABC06519C19E7D009A990F /* FormulaEditorHistory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FormulaEditorHistory.h; sourceTree = "<group>"; };
+		4CABC06619C19E7D009A990F /* FormulaEditorHistory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FormulaEditorHistory.m; sourceTree = "<group>"; };
 		4CBB2A4A1999EC2800F40B73 /* Functions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Functions.h; sourceTree = "<group>"; };
 		4CBB2A4B1999EC2800F40B73 /* Functions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Functions.m; sourceTree = "<group>"; };
 		4CBB2A4D199A1AD600F40B73 /* FormulaParserErrorDetectionTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FormulaParserErrorDetectionTest.m; sourceTree = "<group>"; };
@@ -1237,6 +1240,8 @@
 				AAB23A6319B0F1E10057A302 /* InternFormulaState.h */,
 				AAB23A6419B0F1E10057A302 /* InternFormulaState.m */,
 				4CBB2A53199A457500F40B73 /* Exceptions */,
+				4CABC06519C19E7D009A990F /* FormulaEditorHistory.h */,
+				4CABC06619C19E7D009A990F /* FormulaEditorHistory.m */,
 			);
 			name = FormulaEditor;
 			sourceTree = "<group>";
@@ -3454,6 +3459,7 @@
 				CABE07C518BAB91F00BE26EF /* LookComboBoxView.m in Sources */,
 				CA5FED5418B019B200A517B6 /* UIUtil.m in Sources */,
 				CD0CCFAB170CB39700B70036 /* Program.m in Sources */,
+				4CABC06719C19E7D009A990F /* FormulaEditorHistory.m in Sources */,
 				81FAEE3517E782360052BB2B /* SoundsTableViewController.m in Sources */,
 				CD0CCFAE170CB39700B70036 /* ProjectParser.m in Sources */,
 				CD0CCFB0170CB39700B70036 /* RepeatBrick.m in Sources */,
