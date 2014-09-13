@@ -43,7 +43,7 @@
 @property (strong, nonatomic) FormulaEditorButton *formulaEditorButton;
 
 - (id)initWithBrickCell:(BrickCell*)brickCell AndFormulaButton:(FormulaEditorButton*)formulaButton;
-- (void)updateFormulaButton:(FormulaEditorButton*)formulaButton;
+- (void)changeFormulaButton:(FormulaEditorButton*)formulaButton;
 - (void)update;
 
 @end

@@ -23,13 +23,18 @@
 #import <Foundation/Foundation.h>
 #import "InternFormulaTokenSelection.h"
 
+@class InternFormula;
+
 @interface InternFormulaState : NSObject
+
+@property (nonatomic, strong)InternFormulaTokenSelection *tokenSelection;
+@property (nonatomic)int externCursorPosition;
+
 -(InternFormulaState *)initWithList:(NSMutableArray *)internTokenFormulaList
                           selection:(InternFormulaTokenSelection *)tokenSelection
             andExternCursorPosition:(int)externCursorPosition;
 
--(void)setExternCursorPosition:(int)externCursorPosition;
--(void)setSelection:(InternFormulaTokenSelection *)internFormulaTokenSelection;
 -(BOOL)isEqual:(id)objectToCompare;
+-(InternFormula*)createInternFormulaFromState;
 
 @end

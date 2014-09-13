@@ -27,14 +27,11 @@
 @interface InternFormulaState ()
 
 @property (nonatomic, strong)NSMutableArray *internTokenFormulaList;
-@property (nonatomic, strong)InternFormulaTokenSelection *tokenSelection;
-@property (nonatomic)int externCursorPosition;
 
 @end
 
 
 @implementation InternFormulaState
-
 
 -(InternFormulaState *)initWithList:(NSMutableArray *)internTokenFormulaList
                           selection:(InternFormulaTokenSelection *)tokenSelection
@@ -80,16 +77,6 @@
     }
     
     return [super isEqual:objectToCompare];
-}
-
--(void)setExternCursorPosition:(int)externCursorPosition
-{
-    self.externCursorPosition = externCursorPosition;
-}
-
--(void)setSelection:(InternFormulaTokenSelection *)internFormulaTokenSelection
-{
-    self.tokenSelection = internFormulaTokenSelection;
 }
 
 -(InternFormula *)createInternFormulaFromState

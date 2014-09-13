@@ -38,6 +38,7 @@
 #import "BrickCell.h"
 #import "FormulaElement.h"
 #import "LanguageTranslationDefines.h"
+#import "FormulaEditorHistory.h"
 
 NS_ENUM(NSInteger, ButtonIndex) {
     kButtonIndexDelete = 0,
@@ -49,8 +50,7 @@ NS_ENUM(NSInteger, ButtonIndex) {
 
 @interface FormulaEditorViewController ()
 
-@property (nonatomic, strong) NSMutableArray *redoStack; // of NSString
-@property (nonatomic, strong) NSMutableArray *undoStack; // of NSString
+@property (nonatomic, strong) FormulaEditorHistory *history;
 
 @property (strong, nonatomic) UITapGestureRecognizer *recognizer;
 @property (strong, nonatomic) UIMotionEffectGroup *motionEffects;
@@ -64,7 +64,6 @@ NS_ENUM(NSInteger, ButtonIndex) {
 @property (weak, nonatomic) IBOutlet UIButton *multiplicationButton;
 @property (weak, nonatomic) IBOutlet UIButton *substractionButton;
 @property (weak, nonatomic) IBOutlet UIButton *additionButton;
-
 
 @end
 
@@ -82,12 +81,13 @@ const float TEXT_FIELD_HEIGHT = 45;
         self.brickCell = brickCell;
         self.formulaEditorButton = formulaButton;
         self.internFormula = [[InternFormula alloc] initWithInternTokenList:[[formulaButton getFormula].formulaTree getInternTokenList]];
+        self.history = [[FormulaEditorHistory alloc] initWithInternFormulaState:[self.internFormula getInternFormulaState]];
     }
     
     return self;
 }
 
-- (void)updateFormulaButton:(FormulaEditorButton*)formulaButton
+- (void)changeFormulaButton:(FormulaEditorButton*)formulaButton
 {
     self.formulaEditorButton = formulaButton;
     self.internFormula = [[InternFormula alloc] initWithInternTokenList:[[formulaButton getFormula].formulaTree getInternTokenList]];
@@ -161,37 +161,13 @@ const float TEXT_FIELD_HEIGHT = 45;
     }
 }
 
-- (BOOL)canUndo
-{
-    return [self.undoStack count] > 0;
-}
-
-- (BOOL)canRedo
-{
-    return [self.redoStack count] > 0;
-}
-
-#pragma mark - Getters
-- (NSArray*)redoStack
-{
-    if(!_redoStack) _redoStack = [[NSMutableArray alloc] init];
-    return _redoStack;
-}
-
-- (NSArray*)undoStack
-{
-    if(!_undoStack) _undoStack = [[NSMutableArray alloc] init];
-    return _undoStack;
-}
-
 #pragma mark - TextField Actions
 - (IBAction)buttonPressed:(id)sender
 {
     if([sender isKindOfClass:[UIButton class]]) {
         UIButton *button = (UIButton *)sender;
         NSString *title = button.titleLabel.text;
-//        self.formulaEditorTextField.text = [self.formulaEditorTextField.text stringByAppendingString:number];
-        [self inputDidChange:self.formulaEditorTextField];
+
         if(PLUS == [sender tag])
         {
             NSLog(@"Plus: %@", title);
@@ -202,34 +178,45 @@ const float TEXT_FIELD_HEIGHT = 45;
         
         [self.internFormula handleKeyInputWithName:title butttonType:(int)[sender tag]];
         NSLog(@"InternFormulaString: %@",[self.internFormula getExternFormulaString]);
+        [self.history push:[self.internFormula getInternFormulaState]];
         [self update];
-        
-        
     }
 }
 
 - (void)inputDidChange:(id)sender
 {
-    FormulaEditorTextField *textField = (FormulaEditorTextField*)sender;
-    [self.undoStack addObject:textField.text];
-    [self.redoStack removeAllObjects];
     [self update];
 }
 
 - (IBAction)undo:(id)sender
 {
-    [self.redoStack addObject:[self.undoStack lastObject]];
-    [self.undoStack removeLastObject];
-    self.formulaEditorTextField.text = [self.undoStack lastObject];
-    [self update];
+    if (![self.history undoIsPossible]) {
+        return;
+    }
+    
+    InternFormulaState *lastStep = [self.history backward];
+    if (lastStep != nil) {
+        self.internFormula = [lastStep createInternFormulaFromState];
+        [self update];
+        [self.internFormula generateExternFormulaStringAndInternExternMapping];
+        [self.internFormula setExternCursorPositionRightTo:INT_MAX];
+        [self.internFormula updateInternCursorPosition];
+        [self update];
+
+    }
 }
 
 - (IBAction)redo:(id)sender
 {
-    [self.undoStack addObject:[self.redoStack lastObject]];
-    self.formulaEditorTextField.text = [self.redoStack lastObject];
-    [self.redoStack removeLastObject];
-    [self update];
+    if (![self.history redoIsPossible]) {
+        return;
+    }
+    
+    InternFormulaState *nextStep = [self.history forward];
+    if (nextStep != nil) {
+        self.internFormula = [nextStep createInternFormulaFromState];
+        [self update];
+    }
 }
 
 - (IBAction)done:(id)sender
@@ -272,8 +259,8 @@ const float TEXT_FIELD_HEIGHT = 45;
 {
     [self.formulaEditorTextField update];
     [self.formulaEditorButton updateFormula:self.internFormula];
-    [self.undoButton setEnabled:[self canUndo]];
-    [self.redoButton setEnabled:[self canRedo]];
+    [self.undoButton setEnabled:[self.history undoIsPossible]];
+    [self.redoButton setEnabled:[self.history redoIsPossible]];
 }
 
 @end

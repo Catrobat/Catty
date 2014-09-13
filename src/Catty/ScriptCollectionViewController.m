@@ -814,7 +814,7 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
         if([self.presentedViewController isKindOfClass:[FormulaEditorViewController class]]) {
 
             FormulaEditorViewController *formulaEditorViewController = (FormulaEditorViewController*)self.presentedViewController;
-            [formulaEditorViewController updateFormulaButton:button];
+            [formulaEditorViewController changeFormulaButton:button];
             
         } else {
             
