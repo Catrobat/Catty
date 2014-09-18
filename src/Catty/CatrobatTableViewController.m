@@ -47,7 +47,7 @@
 #import "NetworkDefines.h"
 #import "DataTransferMessage.h"
 #import "InfoPopupViewController.h"
-#import "EAIntroView.h"
+#import "MYBlurIntroductionView.h"
 
 NS_ENUM(NSInteger, ViewControllerIndex) {
     kContinueProgramVC = 0,
@@ -58,7 +58,7 @@ NS_ENUM(NSInteger, ViewControllerIndex) {
     kUploadVC
 };
 
-@interface CatrobatTableViewController () <UITextFieldDelegate, EAIntroDelegate>
+@interface CatrobatTableViewController () <UITextFieldDelegate, MYIntroductionDelegate>
 
 @property (nonatomic, strong) NSArray *cells;
 @property (nonatomic, strong) NSArray *imageNames;
@@ -113,11 +113,11 @@ static NSCharacterSet *blockedCharacterSet = nil;
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
     self.tableView.separatorColor = UIColor.skyBlueColor;
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
-
+    
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     if (! [defaults objectForKey:kUserIsFirstAppLaunch] || [defaults boolForKey:kUserShowIntroductionOnLaunch]) {
         self.tableView.scrollEnabled = NO;
-        [Util showIntroductionScreenInView:self.view delegate:self];
+        [Util showIntroductionScreenInView:self.navigationController.view delegate:self];
     } else {
         self.tableView.scrollEnabled = YES;
         [self initNavigationBar];
@@ -129,8 +129,8 @@ static NSCharacterSet *blockedCharacterSet = nil;
     [super viewWillAppear:YES];
     self.lastProgram = nil;
     self.defaultProgram = nil;
-    [self.navigationController setToolbarHidden:YES];
-    [self.navigationController setNavigationBarHidden:NO];
+    self.navigationController.toolbarHidden = YES;
+    [self.navigationController.navigationBar setHidden:NO];
      NSIndexPath* indexPath = [NSIndexPath indexPathForRow:0 inSection:0];
     [self.tableView beginUpdates];
     [self.tableView reloadRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationNone];
@@ -445,9 +445,15 @@ static NSCharacterSet *blockedCharacterSet = nil;
     [[NSNotificationCenter defaultCenter] removeObserver:self name:kReachabilityChangedNotification object:nil];
 }
 
-#pragma mark - EAIntroView delegates
-- (void)introDidFinish:(EAIntroView*)introView
-{
+
+#pragma mark - MYIntroduction Delegate
+
+-(void)introduction:(MYBlurIntroductionView *)introductionView didChangeToPanel:(MYIntroductionPanel *)panel withIndex:(NSInteger)panelIndex{
+
+}
+
+-(void)introduction:(MYBlurIntroductionView *)introductionView didFinishWithType:(MYFinishType)finishType {
+    NSLog(@"Introduction did finish");
     [self initNavigationBar];
     self.tableView.scrollEnabled = YES;
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
