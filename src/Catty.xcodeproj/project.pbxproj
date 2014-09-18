@@ -7,26 +7,15 @@
 	objects = {
 
 /* Begin PBXAggregateTarget section */
-		B4A92DC3175F535300608667 /* LicenseTest_iOS7.1 */ = {
+		B4A92DC3175F535300608667 /* LicenseTest */ = {
 			isa = PBXAggregateTarget;
-			buildConfigurationList = B4A92DC7175F535300608667 /* Build configuration list for PBXAggregateTarget "LicenseTest_iOS7.1" */;
+			buildConfigurationList = B4A92DC7175F535300608667 /* Build configuration list for PBXAggregateTarget "LicenseTest" */;
 			buildPhases = (
 				B4A92DC8175F537500608667 /* ShellScript */,
 			);
 			dependencies = (
 			);
-			name = LicenseTest_iOS7.1;
-			productName = LicenseTest;
-		};
-		CADBD7FD19B0E8F300C62836 /* LicenseTest_iOS8.0 */ = {
-			isa = PBXAggregateTarget;
-			buildConfigurationList = CADBD7FF19B0E8F300C62836 /* Build configuration list for PBXAggregateTarget "LicenseTest_iOS8.0" */;
-			buildPhases = (
-				CADBD7FE19B0E8F300C62836 /* Run Script */,
-			);
-			dependencies = (
-			);
-			name = LicenseTest_iOS8.0;
+			name = LicenseTest;
 			productName = LicenseTest;
 		};
 /* End PBXAggregateTarget section */
@@ -194,6 +183,7 @@
 		CA047EC418C782550078BE08 /* BrickManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CA047EC318C782550078BE08 /* BrickManager.m */; };
 		CA05A19C18282B2C0025421A /* SearchStoreViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA05A19B18282B2C0025421A /* SearchStoreViewController.m */; };
 		CA05A19E18286CDA0025421A /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA05A19D18286CDA0025421A /* AssetsLibrary.framework */; };
+		CA0FDE5919CB3D280065D6A2 /* libObjectiveGit-iOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CA0FDE5419CB3CEE0065D6A2 /* libObjectiveGit-iOS.a */; };
 		CA1498521989C2C80069A21E /* LICENSE_BDKNotifyHUD in Resources */ = {isa = PBXBuildFile; fileRef = CA1498511989C2C80069A21E /* LICENSE_BDKNotifyHUD */; };
 		CA1498551989C3F00069A21E /* EVCircularProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = CA1498541989C3F00069A21E /* EVCircularProgressView.m */; };
 		CA1498671989C9C70069A21E /* IBActionSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = CA1498661989C9C70069A21E /* IBActionSheet.m */; };
@@ -207,56 +197,17 @@
 		CA14987F1989CBD50069A21E /* NSString+FastImageSize.m in Sources */ = {isa = PBXBuildFile; fileRef = CA14987E1989CBD50069A21E /* NSString+FastImageSize.m */; };
 		CA1498821989CC0E0069A21E /* OrderedDictionary.m in Sources */ = {isa = PBXBuildFile; fileRef = CA1498811989CC0E0069A21E /* OrderedDictionary.m */; };
 		CA1498851989D1A60069A21E /* UIViewController+CWPopup.m in Sources */ = {isa = PBXBuildFile; fileRef = CA1498841989D1A60069A21E /* UIViewController+CWPopup.m */; };
-		CA16F07B19BB8F7800D97268 /* libObjectiveGit-iOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CA16F07619BB8F4800D97268 /* libObjectiveGit-iOS.a */; };
 		CA16F07D19BB8F8D00D97268 /* libiconv.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = CA16F07C19BB8F8D00D97268 /* libiconv.dylib */; };
 		CA1B802C1971ADBB00D8E79B /* IMPORTANT.caf in Resources */ = {isa = PBXBuildFile; fileRef = CA1B802B1971ACE300D8E79B /* IMPORTANT.caf */; };
 		CA3BFA5C197F0DD300DA86C9 /* NSMutableArray+CustomExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = CA3BFA5B197F0DD300DA86C9 /* NSMutableArray+CustomExtensions.m */; };
 		CA43DD361809976900F95B88 /* UIImageView+CatrobatUIImageViewExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = CA43DD351809976900F95B88 /* UIImageView+CatrobatUIImageViewExtensions.m */; };
 		CA51A55E198481ED00FFCB45 /* BDKNotifyHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = CA51A55D198481ED00FFCB45 /* BDKNotifyHUD.m */; };
 		CA52403618AD782600052914 /* ProgramTableViewControllerExistingProgramsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = CA52403518AD782600052914 /* ProgramTableViewControllerExistingProgramsTests.m */; };
-		CA538EA519B0EA09008240AB /* ChangeGhostEffectByNBrickTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 92C37A431856264700547C1E /* ChangeGhostEffectByNBrickTests.m */; };
-		CA538EA619B0EA09008240AB /* ProgramTableViewControllerExistingProgramsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = CA52403518AD782600052914 /* ProgramTableViewControllerExistingProgramsTests.m */; };
-		CA538EA719B0EA09008240AB /* HideBrickTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 92C37A3F185625E700547C1E /* HideBrickTests.m */; };
-		CA538EA819B0EA09008240AB /* SetGhostEffectBrickTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 92C37A411856262700547C1E /* SetGhostEffectBrickTests.m */; };
-		CA538EA919B0EA09008240AB /* ProgramTests.m in Sources */ = {isa = PBXBuildFile; fileRef = CA8C247718CD053300314C2B /* ProgramTests.m */; };
-		CA538EAA19B0EA09008240AB /* PlaceAtBrickTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 92C37A47185626B600547C1E /* PlaceAtBrickTests.m */; };
-		CA538EAB19B0EA09008240AB /* ShowBrickTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 92C37A3D185625D900547C1E /* ShowBrickTests.m */; };
-		CA538EAC19B0EA09008240AB /* SceneTests.m in Sources */ = {isa = PBXBuildFile; fileRef = B496F51017759968004BF78A /* SceneTests.m */; };
-		CA538EAD19B0EA09008240AB /* SetYBrickTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 92C37A3B185625A700547C1E /* SetYBrickTests.m */; };
-		CA538EAE19B0EA09008240AB /* BrickTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C34B44EA17F079C700624730 /* BrickTests.m */; };
-		CA538EAF19B0EA09008240AB /* ChangeBrightnessByNBrickTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 92345634192E2A1B00464E6B /* ChangeBrightnessByNBrickTests.m */; };
-		CA538EB019B0EA09008240AB /* ComeToFrontBrickTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 92C37A371856253B00547C1E /* ComeToFrontBrickTests.m */; };
-		CA538EB119B0EA09008240AB /* CustomExtensionsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C34B44EC17F079F500624730 /* CustomExtensionsTests.m */; };
-		CA538EB219B0EA09008240AB /* NextLookBrickTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 92345638192E2E8000464E6B /* NextLookBrickTests.m */; };
-		CA538EB319B0EA09008240AB /* FormulaFunctionsTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C3C03F6199BA5610004F594 /* FormulaFunctionsTest.m */; };
-		CA538EB419B0EA09008240AB /* GoNStepsBackBrickTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 92C37A4F1856274700547C1E /* GoNStepsBackBrickTests.m */; };
-		CA538EB519B0EA09008240AB /* PointInDirectionBrickTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 92C37A451856269100547C1E /* PointInDirectionBrickTests.m */; };
-		CA538EB619B0EA09008240AB /* ProgramTableViewControllerNewProgramTests.m in Sources */ = {isa = PBXBuildFile; fileRef = CA8C247A18CD127C00314C2B /* ProgramTableViewControllerNewProgramTests.m */; };
-		CA538EB719B0EA09008240AB /* SensorHandlerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = B46B271217703FB700172837 /* SensorHandlerTests.m */; };
-		CA538EB819B0EA09008240AB /* ClearGrafficEffectBrickTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 92C37A55185627A300547C1E /* ClearGrafficEffectBrickTests.m */; };
-		CA538EB919B0EA09008240AB /* ChangeSizeByNBrickTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 92C37A49185626DB00547C1E /* ChangeSizeByNBrickTests.m */; };
-		CA538EBA19B0EA09008240AB /* TurnRightBrickTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 92C37A4D1856271100547C1E /* TurnRightBrickTests.m */; };
-		CA538EBB19B0EA09008240AB /* SetBrightnessBrickTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 92C37A511856276D00547C1E /* SetBrightnessBrickTests.m */; };
-		CA538EBC19B0EA09008240AB /* SetXBrickTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 92C37A391856257300547C1E /* SetXBrickTests.m */; };
-		CA538EBD19B0EA09008240AB /* SetSizeToBrickTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 92C37A32185621FF00547C1E /* SetSizeToBrickTests.m */; };
-		CA538EBE19B0EA09008240AB /* SetLookBrickTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 92345636192E2E6C00464E6B /* SetLookBrickTests.m */; };
-		CA538EBF19B0EA09008240AB /* TurnLeftBrickTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 92C37A4B1856270500547C1E /* TurnLeftBrickTests.m */; };
-		CA538EC019B0EA09008240AB /* MoveNStepsBrickTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 92C37A531856279600547C1E /* MoveNStepsBrickTests.m */; };
-		CA538EC119B0EA09008240AB /* CattyTests.m in Sources */ = {isa = PBXBuildFile; fileRef = B46B270917703F9400172837 /* CattyTests.m */; };
-		CA538EC219B0EA09008240AB /* PointToBrickTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C107ADC194F156F00D9D7ED /* PointToBrickTests.m */; };
-		CA538EC419B0EA09008240AB /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B46B26E817703E4000172837 /* XCTest.framework */; };
-		CA538EC519B0EA09008240AB /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
-		CA538EC619B0EA09008240AB /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
-		CA538EC819B0EA09008240AB /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = B46B270617703F9400172837 /* InfoPlist.strings */; };
-		CA538EC919B0EA09008240AB /* test2.png in Resources */ = {isa = PBXBuildFile; fileRef = 92345632192E270B00464E6B /* test2.png */; };
-		CA538ECA19B0EA09008240AB /* test.png in Resources */ = {isa = PBXBuildFile; fileRef = 923453C1192D2D5F00464E6B /* test.png */; };
 		CA5FED5018B0070300A517B6 /* BrickCellInlineView.m in Sources */ = {isa = PBXBuildFile; fileRef = CA5FED4F18B0070300A517B6 /* BrickCellInlineView.m */; };
 		CA5FED5418B019B200A517B6 /* UIUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = CA5FED5318B019B200A517B6 /* UIUtil.m */; };
 		CA688205180B0148008A7C99 /* BaseTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA688204180B0148008A7C99 /* BaseTableViewController.m */; };
 		CA68820E180B39D0008A7C99 /* ColoredCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CA68820D180B39D0008A7C99 /* ColoredCell.m */; };
 		CA68B67718BAA80A007042E4 /* ComboBoxView.m in Sources */ = {isa = PBXBuildFile; fileRef = CA68B67518BAA80A007042E4 /* ComboBoxView.m */; };
-		CA6E958819BB9106000A7E25 /* libObjectiveGit-iOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CA16F07619BB8F4800D97268 /* libObjectiveGit-iOS.a */; };
-		CA6E958919BB9117000A7E25 /* libiconv.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = CA16F07C19BB8F8D00D97268 /* libiconv.dylib */; };
 		CA75C22618A9603400FC8C2F /* StartScriptCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CA75C22518A9603400FC8C2F /* StartScriptCell.m */; };
 		CA75C22918A9605D00FC8C2F /* WhenScriptCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CA75C22818A9605D00FC8C2F /* WhenScriptCell.m */; };
 		CA75C22C18A9606D00FC8C2F /* BroadcastScriptCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CA75C22B18A9606D00FC8C2F /* BroadcastScriptCell.m */; };
@@ -316,291 +267,6 @@
 		CABE07C518BAB91F00BE26EF /* LookComboBoxView.m in Sources */ = {isa = PBXBuildFile; fileRef = CABE07C418BAB91F00BE26EF /* LookComboBoxView.m */; };
 		CABE07C818BAB94000BE26EF /* VariableComboBoxView.m in Sources */ = {isa = PBXBuildFile; fileRef = CABE07C718BAB94000BE26EF /* VariableComboBoxView.m */; };
 		CAC22DA41809D5730071CC5D /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CAC22DA31809D5730071CC5D /* MobileCoreServices.framework */; };
-		CADBD6D919B0E8C200C62836 /* SSZipArchive.license in Resources */ = {isa = PBXBuildFile; fileRef = 4C9E2D3A198F685D00455B77 /* SSZipArchive.license */; };
-		CADBD6DA19B0E8C200C62836 /* BDKNotifyHUD.license in Resources */ = {isa = PBXBuildFile; fileRef = 4C9E2D22198EAD1800455B77 /* BDKNotifyHUD.license */; };
-		CADBD6DB19B0E8C200C62836 /* IMPORTANT.caf in Resources */ = {isa = PBXBuildFile; fileRef = CA1B802B1971ACE300D8E79B /* IMPORTANT.caf */; };
-		CADBD6DC19B0E8C200C62836 /* My First Program.catrobat in Resources */ = {isa = PBXBuildFile; fileRef = B434984F1927A863002F9075 /* My First Program.catrobat */; };
-		CADBD6DD19B0E8C200C62836 /* LICENSE_FBShimmering in Resources */ = {isa = PBXBuildFile; fileRef = CAE4B83B198A79040054ABEC /* LICENSE_FBShimmering */; };
-		CADBD6DE19B0E8C200C62836 /* OrderedDictionary.license in Resources */ = {isa = PBXBuildFile; fileRef = 4C9E2D42198F6A8800455B77 /* OrderedDictionary.license */; };
-		CADBD6DF19B0E8C200C62836 /* AHKActionSheet.license in Resources */ = {isa = PBXBuildFile; fileRef = 4C9E2D28198F635B00455B77 /* AHKActionSheet.license */; };
-		CADBD6E019B0E8C200C62836 /* SMPageControl.license in Resources */ = {isa = PBXBuildFile; fileRef = 4C9E2D1E198EA6B600455B77 /* SMPageControl.license */; };
-		CADBD6E119B0E8C200C62836 /* LICENSE_SWTableViewCell in Resources */ = {isa = PBXBuildFile; fileRef = CAE4B831198A77390054ABEC /* LICENSE_SWTableViewCell */; };
-		CADBD6E219B0E8C200C62836 /* PATENTS_FBShimmering in Resources */ = {isa = PBXBuildFile; fileRef = CAE4B83D198A7A210054ABEC /* PATENTS_FBShimmering */; };
-		CADBD6E319B0E8C200C62836 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 81C27425189EF94600827A95 /* Images.xcassets */; };
-		CADBD6E419B0E8C200C62836 /* minizip.license in Resources */ = {isa = PBXBuildFile; fileRef = 4C9E2D38198F67FB00455B77 /* minizip.license */; };
-		CADBD6E519B0E8C200C62836 /* EAIntroView.license in Resources */ = {isa = PBXBuildFile; fileRef = 4C9E2D20198EACE200455B77 /* EAIntroView.license */; };
-		CADBD6E619B0E8C200C62836 /* TTTAttributedLabel.license in Resources */ = {isa = PBXBuildFile; fileRef = 4C9E2D2C198F63B400455B77 /* TTTAttributedLabel.license */; };
-		CADBD6E719B0E8C200C62836 /* LXReorderableCollectionViewFlowLayout.license in Resources */ = {isa = PBXBuildFile; fileRef = 4C9E2D2A198F638C00455B77 /* LXReorderableCollectionViewFlowLayout.license */; };
-		CADBD6E819B0E8C200C62836 /* FXBlurView.license in Resources */ = {isa = PBXBuildFile; fileRef = 4C9E2D30198F645400455B77 /* FXBlurView.license */; };
-		CADBD6E919B0E8C200C62836 /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = CAFBCB371988529D000304BF /* LICENSE */; };
-		CADBD6EA19B0E8C200C62836 /* IBActionSheet.license in Resources */ = {isa = PBXBuildFile; fileRef = 4C9E2D26198F62D800455B77 /* IBActionSheet.license */; };
-		CADBD6EB19B0E8C200C62836 /* EVCircularProgressView.license in Resources */ = {isa = PBXBuildFile; fileRef = 4C9E2D32198F648B00455B77 /* EVCircularProgressView.license */; };
-		CADBD6EC19B0E8C200C62836 /* LICENSE_NSString+FastImageSize in Resources */ = {isa = PBXBuildFile; fileRef = CAE4B845198A7B4F0054ABEC /* LICENSE_NSString+FastImageSize */; };
-		CADBD6ED19B0E8C200C62836 /* SharkfoodMuteSwitchDetector.license in Resources */ = {isa = PBXBuildFile; fileRef = 4C9E2D34198F657500455B77 /* SharkfoodMuteSwitchDetector.license */; };
-		CADBD6EE19B0E8C200C62836 /* LICENSE_AHKActionSheet in Resources */ = {isa = PBXBuildFile; fileRef = CAE4B835198A78770054ABEC /* LICENSE_AHKActionSheet */; };
-		CADBD6EF19B0E8C200C62836 /* LICENSE_LXReorderableCollectionViewFlowLayout in Resources */ = {isa = PBXBuildFile; fileRef = CAE4B837198A78AE0054ABEC /* LICENSE_LXReorderableCollectionViewFlowLayout */; };
-		CADBD6F019B0E8C200C62836 /* Reachability.license in Resources */ = {isa = PBXBuildFile; fileRef = 4C9E2D36198F65D500455B77 /* Reachability.license */; };
-		CADBD6F119B0E8C200C62836 /* LICENSE_UIViewController+Popup in Resources */ = {isa = PBXBuildFile; fileRef = CAE4B843198A7AEE0054ABEC /* LICENSE_UIViewController+Popup */; };
-		CADBD6F219B0E8C200C62836 /* LICENSE_TTTAttributedLabel in Resources */ = {isa = PBXBuildFile; fileRef = CAE4B839198A78E60054ABEC /* LICENSE_TTTAttributedLabel */; };
-		CADBD6F319B0E8C200C62836 /* LICENSE_FXBlurView in Resources */ = {isa = PBXBuildFile; fileRef = CAE4B83F198A7A530054ABEC /* LICENSE_FXBlurView */; };
-		CADBD6F419B0E8C200C62836 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 4C3AEF2E198E7EDD00604ABF /* Settings.bundle */; };
-		CADBD6F519B0E8C200C62836 /* LICENSE_EVCircularProgressView in Resources */ = {isa = PBXBuildFile; fileRef = CAE4B841198A7A8E0054ABEC /* LICENSE_EVCircularProgressView */; };
-		CADBD6F619B0E8C200C62836 /* NSString+FastImageSize.license in Resources */ = {isa = PBXBuildFile; fileRef = 4C9E2D3E198F698100455B77 /* NSString+FastImageSize.license */; };
-		CADBD6F719B0E8C200C62836 /* LICENSE_BDKNotifyHUD in Resources */ = {isa = PBXBuildFile; fileRef = CA1498511989C2C80069A21E /* LICENSE_BDKNotifyHUD */; };
-		CADBD6F819B0E8C200C62836 /* UIViewController+CWPopup.license in Resources */ = {isa = PBXBuildFile; fileRef = 4C9E2D40198F6A2300455B77 /* UIViewController+CWPopup.license */; };
-		CADBD6F919B0E8C200C62836 /* iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C3F2950B1813C63200E37D61 /* iPhone.storyboard */; };
-		CADBD6FA19B0E8C200C62836 /* GDataXMLNode.license in Resources */ = {isa = PBXBuildFile; fileRef = 4C9E2D3C198F68F400455B77 /* GDataXMLNode.license */; };
-		CADBD6FB19B0E8C200C62836 /* LICENSE_IBActionSheet in Resources */ = {isa = PBXBuildFile; fileRef = CAE4B833198A781B0054ABEC /* LICENSE_IBActionSheet */; };
-		CADBD6FC19B0E8C200C62836 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 92300CE918B2196700F2B4DC /* Localizable.strings */; };
-		CADBD6FD19B0E8C200C62836 /* SWTableViewCell.license in Resources */ = {isa = PBXBuildFile; fileRef = 4C9E2D24198F62A600455B77 /* SWTableViewCell.license */; };
-		CADBD6FE19B0E8C200C62836 /* readme.md in Resources */ = {isa = PBXBuildFile; fileRef = CAFBCB381988529D000304BF /* readme.md */; };
-		CADBD6FF19B0E8C200C62836 /* FBShimmering.license in Resources */ = {isa = PBXBuildFile; fileRef = 4C9E2D2E198F63FB00455B77 /* FBShimmering.license */; };
-		CADBD70019B0E8C200C62836 /* LoggerProperties.plist in Resources */ = {isa = PBXBuildFile; fileRef = B4365CE81758EBA900B4D0A6 /* LoggerProperties.plist */; };
-		CADBD70219B0E8C200C62836 /* DarkBlueGradientImageDetailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CAAA269018F4510E002E55B9 /* DarkBlueGradientImageDetailCell.m */; };
-		CADBD70319B0E8C200C62836 /* Scene.m in Sources */ = {isa = PBXBuildFile; fileRef = B4E7D256176EF20F00EC8AD8 /* Scene.m */; };
-		CADBD70419B0E8C200C62836 /* BrickSelectModalTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = 81CA97D3192A900C00C99DCB /* BrickSelectModalTransition.m */; };
-		CADBD70519B0E8C200C62836 /* ForeverBrickCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CA75C23A18A9615600FC8C2F /* ForeverBrickCell.m */; };
-		CADBD70619B0E8C200C62836 /* BaseTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA688204180B0148008A7C99 /* BaseTableViewController.m */; };
-		CADBD70719B0E8C200C62836 /* CatrobatBaseCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B4D940CD170EC903003DDBFA /* CatrobatBaseCell.m */; };
-		CADBD70819B0E8C200C62836 /* PlaceAtBrickCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CA75C24918A9618000FC8C2F /* PlaceAtBrickCell.m */; };
-		CADBD70919B0E8C200C62836 /* FBShimmeringLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 815420D6191A51F200E628D2 /* FBShimmeringLayer.m */; };
-		CADBD70A19B0E8C200C62836 /* NSString+CatrobatNSStringExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = B4D940BE170EC681003DDBFA /* NSString+CatrobatNSStringExtensions.m */; };
-		CADBD70B19B0E8C200C62836 /* BrickShapeFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 81D3C9F51945E54200DB71E1 /* BrickShapeFactory.m */; };
-		CADBD70C19B0E8C200C62836 /* InternFormulaParserException.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C3C0407199BA7E90004F594 /* InternFormulaParserException.m */; };
-		CADBD70D19B0E8C200C62836 /* UIColor+CatrobatUIColorExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = B4D940C1170EC69B003DDBFA /* UIColor+CatrobatUIColorExtensions.m */; };
-		CADBD70E19B0E8C200C62836 /* UIImage+CatrobatUIImageExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = B4D940C4170EC6BD003DDBFA /* UIImage+CatrobatUIImageExtensions.m */; };
-		CADBD70F19B0E8C200C62836 /* TableUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = B4D940BA170EC660003DDBFA /* TableUtil.m */; };
-		CADBD71019B0E8C200C62836 /* ProgramLoadingInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = B4D940C8170EC742003DDBFA /* ProgramLoadingInfo.m */; };
-		CADBD71119B0E8C200C62836 /* BrickManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CA047EC318C782550078BE08 /* BrickManager.m */; };
-		CADBD71219B0E8C200C62836 /* ComboBoxView.m in Sources */ = {isa = PBXBuildFile; fileRef = CA68B67518BAA80A007042E4 /* ComboBoxView.m */; };
-		CADBD71319B0E8C200C62836 /* StopAllSoundsBrickCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CA75C27618A9620E00FC8C2F /* StopAllSoundsBrickCell.m */; };
-		CADBD71419B0E8C200C62836 /* CellMotionEffect.m in Sources */ = {isa = PBXBuildFile; fileRef = 81A5B4D6192964170082B2B8 /* CellMotionEffect.m */; };
-		CADBD71519B0E8C200C62836 /* BaseTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = 817B543F18F03C0D00AF6BFE /* BaseTransition.m */; };
-		CADBD71619B0E8C200C62836 /* ChangeBrightnessByNBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = C34B44F617F1D8D200624730 /* ChangeBrightnessByNBrick.m */; };
-		CADBD71719B0E8C200C62836 /* CatrobatTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B4003031170EB50A00396DB7 /* CatrobatTableViewController.m */; };
-		CADBD71819B0E8C200C62836 /* BrickCellInlineView.m in Sources */ = {isa = PBXBuildFile; fileRef = CA5FED4F18B0070300A517B6 /* BrickCellInlineView.m */; };
-		CADBD71919B0E8C200C62836 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B4F243CC170EBEF7007A071D /* AppDelegate.m */; };
-		CADBD71A19B0E8C200C62836 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; };
-		CADBD71B19B0E8C200C62836 /* ProgramTableHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8146A9B219279721002548A4 /* ProgramTableHeaderView.m */; };
-		CADBD71C19B0E8C200C62836 /* Brick.m in Sources */ = {isa = PBXBuildFile; fileRef = CD0CCE60170CB39600B70036 /* Brick.m */; };
-		CADBD71D19B0E8C200C62836 /* BrickDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 817B544A18F0520800AF6BFE /* BrickDetailViewController.m */; };
-		CADBD71E19B0E8C200C62836 /* SearchStoreViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA05A19B18282B2C0025421A /* SearchStoreViewController.m */; };
-		CADBD71F19B0E8C200C62836 /* BroadcastBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = CD0CCE62170CB39600B70036 /* BroadcastBrick.m */; };
-		CADBD72019B0E8C200C62836 /* NSDate+CustomExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = CAB3637018F5987B00AB8401 /* NSDate+CustomExtensions.m */; };
-		CADBD72119B0E8C200C62836 /* ChangeVariableBrickCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CA75C2A618A9627800FC8C2F /* ChangeVariableBrickCell.m */; };
-		CADBD72219B0E8C200C62836 /* BroadcastScript.m in Sources */ = {isa = PBXBuildFile; fileRef = CD0CCE64170CB39600B70036 /* BroadcastScript.m */; };
-		CADBD72319B0E8C200C62836 /* SWUtilityButtonTapGestureRecognizer.m in Sources */ = {isa = PBXBuildFile; fileRef = 9251B6AA199F4B1600746D66 /* SWUtilityButtonTapGestureRecognizer.m */; };
-		CADBD72419B0E8C200C62836 /* ProgramTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 816C788517D62B7C0029A4E6 /* ProgramTableViewController.m */; };
-		CADBD72519B0E8C200C62836 /* OrderedDictionary.m in Sources */ = {isa = PBXBuildFile; fileRef = CA1498811989CC0E0069A21E /* OrderedDictionary.m */; };
-		CADBD72619B0E8C200C62836 /* BroadcastWaitBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = CD0CCE66170CB39600B70036 /* BroadcastWaitBrick.m */; };
-		CADBD72719B0E8C200C62836 /* SoundComboBoxView.m in Sources */ = {isa = PBXBuildFile; fileRef = CABE07C118BAB90400BE26EF /* SoundComboBoxView.m */; };
-		CADBD72819B0E8C200C62836 /* GoNStepsBackBrickCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CA75C26D18A961FC00FC8C2F /* GoNStepsBackBrickCell.m */; };
-		CADBD72919B0E8C200C62836 /* VariableComboBoxView.m in Sources */ = {isa = PBXBuildFile; fileRef = CABE07C718BAB94000BE26EF /* VariableComboBoxView.m */; };
-		CADBD72A19B0E8C200C62836 /* WhenScriptCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CA75C22818A9605D00FC8C2F /* WhenScriptCell.m */; };
-		CADBD72B19B0E8C200C62836 /* ChangeBrightnessByNBrickCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CA75C29D18A9626400FC8C2F /* ChangeBrightnessByNBrickCell.m */; };
-		CADBD72C19B0E8C200C62836 /* AudioManager.m in Sources */ = {isa = PBXBuildFile; fileRef = B464752F1770F60500CD277F /* AudioManager.m */; };
-		CADBD72D19B0E8C200C62836 /* BDKNotifyHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = CA51A55D198481ED00FFCB45 /* BDKNotifyHUD.m */; };
-		CADBD72E19B0E8C200C62836 /* BroadcastWaitHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = CD0CCE69170CB39600B70036 /* BroadcastWaitHandler.m */; };
-		CADBD72F19B0E8C200C62836 /* CatrobatProject.m in Sources */ = {isa = PBXBuildFile; fileRef = CD0CCE70170CB39600B70036 /* CatrobatProject.m */; };
-		CADBD73019B0E8C200C62836 /* ChangeGhostEffectByNBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = CD0CCE7B170CB39600B70036 /* ChangeGhostEffectByNBrick.m */; };
-		CADBD73119B0E8C200C62836 /* ChangeSizeByNBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = CD0CCE7D170CB39600B70036 /* ChangeSizeByNBrick.m */; };
-		CADBD73219B0E8C200C62836 /* ChangeVolumeByNBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = CD0CCE7F170CB39600B70036 /* ChangeVolumeByNBrick.m */; };
-		CADBD73319B0E8C200C62836 /* ChangeXByNBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = CD0CCE81170CB39600B70036 /* ChangeXByNBrick.m */; };
-		CADBD73419B0E8C200C62836 /* ChangeYByNBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = CD0CCE83170CB39600B70036 /* ChangeYByNBrick.m */; };
-		CADBD73519B0E8C200C62836 /* PlaySoundBrickCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CA75C27318A9620800FC8C2F /* PlaySoundBrickCell.m */; };
-		CADBD73619B0E8C200C62836 /* ComeToFrontBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = CD0CCE86170CB39600B70036 /* ComeToFrontBrick.m */; };
-		CADBD73719B0E8C200C62836 /* FileManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CD0CCE9E170CB39600B70036 /* FileManager.m */; };
-		CADBD73819B0E8C200C62836 /* LXReorderableCollectionViewFlowLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = CA1498751989CA2A0069A21E /* LXReorderableCollectionViewFlowLayout.m */; };
-		CADBD73919B0E8C200C62836 /* ForeverBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = CD0CCEA0170CB39600B70036 /* ForeverBrick.m */; };
-		CADBD73A19B0E8C200C62836 /* GlideToBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = CD0CCEA4170CB39600B70036 /* GlideToBrick.m */; };
-		CADBD73B19B0E8C200C62836 /* GoNStepsBackBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = CD0CCEA6170CB39600B70036 /* GoNStepsBackBrick.m */; };
-		CADBD73C19B0E8C200C62836 /* HideBrickCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CA75C28E18A9624200FC8C2F /* HideBrickCell.m */; };
-		CADBD73D19B0E8C200C62836 /* Header.m in Sources */ = {isa = PBXBuildFile; fileRef = CD0CCEA8170CB39600B70036 /* Header.m */; };
-		CADBD73E19B0E8C200C62836 /* HideBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = CD0CCEAB170CB39600B70036 /* HideBrick.m */; };
-		CADBD73F19B0E8C200C62836 /* Look.m in Sources */ = {isa = PBXBuildFile; fileRef = CD0CCED4170CB39700B70036 /* Look.m */; };
-		CADBD74019B0E8C200C62836 /* SaveToProjectActivity.m in Sources */ = {isa = PBXBuildFile; fileRef = 920F20C31837F27E003E9EE0 /* SaveToProjectActivity.m */; };
-		CADBD74119B0E8C200C62836 /* TurnRightBrickCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CA75C26118A961B800FC8C2F /* TurnRightBrickCell.m */; };
-		CADBD74219B0E8C200C62836 /* LoopEndBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = CD0CCED6170CB39700B70036 /* LoopEndBrick.m */; };
-		CADBD74319B0E8C200C62836 /* BroadcastScriptCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CA75C22B18A9606D00FC8C2F /* BroadcastScriptCell.m */; };
-		CADBD74419B0E8C200C62836 /* NextLookBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = CD0CCEE7170CB39700B70036 /* NextLookBrick.m */; };
-		CADBD74519B0E8C200C62836 /* NavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 925E22B518E3313C001A26A6 /* NavigationController.m */; };
-		CADBD74619B0E8C200C62836 /* RuntimeImageCache.m in Sources */ = {isa = PBXBuildFile; fileRef = CAF806D8193181D50005E900 /* RuntimeImageCache.m */; };
-		CADBD74719B0E8C200C62836 /* CatrobatAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = CAE9A2BF197D52AF008F7C9A /* CatrobatAlertView.m */; };
-		CADBD74819B0E8C200C62836 /* Parser.m in Sources */ = {isa = PBXBuildFile; fileRef = CD0CCEEB170CB39700B70036 /* Parser.m */; };
-		CADBD74919B0E8C200C62836 /* PlaceAtBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = CD0CCEED170CB39700B70036 /* PlaceAtBrick.m */; };
-		CADBD74A19B0E8C200C62836 /* PlaySoundBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = CD0CCEF1170CB39700B70036 /* PlaySoundBrick.m */; };
-		CADBD74B19B0E8C200C62836 /* LookComboBoxView.m in Sources */ = {isa = PBXBuildFile; fileRef = CABE07C418BAB91F00BE26EF /* LookComboBoxView.m */; };
-		CADBD74C19B0E8C200C62836 /* SWUtilityButtonView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9251B6AC199F4B1600746D66 /* SWUtilityButtonView.m */; };
-		CADBD74D19B0E8C200C62836 /* UIUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = CA5FED5318B019B200A517B6 /* UIUtil.m */; };
-		CADBD74E19B0E8C200C62836 /* Program.m in Sources */ = {isa = PBXBuildFile; fileRef = CD0CCEF3170CB39700B70036 /* Program.m */; };
-		CADBD74F19B0E8C200C62836 /* SoundsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 81FAEE3417E782360052BB2B /* SoundsTableViewController.m */; };
-		CADBD75019B0E8C200C62836 /* ProjectParser.m in Sources */ = {isa = PBXBuildFile; fileRef = CD0CCEF9170CB39700B70036 /* ProjectParser.m */; };
-		CADBD75119B0E8C200C62836 /* RepeatBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = CD0CCEFD170CB39700B70036 /* RepeatBrick.m */; };
-		CADBD75219B0E8C200C62836 /* UIImageView+CatrobatUIImageViewExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = CA43DD351809976900F95B88 /* UIImageView+CatrobatUIImageViewExtensions.m */; };
-		CADBD75319B0E8C200C62836 /* Script.m in Sources */ = {isa = PBXBuildFile; fileRef = CD0CCF0E170CB39700B70036 /* Script.m */; };
-		CADBD75419B0E8C200C62836 /* TurnLeftBrickCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CA75C25E18A961B200FC8C2F /* TurnLeftBrickCell.m */; };
-		CADBD75519B0E8C200C62836 /* SetBrightnessBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = CD0CCF10170CB39700B70036 /* SetBrightnessBrick.m */; };
-		CADBD75619B0E8C200C62836 /* MessageComboBoxView.m in Sources */ = {isa = PBXBuildFile; fileRef = CABE07BB18BAB8B200BE26EF /* MessageComboBoxView.m */; };
-		CADBD75719B0E8C200C62836 /* SetYBrickCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CA75C24F18A9618D00FC8C2F /* SetYBrickCell.m */; };
-		CADBD75819B0E8C200C62836 /* SetGhostEffectBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = CD0CCF12170CB39700B70036 /* SetGhostEffectBrick.m */; };
-		CADBD75919B0E8C200C62836 /* CatrobatAudioPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 9200F005182E3CA0008BF678 /* CatrobatAudioPlayer.m */; };
-		CADBD75A19B0E8C200C62836 /* SetLookBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = CD0CCF14170CB39700B70036 /* SetLookBrick.m */; };
-		CADBD75B19B0E8C200C62836 /* SetSizeToBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = CD0CCF16170CB39700B70036 /* SetSizeToBrick.m */; };
-		CADBD75C19B0E8C200C62836 /* LoopEndBrickCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CA75C2AF18A9A62B00FC8C2F /* LoopEndBrickCell.m */; };
-		CADBD75D19B0E8C200C62836 /* SetVolumeToBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = CD0CCF1A170CB39700B70036 /* SetVolumeToBrick.m */; };
-		CADBD75E19B0E8C200C62836 /* SetSizeToBrickCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CA75C28818A9623500FC8C2F /* SetSizeToBrickCell.m */; };
-		CADBD75F19B0E8C200C62836 /* StartScriptCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CA75C22518A9603400FC8C2F /* StartScriptCell.m */; };
-		CADBD76019B0E8C200C62836 /* CatrobatActionSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = CAE9A2BB197D20A7008F7C9A /* CatrobatActionSheet.m */; };
-		CADBD76119B0E8C200C62836 /* EAIntroPage.m in Sources */ = {isa = PBXBuildFile; fileRef = CAFBCB3019885258000304BF /* EAIntroPage.m */; };
-		CADBD76219B0E8C200C62836 /* UIImage+AHKAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = CA14986E1989CA160069A21E /* UIImage+AHKAdditions.m */; };
-		CADBD76319B0E8C200C62836 /* SetXBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = CD0CCF1C170CB39700B70036 /* SetXBrick.m */; };
-		CADBD76419B0E8C200C62836 /* SetVariableBrickCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CA75C2A318A9627200FC8C2F /* SetVariableBrickCell.m */; };
-		CADBD76519B0E8C200C62836 /* SetYBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = CD0CCF1E170CB39700B70036 /* SetYBrick.m */; };
-		CADBD76619B0E8C200C62836 /* ChangeVolumeByNBrickCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CA75C27C18A9621B00FC8C2F /* ChangeVolumeByNBrickCell.m */; };
-		CADBD76719B0E8C200C62836 /* SetXBrickCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CA75C24C18A9618700FC8C2F /* SetXBrickCell.m */; };
-		CADBD76819B0E8C200C62836 /* Operators.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C3C0402199BA7B40004F594 /* Operators.m */; };
-		CADBD76919B0E8C200C62836 /* SharkfoodMuteSwitchDetector.m in Sources */ = {isa = PBXBuildFile; fileRef = CA14987B1989CB690069A21E /* SharkfoodMuteSwitchDetector.m */; };
-		CADBD76A19B0E8C200C62836 /* ShowBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = CD0CCF20170CB39700B70036 /* ShowBrick.m */; };
-		CADBD76B19B0E8C200C62836 /* BrickCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 81C27423189EE41700827A95 /* BrickCell.m */; };
-		CADBD76C19B0E8C200C62836 /* Sound.m in Sources */ = {isa = PBXBuildFile; fileRef = CD0CCF22170CB39700B70036 /* Sound.m */; };
-		CADBD76D19B0E8C200C62836 /* SpeakBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = CD0CCF26170CB39700B70036 /* SpeakBrick.m */; };
-		CADBD76E19B0E8C200C62836 /* StartScript.m in Sources */ = {isa = PBXBuildFile; fileRef = CD0CCF33170CB39700B70036 /* StartScript.m */; };
-		CADBD76F19B0E8C200C62836 /* SetLookBrickCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CA75C28218A9622700FC8C2F /* SetLookBrickCell.m */; };
-		CADBD77019B0E8C200C62836 /* ColoredCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CA68820D180B39D0008A7C99 /* ColoredCell.m */; };
-		CADBD77119B0E8C200C62836 /* NSMutableArray+CustomExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = CA3BFA5B197F0DD300DA86C9 /* NSMutableArray+CustomExtensions.m */; };
-		CADBD77219B0E8C200C62836 /* StopAllSoundsBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = CD0CCF35170CB39700B70036 /* StopAllSoundsBrick.m */; };
-		CADBD77319B0E8C200C62836 /* SetGhostEffectBrickCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CA75C29418A9624F00FC8C2F /* SetGhostEffectBrickCell.m */; };
-		CADBD77419B0E8C200C62836 /* BroadcastBrickCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CA75C23118A9613A00FC8C2F /* BroadcastBrickCell.m */; };
-		CADBD77519B0E8C200C62836 /* ClearGraphicEffectBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = C34B44F317F1D2C700624730 /* ClearGraphicEffectBrick.m */; };
-		CADBD77619B0E8C200C62836 /* TurnLeftBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = CD0CCF3D170CB39700B70036 /* TurnLeftBrick.m */; };
-		CADBD77719B0E8C200C62836 /* TurnRightBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = CD0CCF3F170CB39700B70036 /* TurnRightBrick.m */; };
-		CADBD77819B0E8C200C62836 /* SMPageControl.m in Sources */ = {isa = PBXBuildFile; fileRef = CAFBCB3A1988529D000304BF /* SMPageControl.m */; };
-		CADBD77919B0E8C200C62836 /* SetBrightnessBrickCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CA75C29A18A9625C00FC8C2F /* SetBrightnessBrickCell.m */; };
-		CADBD77A19B0E8C200C62836 /* InfoPopupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 92DFE97B196D795900F491EC /* InfoPopupViewController.m */; };
-		CADBD77B19B0E8C200C62836 /* Util.m in Sources */ = {isa = PBXBuildFile; fileRef = CD0CCF43170CB39700B70036 /* Util.m */; };
-		CADBD77C19B0E8C200C62836 /* UIViewController+CWPopup.m in Sources */ = {isa = PBXBuildFile; fileRef = CA1498841989D1A60069A21E /* UIViewController+CWPopup.m */; };
-		CADBD77D19B0E8C200C62836 /* SingleBrickSelectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8165DC841938B2D000B6A306 /* SingleBrickSelectionView.m */; };
-		CADBD77E19B0E8C200C62836 /* NSMutableArray+SWUtilityButtons.m in Sources */ = {isa = PBXBuildFile; fileRef = 9251B6B3199F4B6500746D66 /* NSMutableArray+SWUtilityButtons.m */; };
-		CADBD77F19B0E8C200C62836 /* WaitBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = CD0CCF45170CB39700B70036 /* WaitBrick.m */; };
-		CADBD78019B0E8C200C62836 /* IfLogicElseBrickCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CA75C24018A9616800FC8C2F /* IfLogicElseBrickCell.m */; };
-		CADBD78119B0E8C200C62836 /* WhenScript.m in Sources */ = {isa = PBXBuildFile; fileRef = CD0CCF47170CB39700B70036 /* WhenScript.m */; };
-		CADBD78219B0E8C200C62836 /* BrickScaleTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = 817B544218F03D4C00AF6BFE /* BrickScaleTransition.m */; };
-		CADBD78319B0E8C200C62836 /* ObjectTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CAEDFB8017EF759500FDED0E /* ObjectTableViewController.m */; };
-		CADBD78419B0E8C200C62836 /* SelectButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 819EFEA61948721900A1D591 /* SelectButton.m */; };
-		CADBD78519B0E8C200C62836 /* SpriteObject.m in Sources */ = {isa = PBXBuildFile; fileRef = CD639C7A170DF52600FA67DA /* SpriteObject.m */; };
-		CADBD78619B0E8C200C62836 /* SetVolumeToBrickCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CA75C27918A9621500FC8C2F /* SetVolumeToBrickCell.m */; };
-		CADBD78719B0E8C200C62836 /* BrickSelectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 816827D71934BB9B00031E7C /* BrickSelectionView.m */; };
-		CADBD78819B0E8C200C62836 /* ioapi.c in Sources */ = {isa = PBXBuildFile; fileRef = B4D940A5170EC2B7003DDBFA /* ioapi.c */; };
-		CADBD78919B0E8C200C62836 /* mztools.c in Sources */ = {isa = PBXBuildFile; fileRef = B4D940A7170EC2B7003DDBFA /* mztools.c */; };
-		CADBD78A19B0E8C200C62836 /* ChangeYByNBrickCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CA75C25518A9619B00FC8C2F /* ChangeYByNBrickCell.m */; };
-		CADBD78B19B0E8C200C62836 /* UIWindow+AHKAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = CA14986F1989CA160069A21E /* UIWindow+AHKAdditions.m */; };
-		CADBD78C19B0E8C200C62836 /* unzip.c in Sources */ = {isa = PBXBuildFile; fileRef = B4D940A9170EC2B7003DDBFA /* unzip.c */; };
-		CADBD78D19B0E8C200C62836 /* ObjectComboBoxView.m in Sources */ = {isa = PBXBuildFile; fileRef = CABE07BE18BAB8EF00BE26EF /* ObjectComboBoxView.m */; };
-		CADBD78E19B0E8C200C62836 /* SoundPickerTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CAA96AFD18E4B21F00763409 /* SoundPickerTableViewController.m */; };
-		CADBD78F19B0E8C200C62836 /* ChangeXByNBrickCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CA75C25218A9619400FC8C2F /* ChangeXByNBrickCell.m */; };
-		CADBD79019B0E8C200C62836 /* zip.c in Sources */ = {isa = PBXBuildFile; fileRef = B4D940AB170EC2B7003DDBFA /* zip.c */; };
-		CADBD79119B0E8C200C62836 /* EVCircularProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = CA1498541989C3F00069A21E /* EVCircularProgressView.m */; };
-		CADBD79219B0E8C200C62836 /* DownloadImageCache.m in Sources */ = {isa = PBXBuildFile; fileRef = B4D940D3170ECA15003DDBFA /* DownloadImageCache.m */; };
-		CADBD79319B0E8C200C62836 /* NoteBrickCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CA75C23718A9614C00FC8C2F /* NoteBrickCell.m */; };
-		CADBD79419B0E8C200C62836 /* SWTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9251B6A8199F4B1600746D66 /* SWTableViewCell.m */; };
-		CADBD79519B0E8C200C62836 /* ContinueImageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B4D940DB170ECB65003DDBFA /* ContinueImageCell.m */; };
-		CADBD79619B0E8C200C62836 /* ScriptCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 81FAEE2E17E781AB0052BB2B /* ScriptCollectionViewController.m */; };
-		CADBD79719B0E8C200C62836 /* LooksTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 81FAEE3117E782140052BB2B /* LooksTableViewController.m */; };
-		CADBD79819B0E8C200C62836 /* DarkBlueGradientCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B4D940DF170ECB8B003DDBFA /* DarkBlueGradientCell.m */; };
-		CADBD79919B0E8C200C62836 /* ChangeSizeByNBrickCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CA75C28B18A9623B00FC8C2F /* ChangeSizeByNBrickCell.m */; };
-		CADBD79A19B0E8C200C62836 /* NextLookBrickCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CA75C28518A9622E00FC8C2F /* NextLookBrickCell.m */; };
-		CADBD79B19B0E8C200C62836 /* DarkBlueGradientImageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B40C3070170ECC49000B872F /* DarkBlueGradientImageCell.m */; };
-		CADBD79C19B0E8C200C62836 /* GDataXMLNode+PrettyFormatterExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = CA79A119182D8A4200618283 /* GDataXMLNode+PrettyFormatterExtensions.m */; };
-		CADBD79D19B0E8C200C62836 /* Functions.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C3C0400199BA7B40004F594 /* Functions.m */; };
-		CADBD79E19B0E8C200C62836 /* PlaceHolderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 815420DC191A5C1F00E628D2 /* PlaceHolderView.m */; };
-		CADBD79F19B0E8C200C62836 /* MyProgramsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B4BCF406170ECFA2008EDF3A /* MyProgramsViewController.m */; };
-		CADBD7A019B0E8C200C62836 /* IfLogicBeginBrickCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CA75C23D18A9616000FC8C2F /* IfLogicBeginBrickCell.m */; };
-		CADBD7A119B0E8C200C62836 /* ImageCache.m in Sources */ = {isa = PBXBuildFile; fileRef = CAF806D5193170640005E900 /* ImageCache.m */; };
-		CADBD7A219B0E8C200C62836 /* CatrobatInformation.m in Sources */ = {isa = PBXBuildFile; fileRef = B4BCF413170ED1F2008EDF3A /* CatrobatInformation.m */; };
-		CADBD7A319B0E8C200C62836 /* ProgramDetailStoreViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B4BCF41A170ED300008EDF3A /* ProgramDetailStoreViewController.m */; };
-		CADBD7A419B0E8C200C62836 /* TTTAttributedLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = B4BCF420170ED3B7008EDF3A /* TTTAttributedLabel.m */; };
-		CADBD7A519B0E8C200C62836 /* NSData+Hashes.m in Sources */ = {isa = PBXBuildFile; fileRef = CA9B7EA118FFCC0400F1790D /* NSData+Hashes.m */; };
-		CADBD7A619B0E8C200C62836 /* SWCellScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9251B6A4199F4B1600746D66 /* SWCellScrollView.m */; };
-		CADBD7A719B0E8C200C62836 /* CAGradientLayer+CatrobatCAGradientExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = B4BCF427170ED442008EDF3A /* CAGradientLayer+CatrobatCAGradientExtensions.m */; };
-		CADBD7A819B0E8C200C62836 /* ChangeGhostEffectByNBrickCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CA75C29718A9625600FC8C2F /* ChangeGhostEffectByNBrickCell.m */; };
-		CADBD7A919B0E8C200C62836 /* DownloadTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = B4BCF42E170ED584008EDF3A /* DownloadTabBarController.m */; };
-		CADBD7AA19B0E8C200C62836 /* RecentProgramsStoreViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B4BCF432170ED5AD008EDF3A /* RecentProgramsStoreViewController.m */; };
-		CADBD7AB19B0E8C200C62836 /* LoadingView.m in Sources */ = {isa = PBXBuildFile; fileRef = B4BCF436170ED5D4008EDF3A /* LoadingView.m */; };
-		CADBD7AC19B0E8C200C62836 /* ComeToFrontBrickCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CA75C27018A9620200FC8C2F /* ComeToFrontBrickCell.m */; };
-		CADBD7AD19B0E8C200C62836 /* FeaturedProgramsStoreViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B4BCF43A170ED60C008EDF3A /* FeaturedProgramsStoreViewController.m */; };
-		CADBD7AE19B0E8C200C62836 /* ScenePresenterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C3F1DD5B180AD1DC00E2FA45 /* ScenePresenterViewController.m */; };
-		CADBD7AF19B0E8C200C62836 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = CA1498781989CB320069A21E /* Reachability.m */; };
-		CADBD7B019B0E8C200C62836 /* PointToBrickCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CA75C26718A961C700FC8C2F /* PointToBrickCell.m */; };
-		CADBD7B119B0E8C200C62836 /* FBShimmeringView.m in Sources */ = {isa = PBXBuildFile; fileRef = 815420D8191A51F200E628D2 /* FBShimmeringView.m */; };
-		CADBD7B219B0E8C200C62836 /* AHKActionSheetViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA14986D1989CA160069A21E /* AHKActionSheetViewController.m */; };
-		CADBD7B319B0E8C200C62836 /* MoveNStepsBrickCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CA75C25B18A961AB00FC8C2F /* MoveNStepsBrickCell.m */; };
-		CADBD7B419B0E8C200C62836 /* TestParser.m in Sources */ = {isa = PBXBuildFile; fileRef = B4DEFC8F170F464200DD1939 /* TestParser.m */; };
-		CADBD7B519B0E8C200C62836 /* PointInDirectionBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = B4D4DD4217156A8500EEE3F8 /* PointInDirectionBrick.m */; };
-		CADBD7B619B0E8C200C62836 /* PointInDirectionBrickCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CA75C26418A961C000FC8C2F /* PointInDirectionBrickCell.m */; };
-		CADBD7B719B0E8C200C62836 /* GlideToBrickCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CA75C26A18A961CE00FC8C2F /* GlideToBrickCell.m */; };
-		CADBD7B819B0E8C200C62836 /* AHKActionSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = CA14986C1989CA160069A21E /* AHKActionSheet.m */; };
-		CADBD7B919B0E8C200C62836 /* SWLongPressGestureRecognizer.m in Sources */ = {isa = PBXBuildFile; fileRef = 9251B6A6199F4B1600746D66 /* SWLongPressGestureRecognizer.m */; };
-		CADBD7BA19B0E8C200C62836 /* FXBlurView.m in Sources */ = {isa = PBXBuildFile; fileRef = 817B545018F0AAE600AF6BFE /* FXBlurView.m */; };
-		CADBD7BB19B0E8C200C62836 /* HelpWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CD8CC8BB1724346200239EBF /* HelpWebViewController.m */; };
-		CADBD7BC19B0E8C200C62836 /* BaseWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 819AA18519587CA7003010BB /* BaseWebViewController.m */; };
-		CADBD7BD19B0E8C200C62836 /* SpeakBrickCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CA75C27F18A9622100FC8C2F /* SpeakBrickCell.m */; };
-		CADBD7BE19B0E8C200C62836 /* ClearGraphicEffectBrickCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CA75C2A018A9626B00FC8C2F /* ClearGraphicEffectBrickCell.m */; };
-		CADBD7BF19B0E8C200C62836 /* BroadcastWaitBrickCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CA75C23418A9614100FC8C2F /* BroadcastWaitBrickCell.m */; };
-		CADBD7C019B0E8C200C62836 /* LookImageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CAB95BA418CD51EF006638F6 /* LookImageViewController.m */; };
-		CADBD7C119B0E8C200C62836 /* CreateView.m in Sources */ = {isa = PBXBuildFile; fileRef = 81B748781921433700990E5F /* CreateView.m */; };
-		CADBD7C219B0E8C200C62836 /* SetVariableBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = B45A5826173253E5000E038F /* SetVariableBrick.m */; };
-		CADBD7C319B0E8C200C62836 /* UserVariable.m in Sources */ = {isa = PBXBuildFile; fileRef = B45A582B17325442000E038F /* UserVariable.m */; };
-		CADBD7C419B0E8C200C62836 /* DataTransferMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = CAE9A2C3197D8964008F7C9A /* DataTransferMessage.m */; };
-		CADBD7C519B0E8C200C62836 /* IBActionSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = CA1498661989C9C70069A21E /* IBActionSheet.m */; };
-		CADBD7C619B0E8C200C62836 /* Formula.m in Sources */ = {isa = PBXBuildFile; fileRef = B45A583017327887000E038F /* Formula.m */; };
-		CADBD7C719B0E8C200C62836 /* ShowBrickCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CA75C29118A9624900FC8C2F /* ShowBrickCell.m */; };
-		CADBD7C819B0E8C200C62836 /* FormulaElement.m in Sources */ = {isa = PBXBuildFile; fileRef = B45A583517327BBE000E038F /* FormulaElement.m */; };
-		CADBD7C919B0E8C200C62836 /* IfLogicBeginBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = B402288117329FEB004C4942 /* IfLogicBeginBrick.m */; };
-		CADBD7CA19B0E8C200C62836 /* IfLogicElseBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = B40228901732A540004C4942 /* IfLogicElseBrick.m */; };
-		CADBD7CB19B0E8C200C62836 /* IfLogicEndBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = B40228951732A58E004C4942 /* IfLogicEndBrick.m */; };
-		CADBD7CC19B0E8C200C62836 /* PointToBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = B40228A41732ADF3004C4942 /* PointToBrick.m */; };
-		CADBD7CD19B0E8C200C62836 /* VariablesContainer.m in Sources */ = {isa = PBXBuildFile; fileRef = B47068891733BA9600EC880D /* VariablesContainer.m */; };
-		CADBD7CE19B0E8C200C62836 /* IfLogicEndBrickCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CA75C24318A9617100FC8C2F /* IfLogicEndBrickCell.m */; };
-		CADBD7CF19B0E8C200C62836 /* ChangeVariableBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = B470688E1733D6CA00EC880D /* ChangeVariableBrick.m */; };
-		CADBD7D019B0E8C200C62836 /* ProgramManager.m in Sources */ = {isa = PBXBuildFile; fileRef = B44F329F1737AC2E00BD97AC /* ProgramManager.m */; };
-		CADBD7D119B0E8C200C62836 /* SensorHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = B44F32A41737BBB100BD97AC /* SensorHandler.m */; };
-		CADBD7D219B0E8C200C62836 /* XMLObjectReference.m in Sources */ = {isa = PBXBuildFile; fileRef = B4B7BAC21738E216000BDC94 /* XMLObjectReference.m */; };
-		CADBD7D319B0E8C200C62836 /* NoteBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = B4826F77174D076800F57AE9 /* NoteBrick.m */; };
-		CADBD7D419B0E8C200C62836 /* OrderedMapTable.m in Sources */ = {isa = PBXBuildFile; fileRef = B4826F82174D5BB100F57AE9 /* OrderedMapTable.m */; };
-		CADBD7D519B0E8C200C62836 /* MoveNStepsBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = B4840CA6174FAC3E002DEC53 /* MoveNStepsBrick.m */; };
-		CADBD7D619B0E8C200C62836 /* IfOnEdgeBounceBrickCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CA75C25818A961A300FC8C2F /* IfOnEdgeBounceBrickCell.m */; };
-		CADBD7D719B0E8C200C62836 /* DarkBlueGradientFeaturedCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 929FDFFF1986484200B2A88D /* DarkBlueGradientFeaturedCell.m */; };
-		CADBD7D819B0E8C200C62836 /* Logger.m in Sources */ = {isa = PBXBuildFile; fileRef = B4365CE41758AF8F00B4D0A6 /* Logger.m */; };
-		CADBD7D919B0E8C200C62836 /* IfOnEdgeBounceBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = CDFEFCB31758CBC8002B5B0E /* IfOnEdgeBounceBrick.m */; };
-		CADBD7DA19B0E8C200C62836 /* RepeatBrickCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CA75C24618A9617900FC8C2F /* RepeatBrickCell.m */; };
-		CADBD7DB19B0E8C200C62836 /* SensorManager.m in Sources */ = {isa = PBXBuildFile; fileRef = B4DA23D0175E26550079B381 /* SensorManager.m */; };
-		CADBD7DC19B0E8C200C62836 /* SSZipArchive.m in Sources */ = {isa = PBXBuildFile; fileRef = B4A92DCC175F8DF700608667 /* SSZipArchive.m */; };
-		CADBD7DD19B0E8C200C62836 /* LoopBeginBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = B46B271A17708E6700172837 /* LoopBeginBrick.m */; };
-		CADBD7DE19B0E8C200C62836 /* ScriptDeleteButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 81649E0F191D35090099AE7E /* ScriptDeleteButton.m */; };
-		CADBD7DF19B0E8C200C62836 /* GDataXMLNode.m in Sources */ = {isa = PBXBuildFile; fileRef = B4A92DD1175FD4B700608667 /* GDataXMLNode.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		CADBD7E019B0E8C200C62836 /* WaitBrickCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CA75C22E18A9612300FC8C2F /* WaitBrickCell.m */; };
-		CADBD7E119B0E8C200C62836 /* NSString+FastImageSize.m in Sources */ = {isa = PBXBuildFile; fileRef = CA14987E1989CBD50069A21E /* NSString+FastImageSize.m */; };
-		CADBD7E219B0E8C200C62836 /* RoundBorderedButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 81B7487C192143AA00990E5F /* RoundBorderedButton.m */; };
-		CADBD7E319B0E8C200C62836 /* EAIntroView.m in Sources */ = {isa = PBXBuildFile; fileRef = CAFBCB3219885258000304BF /* EAIntroView.m */; };
-		CADBD7E519B0E8C200C62836 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 92E3351D18FBB6750056C390 /* SystemConfiguration.framework */; };
-		CADBD7E619B0E8C200C62836 /* CoreImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 921FE2F9182F8122001D7CF6 /* CoreImage.framework */; };
-		CADBD7E719B0E8C200C62836 /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA05A19D18286CDA0025421A /* AssetsLibrary.framework */; };
-		CADBD7E819B0E8C200C62836 /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C3BF754B18117F6000134B77 /* Accelerate.framework */; };
-		CADBD7E919B0E8C200C62836 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CAC22DA31809D5730071CC5D /* MobileCoreServices.framework */; };
-		CADBD7EA19B0E8C200C62836 /* SpriteKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B4E7D259176EF2CA00EC8AD8 /* SpriteKit.framework */; };
-		CADBD7EB19B0E8C200C62836 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B4AF798C174A9A330041555A /* CoreLocation.framework */; };
-		CADBD7EC19B0E8C200C62836 /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B44F32AC1737BCBF00BD97AC /* CoreMotion.framework */; };
-		CADBD7ED19B0E8C200C62836 /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B4BCF42B170ED548008EDF3A /* CoreText.framework */; };
-		CADBD7EE19B0E8C200C62836 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = DE5C4E6D138ED109004892CA /* libz.dylib */; };
-		CADBD7EF19B0E8C200C62836 /* GLKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DEAAF3DE16BC114D004EB9D5 /* GLKit.framework */; };
-		CADBD7F019B0E8C200C62836 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
-		CADBD7F119B0E8C200C62836 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
-		CADBD7F219B0E8C200C62836 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 288765FC0DF74451002DB57D /* CoreGraphics.framework */; };
-		CADBD7F319B0E8C200C62836 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DE4A3D7910FFB08200FDA492 /* OpenGLES.framework */; };
-		CADBD7F419B0E8C200C62836 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DE4A3D7E10FFB08B00FDA492 /* QuartzCore.framework */; };
-		CADBD7F519B0E8C200C62836 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DE3F093711B7B9DC009D4DB0 /* AVFoundation.framework */; };
-		CADBD7F619B0E8C200C62836 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DE3F093911B7B9DC009D4DB0 /* AudioToolbox.framework */; };
-		CADBD7F719B0E8C200C62836 /* OpenAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DE3F097711B7BABD009D4DB0 /* OpenAL.framework */; };
 		CAE4B832198A77390054ABEC /* LICENSE_SWTableViewCell in Resources */ = {isa = PBXBuildFile; fileRef = CAE4B831198A77390054ABEC /* LICENSE_SWTableViewCell */; };
 		CAE4B834198A781B0054ABEC /* LICENSE_IBActionSheet in Resources */ = {isa = PBXBuildFile; fileRef = CAE4B833198A781B0054ABEC /* LICENSE_IBActionSheet */; };
 		CAE4B836198A78770054ABEC /* LICENSE_AHKActionSheet in Resources */ = {isa = PBXBuildFile; fileRef = CAE4B835198A78770054ABEC /* LICENSE_AHKActionSheet */; };
@@ -695,54 +361,33 @@
 			remoteGlobalIDString = B4A92DC3175F535300608667;
 			remoteInfo = LicenseTest;
 		};
-		CA16F07319BB8F4800D97268 /* PBXContainerItemProxy */ = {
+		CA0FDE5119CB3CEE0065D6A2 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = CA16F06919BB8F4800D97268 /* ObjectiveGitFramework.xcodeproj */;
+			containerPortal = CA0FDE4719CB3CEE0065D6A2 /* ObjectiveGitFramework.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = 8DC2EF5B0486A6940098B216;
 			remoteInfo = ObjectiveGit;
 		};
-		CA16F07519BB8F4800D97268 /* PBXContainerItemProxy */ = {
+		CA0FDE5319CB3CEE0065D6A2 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = CA16F06919BB8F4800D97268 /* ObjectiveGitFramework.xcodeproj */;
+			containerPortal = CA0FDE4719CB3CEE0065D6A2 /* ObjectiveGitFramework.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = 04DB4645133AB57600D9C624;
 			remoteInfo = "ObjectiveGit-iOS";
 		};
-		CA16F07719BB8F4800D97268 /* PBXContainerItemProxy */ = {
+		CA0FDE5519CB3CEE0065D6A2 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = CA16F06919BB8F4800D97268 /* ObjectiveGitFramework.xcodeproj */;
+			containerPortal = CA0FDE4719CB3CEE0065D6A2 /* ObjectiveGitFramework.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = 88F05A6B16011E5400B7AD1D;
 			remoteInfo = ObjectiveGitTests;
 		};
-		CA16F07919BB8F6900D97268 /* PBXContainerItemProxy */ = {
+		CA0FDE5719CB3D120065D6A2 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = CA16F06919BB8F4800D97268 /* ObjectiveGitFramework.xcodeproj */;
+			containerPortal = CA0FDE4719CB3CEE0065D6A2 /* ObjectiveGitFramework.xcodeproj */;
 			proxyType = 1;
 			remoteGlobalIDString = 04DB4644133AB57600D9C624;
 			remoteInfo = "ObjectiveGit-iOS";
-		};
-		CA538ED019B0EA2F008240AB /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = CADBD6D319B0E8C200C62836;
-			remoteInfo = Catty_iOS8.0;
-		};
-		CA6E958619BB9100000A7E25 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = CA16F06919BB8F4800D97268 /* ObjectiveGitFramework.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = 04DB4644133AB57600D9C624;
-			remoteInfo = "ObjectiveGit-iOS";
-		};
-		CADBD6D519B0E8C200C62836 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = B4A92DC3175F535300608667;
-			remoteInfo = LicenseTest;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -945,7 +590,7 @@
 		B464752E1770F60500CD277F /* AudioManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AudioManager.h; sourceTree = "<group>"; };
 		B464752F1770F60500CD277F /* AudioManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AudioManager.m; sourceTree = "<group>"; };
 		B46B26E817703E4000172837 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
-		B46B26FF17703F9400172837 /* CattyTests_iOS7.1.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CattyTests_iOS7.1.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		B46B26FF17703F9400172837 /* CattyTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CattyTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B46B270517703F9400172837 /* CattyTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "CattyTests-Info.plist"; sourceTree = "<group>"; };
 		B46B270717703F9400172837 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		B46B270917703F9400172837 /* CattyTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CattyTests.m; sourceTree = "<group>"; };
@@ -1051,6 +696,7 @@
 		CA05A19A18282B2C0025421A /* SearchStoreViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchStoreViewController.h; sourceTree = "<group>"; };
 		CA05A19B18282B2C0025421A /* SearchStoreViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchStoreViewController.m; sourceTree = "<group>"; };
 		CA05A19D18286CDA0025421A /* AssetsLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AssetsLibrary.framework; path = System/Library/Frameworks/AssetsLibrary.framework; sourceTree = SDKROOT; };
+		CA0FDE4719CB3CEE0065D6A2 /* ObjectiveGitFramework.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ObjectiveGitFramework.xcodeproj; path = "../objective-git/ObjectiveGitFramework.xcodeproj"; sourceTree = "<group>"; };
 		CA1498511989C2C80069A21E /* LICENSE_BDKNotifyHUD */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = LICENSE_BDKNotifyHUD; path = BDKNotifyHUD/LICENSE_BDKNotifyHUD; sourceTree = "<group>"; };
 		CA1498531989C3F00069A21E /* EVCircularProgressView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EVCircularProgressView.h; path = EVCircularProgressView/EVCircularProgressView.h; sourceTree = "<group>"; };
 		CA1498541989C3F00069A21E /* EVCircularProgressView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EVCircularProgressView.m; path = EVCircularProgressView/EVCircularProgressView.m; sourceTree = "<group>"; };
@@ -1076,7 +722,6 @@
 		CA1498811989CC0E0069A21E /* OrderedDictionary.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OrderedDictionary.m; path = OrderedDictionary/OrderedDictionary.m; sourceTree = "<group>"; };
 		CA1498831989D1A60069A21E /* UIViewController+CWPopup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIViewController+CWPopup.h"; path = "UIViewController+CWPopup/UIViewController+CWPopup.h"; sourceTree = "<group>"; };
 		CA1498841989D1A60069A21E /* UIViewController+CWPopup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIViewController+CWPopup.m"; path = "UIViewController+CWPopup/UIViewController+CWPopup.m"; sourceTree = "<group>"; };
-		CA16F06919BB8F4800D97268 /* ObjectiveGitFramework.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ObjectiveGitFramework.xcodeproj; path = ObjectiveGit/ObjectiveGitFramework.xcodeproj; sourceTree = "<group>"; };
 		CA16F07C19BB8F8D00D97268 /* libiconv.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libiconv.dylib; path = usr/lib/libiconv.dylib; sourceTree = SDKROOT; };
 		CA1B7A1D18E1D9B700452234 /* ProgramUpdateDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ProgramUpdateDelegate.h; sourceTree = "<group>"; };
 		CA1B802B1971ACE300D8E79B /* IMPORTANT.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = IMPORTANT.caf; sourceTree = "<group>"; };
@@ -1088,7 +733,6 @@
 		CA51A55D198481ED00FFCB45 /* BDKNotifyHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BDKNotifyHUD.m; path = BDKNotifyHUD/BDKNotifyHUD.m; sourceTree = "<group>"; };
 		CA52403518AD782600052914 /* ProgramTableViewControllerExistingProgramsTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProgramTableViewControllerExistingProgramsTests.m; sourceTree = "<group>"; };
 		CA52403718AD786200052914 /* ProgramTableViewControllerExistingProgramsTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ProgramTableViewControllerExistingProgramsTests.h; sourceTree = "<group>"; };
-		CA538ECE19B0EA09008240AB /* CattyTests_iOS8.0.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CattyTests_iOS8.0.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		CA5FED4E18B0070300A517B6 /* BrickCellInlineView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BrickCellInlineView.h; sourceTree = "<group>"; };
 		CA5FED4F18B0070300A517B6 /* BrickCellInlineView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BrickCellInlineView.m; sourceTree = "<group>"; };
 		CA5FED5218B019B200A517B6 /* UIUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIUtil.h; sourceTree = "<group>"; };
@@ -1220,7 +864,6 @@
 		CABE07C718BAB94000BE26EF /* VariableComboBoxView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VariableComboBoxView.m; sourceTree = "<group>"; };
 		CAC22DA31809D5730071CC5D /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		CACEF959184529AC00D199D8 /* Brick+UnitTestingExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Brick+UnitTestingExtensions.h"; sourceTree = "<group>"; };
-		CADBD7FB19B0E8C200C62836 /* Pocket Code.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Pocket Code.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CAE4B831198A77390054ABEC /* LICENSE_SWTableViewCell */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = LICENSE_SWTableViewCell; path = SWTableViewCell/LICENSE_SWTableViewCell; sourceTree = "<group>"; };
 		CAE4B833198A781B0054ABEC /* LICENSE_IBActionSheet */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = LICENSE_IBActionSheet; path = IBActionSheet/LICENSE_IBActionSheet; sourceTree = "<group>"; };
 		CAE4B835198A78770054ABEC /* LICENSE_AHKActionSheet */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = LICENSE_AHKActionSheet; path = AHK/LICENSE_AHKActionSheet; sourceTree = "<group>"; };
@@ -1368,9 +1011,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CA0FDE5919CB3D280065D6A2 /* libObjectiveGit-iOS.a in Frameworks */,
 				CA16F07D19BB8F8D00D97268 /* libiconv.dylib in Frameworks */,
 				DE5C4E6E138ED109004892CA /* libz.dylib in Frameworks */,
-				CA16F07B19BB8F7800D97268 /* libObjectiveGit-iOS.a in Frameworks */,
 				92E3351E18FBB6750056C390 /* SystemConfiguration.framework in Frameworks */,
 				921FE2FA182F8122001D7CF6 /* CoreImage.framework in Frameworks */,
 				CA05A19E18286CDA0025421A /* AssetsLibrary.framework in Frameworks */,
@@ -1402,44 +1045,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		CA538EC319B0EA09008240AB /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				CA538EC419B0EA09008240AB /* XCTest.framework in Frameworks */,
-				CA538EC519B0EA09008240AB /* UIKit.framework in Frameworks */,
-				CA538EC619B0EA09008240AB /* Foundation.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		CADBD7E419B0E8C200C62836 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				CA6E958919BB9117000A7E25 /* libiconv.dylib in Frameworks */,
-				CA6E958819BB9106000A7E25 /* libObjectiveGit-iOS.a in Frameworks */,
-				CADBD7E519B0E8C200C62836 /* SystemConfiguration.framework in Frameworks */,
-				CADBD7E619B0E8C200C62836 /* CoreImage.framework in Frameworks */,
-				CADBD7E719B0E8C200C62836 /* AssetsLibrary.framework in Frameworks */,
-				CADBD7E819B0E8C200C62836 /* Accelerate.framework in Frameworks */,
-				CADBD7E919B0E8C200C62836 /* MobileCoreServices.framework in Frameworks */,
-				CADBD7EA19B0E8C200C62836 /* SpriteKit.framework in Frameworks */,
-				CADBD7EB19B0E8C200C62836 /* CoreLocation.framework in Frameworks */,
-				CADBD7EC19B0E8C200C62836 /* CoreMotion.framework in Frameworks */,
-				CADBD7ED19B0E8C200C62836 /* CoreText.framework in Frameworks */,
-				CADBD7EE19B0E8C200C62836 /* libz.dylib in Frameworks */,
-				CADBD7EF19B0E8C200C62836 /* GLKit.framework in Frameworks */,
-				CADBD7F019B0E8C200C62836 /* Foundation.framework in Frameworks */,
-				CADBD7F119B0E8C200C62836 /* UIKit.framework in Frameworks */,
-				CADBD7F219B0E8C200C62836 /* CoreGraphics.framework in Frameworks */,
-				CADBD7F319B0E8C200C62836 /* OpenGLES.framework in Frameworks */,
-				CADBD7F419B0E8C200C62836 /* QuartzCore.framework in Frameworks */,
-				CADBD7F519B0E8C200C62836 /* AVFoundation.framework in Frameworks */,
-				CADBD7F619B0E8C200C62836 /* AudioToolbox.framework in Frameworks */,
-				CADBD7F719B0E8C200C62836 /* OpenAL.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -1447,9 +1052,7 @@
 			isa = PBXGroup;
 			children = (
 				1D6058910D05DD3D006BFB54 /* Pocket Code.app */,
-				B46B26FF17703F9400172837 /* CattyTests_iOS7.1.xctest */,
-				CADBD7FB19B0E8C200C62836 /* Pocket Code.app */,
-				CA538ECE19B0EA09008240AB /* CattyTests_iOS8.0.xctest */,
+				B46B26FF17703F9400172837 /* CattyTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -1465,7 +1068,7 @@
 				B46B270317703F9400172837 /* CattyTests */,
 				29B97323FDCFA39411CA2CEA /* Frameworks */,
 				19C28FACFE9D520D11CA2CBB /* Products */,
-				CA16F06919BB8F4800D97268 /* ObjectiveGitFramework.xcodeproj */,
+				CA0FDE4719CB3CEE0065D6A2 /* ObjectiveGitFramework.xcodeproj */,
 			);
 			indentWidth = 4;
 			name = CustomTemplate;
@@ -2504,6 +2107,16 @@
 			name = SearchStoreViewController;
 			sourceTree = "<group>";
 		};
+		CA0FDE4819CB3CEE0065D6A2 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				CA0FDE5219CB3CEE0065D6A2 /* ObjectiveGit.framework */,
+				CA0FDE5419CB3CEE0065D6A2 /* libObjectiveGit-iOS.a */,
+				CA0FDE5619CB3CEE0065D6A2 /* ObjectiveGitTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		CA160DB218A29CBB00E5190D /* MaintainScript */ = {
 			isa = PBXGroup;
 			children = (
@@ -2551,16 +2164,6 @@
 				CA160DB418A29CD600E5190D /* MaintainSounds */,
 			);
 			name = MaintainObject;
-			sourceTree = "<group>";
-		};
-		CA16F06A19BB8F4800D97268 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				CA16F07419BB8F4800D97268 /* ObjectiveGit.framework */,
-				CA16F07619BB8F4800D97268 /* libObjectiveGit-iOS.a */,
-				CA16F07819BB8F4800D97268 /* ObjectiveGitTests.xctest */,
-			);
-			name = Products;
 			sourceTree = "<group>";
 		};
 		CA1B802A1971AA1C00D8E79B /* SharkfoodMuteSwitchDetector */ = {
@@ -3478,9 +3081,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		1D6058900D05DD3D006BFB54 /* Catty_iOS7.1 */ = {
+		1D6058900D05DD3D006BFB54 /* Catty */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 1D6058960D05DD3E006BFB54 /* Build configuration list for PBXNativeTarget "Catty_iOS7.1" */;
+			buildConfigurationList = 1D6058960D05DD3E006BFB54 /* Build configuration list for PBXNativeTarget "Catty" */;
 			buildPhases = (
 				4C3AEF30198E848B00604ABF /* Add Version Number To Root.plist */,
 				4C9E2D1C198EA5F900455B77 /* Add Licenses To Acknowledgements.plist */,
@@ -3491,17 +3094,17 @@
 			buildRules = (
 			);
 			dependencies = (
-				CA16F07A19BB8F6900D97268 /* PBXTargetDependency */,
+				CA0FDE5819CB3D120065D6A2 /* PBXTargetDependency */,
 				B4A92DCF175F8EE800608667 /* PBXTargetDependency */,
 			);
-			name = Catty_iOS7.1;
+			name = Catty;
 			productName = AppScaffold;
 			productReference = 1D6058910D05DD3D006BFB54 /* Pocket Code.app */;
 			productType = "com.apple.product-type.application";
 		};
-		B46B26FE17703F9400172837 /* CattyTests_iOS7.1 */ = {
+		B46B26FE17703F9400172837 /* CattyTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = B46B270E17703F9400172837 /* Build configuration list for PBXNativeTarget "CattyTests_iOS7.1" */;
+			buildConfigurationList = B46B270E17703F9400172837 /* Build configuration list for PBXNativeTarget "CattyTests" */;
 			buildPhases = (
 				B46B26FB17703F9400172837 /* Sources */,
 				B46B26FC17703F9400172837 /* Frameworks */,
@@ -3512,49 +3115,10 @@
 			dependencies = (
 				B46B270D17703F9400172837 /* PBXTargetDependency */,
 			);
-			name = CattyTests_iOS7.1;
+			name = CattyTests;
 			productName = CattyTests;
-			productReference = B46B26FF17703F9400172837 /* CattyTests_iOS7.1.xctest */;
+			productReference = B46B26FF17703F9400172837 /* CattyTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
-		};
-		CA538EA119B0EA09008240AB /* CattyTests_iOS8.0 */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = CA538ECB19B0EA09008240AB /* Build configuration list for PBXNativeTarget "CattyTests_iOS8.0" */;
-			buildPhases = (
-				CA538EA419B0EA09008240AB /* Sources */,
-				CA538EC319B0EA09008240AB /* Frameworks */,
-				CA538EC719B0EA09008240AB /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				CA538ED119B0EA2F008240AB /* PBXTargetDependency */,
-			);
-			name = CattyTests_iOS8.0;
-			productName = CattyTests;
-			productReference = CA538ECE19B0EA09008240AB /* CattyTests_iOS8.0.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
-		CADBD6D319B0E8C200C62836 /* Catty_iOS8.0 */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = CADBD7F819B0E8C200C62836 /* Build configuration list for PBXNativeTarget "Catty_iOS8.0" */;
-			buildPhases = (
-				CADBD6D619B0E8C200C62836 /* Add Version Number To Root.plist */,
-				CADBD6D719B0E8C200C62836 /* Add Licenses To Acknowledgements.plist */,
-				CADBD6D819B0E8C200C62836 /* Resources */,
-				CADBD70119B0E8C200C62836 /* Sources */,
-				CADBD7E419B0E8C200C62836 /* Frameworks */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				CA6E958719BB9100000A7E25 /* PBXTargetDependency */,
-				CADBD6D419B0E8C200C62836 /* PBXTargetDependency */,
-			);
-			name = Catty_iOS8.0;
-			productName = AppScaffold;
-			productReference = CADBD7FB19B0E8C200C62836 /* Pocket Code.app */;
-			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
 
@@ -3565,7 +3129,7 @@
 				LastUpgradeCheck = 0600;
 				TargetAttributes = {
 					1D6058900D05DD3D006BFB54 = {
-						DevelopmentTeam = 4V6T7BCGGR;
+						DevelopmentTeam = 9NJ4SV439Q;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
 								enabled = 0;
@@ -3574,12 +3138,6 @@
 					};
 					B46B26FE17703F9400172837 = {
 						TestTargetID = 1D6058900D05DD3D006BFB54;
-					};
-					CA538EA119B0EA09008240AB = {
-						TestTargetID = CADBD6D319B0E8C200C62836;
-					};
-					CADBD6D319B0E8C200C62836 = {
-						DevelopmentTeam = 4V6T7BCGGR;
 					};
 				};
 			};
@@ -3630,42 +3188,39 @@
 			projectDirPath = "";
 			projectReferences = (
 				{
-					ProductGroup = CA16F06A19BB8F4800D97268 /* Products */;
-					ProjectRef = CA16F06919BB8F4800D97268 /* ObjectiveGitFramework.xcodeproj */;
+					ProductGroup = CA0FDE4819CB3CEE0065D6A2 /* Products */;
+					ProjectRef = CA0FDE4719CB3CEE0065D6A2 /* ObjectiveGitFramework.xcodeproj */;
 				},
 			);
 			projectRoot = "";
 			targets = (
-				1D6058900D05DD3D006BFB54 /* Catty_iOS7.1 */,
-				CADBD6D319B0E8C200C62836 /* Catty_iOS8.0 */,
-				B4A92DC3175F535300608667 /* LicenseTest_iOS7.1 */,
-				CADBD7FD19B0E8F300C62836 /* LicenseTest_iOS8.0 */,
-				B46B26FE17703F9400172837 /* CattyTests_iOS7.1 */,
-				CA538EA119B0EA09008240AB /* CattyTests_iOS8.0 */,
+				1D6058900D05DD3D006BFB54 /* Catty */,
+				B4A92DC3175F535300608667 /* LicenseTest */,
+				B46B26FE17703F9400172837 /* CattyTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
-		CA16F07419BB8F4800D97268 /* ObjectiveGit.framework */ = {
+		CA0FDE5219CB3CEE0065D6A2 /* ObjectiveGit.framework */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.framework;
 			path = ObjectiveGit.framework;
-			remoteRef = CA16F07319BB8F4800D97268 /* PBXContainerItemProxy */;
+			remoteRef = CA0FDE5119CB3CEE0065D6A2 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		CA16F07619BB8F4800D97268 /* libObjectiveGit-iOS.a */ = {
+		CA0FDE5419CB3CEE0065D6A2 /* libObjectiveGit-iOS.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
 			path = "libObjectiveGit-iOS.a";
-			remoteRef = CA16F07519BB8F4800D97268 /* PBXContainerItemProxy */;
+			remoteRef = CA0FDE5319CB3CEE0065D6A2 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		CA16F07819BB8F4800D97268 /* ObjectiveGitTests.xctest */ = {
+		CA0FDE5619CB3CEE0065D6A2 /* ObjectiveGitTests.xctest */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.cfbundle;
 			path = ObjectiveGitTests.xctest;
-			remoteRef = CA16F07719BB8F4800D97268 /* PBXContainerItemProxy */;
+			remoteRef = CA0FDE5519CB3CEE0065D6A2 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */
@@ -3728,63 +3283,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		CA538EC719B0EA09008240AB /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				CA538EC819B0EA09008240AB /* InfoPlist.strings in Resources */,
-				CA538EC919B0EA09008240AB /* test2.png in Resources */,
-				CA538ECA19B0EA09008240AB /* test.png in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		CADBD6D819B0E8C200C62836 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				CADBD6D919B0E8C200C62836 /* SSZipArchive.license in Resources */,
-				CADBD6DA19B0E8C200C62836 /* BDKNotifyHUD.license in Resources */,
-				CADBD6DB19B0E8C200C62836 /* IMPORTANT.caf in Resources */,
-				CADBD6DC19B0E8C200C62836 /* My First Program.catrobat in Resources */,
-				CADBD6DD19B0E8C200C62836 /* LICENSE_FBShimmering in Resources */,
-				CADBD6DE19B0E8C200C62836 /* OrderedDictionary.license in Resources */,
-				CADBD6DF19B0E8C200C62836 /* AHKActionSheet.license in Resources */,
-				CADBD6E019B0E8C200C62836 /* SMPageControl.license in Resources */,
-				CADBD6E119B0E8C200C62836 /* LICENSE_SWTableViewCell in Resources */,
-				CADBD6E219B0E8C200C62836 /* PATENTS_FBShimmering in Resources */,
-				CADBD6E319B0E8C200C62836 /* Images.xcassets in Resources */,
-				CADBD6E419B0E8C200C62836 /* minizip.license in Resources */,
-				CADBD6E519B0E8C200C62836 /* EAIntroView.license in Resources */,
-				CADBD6E619B0E8C200C62836 /* TTTAttributedLabel.license in Resources */,
-				CADBD6E719B0E8C200C62836 /* LXReorderableCollectionViewFlowLayout.license in Resources */,
-				CADBD6E819B0E8C200C62836 /* FXBlurView.license in Resources */,
-				CADBD6E919B0E8C200C62836 /* LICENSE in Resources */,
-				CADBD6EA19B0E8C200C62836 /* IBActionSheet.license in Resources */,
-				CADBD6EB19B0E8C200C62836 /* EVCircularProgressView.license in Resources */,
-				CADBD6EC19B0E8C200C62836 /* LICENSE_NSString+FastImageSize in Resources */,
-				CADBD6ED19B0E8C200C62836 /* SharkfoodMuteSwitchDetector.license in Resources */,
-				CADBD6EE19B0E8C200C62836 /* LICENSE_AHKActionSheet in Resources */,
-				CADBD6EF19B0E8C200C62836 /* LICENSE_LXReorderableCollectionViewFlowLayout in Resources */,
-				CADBD6F019B0E8C200C62836 /* Reachability.license in Resources */,
-				CADBD6F119B0E8C200C62836 /* LICENSE_UIViewController+Popup in Resources */,
-				CADBD6F219B0E8C200C62836 /* LICENSE_TTTAttributedLabel in Resources */,
-				CADBD6F319B0E8C200C62836 /* LICENSE_FXBlurView in Resources */,
-				CADBD6F419B0E8C200C62836 /* Settings.bundle in Resources */,
-				CADBD6F519B0E8C200C62836 /* LICENSE_EVCircularProgressView in Resources */,
-				CADBD6F619B0E8C200C62836 /* NSString+FastImageSize.license in Resources */,
-				CADBD6F719B0E8C200C62836 /* LICENSE_BDKNotifyHUD in Resources */,
-				CADBD6F819B0E8C200C62836 /* UIViewController+CWPopup.license in Resources */,
-				CADBD6F919B0E8C200C62836 /* iPhone.storyboard in Resources */,
-				CADBD6FA19B0E8C200C62836 /* GDataXMLNode.license in Resources */,
-				CADBD6FB19B0E8C200C62836 /* LICENSE_IBActionSheet in Resources */,
-				CADBD6FC19B0E8C200C62836 /* Localizable.strings in Resources */,
-				CADBD6FD19B0E8C200C62836 /* SWTableViewCell.license in Resources */,
-				CADBD6FE19B0E8C200C62836 /* readme.md in Resources */,
-				CADBD6FF19B0E8C200C62836 /* FBShimmering.license in Resources */,
-				CADBD70019B0E8C200C62836 /* LoggerProperties.plist in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
@@ -3823,48 +3321,6 @@
 			);
 			inputPaths = (
 			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "./license-test.sh\n";
-		};
-		CADBD6D619B0E8C200C62836 /* Add Version Number To Root.plist */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Add Version Number To Root.plist";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "CFBundleShortVersionString=`/usr/libexec/PlistBuddy -c \"Print :CFBundleShortVersionString\" \"${SRCROOT}/Catty/App-Info.plist\"`\n/usr/libexec/PlistBuddy \"$SRCROOT/Catty/Settings.bundle/Root.plist\" -c \"set PreferenceSpecifiers:3:DefaultValue $CFBundleShortVersionString\"";
-		};
-		CADBD6D719B0E8C200C62836 /* Add Licenses To Acknowledgements.plist */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Add Licenses To Acknowledgements.plist";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = "/usr/bin/perl -w";
-			shellScript = "use strict;\n\nmy $ACKNOWLEDGEMENTS_HEADER = \"PORTIONS OF THE APPLICATION MAY UTILIZE THE FOLLOWING COPYRIGHTED MATERIAL, THE USE OF WHICH IS HEREBY ACKNOWLEDGED:\";\n\nmy $out = \"Catty/Settings.bundle/en.lproj/Acknowledgements.strings\";\nmy $plistout = \"Catty/Settings.bundle/Acknowledgements.plist\";\n\nunlink $out;\n\nopen(my $outfh, '>', $out) or die $!;\nopen(my $plistfh, '>', $plistout) or die $!;\n\nprint $plistfh <<'EOD';\n<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<!DOCTYPE plist PUBLIC \"-//Apple//DTD PLIST 1.0//EN\" \"http://www.apple.com/DTDs/PropertyList-1.0.dtd\">\n<plist version=\"1.0\">\n<dict>\n    <key>StringsTable</key>\n    <string>Acknowledgements</string>\n    <key>PreferenceSpecifiers</key>\n        <array>\nEOD\n\nprint $plistfh <<\"EOD\";\n            <dict>\n                <key>Type</key>\n                <string>PSGroupSpecifier</string>\n                <key>FooterText</key>\n                <string>AcknowledgementHeader</string>\n            </dict>\nEOD\n\nprint $outfh \"\\\"AcknowledgementHeader\\\" = \\\"$ACKNOWLEDGEMENTS_HEADER\\\";\\n\";\n\nfor my $i (sort glob(\"Catty/Resources/Licenses/*.license\"))\n{\n    my $value=`cat $i`;\n    $value =~ s/\\r//g;\n    $value =~ s/\\n/\\r/g;\n    $value =~ s/[ \\t]+\\r/\\r/g;\n    $value =~ s/\\\"/\\'/g;\n    my $key=$i;\n    $key =~ s/\\.license$//;\n    \n    print $plistfh <<\"EOD\";\n            <dict>\n                <key>Type</key>\n                <string>PSGroupSpecifier</string>\n                <key>FooterText</key>\n                <string>$key</string>\n            </dict>\nEOD\n    \n    print $outfh \"\\\"$key\\\" = \\\"$value\\\";\\n\";\n}\n\nprint $plistfh <<'EOD';\n        </array>\n</dict>\n</plist>\nEOD\n\nclose($outfh);\nclose($plistfh);";
-		};
-		CADBD7FE19B0E8F300C62836 /* Run Script */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Run Script";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -4144,308 +3600,23 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		CA538EA419B0EA09008240AB /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				CA538EA519B0EA09008240AB /* ChangeGhostEffectByNBrickTests.m in Sources */,
-				CA538EA619B0EA09008240AB /* ProgramTableViewControllerExistingProgramsTests.m in Sources */,
-				CA538EA719B0EA09008240AB /* HideBrickTests.m in Sources */,
-				CA538EA819B0EA09008240AB /* SetGhostEffectBrickTests.m in Sources */,
-				CA538EA919B0EA09008240AB /* ProgramTests.m in Sources */,
-				CA538EAA19B0EA09008240AB /* PlaceAtBrickTests.m in Sources */,
-				CA538EAB19B0EA09008240AB /* ShowBrickTests.m in Sources */,
-				CA538EAC19B0EA09008240AB /* SceneTests.m in Sources */,
-				CA538EAD19B0EA09008240AB /* SetYBrickTests.m in Sources */,
-				CA538EAE19B0EA09008240AB /* BrickTests.m in Sources */,
-				CA538EAF19B0EA09008240AB /* ChangeBrightnessByNBrickTests.m in Sources */,
-				CA538EB019B0EA09008240AB /* ComeToFrontBrickTests.m in Sources */,
-				CA538EB119B0EA09008240AB /* CustomExtensionsTests.m in Sources */,
-				CA538EB219B0EA09008240AB /* NextLookBrickTests.m in Sources */,
-				CA538EB319B0EA09008240AB /* FormulaFunctionsTest.m in Sources */,
-				CA538EB419B0EA09008240AB /* GoNStepsBackBrickTests.m in Sources */,
-				CA538EB519B0EA09008240AB /* PointInDirectionBrickTests.m in Sources */,
-				CA538EB619B0EA09008240AB /* ProgramTableViewControllerNewProgramTests.m in Sources */,
-				CA538EB719B0EA09008240AB /* SensorHandlerTests.m in Sources */,
-				CA538EB819B0EA09008240AB /* ClearGrafficEffectBrickTests.m in Sources */,
-				CA538EB919B0EA09008240AB /* ChangeSizeByNBrickTests.m in Sources */,
-				CA538EBA19B0EA09008240AB /* TurnRightBrickTests.m in Sources */,
-				CA538EBB19B0EA09008240AB /* SetBrightnessBrickTests.m in Sources */,
-				CA538EBC19B0EA09008240AB /* SetXBrickTests.m in Sources */,
-				CA538EBD19B0EA09008240AB /* SetSizeToBrickTests.m in Sources */,
-				CA538EBE19B0EA09008240AB /* SetLookBrickTests.m in Sources */,
-				CA538EBF19B0EA09008240AB /* TurnLeftBrickTests.m in Sources */,
-				CA538EC019B0EA09008240AB /* MoveNStepsBrickTests.m in Sources */,
-				CA538EC119B0EA09008240AB /* CattyTests.m in Sources */,
-				CA538EC219B0EA09008240AB /* PointToBrickTests.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		CADBD70119B0E8C200C62836 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				CADBD70219B0E8C200C62836 /* DarkBlueGradientImageDetailCell.m in Sources */,
-				CADBD70319B0E8C200C62836 /* Scene.m in Sources */,
-				CADBD70419B0E8C200C62836 /* BrickSelectModalTransition.m in Sources */,
-				CADBD70519B0E8C200C62836 /* ForeverBrickCell.m in Sources */,
-				CADBD70619B0E8C200C62836 /* BaseTableViewController.m in Sources */,
-				CADBD70719B0E8C200C62836 /* CatrobatBaseCell.m in Sources */,
-				CADBD70819B0E8C200C62836 /* PlaceAtBrickCell.m in Sources */,
-				CADBD70919B0E8C200C62836 /* FBShimmeringLayer.m in Sources */,
-				CADBD70A19B0E8C200C62836 /* NSString+CatrobatNSStringExtensions.m in Sources */,
-				CADBD70B19B0E8C200C62836 /* BrickShapeFactory.m in Sources */,
-				CADBD70C19B0E8C200C62836 /* InternFormulaParserException.m in Sources */,
-				CADBD70D19B0E8C200C62836 /* UIColor+CatrobatUIColorExtensions.m in Sources */,
-				CADBD70E19B0E8C200C62836 /* UIImage+CatrobatUIImageExtensions.m in Sources */,
-				CADBD70F19B0E8C200C62836 /* TableUtil.m in Sources */,
-				CADBD71019B0E8C200C62836 /* ProgramLoadingInfo.m in Sources */,
-				CADBD71119B0E8C200C62836 /* BrickManager.m in Sources */,
-				CADBD71219B0E8C200C62836 /* ComboBoxView.m in Sources */,
-				CADBD71319B0E8C200C62836 /* StopAllSoundsBrickCell.m in Sources */,
-				CADBD71419B0E8C200C62836 /* CellMotionEffect.m in Sources */,
-				CADBD71519B0E8C200C62836 /* BaseTransition.m in Sources */,
-				CADBD71619B0E8C200C62836 /* ChangeBrightnessByNBrick.m in Sources */,
-				CADBD71719B0E8C200C62836 /* CatrobatTableViewController.m in Sources */,
-				CADBD71819B0E8C200C62836 /* BrickCellInlineView.m in Sources */,
-				CADBD71919B0E8C200C62836 /* AppDelegate.m in Sources */,
-				CADBD71A19B0E8C200C62836 /* main.m in Sources */,
-				CADBD71B19B0E8C200C62836 /* ProgramTableHeaderView.m in Sources */,
-				CADBD71C19B0E8C200C62836 /* Brick.m in Sources */,
-				CADBD71D19B0E8C200C62836 /* BrickDetailViewController.m in Sources */,
-				CADBD71E19B0E8C200C62836 /* SearchStoreViewController.m in Sources */,
-				CADBD71F19B0E8C200C62836 /* BroadcastBrick.m in Sources */,
-				CADBD72019B0E8C200C62836 /* NSDate+CustomExtensions.m in Sources */,
-				CADBD72119B0E8C200C62836 /* ChangeVariableBrickCell.m in Sources */,
-				CADBD72219B0E8C200C62836 /* BroadcastScript.m in Sources */,
-				CADBD72319B0E8C200C62836 /* SWUtilityButtonTapGestureRecognizer.m in Sources */,
-				CADBD72419B0E8C200C62836 /* ProgramTableViewController.m in Sources */,
-				CADBD72519B0E8C200C62836 /* OrderedDictionary.m in Sources */,
-				CADBD72619B0E8C200C62836 /* BroadcastWaitBrick.m in Sources */,
-				CADBD72719B0E8C200C62836 /* SoundComboBoxView.m in Sources */,
-				CADBD72819B0E8C200C62836 /* GoNStepsBackBrickCell.m in Sources */,
-				CADBD72919B0E8C200C62836 /* VariableComboBoxView.m in Sources */,
-				CADBD72A19B0E8C200C62836 /* WhenScriptCell.m in Sources */,
-				CADBD72B19B0E8C200C62836 /* ChangeBrightnessByNBrickCell.m in Sources */,
-				CADBD72C19B0E8C200C62836 /* AudioManager.m in Sources */,
-				CADBD72D19B0E8C200C62836 /* BDKNotifyHUD.m in Sources */,
-				CADBD72E19B0E8C200C62836 /* BroadcastWaitHandler.m in Sources */,
-				CADBD72F19B0E8C200C62836 /* CatrobatProject.m in Sources */,
-				CADBD73019B0E8C200C62836 /* ChangeGhostEffectByNBrick.m in Sources */,
-				CADBD73119B0E8C200C62836 /* ChangeSizeByNBrick.m in Sources */,
-				CADBD73219B0E8C200C62836 /* ChangeVolumeByNBrick.m in Sources */,
-				CADBD73319B0E8C200C62836 /* ChangeXByNBrick.m in Sources */,
-				CADBD73419B0E8C200C62836 /* ChangeYByNBrick.m in Sources */,
-				CADBD73519B0E8C200C62836 /* PlaySoundBrickCell.m in Sources */,
-				CADBD73619B0E8C200C62836 /* ComeToFrontBrick.m in Sources */,
-				CADBD73719B0E8C200C62836 /* FileManager.m in Sources */,
-				CADBD73819B0E8C200C62836 /* LXReorderableCollectionViewFlowLayout.m in Sources */,
-				CADBD73919B0E8C200C62836 /* ForeverBrick.m in Sources */,
-				CADBD73A19B0E8C200C62836 /* GlideToBrick.m in Sources */,
-				CADBD73B19B0E8C200C62836 /* GoNStepsBackBrick.m in Sources */,
-				CADBD73C19B0E8C200C62836 /* HideBrickCell.m in Sources */,
-				CADBD73D19B0E8C200C62836 /* Header.m in Sources */,
-				CADBD73E19B0E8C200C62836 /* HideBrick.m in Sources */,
-				CADBD73F19B0E8C200C62836 /* Look.m in Sources */,
-				CADBD74019B0E8C200C62836 /* SaveToProjectActivity.m in Sources */,
-				CADBD74119B0E8C200C62836 /* TurnRightBrickCell.m in Sources */,
-				CADBD74219B0E8C200C62836 /* LoopEndBrick.m in Sources */,
-				CADBD74319B0E8C200C62836 /* BroadcastScriptCell.m in Sources */,
-				CADBD74419B0E8C200C62836 /* NextLookBrick.m in Sources */,
-				CADBD74519B0E8C200C62836 /* NavigationController.m in Sources */,
-				CADBD74619B0E8C200C62836 /* RuntimeImageCache.m in Sources */,
-				CADBD74719B0E8C200C62836 /* CatrobatAlertView.m in Sources */,
-				CADBD74819B0E8C200C62836 /* Parser.m in Sources */,
-				CADBD74919B0E8C200C62836 /* PlaceAtBrick.m in Sources */,
-				CADBD74A19B0E8C200C62836 /* PlaySoundBrick.m in Sources */,
-				CADBD74B19B0E8C200C62836 /* LookComboBoxView.m in Sources */,
-				CADBD74C19B0E8C200C62836 /* SWUtilityButtonView.m in Sources */,
-				CADBD74D19B0E8C200C62836 /* UIUtil.m in Sources */,
-				CADBD74E19B0E8C200C62836 /* Program.m in Sources */,
-				CADBD74F19B0E8C200C62836 /* SoundsTableViewController.m in Sources */,
-				CADBD75019B0E8C200C62836 /* ProjectParser.m in Sources */,
-				CADBD75119B0E8C200C62836 /* RepeatBrick.m in Sources */,
-				CADBD75219B0E8C200C62836 /* UIImageView+CatrobatUIImageViewExtensions.m in Sources */,
-				CADBD75319B0E8C200C62836 /* Script.m in Sources */,
-				CADBD75419B0E8C200C62836 /* TurnLeftBrickCell.m in Sources */,
-				CADBD75519B0E8C200C62836 /* SetBrightnessBrick.m in Sources */,
-				CADBD75619B0E8C200C62836 /* MessageComboBoxView.m in Sources */,
-				CADBD75719B0E8C200C62836 /* SetYBrickCell.m in Sources */,
-				CADBD75819B0E8C200C62836 /* SetGhostEffectBrick.m in Sources */,
-				CADBD75919B0E8C200C62836 /* CatrobatAudioPlayer.m in Sources */,
-				CADBD75A19B0E8C200C62836 /* SetLookBrick.m in Sources */,
-				CADBD75B19B0E8C200C62836 /* SetSizeToBrick.m in Sources */,
-				CADBD75C19B0E8C200C62836 /* LoopEndBrickCell.m in Sources */,
-				CADBD75D19B0E8C200C62836 /* SetVolumeToBrick.m in Sources */,
-				CADBD75E19B0E8C200C62836 /* SetSizeToBrickCell.m in Sources */,
-				CADBD75F19B0E8C200C62836 /* StartScriptCell.m in Sources */,
-				CADBD76019B0E8C200C62836 /* CatrobatActionSheet.m in Sources */,
-				CADBD76119B0E8C200C62836 /* EAIntroPage.m in Sources */,
-				CADBD76219B0E8C200C62836 /* UIImage+AHKAdditions.m in Sources */,
-				CADBD76319B0E8C200C62836 /* SetXBrick.m in Sources */,
-				CADBD76419B0E8C200C62836 /* SetVariableBrickCell.m in Sources */,
-				CADBD76519B0E8C200C62836 /* SetYBrick.m in Sources */,
-				CADBD76619B0E8C200C62836 /* ChangeVolumeByNBrickCell.m in Sources */,
-				CADBD76719B0E8C200C62836 /* SetXBrickCell.m in Sources */,
-				CADBD76819B0E8C200C62836 /* Operators.m in Sources */,
-				CADBD76919B0E8C200C62836 /* SharkfoodMuteSwitchDetector.m in Sources */,
-				CADBD76A19B0E8C200C62836 /* ShowBrick.m in Sources */,
-				CADBD76B19B0E8C200C62836 /* BrickCell.m in Sources */,
-				CADBD76C19B0E8C200C62836 /* Sound.m in Sources */,
-				CADBD76D19B0E8C200C62836 /* SpeakBrick.m in Sources */,
-				CADBD76E19B0E8C200C62836 /* StartScript.m in Sources */,
-				CADBD76F19B0E8C200C62836 /* SetLookBrickCell.m in Sources */,
-				CADBD77019B0E8C200C62836 /* ColoredCell.m in Sources */,
-				CADBD77119B0E8C200C62836 /* NSMutableArray+CustomExtensions.m in Sources */,
-				CADBD77219B0E8C200C62836 /* StopAllSoundsBrick.m in Sources */,
-				CADBD77319B0E8C200C62836 /* SetGhostEffectBrickCell.m in Sources */,
-				CADBD77419B0E8C200C62836 /* BroadcastBrickCell.m in Sources */,
-				CADBD77519B0E8C200C62836 /* ClearGraphicEffectBrick.m in Sources */,
-				CADBD77619B0E8C200C62836 /* TurnLeftBrick.m in Sources */,
-				CADBD77719B0E8C200C62836 /* TurnRightBrick.m in Sources */,
-				CADBD77819B0E8C200C62836 /* SMPageControl.m in Sources */,
-				CADBD77919B0E8C200C62836 /* SetBrightnessBrickCell.m in Sources */,
-				CADBD77A19B0E8C200C62836 /* InfoPopupViewController.m in Sources */,
-				CADBD77B19B0E8C200C62836 /* Util.m in Sources */,
-				CADBD77C19B0E8C200C62836 /* UIViewController+CWPopup.m in Sources */,
-				CADBD77D19B0E8C200C62836 /* SingleBrickSelectionView.m in Sources */,
-				CADBD77E19B0E8C200C62836 /* NSMutableArray+SWUtilityButtons.m in Sources */,
-				CADBD77F19B0E8C200C62836 /* WaitBrick.m in Sources */,
-				CADBD78019B0E8C200C62836 /* IfLogicElseBrickCell.m in Sources */,
-				CADBD78119B0E8C200C62836 /* WhenScript.m in Sources */,
-				CADBD78219B0E8C200C62836 /* BrickScaleTransition.m in Sources */,
-				CADBD78319B0E8C200C62836 /* ObjectTableViewController.m in Sources */,
-				CADBD78419B0E8C200C62836 /* SelectButton.m in Sources */,
-				CADBD78519B0E8C200C62836 /* SpriteObject.m in Sources */,
-				CADBD78619B0E8C200C62836 /* SetVolumeToBrickCell.m in Sources */,
-				CADBD78719B0E8C200C62836 /* BrickSelectionView.m in Sources */,
-				CADBD78819B0E8C200C62836 /* ioapi.c in Sources */,
-				CADBD78919B0E8C200C62836 /* mztools.c in Sources */,
-				CADBD78A19B0E8C200C62836 /* ChangeYByNBrickCell.m in Sources */,
-				CADBD78B19B0E8C200C62836 /* UIWindow+AHKAdditions.m in Sources */,
-				CADBD78C19B0E8C200C62836 /* unzip.c in Sources */,
-				CADBD78D19B0E8C200C62836 /* ObjectComboBoxView.m in Sources */,
-				CADBD78E19B0E8C200C62836 /* SoundPickerTableViewController.m in Sources */,
-				CADBD78F19B0E8C200C62836 /* ChangeXByNBrickCell.m in Sources */,
-				CADBD79019B0E8C200C62836 /* zip.c in Sources */,
-				CADBD79119B0E8C200C62836 /* EVCircularProgressView.m in Sources */,
-				CADBD79219B0E8C200C62836 /* DownloadImageCache.m in Sources */,
-				CADBD79319B0E8C200C62836 /* NoteBrickCell.m in Sources */,
-				CADBD79419B0E8C200C62836 /* SWTableViewCell.m in Sources */,
-				CADBD79519B0E8C200C62836 /* ContinueImageCell.m in Sources */,
-				CADBD79619B0E8C200C62836 /* ScriptCollectionViewController.m in Sources */,
-				CADBD79719B0E8C200C62836 /* LooksTableViewController.m in Sources */,
-				CADBD79819B0E8C200C62836 /* DarkBlueGradientCell.m in Sources */,
-				CADBD79919B0E8C200C62836 /* ChangeSizeByNBrickCell.m in Sources */,
-				CADBD79A19B0E8C200C62836 /* NextLookBrickCell.m in Sources */,
-				CADBD79B19B0E8C200C62836 /* DarkBlueGradientImageCell.m in Sources */,
-				CADBD79C19B0E8C200C62836 /* GDataXMLNode+PrettyFormatterExtensions.m in Sources */,
-				CADBD79D19B0E8C200C62836 /* Functions.m in Sources */,
-				CADBD79E19B0E8C200C62836 /* PlaceHolderView.m in Sources */,
-				CADBD79F19B0E8C200C62836 /* MyProgramsViewController.m in Sources */,
-				CADBD7A019B0E8C200C62836 /* IfLogicBeginBrickCell.m in Sources */,
-				CADBD7A119B0E8C200C62836 /* ImageCache.m in Sources */,
-				CADBD7A219B0E8C200C62836 /* CatrobatInformation.m in Sources */,
-				CADBD7A319B0E8C200C62836 /* ProgramDetailStoreViewController.m in Sources */,
-				CADBD7A419B0E8C200C62836 /* TTTAttributedLabel.m in Sources */,
-				CADBD7A519B0E8C200C62836 /* NSData+Hashes.m in Sources */,
-				CADBD7A619B0E8C200C62836 /* SWCellScrollView.m in Sources */,
-				CADBD7A719B0E8C200C62836 /* CAGradientLayer+CatrobatCAGradientExtensions.m in Sources */,
-				CADBD7A819B0E8C200C62836 /* ChangeGhostEffectByNBrickCell.m in Sources */,
-				CADBD7A919B0E8C200C62836 /* DownloadTabBarController.m in Sources */,
-				CADBD7AA19B0E8C200C62836 /* RecentProgramsStoreViewController.m in Sources */,
-				CADBD7AB19B0E8C200C62836 /* LoadingView.m in Sources */,
-				CADBD7AC19B0E8C200C62836 /* ComeToFrontBrickCell.m in Sources */,
-				CADBD7AD19B0E8C200C62836 /* FeaturedProgramsStoreViewController.m in Sources */,
-				CADBD7AE19B0E8C200C62836 /* ScenePresenterViewController.m in Sources */,
-				CADBD7AF19B0E8C200C62836 /* Reachability.m in Sources */,
-				CADBD7B019B0E8C200C62836 /* PointToBrickCell.m in Sources */,
-				CADBD7B119B0E8C200C62836 /* FBShimmeringView.m in Sources */,
-				CADBD7B219B0E8C200C62836 /* AHKActionSheetViewController.m in Sources */,
-				CADBD7B319B0E8C200C62836 /* MoveNStepsBrickCell.m in Sources */,
-				CADBD7B419B0E8C200C62836 /* TestParser.m in Sources */,
-				CADBD7B519B0E8C200C62836 /* PointInDirectionBrick.m in Sources */,
-				CADBD7B619B0E8C200C62836 /* PointInDirectionBrickCell.m in Sources */,
-				CADBD7B719B0E8C200C62836 /* GlideToBrickCell.m in Sources */,
-				CADBD7B819B0E8C200C62836 /* AHKActionSheet.m in Sources */,
-				CADBD7B919B0E8C200C62836 /* SWLongPressGestureRecognizer.m in Sources */,
-				CADBD7BA19B0E8C200C62836 /* FXBlurView.m in Sources */,
-				CADBD7BB19B0E8C200C62836 /* HelpWebViewController.m in Sources */,
-				CADBD7BC19B0E8C200C62836 /* BaseWebViewController.m in Sources */,
-				CADBD7BD19B0E8C200C62836 /* SpeakBrickCell.m in Sources */,
-				CADBD7BE19B0E8C200C62836 /* ClearGraphicEffectBrickCell.m in Sources */,
-				CADBD7BF19B0E8C200C62836 /* BroadcastWaitBrickCell.m in Sources */,
-				CADBD7C019B0E8C200C62836 /* LookImageViewController.m in Sources */,
-				CADBD7C119B0E8C200C62836 /* CreateView.m in Sources */,
-				CADBD7C219B0E8C200C62836 /* SetVariableBrick.m in Sources */,
-				CADBD7C319B0E8C200C62836 /* UserVariable.m in Sources */,
-				CADBD7C419B0E8C200C62836 /* DataTransferMessage.m in Sources */,
-				CADBD7C519B0E8C200C62836 /* IBActionSheet.m in Sources */,
-				CADBD7C619B0E8C200C62836 /* Formula.m in Sources */,
-				CADBD7C719B0E8C200C62836 /* ShowBrickCell.m in Sources */,
-				CADBD7C819B0E8C200C62836 /* FormulaElement.m in Sources */,
-				CADBD7C919B0E8C200C62836 /* IfLogicBeginBrick.m in Sources */,
-				CADBD7CA19B0E8C200C62836 /* IfLogicElseBrick.m in Sources */,
-				CADBD7CB19B0E8C200C62836 /* IfLogicEndBrick.m in Sources */,
-				CADBD7CC19B0E8C200C62836 /* PointToBrick.m in Sources */,
-				CADBD7CD19B0E8C200C62836 /* VariablesContainer.m in Sources */,
-				CADBD7CE19B0E8C200C62836 /* IfLogicEndBrickCell.m in Sources */,
-				CADBD7CF19B0E8C200C62836 /* ChangeVariableBrick.m in Sources */,
-				CADBD7D019B0E8C200C62836 /* ProgramManager.m in Sources */,
-				CADBD7D119B0E8C200C62836 /* SensorHandler.m in Sources */,
-				CADBD7D219B0E8C200C62836 /* XMLObjectReference.m in Sources */,
-				CADBD7D319B0E8C200C62836 /* NoteBrick.m in Sources */,
-				CADBD7D419B0E8C200C62836 /* OrderedMapTable.m in Sources */,
-				CADBD7D519B0E8C200C62836 /* MoveNStepsBrick.m in Sources */,
-				CADBD7D619B0E8C200C62836 /* IfOnEdgeBounceBrickCell.m in Sources */,
-				CADBD7D719B0E8C200C62836 /* DarkBlueGradientFeaturedCell.m in Sources */,
-				CADBD7D819B0E8C200C62836 /* Logger.m in Sources */,
-				CADBD7D919B0E8C200C62836 /* IfOnEdgeBounceBrick.m in Sources */,
-				CADBD7DA19B0E8C200C62836 /* RepeatBrickCell.m in Sources */,
-				CADBD7DB19B0E8C200C62836 /* SensorManager.m in Sources */,
-				CADBD7DC19B0E8C200C62836 /* SSZipArchive.m in Sources */,
-				CADBD7DD19B0E8C200C62836 /* LoopBeginBrick.m in Sources */,
-				CADBD7DE19B0E8C200C62836 /* ScriptDeleteButton.m in Sources */,
-				CADBD7DF19B0E8C200C62836 /* GDataXMLNode.m in Sources */,
-				CADBD7E019B0E8C200C62836 /* WaitBrickCell.m in Sources */,
-				CADBD7E119B0E8C200C62836 /* NSString+FastImageSize.m in Sources */,
-				CADBD7E219B0E8C200C62836 /* RoundBorderedButton.m in Sources */,
-				CADBD7E319B0E8C200C62836 /* EAIntroView.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
 		B46B270D17703F9400172837 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 1D6058900D05DD3D006BFB54 /* Catty_iOS7.1 */;
+			target = 1D6058900D05DD3D006BFB54 /* Catty */;
 			targetProxy = B46B270C17703F9400172837 /* PBXContainerItemProxy */;
 		};
 		B4A92DCF175F8EE800608667 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = B4A92DC3175F535300608667 /* LicenseTest_iOS7.1 */;
+			target = B4A92DC3175F535300608667 /* LicenseTest */;
 			targetProxy = B4A92DCE175F8EE800608667 /* PBXContainerItemProxy */;
 		};
-		CA16F07A19BB8F6900D97268 /* PBXTargetDependency */ = {
+		CA0FDE5819CB3D120065D6A2 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = "ObjectiveGit-iOS";
-			targetProxy = CA16F07919BB8F6900D97268 /* PBXContainerItemProxy */;
-		};
-		CA538ED119B0EA2F008240AB /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = CADBD6D319B0E8C200C62836 /* Catty_iOS8.0 */;
-			targetProxy = CA538ED019B0EA2F008240AB /* PBXContainerItemProxy */;
-		};
-		CA6E958719BB9100000A7E25 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = "ObjectiveGit-iOS";
-			targetProxy = CA6E958619BB9100000A7E25 /* PBXContainerItemProxy */;
-		};
-		CADBD6D419B0E8C200C62836 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = B4A92DC3175F535300608667 /* LicenseTest_iOS7.1 */;
-			targetProxy = CADBD6D519B0E8C200C62836 /* PBXContainerItemProxy */;
+			targetProxy = CA0FDE5719CB3D120065D6A2 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -4516,7 +3687,7 @@
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
 				HEADER_SEARCH_PATHS = /usr/include/libxml2;
 				INFOPLIST_FILE = "Catty/App-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				OTHER_LDFLAGS = (
 					"-ObjC",
 					"-all_load",
@@ -4524,9 +3695,9 @@
 				);
 				PRODUCT_NAME = "Pocket Code";
 				PROVISIONING_PROFILE = "";
-				SDKROOT = iphoneos7.1;
+				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = 1;
-				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/ObjectiveGit/External/libgit2/include $(BUILT_PRODUCTS_DIR)/usr/local/include";
+				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/../objective-git/External/libgit2/include $(BUILT_PRODUCTS_DIR)/usr/local/include";
 			};
 			name = Debug;
 		};
@@ -4545,7 +3716,7 @@
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
 				HEADER_SEARCH_PATHS = /usr/include/libxml2;
 				INFOPLIST_FILE = "Catty/App-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				OTHER_LDFLAGS = (
 					"-ObjC",
 					"-all_load",
@@ -4553,9 +3724,9 @@
 				);
 				PRODUCT_NAME = "Pocket Code";
 				PROVISIONING_PROFILE = "";
-				SDKROOT = iphoneos7.1;
+				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = 1;
-				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/ObjectiveGit/External/libgit2/include $(BUILT_PRODUCTS_DIR)/usr/local/include";
+				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/../objective-git/External/libgit2/include $(BUILT_PRODUCTS_DIR)/usr/local/include";
 			};
 			name = Release;
 		};
@@ -4628,9 +3799,9 @@
 		B4A92DC4175F535300608667 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = iphoneos7.1;
+				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
@@ -4638,9 +3809,9 @@
 		B4A92DC5175F535300608667 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = iphoneos7.1;
+				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
@@ -4760,154 +3931,10 @@
 			};
 			name = Release;
 		};
-		CA538ECC19B0EA09008240AB /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
-				CLANG_CXX_LIBRARY = "libc++";
-				CLANG_ENABLE_MODULES = YES;
-				CLANG_WARN_BOOL_CONVERSION = YES;
-				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
-				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-				);
-				GCC_DYNAMIC_NO_PIC = NO;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "CattyTests/CattyTests-Prefix.pch";
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
-				GCC_WARN_UNDECLARED_SELECTOR = YES;
-				GCC_WARN_UNUSED_FUNCTION = YES;
-				INFOPLIST_FILE = "CattyTests/CattyTests-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				PRODUCT_NAME = CattyTests_iOS8.0;
-				SDKROOT = iphoneos8.0;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Catty_iOS7.1 copy.app/Catty_iOS7.1 copy";
-				WRAPPER_EXTENSION = xctest;
-			};
-			name = Debug;
-		};
-		CA538ECD19B0EA09008240AB /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
-				CLANG_CXX_LIBRARY = "libc++";
-				CLANG_ENABLE_MODULES = YES;
-				CLANG_WARN_BOOL_CONVERSION = YES;
-				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
-				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
-				COPY_PHASE_STRIP = YES;
-				ENABLE_NS_ASSERTIONS = NO;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-				);
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "CattyTests/CattyTests-Prefix.pch";
-				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
-				GCC_WARN_UNDECLARED_SELECTOR = YES;
-				GCC_WARN_UNUSED_FUNCTION = YES;
-				INFOPLIST_FILE = "CattyTests/CattyTests-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				PRODUCT_NAME = CattyTests_iOS8.0;
-				SDKROOT = iphoneos8.0;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Catty_iOS7.1 copy.app/Catty_iOS7.1 copy";
-				WRAPPER_EXTENSION = xctest;
-			};
-			name = Release;
-		};
-		CADBD7F919B0E8C200C62836 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
-				CLANG_WARN_OBJC_RECEIVER_WEAK = NO;
-				CLANG_WARN_OBJC_REPEATED_USE_OF_WEAK = NO;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				FRAMEWORK_SEARCH_PATHS = "";
-				GCC_PREFIX_HEADER = "Catty/App-Prefix.pch";
-				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
-				HEADER_SEARCH_PATHS = /usr/include/libxml2;
-				INFOPLIST_FILE = "Catty/App-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				OTHER_LDFLAGS = (
-					"-ObjC",
-					"-all_load",
-					"-lxml2",
-				);
-				PRODUCT_NAME = "Pocket Code";
-				PROVISIONING_PROFILE = "";
-				SDKROOT = iphoneos8.0;
-				TARGETED_DEVICE_FAMILY = 1;
-				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/ObjectiveGit/External/libgit2/include $(BUILT_PRODUCTS_DIR)/usr/local/include";
-			};
-			name = Debug;
-		};
-		CADBD7FA19B0E8C200C62836 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
-				CLANG_WARN_OBJC_RECEIVER_WEAK = NO;
-				CLANG_WARN_OBJC_REPEATED_USE_OF_WEAK = NO;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				FRAMEWORK_SEARCH_PATHS = "";
-				GCC_PREFIX_HEADER = "Catty/App-Prefix.pch";
-				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
-				HEADER_SEARCH_PATHS = /usr/include/libxml2;
-				INFOPLIST_FILE = "Catty/App-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				OTHER_LDFLAGS = (
-					"-ObjC",
-					"-all_load",
-					"-lxml2",
-				);
-				PRODUCT_NAME = "Pocket Code";
-				PROVISIONING_PROFILE = "";
-				SDKROOT = iphoneos8.0;
-				TARGETED_DEVICE_FAMILY = 1;
-				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/ObjectiveGit/External/libgit2/include $(BUILT_PRODUCTS_DIR)/usr/local/include";
-			};
-			name = Release;
-		};
-		CADBD80019B0E8F300C62836 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				PRODUCT_NAME = LicenseTest_iOS8.0;
-				SDKROOT = iphoneos8.0;
-				TARGETED_DEVICE_FAMILY = 1;
-			};
-			name = Debug;
-		};
-		CADBD80119B0E8F300C62836 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				PRODUCT_NAME = LicenseTest_iOS8.0;
-				SDKROOT = iphoneos8.0;
-				TARGETED_DEVICE_FAMILY = 1;
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		1D6058960D05DD3E006BFB54 /* Build configuration list for PBXNativeTarget "Catty_iOS7.1" */ = {
+		1D6058960D05DD3E006BFB54 /* Build configuration list for PBXNativeTarget "Catty" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				1D6058940D05DD3E006BFB54 /* Debug */,
@@ -4916,7 +3943,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		B46B270E17703F9400172837 /* Build configuration list for PBXNativeTarget "CattyTests_iOS7.1" */ = {
+		B46B270E17703F9400172837 /* Build configuration list for PBXNativeTarget "CattyTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				B46B270F17703F9400172837 /* Debug */,
@@ -4925,7 +3952,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		B4A92DC7175F535300608667 /* Build configuration list for PBXAggregateTarget "LicenseTest_iOS7.1" */ = {
+		B4A92DC7175F535300608667 /* Build configuration list for PBXAggregateTarget "LicenseTest" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				B4A92DC4175F535300608667 /* Debug */,
@@ -4939,33 +3966,6 @@
 			buildConfigurations = (
 				C01FCF4F08A954540054247B /* Debug */,
 				C01FCF5008A954540054247B /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		CA538ECB19B0EA09008240AB /* Build configuration list for PBXNativeTarget "CattyTests_iOS8.0" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				CA538ECC19B0EA09008240AB /* Debug */,
-				CA538ECD19B0EA09008240AB /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		CADBD7F819B0E8C200C62836 /* Build configuration list for PBXNativeTarget "Catty_iOS8.0" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				CADBD7F919B0E8C200C62836 /* Debug */,
-				CADBD7FA19B0E8C200C62836 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		CADBD7FF19B0E8F300C62836 /* Build configuration list for PBXAggregateTarget "LicenseTest_iOS8.0" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				CADBD80019B0E8F300C62836 /* Debug */,
-				CADBD80119B0E8F300C62836 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

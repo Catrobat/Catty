@@ -16,8 +16,8 @@ Please ask on our Google Plus community: http://goo.gl/fOjQi
    `git clone ...`
 1. Update submodules
    `git submodule update --init --recursive`
-1. Update submodules in ObjectiveGit
-   `Catty/src/ObjectiveGit/script/bootstrap`
+1. Call bootstrap script of ObjectiveGit library
+   `Catty/objective-git/script/bootstrap`
 1. `sudo brew install homebrew/versions/perl516`
 
 # First Steps

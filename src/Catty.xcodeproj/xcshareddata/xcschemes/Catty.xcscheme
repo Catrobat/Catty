@@ -16,7 +16,21 @@
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "1D6058900D05DD3D006BFB54"
                BuildableName = "Pocket Code.app"
-               BlueprintName = "Catty_iOS7.1"
+               BlueprintName = "Catty"
+               ReferencedContainer = "container:Catty.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "NO"
+            buildForArchiving = "NO"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "B46B26FE17703F9400172837"
+               BuildableName = "CattyTests.xctest"
+               BlueprintName = "CattyTests"
                ReferencedContainer = "container:Catty.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -28,13 +42,23 @@
       shouldUseLaunchSchemeArgsEnv = "YES"
       buildConfiguration = "Debug">
       <Testables>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "B46B26FE17703F9400172837"
+               BuildableName = "CattyTests.xctest"
+               BlueprintName = "CattyTests"
+               ReferencedContainer = "container:Catty.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "1D6058900D05DD3D006BFB54"
             BuildableName = "Pocket Code.app"
-            BlueprintName = "Catty_iOS7.1"
+            BlueprintName = "Catty"
             ReferencedContainer = "container:Catty.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -53,7 +77,7 @@
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "1D6058900D05DD3D006BFB54"
             BuildableName = "Pocket Code.app"
-            BlueprintName = "Catty_iOS7.1"
+            BlueprintName = "Catty"
             ReferencedContainer = "container:Catty.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
@@ -71,7 +95,7 @@
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "1D6058900D05DD3D006BFB54"
             BuildableName = "Pocket Code.app"
-            BlueprintName = "Catty_iOS7.1"
+            BlueprintName = "Catty"
             ReferencedContainer = "container:Catty.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
