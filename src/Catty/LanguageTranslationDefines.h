@@ -329,7 +329,6 @@
 
 #else // kIsRelease
 
-
 // control bricks
 #define kLocalizedWhenProgramStarted NSLocalizedString(@"When program started", nil)
 #define kLocalizedWhenTapped NSLocalizedString(@"When tapped", nil)

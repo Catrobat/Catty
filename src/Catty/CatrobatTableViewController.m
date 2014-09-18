@@ -308,18 +308,17 @@ static NSCharacterSet *blockedCharacterSet = nil;
 {
     CGFloat height;
     if (indexPath.row == 0) {
-        height= [TableUtil getHeightForContinueCell];
-        if ([Util getScreenHeight] == kIphone4ScreenHeight) {
+        height= [TableUtil heightForContinueCell];
+        if ([Util screenHeight] == kIphone4ScreenHeight) {
+            height = height*kIphone4ScreenHeight/kIphone5ScreenHeight;
+        }
+    } else {
+        height = [TableUtil heightForImageCell];
+        if ([Util screenHeight] == kIphone4ScreenHeight) {
             height = height*kIphone4ScreenHeight/kIphone5ScreenHeight;
         }
     }
-    else {
-        height = [TableUtil getHeightForImageCell];
-        if ([Util getScreenHeight] == kIphone4ScreenHeight) {
-            height = height*kIphone4ScreenHeight/kIphone5ScreenHeight;
-        }
-    }
-    if ([Util getScreenHeight] == kIphone5ScreenHeight){
+    if ([Util screenHeight] == kIphone5ScreenHeight){
     }
     return height; // for scrolling reasons
 }

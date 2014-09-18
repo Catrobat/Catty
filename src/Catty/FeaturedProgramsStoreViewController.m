@@ -315,15 +315,14 @@
 #pragma mark - Table view delegate
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if(self.featuredSize){
+    if (self.featuredSize) {
         NSNumber* width = self.featuredSize[0];
         NSNumber* height = self.featuredSize[1];
         
-        CGFloat factor = width.floatValue / [Util getScreenWidth];
+        CGFloat factor = width.floatValue / [Util screenWidth];
         return height.floatValue/factor;
     }
-    
-    return [TableUtil getHeightForFeaturedCell];
+    return [TableUtil heightForFeaturedCell];
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath

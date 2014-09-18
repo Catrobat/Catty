@@ -45,7 +45,7 @@
 
 +(CGFloat)height
 {
-    return [Util getScreenHeight];
+    return [Util screenHeight];
 }
 
 + (UIView*)createProgramDetailView:(CatrobatProject*)project target:(id)target
@@ -216,7 +216,7 @@
 {
     UIImageView *imageView = [[UIImageView alloc] init];
     UIImage* errorImage = [UIImage imageNamed:@"thumbnail_large"];
-    imageView.frame = CGRectMake(view.frame.size.width/15, view.frame.size.height*0.1f, view.frame.size.width/3, [Util getScreenHeight]/4.5f);
+    imageView.frame = CGRectMake(view.frame.size.width/15, view.frame.size.height*0.1, view.frame.size.width/3, [Util screenHeight]/4.5f);
     imageView.image = [UIImage imageWithContentsOfURL:[NSURL URLWithString:imageUrlString]
                                      placeholderImage:nil
                                            errorImage:errorImage
@@ -288,7 +288,7 @@
 
 + (void) addDownloadButtonToView:(UIView*)view withTarget:(id)target
 {
-    UIButton *downloadButton = [[RoundBorderedButton alloc] initWithFrame:CGRectMake(2*view.frame.size.width/3-10,view.frame.size.height*0.1f+[Util getScreenHeight]/4.5f-25, 105, 25)];
+    UIButton *downloadButton = [[RoundBorderedButton alloc] initWithFrame:CGRectMake(2*view.frame.size.width/3-10,view.frame.size.height*0.1+[Util screenHeight]/4.5f-25, 105, 25)];
     downloadButton.tag = kDownloadButtonTag;
     downloadButton.titleLabel.font = [UIFont boldSystemFontOfSize:14];
     [downloadButton setTitle:kLocalizedDownload forState:UIControlStateNormal];
@@ -307,7 +307,7 @@
 
 + (void)addPlayButtonToView:(UIView*)view withTarget:(id)target
 {
-    UIButton *playButton = [[RoundBorderedButton alloc] initWithFrame:CGRectMake(2*view.frame.size.width/3-10,view.frame.size.height*0.1f+[Util getScreenHeight]/4.5f-25, 105, 25)];
+    UIButton *playButton = [[RoundBorderedButton alloc] initWithFrame:CGRectMake(2*view.frame.size.width/3-10,view.frame.size.height*0.1+[Util screenHeight]/4.5f-25, 105, 25)];
     playButton.tag = kPlayButtonTag;
     playButton.hidden = YES;
     playButton.titleLabel.font = [UIFont boldSystemFontOfSize:14];
@@ -319,17 +319,14 @@
     [view addSubview:playButton];
 }
 
-+(void) addLoadingButtonToView:(UIView*)view withTarget:(id)target
++ (void)addLoadingButtonToView:(UIView*)view withTarget:(id)target
 {
-    EVCircularProgressView* button = [[EVCircularProgressView alloc] init];
-    button.tag =kStopLoadingTag;
+    EVCircularProgressView *button = [[EVCircularProgressView alloc] init];
+    button.tag = kStopLoadingTag;
     button.tintColor = [UIColor lightOrangeColor];
-    button.frame = CGRectMake(2*view.frame.size.width/3+30,view.frame.size.height*0.1f+[Util getScreenHeight]/4.5f-25, 28, 28);
+    button.frame = CGRectMake(2*view.frame.size.width/3+30,view.frame.size.height*0.1+[Util screenHeight]/4.5f-25, 28, 28);
     button.hidden = YES;
-    
     [button addTarget:target action:@selector(stopLoading) forControlEvents:UIControlEventTouchUpInside];
-    
-    
     [view addSubview:button];
 }
 

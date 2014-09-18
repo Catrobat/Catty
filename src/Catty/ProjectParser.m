@@ -35,7 +35,7 @@
 #import "OrderedMapTable.h"
 #import "NSString+CatrobatNSStringExtensions.h"
 #import "SpriteObject.h"
-
+#import "GDataXMLNode+PrettyFormatterExtensions.h"
 
 #define kCatroidXMLPrefix               @"org.catrobat.catroid.content."
 #define kCatroidXMLSpriteList           @"spriteList"
@@ -129,8 +129,8 @@
 // Each attribute in the XML file is then used to assign a value to a
 // corresponding property in the introspected class/object.
 // [in] node: The current GDataXMLElement node of the XML file
-- (id)parseNode:(GDataXMLElement*)node withParent:(XMLObjectReference*)parent {
-
+- (id)parseNode:(GDataXMLElement*)node withParent:(XMLObjectReference*)parent
+{
     if (! node)
       return nil;
 
@@ -150,7 +150,7 @@
 
     // just an educated guess...
     if ([object isKindOfClass:[SpriteObject class]]) {
-        SpriteObject* spriteObject = (SpriteObject*) object;
+        SpriteObject* spriteObject = (SpriteObject*)object;
         spriteObject.program = self.program;
         self.currentActiveSprite = spriteObject;
     }
@@ -165,7 +165,6 @@
         }
         objc_property_t property = class_getProperty([object class], [child.name UTF8String]);
 
-        
         if (property) {
             NSString *propertyType = [NSString stringWithUTF8String:property_getTypeString(property)];
             

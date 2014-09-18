@@ -97,7 +97,7 @@
 #if kIsRelease // kIsRelease
     self.navigationItem.rightBarButtonItem.enabled = NO;
 #endif // kIsRelease
-    self.placeHolderView = [[PlaceHolderView alloc]initWithTitle:kLocalizedScripts];
+    self.placeHolderView = [[PlaceHolderView alloc] initWithTitle:kLocalizedScripts];
     self.placeHolderView.hidden = self.object.scriptList.count ? YES : NO;
     self.brickScaleTransition = [BrickScaleTransition new];
     self.selectedIndexPaths = [NSMutableDictionary dictionary];
@@ -567,7 +567,7 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
 #if kIsRelease // kIsRelease
             add.enabled = NO;
 #else // kIsRelease
-            add.enabled = !self.editing;
+            add.enabled = (! self.editing);
 #endif // kIsRelease
             UIBarButtonItem *play = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemPlay
                                                                                   target:self

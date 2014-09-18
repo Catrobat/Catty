@@ -112,7 +112,7 @@
     UIImage *menuBackgroundImage = [UIImage imageNamed:@"stage_dialog_background_middle_1"];
     UIImage *newBackgroundImage;
     
-    if ([Util getScreenHeight] == kIphone4ScreenHeight) {
+    if ([Util screenHeight] == kIphone4ScreenHeight) {
         CGSize size = CGSizeMake(kWidthSlideMenu+kBounceEffect, kIphone4ScreenHeight);
         UIGraphicsBeginImageContextWithOptions(size, NO, 0.0);
         [menuBackgroundImage drawInRect:CGRectMake(0, 0, size.width, size.height)];
@@ -234,7 +234,7 @@
 
 - (void)setUpLabels
 {
-    if ([Util getScreenHeight]==kIphone5ScreenHeight) {
+    if ([Util screenHeight]==kIphone5ScreenHeight) {
         UILabel* label      = [[UILabel alloc] initWithFrame:
                                CGRectMake(kPlaceofLabels+((kContinueButtonSize-kMenuButtonSize)/2),(kIphone5ScreenHeight/2)-(kContinueButtonSize/2)-(KMenuIPhone5GapSize)-kMenuIPhone5ContinueGapSize-(kMenuButtonSize)-10, 100, kMenuButtonSize)];
         self.menuBackLabel  = label;
@@ -254,7 +254,7 @@
                                CGRectMake(kPlaceofLabels+((kContinueButtonSize-kMenuButtonSize)/2),(kIphone5ScreenHeight/2)+                    (kContinueButtonSize/2)+(KMenuIPhone5GapSize)+kMenuIPhone5ContinueGapSize+(2*kMenuButtonSize)-10,  100, kMenuButtonSize)];
         self.menuAxisLabel  = label;
     }
-    if ([Util getScreenHeight]==kIphone4ScreenHeight) {
+    if ([Util screenHeight]==kIphone4ScreenHeight) {
         UILabel* label     =[[UILabel alloc] initWithFrame:
                              CGRectMake(kPlaceofLabels+((kContinueButtonSize-kMenuButtonSize)/2),(kIphone4ScreenHeight/2)-(kContinueButtonSize/2)-(kMenuIPhone4GapSize)-kMenuIPhone4ContinueGapSize-(kMenuButtonSize)-10, 100, kMenuButtonSize)];
         self.menuBackLabel = label;
@@ -359,7 +359,7 @@
 {
     self.menuAspectRatioButton.frame = CGRectMake(10,10, kMenuButtonSize-20, kMenuButtonSize-20);
     ///StartPosition
-    if ([Util getScreenHeight]==kIphone4ScreenHeight) {
+    if ([Util screenHeight]==kIphone4ScreenHeight) {
         self.menuBackButton.frame = CGRectMake(kPlaceOfButtons+((kContinueButtonSize-kMenuButtonSize)/2),(kIphone4ScreenHeight/2)-(kContinueButtonSize/2)-(kMenuIPhone4GapSize)-(2*kMenuButtonSize)-kMenuIPhone4ContinueGapSize, kMenuButtonSize, kMenuButtonSize);
         
         self.menuRestartButton.frame = CGRectMake(kPlaceOfButtons+((kContinueButtonSize-kMenuButtonSize)/2),(kIphone4ScreenHeight/2)-(kContinueButtonSize/2)-kMenuIPhone4ContinueGapSize-(kMenuButtonSize),  kMenuButtonSize, kMenuButtonSize);
@@ -367,7 +367,7 @@
         self.menuScreenshotButton.frame = CGRectMake(kPlaceOfButtons+((kContinueButtonSize-kMenuButtonSize)/2),(kIphone4ScreenHeight/2)+(kContinueButtonSize/2)+kMenuIPhone4ContinueGapSize,  kMenuButtonSize, kMenuButtonSize);
         self.menuAxisButton.frame = CGRectMake(kPlaceOfButtons+((kContinueButtonSize-kMenuButtonSize)/2),(kIphone4ScreenHeight/2)+(kContinueButtonSize/2)+(kMenuIPhone4GapSize)+kMenuIPhone4ContinueGapSize+(kMenuButtonSize),  kMenuButtonSize, kMenuButtonSize);
     }
-    if ([Util getScreenHeight]==kIphone5ScreenHeight) {
+    if ([Util screenHeight]==kIphone5ScreenHeight) {
         self.menuBackButton.frame = CGRectMake(kPlaceOfButtons+((kContinueButtonSize-kMenuButtonSize)/2),(kIphone5ScreenHeight/2)-(kContinueButtonSize/2)-(KMenuIPhone5GapSize)-kMenuIPhone5ContinueGapSize-(2*kMenuButtonSize), kMenuButtonSize, kMenuButtonSize);
         self.menuRestartButton.frame = CGRectMake(kPlaceOfButtons+((kContinueButtonSize-kMenuButtonSize)/2),(kIphone5ScreenHeight/2)-(kContinueButtonSize/2)-kMenuIPhone5ContinueGapSize-(kMenuButtonSize),  kMenuButtonSize, kMenuButtonSize);
         self.menuContinueButton.frame = CGRectMake(kPlaceOfButtons+kContinueOffset,(kIphone5ScreenHeight/2)-(kContinueButtonSize/2),  kContinueButtonSize, kContinueButtonSize);
@@ -380,34 +380,34 @@
 - (void)setUpGridView
 {
     self.gridView.backgroundColor = [UIColor clearColor];
-    UIView *xArrow = [[UIView alloc] initWithFrame:CGRectMake(0,[Util getScreenHeight]/2,[Util getScreenWidth],1)];
+    UIView *xArrow = [[UIView alloc] initWithFrame:CGRectMake(0,[Util screenHeight]/2,[Util screenWidth],1)];
     xArrow.backgroundColor = [UIColor redColor];
     [self.gridView addSubview:xArrow];
-    UIView *yArrow = [[UIView alloc] initWithFrame:CGRectMake([Util getScreenWidth]/2,0,1,[Util getScreenHeight])];
+    UIView *yArrow = [[UIView alloc] initWithFrame:CGRectMake([Util screenWidth]/2,0,1,[Util screenHeight])];
     yArrow.backgroundColor = [UIColor redColor];
     [self.gridView addSubview:yArrow];
     //nullLabel
-    UILabel *nullLabel = [[UILabel alloc] initWithFrame:CGRectMake([Util getScreenWidth]/2 + 5, [Util getScreenHeight]/2 + 5, 10, 15)];
+    UILabel *nullLabel = [[UILabel alloc] initWithFrame:CGRectMake([Util screenWidth]/2 + 5, [Util screenHeight]/2 + 5, 10, 15)];
     nullLabel.text = @"0";
     nullLabel.textColor = [UIColor redColor];
     [self.gridView addSubview:nullLabel];
     //positveWidth
-    UILabel *positiveWidth = [[UILabel alloc] initWithFrame:CGRectMake([Util getScreenWidth]- 40, [Util getScreenHeight]/2 + 5, 30, 15)];
+    UILabel *positiveWidth = [[UILabel alloc] initWithFrame:CGRectMake([Util screenWidth]- 40, [Util screenHeight]/2 + 5, 30, 15)];
     positiveWidth.text = [NSString stringWithFormat:@"%d",(int)self.program.header.screenWidth.floatValue/2];
     positiveWidth.textColor = [UIColor redColor];
     [self.gridView addSubview:positiveWidth];
     //negativWidth
-    UILabel *negativeWidth = [[UILabel alloc] initWithFrame:CGRectMake(5, [Util getScreenHeight]/2 + 5, 40, 15)];
+    UILabel *negativeWidth = [[UILabel alloc] initWithFrame:CGRectMake(5, [Util screenHeight]/2 + 5, 40, 15)];
     negativeWidth.text = [NSString stringWithFormat:@"-%d",(int)self.program.header.screenWidth.floatValue/2];
     negativeWidth.textColor = [UIColor redColor];
     [self.gridView addSubview:negativeWidth];
     //positveHeight
-    UILabel *positiveHeight = [[UILabel alloc] initWithFrame:CGRectMake([Util getScreenWidth]/2 + 5, [Util getScreenHeight] - 20, 40, 15)];
+    UILabel *positiveHeight = [[UILabel alloc] initWithFrame:CGRectMake([Util screenWidth]/2 + 5, [Util screenHeight] - 20, 40, 15)];
     positiveHeight.text = [NSString stringWithFormat:@"-%d",(int)self.program.header.screenHeight.floatValue/2];
     positiveHeight.textColor = [UIColor redColor];
     [self.gridView addSubview:positiveHeight];
     //negativHeight
-    UILabel *negativeHeight = [[UILabel alloc] initWithFrame:CGRectMake([Util getScreenWidth]/2 + 5,5, 40, 15)];
+    UILabel *negativeHeight = [[UILabel alloc] initWithFrame:CGRectMake([Util screenWidth]/2 + 5,5, 40, 15)];
     negativeHeight.text = [NSString stringWithFormat:@"%d",(int)self.program.header.screenHeight.floatValue/2];
     negativeHeight.textColor = [UIColor redColor];
     [self.gridView addSubview:negativeHeight];

@@ -354,12 +354,12 @@
                                            withString:[NSString stringWithFormat:@"<programName>%@</programName>", kLocalizedMyFirstProgram]
                                               options:NSCaseInsensitiveSearch
                                                 range:NSMakeRange(0, [xmlString length])];
-                [xmlString replaceOccurrencesOfString:[NSString stringWithFormat:@"<name>%@</name>", kDefaultProgramBundleBackgroundName]
-                                           withString:[NSString stringWithFormat:@"<name>%@</name>", kLocalizedBackground]
+                [xmlString replaceOccurrencesOfString:[NSString stringWithFormat:@"<object name=\"%@\">", kDefaultProgramBundleBackgroundName]
+                                           withString:[NSString stringWithFormat:@"<object name=\"%@\">", kGeneralBackgroundObjectName]
                                               options:NSCaseInsensitiveSearch
                                                 range:NSMakeRange(0, [xmlString length])];
-                [xmlString replaceOccurrencesOfString:[NSString stringWithFormat:@"<name>%@", kDefaultProgramBundleOtherObjectsNamePrefix]
-                                           withString:[NSString stringWithFormat:@"<name>%@", kLocalizedMole]
+                [xmlString replaceOccurrencesOfString:[NSString stringWithFormat:@"<object name=\"%@\">", kDefaultProgramBundleOtherObjectsNamePrefix]
+                                           withString:[NSString stringWithFormat:@"<object name=\"%@\">", kDefaultProgramOtherObjectsNamePrefix]
                                               options:NSCaseInsensitiveSearch
                                                 range:NSMakeRange(0, [xmlString length])];
                 [xmlString writeToFile:xmlPath atomically:YES encoding:NSUTF8StringEncoding error:&nserror];
@@ -368,6 +368,13 @@
                                            toPath:[Program projectPathForProgramWithName:kLocalizedMyFirstProgram]];
             });
         }
+//#else // kIsFirstRelease
+//        ProgramLoadingInfo *loadingInfo = [[ProgramLoadingInfo alloc] init];
+//        loadingInfo.basePath = [NSString stringWithFormat:@"%@%@/", [Program basePath], kDefaultProgramBundleName];
+//        loadingInfo.visibleName = kDefaultProgramBundleName;
+//        Program *program = [Program programWithLoadingInfo:loadingInfo];
+//        [program translateDefaultProgram];
+//#endif // kIsFirstRelease
 #else // kIsRelease
         ProgramLoadingInfo *loadingInfo = [[ProgramLoadingInfo alloc] init];
         loadingInfo.basePath = [NSString stringWithFormat:@"%@%@/", [Program basePath], kDefaultProgramBundleName];

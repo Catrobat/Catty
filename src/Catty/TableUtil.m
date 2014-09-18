@@ -34,9 +34,9 @@
 
 @implementation TableUtil
 
-+ (CGFloat)getHeightForContinueCell
++ (CGFloat)heightForContinueCell
 {
-    CGFloat screenHeight = [Util getScreenHeight];
+    CGFloat screenHeight = [Util screenHeight];
     if (screenHeight == kIphone5ScreenHeight) {
         return ((kContinueCellHeight+2)*screenHeight)/kIphone5ScreenHeight;
     } else {
@@ -44,16 +44,16 @@
     }
 }
 
-+ (CGFloat)getHeightForImageCell
++ (CGFloat)heightForImageCell
 {
-    CGFloat screenHeight = [Util getScreenHeight];
+    CGFloat screenHeight = [Util screenHeight];
     if (screenHeight == kIphone5ScreenHeight) {
         return ((kImageCellHeight+2)*screenHeight)/kIphone5ScreenHeight;
     } else {
         return (kImageCellHeight*screenHeight)/kIphone4ScreenHeight;
     }
 }
-+ (CGFloat)getHeightForFeaturedCell
++ (CGFloat)heightForFeaturedCell
 {
     return kFeaturedCellHeight;
 }

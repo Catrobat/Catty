@@ -52,6 +52,8 @@
 @property (nonatomic, strong) NSString *programScreenshotManuallyTaken;
 @property (nonatomic, strong) NSString *tags;
 
++ (instancetype)defaultHeader;
+
 - (GDataXMLElement*)toXML;
 
 @end
