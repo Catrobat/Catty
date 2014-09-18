@@ -462,7 +462,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
     NSLog(@"Introduction did finish");
     [self initNavigationBar];
     self.tableView.scrollEnabled = YES;
-    [self.navigationController setNavigationBarHidden:NO animated:YES];
+    [self.navigationController setNavigationBarHidden:NO animated:NO];
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     [defaults setObject:[NSNumber numberWithBool:YES] forKey:kUserIsFirstAppLaunch];
     [defaults synchronize];
