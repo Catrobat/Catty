@@ -113,7 +113,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
     self.tableView.separatorColor = UIColor.skyBlueColor;
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
-
+    
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     if (! [defaults objectForKey:kUserIsFirstAppLaunch] || [defaults boolForKey:kUserShowIntroductionOnLaunch]) {
         self.tableView.scrollEnabled = NO;
@@ -129,13 +129,8 @@ static NSCharacterSet *blockedCharacterSet = nil;
     [super viewWillAppear:YES];
     self.lastProgram = nil;
     self.defaultProgram = nil;
-    [self.navigationController setToolbarHidden:YES];
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    if (! [defaults objectForKey:kUserIsFirstAppLaunch] || [defaults boolForKey:kUserShowIntroductionOnLaunch]) {
-        [self.navigationController setNavigationBarHidden:YES];
-    } else {
-        [self.navigationController setNavigationBarHidden:NO];
-    }
+    self.navigationController.toolbarHidden = YES;
+    [self.navigationController.navigationBar setHidden:NO];
      NSIndexPath* indexPath = [NSIndexPath indexPathForRow:0 inSection:0];
     [self.tableView beginUpdates];
     [self.tableView reloadRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationNone];
@@ -462,7 +457,6 @@ static NSCharacterSet *blockedCharacterSet = nil;
     NSLog(@"Introduction did finish");
     [self initNavigationBar];
     self.tableView.scrollEnabled = YES;
-    [self.navigationController setNavigationBarHidden:NO animated:NO];
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     [defaults setObject:[NSNumber numberWithBool:YES] forKey:kUserIsFirstAppLaunch];
     [defaults synchronize];
