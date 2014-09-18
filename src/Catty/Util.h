@@ -35,7 +35,7 @@
 
 #define TIMEOUT 30.0f
 
-@protocol EAIntroDelegate;
+@protocol MYIntroductionDelegate;
 @class SceneViewController;
 @class ProgramLoadingInfo;
 @class CatrobatAlertView;
@@ -53,7 +53,7 @@
 
 + (void)showComingSoonAlertView;
 
-+ (void)showIntroductionScreenInView:(UIView*)view delegate:(id<EAIntroDelegate>)delegate;
++ (void)showIntroductionScreenInView:(UIView*)view delegate:(id<MYIntroductionDelegate>)delegate;
 
 + (CatrobatAlertView*)alertWithText:(NSString*)text;
 

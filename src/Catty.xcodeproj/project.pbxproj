@@ -94,6 +94,10 @@
 		92345635192E2A1B00464E6B /* ChangeBrightnessByNBrickTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 92345634192E2A1B00464E6B /* ChangeBrightnessByNBrickTests.m */; };
 		92345637192E2E6C00464E6B /* SetLookBrickTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 92345636192E2E6C00464E6B /* SetLookBrickTests.m */; };
 		92345639192E2E8000464E6B /* NextLookBrickTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 92345638192E2E8000464E6B /* NextLookBrickTests.m */; };
+		924DEBF919CAFB9900EED9CE /* MYBlurIntroductionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 924DEBF619CAFB9900EED9CE /* MYBlurIntroductionView.m */; };
+		924DEBFA19CAFB9900EED9CE /* MYBlurIntroductionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 924DEBF619CAFB9900EED9CE /* MYBlurIntroductionView.m */; };
+		924DEBFB19CAFB9900EED9CE /* MYIntroductionPanel.m in Sources */ = {isa = PBXBuildFile; fileRef = 924DEBF819CAFB9900EED9CE /* MYIntroductionPanel.m */; };
+		924DEBFC19CAFB9900EED9CE /* MYIntroductionPanel.m in Sources */ = {isa = PBXBuildFile; fileRef = 924DEBF819CAFB9900EED9CE /* MYIntroductionPanel.m */; };
 		9251B6AD199F4B1600746D66 /* SWCellScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9251B6A4199F4B1600746D66 /* SWCellScrollView.m */; };
 		9251B6AE199F4B1600746D66 /* SWLongPressGestureRecognizer.m in Sources */ = {isa = PBXBuildFile; fileRef = 9251B6A6199F4B1600746D66 /* SWLongPressGestureRecognizer.m */; };
 		9251B6AF199F4B1600746D66 /* SWTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9251B6A8199F4B1600746D66 /* SWTableViewCell.m */; };
@@ -328,7 +332,6 @@
 		CADBD6E619B0E8C200C62836 /* TTTAttributedLabel.license in Resources */ = {isa = PBXBuildFile; fileRef = 4C9E2D2C198F63B400455B77 /* TTTAttributedLabel.license */; };
 		CADBD6E719B0E8C200C62836 /* LXReorderableCollectionViewFlowLayout.license in Resources */ = {isa = PBXBuildFile; fileRef = 4C9E2D2A198F638C00455B77 /* LXReorderableCollectionViewFlowLayout.license */; };
 		CADBD6E819B0E8C200C62836 /* FXBlurView.license in Resources */ = {isa = PBXBuildFile; fileRef = 4C9E2D30198F645400455B77 /* FXBlurView.license */; };
-		CADBD6E919B0E8C200C62836 /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = CAFBCB371988529D000304BF /* LICENSE */; };
 		CADBD6EA19B0E8C200C62836 /* IBActionSheet.license in Resources */ = {isa = PBXBuildFile; fileRef = 4C9E2D26198F62D800455B77 /* IBActionSheet.license */; };
 		CADBD6EB19B0E8C200C62836 /* EVCircularProgressView.license in Resources */ = {isa = PBXBuildFile; fileRef = 4C9E2D32198F648B00455B77 /* EVCircularProgressView.license */; };
 		CADBD6EC19B0E8C200C62836 /* LICENSE_NSString+FastImageSize in Resources */ = {isa = PBXBuildFile; fileRef = CAE4B845198A7B4F0054ABEC /* LICENSE_NSString+FastImageSize */; };
@@ -349,7 +352,6 @@
 		CADBD6FB19B0E8C200C62836 /* LICENSE_IBActionSheet in Resources */ = {isa = PBXBuildFile; fileRef = CAE4B833198A781B0054ABEC /* LICENSE_IBActionSheet */; };
 		CADBD6FC19B0E8C200C62836 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 92300CE918B2196700F2B4DC /* Localizable.strings */; };
 		CADBD6FD19B0E8C200C62836 /* SWTableViewCell.license in Resources */ = {isa = PBXBuildFile; fileRef = 4C9E2D24198F62A600455B77 /* SWTableViewCell.license */; };
-		CADBD6FE19B0E8C200C62836 /* readme.md in Resources */ = {isa = PBXBuildFile; fileRef = CAFBCB381988529D000304BF /* readme.md */; };
 		CADBD6FF19B0E8C200C62836 /* FBShimmering.license in Resources */ = {isa = PBXBuildFile; fileRef = 4C9E2D2E198F63FB00455B77 /* FBShimmering.license */; };
 		CADBD70019B0E8C200C62836 /* LoggerProperties.plist in Resources */ = {isa = PBXBuildFile; fileRef = B4365CE81758EBA900B4D0A6 /* LoggerProperties.plist */; };
 		CADBD70219B0E8C200C62836 /* DarkBlueGradientImageDetailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CAAA269018F4510E002E55B9 /* DarkBlueGradientImageDetailCell.m */; };
@@ -447,7 +449,6 @@
 		CADBD75E19B0E8C200C62836 /* SetSizeToBrickCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CA75C28818A9623500FC8C2F /* SetSizeToBrickCell.m */; };
 		CADBD75F19B0E8C200C62836 /* StartScriptCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CA75C22518A9603400FC8C2F /* StartScriptCell.m */; };
 		CADBD76019B0E8C200C62836 /* CatrobatActionSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = CAE9A2BB197D20A7008F7C9A /* CatrobatActionSheet.m */; };
-		CADBD76119B0E8C200C62836 /* EAIntroPage.m in Sources */ = {isa = PBXBuildFile; fileRef = CAFBCB3019885258000304BF /* EAIntroPage.m */; };
 		CADBD76219B0E8C200C62836 /* UIImage+AHKAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = CA14986E1989CA160069A21E /* UIImage+AHKAdditions.m */; };
 		CADBD76319B0E8C200C62836 /* SetXBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = CD0CCF1C170CB39700B70036 /* SetXBrick.m */; };
 		CADBD76419B0E8C200C62836 /* SetVariableBrickCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CA75C2A318A9627200FC8C2F /* SetVariableBrickCell.m */; };
@@ -470,7 +471,6 @@
 		CADBD77519B0E8C200C62836 /* ClearGraphicEffectBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = C34B44F317F1D2C700624730 /* ClearGraphicEffectBrick.m */; };
 		CADBD77619B0E8C200C62836 /* TurnLeftBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = CD0CCF3D170CB39700B70036 /* TurnLeftBrick.m */; };
 		CADBD77719B0E8C200C62836 /* TurnRightBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = CD0CCF3F170CB39700B70036 /* TurnRightBrick.m */; };
-		CADBD77819B0E8C200C62836 /* SMPageControl.m in Sources */ = {isa = PBXBuildFile; fileRef = CAFBCB3A1988529D000304BF /* SMPageControl.m */; };
 		CADBD77919B0E8C200C62836 /* SetBrightnessBrickCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CA75C29A18A9625C00FC8C2F /* SetBrightnessBrickCell.m */; };
 		CADBD77A19B0E8C200C62836 /* InfoPopupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 92DFE97B196D795900F491EC /* InfoPopupViewController.m */; };
 		CADBD77B19B0E8C200C62836 /* Util.m in Sources */ = {isa = PBXBuildFile; fileRef = CD0CCF43170CB39700B70036 /* Util.m */; };
@@ -577,7 +577,6 @@
 		CADBD7E019B0E8C200C62836 /* WaitBrickCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CA75C22E18A9612300FC8C2F /* WaitBrickCell.m */; };
 		CADBD7E119B0E8C200C62836 /* NSString+FastImageSize.m in Sources */ = {isa = PBXBuildFile; fileRef = CA14987E1989CBD50069A21E /* NSString+FastImageSize.m */; };
 		CADBD7E219B0E8C200C62836 /* RoundBorderedButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 81B7487C192143AA00990E5F /* RoundBorderedButton.m */; };
-		CADBD7E319B0E8C200C62836 /* EAIntroView.m in Sources */ = {isa = PBXBuildFile; fileRef = CAFBCB3219885258000304BF /* EAIntroView.m */; };
 		CADBD7E519B0E8C200C62836 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 92E3351D18FBB6750056C390 /* SystemConfiguration.framework */; };
 		CADBD7E619B0E8C200C62836 /* CoreImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 921FE2F9182F8122001D7CF6 /* CoreImage.framework */; };
 		CADBD7E719B0E8C200C62836 /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA05A19D18286CDA0025421A /* AssetsLibrary.framework */; };
@@ -614,11 +613,6 @@
 		CAEDFB8117EF759500FDED0E /* ObjectTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CAEDFB8017EF759500FDED0E /* ObjectTableViewController.m */; };
 		CAF806D6193170640005E900 /* ImageCache.m in Sources */ = {isa = PBXBuildFile; fileRef = CAF806D5193170640005E900 /* ImageCache.m */; };
 		CAF806D9193181D50005E900 /* RuntimeImageCache.m in Sources */ = {isa = PBXBuildFile; fileRef = CAF806D8193181D50005E900 /* RuntimeImageCache.m */; };
-		CAFBCB3319885258000304BF /* EAIntroPage.m in Sources */ = {isa = PBXBuildFile; fileRef = CAFBCB3019885258000304BF /* EAIntroPage.m */; };
-		CAFBCB3419885258000304BF /* EAIntroView.m in Sources */ = {isa = PBXBuildFile; fileRef = CAFBCB3219885258000304BF /* EAIntroView.m */; };
-		CAFBCB3B1988529D000304BF /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = CAFBCB371988529D000304BF /* LICENSE */; };
-		CAFBCB3C1988529D000304BF /* readme.md in Resources */ = {isa = PBXBuildFile; fileRef = CAFBCB381988529D000304BF /* readme.md */; };
-		CAFBCB3D1988529D000304BF /* SMPageControl.m in Sources */ = {isa = PBXBuildFile; fileRef = CAFBCB3A1988529D000304BF /* SMPageControl.m */; };
 		CD0CCF52170CB39700B70036 /* Brick.m in Sources */ = {isa = PBXBuildFile; fileRef = CD0CCE60170CB39600B70036 /* Brick.m */; };
 		CD0CCF53170CB39700B70036 /* BroadcastBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = CD0CCE62170CB39600B70036 /* BroadcastBrick.m */; };
 		CD0CCF54170CB39700B70036 /* BroadcastScript.m in Sources */ = {isa = PBXBuildFile; fileRef = CD0CCE64170CB39600B70036 /* BroadcastScript.m */; };
@@ -835,6 +829,10 @@
 		92345634192E2A1B00464E6B /* ChangeBrightnessByNBrickTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChangeBrightnessByNBrickTests.m; sourceTree = "<group>"; };
 		92345636192E2E6C00464E6B /* SetLookBrickTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SetLookBrickTests.m; sourceTree = "<group>"; };
 		92345638192E2E8000464E6B /* NextLookBrickTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NextLookBrickTests.m; sourceTree = "<group>"; };
+		924DEBF519CAFB9900EED9CE /* MYBlurIntroductionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MYBlurIntroductionView.h; sourceTree = "<group>"; };
+		924DEBF619CAFB9900EED9CE /* MYBlurIntroductionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MYBlurIntroductionView.m; sourceTree = "<group>"; };
+		924DEBF719CAFB9900EED9CE /* MYIntroductionPanel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MYIntroductionPanel.h; sourceTree = "<group>"; };
+		924DEBF819CAFB9900EED9CE /* MYIntroductionPanel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MYIntroductionPanel.m; sourceTree = "<group>"; };
 		9251B6A3199F4B1600746D66 /* SWCellScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SWCellScrollView.h; path = SWTableViewCell/SWCellScrollView.h; sourceTree = "<group>"; };
 		9251B6A4199F4B1600746D66 /* SWCellScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SWCellScrollView.m; path = SWTableViewCell/SWCellScrollView.m; sourceTree = "<group>"; };
 		9251B6A5199F4B1600746D66 /* SWLongPressGestureRecognizer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SWLongPressGestureRecognizer.h; path = SWTableViewCell/SWLongPressGestureRecognizer.h; sourceTree = "<group>"; };
@@ -1206,14 +1204,6 @@
 		CAF806D5193170640005E900 /* ImageCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageCache.m; sourceTree = "<group>"; };
 		CAF806D7193181C20005E900 /* RuntimeImageCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RuntimeImageCache.h; sourceTree = "<group>"; };
 		CAF806D8193181D50005E900 /* RuntimeImageCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RuntimeImageCache.m; sourceTree = "<group>"; };
-		CAFBCB2F19885258000304BF /* EAIntroPage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EAIntroPage.h; sourceTree = "<group>"; };
-		CAFBCB3019885258000304BF /* EAIntroPage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EAIntroPage.m; sourceTree = "<group>"; };
-		CAFBCB3119885258000304BF /* EAIntroView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EAIntroView.h; sourceTree = "<group>"; };
-		CAFBCB3219885258000304BF /* EAIntroView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EAIntroView.m; sourceTree = "<group>"; };
-		CAFBCB371988529D000304BF /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
-		CAFBCB381988529D000304BF /* readme.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = readme.md; sourceTree = "<group>"; };
-		CAFBCB391988529D000304BF /* SMPageControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMPageControl.h; sourceTree = "<group>"; };
-		CAFBCB3A1988529D000304BF /* SMPageControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMPageControl.m; sourceTree = "<group>"; };
 		CD0CCE5F170CB39600B70036 /* Brick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Brick.h; sourceTree = "<group>"; };
 		CD0CCE60170CB39600B70036 /* Brick.m */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 4; lastKnownFileType = sourcecode.c.objc; path = Brick.m; sourceTree = "<group>"; tabWidth = 4; };
 		CD0CCE61170CB39600B70036 /* BroadcastBrick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BroadcastBrick.h; sourceTree = "<group>"; };
@@ -1596,7 +1586,7 @@
 		81B7487419213C3800990E5F /* 3rdParty */ = {
 			isa = PBXGroup;
 			children = (
-				CAFBCB351988526B000304BF /* EAIntroView */,
+				924DEBF419CAFB9900EED9CE /* MYBlurIntroductionView */,
 				CA51A55B19847FEA00FFCB45 /* BDKNotifyHUD */,
 				CA882034192E581C00E5D515 /* SWTableViewCell */,
 				81C64F8519268DDF00199161 /* IBActionSheet */,
@@ -1699,6 +1689,17 @@
 			);
 			name = iOS_Lang;
 			path = ../iOS_Lang;
+			sourceTree = "<group>";
+		};
+		924DEBF419CAFB9900EED9CE /* MYBlurIntroductionView */ = {
+			isa = PBXGroup;
+			children = (
+				924DEBF519CAFB9900EED9CE /* MYBlurIntroductionView.h */,
+				924DEBF619CAFB9900EED9CE /* MYBlurIntroductionView.m */,
+				924DEBF719CAFB9900EED9CE /* MYIntroductionPanel.h */,
+				924DEBF819CAFB9900EED9CE /* MYIntroductionPanel.m */,
+			);
+			path = MYBlurIntroductionView;
 			sourceTree = "<group>";
 		};
 		929FE0011986484900B2A88D /* DarkBluegradientFeaturedCell */ = {
@@ -2949,29 +2950,6 @@
 			name = Header;
 			sourceTree = "<group>";
 		};
-		CAFBCB351988526B000304BF /* EAIntroView */ = {
-			isa = PBXGroup;
-			children = (
-				CAFBCB361988527D000304BF /* SMPageControl */,
-				CAFBCB2F19885258000304BF /* EAIntroPage.h */,
-				CAFBCB3019885258000304BF /* EAIntroPage.m */,
-				CAFBCB3119885258000304BF /* EAIntroView.h */,
-				CAFBCB3219885258000304BF /* EAIntroView.m */,
-			);
-			name = EAIntroView;
-			sourceTree = "<group>";
-		};
-		CAFBCB361988527D000304BF /* SMPageControl */ = {
-			isa = PBXGroup;
-			children = (
-				CAFBCB371988529D000304BF /* LICENSE */,
-				CAFBCB381988529D000304BF /* readme.md */,
-				CAFBCB391988529D000304BF /* SMPageControl.h */,
-				CAFBCB3A1988529D000304BF /* SMPageControl.m */,
-			);
-			name = SMPageControl;
-			sourceTree = "<group>";
-		};
 		CAFE18D7192813DC003AB961 /* NavigationController */ = {
 			isa = PBXGroup;
 			children = (
@@ -3602,7 +3580,6 @@
 				4C9E2D2D198F63B400455B77 /* TTTAttributedLabel.license in Resources */,
 				4C9E2D2B198F638C00455B77 /* LXReorderableCollectionViewFlowLayout.license in Resources */,
 				4C9E2D31198F645400455B77 /* FXBlurView.license in Resources */,
-				CAFBCB3B1988529D000304BF /* LICENSE in Resources */,
 				4C9E2D27198F62D800455B77 /* IBActionSheet.license in Resources */,
 				4C9E2D33198F648B00455B77 /* EVCircularProgressView.license in Resources */,
 				CAE4B846198A7B4F0054ABEC /* LICENSE_NSString+FastImageSize in Resources */,
@@ -3623,7 +3600,6 @@
 				CAE4B834198A781B0054ABEC /* LICENSE_IBActionSheet in Resources */,
 				92300D0B18B2196700F2B4DC /* Localizable.strings in Resources */,
 				4C9E2D25198F62A600455B77 /* SWTableViewCell.license in Resources */,
-				CAFBCB3C1988529D000304BF /* readme.md in Resources */,
 				4C9E2D2F198F63FB00455B77 /* FBShimmering.license in Resources */,
 				B4365CE91758EBA900B4D0A6 /* LoggerProperties.plist in Resources */,
 			);
@@ -3669,7 +3645,6 @@
 				CADBD6E619B0E8C200C62836 /* TTTAttributedLabel.license in Resources */,
 				CADBD6E719B0E8C200C62836 /* LXReorderableCollectionViewFlowLayout.license in Resources */,
 				CADBD6E819B0E8C200C62836 /* FXBlurView.license in Resources */,
-				CADBD6E919B0E8C200C62836 /* LICENSE in Resources */,
 				CADBD6EA19B0E8C200C62836 /* IBActionSheet.license in Resources */,
 				CADBD6EB19B0E8C200C62836 /* EVCircularProgressView.license in Resources */,
 				CADBD6EC19B0E8C200C62836 /* LICENSE_NSString+FastImageSize in Resources */,
@@ -3690,7 +3665,6 @@
 				CADBD6FB19B0E8C200C62836 /* LICENSE_IBActionSheet in Resources */,
 				CADBD6FC19B0E8C200C62836 /* Localizable.strings in Resources */,
 				CADBD6FD19B0E8C200C62836 /* SWTableViewCell.license in Resources */,
-				CADBD6FE19B0E8C200C62836 /* readme.md in Resources */,
 				CADBD6FF19B0E8C200C62836 /* FBShimmering.license in Resources */,
 				CADBD70019B0E8C200C62836 /* LoggerProperties.plist in Resources */,
 			);
@@ -3865,6 +3839,7 @@
 				CABE07C518BAB91F00BE26EF /* LookComboBoxView.m in Sources */,
 				9251B6B1199F4B1600746D66 /* SWUtilityButtonView.m in Sources */,
 				CA5FED5418B019B200A517B6 /* UIUtil.m in Sources */,
+				924DEBF919CAFB9900EED9CE /* MYBlurIntroductionView.m in Sources */,
 				CD0CCFAB170CB39700B70036 /* Program.m in Sources */,
 				81FAEE3517E782360052BB2B /* SoundsTableViewController.m in Sources */,
 				CD0CCFAE170CB39700B70036 /* ProjectParser.m in Sources */,
@@ -3884,7 +3859,6 @@
 				CA75C28918A9623500FC8C2F /* SetSizeToBrickCell.m in Sources */,
 				CA75C22618A9603400FC8C2F /* StartScriptCell.m in Sources */,
 				CAE9A2BC197D20A7008F7C9A /* CatrobatActionSheet.m in Sources */,
-				CAFBCB3319885258000304BF /* EAIntroPage.m in Sources */,
 				CA1498721989CA160069A21E /* UIImage+AHKAdditions.m in Sources */,
 				CD0CCFC4170CB39700B70036 /* SetXBrick.m in Sources */,
 				CA75C2A418A9627200FC8C2F /* SetVariableBrickCell.m in Sources */,
@@ -3907,7 +3881,7 @@
 				C34B44F417F1D2C700624730 /* ClearGraphicEffectBrick.m in Sources */,
 				CD0CCFD7170CB39700B70036 /* TurnLeftBrick.m in Sources */,
 				CD0CCFD8170CB39700B70036 /* TurnRightBrick.m in Sources */,
-				CAFBCB3D1988529D000304BF /* SMPageControl.m in Sources */,
+				924DEBFB19CAFB9900EED9CE /* MYIntroductionPanel.m in Sources */,
 				CA75C29B18A9625C00FC8C2F /* SetBrightnessBrickCell.m in Sources */,
 				92DFE97C196D795900F491EC /* InfoPopupViewController.m in Sources */,
 				CD0CCFDA170CB39700B70036 /* Util.m in Sources */,
@@ -4014,7 +3988,6 @@
 				CA75C22F18A9612300FC8C2F /* WaitBrickCell.m in Sources */,
 				CA14987F1989CBD50069A21E /* NSString+FastImageSize.m in Sources */,
 				81B7487D192143AA00990E5F /* RoundBorderedButton.m in Sources */,
-				CAFBCB3419885258000304BF /* EAIntroView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -4172,6 +4145,7 @@
 				CADBD74B19B0E8C200C62836 /* LookComboBoxView.m in Sources */,
 				CADBD74C19B0E8C200C62836 /* SWUtilityButtonView.m in Sources */,
 				CADBD74D19B0E8C200C62836 /* UIUtil.m in Sources */,
+				924DEBFA19CAFB9900EED9CE /* MYBlurIntroductionView.m in Sources */,
 				CADBD74E19B0E8C200C62836 /* Program.m in Sources */,
 				CADBD74F19B0E8C200C62836 /* SoundsTableViewController.m in Sources */,
 				CADBD75019B0E8C200C62836 /* ProjectParser.m in Sources */,
@@ -4191,7 +4165,6 @@
 				CADBD75E19B0E8C200C62836 /* SetSizeToBrickCell.m in Sources */,
 				CADBD75F19B0E8C200C62836 /* StartScriptCell.m in Sources */,
 				CADBD76019B0E8C200C62836 /* CatrobatActionSheet.m in Sources */,
-				CADBD76119B0E8C200C62836 /* EAIntroPage.m in Sources */,
 				CADBD76219B0E8C200C62836 /* UIImage+AHKAdditions.m in Sources */,
 				CADBD76319B0E8C200C62836 /* SetXBrick.m in Sources */,
 				CADBD76419B0E8C200C62836 /* SetVariableBrickCell.m in Sources */,
@@ -4214,7 +4187,7 @@
 				CADBD77519B0E8C200C62836 /* ClearGraphicEffectBrick.m in Sources */,
 				CADBD77619B0E8C200C62836 /* TurnLeftBrick.m in Sources */,
 				CADBD77719B0E8C200C62836 /* TurnRightBrick.m in Sources */,
-				CADBD77819B0E8C200C62836 /* SMPageControl.m in Sources */,
+				924DEBFC19CAFB9900EED9CE /* MYIntroductionPanel.m in Sources */,
 				CADBD77919B0E8C200C62836 /* SetBrightnessBrickCell.m in Sources */,
 				CADBD77A19B0E8C200C62836 /* InfoPopupViewController.m in Sources */,
 				CADBD77B19B0E8C200C62836 /* Util.m in Sources */,
@@ -4321,7 +4294,6 @@
 				CADBD7E019B0E8C200C62836 /* WaitBrickCell.m in Sources */,
 				CADBD7E119B0E8C200C62836 /* NSString+FastImageSize.m in Sources */,
 				CADBD7E219B0E8C200C62836 /* RoundBorderedButton.m in Sources */,
-				CADBD7E319B0E8C200C62836 /* EAIntroView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
