@@ -40,6 +40,7 @@
 @property (nonatomic, strong) NSMutableData *data;
 @property (nonatomic, strong) NSURLConnection *connection;
 @property (nonatomic, strong) UILabel *noSearchResultsLabel;
+@property (nonatomic, strong) UISearchController* searchController;
 
 @end
 
@@ -59,26 +60,21 @@
     [self initSearchView];
     [self initTableView];
     [self initNoSearchResultsLabel];
+    
+    self.searchController = [[UISearchController alloc] init];
+    self.searchController.searchBar.backgroundColor = [UIColor darkBlueColor];
+    [self.searchController setActive:YES ];
+    [self.searchController.searchBar becomeFirstResponder];
+    self.searchController.searchBar.delegate = self;
+    self.searchController.searchBar.barTintColor = UIColor.navBarColor;
+    self.searchController.searchBar.barStyle = UISearchBarStyleMinimal;
 
-    // TODO: UISearchDisplayController is deprecated!
-    //       Should be replaced with UISearchController when iOS7 support is not needed any more!
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Wdeprecated-declarations"
-    self.searchDisplayController.displaysSearchBarInNavigationBar = NO;
-    self.searchDisplayController.searchBar.backgroundColor = [UIColor darkBlueColor];
-    [self.searchDisplayController setActive:YES animated:YES];
-    [self.searchDisplayController.searchBar becomeFirstResponder];
-    self.searchDisplayController.searchBar.delegate = self;
-    self.searchDisplayController.searchBar.barTintColor = UIColor.navBarColor;
-    self.searchDisplayController.searchBar.barStyle = UISearchBarStyleMinimal;
-#pragma clang diagnostic pop
     self.tableView.backgroundColor = [UIColor darkBlueColor];
     self.checkSearch = YES;
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
     self.tableView.separatorColor = UIColor.skyBlueColor;
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
     
-    [self.searchBar becomeFirstResponder];
     self.view.backgroundColor = [UIColor darkBlueColor];
     [[UITextField appearanceWhenContainedIn:[UISearchBar class], nil] setTextColor:[UIColor lightOrangeColor]];
     self.edgesForExtendedLayout = UIRectEdgeAll;
@@ -306,13 +302,7 @@
 -(void)initSearchView
 {
     self.searchResults = [[NSMutableArray alloc] init];
-
-    // TODO: UISearchDisplayController is deprecated!
-    //       Should be replaced with UISearchController when iOS7 support is not needed any more!
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Wdeprecated-declarations"
-    for (UIView *subView in self.searchDisplayController.searchBar.subviews) {
-#pragma clang diagnostic pop
+    for (UIView *subView in self.searchBar.subviews) {
         if([subView isKindOfClass: [UITextField class]]) {
             [(UITextField *)subView setKeyboardAppearance: UIKeyboardAppearanceAlert];
         }
@@ -322,12 +312,7 @@
 #pragma mark - Segue
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    // UISearchDisplayController is deprecated!
-    // Should be replaced with UISearchController when iOS7 support is not needed any more!
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Wdeprecated-declarations"
-    [self.searchDisplayController setActive:NO animated:YES];
-#pragma clang diagnostic pop
+    [self.searchController setActive:NO];
     [self update];
     if ([[segue identifier] isEqualToString:kSegueToProgramDetail]) {
         if ([sender isKindOfClass:[CatrobatProject class]]) {
