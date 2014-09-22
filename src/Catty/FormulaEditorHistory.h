@@ -21,20 +21,23 @@
  */
 
 #import <Foundation/Foundation.h>
+#import "InternFormulaState.h"
 #import "InternFormulaTokenSelection.h"
 
-@class InternFormula;
+@interface FormulaEditorHistory : NSObject
 
-@interface InternFormulaState : NSObject
-
-@property (nonatomic, strong)InternFormulaTokenSelection *tokenSelection;
-@property (nonatomic)int externCursorPosition;
-
--(InternFormulaState *)initWithList:(NSMutableArray *)internTokenFormulaList
-                          selection:(InternFormulaTokenSelection *)tokenSelection
-            andExternCursorPosition:(int)externCursorPosition;
-
--(BOOL)isEqual:(id)objectToCompare;
--(InternFormula*)createInternFormulaFromState;
+- (id)initWithInternFormulaState:(InternFormulaState*)internFormulaState;
+- (void)init:(InternFormulaState*)internFormulaState;
+- (void)push:(InternFormulaState*)internFormulaState;
+- (InternFormulaState*)backward;
+- (InternFormulaState*)forward;
+- (InternFormulaState*)getCurrentState;
+- (void)updateCurrentSelection:(InternFormulaTokenSelection*)internFormulaTokenSelection;
+- (void)clear;
+- (void)updateCurrentCursor:(int)cursorPosition;
+- (BOOL)undoIsPossible;
+- (BOOL)redoIsPossible;
+- (BOOL)hasUnsavedChanges;
+- (void)changesSaved;
 
 @end

@@ -25,6 +25,8 @@
 
 @implementation Header
 
+@synthesize description;
+
 - (GDataXMLElement*)toXML
 {
     GDataXMLElement *headerXMLElement = [GDataXMLNode elementWithName:@"header"];

@@ -814,11 +814,11 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
         if([self.presentedViewController isKindOfClass:[FormulaEditorViewController class]]) {
 
             FormulaEditorViewController *formulaEditorViewController = (FormulaEditorViewController*)self.presentedViewController;
-            [formulaEditorViewController updateFormulaButton:button];
+            [formulaEditorViewController setFormulaButton:button];
             
         } else {
             
-            FormulaEditorViewController *formulaEditorViewController = [[FormulaEditorViewController alloc] initWithBrickCell:  button.brickCell AndFormulaButton:button];
+            FormulaEditorViewController *formulaEditorViewController = [[FormulaEditorViewController alloc] initWithFormulaButton: button];
             formulaEditorViewController.delegate = self;
         
             self.brickScaleTransition.cell = button.brickCell;

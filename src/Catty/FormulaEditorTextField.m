@@ -43,7 +43,7 @@
         self.inputView = [[[NSBundle mainBundle] loadNibNamed:@"FormulaEditor" owner:self.formulaEditorViewController options:nil] lastObject];
         self.inputView.backgroundColor = UIColor.airForceBlueColor;
         self.userInteractionEnabled = YES;
-        [self addTarget:self.formulaEditorViewController action:@selector(inputDidChange:) forControlEvents:UIControlEventEditingChanged];
+        //[self addTarget:self.formulaEditorViewController action:@selector(inputDidChange:) forControlEvents:UIControlEventEditingChanged];
         
         [self update];
     }
@@ -80,7 +80,6 @@
 - (void)update
 {
     [self.formulaEditorViewController.internFormula generateExternFormulaStringAndInternExternMapping];
-    [self.formulaEditorViewController.internFormula setExternCursorPositionRightTo:INT_MAX];
     [self.formulaEditorViewController.internFormula updateInternCursorPosition];
     self.text = [self.formulaEditorViewController.internFormula getExternFormulaString];
 }
