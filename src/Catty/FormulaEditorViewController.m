@@ -73,25 +73,34 @@ NS_ENUM(NSInteger, ButtonIndex) {
 
 const float TEXT_FIELD_HEIGHT = 45;
 
-- (id)initWithBrickCell:(BrickCell*)brickCell AndFormulaButton:(FormulaEditorButton*)formulaButton
+- (id)initWithFormulaButton:(FormulaEditorButton *)formulaButton
 {
     self = [super init];
     
     if(self) {
-        self.brickCell = brickCell;
-        self.formulaEditorButton = formulaButton;
-        self.internFormula = [[InternFormula alloc] initWithInternTokenList:[[formulaButton getFormula].formulaTree getInternTokenList]];
-        self.history = [[FormulaEditorHistory alloc] initWithInternFormulaState:[self.internFormula getInternFormulaState]];
+        [self setFormulaButton:formulaButton];
     }
     
     return self;
 }
 
-- (void)changeFormulaButton:(FormulaEditorButton*)formulaButton
+- (void)setFormulaButton:(FormulaEditorButton*)formulaButton
 {
+    self.brickCell = formulaButton.brickCell;
     self.formulaEditorButton = formulaButton;
-    self.internFormula = [[InternFormula alloc] initWithInternTokenList:[[formulaButton getFormula].formulaTree getInternTokenList]];
+    self.internFormula = [[InternFormula alloc] initWithInternTokenList:[[self.formulaEditorButton getFormula].formulaTree getInternTokenList]];
+    self.history = [[FormulaEditorHistory alloc] initWithInternFormulaState:[self.internFormula getInternFormulaState]];
+    
     [self update];
+    [self setCursorPositionToEndOfFormula];
+}
+
+- (void)setCursorPositionToEndOfFormula
+{
+    [self.internFormula setCursorAndSelection:0 selected:NO];
+    [self.internFormula generateExternFormulaStringAndInternExternMapping];
+    [self.internFormula setExternCursorPositionRightTo:INT_MAX];
+    [self.internFormula updateInternCursorPosition];
 }
 
 - (InternFormula *)internFormula
@@ -198,11 +207,7 @@ const float TEXT_FIELD_HEIGHT = 45;
     if (lastStep != nil) {
         self.internFormula = [lastStep createInternFormulaFromState];
         [self update];
-        [self.internFormula generateExternFormulaStringAndInternExternMapping];
-        [self.internFormula setExternCursorPositionRightTo:INT_MAX];
-        [self.internFormula updateInternCursorPosition];
-        [self update];
-
+        [self setCursorPositionToEndOfFormula];
     }
 }
 
@@ -216,6 +221,7 @@ const float TEXT_FIELD_HEIGHT = 45;
     if (nextStep != nil) {
         self.internFormula = [nextStep createInternFormulaFromState];
         [self update];
+        [self setCursorPositionToEndOfFormula];
     }
 }
 

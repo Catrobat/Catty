@@ -46,7 +46,6 @@
         //[self addTarget:self.formulaEditorViewController action:@selector(inputDidChange:) forControlEvents:UIControlEventEditingChanged];
         
         [self update];
-        [self.formulaEditorViewController.internFormula setExternCursorPositionRightTo:INT_MAX];
     }
     return self;
 }

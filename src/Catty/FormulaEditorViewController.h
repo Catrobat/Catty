@@ -42,8 +42,8 @@
 @property (strong, nonatomic) InternFormula *internFormula;
 @property (strong, nonatomic) FormulaEditorButton *formulaEditorButton;
 
-- (id)initWithBrickCell:(BrickCell*)brickCell AndFormulaButton:(FormulaEditorButton*)formulaButton;
-- (void)changeFormulaButton:(FormulaEditorButton*)formulaButton;
+- (id)initWithFormulaButton:(FormulaEditorButton*)formulaButton;
+- (void)setFormulaButton:(FormulaEditorButton*)formulaButton;
 - (void)update;
 
 @end
