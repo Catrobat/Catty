@@ -1163,6 +1163,15 @@
 			name = FormulaEditorTests;
 			sourceTree = "<group>";
 		};
+		4C72DB4B19D05ED0003A049C /* FormulaEditor */ = {
+			isa = PBXGroup;
+			children = (
+				4CAB5710199131EA00350DE6 /* FormulaEditorViewController.h */,
+				4CAB5711199131EA00350DE6 /* FormulaEditorViewController.m */,
+			);
+			name = FormulaEditor;
+			sourceTree = "<group>";
+		};
 		4C9E2D1D198EA6B600455B77 /* Licenses */ = {
 			isa = PBXGroup;
 			children = (
@@ -1195,8 +1204,6 @@
 			children = (
 				4CAB57051991071D00350DE6 /* FormulaEditorTextField.h */,
 				4CAB57061991071D00350DE6 /* FormulaEditorTextField.m */,
-				4CAB5710199131EA00350DE6 /* FormulaEditorViewController.h */,
-				4CAB5711199131EA00350DE6 /* FormulaEditorViewController.m */,
 				4C25A4A81992301400844295 /* FormulaEditorButton.h */,
 				4C25A4A91992301400844295 /* FormulaEditorButton.m */,
 			);
@@ -2193,6 +2200,7 @@
 		CA160DB218A29CBB00E5190D /* MaintainScript */ = {
 			isa = PBXGroup;
 			children = (
+				4C72DB4B19D05ED0003A049C /* FormulaEditor */,
 				817B544918F0520800AF6BFE /* BrickDetailViewController.h */,
 				817B544A18F0520800AF6BFE /* BrickDetailViewController.m */,
 				81FAEE2D17E781AB0052BB2B /* ScriptCollectionViewController.h */,

@@ -39,6 +39,7 @@
 #import "FormulaElement.h"
 #import "LanguageTranslationDefines.h"
 #import "FormulaEditorHistory.h"
+#import "AHKActionSheet.h"
 
 NS_ENUM(NSInteger, ButtonIndex) {
     kButtonIndexDelete = 0,
@@ -64,6 +65,8 @@ NS_ENUM(NSInteger, ButtonIndex) {
 @property (weak, nonatomic) IBOutlet UIButton *multiplicationButton;
 @property (weak, nonatomic) IBOutlet UIButton *substractionButton;
 @property (weak, nonatomic) IBOutlet UIButton *additionButton;
+
+@property (strong, nonatomic) AHKActionSheet *mathFunctionsMenu;
 
 @end
 
@@ -184,16 +187,15 @@ const float TEXT_FIELD_HEIGHT = 45;
             NSLog(@"Beschreibung: %ld", (long)[sender tag]);
         }
         
-        
-        [self.internFormula handleKeyInputWithName:title butttonType:(int)[sender tag]];
-        NSLog(@"InternFormulaString: %@",[self.internFormula getExternFormulaString]);
-        [self.history push:[self.internFormula getInternFormulaState]];
-        [self update];
+        [self handleInputWithTitle:title AndButtonType:(int)[sender tag]];
     }
 }
 
-- (void)inputDidChange:(id)sender
+- (void)handleInputWithTitle:(NSString*)title AndButtonType:(int)buttonType
 {
+    [self.internFormula handleKeyInputWithName:title butttonType:buttonType];
+    NSLog(@"InternFormulaString: %@",[self.internFormula getExternFormulaString]);
+    [self.history push:[self.internFormula getInternFormulaState]];
     [self update];
 }
 
@@ -225,6 +227,11 @@ const float TEXT_FIELD_HEIGHT = 45;
     }
 }
 
+- (void)backspace:(id)sender
+{
+    [self handleInputWithTitle:@"Backspace" AndButtonType:CLEAR];
+}
+
 - (IBAction)done:(id)sender
 {
     [self dismissFormulaEditorViewController];
@@ -239,6 +246,63 @@ const float TEXT_FIELD_HEIGHT = 45;
                                          cancelButtonTitle:@"OK"
                                          otherButtonTitles:nil,nil];
     [alert show];
+}
+
+#pragma margk - Getter and setter
+
+- (AHKActionSheet *)mathFunctionsMenu
+{
+    if (!_mathFunctionsMenu) {
+        
+        NSArray *mathFunctions = @[
+                                  [NSNumber numberWithInt:SIN],
+                                  [NSNumber numberWithInt:COS],
+                                  [NSNumber numberWithInt:TAN],
+                                  [NSNumber numberWithInt:LN],
+                                  [NSNumber numberWithInt:LOG],
+                                  [NSNumber numberWithInt:PI_F],
+                                  [NSNumber numberWithInt:SQRT],
+                                  [NSNumber numberWithInt:ABS],
+                                  [NSNumber numberWithInt:MAX],
+                                  [NSNumber numberWithInt:MIN],
+                                  [NSNumber numberWithInt:ARCSIN],
+                                  [NSNumber numberWithInt:ARCCOS],
+                                  [NSNumber numberWithInt:ARCTAN],
+                                  [NSNumber numberWithInt:ROUND],
+                                  [NSNumber numberWithInt:MOD],
+                                  [NSNumber numberWithInt:POW],
+                                  [NSNumber numberWithInt:EXP]
+                                  ];
+        
+        _mathFunctionsMenu = [[AHKActionSheet alloc]initWithTitle:kUIActionSheetTitleSelectMathematicalFunction];
+        _mathFunctionsMenu.blurTintColor = [UIColor colorWithWhite:0.0f alpha:0.7f];
+        _mathFunctionsMenu.separatorColor = UIColor.skyBlueColor;
+        _mathFunctionsMenu.titleTextAttributes = @{NSFontAttributeName : [UIFont systemFontOfSize:14.0f] ,
+                                                    NSForegroundColorAttributeName : UIColor.skyBlueColor};
+        _mathFunctionsMenu.cancelButtonTextAttributes = @{NSForegroundColorAttributeName : UIColor.lightOrangeColor};
+        _mathFunctionsMenu.buttonTextAttributes = @{NSForegroundColorAttributeName : UIColor.whiteColor};
+        _mathFunctionsMenu.selectedBackgroundColor = [UIColor colorWithWhite:0.0f alpha:0.3f];
+        _mathFunctionsMenu.automaticallyTintButtonImages = NO;
+        
+        __weak FormulaEditorViewController *weakSelf = self;
+        
+        for(int i = 0; i < [mathFunctions count]; i++) {
+            
+            int functionType = [[mathFunctions objectAtIndex:i] intValue];
+            NSString *functionName = [Functions getExternName:[Functions getName:functionType]];
+            [_mathFunctionsMenu addButtonWithTitle:functionName
+                                           type:AHKActionSheetButtonTypeDefault
+                                        handler:^(AHKActionSheet *actionSheet) {
+                                            [weakSelf handleInputWithTitle:functionName AndButtonType:functionType];
+                                            [weakSelf closeMathFunctionsMenu:SIN];
+                                        }];
+        }
+        
+        _mathFunctionsMenu.cancelHandler = ^(AHKActionSheet *actionSheet) {
+            [weakSelf.formulaEditorTextField becomeFirstResponder];
+        };
+    }
+    return _mathFunctionsMenu;
 }
 
 #pragma mark - UI
@@ -267,6 +331,16 @@ const float TEXT_FIELD_HEIGHT = 45;
     [self.formulaEditorButton updateFormula:self.internFormula];
     [self.undoButton setEnabled:[self.history undoIsPossible]];
     [self.redoButton setEnabled:[self.history redoIsPossible]];
+}
+
+- (IBAction)showMathFunctionsMenu:(id)sender {
+    [self.formulaEditorTextField resignFirstResponder];
+    [self.mathFunctionsMenu show];
+    [self.mathFunctionsMenu becomeFirstResponder];
+}
+
+- (void)closeMathFunctionsMenu:(Function)function {
+    [self.formulaEditorTextField becomeFirstResponder];
 }
 
 @end

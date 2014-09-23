@@ -30,22 +30,33 @@
 
 @interface FormulaEditorTextField ()
 @property (nonatomic, weak) FormulaEditorViewController *formulaEditorViewController;
+@property (nonatomic, strong) UIButton *backspaceButton;
 @end
 
 @implementation FormulaEditorTextField
+
+#define BACKSPACE_HEIGHT 25
+#define BACKSPACE_WIDTH 25
 
 - (id)initWithFrame:(CGRect)frame AndFormulaEditorViewController:(FormulaEditorViewController*)formulaEditorViewController
 {
     self = [super initWithFrame:frame];
     self.formulaEditorViewController = formulaEditorViewController;
     if (self) {
-        self.delegate = self.formulaEditorViewController;
+        self.delegate = self;
         self.inputView = [[[NSBundle mainBundle] loadNibNamed:@"FormulaEditor" owner:self.formulaEditorViewController options:nil] lastObject];
         self.inputView.backgroundColor = UIColor.airForceBlueColor;
         self.userInteractionEnabled = YES;
-        //[self addTarget:self.formulaEditorViewController action:@selector(inputDidChange:) forControlEvents:UIControlEventEditingChanged];
         
-        [self update];
+        self.backspaceButton = [[UIButton alloc] init];
+        [self.backspaceButton setImage:[UIImage imageNamed:@"backspace"] forState:UIControlStateNormal];
+        [self.backspaceButton setImage:[UIImage imageNamed:@"backspace"] forState:UIControlStateDisabled];
+        self.backspaceButton.frame = CGRectMake(0, 0, BACKSPACE_HEIGHT, BACKSPACE_WIDTH);
+        self.backspaceButton.tintColor = UIColor.airForceBlueColor;
+        [self.backspaceButton addTarget:self.formulaEditorViewController action:@selector(backspace:) forControlEvents:UIControlEventTouchUpInside];
+        
+        self.rightViewMode = UITextFieldViewModeAlways;
+        self.rightView = self.backspaceButton;
     }
     return self;
 }
@@ -82,7 +93,14 @@
     [self.formulaEditorViewController.internFormula generateExternFormulaStringAndInternExternMapping];
     [self.formulaEditorViewController.internFormula updateInternCursorPosition];
     self.text = [self.formulaEditorViewController.internFormula getExternFormulaString];
+    
+    if([self.formulaEditorViewController.internFormula isEmpty]) {
+        self.backspaceButton.enabled = NO;
+        self.backspaceButton.alpha = 0.3;
+    } else {
+        self.backspaceButton.enabled = YES;
+        self.backspaceButton.alpha = 1.0;
+    }
 }
-
 
 @end

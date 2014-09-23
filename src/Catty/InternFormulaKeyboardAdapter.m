@@ -177,7 +177,7 @@
         
         //PERIOD
             
-        case TOKEN_TYPE_PERIOD:
+        case DECIMAL_MARK:
             return [self buildPeriod];
             break;
 
