@@ -39,6 +39,7 @@
                 <outletCollection property="buttons" destination="djM-xq-Ekh" id="sLg-g1-LPZ"/>
                 <outletCollection property="buttons" destination="OfS-bX-KPI" id="33k-jw-eMn"/>
                 <outletCollection property="buttons" destination="U9K-ue-3bh" id="Irj-Ky-hWZ"/>
+                <outletCollection property="buttons" destination="BjT-SP-YH6" id="GPs-DM-gVk"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
@@ -73,7 +74,7 @@
                         <action selector="buttonPressed:" destination="-1" eventType="touchUpInside" id="1G2-iz-Mog"/>
                     </connections>
                 </button>
-                <button opaque="NO" tag="100" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="djM-xq-Ekh">
+                <button opaque="NO" tag="1000" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="djM-xq-Ekh">
                     <rect key="frame" x="0.0" y="218" width="73" height="37"/>
                     <state key="normal" title="(">
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -82,7 +83,7 @@
                         <action selector="buttonPressed:" destination="-1" eventType="touchUpInside" id="146-x9-bEu"/>
                     </connections>
                 </button>
-                <button opaque="NO" tag="101" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OfS-bX-KPI">
+                <button opaque="NO" tag="1001" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OfS-bX-KPI">
                     <rect key="frame" x="62" y="218" width="73" height="37"/>
                     <state key="normal" title=")">
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -271,6 +272,15 @@
                     </state>
                     <connections>
                         <action selector="showMathFunctionsMenu:" destination="-1" eventType="touchUpInside" id="kqA-Nj-OJK"/>
+                    </connections>
+                </button>
+                <button opaque="NO" tag="400" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BjT-SP-YH6">
+                    <rect key="frame" x="274" y="97" width="38" height="30"/>
+                    <state key="normal" title="Logic">
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <connections>
+                        <action selector="showLogicalOperatorsMenu:" destination="-1" eventType="touchUpInside" id="KxT-1l-eqt"/>
                     </connections>
                 </button>
             </subviews>

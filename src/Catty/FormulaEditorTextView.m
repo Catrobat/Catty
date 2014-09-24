@@ -126,8 +126,6 @@
     self.frame = frame;
     [self scrollRangeToVisible:NSMakeRange(self.text.length - 1, 1)];
     
-    NSLog(@"lineHeight=%f, frameHeight=%f", self.font.lineHeight, self.frame.size.height);
-    
     CGRect backspaceFrame = self.backspaceButton.frame;
     backspaceFrame.origin.y = self.contentSize.height - TEXT_FIELD_PADDING_VERTICAL - self.font.lineHeight/2 - self.backspaceButton.frame.size.height/2;
     self.backspaceButton.frame = backspaceFrame;

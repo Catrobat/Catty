@@ -67,6 +67,7 @@ NS_ENUM(NSInteger, ButtonIndex) {
 @property (weak, nonatomic) IBOutlet UIButton *additionButton;
 
 @property (strong, nonatomic) AHKActionSheet *mathFunctionsMenu;
+@property (strong, nonatomic) AHKActionSheet *logicalOperatorsMenu;
 
 @end
 
@@ -292,21 +293,75 @@ NS_ENUM(NSInteger, ButtonIndex) {
         
         for(int i = 0; i < [mathFunctions count]; i++) {
             
-            int functionType = [[mathFunctions objectAtIndex:i] intValue];
-            NSString *functionName = [Functions getExternName:[Functions getName:functionType]];
-            [_mathFunctionsMenu addButtonWithTitle:functionName
+            int type = [[mathFunctions objectAtIndex:i] intValue];
+            NSString *name = [Functions getExternName:[Functions getName:type]];
+            [_mathFunctionsMenu addButtonWithTitle:name
                                            type:AHKActionSheetButtonTypeDefault
                                         handler:^(AHKActionSheet *actionSheet) {
-                                            [weakSelf handleInputWithTitle:functionName AndButtonType:functionType];
-                                            [weakSelf closeMathFunctionsMenu:SIN];
+                                            [weakSelf handleInputWithTitle:name AndButtonType:type];
+                                            [weakSelf closeMenu];
                                         }];
         }
         
         _mathFunctionsMenu.cancelHandler = ^(AHKActionSheet *actionSheet) {
-            [weakSelf.formulaEditorTextView becomeFirstResponder];
+            [weakSelf closeMenu];
         };
     }
     return _mathFunctionsMenu;
+}
+
+- (AHKActionSheet *)logicalOperatorsMenu
+{
+    if (!_logicalOperatorsMenu) {
+        
+        NSArray *logicalOperators = @[
+                                   [NSNumber numberWithInt:EQUAL],
+                                   [NSNumber numberWithInt:NOT_EQUAL],
+                                   [NSNumber numberWithInt:SMALLER_THAN],
+                                   [NSNumber numberWithInt:SMALLER_OR_EQUAL],
+                                   [NSNumber numberWithInt:GREATER_THAN],
+                                   [NSNumber numberWithInt:GREATER_OR_EQUAL],
+                                   [NSNumber numberWithInt:LOGICAL_AND],
+                                   [NSNumber numberWithInt:LOGICAL_OR],
+                                   [NSNumber numberWithInt:LOGICAL_NOT],
+                                   [NSNumber numberWithInt:TRUE_F],
+                                   [NSNumber numberWithInt:FALSE_F]
+                                   ];
+        
+        _logicalOperatorsMenu = [[AHKActionSheet alloc]initWithTitle:kUIActionSheetTitleSelectLogicalOperator];
+        _logicalOperatorsMenu.blurTintColor = [UIColor colorWithWhite:0.0f alpha:0.7f];
+        _logicalOperatorsMenu.separatorColor = UIColor.skyBlueColor;
+        _logicalOperatorsMenu.titleTextAttributes = @{NSFontAttributeName : [UIFont systemFontOfSize:14.0f] ,
+                                                   NSForegroundColorAttributeName : UIColor.skyBlueColor};
+        _logicalOperatorsMenu.cancelButtonTextAttributes = @{NSForegroundColorAttributeName : UIColor.lightOrangeColor};
+        _logicalOperatorsMenu.buttonTextAttributes = @{NSForegroundColorAttributeName : UIColor.whiteColor};
+        _logicalOperatorsMenu.selectedBackgroundColor = [UIColor colorWithWhite:0.0f alpha:0.3f];
+        _logicalOperatorsMenu.automaticallyTintButtonImages = NO;
+        
+        __weak FormulaEditorViewController *weakSelf = self;
+        
+        for(int i = 0; i < [logicalOperators count]; i++) {
+            
+            int type = [[logicalOperators objectAtIndex:i] intValue];
+            NSString *name;
+            if([Operators getName:type] == nil)
+                name = [Functions getExternName:[Functions getName:type]];
+            else
+                name = [Operators getExternName:[Operators getName:type]];
+            
+            [_logicalOperatorsMenu addButtonWithTitle:name
+                                              type:AHKActionSheetButtonTypeDefault
+                                           handler:^(AHKActionSheet *actionSheet) {
+                                               [weakSelf handleInputWithTitle:name AndButtonType:type];
+                                               [weakSelf closeMenu];
+                                           }];
+        }
+        
+        _logicalOperatorsMenu.cancelHandler = ^(AHKActionSheet *actionSheet) {
+            [weakSelf closeMenu];
+        };
+    }
+    return _logicalOperatorsMenu;
 }
 
 #pragma mark - UI
@@ -338,7 +393,13 @@ NS_ENUM(NSInteger, ButtonIndex) {
     [self.mathFunctionsMenu becomeFirstResponder];
 }
 
-- (void)closeMathFunctionsMenu:(Function)function {
+- (IBAction)showLogicalOperatorsMenu:(id)sender {
+    [self.formulaEditorTextView resignFirstResponder];
+    [self.logicalOperatorsMenu show];
+    [self.logicalOperatorsMenu becomeFirstResponder];
+}
+
+- (void)closeMenu {
     [self.formulaEditorTextView becomeFirstResponder];
 }
 
