@@ -20,7 +20,7 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import "FormulaEditorTextField.h"
+#import "FormulaEditorTextView.h"
 #import "FormulaEditorViewController.h"
 #import "UIColor+CatrobatUIColorExtensions.h"
 #import "BrickCell.h"
@@ -28,15 +28,18 @@
 #import "Formula.h"
 #import <UIKit/UIKit.h>
 
-@interface FormulaEditorTextField ()
+@interface FormulaEditorTextView ()
 @property (nonatomic, weak) FormulaEditorViewController *formulaEditorViewController;
 @property (nonatomic, strong) UIButton *backspaceButton;
 @end
 
-@implementation FormulaEditorTextField
+@implementation FormulaEditorTextView
 
-#define BACKSPACE_HEIGHT 25
-#define BACKSPACE_WIDTH 25
+#define TEXT_FIELD_PADDING_HORIZONTAL 5
+#define TEXT_FIELD_PADDING_VERTICAL 10
+#define TEXT_FIELD_MARGIN_BOTTOM 2
+#define BACKSPACE_HEIGHT 28
+#define BACKSPACE_WIDTH 28
 
 - (id)initWithFrame:(CGRect)frame AndFormulaEditorViewController:(FormulaEditorViewController*)formulaEditorViewController
 {
@@ -48,15 +51,20 @@
         self.inputView.backgroundColor = UIColor.airForceBlueColor;
         self.userInteractionEnabled = YES;
         
+        [self setAutocorrectionType:UITextAutocorrectionTypeNo];
+        self.backgroundColor = [UIColor whiteColor];
+        self.font = [UIFont boldSystemFontOfSize:20.0f];
+        
+        self.contentInset = UIEdgeInsetsZero;
+        self.textContainerInset = UIEdgeInsetsMake(TEXT_FIELD_PADDING_VERTICAL, TEXT_FIELD_PADDING_HORIZONTAL, TEXT_FIELD_PADDING_VERTICAL, TEXT_FIELD_PADDING_HORIZONTAL + BACKSPACE_WIDTH);
+        
         self.backspaceButton = [[UIButton alloc] init];
         [self.backspaceButton setImage:[UIImage imageNamed:@"backspace"] forState:UIControlStateNormal];
         [self.backspaceButton setImage:[UIImage imageNamed:@"backspace"] forState:UIControlStateDisabled];
-        self.backspaceButton.frame = CGRectMake(0, 0, BACKSPACE_HEIGHT, BACKSPACE_WIDTH);
         self.backspaceButton.tintColor = UIColor.airForceBlueColor;
+        self.backspaceButton.frame = CGRectMake(self.frame.size.width - BACKSPACE_WIDTH, 0, BACKSPACE_HEIGHT, BACKSPACE_WIDTH);
         [self.backspaceButton addTarget:self.formulaEditorViewController action:@selector(backspace:) forControlEvents:UIControlEventTouchUpInside];
-        
-        self.rightViewMode = UITextFieldViewModeAlways;
-        self.rightView = self.backspaceButton;
+        [self addSubview:self.backspaceButton];
     }
     return self;
 }
@@ -101,6 +109,28 @@
         self.backspaceButton.enabled = YES;
         self.backspaceButton.alpha = 1.0;
     }
+}
+   
+- (void)setText:(NSString *)text
+{
+    [super setText:text];
+    [self layoutIfNeeded];
+    
+    CGRect frame = self.frame;
+    frame.size.height = self.contentSize.height;
+    
+    float maxHeight = [[UIScreen mainScreen] bounds].size.height - self.frame.origin.y - self.inputView.frame.size.height - TEXT_FIELD_MARGIN_BOTTOM;
+    if(frame.size.height > maxHeight)
+        frame.size.height = maxHeight;
+    
+    self.frame = frame;
+    [self scrollRangeToVisible:NSMakeRange(self.text.length - 1, 1)];
+    
+    NSLog(@"lineHeight=%f, frameHeight=%f", self.font.lineHeight, self.frame.size.height);
+    
+    CGRect backspaceFrame = self.backspaceButton.frame;
+    backspaceFrame.origin.y = self.contentSize.height - TEXT_FIELD_PADDING_VERTICAL - self.font.lineHeight/2 - self.backspaceButton.frame.size.height/2;
+    self.backspaceButton.frame = backspaceFrame;
 }
 
 @end

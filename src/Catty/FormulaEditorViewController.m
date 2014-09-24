@@ -21,7 +21,7 @@
  */
 
 #import "FormulaEditorViewController.h"
-#import "FormulaEditorTextField.h"
+#import "FormulaEditorTextView.h"
 #import "UIDefines.h"
 #import "Brick.h"
 #import "LanguageTranslationDefines.h"
@@ -55,7 +55,7 @@ NS_ENUM(NSInteger, ButtonIndex) {
 
 @property (strong, nonatomic) UITapGestureRecognizer *recognizer;
 @property (strong, nonatomic) UIMotionEffectGroup *motionEffects;
-@property (strong, nonatomic) FormulaEditorTextField *formulaEditorTextField;
+@property (strong, nonatomic) FormulaEditorTextView *formulaEditorTextView;
 
 @property (strong, nonatomic) IBOutletCollection(UIButton) NSArray *buttons;
 @property (weak, nonatomic) IBOutlet UIButton *undoButton;
@@ -72,9 +72,7 @@ NS_ENUM(NSInteger, ButtonIndex) {
 
 @implementation FormulaEditorViewController
 
-@synthesize formulaEditorTextField;
-
-const float TEXT_FIELD_HEIGHT = 45;
+@synthesize formulaEditorTextView;
 
 - (id)initWithFormulaButton:(FormulaEditorButton *)formulaButton
 {
@@ -123,6 +121,11 @@ const float TEXT_FIELD_HEIGHT = 45;
     [self showFormulaEditor];
 }
 
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+}
+
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
@@ -130,6 +133,7 @@ const float TEXT_FIELD_HEIGHT = 45;
     self.recognizer.numberOfTapsRequired = 1;
     self.recognizer.cancelsTouchesInView = NO;
     [self.view.window addGestureRecognizer:self.recognizer];
+    [self update];
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
@@ -168,7 +172,7 @@ const float TEXT_FIELD_HEIGHT = 45;
 - (void)dismissFormulaEditorViewController
 {
     if (! self.presentingViewController.isBeingDismissed) {
-        [self.formulaEditorTextField removeFromSuperview];
+        [self.formulaEditorTextView removeFromSuperview];
         [self.presentingViewController dismissViewControllerAnimated:YES completion:NULL];
     }
 }
@@ -299,48 +303,43 @@ const float TEXT_FIELD_HEIGHT = 45;
         }
         
         _mathFunctionsMenu.cancelHandler = ^(AHKActionSheet *actionSheet) {
-            [weakSelf.formulaEditorTextField becomeFirstResponder];
+            [weakSelf.formulaEditorTextView becomeFirstResponder];
         };
     }
     return _mathFunctionsMenu;
 }
 
 #pragma mark - UI
+
 - (void)showFormulaEditor
 {
-    UIView *textFieldPadding = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 5, TEXT_FIELD_HEIGHT)];
-    
-    self.formulaEditorTextField = [[FormulaEditorTextField alloc] initWithFrame: CGRectMake(1, self.brickCell.frame.size.height + 50, self.view.frame.size.width - 2, TEXT_FIELD_HEIGHT) AndFormulaEditorViewController:self];
-    [self.formulaEditorTextField setAutocorrectionType:UITextAutocorrectionTypeNo];
-    [self.formulaEditorTextField setLeftViewMode:UITextFieldViewModeAlways];
-    [self.formulaEditorTextField setLeftView:textFieldPadding];
-    self.formulaEditorTextField.backgroundColor = [UIColor whiteColor];
-    [self.view addSubview:self.formulaEditorTextField];
+    self.formulaEditorTextView = [[FormulaEditorTextView alloc] initWithFrame: CGRectMake(1, self.brickCell.frame.size.height + 41, self.view.frame.size.width - 2, 0) AndFormulaEditorViewController:self];
+    [self.view addSubview:self.formulaEditorTextView];
     
     for(int i = 0; i < [self.buttons count]; i++) {
         [[self.buttons objectAtIndex:i] setTitleColor:UIColor.lightOrangeColor forState:UIControlStateNormal];
     }
     
     [self update];
-    [self.formulaEditorTextField becomeFirstResponder];
+    [self.formulaEditorTextView becomeFirstResponder];
 }
 
 - (void)update
 {
-    [self.formulaEditorTextField update];
+    [self.formulaEditorTextView update];
     [self.formulaEditorButton updateFormula:self.internFormula];
     [self.undoButton setEnabled:[self.history undoIsPossible]];
     [self.redoButton setEnabled:[self.history redoIsPossible]];
 }
 
 - (IBAction)showMathFunctionsMenu:(id)sender {
-    [self.formulaEditorTextField resignFirstResponder];
+    [self.formulaEditorTextView resignFirstResponder];
     [self.mathFunctionsMenu show];
     [self.mathFunctionsMenu becomeFirstResponder];
 }
 
 - (void)closeMathFunctionsMenu:(Function)function {
-    [self.formulaEditorTextField becomeFirstResponder];
+    [self.formulaEditorTextView becomeFirstResponder];
 }
 
 @end
