@@ -44,7 +44,7 @@
 -(void)testNextLookBrick
 {
     SpriteObject* object = [[SpriteObject alloc] init];
-    Program *program = [Program defaultProgramWithName:@"a"];
+    Program *program = [Program defaultProgramWithName:@"a" programID:nil];
     object.program = program;
     
     NSBundle *bundle = [NSBundle bundleForClass:[self class]];
@@ -70,6 +70,6 @@
     
     action();
     XCTAssertEqual(object.currentLook,look1, @"NextLookBrick not correct");
-    [Program removeProgramFromDiskWithProgramName:program.header.programName];
+    [Program removeProgramFromDiskWithProgramName:program.header.programName programID:program.header.programID];
 }
 @end

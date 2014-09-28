@@ -37,11 +37,11 @@
 
 @protocol MYIntroductionDelegate;
 @class SceneViewController;
-@class ProgramLoadingInfo;
 @class CatrobatAlertView;
 @protocol CatrobatAlertViewDelegate;
 @class CatrobatActionSheet;
 @protocol CatrobatActionSheetDelegate;
+@class ProgramLoadingInfo;
 
 @interface Util : NSObject
 
@@ -120,11 +120,9 @@
 
 + (CATransition*)getPushCATransition;
 
-+ (ProgramLoadingInfo*)programLoadingInfoForProgramWithName:(NSString*)program;
++ (ProgramLoadingInfo*)lastUsedProgramLoadingInfo;
 
-+ (NSString*)lastProgram;
-
-+ (void)setLastProgram:(NSString*)visibleName;
++ (void)setLastProgramWithName:(NSString*)programName programID:(NSString*)programID;
 
 + (void)askUserForUniqueNameAndPerformAction:(SEL)action
                                       target:(id)target

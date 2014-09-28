@@ -46,7 +46,7 @@
 -(void)testSetBrightnessBrickDarker
 {
     SpriteObject* object = [[SpriteObject alloc] init];
-    Program *program = [Program defaultProgramWithName:@"a"];
+    Program *program = [Program defaultProgramWithName:@"a" programID:nil];
     object.program = program;
     
     NSBundle *bundle = [NSBundle bundleForClass:[self class]];
@@ -75,13 +75,13 @@
     
     action();
     XCTAssertEqualWithAccuracy([object brightness], -70.0f,0.1f, @"SetBrightnessBrick - Brightness not correct");
-    [Program removeProgramFromDiskWithProgramName:program.header.programName];
+    [Program removeProgramFromDiskWithProgramName:program.header.programName programID:program.header.programID];
 }
 
 -(void)testSetBrightnessBrickBrighter
 {
     SpriteObject* object = [[SpriteObject alloc] init];
-    Program *program = [Program defaultProgramWithName:@"a"];
+    Program *program = [Program defaultProgramWithName:@"a" programID:nil];
     object.program = program;
     
     NSBundle *bundle = [NSBundle bundleForClass:[self class]];
@@ -110,13 +110,13 @@
     
     action();
     XCTAssertEqualWithAccuracy([object brightness], 30.0f,0.1f ,@"SetBrightnessBrick - Brightness not correct");
-    [Program removeProgramFromDiskWithProgramName:program.header.programName];
+    [Program removeProgramFromDiskWithProgramName:program.header.programName programID:program.header.programID];
 
 }
 -(void)testSetBrightnessBrickTooBright
 {
     SpriteObject* object = [[SpriteObject alloc] init];
-    Program *program = [Program defaultProgramWithName:@"a"];
+    Program *program = [Program defaultProgramWithName:@"a" programID:nil];
     object.program = program;
     
     NSBundle *bundle = [NSBundle bundleForClass:[self class]];
@@ -145,14 +145,14 @@
     
     action();
     XCTAssertEqualWithAccuracy([object brightness], -100.0f,0.1f, @"SetBrightnessBrick - Brightness not correct");
-    [Program removeProgramFromDiskWithProgramName:program.header.programName];
+    [Program removeProgramFromDiskWithProgramName:program.header.programName programID:program.header.programID];
 
 }
 -(void)testSetBrightnessBrickTooDark
 {
     
     SpriteObject* object = [[SpriteObject alloc] init];
-    Program *program = [Program defaultProgramWithName:@"a"];
+    Program *program = [Program defaultProgramWithName:@"a" programID:nil];
     object.program = program;
     
     NSBundle *bundle = [NSBundle bundleForClass:[self class]];
@@ -181,13 +181,13 @@
     
     action();
     XCTAssertEqualWithAccuracy([object brightness], 100.0f,0.1f, @"SetBrightnessBrick - Brightness not correct");
-    [Program removeProgramFromDiskWithProgramName:program.header.programName];
+    [Program removeProgramFromDiskWithProgramName:program.header.programName programID:program.header.programID];
 }
 -(void)testSetBrightnessBrickWrongInput
 {
     
     SpriteObject* object = [[SpriteObject alloc] init];
-    Program *program = [Program defaultProgramWithName:@"a"];
+    Program *program = [Program defaultProgramWithName:@"a" programID:nil];
     object.program = program;
     
     NSBundle *bundle = [NSBundle bundleForClass:[self class]];
@@ -216,7 +216,7 @@
     
     action();
     XCTAssertEqualWithAccuracy([object brightness], -100.0f,0.1f, @"SetBrightnessBrick - Brightness not correct");
-    [Program removeProgramFromDiskWithProgramName:program.header.programName];
+    [Program removeProgramFromDiskWithProgramName:program.header.programName programID:program.header.programID];
 }
 
 

@@ -526,7 +526,7 @@
 {
     [self resetSpriteObjects];
     self.program = nil;
-    self.program = [Program programWithLoadingInfo:[Util programLoadingInfoForProgramWithName:[Util lastProgram]]];
+    self.program = [Program programWithLoadingInfo:[Util lastUsedProgramLoadingInfo]];
     for (SpriteObject *sprite in self.program.objectList) {
         sprite.broadcastWaitDelegate = self.broadcastWaitHandler;
         for (Script *script in sprite.scriptList) {
