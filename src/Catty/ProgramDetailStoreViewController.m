@@ -207,7 +207,7 @@
                        programID:(NSString*)programID
                 toNewProgramName:(NSString*)newProgramName
 {
-    [self showPlayButton];
+    return; // IMPORTANT: this method does nothing but has to be implemented!!
 }
 
 #pragma mark - ProgramStore Delegate
