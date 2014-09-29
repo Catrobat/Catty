@@ -71,54 +71,40 @@
 // existing programs like Whack a mole, ...
 - (void)testExistingProgramsIfFolderExists
 {
-    NSString *basePath = [Program basePath];
-    NSError *error;
-    NSArray *programNames = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:basePath error:&error];
-    NSLogError(error);
-
-    for (NSString *programName in programNames) {
-        // exclude .DS_Store folder on MACOSX simulator and new program
-        if ([programName isEqualToString:@".DS_Store"] || [programName isEqualToString:kLocalizedNewProgram])
+    NSArray *allProgramLoadingInfos = [Program allProgramLoadingInfos];
+    for (ProgramLoadingInfo *programLoadingInfo in allProgramLoadingInfos) {
+        // exclude new program
+        if ([programLoadingInfo.visibleName isEqualToString:kLocalizedNewProgram])
             continue;
 
-        ProgramLoadingInfo *loadingInfo = [[ProgramLoadingInfo alloc] init];
-        loadingInfo.basePath = [NSString stringWithFormat:@"%@%@/", [Program basePath], programName];
-        loadingInfo.visibleName = programName;
-        NSLog(@"Project name: %@", programName);
+        NSLog(@"Program name: %@", programLoadingInfo.visibleName);
         self.programTableViewController.delegate = nil; // no delegate needed for this test
-        self.programTableViewController.program = [Program programWithLoadingInfo:loadingInfo];
+        self.programTableViewController.program = [Program programWithLoadingInfo:programLoadingInfo];
         [self.programTableViewController viewDidLoad];
         [self.programTableViewController viewWillAppear:NO];
-        XCTAssertTrue([self.fileManager directoryExists:loadingInfo.basePath], @"The ProgramTableViewController did not create the project folder for the project %@", programName);
+        XCTAssertTrue([self.fileManager directoryExists:programLoadingInfo.basePath], @"The ProgramTableViewController did not create the project folder for the project %@", programLoadingInfo.visibleName);
         self.programTableViewController = nil; // unload program table view controller
     }
 }
 
 - (void)testExistingProgramsObjectCells
 {
-    NSString *basePath = [Program basePath];
-    NSError *error;
-    NSArray *programNames = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:basePath error:&error];
-    NSLogError(error);
-
-    for (NSString *programName in programNames) {
-        // exclude .DS_Store folder on MACOSX simulator and new program
-        if ([programName isEqualToString:@".DS_Store"] || [programName isEqualToString:kLocalizedNewProgram])
+    NSArray *allProgramLoadingInfos = [Program allProgramLoadingInfos];
+    for (ProgramLoadingInfo *programLoadingInfo in allProgramLoadingInfos) {
+        // exclude new program
+        if ([programLoadingInfo.visibleName isEqualToString:kLocalizedNewProgram])
             continue;
 
-        ProgramLoadingInfo *loadingInfo = [[ProgramLoadingInfo alloc] init];
-        loadingInfo.basePath = [NSString stringWithFormat:@"%@%@/", [Program basePath], programName];
-        loadingInfo.visibleName = programName;
-        NSLog(@"Project name: %@", programName);
-        Program *program = [self loadProgram:loadingInfo];
+        NSLog(@"Program name: %@", programLoadingInfo.visibleName);
+        Program *program = [self loadProgram:programLoadingInfo];
         XCTAssertNotNil(program, @"Could not create program");
         if (! program) {
-            NSLog(@"Loading program %@ failed", programName);
+            NSLog(@"Loading program %@ failed", programLoadingInfo.visibleName);
             continue;
         }
 
         self.programTableViewController.delegate = nil; // no delegate needed for this test
-        self.programTableViewController.program = [Program programWithLoadingInfo:loadingInfo];
+        self.programTableViewController.program = [Program programWithLoadingInfo:programLoadingInfo];
         [self.programTableViewController performSelectorOnMainThread:@selector(view) withObject:nil waitUntilDone:YES];
         [self.programTableViewController viewDidLoad];
         [self.programTableViewController viewWillAppear:NO];
@@ -128,7 +114,7 @@
         UITableViewCell *cell = [self.programTableViewController tableView:self.programTableViewController.tableView cellForRowAtIndexPath:indexPath];
         NSString *backgroundObjectCellTitle = nil;
         if ([cell conformsToProtocol:@protocol(CatrobatImageCell)]) {
-            UITableViewCell <CatrobatImageCell>* imageCell = (UITableViewCell <CatrobatImageCell>*)cell;
+            UITableViewCell<CatrobatImageCell> *imageCell = (UITableViewCell<CatrobatImageCell>*)cell;
             backgroundObjectCellTitle = imageCell.titleLabel.text;
         }
         XCTAssertTrue(([backgroundObjectCellTitle isEqualToString:kLocalizedBackground]
@@ -164,87 +150,63 @@
 
 - (void)testExistingProgramsNumberOfSections
 {
-    NSString *basePath = [Program basePath];
-    NSError *error;
-    NSArray *programNames = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:basePath error:&error];
-    NSLogError(error);
-
-    for (NSString *programName in programNames) {
-        // exclude .DS_Store folder on MACOSX simulator and new program
-        if ([programName isEqualToString:@".DS_Store"] || [programName isEqualToString:kLocalizedNewProgram])
+    NSArray *allProgramLoadingInfos = [Program allProgramLoadingInfos];
+    for (ProgramLoadingInfo *programLoadingInfo in allProgramLoadingInfos) {
+        // exclude new program
+        if ([programLoadingInfo.visibleName isEqualToString:kLocalizedNewProgram])
             continue;
 
-        ProgramLoadingInfo *loadingInfo = [[ProgramLoadingInfo alloc] init];
-        loadingInfo.basePath = [NSString stringWithFormat:@"%@%@/", [Program basePath], programName];
-        loadingInfo.visibleName = programName;
-        NSLog(@"Project name: %@", programName);
-
+        NSLog(@"Program name: %@", programLoadingInfo.visibleName);
         self.programTableViewController.delegate = nil; // no delegate needed for this test
-        self.programTableViewController.program = [Program programWithLoadingInfo:loadingInfo];
+        self.programTableViewController.program = [Program programWithLoadingInfo:programLoadingInfo];
         [self.programTableViewController performSelectorOnMainThread:@selector(view) withObject:nil waitUntilDone:YES];
         [self.programTableViewController viewDidLoad];
         [self.programTableViewController viewWillAppear:NO];
-
         NSInteger numberOfSections = (NSInteger)[self.programTableViewController numberOfSectionsInTableView:self.programTableViewController.tableView];
-        XCTAssertEqual(numberOfSections, kNumberOfSectionsInProgramTableViewController, @"Wrong number of sections in ProgramTableViewController for program: %@", programName);
+        XCTAssertEqual(numberOfSections, kNumberOfSectionsInProgramTableViewController, @"Wrong number of sections in ProgramTableViewController for program: %@", programLoadingInfo.visibleName);
         self.programTableViewController = nil; // unload program table view controller
     }
 }
 
 - (void)testExistingProgramsNumberOfBackgroundRows
 {
-    NSString *basePath = [Program basePath];
-    NSError *error;
-    NSArray *programNames = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:basePath error:&error];
-    NSLogError(error);
-
-    for (NSString *programName in programNames) {
-        // exclude .DS_Store folder on MACOSX simulator and new program
-        if ([programName isEqualToString:@".DS_Store"] || [programName isEqualToString:kLocalizedNewProgram])
+    NSArray *allProgramLoadingInfos = [Program allProgramLoadingInfos];
+    for (ProgramLoadingInfo *programLoadingInfo in allProgramLoadingInfos) {
+        // exclude new program
+        if ([programLoadingInfo.visibleName isEqualToString:kLocalizedNewProgram])
             continue;
 
-        ProgramLoadingInfo *loadingInfo = [[ProgramLoadingInfo alloc] init];
-        loadingInfo.basePath = [NSString stringWithFormat:@"%@%@/", [Program basePath], programName];
-        loadingInfo.visibleName = programName;
-        NSLog(@"Project name: %@", programName);
-
+        NSLog(@"Program name: %@", programLoadingInfo.visibleName);
         self.programTableViewController.delegate = nil; // no delegate needed for this test
-        self.programTableViewController.program = [Program programWithLoadingInfo:loadingInfo];
+        self.programTableViewController.program = [Program programWithLoadingInfo:programLoadingInfo];
         [self.programTableViewController performSelectorOnMainThread:@selector(view) withObject:nil waitUntilDone:YES];
         [self.programTableViewController viewDidLoad];
         [self.programTableViewController viewWillAppear:NO];
 
         NSInteger numberOfBackgroundRows = (NSInteger)[self.programTableViewController tableView:self.programTableViewController.tableView numberOfRowsInSection:kBackgroundSectionIndex];
-        XCTAssertEqual(numberOfBackgroundRows, kBackgroundObjects, @"Wrong number of background rows in ProgramTableViewController for program: %@", programName);
+        XCTAssertEqual(numberOfBackgroundRows, kBackgroundObjects, @"Wrong number of background rows in ProgramTableViewController for program: %@", programLoadingInfo.visibleName);
         self.programTableViewController = nil; // unload program table view controller
     }
 }
 
 - (void)testExistingProgramsNumberOfObjectRows
 {
-    NSString *basePath = [Program basePath];
-    NSError *error;
-    NSArray *programNames = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:basePath error:&error];
-    NSLogError(error);
-
-    for (NSString *programName in programNames) {
-        // exclude .DS_Store folder on MACOSX simulator and new program
-        if ([programName isEqualToString:@".DS_Store"] || [programName isEqualToString:kLocalizedNewProgram])
+    NSArray *allProgramLoadingInfos = [Program allProgramLoadingInfos];
+    for (ProgramLoadingInfo *programLoadingInfo in allProgramLoadingInfos) {
+        // exclude new program
+        if ([programLoadingInfo.visibleName isEqualToString:kLocalizedNewProgram])
             continue;
 
-        ProgramLoadingInfo *loadingInfo = [[ProgramLoadingInfo alloc] init];
-        loadingInfo.basePath = [NSString stringWithFormat:@"%@%@/", [Program basePath], programName];
-        loadingInfo.visibleName = programName;
-        NSLog(@"Project name: %@", programName);
-        Program *program = [self loadProgram:loadingInfo];
+        NSLog(@"Program name: %@", programLoadingInfo.visibleName);
+        Program *program = [self loadProgram:programLoadingInfo];
         XCTAssertNotNil(program, @"Could not create program");
         if (! program) {
-            NSLog(@"Loading program %@ failed", programName);
+            NSLog(@"Loading program %@ failed", programLoadingInfo.visibleName);
             continue;
         }
 
         self.programTableViewController.delegate = nil; // no delegate needed for this test
-        self.programTableViewController.program = [Program programWithLoadingInfo:loadingInfo];
+        self.programTableViewController.program = [Program programWithLoadingInfo:programLoadingInfo];
         [self.programTableViewController performSelectorOnMainThread:@selector(view) withObject:nil waitUntilDone:YES];
         [self.programTableViewController viewDidLoad];
         [self.programTableViewController viewWillAppear:NO];
@@ -257,30 +219,22 @@
 
 - (void)testExistingProgramsTestRemoveBackgroundObjectTestMustFail
 {
-    NSString *basePath = [Program basePath];
-    NSError *error;
-    NSArray *programNames = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:basePath error:&error];
-    NSLogError(error);
-
-    for (NSString *programName in programNames) {
-        // exclude .DS_Store folder on MACOSX simulator and new program
-        if ([programName isEqualToString:@".DS_Store"] || [programName isEqualToString:kLocalizedNewProgram])
+    NSArray *allProgramLoadingInfos = [Program allProgramLoadingInfos];
+    for (ProgramLoadingInfo *programLoadingInfo in allProgramLoadingInfos) {
+        // exclude new program
+        if ([programLoadingInfo.visibleName isEqualToString:kLocalizedNewProgram])
             continue;
 
-        ProgramLoadingInfo *loadingInfo = [[ProgramLoadingInfo alloc] init];
-        loadingInfo.basePath = [NSString stringWithFormat:@"%@%@/", [Program basePath], programName];
-        loadingInfo.visibleName = programName;
-        NSLog(@"Project name: %@", programName);
-
+        NSLog(@"Program name: %@", programLoadingInfo.visibleName);
         self.programTableViewController.delegate = nil; // no delegate needed for this test
-        self.programTableViewController.program = [Program programWithLoadingInfo:loadingInfo];
+        self.programTableViewController.program = [Program programWithLoadingInfo:programLoadingInfo];
         [self.programTableViewController performSelectorOnMainThread:@selector(view) withObject:nil waitUntilDone:YES];
         [self.programTableViewController viewDidLoad];
         [self.programTableViewController viewWillAppear:NO];
 
         NSIndexPath *indexPath = [NSIndexPath indexPathForRow:kBackgroundObjectIndex inSection:kBackgroundSectionIndex];
         BOOL result = [self.programTableViewController tableView:self.programTableViewController.tableView canEditRowAtIndexPath:indexPath];
-        XCTAssertFalse(result, @"ProgramTableViewController permits removing background cell in program %@", programName);
+        XCTAssertFalse(result, @"ProgramTableViewController permits removing background cell in program %@", programLoadingInfo.visibleName);
         self.programTableViewController = nil; // unload program table view controller
     }
 }
@@ -321,7 +275,7 @@
 //        sprite.spriteManagerDelegate = self;
 //        sprite.broadcastWaitDelegate = self.broadcastWaitHandler;
 //    }
-    [Util setLastProgram:program.header.programName];
+    [Util setLastProgramWithName:program.header.programName programID:program.header.programID];
     return program;
 }
 
@@ -330,7 +284,7 @@
     FileManager *fileManager = ((AppDelegate*)[UIApplication sharedApplication].delegate).fileManager;
     if ([fileManager directoryExists:projectPath])
         [fileManager deleteDirectory:projectPath];
-    [Util setLastProgram:nil];
+    [Util setLastProgramWithName:nil programID:nil];
 }
 
 @end

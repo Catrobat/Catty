@@ -20,9 +20,9 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import "CatrobatProject.h"
+#import "CatrobatProgram.h"
 
-@implementation CatrobatProject
+@implementation CatrobatProgram
 
 - (id)initWithDict:(NSDictionary*)dict andBaseUrl:(NSString*)baseUrl {
     self = [super init];

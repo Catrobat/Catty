@@ -21,7 +21,7 @@
  */
 
 #import "SearchStoreViewController.h"
-#import "CatrobatProject.h"
+#import "CatrobatProgram.h"
 #import "CatrobatInformation.h"
 #import "NetworkDefines.h"
 #import "TableUtil.h"
@@ -174,7 +174,7 @@
 #pragma mark - Table view delegate
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    CatrobatProject *catrobatProject = [self.searchResults objectAtIndex:indexPath.row];
+    CatrobatProgram *catrobatProject = [self.searchResults objectAtIndex:indexPath.row];
     static NSString *segueToProgramDetail = kSegueToProgramDetail;
     if (! self.editing) {
         if ([self shouldPerformSegueWithIdentifier:segueToProgramDetail sender:catrobatProject]) {
@@ -224,7 +224,7 @@
             self.searchResults = [[NSMutableArray alloc] initWithCapacity:[catrobatProjects count]];
             
             for (NSDictionary *projectDict in catrobatProjects) {
-                CatrobatProject *project = [[CatrobatProject alloc] initWithDict:projectDict andBaseUrl:information.baseURL];
+                CatrobatProgram *project = [[CatrobatProgram alloc] initWithDict:projectDict andBaseUrl:information.baseURL];
                 [self.searchResults addObject:project];
             }
         }
@@ -315,7 +315,7 @@
     [self.searchController setActive:NO];
     [self update];
     if ([[segue identifier] isEqualToString:kSegueToProgramDetail]) {
-        if ([sender isKindOfClass:[CatrobatProject class]]) {
+        if ([sender isKindOfClass:[CatrobatProgram class]]) {
             ProgramDetailStoreViewController* programDetailViewController = (ProgramDetailStoreViewController*)[segue destinationViewController];
             programDetailViewController.project = sender;
             programDetailViewController.searchStoreController = self;
@@ -363,7 +363,7 @@
     }
 
     if ([cell conformsToProtocol:@protocol(CatrobatImageCell)]) {
-        CatrobatProject *project = [self.searchResults objectAtIndex:indexPath.row];
+        CatrobatProgram *project = [self.searchResults objectAtIndex:indexPath.row];
         
         UITableViewCell <CatrobatImageCell>* imageCell = (UITableViewCell <CatrobatImageCell>*)cell;
         imageCell.titleLabel.text = project.projectName;

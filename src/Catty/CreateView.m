@@ -22,7 +22,7 @@
 
 #import <QuartzCore/QuartzCore.h>
 #import "CreateView.h"
-#import "CatrobatProject.h"
+#import "CatrobatProgram.h"
 #import "UIColor+CatrobatUIColorExtensions.h"
 #import "ImageCache.h"
 #import "CAGradientLayer+CatrobatCAGradientExtensions.h"
@@ -48,7 +48,7 @@
     return [Util screenHeight];
 }
 
-+ (UIView*)createProgramDetailView:(CatrobatProject*)project target:(id)target
++ (UIView*)createProgramDetailView:(CatrobatProgram*)project target:(id)target
 {
     if([self height] == kIphone4ScreenHeight || [self height] == kIphone5ScreenHeight)
     {

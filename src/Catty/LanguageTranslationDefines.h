@@ -212,7 +212,6 @@
 #define kLocalizedLooks NSLocalizedString(@"Looks", nil)
 #define kLocalizedVariables NSLocalizedString(@"Variables", nil)
 
-
 //************************************************************************************************************
 //**********************************       SHORT DESCRIPTIONS      *******************************************
 //************************************************************************************************************
@@ -227,7 +226,7 @@
 #define kLocalizedThisActionCannotBeUndone NSLocalizedString(@"This action can not be undone!", nil)
 #define kLocalizedNoInternetConnectionAvailable NSLocalizedString(@"No internet connection available.", nil)
 #define kLocalizedSlowInternetConnection NSLocalizedString(@"Slow Internet Connection!",nil)
-
+#define kLocalizedInvalidURLGiven NSLocalizedString(@"Invalid URL given!",nil)
 
 //************************************************************************************************************
 //**********************************       LONG DESCRIPTIONS      ********************************************

@@ -56,7 +56,7 @@
 
 - (void)setupForNewProgram
 {
-    self.program = [Program defaultProgramWithName:kLocalizedNewProgram];
+    self.program = [Program defaultProgramWithName:kLocalizedNewProgram programID:nil];
 }
 
 - (void)testNewProgramIfProjectFolderExists
@@ -92,7 +92,7 @@
     FileManager *fileManager = ((AppDelegate*)[UIApplication sharedApplication].delegate).fileManager;
     if ([fileManager directoryExists:projectPath])
         [fileManager deleteDirectory:projectPath];
-    [Util setLastProgram:nil];
+    [Util setLastProgramWithName:nil programID:nil];
 }
 
 @end

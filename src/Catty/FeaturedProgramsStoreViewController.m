@@ -22,7 +22,7 @@
 
 #import "FeaturedProgramsStoreViewController.h"
 #import "CatrobatInformation.h"
-#import "CatrobatProject.h"
+#import "CatrobatProgram.h"
 #import "AppDelegate.h"
 #import "Util.h"
 #import "TableUtil.h"
@@ -126,7 +126,7 @@
     }
 
     if([cell isKindOfClass:[DarkBlueGradientFeaturedCell class]]) {
-        CatrobatProject *project = [self.projects objectAtIndex:indexPath.row];
+        CatrobatProgram *project = [self.projects objectAtIndex:indexPath.row];
         
         DarkBlueGradientFeaturedCell *imageCell = (DarkBlueGradientFeaturedCell *)cell;
         [self loadImage:project.featuredImage forCell:imageCell atIndexPath:indexPath];
@@ -216,13 +216,13 @@
         self.projects = [[NSMutableArray alloc] initWithCapacity:[catrobatProjects count]];
         
         for (NSDictionary *projectDict in catrobatProjects) {
-            CatrobatProject *project = [[CatrobatProject alloc] initWithDict:projectDict andBaseUrl:information.baseURL];
+            CatrobatProgram *project = [[CatrobatProgram alloc] initWithDict:projectDict andBaseUrl:information.baseURL];
             [self.projects addObject:project];
         }
     }
     [self update];
     
-    for (CatrobatProject* project in self.projects) {
+    for (CatrobatProgram* project in self.projects) {
         
         NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@/%@?id=%@", kConnectionHost, kConnectionIDQuery,project.projectID]];
         NSURLRequest *request = [NSURLRequest requestWithURL:url cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:kConnectionTimeout];
@@ -268,11 +268,11 @@
         NSArray *catrobatProjects = [jsonObject valueForKey:@"CatrobatProjects"];
         
         NSInteger counter=0;
-        CatrobatProject *loadedProject;
+        CatrobatProgram *loadedProject;
         NSDictionary *projectDict = [catrobatProjects objectAtIndex:[catrobatProjects count]-1];
-        loadedProject = [[CatrobatProject alloc] initWithDict:projectDict andBaseUrl:information.baseURL];
+        loadedProject = [[CatrobatProgram alloc] initWithDict:projectDict andBaseUrl:information.baseURL];
         
-        for (CatrobatProject* project in self.projects) {
+        for (CatrobatProgram* project in self.projects) {
             if ([project.projectID isEqualToString:loadedProject.projectID ]) {
                 @synchronized(self.projects){
                     loadedProject.featuredImage = [NSString stringWithString:project.featuredImage];
@@ -385,7 +385,7 @@
 {
     if ([[segue identifier] isEqualToString:kSegueToProgramDetail]) {
         NSIndexPath *selectedRowIndexPath = self.tableView.indexPathForSelectedRow;
-        CatrobatProject *catrobatProject = [self.projects objectAtIndex:selectedRowIndexPath.row];
+        CatrobatProgram *catrobatProject = [self.projects objectAtIndex:selectedRowIndexPath.row];
         ProgramDetailStoreViewController* programDetailViewController = (ProgramDetailStoreViewController*)[segue destinationViewController];
         programDetailViewController.project = catrobatProject;
         

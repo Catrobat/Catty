@@ -399,7 +399,7 @@
 		CADBD72C19B0E8C200C62836 /* AudioManager.m in Sources */ = {isa = PBXBuildFile; fileRef = B464752F1770F60500CD277F /* AudioManager.m */; };
 		CADBD72D19B0E8C200C62836 /* BDKNotifyHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = CA51A55D198481ED00FFCB45 /* BDKNotifyHUD.m */; };
 		CADBD72E19B0E8C200C62836 /* BroadcastWaitHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = CD0CCE69170CB39600B70036 /* BroadcastWaitHandler.m */; };
-		CADBD72F19B0E8C200C62836 /* CatrobatProject.m in Sources */ = {isa = PBXBuildFile; fileRef = CD0CCE70170CB39600B70036 /* CatrobatProject.m */; };
+		CADBD72F19B0E8C200C62836 /* CatrobatProgram.m in Sources */ = {isa = PBXBuildFile; fileRef = CD0CCE70170CB39600B70036 /* CatrobatProgram.m */; };
 		CADBD73019B0E8C200C62836 /* ChangeGhostEffectByNBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = CD0CCE7B170CB39600B70036 /* ChangeGhostEffectByNBrick.m */; };
 		CADBD73119B0E8C200C62836 /* ChangeSizeByNBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = CD0CCE7D170CB39600B70036 /* ChangeSizeByNBrick.m */; };
 		CADBD73219B0E8C200C62836 /* ChangeVolumeByNBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = CD0CCE7F170CB39600B70036 /* ChangeVolumeByNBrick.m */; };
@@ -618,7 +618,7 @@
 		CD0CCF54170CB39700B70036 /* BroadcastScript.m in Sources */ = {isa = PBXBuildFile; fileRef = CD0CCE64170CB39600B70036 /* BroadcastScript.m */; };
 		CD0CCF55170CB39700B70036 /* BroadcastWaitBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = CD0CCE66170CB39600B70036 /* BroadcastWaitBrick.m */; };
 		CD0CCF56170CB39700B70036 /* BroadcastWaitHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = CD0CCE69170CB39600B70036 /* BroadcastWaitHandler.m */; };
-		CD0CCF59170CB39700B70036 /* CatrobatProject.m in Sources */ = {isa = PBXBuildFile; fileRef = CD0CCE70170CB39600B70036 /* CatrobatProject.m */; };
+		CD0CCF59170CB39700B70036 /* CatrobatProgram.m in Sources */ = {isa = PBXBuildFile; fileRef = CD0CCE70170CB39600B70036 /* CatrobatProgram.m */; };
 		CD0CCF5E170CB39700B70036 /* ChangeGhostEffectByNBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = CD0CCE7B170CB39600B70036 /* ChangeGhostEffectByNBrick.m */; };
 		CD0CCF5F170CB39700B70036 /* ChangeSizeByNBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = CD0CCE7D170CB39600B70036 /* ChangeSizeByNBrick.m */; };
 		CD0CCF60170CB39700B70036 /* ChangeVolumeByNBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = CD0CCE7F170CB39600B70036 /* ChangeVolumeByNBrick.m */; };
@@ -1215,8 +1215,8 @@
 		CD0CCE67170CB39600B70036 /* BroadcastWaitDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BroadcastWaitDelegate.h; sourceTree = "<group>"; };
 		CD0CCE68170CB39600B70036 /* BroadcastWaitHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BroadcastWaitHandler.h; sourceTree = "<group>"; };
 		CD0CCE69170CB39600B70036 /* BroadcastWaitHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BroadcastWaitHandler.m; sourceTree = "<group>"; };
-		CD0CCE6F170CB39600B70036 /* CatrobatProject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CatrobatProject.h; sourceTree = "<group>"; };
-		CD0CCE70170CB39600B70036 /* CatrobatProject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CatrobatProject.m; sourceTree = "<group>"; };
+		CD0CCE6F170CB39600B70036 /* CatrobatProgram.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CatrobatProgram.h; sourceTree = "<group>"; };
+		CD0CCE70170CB39600B70036 /* CatrobatProgram.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CatrobatProgram.m; sourceTree = "<group>"; };
 		CD0CCE7A170CB39600B70036 /* ChangeGhostEffectByNBrick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChangeGhostEffectByNBrick.h; sourceTree = "<group>"; };
 		CD0CCE7B170CB39600B70036 /* ChangeGhostEffectByNBrick.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChangeGhostEffectByNBrick.m; sourceTree = "<group>"; };
 		CD0CCE7C170CB39600B70036 /* ChangeSizeByNBrick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChangeSizeByNBrick.h; sourceTree = "<group>"; };
@@ -2062,8 +2062,8 @@
 		B4BCF411170ED1DE008EDF3A /* CatrobatProject */ = {
 			isa = PBXGroup;
 			children = (
-				CD0CCE6F170CB39600B70036 /* CatrobatProject.h */,
-				CD0CCE70170CB39600B70036 /* CatrobatProject.m */,
+				CD0CCE6F170CB39600B70036 /* CatrobatProgram.h */,
+				CD0CCE70170CB39600B70036 /* CatrobatProgram.m */,
 			);
 			name = CatrobatProject;
 			sourceTree = "<group>";
@@ -3808,7 +3808,7 @@
 				B46475301770F60500CD277F /* AudioManager.m in Sources */,
 				CA51A55E198481ED00FFCB45 /* BDKNotifyHUD.m in Sources */,
 				CD0CCF56170CB39700B70036 /* BroadcastWaitHandler.m in Sources */,
-				CD0CCF59170CB39700B70036 /* CatrobatProject.m in Sources */,
+				CD0CCF59170CB39700B70036 /* CatrobatProgram.m in Sources */,
 				CD0CCF5E170CB39700B70036 /* ChangeGhostEffectByNBrick.m in Sources */,
 				CD0CCF5F170CB39700B70036 /* ChangeSizeByNBrick.m in Sources */,
 				CD0CCF60170CB39700B70036 /* ChangeVolumeByNBrick.m in Sources */,
@@ -4114,7 +4114,7 @@
 				CADBD72C19B0E8C200C62836 /* AudioManager.m in Sources */,
 				CADBD72D19B0E8C200C62836 /* BDKNotifyHUD.m in Sources */,
 				CADBD72E19B0E8C200C62836 /* BroadcastWaitHandler.m in Sources */,
-				CADBD72F19B0E8C200C62836 /* CatrobatProject.m in Sources */,
+				CADBD72F19B0E8C200C62836 /* CatrobatProgram.m in Sources */,
 				CADBD73019B0E8C200C62836 /* ChangeGhostEffectByNBrick.m in Sources */,
 				CADBD73119B0E8C200C62836 /* ChangeSizeByNBrick.m in Sources */,
 				CADBD73219B0E8C200C62836 /* ChangeVolumeByNBrick.m in Sources */,

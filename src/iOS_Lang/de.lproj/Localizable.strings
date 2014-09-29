@@ -345,6 +345,8 @@
 
 "Slow Internet Connection!" = "Langsame Internetverbindung!";
 
+"Invalid URL given!" = "Invalid URL given!";
+
 "You have already downloaded this program!" = "Das Programm wurde bereits heruntergeladen!";
 
 "Program name" = "Programmname";

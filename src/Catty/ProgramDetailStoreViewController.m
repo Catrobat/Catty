@@ -21,7 +21,7 @@
  */
 
 #import "ProgramDetailStoreViewController.h"
-#import "CatrobatProject.h"
+#import "CatrobatProgram.h"
 #import "AppDelegate.h"
 #import "TableUtil.h"
 #import "ButtonTags.h"
@@ -49,14 +49,13 @@
 
 @interface ProgramDetailStoreViewController () <ProgramUpdateDelegate>
 
-@property (nonatomic, strong) UIView* projectView;
-@property (nonatomic, strong) LoadingView* loadingView;
+@property (nonatomic, strong) UIView *projectView;
+@property (nonatomic, strong) LoadingView *loadingView;
+@property (nonatomic, strong) Program *loadedProgram;
 
 @end
 
-
 @implementation ProgramDetailStoreViewController
-
 
 - (NSMutableDictionary*)projects
 {
@@ -74,8 +73,6 @@
     }
     return self;
 }
-
-
 
 - (void)viewDidLoad
 {
@@ -126,26 +123,18 @@
     self.hidesBottomBarWhenPushed = NO;
 }
 
-- (void)didReceiveMemoryWarning
+- (UIView*)createViewForProject:(CatrobatProgram*)project
 {
-    [super didReceiveMemoryWarning];
-}
-
-- (UIView*)createViewForProject:(CatrobatProject*)project {
-    
-    AppDelegate *appDelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
     UIView *view = [CreateView createProgramDetailView:project target:self];
-    if ([appDelegate.fileManager getFullPathForProgram:project.projectName]) {
+    if ([Program programExistsWithProgramID:project.projectID]) {
         [view viewWithTag:kDownloadButtonTag].hidden = YES;
         [view viewWithTag:kPlayButtonTag].hidden = NO;
         [view viewWithTag:kStopLoadingTag].hidden = YES;
     } else if (self.project.isdownloading) {
-    [view viewWithTag:kDownloadButtonTag].hidden = YES;
-    [view viewWithTag:kPlayButtonTag].hidden = YES;
-    [view viewWithTag:kStopLoadingTag].hidden = NO;
-  }
-
-
+        [view viewWithTag:kDownloadButtonTag].hidden = YES;
+        [view viewWithTag:kPlayButtonTag].hidden = YES;
+        [view viewWithTag:kStopLoadingTag].hidden = NO;
+    }
     return view;
 }
 
@@ -173,29 +162,52 @@
     [self setScrollViewOutlet:nil];
 }
 
-#pragma mark - Segue
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+#pragma mark - segue handling
+- (BOOL)shouldPerformSegueWithIdentifier:(NSString*)identifier sender:(id)sender
 {
-    static NSString* segueToContinue = kSegueToContinue;
+    static NSString *segueToContinue = kSegueToContinue;
+    if ([identifier isEqualToString:segueToContinue]) {
+        // The local program name with same program ID could differ from the original program name.
+        // That's because the user could have renamed the downloaded program.
+        NSString *localProgramName = [Program programNameForProgramID:self.project.projectID];
+
+        // check if program loaded successfully -> not nil
+        self.loadedProgram = [Program programWithLoadingInfo:[ProgramLoadingInfo programLoadingInfoForProgramWithName:localProgramName programID:self.project.projectID]];
+
+        if (self.loadedProgram) {
+            return YES;
+        }
+        // program failed loading...
+        [Util alertWithText:kLocalizedUnableToLoadProgram];
+        return NO;
+    }
+    return [super shouldPerformSegueWithIdentifier:identifier sender:sender];
+}
+
+- (void)prepareForSegue:(UIStoryboardSegue*)segue sender:(id)sender
+{
+    static NSString *segueToContinue = kSegueToContinue;
     if ([[segue identifier] isEqualToString:segueToContinue]) {
         if ([segue.destinationViewController isKindOfClass:[ProgramTableViewController class]]) {
             self.hidesBottomBarWhenPushed = YES;
             ProgramTableViewController *programTableViewController = (ProgramTableViewController*)segue.destinationViewController;
-            programTableViewController.program = [Program programWithLoadingInfo:[Util programLoadingInfoForProgramWithName:self.project.name]];
+            programTableViewController.program = self.loadedProgram;
             programTableViewController.delegate = self;
         }
     }
 }
 
 #pragma mark - program update delegates
-- (void)removeProgram:(NSString *)programName
+- (void)removeProgramWithName:(NSString*)programName programID:(NSString*)programID
 {
     [self showPlayButton];
 }
 
-- (void)renameOldProgramName:(NSString *)oldProgramName toNewProgramName:(NSString *)newProgramName
+- (void)renameOldProgramWithName:(NSString*)oldProgramName
+                       programID:(NSString*)programID
+                toNewProgramName:(NSString*)newProgramName
 {
-    [self showPlayButton];
+    return; // IMPORTANT: this method does nothing but has to be implemented!!
 }
 
 #pragma mark - ProgramStore Delegate
@@ -203,7 +215,9 @@
 {
     static NSString* segueToContinue = kSegueToContinue;
     NSDebug(@"Play Button");
-    [self performSegueWithIdentifier:segueToContinue sender:self];
+    if ([self shouldPerformSegueWithIdentifier:segueToContinue sender:self]) {
+        [self performSegueWithIdentifier:segueToContinue sender:self];
+    }
 }
 
 - (void)playButtonPressed:(id)sender
@@ -221,7 +235,7 @@
     AppDelegate *appDelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
     NSURL *url = [NSURL URLWithString:self.project.downloadUrl];
     appDelegate.fileManager.delegate = self;
-    [appDelegate.fileManager downloadFileFromURL:url withName:self.project.projectName];
+    [appDelegate.fileManager downloadFileFromURL:url withProgramID:self.project.projectID withName:self.project.projectName];
     NSDebug(@"url screenshot is %@", self.project.screenshotSmall);
     NSString *urlString = self.project.screenshotSmall;
     NSDebug(@"screenshot url is: %@", urlString);
@@ -269,7 +283,7 @@
     }
 }
 
--(void)reloadWithProject:(CatrobatProject *)loadedProject
+-(void)reloadWithProject:(CatrobatProgram *)loadedProject
 {
     [self.projectView removeFromSuperview];
     self.projectView = [self createViewForProject:loadedProject];

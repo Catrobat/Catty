@@ -22,7 +22,7 @@
 
 #import "RecentProgramsStoreViewController.h"
 #import "CatrobatInformation.h"
-#import "CatrobatProject.h"
+#import "CatrobatProgram.h"
 #import "AppDelegate.h"
 #import "Util.h"
 #import "TableUtil.h"
@@ -211,7 +211,7 @@
         //
         //        }
         //        else{
-        CatrobatProject *project ;
+        CatrobatProgram *project ;
         switch (self.downloadSegmentedControl.selectedSegmentIndex) {
             case 0:
                 project = [self.mostDownloadedProjects objectAtIndex:indexPath.row];
@@ -333,7 +333,7 @@
                 else {
                     //preallocate due to performance reasons
                     NSMutableArray *tmpResizedArray = [[NSMutableArray alloc] initWithCapacity:([self.mostDownloadedProjects count] + [catrobatProjects count])];
-                    for (CatrobatProject *catrobatProject in self.mostDownloadedProjects) {
+                    for (CatrobatProgram *catrobatProject in self.mostDownloadedProjects) {
                         [tmpResizedArray addObject:catrobatProject];
                     }
                     self.mostDownloadedProjects = nil;
@@ -350,7 +350,7 @@
                 else {
                     //preallocate due to performance reasons
                     NSMutableArray *tmpResizedArray = [[NSMutableArray alloc] initWithCapacity:([self.mostViewedProjects count] + [catrobatProjects count])];
-                    for (CatrobatProject *catrobatProject in self.mostViewedProjects) {
+                    for (CatrobatProgram *catrobatProject in self.mostViewedProjects) {
                         [tmpResizedArray addObject:catrobatProject];
                     }
                     self.mostViewedProjects = nil;
@@ -366,7 +366,7 @@
                 else {
                     //preallocate due to performance reasons
                     NSMutableArray *tmpResizedArray = [[NSMutableArray alloc] initWithCapacity:([self.mostRecentProjects count] + [catrobatProjects count])];
-                    for (CatrobatProject *catrobatProject in self.mostRecentProjects) {
+                    for (CatrobatProgram *catrobatProject in self.mostRecentProjects) {
                         [tmpResizedArray addObject:catrobatProject];
                     }
                     self.mostRecentProjects = nil;
@@ -391,11 +391,11 @@
 {
     
     for (NSDictionary *projectDict in catrobatProjects) {
-        CatrobatProject *project = [[CatrobatProject alloc] initWithDict:projectDict andBaseUrl:information.baseURL];
+        CatrobatProgram *project = [[CatrobatProgram alloc] initWithDict:projectDict andBaseUrl:information.baseURL];
         [projects addObject:project];
     }
     [self update];
-    for (CatrobatProject* project in projects) {
+    for (CatrobatProgram* project in projects) {
         //if ([project.author isEqualToString:@""]) {
         if (!project.author) {
             NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@/%@?id=%@", kConnectionHost, kConnectionIDQuery,project.projectID]];
@@ -452,12 +452,12 @@
         NSArray *catrobatProjects = [jsonObject valueForKey:@"CatrobatProjects"];
         
         NSInteger counter=0;
-        CatrobatProject *loadedProject;
+        CatrobatProgram *loadedProject;
         NSDictionary *projectDict = [catrobatProjects objectAtIndex:[catrobatProjects count]-1];
-        loadedProject = [[CatrobatProject alloc] initWithDict:projectDict andBaseUrl:information.baseURL];
+        loadedProject = [[CatrobatProgram alloc] initWithDict:projectDict andBaseUrl:information.baseURL];
         switch (self.downloadSegmentedControl.selectedSegmentIndex) {
             case 0:
-                for (CatrobatProject* project in self.mostDownloadedProjects) {
+                for (CatrobatProgram* project in self.mostDownloadedProjects) {
                     if ([project.projectID isEqualToString:loadedProject.projectID ]) {
                         
                         [self.mostDownloadedProjects removeObject:project];
@@ -474,7 +474,7 @@
                 
                 break;
             case 1:
-                for (CatrobatProject* project in self.mostViewedProjects) {
+                for (CatrobatProgram* project in self.mostViewedProjects) {
                     if ([project.projectID isEqualToString:loadedProject.projectID ]) {
                         
                         [self.mostViewedProjects removeObject:project];
@@ -489,7 +489,7 @@
                 
                 break;
             case 2:
-                for (CatrobatProject* project in self.mostRecentProjects) {
+                for (CatrobatProgram* project in self.mostRecentProjects) {
                     if ([project.projectID isEqualToString:loadedProject.projectID ]) {
                         
                         [self.mostRecentProjects removeObject:project];
@@ -626,7 +626,7 @@
 {
     if([[segue identifier] isEqualToString:kSegueToProgramDetail]) {
         NSIndexPath *selectedRowIndexPath = self.tableView.indexPathForSelectedRow;
-        CatrobatProject *catrobatProject;
+        CatrobatProgram *catrobatProject;
         switch (self.downloadSegmentedControl.selectedSegmentIndex) {
             case 0:
                 catrobatProject = [self.mostDownloadedProjects objectAtIndex:selectedRowIndexPath.row];

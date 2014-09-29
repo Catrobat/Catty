@@ -308,32 +308,28 @@
     return transition;
 }
 
-+ (ProgramLoadingInfo*)programLoadingInfoForProgramWithName:(NSString*)program
-{
-    NSString *documentsDirectory = [Util applicationDocumentsDirectory];
-    NSString *programsPath = [NSString stringWithFormat:@"%@/%@", documentsDirectory, kProgramsFolder];
-    ProgramLoadingInfo *info = [[ProgramLoadingInfo alloc] init];
-    info.basePath = [NSString stringWithFormat:@"%@/%@/", programsPath, program];
-    info.visibleName = program;
-    return info;
-}
-
-+ (NSString*)lastProgram
++ (ProgramLoadingInfo*)lastUsedProgramLoadingInfo
 {
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-    NSString* lastProgram = [userDefaults objectForKey:kLastProgram];
-    if (! lastProgram) {
-        [userDefaults setObject:kLocalizedMyFirstProgram forKey:kLastProgram];
+    NSString *lastUsedProgramDirectoryName = [userDefaults objectForKey:kLastUsedProgram];
+    if (! lastUsedProgramDirectoryName) {
+        lastUsedProgramDirectoryName = [Program programDirectoryNameForProgramName:kLocalizedMyFirstProgram
+                                                                         programID:nil];
+        [userDefaults setObject:lastUsedProgramDirectoryName forKey:kLastUsedProgram];
         [userDefaults synchronize];
-        lastProgram = kLocalizedMyFirstProgram;
     }
-    return lastProgram;
+    return [Program programLoadingInfoForProgramDirectoryName:lastUsedProgramDirectoryName];
 }
 
-+ (void)setLastProgram:(NSString*)visibleName
++ (void)setLastProgramWithName:(NSString*)programName programID:(NSString*)programID
 {
     NSUserDefaults* userDefaults = [NSUserDefaults standardUserDefaults];
-    [userDefaults setObject:visibleName forKey:kLastProgram];
+    if (programName) {
+        [userDefaults setObject:[Program programDirectoryNameForProgramName:programName programID:programID]
+                         forKey:kLastUsedProgram];
+    } else {
+        [userDefaults setObject:nil forKey:kLastUsedProgram];
+    }
     [userDefaults synchronize];
 }
 

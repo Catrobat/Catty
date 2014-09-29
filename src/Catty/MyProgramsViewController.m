@@ -157,7 +157,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
 {
     static NSString *segueToNewProgramIdentifier = kSegueToNewProgram;
     programName = [Util uniqueName:programName existingNames:[Program allProgramNames]];
-    self.defaultProgram = [Program defaultProgramWithName:programName];
+    self.defaultProgram = [Program defaultProgramWithName:programName programID:nil];
     if ([self shouldPerformSegueWithIdentifier:segueToNewProgramIdentifier sender:self]) {
         [self addProgram:self.defaultProgram.header.programName];
         [self performSegueWithIdentifier:segueToNewProgramIdentifier sender:self];
@@ -173,7 +173,9 @@ static NSCharacterSet *blockedCharacterSet = nil;
         return;
 
     [self showLoadingView];
-    [Program copyProgramWithName:sourceProgramLoadingInfo.visibleName destinationProgramName:programName];
+    [Program copyProgramWithSourceProgramName:sourceProgramLoadingInfo.visibleName
+                              sourceProgramID:sourceProgramLoadingInfo.programID
+                       destinationProgramName:programName];
     [self.dataCache removeObjectForKey:destinationProgramLoadingInfo.visibleName];
     NSInteger numberOfRowsInLastSection = [self tableView:self.tableView numberOfRowsInSection:0];
     NSIndexPath *indexPath = [NSIndexPath indexPathForRow:(numberOfRowsInLastSection - 1) inSection:0];
@@ -190,7 +192,9 @@ static NSCharacterSet *blockedCharacterSet = nil;
     Program *program = [Program programWithLoadingInfo:programLoadingInfo];
     newProgramName = [Util uniqueName:newProgramName existingNames:[Program allProgramNames]];
     [program renameToProgramName:newProgramName];
-    [self renameOldProgramName:programLoadingInfo.visibleName toNewProgramName:program.header.programName];
+    [self renameOldProgramWithName:programLoadingInfo.visibleName
+                         programID:programLoadingInfo.programID
+                  toNewProgramName:program.header.programName];
 }
 
 - (void)updateProgramDescriptionActionWithText:(NSString*)descriptionText
@@ -215,13 +219,14 @@ static NSCharacterSet *blockedCharacterSet = nil;
 {
     [self showLoadingView];
     NSArray *selectedRowsIndexPaths = [self.tableView indexPathsForSelectedRows];
-    NSMutableArray *programNamesToRemove = [NSMutableArray arrayWithCapacity:[selectedRowsIndexPaths count]];
+    NSMutableArray *programLoadingInfosToRemove = [NSMutableArray arrayWithCapacity:[selectedRowsIndexPaths count]];
     for (NSIndexPath *selectedRowIndexPath in selectedRowsIndexPaths) {
         ProgramLoadingInfo *programLoadingInfo = [self.programLoadingInfos objectAtIndex:selectedRowIndexPath.row];
-        [programNamesToRemove addObject:programLoadingInfo.visibleName];
+        [programLoadingInfosToRemove addObject:programLoadingInfo];
     }
-    for (NSString *programNameToRemove in programNamesToRemove) {
-        [self removeProgram:programNameToRemove];
+    for (ProgramLoadingInfo *programLoadingInfoToRemove in programLoadingInfosToRemove) {
+        [self removeProgramWithName:programLoadingInfoToRemove.visibleName
+                          programID:programLoadingInfoToRemove.programID];
     }
     [self hideLoadingView];
     [super exitEditingMode];
@@ -231,7 +236,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
 {
     [self showLoadingView];
     ProgramLoadingInfo *programLoadingInfo = [self.programLoadingInfos objectAtIndex:indexPath.row];
-    [self removeProgram:programLoadingInfo.visibleName];
+    [self removeProgramWithName:programLoadingInfo.visibleName programID:programLoadingInfo.programID];
     [self hideLoadingView];
 }
 
@@ -560,8 +565,6 @@ static NSCharacterSet *blockedCharacterSet = nil;
 #pragma mark - program handling
 - (ProgramLoadingInfo*)addProgram:(NSString*)programName
 {
-    NSString *basePath = [Program basePath];
-
     // check if program already exists, then update
     BOOL exists = NO;
     for (ProgramLoadingInfo *programLoadingInfo in self.programLoadingInfos) {
@@ -573,9 +576,8 @@ static NSCharacterSet *blockedCharacterSet = nil;
 
     // add if not exists
     if (! exists) {
-        programLoadingInfo = [[ProgramLoadingInfo alloc] init];
-        programLoadingInfo.basePath = [NSString stringWithFormat:@"%@%@/", basePath, programName];
-        programLoadingInfo.visibleName = programName;
+        programLoadingInfo = [ProgramLoadingInfo programLoadingInfoForProgramWithName:programName
+                                                                            programID:nil];
         NSLog(@"Adding program: %@", programLoadingInfo.basePath);
         [self.programLoadingInfos addObject:programLoadingInfo];
 
@@ -587,16 +589,17 @@ static NSCharacterSet *blockedCharacterSet = nil;
     return programLoadingInfo;
 }
 
-- (void)removeProgram:(NSString*)programName
+- (void)removeProgramWithName:(NSString *)programName programID:(NSString *)programID
 {
+    ProgramLoadingInfo *oldProgramLoadingInfo = [ProgramLoadingInfo programLoadingInfoForProgramWithName:programName programID:programID];
     NSInteger rowIndex = 0;
     for (ProgramLoadingInfo *info in self.programLoadingInfos) {
-        if ([info.visibleName isEqualToString:programName]) {
-            [Program removeProgramFromDiskWithProgramName:programName];
+        if ([info isEqualToLoadingInfo:oldProgramLoadingInfo]) {
+            [Program removeProgramFromDiskWithProgramName:programName programID:programID];
             [self.programLoadingInfos removeObjectAtIndex:rowIndex];
             NSIndexPath *indexPath = [NSIndexPath indexPathForRow:rowIndex inSection:0];
             [self.tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationTop];
-            // flush asset/image cache
+            // flush cache
             self.dataCache = nil;
             // needed to avoid unexpected behaviour when programs are renamed
             [[RuntimeImageCache sharedImageCache] clearImageCache];
@@ -612,17 +615,19 @@ static NSCharacterSet *blockedCharacterSet = nil;
     }
 }
 
-- (void)renameOldProgramName:(NSString*)oldProgramName toNewProgramName:(NSString*)newProgramName
+- (void)renameOldProgramWithName:(NSString *)oldProgramName
+                       programID:(NSString *)programID
+                toNewProgramName:(NSString *)newProgramName
 {
+    ProgramLoadingInfo *oldProgramLoadingInfo = [ProgramLoadingInfo programLoadingInfoForProgramWithName:oldProgramName
+                                                                                               programID:programID];
     NSInteger rowIndex = 0;
     for (ProgramLoadingInfo *info in self.programLoadingInfos) {
-        if ([info.visibleName isEqualToString:oldProgramName]) {
-            ProgramLoadingInfo *newInfo = [[ProgramLoadingInfo alloc] init];
-            newInfo.basePath = [NSString stringWithFormat:@"%@%@/", [Program basePath], newProgramName];
-            newInfo.visibleName = newProgramName;
+        if ([info isEqualToLoadingInfo:oldProgramLoadingInfo]) {
+            ProgramLoadingInfo *newInfo = [ProgramLoadingInfo programLoadingInfoForProgramWithName:newProgramName
+                                                                                         programID:oldProgramLoadingInfo.programID];
             [self.programLoadingInfos replaceObjectAtIndex:rowIndex withObject:newInfo];
-
-            // flush asset/image cache
+            // flush cache
             self.dataCache = nil;
             // needed to avoid unexpected behaviour when renaming programs
             [[RuntimeImageCache sharedImageCache] clearImageCache];

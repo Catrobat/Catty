@@ -66,7 +66,7 @@
 
 - (void)setupForNewProgram
 {
-    self.defaultProgram = [Program defaultProgramWithName:kLocalizedNewProgram];
+    self.defaultProgram = [Program defaultProgramWithName:kLocalizedNewProgram programID:nil];
     self.programTableViewController.program = self.defaultProgram;
 }
 
@@ -176,7 +176,7 @@
 //        sprite.spriteManagerDelegate = self;
 //        sprite.broadcastWaitDelegate = self.broadcastWaitHandler;
 //    }
-    [Util setLastProgram:program.header.programName];
+    [Util setLastProgramWithName:program.header.programName programID:program.header.programID];
     return program;
 }
 
@@ -185,7 +185,7 @@
     FileManager *fileManager = ((AppDelegate*)[UIApplication sharedApplication].delegate).fileManager;
     if ([fileManager directoryExists:projectPath])
         [fileManager deleteDirectory:projectPath];
-    [Util setLastProgram:nil];
+    [Util setLastProgramWithName:nil programID:nil];
 }
 
 @end

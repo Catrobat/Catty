@@ -50,6 +50,7 @@
     header.userHandle = nil;
     header.programScreenshotManuallyTaken = kCatrobatProgramScreenshotDefaultValue;
     header.tags = nil;
+    header.programID = nil;
     return header;
 }
 

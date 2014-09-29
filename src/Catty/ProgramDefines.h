@@ -21,7 +21,7 @@
  */
 //#import "OrderedDictionary.h"
 
-#define kLastProgram @"lastProgram"
+#define kLastUsedProgram @"lastUsedProgram"
 #define kProgramCodeFileName @"code.xml"
 #define kProgramSoundsDirName @"sounds"
 #define kProgramImagesDirName @"images"
@@ -44,6 +44,9 @@
 #define kMaxNumOfLookNameCharacters 20
 #define kMinNumOfSoundNameCharacters 1
 #define kMaxNumOfSoundNameCharacters 20
+
+#define kNoProgramIDYetPlaceholder @"x"
+#define kProgramIDSeparator @"_"
 
 #define kDefaultProgramBundleName @"My First Program"
 

@@ -33,6 +33,7 @@
 #import "ScenePresenterViewController.h"
 #import "LanguageTranslationDefines.h"
 #import "Util.h"
+#import "ProgramLoadingInfo.h"
 
 @interface ObjectTableViewController ()
 
@@ -58,7 +59,7 @@
 - (void)playSceneAction:(id)sender
 {
     [self.navigationController setToolbarHidden:YES animated:YES];
-    ScenePresenterViewController *vc =[[ScenePresenterViewController alloc] initWithProgram:[Program programWithLoadingInfo:[Util programLoadingInfoForProgramWithName:[Util lastProgram]]]];
+    ScenePresenterViewController *vc = [[ScenePresenterViewController alloc] initWithProgram:[Program programWithLoadingInfo:[Util lastUsedProgramLoadingInfo]]];
     [self.navigationController pushViewController:vc animated:YES];
 }
 

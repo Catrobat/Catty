@@ -53,8 +53,8 @@
 - (NSDate*)lastModificationTimeOfFile:(NSString*)path;
 - (NSArray*)getContentsOfDirectory:(NSString*)directory;
 - (void)addDefaultProgramToProgramsRootDirectoryIfNoProgramsExist;
-- (void)downloadFileFromURL:(NSURL*)url withName:(NSString*)name;
-- (void)downloadScreenshotFromURL:(NSURL*)url andBaseUrl:(NSURL*)baseurl andName:(NSString*) name;
+- (void)downloadFileFromURL:(NSURL*)url withProgramID:(NSString*)programID withName:(NSString*)name;
+- (void)downloadScreenshotFromURL:(NSURL*)url andBaseUrl:(NSURL*)baseurl andName:(NSString*)name;
 - (NSString*)getFullPathForProgram:(NSString*)programName;
 - (BOOL)existPlayableSoundsInDirectory:(NSString*)directoryPath;
 - (void)stopLoading:(NSURL *)projecturl andImageURL:(NSURL *)imageurl;
