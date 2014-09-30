@@ -32,7 +32,7 @@
 
 - (void)drawRect:(CGRect)rect
 {
-    [BrickShapeFactory.sharedBrickShapeFactory drawLargeRoundedControlBrickShape:UIColor.controlBrickStrokeColor fillColor:UIColor.controlBrickOrangeColor];
+    [BrickShapeFactory  drawLargeRoundedControlBrickShapeWithFillColor:UIColor.controlBrickOrangeColor strokeColor:UIColor.controlBrickStrokeColor height:largeBrick width:[Util screenWidth]];
 }
 
 - (kBrickShapeType)brickShapeType
