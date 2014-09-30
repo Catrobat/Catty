@@ -307,18 +307,11 @@ static NSCharacterSet *blockedCharacterSet = nil;
 - (CGFloat)getHeightForCellAtIndexPath:(NSIndexPath*)indexPath
 {
     CGFloat height;
+    CGFloat navBarHeight = self.navigationController.navigationBar.frame.size.height;
     if (indexPath.row == 0) {
-        height= [TableUtil heightForContinueCell];
-        if ([Util screenHeight] == kIphone4ScreenHeight) {
-            height = height*kIphone4ScreenHeight/kIphone5ScreenHeight;
-        }
+        height= [TableUtil heightForContinueCell:navBarHeight];
     } else {
-        height = [TableUtil heightForImageCell];
-        if ([Util screenHeight] == kIphone4ScreenHeight) {
-            height = height*kIphone4ScreenHeight/kIphone5ScreenHeight;
-        }
-    }
-    if ([Util screenHeight] == kIphone5ScreenHeight){
+        height = [TableUtil heightForCatrobatTableViewImageCell:navBarHeight];
     }
     return height; // for scrolling reasons
 }

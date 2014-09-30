@@ -55,7 +55,7 @@ const int BUTTON_MARGIN_BOTTOM = 15;
 
 - (UIView *)contentView
 {
-    if(!_contentView) _contentView = [[UIView alloc] initWithFrame:CGRectMake(self.view.frame.origin.x - FRAME_PADDING_HORIZONTAL, 0, self.view.frame.size.width, self.view.frame.size.height)];
+    if(!_contentView) _contentView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
     return _contentView;
 }
 

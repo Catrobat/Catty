@@ -34,14 +34,11 @@
 
 @implementation TableUtil
 
-+ (CGFloat)heightForContinueCell
++ (CGFloat)heightForContinueCell:(CGFloat)navBarHeight
 {
     CGFloat screenHeight = [Util screenHeight];
-    if (screenHeight == kIphone5ScreenHeight) {
-        return ((kContinueCellHeight+2)*screenHeight)/kIphone5ScreenHeight;
-    } else {
-        return (kContinueCellHeight*screenHeight)/kIphone4ScreenHeight;
-    }
+    screenHeight -= navBarHeight;
+    return screenHeight * 0.25f;
 }
 
 + (CGFloat)heightForImageCell
@@ -52,6 +49,13 @@
     } else {
         return (kImageCellHeight*screenHeight)/kIphone4ScreenHeight;
     }
+}
+
++ (CGFloat)heightForCatrobatTableViewImageCell:(CGFloat)navBarHeight
+{
+    CGFloat screenHeight = [Util screenHeight];
+    screenHeight -= navBarHeight;
+    return screenHeight * 0.14f;
 }
 + (CGFloat)heightForFeaturedCell
 {

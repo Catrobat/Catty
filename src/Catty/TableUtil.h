@@ -26,9 +26,11 @@
 
 @interface TableUtil : NSObject
 
-+ (CGFloat)heightForContinueCell;
++ (CGFloat)heightForContinueCell:(CGFloat)navBarHeight;
 
 + (CGFloat)heightForImageCell;
+
++ (CGFloat)heightForCatrobatTableViewImageCell:(CGFloat)navBarHeight;
 
 + (CGFloat)heightForFeaturedCell;
 
