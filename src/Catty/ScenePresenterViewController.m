@@ -49,7 +49,6 @@
 #define kBounceEffect 5
 #define kPlaceOfButtons 17
 #define kSlidingStartArea 40
-#define kIphone5ScreenHeight 568.0f
 #define kIphone4ScreenHeight 480.0f
 #define kContinueButtonSize 85
 #define kContinueOffset 15
@@ -119,7 +118,7 @@
         newBackgroundImage = UIGraphicsGetImageFromCurrentImageContext();
         UIGraphicsEndImageContext();
     } else {
-        CGSize size = CGSizeMake(kWidthSlideMenu+kBounceEffect, kIphone5ScreenHeight);
+        CGSize size = CGSizeMake(kWidthSlideMenu+kBounceEffect, [Util screenHeight]);
         UIGraphicsBeginImageContextWithOptions(size, NO, 0.0);
         [menuBackgroundImage drawInRect:CGRectMake(0, 0, size.width, size.height)];
         newBackgroundImage = UIGraphicsGetImageFromCurrentImageContext();
@@ -253,22 +252,22 @@
         self.menuAxisLabel  = label;
     } else {
             UILabel* label      = [[UILabel alloc] initWithFrame:
-                                   CGRectMake(kPlaceofLabels+((kContinueButtonSize-kMenuButtonSize)/2),(kIphone5ScreenHeight/2)-(kContinueButtonSize/2)-(KMenuIPhone5GapSize)-kMenuIPhone5ContinueGapSize-(kMenuButtonSize)-10, 100, kMenuButtonSize)];
+                                   CGRectMake(kPlaceofLabels+((kContinueButtonSize-kMenuButtonSize)/2),([Util screenHeight]/2)-(kContinueButtonSize/2)-(KMenuIPhone5GapSize)-kMenuIPhone5ContinueGapSize-(kMenuButtonSize)-10, 100, kMenuButtonSize)];
             self.menuBackLabel  = label;
             
             label               =[[UILabel alloc] initWithFrame:
-                                  CGRectMake(kPlaceofLabels+((kContinueButtonSize-kMenuButtonSize)/2),(kIphone5ScreenHeight/2)-(kContinueButtonSize/2)-kMenuIPhone5ContinueGapSize-10,100, kMenuButtonSize)];
+                                  CGRectMake(kPlaceofLabels+((kContinueButtonSize-kMenuButtonSize)/2),([Util screenHeight]/2)-(kContinueButtonSize/2)-kMenuIPhone5ContinueGapSize-10,100, kMenuButtonSize)];
             self.menuRestartLabel = label;
             label               = [[UILabel alloc] initWithFrame:
-                                   CGRectMake(kPlaceofContinueLabel+kContinueOffset,(kIphone5ScreenHeight/2)+(kContinueButtonSize/2)-10,  kContinueButtonSize, kMenuButtonSize)];
+                                   CGRectMake(kPlaceofContinueLabel+kContinueOffset,([Util screenHeight]/2)+(kContinueButtonSize/2)-10,  kContinueButtonSize, kMenuButtonSize)];
             self.menuContinueLabel = label;
             
             label               = [[UILabel alloc] initWithFrame:
-                                   CGRectMake(kPlaceofLabels+((kContinueButtonSize-kMenuButtonSize)/2),(kIphone5ScreenHeight/2)+(kContinueButtonSize/2)+kMenuIPhone5ContinueGapSize+kMenuButtonSize-10,  100, kMenuButtonSize)];
+                                   CGRectMake(kPlaceofLabels+((kContinueButtonSize-kMenuButtonSize)/2),([Util screenHeight]/2)+(kContinueButtonSize/2)+kMenuIPhone5ContinueGapSize+kMenuButtonSize-10,  100, kMenuButtonSize)];
             
             self.menuScreenshotLabel = label;
             label               = [[UILabel alloc] initWithFrame:
-                                   CGRectMake(kPlaceofLabels+((kContinueButtonSize-kMenuButtonSize)/2),(kIphone5ScreenHeight/2)+                    (kContinueButtonSize/2)+(KMenuIPhone5GapSize)+kMenuIPhone5ContinueGapSize+(2*kMenuButtonSize)-10,  100, kMenuButtonSize)];
+                                   CGRectMake(kPlaceofLabels+((kContinueButtonSize-kMenuButtonSize)/2),([Util screenHeight]/2)+                    (kContinueButtonSize/2)+(KMenuIPhone5GapSize)+kMenuIPhone5ContinueGapSize+(2*kMenuButtonSize)-10,  100, kMenuButtonSize)];
             self.menuAxisLabel  = label;
     }
     NSArray* labelTextArray = [[NSArray alloc] initWithObjects:
@@ -367,11 +366,11 @@
         self.menuScreenshotButton.frame = CGRectMake(kPlaceOfButtons+((kContinueButtonSize-kMenuButtonSize)/2),(kIphone4ScreenHeight/2)+(kContinueButtonSize/2)+kMenuIPhone4ContinueGapSize,  kMenuButtonSize, kMenuButtonSize);
         self.menuAxisButton.frame = CGRectMake(kPlaceOfButtons+((kContinueButtonSize-kMenuButtonSize)/2),(kIphone4ScreenHeight/2)+(kContinueButtonSize/2)+(kMenuIPhone4GapSize)+kMenuIPhone4ContinueGapSize+(kMenuButtonSize),  kMenuButtonSize, kMenuButtonSize);
     } else {
-        self.menuBackButton.frame = CGRectMake(kPlaceOfButtons+((kContinueButtonSize-kMenuButtonSize)/2),(kIphone5ScreenHeight/2)-(kContinueButtonSize/2)-(KMenuIPhone5GapSize)-kMenuIPhone5ContinueGapSize-(2*kMenuButtonSize), kMenuButtonSize, kMenuButtonSize);
-        self.menuRestartButton.frame = CGRectMake(kPlaceOfButtons+((kContinueButtonSize-kMenuButtonSize)/2),(kIphone5ScreenHeight/2)-(kContinueButtonSize/2)-kMenuIPhone5ContinueGapSize-(kMenuButtonSize),  kMenuButtonSize, kMenuButtonSize);
-        self.menuContinueButton.frame = CGRectMake(kPlaceOfButtons+kContinueOffset,(kIphone5ScreenHeight/2)-(kContinueButtonSize/2),  kContinueButtonSize, kContinueButtonSize);
-        self.menuScreenshotButton.frame = CGRectMake(kPlaceOfButtons+((kContinueButtonSize-kMenuButtonSize)/2),(kIphone5ScreenHeight/2)+(kContinueButtonSize/2)+kMenuIPhone5ContinueGapSize,  kMenuButtonSize, kMenuButtonSize);
-        self.menuAxisButton.frame = CGRectMake(kPlaceOfButtons+((kContinueButtonSize-kMenuButtonSize)/2),(kIphone5ScreenHeight/2)+(kContinueButtonSize/2)+(KMenuIPhone5GapSize)+kMenuIPhone5ContinueGapSize+(kMenuButtonSize),  kMenuButtonSize, kMenuButtonSize);
+        self.menuBackButton.frame = CGRectMake(kPlaceOfButtons+((kContinueButtonSize-kMenuButtonSize)/2),([Util screenHeight]/2)-(kContinueButtonSize/2)-(KMenuIPhone5GapSize)-kMenuIPhone5ContinueGapSize-(2*kMenuButtonSize), kMenuButtonSize, kMenuButtonSize);
+        self.menuRestartButton.frame = CGRectMake(kPlaceOfButtons+((kContinueButtonSize-kMenuButtonSize)/2),([Util screenHeight]/2)-(kContinueButtonSize/2)-kMenuIPhone5ContinueGapSize-(kMenuButtonSize),  kMenuButtonSize, kMenuButtonSize);
+        self.menuContinueButton.frame = CGRectMake(kPlaceOfButtons+kContinueOffset,([Util screenHeight]/2)-(kContinueButtonSize/2),  kContinueButtonSize, kContinueButtonSize);
+        self.menuScreenshotButton.frame = CGRectMake(kPlaceOfButtons+((kContinueButtonSize-kMenuButtonSize)/2),([Util screenHeight]/2)+(kContinueButtonSize/2)+kMenuIPhone5ContinueGapSize,  kMenuButtonSize, kMenuButtonSize);
+        self.menuAxisButton.frame = CGRectMake(kPlaceOfButtons+((kContinueButtonSize-kMenuButtonSize)/2),([Util screenHeight]/2)+(kContinueButtonSize/2)+(KMenuIPhone5GapSize)+kMenuIPhone5ContinueGapSize+(kMenuButtonSize),  kMenuButtonSize, kMenuButtonSize);
     }
 //    //NSLog(@"Width: %f",self.menuView.frame.size.width);
 }
