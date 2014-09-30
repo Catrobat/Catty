@@ -30,7 +30,7 @@
 #define kIphone4ScreenHeight 480.0f
 #define kContinueCellHeight  120.0f
 #define kImageCellHeight     75.0f
-#define kFeaturedCellHeight  125.0f
+#define kFeaturedCellHeight  145.0f
 
 @implementation TableUtil
 
