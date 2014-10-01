@@ -114,6 +114,7 @@
     self = [super initWithFrame:frame];
     if (self) {
         self.backgroundColor = UIColor.clearColor;
+        self.clearsContextBeforeDrawing = YES;
         self.opaque = NO;
         self.clipsToBounds = NO;
     }
