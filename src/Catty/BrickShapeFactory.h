@@ -21,22 +21,18 @@
  */
 
 #import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
+
+#define smallBrick 44.0f
+#define mediumBrick 71.0f
+#define largeBrick  94.0f
+#define roundedLargeBrick 88.0f
+#define roundedSmallBrick 62.0f
 
 @interface BrickShapeFactory : NSObject
 
-+ (instancetype)sharedBrickShapeFactory;
-
-// normal square bricks
-// 44px height
-- (void)drawSmallSquareBrickShape:(UIColor *)strokeColor fillColor:(UIColor *)fillColor;
-// 71px height
-- (void)drawMediumSquareBrickShape:(UIColor *)strokeColor fillColor:(UIColor *)fillColor;
-// 94px height
-- (void)drawLargeSquareBrickShape:(UIColor *)strokeColor fillColor:(UIColor *)fillColor;
-
-// control rounded bricks
-- (void)drawSmallRoundedControlBrickShape:(UIColor *)strokeColor fillColor:(UIColor *)fillColor;
-
-- (void)drawLargeRoundedControlBrickShape:(UIColor *)strokeColor fillColor:(UIColor *)fillColor;
+// Drawing Methods
++ (void)drawLargeRoundedControlBrickShapeWithFillColor: (UIColor*)fillColor strokeColor: (UIColor*)strokeColor height: (CGFloat)height width: (CGFloat)width;
++ (void)drawSquareBrickShapeWithFillColor: (UIColor*)fillColor strokeColor: (UIColor*)strokeColor height: (CGFloat)height width: (CGFloat)width;
 
 @end

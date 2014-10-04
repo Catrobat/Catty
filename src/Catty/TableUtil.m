@@ -26,32 +26,28 @@
 #import "CatrobatBaseCell.h"
 #import "LanguageTranslationDefines.h"
 
-#define kIphone5ScreenHeight 568.0f
-#define kIphone4ScreenHeight 480.0f
-#define kContinueCellHeight  120.0f
-#define kImageCellHeight     75.0f
-#define kFeaturedCellHeight  125.0f
+#define kFeaturedCellHeight  135.0f
 
 @implementation TableUtil
 
-+ (CGFloat)heightForContinueCell
++ (CGFloat)heightForContinueCell:(CGFloat)navBarHeight
 {
     CGFloat screenHeight = [Util screenHeight];
-    if (screenHeight == kIphone5ScreenHeight) {
-        return ((kContinueCellHeight+2)*screenHeight)/kIphone5ScreenHeight;
-    } else {
-        return (kContinueCellHeight*screenHeight)/kIphone4ScreenHeight;
-    }
+    screenHeight -= navBarHeight;
+    return screenHeight * 0.25f;
 }
 
 + (CGFloat)heightForImageCell
 {
     CGFloat screenHeight = [Util screenHeight];
-    if (screenHeight == kIphone5ScreenHeight) {
-        return ((kImageCellHeight+2)*screenHeight)/kIphone5ScreenHeight;
-    } else {
-        return (kImageCellHeight*screenHeight)/kIphone4ScreenHeight;
-    }
+    return screenHeight / 7.0f;
+}
+
++ (CGFloat)heightForCatrobatTableViewImageCell:(CGFloat)navBarHeight
+{
+    CGFloat screenHeight = [Util screenHeight];
+    screenHeight -= navBarHeight;
+    return screenHeight * 0.14f;
 }
 + (CGFloat)heightForFeaturedCell
 {

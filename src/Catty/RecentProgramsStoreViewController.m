@@ -166,13 +166,15 @@
     [self.downloadSegmentedControl setTitle:kLocalizedMostDownloaded forSegmentAtIndex:0];
     [self.downloadSegmentedControl setTitle:kLocalizedMostViewed forSegmentAtIndex:1];
     [self.downloadSegmentedControl setTitle:kLocalizedNewest forSegmentAtIndex:2];
+    
 
     CGFloat navigationBarHeight = self.navigationController.navigationBar.frame.size.height;
     self.downloadSegmentedControl.backgroundColor = [UIColor darkBlueColor];
     self.downloadSegmentedControl.tintColor = [UIColor lightOrangeColor];
-    self.segmentedControlView.frame = CGRectMake(0, navigationBarHeight+[UIApplication sharedApplication].statusBarFrame.size.height, self.segmentedControlView.frame.size.width, self.segmentedControlView.frame.size.height);
+    self.segmentedControlView.frame = CGRectMake(0, navigationBarHeight+[UIApplication sharedApplication].statusBarFrame.size.height, self.view.frame.size.width, self.segmentedControlView.frame.size.height);
     self.segmentedControlView.backgroundColor = [UIColor darkBlueColor];
-    
+    self.downloadSegmentedControl.frame = CGRectMake(9, 9, self.view.frame.size.width - 18, self.downloadSegmentedControl.frame.size.height);
+
 }
 -(void)initFooterView
 {

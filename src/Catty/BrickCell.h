@@ -27,6 +27,7 @@
 #import "BrickShapeFactory.h"
 #import "UIColor+CatrobatUIColorExtensions.h"
 #import "SelectButton.h"
+#import "Util.h"
 
 @class Brick, BrickCellInlineView, BrickCell;
 @protocol BrickProtocol;

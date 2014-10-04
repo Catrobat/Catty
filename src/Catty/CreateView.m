@@ -50,57 +50,31 @@
 
 + (UIView*)createProgramDetailView:(CatrobatProgram*)project target:(id)target
 {
-    if([self height] == kIphone4ScreenHeight || [self height] == kIphone5ScreenHeight)
-    {
-        UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 0)];
-        view.backgroundColor = [UIColor clearColor];
-        [view setAutoresizingMask:UIViewAutoresizingFlexibleHeight];
-        [self addNameLabelWithProjectName:project.projectName toView:view];
-        [self addAuthorLabelWithAuthor:project.author toView:view];
-        [self addAuthorImageToView:view];
-        [self addNumberOfDownloadsImagetoView:view];
-        [self addNumberOfDownloadsWithDownloads:project.downloads toView:view];
-        
-        [self addProgramDescriptionLabelWithDescription:project.projectDescription toView:view target:target];
-        [self addThumbnailImageWithImageUrlString:project.screenshotSmall toView:view];
+    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, [Util screenWidth], 0)];
+    view.backgroundColor = [UIColor clearColor];
+    [view setAutoresizingMask:UIViewAutoresizingFlexibleHeight];
+    [self addNameLabelWithProjectName:project.projectName toView:view];
+    [self addAuthorLabelWithAuthor:project.author toView:view];
+    [self addAuthorImageToView:view];
+    [self addNumberOfDownloadsImagetoView:view];
+    [self addNumberOfDownloadsWithDownloads:project.downloads toView:view];
+    
+    [self addProgramDescriptionLabelWithDescription:project.projectDescription toView:view target:target];
+    [self addThumbnailImageWithImageUrlString:project.screenshotSmall toView:view];
         //[self addBigImageWithImageUrlString:project.screenshotBig toView:view];
-        [self addDownloadButtonToView:view withTarget:target];
-        [self addLoadingButtonToView:view withTarget:target];
-        [self addPlayButtonToView:view withTarget:target];
-        
-        
-        NSDate *projectDate = [NSDate dateWithTimeIntervalSince1970:[project.uploaded doubleValue]];
-        NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-        [dateFormatter setDateStyle:NSDateFormatterMediumStyle];
-        
-        NSString *uploaded = [dateFormatter stringFromDate:projectDate];
-        [self addInformationLabelToView:view withAuthor:project.author downloads:project.downloads uploaded:uploaded version:project.size views:project.views];
-        
-        return view;
-    }else{
-        UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 768, 0)];
-        view.backgroundColor = [UIColor clearColor];
-        [view setAutoresizingMask:UIViewAutoresizingFlexibleHeight];
-        [self addNameLabelWithProjectName:project.projectName toView:view];
-        [self addAuthorLabelWithAuthor:project.author toView:view];
-        [self addAuthorImageToView:view];
-        [self addNumberOfDownloadsImagetoView:view];
-        [self addNumberOfDownloadsWithDownloads:project.downloads toView:view];
-        [self addThumbnailImageWithImageUrlString:project.screenshotSmall toView:view];
-        [self addProgramDescriptionLabelWithDescription:project.projectDescription toView:view target:target];
-        //        [self addBigImageWithImageUrlString:project.screenshotBig toView:view];
-        [self addDownloadButtonToView:view withTarget:target];
-        [self addLoadingButtonToView:view withTarget:target];
-        [self addPlayButtonToView:view withTarget:target];
-        
-        NSDate *projectDate = [NSDate dateWithTimeIntervalSince1970:[project.uploaded doubleValue]];
-        NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-        [dateFormatter setDateStyle:NSDateFormatterMediumStyle];
-        
-        NSString *uploaded = [dateFormatter stringFromDate:projectDate];
-        [self addInformationLabelToView:view withAuthor:project.author downloads:project.downloads uploaded:uploaded version:project.size views:project.views];
-        return view;
-    }
+    [self addDownloadButtonToView:view withTarget:target];
+    [self addLoadingButtonToView:view withTarget:target];
+    [self addPlayButtonToView:view withTarget:target];
+    
+    
+    NSDate *projectDate = [NSDate dateWithTimeIntervalSince1970:[project.uploaded doubleValue]];
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateStyle:NSDateFormatterMediumStyle];
+    
+    NSString *uploaded = [dateFormatter stringFromDate:projectDate];
+    [self addInformationLabelToView:view withAuthor:project.author downloads:project.downloads uploaded:uploaded version:project.size views:project.views];
+    
+    return view;
 }
 
 + (void)addNameLabelWithProjectName:(NSString*)projectName toView:(UIView*)view

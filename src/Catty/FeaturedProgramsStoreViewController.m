@@ -155,14 +155,19 @@
                                                 if(cell) {
                                                     cell.featuredImage.image = img;
                                                     cell.featuredImage.frame = cell.frame;
-                                                    cell.featuredImage.frame = CGRectMake(0, 0, cell.featuredImage.frame.size.width, cell.featuredImage.frame.size.height);
+                                                    cell.featuredImage.frame = CGRectMake(30, 0, self.view.frame.size.width, cell.featuredImage.frame.size.height);
                                                     self.featuredSize = @[[NSNumber numberWithFloat:img.size.width],[NSNumber numberWithFloat:img.size.height]];
-                                                    [self loadingIndicator:NO];
+                                                    
+                                                    CGFloat factor = img.size.width / [Util screenWidth];
+                                                    NSLog(@"%f",img.size.height/factor);                                           [self loadingIndicator:NO];
+                                                    cell.frame = CGRectMake(cell.frame.origin.x, cell.frame.origin.y, cell.frame.size.width, cell.featuredImage.frame.size.height);
                                                 }
                                                 [self.tableView endUpdates];
+                                                [self.tableView reloadData];
                                             });
                                         }];
     imageCell.featuredImage.image = image;
+    self.featuredSize = @[[NSNumber numberWithFloat:image.size.width],[NSNumber numberWithFloat:image.size.height]];
     imageCell.featuredImage.contentMode = UIViewContentModeScaleAspectFit;
 }
 
@@ -395,10 +400,6 @@
 #pragma mark - update
 - (void)update {
     [self.tableView reloadData];
-#if __IPHONE_OS_VERSION_MAX_ALLOWED < 80000
-    // iOS7 specific stuff
-    [self.searchDisplayController setActive:NO animated:YES];
-#endif
 }
 
 #pragma mark - BackButtonDelegate

@@ -91,7 +91,7 @@
     }
     [self.scrollViewOutlet addSubview:self.projectView];
     self.scrollViewOutlet.delegate = self;
-    CGFloat screenHeight =[Util screenHeight];
+    CGFloat screenHeight = [Util screenHeight];
     CGSize contentSize = self.projectView.bounds.size;
     CGFloat minHeight = self.view.frame.size.height-kUIBarHeight-kNavBarHeight;
     if (contentSize.height < minHeight) {
