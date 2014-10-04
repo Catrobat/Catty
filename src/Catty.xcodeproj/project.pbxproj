@@ -7,216 +7,23 @@
 	objects = {
 
 /* Begin PBXAggregateTarget section */
-		B4A92DC3175F535300608667 /* LicenseTest_iOS7.1 */ = {
+		CADBD7FD19B0E8F300C62836 /* LicenseTest */ = {
 			isa = PBXAggregateTarget;
-			buildConfigurationList = B4A92DC7175F535300608667 /* Build configuration list for PBXAggregateTarget "LicenseTest_iOS7.1" */;
-			buildPhases = (
-				B4A92DC8175F537500608667 /* ShellScript */,
-			);
-			dependencies = (
-			);
-			name = LicenseTest_iOS7.1;
-			productName = LicenseTest;
-		};
-		CADBD7FD19B0E8F300C62836 /* LicenseTest_iOS8.0 */ = {
-			isa = PBXAggregateTarget;
-			buildConfigurationList = CADBD7FF19B0E8F300C62836 /* Build configuration list for PBXAggregateTarget "LicenseTest_iOS8.0" */;
+			buildConfigurationList = CADBD7FF19B0E8F300C62836 /* Build configuration list for PBXAggregateTarget "LicenseTest" */;
 			buildPhases = (
 				CADBD7FE19B0E8F300C62836 /* Run Script */,
 			);
 			dependencies = (
 			);
-			name = LicenseTest_iOS8.0;
+			name = LicenseTest;
 			productName = LicenseTest;
 		};
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
-		1D60589B0D05DD56006BFB54 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; };
-		1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
-		1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
-		288765FD0DF74451002DB57D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 288765FC0DF74451002DB57D /* CoreGraphics.framework */; };
-		4C107ADD194F156F00D9D7ED /* PointToBrickTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C107ADC194F156F00D9D7ED /* PointToBrickTests.m */; };
-		4C3AEF2F198E7EDD00604ABF /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 4C3AEF2E198E7EDD00604ABF /* Settings.bundle */; };
-		4C3C03F7199BA5610004F594 /* FormulaFunctionsTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C3C03F6199BA5610004F594 /* FormulaFunctionsTest.m */; };
-		4C3C0403199BA7B40004F594 /* Functions.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C3C0400199BA7B40004F594 /* Functions.m */; };
-		4C3C0404199BA7B40004F594 /* Operators.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C3C0402199BA7B40004F594 /* Operators.m */; };
-		4C3C0408199BA7E90004F594 /* InternFormulaParserException.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C3C0407199BA7E90004F594 /* InternFormulaParserException.m */; };
-		4C9E2D1F198EA6B600455B77 /* SMPageControl.license in Resources */ = {isa = PBXBuildFile; fileRef = 4C9E2D1E198EA6B600455B77 /* SMPageControl.license */; };
-		4C9E2D21198EACE200455B77 /* EAIntroView.license in Resources */ = {isa = PBXBuildFile; fileRef = 4C9E2D20198EACE200455B77 /* EAIntroView.license */; };
-		4C9E2D23198EAD1800455B77 /* BDKNotifyHUD.license in Resources */ = {isa = PBXBuildFile; fileRef = 4C9E2D22198EAD1800455B77 /* BDKNotifyHUD.license */; };
-		4C9E2D25198F62A600455B77 /* SWTableViewCell.license in Resources */ = {isa = PBXBuildFile; fileRef = 4C9E2D24198F62A600455B77 /* SWTableViewCell.license */; };
-		4C9E2D27198F62D800455B77 /* IBActionSheet.license in Resources */ = {isa = PBXBuildFile; fileRef = 4C9E2D26198F62D800455B77 /* IBActionSheet.license */; };
-		4C9E2D29198F635B00455B77 /* AHKActionSheet.license in Resources */ = {isa = PBXBuildFile; fileRef = 4C9E2D28198F635B00455B77 /* AHKActionSheet.license */; };
-		4C9E2D2B198F638C00455B77 /* LXReorderableCollectionViewFlowLayout.license in Resources */ = {isa = PBXBuildFile; fileRef = 4C9E2D2A198F638C00455B77 /* LXReorderableCollectionViewFlowLayout.license */; };
-		4C9E2D2D198F63B400455B77 /* TTTAttributedLabel.license in Resources */ = {isa = PBXBuildFile; fileRef = 4C9E2D2C198F63B400455B77 /* TTTAttributedLabel.license */; };
-		4C9E2D2F198F63FB00455B77 /* FBShimmering.license in Resources */ = {isa = PBXBuildFile; fileRef = 4C9E2D2E198F63FB00455B77 /* FBShimmering.license */; };
-		4C9E2D31198F645400455B77 /* FXBlurView.license in Resources */ = {isa = PBXBuildFile; fileRef = 4C9E2D30198F645400455B77 /* FXBlurView.license */; };
-		4C9E2D33198F648B00455B77 /* EVCircularProgressView.license in Resources */ = {isa = PBXBuildFile; fileRef = 4C9E2D32198F648B00455B77 /* EVCircularProgressView.license */; };
-		4C9E2D35198F657500455B77 /* SharkfoodMuteSwitchDetector.license in Resources */ = {isa = PBXBuildFile; fileRef = 4C9E2D34198F657500455B77 /* SharkfoodMuteSwitchDetector.license */; };
-		4C9E2D37198F65D500455B77 /* Reachability.license in Resources */ = {isa = PBXBuildFile; fileRef = 4C9E2D36198F65D500455B77 /* Reachability.license */; };
-		4C9E2D39198F67FB00455B77 /* minizip.license in Resources */ = {isa = PBXBuildFile; fileRef = 4C9E2D38198F67FB00455B77 /* minizip.license */; };
-		4C9E2D3B198F685D00455B77 /* SSZipArchive.license in Resources */ = {isa = PBXBuildFile; fileRef = 4C9E2D3A198F685D00455B77 /* SSZipArchive.license */; };
-		4C9E2D3D198F68F400455B77 /* GDataXMLNode.license in Resources */ = {isa = PBXBuildFile; fileRef = 4C9E2D3C198F68F400455B77 /* GDataXMLNode.license */; };
-		4C9E2D3F198F698100455B77 /* NSString+FastImageSize.license in Resources */ = {isa = PBXBuildFile; fileRef = 4C9E2D3E198F698100455B77 /* NSString+FastImageSize.license */; };
-		4C9E2D41198F6A2300455B77 /* UIViewController+CWPopup.license in Resources */ = {isa = PBXBuildFile; fileRef = 4C9E2D40198F6A2300455B77 /* UIViewController+CWPopup.license */; };
-		4C9E2D43198F6A8800455B77 /* OrderedDictionary.license in Resources */ = {isa = PBXBuildFile; fileRef = 4C9E2D42198F6A8800455B77 /* OrderedDictionary.license */; };
-		8146A9B319279721002548A4 /* ProgramTableHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8146A9B219279721002548A4 /* ProgramTableHeaderView.m */; };
-		815420D9191A51F200E628D2 /* FBShimmeringLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 815420D6191A51F200E628D2 /* FBShimmeringLayer.m */; };
-		815420DA191A51F200E628D2 /* FBShimmeringView.m in Sources */ = {isa = PBXBuildFile; fileRef = 815420D8191A51F200E628D2 /* FBShimmeringView.m */; };
-		815420DD191A5C1F00E628D2 /* PlaceHolderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 815420DC191A5C1F00E628D2 /* PlaceHolderView.m */; };
-		81649E10191D35090099AE7E /* ScriptDeleteButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 81649E0F191D35090099AE7E /* ScriptDeleteButton.m */; };
-		8165DC851938B2D000B6A306 /* SingleBrickSelectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8165DC841938B2D000B6A306 /* SingleBrickSelectionView.m */; };
-		816827D81934BB9B00031E7C /* BrickSelectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 816827D71934BB9B00031E7C /* BrickSelectionView.m */; };
-		816C788617D62B7C0029A4E6 /* ProgramTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 816C788517D62B7C0029A4E6 /* ProgramTableViewController.m */; };
-		817B544018F03C0D00AF6BFE /* BaseTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = 817B543F18F03C0D00AF6BFE /* BaseTransition.m */; };
-		817B544318F03D4C00AF6BFE /* BrickScaleTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = 817B544218F03D4C00AF6BFE /* BrickScaleTransition.m */; };
-		817B544C18F0520800AF6BFE /* BrickDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 817B544A18F0520800AF6BFE /* BrickDetailViewController.m */; };
-		817B545118F0AAE600AF6BFE /* FXBlurView.m in Sources */ = {isa = PBXBuildFile; fileRef = 817B545018F0AAE600AF6BFE /* FXBlurView.m */; };
-		819AA18619587CA7003010BB /* BaseWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 819AA18519587CA7003010BB /* BaseWebViewController.m */; };
-		819EFEA71948721900A1D591 /* SelectButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 819EFEA61948721900A1D591 /* SelectButton.m */; };
-		81A5B4D7192964170082B2B8 /* CellMotionEffect.m in Sources */ = {isa = PBXBuildFile; fileRef = 81A5B4D6192964170082B2B8 /* CellMotionEffect.m */; };
-		81B7487A1921433700990E5F /* CreateView.m in Sources */ = {isa = PBXBuildFile; fileRef = 81B748781921433700990E5F /* CreateView.m */; };
-		81B7487D192143AA00990E5F /* RoundBorderedButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 81B7487C192143AA00990E5F /* RoundBorderedButton.m */; };
-		81C27424189EE41700827A95 /* BrickCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 81C27423189EE41700827A95 /* BrickCell.m */; };
-		81C27426189EF94600827A95 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 81C27425189EF94600827A95 /* Images.xcassets */; };
-		81CA97D4192A900C00C99DCB /* BrickSelectModalTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = 81CA97D3192A900C00C99DCB /* BrickSelectModalTransition.m */; };
-		81D3C9F61945E54200DB71E1 /* BrickShapeFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 81D3C9F51945E54200DB71E1 /* BrickShapeFactory.m */; };
-		81FAEE2F17E781AB0052BB2B /* ScriptCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 81FAEE2E17E781AB0052BB2B /* ScriptCollectionViewController.m */; };
-		81FAEE3217E782140052BB2B /* LooksTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 81FAEE3117E782140052BB2B /* LooksTableViewController.m */; };
-		81FAEE3517E782360052BB2B /* SoundsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 81FAEE3417E782360052BB2B /* SoundsTableViewController.m */; };
-		9200F006182E3CA0008BF678 /* CatrobatAudioPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 9200F005182E3CA0008BF678 /* CatrobatAudioPlayer.m */; };
-		920F20C41837F27E003E9EE0 /* SaveToProjectActivity.m in Sources */ = {isa = PBXBuildFile; fileRef = 920F20C31837F27E003E9EE0 /* SaveToProjectActivity.m */; };
-		921FE2FA182F8122001D7CF6 /* CoreImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 921FE2F9182F8122001D7CF6 /* CoreImage.framework */; };
-		92300D0B18B2196700F2B4DC /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 92300CE918B2196700F2B4DC /* Localizable.strings */; };
-		923453C2192D2D5F00464E6B /* test.png in Resources */ = {isa = PBXBuildFile; fileRef = 923453C1192D2D5F00464E6B /* test.png */; };
-		92345633192E270B00464E6B /* test2.png in Resources */ = {isa = PBXBuildFile; fileRef = 92345632192E270B00464E6B /* test2.png */; };
-		92345635192E2A1B00464E6B /* ChangeBrightnessByNBrickTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 92345634192E2A1B00464E6B /* ChangeBrightnessByNBrickTests.m */; };
-		92345637192E2E6C00464E6B /* SetLookBrickTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 92345636192E2E6C00464E6B /* SetLookBrickTests.m */; };
-		92345639192E2E8000464E6B /* NextLookBrickTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 92345638192E2E8000464E6B /* NextLookBrickTests.m */; };
 		9236B38B19DA85B000495474 /* Launch Screen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9236B38A19DA85B000495474 /* Launch Screen.xib */; };
-		924DEBF919CAFB9900EED9CE /* MYBlurIntroductionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 924DEBF619CAFB9900EED9CE /* MYBlurIntroductionView.m */; };
 		924DEBFA19CAFB9900EED9CE /* MYBlurIntroductionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 924DEBF619CAFB9900EED9CE /* MYBlurIntroductionView.m */; };
-		924DEBFB19CAFB9900EED9CE /* MYIntroductionPanel.m in Sources */ = {isa = PBXBuildFile; fileRef = 924DEBF819CAFB9900EED9CE /* MYIntroductionPanel.m */; };
 		924DEBFC19CAFB9900EED9CE /* MYIntroductionPanel.m in Sources */ = {isa = PBXBuildFile; fileRef = 924DEBF819CAFB9900EED9CE /* MYIntroductionPanel.m */; };
-		9251B6AD199F4B1600746D66 /* SWCellScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9251B6A4199F4B1600746D66 /* SWCellScrollView.m */; };
-		9251B6AE199F4B1600746D66 /* SWLongPressGestureRecognizer.m in Sources */ = {isa = PBXBuildFile; fileRef = 9251B6A6199F4B1600746D66 /* SWLongPressGestureRecognizer.m */; };
-		9251B6AF199F4B1600746D66 /* SWTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9251B6A8199F4B1600746D66 /* SWTableViewCell.m */; };
-		9251B6B0199F4B1600746D66 /* SWUtilityButtonTapGestureRecognizer.m in Sources */ = {isa = PBXBuildFile; fileRef = 9251B6AA199F4B1600746D66 /* SWUtilityButtonTapGestureRecognizer.m */; };
-		9251B6B1199F4B1600746D66 /* SWUtilityButtonView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9251B6AC199F4B1600746D66 /* SWUtilityButtonView.m */; };
-		9251B6B4199F4B6500746D66 /* NSMutableArray+SWUtilityButtons.m in Sources */ = {isa = PBXBuildFile; fileRef = 9251B6B3199F4B6500746D66 /* NSMutableArray+SWUtilityButtons.m */; };
-		925E22B618E3313C001A26A6 /* NavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 925E22B518E3313C001A26A6 /* NavigationController.m */; };
-		929FE0001986484200B2A88D /* DarkBlueGradientFeaturedCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 929FDFFF1986484200B2A88D /* DarkBlueGradientFeaturedCell.m */; };
-		92C37A33185621FF00547C1E /* SetSizeToBrickTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 92C37A32185621FF00547C1E /* SetSizeToBrickTests.m */; };
-		92C37A381856253B00547C1E /* ComeToFrontBrickTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 92C37A371856253B00547C1E /* ComeToFrontBrickTests.m */; };
-		92C37A3A1856257300547C1E /* SetXBrickTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 92C37A391856257300547C1E /* SetXBrickTests.m */; };
-		92C37A3C185625A700547C1E /* SetYBrickTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 92C37A3B185625A700547C1E /* SetYBrickTests.m */; };
-		92C37A3E185625D900547C1E /* ShowBrickTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 92C37A3D185625D900547C1E /* ShowBrickTests.m */; };
-		92C37A40185625E700547C1E /* HideBrickTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 92C37A3F185625E700547C1E /* HideBrickTests.m */; };
-		92C37A421856262700547C1E /* SetGhostEffectBrickTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 92C37A411856262700547C1E /* SetGhostEffectBrickTests.m */; };
-		92C37A441856264700547C1E /* ChangeGhostEffectByNBrickTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 92C37A431856264700547C1E /* ChangeGhostEffectByNBrickTests.m */; };
-		92C37A461856269100547C1E /* PointInDirectionBrickTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 92C37A451856269100547C1E /* PointInDirectionBrickTests.m */; };
-		92C37A48185626B600547C1E /* PlaceAtBrickTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 92C37A47185626B600547C1E /* PlaceAtBrickTests.m */; };
-		92C37A4A185626DB00547C1E /* ChangeSizeByNBrickTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 92C37A49185626DB00547C1E /* ChangeSizeByNBrickTests.m */; };
-		92C37A4C1856270500547C1E /* TurnLeftBrickTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 92C37A4B1856270500547C1E /* TurnLeftBrickTests.m */; };
-		92C37A4E1856271100547C1E /* TurnRightBrickTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 92C37A4D1856271100547C1E /* TurnRightBrickTests.m */; };
-		92C37A501856274700547C1E /* GoNStepsBackBrickTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 92C37A4F1856274700547C1E /* GoNStepsBackBrickTests.m */; };
-		92C37A521856276D00547C1E /* SetBrightnessBrickTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 92C37A511856276D00547C1E /* SetBrightnessBrickTests.m */; };
-		92C37A541856279600547C1E /* MoveNStepsBrickTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 92C37A531856279600547C1E /* MoveNStepsBrickTests.m */; };
-		92C37A56185627A300547C1E /* ClearGrafficEffectBrickTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 92C37A55185627A300547C1E /* ClearGrafficEffectBrickTests.m */; };
-		92DFE97C196D795900F491EC /* InfoPopupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 92DFE97B196D795900F491EC /* InfoPopupViewController.m */; };
-		92E3351E18FBB6750056C390 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 92E3351D18FBB6750056C390 /* SystemConfiguration.framework */; };
-		B402288217329FEB004C4942 /* IfLogicBeginBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = B402288117329FEB004C4942 /* IfLogicBeginBrick.m */; };
-		B40228911732A541004C4942 /* IfLogicElseBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = B40228901732A540004C4942 /* IfLogicElseBrick.m */; };
-		B40228961732A58E004C4942 /* IfLogicEndBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = B40228951732A58E004C4942 /* IfLogicEndBrick.m */; };
-		B40228A51732ADF4004C4942 /* PointToBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = B40228A41732ADF3004C4942 /* PointToBrick.m */; };
-		B40C306E170ECC30000B872F /* CatrobatBaseCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B4D940CD170EC903003DDBFA /* CatrobatBaseCell.m */; };
-		B40C3071170ECC49000B872F /* DarkBlueGradientImageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B40C3070170ECC49000B872F /* DarkBlueGradientImageCell.m */; };
-		B43498501927A875002F9075 /* My First Program.catrobat in Resources */ = {isa = PBXBuildFile; fileRef = B434984F1927A863002F9075 /* My First Program.catrobat */; };
-		B4365CE51758AF8F00B4D0A6 /* Logger.m in Sources */ = {isa = PBXBuildFile; fileRef = B4365CE41758AF8F00B4D0A6 /* Logger.m */; };
-		B4365CE91758EBA900B4D0A6 /* LoggerProperties.plist in Resources */ = {isa = PBXBuildFile; fileRef = B4365CE81758EBA900B4D0A6 /* LoggerProperties.plist */; };
-		B44F32A01737AC2E00BD97AC /* ProgramManager.m in Sources */ = {isa = PBXBuildFile; fileRef = B44F329F1737AC2E00BD97AC /* ProgramManager.m */; };
-		B44F32A51737BBB100BD97AC /* SensorHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = B44F32A41737BBB100BD97AC /* SensorHandler.m */; };
-		B44F32AD1737BCC000BD97AC /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B44F32AC1737BCBF00BD97AC /* CoreMotion.framework */; };
-		B45A5827173253E5000E038F /* SetVariableBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = B45A5826173253E5000E038F /* SetVariableBrick.m */; };
-		B45A582C17325442000E038F /* UserVariable.m in Sources */ = {isa = PBXBuildFile; fileRef = B45A582B17325442000E038F /* UserVariable.m */; };
-		B45A583117327887000E038F /* Formula.m in Sources */ = {isa = PBXBuildFile; fileRef = B45A583017327887000E038F /* Formula.m */; };
-		B45A583617327BBE000E038F /* FormulaElement.m in Sources */ = {isa = PBXBuildFile; fileRef = B45A583517327BBE000E038F /* FormulaElement.m */; };
-		B46475301770F60500CD277F /* AudioManager.m in Sources */ = {isa = PBXBuildFile; fileRef = B464752F1770F60500CD277F /* AudioManager.m */; };
-		B46B270017703F9400172837 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B46B26E817703E4000172837 /* XCTest.framework */; };
-		B46B270117703F9400172837 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
-		B46B270217703F9400172837 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
-		B46B270817703F9400172837 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = B46B270617703F9400172837 /* InfoPlist.strings */; };
-		B46B270A17703F9400172837 /* CattyTests.m in Sources */ = {isa = PBXBuildFile; fileRef = B46B270917703F9400172837 /* CattyTests.m */; };
-		B46B271317703FB700172837 /* SensorHandlerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = B46B271217703FB700172837 /* SensorHandlerTests.m */; };
-		B46B271B17708E6700172837 /* LoopBeginBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = B46B271A17708E6700172837 /* LoopBeginBrick.m */; };
-		B470688A1733BA9600EC880D /* VariablesContainer.m in Sources */ = {isa = PBXBuildFile; fileRef = B47068891733BA9600EC880D /* VariablesContainer.m */; };
-		B470688F1733D6CC00EC880D /* ChangeVariableBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = B470688E1733D6CA00EC880D /* ChangeVariableBrick.m */; };
-		B4826F78174D076800F57AE9 /* NoteBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = B4826F77174D076800F57AE9 /* NoteBrick.m */; };
-		B4826F83174D5BB100F57AE9 /* OrderedMapTable.m in Sources */ = {isa = PBXBuildFile; fileRef = B4826F82174D5BB100F57AE9 /* OrderedMapTable.m */; };
-		B4840CA7174FAC3E002DEC53 /* MoveNStepsBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = B4840CA6174FAC3E002DEC53 /* MoveNStepsBrick.m */; };
-		B496F51117759969004BF78A /* SceneTests.m in Sources */ = {isa = PBXBuildFile; fileRef = B496F51017759968004BF78A /* SceneTests.m */; };
-		B4A92DCD175F8DF700608667 /* SSZipArchive.m in Sources */ = {isa = PBXBuildFile; fileRef = B4A92DCC175F8DF700608667 /* SSZipArchive.m */; };
-		B4A92DD2175FD4B800608667 /* GDataXMLNode.m in Sources */ = {isa = PBXBuildFile; fileRef = B4A92DD1175FD4B700608667 /* GDataXMLNode.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		B4AF798D174A9A340041555A /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B4AF798C174A9A330041555A /* CoreLocation.framework */; };
-		B4B7BAC31738E216000BDC94 /* XMLObjectReference.m in Sources */ = {isa = PBXBuildFile; fileRef = B4B7BAC21738E216000BDC94 /* XMLObjectReference.m */; };
-		B4BCF407170ECFA2008EDF3A /* MyProgramsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B4BCF406170ECFA2008EDF3A /* MyProgramsViewController.m */; };
-		B4BCF414170ED1F2008EDF3A /* CatrobatInformation.m in Sources */ = {isa = PBXBuildFile; fileRef = B4BCF413170ED1F2008EDF3A /* CatrobatInformation.m */; };
-		B4BCF41B170ED300008EDF3A /* ProgramDetailStoreViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B4BCF41A170ED300008EDF3A /* ProgramDetailStoreViewController.m */; };
-		B4BCF421170ED3B7008EDF3A /* TTTAttributedLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = B4BCF420170ED3B7008EDF3A /* TTTAttributedLabel.m */; };
-		B4BCF428170ED442008EDF3A /* CAGradientLayer+CatrobatCAGradientExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = B4BCF427170ED442008EDF3A /* CAGradientLayer+CatrobatCAGradientExtensions.m */; };
-		B4BCF42C170ED548008EDF3A /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B4BCF42B170ED548008EDF3A /* CoreText.framework */; };
-		B4BCF42F170ED584008EDF3A /* DownloadTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = B4BCF42E170ED584008EDF3A /* DownloadTabBarController.m */; };
-		B4BCF433170ED5AD008EDF3A /* RecentProgramsStoreViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B4BCF432170ED5AD008EDF3A /* RecentProgramsStoreViewController.m */; };
-		B4BCF437170ED5D4008EDF3A /* LoadingView.m in Sources */ = {isa = PBXBuildFile; fileRef = B4BCF436170ED5D4008EDF3A /* LoadingView.m */; };
-		B4BCF43B170ED60D008EDF3A /* FeaturedProgramsStoreViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B4BCF43A170ED60C008EDF3A /* FeaturedProgramsStoreViewController.m */; };
-		B4D4DD4317156A8500EEE3F8 /* PointInDirectionBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = B4D4DD4217156A8500EEE3F8 /* PointInDirectionBrick.m */; };
-		B4D940A0170EC249003DDBFA /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B4F243CC170EBEF7007A071D /* AppDelegate.m */; };
-		B4D940AD170EC2B7003DDBFA /* ioapi.c in Sources */ = {isa = PBXBuildFile; fileRef = B4D940A5170EC2B7003DDBFA /* ioapi.c */; };
-		B4D940AE170EC2B7003DDBFA /* mztools.c in Sources */ = {isa = PBXBuildFile; fileRef = B4D940A7170EC2B7003DDBFA /* mztools.c */; };
-		B4D940AF170EC2B7003DDBFA /* unzip.c in Sources */ = {isa = PBXBuildFile; fileRef = B4D940A9170EC2B7003DDBFA /* unzip.c */; };
-		B4D940B0170EC2B7003DDBFA /* zip.c in Sources */ = {isa = PBXBuildFile; fileRef = B4D940AB170EC2B7003DDBFA /* zip.c */; };
-		B4D940B1170EC5C2003DDBFA /* CatrobatTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B4003031170EB50A00396DB7 /* CatrobatTableViewController.m */; };
-		B4D940CA170EC8C4003DDBFA /* ProgramLoadingInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = B4D940C8170EC742003DDBFA /* ProgramLoadingInfo.m */; };
-		B4D940CB170EC8DA003DDBFA /* TableUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = B4D940BA170EC660003DDBFA /* TableUtil.m */; };
-		B4D940CF170EC9E6003DDBFA /* UIImage+CatrobatUIImageExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = B4D940C4170EC6BD003DDBFA /* UIImage+CatrobatUIImageExtensions.m */; };
-		B4D940D0170EC9E9003DDBFA /* UIColor+CatrobatUIColorExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = B4D940C1170EC69B003DDBFA /* UIColor+CatrobatUIColorExtensions.m */; };
-		B4D940D1170EC9ED003DDBFA /* NSString+CatrobatNSStringExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = B4D940BE170EC681003DDBFA /* NSString+CatrobatNSStringExtensions.m */; };
-		B4D940D4170ECA15003DDBFA /* DownloadImageCache.m in Sources */ = {isa = PBXBuildFile; fileRef = B4D940D3170ECA15003DDBFA /* DownloadImageCache.m */; };
-		B4D940DC170ECB65003DDBFA /* ContinueImageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B4D940DB170ECB65003DDBFA /* ContinueImageCell.m */; };
-		B4D940E0170ECB8B003DDBFA /* DarkBlueGradientCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B4D940DF170ECB8B003DDBFA /* DarkBlueGradientCell.m */; };
-		B4DA23D1175E26550079B381 /* SensorManager.m in Sources */ = {isa = PBXBuildFile; fileRef = B4DA23D0175E26550079B381 /* SensorManager.m */; };
-		B4DEFC90170F464200DD1939 /* TestParser.m in Sources */ = {isa = PBXBuildFile; fileRef = B4DEFC8F170F464200DD1939 /* TestParser.m */; };
-		B4E7D257176EF20F00EC8AD8 /* Scene.m in Sources */ = {isa = PBXBuildFile; fileRef = B4E7D256176EF20F00EC8AD8 /* Scene.m */; };
-		B4E7D25A176EF2CA00EC8AD8 /* SpriteKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B4E7D259176EF2CA00EC8AD8 /* SpriteKit.framework */; };
-		C34B44EB17F079C700624730 /* BrickTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C34B44EA17F079C700624730 /* BrickTests.m */; };
-		C34B44ED17F079F500624730 /* CustomExtensionsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C34B44EC17F079F500624730 /* CustomExtensionsTests.m */; };
-		C34B44F417F1D2C700624730 /* ClearGraphicEffectBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = C34B44F317F1D2C700624730 /* ClearGraphicEffectBrick.m */; };
-		C34B44F817F1D8D200624730 /* ChangeBrightnessByNBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = C34B44F617F1D8D200624730 /* ChangeBrightnessByNBrick.m */; };
-		C3BF754C18117F6000134B77 /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C3BF754B18117F6000134B77 /* Accelerate.framework */; };
-		C3F1DD5C180AD1DC00E2FA45 /* ScenePresenterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C3F1DD5B180AD1DC00E2FA45 /* ScenePresenterViewController.m */; };
-		C3F2950C1813C63200E37D61 /* iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C3F2950B1813C63200E37D61 /* iPhone.storyboard */; };
-		CA047EC418C782550078BE08 /* BrickManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CA047EC318C782550078BE08 /* BrickManager.m */; };
-		CA05A19C18282B2C0025421A /* SearchStoreViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA05A19B18282B2C0025421A /* SearchStoreViewController.m */; };
-		CA05A19E18286CDA0025421A /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA05A19D18286CDA0025421A /* AssetsLibrary.framework */; };
-		CA1498521989C2C80069A21E /* LICENSE_BDKNotifyHUD in Resources */ = {isa = PBXBuildFile; fileRef = CA1498511989C2C80069A21E /* LICENSE_BDKNotifyHUD */; };
-		CA1498551989C3F00069A21E /* EVCircularProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = CA1498541989C3F00069A21E /* EVCircularProgressView.m */; };
-		CA1498671989C9C70069A21E /* IBActionSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = CA1498661989C9C70069A21E /* IBActionSheet.m */; };
-		CA1498701989CA160069A21E /* AHKActionSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = CA14986C1989CA160069A21E /* AHKActionSheet.m */; };
-		CA1498711989CA160069A21E /* AHKActionSheetViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA14986D1989CA160069A21E /* AHKActionSheetViewController.m */; };
-		CA1498721989CA160069A21E /* UIImage+AHKAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = CA14986E1989CA160069A21E /* UIImage+AHKAdditions.m */; };
-		CA1498731989CA160069A21E /* UIWindow+AHKAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = CA14986F1989CA160069A21E /* UIWindow+AHKAdditions.m */; };
-		CA1498761989CA2A0069A21E /* LXReorderableCollectionViewFlowLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = CA1498751989CA2A0069A21E /* LXReorderableCollectionViewFlowLayout.m */; };
-		CA1498791989CB320069A21E /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = CA1498781989CB320069A21E /* Reachability.m */; };
-		CA14987C1989CB690069A21E /* SharkfoodMuteSwitchDetector.m in Sources */ = {isa = PBXBuildFile; fileRef = CA14987B1989CB690069A21E /* SharkfoodMuteSwitchDetector.m */; };
-		CA14987F1989CBD50069A21E /* NSString+FastImageSize.m in Sources */ = {isa = PBXBuildFile; fileRef = CA14987E1989CBD50069A21E /* NSString+FastImageSize.m */; };
-		CA1498821989CC0E0069A21E /* OrderedDictionary.m in Sources */ = {isa = PBXBuildFile; fileRef = CA1498811989CC0E0069A21E /* OrderedDictionary.m */; };
-		CA1498851989D1A60069A21E /* UIViewController+CWPopup.m in Sources */ = {isa = PBXBuildFile; fileRef = CA1498841989D1A60069A21E /* UIViewController+CWPopup.m */; };
-		CA1B802C1971ADBB00D8E79B /* IMPORTANT.caf in Resources */ = {isa = PBXBuildFile; fileRef = CA1B802B1971ACE300D8E79B /* IMPORTANT.caf */; };
-		CA3BFA5C197F0DD300DA86C9 /* NSMutableArray+CustomExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = CA3BFA5B197F0DD300DA86C9 /* NSMutableArray+CustomExtensions.m */; };
-		CA43DD361809976900F95B88 /* UIImageView+CatrobatUIImageViewExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = CA43DD351809976900F95B88 /* UIImageView+CatrobatUIImageViewExtensions.m */; };
-		CA51A55E198481ED00FFCB45 /* BDKNotifyHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = CA51A55D198481ED00FFCB45 /* BDKNotifyHUD.m */; };
-		CA52403618AD782600052914 /* ProgramTableViewControllerExistingProgramsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = CA52403518AD782600052914 /* ProgramTableViewControllerExistingProgramsTests.m */; };
 		CA538EA519B0EA09008240AB /* ChangeGhostEffectByNBrickTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 92C37A431856264700547C1E /* ChangeGhostEffectByNBrickTests.m */; };
 		CA538EA619B0EA09008240AB /* ProgramTableViewControllerExistingProgramsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = CA52403518AD782600052914 /* ProgramTableViewControllerExistingProgramsTests.m */; };
 		CA538EA719B0EA09008240AB /* HideBrickTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 92C37A3F185625E700547C1E /* HideBrickTests.m */; };
@@ -253,70 +60,6 @@
 		CA538EC819B0EA09008240AB /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = B46B270617703F9400172837 /* InfoPlist.strings */; };
 		CA538EC919B0EA09008240AB /* test2.png in Resources */ = {isa = PBXBuildFile; fileRef = 92345632192E270B00464E6B /* test2.png */; };
 		CA538ECA19B0EA09008240AB /* test.png in Resources */ = {isa = PBXBuildFile; fileRef = 923453C1192D2D5F00464E6B /* test.png */; };
-		CA5FED5018B0070300A517B6 /* BrickCellInlineView.m in Sources */ = {isa = PBXBuildFile; fileRef = CA5FED4F18B0070300A517B6 /* BrickCellInlineView.m */; };
-		CA5FED5418B019B200A517B6 /* UIUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = CA5FED5318B019B200A517B6 /* UIUtil.m */; };
-		CA688205180B0148008A7C99 /* BaseTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA688204180B0148008A7C99 /* BaseTableViewController.m */; };
-		CA68820E180B39D0008A7C99 /* ColoredCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CA68820D180B39D0008A7C99 /* ColoredCell.m */; };
-		CA68B67718BAA80A007042E4 /* ComboBoxView.m in Sources */ = {isa = PBXBuildFile; fileRef = CA68B67518BAA80A007042E4 /* ComboBoxView.m */; };
-		CA75C22618A9603400FC8C2F /* StartScriptCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CA75C22518A9603400FC8C2F /* StartScriptCell.m */; };
-		CA75C22918A9605D00FC8C2F /* WhenScriptCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CA75C22818A9605D00FC8C2F /* WhenScriptCell.m */; };
-		CA75C22C18A9606D00FC8C2F /* BroadcastScriptCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CA75C22B18A9606D00FC8C2F /* BroadcastScriptCell.m */; };
-		CA75C22F18A9612300FC8C2F /* WaitBrickCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CA75C22E18A9612300FC8C2F /* WaitBrickCell.m */; };
-		CA75C23218A9613A00FC8C2F /* BroadcastBrickCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CA75C23118A9613A00FC8C2F /* BroadcastBrickCell.m */; };
-		CA75C23518A9614100FC8C2F /* BroadcastWaitBrickCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CA75C23418A9614100FC8C2F /* BroadcastWaitBrickCell.m */; };
-		CA75C23818A9614C00FC8C2F /* NoteBrickCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CA75C23718A9614C00FC8C2F /* NoteBrickCell.m */; };
-		CA75C23B18A9615600FC8C2F /* ForeverBrickCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CA75C23A18A9615600FC8C2F /* ForeverBrickCell.m */; };
-		CA75C23E18A9616000FC8C2F /* IfLogicBeginBrickCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CA75C23D18A9616000FC8C2F /* IfLogicBeginBrickCell.m */; };
-		CA75C24118A9616800FC8C2F /* IfLogicElseBrickCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CA75C24018A9616800FC8C2F /* IfLogicElseBrickCell.m */; };
-		CA75C24418A9617100FC8C2F /* IfLogicEndBrickCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CA75C24318A9617100FC8C2F /* IfLogicEndBrickCell.m */; };
-		CA75C24718A9617900FC8C2F /* RepeatBrickCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CA75C24618A9617900FC8C2F /* RepeatBrickCell.m */; };
-		CA75C24A18A9618000FC8C2F /* PlaceAtBrickCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CA75C24918A9618000FC8C2F /* PlaceAtBrickCell.m */; };
-		CA75C24D18A9618700FC8C2F /* SetXBrickCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CA75C24C18A9618700FC8C2F /* SetXBrickCell.m */; };
-		CA75C25018A9618D00FC8C2F /* SetYBrickCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CA75C24F18A9618D00FC8C2F /* SetYBrickCell.m */; };
-		CA75C25318A9619400FC8C2F /* ChangeXByNBrickCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CA75C25218A9619400FC8C2F /* ChangeXByNBrickCell.m */; };
-		CA75C25618A9619B00FC8C2F /* ChangeYByNBrickCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CA75C25518A9619B00FC8C2F /* ChangeYByNBrickCell.m */; };
-		CA75C25918A961A300FC8C2F /* IfOnEdgeBounceBrickCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CA75C25818A961A300FC8C2F /* IfOnEdgeBounceBrickCell.m */; };
-		CA75C25C18A961AB00FC8C2F /* MoveNStepsBrickCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CA75C25B18A961AB00FC8C2F /* MoveNStepsBrickCell.m */; };
-		CA75C25F18A961B200FC8C2F /* TurnLeftBrickCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CA75C25E18A961B200FC8C2F /* TurnLeftBrickCell.m */; };
-		CA75C26218A961B800FC8C2F /* TurnRightBrickCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CA75C26118A961B800FC8C2F /* TurnRightBrickCell.m */; };
-		CA75C26518A961C000FC8C2F /* PointInDirectionBrickCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CA75C26418A961C000FC8C2F /* PointInDirectionBrickCell.m */; };
-		CA75C26818A961C700FC8C2F /* PointToBrickCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CA75C26718A961C700FC8C2F /* PointToBrickCell.m */; };
-		CA75C26B18A961CE00FC8C2F /* GlideToBrickCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CA75C26A18A961CE00FC8C2F /* GlideToBrickCell.m */; };
-		CA75C26E18A961FC00FC8C2F /* GoNStepsBackBrickCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CA75C26D18A961FC00FC8C2F /* GoNStepsBackBrickCell.m */; };
-		CA75C27118A9620200FC8C2F /* ComeToFrontBrickCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CA75C27018A9620200FC8C2F /* ComeToFrontBrickCell.m */; };
-		CA75C27418A9620800FC8C2F /* PlaySoundBrickCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CA75C27318A9620800FC8C2F /* PlaySoundBrickCell.m */; };
-		CA75C27718A9620E00FC8C2F /* StopAllSoundsBrickCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CA75C27618A9620E00FC8C2F /* StopAllSoundsBrickCell.m */; };
-		CA75C27A18A9621500FC8C2F /* SetVolumeToBrickCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CA75C27918A9621500FC8C2F /* SetVolumeToBrickCell.m */; };
-		CA75C27D18A9621B00FC8C2F /* ChangeVolumeByNBrickCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CA75C27C18A9621B00FC8C2F /* ChangeVolumeByNBrickCell.m */; };
-		CA75C28018A9622100FC8C2F /* SpeakBrickCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CA75C27F18A9622100FC8C2F /* SpeakBrickCell.m */; };
-		CA75C28318A9622700FC8C2F /* SetLookBrickCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CA75C28218A9622700FC8C2F /* SetLookBrickCell.m */; };
-		CA75C28618A9622E00FC8C2F /* NextLookBrickCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CA75C28518A9622E00FC8C2F /* NextLookBrickCell.m */; };
-		CA75C28918A9623500FC8C2F /* SetSizeToBrickCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CA75C28818A9623500FC8C2F /* SetSizeToBrickCell.m */; };
-		CA75C28C18A9623B00FC8C2F /* ChangeSizeByNBrickCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CA75C28B18A9623B00FC8C2F /* ChangeSizeByNBrickCell.m */; };
-		CA75C28F18A9624200FC8C2F /* HideBrickCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CA75C28E18A9624200FC8C2F /* HideBrickCell.m */; };
-		CA75C29218A9624900FC8C2F /* ShowBrickCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CA75C29118A9624900FC8C2F /* ShowBrickCell.m */; };
-		CA75C29518A9624F00FC8C2F /* SetGhostEffectBrickCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CA75C29418A9624F00FC8C2F /* SetGhostEffectBrickCell.m */; };
-		CA75C29818A9625600FC8C2F /* ChangeGhostEffectByNBrickCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CA75C29718A9625600FC8C2F /* ChangeGhostEffectByNBrickCell.m */; };
-		CA75C29B18A9625C00FC8C2F /* SetBrightnessBrickCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CA75C29A18A9625C00FC8C2F /* SetBrightnessBrickCell.m */; };
-		CA75C29E18A9626400FC8C2F /* ChangeBrightnessByNBrickCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CA75C29D18A9626400FC8C2F /* ChangeBrightnessByNBrickCell.m */; };
-		CA75C2A118A9626B00FC8C2F /* ClearGraphicEffectBrickCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CA75C2A018A9626B00FC8C2F /* ClearGraphicEffectBrickCell.m */; };
-		CA75C2A418A9627200FC8C2F /* SetVariableBrickCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CA75C2A318A9627200FC8C2F /* SetVariableBrickCell.m */; };
-		CA75C2A718A9627800FC8C2F /* ChangeVariableBrickCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CA75C2A618A9627800FC8C2F /* ChangeVariableBrickCell.m */; };
-		CA75C2B018A9A62B00FC8C2F /* LoopEndBrickCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CA75C2AF18A9A62B00FC8C2F /* LoopEndBrickCell.m */; };
-		CA79A11A182D8A4200618283 /* GDataXMLNode+PrettyFormatterExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = CA79A119182D8A4200618283 /* GDataXMLNode+PrettyFormatterExtensions.m */; };
-		CA8C247818CD053300314C2B /* ProgramTests.m in Sources */ = {isa = PBXBuildFile; fileRef = CA8C247718CD053300314C2B /* ProgramTests.m */; };
-		CA8C247B18CD127C00314C2B /* ProgramTableViewControllerNewProgramTests.m in Sources */ = {isa = PBXBuildFile; fileRef = CA8C247A18CD127C00314C2B /* ProgramTableViewControllerNewProgramTests.m */; };
-		CA9B7EA218FFCC0400F1790D /* NSData+Hashes.m in Sources */ = {isa = PBXBuildFile; fileRef = CA9B7EA118FFCC0400F1790D /* NSData+Hashes.m */; };
-		CAA24DE818F46B7C00197AE3 /* DarkBlueGradientImageDetailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CAAA269018F4510E002E55B9 /* DarkBlueGradientImageDetailCell.m */; };
-		CAA96AFE18E4B21F00763409 /* SoundPickerTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CAA96AFD18E4B21F00763409 /* SoundPickerTableViewController.m */; };
-		CAB3637118F5987B00AB8401 /* NSDate+CustomExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = CAB3637018F5987B00AB8401 /* NSDate+CustomExtensions.m */; };
-		CAB95BA518CD51EF006638F6 /* LookImageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CAB95BA418CD51EF006638F6 /* LookImageViewController.m */; };
-		CABE07BC18BAB8B200BE26EF /* MessageComboBoxView.m in Sources */ = {isa = PBXBuildFile; fileRef = CABE07BB18BAB8B200BE26EF /* MessageComboBoxView.m */; };
-		CABE07BF18BAB8EF00BE26EF /* ObjectComboBoxView.m in Sources */ = {isa = PBXBuildFile; fileRef = CABE07BE18BAB8EF00BE26EF /* ObjectComboBoxView.m */; };
-		CABE07C218BAB90400BE26EF /* SoundComboBoxView.m in Sources */ = {isa = PBXBuildFile; fileRef = CABE07C118BAB90400BE26EF /* SoundComboBoxView.m */; };
-		CABE07C518BAB91F00BE26EF /* LookComboBoxView.m in Sources */ = {isa = PBXBuildFile; fileRef = CABE07C418BAB91F00BE26EF /* LookComboBoxView.m */; };
-		CABE07C818BAB94000BE26EF /* VariableComboBoxView.m in Sources */ = {isa = PBXBuildFile; fileRef = CABE07C718BAB94000BE26EF /* VariableComboBoxView.m */; };
-		CAC22DA41809D5730071CC5D /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CAC22DA31809D5730071CC5D /* MobileCoreServices.framework */; };
 		CADBD6D919B0E8C200C62836 /* SSZipArchive.license in Resources */ = {isa = PBXBuildFile; fileRef = 4C9E2D3A198F685D00455B77 /* SSZipArchive.license */; };
 		CADBD6DA19B0E8C200C62836 /* BDKNotifyHUD.license in Resources */ = {isa = PBXBuildFile; fileRef = 4C9E2D22198EAD1800455B77 /* BDKNotifyHUD.license */; };
 		CADBD6DB19B0E8C200C62836 /* IMPORTANT.caf in Resources */ = {isa = PBXBuildFile; fileRef = CA1B802B1971ACE300D8E79B /* IMPORTANT.caf */; };
@@ -597,95 +340,9 @@
 		CADBD7F519B0E8C200C62836 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DE3F093711B7B9DC009D4DB0 /* AVFoundation.framework */; };
 		CADBD7F619B0E8C200C62836 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DE3F093911B7B9DC009D4DB0 /* AudioToolbox.framework */; };
 		CADBD7F719B0E8C200C62836 /* OpenAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DE3F097711B7BABD009D4DB0 /* OpenAL.framework */; };
-		CAE4B832198A77390054ABEC /* LICENSE_SWTableViewCell in Resources */ = {isa = PBXBuildFile; fileRef = CAE4B831198A77390054ABEC /* LICENSE_SWTableViewCell */; };
-		CAE4B834198A781B0054ABEC /* LICENSE_IBActionSheet in Resources */ = {isa = PBXBuildFile; fileRef = CAE4B833198A781B0054ABEC /* LICENSE_IBActionSheet */; };
-		CAE4B836198A78770054ABEC /* LICENSE_AHKActionSheet in Resources */ = {isa = PBXBuildFile; fileRef = CAE4B835198A78770054ABEC /* LICENSE_AHKActionSheet */; };
-		CAE4B838198A78AE0054ABEC /* LICENSE_LXReorderableCollectionViewFlowLayout in Resources */ = {isa = PBXBuildFile; fileRef = CAE4B837198A78AE0054ABEC /* LICENSE_LXReorderableCollectionViewFlowLayout */; };
-		CAE4B83A198A78E60054ABEC /* LICENSE_TTTAttributedLabel in Resources */ = {isa = PBXBuildFile; fileRef = CAE4B839198A78E60054ABEC /* LICENSE_TTTAttributedLabel */; };
-		CAE4B83C198A79040054ABEC /* LICENSE_FBShimmering in Resources */ = {isa = PBXBuildFile; fileRef = CAE4B83B198A79040054ABEC /* LICENSE_FBShimmering */; };
-		CAE4B83E198A7A210054ABEC /* PATENTS_FBShimmering in Resources */ = {isa = PBXBuildFile; fileRef = CAE4B83D198A7A210054ABEC /* PATENTS_FBShimmering */; };
-		CAE4B840198A7A530054ABEC /* LICENSE_FXBlurView in Resources */ = {isa = PBXBuildFile; fileRef = CAE4B83F198A7A530054ABEC /* LICENSE_FXBlurView */; };
-		CAE4B842198A7A8E0054ABEC /* LICENSE_EVCircularProgressView in Resources */ = {isa = PBXBuildFile; fileRef = CAE4B841198A7A8E0054ABEC /* LICENSE_EVCircularProgressView */; };
-		CAE4B844198A7AEE0054ABEC /* LICENSE_UIViewController+Popup in Resources */ = {isa = PBXBuildFile; fileRef = CAE4B843198A7AEE0054ABEC /* LICENSE_UIViewController+Popup */; };
-		CAE4B846198A7B4F0054ABEC /* LICENSE_NSString+FastImageSize in Resources */ = {isa = PBXBuildFile; fileRef = CAE4B845198A7B4F0054ABEC /* LICENSE_NSString+FastImageSize */; };
-		CAE9A2BC197D20A7008F7C9A /* CatrobatActionSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = CAE9A2BB197D20A7008F7C9A /* CatrobatActionSheet.m */; };
-		CAE9A2C0197D52AF008F7C9A /* CatrobatAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = CAE9A2BF197D52AF008F7C9A /* CatrobatAlertView.m */; };
-		CAE9A2C4197D8964008F7C9A /* DataTransferMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = CAE9A2C3197D8964008F7C9A /* DataTransferMessage.m */; };
-		CAEDFB8117EF759500FDED0E /* ObjectTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CAEDFB8017EF759500FDED0E /* ObjectTableViewController.m */; };
-		CAF806D6193170640005E900 /* ImageCache.m in Sources */ = {isa = PBXBuildFile; fileRef = CAF806D5193170640005E900 /* ImageCache.m */; };
-		CAF806D9193181D50005E900 /* RuntimeImageCache.m in Sources */ = {isa = PBXBuildFile; fileRef = CAF806D8193181D50005E900 /* RuntimeImageCache.m */; };
-		CD0CCF52170CB39700B70036 /* Brick.m in Sources */ = {isa = PBXBuildFile; fileRef = CD0CCE60170CB39600B70036 /* Brick.m */; };
-		CD0CCF53170CB39700B70036 /* BroadcastBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = CD0CCE62170CB39600B70036 /* BroadcastBrick.m */; };
-		CD0CCF54170CB39700B70036 /* BroadcastScript.m in Sources */ = {isa = PBXBuildFile; fileRef = CD0CCE64170CB39600B70036 /* BroadcastScript.m */; };
-		CD0CCF55170CB39700B70036 /* BroadcastWaitBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = CD0CCE66170CB39600B70036 /* BroadcastWaitBrick.m */; };
-		CD0CCF56170CB39700B70036 /* BroadcastWaitHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = CD0CCE69170CB39600B70036 /* BroadcastWaitHandler.m */; };
-		CD0CCF59170CB39700B70036 /* CatrobatProgram.m in Sources */ = {isa = PBXBuildFile; fileRef = CD0CCE70170CB39600B70036 /* CatrobatProgram.m */; };
-		CD0CCF5E170CB39700B70036 /* ChangeGhostEffectByNBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = CD0CCE7B170CB39600B70036 /* ChangeGhostEffectByNBrick.m */; };
-		CD0CCF5F170CB39700B70036 /* ChangeSizeByNBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = CD0CCE7D170CB39600B70036 /* ChangeSizeByNBrick.m */; };
-		CD0CCF60170CB39700B70036 /* ChangeVolumeByNBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = CD0CCE7F170CB39600B70036 /* ChangeVolumeByNBrick.m */; };
-		CD0CCF61170CB39700B70036 /* ChangeXByNBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = CD0CCE81170CB39600B70036 /* ChangeXByNBrick.m */; };
-		CD0CCF62170CB39700B70036 /* ChangeYByNBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = CD0CCE83170CB39600B70036 /* ChangeYByNBrick.m */; };
-		CD0CCF64170CB39700B70036 /* ComeToFrontBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = CD0CCE86170CB39600B70036 /* ComeToFrontBrick.m */; };
-		CD0CCF71170CB39700B70036 /* FileManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CD0CCE9E170CB39600B70036 /* FileManager.m */; };
-		CD0CCF72170CB39700B70036 /* ForeverBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = CD0CCEA0170CB39600B70036 /* ForeverBrick.m */; };
-		CD0CCF74170CB39700B70036 /* GlideToBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = CD0CCEA4170CB39600B70036 /* GlideToBrick.m */; };
-		CD0CCF75170CB39700B70036 /* GoNStepsBackBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = CD0CCEA6170CB39600B70036 /* GoNStepsBackBrick.m */; };
-		CD0CCF76170CB39700B70036 /* Header.m in Sources */ = {isa = PBXBuildFile; fileRef = CD0CCEA8170CB39600B70036 /* Header.m */; };
-		CD0CCF78170CB39700B70036 /* HideBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = CD0CCEAB170CB39600B70036 /* HideBrick.m */; };
-		CD0CCF9A170CB39700B70036 /* Look.m in Sources */ = {isa = PBXBuildFile; fileRef = CD0CCED4170CB39700B70036 /* Look.m */; };
-		CD0CCF9B170CB39700B70036 /* LoopEndBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = CD0CCED6170CB39700B70036 /* LoopEndBrick.m */; };
-		CD0CCFA4170CB39700B70036 /* NextLookBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = CD0CCEE7170CB39700B70036 /* NextLookBrick.m */; };
-		CD0CCFA6170CB39700B70036 /* Parser.m in Sources */ = {isa = PBXBuildFile; fileRef = CD0CCEEB170CB39700B70036 /* Parser.m */; };
-		CD0CCFA7170CB39700B70036 /* PlaceAtBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = CD0CCEED170CB39700B70036 /* PlaceAtBrick.m */; };
-		CD0CCFAA170CB39700B70036 /* PlaySoundBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = CD0CCEF1170CB39700B70036 /* PlaySoundBrick.m */; };
-		CD0CCFAB170CB39700B70036 /* Program.m in Sources */ = {isa = PBXBuildFile; fileRef = CD0CCEF3170CB39700B70036 /* Program.m */; };
-		CD0CCFAE170CB39700B70036 /* ProjectParser.m in Sources */ = {isa = PBXBuildFile; fileRef = CD0CCEF9170CB39700B70036 /* ProjectParser.m */; };
-		CD0CCFB0170CB39700B70036 /* RepeatBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = CD0CCEFD170CB39700B70036 /* RepeatBrick.m */; };
-		CD0CCFBC170CB39700B70036 /* Script.m in Sources */ = {isa = PBXBuildFile; fileRef = CD0CCF0E170CB39700B70036 /* Script.m */; };
-		CD0CCFBD170CB39700B70036 /* SetBrightnessBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = CD0CCF10170CB39700B70036 /* SetBrightnessBrick.m */; };
-		CD0CCFBE170CB39700B70036 /* SetGhostEffectBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = CD0CCF12170CB39700B70036 /* SetGhostEffectBrick.m */; };
-		CD0CCFBF170CB39700B70036 /* SetLookBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = CD0CCF14170CB39700B70036 /* SetLookBrick.m */; };
-		CD0CCFC0170CB39700B70036 /* SetSizeToBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = CD0CCF16170CB39700B70036 /* SetSizeToBrick.m */; };
-		CD0CCFC3170CB39700B70036 /* SetVolumeToBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = CD0CCF1A170CB39700B70036 /* SetVolumeToBrick.m */; };
-		CD0CCFC4170CB39700B70036 /* SetXBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = CD0CCF1C170CB39700B70036 /* SetXBrick.m */; };
-		CD0CCFC5170CB39700B70036 /* SetYBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = CD0CCF1E170CB39700B70036 /* SetYBrick.m */; };
-		CD0CCFC6170CB39700B70036 /* ShowBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = CD0CCF20170CB39700B70036 /* ShowBrick.m */; };
-		CD0CCFC7170CB39700B70036 /* Sound.m in Sources */ = {isa = PBXBuildFile; fileRef = CD0CCF22170CB39700B70036 /* Sound.m */; };
-		CD0CCFC9170CB39700B70036 /* SpeakBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = CD0CCF26170CB39700B70036 /* SpeakBrick.m */; };
-		CD0CCFD0170CB39700B70036 /* StartScript.m in Sources */ = {isa = PBXBuildFile; fileRef = CD0CCF33170CB39700B70036 /* StartScript.m */; };
-		CD0CCFD1170CB39700B70036 /* StopAllSoundsBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = CD0CCF35170CB39700B70036 /* StopAllSoundsBrick.m */; };
-		CD0CCFD7170CB39700B70036 /* TurnLeftBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = CD0CCF3D170CB39700B70036 /* TurnLeftBrick.m */; };
-		CD0CCFD8170CB39700B70036 /* TurnRightBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = CD0CCF3F170CB39700B70036 /* TurnRightBrick.m */; };
-		CD0CCFDA170CB39700B70036 /* Util.m in Sources */ = {isa = PBXBuildFile; fileRef = CD0CCF43170CB39700B70036 /* Util.m */; };
-		CD0CCFDB170CB39700B70036 /* WaitBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = CD0CCF45170CB39700B70036 /* WaitBrick.m */; };
-		CD0CCFDC170CB39700B70036 /* WhenScript.m in Sources */ = {isa = PBXBuildFile; fileRef = CD0CCF47170CB39700B70036 /* WhenScript.m */; };
-		CD639C7B170DF52600FA67DA /* SpriteObject.m in Sources */ = {isa = PBXBuildFile; fileRef = CD639C7A170DF52600FA67DA /* SpriteObject.m */; };
-		CD8CC8BC1724346200239EBF /* HelpWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CD8CC8BB1724346200239EBF /* HelpWebViewController.m */; };
-		CDFEFCB41758CBC8002B5B0E /* IfOnEdgeBounceBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = CDFEFCB31758CBC8002B5B0E /* IfOnEdgeBounceBrick.m */; };
-		DE3F093811B7B9DC009D4DB0 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DE3F093711B7B9DC009D4DB0 /* AVFoundation.framework */; };
-		DE3F093A11B7B9DC009D4DB0 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DE3F093911B7B9DC009D4DB0 /* AudioToolbox.framework */; };
-		DE3F097811B7BABD009D4DB0 /* OpenAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DE3F097711B7BABD009D4DB0 /* OpenAL.framework */; };
-		DE4A3D7A10FFB08200FDA492 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DE4A3D7910FFB08200FDA492 /* OpenGLES.framework */; };
-		DE4A3D7F10FFB08B00FDA492 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DE4A3D7E10FFB08B00FDA492 /* QuartzCore.framework */; };
-		DE5C4E6E138ED109004892CA /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = DE5C4E6D138ED109004892CA /* libz.dylib */; };
-		DEAAF3DF16BC114D004EB9D5 /* GLKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DEAAF3DE16BC114D004EB9D5 /* GLKit.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		B46B270C17703F9400172837 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 1D6058900D05DD3D006BFB54;
-			remoteInfo = Catty;
-		};
-		B4A92DCE175F8EE800608667 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = B4A92DC3175F535300608667;
-			remoteInfo = LicenseTest;
-		};
 		CA538ED019B0EA2F008240AB /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
@@ -693,18 +350,10 @@
 			remoteGlobalIDString = CADBD6D319B0E8C200C62836;
 			remoteInfo = Catty_iOS8.0;
 		};
-		CADBD6D519B0E8C200C62836 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = B4A92DC3175F535300608667;
-			remoteInfo = LicenseTest;
-		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		1D30AB110D05D00D00671497 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
-		1D6058910D05DD3D006BFB54 /* Pocket Code.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Pocket Code.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		1DF5F4DF0D08C38300B7A737 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		288765FC0DF74451002DB57D /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -906,7 +555,6 @@
 		B464752E1770F60500CD277F /* AudioManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AudioManager.h; sourceTree = "<group>"; };
 		B464752F1770F60500CD277F /* AudioManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AudioManager.m; sourceTree = "<group>"; };
 		B46B26E817703E4000172837 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
-		B46B26FF17703F9400172837 /* CattyTests_iOS7.1.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CattyTests_iOS7.1.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B46B270517703F9400172837 /* CattyTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "CattyTests-Info.plist"; sourceTree = "<group>"; };
 		B46B270717703F9400172837 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		B46B270917703F9400172837 /* CattyTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CattyTests.m; sourceTree = "<group>"; };
@@ -1047,7 +695,7 @@
 		CA51A55D198481ED00FFCB45 /* BDKNotifyHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BDKNotifyHUD.m; path = BDKNotifyHUD/BDKNotifyHUD.m; sourceTree = "<group>"; };
 		CA52403518AD782600052914 /* ProgramTableViewControllerExistingProgramsTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProgramTableViewControllerExistingProgramsTests.m; sourceTree = "<group>"; };
 		CA52403718AD786200052914 /* ProgramTableViewControllerExistingProgramsTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ProgramTableViewControllerExistingProgramsTests.h; sourceTree = "<group>"; };
-		CA538ECE19B0EA09008240AB /* CattyTests_iOS8.0.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CattyTests_iOS8.0.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		CA538ECE19B0EA09008240AB /* CattyTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CattyTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		CA5FED4E18B0070300A517B6 /* BrickCellInlineView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BrickCellInlineView.h; sourceTree = "<group>"; };
 		CA5FED4F18B0070300A517B6 /* BrickCellInlineView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BrickCellInlineView.m; sourceTree = "<group>"; };
 		CA5FED5218B019B200A517B6 /* UIUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIUtil.h; sourceTree = "<group>"; };
@@ -1315,42 +963,6 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		1D60588F0D05DD3D006BFB54 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				92E3351E18FBB6750056C390 /* SystemConfiguration.framework in Frameworks */,
-				921FE2FA182F8122001D7CF6 /* CoreImage.framework in Frameworks */,
-				CA05A19E18286CDA0025421A /* AssetsLibrary.framework in Frameworks */,
-				C3BF754C18117F6000134B77 /* Accelerate.framework in Frameworks */,
-				CAC22DA41809D5730071CC5D /* MobileCoreServices.framework in Frameworks */,
-				B4E7D25A176EF2CA00EC8AD8 /* SpriteKit.framework in Frameworks */,
-				B4AF798D174A9A340041555A /* CoreLocation.framework in Frameworks */,
-				B44F32AD1737BCC000BD97AC /* CoreMotion.framework in Frameworks */,
-				B4BCF42C170ED548008EDF3A /* CoreText.framework in Frameworks */,
-				DE5C4E6E138ED109004892CA /* libz.dylib in Frameworks */,
-				DEAAF3DF16BC114D004EB9D5 /* GLKit.framework in Frameworks */,
-				1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */,
-				1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */,
-				288765FD0DF74451002DB57D /* CoreGraphics.framework in Frameworks */,
-				DE4A3D7A10FFB08200FDA492 /* OpenGLES.framework in Frameworks */,
-				DE4A3D7F10FFB08B00FDA492 /* QuartzCore.framework in Frameworks */,
-				DE3F093811B7B9DC009D4DB0 /* AVFoundation.framework in Frameworks */,
-				DE3F093A11B7B9DC009D4DB0 /* AudioToolbox.framework in Frameworks */,
-				DE3F097811B7BABD009D4DB0 /* OpenAL.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		B46B26FC17703F9400172837 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				B46B270017703F9400172837 /* XCTest.framework in Frameworks */,
-				B46B270217703F9400172837 /* UIKit.framework in Frameworks */,
-				B46B270117703F9400172837 /* Foundation.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		CA538EC319B0EA09008240AB /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -1393,10 +1005,8 @@
 		19C28FACFE9D520D11CA2CBB /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				1D6058910D05DD3D006BFB54 /* Pocket Code.app */,
-				B46B26FF17703F9400172837 /* CattyTests_iOS7.1.xctest */,
 				CADBD7FB19B0E8C200C62836 /* Pocket Code.app */,
-				CA538ECE19B0EA09008240AB /* CattyTests_iOS8.0.xctest */,
+				CA538ECE19B0EA09008240AB /* CattyTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -3402,47 +3012,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		1D6058900D05DD3D006BFB54 /* Catty_iOS7.1 */ = {
+		CA538EA119B0EA09008240AB /* CattyTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 1D6058960D05DD3E006BFB54 /* Build configuration list for PBXNativeTarget "Catty_iOS7.1" */;
-			buildPhases = (
-				4C3AEF30198E848B00604ABF /* Add Version Number To Root.plist */,
-				4C9E2D1C198EA5F900455B77 /* Add Licenses To Acknowledgements.plist */,
-				1D60588D0D05DD3D006BFB54 /* Resources */,
-				1D60588E0D05DD3D006BFB54 /* Sources */,
-				1D60588F0D05DD3D006BFB54 /* Frameworks */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				B4A92DCF175F8EE800608667 /* PBXTargetDependency */,
-			);
-			name = Catty_iOS7.1;
-			productName = AppScaffold;
-			productReference = 1D6058910D05DD3D006BFB54 /* Pocket Code.app */;
-			productType = "com.apple.product-type.application";
-		};
-		B46B26FE17703F9400172837 /* CattyTests_iOS7.1 */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = B46B270E17703F9400172837 /* Build configuration list for PBXNativeTarget "CattyTests_iOS7.1" */;
-			buildPhases = (
-				B46B26FB17703F9400172837 /* Sources */,
-				B46B26FC17703F9400172837 /* Frameworks */,
-				B46B26FD17703F9400172837 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				B46B270D17703F9400172837 /* PBXTargetDependency */,
-			);
-			name = CattyTests_iOS7.1;
-			productName = CattyTests;
-			productReference = B46B26FF17703F9400172837 /* CattyTests_iOS7.1.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
-		CA538EA119B0EA09008240AB /* CattyTests_iOS8.0 */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = CA538ECB19B0EA09008240AB /* Build configuration list for PBXNativeTarget "CattyTests_iOS8.0" */;
+			buildConfigurationList = CA538ECB19B0EA09008240AB /* Build configuration list for PBXNativeTarget "CattyTests" */;
 			buildPhases = (
 				CA538EA419B0EA09008240AB /* Sources */,
 				CA538EC319B0EA09008240AB /* Frameworks */,
@@ -3453,14 +3025,14 @@
 			dependencies = (
 				CA538ED119B0EA2F008240AB /* PBXTargetDependency */,
 			);
-			name = CattyTests_iOS8.0;
+			name = CattyTests;
 			productName = CattyTests;
-			productReference = CA538ECE19B0EA09008240AB /* CattyTests_iOS8.0.xctest */;
+			productReference = CA538ECE19B0EA09008240AB /* CattyTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		CADBD6D319B0E8C200C62836 /* Catty_iOS8.0 */ = {
+		CADBD6D319B0E8C200C62836 /* Catty */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = CADBD7F819B0E8C200C62836 /* Build configuration list for PBXNativeTarget "Catty_iOS8.0" */;
+			buildConfigurationList = CADBD7F819B0E8C200C62836 /* Build configuration list for PBXNativeTarget "Catty" */;
 			buildPhases = (
 				CADBD6D619B0E8C200C62836 /* Add Version Number To Root.plist */,
 				CADBD6D719B0E8C200C62836 /* Add Licenses To Acknowledgements.plist */,
@@ -3471,9 +3043,8 @@
 			buildRules = (
 			);
 			dependencies = (
-				CADBD6D419B0E8C200C62836 /* PBXTargetDependency */,
 			);
-			name = Catty_iOS8.0;
+			name = Catty;
 			productName = AppScaffold;
 			productReference = CADBD7FB19B0E8C200C62836 /* Pocket Code.app */;
 			productType = "com.apple.product-type.application";
@@ -3486,17 +3057,6 @@
 			attributes = {
 				LastUpgradeCheck = 0600;
 				TargetAttributes = {
-					1D6058900D05DD3D006BFB54 = {
-						DevelopmentTeam = 4V6T7BCGGR;
-						SystemCapabilities = {
-							com.apple.BackgroundModes = {
-								enabled = 0;
-							};
-						};
-					};
-					B46B26FE17703F9400172837 = {
-						TestTargetID = 1D6058900D05DD3D006BFB54;
-					};
 					CA538EA119B0EA09008240AB = {
 						TestTargetID = CADBD6D319B0E8C200C62836;
 					};
@@ -3552,72 +3112,14 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				1D6058900D05DD3D006BFB54 /* Catty_iOS7.1 */,
-				CADBD6D319B0E8C200C62836 /* Catty_iOS8.0 */,
-				B4A92DC3175F535300608667 /* LicenseTest_iOS7.1 */,
-				CADBD7FD19B0E8F300C62836 /* LicenseTest_iOS8.0 */,
-				B46B26FE17703F9400172837 /* CattyTests_iOS7.1 */,
-				CA538EA119B0EA09008240AB /* CattyTests_iOS8.0 */,
+				CADBD6D319B0E8C200C62836 /* Catty */,
+				CADBD7FD19B0E8F300C62836 /* LicenseTest */,
+				CA538EA119B0EA09008240AB /* CattyTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		1D60588D0D05DD3D006BFB54 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				4C9E2D3B198F685D00455B77 /* SSZipArchive.license in Resources */,
-				4C9E2D23198EAD1800455B77 /* BDKNotifyHUD.license in Resources */,
-				CA1B802C1971ADBB00D8E79B /* IMPORTANT.caf in Resources */,
-				B43498501927A875002F9075 /* My First Program.catrobat in Resources */,
-				CAE4B83C198A79040054ABEC /* LICENSE_FBShimmering in Resources */,
-				4C9E2D43198F6A8800455B77 /* OrderedDictionary.license in Resources */,
-				4C9E2D29198F635B00455B77 /* AHKActionSheet.license in Resources */,
-				4C9E2D1F198EA6B600455B77 /* SMPageControl.license in Resources */,
-				CAE4B832198A77390054ABEC /* LICENSE_SWTableViewCell in Resources */,
-				CAE4B83E198A7A210054ABEC /* PATENTS_FBShimmering in Resources */,
-				81C27426189EF94600827A95 /* Images.xcassets in Resources */,
-				4C9E2D39198F67FB00455B77 /* minizip.license in Resources */,
-				4C9E2D21198EACE200455B77 /* EAIntroView.license in Resources */,
-				4C9E2D2D198F63B400455B77 /* TTTAttributedLabel.license in Resources */,
-				4C9E2D2B198F638C00455B77 /* LXReorderableCollectionViewFlowLayout.license in Resources */,
-				4C9E2D31198F645400455B77 /* FXBlurView.license in Resources */,
-				4C9E2D27198F62D800455B77 /* IBActionSheet.license in Resources */,
-				4C9E2D33198F648B00455B77 /* EVCircularProgressView.license in Resources */,
-				CAE4B846198A7B4F0054ABEC /* LICENSE_NSString+FastImageSize in Resources */,
-				4C9E2D35198F657500455B77 /* SharkfoodMuteSwitchDetector.license in Resources */,
-				CAE4B836198A78770054ABEC /* LICENSE_AHKActionSheet in Resources */,
-				CAE4B838198A78AE0054ABEC /* LICENSE_LXReorderableCollectionViewFlowLayout in Resources */,
-				4C9E2D37198F65D500455B77 /* Reachability.license in Resources */,
-				CAE4B844198A7AEE0054ABEC /* LICENSE_UIViewController+Popup in Resources */,
-				CAE4B83A198A78E60054ABEC /* LICENSE_TTTAttributedLabel in Resources */,
-				CAE4B840198A7A530054ABEC /* LICENSE_FXBlurView in Resources */,
-				4C3AEF2F198E7EDD00604ABF /* Settings.bundle in Resources */,
-				CAE4B842198A7A8E0054ABEC /* LICENSE_EVCircularProgressView in Resources */,
-				4C9E2D3F198F698100455B77 /* NSString+FastImageSize.license in Resources */,
-				CA1498521989C2C80069A21E /* LICENSE_BDKNotifyHUD in Resources */,
-				4C9E2D41198F6A2300455B77 /* UIViewController+CWPopup.license in Resources */,
-				C3F2950C1813C63200E37D61 /* iPhone.storyboard in Resources */,
-				4C9E2D3D198F68F400455B77 /* GDataXMLNode.license in Resources */,
-				CAE4B834198A781B0054ABEC /* LICENSE_IBActionSheet in Resources */,
-				92300D0B18B2196700F2B4DC /* Localizable.strings in Resources */,
-				4C9E2D25198F62A600455B77 /* SWTableViewCell.license in Resources */,
-				4C9E2D2F198F63FB00455B77 /* FBShimmering.license in Resources */,
-				B4365CE91758EBA900B4D0A6 /* LoggerProperties.plist in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		B46B26FD17703F9400172837 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				B46B270817703F9400172837 /* InfoPlist.strings in Resources */,
-				92345633192E270B00464E6B /* test2.png in Resources */,
-				923453C2192D2D5F00464E6B /* test.png in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		CA538EC719B0EA09008240AB /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -3677,47 +3179,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		4C3AEF30198E848B00604ABF /* Add Version Number To Root.plist */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Add Version Number To Root.plist";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "CFBundleShortVersionString=`/usr/libexec/PlistBuddy -c \"Print :CFBundleShortVersionString\" \"${SRCROOT}/Catty/App-Info.plist\"`\n/usr/libexec/PlistBuddy \"$SRCROOT/Catty/Settings.bundle/Root.plist\" -c \"set PreferenceSpecifiers:3:DefaultValue $CFBundleShortVersionString\"";
-		};
-		4C9E2D1C198EA5F900455B77 /* Add Licenses To Acknowledgements.plist */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Add Licenses To Acknowledgements.plist";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = "/usr/bin/perl -w";
-			shellScript = "use strict;\n\nmy $ACKNOWLEDGEMENTS_HEADER = \"PORTIONS OF THE APPLICATION MAY UTILIZE THE FOLLOWING COPYRIGHTED MATERIAL, THE USE OF WHICH IS HEREBY ACKNOWLEDGED:\";\n\nmy $out = \"Catty/Settings.bundle/en.lproj/Acknowledgements.strings\";\nmy $plistout = \"Catty/Settings.bundle/Acknowledgements.plist\";\n\nunlink $out;\n\nopen(my $outfh, '>', $out) or die $!;\nopen(my $plistfh, '>', $plistout) or die $!;\n\nprint $plistfh <<'EOD';\n<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<!DOCTYPE plist PUBLIC \"-//Apple//DTD PLIST 1.0//EN\" \"http://www.apple.com/DTDs/PropertyList-1.0.dtd\">\n<plist version=\"1.0\">\n<dict>\n    <key>StringsTable</key>\n    <string>Acknowledgements</string>\n    <key>PreferenceSpecifiers</key>\n        <array>\nEOD\n\nprint $plistfh <<\"EOD\";\n            <dict>\n                <key>Type</key>\n                <string>PSGroupSpecifier</string>\n                <key>FooterText</key>\n                <string>AcknowledgementHeader</string>\n            </dict>\nEOD\n\nprint $outfh \"\\\"AcknowledgementHeader\\\" = \\\"$ACKNOWLEDGEMENTS_HEADER\\\";\\n\";\n\nfor my $i (sort glob(\"Catty/Resources/Licenses/*.license\"))\n{\n    my $value=`cat $i`;\n    $value =~ s/\\r//g;\n    $value =~ s/\\n/\\r/g;\n    $value =~ s/[ \\t]+\\r/\\r/g;\n    $value =~ s/\\\"/\\'/g;\n    my $key=$i;\n    $key =~ s/\\.license$//;\n    \n    print $plistfh <<\"EOD\";\n            <dict>\n                <key>Type</key>\n                <string>PSGroupSpecifier</string>\n                <key>FooterText</key>\n                <string>$key</string>\n            </dict>\nEOD\n    \n    print $outfh \"\\\"$key\\\" = \\\"$value\\\";\\n\";\n}\n\nprint $plistfh <<'EOD';\n        </array>\n</dict>\n</plist>\nEOD\n\nclose($outfh);\nclose($plistfh);";
-		};
-		B4A92DC8175F537500608667 /* ShellScript */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "./license-test.sh\n";
-		};
 		CADBD6D619B0E8C200C62836 /* Add Version Number To Root.plist */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -3763,275 +3224,6 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		1D60588E0D05DD3D006BFB54 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				CAA24DE818F46B7C00197AE3 /* DarkBlueGradientImageDetailCell.m in Sources */,
-				B4E7D257176EF20F00EC8AD8 /* Scene.m in Sources */,
-				81CA97D4192A900C00C99DCB /* BrickSelectModalTransition.m in Sources */,
-				CA75C23B18A9615600FC8C2F /* ForeverBrickCell.m in Sources */,
-				CA688205180B0148008A7C99 /* BaseTableViewController.m in Sources */,
-				B40C306E170ECC30000B872F /* CatrobatBaseCell.m in Sources */,
-				CA75C24A18A9618000FC8C2F /* PlaceAtBrickCell.m in Sources */,
-				815420D9191A51F200E628D2 /* FBShimmeringLayer.m in Sources */,
-				B4D940D1170EC9ED003DDBFA /* NSString+CatrobatNSStringExtensions.m in Sources */,
-				81D3C9F61945E54200DB71E1 /* BrickShapeFactory.m in Sources */,
-				4C3C0408199BA7E90004F594 /* InternFormulaParserException.m in Sources */,
-				B4D940D0170EC9E9003DDBFA /* UIColor+CatrobatUIColorExtensions.m in Sources */,
-				B4D940CF170EC9E6003DDBFA /* UIImage+CatrobatUIImageExtensions.m in Sources */,
-				B4D940CB170EC8DA003DDBFA /* TableUtil.m in Sources */,
-				B4D940CA170EC8C4003DDBFA /* ProgramLoadingInfo.m in Sources */,
-				CA047EC418C782550078BE08 /* BrickManager.m in Sources */,
-				CA68B67718BAA80A007042E4 /* ComboBoxView.m in Sources */,
-				CA75C27718A9620E00FC8C2F /* StopAllSoundsBrickCell.m in Sources */,
-				81A5B4D7192964170082B2B8 /* CellMotionEffect.m in Sources */,
-				817B544018F03C0D00AF6BFE /* BaseTransition.m in Sources */,
-				C34B44F817F1D8D200624730 /* ChangeBrightnessByNBrick.m in Sources */,
-				B4D940B1170EC5C2003DDBFA /* CatrobatTableViewController.m in Sources */,
-				CA5FED5018B0070300A517B6 /* BrickCellInlineView.m in Sources */,
-				B4D940A0170EC249003DDBFA /* AppDelegate.m in Sources */,
-				1D60589B0D05DD56006BFB54 /* main.m in Sources */,
-				8146A9B319279721002548A4 /* ProgramTableHeaderView.m in Sources */,
-				CD0CCF52170CB39700B70036 /* Brick.m in Sources */,
-				817B544C18F0520800AF6BFE /* BrickDetailViewController.m in Sources */,
-				CA05A19C18282B2C0025421A /* SearchStoreViewController.m in Sources */,
-				CD0CCF53170CB39700B70036 /* BroadcastBrick.m in Sources */,
-				CAB3637118F5987B00AB8401 /* NSDate+CustomExtensions.m in Sources */,
-				CA75C2A718A9627800FC8C2F /* ChangeVariableBrickCell.m in Sources */,
-				CD0CCF54170CB39700B70036 /* BroadcastScript.m in Sources */,
-				9251B6B0199F4B1600746D66 /* SWUtilityButtonTapGestureRecognizer.m in Sources */,
-				816C788617D62B7C0029A4E6 /* ProgramTableViewController.m in Sources */,
-				CA1498821989CC0E0069A21E /* OrderedDictionary.m in Sources */,
-				CD0CCF55170CB39700B70036 /* BroadcastWaitBrick.m in Sources */,
-				CABE07C218BAB90400BE26EF /* SoundComboBoxView.m in Sources */,
-				CA75C26E18A961FC00FC8C2F /* GoNStepsBackBrickCell.m in Sources */,
-				CABE07C818BAB94000BE26EF /* VariableComboBoxView.m in Sources */,
-				CA75C22918A9605D00FC8C2F /* WhenScriptCell.m in Sources */,
-				CA75C29E18A9626400FC8C2F /* ChangeBrightnessByNBrickCell.m in Sources */,
-				B46475301770F60500CD277F /* AudioManager.m in Sources */,
-				CA51A55E198481ED00FFCB45 /* BDKNotifyHUD.m in Sources */,
-				CD0CCF56170CB39700B70036 /* BroadcastWaitHandler.m in Sources */,
-				CD0CCF59170CB39700B70036 /* CatrobatProgram.m in Sources */,
-				CD0CCF5E170CB39700B70036 /* ChangeGhostEffectByNBrick.m in Sources */,
-				CD0CCF5F170CB39700B70036 /* ChangeSizeByNBrick.m in Sources */,
-				CD0CCF60170CB39700B70036 /* ChangeVolumeByNBrick.m in Sources */,
-				CD0CCF61170CB39700B70036 /* ChangeXByNBrick.m in Sources */,
-				CD0CCF62170CB39700B70036 /* ChangeYByNBrick.m in Sources */,
-				CA75C27418A9620800FC8C2F /* PlaySoundBrickCell.m in Sources */,
-				CD0CCF64170CB39700B70036 /* ComeToFrontBrick.m in Sources */,
-				CD0CCF71170CB39700B70036 /* FileManager.m in Sources */,
-				CA1498761989CA2A0069A21E /* LXReorderableCollectionViewFlowLayout.m in Sources */,
-				CD0CCF72170CB39700B70036 /* ForeverBrick.m in Sources */,
-				CD0CCF74170CB39700B70036 /* GlideToBrick.m in Sources */,
-				CD0CCF75170CB39700B70036 /* GoNStepsBackBrick.m in Sources */,
-				CA75C28F18A9624200FC8C2F /* HideBrickCell.m in Sources */,
-				CD0CCF76170CB39700B70036 /* Header.m in Sources */,
-				CD0CCF78170CB39700B70036 /* HideBrick.m in Sources */,
-				CD0CCF9A170CB39700B70036 /* Look.m in Sources */,
-				920F20C41837F27E003E9EE0 /* SaveToProjectActivity.m in Sources */,
-				CA75C26218A961B800FC8C2F /* TurnRightBrickCell.m in Sources */,
-				CD0CCF9B170CB39700B70036 /* LoopEndBrick.m in Sources */,
-				CA75C22C18A9606D00FC8C2F /* BroadcastScriptCell.m in Sources */,
-				CD0CCFA4170CB39700B70036 /* NextLookBrick.m in Sources */,
-				925E22B618E3313C001A26A6 /* NavigationController.m in Sources */,
-				CAF806D9193181D50005E900 /* RuntimeImageCache.m in Sources */,
-				CAE9A2C0197D52AF008F7C9A /* CatrobatAlertView.m in Sources */,
-				CD0CCFA6170CB39700B70036 /* Parser.m in Sources */,
-				CD0CCFA7170CB39700B70036 /* PlaceAtBrick.m in Sources */,
-				CD0CCFAA170CB39700B70036 /* PlaySoundBrick.m in Sources */,
-				CABE07C518BAB91F00BE26EF /* LookComboBoxView.m in Sources */,
-				9251B6B1199F4B1600746D66 /* SWUtilityButtonView.m in Sources */,
-				CA5FED5418B019B200A517B6 /* UIUtil.m in Sources */,
-				924DEBF919CAFB9900EED9CE /* MYBlurIntroductionView.m in Sources */,
-				CD0CCFAB170CB39700B70036 /* Program.m in Sources */,
-				81FAEE3517E782360052BB2B /* SoundsTableViewController.m in Sources */,
-				CD0CCFAE170CB39700B70036 /* ProjectParser.m in Sources */,
-				CD0CCFB0170CB39700B70036 /* RepeatBrick.m in Sources */,
-				CA43DD361809976900F95B88 /* UIImageView+CatrobatUIImageViewExtensions.m in Sources */,
-				CD0CCFBC170CB39700B70036 /* Script.m in Sources */,
-				CA75C25F18A961B200FC8C2F /* TurnLeftBrickCell.m in Sources */,
-				CD0CCFBD170CB39700B70036 /* SetBrightnessBrick.m in Sources */,
-				CABE07BC18BAB8B200BE26EF /* MessageComboBoxView.m in Sources */,
-				CA75C25018A9618D00FC8C2F /* SetYBrickCell.m in Sources */,
-				CD0CCFBE170CB39700B70036 /* SetGhostEffectBrick.m in Sources */,
-				9200F006182E3CA0008BF678 /* CatrobatAudioPlayer.m in Sources */,
-				CD0CCFBF170CB39700B70036 /* SetLookBrick.m in Sources */,
-				CD0CCFC0170CB39700B70036 /* SetSizeToBrick.m in Sources */,
-				CA75C2B018A9A62B00FC8C2F /* LoopEndBrickCell.m in Sources */,
-				CD0CCFC3170CB39700B70036 /* SetVolumeToBrick.m in Sources */,
-				CA75C28918A9623500FC8C2F /* SetSizeToBrickCell.m in Sources */,
-				CA75C22618A9603400FC8C2F /* StartScriptCell.m in Sources */,
-				CAE9A2BC197D20A7008F7C9A /* CatrobatActionSheet.m in Sources */,
-				CA1498721989CA160069A21E /* UIImage+AHKAdditions.m in Sources */,
-				CD0CCFC4170CB39700B70036 /* SetXBrick.m in Sources */,
-				CA75C2A418A9627200FC8C2F /* SetVariableBrickCell.m in Sources */,
-				CD0CCFC5170CB39700B70036 /* SetYBrick.m in Sources */,
-				CA75C27D18A9621B00FC8C2F /* ChangeVolumeByNBrickCell.m in Sources */,
-				CA75C24D18A9618700FC8C2F /* SetXBrickCell.m in Sources */,
-				4C3C0404199BA7B40004F594 /* Operators.m in Sources */,
-				CA14987C1989CB690069A21E /* SharkfoodMuteSwitchDetector.m in Sources */,
-				CD0CCFC6170CB39700B70036 /* ShowBrick.m in Sources */,
-				81C27424189EE41700827A95 /* BrickCell.m in Sources */,
-				CD0CCFC7170CB39700B70036 /* Sound.m in Sources */,
-				CD0CCFC9170CB39700B70036 /* SpeakBrick.m in Sources */,
-				CD0CCFD0170CB39700B70036 /* StartScript.m in Sources */,
-				CA75C28318A9622700FC8C2F /* SetLookBrickCell.m in Sources */,
-				CA68820E180B39D0008A7C99 /* ColoredCell.m in Sources */,
-				CA3BFA5C197F0DD300DA86C9 /* NSMutableArray+CustomExtensions.m in Sources */,
-				CD0CCFD1170CB39700B70036 /* StopAllSoundsBrick.m in Sources */,
-				CA75C29518A9624F00FC8C2F /* SetGhostEffectBrickCell.m in Sources */,
-				CA75C23218A9613A00FC8C2F /* BroadcastBrickCell.m in Sources */,
-				C34B44F417F1D2C700624730 /* ClearGraphicEffectBrick.m in Sources */,
-				CD0CCFD7170CB39700B70036 /* TurnLeftBrick.m in Sources */,
-				CD0CCFD8170CB39700B70036 /* TurnRightBrick.m in Sources */,
-				924DEBFB19CAFB9900EED9CE /* MYIntroductionPanel.m in Sources */,
-				CA75C29B18A9625C00FC8C2F /* SetBrightnessBrickCell.m in Sources */,
-				92DFE97C196D795900F491EC /* InfoPopupViewController.m in Sources */,
-				CD0CCFDA170CB39700B70036 /* Util.m in Sources */,
-				CA1498851989D1A60069A21E /* UIViewController+CWPopup.m in Sources */,
-				8165DC851938B2D000B6A306 /* SingleBrickSelectionView.m in Sources */,
-				9251B6B4199F4B6500746D66 /* NSMutableArray+SWUtilityButtons.m in Sources */,
-				CD0CCFDB170CB39700B70036 /* WaitBrick.m in Sources */,
-				CA75C24118A9616800FC8C2F /* IfLogicElseBrickCell.m in Sources */,
-				CD0CCFDC170CB39700B70036 /* WhenScript.m in Sources */,
-				817B544318F03D4C00AF6BFE /* BrickScaleTransition.m in Sources */,
-				CAEDFB8117EF759500FDED0E /* ObjectTableViewController.m in Sources */,
-				819EFEA71948721900A1D591 /* SelectButton.m in Sources */,
-				CD639C7B170DF52600FA67DA /* SpriteObject.m in Sources */,
-				CA75C27A18A9621500FC8C2F /* SetVolumeToBrickCell.m in Sources */,
-				816827D81934BB9B00031E7C /* BrickSelectionView.m in Sources */,
-				B4D940AD170EC2B7003DDBFA /* ioapi.c in Sources */,
-				B4D940AE170EC2B7003DDBFA /* mztools.c in Sources */,
-				CA75C25618A9619B00FC8C2F /* ChangeYByNBrickCell.m in Sources */,
-				CA1498731989CA160069A21E /* UIWindow+AHKAdditions.m in Sources */,
-				B4D940AF170EC2B7003DDBFA /* unzip.c in Sources */,
-				CABE07BF18BAB8EF00BE26EF /* ObjectComboBoxView.m in Sources */,
-				CAA96AFE18E4B21F00763409 /* SoundPickerTableViewController.m in Sources */,
-				CA75C25318A9619400FC8C2F /* ChangeXByNBrickCell.m in Sources */,
-				B4D940B0170EC2B7003DDBFA /* zip.c in Sources */,
-				CA1498551989C3F00069A21E /* EVCircularProgressView.m in Sources */,
-				B4D940D4170ECA15003DDBFA /* DownloadImageCache.m in Sources */,
-				CA75C23818A9614C00FC8C2F /* NoteBrickCell.m in Sources */,
-				9251B6AF199F4B1600746D66 /* SWTableViewCell.m in Sources */,
-				B4D940DC170ECB65003DDBFA /* ContinueImageCell.m in Sources */,
-				81FAEE2F17E781AB0052BB2B /* ScriptCollectionViewController.m in Sources */,
-				81FAEE3217E782140052BB2B /* LooksTableViewController.m in Sources */,
-				B4D940E0170ECB8B003DDBFA /* DarkBlueGradientCell.m in Sources */,
-				CA75C28C18A9623B00FC8C2F /* ChangeSizeByNBrickCell.m in Sources */,
-				CA75C28618A9622E00FC8C2F /* NextLookBrickCell.m in Sources */,
-				B40C3071170ECC49000B872F /* DarkBlueGradientImageCell.m in Sources */,
-				CA79A11A182D8A4200618283 /* GDataXMLNode+PrettyFormatterExtensions.m in Sources */,
-				4C3C0403199BA7B40004F594 /* Functions.m in Sources */,
-				815420DD191A5C1F00E628D2 /* PlaceHolderView.m in Sources */,
-				B4BCF407170ECFA2008EDF3A /* MyProgramsViewController.m in Sources */,
-				CA75C23E18A9616000FC8C2F /* IfLogicBeginBrickCell.m in Sources */,
-				CAF806D6193170640005E900 /* ImageCache.m in Sources */,
-				B4BCF414170ED1F2008EDF3A /* CatrobatInformation.m in Sources */,
-				B4BCF41B170ED300008EDF3A /* ProgramDetailStoreViewController.m in Sources */,
-				B4BCF421170ED3B7008EDF3A /* TTTAttributedLabel.m in Sources */,
-				CA9B7EA218FFCC0400F1790D /* NSData+Hashes.m in Sources */,
-				9251B6AD199F4B1600746D66 /* SWCellScrollView.m in Sources */,
-				B4BCF428170ED442008EDF3A /* CAGradientLayer+CatrobatCAGradientExtensions.m in Sources */,
-				CA75C29818A9625600FC8C2F /* ChangeGhostEffectByNBrickCell.m in Sources */,
-				B4BCF42F170ED584008EDF3A /* DownloadTabBarController.m in Sources */,
-				B4BCF433170ED5AD008EDF3A /* RecentProgramsStoreViewController.m in Sources */,
-				B4BCF437170ED5D4008EDF3A /* LoadingView.m in Sources */,
-				CA75C27118A9620200FC8C2F /* ComeToFrontBrickCell.m in Sources */,
-				B4BCF43B170ED60D008EDF3A /* FeaturedProgramsStoreViewController.m in Sources */,
-				C3F1DD5C180AD1DC00E2FA45 /* ScenePresenterViewController.m in Sources */,
-				CA1498791989CB320069A21E /* Reachability.m in Sources */,
-				CA75C26818A961C700FC8C2F /* PointToBrickCell.m in Sources */,
-				815420DA191A51F200E628D2 /* FBShimmeringView.m in Sources */,
-				CA1498711989CA160069A21E /* AHKActionSheetViewController.m in Sources */,
-				CA75C25C18A961AB00FC8C2F /* MoveNStepsBrickCell.m in Sources */,
-				B4DEFC90170F464200DD1939 /* TestParser.m in Sources */,
-				B4D4DD4317156A8500EEE3F8 /* PointInDirectionBrick.m in Sources */,
-				CA75C26518A961C000FC8C2F /* PointInDirectionBrickCell.m in Sources */,
-				CA75C26B18A961CE00FC8C2F /* GlideToBrickCell.m in Sources */,
-				CA1498701989CA160069A21E /* AHKActionSheet.m in Sources */,
-				9251B6AE199F4B1600746D66 /* SWLongPressGestureRecognizer.m in Sources */,
-				817B545118F0AAE600AF6BFE /* FXBlurView.m in Sources */,
-				CD8CC8BC1724346200239EBF /* HelpWebViewController.m in Sources */,
-				819AA18619587CA7003010BB /* BaseWebViewController.m in Sources */,
-				CA75C28018A9622100FC8C2F /* SpeakBrickCell.m in Sources */,
-				CA75C2A118A9626B00FC8C2F /* ClearGraphicEffectBrickCell.m in Sources */,
-				CA75C23518A9614100FC8C2F /* BroadcastWaitBrickCell.m in Sources */,
-				CAB95BA518CD51EF006638F6 /* LookImageViewController.m in Sources */,
-				81B7487A1921433700990E5F /* CreateView.m in Sources */,
-				B45A5827173253E5000E038F /* SetVariableBrick.m in Sources */,
-				B45A582C17325442000E038F /* UserVariable.m in Sources */,
-				CAE9A2C4197D8964008F7C9A /* DataTransferMessage.m in Sources */,
-				CA1498671989C9C70069A21E /* IBActionSheet.m in Sources */,
-				B45A583117327887000E038F /* Formula.m in Sources */,
-				CA75C29218A9624900FC8C2F /* ShowBrickCell.m in Sources */,
-				B45A583617327BBE000E038F /* FormulaElement.m in Sources */,
-				B402288217329FEB004C4942 /* IfLogicBeginBrick.m in Sources */,
-				B40228911732A541004C4942 /* IfLogicElseBrick.m in Sources */,
-				B40228961732A58E004C4942 /* IfLogicEndBrick.m in Sources */,
-				B40228A51732ADF4004C4942 /* PointToBrick.m in Sources */,
-				B470688A1733BA9600EC880D /* VariablesContainer.m in Sources */,
-				CA75C24418A9617100FC8C2F /* IfLogicEndBrickCell.m in Sources */,
-				B470688F1733D6CC00EC880D /* ChangeVariableBrick.m in Sources */,
-				B44F32A01737AC2E00BD97AC /* ProgramManager.m in Sources */,
-				B44F32A51737BBB100BD97AC /* SensorHandler.m in Sources */,
-				B4B7BAC31738E216000BDC94 /* XMLObjectReference.m in Sources */,
-				B4826F78174D076800F57AE9 /* NoteBrick.m in Sources */,
-				B4826F83174D5BB100F57AE9 /* OrderedMapTable.m in Sources */,
-				B4840CA7174FAC3E002DEC53 /* MoveNStepsBrick.m in Sources */,
-				CA75C25918A961A300FC8C2F /* IfOnEdgeBounceBrickCell.m in Sources */,
-				929FE0001986484200B2A88D /* DarkBlueGradientFeaturedCell.m in Sources */,
-				B4365CE51758AF8F00B4D0A6 /* Logger.m in Sources */,
-				CDFEFCB41758CBC8002B5B0E /* IfOnEdgeBounceBrick.m in Sources */,
-				CA75C24718A9617900FC8C2F /* RepeatBrickCell.m in Sources */,
-				B4DA23D1175E26550079B381 /* SensorManager.m in Sources */,
-				B4A92DCD175F8DF700608667 /* SSZipArchive.m in Sources */,
-				B46B271B17708E6700172837 /* LoopBeginBrick.m in Sources */,
-				81649E10191D35090099AE7E /* ScriptDeleteButton.m in Sources */,
-				B4A92DD2175FD4B800608667 /* GDataXMLNode.m in Sources */,
-				CA75C22F18A9612300FC8C2F /* WaitBrickCell.m in Sources */,
-				CA14987F1989CBD50069A21E /* NSString+FastImageSize.m in Sources */,
-				81B7487D192143AA00990E5F /* RoundBorderedButton.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		B46B26FB17703F9400172837 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				92C37A441856264700547C1E /* ChangeGhostEffectByNBrickTests.m in Sources */,
-				CA52403618AD782600052914 /* ProgramTableViewControllerExistingProgramsTests.m in Sources */,
-				92C37A40185625E700547C1E /* HideBrickTests.m in Sources */,
-				92C37A421856262700547C1E /* SetGhostEffectBrickTests.m in Sources */,
-				CA8C247818CD053300314C2B /* ProgramTests.m in Sources */,
-				92C37A48185626B600547C1E /* PlaceAtBrickTests.m in Sources */,
-				92C37A3E185625D900547C1E /* ShowBrickTests.m in Sources */,
-				B496F51117759969004BF78A /* SceneTests.m in Sources */,
-				92C37A3C185625A700547C1E /* SetYBrickTests.m in Sources */,
-				C34B44EB17F079C700624730 /* BrickTests.m in Sources */,
-				92345635192E2A1B00464E6B /* ChangeBrightnessByNBrickTests.m in Sources */,
-				92C37A381856253B00547C1E /* ComeToFrontBrickTests.m in Sources */,
-				C34B44ED17F079F500624730 /* CustomExtensionsTests.m in Sources */,
-				92345639192E2E8000464E6B /* NextLookBrickTests.m in Sources */,
-				4C3C03F7199BA5610004F594 /* FormulaFunctionsTest.m in Sources */,
-				92C37A501856274700547C1E /* GoNStepsBackBrickTests.m in Sources */,
-				92C37A461856269100547C1E /* PointInDirectionBrickTests.m in Sources */,
-				CA8C247B18CD127C00314C2B /* ProgramTableViewControllerNewProgramTests.m in Sources */,
-				B46B271317703FB700172837 /* SensorHandlerTests.m in Sources */,
-				92C37A56185627A300547C1E /* ClearGrafficEffectBrickTests.m in Sources */,
-				92C37A4A185626DB00547C1E /* ChangeSizeByNBrickTests.m in Sources */,
-				92C37A4E1856271100547C1E /* TurnRightBrickTests.m in Sources */,
-				92C37A521856276D00547C1E /* SetBrightnessBrickTests.m in Sources */,
-				92C37A3A1856257300547C1E /* SetXBrickTests.m in Sources */,
-				92C37A33185621FF00547C1E /* SetSizeToBrickTests.m in Sources */,
-				92345637192E2E6C00464E6B /* SetLookBrickTests.m in Sources */,
-				92C37A4C1856270500547C1E /* TurnLeftBrickTests.m in Sources */,
-				92C37A541856279600547C1E /* MoveNStepsBrickTests.m in Sources */,
-				B46B270A17703F9400172837 /* CattyTests.m in Sources */,
-				4C107ADD194F156F00D9D7ED /* PointToBrickTests.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		CA538EA419B0EA09008240AB /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -4304,25 +3496,10 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		B46B270D17703F9400172837 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 1D6058900D05DD3D006BFB54 /* Catty_iOS7.1 */;
-			targetProxy = B46B270C17703F9400172837 /* PBXContainerItemProxy */;
-		};
-		B4A92DCF175F8EE800608667 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = B4A92DC3175F535300608667 /* LicenseTest_iOS7.1 */;
-			targetProxy = B4A92DCE175F8EE800608667 /* PBXContainerItemProxy */;
-		};
 		CA538ED119B0EA2F008240AB /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = CADBD6D319B0E8C200C62836 /* Catty_iOS8.0 */;
+			target = CADBD6D319B0E8C200C62836 /* Catty */;
 			targetProxy = CA538ED019B0EA2F008240AB /* PBXContainerItemProxy */;
-		};
-		CADBD6D419B0E8C200C62836 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = B4A92DC3175F535300608667 /* LicenseTest_iOS7.1 */;
-			targetProxy = CADBD6D519B0E8C200C62836 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -4378,150 +3555,6 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
-		1D6058940D05DD3E006BFB54 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
-				CLANG_WARN_OBJC_RECEIVER_WEAK = NO;
-				CLANG_WARN_OBJC_REPEATED_USE_OF_WEAK = NO;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				FRAMEWORK_SEARCH_PATHS = "";
-				GCC_PREFIX_HEADER = "Catty/App-Prefix.pch";
-				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
-				HEADER_SEARCH_PATHS = /usr/include/libxml2;
-				INFOPLIST_FILE = "Catty/App-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
-				OTHER_LDFLAGS = (
-					"-ObjC",
-					"-all_load",
-					"-lxml2",
-				);
-				PRODUCT_NAME = "Pocket Code";
-				PROVISIONING_PROFILE = "";
-				SDKROOT = iphoneos7.1;
-				TARGETED_DEVICE_FAMILY = 1;
-				USER_HEADER_SEARCH_PATHS = "${SPARROW_SRC}";
-			};
-			name = Debug;
-		};
-		1D6058950D05DD3E006BFB54 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
-				CLANG_WARN_OBJC_RECEIVER_WEAK = NO;
-				CLANG_WARN_OBJC_REPEATED_USE_OF_WEAK = NO;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				FRAMEWORK_SEARCH_PATHS = "";
-				GCC_PREFIX_HEADER = "Catty/App-Prefix.pch";
-				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
-				HEADER_SEARCH_PATHS = /usr/include/libxml2;
-				INFOPLIST_FILE = "Catty/App-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
-				OTHER_LDFLAGS = (
-					"-ObjC",
-					"-all_load",
-					"-lxml2",
-				);
-				PRODUCT_NAME = "Pocket Code";
-				PROVISIONING_PROFILE = "";
-				SDKROOT = iphoneos7.1;
-				TARGETED_DEVICE_FAMILY = 1;
-				USER_HEADER_SEARCH_PATHS = "${SPARROW_SRC}";
-			};
-			name = Release;
-		};
-		B46B270F17703F9400172837 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Pocket Code.app/Pocket Code";
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
-				CLANG_CXX_LIBRARY = "libc++";
-				CLANG_ENABLE_MODULES = YES;
-				CLANG_WARN_BOOL_CONVERSION = YES;
-				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
-				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-				);
-				GCC_DYNAMIC_NO_PIC = NO;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "CattyTests/CattyTests-Prefix.pch";
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
-				GCC_WARN_UNDECLARED_SELECTOR = YES;
-				GCC_WARN_UNUSED_FUNCTION = YES;
-				INFOPLIST_FILE = "CattyTests/CattyTests-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = iphoneos7.1;
-				TEST_HOST = "$(BUNDLE_LOADER)";
-				WRAPPER_EXTENSION = xctest;
-			};
-			name = Debug;
-		};
-		B46B271017703F9400172837 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Pocket Code.app/Pocket Code";
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
-				CLANG_CXX_LIBRARY = "libc++";
-				CLANG_ENABLE_MODULES = YES;
-				CLANG_WARN_BOOL_CONVERSION = YES;
-				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
-				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
-				COPY_PHASE_STRIP = YES;
-				ENABLE_NS_ASSERTIONS = NO;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-				);
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "CattyTests/CattyTests-Prefix.pch";
-				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
-				GCC_WARN_UNDECLARED_SELECTOR = YES;
-				GCC_WARN_UNUSED_FUNCTION = YES;
-				INFOPLIST_FILE = "CattyTests/CattyTests-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = iphoneos7.1;
-				TEST_HOST = "$(BUNDLE_LOADER)";
-				WRAPPER_EXTENSION = xctest;
-			};
-			name = Release;
-		};
-		B4A92DC4175F535300608667 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = iphoneos7.1;
-				TARGETED_DEVICE_FAMILY = 1;
-			};
-			name = Debug;
-		};
-		B4A92DC5175F535300608667 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = iphoneos7.1;
-				TARGETED_DEVICE_FAMILY = 1;
-			};
-			name = Release;
-		};
 		C01FCF4F08A954540054247B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -4665,9 +3698,9 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				INFOPLIST_FILE = "CattyTests/CattyTests-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				PRODUCT_NAME = CattyTests_iOS8.0;
-				SDKROOT = iphoneos8.0;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Catty_iOS7.1 copy.app/Catty_iOS7.1 copy";
+				PRODUCT_NAME = CattyTests;
+				SDKROOT = iphoneos;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Pocket Code.app/Pocket Code";
 				WRAPPER_EXTENSION = xctest;
 			};
 			name = Debug;
@@ -4696,9 +3729,9 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				INFOPLIST_FILE = "CattyTests/CattyTests-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				PRODUCT_NAME = CattyTests_iOS8.0;
-				SDKROOT = iphoneos8.0;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Catty_iOS7.1 copy.app/Catty_iOS7.1 copy";
+				PRODUCT_NAME = CattyTests;
+				SDKROOT = iphoneos;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Pocket Code.app/Pocket Code";
 				WRAPPER_EXTENSION = xctest;
 			};
 			name = Release;
@@ -4725,7 +3758,7 @@
 				);
 				PRODUCT_NAME = "Pocket Code";
 				PROVISIONING_PROFILE = "";
-				SDKROOT = iphoneos8.0;
+				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = 1;
 				USER_HEADER_SEARCH_PATHS = "${SPARROW_SRC}";
 			};
@@ -4753,7 +3786,7 @@
 				);
 				PRODUCT_NAME = "Pocket Code";
 				PROVISIONING_PROFILE = "";
-				SDKROOT = iphoneos8.0;
+				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = 1;
 				USER_HEADER_SEARCH_PATHS = "${SPARROW_SRC}";
 			};
@@ -4764,7 +3797,7 @@
 			buildSettings = {
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				PRODUCT_NAME = LicenseTest_iOS8.0;
-				SDKROOT = iphoneos8.0;
+				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
@@ -4774,7 +3807,7 @@
 			buildSettings = {
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				PRODUCT_NAME = LicenseTest_iOS8.0;
-				SDKROOT = iphoneos8.0;
+				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
@@ -4782,33 +3815,6 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		1D6058960D05DD3E006BFB54 /* Build configuration list for PBXNativeTarget "Catty_iOS7.1" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				1D6058940D05DD3E006BFB54 /* Debug */,
-				1D6058950D05DD3E006BFB54 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		B46B270E17703F9400172837 /* Build configuration list for PBXNativeTarget "CattyTests_iOS7.1" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				B46B270F17703F9400172837 /* Debug */,
-				B46B271017703F9400172837 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		B4A92DC7175F535300608667 /* Build configuration list for PBXAggregateTarget "LicenseTest_iOS7.1" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				B4A92DC4175F535300608667 /* Debug */,
-				B4A92DC5175F535300608667 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
 		C01FCF4E08A954540054247B /* Build configuration list for PBXProject "Catty" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -4818,7 +3824,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		CA538ECB19B0EA09008240AB /* Build configuration list for PBXNativeTarget "CattyTests_iOS8.0" */ = {
+		CA538ECB19B0EA09008240AB /* Build configuration list for PBXNativeTarget "CattyTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				CA538ECC19B0EA09008240AB /* Debug */,
@@ -4827,7 +3833,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		CADBD7F819B0E8C200C62836 /* Build configuration list for PBXNativeTarget "Catty_iOS8.0" */ = {
+		CADBD7F819B0E8C200C62836 /* Build configuration list for PBXNativeTarget "Catty" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				CADBD7F919B0E8C200C62836 /* Debug */,
@@ -4836,7 +3842,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		CADBD7FF19B0E8F300C62836 /* Build configuration list for PBXAggregateTarget "LicenseTest_iOS8.0" */ = {
+		CADBD7FF19B0E8F300C62836 /* Build configuration list for PBXAggregateTarget "LicenseTest" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				CADBD80019B0E8F300C62836 /* Debug */,
