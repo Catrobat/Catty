@@ -23,6 +23,7 @@
 #import "FormulaEditorButton.h"
 #import "Formula.h"
 #import "BrickFormulaProtocol.h"
+#import "UIColor+CatrobatUIColorExtensions.h"
 
 @interface FormulaEditorButton ()
 
@@ -56,10 +57,23 @@
         labelFrame.size.height = self.frame.size.height;
         self.frame = labelFrame;
         
+        [self addBorder];
         [self addTarget:brickCell.delegate action:@selector(openFormulaEditor:) forControlEvents:UIControlEventTouchUpInside];
     }
     
     return self;
+}
+
+#define maxLength 15
+
+- (void)setTitle:(NSString *)title forState:(UIControlState)state
+{
+    if([title length] > maxLength) {
+        title = [NSString stringWithFormat:@"%@...", [title substringToIndex:maxLength]];
+    }
+    
+    title = [NSString stringWithFormat:@" %@ ", title];
+    [super setTitle:title forState:state];
 }
 
 - (Formula*)getFormula
@@ -80,6 +94,42 @@
             [self.brickCell setupBrickCell];
         }
     }
+}
+
+#define borderWidth 1.0
+#define borderHeight 4
+#define borderTransparency 0.9
+#define borderPadding 3.5
+
+- (void)addBorder
+{
+    UIColor *borderColor = kBrickCategoryStrokeColors[self.brickCell.brick.brickCategoryType];
+    
+    CAShapeLayer *border = [[CAShapeLayer alloc] init];
+    UIBezierPath *borderPath = [[UIBezierPath alloc] init];
+    
+    CGPoint startPoint = CGPointMake(CGRectGetMaxX(self.bounds), CGRectGetMaxY(self.bounds) - borderPadding);
+    CGPoint endPoint = CGPointMake(CGRectGetMaxX(self.bounds), CGRectGetMaxY(self.bounds) - borderPadding - borderHeight);
+    [borderPath moveToPoint:startPoint];
+    [borderPath addLineToPoint:endPoint];
+    
+    startPoint = CGPointMake(0, CGRectGetMaxY(self.bounds) - borderPadding);
+    endPoint = CGPointMake(0, CGRectGetMaxY(self.bounds) - borderPadding - borderHeight);
+    [borderPath moveToPoint:startPoint];
+    [borderPath addLineToPoint:endPoint];
+    
+    startPoint = CGPointMake(-borderWidth / 2, CGRectGetMaxY(self.bounds) - borderPadding);
+    endPoint = CGPointMake(CGRectGetMaxX(self.bounds) + borderWidth / 2, CGRectGetMaxY(self.bounds) - borderPadding);
+    [borderPath moveToPoint:startPoint];
+    [borderPath addLineToPoint:endPoint];
+    
+    border.frame = self.bounds;
+    border.path = borderPath.CGPath;
+    border.strokeColor = borderColor.CGColor;
+    border.lineWidth = borderWidth;
+    [border setOpacity:borderTransparency];
+    
+    [self.layer addSublayer:border];
 }
 
 @end

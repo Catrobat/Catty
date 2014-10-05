@@ -24,7 +24,7 @@
 #import "UIColor+CatrobatUIColorExtensions.h"
 #import "FormulaEditorViewController.h"
 
-@interface FormulaEditorTextField : UITextField <UITextFieldDelegate>
+@interface FormulaEditorTextView : UITextView <UITextViewDelegate>
 
 - (id)initWithFrame:(CGRect)frame AndFormulaEditorViewController:(FormulaEditorViewController*)formulaEditorViewController;
 - (void)update;

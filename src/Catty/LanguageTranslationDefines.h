@@ -208,6 +208,8 @@
 #define kUIActionSheetTitleAddSound NSLocalizedString(@"Add sound", @"Action sheet menu title")
 #define kUIActionSheetTitleSaveScreenshot NSLocalizedString(@"Save Screenshot to", @"Action sheet menu title")
 #define kUIActionSheetTitleSelectBrickCategory NSLocalizedString(@"Select Brick Category", nil)
+#define kUIActionSheetTitleSelectMathematicalFunction NSLocalizedString(@"Select mathematical function", nil)
+#define kUIActionSheetTitleSelectLogicalOperator NSLocalizedString(@"Select logical operator", nil)
 
 /*
  * -----------------------------------------------------------------------------------------------------------

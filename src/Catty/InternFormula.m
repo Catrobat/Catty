@@ -1083,4 +1083,9 @@ static int MAPPING_NOT_FOUND = INT_MIN;
                            andExternCursorPosition:self.externCursorPosition];
 }
 
+-(BOOL)isEmpty
+{
+    return [self.internTokenFormulaList count] <= 0;
+}
+
 @end

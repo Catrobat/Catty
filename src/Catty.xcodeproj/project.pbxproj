@@ -58,7 +58,7 @@
 		4C9E2D3F198F698100455B77 /* NSString+FastImageSize.license in Resources */ = {isa = PBXBuildFile; fileRef = 4C9E2D3E198F698100455B77 /* NSString+FastImageSize.license */; };
 		4C9E2D41198F6A2300455B77 /* UIViewController+CWPopup.license in Resources */ = {isa = PBXBuildFile; fileRef = 4C9E2D40198F6A2300455B77 /* UIViewController+CWPopup.license */; };
 		4C9E2D43198F6A8800455B77 /* OrderedDictionary.license in Resources */ = {isa = PBXBuildFile; fileRef = 4C9E2D42198F6A8800455B77 /* OrderedDictionary.license */; };
-		4CAB57071991071D00350DE6 /* FormulaEditorTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CAB57061991071D00350DE6 /* FormulaEditorTextField.m */; };
+		4CAB57071991071D00350DE6 /* FormulaEditorTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CAB57061991071D00350DE6 /* FormulaEditorTextView.m */; };
 		4CAB5713199131EA00350DE6 /* FormulaEditorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CAB5711199131EA00350DE6 /* FormulaEditorViewController.m */; };
 		4CAB5714199131EA00350DE6 /* FormulaEditor.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4CAB5712199131EA00350DE6 /* FormulaEditor.xib */; };
 		4CABC06719C19E7D009A990F /* FormulaEditorHistory.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CABC06619C19E7D009A990F /* FormulaEditorHistory.m */; };
@@ -433,8 +433,8 @@
 		4C9E2D3E198F698100455B77 /* NSString+FastImageSize.license */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "NSString+FastImageSize.license"; sourceTree = "<group>"; };
 		4C9E2D40198F6A2300455B77 /* UIViewController+CWPopup.license */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "UIViewController+CWPopup.license"; sourceTree = "<group>"; };
 		4C9E2D42198F6A8800455B77 /* OrderedDictionary.license */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = OrderedDictionary.license; sourceTree = "<group>"; };
-		4CAB57051991071D00350DE6 /* FormulaEditorTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FormulaEditorTextField.h; sourceTree = "<group>"; };
-		4CAB57061991071D00350DE6 /* FormulaEditorTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FormulaEditorTextField.m; sourceTree = "<group>"; };
+		4CAB57051991071D00350DE6 /* FormulaEditorTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FormulaEditorTextView.h; sourceTree = "<group>"; };
+		4CAB57061991071D00350DE6 /* FormulaEditorTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FormulaEditorTextView.m; sourceTree = "<group>"; };
 		4CAB5710199131EA00350DE6 /* FormulaEditorViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FormulaEditorViewController.h; sourceTree = "<group>"; };
 		4CAB5711199131EA00350DE6 /* FormulaEditorViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FormulaEditorViewController.m; sourceTree = "<group>"; };
 		4CAB5712199131EA00350DE6 /* FormulaEditor.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FormulaEditor.xib; sourceTree = "<group>"; };
@@ -1163,6 +1163,15 @@
 			name = FormulaEditorTests;
 			sourceTree = "<group>";
 		};
+		4C72DB4B19D05ED0003A049C /* FormulaEditor */ = {
+			isa = PBXGroup;
+			children = (
+				4CAB5710199131EA00350DE6 /* FormulaEditorViewController.h */,
+				4CAB5711199131EA00350DE6 /* FormulaEditorViewController.m */,
+			);
+			name = FormulaEditor;
+			sourceTree = "<group>";
+		};
 		4C9E2D1D198EA6B600455B77 /* Licenses */ = {
 			isa = PBXGroup;
 			children = (
@@ -1193,10 +1202,8 @@
 		4CAB5704199106F700350DE6 /* FormulaEditor */ = {
 			isa = PBXGroup;
 			children = (
-				4CAB57051991071D00350DE6 /* FormulaEditorTextField.h */,
-				4CAB57061991071D00350DE6 /* FormulaEditorTextField.m */,
-				4CAB5710199131EA00350DE6 /* FormulaEditorViewController.h */,
-				4CAB5711199131EA00350DE6 /* FormulaEditorViewController.m */,
+				4CAB57051991071D00350DE6 /* FormulaEditorTextView.h */,
+				4CAB57061991071D00350DE6 /* FormulaEditorTextView.m */,
 				4C25A4A81992301400844295 /* FormulaEditorButton.h */,
 				4C25A4A91992301400844295 /* FormulaEditorButton.m */,
 			);
@@ -2193,6 +2200,7 @@
 		CA160DB218A29CBB00E5190D /* MaintainScript */ = {
 			isa = PBXGroup;
 			children = (
+				4C72DB4B19D05ED0003A049C /* FormulaEditor */,
 				817B544918F0520800AF6BFE /* BrickDetailViewController.h */,
 				817B544A18F0520800AF6BFE /* BrickDetailViewController.m */,
 				81FAEE2D17E781AB0052BB2B /* ScriptCollectionViewController.h */,
@@ -3515,7 +3523,7 @@
 				CA75C24118A9616800FC8C2F /* IfLogicElseBrickCell.m in Sources */,
 				CD0CCFDC170CB39700B70036 /* WhenScript.m in Sources */,
 				817B544318F03D4C00AF6BFE /* BrickScaleTransition.m in Sources */,
-				4CAB57071991071D00350DE6 /* FormulaEditorTextField.m in Sources */,
+				4CAB57071991071D00350DE6 /* FormulaEditorTextView.m in Sources */,
 				CAEDFB8117EF759500FDED0E /* ObjectTableViewController.m in Sources */,
 				819EFEA71948721900A1D591 /* SelectButton.m in Sources */,
 				4C8CBE59199668CE0097159E /* InternFormulaParser.m in Sources */,

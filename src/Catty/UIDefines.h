@@ -159,6 +159,14 @@ typedef NS_ENUM(NSUInteger, kBrickType) {
     [UIColor varibaleBrickRedColor]\
 ]
 
+#define kBrickCategoryStrokeColors @[\
+[UIColor controlBrickStrokeColor],\
+[UIColor motionBrickStrokeColor],\
+[UIColor soundBrickStrokeColor],\
+[UIColor lookBrickStrokeColor],\
+[UIColor variableBrickStrokeColor]\
+]
+
 // map brick classes to corresponding brick type identifiers
 #define kClassNameBrickTypeMap @{\
 \

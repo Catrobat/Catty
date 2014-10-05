@@ -23,20 +23,20 @@
 #import <Foundation/Foundation.h>
 
 typedef enum {
-    BRACKET_OPEN = 100,
+    BRACKET_OPEN = 1000,
     BRACKET_CLOSE,
     FUNCTION_PARAMETERS_BRACKET_OPEN,
     FUNCTION_PARAMETERS_BRACKET_CLOSE
 } BracketType;
 
 typedef enum {
-    FUNCTION_PARAMETER_DELIMITER = 200,
+    FUNCTION_PARAMETER_DELIMITER = 2000,
     FUNCTION_NAME,
     PARSER_END_OF_FILE
 } ParserDelimiters;
 
 typedef enum {
-	TOKEN_TYPE_NUMBER = 300,
+	TOKEN_TYPE_NUMBER = 3000,
     TOKEN_TYPE_OPERATOR,
     TOKEN_TYPE_FUNCTION_NAME,
     TOKEN_TYPE_BRACKET_OPEN,
@@ -53,7 +53,7 @@ typedef enum {
 
 typedef enum KeyboardButtonTypes
 {
-    CLEAR = 400
+    CLEAR = 4000
 }KeyboardButtonTypes;
 
 typedef enum KeyboardNumbers

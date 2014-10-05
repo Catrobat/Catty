@@ -35,7 +35,7 @@
                       withBrickCell:(BrickCell *)brickCell;
 @end
 
-@interface FormulaEditorViewController : UIViewController <UITextFieldDelegate>
+@interface FormulaEditorViewController : UIViewController
 
 @property (weak, nonatomic) id<FormulaEditorViewControllerDelegate> delegate;
 @property (strong, nonatomic) BrickCell *brickCell;
