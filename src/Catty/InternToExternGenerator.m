@@ -116,7 +116,7 @@
         internTokenListIndex++;
     }
     
-    self.generatedExternFormulaString = [self.generatedExternFormulaString stringByAppendingString:@" "];
+    //self.generatedExternFormulaString = [self.generatedExternFormulaString stringByAppendingString:@" "];
 }
 
 -(NSString *)generateExternStringFromToken:(InternToken *)internToken

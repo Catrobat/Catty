@@ -33,7 +33,6 @@
 #import "BrickManager.h"
 #import "BrickProtocol.h"
 #import "Script.h"
-#import "FormulaEditorTextField.h"
 
 // uncomment this to get special log outputs, etc...
 //#define LAYOUT_DEBUG 0
