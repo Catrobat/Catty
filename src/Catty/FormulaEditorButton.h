@@ -28,10 +28,12 @@
 @interface FormulaEditorButton : UIButton
 
 @property (nonatomic, weak) BrickCell *brickCell;
+@property (nonatomic, weak) Formula *formula;
 
-- (id)initWithFrame:(CGRect)frame AndBrickCell:(BrickCell*)brickCell AndLineNumber:(NSInteger)lineNumber AndParameterNumber:(NSInteger)paramNumber;
+- (id)initWithFrame:(CGRect)frame AndBrickCell:(BrickCell*)brickCell AndFormula:(Formula*)formula;
+- (void)drawBorder:(BOOL)isActive;
 
-- (Formula*)getFormula;
-- (void)updateFormula:(InternFormula*)internFormula;
++ (Formula*)getActiveFormula;
++ (void)setActiveFormula:(Formula*)formula;
 
 @end

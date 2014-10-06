@@ -814,11 +814,11 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
         if([self.presentedViewController isKindOfClass:[FormulaEditorViewController class]]) {
 
             FormulaEditorViewController *formulaEditorViewController = (FormulaEditorViewController*)self.presentedViewController;
-            [formulaEditorViewController setFormulaButton:button];
+            [formulaEditorViewController setFormula:button.formula];
             
         } else {
             
-            FormulaEditorViewController *formulaEditorViewController = [[FormulaEditorViewController alloc] initWithFormulaButton: button];
+            FormulaEditorViewController *formulaEditorViewController = [[FormulaEditorViewController alloc] initWithBrickCell: button.brickCell];
             formulaEditorViewController.delegate = self;
         
             self.brickScaleTransition.cell = button.brickCell;
@@ -829,8 +829,8 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
             
             [self presentViewController:formulaEditorViewController animated:YES completion:^{
                 self.navigationController.navigationBar.userInteractionEnabled = NO;
+                [formulaEditorViewController setFormula:button.formula];
             }];
-            
         }
     }
 }

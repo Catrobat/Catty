@@ -30,6 +30,7 @@
 #import "FormulaEditorButton.h"
 #import "BrickDetailViewController.h"
 #import "ScriptCollectionViewController.h"
+#import "BrickFormulaProtocol.h"
 
 @implementation UIUtil
 
@@ -69,7 +70,10 @@
 
 + (UIButton*)newDefaultBrickFormulaEditorWithFrame:(CGRect)frame ForBrickCell:(BrickCell*)brickCell AndLineNumber:(NSInteger)lineNumber AndParameterNumber:(NSInteger)paramNumber
 {
-    FormulaEditorButton *button = [[FormulaEditorButton alloc] initWithFrame:frame AndBrickCell:brickCell AndLineNumber:lineNumber AndParameterNumber:paramNumber];
+    Brick<BrickFormulaProtocol> *formulaBrick = (Brick<BrickFormulaProtocol> *)brickCell.brick;
+    Formula *formula = [formulaBrick getFormulaForLineNumber:lineNumber AndParameterNumber:paramNumber];
+    
+    FormulaEditorButton *button = [[FormulaEditorButton alloc] initWithFrame:frame AndBrickCell:brickCell AndFormula: formula];
     return button;
 }
 
