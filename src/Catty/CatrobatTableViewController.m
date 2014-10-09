@@ -275,7 +275,13 @@ static NSCharacterSet *blockedCharacterSet = nil;
             }
             break;
         case kUploadVC:
+#if kIsRelease //kIsRelease
             [Util showComingSoonAlertView];
+#else
+            if ([self shouldPerformSegueWithIdentifier:identifier sender:self]) {
+                [self performSegueWithIdentifier:identifier sender:self];
+            }
+#endif
             break;
             
         default:
