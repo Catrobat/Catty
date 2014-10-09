@@ -740,8 +740,10 @@
                     <nil key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="loginButton" destination="vy4-DI-IAn" id="Aj4-cd-DmM"/>
-                        <outlet property="password" destination="BcM-lO-oiB" id="9Dl-si-Sq4"/>
-                        <outlet property="username" destination="5VS-tU-k7I" id="Bk6-kn-fWu"/>
+                        <outlet property="passwordLabel" destination="y4p-oY-0Pa" id="ve1-xU-FuI"/>
+                        <outlet property="passwordTextfield" destination="BcM-lO-oiB" id="ZRg-Yk-88H"/>
+                        <outlet property="usernameLabel" destination="Aew-wq-Y6u" id="DWi-XL-eJk"/>
+                        <outlet property="usernameTextfield" destination="5VS-tU-k7I" id="OVV-28-pVu"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Xoj-P1-zmv" userLabel="First Responder" sceneMemberID="firstResponder"/>

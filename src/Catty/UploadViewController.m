@@ -35,10 +35,17 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.navigationItem.title = kLocalizedUpload;
-    //self.tabBar.tintColor = [UIColor lightOrangeColor];
+    //self.view.backgroundColor = [UIColor backgroundColor];
+    self.view.backgroundColor = [UIColor darkBlueColor];
+    
     [[UITabBarItem appearance] setTitleTextAttributes:@{NSFontAttributeName : [UIFont fontWithName:@"HelveticaNeue-Bold" size:10.0f],
                                                         NSForegroundColorAttributeName : [UIColor lightOrangeColor]
                                                         } forState:UIControlStateSelected];
+
+    [self.usernameLabel setFont:[UIFont fontWithName:@"HelveticaNeue-Bold" size:16.0f]];
+    self.usernameLabel.textColor = [UIColor lightOrangeColor];
+    [self.passwordLabel setFont:[UIFont fontWithName:@"HelveticaNeue-Bold" size:16.0f]];
+    self.passwordLabel.textColor = [UIColor lightOrangeColor];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -57,14 +64,14 @@
 */
 
 - (IBAction)loginButtonClicked:(id)sender {
-    
-    if ([self.username.text isEqualToString:@""]) {
+
+    if ([self.usernameTextfield.text isEqualToString:@""]) {
         [Util alertWithText:@"Username is necessary!"];
-    } else if ([self.password.text isEqualToString:@""]) {
+    } else if ([self.passwordTextfield.text isEqualToString:@""]) {
         [Util alertWithText:@"Password is necessary!"];
     }
     
-    NSDebug(@"Login-Button clicked with username:%@ and password:%@", self.username.text, self.password.text);
+    NSDebug(@"Login-Button clicked with username:%@ and password:%@", self.usernameTextfield.text, self.passwordTextfield.text);
     
 }
 
