@@ -40,6 +40,8 @@
 #import "LanguageTranslationDefines.h"
 #import "FormulaEditorHistory.h"
 #import "AHKActionSheet.h"
+#import "FormulaEditorButton.h"
+#import "BrickFormulaProtocol.h"
 
 NS_ENUM(NSInteger, ButtonIndex) {
     kButtonIndexDelete = 0,
@@ -51,7 +53,9 @@ NS_ENUM(NSInteger, ButtonIndex) {
 
 @interface FormulaEditorViewController ()
 
-@property (nonatomic, strong) FormulaEditorHistory *history;
+@property (strong, nonatomic) FormulaEditorHistory *history;
+@property (weak, nonatomic) Formula *formula;
+@property (weak, nonatomic) BrickCell *brickCell;
 
 @property (strong, nonatomic) UITapGestureRecognizer *recognizer;
 @property (strong, nonatomic) UIMotionEffectGroup *motionEffects;
@@ -75,24 +79,25 @@ NS_ENUM(NSInteger, ButtonIndex) {
 
 @synthesize formulaEditorTextView;
 
-- (id)initWithFormulaButton:(FormulaEditorButton *)formulaButton
+- (id)initWithBrickCell:(BrickCell *)brickCell
 {
     self = [super init];
     
     if(self) {
-        [self setFormulaButton:formulaButton];
+        self.brickCell = brickCell;
     }
     
     return self;
 }
 
-- (void)setFormulaButton:(FormulaEditorButton*)formulaButton
+- (void)setFormula:(Formula*)formula
+
 {
-    self.brickCell = formulaButton.brickCell;
-    self.formulaEditorButton = formulaButton;
-    self.internFormula = [[InternFormula alloc] initWithInternTokenList:[[self.formulaEditorButton getFormula].formulaTree getInternTokenList]];
+    _formula = formula;
+    self.internFormula = [[InternFormula alloc] initWithInternTokenList:[formula.formulaTree getInternTokenList]];
     self.history = [[FormulaEditorHistory alloc] initWithInternFormulaState:[self.internFormula getInternFormulaState]];
-    
+
+    [FormulaEditorButton setActiveFormula:formula];
     [self update];
     [self setCursorPositionToEndOfFormula];
 }
@@ -173,6 +178,8 @@ NS_ENUM(NSInteger, ButtonIndex) {
 - (void)dismissFormulaEditorViewController
 {
     if (! self.presentingViewController.isBeingDismissed) {
+        [FormulaEditorButton setActiveFormula:nil];
+        
         [self.formulaEditorTextView removeFromSuperview];
         [self.presentingViewController dismissViewControllerAnimated:YES completion:NULL];
     }
@@ -382,24 +389,41 @@ NS_ENUM(NSInteger, ButtonIndex) {
 - (void)update
 {
     [self.formulaEditorTextView update];
-    [self.formulaEditorButton updateFormula:self.internFormula];
+    [self updateFormula];
     [self.undoButton setEnabled:[self.history undoIsPossible]];
     [self.redoButton setEnabled:[self.history redoIsPossible]];
 }
 
-- (IBAction)showMathFunctionsMenu:(id)sender {
+- (void)updateFormula
+{
+    if(self.internFormula != nil) {
+        InternFormulaParser *internFormulaParser = [self.internFormula getInternFormulaParser];
+        Formula *formula = [[Formula alloc] initWithFormulaElement:[internFormulaParser parseFormula]];
+        
+        if([internFormulaParser getErrorTokenIndex] == FORMULA_PARSER_OK) {
+            [self.formula setRoot:formula.formulaTree];
+        }
+    }
+
+    [self.brickCell setupBrickCell];
+}
+
+- (IBAction)showMathFunctionsMenu:(id)sender
+{
     [self.formulaEditorTextView resignFirstResponder];
     [self.mathFunctionsMenu show];
     [self.mathFunctionsMenu becomeFirstResponder];
 }
 
-- (IBAction)showLogicalOperatorsMenu:(id)sender {
+- (IBAction)showLogicalOperatorsMenu:(id)sender
+{
     [self.formulaEditorTextView resignFirstResponder];
     [self.logicalOperatorsMenu show];
     [self.logicalOperatorsMenu becomeFirstResponder];
 }
 
-- (void)closeMenu {
+- (void)closeMenu
+{
     [self.formulaEditorTextView becomeFirstResponder];
 }
 

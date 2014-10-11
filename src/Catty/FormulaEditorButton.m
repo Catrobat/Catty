@@ -22,114 +22,122 @@
 
 #import "FormulaEditorButton.h"
 #import "Formula.h"
-#import "BrickFormulaProtocol.h"
 #import "UIColor+CatrobatUIColorExtensions.h"
+#import "BrickFormulaProtocol.h"
 
 @interface FormulaEditorButton ()
 
-@property (nonatomic) NSInteger formulaAtLineNumber;
-@property (nonatomic) NSInteger formulaAtParamNumber;
+@property (nonatomic, strong) CAShapeLayer *border;
 
 @end
 
 @implementation FormulaEditorButton
 
-- (id)initWithFrame:(CGRect)frame AndBrickCell:(BrickCell*)brickCell AndLineNumber:(NSInteger)lineNumber AndParameterNumber:(NSInteger)paramNumber;
+static Formula *activeFormula;
+
+- (id)initWithFrame:(CGRect)frame AndBrickCell:(BrickCell*)brickCell AndFormula:(Formula *)formula
 {
     self = [super initWithFrame:frame];
     
     if(self) {
         self.brickCell = brickCell;
-        self.formulaAtParamNumber = paramNumber;
-        self.formulaAtLineNumber = lineNumber;
+        self.formula = formula;
         
         self.titleLabel.textColor = [UIColor whiteColor];
         self.titleLabel.font = [UIFont systemFontOfSize:kBrickTextFieldFontSize];
-        
-        if([self.brickCell.brick respondsToSelector:@selector(getFormulaForLineNumber: AndParameterNumber:)]) {
-            [self setTitle:[[self getFormula] getDisplayString] forState:UIControlStateNormal];
-        } else {
-            [self setTitle:@"error" forState:UIControlStateNormal];
-        }
-        
+
+        [self setTitle:[formula getDisplayString] forState:UIControlStateNormal];
+    
         [self sizeToFit];
         CGRect labelFrame = self.frame;
         labelFrame.size.height = self.frame.size.height;
         self.frame = labelFrame;
         
-        [self addBorder];
         [self addTarget:brickCell.delegate action:@selector(openFormulaEditor:) forControlEvents:UIControlEventTouchUpInside];
+        
+        if([[FormulaEditorButton getActiveFormula] isEqual:formula]) {
+            [self drawBorder:YES];
+        } else {
+            [self drawBorder:NO];
+        }
     }
     
     return self;
 }
 
-#define maxLength 15
++ (Formula*)getActiveFormula
+{
+    return activeFormula;
+}
+
++ (void)setActiveFormula:(Formula*)formula
+{
+    activeFormula = formula;
+}
+
+#define FORMULA_MAX_LENGTH 15
 
 - (void)setTitle:(NSString *)title forState:(UIControlState)state
 {
-    if([title length] > maxLength) {
-        title = [NSString stringWithFormat:@"%@...", [title substringToIndex:maxLength]];
+    if([title length] > FORMULA_MAX_LENGTH) {
+        title = [NSString stringWithFormat:@"%@...", [title substringToIndex:FORMULA_MAX_LENGTH]];
     }
     
     title = [NSString stringWithFormat:@" %@ ", title];
     [super setTitle:title forState:state];
 }
 
-- (Formula*)getFormula
-{
-    Brick<BrickFormulaProtocol> *formulaBrick = (Brick<BrickFormulaProtocol> *)self.brickCell.brick;
-    return [formulaBrick getFormulaForLineNumber:self.formulaAtLineNumber AndParameterNumber:self.formulaAtParamNumber];
-}
+#define BORDER_WIDTH 1.0
+#define BORDER_HEIGHT 4
+#define BORDER_TRANSPARENCY 0.9
+#define BORDER_PADDING 3.8
 
-- (void)updateFormula:(InternFormula*)internFormula
+- (void)drawBorder:(BOOL)isActive
 {
-    if(internFormula != nil) {
-        InternFormulaParser *internFormulaParser = [internFormula getInternFormulaParser];
-        Formula *formula = [[Formula alloc] initWithFormulaElement:[internFormulaParser parseFormula]];
-        
-        if([internFormulaParser getErrorTokenIndex] == FORMULA_PARSER_OK) {
-            BrickCell<BrickFormulaProtocol> *formulaBrickCell = (BrickCell<BrickFormulaProtocol>*) self.brickCell.brick;
-            [formulaBrickCell setFormula:formula ForLineNumber:self.formulaAtLineNumber AndParameterNumber:self.formulaAtParamNumber];
-            [self.brickCell setupBrickCell];
-        }
-    }
-}
-
-#define borderWidth 1.0
-#define borderHeight 4
-#define borderTransparency 0.9
-#define borderPadding 3.5
-
-- (void)addBorder
-{
-    UIColor *borderColor = kBrickCategoryStrokeColors[self.brickCell.brick.brickCategoryType];
+    if(self.border)
+        [self.border removeFromSuperlayer];
     
-    CAShapeLayer *border = [[CAShapeLayer alloc] init];
+    self.border = [[CAShapeLayer alloc] init];
+    
     UIBezierPath *borderPath = [[UIBezierPath alloc] init];
     
-    CGPoint startPoint = CGPointMake(CGRectGetMaxX(self.bounds), CGRectGetMaxY(self.bounds) - borderPadding);
-    CGPoint endPoint = CGPointMake(CGRectGetMaxX(self.bounds), CGRectGetMaxY(self.bounds) - borderPadding - borderHeight);
+    CGPoint startPoint = CGPointMake(CGRectGetMaxX(self.bounds), CGRectGetMaxY(self.bounds) - BORDER_PADDING);
+    CGPoint endPoint = CGPointMake(CGRectGetMaxX(self.bounds), CGRectGetMaxY(self.bounds) - BORDER_PADDING - BORDER_HEIGHT);
     [borderPath moveToPoint:startPoint];
     [borderPath addLineToPoint:endPoint];
     
-    startPoint = CGPointMake(0, CGRectGetMaxY(self.bounds) - borderPadding);
-    endPoint = CGPointMake(0, CGRectGetMaxY(self.bounds) - borderPadding - borderHeight);
+    startPoint = CGPointMake(0, CGRectGetMaxY(self.bounds) - BORDER_PADDING);
+    endPoint = CGPointMake(0, CGRectGetMaxY(self.bounds) - BORDER_PADDING - BORDER_HEIGHT);
     [borderPath moveToPoint:startPoint];
     [borderPath addLineToPoint:endPoint];
     
-    startPoint = CGPointMake(-borderWidth / 2, CGRectGetMaxY(self.bounds) - borderPadding);
-    endPoint = CGPointMake(CGRectGetMaxX(self.bounds) + borderWidth / 2, CGRectGetMaxY(self.bounds) - borderPadding);
+    startPoint = CGPointMake(-BORDER_WIDTH / 2, CGRectGetMaxY(self.bounds) - BORDER_PADDING);
+    endPoint = CGPointMake(CGRectGetMaxX(self.bounds) + BORDER_WIDTH / 2, CGRectGetMaxY(self.bounds) - BORDER_PADDING);
     [borderPath moveToPoint:startPoint];
     [borderPath addLineToPoint:endPoint];
     
-    border.frame = self.bounds;
-    border.path = borderPath.CGPath;
-    border.strokeColor = borderColor.CGColor;
-    border.lineWidth = borderWidth;
-    [border setOpacity:borderTransparency];
+    self.border.frame = self.bounds;
+    self.border.path = borderPath.CGPath;
+    self.border.lineWidth = BORDER_WIDTH;
+    [self.border setOpacity:BORDER_TRANSPARENCY];
     
-    [self.layer addSublayer:border];
+    if(isActive) {
+        
+        self.border.strokeColor = [UIColor cellBlueColor].CGColor;
+        
+        self.border.shadowColor = [UIColor lightBlueColor].CGColor;
+        self.border.shadowRadius = 1;
+        self.border.shadowOpacity = 1.0;
+        self.border.shadowOffset = CGSizeMake(0, 0);
+        
+    } else {
+        
+        UIColor *borderColor = kBrickCategoryStrokeColors[self.brickCell.brick.brickCategoryType];
+        self.border.strokeColor = borderColor.CGColor;
+        
+    }
+    
+    [self.layer addSublayer:self.border];
 }
 
 @end
