@@ -211,6 +211,9 @@
 #define kLocalizedSound NSLocalizedString(@"Sound", nil)
 #define kLocalizedLooks NSLocalizedString(@"Looks", nil)
 #define kLocalizedVariables NSLocalizedString(@"Variables", nil)
+#define kLocalizedLogin NSLocalizedString(@"Login", nil)
+#define kLocalizedUsername NSLocalizedString(@"Username", nil);
+#define kLocalizedPassword NSLocalizedString(@"Password", nil);
 
 //************************************************************************************************************
 //**********************************       SHORT DESCRIPTIONS      *******************************************
