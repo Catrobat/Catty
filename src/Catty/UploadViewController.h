@@ -24,10 +24,4 @@
 
 @interface UploadViewController : UIViewController
 
-@property (weak, nonatomic) IBOutlet UILabel *usernameLabel;
-@property (weak, nonatomic) IBOutlet UITextField *usernameTextfield;
-@property (weak, nonatomic) IBOutlet UILabel *passwordLabel;
-@property (weak, nonatomic) IBOutlet UITextField *passwordTextfield;
-@property (weak, nonatomic) IBOutlet UIButton *loginButton;
-
 @end

@@ -21,10 +21,6 @@
  */
 
 #import "UploadViewController.h"
-#import "UIColor+CatrobatUIColorExtensions.h"
-#import "UIImage+CatrobatUIImageExtensions.h"
-#import "LanguageTranslationDefines.h"
-#import "Util.h"
 
 @interface UploadViewController ()
 
@@ -34,18 +30,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.navigationItem.title = kLocalizedUpload;
-    //self.view.backgroundColor = [UIColor backgroundColor];
-    self.view.backgroundColor = [UIColor darkBlueColor];
-    
-    [[UITabBarItem appearance] setTitleTextAttributes:@{NSFontAttributeName : [UIFont fontWithName:@"HelveticaNeue-Bold" size:10.0f],
-                                                        NSForegroundColorAttributeName : [UIColor lightOrangeColor]
-                                                        } forState:UIControlStateSelected];
-
-    [self.usernameLabel setFont:[UIFont fontWithName:@"HelveticaNeue-Bold" size:16.0f]];
-    self.usernameLabel.textColor = [UIColor lightOrangeColor];
-    [self.passwordLabel setFont:[UIFont fontWithName:@"HelveticaNeue-Bold" size:16.0f]];
-    self.passwordLabel.textColor = [UIColor lightOrangeColor];
+    // Do any additional setup after loading the view.
 }
 
 - (void)didReceiveMemoryWarning {
@@ -62,18 +47,5 @@
     // Pass the selected object to the new view controller.
 }
 */
-
-- (IBAction)loginButtonClicked:(id)sender {
-
-    if ([self.usernameTextfield.text isEqualToString:@""]) {
-        [Util alertWithText:@"Username is necessary!"];
-    } else if ([self.passwordTextfield.text isEqualToString:@""]) {
-        [Util alertWithText:@"Password is necessary!"];
-    }
-    
-    NSDebug(@"Login-Button clicked with username:%@ and password:%@", self.usernameTextfield.text, self.passwordTextfield.text);
-    
-}
-
 
 @end
