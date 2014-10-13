@@ -31,6 +31,7 @@
 #import "CatrobatAlertView.h"
 #import "LoadingView.h"
 #import "BDKNotifyHUD.h"
+#import "PlaceHolderView.h"
 
 // identifiers
 #define kTableHeaderIdentifier @"Header"
@@ -105,7 +106,7 @@
     if (!_placeHolderView) {
         CGFloat height = __tg_ceil(CGRectGetHeight(self.view.bounds) / 4.0f);
         _placeHolderView = [[PlaceHolderView alloc] initWithFrame:CGRectMake(0.0f, CGRectGetHeight(UIScreen.mainScreen.bounds) / 2.0f - height, CGRectGetWidth(self.view.bounds), height)];
-        [self.view addSubview:_placeHolderView];
+        [self.view insertSubview:_placeHolderView aboveSubview:self.tableView];
         _placeHolderView.hidden = YES;
     }
     return _placeHolderView;

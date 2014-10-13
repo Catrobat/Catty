@@ -20,13 +20,13 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import "BaseCollectionViewController.h"
+#import <UIKit/UIKit.h>
+@class PlaceHolderView;
 
-@class SpriteObject, FXBlurView;
+@interface BaseCollectionViewController : UICollectionViewController
 
-@interface ScriptCollectionViewController : BaseCollectionViewController
+@property (nonatomic, strong) PlaceHolderView *placeHolderView;
 
-@property (strong, nonatomic) SpriteObject *object;
-@property (nonatomic, strong) FXBlurView *blurView;
+- (void)showPlaceHolder:(BOOL)show;
 
 @end

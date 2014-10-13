@@ -21,12 +21,27 @@
  */
 
 #import "BaseCollectionViewController.h"
+#import "PlaceHolderView.h"
 
-@class SpriteObject, FXBlurView;
+@interface BaseCollectionViewController ()
 
-@interface ScriptCollectionViewController : BaseCollectionViewController
+@end
 
-@property (strong, nonatomic) SpriteObject *object;
-@property (nonatomic, strong) FXBlurView *blurView;
+@implementation BaseCollectionViewController
+
+- (PlaceHolderView*)placeHolderView
+{
+    if (!_placeHolderView) {
+        _placeHolderView = [[PlaceHolderView alloc] initWithFrame:self.collectionView.bounds];
+        [self.view insertSubview:_placeHolderView aboveSubview:self.collectionView];
+        _placeHolderView.hidden = YES;
+    }
+    return _placeHolderView;
+}
+
+- (void)showPlaceHolder:(BOOL)show
+{
+    self.collectionView.alwaysBounceVertical = self.placeHolderView.hidden = (! show);
+}
 
 @end

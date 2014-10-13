@@ -45,6 +45,7 @@
 #import "CatrobatActionSheet.h"
 #import "DataTransferMessage.h"
 #import "ProgramLoadingInfo.h"
+#import "PlaceHolderView.h"
 
 @interface SoundsTableViewController () <CatrobatActionSheetDelegate, AVAudioPlayerDelegate,
                                          SWTableViewCellDelegate>

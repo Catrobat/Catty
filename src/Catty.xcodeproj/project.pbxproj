@@ -60,6 +60,7 @@
 		CA538EC819B0EA09008240AB /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = B46B270617703F9400172837 /* InfoPlist.strings */; };
 		CA538EC919B0EA09008240AB /* test2.png in Resources */ = {isa = PBXBuildFile; fileRef = 92345632192E270B00464E6B /* test2.png */; };
 		CA538ECA19B0EA09008240AB /* test.png in Resources */ = {isa = PBXBuildFile; fileRef = 923453C1192D2D5F00464E6B /* test.png */; };
+		CA5D7FE519EC44480085D5AA /* BaseCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA5D7FE419EC44480085D5AA /* BaseCollectionViewController.m */; };
 		CADBD6D919B0E8C200C62836 /* SSZipArchive.license in Resources */ = {isa = PBXBuildFile; fileRef = 4C9E2D3A198F685D00455B77 /* SSZipArchive.license */; };
 		CADBD6DA19B0E8C200C62836 /* BDKNotifyHUD.license in Resources */ = {isa = PBXBuildFile; fileRef = 4C9E2D22198EAD1800455B77 /* BDKNotifyHUD.license */; };
 		CADBD6DB19B0E8C200C62836 /* IMPORTANT.caf in Resources */ = {isa = PBXBuildFile; fileRef = CA1B802B1971ACE300D8E79B /* IMPORTANT.caf */; };
@@ -696,6 +697,8 @@
 		CA52403518AD782600052914 /* ProgramTableViewControllerExistingProgramsTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProgramTableViewControllerExistingProgramsTests.m; sourceTree = "<group>"; };
 		CA52403718AD786200052914 /* ProgramTableViewControllerExistingProgramsTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ProgramTableViewControllerExistingProgramsTests.h; sourceTree = "<group>"; };
 		CA538ECE19B0EA09008240AB /* CattyTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CattyTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		CA5D7FE319EC44480085D5AA /* BaseCollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseCollectionViewController.h; sourceTree = "<group>"; };
+		CA5D7FE419EC44480085D5AA /* BaseCollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseCollectionViewController.m; sourceTree = "<group>"; };
 		CA5FED4E18B0070300A517B6 /* BrickCellInlineView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BrickCellInlineView.h; sourceTree = "<group>"; };
 		CA5FED4F18B0070300A517B6 /* BrickCellInlineView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BrickCellInlineView.m; sourceTree = "<group>"; };
 		CA5FED5218B019B200A517B6 /* UIUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIUtil.h; sourceTree = "<group>"; };
@@ -2034,6 +2037,8 @@
 				CA688204180B0148008A7C99 /* BaseTableViewController.m */,
 				819AA18419587CA7003010BB /* BaseWebViewController.h */,
 				819AA18519587CA7003010BB /* BaseWebViewController.m */,
+				CA5D7FE319EC44480085D5AA /* BaseCollectionViewController.h */,
+				CA5D7FE419EC44480085D5AA /* BaseCollectionViewController.m */,
 			);
 			name = BaseViewController;
 			sourceTree = "<group>";
@@ -2176,6 +2181,27 @@
 				CA8C247A18CD127C00314C2B /* ProgramTableViewControllerNewProgramTests.m */,
 			);
 			name = ProgramTableViewControllerTests;
+			sourceTree = "<group>";
+		};
+		CA5D7FE119EC28540085D5AA /* Old Parser */ = {
+			isa = PBXGroup;
+			children = (
+				B4DEFC8E170F464200DD1939 /* TestParser.h */,
+				B4DEFC8F170F464200DD1939 /* TestParser.m */,
+				B4DEFC89170F456D00DD1939 /* GDataXMLNode */,
+				B4DEFC8A170F457700DD1939 /* ProjectParser */,
+				CD0CCF48170CB39700B70036 /* XMLParserProtocol.h */,
+				B4DEFC8B170F458000DD1939 /* Parser */,
+				B4B7BAC51738E21B000BDC94 /* XMLObjectReference */,
+			);
+			name = "Old Parser";
+			sourceTree = "<group>";
+		};
+		CA5D7FE219EC28610085D5AA /* New Parser */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = "New Parser";
 			sourceTree = "<group>";
 		};
 		CA5FED5118B0199100A517B6 /* UIUtil */ = {
@@ -2912,13 +2938,8 @@
 		CD0CCFF9170CB91A00B70036 /* Parser */ = {
 			isa = PBXGroup;
 			children = (
-				B4DEFC8E170F464200DD1939 /* TestParser.h */,
-				B4DEFC8F170F464200DD1939 /* TestParser.m */,
-				B4DEFC89170F456D00DD1939 /* GDataXMLNode */,
-				B4DEFC8A170F457700DD1939 /* ProjectParser */,
-				CD0CCF48170CB39700B70036 /* XMLParserProtocol.h */,
-				B4DEFC8B170F458000DD1939 /* Parser */,
-				B4B7BAC51738E21B000BDC94 /* XMLObjectReference */,
+				CA5D7FE219EC28610085D5AA /* New Parser */,
+				CA5D7FE119EC28540085D5AA /* Old Parser */,
 			);
 			name = Parser;
 			sourceTree = "<group>";
@@ -3061,7 +3082,7 @@
 						TestTargetID = CADBD6D319B0E8C200C62836;
 					};
 					CADBD6D319B0E8C200C62836 = {
-						DevelopmentTeam = 4V6T7BCGGR;
+						DevelopmentTeam = 9NJ4SV439Q;
 					};
 				};
 			};
@@ -3396,6 +3417,7 @@
 				CADBD78219B0E8C200C62836 /* BrickScaleTransition.m in Sources */,
 				CADBD78319B0E8C200C62836 /* ObjectTableViewController.m in Sources */,
 				CADBD78419B0E8C200C62836 /* SelectButton.m in Sources */,
+				CA5D7FE519EC44480085D5AA /* BaseCollectionViewController.m in Sources */,
 				CADBD78519B0E8C200C62836 /* SpriteObject.m in Sources */,
 				CADBD78619B0E8C200C62836 /* SetVolumeToBrickCell.m in Sources */,
 				CADBD78719B0E8C200C62836 /* BrickSelectionView.m in Sources */,
