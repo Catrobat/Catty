@@ -55,7 +55,8 @@ NS_ENUM(NSInteger, ViewControllerIndex) {
     kLocalProgramsVC,
     kHelpVC,
     kExploreVC,
-    kUploadVC
+    kUploadVC,
+    kLoginVC
 };
 
 @interface CatrobatTableViewController () <UITextFieldDelegate, MYIntroductionDelegate>
@@ -167,7 +168,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
                   kLocalizedExplore,
                   kLocalizedUpload, nil];
     self.imageNames = [[NSArray alloc] initWithObjects:kMenuImageNameContinue, kMenuImageNameNew, kMenuImageNamePrograms, kMenuImageNameHelp, kMenuImageNameExplore, kMenuImageNameUpload, nil];
-    self.identifiers = [[NSArray alloc] initWithObjects:kSegueToContinue, kSegueToNewProgram, kSegueToPrograms, kSegueToHelp, kSegueToExplore, kSegueToUpload, nil];
+    self.identifiers = [[NSArray alloc] initWithObjects:kSegueToContinue, kSegueToNewProgram, kSegueToPrograms, kSegueToHelp, kSegueToExplore, kSegueToLogin, kSegueToUpload, nil];
 }
 
 - (void)initNavigationBar
@@ -272,6 +273,11 @@ static NSCharacterSet *blockedCharacterSet = nil;
             if ([self shouldPerformSegueWithIdentifier:identifier sender:self]) {
                 HelpWebViewController *webVC = [[HelpWebViewController alloc] initWithURL:[NSURL URLWithString:kForumURL]];
                 [self.navigationController pushViewController:webVC animated:YES];
+            }
+            break;
+        case kLoginVC:
+            if ([self shouldPerformSegueWithIdentifier:identifier sender:self]) {
+                [self performSegueWithIdentifier:identifier sender:self];
             }
             break;
         case kUploadVC:
