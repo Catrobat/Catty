@@ -24,6 +24,7 @@
 #define kCatrobatScreenModeMaximize @"MAXIMIZE"
 #define kCatrobatScreenModeStretch @"STRETCH"
 #define kCatrobatProgramScreenshotDefaultValue @"false"
+#define kCatrobatInvalidVersion 0.0f
 
 #define kIsRelease 0
 

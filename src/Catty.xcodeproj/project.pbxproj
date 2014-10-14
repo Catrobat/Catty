@@ -24,6 +24,7 @@
 		9236B38B19DA85B000495474 /* Launch Screen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9236B38A19DA85B000495474 /* Launch Screen.xib */; };
 		924DEBFA19CAFB9900EED9CE /* MYBlurIntroductionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 924DEBF619CAFB9900EED9CE /* MYBlurIntroductionView.m */; };
 		924DEBFC19CAFB9900EED9CE /* MYIntroductionPanel.m in Sources */ = {isa = PBXBuildFile; fileRef = 924DEBF819CAFB9900EED9CE /* MYIntroductionPanel.m */; };
+		CA2932C719EDD32800DB6701 /* CatrobatXMLParser.m in Sources */ = {isa = PBXBuildFile; fileRef = CA2932C619EDD32800DB6701 /* CatrobatXMLParser.m */; };
 		CA538EA519B0EA09008240AB /* ChangeGhostEffectByNBrickTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 92C37A431856264700547C1E /* ChangeGhostEffectByNBrickTests.m */; };
 		CA538EA619B0EA09008240AB /* ProgramTableViewControllerExistingProgramsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = CA52403518AD782600052914 /* ProgramTableViewControllerExistingProgramsTests.m */; };
 		CA538EA719B0EA09008240AB /* HideBrickTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 92C37A3F185625E700547C1E /* HideBrickTests.m */; };
@@ -688,6 +689,8 @@
 		CA1498841989D1A60069A21E /* UIViewController+CWPopup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIViewController+CWPopup.m"; path = "UIViewController+CWPopup/UIViewController+CWPopup.m"; sourceTree = "<group>"; };
 		CA1B7A1D18E1D9B700452234 /* ProgramUpdateDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ProgramUpdateDelegate.h; sourceTree = "<group>"; };
 		CA1B802B1971ACE300D8E79B /* IMPORTANT.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = IMPORTANT.caf; sourceTree = "<group>"; };
+		CA2932C519EDD32800DB6701 /* CatrobatXMLParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CatrobatXMLParser.h; sourceTree = "<group>"; };
+		CA2932C619EDD32800DB6701 /* CatrobatXMLParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CatrobatXMLParser.m; sourceTree = "<group>"; };
 		CA3BFA5A197F0D0900DA86C9 /* NSMutableArray+CustomExtensions.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSMutableArray+CustomExtensions.h"; sourceTree = "<group>"; };
 		CA3BFA5B197F0DD300DA86C9 /* NSMutableArray+CustomExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableArray+CustomExtensions.m"; sourceTree = "<group>"; };
 		CA43DD341809976900F95B88 /* UIImageView+CatrobatUIImageViewExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImageView+CatrobatUIImageViewExtensions.h"; sourceTree = "<group>"; };
@@ -1954,8 +1957,8 @@
 		C34B44F917F1D8D700624730 /* ChangeBrightnessByNBrick */ = {
 			isa = PBXGroup;
 			children = (
-				C34B44F617F1D8D200624730 /* ChangeBrightnessByNBrick.m */,
 				C34B44F717F1D8D200624730 /* ChangeBrightnessByNBrick.h */,
+				C34B44F617F1D8D200624730 /* ChangeBrightnessByNBrick.m */,
 			);
 			name = ChangeBrightnessByNBrick;
 			sourceTree = "<group>";
@@ -2200,6 +2203,8 @@
 		CA5D7FE219EC28610085D5AA /* New Parser */ = {
 			isa = PBXGroup;
 			children = (
+				CA2932C519EDD32800DB6701 /* CatrobatXMLParser.h */,
+				CA2932C619EDD32800DB6701 /* CatrobatXMLParser.m */,
 			);
 			name = "New Parser";
 			sourceTree = "<group>";
@@ -3472,6 +3477,7 @@
 				CADBD7B819B0E8C200C62836 /* AHKActionSheet.m in Sources */,
 				CADBD7B919B0E8C200C62836 /* SWLongPressGestureRecognizer.m in Sources */,
 				CADBD7BA19B0E8C200C62836 /* FXBlurView.m in Sources */,
+				CA2932C719EDD32800DB6701 /* CatrobatXMLParser.m in Sources */,
 				CADBD7BB19B0E8C200C62836 /* HelpWebViewController.m in Sources */,
 				CADBD7BC19B0E8C200C62836 /* BaseWebViewController.m in Sources */,
 				CADBD7BD19B0E8C200C62836 /* SpeakBrickCell.m in Sources */,

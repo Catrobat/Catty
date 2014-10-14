@@ -20,23 +20,25 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
+#import <Foundation/Foundation.h>
 
-@interface NSString (CatrobatNSStringExtensions) <NSXMLParserDelegate>
+@class GDataXMLDocument;
 
-- (NSString*)sha1;
+// TODO: define common parser interface for following methods...
+// @required
+// - (id)initWithPath:(NSString*)path;
+// - (CGFloat)detectLanguageVersion;
+// - (BOOL)isSupportedLanguageVersion:(CGFloat)languageVersion;
 
-- (NSString*)stringByEscapingHTMLEntities;
-- (NSString*)firstCharacterUppercaseString;
-- (NSString*)firstCharacterLowercaseString;
-- (NSString*)stringBetweenString:(NSString*)start andString:(NSString*)end withOptions:(NSStringCompareOptions)mask;
-- (BOOL)isValidNumber;
-- (BOOL)containsString:(NSString*)string;
+@interface CatrobatXMLParser : NSObject
 
-+ (NSString*)uuid;
+- (id)initWithPath:(NSString*)path;
 
+- (CGFloat)detectLanguageVersion;
+
+- (BOOL)isSupportedLanguageVersion:(CGFloat)languageVersion;
+
+// FIXME: remove that after serialization works
+@property (strong, nonatomic) GDataXMLDocument *XMLdocument;
 
 @end
-
-
-
-

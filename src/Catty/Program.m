@@ -20,7 +20,6 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-
 #import "Program.h"
 #import "VariablesContainer.h"
 #import "Util.h"
@@ -37,6 +36,7 @@
 #import "LanguageTranslationDefines.h"
 #import "UserVariable.h"
 #import "OrderedMapTable.h"
+#import "CatrobatXMLParser.h"
 
 @implementation Program
 
@@ -83,8 +83,27 @@
     NSDebug(@"Path: %@", loadingInfo.basePath);
     NSString *xmlPath = [NSString stringWithFormat:@"%@%@", loadingInfo.basePath, kProgramCodeFileName];
     NSDebug(@"XML-Path: %@", xmlPath);
-    Parser *parser = [[Parser alloc] init];
-    Program *program = [parser generateObjectForProgramWithPath:xmlPath];
+
+    Program *program = nil;
+    Parser *parser = nil;
+    CatrobatXMLParser *catrobatParser = [[CatrobatXMLParser alloc] initWithPath:xmlPath];
+    CGFloat languageVersion = [catrobatParser detectLanguageVersion];
+
+    if (languageVersion == kCatrobatInvalidVersion) {
+        NSLog(@"Invalid catrobat language version!");
+        return nil;
+    }
+
+    // detect right parser for correct catrobat language version
+    if (! [catrobatParser isSupportedLanguageVersion:languageVersion]) {
+        parser = [[Parser alloc] init];
+        program = [parser generateObjectForProgramWithPath:xmlPath];
+    } else {
+        // TODO: continue here...
+        NSLog(@"!!! NEW PARSER IS NOT IMPLEMENTED YET !!!");
+        return nil;
+    }
+
     program.header.programID = loadingInfo.programID;
     program.XMLdocument = parser.XMLdocument;
 
