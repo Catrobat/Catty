@@ -24,4 +24,13 @@
 
 @interface UploadViewController : UIViewController
 
+@property (weak, nonatomic) IBOutlet UILabel *sizeLabel;
+@property (weak, nonatomic) IBOutlet UITextField *sizeTextField;
+@property (weak, nonatomic) IBOutlet UILabel *programLabel;
+@property (weak, nonatomic) IBOutlet UITextField *programTextField;
+@property (weak, nonatomic) IBOutlet UILabel *descriptionLabel;
+@property (weak, nonatomic) IBOutlet UITextField *descriptionTextField;
+@property (weak, nonatomic) IBOutlet UIButton *uploadButton;
+@property (weak, nonatomic) IBOutlet UIButton *cancelButton;
+
 @end

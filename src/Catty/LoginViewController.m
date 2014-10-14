@@ -21,6 +21,7 @@
  */
 
 #import "LoginViewController.h"
+#import "NetworkDefines.h"
 #import "UIColor+CatrobatUIColorExtensions.h"
 #import "UIImage+CatrobatUIImageExtensions.h"
 #import "LanguageTranslationDefines.h"
@@ -70,13 +71,13 @@
 
 - (IBAction)loginButtonClicked:(id)sender {
 
-    if ([self.usernameTextfield.text isEqualToString:@""]) {
+    if ([self.usernameTextField.text isEqualToString:@""]) {
         [Util alertWithText:@"Username is necessary!"];
-    } else if ([self.passwordTextfield.text isEqualToString:@""]) {
+    } else if ([self.passwordTextField.text isEqualToString:@""]) {
         [Util alertWithText:@"Password is necessary!"];
     }
     
-    NSDebug(@"Login-Button clicked with username:%@ and password:%@", self.usernameTextfield.text, self.passwordTextfield.text);
+    NSDebug(@"Login-Button clicked with username:%@ and password:%@", self.usernameTextField.text, self.passwordTextField.text);
     
 }
 

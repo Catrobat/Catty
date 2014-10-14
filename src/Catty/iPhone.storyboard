@@ -742,9 +742,9 @@
                     <connections>
                         <outlet property="loginButton" destination="vy4-DI-IAn" id="Aj4-cd-DmM"/>
                         <outlet property="passwordLabel" destination="y4p-oY-0Pa" id="ve1-xU-FuI"/>
-                        <outlet property="passwordTextfield" destination="BcM-lO-oiB" id="ZRg-Yk-88H"/>
+                        <outlet property="passwordTextField" destination="BcM-lO-oiB" id="zaz-Bc-85H"/>
                         <outlet property="usernameLabel" destination="Aew-wq-Y6u" id="DWi-XL-eJk"/>
-                        <outlet property="usernameTextfield" destination="5VS-tU-k7I" id="OVV-28-pVu"/>
+                        <outlet property="usernameTextField" destination="5VS-tU-k7I" id="6F6-vJ-P2n"/>
                         <segue destination="soW-p8-wI4" kind="push" identifier="segueToUpload" id="ygP-3Q-OTd"/>
                     </connections>
                 </viewController>
@@ -760,56 +760,68 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Upload Program" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="7xd-lz-s3y">
-                                <rect key="frame" x="16" y="101" width="288" height="40"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Size:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="w0S-YE-QuR">
+                                <rect key="frame" x="16" y="114" width="288" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Program:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="08p-fh-yZH">
-                                <rect key="frame" x="16" y="294" width="288" height="21"/>
+                                <rect key="frame" x="16" y="202" width="288" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Description:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Y5S-2o-mB5">
-                                <rect key="frame" x="16" y="391" width="288" height="21"/>
+                                <rect key="frame" x="16" y="288" width="288" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="XXX.X KB" borderStyle="roundedRect" minimumFontSize="17" id="q8n-IY-vmH">
-                                <rect key="frame" x="16" y="233" width="288" height="30"/>
+                                <rect key="frame" x="16" y="143" width="288" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="My first program" borderStyle="roundedRect" minimumFontSize="17" id="161-PM-BR6">
-                                <rect key="frame" x="16" y="323" width="288" height="30"/>
+                                <rect key="frame" x="16" y="231" width="288" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="My Description" borderStyle="roundedRect" minimumFontSize="17" id="mjQ-UC-luP">
-                                <rect key="frame" x="16" y="420" width="288" height="30"/>
+                                <rect key="frame" x="16" y="317" width="288" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Size:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="w0S-YE-QuR">
-                                <rect key="frame" x="16" y="204" width="288" height="21"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="fUj-7T-5ai">
+                                <rect key="frame" x="162" y="377" width="142" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                                <state key="normal" title="Upload">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="uploadButtonClicked:" destination="soW-p8-wI4" eventType="touchUpInside" id="EVP-dZ-iwR"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" id="5q2-ic-DYM"/>
+                    <connections>
+                        <outlet property="descriptionLabel" destination="Y5S-2o-mB5" id="Pe6-Qi-9th"/>
+                        <outlet property="descriptionTextField" destination="mjQ-UC-luP" id="bQa-i4-JxU"/>
+                        <outlet property="programLabel" destination="08p-fh-yZH" id="rmq-Uz-ydi"/>
+                        <outlet property="programTextField" destination="161-PM-BR6" id="fX9-37-Cc5"/>
+                        <outlet property="sizeLabel" destination="w0S-YE-QuR" id="5p0-nY-5UZ"/>
+                        <outlet property="sizeTextField" destination="q8n-IY-vmH" id="uI9-BQ-QQs"/>
+                        <outlet property="uploadButton" destination="fUj-7T-5ai" id="ide-iB-DTK"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="PyL-zo-Uov" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

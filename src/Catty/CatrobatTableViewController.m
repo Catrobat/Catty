@@ -275,12 +275,8 @@ static NSCharacterSet *blockedCharacterSet = nil;
                 [self.navigationController pushViewController:webVC animated:YES];
             }
             break;
-        case kLoginVC:
-            if ([self shouldPerformSegueWithIdentifier:identifier sender:self]) {
-                [self performSegueWithIdentifier:identifier sender:self];
-            }
-            break;
         case kUploadVC:
+        case kLoginVC:
 #if kIsRelease //kIsRelease
             [Util showComingSoonAlertView];
 #else

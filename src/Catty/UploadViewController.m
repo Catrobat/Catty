@@ -21,6 +21,10 @@
  */
 
 #import "UploadViewController.h"
+#import "NetworkDefines.h"
+#import "UIColor+CatrobatUIColorExtensions.h"
+#import "UIImage+CatrobatUIImageExtensions.h"
+#import "LanguageTranslationDefines.h"
 
 @interface UploadViewController ()
 
@@ -30,7 +34,23 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    self.navigationItem.title = kLocalizedUpload;
+    self.view.backgroundColor = [UIColor darkBlueColor];
+    
+    [[UITabBarItem appearance] setTitleTextAttributes:@{NSFontAttributeName : [UIFont fontWithName:@"HelveticaNeue-Bold" size:10.0f],
+                                                        NSForegroundColorAttributeName : [UIColor lightOrangeColor]
+                                                        } forState:UIControlStateSelected];
+    
+    //[selfsizeLabel setText:[NSString stringWithFormat:@"%@", kLocalizedUsername]];
+    [self.sizeLabel setFont:[UIFont fontWithName:@"HelveticaNeue-Bold" size:16.0f]];
+    self.sizeLabel.textColor = [UIColor lightOrangeColor];
+    //[self.passwordLabel setText:kLocalizedPassword];
+    [self.programLabel setFont:[UIFont fontWithName:@"HelveticaNeue-Bold" size:16.0f]];
+    self.programLabel.textColor = [UIColor lightOrangeColor];
+    [self.descriptionLabel setFont:[UIFont fontWithName:@"HelveticaNeue-Bold" size:16.0f]];
+    self.descriptionLabel.textColor = [UIColor lightOrangeColor];
+    
+    [self.uploadButton setTitle:kLocalizedUpload forState:UIControlStateNormal];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -47,5 +67,8 @@
     // Pass the selected object to the new view controller.
 }
 */
+
+- (IBAction)uploadButtonClicked:(id)sender {
+}
 
 @end
