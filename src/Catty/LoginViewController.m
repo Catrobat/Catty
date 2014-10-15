@@ -27,13 +27,18 @@
 #import "LanguageTranslationDefines.h"
 #import "Util.h"
 
-@interface LoginViewController ()
+static NSString *const usernameParameterID = @"registrationUsername";
+static NSString *const passwordParameterID = @"registrationPassword";
 
+@interface LoginViewController ()
+@property (nonatomic, strong) NSURLConnection *connection;
+@property (nonatomic, strong) NSMutableData *data;
 @end
 
 @implementation LoginViewController
 
-- (void)viewDidLoad {
+- (void)viewDidLoad
+{
     [super viewDidLoad];
     self.navigationItem.title = kLocalizedUpload;
     //self.view.backgroundColor = [UIColor backgroundColor];
@@ -54,32 +59,109 @@
     [self.loginButton setTitle:kLocalizedLogin forState:UIControlStateNormal];
 }
 
-- (void)didReceiveMemoryWarning {
+- (void)didReceiveMemoryWarning
+{
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
 
-/*
-#pragma mark - Navigation
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
-
-- (IBAction)loginButtonClicked:(id)sender {
-
+#pragma mark - NSURLConnection Delegates
+- (IBAction)loginButtonClicked:(id)sender
+{
     if ([self.usernameTextField.text isEqualToString:@""]) {
         [Util alertWithText:@"Username is necessary!"];
+        return;
     } else if ([self.passwordTextField.text isEqualToString:@""]) {
         [Util alertWithText:@"Password is necessary!"];
+        return;
     }
     
-    NSDebug(@"Login-Button clicked with username:%@ and password:%@", self.usernameTextField.text, self.passwordTextField.text);
-    
+    [self loginAtServerWithUsername:self.usernameTextField.text andPassword:self.passwordTextField.text];
 }
 
+
+#pragma mark - Helpers
+- (void)loginAtServerWithUsername:(NSString*)username andPassword:(NSString*)password
+{
+    NSDebug(@"Login started with username:%@ and password:%@", username, password);
+    // reset data
+    self.data = nil;
+    self.data = [[NSMutableData alloc] init];
+    
+    //Example URL: https://pocketcode.org/api/loginOrRegister/loginOrRegister.json?registrationUsername=MaxMuster&registrationPassword=MyPassword
+    //For testing use: https://catroid-test.catrob.at/api/loginOrRegister/loginOrRegister.json?registrationUsername=MaxMuster&registrationPassword=MyPassword
+    
+    NSString *urlString = [NSString stringWithFormat:@"%@/%@?%@=%@&%@=%@", kTestLoginOrRegisterUrl, kConnectionLoginOrRegister, usernameParameterID, username, passwordParameterID, password];
+    NSDebug(@"URL string: %@", urlString);
+    
+    NSURL *url = [NSURL URLWithString:urlString];
+    NSURLRequest *request = [NSURLRequest requestWithURL:url cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:kConnectionTimeout];
+    
+    NSURLConnection *connection = [[NSURLConnection alloc] initWithRequest:request delegate:self];
+    self.connection = connection;
+    
+    NSDebug(@"Finished custom query to server");
+}
+
+
+#pragma mark - NSURLConnection Delegates
+- (void)connection:(NSURLConnection *)connection didReceiveData:(NSData*)data
+{
+    NSDebug(@"Received Data from server");
+    if (self.connection == connection) {
+        [self.data appendData:data];
+    }
+}
+
+- (void)connectionDidFinishLoading:(NSURLConnection *)connection
+{
+    if (self.connection == connection) {
+        NSDebug(@"Finished loading");
+        
+//        self.searchResults = nil;
+//        self.searchResults = [[NSMutableArray alloc] init];
+//        
+//        NSError *error = nil;
+//        id jsonObject = [NSJSONSerialization JSONObjectWithData:self.data
+//                                                        options:NSJSONReadingMutableContainers
+//                                                          error:&error];
+//        
+//        NSDebug(@"array: %@", jsonObject);
+//        
+//        if ([jsonObject isKindOfClass:[NSDictionary class]]) {
+//            NSDictionary *catrobatInformation = [jsonObject valueForKey:@"CatrobatInformation"];
+//            
+//            CatrobatInformation *information = [[CatrobatInformation alloc] initWithDict:catrobatInformation];
+//            
+//            NSArray *catrobatProjects = [jsonObject valueForKey:@"CatrobatProjects"];
+//            
+//            self.searchResults = [[NSMutableArray alloc] initWithCapacity:[catrobatProjects count]];
+//            
+//            for (NSDictionary *projectDict in catrobatProjects) {
+//                CatrobatProgram *project = [[CatrobatProgram alloc] initWithDict:projectDict andBaseUrl:information.baseURL];
+//                [self.searchResults addObject:project];
+//            }
+//        }
+//        self.data = nil;
+//        self.connection = nil;
+//        [self update];
+//        [self loadingIndicator:NO];
+    }
+}
+
+-(void)loadingIndicator:(BOOL)value
+{
+    UIApplication* app = [UIApplication sharedApplication];
+    app.networkActivityIndicatorVisible = value;
+}
+
+
+ #pragma mark - Navigation
+ - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+ // Get the new view controller using [segue destinationViewController].
+ // Pass the selected object to the new view controller.
+ }
 
 @end
