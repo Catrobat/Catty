@@ -286,28 +286,28 @@ typedef NS_ENUM(NSInteger, kBrickShapeType) {
 }
 
 // brick heights
-#define kBrickHeight1h 44.0f
-#define kBrickHeight2h 71.0f
-#define kBrickHeight3h 94.0f
-#define kBrickHeightControl1h 75.0f
-#define kBrickHeightControl2h 102.0f
+#define kBrickHeight1h 48.9f
+#define kBrickHeight2h 75.9f
+#define kBrickHeight3h 98.9f
+#define kBrickHeightControl1h 79.9f
+#define kBrickHeightControl2h 106.9f
 
-#define kBrickOverlapHeight 4.0f
+#define kBrickOverlapHeight -4.4f
 
 // brick subview const values
 #define kBrickInlineViewOffsetX 54.0f
-#define kBrickShapeNormalInlineViewOffsetY 4.0f
-#define kBrickShapeRoundedSmallInlineViewOffsetY 22.0f
-#define kBrickShapeRoundedBigInlineViewOffsetY 22.0f
-#define kBrickShapeNormalMarginHeightDeduction 9.0f
-#define kBrickShapeRoundedSmallMarginHeightDeduction 28.0f
-#define kBrickShapeRoundedBigMarginHeightDeduction 28.0f
+#define kBrickShapeNormalInlineViewOffsetY 7.0f
+#define kBrickShapeRoundedSmallInlineViewOffsetY 25.0f
+#define kBrickShapeRoundedBigInlineViewOffsetY 25.0f
+#define kBrickShapeNormalMarginHeightDeduction 14.0f
+#define kBrickShapeRoundedSmallMarginHeightDeduction 32.0f
+#define kBrickShapeRoundedBigMarginHeightDeduction 32.0f
 #define kBrickPatternImageViewOffsetX 0.0f
 #define kBrickPatternImageViewOffsetY 0.0f
 #define kBrickPatternBackgroundImageViewOffsetX 54.0f
 #define kBrickPatternBackgroundImageViewOffsetY 0.0f
 #define kBrickLabelOffsetX 0.0f
-#define kBrickLabelOffsetY 0.0f
+#define kBrickLabelOffsetY 5.0f
 #define kBrickInlineViewCanvasOffsetX 0.0f
 #define kBrickInlineViewCanvasOffsetY 0.0f
 #define kBrickBackgroundImageNameSuffix @"_bg"

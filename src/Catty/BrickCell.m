@@ -235,7 +235,7 @@
     CGFloat inlineViewHeight = [[self class] cellHeight];
     kBrickShapeType brickShapeType = [self brickShapeType];
     CGFloat inlineViewOffsetY = 0.0f;
-    if (brickShapeType != kBrickShapeRoundedSmall || brickShapeType != kBrickShapeRoundedBig) {
+    if (brickShapeType != kBrickShapeRoundedSmall && brickShapeType != kBrickShapeRoundedBig) {
         inlineViewHeight -= kBrickShapeNormalMarginHeightDeduction;
         inlineViewOffsetY = kBrickShapeNormalInlineViewOffsetY;
     } else if (brickShapeType == kBrickShapeRoundedSmall) {

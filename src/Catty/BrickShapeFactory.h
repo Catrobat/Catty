@@ -23,11 +23,6 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
-#define smallBrick 44.0f
-#define mediumBrick 71.0f
-#define largeBrick  94.0f
-#define roundedLargeBrick 88.0f
-#define roundedSmallBrick 62.0f
 
 @interface BrickShapeFactory : NSObject
 
