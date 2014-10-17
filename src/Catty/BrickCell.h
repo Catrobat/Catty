@@ -29,6 +29,12 @@
 #import "SelectButton.h"
 #import "Util.h"
 
+#define smallBrick 44.0f
+#define mediumBrick 71.0f
+#define largeBrick  94.0f
+#define roundedLargeBrick 102.0f
+#define roundedSmallBrick 75.0f
+
 @class Brick, BrickCellInlineView, BrickCell;
 @protocol BrickProtocol;
 
