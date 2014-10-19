@@ -22,11 +22,14 @@
 
 #import <Foundation/Foundation.h>
 
+@class Program;
+
 @protocol CatrobatParserProtocol <NSObject>
 
 @required
 - (id)initWithPath:(NSString*)path;
 - (CGFloat)detectLanguageVersion;
 - (BOOL)isSupportedLanguageVersion:(CGFloat)languageVersion;
+- (Program*)parseAndCreateProgram;
 
 @end

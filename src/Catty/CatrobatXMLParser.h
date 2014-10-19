@@ -32,6 +32,8 @@
 
 - (BOOL)isSupportedLanguageVersion:(CGFloat)languageVersion;
 
+- (Program*)parseAndCreateProgram;
+
 // FIXME: remove that after serialization has been fully implemented...
 @property (strong, nonatomic) GDataXMLDocument *XMLdocument;
 

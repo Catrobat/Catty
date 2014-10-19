@@ -23,6 +23,7 @@
 #import "CatrobatXMLParser.h"
 #import "AppDefines.h"
 #import "NSString+CatrobatNSStringExtensions.h"
+#import <libxml/tree.h>
 
 // NEVER MOVE THESE DEFINE CONSTANTS TO ANOTHER CLASS
 #define kCatrobatXMLParserMinSupportedLanguageVersion 0.92f
