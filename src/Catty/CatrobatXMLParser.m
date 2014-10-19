@@ -30,7 +30,7 @@
 
 @interface CatrobatXMLParser()
 
-@property (nonatomic, readwrite) NSString *xmlPath;
+@property (nonatomic, strong, readwrite) NSString *xmlPath;
 
 @end
 
@@ -78,9 +78,21 @@
         return kCatrobatInvalidVersion;
     }
 
+    // handle language versions that contain more than one dot-separator! e.g. => convert 0.9.2 to 0.92
+    NSArray *languageVersionNumberParts = [languageVersionString componentsSeparatedByString:@"."];
+    if ([languageVersionNumberParts count] > 1) {
+        NSUInteger index = 0;
+        NSMutableString *filteredLanguageVersionString = [NSMutableString stringWithFormat:@"%@.%@",
+                                                          [languageVersionNumberParts objectAtIndex:index],
+                                                          [languageVersionNumberParts objectAtIndex:(index+1)]];
+        for (index = 2; index < [languageVersionNumberParts count]; ++index) {
+            [filteredLanguageVersionString appendString:[languageVersionNumberParts objectAtIndex:index]];
+        }
+        languageVersionString = [filteredLanguageVersionString copy];
+    }
+
     // check if string contains valid number
     if (! [languageVersionString isValidNumber]) {
-        // TODO: handle language versions that contain more than one dot-separator! e.g. => Version: 0.9.2
         return kCatrobatInvalidVersion;
     }
 
