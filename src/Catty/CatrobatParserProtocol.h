@@ -20,19 +20,13 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import "CatrobatParserProtocol.h"
+#import <Foundation/Foundation.h>
 
-@class GDataXMLDocument;
+@protocol CatrobatParserProtocol <NSObject>
 
-@interface CatrobatXMLParser : NSObject <CatrobatParserProtocol>
-
+@required
 - (id)initWithPath:(NSString*)path;
-
 - (CGFloat)detectLanguageVersion;
-
 - (BOOL)isSupportedLanguageVersion:(CGFloat)languageVersion;
-
-// FIXME: remove that after serialization has been fully implemented...
-@property (strong, nonatomic) GDataXMLDocument *XMLdocument;
 
 @end
