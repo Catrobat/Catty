@@ -21,7 +21,6 @@
  */
 
 #import <Foundation/Foundation.h>
-#import "XMLParserProtocol.h"
 #import <GLKit/GLKit.h>
 
 @interface TestParser : NSObject 

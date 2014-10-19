@@ -21,11 +21,10 @@
  */
 
 #import <Foundation/Foundation.h>
-#import "XMLParserProtocol.h"
 
 @class GDataXMLDocument;
 
-@interface Parser : NSObject <XMLParserProtocol>
+@interface Parser : NSObject
 
 - (Program*)generateObjectForProgramWithPath:(NSString*)path;
 
