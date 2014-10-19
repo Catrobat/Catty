@@ -23,6 +23,7 @@
 #import <Foundation/Foundation.h>
 
 @class GDataXMLDocument;
+@class Program;
 
 @interface Parser : NSObject
 
