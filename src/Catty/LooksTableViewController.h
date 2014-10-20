@@ -25,6 +25,12 @@
 
 @class SpriteObject;
 
-@interface LooksTableViewController : BaseTableViewController
+@protocol PaintDelegate <NSObject>
+
+-(void)addPaintedImage:(UIImage*)image;
+
+@end
+
+@interface LooksTableViewController : BaseTableViewController <PaintDelegate>
 @property (strong, nonatomic) SpriteObject *object;
 @end

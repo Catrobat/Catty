@@ -23,6 +23,40 @@
 /* Begin PBXBuildFile section */
 		924DEBFA19CAFB9900EED9CE /* MYBlurIntroductionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 924DEBF619CAFB9900EED9CE /* MYBlurIntroductionView.m */; };
 		924DEBFC19CAFB9900EED9CE /* MYIntroductionPanel.m in Sources */ = {isa = PBXBuildFile; fileRef = 924DEBF819CAFB9900EED9CE /* MYIntroductionPanel.m */; };
+		9282912019F54BAF002C2719 /* BrushPickerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 928290DC19F54BAF002C2719 /* BrushPickerViewController.m */; };
+		9282912119F54BAF002C2719 /* ColorPickerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 928290DE19F54BAF002C2719 /* ColorPickerViewController.m */; };
+		9282912219F54BAF002C2719 /* DrawTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 928290E019F54BAF002C2719 /* DrawTool.m */; };
+		9282912419F54BAF002C2719 /* FillTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 928290E419F54BAF002C2719 /* FillTool.m */; };
+		9282912519F54BAF002C2719 /* HandTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 928290E619F54BAF002C2719 /* HandTool.m */; };
+		9282912619F54BAF002C2719 /* ImageHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 928290E819F54BAF002C2719 /* ImageHelper.m */; };
+		9282912719F54BAF002C2719 /* ImagePicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 928290EA19F54BAF002C2719 /* ImagePicker.m */; };
+		9282912919F54BAF002C2719 /* LCTableViewPickerControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 928290ED19F54BAF002C2719 /* LCTableViewPickerControl.m */; };
+		9282913119F54BAF002C2719 /* LineTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 928290F719F54BAF002C2719 /* LineTool.m */; };
+		9282913219F54BAF002C2719 /* LinkedListStack.m in Sources */ = {isa = PBXBuildFile; fileRef = 928290F919F54BAF002C2719 /* LinkedListStack.m */; };
+		9282913419F54BAF002C2719 /* MirrorRotationZoomTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 928290FC19F54BAF002C2719 /* MirrorRotationZoomTool.m */; };
+		9282913519F54BAF002C2719 /* nko_brightness_guide.png in Resources */ = {isa = PBXBuildFile; fileRef = 928290FD19F54BAF002C2719 /* nko_brightness_guide.png */; };
+		9282913619F54BAF002C2719 /* nko_brightness_guide@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 928290FE19F54BAF002C2719 /* nko_brightness_guide@2x.png */; };
+		9282913719F54BAF002C2719 /* nko_colormap.png in Resources */ = {isa = PBXBuildFile; fileRef = 928290FF19F54BAF002C2719 /* nko_colormap.png */; };
+		9282913819F54BAF002C2719 /* NKOColorPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9282910119F54BAF002C2719 /* NKOColorPickerView.m */; };
+		9282913919F54BAF002C2719 /* PaintViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9282910319F54BAF002C2719 /* PaintViewController.m */; };
+		9282913A19F54BAF002C2719 /* PipetteTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 9282910519F54BAF002C2719 /* PipetteTool.m */; };
+		9282913C19F54BAF002C2719 /* PointerTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 9282910919F54BAF002C2719 /* PointerTool.m */; };
+		9282913D19F54BAF002C2719 /* ResizeViewManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 9282910B19F54BAF002C2719 /* ResizeViewManager.m */; };
+		9282913E19F54BAF002C2719 /* RGBAHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 9282910D19F54BAF002C2719 /* RGBAHelper.m */; };
+		9282913F19F54BAF002C2719 /* SPUserResizableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9282910F19F54BAF002C2719 /* SPUserResizableView.m */; };
+		9282914119F54BAF002C2719 /* UIImage+FloodFill.m in Sources */ = {isa = PBXBuildFile; fileRef = 9282911319F54BAF002C2719 /* UIImage+FloodFill.m */; };
+		9282914219F54BAF002C2719 /* UIImage+Rotate.m in Sources */ = {isa = PBXBuildFile; fileRef = 9282911519F54BAF002C2719 /* UIImage+Rotate.m */; };
+		9282914319F54BAF002C2719 /* UIViewController+KNSemiModal.m in Sources */ = {isa = PBXBuildFile; fileRef = 9282911719F54BAF002C2719 /* UIViewController+KNSemiModal.m */; };
+		9282914419F54BAF002C2719 /* UndoManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 9282911919F54BAF002C2719 /* UndoManager.m */; };
+		9282914519F54BAF002C2719 /* YKImageCropperOverlayView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9282911B19F54BAF002C2719 /* YKImageCropperOverlayView.m */; };
+		9282914619F54BAF002C2719 /* YKImageCropperView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9282911D19F54BAF002C2719 /* YKImageCropperView.m */; };
+		9282914E19F54DD2002C2719 /* ImageHelper.license in Resources */ = {isa = PBXBuildFile; fileRef = 9282914719F54DD2002C2719 /* ImageHelper.license */; };
+		9282914F19F54DD2002C2719 /* LCTableViewPickerControl.license in Resources */ = {isa = PBXBuildFile; fileRef = 9282914819F54DD2002C2719 /* LCTableViewPickerControl.license */; };
+		9282915019F54DD2002C2719 /* NKOColorPickerView.license in Resources */ = {isa = PBXBuildFile; fileRef = 9282914919F54DD2002C2719 /* NKOColorPickerView.license */; };
+		9282915119F54DD2002C2719 /* SPUserResizableView.license in Resources */ = {isa = PBXBuildFile; fileRef = 9282914A19F54DD2002C2719 /* SPUserResizableView.license */; };
+		9282915219F54DD2002C2719 /* UIImage+FloodFill.license in Resources */ = {isa = PBXBuildFile; fileRef = 9282914B19F54DD2002C2719 /* UIImage+FloodFill.license */; };
+		9282915319F54DD2002C2719 /* UIViewController+KNSemiModal in Resources */ = {isa = PBXBuildFile; fileRef = 9282914C19F54DD2002C2719 /* UIViewController+KNSemiModal */; };
+		9282915419F54DD2002C2719 /* YKImageCropperView.license in Resources */ = {isa = PBXBuildFile; fileRef = 9282914D19F54DD2002C2719 /* YKImageCropperView.license */; };
 		CA538EA519B0EA09008240AB /* ChangeGhostEffectByNBrickTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 92C37A431856264700547C1E /* ChangeGhostEffectByNBrickTests.m */; };
 		CA538EA619B0EA09008240AB /* ProgramTableViewControllerExistingProgramsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = CA52403518AD782600052914 /* ProgramTableViewControllerExistingProgramsTests.m */; };
 		CA538EA719B0EA09008240AB /* HideBrickTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 92C37A3F185625E700547C1E /* HideBrickTests.m */; };
@@ -496,6 +530,64 @@
 		9251B6B3199F4B6500746D66 /* NSMutableArray+SWUtilityButtons.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSMutableArray+SWUtilityButtons.m"; path = "SWTableViewCell/NSMutableArray+SWUtilityButtons.m"; sourceTree = "<group>"; };
 		925E22B418E3313C001A26A6 /* NavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NavigationController.h; sourceTree = "<group>"; };
 		925E22B518E3313C001A26A6 /* NavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NavigationController.m; sourceTree = "<group>"; };
+		928290DB19F54BAF002C2719 /* BrushPickerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BrushPickerViewController.h; sourceTree = "<group>"; };
+		928290DC19F54BAF002C2719 /* BrushPickerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BrushPickerViewController.m; sourceTree = "<group>"; };
+		928290DD19F54BAF002C2719 /* ColorPickerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ColorPickerViewController.h; sourceTree = "<group>"; };
+		928290DE19F54BAF002C2719 /* ColorPickerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ColorPickerViewController.m; sourceTree = "<group>"; };
+		928290DF19F54BAF002C2719 /* DrawTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DrawTool.h; sourceTree = "<group>"; };
+		928290E019F54BAF002C2719 /* DrawTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DrawTool.m; sourceTree = "<group>"; };
+		928290E319F54BAF002C2719 /* FillTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FillTool.h; sourceTree = "<group>"; };
+		928290E419F54BAF002C2719 /* FillTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FillTool.m; sourceTree = "<group>"; };
+		928290E519F54BAF002C2719 /* HandTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HandTool.h; sourceTree = "<group>"; };
+		928290E619F54BAF002C2719 /* HandTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HandTool.m; sourceTree = "<group>"; };
+		928290E719F54BAF002C2719 /* ImageHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageHelper.h; sourceTree = "<group>"; };
+		928290E819F54BAF002C2719 /* ImageHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageHelper.m; sourceTree = "<group>"; };
+		928290E919F54BAF002C2719 /* ImagePicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImagePicker.h; sourceTree = "<group>"; };
+		928290EA19F54BAF002C2719 /* ImagePicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImagePicker.m; sourceTree = "<group>"; };
+		928290EC19F54BAF002C2719 /* LCTableViewPickerControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LCTableViewPickerControl.h; sourceTree = "<group>"; };
+		928290ED19F54BAF002C2719 /* LCTableViewPickerControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LCTableViewPickerControl.m; sourceTree = "<group>"; };
+		928290F619F54BAF002C2719 /* LineTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LineTool.h; sourceTree = "<group>"; };
+		928290F719F54BAF002C2719 /* LineTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LineTool.m; sourceTree = "<group>"; };
+		928290F819F54BAF002C2719 /* LinkedListStack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LinkedListStack.h; sourceTree = "<group>"; };
+		928290F919F54BAF002C2719 /* LinkedListStack.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LinkedListStack.m; sourceTree = "<group>"; };
+		928290FB19F54BAF002C2719 /* MirrorRotationZoomTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MirrorRotationZoomTool.h; sourceTree = "<group>"; };
+		928290FC19F54BAF002C2719 /* MirrorRotationZoomTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MirrorRotationZoomTool.m; sourceTree = "<group>"; };
+		928290FD19F54BAF002C2719 /* nko_brightness_guide.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = nko_brightness_guide.png; sourceTree = "<group>"; };
+		928290FE19F54BAF002C2719 /* nko_brightness_guide@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "nko_brightness_guide@2x.png"; sourceTree = "<group>"; };
+		928290FF19F54BAF002C2719 /* nko_colormap.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = nko_colormap.png; sourceTree = "<group>"; };
+		9282910019F54BAF002C2719 /* NKOColorPickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NKOColorPickerView.h; sourceTree = "<group>"; };
+		9282910119F54BAF002C2719 /* NKOColorPickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NKOColorPickerView.m; sourceTree = "<group>"; };
+		9282910219F54BAF002C2719 /* PaintViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PaintViewController.h; sourceTree = "<group>"; };
+		9282910319F54BAF002C2719 /* PaintViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PaintViewController.m; sourceTree = "<group>"; };
+		9282910419F54BAF002C2719 /* PipetteTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PipetteTool.h; sourceTree = "<group>"; };
+		9282910519F54BAF002C2719 /* PipetteTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PipetteTool.m; sourceTree = "<group>"; };
+		9282910819F54BAF002C2719 /* PointerTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PointerTool.h; sourceTree = "<group>"; };
+		9282910919F54BAF002C2719 /* PointerTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PointerTool.m; sourceTree = "<group>"; };
+		9282910A19F54BAF002C2719 /* ResizeViewManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ResizeViewManager.h; sourceTree = "<group>"; };
+		9282910B19F54BAF002C2719 /* ResizeViewManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ResizeViewManager.m; sourceTree = "<group>"; };
+		9282910C19F54BAF002C2719 /* RGBAHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RGBAHelper.h; sourceTree = "<group>"; };
+		9282910D19F54BAF002C2719 /* RGBAHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RGBAHelper.m; sourceTree = "<group>"; };
+		9282910E19F54BAF002C2719 /* SPUserResizableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPUserResizableView.h; sourceTree = "<group>"; };
+		9282910F19F54BAF002C2719 /* SPUserResizableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPUserResizableView.m; sourceTree = "<group>"; };
+		9282911219F54BAF002C2719 /* UIImage+FloodFill.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+FloodFill.h"; sourceTree = "<group>"; };
+		9282911319F54BAF002C2719 /* UIImage+FloodFill.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+FloodFill.m"; sourceTree = "<group>"; };
+		9282911419F54BAF002C2719 /* UIImage+Rotate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Rotate.h"; sourceTree = "<group>"; };
+		9282911519F54BAF002C2719 /* UIImage+Rotate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Rotate.m"; sourceTree = "<group>"; };
+		9282911619F54BAF002C2719 /* UIViewController+KNSemiModal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+KNSemiModal.h"; sourceTree = "<group>"; };
+		9282911719F54BAF002C2719 /* UIViewController+KNSemiModal.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+KNSemiModal.m"; sourceTree = "<group>"; };
+		9282911819F54BAF002C2719 /* UndoManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UndoManager.h; sourceTree = "<group>"; };
+		9282911919F54BAF002C2719 /* UndoManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UndoManager.m; sourceTree = "<group>"; };
+		9282911A19F54BAF002C2719 /* YKImageCropperOverlayView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YKImageCropperOverlayView.h; sourceTree = "<group>"; };
+		9282911B19F54BAF002C2719 /* YKImageCropperOverlayView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YKImageCropperOverlayView.m; sourceTree = "<group>"; };
+		9282911C19F54BAF002C2719 /* YKImageCropperView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YKImageCropperView.h; sourceTree = "<group>"; };
+		9282911D19F54BAF002C2719 /* YKImageCropperView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YKImageCropperView.m; sourceTree = "<group>"; };
+		9282914719F54DD2002C2719 /* ImageHelper.license */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ImageHelper.license; sourceTree = "<group>"; };
+		9282914819F54DD2002C2719 /* LCTableViewPickerControl.license */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LCTableViewPickerControl.license; sourceTree = "<group>"; };
+		9282914919F54DD2002C2719 /* NKOColorPickerView.license */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = NKOColorPickerView.license; sourceTree = "<group>"; };
+		9282914A19F54DD2002C2719 /* SPUserResizableView.license */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = SPUserResizableView.license; sourceTree = "<group>"; };
+		9282914B19F54DD2002C2719 /* UIImage+FloodFill.license */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "UIImage+FloodFill.license"; sourceTree = "<group>"; };
+		9282914C19F54DD2002C2719 /* UIViewController+KNSemiModal */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "UIViewController+KNSemiModal"; sourceTree = "<group>"; };
+		9282914D19F54DD2002C2719 /* YKImageCropperView.license */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = YKImageCropperView.license; sourceTree = "<group>"; };
 		929FDFFE1986484200B2A88D /* DarkBlueGradientFeaturedCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DarkBlueGradientFeaturedCell.h; path = Catty/DarkBlueGradientFeaturedCell.h; sourceTree = "<group>"; };
 		929FDFFF1986484200B2A88D /* DarkBlueGradientFeaturedCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DarkBlueGradientFeaturedCell.m; path = Catty/DarkBlueGradientFeaturedCell.m; sourceTree = "<group>"; };
 		92C37A32185621FF00547C1E /* SetSizeToBrickTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SetSizeToBrickTests.m; sourceTree = "<group>"; };
@@ -1101,6 +1193,13 @@
 		4C9E2D1D198EA6B600455B77 /* Licenses */ = {
 			isa = PBXGroup;
 			children = (
+				9282914719F54DD2002C2719 /* ImageHelper.license */,
+				9282914819F54DD2002C2719 /* LCTableViewPickerControl.license */,
+				9282914919F54DD2002C2719 /* NKOColorPickerView.license */,
+				9282914A19F54DD2002C2719 /* SPUserResizableView.license */,
+				9282914B19F54DD2002C2719 /* UIImage+FloodFill.license */,
+				9282914C19F54DD2002C2719 /* UIViewController+KNSemiModal */,
+				9282914D19F54DD2002C2719 /* YKImageCropperView.license */,
 				4C9E2D20198EACE200455B77 /* EAIntroView.license */,
 				4C9E2D1E198EA6B600455B77 /* SMPageControl.license */,
 				4C9E2D22198EAD1800455B77 /* BDKNotifyHUD.license */,
@@ -1310,6 +1409,144 @@
 				924DEBF819CAFB9900EED9CE /* MYIntroductionPanel.m */,
 			);
 			path = MYBlurIntroductionView;
+			sourceTree = "<group>";
+		};
+		928290D619F54BAF002C2719 /* pocketPaint */ = {
+			isa = PBXGroup;
+			children = (
+				9282915519F54FB9002C2719 /* ViewController */,
+				9282915619F54FD6002C2719 /* Tools */,
+				9282915719F55004002C2719 /* Helper */,
+			);
+			path = pocketPaint;
+			sourceTree = "<group>";
+		};
+		9282915519F54FB9002C2719 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				928290DB19F54BAF002C2719 /* BrushPickerViewController.h */,
+				928290DC19F54BAF002C2719 /* BrushPickerViewController.m */,
+				928290DD19F54BAF002C2719 /* ColorPickerViewController.h */,
+				928290DE19F54BAF002C2719 /* ColorPickerViewController.m */,
+				9282910219F54BAF002C2719 /* PaintViewController.h */,
+				9282910319F54BAF002C2719 /* PaintViewController.m */,
+			);
+			name = ViewController;
+			sourceTree = "<group>";
+		};
+		9282915619F54FD6002C2719 /* Tools */ = {
+			isa = PBXGroup;
+			children = (
+				928290E919F54BAF002C2719 /* ImagePicker.h */,
+				928290EA19F54BAF002C2719 /* ImagePicker.m */,
+				928290DF19F54BAF002C2719 /* DrawTool.h */,
+				928290E019F54BAF002C2719 /* DrawTool.m */,
+				928290E319F54BAF002C2719 /* FillTool.h */,
+				928290E419F54BAF002C2719 /* FillTool.m */,
+				928290E519F54BAF002C2719 /* HandTool.h */,
+				928290E619F54BAF002C2719 /* HandTool.m */,
+				928290F619F54BAF002C2719 /* LineTool.h */,
+				928290F719F54BAF002C2719 /* LineTool.m */,
+				928290FB19F54BAF002C2719 /* MirrorRotationZoomTool.h */,
+				928290FC19F54BAF002C2719 /* MirrorRotationZoomTool.m */,
+				9282910419F54BAF002C2719 /* PipetteTool.h */,
+				9282910519F54BAF002C2719 /* PipetteTool.m */,
+				9282910819F54BAF002C2719 /* PointerTool.h */,
+				9282910919F54BAF002C2719 /* PointerTool.m */,
+			);
+			name = Tools;
+			sourceTree = "<group>";
+		};
+		9282915719F55004002C2719 /* Helper */ = {
+			isa = PBXGroup;
+			children = (
+				9282915819F55014002C2719 /* 3rdParty */,
+				928290E719F54BAF002C2719 /* ImageHelper.h */,
+				928290E819F54BAF002C2719 /* ImageHelper.m */,
+				9282910A19F54BAF002C2719 /* ResizeViewManager.h */,
+				9282910B19F54BAF002C2719 /* ResizeViewManager.m */,
+				9282910C19F54BAF002C2719 /* RGBAHelper.h */,
+				9282910D19F54BAF002C2719 /* RGBAHelper.m */,
+				9282911819F54BAF002C2719 /* UndoManager.h */,
+				9282911919F54BAF002C2719 /* UndoManager.m */,
+				9282911419F54BAF002C2719 /* UIImage+Rotate.h */,
+				9282911519F54BAF002C2719 /* UIImage+Rotate.m */,
+			);
+			name = Helper;
+			sourceTree = "<group>";
+		};
+		9282915819F55014002C2719 /* 3rdParty */ = {
+			isa = PBXGroup;
+			children = (
+				9282915919F55022002C2719 /* Picker */,
+				9282915A19F55031002C2719 /* Fill */,
+				9282915B19F5503E002C2719 /* ColorPicker */,
+				9282915C19F5504F002C2719 /* ResizeView */,
+				9282915E19F55078002C2719 /* SemiModalView */,
+				9282915D19F5505A002C2719 /* Cropper */,
+			);
+			name = 3rdParty;
+			sourceTree = "<group>";
+		};
+		9282915919F55022002C2719 /* Picker */ = {
+			isa = PBXGroup;
+			children = (
+				928290EC19F54BAF002C2719 /* LCTableViewPickerControl.h */,
+				928290ED19F54BAF002C2719 /* LCTableViewPickerControl.m */,
+			);
+			name = Picker;
+			sourceTree = "<group>";
+		};
+		9282915A19F55031002C2719 /* Fill */ = {
+			isa = PBXGroup;
+			children = (
+				928290F819F54BAF002C2719 /* LinkedListStack.h */,
+				928290F919F54BAF002C2719 /* LinkedListStack.m */,
+				9282911219F54BAF002C2719 /* UIImage+FloodFill.h */,
+				9282911319F54BAF002C2719 /* UIImage+FloodFill.m */,
+			);
+			name = Fill;
+			sourceTree = "<group>";
+		};
+		9282915B19F5503E002C2719 /* ColorPicker */ = {
+			isa = PBXGroup;
+			children = (
+				928290FD19F54BAF002C2719 /* nko_brightness_guide.png */,
+				928290FE19F54BAF002C2719 /* nko_brightness_guide@2x.png */,
+				928290FF19F54BAF002C2719 /* nko_colormap.png */,
+				9282910019F54BAF002C2719 /* NKOColorPickerView.h */,
+				9282910119F54BAF002C2719 /* NKOColorPickerView.m */,
+			);
+			name = ColorPicker;
+			sourceTree = "<group>";
+		};
+		9282915C19F5504F002C2719 /* ResizeView */ = {
+			isa = PBXGroup;
+			children = (
+				9282910E19F54BAF002C2719 /* SPUserResizableView.h */,
+				9282910F19F54BAF002C2719 /* SPUserResizableView.m */,
+			);
+			name = ResizeView;
+			sourceTree = "<group>";
+		};
+		9282915D19F5505A002C2719 /* Cropper */ = {
+			isa = PBXGroup;
+			children = (
+				9282911A19F54BAF002C2719 /* YKImageCropperOverlayView.h */,
+				9282911B19F54BAF002C2719 /* YKImageCropperOverlayView.m */,
+				9282911C19F54BAF002C2719 /* YKImageCropperView.h */,
+				9282911D19F54BAF002C2719 /* YKImageCropperView.m */,
+			);
+			name = Cropper;
+			sourceTree = "<group>";
+		};
+		9282915E19F55078002C2719 /* SemiModalView */ = {
+			isa = PBXGroup;
+			children = (
+				9282911619F54BAF002C2719 /* UIViewController+KNSemiModal.h */,
+				9282911719F54BAF002C2719 /* UIViewController+KNSemiModal.m */,
+			);
+			name = SemiModalView;
 			sourceTree = "<group>";
 		};
 		929FE0011986484900B2A88D /* DarkBluegradientFeaturedCell */ = {
@@ -2595,6 +2832,7 @@
 		CD0CCE54170CB39600B70036 /* Catty */ = {
 			isa = PBXGroup;
 			children = (
+				928290D619F54BAF002C2719 /* pocketPaint */,
 				B4D940BC170EC670003DDBFA /* CustomExtensions */,
 				B4BCF409170ECFC3008EDF3A /* Delegates & Protocols */,
 				B4D940B3170EC5EE003DDBFA /* Defines */,
@@ -3104,6 +3342,7 @@
 				uk,
 				vi,
 				zh,
+				Base,
 			);
 			mainGroup = 29B97314FDCFA39411CA2CEA /* CustomTemplate */;
 			projectDirPath = "";
@@ -3132,11 +3371,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				CADBD6D919B0E8C200C62836 /* SSZipArchive.license in Resources */,
+				9282915219F54DD2002C2719 /* UIImage+FloodFill.license in Resources */,
 				CADBD6DA19B0E8C200C62836 /* BDKNotifyHUD.license in Resources */,
+				9282913719F54BAF002C2719 /* nko_colormap.png in Resources */,
 				CADBD6DB19B0E8C200C62836 /* IMPORTANT.caf in Resources */,
+				9282915119F54DD2002C2719 /* SPUserResizableView.license in Resources */,
 				CADBD6DC19B0E8C200C62836 /* My First Program.catrobat in Resources */,
 				CADBD6DD19B0E8C200C62836 /* LICENSE_FBShimmering in Resources */,
+				9282915419F54DD2002C2719 /* YKImageCropperView.license in Resources */,
 				CADBD6DE19B0E8C200C62836 /* OrderedDictionary.license in Resources */,
+				9282914E19F54DD2002C2719 /* ImageHelper.license in Resources */,
 				CADBD6DF19B0E8C200C62836 /* AHKActionSheet.license in Resources */,
 				CADBD6E019B0E8C200C62836 /* SMPageControl.license in Resources */,
 				CADBD6E119B0E8C200C62836 /* LICENSE_SWTableViewCell in Resources */,
@@ -3144,6 +3388,7 @@
 				CADBD6E319B0E8C200C62836 /* Images.xcassets in Resources */,
 				CADBD6E419B0E8C200C62836 /* minizip.license in Resources */,
 				CADBD6E519B0E8C200C62836 /* EAIntroView.license in Resources */,
+				9282915019F54DD2002C2719 /* NKOColorPickerView.license in Resources */,
 				CADBD6E619B0E8C200C62836 /* TTTAttributedLabel.license in Resources */,
 				CADBD6E719B0E8C200C62836 /* LXReorderableCollectionViewFlowLayout.license in Resources */,
 				CADBD6E819B0E8C200C62836 /* FXBlurView.license in Resources */,
@@ -3152,12 +3397,15 @@
 				CADBD6EC19B0E8C200C62836 /* LICENSE_NSString+FastImageSize in Resources */,
 				CADBD6ED19B0E8C200C62836 /* SharkfoodMuteSwitchDetector.license in Resources */,
 				CADBD6EE19B0E8C200C62836 /* LICENSE_AHKActionSheet in Resources */,
+				9282913619F54BAF002C2719 /* nko_brightness_guide@2x.png in Resources */,
 				CADBD6EF19B0E8C200C62836 /* LICENSE_LXReorderableCollectionViewFlowLayout in Resources */,
 				CADBD6F019B0E8C200C62836 /* Reachability.license in Resources */,
 				CADBD6F119B0E8C200C62836 /* LICENSE_UIViewController+Popup in Resources */,
+				9282914F19F54DD2002C2719 /* LCTableViewPickerControl.license in Resources */,
 				CADBD6F219B0E8C200C62836 /* LICENSE_TTTAttributedLabel in Resources */,
 				CADBD6F319B0E8C200C62836 /* LICENSE_FXBlurView in Resources */,
 				CADBD6F419B0E8C200C62836 /* Settings.bundle in Resources */,
+				9282913519F54BAF002C2719 /* nko_brightness_guide.png in Resources */,
 				CADBD6F519B0E8C200C62836 /* LICENSE_EVCircularProgressView in Resources */,
 				CADBD6F619B0E8C200C62836 /* NSString+FastImageSize.license in Resources */,
 				CADBD6F719B0E8C200C62836 /* LICENSE_BDKNotifyHUD in Resources */,
@@ -3167,6 +3415,7 @@
 				CADBD6FB19B0E8C200C62836 /* LICENSE_IBActionSheet in Resources */,
 				CADBD6FC19B0E8C200C62836 /* Localizable.strings in Resources */,
 				CADBD6FD19B0E8C200C62836 /* SWTableViewCell.license in Resources */,
+				9282915319F54DD2002C2719 /* UIViewController+KNSemiModal in Resources */,
 				CADBD6FF19B0E8C200C62836 /* FBShimmering.license in Resources */,
 				CADBD70019B0E8C200C62836 /* LoggerProperties.plist in Resources */,
 			);
@@ -3285,6 +3534,7 @@
 				CADBD71719B0E8C200C62836 /* CatrobatTableViewController.m in Sources */,
 				CADBD71819B0E8C200C62836 /* BrickCellInlineView.m in Sources */,
 				CADBD71919B0E8C200C62836 /* AppDelegate.m in Sources */,
+				9282913819F54BAF002C2719 /* NKOColorPickerView.m in Sources */,
 				CADBD71A19B0E8C200C62836 /* main.m in Sources */,
 				CADBD71B19B0E8C200C62836 /* ProgramTableHeaderView.m in Sources */,
 				CADBD71C19B0E8C200C62836 /* Brick.m in Sources */,
@@ -3295,6 +3545,7 @@
 				CADBD72119B0E8C200C62836 /* ChangeVariableBrickCell.m in Sources */,
 				CADBD72219B0E8C200C62836 /* BroadcastScript.m in Sources */,
 				CADBD72319B0E8C200C62836 /* SWUtilityButtonTapGestureRecognizer.m in Sources */,
+				9282912119F54BAF002C2719 /* ColorPickerViewController.m in Sources */,
 				CADBD72419B0E8C200C62836 /* ProgramTableViewController.m in Sources */,
 				CADBD72519B0E8C200C62836 /* OrderedDictionary.m in Sources */,
 				CADBD72619B0E8C200C62836 /* BroadcastWaitBrick.m in Sources */,
@@ -3304,6 +3555,7 @@
 				CADBD72A19B0E8C200C62836 /* WhenScriptCell.m in Sources */,
 				CADBD72B19B0E8C200C62836 /* ChangeBrightnessByNBrickCell.m in Sources */,
 				CADBD72C19B0E8C200C62836 /* AudioManager.m in Sources */,
+				9282913F19F54BAF002C2719 /* SPUserResizableView.m in Sources */,
 				CADBD72D19B0E8C200C62836 /* BDKNotifyHUD.m in Sources */,
 				CADBD72E19B0E8C200C62836 /* BroadcastWaitHandler.m in Sources */,
 				CADBD72F19B0E8C200C62836 /* CatrobatProgram.m in Sources */,
@@ -3311,11 +3563,15 @@
 				CADBD73119B0E8C200C62836 /* ChangeSizeByNBrick.m in Sources */,
 				CADBD73219B0E8C200C62836 /* ChangeVolumeByNBrick.m in Sources */,
 				CADBD73319B0E8C200C62836 /* ChangeXByNBrick.m in Sources */,
+				9282912219F54BAF002C2719 /* DrawTool.m in Sources */,
 				CADBD73419B0E8C200C62836 /* ChangeYByNBrick.m in Sources */,
 				CADBD73519B0E8C200C62836 /* PlaySoundBrickCell.m in Sources */,
 				CADBD73619B0E8C200C62836 /* ComeToFrontBrick.m in Sources */,
 				CADBD73719B0E8C200C62836 /* FileManager.m in Sources */,
+				9282914119F54BAF002C2719 /* UIImage+FloodFill.m in Sources */,
+				9282912019F54BAF002C2719 /* BrushPickerViewController.m in Sources */,
 				CADBD73819B0E8C200C62836 /* LXReorderableCollectionViewFlowLayout.m in Sources */,
+				9282914219F54BAF002C2719 /* UIImage+Rotate.m in Sources */,
 				CADBD73919B0E8C200C62836 /* ForeverBrick.m in Sources */,
 				CADBD73A19B0E8C200C62836 /* GlideToBrick.m in Sources */,
 				CADBD73B19B0E8C200C62836 /* GoNStepsBackBrick.m in Sources */,
@@ -3331,11 +3587,14 @@
 				CADBD74519B0E8C200C62836 /* NavigationController.m in Sources */,
 				CADBD74619B0E8C200C62836 /* RuntimeImageCache.m in Sources */,
 				CADBD74719B0E8C200C62836 /* CatrobatAlertView.m in Sources */,
+				9282913219F54BAF002C2719 /* LinkedListStack.m in Sources */,
+				9282914519F54BAF002C2719 /* YKImageCropperOverlayView.m in Sources */,
 				CADBD74819B0E8C200C62836 /* Parser.m in Sources */,
 				CADBD74919B0E8C200C62836 /* PlaceAtBrick.m in Sources */,
 				CADBD74A19B0E8C200C62836 /* PlaySoundBrick.m in Sources */,
 				CADBD74B19B0E8C200C62836 /* LookComboBoxView.m in Sources */,
 				CADBD74C19B0E8C200C62836 /* SWUtilityButtonView.m in Sources */,
+				9282913C19F54BAF002C2719 /* PointerTool.m in Sources */,
 				CADBD74D19B0E8C200C62836 /* UIUtil.m in Sources */,
 				924DEBFA19CAFB9900EED9CE /* MYBlurIntroductionView.m in Sources */,
 				CADBD74E19B0E8C200C62836 /* Program.m in Sources */,
@@ -3345,14 +3604,18 @@
 				CADBD75219B0E8C200C62836 /* UIImageView+CatrobatUIImageViewExtensions.m in Sources */,
 				CADBD75319B0E8C200C62836 /* Script.m in Sources */,
 				CADBD75419B0E8C200C62836 /* TurnLeftBrickCell.m in Sources */,
+				9282913E19F54BAF002C2719 /* RGBAHelper.m in Sources */,
 				CADBD75519B0E8C200C62836 /* SetBrightnessBrick.m in Sources */,
+				9282913919F54BAF002C2719 /* PaintViewController.m in Sources */,
 				CADBD75619B0E8C200C62836 /* MessageComboBoxView.m in Sources */,
 				CADBD75719B0E8C200C62836 /* SetYBrickCell.m in Sources */,
 				CADBD75819B0E8C200C62836 /* SetGhostEffectBrick.m in Sources */,
 				CADBD75919B0E8C200C62836 /* CatrobatAudioPlayer.m in Sources */,
 				CADBD75A19B0E8C200C62836 /* SetLookBrick.m in Sources */,
 				CADBD75B19B0E8C200C62836 /* SetSizeToBrick.m in Sources */,
+				9282913119F54BAF002C2719 /* LineTool.m in Sources */,
 				CADBD75C19B0E8C200C62836 /* LoopEndBrickCell.m in Sources */,
+				9282912519F54BAF002C2719 /* HandTool.m in Sources */,
 				CADBD75D19B0E8C200C62836 /* SetVolumeToBrick.m in Sources */,
 				CADBD75E19B0E8C200C62836 /* SetSizeToBrickCell.m in Sources */,
 				CADBD75F19B0E8C200C62836 /* StartScriptCell.m in Sources */,
@@ -3366,7 +3629,9 @@
 				CADBD76819B0E8C200C62836 /* Operators.m in Sources */,
 				CADBD76919B0E8C200C62836 /* SharkfoodMuteSwitchDetector.m in Sources */,
 				CADBD76A19B0E8C200C62836 /* ShowBrick.m in Sources */,
+				9282914619F54BAF002C2719 /* YKImageCropperView.m in Sources */,
 				CADBD76B19B0E8C200C62836 /* BrickCell.m in Sources */,
+				9282913419F54BAF002C2719 /* MirrorRotationZoomTool.m in Sources */,
 				CADBD76C19B0E8C200C62836 /* Sound.m in Sources */,
 				CADBD76D19B0E8C200C62836 /* SpeakBrick.m in Sources */,
 				CADBD76E19B0E8C200C62836 /* StartScript.m in Sources */,
@@ -3388,6 +3653,7 @@
 				CADBD77E19B0E8C200C62836 /* NSMutableArray+SWUtilityButtons.m in Sources */,
 				CADBD77F19B0E8C200C62836 /* WaitBrick.m in Sources */,
 				CADBD78019B0E8C200C62836 /* IfLogicElseBrickCell.m in Sources */,
+				9282912419F54BAF002C2719 /* FillTool.m in Sources */,
 				CADBD78119B0E8C200C62836 /* WhenScript.m in Sources */,
 				CADBD78219B0E8C200C62836 /* BrickScaleTransition.m in Sources */,
 				CADBD78319B0E8C200C62836 /* ObjectTableViewController.m in Sources */,
@@ -3417,9 +3683,12 @@
 				CADBD79B19B0E8C200C62836 /* DarkBlueGradientImageCell.m in Sources */,
 				CADBD79C19B0E8C200C62836 /* GDataXMLNode+PrettyFormatterExtensions.m in Sources */,
 				CADBD79D19B0E8C200C62836 /* Functions.m in Sources */,
+				9282913A19F54BAF002C2719 /* PipetteTool.m in Sources */,
 				CADBD79E19B0E8C200C62836 /* PlaceHolderView.m in Sources */,
 				CADBD79F19B0E8C200C62836 /* MyProgramsViewController.m in Sources */,
+				9282912619F54BAF002C2719 /* ImageHelper.m in Sources */,
 				CADBD7A019B0E8C200C62836 /* IfLogicBeginBrickCell.m in Sources */,
+				9282913D19F54BAF002C2719 /* ResizeViewManager.m in Sources */,
 				CADBD7A119B0E8C200C62836 /* ImageCache.m in Sources */,
 				CADBD7A219B0E8C200C62836 /* CatrobatInformation.m in Sources */,
 				CADBD7A319B0E8C200C62836 /* ProgramDetailStoreViewController.m in Sources */,
@@ -3427,6 +3696,7 @@
 				CADBD7A519B0E8C200C62836 /* NSData+Hashes.m in Sources */,
 				CADBD7A619B0E8C200C62836 /* SWCellScrollView.m in Sources */,
 				CADBD7A719B0E8C200C62836 /* CAGradientLayer+CatrobatCAGradientExtensions.m in Sources */,
+				9282912919F54BAF002C2719 /* LCTableViewPickerControl.m in Sources */,
 				CADBD7A819B0E8C200C62836 /* ChangeGhostEffectByNBrickCell.m in Sources */,
 				CADBD7A919B0E8C200C62836 /* DownloadTabBarController.m in Sources */,
 				CADBD7AA19B0E8C200C62836 /* RecentProgramsStoreViewController.m in Sources */,
@@ -3436,6 +3706,7 @@
 				CADBD7AE19B0E8C200C62836 /* ScenePresenterViewController.m in Sources */,
 				CADBD7AF19B0E8C200C62836 /* Reachability.m in Sources */,
 				CADBD7B019B0E8C200C62836 /* PointToBrickCell.m in Sources */,
+				9282914319F54BAF002C2719 /* UIViewController+KNSemiModal.m in Sources */,
 				CADBD7B119B0E8C200C62836 /* FBShimmeringView.m in Sources */,
 				CADBD7B219B0E8C200C62836 /* AHKActionSheetViewController.m in Sources */,
 				CADBD7B319B0E8C200C62836 /* MoveNStepsBrickCell.m in Sources */,
@@ -3456,6 +3727,7 @@
 				CADBD7C219B0E8C200C62836 /* SetVariableBrick.m in Sources */,
 				CADBD7C319B0E8C200C62836 /* UserVariable.m in Sources */,
 				CADBD7C419B0E8C200C62836 /* DataTransferMessage.m in Sources */,
+				9282914419F54BAF002C2719 /* UndoManager.m in Sources */,
 				CADBD7C519B0E8C200C62836 /* IBActionSheet.m in Sources */,
 				CADBD7C619B0E8C200C62836 /* Formula.m in Sources */,
 				CADBD7C719B0E8C200C62836 /* ShowBrickCell.m in Sources */,
@@ -3469,6 +3741,7 @@
 				CADBD7CF19B0E8C200C62836 /* ChangeVariableBrick.m in Sources */,
 				CADBD7D019B0E8C200C62836 /* ProgramManager.m in Sources */,
 				CADBD7D119B0E8C200C62836 /* SensorHandler.m in Sources */,
+				9282912719F54BAF002C2719 /* ImagePicker.m in Sources */,
 				CADBD7D219B0E8C200C62836 /* XMLObjectReference.m in Sources */,
 				CADBD7D319B0E8C200C62836 /* NoteBrick.m in Sources */,
 				CADBD7D419B0E8C200C62836 /* OrderedMapTable.m in Sources */,

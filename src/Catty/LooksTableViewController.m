@@ -49,6 +49,7 @@
 #import "CatrobatAlertView.h"
 #import "DataTransferMessage.h"
 #import "ProgramLoadingInfo.h"
+#import "PaintViewController.h"
 
 @interface LooksTableViewController () <CatrobatActionSheetDelegate, UIImagePickerControllerDelegate,
                                         UINavigationControllerDelegate, CatrobatAlertViewDelegate,
@@ -598,11 +599,15 @@ static NSCharacterSet *blockedCharacterSet = nil;
         } else if (buttonIndex == chooseImageIndex) {
             // choose picture from camera roll
             [self presentImagePicker:UIImagePickerControllerSourceTypeSavedPhotosAlbum];
-//        } else if (buttonIndex != actionSheet.cancelButtonIndex) {
-//            // implement this after Pocket Paint is fully integrated
-//            // draw new image
-//            NSLog(@"Draw new image");
-//            [Util showComingSoonAlertView];
+        } else if (buttonIndex != actionSheet.cancelButtonIndex) {
+            // implement this after Pocket Paint is fully integrated
+            // draw new image
+            NSDebug(@"Draw new image");
+            UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"iPhone" bundle:nil];
+            PaintViewController *vc = [storyboard instantiateViewControllerWithIdentifier:@"paint"];
+            vc.delegate = self;
+            [self.navigationController pushViewController:vc animated:YES];
+            
         }
     }
 }
@@ -623,7 +628,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
             [buttonTitles addObject:kLocalizedChooseImage];
         }
     }
-//    [buttonTitles addObject:kLocalizedDrawNewImage];
+    [buttonTitles addObject:kLocalizedDrawNewImage];
 
     [Util actionSheetWithTitle:kLocalizedAddLook
                       delegate:self
@@ -673,6 +678,60 @@ static NSCharacterSet *blockedCharacterSet = nil;
     UIBarButtonItem *invisibleButton = [[UIBarButtonItem alloc] initWithCustomView:imageView];
     self.toolbarItems = [NSArray arrayWithObjects:self.selectAllRowsButtonItem, invisibleButton, flexItem,
                          invisibleButton, deleteButton, nil];
+}
+
+#pragma mark paintDelegate
+-(void)addPaintedImage:(UIImage *)image
+{
+    NSLog(@"SAVING");
+    
+        // add image to object now
+    [self showLoadingView];
+    
+        NSData *imageData = UIImagePNGRepresentation(image);
+        NSString *lookName = @"TEST";
+            // use temporary filename, will be renamed by user afterwards
+        NSString *newImageFileName = [NSString stringWithFormat:@"temp_%@.%@",
+                                      [[[imageData md5] stringByReplacingOccurrencesOfString:@"-" withString:@""] uppercaseString],
+                                      kLocalizedMyImageExtension];
+        Look *look = [[Look alloc] initWithName:[Util uniqueName:lookName
+                                                   existingNames:[self.object allLookNames]]
+                                        andPath:newImageFileName];
+        
+            // TODO: outsource this to FileManager
+        NSString *newImagePath = [NSString stringWithFormat:@"%@%@/%@",
+                                  [self.object projectPath], kProgramImagesDirName, newImageFileName];
+        NSDebug(@"Writing file to disk");
+                // leaving the main queue here!
+            NSBlockOperation* saveOp = [NSBlockOperation blockOperationWithBlock:^{
+                    // save image to programs directory
+                [imageData writeToFile:newImagePath atomically:YES];
+            }];
+                // completion block is NOT executed on the main queue
+            [saveOp setCompletionBlock:^{
+                    // execute this on the main queue
+                [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+                    [self hideLoadingView];
+                    [self showPlaceHolder:([self.object.lookList count] == 0)];
+                    
+                        // ask user for image name
+                    [Util askUserForTextAndPerformAction:@selector(addLookActionWithName:look:)
+                                                  target:self
+                                              withObject:look
+                                             promptTitle:kLocalizedAddImage
+                                           promptMessage:[NSString stringWithFormat:@"%@:", kLocalizedImageName]
+                                             promptValue:look.name
+                                       promptPlaceholder:kLocalizedEnterYourImageNameHere
+                                          minInputLength:kMinNumOfLookNameCharacters
+                                          maxInputLength:kMaxNumOfLookNameCharacters
+                                     blockedCharacterSet:[self blockedCharacterSet]
+                                invalidInputAlertMessage:kLocalizedInvalidImageNameDescription];
+                }];
+            }];
+            NSOperationQueue *queue = [[NSOperationQueue alloc] init];
+            [queue addOperation:saveOp];
+
+
 }
 
 @end
