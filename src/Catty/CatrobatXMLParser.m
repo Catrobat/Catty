@@ -29,6 +29,9 @@
 #import <objc/runtime.h>
 #import <Foundation/NSObjCRuntime.h>
 #import "CatrobatLanguageDefines.h"
+#import "SpriteObject.h"
+#import "Look.h"
+#import "Sound.h"
 
 #define kCatroidXMLPrefix               @"org.catrobat.catroid.content."
 #define kCatroidXMLSpriteList           @"spriteList"
@@ -190,7 +193,7 @@
     //       + determine which properties should be hooked up
     Program *program = [[Program alloc] init];
     program.header = [self parseAndCreateHeader:rootElement];
-//    program.objectList = [self parseAndCreateObjects];
+    program.objectList = [self parseAndCreateObjects:rootElement];
 //    TODO: continue...
     return program;
 }
@@ -200,34 +203,176 @@
 {
     // TODO: create InvalidHeaderException class
     Header *header = [Header defaultHeader];
-    NSArray *headerElement = [programElement elementsForName:@"header"];
-    if ((! headerElement) || ([headerElement count] != 1)) {
+    NSArray *headerNodes = [programElement elementsForName:@"header"];
+    if ([headerNodes count] != 1) {
         [NSException raise:@"InvalidHeaderException" format:@"Invalid header given!"];
     }
-    NSArray *headerPropertyElements = [[headerElement firstObject] children];
-    if (! [headerPropertyElements count]) {
+    NSArray *headerPropertyNodes = [[headerNodes firstObject] children];
+    if (! [headerPropertyNodes count]) {
         [NSException raise:@"InvalidHeaderException" format:@"No parsed properties found in header!"];
     }
 
     NSLog(@"<header>");
 
     // Note: WEAK (!) properties are not yet supported!!
-    for (GDataXMLElement *headerPropertyElement in headerPropertyElements) {
-        if (! headerPropertyElement) {
-            [NSException raise:@"InvalidHeaderException" format:@"Parsed an empty header entry from xml!"];
+    for (GDataXMLNode *headerPropertyNode in headerPropertyNodes) {
+        if (! headerPropertyNode) {
+            [NSException raise:@"InvalidHeaderException" format:@"Parsed an empty header entry!"];
         }
-        id value = [self valueForHeaderPropertyElement:headerPropertyElement];
-        NSLog(@"<%@>%@</%@>", headerPropertyElement.name, value, headerPropertyElement.name);
-        NSString *headerPropertyName = headerPropertyElement.name;
+        id value = [self valueForHeaderPropertyNode:headerPropertyNode];
+        NSLog(@"<%@>%@</%@>", headerPropertyNode.name, value, headerPropertyNode.name);
+        NSString *headerPropertyName = headerPropertyNode.name;
 
         // consider special case: name of property description in header is programDescription
-        if ([headerPropertyElement.name isEqualToString:@"description"]) {
+        if ([headerPropertyNode.name isEqualToString:@"description"]) {
             headerPropertyName = @"programDescription";
         }
         [header setValue:value forKey:headerPropertyName];
     }
     NSLog(@"</header>");
     return header;
+}
+
+#pragma mark Object parsing
+- (NSMutableArray*)parseAndCreateObjects:(GDataXMLElement*)programElement
+{
+    // TODO: create InvalidObjectException class
+    NSArray *objectListElements = [programElement elementsForName:@"objectList"];
+    if ([objectListElements count] != 1) {
+        [NSException raise:@"InvalidObjectException" format:@"No objectList given!"];
+    }
+    NSArray *objectElements = [[objectListElements firstObject] children];
+    if (! [objectElements count]) {
+        [NSException raise:@"InvalidObjectException"
+                    format:@"No objects found in objectList, but there must be at least 1 object => background object!!"];
+    }
+
+    NSLog(@"<objectList>");
+
+    NSMutableArray *objectList = [NSMutableArray arrayWithCapacity:[objectElements count]];
+
+    // TODO: support for WEAK (!) properties required here!!
+    for (GDataXMLElement *objectElement in objectElements) {
+        if (! objectElement) {
+            [NSException raise:@"InvalidObjectException" format:@"Parsed an empty object entry!"];
+        }
+
+        NSArray *attributes = [objectElement attributes];
+        if ([attributes count] != 1) {
+            [NSException raise:@"InvalidObjectException"
+                        format:@"Parsed name-attribute of object is invalid or empty!"];
+        }
+
+        SpriteObject *spriteObject = [[SpriteObject alloc] init];
+        GDataXMLNode *attribute = [attributes firstObject];
+        GDataXMLElement *pointedObjectElement = nil;
+        // check if normal or pointed object
+        if ([attribute.name isEqualToString:@"name"]) {
+            spriteObject.name = [attribute stringValue];
+        } else if ([attribute.name isEqualToString:@"reference"]) {
+            NSString *xPath = [attribute stringValue];
+            NSArray *queriedObjects = [objectElement nodesForXPath:xPath error:nil];
+            if ([queriedObjects count] != 1) {
+                [NSException raise:@"InvalidObjectException"
+                            format:@"Invalid reference in object. No or too many pointed objects found!"];
+            }
+            pointedObjectElement = [queriedObjects firstObject];
+            GDataXMLNode *nameAttribute = [pointedObjectElement attributeForName:@"name"];
+            if (! nameAttribute) {
+                [NSException raise:@"InvalidObjectException"
+                            format:@"PointedObject must contain a name attribute"];
+            }
+            spriteObject.name = [nameAttribute stringValue];
+        } else {
+            [NSException raise:@"InvalidObjectException" format:@"Unsupported attribute: %@!", attribute.name];
+        }
+        NSLog(@"<object name=\"%@\">", spriteObject.name);
+
+        spriteObject.lookList = [self parseAndCreateLooks:(pointedObjectElement ? pointedObjectElement : objectElement)];
+        spriteObject.soundList = [self parseAndCreateSounds:(pointedObjectElement ? pointedObjectElement : objectElement)];
+// TODO: implement this...
+//        spriteObject.scriptList = [self parseAndCreateSounds:(pointedObjectElement ? pointedObjectElement : objectElement)];
+        [objectList addObject:spriteObject];
+    }
+    NSLog(@"</objectList>");
+    return objectList;
+}
+
+- (NSMutableArray*)parseAndCreateLooks:(GDataXMLElement*)objectElement
+{
+    NSArray *lookListElements = [objectElement elementsForName:@"lookList"];
+    if ([lookListElements count] != 1) {
+        [NSException raise:@"InvalidObjectException" format:@"No lookList given!"];
+    }
+
+    NSArray *lookElements = [[lookListElements firstObject] children];
+    if (! [lookElements count]) {
+        return nil;
+    }
+
+    NSMutableArray *lookList = [NSMutableArray arrayWithCapacity:[lookElements count]];
+    for (GDataXMLElement *lookElement in lookElements) {
+        Look *look = [[Look alloc] init];
+        GDataXMLNode *nameAttribute = [lookElement attributeForName:@"name"];
+        if (! nameAttribute) {
+            [NSException raise:@"InvalidObjectException"
+                        format:@"Look must contain a name attribute"];
+        }
+        look.name = [nameAttribute stringValue];
+        NSArray *lookChildElements = [lookElement children];
+        if ([lookChildElements count] != 1) {
+            [NSException raise:@"InvalidObjectException"
+                        format:@"Look must contain a filename child node"];
+        }
+        GDataXMLNode *fileNameElement = [lookChildElements firstObject];
+        if (! [fileNameElement.name isEqualToString:@"fileName"]) {
+            [NSException raise:@"InvalidObjectException"
+                        format:@"Look contains wrong child node"];
+        }
+        look.fileName = [fileNameElement stringValue];
+    }
+    return lookList;
+}
+
+- (NSMutableArray*)parseAndCreateSounds:(GDataXMLElement*)objectElement
+{
+    NSArray *soundListElements = [objectElement elementsForName:@"soundList"];
+    // TODO: increase readability, use macros for such sanity checks...
+    if ([soundListElements count] != 1) {
+        [NSException raise:@"InvalidObjectException" format:@"No soundList given!"];
+    }
+
+    NSArray *soundElements = [[soundListElements firstObject] children];
+    if (! [soundElements count]) {
+        return nil;
+    }
+
+    NSMutableArray *soundList = [NSMutableArray arrayWithCapacity:[soundElements count]];
+    for (GDataXMLElement *soundElement in soundElements) {
+        Sound *sound = [[Sound alloc] init];
+        NSArray *soundChildElements = [soundElement children];
+        if ([soundChildElements count] != 2) {
+            [NSException raise:@"InvalidObjectException"
+                        format:@"Sound must contain two child nodes"];
+        }
+
+        GDataXMLNode *nameChildNode = [soundChildElements firstObject];
+        GDataXMLNode *fileNameChildNode = [soundChildElements lastObject];
+
+        // swap values (if needed)
+        if ([fileNameChildNode.name isEqualToString:@"name"] && [nameChildNode.name isEqualToString:@"fileName"]) {
+            nameChildNode = fileNameChildNode;
+            fileNameChildNode = nameChildNode;
+        }
+
+        if ((! [nameChildNode.name isEqualToString:@"name"]) || (! [fileNameChildNode.name isEqualToString:@"fileName"])) {
+            [NSException raise:@"InvalidObjectException"
+                        format:@"Sound must contains wrong child node(s)"];
+        }
+        sound.name = [nameChildNode stringValue];
+        sound.fileName = [fileNameChildNode stringValue];
+    }
+    return soundList;
 }
 
 #pragma mark - Helpers
@@ -246,29 +391,29 @@
     return buffer;
 }
 
-- (id)valueForHeaderPropertyElement:(GDataXMLElement*)propertyElement
+- (id)valueForHeaderPropertyNode:(GDataXMLNode*)propertyNode
 {
-    objc_property_t property = class_getProperty([Header class], [propertyElement.name UTF8String]);
+    objc_property_t property = class_getProperty([Header class], [propertyNode.name UTF8String]);
     if (! property) {
         [NSException raise:@"InvalidHeaderException"
-                    format:@"Invalid header property %@ given", propertyElement.name];
+                    format:@"Invalid header property %@ given", propertyNode.name];
     }
 
     NSString *propertyType = [NSString stringWithUTF8String:[self typeStringForProperty:property]];
     id value = nil;
     if ([propertyType isEqualToString:kParserObjectTypeString]) {
-        value = [propertyElement stringValue];
+        value = [propertyNode stringValue];
     } else if ([propertyType isEqualToString:kParserObjectTypeNumber]) {
-        value = [NSNumber numberWithFloat:[[propertyElement stringValue]floatValue]];
+        value = [NSNumber numberWithFloat:[[propertyNode stringValue]floatValue]];
     } else if ([propertyType isEqualToString:kParserObjectTypeDate]) {
         NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
         [dateFormatter setTimeZone:[NSTimeZone systemTimeZone]];
         [dateFormatter setDateFormat:kCatrobatHeaderDateTimeFormat];
-        value = [dateFormatter dateFromString:propertyElement.stringValue];
+        value = [dateFormatter dateFromString:propertyNode.stringValue];
     } else {
         [NSException raise:@"InvalidHeaderException"
                     format:@"Unsupported type for property %@ (of type: %@) in header",
-                           propertyElement.name, propertyType];
+                           propertyNode.name, propertyType];
     }
     return value;
 }
