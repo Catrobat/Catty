@@ -20,37 +20,11 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
+#import "Program.h"
 
-#import <UIKit/UIKit.h>
-#import <SpriteKit/SpriteKit.h>
-#import "UIDefines.h"
-#import "LanguageTranslationDefines.h"
-#import "BrickProtocol.h"
+@interface Program (CustomExtensions)
 
-@class Brick;
-@class SpriteObject;
-@class GDataXMLElement;
-
-@interface Script : SKNode <BrickProtocol>
-
-@property (nonatomic, readonly) kBrickCategoryType brickCategoryType;
-@property (nonatomic, readonly) kBrickType brickType;
-@property (nonatomic, strong, readonly) NSString *brickTitle;
-- (BOOL)isSelectableForObject;
-
-@property (atomic) BOOL allowRunNextAction;
-@property (nonatomic, weak) SpriteObject *object;
-@property (nonatomic, strong) NSString *action;
-@property (strong, nonatomic) NSMutableArray *brickList;
-
-- (void)startWithCompletion:(dispatch_block_t)block;
-
-- (void)stop;
-
-- (GDataXMLElement*)toXMLforObject:(SpriteObject*)spriteObject;
-
-- (instancetype)deepCopy;
-
-- (NSString*)description;
+- (void)updateReferences;
+- (void)removeReferences;
 
 @end

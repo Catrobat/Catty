@@ -27,14 +27,8 @@
 @interface CatrobatXMLParser : NSObject <CatrobatParserProtocol>
 
 - (id)initWithPath:(NSString*)path;
-
-- (CGFloat)detectLanguageVersion;
-
+- (CGFloat)detectLanguageVersion; // FIXME: outsource this method to Util class AND remove it from the protocol!!
 - (BOOL)isSupportedLanguageVersion:(CGFloat)languageVersion;
-
 - (Program*)parseAndCreateProgram;
-
-// FIXME: remove that after serialization has been fully implemented...
-@property (strong, nonatomic) GDataXMLDocument *XMLdocument;
 
 @end

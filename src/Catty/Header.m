@@ -23,6 +23,7 @@
 #import "Header.h"
 #import "GDataXMLNode+PrettyFormatterExtensions.h"
 #import "Util.h"
+#import "CatrobatLanguageDefines.h"
 
 @implementation Header
 
@@ -45,10 +46,10 @@
     header.remixOf = nil;
     header.screenHeight = @([Util screenHeight]);
     header.screenWidth = @([Util screenWidth]);
-    header.screenMode = kCatrobatScreenModeStretch;
+    header.screenMode = kCatrobatHeaderScreenModeStretch;
     header.url = nil;
     header.userHandle = nil;
-    header.programScreenshotManuallyTaken = kCatrobatProgramScreenshotDefaultValue;
+    header.programScreenshotManuallyTaken = kCatrobatHeaderProgramScreenshotDefaultValue;
     header.tags = nil;
     header.programID = nil;
     return header;
@@ -58,7 +59,7 @@
 {
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     [dateFormatter setTimeZone:[NSTimeZone systemTimeZone]];
-    [dateFormatter setDateFormat:@"yyyy-MM-ddHH:mm:ss"];
+    [dateFormatter setDateFormat:kCatrobatHeaderDateTimeFormat];
 
     GDataXMLElement *headerXMLElement = [GDataXMLNode elementWithName:@"header"];
     [headerXMLElement addChild:[GDataXMLNode elementWithName:@"applicationBuildName"

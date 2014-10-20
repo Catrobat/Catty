@@ -342,7 +342,7 @@
 		CADBD7F519B0E8C200C62836 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DE3F093711B7B9DC009D4DB0 /* AVFoundation.framework */; };
 		CADBD7F619B0E8C200C62836 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DE3F093911B7B9DC009D4DB0 /* AudioToolbox.framework */; };
 		CADBD7F719B0E8C200C62836 /* OpenAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DE3F097711B7BABD009D4DB0 /* OpenAL.framework */; };
-		CAEB7F1219F4497B00A2A251 /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = B405BAC7175DD3F600B1A0FC /* libxml2.dylib */; };
+		CAEB7F1619F45D3400A2A251 /* Program+CustomExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = CAEB7F1519F45D3400A2A251 /* Program+CustomExtensions.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -853,6 +853,9 @@
 		CAE9A2BF197D52AF008F7C9A /* CatrobatAlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CatrobatAlertView.m; sourceTree = "<group>"; };
 		CAE9A2C2197D8964008F7C9A /* DataTransferMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataTransferMessage.h; sourceTree = "<group>"; };
 		CAE9A2C3197D8964008F7C9A /* DataTransferMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataTransferMessage.m; sourceTree = "<group>"; };
+		CAEB7F1419F45D3400A2A251 /* Program+CustomExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Program+CustomExtensions.h"; sourceTree = "<group>"; };
+		CAEB7F1519F45D3400A2A251 /* Program+CustomExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Program+CustomExtensions.m"; sourceTree = "<group>"; };
+		CAEB7F1819F48ED700A2A251 /* CatrobatLanguageDefines.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CatrobatLanguageDefines.h; sourceTree = "<group>"; };
 		CAEDFB7F17EF759500FDED0E /* ObjectTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ObjectTableViewController.h; sourceTree = "<group>"; };
 		CAEDFB8017EF759500FDED0E /* ObjectTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ObjectTableViewController.m; sourceTree = "<group>"; };
 		CAEDFB8317EFC98E00FDED0E /* AppDefines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDefines.h; sourceTree = "<group>"; };
@@ -984,7 +987,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CAEB7F1219F4497B00A2A251 /* libxml2.dylib in Frameworks */,
 				CADBD7E519B0E8C200C62836 /* SystemConfiguration.framework in Frameworks */,
 				CADBD7E619B0E8C200C62836 /* CoreImage.framework in Frameworks */,
 				CADBD7E719B0E8C200C62836 /* AssetsLibrary.framework in Frameworks */,
@@ -1354,12 +1356,13 @@
 		B400302C170EB45200396DB7 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				B46475321770F60E00CD277F /* AudioManager */,
 				92E3351618FBB3340056C390 /* InternetConnection */,
 				CAFE18D7192813DC003AB961 /* NavigationController */,
 				CA688215180B46CB008A7C99 /* DataStructures */,
 				B44F32A71737BBB800BD97AC /* SensorHandler */,
 				B400302E170EB47600396DB7 /* FileManager */,
-				B46475321770F60E00CD277F /* AudioManager */,
+				B4DEFC89170F456D00DD1939 /* GDataXMLNode */,
 				B4D940D5170ECA19003DDBFA /* ImageCache */,
 				CD0CD004170CBFEE00B70036 /* minizip */,
 				CA047EC118C782320078BE08 /* BrickManager */,
@@ -1783,6 +1786,7 @@
 			isa = PBXGroup;
 			children = (
 				CAB01BE618FC884F00DFA6B8 /* LanguageTranslationDefines.h */,
+				CAEB7F1819F48ED700A2A251 /* CatrobatLanguageDefines.h */,
 				CAF619B61809BE2100647BAA /* ButtonTags.h */,
 				B4BCF42A170ED480008EDF3A /* ActionSheetAlertViewTags.h */,
 				B4D940B4170EC600003DDBFA /* CellTagDefines.h */,
@@ -1820,6 +1824,7 @@
 				CA882037192E76AE00E5D515 /* ProgramTableViewController+UnitTestingExtensions */,
 				CACEF95C18452A8A00D199D8 /* Brick+UnitTestingExtensions */,
 				CAB3637218F599BD00AB8401 /* NSDate+CustomExtensions */,
+				CAEB7F1719F45D3900A2A251 /* Program+CustomExtensions */,
 			);
 			name = CustomExtensions;
 			sourceTree = "<group>";
@@ -2193,7 +2198,6 @@
 			children = (
 				B4DEFC8E170F464200DD1939 /* TestParser.h */,
 				B4DEFC8F170F464200DD1939 /* TestParser.m */,
-				B4DEFC89170F456D00DD1939 /* GDataXMLNode */,
 				B4DEFC8A170F457700DD1939 /* ProjectParser */,
 				B4DEFC8B170F458000DD1939 /* Parser */,
 				B4B7BAC51738E21B000BDC94 /* XMLObjectReference */,
@@ -2574,6 +2578,15 @@
 				CAE9A2C3197D8964008F7C9A /* DataTransferMessage.m */,
 			);
 			name = DataTransferMessage;
+			sourceTree = "<group>";
+		};
+		CAEB7F1719F45D3900A2A251 /* Program+CustomExtensions */ = {
+			isa = PBXGroup;
+			children = (
+				CAEB7F1419F45D3400A2A251 /* Program+CustomExtensions.h */,
+				CAEB7F1519F45D3400A2A251 /* Program+CustomExtensions.m */,
+			);
+			name = "Program+CustomExtensions";
 			sourceTree = "<group>";
 		};
 		CAEBC91918E5A1D800554CA2 /* EVCircularProgressView */ = {
@@ -3089,7 +3102,7 @@
 						TestTargetID = CADBD6D319B0E8C200C62836;
 					};
 					CADBD6D319B0E8C200C62836 = {
-						DevelopmentTeam = 9NJ4SV439Q;
+						DevelopmentTeam = 4V6T7BCGGR;
 					};
 				};
 			};
@@ -3358,6 +3371,7 @@
 				CADBD74019B0E8C200C62836 /* SaveToProjectActivity.m in Sources */,
 				CADBD74119B0E8C200C62836 /* TurnRightBrickCell.m in Sources */,
 				CADBD74219B0E8C200C62836 /* LoopEndBrick.m in Sources */,
+				CAEB7F1619F45D3400A2A251 /* Program+CustomExtensions.m in Sources */,
 				CADBD74319B0E8C200C62836 /* BroadcastScriptCell.m in Sources */,
 				CADBD74419B0E8C200C62836 /* NextLookBrick.m in Sources */,
 				CADBD74519B0E8C200C62836 /* NavigationController.m in Sources */,

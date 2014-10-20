@@ -37,6 +37,7 @@
 #import "UserVariable.h"
 #import "OrderedMapTable.h"
 #import "CatrobatXMLParser.h"
+#import "CatrobatLanguageDefines.h"
 
 @implementation Program
 
@@ -99,13 +100,9 @@
         parser = [[Parser alloc] init];
         program = [parser generateObjectForProgramWithPath:xmlPath];
     } else {
-        // TODO: continue here...
-        NSLog(@"!!! NEW PARSER IS NOT IMPLEMENTED YET !!!");
-        return nil;
+        program = [catrobatParser parseAndCreateProgram];
     }
-
     program.header.programID = loadingInfo.programID;
-    program.XMLdocument = parser.XMLdocument;
 
     if (! program)
         return nil;
@@ -360,7 +357,7 @@
         GDataXMLDocument *document = [[GDataXMLDocument alloc] initWithRootElement:[self toXML]];
         //    NSData *xmlData = document.XMLData;
         NSString *xmlString = [NSString stringWithFormat:@"%@\n%@",
-                               kCatrobatXMLDeclaration,
+                               kCatrobatHeaderXMLDeclaration,
                                [document.rootElement XMLStringPrettyPrinted:YES]];
         // TODO: outsource this to file manager
         NSError *error = nil;

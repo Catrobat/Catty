@@ -29,7 +29,4 @@
 
 - (Program*)generateObjectForProgramWithPath:(NSString*)path;
 
-// FIXME: remove that after serialization works
-@property (strong, nonatomic) GDataXMLDocument *XMLdocument;
-
 @end

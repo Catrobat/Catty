@@ -20,37 +20,39 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
+#import "Program+CustomExtensions.h"
+#import "SpriteObject.h"
+#import "Brick.h"
+#import "Script.h"
 
-#import <UIKit/UIKit.h>
-#import <SpriteKit/SpriteKit.h>
-#import "UIDefines.h"
-#import "LanguageTranslationDefines.h"
-#import "BrickProtocol.h"
+@implementation Program (CustomExtensions)
 
-@class Brick;
-@class SpriteObject;
-@class GDataXMLElement;
+- (void)updateReferences
+{
+    for (SpriteObject *sprite in self.objectList) {
+        sprite.program = self;
+        for (Script *script in sprite.scriptList) {
+            script.allowRunNextAction = YES;
+            for (Brick *brick in script.brickList) {
+                brick.object = sprite;
+            }
+        }
+    }
+}
 
-@interface Script : SKNode <BrickProtocol>
-
-@property (nonatomic, readonly) kBrickCategoryType brickCategoryType;
-@property (nonatomic, readonly) kBrickType brickType;
-@property (nonatomic, strong, readonly) NSString *brickTitle;
-- (BOOL)isSelectableForObject;
-
-@property (atomic) BOOL allowRunNextAction;
-@property (nonatomic, weak) SpriteObject *object;
-@property (nonatomic, strong) NSString *action;
-@property (strong, nonatomic) NSMutableArray *brickList;
-
-- (void)startWithCompletion:(dispatch_block_t)block;
-
-- (void)stop;
-
-- (GDataXMLElement*)toXMLforObject:(SpriteObject*)spriteObject;
-
-- (instancetype)deepCopy;
-
-- (NSString*)description;
+- (void)removeReferences
+{
+    for (SpriteObject *sprite in self.objectList) {
+        sprite.broadcastWaitDelegate = nil;
+        sprite.spriteManagerDelegate = nil;
+        for (Script *script in sprite.scriptList) {
+            script.allowRunNextAction = NO;
+            for (Brick *brick in script.brickList) {
+                brick.object = nil;
+            }
+        }
+        sprite.program = nil;
+    }
+}
 
 @end
