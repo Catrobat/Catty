@@ -36,7 +36,7 @@
 #import "LanguageTranslationDefines.h"
 #import "UserVariable.h"
 #import "OrderedMapTable.h"
-#import "CatrobatXMLParser.h"
+#import "CBXMLParser.h"
 #import "CatrobatLanguageDefines.h"
 
 @implementation Program
@@ -86,9 +86,7 @@
     NSDebug(@"XML-Path: %@", xmlPath);
 
     Program *program = nil;
-    Parser *parser = nil;
-    CatrobatXMLParser *catrobatParser = [[CatrobatXMLParser alloc] initWithPath:xmlPath];
-    CGFloat languageVersion = [catrobatParser detectLanguageVersion];
+    CGFloat languageVersion = [Util detectCBLanguageVersionFromXMLWithPath:xmlPath];
 
     if (languageVersion == kCatrobatInvalidVersion) {
         NSLog(@"Invalid catrobat language version!");
@@ -96,8 +94,9 @@
     }
 
     // detect right parser for correct catrobat language version
+    CBXMLParser *catrobatParser = [[CBXMLParser alloc] initWithPath:xmlPath];
     if (! [catrobatParser isSupportedLanguageVersion:languageVersion]) {
-        parser = [[Parser alloc] init];
+        Parser *parser = [[Parser alloc] init];
         program = [parser generateObjectForProgramWithPath:xmlPath];
     } else {
         program = [catrobatParser parseAndCreateProgram];

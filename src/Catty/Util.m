@@ -33,6 +33,8 @@
 #import "DataTransferMessage.h"
 #import "UIImage+CatrobatUIImageExtensions.h"
 #import "MYBlurIntroductionView.h"
+#import "CatrobatLanguageDefines.h"
+#import "NSString+CatrobatNSStringExtensions.h"
 
 @interface Util () <CatrobatAlertViewDelegate, UITextFieldDelegate>
 
@@ -507,6 +509,74 @@
         }
     } while (duplicate);
     return uniqueFinalName;
+}
+
++ (CGFloat)detectCBLanguageVersionFromXMLWithPath:(NSString*)xmlPath
+{
+    NSError *error;
+    NSString *xmlString = [NSString stringWithContentsOfFile:xmlPath
+                                                    encoding:NSUTF8StringEncoding
+                                                       error:&error];
+    // sanity check
+    if (error || ! xmlString) {
+        return kCatrobatInvalidVersion;
+    }
+    // get the end of the xml header
+    NSArray *xmlStringChunks = [xmlString componentsSeparatedByString:@"</header>"];
+    if (! [xmlStringChunks count]) {
+        return kCatrobatInvalidVersion;
+    }
+    // extract header
+    NSString *xmlStringHeaderChunk = [xmlStringChunks firstObject];
+    if (! xmlStringHeaderChunk) {
+        return kCatrobatInvalidVersion;
+    }
+
+    // extract catrobatLanguageVersion field out of header
+    NSString *languageVersionString = [xmlStringHeaderChunk stringBetweenString:@"<catrobatLanguageVersion>"
+                                                                      andString:@"</catrobatLanguageVersion>"
+                                                                    withOptions:NSCaseInsensitiveSearch];
+    if (! languageVersionString) {
+        return kCatrobatInvalidVersion;
+    }
+    
+    // handle language versions that contain more than one dot-separator!
+    // e.g. => convert 0.9.2 to 0.0902
+    //      => convert 0.10.2 to 0.1002
+    //      => convert 0.9.2.1 to 0.090201
+    NSArray *languageVersionNumberParts = [languageVersionString componentsSeparatedByString:@"."];
+    if ([languageVersionNumberParts count] > 1) {
+        NSUInteger index = 0;
+        NSString *majorVersionNumberString = [languageVersionNumberParts objectAtIndex:index];
+        NSString *subVersionNumberString = [languageVersionNumberParts objectAtIndex:(index+1)];
+        NSUInteger subVersionNumber = [subVersionNumberString integerValue];
+        if (subVersionNumber < 10) {
+            subVersionNumberString = [@"0" stringByAppendingString:subVersionNumberString];
+        }
+        NSMutableString *filteredLanguageVersionString = [NSMutableString stringWithFormat:@"%@.%@",
+                                                          majorVersionNumberString,
+                                                          subVersionNumberString];
+        for (index = 2; index < [languageVersionNumberParts count]; ++index) {
+            NSString *subSubVersionNumberString = [languageVersionNumberParts objectAtIndex:index];
+            NSUInteger subSubVersionNumber = [subSubVersionNumberString integerValue];
+            if (subSubVersionNumber < 10) {
+                subSubVersionNumberString = [@"0" stringByAppendingString:subSubVersionNumberString];
+            }
+            [filteredLanguageVersionString appendString:subSubVersionNumberString];
+        }
+        languageVersionString = [filteredLanguageVersionString copy];
+    }
+    
+    // check if string contains valid number
+    if (! [languageVersionString isValidNumber]) {
+        return kCatrobatInvalidVersion;
+    }
+    
+    CGFloat languageVersion = (CGFloat)[languageVersionString floatValue];
+    if (languageVersion < 0.0f) {
+        return kCatrobatInvalidVersion;
+    }
+    return languageVersion;
 }
 
 + (double)radiansToDegree:(double)rad
