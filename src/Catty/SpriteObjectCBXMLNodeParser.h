@@ -20,16 +20,10 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import <Foundation/Foundation.h>
+#import "CBParserNodeProtocol.h"
 
-@class Program;
+@interface SpriteObjectCBXMLNodeParser : NSObject <CBParserNodeProtocol>
 
-@protocol CatrobatParserProtocol <NSObject>
-
-@required
-- (id)initWithPath:(NSString*)path;
-- (CGFloat)detectLanguageVersion;
-- (BOOL)isSupportedLanguageVersion:(CGFloat)languageVersion;
-- (Program*)parseAndCreateProgram;
+- (id)parseFromElement:(GDataXMLElement*)xmlElement;
 
 @end

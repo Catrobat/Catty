@@ -24,7 +24,7 @@
 		9236B38B19DA85B000495474 /* Launch Screen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9236B38A19DA85B000495474 /* Launch Screen.xib */; };
 		924DEBFA19CAFB9900EED9CE /* MYBlurIntroductionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 924DEBF619CAFB9900EED9CE /* MYBlurIntroductionView.m */; };
 		924DEBFC19CAFB9900EED9CE /* MYIntroductionPanel.m in Sources */ = {isa = PBXBuildFile; fileRef = 924DEBF819CAFB9900EED9CE /* MYIntroductionPanel.m */; };
-		CA2932C719EDD32800DB6701 /* CatrobatXMLParser.m in Sources */ = {isa = PBXBuildFile; fileRef = CA2932C619EDD32800DB6701 /* CatrobatXMLParser.m */; };
+		CA2932C719EDD32800DB6701 /* CBXMLParser.m in Sources */ = {isa = PBXBuildFile; fileRef = CA2932C619EDD32800DB6701 /* CBXMLParser.m */; };
 		CA538EA519B0EA09008240AB /* ChangeGhostEffectByNBrickTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 92C37A431856264700547C1E /* ChangeGhostEffectByNBrickTests.m */; };
 		CA538EA619B0EA09008240AB /* ProgramTableViewControllerExistingProgramsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = CA52403518AD782600052914 /* ProgramTableViewControllerExistingProgramsTests.m */; };
 		CA538EA719B0EA09008240AB /* HideBrickTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 92C37A3F185625E700547C1E /* HideBrickTests.m */; };
@@ -62,6 +62,8 @@
 		CA538EC919B0EA09008240AB /* test2.png in Resources */ = {isa = PBXBuildFile; fileRef = 92345632192E270B00464E6B /* test2.png */; };
 		CA538ECA19B0EA09008240AB /* test.png in Resources */ = {isa = PBXBuildFile; fileRef = 923453C1192D2D5F00464E6B /* test.png */; };
 		CA5D7FE519EC44480085D5AA /* BaseCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA5D7FE419EC44480085D5AA /* BaseCollectionViewController.m */; };
+		CA66CB6F19F6A99400D849E0 /* SpriteObjectCBXMLNodeParser.m in Sources */ = {isa = PBXBuildFile; fileRef = CA66CB6E19F6A99400D849E0 /* SpriteObjectCBXMLNodeParser.m */; };
+		CA66CB7519F6B42400D849E0 /* CBXMLValidator.m in Sources */ = {isa = PBXBuildFile; fileRef = CA66CB7419F6B42400D849E0 /* CBXMLValidator.m */; };
 		CADBD6D919B0E8C200C62836 /* SSZipArchive.license in Resources */ = {isa = PBXBuildFile; fileRef = 4C9E2D3A198F685D00455B77 /* SSZipArchive.license */; };
 		CADBD6DA19B0E8C200C62836 /* BDKNotifyHUD.license in Resources */ = {isa = PBXBuildFile; fileRef = 4C9E2D22198EAD1800455B77 /* BDKNotifyHUD.license */; };
 		CADBD6DB19B0E8C200C62836 /* IMPORTANT.caf in Resources */ = {isa = PBXBuildFile; fileRef = CA1B802B1971ACE300D8E79B /* IMPORTANT.caf */; };
@@ -690,11 +692,11 @@
 		CA1498841989D1A60069A21E /* UIViewController+CWPopup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIViewController+CWPopup.m"; path = "UIViewController+CWPopup/UIViewController+CWPopup.m"; sourceTree = "<group>"; };
 		CA1B7A1D18E1D9B700452234 /* ProgramUpdateDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ProgramUpdateDelegate.h; sourceTree = "<group>"; };
 		CA1B802B1971ACE300D8E79B /* IMPORTANT.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = IMPORTANT.caf; sourceTree = "<group>"; };
-		CA2932C519EDD32800DB6701 /* CatrobatXMLParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CatrobatXMLParser.h; sourceTree = "<group>"; };
-		CA2932C619EDD32800DB6701 /* CatrobatXMLParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CatrobatXMLParser.m; sourceTree = "<group>"; };
+		CA2932C519EDD32800DB6701 /* CBXMLParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CBXMLParser.h; sourceTree = "<group>"; };
+		CA2932C619EDD32800DB6701 /* CBXMLParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CBXMLParser.m; sourceTree = "<group>"; };
 		CA3BFA5A197F0D0900DA86C9 /* NSMutableArray+CustomExtensions.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSMutableArray+CustomExtensions.h"; sourceTree = "<group>"; };
 		CA3BFA5B197F0DD300DA86C9 /* NSMutableArray+CustomExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableArray+CustomExtensions.m"; sourceTree = "<group>"; };
-		CA41895919F42703008DC1F1 /* CatrobatParserProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CatrobatParserProtocol.h; sourceTree = "<group>"; };
+		CA41895919F42703008DC1F1 /* CBParserProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CBParserProtocol.h; sourceTree = "<group>"; };
 		CA43DD341809976900F95B88 /* UIImageView+CatrobatUIImageViewExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImageView+CatrobatUIImageViewExtensions.h"; sourceTree = "<group>"; };
 		CA43DD351809976900F95B88 /* UIImageView+CatrobatUIImageViewExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+CatrobatUIImageViewExtensions.m"; sourceTree = "<group>"; };
 		CA51A55C198481ED00FFCB45 /* BDKNotifyHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BDKNotifyHUD.h; path = BDKNotifyHUD/BDKNotifyHUD.h; sourceTree = "<group>"; };
@@ -708,6 +710,10 @@
 		CA5FED4F18B0070300A517B6 /* BrickCellInlineView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BrickCellInlineView.m; sourceTree = "<group>"; };
 		CA5FED5218B019B200A517B6 /* UIUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIUtil.h; sourceTree = "<group>"; };
 		CA5FED5318B019B200A517B6 /* UIUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIUtil.m; sourceTree = "<group>"; };
+		CA66CB6D19F6A99400D849E0 /* SpriteObjectCBXMLNodeParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpriteObjectCBXMLNodeParser.h; sourceTree = "<group>"; };
+		CA66CB6E19F6A99400D849E0 /* SpriteObjectCBXMLNodeParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpriteObjectCBXMLNodeParser.m; sourceTree = "<group>"; };
+		CA66CB7319F6B42400D849E0 /* CBXMLValidator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CBXMLValidator.h; sourceTree = "<group>"; };
+		CA66CB7419F6B42400D849E0 /* CBXMLValidator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CBXMLValidator.m; sourceTree = "<group>"; };
 		CA688200180AEEC2008A7C99 /* BaseTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseTableViewController.h; sourceTree = "<group>"; };
 		CA688204180B0148008A7C99 /* BaseTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseTableViewController.m; sourceTree = "<group>"; };
 		CA68820C180B39BB008A7C99 /* ColoredCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ColoredCell.h; sourceTree = "<group>"; };
@@ -813,6 +819,7 @@
 		CA8C7252192BB9A100167ECD /* BrickCellProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BrickCellProtocol.h; sourceTree = "<group>"; };
 		CA9B7EA018FFCC0400F1790D /* NSData+Hashes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+Hashes.h"; sourceTree = "<group>"; };
 		CA9B7EA118FFCC0400F1790D /* NSData+Hashes.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+Hashes.m"; sourceTree = "<group>"; };
+		CAA1D0A319F689FA00A7DE47 /* CBParserNodeProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CBParserNodeProtocol.h; sourceTree = "<group>"; };
 		CAA443B3192410D00076BA35 /* BrickProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BrickProtocol.h; sourceTree = "<group>"; };
 		CAA96AFC18E4B21F00763409 /* SoundPickerTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SoundPickerTableViewController.h; sourceTree = "<group>"; };
 		CAA96AFD18E4B21F00763409 /* SoundPickerTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SoundPickerTableViewController.m; sourceTree = "<group>"; };
@@ -2208,8 +2215,10 @@
 		CA5D7FE219EC28610085D5AA /* New Parser */ = {
 			isa = PBXGroup;
 			children = (
-				CA2932C519EDD32800DB6701 /* CatrobatXMLParser.h */,
-				CA2932C619EDD32800DB6701 /* CatrobatXMLParser.m */,
+				CA2932C519EDD32800DB6701 /* CBXMLParser.h */,
+				CA2932C619EDD32800DB6701 /* CBXMLParser.m */,
+				CA66CB7319F6B42400D849E0 /* CBXMLValidator.h */,
+				CA66CB7419F6B42400D849E0 /* CBXMLValidator.m */,
 			);
 			name = "New Parser";
 			sourceTree = "<group>";
@@ -2487,6 +2496,15 @@
 			name = ProgramTests;
 			sourceTree = "<group>";
 		};
+		CAA1D0A419F68A0200A7DE47 /* Parser */ = {
+			isa = PBXGroup;
+			children = (
+				CA41895919F42703008DC1F1 /* CBParserProtocol.h */,
+				CAA1D0A319F689FA00A7DE47 /* CBParserNodeProtocol.h */,
+			);
+			name = Parser;
+			sourceTree = "<group>";
+		};
 		CAA443B5192412AF0076BA35 /* Delegates */ = {
 			isa = PBXGroup;
 			children = (
@@ -2503,7 +2521,7 @@
 			children = (
 				CAA443B3192410D00076BA35 /* BrickProtocol.h */,
 				CA8C7252192BB9A100167ECD /* BrickCellProtocol.h */,
-				CA41895919F42703008DC1F1 /* CatrobatParserProtocol.h */,
+				CAA1D0A419F68A0200A7DE47 /* Parser */,
 			);
 			name = Protocols;
 			sourceTree = "<group>";
@@ -2933,6 +2951,8 @@
 			children = (
 				CD639C79170DF52600FA67DA /* SpriteObject.h */,
 				CD639C7A170DF52600FA67DA /* SpriteObject.m */,
+				CA66CB6D19F6A99400D849E0 /* SpriteObjectCBXMLNodeParser.h */,
+				CA66CB6E19F6A99400D849E0 /* SpriteObjectCBXMLNodeParser.m */,
 			);
 			name = Sprite;
 			sourceTree = "<group>";
@@ -3329,6 +3349,7 @@
 				CADBD71619B0E8C200C62836 /* ChangeBrightnessByNBrick.m in Sources */,
 				CADBD71719B0E8C200C62836 /* CatrobatTableViewController.m in Sources */,
 				CADBD71819B0E8C200C62836 /* BrickCellInlineView.m in Sources */,
+				CA66CB6F19F6A99400D849E0 /* SpriteObjectCBXMLNodeParser.m in Sources */,
 				CADBD71919B0E8C200C62836 /* AppDelegate.m in Sources */,
 				CADBD71A19B0E8C200C62836 /* main.m in Sources */,
 				CADBD71B19B0E8C200C62836 /* ProgramTableHeaderView.m in Sources */,
@@ -3360,6 +3381,7 @@
 				CADBD73519B0E8C200C62836 /* PlaySoundBrickCell.m in Sources */,
 				CADBD73619B0E8C200C62836 /* ComeToFrontBrick.m in Sources */,
 				CADBD73719B0E8C200C62836 /* FileManager.m in Sources */,
+				CA66CB7519F6B42400D849E0 /* CBXMLValidator.m in Sources */,
 				CADBD73819B0E8C200C62836 /* LXReorderableCollectionViewFlowLayout.m in Sources */,
 				CADBD73919B0E8C200C62836 /* ForeverBrick.m in Sources */,
 				CADBD73A19B0E8C200C62836 /* GlideToBrick.m in Sources */,
@@ -3493,7 +3515,7 @@
 				CADBD7B819B0E8C200C62836 /* AHKActionSheet.m in Sources */,
 				CADBD7B919B0E8C200C62836 /* SWLongPressGestureRecognizer.m in Sources */,
 				CADBD7BA19B0E8C200C62836 /* FXBlurView.m in Sources */,
-				CA2932C719EDD32800DB6701 /* CatrobatXMLParser.m in Sources */,
+				CA2932C719EDD32800DB6701 /* CBXMLParser.m in Sources */,
 				CADBD7BB19B0E8C200C62836 /* HelpWebViewController.m in Sources */,
 				CADBD7BC19B0E8C200C62836 /* BaseWebViewController.m in Sources */,
 				CADBD7BD19B0E8C200C62836 /* SpeakBrickCell.m in Sources */,

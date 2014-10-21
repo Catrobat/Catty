@@ -20,15 +20,13 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import "CatrobatParserProtocol.h"
+#import <Foundation/Foundation.h>
 
-@class GDataXMLDocument;
+@class GDataXMLElement;
 
-@interface CatrobatXMLParser : NSObject <CatrobatParserProtocol>
+@protocol CBParserNodeProtocol <NSObject>
 
-- (id)initWithPath:(NSString*)path;
-- (CGFloat)detectLanguageVersion; // FIXME: outsource this method to Util class AND remove it from the protocol!!
-- (BOOL)isSupportedLanguageVersion:(CGFloat)languageVersion;
-- (Program*)parseAndCreateProgram;
+@required
+- (id)parseFromElement:(GDataXMLElement*)xmlElement;
 
 @end

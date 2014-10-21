@@ -20,8 +20,14 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import "Brick.h"
+#import "CBParserProtocol.h"
 
-@interface ClearGraphicEffectBrick : Brick
+@class GDataXMLDocument;
+
+@interface CBXMLParser : NSObject <CBParserProtocol>
+
+- (id)initWithPath:(NSString*)path;
+- (BOOL)isSupportedLanguageVersion:(CGFloat)languageVersion;
+- (Program*)parseAndCreateProgram;
 
 @end

@@ -20,8 +20,15 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import "Brick.h"
+#import <Foundation/Foundation.h>
 
-@interface ClearGraphicEffectBrick : Brick
+@class Program;
+
+@protocol CBParserProtocol <NSObject>
+
+@required
+- (id)initWithPath:(NSString*)path;
+- (BOOL)isSupportedLanguageVersion:(CGFloat)languageVersion;
+- (Program*)parseAndCreateProgram;
 
 @end
