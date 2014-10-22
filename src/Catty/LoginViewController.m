@@ -29,6 +29,10 @@
 
 static NSString *const usernameParameterID = @"registrationUsername";
 static NSString *const passwordParameterID = @"registrationPassword";
+static NSString *const registrationEmailParameterID = @"registrationEmail";
+static NSString *const registrationCountryParameterID = @"registrationCountry";
+
+bool useTestUrl = true;
 
 @interface LoginViewController ()
 @property (nonatomic, strong) NSURLConnection *connection;
@@ -41,7 +45,6 @@ static NSString *const passwordParameterID = @"registrationPassword";
 {
     [super viewDidLoad];
     self.navigationItem.title = kLocalizedUpload;
-    //self.view.backgroundColor = [UIColor backgroundColor];
     self.view.backgroundColor = [UIColor darkBlueColor];
     
     [[UITabBarItem appearance] setTitleTextAttributes:@{NSFontAttributeName : [UIFont fontWithName:@"HelveticaNeue-Bold" size:10.0f],
@@ -92,9 +95,11 @@ static NSString *const passwordParameterID = @"registrationPassword";
     //Example URL: https://pocketcode.org/api/loginOrRegister/loginOrRegister.json?registrationUsername=MaxMuster&registrationPassword=MyPassword
     //For testing use: https://catroid-test.catrob.at/api/loginOrRegister/loginOrRegister.json?registrationUsername=MaxMuster&registrationPassword=MyPassword
     
-    NSString *urlString = [NSString stringWithFormat:@"%@/%@?%@=%@&%@=%@", kTestLoginOrRegisterUrl, kConnectionLoginOrRegister, usernameParameterID, username, passwordParameterID, password];
+    NSString *uploadUrlBase = useTestUrl ? kTestLoginOrRegisterUrl : kLoginOrRegisterUrl;
+    NSString *urlString = [NSString stringWithFormat:@"%@/%@?%@=%@&%@=%@", uploadUrlBase, kConnectionLoginOrRegister, usernameParameterID, username, passwordParameterID, password];
     NSDebug(@"URL string: %@", urlString);
     
+    /*
     NSURL *url = [NSURL URLWithString:urlString];
     NSURLRequest *request = [NSURLRequest requestWithURL:url cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:kConnectionTimeout];
     
@@ -102,6 +107,29 @@ static NSString *const passwordParameterID = @"registrationPassword";
     self.connection = connection;
     
     NSDebug(@"Finished custom query to server");
+     */
+    
+    NSString *post = [NSString stringWithFormat:@"%@=%@&%@=%@",usernameParameterID, username, passwordParameterID, password];
+    NSData *postData = [[NSData alloc] initWithContentsOfFile:post];
+    //NSData *postData = [post dataUsingEncoding:NSASCIIStringEncoding allowLossyConversion:YES];
+    NSString *postLength = [NSString stringWithFormat:@"%lu",(unsigned long)[postData length]];
+    
+    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
+    [request setURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@/%@", uploadUrlBase, kConnectionLoginOrRegister]]];
+    [request setHTTPMethod:@"POST"];
+    [request setValue:postLength forHTTPHeaderField:@"Content-Length"];
+    [request setHTTPBody:postData];
+    
+    NSURLConnection *connection = [[NSURLConnection alloc] initWithRequest:request delegate:self];
+    self.connection = connection;
+    
+    [self.connection start];
+    
+    if(self.connection) {
+        NSLog(@"Connection Successful");
+    } else {
+        NSLog(@"Connection could not be made");
+    }
 }
 
 
@@ -114,39 +142,25 @@ static NSString *const passwordParameterID = @"registrationPassword";
     }
 }
 
+- (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error
+{
+    NSDebug(@"NSURLConnection ERROR: %@", error);
+}
+
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection
 {
     if (self.connection == connection) {
         NSDebug(@"Finished loading");
         
-//        self.searchResults = nil;
-//        self.searchResults = [[NSMutableArray alloc] init];
-//        
-//        NSError *error = nil;
-//        id jsonObject = [NSJSONSerialization JSONObjectWithData:self.data
-//                                                        options:NSJSONReadingMutableContainers
-//                                                          error:&error];
-//        
-//        NSDebug(@"array: %@", jsonObject);
-//        
-//        if ([jsonObject isKindOfClass:[NSDictionary class]]) {
-//            NSDictionary *catrobatInformation = [jsonObject valueForKey:@"CatrobatInformation"];
-//            
-//            CatrobatInformation *information = [[CatrobatInformation alloc] initWithDict:catrobatInformation];
-//            
-//            NSArray *catrobatProjects = [jsonObject valueForKey:@"CatrobatProjects"];
-//            
-//            self.searchResults = [[NSMutableArray alloc] initWithCapacity:[catrobatProjects count]];
-//            
-//            for (NSDictionary *projectDict in catrobatProjects) {
-//                CatrobatProgram *project = [[CatrobatProgram alloc] initWithDict:projectDict andBaseUrl:information.baseURL];
-//                [self.searchResults addObject:project];
-//            }
-//        }
-//        self.data = nil;
-//        self.connection = nil;
-//        [self update];
-//        [self loadingIndicator:NO];
+        NSError *error = nil;
+        id jsonObject = [NSJSONSerialization JSONObjectWithData:self.data
+                                                        options:NSJSONReadingMutableContainers
+                                                          error:&error];
+        
+        NSDebug(@"Returnvalue is: %@", jsonObject);
+        
+        self.data = nil;
+        self.connection = nil;
     }
 }
 

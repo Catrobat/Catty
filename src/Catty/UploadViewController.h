@@ -23,9 +23,9 @@
 #import <UIKit/UIKit.h>
 
 @interface UploadViewController : UIViewController
+@property (weak, nonatomic) IBOutlet UILabel *sizeValueLabel;
 
 @property (weak, nonatomic) IBOutlet UILabel *sizeLabel;
-@property (weak, nonatomic) IBOutlet UITextField *sizeTextField;
 @property (weak, nonatomic) IBOutlet UILabel *programLabel;
 @property (weak, nonatomic) IBOutlet UITextField *programTextField;
 @property (weak, nonatomic) IBOutlet UILabel *descriptionLabel;

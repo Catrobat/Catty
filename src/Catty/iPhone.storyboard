@@ -781,12 +781,6 @@
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="XXX.X KB" borderStyle="roundedRect" minimumFontSize="17" id="q8n-IY-vmH">
-                                <rect key="frame" x="16" y="143" width="288" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="My first program" borderStyle="roundedRect" minimumFontSize="17" id="161-PM-BR6">
                                 <rect key="frame" x="16" y="231" width="288" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -809,6 +803,13 @@
                                     <action selector="uploadButtonClicked:" destination="soW-p8-wI4" eventType="touchUpInside" id="EVP-dZ-iwR"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="XXX.X KB" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="e21-w8-Huu">
+                                <rect key="frame" x="16" y="143" width="288" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
@@ -819,7 +820,7 @@
                         <outlet property="programLabel" destination="08p-fh-yZH" id="rmq-Uz-ydi"/>
                         <outlet property="programTextField" destination="161-PM-BR6" id="fX9-37-Cc5"/>
                         <outlet property="sizeLabel" destination="w0S-YE-QuR" id="5p0-nY-5UZ"/>
-                        <outlet property="sizeTextField" destination="q8n-IY-vmH" id="uI9-BQ-QQs"/>
+                        <outlet property="sizeValueLabel" destination="e21-w8-Huu" id="jes-6p-ydc"/>
                         <outlet property="uploadButton" destination="fUj-7T-5ai" id="ide-iB-DTK"/>
                     </connections>
                 </viewController>

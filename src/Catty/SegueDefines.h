@@ -21,7 +21,6 @@
  */
 
 #define kSegueToContinue @"segueToContinue"
-#define kSegueToContinue @"segueToContinue"
 #define kSegueToNewProgram @"segueToNewProgram"
 #define kSegueToPrograms @"segueToPrograms"
 #define kSegueToHelp @"segueToHelp"

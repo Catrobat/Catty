@@ -59,11 +59,13 @@ NS_ENUM(NSInteger, ViewControllerIndex) {
     kLoginVC
 };
 
+bool loggedIn = false; //only for testing purpose
+
 @interface CatrobatTableViewController () <UITextFieldDelegate, MYIntroductionDelegate>
 
 @property (nonatomic, strong) NSArray *cells;
 @property (nonatomic, strong) NSArray *imageNames;
-@property (nonatomic, strong) NSArray *identifiers;
+@property (nonatomic, strong) NSMutableArray *identifiers;
 @property (nonatomic, strong) Program *lastUsedProgram;
 @property (nonatomic, strong) Program *defaultProgram;
 @property (nonatomic, strong) Reachability *reachability;
@@ -168,7 +170,16 @@ static NSCharacterSet *blockedCharacterSet = nil;
                   kLocalizedExplore,
                   kLocalizedUpload, nil];
     self.imageNames = [[NSArray alloc] initWithObjects:kMenuImageNameContinue, kMenuImageNameNew, kMenuImageNamePrograms, kMenuImageNameHelp, kMenuImageNameExplore, kMenuImageNameUpload, nil];
-    self.identifiers = [[NSArray alloc] initWithObjects:kSegueToContinue, kSegueToNewProgram, kSegueToPrograms, kSegueToHelp, kSegueToExplore, kSegueToLogin, nil];
+
+    self.identifiers = [[NSMutableArray alloc] initWithObjects:kSegueToContinue, kSegueToNewProgram, kSegueToPrograms, kSegueToHelp, kSegueToExplore, nil];
+    
+    if (loggedIn) {
+        //kSegueToUpload
+        [self.identifiers addObject:kSegueToUpload];
+    } else {
+        //kSegueToLogin
+        [self.identifiers addObject:kSegueToLogin];
+    }
 }
 
 - (void)initNavigationBar
@@ -445,6 +456,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
 
 - (void)dealloc
 {
+    [self.identifiers removeAllObjects]; //Is this needed?
     [[NSNotificationCenter defaultCenter] removeObserver:self name:kReachabilityChangedNotification object:nil];
 }
 
