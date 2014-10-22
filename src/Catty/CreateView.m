@@ -22,7 +22,7 @@
 
 #import <QuartzCore/QuartzCore.h>
 #import "CreateView.h"
-#import "CatrobatProject.h"
+#import "CatrobatProgram.h"
 #import "UIColor+CatrobatUIColorExtensions.h"
 #import "ImageCache.h"
 #import "CAGradientLayer+CatrobatCAGradientExtensions.h"
@@ -45,81 +45,55 @@
 
 +(CGFloat)height
 {
-    return [Util getScreenHeight];
+    return [Util screenHeight];
 }
 
-+ (UIView*)createProgramDetailView:(CatrobatProject*)project target:(id)target
++ (UIView*)createProgramDetailView:(CatrobatProgram*)project target:(id)target
 {
-    if([self height] == kIphone4ScreenHeight || [self height] == kIphone5ScreenHeight)
-    {
-        UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 0)];
-        view.backgroundColor = [UIColor clearColor];
-        [view setAutoresizingMask:UIViewAutoresizingFlexibleHeight];
-        [self addNameLabelWithProjectName:project.projectName toView:view];
-        [self addAuthorLabelWithAuthor:project.author toView:view];
-        [self addAuthorImageToView:view];
-        [self addNumberOfDownloadsImagetoView:view];
-        [self addNumberOfDownloadsWithDownloads:project.downloads toView:view];
-        
-        [self addProgramDescriptionLabelWithDescription:project.projectDescription toView:view target:target];
-        [self addThumbnailImageWithImageUrlString:project.screenshotSmall toView:view];
+    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, [Util screenWidth], 0)];
+    view.backgroundColor = [UIColor clearColor];
+    [view setAutoresizingMask:UIViewAutoresizingFlexibleHeight];
+    [self addNameLabelWithProjectName:project.projectName toView:view];
+    [self addAuthorLabelWithAuthor:project.author toView:view];
+    [self addAuthorImageToView:view];
+    [self addNumberOfDownloadsImagetoView:view];
+    [self addNumberOfDownloadsWithDownloads:project.downloads toView:view];
+    
+    [self addProgramDescriptionLabelWithDescription:project.projectDescription toView:view target:target];
+    [self addThumbnailImageWithImageUrlString:project.screenshotSmall toView:view];
         //[self addBigImageWithImageUrlString:project.screenshotBig toView:view];
-        [self addDownloadButtonToView:view withTarget:target];
-        [self addLoadingButtonToView:view withTarget:target];
-        [self addPlayButtonToView:view withTarget:target];
-        
-        
-        NSDate *projectDate = [NSDate dateWithTimeIntervalSince1970:[project.uploaded doubleValue]];
-        NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-        [dateFormatter setDateStyle:NSDateFormatterMediumStyle];
-        
-        NSString *uploaded = [dateFormatter stringFromDate:projectDate];
-        [self addInformationLabelToView:view withAuthor:project.author downloads:project.downloads uploaded:uploaded version:project.size views:project.views];
-        
-        return view;
-    }else{
-        UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 768, 0)];
-        view.backgroundColor = [UIColor clearColor];
-        [view setAutoresizingMask:UIViewAutoresizingFlexibleHeight];
-        [self addNameLabelWithProjectName:project.projectName toView:view];
-        [self addAuthorLabelWithAuthor:project.author toView:view];
-        [self addAuthorImageToView:view];
-        [self addNumberOfDownloadsImagetoView:view];
-        [self addNumberOfDownloadsWithDownloads:project.downloads toView:view];
-        [self addThumbnailImageWithImageUrlString:project.screenshotSmall toView:view];
-        [self addProgramDescriptionLabelWithDescription:project.projectDescription toView:view target:target];
-        //        [self addBigImageWithImageUrlString:project.screenshotBig toView:view];
-        [self addDownloadButtonToView:view withTarget:target];
-        [self addLoadingButtonToView:view withTarget:target];
-        [self addPlayButtonToView:view withTarget:target];
-        
-        NSDate *projectDate = [NSDate dateWithTimeIntervalSince1970:[project.uploaded doubleValue]];
-        NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-        [dateFormatter setDateStyle:NSDateFormatterMediumStyle];
-        
-        NSString *uploaded = [dateFormatter stringFromDate:projectDate];
-        [self addInformationLabelToView:view withAuthor:project.author downloads:project.downloads uploaded:uploaded version:project.size views:project.views];
-        return view;
-    }
+    [self addDownloadButtonToView:view withTarget:target];
+    [self addLoadingButtonToView:view withTarget:target];
+    [self addPlayButtonToView:view withTarget:target];
+    
+    
+    NSDate *projectDate = [NSDate dateWithTimeIntervalSince1970:[project.uploaded doubleValue]];
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateStyle:NSDateFormatterMediumStyle];
+    
+    NSString *uploaded = [dateFormatter stringFromDate:projectDate];
+    [self addInformationLabelToView:view withAuthor:project.author downloads:project.downloads uploaded:uploaded version:project.size views:project.views];
+    
+    return view;
 }
 
 + (void)addNameLabelWithProjectName:(NSString*)projectName toView:(UIView*)view
 {
     CGFloat height = [self height];
-    UILabel* nameLabel = [[UILabel alloc] initWithFrame:CGRectMake(view.frame.size.width/2-10,height*0.05, 155, 25)];
+    UILabel* nameLabel = [[UILabel alloc] initWithFrame:CGRectMake(view.frame.size.width/2-10,height*0.05f, 155, 25)];
     nameLabel.text = projectName;
     nameLabel.lineBreakMode = NSLineBreakByWordWrapping;
     nameLabel.numberOfLines = 2;
     [self configureTitleLabel:nameLabel andHeight: height];
     [nameLabel sizeToFit];
-    [self setMaxHeightIfGreaterForView:view withHeight:height*0.1+nameLabel.frame.size.height];
+    [self setMaxHeightIfGreaterForView:view withHeight:height*0.1f+nameLabel.frame.size.height];
     
     [view addSubview:nameLabel];
 }
 + (void)addAuthorImageToView:(UIView*)view
 {
     CGFloat height = [self height];
-    UIImageView* authorImage = [[UIImageView alloc] initWithFrame:CGRectMake(view.frame.size.width/2-10, height*0.12+5, 15, 15)];
+    UIImageView* authorImage = [[UIImageView alloc] initWithFrame:CGRectMake(view.frame.size.width/2-10, height*0.12f+5, 15, 15)];
     authorImage.image = [UIImage imageNamed:@"authorIcon"];
     [view addSubview:authorImage];
     [self setMaxHeightIfGreaterForView:view withHeight:authorImage.frame.origin.y+authorImage.frame.size.height];
@@ -130,7 +104,7 @@
 + (void)addAuthorLabelWithAuthor:(NSString*)author toView:(UIView*)view
 {
     CGFloat height = [self height];
-    UILabel* authorLabel = [[UILabel alloc] initWithFrame:CGRectMake(view.frame.size.width/2+20, height*0.12, 155, 25)];
+    UILabel* authorLabel = [[UILabel alloc] initWithFrame:CGRectMake(view.frame.size.width/2+20, height*0.12f, 155, 25)];
     authorLabel.text = author;
     [self configureAuthorLabel:authorLabel andHeight:height];
     [view addSubview:authorLabel];
@@ -141,7 +115,7 @@
 + (void)addNumberOfDownloadsImagetoView:(UIView*)view
 {
     CGFloat height = [self height];
-    UIImageView* downloadsImage = [[UIImageView alloc] initWithFrame:CGRectMake(view.frame.size.width/2-10, height*0.17+5, 15, 15)];
+    UIImageView* downloadsImage = [[UIImageView alloc] initWithFrame:CGRectMake(view.frame.size.width/2-10, height*0.17f+5, 15, 15)];
     downloadsImage.image = [UIImage imageNamed:@"downloadIcon"];
     [view addSubview:downloadsImage];
     [self setMaxHeightIfGreaterForView:view withHeight:downloadsImage.frame.origin.y+downloadsImage.frame.size.height];
@@ -151,7 +125,7 @@
 + (void)addNumberOfDownloadsWithDownloads:(NSNumber*)downloads toView:(UIView*)view
 {
     CGFloat height = [self height];
-    UILabel* downloadsLabel = [[UILabel alloc] initWithFrame:CGRectMake(view.frame.size.width/2+20, height*0.17, 155, 25)];
+    UILabel* downloadsLabel = [[UILabel alloc] initWithFrame:CGRectMake(view.frame.size.width/2+20, height*0.17f, 155, 25)];
     downloadsLabel.text = [NSString stringWithFormat:@"%ld",(long)downloads.integerValue];
     [self configureTextLabel:downloadsLabel andHeight:height];
     [view addSubview:downloadsLabel];
@@ -162,9 +136,9 @@
 + (CGFloat)addProgramDescriptionLabelWithDescription:(NSString*)description toView:(UIView*)view target:(id)target
 {
     CGFloat height = [self height];
-    UILabel* descriptionTitleLabel = [[UILabel alloc] initWithFrame:CGRectMake(view.frame.size.width/15, height*0.35, 155, 25)];
+    UILabel* descriptionTitleLabel = [[UILabel alloc] initWithFrame:CGRectMake(view.frame.size.width/15, height*0.35f, 155, 25)];
     [self configureTitleLabel:descriptionTitleLabel andHeight:height];
-    descriptionTitleLabel.text = kUILabelTextDescription;
+    descriptionTitleLabel.text = kLocalizedDescription;
     [view addSubview:descriptionTitleLabel];
     
     description = [description stringByReplacingOccurrencesOfString:@"<br>" withString:@""];
@@ -172,7 +146,7 @@
     
     
     if ((! description) || [description isEqualToString:@""]) {
-        description = kUILabelTextNoDescriptionAvailable;
+        description = kLocalizedNoDescriptionAvailable;
         
     }
     
@@ -195,9 +169,9 @@
     
     TTTAttributedLabel* descriptionLabel = [[TTTAttributedLabel alloc] init];
     if (height == kIpadScreenHeight) {
-        descriptionLabel.frame = CGRectMake(view.frame.size.width/15, height*0.35+40, 540, expectedSize.height);
+        descriptionLabel.frame = CGRectMake(view.frame.size.width/15, height*0.35f+40, 540, expectedSize.height);
     }else{
-        descriptionLabel.frame = CGRectMake(view.frame.size.width/15, height*0.35+40, 280, expectedSize.height);
+        descriptionLabel.frame = CGRectMake(view.frame.size.width/15, height*0.35f+40, 280, expectedSize.height);
     }
     
     
@@ -208,7 +182,7 @@
     //    expectedSize = [descriptionLabel.text sizeWithFont:[UIFont systemFontOfSize:14] constrainedToSize:maximumLabelSize lineBreakMode:NSLineBreakByWordWrapping];
     descriptionLabel.frame = CGRectMake(descriptionLabel.frame.origin.x, descriptionLabel.frame.origin.y, descriptionLabel.frame.size.width, expectedSize.height);
     [view addSubview:descriptionLabel];
-    [self setMaxHeightIfGreaterForView:view withHeight:height*0.35+40+expectedSize.height];
+    [self setMaxHeightIfGreaterForView:view withHeight:height*0.35f+40+expectedSize.height];
     return descriptionLabel.frame.size.height;
 }
 
@@ -216,7 +190,7 @@
 {
     UIImageView *imageView = [[UIImageView alloc] init];
     UIImage* errorImage = [UIImage imageNamed:@"thumbnail_large"];
-    imageView.frame = CGRectMake(view.frame.size.width/15, view.frame.size.height*0.1, view.frame.size.width/3, [Util getScreenHeight]/4.5f);
+    imageView.frame = CGRectMake(view.frame.size.width/15, view.frame.size.height*0.1, view.frame.size.width/3, [Util screenHeight]/4.5f);
     imageView.image = [UIImage imageWithContentsOfURL:[NSURL URLWithString:imageUrlString]
                                      placeholderImage:nil
                                            errorImage:errorImage
@@ -288,10 +262,10 @@
 
 + (void) addDownloadButtonToView:(UIView*)view withTarget:(id)target
 {
-    UIButton *downloadButton = [[RoundBorderedButton alloc] initWithFrame:CGRectMake(2*view.frame.size.width/3-10,view.frame.size.height*0.1+[Util getScreenHeight]/4.5f-25, 105, 25)];
+    UIButton *downloadButton = [[RoundBorderedButton alloc] initWithFrame:CGRectMake(2*view.frame.size.width/3-10,view.frame.size.height*0.1+[Util screenHeight]/4.5f-25, 105, 25)];
     downloadButton.tag = kDownloadButtonTag;
     downloadButton.titleLabel.font = [UIFont boldSystemFontOfSize:14];
-    [downloadButton setTitle:kUIButtonTitleDownload forState:UIControlStateNormal];
+    [downloadButton setTitle:kLocalizedDownload forState:UIControlStateNormal];
     [downloadButton setTintColor:[UIColor lightOrangeColor]];
     
     [downloadButton addTarget:target action:@selector(downloadButtonPressed) forControlEvents:UIControlEventTouchUpInside];
@@ -307,11 +281,11 @@
 
 + (void)addPlayButtonToView:(UIView*)view withTarget:(id)target
 {
-    UIButton *playButton = [[RoundBorderedButton alloc] initWithFrame:CGRectMake(2*view.frame.size.width/3-10,view.frame.size.height*0.1+[Util getScreenHeight]/4.5f-25, 105, 25)];
+    UIButton *playButton = [[RoundBorderedButton alloc] initWithFrame:CGRectMake(2*view.frame.size.width/3-10,view.frame.size.height*0.1+[Util screenHeight]/4.5f-25, 105, 25)];
     playButton.tag = kPlayButtonTag;
     playButton.hidden = YES;
     playButton.titleLabel.font = [UIFont boldSystemFontOfSize:14];
-    [playButton setTitle:kUIButtonTitlePlay forState:UIControlStateNormal];
+    [playButton setTitle:kLocalizedPlay forState:UIControlStateNormal];
     [playButton addTarget:target action:@selector(playButtonPressed) forControlEvents:UIControlEventTouchUpInside];
     [playButton setTintColor:[UIColor lightOrangeColor]];
     
@@ -319,26 +293,23 @@
     [view addSubview:playButton];
 }
 
-+(void) addLoadingButtonToView:(UIView*)view withTarget:(id)target
++ (void)addLoadingButtonToView:(UIView*)view withTarget:(id)target
 {
-    EVCircularProgressView* button = [[EVCircularProgressView alloc] init];
-    button.tag =kStopLoadingTag;
+    EVCircularProgressView *button = [[EVCircularProgressView alloc] init];
+    button.tag = kStopLoadingTag;
     button.tintColor = [UIColor lightOrangeColor];
-    button.frame = CGRectMake(2*view.frame.size.width/3+30,view.frame.size.height*0.1+[Util getScreenHeight]/4.5f-25, 28, 28);
+    button.frame = CGRectMake(2*view.frame.size.width/3+30,view.frame.size.height*0.1+[Util screenHeight]/4.5f-25, 28, 28);
     button.hidden = YES;
-    
     [button addTarget:target action:@selector(stopLoading) forControlEvents:UIControlEventTouchUpInside];
-    
-    
     [view addSubview:button];
 }
 
 + (void)addInformationLabelToView:(UIView*)view withAuthor:(NSString*)author downloads:(NSNumber*)downloads uploaded:(NSString*)uploaded version:(NSString*)version views:(NSNumber*)views
 {
     CGFloat height = [self height];
-    CGFloat offset = view.frame.size.height + height*0.05;
+    CGFloat offset = view.frame.size.height + height*0.05f;
     UILabel* informationLabel = [[UILabel alloc] initWithFrame:CGRectMake(view.frame.size.width/15, offset, 155, 25)];
-    informationLabel.text = kUILabelTextInformation;
+    informationLabel.text = kLocalizedInformation;
     [self configureTitleLabel:informationLabel andHeight:height];
     [view addSubview:informationLabel];
     offset += height*0.075;

@@ -131,22 +131,40 @@ NS_ENUM(NSInteger, ButtonIndex) {
         if ([self isFormulaBrick:self.brickCell])
             [otherButtonTitles addObject:[self editFormulaMenuItemWithBrickCell:self.brickCell]];
         
-#if kIsFirstRelease // kIsFirstRelease
+#if kIsRelease // kIsRelease
             _brickMenu = [[CatrobatActionSheet alloc] initWithTitle:kUIAlertViewMessageFeatureComingSoon
                                                            delegate:self
-                                                  cancelButtonTitle:kUIActionSheetButtonTitleClose
+                                                  cancelButtonTitle:kLocalizedClose
                                              destructiveButtonTitle:[self deleteMenuItemNameWithBrickCell:self.brickCell]
                                                   otherButtonTitlesArray:otherButtonTitles];
-#else // kIsFirstRelease
+#else // kIsRelease
             
             _brickMenu = [[CatrobatActionSheet alloc] initWithTitle:nil
                                                            delegate:self
-                                                  cancelButtonTitle:kUIActionSheetButtonTitleClose
+                                                  cancelButtonTitle:kLocalizedClose
                                              destructiveButtonTitle:[self deleteMenuItemNameWithBrickCell:self.brickCell]
-                                                  otherButtonTitlesArray:otherButtonTitles];
-#endif // kIsFirstRelease
-
-#if kIsFirstRelease // kIsFirstRelease
+                                                  otherButtonTitles:[self secondMenuItemWithBrickCell:self.brickCell],
+                                                                    [self animateMenuItemWithBrickCell:self.brickCell],
+                                                                    [self editFormulaMenuItemWithBrickCell:self.brickCell], nil];
+#endif // kIsRelease
+        } else {
+#if kIsRelease // kIsRelease
+            _brickMenu = [[CatrobatActionSheet alloc] initWithTitle:kLocalizedThisFeatureIsComingSoon
+                                                           delegate:self
+                                                  cancelButtonTitle:kLocalizedClose
+                                             destructiveButtonTitle:[self deleteMenuItemNameWithBrickCell:self.brickCell]
+                                                  otherButtonTitles:[self secondMenuItemWithBrickCell:self.brickCell],
+                                                                    [self editFormulaMenuItemWithBrickCell:self.brickCell], nil];
+#else // kIsRelease
+            _brickMenu = [[CatrobatActionSheet alloc] initWithTitle:nil
+                                                           delegate:self
+                                                  cancelButtonTitle:kLocalizedClose
+                                             destructiveButtonTitle:[self deleteMenuItemNameWithBrickCell:self.brickCell]
+                                                  otherButtonTitles:[self secondMenuItemWithBrickCell:self.brickCell],
+                                                                    [self editFormulaMenuItemWithBrickCell:self.brickCell], nil];
+#endif // kIsRelease
+        }
+#if kIsRelease // kIsRelease
         // disable all buttons except cancel button (index of cancel button: ([_brickMenu.buttons count] - 1))
         for (IBActionSheetButton *button in _brickMenu.buttons) {
             if (button.index != ([_brickMenu.buttons count] - 1)) {
@@ -156,13 +174,12 @@ NS_ENUM(NSInteger, ButtonIndex) {
         [_brickMenu setButtonBackgroundColor:[UIColor colorWithWhite:0.0f alpha:0.6f]];
         [_brickMenu setButtonTextColor:[UIColor grayColor]];
         [_brickMenu setButtonTextColor:[UIColor lightOrangeColor] forButtonAtIndex:([_brickMenu.buttons count] - 1)];
-#else // kIsFirstRelease
+#else // kIsRelease
         [_brickMenu setButtonBackgroundColor:[UIColor colorWithWhite:0.0f alpha:0.6f]];
         [_brickMenu setButtonTextColor:[UIColor lightOrangeColor]];
         [_brickMenu setButtonTextColor:[UIColor redColor] forButtonAtIndex:0];
-#endif // kIsFirstRelease
+#endif // kIsRelease
         _brickMenu.transparentView = nil;
-    }
     
     return _brickMenu;
 }
@@ -177,9 +194,9 @@ NS_ENUM(NSInteger, ButtonIndex) {
 #pragma mark - Action Sheet Delegate
 - (void)actionSheet:(CatrobatActionSheet*)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
 {
-#if kIsFirstRelease // kIsFirstRelease
+#if kIsRelease // kIsRelease
     [self.presentingViewController dismissViewControllerAnimated:YES completion:NULL];
-#else // kIsFirstRelease
+#else // kIsRelease
     switch ([self getAbsoluteButtonIndex:buttonIndex]) {
         case kButtonIndexDelete: {
             self.deleteBrickOrScriptFlag = [NSNumber numberWithBool:YES];
@@ -205,7 +222,7 @@ NS_ENUM(NSInteger, ButtonIndex) {
         default:
             break;
     }
-#endif // kIsFirstRelease
+#endif // kIsRelease
 }
 
 #pragma mark - helper methods
@@ -220,9 +237,9 @@ NS_ENUM(NSInteger, ButtonIndex) {
 - (NSString *)deleteMenuItemNameWithBrickCell:(BrickCell *)cell
 {
     if ([cell isScriptBrick]) {
-        return kUIActionSheetButtonTitleDeleteScript;
+        return kLocalizedDeleteScript;
     }
-    return kUIActionSheetButtonTitleDeleteBrick;
+    return kLocalizedDeleteBrick;
 }
 
 - (NSString *)secondMenuItemWithBrickCell:(BrickCell *)cell
@@ -230,7 +247,7 @@ NS_ENUM(NSInteger, ButtonIndex) {
     if ([cell isScriptBrick]) {
         return nil;
     }
-    return kUIActionSheetButtonTitleCopyBrick;
+    return kLocalizedCopyBrick;
 }
 
 - (NSString *)animateMenuItemWithBrickCell:(BrickCell *)cell
@@ -238,7 +255,7 @@ NS_ENUM(NSInteger, ButtonIndex) {
     if ([cell isScriptBrick] || (! [self isAnimateableBrick:cell])) {
         return nil;
     }
-    return kUIActionSheetButtonTitleAnimateBricks;
+    return kLocalizedAnimateBricks;
 }
 
 - (NSString *)editFormulaMenuItemWithBrickCell:(BrickCell *)cell
@@ -246,7 +263,7 @@ NS_ENUM(NSInteger, ButtonIndex) {
     if ([cell isScriptBrick]) {
         return nil;
     }
-    return kUIActionSheetButtonTitleEditFormula;
+    return kLocalizedEditFormula;
 }
 
 // TODO: refactor later => use property in brick class for this...

@@ -44,6 +44,7 @@
 #import "SharkfoodMuteSwitchDetector.h"
 #import "CatrobatActionSheet.h"
 #import "DataTransferMessage.h"
+#import "ProgramLoadingInfo.h"
 
 @interface SoundsTableViewController () <CatrobatActionSheetDelegate, AVAudioPlayerDelegate,
                                          SWTableViewCellDelegate>
@@ -94,11 +95,11 @@ static NSCharacterSet *blockedCharacterSet = nil;
     NSDictionary *showDetails = [[NSUserDefaults standardUserDefaults] objectForKey:kUserDetailsShowDetailsKey];
     NSNumber *showDetailsSoundsValue = (NSNumber*)[showDetails objectForKey:kUserDetailsShowDetailsSoundsKey];
     self.useDetailCells = [showDetailsSoundsValue boolValue];
-    self.navigationController.title = self.title = kUIViewControllerTitleSounds;
+    self.navigationController.title = self.title = kLocalizedSounds;
     [self initNavigationBar];
     self.currentPlayingSong = nil;
     self.currentPlayingSongCell = nil;
-    self.placeHolderView.title = kUIViewControllerPlaceholderTitleSounds;
+    self.placeHolderView.title = kLocalizedSounds;
     [self showPlaceHolder:(! (BOOL)[self.object.soundList count])];
     [self setupToolBar];
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
@@ -138,15 +139,15 @@ static NSCharacterSet *blockedCharacterSet = nil;
 {
     NSMutableArray *options = [NSMutableArray array];
     if ([self.object.soundList count]) {
-        [options addObject:kUIActionSheetButtonTitleDeleteSounds];
+        [options addObject:kLocalizedDeleteSounds];
     }
     if (self.useDetailCells) {
-        [options addObject:kUIActionSheetButtonTitleHideDetails];
+        [options addObject:kLocalizedHideDetails];
     } else {
-        [options addObject:kUIActionSheetButtonTitleShowDetails];
+        [options addObject:kLocalizedShowDetails];
     }
-#if kIsFirstRelease // kIsFirstRelease
-    CatrobatActionSheet *actionSheet = [Util actionSheetWithTitle:kUIAlertViewMessageFeatureComingSoon
+#if kIsRelease // kIsRelease
+    CatrobatActionSheet *actionSheet = [Util actionSheetWithTitle:kLocalizedThisFeatureIsComingSoon
                                                          delegate:self
                                            destructiveButtonTitle:nil
                                                 otherButtonTitles:options
@@ -161,14 +162,14 @@ static NSCharacterSet *blockedCharacterSet = nil;
             [actionSheet setButtonTextColor:[UIColor grayColor] forButtonAtIndex:button.index];
         }
     }
-#else // kIsFirstRelease
-    [Util actionSheetWithTitle:kUIActionSheetTitleEditSounds
+#else // kIsRelease
+    [Util actionSheetWithTitle:kLocalizedEditSounds
                       delegate:self
         destructiveButtonTitle:nil
              otherButtonTitles:options
                            tag:kEditSoundsActionSheetTag
                           view:self.navigationController.view];
-#endif // kIsFirstRelease
+#endif // kIsRelease
 }
 
 - (void)addSoundToObjectAction:(Sound*)sound
@@ -303,10 +304,10 @@ static NSCharacterSet *blockedCharacterSet = nil;
     UIImage *image = [imageCache cachedImageForName:rightIconName];
     if (! image) {
         [imageCache loadImageWithName:rightIconName
-                         onCompletion:^(UIImage *image){
+                         onCompletion:^(UIImage *img){
                              // check if cell still needed
                              if ([imageCell.indexPath isEqual:indexPath]) {
-                                 imageCell.iconImageView.image = image;
+                                 imageCell.iconImageView.image = img;
                                  [imageCell setNeedsLayout];
                              }
                          }];
@@ -323,7 +324,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
     if (self.useDetailCells && [cell isKindOfClass:[DarkBlueGradientImageDetailCell class]]) {
         DarkBlueGradientImageDetailCell *detailCell = (DarkBlueGradientImageDetailCell*)imageCell;
         detailCell.topLeftDetailLabel.textColor = [UIColor whiteColor];
-        detailCell.topLeftDetailLabel.text = [NSString stringWithFormat:@"%@:", kUILabelTextLength];
+        detailCell.topLeftDetailLabel.text = [NSString stringWithFormat:@"%@:", kLocalizedLength];
         detailCell.topRightDetailLabel.textColor = [UIColor whiteColor];
 
         NSNumber *number = [self.dataCache objectForKey:sound.fileName];
@@ -337,7 +338,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
 
         detailCell.topRightDetailLabel.text = [NSString stringWithFormat:@"%.02fs", (float)duration];
         detailCell.bottomLeftDetailLabel.textColor = [UIColor whiteColor];
-        detailCell.bottomLeftDetailLabel.text = [NSString stringWithFormat:@"%@:", kUILabelTextSize];
+        detailCell.bottomLeftDetailLabel.text = [NSString stringWithFormat:@"%@:", kLocalizedSize];
         detailCell.bottomRightDetailLabel.textColor = [UIColor whiteColor];
         NSUInteger resultSize = [self.object fileSizeOfSound:sound];
         NSNumber *sizeOfSound = [NSNumber numberWithUnsignedInteger:resultSize];
@@ -364,8 +365,8 @@ static NSCharacterSet *blockedCharacterSet = nil;
                 // acquire lock
                 @synchronized(self) {
                     if (self.silentDetector.isMute) {
-                        [Util alertWithText:(IS_IPHONE ? kUIAlertViewMessageDeviceIsInMutedStateIPhone
-                                                       : kUIAlertViewMessageDeviceIsInMutedStateIPad)];
+                        [Util alertWithText:(IS_IPHONE ? kLocalizedDeviceIsInMutedStateIPhoneDescription
+                                                       : kLocalizedDeviceIsInMutedStateIPadDescription)];
                         return;
                     }
                     Sound *sound = (Sound*)[self.object.soundList objectAtIndex:indexPath.row];
@@ -395,7 +396,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
                                 if (! isPlayable) {
                                     // SYNC !! so lock is not lost => busy waiting in PlaySoundTVCQueue
                                     dispatch_sync(dispatch_get_main_queue(), ^{
-                                        [Util alertWithText:kUIAlertViewMessageUnableToPlaySound];
+                                        [Util alertWithText:kLocalizedUnableToPlaySoundDescription];
                                         [self stopAllSounds];
                                     });
                                 }
@@ -410,7 +411,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
 
 - (CGFloat)tableView:(UITableView*)tableView heightForRowAtIndexPath:(NSIndexPath*)indexPath
 {
-    return [TableUtil getHeightForImageCell];
+    return [TableUtil heightForImageCell];
 }
 
 #pragma mark - swipe delegates
@@ -419,10 +420,9 @@ static NSCharacterSet *blockedCharacterSet = nil;
     [cell hideUtilityButtonsAnimated:YES];
     if (index == 0) {
         // More button was pressed
-        NSArray *options = @[kUIActionSheetButtonTitleCopy, kUIActionSheetButtonTitleRename];
-
-#if kIsFirstRelease // kIsFirstRelease
-        CatrobatActionSheet *actionSheet = [Util actionSheetWithTitle:kUIAlertViewMessageFeatureComingSoon
+        NSArray *options = @[kLocalizedCopy, kLocalizedRename];
+#if kIsRelease // kIsRelease
+        CatrobatActionSheet *actionSheet = [Util actionSheetWithTitle:kLocalizedThisFeatureIsComingSoon
                                                              delegate:self
                                                destructiveButtonTitle:nil
                                                     otherButtonTitles:options
@@ -435,14 +435,14 @@ static NSCharacterSet *blockedCharacterSet = nil;
                 [actionSheet setButtonTextColor:[UIColor grayColor] forButtonAtIndex:button.index];
             }
         }
-#else // kIsFirstRelease
-        CatrobatActionSheet *actionSheet = [Util actionSheetWithTitle:kUIActionSheetTitleEditSound
+#else // kIsRelease
+        CatrobatActionSheet *actionSheet = [Util actionSheetWithTitle:kLocalizedEditSound
                                                              delegate:self
                                                destructiveButtonTitle:nil
                                                     otherButtonTitles:options
                                                                   tag:kEditSoundActionSheetTag
                                                                  view:self.navigationController.view];
-#endif // kIsFirstRelease
+#endif // kIsRelease
         NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
         NSDictionary *payload = @{ kDTPayloadSound : [self.object.soundList objectAtIndex:indexPath.row] };
         DataTransferMessage *message = [DataTransferMessage messageForActionType:kDTMActionEditSound
@@ -450,17 +450,17 @@ static NSCharacterSet *blockedCharacterSet = nil;
         actionSheet.dataTransferMessage = message;
     } else if (index == 1) {
         // Delete button was pressed
-#if kIsFirstRelease // kIsFirstRelease
+#if kIsRelease // kIsRelease
         [Util showComingSoonAlertView];
-#else // kIsFirstRelease
+#else // kIsRelease
         NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
         [self performActionOnConfirmation:@selector(deleteSoundForIndexPath:)
                            canceledAction:nil
                                withObject:indexPath
                                    target:self
-                             confirmTitle:kUIAlertViewTitleDeleteSingleSound
-                           confirmMessage:kUIAlertViewMessageIrreversibleAction];
-#endif // kIsFirstRelease
+                             confirmTitle:kLocalizedDeleteThisSound
+                           confirmMessage:kLocalizedThisActionCannotBeUndone];
+#endif // kIsRelease
     }
 }
 
@@ -469,7 +469,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
     return YES;
 }
 
-#pragma audio delegate methods
+#pragma mark audio delegate
 - (void)audioPlayerDidFinishPlaying:(AVAudioPlayer*)player successfully:(BOOL)flag
 {
     if ((! flag) || (! self.currentPlayingSong) || (! self.currentPlayingSongCell)) {
@@ -489,11 +489,11 @@ static NSCharacterSet *blockedCharacterSet = nil;
 
         if (! image) {
             [imageCache loadImageWithName:playIconName
-                             onCompletion:^(UIImage *image){
+                             onCompletion:^(UIImage *img){
                                  // check if user tapped again on this song in the meantime...
                                  @synchronized(self) {
                                      if ((currentPlayingSong != self.currentPlayingSong) && (currentPlayingSongCell != self.currentPlayingSongCell)) {
-                                         currentPlayingSongCell.iconImageView.image = image;
+                                         currentPlayingSongCell.iconImageView.image = img;
                                      }
                                  }
                              }];
@@ -550,14 +550,14 @@ static NSCharacterSet *blockedCharacterSet = nil;
             [Util askUserForTextAndPerformAction:@selector(renameSoundActionToName:sound:)
                                           target:self
                                       withObject:sound
-                                     promptTitle:kUIAlertViewTitleRenameSound
-                                   promptMessage:[NSString stringWithFormat:@"%@:", kUIAlertViewMessageSoundName]
+                                     promptTitle:kLocalizedRenameSound
+                                   promptMessage:[NSString stringWithFormat:@"%@:", kLocalizedSoundName]
                                      promptValue:sound.name
-                               promptPlaceholder:kUIAlertViewPlaceholderEnterSoundName
+                               promptPlaceholder:kLocalizedEnterYourSoundNameHere
                                   minInputLength:kMinNumOfSoundNameCharacters
                                   maxInputLength:kMaxNumOfSoundNameCharacters
                              blockedCharacterSet:[self blockedCharacterSet]
-                        invalidInputAlertMessage:kUIAlertViewMessageInvalidSoundName];
+                        invalidInputAlertMessage:kLocalizedInvalidSoundNameDescription];
         }
     } else if (actionSheet.tag == kAddSoundActionSheetTag) {
         if (buttonIndex == 0) {
@@ -565,7 +565,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
             NSLog(@"Select music track");
             AppDelegate *delegate = (AppDelegate*)[UIApplication sharedApplication].delegate;
             if (! [delegate.fileManager existPlayableSoundsInDirectory:delegate.fileManager.documentsDirectory]) {
-                [Util alertWithText:kUIAlertViewMessageNoImportedSoundsFound];
+                [Util alertWithText:kLocalizedNoImportedSoundsFoundDescription];
                 return;
             }
 
@@ -595,10 +595,10 @@ static NSCharacterSet *blockedCharacterSet = nil;
 
 - (void)addSoundAction:(id)sender
 {
-    [Util actionSheetWithTitle:kUIActionSheetTitleAddSound
+    [Util actionSheetWithTitle:kLocalizedAddSound
                       delegate:self
         destructiveButtonTitle:nil
-             otherButtonTitles:@[/*kUIActionSheetButtonTitlePocketCodeRecorder, */kUIActionSheetButtonTitleChooseSound]
+             otherButtonTitles:@[/*kLocalizedPocketCodeRecorder, */kLocalizedChooseSound]
                            tag:kAddSoundActionSheetTag
                           view:self.navigationController.view];
 }
@@ -607,7 +607,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
 {
     [self stopAllSounds];
     [self.navigationController setToolbarHidden:YES animated:YES];
-    ScenePresenterViewController *vc =[[ScenePresenterViewController alloc] initWithProgram:[Program programWithLoadingInfo:[Util programLoadingInfoForProgramWithName:[Util lastProgram]]]];
+    ScenePresenterViewController *vc = [[ScenePresenterViewController alloc] initWithProgram:[Program programWithLoadingInfo:[Util lastUsedProgramLoadingInfo]]];
     [self.navigationController pushViewController:vc animated:YES];
 }
 
@@ -620,9 +620,9 @@ static NSCharacterSet *blockedCharacterSet = nil;
     UIBarButtonItem *add = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd
                                                                          target:self
                                                                          action:@selector(addSoundAction:)];
-#if kIsFirstRelease // kIsFirstRelease
+#if kIsRelease // kIsRelease
     add.enabled = NO;
-#endif // kIsFirstRelease
+#endif // kIsRelease
     UIBarButtonItem *play = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemPlay
                                                                           target:self
                                                                           action:@selector(playSceneAction:)];
@@ -640,7 +640,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
     UIBarButtonItem *flexItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace
                                                                               target:nil
                                                                               action:nil];
-    UIBarButtonItem *deleteButton = [[UIBarButtonItem alloc] initWithTitle:kUIBarButtonItemTitleDelete
+    UIBarButtonItem *deleteButton = [[UIBarButtonItem alloc] initWithTitle:kLocalizedDelete
                                                                      style:UIBarButtonItemStylePlain
                                                                     target:self
                                                                     action:@selector(confirmDeleteSelectedSoundsAction:)];

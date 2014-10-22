@@ -27,7 +27,7 @@
 
 - (NSString*)brickTitle
 {
-    return kBrickCellControlTitleBroadcastAndWait;
+    return kLocalizedBroadcastAndWait;
 }
 
 - (id)initWithMessage:(NSString *)message

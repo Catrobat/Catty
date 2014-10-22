@@ -38,7 +38,7 @@
 
 - (NSString*)brickTitle
 {
-    return kBrickCellControlTitleIf;
+    return kLocalizedIfIsTrueThen;
 }
 
 -(BOOL)checkCondition

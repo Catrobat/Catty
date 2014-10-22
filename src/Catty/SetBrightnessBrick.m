@@ -42,7 +42,7 @@
 
 - (NSString*)brickTitle
 {
-    return kBrickCellLookTitleSetBrightness;
+    return kLocalizedSetBrightness;
 }
 
 - (SKAction*)action
@@ -56,7 +56,7 @@
 {
     return ^{
         NSDebug(@"Performing: %@", self.description);
-        CGFloat brightness = [self.brightness interpretDoubleForSprite:self.object]/100;
+        double brightness = [self.brightness interpretDoubleForSprite:self.object]/100;
         if (brightness > 2) {
             brightness = 1.0f;
         }
@@ -87,7 +87,7 @@
         UIImage *newImage = [UIImage imageWithCGImage:cgimg];
         self.object.currentUIImageLook = newImage;
         self.object.texture = [SKTexture textureWithImage:newImage];
-        self.object.currentLookBrightness = brightness;
+        self.object.currentLookBrightness = (CGFloat)brightness;
         double xScale = self.object.xScale;
         double yScale = self.object.yScale;
         self.object.xScale = 1.0;
@@ -95,10 +95,10 @@
         self.object.size = self.object.texture.size;
         self.object.texture = self.object.texture;
         if(xScale != 1.0) {
-            self.object.xScale = xScale;
+            self.object.xScale = (CGFloat)xScale;
         }
         if(yScale != 1.0) {
-            self.object.yScale = yScale;
+            self.object.yScale = (CGFloat)yScale;
         }
         
         // 4

@@ -42,7 +42,7 @@
 
 - (NSString*)brickTitle
 {
-    return kBrickCellVariableTitleSetVariable;
+    return kLocalizedSetVariable;
 }
 
 - (SKAction*)action

@@ -73,7 +73,7 @@
 {
     SensorHandler* sensorHandler = [SensorHandler sharedSensorHandler];
     
-    BOOL isNotZero = [sensorHandler rotationRate].y != 0.0f;
+    BOOL isNotZero = [sensorHandler rotationRate].z != 0.0f;
     XCTAssertTrue(isNotZero, @"It's very unlikely that z is really zero!");
 }
 

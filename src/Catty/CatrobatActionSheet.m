@@ -32,8 +32,8 @@
     self.hasDestructiveButton = YES;
 
     // set color for destructive button
-    [destructiveButton setTextColor:[UIColor colorWithRed:1.000 green:0.229 blue:0.000 alpha:1.000]];
-    [destructiveButton setOriginalTextColor:[UIColor colorWithRed:1.000 green:0.229 blue:0.000 alpha:1.000]];
+    [destructiveButton setTextColor:[UIColor colorWithRed:1.000f green:0.229f blue:0.000f alpha:1.000f]];
+    [destructiveButton setOriginalTextColor:[UIColor colorWithRed:1.000f green:0.229f blue:0.000f alpha:1.000f]];
 
     // force destructive button to always be on top!
     if (self.destructiveButtonIndex != 0) {

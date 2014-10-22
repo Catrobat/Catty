@@ -114,6 +114,7 @@
     self = [super initWithFrame:frame];
     if (self) {
         self.backgroundColor = UIColor.clearColor;
+        self.clearsContextBeforeDrawing = YES;
         self.opaque = NO;
         self.clipsToBounds = NO;
     }
@@ -234,7 +235,7 @@
     CGFloat inlineViewHeight = [[self class] cellHeight];
     kBrickShapeType brickShapeType = [self brickShapeType];
     CGFloat inlineViewOffsetY = 0.0f;
-    if (brickShapeType != kBrickShapeRoundedSmall || brickShapeType != kBrickShapeRoundedBig) {
+    if (brickShapeType != kBrickShapeRoundedSmall && brickShapeType != kBrickShapeRoundedBig) {
         inlineViewHeight -= kBrickShapeNormalMarginHeightDeduction;
         inlineViewOffsetY = kBrickShapeNormalInlineViewOffsetY;
     } else if (brickShapeType == kBrickShapeRoundedSmall) {
@@ -527,8 +528,8 @@
     if (animate) {
         CAKeyframeAnimation *animation = [CAKeyframeAnimation animation];
         animation.keyPath = @"transform";
-        animation.values = @[[NSValue valueWithCATransform3D:CATransform3DMakeRotation(M_PI/200.0f, 0.1f, 0.1f, 0.1f)],
-                              [NSValue valueWithCATransform3D:CATransform3DMakeRotation(M_PI/200.0f, -0.1f, -0.1f, -0.1f)]];
+        animation.values = @[[NSValue valueWithCATransform3D:CATransform3DMakeRotation((CGFloat)M_PI/200.0f, 0.1f, 0.1f, 0.1f)],
+                              [NSValue valueWithCATransform3D:CATransform3DMakeRotation((CGFloat)M_PI/200.0f, -0.1f, -0.1f, -0.1f)]];
         animation.autoreverses = YES ;
         animation.repeatCount = HUGE_VAL;
         animation.duration = 0.1f ;

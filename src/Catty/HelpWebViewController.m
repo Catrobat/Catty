@@ -30,7 +30,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.title = kUIViewControllerTitleHelp;
+    self.title = kLocalizedHelp;
     self.tintColor = UIColor.lightOrangeColor;
 }
 

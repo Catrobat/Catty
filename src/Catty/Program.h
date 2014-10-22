@@ -48,8 +48,8 @@
 - (NSString*)projectPath;
 - (void)removeFromDisk;
 - (void)saveToDisk;
-- (BOOL)isLastProgram;
-- (void)setAsLastProgram;
+- (BOOL)isLastUsedProgram;
+- (void)setAsLastUsedProgram;
 - (void)translateDefaultProgram;
 - (void)renameToProgramName:(NSString*)programName;
 - (void)renameObject:(SpriteObject*)object toName:(NSString*)newObjectName;
@@ -59,24 +59,25 @@
 - (SpriteObject*)copyObject:(SpriteObject*)sourceObject
     withNameForCopiedObject:(NSString*)nameOfCopiedObject;
 
-+ (instancetype)defaultProgramWithName:(NSString*)programName;
-+ (instancetype)lastProgram;
-+ (void)updateLastModificationTimeForProgramWithName:(NSString*)programName;
++ (instancetype)defaultProgramWithName:(NSString*)programName programID:(NSString*)programID;
++ (instancetype)lastUsedProgram;
++ (void)updateLastModificationTimeForProgramWithName:(NSString*)programName programID:(NSString*)programID;
 + (instancetype)programWithLoadingInfo:(ProgramLoadingInfo*)loadingInfo;
-+ (BOOL)programExists:(NSString *)programName;
-+ (void)copyProgramWithName:(NSString*)sourceProgramName
-     destinationProgramName:(NSString*)destinationProgramName;
-+ (void)removeProgramFromDiskWithProgramName:(NSString*)programName;
-+ (BOOL)isLastProgram:(NSString*)programName;
-+ (void)setLastProgram:(Program*)program;
++ (BOOL)programExistsWithProgramName:(NSString*)programName programID:(NSString*)programID;
++ (BOOL)programExistsWithProgramID:(NSString*)programID;
++ (BOOL)areThereAnyPrograms;
+
++ (void)copyProgramWithSourceProgramName:(NSString*)sourceProgramName
+                         sourceProgramID:(NSString*)sourceProgramID
+                  destinationProgramName:(NSString*)destinationProgramName;
++ (void)removeProgramFromDiskWithProgramName:(NSString*)programName programID:(NSString*)programID;
++ (BOOL)isLastUsedProgram:(NSString*)programName programID:(NSString*)programID;
++ (void)setLastUsedProgram:(Program*)program;
 + (NSString*)basePath;
 + (NSArray*)allProgramNames;
 + (NSArray*)allProgramLoadingInfos;
-
-// remove this signature after first release
-#import "AppDefines.h"
-#if kIsFirstRelease
-+ (NSString*)projectPathForProgramWithName:(NSString*)programName;
-#endif
++ (NSString*)programDirectoryNameForProgramName:(NSString*)programName programID:(NSString*)programID;
++ (ProgramLoadingInfo*)programLoadingInfoForProgramDirectoryName:(NSString*)programDirectoryName;
++ (NSString*)programNameForProgramID:(NSString*)programID;
 
 @end

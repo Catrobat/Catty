@@ -41,7 +41,7 @@
 }
 
 - (NSString *)activityTitle {
-    return kUIActivityTitleSaveToProject;
+    return kLocalizedSaveToPocketCode;
 }
 
 - (UIImage *)activityImage

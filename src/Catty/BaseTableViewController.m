@@ -119,7 +119,7 @@
 - (UIBarButtonItem*)selectAllRowsButtonItem
 {
     if (! _selectAllRowsButtonItem) {
-        _selectAllRowsButtonItem = [[UIBarButtonItem alloc] initWithTitle:kUIBarButtonItemTitleSelectAllItems
+        _selectAllRowsButtonItem = [[UIBarButtonItem alloc] initWithTitle:kLocalizedSelectAllItems
                                                                     style:UIBarButtonItemStylePlain
                                                                    target:self
                                                                    action:@selector(selectAllRows:)];
@@ -172,10 +172,10 @@
     }
     if (allItemsInAllSectionsSelected) {
         self.selectAllRowsButtonItem.tag = kUnselectAllItemsTag;
-        self.selectAllRowsButtonItem.title = kUIBarButtonItemTitleUnselectAllItems;
+        self.selectAllRowsButtonItem.title = kLocalizedUnselectAllItems;
     } else {
         self.selectAllRowsButtonItem.tag = kSelectAllItemsTag;
-        self.selectAllRowsButtonItem.title = kUIBarButtonItemTitleSelectAllItems;
+        self.selectAllRowsButtonItem.title = kLocalizedSelectAllItems;
     }
 }
 
@@ -200,16 +200,16 @@
     }
     if (allItemsInAllSectionsSelected) {
         self.selectAllRowsButtonItem.tag = kUnselectAllItemsTag;
-        self.selectAllRowsButtonItem.title = kUIBarButtonItemTitleUnselectAllItems;
+        self.selectAllRowsButtonItem.title = kLocalizedUnselectAllItems;
     } else {
         self.selectAllRowsButtonItem.tag = kSelectAllItemsTag;
-        self.selectAllRowsButtonItem.title = kUIBarButtonItemTitleSelectAllItems;
+        self.selectAllRowsButtonItem.title = kLocalizedSelectAllItems;
     }
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return [TableUtil getHeightForImageCell];
+    return [TableUtil heightForImageCell];
 }
 
 #pragma mark - segue handlers
@@ -256,7 +256,7 @@
 
 - (void)changeToEditingMode:(id)sender
 {
-    UIBarButtonItem *cancelButton = [[UIBarButtonItem alloc] initWithTitle:kUIBarButtonItemTitleCancel
+    UIBarButtonItem *cancelButton = [[UIBarButtonItem alloc] initWithTitle:kLocalizedCancel
                                                                      style:UIBarButtonItemStylePlain
                                                                     target:self
                                                                     action:@selector(exitEditingMode)];
@@ -286,11 +286,11 @@
         if (button.tag == kSelectAllItemsTag) {
             button.tag = kUnselectAllItemsTag;
             selectAll = YES;
-            button.title = kUIBarButtonItemTitleUnselectAllItems;
+            button.title = kLocalizedUnselectAllItems;
         } else {
             button.tag = kSelectAllItemsTag;
             selectAll = NO;
-            button.title = kUIBarButtonItemTitleSelectAllItems;
+            button.title = kLocalizedSelectAllItems;
         }
     }
     NSArray *editableSections = self.editableSections;
@@ -392,13 +392,6 @@
     self.navigationController.interactivePopGestureRecognizer.enabled = NO;
     [self showPlaceHolder:NO];
     [self.loadingView show];
-
-#if kIsFirstRelease
-    __weak id mySelf = self;
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 1 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
-        [mySelf hideLoadingView];
-    });
-#endif
 }
 
 - (void)hideLoadingView
@@ -415,7 +408,7 @@
 - (void)showSavedView
 {
     BDKNotifyHUD *hud = [BDKNotifyHUD notifyHUDWithImage:[UIImage imageNamed:@"checkmark.png"]
-                                                    text:kUILabelTextSaved];
+                                                    text:kLocalizedSaved];
     hud.destinationOpacity = 0.30f;
     hud.center = CGPointMake(self.view.center.x, self.view.center.y - 20);
     hud.tag = kSavedViewTag;

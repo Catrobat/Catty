@@ -27,7 +27,7 @@
 
 - (NSString*)brickTitle
 {
-    return kBrickCellControlTitleNote;
+    return kLocalizedNote;
 }
 
 - (SKAction*)action

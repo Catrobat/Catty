@@ -21,8 +21,8 @@
  */
 
 #import <Foundation/Foundation.h>
-#import "Operators.h"
 #import "Functions.h"
+#import "Operators.h"
 
 @class SpriteObject;
 

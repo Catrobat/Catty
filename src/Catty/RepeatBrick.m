@@ -44,7 +44,7 @@
 
 - (NSString*)brickTitle
 {
-    return kBrickCellControlTitleRepeat;
+    return kLocalizedRepeatNTimes;
 }
 
 - (BOOL)checkCondition

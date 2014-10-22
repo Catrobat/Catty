@@ -22,10 +22,10 @@
 
 #import <Foundation/Foundation.h>
 
-@class CatrobatProject;
+@class CatrobatProgram;
 
 @interface CreateView : NSObject
 
-+ (UIView*)createProgramDetailView:(CatrobatProject*)project target:(id)target;
++ (UIView*)createProgramDetailView:(CatrobatProgram*)project target:(id)target;
 
 @end

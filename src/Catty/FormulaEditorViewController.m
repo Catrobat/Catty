@@ -260,7 +260,7 @@ NS_ENUM(NSInteger, ButtonIndex) {
     [alert show];
 }
 
-#pragma margk - Getter and setter
+#pragma mark - Getter and setter
 
 - (AHKActionSheet *)mathFunctionsMenu
 {

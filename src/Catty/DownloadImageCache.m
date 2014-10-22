@@ -103,8 +103,8 @@
             [urlsToDelete addObject:fileURL];
     }
 
-    for (NSURL *fileURL in urlsToDelete) {
-        [[NSFileManager defaultManager] removeItemAtURL:fileURL error:nil];
+    for (NSURL *URL in urlsToDelete) {
+        [[NSFileManager defaultManager] removeItemAtURL:URL error:nil];
     }
 }
 

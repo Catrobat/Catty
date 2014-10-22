@@ -35,19 +35,17 @@
 #import "BaseWebViewController.h"
 #import "ProgramLoadingInfo.h"
 
-@interface FileManager()
+@interface FileManager ()
 
 @property (nonatomic, strong, readwrite) NSString *documentsDirectory;
 @property (nonatomic, strong) NSString *programsDirectory;
 @property (nonatomic, strong) NSMutableDictionary *imageTaskDict;
 @property (nonatomic, strong) NSMutableDictionary *programTaskDict;
 @property (nonatomic, strong) NSMutableDictionary *programNameDict;
+@property (nonatomic, strong) NSMutableDictionary *programIDDict;
 @property (nonatomic, strong) NSMutableDictionary *imageNameDict;
 
-
-@property (nonatomic, strong) NSString *projectName;
 @property (nonatomic, strong) NSURLSession *downloadSession;
-
 
 @end
 
@@ -85,15 +83,23 @@
     return _imageTaskDict;
 }
 
-
--(NSMutableDictionary*)programNameDict
+- (NSMutableDictionary*)programNameDict
 {
     if (!_programNameDict) {
         _programNameDict = [[NSMutableDictionary alloc] init];
     }
     return _programNameDict;
 }
--(NSMutableDictionary*)imageNameDict
+
+- (NSMutableDictionary*)programIDDict
+{
+    if (! _programIDDict) {
+        _programIDDict = [[NSMutableDictionary alloc] init];
+    }
+    return _programIDDict;
+}
+
+- (NSMutableDictionary*)imageNameDict
 {
     if (!_imageNameDict) {
         _imageNameDict = [[NSMutableDictionary alloc] init];
@@ -107,23 +113,23 @@
     NSError *error;
     NSArray *fileNames = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:directoryPath error:&error];
     NSLogError(error);
-    
+
     NSMutableArray *sounds = [NSMutableArray array];
     for (NSString *fileName in fileNames) {
         // exclude .DS_Store folder on MACOSX simulator
         if ([fileName isEqualToString:@".DS_Store"])
             continue;
-        
+
         NSString *file = [NSString stringWithFormat:@"%@/%@", self.documentsDirectory, fileName];
         CFStringRef fileExtension = (__bridge CFStringRef)[file pathExtension];
         CFStringRef fileUTI = UTTypeCreatePreferredIdentifierForTag(kUTTagClassFilenameExtension, fileExtension, NULL);
         //        NSString *contentType = (__bridge_transfer NSString *)UTTypeCopyPreferredTagWithClass(fileUTI, kUTTagClassMIMEType);
         //        NSLog(@"contentType: %@", contentType);
-        
+
         // check if mime type is playable with AVAudioPlayer
         BOOL isPlayable = UTTypeConformsTo(fileUTI, kUTTypeAudio);
         CFRelease(fileUTI); // manually free this, because ownership was transfered to ARC
-        
+
         if (isPlayable) {
             Sound *sound = [[Sound alloc] init];
             NSArray *fileParts = [fileName componentsSeparatedByString:@"."];
@@ -294,7 +300,7 @@
     NSError *error = nil;
     NSDictionary *fileDictionary = [fileManager attributesOfItemAtPath:path error:&error];
     NSLogError(error);
-    return [fileDictionary fileSize];
+    return (NSUInteger)[fileDictionary fileSize];
 }
 
 - (NSDate*)lastModificationTimeOfFile:(NSString*)path
@@ -319,67 +325,51 @@
 
 - (void)addDefaultProgramToProgramsRootDirectoryIfNoProgramsExist
 {
-    NSString *basePath = [Program basePath];
-    NSError *error;
-    NSArray *programLoadingInfos = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:basePath error:&error];
-    NSLogError(error);
-
-    BOOL areAnyProgramsLeft = NO;
-    for (NSString *programLoadingInfo in programLoadingInfos) {
-        // exclude .DS_Store folder on MACOSX simulator
-        if ([programLoadingInfo isEqualToString:@".DS_Store"]) {
-            continue;
-        }
-        areAnyProgramsLeft = YES;
-        break;
+    if ([Program areThereAnyPrograms]) {
+        return;
     }
-    if (! areAnyProgramsLeft) {
-        [self addBundleProgramWithName:kDefaultProgramBundleName];
-#if kIsFirstRelease // kIsFirstRelease
+        [self addNewBundleProgramWithName:kDefaultProgramBundleName];
+#if kIsRelease // kIsRelease
 #define kDefaultProgramBundleBackgroundName @"Background"
 #define kDefaultProgramBundleOtherObjectsNamePrefix @"Mole"
         // XXX: HACK serialization-workaround
-        if (! [kDefaultProgramBundleName isEqualToString:kDefaultProgramName]) {
+        if (! [kDefaultProgramBundleName isEqualToString:kLocalizedMyFirstProgram]) {
             // SYNC and NOT ASYNC here because the UI must wait!!
             dispatch_queue_t translateBundleQ = dispatch_queue_create("translate bundle", NULL);
             dispatch_sync(translateBundleQ, ^{
                 NSString *xmlPath = [[Program projectPathForProgramWithName:kDefaultProgramBundleName]
                                      stringByAppendingString:kProgramCodeFileName];
-                NSError *error = nil;
+                NSError *nserror = nil;
                 NSMutableString *xmlString = [NSMutableString stringWithContentsOfFile:xmlPath
                                                                               encoding:NSUTF8StringEncoding
-                                                                                 error:&error];
-                NSLogError(error);
+                                                                                 error:&nserror];
+                NSLogError(nserror);
                 [xmlString replaceOccurrencesOfString:[NSString stringWithFormat:@"<programName>%@</programName>", kDefaultProgramBundleName]
-                                           withString:[NSString stringWithFormat:@"<programName>%@</programName>", kDefaultProgramName]
+                                           withString:[NSString stringWithFormat:@"<programName>%@</programName>", kLocalizedMyFirstProgram]
                                               options:NSCaseInsensitiveSearch
                                                 range:NSMakeRange(0, [xmlString length])];
-                [xmlString replaceOccurrencesOfString:[NSString stringWithFormat:@"<name>%@</name>", kDefaultProgramBundleBackgroundName]
-                                           withString:[NSString stringWithFormat:@"<name>%@</name>", kGeneralBackgroundObjectName]
+                [xmlString replaceOccurrencesOfString:[NSString stringWithFormat:@"<object name=\"%@\">", kDefaultProgramBundleBackgroundName]
+                                           withString:[NSString stringWithFormat:@"<object name=\"%@\">", kGeneralBackgroundObjectName]
                                               options:NSCaseInsensitiveSearch
                                                 range:NSMakeRange(0, [xmlString length])];
-                [xmlString replaceOccurrencesOfString:[NSString stringWithFormat:@"<name>%@", kDefaultProgramBundleOtherObjectsNamePrefix]
-                                           withString:[NSString stringWithFormat:@"<name>%@", kDefaultProgramOtherObjectsNamePrefix]
+                [xmlString replaceOccurrencesOfString:[NSString stringWithFormat:@"<object name=\"%@\">", kDefaultProgramBundleOtherObjectsNamePrefix]
+                                           withString:[NSString stringWithFormat:@"<object name=\"%@\">", kDefaultProgramOtherObjectsNamePrefix]
                                               options:NSCaseInsensitiveSearch
                                                 range:NSMakeRange(0, [xmlString length])];
-                [xmlString writeToFile:xmlPath atomically:YES encoding:NSUTF8StringEncoding error:&error];
-                NSLogError(error);
+                [xmlString writeToFile:xmlPath atomically:YES encoding:NSUTF8StringEncoding error:&nserror];
+                NSLogError(nserror);
                 [self moveExistingDirectoryAtPath:[Program projectPathForProgramWithName:kDefaultProgramBundleName]
-                                           toPath:[Program projectPathForProgramWithName:kDefaultProgramName]];
+                                           toPath:[Program projectPathForProgramWithName:kLocalizedMyFirstProgram]];
             });
         }
-#else // kIsFirstRelease
-        ProgramLoadingInfo *loadingInfo = [[ProgramLoadingInfo alloc] init];
-        loadingInfo.basePath = [NSString stringWithFormat:@"%@%@/", [Program basePath], kDefaultProgramBundleName];
-        loadingInfo.visibleName = kDefaultProgramBundleName;
+#else // kIsRelease
+        ProgramLoadingInfo *loadingInfo = [ProgramLoadingInfo programLoadingInfoForProgramWithName:kDefaultProgramBundleName programID:nil];
         Program *program = [Program programWithLoadingInfo:loadingInfo];
         [program translateDefaultProgram];
-#endif // kIsFirstRelease
-        [Util lastProgram];
-    }
+#endif // kIsRelease
 }
 
-- (void)addBundleProgramWithName:(NSString*)projectName
+- (void)addNewBundleProgramWithName:(NSString*)projectName
 {
     NSError *error;
     if (! [self directoryExists:self.programsDirectory]) {
@@ -392,17 +382,22 @@
     if ([contents indexOfObject:projectName]) {
         NSString *filePath = [[NSBundle mainBundle] pathForResource:projectName ofType:@"catrobat"];
         NSData *defaultProject = [NSData dataWithContentsOfFile:filePath];
-        [self unzipAndStore:defaultProject withName:projectName];
+        [self unzipAndStore:defaultProject withProgramID:nil withName:projectName];
     } else {
         NSInfo(@"%@ already exists...", projectName);
     }
 }
 
-- (void)downloadFileFromURL:(NSURL*)url withName:(NSString*)name
+- (void)downloadFileFromURL:(NSURL*)url withProgramID:(NSString*)programID withName:(NSString*)name
 {
-    self.projectName = name;
     if (! self.downloadSession) {
+#if __IPHONE_OS_VERSION_MAX_ALLOWED >= 80000
+        // iOS8 specific stuff
+        NSURLSessionConfiguration *sessionConfig = [NSURLSessionConfiguration backgroundSessionConfigurationWithIdentifier:@"at.tugraz"];
+#else
+        // iOS7 specific stuff
         NSURLSessionConfiguration *sessionConfig = [NSURLSessionConfiguration backgroundSessionConfiguration:@"at.tugraz"];
+#endif
         self.downloadSession = [NSURLSession sessionWithConfiguration:sessionConfig
                                                              delegate:self
                                                         delegateQueue:nil];
@@ -411,6 +406,7 @@
     if (getProgramTask) {
         [self.programTaskDict setObject:url forKey:getProgramTask];
         [self.programNameDict setObject:name forKey:getProgramTask];
+        [self.programIDDict setObject:programID forKey:getProgramTask];
         [getProgramTask resume];
     }
 }
@@ -419,8 +415,13 @@
 {
     
     if (!self.downloadSession) {
-        NSURLSessionConfiguration *sessionConfig =
-        [NSURLSessionConfiguration backgroundSessionConfiguration:@"at.tugraz"];
+#if __IPHONE_OS_VERSION_MAX_ALLOWED >= 80000
+        // iOS8 specific stuff
+        NSURLSessionConfiguration *sessionConfig = [NSURLSessionConfiguration backgroundSessionConfigurationWithIdentifier:@"at.tugraz"];
+#else
+        // iOS7 specific stuff
+        NSURLSessionConfiguration *sessionConfig = [NSURLSessionConfiguration backgroundSessionConfiguration:@"at.tugraz"];
+#endif
         self.downloadSession = [NSURLSession sessionWithConfiguration:sessionConfig
                                                              delegate:self
                                                         delegateQueue:nil];
@@ -462,9 +463,9 @@
 #pragma mark - Helper
 - (void)storeDownloadedProgram:(NSData *)data andTask:(NSURLSessionDownloadTask *)task
 {
-    NSString* name = [self.programNameDict objectForKey:task];
-    [self unzipAndStore:data withName:name];
-    //[[NSNotificationCenter defaultCenter] postNotificationName:@"finishedloading" object:nil];
+    NSString *name = [self.programNameDict objectForKey:task];
+    NSString *programID = [self.programIDDict objectForKey:task];
+    [self unzipAndStore:data withProgramID:programID withName:name];
     NSURL* url = [self.programTaskDict objectForKey:task];
     if ([self.delegate respondsToSelector:@selector(downloadFinishedWithURL:)] && [self.projectURL isEqual:url]) {
         dispatch_async(dispatch_get_main_queue(), ^{
@@ -487,13 +488,21 @@
     }
 }
 
-- (void)unzipAndStore:(NSData*)programData withName:(NSString*)name
+// IMPORTANT: all downloaded programs own a unique programID, but if this program was generated by the user
+//            AND (!) has not been uploaded to the Pocket Code Website yet, a No-Program-ID-Yet placeholder
+//            will be added to the program directory's name. This No-Program-ID-Yet placeholder will be
+//            automatically replaced by a unique programID (retrieved from the Pocket Code website) later
+//            after the user has uploaded this program.
+- (void)unzipAndStore:(NSData*)programData withProgramID:(NSString*)programID withName:(NSString*)name
 {
     NSError *error;
     NSString *tempPath = [NSString stringWithFormat:@"%@temp.zip", NSTemporaryDirectory()];
     [programData writeToFile:tempPath atomically:YES];
-    NSString *storePath = [NSString stringWithFormat:@"%@/%@", self.programsDirectory, name];
-    
+    if ((! programID) || (! [programID length])) {
+        programID = kNoProgramIDYetPlaceholder;
+    }
+    NSString *storePath = [NSString stringWithFormat:@"%@/%@_%@", self.programsDirectory, name, programID];
+
     NSDebug(@"Starting unzip");
     [SSZipArchive unzipFileAtPath:tempPath toDestination:storePath];
     NSDebug(@"Unzip finished");
@@ -512,12 +521,8 @@
             [self storeDownloadedImage:programData andTask:key];
         }
     }
-    
     [self addSkipBackupAttributeToItemAtURL:storePath];
 }
-
-
-
 
 -(void)stopLoading:(NSURL *)projecturl andImageURL:(NSURL *)imageurl
 {
@@ -545,13 +550,13 @@
     if (url) {
         [self.programTaskDict removeObjectForKey:task];
         [self.programNameDict removeObjectForKey:task];
-    }else{
+        [self.programIDDict removeObjectForKey:task];
+    } else {
         url = [self.imageTaskDict objectForKey:task];
         if (url) {
             [self.imageTaskDict removeObjectForKey:task];
             [self.imageNameDict removeObjectForKey:task];
         }
-        
     }
     UIApplication* app = [UIApplication sharedApplication];
     app.networkActivityIndicatorVisible = NO;
@@ -579,54 +584,48 @@
 }
 
 
-#pragma mark NSURLSessionDelegate
-
+#pragma mark - NSURLSessionDelegate
 - (void)URLSession:(NSURLSession *)session downloadTask:(NSURLSessionDownloadTask *)downloadTask didFinishDownloadingToURL:(NSURL *)location
 {
-    NSURL* url = [self.programTaskDict objectForKey:downloadTask];
-    
+    NSURL *url = [self.programTaskDict objectForKey:downloadTask];
     if (url) {
         [self storeDownloadedProgram:[NSData dataWithContentsOfURL:location] andTask:downloadTask];
         [self.programTaskDict removeObjectForKey:downloadTask];
         [self.programNameDict removeObjectForKey:downloadTask];
+        [self.programIDDict removeObjectForKey:downloadTask];
     } else {
         [self storeDownloadedImage:[NSData dataWithContentsOfURL:location] andTask:downloadTask];
         [self.imageTaskDict removeObjectForKey:downloadTask];
         [self.imageNameDict removeObjectForKey:downloadTask];
-
     }
-//    [downloadTask suspend];
     // Notification for reloading MyProgramViewController
-    [[NSNotificationCenter defaultCenter] postNotificationName:kProgramDownloadedNotification
-                                                        object:self];
+    [[NSNotificationCenter defaultCenter] postNotificationName:kProgramDownloadedNotification object:self];
     UIApplication* app = [UIApplication sharedApplication];
     app.networkActivityIndicatorVisible = NO;
 }
 
--(void)URLSession:(NSURLSession *)session downloadTask:(NSURLSessionDownloadTask *)downloadTask didResumeAtOffset:(int64_t)fileOffset expectedTotalBytes:(int64_t)expectedTotalBytes
+- (void)URLSession:(NSURLSession*)session downloadTask:(NSURLSessionDownloadTask*)downloadTask didResumeAtOffset:(int64_t)fileOffset expectedTotalBytes:(int64_t)expectedTotalBytes
 {
-    
 }
 
--(void)URLSession:(NSURLSession *)session downloadTask:(NSURLSessionDownloadTask *)downloadTask didWriteData:(int64_t)bytesWritten totalBytesWritten:(int64_t)totalBytesWritten totalBytesExpectedToWrite:(int64_t)totalBytesExpectedToWrite
+- (void)URLSession:(NSURLSession *)session downloadTask:(NSURLSessionDownloadTask *)downloadTask didWriteData:(int64_t)bytesWritten totalBytesWritten:(int64_t)totalBytesWritten totalBytesExpectedToWrite:(int64_t)totalBytesExpectedToWrite
 {
     NSURL* url = [self.programTaskDict objectForKey:downloadTask];
-    if (!url) {
+    if (! url) {
         return;
     }
     if ([self getFreeDiskspace] < totalBytesExpectedToWrite) {
         [self stopLoading:downloadTask];
-        [Util alertWithText:kUIAlertViewTitleNotEnoughFreeMemory];
+        [Util alertWithText:kLocalizedNotEnoughFreeMemoryDescription];
         if ([self.delegate respondsToSelector:@selector(setBackDownloadStatus)]) {
             dispatch_async(dispatch_get_main_queue(), ^{
                 [self.delegate setBackDownloadStatus];
             });
-
         }
         UIApplication* app = [UIApplication sharedApplication];
         app.networkActivityIndicatorVisible = NO;
         return;
-    }else{
+    } else {
         double progress = (double)totalBytesWritten/(double)totalBytesExpectedToWrite;
         if (url) {
             if ([self.delegate respondsToSelector:@selector(updateProgress:)] && [self.projectURL isEqual:url]) {
@@ -640,15 +639,10 @@
         }
         UIApplication* app = [UIApplication sharedApplication];
         app.networkActivityIndicatorVisible = YES;
-        
     }
-    
-    
-    
-
 }
 
--(void)URLSession:(NSURLSession *)session task:(NSURLSessionTask *)task didCompleteWithError:(NSError *)error
+- (void)URLSession:(NSURLSession*)session task:(NSURLSessionTask*)task didCompleteWithError:(NSError*)error
 {
     if (error) {
         // XXX: hack: workaround for app crash issue...
@@ -665,17 +659,17 @@
             app.networkActivityIndicatorVisible = NO;
             return;
         }
-        NSURL* url = [self.programTaskDict objectForKey:task];
+        NSURL *url = [self.programTaskDict objectForKey:task];
         if (url) {
             [self.programTaskDict removeObjectForKey:task];
             [self.programNameDict removeObjectForKey:task];
+            [self.programIDDict removeObjectForKey:task];
         } else {
            url = [self.imageTaskDict objectForKey:task];
             if (url) {
                 [self.imageTaskDict removeObjectForKey:task];
                 [self.imageNameDict removeObjectForKey:task];
             }
-            
         }
         if ([self.delegate respondsToSelector:@selector(setBackDownloadStatus)]) {
             dispatch_async(dispatch_get_main_queue(), ^{

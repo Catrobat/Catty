@@ -41,4 +41,9 @@
     return copiedSound;
 }
 
+- (NSString*)description
+{
+    return [NSString stringWithFormat:@"Sound: %@\r", self.name];
+}
+
 @end

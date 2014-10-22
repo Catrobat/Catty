@@ -27,11 +27,11 @@
 
 @implementation PointToBrick
 
-#define kRotationDegreeOffset 90.0
+#define kRotationDegreeOffset 90.0f
 
 - (NSString*)brickTitle
 {
-    return kBrickCellMotionTitlePointTowards;
+    return kLocalizedPointTowards;
 }
 
 - (SKAction*)action
@@ -92,13 +92,13 @@
         
         NSDebug(@"Performing: %@, Degreees: (%f), Pointed Object: Position: %@", self.description, rotationDegrees, NSStringFromCGPoint(self.pointedObject.position));
         
-        rotationDegrees = [((Scene*)self.object.scene) convertDegreesToScene:rotationDegrees] + kRotationDegreeOffset;
+        rotationDegrees = [((Scene*)self.object.scene) convertDegreesToScene:(CGFloat)rotationDegrees] + kRotationDegreeOffset;
         
         if (rotationDegrees > 360.0f) {
             rotationDegrees -= 360.0f;
         }
         
-        self.object.zRotation = [Util degreeToRadians:rotationDegrees];
+        self.object.zRotation = (CGFloat)[Util degreeToRadians:rotationDegrees];
     };
 }
 

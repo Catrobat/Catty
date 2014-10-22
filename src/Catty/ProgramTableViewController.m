@@ -73,14 +73,14 @@ static NSCharacterSet *blockedCharacterSet = nil;
 #pragma mark - getter and setters
 - (void)setProgram:(Program *)program
 {
-    [program setAsLastProgram];
+    [program setAsLastUsedProgram];
     _program = program;
 }
 
 #pragma mark - initialization
 - (void)initNavigationBar
 {
-    UIBarButtonItem *editButton = [[UIBarButtonItem alloc] initWithTitle:kUIBarButtonItemTitleEdit
+    UIBarButtonItem *editButton = [[UIBarButtonItem alloc] initWithTitle:kLocalizedEdit
                                                                    style:UIBarButtonItemStylePlain
                                                                   target:self
                                                                   action:@selector(editAction:)];
@@ -118,14 +118,14 @@ static NSCharacterSet *blockedCharacterSet = nil;
 {
     [Util askUserForUniqueNameAndPerformAction:@selector(addObjectActionWithName:)
                                         target:self
-                                   promptTitle:kUIAlertViewTitleAddObject
-                                 promptMessage:[NSString stringWithFormat:@"%@:", kUIAlertViewMessageObjectName]
+                                   promptTitle:kLocalizedAddObject
+                                 promptMessage:[NSString stringWithFormat:@"%@:", kLocalizedObjectName]
                                    promptValue:nil
-                             promptPlaceholder:kUIAlertViewPlaceholderEnterObjectName
+                             promptPlaceholder:kLocalizedEnterYourObjectNameHere
                                 minInputLength:kMinNumOfObjectNameCharacters
                                 maxInputLength:kMaxNumOfObjectNameCharacters
                            blockedCharacterSet:[self blockedCharacterSet]
-                      invalidInputAlertMessage:kUIAlertViewMessageObjectNameAlreadyExists
+                      invalidInputAlertMessage:kLocalizedObjectNameAlreadyExistsDescription
                                  existingNames:[[self.program allObjectNames] mutableCopy]];
 }
 
@@ -148,7 +148,9 @@ static NSCharacterSet *blockedCharacterSet = nil;
     NSString *oldProgramName = self.program.header.programName;
     newProgramName = [Util uniqueName:newProgramName existingNames:[Program allProgramNames]];
     [self.program renameToProgramName:newProgramName];
-    [self.delegate renameOldProgramName:oldProgramName toNewProgramName:self.program.header.programName];
+    [self.delegate renameOldProgramWithName:oldProgramName
+                                  programID:self.program.header.programID
+                           toNewProgramName:self.program.header.programName];
     self.navigationItem.title = self.title = self.program.header.programName;
 }
 
@@ -172,9 +174,8 @@ static NSCharacterSet *blockedCharacterSet = nil;
         [self showLoadingView];
         dispatch_queue_t reloadQ = dispatch_queue_create("reload program", NULL);
         dispatch_async(reloadQ, ^{
-            ProgramLoadingInfo *info = [[ProgramLoadingInfo alloc] init];
-            info.basePath = [NSString stringWithFormat:@"%@%@/", [Program basePath], self.program.header.programName];
-            info.visibleName = self.program.header.programName;
+            ProgramLoadingInfo *info = [ProgramLoadingInfo programLoadingInfoForProgramWithName:self.program.header.programName
+                                                                                      programID:self.program.header.programID];
             self.program = [Program programWithLoadingInfo:info];
             dispatch_async(dispatch_get_main_queue(), ^{
                 [self.tableView reloadData];
@@ -202,26 +203,26 @@ static NSCharacterSet *blockedCharacterSet = nil;
 - (void)playSceneAction:(id)sender
 {
     [self.navigationController setToolbarHidden:YES animated:YES];
-    ScenePresenterViewController *vc =[[ScenePresenterViewController alloc] initWithProgram:[Program programWithLoadingInfo:[Util programLoadingInfoForProgramWithName:[Util lastProgram]]]];
+    ScenePresenterViewController *vc = [[ScenePresenterViewController alloc] initWithProgram:[Program programWithLoadingInfo:[Util lastUsedProgramLoadingInfo]]];
     [self.navigationController pushViewController:vc animated:YES];
 }
 
 - (void)editAction:(id)sender
 {
     NSMutableArray *options = [NSMutableArray array];
-    [options addObject:kUIActionSheetButtonTitleRename];
+    [options addObject:kLocalizedRename];
     if ([self.program numberOfNormalObjects]) {
-        [options addObject:kUIActionSheetButtonTitleDeleteObjects];
+        [options addObject:kLocalizedDeleteObjects];
     }
     if (self.useDetailCells) {
-        [options addObject:kUIActionSheetButtonTitleHideDetails];
+        [options addObject:kLocalizedHideDetails];
     } else {
-        [options addObject:kUIActionSheetButtonTitleShowDetails];
+        [options addObject:kLocalizedShowDetails];
     }
-#if kIsFirstRelease // kIsFirstRelease
-    CatrobatActionSheet *actionSheet = [Util actionSheetWithTitle:kUIAlertViewMessageFeatureComingSoon
+#if kIsRelease // kIsRelease
+    CatrobatActionSheet *actionSheet = [Util actionSheetWithTitle:kLocalizedThisFeatureIsComingSoon
                                                          delegate:self
-                                           destructiveButtonTitle:kUIActionSheetButtonTitleDelete
+                                           destructiveButtonTitle:kLocalizedDelete
                                                 otherButtonTitles:options
                                                               tag:kEditProgramActionSheetTag
                                                              view:self.navigationController.view];
@@ -234,14 +235,14 @@ static NSCharacterSet *blockedCharacterSet = nil;
             [actionSheet setButtonTextColor:[UIColor grayColor] forButtonAtIndex:button.index];
         }
     }
-#else // kIsFirstRelease
-    [Util actionSheetWithTitle:kUIActionSheetTitleEditProgram
+#else // kIsRelease
+    [Util actionSheetWithTitle:kLocalizedEditProgram
                       delegate:self
-        destructiveButtonTitle:kUIActionSheetButtonTitleDelete
+        destructiveButtonTitle:kLocalizedDelete
              otherButtonTitles:options
                            tag:kEditProgramActionSheetTag
                           view:self.navigationController.view];
-#endif // kIsFirstRelease
+#endif // kIsRelease
 }
 
 - (void)confirmDeleteSelectedObjectsAction:(id)sender
@@ -285,7 +286,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
 
 - (void)deleteProgramAction
 {
-    [self.delegate removeProgram:self.program.header.programName];
+    [self.delegate removeProgramWithName:self.program.header.programName programID:self.program.header.programID];
     [self.program removeFromDisk];
     self.program = nil;
     [self.navigationController popViewControllerAnimated:YES];
@@ -340,16 +341,16 @@ static NSCharacterSet *blockedCharacterSet = nil;
     if (self.useDetailCells && [cell isKindOfClass:[DarkBlueGradientImageDetailCell class]]) {
         DarkBlueGradientImageDetailCell *detailCell = (DarkBlueGradientImageDetailCell*)imageCell;
         detailCell.topLeftDetailLabel.textColor = [UIColor whiteColor];
-        detailCell.topLeftDetailLabel.text = [NSString stringWithFormat:@"%@: %lu", kUILabelTextScripts,
+        detailCell.topLeftDetailLabel.text = [NSString stringWithFormat:@"%@: %lu", kLocalizedScripts,
                                               (unsigned long)[object numberOfScripts]];
         detailCell.topRightDetailLabel.textColor = [UIColor whiteColor];
-        detailCell.topRightDetailLabel.text = [NSString stringWithFormat:@"%@: %lu", kUILabelTextBricks,
+        detailCell.topRightDetailLabel.text = [NSString stringWithFormat:@"%@: %lu", kLocalizedBricks,
                                                (unsigned long)[object numberOfTotalBricks]];
         detailCell.bottomLeftDetailLabel.textColor = [UIColor whiteColor];
-        detailCell.bottomLeftDetailLabel.text = [NSString stringWithFormat:@"%@: %lu", kUILabelTextLooks,
+        detailCell.bottomLeftDetailLabel.text = [NSString stringWithFormat:@"%@: %lu", kLocalizedLooks,
                                                  (unsigned long)[object numberOfLooks]];
         detailCell.bottomRightDetailLabel.textColor = [UIColor whiteColor];
-        detailCell.bottomRightDetailLabel.text = [NSString stringWithFormat:@"%@: %lu", kUILabelTextSounds,
+        detailCell.bottomRightDetailLabel.text = [NSString stringWithFormat:@"%@: %lu", kLocalizedSounds,
                                                   (unsigned long)[object numberOfSounds]];
     }
 
@@ -370,10 +371,10 @@ static NSCharacterSet *blockedCharacterSet = nil;
         [imageCache loadThumbnailImageFromDiskWithThumbnailPath:previewImagePath
                                                       imagePath:imagePath
                                              thumbnailFrameSize:CGSizeMake(kPreviewImageWidth, kPreviewImageHeight)
-                                                   onCompletion:^(UIImage *image){
+                                                   onCompletion:^(UIImage *img){
                                                        // check if cell still needed
                                                        if ([imageCell.indexPath isEqual:indexPath]) {
-                                                           imageCell.iconImageView.image = image;
+                                                           imageCell.iconImageView.image = img;
                                                            [imageCell setNeedsLayout];
                                                        }
                                                    }];
@@ -386,7 +387,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return [TableUtil getHeightForImageCell];
+    return [TableUtil heightForImageCell];
 }
 
 #pragma mark - Header View
@@ -407,11 +408,11 @@ static NSCharacterSet *blockedCharacterSet = nil;
     ProgramTableHeaderView *headerView = (ProgramTableHeaderView*)[self.tableView dequeueReusableHeaderFooterViewWithIdentifier:@"Header"];
     
     if (section == 0) {
-        headerView.textLabel.text = [kUILabelTextBackground uppercaseString];
+        headerView.textLabel.text = [kLocalizedBackground uppercaseString];
     } else {
         headerView.textLabel.text = (([self.program numberOfNormalObjects] != 1)
-                                                    ? [kUILabelTextObjectPlural uppercaseString]
-                                                    : [kUILabelTextObjectSingular uppercaseString]);
+                                                    ? [kLocalizedObjects uppercaseString]
+                                                    : [kLocalizedObject uppercaseString]);
     }
     return headerView;
 }
@@ -462,9 +463,9 @@ static NSCharacterSet *blockedCharacterSet = nil;
     [cell hideUtilityButtonsAnimated:YES];
     if (index == 0) {
         // More button was pressed
-        NSArray *options = @[kUIActionSheetButtonTitleCopy, kUIActionSheetButtonTitleRename];
-#if kIsFirstRelease // kIsFirstRelease
-        CatrobatActionSheet *actionSheet = [Util actionSheetWithTitle:kUIAlertViewMessageFeatureComingSoon
+        NSArray *options = @[kLocalizedCopy, kLocalizedRename];
+#if kIsRelease // kIsRelease
+        CatrobatActionSheet *actionSheet = [Util actionSheetWithTitle:kLocalizedThisFeatureIsComingSoon
                                                              delegate:self
                                                destructiveButtonTitle:nil
                                                     otherButtonTitles:options
@@ -477,14 +478,14 @@ static NSCharacterSet *blockedCharacterSet = nil;
                 [actionSheet setButtonTextColor:[UIColor grayColor] forButtonAtIndex:button.index];
             }
         }
-#else // kIsFirstRelease
-        CatrobatActionSheet *actionSheet = [Util actionSheetWithTitle:kUIActionSheetTitleEditObject
+#else // kIsRelease
+        CatrobatActionSheet *actionSheet = [Util actionSheetWithTitle:kLocalizedEditObject
                                                              delegate:self
                                                destructiveButtonTitle:nil
                                                     otherButtonTitles:options
                                                                   tag:kEditObjectActionSheetTag
                                                                  view:self.navigationController.view];
-#endif // kIsFirstRelease
+#endif // kIsRelease
         NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
         NSInteger spriteObjectIndex = (kBackgroundSectionIndex + indexPath.section + indexPath.row);
         NSDictionary *payload = @{ kDTPayloadSpriteObject : [self.program.objectList objectAtIndex:spriteObjectIndex] };
@@ -493,9 +494,9 @@ static NSCharacterSet *blockedCharacterSet = nil;
         actionSheet.dataTransferMessage = message;
     } else if (index == 1) {
         // Delete button was pressed
-#if kIsFirstRelease // kIsFirstRelease
+#if kIsRelease // kIsRelease
         [Util showComingSoonAlertView];
-#else // kIsFirstRelease
+#else // kIsRelease
         NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
         [cell hideUtilityButtonsAnimated:YES];
         if (indexPath.section == kObjectSectionIndex) {
@@ -503,10 +504,10 @@ static NSCharacterSet *blockedCharacterSet = nil;
                                canceledAction:nil
                                    withObject:indexPath
                                        target:self
-                                 confirmTitle:kUIAlertViewTitleDeleteSingleObject
-                               confirmMessage:kUIAlertViewMessageIrreversibleAction];
+                                 confirmTitle:kLocalizedDeleteThisObject
+                               confirmMessage:kLocalizedThisActionCannotBeUndone];
         }
-#endif // kIsFirstRelease
+#endif // kIsRelease
     }
 }
 
@@ -525,15 +526,15 @@ static NSCharacterSet *blockedCharacterSet = nil;
             [unavailableNames removeString:self.program.header.programName];
             [Util askUserForUniqueNameAndPerformAction:@selector(renameProgramActionForProgramWithName:)
                                                 target:self
-                                           promptTitle:kUIAlertViewTitleRenameProgram
-                                         promptMessage:[NSString stringWithFormat:@"%@:", kUIAlertViewMessageProgramName]
-                                           promptValue:((! [self.program.header.programName isEqualToString:kGeneralNewDefaultProgramName])
+                                           promptTitle:kLocalizedRenameProgram
+                                         promptMessage:[NSString stringWithFormat:@"%@:", kLocalizedProgramName]
+                                           promptValue:((! [self.program.header.programName isEqualToString:kLocalizedNewProgram])
                                                         ? self.program.header.programName : nil)
-                                     promptPlaceholder:kUIAlertViewPlaceholderEnterProgramName
+                                     promptPlaceholder:kLocalizedEnterYourProgramNameHere
                                         minInputLength:kMinNumOfProgramNameCharacters
                                         maxInputLength:kMaxNumOfProgramNameCharacters
                                    blockedCharacterSet:[self blockedCharacterSet]
-                              invalidInputAlertMessage:kUIAlertViewMessageProgramNameAlreadyExists
+                              invalidInputAlertMessage:kLocalizedProgramNameAlreadyExistsDescription
                                          existingNames:unavailableNames];
         } else if (buttonIndex == 2 && [self.program numberOfNormalObjects]) {
             // Delete objects button
@@ -560,8 +561,8 @@ static NSCharacterSet *blockedCharacterSet = nil;
             [self performActionOnConfirmation:@selector(deleteProgramAction)
                                canceledAction:nil
                                        target:self
-                                 confirmTitle:kUIAlertViewTitleDeleteProgram
-                               confirmMessage:kUIAlertViewMessageIrreversibleAction];
+                                 confirmTitle:kLocalizedDeleteThisProgram
+                               confirmMessage:kLocalizedThisActionCannotBeUndone];
         }
     } else if (actionSheet.tag == kEditObjectActionSheetTag) {
         if (buttonIndex == 0) {
@@ -577,14 +578,14 @@ static NSCharacterSet *blockedCharacterSet = nil;
             [Util askUserForUniqueNameAndPerformAction:@selector(renameObjectActionToName:spriteObject:)
                                                 target:self
                                             withObject:spriteObject
-                                           promptTitle:kUIAlertViewTitleRenameObject
-                                         promptMessage:[NSString stringWithFormat:@"%@:", kUIAlertViewMessageObjectName]
+                                           promptTitle:kLocalizedRenameObject
+                                         promptMessage:[NSString stringWithFormat:@"%@:", kLocalizedObjectName]
                                            promptValue:spriteObject.name
-                                     promptPlaceholder:kUIAlertViewPlaceholderEnterObjectName
+                                     promptPlaceholder:kLocalizedEnterYourObjectNameHere
                                         minInputLength:kMinNumOfObjectNameCharacters
                                         maxInputLength:kMaxNumOfObjectNameCharacters
                                    blockedCharacterSet:[self blockedCharacterSet]
-                              invalidInputAlertMessage:kUIAlertViewMessageObjectNameAlreadyExists
+                              invalidInputAlertMessage:kLocalizedObjectNameAlreadyExistsDescription
                                          existingNames:unavailableNames];
         }
     }
@@ -600,9 +601,9 @@ static NSCharacterSet *blockedCharacterSet = nil;
     UIBarButtonItem *add = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd
                                                                          target:self
                                                                          action:@selector(addObjectAction:)];
-#if kIsFirstRelease // kIsFirstRelease
+#if kIsRelease // kIsRelease
     add.enabled = NO;
-#endif // kIsFirstRelease
+#endif // kIsRelease
     UIBarButtonItem *play = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemPlay
                                                                           target:self
                                                                           action:@selector(playSceneAction:)];
@@ -620,7 +621,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
     UIBarButtonItem *flexItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace
                                                                               target:nil
                                                                               action:nil];
-    UIBarButtonItem *deleteButton = [[UIBarButtonItem alloc] initWithTitle:kUIBarButtonItemTitleDelete
+    UIBarButtonItem *deleteButton = [[UIBarButtonItem alloc] initWithTitle:kLocalizedDelete
                                                                      style:UIBarButtonItemStylePlain
                                                                     target:self
                                                                     action:@selector(confirmDeleteSelectedObjectsAction:)];

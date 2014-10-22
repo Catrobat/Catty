@@ -27,7 +27,7 @@
 
 - (NSString*)brickTitle
 {
-    return kBrickCellLookTitleShow;
+    return kLocalizedShow;
 }
 
 - (SKAction*)action

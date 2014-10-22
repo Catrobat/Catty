@@ -41,7 +41,7 @@
 
 - (NSString*)brickTitle
 {
-    return kBrickCellLookTitleChangeGhostEffectByN;
+    return kLocalizedChangeGhostEffectByN;
 }
 
 - (SKAction*)action
@@ -54,7 +54,7 @@
   return ^{
     NSDebug(@"Performing: %@", self.description);
     double transparency = [self.changeGhostEffect interpretDoubleForSprite:self.object];
-      double alpha = self.object.alpha - transparency/100;
+      CGFloat alpha = (CGFloat)(self.object.alpha - transparency/100.0f);
       if (alpha < 0) {
           self.object.alpha = 0;
           

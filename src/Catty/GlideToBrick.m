@@ -71,7 +71,7 @@
 
 - (NSString*)brickTitle
 {
-    return kBrickCellMotionTitleGlideTo;
+    return kLocalizedGlideTo;
 }
 
 #pragma mark - override
@@ -91,9 +91,9 @@
             self.startingPoint = self.currentPoint;
         }
         // TODO: handle extreme movemenets and set currentPoint accordingly
-        CGFloat percent = elapsedTime / durationInSeconds;
-        CGFloat xPoint = self.startingPoint.x + (xDestination - self.startingPoint.x) * percent;
-        CGFloat yPoint = self.startingPoint.y + (yDestination - self.startingPoint.y) * percent;
+        CGFloat percent = (CGFloat)(elapsedTime / durationInSeconds);
+        CGFloat xPoint = (CGFloat)(self.startingPoint.x + (xDestination - self.startingPoint.x) * percent);
+        CGFloat yPoint = (CGFloat)(self.startingPoint.y + (yDestination - self.startingPoint.y) * percent);
         self.object.position = self.currentPoint = CGPointMake(xPoint, yPoint);
     }];
 }

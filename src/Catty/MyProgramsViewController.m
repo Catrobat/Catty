@@ -85,7 +85,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
     NSDictionary *showDetails = [[NSUserDefaults standardUserDefaults] objectForKey:kUserDetailsShowDetailsKey];
     NSNumber *showDetailsProgramsValue = (NSNumber*)[showDetails objectForKey:kUserDetailsShowDetailsProgramsKey];
     self.useDetailCells = [showDetailsProgramsValue boolValue];
-    self.navigationController.title = self.title = kUIViewControllerTitlePrograms;
+    self.navigationController.title = self.title = kLocalizedPrograms;
     self.programLoadingInfos = [[Program allProgramLoadingInfos] mutableCopy];
     [self initNavigationBar];
 
@@ -123,14 +123,14 @@ static NSCharacterSet *blockedCharacterSet = nil;
 {
     NSMutableArray *options = [NSMutableArray array];
     if (self.useDetailCells) {
-        [options addObject:kUIActionSheetButtonTitleHideDetails];
+        [options addObject:kLocalizedHideDetails];
     } else {
-        [options addObject:kUIActionSheetButtonTitleShowDetails];
+        [options addObject:kLocalizedShowDetails];
     }
     if ([self.programLoadingInfos count]) {
-        [options addObject:kUIActionSheetButtonTitleDeletePrograms];
+        [options addObject:kLocalizedDeletePrograms];
     }
-    [Util actionSheetWithTitle:kUIActionSheetTitleEditPrograms
+    [Util actionSheetWithTitle:kLocalizedEditPrograms
                       delegate:self
         destructiveButtonTitle:nil
              otherButtonTitles:options
@@ -142,14 +142,14 @@ static NSCharacterSet *blockedCharacterSet = nil;
 {
     [Util askUserForUniqueNameAndPerformAction:@selector(addProgramAndSegueToItActionForProgramWithName:)
                                         target:self
-                                   promptTitle:kUIAlertViewTitleNewProgram
-                                 promptMessage:[NSString stringWithFormat:@"%@:", kUIAlertViewMessageProgramName]
+                                   promptTitle:kLocalizedNewProgram
+                                 promptMessage:[NSString stringWithFormat:@"%@:", kLocalizedProgramName]
                                    promptValue:nil
-                             promptPlaceholder:kUIAlertViewPlaceholderEnterProgramName
+                             promptPlaceholder:kLocalizedEnterYourProgramNameHere
                                 minInputLength:kMinNumOfProgramNameCharacters
                                 maxInputLength:kMaxNumOfProgramNameCharacters
                            blockedCharacterSet:[self blockedCharacterSet]
-                      invalidInputAlertMessage:kUIAlertViewMessageProgramNameAlreadyExists
+                      invalidInputAlertMessage:kLocalizedProgramNameAlreadyExistsDescription
                                  existingNames:[Program allProgramNames]];
 }
 
@@ -157,7 +157,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
 {
     static NSString *segueToNewProgramIdentifier = kSegueToNewProgram;
     programName = [Util uniqueName:programName existingNames:[Program allProgramNames]];
-    self.defaultProgram = [Program defaultProgramWithName:programName];
+    self.defaultProgram = [Program defaultProgramWithName:programName programID:nil];
     if ([self shouldPerformSegueWithIdentifier:segueToNewProgramIdentifier sender:self]) {
         [self addProgram:self.defaultProgram.header.programName];
         [self performSegueWithIdentifier:segueToNewProgramIdentifier sender:self];
@@ -173,7 +173,9 @@ static NSCharacterSet *blockedCharacterSet = nil;
         return;
 
     [self showLoadingView];
-    [Program copyProgramWithName:sourceProgramLoadingInfo.visibleName destinationProgramName:programName];
+    [Program copyProgramWithSourceProgramName:sourceProgramLoadingInfo.visibleName
+                              sourceProgramID:sourceProgramLoadingInfo.programID
+                       destinationProgramName:programName];
     [self.dataCache removeObjectForKey:destinationProgramLoadingInfo.visibleName];
     NSInteger numberOfRowsInLastSection = [self tableView:self.tableView numberOfRowsInSection:0];
     NSIndexPath *indexPath = [NSIndexPath indexPathForRow:(numberOfRowsInLastSection - 1) inSection:0];
@@ -190,7 +192,9 @@ static NSCharacterSet *blockedCharacterSet = nil;
     Program *program = [Program programWithLoadingInfo:programLoadingInfo];
     newProgramName = [Util uniqueName:newProgramName existingNames:[Program allProgramNames]];
     [program renameToProgramName:newProgramName];
-    [self renameOldProgramName:programLoadingInfo.visibleName toNewProgramName:program.header.programName];
+    [self renameOldProgramWithName:programLoadingInfo.visibleName
+                         programID:programLoadingInfo.programID
+                  toNewProgramName:program.header.programName];
 }
 
 - (void)updateProgramDescriptionActionWithText:(NSString*)descriptionText
@@ -215,13 +219,14 @@ static NSCharacterSet *blockedCharacterSet = nil;
 {
     [self showLoadingView];
     NSArray *selectedRowsIndexPaths = [self.tableView indexPathsForSelectedRows];
-    NSMutableArray *programNamesToRemove = [NSMutableArray arrayWithCapacity:[selectedRowsIndexPaths count]];
+    NSMutableArray *programLoadingInfosToRemove = [NSMutableArray arrayWithCapacity:[selectedRowsIndexPaths count]];
     for (NSIndexPath *selectedRowIndexPath in selectedRowsIndexPaths) {
         ProgramLoadingInfo *programLoadingInfo = [self.programLoadingInfos objectAtIndex:selectedRowIndexPath.row];
-        [programNamesToRemove addObject:programLoadingInfo.visibleName];
+        [programLoadingInfosToRemove addObject:programLoadingInfo];
     }
-    for (NSString *programNameToRemove in programNamesToRemove) {
-        [self removeProgram:programNameToRemove];
+    for (ProgramLoadingInfo *programLoadingInfoToRemove in programLoadingInfosToRemove) {
+        [self removeProgramWithName:programLoadingInfoToRemove.visibleName
+                          programID:programLoadingInfoToRemove.programID];
     }
     [self hideLoadingView];
     [super exitEditingMode];
@@ -231,7 +236,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
 {
     [self showLoadingView];
     ProgramLoadingInfo *programLoadingInfo = [self.programLoadingInfos objectAtIndex:indexPath.row];
-    [self removeProgram:programLoadingInfo.visibleName];
+    [self removeProgramWithName:programLoadingInfo.visibleName programID:programLoadingInfo.programID];
     [self hideLoadingView];
 }
 
@@ -265,10 +270,10 @@ static NSCharacterSet *blockedCharacterSet = nil;
     if (self.useDetailCells && [cell isKindOfClass:[DarkBlueGradientImageDetailCell class]]) {
         DarkBlueGradientImageDetailCell *detailCell = (DarkBlueGradientImageDetailCell*)imageCell;
         detailCell.topLeftDetailLabel.textColor = [UIColor whiteColor];
-        detailCell.topLeftDetailLabel.text = [NSString stringWithFormat:@"%@:", kUILabelTextLastAccess];
+        detailCell.topLeftDetailLabel.text = [NSString stringWithFormat:@"%@:", kLocalizedLastAccess];
         detailCell.topRightDetailLabel.textColor = [UIColor whiteColor];
         detailCell.bottomLeftDetailLabel.textColor = [UIColor whiteColor];
-        detailCell.bottomLeftDetailLabel.text = [NSString stringWithFormat:@"%@:", kUILabelTextSize];
+        detailCell.bottomLeftDetailLabel.text = [NSString stringWithFormat:@"%@:", kLocalizedSize];
         detailCell.bottomRightDetailLabel.textColor = [UIColor whiteColor];
 
         ProgramLoadingInfo *info = [self.programLoadingInfos objectAtIndex:indexPath.row];
@@ -291,7 +296,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return [TableUtil getHeightForImageCell];
+    return [TableUtil heightForImageCell];
 }
 
 #pragma mark - table view helpers
@@ -391,7 +396,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
             }
 
             // program failed loading...
-            [Util alertWithText:kUIAlertViewMessageUnableToLoadProgram];
+            [Util alertWithText:kLocalizedUnableToLoadProgram];
             return NO;
         }
     } else if ([identifier isEqualToString:segueToNewProgram]) {
@@ -429,10 +434,10 @@ static NSCharacterSet *blockedCharacterSet = nil;
     [cell hideUtilityButtonsAnimated:YES];
     if (index == 0) {
         // More button was pressed
-        NSArray *options = @[kUIActionSheetButtonTitleCopy, kUIActionSheetButtonTitleRename,
-                             kUIActionSheetButtonTitleDescription/*, kUIActionSheetButtonTitleUpload*/];
-#if kIsFirstRelease // kIsFirstRelease
-        CatrobatActionSheet *actionSheet = [Util actionSheetWithTitle:kUIAlertViewMessageFeatureComingSoon
+        NSArray *options = @[kLocalizedCopy, kLocalizedRename,
+                             kLocalizedDescription/*, kLocalizedUpload*/];
+#if kIsRelease // kIsRelease
+        CatrobatActionSheet *actionSheet = [Util actionSheetWithTitle:kLocalizedThisFeatureIsComingSoon
                                                              delegate:self
                                                destructiveButtonTitle:nil
                                                     otherButtonTitles:options
@@ -445,14 +450,14 @@ static NSCharacterSet *blockedCharacterSet = nil;
                 [actionSheet setButtonTextColor:[UIColor grayColor] forButtonAtIndex:button.index];
             }
         }
-#else // kIsFirstRelease
-        CatrobatActionSheet *actionSheet = [Util actionSheetWithTitle:kUIActionSheetTitleEditProgram
+#else // kIsRelease
+        CatrobatActionSheet *actionSheet = [Util actionSheetWithTitle:kLocalizedEditProgram
                                                              delegate:self
                                                destructiveButtonTitle:nil
                                                     otherButtonTitles:options
                                                                   tag:kEditProgramActionSheetTag
                                                                  view:self.navigationController.view];
-#endif // kIsFirstRelease
+#endif // kIsRelease
         NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
         NSDictionary *payload = @{ kDTPayloadProgramLoadingInfo : [self.programLoadingInfos objectAtIndex:indexPath.row] };
         DataTransferMessage *message = [DataTransferMessage messageForActionType:kDTMActionEditProgram
@@ -465,8 +470,8 @@ static NSCharacterSet *blockedCharacterSet = nil;
                            canceledAction:nil
                                withObject:indexPath
                                    target:self
-                             confirmTitle:kUIAlertViewTitleDeleteSingleProgram
-                           confirmMessage:kUIAlertViewMessageIrreversibleAction];
+                             confirmTitle:kLocalizedDeleteThisProgram
+                           confirmMessage:kLocalizedThisActionCannotBeUndone];
     }
 }
 
@@ -508,14 +513,14 @@ static NSCharacterSet *blockedCharacterSet = nil;
             [Util askUserForUniqueNameAndPerformAction:@selector(copyProgramActionForProgramWithName:sourceProgramLoadingInfo:)
                                                 target:self
                                             withObject:info
-                                           promptTitle:kUIAlertViewTitleCopyProgram
-                                         promptMessage:[NSString stringWithFormat:@"%@:", kUIAlertViewMessageProgramName]
+                                           promptTitle:kLocalizedCopyProgram
+                                         promptMessage:[NSString stringWithFormat:@"%@:", kLocalizedProgramName]
                                            promptValue:info.visibleName
-                                     promptPlaceholder:kUIAlertViewPlaceholderEnterProgramName
+                                     promptPlaceholder:kLocalizedEnterYourProgramNameHere
                                         minInputLength:kMinNumOfProgramNameCharacters
                                         maxInputLength:kMaxNumOfProgramNameCharacters
                                    blockedCharacterSet:[self blockedCharacterSet]
-                              invalidInputAlertMessage:kUIAlertViewMessageProgramNameAlreadyExists
+                              invalidInputAlertMessage:kLocalizedProgramNameAlreadyExistsDescription
                                          existingNames:[Program allProgramNames]];
         } else if (buttonIndex == 1) {
             // Rename button
@@ -526,14 +531,14 @@ static NSCharacterSet *blockedCharacterSet = nil;
             [Util askUserForUniqueNameAndPerformAction:@selector(renameProgramActionToName:sourceProgramLoadingInfo:)
                                                 target:self
                                             withObject:info
-                                           promptTitle:kUIAlertViewTitleRenameProgram
-                                         promptMessage:[NSString stringWithFormat:@"%@:", kUIAlertViewMessageProgramName]
+                                           promptTitle:kLocalizedRenameProgram
+                                         promptMessage:[NSString stringWithFormat:@"%@:", kLocalizedProgramName]
                                            promptValue:info.visibleName
-                                     promptPlaceholder:kUIAlertViewPlaceholderEnterProgramName
+                                     promptPlaceholder:kLocalizedEnterYourProgramNameHere
                                         minInputLength:kMinNumOfProgramNameCharacters
                                         maxInputLength:kMaxNumOfProgramNameCharacters
                                    blockedCharacterSet:[self blockedCharacterSet]
-                              invalidInputAlertMessage:kUIAlertViewMessageProgramNameAlreadyExists
+                              invalidInputAlertMessage:kLocalizedProgramNameAlreadyExistsDescription
                                          existingNames:unavailableNames];
         } else if (buttonIndex == 2) {
             // Description button
@@ -543,14 +548,14 @@ static NSCharacterSet *blockedCharacterSet = nil;
             [Util askUserForTextAndPerformAction:@selector(updateProgramDescriptionActionWithText:sourceProgram:)
                                           target:self
                                       withObject:program
-                                     promptTitle:kUIAlertViewTitleDescriptionProgram
-                                   promptMessage:[NSString stringWithFormat:@"%@:", kUIAlertViewMessageDescriptionProgram]
+                                     promptTitle:kLocalizedSetDescription
+                                   promptMessage:[NSString stringWithFormat:@"%@:", kLocalizedDescription]
                                      promptValue:program.header.description
-                               promptPlaceholder:kUIAlertViewPlaceholderEnterProgramDescription
+                               promptPlaceholder:kLocalizedEnterYourProgramDescriptionHere
                                   minInputLength:kMinNumOfProgramDescriptionCharacters
                                   maxInputLength:kMaxNumOfProgramDescriptionCharacters
                              blockedCharacterSet:[self blockedCharacterSet]
-                        invalidInputAlertMessage:kUIAlertViewMessageInvalidProgramDescription];
+                        invalidInputAlertMessage:kLocalizedInvalidDescriptionDescription];
 //        } else if (buttonIndex == 3) {
 //            // Upload button
         }
@@ -560,8 +565,6 @@ static NSCharacterSet *blockedCharacterSet = nil;
 #pragma mark - program handling
 - (ProgramLoadingInfo*)addProgram:(NSString*)programName
 {
-    NSString *basePath = [Program basePath];
-
     // check if program already exists, then update
     BOOL exists = NO;
     for (ProgramLoadingInfo *programLoadingInfo in self.programLoadingInfos) {
@@ -573,9 +576,8 @@ static NSCharacterSet *blockedCharacterSet = nil;
 
     // add if not exists
     if (! exists) {
-        programLoadingInfo = [[ProgramLoadingInfo alloc] init];
-        programLoadingInfo.basePath = [NSString stringWithFormat:@"%@%@/", basePath, programName];
-        programLoadingInfo.visibleName = programName;
+        programLoadingInfo = [ProgramLoadingInfo programLoadingInfoForProgramWithName:programName
+                                                                            programID:nil];
         NSLog(@"Adding program: %@", programLoadingInfo.basePath);
         [self.programLoadingInfos addObject:programLoadingInfo];
 
@@ -587,16 +589,17 @@ static NSCharacterSet *blockedCharacterSet = nil;
     return programLoadingInfo;
 }
 
-- (void)removeProgram:(NSString*)programName
+- (void)removeProgramWithName:(NSString *)programName programID:(NSString *)programID
 {
+    ProgramLoadingInfo *oldProgramLoadingInfo = [ProgramLoadingInfo programLoadingInfoForProgramWithName:programName programID:programID];
     NSInteger rowIndex = 0;
     for (ProgramLoadingInfo *info in self.programLoadingInfos) {
-        if ([info.visibleName isEqualToString:programName]) {
-            [Program removeProgramFromDiskWithProgramName:programName];
+        if ([info isEqualToLoadingInfo:oldProgramLoadingInfo]) {
+            [Program removeProgramFromDiskWithProgramName:programName programID:programID];
             [self.programLoadingInfos removeObjectAtIndex:rowIndex];
             NSIndexPath *indexPath = [NSIndexPath indexPathForRow:rowIndex inSection:0];
             [self.tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationTop];
-            // flush asset/image cache
+            // flush cache
             self.dataCache = nil;
             // needed to avoid unexpected behaviour when programs are renamed
             [[RuntimeImageCache sharedImageCache] clearImageCache];
@@ -612,17 +615,19 @@ static NSCharacterSet *blockedCharacterSet = nil;
     }
 }
 
-- (void)renameOldProgramName:(NSString*)oldProgramName toNewProgramName:(NSString*)newProgramName
+- (void)renameOldProgramWithName:(NSString *)oldProgramName
+                       programID:(NSString *)programID
+                toNewProgramName:(NSString *)newProgramName
 {
+    ProgramLoadingInfo *oldProgramLoadingInfo = [ProgramLoadingInfo programLoadingInfoForProgramWithName:oldProgramName
+                                                                                               programID:programID];
     NSInteger rowIndex = 0;
     for (ProgramLoadingInfo *info in self.programLoadingInfos) {
-        if ([info.visibleName isEqualToString:oldProgramName]) {
-            ProgramLoadingInfo *newInfo = [[ProgramLoadingInfo alloc] init];
-            newInfo.basePath = [NSString stringWithFormat:@"%@%@/", [Program basePath], newProgramName];
-            newInfo.visibleName = newProgramName;
+        if ([info isEqualToLoadingInfo:oldProgramLoadingInfo]) {
+            ProgramLoadingInfo *newInfo = [ProgramLoadingInfo programLoadingInfoForProgramWithName:newProgramName
+                                                                                         programID:oldProgramLoadingInfo.programID];
             [self.programLoadingInfos replaceObjectAtIndex:rowIndex withObject:newInfo];
-
-            // flush asset/image cache
+            // flush cache
             self.dataCache = nil;
             // needed to avoid unexpected behaviour when renaming programs
             [[RuntimeImageCache sharedImageCache] clearImageCache];
@@ -646,9 +651,9 @@ static NSCharacterSet *blockedCharacterSet = nil;
     UIBarButtonItem *add = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd
                                                                          target:self
                                                                          action:@selector(addProgramAction:)];
-#if kIsFirstRelease // kIsFirstRelease
+#if kIsRelease // kIsRelease
     add.enabled = NO;
-#endif // kIsFirstRelease
+#endif // kIsRelease
     self.toolbarItems = @[flexItem, add, flexItem];
 }
 
@@ -658,7 +663,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
     UIBarButtonItem *flexItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace
                                                                               target:nil
                                                                               action:nil];
-    UIBarButtonItem *deleteButton = [[UIBarButtonItem alloc] initWithTitle:kUIBarButtonItemTitleDelete
+    UIBarButtonItem *deleteButton = [[UIBarButtonItem alloc] initWithTitle:kLocalizedDelete
                                                                      style:UIBarButtonItemStylePlain
                                                                     target:self
                                                                     action:@selector(confirmDeleteSelectedProgramsAction:)];

@@ -26,7 +26,7 @@
 
 - (NSString*)brickTitle
 {
-    return kBrickCellControlTitleWhenProgramStarted;
+    return kLocalizedWhenProgramStarted;
 }
 
 @end

@@ -40,7 +40,7 @@
 
 - (NSString*)brickTitle
 {
-    return kBrickCellMotionTitleSetY;
+    return kLocalizedSetY;
 }
 
 -(SKAction*)action
@@ -52,8 +52,8 @@
 {
   return ^{
     NSDebug(@"Performing: %@", self.description);
-    float yPosition = [self.yPosition interpretDoubleForSprite:self.object];
-    self.object.position = CGPointMake(self.object.xPosition, yPosition);
+    double yPosition = [self.yPosition interpretDoubleForSprite:self.object];
+    self.object.position = CGPointMake(self.object.xPosition, (CGFloat)yPosition);
   };
 }
 

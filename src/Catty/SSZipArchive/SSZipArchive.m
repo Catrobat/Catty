@@ -279,8 +279,8 @@
 	BOOL success = NO;
 	SSZipArchive *zipArchive = [[SSZipArchive alloc] initWithPath:path];
 	if ([zipArchive open]) {
-		for (NSString *path in paths) {
-			[zipArchive writeFile:path];
+		for (NSString *pathStrings in paths) {
+			[zipArchive writeFile:pathStrings];
 		}
 		success = [zipArchive close];        
 	}
@@ -318,7 +318,7 @@
 
 - (void)zipInfo:(zip_fileinfo*)zipInfo setDate:(NSDate*)date {
     NSCalendar *currentCalendar = [NSCalendar currentCalendar];
-    uint flags = NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit | NSHourCalendarUnit | NSMinuteCalendarUnit | NSSecondCalendarUnit;
+    uint flags = NSCalendarUnitYear | NSCalendarUnitMonth | NSCalendarUnitDay | NSCalendarUnitHour | NSCalendarUnitMinute | NSCalendarUnitSecond;
     NSDateComponents *components = [currentCalendar components:flags fromDate:date];
     zipInfo->tmz_date.tm_sec = (unsigned int)components.second;
     zipInfo->tmz_date.tm_min = (unsigned int)components.minute;
@@ -395,12 +395,17 @@
 	static const UInt32 kHourMask = 0xF800;
 	static const UInt32 kMinuteMask = 0x7E0;
 	static const UInt32 kSecondMask = 0x1F;
-	
-	NSCalendar *gregorian = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
+
+#if __IPHONE_OS_VERSION_MAX_ALLOWED >= 80000
+    // iOS8 specific stuff
+    NSCalendar *gregorian = [[NSCalendar alloc] initWithCalendarIdentifier:NSCalendarIdentifierGregorian];
+#else
+    // iOS7 specific stuff
+    NSCalendar *gregorian = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
+#endif
     NSDateComponents *components = [[NSDateComponents alloc] init];
 
     NSAssert(0xFFFFFFFF == (kYearMask | kMonthMask | kDayMask | kHourMask | kMinuteMask | kSecondMask), @"[SSZipArchive] MSDOS date masks don't add up");
-	    
     [components setYear:1980 + ((msdosDateTime & kYearMask) >> 25)];
     [components setMonth:(msdosDateTime & kMonthMask) >> 21];
     [components setDay:(msdosDateTime & kDayMask) >> 16];
@@ -414,7 +419,7 @@
 	[gregorian release];
 	[components release];
 #endif
-	
+
 	return date;
 }
 

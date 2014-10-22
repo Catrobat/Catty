@@ -24,6 +24,8 @@
 #import "Program.h"
 #import "SpriteObject.h"
 
+#import "BroadcastScript.h" // FIXME: remove that later...
+
 @implementation Scene
 
 - (id)initWithSize:(CGSize)size andProgram:(Program *)program
@@ -56,19 +58,20 @@
 - (void)startProgram
 {
     CGFloat zPosition = 1.0f;
+    [self removeAllChildren]; // just to ensure
     for (SpriteObject *obj in self.program.objectList) {
         [self addChild:obj];
         NSDebug(@"%f",zPosition);
         [obj start:zPosition];
         [obj setLook];
-        [obj setProgram:self.program];
-        [obj setUserInteractionEnabled:YES];
-        if (!([obj isBackground])) {
+        obj.program = self.program;
+        obj.userInteractionEnabled = YES;
+        if (! ([obj isBackground])) {
             zPosition++;
             self.numberOfObjectsWithoutBackground++;
         }
     }
-    
+    // TODO: replace numberOfObjectsWithoutBackground-property by [obj.program numberOfNormalObjects]
     for (SpriteObject *obj in self.program.objectList) {
         obj.numberOfObjectsWithoutBackground = self.numberOfObjectsWithoutBackground;
     }

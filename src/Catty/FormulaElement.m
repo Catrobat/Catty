@@ -30,6 +30,8 @@
 #import "SpriteObject.h"
 #import "NSString+CatrobatNSStringExtensions.h"
 #import "Util.h"
+#import "Operators.h"
+#import "Functions.h"
 #import "GDataXMLNode+PrettyFormatterExtensions.h"
 #import "InternToken.h"
 #import "Operators.h"
@@ -208,10 +210,7 @@
                 && !(self.rightChild.type == NUMBER && [self.rightChild.value containsString:@"."])
                 && !(self.rightChild.type == NUMBER && [self.rightChild.value containsString:@"."])) {
                 
-                result = (int)result;
-                if ((fabs(result) - (int) fabs(result)) >= 0.5) {
-                    result +=1;
-                }
+                result = (int)round(result);
             }
 
             break;
@@ -236,7 +235,7 @@
             while (left < 0) {
                 left += right;
             }
-            result = fmodf(left, right);
+            result = fmod(left, right);
             break;
         }
         case ARCSIN: {

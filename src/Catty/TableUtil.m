@@ -26,41 +26,37 @@
 #import "CatrobatBaseCell.h"
 #import "LanguageTranslationDefines.h"
 
-#define kIphone5ScreenHeight 568.0f
-#define kIphone4ScreenHeight 480.0f
-#define kContinueCellHeight  120.0f
-#define kImageCellHeight     75.0f
-#define kFeaturedCellHeight  125.0f
+#define kFeaturedCellHeight  135.0f
 
 @implementation TableUtil
 
-+ (CGFloat)getHeightForContinueCell
++ (CGFloat)heightForContinueCell:(CGFloat)navBarHeight
 {
-    CGFloat screenHeight = [Util getScreenHeight];
-    if (screenHeight == kIphone5ScreenHeight) {
-        return ((kContinueCellHeight+2)*screenHeight)/kIphone5ScreenHeight;
-    } else {
-        return (kContinueCellHeight*screenHeight)/kIphone4ScreenHeight;
-    }
+    CGFloat screenHeight = [Util screenHeight];
+    screenHeight -= navBarHeight;
+    return screenHeight * 0.25f;
 }
 
-+ (CGFloat)getHeightForImageCell
++ (CGFloat)heightForImageCell
 {
-    CGFloat screenHeight = [Util getScreenHeight];
-    if (screenHeight == kIphone5ScreenHeight) {
-        return ((kImageCellHeight+2)*screenHeight)/kIphone5ScreenHeight;
-    } else {
-        return (kImageCellHeight*screenHeight)/kIphone4ScreenHeight;
-    }
+    CGFloat screenHeight = [Util screenHeight];
+    return screenHeight / 7.0f;
 }
-+ (CGFloat)getHeightForFeaturedCell
+
++ (CGFloat)heightForCatrobatTableViewImageCell:(CGFloat)navBarHeight
+{
+    CGFloat screenHeight = [Util screenHeight];
+    screenHeight -= navBarHeight;
+    return screenHeight * 0.14f;
+}
++ (CGFloat)heightForFeaturedCell
 {
     return kFeaturedCellHeight;
 }
 
 + (UIBarButtonItem*)editButtonItemWithTarget:(id)target action:(SEL)action
 {
-    UIBarButtonItem *editButton = [[UIBarButtonItem alloc] initWithTitle:kUIBarButtonItemTitleEdit
+    UIBarButtonItem *editButton = [[UIBarButtonItem alloc] initWithTitle:kLocalizedEdit
                                                                    style:UIBarButtonItemStylePlain
                                                                   target:target
                                                                   action:action];

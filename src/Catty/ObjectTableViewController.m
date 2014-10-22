@@ -33,6 +33,7 @@
 #import "ScenePresenterViewController.h"
 #import "LanguageTranslationDefines.h"
 #import "Util.h"
+#import "ProgramLoadingInfo.h"
 
 @interface ObjectTableViewController ()
 
@@ -58,7 +59,7 @@
 - (void)playSceneAction:(id)sender
 {
     [self.navigationController setToolbarHidden:YES animated:YES];
-    ScenePresenterViewController *vc =[[ScenePresenterViewController alloc] initWithProgram:[Program programWithLoadingInfo:[Util programLoadingInfoForProgramWithName:[Util lastProgram]]]];
+    ScenePresenterViewController *vc = [[ScenePresenterViewController alloc] initWithProgram:[Program programWithLoadingInfo:[Util lastUsedProgramLoadingInfo]]];
     [self.navigationController pushViewController:vc animated:YES];
 }
 
@@ -83,17 +84,17 @@
         switch (indexPath.row) {
             case 0:
                 imageCell.iconImageView.image = [UIImage imageNamed:@"ic_scripts"];
-                imageCell.titleLabel.text = kUITableViewControllerMenuTitleScripts;
+                imageCell.titleLabel.text = kLocalizedScripts;
                 break;
             case 1:
                 imageCell.iconImageView.image = [UIImage imageNamed:@"ic_looks"];
                 imageCell.titleLabel.text = (self.object.isBackground
-                                          ? kUITableViewControllerMenuTitleBackgrounds
-                                          : kUITableViewControllerMenuTitleLooks);
+                                          ? kLocalizedBackgrounds
+                                          : kLocalizedLooks);
                 break;
             case 2:
                 imageCell.iconImageView.image = [UIImage imageNamed:@"ic_sounds"];
-                imageCell.titleLabel.text = kUITableViewControllerMenuTitleSounds;
+                imageCell.titleLabel.text = kLocalizedSounds;
                 break;
         }
     }
@@ -102,7 +103,7 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return [TableUtil getHeightForImageCell];
+    return [TableUtil heightForImageCell];
 }
 
 #pragma mark - table view delegates

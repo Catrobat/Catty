@@ -42,7 +42,7 @@
 
 - (NSString*)brickTitle
 {
-    return kBrickCellControlTitleWait;
+    return kLocalizedWaitNSeconds;
 }
 
 - (SKAction*)action

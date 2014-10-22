@@ -32,12 +32,12 @@
 
 - (NSString*)brickTitle
 {
-    return kBrickCellMotionTitleIfOnEdgeBounce;
+    return kLocalizedIfIsTrueThenOnEdgeBounce;
 }
 
 - (void)performFromScript:(Script*)script;
 {
-    NSLog(@"Performing: %@", self.description);
+    NSDebug(@"Performing: %@", self.description);
     
     //[self.object ifOnEdgeBounce];
     
@@ -50,11 +50,11 @@
         
         float width = self.object.size.width;
         float height = self.object.size.height;
-        int xPosition = self.object.position.x;
-        int yPosition = self.object.position.y;
+        CGFloat xPosition = self.object.position.x;
+        CGFloat yPosition = self.object.position.y;
 
-        int virtualScreenWidth = self.object.scene.size.width/2.0f;
-        int virtualScreenHeight = self.object.scene.size.height/2.0f;
+        CGFloat virtualScreenWidth = self.object.scene.size.width/2.0f;
+        CGFloat virtualScreenHeight = self.object.scene.size.height/2.0f;
 
         float rotation = [self.object rotation];
 
@@ -88,7 +88,7 @@
             yPosition = -virtualScreenHeight + (int) (height / 2);
         }
         
-        self.object.zRotation = [Util degreeToRadians:rotation];
+        self.object.zRotation = (CGFloat)[Util degreeToRadians:rotation];
         self.object.position = CGPointMake(xPosition, yPosition);
 
     }];

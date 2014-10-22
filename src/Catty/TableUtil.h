@@ -26,11 +26,13 @@
 
 @interface TableUtil : NSObject
 
-+ (CGFloat)getHeightForContinueCell;
++ (CGFloat)heightForContinueCell:(CGFloat)navBarHeight;
 
-+ (CGFloat)getHeightForImageCell;
++ (CGFloat)heightForImageCell;
 
-+ (CGFloat)getHeightForFeaturedCell;
++ (CGFloat)heightForCatrobatTableViewImageCell:(CGFloat)navBarHeight;
+
++ (CGFloat)heightForFeaturedCell;
 
 + (UIBarButtonItem*)editButtonItemWithTarget:(id)target action:(SEL)action;
 

@@ -98,10 +98,10 @@
     self.collectionView.collectionViewLayout = [LXReorderableCollectionViewFlowLayout new];
 
     self.navigationItem.rightBarButtonItems = @[self.editButtonItem];
-#if kIsFirstRelease // kIsFirstRelease
+#if kIsRelease // kIsRelease
     self.navigationItem.rightBarButtonItem.enabled = NO;
-#endif // kIsFirstRelease
-    self.placeHolderView = [[PlaceHolderView alloc]initWithTitle:kUIViewControllerPlaceholderTitleScripts];
+#endif // kIsRelease
+    self.placeHolderView = [[PlaceHolderView alloc] initWithTitle:kLocalizedScripts];
     self.placeHolderView.hidden = self.object.scriptList.count ? YES : NO;
     self.brickScaleTransition = [BrickScaleTransition new];
     self.selectedIndexPaths = [NSMutableDictionary dictionary];
@@ -120,7 +120,7 @@
 - (AHKActionSheet *)brickSelectionMenu
 {
     if (!_brickSelectionMenu) {
-        _brickSelectionMenu = [[AHKActionSheet alloc]initWithTitle:kUIActionSheetTitleSelectBrickCategory];
+        _brickSelectionMenu = [[AHKActionSheet alloc]initWithTitle:kLocalizedSelectBrickCategory];
         _brickSelectionMenu.blurTintColor = [UIColor colorWithWhite:0.0f alpha:0.7f];
         _brickSelectionMenu.separatorColor = UIColor.skyBlueColor;
         _brickSelectionMenu.titleTextAttributes = @{NSFontAttributeName : [UIFont systemFontOfSize:14.0f] ,
@@ -131,31 +131,31 @@
         _brickSelectionMenu.automaticallyTintButtonImages = NO;
 
         __weak typeof(self) weakSelf = self;
-        [_brickSelectionMenu addButtonWithTitle:kUIActionSheetButtonTitleControl
+        [_brickSelectionMenu addButtonWithTitle:kLocalizedControl
                                           image:[UIImage imageNamed:@"orange_indicator"]
                                    type:AHKActionSheetButtonTypeDefault
                                   handler:^(AHKActionSheet *actionSheet) {
                                       [weakSelf showBrickSelectionView:kControlBrick];
                                   }];
-        [_brickSelectionMenu addButtonWithTitle:kUIActionSheetButtonTitleMotion
+        [_brickSelectionMenu addButtonWithTitle:kLocalizedMotion
                                           image:[UIImage imageNamed:@"lightblue_indicator"]
                                            type:AHKActionSheetButtonTypeDefault
                                         handler:^(AHKActionSheet *actionSheet) {
                                             [weakSelf showBrickSelectionView:kMotionBrick];
                                         }];
-        [_brickSelectionMenu addButtonWithTitle:kUIActionSheetButtonTitleSound
+        [_brickSelectionMenu addButtonWithTitle:kLocalizedSound
                                           image:[UIImage imageNamed:@"pink_indicator"]
                                            type:AHKActionSheetButtonTypeDefault
                                         handler:^(AHKActionSheet *actionSheet) {
                                             [weakSelf showBrickSelectionView:kSoundBrick];
                                         }];
-        [_brickSelectionMenu addButtonWithTitle:kUIActionSheetButtonTitleLooks
+        [_brickSelectionMenu addButtonWithTitle:kLocalizedLooks
                                           image:[UIImage imageNamed:@"green_indicator"]
                                            type:AHKActionSheetButtonTypeDefault
                                         handler:^(AHKActionSheet *actionSheet) {
                                             [weakSelf showBrickSelectionView:kLookBrick];
                                         }];
-        [_brickSelectionMenu addButtonWithTitle:kUIActionSheetButtonTitleVariables
+        [_brickSelectionMenu addButtonWithTitle:kLocalizedVariables
                                           image:[UIImage imageNamed:@"red_indicator"]
                                            type:AHKActionSheetButtonTypeDefault
                                         handler:^(AHKActionSheet *actionSheet) {
@@ -181,13 +181,13 @@
         _blurView = [[FXBlurView alloc] initWithFrame:self.view.bounds];
         _blurView.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
         _blurView.userInteractionEnabled = NO;
-        _blurView.tintColor = UIColor.clearColor;
+        _blurView.tintColor = [UIColor darkBlueColor];
         _blurView.underlyingView = self.collectionView;
         _blurView.blurEnabled = YES;
-        _blurView.blurRadius = 30.f;
+        _blurView.blurRadius = 50.f;
         _blurView.dynamic = YES;
         _blurView.updateInterval = 0.1f;
-        _blurView.alpha = 0.f;
+        _blurView.alpha = 0.5f;
         _blurView.hidden = YES;
         [self.view addSubview:self.blurView];
     }
@@ -225,7 +225,7 @@
 - (void)playSceneAction:(id)sender
 {
     [self.navigationController setToolbarHidden:YES animated:YES];
-    ScenePresenterViewController *vc =[[ScenePresenterViewController alloc] initWithProgram:[Program programWithLoadingInfo:[Util programLoadingInfoForProgramWithName:[Util lastProgram]]]];
+    ScenePresenterViewController *vc = [[ScenePresenterViewController alloc] initWithProgram:[Program programWithLoadingInfo:[Util lastUsedProgramLoadingInfo]]];
     [self.navigationController pushViewController:vc animated:YES];
 }
 
@@ -350,9 +350,9 @@
     }
     [brickCell setupBrickCell];
     brickCell.delegate = self;
-#if kIsFirstRelease // kIsFirstRelease
+#if kIsRelease // kIsRelease
     brickCell.enabled = NO;
-#endif // kIsFirstRelease
+#endif // kIsRelease
     return brickCell;
 }
 
@@ -403,7 +403,7 @@
                    layout:(UICollectionViewLayout *)collectionViewLayout
 minimumLineSpacingForSectionAtIndex:(NSInteger)section
 {
-    return 0.0f;
+    return kBrickOverlapHeight;
 }
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
@@ -495,11 +495,11 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
 
 - (BOOL)collectionView:(UICollectionView *)collectionView canMoveItemAtIndexPath:(NSIndexPath *)indexPath
 {
-#if kIsFirstRelease // kIsFirstRelease
+#if kIsRelease // kIsRelease
     return NO;
-#else // kIsFirstRelease
+#else // kIsRelease
     return ((self.isEditing || indexPath.item == 0) ? NO : YES);
-#endif // kIsFirstRelease
+#endif // kIsRelease
 }
 
 #pragma mark - Add brick Delegate
@@ -579,11 +579,11 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
             UIBarButtonItem *add = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd
                                                                                  target:self
                                                                                  action:@selector(showBrickSelectionMenu)];
-#if kIsFirstRelease // kIsFirstRelease
+#if kIsRelease // kIsRelease
             add.enabled = NO;
-#else // kIsFirstRelease
-            add.enabled = !self.editing;
-#endif // kIsFirstRelease
+#else // kIsRelease
+            add.enabled = (! self.editing);
+#endif // kIsRelease
             UIBarButtonItem *play = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemPlay
                                                                                   target:self
                                                                                   action:@selector(playSceneAction:)];
@@ -592,10 +592,10 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
                                   flexItem, flexItem, invisibleButton, play, invisibleButton, flexItem];
         } else {
             UIBarButtonItem *done = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"toolbar_close"]
-                                                                     style:UIBarButtonItemStyleBordered target:self
+                                                                     style:UIBarButtonItemStylePlain target:self
                                                                     action:@selector(showBrickSelectionView:)];
             UIBarButtonItem *list = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"toolbar_list"]
-                                                                     style:UIBarButtonItemStyleBordered target:self
+                                                                     style:UIBarButtonItemStylePlain target:self
                                                                     action:@selector(showBrickSelectionMenu)];
             
             self.toolbarItems = @[flexItem,invisibleButton, list, invisibleButton, flexItem,
@@ -604,11 +604,11 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
         }
 
 //
-//        UIBarButtonItem *deleteButton = [[UIBarButtonItem alloc] initWithTitle:kUIBarButtonItemTitleDelete
+//        UIBarButtonItem *deleteButton = [[UIBarButtonItem alloc] initWithTitle:kLocalizedDelete
 //                                                                         style:0
 //                                                                        target:self
 //                                                                        action:@selector(deleteSelectedBricks)];
-//        UIBarButtonItem *selectAllButton = [[UIBarButtonItem alloc] initWithTitle:kUIBarButtonItemTitleSelectAllItems
+//        UIBarButtonItem *selectAllButton = [[UIBarButtonItem alloc] initWithTitle:kLocalizedSelectAllItems
 //                                                                         style:0
 //                                                                        target:self
 //                                                                        action:@selector(selectAllBricks)];
@@ -774,8 +774,8 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
     [self setupToolBar];
 
     if (self.isEditing) {
-        self.navigationItem.title = kUINavigationItemTitleEditMenu;
-        self.navigationItem.rightBarButtonItem.title = kUIBarButtonItemTitleDelete;
+        self.navigationItem.title = kLocalizedEditMenu;
+        self.navigationItem.rightBarButtonItem.title = kLocalizedDelete;
         self.navigationItem.rightBarButtonItem.tintColor = UIColor.redColor;
         [UIView animateWithDuration:animated ? 0.5f : 0.0f  delay:0.0f usingSpringWithDamping:0.6f initialSpringVelocity:1.5f options:UIViewAnimationOptionCurveEaseInOut animations:^{
             for (BrickCell *brickCell in self.collectionView.visibleCells) {
@@ -784,7 +784,7 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
             }
         } completion:NULL];
     } else {
-        self.navigationItem.title = kUITableViewControllerMenuTitleScripts;
+        self.navigationItem.title = kLocalizedScripts;
         self.navigationItem.rightBarButtonItem.tintColor = UIColor.lightOrangeColor;
         
         __weak ScriptCollectionViewController *weakself = self;

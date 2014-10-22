@@ -45,7 +45,7 @@
 
 - (NSString*)brickTitle
 {
-    return kBrickCellMotionTitleGoNStepsBack;
+    return kLocalizedGoNStepsBack;
 }
 
 -(SKAction*)action

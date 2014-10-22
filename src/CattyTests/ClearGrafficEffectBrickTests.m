@@ -45,7 +45,7 @@
 {
     
     SpriteObject* object = [[SpriteObject alloc] init];
-    Program *program = [Program defaultProgramWithName:@"a"];
+    Program *program = [Program defaultProgramWithName:@"a" programID:nil];
     object.program = program;
     object.position = CGPointMake(0.0f, 0.0f);
     
@@ -87,13 +87,13 @@
 
     
     XCTAssertEqualWithAccuracy([object alpha], 1.0,0.0001f, @"ClearGraphic is not correctly calculated");
-    [Program removeProgramFromDiskWithProgramName:program.header.programName];
+    [Program removeProgramFromDiskWithProgramName:program.header.programName programID:program.header.programID];
 }
 
 -(void)testClearGraphicEffectBrick2
 {
     SpriteObject* object = [[SpriteObject alloc] init];
-    Program *program = [Program defaultProgramWithName:@"a"];
+    Program *program = [Program defaultProgramWithName:@"a" programID:program.header.programID];
     object.program = program;
     object.position = CGPointMake(0.0f, 0.0f);
     
@@ -135,14 +135,14 @@
     
     
     XCTAssertEqualWithAccuracy([object alpha], 1.0,0.0001f, @"ClearGraphic is not correctly calculated");
-    [Program removeProgramFromDiskWithProgramName:program.header.programName];
+    [Program removeProgramFromDiskWithProgramName:program.header.programName programID:program.header.programID];
 }
 
 
 -(void)testClearGraphicEffectBrick3
 {
     SpriteObject* object = [[SpriteObject alloc] init];
-    Program *program = [Program defaultProgramWithName:@"a"];
+    Program *program = [Program defaultProgramWithName:@"a" programID:nil];
     object.program = program;
     object.position = CGPointMake(0.0f, 0.0f);
     
@@ -183,7 +183,7 @@
     
     
     XCTAssertEqualWithAccuracy([object brightness], 0.0f,0.0001f, @"ClearGraphic is not correctly calculated");
-    [Program removeProgramFromDiskWithProgramName:program.header.programName];
+    [Program removeProgramFromDiskWithProgramName:program.header.programName programID:program.header.programID];
 }
 
 @end

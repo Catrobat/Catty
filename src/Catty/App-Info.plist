@@ -25,21 +25,33 @@
 	<key>CFBundleSignature</key>
 	<string>????</string>
 	<key>CFBundleVersion</key>
-	<string>1.0</string>
+	<string>2.0</string>
+	<key>CatrobatApplicationName</key>
+	<string>Pocket Code (Catty iOS)</string>
+	<key>CatrobatBuildName</key>
+	<string>Catty</string>
+	<key>CatrobatLanguageVersion</key>
+	<string>0.9.4</string>
+	<key>CatrobatMediaLicense</key>
+	<string>http://developer.catrobat.org/ccbysa_v3</string>
+	<key>CatrobatProgramLicense</key>
+	<string>http://developer.catrobat.org/agpl_v3</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>UIFileSharingEnabled</key>
 	<true/>
+	<key>UILaunchStoryboardName</key>
+	<string>iPhone</string>
 	<key>UIMainStoryboardFile</key>
 	<string>iPhone</string>
 	<key>UIStatusBarHidden</key>
 	<false/>
+	<key>UIStatusBarStyle</key>
+	<string>UIStatusBarStyleLightContent</string>
 	<key>UISupportedInterfaceOrientations</key>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>
 	</array>
-	<key>UIStatusBarStyle</key>
-	<string>UIStatusBarStyleLightContent</string>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>
 </dict>

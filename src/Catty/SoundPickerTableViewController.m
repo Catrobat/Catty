@@ -130,10 +130,10 @@
     UIImage *image = [imageCache cachedImageForName:rightIconName];
     if (! image) {
         [imageCache loadImageWithName:rightIconName
-                         onCompletion:^(UIImage *image){
+                         onCompletion:^(UIImage *img){
                              // check if cell still needed
                              if ([imageCell.indexPath isEqual:indexPath]) {
-                                 imageCell.iconImageView.image = image;
+                                 imageCell.iconImageView.image = img;
                                  [imageCell setNeedsLayout];
                              }
                          }];
@@ -150,21 +150,26 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return [TableUtil getHeightForImageCell];
+    return [TableUtil heightForImageCell];
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
-    if ([cell conformsToProtocol:@protocol(CatrobatImageCell)]) {
-        [self.presentingViewController dismissViewControllerAnimated:YES completion:^{
-            NSNotificationCenter *dnc = [NSNotificationCenter defaultCenter];
-            [dnc postNotificationName:kSoundAddedNotification
-                               object:nil
-                             userInfo:@{ kUserInfoSound : [self.playableSounds objectAtIndex:indexPath.row] }];
-        }];
+    if (! [cell conformsToProtocol:@protocol(CatrobatImageCell)]) {
+        return;
     }
+    [self.presentingViewController dismissViewControllerAnimated:YES completion:^{
+        Sound *sound = [self.playableSounds objectAtIndex:indexPath.row];
+        if (! sound) {
+            return;
+        }
+        NSNotificationCenter *dnc = [NSNotificationCenter defaultCenter];
+        [dnc postNotificationName:kSoundAddedNotification
+                           object:nil
+                         userInfo:@{ kUserInfoSound : sound}];
+    }];
 }
 
 #pragma mark - player actions
@@ -181,8 +186,8 @@
             if (indexPath.row < [self.playableSounds count]) {
                 // acquire lock
                 if (self.silentDetector.isMute) {
-                    [Util alertWithText:(IS_IPHONE ? kUIAlertViewMessageDeviceIsInMutedStateIPhone
-                                         : kUIAlertViewMessageDeviceIsInMutedStateIPad)];
+                    [Util alertWithText:(IS_IPHONE ? kLocalizedDeviceIsInMutedStateIPhoneDescription
+                                         : kLocalizedDeviceIsInMutedStateIPadDescription)];
                     return;
                 }
                 @synchronized(self) {
@@ -227,7 +232,7 @@
     self.currentPlayingSongCell = nil;
 }
 
-#pragma audio delegate methods
+#pragma mark audio delegate methods
 - (void)audioPlayerDidFinishPlaying:(AVAudioPlayer *)player successfully:(BOOL)flag
 {
     if ((! flag) || (! self.currentPlayingSong) || (! self.currentPlayingSongCell)) {
@@ -247,11 +252,11 @@
         
         if (! image) {
             [imageCache loadImageWithName:playIconName
-                             onCompletion:^(UIImage *image){
+                             onCompletion:^(UIImage *img){
                                  // check if user tapped again on this song in the meantime...
                                  @synchronized(self) {
                                      if ((currentPlayingSong != self.currentPlayingSong) && (currentPlayingSongCell != self.currentPlayingSongCell)) {
-                                         currentPlayingSongCell.iconImageView.image = image;
+                                         currentPlayingSongCell.iconImageView.image = img;
                                      }
                                  }
                              }];
@@ -264,7 +269,7 @@
 #pragma mark - helpers
 - (void)setupNavigationBar
 {
-    self.navigationItem.title = self.title = kUIViewControllerTitleChooseSound;
+    self.navigationItem.title = self.title = kLocalizedChooseSound;
     UIBarButtonItem *closeButton;
     closeButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone
                                                                 target:self
