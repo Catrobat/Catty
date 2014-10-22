@@ -21,9 +21,9 @@
  */
 
 #import "SpriteObjectCBXMLNodeParser.h"
+#import "GDataXMLNode.h"
 #import "CBXMLValidator.h"
 #import "SpriteObject.h"
-#import "GDataXMLNode.h"
 
 @implementation SpriteObjectCBXMLNodeParser
 
@@ -82,7 +82,7 @@
     if (! [lookElements count]) {
         return nil;
     }
-    
+
     NSMutableArray *lookList = [NSMutableArray arrayWithCapacity:[lookElements count]];
 //    for (GDataXMLElement *lookElement in lookElements) {
 //        Look *look = [[Look alloc] init];

@@ -21,14 +21,15 @@
  */
 
 #import "CBXMLParser.h"
-#import "Program+CustomExtensions.h"
 #import "GDataXMLNode.h"
+#import "Program+CustomExtensions.h"
 #import "Header.h"
-#import <objc/runtime.h>
 #import <Foundation/NSObjCRuntime.h>
 #import "CatrobatLanguageDefines.h"
 #import "SpriteObjectCBXMLNodeParser.h"
 #import "CBXMLValidator.h"
+#import "HeaderCBXMLNodeParser.h"
+#import "VariablesContainer.h"
 
 #define kCatroidXMLPrefix               @"org.catrobat.catroid.content."
 #define kCatroidXMLSpriteList           @"spriteList"
@@ -39,7 +40,7 @@
 #define kParserObjectTypeMutableDictionary @"T@\"NSMutableDictionary\""
 #define kParserObjectTypeDate           @"T@\"NSDate\""
 
-// NEVER MOVE THESE DEFINE CONSTANTS TO ANOTHER CLASS
+// NEVER MOVE THESE DEFINE CONSTANTS TO ANOTHER (HEADER) FILE
 #define kCatrobatXMLParserMinSupportedLanguageVersion 0.0902f
 #define kCatrobatXMLParserMaxSupportedLanguageVersion CGFLOAT_MAX
 
@@ -82,6 +83,7 @@
     // sanity check
     if (error) { return nil; }
 
+    NSLog(@"%@", xmlFile);
     NSData *xmlData = [xmlFile dataUsingEncoding:NSUTF8StringEncoding];
 
     // sanity check
@@ -106,7 +108,7 @@
 
 //    return program;
     // FIXME: REMOVE THIS LOG-Entry after parser has been fully implemented
-    NSLog(@"!!! NEW PARSER IS NOT IMPLEMENTED YET => RETURNING NIL !!!");
+    NSLog(@"!!! NEW Catrobat XML Parser IS NOT FULLY IMPLEMENTED YET => RETURNING NIL !!!");
     return nil;
 }
 
@@ -115,44 +117,22 @@
     GDataXMLElement *rootElement = xmlDocument.rootElement;
     [XMLError exceptionIfString:rootElement.name isNotEqualToString:@"program"
                         message:@"The name of the rootElement is %@ but should be 'program'",rootElement.name];
-
-    // TODO: add annotation parsing and annotations to all data model classes' properties
-    //       + determine which properties should be hooked up
     Program *program = [[Program alloc] init];
-    program.header = [self parseAndCreateHeader:rootElement];
-    program.objectList = [self parseAndCreateObjects:rootElement];
-//    TODO: continue...
+    program.header = [self parseAndCreateHeaderFromElement:rootElement];
+    program.objectList = [self parseAndCreateObjectsFromElement:rootElement];
+    program.variables = [self parseAndCreateVariablesFromElement:rootElement];
     return program;
 }
 
 #pragma mark Header parsing
-- (Header*)parseAndCreateHeader:(GDataXMLElement*)programElement
+- (Header*)parseAndCreateHeaderFromElement:(GDataXMLElement*)programElement
 {
-    Header *header = [Header defaultHeader];
-    NSArray *headerNodes = [programElement elementsForName:@"header"];
-    [XMLError exceptionIf:[headerNodes count] notEquals:1 message:@"Invalid header given!"];
-    NSArray *headerPropertyNodes = [[headerNodes firstObject] children];
-    [XMLError exceptionIf:[headerPropertyNodes count] equals:0 message:@"No parsed properties found in header!"];
-    NSLog(@"<header>");
-
-    for (GDataXMLNode *headerPropertyNode in headerPropertyNodes) {
-        [XMLError exceptionIfNil:headerPropertyNode message:@"Parsed an empty header entry!"];
-        id value = [self valueForHeaderPropertyNode:headerPropertyNode];
-        NSLog(@"<%@>%@</%@>", headerPropertyNode.name, value, headerPropertyNode.name);
-        NSString *headerPropertyName = headerPropertyNode.name;
-
-        // consider special case: name of property programDescription
-        if ([headerPropertyNode.name isEqualToString:@"description"]) {
-            headerPropertyName = @"programDescription";
-        }
-        [header setValue:value forKey:headerPropertyName]; // Note: weak properties are not yet supported!!
-    }
-    NSLog(@"</header>");
-    return header;
+    HeaderCBXMLNodeParser *headerParser = [[HeaderCBXMLNodeParser alloc] init];
+    return [headerParser parseFromElement:programElement];
 }
 
 #pragma mark Object parsing
-- (NSMutableArray*)parseAndCreateObjects:(GDataXMLElement*)programElement
+- (NSMutableArray*)parseAndCreateObjectsFromElement:(GDataXMLElement*)programElement
 {
     NSArray *objectListElements = [programElement elementsForName:@"objectList"];
     [XMLError exceptionIf:[objectListElements count] notEquals:1 message:@"No objectList given!"];
@@ -169,8 +149,16 @@
     return objectList;
 }
 
+#pragma mark Variable parsing
+- (VariablesContainer*)parseAndCreateVariablesFromElement:(GDataXMLElement*)programElement
+{
+    // TODO: stub method => implement this!!
+    [XMLError exceptionWithMessage:@"parseAndCreateVariablesFromElement: NOT IMPLEMENTED YET!!!"];
+    return nil;//[[VariablesContainer alloc] init];
+}
+
 #pragma mark - Helpers
-- (const char*)typeStringForProperty:(objc_property_t)property
++ (const char*)typeStringForProperty:(objc_property_t)property
 {
     const char *attrs = property_getAttributes(property);
     if (attrs == NULL) { return NULL; }
@@ -185,11 +173,11 @@
     return buffer;
 }
 
-- (id)valueForHeaderPropertyNode:(GDataXMLNode*)propertyNode
++ (id)valueForHeaderPropertyNode:(GDataXMLNode*)propertyNode
 {
     objc_property_t property = class_getProperty([Header class], [propertyNode.name UTF8String]);
     [XMLError exceptionIfNull:property message:@"Invalid header property %@ given", propertyNode.name];
-    NSString *propertyType = [NSString stringWithUTF8String:[self typeStringForProperty:property]];
+    NSString *propertyType = [NSString stringWithUTF8String:[[self class] typeStringForProperty:property]];
     id value = nil;
     if ([propertyType isEqualToString:kParserObjectTypeString]) {
         value = [propertyNode stringValue];
@@ -201,11 +189,16 @@
         [dateFormatter setDateFormat:kCatrobatHeaderDateTimeFormat];
         value = [dateFormatter dateFromString:propertyNode.stringValue];
     } else {
-        [XMLError exceptionIf:TRUE equals:TRUE
-                      message:@"Unsupported type for property %@ (of type: %@) in header",
-                              propertyNode.name, propertyType];
+        [XMLError exceptionWithMessage:@"Unsupported type for property %@ (of type: %@) in header", propertyNode.name, propertyType];
     }
     return value;
+}
+
++ (id)valueForPropertyNode:(GDataXMLNode*)propertyNode
+{
+    // TODO: stub method => implement this!!
+    [XMLError exceptionWithMessage:@"valueForPropertyNode: NOT IMPLEMENTED YET!!!"];
+    return nil;
 }
 
 @end

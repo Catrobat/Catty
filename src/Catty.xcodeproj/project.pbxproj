@@ -64,10 +64,12 @@
 		CA5D7FE519EC44480085D5AA /* BaseCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA5D7FE419EC44480085D5AA /* BaseCollectionViewController.m */; };
 		CA66CB6F19F6A99400D849E0 /* SpriteObjectCBXMLNodeParser.m in Sources */ = {isa = PBXBuildFile; fileRef = CA66CB6E19F6A99400D849E0 /* SpriteObjectCBXMLNodeParser.m */; };
 		CA66CB7519F6B42400D849E0 /* CBXMLValidator.m in Sources */ = {isa = PBXBuildFile; fileRef = CA66CB7419F6B42400D849E0 /* CBXMLValidator.m */; };
+		CA9C3C1419F8709700000889 /* My First Program.catrobat in Resources */ = {isa = PBXBuildFile; fileRef = CA9C3C1319F86EA700000889 /* My First Program.catrobat */; };
+		CA9C3C1719F8726200000889 /* HeaderCBXMLNodeParser.m in Sources */ = {isa = PBXBuildFile; fileRef = CA9C3C1619F8726200000889 /* HeaderCBXMLNodeParser.m */; };
 		CADBD6D919B0E8C200C62836 /* SSZipArchive.license in Resources */ = {isa = PBXBuildFile; fileRef = 4C9E2D3A198F685D00455B77 /* SSZipArchive.license */; };
 		CADBD6DA19B0E8C200C62836 /* BDKNotifyHUD.license in Resources */ = {isa = PBXBuildFile; fileRef = 4C9E2D22198EAD1800455B77 /* BDKNotifyHUD.license */; };
 		CADBD6DB19B0E8C200C62836 /* IMPORTANT.caf in Resources */ = {isa = PBXBuildFile; fileRef = CA1B802B1971ACE300D8E79B /* IMPORTANT.caf */; };
-		CADBD6DC19B0E8C200C62836 /* My First Program.catrobat in Resources */ = {isa = PBXBuildFile; fileRef = B434984F1927A863002F9075 /* My First Program.catrobat */; };
+		CADBD6DC19B0E8C200C62836 /* My First Program_old.catrobat in Resources */ = {isa = PBXBuildFile; fileRef = B434984F1927A863002F9075 /* My First Program_old.catrobat */; };
 		CADBD6DD19B0E8C200C62836 /* LICENSE_FBShimmering in Resources */ = {isa = PBXBuildFile; fileRef = CAE4B83B198A79040054ABEC /* LICENSE_FBShimmering */; };
 		CADBD6DE19B0E8C200C62836 /* OrderedDictionary.license in Resources */ = {isa = PBXBuildFile; fileRef = 4C9E2D42198F6A8800455B77 /* OrderedDictionary.license */; };
 		CADBD6DF19B0E8C200C62836 /* AHKActionSheet.license in Resources */ = {isa = PBXBuildFile; fileRef = 4C9E2D28198F635B00455B77 /* AHKActionSheet.license */; };
@@ -539,7 +541,7 @@
 		B405BAC7175DD3F600B1A0FC /* libxml2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.dylib; path = usr/lib/libxml2.dylib; sourceTree = SDKROOT; };
 		B40C306F170ECC49000B872F /* DarkBlueGradientImageCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DarkBlueGradientImageCell.h; sourceTree = "<group>"; };
 		B40C3070170ECC49000B872F /* DarkBlueGradientImageCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DarkBlueGradientImageCell.m; sourceTree = "<group>"; };
-		B434984F1927A863002F9075 /* My First Program.catrobat */ = {isa = PBXFileReference; lastKnownFileType = file; path = "My First Program.catrobat"; sourceTree = "<group>"; };
+		B434984F1927A863002F9075 /* My First Program_old.catrobat */ = {isa = PBXFileReference; lastKnownFileType = file; path = "My First Program_old.catrobat"; sourceTree = "<group>"; };
 		B4365CE31758AF8F00B4D0A6 /* Logger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Logger.h; sourceTree = "<group>"; };
 		B4365CE41758AF8F00B4D0A6 /* Logger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Logger.m; sourceTree = "<group>"; };
 		B4365CE81758EBA900B4D0A6 /* LoggerProperties.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = LoggerProperties.plist; sourceTree = "<group>"; };
@@ -819,6 +821,9 @@
 		CA8C7252192BB9A100167ECD /* BrickCellProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BrickCellProtocol.h; sourceTree = "<group>"; };
 		CA9B7EA018FFCC0400F1790D /* NSData+Hashes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+Hashes.h"; sourceTree = "<group>"; };
 		CA9B7EA118FFCC0400F1790D /* NSData+Hashes.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+Hashes.m"; sourceTree = "<group>"; };
+		CA9C3C1319F86EA700000889 /* My First Program.catrobat */ = {isa = PBXFileReference; lastKnownFileType = file; path = "My First Program.catrobat"; sourceTree = "<group>"; };
+		CA9C3C1519F8726200000889 /* HeaderCBXMLNodeParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HeaderCBXMLNodeParser.h; sourceTree = "<group>"; };
+		CA9C3C1619F8726200000889 /* HeaderCBXMLNodeParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HeaderCBXMLNodeParser.m; sourceTree = "<group>"; };
 		CAA1D0A319F689FA00A7DE47 /* CBParserNodeProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CBParserNodeProtocol.h; sourceTree = "<group>"; };
 		CAA443B3192410D00076BA35 /* BrickProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BrickProtocol.h; sourceTree = "<group>"; };
 		CAA96AFC18E4B21F00763409 /* SoundPickerTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SoundPickerTableViewController.h; sourceTree = "<group>"; };
@@ -1482,7 +1487,8 @@
 			children = (
 				4C9E2D1D198EA6B600455B77 /* Licenses */,
 				4C3AEF2E198E7EDD00604ABF /* Settings.bundle */,
-				B434984F1927A863002F9075 /* My First Program.catrobat */,
+				CA9C3C1319F86EA700000889 /* My First Program.catrobat */,
+				B434984F1927A863002F9075 /* My First Program_old.catrobat */,
 			);
 			name = Resources;
 			path = Catty;
@@ -3022,6 +3028,8 @@
 			children = (
 				CD0CCEA7170CB39600B70036 /* Header.h */,
 				CD0CCEA8170CB39600B70036 /* Header.m */,
+				CA9C3C1519F8726200000889 /* HeaderCBXMLNodeParser.h */,
+				CA9C3C1619F8726200000889 /* HeaderCBXMLNodeParser.m */,
 			);
 			name = Header;
 			sourceTree = "<group>";
@@ -3195,10 +3203,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CA9C3C1419F8709700000889 /* My First Program.catrobat in Resources */,
 				CADBD6D919B0E8C200C62836 /* SSZipArchive.license in Resources */,
 				CADBD6DA19B0E8C200C62836 /* BDKNotifyHUD.license in Resources */,
 				CADBD6DB19B0E8C200C62836 /* IMPORTANT.caf in Resources */,
-				CADBD6DC19B0E8C200C62836 /* My First Program.catrobat in Resources */,
+				CADBD6DC19B0E8C200C62836 /* My First Program_old.catrobat in Resources */,
 				CADBD6DD19B0E8C200C62836 /* LICENSE_FBShimmering in Resources */,
 				CADBD6DE19B0E8C200C62836 /* OrderedDictionary.license in Resources */,
 				CADBD6DF19B0E8C200C62836 /* AHKActionSheet.license in Resources */,
@@ -3490,6 +3499,7 @@
 				CADBD79F19B0E8C200C62836 /* MyProgramsViewController.m in Sources */,
 				CADBD7A019B0E8C200C62836 /* IfLogicBeginBrickCell.m in Sources */,
 				CADBD7A119B0E8C200C62836 /* ImageCache.m in Sources */,
+				CA9C3C1719F8726200000889 /* HeaderCBXMLNodeParser.m in Sources */,
 				CADBD7A219B0E8C200C62836 /* CatrobatInformation.m in Sources */,
 				CADBD7A319B0E8C200C62836 /* ProgramDetailStoreViewController.m in Sources */,
 				CADBD7A419B0E8C200C62836 /* TTTAttributedLabel.m in Sources */,

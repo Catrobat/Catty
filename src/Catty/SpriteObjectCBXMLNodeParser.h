@@ -22,8 +22,10 @@
 
 #import "CBParserNodeProtocol.h"
 
+@class SpriteObject;
+
 @interface SpriteObjectCBXMLNodeParser : NSObject <CBParserNodeProtocol>
 
-- (id)parseFromElement:(GDataXMLElement*)xmlElement;
+- (SpriteObject*)parseFromElement:(GDataXMLElement*)xmlElement;
 
 @end

@@ -20,20 +20,12 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import "CBParserProtocol.h"
-#import <objc/runtime.h>
+#import "CBParserNodeProtocol.h"
 
-@class GDataXMLDocument;
-@class GDataXMLNode;
+@class Header;
 
-@interface CBXMLParser : NSObject <CBParserProtocol>
+@interface HeaderCBXMLNodeParser : NSObject <CBParserNodeProtocol>
 
-- (id)initWithPath:(NSString*)path;
-- (BOOL)isSupportedLanguageVersion:(CGFloat)languageVersion;
-- (Program*)parseAndCreateProgram;
-
-// helpers (used by the sub-parsing system)
-+ (id)valueForHeaderPropertyNode:(GDataXMLNode*)propertyNode;
-+ (id)valueForPropertyNode:(GDataXMLNode*)propertyNode;
+- (Header*)parseFromElement:(GDataXMLElement*)xmlElement;
 
 @end
