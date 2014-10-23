@@ -66,6 +66,9 @@
 		CA66CB7519F6B42400D849E0 /* CBXMLValidator.m in Sources */ = {isa = PBXBuildFile; fileRef = CA66CB7419F6B42400D849E0 /* CBXMLValidator.m */; };
 		CA9C3C1419F8709700000889 /* My First Program.catrobat in Resources */ = {isa = PBXBuildFile; fileRef = CA9C3C1319F86EA700000889 /* My First Program.catrobat */; };
 		CA9C3C1719F8726200000889 /* HeaderCBXMLNodeParser.m in Sources */ = {isa = PBXBuildFile; fileRef = CA9C3C1619F8726200000889 /* HeaderCBXMLNodeParser.m */; };
+		CA9C3C1A19F87B4300000889 /* LookCBXMLNodeParser.m in Sources */ = {isa = PBXBuildFile; fileRef = CA9C3C1919F87B4300000889 /* LookCBXMLNodeParser.m */; };
+		CA9C3C1D19F87CA300000889 /* SoundCBXMLNodeParser.m in Sources */ = {isa = PBXBuildFile; fileRef = CA9C3C1C19F87CA300000889 /* SoundCBXMLNodeParser.m */; };
+		CA9C3C2019F8830200000889 /* ScriptCBXMLNodeParser.m in Sources */ = {isa = PBXBuildFile; fileRef = CA9C3C1F19F8830200000889 /* ScriptCBXMLNodeParser.m */; };
 		CADBD6D919B0E8C200C62836 /* SSZipArchive.license in Resources */ = {isa = PBXBuildFile; fileRef = 4C9E2D3A198F685D00455B77 /* SSZipArchive.license */; };
 		CADBD6DA19B0E8C200C62836 /* BDKNotifyHUD.license in Resources */ = {isa = PBXBuildFile; fileRef = 4C9E2D22198EAD1800455B77 /* BDKNotifyHUD.license */; };
 		CADBD6DB19B0E8C200C62836 /* IMPORTANT.caf in Resources */ = {isa = PBXBuildFile; fileRef = CA1B802B1971ACE300D8E79B /* IMPORTANT.caf */; };
@@ -824,6 +827,12 @@
 		CA9C3C1319F86EA700000889 /* My First Program.catrobat */ = {isa = PBXFileReference; lastKnownFileType = file; path = "My First Program.catrobat"; sourceTree = "<group>"; };
 		CA9C3C1519F8726200000889 /* HeaderCBXMLNodeParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HeaderCBXMLNodeParser.h; sourceTree = "<group>"; };
 		CA9C3C1619F8726200000889 /* HeaderCBXMLNodeParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HeaderCBXMLNodeParser.m; sourceTree = "<group>"; };
+		CA9C3C1819F87B4300000889 /* LookCBXMLNodeParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LookCBXMLNodeParser.h; sourceTree = "<group>"; };
+		CA9C3C1919F87B4300000889 /* LookCBXMLNodeParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LookCBXMLNodeParser.m; sourceTree = "<group>"; };
+		CA9C3C1B19F87CA300000889 /* SoundCBXMLNodeParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SoundCBXMLNodeParser.h; sourceTree = "<group>"; };
+		CA9C3C1C19F87CA300000889 /* SoundCBXMLNodeParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SoundCBXMLNodeParser.m; sourceTree = "<group>"; };
+		CA9C3C1E19F8830200000889 /* ScriptCBXMLNodeParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScriptCBXMLNodeParser.h; sourceTree = "<group>"; };
+		CA9C3C1F19F8830200000889 /* ScriptCBXMLNodeParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScriptCBXMLNodeParser.m; sourceTree = "<group>"; };
 		CAA1D0A319F689FA00A7DE47 /* CBParserNodeProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CBParserNodeProtocol.h; sourceTree = "<group>"; };
 		CAA443B3192410D00076BA35 /* BrickProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BrickProtocol.h; sourceTree = "<group>"; };
 		CAA96AFC18E4B21F00763409 /* SoundPickerTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SoundPickerTableViewController.h; sourceTree = "<group>"; };
@@ -3001,6 +3010,8 @@
 				CD0CCF33170CB39700B70036 /* StartScript.m */,
 				CD0CCF46170CB39700B70036 /* WhenScript.h */,
 				CD0CCF47170CB39700B70036 /* WhenScript.m */,
+				CA9C3C1E19F8830200000889 /* ScriptCBXMLNodeParser.h */,
+				CA9C3C1F19F8830200000889 /* ScriptCBXMLNodeParser.m */,
 			);
 			name = Scripts;
 			sourceTree = "<group>";
@@ -3010,6 +3021,8 @@
 			children = (
 				CD0CCF21170CB39700B70036 /* Sound.h */,
 				CD0CCF22170CB39700B70036 /* Sound.m */,
+				CA9C3C1B19F87CA300000889 /* SoundCBXMLNodeParser.h */,
+				CA9C3C1C19F87CA300000889 /* SoundCBXMLNodeParser.m */,
 			);
 			name = Sound;
 			sourceTree = "<group>";
@@ -3019,6 +3032,8 @@
 			children = (
 				CD0CCED3170CB39700B70036 /* Look.h */,
 				CD0CCED4170CB39700B70036 /* Look.m */,
+				CA9C3C1819F87B4300000889 /* LookCBXMLNodeParser.h */,
+				CA9C3C1919F87B4300000889 /* LookCBXMLNodeParser.m */,
 			);
 			name = Look;
 			sourceTree = "<group>";
@@ -3337,6 +3352,7 @@
 			files = (
 				CADBD70219B0E8C200C62836 /* DarkBlueGradientImageDetailCell.m in Sources */,
 				CADBD70319B0E8C200C62836 /* Scene.m in Sources */,
+				CA9C3C1D19F87CA300000889 /* SoundCBXMLNodeParser.m in Sources */,
 				CADBD70419B0E8C200C62836 /* BrickSelectModalTransition.m in Sources */,
 				CADBD70519B0E8C200C62836 /* ForeverBrickCell.m in Sources */,
 				CADBD70619B0E8C200C62836 /* BaseTableViewController.m in Sources */,
@@ -3461,6 +3477,7 @@
 				CADBD77A19B0E8C200C62836 /* InfoPopupViewController.m in Sources */,
 				CADBD77B19B0E8C200C62836 /* Util.m in Sources */,
 				CADBD77C19B0E8C200C62836 /* UIViewController+CWPopup.m in Sources */,
+				CA9C3C1A19F87B4300000889 /* LookCBXMLNodeParser.m in Sources */,
 				CADBD77D19B0E8C200C62836 /* SingleBrickSelectionView.m in Sources */,
 				CADBD77E19B0E8C200C62836 /* NSMutableArray+SWUtilityButtons.m in Sources */,
 				CADBD77F19B0E8C200C62836 /* WaitBrick.m in Sources */,
@@ -3495,6 +3512,7 @@
 				CADBD79B19B0E8C200C62836 /* DarkBlueGradientImageCell.m in Sources */,
 				CADBD79C19B0E8C200C62836 /* GDataXMLNode+PrettyFormatterExtensions.m in Sources */,
 				CADBD79D19B0E8C200C62836 /* Functions.m in Sources */,
+				CA9C3C2019F8830200000889 /* ScriptCBXMLNodeParser.m in Sources */,
 				CADBD79E19B0E8C200C62836 /* PlaceHolderView.m in Sources */,
 				CADBD79F19B0E8C200C62836 /* MyProgramsViewController.m in Sources */,
 				CADBD7A019B0E8C200C62836 /* IfLogicBeginBrickCell.m in Sources */,
