@@ -24,23 +24,58 @@
 #import "CBXMLValidator.h"
 #import "GDataXMLNode.h"
 
+#import "BroadcastScript.h"
+#import "StartScript.h"
+#import "WhenScript.h"
+
 @implementation ScriptCBXMLNodeParser
 
 - (Script*)parseFromElement:(GDataXMLElement*)xmlElement
 {
-    // TODO: continue here...
     [XMLError exceptionIfNode:xmlElement isNilOrNodeNameNotEquals:@"script"];
-    return nil;
+    NSArray *attributes = [xmlElement attributes];
+    [XMLError exceptionIf:[attributes count] notEquals:1
+                  message:@"Parsed type-attribute of script is invalid or empty!"];
 
-//    Sound *sound = [[Sound alloc] init];
-//    NSArray *soundChildElements = [xmlElement children];
-//    [XMLError exceptionIf:[soundChildElements count] notEquals:2 message:@"Sound must contain two child nodes"];
-//
-//    GDataXMLNode *nameChildNode = [soundChildElements firstObject];
-//    GDataXMLNode *fileNameChildNode = [soundChildElements lastObject];
-//    sound.name = [nameChildNode stringValue];
-//    sound.fileName = [fileNameChildNode stringValue];
-//    return sound;
+    GDataXMLNode *attribute = [attributes firstObject];
+    [XMLError exceptionIfString:attribute.name isNotEqualToString:@"type"
+                        message:@"Unsupported attribute: %@", attribute.name];
+
+    NSString *scriptType = [attribute stringValue];
+    Script *script = nil;
+    if ([scriptType isEqualToString:@"StartScript"]) {
+        script = [StartScript new];
+    } else if ([scriptType isEqualToString:@"WhenScript"]) {
+        script = [WhenScript new];
+    } else if ([scriptType isEqualToString:@"BroadcastScript"]) {
+        script = [BroadcastScript new];
+        // FIXME: where do we get the received message from??
+    } else {
+        [XMLError exceptionWithMessage:@"Unsupported script type: %@!", scriptType];
+    }
+
+    script.brickList = [self parseAndCreateBricks:xmlElement];
+    return script;
+}
+
+- (NSMutableArray*)parseAndCreateBricks:(GDataXMLElement*)scriptElement
+{
+    NSArray *brickListElements = [scriptElement elementsForName:@"brickList"];
+    [XMLError exceptionIf:[brickListElements count] notEquals:1 message:@"No brickList given!"];
+
+    NSArray *brickElements = [[brickListElements firstObject] children];
+    if (! [brickElements count]) {
+        // TODO: ask team if we should return nil or an empty NSMutableArray in this case!!
+        return nil;
+    }
+
+    NSMutableArray *brickList = [NSMutableArray arrayWithCapacity:[brickElements count]];
+// TODO: continue here...
+//    BrickCBXMLNodeParser *brickParser = [BrickCBXMLNodeParser new];
+//    for (GDataXMLElement *brickElement in brickElements) {
+//        [brickList addObject:[brickParser parseFromElement:brickElement]];
+//    }
+    return brickList;
 }
 
 @end
