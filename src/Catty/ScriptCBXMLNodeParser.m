@@ -48,8 +48,13 @@
     } else if ([scriptType isEqualToString:@"WhenScript"]) {
         script = [WhenScript new];
     } else if ([scriptType isEqualToString:@"BroadcastScript"]) {
-        script = [BroadcastScript new];
-        // FIXME: where do we get the received message from??
+        BroadcastScript *broadcastScript = [BroadcastScript new];
+        NSArray *receivedMessageElements = [xmlElement elementsForName:@"receivedMessage"];
+        [XMLError exceptionIf:[receivedMessageElements count] notEquals:1
+                      message:@"Wrong number of receivedMessage elements given!"];
+        GDataXMLElement *receivedMessageElement = [receivedMessageElements firstObject];
+        broadcastScript.receivedMessage = [receivedMessageElement stringValue];
+        script = broadcastScript;
     } else {
         [XMLError exceptionWithMessage:@"Unsupported script type: %@!", scriptType];
     }
