@@ -21,6 +21,7 @@
  */
 
 #import "CBXMLValidator.h"
+#import "GDataXMLNode.h"
 
 @implementation CBXMLValidator
 
@@ -97,6 +98,15 @@
         [NSException raise:[[self class] exceptionName] format:[[self class] exceptionMessagePrefix]];
 #pragma clang diagnostic pop
     }
+}
+
++ (void)exceptionIfNode:(GDataXMLNode*)node isNilOrNodeNameNotEquals:(NSString*)expectedNodeName
+{
+    [self exceptionIfNil:node message:@"The expected node element %@ is nil", expectedNodeName];
+    [self exceptionIfString:node.name
+         isNotEqualToString:expectedNodeName
+                    message:@"The name of the rootElement is '%@' but should be '%@'",
+                            node.name, expectedNodeName];
 }
 
 + (void)exceptionIfNil:(id)object message:(NSString*)exceptionMessage, ...

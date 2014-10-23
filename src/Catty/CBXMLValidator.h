@@ -24,8 +24,11 @@
 
 #define XMLError CBXMLValidator
 
+@class GDataXMLNode;
+
 @interface CBXMLValidator : NSObject
 
++ (void)exceptionIfNode:(GDataXMLNode*)node isNilOrNodeNameNotEquals:(NSString*)expectedNodeName;
 + (void)exceptionIfNil:(id)object message:(NSString*)exceptionMessage, ... NS_FORMAT_FUNCTION(2,3);
 + (void)exceptionIfNull:(void*)pointer message:(NSString*)exceptionMessage, ... NS_FORMAT_FUNCTION(2,3);
 + (void)exceptionIfString:(NSString*)firstString
