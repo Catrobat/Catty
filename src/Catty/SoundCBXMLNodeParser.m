@@ -38,9 +38,11 @@
     GDataXMLNode *fileNameChildNode = [soundChildElements lastObject];
 
     // swap values (if needed)
+    GDataXMLNode *tempChildNode = nil;
     if ([fileNameChildNode.name isEqualToString:@"name"] && [nameChildNode.name isEqualToString:@"fileName"]) {
+        tempChildNode = nameChildNode;
         nameChildNode = fileNameChildNode;
-        fileNameChildNode = nameChildNode;
+        fileNameChildNode = tempChildNode;
     }
 
     [XMLError exceptionIfString:nameChildNode.name isNotEqualToString:@"name" message:@"Sound contains wrong child node(s)"];
