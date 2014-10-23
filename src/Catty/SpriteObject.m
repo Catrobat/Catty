@@ -754,6 +754,7 @@
 - (NSString*)description
 {
     NSMutableString *mutableString = [NSMutableString string];
+    [mutableString appendFormat:@"Name: %@\r", self.name];
     [mutableString appendFormat:@"Scripts: %@\r", self.scriptList];
     [mutableString appendFormat:@"Looks: %@\r", self.lookList];
     [mutableString appendFormat:@"Sounds: %@\r", self.soundList];

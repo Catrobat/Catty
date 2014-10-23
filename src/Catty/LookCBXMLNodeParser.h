@@ -20,17 +20,12 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import <UIKit/UIKit.h>
+#import "CBParserNodeProtocol.h"
 
-@class GDataXMLElement;
-@class SpriteObject;
+@class Look;
 
-@interface Sound : NSObject
-@property (strong, nonatomic) NSString* name;
-@property (strong, nonatomic) NSString* fileName;
-@property (atomic, getter = isPlaying) BOOL playing; // this property must be thread-safe!
+@interface LookCBXMLNodeParser : NSObject <CBParserNodeProtocol>
 
-- (GDataXMLElement*)toXMLforObject:(SpriteObject*)spriteObject;
-- (instancetype)deepCopy;
+- (Look*)parseFromElement:(GDataXMLElement*)xmlElement;
 
 @end

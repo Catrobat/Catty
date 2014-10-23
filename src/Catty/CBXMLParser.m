@@ -115,9 +115,8 @@
 - (Program*)parseAndCreateProgramForDocument:(GDataXMLDocument*)xmlDocument
 {
     GDataXMLElement *rootElement = xmlDocument.rootElement;
-    [XMLError exceptionIfString:rootElement.name isNotEqualToString:@"program"
-                        message:@"The name of the rootElement is %@ but should be 'program'",rootElement.name];
-    Program *program = [[Program alloc] init];
+    [XMLError exceptionIfNode:rootElement isNilOrNodeNameNotEquals:@"program"];
+    Program *program = [Program new];
     program.header = [self parseAndCreateHeaderFromElement:rootElement];
     program.objectList = [self parseAndCreateObjectsFromElement:rootElement];
     program.variables = [self parseAndCreateVariablesFromElement:rootElement];
@@ -127,8 +126,7 @@
 #pragma mark Header parsing
 - (Header*)parseAndCreateHeaderFromElement:(GDataXMLElement*)programElement
 {
-    HeaderCBXMLNodeParser *headerParser = [[HeaderCBXMLNodeParser alloc] init];
-    return [headerParser parseFromElement:programElement];
+    return [[HeaderCBXMLNodeParser new] parseFromElement:programElement];
 }
 
 #pragma mark Object parsing
@@ -154,7 +152,7 @@
 {
     // TODO: stub method => implement this!!
     [XMLError exceptionWithMessage:@"parseAndCreateVariablesFromElement: NOT IMPLEMENTED YET!!!"];
-    return nil;//[[VariablesContainer alloc] init];
+    return nil;//[VariablesContainer new];
 }
 
 #pragma mark - Helpers
@@ -184,7 +182,7 @@
     } else if ([propertyType isEqualToString:kParserObjectTypeNumber]) {
         value = [NSNumber numberWithFloat:[[propertyNode stringValue]floatValue]];
     } else if ([propertyType isEqualToString:kParserObjectTypeDate]) {
-        NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+        NSDateFormatter *dateFormatter = [NSDateFormatter new];
         [dateFormatter setTimeZone:[NSTimeZone systemTimeZone]];
         [dateFormatter setDateFormat:kCatrobatHeaderDateTimeFormat];
         value = [dateFormatter dateFromString:propertyNode.stringValue];

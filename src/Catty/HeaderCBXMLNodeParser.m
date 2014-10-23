@@ -30,6 +30,7 @@
 
 - (Header*)parseFromElement:(GDataXMLElement*)xmlElement
 {
+    [XMLError exceptionIfNil:xmlElement message:@"No xml element given!"];
     Header *header = [Header defaultHeader];
     NSArray *headerNodes = [xmlElement elementsForName:@"header"];
     [XMLError exceptionIf:[headerNodes count] notEquals:1 message:@"Invalid header given!"];
