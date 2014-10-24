@@ -25,6 +25,8 @@
 
 @class GDataXMLDocument;
 @class GDataXMLNode;
+@class GDataXMLElement;
+@class SpriteObject;
 
 @interface CBXMLParser : NSObject <CBParserProtocol>
 
@@ -35,5 +37,7 @@
 // helpers (used by the sub-parsing system)
 + (id)valueForHeaderPropertyNode:(GDataXMLNode*)propertyNode;
 + (id)valueForPropertyNode:(GDataXMLNode*)propertyNode;
++ (BOOL)isReferenceElement:(GDataXMLElement*)xmlElement;
++ (SpriteObject*)findSpriteObjectInArray:(NSArray*)spriteObjectList withName:(NSString*)spriteObjectName;
 
 @end

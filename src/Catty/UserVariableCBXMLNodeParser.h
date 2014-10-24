@@ -20,25 +20,12 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import <Foundation/Foundation.h>
+#import "CBParserNodeProtocol.h"
 
-
-@class SpriteObject;
 @class UserVariable;
-@class OrderedMapTable;
 
-@interface VariablesContainer : NSObject
+@interface UserVariableCBXMLNodeParser : NSObject <CBParserNodeProtocol>
 
-// Map<Sprite, List<UserVariable>
-@property (nonatomic, strong) OrderedMapTable *objectVariableList;
-
-// List<UserVariable> projectVariables;
-@property (nonatomic, strong) NSMutableArray *programVariableList;
-
-- (UserVariable*)getUserVariableNamed:(NSString*)name forSpriteObject:(SpriteObject*)sprite;
-
-- (void)setUserVariable:(UserVariable*)userVariable toValue:(double)value;
-
-- (void)changeVariable:(UserVariable*)userVariable byValue:(double)value;
+- (UserVariable*)parseFromElement:(GDataXMLElement*)xmlElement;
 
 @end

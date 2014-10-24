@@ -20,25 +20,20 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import <Foundation/Foundation.h>
+#import "UserVariableCBXMLNodeParser.h"
+#import "GDataXMLNode.h"
+#import "CBXMLValidator.h"
+#import "UserVariable.h"
 
+@implementation UserVariableCBXMLNodeParser
 
-@class SpriteObject;
-@class UserVariable;
-@class OrderedMapTable;
-
-@interface VariablesContainer : NSObject
-
-// Map<Sprite, List<UserVariable>
-@property (nonatomic, strong) OrderedMapTable *objectVariableList;
-
-// List<UserVariable> projectVariables;
-@property (nonatomic, strong) NSMutableArray *programVariableList;
-
-- (UserVariable*)getUserVariableNamed:(NSString*)name forSpriteObject:(SpriteObject*)sprite;
-
-- (void)setUserVariable:(UserVariable*)userVariable toValue:(double)value;
-
-- (void)changeVariable:(UserVariable*)userVariable byValue:(double)value;
+- (UserVariable*)parseFromElement:(GDataXMLElement*)xmlElement
+{
+    [XMLError exceptionIfNode:xmlElement isNilOrNodeNameNotEquals:@"userVariable"];
+    UserVariable *userVariable = [UserVariable new];
+    [XMLError exceptionIfNil:[xmlElement stringValue] message:@"No name for user variable given"];
+    userVariable.name = [xmlElement stringValue];
+    return userVariable;
+}
 
 @end

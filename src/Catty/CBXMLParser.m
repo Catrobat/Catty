@@ -29,7 +29,8 @@
 #import "SpriteObjectCBXMLNodeParser.h"
 #import "CBXMLValidator.h"
 #import "HeaderCBXMLNodeParser.h"
-#import "VariablesContainer.h"
+#import "VariablesContainerCBXMLNodeParser.h"
+#import "SpriteObject.h"
 
 #define kCatroidXMLPrefix               @"org.catrobat.catroid.content."
 #define kCatroidXMLSpriteList           @"spriteList"
@@ -119,7 +120,8 @@
     Program *program = [Program new];
     program.header = [self parseAndCreateHeaderFromElement:rootElement];
     program.objectList = [self parseAndCreateObjectsFromElement:rootElement];
-    program.variables = [self parseAndCreateVariablesFromElement:rootElement];
+    program.variables = [self parseAndCreateVariablesFromElement:rootElement
+                                                spriteObjectList:program.objectList];
     return program;
 }
 
@@ -149,10 +151,11 @@
 
 #pragma mark Variable parsing
 - (VariablesContainer*)parseAndCreateVariablesFromElement:(GDataXMLElement*)programElement
+                                               spriteObjectList:(NSArray*)spriteObjectList
 {
-    // TODO: stub method => implement this!!
-    [XMLError exceptionWithMessage:@"parseAndCreateVariablesFromElement: NOT IMPLEMENTED YET!!!"];
-    return nil;//[VariablesContainer new];
+    VariablesContainerCBXMLNodeParser *parser = nil;
+    parser = [[VariablesContainerCBXMLNodeParser alloc] initWithSpriteObjectList:spriteObjectList];
+    return [parser parseFromElement:programElement];
 }
 
 #pragma mark - Helpers
@@ -196,6 +199,21 @@
 {
     // TODO: stub method => implement this!!
     [XMLError exceptionWithMessage:@"valueForPropertyNode: NOT IMPLEMENTED YET!!!"];
+    return nil;
+}
+
++ (BOOL)isReferenceElement:(GDataXMLElement*)xmlElement
+{
+    return ([xmlElement attributeForName:@"reference"] ? YES : NO);
+}
+
++ (SpriteObject*)findSpriteObjectInArray:(NSArray*)spriteObjectList withName:(NSString*)spriteObjectName
+{
+    for (SpriteObject *spriteObject in spriteObjectList) {
+        if ([spriteObject.name isEqualToString:spriteObjectName]) { // TODO: implement isEqual in SpriteObject class
+            return spriteObject;
+        }
+    }
     return nil;
 }
 
