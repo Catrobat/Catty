@@ -129,9 +129,28 @@
 
 - (NSMutableArray*)parseAndCreateProgramVariables:(GDataXMLElement*)programVarListElement
 {
-//    NSMutableArray *userVarList = [NSMutableArray arrayWithCapacity:(NSUInteger)];
-//    return userVarList;
-    return nil;
+    [XMLError exceptionIfNil:self.spriteObjectList message:@"Class was not initialized with sprite object list!"];
+    NSArray *entries = [programVarListElement children];
+    NSMutableArray *programVariableList = [NSMutableArray arrayWithCapacity:[programVarListElement childCount]];
+    for (GDataXMLElement *userVarElement in entries) {
+        [XMLError exceptionIfNode:userVarElement isNilOrNodeNameNotEquals:@"userVariable"];
+        UserVariable *userVariable = nil;
+        UserVariableCBXMLNodeParser *parser = [UserVariableCBXMLNodeParser new];
+        GDataXMLElement *userVariableElement = userVarElement;
+        if ([CBXMLParser isReferenceElement:userVariableElement]) {
+            // OMG!! user variable has already been defined outside the variables list
+            GDataXMLNode *referenceAttribute = [userVariableElement attributeForName:@"reference"];
+            NSString *xPath = [referenceAttribute stringValue];
+            NSArray *queriedObjects = [userVariableElement nodesForXPath:xPath error:nil];
+            [XMLError exceptionIf:[queriedObjects count] notEquals:1
+                          message:@"Invalid reference in userVariable. No or too many userVariables found!"];
+            userVariableElement = [queriedObjects firstObject];
+        }
+        userVariable = [parser parseFromElement:userVariableElement];
+#warning !! UPDATE THE REFERENCE IN ALL VARIABLE-BRICKS FOR THIS USERVARIABLE IN ALL OBJECTS !!
+        [programVariableList addObject:userVariable];
+    }
+    return programVariableList;
 }
 
 @end
