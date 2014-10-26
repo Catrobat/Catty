@@ -21,7 +21,7 @@
  */
 
 #import "VariablesContainerCBXMLNodeParser.h"
-#import "GDataXMLNode.h"
+#import "GDataXMLNode+CustomExtensions.h"
 #import "VariablesContainer.h"
 #import "CBXMLValidator.h"
 #import "OrderedMapTable.h"
@@ -52,20 +52,22 @@
     NSArray *variablesElements = [xmlElement elementsForName:@"variables"];
     [XMLError exceptionIf:[variablesElements count] notEquals:1 message:@"Too many variable-elements given!"];
     GDataXMLElement *variablesElement = [variablesElements firstObject];
-    [XMLError exceptionIf:[[variablesElement children] count] notEquals:2
-                  message:@"Too many variable-subelements given!"];
+    VariablesContainer *varContainer = [VariablesContainer new];
 
     NSArray *objectVarListElements = [variablesElement elementsForName:@"objectVariableList"];
-    [XMLError exceptionIf:[objectVarListElements count] notEquals:1 message:@"Too many objectVariableList-elements!"];
-    GDataXMLElement *objectVarListElement = [objectVarListElements firstObject];
+    if ([objectVarListElements count]) {
+        [XMLError exceptionIf:[objectVarListElements count] notEquals:1 message:@"Too many objectVariableList-elements!"];
+        GDataXMLElement *objectVarListElement = [objectVarListElements firstObject];
+        varContainer.objectVariableList = [self parseAndCreateObjectVariables:objectVarListElement];
+    }
 
     NSArray *programVarListElements = [variablesElement elementsForName:@"programVariableList"];
-    [XMLError exceptionIf:[programVarListElements count] notEquals:1 message:@"Too many programVariableList-elements!"];
-    GDataXMLElement *programVarListElement = [programVarListElements firstObject];
+    if ([programVarListElements count]) {
+        [XMLError exceptionIf:[programVarListElements count] notEquals:1 message:@"Too many programVariableList-elements!"];
+        GDataXMLElement *programVarListElement = [programVarListElements firstObject];
+        varContainer.programVariableList = [self parseAndCreateProgramVariables:programVarListElement];
+    }
 
-    VariablesContainer *varContainer = [VariablesContainer new];
-    varContainer.objectVariableList = [self parseAndCreateObjectVariables:objectVarListElement];
-    varContainer.programVariableList = [self parseAndCreateProgramVariables:programVarListElement];
     return varContainer;
 }
 
@@ -85,10 +87,8 @@
         if ([CBXMLParser isReferenceElement:objectElement]) {
             GDataXMLNode *referenceAttribute = [objectElement attributeForName:@"reference"];
             NSString *xPath = [referenceAttribute stringValue];
-            NSArray *queriedObjects = [objectElement nodesForXPath:xPath error:nil];
-            [XMLError exceptionIf:[queriedObjects count] notEquals:1
-                          message:@"Invalid reference in object. No or too many objects found!"];
-            GDataXMLElement *objectElement = [queriedObjects firstObject];
+            objectElement = [objectElement singleNodeForCatrobatXPath:xPath error:nil];
+            [XMLError exceptionIfNil:objectElement message:@"Invalid reference in object. No or too many objects found!"];
             GDataXMLNode *nameAttribute = [objectElement attributeForName:@"name"];
             [XMLError exceptionIfNil:nameAttribute message:@"Object element does not contain a name attribute!"];
             spriteObject = [CBXMLParser findSpriteObjectInArray:self.spriteObjectList
@@ -113,10 +113,9 @@
                 // OMG!! user variable has already been defined outside the variables list
                 GDataXMLNode *referenceAttribute = [objectElement attributeForName:@"reference"];
                 NSString *xPath = [referenceAttribute stringValue];
-                NSArray *queriedObjects = [objectElement nodesForXPath:xPath error:nil];
-                [XMLError exceptionIf:[queriedObjects count] notEquals:1
-                              message:@"Invalid reference in object. No or too many objects found!"];
-                userVariableElement = [queriedObjects firstObject];
+                userVariableElement = [objectElement singleNodeForCatrobatXPath:xPath error:nil];
+                [XMLError exceptionIfNil:userVariableElement
+                                 message:@"Invalid reference in object. No or too many objects found!"];
             }
             userVariable = [parser parseFromElement:userVariableElement];
 #warning !! UPDATE THE REFERENCE IN ALL VARIABLE-BRICKS FOR THIS USERVARIABLE IN ALL OBJECTS !!
@@ -141,10 +140,10 @@
             // OMG!! user variable has already been defined outside the variables list
             GDataXMLNode *referenceAttribute = [userVariableElement attributeForName:@"reference"];
             NSString *xPath = [referenceAttribute stringValue];
-            NSArray *queriedObjects = [userVariableElement nodesForXPath:xPath error:nil];
-            [XMLError exceptionIf:[queriedObjects count] notEquals:1
-                          message:@"Invalid reference in userVariable. No or too many userVariables found!"];
-            userVariableElement = [queriedObjects firstObject];
+
+            userVariableElement = [userVariableElement singleNodeForCatrobatXPath:xPath error:nil];
+            [XMLError exceptionIfNil:userVariableElement
+                             message:@"Invalid reference in object. No or too many objects found!"];
         }
         userVariable = [parser parseFromElement:userVariableElement];
 #warning !! UPDATE THE REFERENCE IN ALL VARIABLE-BRICKS FOR THIS USERVARIABLE IN ALL OBJECTS !!

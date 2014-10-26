@@ -32,7 +32,7 @@
 #import "Util.h"
 #import "Operators.h"
 #import "Functions.h"
-#import "GDataXMLNode+PrettyFormatterExtensions.h"
+#import "GDataXMLNode+CustomExtensions.h"
 
 #define ARC4RANDOM_MAX 0x100000000
 

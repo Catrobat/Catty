@@ -20,9 +20,9 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import "GDataXMLNode+PrettyFormatterExtensions.h"
+#import "GDataXMLNode+CustomExtensions.h"
 
-@implementation GDataXMLNode (PrettyFormatterExtensions)
+@implementation GDataXMLNode (CustomExtensions)
 
 - (NSString *)XMLStringPrettyPrinted:(BOOL)isPrettyPrinted
 {
@@ -55,6 +55,45 @@
   NSCharacterSet *ws = [NSCharacterSet whitespaceAndNewlineCharacterSet];
   NSString *trimmed = [str stringByTrimmingCharactersInSet:ws];
   return trimmed;
+}
+
+- (GDataXMLElement*)singleNodeForCatrobatXPath:(NSString*)catrobatXPath error:(NSError**)error
+{
+    NSArray *pathComponents = [catrobatXPath componentsSeparatedByString:@"/"];
+    NSMutableString *xPath = [NSMutableString stringWithCapacity:[catrobatXPath length]];
+    NSUInteger index = 0;
+    NSUInteger numberOfComponents = [pathComponents count];
+    for (NSString *pathComponent in pathComponents) {
+        if (! pathComponent || (! [pathComponent length])) {
+            if (index < (numberOfComponents - 1)) {
+                [xPath appendString:@"/"];
+            }
+            ++index;
+            continue;
+        }
+        [xPath appendString:pathComponent];
+        if ([pathComponent isEqualToString:@".."]) {
+            if (index < (numberOfComponents - 1)) {
+                [xPath appendString:@"/"];
+            }
+            ++index;
+            continue;
+        }
+        NSUInteger location = [pathComponent rangeOfString:@"]"].location;
+        if ((location == NSNotFound) || (location != ([pathComponent length] - 1))) {
+            [xPath appendString:@"[1]"];
+        }
+        if (index < (numberOfComponents - 1)) {
+            [xPath appendString:@"/"];
+        }
+        ++index;
+    }
+
+    NSArray *nodes = [self nodesForXPath:xPath error:error];
+    if ([nodes count] != 1) {
+        return nil;
+    }
+    return [nodes firstObject];
 }
 
 + (GDataXMLElement *)elementWithName:(NSString *)name optionalStringValue:(NSString *)value;

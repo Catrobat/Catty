@@ -66,6 +66,7 @@
 		CA66CB7519F6B42400D849E0 /* CBXMLValidator.m in Sources */ = {isa = PBXBuildFile; fileRef = CA66CB7419F6B42400D849E0 /* CBXMLValidator.m */; };
 		CA6E4C4619F93CD5001B65C3 /* VariablesContainerCBXMLNodeParser.m in Sources */ = {isa = PBXBuildFile; fileRef = CA6E4C4519F93CD5001B65C3 /* VariablesContainerCBXMLNodeParser.m */; };
 		CA6E4C4A19F9D57C001B65C3 /* UserVariableCBXMLNodeParser.m in Sources */ = {isa = PBXBuildFile; fileRef = CA6E4C4919F9D57C001B65C3 /* UserVariableCBXMLNodeParser.m */; };
+		CA775CBF19FD5BCB00C1E761 /* My First Program.catrobat in Resources */ = {isa = PBXBuildFile; fileRef = CA6E4C4719F9C388001B65C3 /* My First Program.catrobat */; };
 		CA9C3C1719F8726200000889 /* HeaderCBXMLNodeParser.m in Sources */ = {isa = PBXBuildFile; fileRef = CA9C3C1619F8726200000889 /* HeaderCBXMLNodeParser.m */; };
 		CA9C3C1A19F87B4300000889 /* LookCBXMLNodeParser.m in Sources */ = {isa = PBXBuildFile; fileRef = CA9C3C1919F87B4300000889 /* LookCBXMLNodeParser.m */; };
 		CA9C3C1D19F87CA300000889 /* SoundCBXMLNodeParser.m in Sources */ = {isa = PBXBuildFile; fileRef = CA9C3C1C19F87CA300000889 /* SoundCBXMLNodeParser.m */; };
@@ -259,7 +260,7 @@
 		CADBD79919B0E8C200C62836 /* ChangeSizeByNBrickCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CA75C28B18A9623B00FC8C2F /* ChangeSizeByNBrickCell.m */; };
 		CADBD79A19B0E8C200C62836 /* NextLookBrickCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CA75C28518A9622E00FC8C2F /* NextLookBrickCell.m */; };
 		CADBD79B19B0E8C200C62836 /* DarkBlueGradientImageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B40C3070170ECC49000B872F /* DarkBlueGradientImageCell.m */; };
-		CADBD79C19B0E8C200C62836 /* GDataXMLNode+PrettyFormatterExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = CA79A119182D8A4200618283 /* GDataXMLNode+PrettyFormatterExtensions.m */; };
+		CADBD79C19B0E8C200C62836 /* GDataXMLNode+CustomExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = CA79A119182D8A4200618283 /* GDataXMLNode+CustomExtensions.m */; };
 		CADBD79D19B0E8C200C62836 /* Functions.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C3C0400199BA7B40004F594 /* Functions.m */; };
 		CADBD79E19B0E8C200C62836 /* PlaceHolderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 815420DC191A5C1F00E628D2 /* PlaceHolderView.m */; };
 		CADBD79F19B0E8C200C62836 /* MyProgramsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B4BCF406170ECFA2008EDF3A /* MyProgramsViewController.m */; };
@@ -819,8 +820,8 @@
 		CA75C2A618A9627800FC8C2F /* ChangeVariableBrickCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChangeVariableBrickCell.m; sourceTree = "<group>"; };
 		CA75C2AE18A9A62B00FC8C2F /* LoopEndBrickCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoopEndBrickCell.h; sourceTree = "<group>"; };
 		CA75C2AF18A9A62B00FC8C2F /* LoopEndBrickCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoopEndBrickCell.m; sourceTree = "<group>"; };
-		CA79A118182D8A4200618283 /* GDataXMLNode+PrettyFormatterExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "GDataXMLNode+PrettyFormatterExtensions.h"; sourceTree = "<group>"; };
-		CA79A119182D8A4200618283 /* GDataXMLNode+PrettyFormatterExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "GDataXMLNode+PrettyFormatterExtensions.m"; sourceTree = "<group>"; };
+		CA79A118182D8A4200618283 /* GDataXMLNode+CustomExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "GDataXMLNode+CustomExtensions.h"; sourceTree = "<group>"; };
+		CA79A119182D8A4200618283 /* GDataXMLNode+CustomExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "GDataXMLNode+CustomExtensions.m"; sourceTree = "<group>"; };
 		CA882036192E76A300E5D515 /* ProgramTableViewController+UnitTestingExtensions.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ProgramTableViewController+UnitTestingExtensions.h"; sourceTree = "<group>"; };
 		CA8C247718CD053300314C2B /* ProgramTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProgramTests.m; sourceTree = "<group>"; };
 		CA8C247A18CD127C00314C2B /* ProgramTableViewControllerNewProgramTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProgramTableViewControllerNewProgramTests.m; sourceTree = "<group>"; };
@@ -2467,8 +2468,8 @@
 		CA79A11B182D8A4E00618283 /* GDataXMLNode+PrettyFormatterExtensions */ = {
 			isa = PBXGroup;
 			children = (
-				CA79A118182D8A4200618283 /* GDataXMLNode+PrettyFormatterExtensions.h */,
-				CA79A119182D8A4200618283 /* GDataXMLNode+PrettyFormatterExtensions.m */,
+				CA79A118182D8A4200618283 /* GDataXMLNode+CustomExtensions.h */,
+				CA79A119182D8A4200618283 /* GDataXMLNode+CustomExtensions.m */,
 			);
 			name = "GDataXMLNode+PrettyFormatterExtensions";
 			sourceTree = "<group>";
@@ -3224,6 +3225,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CA775CBF19FD5BCB00C1E761 /* My First Program.catrobat in Resources */,
 				CADBD6D919B0E8C200C62836 /* SSZipArchive.license in Resources */,
 				CADBD6DA19B0E8C200C62836 /* BDKNotifyHUD.license in Resources */,
 				CADBD6DB19B0E8C200C62836 /* IMPORTANT.caf in Resources */,
@@ -3516,7 +3518,7 @@
 				CADBD79919B0E8C200C62836 /* ChangeSizeByNBrickCell.m in Sources */,
 				CADBD79A19B0E8C200C62836 /* NextLookBrickCell.m in Sources */,
 				CADBD79B19B0E8C200C62836 /* DarkBlueGradientImageCell.m in Sources */,
-				CADBD79C19B0E8C200C62836 /* GDataXMLNode+PrettyFormatterExtensions.m in Sources */,
+				CADBD79C19B0E8C200C62836 /* GDataXMLNode+CustomExtensions.m in Sources */,
 				CADBD79D19B0E8C200C62836 /* Functions.m in Sources */,
 				CA9C3C2019F8830200000889 /* ScriptCBXMLNodeParser.m in Sources */,
 				CADBD79E19B0E8C200C62836 /* PlaceHolderView.m in Sources */,

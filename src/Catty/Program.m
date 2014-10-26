@@ -27,7 +27,7 @@
 #import "SpriteObject.h"
 #import "AppDelegate.h"
 #import "FileManager.h"
-#import "GDataXMLNode+PrettyFormatterExtensions.h"
+#import "GDataXMLNode+CustomExtensions.h"
 #import "SensorHandler.h"
 #import "ProgramLoadingInfo.h"
 #import "Parser.h"

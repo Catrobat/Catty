@@ -35,7 +35,7 @@
 #import "OrderedMapTable.h"
 #import "NSString+CatrobatNSStringExtensions.h"
 #import "SpriteObject.h"
-#import "GDataXMLNode+PrettyFormatterExtensions.h"
+#import "GDataXMLNode+CustomExtensions.h"
 
 #define kCatroidXMLPrefix               @"org.catrobat.catroid.content."
 #define kCatroidXMLSpriteList           @"spriteList"

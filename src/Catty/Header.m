@@ -21,7 +21,7 @@
  */
 
 #import "Header.h"
-#import "GDataXMLNode+PrettyFormatterExtensions.h"
+#import "GDataXMLNode+CustomExtensions.h"
 #import "Util.h"
 #import "CatrobatLanguageDefines.h"
 

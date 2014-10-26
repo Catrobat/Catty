@@ -21,7 +21,7 @@
  */
 
 #import "SpriteObjectCBXMLNodeParser.h"
-#import "GDataXMLNode.h"
+#import "GDataXMLNode+CustomExtensions.h"
 #import "CBXMLValidator.h"
 #import "SpriteObject.h"
 #import "LookCBXMLNodeParser.h"
@@ -45,10 +45,7 @@
         spriteObject.name = [attribute stringValue];
     } else if ([attribute.name isEqualToString:@"reference"]) {
         NSString *xPath = [attribute stringValue];
-        NSArray *queriedObjects = [xmlElement nodesForXPath:xPath error:nil];
-        [XMLError exceptionIf:[queriedObjects count] notEquals:1
-                      message:@"Invalid reference in object. No or too many pointed objects found!"];
-        pointedObjectElement = [queriedObjects firstObject];
+        pointedObjectElement = [xmlElement singleNodeForCatrobatXPath:xPath error:nil];
         [XMLError exceptionIfNode:pointedObjectElement isNilOrNodeNameNotEquals:@"pointedObject"];
         GDataXMLNode *nameAttribute = [pointedObjectElement attributeForName:@"name"];
         [XMLError exceptionIfNil:nameAttribute message:@"PointedObject must contain a name attribute"];

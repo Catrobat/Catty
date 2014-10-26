@@ -22,11 +22,12 @@
 
 #import "GDataXMLNode.h"
 
-@interface GDataXMLNode (PrettyFormatterExtensions)
+@interface GDataXMLNode (CustomExtensions)
 
 // little HACK to activate pretty printed XML, unfortunatelly GDataXMLNode does not support this by default
 // More details for this: http://stackoverflow.com/questions/6403083/ios-xml-pretty-print
-- (NSString *)XMLStringPrettyPrinted:(BOOL)isPrettyPrinted;
-+ (GDataXMLElement *)elementWithName:(NSString *)name optionalStringValue:(NSString *)value;
+- (NSString*)XMLStringPrettyPrinted:(BOOL)isPrettyPrinted;
+- (GDataXMLElement*)singleNodeForCatrobatXPath:(NSString*)catrobatXPath error:(NSError**)error;
++ (GDataXMLElement*)elementWithName:(NSString*)name optionalStringValue:(NSString*)value;
 
 @end

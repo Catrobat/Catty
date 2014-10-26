@@ -686,7 +686,7 @@
 {
     NSURL *localFileURL = [NSURL fileURLWithPath:URL];
     assert([NSFileManager.defaultManager fileExistsAtPath:URL]);
-    
+
     NSError *error = nil;
     BOOL success = [localFileURL setResourceValue:@YES forKey:NSURLIsExcludedFromBackupKey error:&error];
     if (!success) {
