@@ -23,14 +23,12 @@
 #import "CBXMLParser.h"
 #import "GDataXMLNode.h"
 #import "Program+CustomExtensions.h"
-#import "Header.h"
+#import "Header+CBXMLHandler.h"
 #import <Foundation/NSObjCRuntime.h>
 #import "CatrobatLanguageDefines.h"
-#import "SpriteObjectCBXMLNodeParser.h"
 #import "CBXMLValidator.h"
-#import "HeaderCBXMLNodeParser.h"
-#import "VariablesContainerCBXMLNodeParser.h"
-#import "SpriteObject.h"
+#import "SpriteObject+CBXMLHandler.h"
+#import "VariablesContainer+CBXMLHandler.h"
 
 #define kCatroidXMLPrefix               @"org.catrobat.catroid.content."
 #define kCatroidXMLSpriteList           @"spriteList"
@@ -128,7 +126,7 @@
 #pragma mark Header parsing
 - (Header*)parseAndCreateHeaderFromElement:(GDataXMLElement*)programElement
 {
-    return [[HeaderCBXMLNodeParser new] parseFromElement:programElement];
+    return [Header parseFromElement:programElement withContext:nil];
 }
 
 #pragma mark Object parsing
@@ -141,9 +139,10 @@
                   message:@"No objects in objectList, but there must exit at least 1 object (background)!!"];
     NSLog(@"<objectList>");
     NSMutableArray *objectList = [NSMutableArray arrayWithCapacity:[objectElements count]];
-    SpriteObjectCBXMLNodeParser *spriteParser = [SpriteObjectCBXMLNodeParser new];
     for (GDataXMLElement *objectElement in objectElements) {
-        [objectList addObject:[spriteParser parseFromElement:objectElement]];
+        SpriteObject *spriteObject = [SpriteObject parseFromElement:objectElement withContext:nil];
+        if(spriteObject != nil)
+            [objectList addObject:spriteObject];
     }
     NSLog(@"</objectList>");
     return objectList;
@@ -153,9 +152,7 @@
 - (VariablesContainer*)parseAndCreateVariablesFromElement:(GDataXMLElement*)programElement
                                                spriteObjectList:(NSArray*)spriteObjectList
 {
-    VariablesContainerCBXMLNodeParser *parser = nil;
-    parser = [[VariablesContainerCBXMLNodeParser alloc] initWithSpriteObjectList:spriteObjectList];
-    return [parser parseFromElement:programElement];
+    return [VariablesContainer parseFromElement:programElement withContext:spriteObjectList];
 }
 
 #pragma mark - Helpers

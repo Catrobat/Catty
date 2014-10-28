@@ -20,7 +20,7 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import "ScriptCBXMLNodeParser.h"
+#import "Script+CBXMLHandler.h"
 #import "CBXMLValidator.h"
 #import "GDataXMLNode.h"
 
@@ -28,19 +28,19 @@
 #import "StartScript.h"
 #import "WhenScript.h"
 
-@implementation ScriptCBXMLNodeParser
+@implementation Script (CBXMLHandler)
 
-- (Script*)parseFromElement:(GDataXMLElement*)xmlElement
++ (instancetype)parseFromElement:(GDataXMLElement*)xmlElement withContext:(id)context
 {
     [XMLError exceptionIfNode:xmlElement isNilOrNodeNameNotEquals:@"script"];
     NSArray *attributes = [xmlElement attributes];
     [XMLError exceptionIf:[attributes count] notEquals:1
                   message:@"Parsed type-attribute of script is invalid or empty!"];
-
+    
     GDataXMLNode *attribute = [attributes firstObject];
     [XMLError exceptionIfString:attribute.name isNotEqualToString:@"type"
                         message:@"Unsupported attribute: %@", attribute.name];
-
+    
     NSString *scriptType = [attribute stringValue];
     Script *script = nil;
     if ([scriptType isEqualToString:@"StartScript"]) {
@@ -58,28 +58,28 @@
     } else {
         [XMLError exceptionWithMessage:@"Unsupported script type: %@!", scriptType];
     }
-
-    script.brickList = [self parseAndCreateBricks:xmlElement];
+    
+    script.brickList = [[self class] parseAndCreateBricks:xmlElement];
     return script;
 }
 
-- (NSMutableArray*)parseAndCreateBricks:(GDataXMLElement*)scriptElement
++ (NSMutableArray*)parseAndCreateBricks:(GDataXMLElement*)scriptElement
 {
     NSArray *brickListElements = [scriptElement elementsForName:@"brickList"];
     [XMLError exceptionIf:[brickListElements count] notEquals:1 message:@"No brickList given!"];
-
+    
     NSArray *brickElements = [[brickListElements firstObject] children];
     if (! [brickElements count]) {
         // TODO: ask team if we should return nil or an empty NSMutableArray in this case!!
         return nil;
     }
-
+    
     NSMutableArray *brickList = [NSMutableArray arrayWithCapacity:[brickElements count]];
-// TODO: continue here...
-//    BrickCBXMLNodeParser *brickParser = [BrickCBXMLNodeParser new];
-//    for (GDataXMLElement *brickElement in brickElements) {
-//        [brickList addObject:[brickParser parseFromElement:brickElement]];
-//    }
+    // TODO: continue here...
+    //    BrickCBXMLNodeParser *brickParser = [BrickCBXMLNodeParser new];
+    //    for (GDataXMLElement *brickElement in brickElements) {
+    //        [brickList addObject:[brickParser parseFromElement:brickElement]];
+    //    }
     return brickList;
 }
 

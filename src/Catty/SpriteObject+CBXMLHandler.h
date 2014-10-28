@@ -20,12 +20,11 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
+#import "SpriteObject.h"
 #import "CBParserNodeProtocol.h"
 
-@class UserVariable;
+@interface SpriteObject (CBXMLHandler) <CBParserNodeProtocol>
 
-@interface UserVariableCBXMLNodeParser : NSObject <CBParserNodeProtocol>
-
-- (UserVariable*)parseFromElement:(GDataXMLElement*)xmlElement;
++ (instancetype)parseFromElement:(GDataXMLElement*)xmlElement withContext:(id)context;
 
 @end

@@ -20,14 +20,21 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import "CBParserNodeProtocol.h"
+#import "UserVariable+CBXMLHandler.h"
+#import "GDataXMLNode.h"
+#import "CBXMLValidator.h"
+#import "UserVariable.h"
 
-@class VariablesContainer;
+@implementation UserVariable (CBXMLHandler)
 
-@interface VariablesContainerCBXMLNodeParser : NSObject <CBParserNodeProtocol>
++ (instancetype)parseFromElement:(GDataXMLElement*)xmlElement withContext:(id)context
+{
+    [XMLError exceptionIfNode:xmlElement isNilOrNodeNameNotEquals:@"userVariable"];
+    UserVariable *userVariable = [UserVariable new];
+    [XMLError exceptionIfNil:[xmlElement stringValue] message:@"No name for user variable given"];
+    userVariable.name = [xmlElement stringValue];
+    return userVariable;
+}
 
-- (id)initWithSpriteObjectList:(NSArray*)spriteObjectList;
-
-- (VariablesContainer*)parseFromElement:(GDataXMLElement*)xmlElement;
 
 @end

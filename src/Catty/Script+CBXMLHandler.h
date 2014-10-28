@@ -20,12 +20,11 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
+#import "Script.h"
 #import "CBParserNodeProtocol.h"
 
-@class Header;
+@interface Script (CBXMLHandler) <CBParserNodeProtocol>
 
-@interface HeaderCBXMLNodeParser : NSObject <CBParserNodeProtocol>
-
-- (Header*)parseFromElement:(GDataXMLElement*)xmlElement;
++ (instancetype)parseFromElement:(GDataXMLElement*)xmlElement withContext:(id)context;
 
 @end

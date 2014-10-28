@@ -27,6 +27,6 @@
 @protocol CBParserNodeProtocol <NSObject>
 
 @required
-- (id)parseFromElement:(GDataXMLElement*)xmlElement;
++ (instancetype)parseFromElement:(GDataXMLElement*)xmlElement withContext:(id)context;
 
 @end

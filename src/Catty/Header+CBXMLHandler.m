@@ -20,15 +20,14 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import "HeaderCBXMLNodeParser.h"
+#import "Header+CBXMLHandler.h"
 #import "GDataXMLNode.h"
-#import "Header.h"
 #import "CBXMLValidator.h"
 #import "CBXMLParser.h"
 
-@implementation HeaderCBXMLNodeParser
+@implementation Header (CBXMLHandler)
 
-- (Header*)parseFromElement:(GDataXMLElement*)xmlElement
++ (instancetype)parseFromElement:(GDataXMLElement*)xmlElement withContext:(id)context
 {
     [XMLError exceptionIfNil:xmlElement message:@"No xml element given!"];
     Header *header = [Header defaultHeader];
@@ -37,13 +36,13 @@
     NSArray *headerPropertyNodes = [[headerNodes firstObject] children];
     [XMLError exceptionIf:[headerPropertyNodes count] equals:0 message:@"No parsed properties found in header!"];
     NSLog(@"<header>");
-
+    
     for (GDataXMLNode *headerPropertyNode in headerPropertyNodes) {
         [XMLError exceptionIfNil:headerPropertyNode message:@"Parsed an empty header entry!"];
         id value = [CBXMLParser valueForHeaderPropertyNode:headerPropertyNode];
         NSLog(@"<%@>%@</%@>", headerPropertyNode.name, value, headerPropertyNode.name);
         NSString *headerPropertyName = headerPropertyNode.name;
-
+        
         // consider special case: name of property programDescription
         if ([headerPropertyNode.name isEqualToString:@"description"]) {
             headerPropertyName = @"programDescription";

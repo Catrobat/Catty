@@ -20,12 +20,11 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
+#import "Sound.h"
 #import "CBParserNodeProtocol.h"
 
-@class Script;
+@interface Sound (CBXMLHandler) <CBParserNodeProtocol>
 
-@interface ScriptCBXMLNodeParser : NSObject <CBParserNodeProtocol>
-
-- (Script*)parseFromElement:(GDataXMLElement*)xmlElement;
++ (instancetype)parseFromElement:(GDataXMLElement*)xmlElement withContext:(id)context;
 
 @end

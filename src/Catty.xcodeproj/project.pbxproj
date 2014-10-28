@@ -21,6 +21,13 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
+		4C023FD319FFC28800381E36 /* Header+CBXMLHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C023FD219FFC28800381E36 /* Header+CBXMLHandler.m */; };
+		4C023FDA19FFC8D600381E36 /* UserVariable+CBXMLHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C023FD919FFC8D600381E36 /* UserVariable+CBXMLHandler.m */; };
+		4C023FDE19FFC9BA00381E36 /* Look+CBXMLHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C023FDD19FFC9BA00381E36 /* Look+CBXMLHandler.m */; };
+		4C023FE219FFCA4E00381E36 /* Sound+CBXMLHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C023FE119FFCA4E00381E36 /* Sound+CBXMLHandler.m */; };
+		4C023FE619FFCAC700381E36 /* SpriteObject+CBXMLHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C023FE519FFCAC700381E36 /* SpriteObject+CBXMLHandler.m */; };
+		4C023FEA19FFCCA100381E36 /* Script+CBXMLHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C023FE919FFCCA100381E36 /* Script+CBXMLHandler.m */; };
+		4C023FEE19FFCF0700381E36 /* VariablesContainer+CBXMLHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C023FED19FFCF0700381E36 /* VariablesContainer+CBXMLHandler.m */; };
 		9236B38B19DA85B000495474 /* Launch Screen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9236B38A19DA85B000495474 /* Launch Screen.xib */; };
 		924DEBFA19CAFB9900EED9CE /* MYBlurIntroductionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 924DEBF619CAFB9900EED9CE /* MYBlurIntroductionView.m */; };
 		924DEBFC19CAFB9900EED9CE /* MYIntroductionPanel.m in Sources */ = {isa = PBXBuildFile; fileRef = 924DEBF819CAFB9900EED9CE /* MYIntroductionPanel.m */; };
@@ -62,15 +69,8 @@
 		CA538EC919B0EA09008240AB /* test2.png in Resources */ = {isa = PBXBuildFile; fileRef = 92345632192E270B00464E6B /* test2.png */; };
 		CA538ECA19B0EA09008240AB /* test.png in Resources */ = {isa = PBXBuildFile; fileRef = 923453C1192D2D5F00464E6B /* test.png */; };
 		CA5D7FE519EC44480085D5AA /* BaseCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA5D7FE419EC44480085D5AA /* BaseCollectionViewController.m */; };
-		CA66CB6F19F6A99400D849E0 /* SpriteObjectCBXMLNodeParser.m in Sources */ = {isa = PBXBuildFile; fileRef = CA66CB6E19F6A99400D849E0 /* SpriteObjectCBXMLNodeParser.m */; };
 		CA66CB7519F6B42400D849E0 /* CBXMLValidator.m in Sources */ = {isa = PBXBuildFile; fileRef = CA66CB7419F6B42400D849E0 /* CBXMLValidator.m */; };
-		CA6E4C4619F93CD5001B65C3 /* VariablesContainerCBXMLNodeParser.m in Sources */ = {isa = PBXBuildFile; fileRef = CA6E4C4519F93CD5001B65C3 /* VariablesContainerCBXMLNodeParser.m */; };
-		CA6E4C4A19F9D57C001B65C3 /* UserVariableCBXMLNodeParser.m in Sources */ = {isa = PBXBuildFile; fileRef = CA6E4C4919F9D57C001B65C3 /* UserVariableCBXMLNodeParser.m */; };
 		CA775CBF19FD5BCB00C1E761 /* My First Program.catrobat in Resources */ = {isa = PBXBuildFile; fileRef = CA6E4C4719F9C388001B65C3 /* My First Program.catrobat */; };
-		CA9C3C1719F8726200000889 /* HeaderCBXMLNodeParser.m in Sources */ = {isa = PBXBuildFile; fileRef = CA9C3C1619F8726200000889 /* HeaderCBXMLNodeParser.m */; };
-		CA9C3C1A19F87B4300000889 /* LookCBXMLNodeParser.m in Sources */ = {isa = PBXBuildFile; fileRef = CA9C3C1919F87B4300000889 /* LookCBXMLNodeParser.m */; };
-		CA9C3C1D19F87CA300000889 /* SoundCBXMLNodeParser.m in Sources */ = {isa = PBXBuildFile; fileRef = CA9C3C1C19F87CA300000889 /* SoundCBXMLNodeParser.m */; };
-		CA9C3C2019F8830200000889 /* ScriptCBXMLNodeParser.m in Sources */ = {isa = PBXBuildFile; fileRef = CA9C3C1F19F8830200000889 /* ScriptCBXMLNodeParser.m */; };
 		CADBD6D919B0E8C200C62836 /* SSZipArchive.license in Resources */ = {isa = PBXBuildFile; fileRef = 4C9E2D3A198F685D00455B77 /* SSZipArchive.license */; };
 		CADBD6DA19B0E8C200C62836 /* BDKNotifyHUD.license in Resources */ = {isa = PBXBuildFile; fileRef = 4C9E2D22198EAD1800455B77 /* BDKNotifyHUD.license */; };
 		CADBD6DB19B0E8C200C62836 /* IMPORTANT.caf in Resources */ = {isa = PBXBuildFile; fileRef = CA1B802B1971ACE300D8E79B /* IMPORTANT.caf */; };
@@ -369,6 +369,20 @@
 		288765FC0DF74451002DB57D /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		32CA4F630368D1EE00C91783 /* App-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "App-Prefix.pch"; sourceTree = "<group>"; };
+		4C023FD119FFC28800381E36 /* Header+CBXMLHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Header+CBXMLHandler.h"; sourceTree = "<group>"; };
+		4C023FD219FFC28800381E36 /* Header+CBXMLHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Header+CBXMLHandler.m"; sourceTree = "<group>"; };
+		4C023FD819FFC8D600381E36 /* UserVariable+CBXMLHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UserVariable+CBXMLHandler.h"; sourceTree = "<group>"; };
+		4C023FD919FFC8D600381E36 /* UserVariable+CBXMLHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UserVariable+CBXMLHandler.m"; sourceTree = "<group>"; };
+		4C023FDC19FFC9BA00381E36 /* Look+CBXMLHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Look+CBXMLHandler.h"; sourceTree = "<group>"; };
+		4C023FDD19FFC9BA00381E36 /* Look+CBXMLHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Look+CBXMLHandler.m"; sourceTree = "<group>"; };
+		4C023FE019FFCA4E00381E36 /* Sound+CBXMLHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Sound+CBXMLHandler.h"; sourceTree = "<group>"; };
+		4C023FE119FFCA4E00381E36 /* Sound+CBXMLHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Sound+CBXMLHandler.m"; sourceTree = "<group>"; };
+		4C023FE419FFCAC700381E36 /* SpriteObject+CBXMLHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SpriteObject+CBXMLHandler.h"; sourceTree = "<group>"; };
+		4C023FE519FFCAC700381E36 /* SpriteObject+CBXMLHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "SpriteObject+CBXMLHandler.m"; sourceTree = "<group>"; };
+		4C023FE819FFCCA100381E36 /* Script+CBXMLHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Script+CBXMLHandler.h"; sourceTree = "<group>"; };
+		4C023FE919FFCCA100381E36 /* Script+CBXMLHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Script+CBXMLHandler.m"; sourceTree = "<group>"; };
+		4C023FEC19FFCF0700381E36 /* VariablesContainer+CBXMLHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "VariablesContainer+CBXMLHandler.h"; sourceTree = "<group>"; };
+		4C023FED19FFCF0700381E36 /* VariablesContainer+CBXMLHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "VariablesContainer+CBXMLHandler.m"; sourceTree = "<group>"; };
 		4C107ADC194F156F00D9D7ED /* PointToBrickTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PointToBrickTests.m; sourceTree = "<group>"; };
 		4C3AEF2E198E7EDD00604ABF /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		4C3C03F6199BA5610004F594 /* FormulaFunctionsTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FormulaFunctionsTest.m; sourceTree = "<group>"; };
@@ -715,8 +729,6 @@
 		CA5FED4F18B0070300A517B6 /* BrickCellInlineView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BrickCellInlineView.m; sourceTree = "<group>"; };
 		CA5FED5218B019B200A517B6 /* UIUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIUtil.h; sourceTree = "<group>"; };
 		CA5FED5318B019B200A517B6 /* UIUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIUtil.m; sourceTree = "<group>"; };
-		CA66CB6D19F6A99400D849E0 /* SpriteObjectCBXMLNodeParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpriteObjectCBXMLNodeParser.h; sourceTree = "<group>"; };
-		CA66CB6E19F6A99400D849E0 /* SpriteObjectCBXMLNodeParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpriteObjectCBXMLNodeParser.m; sourceTree = "<group>"; };
 		CA66CB7319F6B42400D849E0 /* CBXMLValidator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CBXMLValidator.h; sourceTree = "<group>"; };
 		CA66CB7419F6B42400D849E0 /* CBXMLValidator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CBXMLValidator.m; sourceTree = "<group>"; };
 		CA688200180AEEC2008A7C99 /* BaseTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseTableViewController.h; sourceTree = "<group>"; };
@@ -725,11 +737,7 @@
 		CA68820D180B39D0008A7C99 /* ColoredCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ColoredCell.m; sourceTree = "<group>"; };
 		CA68B67418BAA80A007042E4 /* ComboBoxView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ComboBoxView.h; sourceTree = "<group>"; };
 		CA68B67518BAA80A007042E4 /* ComboBoxView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ComboBoxView.m; sourceTree = "<group>"; };
-		CA6E4C4419F93CD5001B65C3 /* VariablesContainerCBXMLNodeParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VariablesContainerCBXMLNodeParser.h; sourceTree = "<group>"; };
-		CA6E4C4519F93CD5001B65C3 /* VariablesContainerCBXMLNodeParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VariablesContainerCBXMLNodeParser.m; sourceTree = "<group>"; };
 		CA6E4C4719F9C388001B65C3 /* My First Program.catrobat */ = {isa = PBXFileReference; lastKnownFileType = file; path = "My First Program.catrobat"; sourceTree = "<group>"; };
-		CA6E4C4819F9D57C001B65C3 /* UserVariableCBXMLNodeParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserVariableCBXMLNodeParser.h; sourceTree = "<group>"; };
-		CA6E4C4919F9D57C001B65C3 /* UserVariableCBXMLNodeParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserVariableCBXMLNodeParser.m; sourceTree = "<group>"; };
 		CA75C22418A9603400FC8C2F /* StartScriptCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StartScriptCell.h; sourceTree = "<group>"; };
 		CA75C22518A9603400FC8C2F /* StartScriptCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StartScriptCell.m; sourceTree = "<group>"; };
 		CA75C22718A9605D00FC8C2F /* WhenScriptCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WhenScriptCell.h; sourceTree = "<group>"; };
@@ -829,14 +837,6 @@
 		CA8C7252192BB9A100167ECD /* BrickCellProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BrickCellProtocol.h; sourceTree = "<group>"; };
 		CA9B7EA018FFCC0400F1790D /* NSData+Hashes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+Hashes.h"; sourceTree = "<group>"; };
 		CA9B7EA118FFCC0400F1790D /* NSData+Hashes.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+Hashes.m"; sourceTree = "<group>"; };
-		CA9C3C1519F8726200000889 /* HeaderCBXMLNodeParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HeaderCBXMLNodeParser.h; sourceTree = "<group>"; };
-		CA9C3C1619F8726200000889 /* HeaderCBXMLNodeParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HeaderCBXMLNodeParser.m; sourceTree = "<group>"; };
-		CA9C3C1819F87B4300000889 /* LookCBXMLNodeParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LookCBXMLNodeParser.h; sourceTree = "<group>"; };
-		CA9C3C1919F87B4300000889 /* LookCBXMLNodeParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LookCBXMLNodeParser.m; sourceTree = "<group>"; };
-		CA9C3C1B19F87CA300000889 /* SoundCBXMLNodeParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SoundCBXMLNodeParser.h; sourceTree = "<group>"; };
-		CA9C3C1C19F87CA300000889 /* SoundCBXMLNodeParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SoundCBXMLNodeParser.m; sourceTree = "<group>"; };
-		CA9C3C1E19F8830200000889 /* ScriptCBXMLNodeParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScriptCBXMLNodeParser.h; sourceTree = "<group>"; };
-		CA9C3C1F19F8830200000889 /* ScriptCBXMLNodeParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScriptCBXMLNodeParser.m; sourceTree = "<group>"; };
 		CAA1D0A319F689FA00A7DE47 /* CBParserNodeProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CBParserNodeProtocol.h; sourceTree = "<group>"; };
 		CAA443B3192410D00076BA35 /* BrickProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BrickProtocol.h; sourceTree = "<group>"; };
 		CAA96AFC18E4B21F00763409 /* SoundPickerTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SoundPickerTableViewController.h; sourceTree = "<group>"; };
@@ -1104,6 +1104,83 @@
 				B46B26E817703E4000172837 /* XCTest.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		4C023FD419FFC59000381E36 /* XMLHandler */ = {
+			isa = PBXGroup;
+			children = (
+				4C023FEB19FFCEF100381E36 /* VariablesContainer */,
+				4C023FE719FFCC7E00381E36 /* Script */,
+				4C023FE319FFCAB400381E36 /* Sprite */,
+				4C023FDF19FFCA2000381E36 /* Sound */,
+				4C023FDB19FFC99E00381E36 /* Look */,
+				4C023FD719FFC88A00381E36 /* UserVariable */,
+				4C023FD619FFC79900381E36 /* Header */,
+			);
+			name = XMLHandler;
+			sourceTree = "<group>";
+		};
+		4C023FD619FFC79900381E36 /* Header */ = {
+			isa = PBXGroup;
+			children = (
+				4C023FD119FFC28800381E36 /* Header+CBXMLHandler.h */,
+				4C023FD219FFC28800381E36 /* Header+CBXMLHandler.m */,
+			);
+			name = Header;
+			sourceTree = "<group>";
+		};
+		4C023FD719FFC88A00381E36 /* UserVariable */ = {
+			isa = PBXGroup;
+			children = (
+				4C023FD819FFC8D600381E36 /* UserVariable+CBXMLHandler.h */,
+				4C023FD919FFC8D600381E36 /* UserVariable+CBXMLHandler.m */,
+			);
+			name = UserVariable;
+			sourceTree = "<group>";
+		};
+		4C023FDB19FFC99E00381E36 /* Look */ = {
+			isa = PBXGroup;
+			children = (
+				4C023FDC19FFC9BA00381E36 /* Look+CBXMLHandler.h */,
+				4C023FDD19FFC9BA00381E36 /* Look+CBXMLHandler.m */,
+			);
+			name = Look;
+			sourceTree = "<group>";
+		};
+		4C023FDF19FFCA2000381E36 /* Sound */ = {
+			isa = PBXGroup;
+			children = (
+				4C023FE019FFCA4E00381E36 /* Sound+CBXMLHandler.h */,
+				4C023FE119FFCA4E00381E36 /* Sound+CBXMLHandler.m */,
+			);
+			name = Sound;
+			sourceTree = "<group>";
+		};
+		4C023FE319FFCAB400381E36 /* Sprite */ = {
+			isa = PBXGroup;
+			children = (
+				4C023FE419FFCAC700381E36 /* SpriteObject+CBXMLHandler.h */,
+				4C023FE519FFCAC700381E36 /* SpriteObject+CBXMLHandler.m */,
+			);
+			name = Sprite;
+			sourceTree = "<group>";
+		};
+		4C023FE719FFCC7E00381E36 /* Script */ = {
+			isa = PBXGroup;
+			children = (
+				4C023FE819FFCCA100381E36 /* Script+CBXMLHandler.h */,
+				4C023FE919FFCCA100381E36 /* Script+CBXMLHandler.m */,
+			);
+			name = Script;
+			sourceTree = "<group>";
+		};
+		4C023FEB19FFCEF100381E36 /* VariablesContainer */ = {
+			isa = PBXGroup;
+			children = (
+				4C023FEC19FFCF0700381E36 /* VariablesContainer+CBXMLHandler.h */,
+				4C023FED19FFCF0700381E36 /* VariablesContainer+CBXMLHandler.m */,
+			);
+			name = VariablesContainer;
 			sourceTree = "<group>";
 		};
 		4C3C03F5199BA5250004F594 /* Formula */ = {
@@ -1550,8 +1627,6 @@
 			children = (
 				B45A582A17325442000E038F /* UserVariable.h */,
 				B45A582B17325442000E038F /* UserVariable.m */,
-				CA6E4C4819F9D57C001B65C3 /* UserVariableCBXMLNodeParser.h */,
-				CA6E4C4919F9D57C001B65C3 /* UserVariableCBXMLNodeParser.m */,
 			);
 			name = UserVariable;
 			sourceTree = "<group>";
@@ -1624,8 +1699,6 @@
 			children = (
 				B47068881733BA9600EC880D /* VariablesContainer.h */,
 				B47068891733BA9600EC880D /* VariablesContainer.m */,
-				CA6E4C4419F93CD5001B65C3 /* VariablesContainerCBXMLNodeParser.h */,
-				CA6E4C4519F93CD5001B65C3 /* VariablesContainerCBXMLNodeParser.m */,
 			);
 			name = VariablesContainer;
 			sourceTree = "<group>";
@@ -2237,6 +2310,7 @@
 		CA5D7FE219EC28610085D5AA /* New Parser */ = {
 			isa = PBXGroup;
 			children = (
+				4C023FD419FFC59000381E36 /* XMLHandler */,
 				CA2932C519EDD32800DB6701 /* CBXMLParser.h */,
 				CA2932C619EDD32800DB6701 /* CBXMLParser.m */,
 				CA66CB7319F6B42400D849E0 /* CBXMLValidator.h */,
@@ -2689,7 +2763,7 @@
 				B4D940B3170EC5EE003DDBFA /* Defines */,
 				B400302C170EB45200396DB7 /* Helpers */,
 				CD0CCFF5170CB88F00B70036 /* DataModel */,
-				CD0CCFF9170CB91A00B70036 /* Parser */,
+				CD0CCFF9170CB91A00B70036 /* Parser & Serialization */,
 				B4E7D258176EF23200EC8AD8 /* Scene */,
 				B4D940B2170EC5D5003DDBFA /* Views */,
 				CD0CCE3B170CA00F00B70036 /* ViewController */,
@@ -2973,8 +3047,6 @@
 			children = (
 				CD639C79170DF52600FA67DA /* SpriteObject.h */,
 				CD639C7A170DF52600FA67DA /* SpriteObject.m */,
-				CA66CB6D19F6A99400D849E0 /* SpriteObjectCBXMLNodeParser.h */,
-				CA66CB6E19F6A99400D849E0 /* SpriteObjectCBXMLNodeParser.m */,
 			);
 			name = Sprite;
 			sourceTree = "<group>";
@@ -2997,13 +3069,13 @@
 			name = Program;
 			sourceTree = "<group>";
 		};
-		CD0CCFF9170CB91A00B70036 /* Parser */ = {
+		CD0CCFF9170CB91A00B70036 /* Parser & Serialization */ = {
 			isa = PBXGroup;
 			children = (
 				CA5D7FE219EC28610085D5AA /* New Parser */,
 				CA5D7FE119EC28540085D5AA /* Old Parser */,
 			);
-			name = Parser;
+			name = "Parser & Serialization";
 			sourceTree = "<group>";
 		};
 		CD0CCFFA170CB92D00B70036 /* Scripts */ = {
@@ -3017,8 +3089,6 @@
 				CD0CCF33170CB39700B70036 /* StartScript.m */,
 				CD0CCF46170CB39700B70036 /* WhenScript.h */,
 				CD0CCF47170CB39700B70036 /* WhenScript.m */,
-				CA9C3C1E19F8830200000889 /* ScriptCBXMLNodeParser.h */,
-				CA9C3C1F19F8830200000889 /* ScriptCBXMLNodeParser.m */,
 			);
 			name = Scripts;
 			sourceTree = "<group>";
@@ -3028,8 +3098,6 @@
 			children = (
 				CD0CCF21170CB39700B70036 /* Sound.h */,
 				CD0CCF22170CB39700B70036 /* Sound.m */,
-				CA9C3C1B19F87CA300000889 /* SoundCBXMLNodeParser.h */,
-				CA9C3C1C19F87CA300000889 /* SoundCBXMLNodeParser.m */,
 			);
 			name = Sound;
 			sourceTree = "<group>";
@@ -3039,8 +3107,6 @@
 			children = (
 				CD0CCED3170CB39700B70036 /* Look.h */,
 				CD0CCED4170CB39700B70036 /* Look.m */,
-				CA9C3C1819F87B4300000889 /* LookCBXMLNodeParser.h */,
-				CA9C3C1919F87B4300000889 /* LookCBXMLNodeParser.m */,
 			);
 			name = Look;
 			sourceTree = "<group>";
@@ -3050,8 +3116,6 @@
 			children = (
 				CD0CCEA7170CB39600B70036 /* Header.h */,
 				CD0CCEA8170CB39600B70036 /* Header.m */,
-				CA9C3C1519F8726200000889 /* HeaderCBXMLNodeParser.h */,
-				CA9C3C1619F8726200000889 /* HeaderCBXMLNodeParser.m */,
 			);
 			name = Header;
 			sourceTree = "<group>";
@@ -3357,14 +3421,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				CADBD70219B0E8C200C62836 /* DarkBlueGradientImageDetailCell.m in Sources */,
+				4C023FDE19FFC9BA00381E36 /* Look+CBXMLHandler.m in Sources */,
 				CADBD70319B0E8C200C62836 /* Scene.m in Sources */,
-				CA9C3C1D19F87CA300000889 /* SoundCBXMLNodeParser.m in Sources */,
 				CADBD70419B0E8C200C62836 /* BrickSelectModalTransition.m in Sources */,
 				CADBD70519B0E8C200C62836 /* ForeverBrickCell.m in Sources */,
 				CADBD70619B0E8C200C62836 /* BaseTableViewController.m in Sources */,
 				CADBD70719B0E8C200C62836 /* CatrobatBaseCell.m in Sources */,
 				CADBD70819B0E8C200C62836 /* PlaceAtBrickCell.m in Sources */,
-				CA6E4C4619F93CD5001B65C3 /* VariablesContainerCBXMLNodeParser.m in Sources */,
 				CADBD70919B0E8C200C62836 /* FBShimmeringLayer.m in Sources */,
 				CADBD70A19B0E8C200C62836 /* NSString+CatrobatNSStringExtensions.m in Sources */,
 				CADBD70B19B0E8C200C62836 /* BrickShapeFactory.m in Sources */,
@@ -3381,7 +3444,6 @@
 				CADBD71619B0E8C200C62836 /* ChangeBrightnessByNBrick.m in Sources */,
 				CADBD71719B0E8C200C62836 /* CatrobatTableViewController.m in Sources */,
 				CADBD71819B0E8C200C62836 /* BrickCellInlineView.m in Sources */,
-				CA66CB6F19F6A99400D849E0 /* SpriteObjectCBXMLNodeParser.m in Sources */,
 				CADBD71919B0E8C200C62836 /* AppDelegate.m in Sources */,
 				CADBD71A19B0E8C200C62836 /* main.m in Sources */,
 				CADBD71B19B0E8C200C62836 /* ProgramTableHeaderView.m in Sources */,
@@ -3398,7 +3460,6 @@
 				CADBD72619B0E8C200C62836 /* BroadcastWaitBrick.m in Sources */,
 				CADBD72719B0E8C200C62836 /* SoundComboBoxView.m in Sources */,
 				CADBD72819B0E8C200C62836 /* GoNStepsBackBrickCell.m in Sources */,
-				CA6E4C4A19F9D57C001B65C3 /* UserVariableCBXMLNodeParser.m in Sources */,
 				CADBD72919B0E8C200C62836 /* VariableComboBoxView.m in Sources */,
 				CADBD72A19B0E8C200C62836 /* WhenScriptCell.m in Sources */,
 				CADBD72B19B0E8C200C62836 /* ChangeBrightnessByNBrickCell.m in Sources */,
@@ -3462,6 +3523,7 @@
 				CADBD76319B0E8C200C62836 /* SetXBrick.m in Sources */,
 				CADBD76419B0E8C200C62836 /* SetVariableBrickCell.m in Sources */,
 				CADBD76519B0E8C200C62836 /* SetYBrick.m in Sources */,
+				4C023FE619FFCAC700381E36 /* SpriteObject+CBXMLHandler.m in Sources */,
 				CADBD76619B0E8C200C62836 /* ChangeVolumeByNBrickCell.m in Sources */,
 				CADBD76719B0E8C200C62836 /* SetXBrickCell.m in Sources */,
 				CADBD76819B0E8C200C62836 /* Operators.m in Sources */,
@@ -3485,9 +3547,9 @@
 				CADBD77A19B0E8C200C62836 /* InfoPopupViewController.m in Sources */,
 				CADBD77B19B0E8C200C62836 /* Util.m in Sources */,
 				CADBD77C19B0E8C200C62836 /* UIViewController+CWPopup.m in Sources */,
-				CA9C3C1A19F87B4300000889 /* LookCBXMLNodeParser.m in Sources */,
 				CADBD77D19B0E8C200C62836 /* SingleBrickSelectionView.m in Sources */,
 				CADBD77E19B0E8C200C62836 /* NSMutableArray+SWUtilityButtons.m in Sources */,
+				4C023FEA19FFCCA100381E36 /* Script+CBXMLHandler.m in Sources */,
 				CADBD77F19B0E8C200C62836 /* WaitBrick.m in Sources */,
 				CADBD78019B0E8C200C62836 /* IfLogicElseBrickCell.m in Sources */,
 				CADBD78119B0E8C200C62836 /* WhenScript.m in Sources */,
@@ -3520,12 +3582,10 @@
 				CADBD79B19B0E8C200C62836 /* DarkBlueGradientImageCell.m in Sources */,
 				CADBD79C19B0E8C200C62836 /* GDataXMLNode+CustomExtensions.m in Sources */,
 				CADBD79D19B0E8C200C62836 /* Functions.m in Sources */,
-				CA9C3C2019F8830200000889 /* ScriptCBXMLNodeParser.m in Sources */,
 				CADBD79E19B0E8C200C62836 /* PlaceHolderView.m in Sources */,
 				CADBD79F19B0E8C200C62836 /* MyProgramsViewController.m in Sources */,
 				CADBD7A019B0E8C200C62836 /* IfLogicBeginBrickCell.m in Sources */,
 				CADBD7A119B0E8C200C62836 /* ImageCache.m in Sources */,
-				CA9C3C1719F8726200000889 /* HeaderCBXMLNodeParser.m in Sources */,
 				CADBD7A219B0E8C200C62836 /* CatrobatInformation.m in Sources */,
 				CADBD7A319B0E8C200C62836 /* ProgramDetailStoreViewController.m in Sources */,
 				CADBD7A419B0E8C200C62836 /* TTTAttributedLabel.m in Sources */,
@@ -3561,6 +3621,7 @@
 				CADBD7C119B0E8C200C62836 /* CreateView.m in Sources */,
 				CADBD7C219B0E8C200C62836 /* SetVariableBrick.m in Sources */,
 				CADBD7C319B0E8C200C62836 /* UserVariable.m in Sources */,
+				4C023FD319FFC28800381E36 /* Header+CBXMLHandler.m in Sources */,
 				CADBD7C419B0E8C200C62836 /* DataTransferMessage.m in Sources */,
 				CADBD7C519B0E8C200C62836 /* IBActionSheet.m in Sources */,
 				CADBD7C619B0E8C200C62836 /* Formula.m in Sources */,
@@ -3572,6 +3633,7 @@
 				CADBD7CC19B0E8C200C62836 /* PointToBrick.m in Sources */,
 				CADBD7CD19B0E8C200C62836 /* VariablesContainer.m in Sources */,
 				CADBD7CE19B0E8C200C62836 /* IfLogicEndBrickCell.m in Sources */,
+				4C023FEE19FFCF0700381E36 /* VariablesContainer+CBXMLHandler.m in Sources */,
 				CADBD7CF19B0E8C200C62836 /* ChangeVariableBrick.m in Sources */,
 				CADBD7D019B0E8C200C62836 /* ProgramManager.m in Sources */,
 				CADBD7D119B0E8C200C62836 /* SensorHandler.m in Sources */,
@@ -3579,6 +3641,7 @@
 				CADBD7D319B0E8C200C62836 /* NoteBrick.m in Sources */,
 				CADBD7D419B0E8C200C62836 /* OrderedMapTable.m in Sources */,
 				CADBD7D519B0E8C200C62836 /* MoveNStepsBrick.m in Sources */,
+				4C023FE219FFCA4E00381E36 /* Sound+CBXMLHandler.m in Sources */,
 				CADBD7D619B0E8C200C62836 /* IfOnEdgeBounceBrickCell.m in Sources */,
 				CADBD7D719B0E8C200C62836 /* DarkBlueGradientFeaturedCell.m in Sources */,
 				CADBD7D819B0E8C200C62836 /* Logger.m in Sources */,
@@ -3588,6 +3651,7 @@
 				CADBD7DC19B0E8C200C62836 /* SSZipArchive.m in Sources */,
 				CADBD7DD19B0E8C200C62836 /* LoopBeginBrick.m in Sources */,
 				CADBD7DE19B0E8C200C62836 /* ScriptDeleteButton.m in Sources */,
+				4C023FDA19FFC8D600381E36 /* UserVariable+CBXMLHandler.m in Sources */,
 				CADBD7DF19B0E8C200C62836 /* GDataXMLNode.m in Sources */,
 				CADBD7E019B0E8C200C62836 /* WaitBrickCell.m in Sources */,
 				CADBD7E119B0E8C200C62836 /* NSString+FastImageSize.m in Sources */,

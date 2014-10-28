@@ -20,14 +20,14 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import "LookCBXMLNodeParser.h"
+#import "Look+CBXMLHandler.h"
 #import "GDataXMLNode.h"
 #import "Look.h"
 #import "CBXMLValidator.h"
 
-@implementation LookCBXMLNodeParser
+@implementation Look (CBXMLHandler)
 
-- (Look*)parseFromElement:(GDataXMLElement*)xmlElement
++ (instancetype)parseFromElement:(GDataXMLElement*)xmlElement withContext:(id)context
 {
     [XMLError exceptionIfNode:xmlElement isNilOrNodeNameNotEquals:@"look"];
     GDataXMLNode *nameAttribute = [xmlElement attributeForName:@"name"];
@@ -43,5 +43,6 @@
     look.fileName = [fileNameElement stringValue];
     return look;
 }
+
 
 @end

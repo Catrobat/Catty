@@ -20,23 +20,23 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import "SpriteObjectCBXMLNodeParser.h"
+#import "SpriteObject+CBXMLHandler.h"
 #import "GDataXMLNode+CustomExtensions.h"
 #import "CBXMLValidator.h"
 #import "SpriteObject.h"
-#import "LookCBXMLNodeParser.h"
-#import "SoundCBXMLNodeParser.h"
-#import "ScriptCBXMLNodeParser.h"
+#import "Look+CBXMLHandler.h"
+#import "Sound+CBXMLHandler.h"
+#import "Script+CBXMLHandler.h"
 
-@implementation SpriteObjectCBXMLNodeParser
+@implementation SpriteObject (CBXMLHandler)
 
-- (id)parseFromElement:(GDataXMLElement*)xmlElement
++ (instancetype)parseFromElement:(GDataXMLElement*)xmlElement withContext:(id)context
 {
     [XMLError exceptionIfNode:xmlElement isNilOrNodeNameNotEquals:@"object"];
     NSArray *attributes = [xmlElement attributes];
     [XMLError exceptionIf:[attributes count] notEquals:1
                   message:@"Parsed name-attribute of object is invalid or empty!"];
-
+    
     SpriteObject *spriteObject = [SpriteObject new];
     GDataXMLNode *attribute = [attributes firstObject];
     GDataXMLElement *pointedObjectElement = nil;
@@ -54,66 +54,69 @@
         [XMLError exceptionWithMessage:@"Unsupported attribute: %@!", attribute.name];
     }
     NSLog(@"<object name=\"%@\">", spriteObject.name);
-
-    spriteObject.lookList = [self parseAndCreateLooks:(pointedObjectElement ? pointedObjectElement : xmlElement)];
-    spriteObject.soundList = [self parseAndCreateSounds:(pointedObjectElement ? pointedObjectElement : xmlElement)];
-    spriteObject.scriptList = [self parseAndCreateScripts:(pointedObjectElement ? pointedObjectElement : xmlElement)];
+    
+    spriteObject.lookList = [[self class] parseAndCreateLooks:(pointedObjectElement ? pointedObjectElement : xmlElement)];
+    spriteObject.soundList = [[self class] parseAndCreateSounds:(pointedObjectElement ? pointedObjectElement : xmlElement)];
+    spriteObject.scriptList = [[self class] parseAndCreateScripts:(pointedObjectElement ? pointedObjectElement : xmlElement)];
     return spriteObject;
 }
 
-- (NSMutableArray*)parseAndCreateLooks:(GDataXMLElement*)objectElement
++ (NSMutableArray*)parseAndCreateLooks:(GDataXMLElement*)objectElement
 {
     NSArray *lookListElements = [objectElement elementsForName:@"lookList"];
     [XMLError exceptionIf:[lookListElements count] notEquals:1 message:@"No lookList given!"];
-
+    
     NSArray *lookElements = [[lookListElements firstObject] children];
     if (! [lookElements count]) {
         // TODO: ask team if we should return nil or an empty NSMutableArray in this case!!
         return nil;
     }
-
+    
     NSMutableArray *lookList = [NSMutableArray arrayWithCapacity:[lookElements count]];
-    LookCBXMLNodeParser *lookParser = [LookCBXMLNodeParser new];
     for (GDataXMLElement *lookElement in lookElements) {
-        [lookList addObject:[lookParser parseFromElement:lookElement]];
+        Look *look = [Look parseFromElement:lookElement withContext:nil];
+        if(look != nil)
+            [lookList addObject:look];
     }
     return lookList;
 }
 
-- (NSMutableArray*)parseAndCreateSounds:(GDataXMLElement*)objectElement
++ (NSMutableArray*)parseAndCreateSounds:(GDataXMLElement*)objectElement
 {
     NSArray *soundListElements = [objectElement elementsForName:@"soundList"];
     [XMLError exceptionIf:[soundListElements count] notEquals:1 message:@"No soundList given!"];
-
+    
     NSArray *soundElements = [[soundListElements firstObject] children];
     if (! [soundElements count]) {
         // TODO: ask team if we should return nil or an empty NSMutableArray in this case!!
         return nil;
     }
-
+    
     NSMutableArray *soundList = [NSMutableArray arrayWithCapacity:[soundElements count]];
-    SoundCBXMLNodeParser *soundParser = [SoundCBXMLNodeParser new];
     for (GDataXMLElement *soundElement in soundElements) {
-        [soundList addObject:[soundParser parseFromElement:soundElement]];
+        Sound *sound = [Sound parseFromElement:soundElement withContext:nil];
+        if(sound != nil)
+            [soundList addObject:sound];
     }
     return soundList;
 }
 
-- (NSMutableArray*)parseAndCreateScripts:(GDataXMLElement*)objectElement
++ (NSMutableArray*)parseAndCreateScripts:(GDataXMLElement*)objectElement
 {
     NSArray *scriptListElements = [objectElement elementsForName:@"scriptList"];
     [XMLError exceptionIf:[scriptListElements count] notEquals:1 message:@"No scriptList given!"];
-
+    
     NSArray *scriptElements = [[scriptListElements firstObject] children];
     if (! [scriptElements count]) {
         // TODO: ask team if we should return nil or an empty NSMutableArray in this case!!
         return nil;
     }
-
+    
     NSMutableArray *scriptList = [NSMutableArray arrayWithCapacity:[scriptElements count]];
-    ScriptCBXMLNodeParser *scriptParser = [ScriptCBXMLNodeParser new];
     for (GDataXMLElement *scriptElement in scriptElements) {
-        [scriptList addObject:[scriptParser parseFromElement:scriptElement]];
+        Script *script = [Script parseFromElement:scriptElement withContext:nil];
+        if(script != nil)
+            [scriptList addObject:script];
     }
     return scriptList;
 }

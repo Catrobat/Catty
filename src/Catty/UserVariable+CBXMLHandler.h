@@ -20,12 +20,11 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
+#import "UserVariable.h"
 #import "CBParserNodeProtocol.h"
 
-@class Look;
+@interface UserVariable (CBXMLHandler) <CBParserNodeProtocol>
 
-@interface LookCBXMLNodeParser : NSObject <CBParserNodeProtocol>
-
-- (Look*)parseFromElement:(GDataXMLElement*)xmlElement;
++ (instancetype)parseFromElement:(GDataXMLElement*)xmlElement withContext:(id)context;
 
 @end
